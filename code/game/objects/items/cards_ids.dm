@@ -167,7 +167,7 @@
 	set category = "Object"
 	set src in usr
 
-	to_chat(usr, text("\icon[] []: The current assignment on the card is [].", src, src.name, src.assignment))
+	to_chat(usr, "[bicon(src)] [name]: The current assignment on the card is [assignment].")
 	to_chat(usr, "The blood type on the card is [blood_type].")
 	to_chat(usr, "The DNA hash on the card is [dna_hash].")
 	to_chat(usr, "The fingerprint hash on the card is [fingerprint_hash].")
