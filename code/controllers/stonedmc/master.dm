@@ -220,7 +220,6 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	if(isnull(old_runlevel))
 		old_runlevel = "NULL"
 
-	testing("MC: Runlevel changed from [old_runlevel] to [new_runlevel]")
 	current_runlevel = log(2, new_runlevel) + 1
 	if(current_runlevel < 1)
 		CRASH("Attempted to set invalid runlevel: [new_runlevel]")
@@ -230,17 +229,16 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	set waitfor = 0
 	if(delay)
 		sleep(delay)
-	testing("Master starting processing")
 	var/rtn = Loop()
-	if (rtn > 0 || processing < 0)
+	if(rtn > 0 || processing < 0)
 		return //this was suppose to happen.
 	//loop ended, restart the mc
-	log_game("MC crashed or runtimed, restarting")
-	message_admins("MC crashed or runtimed, restarting")
+	log_game("MC crashed or runtimed, restarting.")
+	message_admins("MC crashed or runtimed, restarting.")
 	var/rtn2 = Recreate_MC()
-	if (rtn2 <= 0)
-		log_game("Failed to recreate MC (Error code: [rtn2]), it's up to the failsafe now")
-		message_admins("Failed to recreate MC (Error code: [rtn2]), it's up to the failsafe now")
+	if(rtn2 <= 0)
+		log_game("Failed to recreate MC (Error code: [rtn2]), it's up to the failsafe now.")
+		message_admins("Failed to recreate MC (Error code: [rtn2]), it's up to the failsafe now.")
 		Failsafe.defcon = 2
 
 // Main loop.

@@ -90,11 +90,6 @@
 /datum/game_mode/proc/post_setup()
 	spawn(ROUNDSTART_LOGOUT_REPORT_TIME)
 		display_roundstart_logout_report()
-
-	feedback_set_details("round_start","[time2text(world.realtime)]")
-	if(ticker?.mode)
-		feedback_set_details("game_mode","[ticker.mode]")
-	feedback_set_details("server_ip","[world.internet_address]:[world.port]")
 	return TRUE
 
 
@@ -312,7 +307,7 @@
 
 
 /datum/game_mode/proc/display_roundstart_logout_report()
-	var/msg = "<span class='notice'><b>Roundstart logout report</b></span>"
+	var/msg = "<span class='notice'><b>Roundstart logout report</b></span>\n"
 	for(var/mob/living/L in GLOB.mob_list)
 
 		if(L.ckey)
@@ -326,7 +321,7 @@
 
 
 		if(L.ckey && L.client)
-			if(L.client.inactivity >= (ROUNDSTART_LOGOUT_REPORT_TIME / 2))	//Connected, but inactive (alt+tabbed or something)
+			if(L.client.inactivity >= (ROUNDSTART_LOGOUT_REPORT_TIME / 2))
 				msg += "<b>[L.name]</b> ([L.ckey]), the [L.job] (<font color='#ffcc00'><b>Connected, Inactive</b></font>)\n"
 				continue //AFK client
 			if(L.stat)
@@ -352,7 +347,6 @@
 						continue //Dead mob, ghost abandoned
 				else
 					if(D.can_reenter_corpse)
-						msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), the [L.job] (<font color='red'><b>This shouldn't appear.</b></font>)\n"
 						continue //Lolwhat
 					else
 						msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), the [L.job] (<font color='red'><b>Ghosted</b></font>)\n"

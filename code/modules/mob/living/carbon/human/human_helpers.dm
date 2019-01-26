@@ -73,7 +73,6 @@
 				return "[ethnicity]_left_foot"
 
 			else
-				message_admins("DEBUG: Something called get_limb_icon_name() incorrectly, they use the name [limb_name]")
 				return null
 	else
 		switch(limb_name)
@@ -137,7 +136,6 @@
 			if ("left foot")
 				return "l_foot"
 			else
-				message_admins("DEBUG: Something called get_limb_icon_name() incorrectly, they use the name [limb_name]")
 				return null
 
 /mob/living/carbon/human/proc/set_limb_icons()

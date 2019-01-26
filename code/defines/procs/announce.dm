@@ -139,10 +139,12 @@
 /datum/announcement/priority/command/Sound(var/message_sound, var/to_xenos = 0)
 	PlaySound(message_sound, to_xenos)
 
+
 /datum/announcement/proc/Log(message as text, message_title as text)
 	if(log)
 		usr.log_talk("[message_title] - [message] - [announcer]", LOG_SAY, "[announcement_type]")
-		message_admins("[key_name_admin(usr)] has made \a [announcement_type].", 1)
+		message_admins("[ADMIN_TPMONTY(usr)] has made \a [announcement_type].")
+
 
 /proc/GetNameAndAssignmentFromId(var/obj/item/card/id/I)
 	// Format currently matches that of newscaster feeds: Registered Name (Assigned Rank)

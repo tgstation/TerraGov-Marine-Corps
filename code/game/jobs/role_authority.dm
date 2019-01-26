@@ -212,8 +212,8 @@ sorts them out by their department.
 		unassigned_players -= M
 
 	if(length(unassigned_players))
-		log_game("ERROR: unassigned_players still has players left. Length: [length(unassigned_players)].")
-		message_admins("ERROR: unassigned_players still has players left. Length: [length(unassigned_players)].")
+		log_game("ERROR: There are still [length(unassigned_players)] unassigned players.")
+		message_admins("ERROR: There are still [length(unassigned_players)] unassigned players.")
 
 	unassigned_players = null
 
@@ -281,8 +281,8 @@ sorts them out by their department.
 		else if(assign_role(M, roles_by_name["Squad Marine"]))
 			return roles_to_iterate
 		else
-			log_game("ERROR: Failed to assign random role to [M].")
-			message_admins("ERROR: Failed to assign random role to [M].")
+			log_game("ERROR: Failed to assign random role to [key_name(M)].")
+			message_admins("ERROR: Failed to assign random role to [ADMIN_TPMONTY(M)].")
 			return roles_to_iterate
 	
 
@@ -354,8 +354,8 @@ sorts them out by their department.
 		if(istype(S) && istype(S.loc, /turf))
 			M.loc = S.loc
 		else
-			log_game("ERROR: No spawn location found for player [M], job [J].")
-			message_admins("ERROR: No spawn location found for player [M], job [J].")
+			log_game("ERROR: No spawn location found for player [key_name(M)], job [J].")
+			message_admins("ERROR: No spawn location found for player [ADMIN_TPMONTY(M)], job [J].")
 
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
@@ -530,6 +530,6 @@ sorts them out by their department.
 						
 			return FALSE
 
-	log_game("ERROR: Could not assign squad for [M].")
-	message_admins("ERROR: Could not assign squad for [M].")
+	log_game("ERROR: Could not assign squad for [key_name(M)].")
+	message_admins("ERROR: Could not assign squad for [ADMIN_TPMONTY(M)].")
 	return FALSE

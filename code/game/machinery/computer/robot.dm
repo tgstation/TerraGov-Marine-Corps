@@ -121,8 +121,8 @@
 			if (istype(I))
 				if(src.check_access(I))
 					if (!status)
-						message_admins("<span class='notice'> [key_name_admin(usr)] has initiated the global cyborg killswitch!</span>")
-						log_game("<span class='notice'> [key_name(usr)] has initiated the global cyborg killswitch!</span>")
+						log_game("[key_name(usr)] has initiated the global cyborg killswitch.")
+						message_admins("[ADMIN_TPMONTY(usr)] has initiated the global cyborg killswitch.")
 						src.status = 1
 						src.start_sequence()
 						src.temp = null

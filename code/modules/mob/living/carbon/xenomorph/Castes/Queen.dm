@@ -414,9 +414,8 @@
 			G << sound(get_sfx("queen"),wait = 0,volume = 50)
 			to_chat(G, "[queensWord]")
 
-	log_admin("[key_name(src)] has created a Word of the Queen report:")
-	log_admin("[queensWord]")
-	message_admins("[key_name_admin(src)] has created a Word of the Queen report.", 1)
+	log_admin("[key_name(src)] has created a Word of the Queen report: [queensWord]")
+	message_admins("[ADMIN_TPMONTY(src)] has created a Word of the Queen report.")
 
 
 /mob/living/carbon/Xenomorph/proc/claw_toggle()

@@ -1,21 +1,3 @@
-#define DEBUG_ARMOR_PROTECTION 0
-
-#if DEBUG_ARMOR_PROTECTION
-/mob/living/carbon/human/verb/check_overall_protection()
-	set name = "Get Armor Value"
-	set category = "Debug"
-	set desc = "Shows the armor value of the bullet category."
-
-	var/armor = 0
-	var/counter = 0
-	for(var/X in H.limbs)
-		var/datum/limb/E = X
-		armor = getarmor_organ(E, "bullet")
-		to_chat(src, "<span class='debuginfo'><b>[E.name]</b> is protected with <b>[armor]</b> armor against bullets.</span>")
-		counter += armor
-	to_chat(src, "<span class='debuginfo'>The overall armor score is: <b>[counter]</b>.</span>")
-#endif
-
 //=======================================================================\\
 //=======================================================================
 

@@ -116,22 +116,6 @@ datum/game_mode/proc/initialize_special_clamps()
 
 //===================================================\\
 
-#define DEBUG_PREDATOR_INITIALIZE 0
-
-#if DEBUG_PREDATOR_INITIALIZE
-/mob/verb/adjust_predator_round()
-	set name = "Adjust Predator Round"
-	set category = "Debug"
-	set desc = "Adjust the number of predators present in a predator round."
-
-	if(!ticker || !ticker.mode)
-		to_chat(src, "<span class='warning'>The game hasn't started yet!</span?")
-		return FALSE
-
-	ticker.mode.pred_maximum_num = input(src,"What is the new maximum number of predators?","Input:",4) as num|null
-	ticker.mode.pred_current_num = input(src,"What is the new current number of predators?","Input:",0) as num|null
-#endif
-
 /datum/game_mode/proc/initialize_predator(mob/living/carbon/human/new_predator)
 	predators += new_predator.mind //Add them to the proper list.
 	pred_keys += new_predator.ckey //Add their key.
@@ -188,8 +172,8 @@ datum/game_mode/proc/initialize_special_clamps()
 	if(!new_predator)
 		return FALSE
 
-	log_admin("[new_predator.key], became a new Yautja, [new_predator.real_name].")
-	message_admins("([new_predator.key]) joined as Yautja, [new_predator.real_name].")
+	log_admin("[key_name(new_predator)] joined as Yautja.")
+	message_admins("[ADMIN_TPMONTY(new_predator)] joined as Yautja.")
 
 	if(pred_candidate) pred_candidate.loc = null //Nullspace it for garbage collection later.
 
@@ -216,7 +200,6 @@ datum/game_mode/proc/initialize_special_clamps()
 
 /datum/game_mode/proc/transform_predator(mob/pred_candidate)
 	if(!pred_candidate.client) //Something went wrong.
-		message_admins("<span class='warning'><b>Warning</b>: null client in transform_predator.</span>")
 		log_runtime("Null client in transform_predator.")
 		return FALSE
 
@@ -390,7 +373,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 		var/deathtime = world.time - xeno_candidate.timeofdeath
 		var/deathtimeminutes = round(deathtime / 600)
 		var/deathtimeseconds = round((deathtime - deathtimeminutes * 600) / 10,1)
-		if(deathtime < 3000 && ( !xeno_candidate.client.holder || !(xeno_candidate.client.holder.rights & R_ADMIN)) )
+		if(deathtime < 3000 && ( !xeno_candidate.client.holder || !check_rights(xeno_candidate, R_ADMIN)))
 			to_chat(xeno_candidate, "<span class='warning'>You have been dead for [deathtimeminutes >= 1 ? "[deathtimeminutes] minute\s and " : ""][deathtimeseconds] second\s.</span>")
 			to_chat(xeno_candidate, "<span class='warning'>You must wait 5 minutes before rejoining the game!</span>")
 			return FALSE
@@ -453,7 +436,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 			deathtime = 3000 //so new players don't have to wait to latejoin as xeno in the round's first 5 mins.
 		var/deathtimeminutes = round(deathtime / 600)
 		var/deathtimeseconds = round((deathtime - deathtimeminutes * 600) / 10,1)
-		if(deathtime < 3000 && ( !xeno_candidate.client.holder || !(xeno_candidate.client.holder.rights & R_ADMIN)) )
+		if(deathtime < 3000 && !check_other_rights(xeno_candidate, R_ADMIN, FALSE))
 			to_chat(xeno_candidate, "<span class='warning'>You have been dead for [deathtimeminutes >= 1 ? "[deathtimeminutes] minute\s and " : ""][deathtimeseconds] second\s.</span>")
 			to_chat(xeno_candidate, "<span class='warning'>You must wait 5 minutes before rejoining the game!</span>")
 			return FALSE
@@ -473,8 +456,8 @@ datum/game_mode/proc/initialize_post_queen_list()
 	new_xeno.ghostize(0) //Make sure they're not getting a free respawn.
 	new_xeno.key = xeno_candidate.key
 	if(new_xeno.client) new_xeno.client.change_view(world.view)
-	message_admins("[new_xeno.key] has joined as [new_xeno].")
-	log_admin("[new_xeno.key] has joined as [new_xeno].")
+	message_admins("[key_name(new_xeno)] has joined as [new_xeno].")
+	log_admin("[ADMIN_TPMONTY(new_xeno)] has joined as [new_xeno].")
 	if(isXeno(new_xeno)) //Dear lord
 		var/mob/living/carbon/Xenomorph/X = new_xeno
 		if(X.is_ventcrawling) X.add_ventcrawl(X.loc) //If we are in a vent, fetch a fresh vent map
@@ -543,7 +526,6 @@ datum/game_mode/proc/initialize_post_queen_list()
 				new_survivor.assigned_role = "MODE"
 				new_survivor.special_role = "Survivor"
 				possible_survivors -= new_survivor
-				survivors += new_survivor
 				i--
 
 /datum/game_mode/proc/initialize_post_survivor_list()
@@ -555,6 +537,8 @@ datum/game_mode/proc/initialize_post_queen_list()
 //No need to transfer their mind as they begin as a human.
 /datum/game_mode/proc/transform_survivor(var/datum/mind/ghost)
 	var/mob/living/carbon/human/H = ghost.current
+
+	survivors += H
 
 	H.loc = pick(surv_spawn)
 

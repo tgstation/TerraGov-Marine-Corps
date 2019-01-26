@@ -732,11 +732,9 @@ and you're good to go.
 						playsound(user, actual_sound, sound_volume, 1)
 						simulate_recoil(2, user)
 						var/obj/item/weapon/gun/revolver/current_revolver = src
-						var/t = "[key_name(user)] committed suicide with [key_name(src)]" //Log it.
-						message_admins("[user.name] ([user.ckey]) committed suicide with [key_name(src)] (<A HREF='?_src_=holder;adminplayerobservejump=\ref[user]'>JMP</A>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[user.name]'>FLW</A>)", 1)
-						log_game("[user.name] ([user.ckey]) committed suicide with [key_name(src)].")
+						log_game("[key_name(user)] committed suicide with [src] at [AREACOORD(user.loc)].")
+						message_admins("[ADMIN_TPMONTY(user)] committed suicide with [src].")
 						if(istype(current_revolver) && current_revolver.russian_roulette) //If it's a revolver set to Russian Roulette.
-							t += " after playing Russian Roulette"
 							user.apply_damage(projectile_to_fire.damage * 3, projectile_to_fire.ammo.damage_type, "head", used_weapon = "An unlucky pull of the trigger during Russian Roulette!", sharp = 1)
 							user.apply_damage(200, OXY) //In case someone tried to defib them. Won't work.
 							user.death()
@@ -753,7 +751,7 @@ and you're good to go.
 									var/mob/living/carbon/human/HM = user
 									HM.undefibbable = TRUE //can't be defibbed back from self inflicted gunshot to head
 								user.death()
-						user.log_message(t, LOG_ATTACK, "red") //Apply the attack log.
+						user.log_message("commited suicide with [src]", LOG_ATTACK, "red") //Apply the attack log.
 						last_fired = world.time
 
 						projectile_to_fire.play_damage_effect(user)

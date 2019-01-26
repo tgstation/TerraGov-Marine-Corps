@@ -2,10 +2,6 @@
 /mob/living/carbon/human/whisper(message as text)
 	var/alt_name = ""
 
-	if(say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, "<span class='warning'>Speech is currently admin-disabled.</span>")
-		return
-
 	log_talk(message, LOG_WHISPER)
 
 	if (src.client)

@@ -22,6 +22,7 @@
 	var/list/med = new()
 	var/list/mar = new()
 	var/list/heads = new()
+	var/list/police = new()
 	var/list/misc = new()
 	var/list/isactive = new()
 	var/list/squads = new()
@@ -62,6 +63,9 @@
 		var/department = 0
 		if(real_rank in ROLES_COMMAND)
 			heads[name] = rank
+			department = 1
+		if(real_rank in ROLES_POLICE)
+			police[name] = rank
 			department = 1
 		if(real_rank in ROLES_ENGINEERING)
 			eng[name] = rank

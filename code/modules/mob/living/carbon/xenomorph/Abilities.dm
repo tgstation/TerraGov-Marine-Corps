@@ -1003,8 +1003,8 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 				if(target.client)
 					X.use_plasma(100)
 					to_chat(target, "[queen_order]")
-					log_admin("[queen_order]")
-					message_admins("[key_name_admin(X)] has given the following Queen order to [target]: \"[input]\"", 1)
+					log_admin("[key_name(X)] has given the following Queen order to [key_name(target)]: [input]")
+					message_admins("[ADMIN_TPMONTY(X)] has given the following Queen order to [ADMIN_TPMONTY(target)]: [input]")
 
 	else
 		to_chat(X, "<span class='warning'>You must overwatch the Xenomorph you want to give orders to.</span>")
@@ -1118,8 +1118,8 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 	// this sets the right datum
 	new_xeno.upgrade_xeno(min(T.upgrade+1,3)) //a young Crusher de-evolves into a MATURE Hunter
 
-	message_admins("[key_name_admin(X)] has deevolved [key_name_admin(T)]. Reason: [reason]")
-	log_admin("[key_name_admin(X)] has deevolved [key_name_admin(T)]. Reason: [reason]")
+	log_admin("[key_name(X)] has deevolved [key_name(T)]. Reason: [reason]")
+	message_admins("[ADMIN_TPMONTY(X)] has deevolved [ADMIN_TPMONTY(T)]. Reason: [reason]")
 
 	round_statistics.total_xenos_created-- //so an evolved xeno doesn't count as two.
 	qdel(T)

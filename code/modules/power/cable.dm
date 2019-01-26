@@ -141,8 +141,8 @@
 
 		for(var/mob/O in viewers(src, null))
 			O.show_message("<span class='warning'>[user] cuts the cable.</span>", 1)
-		log_admin("[key_name(user)] cut a wire at ([x],[y],[z])")
-		message_admins("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) cut a wire at ([x],[y],[z])")
+		log_admin("[key_name(user)] cut a wire at [AREACOORD(src.loc)].")
+		message_admins("[ADMIN_TPMONTY(user)] cut a wire.")
 
 		qdel(src)
 

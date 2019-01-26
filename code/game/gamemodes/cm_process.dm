@@ -1,13 +1,3 @@
-/*
-/mob/verb/test_shuttle()
-	set name = "DEBUG EVAC SHUTTLE"
-	set category = "DEBUG"
-
-	to_chat(world, "Location is [emergency_shuttle.shuttle.location]")
-	to_chat(world, "Moving status is [emergency_shuttle.shuttle.moving_status]")
-	to_chat(world, "Departed is [emergency_shuttle.departed]")
-
-*/
 #define QUEEN_DEATH_COUNTDOWN 			 12000 //20 minutes. Can be changed into a variable if it needs to be manipulated later.
 
 #define MODE_INFESTATION_X_MAJOR		"Xenomorph Major Victory"
@@ -213,19 +203,24 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 			spawns += L.loc
 
 	if(length(spawns) < 1)
-		message_admins("DEBUG: Failed to find any End of Round Deathmatch landmarks.")
-		log_runtime("DEBUG: Failed to find any End of Round Deathmatch landmarks.")
-		to_chat(world, "<br><br><h1><span class='warning'>End of Round Deathmatch initialization failed, please do not grief.</span></h1><br><br>")
+		log_runtime("ERROR: Failed to find any End of Round Deathmatch landmarks.")
+		message_admins("ERROR: Failed to find any End of Round Deathmatch landmarks.")
+		to_chat(world, "<br><br><h1><span class='danger'>End of Round Deathmatch initialization failed, please do not grief.</span></h1><br><br>")
 		return
 
-	for(var/x in GLOB.mob_list)
-		if(!istype(x, /mob/living/carbon/human))
+	for(var/client/C in GLOB.clients)
+		if(!(C.prefs?.be_special & BE_DEATHMATCH))
 			continue
 
-		var/mob/living/carbon/human/H = x
+		if(isobserver(C.mob))
+			var/mob/dead/observer/ghost = C.mob
+			ghost.can_reenter_corpse = TRUE
+			ghost.reenter_corpse()
 
-		if(!(H.client?.prefs?.be_special & BE_DEATHMATCH))
+		if(!isliving(C.mob))
 			continue
+
+		var/mob/living/M = C.mob
 
 		var/turf/picked
 		if(length(spawns))
@@ -238,8 +233,8 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 						spawns += L.loc
 
 			if(length(spawns) < 1)
-				message_admins("DEBUG: Failed to regenerate End of Round Deathmatch landmarks.")
-				log_runtime("DEBUG: Failed to regenerate End of Round Deathmatch landmarks.")
+				log_runtime("ERROR: Failed to regenerate End of Round Deathmatch landmarks.")
+				message_admins("ERROR: Failed to regenerate End of Round Deathmatch landmarks.")
 
 			else
 				picked = pick(spawns)
@@ -247,11 +242,13 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 
 
 		if(picked)
-			H.loc = picked
-			H.revive()
-			to_chat(H, "<br><br><h1><span class='warning'>Fight for your life!</span></h1><br><br>")
+			if(M.mind)
+				M.mind.special_role = "Deathmatch"
+			M.forceMove(picked)
+			M.revive()
+			to_chat(M, "<br><br><h1><span class='danger'>Fight for your life!</span></h1><br><br>")
 		else
-			to_chat(H, "<br><br><h1><span class='warning'>Failed to find a valid location for End of Round Deathmatch. Please do not grief.</span></h1><br><br>")
+			to_chat(M, "<br><br><h1><span class='danger'>Failed to find a valid location for End of Round Deathmatch. Please do not grief.</span></h1><br><br>")
 
 
 
