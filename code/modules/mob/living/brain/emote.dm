@@ -68,7 +68,7 @@
 	if (message)
 		log_message(message, LOG_EMOTE)
 
-		for(var/mob/M in dead_mob_list)
+		for(var/mob/M in GLOB.dead_mob_list)
 			if (!M.client || istype(M, /mob/new_player))
 				continue //skip monkeys, leavers, and new_players
 			if(M.stat == DEAD && (M.client.prefs.toggles_chat & CHAT_GHOSTSIGHT) && !(M in viewers(src,null)))

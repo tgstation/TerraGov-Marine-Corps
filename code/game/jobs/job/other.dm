@@ -63,7 +63,7 @@
 	equipment = TRUE
 	skills_type = /datum/skills/spatial_agent
 
-/datum/job/other/spatial_agent/generate_entry_conditions(mob/living/carbon/human/sa/H)
+/datum/job/other/spatial_agent/generate_entry_conditions(mob/living/carbon/human/H)
 	. = ..()
 	H.add_language("English")
 	H.add_language("Sainja")

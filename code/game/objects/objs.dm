@@ -19,11 +19,11 @@
 
 /obj/New()
 	..()
-	object_list += src
+	GLOB.object_list += src
 
 /obj/Destroy()
 	. = ..()
-	object_list -= src
+	GLOB.object_list -= src
 
 /obj/proc/add_initial_reagents()
 	if(reagents && list_reagents)

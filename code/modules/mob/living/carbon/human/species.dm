@@ -180,14 +180,6 @@
 	add_inherent_verbs(H)
 
 /datum/species/proc/handle_death(var/mob/living/carbon/human/H) //Handles any species-specific death events.
-/*
-	if(flags & IS_SYNTHETIC)
-		H.h_style = ""
-		spawn(100)
-			if(!H) return
-			H.update_hair()
-	return
-*/
 
 //Only used by horrors at the moment. Only triggers if the mob is alive and not dead.
 /datum/species/proc/handle_unique_behavior(var/mob/living/carbon/human/H)
@@ -412,7 +404,7 @@
 	H.remove_overlay(MOTH_WINGS_LAYER)
 	H.remove_underlay(MOTH_WINGS_BEHIND_LAYER)
 
-	var/datum/sprite_accessory/moth_wings/wings = moth_wings_list[H.moth_wings]
+	var/datum/sprite_accessory/moth_wings/wings = GLOB.moth_wings_list[H.moth_wings]
 
 	if(wings)
 		H.overlays_standing[MOTH_WINGS_LAYER] = image(wings.icon, icon_state = "m_moth_wings_[wings.icon_state]_FRONT")
@@ -705,9 +697,10 @@
 		H.equip_to_slot(new /obj/item/clothing/glasses/zombie_eyes, SLOT_GLASSES, TRUE)
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine, SLOT_SHOES, TRUE)
 
-		spawn(30)
-			H.jitteriness = 0
+		addtimer(CALLBACK(H, /mob/living/carbon/human/proc/reset_jitteriness), 30)
 
+/mob/living/carbon/human/proc/reset_jitteriness()
+	jitteriness = 0
 
 /datum/hud_data/zombie
 	has_a_intent = 1
