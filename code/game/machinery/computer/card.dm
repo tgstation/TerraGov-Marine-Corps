@@ -2,7 +2,7 @@
 
 /obj/machinery/computer/card
 	name = "Identification Computer"
-	desc = "Terminal for programming TGMC employee ID card access."
+	desc = "Terminal for programming USCM employee ID card access."
 	icon_state = "id"
 	req_access = list(ACCESS_MARINE_LOGISTICS)
 	circuit = "/obj/item/circuitboard/computer/card"

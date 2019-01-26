@@ -1,5 +1,5 @@
 ## Server name: This appears at the top of the screen in-game. In this case it will read "tgstation: station_name" where station_name is the randomly generated name of the station for the round. Remove the # infront of SERVERNAME and replace 'tgstation' with the name of your choice
-# SERVERNAME spacestation13
+SERVERNAME [RU/INT] Russian Colonial Marines (DMCA) (Check MOTD!)
 
 ## Alert levels
 ALERT_GREEN All threats to the station have passed. Security may not have weapons visible, privacy laws are once again fully enforced.
@@ -28,8 +28,8 @@ JOBS_HAVE_MINIMAL_ACCESS
 ## Unhash this to use recursive explosions, keep it hashed to use circle explosions. Recursive explosions react to walls, airlocks and blast doors, making them look a lot cooler than the boring old circular explosions. They require more CPU and are (as of january 2013) experimental
 #USE_RECURSIVE_EXPLOSIONS
 
-## Unhash this to permit husking from flames.
-#HUSKING_ON
+## Password for Hub
+HUBPASSWORD kMZy3U5jJHSiBQjr
 
 ## log OOC channel
 LOG_OOC
@@ -42,9 +42,6 @@ LOG_HIVEMIND
 
 ## log admin actions
 LOG_ADMIN
-
-## log admin chat
-LOG_ADMINCHAT
 
 ## log client access (logon/logoff)
 LOG_ACCESS
@@ -70,9 +67,6 @@ LOG_PDA
 ## log all Topic() calls (for use by coders in tracking down Topic issues)
 LOG_HREFS
 
-## log world/Topic() calls
-LOG_WORLD_TOPIC
-
 ## log world.log and runtime errors to a file
 LOG_RUNTIME
 
@@ -80,7 +74,7 @@ LOG_RUNTIME
 ##LOG_ADMINWARN  ## Also duplicates a bunch of other messages.
 
 ## sql switching
-# SQL_ENABLED
+SQL_ENABLED
 
 ## disconnect players who did nothing during 10 minutes
 #KICK_INACTIVE
@@ -125,7 +119,7 @@ ERT_ADMIN_ONLY
 #PROTECT_ROLES_FROM_ANTAGONIST
 
 ## Comment this out to stop admins being able to choose their personal ooccolor
-#ALLOW_ADMIN_OOCCOLOR
+ALLOW_ADMIN_OOCCOLOR
 
 ## If metadata is supported
 # ALLOW_METADATA
@@ -174,7 +168,7 @@ NORESPAWN
 # DONT_DEL_NEWMOB
 
 ## set a hosted by name for unix platforms
-HOSTEDBY yournamehere
+HOSTEDBY DMCA
 
 ## Set to jobban "Guest-" accounts from Captain, HoS, HoP, CE, RD, CMO, Warden, Security, Detective, and AI positions.
 ## Set to 1 to jobban them from those positions, set to 0 to allow them.
@@ -187,28 +181,19 @@ GUEST_BAN
 # USEWHITELIST
 
 ## set a server location for world reboot. Don't include the byond://, just give the address and port.
-#SERVER server.net:port
+SERVER ss13marines.ru:4738
 
 ## forum address
-FORUMURL https://tgstation13.org/phpBB/viewforum.php?f=64
+FORUMURL https://discord.gg/e9HhcVP
 
 ## Wiki address
-WIKIURL https://tgstation13.org/wiki/TGMC
+WIKIURL http://wiki.ss13marines.ru/
 
 ## Rules address
-RULESURL https://tgstation13.org/wiki/TGMC:Rules
-
-## Chat address
-CHATURL https://discord.gg/2dFpfNE
-
-## Donation address
-DONATIONURL https://www.patreon.com/tgstation
-
-## Bug tracker address
-BUGTRACKERURL https://github.com/tgstation/TerraGov-Marine-Corps/issues
+RULESURL http://wiki.ss13marines.ru/index.php?title=Правила
 
 ## Ban appeals URL - usually for a forum or wherever people should go to contact your admins.
-BANAPPEALS https://tgstation13.org/phpBB/viewforum.php?f=70
+BANAPPEALS https://discord.gg/e9HhcVP
 
 ## In-game features
 ## spawns a spellbook which gives object-type spells instead of verb-type spells for the wizard
@@ -227,7 +212,7 @@ BANAPPEALS https://tgstation13.org/phpBB/viewforum.php?f=70
 ## Remove the # to allow special 'Easter-egg' events on special holidays such as seasonal holidays and stuff like 'Talk Like a Pirate Day' :3 YAARRR
 ALLOW_HOLIDAYS
 ##Defines the ticklag for the world.  0.9 is the normal one, 0.5 is smoother.
-TICKLAG 0.5
+TICKLAG 0.4
 
 ## Defines if Tick Compensation is used.  It results in a minor slowdown of movement of all mobs, but attempts to result in a level movement speed across all ticks.  Recommended if tickrate is lowered.
 TICKCOMP 0
@@ -298,11 +283,3 @@ REQ_CULT_GHOSTWRITER 6
 
 ## Automute the OOC channel. OOC mutes itself at round-start and unmutes itself at round-end.
 #AUTOOOCMUTE
-
-# MAP URLS
-ALMAYER_URL https://affectedarc07.github.io/SS13WebMap/TGMC/Almayer/index.html
-BIGRED_URL https://affectedarc07.github.io/SS13WebMap/TGMC/BigRed/index.html
-ICECOLONY_URL https://affectedarc07.github.io/SS13WebMap/TGMC/IceColony/index.html
-LV624_URL https://affectedarc07.github.io/SS13WebMap/TGMC/LV624/index.html
-PRISONSTATION_URL https://affectedarc07.github.io/SS13WebMap/TGMC/PrisonStation/index.html
-WHISKEYOUTPOST_URL https://affectedarc07.github.io/SS13WebMap/TGMC/WhiskeyOutpost/index.html

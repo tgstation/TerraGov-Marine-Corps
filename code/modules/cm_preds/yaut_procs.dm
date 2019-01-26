@@ -138,7 +138,7 @@
 	return
 
 /area/yautja
-	name = "\improper Yautja Ship"
+	name = " Yautja Ship"
 	icon_state = "teleporter"
 	music = "signal"
 

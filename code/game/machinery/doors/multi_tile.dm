@@ -75,7 +75,7 @@
 // ALMAYER
 
 /obj/machinery/door/airlock/multi_tile/almayer
-	name = "\improper Airlock"
+	name = " Airlock"
 	icon = 'icons/obj/doors/almayer/comdoor.dmi' //Tiles with is here FOR SAFETY PURPOSES
 	openspeed = 4 //shorter open animation.
 	tiles_with = list(
@@ -92,13 +92,13 @@
 
 
 /obj/machinery/door/airlock/multi_tile/almayer/generic
-	name = "\improper Airlock"
+	name = " Airlock"
 	icon = 'icons/obj/doors/almayer/2x1generic.dmi'
 	opacity = FALSE
 	glass = TRUE
 
 /obj/machinery/door/airlock/multi_tile/almayer/medidoor
-	name = "\improper Medical Airlock"
+	name = " Medical Airlock"
 	icon = 'icons/obj/doors/almayer/2x1medidoor.dmi'
 	opacity = FALSE
 	glass = TRUE
@@ -106,14 +106,14 @@
 	req_one_access_txt =  "2;8;19"
 
 /obj/machinery/door/airlock/multi_tile/almayer/research
-	name = "\improper Research Airlock"
+	name = " Research Airlock"
 	icon = 'icons/obj/doors/almayer/2x1medidoor.dmi'
 	opacity = FALSE
 	glass = TRUE
 	req_access = list(ACCESS_MARINE_RESEARCH)
 
 /obj/machinery/door/airlock/multi_tile/almayer/comdoor
-	name = "\improper Command Airlock"
+	name = " Command Airlock"
 	icon = 'icons/obj/doors/almayer/2x1comdoor.dmi'
 	opacity = FALSE
 	glass = TRUE
@@ -197,11 +197,11 @@
 	..()
 
 /obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds1
-	name = "\improper Alamo cargo door"
+	name = " Alamo cargo door"
 	icon = 'icons/obj/doors/almayer/dropship1_cargo.dmi'
 
 /obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds2
-	name = "\improper Normandy cargo door"
+	name = " Normandy cargo door"
 	icon = 'icons/obj/doors/almayer/dropship2_cargo.dmi'
 
 

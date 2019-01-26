@@ -38,7 +38,7 @@ var/list/mechtoys = list(
 //SUPPLY PACKS MOVED TO /code/defines/obj/supplypacks.dm
 
 /obj/structure/plasticflaps //HOW DO YOU CALL THOSE THINGS ANYWAY
-	name = "\improper plastic flaps"
+	name = " plastic flaps"
 	desc = "Completely impassable - or are they?"
 	icon = 'icons/obj/stationobjs.dmi' //Change this.
 	icon_state = "plasticflaps"
@@ -76,7 +76,7 @@ var/list/mechtoys = list(
 				qdel(src)
 
 /obj/structure/plasticflaps/mining //A specific type for mining that doesn't allow airflow because of them damn crates
-	name = "\improper Airtight plastic flaps"
+	name = " Airtight plastic flaps"
 	desc = "Heavy duty, airtight, plastic flaps."
 
 

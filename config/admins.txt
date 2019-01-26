@@ -1,80 +1,30 @@
-alexch2 - Admin
-aloraydrel - Admin
-alterist - Admin
-ambassadormagikarp - Admin
-anturke - Admin
-arachnidnexus - Admin
-arianya - Admin
-atlanta-ned - Admin
-bebeyoshi - Admin
-beesting12 - Admin
-bgobandit - Admin
-bluenothing - Admin
-bobdobbington - Admin
-borisvanmemes - Admin
-cedarbridge - Admin
-chemicalrascal - Admin
-cheridan - Admin
-citrusgender - Admin
-cyberboss - Admin
-daxyeen - Admin
-dennyb - Admin
-doctorpork - Admin
-dorsidwarf - Admin
-dunc - Admin
-exalted12 - Admin
-excessiveuseofcobby - Admin
-feemjmeem - Admin
-forcefulcjs - Admin
-francinum - Admin
-imsxz - Admin
-incoming - Admin
-ispiria - Admin
-ivanissaccs - Admin
-jazaen - Admin
-jcll - Admin
-jjrcop - Admin
-jordie0608 - Admin
-justicegoat - Admin
-k peculier - Admin
-kevinz000 - Admin
-krusvik - Admin
-laharlmontgommery - Admin
-lazengann - Admin
-lmwevil - Admin
-mattatlas - Admin
-mralphonzo - Admin
-mrstonedone - Admin
-nabski - Admin
-naksuasdf - Admin
-neersighted - Admin
-nervere - Admin
-niknakflak - Admin
-ninjanomnom - Admin
-optimumtact - Admin
-owegno - Admin
-pkpenguin321 - Admin
-qbmax32 - Admin
-qbopper - Admin
-randolfthemeh - Admin
-razharas - Admin
-rockdtben - Admin
-roguesteampunker - Admin
-rohesie - Admin
-rustledjimm - Admin
-shaps - Admin
-shizcalev - Admin
-spaceinaba - Admin
-spyroshark - Admin
-stickymayhem - Admin
-stp - Admin
-subject217 - Admin
-tedward1337 - Admin
-tehsteveo - Admin
-thunder12345 - Admin
-togopal - Admin
-tribeofbeavers - Admin
-virtualjohn - Admin
-wjohnston - Admin
-wubli - Admin
-wilchen - Admin
+######################################################################
+# Basically, ckey goes first. Rank goes after the "-"                #
+# Case is not important for ckey.                                    #
+# Case IS important for the rank. However punctuation/spaces are not #
+# Ranks can be anything defined in admin_ranks.txt           ~Carn   #
+######################################################################
+
+FighterX2500 - Host
+Mo3goed - Secretary
+mrfast92 - Chief of Administrators
+fray2 - Chief of Moderators
+wyderar - Chief of Mentors
+jeser - Developer
+polion1232 - Developer
+taushai - SeniorAdmin
+ceka23 - Admin
+dosiozborn - Admin
+RealManBoy - Admin
+Nikver - TrialAdmin
+sakharovda - TrialAdmin
+Protoszerg - TrialAdmin
+cryptman - TrialAdmin
+alexix1989 - TrialAdmin
+Wheatley2013 - Senior Moderator
+batmo0n - Moderator
+Crazycreeper - Moderator
+Gvanter - TrialModerator
+asriel15 - Senior Mentor
+doctoralex - Mentor
+omegamaks - Mentor

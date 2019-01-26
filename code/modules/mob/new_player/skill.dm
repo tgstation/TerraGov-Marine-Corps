@@ -61,8 +61,8 @@ datum/skill/management
 
 datum/skill/knowledge/law
     ID = "law"
-    name = "NanoTrasen Law"
-    desc = "Your knowledge of NanoTrasen law and procedures. This includes Corporate Regulations, as well as general station rulings and procedures. A low level in this skill is typical for security officers, a high level in this skill is typical for captains."
+    name = "Weyland-Yutani Law"
+    desc = "Your knowledge of Weyland-Yutani law and procedures. This includes Corporate Regulations, as well as general station rulings and procedures. A low level in this skill is typical for security officers, a high level in this skill is typical for captains."
     field = "Security"
     secondary = 1
 

@@ -65,10 +65,10 @@
 	base_category = DROPSHIP_WEAPON
 
 /obj/effect/attach_point/weapon/dropship1
-	ship_tag = "TGS Theseus Dropship 1"
+	ship_tag = "USS Almayer Dropship 1"
 
 /obj/effect/attach_point/weapon/dropship2
-	ship_tag = "TGS Theseus Dropship 2"
+	ship_tag = "USS Almayer Dropship 2"
 
 
 /obj/effect/attach_point/crew_weapon
@@ -76,10 +76,10 @@
 	base_category = DROPSHIP_CREW_WEAPON
 
 /obj/effect/attach_point/crew_weapon/dropship1
-	ship_tag = "TGS Theseus Dropship 1"
+	ship_tag = "USS Almayer Dropship 1"
 
 /obj/effect/attach_point/crew_weapon/dropship2
-	ship_tag = "TGS Theseus Dropship 2"
+	ship_tag = "USS Almayer Dropship 2"
 
 
 /obj/effect/attach_point/electronics
@@ -88,10 +88,10 @@
 	icon_state = "equip_base_front"
 
 /obj/effect/attach_point/electronics/dropship1
-	ship_tag = "TGS Theseus Dropship 1"
+	ship_tag = "USS Almayer Dropship 1"
 
 /obj/effect/attach_point/electronics/dropship2
-	ship_tag = "TGS Theseus Dropship 2"
+	ship_tag = "USS Almayer Dropship 2"
 
 
 /obj/effect/attach_point/fuel
@@ -101,20 +101,20 @@
 	base_category = DROPSHIP_FUEL_EQP
 
 /obj/effect/attach_point/fuel/dropship1
-	ship_tag = "TGS Theseus Dropship 1"
+	ship_tag = "USS Almayer Dropship 1"
 
 /obj/effect/attach_point/fuel/dropship2
-	ship_tag = "TGS Theseus Dropship 2"
+	ship_tag = "USS Almayer Dropship 2"
 
 
 /obj/effect/attach_point/computer
 	base_category = DROPSHIP_COMPUTER
 
 /obj/effect/attach_point/computer/dropship1
-	ship_tag = "TGS Theseus Dropship 1"
+	ship_tag = "USS Almayer Dropship 1"
 
 /obj/effect/attach_point/computer/dropship2
-	ship_tag = "TGS Theseus Dropship 2"
+	ship_tag = "USS Almayer Dropship 2"
 
 
 
@@ -515,7 +515,7 @@
 
 
 /obj/structure/dropship_equipment/electronics/landing_zone_detector
-	name = "\improper LZ detector"
+	name = " LZ detector"
 	desc = "An electronic device linked to the dropship's camera system that lets you observe your landing zone mid-flight."
 	icon_state = "lz_detector"
 	point_cost = 400
@@ -650,7 +650,7 @@
 	SA.detonate_on(impact)
 
 /obj/structure/dropship_equipment/weapon/heavygun
-	name = "\improper GAU-21 30mm cannon"
+	name = " GAU-21 30mm cannon"
 	desc = "A dismounted GAU-21 'Rattler' 30mm rotary cannon. It seems to be missing its feed links and has exposed connection wires. Capable of firing 5200 rounds a minute, feared by many for its power. Earned the nickname 'Rattler' from the vibrations it would cause on dropships in its inital production run."
 	icon_state = "30mm_cannon"
 	firing_sound = 'sound/effects/cannon30.ogg'
@@ -715,7 +715,7 @@
 /obj/structure/dropship_equipment/weapon/laser_beam_gun
 	name = "laser beam gun"
 	icon_state = "laser_beam"
-	desc = "State of the art technology recently acquired by the TGMC, it fires a battery-fed pulsed laser beam at near lightspeed setting on fire everything it touches. Moving this will require some sort of lifter."
+	desc = "State of the art technology recently acquired by the USCM, it fires a battery-fed pulsed laser beam at near lightspeed setting on fire everything it touches. Moving this will require some sort of lifter."
 	icon = 'icons/Marine/almayer_props64.dmi'
 	firing_sound = 'sound/effects/phasein.ogg'
 	firing_delay = 50 //5 seconds

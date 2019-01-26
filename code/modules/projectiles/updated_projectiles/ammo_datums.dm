@@ -1607,7 +1607,7 @@
 	G.SetLuminosity(G.brightness_on)
 
 /datum/ammo/rocket/toy
-	name = "\improper toy rocket"
+	name = " toy rocket"
 	damage = 1
 
 	on_hit_mob(mob/M,obj/item/projectile/P)

@@ -116,17 +116,17 @@ log transactions
 
 /obj/machinery/atm/attack_hand(mob/user as mob)
 	if(istype(user, /mob/living/silicon))
-		to_chat(user, "<span class='warning'>\icon[src] Artificial unit recognized. Artificial units do not currently receive monetary compensation, as per Nanotrasen regulation #1005.</span>")
+		to_chat(user, "<span class='warning'>\icon[src] Artificial unit recognized. Artificial units do not currently receive monetary compensation, as per Weyland-Yutani regulation #1005.</span>")
 		return
 	if(get_dist(src,user) <= 1)
 
 		//js replicated from obj/machinery/computer/card
-		var/dat = "<h1>Nanotrasen Automatic Teller Machine</h1>"
+		var/dat = "<h1>Weyland-Yutani Automatic Teller Machine</h1>"
 		dat += "For all your monetary needs!<br>"
-		dat += "<i>This terminal is</i> [machine_id]. <i>Report this code when contacting Nanotrasen IT Support</i><br/>"
+		dat += "<i>This terminal is</i> [machine_id]. <i>Report this code when contacting Weyland-Yutani IT Support</i><br/>"
 
 		if(emagged > 0)
-			dat += "Card: <span style='color: red;'>LOCKED</span><br><br><span style='color: red;'>Unauthorized terminal access detected! This ATM has been locked. Please contact Nanotrasen IT Support.</span>"
+			dat += "Card: <span style='color: red;'>LOCKED</span><br><br><span style='color: red;'>Unauthorized terminal access detected! This ATM has been locked. Please contact Weyland-Yutani IT Support.</span>"
 		else
 			dat += "Card: <a href='?src=\ref[src];choice=insert_card'>[held_card ? held_card.name : "------"]</a><br><br>"
 

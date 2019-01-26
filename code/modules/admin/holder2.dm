@@ -18,7 +18,7 @@ var/list/admin_datums = list()
 		error("Admin datum created without a ckey argument. Datum has been deleted")
 		qdel(src)
 		return
-	admincaster_signature = "Nanotrasen Officer #[rand(0,9)][rand(0,9)][rand(0,9)]"
+	admincaster_signature = "Weyland-Yutani Officer #[rand(0,9)][rand(0,9)][rand(0,9)]"
 	rank = initial_rank
 	rights = initial_rights
 	if (rights & R_DEBUG) //grant profile access
@@ -95,19 +95,19 @@ you will have to do something like if(client.holder.rights & R_ADMIN) yourself.
 
 	//process each line seperately
 	for(var/line in Lines)
-		if(!length(line))				
+		if(!length(line))
 			continue
-		if(copytext(line,1,2) == "#")	
+		if(copytext(line,1,2) == "#")
 			continue
 
 		//Split the line at every "-"
 		var/list/List = text2list(line, "-")
-		if(!List.len)					
+		if(!List.len)
 			continue
 
 		//ckey is before the first "-"
 		var/target = ckey(List[1])
-		if(!target)						
+		if(!target)
 			continue
 		if(target != ckey)
 			continue

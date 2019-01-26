@@ -5,7 +5,7 @@
 Note: Must be placed within 3 tiles of the NT Research Console
 */
 /obj/machinery/r_n_d/organic_analyzer
-	name = "Nanotrasen Brand Organic Analyzer(TM)"
+	name = "Weyland-Yutani Brand Organic Analyzer(TM)"
 	icon_state = "d_analyzer"
 	var/obj/item/loaded_item = null
 	var/decon_mod = 1
@@ -69,10 +69,10 @@ Note: Must be placed within 3 tiles of the NT Research Console
 	if (disabled)
 		return
 	if (!linked_console)
-		to_chat(user, "<span class='warning'> The Nanotrasen Brand Organic Analyzer must be linked to an R&D console first!</span>")
+		to_chat(user, "<span class='warning'> The Weyland-Yutani Brand Organic Analyzer must be linked to an R&D console first!</span>")
 		return
 	if (busy)
-		to_chat(user, "<span class='warning'> The Nanotrasen Brand Organic Analyzer is busy right now.</span>")
+		to_chat(user, "<span class='warning'> The Weyland-Yutani Brand Organic Analyzer is busy right now.</span>")
 		return
 	if (istype(O, /obj/item/XenoBio) && !loaded_item)
 		if(isrobot(user)) //Don't put your module items in there!

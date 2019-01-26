@@ -55,7 +55,7 @@
 	icon_state = "0"
 
 /obj/machinery/computer/atmoscontrol
-	name = "\improper Central Atmospherics Computer"
+	name = " Central Atmospherics Computer"
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "computer_generic"
 	density = 1

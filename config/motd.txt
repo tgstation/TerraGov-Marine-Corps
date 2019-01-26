@@ -1,5 +1,10 @@
-<h1>Welcome to TerraGov Marine Corps!</h1>
+<h1>Добро пожаловать на МАРИНАД!</h1>
+<br>
+Если вам не понравились оригинальные марины, вы хотите свой, русский сервер - то добро пожаловать сюда. Требуется администраторский состав и разработчики, по всем вопросам окликать некоего Барсика в дискорде (Приглашение на сервер: https://discord.gg/e9HhcVP)
+<br>
+<b>Мы строго рекомендуем новичкам-морпехам ознакомиться с руководством для быстрого начала!</b> http://wiki.ss13marines.ru/index.php?title=Marine_Quickstart_Guide
 
-<i>This server is running <a href="http://ss13.eu/">/tg/station13's</a> modification of <a href="https://cm-ss13.com/">CM-SS13's</a> modification of <a href="http://baystation12.net/">Baystation 12's</a> modification of the <a href="http://ss13.eu/">/tg/station13</a> SS13 code.</i>
-<br><br>
-<strong>Bugtracker:</strong> <a href="https://github.com/tgstation/TerraGov-Marine-Corps/issues">GitHub Repo</a>
+
+<b><u>We accept english-speaking players, but you shouldn't play on command roles, such as CO, SL, XO, SO, CMP, MP, Xeno Queen. Yes, you are allowed to play as Specialists, Smartgunners, etc.
+Behave yourself properly, find someone who knows english fluently to speak with you and guide you, especially if you are Specialist or Smartgunner.
+Just don't be a dick, and you'll be okay!<u></b>

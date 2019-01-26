@@ -24,7 +24,7 @@
 		/*
 		R.info += "<b>When first setting up your EFTPOS device:</b>"
 		R.info += "1. Memorise your EFTPOS command code (provided with all EFTPOS devices).<br>"
-		R.info += "2. Confirm that your EFTPOS device is connected to your local accounts database. For additional assistance with this step, contact NanoTrasen IT Support<br>"
+		R.info += "2. Confirm that your EFTPOS device is connected to your local accounts database. For additional assistance with this step, contact Weyland-Yutani IT Support<br>"
 		R.info += "3. Confirm that your EFTPOS device has been linked to the account that you wish to recieve funds for all transactions processed on this device.<br>"
 		R.info += "<b>When starting a new transaction with your EFTPOS device:</b>"
 		R.info += "1. Ensure the device is UNLOCKED so that new data may be entered.<br>"
@@ -84,7 +84,7 @@
 /obj/item/device/eftpos/attack_self(mob/user as mob)
 	if(get_dist(src,user) <= 1)
 		var/dat = "<b>[eftpos_name]</b><br>"
-		dat += "<i>This terminal is</i> [machine_id]. <i>Report this code when contacting NanoTrasen IT Support</i><br>"
+		dat += "<i>This terminal is</i> [machine_id]. <i>Report this code when contacting Weyland-Yutani IT Support</i><br>"
 		if(transaction_locked)
 			dat += "<a href='?src=\ref[src];choice=toggle_lock'>Back[transaction_paid ? "" : " (authentication required)"]</a><br><br>"
 

@@ -9,7 +9,7 @@
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 0)
 
 /obj/item/clothing/under/rank/research_director/rdalt
-	desc = "A simple blue utilitarian jumpsuit that serves as the standard issue service uniform of support synthetics onboard TGMC facilities."
+	desc = "A simple blue utilitarian jumpsuit that serves as the standard issue service uniform of support synthetics onboard USCM facilities."
 	name = "synthetic service uniform"
 	icon_state = "rdalt"
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 0)

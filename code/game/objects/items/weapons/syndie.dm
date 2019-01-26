@@ -53,7 +53,7 @@
 /obj/item/weapon/syndie/c4detonator
 	icon_state = "c-4detonator_0"
 	item_state = "c-4detonator"
-	name = "\improper Zippo lighter"  /*Sneaky, thanks Dreyfus.*/
+	name = " Zippo lighter"  /*Sneaky, thanks Dreyfus.*/
 	desc = "The zippo."
 	w_class = 1
 

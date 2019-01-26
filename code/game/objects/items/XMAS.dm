@@ -1,7 +1,7 @@
 
 /obj/item/m_gift //Marine Gift
 	name = "Present"
-	desc = "One, standard issue TGMC Present"
+	desc = "One, standard issue USCM Present"
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "gift1"
 	item_state = "gift1"
@@ -101,7 +101,7 @@
 
 /obj/item/weapon/gun/launcher/rocket/m57a4/XMAS/able_to_fire(mob/living/user)
 	var/turf/current_turf = get_turf(user)
-	if (current_turf.z == 3 || current_turf.z == 4) //Can't fire on the Theseus, bub.
+	if (current_turf.z == 3 || current_turf.z == 4) //Can't fire on the Almayer, bub.
 		click_empty(user)
 		to_chat(user, "<span class='warning'>You can't fire that here!</span>")
 		return FALSE

@@ -41,7 +41,7 @@
 	stamps = ""
 
 	if(info != initial(info))
-		info = html_encode(info)
+		info = lhtml_encode(info)
 		info = oldreplacetext(info, "\n", "<BR>")
 		info = parsepencode(info)
 

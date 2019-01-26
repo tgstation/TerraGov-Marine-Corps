@@ -249,7 +249,7 @@
 	New()
 		src.modules += new /obj/item/device/flashlight(src)
 		src.modules += new /obj/item/device/flash(src)
-		src.modules += new /obj/item/tool/soap/nanotrasen(src)
+		src.modules += new /obj/item/tool/soap/weylandyutani(src)
 		src.modules += new /obj/item/storage/bag/trash(src)
 		src.modules += new /obj/item/tool/mop(src)
 		src.modules += new /obj/item/device/lightreplacer(src)

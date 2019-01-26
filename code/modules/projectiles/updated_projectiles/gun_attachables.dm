@@ -482,7 +482,7 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/magnetic_harness
 	name = "magnetic harness"
-	desc = "A magnetically attached harness kit that attaches to the rail mount of a weapon. When dropped, the weapon will sling to a TGMC armor."
+	desc = "A magnetically attached harness kit that attaches to the rail mount of a weapon. When dropped, the weapon will sling to a USCM armor."
 	icon_state = "magnetic"
 	attach_icon = "magnetic_a"
 	slot = "rail"
@@ -571,7 +571,7 @@ Defined in conflicts.dm of the #defines folder.
 	pixel_shift_y = 14
 
 /obj/item/attachable/stock/shotgun
-	name = "\improper M37 wooden stock"
+	name = " M37 wooden stock"
 	desc = "A non-standard heavy wooden stock for the M37 Shotgun. Less quick and more cumbersome than the standard issue stakeout, but reduces recoil and improves accuracy. Allegedly makes a pretty good club in a fight too.."
 	slot = "stock"
 	wield_delay_mod = WIELD_DELAY_FAST
@@ -588,7 +588,7 @@ Defined in conflicts.dm of the #defines folder.
 	select_gamemode_skin(type)
 
 /obj/item/attachable/stock/tactical
-	name = "\improper MK221 tactical stock"
+	name = " MK221 tactical stock"
 	desc = "A sturdy polymer stock for the MK221 shotgun. Supplied in limited numbers and moderately encumbering, it provides an ergonomic surface to ease perceived recoil and usability."
 	icon_state = "tactical_stock"
 
@@ -617,8 +617,8 @@ Defined in conflicts.dm of the #defines folder.
 	movement_acc_penalty_mod = config.min_movement_acc_penalty
 
 /obj/item/attachable/stock/rifle
-	name = "\improper M41A skeleton stock"
-	desc = "A rare stock distributed in small numbers to TGMC forces. Compatible with the M41A, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl"
+	name = " M41A skeleton stock"
+	desc = "A rare stock distributed in small numbers to USCM forces. Compatible with the M41A, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl"
 	slot = "stock"
 	wield_delay_mod = WIELD_DELAY_NORMAL
 	melee_mod = 5
@@ -636,7 +636,7 @@ Defined in conflicts.dm of the #defines folder.
 	movement_acc_penalty_mod = config.min_movement_acc_penalty
 
 /obj/item/attachable/stock/rifle/marksman
-	name = "\improper M41A marksman stock"
+	name = " M41A marksman stock"
 	icon_state = "m4markstock"
 	attach_icon = "m4markstock"
 	flags_attach_features = NOFLAGS
@@ -644,7 +644,7 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/stock/smg
 	name = "submachinegun stock"
-	desc = "A rare stock distributed in small numbers to TGMC forces. Compatible with the M39, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl"
+	desc = "A rare stock distributed in small numbers to USCM forces. Compatible with the M39, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl"
 	slot = "stock"
 	wield_delay_mod = WIELD_DELAY_FAST
 	melee_mod = 5
@@ -663,7 +663,7 @@ Defined in conflicts.dm of the #defines folder.
 
 
 /obj/item/attachable/stock/revolver
-	name = "\improper M44 magnum sharpshooter stock"
+	name = " M44 magnum sharpshooter stock"
 	desc = "A wooden stock modified for use on a 44-magnum. Increases accuracy and reduces recoil at the expense of handling and agility. Less effective in melee as well"
 	slot = "stock"
 	wield_delay_mod = WIELD_DELAY_VERY_FAST
@@ -687,7 +687,7 @@ Defined in conflicts.dm of the #defines folder.
 
 
 /obj/item/attachable/stock/lasgun
-	name = "\improper M43 Sunfury lasgun stock"
+	name = " M43 Sunfury lasgun stock"
 	desc = "The standard stock for the M43 Sunfury lasgun."
 	slot = "stock"
 	wield_delay_mod = null

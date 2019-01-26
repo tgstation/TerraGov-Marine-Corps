@@ -4,7 +4,7 @@
 
 
 /datum/emergency_call/freelancers/print_backstory(mob/living/carbon/human/H)
-	to_chat(H, "<B>Today, you have been contracted by the TGMC to assist the [MAIN_SHIP_NAME].</b>")
+	to_chat(H, "<B>Today, you have been contracted by the USCM to assist the [MAIN_SHIP_NAME].</b>")
 	to_chat(H, "<B>Ensure they are not destroyed. Collect payment.</b>")
 
 
@@ -12,11 +12,11 @@
 	var/turf/spawn_loc = get_spawn_point()
 	var/mob/original = M.current
 
-	if(!istype(spawn_loc)) 
+	if(!istype(spawn_loc))
 		return
 
 	var/mob/living/carbon/human/H = new /mob/living/carbon/human(spawn_loc)
-	
+
 	if(H.gender == MALE)
 		H.name = pick(first_names_male_clf) + " " + pick(last_names_clf)
 		H.real_name = H.name

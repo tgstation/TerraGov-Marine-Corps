@@ -1,5 +1,5 @@
 /obj/vehicle/powerloader
-	name = "\improper RPL-Y Cargo Loader"
+	name = " RPL-Y Cargo Loader"
 	icon = 'icons/obj/powerloader.dmi'
 	desc = "The RPL-Y Cargo Loader is a commercial mechanized exoskeleton used for lifting heavy materials and objects. An old but trusted design used in warehouses, constructions and military ships everywhere."
 	icon_state = "powerloader_open"
@@ -20,7 +20,7 @@
 		PC.linked_powerloader = src
 
 /obj/vehicle/powerloader/relaymove(mob/user, direction)
-	if(user.is_mob_incapacitated()) 
+	if(user.is_mob_incapacitated())
 		return
 	if(world.time > l_move_time + move_delay)
 		if(dir != direction)
@@ -96,9 +96,9 @@
 			move_delay = max(4, move_delay - M.mind.cm_skills.powerloader)
 		var/clamp_equipped = 0
 		for(var/obj/item/powerloader_clamp/PC in contents)
-			if(!M.put_in_hands(PC)) 
+			if(!M.put_in_hands(PC))
 				PC.forceMove(src)
-			else 
+			else
 				clamp_equipped++
 		if(clamp_equipped != 2) unbuckle() //can't use the powerloader without both clamps equipped
 	else
@@ -107,9 +107,9 @@
 		M.drop_held_items() //drop the clamp when unbuckling
 
 /obj/vehicle/powerloader/buckle_mob(mob/M, mob/user)
-	if(M != user) 
+	if(M != user)
 		return
-	if(!ishuman(M))	
+	if(!ishuman(M))
 		return
 	var/mob/living/carbon/human/H = M
 	if(H.r_hand || H.l_hand)
@@ -135,7 +135,7 @@
 
 /obj/item/powerloader_clamp
 	icon = 'icons/obj/powerloader.dmi'
-	name = "\improper RPL-Y Cargo Loader Hydraulic Claw"
+	name = " RPL-Y Cargo Loader Hydraulic Claw"
 	icon_state = "loader_clamp"
 	force = 20
 	flags_item = ITEM_ABSTRACT //to prevent placing the item on a table/closet.
@@ -237,9 +237,9 @@
 			to_chat(user, "<span class='warning'>Can't grab [loaded].</span>")
 
 /obj/item/powerloader_clamp/update_icon()
-	if(loaded) 
+	if(loaded)
 		icon_state = "loader_clamp_full"
-	else 
+	else
 		icon_state = "loader_clamp"
 
 /obj/item/powerloader_clamp/attack_self(mob/user)
@@ -247,7 +247,7 @@
 		linked_powerloader.unbuckle()
 
 /obj/structure/powerloader_wreckage
-	name = "\improper RPL-Y Cargo Loader wreckage"
+	name = " RPL-Y Cargo Loader wreckage"
 	desc = "Remains of some unfortunate Cargo Loader. Completely unrepairable."
 	icon = 'icons/obj/powerloader.dmi'
 	icon_state = "wreck"

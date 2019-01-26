@@ -7,7 +7,7 @@
 
 //Autodoc
 /obj/machinery/autodoc
-	name = "\improper autodoc medical system"
+	name = " autodoc medical system"
 	desc = "A fancy machine developed to be capable of operating on people with minimal human intervention. However, the interface is rather complex and most of it would only be useful to trained medical personnel."
 	icon = 'icons/obj/machines/cryogenics.dmi'
 	icon_state = "autodoc_open"
@@ -802,7 +802,7 @@
 
 //Auto Doc console that links up to it.
 /obj/machinery/autodoc_console
-	name = "\improper autodoc medical system control console"
+	name = " autodoc medical system control console"
 	icon = 'icons/obj/machines/cryogenics.dmi'
 	icon_state = "sleeperconsole"
 	var/obj/machinery/autodoc/connected = null

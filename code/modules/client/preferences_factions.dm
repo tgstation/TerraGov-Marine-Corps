@@ -23,7 +23,7 @@ var/global/list/citizenship_choices = list(
 */
 
 var/global/list/citizenship_choices = list(
-	"TerraGov",
+	"United Americas",
 	"Limited Service (Colony)",
 	"Green Card (Foreign)"
 	)
@@ -41,7 +41,7 @@ var/global/list/faction_choices = list(
 	"Vey Med",
 	"Einstein Engines",
 	"Free Trade Union",
-	"NanoTrasen",
+	"Weyland-Yutani",
 	"Ward-Takahashi GMB",
 	"Gilthari Exports",
 	"Grayson Manufactories Ltd.",

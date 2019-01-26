@@ -11,16 +11,16 @@ PORT 3306
 DATABASE tgstation
 
 # Username/Login used to access the database
-LOGIN mylogin
+LOGIN root
 
 # Password used to access the database
-PASSWORD mypassword
+PASSWORD Xyecoc123
 
 # The following information is for feedback tracking via the blackbox server
-FEEDBACK_DATABASE test
-FEEDBACK_LOGIN mylogin
-FEEDBACK_PASSWORD mypassword
+FEEDBACK_DATABASE cmfeedback
+FEEDBACK_LOGIN root
+FEEDBACK_PASSWORD Xyecoc123
 
 # Track population and death statistics
 # Comment this out to disable
-#ENABLE_STAT_TRACKING
+ENABLE_STAT_TRACKING

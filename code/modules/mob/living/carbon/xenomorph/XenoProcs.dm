@@ -83,7 +83,7 @@
 
 		if(hivenumber != XENO_HIVE_CORRUPTED)
 			if(hive.hive_orders && hive.hive_orders != "")
-				stat(null,"Hive Orders: [hive.hive_orders]")
+				stat(null,"Hive Orders: [fix_rus_stats(hive.hive_orders)]")
 		else
 			stat(null,"Hive Orders: Follow the instructions of your masters")
 
@@ -570,7 +570,7 @@
 	else
 		generate_name()
 		update_living_queens()
-		
+
 
 //////////// XENO CASTE PROCS //////////////////
 

@@ -472,7 +472,7 @@
 
 //ALAMAYER CARGO CLOSET
 /obj/structure/closet/secure_closet/req_officer
-	name = "\improper RO's Locker"
+	name = " RO's Locker"
 	req_access = list(ACCESS_MARINE_RO)
 	icon_state = "secure_locked_cargo"
 	icon_closed = "secure_unlocked_cargo"

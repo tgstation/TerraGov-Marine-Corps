@@ -162,7 +162,7 @@
 
 /obj/item/clothing/tie/medal/conduct
 	name = "distinguished conduct medal"
-	desc = "A bronze medal awarded for distinguished conduct. Whilst a great honor, this is the most basic award given by the TGMC"
+	desc = "A bronze medal awarded for distinguished conduct. Whilst a great honor, this is the most basic award given by the USCM"
 
 /obj/item/clothing/tie/medal/bronze_heart
 	name = "bronze heart medal"
@@ -197,7 +197,7 @@
 
 /obj/item/clothing/tie/medal/gold/heroism
 	name = "medal of exceptional heroism"
-	desc = "An extremely rare golden medal awarded only by the TGMC. To recieve such a medal is the highest honor and as such, very few exist."
+	desc = "An extremely rare golden medal awarded only by the USCM. To recieve such a medal is the highest honor and as such, very few exist."
 
 //Armbands
 /obj/item/clothing/tie/armband

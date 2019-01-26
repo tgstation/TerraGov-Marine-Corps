@@ -1,5 +1,5 @@
 /obj/structure/closet/secure_closet/engineering_chief
-	name = "\improper Chief Engineer's locker"
+	name = " Chief Engineer's locker"
 	req_access = list(ACCESS_MARINE_CE)
 	icon_state = "securece1"
 	icon_closed = "securece"
@@ -98,12 +98,12 @@
 
 /obj/structure/closet/secure_closet/engineering_personal/Initialize()
 	. = ..()
-	if (prob(70)) 
+	if (prob(70))
 		new /obj/item/clothing/tie/storage/brown_vest(src)
-	else 
+	else
 		new /obj/item/clothing/tie/storage/webbing(src)
 	new /obj/item/storage/toolbox/mechanical(src)
-	if(z != PLANET_Z_LEVEL) 
+	if(z != PLANET_Z_LEVEL)
 		new /obj/item/device/radio/headset/almayer/mt(src)
 	new /obj/item/clothing/glasses/meson(src)
 	new /obj/item/cartridge/engineering(src)
@@ -125,7 +125,7 @@
 		if(MAP_ICE_COLONY)
 			new /obj/item/clothing/suit/storage/snow_suit(src)
 			new /obj/item/clothing/mask/rebreather/scarf(src)
-			new /obj/item/clothing/mask/rebreather(src)	
+			new /obj/item/clothing/mask/rebreather(src)
 
 /obj/structure/closet/secure_closet/atmos_personal
 	name = "technician's locker"

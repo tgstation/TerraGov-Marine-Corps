@@ -41,7 +41,7 @@
 
 /obj/item/weapon/gun/flare/delete_bullet(var/obj/item/projectile/projectile_to_fire, refund = 0)
 	qdel(projectile_to_fire)
-	if(refund) 
+	if(refund)
 		num_flares++
 	return TRUE
 
@@ -64,9 +64,9 @@
 /obj/item/weapon/gun/flare/unload(mob/user)
 	if(num_flares)
 		var/obj/item/device/flashlight/flare/new_flare = new()
-		if(user) 
+		if(user)
 			user.put_in_hands(new_flare)
-		else 
+		else
 			new_flare.loc = get_turf(src)
 		num_flares--
 		to_chat(user, "<span class='notice'>You unload a flare from [src].</span>")
@@ -78,7 +78,7 @@
 //This gun is very powerful, but also has a kick.
 
 /obj/item/weapon/gun/minigun
-	name = "\improper Ol' Painless"
+	name = " Ol' Painless"
 	desc = "An enormous multi-barreled rotating gatling gun. This thing will no doubt pack a punch."
 	icon_state = "painless"
 	item_state = "painless"
@@ -93,7 +93,7 @@
 
 /obj/item/weapon/gun/minigun/Initialize(loc, spawn_empty)
 	. = ..()
-	if(current_mag && current_mag.current_rounds > 0) 
+	if(current_mag && current_mag.current_rounds > 0)
 		load_into_chamber()
 
 /obj/item/weapon/gun/minigun/set_gun_config_values()
@@ -129,7 +129,7 @@
 //Toy rocket launcher.
 
 /obj/item/weapon/gun/launcher/rocket/toy //Fires dummy rockets, like a toy gun
-	name = "\improper toy rocket launcher"
+	name = " toy rocket launcher"
 	desc = "Where did this come from?"
 	current_mag = /obj/item/ammo_magazine/internal/launcher/rocket/toy
 	gun_skill_category = GUN_SKILL_FIREARMS
@@ -214,7 +214,7 @@
 
 /obj/item/weapon/gun/launcher/spike/delete_bullet(obj/item/projectile/projectile_to_fire, refund = 0)
 	qdel(projectile_to_fire)
-	if(refund) 
+	if(refund)
 		spikes++
 	return TRUE
 

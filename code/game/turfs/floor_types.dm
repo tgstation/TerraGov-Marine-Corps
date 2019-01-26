@@ -173,7 +173,7 @@
 //Others
 /turf/open/floor/almayer/uscm
 	icon_state = "logo_c"
-	name = "\improper TGMC Logo"
+	name = " USCM Logo"
 
 /turf/open/floor/almayer/uscm/directional
 	icon_state = "logo_directional"

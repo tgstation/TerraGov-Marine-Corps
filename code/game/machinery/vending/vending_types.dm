@@ -78,7 +78,7 @@
 /obj/machinery/vending/snack
 	name = "Hot Foods Machine"
 	desc = "A vending machine full of ready to cook meals, mhmmmm taste the nutritional goodness!"
-	product_slogans = "Kepler Crisps! Try a snack that's out of this world!;Eat an EAT!;Eat a Nanotrasen brand packaged hamburger.;Eat a Nanotrasen brand packaged hot dog.;Eat a Nanotrasen brand packaged burrito.;"
+	product_slogans = "Kepler Crisps! Try a snack that's out of this world!;Eat an EAT!;Eat a Weyland-Yutani brand packaged hamburger.;Eat a Weyland-Yutani brand packaged hot dog.;Eat a Weyland-Yutani brand packaged burrito.;"
 	product_ads = "Kepler Crisps! Try a snack that's out of this world!;Eat an EAT!"
 	icon_state = "snack"
 	products = list(/obj/item/reagent_container/food/snacks/packaged_burger = 12,
@@ -98,8 +98,8 @@
 	name = "Souto Softdrinks"
 	desc = "A softdrink vendor provided by Souto Soda Company, Havana."
 	icon_state = "Cola_Machine"
-	product_slogans = "Souto Soda: Have a Souto and be taken away to a tropical paradise!;Souto Classic. You can't beat that tangerine goodness!;Souto Cherry. The sweet flavor of a cool winter morning!;Souto Lime. For that sweet and sour flavor that you know and love!;Souto Grape. There's nothing better than a grape soda.;Nanotrasen Fruit Beer. Nothing came from that lawsuit!;Nanotrasen Spring Water. It came from a spring!"
-	product_ads = "Souto Classic. You can't beat that tangerine goodness!;Souto Cherry. The sweet flavor of a cool winter morning!;Souto Lime. For that sweet and sour flavor that you know and love!;Souto Grape. There's nothing better than a grape soda.;Nanotrasen Fruit Beer. Nothing came from that lawsuit!;Nanotrasen Spring Water. It came from a spring!"
+	product_slogans = "Souto Soda: Have a Souto and be taken away to a tropical paradise!;Souto Classic. You can't beat that tangerine goodness!;Souto Cherry. The sweet flavor of a cool winter morning!;Souto Lime. For that sweet and sour flavor that you know and love!;Souto Grape. There's nothing better than a grape soda.;Weyland-Yutani Fruit Beer. Nothing came from that lawsuit!;Weyland-Yutani Spring Water. It came from a spring!"
+	product_ads = "Souto Classic. You can't beat that tangerine goodness!;Souto Cherry. The sweet flavor of a cool winter morning!;Souto Lime. For that sweet and sour flavor that you know and love!;Souto Grape. There's nothing better than a grape soda.;Weyland-Yutani Fruit Beer. Nothing came from that lawsuit!;Weyland-Yutani Spring Water. It came from a spring!"
 	products = list(/obj/item/reagent_container/food/drinks/cans/souto = 10,
 					/obj/item/reagent_container/food/drinks/cans/souto/diet = 10,
 					/obj/item/reagent_container/food/drinks/cans/souto/cherry = 10,
@@ -166,8 +166,8 @@
 					/obj/item/tool/lighter/random = 2)
 
 /obj/machinery/vending/medical
-	name = "NanotrasenMed Plus"
-	desc = "Medical Pharmaceutical dispenser.  Provided by Nanotrasen Pharmaceuticals Division(TM)"
+	name = "Weyland-YutaniMed Plus"
+	desc = "Medical Pharmaceutical dispenser.  Provided by Weyland-Yutani Pharmaceuticals Division(TM)"
 	icon_state = "med"
 	icon_deny = "med-deny"
 	//product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?;Ping!"
