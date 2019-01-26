@@ -295,9 +295,7 @@
 						M.attack_alien(src, null, "disarm") //Hunters get a free throttle in exchange for lower initial stun.
 					if(!isXenoSilicon(src))
 						playsound(loc, rand(0, 100) < 95 ? 'sound/voice/alien_pounce.ogg' : 'sound/voice/alien_pounce2.ogg', 25, 1)
-					spawn(xeno_caste.charge_type == 1 ? 5 : 15)
-						frozen = FALSE
-						update_canmove()
+					addtimer(CALLBACK(src, .proc/reset_movement), xeno_caste.charge_type == 1 ? 5 : 15)	
 					stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 
 				if(RAV_CHARGE_TYPE) //Ravagers get a free attack if they charge into someone.
@@ -310,6 +308,10 @@
 		return TRUE
 	process_ravager_charge(FALSE)
 	return ..() //Do the parent otherwise, for turfs.
+
+/mob/living/carbon/Xenomorph/proc/reset_movement()
+	frozen = FALSE
+	update_canmove()
 
 //Bleuugh
 /mob/living/carbon/Xenomorph/proc/empty_gut()

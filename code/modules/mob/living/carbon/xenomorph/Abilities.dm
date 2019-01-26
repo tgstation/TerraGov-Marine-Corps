@@ -652,66 +652,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 
 /datum/action/xeno_action/build_tunnel/action_activate()
 	var/mob/living/carbon/Xenomorph/Hivelord/X = owner
-	if(!X.check_state())
-		return
-
-	if(X.action_busy)
-		to_chat(X, "<span class='warning'>You should finish up what you're doing before digging.</span>")
-		return
-
-	var/turf/T = X.loc
-	if(!istype(T)) //logic
-		to_chat(X, "<span class='warning'>You can't do that from there.</span>")
-		return
-
-	if(!T.can_dig_xeno_tunnel())
-		to_chat(X, "<span class='warning'>You scrape around, but you can't seem to dig through that kind of floor.</span>")
-		return
-
-	if(locate(/obj/structure/tunnel) in X.loc)
-		to_chat(X, "<span class='warning'>There already is a tunnel here.</span>")
-		return
-
-	if(X.tunnel_delay)
-		to_chat(X, "<span class='warning'>You are not ready to dig a tunnel again.</span>")
-		return
-
-	if(X.get_active_held_item())
-		to_chat(X, "<span class='xenowarning'>You need an empty claw for this!</span>")
-		return
-
-	if(!X.check_plasma(200))
-		return
-
-	X.visible_message("<span class='xenonotice'>[X] begins digging out a tunnel entrance.</span>", \
-	"<span class='xenonotice'>You begin digging out a tunnel entrance.</span>", null, 5)
-	if(!do_after(X, 100, TRUE, 5, BUSY_ICON_BUILD))
-		to_chat(X, "<span class='warning'>Your tunnel caves in as you stop digging it.</span>")
-		return
-	if(!X.check_plasma(200))
-		return
-	if(!X.start_dig) //Let's start a new one.
-		X.visible_message("<span class='xenonotice'>\The [X] digs out a tunnel entrance.</span>", \
-		"<span class='xenonotice'>You dig out the first entrance to your tunnel.</span>", null, 5)
-		X.start_dig = new /obj/structure/tunnel(T)
-	else
-		to_chat(X, "<span class='xenonotice'>You dig your tunnel all the way to the original entrance, connecting both entrances!</span>")
-		var/obj/structure/tunnel/newt = new /obj/structure/tunnel(T)
-		newt.other = X.start_dig
-		X.start_dig.other = newt //Link the two together
-		X.start_dig = null //Now clear it
-		X.tunnel_delay = 1
-		spawn(2400)
-			to_chat(X, "<span class='notice'>You are ready to dig a tunnel again.</span>")
-			X.tunnel_delay = 0
-		var/msg = copytext(sanitize(input("Add a description to the tunnel:", "Tunnel Description") as text|null), 1, MAX_MESSAGE_LEN)
-		if(msg)
-			newt.other.tunnel_desc = msg
-			newt.tunnel_desc = msg
-
-	X.use_plasma(200)
-	playsound(X.loc, 'sound/weapons/pierce.ogg', 25, 1)
-
+	X.build_tunnel()
 
 //Queen Abilities
 

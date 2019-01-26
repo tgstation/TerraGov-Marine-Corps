@@ -1009,10 +1009,12 @@
 		visible_message("<span class='warning'> [src] begins playing his ribcage like a xylophone. It's quite spooky.</span>","<span class='notice'> You begin to play a spooky refrain on your ribcage.</span>","<span class='warning'> You hear a spooky xylophone melody.</span>")
 		var/song = pick('sound/effects/xylophone1.ogg','sound/effects/xylophone2.ogg','sound/effects/xylophone3.ogg')
 		playsound(loc, song, 25, 1)
-		xylophone = 1
-		spawn(1200)
-			xylophone=0
+		xylophone = TRUE
+		addtimer(CALLBACK(src, .xylophone_cooldown), 1200)
 	return
+
+/mob/living/carbon/human/proc/xylophone_cooldown()
+	xylophone = FALSE
 
 /mob/living/carbon/human/proc/morph()
 	set name = "Morph"

@@ -98,11 +98,7 @@
 	Login()
 	..()
 	if(ticker && ticker.mode && ticker.mode.flags_round_type & MODE_PREDATOR)
-		spawn(20)
-			to_chat(src, "<span class='warning'>This is a <b>PREDATOR ROUND</b>! If you are whitelisted, you may Join the Hunt!</span>")
-			return
-
-
+		addtimer(CALLBACK(GLOBAL_PROC, /proc/to_chat, src, "<span class='warning'>This is a <b>PREDATOR ROUND</b>! If you are whitelisted, you may Join the Hunt!</span>"), 20)
 
 /mob/dead/observer/Topic(href, href_list)
 	if(href_list["reentercorpse"])
