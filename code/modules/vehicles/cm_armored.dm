@@ -132,27 +132,29 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 
 //No one but the gunner can gun
 //And other checks to make sure you aren't breaking the law
-/obj/vehicle/multitile/root/cm_armored/tank/handle_click(var/mob/living/user, var/atom/A, var/list/mods)
+/obj/vehicle/multitile/root/cm_armored/tank/handle_click(mob/living/user, atom/A, list/mods)
 
-	if(!can_use_hp(user)) return
+	if(istype(A,/obj/screen) || A == src || mods["middle"] || mods["shift"] || mods["alt"])
+		return FALSE
+
+	if(!can_use_hp(user))
+		return TRUE
 
 	if(!hardpoints.Find(active_hp))
 		to_chat(user, "<span class='warning'>Please select an active hardpoint first.</span>")
-		return
+		return TRUE
 
 	var/obj/item/hardpoint/HP = hardpoints[active_hp]
 
-	if(!HP)
-		return
-
-	if(!HP.is_ready())
-		return
+	if(!HP || !HP.is_ready())
+		return TRUE
 
 	if(!HP.firing_arc(A))
 		to_chat(user, "<span class='warning'>The target is not within your firing arc.</span>")
-		return
+		return TRUE
 
 	HP.active_effect(get_turf(A))
+	return TRUE
 
 //Used by the gunner to swap which module they are using
 //e.g. from the minigun to the smoke launcher
@@ -462,7 +464,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 /obj/vehicle/multitile/hitbox/cm_armored/Uncrossed(var/atom/movable/A)
 	if(isliving(A))
 		var/mob/living/M = A
-		M.sleeping = 5
+		M.Sleeping(5)
 
 	return ..()
 
@@ -502,10 +504,10 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 //Generic proc for taking damage
 //ALWAYS USE THIS WHEN INFLICTING DAMAGE TO THE VEHICLES
 /obj/vehicle/multitile/root/cm_armored/proc/take_damage_type(var/damage, var/type, var/atom/attacker)
-	var/i
-	for(i in hardpoints)
+	for(var/i in hardpoints)
 		var/obj/item/hardpoint/HP = hardpoints[i]
-		if(!istype(HP)) continue
+		if(!istype(HP))
+			continue
 		HP.health -= damage * dmg_distribs[i] * get_dmg_multi(type)
 
 	if(istype(attacker, /mob))
@@ -574,10 +576,6 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 
 //Special case for entering the vehicle without using the verb
 /obj/vehicle/multitile/root/cm_armored/attack_hand(var/mob/user)
-
-	if(user.a_intent == "hurt")
-		handle_harm_attack(user)
-		return
 
 	if(user.loc == entrance.loc)
 		handle_player_entrance(user)
@@ -736,8 +734,10 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	//That would make it easier to differentiate between the two for skills
 	//Instead of using MT skills for these procs and TC skills for operation
 	//Oh but wait then the MTs would be able to drive fuck that
-	var/slot = input("Select a slot to try and refill") in hardpoints
-	var/obj/item/hardpoint/HP = hardpoints[slot]
+	var/list/attached_hardpoints
+	for(var/i in hardpoints)
+		attached_hardpoints.Add(hardpoints[i])
+	var/obj/item/hardpoint/HP = input("Select a slot to try and refill") in attached_hardpoints
 
 	if(!HP)
 		to_chat(user, "<span class='warning'>There is nothing installed on that slot.</span>")
@@ -759,9 +759,9 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		to_chat(user, "<span class='warning'>You need to fix the hardpoint first.</span>")
 		return
 
-	var/obj/item/hardpoint/old = hardpoints[HP.slot]
+	var/obj/item/hardpoint/occupied = hardpoints[HP.slot]
 
-	if(old)
+	if(occupied)
 		to_chat(user, "<span class='warning'>Remove the previous hardpoint module first.</span>")
 		return
 
@@ -771,17 +771,25 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	var/num_delays = 1
 
 	switch(HP.slot)
-		if(HDPT_PRIMARY) num_delays = 5
-		if(HDPT_SECDGUN) num_delays = 3
-		if(HDPT_SUPPORT) num_delays = 2
-		if(HDPT_ARMOR) num_delays = 10
-		if(HDPT_TREADS) num_delays = 7
+		if(HDPT_PRIMARY)
+			num_delays = 5
+		if(HDPT_SECDGUN)
+			num_delays = 3
+		if(HDPT_SUPPORT)
+			num_delays = 2
+		if(HDPT_ARMOR)
+			num_delays = 10
+		if(HDPT_TREADS)
+			num_delays = 7
 
 	if(!do_after(user, 30*num_delays, TRUE, num_delays, BUSY_ICON_FRIENDLY))
-		user.visible_message("<span class='warning'>[user] stops installing \the [HP] on the [src].</span>", "<span class='warning'>You stop installing \the [HP] on [src].</span>")
+		user.visible_message("<span class='warning'>[user] stops installing \the [HP] on [src].</span>", "<span class='warning'>You stop installing \the [HP] on [src].</span>")
 		return
 
-	user.visible_message("<span class='notice'>[user] installs \the [HP] on the [src].</span>", "<span class='notice'>You install \the [HP] on [src].</span>")
+	if(occupied)
+		return
+
+	user.visible_message("<span class='notice'>[user] installs \the [HP] on [src].</span>", "<span class='notice'>You install \the [HP] on [src].</span>")
 
 	user.temporarilyRemoveItemFromInventory(HP, 0)
 
@@ -791,36 +799,45 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 
 //User-orientated proc for taking of hardpoints
 //Again, similar to the above ones
-/obj/vehicle/multitile/root/cm_armored/proc/uninstall_hardpoint(var/obj/item/O, var/mob/user)
+/obj/vehicle/multitile/root/cm_armored/proc/uninstall_hardpoint(obj/item/O, mob/user)
 
 	if(!user.mind || !(!user.mind.cm_skills || user.mind.cm_skills.engineer >= SKILL_ENGINEER_MT))
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [O] on the [src].</span>",
 		"<span class='notice'>You fumble around figuring out what to do with [O] on the [src].</span>")
 		var/fumbling_time = 50 * ( SKILL_ENGINEER_MT - user.mind.cm_skills.engineer )
-		if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
+		if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+			return
 
-	var/slot = input("Select a slot to try and remove") in hardpoints
-
-	var/obj/item/hardpoint/old = hardpoints[slot]
+	var/list/attached_hardpoints
+	for(var/i in hardpoints)
+		attached_hardpoints.Add(hardpoints[i])
+	var/obj/item/hardpoint/old = input("Select a slot to try and remove") in attached_hardpoints
 
 	if(!old)
 		to_chat(user, "<span class='warning'>There is nothing installed there.</span>")
 		return
 
-	user.visible_message("<span class='notice'>[user] begins removing [old] on the [old.slot] hardpoint slot on the [src].</span>",
-		"<span class='notice'>You begin removing [old] on the [old.slot] hardpoint slot on the [src].</span>")
+	user.visible_message("<span class='notice'>[user] begins removing [old] on the [old.slot] hardpoint slot on [src].</span>",
+		"<span class='notice'>You begin removing [old] on the [old.slot] hardpoint slot on [src].</span>")
 
 	var/num_delays = 1
 
-	switch(slot)
-		if(HDPT_PRIMARY) num_delays = 5
-		if(HDPT_SECDGUN) num_delays = 3
-		if(HDPT_SUPPORT) num_delays = 2
-		if(HDPT_ARMOR) num_delays = 10
-		if(HDPT_TREADS) num_delays = 7
+	switch(old.slot)
+		if(HDPT_PRIMARY)
+			num_delays = 5
+		if(HDPT_SECDGUN)
+			num_delays = 3
+		if(HDPT_SUPPORT)
+			num_delays = 2
+		if(HDPT_ARMOR)
+			num_delays = 10
+		if(HDPT_TREADS)
+			num_delays = 7
 
 	if(!do_after(user, 30*num_delays, TRUE, num_delays, BUSY_ICON_FRIENDLY))
 		user.visible_message("<span class='warning'>[user] stops removing \the [old] on [src].</span>", "<span class='warning'>You stop removing \the [old] on [src].</span>")
+		return
+	if(!old)
 		return
 
 	user.visible_message("<span class='notice'>[user] removes \the [old] on [src].</span>", "<span class='notice'>You remove \the [old] on [src].</span>")

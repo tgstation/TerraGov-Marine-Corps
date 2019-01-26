@@ -121,7 +121,8 @@ Vehicles are placed on the map by a spawner or admin verb
 	set name = "Exit Vehicle"
 	set src in view(0)
 
-	handle_player_exit(usr)
+	if(!usr.is_mob_incapacitated(FALSE))
+		handle_player_exit(usr)
 
 /obj/vehicle/multitile/root/proc/handle_player_exit(var/mob/M)
 	return
@@ -129,6 +130,7 @@ Vehicles are placed on the map by a spawner or admin verb
 /obj/vehicle/multitile/root/proc/handle_player_entrance(var/mob/M)
 	if(M.resting || M.buckled || M.is_mob_incapacitated())
 		return FALSE
+	return TRUE
 
 /obj/vehicle/multitile/root/proc/handle_harm_attack(var/mob/M)
 	return
@@ -140,8 +142,7 @@ Vehicles are placed on the map by a spawner or admin verb
 	set src in view(0)
 
 	var/mob/M = usr
-	if(istype(M) && !M.is_mob_incapacitated())
-		try_rotate(-90, M)
+	try_rotate(-90, M)
 
 /obj/vehicle/multitile/root/verb/counterclockwise_rotate_multitile()
 	set category = "Object"
@@ -149,8 +150,7 @@ Vehicles are placed on the map by a spawner or admin verb
 	set src in view(0)
 
 	var/mob/M = usr
-	if(istype(M) && !M.is_mob_incapacitated())
-		try_rotate(90, M)
+	try_rotate(90, M)
 
 //A wrapper for try_move() that rotates
 /obj/vehicle/multitile/root/proc/try_rotate(var/deg, var/mob/user, var/force = 0)
