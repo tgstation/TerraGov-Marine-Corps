@@ -103,16 +103,19 @@ macro "macro"
 		command = ".options"
 	elem 
 		name = "F2"
-		command = ".screenshot auto"
+		command = "ooc"
 	elem 
 		name = "SHIFT+F2"
 		command = ".screenshot"
 	elem 
 		name = "F3"
-		command = "asay"
+		command = "say"
+	elem 
+		name = "F4"
+		command = "me"
 	elem 
 		name = "F5"
-		command = "aghost"
+		command = "asay"
 	elem 
 		name = "F6"
 		command = "Player-Panel"
@@ -278,6 +281,27 @@ macro "hotkeymode"
 		name = "CTRL+Z"
 		command = "Activate-Held-Object"
 	elem 
+		name = "Numpad1"
+		command = "a-select-zone \"rleg\""
+	elem 
+		name = "Numpad2"
+		command = "a-select-zone \"groin\""
+	elem 
+		name = "Numpad3"
+		command = "a-select-zone \"lleg\""
+	elem 
+		name = "Numpad4"
+		command = "a-select-zone \"rarm\""
+	elem 
+		name = "Numpad5"
+		command = "a-select-zone \"chest\""
+	elem 
+		name = "Numpad6"
+		command = "a-select-zone \"larm\""
+	elem 
+		name = "Numpad8"
+		command = "a-select-zone \"head\""
+	elem 
 		name = "F1"
 		command = "adminhelp"
 	elem 
@@ -285,16 +309,19 @@ macro "hotkeymode"
 		command = ".options"
 	elem 
 		name = "F2"
-		command = ".screenshot auto"
+		command = "ooc"
 	elem 
 		name = "SHIFT+F2"
 		command = ".screenshot"
 	elem 
 		name = "F3"
-		command = "asay"
+		command = "say"
+	elem 
+		name = "F4"
+		command = "me"
 	elem 
 		name = "F5"
-		command = "aghost"
+		command = "asay"
 	elem 
 		name = "F6"
 		command = "Player-Panel"
@@ -307,28 +334,6 @@ macro "hotkeymode"
 	elem 
 		name = "F12"
 		command = "F12"
-	elem 
-		name = "Numpad8"
-		command = "a-select-zone \"head\""
-	elem 
-		name = "Numpad5"
-		command = "a-select-zone \"chest\""
-	elem 
-		name = "Numpad2"
-		command = "a-select-zone \"groin\""
-	elem 
-		name = "Numpad4"
-		command = "a-select-zone \"rarm\""
-	elem 
-		name = "Numpad6"
-		command = "a-select-zone \"larm\""
-	elem 
-		name = "Numpad1"
-		command = "a-select-zone \"rleg\""
-	elem 
-		name = "Numpad3"
-		command = "a-select-zone \"lleg\""
-
 
 
 menu "menu"
@@ -892,7 +897,6 @@ window "infowindow"
 		is-default = true
 		saved-params = ""
 		highlight-color = #00aa00
-		allow-html = true
 		on-show = ".winset\"rpane.infob.is-visible=true;rpane.browseb.is-visible=true?rpane.infob.pos=130,0:rpane.infob.pos=65,0 rpane.textb.is-visible=true rpane.infob.is-checked=true rpane.rpanewindow.pos=0,30 rpane.rpanewindow.size=0x0 rpane.rpanewindow.left=infowindow\""
 		on-hide = ".winset\"rpane.infob.is-visible=false;rpane.browseb.is-visible=true?rpane.browseb.is-checked=true rpane.rpanewindow.left=browserwindow:rpane.textb.is-visible=true rpane.rpanewindow.pos=0,30 rpane.rpanewindow.size=0x0 rpane.rpanewindow.left=\""
 
