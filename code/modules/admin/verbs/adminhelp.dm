@@ -313,7 +313,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 /datum/admin_help/proc/ClosureLinks(ref_src)
 	if(!ref_src)
 		ref_src = "[REF(src)]"
-	. = " (<A HREF='?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=reject'>REJECT</A>)"
+	. = " (<A HREF='?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=mark'>MARK</A>)"
+	. += " (<A HREF='?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=reject'>REJECT</A>)"
 	. += " (<A HREF='?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=icissue'>IC</A>)"
 	. += " (<A HREF='?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=close'>CLOSE</A>)"
 	. += " (<A HREF='?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=resolve'>RESOLVE</A>)"
@@ -367,6 +368,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 //Reopen a closed ticket
 /datum/admin_help/proc/Reopen()
+	if(tier == TICKET_ADMIN && !check_rights(R_ADMIN, FALSE))
+		return
 	if(state == AHELP_ACTIVE)
 		to_chat(usr, "<span class='warning'>This ticket is already open.</span>")
 		return
@@ -392,20 +395,31 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 //Change the tier
 /datum/admin_help/proc/Tier()
-	if(tier == TICKET_ADMIN && !check_rights(R_ADMIN, FALSE) && check_rights(R_MENTOR, FALSE))
+	if(tier == TICKET_ADMIN && !check_rights(R_ADMIN, FALSE))
 		return
 	var/msg
-	switch(tier)
-		if(TICKET_MENTOR)
-			tier = TICKET_ADMIN
-			msg = "an admin ticket"
-		if(TICKET_ADMIN)
-			tier = TICKET_MENTOR
-			msg = "a mentor ticket"
-
-	message_staff("Ticket [TicketHref("#[id]")] has been made [msg] by [ADMIN_TPMONTY(usr)].")
+	if(tier == TICKET_MENTOR)
+		tier = TICKET_ADMIN
+		msg = "an admin ticket"
+		message_admins("Ticket [TicketHref("#[id]")] has been made [msg] by [ADMIN_TPMONTY(usr)].")
+	else if(tier == TICKET_ADMIN)
+		tier = TICKET_MENTOR
+		msg = "a mentor ticket"
+		message_staff("Ticket [TicketHref("#[id]")] has been made [msg] by [ADMIN_TPMONTY(usr)].")
 	log_admin_private("Ticket (#[id]) has been made [msg] by [key_name(usr)].")
-	TicketPanel()	//we have to be here to do this
+
+
+//Mark it
+/datum/admin_help/proc/Mark()
+	if(tier == TICKET_ADMIN && !check_rights(R_ADMIN, FALSE))
+		return
+	if(marked && alert("This ticket has already been marked, are you sure you want to proceed?", "Warning", "Yes", "No") != "Yes")
+		return
+	if(tier == TICKET_MENTOR)
+		message_staff("Ticket [TicketHref("#[id]")] has been marked by [ADMIN_TPMONTY(usr)].")
+	else if(tier == TICKET_ADMIN)
+		message_admins("Ticket [TicketHref("#[id]")] has been marked by [ADMIN_TPMONTY(usr)].")
+	log_admin_private("Ticket (#[id]) has been made marked by [key_name(usr)].")
 
 
 //private
@@ -421,6 +435,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 //Mark open ticket as closed/meme
 /datum/admin_help/proc/Close(key_name = key_name_admin(usr), silent = FALSE)
+	if(tier == TICKET_ADMIN && !check_rights(R_ADMIN, FALSE))
+		return
 	if(state != AHELP_ACTIVE)
 		return
 	RemoveActive()
@@ -437,6 +453,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 //Mark open ticket as resolved/legitimate, returns ahelp verb
 /datum/admin_help/proc/Resolve(key_name = key_name_admin(usr), silent = FALSE)
+	if(tier == TICKET_ADMIN && !check_rights(R_ADMIN, FALSE))
+		return
 	if(state != AHELP_ACTIVE)
 		return
 	RemoveActive()
@@ -457,9 +475,10 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 //Close and return ahelp verb, use if ticket is incoherent
 /datum/admin_help/proc/Reject(key_name = key_name_admin(usr))
+	if(tier == TICKET_ADMIN && !check_rights(R_ADMIN, FALSE))
+		return
 	if(state != AHELP_ACTIVE)
 		return
-
 	if(initiator)
 		initiator.giveadminhelpverb()
 
@@ -477,6 +496,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 //Resolve ticket with IC Issue message
 /datum/admin_help/proc/ICIssue(key_name = key_name_admin(usr))
+	if(tier == TICKET_ADMIN && !check_rights(R_ADMIN, FALSE))
+		return
 	if(state != AHELP_ACTIVE)
 		return
 
@@ -495,7 +516,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 //Show the ticket panel
 /datum/admin_help/proc/TicketPanel()
-	if(tier == TICKET_ADMIN && !check_rights(R_ADMIN, FALSE) && check_rights(R_MENTOR, FALSE))
+	if(tier == TICKET_ADMIN && !check_rights(R_ADMIN, FALSE))
 		var/data = "<html><head><title>Access Denied</title></head><body>Access Denied</body></html>"
 		usr << browse(data, "window=ahelp[id];size=620x480")
 	var/list/dat = list("<html><head><title>Ticket #[id]</title></head>")
@@ -537,6 +558,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 
 /datum/admin_help/proc/Retitle()
+	if(tier == TICKET_ADMIN && !check_rights(R_ADMIN, FALSE))
+		return
 	var/new_title = input(usr, "Enter a title for the ticket", "Rename Ticket", name) as text|null
 	if(new_title)
 		name = new_title
@@ -567,6 +590,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 			Reopen()
 		if("tier")
 			Tier()
+		if("mark")
+			Mark()
 
 
 //

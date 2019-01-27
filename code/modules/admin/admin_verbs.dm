@@ -841,9 +841,12 @@
 
 	var/datum/admin_help/AH = C.current_ticket
 
+	if(AH.tier == TICKET_ADMIN && !check_rights(R_ADMIN, FALSE))
+		return
 
 	if(AH && !AH.marked)
-		AH.marked = TRUE
+		if(alert("Do you want to mark this ticket?", "Mark", "Yes", "No") == "Yes")
+			AH.marked = TRUE
 		if(AH.tier == TICKET_MENTOR)
 			message_staff("[key_name_admin(src)] has started replying to [key_name_admin(C, FALSE, FALSE)]'s ticket.")
 		else if(AH.tier == TICKET_ADMIN)
@@ -851,13 +854,13 @@
 				return
 			message_admins("[key_name_admin(src)] has started replying to [key_name_admin(C, FALSE, FALSE)]'s ticket.")
 
-	else if(AH && alert("This ticket has already been marked, are you sure  you want to proceed?", "Warning", "Yes", "No") != "Yes")
+	else if(AH && alert("This ticket has already been marked, are you sure you want to proceed?", "Warning", "Yes", "No") != "Yes")
 		return
 
 	var/msg = input("Message:", "Private message to [key_name(C, FALSE, FALSE)]") as message|null
 	if(!msg)
 		if(AH)
-			if(AH.marked)
+			if(AH.marked && alert("This ticket has already been marked, do you want to unmark it?", "Warning", "Yes", "No") == "Yes")
 				AH.marked = FALSE
 			if(AH.tier == TICKET_MENTOR)
 				message_staff("[key_name_admin(src)] has cancelled their reply to [key_name_admin(C, FALSE, FALSE)]'s ticket.")
