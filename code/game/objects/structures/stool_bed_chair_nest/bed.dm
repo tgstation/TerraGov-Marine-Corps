@@ -110,7 +110,7 @@ obj/structure/bed/Destroy()
 /obj/structure/bed/MouseDrop_T(atom/dropping, mob/user)
 	if(accepts_bodybag && !buckled_bodybag && !buckled_mob && istype(dropping,/obj/structure/closet/bodybag) && ishuman(user))
 		var/obj/structure/closet/bodybag/B = dropping
-		if(!B.roller_buckled)
+		if(!B.roller_buckled && !B.anchored)
 			do_buckle_bodybag(B, user)
 			return TRUE
 	else
