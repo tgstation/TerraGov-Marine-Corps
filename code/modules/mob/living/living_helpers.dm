@@ -1,6 +1,8 @@
+/mob/living/proc/get_death_threshold()
+	return CONFIG_GET(number/health_threshold_dead)
 
-
-
+/mob/living/proc/get_crit_threshold()
+	return CONFIG_GET(number/health_threshold_crit)
 
 /mob/living/proc/has_brain()
 	return 1

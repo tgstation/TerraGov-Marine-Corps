@@ -119,7 +119,7 @@
 					domutcheck(src,null)
 					emote("gasp")
 
-/mob/living/carbon/monkey/proc/breathe()
+/mob/living/carbon/monkey/breathe()
 	if(reagents)
 		if(reagents.has_reagent("lexorin")) return
 
@@ -180,7 +180,7 @@
 	handle_breath(air_info)
 
 
-/mob/living/carbon/monkey/proc/get_breath_from_internal()
+/mob/living/carbon/monkey/get_breath_from_internal()
 	if(internal)
 		if (!contents.Find(internal))
 			internal = null
@@ -195,7 +195,7 @@
 				hud_used.internals.icon_state = "internal0"
 	return null
 
-/mob/living/carbon/monkey/proc/handle_breath(list/air_info)
+/mob/living/carbon/monkey/handle_breath(list/air_info)
 	if(status_flags & GODMODE)
 		return
 

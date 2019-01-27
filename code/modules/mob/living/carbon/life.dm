@@ -45,12 +45,11 @@
 	if(stat == DEAD)
 		return
 
-	if(health <= CONFIG_GET(number/health_threshold_dead))
+	if(health <= get_death_threshold())
 		death()
 		return
 
-	var/crit_threshold = ishuman(src) ? CONFIG_GET(number/health_threshold_crit) : 0
-	if(knocked_out || sleeping || getOxyLoss() > 50 || health < crit_threshold)
+	if(knocked_out || sleeping || getOxyLoss() > 50 || health < get_crit_threshold())
 		if(stat != UNCONSCIOUS)
 			blind_eyes(1)
 		stat = UNCONSCIOUS
@@ -175,3 +174,12 @@
 			reagent_shock_modifier += PAIN_REDUCTION_MEDIUM
 		if(81 to INFINITY)
 			reagent_shock_modifier += PAIN_REDUCTION_HEAVY
+
+/mob/living/carbon/proc/breathe()
+	return
+
+/mob/living/carbon/proc/handle_breath(list/air_info)
+	return
+
+/mob/living/carbon/proc/get_breath_from_internal()
+	return

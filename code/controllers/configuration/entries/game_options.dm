@@ -120,6 +120,10 @@
 
 /datum/config_entry/number/health_threshold_dead
 
+/datum/config_entry/number/human_health_threshold_crit
+
+/datum/config_entry/number/maintdrone_health_threshold_dead
+
 /datum/config_entry/flag/limbs_can_break
 
 /datum/config_entry/number/revive_grace_period

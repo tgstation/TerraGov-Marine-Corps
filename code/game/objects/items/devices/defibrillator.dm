@@ -199,7 +199,7 @@
 		H.adjustCloneLoss(-defib_heal_amt)
 		H.adjustOxyLoss(-H.getOxyLoss())
 		H.updatehealth() //Needed for the check to register properly
-		if(H.health > CONFIG_GET(number/health_threshold_dead))
+		if(H.health > H.get_death_threshold())
 			user.visible_message("<span class='notice'>\icon[src] \The [src] beeps: Defibrillation successful.</span>")
 			GLOB.alive_mob_list.Add(H)
 			GLOB.dead_mob_list.Remove(H)

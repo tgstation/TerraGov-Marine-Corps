@@ -1,6 +1,6 @@
 //Refer to life.dm for caller
 
-/mob/living/carbon/human/proc/breathe()
+/mob/living/carbon/human/breathe()
 
 	//NOTE: Breathing happens once per FOUR TICKS, unless the last breath fails. In which case it happens once per ONE TICK! So oxyloss healing is done once per 4 ticks while oxyloss damage is applied once per tick!
 
@@ -14,7 +14,7 @@
 	var/list/air_info
 
 	// HACK NEED CHANGING LATER
-	if(health < CONFIG_GET(number/health_threshold_crit) && !reagents.has_reagent("inaprovaline"))
+	if(health < get_crit_threshold() && !reagents.has_reagent("inaprovaline"))
 		losebreath++
 
 	if(losebreath > 0) //Suffocating so do not take a breath
@@ -77,7 +77,7 @@
 	handle_breath(air_info)
 
 
-/mob/living/carbon/human/proc/get_breath_from_internal()
+/mob/living/carbon/human/get_breath_from_internal()
 	if(internal)
 		if(istype(buckled,/obj/machinery/optable))
 			var/obj/machinery/optable/O = buckled
@@ -94,7 +94,7 @@
 			hud_used.internals.icon_state = "internal0"
 	return null
 
-/mob/living/carbon/human/proc/handle_breath(list/air_info)
+/mob/living/carbon/human/handle_breath(list/air_info)
 
 	if(status_flags & GODMODE)
 		return
@@ -105,7 +105,7 @@
 			failed_last_breath = 1
 			oxygen_alert = max(oxygen_alert, 1)
 			return 0
-		if(health > CONFIG_GET(number/health_threshold_crit))
+		if(health > get_crit_threshold())
 			adjustOxyLoss(HUMAN_MAX_OXYLOSS)
 			failed_last_breath = 1
 		else

@@ -190,7 +190,7 @@
 	if(!lastpuke)
 		lastpuke = TRUE
 		to_chat(src, "<spawn class='warning'>You feel like you are about to throw up!")
-		addtimer(CALLBACK(src, .do_vomit), 5 SECONDS)		
+		addtimer(CALLBACK(src, .do_vomit), 5 SECONDS)
 
 /mob/living/carbon/proc/do_vomit()
 	Stun(5)
@@ -209,7 +209,7 @@
 	lastpuke = FALSE
 
 /mob/living/carbon/proc/help_shake_act(mob/living/carbon/M)
-	if(health >= CONFIG_GET(number/health_threshold_crit))
+	if(health >= get_crit_threshold())
 		if(src != M)
 			var/t_him = "it"
 			if (gender == MALE)
