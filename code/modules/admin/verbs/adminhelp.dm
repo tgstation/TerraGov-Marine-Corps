@@ -500,7 +500,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		usr << browse(data, "window=ahelp[id];size=620x480")
 	var/list/dat = list("<html><head><title>Ticket #[id]</title></head>")
 	var/ref_src = "[REF(src)]"
-	dat += "<h4>Admin Help Ticket #[id]: [LinkedReplyName(ref_src)]</h4>"
+	dat += "<h4>[tier == TICKET_MENTOR ? "Mentor" : "Admin"] Help Ticket #[id]: [LinkedReplyName(ref_src)]</h4>"
 	dat += "<b>State: "
 	switch(state)
 		if(AHELP_ACTIVE)
