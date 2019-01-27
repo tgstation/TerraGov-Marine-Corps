@@ -635,7 +635,7 @@
 	set category = "Admin"
 	set name = "Jump to Coordinate"
 
-	if(!check_rights(R_ADMIN) || is_mentor(src))
+	if(!check_rights(R_ADMIN) && is_mentor(src))
 		return
 
 	var/mob/M = usr
