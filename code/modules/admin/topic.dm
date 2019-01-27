@@ -120,8 +120,8 @@
 
 		if(!isobserver(usr))
 			admin_ghost()
-			log_admin("[key_name(usr)] jumped to coordinates ([x], [y], [z]).")
-			message_admins("[ADMIN_TPMONTY(usr)] jumped to coordinates ([x], [y], [z]).")
+			log_admin("[key_name(C.mob)] jumped to coordinates ([x], [y], [z]).")
+			message_admins("[ADMIN_TPMONTY(C.mob)] jumped to coordinates ([x], [y], [z]).")
 
 		var/mob/dead/observer/M = C.mob
 
@@ -142,8 +142,8 @@
 
 		if(!isobserver(usr))
 			admin_ghost()
-			log_admin("[key_name(usr)] jumped to follow [key_name(AM)].")
-			message_admins("[ADMIN_TPMONTY(usr)] jumped to follow [ADMIN_TPMONTY(AM)].")
+			log_admin("[key_name(C.mob)] jumped to follow [key_name(AM)].")
+			message_admins("[ADMIN_TPMONTY(C.mob)] jumped to follow [ADMIN_TPMONTY(AM)].")
 
 		var/mob/dead/observer/ghost = C.mob
 		ghost.ManualFollow(AM)
