@@ -263,6 +263,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	if(is_bwoink)
 		AddInteraction("<font color='blue'>[key_name_admin(usr)] PM'd [LinkedReplyName()]</font>")
 		message_admins("Ticket [TicketHref("#[id]")] created.")
+		marked = usr.client
 	else
 		MessageNoRecipient(msg)
 
@@ -416,6 +417,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	if(tier == TICKET_ADMIN && !check_rights(R_ADMIN, FALSE))
 		return
 	if(marked)
+		if(marked == usr.client)
+			return
 		if(alert("This ticket has already been marked by [marked], do you want to replace them?", "Confirmation", "Yes", "No") != "Yes")
 			return
 		if(tier == TICKET_MENTOR)
