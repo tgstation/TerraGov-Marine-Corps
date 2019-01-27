@@ -132,21 +132,25 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/input = input(usr, "This should be a message from the ship's AI.",, "") as message|null
+	var/input = input("This should be a message from the ship's AI.",, "") as message|null
 	if(!input)
 		return
 
-	if(!ai_system.Announce(input))
+	if(input("Do you want to use the ship AI to say the message or a global marine announcement?",, "Ship", "Global") == "Ship")
+		if(!ai_system.Announce(input))
+			return
+	else if(!command_announcement.Announce(input, MAIN_AI_SYSTEM, new_sound = 'sound/misc/notice2.ogg'))
 		return
 
-	for(var/obj/machinery/computer/communications/C in GLOB.machines)
-		if(!(C.stat & (BROKEN|NOPOWER)))
-			var/obj/item/paper/P = new /obj/item/paper(C.loc)
-			P.name = "'[MAIN_AI_SYSTEM] Update.'"
-			P.info = input
-			P.update_icon()
-			C.messagetitle.Add("[MAIN_AI_SYSTEM] Update")
-			C.messagetext.Add(P.info)
+	if(input("Do you want to print out a paper at the communications consoles?",, "Yes", "No") == "Yes")
+		for(var/obj/machinery/computer/communications/C in GLOB.machines)
+			if(!(C.stat & (BROKEN|NOPOWER)))
+				var/obj/item/paper/P = new /obj/item/paper(C.loc)
+				P.name = "'[MAIN_AI_SYSTEM] Update.'"
+				P.info = input
+				P.update_icon()
+				C.messagetitle.Add("[MAIN_AI_SYSTEM] Update")
+				C.messagetext.Add(P.info)
 
 	log_admin("[key_name(usr)] has created an AI report: [input]")
 	message_admins("[ADMIN_TPMONTY(usr)] has created an AI report: [input]")
@@ -159,8 +163,8 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/input = input(usr, "Please enter anything you want. Anything. Serious.", "What?", "") as message|null
-	var/customname = input(usr, "Pick a title for the report.", "Title") as text|null
+	var/input = input("Please enter anything you want. Anything. Serious.", "What?", "") as message|null
+	var/customname = input("Pick a title for the report.", "Title") as text|null
 
 	if(!input)
 		return
@@ -168,16 +172,17 @@
 	if(!customname)
 		customname = "TGMC Update"
 
-	for(var/obj/machinery/computer/communications/C in GLOB.machines)
-		if(!(C.stat & (BROKEN|NOPOWER)))
-			var/obj/item/paper/P = new /obj/item/paper( C.loc )
-			P.name = "'[command_name()] Update.'"
-			P.info = input
-			P.update_icon()
-			C.messagetitle.Add("[command_name()] Update")
-			C.messagetext.Add(P.info)
+	if(input("Do you want to print out a paper at the communications consoles?",, "Yes", "No") == "Yes")
+		for(var/obj/machinery/computer/communications/C in GLOB.machines)
+			if(!(C.stat & (BROKEN|NOPOWER)))
+				var/obj/item/paper/P = new /obj/item/paper(C.loc)
+				P.name = "'[command_name()] Update.'"
+				P.info = input
+				P.update_icon()
+				C.messagetitle.Add("[command_name()] Update")
+				C.messagetext.Add(P.info)
 
-	switch(alert("Should this be announced to the general population?",,"Yes","No"))
+	switch(alert("Should this be announced to the general population?",, "Yes", "No"))
 		if("Yes")
 			command_announcement.Announce(input, customname, new_sound = 'sound/AI/commandreport.ogg');
 		if("No")
@@ -653,57 +658,42 @@
 		H.set_everything(H, newrank)
 		log_admin("[key_name(usr)] has set the rank of [key_name(H)] to [newrank].")
 		message_admins("[ADMIN_TPMONTY(usr)] has set the rank of [ADMIN_TPMONTY(H)] to [newrank].")
+		return
 	else
-		var/newcommtitle = input("Write the custom title appearing on the comms themselves, for example: \[Command (Title)]", "Comms title") as null|text
-
-		if(!newcommtitle)
-			return
-
-		if(!H?.mind)
-			return
-
-		H.mind.role_comm_title = newcommtitle
 		var/obj/item/card/id/I = H.wear_id
-
 		if(!istype(I) || I != H.wear_id)
-			to_chat(usr, "The mob has no id card, unable to modify ID and chat title.")
-			return
+			H.wear_id = new /obj/item/card/id(H)
+		switch(input("What do you want to edit?") as null|anything in list("Comms Title - \[Engineering (Title)]", "Chat Title - Title John Doe screams!", "ID title - Jane Doe's ID Card (Title)", "Skills"))
+			if("Comms Title - \[Engineering (Title)]")
+				var/newcommtitle = input("Write the custom title appearing on the comms themselves, for example: \[Command (Title)]", "Comms title") as null|text
+				if(!newcommtitle || !H?.mind)
+					return
+				H.mind.role_comm_title = newcommtitle
+			if("Chat Title - Title John Doe screams!")
+				var/newchattitle = input("Write the custom title appearing in all chats: Title Jane Doe screams!", "Chat title") as null|text
+				if(!H || newchattitle)
+					return
+				if(!istype(I) || I != H.wear_id)
+					H.wear_id = new I(H)
+				I.paygrade = newchattitle
+			if("ID title - Jane Doe's ID Card (Title)")
+				var/IDtitle = input("Write the custom title appearing on the ID itself: Jane Doe's ID Card (Title)", "ID title") as null|text
+				if(!H || I != H.wear_id)
+					return
+				if(!istype(I) || I != H.wear_id)
+					H.wear_id = new I(H)
+				I.rank = IDtitle
+				I.assignment = IDtitle
+				I.name = "[I.registered_name]'s ID Card[IDtitle ? " ([I.assignment])" : ""]"
+			if("Skills")
+				var/newskillset = input("Select a skillset", "Skill Set") as null|anything in RoleAuthority.roles_by_name
+				if(!newskillset || !H?.mind)
+					return
+				var/datum/job/J = RoleAuthority.roles_by_name[newskillset]
+				H.mind.set_cm_skills(J.skills_type)
 
-		var/newchattitle = input("Write the custom title appearing in all chats: Title Jane Doe says", "Chat title") as null|text
-
-		if(!H || I != H.wear_id)
-			return
-
-		I.paygrade = newchattitle
-
-		var/IDtitle = input("Write the custom title appearing on the ID itself: Jane Doe's ID Card (Title)", "ID title") as null|text
-
-		if(!H || I != H.wear_id)
-			return
-
-		I.rank = IDtitle
-		I.assignment = IDtitle
-		I.name = "[I.registered_name]'s ID Card[IDtitle ? " ([I.assignment])" : ""]"
-
-		if(!H.mind)
-			to_chat(usr, "The mob has no mind, unable to modify skills.")
-			return
-
-		var/newskillset = input("Select a skillset", "Skill Set") as null|anything in RoleAuthority.roles_by_name
-
-		if(!newskillset)
-			return
-
-		if(!H?.mind)
-			return
-
-		var/datum/job/J = RoleAuthority.roles_by_name[newskillset]
-		H.mind.set_cm_skills(J.skills_type)
-
-		log_admin("[key_name(usr)] has made a custom rank for [key_name(H)] : [IDtitle] ([newcommtitle]) [newchattitle] [newskillset].")
-		message_admins("[ADMIN_TPMONTY(usr)] has made a custom rank for [ADMIN_TPMONTY(H)] : [IDtitle] ([newcommtitle]) [newchattitle]  [newskillset].")
-
-
+		log_admin("[key_name(usr)] has made a custom rank/skill change for [key_name(H)].")
+		message_admins("[ADMIN_TPMONTY(usr)] has made a custom rank/skill change for [ADMIN_TPMONTY(H)].")
 
 
 /datum/admins/proc/select_equipment(var/mob/living/carbon/human/M in GLOB.mob_list)
@@ -842,6 +832,11 @@
 				H.gender = MALE
 			else
 				H.gender = FEMALE
+		if("Ethnicity")
+			var/new_ethnicity = input("Please select the ethnicity") as null|anything in GLOB.ethnicities_list
+			if(!new_ethnicity || !istype(H))
+				return
+			H.ethnicity = new_ethnicity
 		else
 			return
 
