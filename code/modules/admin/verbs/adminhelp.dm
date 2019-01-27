@@ -416,9 +416,15 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	if(tier == TICKET_ADMIN && !check_rights(R_ADMIN, FALSE))
 		return
 	if(marked)
-		to_chat(usr, "<span class='warning'>This ticket has already been marked.</span>")
+		if(alert("This ticket has already been marked by [marked], do you want to replace them?", "Confirmation", "Yes", "No") != "Yes")
+			return
+		if(tier == TICKET_MENTOR)
+			message_staff("Ticket [TicketHref("#[id]")] has been re-marked by [ADMIN_TPMONTY(usr)].")
+		else if(tier == TICKET_ADMIN)
+			message_admins("Ticket [TicketHref("#[id]")] has been re-marked by [ADMIN_TPMONTY(usr)].")
+		marked = usr.client
 		return
-	marked = TRUE
+	marked = usr.client
 	if(tier == TICKET_MENTOR)
 		message_staff("Ticket [TicketHref("#[id]")] has been marked by [ADMIN_TPMONTY(usr)].")
 	else if(tier == TICKET_ADMIN)
@@ -537,7 +543,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		else
 			dat += "UNKNOWN"
 	if(marked)
-		dat += " <font color='red'>MARKED</font> "
+		dat += " <font color='red'>MARKED BY [marked]</font> "
 	else
 		dat += " UNMARKED "
 	dat += "</b>\t[TicketHref("Refresh", ref_src)]\t[TicketHref("Re-Title", ref_src, "retitle")]"

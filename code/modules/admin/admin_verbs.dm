@@ -845,31 +845,25 @@
 		return
 
 	if(AH && !AH.marked)
-		if(alert("Do you want to mark this ticket?", "Mark", "Yes", "No") == "Yes")
-			AH.marked = TRUE
+		AH.marked = usr.client
 		if(AH.tier == TICKET_MENTOR)
-			message_staff("[key_name_admin(src)] has started replying to [key_name_admin(C, FALSE, FALSE)]'s ticket.")
+			message_staff("[key_name_admin(src)] has marked and started replying to [key_name_admin(C, FALSE, FALSE)]'s ticket.")
 		else if(AH.tier == TICKET_ADMIN)
 			if(!check_rights(R_ADMIN, FALSE))
 				return
-			message_admins("[key_name_admin(src)] has started replying to [key_name_admin(C, FALSE, FALSE)]'s ticket.")
+			message_admins("[key_name_admin(src)] has marked and started replying to [key_name_admin(C, FALSE, FALSE)]'s ticket.")
 
-	else if(AH && alert("This ticket has already been marked, are you sure you want to proceed?", "Warning", "Yes", "No") != "Yes")
+	else if(AH)
+		to_chat(usr, "<span class='warning'>This ticket has already been marked by [AH.marked], head over to the ticket window to replace them.</span>")
 		return
-
 	var/msg = input("Message:", "Private message to [key_name(C, FALSE, FALSE)]") as message|null
 	if(!msg)
 		if(AH)
-			if(AH.marked && alert("This ticket has already been marked, do you want to unmark it?", "Warning", "Yes", "No") == "Yes")
-				AH.marked = FALSE
-				if(AH.tier == TICKET_MENTOR)
-					message_staff("[key_name_admin(src)] has unmarked [AH.TicketHref("#[AH.id]")].")
-				else if(AH.tier == TICKET_ADMIN)
-					message_admins("[key_name_admin(src)] has unmarked [AH.TicketHref("#[AH.id]")].")
 			if(AH.tier == TICKET_MENTOR)
-				message_staff("[key_name_admin(src)] has cancelled their reply to [key_name_admin(C, FALSE, FALSE)]'s ticket.")
+				message_staff("[key_name_admin(src)] has cancelled their reply to [key_name_admin(C, FALSE, FALSE)]'s ticket. Ticket has been unmarked.")
 			else if(AH.tier == TICKET_ADMIN)
-				message_admins("[key_name_admin(src)] has cancelled their reply to [key_name_admin(C, FALSE, FALSE)]'s ticket.")
+				message_admins("[key_name_admin(src)] has cancelled their reply to [key_name_admin(C, FALSE, FALSE)]'s ticket. Ticket has been unmarked")
+			AH.marked = null
 		return
 
 	private_message(whom, msg)
@@ -1005,7 +999,7 @@
 				if(check_other_rights(X, R_ADMIN, FALSE) || is_mentor(X))
 					to_chat(X, "<font color='blue'><B>Mentor PM: [key_name(src, X, FALSE)]-&gt;[key_name(recipient, X, FALSE)]:</B> [keywordparsedmsg]</font>")
 		else //Admins get all messages, mentors only mentor responses
-			var/datum/admin_help/AH = C.current_ticket
+			var/datum/admin_help/AH = src.current_ticket
 			for(var/client/X in GLOB.admins)
 				if(X.key == key || X.key == recipient.key)
 					continue
