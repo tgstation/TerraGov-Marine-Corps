@@ -80,7 +80,7 @@
 
 /obj/item/New(loc)
 	..()
-	item_list += src
+	GLOB.item_list += src
 	for(var/path in actions_types)
 		new path(src)
 	if(w_class <= 3) //pulling small items doesn't slow you down much
@@ -94,7 +94,7 @@
 		actions -= X
 		qdel(X)
 	master = null
-	item_list -= src
+	GLOB.item_list -= src
 	. = ..()
 
 

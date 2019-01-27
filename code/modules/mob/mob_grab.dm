@@ -91,7 +91,7 @@
 			/* Saving this in case we want to allow devouring of dead bodies UNLESS their client is still online somewhere
 			if(pulled.client) //The client is still inside the body
 			else // The client is observing
-				for(var/mob/dead/observer/G in player_list)
+				for(var/mob/dead/observer/G in GLOB.player_list)
 					if(ckey(G.mind.original.ckey) == pulled.ckey)
 						to_chat(src, "You start to devour [pulled] but realize [user.p_they()] is already dead.")
 						return */

@@ -7,10 +7,10 @@ SUBSYSTEM_DEF(air)
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
 
 /datum/controller/subsystem/air/Initialize(timeofday)
-	for (var/obj/machinery/atmospherics/machine in machines)
+	for (var/obj/machinery/atmospherics/machine in GLOB.machines)
 		machine.build_network()
 
-	for (var/obj/machinery/atmospherics/unary/U in machines)
+	for (var/obj/machinery/atmospherics/unary/U in GLOB.machines)
 		if (istype(U, /obj/machinery/atmospherics/unary/vent_pump))
 			var/obj/machinery/atmospherics/unary/vent_pump/T = U
 			T.broadcast_status()

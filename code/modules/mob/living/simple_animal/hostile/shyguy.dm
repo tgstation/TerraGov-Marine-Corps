@@ -358,8 +358,8 @@
 
 		//Logging stuff
 		log_combat(src, T, "torn apart")
-		log_admin("[T] ([T.ckey]) has been torn apart by an active [src].")
-		message_admins("ALERT: <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[T.x];Y=[T.y];Z=[T.z]'>[T.real_name]</a> has been torn apart by an active [src].")
+		log_admin("[key_name(T)] has been torn apart by an active [src].")
+		message_admins("[ADMIN_TPMONTY(T)] has been torn apart by an active [src].")
 		shitlist -= T
 
 		if (target == T)

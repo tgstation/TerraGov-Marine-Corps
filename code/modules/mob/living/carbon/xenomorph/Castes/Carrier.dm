@@ -269,17 +269,17 @@
 		return
 
 	if(!threw_a_hugger)
-		threw_a_hugger = 1
+		threw_a_hugger = TRUE
 		update_action_button_icons()
 		dropItemToGround(F)
 		F.throw_at(T, CARRIER_HUGGER_THROW_DISTANCE, CARRIER_HUGGER_THROW_SPEED)
 		visible_message("<span class='xenowarning'>\The [src] throws something towards \the [T]!</span>", \
 		"<span class='xenowarning'>You throw a facehugger towards \the [T]!</span>")
-		spawn(xeno_caste.hugger_delay)
-			threw_a_hugger = 0
-			update_action_button_icons()
+		addtimer(CALLBACK(src, .hugger_throw_cooldown), xeno_caste.hugger_delay)
 
-
+/mob/living/carbon/Xenomorph/Carrier/proc/hugger_throw_cooldown()
+	threw_a_hugger = FALSE
+	update_action_button_icons()
 
 /mob/living/carbon/Xenomorph/Carrier/proc/store_egg(obj/item/xeno_egg/E)
 	if(E.hivenumber != hivenumber)

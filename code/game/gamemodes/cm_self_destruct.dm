@@ -228,7 +228,7 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 		var/L2[] = new //Everyone who only needs to see the cinematic.
 		var/mob/M
 		var/turf/T
-		for(M in player_list) //This only does something cool for the people about to die, but should prove pretty interesting.
+		for(M in GLOB.player_list) //This only does something cool for the people about to die, but should prove pretty interesting.
 			if(!M?.loc)
 				continue //In case something changes when we sleep().
 			T = get_turf(M)
@@ -301,7 +301,7 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 
 /obj/machinery/self_destruct/Destroy()
 	. = ..()
-	machines -= src
+	GLOB.machines -= src
 	operator = null
 
 /obj/machinery/self_destruct/ex_act(severity)
