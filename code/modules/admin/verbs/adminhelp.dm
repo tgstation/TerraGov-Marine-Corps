@@ -415,6 +415,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		return
 	if(marked && alert("This ticket has already been marked, are you sure you want to proceed?", "Warning", "Yes", "No") != "Yes")
 		return
+	marked = TRUE
 	if(tier == TICKET_MENTOR)
 		message_staff("Ticket [TicketHref("#[id]")] has been marked by [ADMIN_TPMONTY(usr)].")
 	else if(tier == TICKET_ADMIN)
