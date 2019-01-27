@@ -136,8 +136,7 @@ Any-Mode: (hotkey doesn't need to be on)
 
 	var/admin = {"<font color='purple'>
 Admin:
-\tF3 = Asay (adminsay)
-\tF5 = Aghost (admin-ghost)
+\tF5 = Asay (adminsay)
 \tF6 = player-panel
 \tF7 = admin-pm
 \tF8 = Invisimin
