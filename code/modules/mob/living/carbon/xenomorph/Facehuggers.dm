@@ -47,9 +47,9 @@
 			STOP_PROCESSING(SSobj, src)
 
 /obj/item/clothing/mask/facehugger/process()
-	hugger_tick++
-	if(hugger_tick % 2 == 0)
+	if(hugger_tick && hugger_tick % 2 == 0)
 		monitor_surrounding()
+	hugger_tick++
 
 /obj/item/clothing/mask/facehugger/update_icon()
 	if(stat == DEAD)
@@ -239,8 +239,7 @@
 /obj/item/clothing/mask/facehugger/throw_at(atom/target, range, speed)
 	. = ..()
 	if(stat == CONSCIOUS)
-		update_icon()
-		addtimer(CALLBACK(src, .proc/reset_thrown_icon), range * 3 + 1)
+		update_stat(UNCONSCIOUS) //Giving it some brief downtime before jumping on someone via movement.
 
 /obj/item/clothing/mask/facehugger/throw_impact(atom/hit_atom, speed)
 	if(stat == DEAD)
@@ -248,23 +247,21 @@
 	if(ismob(hit_atom))
 		if(stat == CONSCIOUS)
 			if(leaping && CanHug(hit_atom)) //Standard leaping behaviour, not attributable to being _thrown_ such as by a Carrier.
+				stat = CONSCIOUS
 				Attach(hit_atom)
 			else if(hit_atom.density) //We hit something, cool.
-				update_stat(UNCONSCIOUS) //Giving it some brief downtime before jumping on someone via movement.
 				step(src, turn(dir, 180)) //We want the hugger to bounce off if it hits a mob.
-				addtimer(CALLBACK(src, .proc/fast_activate), 2 SECONDS)
 				throwing = FALSE
-		return
+				leaping = FALSE
+				addtimer(CALLBACK(src, .proc/fast_activate), 1.5 SECONDS)
+
 	else
+		addtimer(CALLBACK(src, .proc/GoActive), 2 SECONDS)
 		return ..()
 
 /obj/item/clothing/mask/facehugger/proc/fast_activate()
-	update_stat(CONSCIOUS)
-	monitor_surrounding()
-
-/obj/item/clothing/mask/facehugger/proc/reset_thrown_icon()
-	leaping = FALSE
-	update_icon()
+	if(GoActive())
+		monitor_surrounding()
 
 /obj/item/clothing/mask/facehugger/proc/CanHug(mob/living/carbon/M, check_death = TRUE, check_mask = TRUE)
 	if(!istype(M) || stat == DEAD)
@@ -308,6 +305,7 @@
 		M.visible_message("<span class='danger'>[src] leaps at [M]'s face!</span>")
 
 	throwing = FALSE
+	leaping = FALSE
 	update_icon()
 
 	if(isXeno(loc)) //Being carried? Drop it

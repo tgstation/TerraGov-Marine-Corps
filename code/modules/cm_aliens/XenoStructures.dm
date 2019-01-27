@@ -214,7 +214,7 @@
 
 /obj/effect/alien/resin/trap/proc/drop_hugger()
 	hugger.forceMove(loc)
-	addtimer(CALLBACK(hugger, /obj/item/clothing/mask/facehugger.proc/GoActive), 0.5 SECONDS)
+	addtimer(CALLBACK(hugger, /obj/item/clothing/mask/facehugger.proc/fast_activate), 1.5 SECONDS)
 	icon_state = "trap0"
 	visible_message("<span class='warning'>[hugger] gets out of [src]!</span>")
 	hugger = null
@@ -479,10 +479,9 @@
 	var/i = 1
 	var/x_coords = list(-1,-1,-1,0,0,1,1,1)
 	var/y_coords = list(1,0,-1,1,-1,1,0,-1)
-	var/turf/target_turf
 	for(var/atom/trigger in egg_triggers)
 		var/obj/effect/egg_trigger/ET = trigger
-		target_turf = locate(x+x_coords[i],y+y_coords[i], z)
+		var/turf/target_turf = locate(x+x_coords[i],y+y_coords[i], z)
 		if(target_turf)
 			ET.loc = target_turf
 			i++
@@ -538,7 +537,7 @@
 	if(status != EGG_DESTROYED && hugger)
 		status = EGG_BURST
 		hugger.forceMove(loc)
-		hugger.update_stat(CONSCIOUS)
+		hugger.fast_activate()
 		hugger = null
 
 /obj/effect/alien/egg/bullet_act(var/obj/item/projectile/P)
@@ -579,17 +578,16 @@
 	if(istype(W,/obj/item/clothing/mask/facehugger))
 		var/obj/item/clothing/mask/facehugger/F = W
 		if(F.stat != DEAD)
-			switch(status)
-				if(EGG_DESTROYED)
-					to_chat(user, "<span class='xenowarning'>This egg is no longer usable.</span>")
-				else if(!hugger)
-					visible_message("<span class='xenowarning'>[user] slides [F] back into [src].</span>","<span class='xenonotice'>You place the child back in to [src].</span>")
-					user.transferItemToLoc(F, src)
-					update_status(EGG_GROWN)
-					F.GoIdle(TRUE)
-					hugger = F
-				else
-					to_chat(user, "<span class='xenowarning'>This one is occupied with a child.</span>")
+			if(EGG_DESTROYED)
+				to_chat(user, "<span class='xenowarning'>This egg is no longer usable.</span>")
+			else if(!hugger)
+				visible_message("<span class='xenowarning'>[user] slides [F] back into [src].</span>","<span class='xenonotice'>You place the child back in to [src].</span>")
+				user.transferItemToLoc(F, src)
+				update_status(EGG_GROWN)
+				F.GoIdle(TRUE)
+				hugger = F
+			else
+				to_chat(user, "<span class='xenowarning'>This one is occupied with a child.</span>")
 		else
 			to_chat(user, "<span class='xenowarning'>This child is dead.</span>")
 		return
