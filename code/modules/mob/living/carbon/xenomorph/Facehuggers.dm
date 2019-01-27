@@ -1,3 +1,4 @@
+#define FACEHUGGER_LIFECYCLE 8 SECONDS
 #define FACEHUGGER_KNOCKOUT 10
 
 #define MIN_IMPREGNATION_TIME 10 SECONDS //Time it takes to impregnate someone
@@ -24,7 +25,7 @@
 	var/hugger_tick = 0
 	var/sterile = FALSE
 	var/attached = FALSE
-	var/lifecycle = 15 //How long the hugger will survive outside of the egg, or carrier.
+	var/lifecycle = FACEHUGGER_LIFECYCLE //How long the hugger will survive outside of the egg, or carrier.
 	var/leaping = FALSE //Is actually attacking someone?
 	var/hivenumber = XENO_HIVE_NORMAL
 
@@ -138,7 +139,7 @@
 	Die()
 
 /obj/item/clothing/mask/facehugger/proc/monitor_surrounding()
-	if(stat == CONSCIOUS && loc) //Make sure we're conscious and not idle or dead.
+	if(stat == CONSCIOUS && loc && !throwing) //Make sure we're conscious and not idle, dead or in action.
 		if(check_lifecycle())
 			leap_at_nearest_target()
 
@@ -156,14 +157,12 @@
 		update_stat(CONSCIOUS)
 
 /obj/item/clothing/mask/facehugger/proc/check_lifecycle()
-	if(throwing)
-		return FALSE
 	if(sterile)
 		return TRUE
 	if(isturf(loc))
 		if(check_neighbours())
 			return FALSE
-	if(lifecycle - 4 <= 0)
+	if(lifecycle - 2 SECONDS <= 0)
 		if(isturf(loc))
 			var/obj/effect/alien/egg/E = locate() in loc
 			if(E?.status == EGG_BURST)
@@ -185,14 +184,14 @@
 		Die()
 		return FALSE
 
-	lifecycle -= 4
+	lifecycle -= 2 SECONDS
 	return TRUE
 
 /obj/item/clothing/mask/facehugger/proc/check_neighbours()
 	var/obj/item/clothing/mask/facehugger/F
 	var/count = 0
 	for(F in get_turf(src))
-		if(F.stat != DEAD && !F.sterile)
+		if(F.stat == CONSCIOUS && !F.sterile)
 			count++
 		if(count > 2) //Was 5, our rules got much tighter
 			visible_message("<span class='xenowarning'>The facehugger is furiously cannibalized by the nearby horde of other ones!</span>")
@@ -248,22 +247,22 @@
 		return
 	if(ismob(hit_atom))
 		if(stat == CONSCIOUS)
-			if(leaping) //Standard leaping behaviour, not attributable to being _thrown_ such as by a Carrier.
+			if(leaping && CanHug(hit_atom)) //Standard leaping behaviour, not attributable to being _thrown_ such as by a Carrier.
 				Attach(hit_atom)
 			else if(hit_atom.density) //We hit something, cool.
 				update_stat(UNCONSCIOUS) //Giving it some brief downtime before jumping on someone via movement.
 				step(src, turn(dir, 180)) //We want the hugger to bounce off if it hits a mob.
-				addtimer(CALLBACK(src, .proc/fast_activate), 1 SECONDS)
+				addtimer(CALLBACK(src, .proc/fast_activate), 2 SECONDS)
 				throwing = FALSE
 		return
 	else
-		..()
+		return ..()
 
 /obj/item/clothing/mask/facehugger/proc/fast_activate()
 	update_stat(CONSCIOUS)
 	monitor_surrounding()
 
-/obj/item/clothing/mask/facehugger/proc/reset_thrown_icon(range)
+/obj/item/clothing/mask/facehugger/proc/reset_thrown_icon()
 	leaping = FALSE
 	update_icon()
 
@@ -462,6 +461,7 @@
 	visible_message("\icon[src] <span class='danger'>\The [src] decays into a mass of acid and chitin.</span>")
 	qdel(src)
 
+#undef FACEHUGGER_LIFECYCLE
 #undef FACEHUGGER_KNOCKOUT
 #undef MIN_IMPREGNATION_TIME
 #undef MAX_IMPREGNATION_TIME
