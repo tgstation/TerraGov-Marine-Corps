@@ -155,6 +155,8 @@
 /obj/item/clothing/mask/facehugger/proc/GoActive()
 	if(stat == UNCONSCIOUS)
 		update_stat(CONSCIOUS)
+		return TRUE
+	return FALSE
 
 /obj/item/clothing/mask/facehugger/proc/check_lifecycle()
 	if(sterile)
