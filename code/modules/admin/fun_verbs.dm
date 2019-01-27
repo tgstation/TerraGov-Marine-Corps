@@ -137,10 +137,9 @@
 		return
 
 	if(input("Do you want to use the ship AI to say the message or a global marine announcement?",, "Ship", "Global") == "Ship")
-		if(!ai_system.Announce(input))
-			return
-	else if(!command_announcement.Announce(input, MAIN_AI_SYSTEM, new_sound = 'sound/misc/notice2.ogg'))
-		return
+		ai_system.Announce(input)
+	else
+		command_announcement.Announce(input, MAIN_AI_SYSTEM, new_sound = 'sound/misc/notice2.ogg')
 
 	if(input("Do you want to print out a paper at the communications consoles?",, "Yes", "No") == "Yes")
 		for(var/obj/machinery/computer/communications/C in GLOB.machines)

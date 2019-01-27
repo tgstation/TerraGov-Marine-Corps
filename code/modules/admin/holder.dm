@@ -355,7 +355,6 @@ GLOBAL_LIST_INIT(admin_verbs_server, world.AVserver())
 	/datum/admins/proc/delay,
 	/datum/admins/proc/toggle_gun_restrictions,
 	/datum/admins/proc/toggle_synthetic_restrictions,
-	/datum/admins/proc/adjust_weapon_mult,
 	/datum/admins/proc/reload_admins,
 	/datum/admins/proc/reload_whitelist
 	)
