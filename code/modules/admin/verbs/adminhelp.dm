@@ -146,9 +146,9 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 				stat("#[AH.id]. Admin. [AH.initiator_key_name]:", AH.statclick.update())
 			else
 				++num_admins_disconnected
-	if(check_rights(R_ADMIN, FALSE) && num_admins_disconnected)
+	if(check_rights(R_ADMIN, FALSE) && (num_admins_disconnected || num_mentors_disconnected))
 		stat("Disconnected:", astatclick.update("[num_mentors_disconnected + num_admins_disconnected]"))
-	else if(check_rights(R_MENTOR, FALSE) && num_admins_disconnected)
+	else if(check_rights(R_MENTOR, FALSE) && num_mentors_disconnected)
 		stat("Disconnected:", astatclick.update("[num_mentors_disconnected]"))
 
 	if(check_rights(R_ADMIN, FALSE))
