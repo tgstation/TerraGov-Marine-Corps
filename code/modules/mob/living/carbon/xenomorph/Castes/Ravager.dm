@@ -176,7 +176,8 @@
 /mob/living/carbon/Xenomorph/Ravager/Stat()
 	. = ..()
 
-	stat(null, "Rage: [rage] / [RAVAGER_MAX_RAGE]")
+	if(statpanel("Stats"))
+		stat(null, "Rage: [rage] / [RAVAGER_MAX_RAGE]")
 
 /mob/living/carbon/Xenomorph/Ravager/proc/charge(atom/T)
 	if(!T) return

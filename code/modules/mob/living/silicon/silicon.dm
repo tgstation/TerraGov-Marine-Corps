@@ -117,9 +117,10 @@
 /mob/living/silicon/Stat()
 	. = ..()
 
-	show_station_time()
-	show_emergency_shuttle_eta()
-	show_system_integrity()
+	if(statpanel("Stats"))
+		show_station_time()
+		show_emergency_shuttle_eta()
+		show_system_integrity()
 
 // this function displays the stations manifest in a separate window
 /mob/living/silicon/proc/show_station_manifest()

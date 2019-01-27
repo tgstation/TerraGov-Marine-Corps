@@ -404,9 +404,10 @@ var/list/robot_verbs_default = list(
 /mob/living/silicon/robot/Stat()
 	. = ..()
 
-	show_cell_power()
-	show_jetpack_pressure()
-	stat(null, text("Lights: [lights_on ? "ON" : "OFF"]"))
+	if(statpanel("Stats"))
+		show_cell_power()
+		show_jetpack_pressure()
+		stat(null, text("Lights: [lights_on ? "ON" : "OFF"]"))
 	
 
 /mob/living/silicon/robot/is_mob_restrained()

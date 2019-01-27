@@ -345,7 +345,8 @@
 /mob/living/simple_animal/Stat()
 	. = ..()
 
-	stat(null, "Health: [round((health / maxHealth) * 100)]%")
+	if(statpanel("Stats"))
+		stat(null, "Health: [round((health / maxHealth) * 100)]%")
 
 
 /mob/living/simple_animal/ex_act(severity)
