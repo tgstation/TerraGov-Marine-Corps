@@ -268,7 +268,7 @@
 			return
 
 	var/log = "[key_name(usr)]"
-	var/message = "[key_name_admin(usr)] [ADMIN_JMP(usr)]"
+	var/message = "[ADMIN_TPMONTY(usr)]"
 	var/oldkey = "[M.key]"
 	M.key = usr.client.key
 
