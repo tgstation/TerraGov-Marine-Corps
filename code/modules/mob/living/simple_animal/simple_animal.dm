@@ -341,12 +341,11 @@
 	. += speed
 	. += CONFIG_GET(number/outdated_movedelay/animal_delay)
 
+
 /mob/living/simple_animal/Stat()
-	if (!..())
-		return 0
+	. = ..()
 
 	stat(null, "Health: [round((health / maxHealth) * 100)]%")
-	return 1
 
 
 /mob/living/simple_animal/ex_act(severity)

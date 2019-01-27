@@ -175,8 +175,6 @@
 
 /mob/living/carbon/Xenomorph/Ravager/Stat()
 	. = ..()
-	if(!.)
-		return
 
 	stat(null, "Rage: [rage] / [RAVAGER_MAX_RAGE]")
 

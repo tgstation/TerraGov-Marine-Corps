@@ -16,8 +16,7 @@
 //Adds stuff to your "Status" pane -- Specific castes can have their own, like carrier hugger count
 //Those are dealt with in their caste files.
 /mob/living/carbon/Xenomorph/Stat()
-	if (!..())
-		return 0
+	. = ..()
 
 	var/datum/hive_status/hive
 	if(hivenumber && hivenumber <= hive_datum.len)
@@ -87,7 +86,6 @@
 		else
 			stat(null,"Hive Orders: Follow the instructions of your masters")
 
-	return 1
 
 //A simple handler for checking your state. Used in pretty much all the procs.
 /mob/living/carbon/Xenomorph/proc/check_state()

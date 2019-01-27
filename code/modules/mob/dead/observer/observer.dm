@@ -219,14 +219,12 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	return 0
 
 /mob/dead/observer/Stat()
-	if (!..())
-		return 0
+	. = ..()
 
 	if(EvacuationAuthority)
 		var/eta_status = EvacuationAuthority.get_status_panel_eta()
 		if(eta_status)
 			stat(null, eta_status)
-	return 1
 
 /mob/dead/observer/verb/reenter_corpse()
 	set category = "Ghost"

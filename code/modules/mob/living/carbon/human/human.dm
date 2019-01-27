@@ -164,9 +164,8 @@
 	return ..()
 
 /mob/living/carbon/human/Stat()
-	if (!..())
-		return 0
-
+	. = ..()
+	
 	if(EvacuationAuthority)
 		var/eta_status = EvacuationAuthority.get_status_panel_eta()
 		if(eta_status)

@@ -265,24 +265,3 @@ GLOBAL_LIST_EMPTY(external_rsc_url)
 	if(!CONFIG_GET(string/resource_url))
 		return
 	preload_rsc = GLOB.external_rsc_url
-
-/client/Stat()
-	// We just did a short sleep because of a change, do another to render quickly, but flip the flag back.
-	if (stat_fast_update)
-		stat_fast_update = 0
-		Stat()
-		return 0
-
-	last_statpanel = statpanel
-
-	. = ..() // Do our regular Stat stuff
-
-	//statpanel changed? We doin a short sleep
-	if (statpanel != last_statpanel || stat_force_fast_update)
-		stat_fast_update = 1
-		stat_force_fast_update = 0
-		return .
-
-	// Nothing happening, long sleep
-	sleep(32)
-	return .

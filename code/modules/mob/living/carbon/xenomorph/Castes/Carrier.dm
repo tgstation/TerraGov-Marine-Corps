@@ -215,12 +215,11 @@
 
 
 /mob/living/carbon/Xenomorph/Carrier/Stat()
-	if (!..())
-		return 0
+	. = ..()
 
 	stat(null, "Stored Huggers: [huggers_cur] / [xeno_caste.huggers_max]")
 	stat(null, "Stored Eggs: [eggs_cur] / [xeno_caste.eggs_max]")
-	return 1
+	
 
 /mob/living/carbon/Xenomorph/Carrier/proc/store_hugger(obj/item/clothing/mask/facehugger/F)
 	if(huggers_cur < xeno_caste.huggers_max)
