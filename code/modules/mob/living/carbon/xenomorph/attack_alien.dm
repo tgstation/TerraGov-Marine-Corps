@@ -228,7 +228,7 @@
 			M.neuroclaw_router(src) //if we have neuroclaws...
 			if(dam_bonus)
 				tackle_pain += dam_bonus
-			apply_damage(tackle_pain, HALLOSS, "chest", armor_block * 0.5) //Only half armour applies vs tackle
+			apply_damage(tackle_pain, HALLOSS, "chest", armor_block * 0.4) //Only half armour applies vs tackle
 			updatehealth()
 			updateshock()
 			var/throttle_message = "<span class='danger'>\The [M] throttles [src]!</span>"
