@@ -406,6 +406,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		tier = TICKET_MENTOR
 		msg = "a mentor ticket"
 		message_staff("Ticket [TicketHref("#[id]")] has been made [msg] by [ADMIN_TPMONTY(usr)].")
+		if(is_mentor(usr.client) && usr.client.prefs.toggles_sound & SOUND_ADMINHELP)
+			SEND_SOUND(usr.client, sound('sound/effects/adminhelp.ogg'))
 	log_admin_private("Ticket (#[id]) has been made [msg] by [key_name(usr)].")
 
 
