@@ -18,7 +18,7 @@
 		if(C.mob && C.mob.stat != DEAD)
 			if(ishuman(C.mob) && !iszombie(C.mob))
 				count_humans++
-				if(C.mob.assigned_role in (ROLES_MARINES))
+				if(C.mob.mind.assigned_role in (ROLES_MARINES))
 					count_marine_humans++
 				if(C.mob.status_flags & XENO_HOST)
 					count_infectedhumans++
@@ -76,7 +76,7 @@
 		msg += "<b>Total Players: [length(Lines)]</b>"
 
 	to_chat(src, msg)
-	
+
 
 /client/verb/staffwho()
 	set category = "Admin"

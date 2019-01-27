@@ -241,6 +241,7 @@
 
 	to_chat(M, "<b>You hear a voice in your head... [msg]</b>")
 
+	admin_ticket_log(M, "[key_name_admin(usr)] used Subtle Message: [sanitize(msg)]")
 	log_admin("SubtleMessage: [key_name(usr)] to [key_name(M)]: [msg]")
 	message_admins("[ADMIN_TPMONTY(usr)] used Subtle Message on [ADMIN_TPMONTY(M)]: [msg]")
 
