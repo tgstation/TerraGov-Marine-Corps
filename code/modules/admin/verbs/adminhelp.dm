@@ -413,7 +413,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 /datum/admin_help/proc/Mark()
 	if(tier == TICKET_ADMIN && !check_rights(R_ADMIN, FALSE))
 		return
-	if(marked && alert("This ticket has already been marked, are you sure you want to proceed?", "Warning", "Yes", "No") != "Yes")
+	if(marked)
+		to_chat(usr, "<span class='warning'>This ticket has already been marked.</span>")
 		return
 	marked = TRUE
 	if(tier == TICKET_MENTOR)

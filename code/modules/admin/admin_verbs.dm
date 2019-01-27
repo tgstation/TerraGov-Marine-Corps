@@ -862,6 +862,10 @@
 		if(AH)
 			if(AH.marked && alert("This ticket has already been marked, do you want to unmark it?", "Warning", "Yes", "No") == "Yes")
 				AH.marked = FALSE
+				if(AH.tier == TICKET_MENTOR)
+					message_staff("[key_name_admin(src)] has unmarked [AH.TicketHref("#[AH.id]")].")
+				else if(AH.tier == TICKET_ADMIN)
+					message_admins("[key_name_admin(src)] has unmarked [AH.TicketHref("#[AH.id]")].")
 			if(AH.tier == TICKET_MENTOR)
 				message_staff("[key_name_admin(src)] has cancelled their reply to [key_name_admin(C, FALSE, FALSE)]'s ticket.")
 			else if(AH.tier == TICKET_ADMIN)
@@ -941,8 +945,8 @@
 	else
 		if(check_other_rights(recipient, R_ADMIN, FALSE) || is_mentor(recipient))
 			if(check_rights(R_ADMIN, FALSE) || is_mentor(src))	//Both are staff
-				to_chat(recipient, "<font color='red'>Staff PM from-<b>[key_name(src, recipient, TRUE)]</b>: <span class='linkify'>[keywordparsedmsg]</span></font>")
-				to_chat(src, "<font color='blue'>Staff PM to-<b>[key_name(recipient, src, TRUE)]</b>: <span class='linkify'>[keywordparsedmsg]</span></font>")
+				to_chat(recipient, "<font size='3' color='red'>Staff PM from-<b>[key_name(src, recipient, TRUE)]</b>: <span class='linkify'>[keywordparsedmsg]</span></font>")
+				to_chat(src, "<font size='3' color='blue'>Staff PM to-<b>[key_name(recipient, src, TRUE)]</b>: <span class='linkify'>[keywordparsedmsg]</span></font>")
 
 				var/interaction_message = "<font color='purple'>PM from-<b>[key_name(src, recipient, TRUE)]</b> to-<b>[key_name(recipient, src, TRUE)]</b>: [keywordparsedmsg]</font>"
 				admin_ticket_log(src, interaction_message)
@@ -950,7 +954,7 @@
 					admin_ticket_log(recipient, interaction_message)
 
 			else //Recipient is a staff member, sender is not.
-				var/replymsg = "<font color='red'>Reply PM from-<b>[key_name(src, recipient, TRUE)]</b>: <span class='linkify'>[keywordparsedmsg]</span></font>"
+				var/replymsg = "<font size='3' color='red'>Reply PM from-<b>[key_name(src, recipient, TRUE)]</b>: <span class='linkify'>[keywordparsedmsg]</span></font>"
 				admin_ticket_log(src, replymsg)
 				to_chat(recipient, replymsg)
 				to_chat(src, "<font color='blue'>PM to-<b>Staff</b>: <span class='linkify'>[msg]</span></font>")
