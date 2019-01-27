@@ -84,6 +84,11 @@
 		for(name in heads)
 			dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[heads[name]]</td><td>[isactive[name]]</td></tr>"
 			even = !even
+	if(police.len > 0)
+		dat += "<tr><th colspan=3>Military Police</th></tr>"
+		for(name in heads)
+			dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[police[name]]</td><td>[isactive[name]]</td></tr>"
+			even = !even
 	if(mar.len > 0)
 		dat += "<tr><th colspan=3>Marines</th></tr>"
 		for(var/j in list("Alpha","Bravo","Charlie", "Delta"))
