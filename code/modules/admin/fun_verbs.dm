@@ -136,12 +136,13 @@
 	if(!input)
 		return
 
-	if(input("Do you want to use the ship AI to say the message or a global marine announcement?",, "Ship", "Global") == "Ship")
-		ai_system.Announce(input)
+	if(alert(usr, "Do you want to use the ship AI to say the message or a global marine announcement?",, "Ship", "Global") == "Ship")
+		if(!ai_system.Announce(input))
+			return
 	else
 		command_announcement.Announce(input, MAIN_AI_SYSTEM, new_sound = 'sound/misc/notice2.ogg')
 
-	if(input("Do you want to print out a paper at the communications consoles?",, "Yes", "No") == "Yes")
+	if(alert(usr, "Do you want to print out a paper at the communications consoles?",, "Yes", "No") == "Yes")
 		for(var/obj/machinery/computer/communications/C in GLOB.machines)
 			if(!(C.stat & (BROKEN|NOPOWER)))
 				var/obj/item/paper/P = new /obj/item/paper(C.loc)
@@ -171,7 +172,7 @@
 	if(!customname)
 		customname = "TGMC Update"
 
-	if(input("Do you want to print out a paper at the communications consoles?",, "Yes", "No") == "Yes")
+	if(alert(usr, "Do you want to print out a paper at the communications consoles?",, "Yes", "No") == "Yes")
 		for(var/obj/machinery/computer/communications/C in GLOB.machines)
 			if(!(C.stat & (BROKEN|NOPOWER)))
 				var/obj/item/paper/P = new /obj/item/paper(C.loc)
@@ -449,7 +450,7 @@
 		return
 
 	var/is_announcing = TRUE
-	if(alert(src, "Would you like to announce the distress beacon to the server population? This will reveal the distress beacon to all players.", "Announce distress beacon?", "Yes", "No") != "Yes")
+	if(alert(usr, "Would you like to announce the distress beacon to the server population? This will reveal the distress beacon to all players.", "Announce distress beacon?", "Yes", "No") != "Yes")
 		is_announcing = FALSE
 
 	ticker.mode.picked_call.activate(is_announcing)
