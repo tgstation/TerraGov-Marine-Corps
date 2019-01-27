@@ -1004,6 +1004,12 @@
 					continue
 				if(check_other_rights(X, R_ADMIN, FALSE) || is_mentor(X))
 					to_chat(X, "<font color='blue'><B>Mentor PM: [key_name(src, X, FALSE)]-&gt;[key_name(recipient, X, FALSE)]:</B> [keywordparsedmsg]</font>")
+		else //Reply from the recipient to the other admins
+			for(var/client/X in GLOB.admins)
+				if(X.key == key || X.key == recipient.key)
+					continue
+				if(check_other_rights(X, R_ADMIN, FALSE))
+					to_chat(X, "<font color='blue'><B>[key_name(recipient, X, FALSE)]-&gt;[key_name(src, X, FALSE)]:</B> [keywordparsedmsg]</font>")
 
 
 #define IRC_AHELP_USAGE "Usage: ticket <close|resolve|icissue|reject|reopen \[ticket #\]|list>"
