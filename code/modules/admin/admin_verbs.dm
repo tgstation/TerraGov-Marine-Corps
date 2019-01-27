@@ -1166,3 +1166,22 @@
 
 		log_admin("[key_name(usr)] forcibly removed all players from [CA].")
 		message_admins("[ADMIN_TPMONTY(usr)] forcibly removed all players from [CA].")
+
+
+/datum/admins/proc/not_looc(msg as text)
+	set category = "Admin"
+	set name = "Not LOOC"
+
+	if(!check_rights(R_ADMIN))
+		return
+
+	if(!msg)
+		return
+
+	var/message = "<font color='#6699CC'><span class='ooc'><span class='prefix'>LOOC:</span> <EM>[usr.client.holder.fakekey ? "Administrator" : usr.client.key]:</EM> <span class='message'>[msg]</span></span></font>"
+
+	usr.visible_message(message, message, message)
+
+
+	log_admin("[key_name(usr)] has used Not LOOC to say: [msg]")
+	message_admins("[ADMIN_TPMONTY(usr)] has used Not LOOC to say: [msg]")

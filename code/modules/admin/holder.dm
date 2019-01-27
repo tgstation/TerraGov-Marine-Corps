@@ -274,6 +274,7 @@ GLOBAL_LIST_INIT(admin_verbs_admin, world.AVadmin())
 	/datum/admins/proc/remove_from_tank,
 	/datum/admins/proc/game_panel,
 	/datum/admins/proc/gamemode_panel,
+	/datum/admins/proc/not_looc,
 	/client/proc/private_message_panel,
 	/client/proc/private_message_context
 	)
