@@ -73,7 +73,6 @@
 		if (!..())
 			return 0
 
-		stat("Map:", "[map_tag]")
 		if(!ticker)
 			return
 		if(ticker.hide_mode)
