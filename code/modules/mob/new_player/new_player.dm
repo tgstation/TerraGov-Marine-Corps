@@ -75,21 +75,22 @@
 		if(!ticker)
 			return
 
-		if(ticker.hide_mode)
-			stat("Game Mode:", "TerraGov Marine Corps")
-		else
-			stat("Game Mode:", "[master_mode]")
+		if(statpanel("Stats"))
+			if(ticker.hide_mode)
+				stat("Game Mode:", "TerraGov Marine Corps")
+			else
+				stat("Game Mode:", "[master_mode]")
 
-		if(ticker.current_state == GAME_STATE_PREGAME)
-			stat("Time To Start:", "[ticker.pregame_timeleft][going ? "" : " (DELAYED)"]")
-			stat("Players: [totalPlayers]", "Players Ready: [totalPlayersReady]")
-			totalPlayers = 0
-			totalPlayersReady = 0
-			for(var/mob/new_player/player in GLOB.player_list)
-				stat("[player.key]", (player.ready)?("(Playing)"):(null))
-				totalPlayers++
-				if(player.ready)
-					totalPlayersReady++
+			if(ticker.current_state == GAME_STATE_PREGAME)
+				stat("Time To Start:", "[ticker.pregame_timeleft][going ? "" : " (DELAYED)"]")
+				stat("Players: [totalPlayers]", "Players Ready: [totalPlayersReady]")
+				totalPlayers = 0
+				totalPlayersReady = 0
+				for(var/mob/new_player/player in GLOB.player_list)
+					stat("[player.key]", (player.ready)?("(Playing)"):(null))
+					totalPlayers++
+					if(player.ready)
+						totalPlayersReady++
 
 
 
