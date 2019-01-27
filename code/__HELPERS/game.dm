@@ -303,8 +303,8 @@ proc/isInSight(var/atom/A, var/atom/B)
 		if(O.client.inactivity / 600 > ALIEN_SELECT_AFK_BUFFER + 5)
 			continue
 
-		//Admins get to skip the deathtime check
-		if(check_other_rights(O.client, R_ADMIN, TRUE))
+		//Admins get to skip the deathtime check, but only not while aghosted
+		if(check_other_rights(O.client, R_ADMIN, TRUE) && copytext(O.client.key, 1, 1) != "@")
 			candidates += O.key
 			continue
 
