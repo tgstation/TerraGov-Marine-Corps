@@ -51,7 +51,7 @@
 	icon_state = "doorctrl1"
 	add_fingerprint(user)
 
-	for(var/obj/machinery/line_nexter/L in machines)
+	for(var/obj/machinery/line_nexter/L in GLOB.machines)
 		if(id == L.id)
 			L.next()
 

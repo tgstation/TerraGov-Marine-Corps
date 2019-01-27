@@ -105,10 +105,8 @@
 							if(istype(container, /datum/TCS_Compiler))
 								var/datum/TCS_Compiler/Compiler = container
 								var/obj/machinery/telecomms/server/Holder = Compiler.Holder
-								var/message = "Potential crash-inducing NTSL script detected at telecommunications server [Compiler.Holder] ([Holder.x], [Holder.y], [Holder.z])."
 
-								alertadmins = 1
-								message_admins(message, 1)
+								message_admins("Potential crash-inducing NTSL script detected at telecommunications server [Holder] at [ADMIN_VERBOSEJMP(Holder.loc)].")
 						break
 
 					if(istype(S, /node/statement/VariableAssignment))

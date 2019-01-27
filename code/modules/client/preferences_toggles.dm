@@ -78,7 +78,7 @@
 
 	feedback_add_details("admin_verb","TDV") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/toggleprayers()
+/client/verb/toggleprayers()
 	set name = "Show/Hide Prayers"
 	set category = "Preferences"
 	set desc = "Toggles seeing prayers"
@@ -117,10 +117,10 @@
 		if(src.mob.client.midi_silenced)	return
 		if(midi_playing)
 			total_silenced++
-			message_admins("A player has silenced the currently playing midi. Total: [total_silenced] player(s).", 1)
-			src.mob.client.midi_silenced = 1
+			message_admins("[key_name(src)] has silenced the currently playing midi. Total: [total_silenced] player(s).")
+			src.mob.client.midi_silenced = TRUE
 			spawn(300) // Prevents message_admins() spam. Should match with the midi_playing_timer spawn() in playsound.dm
-				src.mob.client.midi_silenced = 0
+				src.mob.client.midi_silenced = FALSE
 	else
 		to_chat(src, "You have 'Play Admin Midis' disabled in your Character Setup, so this verb is useless to you.")
 	feedback_add_details("admin_verb","TMidi") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

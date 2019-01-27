@@ -132,7 +132,7 @@
 		if (connected.occupant.stat == DEAD)
 			to_chat(usr, "<span class='warning'>This person has no life for to preserve anymore.</span>")
 		else if(!(href_list["chemical"] in connected.available_chemicals))
-			message_admins("[usr.ckey] has tried to inject an invalid chem with the sleeper. Looks like an exploit attempt. Or a bug.", 1)
+			message_admins("[ADMIN_TPMONTY(usr)] has tried to inject an invalid chem with the sleeper. Looks like an exploit attempt, or a bug.")
 		else
 			var/amount = text2num(href_list["amount"])
 			if(amount == 5 || amount == 10)

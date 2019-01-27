@@ -210,6 +210,13 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define ORGAN_ASSISTED	1
 #define ORGAN_ROBOT		2
 
+#define ORGAN_HEART 1
+#define ORGAN_LUNGS 2
+#define ORGAN_LIVER 3
+#define ORGAN_KIDNEYS 4
+#define ORGAN_BRAIN 5
+#define ORGAN_EYES 6
+#define ORGAN_APPENDIX 7
 
 ///////////////SURGERY DEFINES///////////////
 #define SPECIAL_SURGERY_INVALID	"special_surgery_invalid"
