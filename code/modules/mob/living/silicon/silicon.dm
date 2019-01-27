@@ -20,7 +20,12 @@
 
 /mob/living/silicon/Initialize()
 	. = ..()
+	GLOB.silicon_mobs += src
 	add_language("English")
+
+/mob/living/silicon/Destroy()
+	GLOB.silicon_mobs -= src
+	return ..()
 
 /mob/living/silicon/proc/show_laws()
 	return

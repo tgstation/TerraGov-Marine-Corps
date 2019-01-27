@@ -129,6 +129,8 @@
 
 	. = ..()
 
+	GLOB.human_mob_list += src
+	GLOB.alive_human_list += src
 	round_statistics.total_humans_created++
 
 	if(dna)
@@ -161,6 +163,9 @@
 /mob/living/carbon/human/Destroy()
 	assigned_squad?.clean_marine_from_squad(src,FALSE)
 	remove_from_all_mob_huds()
+	GLOB.human_mob_list -= src
+	GLOB.alive_human_list -= src
+	GLOB.dead_human_list -= src
 	return ..()
 
 /mob/living/carbon/human/Stat()

@@ -45,11 +45,7 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/list/mobs = list()
-	for(var/mob/living/M in GLOB.mob_list)
-		mobs += M
-
-	var/selection = input("Please, select a mob!", "Get Mob", null, null) as null|anything in sortmobs(mobs)
+	var/selection = input("Please, select a mob!", "Get Mob", null, null) as null|anything in sortmobs(GLOB.mob_living_list)
 	if(!selection)
 		return
 
@@ -247,11 +243,7 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/list/humans = list()
-	for(var/mob/living/carbon/human/H in GLOB.mob_list)
-		humans += H
-
-	var/selection = input("Please, select a mob!", "Get Mob", null, null) as null|anything in sortmobs(humans)
+	var/selection = input("Please, select a mob!", "Get Mob", null, null) as null|anything in sortmobs(GLOB.human_mob_list)
 	if(!selection)
 		return
 
@@ -594,7 +586,7 @@
 	message_admins("[ADMIN_TPMONTY(usr)] changed the security level to code [sec_level].")
 
 
-/datum/admins/proc/select_rank(var/mob/living/carbon/human/H in GLOB.mob_list)
+/datum/admins/proc/select_rank(var/mob/living/carbon/human/H in GLOB.human_mob_list)
 	set category = "Fun"
 	set name = "Select Rank"
 
@@ -668,7 +660,7 @@
 
 
 
-/datum/admins/proc/select_equipment(var/mob/living/carbon/human/M in GLOB.mob_list)
+/datum/admins/proc/select_equipment(var/mob/living/carbon/human/M in GLOB.human_mob_list)
 	set category = "Fun"
 	set name = "Select Equipment"
 
@@ -747,7 +739,7 @@
 	message_admins("[ADMIN_TPMONTY(usr)] has released [O] ([O.type]).")
 
 
-/datum/admins/proc/edit_appearance(mob/living/carbon/human/H in GLOB.mob_list)
+/datum/admins/proc/edit_appearance(mob/living/carbon/human/H in GLOB.human_mob_list)
 	set category = "Fun"
 	set name = "Edit Appearance"
 

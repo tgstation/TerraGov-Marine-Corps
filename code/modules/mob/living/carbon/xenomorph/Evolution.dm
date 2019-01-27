@@ -129,7 +129,7 @@
 	else
 		//This will build a list of ALL the current Xenos and their Tiers, then use that to calculate if they can evolve or not.
 		//Should count mindless as well so people don't cheat
-		for(var/mob/living/carbon/Xenomorph/M in GLOB.alive_mob_list)
+		for(var/mob/living/carbon/Xenomorph/M in GLOB.alive_xeno_list)
 			if(hivenumber == M.hivenumber)
 				switch(M.tier)
 					if(0)

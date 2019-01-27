@@ -187,6 +187,8 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 	return ..()
 
 /mob/living/carbon/human/rejuvenate()
+	GLOB.alive_human_list += src
+	GLOB.dead_human_list -= src
 	restore_blood() //restore all of a human's blood
 	reagents.clear_reagents() //and clear all reagents in them
 	undefibbable = FALSE
@@ -195,6 +197,8 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 	return ..()
 
 /mob/living/carbon/Xenomorph/rejuvenate()
+	GLOB.alive_xeno_list += src
+	GLOB.dead_xeno_list -= src
 	plasma_stored = xeno_caste.plasma_max
 	stagger = 0
 	slowdown = 0

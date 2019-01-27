@@ -144,7 +144,7 @@
 	message_admins("[ADMIN_TPMONTY(usr)] changed [old] ckey to [new_ckey].")
 
 
-/datum/admins/proc/rejuvenate(mob/living/M as mob in GLOB.mob_list)
+/datum/admins/proc/rejuvenate(mob/living/M as mob in GLOB.mob_living_list)
 	set category = "Admin"
 	set name = "Rejuvenate"
 	set desc = "Revives a mob."
@@ -161,7 +161,7 @@
 	message_admins("[ADMIN_TPMONTY(usr)] revived [ADMIN_TPMONTY(M)].")
 
 
-/datum/admins/proc/toggle_sleep(var/mob/living/M as mob in GLOB.mob_list)
+/datum/admins/proc/toggle_sleep(var/mob/living/M as mob in GLOB.mob_living_list)
 	set category = "Admin"
 	set name = "Toggle Sleeping"
 
@@ -197,7 +197,7 @@
 			message_admins("[ADMIN_TPMONTY(usr)] has unslept everyone in view.")
 
 
-/datum/admins/proc/change_squad(var/mob/living/carbon/human/H in GLOB.mob_list)
+/datum/admins/proc/change_squad(var/mob/living/carbon/human/H in GLOB.human_mob_list)
 	set category = "Admin"
 	set name = "Change Squad"
 

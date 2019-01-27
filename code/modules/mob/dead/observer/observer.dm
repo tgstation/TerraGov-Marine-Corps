@@ -679,7 +679,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	var/list/zombie_list = list()
 
-	for(var/mob/living/carbon/human/A in GLOB.alive_mob_list)
+	for(var/mob/living/carbon/human/A in GLOB.alive_human_list)
 		if(iszombie(A) && !A.client && A.regenZ)
 			var/player_in_decap_head
 			//when decapitated the human mob is clientless,
@@ -708,7 +708,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(!client)
 		return
 
-	for(var/mob/living/carbon/human/Z in GLOB.alive_mob_list)
+	for(var/mob/living/carbon/human/Z in GLOB.alive_human_list)
 		if(choice == Z.real_name)
 			if(Z.gc_destroyed) //should never occur,just to be sure.
 				return
