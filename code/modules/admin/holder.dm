@@ -310,6 +310,8 @@ GLOBAL_PROTECT(admin_verbs_fun)
 GLOBAL_LIST_INIT(admin_verbs_fun, world.AVfun())
 /world/proc/AVfun()
 	return list(
+	/datum/admins/proc/select_rank,
+	/datum/admins/proc/select_equipment,
 	/datum/admins/proc/set_view_range,
 	/datum/admins/proc/gib_self,
 	/datum/admins/proc/gib,
@@ -331,8 +333,6 @@ GLOBAL_LIST_INIT(admin_verbs_fun, world.AVfun())
 	/datum/admins/proc/object_sound,
 	/datum/admins/proc/drop_bomb,
 	/datum/admins/proc/change_security_level,
-	/datum/admins/proc/select_rank,
-	/datum/admins/proc/select_equipment,
 	/datum/admins/proc/possess,
 	/datum/admins/proc/release,
 	/datum/admins/proc/edit_appearance,
