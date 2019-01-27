@@ -104,17 +104,13 @@ var/global/normal_ooc_colour = "#002eb8"
 	set category = "OOC"
 	normal_ooc_colour = newColor
 
-/client/verb/round_info()
-	set name = "Round Info"
-	set desc = "Information about the current round"
-	set category = "OOC"
-	to_chat(usr, "The current map is [map_tag]")
 
 /client/verb/setup_character()
 	set name = "Game Preferences"
 	set category = "OOC"
 	set desc = "Allows you to access the Setup Character screen. Changes to your character won't take effect until next round, but other changes will."
 	prefs.ShowChoices(usr)
+
 
 /client/verb/motd()
 	set name = "MOTD"
@@ -125,6 +121,7 @@ var/global/normal_ooc_colour = "#002eb8"
 		to_chat(src, "<span class='motd'>[join_motd]</span>")
 	else
 		to_chat(src, "<span class='warning'>The motd is not set in the server configuration.</span>")
+
 
 /client/verb/stop_sounds()
 	set name = "Stop Sounds"

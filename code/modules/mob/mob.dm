@@ -35,12 +35,14 @@
 
 	if(statpanel("Stats"))
 		stat("Operation Time: [worldtime2text()]")
+		stat("The current map is: [map_tag]")
 
 	if(client.statpanel != "Stats")
 		statpanel("Stats")
 		if(statpanel("Stats"))
 			client.statpanel = "Stats"
 			stat("Operation Time: [worldtime2text()]")
+			stat("The current map is: [map_tag]")
 		client.stat_force_fast_update = TRUE
 
 	if(client?.holder?.rank?.rights)
