@@ -2141,8 +2141,12 @@
 		playsound(loc, 'sound/effects/smoke.ogg', 25)
 		var/turf/T = get_turf(src)
 		smoke_system = new /datum/effect_system/smoke_spread/xeno_weaken()
-		smoke_system.amount = 2
-		smoke_system.set_up(2, 0, T)
+		if(count > 1)
+			smoke_system.amount = 2
+			smoke_system.set_up(2, 0, T)
+		else //last emission is larger
+			smoke_system.amount = 3
+			smoke_system.set_up(3, 0, T)
 		smoke_system.start()
 		T.visible_message("<span class='danger'>Noxious smoke billows from the hulking xenomorph!</span>")
 		count = max(0,count - 1)
@@ -2295,7 +2299,7 @@
 		start_dig = null //Now clear it
 		tunnel_delay = TRUE
 		addtimer(CALLBACK(src, .tunnel_cooldown), 2400)
-		
+
 		var/msg = copytext(sanitize(input("Add a description to the tunnel:", "Tunnel Description") as text|null), 1, MAX_MESSAGE_LEN)
 		if(msg)
 			newt.other.tunnel_desc = msg
