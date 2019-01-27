@@ -534,14 +534,14 @@
 			if(reason)
 				var/msg
 				for(var/job in notbannedlist)
-					log_admin_private("[key_name(usr)] jobbanned [key_name(M)] from [job] for [reason].")
+					log_admin_private("[key_name(usr)] jobbanned [key_name(M)] from [job].")
 					jobban_fullban(M, job, "[reason]; By [usr.client.ckey] on [time2text(world.realtime)]")
 					if(!msg)
 						msg = job
 					else
 						msg += ", [job]"
 				notes_add(M.ckey, "Banned  from [msg] - [reason]", usr)
-				message_admins("[ADMIN_TPMONTY(usr)] banned [ADMIN_TPMONTY(M)] from [msg] for [reason].")
+				message_admins("[ADMIN_TPMONTY(usr)] banned [ADMIN_TPMONTY(M)] from [msg].")
 				to_chat(M, "<span class='danger'>You have been jobbanned by [usr.client.ckey] from: [msg].</span>")
 				to_chat(M, "<span class='warning'>The reason is: [reason]</span>")
 				jobban_savebanfile()

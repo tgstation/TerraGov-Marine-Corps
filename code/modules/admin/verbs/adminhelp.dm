@@ -414,6 +414,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 //Mark it
 /datum/admin_help/proc/Mark()
+	if(state != AHELP_ACTIVE)
+		return
 	if(tier == TICKET_ADMIN && !check_rights(R_ADMIN, FALSE))
 		return
 	if(marked)
