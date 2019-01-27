@@ -2190,13 +2190,15 @@
 	to_chat(src, "<span class='xenowarning'>Your stinger injects your victim with neurotoxin and larval growth serum!</span>")
 	playsound(H, 'sound/effects/spray3.ogg', 15, 1)
 	playsound(H, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
+	overdose_check(H)
+	overdose_check(H, "xeno_growthtoxin")
 
 	addtimer(CALLBACK(src, .defiler_sting_cooldown), DEFILER_STING_COOLDOWN)
 
 	defiler_recurring_injection(H)
 
 /mob/living/carbon/Xenomorph/Defiler/proc/defiler_sting_cooldown()
-	playsound(loc, 'sound/voice/alien_drool1.ogg', 50, 0)
+	playsound(loc, 'sound/voice/alien_drool1.ogg', 50, 1)
 	to_chat(src, "<span class='xenodanger'>You feel your toxin glands refill, another young one ready for implantation. You can use Defile again.</span>")
 	update_action_button_icons()
 
@@ -2239,3 +2241,71 @@
 	var/datum/reagent/xeno_tox = C.reagents.get_reagent("[toxin]")
 	if(xeno_tox.overdosed)
 		to_chat(src, "<span class='xenodanger'>You sense this host is overdosed on [xeno_tox.name].</span>")
+
+
+/mob/living/carbon/Xenomorph/Drone/proc/drone_sting(mob/living/H)
+
+	if(!check_state())
+		return
+
+	if(world.time < last_drone_sting + DRONE_STING_COOLDOWN) //Sure, let's use this.
+		to_chat(src, "<span class='xenodanger'>You are not ready to sting again. Your sting will be ready in [(last_drone_sting + DRONE_STING_COOLDOWN - world.time) * 0.1] seconds.</span>")
+		return
+
+	if(stagger)
+		to_chat(src, "<span class='xenowarning'>You try to sting but are too disoriented!</span>")
+		return
+
+	if(!istype(H) || isXeno(H) || isrobot(H) || isSynth(H) || H.stat == DEAD)
+		to_chat(src, "<span class='xenowarning'>Your sting won't affect this target!</span>")
+		return
+
+	if(!Adjacent(H))
+		if(world.time > (recent_notice + notice_delay)) //anti-notice spam
+			to_chat(src, "<span class='xenowarning'>You can't reach this target!</span>")
+			recent_notice = world.time //anti-notice spam
+		return
+
+	if ((H.status_flags & XENO_HOST) && istype(H.buckled, /obj/structure/bed/nest))
+		to_chat(src, "<span class='xenowarning'>Ashamed, you reconsider bullying the poor, nested host with your stinger.</span>")
+		return
+
+	if(!check_plasma(150))
+		return
+	last_drone_sting = world.time
+	use_plasma(150)
+
+	round_statistics.drone_stings++
+
+	face_atom(H)
+	animation_attack_on(H)
+	H.reagents.add_reagent("xeno_growthtoxin", DRONE_STING_AMOUNT_INITIAL) //15 units transferred initially.
+	to_chat(H, "<span class='danger'>You feel a tiny prick.</span>")
+	to_chat(src, "<span class='xenowarning'>Your stinger injects your victim with larval growth serum!</span>")
+	playsound(H, 'sound/effects/spray3.ogg', 15, 1)
+	playsound(H, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
+	overdose_check(H, "xeno_growthtoxin")
+
+	addtimer(CALLBACK(src, .drone_sting_cooldown), DRONE_STING_COOLDOWN)
+
+	drone_recurring_injection(H)
+
+/mob/living/carbon/Xenomorph/Drone/proc/drone_sting_cooldown()
+	playsound(loc, 'sound/voice/alien_drool1.ogg', 50, 1)
+	to_chat(src, "<span class='xenodanger'>You feel your growth toxin glands refill. You can use Growth Sting again.</span>")
+	update_action_button_icons()
+
+/mob/living/carbon/Xenomorph/Drone/proc/drone_recurring_injection(mob/living/H, count = 2)
+	//set waitfor = FALSE
+	while(count)
+		if(!Adjacent(H) || stagger)
+			return FALSE
+		face_atom(H)
+		if(!do_after(src, DRONE_STING_CHANNEL_TIME, TRUE, 5, BUSY_ICON_HOSTILE))
+			return
+		animation_attack_on(H)
+		playsound(H, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
+		H.reagents.add_reagent("xeno_growthtoxin", DRONE_STING_AMOUNT_RECURRING)
+		overdose_check(H, "xeno_growthtoxin")
+		count--
+	return

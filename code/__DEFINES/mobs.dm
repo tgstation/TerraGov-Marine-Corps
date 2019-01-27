@@ -529,10 +529,11 @@ var/list/global_mutations = list() // list of hidden mutation things
 
 //sentinel defines
 
-#define NEUROTOXIN_STING_COOLDOWN				30 SECONDS
-#define NEUROTOXIN_STING_INJECT_DELAY			1.5 SECONDS
-#define NEUROTOXIN_STING_AMOUNT_INITIAL			15
-#define NEUROTOXIN_STING_AMOUNT_RECURRING		10
+#define SENTINEL_STING_COOLDOWN				30 SECONDS
+#define SENTINEL_STING_INJECT_DELAY			1.5 SECONDS
+#define SENTINEL_STING_AMOUNT_INITIAL		15
+#define SENTINEL_STING_AMOUNT_RECURRING		10
+#define SENTINEL_STING_CHANNEL_TIME			1.5 SECONDS
 
 //Defiler defines
 
@@ -549,6 +550,14 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define DEFILER_STING_AMOUNT_RECURRING		10
 #define DEFILER_STING_GROWTH_AMOUNT			30
 #define GROWTH_TOXIN_METARATE		0.3
+
+//Drone defines
+
+#define DRONE_STING_COOLDOWN				20 SECONDS
+#define DRONE_STING_AMOUNT_INITIAL			15
+#define DRONE_STING_AMOUNT_RECURRING		10
+#define DRONE_STING_CHANNEL_TIME			1.5 SECONDS
+
 
 #define CANNOT_HOLD_EGGS 0
 #define CAN_HOLD_TWO_HANDS 1
