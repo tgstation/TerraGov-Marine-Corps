@@ -220,12 +220,3 @@
 	else
 		user.visible_message("<span class='warning'>[user] stops setting up the paddles on [H]'s chest</span>", \
 		"<span class='warning'>You stop setting up the paddles on [H]'s chest</span>")
-
-/mob/living/proc/on_revive()
-	GLOB.alive_mob_list += src
-	GLOB.dead_mob_list -= src
-
-/mob/living/carbon/human/on_revive()
-	. = ..()
-	GLOB.alive_human_list += src
-	GLOB.dead_human_list -= src

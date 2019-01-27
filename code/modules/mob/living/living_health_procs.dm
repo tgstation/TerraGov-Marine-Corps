@@ -133,6 +133,20 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 /mob/living/proc/revive(keep_viruses)
 	rejuvenate()
 
+/mob/living/proc/on_revive()
+	GLOB.alive_mob_list += src
+	GLOB.dead_mob_list -= src
+
+/mob/living/carbon/human/on_revive()
+	. = ..()
+	GLOB.alive_human_list += src
+	GLOB.dead_human_list -= src
+
+/mob/living/carbon/Xenomorph/on_revive()
+	. = ..()
+	GLOB.alive_xeno_list += src
+	GLOB.dead_xeno_list -= src
+
 /mob/living/proc/rejuvenate()
 
 	// shut down various types of badness
@@ -164,8 +178,7 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 
 	// remove the character from the list of the dead
 	if(stat == DEAD)
-		GLOB.dead_mob_list -= src
-		GLOB.alive_mob_list += src
+		on_revive()
 		tod = null
 		timeofdeath = 0
 
@@ -187,8 +200,6 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 	return ..()
 
 /mob/living/carbon/human/rejuvenate()
-	GLOB.alive_human_list += src
-	GLOB.dead_human_list -= src
 	restore_blood() //restore all of a human's blood
 	reagents.clear_reagents() //and clear all reagents in them
 	undefibbable = FALSE
@@ -197,8 +208,6 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 	return ..()
 
 /mob/living/carbon/Xenomorph/rejuvenate()
-	GLOB.alive_xeno_list += src
-	GLOB.dead_xeno_list -= src
 	plasma_stored = xeno_caste.plasma_max
 	stagger = 0
 	slowdown = 0
