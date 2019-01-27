@@ -1288,7 +1288,7 @@
 	max_range = CONFIG_GET(number/combat_define/near_shell_range)
 	accuracy_var_low = CONFIG_GET(number/combat_define/low_proj_variance)
 	accuracy_var_high = CONFIG_GET(number/combat_define/low_proj_variance)
-	damage = CONFIG_GET(number/combat_define/low_hit_damage)
+	damage = CONFIG_GET(number/combat_define/mlow_hit_damage)
 	damage_var_low = CONFIG_GET(number/combat_define/low_proj_variance)
 	damage_var_high = CONFIG_GET(number/combat_define/mlow_proj_variance)
 
@@ -1320,7 +1320,7 @@
 
 /datum/ammo/xeno/toxin/medium/New()
 	. = ..()
-	damage = CONFIG_GET(number/combat_define/hlow_hit_damage)
+	damage = CONFIG_GET(number/combat_define/low_hit_damage)
 
 /datum/ammo/xeno/toxin/medium/upgrade1
 	ammo_reagents = list("xeno_toxin" = 10.2)
@@ -1339,7 +1339,7 @@
 
 /datum/ammo/xeno/toxin/heavy/New()
 	. = ..()
-	damage = CONFIG_GET(number/combat_define/lmed_hit_damage)
+	damage = CONFIG_GET(number/combat_define/hlow_hit_damage)
 
 /datum/ammo/xeno/toxin/heavy/upgrade1
 	ammo_reagents = list("xeno_toxin" = 13.2)
