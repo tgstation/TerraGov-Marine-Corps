@@ -12,13 +12,13 @@
 		return
 
 
-	var/permitted = 0
+	var/permitted = FALSE
 	var/list/allowed = list("Syndicate","traitor","Wizard","Head Revolutionary","Cultist","Changeling")
 	if((mind.special_role in allowed) || ticker.current_state == GAME_STATE_FINISHED)
-		permitted = 1
+		permitted = TRUE
 
 	if(!permitted)
-		message_admins("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) has tried to suicide using the suicide verb, but they were not permitted due to not being antagonist as human.", 1)
+		message_admins("[ADMIN_TPMONTY(usr)] has tried to suicide using the suicide verb, but they were not permitted due to not being an antagonist.")
 		to_chat(src, "Suicide is easy! Just attack yourself with a gun, while targeting your mouth.")
 		to_chat(src, "Please don't do so flippantly! If you want to just leave the round, enter a hypersleep bed.")
 		return

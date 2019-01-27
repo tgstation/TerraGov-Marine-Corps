@@ -7,25 +7,6 @@
 //All this stuff was written by Absynth.
 //Edited by Apop - 11JUN16
 
-#define DEBUG_XENO 0
-
-#if DEBUG_XENO
-/mob/verb/debug_xeno_mind()
-	set name =  "Debug Xeno Mind"
-	set category = "Debug"
-	set desc = "Shows whether or not a mine is contained within the xenomorph list."
-
-	if(!ticker || ticker.current_state != GAME_STATE_PLAYING || !ticker.mode)
-		to_chat(src, "<span class='warning'>The round is either not ready, or has already finished.</span>")
-		return
-	if(mind in ticker.mode.xenomorphs)
-		to_chat(src, "<span class='debuginfo'>[src] mind is in the xenomorph list. Mind key is [mind.key].</span>")
-		to_chat(src, "<span class='debuginfo'>Current mob is: [mind.current]. Original mob is: [mind.original].</span>")
-	to_chat(else src, "<span class='debuginfo'>This xenomorph is not in the xenomorph list.</span>")
-#endif
-
-#undef DEBUG_XENO
-
 /mob/living/carbon/Xenomorph
 	name = "Drone"
 	desc = "What the hell is THAT?"
@@ -75,12 +56,12 @@
 
 
 	if(xeno_caste.spit_types?.len)
-		ammo = ammo_list[xeno_caste.spit_types[1]]
+		ammo = GLOB.ammo_list[xeno_caste.spit_types[1]]
 
 	create_reagents(1000)
 	gender = NEUTER
 
-	living_xeno_list += src
+	GLOB.living_xeno_list += src
 	round_statistics.total_xenos_created++
 
 	spawn(6) //Mind has to be transferred! Hopefully this will give it enough time to do so.
@@ -93,11 +74,11 @@
 /mob/living/carbon/Xenomorph/proc/set_datum()
 	if(!caste_base_type)
 		CRASH("xeno spawned without a caste_base_type set")
-	if(!xeno_caste_datums[caste_base_type])
+	if(!GLOB.xeno_caste_datums[caste_base_type])
 		CRASH("error finding base type")
-	if(!xeno_caste_datums[caste_base_type][CLAMP(upgrade + 1, 1, 4)])
+	if(!GLOB.xeno_caste_datums[caste_base_type][CLAMP(upgrade + 1, 1, 4)])
 		CRASH("error finding datum")
-	var/datum/xeno_caste/X = xeno_caste_datums[caste_base_type][CLAMP(upgrade + 1, 1, 4)]
+	var/datum/xeno_caste/X = GLOB.xeno_caste_datums[caste_base_type][CLAMP(upgrade + 1, 1, 4)]
 	if(!istype(X))
 		CRASH("error with caste datum")
 	xeno_caste = X
@@ -109,7 +90,7 @@
 
 /mob/living/carbon/Xenomorph/Defiler/set_datum()
 	. = ..()
-	var/datum/xeno_caste/defiler/neuro_upgrade = xeno_caste_datums[caste_base_type][CLAMP(upgrade + 1, 1, 4)]
+	var/datum/xeno_caste/defiler/neuro_upgrade = GLOB.xeno_caste_datums[caste_base_type][CLAMP(upgrade + 1, 1, 4)]
 	neuro_claws_dose = neuro_upgrade.neuro_claws_amount
 
 //Off-load this proc so it can be called freely
@@ -121,7 +102,7 @@
 	if(!nicknumber)
 		var/tempnumber = rand(1, 999)
 		var/list/numberlist = list()
-		for(var/mob/living/carbon/Xenomorph/X in mob_list)
+		for(var/mob/living/carbon/Xenomorph/X in GLOB.mob_list)
 			numberlist += X.nicknumber
 
 		while(tempnumber in numberlist)
@@ -153,11 +134,11 @@
 	//Queens have weird, hardcoded naming conventions based on upgrade levels. They also never get nicknumbers
 	if(isXenoQueen(src))
 		switch(upgrade)
-			if(0) name = "\improper [name_prefix]Queen"			 //Young
-			if(1) name = "\improper [name_prefix]Elder Queen"	 //Mature
-			if(2) name = "\improper [name_prefix]Elder Empress"	 //Elder
-			if(3) name = "\improper [name_prefix]Ancient Empress" //Ancient
-	else name = "\improper [name_prefix][xeno_caste.upgrade_name] [xeno_caste.display_name] ([nicknumber])"
+			if(0) name = "[name_prefix]Queen"			 //Young
+			if(1) name = "[name_prefix]Elder Queen"	 //Mature
+			if(2) name = "[name_prefix]Elder Empress"	 //Elder
+			if(3) name = "[name_prefix]Ancient Empress" //Ancient
+	else name = "[name_prefix][xeno_caste.upgrade_name] [xeno_caste.display_name] ([nicknumber])"
 
 	//Update linked data so they show up properly
 	real_name = name
@@ -196,7 +177,7 @@
 	if(mind) mind.name = name //Grabs the name when the xeno is getting deleted, to reference through hive status later.
 	if(is_zoomed) zoom_out()
 
-	living_xeno_list -= src
+	GLOB.living_xeno_list -= src
 
 	if(hivenumber && hivenumber <= hive_datum.len)
 		var/datum/hive_status/hive = hive_datum[hivenumber]

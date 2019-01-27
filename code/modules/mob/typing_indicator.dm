@@ -14,7 +14,7 @@ var/global/image/typing_indicator = image('icons/mob/talk.dmi', null, "typing")
 	if(!client?.prefs?.toggles_chat & SHOW_TYPING)
 		overlays -= typing_indicator
 		return
-	
+
 	if(typing)
 		overlays -= typing_indicator
 		typing = FALSE
@@ -27,10 +27,6 @@ var/global/image/typing_indicator = image('icons/mob/talk.dmi', null, "typing")
 /mob/verb/say_wrapper()
 	set name = ".Say"
 	set hidden = TRUE
-
-	if(say_disabled)
-		to_chat(usr, "<span class='warning'><b>Speech is currently admin-disabled.</b>.")
-		return
 
 	toggle_typing_indicator()
 	var/message = input("","say (text)") as text
@@ -45,10 +41,6 @@ var/global/image/typing_indicator = image('icons/mob/talk.dmi', null, "typing")
 /mob/verb/me_wrapper()
 	set name = ".Me"
 	set hidden = TRUE
-
-	if(say_disabled)
-		to_chat(usr, "<span class='warning'><b>Speech is currently admin-disabled.</b>.")
-		return
 
 	toggle_typing_indicator()
 	var/message = input("", "me (text)") as text
@@ -71,7 +63,7 @@ var/global/image/typing_indicator = image('icons/mob/talk.dmi', null, "typing")
 
 	// Clear out any existing typing indicator.
 	if(prefs.toggles_chat & SHOW_TYPING)
-		if(istype(mob)) 
+		if(istype(mob))
 			mob.toggle_typing_indicator()
 
 	feedback_add_details("admin_verb","TID") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

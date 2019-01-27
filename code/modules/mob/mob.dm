@@ -1,19 +1,19 @@
 
 /mob/Destroy()//This makes sure that mobs with clients/keys are not just deleted from the game.
-	mob_list -= src
-	dead_mob_list -= src
-	living_mob_list -= src
+	GLOB.mob_list -= src
+	GLOB.dead_mob_list -= src
+	GLOB.alive_mob_list -= src
 	ghostize()
 	clear_fullscreens()
 	. = ..()
 	return TA_PURGE_ME_NOW
 
 /mob/Initialize()
-	mob_list += src
+	GLOB.mob_list += src
 	if(stat == DEAD)
-		dead_mob_list += src
+		GLOB.dead_mob_list += src
 	else
-		living_mob_list += src
+		GLOB.alive_mob_list += src
 	prepare_huds()
 	return ..()
 
@@ -43,24 +43,28 @@
 			stat("Operation Time: [worldtime2text()]")
 		client.stat_force_fast_update = TRUE
 
-	if(client?.holder?.rights && client.holder.rights & (R_ADMIN|R_DEBUG))
-		if(statpanel("MC"))
-			stat("CPU:", "[world.cpu]")
-			stat("Instances:", "[num2text(world.contents.len, 10)]")
-			stat("World Time:", "[world.time]")
-			stat(null)
-			if(Master)
-				Master.stat_entry()
-			else
-				stat("Master Controller:", "ERROR")
-			if(Failsafe)
-				Failsafe.stat_entry()
-			else
-				stat("Failsafe Controller:", "ERROR")
-			if(Master)
+	if(client?.holder?.rank?.rights)
+		if(client.holder.rank.rights & (R_ADMIN|R_DEBUG))
+			if(statpanel("MC"))
+				stat("CPU:", "[world.cpu]")
+				stat("Instances:", "[num2text(world.contents.len, 10)]")
+				stat("World Time:", "[world.time]")
 				stat(null)
-				for(var/datum/controller/subsystem/SS in Master.subsystems)
-					SS.stat_entry()
+				if(Master)
+					Master.stat_entry()
+				else
+					stat("Master Controller:", "ERROR")
+				if(Failsafe)
+					Failsafe.stat_entry()
+				else
+					stat("Failsafe Controller:", "ERROR")
+				if(Master)
+					stat(null)
+					for(var/datum/controller/subsystem/SS in Master.subsystems)
+						SS.stat_entry()
+		if(client.holder.rank.rights & (R_ADMIN|R_MENTOR))
+			if(statpanel("Tickets"))
+				GLOB.ahelp_tickets.stat_entry()
 
 	if(statpanel("Stats") || client.statpanel != "Stats")
 		return TRUE
@@ -125,7 +129,7 @@
 
 
 /mob/proc/findname(msg)
-	for(var/mob/M in mob_list)
+	for(var/mob/M in GLOB.mob_list)
 		if (M.real_name == text("[]", msg))
 			return M
 	return 0

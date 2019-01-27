@@ -204,10 +204,10 @@
 
 /obj/machinery/computer/turbine_computer/Initialize()
 	. = ..()
-	for(var/obj/machinery/compressor/C in machines)
+	for(var/obj/machinery/compressor/C in GLOB.machines)
 		if(id == C.comp_id)
 			compressors += C
-	for(var/obj/machinery/door/poddoor/P in machines)
+	for(var/obj/machinery/door/poddoor/P in GLOB.machines)
 		if(P.id == id)
 			doors += P
 

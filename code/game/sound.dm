@@ -25,7 +25,7 @@
  	// Looping through the player list has the added bonus of working for mobs inside containers
 	var/mob/M
 	var/turf/T
-	for(var/i in player_list)
+	for(var/i in GLOB.player_list)
 		M = i
 		if(!istype(M) || !M.client) continue
 		if(get_dist(M, turf_source) <= sound_range)
@@ -108,7 +108,7 @@
 /proc/playsound_z(atom/z, soundin, volume) // Play sound for all online mobs on a given Z-level. Good for ambient sounds.
 	soundin = get_sfx(soundin)
 
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		if (M.z)
 			M << sound(soundin, volume)
 
