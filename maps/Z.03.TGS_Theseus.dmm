@@ -962,7 +962,7 @@
 "asz" = (/obj/structure/table/almayer,/obj/item/clipboard,/obj/item/paper,/turf/open/floor/almayer{icon_regular_floor = "mono"; icon_state = "mono"},/area/almayer/command/self_destruct)
 "asA" = (/turf/closed/wall/almayer/outer,/area/almayer/shipboard/brig)
 "asB" = (/obj/structure/window/framed/almayer,/turf/open/floor/plating,/area/almayer/shipboard/brig)
-"asC" = (/mob/living/simple_animal/corgi/Ian,/turf/open/floor/carpet,/area/almayer/shipboard/chief_mp_office)
+"asC" = (/mob/living/simple_animal/corgi/Ian{desc = "An old, disarmingly reserved corgi who has seen many owners."; name = "Leo"},/turf/open/floor/carpet,/area/almayer/shipboard/chief_mp_office)
 "asD" = (/turf/closed/wall/almayer,/area/almayer/shipboard/brig)
 "asE" = (/obj/machinery/atmospherics/pipe/manifold/hidden/supply{tag = "icon-map-supply (WEST)"; icon_state = "map-supply"; dir = 8},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/turf/open/floor/almayer{tag = "icon-redcorner"; icon_state = "redcorner"},/area/almayer/shipboard/brig)
 "asF" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply{tag = "icon-intact-supply (EAST)"; icon_state = "intact-supply"; dir = 4},/turf/open/floor/almayer{tag = "icon-red"; icon_state = "red"},/area/almayer/shipboard/brig)
