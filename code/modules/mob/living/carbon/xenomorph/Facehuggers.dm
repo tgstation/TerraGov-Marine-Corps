@@ -241,12 +241,10 @@
 /obj/item/clothing/mask/facehugger/throw_at(atom/target, range, speed)
 	. = ..()
 	if(stat == CONSCIOUS)
-		update_stat(UNCONSCIOUS) //pausing their process for the flight duration.
+		update_stat(UNCONSCIOUS) //stopping their process for the flight duration.
 
 /obj/item/clothing/mask/facehugger/throw_impact(atom/hit_atom, speed)
-	if(stat == DEAD)
-		return
-	if(ismob(hit_atom))
+	if(ismob(hit_atom) && stat != DEAD)
 		if(leaping && CanHug(hit_atom)) //Standard leaping behaviour, not attributable to being _thrown_ such as by a Carrier.
 			stat = CONSCIOUS
 			Attach(hit_atom)
