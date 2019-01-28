@@ -18,7 +18,8 @@
 	var/atom/plant_target = null //which atom the detpack is planted on
 	var/target_drag_delay = null //store this for restoration later
 	var/boom = FALSE //confirms whether we actually detted.
-	var/process_count = 0
+	var/detonation_pending
+	var/sound_timer
 
 /obj/item/device/radio/detpack/examine(mob/user)
 	. = ..()
@@ -37,7 +38,10 @@
 
 
 /obj/item/device/radio/detpack/Destroy()
-	STOP_PROCESSING(SSfastprocess, src)
+	if(sound_timer)
+		deltimer(sound_timer)
+	if(detonation_pending)
+		deltimer(detonation_pending)
 	if(plant_target && !boom) //whatever name you give it
 		loc = get_turf(src)
 		nullvars()
@@ -108,10 +112,16 @@
 			return
 		armed = TRUE
 		//bombtick()
-		START_PROCESSING(SSfastprocess, src)
+		detonation_pending = addtimer(CALLBACK(src, .proc/do_detonate), timer SECONDS)
+		if(timer > 10)
+			sound_timer = addtimer(CALLBACK(src, .proc/do_play_sound_normal), 1 SECONDS, TIMER_LOOP)
+			addtimer(CALLBACK(src, .proc/change_to_loud_sound), timer-10)
+		else
+			sound_timer = addtimer(CALLBACK(src, .proc/do_play_sound_loud), 1 SECONDS, TIMER_LOOP)
 		update_icon()
 	else
 		armed = FALSE
+		disarm()
 		update_icon()
 
 	if(master && wires & WIRE_RECEIVE)
@@ -263,37 +273,48 @@
 				T.drag_delay = 3
 		update_icon()
 
+/obj/item/device/radio/detpack/proc/change_to_loud_sound()
+	if(sound_timer)
+		deltimer(sound_timer)
+		sound_timer = addtimer(CALLBACK(src, .do_play_sound_loud), 1 SECONDS, TIMER_LOOP)
 
-/obj/item/device/radio/detpack/process()
-	if(++process_count < 5)
-		return
-	process_count = 0
+/obj/item/device/radio/detpack/proc/do_play_sound_normal()
+	timer--
+	playsound(src.loc, 'sound/weapons/mine_tripped.ogg', 50, FALSE)
+
+/obj/item/device/radio/detpack/proc/do_play_sound_loud()
+	timer--
+	playsound(src.loc, 'sound/weapons/mine_tripped.ogg', 160 + (timer-timer*2)*10, FALSE) //Gets louder as we count down to armaggedon
+
+/obj/item/device/radio/detpack/proc/disarm()
+	if(timer < DETPACK_TIMER_MIN) //reset to minimum 5 seconds; no 'cooking' with aborted detonations.
+		timer = DETPACK_TIMER_MIN
+	deltimer(sound_timer)
+	if(detonation_pending)
+		deltimer(detonation_pending)
+	sound_timer = null
+	update_icon()
+
+/obj/item/device/radio/detpack/proc/do_detonate()
+	detonation_pending = null
 	if(plant_target == null || !plant_target.loc) //need a target to be attached to
-		STOP_PROCESSING(SSfastprocess, src)
 		if(timer < DETPACK_TIMER_MIN) //reset to minimum 5 seconds; no 'cooking' with aborted detonations.
 			timer = DETPACK_TIMER_MIN
+		deltimer(sound_timer)
+		sound_timer = null
 		nullvars()
 		return
 	if(!on) //need to be active and armed.
-		STOP_PROCESSING(SSfastprocess, src)
 		armed = FALSE
 		if(timer < DETPACK_TIMER_MIN) //reset to minimum 5 seconds; no 'cooking' with aborted detonations.
 			timer = DETPACK_TIMER_MIN
+		deltimer(sound_timer)
+		sound_timer = null
 		update_icon()
 		return
 	if(!armed)
-		if(timer < DETPACK_TIMER_MIN) //reset to minimum 5 seconds; no 'cooking' with aborted detonations.
-			timer = DETPACK_TIMER_MIN
-		STOP_PROCESSING(SSfastprocess, src)
-		update_icon()
-		return
-	if(timer) //Timer is still counting down to armaggedon...
-		timer--
-		if(timer < 11)
-			playsound(src.loc, 'sound/weapons/mine_tripped.ogg', 160 + (timer-timer*2)*10, FALSE) //Gets louder as we count down to armaggedon
-		else
-			playsound(src.loc, 'sound/weapons/mine_tripped.ogg', 50, FALSE)
-		return
+		disarm()
+
 	//Time to go boom
 	playsound(src.loc, 'sound/weapons/ring.ogg', 200, FALSE)
 	boom = TRUE
@@ -307,7 +328,6 @@
 			if(!istype(plant_target,/obj/vehicle/multitile/root/cm_armored))
 				qdel(plant_target)
 	qdel(src)
-
 
 /obj/item/device/radio/detpack/attack(mob/M as mob, mob/user as mob, def_zone)
 	return
