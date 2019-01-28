@@ -43,9 +43,6 @@
 #define APC_CHARGING      1
 #define APC_FULLY_CHARGED 2
 
-#define APC_UPDATE_ICON_COOLDOWN 100 //10 seconds
-
-
 //The Area Power Controller (APC), formerly Power Distribution Unit (PDU)
 //One per area, needs wire conection to power network
 
@@ -163,7 +160,7 @@
 	// this allows the APC to be embedded in a wall, yet still inside an area
 	if (building)
 		dir = ndir
-	tdir = dir		// to fix Vars bug
+	tdir = dir // to fix Vars bug
 	dir = SOUTH
 
 	switch(tdir)
@@ -184,7 +181,7 @@
 		name = "\improper [area.name] APC"
 		stat |= MAINT
 		update_icon()
-		update()
+		addtimer(CALLBACK(src, .proc/update), 5)
 
 	start_processing()
 
@@ -192,10 +189,32 @@
 	. = ..()
 
 	if(mapload)
-		init()
+		has_electronics = APC_ELECTRONICS_SECURED
+
+		//Is starting with a power cell installed, create it and set its charge level
+		if(cell_type)
+			cell = new cell_type(src)
+			cell.charge = start_charge * cell.maxcharge / 100.0 //Convert percentage to actual value
+
+		var/area/A = get_area(src)
+
+		//If area isn't specified use current
+		if(isarea(A) && areastring == null)
+			area = A
+			name = "\improper [area.name] APC"
+		else
+			area = get_area_name(areastring)
+			name = "\improper [area.name] APC"
+
+		update_icon()
+		make_terminal()
+
+		update() //areas should be lit on startup
+
 		//Break few ACPs on the colony
 		if(!start_charge && z == 1 && prob(10))
 			addtimer(CALLBACK(src, .proc/set_broken), 5)
+
 
 // the very fact that i have to override this screams to me that apcs shouldnt be under machinery - spookydonut
 /obj/machinery/power/apc/power_change()
@@ -207,27 +226,6 @@
 	terminal = new/obj/machinery/power/terminal(src.loc)
 	terminal.dir = tdir
 	terminal.master = src
-
-/obj/machinery/power/apc/proc/init()
-	has_electronics = APC_ELECTRONICS_SECURED
-	//Is starting with a power cell installed, create it and set its charge level
-	if(cell_type)
-		cell = new cell_type(src)
-		cell.charge = start_charge * cell.maxcharge / 100.0 //Convert percentage to actual value
-
-	var/area/A = get_area(src)
-
-	//If area isn't specified use current
-	if(isarea(A) && src.areastring == null)
-		area = A
-		name = "\improper [area.name] APC"
-	else
-		area = get_area_name(areastring)
-		name = "\improper [area.name] APC"
-	update_icon()
-	make_terminal()
-
-	addtimer(CALLBACK(src, .proc/update), 5)
 
 /obj/machinery/power/apc/examine(mob/user)
 	to_chat(user, desc)
@@ -246,6 +244,9 @@
 			to_chat(user, "<span class='info'>The cover is closed. Something is wrong with it, it doesn't work.</span>")
 		else
 			to_chat(user, "<span class='info'>The cover is closed.</span>")
+
+	if(panel_open)
+		to_chat(user, "<span class='info'>The wiring is exposed.</span>")
 
 //Update the APC icon to show the three base states
 //Also add overlays for indicator lights
@@ -412,12 +413,12 @@
 			allcut = FALSE
 			break
 
-	if(beenhit >= pick(3, 4) && panel_open == FALSE)
+	if(beenhit >= pick(3, 4) && !panel_open)
 		panel_open = TRUE
 		update_icon()
 		visible_message("<span class='danger'>\The [src]'s cover swings open, exposing the wires!</span>", null, null, 5)
 
-	else if(panel_open == TRUE && allcut == FALSE)
+	else if(panel_open && !allcut)
 		for(var/wire in apcwirelist)
 			cut(apcwirelist[wire])
 		update_icon()
@@ -954,37 +955,31 @@
 	switch(wireIndex)
 		if(APC_WIRE_IDSCAN) //Unlocks the APC for 30 seconds, if you have a better way to hack an APC I'm all ears
 			locked = FALSE
-			addtimer(CALLBACK(src, .reset, wireIndex), 300)
+			addtimer(CALLBACK(src, .proc/reset, wireIndex), 300)
 		if(APC_WIRE_MAIN_POWER1)
-			if(!shorted)
-				shorted = TRUE
-			addtimer(CALLBACK(src, .reset, wireIndex), 1200)
+			shorted = TRUE
+			addtimer(CALLBACK(src, .proc/reset, wireIndex), 1200)
 		if(APC_WIRE_MAIN_POWER2)
-			if(!shorted)
-				shorted = TRUE
-			addtimer(CALLBACK(src, .reset, wireIndex), 1200)
+			shorted = TRUE
+			addtimer(CALLBACK(src, .proc/reset, wireIndex), 1200)
 		if(APC_WIRE_AI_CONTROL)
-			if(!aidisabled)
-				aidisabled = TRUE
+			aidisabled = TRUE
 			updateDialog()
-			addtimer(CALLBACK(src, .reset, wireIndex), 10)
+			addtimer(CALLBACK(src, .proc/reset, wireIndex), 10)
 
 /obj/machinery/power/apc/proc/reset(var/wire)
 	switch(wire)
-		if(APC_WIRE_IDSCAN) 
+		if(APC_WIRE_IDSCAN)
 			locked = TRUE
 		if(APC_WIRE_MAIN_POWER1)
-			if(shorted == TRUE)
-				shorted = FALSE
+			shorted = FALSE
 		if(APC_WIRE_MAIN_POWER2)
-			if(shorted == TRUE)
-				shorted = FALSE
+			shorted = FALSE
 		if(APC_WIRE_AI_CONTROL)
-			if(aidisabled == TRUE)
-				aidisabled = FALSE
+			aidisabled = FALSE
 		if(APC_RESET_EMP)
 			equipment = 3
-			environ = 3			
+			environ = 3
 	updateDialog()
 
 /obj/machinery/power/apc/proc/can_use(mob/user as mob, var/loud = 0) //used by attack_hand() and Topic()
@@ -1365,7 +1360,7 @@
 
 	//Aesthetically much better!
 	visible_message("<span class='warning'>[src]'s screen flickers with warnings briefly!</span>")
-	addtimer(CALLBACK(src, .do_break), rand(2, 5))
+	addtimer(CALLBACK(src, .proc/do_break), rand(2, 5))
 
 /obj/machinery/power/apc/proc/do_break()
 	visible_message("<span class='danger'>[src]'s screen suddenly explodes in rain of sparks and small debris!</span>")
@@ -1426,6 +1421,8 @@
 #undef APC_WIRE_MAIN_POWER2
 #undef APC_WIRE_AI_CONTROL
 
+#undef APC_RESET_EMP
+
 #undef UPSTATE_CELL_IN
 #undef UPSTATE_OPENED1
 #undef UPSTATE_OPENED2
@@ -1461,5 +1458,3 @@
 #undef APC_NOT_CHARGING
 #undef APC_CHARGING
 #undef APC_FULLY_CHARGED
-
-#undef APC_UPDATE_ICON_COOLDOWN
