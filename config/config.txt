@@ -110,8 +110,6 @@ ANIMAL_DELAY 0
 
 REVIVE_GRACE_PERIOD 3000
 
-
-
 #####################
 ## COMBAT DEFINES ###
 #####################

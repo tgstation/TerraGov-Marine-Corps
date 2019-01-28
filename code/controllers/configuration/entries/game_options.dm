@@ -142,6 +142,8 @@
 
 /datum/config_entry/flag/allow_ai
 
+/datum/config_entry/flag/fun_allowed
+
 /datum/config_entry/number/xeno_coefficient
 	integer = FALSE
 	config_entry_value = 1
