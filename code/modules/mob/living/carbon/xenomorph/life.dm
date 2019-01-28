@@ -17,6 +17,7 @@
 	if(stat == UNCONSCIOUS)
 		if(is_zoomed)
 			zoom_out()
+		handle_critical_health_updates()
 	else
 		if(is_zoomed)
 			if(loc != zoom_turf || lying)
