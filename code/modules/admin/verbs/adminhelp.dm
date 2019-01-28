@@ -263,7 +263,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 	if(is_bwoink)
 		AddInteraction("<font color='blue'>[key_name_admin(usr)] PM'd [LinkedReplyName()]</font>")
-		if(tier == TICKET_MENTOR
+		if(tier == TICKET_MENTOR)
 			message_staff("Ticket [TicketHref("#[id]")] created.")
 		else if(tier == TICKET_ADMIN)
 			message_admins("Ticket [TicketHref("#[id]")] created.")
@@ -470,7 +470,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 			message_staff("Ticket [TicketHref("#[id]")] closed by [ADMIN_TPMONTY(usr)].")
 		else if(tier == TICKET_ADMIN)
 			message_admins("Ticket [TicketHref("#[id]")] closed by [ADMIN_TPMONTY(usr)].")
-		
+
 
 //Mark open ticket as resolved/legitimate, returns ahelp verb
 /datum/admin_help/proc/Resolve(key_name = key_name_admin(usr), silent = FALSE)
