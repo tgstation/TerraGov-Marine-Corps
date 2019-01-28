@@ -248,6 +248,10 @@
 			if(W.isOn())
 				W.toggle()
 				goes_out++
+		for(var/obj/item/clothing/head/hardhat/W in contents)
+			if(W.on)
+				W.attack_self()
+				goes_out++
 		for(var/obj/item/tool/pickaxe/plasmacutter/W in contents)
 			if(W.powered)
 				W.toggle()
