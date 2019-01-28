@@ -163,14 +163,12 @@
 	if(!check_rights(R_FUN))
 		return
 
+
+	var/customname = input("Pick a title for the report.", "Title", "TGMC Update") as text|null
 	var/input = input("Please enter anything you want. Anything. Serious.", "What?", "") as message|null
-	var/customname = input("Pick a title for the report.", "Title") as text|null
 
-	if(!input)
+	if(!input || !customname)
 		return
-
-	if(!customname)
-		customname = "TGMC Update"
 
 	if(alert(usr, "Do you want to print out a paper at the communications consoles?",, "Yes", "No") == "Yes")
 		for(var/obj/machinery/computer/communications/C in GLOB.machines)
