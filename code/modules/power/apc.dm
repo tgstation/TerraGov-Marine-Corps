@@ -956,11 +956,11 @@
 			locked = FALSE
 			addtimer(CALLBACK(src, .reset, wireIndex), 300)
 		if(APC_WIRE_MAIN_POWER1)
-			if(shorted == FALSE)
+			if(!shorted)
 				shorted = TRUE
 			addtimer(CALLBACK(src, .reset, wireIndex), 1200)
 		if(APC_WIRE_MAIN_POWER2)
-			if(shorted == FALSE)
+			if(!shorted)
 				shorted = TRUE
 			addtimer(CALLBACK(src, .reset, wireIndex), 1200)
 		if(APC_WIRE_AI_CONTROL)
