@@ -112,7 +112,7 @@
 
 	var/mob/living/carbon/human/O
 	if(Mo.greaterform)
-		O = new(src, Mo.greaterform)
+		O = new(src, Mo.greaterform.name)
 	else
 		O = new(src)
 

@@ -175,11 +175,73 @@
 		if(81 to INFINITY)
 			reagent_shock_modifier += PAIN_REDUCTION_HEAVY
 
-/mob/living/carbon/proc/breathe()
-	return
 
-/mob/living/carbon/proc/handle_breath(list/air_info)
-	return
+/mob/living/carbon/proc/breathe()
+	if(!need_breathe())
+		return
+
+	var/list/breath
+
+	if(health < get_crit_threshold() && !reagents.has_reagent("inaprovaline"))
+		Losebreath(1, TRUE)
+	else
+		adjust_Losebreath(-1, TRUE)
+
+	if(losebreath && prob(10))
+		emote("gasp")
+	else
+		breath = get_breath_from_internal()
+		if(!breath)
+			breath = get_breath_from_environment()
+
+	handle_breath(breath)
 
 /mob/living/carbon/proc/get_breath_from_internal()
-	return
+	if(internal)
+		if(istype(buckled,/obj/machinery/optable))
+			var/obj/machinery/optable/O = buckled
+			if(O.anes_tank)
+				return O.anes_tank.return_air()
+		if(!contents.Find(internal))
+			internal = null
+		if(!wear_mask || !(wear_mask.flags_inventory & ALLOWINTERNALS))
+			internal = null
+		if(internal)
+			hud_used.internals.icon_state= "internal1"
+			return internal.return_air()
+		else if(hud_used && hud_used.internals)
+			hud_used.internals.icon_state= "internal0"
+
+/mob/living/carbon/proc/get_breath_from_environment()
+	var/list/air_info
+	if(istype(loc, /atom/movable))
+		var/atom/movable/container = loc
+		air_info = container.handle_internal_lifeform(src)
+
+	else if(isturf(loc))
+		var/turf/T = loc
+		air_info = T.return_air()
+
+	if(istype(wear_mask) && air_info)
+		return wear_mask.filter_air(air_info)
+
+/mob/living/carbon/proc/handle_breath(list/air_info)
+	if(status_flags & GODMODE)
+		return FALSE
+
+	if(!air_info || suiciding)
+		if(suiciding)
+			adjustOxyLoss(2, TRUE)
+		else if(health > get_crit_threshold())
+			adjustOxyLoss(CARBON_MAX_OXYLOSS, TRUE)
+		else
+			adjustOxyLoss(CARBON_CRIT_MAX_OXYLOSS, TRUE)
+
+		failed_last_breath = TRUE
+		oxygen_alert = TRUE
+		return FALSE
+
+/mob/living/carbon/proc/need_breathe()
+	if(reagents.has_reagent("lexorin") || in_stasis)
+		return FALSE
+	return TRUE

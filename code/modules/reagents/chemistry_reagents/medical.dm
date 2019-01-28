@@ -22,18 +22,18 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL*2
 	scannable = TRUE
 
-/datum/reagent/medicine/inaprovaline/on_mob_life(mob/living/M, alien)
+/datum/reagent/medicine/inaprovaline/on_mob_life(mob/living/carbon/M, alien)
 	M.reagent_shock_modifier += PAIN_REDUCTION_LIGHT
 	if(alien && alien == IS_VOX)
 		M.adjustToxLoss(REAGENTS_METABOLISM)
 	else
-		if(M.losebreath >= 10)
-			M.losebreath = max(10, M.losebreath-5)
+		if(M.losebreath > 10)
+			M.set_Losebreath(10)
 	..()
 
 /datum/reagent/medicine/inaprovaline/overdose_process(mob/living/M, alien)
 	M.Jitter(5) //Overdose causes a spasm
-	M.knocked_out = max(M.knocked_out, 20)
+	M.KnockOut(20)
 
 /datum/reagent/medicine/inaprovaline/overdose_crit_process(mob/living/M, alien)
 	M.drowsyness = max(M.drowsyness, 20)

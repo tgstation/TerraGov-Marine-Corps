@@ -187,23 +187,15 @@
 				to_chat(src, "<span class = 'notice'>Your [O.display_name] is shaped normally again.</span>")
 
 
-// Defined here solely to take species flags into account without having to recast at mob/living level.
-/mob/living/carbon/human/getOxyLoss()
-	if(species.flags & NO_BREATHE)
-		oxyloss = 0
+/mob/living/carbon/human/adjustOxyLoss(amount, forced = FALSE)
+	if(species.flags & NO_BREATHE && !forced)
+		return
 	return ..()
 
-/mob/living/carbon/human/adjustOxyLoss(var/amount)
-	if(species.flags & NO_BREATHE)
-		oxyloss = 0
-	else
-		..()
-
-/mob/living/carbon/human/setOxyLoss(var/amount)
-	if(species.flags & NO_BREATHE)
-		oxyloss = 0
-	else
-		..()
+/mob/living/carbon/human/setOxyLoss(amount, forced = FALSE)
+	if(species.flags & NO_BREATHE && !forced)
+		return
+	return ..()
 
 /mob/living/carbon/human/getToxLoss()
 	if(species.flags & NO_POISON)

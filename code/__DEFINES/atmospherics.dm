@@ -15,8 +15,13 @@
 #define BODYTEMP_COOLING_MAX -30 //The maximum number of degrees that your body can cool in 1 tick, when in a cold area.
 #define BODYTEMP_HEATING_MAX 30 //The maximum number of degrees that your body can heat up in 1 tick, when in a hot area.
 
-#define BODYTEMP_HEAT_DAMAGE_LIMIT 360.15 // The limit the human body can take before it starts taking damage from heat.
-#define BODYTEMP_COLD_DAMAGE_LIMIT 260.15 // The limit the human body can take before it starts taking damage from coldness.
+#define BODYTEMP_HEAT_DAMAGE_LIMIT_ONE		360.15 // The limit the human body can take before it starts taking damage from heat.
+#define BODYTEMP_HEAT_DAMAGE_LIMIT_TWO		400.15
+#define BODYTEMP_HEAT_DAMAGE_LIMIT_THREE	1000
+
+#define BODYTEMP_COLD_DAMAGE_LIMIT_ONE		260.15 // The limit the human body can take before it starts taking damage from coldness.
+#define BODYTEMP_COLD_DAMAGE_LIMIT_TWO		240.15
+#define BODYTEMP_COLD_DAMAGE_LIMIT_THREE	120.15
 
 #define PRESSURE_DAMAGE_COEFFICIENT 4 //The amount of pressure damage someone takes is equal to (pressure / HAZARD_HIGH_PRESSURE)*PRESSURE_DAMAGE_COEFFICIENT, with the maximum of MAX_PRESSURE_DAMAGE
 #define MAX_HIGH_PRESSURE_DAMAGE 4	//This used to be 20... I got this much random rage for some retarded decision by polymorph?! Polymorph now lies in a pool of blood with a katana jammed in his spleen. ~Errorage --PS: The katana did less than 20 damage to him :(

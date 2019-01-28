@@ -335,7 +335,7 @@
 
 /mob/living/carbon/fire_act(exposed_temperature, exposed_volume)
 	. = ..()
-	adjust_bodytemperature(100, 0, BODYTEMP_HEAT_DAMAGE_LIMIT+10)
+	adjust_bodytemperature(100, 0, BODYTEMP_HEAT_DAMAGE_LIMIT_ONE+10)
 
 
 /mob/living/carbon/show_inv(mob/living/carbon/user as mob)
