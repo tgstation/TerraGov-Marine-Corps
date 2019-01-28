@@ -15,6 +15,7 @@ As a medic, the marines are counting on you to fix them up.
 As a medic, scan before you treat and you can't be beat.
 As a medic or doctor, remember that your HUD will tell you how much time is left to defibrillate a patient.
 As a medic, remember to bring extra kelotane or dermaline to heal burn damage. Xenos love acid and burning marines.
+As a medic, hypervene is useful. Use it to purge deadly neurotoxins and larva boosting growth hormones.
 As a B18 specialist, your armor has a built in medical system.
 As a scout specialist, you can take your battle rifle or your custom shotgun.
 As a sniper specialist, you've got a tarp that can make you stealth so long as you don't move.
@@ -23,11 +24,10 @@ As a human, you can do almost anything if you put your mind to it, it just takes
 As a PFC, you can take two guns, one in the suit slot and one on your back.
 As a PFC, you can help out your squad by bringing extra ammunition and food to share.
 As a PFC, you can usually get two attachments of your choice from Requisitions.
-Hypervene is useful. Use it to purge deadly neurotoxins and larva boosting growth hormones.
 As the RO, things get more expensive the more often you buy it.
 While medics and doctors are best, any human can use a Defibrillator.
 Even if a patient dies a second after being successfully revived by a defibrillator, this resets the time it takes for them to become permanently brain dead.
-Any human can make razor wire with four metal rods and barbed wire from metal sheets.
+Anyone can make razor wire with four metal rods and barbed wire from metal sheets.
 Using a multitool on a lasgun batteries will turn it into an improvised explosive with a random timer.
 In a pinch, you can use lasgun batteries to power APCs and sentry guns.
 Lasgun batteries can be recharged in APCs and power cell rechargers if the generators are on.
@@ -35,20 +35,10 @@ As a marine, if you are not a PFC, then you have a special room in prep with spe
 AP bullets are not always better, they do less damage than normal but penetrate more armor.
 Did you know, that pistols are not complete garbage?
 There is no 'best' loadout. Experiment and find what works for you.
-Dying is part of the game.
-Almost every specialist has been reworked.
-You can select locations on the doll by using the number pad.
 Anything can be a weapon if you put your mind to it.
-As a human, you can check your wounds to see if they have been bandaged or slaved.
-As a human, use 'resist' to stop drop and roll when on fire.
-As a human, melee a person on fire with help intent to put the fire out.
-As a human, use say '*medic' to call out for medical attention.
-As a human, removing weeds means you can move faster.
-As a human, your standard boot knife is great at removing weeds.
-Not being ready at the start of the round means xenos get more burrowed larva, and that you don’t get to play as quickly.
+You can check your wounds to see if they have been bandaged or salved.
+You can help put other people out if they are on fire.
+Removing weeds means you can move faster.
+Your standard boot knife is great at removing weeds.
 During Self Destruct, green control rods are armed control rods, collect all six!
-Sometimes you won't be able to avoid dying no matter how good you are at the game. Try not to stress too much about it.
-When a round ends nearly everything about it is lost forever, leave your salt behind with it.
-Some people are unable to read text on a game where half of it is based on text.
-It's fun to try and predict the round type from the tip of the round message.
-This is a game that is constantly being developed for. Expect things to be added, removed, fixed, and broken on a daily basis.
+Stop, Drop, and Roll, if you are on fire to put yourself out.
