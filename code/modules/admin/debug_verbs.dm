@@ -157,7 +157,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		. += named_args
 
 
-/datum/admins/proc/change_hivenumber(mob/living/carbon/Xenomorph/X in GLOB.mob_list)
+/datum/admins/proc/change_hivenumber(mob/living/carbon/Xenomorph/X in GLOB.xeno_mob_list)
 	set category = "Debug"
 	set name = "Change Hivenumber"
 	set desc = "Set the hivenumber of a xenomorph."
@@ -454,11 +454,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	if(!check_rights(R_DEBUG))
 		return
 
-	var/list/humans = list()
-	for(var/mob/living/carbon/human/H in GLOB.mob_list)
-		humans += H
-
-	var/selection = input("Please, select a human!", "Update Mob Sprite", null, null) as null|anything in sortmobs(humans)
+	var/selection = input("Please, select a human!", "Update Mob Sprite", null, null) as null|anything in sortmobs(GLOB.human_mob_list)
 	if(!selection)
 		return
 
