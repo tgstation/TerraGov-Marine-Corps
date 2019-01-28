@@ -443,14 +443,14 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 /obj/vehicle/multitile/hitbox/cm_armored/Move(var/atom/A, var/direction)
 
 	for(var/mob/living/M in get_turf(src))
-		M.sleeping = 5 //Not 0, they just got driven over by a giant ass whatever and that hurts
+		M.Sleeping(5) //Not 0, they just got driven over by a giant ass whatever and that hurts
 
 	. = ..()
 
 	if(.)
 		for(var/mob/living/M in get_turf(A))
 			//I don't call Bump() otherwise that would encourage trampling for infinite unpunishable damage
-			M.sleeping = 5 //Maintain their lying-down-ness
+			M.Sleeping(5) //Maintain their lying-down-ness
 
 /obj/vehicle/multitile/hitbox/cm_armored/Uncrossed(var/atom/movable/A)
 	if(isliving(A))
@@ -634,7 +634,8 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		update_damage_distribs()
 		return
 
-	take_damage_type(O.force * 0.05, "blunt", user) //Melee weapons from people do very little damage
+	if(!(O.flags_item & NOBLUDGEON))
+		take_damage_type(O.force * 0.05, "blunt", user) //Melee weapons from people do very little damage
 
 	. = ..()
 
@@ -850,10 +851,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 //General proc for taking off hardpoints
 //ALWAYS CALL THIS WHEN REMOVING HARDPOINTS
 /obj/vehicle/multitile/root/cm_armored/proc/remove_hardpoint(var/obj/item/hardpoint/old, var/mob/user)
-	if(user)
-		old.loc = user.loc
-	else
-		old.loc = entrance.loc
+	old.loc = user ? user.loc : entrance.loc
 	old.remove_buff()
 	if(old.health <= 0)
 		qdel(old)
