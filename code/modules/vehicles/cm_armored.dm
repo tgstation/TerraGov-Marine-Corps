@@ -137,7 +137,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 
 	var/obj/item/hardpoint/HP = hardpoints[active_hp]
 
-	if(!HP || !HP.is_ready())
+	if(!HP?.is_ready())
 		return TRUE
 
 	if(!HP.firing_arc(A))
