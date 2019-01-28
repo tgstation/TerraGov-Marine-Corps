@@ -34,15 +34,15 @@ Lasgun batteries can be recharged in APCs and power cell rechargers if the gener
 As a marine, if you are not a PFC, then you have a special room in prep with special gear vendors.
 AP bullets are not always better, they do less damage than normal but penetrate more armor.
 Did you know, that pistols are not complete garbage?
-There is no ‘best’ loadout. Experiment and find what works for you.
+There is no 'best' loadout. Experiment and find what works for you.
 Dying is part of the game.
 Almost every specialist has been reworked.
 You can select locations on the doll by using the number pad.
 Anything can be a weapon if you put your mind to it.
 As a human, you can check your wounds to see if they have been bandaged or slaved.
-As a human, use ‘resist’ to stop drop and roll when on fire.
+As a human, use 'resist' to stop drop and roll when on fire.
 As a human, melee a person on fire with help intent to put the fire out.
-As a human, use say ‘*medic’ to call out for medical attention.
+As a human, use say '*medic' to call out for medical attention.
 As a human, removing weeds means you can move faster.
 As a human, your standard boot knife is great at removing weeds.
 Not being ready at the start of the round means xenos get more burrowed larva, and that you don’t get to play as quickly.
