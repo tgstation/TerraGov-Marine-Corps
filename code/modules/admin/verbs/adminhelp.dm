@@ -455,8 +455,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 
 //Mark open ticket as closed/meme
-/datum/admin_help/proc/Close(key_name = key_name_admin(usr), silent = FALSE)
-	if(tier == TICKET_ADMIN && !check_rights(R_ADMIN, FALSE))
+/datum/admin_help/proc/Close(key_name = key_name_admin(usr), silent = FALSE, force = FALSE)
+	if(!force && tier == TICKET_ADMIN && !check_rights(R_ADMIN, FALSE))
 		return
 	if(state != AHELP_ACTIVE)
 		return
@@ -687,7 +687,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		return
 
 	if(current_ticket)
-		if(alert(usr, "You already have a ticket open. Is this for the same issue?",,"Yes","No") != "No")
+		if(alert(usr, "You already have a ticket open. Is this for the same issue?",,"Yes","No") == "Yes")
 			if(current_ticket)
 				current_ticket.MessageNoRecipient(msg)
 				current_ticket.TimeoutVerb()
@@ -696,7 +696,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 				to_chat(usr, "<span class='warning'>Ticket not found, creating new one...</span>")
 		else
 			current_ticket.AddInteraction("[key_name_admin(usr)] opened a new ticket.")
-			current_ticket.Close()
+			current_ticket.Close(force = TRUE)
 
 	new /datum/admin_help(msg, src, FALSE, TICKET_ADMIN)
 
@@ -719,7 +719,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		return
 
 	if(current_ticket)
-		if(alert(usr, "You already have a ticket open. Is this for the same issue?",,"Yes","No") != "No")
+		if(alert(usr, "You already have a ticket open. Is this for the same issue?",, "Yes", "No") == "Yes")
 			if(current_ticket)
 				current_ticket.MessageNoRecipient(msg)
 				return
@@ -727,7 +727,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 				to_chat(usr, "<span class='warning'>Ticket not found, creating new one...</span>")
 		else
 			current_ticket.AddInteraction("[key_name_admin(usr)] opened a new ticket.")
-			current_ticket.Close()
+			current_ticket.Close(force = TRUE)
 
 	new /datum/admin_help(msg, src, FALSE, TICKET_MENTOR)
 
