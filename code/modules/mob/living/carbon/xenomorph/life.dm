@@ -133,7 +133,7 @@
 /mob/living/carbon/Xenomorph/proc/handle_critical_health_updates()
 	var/turf/T = loc
 	if((istype(T) && locate(/obj/effect/alien/weeds) in T))
-		heal_wounds(-warding_aura*0.5) //Warding pheromones provides 0.25 HP per second per step, up to 2.5 HP per tick.
+		heal_wounds(warding_aura*0.5) //Warding pheromones provides 0.25 HP per second per step, up to 2.5 HP per tick.
 	else if(!(xeno_caste.caste_flags & CASTE_INNATE_HEALING))
 		adjustBruteLoss(XENO_CRIT_DAMAGE - warding_aura) //Warding can heavily lower the impact of bleedout. Halved at 2.5 phero, stopped at 5 phero
 
