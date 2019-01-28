@@ -170,7 +170,7 @@
 			if(hive.living_xeno_queen)
 				if(hive.living_xeno_queen.hivenumber == hive.hivenumber)
 					continue
-			for(var/mob/living/carbon/Xenomorph/Queen/Q in GLOB.alive_mob_list)
+			for(var/mob/living/carbon/Xenomorph/Queen/Q in GLOB.alive_xeno_list)
 				if(Q.hivenumber == hive.hivenumber)
 					hive.living_xeno_queen = Q
 					xeno_message("<span class='xenoannounce'>A new Queen has risen to lead the Hive! Rejoice!</span>",3,hive.hivenumber)
@@ -435,10 +435,9 @@
 		to_chat(src, "<span class='warning'>You must wait a bit before you can toggle this again.</span>")
 		return
 
-	spawn(300)
-		pslash_delay = 0
+	addtimer(CALLBACK(src, .slash_toggle_delay), 300)
 
-	pslash_delay = 1
+	pslash_delay = TRUE
 
 	var/datum/hive_status/hive
 	if(hivenumber && hivenumber <= hive_datum.len)
@@ -459,6 +458,9 @@
 		to_chat(src, "<span class='xenonotice'>You forbid slashing entirely.</span>")
 		xeno_message("The Queen has <b>forbidden</b> the harming of hosts. You can no longer slash your enemies.")
 		hive.slashing_allowed = 0
+
+/mob/living/carbon/Xenomorph/proc/slash_toggle_delay()
+	pslash_delay = FALSE
 
 /mob/living/carbon/Xenomorph/Queen/proc/queen_screech()
 	if(!check_state())
@@ -482,14 +484,9 @@
 		if(FH.stat != DEAD)
 			FH.Die()
 
-	has_screeched = 1
+	has_screeched = TRUE
 	use_plasma(250)
-	spawn(500)
-		has_screeched = 0
-		to_chat(src, "<span class='warning'>You feel your throat muscles vibrate. You are ready to screech again.</span>")
-		for(var/Z in actions)
-			var/datum/action/A = Z
-			A.update_button_icon()
+	addtimer(CALLBACK(src, .screech_cooldown), 500)
 	playsound(loc, 'sound/voice/alien_queen_screech.ogg', 75, 0)
 	visible_message("<span class='xenohighdanger'>\The [src] emits an ear-splitting guttural roar!</span>")
 	round_statistics.queen_screech++
@@ -516,8 +513,13 @@
 			H.apply_damage(halloss_damage, HALLOSS)
 			if(!H.ear_deaf)
 				H.ear_deaf += stun_duration * 20  //Deafens them temporarily
-			spawn(31)
-				shake_camera(H, stun_duration * 10, 0.75) //Perception distorting effects of the psychic scream
+			//Perception distorting effects of the psychic scream
+			addtimer(CALLBACK(GLOBAL_PROC, /proc/shake_camera, H, stun_duration * 10, 0.75), 31)
+
+/mob/living/carbon/Xenomorph/Queen/proc/screech_cooldown()
+	has_screeched = FALSE
+	to_chat(src, "<span class='warning'>You feel your throat muscles vibrate. You are ready to screech again.</span>")
+	update_action_buttons()
 
 /mob/living/carbon/Xenomorph/Queen/proc/queen_gut(atom/A)
 
@@ -736,7 +738,7 @@
 			return
 		if(!ovipositor)
 			return
-		var/mob/living/carbon/Xenomorph/target = locate(href_list["queentrack"]) in GLOB.alive_mob_list
+		var/mob/living/carbon/Xenomorph/target = locate(href_list["queentrack"]) in GLOB.alive_xeno_list
 		if(!istype(target))
 			return
 		if(target.stat == DEAD || target.z == ADMIN_Z_LEVEL)
@@ -750,7 +752,7 @@
 		if(!check_state())
 			return
 		var/xeno_num = text2num(href_list["watch_xeno_number"])
-		for(var/mob/living/carbon/Xenomorph/X in GLOB.alive_mob_list)
+		for(var/mob/living/carbon/Xenomorph/X in GLOB.alive_xeno_list)
 			if(X.z != ADMIN_Z_LEVEL && X.nicknumber == xeno_num)
 				if(observed_xeno == X)
 					set_queen_overwatch(X, TRUE)

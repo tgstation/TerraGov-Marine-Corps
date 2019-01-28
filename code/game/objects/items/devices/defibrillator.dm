@@ -201,8 +201,7 @@
 		H.updatehealth() //Needed for the check to register properly
 		if(H.health > CONFIG_GET(number/health_threshold_dead))
 			user.visible_message("<span class='notice'>\icon[src] \The [src] beeps: Defibrillation successful.</span>")
-			GLOB.alive_mob_list.Add(H)
-			GLOB.dead_mob_list.Remove(H)
+			H.on_revive()
 			H.timeofdeath = 0
 			H.tod = null
 			H.stat = UNCONSCIOUS

@@ -84,7 +84,7 @@ var/const/HOLOPAD_MODE = 0
 			last_request = world.time
 			to_chat(user, "<span class='notice'>You request an AI's presence.</span>")
 			var/area/area = get_area(src)
-			for(var/mob/living/silicon/ai/AI in GLOB.alive_mob_list)
+			for(var/mob/living/silicon/ai/AI in GLOB.ai_list)
 				if(!AI.client)	continue
 				to_chat(AI, "<span class='info'>Your presence is requested at <a href='?src=\ref[AI];jumptoholopad=\ref[src]'>\the [area]</a>.</span>")
 		else

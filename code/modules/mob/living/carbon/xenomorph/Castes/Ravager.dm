@@ -175,10 +175,9 @@
 
 /mob/living/carbon/Xenomorph/Ravager/Stat()
 	. = ..()
-	if(!.)
-		return
 
-	stat(null, "Rage: [rage] / [RAVAGER_MAX_RAGE]")
+	if(statpanel("Stats"))
+		stat(null, "Rage: [rage] / [RAVAGER_MAX_RAGE]")
 
 /mob/living/carbon/Xenomorph/Ravager/proc/charge(atom/T)
 	if(!T) return
@@ -207,12 +206,13 @@
 
 	charge_delay = world.time + RAV_CHARGECOOLDOWN
 
-	spawn(RAV_CHARGECOOLDOWN)
-		usedPounce = FALSE
-		to_chat(src, "<span class='xenodanger'>Your exoskeleton quivers as you get ready to use Eviscerating Charge again.</span>")
-		playsound(src, "sound/effects/xeno_newlarva.ogg", 50, 0, 1)
-		update_action_button_icons()
+	addtimer(CALLBACK(src, .charge_cooldown), RAV_CHARGECOOLDOWN)
 
+/mob/living/carbon/Xenomorph/Ravager/proc/charge_cooldown()
+	usedPounce = FALSE
+	to_chat(src, "<span class='xenodanger'>Your exoskeleton quivers as you get ready to use Eviscerating Charge again.</span>")
+	playsound(src, "sound/effects/xeno_newlarva.ogg", 50, 0, 1)
+	update_action_button_icons()
 
 //Chance of insta limb amputation after a melee attack.
 /mob/living/carbon/Xenomorph/Ravager/proc/delimb(var/mob/living/carbon/human/H, var/datum/limb/O)

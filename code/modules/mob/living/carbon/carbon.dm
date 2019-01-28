@@ -181,7 +181,7 @@
 /mob/living/carbon/proc/vomit()
 
 	var/mob/living/carbon/human/H = src
-	if(H.species.flags & IS_SYNTHETIC)
+	if(istype(H) && H.species.flags & IS_SYNTHETIC)
 		return //Machines don't throw up.
 
 	if(stat == DEAD) //Corpses don't puke
@@ -190,19 +190,23 @@
 	if(!lastpuke)
 		lastpuke = TRUE
 		to_chat(src, "<spawn class='warning'>You feel like you are about to throw up!")
-		spawn(50)
-			Stun(5)
-			visible_message("<spawn class='warning'>[src] throws up!","<spawn class='warning'>You throw up!", null, 5)
-			playsound(loc, 'sound/effects/splat.ogg', 25, 1, 7)
+		addtimer(CALLBACK(src, .do_vomit), 5 SECONDS)		
 
-			var/turf/location = loc
-			if (istype(location, /turf))
-				location.add_vomit_floor(src, 1)
+/mob/living/carbon/proc/do_vomit()
+	Stun(5)
+	visible_message("<spawn class='warning'>[src] throws up!","<spawn class='warning'>You throw up!", null, 5)
+	playsound(loc, 'sound/effects/splat.ogg', 25, 1, 7)
 
-			nutrition = max(nutrition - 40, 0)
-			adjustToxLoss(-3)
-			spawn(350)	//wait 35 seconds before next volley
-				lastpuke = FALSE
+	var/turf/location = loc
+	if (istype(location, /turf))
+		location.add_vomit_floor(src, 1)
+
+	nutrition = max(nutrition - 40, 0)
+	adjustToxLoss(-3)
+	addtimer(CALLBACK(src, .do_vomit_cooldown), 35 SECONDS) //wait 35 seconds before next volley
+
+/mob/living/carbon/proc/do_vomit_cooldown()
+	lastpuke = FALSE
 
 /mob/living/carbon/proc/help_shake_act(mob/living/carbon/M)
 	if(health >= CONFIG_GET(number/health_threshold_crit))
@@ -357,7 +361,7 @@
 	var/temp = 0								//see setup.dm:694
 	switch(src.pulse)
 		if(PULSE_NONE)
-			return "0"
+			return PULSE_NONE
 		if(PULSE_SLOW)
 			temp = rand(40, 60)
 			return num2text(method ? temp : temp + rand(-10, 10))

@@ -19,6 +19,11 @@
 #define BANTYPE_ADMIN_TEMP	8
 #define BANTYPE_ANY_JOB		9 //used to remove jobbans
 
+
+//Ticket tiers
+#define TICKET_MENTOR 1
+#define TICKET_ADMIN 2
+
 //Admin Permissions
 #define R_ADMIN 		(1<<0)
 #define R_MENTOR		(1<<1)

@@ -294,7 +294,7 @@ var/waiting_for_drop_votes = 0
 /datum/game_mode/huntergames/proc/count_humans()
 	var/human_count = 0
 
-	for(var/mob/living/carbon/human/H in GLOB.alive_mob_list)
+	for(var/mob/living/carbon/human/H in GLOB.alive_human_list)
 		if(istype(H) && H.stat == 0 && !istype(get_area(H.loc), /area/centcom) && !istype(get_area(H.loc), /area/tdome) && H.species != "Yautja")
 			human_count += 1 //Add them to the amount of people who're alive.
 
@@ -315,7 +315,7 @@ var/waiting_for_drop_votes = 0
 /datum/game_mode/huntergames/declare_completion()
 	var/mob/living/carbon/winner = null
 
-	for(var/mob/living/carbon/human/Q in GLOB.alive_mob_list)
+	for(var/mob/living/carbon/human/Q in GLOB.alive_human_list)
 		if(istype(Q) && Q.stat == 0 && !isYautja(Q) && !istype(get_area(Q.loc), /area/centcom) && !istype(get_area(Q.loc), /area/tdome))
 			winner = Q
 			break

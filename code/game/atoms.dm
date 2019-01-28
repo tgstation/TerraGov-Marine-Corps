@@ -245,8 +245,7 @@ its easier to just keep the beam vertical.
 	A.examine(src)
 
 /atom/proc/examine(mob/user)
-
-	if(!istype(src, /obj/item) && !istype(src, /obj/effect/statclick))
+	if(!istype(src, /obj/item))
 		to_chat(user, "\icon[src] That's \a [src].")
 
 	else // No component signaling, dropping it here.
