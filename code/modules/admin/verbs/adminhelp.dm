@@ -255,14 +255,18 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		initiator.current_ticket.Close()
 	initiator.current_ticket = src
 
-	TimeoutVerb()
+	if(tier == TICKET_ADMIN)
+		TimeoutVerb()
 
 	statclick = new(null, src)
 	_interactions = list()
 
 	if(is_bwoink)
 		AddInteraction("<font color='blue'>[key_name_admin(usr)] PM'd [LinkedReplyName()]</font>")
-		message_admins("Ticket [TicketHref("#[id]")] created.")
+		if(tier == TICKET_MENTOR
+			message_staff("Ticket [TicketHref("#[id]")] created.")
+		else if(tier == TICKET_ADMIN)
+			message_admins("Ticket [TicketHref("#[id]")] created.")
 		marked = usr.client
 	else
 		MessageNoRecipient(msg)
@@ -479,7 +483,10 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	addtimer(CALLBACK(initiator, /client/proc/giveadminhelpverb), 50)
 
 	AddInteraction("<font color='green'>Resolved by [key_name].</font>")
-	to_chat(initiator, "<span class='adminhelp'>Your ticket has been resolved by an admin. The Adminhelp verb will be returned to you shortly.</span>")
+	if(tier == TICKET_MENTOR)
+		to_chat(initiator, "<span class='adminhelp'>Your mentor ticket has been resolved, if you need to ask something again, feel free to send another one.</span>")
+	if(tier == TICKET_ADMIN)
+		to_chat(initiator, "<span class='adminhelp'>Your ticket has been resolved by an admin. The Adminhelp verb will be returned to you shortly.</span>")
 	if(!silent)
 		log_admin_private("Ticket (#[id]) resolved by [key_name(usr)].")
 		if(tier == TICKET_MENTOR)
@@ -498,11 +505,13 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		initiator.giveadminhelpverb()
 
 		SEND_SOUND(initiator, sound('sound/effects/adminhelp.ogg'))
-
-		to_chat(initiator, "<font color='red' size='4'><b>- Adminhelp Rejected! -</b></font>")
-		to_chat(initiator, "<font color='red'><b>Your admin help was rejected.</b> The adminhelp verb has been returned to you so that you may try again.</font>")
-		to_chat(initiator, "Please try to be calm, clear, and descriptive in admin helps, do not assume the admin has seen any related events, and clearly state the names of anybody you are reporting.")
-
+		if(tier == TICKET_MENTOR)
+			to_chat(initiator, "<font color='red' size='2'><b>- Mentorhelp Rejected! -</b></font>")
+			to_chat(initiator, "Your issue may have been non-sensical. Please try describing it more in detail.")
+		else if(tier == TICKET_ADMIN)
+			to_chat(initiator, "<font color='red' size='4'><b>- Adminhelp Rejected! -</b></font>")
+			to_chat(initiator, "<font color='red'><b>Your admin help was rejected.</b> The adminhelp verb has been returned to you so that you may try again.</font>")
+			to_chat(initiator, "Please try to be calm, clear, and descriptive in admin helps, do not assume the admin has seen any related events, and clearly state the names of anybody you are reporting.")
 	message_admins("Ticket [TicketHref("#[id]")] rejected by [ADMIN_TPMONTY(usr)].")
 	log_admin_private("Ticket (#[id]) rejected by [key_name(usr)].")
 	AddInteraction("Rejected by [key_name].")
@@ -582,8 +591,11 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	var/new_title = input(usr, "Enter a title for the ticket", "Rename Ticket", name) as text|null
 	if(new_title)
 		name = new_title
+		if(tier == TICKET_MENTOR)
+			message_staff("Ticket [TicketHref("#[id]")] titled [name] by [ADMIN_TPMONTY(usr)].")
+		else if(tier == TICKET_ADMIN)
+			message_admins("Ticket [TicketHref("#[id]")] titled [name] by [ADMIN_TPMONTY(usr)].")
 		//not saying the original name cause it could be a long ass message
-		message_admins("Ticket [TicketHref("#[id]")] titled [name] by [ADMIN_TPMONTY(usr)].")
 		log_admin_private("Ticket (#[id]) titled [name] by [key_name(usr)].")
 	TicketPanel()	//we have to be here to do this
 
@@ -708,7 +720,6 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		if(alert(usr, "You already have a ticket open. Is this for the same issue?",,"Yes","No") != "No")
 			if(current_ticket)
 				current_ticket.MessageNoRecipient(msg)
-				current_ticket.TimeoutVerb()
 				return
 			else
 				to_chat(usr, "<span class='warning'>Ticket not found, creating new one...</span>")
