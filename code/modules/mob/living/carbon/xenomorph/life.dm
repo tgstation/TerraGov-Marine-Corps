@@ -17,7 +17,6 @@
 	if(stat == UNCONSCIOUS)
 		if(is_zoomed)
 			zoom_out()
-		handle_critical_health_updates()
 	else
 		if(is_zoomed)
 			if(loc != zoom_turf || lying)
@@ -134,7 +133,7 @@
 	var/turf/T = loc
 	if((istype(T) && locate(/obj/effect/alien/weeds) in T))
 		heal_wounds(-warding_aura*0.5) //Warding pheromones provides 0.25 HP per second per step, up to 2.5 HP per tick.
-	else if(!(xeno_caste.caste_flags & CASTE_INNATE_HEALING))
+	else
 		adjustBruteLoss(XENO_CRIT_DAMAGE - warding_aura) //Warding can heavily lower the impact of bleedout. Halved at 2.5 phero, stopped at 5 phero
 
 /mob/living/carbon/Xenomorph/handle_fire()
@@ -145,6 +144,8 @@
 		adjustFireLoss((fire_stacks + 3) * (xeno_caste.fire_resist + fire_resist_modifier)) // modifier is negative
 
 /mob/living/carbon/Xenomorph/proc/handle_living_health_updates()
+	if(health < 0)
+		handle_critical_health_updates()
 	if(health >= maxHealth || xeno_caste.hardcore || on_fire) //can't regenerate.
 		updatehealth() //Update health-related stats, like health itself (using brute and fireloss), health HUD and status.
 		return
