@@ -280,11 +280,11 @@
 
 /obj/item/device/radio/detpack/proc/do_play_sound_normal()
 	timer--
-	playsound(src.loc, 'sound/weapons/mine_tripped.ogg', 50, FALSE)
+	playsound(loc, 'sound/weapons/mine_tripped.ogg', 50, FALSE)
 
 /obj/item/device/radio/detpack/proc/do_play_sound_loud()
 	timer--
-	playsound(src.loc, 'sound/weapons/mine_tripped.ogg', 160 + (timer-timer*2)*10, FALSE) //Gets louder as we count down to armaggedon
+	playsound(loc, 'sound/weapons/mine_tripped.ogg', 160 + (timer-timer*2)*10, FALSE) //Gets louder as we count down to armaggedon
 
 /obj/item/device/radio/detpack/proc/disarm()
 	if(timer < DETPACK_TIMER_MIN) //reset to minimum 5 seconds; no 'cooking' with aborted detonations.
