@@ -255,7 +255,7 @@
 			addtimer(CALLBACK(src, .proc/fast_activate), 1.5 SECONDS)
 
 	else
-		addtimer(CALLBACK(src, .proc/GoActive), 2 SECONDS)
+		addtimer(CALLBACK(src, .proc/GoActive), rand(MIN_ACTIVE_TIME,MAX_ACTIVE_TIME))
 		return ..()
 
 /obj/item/clothing/mask/facehugger/proc/fast_activate()
