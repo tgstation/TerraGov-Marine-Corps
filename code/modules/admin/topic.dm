@@ -861,6 +861,15 @@
 		log_admin("[key_name(usr)] has sent [key_name(M)] back to the lobby.")
 		message_admins("[ADMIN_TPMONTY(usr)] has sent [key_name_admin(M)] back to the lobby.")
 
+		var/mob/new_player/NP = new()
+		NP.key = M.key
+		if(NP.client)
+			NP.client.change_view(world.view)
+		if(isobserver(M))
+			qdel(M)
+		else
+			M.ghostize()
+
 	else if(href_list["jumpto"])
 		if(!check_rights(R_ADMIN))
 			return
