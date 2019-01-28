@@ -21,7 +21,6 @@
 	var/seconds_electrified = 0;
 	var/shoot_inventory = 0
 	var/locked = 0
-	var/panel_open = 0 //Hacking a smartfridge
 	var/wires = 7
 	var/const/WIRE_SHOCK = 1
 	var/const/WIRE_SHOOTINV = 2
