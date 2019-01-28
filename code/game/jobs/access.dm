@@ -269,7 +269,7 @@ proc/get_all_job_icons()
 		if("PMC3") . = size ? "PMSC " : "PM Senior Contractor"
 		if("PMC4") . = size ? "PMTL " : "PM Team Leader"
 		if("PMCDS") . = size ? "DS " : "PMC Deathsquad"
-		if("PMCDSL") . = size ? "DSL " : "PMC Deathsquad Leader"
+		if("PMCDSL") . = size ? "APTL " : "Assets Protection Team Leader"
 		if("NT") . = size ? (gender == "female" ? "Ms. " : "Mr. ") : "Junior Executive"
 		if("E1") . = size ? "PVT " : "Private"
 		if("E2") . = size ? "PFC " : "Private First Class"
