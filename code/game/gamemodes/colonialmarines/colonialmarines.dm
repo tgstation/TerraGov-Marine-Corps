@@ -163,27 +163,44 @@
 	var/num_humans = living_player_list[1]
 	var/num_xenos = living_player_list[2]
 
-	if(EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED)				round_finished = MODE_GENERIC_DRAW_NUKE //Nuke went off, ending the round.
-	if(EvacuationAuthority.dest_status < NUKE_EXPLOSION_IN_PROGRESS) //If the nuke ISN'T in progress. We do not want to end the round before it detonates.
+	if(EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED)				
+		round_finished = MODE_GENERIC_DRAW_NUKE //Nuke went off, ending the round.
+	if(EvacuationAuthority.dest_status < NUKE_EXPLOSION_IN_PROGRESS) 
+		//If the nuke ISN'T in progress. We do not want to end the round before it detonates.
 		if(!num_humans && num_xenos) //No humans remain alive.
-			if(EvacuationAuthority.evac_status > EVACUATION_STATUS_STANDING_BY) round_finished = MODE_INFESTATION_X_MINOR //Evacuation successfully took place. //TODO Find out if anyone made it on.
-			else																round_finished = MODE_INFESTATION_X_MAJOR //Evacuation did not take place. Everyone died.
+			if(EvacuationAuthority.evac_status > EVACUATION_STATUS_STANDING_BY) 
+				round_finished = MODE_INFESTATION_X_MINOR //Evacuation successfully took place. //TODO Find out if anyone made it on.
+			else																
+				round_finished = MODE_INFESTATION_X_MAJOR //Evacuation did not take place. Everyone died.
 		else if(num_humans && !num_xenos)
-			if(EvacuationAuthority.evac_status > EVACUATION_STATUS_STANDING_BY) round_finished = MODE_INFESTATION_M_MINOR //Evacuation successfully took place.
-			else																round_finished = MODE_INFESTATION_M_MAJOR //Humans destroyed the xenomorphs.
-		else if(!num_humans && !num_xenos)										round_finished = MODE_INFESTATION_DRAW_DEATH //Both were somehow destroyed.
+			if(EvacuationAuthority.evac_status > EVACUATION_STATUS_STANDING_BY) 
+				round_finished = MODE_INFESTATION_M_MINOR //Evacuation successfully took place.
+			else																
+				round_finished = MODE_INFESTATION_M_MAJOR //Humans destroyed the xenomorphs.
+		else if(!num_humans && !num_xenos)										
+			round_finished = MODE_INFESTATION_DRAW_DEATH //Both were somehow destroyed.
+
 
 /datum/game_mode/colonialmarines/check_queen_status(queen_time)
-	set waitfor = 0
+	set waitfor = FALSE
 	var/datum/hive_status/hive = hive_datum[XENO_HIVE_NORMAL]
 	hive.xeno_queen_timer = queen_time
-	if(!(flags_round_type & MODE_INFESTATION)) return
+	if(!(flags_round_type & MODE_INFESTATION)) 
+		return
 	xeno_queen_deaths += 1
 	var/num_last_deaths = xeno_queen_deaths
-	sleep(QUEEN_DEATH_COUNTDOWN)
+	var/i = 0
+	for(var/mob/living/carbon/Xenomorph/X in GLOB.living_xeno_list)
+		if(isXenoLarva(X) || isXenoDrone(X))
+			i++
+	if(i > 0)
+		sleep(QUEEN_DEATH_COUNTDOWN)
+	else
+		sleep(QUEEN_DEATH_NOLARVA)
 	//We want to make sure that another queen didn't die in the interim.
 
-	if(xeno_queen_deaths == num_last_deaths && !round_finished && !hive.living_xeno_queen ) round_finished = MODE_INFESTATION_M_MINOR
+	if(xeno_queen_deaths == num_last_deaths && !round_finished && !hive.living_xeno_queen) 
+		round_finished = MODE_INFESTATION_M_MINOR
 
 ///////////////////////////////
 //Checks if the round is over//

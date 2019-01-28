@@ -1,4 +1,5 @@
-#define QUEEN_DEATH_COUNTDOWN 			 12000 //20 minutes. Can be changed into a variable if it needs to be manipulated later.
+#define QUEEN_DEATH_COUNTDOWN 			15 MINUTES
+#define QUEEN_DEATH_NOLARVA				5 MINUTES
 
 #define MODE_INFESTATION_X_MAJOR		"Xenomorph Major Victory"
 #define MODE_INFESTATION_M_MAJOR		"Marine Major Victory"
