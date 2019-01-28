@@ -264,7 +264,7 @@ proc/get_all_job_icons()
 		if("C") . = size ? "" : "Civilian"
 		if("CD") . = size ? "Dr. " : "Doctor"
 		if("CCMO") . = size ? "Prof. " : "Professor"
-		if("PMC1") . = size ? "Std " : "PMC Standard"
+		if("PMC1") . = size ? "PMC " : "PM Contractor"
 		if("PMC2") . = size ? "Gun " : "PMC Gunner"
 		if("PMC3") . = size ? "Sni " : "PMC Sniper"
 		if("PMC4") . = size ? "Lead " : "PMC Leader"
