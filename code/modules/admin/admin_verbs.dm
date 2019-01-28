@@ -968,7 +968,7 @@
 				to_chat(recipient, "<font color='red' size='4'><b>-- Private Message --</b></font>")
 				to_chat(recipient, "<font color='red'>[holder.fakekey ? "Administrator" : holder.rank.name] PM from-<b>[key_name(src, recipient, FALSE)]</b>: <span class='linkify'>[msg]</span></font>")
 				to_chat(recipient, "<font color='red'><i>Click on the staff member's name to reply.</i></font>")
-				to_chat(src, "<font color='blue'>[holder.fakekey ? "Administrator" : holder.rank.name] PM to-<b>[key_name(recipient, src, TRUE)]</b>: <span class='linkify'>[msg]</span></font>")
+				to_chat(src, "<font color='blue'><b>[holder.fakekey ? "Administrator" : holder.rank.name] PM</b> to-<b>[key_name(recipient, src, TRUE)]</b>: <span class='linkify'>[msg]</span></font>")
 
 				admin_ticket_log(recipient, "<font color='blue'>PM From [key_name_admin(src)]: [keywordparsedmsg]</font>")
 
