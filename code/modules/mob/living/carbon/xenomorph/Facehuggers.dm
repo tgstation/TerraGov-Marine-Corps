@@ -241,21 +241,20 @@
 /obj/item/clothing/mask/facehugger/throw_at(atom/target, range, speed)
 	. = ..()
 	if(stat == CONSCIOUS)
-		update_stat(UNCONSCIOUS) //Giving it some brief downtime before jumping on someone via movement.
+		update_stat(UNCONSCIOUS) //pausing their process for the flight duration.
 
 /obj/item/clothing/mask/facehugger/throw_impact(atom/hit_atom, speed)
 	if(stat == DEAD)
 		return
 	if(ismob(hit_atom))
-		if(stat == CONSCIOUS)
-			if(leaping && CanHug(hit_atom)) //Standard leaping behaviour, not attributable to being _thrown_ such as by a Carrier.
-				stat = CONSCIOUS
-				Attach(hit_atom)
-			else if(hit_atom.density) //We hit something, cool.
-				step(src, turn(dir, 180)) //We want the hugger to bounce off if it hits a mob.
-				throwing = FALSE
-				leaping = FALSE
-				addtimer(CALLBACK(src, .proc/fast_activate), 1.5 SECONDS)
+		if(leaping && CanHug(hit_atom)) //Standard leaping behaviour, not attributable to being _thrown_ such as by a Carrier.
+			stat = CONSCIOUS
+			Attach(hit_atom)
+		else if(hit_atom.density) //We hit something, cool.
+			step(src, turn(dir, 180)) //We want the hugger to bounce off if it hits a mob.
+			throwing = FALSE
+			leaping = FALSE
+			addtimer(CALLBACK(src, .proc/fast_activate), 1.5 SECONDS)
 
 	else
 		addtimer(CALLBACK(src, .proc/GoActive), 2 SECONDS)
