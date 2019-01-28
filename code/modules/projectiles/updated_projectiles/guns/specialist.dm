@@ -564,15 +564,13 @@
 	F.loc = user.loc
 	F.throw_range = 20
 	if(F && F.loc) //Apparently it can get deleted before the next thing takes place, so it runtimes.
-		log_game("[key_name(user)] fired a grenade [F.name] from \a [name] at [AREACOORD(user.loc)].")		
+		log_game("[key_name(user)] fired a grenade [F.name] from \a [name] at [AREACOORD(user.loc)].")
 		message_admins("[ADMIN_TPMONTY(user)] fired a grenade [F.name] from \a [name].")
-		F.icon_state = initial(F.icon_state) + "_active"
-		F.active = 1
-		F.updateicon()
-		F.throw_at(target, 20, 3, user)
 		F.det_time = min(10, F.det_time)
-		F.throwforce += F.launchforce //Throws with signifcantly more force than a standard marine can.
 		F.launched = TRUE
+		F.throwforce += F.launchforce //Throws with signifcantly more force than a standard marine can.
+		F.throw_at(target, 20, 3, user)
+		F.activate()
 		playsound(F.loc, fire_sound, 50, 1)
 
 /obj/item/weapon/gun/launcher/m92/has_ammo_counter()
@@ -695,7 +693,7 @@
 	F.throw_range = 20
 	F.throw_at(target, 20, 2, user)
 	if(F && F.loc) //Apparently it can get deleted before the next thing takes place, so it runtimes.
-		log_game("[key_name(user)] fired a grenade [F.name] from \a [name] at [AREACOORD(user.loc)].")		
+		log_game("[key_name(user)] fired a grenade [F.name] from \a [name] at [AREACOORD(user.loc)].")
 		message_admins("[ADMIN_TPMONTY(user)] fired a grenade [F.name] from \a [name].")
 		F.icon_state = initial(F.icon_state) + "_active"
 		F.active = 1
