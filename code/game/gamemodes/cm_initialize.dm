@@ -610,7 +610,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 										"You were playing basketball with {surv} when the creatures descended. You bolted in opposite directions, and actually managed to lose the monsters, somehow."
 										)
 
-	var/current_survivors[] = survivors //These are the current survivors, so we can remove them once we tell a story.
+	var/current_survivors[] = survivors.Copy() //These are the current survivors, so we can remove them once we tell a story.
 	var/story //The actual story they will get to read.
 	var/random_name
 	var/datum/mind/survivor
