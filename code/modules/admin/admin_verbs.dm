@@ -991,23 +991,20 @@
 				if(X.key == key || X.key == recipient.key)
 					continue
 				if(check_other_rights(X, R_ADMIN, FALSE))
-					to_chat(X, "<font color='blue'><B>Initial Admin PM: [key_name(src, X, FALSE)]-&gt;[key_name(recipient, X, FALSE)]:</B> [keywordparsedmsg]</font>")
+					to_chat(X, "<font color='blue'><B>Admin PM: [key_name(src, X, FALSE)]-&gt;[key_name(recipient, X, FALSE)]:</B> [keywordparsedmsg]</font>")
 		else if(is_mentor(src))
 			for(var/client/X in GLOB.admins)
 				if(X.key == key || X.key == recipient.key)
 					continue
 				if(check_other_rights(X, R_ADMIN, FALSE) || is_mentor(X))
-					to_chat(X, "<font color='blue'><B>Initial Mentor PM: [key_name(src, X, FALSE)]-&gt;[key_name(recipient, X, FALSE)]:</B> [keywordparsedmsg]</font>")
+					to_chat(X, "<font color='blue'><B>Mentor PM: [key_name(src, X, FALSE)]-&gt;[key_name(recipient, X, FALSE)]:</B> [keywordparsedmsg]</font>")
 		else //Admins get all messages, mentors only mentor responses
 			var/datum/admin_help/AH = src.current_ticket
 			for(var/client/X in GLOB.admins)
 				if(X.key == key || X.key == recipient.key)
 					continue
 				if(check_other_rights(X, R_ADMIN, FALSE))
-					if(check_other_rights(src, R_ADMIN, FALSE))
-						to_chat(X, "Admin PM: <font color='blue'><B>[key_name(src, X, FALSE)]-&gt;[key_name(recipient, X, FALSE)]:</B> [keywordparsedmsg]</font>")
-					else if(is_mentor(src))
-						to_chat(X, "Mentor PM: <font color='blue'><B>[key_name(src, X, FALSE)]-&gt;[key_name(recipient, X, FALSE)]:</B> [keywordparsedmsg]</font>")
+					to_chat(X, "PM: <font color='blue'><B>[key_name(src, X, FALSE)]-&gt;[key_name(recipient, X, FALSE)]:</B> [keywordparsedmsg]</font>")
 			if(AH && AH.tier == TICKET_MENTOR)
 				for(var/client/X in GLOB.admins)
 					if(X.key == key || X.key == recipient.key)
