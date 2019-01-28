@@ -3,6 +3,8 @@
 #define APC_WIRE_MAIN_POWER2 (1<<2)
 #define APC_WIRE_AI_CONTROL  (1<<3)
 
+#define APC_RESET_EMP 5
+
 //update_state
 #define UPSTATE_CELL_IN    (1<<0)
 #define UPSTATE_OPENED1    (1<<1)
@@ -154,6 +156,7 @@
 	..()
 
 /obj/machinery/power/apc/New(turf/loc, var/ndir, var/building=FALSE)
+	. = ..()
 	GLOB.apcs_list += src
 
 	// offset 24 pixels in direction of dir
@@ -190,9 +193,9 @@
 
 	if(mapload)
 		init()
-		sleep(0) //Break few ACPs on the colony
+		//Break few ACPs on the colony
 		if(!start_charge && z == 1 && prob(10))
-			set_broken()
+			addtimer(CALLBACK(src, .proc/set_broken), 5)
 
 // the very fact that i have to override this screams to me that apcs shouldnt be under machinery - spookydonut
 /obj/machinery/power/apc/power_change()
@@ -224,8 +227,7 @@
 	update_icon()
 	make_terminal()
 
-	spawn(5)
-		update()
+	addtimer(CALLBACK(src, .proc/update), 5)
 
 /obj/machinery/power/apc/examine(mob/user)
 	to_chat(user, desc)
@@ -397,13 +399,7 @@
 	return results
 
 /obj/machinery/power/apc/proc/queue_icon_update()
-
-	if(!updating_icon)
-		updating_icon = 1
-		//Start the update
-		spawn(APC_UPDATE_ICON_COOLDOWN)
-			update_icon()
-			updating_icon = 0
+	updating_icon = TRUE
 
 /obj/machinery/power/apc/attack_alien(mob/living/carbon/Xenomorph/M)
 	M.animation_attack_on(src)
@@ -958,31 +954,38 @@
 	switch(wireIndex)
 		if(APC_WIRE_IDSCAN) //Unlocks the APC for 30 seconds, if you have a better way to hack an APC I'm all ears
 			locked = FALSE
-			spawn(300)
-				locked = TRUE
-				updateDialog()
+			addtimer(CALLBACK(src, .reset, wireIndex), 300)
 		if(APC_WIRE_MAIN_POWER1)
 			if(!shorted)
 				shorted = TRUE
-			spawn(1200)
-				if(shorted)
-					shorted = FALSE
-				updateDialog()
+			addtimer(CALLBACK(src, .reset, wireIndex), 1200)
 		if(APC_WIRE_MAIN_POWER2)
 			if(!shorted)
 				shorted = TRUE
-			spawn(1200)
-				if(shorted)
-					shorted = FALSE
-				updateDialog()
+			addtimer(CALLBACK(src, .reset, wireIndex), 1200)
 		if(APC_WIRE_AI_CONTROL)
 			if(!aidisabled)
 				aidisabled = TRUE
 			updateDialog()
-			spawn(10)
-				if(aidisabled)
-					aidisabled = FALSE
-				updateDialog()
+			addtimer(CALLBACK(src, .reset, wireIndex), 10)
+
+/obj/machinery/power/apc/proc/reset(var/wire)
+	switch(wire)
+		if(APC_WIRE_IDSCAN) 
+			locked = TRUE
+		if(APC_WIRE_MAIN_POWER1)
+			if(shorted == TRUE)
+				shorted = FALSE
+		if(APC_WIRE_MAIN_POWER2)
+			if(shorted == TRUE)
+				shorted = FALSE
+		if(APC_WIRE_AI_CONTROL)
+			if(aidisabled == TRUE)
+				aidisabled = FALSE
+		if(APC_RESET_EMP)
+			equipment = 3
+			environ = 3			
+	updateDialog()
 
 /obj/machinery/power/apc/proc/can_use(mob/user as mob, var/loud = 0) //used by attack_hand() and Topic()
 	if(user.stat)
@@ -1150,7 +1153,8 @@
 		return 0
 
 /obj/machinery/power/apc/process()
-
+	if(updating_icon)
+		update_icon()
 	if(stat & (BROKEN|MAINT))
 		return
 	if(!area.requires_power)
@@ -1335,9 +1339,7 @@
 	lighting = 0
 	equipment = 0
 	environ = 0
-	spawn(600)
-		equipment = 3
-		environ = 3
+	addtimer(CALLBACK(src, .proc/reset, APC_RESET_EMP), 60 SECONDS)
 	..()
 
 /obj/machinery/power/apc/ex_act(severity)
@@ -1363,12 +1365,14 @@
 
 	//Aesthetically much better!
 	visible_message("<span class='warning'>[src]'s screen flickers with warnings briefly!</span>")
-	spawn(rand(2, 5))
-		visible_message("<span class='danger'>[src]'s screen suddenly explodes in rain of sparks and small debris!</span>")
-		stat |= BROKEN
-		operating = FALSE
-		update_icon()
-		update()
+	addtimer(CALLBACK(src, .do_break), rand(2, 5))
+
+/obj/machinery/power/apc/proc/do_break()
+	visible_message("<span class='danger'>[src]'s screen suddenly explodes in rain of sparks and small debris!</span>")
+	stat |= BROKEN
+	operating = FALSE
+	update_icon()
+	update()
 
 //Overload all the lights in this APC area
 /obj/machinery/power/apc/proc/overload_lighting()
@@ -1376,12 +1380,14 @@
 		return
 	if(cell && cell.charge >= 20)
 		cell.use(20)
-		spawn(0)
-			for(var/area/A in area.related)
-				for(var/obj/machinery/light/L in A)
-					L.on = 1
-					L.broken()
-					sleep(1)
+		INVOKE_ASYNC(src, .proc/break_lights)
+
+/obj/machinery/power/apc/proc/break_lights()
+	for(var/obj/machinery/light/L in area.related)
+		L.on = TRUE
+		L.broken()
+		L.on = FALSE
+		stoplag()
 
 /obj/machinery/power/apc/Destroy()
 	GLOB.apcs_list -= src
