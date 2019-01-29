@@ -55,10 +55,10 @@
 	if(stat == DEAD)
 		var/fertility = sterile ? "impregnated" : "dead"
 		icon_state = "[initial(icon_state)]_[fertility]"
-	else if(stat == UNCONSCIOUS && !attached)
-		icon_state = "[initial(icon_state)]_inactive"
 	else if(throwing)
 		icon_state = "[initial(icon_state)]_throwing"
+	else if(stat == UNCONSCIOUS && !attached)
+		icon_state = "[initial(icon_state)]_inactive"
 	else
 		icon_state = "[initial(icon_state)]"
 
@@ -71,7 +71,7 @@
 
 //Deal with picking up facehuggers. "attack_alien" is the universal 'xenos click something while unarmed' proc.
 /obj/item/clothing/mask/facehugger/attack_alien(mob/living/carbon/Xenomorph/user)
-	if(user.hivenumber != hivenumber)
+	if(user.hivenumber != hivenumber && stat != DEAD)
 		user.animation_attack_on(src)
 		user.visible_message("<span class='xenowarning'>[user] crushes \the [src]","<span class='xenowarning'>You crush \the [src]")
 		Die()
@@ -244,7 +244,9 @@
 		update_stat(UNCONSCIOUS) //stopping their process for the flight duration.
 
 /obj/item/clothing/mask/facehugger/throw_impact(atom/hit_atom, speed)
-	if(ismob(hit_atom) && stat != DEAD)
+	if(stat == DEAD)
+		return ..()
+	if(ismob(hit_atom))
 		if(leaping && CanHug(hit_atom)) //Standard leaping behaviour, not attributable to being _thrown_ such as by a Carrier.
 			stat = CONSCIOUS
 			Attach(hit_atom)
@@ -255,7 +257,7 @@
 			addtimer(CALLBACK(src, .proc/fast_activate), 1.5 SECONDS)
 
 	else
-		addtimer(CALLBACK(src, .proc/GoActive), rand(MIN_ACTIVE_TIME,MAX_ACTIVE_TIME))
+		addtimer(CALLBACK(src, .proc/fast_activate), rand(MIN_ACTIVE_TIME,MAX_ACTIVE_TIME))
 		return ..()
 
 /obj/item/clothing/mask/facehugger/proc/fast_activate()
