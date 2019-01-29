@@ -83,8 +83,8 @@
 			user.visible_message("<span class='notice'>[user] installs a new glass window on the frame.</span>", \
 			"<span class='notice'>You install a new window on the frame.</span>")
 			sheet.use(2)
-			qdel(src)
 			new window_type(loc) //This only works on Theseus windows!
+			qdel(src)
 
 	else if(istype(W, /obj/item/grab))
 		var/obj/item/grab/G = W
