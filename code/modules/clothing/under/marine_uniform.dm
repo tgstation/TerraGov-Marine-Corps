@@ -169,6 +169,16 @@
 //=========================//RESPONDERS\\================================\\
 //=======================================================================\\
 
+//=========================//Imperium\\==================================\\
+
+/obj/item/clothing/under/marine/imperial
+	name = "\improper Imperial uniform"
+	desc = "This uniform is given out to pretty much every soldier in the Imperium."
+	rollable_sleeves = FALSE // don't disrespect the EMPEROR!
+	icon_state = "imperial_s"
+
+
+
 /obj/item/clothing/under/marine/veteran
 	rollable_sleeves = FALSE
 
