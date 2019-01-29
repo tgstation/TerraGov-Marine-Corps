@@ -19,29 +19,12 @@
 
 
 /mob/Stat()
-	// Looking at contents of a tile
-	if(tile_contents_change)
-		tile_contents_change = FALSE
-		statpanel("Tile Contents")
-		client.statpanel = "Tile Contents"
-		stat(tile_contents)
-		client.stat_force_fast_update = TRUE
-		return FALSE
-
-	if(client.statpanel == "Tile Contents")
-		if(tile_contents.len && statpanel("Tile Contents"))
-			stat(tile_contents)
-			return FALSE
+	. = ..()
 
 	if(statpanel("Stats"))
 		stat("Operation Time: [worldtime2text()]")
+		stat("The current map is: [map_tag]")
 
-	if(client.statpanel != "Stats")
-		statpanel("Stats")
-		if(statpanel("Stats"))
-			client.statpanel = "Stats"
-			stat("Operation Time: [worldtime2text()]")
-		client.stat_force_fast_update = TRUE
 
 	if(client?.holder?.rank?.rights)
 		if(client.holder.rank.rights & (R_ADMIN|R_DEBUG))
@@ -66,10 +49,11 @@
 			if(statpanel("Tickets"))
 				GLOB.ahelp_tickets.stat_entry()
 
-	if(statpanel("Stats") || client.statpanel != "Stats")
-		return TRUE
-	else
-		return FALSE
+
+	if(length(tile_contents))
+		if(statpanel("Tile Contents"))
+			stat(tile_contents)
+
 
 /mob/proc/prepare_huds()
 	hud_list = new

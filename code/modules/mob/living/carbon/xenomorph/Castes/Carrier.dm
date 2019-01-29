@@ -217,12 +217,12 @@
 		QDEL_LIST(huggers)
 
 /mob/living/carbon/Xenomorph/Carrier/Stat()
-	if (!..())
-		return 0
+	. = ..()
 
-	stat(null, "Stored Huggers: [huggers.len] / [xeno_caste.huggers_max]")
-	stat(null, "Stored Eggs: [eggs_cur] / [xeno_caste.eggs_max]")
-	return 1
+	if(statpanel("Stats"))
+		stat(null, "Stored Huggers: [huggers.len] / [xeno_caste.huggers_max]")
+		stat(null, "Stored Eggs: [eggs_cur] / [xeno_caste.eggs_max]")
+	
 
 /mob/living/carbon/Xenomorph/Carrier/proc/store_hugger(obj/item/clothing/mask/facehugger/F, message = TRUE)
 	if(huggers.len < xeno_caste.huggers_max)

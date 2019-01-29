@@ -36,7 +36,7 @@
 
 	// Admin PM
 	if(href_list["priv_msg"])
-		cmd_admin_pm(href_list["priv_msg"], null)
+		private_message(href_list["priv_msg"], null)
 		return
 
 	switch(href_list["_src_"])
@@ -105,9 +105,6 @@
 	GLOB.clients += src
 	GLOB.directory[ckey] = src
 
-	GLOB.clients += src
-	GLOB.directory[ckey] = src
-
 	if(CONFIG_GET(flag/localhost_rank))
 		var/static/list/localhost_addresses = list("127.0.0.1", "::1")
 		if(isnull(address) || (address in localhost_addresses))
@@ -142,7 +139,10 @@
 		GLOB.admins |= src
 		holder.owner = src
 		holder.activate()
-		message_admins("Admin login: [key_name(src)].")
+		if(check_rights(R_ADMIN, FALSE))
+			message_admins("Admin login: [key_name_admin(src)].")
+		else if(check_rights(R_MENTOR, FALSE))
+			message_staff("Mentor login: [key_name_admin(src)].")
 	else if(GLOB.deadmins[ckey])
 		verbs += /client/proc/readmin
 
@@ -169,7 +169,10 @@
 	//////////////
 /client/Del()
 	if(holder)
-		message_admins("Admin logout: [key_name(src)].")
+		if(check_rights(R_ADMIN, FALSE))
+			message_admins("Admin logout: [key_name(src)].")
+		else if(check_rights(R_MENTOR, FALSE))
+			message_staff("Mentor logout: [key_name(src)].")
 		holder.owner = null
 		GLOB.admins -= src
 
@@ -262,24 +265,3 @@ GLOBAL_LIST_EMPTY(external_rsc_url)
 	if(!CONFIG_GET(string/resource_url))
 		return
 	preload_rsc = GLOB.external_rsc_url
-
-/client/Stat()
-	// We just did a short sleep because of a change, do another to render quickly, but flip the flag back.
-	if (stat_fast_update)
-		stat_fast_update = 0
-		Stat()
-		return 0
-
-	last_statpanel = statpanel
-
-	. = ..() // Do our regular Stat stuff
-
-	//statpanel changed? We doin a short sleep
-	if (statpanel != last_statpanel || stat_force_fast_update)
-		stat_fast_update = 1
-		stat_force_fast_update = 0
-		return .
-
-	// Nothing happening, long sleep
-	sleep(32)
-	return .
