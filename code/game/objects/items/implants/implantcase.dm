@@ -24,12 +24,12 @@
 		var/t = stripped_input(user, "What would you like the label to be?", text("[]", src.name), null)
 		if (user.get_active_held_item() != I)
 			return
-		if((!in_range(src, usr) && src.loc != user))
+		if((!in_range(src, usr) && loc != user))
 			return
 		if(t)
-			src.name = text("glass case - '[]'", t)
+			name = text("glass case - '[]'", t)
 		else
-			src.name = "glass case"
+			name = "glass case"
 	else if(istype(I, /obj/item/reagent_container/syringe))
 		if(!imp?.allow_reagents)
 			return
@@ -47,7 +47,7 @@
 			M.imp.loc = src
 			imp = M.imp
 			M.imp = null
-			src.update()
+			update()
 			M.update()
 		else
 			if (imp)
