@@ -759,6 +759,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	desc = "A cheap, mass produced armour worn by the Imperial Guard, which are also cheap and mass produced. You can make out what appears to be <i>Cadia stands</i> carved into the armour."
 	icon_state = "guardarmor"
 	item_state = "guardarmor"
+	armor = list(melee = 55, bullet = 45, laser = 40, energy = 25, bomb = 30, bio = 0, rad = 0)
 
 /obj/item/clothing/suit/storage/marine/imperial/sergeant
 	// carapace armour, better than flak, covers everything
@@ -766,7 +767,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	desc = "A heavy body armour that offers much better protection than the flak armour, but it is also heavier."
 	//icon_state
 	slowdown = SLOWDOWN_ARMOR_HEAVY
-	armor = list(melee = 70, bullet = 55, laser = 50, energy = 35, bomb = 40, bio = 0, rad = 0)
+	armor = list(melee = 75, bullet = 60, laser = 55, energy = 40, bomb = 45, bio = 0, rad = 0)
 	brightness_on = 6 // better light
 
 /obj/item/clothing/suit/storage/marine/imperial/power
@@ -774,7 +775,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	name = "\improper salvaged Space Marine power armour"
 	desc = "A power armour that was once broken, is functional once again. However this version isn't as powerful as the real power armour."
 	//icon_state
-	armor = list(melee = 65, bullet = 50, laser = 45, energy = 30, bomb = 35, bio = 5, rad = 5)
+	armor = list(melee = 70, bullet = 55, laser = 50, energy = 35, bomb = 40, bio = 10, rad = 10)
 	brightness_on = 6
 
 /obj/item/clothing/suit/storage/marine/imperial/power/astartes
@@ -783,7 +784,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	desc = "You feel a chill running down your spine just looking at this. This is the power armour that the Space Marines wear themselves. The servos inside the power armour allow you to move at incredible speeds."
 	//icon_state
 	slowdown = SLOWDOWN_ARMOR_LIGHT // beefed up space marine inside an armor that boosts speed
-	armor = list(melee = 80, bullet = 80, laser = 80, energy = 80, bomb = 80, bio = 80, rad = 80)
+	armor = list(melee = 85, bullet = 85, laser = 85, energy = 85, bomb = 85, bio = 85, rad = 85)
 
 //===========================//U.P.P\\================================
 

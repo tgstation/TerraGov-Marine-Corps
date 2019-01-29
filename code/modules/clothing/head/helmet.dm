@@ -406,6 +406,7 @@
 	desc = "A standard Imperial Guard helmet that goes with the flak armour, it is also mass produced, and it can save your life, maybe."
 	icon_state = "guardhelm"
 	item_state = "guardhelm"
+	armor = list(melee = 70, bullet = 40, laser = 35, energy = 25, bomb = 30, bio = 0, rad = 0)
 
 /obj/item/clothing/head/helmet/marine/imperial/sergeant
 	name = "\improper Imperial Guard carapace helmet"
