@@ -129,13 +129,6 @@
 	. = ..()
 	handle_stealth()
 
-/mob/living/carbon/Xenomorph/proc/handle_critical_health_updates()
-	var/turf/T = loc
-	if((istype(T) && locate(/obj/effect/alien/weeds) in T))
-		heal_wounds(warding_aura*0.5) //Warding pheromones provides 0.25 HP per second per step, up to 2.5 HP per tick.
-	else
-		adjustBruteLoss(XENO_CRIT_DAMAGE - warding_aura) //Warding can heavily lower the impact of bleedout. Halved at 2.5 phero, stopped at 5 phero
-
 /mob/living/carbon/Xenomorph/handle_fire()
 	. = ..()
 	if(.)
@@ -146,6 +139,7 @@
 /mob/living/carbon/Xenomorph/proc/handle_living_health_updates()
 	if(health < 0)
 		handle_critical_health_updates()
+		return
 	if(health >= maxHealth || xeno_caste.hardcore || on_fire) //can't regenerate.
 		updatehealth() //Update health-related stats, like health itself (using brute and fireloss), health HUD and status.
 		return
@@ -154,12 +148,19 @@
 		return
 	var/datum/hive_status/hive = hive_datum[hivenumber]
 	if(!hive.living_xeno_queen || hive.living_xeno_queen.loc.z == loc.z) //if there is a queen, it must be in the same z-level
-		if(locate(/obj/effect/alien/weeds) in T && (health >= 0 || xeno_caste.caste_flags & CASTE_INNATE_HEALING)) //We regenerate on weeds.
+		if(locate(/obj/effect/alien/weeds) in T || xeno_caste.caste_flags & CASTE_INNATE_HEALING) //We regenerate on weeds or can on our own.
 			if(lying || resting)
 				heal_wounds(XENO_RESTING_HEAL)
 			else
 				heal_wounds(XENO_STANDING_HEAL) //Major healing nerf if standing.
 	updatehealth()
+
+/mob/living/carbon/Xenomorph/proc/handle_critical_health_updates()
+	var/turf/T = loc
+	if((istype(T) && locate(/obj/effect/alien/weeds) in T))
+		heal_wounds(warding_aura*0.5) //Warding pheromones provides 0.25 HP per second per step, up to 2.5 HP per tick.
+	else
+		adjustBruteLoss(XENO_CRIT_DAMAGE - warding_aura) //Warding can heavily lower the impact of bleedout. Halved at 2.5 phero, stopped at 5 phero
 
 /mob/living/carbon/Xenomorph/proc/heal_wounds(multiplier = XENO_RESTING_HEAL)
 	var/amount = (1 + (maxHealth * 0.02) ) // 1 damage + 2% max health
