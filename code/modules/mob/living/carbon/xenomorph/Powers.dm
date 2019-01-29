@@ -1980,12 +1980,20 @@
 		if(T.density || istype(T, /turf/open/space))
 			break
 
-		for(var/obj/structure/barricade/B in T)
-			B.health -= rand(45, 60) + 8 * upgrade
-			B.update_health(TRUE)
+		var/list/turf_targets
+		for(var/obj/O in T)
+			if(O.density && !(O.flags_atom & ON_BORDER))
+				turf_targets.Add(O)
+			var/obj/structure/barricade/B
+			if(istype(B))
+				if(get_dir(prev_turf, T) & B.dir) // > getting blocked by something actually behind it.
+					B.health -= rand(45, 60) + 8 * upgrade
+					B.update_health(TRUE)
+		if(!prev_turf.Adjacent(T, turf_targets))
+			break //on border objects without throwpass still blocked us.
 
 		distance++
-		if(distance > 7 || !T.Adjacent(prev_turf))
+		if(distance > 7 || turf_targets)
 			break
 
 		prev_turf = T

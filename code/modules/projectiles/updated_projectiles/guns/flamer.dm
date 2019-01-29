@@ -176,16 +176,24 @@
 		if(T == user.loc)
 			prev_T = T
 			continue
+		if(T.density || istype(T, /turf/open/space))
+			break
 		if(loc != user)
 			break
 		if(!current_mag?.current_rounds)
 			break
 		if(distance > max_range)
 			break
-		if(!T.Adjacent(prev_T))
-			break
+		var/list/turf_targets
+		for(var/obj/O in T)
+			if(O.density && !(O.flags_atom & ON_BORDER))
+				turf_targets.Add(O)
+		if(!prev_T.Adjacent(T, turf_targets))
+			break //on border objects without throwpass still blocked us.
 		current_mag.current_rounds--
 		flame_turf(T,user, burntime, burnlevel, fire_color)
+		if(turf_targets)
+			break //we flamed a dense object, hurray bad code.
 		distance++
 		prev_T = T
 		sleep(1)
