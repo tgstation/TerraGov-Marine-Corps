@@ -98,11 +98,7 @@
 	Login()
 	..()
 	if(ticker && ticker.mode && ticker.mode.flags_round_type & MODE_PREDATOR)
-		spawn(20)
-			to_chat(src, "<span class='warning'>This is a <b>PREDATOR ROUND</b>! If you are whitelisted, you may Join the Hunt!</span>")
-			return
-
-
+		addtimer(CALLBACK(GLOBAL_PROC, /proc/to_chat, src, "<span class='warning'>This is a <b>PREDATOR ROUND</b>! If you are whitelisted, you may Join the Hunt!</span>"), 20)
 
 /mob/dead/observer/Topic(href, href_list)
 	if(href_list["reentercorpse"])
@@ -223,14 +219,13 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	return 0
 
 /mob/dead/observer/Stat()
-	if (!..())
-		return 0
+	. = ..()
 
-	if(EvacuationAuthority)
-		var/eta_status = EvacuationAuthority.get_status_panel_eta()
-		if(eta_status)
-			stat(null, eta_status)
-	return 1
+	if(statpanel("Stats"))
+		if(EvacuationAuthority)
+			var/eta_status = EvacuationAuthority.get_status_panel_eta()
+			if(eta_status)
+				stat(null, eta_status)
 
 /mob/dead/observer/verb/reenter_corpse()
 	set category = "Ghost"
@@ -683,7 +678,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	var/list/zombie_list = list()
 
-	for(var/mob/living/carbon/human/A in GLOB.alive_mob_list)
+	for(var/mob/living/carbon/human/A in GLOB.alive_human_list)
 		if(iszombie(A) && !A.client && A.regenZ)
 			var/player_in_decap_head
 			//when decapitated the human mob is clientless,
@@ -712,7 +707,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(!client)
 		return
 
-	for(var/mob/living/carbon/human/Z in GLOB.alive_mob_list)
+	for(var/mob/living/carbon/human/Z in GLOB.alive_human_list)
 		if(choice == Z.real_name)
 			if(Z.gc_destroyed) //should never occur,just to be sure.
 				return

@@ -128,15 +128,7 @@
 				to_chat(M, speech_bubble)
 			M.hear_say(new_message, verb, speaking, alt_name, italics, src)
 
-	spawn(30)
-		if(client) client.images -= speech_bubble
-		if(not_dead_speaker)
-			for(var/mob/M in listening)
-				if(M.client) M.client.images -= speech_bubble
-			for(var/mob/M in eavesdropping)
-				if(M.client) M.client.images -= speech_bubble
-		qdel(speech_bubble)
-
+	addtimer(CALLBACK(src, .proc/remove_speech_bubble, client, speech_bubble, (not_dead_speaker?listening : null)), 30)
 
 	if (watching.len)
 		var/rendered = "<span class='game say'><span class='name'>[src.name]</span> whispers something.</span>"

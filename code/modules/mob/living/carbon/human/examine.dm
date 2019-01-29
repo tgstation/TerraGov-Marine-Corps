@@ -224,12 +224,7 @@
 				msg += "<span class='deadsay'>[t_He] [t_has] gone cold.</span>\n"
 		if(ishuman(user) && !user.stat && Adjacent(user))
 			user.visible_message("<b>[user]</b> checks [src]'s pulse.", "You check [src]'s pulse.", null, 4)
-		spawn(15)
-			if(user && src && distance <= 1 && user.stat != 1)
-				if(pulse == PULSE_NONE)
-					to_chat(user, "<span class='deadsay'>[t_He] has no pulse[src.client ? "" : " and [t_his] soul has departed"]...</span>")
-				else
-					to_chat(user, "<span class='deadsay'>[t_He] has a pulse!</span>")
+		addtimer(CALLBACK(src, .proc/take_pulse, user), 15)
 
 	msg += "<span class='warning'>"
 
@@ -543,6 +538,16 @@
 		msg += "\n[t_He] is [pose]"
 
 	to_chat(user, msg)
+
+/mob/living/carbon/human/proc/take_pulse(mob/user)
+	if(!user || !src || !Adjacent(user) || user.is_mob_incapacitated())
+		return
+	var/t_He = p_they(TRUE)
+	var/pulse_taken = get_pulse(GETPULSE_HAND)
+	if(pulse_taken == PULSE_NONE)
+		to_chat(user, "<span class='deadsay'>[t_He] has no pulse[src.client ? "" : " and [p_their()] soul has departed"]...</span>")
+	else
+		to_chat(user, "<span class='deadsay'>[t_He]'s pulse is [pulse_taken].</span>")
 
 //Helper procedure. Called by /mob/living/carbon/human/examine() and /mob/living/carbon/human/Topic() to determine HUD access to security and medical records.
 /proc/hasHUD(mob/M, hudtype)

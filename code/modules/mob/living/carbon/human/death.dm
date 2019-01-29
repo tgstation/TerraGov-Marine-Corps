@@ -65,6 +65,9 @@
 	if(ticker && ticker.current_state == 3) //game has started, to ignore the map placed corpses.
 		round_statistics.total_human_deaths++
 
+	GLOB.dead_human_list += src
+	GLOB.alive_human_list -= src
+
 	return ..(gibbed,species.death_message)
 
 /mob/living/carbon/human/proc/makeSkeleton()

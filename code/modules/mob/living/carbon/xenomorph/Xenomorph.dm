@@ -61,7 +61,8 @@
 	create_reagents(1000)
 	gender = NEUTER
 
-	GLOB.living_xeno_list += src
+	GLOB.alive_xeno_list += src
+	GLOB.xeno_mob_list += src
 	round_statistics.total_xenos_created++
 
 	spawn(6) //Mind has to be transferred! Hopefully this will give it enough time to do so.
@@ -102,7 +103,7 @@
 	if(!nicknumber)
 		var/tempnumber = rand(1, 999)
 		var/list/numberlist = list()
-		for(var/mob/living/carbon/Xenomorph/X in GLOB.mob_list)
+		for(var/mob/living/carbon/Xenomorph/X in GLOB.xeno_mob_list)
 			numberlist += X.nicknumber
 
 		while(tempnumber in numberlist)
@@ -177,7 +178,9 @@
 	if(mind) mind.name = name //Grabs the name when the xeno is getting deleted, to reference through hive status later.
 	if(is_zoomed) zoom_out()
 
-	GLOB.living_xeno_list -= src
+	GLOB.alive_xeno_list -= src
+	GLOB.xeno_mob_list -= src
+	GLOB.dead_xeno_list -= src
 
 	if(hivenumber && hivenumber <= hive_datum.len)
 		var/datum/hive_status/hive = hive_datum[hivenumber]
