@@ -417,6 +417,10 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		var/obj/structure/table/T = A
 		T.visible_message("<span class='danger'>[root] crushes [T]!</span>")
 		T.destroy_structure(TRUE)
+	else if(istype(A, /obj/structure/closet))
+		var/obj/structure/closet/C = A
+		C.visible_message("<span class='danger'>[root] crushes [C]!</span>")
+		C.destroy_structure(TRUE)
 	else if(istype(A, /obj/structure/showcase))
 		var/obj/structure/showcase/S = A
 		S.visible_message("<span class='danger'>[root] bulldozes over [S]!</span>")
