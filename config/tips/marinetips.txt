@@ -1,32 +1,5 @@
-As a doctor, the cryotubes are excellent at dealing with basic damage.
-As a doctor, the cryotubes heal internal bleeding and organ damage, although slowly.
-As a doctor, surgery time from fastest to slowest is: by hand, Autodoc manual, Autodoc automatic.
-As a doctor, the white vest fits on your scrubs and can hold surgical tools.
-As a doctor, wear the surgical apron to help prevent infection while on the ground.
-As a doctor, you've got access to the chemistry machine, experiment to find the best medications.
-As a doctor, hygiene is important! keep yourself clean to prevent infections.
-As an engineer, you can take sandbag barricades apart with your entrenching tool.
-As an engineer, you can repair barricades with a welder.
-As an engineer, C4 is cheaper but det packs are more versatile.
-As an engineer, det packs can be set on demolition mode for an explosive trap.
-As an engineer, you build barricades the fastest.
-As a medic, the medevac stretcher needs to be linked to an active, powered beacon for it to teleport the patient.
-As a medic, the marines are counting on you to fix them up.
-As a medic, scan before you treat and you can't be beat.
-As a medic or doctor, remember that your HUD will tell you how much time is left to defibrillate a patient.
-As a medic, remember to bring extra kelotane or dermaline to heal burn damage. Xenos love acid and burning marines.
-As a medic, hypervene is useful. Use it to purge deadly neurotoxins and larva boosting growth hormones.
-As a B18 specialist, your armor has a built in medical system.
-As a scout specialist, you can take your battle rifle or your custom shotgun.
-As a sniper specialist, you've got a tarp that can make you stealth so long as you don't move.
-As a pyro specialist, your flamethrower has an extinguisher built into it.
 As a human, you can do almost anything if you put your mind to it, it just takes time.
-As a PFC, you can take two guns, one in the suit slot and one on your back.
-As a PFC, you can help out your squad by bringing extra ammunition and food to share.
-As a PFC, you can usually get two attachments of your choice from Requisitions.
-As the RO, things get more expensive the more often you buy it.
-While medics and doctors are best, any human can use a Defibrillator.
-Even if a patient dies a second after being successfully revived by a defibrillator, this resets the time it takes for them to become permanently brain dead.
+While medics and doctors are best, anyone can use a Defibrillator.
 Anyone can make razor wire with four metal rods and barbed wire from metal sheets.
 Using a multitool on a lasgun batteries will turn it into an improvised explosive with a random timer.
 In a pinch, you can use lasgun batteries to power APCs and sentry guns.
@@ -42,3 +15,5 @@ Removing weeds means you can move faster.
 Your standard boot knife is great at removing weeds.
 During Self Destruct, green control rods are armed control rods, collect all six!
 Stop, Drop, and Roll, if you are on fire to put yourself out.
+A fit marine can carry many weapons: in their armor, belt, even hanging from their back.
+Requisitions have many supplies to enhance the combat power of marine units. Attachments, ammunition, and other toys, ask their crew what's on store and you may be pleasantly surprised. DISCLAIMER: Extra gear's availability dependent on supply.
