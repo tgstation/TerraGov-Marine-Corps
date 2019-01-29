@@ -680,7 +680,7 @@
 		var/prompt = alert("Do you want to grant [C] access to view this VV window? (they will not be able to edit or change anything nor open nested vv windows unless they themselves are an admin)", "Confirm", "Yes", "No")
 		if (prompt != "Yes" || !usr.client)
 			return
-		message_admins("[key_name_admin(usr)] Showed [key_name_admin(C)] a <a href='?_src_=vars;[HrefToken(TRUE)];datumrefresh=[REF(thing)]'>VV window</a>")
+		message_admins("[ADMIN_TPMONTY(usr)] Showed [key_name_admin(C)] a <a href='?_src_=vars;[HrefToken(TRUE)];datumrefresh=[REF(thing)]'>VV window</a>")
 		log_admin("Admin [key_name(usr)] Showed [key_name(C)] a VV window of a [thing]")
 		to_chat(C, "[usr.client.holder.fakekey ? "an Administrator" : "[usr.client.key]"] has granted you access to view a View Variables window")
 		C.debug_variables(thing)
@@ -706,7 +706,7 @@
 			if( !new_name || !M )
 				return
 
-			message_admins("Admin [key_name_admin(usr)] renamed [key_name_admin(M)] to [new_name].")
+			message_admins("Admin [ADMIN_TPMONTY(usr)] renamed [ADMIN_TPMONTY(M)] to [new_name].")
 			M.fully_replace_character_name(M.real_name,new_name)
 			vv_update_display(M, "name", new_name)
 			vv_update_display(M, "real_name", M.real_name || "No real name")
@@ -799,7 +799,7 @@
 			L.Cut(index, index+1)
 			log_world("### ListVarEdit by [src]: /list's contents: REMOVED=[html_encode("[variable]")]")
 			log_admin("[key_name(src)] modified list's contents: REMOVED=[variable]")
-			message_admins("[key_name_admin(src)] modified list's contents: REMOVED=[variable]")
+			message_admins("[ADMIN_TPMONTY(usr)] modified list's contents: REMOVED=[variable]")
 
 		else if(href_list["listadd"])
 			var/list/L = locate(href_list["listadd"])
@@ -818,7 +818,7 @@
 			uniqueList_inplace(L)
 			log_world("### ListVarEdit by [src]: /list contents: CLEAR DUPES")
 			log_admin("[key_name(src)] modified list's contents: CLEAR DUPES")
-			message_admins("[key_name_admin(src)] modified list's contents: CLEAR DUPES")
+			message_admins("[ADMIN_TPMONTY(usr)] modified list's contents: CLEAR DUPES")
 
 		else if(href_list["listnulls"])
 			var/list/L = locate(href_list["listnulls"])
@@ -829,7 +829,7 @@
 			listclearnulls(L)
 			log_world("### ListVarEdit by [src]: /list contents: CLEAR NULLS")
 			log_admin("[key_name(src)] modified list's contents: CLEAR NULLS")
-			message_admins("[key_name_admin(src)] modified list's contents: CLEAR NULLS")
+			message_admins("[ADMIN_TPMONTY(usr)] modified list's contents: CLEAR NULLS")
 
 		else if(href_list["listlen"])
 			var/list/L = locate(href_list["listlen"])
@@ -843,7 +843,7 @@
 			L.len = value["value"]
 			log_world("### ListVarEdit by [src]: /list len: [L.len]")
 			log_admin("[key_name(src)] modified list's len: [L.len]")
-			message_admins("[key_name_admin(src)] modified list's len: [L.len]")
+			message_admins("[ADMIN_TPMONTY(usr)] modified list's len: [L.len]")
 
 		else if(href_list["listshuffle"])
 			var/list/L = locate(href_list["listshuffle"])
@@ -854,7 +854,7 @@
 			shuffle_inplace(L)
 			log_world("### ListVarEdit by [src]: /list contents: SHUFFLE")
 			log_admin("[key_name(src)] modified list's contents: SHUFFLE")
-			message_admins("[key_name_admin(src)] modified list's contents: SHUFFLE")
+			message_admins("[ADMIN_TPMONTY(usr)] modified list's contents: SHUFFLE")
 
 
 		else if(href_list["delall"])
@@ -888,8 +888,8 @@
 					if(!i)
 						to_chat(usr, "No objects of this type exist")
 						return
-					log_admin("[key_name(usr)] deleted all objects of type [O_type] ([i] objects deleted) ")
-					message_admins("<span class='notice'>[key_name(usr)] deleted all objects of type [O_type] ([i] objects deleted) </span>")
+					log_admin("[key_name(usr)] deleted all objects of type [O_type] ([i] objects deleted).")
+					message_admins("[ADMIN_TPMONTY(usr)] deleted all objects of type [O_type] ([i] objects deleted).")
 				if("Type and subtypes")
 					var/i = 0
 					for(var/obj/Obj in world)
@@ -900,8 +900,8 @@
 					if(!i)
 						to_chat(usr, "No objects of this type exist")
 						return
-					log_admin("[key_name(usr)] deleted all objects of type or subtype of [O_type] ([i] objects deleted) ")
-					message_admins("<span class='notice'>[key_name(usr)] deleted all objects of type or subtype of [O_type] ([i] objects deleted) </span>")
+					log_admin("[key_name(usr)] deleted all objects of type or subtype of [O_type] ([i] objects deleted).")
+					message_admins("[ADMIN_TPMONTY(usr)] deleted all objects of type or subtype of [O_type] ([i] objects deleted).")
 
 
 		else if(href_list["addreagent"])

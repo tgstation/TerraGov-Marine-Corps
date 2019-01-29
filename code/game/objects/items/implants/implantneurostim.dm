@@ -39,7 +39,7 @@
 
 	last_activated = world.time
 
-	if(istype(imp_in, /mob/living/carbon))
+	if(iscarbon(imp_in))
 		var/mob/living/carbon/C = imp_in
 		if(accidental) //was triggered by random chance or EMP
 			playsound(C, 'sound/machines/buzz-two.ogg', 60, 1)

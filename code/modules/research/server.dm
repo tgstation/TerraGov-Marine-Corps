@@ -98,7 +98,7 @@
 		return
 	if (shocked)
 		shock(user,50)
-	if (istype(O, /obj/item/tool/screwdriver))
+	if (isscrewdriver(O))
 		if (!opened)
 			opened = 1
 			icon_state = "server_o"
@@ -109,7 +109,7 @@
 			to_chat(user, "You close the maintenance hatch of [src].")
 		return
 	if (opened)
-		if(istype(O, /obj/item/tool/crowbar))
+		if(iscrowbar(O))
 			griefProtection()
 			playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
 			var/obj/machinery/constructable_frame/machine_frame/M = new /obj/machinery/constructable_frame/machine_frame(src.loc)

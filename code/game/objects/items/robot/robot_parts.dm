@@ -231,7 +231,7 @@
 			if(user.transferItemToLoc(W, src))
 				cell = W
 				to_chat(user, "<span class='notice'>You insert the cell!</span>")
-	if(istype(W, /obj/item/stack/cable_coil))
+	if(iscablecoil(W))
 		if(src.wires)
 			to_chat(user, "<span class='notice'>You have already inserted wire!</span>")
 			return

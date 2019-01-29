@@ -245,8 +245,7 @@ its easier to just keep the beam vertical.
 	A.examine(src)
 
 /atom/proc/examine(mob/user)
-
-	if(!istype(src, /obj/item) && !istype(src, /obj/effect/statclick))
+	if(!istype(src, /obj/item))
 		to_chat(user, "\icon[src] That's \a [src].")
 
 	else // No component signaling, dropping it here.
@@ -286,7 +285,7 @@ its easier to just keep the beam vertical.
 				else
 					to_chat(user, "<span class='warning'>It's empty.</span>")
 			else if(container_type & AMOUNT_SKILLCHECK)
-				if(isXeno())
+				if(isxeno(user))
 					return
 				if(!user.mind || !user.mind.cm_skills || user.mind.cm_skills.medical >= SKILL_MEDICAL_CHEM) // If they have no skillset(admin-spawn, etc), or are properly skilled.
 					to_chat(user, "It contains:")

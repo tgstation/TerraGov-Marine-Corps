@@ -52,7 +52,7 @@
 
 	for(var/mob/M in GLOB.player_list)
 
-		if(istype(M, /mob/new_player))
+		if(isnewplayer(M))
 			continue
 
 		if(M.client && M.stat == DEAD && (M.client.prefs.toggles_chat & CHAT_DEAD))

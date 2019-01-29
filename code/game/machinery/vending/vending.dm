@@ -18,7 +18,6 @@
 	anchored = 1
 	density = 1
 	layer = BELOW_OBJ_LAYER
-	can_supply_drop = TRUE
 
 	use_power = 1
 	idle_power_usage = 10
@@ -201,7 +200,7 @@
 		src.emagged = 1
 		to_chat(user, "You short out the product lock on [src]")
 		return
-	else if(istype(W, /obj/item/tool/screwdriver))
+	else if(isscrewdriver(W))
 		src.panel_open = !src.panel_open
 		to_chat(user, "You [src.panel_open ? "open" : "close"] the maintenance panel.")
 		src.overlays.Cut()
@@ -209,7 +208,7 @@
 			src.overlays += image(src.icon, "[initial(icon_state)]-panel")
 		src.updateUsrDialog()
 		return
-	else if(istype(W, /obj/item/device/multitool)||istype(W, /obj/item/tool/wirecutters))
+	else if(ismultitool(W)||iswirecutter(W))
 		if(src.panel_open)
 			attack_hand(user)
 		return
@@ -239,7 +238,7 @@
 			to_chat(user, "<span class='notice'>You insert the [W] into the [src]</span>")
 		return
 
-	else if(istype(W, /obj/item/tool/wrench))
+	else if(iswrench(W))
 		if(!wrenchable) return
 
 		if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
@@ -501,8 +500,9 @@
 				usr.visible_message("<span class='notice'>[usr] fumbles around figuring out the wiring.</span>",
 				"<span class='notice'>You fumble around figuring out the wiring.</span>")
 				var/fumbling_time = 20 * ( SKILL_ENGINEER_ENGI - usr.mind.cm_skills.engineer )
-				if(!do_after(usr, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
-			if (!( istype(usr.get_active_held_item(), /obj/item/tool/wirecutters) ))
+				if(!do_after(usr, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+					return
+			if (!iswirecutter(usr.get_active_held_item()))
 				to_chat(usr, "You need wirecutters!")
 				return
 			if (src.isWireColorCut(twire))
@@ -517,7 +517,7 @@
 				"<span class='notice'>You fumble around figuring out the wiring.</span>")
 				var/fumbling_time = 20 * ( SKILL_ENGINEER_ENGI - usr.mind.cm_skills.engineer )
 				if(!do_after(usr, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
-			if (!istype(usr.get_active_held_item(), /obj/item/device/multitool))
+			if (!ismultitool(usr.get_active_held_item()))
 				to_chat(usr, "You need a multitool!")
 				return
 			if (src.isWireColorCut(twire))

@@ -113,7 +113,7 @@
 		if(M.lastarea.has_gravity == 0)
 			inertial_drift(M)
 
-		else if(!istype(src, /turf/open/space))
+		else if(!isspaceturf(src))
 			M.inertia_dir = 0
 			M.make_floating(0)
 	..()

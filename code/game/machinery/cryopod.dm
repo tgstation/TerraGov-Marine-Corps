@@ -401,7 +401,7 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 /obj/machinery/cryopod/attackby(obj/item/W, mob/living/user)
 
 	if(istype(W, /obj/item/grab))
-		if(isXeno(user)) return
+		if(isxeno(user)) return
 		var/obj/item/grab/G = W
 		if(occupant)
 			to_chat(user, "<span class='warning'>[src] is occupied.</span>")
@@ -417,7 +417,7 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 			to_chat(user, "<span class='warning'>[src] immediately rejects [M]. \He passed away!</span>")
 			return
 
-		if(isXeno(M))
+		if(isxeno(M))
 			to_chat(user, "<span class='warning'>There is no way [src] will accept [M]!</span>")
 			return
 
@@ -497,7 +497,7 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 		to_chat(usr, "<span class='warning'>[src] is occupied.</span>")
 		return
 
-	if(isXeno(usr))
+	if(isxeno(usr))
 		to_chat(usr, "<span class='warning'>There is no way [src] will accept you!</span>")
 		return
 
