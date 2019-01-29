@@ -494,7 +494,7 @@
 	if(attack_flag == "energy")
 		if(istype(wear_suit, /obj/item/clothing/suit/fire) || (istype(wear_suit, /obj/item/clothing/suit/storage/marine/M35) && istype(head, /obj/item/clothing/head/helmet/marine/pyro)))
 			show_message(text("Your suit protects you from the flames."),1)
-			return CLAMP(armor_block * 1.5, 0.75, 1) //Min 75% resist, max 100%
+			return CLAMP(..() * 1.5, 0.75, 1) //Min 75% resist, max 100%
 	return ..()
 
 // override this proc to give different walking-over-fire effects
@@ -511,13 +511,13 @@
 
 /mob/living/carbon/human/flamer_fire_crossed(var/burnlevel, var/firelevel, var/fire_mod=1)
 	..()
-	if(isXeno(H.pulledby))
-		var/mob/living/carbon/Xenomorph/Z = H.pulledby
-		if(!Z.xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
-			Z.adjust_fire_stacks(burnlevel)
-			Z.IgniteMob()
+	if(isXeno(pulledby))
+		var/mob/living/carbon/Xenomorph/X = pulledby
+		X.flamer_fire_crossed(burnlevel, firelevel)
 
 /mob/living/carbon/Xenomorph/flamer_fire_crossed(var/burnlevel, var/firelevel, var/fire_mod=1)
+	if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
+		return
 	..(burnlevel, firelevel, fire_resist)
 	updatehealth()
 
@@ -577,6 +577,8 @@
 	..()
 
 /mob/living/carbon/Xenomorph/flamer_fire_act(var/burnlevel, var/firelevel)
+	if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
+		return
 	..()
 	updatehealth()
 
