@@ -175,7 +175,8 @@
 	name = "\improper Imperial uniform"
 	desc = "This uniform is given out to pretty much every soldier in the Imperium."
 	rollable_sleeves = FALSE // don't disrespect the EMPEROR!
-	icon_state = "imperial_s"
+	icon_state = "guardjumpsuit"
+	item_state = "guardjumpsuit"
 
 
 

@@ -404,7 +404,8 @@
 /obj/item/clothing/head/helmet/marine/imperial
 	name = "\improper Imperial Guard flak helmet"
 	desc = "A standard Imperial Guard helmet that goes with the flak armour, it is also mass produced, and it can save your life, maybe."
-	//icon_state
+	icon_state = "guardhelm"
+	item_state = "guardhelm"
 
 /obj/item/clothing/head/helmet/marine/imperial/sergeant
 	name = "\improper Imperial Guard carapace helmet"

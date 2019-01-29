@@ -757,7 +757,8 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 /obj/item/clothing/suit/storage/marine/imperial
 	name = "\improper Imperial Guard flak armour"
 	desc = "A cheap, mass produced armour worn by the Imperial Guard, which are also cheap and mass produced. You can make out what appears to be <i>Cadia stands</i> carved into the armour."
-	//icon_state
+	icon_state = "guardarmor"
+	item_state = "guardarmor"
 
 /obj/item/clothing/suit/storage/marine/imperial/sergeant
 	// carapace armour, better than flak, covers everything
