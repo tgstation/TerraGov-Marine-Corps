@@ -553,35 +553,37 @@
 		to_chat(usr, "\icon[src] <span class='warning'>The target's landing zone appears to be out of bounds.</span>")
 		return
 	busy = TRUE //All set, let's do this.
+	if(A)
+		log_attack("[key_name(usr)] fired an orbital bombardment in for squad [current_squad] in [AREACOORD(T)].")			
+		message_admins("[ADMIN_TPMONTY(usr)] fired an orbital bombardment for squad [current_squad] in [ADMIN_VERBOSEJMP(T)].")
 	state("<span class='boldnotice'>Orbital bombardment request accepted. Orbital cannons are now calibrating.</span>")
 	send_to_squads("Initializing fire coordinates...")
 	if(selected_target)
 		playsound(selected_target.loc,'sound/effects/alert.ogg', 25, 1)  //Placeholder
-	sleep(15)
-	send_to_squads("Transmitting beacon feed...")
-	sleep(15)
-	send_to_squads("Calibrating trajectory window...")
-	sleep(11)
-	for(var/mob/living/carbon/H in GLOB.alive_human_list)
+	addtimer(CALLBACK(src, .send_to_squads, "Transmitting beacon feed..."), 1.5 SECONDS)
+	addtimer(CALLBACK(src, .send_to_squads, "Calibrating trajectory window..."), 3 SECONDS)
+	addtimer(CALLBACK(src, .do_fire_bombard, T, usr), 4.1 SECONDS)
+
+/obj/machinery/computer/overwatch/proc/do_fire_bombard(var/turf/T, var/user)
+	state("<span class='boldnotice'>Orbital bombardment has fired! Impact imminent!</span>")
+	send_to_squads("<span class='danger'>WARNING! Ballistic trans-atmospheric launch detected! Get outside of Danger Close!</span>")
+	addtimer(CALLBACK(src, .do_land_bombard, T, user), 2.5 SECONDS)
+
+/obj/machinery/computer/overwatch/proc/do_land_bombard(var/turf/T, var/user)
+	busy = FALSE
+	var/x_offset = rand(-2,2) //Little bit of randomness.
+	var/y_offset = rand(-2,2)
+	var/turf/target = locate(T.x + x_offset,T.y + y_offset,T.z)
+	if(target && istype(target))
+		target.ceiling_debris_check(5)
+		addtimer(CALLBACK(almayer_orbital_cannon, /obj/structure/orbital_cannon.proc/fire_ob_cannon, target, user), 2)
+
+/obj/machinery/computer/overwatch/proc/do_shake_camera()
+	for(var/mob/living/carbon/H in GLOB.alive_mob_list)
 		if(H.z == MAIN_SHIP_Z_LEVEL && !H.stat) //TGS Theseus decks.
 			to_chat(H, "<span class='warning'>The deck of the [MAIN_SHIP_NAME] shudders as the orbital cannons open fire on the colony.</span>")
 			if(H.client)
 				shake_camera(H, 10, 1)
-	state("<span class='boldnotice'>Orbital bombardment has fired! Impact imminent!</span>")
-	send_to_squads("<span class='danger'>WARNING! Ballistic trans-atmospheric launch detected! Get outside of Danger Close!</span>")
-	spawn(25)
-		if(A)
-			log_attack("[key_name(usr)] fired an orbital bombardment in for squad [current_squad] in [AREACOORD(T)].")			
-			message_admins("[ADMIN_TPMONTY(usr)] fired an orbital bombardment for squad [current_squad] in [ADMIN_VERBOSEJMP(T)].")
-
-		busy = FALSE
-		var/x_offset = rand(-2,2) //Little bit of randomness.
-		var/y_offset = rand(-2,2)
-		var/turf/target = locate(T.x + x_offset,T.y + y_offset,T.z)
-		if(target && istype(target))
-			target.ceiling_debris_check(5)
-			spawn(2)
-				almayer_orbital_cannon.fire_ob_cannon(target, usr)
 
 /obj/machinery/computer/overwatch/proc/change_lead()
 	if(!usr || usr != operator)
@@ -785,18 +787,14 @@
 		to_chat(usr, "\icon[src] <span class='warning'>The [current_squad.sbeacon.name]'s landing zone appears to be obstructed or out of bounds.</span>")
 		return
 
+	busy = TRUE
+
 	var/x_offset = x_offset_s
 	var/y_offset = y_offset_s
-	x_offset = round(x_offset)
-	y_offset = round(y_offset)
-	if(!x_offset in -5 to 5)
-		x_offset = 0
-	if(!y_offset in -5 to 5)
-		y_offset = 0
+	x_offset = CLAMP(round(x_offset), -5, 5)
+	y_offset = CLAMP(round(y_offset), -5, 5)
 	x_offset += rand(-2,2) //Randomize the drop zone a little bit.
 	y_offset += rand(-2,2)
-
-	busy = TRUE
 
 	state("<span class='boldnotice'>The supply drop is now loading into the launch tube! Stand by!</span>")
 	current_squad.drop_pad.visible_message("<span class='warning'>\The [current_squad.drop_pad] whirrs as it beings to load the supply drop into a launch tube. Stand clear!</span>")
@@ -831,10 +829,8 @@
 	playsound(S.drop_pad.loc,'sound/effects/bamf.ogg', 50, 1)  //Ehh
 	for(var/obj/C in loaded_supplies)
 		C.anchored = FALSE
-		C.z = TB.z
-		C.x = TB.x + x_offset
-		C.y = TB.y + x_offset
-		var/turf/TC = get_turf(C)
+		var/turf/TC = locate(TB.x + x_offset, TB.y + y_offset, TB.z)
+		C.forceMove(TC)
 		TC.ceiling_debris_check(2)
 	visible_message("\icon[src] <span class='boldnotice'>Supply drop launched! Another launch will be available in five minutes.</span>")
 	busy = FALSE
@@ -850,10 +846,9 @@
 	var/squad_name = "Alpha"
 	var/sending_package = 0
 
-/obj/structure/supply_drop/New() //Link a squad to a drop pad
+/obj/structure/supply_drop/Initialize() //Link a squad to a drop pad
 	. = ..()
-	spawn(10)
-		force_link()
+	force_link()
 
 /obj/structure/supply_drop/proc/force_link() //Somehow, it didn't get set properly on the new proc. Force it again,
 	var/datum/squad/S = RoleAuthority.squads[RoleAuthority.squads_names.Find(squad_name)]
@@ -1079,22 +1074,19 @@
 			say(message)
 			var/image/move = image('icons/mob/talk.dmi', icon_state = "order_move")
 			overlays += move
-			spawn(5 SECONDS)
-				overlays -= move
+			addtimer(CALLBACK(src, .proc/remove_emote_overlay, move), 5 SECONDS)
 		if("hold")
 			message = pick(";DUCK AND COVER!", ";HOLD THE LINE!", ";HOLD POSITION!", ";STAND YOUR GROUND!", ";STAND AND FIGHT!")
 			say(message)
 			var/image/hold = image('icons/mob/talk.dmi', icon_state = "order_hold")
 			overlays += hold
-			spawn(5 SECONDS)
-				overlays -= hold
+			addtimer(CALLBACK(src, .proc/remove_emote_overlay, hold), 5 SECONDS)
 		if("focus")
 			message = pick(";FOCUS FIRE!", ";PICK YOUR TARGETS!", ";CENTER MASS!", ";CONTROLLED BURSTS!", ";AIM YOUR SHOTS!")
 			say(message)
 			var/image/focus = image('icons/mob/talk.dmi', icon_state = "order_focus")
 			overlays += focus
-			spawn(5 SECONDS)
-				overlays -= focus
+			addtimer(CALLBACK(src, .proc/remove_emote_overlay, focus), 5 SECONDS)
 	update_action_buttons()
 
 
