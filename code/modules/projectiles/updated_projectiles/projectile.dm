@@ -252,9 +252,8 @@
 					to_chat(world, "DEBUG: Hit Chance 1: [hit_chance], Hit Roll: [hit_roll]")
 					#endif
 					if(hit_roll < 25) //Sniper targets more likely to hit
-						if(shot_from) //Avoid sentry run times
-							if(!shot_from.sniper_target(A))
-								def_zone = pick(base_miss_chance)	// Still hit but now we might hit the wrong body part
+						if(shot_from && !shot_from.sniper_target(A)) //Avoid sentry run times
+							def_zone = pick(base_miss_chance)	// Still hit but now we might hit the wrong body part
 						else
 							def_zone = pick(base_miss_chance)	// Still hit but now we might hit the wrong body part
 
@@ -548,10 +547,9 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 		to_chat(world, "<span class='debuginfo'>Initial armor is: <b>[armor]</b></span>")
 		#endif
 		var/penetration = P.ammo.penetration > 0 || armor > 0 ? P.ammo.penetration : 0
-		if(P.shot_from) //Runtimes bad
-			if(src == P.shot_from.sniper_target(src))
-				damage *= SNIPER_LASER_DAMAGE_MULTIPLIER //+50% damage vs the aimed target
-				penetration *= SNIPER_LASER_ARMOR_MULTIPLIER //+50% penetration vs the aimed target
+		if(P.shot_from && src == P.shot_from.sniper_target(src)) //Runtimes bad
+			damage *= SNIPER_LASER_DAMAGE_MULTIPLIER //+50% damage vs the aimed target
+			penetration *= SNIPER_LASER_ARMOR_MULTIPLIER //+50% penetration vs the aimed target
 		armor -= penetration//Minus armor penetration from the bullet. If the bullet has negative penetration, adding to their armor, but they don't have armor, they get nothing.
 		#if DEBUG_HUMAN_DEFENSE
 		to_chat(world, "<span class='debuginfo'>Adjusted armor after penetration is: <b>[armor]</b></span>")
@@ -664,10 +662,9 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 			#endif
 
 		var/penetration = P.ammo.penetration > 0 || armor > 0 ? P.ammo.penetration : 0
-		if(P.shot_from) //Runtimes bad
-			if(src == P.shot_from.sniper_target(src))
-				damage *= SNIPER_LASER_DAMAGE_MULTIPLIER //+50% damage vs the aimed target
-				penetration *= SNIPER_LASER_ARMOR_MULTIPLIER //+50% penetration vs the aimed target
+		if(P.shot_from && src == P.shot_from.sniper_target(src))
+			damage *= SNIPER_LASER_DAMAGE_MULTIPLIER //+50% damage vs the aimed target
+			penetration *= SNIPER_LASER_ARMOR_MULTIPLIER //+50% penetration vs the aimed target
 
 		armor -= penetration
 
