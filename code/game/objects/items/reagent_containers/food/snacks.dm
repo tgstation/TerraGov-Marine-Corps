@@ -1120,6 +1120,7 @@
 	desc = "A true prophecy in each cookie!"
 	icon_state = "fortune_cookie"
 	filling_color = "#E8E79E"
+	trash = /obj/item/trash/fortunecookie
 	list_reagents = list("nutriment" = 3)
 	bitesize = 2
 	tastes = list("cookie" = 1)

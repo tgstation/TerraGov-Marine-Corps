@@ -227,7 +227,6 @@ var/world_topic_spam_protect_time = world.timeofday
 	fdel(F)
 	to_chat(F, the_mode)
 
-
 /world/proc/update_status()
 	//Note: Hub content is limited to 254 characters, including HTML/CSS. Image width is limited to 450 pixels.
 	var/s = ""

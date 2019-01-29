@@ -70,28 +70,26 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	var/procname = input("Proc path, eg: /proc/fake_blood","Path:", null) as text|null
 	if(!procname)
 		return
-
-	//hascall() doesn't support proc paths (eg: /proc/gib(), it only supports "gib")
-	var/testname = procname
-	if(targetselected)
-		//Find one of the 3 possible ways they could have written /proc/PROCNAME
-		if(findtext(procname, "/proc/"))
-			testname = replacetext(procname, "/proc/", "")
-		else if(findtext(procname, "/proc"))
-			testname = replacetext(procname, "/proc", "")
-		else if(findtext(procname, "proc/"))
-			testname = replacetext(procname, "proc/", "")
-		//Clear out any parenthesis if they're a dummy
-		testname = replacetext(testname, "()", "")
-
-	if(targetselected && !hascall(target,testname))
-		to_chat(usr, "<font color='red'>Error: callproc(): type [target.type] has no proc named [procname].</font>")
+	
+	//strip away everything but the proc name
+	var/list/proclist = splittext(procname, "/")
+	if (!length(proclist))
+		return
+	procname = proclist[proclist.len]
+	
+	var/proctype = "proc"
+	if ("verb" in proclist)
+		proctype = "verb"
+	
+	if(targetselected && !hascall(target, procname))
+		to_chat(usr, "<font color='red'>Error: callproc(): type [target.type] has no [proctype] named [procname].</font>")
 		return
 	else
-		var/procpath = text2path(procname)
-		if (!procpath)
+		var/procpath = text2path("[proctype]/[procname]")
+		if(!procpath)
 			to_chat(usr, "<font color='red'>Error: callproc(): proc [procname] does not exist. (Did you forget the /proc/ part?)</font>")
 			return
+			
 	var/list/lst = usr.client.holder.get_callproc_args()
 	if(!lst)
 		return
@@ -159,7 +157,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		. += named_args
 
 
-/datum/admins/proc/change_hivenumber(mob/living/carbon/Xenomorph/X in GLOB.mob_list)
+/datum/admins/proc/change_hivenumber(mob/living/carbon/Xenomorph/X in GLOB.xeno_mob_list)
 	set category = "Debug"
 	set name = "Change Hivenumber"
 	set desc = "Set the hivenumber of a xenomorph."
@@ -456,11 +454,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	if(!check_rights(R_DEBUG))
 		return
 
-	var/list/humans = list()
-	for(var/mob/living/carbon/human/H in GLOB.mob_list)
-		humans += H
-
-	var/selection = input("Please, select a human!", "Update Mob Sprite", null, null) as null|anything in sortmobs(humans)
+	var/selection = input("Please, select a human!", "Update Mob Sprite", null, null) as null|anything in sortmobs(GLOB.human_mob_list)
 	if(!selection)
 		return
 

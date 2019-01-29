@@ -16,78 +16,77 @@
 //Adds stuff to your "Status" pane -- Specific castes can have their own, like carrier hugger count
 //Those are dealt with in their caste files.
 /mob/living/carbon/Xenomorph/Stat()
-	if (!..())
-		return 0
+	. = ..()
 
-	var/datum/hive_status/hive
-	if(hivenumber && hivenumber <= hive_datum.len)
-		hive = hive_datum[hivenumber]
+	if(statpanel("Stats"))
+		var/datum/hive_status/hive
+		if(hivenumber && hivenumber <= hive_datum.len)
+			hive = hive_datum[hivenumber]
 
-		if(!(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED))
-			stat(null, "Evolve Progress (FINISHED)")
-		else if(!hive.living_xeno_queen)
-			stat(null, "Evolve Progress (HALTED - NO QUEEN)")
-		else if(!hive.living_xeno_queen.ovipositor)
-			stat(null, "Evolve Progress (HALTED - QUEEN HAS NO OVIPOSITOR)")
-		else
-			stat(null, "Evolve Progress: [evolution_stored]/[xeno_caste.evolution_threshold]")
-
-		if(upgrade != -1 && upgrade != 3) //upgrade possible
-			stat(null, "Upgrade Progress: [upgrade_stored]/[xeno_caste.upgrade_threshold]")
-		else //Upgrade process finished or impossible
-			stat(null, "Upgrade Progress (FINISHED)")
-
-		if(xeno_caste.plasma_max > 0)
-			if(isXenoSilicon(src))
-				stat(null, "Charge: [plasma_stored]/[xeno_caste.plasma_max]")
+			if(!(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED))
+				stat(null, "Evolve Progress (FINISHED)")
+			else if(!hive.living_xeno_queen)
+				stat(null, "Evolve Progress (HALTED - NO QUEEN)")
+			else if(!hive.living_xeno_queen.ovipositor)
+				stat(null, "Evolve Progress (HALTED - QUEEN HAS NO OVIPOSITOR)")
 			else
-				stat(null, "Plasma: [plasma_stored]/[xeno_caste.plasma_max]")
+				stat(null, "Evolve Progress: [evolution_stored]/[xeno_caste.evolution_threshold]")
 
-		if(hivenumber != XENO_HIVE_CORRUPTED)
-			if(hive.slashing_allowed == 1)
-				stat(null,"Slashing of hosts is currently: PERMITTED.")
-			else if(hive.slashing_allowed == 2)
-				stat(null,"Slashing of hosts is currently: LIMITED.")
+			if(upgrade != -1 && upgrade != 3) //upgrade possible
+				stat(null, "Upgrade Progress: [upgrade_stored]/[xeno_caste.upgrade_threshold]")
+			else //Upgrade process finished or impossible
+				stat(null, "Upgrade Progress (FINISHED)")
+
+			if(xeno_caste.plasma_max > 0)
+				if(isXenoSilicon(src))
+					stat(null, "Charge: [plasma_stored]/[xeno_caste.plasma_max]")
+				else
+					stat(null, "Plasma: [plasma_stored]/[xeno_caste.plasma_max]")
+
+			if(hivenumber != XENO_HIVE_CORRUPTED)
+				if(hive.slashing_allowed == 1)
+					stat(null,"Slashing of hosts is currently: PERMITTED.")
+				else if(hive.slashing_allowed == 2)
+					stat(null,"Slashing of hosts is currently: LIMITED.")
+				else
+					stat(null,"Slashing of hosts is currently: FORBIDDEN.")
 			else
-				stat(null,"Slashing of hosts is currently: FORBIDDEN.")
-		else
-			stat(null,"Slashing of hosts is decided by your masters.")
+				stat(null,"Slashing of hosts is decided by your masters.")
 
-		//Very weak <= 1.0, weak <= 2.0, no modifier 2-3, strong <= 3.5, very strong <= 4.5
-		var/msg_holder = ""
-		if(frenzy_aura)
-			switch(frenzy_aura)
-				if(-INFINITY to 1.0) msg_holder = "very weak "
-				if(1.1 to 2.0) msg_holder = "weak "
-				if(2.1 to 2.9) msg_holder = ""
-				if(3.0 to 3.9) msg_holder = "strong "
-				if(4.0 to INFINITY) msg_holder = "very strong "
-			stat(null,"You are affected by a [msg_holder]FRENZY pheromone.")
-		if(warding_aura)
-			switch(warding_aura)
-				if(-INFINITY to 1.0) msg_holder = "very weak "
-				if(1.1 to 2.0) msg_holder = "weak "
-				if(2.1 to 2.9) msg_holder = ""
-				if(3.0 to 3.9) msg_holder = "strong "
-				if(4.0 to INFINITY) msg_holder = "very strong "
-			stat(null,"You are affected by a [msg_holder]WARDING pheromone.")
-		if(recovery_aura)
-			switch(recovery_aura)
-				if(-INFINITY to 1.0) msg_holder = "very weak "
-				if(1.1 to 2.0) msg_holder = "weak "
-				if(2.1 to 2.9) msg_holder = ""
-				if(3.0 to 3.9) msg_holder = "strong "
-				if(4.0 to INFINITY) msg_holder = "very strong "
-			stat(null,"You are affected by a [msg_holder]RECOVERY pheromone.")
+			//Very weak <= 1.0, weak <= 2.0, no modifier 2-3, strong <= 3.5, very strong <= 4.5
+			var/msg_holder = ""
+			if(frenzy_aura)
+				switch(frenzy_aura)
+					if(-INFINITY to 1.0) msg_holder = "very weak "
+					if(1.1 to 2.0) msg_holder = "weak "
+					if(2.1 to 2.9) msg_holder = ""
+					if(3.0 to 3.9) msg_holder = "strong "
+					if(4.0 to INFINITY) msg_holder = "very strong "
+				stat(null,"You are affected by a [msg_holder]FRENZY pheromone.")
+			if(warding_aura)
+				switch(warding_aura)
+					if(-INFINITY to 1.0) msg_holder = "very weak "
+					if(1.1 to 2.0) msg_holder = "weak "
+					if(2.1 to 2.9) msg_holder = ""
+					if(3.0 to 3.9) msg_holder = "strong "
+					if(4.0 to INFINITY) msg_holder = "very strong "
+				stat(null,"You are affected by a [msg_holder]WARDING pheromone.")
+			if(recovery_aura)
+				switch(recovery_aura)
+					if(-INFINITY to 1.0) msg_holder = "very weak "
+					if(1.1 to 2.0) msg_holder = "weak "
+					if(2.1 to 2.9) msg_holder = ""
+					if(3.0 to 3.9) msg_holder = "strong "
+					if(4.0 to INFINITY) msg_holder = "very strong "
+				stat(null,"You are affected by a [msg_holder]RECOVERY pheromone.")
 
 
-		if(hivenumber != XENO_HIVE_CORRUPTED)
-			if(hive.hive_orders && hive.hive_orders != "")
-				stat(null,"Hive Orders: [hive.hive_orders]")
-		else
-			stat(null,"Hive Orders: Follow the instructions of your masters")
+			if(hivenumber != XENO_HIVE_CORRUPTED)
+				if(hive.hive_orders && hive.hive_orders != "")
+					stat(null,"Hive Orders: [hive.hive_orders]")
+			else
+				stat(null,"Hive Orders: Follow the instructions of your masters")
 
-	return 1
 
 //A simple handler for checking your state. Used in pretty much all the procs.
 /mob/living/carbon/Xenomorph/proc/check_state()
