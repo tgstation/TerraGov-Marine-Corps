@@ -21,9 +21,9 @@
 	for(var/atom/movable/I in contents)
 		qdel(I)
 
-	if(pulledby) 
+	if(pulledby)
 		pulledby.stop_pulling()
-	if(throw_source) 
+	if(throw_source)
 		throw_source = null
 
 	if(loc)
@@ -199,7 +199,7 @@
 	var/area/a = get_area(src.loc)
 	if(dist_x > dist_y)
 		var/error = dist_x/2 - dist_y
-		while(!gc_destroyed && target &&((((x < target.x && dx == EAST) || (x > target.x && dx == WEST)) && dist_travelled < range) || a?.has_gravity == 0  || isspaceturf(loc)) && throwing && istype(src.loc, /turf))
+		while(!gc_destroyed && target &&((((x < target.x && dx == EAST) || (x > target.x && dx == WEST)) && dist_travelled < range) || (a && a.has_gravity == 0)  || isspaceturf(loc)) && throwing && istype(src.loc, /turf))
 			// only stop when we've gone the whole distance (or max throw range) and are on a non-space tile, or hit something, or hit the end of the map, or someone picks it up
 			if(error < 0)
 				var/atom/step = get_step(src, dy)
