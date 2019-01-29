@@ -201,7 +201,7 @@
 	return ..(freq, level, 1)
 
 /obj/item/device/radio/headset/ert
-	name = "W-Y Response Team headset"
+	name = "NT Response Team headset"
 	desc = "The headset of the boss's boss. Channels are as follows: :h - Response Team :c - command, :p - security, :e - engineering, :m - medical."
 	icon_state = "com_headset"
 	item_state = "headset"
