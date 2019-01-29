@@ -1,5 +1,0 @@
-author: "Spookydonut"
-delete-after: True
-changes: 
-  - bugfix: "removed a href exploit in dropship part printer"
-  - bugfix: "fixed supply drop y offset not doing anything"
