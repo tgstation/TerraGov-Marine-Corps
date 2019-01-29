@@ -290,7 +290,7 @@
 	set name = "Rest"
 	set category = "IC"
 
-	if(is_mob_incapacitated(TRUE))
+	if(is_mob_incapacitated(TRUE) && !isxeno(src))
 		return
 
 	if(!resting)
