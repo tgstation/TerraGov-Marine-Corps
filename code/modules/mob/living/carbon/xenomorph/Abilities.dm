@@ -785,7 +785,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 	if(!X.check_state())
 		return
 	var/list/possible_xenos = list()
-	for(var/mob/living/carbon/Xenomorph/T in GLOB.alive_mob_list)
+	for(var/mob/living/carbon/Xenomorph/T in GLOB.alive_xeno_list)
 		if(T.z != ADMIN_Z_LEVEL && !isxenoqueen(T) && X.hivenumber == T.hivenumber)
 			possible_xenos += T
 

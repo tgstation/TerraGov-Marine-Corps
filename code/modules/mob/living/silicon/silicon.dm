@@ -20,7 +20,12 @@
 
 /mob/living/silicon/Initialize()
 	. = ..()
+	GLOB.silicon_mobs += src
 	add_language("English")
+
+/mob/living/silicon/Destroy()
+	GLOB.silicon_mobs -= src
+	return ..()
 
 /mob/living/silicon/proc/show_laws()
 	return
@@ -115,13 +120,12 @@
 
 // This adds the basic clock, shuttle recall timer, and malf_ai info to all silicon lifeforms
 /mob/living/silicon/Stat()
-	if (!..())
-		return 0
+	. = ..()
 
-	show_station_time()
-	show_emergency_shuttle_eta()
-	show_system_integrity()
-	return 1
+	if(statpanel("Stats"))
+		show_station_time()
+		show_emergency_shuttle_eta()
+		show_system_integrity()
 
 // this function displays the stations manifest in a separate window
 /mob/living/silicon/proc/show_station_manifest()

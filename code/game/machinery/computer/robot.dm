@@ -41,7 +41,7 @@
 			dat += "<A href='?src=\ref[src];screen=1'>1. Cyborg Status</A><BR>"
 			dat += "<A href='?src=\ref[src];screen=2'>2. Emergency Full Destruct</A><BR>"
 		if(screen == 1)
-			for(var/mob/living/silicon/robot/R in GLOB.mob_list)
+			for(var/mob/living/silicon/robot/R in GLOB.silicon_mobs)
 				if(ismaintdrone(R))
 					continue //There's a specific console for drones.
 				if(isAI(user))
@@ -224,7 +224,7 @@
 		sleep(10)
 	while(src.timeleft)
 
-	for(var/mob/living/silicon/robot/R in GLOB.mob_list)
+	for(var/mob/living/silicon/robot/R in GLOB.silicon_mobs)
 		if(!R.scrambledcodes && !ismaintdrone(R))
 			R.self_destruct()
 

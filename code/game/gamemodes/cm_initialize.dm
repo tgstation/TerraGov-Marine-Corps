@@ -351,7 +351,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 		to_chat(xeno_candidate, "<span class='warning'>There are no burrowed larvas.</span>")
 		return FALSE
 	var/available_queens[] = list()
-	for(var/mob/A in GLOB.alive_mob_list)
+	for(var/mob/A in GLOB.alive_xeno_list)
 		if(!isxenoqueen(A) || A.z == ADMIN_Z_LEVEL)
 			continue
 		var/mob/living/carbon/Xenomorph/Queen/Q = A
@@ -402,7 +402,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 	var/available_xenos[] = list()
 	var/available_xenos_non_ssd[] = list()
 
-	for(var/mob/A in GLOB.alive_mob_list)
+	for(var/mob/A in GLOB.alive_xeno_list)
 		if(A.z == ADMIN_Z_LEVEL)
 			continue //xenos on admin z level don't count
 		if(isxeno(A) && !A.client)
@@ -422,7 +422,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 	if(!istype(new_xeno) || !xeno_candidate?.client)
 		return FALSE
 
-	if(!(new_xeno in GLOB.alive_mob_list) || new_xeno.stat == DEAD)
+	if(!(new_xeno in GLOB.alive_xeno_list) || new_xeno.stat == DEAD)
 		to_chat(xeno_candidate, "<span class='warning'>You cannot join if the xenomorph is dead.</span>")
 		return FALSE
 
@@ -445,7 +445,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 			return FALSE
 
 	if(alert(xeno_candidate, "Everything checks out. Are you sure you want to transfer yourself into [new_xeno]?", "Confirm Transfer", "Yes", "No") == "Yes")
-		if(new_xeno.client || !(new_xeno in GLOB.alive_mob_list) || new_xeno.stat == DEAD || !xeno_candidate) // Do it again, just in case
+		if(new_xeno.client || !(new_xeno in GLOB.alive_xeno_list) || new_xeno.stat == DEAD || !xeno_candidate) // Do it again, just in case
 			to_chat(xeno_candidate, "<span class='warning'>That xenomorph can no longer be controlled. Please try another.</span>")
 			return FALSE
 		return new_xeno
@@ -525,6 +525,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 					break  //We ran out of survivors!
 				new_survivor.assigned_role = "MODE"
 				new_survivor.special_role = "Survivor"
+				survivors += new_survivor
 				possible_survivors -= new_survivor
 				i--
 
@@ -537,8 +538,6 @@ datum/game_mode/proc/initialize_post_queen_list()
 //No need to transfer their mind as they begin as a human.
 /datum/game_mode/proc/transform_survivor(var/datum/mind/ghost)
 	var/mob/living/carbon/human/H = ghost.current
-
-	survivors += H
 
 	H.loc = pick(surv_spawn)
 
@@ -611,7 +610,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 										"You were playing basketball with {surv} when the creatures descended. You bolted in opposite directions, and actually managed to lose the monsters, somehow."
 										)
 
-	var/current_survivors[] = survivors //These are the current survivors, so we can remove them once we tell a story.
+	var/current_survivors[] = survivors.Copy() //These are the current survivors, so we can remove them once we tell a story.
 	var/story //The actual story they will get to read.
 	var/random_name
 	var/datum/mind/survivor

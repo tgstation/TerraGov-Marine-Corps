@@ -120,8 +120,8 @@
 
 		if(!isobserver(usr))
 			admin_ghost()
-			log_admin("[key_name(usr)] jumped to coordinates ([x], [y], [z]).")
-			message_admins("[ADMIN_TPMONTY(usr)] jumped to coordinates ([x], [y], [z]).")
+			log_admin("[key_name(C.mob)] jumped to coordinates ([x], [y], [z]).")
+			message_admins("[ADMIN_TPMONTY(C.mob)] jumped to coordinates ([x], [y], [z]).")
 
 		var/mob/dead/observer/M = C.mob
 
@@ -142,8 +142,8 @@
 
 		if(!isobserver(usr))
 			admin_ghost()
-			log_admin("[key_name(usr)] jumped to follow [key_name(AM)].")
-			message_admins("[ADMIN_TPMONTY(usr)] jumped to follow [ADMIN_TPMONTY(AM)].")
+			log_admin("[key_name(C.mob)] jumped to follow [key_name(AM)].")
+			message_admins("[ADMIN_TPMONTY(C.mob)] jumped to follow [ADMIN_TPMONTY(AM)].")
 
 		var/mob/dead/observer/ghost = C.mob
 		ghost.ManualFollow(AM)
@@ -177,16 +177,16 @@
 				for(var/obj/machinery/light/L in GLOB.machines)
 					L.fix()
 			if("power")
-				log_admin("[key_name(usr)] powered all SMESs and APCs")
-				message_admins("[ADMIN_TPMONTY(usr)] powered all SMESs and APCs.")
+				log_admin("[key_name(usr)] powered all ship SMESs and APCs")
+				message_admins("[ADMIN_TPMONTY(usr)] powered all ship SMESs and APCs.")
 				power_restore()
 			if("unpower")
-				log_admin("[key_name(usr)] unpowered all SMESs and APCs.")
-				message_admins("[ADMIN_TPMONTY(usr)] unpowered all SMESs and APCs.")
+				log_admin("[key_name(usr)] unpowered all ship SMESs and APCs.")
+				message_admins("[ADMIN_TPMONTY(usr)] unpowered all ship SMESs and APCs.")
 				power_failure()
 			if("quickpower")
-				log_admin("[key_name(usr)] powered all SMESs.")
-				message_admins("[ADMIN_TPMONTY(usr)] powered all SMESs.")
+				log_admin("[key_name(usr)] powered all ship SMESs.")
+				message_admins("[ADMIN_TPMONTY(usr)] powered all ship SMESs.")
 				power_restore_quick()
 			if("powereverything")
 				log_admin("[key_name(usr)] powered all SMESs and APCs everywhere.")
@@ -205,8 +205,8 @@
 				message_admins("[ADMIN_TPMONTY(usr)] mass-teleported everyone.")
 				get_all()
 			if("rejuvall")
-				log_admin("[key_name(usr)] mass-rejuvenated everyone.")
-				message_admins("[ADMIN_TPMONTY(usr)] mass-rejuvenated everyone.")
+				log_admin("[key_name(usr)] mass-rejuvenated cliented mobs.")
+				message_admins("[ADMIN_TPMONTY(usr)] mass-rejuvenated cliented mobs.")
 				rejuv_all()
 
 
@@ -534,14 +534,14 @@
 			if(reason)
 				var/msg
 				for(var/job in notbannedlist)
-					log_admin_private("[key_name(usr)] jobbanned [key_name(M)] from [job] for [reason].")
+					log_admin_private("[key_name(usr)] jobbanned [key_name(M)] from [job].")
 					jobban_fullban(M, job, "[reason]; By [usr.client.ckey] on [time2text(world.realtime)]")
 					if(!msg)
 						msg = job
 					else
 						msg += ", [job]"
 				notes_add(M.ckey, "Banned  from [msg] - [reason]", usr)
-				message_admins("[ADMIN_TPMONTY(usr)] banned [ADMIN_TPMONTY(M)] from [msg] for [reason].")
+				message_admins("[ADMIN_TPMONTY(usr)] banned [ADMIN_TPMONTY(M)] from [msg].")
 				to_chat(M, "<span class='danger'>You have been jobbanned by [usr.client.ckey] from: [msg].</span>")
 				to_chat(M, "<span class='warning'>The reason is: [reason]</span>")
 				jobban_savebanfile()
@@ -723,6 +723,34 @@
 		log_admin("[key_name(M)] got their cookie, spawned by [key_name(usr)]")
 		message_admins("[ADMIN_TPMONTY(M)] got their cookie, spawned by [ADMIN_TPMONTY(usr)].")
 
+	else if(href_list["spawnfortunecookie"])
+		if(!check_rights(R_ADMIN|R_FUN))
+			return
+
+		var/mob/M = locate(href_list["spawnfortunecookie"])
+
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			H.put_in_hands(new /obj/item/reagent_container/food/snacks/fortunecookie(M))
+			H.update_inv_r_hand()
+			H.update_inv_l_hand()
+		else if(isobserver(M))
+			if(alert("Are you sure you want to spawn the fortune cookie at observer location [AREACOORD(M.loc)]?", "Confirmation", "Yes", "No") != "Yes")
+				return
+			var/turf/T = get_turf(M)
+			new /obj/item/reagent_container/food/snacks/fortunecookie(T)
+		else if(isxeno(M))
+			if(alert("Are you sure you want to tell the Xeno a Xeno tip?", "Confirmation", "Yes", "No") != "Yes")
+				return
+			to_chat(M, "<span class='tip'>[pick(xenotips)]</span>")
+
+		if(isxeno(M))
+			to_chat(M, "<span class='boldnotice'>Your prayers have been answered!! Hope the advice helped.</span>")
+		else
+			to_chat(M, "<span class='boldnotice'>Your prayers have been answered!! You received the best fortune cookie!</span>")
+
+		log_admin("[key_name(M)] got their fortune cookie, spawned by [key_name(usr)]")
+		message_admins("[ADMIN_TPMONTY(M)] got their fortune cookie, spawned by [ADMIN_TPMONTY(usr)].")
 
 	else if(href_list["reply"])
 		var/mob/living/carbon/human/H = locate(href_list["reply"])
@@ -848,7 +876,6 @@
 		else
 			M.ghostize()
 
-
 	else if(href_list["jumpto"])
 		if(!check_rights(R_ADMIN))
 			return
@@ -954,8 +981,6 @@
 
 				fax_contents += fax_message
 
-				TGMCFaxes.Add("<a href='?src=[REF(src)];[HrefToken()];faxview=[REF(fax_message)]'> view reply at [world.timeofday]</a>")
-
 
 			if("Corporate Liaison")
 				var/subject = input("Enter subject line", "Outgoing message", "") as text|null
@@ -986,8 +1011,6 @@
 					return
 
 				fax_contents += fax_message
-
-				CLFaxes.Add("<a href='?src=[REF(src)];[HrefToken()];faxview=[REF(fax_message)]'> view reply at [world.timeofday]</a>")
 
 		var/customname = input("Pick a title for the report", "Title") as text|null
 

@@ -170,7 +170,7 @@
 			if(hive.living_xeno_queen)
 				if(hive.living_xeno_queen.hivenumber == hive.hivenumber)
 					continue
-			for(var/mob/living/carbon/Xenomorph/Queen/Q in GLOB.alive_mob_list)
+			for(var/mob/living/carbon/Xenomorph/Queen/Q in GLOB.alive_xeno_list)
 				if(Q.hivenumber == hive.hivenumber)
 					hive.living_xeno_queen = Q
 					xeno_message("<span class='xenoannounce'>A new Queen has risen to lead the Hive! Rejoice!</span>",3,hive.hivenumber)
@@ -738,7 +738,7 @@
 			return
 		if(!ovipositor)
 			return
-		var/mob/living/carbon/Xenomorph/target = locate(href_list["queentrack"]) in GLOB.alive_mob_list
+		var/mob/living/carbon/Xenomorph/target = locate(href_list["queentrack"]) in GLOB.alive_xeno_list
 		if(!istype(target))
 			return
 		if(target.stat == DEAD || target.z == ADMIN_Z_LEVEL)
@@ -752,7 +752,7 @@
 		if(!check_state())
 			return
 		var/xeno_num = text2num(href_list["watch_xeno_number"])
-		for(var/mob/living/carbon/Xenomorph/X in GLOB.alive_mob_list)
+		for(var/mob/living/carbon/Xenomorph/X in GLOB.alive_xeno_list)
 			if(X.z != ADMIN_Z_LEVEL && X.nicknumber == xeno_num)
 				if(observed_xeno == X)
 					set_queen_overwatch(X, TRUE)

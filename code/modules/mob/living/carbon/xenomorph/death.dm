@@ -4,7 +4,8 @@
 	. = ..(gibbed,msg)
 	if(!.) return //If they're already dead, it will return.
 
-	GLOB.living_xeno_list -= src
+	GLOB.alive_xeno_list -= src
+	GLOB.dead_xeno_list += src
 
 	if(is_zoomed)
 		zoom_out()
@@ -47,7 +48,7 @@
 				hive.slashing_allowed = 1
 				hive.living_xeno_queen = null
 				//on the off chance there was somehow two queen alive
-				for(var/mob/living/carbon/Xenomorph/Queen/Q in GLOB.alive_mob_list)
+				for(var/mob/living/carbon/Xenomorph/Queen/Q in GLOB.alive_xeno_list)
 					if(!isnull(Q) && Q != src && Q.stat != DEAD && Q.hivenumber == hivenumber)
 						hive.living_xeno_queen = Q
 						break

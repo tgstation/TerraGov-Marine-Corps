@@ -402,13 +402,13 @@ var/list/robot_verbs_default = list(
 
 // update the status screen display
 /mob/living/silicon/robot/Stat()
-	if (!..())
-		return 0
+	. = ..()
 
-	show_cell_power()
-	show_jetpack_pressure()
-	stat(null, text("Lights: [lights_on ? "ON" : "OFF"]"))
-	return 1
+	if(statpanel("Stats"))
+		show_cell_power()
+		show_jetpack_pressure()
+		stat(null, text("Lights: [lights_on ? "ON" : "OFF"]"))
+	
 
 /mob/living/silicon/robot/is_mob_restrained()
 	return 0

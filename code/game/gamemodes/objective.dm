@@ -345,7 +345,7 @@ datum/objective/steal
 						if(isAI(M) && M.stat != DEAD) //See if any AI's are alive inside that card.
 							return 1
 
-				for(var/mob/living/silicon/ai/ai in GLOB.alive_mob_list)
+				for(var/mob/living/silicon/ai/ai in GLOB.ai_list)
 					if(istype(ai.loc, /turf))
 						var/area/check_area = get_area(ai)
 						if(istype(check_area, /area/shuttle/escape/centcom))

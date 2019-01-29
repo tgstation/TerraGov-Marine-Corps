@@ -82,6 +82,7 @@
 					body += "<a href='?_src_=vars;[HrefToken()];vars="+ref+"'>VV</a> - "
 					body += "<a href='?priv_msg="+ckey+"'>PM</a> - "
 					body += "<a href='?_src_=holder;[HrefToken()];subtlemessage="+ref+"'>SM</a> - "
+					body += "<a href='?_src_=holder;[HrefToken()];observejump="+ref+"'>JMP</a> - "
 					body += "<a href='?_src_=holder;[HrefToken()];observefollow="+ref+"'>FLW</a> - "
 					body += "<a href='?_src_=holder;[HrefToken()];individuallog="+ref+"'>LOGS</a><br>"
 					body += "</td></tr></table>";
