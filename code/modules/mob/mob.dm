@@ -233,7 +233,7 @@ var/list/slot_equipment_priority = list( \
 
 /mob/proc/reset_view(atom/A)
 	if (client)
-		if (istype(A, /atom/movable))
+		if (ismovableatom(A))
 			client.perspective = EYE_PERSPECTIVE
 			client.eye = A
 		else
@@ -417,7 +417,7 @@ var/list/slot_equipment_priority = list( \
 		msg_admin_attack("[key_name(src)] grabbed [key_name(M)]" )
 
 		if(!no_msg)
-			visible_message("<span class='warning'>[src] has grabbed [M] [((istype(src, /mob/living/carbon/human) && istype(M, /mob/living/carbon/human)) && (zone_selected == "l_hand" || zone_selected == "r_hand")) ? "by their hands":"passively"]!</span>", null, null, 5)
+			visible_message("<span class='warning'>[src] has grabbed [M] [((ishuman(src) && ishuman(M)) && (zone_selected == "l_hand" || zone_selected == "r_hand")) ? "by their hands":"passively"]!</span>", null, null, 5)
 
 		if(M.mob_size > MOB_SIZE_HUMAN || !(M.status_flags & CANPUSH))
 			G.icon_state = "!reinforce"
@@ -537,6 +537,13 @@ var/list/slot_equipment_priority = list( \
 	return FALSE
 
 
+/proc/is_species(A, species_datum)
+	. = FALSE
+	if(ishuman(A))
+		var/mob/living/carbon/human/H = A
+		if(istype(H.species, species_datum))
+			. = TRUE
+
 /mob/proc/get_species()
 	return ""
 
@@ -625,7 +632,7 @@ mob/proc/yank_out_object()
 			return
 
 		affected.implants -= selection
-		if(!isYautja(H))
+		if(!isyautja(H))
 			H.shock_stage+=20
 		affected.take_damage((selection.w_class * 3), 0, 0, 1, "Embedded object extraction")
 

@@ -175,7 +175,7 @@
 /datum/action/xeno_action/activable/spray_acid/use_ability(atom/A)
 	var/mob/living/carbon/Xenomorph/X = owner
 
-	if (isXenoPraetorian(owner))
+	if (isxenopraetorian(owner))
 		X.acid_spray_cone(A)
 		return
 
@@ -185,7 +185,7 @@
 /datum/action/xeno_action/activable/spray_acid/action_cooldown_check()
 	var/mob/living/carbon/Xenomorph/X = owner
 
-	if (isXenoPraetorian(owner))
+	if (isxenopraetorian(owner))
 		return !X.used_acid_spray
 
 	var/mob/living/carbon/Xenomorph/B = X
@@ -395,7 +395,7 @@
 	if(X.hivenumber && X.hivenumber <= hive_datum.len)
 		var/datum/hive_status/hive = hive_datum[X.hivenumber]
 
-		if(isXenoQueen(X) && hive.xeno_leader_list.len && X.anchored)
+		if(isxenoqueen(X) && hive.xeno_leader_list.len && X.anchored)
 			var/mob/living/carbon/Xenomorph/Queen/Q = X
 			for(var/mob/living/carbon/Xenomorph/L in hive.xeno_leader_list)
 				L.handle_xeno_leader_pheromones(Q)
@@ -786,7 +786,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 		return
 	var/list/possible_xenos = list()
 	for(var/mob/living/carbon/Xenomorph/T in GLOB.alive_xeno_list)
-		if(T.z != ADMIN_Z_LEVEL && !isXenoQueen(T) && X.hivenumber == T.hivenumber)
+		if(T.z != ADMIN_Z_LEVEL && !isxenoqueen(T) && X.hivenumber == T.hivenumber)
 			possible_xenos += T
 
 	var/mob/living/carbon/Xenomorph/selected_xeno = input(X, "Target", "Watch which xenomorph?") as null|anything in possible_xenos

@@ -24,7 +24,7 @@
 	if(layer == XENO_HIDING_LAYER) //Xeno is currently hiding, unhide him
 		layer = MOB_LAYER
 
-	if(m_intent == "walk" && isXenoHunter(src)) //Hunter that is currently using its stealth ability, need to unstealth him
+	if(m_intent == "walk" && isxenohunter(src)) //Hunter that is currently using its stealth ability, need to unstealth him
 		m_intent = "run"
 		if(hud_used && hud_used.move_intent)
 			hud_used.move_intent.icon_state = "running"
@@ -365,7 +365,7 @@
 				C.apply_damage(damage, BURN, null, armor_block)
 			to_chat(C, "<span class='xenodanger'>\The [src] showers you in corrosive acid!</span>")
 
-			if (!isYautja(C))
+			if (!isyautja(C))
 				C.emote("scream")
 				C.KnockDown(1)
 
@@ -373,7 +373,7 @@
 // Warrior Fling
 /mob/living/carbon/Xenomorph/proc/fling(atom/A)
 
-	if (!A || !istype(A, /mob/living/carbon/human) || !check_state() || agility || !check_plasma(10) || !Adjacent(A))
+	if (!A || !ishuman(A) || !check_state() || agility || !check_plasma(10) || !Adjacent(A))
 		return
 
 	if (used_fling)
@@ -472,7 +472,7 @@
 			L.status &= ~LIMB_SPLINTED
 			to_chat(H, "<span class='danger'>The splint on your [L.display_name] comes apart!</span>")
 
-		if(isYautja(H))
+		if(isyautja(H))
 			L.take_damage(damage, 0, 0, 0, null, null, null, armor_block)
 		else if(L.status & LIMB_ROBOT)
 			L.take_damage(damage * 2, 0, 0, 0, null, null, null, armor_block)
@@ -503,7 +503,7 @@
 
 /mob/living/carbon/Xenomorph/proc/lunge(atom/A)
 
-	if (!A || !istype(A, /mob/living/carbon/human) || !check_state() || agility || !check_plasma(10))
+	if (!A || !ishuman(A) || !check_state() || agility || !check_plasma(10))
 		return
 
 	if (!isturf(loc))
@@ -543,7 +543,7 @@
 
 // Called when pulling something and attacking yourself with the pull
 /mob/living/carbon/Xenomorph/proc/pull_power(var/mob/M)
-	if (isXenoWarrior(src) && !ripping_limb && M.stat != DEAD)
+	if (isxenowarrior(src) && !ripping_limb && M.stat != DEAD)
 		ripping_limb = TRUE
 		if(rip_limb(M))
 			stop_pulling()
@@ -552,7 +552,7 @@
 
 // Warrior Rip Limb - called by pull_power()
 /mob/living/carbon/Xenomorph/proc/rip_limb(var/mob/M)
-	if (!istype(M, /mob/living/carbon/human))
+	if (!ishuman(M))
 		return FALSE
 
 	if(action_busy) //can't stack the attempts
@@ -641,7 +641,7 @@
 
 // Defender Headbutt
 /mob/living/carbon/Xenomorph/proc/headbutt(var/mob/M)
-	if (!M || !istype(M, /mob/living/carbon/human))
+	if (!M || !ishuman(M))
 		return
 
 	if(M.stat == DEAD || (istype(M.buckled, /obj/structure/bed/nest) && M.status_flags & XENO_HOST) ) //No bullying the dead/secured hosts
@@ -1008,17 +1008,17 @@
 
 
 /mob/living/carbon/Xenomorph/proc/xeno_transfer_plasma(atom/A, amount = 50, transfer_delay = 20, max_range = 2)
-	if(!isXeno(A) || !check_state())
+	if(!isxeno(A) || !check_state())
 		return
 
 	var/mob/living/carbon/Xenomorph/target = A
-	var/energy = isXenoSilicon(src) ? "charge" : "plasma"
+	var/energy = isxenosilicon(src) ? "charge" : "plasma"
 
 	if(!isturf(loc))
 		to_chat(src, "<span class='warning'>You can't transfer [energy] from here!</span>")
 		return
 
-	if(isXenoSilicon(src) != isXenoSilicon(A))
+	if(isxenosilicon(src) != isxenosilicon(A))
 		to_chat(src, "<span class='warning'>[target]'s source of energy is incompatible with ours.</span>")
 		return
 
@@ -1054,17 +1054,17 @@
 	playsound(src, "alien_drool", 25)
 
 /mob/living/carbon/Xenomorph/proc/xeno_salvage_plasma(atom/A, amount, salvage_delay, max_range)
-	if(!isXeno(A) || !check_state())
+	if(!isxeno(A) || !check_state())
 		return
 
 	var/mob/living/carbon/Xenomorph/target = A
-	var/energy = isXenoSilicon(src) ? "charge" : "plasma"
+	var/energy = isxenosilicon(src) ? "charge" : "plasma"
 
 	if(!isturf(loc))
 		to_chat(src, "<span class='warning'>You can't salvage [energy] from here!</span>")
 		return
 
-	if(isXenoSilicon(src) != isXenoSilicon(A))
+	if(isxenosilicon(src) != isxenosilicon(A))
 		to_chat(src, "<span class='warning'>[target]'s source of energy is incompatible with ours.</span>")
 		return
 
@@ -1176,7 +1176,7 @@
 		to_chat(src, "<span class='xenowarning'>Your dexterous limbs fail to properly respond as you try to shake up the shock!</span>")
 		return
 	var/turf/current_turf = loc
-	if (isXenoHivelord(src)) //hivelords can thicken existing resin structures.
+	if (isxenohivelord(src)) //hivelords can thicken existing resin structures.
 		if(get_dist(src,A) <= 1)
 			if(istype(A, /turf/closed/wall/resin))
 				var/turf/closed/wall/resin/WR = A
@@ -1307,12 +1307,12 @@
 
 	switch(selected_resin)
 		if("resin door")
-			if (isXenoHivelord(src))
+			if (isxenohivelord(src))
 				new_resin = new /obj/structure/mineral_door/resin/thick(current_turf)
 			else
 				new_resin = new /obj/structure/mineral_door/resin(current_turf)
 		if("resin wall")
-			if (isXenoHivelord(src))
+			if (isxenohivelord(src))
 				current_turf.ChangeTurf(/turf/closed/wall/resin/thick)
 			else
 				current_turf.ChangeTurf(/turf/closed/wall/resin)
@@ -1365,7 +1365,7 @@
 	else if(isturf(O))
 		var/turf/T = O
 
-		if(istype(O, /turf/closed/wall))
+		if(iswallturf(O))
 			var/turf/closed/wall/wall_target = O
 			if (wall_target.acided_hole)
 				to_chat(src, "<span class='warning'>[O] is already weakened.</span>")
@@ -1449,7 +1449,7 @@
 	set desc = "Check the status of your current hive."
 	set category = "Alien"
 
-	if(isXenoQueen(src) && anchored)
+	if(isxenoqueen(src) && anchored)
 		check_hive_status(src, anchored)
 	else
 		check_hive_status(src)
@@ -1679,7 +1679,7 @@
 		to_chat(src, "<span class='xenowarning'>You try to fling away [M] but are too disoriented!</span>")
 		return
 
-	if (!Adjacent(M) || !istype(M, /mob/living)) //Sanity check
+	if (!Adjacent(M) || !isliving(M)) //Sanity check
 		return
 
 	if(M.stat == DEAD || (M.status_flags & XENO_HOST && istype(M.buckled, /obj/structure/bed/nest) ) ) //no bully
@@ -1733,7 +1733,7 @@
 	M.throw_at(T, toss_distance, 1, src)
 
 	//Handle the damage
-	if(!isXeno(M)) //Friendly xenos don't take damage.
+	if(!isxeno(M)) //Friendly xenos don't take damage.
 		var/damage = toss_distance * 5
 		if(frenzy_aura)
 			damage *= (1 + round(frenzy_aura * 0.1,0.01)) //+10% damage per level of frenzy
@@ -1980,7 +1980,7 @@
 				prev_turf = get_turf(src)
 				continue //So we don't burn the tile we be standin on
 
-			if(T.density || istype(T, /turf/open/space))
+			if(T.density || isspaceturf(T))
 				break
 			if(distance > 7)
 				break
@@ -2015,14 +2015,14 @@
 		qdel(S)
 	new /obj/effect/xenomorph/spray(target)
 	for(var/mob/living/carbon/M in target)
-		if( isXeno(M) ) //Xenos immune to acid
+		if( isxeno(M) ) //Xenos immune to acid
 			continue
 		if((M.status_flags & XENO_HOST) && istype(M.buckled, /obj/structure/bed/nest)) //nested infected hosts are not hurt by acid spray
 			continue
 		var/armor_block = M.run_armor_check("chest")
 		M.apply_damage(rand(30, 40) + 5 * upgrade, BURN, "chest", armor_block)
 		to_chat(M, "<span class='xenodanger'>\The [src] showers you in corrosive acid!</span>")
-		if(!isYautja(M))
+		if(!isyautja(M))
 			M.emote("scream")
 			M.KnockDown(1)
 
@@ -2034,7 +2034,7 @@
 	if(!check_state())
 		return
 
-	if(!isturf(loc) || istype(loc, /turf/open/space))
+	if(!isturf(loc) || isspaceturf(loc))
 		to_chat(src, "<span class='warning'>You can't do that from there.</span>")
 		return
 
@@ -2165,7 +2165,7 @@
 		to_chat(src, "<span class='xenowarning'>You try to sting but are too disoriented!</span>")
 		return
 
-	if(!istype(H) || isXeno(H) || isrobot(H) || isSynth(H) || H.stat == DEAD)
+	if(!(ismonkey(H) || ishuman(H)) || issynth(H) || H.stat == DEAD)
 		to_chat(src, "<span class='xenowarning'>Your sting won't affect this target!</span>")
 		return
 

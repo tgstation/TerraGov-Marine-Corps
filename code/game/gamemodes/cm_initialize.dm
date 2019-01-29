@@ -149,7 +149,7 @@ datum/game_mode/proc/initialize_special_clamps()
 	var/mob/new_player/new_pred
 	for(var/mob/player in GLOB.player_list)
 		if(!player.client) continue //No client. DCed.
-		if(isYautja(player)) continue //Already a predator. Might be dead, who knows.
+		if(isyautja(player)) continue //Already a predator. Might be dead, who knows.
 		if(readied) //Ready check for new players.
 			new_pred = player
 			if(!istype(new_pred)) continue //Have to be a new player here.
@@ -352,7 +352,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 		return FALSE
 	var/available_queens[] = list()
 	for(var/mob/A in GLOB.alive_xeno_list)
-		if(!isXenoQueen(A) || A.z == ADMIN_Z_LEVEL)
+		if(!isxenoqueen(A) || A.z == ADMIN_Z_LEVEL)
 			continue
 		var/mob/living/carbon/Xenomorph/Queen/Q = A
 		if(Q.ovipositor && !Q.is_mob_incapacitated(TRUE))
@@ -369,7 +369,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 	if(!mother.ovipositor || mother.is_mob_incapacitated(TRUE))
 		to_chat(xeno_candidate, "<span class='warning'>Mother is not in a state to receive us.</span>")
 		return FALSE
-	if(!xeno_bypass_timer && !istype(xeno_candidate, /mob/new_player))
+	if(!xeno_bypass_timer && !isnewplayer(xeno_candidate))
 		var/deathtime = world.time - xeno_candidate.timeofdeath
 		var/deathtimeminutes = round(deathtime / 600)
 		var/deathtimeseconds = round((deathtime - deathtimeminutes * 600) / 10,1)
@@ -405,7 +405,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 	for(var/mob/A in GLOB.alive_xeno_list)
 		if(A.z == ADMIN_Z_LEVEL)
 			continue //xenos on admin z level don't count
-		if(isXeno(A) && !A.client)
+		if(isxeno(A) && !A.client)
 			if(A.away_timer >= 300) available_xenos_non_ssd += A
 			available_xenos += A
 
@@ -432,7 +432,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 
 	if(!xeno_bypass_timer)
 		var/deathtime = world.time - xeno_candidate.timeofdeath
-		if(istype(xeno_candidate, /mob/new_player))
+		if(isnewplayer(xeno_candidate))
 			deathtime = 3000 //so new players don't have to wait to latejoin as xeno in the round's first 5 mins.
 		var/deathtimeminutes = round(deathtime / 600)
 		var/deathtimeseconds = round((deathtime - deathtimeminutes * 600) / 10,1)
@@ -458,7 +458,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 	if(new_xeno.client) new_xeno.client.change_view(world.view)
 	message_admins("[key_name(new_xeno)] has joined as [new_xeno].")
 	log_admin("[ADMIN_TPMONTY(new_xeno)] has joined as [new_xeno].")
-	if(isXeno(new_xeno)) //Dear lord
+	if(isxeno(new_xeno)) //Dear lord
 		var/mob/living/carbon/Xenomorph/X = new_xeno
 		if(X.is_ventcrawling) X.add_ventcrawl(X.loc) //If we are in a vent, fetch a fresh vent map
 	if(xeno_candidate) xeno_candidate.loc = null

@@ -198,7 +198,7 @@ var/global/datum/controller/gameticker/ticker
 
 	if(captainless)
 		for(var/mob/M in GLOB.player_list)
-			if(!istype(M, /mob/new_player))
+			if(!isnewplayer(M))
 				to_chat(M, "Marine commander position not forced on anyone.")
 
 
@@ -285,7 +285,7 @@ var/global/datum/controller/gameticker/ticker
 	var/dronecount = 0
 
 	for(var/mob/living/silicon/robot/robo in GLOB.silicon_mobs)
-		if(istype(robo, /mob/living/silicon/robot/drone))
+		if(ismaintdrone(robo))
 			dronecount++
 			continue
 

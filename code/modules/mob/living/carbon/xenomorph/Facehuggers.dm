@@ -64,7 +64,7 @@
 
 //Can be picked up by aliens
 /obj/item/clothing/mask/facehugger/attack_paw(user as mob)
-	if(isXeno(user))
+	if(isxeno(user))
 		attack_alien(user)
 	else
 		attack_hand(user)
@@ -80,7 +80,7 @@
 		attack_hand(user)
 
 /obj/item/clothing/mask/facehugger/attack_hand(user as mob)
-	if(isXeno(user))
+	if(isxeno(user))
 		var/mob/living/carbon/Xenomorph/X = user
 		if(X.xeno_caste.caste_flags & CASTE_CAN_HOLD_FACEHUGGERS)
 			return ..() // These can pick up huggers.
@@ -104,7 +104,7 @@
 	user.update_icons()
 
 /obj/item/clothing/mask/facehugger/attack_self(mob/user)
-	if(isXenoCarrier(user))
+	if(isxenocarrier(user))
 		var/mob/living/carbon/Xenomorph/Carrier/C = user
 		C.store_hugger(src)
 
@@ -300,7 +300,7 @@
 	if(!istype(M) || stat != CONSCIOUS)
 		return FALSE
 
-	if(attached || M.status_flags & XENO_HOST || isXeno(M))
+	if(attached || M.status_flags & XENO_HOST || isxeno(M))
 		return FALSE
 	if(!self_done)
 		M.visible_message("<span class='danger'>[src] leaps at [M]'s face!</span>")
@@ -309,7 +309,7 @@
 	leaping = FALSE
 	update_icon()
 
-	if(isXeno(loc)) //Being carried? Drop it
+	if(isxeno(loc)) //Being carried? Drop it
 		var/mob/living/carbon/Xenomorph/X = loc
 		X.dropItemToGround(src)
 		X.update_icons()
@@ -323,7 +323,7 @@
 			GoIdle()
 			return
 
-		if(isYautja(H) && !self_done)
+		if(isyautja(H) && !self_done)
 			var/catch_chance = 50
 			if(H.dir == reverse_dir[dir])
 				catch_chance += 20
@@ -400,7 +400,7 @@
 	if(ishuman(user))
 		playsound(loc, (user.gender == MALE ?'sound/misc/facehugged_male.ogg' : 'sound/misc/facehugged_female.ogg') , 25, 0)
 	if(!sterile)
-		if(!isSynth(user)) //synthetics aren't paralyzed
+		if(!issynth(user)) //synthetics aren't paralyzed
 			if(user.disable_lights(sparks = TRUE, silent = TRUE)) //Knock out the lights so the victim can't be cam tracked/spotted as easily
 				user.visible_message("<span class='danger'>[user]'s lights flicker and short out in a struggle!</span>", "<span class='danger'>Your equipment's lights flicker and short out in a struggle!</span>")
 			user.KnockOut(FACEHUGGER_KNOCKOUT) //THIS MIGHT NEED TWEAKS

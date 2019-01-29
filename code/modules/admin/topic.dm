@@ -739,16 +739,16 @@
 				return
 			var/turf/T = get_turf(M)
 			new /obj/item/reagent_container/food/snacks/fortunecookie(T)
-		else if(isXeno(M))
+		else if(isxeno(M))
 			if(alert("Are you sure you want to tell the Xeno a Xeno tip?", "Confirmation", "Yes", "No") != "Yes")
 				return
 			to_chat(M, "<span class='tip'>[pick(xenotips)]</span>")
-		
-		if(isXeno(M))
+
+		if(isxeno(M))
 			to_chat(M, "<span class='boldnotice'>Your prayers have been answered!! Hope the advice helped.</span>")
 		else
 			to_chat(M, "<span class='boldnotice'>Your prayers have been answered!! You received the best fortune cookie!</span>")
-		
+
 		log_admin("[key_name(M)] got their fortune cookie, spawned by [key_name(usr)]")
 		message_admins("[ADMIN_TPMONTY(M)] got their fortune cookie, spawned by [ADMIN_TPMONTY(usr)].")
 
@@ -854,7 +854,7 @@
 
 		var/mob/M = locate(href_list["lobby"])
 
-		if(istype(M, /mob/new_player))
+		if(isnewplayer(M))
 			return
 
 		if(!M.client)

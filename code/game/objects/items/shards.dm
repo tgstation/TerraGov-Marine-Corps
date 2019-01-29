@@ -42,7 +42,7 @@
 
 
 /obj/item/shard/attackby(obj/item/W, mob/user)
-	if ( istype(W, /obj/item/tool/weldingtool))
+	if (iswelder(W))
 		var/obj/item/tool/weldingtool/WT = W
 		if(source_sheet_type) //can be melted into something
 			if(WT.remove_fuel(0, user))

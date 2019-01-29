@@ -1135,7 +1135,7 @@
 	for(var/client/C in GLOB.clients)
 		if(isobserver(C.mob) || C.mob.stat == DEAD)
 			continue
-		if(isXeno(C.mob))
+		if(isxeno(C.mob))
 			C.mob.loc = get_turf(usr)
 
 

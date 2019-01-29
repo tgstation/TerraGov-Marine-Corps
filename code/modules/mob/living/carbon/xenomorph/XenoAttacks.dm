@@ -94,7 +94,7 @@
 //Actually just used for eating people.
 /mob/living/carbon/Xenomorph/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(src != M)
-		if(isXenoLarva(M)) //Larvas can't eat people
+		if(isxenolarva(M)) //Larvas can't eat people
 			M.visible_message("<span class='danger'>[M] nudges its head against \the [src].</span>", \
 			"<span class='danger'>You nudge your head against \the [src].</span>")
 			return 0

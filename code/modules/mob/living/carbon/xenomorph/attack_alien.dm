@@ -139,7 +139,7 @@
 
 			var/armor_block = run_armor_check(affecting, "melee")
 
-			if(isYautja(src) && check_zone(M.zone_selected) == "head")
+			if(isyautja(src) && check_zone(M.zone_selected) == "head")
 				if(istype(wear_mask, /obj/item/clothing/mask/gas/yautja))
 					var/knock_chance = 1
 					if(M.frenzy_aura > 0)
@@ -186,7 +186,7 @@
 			M.process_rage_attack() //Process Ravager rage gains on attack
 
 		if("disarm")
-			if(M.legcuffed && isYautja(src))
+			if(M.legcuffed && isyautja(src))
 				to_chat(M, "<span class='xenodanger'>You don't have the dexterity to tackle the headhunter with that thing on your leg!</span>")
 				return FALSE
 			if((status_flags & XENO_HOST) && istype(buckled, /obj/structure/bed/nest)) //No more memeing nested and infected hosts
@@ -267,7 +267,7 @@
 				M.start_pulling(src)
 
 		if("hurt")
-			if(isXeno(src) && xeno_hivenumber(src) == M.hivenumber)
+			if(isxeno(src) && xeno_hivenumber(src) == M.hivenumber)
 				M.visible_message("<span class='warning'>\The [M] nibbles [src].</span>", \
 				"<span class='warning'>You nibble [src].</span>", null, 5)
 				return TRUE
