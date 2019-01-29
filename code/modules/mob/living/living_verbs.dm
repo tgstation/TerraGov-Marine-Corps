@@ -290,7 +290,7 @@
 	set name = "Rest"
 	set category = "IC"
 
-	if(is_mob_incapacitated(TRUE) && !isxeno(src))
+	if(is_mob_incapacitated(TRUE))
 		return
 
 	if(!resting)
@@ -304,5 +304,10 @@
 			to_chat(src, "<span class='notice'>You get up.</span>")
 			resting = FALSE
 			update_canmove()
+		else if(isxeno(src))
+			spawn(5)
+				to_chat(src, "<span class='notice'>You get up.</span>")
+				resting = FALSE
+				update_canmove()
 		else
 			to_chat(src, "<span class='notice'>You fail to get up.</span>")
