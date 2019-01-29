@@ -1967,42 +1967,30 @@
 
 	if(isnull(turflist))
 		return
+
 	var/turf/prev_turf
 	var/distance = 0
 
-	turf_loop:
-		for(var/turf/T in turflist)
-			distance++
+	for(var/turf/T in turflist)
 
-			if(!prev_turf && turflist.len > 1)
-				prev_turf = get_turf(src)
-				continue //So we don't burn the tile we be standin on
+		if(!prev_turf && turflist.len > 1)
+			prev_turf = get_turf(src)
+			continue //So we don't burn the tile we be standin on
 
-			if(T.density || istype(T, /turf/open/space))
-				break
-			if(distance > 7)
-				break
+		if(T.density || istype(T, /turf/open/space))
+			break
 
-			if(locate(/obj/structure/girder, T))
-				break //Nope.avi
+		for(var/obj/structure/barricade/B in T)
+			B.health -= rand(45, 60) + 8 * upgrade
+			B.update_health(TRUE)
 
-			var/obj/machinery/M = locate() in T
-			if(M?.density)
-				break
+		distance++
+		if(distance > 7 || !T.Adjacent(prev_turf))
+			break
 
-			if(prev_turf && LinkBlocked(prev_turf, T))
-				break
-
-			for(var/obj/structure/barricade/B in T)
-				B.health -= rand(45, 60) + 8 * upgrade
-				B.update_health(TRUE)
-				if(prev_turf)
-					if(get_dir(B, prev_turf) & B.dir)
-						break turf_loop
-
-			prev_turf = T
-			splat_turf(T)
-			sleep(2)
+		prev_turf = T
+		splat_turf(T)
+		sleep(2)
 
 
 /mob/living/carbon/Xenomorph/proc/splat_turf(var/turf/target)
@@ -2293,7 +2281,7 @@
 		start_dig = null //Now clear it
 		tunnel_delay = TRUE
 		addtimer(CALLBACK(src, .tunnel_cooldown), 2400)
-		
+
 		var/msg = copytext(sanitize(input("Add a description to the tunnel:", "Tunnel Description") as text|null), 1, MAX_MESSAGE_LEN)
 		if(msg)
 			newt.other.tunnel_desc = msg

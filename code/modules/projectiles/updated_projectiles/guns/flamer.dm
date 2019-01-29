@@ -178,16 +178,14 @@
 			continue
 		if(loc != user)
 			break
-		if(!current_mag || !current_mag.current_rounds)
+		if(!current_mag?.current_rounds)
 			break
 		if(distance > max_range)
 			break
-		if(prev_T && LinkPreBlocksFire(prev_T, T))
+		if(!T.Adjacent(prev_T))
 			break
 		current_mag.current_rounds--
 		flame_turf(T,user, burntime, burnlevel, fire_color)
-		if(PostBlocksFire(T))
-			break
 		distance++
 		prev_T = T
 		sleep(1)

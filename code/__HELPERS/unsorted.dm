@@ -184,67 +184,6 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 	return destination
 
-
-//among other things, used by flamethrower and boiler spray to calculate if flame/spray can pass through.
-/proc/PostBlocksFire(turf/loc) //Will be affected by fire but not allow it to spread further.
-	if(loc.density)
-		return TRUE
-	for(var/obj/structure/window/D in loc)
-		if(!D.density)
-			continue
-		if(D.is_full_window())
-			return TRUE
-	for(var/obj/machinery/door/D in loc)
-		if(!D.density)
-			continue
-		if(!istype(D, /obj/machinery/door/window))
-			return TRUE	// it's a real, air blocking door
-	for(var/obj/structure/mineral_door/D in loc)
-		if(D.density)
-			return TRUE
-	return FALSE
-
-/proc/LinkPreBlocksFire(turf/A, turf/B) //Will cut fire, protecting the tile.
-	if(A == null || B == null)
-		return TRUE
-	var/abdir = get_dir(A,B)
-	if(abdir & (abdir-1))//is diagonal direction
-		var/turf/Y = get_step(A,abdir&(NORTH|SOUTH))
-		if(!DirPreBlockedFire(A,Y) && !DirPreBlockedFire(Y,B))
-			return FALSE // can go through the Y axis
-		var/turf/X = get_step(A,abdir&(EAST|WEST))
-		if(!DirPreBlockedFire(A,X) && !DirPreBlockedFire(X,B))
-			return FALSE // can go through the X axis
-		return TRUE // both directions blocked
-	if(DirPreBlockedFire(A,B))
-		return TRUE
-	return FALSE
-
-/proc/DirPreBlockedFire(turf/A,turf/B)
-	var/abdir = get_dir(A,B)
-	var/badir = get_dir(B,A)
-	for(var/obj/structure/window/D in A)
-		if(!D.density)
-			continue
-		if(D.dir == abdir)
-			return TRUE
-	for(var/obj/machinery/door/D in A)
-		if(!D.density)
-			continue
-		if(D.dir == abdir)
-			return TRUE
-	for(var/obj/structure/window/D in B)
-		if(!D.density)
-			continue
-		if(D.dir == badir)
-			return TRUE
-	for(var/obj/machinery/door/D in B)
-		if(!D.density)
-			continue
-		if(D.dir == badir)
-			return TRUE
-	return FALSE
-
 /proc/LinkBlocked(turf/A, turf/B)
 	if(A == null || B == null)
 		return TRUE
