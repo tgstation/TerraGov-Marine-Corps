@@ -16,78 +16,77 @@
 //Adds stuff to your "Status" pane -- Specific castes can have their own, like carrier hugger count
 //Those are dealt with in their caste files.
 /mob/living/carbon/Xenomorph/Stat()
-	if (!..())
-		return 0
+	. = ..()
 
-	var/datum/hive_status/hive
-	if(hivenumber && hivenumber <= hive_datum.len)
-		hive = hive_datum[hivenumber]
+	if(statpanel("Stats"))
+		var/datum/hive_status/hive
+		if(hivenumber && hivenumber <= hive_datum.len)
+			hive = hive_datum[hivenumber]
 
-		if(!(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED))
-			stat(null, "Evolve Progress (FINISHED)")
-		else if(!hive.living_xeno_queen)
-			stat(null, "Evolve Progress (HALTED - NO QUEEN)")
-		else if(!hive.living_xeno_queen.ovipositor)
-			stat(null, "Evolve Progress (HALTED - QUEEN HAS NO OVIPOSITOR)")
-		else
-			stat(null, "Evolve Progress: [evolution_stored]/[xeno_caste.evolution_threshold]")
-
-		if(upgrade != -1 && upgrade != 3) //upgrade possible
-			stat(null, "Upgrade Progress: [upgrade_stored]/[xeno_caste.upgrade_threshold]")
-		else //Upgrade process finished or impossible
-			stat(null, "Upgrade Progress (FINISHED)")
-
-		if(xeno_caste.plasma_max > 0)
-			if(isXenoSilicon(src))
-				stat(null, "Charge: [plasma_stored]/[xeno_caste.plasma_max]")
+			if(!(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED))
+				stat(null, "Evolve Progress (FINISHED)")
+			else if(!hive.living_xeno_queen)
+				stat(null, "Evolve Progress (HALTED - NO QUEEN)")
+			else if(!hive.living_xeno_queen.ovipositor)
+				stat(null, "Evolve Progress (HALTED - QUEEN HAS NO OVIPOSITOR)")
 			else
-				stat(null, "Plasma: [plasma_stored]/[xeno_caste.plasma_max]")
+				stat(null, "Evolve Progress: [evolution_stored]/[xeno_caste.evolution_threshold]")
 
-		if(hivenumber != XENO_HIVE_CORRUPTED)
-			if(hive.slashing_allowed == 1)
-				stat(null,"Slashing of hosts is currently: PERMITTED.")
-			else if(hive.slashing_allowed == 2)
-				stat(null,"Slashing of hosts is currently: LIMITED.")
+			if(upgrade != -1 && upgrade != 3) //upgrade possible
+				stat(null, "Upgrade Progress: [upgrade_stored]/[xeno_caste.upgrade_threshold]")
+			else //Upgrade process finished or impossible
+				stat(null, "Upgrade Progress (FINISHED)")
+
+			if(xeno_caste.plasma_max > 0)
+				if(isXenoSilicon(src))
+					stat(null, "Charge: [plasma_stored]/[xeno_caste.plasma_max]")
+				else
+					stat(null, "Plasma: [plasma_stored]/[xeno_caste.plasma_max]")
+
+			if(hivenumber != XENO_HIVE_CORRUPTED)
+				if(hive.slashing_allowed == 1)
+					stat(null,"Slashing of hosts is currently: PERMITTED.")
+				else if(hive.slashing_allowed == 2)
+					stat(null,"Slashing of hosts is currently: LIMITED.")
+				else
+					stat(null,"Slashing of hosts is currently: FORBIDDEN.")
 			else
-				stat(null,"Slashing of hosts is currently: FORBIDDEN.")
-		else
-			stat(null,"Slashing of hosts is decided by your masters.")
+				stat(null,"Slashing of hosts is decided by your masters.")
 
-		//Very weak <= 1.0, weak <= 2.0, no modifier 2-3, strong <= 3.5, very strong <= 4.5
-		var/msg_holder = ""
-		if(frenzy_aura)
-			switch(frenzy_aura)
-				if(-INFINITY to 1.0) msg_holder = "very weak "
-				if(1.1 to 2.0) msg_holder = "weak "
-				if(2.1 to 2.9) msg_holder = ""
-				if(3.0 to 3.9) msg_holder = "strong "
-				if(4.0 to INFINITY) msg_holder = "very strong "
-			stat(null,"You are affected by a [msg_holder]FRENZY pheromone.")
-		if(warding_aura)
-			switch(warding_aura)
-				if(-INFINITY to 1.0) msg_holder = "very weak "
-				if(1.1 to 2.0) msg_holder = "weak "
-				if(2.1 to 2.9) msg_holder = ""
-				if(3.0 to 3.9) msg_holder = "strong "
-				if(4.0 to INFINITY) msg_holder = "very strong "
-			stat(null,"You are affected by a [msg_holder]WARDING pheromone.")
-		if(recovery_aura)
-			switch(recovery_aura)
-				if(-INFINITY to 1.0) msg_holder = "very weak "
-				if(1.1 to 2.0) msg_holder = "weak "
-				if(2.1 to 2.9) msg_holder = ""
-				if(3.0 to 3.9) msg_holder = "strong "
-				if(4.0 to INFINITY) msg_holder = "very strong "
-			stat(null,"You are affected by a [msg_holder]RECOVERY pheromone.")
+			//Very weak <= 1.0, weak <= 2.0, no modifier 2-3, strong <= 3.5, very strong <= 4.5
+			var/msg_holder = ""
+			if(frenzy_aura)
+				switch(frenzy_aura)
+					if(-INFINITY to 1.0) msg_holder = "very weak "
+					if(1.1 to 2.0) msg_holder = "weak "
+					if(2.1 to 2.9) msg_holder = ""
+					if(3.0 to 3.9) msg_holder = "strong "
+					if(4.0 to INFINITY) msg_holder = "very strong "
+				stat(null,"You are affected by a [msg_holder]FRENZY pheromone.")
+			if(warding_aura)
+				switch(warding_aura)
+					if(-INFINITY to 1.0) msg_holder = "very weak "
+					if(1.1 to 2.0) msg_holder = "weak "
+					if(2.1 to 2.9) msg_holder = ""
+					if(3.0 to 3.9) msg_holder = "strong "
+					if(4.0 to INFINITY) msg_holder = "very strong "
+				stat(null,"You are affected by a [msg_holder]WARDING pheromone.")
+			if(recovery_aura)
+				switch(recovery_aura)
+					if(-INFINITY to 1.0) msg_holder = "very weak "
+					if(1.1 to 2.0) msg_holder = "weak "
+					if(2.1 to 2.9) msg_holder = ""
+					if(3.0 to 3.9) msg_holder = "strong "
+					if(4.0 to INFINITY) msg_holder = "very strong "
+				stat(null,"You are affected by a [msg_holder]RECOVERY pheromone.")
 
 
-		if(hivenumber != XENO_HIVE_CORRUPTED)
-			if(hive.hive_orders && hive.hive_orders != "")
-				stat(null,"Hive Orders: [hive.hive_orders]")
-		else
-			stat(null,"Hive Orders: Follow the instructions of your masters")
+			if(hivenumber != XENO_HIVE_CORRUPTED)
+				if(hive.hive_orders && hive.hive_orders != "")
+					stat(null,"Hive Orders: [hive.hive_orders]")
+			else
+				stat(null,"Hive Orders: Follow the instructions of your masters")
 
-	return 1
 
 //A simple handler for checking your state. Used in pretty much all the procs.
 /mob/living/carbon/Xenomorph/proc/check_state()
@@ -295,9 +294,7 @@
 						M.attack_alien(src, null, "disarm") //Hunters get a free throttle in exchange for lower initial stun.
 					if(!isXenoSilicon(src))
 						playsound(loc, rand(0, 100) < 95 ? 'sound/voice/alien_pounce.ogg' : 'sound/voice/alien_pounce2.ogg', 25, 1)
-					spawn(xeno_caste.charge_type == 1 ? 5 : 15)
-						frozen = FALSE
-						update_canmove()
+					addtimer(CALLBACK(src, .proc/reset_movement), xeno_caste.charge_type == 1 ? 5 : 15)	
 					stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 
 				if(RAV_CHARGE_TYPE) //Ravagers get a free attack if they charge into someone.
@@ -310,6 +307,10 @@
 		return TRUE
 	process_ravager_charge(FALSE)
 	return ..() //Do the parent otherwise, for turfs.
+
+/mob/living/carbon/Xenomorph/proc/reset_movement()
+	frozen = FALSE
+	update_canmove()
 
 //Bleuugh
 /mob/living/carbon/Xenomorph/proc/empty_gut()
@@ -410,7 +411,7 @@
 	return 1
 
 /mob/living/carbon/Xenomorph/drop_held_item()
-	var/obj/item/clothing/mask/facehugger/F = get_active_hand()
+	var/obj/item/clothing/mask/facehugger/F = get_active_held_item()
 	if(istype(F))
 		if(locate(/turf/closed/wall/resin) in loc)
 			to_chat(src, "<span class='warning'>You decide not to drop [F] after all.</span>")
@@ -519,10 +520,10 @@
 	if(!ammo || !xeno_caste.spit_types.len) //Only update xenos with ammo and spit types.
 		return
 	for(var/i in 1 to xeno_caste.spit_types.len)
-		if(ammo.icon_state == ammo_list[xeno_caste.spit_types[i]].icon_state)
-			ammo = ammo_list[xeno_caste.spit_types[i]]
+		if(ammo.icon_state == GLOB.ammo_list[xeno_caste.spit_types[i]].icon_state)
+			ammo = GLOB.ammo_list[xeno_caste.spit_types[i]]
 			return
-	ammo = ammo_list[xeno_caste.spit_types[1]] //No matching projectile time; default to first spit type
+	ammo = GLOB.ammo_list[xeno_caste.spit_types[1]] //No matching projectile time; default to first spit type
 	return
 
 /mob/living/carbon/Xenomorph/proc/stealth_router(code = 0)
@@ -543,6 +544,16 @@
 			else
 				return FALSE
 
+/mob/living/carbon/Xenomorph/proc/neuroclaw_router()
+	return
+
+/mob/living/carbon/Xenomorph/Defiler/neuroclaw_router(mob/living/carbon/human/H)
+	if(!check_plasma(50) || !neuro_claws || !H)
+		return
+	use_plasma(50)
+	H.reagents.add_reagent("xeno_toxin", neuro_claws_dose)
+	to_chat(src, "<span class='xenowarning'>Your claw spines inject your victim with neurotoxin!</span>")
+
 /mob/living/carbon/Xenomorph/proc/process_ravager_charge(hit = TRUE, mob/living/carbon/M = null)
 	return FALSE
 
@@ -557,6 +568,20 @@
 		rage = 0
 	else
 		rage *= 0.5 //Halve rage instead of 0ing it out if we miss.
+
+/mob/living/carbon/Xenomorph/proc/set_hive_number(var/newhivenumber)
+	if(!newhivenumber)
+		return
+
+	hivenumber = newhivenumber
+
+	if(isXenoLarva(src))
+		var/mob/living/carbon/Xenomorph/Larva/L = src
+		L.update_icons() // larva renaming done differently
+	else
+		generate_name()
+		update_living_queens()
+		
 
 //////////// XENO CASTE PROCS //////////////////
 

@@ -1,0 +1,4 @@
+author: "MattAtlas"
+delete-after: True
+changes: 
+  - admin: "Added the Spatial Agent verb in the Debug tab. It spawns you in as a dummy mob, with a full access ID and several useful debug verbs."

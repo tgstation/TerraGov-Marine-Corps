@@ -41,7 +41,7 @@
 			dat += "<A href='?src=\ref[src];screen=1'>1. Cyborg Status</A><BR>"
 			dat += "<A href='?src=\ref[src];screen=2'>2. Emergency Full Destruct</A><BR>"
 		if(screen == 1)
-			for(var/mob/living/silicon/robot/R in mob_list)
+			for(var/mob/living/silicon/robot/R in GLOB.silicon_mobs)
 				if(istype(R, /mob/living/silicon/robot/drone))
 					continue //There's a specific console for drones.
 				if(istype(user, /mob/living/silicon/ai))
@@ -114,15 +114,15 @@
 			<A href='?src=\ref[src];temp=1'>Cancel</A>"}
 
 		else if (href_list["eject2"])
-			var/obj/item/card/id/I = usr.get_active_hand()
+			var/obj/item/card/id/I = usr.get_active_held_item()
 			if (istype(I, /obj/item/device/pda))
 				var/obj/item/device/pda/pda = I
 				I = pda.id
 			if (istype(I))
 				if(src.check_access(I))
 					if (!status)
-						message_admins("<span class='notice'> [key_name_admin(usr)] has initiated the global cyborg killswitch!</span>")
-						log_game("<span class='notice'> [key_name(usr)] has initiated the global cyborg killswitch!</span>")
+						log_game("[key_name(usr)] has initiated the global cyborg killswitch.")
+						message_admins("[ADMIN_TPMONTY(usr)] has initiated the global cyborg killswitch.")
 						src.status = 1
 						src.start_sequence()
 						src.temp = null
@@ -224,7 +224,7 @@
 		sleep(10)
 	while(src.timeleft)
 
-	for(var/mob/living/silicon/robot/R in mob_list)
+	for(var/mob/living/silicon/robot/R in GLOB.silicon_mobs)
 		if(!R.scrambledcodes && !istype(R, /mob/living/silicon/robot/drone))
 			R.self_destruct()
 

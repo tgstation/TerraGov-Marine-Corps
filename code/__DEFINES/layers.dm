@@ -91,6 +91,8 @@
 #define AREAS_LAYER 10 //for areas, so they appear above everything else on map file.
 
 #define POINT_LAYER 12
+#define ABOVE_LIGHTING_PLANE 16
+#define ABOVE_LIGHTING_LAYER 16
 
 #define BELOW_FULLSCREEN_LAYER 16.9 //blip from motion detector
 #define FULLSCREEN_LAYER 17

@@ -41,7 +41,7 @@
 
 /turf/New()
 	..()
-	turfs += src
+	GLOB.turfs += src
 	for(var/atom/movable/AM as mob|obj in src)
 		spawn(0)
 			Entered(AM)
@@ -67,9 +67,6 @@
 
 
 /turf/Enter(atom/movable/mover as mob|obj, atom/forget as mob|obj|turf|area)
-	if(movement_disabled && usr.ckey != movement_disabled_exception)
-		to_chat(usr, "<span class='warning'>Movement is admin-disabled.</span>")
-		return
 	if (!mover || !isturf(mover.loc))
 		return 1
 

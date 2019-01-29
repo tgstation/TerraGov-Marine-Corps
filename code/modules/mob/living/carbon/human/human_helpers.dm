@@ -73,7 +73,6 @@
 				return "[ethnicity]_left_foot"
 
 			else
-				message_admins("DEBUG: Something called get_limb_icon_name() incorrectly, they use the name [limb_name]")
 				return null
 	else
 		switch(limb_name)
@@ -137,12 +136,11 @@
 			if ("left foot")
 				return "l_foot"
 			else
-				message_admins("DEBUG: Something called get_limb_icon_name() incorrectly, they use the name [limb_name]")
 				return null
 
 /mob/living/carbon/human/proc/set_limb_icons()
-	var/datum/ethnicity/E = ethnicities_list[ethnicity]
-	var/datum/body_type/B = body_types_list[body_type]
+	var/datum/ethnicity/E = GLOB.ethnicities_list[ethnicity]
+	var/datum/body_type/B = GLOB.body_types_list[body_type]
 
 	var/e_icon
 	var/b_icon
@@ -220,9 +218,9 @@
 
 /mob/living/carbon/human/has_legs()
 	. = 0
-	if(has_limb("r_foot") && has_limb("r_leg"))
+	if(has_limb(FOOT_RIGHT) && has_limb(LEG_RIGHT))
 		.++
-	if(has_limb("l_foot") && has_limb("l_leg"))
+	if(has_limb(FOOT_LEFT) && has_limb(LEG_LEFT))
 		.++
 
 /mob/living/carbon/human/proc/disable_lights(var/armor = 1, var/guns = 1, var/flares = 1, var/misc = 1)
@@ -277,9 +275,9 @@
 	for(var/obj/item/I in get_equipped_items())
 		if(I.body_parts_covered & HANDS)
 			prot["hands"] = max(1 - I.permeability_coefficient, prot["hands"])
-		if(I.body_parts_covered & UPPER_TORSO)
+		if(I.body_parts_covered & CHEST)
 			prot["chest"] = max(1 - I.permeability_coefficient, prot["chest"])
-		if(I.body_parts_covered & LOWER_TORSO)
+		if(I.body_parts_covered & GROIN)
 			prot["groin"] = max(1 - I.permeability_coefficient, prot["groin"])
 		if(I.body_parts_covered & LEGS)
 			prot["legs"] = max(1 - I.permeability_coefficient, prot["legs"])

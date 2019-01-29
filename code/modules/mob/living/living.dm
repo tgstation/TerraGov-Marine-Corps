@@ -95,14 +95,16 @@
 /mob/living/update_stat()
 	update_cloak()
 
-/mob/living/New()
-	..()
+/mob/living/Initialize()
+	. = ..()
 	attack_icon = image("icon" = 'icons/effects/attacks.dmi',"icon_state" = "", "layer" = 0)
+	GLOB.mob_living_list += src
 
 /mob/living/Destroy()
 	if(attack_icon)
 		qdel(attack_icon)
 		attack_icon = null
+	GLOB.mob_living_list -= src
 	. = ..()
 
 
@@ -228,7 +230,7 @@
 	set category = "OOC"
 	set src in view()
 
-	if(config.allow_Metadata)
+	if(CONFIG_GET(flag/allow_metadata))
 		if(client)
 			to_chat(usr, "[src]'s Metainfo:<br>[client.prefs.metadata]")
 		else
@@ -480,10 +482,8 @@
 
 /mob/living/flash_eyes(intensity = 1, bypass_checks, type = /obj/screen/fullscreen/flash)
 	if( bypass_checks || (get_eye_protection() < intensity && !(disabilities & BLIND)) )
-		overlay_fullscreen("flash", type)
-		spawn(40)
-			clear_fullscreen("flash", 20)
-		return 1
+		overlay_fullscreen_timer(40, 20, "flash", type)
+		return TRUE
 
 /mob/living/proc/smokecloak_on()
 

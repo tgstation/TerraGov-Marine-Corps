@@ -159,6 +159,13 @@
 	armor = list(melee = 5, bullet = 5, laser = 5, energy = 10, bomb = 10, bio = 10, rad = 5)
 	icon_state = "research_jumpsuit"
 
+/obj/item/clothing/under/whites
+	name = "\improper TGMC dress uniform"
+	desc = "A standard-issue Marine dress uniform. The starch in the fabric chafes a small amount but it pales in comparison to the pride you feel when you first put it on during graduation from boot camp. doesn't seem to fit perfectly around the waist though."
+	siemens_coefficient = 0.9
+	icon_state = "marine_whites" //with thanks to Manezinho
+	rollable_sleeves = FALSE
+
 //=========================//RESPONDERS\\================================\\
 //=======================================================================\\
 
@@ -213,9 +220,9 @@
 /obj/item/clothing/under/marine/veteran/dutch
 	name = "\improper Dutch's Dozen uniform"
 	desc = "A comfortable uniform worn by the Dutch's Dozen mercenaries. It's seen some definite wear and tear, but is still in good condition."
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS
-	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS
-	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS
+	flags_armor_protection = CHEST|GROIN|LEGS
+	flags_cold_protection = CHEST|GROIN|LEGS
+	flags_heat_protection = CHEST|GROIN|LEGS
 	icon_state = "dutch_jumpsuit"
 	has_sensor = 0
 

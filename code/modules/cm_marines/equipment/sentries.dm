@@ -1,5 +1,6 @@
 //Deployable turrets. They can be either automated, manually fired, or installed with a pAI.
 //They are built in stages, and only engineers have access to them.
+
 /obj/item/ammo_magazine/sentry
 	name = "M30 box magazine (10x28mm Caseless)"
 	desc = "A box of 500 10x28mm caseless rounds for the UA 571-C Sentry Gun. Just feed it into the sentry gun's ammo port when its ammo is depleted."
@@ -288,7 +289,7 @@
 	spawn(2)
 		stat = 0
 	//START_PROCESSING(SSobj, src)
-	ammo = ammo_list[ammo]
+	ammo = GLOB.ammo_list[ammo]
 	update_icon()
 
 
@@ -662,7 +663,7 @@
 		user.visible_message("<span class='notice'>[user] begins installing \a [O.name] into [src].</span>",
 		"<span class='notice'>You begin installing \a [O.name] into [src].</span>")
 		if(do_after(user, work_time, TRUE, 5, BUSY_ICON_BUILD))
-			user.drop_inv_item_to_loc(O, src)
+			user.transferItemToLoc(O, src)
 			user.visible_message("<span class='notice'>[user] installs \a [O.name] into [src].</span>",
 			"<span class='notice'>You install \a [O.name] into [src].</span>")
 			cell = O
@@ -951,7 +952,7 @@
 				//Apply scatter
 				var/scatter_chance = in_chamber.ammo.scatter
 				scatter_chance += (burst_size * 2)
-				in_chamber.accuracy = round(in_chamber.accuracy * (config.base_hit_accuracy_mult - config.min_hit_accuracy_mult * max(0,burst_size - 2) ) ) //Accuracy penalty scales with burst count.
+				in_chamber.accuracy = round(in_chamber.accuracy * (CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/min_hit_accuracy_mult) * max(0,burst_size - 2) ) ) //Accuracy penalty scales with burst count.
 
 				if (prob(scatter_chance))
 					var/scatter_x = rand(-1, 1)
@@ -960,7 +961,7 @@
 					if(new_target) //Looks like we found a turf.
 						target = new_target
 			else
-				in_chamber.accuracy = round(in_chamber.accuracy * (config.base_hit_accuracy_mult + config.med_hit_accuracy_mult)) //much more accurate on single fire
+				in_chamber.accuracy = round(in_chamber.accuracy * (CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/med_hit_accuracy_mult))) //much more accurate on single fire
 
 			//Setup projectile
 			in_chamber.original = target
@@ -1076,7 +1077,7 @@
 		state("<span class='notice'>The [name] buzzes: AI targeting re-initialized.</span>")
 		user.unset_interaction()
 		return FALSE
-	if(user.get_active_hand() != null)
+	if(user.get_active_held_item() != null)
 		to_chat(usr, "<span class='warning'>You need a free hand to shoot [src].</span>")
 		return FALSE
 
@@ -1143,8 +1144,8 @@
 	immobile = TRUE
 	on = TRUE
 	burst_fire = TRUE
-	rounds = 100000
-	rounds_max = 100000
+	rounds = 50000
+	rounds_max = 50000
 	icon_state = "sentry_base"
 
 /obj/machinery/marine_turret/premade/New()
@@ -1158,11 +1159,12 @@
 	camera.c_tag = "[src.name] ([rand(0,1000)])"
 	spawn(2)
 		stat = 0
-	ammo = ammo_list[ammo]
+	ammo = GLOB.ammo_list[ammo]
+	rounds = 50000
 	update_icon()
 
 /obj/machinery/marine_turret/premade/dumb
-	name = "Modified UA-577 Gauss Turret"
+	name = "Modified UA-577 Gauss Sentry"
 	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an M30 Autocannon and a high-capacity drum magazine. This one's IFF system has been disabled, and it will open fire on any targets within range."
 	iff_signal = 0
 	ammo = /datum/ammo/bullet/turret/dumb
@@ -1201,15 +1203,28 @@
 		state("<span class='notice'>The [name] powers down and goes silent.</span>")
 		update_icon()
 
+/obj/item/ammo_magazine/sentry/premade/dumb
+	name = "UA-577 box magazine (12x40mm Gauss Slugs)"
+	desc = "A box of 500 12x40mm gauss slugs for the UA-577 Gauss Turret. Just feed it into the turret's ammo port when its ammo is depleted."
+	w_class = 4
+	icon = 'icons/Marine/new_sentry_alt.dmi'
+	icon_state = "ammo_can"
+	flags_magazine = NOFLAGS //can't be refilled or emptied by hand
+	caliber = "12x40mm"
+	max_rounds = 50000
+	default_ammo = /datum/ammo/bullet/turret/dumb
+	gun_type = null
+
+
 //the turret inside the sentry deployment system
 /obj/machinery/marine_turret/premade/dropship
 	density = FALSE
 	ammo = /datum/ammo/bullet/turret/gauss //This is a gauss cannon; it will be significantly deadlier
-	rounds = 1000000
 	safety_off = TRUE
 	burst_size = 10
 	burst_delay = 15
 	var/obj/structure/dropship_equipment/sentry_holder/deployment_system
+	magazine_type = /obj/item/ammo_magazine/sentry/premade/dropship
 
 /obj/machinery/marine_turret/premade/dropship/Destroy()
 	if(deployment_system)
@@ -1217,6 +1232,17 @@
 		deployment_system = null
 	. = ..()
 
+/obj/item/ammo_magazine/sentry/premade/dropship
+	name = "UA-577 box magazine (12x40mm Gauss Slugs)"
+	desc = "A box of 500 12x40mm gauss slugs for the UA-577 Gauss Turret. Just feed it into the turret's ammo port when its ammo is depleted."
+	w_class = 4
+	icon = 'icons/Marine/new_sentry_alt.dmi'
+	icon_state = "ammo_can"
+	flags_magazine = NOFLAGS //can't be refilled or emptied by hand
+	caliber = "12x40mm"
+	max_rounds = 50000
+	default_ammo = /datum/ammo/bullet/turret/gauss
+	gun_type = null
 
 /obj/machinery/marine_turret/proc/sentry_alert(alert_code, mob/M)
 	if(!alert_code)
@@ -1337,7 +1363,7 @@
 	item_state = "minisentry_packed"
 	w_class = 4
 	health = 150 //We keep track of this when folding up the sentry.
-	flags_equip_slot = SLOT_BACK
+	flags_equip_slot = ITEM_SLOT_BACK
 
 /obj/item/device/marine_turret/mini/attack_self(mob/user) //click the sentry to deploy it.
 	if(!ishuman(usr))
@@ -1362,8 +1388,8 @@
 		qdel(src)
 
 /obj/item/ammo_magazine/minisentry
-	name = "M30 box magazine (10x28mm Caseless)"
-	desc = "A box of 500 10x20mm caseless rounds for the UA-580 Point Defense Sentry. Just feed it into the sentry gun's ammo port when its ammo is depleted."
+	name = "M30 box magazine (10x20mm Caseless)"
+	desc = "A box of 500 10x20mm armor piercing caseless rounds for the UA-580 Point Defense Sentry. Just feed it into the sentry gun's ammo port when its ammo is depleted."
 	w_class = 3
 	icon_state = "ua580"
 	flags_magazine = NOFLAGS //can't be refilled or emptied by hand
@@ -1391,3 +1417,5 @@
 		new /obj/item/tool/wrench(src) //wrench to hold it down into the ground
 		new /obj/item/tool/screwdriver(src) //screw the gun onto the post.
 		new /obj/item/ammo_magazine/minisentry(src)
+
+

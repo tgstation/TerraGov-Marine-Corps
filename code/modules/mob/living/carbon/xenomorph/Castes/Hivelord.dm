@@ -25,12 +25,15 @@
 	max_health = 250
 
 	// *** Evolution *** //
+	evolution_threshold = 200
 	upgrade_threshold = 200
 
 	deevolves_to = /mob/living/carbon/Xenomorph/Drone
 
+	evolves_to = list(/mob/living/carbon/Xenomorph/Defiler)
+
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_BE_GIVEN_PLASMA
+	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_BE_GIVEN_PLASMA
 
 	can_hold_eggs = CAN_HOLD_TWO_HANDS
 

@@ -743,7 +743,7 @@ About the new airlock wires panel:
 			if(!do_after(usr, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
 		if(href_list["wires"])
 			var/t1 = text2num(href_list["wires"])
-			if(!( istype(usr.get_active_hand(), /obj/item/tool/wirecutters) ))
+			if(!( istype(usr.get_active_held_item(), /obj/item/tool/wirecutters) ))
 				to_chat(usr, "You need wirecutters!")
 				return
 			if(src.isWireColorCut(t1))
@@ -752,7 +752,7 @@ About the new airlock wires panel:
 				src.cut(t1)
 		else if(href_list["pulse"])
 			var/t1 = text2num(href_list["pulse"])
-			if(!istype(usr.get_active_hand(), /obj/item/device/multitool))
+			if(!istype(usr.get_active_held_item(), /obj/item/device/multitool))
 				to_chat(usr, "You need a multitool!")
 				return
 			if(src.isWireColorCut(t1))
@@ -762,13 +762,13 @@ About the new airlock wires panel:
 				src.pulse(t1)
 		else if(href_list["signaler"])
 			var/wirenum = text2num(href_list["signaler"])
-			if(!istype(usr.get_active_hand(), /obj/item/device/assembly/signaler))
+			if(!istype(usr.get_active_held_item(), /obj/item/device/assembly/signaler))
 				to_chat(usr, "You need a signaller!")
 				return
 			if(src.isWireColorCut(wirenum))
 				to_chat(usr, "You can't attach a signaller to a cut wire.")
 				return
-			var/obj/item/device/assembly/signaler/R = usr.get_active_hand()
+			var/obj/item/device/assembly/signaler/R = usr.get_active_held_item()
 			if(R.secured)
 				to_chat(usr, "This radio can't be attached!")
 				return
@@ -1205,8 +1205,8 @@ About the new airlock wires panel:
 		return 1
 	return 0
 
-/obj/machinery/door/airlock/New()
-	..()
+/obj/machinery/door/airlock/Initialize()
+	. = ..()
 
 	//wires
 	if (!secured_wires)
@@ -1217,15 +1217,14 @@ About the new airlock wires panel:
 	else
 		randomize_wires()
 
-	if(src.closeOtherId != null)
-		spawn (5)
-			for (var/obj/machinery/door/airlock/A in machines)
-				if(A.closeOtherId == src.closeOtherId && A != src)
-					src.closeOther = A
-					break
+	if(closeOtherId != null)
+		for (var/obj/machinery/door/airlock/A in GLOB.machines)
+			if(A.closeOtherId == src.closeOtherId && A != src)
+				src.closeOther = A
+				break
+				
 	// fix smoothing
-	spawn(10)
-		relativewall_neighbours()
+	relativewall_neighbours()
 
 /obj/machinery/door/airlock/proc/randomize_wires()
 	var/wire_assignments = CreateRandomAirlockWires()

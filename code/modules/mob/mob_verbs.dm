@@ -80,26 +80,17 @@
 	set name = "Respawn"
 	set category = "OOC"
 
-	var/is_admin = 0
-	if(client.holder && (client.holder.rights & R_ADMIN))
-		is_admin = 1
-
-	if (!( abandon_allowed ) && !is_admin)
+	if(!respawn_allowed || !check_rights(R_ADMIN, FALSE))
 		to_chat(usr, "<span class='notice'>Respawn is disabled.</span>")
 		return
-	if ((stat != 2 || !( ticker )))
+	if(stat != DEAD)
 		to_chat(usr, "<span class='boldnotice'>You must be dead to use this!</span>")
 		return
-	if (ticker.mode.name == "meteor" || ticker.mode.name == "epidemic") //BS12 EDIT
+	if(!ticker?.mode || ticker.mode.name == "meteor" || ticker.mode.name == "epidemic") //BS12 EDIT
 		to_chat(usr, "<span class='notice'>Respawn is disabled for this roundtype.</span>")
 		return
 	else
 		var/deathtime = world.time - src.timeofdeath
-//		if(istype(src,/mob/dead/observer))
-//			var/mob/dead/observer/G = src
-//			if(G.has_enabled_antagHUD == 1 && config.antag_hud_restricted)
-//				to_chat(usr, "<span class='boldnotice'>Upon using the antagHUD you forfeighted the ability to join the round.</span>")
-//				return
 		var/deathtimeminutes = round(deathtime / 600)
 		var/pluralcheck = "minute"
 		if(deathtimeminutes == 0)
@@ -111,7 +102,7 @@
 		var/deathtimeseconds = round((deathtime - deathtimeminutes * 600) / 10,1)
 		to_chat(usr, "You have been dead for[pluralcheck] [deathtimeseconds] seconds.")
 
-		if (deathtime < (respawntime * 600) && !is_admin)
+		if(deathtime < (respawntime * 600) && !check_rights(R_ADMIN, FALSE))
 			to_chat(usr, "You must wait [respawntime] minutes to respawn!")
 			return
 		else
@@ -136,8 +127,8 @@
 		return
 
 	M.key = key
-	if(M.client) M.client.change_view(world.view)
-//	M.Login()	//wat
+	if(M.client)
+		M.client.change_view(world.view)
 	return
 
 
@@ -184,9 +175,9 @@
 		if(hud_used && hud_used.pull_icon)
 			hud_used.pull_icon.icon_state = "pull0"
 		if(istype(r_hand, /obj/item/grab))
-			temp_drop_inv_item(r_hand)
+			temporarilyRemoveItemFromInventory(r_hand)
 		else if(istype(l_hand, /obj/item/grab))
-			temp_drop_inv_item(l_hand)
+			temporarilyRemoveItemFromInventory(l_hand)
 		if(istype(M))
 			if(M.client)
 				//resist_grab uses long movement cooldown durations to prevent message spam

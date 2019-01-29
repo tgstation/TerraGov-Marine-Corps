@@ -4,7 +4,7 @@
 	for(var/obj/item/W in src)
 		if (W==w_uniform) // will be torn
 			continue
-		drop_inv_item_on_ground(W)
+		dropItemToGround(W)
 	regenerate_icons()
 	monkeyizing = 1
 	canmove = 0
@@ -70,7 +70,7 @@
 	if (monkeyizing)
 		return
 	for(var/obj/item/W in src)
-		drop_inv_item_on_ground(W)
+		dropItemToGround(W)
 	monkeyizing = 1
 	canmove = 0
 	icon = null
@@ -92,21 +92,21 @@
 		if(O.client) O.client.change_view(world.view)
 
 	var/obj/loc_landmark
-	for(var/obj/effect/landmark/start/sloc in landmarks_list)
+	for(var/obj/effect/landmark/start/sloc in GLOB.landmarks_list)
 		if (sloc.name != "AI")
 			continue
 		if (locate(/mob/living) in sloc.loc)
 			continue
 		loc_landmark = sloc
 	if (!loc_landmark)
-		for(var/obj/effect/landmark/tripai in landmarks_list)
+		for(var/obj/effect/landmark/tripai in GLOB.landmarks_list)
 			if (tripai.name == "tripai")
 				if(locate(/mob/living) in tripai.loc)
 					continue
 				loc_landmark = tripai
 	if (!loc_landmark)
 		to_chat(O, "Oh god sorry we can't find an unoccupied AI spawn location, so we're spawning you on top of someone.")
-		for(var/obj/effect/landmark/start/sloc in landmarks_list)
+		for(var/obj/effect/landmark/start/sloc in GLOB.landmarks_list)
 			if (sloc.name == "AI")
 				loc_landmark = sloc
 
@@ -135,7 +135,7 @@
 	if (monkeyizing)
 		return
 	for(var/obj/item/W in src)
-		drop_inv_item_on_ground(W)
+		dropItemToGround(W)
 	regenerate_icons()
 	monkeyizing = 1
 	canmove = 0
@@ -189,7 +189,7 @@
 	if (monkeyizing)
 		return
 	for(var/obj/item/W in src)
-		drop_inv_item_on_ground(W)
+		dropItemToGround(W)
 	regenerate_icons()
 	monkeyizing = 1
 	canmove = 0
@@ -215,7 +215,7 @@
 	if (monkeyizing)
 		return
 	for(var/obj/item/W in src)
-		drop_inv_item_on_ground(W)
+		dropItemToGround(W)
 	regenerate_icons()
 	monkeyizing = 1
 	canmove = 0
@@ -241,7 +241,7 @@
 	if (monkeyizing)
 		return
 	for(var/obj/item/W in src)
-		drop_inv_item_on_ground(W)
+		dropItemToGround(W)
 	regenerate_icons()
 	monkeyizing = 1
 	canmove = 0
@@ -272,7 +272,7 @@
 	if(monkeyizing)
 		return
 	for(var/obj/item/W in src)
-		drop_inv_item_on_ground(W)
+		dropItemToGround(W)
 
 	regenerate_icons()
 	monkeyizing = 1

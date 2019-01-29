@@ -64,7 +64,7 @@
 	var/list/castes_to_pick = list()
 	if(xeno_caste?.evolves_to?.len)
 		for(var/type in xeno_caste.evolves_to)
-			var/datum/xeno_caste/Z = xeno_caste_datums[type][1]
+			var/datum/xeno_caste/Z = GLOB.xeno_caste_datums[type][1]
 			castes_to_pick += Z.caste_name
 	var/castepick = input("You are growing into a beautiful alien! It is time to choose a caste.") as null|anything in castes_to_pick
 	if(!castepick) //Changed my mind
@@ -72,12 +72,12 @@
 
 	var/new_caste_type
 	for(var/type in xeno_caste.evolves_to)
-		if(castepick == xeno_caste_datums[type][1].caste_name)
+		if(castepick == GLOB.xeno_caste_datums[type][1].caste_name)
 			new_caste_type = type
 
 	if(!new_caste_type)
 		to_chat(src, "EVO8: Something went wrong with evolving")
-		return 
+		return
 
 	if(!isturf(loc)) //cdel'd or inside something
 		return
@@ -129,7 +129,7 @@
 	else
 		//This will build a list of ALL the current Xenos and their Tiers, then use that to calculate if they can evolve or not.
 		//Should count mindless as well so people don't cheat
-		for(var/mob/living/carbon/Xenomorph/M in living_mob_list)
+		for(var/mob/living/carbon/Xenomorph/M in GLOB.alive_xeno_list)
 			if(hivenumber == M.hivenumber)
 				switch(M.tier)
 					if(0)
@@ -158,7 +158,7 @@
 		else if(tier == 2 && (tierC / max(totalXenos, 1))> 0.25)
 			to_chat(src, "<span class='warning'>The hive cannot support another Tier 3, wait for either more aliens to be born or someone to die.</span>")
 			return
-		else if(!hive.living_xeno_queen && potential_queens == 1 && isXenoLarva(src) && new_caste_type == /mob/living/carbon/Xenomorph/Drone)
+		else if(!hive.living_xeno_queen && potential_queens == 1 && isXenoLarva(src) && new_caste_type != /mob/living/carbon/Xenomorph/Drone)
 			to_chat(src, "<span class='xenonotice'>The hive currently has no sister able to become Queen! The survival of the hive requires you to be a Drone!</span>")
 			return
 		else if(xeno_caste.evolution_threshold && evolution_stored < xeno_caste.evolution_threshold)
@@ -224,7 +224,7 @@
 	update_spits() //Update spits to new/better ones
 
 	for(var/obj/item/W in contents) //Drop stuff
-		drop_inv_item_on_ground(W)
+		dropItemToGround(W)
 
 	empty_gut()
 	new_xeno.visible_message("<span class='xenodanger'>A [new_xeno.xeno_caste.caste_name] emerges from the husk of \the [src].</span>", \

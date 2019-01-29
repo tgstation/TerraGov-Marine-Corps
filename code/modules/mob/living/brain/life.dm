@@ -97,7 +97,7 @@
 	if(status_flags & GODMODE)
 		return
 	if(stat != DEAD)
-		if(!container && (health < config.health_threshold_dead || ((world.time - timeofhostdeath) > config.revival_brain_life)) )
+		if(!container && (health < CONFIG_GET(number/health_threshold_dead) || ((world.time - timeofhostdeath) > CONFIG_GET(number/revival_brain_life))) )
 			death()
 			blind_eyes(1)
 			silent = 0

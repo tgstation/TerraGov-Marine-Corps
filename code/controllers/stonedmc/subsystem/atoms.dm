@@ -25,7 +25,6 @@ SUBSYSTEM_DEF(atoms)
 
 	lighting_controller.Initialize()
 
-	setup_gamemode_list()
 	return ..()
 
 /datum/controller/subsystem/atoms/proc/InitializeAtoms(list/atoms)
@@ -53,7 +52,7 @@ SUBSYSTEM_DEF(atoms)
 				++count
 				CHECK_TICK
 
-	testing("Initialized [count] atoms")
+	pass(count)
 
 	initialized = INITIALIZATION_INNEW_REGULAR
 
@@ -61,7 +60,6 @@ SUBSYSTEM_DEF(atoms)
 		for(var/I in late_loaders)
 			var/atom/A = I
 			A.LateInitialize()
-		testing("Late initialized [late_loaders.len] atoms")
 		late_loaders.Cut()
 
 /datum/controller/subsystem/atoms/proc/InitAtom(atom/A, list/arguments)
@@ -132,24 +130,6 @@ SUBSYSTEM_DEF(atoms)
 			GLOB.not_good_mutations |= B
 		CHECK_TICK*/
 
-/datum/controller/subsystem/atoms/proc/setup_gamemode_list()
-	var/list/L = subtypesof(/datum/game_mode)
-	for(var/T in L)
-		// I wish I didn't have to instance the game modes in order to look up
-		// their information, but it is the only way (at least that I know of).
-		var/datum/game_mode/M = new T()
-
-		if (M.config_tag)
-			if(!(M.config_tag in config.modes))		// ensure each mode is added only once
-				log_misc("Adding game mode [M.name] ([M.config_tag]) to configuration.")
-				config.modes += M.config_tag
-				config.mode_names[M.config_tag] = M.name
-				config.probabilities[M.config_tag] = M.probability
-				if (M.votable)
-					config.votable_modes += M.config_tag
-		qdel(M)
-	config.votable_modes += "secret"
-
 /datum/controller/subsystem/atoms/proc/InitLog()
 	. = ""
 	for(var/path in BadInitializeCalls)
@@ -167,7 +147,7 @@ SUBSYSTEM_DEF(atoms)
 /datum/controller/subsystem/atoms/Shutdown()
 	var/initlog = InitLog()
 	if(initlog)
-		text2file(initlog, "[log_directory]/initialize.log")
+		text2file(initlog, "[GLOB.log_directory]/initialize.log")
 
 #undef BAD_INIT_QDEL_BEFORE
 #undef BAD_INIT_DIDNT_INIT

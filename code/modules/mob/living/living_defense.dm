@@ -74,8 +74,8 @@
 			var/client/assailant = M.client
 			if(assailant)
 				log_combat(M, src, "hit", O, "(thrown)")
-				if(!istype(src,/mob/living/simple_animal/mouse))
-					msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) was hit by a [O], thrown by [key_name(M)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[M]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[M.x];Y=[M.y];Z=[M.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[M]'>FLW</a>)")
+				if(!istype(src, /mob/living/simple_animal/mouse))
+					msg_admin_attack("[ADMIN_TPMONTY(usr)] was hit by a [O], thrown by [ADMIN_TPMONTY(M)].")
 
 		// Begin BS12 momentum-transfer code.
 		if(O.throw_source && speed >= 15)
@@ -133,14 +133,14 @@
 	. = ..()
 	if(.)
 		SetLuminosity(min(fire_stacks,5)) // light up xenos
-		var/obj/item/clothing/mask/facehugger/F = get_active_hand()
-		var/obj/item/clothing/mask/facehugger/G = get_inactive_hand()
+		var/obj/item/clothing/mask/facehugger/F = get_active_held_item()
+		var/obj/item/clothing/mask/facehugger/G = get_inactive_held_item()
 		if(istype(F))
 			F.Die()
-			drop_inv_item_on_ground(F)
+			dropItemToGround(F)
 		if(istype(G))
 			G.Die()
-			drop_inv_item_on_ground(G)
+			dropItemToGround(G)
 
 /mob/living/proc/ExtinguishMob()
 	if(on_fire)

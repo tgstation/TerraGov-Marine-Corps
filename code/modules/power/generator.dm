@@ -15,11 +15,10 @@
 	var/lastgen = 0
 	var/lastgenlev = -1
 
-/obj/machinery/power/generator/New()
-	..()
+/obj/machinery/power/generator/Initialize()
+	. = ..()
 
-	spawn(1)
-		reconnect()
+	reconnect()
 	start_processing()
 
 //generators connect in dir and reverse_dir(dir) directions

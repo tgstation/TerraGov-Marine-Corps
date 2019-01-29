@@ -58,11 +58,11 @@
 
 /obj/machinery/vending/marine/New()
 	..()
-	marine_vendors.Add(src)
+	GLOB.marine_vendors.Add(src)
 
 /obj/machinery/vending/marine/Destroy()
 	. = ..()
-	marine_vendors.Remove(src)
+	GLOB.marine_vendors.Remove(src)
 
 /obj/machinery/vending/marine/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/weapon/gun))
@@ -123,7 +123,9 @@
 					/obj/item/clothing/mask/gas = 10
 					)
 
-	contraband = list(
+	contraband = list(								
+					/obj/item/storage/box/nade_box/HIDP = 1,
+					/obj/item/storage/box/nade_box/M15 = 1,																																																																										
 					/obj/item/weapon/gun/smg/ppsh = 4,
 					/obj/item/weapon/gun/shotgun/double = 2,
 					/obj/item/weapon/gun/smg/m39/elite = 0,
@@ -154,12 +156,12 @@
 
 /obj/machinery/vending/marine/cargo_guns/New()
 	..()
-	cargo_guns_vendors.Add(src)
-	marine_vendors.Remove(src)
+	GLOB.cargo_guns_vendors.Add(src)
+	GLOB.marine_vendors.Remove(src)
 
 /obj/machinery/vending/marine/cargo_guns/Destroy()
 	. = ..()
-	cargo_guns_vendors.Remove(src)
+	GLOB.cargo_guns_vendors.Remove(src)
 
 
 
@@ -236,12 +238,12 @@
 
 /obj/machinery/vending/marine/cargo_ammo/New()
 	..()
-	cargo_ammo_vendors.Add(src)
-	marine_vendors.Remove(src)
+	GLOB.cargo_ammo_vendors.Add(src)
+	GLOB.marine_vendors.Remove(src)
 
 /obj/machinery/vending/marine/cargo_ammo/Destroy()
 	. = ..()
-	cargo_ammo_vendors.Remove(src)
+	GLOB.cargo_ammo_vendors.Remove(src)
 
 /obj/machinery/vending/lasgun
 	name = "ColMarTech Lasgun Field Charger"
@@ -321,7 +323,7 @@
 			if(item_to_stock.loc == user) //Inside the mob's inventory
 				if(item_to_stock.flags_item & WIELDED)
 					item_to_stock.unwield(user)
-				user.temp_drop_inv_item(item_to_stock)
+				user.temporarilyRemoveItemFromInventory(item_to_stock)
 
 			if(istype(item_to_stock.loc, /obj/item/storage)) //inside a storage item
 				var/obj/item/storage/S = item_to_stock.loc
@@ -525,6 +527,7 @@
 					/obj/item/storage/box/spec/heavy_grenadier = 1,
 					/obj/item/storage/box/spec/sniper = 1,
 					/obj/item/storage/box/spec/scout = 1,
+					/obj/item/storage/box/spec/scoutshotgun = 1,
 					/obj/item/storage/box/spec/pyro = 1
 			)
 	prices = list()
@@ -682,11 +685,11 @@
 
 /obj/machinery/vending/attachments/New()
 	..()
-	attachment_vendors.Add(src)
+	GLOB.attachment_vendors.Add(src)
 
 /obj/machinery/vending/attachments/Destroy()
 	. = ..()
-	attachment_vendors.Remove(src)
+	GLOB.attachment_vendors.Remove(src)
 
 
 
@@ -742,6 +745,21 @@
 
 	prices = list()
 
+/obj/machinery/vending/dress_supply
+	name = "\improper ColMarTech dress uniform vendor"
+	desc = "A automated weapon rack hooked up to a colossal storage of dress uniforms"
+	icon_state = "marineuniform"
+	icon_vend = "marineuniform_vend"
+	icon_deny = "marineuniform"
+	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_CARGO)
+	product_ads = "Hey! You! Stop looking like a turtle and start looking like a TRUE soldier!;Dress whites, fresh off the ironing board!;Why kill in armor when you can kill in style?;These uniforms are so sharp you'd cut yourself just looking at them!"
+	products = list(
+					/obj/item/clothing/under/whites = 50,
+					/obj/item/clothing/head/white_dress = 50,
+					/obj/item/clothing/shoes/white = 50,
+					/obj/item/clothing/gloves/white = 50,
+					)
+
 /obj/machinery/vending/uniform_supply/New()
 	..()
 	var/products2[]
@@ -763,11 +781,11 @@
 		products2 = list(/obj/item/device/radio/headset/almayer = 10,
 						/obj/item/clothing/gloves/marine = 10)
 	build_inventory(products2)
-	marine_vendors.Add(src)
+	GLOB.marine_vendors.Add(src)
 
 
 /obj/machinery/vending/uniform_supply/Destroy()
 	. = ..()
-	marine_vendors.Remove(src)
+	GLOB.marine_vendors.Remove(src)
 
 

@@ -2,7 +2,7 @@
 	name = "pinpointer"
 	icon_state = "pinoff"
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	w_class = 1
 	item_state = "electronic"
 	throw_speed = 4
@@ -43,7 +43,7 @@
 
 	examine(mob/user)
 		..()
-		for(var/obj/machinery/nuclearbomb/bomb in machines)
+		for(var/obj/machinery/nuclearbomb/bomb in GLOB.machines)
 			if(bomb.timing)
 				to_chat(user, "Extreme danger.  Arming signal detected.   Time remaining: [bomb.timeleft]")
 
@@ -160,7 +160,7 @@
 					var/DNAstring = input("Input DNA string to search for." , "Please Enter String." , "")
 					if(!DNAstring)
 						return
-					for(var/mob/living/carbon/M in mob_list)
+					for(var/mob/living/carbon/M in GLOB.mob_list)
 						if(!M.dna)
 							continue
 						if(M.dna.unique_enzymes == DNAstring)

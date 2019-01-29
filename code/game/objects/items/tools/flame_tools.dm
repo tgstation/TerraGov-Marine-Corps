@@ -245,8 +245,15 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 	else if(istype(W, /obj/item/weapon/gun))
 		var/obj/item/weapon/gun/G = W
-		if(istype(G.under, /obj/item/attachable/attached_gun/flamer))
+		if(istype(G, /obj/item/weapon/gun/energy/lasgun))
+			var/obj/item/weapon/gun/energy/lasgun/L = G
+			if(L.cell.charge)
+				light("<span class='notice'>[user] deftly lights their [src] with the [L]'s low power setting.</span>")
+			else
+				to_chat(user, "<span class='warning'>You try to light your [src] with the [L] but your power cell has no charge!</span>")
+		else if(istype(G.under, /obj/item/attachable/attached_gun/flamer))
 			light("<span class='notice'>[user] lights their [src] with the underbarrel [G.under].</span>")
+
 
 	else if(istype(W, /obj/item/tool/surgery/cautery))
 		light("<span class='notice'>[user] lights their [src] with the [W].</span>")
@@ -380,7 +387,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	transfer_fingerprints_to(butt)
 	if(ismob(loc))
 		var/mob/living/M = loc
-		M.temp_drop_inv_item(src)	//un-equip it so the overlays can update
+		M.temporarilyRemoveItemFromInventory(src)	//un-equip it so the overlays can update
 		M.update_inv_wear_mask()
 	STOP_PROCESSING(SSobj, src)
 	qdel(src)
@@ -480,7 +487,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	w_class = 1
 	throwforce = 4
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	attack_verb = list("burnt", "singed")
 
 /obj/item/tool/lighter/zippo

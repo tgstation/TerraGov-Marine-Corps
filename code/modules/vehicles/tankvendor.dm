@@ -33,6 +33,8 @@
 	dat += "<h3>Armor:</h3>"
 	for(var/build_type in typesof(/obj/item/hardpoint/armor))
 		var/obj/item/hardpoint/armor/AR = build_type
+		if(!initial(AR.buyable))
+			continue
 		var/build_name = initial(AR.name)
 		var/build_cost = initial(AR.point_cost)
 		if(build_cost)
@@ -41,6 +43,8 @@
 	dat += "<h3>Primary Weapon:</h3>"
 	for(var/build_type in typesof(/obj/item/hardpoint/primary))
 		var/obj/item/hardpoint/primary/PR = build_type
+		if(!initial(PR.buyable))
+			continue
 		var/build_name = initial(PR.name)
 		var/build_cost = initial(PR.point_cost)
 		if(build_cost)
@@ -49,6 +53,8 @@
 	dat += "<h3>Secondary Weapon:</h3>"
 	for(var/build_type in typesof(/obj/item/hardpoint/secondary))
 		var/obj/item/hardpoint/secondary/SE = build_type
+		if(!initial(SE.buyable))
+			continue
 		var/build_name = initial(SE.name)
 		var/build_cost = initial(SE.point_cost)
 		if(build_cost)
@@ -57,6 +63,8 @@
 	dat += "<h3>Support Module:</h3>"
 	for(var/build_type in typesof(/obj/item/hardpoint/support))
 		var/obj/item/hardpoint/support/SP = build_type
+		if(!initial(SP.buyable))
+			continue
 		var/build_name = initial(SP.name)
 		var/build_cost = initial(SP.point_cost)
 		if(build_cost)
@@ -65,6 +73,8 @@
 	dat += "<h3>Treads:</h3>"
 	for(var/build_type in typesof(/obj/item/hardpoint/treads))
 		var/obj/item/hardpoint/treads/TR = build_type
+		if(!initial(TR.buyable))
+			continue
 		var/build_name = initial(TR.name)
 		var/build_cost = initial(TR.point_cost)
 		if(build_cost)

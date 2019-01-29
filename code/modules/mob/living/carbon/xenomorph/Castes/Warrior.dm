@@ -214,16 +214,13 @@
 		if(!isXeno(L) && !isYautja(L))
 			round_statistics.warrior_grabs++
 			grab_level = GRAB_NECK
-			L.drop_held_items()
+			L.drop_all_held_items()
 			L.KnockDown(3)
 			visible_message("<span class='xenowarning'>\The [src] grabs [L] by the throat!</span>", \
 			"<span class='xenowarning'>You grab [L] by the throat!</span>")
 
 	if(!lunge && !isXeno(AM))
-		spawn(WARRIOR_LUNGE_COOLDOWN)
-			used_lunge = 0
-			to_chat(src, "<span class='notice'>You get ready to lunge again.</span>")
-			update_action_button_icons()
+		addtimer(CALLBACK(src, .proc/lunge_reset), WARRIOR_LUNGE_COOLDOWN)
 
 /mob/living/carbon/Xenomorph/Warrior/hitby(atom/movable/AM as mob|obj,var/speed = 5)
 	if(ishuman(AM))

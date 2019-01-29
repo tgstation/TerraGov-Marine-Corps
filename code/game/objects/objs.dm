@@ -16,15 +16,14 @@
 	var/can_buckle = FALSE
 
 	var/explosion_resistance = 0
-	var/can_supply_drop = FALSE
 
 /obj/New()
 	..()
-	object_list += src
+	GLOB.object_list += src
 
 /obj/Destroy()
 	. = ..()
-	object_list -= src
+	GLOB.object_list -= src
 
 /obj/proc/add_initial_reagents()
 	if(reagents && list_reagents)
@@ -156,7 +155,7 @@
 					"<span class='notice'>You hear metal clanking.</span>")
 			else
 				buckled_mob.visible_message(\
-					"<span class='notice'>[buckled_mob.name] unbuckled \himself!</span>",\
+					"<span class='notice'>[buckled_mob.name] unbuckled [p_them()]self!</span>",\
 					"<span class='notice'>You unbuckle yourself from [src].</span>",\
 					"<span class='notice'>You hear metal clanking</span>")
 			unbuckle()

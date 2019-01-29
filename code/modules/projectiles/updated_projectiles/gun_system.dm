@@ -114,9 +114,9 @@
 			update_icon()
 		else
 			current_mag = new current_mag(src, spawn_empty ? 1 : 0)
-			ammo = current_mag.default_ammo ? ammo_list[current_mag.default_ammo] : ammo_list[/datum/ammo/bullet] //Latter should never happen, adding as a precaution.
+			ammo = current_mag.default_ammo ? GLOB.ammo_list[current_mag.default_ammo] : GLOB.ammo_list[/datum/ammo/bullet] //Latter should never happen, adding as a precaution.
 	else
-		ammo = ammo_list[ammo] //If they don't have a mag, they fire off their own thing.
+		ammo = GLOB.ammo_list[ammo] //If they don't have a mag, they fire off their own thing.
 	set_gun_config_values()
 	update_force_list() //This gives the gun some unique verbs for attacking.
 
@@ -128,12 +128,12 @@
 //amounts to get specific values in each gun subtype's New().
 //This makes reading each gun's values MUCH easier.
 /obj/item/weapon/gun/proc/set_gun_config_values()
-	fire_delay = config.mhigh_fire_delay
-	accuracy_mult = config.base_hit_accuracy_mult
-	accuracy_mult_unwielded = config.base_hit_accuracy_mult
-	scatter = config.med_scatter_value
-	scatter_unwielded = config.med_scatter_value
-	damage_mult = config.base_hit_damage_mult
+	fire_delay = CONFIG_GET(number/combat_define/mhigh_fire_delay)
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
+	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
+	scatter_unwielded = CONFIG_GET(number/combat_define/med_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
 
 
 
@@ -141,10 +141,6 @@
 
 //Hotfix for attachment offsets being set AFTER the core New() proc. Causes a small graphical artifact when spawning, hopefully works even with lag
 /obj/item/weapon/gun/proc/handle_starting_attachment()
-
-	set waitfor = 0
-
-	sleep(1) //Give a moment to the rest of the proc to work out
 	if(starting_attachment_types && starting_attachment_types.len)
 		for(var/path in starting_attachment_types)
 			var/obj/item/attachable/A = new path(src)
@@ -176,7 +172,7 @@
 		O.emp_act(severity)
 
 /obj/item/weapon/gun/equipped(mob/user, slot)
-	if(slot != WEAR_L_HAND && slot != WEAR_R_HAND)
+	if(slot != SLOT_L_HAND && slot != SLOT_R_HAND)
 		stop_aim()
 		if (user.client)
 			user.update_gun_icons()
@@ -225,13 +221,13 @@
 	if(!(flags_item & TWOHANDED) || flags_item & WIELDED)
 		return
 
-	var/obj/item/offhand = user.get_inactive_hand()
+	var/obj/item/offhand = user.get_inactive_held_item()
 	if(offhand)
 		if(offhand == user.r_hand)
 			user.drop_r_hand()
 		else if(offhand == user.l_hand)
 			user.drop_l_hand()
-		if(user.get_inactive_hand()) //Failsafe; if there's somehow still something in the off-hand (undroppable), bail.
+		if(user.get_inactive_held_item()) //Failsafe; if there's somehow still something in the off-hand (undroppable), bail.
 			to_chat(user, "<span class='warning'>You need your other hand to be empty!</span>")
 			return
 
@@ -312,10 +308,10 @@
 /obj/item/weapon/gun/proc/replace_ammo(mob/user = null, var/obj/item/ammo_magazine/magazine)
 	if(!magazine.default_ammo)
 		to_chat(user, "Something went horribly wrong. Ahelp the following: ERROR CODE A1: null ammo while reloading.")
-		log_debug("ERROR CODE A1: null ammo while reloading. User: <b>[user]</b>")
-		ammo = ammo_list[/datum/ammo/bullet] //Looks like we're defaulting it.
+		log_runtime("ERROR CODE A1: null ammo while reloading. User: <b>[user]</b>")
+		ammo = GLOB.ammo_list[/datum/ammo/bullet] //Looks like we're defaulting it.
 	else
-		ammo = ammo_list[overcharge? magazine.overcharge_ammo : magazine.default_ammo]
+		ammo = GLOB.ammo_list[overcharge? magazine.overcharge_ammo : magazine.default_ammo]
 		//to_chat(user, "DEBUG: REPLACE AMMO. Ammo: [ammo]")
 
 //Hardcoded and horrible
@@ -378,7 +374,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	return TRUE
 
 /obj/item/weapon/gun/proc/replace_magazine(mob/user, obj/item/ammo_magazine/magazine)
-	user.drop_inv_item_to_loc(magazine, src) //Click!
+	user.transferItemToLoc(magazine, src) //Click!
 	current_mag = magazine
 	replace_ammo(user,magazine)
 	if(!in_chamber)
@@ -522,8 +518,8 @@ and you're good to go.
 /obj/item/weapon/gun/proc/create_bullet(datum/ammo/chambered)
 	if(!chambered)
 		to_chat(usr, "Something has gone horribly wrong. Ahelp the following: ERROR CODE I2: null ammo while create_bullet()")
-		log_debug("ERROR CODE I2: null ammo while create_bullet(). User: <b>[usr]</b>")
-		chambered = ammo_list[/datum/ammo/bullet] //Slap on a default bullet if somehow ammo wasn't passed.
+		log_runtime("ERROR CODE I2: null ammo while create_bullet(). User: <b>[usr]</b>")
+		chambered = GLOB.ammo_list[/datum/ammo/bullet] //Slap on a default bullet if somehow ammo wasn't passed.
 
 	var/obj/item/projectile/P = new /obj/item/projectile(src)
 	P.generate_bullet(chambered)
@@ -637,7 +633,7 @@ and you're good to go.
 		//checking for a gun in other hand to fire akimbo
 		if(i == 1 && !reflex && !dual_wield)
 			if(user)
-				var/obj/item/IH = user.get_inactive_hand()
+				var/obj/item/IH = user.get_inactive_held_item()
 				if(istype(IH, /obj/item/weapon/gun))
 					var/obj/item/weapon/gun/OG = IH
 					if(!(OG.flags_gun_features & GUN_WIELDED_FIRING_ONLY) && OG.gun_skill_category == gun_skill_category)
@@ -655,12 +651,12 @@ and you're good to go.
 		if(flags_item & WIELDED && user && under?.bipod_deployed) //Let's get to work on the bipod. I'm not really concerned if they are the same person as the previous user. It doesn't matter.
 			if(under.check_bipod_support(src, user))
 				//Passive accuracy and recoil buff, but only when firing in position.
-				projectile_to_fire.accuracy *= config.base_hit_accuracy_mult + config.hmed_hit_accuracy_mult //More accuracy.
+				projectile_to_fire.accuracy *= CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/hmed_hit_accuracy_mult) //More accuracy.
 				recoil_comp-- //Less recoil.
-				scatter_chance_mod -= config.med_scatter_value
+				scatter_chance_mod -= CONFIG_GET(number/combat_define/med_scatter_value)
 				burst_scatter_chance_mod = -3
 				if(prob(30))
-					projectile_to_fire.damage *= config.base_hit_damage_mult + config.low_hit_damage_mult//Lower chance of a damage buff.
+					projectile_to_fire.damage *= CONFIG_GET(number/combat_define/base_hit_damage_mult) + CONFIG_GET(number/combat_define/low_hit_damage_mult) //Lower chance of a damage buff.
 				if(i == 1)
 					to_chat(user, "<span class='notice'>Your bipod keeps [src] steady!</span>")
 		//End of bipods.
@@ -678,7 +674,7 @@ and you're good to go.
 		//Finally, make with the pew pew!
 		if(!projectile_to_fire || !istype(projectile_to_fire,/obj))
 			to_chat(user, "Your gun is malfunctioning. Ahelp the following: ERROR CODE I1: projectile malfunctioned while firing.")
-			log_debug("ERROR CODE I1: projectile malfunctioned while firing. User: <b>[user]</b>")
+			log_runtime("ERROR CODE I1: projectile malfunctioned while firing. User: <b>[user]</b>")
 			flags_gun_features &= ~GUN_BURST_FIRING
 			return
 
@@ -736,11 +732,9 @@ and you're good to go.
 						playsound(user, actual_sound, sound_volume, 1)
 						simulate_recoil(2, user)
 						var/obj/item/weapon/gun/revolver/current_revolver = src
-						var/t = "[key_name(user)] committed suicide with [key_name(src)]" //Log it.
-						message_admins("[user.name] ([user.ckey]) committed suicide with [key_name(src)] (<A HREF='?_src_=holder;adminplayerobservejump=\ref[user]'>JMP</A>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[user.name]'>FLW</A>)", 1)
-						log_game("[user.name] ([user.ckey]) committed suicide with [key_name(src)].")
+						log_game("[key_name(user)] committed suicide with [src] at [AREACOORD(user.loc)].")
+						message_admins("[ADMIN_TPMONTY(user)] committed suicide with [src].")
 						if(istype(current_revolver) && current_revolver.russian_roulette) //If it's a revolver set to Russian Roulette.
-							t += " after playing Russian Roulette"
 							user.apply_damage(projectile_to_fire.damage * 3, projectile_to_fire.ammo.damage_type, "head", used_weapon = "An unlucky pull of the trigger during Russian Roulette!", sharp = 1)
 							user.apply_damage(200, OXY) //In case someone tried to defib them. Won't work.
 							user.death()
@@ -757,7 +751,7 @@ and you're good to go.
 									var/mob/living/carbon/human/HM = user
 									HM.undefibbable = TRUE //can't be defibbed back from self inflicted gunshot to head
 								user.death()
-						user.log_message(t, LOG_ATTACK, "red") //Apply the attack log.
+						user.log_message("commited suicide with [src]", LOG_ATTACK, "red") //Apply the attack log.
 						last_fired = world.time
 
 						projectile_to_fire.play_damage_effect(user)
@@ -797,7 +791,7 @@ and you're good to go.
 							var/obj/item/projectile/BP
 							for(var/i = 1 to projectile_to_fire.ammo.bonus_projectiles_amount)
 								BP = new /obj/item/projectile(M.loc)
-								BP.generate_bullet(ammo_list[projectile_to_fire.ammo.bonus_projectiles_type])
+								BP.generate_bullet(GLOB.ammo_list[projectile_to_fire.ammo.bonus_projectiles_type])
 								BP.dir = get_dir(user, M)
 								BP.distance_travelled = get_dist(user, M)
 								BP.ammo.on_hit_mob(M, BP)
@@ -837,7 +831,7 @@ and you're good to go.
 			to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 			return
 
-		if(!config.allow_synthetic_gun_use)
+		if(!CONFIG_GET(flag/allow_synthetic_gun_use))
 			if(isSynth(user))
 				to_chat(user, "<span class='warning'>Your program does not allow you to use firearms.</span>")
 				return
@@ -863,7 +857,7 @@ and you're good to go.
 		else
 			if(user?.mind?.cm_skills)
 				if(user.mind.cm_skills.firearms == 0) //no training in any firearms
-					added_delay += config.low_fire_delay //untrained humans fire more slowly.
+					added_delay += CONFIG_GET(number/combat_define/low_fire_delay) //untrained humans fire more slowly.
 				else
 					switch(gun_skill_category)
 						if(GUN_SKILL_HEAVY_WEAPONS)
@@ -906,8 +900,8 @@ and you're good to go.
 
 	else if(user && world.time - user.l_move_time < 5) //moved during the last half second
 		//accuracy and scatter penalty if the user fires unwielded right after moving
-		gun_accuracy_mult = max(0.1, gun_accuracy_mult - max(0,movement_acc_penalty_mult * config.low_hit_accuracy_mult))
-		gun_scatter += max(0, movement_acc_penalty_mult * config.min_scatter_value)
+		gun_accuracy_mult = max(0.1, gun_accuracy_mult - max(0,movement_acc_penalty_mult * CONFIG_GET(number/combat_define/low_hit_accuracy_mult)))
+		gun_scatter += max(0, movement_acc_penalty_mult * CONFIG_GET(number/combat_define/min_scatter_value))
 
 
 	if(dual_wield) //akimbo firing gives terrible accuracy
@@ -940,7 +934,7 @@ and you're good to go.
 				if(GUN_SKILL_SPEC)
 					skill_accuracy = user.mind.cm_skills.spec_weapons
 		if(skill_accuracy)
-			gun_accuracy_mult += skill_accuracy * config.low_hit_accuracy_mult // Accuracy mult increase/decrease per level is equal to attaching/removing a red dot sight
+			gun_accuracy_mult += skill_accuracy * CONFIG_GET(number/combat_define/low_hit_accuracy_mult) // Accuracy mult increase/decrease per level is equal to attaching/removing a red dot sight
 
 	projectile_to_fire.accuracy = round(projectile_to_fire.accuracy * gun_accuracy_mult) // Apply gun accuracy multiplier to projectile accuracy
 	projectile_to_fire.damage = round(projectile_to_fire.damage * damage_mult) 		// Apply gun damage multiplier to projectile damage
@@ -999,7 +993,7 @@ and you're good to go.
 		if(user && user.mind && user.mind.cm_skills)
 
 			if(user.mind.cm_skills.firearms == 0) //no training in any firearms
-				total_scatter_chance += config.low_scatter_value
+				total_scatter_chance += CONFIG_GET(number/combat_define/low_scatter_value)
 			else
 				var/scatter_tweak = 0
 				switch(gun_skill_category)
@@ -1018,7 +1012,7 @@ and you're good to go.
 					if(GUN_SKILL_SPEC)
 						scatter_tweak = user.mind.cm_skills.spec_weapons
 				if(scatter_tweak)
-					total_scatter_chance -= scatter_tweak*config.low_scatter_value
+					total_scatter_chance -= scatter_tweak * CONFIG_GET(number/combat_define/low_scatter_value)
 
 		if(prob(total_scatter_chance)) //Scattered!
 			var/scatter_x = rand(-1,1)
@@ -1042,7 +1036,7 @@ and you're good to go.
 	if(user && user.mind && user.mind.cm_skills)
 
 		if(user.mind.cm_skills.firearms == 0) //no training in any firearms
-			total_recoil += config.min_recoil_value
+			total_recoil += CONFIG_GET(number/combat_define/min_recoil_value)
 		else
 			var/recoil_tweak
 			switch(gun_skill_category)
@@ -1061,7 +1055,7 @@ and you're good to go.
 				if(GUN_SKILL_SPEC)
 					recoil_tweak = user.mind.cm_skills.spec_weapons
 			if(recoil_tweak)
-				total_recoil -= recoil_tweak*config.min_recoil_value
+				total_recoil -= recoil_tweak * CONFIG_GET(number/combat_define/min_recoil_value)
 	if(total_recoil > 0 && ishuman(user))
 		shake_camera(user, total_recoil + 1, total_recoil)
 		return TRUE

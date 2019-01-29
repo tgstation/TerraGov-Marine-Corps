@@ -296,7 +296,7 @@
 /datum/chemical_reaction/irish_cream
 	name = "Irish Cream"
 	id = "irishcream"
-	results = "irishcream"
+	results = list("irishcream" = 3)
 	required_reagents = list("whiskey" = 2, "cream" = 1)
 
 /datum/chemical_reaction/manly_dorf

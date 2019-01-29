@@ -35,6 +35,7 @@
 	ghost_sechud = client.prefs.ghost_sechud
 	ghost_squadhud = client.prefs.ghost_squadhud
 	ghost_xenohud = client.prefs.ghost_xenohud
+	client.prefs.save_preferences()
 	var/datum/mob_hud/H
 	if(ghost_medhud)
 		H = huds[MOB_HUD_MEDICAL_OBSERVER]
@@ -97,11 +98,7 @@
 	Login()
 	..()
 	if(ticker && ticker.mode && ticker.mode.flags_round_type & MODE_PREDATOR)
-		spawn(20)
-			to_chat(src, "<span class='warning'>This is a <b>PREDATOR ROUND</b>! If you are whitelisted, you may Join the Hunt!</span>")
-			return
-
-
+		addtimer(CALLBACK(GLOBAL_PROC, /proc/to_chat, src, "<span class='warning'>This is a <b>PREDATOR ROUND</b>! If you are whitelisted, you may Join the Hunt!</span>"), 20)
 
 /mob/dead/observer/Topic(href, href_list)
 	if(href_list["reentercorpse"])
@@ -109,7 +106,7 @@
 			var/mob/dead/observer/A = usr
 			A.reenter_corpse()
 	if(href_list["track"])
-		var/mob/target = locate(href_list["track"]) in mob_list
+		var/mob/target = locate(href_list["track"]) in GLOB.mob_list
 		if(target)
 			ManualFollow(target)
 
@@ -183,7 +180,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		var/turf/location = get_turf(src)
 		log_game("[key_name(usr)] has ghosted.")
 		if(location) //to avoid runtime when a mob ends up in nullspace
-			message_admins("[key_name(usr)] has ghosted (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservejump=\ref[usr]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>)")
+			message_admins("[ADMIN_TPMONTY(usr)] has ghosted.")
 		var/mob/dead/observer/ghost = ghostize(0)						//0 parameter is so we can never re-enter our body, "Charlie, you can never come baaaack~" :3
 		if(ghost) //Could be null if no key
 			ghost.timeofdeath = world.time // Because the living mob won't have a time of death and we want the respawn timer to work properly.
@@ -222,14 +219,13 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	return 0
 
 /mob/dead/observer/Stat()
-	if (!..())
-		return 0
+	. = ..()
 
-	if(EvacuationAuthority)
-		var/eta_status = EvacuationAuthority.get_status_panel_eta()
-		if(eta_status)
-			stat(null, eta_status)
-	return 1
+	if(statpanel("Stats"))
+		if(EvacuationAuthority)
+			var/eta_status = EvacuationAuthority.get_status_panel_eta()
+			if(eta_status)
+				stat(null, eta_status)
 
 /mob/dead/observer/verb/reenter_corpse()
 	set category = "Ghost"
@@ -260,6 +256,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	ghost_sechud = client.prefs.ghost_sechud
 	ghost_squadhud = client.prefs.ghost_squadhud
 	ghost_xenohud = client.prefs.ghost_xenohud
+	client.prefs.save_preferences()
 	var/datum/mob_hud/H
 
 	switch(hud_choice)
@@ -681,7 +678,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	var/list/zombie_list = list()
 
-	for(var/mob/living/carbon/human/A in living_mob_list)
+	for(var/mob/living/carbon/human/A in GLOB.alive_human_list)
 		if(iszombie(A) && !A.client && A.regenZ)
 			var/player_in_decap_head
 			//when decapitated the human mob is clientless,
@@ -689,7 +686,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			//so their body isn't stolen by another player.
 			var/datum/limb/head/h = A.get_limb("head")
 			if(h && (h.status & LIMB_DESTROYED))
-				for (var/obj/item/limb/head/HD in item_list)
+				for (var/obj/item/limb/head/HD in GLOB.item_list)
 					if(HD.brainmob)
 						if(HD.brainmob.real_name == A.real_name)
 							if(HD.brainmob.client)
@@ -710,7 +707,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(!client)
 		return
 
-	for(var/mob/living/carbon/human/Z in living_mob_list)
+	for(var/mob/living/carbon/human/Z in GLOB.alive_human_list)
 		if(choice == Z.real_name)
 			if(Z.gc_destroyed) //should never occur,just to be sure.
 				return
@@ -723,7 +720,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 			var/datum/limb/head/h = Z.get_limb("head")
 			if(h && (h.status & LIMB_DESTROYED))
-				for (var/obj/item/limb/head/HD in item_list)
+				for (var/obj/item/limb/head/HD in GLOB.item_list)
 					if(HD.brainmob)
 						if(HD.brainmob.real_name == Z.real_name)
 							if(HD.brainmob.client)
@@ -737,8 +734,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			if(Z.client) //so players don't keep their ghost zoom view.
 				Z.client.change_view(world.view)
 
-			message_admins("[ckey] has joined as a [Z].")
-			log_admin("[ckey] has joined as a [Z].")
+			log_admin("[key_name(Z)] has joined as a zombie.")
+			message_admins("[ADMIN_TPMONTY(Z)] has joined as a zombie.")
 
 			if(isobserver(ghostmob) )
 				qdel(ghostmob)
@@ -773,7 +770,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	var/list/hellhound_list = list()
 
-	for(var/mob/living/carbon/hellhound/A in living_mob_list)
+	for(var/mob/living/carbon/hellhound/A in GLOB.alive_mob_list)
 		if(istype(A) && !A.client)
 			hellhound_list += A.real_name
 
@@ -785,7 +782,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if (isnull(choice) || choice == "Cancel")
 		return
 
-	for(var/mob/living/carbon/hellhound/X in living_mob_list)
+	for(var/mob/living/carbon/hellhound/X in GLOB.alive_mob_list)
 		if(choice == X.real_name)
 			L = X
 			break
@@ -870,7 +867,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		to_chat(usr, "You voted for this one already. Only one please!")
 		return
 
-	var/list/mobs = living_mob_list
+	var/list/mobs = GLOB.alive_mob_list
 	var/target = null
 
 	for(var/mob/living/M in mobs)

@@ -129,13 +129,13 @@ Class Procs:
 
 /obj/machinery/New()
 	. = ..()
-	machines += src
+	GLOB.machines += src
 	var/area/A = get_area(src)
 	if(A)
 		A.master.area_machines += src
 
 /obj/machinery/Destroy()
-	machines -= src
+	GLOB.machines -= src
 	processing_machines -= src
 	var/area/A = get_area(src)
 	if(A)
@@ -517,7 +517,7 @@ obj/machinery/proc/med_scan(mob/living/carbon/human/H, dat, var/list/known_impla
 					unknown_body++
 		if(e.hidden)
 			unknown_body++
-		if(e.body_part == UPPER_TORSO) //embryo in chest?
+		if(e.body_part == CHEST) //embryo in chest?
 			if(locate(/obj/item/alien_embryo) in H)
 				imp += "Larva present; extract immediately:<br>"
 		if(unknown_body)

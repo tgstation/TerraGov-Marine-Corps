@@ -145,7 +145,7 @@
 				on_attached(U, user)
 				H.update_inv_w_uniform()
 				if(user == H)
-					user.visible_message("<span class='notice'>[user] pins [src] to \his [U.name].</span>",
+					user.visible_message("<span class='notice'>[user] pins [src] to [user.p_their()] [U.name].</span>",
 					"<span class='notice'>You pin [src] to your [U.name].</span>")
 				else
 					user.visible_message("[user] pins [src] on [H]'s [U.name].", \
@@ -271,7 +271,7 @@
 		return
 
 	holstered = W
-	user.drop_inv_item_to_loc(holstered, src)
+	user.transferItemToLoc(holstered, src)
 	holstered.add_fingerprint(user)
 	user.visible_message("<span class='notice'> [user] holsters the [holstered].</span>", "You holster the [holstered].")
 
@@ -279,7 +279,7 @@
 	if(!holstered)
 		return
 
-	if(user.get_active_hand() && user.get_inactive_hand())
+	if(user.get_active_held_item() && user.get_inactive_held_item())
 		to_chat(user, "<span class='warning'>You need an empty hand to draw the [holstered]!</span>")
 	else
 		if(user.a_intent == "hurt")
@@ -343,10 +343,10 @@
 		to_chat(usr, "/red Something is very wrong.")
 
 	if(!H.holstered)
-		if(!istype(usr.get_active_hand(), /obj/item/weapon/gun))
+		if(!istype(usr.get_active_held_item(), /obj/item/weapon/gun))
 			to_chat(usr, "<span class='notice'>You need your gun equiped to holster it.</span>")
 			return
-		var/obj/item/weapon/gun/W = usr.get_active_hand()
+		var/obj/item/weapon/gun/W = usr.get_active_held_item()
 		H.holster(W, usr)
 	else
 		H.unholster(usr)
@@ -391,13 +391,49 @@
 		hold = null
 	. = ..()
 
-/obj/item/clothing/tie/storage/attack_hand(mob/user as mob)
-	if (has_suit)	//if we are part of a suit
-		hold.open(user)
+/obj/item/clothing/tie/storage/on_attached(obj/item/clothing/under/S, mob/user)
+	. = ..()
+	has_suit.verbs += /obj/item/clothing/tie/storage/verb/toggle_draw_mode
+
+/obj/item/clothing/tie/storage/on_removed()
+	has_suit.verbs -= /obj/item/clothing/tie/storage/verb/toggle_draw_mode
+	return ..()
+
+/obj/item/clothing/tie/storage/verb/toggle_draw_mode()
+	set name = "Switch Storage Drawing Method"
+	set category = "Object"
+	set src in usr
+	if(!isliving(usr))
+		return
+	if(usr.stat)
 		return
 
-	if (hold.handle_attack_hand(user))	//otherwise interact as a regular storage item
-		..(user)
+	var/obj/item/clothing/tie/storage/H = src
+	if(istype(src, /obj/item/clothing/under))
+		var/obj/item/clothing/under/S = src
+		if (S.hastie)
+			H = S.hastie
+
+	if(H.hold)
+		H.hold.draw_mode = !H.hold.draw_mode
+		if(H.hold.draw_mode)
+			to_chat(usr, "Clicking [H] with an empty hand now puts the last stored item in your hand.")
+		else
+			to_chat(usr, "Clicking [H] with an empty hand now opens the pouch storage menu.")
+
+
+/obj/item/clothing/tie/storage/attack_hand(mob/user)
+	if(has_suit)
+		if(has_suit.loc == user && hold.draw_mode && hold.contents.len)
+			var/obj/item/I = hold.contents[hold.contents.len]
+			I.attack_hand(user)
+			return
+		else
+			hold.open(user)
+			return
+
+	else if(hold.handle_attack_hand(user))
+		return ..()
 
 /obj/item/clothing/tie/storage/MouseDrop(obj/over_object as obj)
 	if (has_suit)
@@ -500,14 +536,14 @@
 	name = "holobadge"
 	desc = "This glowing blue badge marks the holder as THE LAW."
 	icon_state = "holobadge"
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 
 	var/emagged = 0 //Emagging removes Sec check.
 	var/stored_name = null
 
 /obj/item/clothing/tie/holobadge/cord
 	icon_state = "holobadge-cord"
-	flags_equip_slot = SLOT_FACE
+	flags_equip_slot = ITEM_SLOT_MASK
 
 /obj/item/clothing/tie/holobadge/attack_self(mob/user as mob)
 	if(!stored_name)
