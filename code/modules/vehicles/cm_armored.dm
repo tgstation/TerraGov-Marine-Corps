@@ -400,6 +400,38 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		if(world.time > lastsound + 10)
 			playsound(W, 'sound/effects/metal_crash.ogg', 35)
 			lastsound = world.time
+	else if(istype(A, /obj/machinery/door/airlock))
+		var/obj/machinery/door/airlock/L = A
+		L.take_damage(30)
+		var/obj/vehicle/multitile/root/cm_armored/CA = root
+		CA.take_damage_type(10, "blunt", L)
+		if(world.time > lastsound + 10)
+			playsound(L, 'sound/effects/metal_crash.ogg', 35)
+			lastsound = world.time
+	else if(istype(A, /obj/machinery/disposal))
+		var/obj/machinery/disposal/D = A
+		D.take_damage(30)
+		var/obj/vehicle/multitile/root/cm_armored/CA = root
+		CA.take_damage_type(10, "blunt", D)
+		if(world.time > lastsound + 10)
+			playsound(D, 'sound/effects/metal_crash.ogg', 35)
+			lastsound = world.time
+	else if(istype(A, /obj/machinery/vending))
+		var/obj/machinery/disposal/V = A
+		V.take_damage(30)
+		var/obj/vehicle/multitile/root/cm_armored/CA = root
+		CA.take_damage_type(10, "blunt", V)
+		if(world.time > lastsound + 10)
+			playsound(V, 'sound/effects/metal_crash.ogg', 35)
+			lastsound = world.time
+	else if(istype(A, /obj/machinery/optable))
+		var/obj/machinery/disposal/O = A
+		O.take_damage(30)
+		var/obj/vehicle/multitile/root/cm_armored/CA = root
+		CA.take_damage_type(10, "blunt", O)
+		if(world.time > lastsound + 10)
+			playsound(O, 'sound/effects/metal_crash.ogg', 35)
+			lastsound = world.time
 	else if(istype(A, /obj/structure/mineral_door/resin))
 		var/obj/structure/mineral_door/resin/R = A
 		R.health = 0
