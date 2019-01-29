@@ -550,41 +550,39 @@
 	for(var/i in loc)
 		if(++j >= 11)
 			break
-		if(isliving(i))
-			var/mob/living/I = i
-			if(istype(I,/mob/living/carbon/human))
-				var/mob/living/carbon/human/M = I
-				if(istype(M.wear_suit, /obj/item/clothing/suit/fire) || istype(M.wear_suit,/obj/item/clothing/suit/space/rig/atmos) || (istype(M.wear_suit, /obj/item/clothing/suit/storage/marine/M35) && istype(M.head, /obj/item/clothing/head/helmet/marine/pyro)))
-					M.show_message(text("Your suit protects you from the flames."),1)
-					M.adjustFireLoss(rand(0 ,burnlevel*0.25)) //Does small burn damage to a person wearing one of the suits.
-					continue
-			if(istype(I,/mob/living/carbon/Xenomorph/Queen))
-				var/mob/living/carbon/Xenomorph/Queen/X = I
-				X.show_message(text("Your extra-thick exoskeleton protects you from the flames."),1)
-				continue
-			if(istype(I,/mob/living/carbon/Xenomorph/Ravager))
-				if(!I.stat)
-					var/mob/living/carbon/Xenomorph/Ravager/X = I
-					X.plasma_stored = X.xeno_caste.plasma_max
-					X.usedcharge = 0 //Reset charge cooldown
-					X.show_message(text("<span class='danger'>The heat of the fire roars in your veins! KILL! CHARGE! DESTROY!</span>"),1)
-					if(rand(1,100) < 70)
-						X.emote("roar")
-				continue
-
-
-			I.adjust_fire_stacks(burnlevel) //If i stand in the fire i deserve all of this. Also Napalm stacks quickly.
-			if(prob(firelevel))
-				I.IgniteMob()
-			//I.adjustFireLoss(rand(10 ,burnlevel)) //Including the fire should be way stronger.
-			I.show_message(text("<span class='warning'>You are burned!</span>"),1)
-			if(isXeno(I)) //Have no fucken idea why the Xeno thing was there twice.
-				var/mob/living/carbon/Xenomorph/X = I
-				X.updatehealth()
-		if(istype(i, /obj/))
-			var/obj/O = i
-			O.flamer_fire_act()
+		var/atom/A = i
+		A.flamer_fire_act()
 
 	//This has been made a simple loop, for the most part flamer_fire_act() just does return, but for specific items it'll cause other effects.
 	firelevel -= 2 //reduce the intensity by 2 per tick
 	return
+
+/mob/living/flamer_fire_act(var/burnlevel, var/firelevel)
+	adjust_fire_stacks(burnlevel) //If i stand in the fire i deserve all of this. Also Napalm stacks quickly.
+	if(prob(firelevel))
+		IgniteMob()
+	//I.adjustFireLoss(rand(10 ,burnlevel)) //Including the fire should be way stronger.
+	show_message(text("<span class='warning'>You are burned!</span>"),1)
+
+/mob/living/carbon/human/flamer_fire_act(var/burnlevel, var/firelevel)
+	if(istype(wear_suit, /obj/item/clothing/suit/fire) || istype(wear_suit,/obj/item/clothing/suit/space/rig/atmos) || (istype(wear_suit, /obj/item/clothing/suit/storage/marine/M35) && istype(head, /obj/item/clothing/head/helmet/marine/pyro)))
+		show_message(text("Your suit protects you from the flames."),1)
+		adjustFireLoss(rand(0 ,burnlevel*0.25)) //Does small burn damage to a person wearing one of the suits.
+		return
+	..()
+
+/mob/living/carbon/Xenomorph/flamer_fire_act(var/burnlevel, var/firelevel)
+	..()
+	updatehealth()
+
+/mob/living/carbon/Xenomorph/Queen/flamer_fire_act(var/burnlevel, var/firelevel)
+	show_message(text("Your extra-thick exoskeleton protects you from the flames."),1)
+
+/mob/living/carbon/Xenomorph/Ravager/flamer_fire_act(var/burnlevel, var/firelevel)
+	if(stat)
+		return
+	plasma_stored = xeno_caste.plasma_max
+	usedcharge = FALSE //Reset charge cooldown
+	show_message(text("<span class='danger'>The heat of the fire roars in your veins! KILL! CHARGE! DESTROY!</span>"),1)
+	if(prob(70))
+		emote("roar")
