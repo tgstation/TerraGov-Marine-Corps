@@ -97,7 +97,7 @@
 	var/msg = "<h1>[customname]</h1><br><br><br><span class='warning'>[input]<br><br></span>"
 
 	for(var/mob/M in GLOB.player_list)
-		if(isXeno(M) || isobserver(M))
+		if(isxeno(M) || isobserver(M))
 			to_chat(M, msg)
 
 	log_admin("[key_name(usr)] created a Queen Mother report: [input]")

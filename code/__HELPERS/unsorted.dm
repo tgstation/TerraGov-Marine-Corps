@@ -482,7 +482,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	var/list/creatures = list()
 	var/list/namecounts = list()
 	for(var/mob/M in mobs)
-		if(!isYautja(M)) continue
+		if(!isyautja(M)) continue
 		var/name = M.name
 		if (name in names)
 			namecounts[name]++
@@ -507,7 +507,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	var/list/creatures = list()
 	var/list/namecounts = list()
 	for(var/mob/M in mobs)
-		if(isYautja(M)) continue
+		if(isyautja(M)) continue
 		if(iszombie(M))	continue
 		var/name = M.name
 		if (name in names)
@@ -533,7 +533,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	var/list/creatures = list()
 	var/list/namecounts = list()
 	for(var/mob/M in mobs)
-		if(isYautja(M))
+		if(isyautja(M))
 			continue
 		if(iszombie(M))
 			continue
@@ -593,7 +593,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	var/list/predlist = list()
 	var/list/sortmob = sortNames(GLOB.mob_list)
 	for(var/mob/living/carbon/human/M in sortmob)
-		if(!M.client || !M.species.name == "Yautja")
+		if(!M.client || !isyautjastrict(M))
 			continue
 		predlist.Add(M)
 	return predlist
@@ -602,7 +602,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	var/list/humanlist = list()
 	var/list/sortmob = sortNames(GLOB.mob_list)
 	for(var/mob/living/carbon/human/M in sortmob)
-		if(!M.client || M.species.name == "Yautja")
+		if(!M.client || isyautjastrict(M))
 			continue
 		humanlist.Add(M)
 	return humanlist
@@ -875,7 +875,8 @@ var/global/image/busy_indicator_hostile
 		return FALSE
 
 	var/mob/living/L
-	if(istype(user, /mob/living)) L = user //No more doing things while you're in crit
+	if(isliving(user))
+		L = user //No more doing things while you're in crit
 
 	var/image/busy_icon
 	if(show_busy_icon)
@@ -1046,7 +1047,7 @@ var/global/image/busy_indicator_hostile
 
 						// Find a new turf to take on the property of
 						var/turf/nextturf = get_step(corner, direction)
-						if(!nextturf || !istype(nextturf, /turf/open/space))
+						if(!nextturf || !isspaceturf(nextturf))
 							nextturf = get_step(corner, turn(direction, 180))
 
 
@@ -1182,7 +1183,7 @@ proc/DuplicateObject(obj/original, var/perfectcopy = 0 , var/sameloc = 0)
 					var/old_icon1 = T.icon
 
 					if(platingRequired)
-						if(istype(B, /turf/open/space))
+						if(isspaceturf(B))
 							continue moving
 
 					var/turf/X = new T.type(B)
@@ -1337,46 +1338,6 @@ var/global/list/common_tools = list(
 		return 1
 	return 0
 
-/proc/iswrench(O)
-	if(istype(O, /obj/item/tool/wrench))
-		return 1
-	return 0
-
-/proc/iswelder(O)
-	if(istype(O, /obj/item/tool/weldingtool))
-		return 1
-	return 0
-
-/proc/iscoil(O)
-	if(istype(O, /obj/item/stack/cable_coil))
-		return 1
-	return 0
-
-/proc/iswirecutter(O)
-	if(istype(O, /obj/item/tool/wirecutters))
-		return 1
-	return 0
-
-/proc/isscrewdriver(O)
-	if(istype(O, /obj/item/tool/screwdriver))
-		return 1
-	return 0
-
-/proc/ismultitool(O)
-	if(istype(O, /obj/item/device/multitool))
-		return 1
-	return 0
-
-/proc/iscrowbar(O)
-	if(istype(O, /obj/item/tool/crowbar))
-		return 1
-	return 0
-
-/proc/iswire(O)
-	if(istype(O, /obj/item/stack/cable_coil))
-		return 1
-	return 0
-
 proc/is_hot(obj/item/I)
 	return I.heat_source
 
@@ -1397,7 +1358,7 @@ proc/is_hot(obj/item/I)
 /proc/can_puncture(obj/item/W)		// For the record, WHAT THE HELL IS THIS METHOD OF DOING IT?
 	if(!istype(W)) return 0
 	return (W.sharp || W.heat_source >= 400 	|| \
-		istype(W, /obj/item/tool/screwdriver)	 || \
+		isscrewdriver(W)	 || \
 		istype(W, /obj/item/tool/pen) 		 || \
 		istype(W, /obj/item/tool/shovel) \
 	)

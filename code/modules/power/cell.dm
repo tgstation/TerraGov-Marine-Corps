@@ -108,7 +108,7 @@
 			message_admins("[ADMIN_TPMONTY(usr)] injected a power cell with phoron, rigging it to explode.")
 
 		S.reagents.clear_reagents()
-	else if(istype(W, /obj/item/device/multitool))
+	else if(ismultitool(W))
 		var/delay = SKILL_TASK_EASY
 		var/skill
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer) //Higher skill lowers the delay.

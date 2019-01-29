@@ -132,7 +132,7 @@
 	for(var/mob/living/M in orange(detector_range, operator))
 		if(!isturf(M.loc))
 			continue
-		if(isrobot(M))
+		if(iscyborg(M))
 			continue
 		status = MOTION_DETECTOR_HOSTILE //Reset the status to default
 		if(ishuman(M))
@@ -240,7 +240,7 @@
 	//..()
 	if(usr.stat || usr.is_mob_restrained())
 		return
-	if(((istype(usr, /mob/living/carbon/human) && ((!( ticker ) || (ticker && ticker.mode != "monkey")) && usr.contents.Find(src))) || (usr.contents.Find(master) || (in_range(src, usr) && istype(loc, /turf)))))
+	if(((ishuman(usr) && ((!( ticker ) || (ticker && ticker.mode != "monkey")) && usr.contents.Find(src))) || (usr.contents.Find(master) || (in_range(src, usr) && istype(loc, /turf)))))
 		usr.set_interaction(src)
 		if(href_list["power"])
 			active = !active
@@ -291,7 +291,7 @@
 	return
 
 /obj/item/device/motiondetector/attack_self(mob/user as mob, flag1)
-	if(!istype(user, /mob/living/carbon/human))
+	if(!ishuman(user))
 		return
 	user.set_interaction(src)
 	var/dat = {"<TT>

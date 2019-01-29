@@ -231,7 +231,7 @@
 						M_job = M.job
 					else if(ismonkey(M))
 						M_job = "Monkey"
-					else if(isXeno(M))
+					else if(isxeno(M))
 						M_job = "alien"
 					else
 						M_job = "Carbon-based"
@@ -239,7 +239,7 @@
 				else if(issilicon(M)) //silicon
 					if(isAI(M))
 						M_job = "aI"
-					else if(isrobot(M))
+					else if(iscyborg(M))
 						M_job = "Cyborg"
 					else
 						M_job = "Silicon-based"
@@ -333,7 +333,7 @@
 		dat += "<td><a href='?priv_msg=[M.ckey]'>[M.name]</a></td>"
 		if(isAI(M))
 			dat += "<td>aI</td>"
-		else if(isrobot(M))
+		else if(iscyborg(M))
 			dat += "<td>Cyborg</td>"
 		else if(ishuman(M))
 			dat += "<td>[M.real_name]</td>"
@@ -343,7 +343,7 @@
 			dat += "<td>Ghost</td>"
 		else if(ismonkey(M))
 			dat += "<td>Monkey</td>"
-		else if(isXeno(M))
+		else if(isxeno(M))
 			dat += "<td>alien</td>"
 		else
 			dat += "<td>Unknown</td>"

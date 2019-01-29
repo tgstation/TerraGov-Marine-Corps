@@ -68,11 +68,11 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 		if(m.mind)
 			if(m.stat == DEAD) "<span class='round_body'>You met your demise during the events of [upper_text(name)].</span>"
 			else
-				if(isYautja(m))
+				if(isyautja(m))
 
 				if(ishuman(m))
 					is_mob_immobalized()
-				if(isXeno(m))
+				if(isxeno(m))
 
 
 				var/turf/T = get_turf(m)
@@ -297,22 +297,22 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 	for(var/mob/M in GLOB.player_list) //Scan through and detect Xenos and Hosts, but only those with clients.
 		if(M.stat != DEAD)
 			var/area/A = get_area(M)
-			if(isXeno(M))
+			if(isxeno(M))
 				switch(A?.z)
 					if(PLANET_Z_LEVEL || LOW_ORBIT_Z_LEVEL)
-						if(isXenoLarva(M))
+						if(isxenolarva(M))
 							numLarvaPlanet++
 						numXenosPlanet++
 						xenoLocationsP += A
 					if(MAIN_SHIP_Z_LEVEL)
-						if(isXenoLarva(M))
+						if(isxenolarva(M))
 							numLarvaShip++
 						numXenosShip++
 						xenoLocationsS += A
 
 				activeXenos += M
 
-			if(ishuman(M) && !isYautja(M))
+			if(ishuman(M) && !isyautja(M))
 				switch(A?.z)
 					if(PLANET_Z_LEVEL || LOW_ORBIT_Z_LEVEL)
 						numHostsPlanet++
@@ -363,7 +363,7 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 	message_admins("Bioscan - Xenos: [numXenosPlanetr] on the planet[numXenosPlanetr > 0 && xenoLocationP ? ". Location:[xenoLocationP]":""]. [numXenosShip] on the ship.[xenoLocationS ? " Location: [xenoLocationS].":""]", 1)
 
 	for(var/mob/M in observers) // Extra information for all ghosts
-		if(istype(M, /mob/new_player))
+		if(isnewplayer(M))
 			continue
 		to_chat(M, "<h2 class='alert'>Detailed Information</h2>")
 		to_chat(M, {"<span class='alert'>[numXenosPlanet] xenos on the planet, including [numLarvaPlanet] larva.
@@ -383,12 +383,12 @@ Only checks living mobs with a client attached.
 	var/num_xenos = 0
 
 	for(var/mob/M in GLOB.player_list)
-		if(M.z && (M.z in z_levels) && M.stat != DEAD && !istype(M.loc, /turf/open/space)) //If they have a z var, they are on a turf.
+		if(M.z && (M.z in z_levels) && M.stat != DEAD && !isspaceturf(M.loc)) //If they have a z var, they are on a turf.
 			if(ishuman(M) && !(M.status_flags & XENO_HOST) && !iszombie(M))
 				var/mob/living/carbon/human/H = M
 				if(H.species && H.species.count_human) //only real humans count
 					num_humans++
-			else if(isXeno(M))
+			else if(isxeno(M))
 				var/mob/living/carbon/Xenomorph/X = M
 				if(!X.stealth_router(HANDLE_STEALTH_CHECK)) //We don't count stealthed Beanos due to delay potential
 					num_xenos++
@@ -401,8 +401,8 @@ Only checks living mobs with a client attached.
 	var/num_pmcs = 0
 
 	for(var/mob/M in GLOB.player_list)
-		if(M.z && (M.z in z_levels) && M.stat != DEAD && !istype(M.loc, /turf/open/space))
-			if(ishuman(M) && !isYautja(M))
+		if(M.z && (M.z in z_levels) && M.stat != DEAD && !isspaceturf(M.loc))
+			if(ishuman(M) && !isyautja(M))
 				if(M.mind && M.mind.special_role == "PMC") 	num_pmcs++
 				else if(M.mind && !M.mind.special_role)		num_marines++
 

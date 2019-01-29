@@ -11,7 +11,7 @@
 	var/is_general_board = FALSE
 
 /obj/item/circuitboard/attackby(obj/item/W , mob/user)
-	if(istype(W, /obj/item/device/multitool) && is_general_board == TRUE)
+	if(ismultitool(W) && is_general_board == TRUE)
 		var/list/modes_to_pick = list("APC", "Airlock", "Fire Alarm", "Air Alarm", "None")
 		var/obj/item/circuitboard/new_board
 		var/modepick = input("Select a mode for this circuit.") as null|anything in modes_to_pick
@@ -80,7 +80,7 @@
 
 /obj/item/circuitboard/apc/attackby(obj/item/W , mob/user)
 	. = ..()
-	if (istype(W, /obj/item/device/multitool))
+	if (ismultitool(W))
 		var/obj/item/circuitboard/machine/ghettosmes/newcircuit = new(user.loc)
 		user.put_in_hands(newcircuit)
 		qdel(src)

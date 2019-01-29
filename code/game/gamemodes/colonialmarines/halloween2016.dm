@@ -429,7 +429,7 @@
 	var/shuffle2 = shuffle_override2? shuffle_override2 : rand(1,20)
 
 	if(istype(M,/mob/living/carbon/human)) //If we started on Sulaco as squad marine
-		if(isYautja(M)) return
+		if(isyautja(M)) return
 		H = M
 	else return //If they are not human, they should not be using this proc.
 
@@ -895,7 +895,7 @@
 	switch(shuffle1)
 		if(1 to 10)
 			for(var/mob/M in GLOB.player_list)
-				if(prob(23) && M.stat != DEAD && ishuman(M) && !isYautja(M) && M.mind && (!M.mind.special_role || M.mind.special_role == "PMC"))
+				if(prob(23) && M.stat != DEAD && ishuman(M) && !isyautja(M) && M.mind && (!M.mind.special_role || M.mind.special_role == "PMC"))
 					switch(shuffle2)
 						if(1 to 11)
 							var/phrases[] = list( //The edgiest lyrics in the universe.

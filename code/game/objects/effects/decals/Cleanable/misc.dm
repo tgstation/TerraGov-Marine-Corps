@@ -144,6 +144,6 @@
 
 /obj/effect/decal/cleanable/blackgoo/Crossed(mob/living/carbon/human/H)
 	if(!istype(H)) return
-	if(H.species.name == "Human")
+	if(H.species.count_human)
 		if(!H.shoes || prob(25))
 			H.contract_disease(new /datum/disease/black_goo)
