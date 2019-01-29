@@ -406,7 +406,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		var/obj/vehicle/multitile/root/cm_armored/CA = root
 		CA.take_damage_type(10, "blunt", M)
 		if(world.time > lastsound + 10)
-			M.visible_message("<span class='danger'>[root] rams into \the [T]!</span>")
+			M.visible_message("<span class='danger'>[root] rams into \the [M]!</span>")
 			playsound(M, 'sound/effects/metal_crash.ogg', 35)
 			lastsound = world.time
 	else if(istype(A, /obj/structure/mineral_door/resin))
