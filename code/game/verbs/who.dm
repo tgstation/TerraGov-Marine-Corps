@@ -18,7 +18,7 @@
 		if(C.mob && C.mob.stat != DEAD)
 			if(ishuman(C.mob) && !iszombie(C.mob))
 				count_humans++
-				if(C.mob.job in (ROLES_MARINES))
+				if(C.mob.mind.assigned_role in (ROLES_MARINES))
 					count_marine_humans++
 				if(C.mob.status_flags & XENO_HOST)
 					count_infectedhumans++
@@ -76,7 +76,7 @@
 		msg += "<b>Total Players: [length(Lines)]</b>"
 
 	to_chat(src, msg)
-	
+
 
 /client/verb/staffwho()
 	set category = "Admin"
@@ -104,13 +104,13 @@
 				if(C.is_afk())
 					msg += " (AFK)"
 
-				msg += "[isobserver(C.mob) ? "" : "as [C.mob.real_name]"] (<A HREF='?src=[REF(usr.client.holder)];[HrefToken()];moreinfo=[REF(C.mob)]'>?</A>)"
+				msg += "[isobserver(C.mob) || istype(C.mob, /mob/new_player) ? "" : "as [C.mob.real_name]"] (<A HREF='?src=[REF(usr.client.holder)];[HrefToken()];moreinfo=[REF(C.mob)]'>?</A>)"
 
 				msg += "\n"
 				num_admins_online++
 
 			else if(is_mentor(C))
-				mentmsg += "\t[C] is a [C.holder.rank]"
+				mentmsg += "\t[C] is [C.holder.rank]"
 				if(isobserver(C.mob))
 					mentmsg += " - Observing"
 				else if(istype(C.mob, /mob/new_player))
@@ -121,7 +121,7 @@
 				if(C.is_afk())
 					mentmsg += " (AFK)"
 
-				mentmsg += "[isobserver(C.mob) ? "" : "as [C.mob.real_name]"] (<A HREF='?src=[REF(usr.client.holder)];[HrefToken()];moreinfo=[REF(C.mob)]'>?</A>)"
+				mentmsg += "[isobserver(C.mob) ? "" : " as [C.mob.real_name]"] (<A HREF='?src=[REF(usr.client.holder)];[HrefToken()];moreinfo=[REF(C.mob)]'>?</A>)"
 
 				mentmsg += "\n"
 				num_mentors_online++

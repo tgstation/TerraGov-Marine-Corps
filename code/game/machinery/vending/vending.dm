@@ -18,7 +18,6 @@
 	anchored = 1
 	density = 1
 	layer = BELOW_OBJ_LAYER
-	can_supply_drop = TRUE
 
 	use_power = 1
 	idle_power_usage = 10
