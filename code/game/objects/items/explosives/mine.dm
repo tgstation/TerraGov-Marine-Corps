@@ -77,7 +77,7 @@
 
 //Disarming
 /obj/item/explosive/mine/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/device/multitool))
+	if(ismultitool(W))
 		if(anchored)
 			user.visible_message("<span class='notice'>[user] starts disarming [src].</span>", \
 			"<span class='notice'>You start disarming [src].</span>")
@@ -104,7 +104,7 @@
 /obj/item/explosive/mine/Bumped(mob/living/carbon/human/H)
 	if(!armed || triggered) return
 
-	if((istype(H) && H.get_target_lock(iff_signal)) || isrobot(H)) return
+	if((istype(H) && H.get_target_lock(iff_signal)) || iscyborg(H)) return
 
 	H.visible_message("<span class='danger'>\icon[src] The [name] clicks as [H] moves in front of it.</span>", \
 	"<span class='danger'>\icon[src] The [name] clicks as you move in front of it.</span>", \

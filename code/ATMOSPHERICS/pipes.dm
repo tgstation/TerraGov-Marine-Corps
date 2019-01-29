@@ -17,7 +17,7 @@
 /obj/machinery/atmospherics/pipe/New()
 	..()
 	//so pipes under walls are hidden
-	if(istype(loc, /turf/closed))
+	if(isclosedturf(loc))
 		level = 1
 	//build_network()
 
@@ -80,7 +80,7 @@
 	if(istype(W, /obj/item/device/pipe_painter))
 		return 0
 
-	if(!istype(W, /obj/item/tool/wrench))
+	if(!iswrench(W))
 		return ..()
 	var/turf/T = src.loc
 	if(level == 1 && isturf(T) && T.intact_tile)

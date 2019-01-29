@@ -21,8 +21,8 @@
 		if(fireaxe)
 			hasaxe = 1
 
-		if (isrobot(usr) || src.locked)
-			if(istype(O, /obj/item/device/multitool))
+		if (iscyborg(usr) || src.locked)
+			if(ismultitool(O))
 				to_chat(user, "<span class='warning'>Resetting circuitry...</span>")
 				playsound(user, 'sound/machines/lockreset.ogg', 25, 1)
 				if(do_after(user, 20, TRUE, 5, BUSY_ICON_HOSTILE))
@@ -75,7 +75,7 @@
 		else
 			if(src.smashed)
 				return
-			if(istype(O, /obj/item/device/multitool))
+			if(ismultitool(O))
 				if(localopened)
 					localopened = 0
 					icon_state = text("fireaxe[][][][]closing",hasaxe,src.localopened,src.hitstaken,src.smashed)
@@ -153,7 +153,7 @@
 		set name = "Open/Close"
 		set category = "Object"
 
-		if (isrobot(usr) || src.locked || src.smashed)
+		if (iscyborg(usr) || src.locked || src.smashed)
 			if(src.locked)
 				to_chat(usr, "<span class='warning'>The cabinet won't budge!</span>")
 			else if(src.smashed)
@@ -167,7 +167,7 @@
 		set name = "Remove Fire Axe"
 		set category = "Object"
 
-		if (isrobot(usr))
+		if (iscyborg(usr))
 			return
 
 		if (istype(usr, /mob/living/carbon/Xenomorph))

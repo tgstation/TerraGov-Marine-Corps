@@ -198,7 +198,7 @@
 	if(!href_list["operation"])
 		return
 
-	if((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))) || (istype(usr, /mob/living/silicon)))
+	if((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))) || (issilicon(usr)))
 		usr.set_interaction(src)
 
 	switch(href_list["operation"])
@@ -549,7 +549,7 @@
 		to_chat(usr, "\icon[src] <span class='warning'>The target's signal is too weak.</span>")
 		return
 	var/turf/T = get_turf(selected_target)
-	if(istype(T, /turf/open/space))
+	if(isspaceturf(T))
 		to_chat(usr, "\icon[src] <span class='warning'>The target's landing zone appears to be out of bounds.</span>")
 		return
 	busy = TRUE //All set, let's do this.
@@ -783,7 +783,7 @@
 		to_chat(usr, "\icon[src] <span class='warning'>The [current_squad.sbeacon.name] was not detected on the ground.</span>")
 		return
 
-	if(istype(T, /turf/open/space) || T.density)
+	if(isspaceturf(T) || T.density)
 		to_chat(usr, "\icon[src] <span class='warning'>The [current_squad.sbeacon.name]'s landing zone appears to be obstructed or out of bounds.</span>")
 		return
 

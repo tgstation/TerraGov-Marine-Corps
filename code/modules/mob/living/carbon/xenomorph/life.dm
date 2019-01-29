@@ -257,7 +257,7 @@
 	if(on_fire) //Burning Xenos can't emit pheromones; they get burnt up! Null it baby! Disco inferno
 		current_aura = null
 	if(current_aura && plasma_stored > 5)
-		if(isXenoQueen(src) && anchored) //stationary queen's pheromone apply around the observed xeno.
+		if(isxenoqueen(src) && anchored) //stationary queen's pheromone apply around the observed xeno.
 			var/mob/living/carbon/Xenomorph/Queen/Q = src
 			var/atom/phero_center = Q
 			if(Q.observed_xeno)

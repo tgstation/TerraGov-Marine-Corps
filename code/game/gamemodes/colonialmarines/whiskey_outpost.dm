@@ -1272,9 +1272,7 @@
 			return
 		if(user.lying || user.stat)
 			return
-		if(istype(usr, /mob/living/silicon) || \
-			istype(usr, /mob/living/carbon/Xenomorph) || \
-			istype(usr, /mob/living/carbon/monkey))
+		if(!ishuman(usr))
 			to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
 			return
 		if(working)

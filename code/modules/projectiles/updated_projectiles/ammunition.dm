@@ -422,7 +422,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 /obj/item/ammobox/MouseDrop(atom/over_object)
 	if(deployed == FALSE)
 		return
-	if(!istype(over_object, /mob/living/carbon/human))
+	if(!ishuman(over_object))
 		return
 	var/mob/living/carbon/human/H = over_object
 	if(H == usr && !H.is_mob_incapacitated() && Adjacent(H) && H.put_in_hands(src))

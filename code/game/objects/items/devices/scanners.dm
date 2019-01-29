@@ -92,7 +92,7 @@ REAGENT SCANNER
 		user.show_message("<span class='notice'>Key: Suffocation/Toxin/Burns/Brute</span>", 1)
 		user.show_message("<span class='notice'>Body Temperature: ???</span>", 1)
 		return
-	if(!(istype(user, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
+	if(!(ishuman(user) || ticker) && ticker.mode.name != "monkey")
 		to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return
 	if(!check_skill_level(skill_threshold, OBJ_SKILL_MEDICAL, user) )
@@ -100,14 +100,14 @@ REAGENT SCANNER
 		var/fduration = skill_delay(SKILL_TASK_AVERAGE, SKILL_MEDICAL_MEDIC, OBJ_SKILL_MEDICAL, user)
 		if(!do_after(user, fduration, TRUE, 5, BUSY_ICON_FRIENDLY) || !user.Adjacent(M))
 			return
-	if(isXeno(M))
+	if(isxeno(M))
 		to_chat(user, "<span class='warning'>[src] can't make sense of this creature.</span>")
 		return
 	to_chat(user, "<span class='notice'>[user] has analyzed [M]'s vitals.")
 	playsound(src.loc, 'sound/items/healthanalyzer.ogg', 50)
 
 	// Doesn't work on non-humans and synthetics
-	if(!istype(M, /mob/living/carbon) || (ishuman(M) && (M:species.flags & IS_SYNTHETIC)))
+	if(!iscarbon(M) || (ishuman(M) && (M:species.flags & IS_SYNTHETIC)))
 		user.show_message("\n<span class='notice'> Health Analyzer results for ERROR:\n\t Overall Status: ERROR</span>")
 		user.show_message("\tType: <font color='blue'>Oxygen</font>-<font color='green'>Toxin</font>-<font color='#FFA500'>Burns</font>-<font color='red'>Brute</font>", 1)
 		user.show_message("\tDamage: <font color='blue'>?</font> - <font color='green'>?</font> - <font color='#FFA500'>?</font> - <font color='red'>?</font>")
@@ -139,7 +139,7 @@ REAGENT SCANNER
 	var/overdosed = 0
 
 	// Show specific limb damage
-	if(istype(M, /mob/living/carbon/human) && mode == 1)
+	if(ishuman(M) && mode == 1)
 		var/mob/living/carbon/human/H = M
 		for(var/datum/limb/org in H.limbs)
 			var/brute_treated = 0
@@ -283,7 +283,7 @@ REAGENT SCANNER
 			dat += "\t<span class='scanner'> *<b>Internal bleeding</b> detected. Advanced scanner required for location.</span>\n"
 
 	var/reagents_in_body[0] // yes i know -spookydonut
-	if(istype(M, /mob/living/carbon))
+	if(iscarbon(M))
 		// Show helpful reagents
 		if(M.reagents.total_volume > 0)
 			var/unknown = 0
@@ -535,7 +535,7 @@ REAGENT SCANNER
 
 	if (user.stat)
 		return
-	if (!(istype(usr, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
+	if (!(ishuman(usr) || ticker) && ticker.mode.name != "monkey")
 		to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return
 
@@ -596,7 +596,7 @@ REAGENT SCANNER
 	if (crit_fail)
 		to_chat(user, "<span class='warning'>This device has critically failed and is no longer functional!</span>")
 		return
-	if (!(istype(user, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
+	if (!(ishuman(user) || ticker) && ticker.mode.name != "monkey")
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return
 	if(reagents.total_volume)
@@ -657,7 +657,7 @@ REAGENT SCANNER
 		return
 	if (user.stat)
 		return
-	if (!(istype(user, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
+	if (!(ishuman(user) || ticker) && ticker.mode.name != "monkey")
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return
 	if(!istype(O))

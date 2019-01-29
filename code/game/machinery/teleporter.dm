@@ -191,7 +191,7 @@
 		for(var/mob/O in hearers(src, null))
 			O.show_message("<span class='warning'> Failure: Cannot authenticate locked on coordinates. Please reinstate coordinate matrix.</span>")
 		return
-	if (istype(M, /atom/movable))
+	if (ismovableatom(M))
 		if(prob(5) && !accurate) //oh dear a problem, put em in deep space
 			do_teleport(M, locate(rand((2*TRANSITIONEDGE), world.maxx - (2*TRANSITIONEDGE)), rand((2*TRANSITIONEDGE), world.maxy - (2*TRANSITIONEDGE)), 3), 2)
 		else
@@ -218,7 +218,7 @@
 		for(var/mob/O in viewers(M, null))
 			O.show_message(text("<span class='danger'>The [] bounces off of the portal!</span>", M.name), 1)
 		return
-	if (istype(M, /mob/living))
+	if (isliving(M))
 		var/mob/living/MM = M
 		if(MM.check_contents_for(/obj/item/disk/nuclear))
 			to_chat(MM, "<span class='warning'>Something you are carrying seems to be unable to pass through the portal. Better drop it if you want to go through.</span>")
@@ -235,7 +235,7 @@
 					disky = 1
 		if (istype(O, /obj/item/disk/nuclear))
 			disky = 1
-		if (istype(O, /mob/living))
+		if (isliving(O))
 			var/mob/living/MM = O
 			if(MM.check_contents_for(/obj/item/disk/nuclear))
 				disky = 1
@@ -245,7 +245,7 @@
 		return
 
 //Bags of Holding cause bluespace teleportation to go funky. --NeoFite
-	if (istype(M, /mob/living))
+	if (isliving(M))
 		var/mob/living/MM = M
 		if(MM.check_contents_for(/obj/item/storage/backpack/holding))
 			to_chat(MM, "<span class='warning'>The Bluespace interface on your Bag of Holding interferes with the teleport!</span>")
@@ -263,7 +263,7 @@
 					precision = rand(1,100)
 		if (istype(O, /obj/item/storage/backpack/holding))
 			precision = rand(1,100)
-		if (istype(O, /mob/living))
+		if (isliving(O))
 			var/mob/living/MM = O
 			if(MM.check_contents_for(/obj/item/storage/backpack/holding))
 				precision = rand(1,100)

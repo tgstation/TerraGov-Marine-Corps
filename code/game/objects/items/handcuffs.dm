@@ -21,7 +21,7 @@
 /obj/item/handcuffs/attack(mob/living/carbon/C, mob/user)
 	if(!istype(C))
 		return ..()
-	if (!istype(user, /mob/living/carbon/human))
+	if (!ishuman(user))
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return
 	if ((CLUMSY in usr.mutations) && prob(50))
