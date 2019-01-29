@@ -399,6 +399,34 @@
 //==========================//DISTRESS\\=================================\\
 //=======================================================================\\
 
+//=========================//Imperium\\==================================\\
+
+/obj/item/clothing/head/helmet/marine/imperial
+	name = "\improper Imperial Guard flak helmet"
+	desc = "A standard Imperial Guard helmet that goes with the flak armour, it is also mass produced, and it can save your life, maybe."
+	//icon_state
+
+/obj/item/clothing/head/helmet/marine/imperial/sergeant
+	name = "\improper Imperial Guard carapace helmet"
+	desc = "A heavy helmet that goes with the carapace armour, unlike the flak variant, this one will actually protect you."
+	//icon_state
+	armor = list(melee = 70, bullet = 55, laser = 50, energy = 35, bomb = 40, bio = 0, rad = 0)
+
+/obj/item/clothing/head/helmet/marine/imperial/power
+	name = "\improper salvaged Space Marine helmet"
+	desc = "A helmet that goes with the Space Marine power armour, this one has been salvaged from the battlefield."
+	//icon_state
+	armor = list(melee = 65, bullet = 50, laser = 45, energy = 30, bomb = 35, bio = 0, rad = 0)
+
+/obj/item/clothing/head/helmet/marine/imperial/power/astartes
+	name = "\improper Space Marine helmet"
+	desc = "You are intimidated by the appearance of the helmet. This is the helmet that goes with the powerful Space Marine power armour."
+	//icon_state
+	armor = list(melee = 80, bullet = 80, laser = 80, energy = 80, bomb = 80, bio = 80, rad = 80)
+
+
+
+
 /obj/item/clothing/head/helmet/marine/veteran/dutch
 	name = "\improper Dutch's Dozen helmet"
 	desc = "A protective helmet worn by some seriously experienced mercs."

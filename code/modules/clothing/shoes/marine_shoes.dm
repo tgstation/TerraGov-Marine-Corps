@@ -96,3 +96,10 @@
 	flags_heat_protection = FEET
 	siemens_coefficient = 0.2
 	unacidable = 1
+
+//=========//Imperium\\=========\\
+
+/obj/item/clothing/shoes/marine/imperial
+	name = "guardsmen combat boots"
+	desc = "A pair of boots issued to the Imperial Guard, just like anything else they use, they are mass produced."
+	//icon_state
