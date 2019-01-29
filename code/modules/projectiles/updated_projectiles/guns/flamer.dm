@@ -488,33 +488,38 @@
 
 /obj/flamer_fire/Crossed(mob/living/M) //Only way to get it to reliable do it when you walk into it.
 	if(istype(M))
-		var/fire_mod = 1
-		if(isXeno(M))
-			var/mob/living/carbon/Xenomorph/X = M
-			if(X.fire_immune)
-				return
-			fire_mod = X.fire_resist
-		M.adjust_fire_stacks(burnlevel) //Make it possible to light them on fire later.
-		if (prob(firelevel + 2*M.fire_stacks)) //the more soaked in fire you are, the likelier to be ignited
-			M.IgniteMob()
+		M.flamer_fire_crossed(burnlevel, firelevel)
 
-		var/armor_block = M.run_armor_check(null, "energy")
-		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
-			if(isXeno(H.pulledby))
-				var/mob/living/carbon/Xenomorph/Z = H.pulledby
-				if(!Z.xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
-					Z.adjust_fire_stacks(burnlevel)
-					Z.IgniteMob()
-			if(istype(H.wear_suit, /obj/item/clothing/suit/fire) || (istype(H.wear_suit, /obj/item/clothing/suit/storage/marine/M35) && istype(H.head, /obj/item/clothing/head/helmet/marine/pyro)))
-				H.show_message(text("Your suit protects you from the flames."),1)
-				armor_block = CLAMP(armor_block * 1.5, 0.75, 1) //Min 75% resist, max 100%
-		M.apply_damage(round(burnlevel*0.5)* fire_mod, BURN, null, armor_block)
+/mob/living/carbon/human/run_armor_check(var/def_zone = null, var/attack_flag = "melee")
+	if(attack_flag == "energy")
+		if(istype(wear_suit, /obj/item/clothing/suit/fire) || (istype(wear_suit, /obj/item/clothing/suit/storage/marine/M35) && istype(head, /obj/item/clothing/head/helmet/marine/pyro)))
+			show_message(text("Your suit protects you from the flames."),1)
+			return CLAMP(armor_block * 1.5, 0.75, 1) //Min 75% resist, max 100%
+	return ..()
 
-		to_chat(M, "<span class='danger'>You are burned!</span>")
-		if(isXeno(M))
-			M.updatehealth()
+// override this proc to give different walking-over-fire effects
+/mob/living/proc/flamer_fire_crossed(var/burnlevel, var/firelevel, var/fire_mod=1)
+	if(fire_immune) // this is a /mob/living var that xenos use but humans dont
+		return
+	adjust_fire_stacks(burnlevel) //Make it possible to light them on fire later.
+	if (prob(firelevel + 2*fire_stacks)) //the more soaked in fire you are, the likelier to be ignited
+		IgniteMob()
+	var/armor_block = run_armor_check(null, "energy")
+	apply_damage(round(burnlevel*0.5)* fire_mod, BURN, null, armor_block)
 
+	to_chat(src, "<span class='danger'>You are burned!</span>")
+
+/mob/living/carbon/human/flamer_fire_crossed(var/burnlevel, var/firelevel, var/fire_mod=1)
+	..()
+	if(isXeno(H.pulledby))
+		var/mob/living/carbon/Xenomorph/Z = H.pulledby
+		if(!Z.xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
+			Z.adjust_fire_stacks(burnlevel)
+			Z.IgniteMob()
+
+/mob/living/carbon/Xenomorph/flamer_fire_crossed(var/burnlevel, var/firelevel, var/fire_mod=1)
+	..(burnlevel, firelevel, fire_resist)
+	updatehealth()
 
 /obj/flamer_fire/proc/updateicon()
 	if(burnlevel < 15)
@@ -553,10 +558,10 @@
 		var/atom/A = i
 		A.flamer_fire_act()
 
-	//This has been made a simple loop, for the most part flamer_fire_act() just does return, but for specific items it'll cause other effects.
 	firelevel -= 2 //reduce the intensity by 2 per tick
 	return
 
+// override this proc to give different idling-on-fire effects
 /mob/living/flamer_fire_act(var/burnlevel, var/firelevel)
 	adjust_fire_stacks(burnlevel) //If i stand in the fire i deserve all of this. Also Napalm stacks quickly.
 	if(prob(firelevel))
