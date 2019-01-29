@@ -11,6 +11,13 @@ var/global/list/processing_machines = list()
 var/global/list/active_diseases = list()
 var/global/list/events = list()
 
+//tips
+var/global/list/metatips = file2list('config/tips/metatips.txt')
+var/global/list/marinetips = file2list('config/tips/marinetips.txt')
+var/global/list/xenotips = file2list('config/tips/xenotips.txt')
+var/global/list/joketips = file2list('config/tips/joketips.txt')
+var/global/list/alltips = marinetips + xenotips + joketips + metatips
+
 //used by binoculars for dropship bombardment
 var/global/list/active_laser_targets = list()
 

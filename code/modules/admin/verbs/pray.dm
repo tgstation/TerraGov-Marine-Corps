@@ -21,11 +21,13 @@
 		liaison = TRUE
 
 	if(liaison)
-		msg = "<b><font color=purple>LIAISON PRAY:</font> <span class='notice'>[ADMIN_FULLMONTY(usr)] [ADMIN_SC(usr)]:</b> [msg]</span>"
+
+		msg = "<b><font color=purple>LIAISON PRAY:</font> <span class='notice'>[ADMIN_FULLMONTY(usr)] [ADMIN_SC(usr)] [ADMIN_SFC(usr)]:</b> [msg]</span>"
 		mentor_msg = "<b><font color=purple>LIAISON PRAY:</font> <span class='notice'>[ADMIN_TPMONTY(usr)]:</b> [mentor_msg]</span>"
 	else
-		msg = "<b><font color=purple>PRAY:</font> <span class='notice'>[ADMIN_FULLMONTY(usr)] [ADMIN_SC(usr)]:</b> [msg]</span>"
+		msg = "<b><font color=purple>PRAY:</font> <span class='notice'>[ADMIN_FULLMONTY(usr)] [ADMIN_SC(usr)] [ADMIN_SFC(usr)]:</b> [msg]</span>"
 		mentor_msg = "<b><font color=purple>PRAY:</font> <span class='notice'>[ADMIN_TPMONTY(usr)]:</b> [mentor_msg]</span>"
+
 
 	for(var/client/C in GLOB.admins)
 		if(check_other_rights(C, R_ADMIN, FALSE) && (C.prefs.toggles_chat & CHAT_PRAYER))

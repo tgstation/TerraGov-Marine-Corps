@@ -723,6 +723,34 @@
 		log_admin("[key_name(M)] got their cookie, spawned by [key_name(usr)]")
 		message_admins("[ADMIN_TPMONTY(M)] got their cookie, spawned by [ADMIN_TPMONTY(usr)].")
 
+	else if(href_list["spawnfortunecookie"])
+		if(!check_rights(R_ADMIN|R_FUN))
+			return
+
+		var/mob/M = locate(href_list["spawnfortunecookie"])
+
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			H.put_in_hands(new /obj/item/reagent_container/food/snacks/fortunecookie(M))
+			H.update_inv_r_hand()
+			H.update_inv_l_hand()
+		else if(isobserver(M))
+			if(alert("Are you sure you want to spawn the fortune cookie at observer location [AREACOORD(M.loc)]?", "Confirmation", "Yes", "No") != "Yes")
+				return
+			var/turf/T = get_turf(M)
+			new /obj/item/reagent_container/food/snacks/fortunecookie(T)
+		else if(isXeno(M))
+			if(alert("Are you sure you want to tell the Xeno a Xeno tip?", "Confirmation", "Yes", "No") != "Yes")
+				return
+			to_chat(M, "<span class='tip'>[pick(xenotips)]</span>")
+		
+		if(isXeno(M))
+			to_chat(M, "<span class='boldnotice'>Your prayers have been answered!! Hope the advice helped.</span>")
+		else
+			to_chat(M, "<span class='boldnotice'>Your prayers have been answered!! You received the best fortune cookie!</span>")
+		
+		log_admin("[key_name(M)] got their fortune cookie, spawned by [key_name(usr)]")
+		message_admins("[ADMIN_TPMONTY(M)] got their fortune cookie, spawned by [ADMIN_TPMONTY(usr)].")
 
 	else if(href_list["reply"])
 		var/mob/living/carbon/human/H = locate(href_list["reply"])
@@ -847,7 +875,6 @@
 			qdel(M)
 		else
 			M.ghostize()
-
 
 	else if(href_list["jumpto"])
 		if(!check_rights(R_ADMIN))
