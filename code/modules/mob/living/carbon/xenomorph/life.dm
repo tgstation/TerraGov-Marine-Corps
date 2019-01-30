@@ -129,14 +129,6 @@
 	. = ..()
 	handle_stealth()
 
-/mob/living/carbon/Xenomorph/proc/handle_critical_health_updates()
-	var/turf/T = loc
-	if(istype(T))
-		if(!locate(/obj/effect/alien/weeds) in T) //In crit, damage is maximal if you're caught off weeds
-			adjustBruteLoss(2.5 - warding_aura*0.5) //Warding can heavily lower the impact of bleedout. Halved at 2.5 phero, stopped at 5 phero
-		else
-			adjustBruteLoss(-warding_aura*0.5) //Warding pheromones provides 0.25 HP per second per step, up to 2.5 HP per tick.
-
 /mob/living/carbon/Xenomorph/handle_fire()
 	. = ..()
 	if(.)
@@ -145,34 +137,30 @@
 		adjustFireLoss((fire_stacks + 3) * (xeno_caste.fire_resist + fire_resist_modifier)) // modifier is negative
 
 /mob/living/carbon/Xenomorph/proc/handle_living_health_updates()
-	if(health >= maxHealth || xeno_caste.hardcore) //no damage, don't bother
+	if(health < 0)
+		handle_critical_health_updates()
+		return
+	if(health >= maxHealth || xeno_caste.hardcore || on_fire) //can't regenerate.
 		updatehealth() //Update health-related stats, like health itself (using brute and fireloss), health HUD and status.
 		return
 	var/turf/T = loc
-	if(!T || !istype(T) || xeno_caste.hardcore)
-		return
-	if(on_fire) //Can't regenerate while on fire
-		updatehealth()
-		return
-	if(xeno_caste.caste_flags & CASTE_INNATE_HEALING) //Larvas regenerate fast anywhere as long as not in crit.
-		if(!(locate(/obj/effect/alien/weeds) in T) && health <= 0)
-			adjustBruteLoss(XENO_CRIT_DAMAGE)
-		else
-			heal_wounds(XENO_RESTING_HEAL)
-		updatehealth()
+	if(!T || !istype(T))
 		return
 	var/datum/hive_status/hive = hive_datum[hivenumber]
-	if(hive.living_xeno_queen && hive.living_xeno_queen.loc.z != loc.z) //if there is a queen, it must be in the same z-level
-		updatehealth()
-		return
-	if(locate(/obj/effect/alien/weeds) in T) //We regenerate on weeds.
-		if(lying || resting)
-			heal_wounds(XENO_RESTING_HEAL)
-		else
-			heal_wounds(XENO_STANDING_HEAL) //Major healing nerf if standing.
-	else if(health <= 0)
-		adjustBruteLoss(XENO_CRIT_DAMAGE) //Crit and no weeds makes us bleed.
+	if(!hive.living_xeno_queen || hive.living_xeno_queen.loc.z == loc.z) //if there is a queen, it must be in the same z-level
+		if(locate(/obj/effect/alien/weeds) in T || xeno_caste.caste_flags & CASTE_INNATE_HEALING) //We regenerate on weeds or can on our own.
+			if(lying || resting)
+				heal_wounds(XENO_RESTING_HEAL)
+			else
+				heal_wounds(XENO_STANDING_HEAL) //Major healing nerf if standing.
 	updatehealth()
+
+/mob/living/carbon/Xenomorph/proc/handle_critical_health_updates()
+	var/turf/T = loc
+	if((istype(T) && locate(/obj/effect/alien/weeds) in T))
+		heal_wounds(XENO_RESTING_HEAL + warding_aura * 0.5) //Warding pheromones provides 0.25 HP per second per step, up to 2.5 HP per tick.
+	else
+		adjustBruteLoss(XENO_CRIT_DAMAGE - warding_aura) //Warding can heavily lower the impact of bleedout. Halved at 2.5 phero, stopped at 5 phero
 
 /mob/living/carbon/Xenomorph/proc/heal_wounds(multiplier = XENO_RESTING_HEAL)
 	var/amount = (1 + (maxHealth * 0.02) ) // 1 damage + 2% max health
