@@ -232,7 +232,10 @@
 					else if(ismonkey(M))
 						M_job = "Monkey"
 					else if(isxeno(M))
-						M_job = "alien"
+						if(M.client?.prefs?.xeno_name && M.client.prefs.xeno_name != "Undefined")
+							M_job = "alien - [M.client.prefs.xeno_name]"
+						else
+							M_job = "alien"
 					else
 						M_job = "Carbon-based"
 
