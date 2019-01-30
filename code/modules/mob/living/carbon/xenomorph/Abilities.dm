@@ -368,10 +368,9 @@
 	if(PheromonesOpen)
 		PheromonesOpen = FALSE
 		to_chat(X, "<span class ='xenonotice'>You collapse the pheromone button choices.</span>")
-		var/list/subtypeactions = subtypesof(/datum/action/xeno_action/pheromones)
-		for(var/path in subtypeactions)
-			var/datum/action/xeno_action/pheromones/A = new path()
-			A.remove_action(X)
+		for(var/datum/action/path in owner.actions)
+			if(istype(path, /datum/action/xeno_action/pheromones))
+				path.remove_action(X)
 	else
 		PheromonesOpen = TRUE
 		to_chat(X, "<span class ='xenonotice'>You open the pheromone button choices.</span>")
@@ -380,7 +379,7 @@
 			var/datum/action/xeno_action/pheromones/A = new path()
 			A.give_action(X)
 
-/datum/action/xeno_action/pheromones/emit_recovery //Type casted for easy removal
+/datum/action/xeno_action/pheromones/emit_recovery //Type casted for easy removal/adding
 	name = "Emit Recovery Pheromones (30)"
 	action_icon_state = "emit_recovery"
 	plasma_cost = 30
@@ -399,6 +398,7 @@
 	if(X.current_aura == "recovery")
 		X.visible_message("<span class='xenowarning'>\The [X] stops emitting strange pheromones.</span>", \
 		"<span class='xenowarning'>You stop emitting recovery pheromones.</span>", null, 5)
+		X.current_aura = null
 	else
 		X.use_plasma(30)
 		X.current_aura = "recovery"
@@ -432,6 +432,7 @@
 	if(X.current_aura == "warding")
 		X.visible_message("<span class='xenowarning'>\The [X] stops emitting strange pheromones.</span>", \
 		"<span class='xenowarning'>You stop emitting warding pheromones.</span>", null, 5)
+		X.current_aura = null
 	else
 		X.use_plasma(30)
 		X.current_aura = "warding"
@@ -465,6 +466,7 @@
 	if(X.current_aura == "frenzy")
 		X.visible_message("<span class='xenowarning'>\The [X] stops emitting strange pheromones.</span>", \
 		"<span class='xenowarning'>You stop emitting frenzy pheromones.</span>", null, 5)
+		X.current_aura = null
 	else
 		X.use_plasma(30)
 		X.current_aura = "frenzy"
