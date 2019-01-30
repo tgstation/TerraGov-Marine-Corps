@@ -2167,7 +2167,7 @@
 		to_chat(src, "<span class='xenowarning'>You try to sting but are too disoriented!</span>")
 		return
 
-	if(!(ismonkey(H) || ishuman(H)) || issynth(H) || H.stat == DEAD)
+	if(!can_sting(H) )
 		to_chat(src, "<span class='xenowarning'>Your sting won't affect this target!</span>")
 		return
 
@@ -2205,28 +2205,31 @@
 
 	addtimer(CALLBACK(src, .defiler_sting_cooldown), DEFILER_STING_COOLDOWN)
 
-	defiler_recurring_injection(H)
+	recurring_injection(H, "xeno_toxin", "xeno_growthtoxin", TRUE)
 
 /mob/living/carbon/Xenomorph/Defiler/proc/defiler_sting_cooldown()
 	playsound(loc, 'sound/voice/alien_drool1.ogg', 50, 1)
 	to_chat(src, "<span class='xenodanger'>You feel your toxin glands refill, another young one ready for implantation. You can use Defile again.</span>")
 	update_action_button_icons()
 
-/mob/living/carbon/Xenomorph/Defiler/proc/defiler_recurring_injection(mob/living/H, count = 2)
+/mob/living/carbon/Xenomorph/proc/recurring_injection(mob/living/H, toxin1 = "xeno_toxin", toxin2 = null, larva = FALSE, count = 2)
 	//set waitfor = FALSE
 	while(count)
-		if(!Adjacent(H) || stagger)
-			return FALSE
 		face_atom(H)
 		if(!do_after(src, DEFILER_STING_CHANNEL_TIME, TRUE, 5, BUSY_ICON_HOSTILE))
 			return
+		if(!Adjacent(H) || stagger)
+			return FALSE
 		animation_attack_on(H)
 		playsound(H, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
-		H.reagents.add_reagent("xeno_toxin", DEFILER_STING_AMOUNT_RECURRING) //10 units transferred.
-		overdose_check(H)
-		H.reagents.add_reagent("xeno_growthtoxin", DEFILER_STING_AMOUNT_RECURRING, null, 300, FALSE, FALSE, TRUE) //Caps the amount injected by the overdose limit
+		if(toxin1)
+			H.reagents.add_reagent(toxin1, DEFILER_STING_AMOUNT_RECURRING) //10 units transferred.
+			overdose_check(H, toxin1)
+		if(toxin2)
+			H.reagents.add_reagent(toxin2, DEFILER_STING_AMOUNT_RECURRING, null, 300, FALSE, FALSE, TRUE) //Caps the amount injected by the overdose limit
+			overdose_check(H, toxin2)
 
-		if(count < 2)
+		if(count < 2 && larva)
 			//It's infection time!
 			if(!CanHug(H))
 				return
@@ -2240,14 +2243,13 @@
 				round_statistics.now_pregnant++
 				to_chat(src, "<span class='xenodanger'>Your stinger successfully implants a larva into the host.</span>")
 		count--
-		//sleep(DEFILER_STING_CHANNEL_TIME)
 	return
 
 /mob/living/carbon/Xenomorph/proc/overdose_check(mob/living/L, toxin = "xeno_toxin")
 	if(!iscarbon(L))
 		return
 	var/mob/living/carbon/C = L
-	var/datum/reagent/xeno_tox = C.reagents.get_reagent("[toxin]")
+	var/datum/reagent/xeno_tox = C.reagents.get_reagent(toxin)
 	if(xeno_tox.overdosed)
 		to_chat(src, "<span class='xenodanger'>You sense this host is overdosed on [xeno_tox.name].</span>")
 
@@ -2329,7 +2331,7 @@
 		to_chat(src, "<span class='xenowarning'>You try to sting but are too disoriented!</span>")
 		return
 
-	if(!istype(H) || isxeno(H) || iscyborg(H) || H.stat == DEAD)
+	if(!can_sting(H) )
 		to_chat(src, "<span class='xenowarning'>Your sting won't affect this target!</span>")
 		return
 
@@ -2365,23 +2367,14 @@
 
 	addtimer(CALLBACK(src, .drone_sting_cooldown), DRONE_STING_COOLDOWN)
 
-	drone_recurring_injection(H)
+	recurring_injection(H, "xeno_growthtoxin")
 
 /mob/living/carbon/Xenomorph/Drone/proc/drone_sting_cooldown()
 	playsound(loc, 'sound/voice/alien_drool1.ogg', 50, 1)
 	to_chat(src, "<span class='xenodanger'>You feel your growth toxin glands refill. You can use Growth Sting again.</span>")
 	update_action_button_icons()
 
-/mob/living/carbon/Xenomorph/Drone/proc/drone_recurring_injection(mob/living/H, count = 2)
-	//set waitfor = FALSE
-	while(count)
-		if(!Adjacent(H) || stagger)
-			return FALSE
-		face_atom(H)
-		if(!do_after(src, DRONE_STING_CHANNEL_TIME, TRUE, 5, BUSY_ICON_HOSTILE))
-			break
-		animation_attack_on(H)
-		playsound(H, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
-		H.reagents.add_reagent("xeno_growthtoxin", DRONE_STING_AMOUNT_RECURRING, null, 300, FALSE, FALSE, TRUE) //Caps the amount injected by the overdose limit
-		count--
-	return
+/mob/living/carbon/Xenomorph/proc/can_sting(mob/living/H)
+	if(!istype(H) || isxeno(H) || iscyborg(H) || H.stat == DEAD)
+		return FALSE
+	return TRUE
