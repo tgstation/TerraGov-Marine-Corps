@@ -9,7 +9,7 @@
 
 	var/destructible = TRUE
 	var/damage = 0
-	var/damage_cap = 1000 //The point where things start breaking down.
+	var/damage_cap = 500 //The point where things start breaking down.
 
 
 /obj/structure/New()

@@ -397,7 +397,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 			lastsound = world.time
 	else if(istype(A, /obj/machinery))
 		var/obj/machinery/M = A
-		M.take_damage(20)
+		M.take_damage(30)
 		var/obj/vehicle/multitile/root/cm_armored/CA = root
 		CA.take_damage_type(10, "blunt", M)
 		if(world.time > lastsound + 10)
@@ -406,7 +406,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 			lastsound = world.time
 	else if(istype(A, /obj/structure))
 		var/obj/structure/S = A
-		S.take_damage(20)
+		S.take_damage(30)
 		var/obj/vehicle/multitile/root/cm_armored/CA = root
 		CA.take_damage_type(10, "blunt", S)
 		if(world.time > lastsound + 10)
