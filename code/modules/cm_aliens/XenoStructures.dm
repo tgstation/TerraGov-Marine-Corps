@@ -206,7 +206,7 @@
 						"<span class='danger'>You trip on [src]!</span>")
 		L.KnockDown(1)
 		if(!QDELETED(linked_carrier))
-			if(!linked_carrier.stat && linked_carrier.z == z)
+			if(linked_carrier.stat == CONSCIOUS && linked_carrier.z == z)
 				var/area/A = get_area(src)
 				if(A)
 					to_chat(linked_carrier, "<span class='xenoannounce'>You sense one of your traps at [A.name] has been triggered!</span>")
@@ -437,8 +437,8 @@
 #define EGG_GROWN 3
 #define EGG_DESTROYED 4
 
-#define EGG_MIN_GROWTH_TIME 100 //time it takes for the egg to mature once planted
-#define EGG_MAX_GROWTH_TIME 150
+#define EGG_MIN_GROWTH_TIME 10 SECONDS //time it takes for the egg to mature once planted
+#define EGG_MAX_GROWTH_TIME 15 SECONDS
 
 /obj/effect/alien/egg
 	desc = "It looks like a weird egg"
