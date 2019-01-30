@@ -304,10 +304,5 @@
 			to_chat(src, "<span class='notice'>You get up.</span>")
 			resting = FALSE
 			update_canmove()
-		else if(isxeno(src))
-			spawn(5)
-				to_chat(src, "<span class='notice'>You get up.</span>")
-				resting = FALSE
-				update_canmove()
 		else
 			to_chat(src, "<span class='notice'>You fail to get up.</span>")

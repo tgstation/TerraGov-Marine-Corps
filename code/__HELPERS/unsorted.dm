@@ -929,7 +929,7 @@ var/global/image/busy_indicator_hostile
 	user.action_busy = FALSE
 
 
-/proc/do_after(mob/user, delay, needhand = TRUE, numticks = 5, show_busy_icon, selected_zone_check, busy_check = FALSE) //hacky, will suffice for now.
+/proc/do_after(mob/user, delay, needhand = TRUE, numticks = 5, show_busy_icon, selected_zone_check, busy_check = FALSE, bypass = FALSE) //hacky, will suffice for now.
 	if(!istype(user) || delay <= 0)
 		return FALSE
 
@@ -953,17 +953,18 @@ var/global/image/busy_indicator_hostile
 	if(selected_zone_check)
 		cur_zone_sel = user.zone_selected
 
-	var/delayfraction = round(delay/numticks)
 	var/original_loc = user.loc
 	var/original_turf = get_turf(user)
 	var/obj/holding = user.get_active_held_item()
+
 	. = TRUE
-	for(var/i = 0 to numticks)
-		sleep(delayfraction)
+	var/endtime = world.time + delay
+	while(world.time < endtime)
+		stoplag(1)
 		if(!user || user.loc != original_loc || get_turf(user) != original_turf || user.stat || user.knocked_down || user.stunned)
 			. = FALSE
 			break
-		if(L && L.health < CONFIG_GET(number/health_threshold_crit))
+		if(L.health && L.health < CONFIG_GET(number/health_threshold_crit))
 			. = FALSE //catching mobs below crit level but haven't had their stat var updated
 			break
 		if(needhand)
@@ -981,6 +982,9 @@ var/global/image/busy_indicator_hostile
 
 	if(user && busy_icon)
 		user.overlays -= busy_icon
+
+	if(bypass)
+		. = TRUE
 
 	user.action_busy = FALSE
 
