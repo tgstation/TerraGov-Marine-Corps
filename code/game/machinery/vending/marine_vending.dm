@@ -58,11 +58,11 @@
 
 /obj/machinery/vending/marine/New()
 	..()
-	marine_vendors.Add(src)
+	GLOB.marine_vendors.Add(src)
 
 /obj/machinery/vending/marine/Destroy()
 	. = ..()
-	marine_vendors.Remove(src)
+	GLOB.marine_vendors.Remove(src)
 
 /obj/machinery/vending/marine/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/weapon/gun))
@@ -123,7 +123,9 @@
 					/obj/item/clothing/mask/gas = 10
 					)
 
-	contraband = list(
+	contraband = list(								
+					/obj/item/storage/box/nade_box/HIDP = 1,
+					/obj/item/storage/box/nade_box/M15 = 1,																																																																										
 					/obj/item/weapon/gun/smg/ppsh = 4,
 					/obj/item/weapon/gun/shotgun/double = 2,
 					/obj/item/weapon/gun/smg/m39/elite = 0,
@@ -154,12 +156,12 @@
 
 /obj/machinery/vending/marine/cargo_guns/New()
 	..()
-	cargo_guns_vendors.Add(src)
-	marine_vendors.Remove(src)
+	GLOB.cargo_guns_vendors.Add(src)
+	GLOB.marine_vendors.Remove(src)
 
 /obj/machinery/vending/marine/cargo_guns/Destroy()
 	. = ..()
-	cargo_guns_vendors.Remove(src)
+	GLOB.cargo_guns_vendors.Remove(src)
 
 
 
@@ -236,16 +238,16 @@
 
 /obj/machinery/vending/marine/cargo_ammo/New()
 	..()
-	cargo_ammo_vendors.Add(src)
-	marine_vendors.Remove(src)
+	GLOB.cargo_ammo_vendors.Add(src)
+	GLOB.marine_vendors.Remove(src)
 
 /obj/machinery/vending/marine/cargo_ammo/Destroy()
 	. = ..()
-	cargo_ammo_vendors.Remove(src)
+	GLOB.cargo_ammo_vendors.Remove(src)
 
 /obj/machinery/vending/lasgun
 	name = "ColMarTech Lasgun Field Charger"
-	desc = "An automated power cell dispenser and charger. Used to recharge energy weapon power cells, including in the field. Has an internal battery that charges off the power grid."
+	desc = "An automated power cell dispenser and charger. Used to recharge energy weapon power cells, including in the field. Has an internal battery that charges off the power grid when wrenched down."
 	icon_state = "lascharger"
 	icon_vend = "lascharger-vend"
 	icon_deny = "lascharger-denied"
@@ -256,8 +258,8 @@
 	anchored = FALSE
 	idle_power_usage = 1
 	vend_power_usage = 50
-	machine_current_charge = 20000 //integrated battery for recharging energy weapons. Normally 10000.
-	machine_max_charge = 20000
+	machine_current_charge = 100000 //integrated battery for recharging energy weapons. Normally 10000.
+	machine_max_charge = 100000
 
 	product_ads = "Lasgun running low? Recharge here!;Need a charge?;Power up!;Electrifying!;Empower yourself!"
 	products = list(
@@ -525,6 +527,7 @@
 					/obj/item/storage/box/spec/heavy_grenadier = 1,
 					/obj/item/storage/box/spec/sniper = 1,
 					/obj/item/storage/box/spec/scout = 1,
+					/obj/item/storage/box/spec/scoutshotgun = 1,
 					/obj/item/storage/box/spec/pyro = 1
 			)
 	prices = list()
@@ -682,11 +685,11 @@
 
 /obj/machinery/vending/attachments/New()
 	..()
-	attachment_vendors.Add(src)
+	GLOB.attachment_vendors.Add(src)
 
 /obj/machinery/vending/attachments/Destroy()
 	. = ..()
-	attachment_vendors.Remove(src)
+	GLOB.attachment_vendors.Remove(src)
 
 
 
@@ -778,11 +781,11 @@
 		products2 = list(/obj/item/device/radio/headset/almayer = 10,
 						/obj/item/clothing/gloves/marine = 10)
 	build_inventory(products2)
-	marine_vendors.Add(src)
+	GLOB.marine_vendors.Add(src)
 
 
 /obj/machinery/vending/uniform_supply/Destroy()
 	. = ..()
-	marine_vendors.Remove(src)
+	GLOB.marine_vendors.Remove(src)
 
 

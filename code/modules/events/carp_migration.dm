@@ -12,7 +12,7 @@
 	command_announcement.Announce("Unknown biological entities have been detected near [station_name()], please stand-by.", "Lifesign Alert")
 
 /datum/event/carp_migration/start()
-	for(var/obj/effect/landmark/C in landmarks_list)
+	for(var/obj/effect/landmark/C in GLOB.landmarks_list)
 		if(C.name == "carpspawn")
 			spawned_carp.Add(new /mob/living/simple_animal/hostile/carp(C.loc))
 
@@ -20,6 +20,6 @@
 	for(var/mob/living/simple_animal/hostile/carp/C in spawned_carp)
 		if(!C.stat)
 			var/turf/T = get_turf(C)
-			if(istype(T, /turf/open/space))
+			if(isspaceturf(T))
 				spawned_carp -= C
 				qdel(C)

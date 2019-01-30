@@ -1,6 +1,6 @@
 /mob/living/carbon/human/examine(mob/user)
 
-	if (isXeno(user))
+	if (isxeno(user))
 		var/msg = "<span class='info'>*---------*\nThis is "
 
 		if(icon)
@@ -51,33 +51,16 @@
 	if(wear_mask)
 		skipface |= wear_mask.flags_inv_hide & HIDEFACE
 
-	// crappy hacks because you can't do \his[src] etc. I'm sorry this proc is so unreadable, blame the text macros :<
-	var/t_He = "It" //capitalised for use at the start of each line.
-	var/t_his = "its"
-	var/t_him = "it"
-	var/t_has = "has"
-	var/t_is = "is"
+	var/t_He = p_they(TRUE) //capitalised for use at the start of each line.
+	var/t_his = p_their()
+	var/t_him = p_them()
+	var/t_has = p_have()
+	var/t_is = p_are()
 
 	var/msg = "<span class='info'>*---------*\nThis is "
 
-	if( skipjumpsuit && skipface ) //big suits/masks/helmets make it hard to tell their gender
-		t_He = "They"
-		t_his = "their"
-		t_him = "them"
-		t_has = "have"
-		t_is = "are"
-	else
-		if(icon)
-			msg += "\icon[icon] " //fucking BYOND: this should stop dreamseeker crashing if we -somehow- examine somebody before their icon is generated
-		switch(gender)
-			if(MALE)
-				t_He = "He"
-				t_his = "his"
-				t_him = "him"
-			if(FEMALE)
-				t_He = "She"
-				t_his = "her"
-				t_him = "her"
+	if(icon)
+		msg += "\icon[icon] " //fucking BYOND: this should stop dreamseeker crashing if we -somehow- examine somebody before their icon is generated
 
 	msg += "<EM>[src.name]</EM>!\n"
 
@@ -231,7 +214,7 @@
 		msg += "[t_He] [t_is] small halfling!\n"
 
 	var/distance = get_dist(user,src)
-	if(istype(user, /mob/dead/observer) || user.stat == DEAD) // ghosts can see anything
+	if(isobserver(user) || user.stat == DEAD) // ghosts can see anything
 		distance = 1
 	if(stat)
 		msg += "<span class='warning'>[t_He] [t_is]n't responding to anything around [t_him] and seems to be asleep.</span>\n"
@@ -241,12 +224,7 @@
 				msg += "<span class='deadsay'>[t_He] [t_has] gone cold.</span>\n"
 		if(ishuman(user) && !user.stat && Adjacent(user))
 			user.visible_message("<b>[user]</b> checks [src]'s pulse.", "You check [src]'s pulse.", null, 4)
-		spawn(15)
-			if(user && src && distance <= 1 && user.stat != 1)
-				if(pulse == PULSE_NONE)
-					to_chat(user, "<span class='deadsay'>[t_He] has no pulse[src.client ? "" : " and [t_his] soul has departed"]...</span>")
-				else
-					to_chat(user, "<span class='deadsay'>[t_He] has a pulse!</span>")
+		addtimer(CALLBACK(src, .proc/take_pulse, user), 15)
 
 	msg += "<span class='warning'>"
 
@@ -561,9 +539,19 @@
 
 	to_chat(user, msg)
 
+/mob/living/carbon/human/proc/take_pulse(mob/user)
+	if(!user || !src || !Adjacent(user) || user.is_mob_incapacitated())
+		return
+	var/t_He = p_they(TRUE)
+	var/pulse_taken = get_pulse(GETPULSE_HAND)
+	if(pulse_taken == PULSE_NONE)
+		to_chat(user, "<span class='deadsay'>[t_He] has no pulse[src.client ? "" : " and [p_their()] soul has departed"]...</span>")
+	else
+		to_chat(user, "<span class='deadsay'>[t_He]'s pulse is [pulse_taken].</span>")
+
 //Helper procedure. Called by /mob/living/carbon/human/examine() and /mob/living/carbon/human/Topic() to determine HUD access to security and medical records.
 /proc/hasHUD(mob/M, hudtype)
-	if(istype(M, /mob/living/carbon/human))
+	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		switch(hudtype)
 			if("security")
@@ -576,7 +564,7 @@
 				return H.mind && H.assigned_squad && H.assigned_squad.squad_leader == H && istype(H.wear_ear, /obj/item/device/radio/headset/almayer/marine)
 			else
 				return 0
-	else if(istype(M, /mob/living/silicon/robot))
+	else if(iscyborg(M))
 		var/mob/living/silicon/robot/R = M
 		switch(hudtype)
 			if("security")

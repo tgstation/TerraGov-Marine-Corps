@@ -13,12 +13,9 @@
 	var/h_b = 245.0
 
 
-/obj/machinery/computer/hologram_comp/New()
-	..()
-	spawn( 10 )
-		projector = locate(/obj/machinery/hologram/projector, get_step(src.loc, NORTH))
-		return
-	return
+/obj/machinery/computer/hologram_comp/Initialize()
+	. = ..()
+	projector = locate(/obj/machinery/hologram/projector, get_step(src.loc, NORTH))
 
 /obj/machinery/computer/hologram_comp/clicked(var/mob/user, var/list/mods)
 	if (mods["ctrl"] && mods["middle"])

@@ -55,7 +55,7 @@
 	if(isnull(location))
 		return
 
-	for(var/obj/machinery/computer/shuttle_control/almayer/hangar/H in machines)
+	for(var/obj/machinery/computer/shuttle_control/almayer/hangar/H in GLOB.machines)
 		qdel(H)
 	lower_railings(1)
 	if(!at_station())
@@ -134,7 +134,7 @@
 
 /datum/shuttle/ferry/hangar/proc/raise_railings()
 	var/effective = 0
-	for(var/obj/machinery/door/poddoor/M in machines)
+	for(var/obj/machinery/door/poddoor/M in GLOB.machines)
 		if((M.id == railing_lower_id || M.id == railing_upper_id) && !M.density)
 			effective = 1
 			spawn()
@@ -157,7 +157,7 @@
 		railing_id = railing_upper_id
 		other_id = railing_lower_id
 		soundturf = HangarUpperElevator
-	for(var/obj/machinery/door/poddoor/M in machines)
+	for(var/obj/machinery/door/poddoor/M in GLOB.machines)
 		if(M.id == railing_id && M.density)
 			effective = 1
 			spawn()
@@ -169,14 +169,14 @@
 		playsound(soundturf, 'sound/machines/elevator_openclose.ogg', 50, 0)
 
 /datum/shuttle/ferry/hangar/proc/start_gears(var/direction = 1)
-	for(var/obj/machinery/gear/M in machines)
+	for(var/obj/machinery/gear/M in GLOB.machines)
 		if(M.id == gear_id)
 			spawn()
 				M.icon_state = "gear_moving"
 				M.dir = direction
 
 /datum/shuttle/ferry/hangar/proc/stop_gears()
-	for(var/obj/machinery/gear/M in machines)
+	for(var/obj/machinery/gear/M in GLOB.machines)
 		if(M.id == gear_id)
 			spawn()
 				M.icon_state = "gear"
@@ -191,11 +191,11 @@
 	var/list/obj/machinery/elevator_strut/top/strut_top = list()
 	var/list/obj/machinery/elevator_strut/bottom/strut_bottom = list()
 
-	for (var/obj/machinery/elevator_strut/top/S in machines)
+	for (var/obj/machinery/elevator_strut/top/S in GLOB.machines)
 		if (S.id == gear_id)
 			strut_top += S
 
-	for (var/obj/machinery/elevator_strut/bottom/S in machines)
+	for (var/obj/machinery/elevator_strut/bottom/S in GLOB.machines)
 		if (S.id == gear_id)
 			strut_bottom += S
 
@@ -209,11 +209,11 @@
 	var/list/obj/machinery/elevator_strut/top/strut_top = list()
 	var/list/obj/machinery/elevator_strut/bottom/strut_bottom = list()
 
-	for (var/obj/machinery/elevator_strut/top/S in machines)
+	for (var/obj/machinery/elevator_strut/top/S in GLOB.machines)
 		if (S.id == gear_id)
 			strut_top += S
 
-	for (var/obj/machinery/elevator_strut/bottom/S in machines)
+	for (var/obj/machinery/elevator_strut/bottom/S in GLOB.machines)
 		if (S.id == gear_id)
 			strut_bottom += S
 

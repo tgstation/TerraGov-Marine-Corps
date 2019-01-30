@@ -42,23 +42,18 @@
 				hive = hive_datum[M.hivenumber]
 			else return
 
-			if(!hive.slashing_allowed && !(M.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
-				to_chat(M, "<span class='warning'>Slashing is currently <b>forbidden</b> by the Queen. You refuse to slash [src].</span>")
-				return FALSE
-
 			if(stat == DEAD)
 				if(luminosity > 0)
 					playsound(loc, "alien_claw_metal", 25, 1)
 					M.flick_attack_overlay(src, "slash")
-					var/datum/effect_system/spark_spread/spark_system2
-					spark_system2 = new /datum/effect_system/spark_spread()
-					spark_system2.set_up(5, 0, src)
-					spark_system2.attach(src)
-					spark_system2.start(src)
-					disable_lights()
+					disable_lights(sparks = TRUE)
 					to_chat(M, "<span class='warning'>You disable whatever annoying lights the dead creature possesses.</span>")
 				else
 					to_chat(M, "<span class='warning'>[src] is dead, why would you want to touch it?</span>")
+				return FALSE
+
+			if(!hive.slashing_allowed && !(M.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
+				to_chat(M, "<span class='warning'>Slashing is currently <b>forbidden</b> by the Queen. You refuse to slash [src].</span>")
 				return FALSE
 
 			if(!(M.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
@@ -106,8 +101,7 @@
 				attack_message2 = "<span class='danger'>You viciously rend \the [src] with your teeth!</span>"
 				log = "bit"
 				M.critical_proc = TRUE
-				spawn(CRITICAL_HIT_DELAY)
-					M.critical_proc = FALSE
+				addtimer(CALLBACK(M, /mob/living/carbon/Xenomorph/proc/reset_critical_hit), CRITICAL_HIT_DELAY)
 
 			//Check for a special bite attack
 			if(prob(M.xeno_caste.bite_chance) && !M.critical_proc && !no_crit && !M.stealth_router(HANDLE_STEALTH_CHECK)) //Can't crit if we already crit in the past 3 seconds; stealthed ironically can't crit because weeoo das a lotta damage
@@ -118,8 +112,7 @@
 				attack_message2 = "<span class='danger'>You violently impale \the [src] with your tail!</span>"
 				log = "tail-stabbed"
 				M.critical_proc = TRUE
-				spawn(CRITICAL_HIT_DELAY)
-					M.critical_proc = FALSE
+				addtimer(CALLBACK(M, /mob/living/carbon/Xenomorph/proc/reset_critical_hit), CRITICAL_HIT_DELAY)
 
 			//Somehow we will deal no damage on this attack
 			if(!damage)
@@ -146,7 +139,7 @@
 
 			var/armor_block = run_armor_check(affecting, "melee")
 
-			if(isYautja(src) && check_zone(M.zone_selected) == "head")
+			if(isyautja(src) && check_zone(M.zone_selected) == "head")
 				if(istype(wear_mask, /obj/item/clothing/mask/gas/yautja))
 					var/knock_chance = 1
 					if(M.frenzy_aura > 0)
@@ -167,12 +160,12 @@
 			M.visible_message("[attack_message1]", \
 			"[attack_message2]")
 
-			//Logging, including anti-rulebreak logging
-			if(src.status_flags & XENO_HOST && src.stat != DEAD)
-				if(istype(src.buckled, /obj/structure/bed/nest)) //Host was buckled to nest while infected, this is a rule break
+			if(status_flags & XENO_HOST && stat != DEAD)
+				if(istype(buckled, /obj/structure/bed/nest))
+					var/area/A = get_area(M)
 					log_combat(M, src, log, addition="while they were infected and nested")
-					msg_admin_ff("[key_name(M)] slashed [key_name(src)] while they were infected and nested.") //This is a blatant rulebreak, so warn the admins
-				else //Host might be rogue, needs further investigation
+					msg_admin_ff("[ADMIN_TPMONTY(M)] slashed [ADMIN_TPMONTY(src)] while they were infected and nested in [ADMIN_VERBOSEJMP(A)].")
+				else
 					log_combat(M, src, log, addition="while they were infected")
 			else //Normal xenomorph friendship with benefits
 				log_combat(M, src, log)
@@ -185,13 +178,15 @@
 					"<span class='danger'>You strike [src] with vicious precision!</span>")
 				M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 
+			M.neuroclaw_router(src) //if we have neuroclaws...
+
 			apply_damage(damage, BRUTE, affecting, armor_block, sharp = 1, edge = 1) //This should slicey dicey
 			updatehealth()
 
 			M.process_rage_attack() //Process Ravager rage gains on attack
 
 		if("disarm")
-			if(M.legcuffed && isYautja(src))
+			if(M.legcuffed && isyautja(src))
 				to_chat(M, "<span class='xenodanger'>You don't have the dexterity to tackle the headhunter with that thing on your leg!</span>")
 				return FALSE
 			if((status_flags & XENO_HOST) && istype(buckled, /obj/structure/bed/nest)) //No more memeing nested and infected hosts
@@ -225,6 +220,7 @@
 					M.visible_message("<span class='danger'>\The [M] strikes [src] with vicious precision!</span>", \
 					"<span class='danger'>You strike [src] with vicious precision!</span>")
 				M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
+			M.neuroclaw_router(src) //if we have neuroclaws...
 			if(dam_bonus)
 				tackle_pain += dam_bonus
 			apply_damage(tackle_pain, HALLOSS, "chest", armor_block * 0.5) //Only half armour applies vs tackle
@@ -240,6 +236,9 @@
 			return TRUE
 
 	return TRUE
+
+/mob/living/carbon/Xenomorph/proc/reset_critical_hit()
+	critical_proc = FALSE
 
 /mob/living/carbon/Xenomorph/proc/process_rage_attack()
 	return FALSE
@@ -268,7 +267,7 @@
 				M.start_pulling(src)
 
 		if("hurt")
-			if(isXeno(src) && xeno_hivenumber(src) == M.hivenumber)
+			if(isxeno(src) && xeno_hivenumber(src) == M.hivenumber)
 				M.visible_message("<span class='warning'>\The [M] nibbles [src].</span>", \
 				"<span class='warning'>You nibble [src].</span>", null, 5)
 				return TRUE

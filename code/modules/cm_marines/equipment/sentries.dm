@@ -1,5 +1,6 @@
 //Deployable turrets. They can be either automated, manually fired, or installed with a pAI.
 //They are built in stages, and only engineers have access to them.
+
 /obj/item/ammo_magazine/sentry
 	name = "M30 box magazine (10x28mm Caseless)"
 	desc = "A box of 500 10x28mm caseless rounds for the UA 571-C Sentry Gun. Just feed it into the sentry gun's ammo port when its ammo is depleted."
@@ -268,7 +269,7 @@
 	if(alerts_on)
 		details +=("Its alert mode is active.</br>")
 
-	if(!ammo)
+	if(!ammo || !rounds)
 		details +=("<span class='danger'>It has no ammo!</br></span>")
 
 	if(!cell || cell.charge == 0)
@@ -277,7 +278,7 @@
 	to_chat(user, "<span class='warning'>[details.Join(" ")]</span>")
 
 
-/obj/machinery/marine_turret/New()
+/obj/machinery/marine_turret/Initialize()
 	spark_system = new /datum/effect_system/spark_spread
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
@@ -285,10 +286,9 @@
 	camera = new (src)
 	camera.network = list("military")
 	camera.c_tag = "[name] ([rand(0, 1000)])"
-	spawn(2)
-		stat = 0
+	stat = NOFLAGS
 	//START_PROCESSING(SSobj, src)
-	ammo = ammo_list[ammo]
+	ammo = GLOB.ammo_list[ammo]
 	update_icon()
 
 
@@ -310,7 +310,7 @@
 	. = ..()
 
 /obj/machinery/marine_turret/attack_hand(mob/user as mob)
-	if(isYautja(user))
+	if(isyautja(user))
 		to_chat(user, "<span class='warning'>You punch [src] but nothing happens.</span>")
 		return
 	src.add_fingerprint(user)
@@ -612,7 +612,7 @@
 		return
 
 
-	if(istype(O, /obj/item/tool/weldingtool))
+	if(iswelder(O))
 		var/obj/item/tool/weldingtool/WT = O
 		if(health < 0 || stat)
 			to_chat(user, "<span class='warning'>[src]'s internal circuitry is ruined, there's no way you can salvage this on the go.</span>")
@@ -828,7 +828,7 @@
 
 
 /obj/machinery/marine_turret/attack_alien(mob/living/carbon/Xenomorph/M)
-	if(isXenoLarva(M)) return //Larvae can't do shit
+	if(isxenolarva(M)) return //Larvae can't do shit
 	M.visible_message("<span class='danger'>[M] has slashed [src]!</span>",
 	"<span class='danger'>You slash [src]!</span>")
 	M.animation_attack_on(src)
@@ -1009,9 +1009,9 @@
 	var/mob/living/M
 
 	for(M in oview(range, src))
-		if(M.stat == DEAD || isrobot(M)) //No dead or robots.
+		if(M.stat == DEAD || iscyborg(M)) //No dead or robots.
 			continue
-		if(!safety_off && !isXeno(M)) //When safeties are on, Xenos only.
+		if(!safety_off && !isxeno(M)) //When safeties are on, Xenos only.
 			continue
 		/*
 		I really, really need to replace this with some that isn't insane. You shouldn't have to fish for access like this.
@@ -1128,7 +1128,7 @@
 	var/obj/machinery/camera/current = null
 
 	check_eye(var/mob/user as mob)
-		if (user.z == 0 || user.stat || ((get_dist(user, src) > 1 || is_blind(user)) && !istype(user, /mob/living/silicon))) //user can't see - not sure why canmove is here.
+		if (user.z == 0 || user.stat || ((get_dist(user, src) > 1 || is_blind(user)) && !issilicon(user))) //user can't see - not sure why canmove is here.
 			return null
 		if(!linked_turret || isnull(linked_turret.camera))
 			return null
@@ -1140,36 +1140,43 @@
 */
 /obj/machinery/marine_turret/premade
 	name = "UA-577 Gauss Turret"
+	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an armor penetrating MIC Gauss Cannon and a high-capacity drum magazine."
+	ammo = /datum/ammo/bullet/turret/gauss //This is a gauss cannon; it will be significantly deadlier
 	immobile = TRUE
 	on = TRUE
 	burst_fire = TRUE
-	rounds = 100000
-	rounds_max = 100000
+	rounds_max = 50000
 	icon_state = "sentry_base"
 
-/obj/machinery/marine_turret/premade/New()
-	spark_system = new /datum/effect_system/spark_spread
-	spark_system.set_up(5, 0, src)
-	spark_system.attach(src)
+/obj/machinery/marine_turret/premade/Initialize()
+	. = ..()
+	qdel(cell)
+	cell = null
 	var/obj/item/cell/super/H = new(src) //Better cells in these ones.
 	cell = H
-	camera = new (src)
-	camera.network = list("military")
-	camera.c_tag = "[src.name] ([rand(0,1000)])"
-	spawn(2)
-		stat = 0
-	ammo = ammo_list[ammo]
-	update_icon()
+	rounds = 50000
+
+
 
 /obj/machinery/marine_turret/premade/dumb
-	name = "Modified UA-577 Gauss Turret"
-	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an M30 Autocannon and a high-capacity drum magazine. This one's IFF system has been disabled, and it will open fire on any targets within range."
+	name = "\improper Modified UA 571-C sentry gun"
+	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an M30 Autocannon and a 500-round drum magazine. This one's IFF system has been disabled, and it will open fire on any targets within range."
 	iff_signal = 0
 	ammo = /datum/ammo/bullet/turret/dumb
+	magazine_type = /obj/item/ammo_magazine/sentry/premade/dumb
+	rounds_max = 500
+
+/obj/machinery/marine_turret/premade/dumb/Initialize()
+	. = ..()
+	rounds = 500
+	camera = null
+	camera.network = null
+	camera.c_tag = null
+
 
 /obj/machinery/marine_turret/premade/dumb/attack_hand(mob/user as mob)
 
-	if(isYautja(user))
+	if(isyautja(user))
 		to_chat(user, "<span class='warning'>You punch [src] but nothing happens.</span>")
 		return
 	src.add_fingerprint(user)
@@ -1189,10 +1196,6 @@
 		target = null
 		on = TRUE
 		SetLuminosity(7)
-		if(!camera)
-			camera = new /obj/machinery/camera(src)
-			camera.network = list("military")
-			camera.c_tag = src.name
 		update_icon()
 	else
 		on = FALSE
@@ -1201,15 +1204,27 @@
 		state("<span class='notice'>The [name] powers down and goes silent.</span>")
 		update_icon()
 
+/obj/item/ammo_magazine/sentry/premade/dumb
+	name = "M30 box magazine (10x28mm Caseless)"
+	desc = "A box of 500 10x28mm caseless rounds for the UA 571-C Sentry Gun. Just feed it into the sentry gun's ammo port when its ammo is depleted."
+	w_class = 4
+	icon = 'icons/Marine/new_sentry_alt.dmi'
+	icon_state = "ammo_can"
+	flags_magazine = NOFLAGS //can't be refilled or emptied by hand
+	caliber = "10x28mm"
+	max_rounds = 500
+	default_ammo = /datum/ammo/bullet/turret/dumb
+	gun_type = null
+
 //the turret inside the sentry deployment system
 /obj/machinery/marine_turret/premade/dropship
+	name = "UA-577 Gauss Dropship Turret"
 	density = FALSE
-	ammo = /datum/ammo/bullet/turret/gauss //This is a gauss cannon; it will be significantly deadlier
-	rounds = 1000000
 	safety_off = TRUE
 	burst_size = 10
 	burst_delay = 15
 	var/obj/structure/dropship_equipment/sentry_holder/deployment_system
+	magazine_type = /obj/item/ammo_magazine/sentry/premade/dropship
 
 /obj/machinery/marine_turret/premade/dropship/Destroy()
 	if(deployment_system)
@@ -1217,6 +1232,17 @@
 		deployment_system = null
 	. = ..()
 
+/obj/item/ammo_magazine/sentry/premade/dropship
+	name = "UA-577 box magazine (12x40mm Gauss Slugs)"
+	desc = "A box of 50000 12x40mm gauss slugs for the UA-577 Gauss Turret. Just feed it into the turret's ammo port when its ammo is depleted."
+	w_class = 4
+	icon = 'icons/Marine/new_sentry_alt.dmi'
+	icon_state = "ammo_can"
+	flags_magazine = NOFLAGS //can't be refilled or emptied by hand
+	caliber = "12x40mm"
+	default_ammo = /datum/ammo/bullet/turret/gauss
+	gun_type = null
+	max_rounds = 50000
 
 /obj/machinery/marine_turret/proc/sentry_alert(alert_code, mob/M)
 	if(!alert_code)
@@ -1226,7 +1252,7 @@
 		if(SENTRY_ALERT_AMMO)
 			notice = "<b>ALERT! [src]'s ammo depleted at: [get_area(src)]. Coordinates: (X: [x], Y: [y]).</b>"
 		if(SENTRY_ALERT_HOSTILE)
-			notice = "<b>ALERT! Hostile/unknown: [M] Detected at: [get_area(M)]. Coordinates: (X: [M.x], Y: [M.y]).</b>"
+			notice = "<b>ALERT! [src] detected Hostile/Unknown: [M.name] at: [get_area(M)]. Coordinates: (X: [M.x], Y: [M.y]).</b>"
 		if(SENTRY_ALERT_FALLEN)
 			notice = "<b>ALERT! [src] has been knocked over at: [get_area(src)]. Coordinates: (X: [x], Y: [y]).</b>"
 		if(SENTRY_ALERT_DAMAGE)
@@ -1362,8 +1388,8 @@
 		qdel(src)
 
 /obj/item/ammo_magazine/minisentry
-	name = "M30 box magazine (10x28mm Caseless)"
-	desc = "A box of 500 10x20mm caseless rounds for the UA-580 Point Defense Sentry. Just feed it into the sentry gun's ammo port when its ammo is depleted."
+	name = "M30 box magazine (10x20mm Caseless)"
+	desc = "A box of 500 10x20mm armor piercing caseless rounds for the UA-580 Point Defense Sentry. Just feed it into the sentry gun's ammo port when its ammo is depleted."
 	w_class = 3
 	icon_state = "ua580"
 	flags_magazine = NOFLAGS //can't be refilled or emptied by hand
@@ -1391,3 +1417,5 @@
 		new /obj/item/tool/wrench(src) //wrench to hold it down into the ground
 		new /obj/item/tool/screwdriver(src) //screw the gun onto the post.
 		new /obj/item/ammo_magazine/minisentry(src)
+
+

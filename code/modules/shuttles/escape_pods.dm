@@ -176,7 +176,7 @@ This can probably be done a lot more elegantly either way, but it'll suffice for
 			if(M)
 				n++ //No hiding in closets.
 				if(M.stat != DEAD && msg) to_chat(M, msg)
-		else if(istype(i, /mob/living/carbon/human) || istype(i, /mob/living/silicon/robot))
+		else if(ishuman(i) || iscyborg(i))
 			n++ //Dead or alive, counts as a thing.
 			M = i
 			if(M.stat != DEAD && msg) to_chat(M, msg)
@@ -391,17 +391,21 @@ As such, a new tracker datum must be constructed to follow proper child inherita
 	heat_proof = 1
 	unacidable = 1
 
-	New()
-		..()
-		spawn()
-			lock()
+/obj/machinery/door/airlock/evacuation/Initialize()
+	. = ..()
+	lock()
 
 	//Can't interact with them, mostly to prevent grief and meta.
-	Bumped() return FALSE
-	attackby() return FALSE
-	attack_hand() return FALSE
-	attack_alien() return FALSE //Probably a better idea that these cannot be forced open.
-	attack_ai() return FALSE
+/obj/machinery/door/airlock/evacuation/Bumped() 
+	return FALSE
+/obj/machinery/door/airlock/evacuation/attackby() 
+	return FALSE
+/obj/machinery/door/airlock/evacuation/attack_hand() 
+	return FALSE
+/obj/machinery/door/airlock/evacuation/attack_alien() 
+	return FALSE //Probably a better idea that these cannot be forced open.
+/obj/machinery/door/airlock/evacuation/attack_ai() 
+	return FALSE
 
 #undef STATE_IDLE
 #undef STATE_READY

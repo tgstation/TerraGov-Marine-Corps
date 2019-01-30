@@ -1,21 +1,3 @@
-#define DEBUG_ARMOR_PROTECTION 0
-
-#if DEBUG_ARMOR_PROTECTION
-/mob/living/carbon/human/verb/check_overall_protection()
-	set name = "Get Armor Value"
-	set category = "Debug"
-	set desc = "Shows the armor value of the bullet category."
-
-	var/armor = 0
-	var/counter = 0
-	for(var/X in H.limbs)
-		var/datum/limb/E = X
-		armor = getarmor_organ(E, "bullet")
-		to_chat(src, "<span class='debuginfo'><b>[E.name]</b> is protected with <b>[armor]</b> armor against bullets.</span>")
-		counter += armor
-	to_chat(src, "<span class='debuginfo'>The overall armor score is: <b>[counter]</b>.</span>")
-#endif
-
 //=======================================================================\\
 //=======================================================================
 
@@ -50,7 +32,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	name = "\improper M3 pattern marine armor"
 	desc = "A standard TerraGov Marine Corps M3 Pattern Chestplate. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
 	icon = 'icons/obj/clothing/cm_suits.dmi'
-	icon_state = "6"
+	icon_state = "3"
 	item_state = "armor"
 	sprite_sheet_id = 1
 	flags_atom = CONDUCT
@@ -198,12 +180,6 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	armor = list(melee = 30, bullet = 20, laser = 35, energy = 20, bomb = 15, bio = 0, rad = 0)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 
-/obj/item/clothing/suit/storage/marine/M3P
-	name = "\improper M3-P pattern marine armor"
-	desc = "A standard Marine M3 Padded Pattern Chestplate. Better protection against bullets and explosions, but worse against melee."
-	icon_state = "3"
-	armor = list(melee = 30, bullet = 60, laser = 35, energy = 20, bomb = 60, bio = 0, rad = 0)
-
 /obj/item/clothing/suit/storage/marine/M3IS
 	name = "\improper M3-IS pattern marine armor"
 	desc = "A standard Marine M3 Integrated Storage Pattern Chestplate. Increased encumbrance and carrying capacity."
@@ -225,6 +201,12 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	desc = "A standard Marine M3 Edge Pattern Chestplate. High protection against cuts and slashes, but very little padding against bullets or explosions."
 	icon_state = "5"
 	armor = list(melee = 70, bullet = 20, laser = 35, energy = 20, bomb = 15, bio = 0, rad = 0)
+
+/obj/item/clothing/suit/storage/marine/M3P
+	name = "\improper M3-P pattern marine armor"
+	desc = "A standard Marine M3 Padded Pattern Chestplate. Better protection against bullets and explosions, but worse against melee."
+	icon_state = "6"
+	armor = list(melee = 30, bullet = 70, laser = 35, energy = 20, bomb = 60, bio = 0, rad = 0)
 
 /obj/item/clothing/suit/storage/marine/MP
 	name = "\improper M2 pattern MP armor"
@@ -615,14 +597,14 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 			B18_automed_pain = round(B18_automed_pain)
 			B18_automed_pain = CLAMP(B18_automed_pain,B18_PAIN_MIN,B18_PAIN_MAX)
 		if(!( master ))
-			if(istype(loc, /mob/living/carbon/human))
+			if(ishuman(loc))
 				handle_interface(loc)
 			else
 				for(var/mob/living/carbon/human/M in viewers(1, src))
 					if(M.client)
 						handle_interface(M)
 		else
-			if(istype(master.loc, /mob/living/carbon/human))
+			if(ishuman(master.loc))
 				handle_interface(master.loc)
 			else
 				for(var/mob/living/carbon/human/M in viewers(1, master))

@@ -56,7 +56,7 @@
 				chargelevel = -1
 				start_processing()
 		updateicon()
-	else if(istype(W, /obj/item/tool/wrench))
+	else if(iswrench(W))
 		if(charging)
 			to_chat(user, "<span class='warning'>Remove the cell first!</span>")
 			return

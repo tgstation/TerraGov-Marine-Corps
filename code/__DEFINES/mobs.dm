@@ -210,6 +210,13 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define ORGAN_ASSISTED	1
 #define ORGAN_ROBOT		2
 
+#define ORGAN_HEART 1
+#define ORGAN_LUNGS 2
+#define ORGAN_LIVER 3
+#define ORGAN_KIDNEYS 4
+#define ORGAN_BRAIN 5
+#define ORGAN_EYES 6
+#define ORGAN_APPENDIX 7
 
 ///////////////SURGERY DEFINES///////////////
 #define SPECIAL_SURGERY_INVALID	"special_surgery_invalid"
@@ -495,7 +502,7 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define RAV_CHARGEDISTANCE				7
 #define RAV_CHARGECOOLDOWN				30 SECONDS
 #define RAV_CHARGE_TYPE					3
-#define RAV_SECOND_WIND_COOLDOWN		4 MINUTES
+#define RAV_SECOND_WIND_COOLDOWN		240 SECONDS
 #define RAV_RAVAGE_COOLDOWN				10 SECONDS
 #define RAV_HANDLE_CHARGE				1
 
@@ -534,6 +541,22 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define NEUROTOXIN_STING_INJECT_DELAY			1.5 SECONDS
 #define NEUROTOXIN_STING_AMOUNT_INITIAL			15
 #define NEUROTOXIN_STING_AMOUNT_RECURRING		10
+
+//Defiler defines
+
+#define DEFILER_STING_COOLDOWN				20 SECONDS
+#define DEFILER_GAS_COOLDOWN				40 SECONDS
+#define DEFILER_CLAWS_COOLDOWN				1 SECONDS
+
+#define DEFILER_GAS_CHANNEL_TIME			2 SECONDS
+#define DEFILER_GAS_DELAY					1 SECONDS
+#define DEFILER_GAS_CLOUD_COUNT				2
+#define DEFILER_STING_CHANNEL_TIME			1.5 SECONDS
+#define DEFILER_CLAW_AMOUNT					6
+#define DEFILER_STING_AMOUNT_INITIAL		15
+#define DEFILER_STING_AMOUNT_RECURRING		10
+#define DEFILER_STING_GROWTH_AMOUNT			30
+#define GROWTH_TOXIN_METARATE		0.3
 
 #define CANNOT_HOLD_EGGS 0
 #define CAN_HOLD_TWO_HANDS 1

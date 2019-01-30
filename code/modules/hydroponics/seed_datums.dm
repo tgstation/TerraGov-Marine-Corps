@@ -1,21 +1,6 @@
 var/global/list/seed_types = list()       // A list of all seed data.
 var/global/list/gene_tag_masks = list()   // Gene obfuscation for delicious trial and error goodness.
 
-// Debug for testing seed genes.
-/client/proc/show_plant_genes()
-	set category = "Debug"
-	set name = "Show Plant Genes"
-	set desc = "Prints the round's plant gene masks."
-
-	if(!holder)	return
-
-	if(!gene_tag_masks)
-		to_chat(usr, "Gene masks not set.")
-		return
-
-	for(var/mask in gene_tag_masks)
-		to_chat(usr, "[mask]: [gene_tag_masks[mask]]")
-
 // Predefined/roundstart varieties use a string key to make it
 // easier to grab the new variety when mutating. Post-roundstart
 // and mutant varieties use their uid converted to a string instead.
@@ -32,7 +17,7 @@ proc/populate_seed_list()
 
 	// Make sure any seed packets that were mapped in are updated
 	// correctly (since the seed datums did not exist a tick ago).
-	for(var/obj/item/seeds/S in item_list)
+	for(var/obj/item/seeds/S in GLOB.item_list)
 		S.update_seed()
 
 	//Might as well mask the gene types while we're at it.

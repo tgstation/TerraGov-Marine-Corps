@@ -114,7 +114,7 @@
 		icon_state = initial(icon_state) + "_active"
 
 		if(user)
-			msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) primed \a [src]")
+			msg_admin_attack("[ADMIN_TPMONTY(usr)] primed \a [src].")
 
 	return
 
@@ -152,7 +152,7 @@
 				if( A == src ) continue
 				src.reagents.reaction(A, 1, 10)
 
-		if(istype(loc, /mob/living/carbon))		//drop dat grenade if it goes off in your hand
+		if(iscarbon(loc))		//drop dat grenade if it goes off in your hand
 			var/mob/living/carbon/C = loc
 			C.dropItemToGround(src)
 			C.throw_mode_off()

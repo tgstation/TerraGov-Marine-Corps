@@ -23,7 +23,7 @@
 	// return 0 if the implant fails (ex. Revhead and loyalty implant.)
 	// return 1 if the implant succeeds (ex. Nonrevhead and loyalty implant.)
 	proc/implanted(mob/source, mob/user)
-		if(istype(source, /mob/living/carbon/human))
+		if(ishuman(source))
 			var/mob/living/carbon/human/H = source
 			H.sec_hud_set_implants()
 		return 1
@@ -167,8 +167,8 @@ Implant Specifics:<BR>"}
 		var/need_gib = null
 		if(istype(imp_in, /mob/))
 			var/mob/T = imp_in
-			message_admins("Explosive implant triggered in [T] ([T.key]). (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[T.x];Y=[T.y];Z=[T.z]'>JMP</a>) ")
-			log_game("Explosive implant triggered in [T] ([T.key]).")
+			log_game("Explosive implant triggered in [key_name(T)].")
+			message_admins("Explosive implant triggered in [ADMIN_TPMONTY(T)].")			
 			need_gib = 1
 
 			if(ishuman(imp_in))
@@ -333,7 +333,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 
 	implanted(mob/M)
 		if(!ishuman(M))	return
-		if(isYautja(M)) return
+		if(isyautja(M)) return
 		var/mob/living/carbon/human/H = M
 		to_chat(H, "<span class='notice'>You are now tagged as a NT loyalist and will be monitored by their central headquarters. You retain your free will and mental faculties.</span>")
 		return 1

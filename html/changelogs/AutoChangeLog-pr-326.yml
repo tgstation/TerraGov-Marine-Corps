@@ -1,5 +1,0 @@
-author: "Ghommie"
-delete-after: True
-changes: 
-  - bugfix: "It's possible to strip and equip other mobs yet again. Sorry for the inconvenience."
-  - bugfix: "fixes some \"I have special eyes\" moments, ergo lasguns being attachable to the eyes and gloves slots. They can be now worn on back again."

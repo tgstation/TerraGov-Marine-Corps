@@ -35,18 +35,17 @@
 		return 1
 	return 1
 
-/obj/structure/window_frame/New(loc, from_window_shatter)
-	..()
+/obj/structure/window_frame/Initialize(loc, from_window_shatter)
+	. = ..()
 	var/weed_found
 	if(from_window_shatter)
 		for(var/obj/effect/alien/weeds/weedwall/window/W in loc)
 			weed_found = TRUE
 			break
-	spawn(0)
-		relativewall()
-		relativewall_neighbours()
-		if(weed_found)
-			new /obj/effect/alien/weeds/weedwall/frame(loc) //after smoothing to get the correct junction value
+	relativewall()
+	relativewall_neighbours()
+	if(weed_found)
+		new /obj/effect/alien/weeds/weedwall/frame(loc) //after smoothing to get the correct junction value
 
 
 /obj/structure/window_frame/proc/update_nearby_icons()
@@ -89,7 +88,7 @@
 
 	else if(istype(W, /obj/item/grab))
 		var/obj/item/grab/G = W
-		if(isXeno(user)) return
+		if(isxeno(user)) return
 		if(isliving(G.grabbed_thing))
 			var/mob/living/M = G.grabbed_thing
 			if(user.grab_level >= GRAB_AGGRESSIVE)

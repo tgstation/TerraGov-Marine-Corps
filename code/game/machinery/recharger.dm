@@ -38,7 +38,7 @@ obj/machinery/recharger/attackby(obj/item/G as obj, mob/user as mob)
 			charging = G
 			start_processing()
 			update_icon()
-	else if(istype(G, /obj/item/tool/wrench))
+	else if(iswrench(G))
 		if(charging)
 			to_chat(user, "<span class='warning'>Remove [charging] first!</span>")
 			return

@@ -1,5 +1,0 @@
-author: "Ghommie"
-delete-after: True
-changes: 
-  - tweak: "Reduced pain message pedantry of brain damages, especially from reagents such as impedrezene."
-  - code_imp: "Replaced organ damage var additions with the appropriate proc."

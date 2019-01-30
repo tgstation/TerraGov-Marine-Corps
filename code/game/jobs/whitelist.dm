@@ -31,7 +31,7 @@ var/list/whitelist = list()
 		alien_whitelist["Human"] = TRUE
 
 		for(var/line in text2list(text, "\n"))
-			if(all_species[line])
+			if(GLOB.all_species[line])
 				alien_whitelist[line] = TRUE
 
 //todo: admin aliens

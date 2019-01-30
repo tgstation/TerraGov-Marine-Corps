@@ -75,7 +75,7 @@
 		updateUsrDialog()
 		return
 /*
-	if(istype(I, /obj/item/tool/wrench))
+	if(iswrench(I))
 		if(anchored)
 			to_chat(user, "<span class='notice'>You lean down and unwrench [src].</span>")
 			anchored = 0
