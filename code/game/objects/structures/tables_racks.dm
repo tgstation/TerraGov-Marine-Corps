@@ -248,7 +248,7 @@
 
 	if (!istype(I) || user.get_active_held_item() != I)
 		return ..()
-	if(isrobot(user))
+	if(iscyborg(user))
 		return
 	user.drop_held_item()
 	if(I.loc != loc)
@@ -274,10 +274,10 @@
 	if(!W)
 		return
 	if(istype(W, /obj/item/grab) && get_dist(src, user) <= 1)
-		if(isXeno(user))
+		if(isxeno(user))
 			return
 		var/obj/item/grab/G = W
-		if(istype(G.grabbed_thing, /mob/living))
+		if(isliving(G.grabbed_thing))
 			var/mob/living/M = G.grabbed_thing
 			if(user.a_intent == "hurt")
 				if(user.grab_level > GRAB_AGGRESSIVE)
@@ -299,7 +299,7 @@
 				"<span class='danger'>You throw [M] on [src].</span>")
 		return
 
-	if(istype(W, /obj/item/tool/wrench))
+	if(iswrench(W))
 		user.visible_message("<span class='notice'>[user] starts disassembling [src].</span>",
 		"<span class='notice'>You start disassembling [src].</span>")
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
@@ -309,7 +309,7 @@
 			destroy_structure(1)
 		return
 
-	if((W.flags_item & ITEM_ABSTRACT) || isrobot(user))
+	if((W.flags_item & ITEM_ABSTRACT) || iscyborg(user))
 		return
 
 	if(istype(W, /obj/item/weapon/wristblades))
@@ -490,7 +490,7 @@
 	return FALSE //No, just no. It's a full desk, you can't flip that
 
 /obj/structure/table/reinforced/attackby(obj/item/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/tool/weldingtool))
+	if (iswelder(W))
 		var/obj/item/tool/weldingtool/WT = W
 		if(WT.remove_fuel(0, user))
 			if(status == 2)
@@ -516,7 +516,7 @@
 			return
 		return
 
-	if(istype(W, /obj/item/tool/wrench))
+	if(iswrench(W))
 		if(status == 2)
 			return
 	..()
@@ -565,7 +565,7 @@
 /obj/structure/rack/MouseDrop_T(obj/item/I, mob/user)
 	if (!istype(I) || user.get_active_held_item() != I)
 		return
-	if(isrobot(user))
+	if(iscyborg(user))
 		return
 	user.drop_held_item()
 	if(I.loc != loc)
@@ -579,11 +579,11 @@
 	destroy_structure()
 
 /obj/structure/rack/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/tool/wrench))
+	if(iswrench(W))
 		destroy_structure(1)
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 		return
-	if((W.flags_item & ITEM_ABSTRACT) || isrobot(user))
+	if((W.flags_item & ITEM_ABSTRACT) || iscyborg(user))
 		return
 	user.transferItemToLoc(W, loc)
 

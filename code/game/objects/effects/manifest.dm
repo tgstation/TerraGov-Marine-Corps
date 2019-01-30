@@ -11,8 +11,9 @@
 
 /obj/effect/manifest/proc/manifest()
 	var/dat = "<B>Crew Manifest</B>:<BR>"
-	for(var/mob/living/carbon/human/M in GLOB.mob_list)
-		if(M.species && M.species.name == "Yautja") continue
+	for(var/mob/living/carbon/human/M in GLOB.human_mob_list)
+		if(isyautjastrict(M))
+			continue
 		dat += text("    [] <B>[]</B> -  []<BR>", M.get_paygrade(0), M.name, M.get_assignment())
 	var/obj/item/paper/P = new /obj/item/paper( src.loc )
 	P.info = dat

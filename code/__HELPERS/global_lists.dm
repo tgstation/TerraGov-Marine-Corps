@@ -1,8 +1,4 @@
-var/list/unansweredAhelps = list()			//This feels inefficient, but I can't think of a better way. Stores the message indexed by CID
-var/list/unansweredMhelps = list()
-var/list/CLFaxes = list()								//List of all CL faxes sent this round
 var/list/fax_contents = list() 					//List of fax contents to maintain it even if source paper is deleted
-var/list/TGMCFaxes = list()							//List of all TGMC faxes sent this round
 
 var/global/list/chemical_reactions_list				//List of all /datum/chemical_reaction datums. Used during chemical reactions
 var/global/list/chemical_reagents_list				//List of all /datum/reagent datums indexed by reagent id. Used by chemistry stuff
@@ -14,6 +10,13 @@ var/global/list/all_areas = list()
 var/global/list/processing_machines = list()
 var/global/list/active_diseases = list()
 var/global/list/events = list()
+
+//tips
+var/global/list/metatips = file2list('config/tips/metatips.txt')
+var/global/list/marinetips = file2list('config/tips/marinetips.txt')
+var/global/list/xenotips = file2list('config/tips/xenotips.txt')
+var/global/list/joketips = file2list('config/tips/joketips.txt')
+var/global/list/alltips = marinetips + xenotips + joketips + metatips
 
 //used by binoculars for dropship bombardment
 var/global/list/active_laser_targets = list()

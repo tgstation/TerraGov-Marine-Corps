@@ -49,7 +49,7 @@
 			if(!T.implanted) continue
 			var/loc_display = "Unknown"
 			var/mob/living/carbon/M = T.imp_in
-			if(M.z == 1 && !istype(M.loc, /turf/open/space))
+			if(M.z == 1 && !isspaceturf(M.loc))
 				var/turf/mob_loc = get_turf(M)
 				loc_display = mob_loc.loc
 			if(T.malfunction)
@@ -73,7 +73,7 @@
 /obj/machinery/computer/prisoner/Topic(href, href_list)
 	if(..())
 		return
-	if((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))) || (istype(usr, /mob/living/silicon)))
+	if((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))) || (issilicon(usr)))
 		usr.set_interaction(src)
 
 		if(href_list["inject1"])

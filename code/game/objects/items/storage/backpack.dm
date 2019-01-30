@@ -457,7 +457,7 @@
 	if (!istype(M))
 		return
 
-	if(M.species.name == "Zombie")
+	if(iszombie(M))
 		return
 
 	if (M.back != src)
@@ -584,10 +584,10 @@
 	if(!wearer || wearer.stat == DEAD)
 		camo_off()
 		return
-	
+
 	if(process_count++ < 4)
 		return
-	
+
 	process_count = 0
 
 	stealth_delay = world.time - SCOUT_CLOAK_STEALTH_DELAY
@@ -641,7 +641,7 @@
 
 
 /obj/item/storage/backpack/marine/engineerpack/attackby(obj/item/W, mob/living/user)
-	if(istype(W, /obj/item/tool/weldingtool))
+	if(iswelder(W))
 		var/obj/item/tool/weldingtool/T = W
 		if(T.welding)
 			to_chat(user, "<span class='warning'>That was close! However you realized you had the welder on and prevented disaster.</span>")

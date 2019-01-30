@@ -58,9 +58,9 @@ var/list/mechtoys = list(
 	if(istype(A, /obj/vehicle))	//no vehicles
 		return 0
 
-	if(istype(A, /mob/living)) // You Shall Not Pass!
+	if(isliving(A)) // You Shall Not Pass!
 		var/mob/living/M = A
-		if(!M.lying && !istype(M, /mob/living/carbon/monkey) && !istype(M, /mob/living/simple_animal/mouse) && !istype(M, /mob/living/silicon/robot/drone))  //If your not laying down, or a small creature, no pass.
+		if(!M.lying && !ismonkey(M) && !istype(M, /mob/living/simple_animal/mouse) && !ismaintdrone(M))  //If your not laying down, or a small creature, no pass.
 			return 0
 	return ..()
 
@@ -152,7 +152,7 @@ var/list/mechtoys = list(
 	proc/forbidden_atoms_check(atom/A)
 		if(istype(A,/mob/living))
 			var/mob/living/X = A
-			if (!(isXeno(X) && X.stat == DEAD))
+			if (!(isxeno(X) && X.stat == DEAD))
 				return 1
 		if(istype(A,/obj/item/disk/nuclear))
 			return 1
@@ -205,7 +205,7 @@ var/list/mechtoys = list(
 						plat_count += P.get_amount()
 
 			//Sell Xeno Corpses
-			if (isXeno(MA))
+			if (isxeno(MA))
 				var/cost = 0
 				for(var/datum/supply_export in export_types)
 					var/datum/supply_export/E = supply_export
@@ -325,7 +325,7 @@ var/list/mechtoys = list(
 	if(..())
 		return
 
-	if( isturf(loc) && (in_range(src, usr) || istype(usr, /mob/living/silicon)) )
+	if( isturf(loc) && (in_range(src, usr) || issilicon(usr)) )
 		usr.set_interaction(src)
 
 	if(href_list["order"])
@@ -500,7 +500,7 @@ var/list/mechtoys = list(
 	if(..())
 		return
 
-	if(isturf(loc) && ( in_range(src, usr) || istype(usr, /mob/living/silicon) ) )
+	if(isturf(loc) && ( in_range(src, usr) || issilicon(usr) ) )
 		usr.set_interaction(src)
 
 	//Calling the shuttle

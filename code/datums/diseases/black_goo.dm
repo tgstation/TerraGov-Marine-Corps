@@ -113,13 +113,13 @@
 	pry_capable = IS_PRY_CAPABLE_FORCE
 
 /obj/item/weapon/zombie_claws/attack(mob/living/M, mob/living/carbon/human/user, def_zone)
-	if(user.species == "Human")
+	if(user.species.count_human)
 		return 0
 	. = ..()
 	playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1, 5)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(H.species.name == "Human")
+		if(H.species.count_human)
 			for(var/datum/disease/black_goo/BG in H.viruses)
 				user.show_message(text("<span class='green'> <B>You sense your target is infected</B></span>"))
 				return

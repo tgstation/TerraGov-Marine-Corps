@@ -214,7 +214,7 @@ mob/living/carbon/proc/handle_hallucinations()
 	return start_txt + mocktxt + end_txt + "</TT></BODY></HTML>"
 
 proc/check_panel(mob/M)
-	if (istype(M, /mob/living/carbon/human) || istype(M, /mob/living/silicon/ai))
+	if (ishuman(M) || isAI(M))
 		if(M.hallucination < 15)
 			return 1
 	return 0*/
@@ -358,7 +358,7 @@ var/list/non_fakeattack_weapons = list(/obj/item/device/aicard,\
 	var/mob/living/carbon/human/clone = null
 	var/clone_weapon = null
 
-	for(var/mob/living/carbon/human/H in GLOB.alive_mob_list)
+	for(var/mob/living/carbon/human/H in GLOB.alive_human_list)
 		if(H.stat || H.lying) continue
 //		possible_clones += H
 		clone = H
