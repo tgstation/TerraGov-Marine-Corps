@@ -170,7 +170,7 @@
 			if(hive.living_xeno_queen)
 				if(hive.living_xeno_queen.hivenumber == hive.hivenumber)
 					continue
-			for(var/mob/living/carbon/Xenomorph/Queen/Q in GLOB.alive_mob_list)
+			for(var/mob/living/carbon/Xenomorph/Queen/Q in GLOB.alive_xeno_list)
 				if(Q.hivenumber == hive.hivenumber)
 					hive.living_xeno_queen = Q
 					xeno_message("<span class='xenoannounce'>A new Queen has risen to lead the Hive! Rejoice!</span>",3,hive.hivenumber)
@@ -495,7 +495,7 @@
 
 	for(var/mob/M in view())
 		if(M && M.client)
-			if(isXeno(M))
+			if(isxeno(M))
 				shake_camera(M, 10, 1)
 			else
 				shake_camera(M, 30, 1) //50 deciseconds, SORRY 5 seconds was way too long. 3 seconds now
@@ -537,7 +537,7 @@
 	if(last_special > world.time)
 		return
 
-	if(isSynth(victim))
+	if(issynth(victim))
 		var/datum/limb/head/synthhead = victim.get_limb("head")
 		if(synthhead.status & LIMB_DESTROYED)
 			return
@@ -552,7 +552,7 @@
 				to_chat(src, "<span class='xenowarning'>The child may still hatch! Not yet!</span>")
 				return
 
-	if(isXeno(victim))
+	if(isxeno(victim))
 		var/mob/living/carbon/Xenomorph/xeno = victim
 		if(hivenumber == xeno.hivenumber)
 			to_chat(src, "<span class='warning'>You can't bring yourself to harm a fellow sister to this magnitude.</span>")
@@ -696,7 +696,7 @@
 			client.perspective = EYE_PERSPECTIVE
 			client.eye = observed_xeno
 		else
-			if (istype(A, /atom/movable))
+			if (ismovableatom(A))
 				client.perspective = EYE_PERSPECTIVE
 				client.eye = A
 			else
@@ -738,7 +738,7 @@
 			return
 		if(!ovipositor)
 			return
-		var/mob/living/carbon/Xenomorph/target = locate(href_list["queentrack"]) in GLOB.alive_mob_list
+		var/mob/living/carbon/Xenomorph/target = locate(href_list["queentrack"]) in GLOB.alive_xeno_list
 		if(!istype(target))
 			return
 		if(target.stat == DEAD || target.z == ADMIN_Z_LEVEL)
@@ -752,7 +752,7 @@
 		if(!check_state())
 			return
 		var/xeno_num = text2num(href_list["watch_xeno_number"])
-		for(var/mob/living/carbon/Xenomorph/X in GLOB.alive_mob_list)
+		for(var/mob/living/carbon/Xenomorph/X in GLOB.alive_xeno_list)
 			if(X.z != ADMIN_Z_LEVEL && X.nicknumber == xeno_num)
 				if(observed_xeno == X)
 					set_queen_overwatch(X, TRUE)

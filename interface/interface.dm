@@ -96,7 +96,7 @@
 	return
 
 /client/verb/hotkeys_help()
-	set name = "hotkeys-help"
+	set name = "Hotkeys"
 	set category = "OOC"
 
 	var/hotkey_mode = {"<font color='purple'>

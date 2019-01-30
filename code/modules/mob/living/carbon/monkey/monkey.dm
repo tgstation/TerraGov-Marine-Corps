@@ -295,8 +295,11 @@
 		return initial(pixel_y)
 
 /mob/living/carbon/monkey/Stat()
-	stat(null, text("Intent: []", a_intent))
-	stat(null, text("Move Mode: []", m_intent))
+	. = ..()
+
+	if(statpanel("Stats"))
+		stat(null, text("Intent: []", a_intent))
+		stat(null, text("Move Mode: []", m_intent))
 
 /mob/living/carbon/monkey/verb/removeinternal()
 	set name = "Remove Internals"

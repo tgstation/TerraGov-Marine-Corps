@@ -130,7 +130,7 @@
 	. = ..()
 	SyncRDevices()
 
-/*  //LEAVING THIS FOR NOW.  Eventually, they'll be able to use a W-Y DATACUBE to copy the entire system.  Either for merc theft, Russian shenanigans, or W-Y retreival.
+/*  //LEAVING THIS FOR NOW.  Eventually, they'll be able to use a NT DATACUBE to copy the entire system.  Either for merc theft, Russian shenanigans, or NT retreival.
 /obj/machinery/computer/rdconsole/attackby(var/obj/item/D as obj, var/mob/user as mob)
 	//Loading a disk into it.
 	if(istype(D, /obj/item/disk))

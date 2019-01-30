@@ -7,7 +7,7 @@
 			to_chat(src, "You are unable to emote.")
 		return
 
-	if(istype(src, /mob/living/carbon/human))
+	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
 		comm_paygrade = H.get_paygrade()
 
@@ -34,7 +34,7 @@
 		for(var/mob/M in GLOB.player_list)
 			if (!M.client)
 				continue //skip monkeys and leavers
-			if (istype(M, /mob/new_player))
+			if (isnewplayer(M))
 				continue
 			if(findtext(message," snores.")) //Because we have so many sleeping people.
 				break
@@ -78,7 +78,7 @@
 		log_message(message, LOG_EMOTE)
 
 		for(var/client/C in GLOB.clients)
-			if(istype(C.mob, /mob/new_player))
+			if(isnewplayer(C.mob))
 				continue
 
 			if(check_other_rights(C, R_ADMIN, FALSE) && (C.prefs.toggles_chat & CHAT_DEAD))

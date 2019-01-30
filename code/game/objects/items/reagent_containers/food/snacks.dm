@@ -66,7 +66,7 @@
 	if(!canconsume(user, M))
 		return FALSE
 
-	if(istype(M, /mob/living/carbon))
+	if(iscarbon(M))
 		var/fullness = M.nutrition + 10
 		for(var/datum/reagent/consumable/C in M.reagents.reagent_list) //we add the nutrition value of what we're currently digesting
 			fullness += C.nutriment_factor * C.volume / C.custom_metabolism
@@ -1113,6 +1113,7 @@
 	desc = "A true prophecy in each cookie!"
 	icon_state = "fortune_cookie"
 	filling_color = "#E8E79E"
+	trash = /obj/item/trash/fortunecookie
 	list_reagents = list("nutriment" = 3)
 	bitesize = 2
 	tastes = list("cookie" = 1)
@@ -1333,7 +1334,7 @@
 /obj/item/reagent_container/food/snacks/monkeycube/On_Consume(var/mob/M)
 	to_chat(M, "<span class = 'warning'>Something inside of you suddently expands!</span>")
 
-	if (istype(M, /mob/living/carbon/human))
+	if (ishuman(M))
 		//Do not try to understand.
 		var/obj/item/surprise = new(M)
 		var/mob/ook = monkey_type

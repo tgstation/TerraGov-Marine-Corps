@@ -57,7 +57,7 @@ Note: Must be placed west/left of and R&D console to function.
 		shock(user,50)
 	if (O.is_open_container())
 		return 1
-	if (istype(O, /obj/item/tool/screwdriver))
+	if (isscrewdriver(O))
 		if (!opened)
 			opened = 1
 			if(linked_console)
@@ -71,7 +71,7 @@ Note: Must be placed west/left of and R&D console to function.
 			to_chat(user, "You close the maintenance hatch of [src].")
 		return
 	if (opened)
-		if(istype(O, /obj/item/tool/crowbar))
+		if(iscrowbar(O))
 			playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
 			var/obj/machinery/constructable_frame/machine_frame/M = new /obj/machinery/constructable_frame/machine_frame(src.loc)
 			M.state = 2

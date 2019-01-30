@@ -108,8 +108,6 @@ Administrative related.
 
 /datum/config_entry/flag/allow_admin_ooccolor // Allows admins to customize their OOC color.
 
-/datum/config_entry/flag/popup_admin_pm	// adminPMs to non-admins show in a pop-up 'reply' window when set
-
 /datum/config_entry/flag/admin_irc
 
 /datum/config_entry/flag/guest_jobban

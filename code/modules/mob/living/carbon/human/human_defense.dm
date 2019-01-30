@@ -239,7 +239,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	if (I.damtype == BRUTE && !I.is_robot_module() && !(I.flags_item & (NODROP|DELONDROP)))
 		var/damage = I.force
 		if(damage > 40) damage = 40  //Some sanity, mostly for yautja weapons. CONSTANT STICKY ICKY
-		if (!armor && weapon_sharp && prob(3) && !isYautja(user)) // make yautja less likely to get their weapon stuck
+		if (!armor && weapon_sharp && prob(3) && !isyautja(user)) // make yautja less likely to get their weapon stuck
 			affecting.embed(I)
 
 	return 1
@@ -264,7 +264,7 @@ Contains most of the procs that are called when a mob is attacked by something
 		var/throw_damage = O.throwforce*(speed/5)
 
 		var/zone
-		if (istype(O.thrower, /mob/living))
+		if (isliving(O.thrower))
 			var/mob/living/L = O.thrower
 			zone = check_zone(L.zone_selected)
 		else

@@ -50,7 +50,7 @@
 		hastie = T
 		hastie.on_attached(src, user)
 
-		if(istype(loc, /mob/living/carbon/human))
+		if(ishuman(loc))
 			var/mob/living/carbon/human/H = loc
 			H.update_inv_w_uniform()
 
@@ -209,7 +209,8 @@
 	set name = "Remove Accessory"
 	set category = "Object"
 	set src in usr
-	if(!istype(usr, /mob/living)) return
+	if(!isliving(usr))
+		return
 	if(usr.stat) return
 
 	src.remove_accessory(usr)

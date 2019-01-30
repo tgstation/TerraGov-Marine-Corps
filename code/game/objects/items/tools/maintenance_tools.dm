@@ -201,7 +201,7 @@
 		if(!(S.status & LIMB_ROBOT) || user.a_intent != "help")
 			return ..()
 
-		if(isSynth(H))
+		if(issynth(H))
 			if(M == user)
 				to_chat(user, "<span class='warning'>You can't repair damage to your own body - it's against OH&S.</span>")
 				return
@@ -422,7 +422,7 @@
 	R.add_reagent("fuel", max_fuel)
 
 /obj/item/tool/weldpack/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/tool/weldingtool))
+	if(iswelder(W))
 		var/obj/item/tool/weldingtool/T = W
 		if(T.welding & prob(50))
 			message_admins("[ADMIN_TPMONTY(user)] triggered a fueltank explosion at [ADMIN_VERBOSEJMP(src.loc)].")

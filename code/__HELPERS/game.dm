@@ -34,12 +34,6 @@
 			get_open_turf_in_dir(center, WEST))
 	listclearnulls(.)
 
-/proc/in_range(source, user)
-	if(get_dist(source, user) <= 1)
-		return 1
-
-	return 0 //not in range and not telekinetic
-
 // Like view but bypasses luminosity check
 
 /proc/hear(var/range, var/atom/source)
@@ -219,7 +213,7 @@
 			var/turf/ear = get_turf(M)
 			if(ear)
 				// Ghostship is magic: Ghosts can hear radio chatter from anywhere
-				if(speaker_coverage[ear] || (istype(M, /mob/dead/observer) && (M.client) && (M.client.prefs) && (M.client.prefs.toggles_chat & CHAT_GHOSTRADIO)))
+				if(speaker_coverage[ear] || (isobserver(M) && M.client?.prefs?.toggles_chat & CHAT_GHOSTRADIO))
 					. |= M		// Since we're already looping through mobs, why bother using |= ? This only slows things down.
 	return .
 
@@ -315,8 +309,8 @@ proc/isInSight(var/atom/A, var/atom/B)
 		if(O.client.inactivity / 600 > ALIEN_SELECT_AFK_BUFFER + 5)
 			continue
 
-		//Admins get to skip the deathtime check
-		if(check_other_rights(O.client, R_ADMIN, TRUE))
+		//Admins get to skip the deathtime check, but only not while aghosted
+		if(check_other_rights(O.client, R_ADMIN, FALSE) && copytext(O.mind.current.key, 1, 1) != "@")
 			candidates += O.key
 			continue
 

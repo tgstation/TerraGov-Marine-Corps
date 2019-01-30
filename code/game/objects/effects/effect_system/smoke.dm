@@ -270,7 +270,7 @@
 		return FALSE
 	if(C.stat == DEAD)
 		return FALSE
-	if(isXeno(C) || (isYautja(C) && prob(75)))
+	if(isxeno(C) || (isyautja(C) && prob(75)))
 		return FALSE
 	if(istype(C.buckled, /obj/structure/bed/nest) && C.status_flags & XENO_HOST)
 		return FALSE
@@ -311,7 +311,7 @@
 
 
 /obj/effect/particle_effect/smoke/xeno/burn/effect_contact(mob/living/carbon/C)
-	var/protection = 1 - min(C.get_permeability_protection(), 0.75)
+	var/protection = max(C.get_permeability_protection(), 0.25)
 	if(prob(50) * protection)
 		to_chat(C, "<span class='danger'>Your skin feels like it is melting away!</span>")
 	if(ishuman(C))

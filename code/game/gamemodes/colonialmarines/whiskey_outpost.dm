@@ -985,7 +985,7 @@
 /datum/game_mode/whiskey_outpost/proc/count_humans()
 	var/human_count = 0
 
-	for(var/mob/living/carbon/human/H in GLOB.alive_mob_list)
+	for(var/mob/living/carbon/human/H in GLOB.alive_human_list)
 		if(H.client && istype(H) && H.stat == 0 && !istype(get_area(H.loc),/area/centcom) && !istype(get_area(H.loc),/area/tdome))
 			if(H.species != "Yautja") // Preds don't count in round end.
 				human_count += 1 //Add them to the amount of people who're alive.
@@ -994,7 +994,7 @@
 
 /datum/game_mode/whiskey_outpost/proc/count_xenos()//Counts braindead too
 	var/xeno_count = 0
-	for(var/mob/living/carbon/Xenomorph/X in GLOB.alive_mob_list)
+	for(var/mob/living/carbon/Xenomorph/X in GLOB.alive_xeno_list)
 		if(X) //Prevent any runtime errors
 			if(istype(X) && X.stat != DEAD && X.z != 0 && !istype(X.loc,/turf/open/space)) // If they're connected/unghosted and alive and not debrained
 				xeno_count += 1 //Add them to the amount of people who're alive.
@@ -1003,7 +1003,7 @@
 
 /datum/game_mode/whiskey_outpost/proc/CleanXenos()//moves dead xenos to space
 	var/xeno_count = 0
-	for(var/mob/living/carbon/Xenomorph/X in GLOB.dead_mob_list)
+	for(var/mob/living/carbon/Xenomorph/X in GLOB.dead_xeno_list)
 		if(X) //Prevent any runtime errors
 			if(istype(X) && X.stat == DEAD && X.z != 2)
 				X.loc = get_turf(locate(84,237,2)) //z.2
@@ -1272,9 +1272,7 @@
 			return
 		if(user.lying || user.stat)
 			return
-		if(istype(usr, /mob/living/silicon) || \
-			istype(usr, /mob/living/carbon/Xenomorph) || \
-			istype(usr, /mob/living/carbon/monkey))
+		if(!ishuman(usr))
 			to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
 			return
 		if(working)

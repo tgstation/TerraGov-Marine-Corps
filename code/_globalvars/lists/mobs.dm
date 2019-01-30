@@ -12,7 +12,12 @@ GLOBAL_LIST_EMPTY(stealthminID)						//reference list with IDs that store ckeys,
 GLOBAL_LIST_EMPTY(player_list)				//all mobs **with clients attached**.
 GLOBAL_LIST_EMPTY(mob_list)					//all mobs, including clientless
 GLOBAL_LIST_EMPTY(mob_directory)			//mob_id -> mob
-GLOBAL_LIST_EMPTY(living_xeno_list)
+GLOBAL_LIST_EMPTY(xeno_mob_list)			//all /mob/living/carbon/Xenomorph
+GLOBAL_LIST_EMPTY(alive_xeno_list)			//as above except stat != DEAD
+GLOBAL_LIST_EMPTY(dead_xeno_list)
+GLOBAL_LIST_EMPTY(human_mob_list)			//all /mob/living/carbon/human including synths and species
+GLOBAL_LIST_EMPTY(alive_human_list)			//as above except stat != DEAD
+GLOBAL_LIST_EMPTY(dead_human_list)
 GLOBAL_LIST_EMPTY(alive_mob_list)			//all alive mobs, including clientless. Excludes /mob/dead/new_player
 GLOBAL_LIST_EMPTY(suicided_mob_list)		//contains a list of all mobs that suicided, including their associated ghosts.
 GLOBAL_LIST_EMPTY(drones_list)
@@ -22,7 +27,6 @@ GLOBAL_LIST_EMPTY(silicon_mobs)				//all silicon mobs
 GLOBAL_LIST_EMPTY(mob_living_list)				//all instances of /mob/living and subtypes
 GLOBAL_LIST_EMPTY(carbon_list)				//all instances of /mob/living/carbon and subtypes, notably does not contain brains or simple animals
 GLOBAL_LIST_EMPTY(ai_list)
-GLOBAL_LIST_EMPTY(pai_list)
 GLOBAL_LIST_EMPTY(available_ai_shells)
 GLOBAL_LIST_INIT(simple_animals, list(list(),list(),list(),list())) // One for each AI_* status define
 GLOBAL_LIST_EMPTY(spidermobs)				//all sentient spider mobs

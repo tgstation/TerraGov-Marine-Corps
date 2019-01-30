@@ -211,7 +211,7 @@
 	return FALSE
 
 /mob/living/carbon/human/has_mouth()
-	if(!has_limb("head") || species.flags & HAS_NO_MOUTH)
+	if(!has_limb("head"))
 		return FALSE
 	return TRUE
 

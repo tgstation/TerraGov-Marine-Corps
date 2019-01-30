@@ -332,23 +332,22 @@ var/list/global_mutations = list() // list of hidden mutation things
 
 
 //Species flags.
-#define NO_BLOOD 1
-#define NO_BREATHE 2
-#define NO_SCAN 4
-#define NO_PAIN 8
-#define NO_SLIP 16
-#define NO_OVERDOSE 32
-#define NO_POISON 64
-#define NO_CHEM_METABOLIZATION 128
-#define NO_HUNGER 256
-#define HAS_SKIN_TONE 512
-#define HAS_SKIN_COLOR 1024
-#define HAS_LIPS 2048
-#define HAS_UNDERWEAR 4096
-#define HAS_NO_MOUTH 8192
-#define HAS_NO_HAIR 16384
-#define IS_PLANT 32768
-#define IS_SYNTHETIC 65536
+#define NO_BLOOD 				(1<<0)
+#define NO_BREATHE 				(1<<1)
+#define NO_SCAN 				(1<<2)
+#define NO_PAIN 				(1<<3)
+#define NO_SLIP 				(1<<4)
+#define NO_OVERDOSE 			(1<<5)
+#define NO_POISON 				(1<<6)
+#define NO_CHEM_METABOLIZATION 	(1<<7)
+#define NO_HUNGER 				(1<<8)
+#define HAS_SKIN_TONE 			(1<<9)
+#define HAS_SKIN_COLOR 			(1<<10)
+#define HAS_LIPS				(1<<11)
+#define HAS_UNDERWEAR 			(1<<12)
+#define HAS_NO_HAIR 			(1<<13)
+#define IS_PLANT 				(1<<14)
+#define IS_SYNTHETIC 			(1<<15)
 //=================================================
 
 //Some on_mob_life() procs check for alien races.
