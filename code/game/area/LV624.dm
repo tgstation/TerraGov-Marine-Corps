@@ -119,23 +119,23 @@
 	icon_state = "green"
 
 /area/lv624/ground/compound/ne
-	name = "\improper Northeast W-Y Compound"
+	name = "\improper Northeast NT Compound"
 	icon_state = "northeast"
 
 /area/lv624/ground/compound/n
-	name = "\improper Northern W-Y Compound"
+	name = "\improper Northern NT Compound"
 	icon_state = "north"
 
 /area/lv624/ground/compound/c
-	name = "\improper Central W-Y Compound"
+	name = "\improper Central NT Compound"
 	icon_state = "purple"
 
 /area/lv624/ground/compound/se
-	name = "\improper Southeast W-Y Compound"
+	name = "\improper Southeast NT Compound"
 	icon_state = "southeast"
 
 /area/lv624/ground/compound/sw
-	name = "\improper Southwest W-Y Compound"
+	name = "\improper Southwest NT Compound"
 	icon_state = "southwest"
 
 //	ambience = list('sound/ambience/jungle_amb1.ogg')

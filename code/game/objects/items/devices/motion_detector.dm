@@ -232,7 +232,7 @@
 
 /obj/item/device/motiondetector/pmc
 	name = "motion detector (PMC)"
-	desc = "A device that detects hostile movement. Hostiles appear as red blips. Friendlies with the correct IFF signature appear as green, and their bodies as blue, unrevivable bodies as dark blue. It has a mode selection interface. This one has been modified for use by the W-Y PMC forces."
+	desc = "A device that detects hostile movement. Hostiles appear as red blips. Friendlies with the correct IFF signature appear as green, and their bodies as blue, unrevivable bodies as dark blue. It has a mode selection interface. This one has been modified for use by the NT PMC forces."
 	iff_signal = ACCESS_IFF_PMC
 
 
