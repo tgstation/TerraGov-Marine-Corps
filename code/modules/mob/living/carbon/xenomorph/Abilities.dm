@@ -400,6 +400,105 @@
 			for(var/mob/living/carbon/Xenomorph/L in hive.xeno_leader_list)
 				L.handle_xeno_leader_pheromones(Q)
 
+/datum/action/xeno_action/emit_recovery
+	name = "Emit Recovery Pheromones (30)"
+	action_icon_state = "emit_pheromones"
+	plasma_cost = 30
+
+/datum/action/xeno_action/emit_recovery/can_use_action()
+	var/mob/living/carbon/Xenomorph/X = owner
+	if(X && !X.is_mob_incapacitated() && !X.lying && !X.buckled && (!X.current_aura || X.plasma_stored >= plasma_cost) && !X.stagger && !X.on_fire) //Can't emit pheromones while on fire!
+		return TRUE
+
+/datum/action/xeno_action/emit_recovery/action_activate()
+	var/mob/living/carbon/Xenomorph/X = owner
+	if(!X.check_state())
+		return
+	if(!X.check_plasma(30))
+		return
+	if(X.current_aura == "recovery")
+		X.visible_message("<span class='xenowarning'>\The [X] stops emitting strange pheromones.</span>", \
+		"<span class='xenowarning'>You stop emitting recovery pheromones.</span>", null, 5)
+	else
+		X.use_plasma(30)
+		X.current_aura = "recovery"
+		X.visible_message("<span class='xenowarning'>\The [X] begins to emit strange-smelling pheromones.</span>", \
+		"<span class='xenowarning'>You begin to emit '[X.current_aura]' pheromones.</span>", null, 5)
+		playsound(X.loc, "alien_drool", 25)
+
+		if(X.hivenumber && X.hivenumber <= hive_datum.len)
+			var/datum/hive_status/hive = hive_datum[X.hivenumber]
+			if(isXenoQueen(X) && hive.xeno_leader_list.len && X.anchored)
+				var/mob/living/carbon/Xenomorph/Queen/Q = X
+				for(var/mob/living/carbon/Xenomorph/L in hive.xeno_leader_list)
+					L.handle_xeno_leader_pheromones(Q)
+
+/datum/action/xeno_action/emit_warding
+	name = "Emit Warding Pheromones (30)"
+	action_icon_state = "emit_pheromones"
+	plasma_cost = 30
+
+/datum/action/xeno_action/emit_warding/can_use_action()
+	var/mob/living/carbon/Xenomorph/X = owner
+	if(X && !X.is_mob_incapacitated() && !X.lying && !X.buckled && (!X.current_aura || X.plasma_stored >= plasma_cost) && !X.stagger && !X.on_fire) //Can't emit pheromones while on fire!
+		return TRUE
+
+/datum/action/xeno_action/emit_warding/action_activate()
+	var/mob/living/carbon/Xenomorph/X = owner
+	if(!X.check_state())
+		return
+	if(!X.check_plasma(30))
+		return
+	if(X.current_aura == "warding")
+		X.visible_message("<span class='xenowarning'>\The [X] stops emitting strange pheromones.</span>", \
+		"<span class='xenowarning'>You stop emitting warding pheromones.</span>", null, 5)
+	else
+		X.use_plasma(30)
+		X.current_aura = "warding"
+		X.visible_message("<span class='xenowarning'>\The [X] begins to emit strange-smelling pheromones.</span>", \
+		"<span class='xenowarning'>You begin to emit '[X.current_aura]' pheromones.</span>", null, 5)
+		playsound(X.loc, "alien_drool", 25)
+
+	if(X.hivenumber && X.hivenumber <= hive_datum.len)
+		var/datum/hive_status/hive = hive_datum[X.hivenumber]
+		if(isXenoQueen(X) && hive.xeno_leader_list.len && X.anchored)
+			var/mob/living/carbon/Xenomorph/Queen/Q = X
+			for(var/mob/living/carbon/Xenomorph/L in hive.xeno_leader_list)
+				L.handle_xeno_leader_pheromones(Q)
+
+/datum/action/xeno_action/emit_frenzy
+	name = "Emit Frenzy Pheromones (30)"
+	action_icon_state = "emit_pheromones"
+	plasma_cost = 30
+
+/datum/action/xeno_action/emit_frenzy/can_use_action()
+	var/mob/living/carbon/Xenomorph/X = owner
+	if(X && !X.is_mob_incapacitated() && !X.lying && !X.buckled && (!X.current_aura || X.plasma_stored >= plasma_cost) && !X.stagger && !X.on_fire) //Can't emit pheromones while on fire!
+		return TRUE
+
+/datum/action/xeno_action/emit_frenzy/action_activate()
+	var/mob/living/carbon/Xenomorph/X = owner
+	if(!X.check_state())
+		return
+	if(!X.check_plasma(30))
+		return
+	if(X.current_aura == "frenzy")
+		X.visible_message("<span class='xenowarning'>\The [X] stops emitting strange pheromones.</span>", \
+		"<span class='xenowarning'>You stop emitting frenzy pheromones.</span>", null, 5)
+	else
+		X.use_plasma(30)
+		X.current_aura = "frenzy"
+		X.visible_message("<span class='xenowarning'>\The [X] begins to emit strange-smelling pheromones.</span>", \
+		"<span class='xenowarning'>You begin to emit '[X.current_aura]' pheromones.</span>", null, 5)
+		playsound(X.loc, "alien_drool", 25)
+
+	if(X.hivenumber && X.hivenumber <= hive_datum.len)
+		var/datum/hive_status/hive = hive_datum[X.hivenumber]
+		if(isXenoQueen(X) && hive.xeno_leader_list.len && X.anchored)
+			var/mob/living/carbon/Xenomorph/Queen/Q = X
+			for(var/mob/living/carbon/Xenomorph/L in hive.xeno_leader_list)
+				L.handle_xeno_leader_pheromones(Q)
+
 /datum/action/xeno_action/activable/transfer_plasma
 	name = "Transfer Plasma"
 	action_icon_state = "transfer_plasma"
@@ -1165,7 +1264,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 		"<span class='xenowarning'>You start to advance larval growth inside of [H].</span>")
 		if(!do_after(X, 50, TRUE, 20, BUSY_ICON_FRIENDLY) && X.check_plasma(300))
 			return
-		if(!X.check_state()) 
+		if(!X.check_state())
 			return
 		X.use_plasma(300)
 		X.visible_message("<span class='xenowarning'>\The [E] inside of [H] grows a little!</span>", \

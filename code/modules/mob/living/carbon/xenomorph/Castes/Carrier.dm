@@ -186,10 +186,13 @@
 		/datum/action/xeno_action/regurgitate,
 		/datum/action/xeno_action/plant_weeds,
 		/datum/action/xeno_action/emit_pheromones,
+		/datum/action/xeno_action/emit_recovery,
+		/datum/action/xeno_action/emit_warding,
+		/datum/action/xeno_action/emit_frenzy,
 		/datum/action/xeno_action/activable/throw_hugger,
 		/datum/action/xeno_action/activable/retrieve_egg,
 		/datum/action/xeno_action/place_trap,
-		/datum/action/xeno_action/spawn_hugger,
+		/datum/action/xeno_action/spawn_hugger
 		)
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/vent_crawl,

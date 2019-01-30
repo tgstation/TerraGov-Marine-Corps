@@ -161,7 +161,10 @@
 		/datum/action/xeno_action/activable/transfer_plasma,
 		/datum/action/xeno_action/activable/salvage_plasma,
 		/datum/action/xeno_action/activable/corrosive_acid/drone,
-		/datum/action/xeno_action/emit_pheromones
+		/datum/action/xeno_action/emit_pheromones,
+		/datum/action/xeno_action/emit_recovery,
+		/datum/action/xeno_action/emit_warding,
+		/datum/action/xeno_action/emit_frenzy
 		)
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/vent_crawl,

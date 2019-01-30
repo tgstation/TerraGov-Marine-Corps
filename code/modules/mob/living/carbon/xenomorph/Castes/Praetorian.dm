@@ -171,6 +171,9 @@
 		/datum/action/xeno_action/regurgitate,
 		/datum/action/xeno_action/activable/corrosive_acid,
 		/datum/action/xeno_action/emit_pheromones,
+		/datum/action/xeno_action/emit_recovery,
+		/datum/action/xeno_action/emit_warding,
+		/datum/action/xeno_action/emit_frenzy,
 		/datum/action/xeno_action/shift_spits,
 		/datum/action/xeno_action/activable/xeno_spit,
 		/datum/action/xeno_action/activable/spray_acid
