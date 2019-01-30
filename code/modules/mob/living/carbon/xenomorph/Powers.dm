@@ -1828,6 +1828,7 @@
 			stealth = TRUE
 			handle_stealth()
 			addtimer(CALLBACK(src, .stealth_cooldown), HUNTER_STEALTH_COOLDOWN)
+			addtimer(CALLBACK(src, .proc/sneak_attack_cooldown), HUNTER_POUNCE_SNEAKATTACK_DELAY) //Short delay before we can sneak attack.
 	else
 		cancel_stealth()
 
@@ -2296,7 +2297,7 @@
 		start_dig = null //Now clear it
 		tunnel_delay = TRUE
 		addtimer(CALLBACK(src, .tunnel_cooldown), 2400)
-		
+
 		var/msg = copytext(sanitize(input("Add a description to the tunnel:", "Tunnel Description") as text|null), 1, MAX_MESSAGE_LEN)
 		if(msg)
 			newt.other.tunnel_desc = msg
