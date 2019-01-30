@@ -770,6 +770,10 @@
 
 	if(href_list["deny"])
 		var/mob/M = locate(href_list["deny"])
+
+		if(!istype(M))
+			return
+
 		distress_cancel = TRUE
 		command_announcement.Announce("The distress signal has been blocked, the launch tubes are now recalibrating.", "Distress Beacon")
 		log_game("[key_name(usr)] has denied a distress beacon, requested by [key_name(M)]")
@@ -779,7 +783,10 @@
 	if(href_list["distress"])
 		var/mob/M = locate(href_list["distress"])
 
-		if(ticker?.mode?.waiting_for_candidates)
+		if(!istype(M))
+			return
+
+		if(!ticker?.mode || ticker.mode.waiting_for_candidates)
 			return
 
 		ticker.mode.activate_distress()
