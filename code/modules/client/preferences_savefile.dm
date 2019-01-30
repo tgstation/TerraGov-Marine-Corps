@@ -73,6 +73,7 @@
 
 	S["synth_name"]			>> synthetic_name
 	S["synth_type"]			>> synthetic_type
+	S["xeno_name"]			>> xeno_name
 	S["pred_name"]			>> predator_name
 	S["pred_gender"]		>> predator_gender
 	S["pred_age"]			>> predator_age
@@ -134,6 +135,7 @@
 
 	S["synth_name"] 		<< synthetic_name
 	S["synth_type"]			<< synthetic_type
+	S["xeno_name"]			<< xeno_name
 	S["pred_name"] 			<< predator_name
 	S["pred_gender"] 		<< predator_gender
 	S["pred_age"]			<< predator_age
@@ -169,7 +171,6 @@
 	//Character
 	S["OOC_Notes"]			>> metadata
 	S["real_name"]			>> real_name
-	S["xeno_name"]			>> xeno_name
 	S["name_is_always_random"] >> be_random_name
 	S["gender"]				>> gender
 	S["age"]				>> age
@@ -258,7 +259,6 @@
 	//Sanitize
 	metadata		= sanitize_text(metadata, initial(metadata))
 	real_name		= reject_bad_name(real_name)
-	xeno_name		= reject_bad_name(xeno_name)
 
 	if(isnull(language)) 
 		language = "None"
@@ -354,7 +354,6 @@
 	//Character
 	S["OOC_Notes"]			<< metadata
 	S["real_name"]			<< real_name
-	S["xeno_name"]			<< xeno_name
 	S["name_is_always_random"] << be_random_name
 	S["gender"]				<< gender
 	S["age"]				<< age
