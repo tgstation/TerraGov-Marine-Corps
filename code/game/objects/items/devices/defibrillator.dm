@@ -107,7 +107,7 @@
 		else
 			defib_heal_amt *= user.mind.cm_skills.medical*0.5 //more healing power when used by a doctor (this means non-trained don't heal)
 
-	if(!ishuman(H) || isYautja(H))
+	if(!ishuman(H) || isyautja(H))
 		to_chat(user, "<span class='warning'>You can't defibrilate [H]. You don't even know where to put the paddles!</span>")
 		return
 	if(!ready)
@@ -128,7 +128,7 @@
 		user.visible_message("<span class='warning'>[bicon(src)] \The [src] buzzes: Paddles registering >100,000 ohms, Possible cause: Suit or Armor interferring.</span>")
 		return
 
-	if((!H.check_tod() && !isSynth(H)) || H.suiciding) //synthetic species have no expiration date
+	if((!H.check_tod() && !issynth(H)) || H.suiciding) //synthetic species have no expiration date
 		user.visible_message("<span class='warning'>[bicon(src)] \The [src] buzzes: Patient is braindead.</span>")
 		return
 
@@ -171,7 +171,7 @@
 			user.visible_message("<span class='warning'>[bicon(src)] \The [src] buzzes: Defibrillation failed. Patient's general condition does not allow reviving.</span>")
 			return
 
-		if((!H.check_tod() && !isSynth(H)) || H.suiciding) //synthetic species have no expiration date
+		if((!H.check_tod() && !issynth(H)) || H.suiciding) //synthetic species have no expiration date
 			user.visible_message("<span class='warning'>[bicon(src)] \The [src] buzzes: Patient's brain has decayed too much.</span>")
 			return
 

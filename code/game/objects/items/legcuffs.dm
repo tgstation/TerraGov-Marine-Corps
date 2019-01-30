@@ -101,7 +101,7 @@
 				if(iscarbon(AM))
 					if(isturf(src.loc))
 						var/mob/living/carbon/H = AM
-						if(isYautja(H))
+						if(isyautja(H))
 							to_chat(H, "<span class='notice'>You carefully avoid stepping on the trap.</span>")
 							return
 						if(H.m_intent == MOVE_INTENT_RUN)

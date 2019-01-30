@@ -878,7 +878,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		P.tnote.Add(list(list("sent" = 0, "owner" = "[owner]", "job" = "[ownjob]", "message" = "[t]", "target" = "\ref[src]")))
 		for(var/mob/M in GLOB.player_list)
 			if(M.stat == DEAD && M.client && (M.client.prefs.toggles_chat & CHAT_GHOSTEARS)) // src.client is so that ghosts don't have to listen to mice
-				if(istype(M, /mob/new_player))
+				if(isnewplayer(M))
 					continue
 				M.show_message("<span class='game say'>PDA Message - <span class='name'>[owner]</span> -> <span class='name'>[P.owner]</span>: <span class='message'>[t]</span></span>")
 
@@ -908,7 +908,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 			L = P.loc
 
 		if(L)
-			to_chat(L, "[bicon(P)] <b>Message from [src.owner] ([ownjob]), </b>\"[t]\" (<a href='byond://?src=\ref[P];choice=Message;notap=[istype(L, /mob/living/silicon)];skiprefresh=1;target=\ref[src]'>Reply</a>)")
+			to_chat(L, "[bicon(P)] <b>Message from [src.owner] ([ownjob]), </b>\"[t]\" (<a href='byond://?src=\ref[P];choice=Message;notap=[issilicon(L)];skiprefresh=1;target=\ref[src]'>Reply</a>)")
 			nanomanager.update_user_uis(L, P) // Update the receiving user's PDA UI so that they can see the new message
 
 		nanomanager.update_user_uis(U, P) // Update the sending user's PDA UI so that they can see the new message
@@ -1017,7 +1017,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 				to_chat(user, "<span class='notice'>You slide \the [C] into \the [src].</span>")
 
 /obj/item/device/pda/attack(mob/living/L, mob/living/user)
-	if (istype(L, /mob/living/carbon))
+	if (iscarbon(L))
 		var/mob/living/carbon/C = L
 		switch(scanmode)
 			if(1)
@@ -1032,7 +1032,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 				user.show_message("<span class='notice'> \t Body Temperature: [C.bodytemperature-T0C]&deg;C ([C.bodytemperature*1.8-459.67]&deg;F)</span>", 1)
 				if(C.tod && (C.stat == DEAD || (C.status_flags & FAKEDEATH)))
 					user.show_message("<span class='notice'> \t Time of Death: [C.tod]</span>")
-				if(istype(C, /mob/living/carbon/human))
+				if(ishuman(C))
 					var/mob/living/carbon/human/H = C
 					var/list/damaged = H.get_damaged_limbs(1,1)
 					user.show_message("<span class='notice'> Localized Damage, Brute/Burn:</span>",1)
@@ -1049,7 +1049,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 			if(2)
 				if (!istype(C:dna, /datum/dna))
 					to_chat(user, "<span class='notice'>No fingerprints found on [C]</span>")
-				else if(!istype(C, /mob/living/carbon/monkey))
+				else if(!ismonkey(C))
 					if(!isnull(C:gloves))
 						to_chat(user, "<span class='notice'>No fingerprints found on [C]</span>")
 				else

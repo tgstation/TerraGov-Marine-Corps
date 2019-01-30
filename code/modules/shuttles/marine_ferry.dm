@@ -672,7 +672,7 @@
 		T = i
 		if(!istype(T)) continue
 
-		if(istype(T, /turf/closed/wall))
+		if(iswallturf(T))
 			var/turf/closed/wall/W = T
 			if(prob(20)) W.thermitemelt()
 			else if(prob(25)) W.take_damage(W.damage_cap) //It should leave a girder

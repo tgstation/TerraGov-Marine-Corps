@@ -90,7 +90,7 @@
 				else
 					to_chat(user, "<span class='notice'>The locker is too small to stuff [W:affecting] into!</span>")
 			return
-		if(isrobot(user))
+		if(iscyborg(user))
 			return
 		user.drop_held_item()
 		if(W)
@@ -114,7 +114,7 @@
 	if(src.locked)
 		src.togglelock(user)
 	else
-		if(opened && isXeno(user))
+		if(opened && isxeno(user))
 			return // stop xeno closing them
 		src.toggle(user)
 

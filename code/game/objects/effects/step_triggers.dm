@@ -13,7 +13,7 @@
 	..()
 	if(!H)
 		return
-	if(istype(H, /mob/dead/observer) && !affect_ghosts)
+	if(isobserver(H) && !affect_ghosts)
 		return
 	Trigger(H)
 
@@ -31,7 +31,7 @@
 	var/list/affecting = list()
 
 	Trigger(var/atom/A)
-		if(!A || !istype(A, /atom/movable))
+		if(!A || !ismovableatom(A))
 			return
 
 		if(!istype(A,/obj) && !istype(A,/mob)) //mobs and objects only.

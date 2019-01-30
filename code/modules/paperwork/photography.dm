@@ -86,7 +86,7 @@
 
 /obj/item/storage/photo_album/MouseDrop(obj/over_object as obj)
 
-	if((istype(usr, /mob/living/carbon/human)))
+	if((ishuman(usr)))
 		var/mob/M = usr
 		if(!( istype(over_object, /obj/screen) ))
 			return ..()
@@ -190,7 +190,7 @@
 			// If what we got back is actually a picture, draw it.
 			if(istype(IM, /icon))
 				// Check if we're looking at a mob that's lying down
-				if(istype(A, /mob/living))
+				if(isliving(A))
 					var/mob/living/L = A
 					if(!istype(L, /mob/living/carbon/Xenomorph)) //xenos don't use icon rotatin for lying.
 						if(L.lying)

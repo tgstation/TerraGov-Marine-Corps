@@ -15,7 +15,7 @@
 		to_chat(user, "<span class='warning'>\The [src] cannot be applied to [M]!</span>")
 		return 1
 
-	if(!ishuman(user) && !isrobot(user))
+	if(!ishuman(user) && !iscyborg(user))
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return 1
 
@@ -54,7 +54,7 @@
 	if(..())
 		return 1
 
-	if (istype(M, /mob/living/carbon/human))
+	if (ishuman(M))
 		var/mob/living/carbon/human/H = M
 
 		if(user.mind && user.mind.cm_skills)
@@ -103,7 +103,7 @@
 	if(..())
 		return 1
 
-	if (istype(M, /mob/living/carbon/human))
+	if (ishuman(M))
 		var/mob/living/carbon/human/H = M
 
 		if(user.mind && user.mind.cm_skills)
@@ -160,7 +160,7 @@
 	if(..())
 		return 1
 
-	if (istype(M, /mob/living/carbon/human))
+	if (ishuman(M))
 		var/mob/living/carbon/human/H = M
 
 		var/heal_amt = heal_brute
@@ -216,7 +216,7 @@
 	if(..())
 		return 1
 
-	if(istype(M, /mob/living/carbon/human))
+	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 
 		var/heal_amt = heal_burn

@@ -62,7 +62,7 @@
 
 //Can be picked up by aliens
 /obj/item/clothing/mask/facehugger/attack_paw(user as mob)
-	if(isXeno(user))
+	if(isxeno(user))
 		attack_alien(user)
 	else
 		attack_hand(user)
@@ -78,7 +78,7 @@
 		attack_hand(user)
 
 /obj/item/clothing/mask/facehugger/attack_hand(user as mob)
-	if(isXeno(user))
+	if(isxeno(user))
 		var/mob/living/carbon/Xenomorph/X = user
 		if(X.xeno_caste.caste_flags & CASTE_CAN_HOLD_FACEHUGGERS)
 			return ..() // These can pick up huggers.
@@ -103,7 +103,7 @@
 	user.update_icons()
 
 /obj/item/clothing/mask/facehugger/attack_self(mob/user)
-	if(isXenoCarrier(user))
+	if(isxenocarrier(user))
 		var/mob/living/carbon/Xenomorph/Carrier/C = user
 		C.store_hugger(src)
 
@@ -228,7 +228,7 @@
 /obj/item/clothing/mask/facehugger/proc/Attach(mob/living/M)
 	set waitfor = 0
 
-	if(attached || M.status_flags & XENO_HOST || isXeno(M) || loc == M || stat != CONSCIOUS)
+	if(attached || M.status_flags & XENO_HOST || isxeno(M) || loc == M || stat != CONSCIOUS)
 		return
 
 	attached++
@@ -239,7 +239,7 @@
 	if(throwing)
 		throwing = FALSE
 
-	if(isXeno(loc)) //Being carried? Drop it
+	if(isxeno(loc)) //Being carried? Drop it
 		var/mob/living/carbon/Xenomorph/X = loc
 		X.dropItemToGround(src)
 		X.update_icons()
@@ -256,7 +256,7 @@
 			GoIdle()
 			return
 
-		if(isYautja(M))
+		if(isyautja(M))
 			var/catch_chance = 50
 			if(H.dir == reverse_dir[dir]) catch_chance += 20
 			if(H.lying) catch_chance -= 50
@@ -354,7 +354,7 @@
 	return TRUE
 
 /obj/item/clothing/mask/facehugger/proc/Impregnate(mob/living/carbon/target)
-	if(!target || target.wear_mask != src || isXeno(target)) //Was taken off or something
+	if(!target || target.wear_mask != src || isxeno(target)) //Was taken off or something
 		return
 
 	var/mob/living/carbon/human/H
@@ -451,7 +451,7 @@
 
 /proc/CanHug(mob/living/carbon/M)
 
-	if(!istype(M) || isXeno(M) || isSynth(M) || iszombie(M) || isHellhound(M) || M.stat == DEAD || M.status_flags & XENO_HOST) return
+	if(!istype(M) || isxeno(M) || issynth(M) || iszombie(M) || ishellhound(M) || M.stat == DEAD || M.status_flags & XENO_HOST) return
 
 	//Already have a hugger? NOPE
 	//This is to prevent eggs from bursting all over if you walk around with one on your face,

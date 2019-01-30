@@ -216,7 +216,7 @@
 
 //Chance of insta limb amputation after a melee attack.
 /mob/living/carbon/Xenomorph/Ravager/proc/delimb(var/mob/living/carbon/human/H, var/datum/limb/O)
-	if (prob(isYautja(H)?10:20)) // lets halve this for preds
+	if (prob(isyautja(H)?10:20)) // lets halve this for preds
 		O = H.get_limb(check_zone(zone_selected))
 		if (O.body_part != CHEST && O.body_part != GROIN && O.body_part != HEAD) //Only limbs.
 			visible_message("<span class='danger'>The limb is sliced clean off!</span>","<span class='danger'>You slice off a limb!</span>")
@@ -326,7 +326,7 @@
 		if(M.stat == DEAD)
 			continue
 		fire_mod = 1
-		if(isXeno(M))
+		if(isxeno(M))
 			var/mob/living/carbon/Xenomorph/X = M
 			if(X.xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 				continue
@@ -337,4 +337,4 @@
 				continue
 
 		M.adjustFireLoss(rand(20, 50) * fire_mod) //Fwoom!
-		to_chat(M, "[isXeno(M) ? "<span class='xenodanger'>":"<span class='highdanger'>"]Augh! You are roasted by the flames!</Sspan>")
+		to_chat(M, "[isxeno(M) ? "<span class='xenodanger'>":"<span class='highdanger'>"]Augh! You are roasted by the flames!</Sspan>")

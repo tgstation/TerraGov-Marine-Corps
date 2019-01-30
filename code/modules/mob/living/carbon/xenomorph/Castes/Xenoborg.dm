@@ -108,7 +108,7 @@
 
 /mob/living/carbon/Xenomorph/Xenoborg/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(user && O && stat != DEAD)
-		if(istype(O, /obj/item/tool/weldingtool))
+		if(iswelder(O))
 			var/obj/item/tool/weldingtool/WT = O
 			updatehealth()
 			if(health < maxHealth)

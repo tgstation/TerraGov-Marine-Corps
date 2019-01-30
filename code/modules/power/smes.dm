@@ -169,7 +169,7 @@
 		if (NORTHWEST, SOUTHWEST)
 			tempDir = WEST
 	var/turf/tempLoc = get_step(src, reverse_direction(tempDir))
-	if (istype(tempLoc, /turf/open/space))
+	if (isspaceturf(tempLoc))
 		to_chat(user, "<span class='warning'>You can't build a terminal on space.</span>")
 		return TRUE
 	else if (istype(tempLoc))
@@ -202,7 +202,7 @@
 
 
 /obj/machinery/power/smes/attackby(var/obj/item/W as obj, var/mob/user as mob)
-	if(istype(W, /obj/item/tool/screwdriver))
+	if(isscrewdriver(W))
 		if(!open_hatch)
 			open_hatch = TRUE
 			to_chat(user, "<span class='notice'>You open the maintenance hatch of [src].</span>")
@@ -216,7 +216,7 @@
 		to_chat(user, "<span class='warning'>You need to open access hatch on [src] first!</spann>")
 		return FALSE
 
-	if(istype(W, /obj/item/stack/cable_coil) && !terminal && !building_terminal)
+	if(iscablecoil(W) && !terminal && !building_terminal)
 		building_terminal = 1
 		var/obj/item/stack/cable_coil/CC = W
 		if (CC.get_amount() <= 10)
@@ -235,7 +235,7 @@
 		stat = 0
 		return FALSE
 
-	else if(istype(W, /obj/item/tool/wirecutters) && terminal && !building_terminal)
+	else if(iswirecutter(W) && terminal && !building_terminal)
 		building_terminal = 1
 		var/turf/tempTDir = terminal.loc
 		if (istype(tempTDir))
@@ -298,8 +298,8 @@
 
 	if (usr.stat || usr.is_mob_restrained() )
 		return
-	if (!(istype(usr, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
-		if(!istype(usr, /mob/living/silicon/ai))
+	if (!(ishuman(usr) || ticker) && ticker.mode.name != "monkey")
+		if(!isAI(usr))
 			to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
 			return
 

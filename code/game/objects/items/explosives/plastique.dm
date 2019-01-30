@@ -39,13 +39,13 @@
 		var/fumbling_time = 50
 		if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
 			return
-	if(istype(target, /obj/structure/ladder) || istype(target, /obj/item) || istype(target, /turf/open))
+	if(istype(target, /obj/structure/ladder) || istype(target, /obj/item) || isopenturf(target))
 		return FALSE
 	if(istype(target, /obj/effect) || istype(target, /obj/machinery))
 		var/obj/O = target
 		if(O.unacidable)
 			return FALSE
-	if(istype(target, /turf/closed/wall))
+	if(iswallturf(target))
 		var/turf/closed/wall/W = target
 		if(W.hull)
 			return FALSE

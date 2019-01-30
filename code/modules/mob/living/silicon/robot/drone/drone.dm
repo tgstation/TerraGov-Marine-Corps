@@ -111,7 +111,7 @@
 		to_chat(user, "<span class='warning'>The maintenance drone chassis not compatible with \the [W].</span>")
 		return
 
-	else if (istype(W, /obj/item/tool/crowbar))
+	else if(iscrowbar(W))
 		to_chat(user, "The machine is hermetically sealed. You can't open the case.")
 		return
 

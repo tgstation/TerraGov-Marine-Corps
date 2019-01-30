@@ -1,6 +1,6 @@
 /mob/living/carbon/human/examine(mob/user)
 
-	if (isXeno(user))
+	if (isxeno(user))
 		var/msg = "<span class='info'>*---------*\nThis is "
 
 		if(icon)
@@ -214,7 +214,7 @@
 		msg += "[t_He] [t_is] small halfling!\n"
 
 	var/distance = get_dist(user,src)
-	if(istype(user, /mob/dead/observer) || user.stat == DEAD) // ghosts can see anything
+	if(isobserver(user) || user.stat == DEAD) // ghosts can see anything
 		distance = 1
 	if(stat)
 		msg += "<span class='warning'>[t_He] [t_is]n't responding to anything around [t_him] and seems to be asleep.</span>\n"
@@ -551,7 +551,7 @@
 
 //Helper procedure. Called by /mob/living/carbon/human/examine() and /mob/living/carbon/human/Topic() to determine HUD access to security and medical records.
 /proc/hasHUD(mob/M, hudtype)
-	if(istype(M, /mob/living/carbon/human))
+	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		switch(hudtype)
 			if("security")
@@ -564,7 +564,7 @@
 				return H.mind && H.assigned_squad && H.assigned_squad.squad_leader == H && istype(H.wear_ear, /obj/item/device/radio/headset/almayer/marine)
 			else
 				return 0
-	else if(istype(M, /mob/living/silicon/robot))
+	else if(iscyborg(M))
 		var/mob/living/silicon/robot/R = M
 		switch(hudtype)
 			if("security")

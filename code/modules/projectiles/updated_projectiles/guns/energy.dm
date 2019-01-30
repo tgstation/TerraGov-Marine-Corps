@@ -156,20 +156,20 @@
 
 /obj/item/weapon/gun/energy/plasmarifle/examine(mob/user)
 	. = ..()
-	if(isYautja(user))
+	if(isyautja(user))
 		to_chat(user, "It currently has [cell.charge / charge_cost] shots remaining.")
 	else
 		to_chat(user, "This thing looks like an alien rifle of some kind. Strange.")
 
 /obj/item/weapon/gun/energy/plasmarifle/unique_action(mob/user)
-	if(!isYautja(user))
+	if(!isyautja(user))
 		to_chat(user, "<span class='warning'>You have no idea how this thing works!</span>")
 		return
 	zoom(user)
 	return ..()
 
 /obj/item/weapon/gun/energy/plasmarifle/able_to_fire(mob/user)
-	if(!isYautja(user))
+	if(!isyautja(user))
 		to_chat(user, "<span class='warning'>You have no idea how this thing works!</span>")
 		return
 	return ..()
@@ -200,13 +200,13 @@
 
 /obj/item/weapon/gun/energy/plasmapistol/examine(mob/user)
 	. = ..()
-	if(isYautja(user))
+	if(isyautja(user))
 		to_chat(user, "It currently has [cell.charge / charge_cost] shots remaining.")
 	else
 		to_chat(user, "This thing looks like an alien rifle of some kind. Strange.")
 
 /obj/item/weapon/gun/energy/plasmapistol/able_to_fire(mob/user)
-	if(!isYautja(user))
+	if(!isyautja(user))
 		to_chat(user, "<span class='warning'>You have no idea how this thing works!</span>")
 		return
 	return ..()
@@ -268,7 +268,7 @@
 	..()
 
 /obj/item/weapon/gun/energy/plasma_caster/able_to_fire(mob/user)
-	if(!isYautja(user))
+	if(!isyautja(user))
 		to_chat(user, "<span class='warning'>You have no idea how this thing works!</span>")
 		return
 	return ..()

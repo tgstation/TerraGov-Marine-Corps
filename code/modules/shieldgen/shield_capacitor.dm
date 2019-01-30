@@ -46,7 +46,7 @@
 		s.set_up(5, 1, src)
 		s.start()
 
-	else if(istype(W, /obj/item/tool/wrench))
+	else if(iswrench(W))
 		src.anchored = !src.anchored
 		src.visible_message("<span class='notice'> [bicon(src)] [src] has been [anchored ? "bolted to the floor" : "unbolted from the floor"] by [user].</span>")
 
@@ -77,7 +77,7 @@
 
 /obj/machinery/shield_capacitor/interact(mob/user)
 	if ( (get_dist(src, user) > 1 ) || (stat & (BROKEN)) )
-		if (!istype(user, /mob/living/silicon))
+		if (!issilicon(user))
 			user.unset_interaction()
 			user << browse(null, "window=shield_capacitor")
 			return
