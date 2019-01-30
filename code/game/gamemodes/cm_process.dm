@@ -30,6 +30,9 @@ of predators), but can be added to include variant game modes (like humans vs. h
 /datum/game_mode/proc/check_queen_status(queen_time)
 	return
 
+/datum/game_mode/proc/get_queen_countdown()
+	return
+
 //===================================================\\
 
 				//ANNOUNCE COMPLETION\\

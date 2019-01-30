@@ -226,6 +226,10 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			var/eta_status = EvacuationAuthority.get_status_panel_eta()
 			if(eta_status)
 				stat(null, eta_status)
+		if(ticker?.mode)
+			var/countdown = ticker.mode.get_queen_countdown()
+			if(countdown)
+				stat("Queen Timeout:", countdown)
 
 /mob/dead/observer/verb/reenter_corpse()
 	set category = "Ghost"

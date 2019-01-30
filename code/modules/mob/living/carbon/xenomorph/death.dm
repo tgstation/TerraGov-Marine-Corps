@@ -60,8 +60,10 @@
 						if(isxenolarva(X) || isxenodrone(X))
 							i++
 					if(i > 0)
+						ticker.mode.queen_death_countdown = world.time + QUEEN_DEATH_COUNTDOWN
 						addtimer(CALLBACK(ticker.mode, /datum/game_mode.proc/check_queen_status, hive.queen_time), QUEEN_DEATH_COUNTDOWN)
 					else
+						ticker.mode.queen_death_countdown = world.time + QUEEN_DEATH_NOLARVA
 						addtimer(CALLBACK(ticker.mode, /datum/game_mode.proc/check_queen_status, hive.queen_time), QUEEN_DEATH_NOLARVA)
 		else
 			if(hive.living_xeno_queen && hive.living_xeno_queen.observed_xeno == src)

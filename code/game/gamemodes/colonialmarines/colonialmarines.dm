@@ -158,10 +158,16 @@
 /datum/game_mode/colonialmarines/check_queen_status(queen_time)
 	var/datum/hive_status/hive = hive_datum[XENO_HIVE_NORMAL]
 	hive.xeno_queen_timer = queen_time
+	queen_death_countdown = 0
 	if(!(flags_round_type & MODE_INFESTATION))
 		return
 	if(!round_finished && !hive.living_xeno_queen)
 		round_finished = MODE_INFESTATION_M_MINOR
+
+
+/datum/game_mode/colonialmarines/get_queen_countdown()
+	var/eta = (queen_death_countdown - world.time) * 0.1
+	return "[(eta / 60) % 60]:[add_zero(num2text(eta % 60), 2)]"
 
 
 /datum/game_mode/colonialmarines/check_finished()
