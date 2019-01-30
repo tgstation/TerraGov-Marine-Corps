@@ -354,63 +354,41 @@
 		X.layer = MOB_LAYER
 		to_chat(X, "<span class='notice'>You have stopped hiding.</span>")
 
-/datum/action/xeno_action/emit_pheromones
-	name = "Emit Pheromones (30)"
+/datum/action/xeno_action/toggle_pheromones
+	name = "Open/Collapse Pheromone Options"
 	action_icon_state = "emit_pheromones"
-	plasma_cost = 30
+	plasma_cost = 0
+	var/PheromonesOpen = FALSE //If the  pheromone choices buttons are already displayed or not
 
-/datum/action/xeno_action/emit_pheromones/can_use_action()
+/datum/action/xeno_action/toggle_pheromones/can_use_action()
+		return TRUE //No actual gameplay impact; should be able to collapse or open pheromone choices
+
+/datum/action/xeno_action/toggle_pheromones/action_activate()
 	var/mob/living/carbon/Xenomorph/X = owner
-	if(X && !X.is_mob_incapacitated() && !X.lying && !X.buckled && (!X.current_aura || X.plasma_stored >= plasma_cost) && !X.stagger && !X.on_fire) //Can't emit pheromones while on fire!
-		return TRUE
-
-/datum/action/xeno_action/emit_pheromones/action_activate()
-	var/mob/living/carbon/Xenomorph/X = owner
-	if(!X.check_state())
-		return
-
-	if(X.current_aura)
-		X.current_aura = null
-		X.visible_message("<span class='xenowarning'>\The [X] stops emitting pheromones.</span>", \
-		"<span class='xenowarning'>You stop emitting pheromones.</span>", null, 5)
+	if(PheromonesOpen)
+		PheromonesOpen = FALSE
+		to_chat(X, "<span class ='xenonotice'>\You collaspe the pheromone button choices.</span>")
+		var/list/subtypeactions = subtypesof(/datum/action/xeno_action/pheromones)
+		for(var/datum/action/xeno_action/pheromones/action in subtypeactions)
+			X.actions -= action
 	else
-		if(!X.check_plasma(30))
-			return
-		var/choice = input(X, "Choose a pheromone") in X.xeno_caste.aura_allowed + "help" + "cancel"
-		if(choice == "help")
-			to_chat(X, "<span class='notice'><br>Pheromones provide a buff to all Xenos in range at the cost of some stored plasma every second. Burning Xenos can neither emit nor benefit from pheromones. Effects are as follows:<br><B>Frenzy</B> - Increased run speed, damage and tackle chance.<br><B>Warding</B> - Increased armor, reduced incoming damage and critical bleedout.<br><B>Recovery</B> - Increased plasma and health regeneration.<br></span>")
-			return
-		if(choice == "cancel") return
-		if(!X.check_state()) return
-		if(X.current_aura) //If they are stacking windows, disable all input
-			return
-		if(!X.check_plasma(30))
-			return
-		X.use_plasma(30)
-		X.current_aura = choice
-		X.visible_message("<span class='xenowarning'>\The [X] begins to emit strange-smelling pheromones.</span>", \
-		"<span class='xenowarning'>You begin to emit '[choice]' pheromones.</span>", null, 5)
-		playsound(X.loc, "alien_drool", 25)
+		PheromonesOpen = TRUE
+		to_chat(X, "<span class ='xenonotice'>\You open the pheromone button choices.</span>")
+		var/list/subtypeactions = subtypesof(/datum/action/xeno_action/pheromones)
+		for(var/datum/action/xeno_action/pheromones/action in subtypeactions)
+			X.actions += action
 
-	if(X.hivenumber && X.hivenumber <= hive_datum.len)
-		var/datum/hive_status/hive = hive_datum[X.hivenumber]
-
-		if(isxenoqueen(X) && hive.xeno_leader_list.len && X.anchored)
-			var/mob/living/carbon/Xenomorph/Queen/Q = X
-			for(var/mob/living/carbon/Xenomorph/L in hive.xeno_leader_list)
-				L.handle_xeno_leader_pheromones(Q)
-
-/datum/action/xeno_action/emit_recovery
+/datum/action/xeno_action/pheromones/emit_recovery //Type casted for easy removal
 	name = "Emit Recovery Pheromones (30)"
 	action_icon_state = "emit_recovery"
 	plasma_cost = 30
 
-/datum/action/xeno_action/emit_recovery/can_use_action()
+/datum/action/xeno_action/pheromones/emit_recovery/can_use_action()
 	var/mob/living/carbon/Xenomorph/X = owner
 	if(X && !X.is_mob_incapacitated() && !X.lying && !X.buckled && (!X.current_aura || X.plasma_stored >= plasma_cost) && !X.stagger && !X.on_fire) //Can't emit pheromones while on fire!
 		return TRUE
 
-/datum/action/xeno_action/emit_recovery/action_activate()
+/datum/action/xeno_action/pheromones/emit_recovery/action_activate()
 	var/mob/living/carbon/Xenomorph/X = owner
 	if(!X.check_state())
 		return
@@ -433,17 +411,17 @@
 				for(var/mob/living/carbon/Xenomorph/L in hive.xeno_leader_list)
 					L.handle_xeno_leader_pheromones(Q)
 
-/datum/action/xeno_action/emit_warding
+/datum/action/xeno_action/pheromones/emit_warding
 	name = "Emit Warding Pheromones (30)"
 	action_icon_state = "emit_warding"
 	plasma_cost = 30
 
-/datum/action/xeno_action/emit_warding/can_use_action()
+/datum/action/xeno_action/pheromones/emit_warding/can_use_action()
 	var/mob/living/carbon/Xenomorph/X = owner
 	if(X && !X.is_mob_incapacitated() && !X.lying && !X.buckled && (!X.current_aura || X.plasma_stored >= plasma_cost) && !X.stagger && !X.on_fire) //Can't emit pheromones while on fire!
 		return TRUE
 
-/datum/action/xeno_action/emit_warding/action_activate()
+/datum/action/xeno_action/pheromones/emit_warding/action_activate()
 	var/mob/living/carbon/Xenomorph/X = owner
 	if(!X.check_state())
 		return
@@ -466,17 +444,17 @@
 			for(var/mob/living/carbon/Xenomorph/L in hive.xeno_leader_list)
 				L.handle_xeno_leader_pheromones(Q)
 
-/datum/action/xeno_action/emit_frenzy
+/datum/action/xeno_action/pheromones/emit_frenzy
 	name = "Emit Frenzy Pheromones (30)"
 	action_icon_state = "emit_frenzy"
 	plasma_cost = 30
 
-/datum/action/xeno_action/emit_frenzy/can_use_action()
+/datum/action/xeno_action/pheromones/emit_frenzy/can_use_action()
 	var/mob/living/carbon/Xenomorph/X = owner
 	if(X && !X.is_mob_incapacitated() && !X.lying && !X.buckled && (!X.current_aura || X.plasma_stored >= plasma_cost) && !X.stagger && !X.on_fire) //Can't emit pheromones while on fire!
 		return TRUE
 
-/datum/action/xeno_action/emit_frenzy/action_activate()
+/datum/action/xeno_action/pheromones/emit_frenzy/action_activate()
 	var/mob/living/carbon/Xenomorph/X = owner
 	if(!X.check_state())
 		return
