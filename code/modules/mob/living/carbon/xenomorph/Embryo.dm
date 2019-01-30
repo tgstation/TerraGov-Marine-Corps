@@ -13,7 +13,7 @@
 
 /obj/item/alien_embryo/New()
 	..()
-	if(istype(loc, /mob/living))
+	if(isliving(loc))
 		affected_mob = loc
 		affected_mob.status_flags |= XENO_HOST
 		START_PROCESSING(SSobj, src)
@@ -150,7 +150,7 @@
 	// Spawn the larva
 	var/mob/living/carbon/Xenomorph/Larva/new_xeno
 
-	if(isYautja(affected_mob))
+	if(isyautja(affected_mob))
 		new_xeno = new /mob/living/carbon/Xenomorph/Larva/predalien(affected_mob)
 	else
 		new_xeno = new(affected_mob)
@@ -193,7 +193,7 @@
 		victim.update_burst()
 		return
 
-	if(isYautja(victim)) victim.emote("roar")
+	if(isyautja(victim)) victim.emote("roar")
 	else victim.emote("scream")
 	forceMove(get_turf(victim)) //moved to the turf directly so we don't get stuck inside a cryopod or another mob container.
 	playsound(src, pick('sound/voice/alien_chestburst.ogg','sound/voice/alien_chestburst2.ogg'), 25)

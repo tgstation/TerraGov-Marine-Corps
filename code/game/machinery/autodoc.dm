@@ -627,7 +627,7 @@
 		playsound(loc,'sound/machines/buzz-two.ogg', 25, 1)
 		return
 	if(occupant)
-		if(isXeno(usr) && !surgery) // let xenos eject people hiding inside; a xeno ejecting someone during surgery does so like someone untrained
+		if(isxeno(usr) && !surgery) // let xenos eject people hiding inside; a xeno ejecting someone during surgery does so like someone untrained
 			log_admin("[key_name(usr)] ejected [key_name(occupant)] from the autodoc.")
 			message_admins("[ADMIN_TPMONTY(usr)] ejected [ADMIN_TPMONTY(occupant)] from the autodoc.")
 			go_out(AUTODOC_NOTICE_XENO_FUCKERY)

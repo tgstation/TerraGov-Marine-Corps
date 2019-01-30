@@ -84,7 +84,7 @@ var/global/list/holodeck_programs = list(
 	Topic(href, href_list)
 		if(..())
 			return
-		if((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))) || (istype(usr, /mob/living/silicon)))
+		if((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))) || issilicon(usr))
 			usr.set_interaction(src)
 
 			if(href_list["program"])
@@ -186,7 +186,7 @@ var/global/list/holodeck_programs = list(
 
 /obj/machinery/computer/HolodeckControl/proc/checkInteg(var/area/A)
 	for(var/turf/T in A)
-		if(istype(T, /turf/open/space))
+		if(isspaceturf(T))
 			return 0
 
 	return 1
@@ -348,11 +348,11 @@ var/global/list/holodeck_programs = list(
 			user.visible_message("<span class='danger'>[user] puts [M] on the table.</span>")
 		return
 
-	if (istype(W, /obj/item/tool/wrench))
+	if (iswrench(W))
 		to_chat(user, "It's a holotable!  There are no bolts!")
 		return
 
-	if(isrobot(user))
+	if(iscyborg(user))
 		return
 
 	..()
@@ -540,6 +540,6 @@ var/global/list/holodeck_programs = list(
 	return
 
 /obj/structure/rack/holorack/attackby(obj/item/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/tool/wrench))
+	if (iswrench(W))
 		to_chat(user, "It's a holorack!  You can't unwrench it!")
 		return

@@ -21,7 +21,7 @@
 
 
 	check_eye(mob/user)
-		if (user.is_mob_incapacitated() || ((get_dist(user, src) > 1 || !( user.canmove ) || is_blind(user)) && !istype(user, /mob/living/silicon))) //user can't see - not sure why canmove is here.
+		if (user.is_mob_incapacitated() || ((get_dist(user, src) > 1 || !( user.canmove ) || is_blind(user)) && !issilicon(user))) //user can't see - not sure why canmove is here.
 			user.unset_interaction()
 			return
 		else if ( !current || !current.can_use() ) //camera doesn't work
@@ -92,7 +92,7 @@
 			A.client.eye = A.eyeobj
 			return 1
 
-		if (!C.can_use() || user.is_mob_incapacitated() || (get_dist(user, src) > 1 || user.interactee != src || is_blind(user) || !( user.canmove ) && !istype(user, /mob/living/silicon)))
+		if (!C.can_use() || user.is_mob_incapacitated() || (get_dist(user, src) > 1 || user.interactee != src || is_blind(user) || !( user.canmove ) && !issilicon(user)))
 			return 0
 		src.current = C
 		use_power(50)
@@ -109,7 +109,7 @@
 		else if(ismob(A))
 			if(ishuman(A))
 				jump_to = locate() in A:head
-			else if(isrobot(A))
+			else if(iscyborg(A))
 				jump_to = A:camera
 		else if(isobj(A))
 			jump_to = locate() in A

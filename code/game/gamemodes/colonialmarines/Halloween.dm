@@ -185,7 +185,7 @@
 //It does NOT check for valid species or marines. vs. survivors.
 /datum/game_mode/Halloween/proc/count_humans()
 	var/human_count = 0
-	for(var/mob/living/carbon/human/H in GLOB.alive_mob_list)
+	for(var/mob/living/carbon/human/H in GLOB.alive_human_list)
 		if(H) //Prevent any runtime errors
 			if(H.client && istype(H) && H.stat != DEAD && !(H.status_flags & XENO_HOST) && H.z != 0 && !istype(H.loc,/turf/space)) // If they're connected/unghosted and alive and not debrained
 				if(H.species != "Yautja") // Preds don't count in round end.
@@ -200,7 +200,7 @@
 //Played by a person, is not dead, is not in a closet, is not in space.
 /datum/game_mode/Halloween/proc/count_xenos()
 	var/xeno_count = 0
-	for(var/mob/living/carbon/Xenomorph/X in GLOB.alive_mob_list)
+	for(var/mob/living/carbon/Xenomorph/X in GLOB.alive_xeno_list)
 		if(X) //Prevent any runtime errors
 			if(X.client && istype(X) && X.stat != DEAD && X.z != 0 && !istype(X.loc,/turf/space)) // If they're connected/unghosted and alive and not debrained
 				xeno_count += 1 //Add them to the amount of people who're alive.

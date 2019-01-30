@@ -13,7 +13,6 @@
 	var/c_tag_order = 999
 	var/status = 1.0
 	anchored = 1.0
-	var/panel_open = 0 // 0 = Closed / 1 = Open
 	var/invuln = null
 	var/bugged = FALSE
 	var/obj/item/frame/camera/assembly = null
@@ -151,7 +150,7 @@
 			itemname = P.name
 			info = P.notehtml
 		to_chat(U, "You hold \a [itemname] up to the camera ...")
-		for(var/mob/living/silicon/ai/O in GLOB.alive_mob_list)
+		for(var/mob/living/silicon/ai/O in GLOB.ai_list)
 			if(!O.client)
 				continue
 			if(U.name == "Unknown")
@@ -209,13 +208,13 @@
 
 /obj/machinery/camera/proc/triggerCameraAlarm()
 	alarm_on = TRUE
-	for(var/mob/living/silicon/S in GLOB.mob_list)
+	for(var/mob/living/silicon/S in GLOB.silicon_mobs)
 		S.triggerAlarm("Camera", get_area(src), list(src), src)
 
 
 /obj/machinery/camera/proc/cancelCameraAlarm()
 	alarm_on = FALSE
-	for(var/mob/living/silicon/S in GLOB.mob_list)
+	for(var/mob/living/silicon/S in GLOB.silicon_mobs)
 		S.cancelAlarm("Camera", get_area(src), src)
 
 /obj/machinery/camera/proc/can_use()

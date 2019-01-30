@@ -47,7 +47,7 @@ using metal and glass, it uses glass and reagents (usually sulfuric acis).
 	attackby(var/obj/item/O as obj, var/mob/user as mob)
 		if (shocked)
 			shock(user,50)
-		if (istype(O, /obj/item/tool/screwdriver))
+		if (isscrewdriver(O))
 			if (!opened)
 				opened = 1
 				if(linked_console)
@@ -61,7 +61,7 @@ using metal and glass, it uses glass and reagents (usually sulfuric acis).
 				to_chat(user, "You close the maintenance hatch of [src].")
 			return
 		if (opened)
-			if(istype(O, /obj/item/tool/crowbar))
+			if(iscrowbar(O))
 				playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
 				var/obj/machinery/constructable_frame/machine_frame/M = new /obj/machinery/constructable_frame/machine_frame(src.loc)
 				M.state = 2

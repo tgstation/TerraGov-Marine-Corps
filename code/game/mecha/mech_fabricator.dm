@@ -183,11 +183,11 @@
 		time_coeff = diff
 
 /obj/machinery/mecha_part_fabricator/proc/operation_allowed(mob/M)
-	if(isrobot(M) || isAI(M))
+	if(iscyborg(M) || isAI(M))
 		return 1
 	if(!istype(req_access) || !req_access.len)
 		return 1
-	else if(istype(M, /mob/living/carbon/human))
+	else if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		for(var/ID in list(H.get_active_held_item(), H.wear_id, H.belt))
 			if(src.check_access(ID))
@@ -740,7 +740,7 @@
 			to_chat(user, "You close the maintenance hatch of [src].")
 		return
 	if (opened)
-		if(istype(W, /obj/item/tool/crowbar))
+		if(iscrowbar(W))
 			playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
 			var/obj/machinery/constructable_frame/machine_frame/M = new /obj/machinery/constructable_frame/machine_frame(src.loc)
 			M.state = 2

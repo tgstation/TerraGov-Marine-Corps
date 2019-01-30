@@ -104,7 +104,7 @@
 	..()
 
 /obj/machinery/atmospherics/trinary/filter/attackby(var/obj/item/W as obj, var/mob/user as mob)
-	if (!istype(W, /obj/item/tool/wrench))
+	if (!iswrench(W))
 		return ..()
 
 	playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)

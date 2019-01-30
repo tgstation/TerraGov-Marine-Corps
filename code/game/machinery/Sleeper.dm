@@ -286,7 +286,7 @@
 		return
 
 	else if(istype(W, /obj/item/grab))
-		if(isXeno(user))
+		if(isxeno(user))
 			return
 		var/obj/item/grab/G = W
 		if(!ismob(G.grabbed_thing))

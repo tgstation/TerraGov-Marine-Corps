@@ -949,7 +949,7 @@ Defined in conflicts.dm of the #defines folder.
 
 		fire_mod = 1
 
-		if(isXeno(M))
+		if(isxeno(M))
 			var/mob/living/carbon/Xenomorph/X = M
 			if(X.xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 				continue
@@ -971,7 +971,7 @@ Defined in conflicts.dm of the #defines folder.
 
 		M.adjust_fire_stacks(rand(3,5))
 		M.adjustFireLoss(rand(20,40) * fire_mod) //fwoom!
-		to_chat(M, "[isXeno(M)?"<span class='xenodanger'>":"<span class='highdanger'>"]Augh! You are roasted by the flames!")
+		to_chat(M, "[isxeno(M)?"<span class='xenodanger'>":"<span class='highdanger'>"]Augh! You are roasted by the flames!")
 
 /obj/item/attachable/attached_gun/shotgun
 	name = "masterkey shotgun"

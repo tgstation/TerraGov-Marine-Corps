@@ -182,6 +182,7 @@
 		return
 
 	if(!istype(H) || isXeno(H) || isrobot(H) || isSynth(H) || H.stat == DEAD)
+	if(!istype(H) || isxeno(H) || iscyborg(H))
 		to_chat(src, "<span class='xenowarning'>Your sting won't affect this target!</span>")
 		return
 

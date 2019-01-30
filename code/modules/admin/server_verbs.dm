@@ -232,30 +232,6 @@
 	message_admins("[ADMIN_TPMONTY(usr)] has [CONFIG_GET(flag/allow_synthetic_gun_use) ? "enabled" : "disabled"] synthetic weapon use.")
 
 
-/datum/admins/proc/adjust_weapon_mult()
-	set category = "Server"
-	set name = "Adjust Weapon Multipliers"
-	set desc = "Adjusts the global weapons multipliers."
-
-	if(!check_rights(R_SERVER))
-		return
-
-	if(!config)
-		return
-
-	var/accuracy = input("Select the new accuracy multiplier.", "ACCURACY MULTIPLIER", TRUE) as num
-	var/damage = input("Select the new damage multiplier.", "DAMAGE MULTIPLIER", TRUE) as num
-
-	if(accuracy < 0 || damage < 0)
-		return
-
-	CONFIG_SET(number/combat_define/proj_base_accuracy_mult, accuracy)
-	CONFIG_SET(number/combat_define/proj_base_damage_mult, damage)
-
-	log_admin("[key_name(usr)] changed global accuracy multiplier to [accuracy] and global damage multiplier to [damage].")
-	message_admins("[ADMIN_TPMONTY(usr)] changed global accuracy multiplier to [accuracy] and global damage multiplier to [damage].")
-
-
 /datum/admins/proc/reload_admins()
 	set category = "Server"
 	set name = "Reload Admins"

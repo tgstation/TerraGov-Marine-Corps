@@ -16,14 +16,14 @@
 	if(..(user))
 		return
 	//src.add_fingerprint(user)	//shouldn't need fingerprints just for looking at it.
-	if(!allowed(user) && !isXeno(user))
+	if(!allowed(user) && !isxeno(user))
 		to_chat(user, "<span class='warning'>Access denied.</span>")
 		return 1
 
 	user.set_interaction(src)
 
 	var/datum/shuttle/ferry/shuttle = shuttle_controller.shuttles[shuttle_tag]
-	if(!isXeno(user) && (onboard || z == 1) && !shuttle.iselevator)
+	if(!isxeno(user) && (onboard || z == 1) && !shuttle.iselevator)
 		if(shuttle.queen_locked)
 			if(world.time < shuttle.last_locked + SHUTTLE_LOCK_COOLDOWN)
 				to_chat(user, "<span class='warning'>You can't seem to re-enable remote control, some sort of safety cooldown is in place. Please wait another [round((shuttle.last_locked + SHUTTLE_LOCK_COOLDOWN - world.time)/600)] minutes before trying again.</span>")
@@ -144,7 +144,7 @@
 			else
 				to_chat(usr, "<span class='warning'>The shuttle's engines are still recharging and cooling down.</span>")
 			return
-		if(shuttle.queen_locked && !isXenoQueen(usr))
+		if(shuttle.queen_locked && !isxenoqueen(usr))
 			to_chat(usr, "<span class='warning'>The shuttle isn't responding to prompts, it looks like remote control was disabled.</span>")
 			return
 		//Comment to test
@@ -158,7 +158,7 @@
 				return
 
 			//Alert code is the Queen is the one calling it, the shuttle is on the ground and the shuttle still allows alerts
-			if(isXenoQueen(usr) && shuttle.location == 1 && shuttle.alerts_allowed && onboard && !shuttle.iselevator)
+			if(isxenoqueen(usr) && shuttle.location == 1 && shuttle.alerts_allowed && onboard && !shuttle.iselevator)
 				var/i = alert("Warning: Once you launch the shuttle you will not be able to bring it back. Confirm anyways?", "WARNING", "Yes", "No")
 				if(shuttle.moving_status != SHUTTLE_IDLE || shuttle.locked || shuttle.location != 1 || !shuttle.alerts_allowed || !shuttle.queen_locked || shuttle.recharging) return
 				if(istype(shuttle, /datum/shuttle/ferry/marine) && src.z == 1 && i == "Yes") //Shit's about to kick off now
@@ -177,7 +177,7 @@
 				else
 					shuttle.launch(src)
 
-			else if(!onboard && isXenoQueen(usr) && shuttle.location == 1 && !shuttle.iselevator)
+			else if(!onboard && isxenoqueen(usr) && shuttle.location == 1 && !shuttle.iselevator)
 				to_chat(usr, "<span class='alert'>Hrm, that didn't work. Maybe try the one on the ship?</span>")
 				return
 			else

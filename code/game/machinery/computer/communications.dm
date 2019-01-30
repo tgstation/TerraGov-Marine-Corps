@@ -183,7 +183,6 @@
 
 		if("distress")
 			if(state == STATE_DISTRESS)
-				//Comment to test
 				if(world.time < DISTRESS_TIME_LOCK)
 					to_chat(usr, "<span class='warning'>The distress beacon cannot be launched this early in the operation. Please wait another [round((DISTRESS_TIME_LOCK-world.time)/600)] minutes before trying again.</span>")
 					return FALSE
@@ -199,9 +198,13 @@
 					to_chat(usr, "<span class='warning'>The distress beacon is currently recalibrating.</span>")
 					return FALSE
 
-				var/L[] = ticker.mode.count_humans_and_xenos()
-				var/M[] = ticker.mode.count_humans_and_xenos(list(MAIN_SHIP_Z_LEVEL))
-				if((L[2] < round(L[1] * 0.8)) && (M[2] < round(M[1] * 0.5))) //If there's less humans (weighted) than xenos, humans get home-turf advantage
+				var/Ship[] = ticker.mode.count_humans_and_xenos()
+				var/ShipMarines[] = Ship[1]
+				var/ShipXenos[] = Ship[2]
+				var/Planet[] = ticker.mode.count_humans_and_xenos(list(MAIN_SHIP_Z_LEVEL))
+				var/PlanetMarines[] = Planet[1]
+				var/PlanetXenos[] = Planet[2]
+				if((PlanetXenos < round(PlanetMarines * 0.8)) && (ShipXenos < round(ShipMarines * 0.5))) //If there's less humans (weighted) than xenos, humans get home-turf advantage
 					log_game("[key_name(usr)] has attemped to call a distress beacon, but it was denied due to lack of threat.")
 					to_chat(usr, "<span class='warning'>The sensors aren't picking up enough of a threat to warrant a distress beacon.</span>")
 					return FALSE
@@ -221,10 +224,11 @@
 						return FALSE
 					else
 						ticker.mode.activate_distress()
-						state = STATE_DISTRESS
 						log_game("A distress beacon requested by [key_name_admin(usr)] was automatically sent due to not receiving an answer within 60 seconds.")
 						message_admins("A distress beacon requested by [ADMIN_TPMONTY(usr)] was automatically sent due to not receiving an answer within 60 seconds.")
 						return TRUE
+			else
+				state = STATE_DISTRESS
 
 		if("messagelist")
 			currmsg = 0
@@ -327,7 +331,7 @@
 		dat += "<B>Evacuation in Progress</B>\n<BR>\nETA: [EvacuationAuthority.get_status_panel_eta()]<BR>"
 
 /*
-	if(istype(user, /mob/living/silicon))
+	if(issilicon(user))
 		var/dat2 = interact_ai(user) // give the AI a different interact proc to limit its access
 		if(dat2)
 			dat +=  dat2

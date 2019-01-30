@@ -176,7 +176,7 @@ var/list/alldepartments = list()
 			user.transferItemToLoc(idcard, src)
 			scan = idcard
 
-	else if(istype(O, /obj/item/tool/wrench))
+	else if(iswrench(O))
 		playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 		anchored = !anchored
 		to_chat(user, "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>")
@@ -186,7 +186,6 @@ var/list/alldepartments = list()
 /proc/Centcomm_fax(var/originfax, var/sent, var/sentname, var/mob/sender)
 	var/faxcontents = "[sent]"
 	fax_contents += faxcontents
-	TGMCFaxes.Add("<a href='?src=[REF(usr.client.holder)];[HrefToken(TRUE)];faxview=[REF(faxcontents)]'> view message at [world.timeofday]</a> <a href='?src=[REF(usr.client.holder)];[HrefToken(TRUE)];faxreply=[REF(sender)];originfax=[REF(originfax)]'>REPLY</a>")
 	for(var/client/C in GLOB.admins)
 		if(check_other_rights(C, R_ADMIN, FALSE))
 			to_chat(C, "<span class='notice'><b><font color='#1F66A0'>TGMC FAX: </font>[ADMIN_FULLMONTY(sender)] (<a href='?src=[REF(C.holder)];[HrefToken(TRUE)];faxreply=[REF(sender)];originfax=[REF(originfax)]'>REPLY</a>)</b>: Receiving '[sentname]' via secure connection ... <a href='?src=[REF(C.holder)];[HrefToken(TRUE)];faxview=[REF(faxcontents)]'>view message</a></span>")
@@ -199,7 +198,6 @@ var/list/alldepartments = list()
 /proc/Solgov_fax(var/originfax, var/sent, var/sentname, var/mob/sender)
 	var/faxcontents = "[sent]"
 	fax_contents += faxcontents
-	CLFaxes.Add("<a href='?src=[REF(usr.client.holder)];[HrefToken(TRUE)];faxview=[REF(faxcontents)]'>view message at [world.timeofday]</a> <a href='?src=[REF(usr.client.holder)];[HrefToken(TRUE)];faxreply=[REF(sender)];originfax=[REF(originfax)]'>REPLY</a>")
 	for(var/client/C in GLOB.admins)
 		if(check_other_rights(C, R_ADMIN, FALSE))
 			to_chat(C, "<span class='notice'><b><font color='#1F66A0'>NANOTRASEN FAX: </font>[ADMIN_FULLMONTY(sender)] (<a href='?src=[REF(C.holder)];[HrefToken(TRUE)];faxreply=[REF(sender)];originfax=[REF(originfax)]'>REPLY</a>)</b>: Receiving '[sentname]' via secure connection ... <a href='?src=[REF(C.holder)];[HrefToken(TRUE)];faxview=[REF(faxcontents)]'>view message</a></span>")

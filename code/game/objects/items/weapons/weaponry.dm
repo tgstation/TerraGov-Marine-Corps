@@ -149,7 +149,7 @@
 		qdel(src)
 		update_icon(user)
 
-	else if(istype(I, /obj/item/tool/wirecutters))
+	else if(iswirecutter(I))
 		var/obj/item/weapon/baton/cattleprod/P = new /obj/item/weapon/baton/cattleprod
 
 		user.put_in_hands(P)

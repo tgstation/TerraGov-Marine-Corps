@@ -107,7 +107,7 @@
 	aliensurvivors = 0
 
 	//For each survivor, add one to the count. Should work accurately enough.
-	for(var/mob/living/carbon/human/H in GLOB.alive_mob_list)
+	for(var/mob/living/carbon/human/H in GLOB.alive_human_list)
 		var/nestedhost = (H.status_flags & XENO_HOST) && H.buckled
 		if(H) //Prevent any runtime errors
 			if(H.client && H.brain_op_stage != 4 && H.stat != DEAD && !nestedhost) // If they're connected/unghosted, alive, not debrained, and not a nested host
@@ -226,7 +226,7 @@ datum/game_mode/infestation/proc/check_alien_victory()
 /datum/game_mode/proc/auto_declare_completion_infestation()
 	if( aliens.len || (ticker && istype(ticker.mode,/datum/game_mode/infestation)) )
 		var/text = "<FONT size = 2><B>The aliens were:</B></FONT>"
-		for(var/mob/living/L in GLOB.mob_list)
+		for(var/mob/living/L in GLOB.mob_living_list)
 			if(L.mind && L.mind.assigned_role)
 				if(L.mind.assigned_role == "Alien")
 					var/mob/M = L.mind.current
