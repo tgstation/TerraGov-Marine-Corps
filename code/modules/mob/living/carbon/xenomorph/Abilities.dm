@@ -367,16 +367,18 @@
 	var/mob/living/carbon/Xenomorph/X = owner
 	if(PheromonesOpen)
 		PheromonesOpen = FALSE
-		to_chat(X, "<span class ='xenonotice'>You collaspe the pheromone button choices.</span>")
+		to_chat(X, "<span class ='xenonotice'>You collapse the pheromone button choices.</span>")
 		var/list/subtypeactions = subtypesof(/datum/action/xeno_action/pheromones)
-		for(var/datum/action/xeno_action/pheromones/action in subtypeactions)
-			X.actions -= action
+		for(var/path in subtypeactions)
+			var/datum/action/xeno_action/pheromones/A = new path()
+			A.remove_action(X)
 	else
 		PheromonesOpen = TRUE
 		to_chat(X, "<span class ='xenonotice'>You open the pheromone button choices.</span>")
 		var/list/subtypeactions = subtypesof(/datum/action/xeno_action/pheromones)
-		for(var/datum/action/xeno_action/pheromones/action in subtypeactions)
-			X.actions += action
+		for(var/path in subtypeactions)
+			var/datum/action/xeno_action/pheromones/A = new path()
+			A.give_action(X)
 
 /datum/action/xeno_action/pheromones/emit_recovery //Type casted for easy removal
 	name = "Emit Recovery Pheromones (30)"
