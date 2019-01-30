@@ -7,6 +7,11 @@
 	var/flags_barrier = 0
 	anchored = TRUE
 
+	var/destructible = TRUE
+	var/damage = 0
+	var/damage_cap = 1000 //The point where things start breaking down.
+
+
 /obj/structure/New()
 	..()
 	GLOB.structure_list += src
@@ -250,3 +255,20 @@
 		to_chat(user, "<span class='notice'>You need hands for this.</span>")
 		return FALSE
 	return TRUE
+
+
+//Damage
+/obj/structure/proc/take_damage(dam)
+	if(!destructible)
+		return
+
+	if(!dam)
+		return
+
+	damage = max(0, damage + dam)
+
+	if(damage >= damage_cap)
+		playsound(src, 'sound/effects/metal_crash.ogg', 35)
+		qdel(src)
+	else
+		update_icon()
