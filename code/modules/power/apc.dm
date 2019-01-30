@@ -545,7 +545,7 @@
 					update_icon()
 				else
 					to_chat(user, "<span class='warning'>You fail to [ locked ? "unlock" : "lock"] [src]'s interface.</span>")
-	else if(iswire(W) && !terminal && opened && has_electronics != 2)
+	else if(iscablecoil(W) && !terminal && opened && has_electronics != 2)
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [src].</span>",
 			"<span class='notice'>You fumble around figuring out what to do with [src].</span>")
@@ -901,7 +901,7 @@
 			if(aidisabled == 0)
 				aidisabled = 1
 			updateDialog()
-	if(isXeno(usr)) //So aliens don't see this when they cut all of the wires.
+	if(isxeno(usr)) //So aliens don't see this when they cut all of the wires.
 		return
 	interact(usr)
 	updateUsrDialog()
@@ -1002,7 +1002,7 @@
 	return 1
 
 /obj/machinery/power/apc/Topic(href, href_list, var/usingUI = 1)
-	if(!(isrobot(usr) && (href_list["apcwires"] || href_list["pulse"])))
+	if(!(iscyborg(usr) && (href_list["apcwires"] || href_list["pulse"])))
 		if(!can_use(usr, 1))
 			return 0
 	add_fingerprint(usr)
@@ -1014,7 +1014,7 @@
 
 	if(href_list["apcwires"])
 		var/t1 = text2num(href_list["apcwires"])
-		if(!( istype(usr.get_active_held_item(), /obj/item/tool/wirecutters) ))
+		if(!iswirecutter(usr.get_active_held_item()))
 			to_chat(usr, "<span class='warning'>You need wirecutters!</span>")
 			return 0
 		if(isWireColorCut(t1))
@@ -1023,7 +1023,7 @@
 			cut(t1)
 	else if(href_list["pulse"])
 		var/t1 = text2num(href_list["pulse"])
-		if(!istype(usr.get_active_held_item(), /obj/item/device/multitool))
+		if(!ismultitool(usr.get_active_held_item()))
 			to_chat(usr, "<span class='warning'>You need a multitool!</span>")
 			return 0
 		if(isWireColorCut(t1))

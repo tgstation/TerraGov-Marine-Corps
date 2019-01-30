@@ -219,7 +219,7 @@
 
 		fire_mod = 1
 
-		if(isXeno(M))
+		if(isxeno(M))
 			var/mob/living/carbon/Xenomorph/X = M
 			if(X.xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 				continue
@@ -250,7 +250,7 @@
 		M.adjust_fire_stacks(rand(5,burn*2))
 		M.IgniteMob()
 
-		to_chat(M, "[isXeno(M)?"<span class='xenodanger'>":"<span class='highdanger'>"]Augh! You are roasted by the flames!")
+		to_chat(M, "[isxeno(M)?"<span class='xenodanger'>":"<span class='highdanger'>"]Augh! You are roasted by the flames!")
 
 /obj/item/weapon/gun/flamer/proc/triangular_flame(var/atom/target, var/mob/living/user, var/burntime, var/burnlevel)
 	set waitfor = 0
@@ -477,7 +477,7 @@
 							var/armor_block = C.run_armor_check("chest", "energy")
 							C.apply_damage(fire_damage, BURN, null, armor_block)
 							C.IgniteMob()
-							C.visible_message("<span class='danger'>[C] bursts into flames!</span>","[isXeno(C)?"<span class='xenodanger'>":"<span class='highdanger'>"]You burst into flames!</span>")
+							C.visible_message("<span class='danger'>[C] bursts into flames!</span>","[isxeno(C)?"<span class='xenodanger'>":"<span class='highdanger'>"]You burst into flames!</span>")
 
 
 /obj/flamer_fire/Destroy()
@@ -511,7 +511,7 @@
 
 /mob/living/carbon/human/flamer_fire_crossed(var/burnlevel, var/firelevel, var/fire_mod=1)
 	..()
-	if(isXeno(pulledby))
+	if(isxeno(pulledby))
 		var/mob/living/carbon/Xenomorph/X = pulledby
 		X.flamer_fire_crossed(burnlevel, firelevel)
 

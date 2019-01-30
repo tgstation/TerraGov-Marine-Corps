@@ -402,7 +402,7 @@ var/savefile/Banlist
 	Banlist.cd = "/base"
 	for(var/A in Banlist.dir)
 		Banlist.cd = "/base/[A]"
-		if(!Banlist["key"] || !Banlist["id"])
+		if(!Banlist["key"] && !Banlist["id"])
 			RemoveBan(A)
 			log_admin_private("Invalid Ban.")
 			message_admins("Invalid Ban.")

@@ -198,7 +198,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 	if(!istype(user) || delay <= 0)
 		return FALSE
 	var/mob/living/L
-	if(istype(user, /mob/living))
+	if(isliving(user))
 		L = user
 	var/image/busy_icon
 	busy_icon = get_busy_icon(BUSY_ICON_HOSTILE)

@@ -81,7 +81,7 @@
 	if(CONFIG_GET(flag/objectives_disabled))
 		return
 
-	if(istype(traitor.current, /mob/living/silicon))
+	if(issilicon(traitor.current))
 		var/datum/objective/assassinate/kill_objective = new
 		kill_objective.owner = traitor
 		kill_objective.find_target()
@@ -121,7 +121,7 @@
 
 
 /datum/game_mode/proc/finalize_traitor(var/datum/mind/traitor)
-	if (istype(traitor.current, /mob/living/silicon))
+	if (issilicon(traitor.current))
 		add_law_zero(traitor.current)
 	else
 		equip_traitor(traitor.current)

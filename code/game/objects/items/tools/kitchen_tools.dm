@@ -319,7 +319,7 @@
 
 
 
-	if(istype(M, /mob/living/carbon/human) && ((H.head && (H.head.flags_inventory & COVEREYES) ) || (H.wear_mask && (H.wear_mask.flags_inventory & COVEREYES) ) || (H.glasses && (H.glasses.flags_inventory & COVEREYES) )))
+	if(ishuman(M) && ((H.head && (H.head.flags_inventory & COVEREYES) ) || (H.wear_mask && (H.wear_mask.flags_inventory & COVEREYES) ) || (H.glasses && (H.glasses.flags_inventory & COVEREYES) )))
 		to_chat(M, "<span class='warning'>You get slammed in the face with the tray, against your mask!</span>")
 		if(prob(33))
 			src.add_mob_blood(H)

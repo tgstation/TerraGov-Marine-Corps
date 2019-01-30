@@ -109,7 +109,7 @@
 	..()
 
 	if ( (get_dist(src, usr) > 1 ))
-		if (!istype(usr, /mob/living/silicon))
+		if (!issilicon(usr))
 			usr.unset_interaction()
 			usr << browse(null, "window=air_alarm")
 			return

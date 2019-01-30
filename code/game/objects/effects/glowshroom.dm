@@ -54,7 +54,7 @@
 
 	for(var/wallDir in cardinal)
 		var/turf/newTurf = get_step(location,wallDir)
-		if(istype(newTurf, /turf/closed/wall))
+		if(iswallturf(newTurf))
 			direction |= wallDir
 
 	for(var/obj/effect/glowshroom/shroom in location)
