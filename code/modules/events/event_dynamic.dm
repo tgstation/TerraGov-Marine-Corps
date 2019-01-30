@@ -90,13 +90,13 @@ var/list/event_last_fired = list()
 		if(!M.mind || !M.client || M.client.inactivity > 10 * 10 * 60) //Longer than 10 minutes AFK counts them as inactive
 			continue
 
-		if(istype(M, /mob/living/silicon/robot) && M:module && M:module.name == "engineering robot module")
+		if(iscyborg(M) && M:module && M:module.name == "engineering robot module")
 			active_with_role["Engineer"]++
 
 		if(M.mind.assigned_role in list("Chief Engineer", "Maintenance Tech"))
 			active_with_role["Engineer"]++
 
-		if(istype(M, /mob/living/silicon/robot) && M:module && M:module.name == "medical robot module")
+		if(iscyborg(M) && M:module && M:module.name == "medical robot module")
 			active_with_role["Medical"]++
 		if(M.mind.assigned_role in list("Chief Medical Officer", "Doctor", "Researcher", "Sulaco Chemist"))
 			active_with_role["Medical"]++

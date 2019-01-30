@@ -149,7 +149,7 @@ datum/game_mode/proc/initialize_special_clamps()
 	var/mob/new_player/new_pred
 	for(var/mob/player in GLOB.player_list)
 		if(!player.client) continue //No client. DCed.
-		if(isYautja(player)) continue //Already a predator. Might be dead, who knows.
+		if(isyautja(player)) continue //Already a predator. Might be dead, who knows.
 		if(readied) //Ready check for new players.
 			new_pred = player
 			if(!istype(new_pred)) continue //Have to be a new player here.
@@ -351,8 +351,8 @@ datum/game_mode/proc/initialize_post_queen_list()
 		to_chat(xeno_candidate, "<span class='warning'>There are no burrowed larvas.</span>")
 		return FALSE
 	var/available_queens[] = list()
-	for(var/mob/A in GLOB.alive_mob_list)
-		if(!isXenoQueen(A) || A.z == ADMIN_Z_LEVEL)
+	for(var/mob/A in GLOB.alive_xeno_list)
+		if(!isxenoqueen(A) || A.z == ADMIN_Z_LEVEL)
 			continue
 		var/mob/living/carbon/Xenomorph/Queen/Q = A
 		if(Q.ovipositor && !Q.is_mob_incapacitated(TRUE))
@@ -369,7 +369,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 	if(!mother.ovipositor || mother.is_mob_incapacitated(TRUE))
 		to_chat(xeno_candidate, "<span class='warning'>Mother is not in a state to receive us.</span>")
 		return FALSE
-	if(!xeno_bypass_timer && !istype(xeno_candidate, /mob/new_player))
+	if(!xeno_bypass_timer && !isnewplayer(xeno_candidate))
 		var/deathtime = world.time - xeno_candidate.timeofdeath
 		var/deathtimeminutes = round(deathtime / 600)
 		var/deathtimeseconds = round((deathtime - deathtimeminutes * 600) / 10,1)
@@ -402,10 +402,10 @@ datum/game_mode/proc/initialize_post_queen_list()
 	var/available_xenos[] = list()
 	var/available_xenos_non_ssd[] = list()
 
-	for(var/mob/A in GLOB.alive_mob_list)
+	for(var/mob/A in GLOB.alive_xeno_list)
 		if(A.z == ADMIN_Z_LEVEL)
 			continue //xenos on admin z level don't count
-		if(isXeno(A) && !A.client)
+		if(isxeno(A) && !A.client)
 			if(A.away_timer >= 300) available_xenos_non_ssd += A
 			available_xenos += A
 
@@ -422,7 +422,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 	if(!istype(new_xeno) || !xeno_candidate?.client)
 		return FALSE
 
-	if(!(new_xeno in GLOB.alive_mob_list) || new_xeno.stat == DEAD)
+	if(!(new_xeno in GLOB.alive_xeno_list) || new_xeno.stat == DEAD)
 		to_chat(xeno_candidate, "<span class='warning'>You cannot join if the xenomorph is dead.</span>")
 		return FALSE
 
@@ -432,7 +432,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 
 	if(!xeno_bypass_timer)
 		var/deathtime = world.time - xeno_candidate.timeofdeath
-		if(istype(xeno_candidate, /mob/new_player))
+		if(isnewplayer(xeno_candidate))
 			deathtime = 3000 //so new players don't have to wait to latejoin as xeno in the round's first 5 mins.
 		var/deathtimeminutes = round(deathtime / 600)
 		var/deathtimeseconds = round((deathtime - deathtimeminutes * 600) / 10,1)
@@ -445,7 +445,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 			return FALSE
 
 	if(alert(xeno_candidate, "Everything checks out. Are you sure you want to transfer yourself into [new_xeno]?", "Confirm Transfer", "Yes", "No") == "Yes")
-		if(new_xeno.client || !(new_xeno in GLOB.alive_mob_list) || new_xeno.stat == DEAD || !xeno_candidate) // Do it again, just in case
+		if(new_xeno.client || !(new_xeno in GLOB.alive_xeno_list) || new_xeno.stat == DEAD || !xeno_candidate) // Do it again, just in case
 			to_chat(xeno_candidate, "<span class='warning'>That xenomorph can no longer be controlled. Please try another.</span>")
 			return FALSE
 		return new_xeno
@@ -458,7 +458,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 	if(new_xeno.client) new_xeno.client.change_view(world.view)
 	message_admins("[key_name(new_xeno)] has joined as [new_xeno].")
 	log_admin("[ADMIN_TPMONTY(new_xeno)] has joined as [new_xeno].")
-	if(isXeno(new_xeno)) //Dear lord
+	if(isxeno(new_xeno)) //Dear lord
 		var/mob/living/carbon/Xenomorph/X = new_xeno
 		if(X.is_ventcrawling) X.add_ventcrawl(X.loc) //If we are in a vent, fetch a fresh vent map
 	if(xeno_candidate) xeno_candidate.loc = null
@@ -525,6 +525,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 					break  //We ran out of survivors!
 				new_survivor.assigned_role = "MODE"
 				new_survivor.special_role = "Survivor"
+				survivors += new_survivor
 				possible_survivors -= new_survivor
 				i--
 
@@ -537,8 +538,6 @@ datum/game_mode/proc/initialize_post_queen_list()
 //No need to transfer their mind as they begin as a human.
 /datum/game_mode/proc/transform_survivor(var/datum/mind/ghost)
 	var/mob/living/carbon/human/H = ghost.current
-
-	survivors += H
 
 	H.loc = pick(surv_spawn)
 
@@ -611,7 +610,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 										"You were playing basketball with {surv} when the creatures descended. You bolted in opposite directions, and actually managed to lose the monsters, somehow."
 										)
 
-	var/current_survivors[] = survivors //These are the current survivors, so we can remove them once we tell a story.
+	var/current_survivors[] = survivors.Copy() //These are the current survivors, so we can remove them once we tell a story.
 	var/story //The actual story they will get to read.
 	var/random_name
 	var/datum/mind/survivor

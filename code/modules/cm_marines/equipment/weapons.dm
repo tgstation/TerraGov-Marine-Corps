@@ -143,7 +143,7 @@
 	if(!istype(user) || delay <= 0) return FALSE
 
 	var/mob/living/carbon/human/L
-	if(istype(user, /mob/living/carbon/human)) L = user
+	if(ishuman(user)) L = user
 
 	var/delayfraction = round(delay/numticks)
 	. = TRUE
@@ -413,7 +413,7 @@
 		new /obj/item/ammo_magazine/pistol/vp70(src)
 		new /obj/item/ammo_magazine/pistol/vp70(src)
 		new /obj/item/weapon/gun/rifle/m4ra(src)
-		new /obj/item/storage/backpack/marine/satchel/scout_cloak(src)
+		new /obj/item/storage/backpack/marine/satchel/scout_cloak/scout(src)
 		new /obj/item/device/motiondetector/scout(src)
 		new /obj/item/explosive/grenade/cloakbomb(src)
 		new /obj/item/explosive/grenade/cloakbomb(src)
@@ -446,7 +446,7 @@
 		new /obj/item/weapon/gun/shotgun/merc/scout(src)
 		new /obj/item/ammo_magazine/shotgun/incendiary(src)
 		new /obj/item/ammo_magazine/shotgun/incendiary(src)
-		new /obj/item/storage/backpack/marine/satchel/scout_cloak(src)
+		new /obj/item/storage/backpack/marine/satchel/scout_cloak/scout(src)
 		new /obj/item/device/motiondetector/scout(src)
 		new /obj/item/explosive/grenade/cloakbomb(src)
 		new /obj/item/explosive/grenade/cloakbomb(src)

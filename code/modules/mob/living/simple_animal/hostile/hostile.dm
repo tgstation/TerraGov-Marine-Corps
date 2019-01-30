@@ -34,7 +34,7 @@
 				continue
 			else if(L in friends)
 				continue
-			else if (istype(src, /mob/living/simple_animal/hostile/alien) && (isXeno(L) || (isrobot(L))))
+			else if (istype(src, /mob/living/simple_animal/hostile/alien) && (isxeno(L) || (iscyborg(L))))
 				continue
 			else
 				if(!L.stat)

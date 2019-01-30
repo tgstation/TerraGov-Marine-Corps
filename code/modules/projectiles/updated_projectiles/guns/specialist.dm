@@ -898,6 +898,7 @@
 	origin_tech = "combat=5;materials=4"
 	fire_sound = 'sound/weapons/gun_shotgun_automatic.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/scout
+	gun_skill_category = GUN_SKILL_SPEC
 	attachable_allowed = list(
 						/obj/item/attachable/bayonet,
 						/obj/item/attachable/reddot,

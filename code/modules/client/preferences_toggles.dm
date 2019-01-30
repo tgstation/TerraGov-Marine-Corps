@@ -95,11 +95,11 @@
 	prefs.save_preferences()
 	if(prefs.toggles_sound & SOUND_LOBBY)
 		to_chat(src, "You will now hear music in the game lobby.")
-		if(istype(mob, /mob/new_player))
+		if(isnewplayer(mob))
 			playtitlemusic()
 	else
 		to_chat(src, "You will no longer hear music in the game lobby.")
-		if(istype(mob, /mob/new_player))
+		if(isnewplayer(mob))
 			src << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1) // stop the jamsz
 	feedback_add_details("admin_verb","TLobby") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 

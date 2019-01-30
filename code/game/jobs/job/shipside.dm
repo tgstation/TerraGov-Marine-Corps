@@ -569,7 +569,7 @@ Your role involves some roleplaying and gimmickry, but you can perform the funct
 	department_flag = ROLEGROUP_MARINE_COMMAND
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the W-Y corporate office"
+	supervisors = "the NT corporate office"
 	selection_color = "#ffeedd"
 	access = list(ACCESS_IFF_MARINE, ACCESS_NT_CORPORATE, ACCESS_ILLEGAL_PIRATE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_LOGISTICS)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_NT_CORPORATE, ACCESS_ILLEGAL_PIRATE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_LOGISTICS)

@@ -248,7 +248,7 @@
 
 /obj/machinery/vending/lasgun
 	name = "ColMarTech Lasgun Field Charger"
-	desc = "An automated power cell dispenser and charger. Used to recharge energy weapon power cells, including in the field. Has an internal battery that charges off the power grid."
+	desc = "An automated power cell dispenser and charger. Used to recharge energy weapon power cells, including in the field. Has an internal battery that charges off the power grid when wrenched down."
 	icon_state = "lascharger"
 	icon_vend = "lascharger-vend"
 	icon_deny = "lascharger-denied"
@@ -259,8 +259,8 @@
 	anchored = FALSE
 	idle_power_usage = 1
 	vend_power_usage = 50
-	machine_current_charge = 20000 //integrated battery for recharging energy weapons. Normally 10000.
-	machine_max_charge = 20000
+	machine_current_charge = 100000 //integrated battery for recharging energy weapons. Normally 10000.
+	machine_max_charge = 100000
 
 	product_ads = "Lasgun running low? Recharge here!;Need a charge?;Power up!;Electrifying!;Empower yourself!"
 	products = list(

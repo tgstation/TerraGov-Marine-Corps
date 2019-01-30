@@ -45,11 +45,7 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/list/mobs = list()
-	for(var/mob/living/M in GLOB.mob_list)
-		mobs += M
-
-	var/selection = input("Please, select a mob!", "Get Mob", null, null) as null|anything in sortmobs(mobs)
+	var/selection = input("Please, select a mob!", "Get Mob", null, null) as null|anything in sortmobs(GLOB.mob_living_list)
 	if(!selection)
 		return
 
@@ -101,7 +97,7 @@
 	var/msg = "<h1>[customname]</h1><br><br><br><span class='warning'>[input]<br><br></span>"
 
 	for(var/mob/M in GLOB.player_list)
-		if(isXeno(M) || isobserver(M))
+		if(isxeno(M) || isobserver(M))
 			to_chat(M, msg)
 
 	log_admin("[key_name(usr)] created a Queen Mother report: [input]")
@@ -132,21 +128,25 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/input = input(usr, "This should be a message from the ship's AI.",, "") as message|null
+	var/input = input("This should be a message from the ship's AI.",, "") as message|null
 	if(!input)
 		return
 
-	if(!ai_system.Announce(input))
-		return
+	if(alert(usr, "Do you want to use the ship AI to say the message or a global marine announcement?",, "Ship", "Global") == "Ship")
+		if(!ai_system.Announce(input))
+			return
+	else
+		command_announcement.Announce(input, MAIN_AI_SYSTEM, new_sound = 'sound/misc/notice2.ogg')
 
-	for(var/obj/machinery/computer/communications/C in GLOB.machines)
-		if(!(C.stat & (BROKEN|NOPOWER)))
-			var/obj/item/paper/P = new /obj/item/paper(C.loc)
-			P.name = "'[MAIN_AI_SYSTEM] Update.'"
-			P.info = input
-			P.update_icon()
-			C.messagetitle.Add("[MAIN_AI_SYSTEM] Update")
-			C.messagetext.Add(P.info)
+	if(alert(usr, "Do you want to print out a paper at the communications consoles?",, "Yes", "No") == "Yes")
+		for(var/obj/machinery/computer/communications/C in GLOB.machines)
+			if(!(C.stat & (BROKEN|NOPOWER)))
+				var/obj/item/paper/P = new /obj/item/paper(C.loc)
+				P.name = "'[MAIN_AI_SYSTEM] Update.'"
+				P.info = input
+				P.update_icon()
+				C.messagetitle.Add("[MAIN_AI_SYSTEM] Update")
+				C.messagetext.Add(P.info)
 
 	log_admin("[key_name(usr)] has created an AI report: [input]")
 	message_admins("[ADMIN_TPMONTY(usr)] has created an AI report: [input]")
@@ -159,25 +159,24 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/input = input(usr, "Please enter anything you want. Anything. Serious.", "What?", "") as message|null
-	var/customname = input(usr, "Pick a title for the report.", "Title") as text|null
 
-	if(!input)
+	var/customname = input("Pick a title for the report.", "Title", "TGMC Update") as text|null
+	var/input = input("Please enter anything you want. Anything. Serious.", "What?", "") as message|null
+
+	if(!input || !customname)
 		return
 
-	if(!customname)
-		customname = "TGMC Update"
+	if(alert(usr, "Do you want to print out a paper at the communications consoles?",, "Yes", "No") == "Yes")
+		for(var/obj/machinery/computer/communications/C in GLOB.machines)
+			if(!(C.stat & (BROKEN|NOPOWER)))
+				var/obj/item/paper/P = new /obj/item/paper(C.loc)
+				P.name = "'[command_name()] Update.'"
+				P.info = input
+				P.update_icon()
+				C.messagetitle.Add("[command_name()] Update")
+				C.messagetext.Add(P.info)
 
-	for(var/obj/machinery/computer/communications/C in GLOB.machines)
-		if(!(C.stat & (BROKEN|NOPOWER)))
-			var/obj/item/paper/P = new /obj/item/paper( C.loc )
-			P.name = "'[command_name()] Update.'"
-			P.info = input
-			P.update_icon()
-			C.messagetitle.Add("[command_name()] Update")
-			C.messagetext.Add(P.info)
-
-	switch(alert("Should this be announced to the general population?",,"Yes","No"))
+	switch(alert("Should this be announced to the general population?",, "Yes", "No"))
 		if("Yes")
 			command_announcement.Announce(input, customname, new_sound = 'sound/AI/commandreport.ogg');
 		if("No")
@@ -236,6 +235,7 @@
 
 	to_chat(M, "<b>You hear a voice in your head... [msg]</b>")
 
+	admin_ticket_log(M, "[key_name_admin(usr)] used Subtle Message: [sanitize(msg)]")
 	log_admin("SubtleMessage: [key_name(usr)] to [key_name(M)]: [msg]")
 	message_admins("[ADMIN_TPMONTY(usr)] used Subtle Message on [ADMIN_TPMONTY(M)]: [msg]")
 
@@ -247,11 +247,7 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/list/humans = list()
-	for(var/mob/living/carbon/human/H in GLOB.mob_list)
-		humans += H
-
-	var/selection = input("Please, select a mob!", "Get Mob", null, null) as null|anything in sortmobs(humans)
+	var/selection = input("Please, select a mob!", "Get Mob", null, null) as null|anything in sortmobs(GLOB.human_mob_list)
 	if(!selection)
 		return
 
@@ -286,7 +282,7 @@
 	if(!check_rights(R_FUN))
 		return
 
-	switch(input("Do you want to change or clear the custom event info?") as null|anything in list("Change", "Clear", "Cancel"))
+	switch(input("Do you want to change or clear the custom event info?") as null|anything in list("Change", "Clear"))
 		if("Change")
 			custom_event_msg = input(usr, "Set the custom information players get on joining or via the OOC tab.",, custom_event_msg) as message|null
 
@@ -444,13 +440,51 @@
 		return
 
 	var/is_announcing = TRUE
-	if(alert(src, "Would you like to announce the distress beacon to the server population? This will reveal the distress beacon to all players.", "Announce distress beacon?", "Yes", "No") != "Yes")
+	if(alert(usr, "Would you like to announce the distress beacon to the server population? This will reveal the distress beacon to all players.", "Announce distress beacon?", "Yes", "No") != "Yes")
 		is_announcing = FALSE
 
 	ticker.mode.picked_call.activate(is_announcing)
 
 	log_admin("[key_name(usr)] called a [choice == "Randomize" ? "randomized ":""]distress beacon: [ticker.mode.picked_call.name]")
 	message_admins("[ADMIN_TPMONTY(usr)] called a [choice == "Randomize" ? "randomized ":""]distress beacon: [ticker.mode.picked_call.name]")
+
+
+/datum/admins/proc/force_dropship()
+	set category = "Fun"
+	set name = "Force Dropship"
+	set desc = "Force a dropship to launch"
+
+	var/tag = input("Which dropship should be force launched?", "Select a dropship:") as null|anything in list("Dropship 1", "Dropship 2")
+	if(!tag)
+		return
+
+	var/crash = FALSE
+	switch(alert("Would you like to force a crash?", , "Yes", "No", "Cancel"))
+		if("Yes")
+			crash = TRUE
+		if("No")
+			crash = FALSE
+		else
+			return
+
+	var/datum/shuttle/ferry/marine/dropship = shuttle_controller.shuttles[MAIN_SHIP_NAME + " " + tag]
+
+	if(!dropship)
+		return
+
+	if(crash && dropship.location != 1)
+		switch(alert("Error: Shuttle is on the ground. Proceed with standard launch anyways?", , "Yes", "No"))
+			if("Yes")
+				dropship.process_state = WAIT_LAUNCH
+			if("No")
+				return
+	else if(crash)
+		dropship.process_state = FORCE_CRASH
+	else
+		dropship.process_state = WAIT_LAUNCH
+
+	log_admin("[key_name(usr)] force launched [tag][crash ? " making it crash" : ""].")
+	message_admins("[ADMIN_TPMONTY(usr)] force launched [tag][crash ? " making it crash" : ""].")
 
 
 /datum/admins/proc/force_ert_shuttle()
@@ -508,7 +542,7 @@
 
 
 	if(!shuttle.can_launch())
-		to_chat(usr, "<span class='warning'>Unable to launch this Distress shuttle at this moment. Aborting.</span>")
+		to_chat(usr, "<span class='warning'>Unable to launch this distress shuttle at this moment. Aborting.</span>")
 		return
 
 	shuttle.launch()
@@ -594,7 +628,7 @@
 	message_admins("[ADMIN_TPMONTY(usr)] changed the security level to code [sec_level].")
 
 
-/datum/admins/proc/select_rank(var/mob/living/carbon/human/H in GLOB.mob_list)
+/datum/admins/proc/select_rank(var/mob/living/carbon/human/H in GLOB.human_mob_list)
 	set category = "Fun"
 	set name = "Select Rank"
 
@@ -615,60 +649,45 @@
 		H.set_everything(H, newrank)
 		log_admin("[key_name(usr)] has set the rank of [key_name(H)] to [newrank].")
 		message_admins("[ADMIN_TPMONTY(usr)] has set the rank of [ADMIN_TPMONTY(H)] to [newrank].")
+		return
 	else
-		var/newcommtitle = input("Write the custom title appearing on the comms themselves, for example: \[Command (Title)]", "Comms title") as null|text
-
-		if(!newcommtitle)
-			return
-
-		if(!H?.mind)
-			return
-
-		H.mind.role_comm_title = newcommtitle
 		var/obj/item/card/id/I = H.wear_id
-
 		if(!istype(I) || I != H.wear_id)
-			to_chat(usr, "The mob has no id card, unable to modify ID and chat title.")
-			return
+			H.wear_id = new /obj/item/card/id(H)
+		switch(input("What do you want to edit?") as null|anything in list("Comms Title - \[Engineering (Title)]", "Chat Title - Title John Doe screams!", "ID title - Jane Doe's ID Card (Title)", "Skills"))
+			if("Comms Title - \[Engineering (Title)]")
+				var/newcommtitle = input("Write the custom title appearing on the comms themselves, for example: \[Command (Title)]", "Comms title") as null|text
+				if(!newcommtitle || !H?.mind)
+					return
+				H.mind.role_comm_title = newcommtitle
+			if("Chat Title - Title John Doe screams!")
+				var/newchattitle = input("Write the custom title appearing in all chats: Title Jane Doe screams!", "Chat title") as null|text
+				if(!H || newchattitle)
+					return
+				if(!istype(I) || I != H.wear_id)
+					H.wear_id = new I(H)
+				I.paygrade = newchattitle
+			if("ID title - Jane Doe's ID Card (Title)")
+				var/IDtitle = input("Write the custom title appearing on the ID itself: Jane Doe's ID Card (Title)", "ID title") as null|text
+				if(!H || I != H.wear_id)
+					return
+				if(!istype(I) || I != H.wear_id)
+					H.wear_id = new I(H)
+				I.rank = IDtitle
+				I.assignment = IDtitle
+				I.name = "[I.registered_name]'s ID Card[IDtitle ? " ([I.assignment])" : ""]"
+			if("Skills")
+				var/newskillset = input("Select a skillset", "Skill Set") as null|anything in RoleAuthority.roles_by_name
+				if(!newskillset || !H?.mind)
+					return
+				var/datum/job/J = RoleAuthority.roles_by_name[newskillset]
+				H.mind.set_cm_skills(J.skills_type)
 
-		var/newchattitle = input("Write the custom title appearing in all chats: Title Jane Doe says", "Chat title") as null|text
-
-		if(!H || I != H.wear_id)
-			return
-
-		I.paygrade = newchattitle
-
-		var/IDtitle = input("Write the custom title appearing on the ID itself: Jane Doe's ID Card (Title)", "ID title") as null|text
-
-		if(!H || I != H.wear_id)
-			return
-
-		I.rank = IDtitle
-		I.assignment = IDtitle
-		I.name = "[I.registered_name]'s ID Card[IDtitle ? " ([I.assignment])" : ""]"
-
-		if(!H.mind)
-			to_chat(usr, "The mob has no mind, unable to modify skills.")
-			return
-
-		var/newskillset = input("Select a skillset", "Skill Set") as null|anything in RoleAuthority.roles_by_name
-
-		if(!newskillset)
-			return
-
-		if(!H?.mind)
-			return
-
-		var/datum/job/J = RoleAuthority.roles_by_name[newskillset]
-		H.mind.set_cm_skills(J.skills_type)
-
-		log_admin("[key_name(usr)] has made a custom rank for [key_name(H)] : [IDtitle] ([newcommtitle]) [newchattitle] [newskillset].")
-		message_admins("[ADMIN_TPMONTY(usr)] has made a custom rank for [ADMIN_TPMONTY(H)] : [IDtitle] ([newcommtitle]) [newchattitle]  [newskillset].")
+		log_admin("[key_name(usr)] has made a custom rank/skill change for [key_name(H)].")
+		message_admins("[ADMIN_TPMONTY(usr)] has made a custom rank/skill change for [ADMIN_TPMONTY(H)].")
 
 
-
-
-/datum/admins/proc/select_equipment(var/mob/living/carbon/human/M in GLOB.mob_list)
+/datum/admins/proc/select_equipment(var/mob/living/carbon/human/M in GLOB.human_mob_list)
 	set category = "Fun"
 	set name = "Select Equipment"
 
@@ -747,7 +766,7 @@
 	message_admins("[ADMIN_TPMONTY(usr)] has released [O] ([O.type]).")
 
 
-/datum/admins/proc/edit_appearance(mob/living/carbon/human/H in GLOB.mob_list)
+/datum/admins/proc/edit_appearance(mob/living/carbon/human/H in GLOB.human_mob_list)
 	set category = "Fun"
 	set name = "Edit Appearance"
 
@@ -757,51 +776,65 @@
 	if(!istype(H))
 		return
 
-	if(alert("Are you sure you wish to edit this mob's appearance?", "Confirmation", "Yes", "No") != "Yes")
-		return
-
-	var/new_facial = input("Please select facial hair color.", "Character Generation") as color
-	if(new_facial)
-		H.r_facial = hex2num(copytext(new_facial, 2, 4))
-		H.g_facial = hex2num(copytext(new_facial, 4, 6))
-		H.b_facial = hex2num(copytext(new_facial, 6, 8))
-
-	var/new_hair = input("Please select hair color.", "Character Generation") as color
-	if(new_facial)
-		H.r_hair = hex2num(copytext(new_hair, 2, 4))
-		H.g_hair = hex2num(copytext(new_hair, 4, 6))
-		H.b_hair = hex2num(copytext(new_hair, 6, 8))
-
-	var/new_eyes = input("Please select eye color.", "Character Generation") as color
-	if(new_eyes)
-		H.r_eyes = hex2num(copytext(new_eyes, 2, 4))
-		H.g_eyes = hex2num(copytext(new_eyes, 4, 6))
-		H.b_eyes = hex2num(copytext(new_eyes, 6, 8))
-
-	var/new_skin = input("Please select body color. This is for Tajaran, Unathi, and Skrell only!", "Character Generation") as color
-	if(new_skin)
-		H.r_skin = hex2num(copytext(new_skin, 2, 4))
-		H.g_skin = hex2num(copytext(new_skin, 4, 6))
-		H.b_skin = hex2num(copytext(new_skin, 6, 8))
-
-
-	// hair
-	var/new_hstyle = input("Select a hair style")  as null|anything in GLOB.hair_styles_list
-	if(new_hstyle)
-		H.h_style = new_hstyle
-
-	// facial hair
-	var/new_fstyle = input("Select a facial hair style")  as null|anything in GLOB.facial_hair_styles_list
-	if(new_fstyle)
-		H.f_style = new_fstyle
-
-	var/new_gender = alert("Please select gender.",, "Male", "Female")
-	if(new_gender)
-		if(new_gender == "Male")
-			H.gender = MALE
+	switch(input("What do you want to edit?") as null|anything in list("Hair Style", "Hair Color", "Facial Hair Style", "Facial Hair Color", "Eye Color", "Body Color", "Gender", "Ethnicity"))
+		if("Hair Style")
+			var/new_hstyle = input("Select a hair style") as null|anything in GLOB.hair_styles_list
+			if(!new_hstyle || !istype(H))
+				return
+			H.h_style = new_hstyle
+		if("Hair Color")
+			var/new_hair = input("Select hair color.") as color
+			if(!new_hair || !istype(H))
+				return
+			H.r_hair = hex2num(copytext(new_hair, 2, 4))
+			H.g_hair = hex2num(copytext(new_hair, 4, 6))
+			H.b_hair = hex2num(copytext(new_hair, 6, 8))
+		if("Facial Hair Style")
+			var/new_fstyle = input("Select a facial hair style")  as null|anything in GLOB.facial_hair_styles_list
+			if(!new_fstyle || !istype(H))
+				return
+			H.f_style = new_fstyle
+		if("Facial Hair Color")
+			var/new_facial = input("Please select facial hair color.") as color
+			if(!new_facial || !istype(H))
+				return
+			H.r_facial = hex2num(copytext(new_facial, 2, 4))
+			H.g_facial = hex2num(copytext(new_facial, 4, 6))
+			H.b_facial = hex2num(copytext(new_facial, 6, 8))
+		if("Eye Color")
+			var/new_eyes = input("Please select eye color.", "Character Generation") as color
+			if(!new_eyes || !istype(H))
+				return
+			H.r_eyes = hex2num(copytext(new_eyes, 2, 4))
+			H.g_eyes = hex2num(copytext(new_eyes, 4, 6))
+			H.b_eyes = hex2num(copytext(new_eyes, 6, 8))
+		if("Body Color")
+			var/new_skin = input("Please select body color. This is for Tajaran, Unathi, and Skrell only!", "Character Generation") as color
+			if(!new_skin || !istype(H))
+				return
+			H.r_skin = hex2num(copytext(new_skin, 2, 4))
+			H.g_skin = hex2num(copytext(new_skin, 4, 6))
+			H.b_skin = hex2num(copytext(new_skin, 6, 8))
+		if("Gender")
+			var/new_gender = alert("Please select gender.",, "Male", "Female")
+			if(!new_gender || !istype(H))
+				return
+			if(new_gender == "Male")
+				H.gender = MALE
+			else
+				H.gender = FEMALE
+		if("Ethnicity")
+			var/new_ethnicity = input("Please select the ethnicity") as null|anything in GLOB.ethnicities_list
+			if(!new_ethnicity || !istype(H))
+				return
+			H.ethnicity = new_ethnicity
 		else
-			H.gender = FEMALE
+			return
 
 	H.update_hair()
 	H.update_body()
+	H.regenerate_icons()
 	H.check_dna(H)
+
+	log_admin("[key_name(usr)] updated the appearance of [key_name(H)].")
+	message_admins("[ADMIN_TPMONTY(usr)] updated the appearance of [ADMIN_TPMONTY(H)].")

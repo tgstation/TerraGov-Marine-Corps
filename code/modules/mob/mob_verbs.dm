@@ -80,13 +80,13 @@
 	set name = "Respawn"
 	set category = "OOC"
 
-	if(!respawn_allowed && !check_rights(R_ADMIN, FALSE))
+	if(!respawn_allowed || !check_rights(R_ADMIN, FALSE))
 		to_chat(usr, "<span class='notice'>Respawn is disabled.</span>")
 		return
-	if((stat != DEAD || !( ticker )))
+	if(stat != DEAD)
 		to_chat(usr, "<span class='boldnotice'>You must be dead to use this!</span>")
 		return
-	if(ticker.mode.name == "meteor" || ticker.mode.name == "epidemic") //BS12 EDIT
+	if(!ticker?.mode || ticker.mode.name == "meteor" || ticker.mode.name == "epidemic") //BS12 EDIT
 		to_chat(usr, "<span class='notice'>Respawn is disabled for this roundtype.</span>")
 		return
 	else
@@ -137,7 +137,7 @@
 	set category = "Object"
 	reset_view(null)
 	unset_interaction()
-	if(istype(src, /mob/living))
+	if(isliving(src))
 		var/mob/living/M = src
 		if(M.cameraFollow)
 			M.cameraFollow = null

@@ -803,7 +803,8 @@ datum/preferences
 	return 1
 
 /datum/preferences/proc/process_link(mob/user, list/href_list)
-	if(!istype(user, /mob/new_player) && !istype(user, /mob/dead/observer)) return
+	if(!istype(user))
+		return
 
 	switch(href_list["preference"])
 		if("job")

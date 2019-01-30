@@ -1,8 +1,8 @@
 
 //Some debug variables. Toggle them to 1 in order to see the related debug messages. Helpful when testing out formulas.
-#define DEBUG_HIT_CHANCE	0
-#define DEBUG_HUMAN_DEFENSE	0
-#define DEBUG_XENO_DEFENSE	0
+#define DEBUG_HIT_CHANCE	FALSE
+#define DEBUG_HUMAN_DEFENSE	FALSE
+#define DEBUG_XENO_DEFENSE	FALSE
 #define DEBUG_CREST_DEFENSE	0
 
 //The actual bullet objects.
@@ -251,9 +251,11 @@
 					#if DEBUG_HIT_CHANCE
 					to_chat(world, "DEBUG: Hit Chance 1: [hit_chance], Hit Roll: [hit_roll]")
 					#endif
-					if(hit_roll < 25 && !shot_from.sniper_target(A)) //Sniper targets more likely to hit
-						def_zone = pick(base_miss_chance)	// Still hit but now we might hit the wrong body part
-					if(!shot_from.sniper_target(A))
+					if(hit_roll < 25) //Sniper targets more likely to hit
+						if(shot_from && !shot_from.sniper_target(A) || !shot_from) //Avoid sentry run times
+							def_zone = pick(base_miss_chance)	// Still hit but now we might hit the wrong body part
+
+					if(shot_from && !shot_from.sniper_target(A)) //Avoid sentry run times
 						hit_chance -= base_miss_chance[def_zone] // Reduce accuracy based on spot.
 						#if DEBUG_HIT_CHANCE
 						to_chat(world, "Hit Chance 2: [hit_chance]")
@@ -475,7 +477,7 @@
 	if(P.ammo.debilitate && stat != DEAD && ( damage || (P.ammo.flags_ammo_behavior & AMMO_IGNORE_RESIST) ) )
 		apply_effects(arglist(P.ammo.debilitate))
 
-	if(P.list_reagents && stat != DEAD && (ishuman() || ismonkey()))
+	if(P.list_reagents && stat != DEAD && (ishuman(src) || ismonkey(src)))
 		reagents.add_reagent_list(P.list_reagents)
 
 	if(damage)
@@ -542,7 +544,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 		to_chat(world, "<span class='debuginfo'>Initial armor is: <b>[armor]</b></span>")
 		#endif
 		var/penetration = P.ammo.penetration > 0 || armor > 0 ? P.ammo.penetration : 0
-		if(src == P.shot_from.sniper_target(src))
+		if(P.shot_from && src == P.shot_from.sniper_target(src)) //Runtimes bad
 			damage *= SNIPER_LASER_DAMAGE_MULTIPLIER //+50% damage vs the aimed target
 			penetration *= SNIPER_LASER_ARMOR_MULTIPLIER //+50% penetration vs the aimed target
 		armor -= penetration//Minus armor penetration from the bullet. If the bullet has negative penetration, adding to their armor, but they don't have armor, they get nothing.
@@ -580,7 +582,8 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 
 	if(P.ammo.debilitate && stat != DEAD && ( damage || (P.ammo.flags_ammo_behavior & AMMO_IGNORE_RESIST) ) )  //They can't be dead and damage must be inflicted (or it's a xeno toxin).
 		//Predators and synths are immune to these effects to cut down on the stun spam. This should later be moved to their apply_effects proc, but right now they're just humans.
-		if(species.name != "Yautja" && !(species.flags & IS_SYNTHETIC)) apply_effects(arglist(P.ammo.debilitate))
+		if(!isyautjastrict(src) && !(species.flags & IS_SYNTHETIC))
+			apply_effects(arglist(P.ammo.debilitate))
 
 	bullet_message(P) //We still want this, regardless of whether or not the bullet did damage. For griefers and such.
 
@@ -636,20 +639,20 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 		#if DEBUG_XENO_DEFENSE
 		world << "<span class='debuginfo'>Initial armor is: <b>[armor]</b></span>"
 		#endif
-		if(isXenoQueen(src) || isXenoCrusher(src)) //Charging and crest resistances. Charging Xenos get a lot of extra armor, currently Crushers and Queens
+		if(isxenoqueen(src) || isxenocrusher(src)) //Charging and crest resistances. Charging Xenos get a lot of extra armor, currently Crushers and Queens
 			var/mob/living/carbon/Xenomorph/charger = src
 			armor += round(charger.charge_speed * 5) //Some armor deflection when charging.
 			#if DEBUG_CREST_DEFENSE
 			world << "<span class='debuginfo'>Projectile direction is: <b>[P.dir]</b> and crest direction is: <b>[charger.dir]</b></span>"
 			#endif
 			if(P.dir == charger.dir)
-				if(isXenoQueen(src))
+				if(isxenoqueen(src))
 					armor = max(0, armor - (xeno_caste.armor_deflection * CONFIG_GET(number/combat_define/xeno_armor_resist_low))) //Both facing same way -- ie. shooting from behind; armour reduced by 50% of base.
 				else
 					armor = max(0, armor - (xeno_caste.armor_deflection * CONFIG_GET(number/combat_define/xeno_armor_resist_lmed))) //Both facing same way -- ie. shooting from behind; armour reduced by 75% of base.
 			else if(P.dir == reverse_direction(charger.dir))
 				armor += round(xeno_caste.armor_deflection * CONFIG_GET(number/combat_define/xeno_armor_resist_low)) //We are facing the bullet.
-			else if(isXenoCrusher(src))
+			else if(isxenocrusher(src))
 				armor = max(0, armor - (xeno_caste.armor_deflection * CONFIG_GET(number/combat_define/xeno_armor_resist_vlow))) //side armour eats a bit of shit if we're a Crusher
 			//Otherwise use the standard armor deflection for crushers.
 			#if DEBUG_XENO_DEFENSE
@@ -657,7 +660,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 			#endif
 
 		var/penetration = P.ammo.penetration > 0 || armor > 0 ? P.ammo.penetration : 0
-		if(src == P.shot_from.sniper_target(src))
+		if(P.shot_from && src == P.shot_from.sniper_target(src))
 			damage *= SNIPER_LASER_DAMAGE_MULTIPLIER //+50% damage vs the aimed target
 			penetration *= SNIPER_LASER_ARMOR_MULTIPLIER //+50% penetration vs the aimed target
 
@@ -803,7 +806,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 	if(!P) return
 
 	if(P.ammo.flags_ammo_behavior & AMMO_IS_SILENCED)
-		to_chat(src, "[isXeno(src) ? "<span class='xenodanger'>" : "<span class='highdanger'>" ]You've been shot in the [parse_zone(P.def_zone)] by [P.name]!</span>")
+		to_chat(src, "[isxeno(src) ? "<span class='xenodanger'>" : "<span class='highdanger'>" ]You've been shot in the [parse_zone(P.def_zone)] by [P.name]!</span>")
 	else
 		visible_message("<span class='danger'>[name] is hit by the [P.name] in the [parse_zone(P.def_zone)]!</span>", \
 						"<span class='highdanger'>You are hit by the [P.name] in the [parse_zone(P.def_zone)]!</span>", null, 4)

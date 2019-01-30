@@ -34,7 +34,7 @@
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return
 
-	if(isSynth(user) && dangerous && !CONFIG_GET(flag/allow_synthetic_gun_use))
+	if(issynth(user) && dangerous && !CONFIG_GET(flag/allow_synthetic_gun_use))
 		to_chat(user, "<span class='warning'>Your programming prevents you from operating this device!</span>")
 		return
 
@@ -48,7 +48,7 @@
 	else
 		user.visible_message("<span class='warning'>[user] primes \a [name]!</span>", \
 		"<span class='warning'>You prime \a [name]!</span>")
-		if(initial(dangerous) && has_species(user, "Human"))
+		if(initial(dangerous) && ishumanbasic(user))
 			var/nade_sound = user.gender == FEMALE ? get_sfx("female_fragout") : get_sfx("male_fragout")
 
 			for(var/mob/living/carbon/human/H in hearers(6,user))

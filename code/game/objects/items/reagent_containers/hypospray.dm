@@ -3,7 +3,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 /obj/item/reagent_container/hypospray
-	name = "hypospray"
+	name = "\improper hypospray"
 	desc = "The hypospray is a sterile, air-needle reusable autoinjector for rapid administration of drugs to patients with customizable dosages. Comes complete with an internal reagent analyzer and digital labeler. Handy."
 	icon = 'icons/obj/items/syringe.dmi'
 	item_state = "hypo"
@@ -124,7 +124,7 @@
 
 	if(ismob(A))
 		var/mob/M = A
-		if(M != user && M.stat != DEAD && M.a_intent != "help" && !M.is_mob_incapacitated() && ((M.mind && M.mind.cm_skills && M.mind.cm_skills.cqc >= SKILL_CQC_MP) || isYautja(M))) // preds have null skills
+		if(M != user && M.stat != DEAD && M.a_intent != "help" && !M.is_mob_incapacitated() && ((M.mind && M.mind.cm_skills && M.mind.cm_skills.cqc >= SKILL_CQC_MP) || isyautjastrict(M))) // preds have null skills
 			user.KnockDown(3)
 			log_combat(M, user, "blocked", addition="using their cqc skill (hypospray injection)")
 			msg_admin_attack("[ADMIN_TPMONTY(usr)] got robusted by the cqc of [ADMIN_TPMONTY(M)].")

@@ -40,7 +40,7 @@
 		to_chat(src, "<span class='warning'>The restraints are too restricting to allow you to evolve.</span>")
 		return
 
-	if(isXenoLarva(src)) //Special case for dealing with larvae
+	if(isxenolarva(src)) //Special case for dealing with larvae
 		if(amount_grown < max_grown)
 			to_chat(src, "<span class='warning'>You are not yet fully grown. Currently at: [amount_grown] / [max_grown].</span>")
 			return
@@ -129,16 +129,16 @@
 	else
 		//This will build a list of ALL the current Xenos and their Tiers, then use that to calculate if they can evolve or not.
 		//Should count mindless as well so people don't cheat
-		for(var/mob/living/carbon/Xenomorph/M in GLOB.alive_mob_list)
+		for(var/mob/living/carbon/Xenomorph/M in GLOB.alive_xeno_list)
 			if(hivenumber == M.hivenumber)
 				switch(M.tier)
 					if(0)
-						if(isXenoLarvaStrict(M))
+						if(isxenolarvastrict(M))
 							if(M.client && M.ckey)
 								potential_queens++
 						continue
 					if(1)
-						if(isXenoDrone(M))
+						if(isxenodrone(M))
 							if(M.client && M.ckey)
 								potential_queens++
 					if(2)
@@ -158,13 +158,13 @@
 		else if(tier == 2 && (tierC / max(totalXenos, 1))> 0.25)
 			to_chat(src, "<span class='warning'>The hive cannot support another Tier 3, wait for either more aliens to be born or someone to die.</span>")
 			return
-		else if(!hive.living_xeno_queen && potential_queens == 1 && isXenoLarva(src) && new_caste_type == /mob/living/carbon/Xenomorph/Drone)
+		else if(!hive.living_xeno_queen && potential_queens == 1 && isxenolarva(src) && new_caste_type != /mob/living/carbon/Xenomorph/Drone)
 			to_chat(src, "<span class='xenonotice'>The hive currently has no sister able to become Queen! The survival of the hive requires you to be a Drone!</span>")
 			return
 		else if(xeno_caste.evolution_threshold && evolution_stored < xeno_caste.evolution_threshold)
 			to_chat(src, "<span class='warning'>You must wait before evolving. Currently at: [evolution_stored] / [xeno_caste.evolution_threshold].</span>")
 			return
-		else if((!hive.living_xeno_queen) && !isXenoLarva(src))
+		else if((!hive.living_xeno_queen) && !isxenolarva(src))
 			to_chat(src, "<span class='warning'>The Hive is shaken by the death of the last Queen. You can't find the strength to evolve.</span>")
 			return
 		else

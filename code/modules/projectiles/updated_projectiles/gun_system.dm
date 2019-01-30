@@ -832,7 +832,7 @@ and you're good to go.
 			return
 
 		if(!CONFIG_GET(flag/allow_synthetic_gun_use))
-			if(isSynth(user))
+			if(issynth(user))
 				to_chat(user, "<span class='warning'>Your program does not allow you to use firearms.</span>")
 				return
 

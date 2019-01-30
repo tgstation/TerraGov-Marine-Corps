@@ -42,23 +42,18 @@
 				hive = hive_datum[M.hivenumber]
 			else return
 
-			if(!hive.slashing_allowed && !(M.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
-				to_chat(M, "<span class='warning'>Slashing is currently <b>forbidden</b> by the Queen. You refuse to slash [src].</span>")
-				return FALSE
-
 			if(stat == DEAD)
 				if(luminosity > 0)
 					playsound(loc, "alien_claw_metal", 25, 1)
 					M.flick_attack_overlay(src, "slash")
-					var/datum/effect_system/spark_spread/spark_system2
-					spark_system2 = new /datum/effect_system/spark_spread()
-					spark_system2.set_up(5, 0, src)
-					spark_system2.attach(src)
-					spark_system2.start(src)
-					disable_lights()
+					disable_lights(sparks = TRUE)
 					to_chat(M, "<span class='warning'>You disable whatever annoying lights the dead creature possesses.</span>")
 				else
 					to_chat(M, "<span class='warning'>[src] is dead, why would you want to touch it?</span>")
+				return FALSE
+
+			if(!hive.slashing_allowed && !(M.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
+				to_chat(M, "<span class='warning'>Slashing is currently <b>forbidden</b> by the Queen. You refuse to slash [src].</span>")
 				return FALSE
 
 			if(!(M.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
@@ -144,7 +139,7 @@
 
 			var/armor_block = run_armor_check(affecting, "melee")
 
-			if(isYautja(src) && check_zone(M.zone_selected) == "head")
+			if(isyautja(src) && check_zone(M.zone_selected) == "head")
 				if(istype(wear_mask, /obj/item/clothing/mask/gas/yautja))
 					var/knock_chance = 1
 					if(M.frenzy_aura > 0)
@@ -191,7 +186,7 @@
 			M.process_rage_attack() //Process Ravager rage gains on attack
 
 		if("disarm")
-			if(M.legcuffed && isYautja(src))
+			if(M.legcuffed && isyautja(src))
 				to_chat(M, "<span class='xenodanger'>You don't have the dexterity to tackle the headhunter with that thing on your leg!</span>")
 				return FALSE
 			if((status_flags & XENO_HOST) && istype(buckled, /obj/structure/bed/nest)) //No more memeing nested and infected hosts
@@ -272,7 +267,7 @@
 				M.start_pulling(src)
 
 		if("hurt")
-			if(isXeno(src) && xeno_hivenumber(src) == M.hivenumber)
+			if(isxeno(src) && xeno_hivenumber(src) == M.hivenumber)
 				M.visible_message("<span class='warning'>\The [M] nibbles [src].</span>", \
 				"<span class='warning'>You nibble [src].</span>", null, 5)
 				return TRUE

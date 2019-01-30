@@ -126,9 +126,9 @@ datum/mind
 		)
 		var/text = ""
 		var/mob/living/carbon/human/H = current
-		if (istype(current, /mob/living/carbon/human) || istype(current, /mob/living/carbon/monkey))
+		if (ishuman(current) || ismonkey(current))
 			/** Impanted**/
-			if(istype(current, /mob/living/carbon/human))
+			if(ishuman(current))
 				if(H.is_loyalty_implanted(H))
 					text = "Loyalty Implant:<a href='?src=\ref[src];implant=remove'>Remove</a>|<b>Implanted</b></br>"
 				else
@@ -142,7 +142,7 @@ datum/mind
 		if (ticker.mode.config_tag=="traitor")
 			text = uppertext(text)
 		text = "<i><b>[text]</b></i>: "
-		if(istype(current, /mob/living/carbon/human))
+		if(ishuman(current))
 			if (H.is_loyalty_implanted(H))
 				text +="traitor|<b>LOYAL EMPLOYEE</b>"
 			else
@@ -224,7 +224,7 @@ datum/mind
 
 					var/list/possible_targets = list("Free objective")
 					for(var/datum/mind/possible_target in ticker.minds)
-						if ((possible_target != src) && istype(possible_target.current, /mob/living/carbon/human))
+						if ((possible_target != src) && ishuman(possible_target.current))
 							possible_targets += possible_target.current
 
 					var/mob/def_target = null
@@ -329,7 +329,7 @@ datum/mind
 						log_admin("[key_name_admin(usr)] has traitor'ed [current].")
 						show_objectives()
 
-						if(istype(current, /mob/living/silicon))
+						if(issilicon(current))
 							var/mob/living/silicon/A = current
 							call(/datum/game_mode/proc/add_law_zero)(A)
 							A.show_laws()

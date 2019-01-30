@@ -100,7 +100,7 @@
 			src.name = "body bag"
 	//..() //Doesn't need to run the parent. Since when can fucking bodybags be welded shut? -Agouri
 		return
-	else if(istype(W, /obj/item/tool/wirecutters))
+	else if(iswirecutter(W))
 		to_chat(user, "<span class='notice'>You cut the tag off the bodybag.</span>")
 		src.name = "body bag"
 		src.overlays.Cut()
@@ -119,7 +119,7 @@
 			dead_mobs += M
 			continue
 		var/mob/living/carbon/human/H = M
-		if(H.check_tod() || isSynth(H)) // revivable
+		if(H.check_tod() || issynth(H)) // revivable
 			if(H.is_revivable() && H.get_ghost()) // definitely revivable
 				continue
 		dead_mobs += M

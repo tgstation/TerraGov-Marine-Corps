@@ -185,7 +185,7 @@
 
 
 /obj/item/weapon/gun/launcher/spike/examine(mob/user)
-	if(isYautja(user))
+	if(isyautja(user))
 		..()
 		to_chat(user, "It currently has [spikes] / [max_spikes] spikes.")
 	else
@@ -196,7 +196,7 @@
 	update_special_overlay(new_icon_state)
 
 /obj/item/weapon/gun/launcher/spike/able_to_fire(mob/user)
-	if(!isYautja(user))
+	if(!isyautja(user))
 		to_chat(user, "<span class='warning'>You have no idea how this thing works!</span>")
 		return
 
