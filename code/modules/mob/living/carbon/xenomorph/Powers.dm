@@ -1909,6 +1909,9 @@
 
 	ravage_delay = world.time + (RAV_RAVAGE_COOLDOWN - (victims * 30))
 
+
+	reset_movement()
+
 	//10 second cooldown base, minus 2 per victim
 	addtimer(CALLBACK(src, .ravage_cooldown), CLAMP(RAV_RAVAGE_COOLDOWN - (victims * 30),10,100))
 
