@@ -45,7 +45,7 @@ var/global/datum/controller/gameticker/ticker
 	'sound/music/DawsonChristian.ogg')
 
 	do
-		pregame_timeleft = 180
+		pregame_timeleft = 3
 		to_chat(world, "<B><FONT color='blue'>Welcome to the pre-game lobby of TerraGov Marine Corps!</FONT></B>")
 		to_chat(world, "Please, setup your character and select ready. Game will start in [pregame_timeleft] seconds")
 		while(current_state == GAME_STATE_PREGAME)
