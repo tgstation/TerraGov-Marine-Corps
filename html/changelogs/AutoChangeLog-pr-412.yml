@@ -1,4 +1,0 @@
-author: "Ghommie"
-delete-after: True
-changes: 
-  - bugfix: "The rather special medevac roller beds can't be accidentally deconstructed with a wrench anymore."

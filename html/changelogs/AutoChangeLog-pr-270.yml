@@ -1,4 +1,0 @@
-author: "Ghommie"
-delete-after: True
-changes: 
-  - code_imp: "renamed several invetory procs naming patterns to match /tg/'s, in preparation of future works."

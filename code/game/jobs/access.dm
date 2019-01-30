@@ -162,13 +162,20 @@
 
 /proc/get_centcom_access_desc(A)
 	switch(A)
-		if(ACCESS_NT_PMC_GREEN)			return "W-Y PMC Green"
-		if(ACCESS_NT_PMC_ORANGE)		return "W-Y PMC Orange"
-		if(ACCESS_NT_PMC_RED)			return "W-Y PMC Red"
-		if(ACCESS_NT_PMC_BLACK)			return "W-Y PMC Black"
-		if(ACCESS_NT_PMC_WHITE)			return "W-Y PMC White"
-		if(ACCESS_NT_CORPORATE)			return "W-Y Executive"
-		if(ACCESS_IFF_PMC) 				return "W-Y Identification"
+		if(ACCESS_NT_PMC_GREEN)
+			return "NT PMC Green"
+		if(ACCESS_NT_PMC_ORANGE)
+			return "NT PMC Orange"
+		if(ACCESS_NT_PMC_RED)
+			return "NT PMC Red"
+		if(ACCESS_NT_PMC_BLACK)
+			return "NT PMC Black"
+		if(ACCESS_NT_PMC_WHITE)
+			return "NT PMC White"
+		if(ACCESS_NT_CORPORATE)
+			return "NT Executive"
+		if(ACCESS_IFF_PMC)
+			return "NT Identification"
 
 
 /proc/get_all_jobs_titles()
