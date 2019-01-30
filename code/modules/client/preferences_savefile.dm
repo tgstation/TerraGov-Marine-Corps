@@ -28,7 +28,7 @@
 		S["ghost_xenohud"] 		<< 1
 
 	if(savefile_version < 17)
-		S["xeno_name"] = "Undefined"
+		S["xeno_name"] << "Undefined"
 
 	savefile_version = SAVEFILE_VERSION_MAX
 	return TRUE
