@@ -90,9 +90,12 @@
 	if(check_rights(R_ADMIN|R_MENTOR, FALSE))
 		for(var/client/C in GLOB.admins)
 			if(check_other_rights(C, R_ADMIN, FALSE))
-				if(is_mentor(src) && C.holder.fakekey)
+				if(!check_rights(R_ADMIN, FALSE) && C.holder.fakekey)
 					continue
 				msg += "\t[C] is [C.holder.rank]"
+
+				if(C.holder.fakekey)
+					msg += " as ([C.holder.fakekey])"
 
 				if(isobserver(C.mob))
 					msg += " - Observing"
@@ -104,7 +107,7 @@
 				if(C.is_afk())
 					msg += " (AFK)"
 
-				msg += "[isobserver(C.mob) || istype(C.mob, /mob/new_player) ? "" : "as [C.mob.real_name]"] (<A HREF='?src=[REF(usr.client.holder)];[HrefToken()];moreinfo=[REF(C.mob)]'>?</A>)"
+				msg += "[isobserver(C.mob) || istype(C.mob, /mob/new_player) ? "" : " as [C.mob.real_name]"] (<A HREF='?src=[REF(usr.client.holder)];[HrefToken()];moreinfo=[REF(C.mob)]'>?</A>)"
 
 				msg += "\n"
 				num_admins_online++
