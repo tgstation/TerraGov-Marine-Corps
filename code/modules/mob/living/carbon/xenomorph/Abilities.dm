@@ -361,7 +361,7 @@
 	var/PheromonesOpen = FALSE //If the  pheromone choices buttons are already displayed or not
 
 /datum/action/xeno_action/toggle_pheromones/can_use_action()
-		return TRUE //No actual gameplay impact; should be able to collapse or open pheromone choices
+		return TRUE //No actual gameplay impact; should be able to collapse or open pheromone choices at any time
 
 /datum/action/xeno_action/toggle_pheromones/action_activate()
 	var/mob/living/carbon/Xenomorph/X = owner
@@ -379,25 +379,27 @@
 			var/datum/action/xeno_action/pheromones/A = new path()
 			A.give_action(X)
 
-/datum/action/xeno_action/pheromones/emit_recovery //Type casted for easy removal/adding
-	name = "Emit Recovery Pheromones (30)"
-	action_icon_state = "emit_recovery"
-	plasma_cost = 30
+/datum/action/xeno_action/pheromones
+	name = "SHOULD NOT EXIST"
+	plasma_cost = 30 //Base plasma cost for begin to emit pheromones
 
-/datum/action/xeno_action/pheromones/emit_recovery/can_use_action()
-	var/mob/living/carbon/Xenomorph/X = owner
-	if(X && !X.is_mob_incapacitated() && !X.lying && !X.buckled && (!X.current_aura || X.plasma_stored >= plasma_cost) && !X.stagger && !X.on_fire) //Can't emit pheromones while on fire!
-		return TRUE
-
-/datum/action/xeno_action/pheromones/emit_recovery/action_activate()
+/datum/action/xeno_action/pheromones/can_use_action()
 	var/mob/living/carbon/Xenomorph/X = owner
 	if(!X.check_state())
 		return
-	if(!X.check_plasma(30))
+	if(!X.check_plasma(plasma_cost))
+		to_chat(X, "<span class='xenowarning'>You need more than [plasman_cost] to emit this pheromone.</span>")
 		return
+
+/datum/action/xeno_action/pheromones/emit_recovery //Type casted for easy removal/adding
+	name = "Emit Recovery Pheromones (30)"
+	action_icon_state = "emit_recovery"
+
+/datum/action/xeno_action/pheromones/emit_recovery/action_activate()
+	var/mob/living/carbon/Xenomorph/X = owner
 	if(X.current_aura == "recovery")
 		X.visible_message("<span class='xenowarning'>\The [X] stops emitting strange pheromones.</span>", \
-		"<span class='xenowarning'>You stop emitting recovery pheromones.</span>", null, 5)
+		"<span class='xenowarning'>You stop emitting [X.current_aura] pheromones.</span>", null, 5)
 		X.current_aura = null
 	else
 		X.use_plasma(30)
@@ -416,22 +418,12 @@
 /datum/action/xeno_action/pheromones/emit_warding
 	name = "Emit Warding Pheromones (30)"
 	action_icon_state = "emit_warding"
-	plasma_cost = 30
-
-/datum/action/xeno_action/pheromones/emit_warding/can_use_action()
-	var/mob/living/carbon/Xenomorph/X = owner
-	if(X && !X.is_mob_incapacitated() && !X.lying && !X.buckled && (!X.current_aura || X.plasma_stored >= plasma_cost) && !X.stagger && !X.on_fire) //Can't emit pheromones while on fire!
-		return TRUE
 
 /datum/action/xeno_action/pheromones/emit_warding/action_activate()
 	var/mob/living/carbon/Xenomorph/X = owner
-	if(!X.check_state())
-		return
-	if(!X.check_plasma(30))
-		return
 	if(X.current_aura == "warding")
 		X.visible_message("<span class='xenowarning'>\The [X] stops emitting strange pheromones.</span>", \
-		"<span class='xenowarning'>You stop emitting warding pheromones.</span>", null, 5)
+		"<span class='xenowarning'>You stop emitting [X.current_aura] pheromones.</span>", null, 5)
 		X.current_aura = null
 	else
 		X.use_plasma(30)
@@ -450,22 +442,12 @@
 /datum/action/xeno_action/pheromones/emit_frenzy
 	name = "Emit Frenzy Pheromones (30)"
 	action_icon_state = "emit_frenzy"
-	plasma_cost = 30
-
-/datum/action/xeno_action/pheromones/emit_frenzy/can_use_action()
-	var/mob/living/carbon/Xenomorph/X = owner
-	if(X && !X.is_mob_incapacitated() && !X.lying && !X.buckled && (!X.current_aura || X.plasma_stored >= plasma_cost) && !X.stagger && !X.on_fire) //Can't emit pheromones while on fire!
-		return TRUE
 
 /datum/action/xeno_action/pheromones/emit_frenzy/action_activate()
 	var/mob/living/carbon/Xenomorph/X = owner
-	if(!X.check_state())
-		return
-	if(!X.check_plasma(30))
-		return
 	if(X.current_aura == "frenzy")
 		X.visible_message("<span class='xenowarning'>\The [X] stops emitting strange pheromones.</span>", \
-		"<span class='xenowarning'>You stop emitting frenzy pheromones.</span>", null, 5)
+		"<span class='xenowarning'>You stop emitting [X.current_aura] pheromones.</span>", null, 5)
 		X.current_aura = null
 	else
 		X.use_plasma(30)
