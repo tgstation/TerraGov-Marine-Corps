@@ -37,6 +37,12 @@
 	results = list("bicaridine" = 2)
 	required_reagents = list("inaprovaline" = 1, "carbon" = 1)
 
+/datum/chemical_reaction/meralyne
+	name = "Meralyne"
+	id = "meralyne"
+	results = list("meralyne" = 2)
+	required_reagents = list("inaprovaline" = 1, "bicaridine" = 1, "iron" = 1)
+
 /datum/chemical_reaction/hyperzine
 	name = "Hyperzine"
 	id = "hyperzine"
