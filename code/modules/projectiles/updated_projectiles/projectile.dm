@@ -249,18 +249,16 @@
 				while(++i <= 2 && hit_chance > 0) // This runs twice if necessary
 					hit_roll 					= rand(0, 99) //Our randomly generated roll
 					#if DEBUG_HIT_CHANCE
-					//to_chat(world, "DEBUG: Hit Chance 1: [hit_chance], Hit Roll: [hit_roll]")
+					to_chat(world, "DEBUG: Hit Chance 1: [hit_chance], Hit Roll: [hit_roll]")
 					#endif
 					if(hit_roll < 25) //Sniper targets more likely to hit
-						if(shot_from && !shot_from.sniper_target(A)) //Avoid sentry run times
-							def_zone = pick(base_miss_chance)	// Still hit but now we might hit the wrong body part
-						else
+						if(shot_from && !shot_from.sniper_target(A) || !shot_from) //Avoid sentry run times
 							def_zone = pick(base_miss_chance)	// Still hit but now we might hit the wrong body part
 
 					if(shot_from && !shot_from.sniper_target(A)) //Avoid sentry run times
 						hit_chance -= base_miss_chance[def_zone] // Reduce accuracy based on spot.
 						#if DEBUG_HIT_CHANCE
-						//to_chat(world, "Hit Chance 2: [hit_chance]")
+						to_chat(world, "Hit Chance 2: [hit_chance]")
 						#endif
 
 					switch(i)
