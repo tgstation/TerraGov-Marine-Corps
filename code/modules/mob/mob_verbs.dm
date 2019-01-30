@@ -137,7 +137,7 @@
 	set category = "Object"
 	reset_view(null)
 	unset_interaction()
-	if(istype(src, /mob/living))
+	if(isliving(src))
 		var/mob/living/M = src
 		if(M.cameraFollow)
 			M.cameraFollow = null

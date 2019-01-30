@@ -43,10 +43,10 @@
 /obj/item/device/radio/headset/attackby(obj/item/W as obj, mob/user as mob)
 //	..()
 	user.set_interaction(src)
-	if (!( istype(W, /obj/item/tool/screwdriver) || (istype(W, /obj/item/device/encryptionkey/ ))))
+	if (!( isscrewdriver(W) || (istype(W, /obj/item/device/encryptionkey/ ))))
 		return
 
-	if(istype(W, /obj/item/tool/screwdriver))
+	if(isscrewdriver(W))
 		if(keyslot1 || keyslot2 || keyslot3)
 
 

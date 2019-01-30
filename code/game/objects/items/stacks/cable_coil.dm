@@ -81,7 +81,7 @@
 	..()
 
 /obj/item/stack/cable_coil/attackby(obj/item/W, mob/user)
-	if( istype(W, /obj/item/tool/wirecutters) && src.amount > 1)
+	if(iswirecutter(W) && amount > 1)
 		src.amount--
 		new/obj/item/stack/cable_coil(user.loc, 1,color)
 		to_chat(user, "<span class='notice'>You cut a piece off the cable coil.</span>")
@@ -89,7 +89,7 @@
 		src.update_wclass()
 		return
 
-	else if( istype(W, /obj/item/stack/cable_coil) )
+	else if(iscablecoil(W))
 		var/obj/item/stack/cable_coil/C = W
 		if(C.amount >= MAXCOIL)
 			to_chat(user, "The coil is too long, you cannot add any more cable to it.")

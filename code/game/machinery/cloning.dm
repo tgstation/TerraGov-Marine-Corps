@@ -52,7 +52,7 @@
 		if ((M.stat != 2) || (!M.client))
 			continue
 		//They need a brain!
-		if(istype(M, /mob/living/carbon/human))
+		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			if(H.species.has_organ["brain"] && !H.has_brain())
 				continue

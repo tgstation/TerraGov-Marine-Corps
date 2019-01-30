@@ -214,7 +214,7 @@ mob/living/carbon/proc/handle_hallucinations()
 	return start_txt + mocktxt + end_txt + "</TT></BODY></HTML>"
 
 proc/check_panel(mob/M)
-	if (istype(M, /mob/living/carbon/human) || istype(M, /mob/living/silicon/ai))
+	if (ishuman(M) || isAI(M))
 		if(M.hallucination < 15)
 			return 1
 	return 0*/

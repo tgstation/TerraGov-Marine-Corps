@@ -20,10 +20,10 @@
 	for (var/x_offset = -field_radius; x_offset <= field_radius; x_offset++)
 		for (var/y_offset = -field_radius; y_offset <= field_radius; y_offset++)
 			T = locate(gen_turf.x + x_offset, gen_turf.y + y_offset, gen_turf.z)
-			if (istype(T, /turf/open/space))
+			if (isspaceturf(T))
 				//check neighbors of T
 				for(var/turf/U in orange(1, T))
-					if(!istype(U, /turf/open/space))
+					if(!isspaceturf(U))
 						out += T
 						break
 	return out

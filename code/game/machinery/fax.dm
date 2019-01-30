@@ -176,7 +176,7 @@ var/list/alldepartments = list()
 			user.transferItemToLoc(idcard, src)
 			scan = idcard
 
-	else if(istype(O, /obj/item/tool/wrench))
+	else if(iswrench(O))
 		playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 		anchored = !anchored
 		to_chat(user, "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>")

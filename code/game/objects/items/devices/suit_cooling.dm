@@ -116,7 +116,7 @@
 			to_chat(user, "You switch on the [src].")
 
 /obj/item/device/suit_cooling_unit/attackby(obj/item/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/tool/screwdriver))
+	if (isscrewdriver(W))
 		if(cover_open)
 			cover_open = 0
 			to_chat(user, "You screw the panel into place.")

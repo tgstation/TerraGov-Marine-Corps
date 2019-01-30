@@ -26,7 +26,7 @@
 		var/obj/structure/razorwire/M = new/obj/item/stack/razorwire(user.loc, 1)
 		to_chat(user, "<span class='notice'>You combine the rods and barbed wire into [M]!</span>")
 
-	if (istype(W, /obj/item/tool/weldingtool))
+	if (iswelder(W))
 		var/obj/item/tool/weldingtool/WT = W
 
 		if(amount < 4)

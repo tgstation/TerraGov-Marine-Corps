@@ -329,7 +329,7 @@
 		last_piece = null
 
 	proc/dismantleFloor(var/turf/new_turf)
-		if(istype(new_turf, /turf/open/floor))
+		if(isfloorturf(new_turf))
 			var/turf/open/floor/T = new_turf
 			if(!T.is_plating())
 				if(!T.broken && !T.burnt)
