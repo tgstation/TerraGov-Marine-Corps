@@ -556,7 +556,7 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define DEFILER_STING_AMOUNT_INITIAL		15
 #define DEFILER_STING_AMOUNT_RECURRING		10
 #define DEFILER_STING_GROWTH_AMOUNT			30
-#define GROWTH_TOXIN_METARATE		0.3
+#define GROWTH_TOXIN_METARATE		0.2
 
 //Drone defines
 

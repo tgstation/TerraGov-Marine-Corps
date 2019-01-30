@@ -2191,13 +2191,17 @@
 	face_atom(H)
 	animation_attack_on(H)
 	H.reagents.add_reagent("xeno_toxin", DEFILER_STING_AMOUNT_INITIAL) //15 units transferred initially.
-	H.reagents.add_reagent("xeno_growthtoxin", DEFILER_STING_AMOUNT_INITIAL) //15 units transferred initially.
+	to_chat(src, "<span class='xenowarning'>Your stinger injects your victim with neurotoxin!</span>")
+	var/datum/reagent/xeno_growthtoxin/growth_toxin = chemical_reagents_list["xeno_growthtoxin"]
+	if(H.reagents.get_reagent_amount("xeno_growthtoxin") >= growth_toxin.overdose_threshold)
+		to_chat(src, "<span class='xenowarning'>You defer from injecting larval growth serum as you sense your host is already saturated with it.</span>")
+	else
+		H.reagents.add_reagent("xeno_growthtoxin", DEFILER_STING_AMOUNT_INITIAL, null, 300, FALSE, FALSE, TRUE) //Caps the amount injected by the overdose limit
+		to_chat(src, "<span class='xenowarning'>Your stinger injects your victim with larval growth serum!</span>")
 	to_chat(H, "<span class='danger'>You feel a tiny prick.</span>")
-	to_chat(src, "<span class='xenowarning'>Your stinger injects your victim with neurotoxin and larval growth serum!</span>")
 	playsound(H, 'sound/effects/spray3.ogg', 15, 1)
 	playsound(H, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
 	overdose_check(H)
-	overdose_check(H, "xeno_growthtoxin")
 
 	addtimer(CALLBACK(src, .defiler_sting_cooldown), DEFILER_STING_COOLDOWN)
 
@@ -2219,9 +2223,8 @@
 		animation_attack_on(H)
 		playsound(H, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
 		H.reagents.add_reagent("xeno_toxin", DEFILER_STING_AMOUNT_RECURRING) //10 units transferred.
-		H.reagents.add_reagent("xeno_growthtoxin", DEFILER_STING_AMOUNT_RECURRING)
 		overdose_check(H)
-		overdose_check(H, "xeno_growthtoxin")
+		H.reagents.add_reagent("xeno_growthtoxin", DEFILER_STING_AMOUNT_RECURRING, null, 300, FALSE, FALSE, TRUE) //Caps the amount injected by the overdose limit
 
 		if(count < 2)
 			//It's infection time!
@@ -2326,7 +2329,7 @@
 		to_chat(src, "<span class='xenowarning'>You try to sting but are too disoriented!</span>")
 		return
 
-	if(!istype(H) || isXeno(H) || isrobot(H) || isSynth(H) || H.stat == DEAD)
+	if(!istype(H) || isxeno(H) || iscyborg(H) || H.stat == DEAD)
 		to_chat(src, "<span class='xenowarning'>Your sting won't affect this target!</span>")
 		return
 
@@ -2349,12 +2352,16 @@
 
 	face_atom(H)
 	animation_attack_on(H)
-	H.reagents.add_reagent("xeno_growthtoxin", DRONE_STING_AMOUNT_INITIAL) //15 units transferred initially.
+
+	var/datum/reagent/xeno_growthtoxin/growth_toxin = chemical_reagents_list["xeno_growthtoxin"]
+	if(H.reagents.get_reagent_amount("xeno_growthtoxin") >= growth_toxin.overdose_threshold)
+		to_chat(src, "<span class='xenowarning'>You defer from injecting larval growth serum as you sense your host is already saturated with it.</span>")
+	else
+		H.reagents.add_reagent("xeno_growthtoxin", DRONE_STING_AMOUNT_INITIAL, null, 300, FALSE, FALSE, TRUE) //Caps the amount injected by the overdose limit
+		to_chat(src, "<span class='xenowarning'>Your stinger injects your victim with larval growth serum!</span>")
 	to_chat(H, "<span class='danger'>You feel a tiny prick.</span>")
-	to_chat(src, "<span class='xenowarning'>Your stinger injects your victim with larval growth serum!</span>")
 	playsound(H, 'sound/effects/spray3.ogg', 15, 1)
 	playsound(H, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
-	overdose_check(H, "xeno_growthtoxin")
 
 	addtimer(CALLBACK(src, .drone_sting_cooldown), DRONE_STING_COOLDOWN)
 
@@ -2375,7 +2382,6 @@
 			return
 		animation_attack_on(H)
 		playsound(H, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
-		H.reagents.add_reagent("xeno_growthtoxin", DRONE_STING_AMOUNT_RECURRING)
-		overdose_check(H, "xeno_growthtoxin")
+		H.reagents.add_reagent("xeno_growthtoxin", DRONE_STING_AMOUNT_RECURRING, null, 300, FALSE, FALSE, TRUE) //Caps the amount injected by the overdose limit
 		count--
 	return

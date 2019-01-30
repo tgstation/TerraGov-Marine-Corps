@@ -149,9 +149,9 @@
 		if(iscarbon(M))
 			var/mob/living/carbon/C = M
 			var/stagger_immune = FALSE
-			if(isXeno(C))
+			if(isxeno(C))
 				var/mob/living/carbon/Xenomorph/X = M
-				if(isXenoQueen(X)) //Stagger too powerful vs the Queen, so she's immune.
+				if(isxenoqueen(X)) //Stagger too powerful vs the Queen, so she's immune.
 					stagger_immune = TRUE
 			#if DEBUG_STAGGER_SLOWDOWN
 			to_chat(world, "<span class='debuginfo'>Damage: Initial stagger is: <b>[target.stagger]</b></span>")

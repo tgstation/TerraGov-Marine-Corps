@@ -830,7 +830,7 @@
 	description = "A metabolic accelerant that dramatically increases the rate of larval growth in a host."
 	reagent_state = LIQUID
 	color = "#CF3600" // rgb: 207, 54, 0
-	custom_metabolism = GROWTH_TOXIN_METARATE // 0.3, slow meta rate.
+	custom_metabolism = GROWTH_TOXIN_METARATE // 0.2, slow meta rate.
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 
