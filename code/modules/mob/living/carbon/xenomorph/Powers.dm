@@ -2379,7 +2379,7 @@
 			return FALSE
 		face_atom(H)
 		if(!do_after(src, DRONE_STING_CHANNEL_TIME, TRUE, 5, BUSY_ICON_HOSTILE))
-			return
+			break
 		animation_attack_on(H)
 		playsound(H, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
 		H.reagents.add_reagent("xeno_growthtoxin", DRONE_STING_AMOUNT_RECURRING, null, 300, FALSE, FALSE, TRUE) //Caps the amount injected by the overdose limit
