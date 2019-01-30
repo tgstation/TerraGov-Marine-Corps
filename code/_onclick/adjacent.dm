@@ -11,7 +11,7 @@
 	to check that the mob is not inside of something
 */
 /atom/proc/Adjacent(var/atom/neighbor) // basic inheritance, unused
-	return 0
+	return FALSE
 
 // Not a sane use of the function and (for now) indicative of an error elsewhere
 /area/Adjacent(var/atom/neighbor)
@@ -25,7 +25,7 @@
 	* If you are diagonally adjacent, ensure you can pass through at least one of the mutually adjacent square.
 		* Passing through in this case ignores anything with the throwpass flag, such as tables, racks, and morgue trays.
 */
-/turf/Adjacent(atom/neighbor, list/atom/targets)
+/turf/Adjacent(atom/neighbor, list/targets)
 	var/turf/T0 = get_turf(neighbor)
 	if(T0 == src)
 		return TRUE
@@ -46,7 +46,7 @@
 			continue // could not leave T0 in that direction
 
 		var/turf/T1 = get_step(T0,d)
-		if(!T1 || T1.density || !T1.ClickCross(get_dir(T1,T0)|get_dir(T1,src), FALSE))
+		if(!T1 || T1.density || !T1.ClickCross(get_dir(T1,T0)|get_dir(T1,src)))
 			continue // couldn't enter or couldn't leave T1
 
 		if(!ClickCross(get_dir(src,T1), TRUE, targets))
@@ -60,7 +60,7 @@ Quick adjacency (to turf):
 * If you are in the same turf, always true
 * If you are not adjacent, then false
 */
-/turf/proc/AdjacentQuick(atom/neighbor)
+/turf/proc/AdjacentQuick(atom/neighbor, atom/target = null)
 	var/turf/T0 = get_turf(neighbor)
 	if(T0 == src)
 		return TRUE
@@ -86,7 +86,7 @@ Quick adjacency (to turf):
 	for(var/turf/T in locs)
 		if(isnull(T))
 			continue
-		if(T.Adjacent(neighbor,src))
+		if(T.Adjacent(neighbor, list(src)))
 			return TRUE
 	return FALSE
 
@@ -94,21 +94,23 @@ Quick adjacency (to turf):
 	if(neighbor == loc)
 		return TRUE
 	var/turf/T = get_turf(loc)
-	return T?.Adjacent(neighbor,src)
+	if(!T)
+		return FALSE
+	return T.Adjacent(neighbor,list(src))
 
 
 //This is a temporary solution to make dropship equipment work correctly.
 //TODO: Make multitile.
 /obj/structure/dropship_equipment/Adjacent(atom/neighbor)
 	for(var/turf/T in locs)
-		if(T.Adjacent(neighbor,src))
+		if(T.Adjacent(neighbor,list(src)))
 			return TRUE
 	return FALSE
 
 
 /obj/structure/ship_ammo/Adjacent(atom/neighbor)
 	for(var/turf/T in locs)
-		if(T.Adjacent(neighbor,src))
+		if(T.Adjacent(neighbor,list(src)))
 			return TRUE
 	return FALSE
 
@@ -151,8 +153,8 @@ Quick adjacency (to turf):
 
 		if(O.flags_atom & ON_BORDER) // windows have throwpass but are on border, check them first
 			if(O.dir & target_dir || O.dir & (O.dir-1)) // full tile windows are just diagonals mechanically
-				var/obj/structure/window/W = O
-				if(istype(O, W))
+				if(istype(O, /obj/structure/window))
+					var/obj/structure/window/W = O
 					if(!W.is_full_window())	//exception for breaking full tile windows on top of single pane windows
 						return FALSE
 				else
