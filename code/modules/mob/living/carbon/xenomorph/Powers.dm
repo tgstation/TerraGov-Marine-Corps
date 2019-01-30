@@ -2367,7 +2367,7 @@
 
 	addtimer(CALLBACK(src, .drone_sting_cooldown), DRONE_STING_COOLDOWN)
 
-	recurring_injection(H, "xeno_growthtoxin")
+	recurring_injection(H, null, "xeno_growthtoxin")
 
 /mob/living/carbon/Xenomorph/Drone/proc/drone_sting_cooldown()
 	playsound(loc, 'sound/voice/alien_drool1.ogg', 50, 1)
