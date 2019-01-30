@@ -83,9 +83,11 @@
 	lifetime += rand(-1,1)
 
 	if(newsmokes.len)
-		spawn(1) //the smoke spreads rapidly but not instantly
-			for(var/obj/effect/particle_effect/smoke/SM in newsmokes)
-				SM.spread_smoke()
+		addtimer(CALLBACK(src, .proc/spawn_smoke, newsmokes), 1) //the smoke spreads rapidly but not instantly
+
+/obj/effect/particle_effect/smoke/proc/spawn_smoke(list/newsmokes)
+	for(var/obj/effect/particle_effect/smoke/SM in newsmokes)
+		SM.spread_smoke()
 
 //proc to check if smoke can expand to another turf
 /obj/effect/particle_effect/smoke/proc/check_airblock(turf/T)

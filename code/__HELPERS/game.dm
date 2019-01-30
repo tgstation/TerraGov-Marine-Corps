@@ -421,14 +421,14 @@ datum/projectile_data
 
 	//normalize weights
 	var/listsum = 0
-	for(i=1; i<=contents; i++)
+	for(i in 1 to contents)
 		listsum += weight[i]
-	for(i=1; i<=contents; i++)
+	for(i in 1 to contents)
 		weight[i] /= listsum
 
 	//mix them
 	var/mixedcolor = 0
-	for(i=1; i<=contents; i++)
+	for(i in 1 to contents)
 		mixedcolor += weight[i]*color[i]
 	mixedcolor = round(mixedcolor)
 

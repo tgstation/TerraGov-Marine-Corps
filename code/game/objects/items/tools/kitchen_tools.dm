@@ -198,7 +198,7 @@
 		user.KnockOut(2)
 		return
 
-	..()
+	. = ..()
 
 	log_combat(user, M, "attacked", src)
 	msg_admin_attack("[ADMIN_TPMONTY(usr)] used the [src.name] to attack [ADMIN_TPMONTY(M)].")
