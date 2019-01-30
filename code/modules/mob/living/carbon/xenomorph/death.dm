@@ -54,8 +54,15 @@
 						break
 				for(var/mob/living/carbon/Xenomorph/L in hive.xeno_leader_list)
 					L.handle_xeno_leader_pheromones(XQ)
-				if(ticker && ticker.mode)
-					ticker.mode.check_queen_status(hive.queen_time)
+				if(ticker?.mode)
+					var/i = 0
+					for(var/mob/living/carbon/Xenomorph/X in GLOB.alive_xeno_list)
+						if(isxenolarva(X) || isxenodrone(X))
+							i++
+					if(i > 0)
+						addtimer(CALLBACK(ticker.mode, /datum/game_mode.proc/check_queen_status, hive.queen_time), QUEEN_DEATH_COUNTDOWN)
+					else
+						addtimer(CALLBACK(ticker.mode, /datum/game_mode.proc/check_queen_status, hive.queen_time), QUEEN_DEATH_NOLARVA)
 		else
 			if(hive.living_xeno_queen && hive.living_xeno_queen.observed_xeno == src)
 				hive.living_xeno_queen.set_queen_overwatch(src, TRUE)
