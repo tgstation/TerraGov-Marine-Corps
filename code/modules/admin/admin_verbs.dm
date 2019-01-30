@@ -938,7 +938,12 @@
 		send2irc("[AH ? "#[AH.id] " : ""]Reply: [ckey]", rawmsg)
 	else
 		if(check_other_rights(recipient, R_ADMIN, FALSE) || is_mentor(recipient))
-			if(check_rights(R_ADMIN, FALSE) || is_mentor(src))	//Both are staff
+			if(check_rights(R_ADMIN, FALSE) || is_mentor(src)) //Both are staff
+				if(!recipient.current_ticket)
+					if(check_other_rights(recipient, R_ADMIN, FALSE) && check_rights(R_ADMIN, FALSE))
+						new /datum/admin_help(msg, recipient, TRUE, TICKET_ADMIN)
+					else
+						new /datum/admin_help(msg, recipient, TRUE, TICKET_MENTOR)
 				to_chat(recipient, "<font size='3' color='red'>Staff PM from-<b>[key_name(src, recipient, TRUE)]</b>: <span class='linkify'>[keywordparsedmsg]</span></font>")
 				to_chat(src, "<font size='3' color='blue'>Staff PM to-<b>[key_name(recipient, src, TRUE)]</b>: <span class='linkify'>[keywordparsedmsg]</span></font>")
 
