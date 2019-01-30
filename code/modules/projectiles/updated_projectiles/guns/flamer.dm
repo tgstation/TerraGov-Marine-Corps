@@ -176,7 +176,7 @@
 		if(T == user.loc)
 			prev_T = T
 			continue
-		if(T.density || istype(T, /turf/open/space))
+		if((T.density && !istype(T, /turf/closed/wall/resin)) || istype(T, /turf/open/space))
 			break
 		if(loc != user)
 			break
