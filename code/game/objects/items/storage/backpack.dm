@@ -512,7 +512,7 @@
 	if(!camo_active)
 		return FALSE
 
-	to_chat(user, "<span class='warning'>Your cloak's camouflage has deactivated!</span>")
+	//to_chat(user, "<span class='warning'>Your cloak's camouflage has deactivated!</span>")
 	camo_active = FALSE
 
 	user.visible_message("[user.name] shimmers into existence!", "<span class='warning'>Your cloak's camouflage has deactivated!</span>")
