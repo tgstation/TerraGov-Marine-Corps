@@ -79,7 +79,7 @@
 	else
 		attack_hand(user)
 
-/obj/item/clothing/mask/facehugger/attack_hand(user as mob)
+/obj/item/clothing/mask/facehugger/attack_hand(mob/user)
 	if(isxeno(user))
 		var/mob/living/carbon/Xenomorph/X = user
 		if(X.xeno_caste.caste_flags & CASTE_CAN_HOLD_FACEHUGGERS)
@@ -88,12 +88,13 @@
 			return FALSE // The rest can't.
 	if(stat == DEAD || sterile)
 		return ..() // Dead or sterile (lamarr) can be picked.
-	else if(stat == CONSCIOUS) // If you try to take a healthy one it will try to hug you.
+	else if(stat == CONSCIOUS && CanHug(user, provoked = TRUE)) // If you try to take a healthy one it will try to hug you.
 		Attach(user)
 	return FALSE // Else you can't pick.
 
 /obj/item/clothing/mask/facehugger/attack(mob/M, mob/user)
-	if(!(ishuman(M) || ismonkey(M)))
+	if(!CanHug(M, provoked = TRUE))
+		to_chat(user, "<span class='warning'>The facehugger refuses to attach.</span>")
 		return ..()
 	user.visible_message("<span class='warning'>\ [user] attempts to plant [src] on [M]'s face!</span>", \
 	"<span class='warning'>You attempt to plant [src] on [M]'s face!</span>")
@@ -264,20 +265,23 @@
 	if(GoActive())
 		monitor_surrounding()
 
-/obj/item/clothing/mask/facehugger/proc/CanHug(mob/living/carbon/M, check_death = TRUE, check_mask = TRUE)
+/obj/item/clothing/mask/facehugger/proc/CanHug(mob/living/carbon/M, check_death = TRUE, check_mask = TRUE, provoked = FALSE)
 	if(!istype(M) || stat == DEAD)
 		return FALSE
 
-	if(!(ishuman(M) || ismonkey(M)) || iszombie(M) || M.status_flags & (XENO_HOST|GODMODE))
+	if(!(ishuman(M) || ismonkey(M)) || M.status_flags & (XENO_HOST|GODMODE))
 		return FALSE
 
 	if(check_death && M.stat == DEAD)
 		return FALSE
 
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		if(H.species?.flags & IS_SYNTHETIC)
+	if(!provoked)
+		if(iszombie(M))
 			return FALSE
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			if(H.species?.flags & IS_SYNTHETIC)
+				return FALSE
 
 	//Already have a hugger? NOPE
 	//This is to prevent eggs from bursting all over if you walk around with one on your face,
@@ -290,8 +294,8 @@
 			var/obj/item/clothing/mask/facehugger/hugger = W
 			if(hugger.stat != DEAD)
 				return FALSE
-	else if (M.wear_mask == src)
-		return TRUE
+	else if (M.wear_mask != src)
+		return FALSE
 
 	return TRUE
 
@@ -431,7 +435,7 @@
 			target.visible_message("<span class='danger'>[src] falls limp after violating [target]'s face!</span>")
 		else //Huggered but not impregnated, deal damage.
 			target.visible_message("<span class='danger'>[src] frantically claws at [target]'s face before falling down!</span>","<span class='danger'>[src] frantically claws at your face before falling down! Auugh!</span>")
-			target.apply_damage(25, BRUTE, "head")
+			target.apply_damage(15, BRUTE, "head")
 
 /obj/item/clothing/mask/facehugger/proc/Die(update_icon = TRUE)
 	reset_attach_status()
