@@ -402,7 +402,7 @@
 
 /datum/action/xeno_action/emit_recovery
 	name = "Emit Recovery Pheromones (30)"
-	action_icon_state = "emit_pheromones"
+	action_icon_state = "emit_recovery"
 	plasma_cost = 30
 
 /datum/action/xeno_action/emit_recovery/can_use_action()
@@ -435,7 +435,7 @@
 
 /datum/action/xeno_action/emit_warding
 	name = "Emit Warding Pheromones (30)"
-	action_icon_state = "emit_pheromones"
+	action_icon_state = "emit_warding"
 	plasma_cost = 30
 
 /datum/action/xeno_action/emit_warding/can_use_action()
@@ -468,7 +468,7 @@
 
 /datum/action/xeno_action/emit_frenzy
 	name = "Emit Frenzy Pheromones (30)"
-	action_icon_state = "emit_pheromones"
+	action_icon_state = "emit_frenzy"
 	plasma_cost = 30
 
 /datum/action/xeno_action/emit_frenzy/can_use_action()
