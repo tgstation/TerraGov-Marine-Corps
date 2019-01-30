@@ -367,13 +367,13 @@
 	var/mob/living/carbon/Xenomorph/X = owner
 	if(PheromonesOpen)
 		PheromonesOpen = FALSE
-		to_chat(X, "<span class ='xenonotice'>\You collaspe the pheromone button choices.</span>")
+		to_chat(X, "<span class ='xenonotice'>You collaspe the pheromone button choices.</span>")
 		var/list/subtypeactions = subtypesof(/datum/action/xeno_action/pheromones)
 		for(var/datum/action/xeno_action/pheromones/action in subtypeactions)
 			X.actions -= action
 	else
 		PheromonesOpen = TRUE
-		to_chat(X, "<span class ='xenonotice'>\You open the pheromone button choices.</span>")
+		to_chat(X, "<span class ='xenonotice'>You open the pheromone button choices.</span>")
 		var/list/subtypeactions = subtypesof(/datum/action/xeno_action/pheromones)
 		for(var/datum/action/xeno_action/pheromones/action in subtypeactions)
 			X.actions += action
