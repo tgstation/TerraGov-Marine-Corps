@@ -52,7 +52,6 @@ SUBSYSTEM_DEF(atoms)
 				++count
 				CHECK_TICK
 
-	testing("Initialized [count] atoms")
 	pass(count)
 
 	initialized = INITIALIZATION_INNEW_REGULAR
@@ -61,7 +60,6 @@ SUBSYSTEM_DEF(atoms)
 		for(var/I in late_loaders)
 			var/atom/A = I
 			A.LateInitialize()
-		testing("Late initialized [late_loaders.len] atoms")
 		late_loaders.Cut()
 
 /datum/controller/subsystem/atoms/proc/InitAtom(atom/A, list/arguments)

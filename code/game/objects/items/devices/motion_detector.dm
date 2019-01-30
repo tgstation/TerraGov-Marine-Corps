@@ -132,7 +132,7 @@
 	for(var/mob/living/M in orange(detector_range, operator))
 		if(!isturf(M.loc))
 			continue
-		if(isrobot(M))
+		if(iscyborg(M))
 			continue
 		status = MOTION_DETECTOR_HOSTILE //Reset the status to default
 		if(ishuman(M))
@@ -232,7 +232,7 @@
 
 /obj/item/device/motiondetector/pmc
 	name = "motion detector (PMC)"
-	desc = "A device that detects hostile movement. Hostiles appear as red blips. Friendlies with the correct IFF signature appear as green, and their bodies as blue, unrevivable bodies as dark blue. It has a mode selection interface. This one has been modified for use by the W-Y PMC forces."
+	desc = "A device that detects hostile movement. Hostiles appear as red blips. Friendlies with the correct IFF signature appear as green, and their bodies as blue, unrevivable bodies as dark blue. It has a mode selection interface. This one has been modified for use by the NT PMC forces."
 	iff_signal = ACCESS_IFF_PMC
 
 
@@ -240,7 +240,7 @@
 	//..()
 	if(usr.stat || usr.is_mob_restrained())
 		return
-	if(((istype(usr, /mob/living/carbon/human) && ((!( ticker ) || (ticker && ticker.mode != "monkey")) && usr.contents.Find(src))) || (usr.contents.Find(master) || (in_range(src, usr) && istype(loc, /turf)))))
+	if(((ishuman(usr) && ((!( ticker ) || (ticker && ticker.mode != "monkey")) && usr.contents.Find(src))) || (usr.contents.Find(master) || (in_range(src, usr) && istype(loc, /turf)))))
 		usr.set_interaction(src)
 		if(href_list["power"])
 			active = !active
@@ -291,7 +291,7 @@
 	return
 
 /obj/item/device/motiondetector/attack_self(mob/user as mob, flag1)
-	if(!istype(user, /mob/living/carbon/human))
+	if(!ishuman(user))
 		return
 	user.set_interaction(src)
 	var/dat = {"<TT>

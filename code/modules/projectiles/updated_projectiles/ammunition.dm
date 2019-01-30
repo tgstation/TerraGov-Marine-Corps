@@ -195,7 +195,7 @@ If it is the same and the other stack isn't full, transfer an amount (default 1)
 			to_chat(user, "Those aren't the same rounds. Better not mix them up.")
 
 /obj/item/ammo_magazine/handful/proc/generate_handful(new_ammo, new_caliber, maximum_rounds, new_rounds, new_gun_type)
-	var/datum/ammo/A = ammo_list[new_ammo]
+	var/datum/ammo/A = GLOB.ammo_list[new_ammo]
 	var/ammo_name = A.name //Let's pull up the name.
 
 	name = "handful of [ammo_name + (ammo_name == "shotgun buckshot"? " ":"s ") + "([new_caliber])"]"
@@ -422,7 +422,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 /obj/item/ammobox/MouseDrop(atom/over_object)
 	if(deployed == FALSE)
 		return
-	if(!istype(over_object, /mob/living/carbon/human))
+	if(!ishuman(over_object))
 		return
 	var/mob/living/carbon/human/H = over_object
 	if(H == usr && !H.is_mob_incapacitated() && Adjacent(H) && H.put_in_hands(src))

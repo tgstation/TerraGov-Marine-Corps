@@ -30,14 +30,13 @@
 	var/energy_conversion_rate = 0.0002	//how many renwicks per watt?
 	use_power = 0	//doesn't use APC power
 
-/obj/machinery/shield_gen/New()
-	spawn(10)
-		for(var/obj/machinery/shield_capacitor/possible_cap in range(1, src))
-			if(get_dir(possible_cap, src) == possible_cap.dir)
-				owned_capacitor = possible_cap
-				break
-	field = new/list()
-	..()
+/obj/machinery/shield_gen/Initialize()
+	for(var/obj/machinery/shield_capacitor/possible_cap in range(1, src))
+		if(get_dir(possible_cap, src) == possible_cap.dir)
+			owned_capacitor = possible_cap
+			break
+	field = list()
+	. = ..()
 	start_processing()
 
 /obj/machinery/shield_gen/attackby(obj/item/W, mob/user)
@@ -58,7 +57,7 @@
 		s.set_up(5, 1, src)
 		s.start()
 
-	else if(istype(W, /obj/item/tool/wrench))
+	else if(iswrench(W))
 		src.anchored = !src.anchored
 		src.visible_message("<span class='notice'> \icon[src] [src] has been [anchored?"bolted to the floor":"unbolted from the floor"] by [user].</span>")
 
@@ -94,7 +93,7 @@
 
 /obj/machinery/shield_gen/interact(mob/user)
 	if ( (get_dist(src, user) > 1 ) || (stat & (BROKEN)) )
-		if (!istype(user, /mob/living/silicon))
+		if (!issilicon(user))
 			user.unset_interaction()
 			user << browse(null, "window=shield_generator")
 			return

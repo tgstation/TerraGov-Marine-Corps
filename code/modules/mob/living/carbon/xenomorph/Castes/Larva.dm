@@ -64,11 +64,10 @@
 	. = ..()
 
 /mob/living/carbon/Xenomorph/Larva/Stat()
-	if (!..())
-		return 0
+	. = ..()
 
-	stat(null, "Progress: [amount_grown]/[max_grown]")
-	return 1
+	if(statpanel("Stats"))
+		stat(null, "Progress: [amount_grown]/[max_grown]")
 
 
 //Larva Progression.. Most of this stuff is obsolete.

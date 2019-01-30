@@ -104,7 +104,7 @@
 		return
 
 	if(open)
-		if(istype(W, /obj/item/tool/crowbar))
+		if(iscrowbar(W))
 			dismantle()
 			return
 

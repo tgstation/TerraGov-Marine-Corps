@@ -9,11 +9,11 @@
 
 /obj/structure/New()
 	..()
-	structure_list += src
+	GLOB.structure_list += src
 
 /obj/structure/Destroy()
 	. = ..()
-	structure_list -= src
+	GLOB.structure_list -= src
 
 /obj/structure/proc/destroy_structure(deconstruct)
 	if(parts)
@@ -72,8 +72,8 @@
 		if(3.0)
 			return
 
-/obj/structure/New()
-	..()
+/obj/structure/Initialize()
+	. = ..()
 	if(climbable)
 		verbs += /obj/structure/proc/climb_on
 

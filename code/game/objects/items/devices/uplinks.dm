@@ -190,7 +190,7 @@ datum/nano_item_lists
 	if (usr.stat || usr.is_mob_restrained())
 		return
 
-	if (!( istype(usr, /mob/living/carbon/human)))
+	if (!( ishuman(usr)))
 		return 0
 	var/mob/user = usr
 	var/datum/nanoui/ui = nanomanager.get_open_ui(user, src, "main")

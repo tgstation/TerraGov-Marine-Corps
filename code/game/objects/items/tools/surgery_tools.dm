@@ -58,10 +58,9 @@
 	origin_tech = "materials=1;biotech=1"
 	attack_verb = list("drilled")
 
-	suicide_act(mob/user)
-		user.visible_message(pick("<span class='danger'>[user] is pressing the [src.name] to \his temple and activating it! It looks like \he's trying to commit suicide.</span>", \
-							"<span class='danger'>[user] is pressing [src.name] to \his chest and activating it! It looks like \he's trying to commit suicide.</span>"))
-		return (BRUTELOSS)
+/obj/item/tool/surgery/surgicaldrill/suicide_act(mob/user)
+	user.visible_message("<span class='danger'>[user] is pressing the [name] to [user.p_their()] [pick("temple","chest")] and activating it! It looks like [user.p_theyre()] trying to commit suicide.</span>")
+	return (BRUTELOSS)
 
 /*
  * Scalpel
@@ -82,11 +81,11 @@
 	origin_tech = "materials=1;biotech=1"
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
-	suicide_act(mob/user)
-		user.visible_message(pick("<span class='danger'>[user] is slitting \his wrists with the [src.name]! It looks like \he's trying to commit suicide.</span>", \
-							"<span class='danger'>[user] is slitting \his throat with the [src.name]! It looks like \he's trying to commit suicide.</span>", \
-							"<span class='danger'>[user] is slitting \his stomach open with the [src.name]! It looks like \he's trying to commit seppuku.</span>"))
-		return (BRUTELOSS)
+/obj/item/tool/surgery/scalpel/suicide_act(mob/user)
+	user.visible_message(pick("<span class='danger'>[user] is slitting [user.p_their()] wrists with the [name]! It looks like [user.p_theyre()] trying to commit suicide.</span>", \
+							"<span class='danger'>[user] is slitting [user.p_their()] throat with the [name]! It looks like [user.p_theyre()] trying to commit suicide.</span>", \
+							"<span class='danger'>[user] is slitting [user.p_their()] stomach open with the [name]! It looks like [user.p_theyre()] trying to commit seppuku.</span>"))
+	return (BRUTELOSS)
 
 /*
  * Researchable Scalpels
@@ -270,7 +269,7 @@
 	set src in usr*/
 	if(resetting)
 		to_chat(usr, "Tool is currently returning to factory default.  If you have been waiting, try running the reset again.")
-	if(!isXeno(T))
+	if(!isxeno(T))
 		to_chat(usr, "What are you, some sort of fucking MONSTER?")
 		return
 	if(T.health > 0)

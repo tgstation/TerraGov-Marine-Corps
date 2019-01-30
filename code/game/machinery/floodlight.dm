@@ -14,14 +14,13 @@
 	var/brightness_on = 7		//can't remember what the maxed out value is
 	unacidable = 1
 
-	New()
-		..()
-		spawn(1)
-			cell = new /obj/item/cell(src)
+/obj/machinery/floodlight/Initialize()
+	. = ..()
+	cell = new /obj/item/cell(src)
 
-	Destroy()
-		SetLuminosity(0)
-		. = ..()
+/obj/machinery/floodlight/Destroy()
+	SetLuminosity(0)
+	return ..()
 
 /obj/machinery/floodlight/proc/updateicon()
 	icon_state = "flood[open ? "o" : ""][open && cell ? "b" : ""]0[on]"
@@ -76,7 +75,7 @@
 	if(!ishuman(user))
 		return
 
-	if (istype(W, /obj/item/tool/wrench))
+	if (iswrench(W))
 		if (!anchored)
 			anchored = 1
 			to_chat(user, "You anchor the [src] in place.")
@@ -84,7 +83,7 @@
 			anchored = 0
 			to_chat(user, "You remove the bolts from the [src].")
 
-	if (istype(W, /obj/item/tool/screwdriver))
+	if (isscrewdriver(W))
 		if (!open)
 			if(unlocked)
 				unlocked = 0
@@ -93,7 +92,7 @@
 				unlocked = 1
 				to_chat(user, "You unscrew the battery panel.")
 
-	if (istype(W, /obj/item/tool/crowbar))
+	if (iscrowbar(W))
 		if(unlocked)
 			if(open)
 				open = 0

@@ -159,7 +159,7 @@ Flow Rate Regulator: <A href='?src=\ref[src];volume_adj=-1000'>-</A> <A href='?s
 	last_power_draw = 0
 
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/attackby(var/obj/item/I as obj, var/mob/user as mob)
-	if(istype(I, /obj/item/tool/wrench))
+	if(iswrench(I))
 		if(on)
 			to_chat(user, "<span class='notice'>Turn it off first!</span>")
 			return
@@ -173,7 +173,7 @@ Flow Rate Regulator: <A href='?src=\ref[src];volume_adj=-1000'>-</A> <A href='?s
 	//doesn't use power cells
 	if(istype(I, /obj/item/cell))
 		return
-	if (istype(I, /obj/item/tool/screwdriver))
+	if (isscrewdriver(I))
 		return
 
 	//doesn't hold tanks
@@ -187,7 +187,7 @@ Flow Rate Regulator: <A href='?src=\ref[src];volume_adj=-1000'>-</A> <A href='?s
 	name = "Stationary Air Scrubber"
 
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/attackby(var/obj/item/I as obj, var/mob/user as mob)
-	if(istype(I, /obj/item/tool/wrench))
+	if(iswrench(I))
 		to_chat(user, "<span class='notice'>The bolts are too tight for you to unscrew!</span>")
 		return
 

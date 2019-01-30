@@ -211,7 +211,7 @@
 		return
 
 	attackby(var/obj/item/D as obj, var/mob/user as mob)
-		if(istype(D, /obj/item/tool/screwdriver))
+		if(isscrewdriver(D))
 			playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 			if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
 				if (src.stat & BROKEN)

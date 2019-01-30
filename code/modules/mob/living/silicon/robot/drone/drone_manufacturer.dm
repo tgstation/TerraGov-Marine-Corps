@@ -51,7 +51,7 @@
 
 /obj/machinery/drone_fabricator/proc/count_drones()
 	var/drones = 0
-	for(var/mob/living/silicon/robot/drone/D in player_list)
+	for(var/mob/living/silicon/robot/drone/D in GLOB.player_list)
 		if(D.key && D.client)
 			drones++
 	return drones

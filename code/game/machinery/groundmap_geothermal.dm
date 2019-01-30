@@ -208,7 +208,7 @@
 
 /obj/machinery/colony_floodlight_switch/New() //Populate our list of floodlights so we don't need to scan for them ever again
 	sleep(5) //let's make sure it exists first..
-	for(var/obj/machinery/colony_floodlight/F in machines)
+	for(var/obj/machinery/colony_floodlight/F in GLOB.machines)
 		floodlist += F
 		F.fswitch = src
 	..()
@@ -417,7 +417,7 @@
 					to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
 			return TRUE
 
-		else if(iscoil(I))
+		else if(iscablecoil(I))
 			var/obj/item/stack/cable_coil/C = I
 			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
 				user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s wiring.</span>",

@@ -46,7 +46,6 @@
 	name = "Nightmare on LV-624"
 	config_tag = "Nightmare on LV-624"
 	required_players 		= 2 //Need at least one player, but really we need 2.
-	latejoin_larva_drop		= 0
 	flags_round_type		= MODE_PREDATOR|MODE_NO_LATEJOIN
 	role_instruction		= ROLE_MODE_REPLACE
 	roles_for_mode = list(/datum/job/marine/standard,
@@ -130,11 +129,11 @@
 
 	to_chat(world, "<span class='round_setup'>Setting up the mist...</span>")
 	//Get all the fog effects in the world.
-	for(F in effect_list) fog_blockers += F
+	for(F in GLOB.effect_list) fog_blockers += F
 
 	to_chat(world, "<span class='round_setup'>Generating spawn locations...</span>")
 	//Set up landmarks.
-	for(L in landmarks_list)
+	for(L in GLOB.landmarks_list)
 		switch(L.name)
 			if("marine start") marine_spawns += L.loc
 			if("pmc start") pmc_spawns += L.loc
@@ -194,7 +193,7 @@
 	to_chat(world, "<span class='round_setup'>Shuffling playable parties...</span>")
 	var/mob/M
 	var/temp_player_list[] = new
-	for(var/i in player_list) temp_player_list += i
+	for(var/i in GLOB.player_list) temp_player_list += i
 	while(temp_player_list.len)
 		M = pick(temp_player_list) //We randomzie it a bit.
 		temp_player_list -= M
@@ -245,14 +244,14 @@
 	var/num_pmcs = living_player_list[2]
 
 	if(!num_marines && num_pmcs)
-		if(mcguffin && mcguffin.loc) round_finished 											= MODE_BATTLEFIELD_W_MAJOR
-		else round_finished 																	= MODE_BATTLEFIELD_W_MINOR
+		if(mcguffin && mcguffin.loc) round_finished 											= MODE_BATTLEFIELD_NT_MAJOR
+		else round_finished 																	= MODE_BATTLEFIELD_NT_MINOR
 	else if(num_marines && !num_pmcs)
 		if(!mcguffin || !mcguffin.loc) round_finished 											= MODE_BATTLEFIELD_M_MAJOR
 		else round_finished 																	= MODE_BATTLEFIELD_M_MINOR
 	else if(!num_marines && !num_pmcs)	round_finished  										= MODE_BATTLEFIELD_DRAW_DEATH
 	else if((world.time > BATTLEFIELD_END + lobby_time))
-		if(mcguffin && mcguffin.loc) round_finished												= MODE_BATTLEFIELD_W_MAJOR
+		if(mcguffin && mcguffin.loc) round_finished												= MODE_BATTLEFIELD_NT_MAJOR
 		else round_finished 																	= MODE_BATTLEFIELD_DRAW_STALEMATE
 	else if(EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED) round_finished 			= MODE_GENERIC_DRAW_NUKE
 
@@ -321,7 +320,7 @@
 
 /obj/item/device/omega_array
 	name = "omega wave destablization array"
-	desc = "It's hard to say just what this thing is, but the eggheads at W-Y central must have some reason for creating it."
+	desc = "It's hard to say just what this thing is, but the eggheads at CentCom must have some reason for creating it."
 	icon_state = "omega_control"
 	anchored = 1
 	density = 1
@@ -451,7 +450,7 @@
 	var/shuffle2 = shuffle_override2? shuffle_override2 : rand(1,20)
 
 	if(istype(M,/mob/living/carbon/human)) //If we started on Sulaco as squad marine
-		if(isYautja(M)) return
+		if(isyautja(M)) return
 		H = M
 	else return //If they are not human, they should not be using this proc.
 
@@ -469,7 +468,7 @@
 					to_chat(H, "________________________")
 					to_chat(H, "<span class='danger'>You are the [H.mind.assigned_role]!</span>")
 					to_chat(H, "It was just a regular day in the office when the higher up decided to send you in to this hot mess. If only you called in sick that day...")
-					to_chat(H, "The W-Y mercs were hired to protect some important science experiment, and W-Y expects you to keep them in line.")
+					to_chat(H, "The NT mercs were hired to protect some important science experiment, and NT expects you to keep them in line.")
 					to_chat(H, "These are hardened killers, and you write on paper for a living. It won't be easy, that's for damn sure.")
 					to_chat(H, "Best to let the mercs do the killing and the dying, but <b>remind them who pays the bills.</b>")
 					to_chat(H, "________________________")
@@ -658,7 +657,7 @@
 		H.equip_to_slot_or_del(ID, SLOT_WEAR_ID)
 		H.mind.special_role = "PMC"
 		H.mind.role_alt_title = H.mind.assigned_role
-		H.mind.role_comm_title = "W-Y"
+		H.mind.role_comm_title = "NT"
 		spawn(40)
 			if(H)
 				to_chat(H, "________________________")
@@ -899,7 +898,7 @@
 				to_chat(H, "________________________")
 				to_chat(H, "<span class='danger'>You are the [H.mind.assigned_role]!</span>")
 				to_chat(H, "Gear up, maggot! You have been dropped off in this God-forsaken place to complete some wetworks for Uncle Sam! Not even your mother knows that you're here!")
-				to_chat(H, "Some W-Y mercs are camping out north of the colony, and they got some doo-hickie doomsday device they are planning to use. Make sure they don't!")
+				to_chat(H, "Some NT mercs are camping out north of the colony, and they got some doo-hickie doomsday device they are planning to use. Make sure they don't!")
 				to_chat(H, "Wipe them out and destroy their tech! The [MAIN_SHIP_NAME] will maintain radio silence for the duration of the mission!")
 				to_chat(H, "You've got an hour. And watch out... That colony ain't right, it ain't right at all. <b>DISMISSED!</b>")
 				to_chat(H, "________________________")
@@ -916,8 +915,8 @@
 
 	switch(shuffle1)
 		if(1 to 10)
-			for(var/mob/M in player_list)
-				if(prob(23) && M.stat != DEAD && ishuman(M) && !isYautja(M) && M.mind && (!M.mind.special_role || M.mind.special_role == "PMC"))
+			for(var/mob/M in GLOB.player_list)
+				if(prob(23) && M.stat != DEAD && ishuman(M) && !isyautja(M) && M.mind && (!M.mind.special_role || M.mind.special_role == "PMC"))
 					switch(shuffle2)
 						if(1 to 11)
 							var/phrases[] = list( //The edgiest lyrics in the universe.
@@ -1193,7 +1192,7 @@
 	var/horror_key
 	var/mob/candidate_mob
 	var/candidates[] = new	//list of candidate keys
-	for(var/mob/dead/observer/G in player_list)
+	for(var/mob/dead/observer/G in GLOB.player_list)
 		if(G.client && !G.client.is_afk() && G.client.prefs.be_special & special_role)
 			if(!G.can_reenter_corpse || !(G.mind && G.mind.current && G.mind.current.stat != DEAD)) candidates += G
 
@@ -1289,7 +1288,7 @@
 	supply_manifest=list(
 		/obj/item/storage/box/wy_mre = 12
 		)
-	generate_supply_crate(supply_spawn,supply_manifest,"\improper W-Y MRE crate", "A crate containing Nanotrasen MREs. An army marches on its stomach, right?")
+	generate_supply_crate(supply_spawn,supply_manifest,"\improper NT MRE crate", "A crate containing Nanotrasen MREs. An army marches on its stomach, right?")
 
 	supply_manifest=list(
 		/obj/item/storage/firstaid/regular = 1,
@@ -1564,7 +1563,7 @@
 	var/i = 1
 	var/mob/living/carbon/human/H
 	while(++i < 4)
-		H = pick(player_list)
+		H = pick(GLOB.player_list)
 		if(istype(H) && H.stat != DEAD && H.species != "Horror")
 			teleport(get_turf(H))
 			return 1

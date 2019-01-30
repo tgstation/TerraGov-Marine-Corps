@@ -28,6 +28,7 @@
 
 
 /obj/structure/filingcabinet/Initialize()
+	. = ..()
 	for(var/obj/item/I in loc)
 		if(istype(I, /obj/item/paper) || istype(I, /obj/item/folder) || istype(I, /obj/item/photo) || istype(I, /obj/item/paper_bundle))
 			I.loc = src
@@ -41,7 +42,7 @@
 			sleep(5)
 			icon_state = initial(icon_state)
 			updateUsrDialog()
-	else if(istype(P, /obj/item/tool/wrench))
+	else if(iswrench(P))
 		playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 		anchored = !anchored
 		to_chat(user, "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>")

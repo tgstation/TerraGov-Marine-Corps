@@ -98,7 +98,7 @@ Class Procs:
 	icon = 'icons/obj/stationobjs.dmi'
 	var/stat = 0
 	var/emagged = 0
-	var/use_power = 1
+	var/use_power = IDLE_POWER_USE
 		//0 = dont run the auto
 		//1 = run auto, use idle
 		//2 = run auto, use active
@@ -107,6 +107,7 @@ Class Procs:
 	var/machine_current_charge = 0 //Does it have an integrated, unremovable capacitor? Normally 10k if so.
 	var/machine_max_charge = 0
 	var/power_channel = EQUIP
+	var/panel_open = FALSE
 	var/mob/living/carbon/human/operator = null //Had no idea where to put this so I put this here. Used for operating machines with RELAY_CLICK
 		//EQUIP,ENVIRON or LIGHT
 	var/list/component_parts = list() //list of all the parts used to build it, if made from certain kinds of frames.
@@ -129,13 +130,13 @@ Class Procs:
 
 /obj/machinery/New()
 	. = ..()
-	machines += src
+	GLOB.machines += src
 	var/area/A = get_area(src)
 	if(A)
 		A.master.area_machines += src
 
 /obj/machinery/Destroy()
-	machines -= src
+	GLOB.machines -= src
 	processing_machines -= src
 	var/area/A = get_area(src)
 	if(A)
@@ -241,15 +242,12 @@ Class Procs:
 		return 1
 	if(usr.is_mob_restrained() || usr.lying || usr.stat)
 		return 1
-	if ( ! (istype(usr, /mob/living/carbon/human) || \
-			istype(usr, /mob/living/silicon) || \
-			istype(usr, /mob/living/carbon/Xenomorph) || \
-			istype(usr, /mob/living/carbon/monkey)) )
+	if (!ishuman(usr))
 		to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return 1
 
 	var/norange = 0
-	if(istype(usr, /mob/living/carbon/human))
+	if(ishuman(usr))
 		var/mob/living/carbon/human/H = usr
 		if(istype(H.l_hand, /obj/item/tk_grab))
 			norange = 1
@@ -257,7 +255,7 @@ Class Procs:
 			norange = 1
 
 	if(!norange)
-		if ((!in_range(src, usr) || !istype(src.loc, /turf)) && !istype(usr, /mob/living/silicon))
+		if ((!in_range(src, usr) || !istype(src.loc, /turf)) && !issilicon(usr))
 			return 1
 
 	src.add_fingerprint(usr)
@@ -268,7 +266,7 @@ Class Procs:
 	return 0
 
 /obj/machinery/attack_ai(mob/user as mob)
-	if(isrobot(user))
+	if(iscyborg(user))
 		// For some reason attack_robot doesn't work
 		// This is to stop robots from using cameras to remotely control machines.
 		if(user.client && user.client.eye == user)
@@ -289,15 +287,12 @@ Class Procs:
 		return 1
 	if(user.lying || user.stat)
 		return 1
-	if ( ! (istype(usr, /mob/living/carbon/human) || \
-			istype(usr, /mob/living/silicon) || \
-			istype(usr, /mob/living/carbon/Xenomorph) || \
-			istype(usr, /mob/living/carbon/monkey)) )
+	if (!ishuman(usr))
 		to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return 1
 /*
 	//distance checks are made by atom/proc/clicked()
-	if ((get_dist(src, user) > 1 || !istype(src.loc, /turf)) && !istype(user, /mob/living/silicon))
+	if ((get_dist(src, user) > 1 || !istype(src.loc, /turf)) && !issilicon(user))
 		return 1
 */
 	if (ishuman(user))

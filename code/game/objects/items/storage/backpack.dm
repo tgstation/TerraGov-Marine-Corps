@@ -428,6 +428,7 @@
 	var/shimmer_alpha = SCOUT_CLOAK_RUN_ALPHA
 	var/stealth_delay = null
 	actions_types = list(/datum/action/item_action/toggle)
+	var/process_count = 0
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/scout
 
@@ -438,7 +439,7 @@
 /obj/item/storage/backpack/marine/satchel/scout_cloak/dropped(mob/user)
 	camo_off(user)
 	wearer = null
-	processing_second.Remove(src)
+	STOP_PROCESSING(SSfastprocess, src)
 	return ..()
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/verb/use_camouflage()
@@ -456,7 +457,7 @@
 	if (!istype(M))
 		return
 
-	if(M.species.name == "Zombie")
+	if(iszombie(M))
 		return
 
 	if (M.back != src)
@@ -497,7 +498,7 @@
 	spawn(1)
 		anim(M.loc,M,'icons/mob/mob.dmi',,"cloak",,M.dir)
 
-	processing_second.Add(src)
+	START_PROCESSING(SSfastprocess, src)
 	wearer.cloaking = TRUE
 
 	return TRUE
@@ -506,7 +507,7 @@
 	if (!user)
 		camo_active = FALSE
 		wearer = null
-		processing_second.Remove(src)
+		STOP_PROCESSING(SSfastprocess, src)
 		return 0
 
 	if(!camo_active)
@@ -532,7 +533,7 @@
 		camo_cooldown_timer = world.time + cooldown //recalibration and recharge time scales inversely with charge remaining
 		to_chat(user, "<span class='warning'>Your thermal cloak is recalibrating! It will be ready in [(camo_cooldown_timer - world.time) * 0.1] seconds.")
 		process_camo_cooldown(user, cooldown)
-	processing_second.Remove(src)
+	STOP_PROCESSING(SSfastprocess, src)
 	wearer.cloaking = FALSE
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/process_camo_cooldown(mob/living/user, cooldown)
@@ -583,6 +584,11 @@
 	if(!wearer || wearer.stat == DEAD)
 		camo_off()
 		return
+
+	if(process_count++ < 4)
+		return
+
+	process_count = 0
 
 	stealth_delay = world.time - SCOUT_CLOAK_STEALTH_DELAY
 	if(camo_last_shimmer > stealth_delay) //Shimmer after taking aggressive actions; no energy regeneration
@@ -635,7 +641,7 @@
 
 
 /obj/item/storage/backpack/marine/engineerpack/attackby(obj/item/W, mob/living/user)
-	if(istype(W, /obj/item/tool/weldingtool))
+	if(iswelder(W))
 		var/obj/item/tool/weldingtool/T = W
 		if(T.welding)
 			to_chat(user, "<span class='warning'>That was close! However you realized you had the welder on and prevented disaster.</span>")

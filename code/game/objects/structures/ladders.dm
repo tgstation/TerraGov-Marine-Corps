@@ -13,25 +13,24 @@
 	var/is_watching = 0
 	var/obj/machinery/camera/cam
 
-/obj/structure/ladder/New()
-	..()
-	spawn(8)
-		cam = new /obj/machinery/camera(src)
-		cam.network = list("LADDER")
-		cam.c_tag = name
+/obj/structure/ladder/Initialize()
+	. = ..()
+	cam = new /obj/machinery/camera(src)
+	cam.network = list("LADDER")
+	cam.c_tag = name
 
-		for(var/obj/structure/ladder/L in structure_list)
-			if(L.id == id)
-				if(L.height == (height - 1))
-					down = L
-					continue
-				if(L.height == (height + 1))
-					up = L
-					continue
+	for(var/obj/structure/ladder/L in GLOB.structure_list)
+		if(L.id == id)
+			if(L.height == (height - 1))
+				down = L
+				continue
+			if(L.height == (height + 1))
+				up = L
+				continue
 
-			if(up && down)	//If both our connections are filled
-				break
-		update_icon()
+		if(up && down)	//If both our connections are filled
+			break
+	update_icon()
 
 /obj/structure/ladder/Destroy()
 	if(down)
@@ -137,7 +136,7 @@
 //Peeking up/down
 /obj/structure/ladder/MouseDrop(over_object, src_location, over_location)
 	if((over_object == usr && (in_range(src, usr))))
-		if(isXenoLarva(usr) || isobserver(usr) || usr.is_mob_incapacitated() || is_blind(usr) || usr.lying)
+		if(isxenolarva(usr) || isobserver(usr) || usr.is_mob_incapacitated() || is_blind(usr) || usr.lying)
 			to_chat(usr, "You can't do that in your current state.")
 			return
 		if(is_watching)

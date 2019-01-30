@@ -21,6 +21,7 @@
 // Standard procs
 //-------------------------------------------
 /obj/vehicle/train/Initialize()
+	. = ..()
 	for(var/obj/vehicle/train/T in orange(1, src))
 		latch(T)
 
@@ -64,7 +65,7 @@
 	set category = "Object"
 	set src in view(1)
 
-	if(!istype(usr, /mob/living/carbon/human))
+	if(!ishuman(usr))
 		return
 
 	if(!usr.canmove || usr.stat || usr.is_mob_restrained() || !Adjacent(usr))

@@ -81,7 +81,7 @@
 	if(CONFIG_GET(flag/objectives_disabled))
 		return
 
-	if(istype(traitor.current, /mob/living/silicon))
+	if(issilicon(traitor.current))
 		var/datum/objective/assassinate/kill_objective = new
 		kill_objective.owner = traitor
 		kill_objective.find_target()
@@ -121,7 +121,7 @@
 
 
 /datum/game_mode/proc/finalize_traitor(var/datum/mind/traitor)
-	if (istype(traitor.current, /mob/living/silicon))
+	if (issilicon(traitor.current))
 		add_law_zero(traitor.current)
 	else
 		equip_traitor(traitor.current)
@@ -277,5 +277,5 @@
 	// Tell them about people they might want to contact.
 	var/mob/living/carbon/human/M = get_nt_opposed()
 	if(M && M != traitor_mob)
-		to_chat(traitor_mob, "We have received credible reports that [M.real_name] might be willing to help our cause. If you need assistance, consider contacting them.")
+		to_chat(traitor_mob, "We have received credible reports that [M.real_name] might be willing to help our cause. If you need assistance, consider contacting [M.p_them()].")
 		traitor_mob.mind.store_memory("<b>Potential Collaborator</b>: [M.real_name]")

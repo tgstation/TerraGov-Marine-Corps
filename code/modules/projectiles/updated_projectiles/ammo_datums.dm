@@ -91,14 +91,14 @@
 		else //Two tiles away or less.
 			shake_camera(M, 3, 4)
 			if(isliving(M)) //This is pretty ugly, but what can you do.
-				if(isXeno(M))
+				if(isxeno(M))
 					var/mob/living/carbon/Xenomorph/target = M
 					if(target.mob_size == MOB_SIZE_BIG)
 						return //Big xenos are not affected.
 					target.apply_effects(0,1) //Smaller ones just get shaken.
 					to_chat(target, "<span class='xenodanger'>You are shaken by the sudden impact!</span>")
 				else
-					if(!isYautja(M)) //Not predators.
+					if(!isyautja(M)) //Not predators.
 						var/mob/living/target = M
 						target.apply_effects(1,2) //Humans get stunned a bit.
 						to_chat(target, "<span class='highdanger'>The blast knocks you off your feet!</span>")
@@ -113,7 +113,7 @@
 		if(!isliving(M))
 			return
 		var/impact_message = ""
-		if(isXeno(M))
+		if(isxeno(M))
 			var/mob/living/carbon/Xenomorph/D = M
 			if(D.fortify) //If we're fortified we don't give a shit about staggerstun.
 				impact_message += "<span class='xenodanger'>Your fortified stance braces you against the impact.</span>"
@@ -125,18 +125,18 @@
 				stun = 0
 		if(shake)
 			shake_camera(M, shake+2, shake+3)
-			if(isXeno(M))
+			if(isxeno(M))
 				impact_message += "<span class='xenodanger'>You are shaken by the sudden impact!</span>"
 			else
 				impact_message += "<span class='warning'>You are shaken by the sudden impact!</span>"
 
 		//Check for and apply hard CC.
-		if(((isYautja(M) || M.mob_size == MOB_SIZE_BIG) && hard_size_threshold > 2) || (M.mob_size == MOB_SIZE_XENO && hard_size_threshold > 1) || (ishuman(M) && hard_size_threshold > 0))
+		if(((isyautja(M) || M.mob_size == MOB_SIZE_BIG) && hard_size_threshold > 2) || (M.mob_size == MOB_SIZE_XENO && hard_size_threshold > 1) || (ishuman(M) && hard_size_threshold > 0))
 			var/mob/living/L = M
 			if(!M.stunned && !M.knocked_down) //Prevent chain stunning.
 				L.apply_effects(stun,weaken)
 			if(knockback)
-				if(isXeno(M))
+				if(isxeno(M))
 					impact_message += "<span class='xenodanger'>The blast knocks you off your feet!</span>"
 				else
 					impact_message += "<span class='highdanger'>The blast knocks you off your feet!</span>"
@@ -144,12 +144,12 @@
 					step_away(M,P)
 
 		//Check for and apply soft CC; Xeno only at this time
-		if(isXeno(M) && (M.mob_size == MOB_SIZE_BIG && soft_size_threshold > 2) || (M.mob_size == MOB_SIZE_XENO && soft_size_threshold > 1))
+		if(isxeno(M) && (M.mob_size == MOB_SIZE_BIG && soft_size_threshold > 2) || (M.mob_size == MOB_SIZE_XENO && soft_size_threshold > 1))
 			var/mob/living/carbon/Xenomorph/X = M
 			#if DEBUG_STAGGER_SLOWDOWN
 			to_chat(world, "<span class='debuginfo'>Damage: Initial stagger is: <b>[target.stagger]</b></span>")
 			#endif
-			if(!isXenoQueen(X)) //Stagger too powerful vs the Queen.
+			if(!isxenoqueen(X)) //Stagger too powerful vs the Queen.
 				X.adjust_stagger(stagger)
 			#if DEBUG_STAGGER_SLOWDOWN
 			to_chat(world, "<span class='debuginfo'>Damage: Final stagger is: <b>[target.stagger]</b></span>")
@@ -169,7 +169,7 @@
 		for(var/mob/living/carbon/M in orange(radius,target))
 			if(P.firer == M)
 				continue
-			M.visible_message("<span class='danger'>[M] is hit by backlash from \a [P.name]!</span>","[isXeno(M)?"<span class='xenodanger'>":"<span class='highdanger'>"]You are hit by backlash from \a </b>[P.name]</b>!</span>")
+			M.visible_message("<span class='danger'>[M] is hit by backlash from \a [P.name]!</span>","[isxeno(M)?"<span class='xenodanger'>":"<span class='highdanger'>"]You are hit by backlash from \a </b>[P.name]</b>!</span>")
 			if(apply_armor)
 				var/armor_block = M.run_armor_check(M, attack_type)
 				M.apply_damage(rand(P.damage * modifier * 0.1,P.damage * modifier),damage_type, null, armor_block)
@@ -182,7 +182,7 @@
 		var/i
 		for(i = 1 to bonus_projectiles_amount) //Want to run this for the number of bonus projectiles.
 			var/obj/item/projectile/P = new /obj/item/projectile(original_P.shot_from)
-			P.generate_bullet(ammo_list[bonus_projectiles_type]) //No bonus damage or anything.
+			P.generate_bullet(GLOB.ammo_list[bonus_projectiles_type]) //No bonus damage or anything.
 			var/turf/new_target = null
 
 			P.scatter = round(P.scatter - (initial(original_P.scatter) - original_P.scatter) ) //if the gun changes the scatter of the main projectile, it also affects the bonus ones.
@@ -204,7 +204,7 @@
 	//This is sort of a workaround for now. There are better ways of doing this ~N.
 	proc/stun_living(mob/living/target, obj/item/projectile/P) //Taser proc to stun folks.
 		if(istype(target))
-			if( isYautja(target) || isXeno(target) )
+			if( isyautja(target) || isxeno(target) )
 				return //Not on aliens.
 			if(target.mind && target.mind.special_role)
 				switch(target.mind.special_role) //Switches are still better than evaluating this twice.
@@ -1027,16 +1027,16 @@
 
 
 /datum/ammo/rocket/wp/on_hit_mob(mob/M,obj/item/projectile/P)
-	drop_flame(get_turf(M))
+	drop_flame(3, get_turf(M))
 
 /datum/ammo/rocket/wp/on_hit_obj(obj/O,obj/item/projectile/P)
-	drop_flame(get_turf(O))
+	drop_flame(3, get_turf(O))
 
 /datum/ammo/rocket/wp/on_hit_turf(turf/T,obj/item/projectile/P)
-	drop_flame(T)
+	drop_flame(3, T)
 
 /datum/ammo/rocket/wp/do_at_max_range(obj/item/projectile/P)
-	drop_flame(get_turf(P))
+	drop_flame(3, get_turf(P))
 
 /datum/ammo/rocket/wp/quad
 	name = "thermobaric rocket"
@@ -1451,19 +1451,19 @@
 		var/mob/living/carbon/C = M
 		if(C.status_flags & XENO_HOST && istype(C.buckled, /obj/structure/bed/nest) || C.stat == DEAD)
 			return
-	if(isXenoBoiler(P.firer))
+	if(isxenoboiler(P.firer))
 		var/mob/living/carbon/Xenomorph/Boiler/B = P.firer
 		smoke_system.amount = B.upgrade
 	drop_nade(get_turf(P))
 
 /datum/ammo/xeno/boiler_gas/on_hit_obj(obj/O, obj/item/projectile/P)
-	if(isXenoBoiler(P.firer))
+	if(isxenoboiler(P.firer))
 		var/mob/living/carbon/Xenomorph/Boiler/B = P.firer
 		smoke_system.amount = B.upgrade
 	drop_nade(get_turf(P))
 
 /datum/ammo/xeno/boiler_gas/on_hit_turf(turf/T, obj/item/projectile/P)
-	if(isXenoBoiler(P.firer))
+	if(isxenoboiler(P.firer))
 		var/mob/living/carbon/Xenomorph/Boiler/B = P.firer
 		smoke_system.amount = B.upgrade
 	if(T.density && isturf(P.loc))
@@ -1472,7 +1472,7 @@
 		drop_nade(T)
 
 /datum/ammo/xeno/boiler_gas/do_at_max_range(obj/item/projectile/P)
-	if(isXenoBoiler(P.firer))
+	if(isxenoboiler(P.firer))
 		var/mob/living/carbon/Xenomorph/Boiler/B = P.firer
 		smoke_system.amount = B.upgrade
 	drop_nade(get_turf(P))

@@ -1,7 +1,7 @@
 /proc/GameOver()
 	if(!hadevent)
 		hadevent = 1
-		message_admins("The apocalypse has begun! (this holiday event can be disabled by toggling events off within 60 seconds)")
+		message_admins("The apocalypse has begun! (this holiday event can be disabled by toggling events off within 60 seconds).")
 		spawn(600)
 			if(!CONFIG_GET(flag/allow_random_events))	return
 			Show2Group4Delay(ScreenText(null,"<center><font color='red' size='8'>GAME OVER</font></center>"),null,150)
