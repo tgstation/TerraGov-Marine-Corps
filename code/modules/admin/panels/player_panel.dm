@@ -344,7 +344,10 @@
 		else if(ismonkey(M))
 			dat += "<td>Monkey</td>"
 		else if(isxeno(M))
-			dat += "<td>alien</td>"
+			if(M.client?.prefs?.xeno_name && M.client.prefs.xeno_name != "Undefined")
+				dat += "<td>alien - [M.client.prefs.xeno_name]</td>"
+			else
+				dat += "<td>alien</td>"
 		else
 			dat += "<td>Unknown</td>"
 
