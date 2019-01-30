@@ -93,6 +93,8 @@
 	return FALSE // Else you can't pick.
 
 /obj/item/clothing/mask/facehugger/attack(mob/M, mob/user)
+	if(stat != CONSCIOUS)
+		return ..()
 	if(!CanHug(M, provoked = TRUE))
 		to_chat(user, "<span class='warning'>The facehugger refuses to attach.</span>")
 		return ..()
@@ -203,15 +205,18 @@
 	return FALSE
 
 /obj/item/clothing/mask/facehugger/Crossed(atom/target)
-	HasProximity(target)
+	if(stat == CONSCIOUS)
+		HasProximity(target)
 
 /obj/item/clothing/mask/facehugger/on_found(mob/finder)
-	return HasProximity(finder)
+	if(stat == CONSCIOUS)
+		HasProximity(finder)
+		return TRUE
+	return FALSE
 
 /obj/item/clothing/mask/facehugger/HasProximity(atom/movable/AM)
 	if(CanHug(AM))
-		if(stat == CONSCIOUS)
-			Attach(AM)
+		Attach(AM)
 		return TRUE
 	return FALSE
 
@@ -229,7 +234,7 @@
 				throw_at(M, 4, 1)
 				break
 			i--
-		if(!attached) //Didn't hit anything?
+		if(!attached && stat != DEAD) //Didn't hit anything?
 			i = 5
 			for(M in loc)
 				if(!i)
@@ -249,7 +254,6 @@
 		return ..()
 	if(ismob(hit_atom))
 		if(leaping && CanHug(hit_atom)) //Standard leaping behaviour, not attributable to being _thrown_ such as by a Carrier.
-			stat = CONSCIOUS
 			Attach(hit_atom)
 		else if(hit_atom.density) //We hit something, cool.
 			step(src, turn(dir, 180)) //We want the hugger to bounce off if it hits a mob.
@@ -258,6 +262,7 @@
 			addtimer(CALLBACK(src, .proc/fast_activate), 1.5 SECONDS)
 
 	else
+		leaping = FALSE
 		addtimer(CALLBACK(src, .proc/fast_activate), rand(MIN_ACTIVE_TIME,MAX_ACTIVE_TIME))
 		return ..()
 
@@ -266,10 +271,10 @@
 		monitor_surrounding()
 
 /obj/item/clothing/mask/facehugger/proc/CanHug(mob/living/carbon/M, check_death = TRUE, check_mask = TRUE, provoked = FALSE)
-	if(!istype(M) || stat == DEAD)
+	if(!(ishuman(M) || ismonkey(M)) || stat == DEAD)
 		return FALSE
 
-	if(!(ishuman(M) || ismonkey(M)) || M.status_flags & (XENO_HOST|GODMODE))
+	if(M.status_flags & (XENO_HOST|GODMODE))
 		return FALSE
 
 	if(check_death && M.stat == DEAD)
@@ -294,14 +299,14 @@
 			var/obj/item/clothing/mask/facehugger/hugger = W
 			if(hugger.stat != DEAD)
 				return FALSE
-	else if (M.wear_mask != src)
+	else if (M.wear_mask && M.wear_mask != src)
 		return FALSE
 
 	return TRUE
 
 /obj/item/clothing/mask/facehugger/proc/Attach(mob/living/carbon/M, self_done = FALSE)
 
-	if(!istype(M) || stat != CONSCIOUS)
+	if(!istype(M))
 		return FALSE
 
 	if(attached || M.status_flags & XENO_HOST || isxeno(M))

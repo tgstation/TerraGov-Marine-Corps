@@ -629,8 +629,9 @@
 /obj/effect/alien/egg/HasProximity(atom/movable/AM)
 	if(status == EGG_GROWN)
 		if(!hugger?.CanHug(AM) || isyautja(AM)) //Predators are too stealthy to trigger eggs to burst. Maybe the huggers are afraid of them.
-			return
+			return FALSE
 		Burst(FALSE)
+		return TRUE
 
 //The invisible traps around the egg to tell it there's a mob right next to it.
 /obj/effect/egg_trigger
