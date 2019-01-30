@@ -428,7 +428,7 @@
 
 		if(X.hivenumber && X.hivenumber <= hive_datum.len)
 			var/datum/hive_status/hive = hive_datum[X.hivenumber]
-			if(isXenoQueen(X) && hive.xeno_leader_list.len && X.anchored)
+			if(isxenoqueen(X) && hive.xeno_leader_list.len && X.anchored)
 				var/mob/living/carbon/Xenomorph/Queen/Q = X
 				for(var/mob/living/carbon/Xenomorph/L in hive.xeno_leader_list)
 					L.handle_xeno_leader_pheromones(Q)
@@ -461,7 +461,7 @@
 
 	if(X.hivenumber && X.hivenumber <= hive_datum.len)
 		var/datum/hive_status/hive = hive_datum[X.hivenumber]
-		if(isXenoQueen(X) && hive.xeno_leader_list.len && X.anchored)
+		if(isxenoqueen(X) && hive.xeno_leader_list.len && X.anchored)
 			var/mob/living/carbon/Xenomorph/Queen/Q = X
 			for(var/mob/living/carbon/Xenomorph/L in hive.xeno_leader_list)
 				L.handle_xeno_leader_pheromones(Q)
@@ -494,7 +494,7 @@
 
 	if(X.hivenumber && X.hivenumber <= hive_datum.len)
 		var/datum/hive_status/hive = hive_datum[X.hivenumber]
-		if(isXenoQueen(X) && hive.xeno_leader_list.len && X.anchored)
+		if(isxenoqueen(X) && hive.xeno_leader_list.len && X.anchored)
 			var/mob/living/carbon/Xenomorph/Queen/Q = X
 			for(var/mob/living/carbon/Xenomorph/L in hive.xeno_leader_list)
 				L.handle_xeno_leader_pheromones(Q)
