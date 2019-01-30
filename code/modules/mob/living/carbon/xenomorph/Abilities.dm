@@ -388,7 +388,7 @@
 	if(!X.check_state())
 		return
 	if(!X.check_plasma(plasma_cost))
-		to_chat(X, "<span class='xenowarning'>You need more than [plasman_cost] to emit this pheromone.</span>")
+		to_chat(X, "<span class='xenowarning'>You need more than [plasma_cost] to emit this pheromone.</span>")
 		return
 
 /datum/action/xeno_action/pheromones/emit_recovery //Type casted for easy removal/adding
