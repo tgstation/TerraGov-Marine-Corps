@@ -886,7 +886,7 @@
 			return
 
 		var/mob/M = locate(href_list["jumpto"])
-		if(!ismob(M) || isobserver(M))
+		if(!istype(M))
 			return
 
 		usr.forceMove(M.loc)
@@ -900,7 +900,7 @@
 			return
 
 		var/mob/M = locate(href_list["getmob"])
-		if(!ismob(M) || isobserver(M))
+		if(!istype(M))
 			return
 
 		M.forceMove(usr.loc)
@@ -914,9 +914,9 @@
 			return
 
 		var/mob/M = locate(href_list["sendmob"])
-		if(!ismob(M) || isobserver(M))
-
+		if(!istype(M))
 			return
+
 		var/atom/target
 
 		switch(input("To an area or to a mob?", "Send Mob", null, null) as null|anything in list("Area", "Mob"))
