@@ -108,6 +108,7 @@ var/const/DUT_FREQ 		= 1340
 var/const/ERT_FREQ 		= 1342
 var/const/RUS_FREQ		= 1338
 var/const/DTH_FREQ 		= 1344
+var/const/IMP_FREQ		= 1337
 var/const/AI_FREQ 		= 1447
 
 //Ship department channels
@@ -140,6 +141,7 @@ var/list/radiochannels = list(
 	"SpecOps" 		= DTH_FREQ,
 	"UPP" 			= RUS_FREQ,
 	"Colonist"		= DUT_FREQ,
+	"Imperial"		= IMP_FREQ,
 
 	"Theseus"		= PUB_FREQ,
 	"Command"		= COMM_FREQ,

@@ -27,14 +27,13 @@
 	
 	var/obj/item/clothing/shoes/marine/imperial/S = new /obj/item/clothing/shoes/marine/imperial(H)
 	S.knife = new /obj/item/weapon/combat_knife
+	S.update_icon()
 	H.equip_to_slot_or_del(S, SLOT_SHOES)
 	
 	var/obj/item/clothing/head/helmet/marine/imperial/Helm = new /obj/item/clothing/head/helmet/marine/imperial(H)
 	H.equip_to_slot_or_del(Helm, SLOT_HEAD)
 	
 	var/obj/item/clothing/suit/storage/marine/imperial/Suit = new /obj/item/clothing/suit/storage/marine/imperial(H)
-	Suit.pockets.contents += new /obj/item/explosive/grenade/frag/stick
-	Suit.pockets.contents += new /obj/item/explosive/grenade/frag/stick
 	H.equip_to_slot_or_del(Suit, SLOT_WEAR_SUIT)
 	
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/dutch(H), SLOT_EARS)

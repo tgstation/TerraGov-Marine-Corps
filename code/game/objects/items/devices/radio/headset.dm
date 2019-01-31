@@ -463,3 +463,9 @@
 	name = "Commando headset"
 	keyslot1 = new /obj/item/device/encryptionkey/commando
 	keyslot2 = new /obj/item/device/encryptionkey/mcom
+
+/obj/item/device/radio/headset/distress/imperial
+	name = "Imperial headset"
+	desc = "A headset used by the Imperial soldiers. There is only the Emperor's channel."
+	keyslot1 = new /obj/item/device/encryptionkey/imperial
+	frequency = IMP_FREQ

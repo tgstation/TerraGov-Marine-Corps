@@ -141,3 +141,7 @@
 /obj/item/device/encryptionkey/commando
 	name = "\improper NT commando encryption key"
 	channels = list("SpecOps" = TRUE)
+
+/obj/item/device/encryptionkey/imperial
+	name = "\improper Imperial encryption key"
+	channels = list("Imperial" = TRUE)
