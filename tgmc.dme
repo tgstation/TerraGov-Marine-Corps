@@ -165,6 +165,7 @@
 #include "code\controllers\stonedmc\subsystem\machines.dm"
 #include "code\controllers\stonedmc\subsystem\mobs.dm"
 #include "code\controllers\stonedmc\subsystem\nanoui.dm"
+#include "code\controllers\stonedmc\subsystem\ping.dm"
 #include "code\controllers\stonedmc\subsystem\points.dm"
 #include "code\controllers\stonedmc\subsystem\shuttle.dm"
 #include "code\controllers\stonedmc\subsystem\sun.dm"
