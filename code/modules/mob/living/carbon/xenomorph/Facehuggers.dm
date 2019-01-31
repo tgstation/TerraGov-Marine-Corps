@@ -222,9 +222,8 @@
 
 /obj/item/clothing/mask/facehugger/proc/leap_at_nearest_target()
 	if(isturf(loc))
-		var/mob/living/M
 		var/i = 10//So if we have a pile of dead bodies around, it doesn't scan everything, just ten iterations.
-		for(M in view(4,src))
+		for(var/mob/living/M in view(4,src))
 			if(!i)
 				break
 			if(CanHug(M))
@@ -233,16 +232,6 @@
 				leaping = TRUE
 				throw_at(M, 4, 1)
 				break
-			i--
-		if(!attached && stat != DEAD) //Didn't hit anything?
-			i = 5
-			for(M in loc)
-				if(!i)
-					break
-				if(CanHug(M))
-					Attach(M)
-					break
-				i--
 
 /obj/item/clothing/mask/facehugger/throw_at(atom/target, range, speed)
 	. = ..()
@@ -262,8 +251,12 @@
 			addtimer(CALLBACK(src, .proc/fast_activate), 1.5 SECONDS)
 
 	else
-		leaping = FALSE
-		addtimer(CALLBACK(src, .proc/fast_activate), rand(MIN_ACTIVE_TIME,MAX_ACTIVE_TIME))
+		var/hugger_timer = rand(MIN_ACTIVE_TIME,MAX_ACTIVE_TIME)
+		for(var/mob/M in loc)
+			if(CanHug(M))
+				hugging_timer = 1.5 SECONDS
+				break
+		addtimer(CALLBACK(src, .proc/fast_activate), hugger_timer)
 		return ..()
 
 /obj/item/clothing/mask/facehugger/proc/fast_activate()
