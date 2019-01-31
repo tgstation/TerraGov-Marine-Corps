@@ -93,16 +93,20 @@
 	round_time_lobby = world.time
 	defer_powernet_rebuild = 2 //Build powernets a little bit later, it lags pretty hard.
 
-	spawn(50)
-		switch(map_tag)
-			if(MAP_LV_624)
-				command_announcement.Announce("An automated distress signal has been received from archaeology site Lazarus Landing, on border world LV-624. A response team from the [MAIN_SHIP_NAME] will be dispatched shortly to investigate.", "[MAIN_SHIP_NAME]")
-			if(MAP_ICE_COLONY)
-				command_announcement.Announce("An automated distress signal has been received from archaeology site \"Shiva's Snowball\", on border ice world \"Ifrit\". A response team from the [MAIN_SHIP_NAME] will be dispatched shortly to investigate.", "[MAIN_SHIP_NAME]")
-			if(MAP_BIG_RED)
-				command_announcement.Announce("We've lost contact with the Nanotrasen's research facility, [map_tag]. The [MAIN_SHIP_NAME] has been dispatched to assist.", "[MAIN_SHIP_NAME]")
-			if(MAP_PRISON_STATION)
-				command_announcement.Announce("An automated distress signal has been received from maximum-security prison \"Fiorina Orbital Penitentiary\". A response team from the [MAIN_SHIP_NAME] will be dispatched shortly to investigate.", "[MAIN_SHIP_NAME]")
+	addtimer(CALLBACK(ticker.mode, .proc/map_announce), 5 SECONDS)
+
+
+
+/datum/game_mode/colonialmarines/proc/map_announce()
+	switch(map_tag)
+		if(MAP_LV_624)
+			command_announcement.Announce("An automated distress signal has been received from archaeology site Lazarus Landing, on border world LV-624. A response team from the [MAIN_SHIP_NAME] will be dispatched shortly to investigate.", "[MAIN_SHIP_NAME]")
+		if(MAP_ICE_COLONY)
+			command_announcement.Announce("An automated distress signal has been received from archaeology site \"Shiva's Snowball\", on border ice world \"Ifrit\". A response team from the [MAIN_SHIP_NAME] will be dispatched shortly to investigate.", "[MAIN_SHIP_NAME]")
+		if(MAP_BIG_RED)
+			command_announcement.Announce("We've lost contact with the Nanotrasen's research facility, [map_tag]. The [MAIN_SHIP_NAME] has been dispatched to assist.", "[MAIN_SHIP_NAME]")
+		if(MAP_PRISON_STATION)
+			command_announcement.Announce("An automated distress signal has been received from maximum-security prison \"Fiorina Orbital Penitentiary\". A response team from the [MAIN_SHIP_NAME] will be dispatched shortly to investigate.", "[MAIN_SHIP_NAME]")
 
 
 /datum/game_mode/colonialmarines/process()
