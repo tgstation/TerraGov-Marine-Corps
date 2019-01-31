@@ -13,7 +13,7 @@
 	for(var/client/C in GLOB.clients)
 		if(isobserver(C.mob))
 			count_observers++
-			if(!check_other_rights(C, R_ADMIN, FALSE) || !is_mentor(C))
+			if(!check_other_rights(C, R_ADMIN, FALSE))
 				count_nonadmin_observers++
 		if(C.mob && C.mob.stat != DEAD)
 			if(ishuman(C.mob) && !iszombie(C.mob))
