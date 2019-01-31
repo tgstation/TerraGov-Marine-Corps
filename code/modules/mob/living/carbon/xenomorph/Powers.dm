@@ -1865,44 +1865,28 @@
 		to_chat(src, "<span class='xenowarning'>You must gather your strength before Ravaging. Ravage can be used in [(ravage_delay - world.time) * 0.1] seconds.</span>")
 		return
 
-	var/dist = get_dist(src,A)
-	if (dist > 2)
-		if(world.time > (recent_notice + notice_delay)) //anti-notice spam
-			to_chat(src, "<span class='xenowarning'>Your target is too far away!</span>")
-
-			recent_notice = world.time //anti-notice spam
-		return
-
 	if (!check_plasma(40))
 		return
 
+	spin_circle() //Spin me right 'round
 	emote("roar")
 	round_statistics.ravager_ravages++
-	visible_message("<span class='danger'>\The [src] thrashes about in a murderous frenzy!</span>", \
-	"<span class='xenowarning'>You thrash about in a murderous frenzy!</span>")
-
-	face_atom(A)
-	if(dist > 1) //Lunge towards the target turf
-		step_towards(src,A,2)
+	visible_message("<span class='danger'>\The [src] thrashes about in a murderous frenzy around itself!</span>", \
+	"<span class='xenowarning'>You thrash about in a murderous frenzy around yourself!</span>")
 
 	var/sweep_range = 1
 	var/list/L = orange(sweep_range)		// Not actually the fruit
 	var/victims
-	var/target_facing
+	var/extra_dam //Right now it's nothing; we randomize the damage for each victim
 	for (var/mob/living/carbon/human/H in L)
-		if(victims >= 3) //Max 3 victims
-			break
-		target_facing = get_dir(src, H)
-		if(target_facing != dir && target_facing != turn(dir,45) && target_facing != turn(dir,-45) ) //Have to be actually facing the target
-			continue
 		if(H.stat != DEAD && !(istype(H.buckled, /obj/structure/bed/nest) && H.status_flags & XENO_HOST) ) //No bully
-			var/extra_dam = rand(xeno_caste.melee_damage_lower, xeno_caste.melee_damage_upper) * (1 + round(rage * 0.01) ) //+1% bonus damage per point of Rage.relative to base melee damage.
+			extra_dam = rand(xeno_caste.melee_damage_lower, xeno_caste.melee_damage_upper) * (1 + round(rage * 0.01) )
 			H.attack_alien(src,  extra_dam, FALSE, TRUE, FALSE, TRUE, "hurt")
-			victims++
+			victims = CLAMP(victims + 1, 0, 3)
 			round_statistics.ravager_ravage_victims++
-		step_away(H, src, sweep_range, 2)
-		shake_camera(H, 2, 1)
-		H.KnockDown(1, 1)
+			step_away(H, src, sweep_range, 2)
+			shake_camera(H, 2, 1)
+			H.KnockDown(1, 1)
 
 	victims = CLAMP(victims,0,3) //Just to be sure
 	rage = (0 + 10 * victims) //rage resets to 0, though we regain 10 rage per victim.
@@ -1912,10 +1896,9 @@
 
 	ravage_delay = world.time + (RAV_RAVAGE_COOLDOWN - (victims * 30))
 
-
 	reset_movement()
 
-	//10 second cooldown base, minus 2 per victim
+	//10 second cooldown base, minus 3 seconds per victim
 	addtimer(CALLBACK(src, .ravage_cooldown), CLAMP(RAV_RAVAGE_COOLDOWN - (victims * 30),10,100))
 
 /mob/living/carbon/Xenomorph/Ravager/proc/ravage_cooldown()

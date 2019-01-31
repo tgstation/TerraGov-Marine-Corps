@@ -338,3 +338,17 @@
 
 		M.adjustFireLoss(rand(20, 50) * fire_mod) //Fwoom!
 		to_chat(M, "[isxeno(M) ? "<span class='xenodanger'>":"<span class='highdanger'>"]Augh! You are roasted by the flames!</Sspan>")
+
+/mob/living/carbon/Xenomorph/Ravager/Bump(atom/A)
+	if(throwing && usedPounce) //Must currently be charging to knock aside and slice marines in it's path
+		if(ishuman(A))
+			var/mob/living/carbon/human/unluckydude = A
+			var/extra_dam = rand(xeno_caste.melee_damage_lower, xeno_caste.melee_damage_upper) * (1 + round(rage * 0.04) ) //+4% bonus damage per point of Rage.relative to base melee damage.
+			unluckydude.attack_alien(src,  extra_dam, FALSE, TRUE, FALSE, TRUE, "hurt") //Location is always random, cannot crit, harm only
+			var/target_turf = get_step_away(src,unluckydude,rand(1,3)) //This is where we blast our target
+			target_turf =  get_step_rand(target_turf) //Scatter
+			unluckydude.throw_at(get_turf(target_turf), RAV_CHARGEDISTANCE, RAV_CHARGESPEED, unluckydude)
+			unluckydude.KnockDown(1)
+			rage = 0
+	else
+		return ..() //Do regular stuff (pushing, body block) when not charging
