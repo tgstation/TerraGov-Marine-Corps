@@ -229,7 +229,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		if(ticker?.mode)
 			var/countdown = ticker.mode.get_queen_countdown()
 			if(countdown)
-				stat("Queen Timeout:", countdown)
+				stat("Queen Re-Check:", countdown)
 
 /mob/dead/observer/verb/reenter_corpse()
 	set category = "Ghost"
