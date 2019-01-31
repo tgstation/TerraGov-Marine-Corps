@@ -326,7 +326,7 @@
 	if(!organ_data) 
 		organ_data = list()
 	if(!gear) 
-		src.gear = list()
+		gear = list()
 	//if(!skin_style) skin_style = "Default"
 
 	if(!home_system) 
