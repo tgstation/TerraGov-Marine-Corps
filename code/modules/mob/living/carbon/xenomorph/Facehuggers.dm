@@ -254,7 +254,7 @@
 		var/hugger_timer = rand(MIN_ACTIVE_TIME,MAX_ACTIVE_TIME)
 		for(var/mob/M in loc)
 			if(CanHug(M))
-				hugging_timer = 1.5 SECONDS
+				hugger_timer = 1.5 SECONDS
 				break
 		addtimer(CALLBACK(src, .proc/fast_activate), hugger_timer)
 		return ..()
