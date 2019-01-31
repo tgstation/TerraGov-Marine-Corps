@@ -36,12 +36,16 @@
 		resting = TRUE
 		to_chat(src, "<span class='notice'>You are now resting.</span>")
 		update_canmove()
+	else if(action_busy) // do_after is unoptimal
+		return
+
+	addtimer(CALLBACK(src, .proc/get_up), 2 SECONDS)
+
+
+/mob/living/carbon/Xenomorph/proc/get_up()
+	if(!is_mob_incapacitated(TRUE))
+		to_chat(src, "<span class='notice'>You get up.</span>")
+		resting = FALSE
+		update_canmove()
 	else
-		if(action_busy) // do_after is unoptimal
-			return
-		if(do_after(src, 10, FALSE, 5, BUSY_ICON_GENERIC, FALSE, FALSE, TRUE) && !is_mob_incapacitated(TRUE))
-			to_chat(src, "<span class='notice'>You get up.</span>")
-			resting = FALSE
-			update_canmove()
-		else
-			to_chat(src, "<span class='notice'>You fail to get up.</span>")
+		to_chat(src, "<span class='notice'>You fail to get up.</span>")
