@@ -389,6 +389,13 @@
 		return FALSE
 	return TRUE
 
+/datum/action/xeno_action/pheromones/action_activate() //Must pass the basic plasma cost; reduces copy pasta
+	var/mob/living/carbon/Xenomorph/X = owner
+	if(!X.check_plasma(plasma_cost))
+		to_chat(X, "<span class='xenowarning'>You need more than [plasma_cost] to emit this pheromone.</span>")
+		return FALSE
+	return TRUE
+
 /datum/action/xeno_action/pheromones/emit_recovery //Type casted for easy removal/adding
 	name = "Emit Recovery Pheromones (30)"
 	action_icon_state = "emit_recovery"
@@ -400,21 +407,19 @@
 		"<span class='xenowarning'>You stop emitting [X.current_aura] pheromones.</span>", null, 5)
 		X.current_aura = null
 	else
-		if(!X.check_plasma(plasma_cost))
-			to_chat(X, "<span class='xenowarning'>You need more than [plasma_cost] to emit this pheromone.</span>")
-			return FALSE
-		X.use_plasma(30)
-		X.current_aura = "recovery"
-		X.visible_message("<span class='xenowarning'>\The [X] begins to emit strange-smelling pheromones.</span>", \
-		"<span class='xenowarning'>You begin to emit '[X.current_aura]' pheromones.</span>", null, 5)
-		playsound(X.loc, "alien_drool", 25)
+		if(..())
+			X.use_plasma(30)
+			X.current_aura = "recovery"
+			X.visible_message("<span class='xenowarning'>\The [X] begins to emit strange-smelling pheromones.</span>", \
+			"<span class='xenowarning'>You begin to emit '[X.current_aura]' pheromones.</span>", null, 5)
+			playsound(X.loc, "alien_drool", 25)
 
-		if(X.hivenumber && X.hivenumber <= hive_datum.len)
-			var/datum/hive_status/hive = hive_datum[X.hivenumber]
-			if(isxenoqueen(X) && hive.xeno_leader_list.len && X.anchored)
-				var/mob/living/carbon/Xenomorph/Queen/Q = X
-				for(var/mob/living/carbon/Xenomorph/L in hive.xeno_leader_list)
-					L.handle_xeno_leader_pheromones(Q)
+	if(X.hivenumber && X.hivenumber <= hive_datum.len)
+		var/datum/hive_status/hive = hive_datum[X.hivenumber]
+		if(isxenoqueen(X) && hive.xeno_leader_list.len && X.anchored)
+			var/mob/living/carbon/Xenomorph/Queen/Q = X
+			for(var/mob/living/carbon/Xenomorph/L in hive.xeno_leader_list)
+				L.handle_xeno_leader_pheromones(Q)
 
 /datum/action/xeno_action/pheromones/emit_warding
 	name = "Emit Warding Pheromones (30)"
@@ -427,14 +432,12 @@
 		"<span class='xenowarning'>You stop emitting [X.current_aura] pheromones.</span>", null, 5)
 		X.current_aura = null
 	else
-		if(!X.check_plasma(plasma_cost))
-			to_chat(X, "<span class='xenowarning'>You need more than [plasma_cost] to emit this pheromone.</span>")
-			return FALSE
-		X.use_plasma(30)
-		X.current_aura = "warding"
-		X.visible_message("<span class='xenowarning'>\The [X] begins to emit strange-smelling pheromones.</span>", \
-		"<span class='xenowarning'>You begin to emit '[X.current_aura]' pheromones.</span>", null, 5)
-		playsound(X.loc, "alien_drool", 25)
+		if(..())
+			X.use_plasma(30)
+			X.current_aura = "warding"
+			X.visible_message("<span class='xenowarning'>\The [X] begins to emit strange-smelling pheromones.</span>", \
+			"<span class='xenowarning'>You begin to emit '[X.current_aura]' pheromones.</span>", null, 5)
+			playsound(X.loc, "alien_drool", 25)
 
 	if(X.hivenumber && X.hivenumber <= hive_datum.len)
 		var/datum/hive_status/hive = hive_datum[X.hivenumber]
@@ -454,14 +457,12 @@
 		"<span class='xenowarning'>You stop emitting [X.current_aura] pheromones.</span>", null, 5)
 		X.current_aura = null
 	else
-		if(!X.check_plasma(plasma_cost))
-			to_chat(X, "<span class='xenowarning'>You need more than [plasma_cost] to emit this pheromone.</span>")
-			return FALSE
-		X.use_plasma(30)
-		X.current_aura = "frenzy"
-		X.visible_message("<span class='xenowarning'>\The [X] begins to emit strange-smelling pheromones.</span>", \
-		"<span class='xenowarning'>You begin to emit '[X.current_aura]' pheromones.</span>", null, 5)
-		playsound(X.loc, "alien_drool", 25)
+		if(..())
+			X.use_plasma(30)
+			X.current_aura = "frenzy"
+			X.visible_message("<span class='xenowarning'>\The [X] begins to emit strange-smelling pheromones.</span>", \
+			"<span class='xenowarning'>You begin to emit '[X.current_aura]' pheromones.</span>", null, 5)
+			playsound(X.loc, "alien_drool", 25)
 
 	if(X.hivenumber && X.hivenumber <= hive_datum.len)
 		var/datum/hive_status/hive = hive_datum[X.hivenumber]
