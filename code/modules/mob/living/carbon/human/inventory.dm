@@ -188,12 +188,6 @@
 
 
 /mob/living/carbon/human/wear_mask_update(obj/item/I, equipping)
-	//equipping arg to differentiate when we equip/unequip a mask
-	if(!equipping && istype(I,/obj/item/clothing/mask/facehugger))
-		var/obj/item/clothing/mask/facehugger/F = I
-		if(F.stat != DEAD && !F.sterile && !(status_flags & XENO_HOST)) //Huggered but not impregnated, deal damage.
-			visible_message("<span class='danger'>[F] frantically claws at [src]'s face!</span>","<span class='danger'>[F] frantically claws at your face! Auugh!</span>")
-			adjustBruteLossByPart(25,"head")
 	name = get_visible_name() // doing this without a check, still cheaper than doing it every Life() tick -spookydonut
 	if(I.flags_inv_hide & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR))
 		update_hair()	//rebuild hair
@@ -436,9 +430,6 @@
 	if(I.flags_item & NODROP)
 		to_chat(src, "<span class='warning'>You can't remove \the [I.name], it appears to be stuck!</span>")
 		return
-	if(I.flags_inventory & CANTSTRIP)
-		to_chat(src, "<span class='warning'>You're having difficulty removing \the [I.name].</span>")
-		return
 	log_combat(src, M, "attempted to remove [key_name(I)] ([slot_to_process])")
 
 	M.visible_message("<span class='danger'>[src] tries to remove [M]'s [I.name].</span>", \
@@ -457,9 +448,6 @@
 	if(I && !(I.flags_item & ITEM_ABSTRACT))
 		if(I.flags_item & NODROP)
 			to_chat(src, "<span class='warning'>You can't put \the [I.name] on [M], it's stuck to your hand!</span>")
-			return
-		if(I.flags_inventory & CANTSTRIP)
-			to_chat(src, "<span class='warning'>You're having difficulty putting \the [I.name] on [M].</span>")
 			return
 		if(!I.mob_can_equip(M, slot_to_process, TRUE))
 			to_chat(src, "<span class='warning'>You can't put \the [I.name] on [M]!</span>")

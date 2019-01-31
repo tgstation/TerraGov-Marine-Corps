@@ -1,6 +1,0 @@
-author: "LaKiller8"
-delete-after: True
-changes: 
-  - rscadd: "Adds *pain, *medic, *scream and hold/move/focus order icon indicators."
-  - code_imp: "Cleaned up emote code."
-  - imageadd: "Icons supplied by ArachnidNexus"

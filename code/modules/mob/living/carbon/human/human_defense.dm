@@ -269,6 +269,11 @@ Contains most of the procs that are called when a mob is attacked by something
 		if(armor < 1)
 			apply_damage(throw_damage, dtype, zone, armor, is_sharp(O), has_edge(O), O)
 
+		if(O.item_fire_stacks)
+			fire_stacks += O.item_fire_stacks
+		if(O.igniting)
+			IgniteMob()
+
 		if(ismob(O.thrower))
 			var/mob/M = O.thrower
 			var/client/assailant = M.client

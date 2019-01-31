@@ -1,4 +1,0 @@
-author: "Hughgent"
-delete-after: True
-changes: 
-  - bugfix: "painkiller in excess of oxycodone now actually works for surgery."

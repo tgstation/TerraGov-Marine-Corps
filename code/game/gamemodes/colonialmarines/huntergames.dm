@@ -66,7 +66,7 @@
 								300; /obj/item/tool/hatchet, \
 								200; /obj/item/weapon/baseballbat, \
 								200; /obj/item/weapon/throwing_knife, \
-								250; /obj/item/device/flashlight/flare, \
+								250; /obj/item/explosive/grenade/flare, \
 								100; /obj/item/weapon/baseballbat/metal, \
 								100; /obj/item/weapon/butterfly, \
 								100; /obj/item/weapon/harpoon, \
