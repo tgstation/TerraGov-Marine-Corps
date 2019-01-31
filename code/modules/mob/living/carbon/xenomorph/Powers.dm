@@ -2167,7 +2167,7 @@
 		to_chat(src, "<span class='xenowarning'>You try to sting but are too disoriented!</span>")
 		return
 
-	if(!can_sting(H) )
+	if(!H.can_sting() )
 		to_chat(src, "<span class='xenowarning'>Your sting won't affect this target!</span>")
 		return
 
@@ -2331,7 +2331,7 @@
 		to_chat(src, "<span class='xenowarning'>You try to sting but are too disoriented!</span>")
 		return
 
-	if(!can_sting(H) )
+	if(!H.can_sting() )
 		to_chat(src, "<span class='xenowarning'>Your sting won't affect this target!</span>")
 		return
 
