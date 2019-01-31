@@ -385,7 +385,7 @@
 
 /datum/action/xeno_action/pheromones/can_use_action()
 	var/mob/living/carbon/Xenomorph/X = owner
-	if(!X.check_state())
+	if(is_mob_incapacitated() || lying || buckled)
 		return FALSE
 	return TRUE
 
