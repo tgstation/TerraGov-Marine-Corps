@@ -1868,21 +1868,24 @@
 	if (!check_plasma(40))
 		return
 
-	spin_circle() //Spin me right 'round
 	emote("roar")
 	round_statistics.ravager_ravages++
-	visible_message("<span class='danger'>\The [src] thrashes about in a murderous frenzy around itself!</span>", \
-	"<span class='xenowarning'>You thrash about in a murderous frenzy around yourself!</span>")
+	visible_message("<span class='danger'>\The [src] thrashes about in a murderous frenzy!</span>", \
+	"<span class='xenowarning'>You thrash about in a murderous frenzy!</span>")
 
+	face_atom(A)
 	var/sweep_range = 1
 	var/list/L = orange(sweep_range)		// Not actually the fruit
 	var/victims
-	var/extra_dam //Right now it's nothing; we randomize the damage for each victim
+	var/target_facing
 	for (var/mob/living/carbon/human/H in L)
+		target_facing = get_dir(src, H)
+		if(target_facing != dir && target_facing != turn(dir,45) && target_facing != turn(dir,-45) ) //Have to be actually facing the target
+			continue
 		if(H.stat != DEAD && !(istype(H.buckled, /obj/structure/bed/nest) && H.status_flags & XENO_HOST) ) //No bully
-			extra_dam = rand(xeno_caste.melee_damage_lower, xeno_caste.melee_damage_upper) * (1 + round(rage * 0.01) )
+			var/extra_dam = rand(xeno_caste.melee_damage_lower, xeno_caste.melee_damage_upper) * (1 + round(rage * 0.01) ) //+1% bonus damage per point of Rage.relative to base melee damage.
 			H.attack_alien(src,  extra_dam, FALSE, TRUE, FALSE, TRUE, "hurt")
-			victims = CLAMP(victims + 1, 0, 3)
+			victims++
 			round_statistics.ravager_ravage_victims++
 			step_away(H, src, sweep_range, 2)
 			shake_camera(H, 2, 1)
