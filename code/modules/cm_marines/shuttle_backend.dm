@@ -299,7 +299,7 @@ x_pos = 0 1 2 3 4 5 6
 	icon_state = "spawn_shuttle"
 	var/rotation = 0 //When loading to this landmark, how much to rotate the turfs. See /proc/rotate_shuttle_turfs()
 
-/obj/effect/landmark/shuttle_loc/New()
+/obj/effect/landmark/shuttle_loc/Initialize()
 	. = ..()
 
 /obj/effect/landmark/shuttle_loc/proc/link_location()

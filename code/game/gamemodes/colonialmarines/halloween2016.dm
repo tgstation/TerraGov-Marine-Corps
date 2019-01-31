@@ -373,15 +373,20 @@
 	opacity = 1
 	unacidable = 1
 
-	New()
-		..()
-		dir  = pick(CARDINAL_DIRS)
+/obj/effect/blocker/fog/Initialize()
+	. = ..()
+	dir  = pick(CARDINAL_DIRS)
+	GLOB.fog_blockers += src
 
-	attack_hand(mob/M)
-		to_chat(M, "<span class='notice'>You peer through the fog, but it's impossible to tell what's on the other side...</span>")
+/obj/effect/blocker/fog/Destroy()
+	GLOB.fog_blockers -= src
+	return ..()
 
-	attack_alien(M)
-		return attack_hand(M)
+/obj/effect/blocker/fog/attack_hand(mob/M)
+	to_chat(M, "<span class='notice'>You peer through the fog, but it's impossible to tell what's on the other side...</span>")
+
+/obj/effect/blocker/fog/attack_alien(M)
+	return attack_hand(M)
 
 
 /obj/effect/step_trigger/jason/Trigger(mob/living/M)

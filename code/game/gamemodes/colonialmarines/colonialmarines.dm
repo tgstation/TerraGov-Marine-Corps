@@ -4,6 +4,7 @@
 	required_players = 1 //Need at least one player, but really we need 2.
 	xeno_required_num = 1 //Need at least one xeno.
 	flags_round_type = MODE_INFESTATION|MODE_FOG_ACTIVATED
+	flags_landmarks = MODE_LANDMARK_SPAWN_XENO_TUNNELS|MODE_LANDMARK_SPAWN_MAP_ITEM
 
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -35,62 +36,32 @@
 	name = "fog blocker"
 	icon_state = "spawn_event"
 
-/obj/effect/landmark/lv624/xeno_tunnel
+/obj/effect/landmark/lv624/fog_blocker/Initialize()
+	GLOB.fog_blocker_locations += loc
+	return INITIALIZE_HINT_QDEL
+
+/obj/effect/landmark/xeno_tunnel
 	name = "xeno tunnel"
 	icon_state = "spawn_event"
+
+/obj/effect/landmark/xeno_tunnel/Initialize()
+	. = ..()
+	GLOB.xeno_tunnel_landmarks += src
+
+/obj/effect/landmark/xeno_tunnel/Destroy()
+	GLOB.xeno_tunnel_landmarks -= src
+	return ..()
 
 ////////////////////////////////////////////////////////////////////////////////////////
 
 /* Pre-setup */
 /datum/game_mode/colonialmarines/pre_setup()
-	round_fog = new
-	var/xeno_tunnels[] = new
-	var/map_items[] = new
-	var/obj/effect/blocker/fog/F
-	for(var/obj/effect/landmark/L in GLOB.landmarks_list)
-		switch(L.name)
-			if("hunter_primary")
-				qdel(L)
-			if("hunter_secondary")
-				qdel(L)
-			if("crap_item")
-				qdel(L)
-			if("good_item")
-				qdel(L)
-			if("block_hellhound")
-				qdel(L)
-			if("fog blocker")
-				F = new(L.loc)
-				round_fog += F
-				qdel(L)
-			if("xeno tunnel")
-				xeno_tunnels += L.loc
-				qdel(L)
-			if("map item")
-				map_items += L.loc
-				qdel(L)
+	. = ..()
 
-	// Spawn gamemode-specific map items
-	for(var/turf/T in map_items)
-		map_items -= T
-		switch(map_tag)
-			if(MAP_LV_624) new /obj/item/map/lazarus_landing_map(T)
-			if(MAP_ICE_COLONY) new /obj/item/map/ice_colony_map(T)
-			if(MAP_BIG_RED) new /obj/item/map/big_red_map(T)
-			if(MAP_PRISON_STATION) new /obj/item/map/FOP_map(T)
-
-	if(!round_fog.len) round_fog = null //No blockers?
+	if(!GLOB.fog_blockers.len) 
+		flags_round_type &= ~MODE_FOG_ACTIVATED
 	else
 		round_time_fog = rand(-2500,2500)
-		flags_round_type |= MODE_FOG_ACTIVATED
-	var/obj/structure/tunnel/T
-	var/i = 0
-	var/turf/t
-	while(xeno_tunnels.len && i++ < 3)
-		t = pick(xeno_tunnels)
-		xeno_tunnels -= t
-		T = new(t)
-		T.id = "hole[i]"
 
 	return TRUE
 
