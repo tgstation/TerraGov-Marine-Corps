@@ -386,10 +386,11 @@
 /datum/action/xeno_action/pheromones/can_use_action()
 	var/mob/living/carbon/Xenomorph/X = owner
 	if(!X.check_state())
-		return
+		return FALSE
 	if(!X.check_plasma(plasma_cost))
 		to_chat(X, "<span class='xenowarning'>You need more than [plasma_cost] to emit this pheromone.</span>")
-		return
+		return FALSE
+	return TRUE
 
 /datum/action/xeno_action/pheromones/emit_recovery //Type casted for easy removal/adding
 	name = "Emit Recovery Pheromones (30)"
