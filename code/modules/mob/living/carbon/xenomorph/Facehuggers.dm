@@ -251,13 +251,18 @@
 			addtimer(CALLBACK(src, .proc/fast_activate), 1.5 SECONDS)
 
 	else
-		var/hugger_timer = rand(MIN_ACTIVE_TIME,MAX_ACTIVE_TIME)
 		for(var/mob/M in loc)
 			if(CanHug(M))
-				hugging_timer = 1.5 SECONDS
-				break
-		addtimer(CALLBACK(src, .proc/fast_activate), hugger_timer)
+				addtimer(CALLBACK(src, .proc/fast_facehug, M), 1.5 SECONDS)
+				return
+		addtimer(CALLBACK(src, .proc/fast_activate), rand(MIN_ACTIVE_TIME,MAX_ACTIVE_TIME))
 		return ..()
+
+/obj/item/clothing/mask/facehugger/proc/fast_facehug(mob/M)
+	if(!QDELETED(M) && Adjacent(M) && CanHug(M))
+		Attach(M)
+	else
+		fast_activate()
 
 /obj/item/clothing/mask/facehugger/proc/fast_activate()
 	if(GoActive())
