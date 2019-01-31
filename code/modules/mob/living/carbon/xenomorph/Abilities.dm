@@ -387,9 +387,6 @@
 	var/mob/living/carbon/Xenomorph/X = owner
 	if(!X.check_state())
 		return FALSE
-	if(!X.check_plasma(plasma_cost))
-		to_chat(X, "<span class='xenowarning'>You need more than [plasma_cost] to emit this pheromone.</span>")
-		return FALSE
 	return TRUE
 
 /datum/action/xeno_action/pheromones/emit_recovery //Type casted for easy removal/adding
@@ -403,6 +400,9 @@
 		"<span class='xenowarning'>You stop emitting [X.current_aura] pheromones.</span>", null, 5)
 		X.current_aura = null
 	else
+		if(!X.check_plasma(plasma_cost))
+			to_chat(X, "<span class='xenowarning'>You need more than [plasma_cost] to emit this pheromone.</span>")
+			return FALSE
 		X.use_plasma(30)
 		X.current_aura = "recovery"
 		X.visible_message("<span class='xenowarning'>\The [X] begins to emit strange-smelling pheromones.</span>", \
@@ -427,6 +427,9 @@
 		"<span class='xenowarning'>You stop emitting [X.current_aura] pheromones.</span>", null, 5)
 		X.current_aura = null
 	else
+		if(!X.check_plasma(plasma_cost))
+			to_chat(X, "<span class='xenowarning'>You need more than [plasma_cost] to emit this pheromone.</span>")
+			return FALSE
 		X.use_plasma(30)
 		X.current_aura = "warding"
 		X.visible_message("<span class='xenowarning'>\The [X] begins to emit strange-smelling pheromones.</span>", \
@@ -451,6 +454,9 @@
 		"<span class='xenowarning'>You stop emitting [X.current_aura] pheromones.</span>", null, 5)
 		X.current_aura = null
 	else
+		if(!X.check_plasma(plasma_cost))
+			to_chat(X, "<span class='xenowarning'>You need more than [plasma_cost] to emit this pheromone.</span>")
+			return FALSE
 		X.use_plasma(30)
 		X.current_aura = "frenzy"
 		X.visible_message("<span class='xenowarning'>\The [X] begins to emit strange-smelling pheromones.</span>", \
