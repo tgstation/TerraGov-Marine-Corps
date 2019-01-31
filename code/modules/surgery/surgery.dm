@@ -76,27 +76,29 @@ proc/spread_germs_to_organ(datum/limb/E, mob/living/carbon/human/user)
 	//Gloves
 	if(user.gloves)
 		if(user.germ_level && istype(user.gloves, /obj/item/clothing/gloves/latex))
-			E.germ_level -= user.gloves.germ_level * 0.5
+			E.germ_level += user.gloves.germ_level * 0.4
 		else if(user.gloves.germ_level && user.gloves.germ_level > 60)
-			E.germ_level += user.gloves.germ_level * 0.5
+			E.germ_level += user.gloves.germ_level * 0.8
 	else if(user.germ_level)
-		E.germ_level += user.germ_level * 0.5
+		E.germ_level += user.germ_level * 2
 
 	//Masks
 	if(user.wear_mask)
 		if(user.germ_level && istype(user.wear_mask, /obj/item/clothing/mask/cigarette))
-			E.germ_level += user.germ_level + 200  // fuck you smoking doctors
-		else if(user.wear_mask.germ_level && istype(user.wear_mask, /obj/item/clothing/mask/surgical))
-			E.germ_level -= user.wear_mask.germ_level * 0.5
-		else
+			E.germ_level += user.germ_level * 2
+		else if(user.germ_level && istype(user.wear_mask, /obj/item/clothing/mask/surgical))
 			E.germ_level += user.wear_mask.germ_level * 0.5
+		else
+			E.germ_level += user.wear_mask.germ_level * 0.8
 	else if(user.germ_level && prob(60))
-		E.germ_level += user.germ_level * 0.5
+		E.germ_level += user.germ_level * 0.8
 
 	//Suits
 	if(user.wear_suit)
 		if(user.germ_level && istype(user.wear_suit, /obj/item/clothing/suit/surgical))
-			E.germ_level -= user.germ_level * 0.5
+			E.germ_level += user.germ_level * 0.5
+		else if(user.germ_level && prob(60))
+			E.germ_level += user.germ_level * 0.8
 
 	if(locate(/obj/structure/bed/roller, E.owner.loc))
 		E.germ_level += 100
