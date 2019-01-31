@@ -2374,7 +2374,22 @@
 	to_chat(src, "<span class='xenodanger'>You feel your growth toxin glands refill. You can use Growth Sting again.</span>")
 	update_action_button_icons()
 
-/mob/living/carbon/Xenomorph/proc/can_sting(mob/living/H)
-	if(!istype(H) || isxeno(H) || iscyborg(H) || H.stat == DEAD)
-		return FALSE
-	return TRUE
+
+/mob/proc/can_sting()
+	return FALSE
+
+/mob/living/carbon/monkey/can_sting()
+	if(stat != DEAD)
+		return TRUE
+	return FALSE
+
+/mob/living/carbon/human/can_sting()
+	if(stat != DEAD)
+		return TRUE
+	return FALSE
+
+/mob/living/carbon/human/species/machine/can_sting()
+	return FALSE
+
+/mob/living/carbon/human/species/synthetic/can_sting()
+	return FALSE
