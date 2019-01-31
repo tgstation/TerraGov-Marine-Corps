@@ -542,8 +542,8 @@
 	name = "\improper M20P mine box"
 
 /obj/item/storage/box/m94
-	name = "\improper M94 marking flare pack"
-	desc = "A packet of five M94 Marking Flares. Carried by TGMC soldiers to light dark areas that cannot be reached with the usual TNR Shoulder Lamp."
+	name = "\improper M40 FLDP flare pack"
+	desc = "A packet of five M40 FLDP Flares. Carried by TGMC soldiers to light dark areas that cannot be reached with the usual TNR Shoulder Lamp. Can be launched from an underslung grenade launcher."
 	icon_state = "m94"
 	w_class = 3
 	max_storage_space = 10
