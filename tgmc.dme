@@ -331,6 +331,7 @@
 #include "code\game\jobs\whitelist.dm"
 #include "code\game\jobs\job\clf.dm"
 #include "code\game\jobs\job\freelancers.dm"
+#include "code\game\jobs\job\imperium.dm"
 #include "code\game\jobs\job\job.dm"
 #include "code\game\jobs\job\marines.dm"
 #include "code\game\jobs\job\mercenaries.dm"
