@@ -281,3 +281,7 @@ GLOBAL_LIST_EMPTY(external_rsc_url)
 	if(!CONFIG_GET(string/resource_url))
 		return
 	preload_rsc = GLOB.external_rsc_url
+
+
+/client/proc/get_offset()
+	return max(abs(pixel_x / 32), abs(pixel_y / 32))

@@ -19,14 +19,14 @@
 		next_move = world.time + 2
 	return
 
-/mob/verb/point_to(atom/A in view(client.view + (client.pixel_x / 32), loc))
+/mob/verb/point_to(atom/A in view(client.view + client.get_offset(), loc))
 	set name = "Point To"
 	set category = "Object"
 
 	if(!isturf(loc)) 
 		return FALSE
 
-	if(!(A in view(client.view + (client.pixel_x / 32), loc))) //Target is no longer visible to us.
+	if(!(A in view(client.view + client.get_offset(), loc))) //Target is no longer visible to us.
 		return FALSE
 
 	if(!A.mouse_opacity) //Can't click it? can't point at it.

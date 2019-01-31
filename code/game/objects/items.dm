@@ -654,8 +654,6 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		zoom = !zoom
 		if(user.interactee)
 			user.unset_interaction()
-		else
-			user.set_interaction(src)
 		return
 
 	//General reset in case anything goes wrong, the view will always reset to default unless zooming in.
