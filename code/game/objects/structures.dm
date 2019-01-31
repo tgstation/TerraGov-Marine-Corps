@@ -2,12 +2,11 @@
 	icon = 'icons/obj/structures/structures.dmi'
 	var/climbable
 	var/climb_delay = 50
-	var/breakable
+	var/breakable = TRUE
 	var/parts
 	var/flags_barrier = 0
 	anchored = TRUE
 
-	var/destructible = TRUE
 	var/damage = 0
 	var/damage_cap = 500 //The point where things start breaking down.
 
@@ -259,7 +258,7 @@
 
 //Damage
 /obj/structure/proc/take_damage(dam)
-	if(!destructible)
+	if(!breakable)
 		return
 
 	if(!dam)
