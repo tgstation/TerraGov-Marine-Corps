@@ -105,6 +105,8 @@
 	files = new /datum/marineResearch(src)
 	return INITIALIZE_HINT_NORMAL
 
+//Begin of timed functions//
+
 /obj/machinery/computer/XenoRnD/proc/SyncRDevices() //Makes sure it is properly sync'ed up with the devices attached to it (if any). Derived from rdconsole.dm
 	for(var/obj/machinery/Research_Machinery/D in oview(3,src))
 		if(D.linked_console != null || D.opened)
@@ -117,7 +119,39 @@
 			if(linked_lathe == null)
 				linked_lathe = D
 				D.linked_console = src
+	screen = MARINE_RESEARCH_MENU_MAIN
+	updateUsrDialog()
 	return
+
+/obj/machinery/computer/XenoRnD/proc/deconstruct()
+	if(linked_dissector)
+		linked_dissector.busy = TRUE
+		if(!linked_dissector.loaded_item)
+			to_chat(usr, "\red The organic dissector appears to be empty.")
+			screen = MARINE_RESEARCH_MENU_MAIN
+		return
+		linked_dissector.icon_state = "d_analyzer"
+		files.AddToAvail(linked_dissector.loaded_item)
+		linked_dissector.loaded_item = null
+		use_power(linked_dissector.active_power_usage)
+	screen = MARINE_RESEARCH_MENU_MAIN
+	updateUsrDialog()
+
+/obj/machinery/computer/XenoRnD/proc/research(var/datum/marineTech/avail)
+	errored = TRUE
+	files.ToKnown(avail)
+	res_in_prog = FALSE
+	screen = MARINE_RESEARCH_MENU_MAIN
+	errored = FALSE
+	files.CheckAvail()
+	updateUsrDialog()
+
+/obj/machinery/computer/XenoRnD/proc/create(var/datum/marine_design/design)
+	new design.build_path(linked_lathe.loc)
+	screen = MARINE_RESEARCH_MENU_PROTOLATHE
+	updateUsrDialog()
+
+//End of timed functions//
 
 /obj/machinery/computer/XenoRnD/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(istype(O, /obj/item/research_disk))
@@ -181,19 +215,7 @@
 				screen = MARINE_RESEARCH_MENU_DISSECTING
 				updateUsrDialog()
 				flick("d_analyzer_process", linked_dissector)
-				spawn(24)
-					if(linked_dissector)
-						linked_dissector.busy = TRUE
-						if(!linked_dissector.loaded_item)
-							to_chat(usr, "\red The organic dissector appears to be empty.")
-							screen = MARINE_RESEARCH_MENU_MAIN
-							return
-						linked_dissector.icon_state = "d_analyzer"
-						files.AddToAvail(linked_dissector.loaded_item)
-						linked_dissector.loaded_item = null
-						use_power(linked_dissector.active_power_usage)
-						screen = MARINE_RESEARCH_MENU_MAIN
-						updateUsrDialog()
+				addtimer(CALLBACK(src, .proc/deconstruct), 24)
 
 	else if(href_list["lock"]) //Lock the console from use by anyone without tox access.
 		if(src.allowed(usr))
@@ -203,10 +225,7 @@
 
 	else if(href_list["find_device"]) //The R&D console looks for devices nearby to link up with.
 		screen = MARINE_RESEARCH_MENU_DATABASE_UPDATE
-		spawn(20)
-			SyncRDevices()
-			screen = MARINE_RESEARCH_MENU_MAIN
-			updateUsrDialog()
+		addtimer(CALLBACK(src, .proc/SyncRDevices), 20)
 
 	else if(href_list["disconnect"]) //The R&D console disconnects with a specific device.
 		switch(href_list["disconnect"])
@@ -225,14 +244,7 @@
 				if(reser == "Cancel") return
 				screen = MARINE_RESEARCH_MENU_ANALYSIS
 				res_in_prog = TRUE
-				spawn(10*avail.time)
-					errored = TRUE
-					files.ToKnown(avail)
-					res_in_prog = FALSE
-					screen = MARINE_RESEARCH_MENU_MAIN
-					errored = FALSE
-					files.CheckAvail()
-					updateUsrDialog()
+				addtimer(CALLBACK(src, .proc/research, avail), 10*avail.time)
 				break
 
 	else if(href_list["download"])
@@ -288,10 +300,8 @@
 				linked_lathe.material_storage["metal"] -= design.materials["metal"]
 				linked_lathe.material_storage["glass"] -= design.materials["glass"]
 				linked_lathe.material_storage["biomass"] -= design.materials["biomass"]
-				spawn(16)
-					new design.build_path(linked_lathe.loc)
-					screen = 4.1
-					break
+				addtimer(CALLBACK(src, .proc/create, design), 16)
+				break
 
 	else if(href_list["print"])
 		var/topic = text2num(href_list["print"])
