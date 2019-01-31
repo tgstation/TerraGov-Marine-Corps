@@ -399,7 +399,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		var/obj/machinery/M = A
 		M.take_damage(30)
 		var/obj/vehicle/multitile/root/cm_armored/CA = root
-		CA.take_damage_type(10, "blunt", M)
+		CA.take_damage_type(2, "blunt", M)
 		if(world.time > lastsound + 10)
 			M.visible_message("<span class='danger'>[root] rams into \the [M]!</span>")
 			playsound(M, 'sound/effects/metal_crash.ogg', 35)
@@ -408,7 +408,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		var/obj/structure/S = A
 		S.take_damage(30)
 		var/obj/vehicle/multitile/root/cm_armored/CA = root
-		CA.take_damage_type(10, "blunt", S)
+		CA.take_damage_type(2, "blunt", S)
 		if(world.time > lastsound + 10)
 			S.visible_message("<span class='danger'>[root] crushes \the [S]!</span>")
 			playsound(S, 'sound/effects/metal_crash.ogg', 35)
