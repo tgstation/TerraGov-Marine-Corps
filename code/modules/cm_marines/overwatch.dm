@@ -25,6 +25,7 @@
 	var/datum/squad/current_squad = null //Squad being currently overseen
 	var/list/squads = list() //All the squads available
 	var/obj/selected_target //Selected target for bombarding
+	var/list/supply = list()
 //	var/console_locked = 0
 
 /obj/machinery/computer/overwatch/main

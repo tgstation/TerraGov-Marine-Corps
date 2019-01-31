@@ -1,6 +1,0 @@
-author: "Ghommie"
-delete-after: True
-changes: 
-  - rscadd: "\"Salvage plasma\", A new xeno ability for drones and old admin spawn xenoborgs has been added. It works similarly to the inverse of \"Transfer plasma\", but requires the donor to be dead."
-  - bugfix: "Carbon xenos can no longer transfer plasma to silicons' ones and viceversa."
-  - tweak: "Improved xeno plasma transfer ability's messages a little."

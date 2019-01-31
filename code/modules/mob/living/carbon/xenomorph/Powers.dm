@@ -1778,12 +1778,14 @@
 	if(!check_plasma(CARRIER_SPAWN_HUGGER_COST))
 		return
 
-	if(huggers_cur >= xeno_caste.huggers_max)
+	if(huggers.len >= xeno_caste.huggers_max)
 		to_chat(src, "<span class='xenowarning'>You can't host any more young ones!</span>")
 		return
 
-	huggers_cur = min(xeno_caste.huggers_max, huggers_cur + 1) //Add it to our cache
-	to_chat(src, "<span class='xenowarning'>You spawn a young one via the miracle of asexual internal reproduction, adding it to your stores. Now sheltering: [huggers_cur] / [xeno_caste.huggers_max].</span>")
+	var/obj/item/clothing/mask/facehugger/F = new
+	F.hivenumber = hivenumber
+	store_hugger(F, TRUE) //Add it to our cache
+	to_chat(src, "<span class='xenowarning'>You spawn a young one via the miracle of asexual internal reproduction, adding it to your stores. Now sheltering: [huggers.len] / [xeno_caste.huggers_max].</span>")
 	playsound(src, 'sound/voice/alien_drool2.ogg', 50, 0, 1)
 	last_spawn_facehugger = world.time
 	used_spawn_facehugger = TRUE
@@ -1828,6 +1830,7 @@
 			stealth = TRUE
 			handle_stealth()
 			addtimer(CALLBACK(src, .stealth_cooldown), HUNTER_STEALTH_COOLDOWN)
+			addtimer(CALLBACK(src, .proc/sneak_attack_cooldown), HUNTER_POUNCE_SNEAKATTACK_DELAY) //Short delay before we can sneak attack.
 	else
 		cancel_stealth()
 
@@ -1908,6 +1911,9 @@
 	use_plasma(40)
 
 	ravage_delay = world.time + (RAV_RAVAGE_COOLDOWN - (victims * 30))
+
+
+	reset_movement()
 
 	//10 second cooldown base, minus 2 per victim
 	addtimer(CALLBACK(src, .ravage_cooldown), CLAMP(RAV_RAVAGE_COOLDOWN - (victims * 30),10,100))
@@ -2219,7 +2225,7 @@
 
 		if(count < 2)
 			//It's infection time!
-			if(!CanHug(H))
+			if(!can_sting(H))
 				return
 
 			var/embryos = 0
@@ -2233,6 +2239,17 @@
 		count--
 		//sleep(DEFILER_STING_CHANNEL_TIME)
 	return
+
+/mob/living/carbon/Xenomorph/Defiler/proc/can_sting(mob/living/carbon/M)
+	if(!istype(M))
+		return FALSE
+	if(M.stat == DEAD || !(ishuman(M) || ismonkey(M)) || iszombie(M) || M.status_flags & (XENO_HOST|GODMODE))
+		return FALSE
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(H.species?.flags & IS_SYNTHETIC)
+			return FALSE
+	return TRUE
 
 /mob/living/carbon/Xenomorph/proc/overdose_check(mob/living/L, toxin = "xeno_toxin")
 	if(!iscarbon(L))
@@ -2293,7 +2310,7 @@
 		start_dig = null //Now clear it
 		tunnel_delay = TRUE
 		addtimer(CALLBACK(src, .tunnel_cooldown), 2400)
-		
+
 		var/msg = copytext(sanitize(input("Add a description to the tunnel:", "Tunnel Description") as text|null), 1, MAX_MESSAGE_LEN)
 		if(msg)
 			newt.other.tunnel_desc = msg

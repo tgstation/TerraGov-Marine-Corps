@@ -1,6 +1,0 @@
-author: "Surrealaser"
-delete-after: True
-changes: 
-  - rscadd: "Sniper gains the ability to use a laser aim mode while zoomed in with his sniper rifle. Toggle between laser aim and standard mode using Unique Action. While in laser mode, click a target to mark it with your laser; the target remains marked until you leave zoom or the target leaves your sight. You will be ready to fire immediately after marking a target. While you have a marked target, your shots will receive a significant boost in accuracy, ignore all other mobs and deal 50% bonus damage and pen to the marked target."
-  - tweak: "Sniper also gets tactical binos instead of standard binos, and 4 cloak grenades."
-  - tweak: "Guns now have their own zoom proc so that scopes can properly modify accuracy while zoomed."

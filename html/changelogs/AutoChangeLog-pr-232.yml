@@ -1,4 +1,0 @@
-author: "LaKiller8"
-delete-after: True
-changes: 
-  - admin: "Adds a way for admins to get multiple log files at once."

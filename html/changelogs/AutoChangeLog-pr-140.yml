@@ -1,6 +1,0 @@
-author: "LaKiller8"
-delete-after: True
-changes: 
-  - rscadd: "Xenos now get a location of a random human on the planet and ship, observers get both larvas on the ship and on the planet."
-  - balance: "Reduces first Bioscan interval to 45 minutes, later it's every 20 depending on the amount of alive marines to alive xenos. Those can take from 5 to 30 minutes."
-  - bugfix: "Random xeno location for the marines should now be displayed properly."

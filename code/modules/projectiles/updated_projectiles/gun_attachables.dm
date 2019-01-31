@@ -817,10 +817,12 @@ Defined in conflicts.dm of the #defines folder.
 	playsound(user.loc, fire_sound, 50, 1)
 	log_game("[key_name(user)] fired an underslung grenade launcher at [AREACOORD(usr.loc)].")	
 	message_admins("[ADMIN_TPMONTY(usr)] fired an underslung grenade launcher.")
-	G.det_time = 15
+	G.det_time = min(15, G.det_time)
 	G.throw_range = max_range
+	G.launched = TRUE
 	G.activate()
-	G.throw_at(target, max_range, 2, user)
+	G.throwforce += G.launchforce //Throws with signifcantly more force than a standard marine can.
+	G.throw_at(target, max_range, 3, user)
 	current_rounds--
 	loaded_grenades.Cut(1,2)
 
@@ -953,7 +955,7 @@ Defined in conflicts.dm of the #defines folder.
 			var/mob/living/carbon/Xenomorph/X = M
 			if(X.xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 				continue
-			fire_mod = X.xeno_caste.fire_resist + X.fire_resist_modifier
+			fire_mod = CLAMP(X.xeno_caste.fire_resist + X.fire_resist_modifier, 0, 1)
 		else if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 
