@@ -324,7 +324,7 @@
 	if(!player_alt_titles) 
 		player_alt_titles = new()
 	if(!organ_data) 
-		src.organ_data = list()
+		organ_data = list()
 	if(!gear) 
 		src.gear = list()
 	//if(!skin_style) skin_style = "Default"
