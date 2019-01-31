@@ -171,7 +171,8 @@
 
 /datum/game_mode/colonialmarines/get_queen_countdown()
 	var/eta = (queen_death_countdown - world.time) * 0.1
-	return "[(eta / 60) % 60]:[add_zero(num2text(eta % 60), 2)]"
+	if(eta > 0)
+		return "[(eta / 60) % 60]:[add_zero(num2text(eta % 60), 2)]"
 
 
 /datum/game_mode/colonialmarines/check_finished()
