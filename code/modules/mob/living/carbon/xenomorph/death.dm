@@ -56,7 +56,7 @@
 					L.handle_xeno_leader_pheromones(XQ)
 				if(ticker?.mode)
 					var/i = 0
-					for(var/mob/living/carbon/Xenomorph/X in GLOB.alive_xeno_list)
+					for(var/X in GLOB.alive_xeno_list)
 						if(isxenolarva(X) || isxenodrone(X))
 							i++
 					if(i > 0)
