@@ -37,9 +37,9 @@
 	GLOB.start_landmarks_list -= src
 	return ..()
 
-/obj/effect/landmark/newplayer_start/Initialize()
+/obj/effect/landmark/newplayer_start/New()
 	GLOB.newplayer_start += loc
-	return INITIALIZE_HINT_QDEL
+	return
 
 /obj/effect/landmark/map_tag
 	name = "mapping tag"
@@ -60,9 +60,9 @@
 	GLOB.latejoin_cryo += loc
 	return INITIALIZE_HINT_QDEL
 
-/obj/effect/landmark/supply_elevator/Initialize()
+/obj/effect/landmark/supply_elevator/New()
 	GLOB.supply_elevator = loc
-	return INITIALIZE_HINT_QDEL
+	return
 
 /obj/effect/landmark/thunderdome/one/Initialize()
 	GLOB.tdome1 += loc
