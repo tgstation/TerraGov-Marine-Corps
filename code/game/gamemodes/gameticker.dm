@@ -42,7 +42,8 @@ var/global/datum/controller/gameticker/ticker
 	'sound/music/ManOfWar.ogg',
 	'sound/music/PraiseTheLord.ogg',
 	'sound/music/BloodUponTheRisers.ogg',
-	'sound/music/DawsonChristian.ogg')
+	'sound/music/DawsonChristian.ogg',
+	'sound/music/HardCorps.ogg')
 
 	do
 		pregame_timeleft = 180
