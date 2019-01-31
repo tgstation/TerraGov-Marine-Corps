@@ -1,9 +1,10 @@
 /datum/job/imperial
 	special_role = "IMP"
-	comm_title = "IMP2"
+	comm_title = "IMP"
 	faction = "Imperium of Mankind"
 	idtype = /obj/item/card/id
 	skills_type = /datum/skills/pfc
+	supervisors = "the sergeant"
 	access = list() // dunno, left empty for now
 	minimal_access = list()
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
@@ -11,8 +12,8 @@
 
 /datum/job/imperial/guardsman
 	title = "Guardsman"
-	supervisors = "the acting squad leader"
-	paygrade = "IMP1"
+	comm_title = "Guard"
+	paygrade = "Guard"
 	equipment = TRUE
 
 // future me, add a really strong but interesting guy
@@ -21,7 +22,7 @@
 
 // do weapons after that
 
-/datum/job/imperial/generate_equipment(mob/living/carbon/human/H)
+/datum/job/imperial/guardsman/generate_equipment(mob/living/carbon/human/H)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/imperial(H), SLOT_W_UNIFORM)
 	
 	var/obj/item/clothing/shoes/marine/imperial/S = new /obj/item/clothing/shoes/marine/imperial(H)
@@ -37,4 +38,25 @@
 	H.equip_to_slot_or_del(Suit, SLOT_WEAR_SUIT)
 	
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/dutch(H), SLOT_EARS)
+
+/datum/job/imperial/guardsman/sergeant
+	title = "Guardsman Sergeant"
+	comm_title = "Sergeant"
+	paygrade = "Sergeant"
+	equipment = TRUE
+
+/datum/job/imperial/guardsman/sergeant/generate_equipment(mob/living/carbon/human/H)
 	
+	
+
+/datum/job/imperial/guardsman/apothecary
+	title = "Guardsman Apothecary"
+	comm_title = "Apothecary"
+	paygrade = "Apothecary"
+	equipment = TRUE
+
+/datum/job/imperial/guardsman/apothecary/generate_equipment(mob/living/carbon/human/H)
+	
+	
+	
+

@@ -309,7 +309,6 @@ proc/get_all_job_icons()
 		if("MRC1") . = size ? "MERC " : "MERC Heavy"
 		if("MRC2") . = size ? "MERC " : "MERC Miner"
 		if("MRC3") . = size ? "MERC " : "MERC Engineer"
-		if("IMP1") . = size ? "IGD " : "Imperial Guardsman"
 		else . = paygrade + " " //custom paygrade
 
 #define PAYGRADES_MARINE list("C","E1","E2","E3","E4","E5","E6","E6E","E7","E8","E8E","E9","E9E","O1","O2","O3","O4", "WO")
