@@ -325,7 +325,8 @@
 				to_chat(usr, "<span class='warning'>Error: [M] no longer has a client!</span>")
 				return
 			to_chat(M, "<span class='danger'>You have been kicked from the server by [usr.client.holder.fakekey ? "an Administrator" : "[usr.client.key]"].</span>")
-			del(M.client)
+			
+			M.client = null
 
 			log_admin_private("[key_name(usr)] kicked [key_name(M)].")
 			message_admins("[ADMIN_TPMONTY(usr)] kicked [ADMIN_TPMONTY(M)].")
@@ -364,7 +365,7 @@
 		if(CONFIG_GET(string/banappeals))
 			to_chat(M, "<span class='warning'>To try to resolve this matter head to [CONFIG_GET(string/banappeals)]</span>")
 		if(mob_client)
-			qdel(mob_client)
+			mob_client = null
 
 		log_admin_private("[key_name(usr)] has banned [key_name(M)] | Duration: [mins] minutes | Reason: [sanitize(reason)]")
 		notes_add(mob_key, "Banned by [usr.client.ckey] | Duration: [mins] minutes | Reason: [sanitize(reason)]", usr)
@@ -614,9 +615,6 @@
 			if("Yes")
 				location = get_turf(usr)
 
-		var/mob/user = "[ADMIN_TPMONTY(usr)]"
-		var/mob/target = "[ADMIN_TPMONTY(M)]"
-
 		switch(href_list["transform"])
 			if("observer")
 				M.change_mob_type(/mob/dead/observer, location, null, delmob)
@@ -660,7 +658,7 @@
 				M.change_mob_type(/mob/living/carbon/human, location, null, delmob, "Moth")
 
 		log_admin("[key_name(usr)] has transformed [key_name(M)] into [href_list["transform"]].[delmob ? " Old mob deleted." : ""][location ? " Teleported to [AREACOORD(location)]" : ""]")
-		message_admins("[user] has transformed [target] into [href_list["transform"]].[delmob ? " Old mob deleted." : ""][location ? " Teleported to new location." : ""]")
+		message_admins("[ADMIN_TPMONTY(usr)] has transformed [ADMIN_TPMONTY(M)] into [href_list["transform"]].[delmob ? " Old mob deleted." : ""][location ? " Teleported to new location." : ""]")
 
 
 	else if(href_list["revive"])
