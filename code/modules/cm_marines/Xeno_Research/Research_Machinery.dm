@@ -10,27 +10,7 @@
 	idle_power_usage = 30
 	active_power_usage = 2500
 
-
-//Organic Dissector
-/obj/machinery/Research_Machinery/dissector
-	name = "Organic dissector"
-	icon_state = "d_analyzer"
-	var/obj/item/marineResearch/xenomorph/loaded_item = null
-	var/decon_mod = TRUE
-
-	idle_power_usage = 30
-	active_power_usage = 2500
-
-/obj/machinery/Research_Machinery/dissector/Initialize()
-	. = ..()
-	component_parts = list()
-	component_parts += new /obj/item/circuitboard/machine/dissector(src) //We'll need it's own board one day.
-	component_parts += new /obj/item/stock_parts/scanning_module(src)
-	component_parts += new /obj/item/stock_parts/manipulator(src)
-	component_parts += new /obj/item/stock_parts/micro_laser(src)
-	return INITIALIZE_HINT_NORMAL
-
-/obj/machinery/Research_Machinery/dissector/attackby(var/obj/O as obj, var/mob/user as mob)
+/obj/machinery/Research_Machinery/attackby(var/obj/O as obj, var/mob/user as mob)
 	if (istype(O, /obj/item/tool/screwdriver))
 		if (!opened)
 			opened = TRUE
@@ -55,13 +35,37 @@
 			qdel(src)
 			return TRUE
 		else
-			to_chat(user, "\red You can't load the [src.name] while it's opened.")
+			to_chat(user, "\red You can't load into [src] while it's opened.")
 			return TRUE
 	if (!linked_console)
-		to_chat(user, "\red The Organic dissector must be linked to an R&D console first!")
+		to_chat(user, "\red The [src] must be linked to an R&D console first!")
 		return
 	if (busy)
-		to_chat(user, "\red The Organic dissector is busy right now.")
+		to_chat(user, "\red The [src] is busy right now.")
+		return
+
+//Organic Dissector
+/obj/machinery/Research_Machinery/dissector
+	name = "Organic dissector"
+	icon_state = "d_analyzer"
+	var/obj/item/marineResearch/xenomorph/loaded_item = null
+	var/decon_mod = TRUE
+
+	idle_power_usage = 30
+	active_power_usage = 2500
+
+/obj/machinery/Research_Machinery/dissector/Initialize()
+	. = ..()
+	component_parts = list()
+	component_parts += new /obj/item/circuitboard/machine/dissector(src) //We'll need it's own board one day.
+	component_parts += new /obj/item/stock_parts/scanning_module(src)
+	component_parts += new /obj/item/stock_parts/manipulator(src)
+	component_parts += new /obj/item/stock_parts/micro_laser(src)
+	return INITIALIZE_HINT_NORMAL
+
+/obj/machinery/Research_Machinery/dissector/attackby(var/obj/O as obj, var/mob/user as mob)
+	. = ..()
+	if(!.)
 		return
 	if (istype(O, /obj/item) && !loaded_item)
 		if(isrobot(user)) //Don't put your module items in there!
