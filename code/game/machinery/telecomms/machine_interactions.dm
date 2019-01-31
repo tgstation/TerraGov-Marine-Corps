@@ -14,6 +14,7 @@
 	var/temp = "" // output message
 	var/construct_op = 0
 	var/deconstructable = FALSE
+	destructible = FALSE
 
 
 /obj/machinery/telecomms/attackby(obj/item/P as obj, mob/user as mob)
