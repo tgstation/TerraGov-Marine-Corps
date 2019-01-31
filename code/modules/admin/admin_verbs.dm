@@ -939,7 +939,7 @@
 	else
 		if(check_other_rights(recipient, R_ADMIN, FALSE) || is_mentor(recipient))
 			if(check_rights(R_ADMIN, FALSE) || is_mentor(src)) //Both are staff
-				if(!recipient.current_ticket)
+				if(!current_ticket && !recipient.current_ticket)
 					if(check_other_rights(recipient, R_ADMIN, FALSE) && check_rights(R_ADMIN, FALSE))
 						new /datum/admin_help(msg, recipient, TRUE, TICKET_ADMIN)
 					else
