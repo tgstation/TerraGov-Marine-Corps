@@ -340,8 +340,8 @@ sorts them out by their department.
 		M.loc = late_join
 	else
 		var/turf/T
-		if(GLOB.marine_spawns_by_job[J]?.len)
-			T = pick(GLOB.marine_spawns_by_job[J])
+		if(GLOB.marine_spawns_by_job[J.type]?.len)
+			T = pick(GLOB.marine_spawns_by_job[J.type])
 		if(isturf(T))
 			M.forceMove(T)
 		else
