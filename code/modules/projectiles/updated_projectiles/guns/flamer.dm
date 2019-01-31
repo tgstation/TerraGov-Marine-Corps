@@ -575,12 +575,12 @@
 		to_chat(src, "<span class='warning'>Your suit protects you from the flames.</span>")
 		adjustFireLoss(rand(0 ,burnlevel*0.25)) //Does small burn damage to a person wearing one of the suits.
 		return
-	..()
+	return ..()
 
 /mob/living/carbon/Xenomorph/flamer_fire_act(burnlevel, firelevel)
 	if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 		return
-	..()
+	. = ..()
 	updatehealth()
 
 /mob/living/carbon/Xenomorph/Queen/flamer_fire_act(burnlevel, firelevel)
