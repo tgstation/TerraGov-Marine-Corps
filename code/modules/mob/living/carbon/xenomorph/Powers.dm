@@ -2251,17 +2251,6 @@
 		count--
 	return
 
-/mob/living/carbon/Xenomorph/Defiler/proc/can_sting(mob/living/carbon/M)
-	if(!istype(M))
-		return FALSE
-	if(M.stat == DEAD || !(ishuman(M) || ismonkey(M)) || iszombie(M) || M.status_flags & (XENO_HOST|GODMODE))
-		return FALSE
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		if(H.species?.flags & IS_SYNTHETIC)
-			return FALSE
-	return TRUE
-
 /mob/living/carbon/Xenomorph/proc/overdose_check(mob/living/L, toxin = "xeno_toxin")
 	if(!iscarbon(L))
 		return
