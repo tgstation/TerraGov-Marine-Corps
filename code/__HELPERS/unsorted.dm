@@ -1648,9 +1648,6 @@ var/list/WALLITEMS = list(
 			error -= deltax
 	return line
 
-/proc/to_chat(target, message)
-	target << message
-
 //gives us the stack trace from CRASH() without ending the current proc.
 /proc/stack_trace(msg)
 	CRASH(msg)
