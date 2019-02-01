@@ -291,7 +291,7 @@
 							to_chat(src, "<span class='xenodanger'>You attempt to savage your victim, but you aren't yet ready.</span>")
 
 					if(xeno_caste.charge_type == 2)
-						if(M.stealth_router(HANDLE_STEALTH_CHECK))
+						if(stealth_router(HANDLE_STEALTH_CHECK))
 							M.adjust_stagger(3)
 							M.add_slowdown(3)
 							to_chat(src, "<span class='xenodanger'>Pouncing from the shadows, you stagger your victim.</span>")

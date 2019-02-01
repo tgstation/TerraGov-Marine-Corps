@@ -43,11 +43,8 @@
 
 /mob/living/carbon/Xenomorph/proc/reset_pounce_delay()
 	usedPounce = FALSE
-	to_chat(src, "<span class='notice'>You get ready to pounce again.</span>")
+	to_chat(src, "<span class='xenodanger'>You're ready to pounce again.</span>")
 	update_action_button_icons()
-
-/mob/living/carbon/Xenomorph/Hunter/reset_pounce_delay()
-	. = ..()
 	playsound(src, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 
 /mob/living/carbon/Xenomorph/proc/reset_flags_pass()
@@ -99,7 +96,7 @@
 	use_plasma(20)
 	throw_at(T, 7, 2, src) //Victim, distance, speed
 	addtimer(CALLBACK(src, .proc/reset_flags_pass), 6)
-	addtimer(CALLBACK(src, .reset_pounce_delay), xeno_caste.pounce_delay)
+	addtimer(CALLBACK(src, .proc/reset_pounce_delay), xeno_caste.pounce_delay)
 
 
 
@@ -1841,8 +1838,8 @@
 	if(!used_stealth)//sanity check/safeguard
 		return
 	used_stealth = FALSE
-	to_chat(src, "<span class='notice'><b>You're ready to use Stealth again.</b></span>")
-	playsound(src, "sound/effects/xeno_newlarva.ogg", 50, 0, 1)
+	to_chat(src, "<span class='xenodanger'><b>You're ready to use Stealth again.</b></span>")
+	playsound(src, "sound/effects/xeno_newlarva.ogg", 25, 0, 1)
 	update_action_button_icons()
 
 /mob/living/carbon/Xenomorph/Hunter/proc/cancel_stealth() //This happens if we take damage, attack, pounce, toggle stealth off, and do other such exciting stealth breaking activities.
