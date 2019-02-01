@@ -259,7 +259,7 @@
 		return ..()
 
 /obj/item/clothing/mask/facehugger/proc/fast_facehug(mob/M)
-	if(!QDELETED(M) && Adjacent(M) && CanHug(M) && (isturf(M.loc) || M.loc == loc))
+	if(!QDELETED(M) && Adjacent(M) && CanHug(M) && isturf(M.loc))
 		Attach(M)
 	else
 		fast_activate()
