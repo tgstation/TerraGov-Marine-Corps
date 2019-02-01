@@ -48,7 +48,7 @@
 
 /mob/living/carbon/Xenomorph/Hunter/reset_pounce_delay()
 	. = ..()
-	playsound(src, 'sound/effects/xeno_newlarva.ogg', 50, 0, 1)
+	playsound(src, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 
 /mob/living/carbon/Xenomorph/proc/reset_flags_pass()
 	if(!xeno_caste.hardcore)
@@ -88,6 +88,12 @@
 
 	visible_message("<span class='xenowarning'>\The [src] pounces at [T]!</span>", \
 	"<span class='xenowarning'>You pounce at [T]!</span>")
+
+	if(can_sneak_attack) //If we could sneak attack, add a cooldown to sneak attack
+		to_chat(src, "<span class='xenodanger'>Your pounce has left you off-balance; you'll need to wait [HUNTER_POUNCE_SNEAKATTACK_DELAY*0.1] seconds before you can Sneak Attack again.</span>")
+		can_sneak_attack = FALSE
+		addtimer(CALLBACK(src, .proc/sneak_attack_cooldown), HUNTER_POUNCE_SNEAKATTACK_DELAY)
+
 	usedPounce = TRUE
 	flags_pass = PASSTABLE
 	use_plasma(20)
@@ -95,10 +101,7 @@
 	addtimer(CALLBACK(src, .proc/reset_flags_pass), 6)
 	addtimer(CALLBACK(src, .reset_pounce_delay), xeno_caste.pounce_delay)
 
-	if(stealth && can_sneak_attack) //If we're stealthed and could sneak attack, add a cooldown to sneak attack
-		to_chat(src, "<span class='xenodanger'>Your pounce has left you off-balance; you'll need to wait [HUNTER_POUNCE_SNEAKATTACK_DELAY*0.1] seconds before you can Sneak Attack again.</span>")
-		can_sneak_attack = FALSE
-		addtimer(CALLBACK(src, .proc/sneak_attack_cooldown), HUNTER_POUNCE_SNEAKATTACK_DELAY)
+
 
 	return TRUE
 
@@ -107,7 +110,7 @@
 		return
 	can_sneak_attack = TRUE
 	to_chat(src, "<span class='xenodanger'>You're ready to use Sneak Attack while stealthed.</span>")
-	playsound(src, "sound/effects/xeno_newlarva.ogg", 50, 0, 1)
+	playsound(src, "sound/effects/xeno_newlarva.ogg", 25, 0, 1)
 
 // Praetorian acid spray
 /mob/living/carbon/Xenomorph/proc/acid_spray_cone(atom/A)
