@@ -1192,7 +1192,7 @@
 	if(!msg)
 		return
 
-	var/message = "<font color='#6699CC'><span class='ooc'><span class='prefix'>LOOC:</span> <EM>[usr.client.holder.fakekey ? "Administrator" : usr.client.key]:</EM> <span class='message'>[msg]</span></span></font>"
+	var/message = "<font color='#6699CC'><span class='ooc'><span class='prefix'>LOOC:</span> [usr.client.holder.fakekey ? "Administrator" : usr.client.key]: <span class='message'>[msg]</span></span></font>"
 
 	usr.visible_message(message, message, message)
 
