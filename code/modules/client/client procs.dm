@@ -200,6 +200,9 @@
 	return ..()
 
 
+/client/Destroy()
+	return QDEL_HINT_HARDDEL_NOW
+
 
 /client/proc/log_client_to_db()
 

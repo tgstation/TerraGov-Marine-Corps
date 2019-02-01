@@ -325,7 +325,7 @@
 				to_chat(usr, "<span class='warning'>Error: [M] no longer has a client!</span>")
 				return
 			to_chat(M, "<span class='danger'>You have been kicked from the server by [usr.client.holder.fakekey ? "an Administrator" : "[usr.client.key]"].</span>")
-			del(M.client)
+			qdel(M.client)
 
 			log_admin_private("[key_name(usr)] kicked [key_name(M)].")
 			message_admins("[ADMIN_TPMONTY(usr)] kicked [ADMIN_TPMONTY(M)].")
@@ -364,10 +364,10 @@
 		if(CONFIG_GET(string/banappeals))
 			to_chat(M, "<span class='warning'>To try to resolve this matter head to [CONFIG_GET(string/banappeals)]</span>")
 		if(mob_client)
-			del(mob_client)
+			qdel(mob_client)
 
 		log_admin_private("[key_name(usr)] has banned [key_name(M)] | Duration: [mins] minutes | Reason: [sanitize(reason)]")
-		notes_add(mob_key, "Banned by [usr.client.ckey] | Duration: [mins] minutes | Reason: [sanitize(reason)]", usr)
+		notes_add(mob_key, "Banned by [usr.client.holder.fakekey ? "an Administrator" : usr.client.ckey] | Duration: [mins] minutes | Reason: [sanitize(reason)]", usr)
 		message_admins("[ADMIN_TPMONTY(usr)] has banned [ADMIN_TPMONTY(M)] | Duration: [mins] minutes| Reason: [sanitize(reason)]")
 
 
