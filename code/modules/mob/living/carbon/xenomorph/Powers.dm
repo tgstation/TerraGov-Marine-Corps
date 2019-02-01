@@ -1522,7 +1522,10 @@
 			xenoinfo = "<tr><td>[leader]<a href=?src=\ref[user];watch_xeno_number=[X.nicknumber]>[X.name]</a> "
 		else
 			xenoinfo = "<tr><td>[leader][X.name] "
-		if(!X.client) xenoinfo += " <i>(SSD)</i>"
+		if(!X.client) 
+			xenoinfo += " <i>(SSD)</i>"
+		else if(X.client.prefs.xeno_name && X.client.prefs.xeno_name != "Undefined")
+			xenoinfo += "- [X.client.prefs.xeno_name]"
 
 		count++ //Dead players shouldn't be on this list
 		xenoinfo += " <b><font color=green>([A ? A.name : null])</b></td></tr>"

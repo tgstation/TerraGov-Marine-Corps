@@ -133,7 +133,7 @@
 			var/icon/I2 = imap[2+(ix + icx*iy)*2]
 
 
-			//to_chat(world, "icon: \icon[I]")
+			//to_chat(world, "icon: [bicon(I)]")
 
 			I.DrawBox(colour, rx, ry, rx+1, ry+1)
 
@@ -150,7 +150,7 @@
 
 		H.screen_loc = "[5 + i%icx],[6+ round(i/icx)]"
 
-		//to_chat(world, "\icon[I] at [H.screen_loc]")
+		//to_chat(world, "[bicon(I)] at [H.screen_loc]")
 
 		H.name = (i==0)?"maprefresh":"map"
 
@@ -255,7 +255,7 @@
 			var/icon/I = imap[1+(ix + icx*iy)]
 
 
-			//to_chat(world, "icon: \icon[I]")
+			//to_chat(world, "icon: [bicon(I)]")
 
 			I.DrawBox(colour, rx, ry, rx, ry)
 
@@ -270,7 +270,7 @@
 
 		H.screen_loc = "[5 + i%icx],[6+ round(i/icx)]"
 
-		//to_chat(world, "\icon[I] at [H.screen_loc]")
+		//to_chat(world, "[bicon(I)] at [H.screen_loc]")
 
 		H.name = (i==0)?"maprefresh":"map"
 

@@ -29,12 +29,12 @@ DONATIONURL https://www.patreon.com/tgstation
 GITHUBURL https://github.com/tgstation/TerraGov-Marine-Corps/
 BANAPPEALS https://tgstation13.org/phpBB/viewforum.php?f=70
 
-SHIPURL https://affectedarc07.github.io/SS13WebMap/TGMC/Almayer/index.html
-LV624URL https://affectedarc07.github.io/SS13WebMap/TGMC/LV624/index.html
-BIGREDURL https://affectedarc07.github.io/SS13WebMap/TGMC/BigRed/index.html
-ICECOLONYURL https://affectedarc07.github.io/SS13WebMap/TGMC/IceColony/index.html
-PRISONSTATIONURL https://affectedarc07.github.io/SS13WebMap/TGMC/PrisonStation/index.html
-WHISKEYOUTPOSTURL https://affectedarc07.github.io/SS13WebMap/TGMC/WhiskeyOutpost/index.html
+SHIPURL https://goo.gl/utUdpq
+LV624URL https://goo.gl/6tuwfg
+BIGREDURL https://goo.gl/TN7mmT
+ICECOLONYURL https://goo.gl/KYKNgJ
+PRISONSTATIONURL https://goo.gl/GXoxnA
+WHISKEYOUTPOSTURL https://goo.gl/ZwTS5X
 
 ## Logging
 LOG_OOC
