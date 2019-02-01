@@ -451,6 +451,23 @@
 						C.chatOutput.stopMusic()
 
 
+/datum/admins/proc/sound_stop()
+	set category = "Fun"
+	set name = "Stop All Playing Sounds"
+
+	if(!check_rights(R_SOUND))
+		return
+
+	log_admin("[key_name(src)] stopped all currently playing sounds.")
+	message_admins("[ADMIN_TPMONTY(src)] stopped all currently playing sounds.")
+	for(var/mob/M in GLOB.player_list)
+		if(M.client)
+			SEND_SOUND(M, sound(null))
+			var/client/C = M.client
+			if(C?.chatOutput && !C.chatOutput.broken && C.chatOutput.loaded)
+				C.chatOutput.stopMusic()
+
+
 /datum/admins/proc/announce()
 	set category = "Fun"
 	set name = "Announce"
