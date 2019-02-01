@@ -401,7 +401,7 @@
 
 /obj/item/clothing/mask/facehugger/equipped(mob/living/user, slot)
 	. = ..()
-	if(slot != SLOT_WEAR_MASK || stat != CONSCIOUS)
+	if(slot != SLOT_WEAR_MASK || stat == DEAD)
 		reset_attach_status(FALSE)
 		return
 	if(ishuman(user))
@@ -440,7 +440,7 @@
 			target.visible_message("<span class='danger'>[src] frantically claws at [target]'s face before falling down!</span>","<span class='danger'>[src] frantically claws at your face before falling down! Auugh!</span>")
 			target.apply_damage(15, BRUTE, "head")
 
-/obj/item/clothing/mask/facehugger/proc/Die(update_icon = TRUE)
+/obj/item/clothing/mask/facehugger/proc/Die()
 	reset_attach_status()
 
 	if(stat == DEAD)
