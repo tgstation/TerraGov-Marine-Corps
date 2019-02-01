@@ -1522,7 +1522,7 @@
 			xenoinfo = "<tr><td>[leader]<a href=?src=\ref[user];watch_xeno_number=[X.nicknumber]>[X.name]</a> "
 		else
 			xenoinfo = "<tr><td>[leader][X.name] "
-		if(!X.client) 
+		if(!X.client)
 			xenoinfo += " <i>(SSD)</i>"
 		else if(X.client.prefs.xeno_name && X.client.prefs.xeno_name != "Undefined")
 			xenoinfo += "- [X.client.prefs.xeno_name]"
@@ -2240,9 +2240,8 @@
 
 		if(count < 2 && larva)
 			//It's infection time!
-			if(!can_sting(H))
+			if(!H.can_sting())
 				return
-
 			var/embryos = 0
 			for(var/obj/item/alien_embryo/embryo in H) // already got one, stops doubling up
 				embryos++
