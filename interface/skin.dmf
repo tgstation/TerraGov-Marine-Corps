@@ -103,16 +103,19 @@ macro "macro"
 		command = ".options"
 	elem 
 		name = "F2"
-		command = ".screenshot auto"
+		command = "ooc"
 	elem 
 		name = "SHIFT+F2"
 		command = ".screenshot"
 	elem 
 		name = "F3"
-		command = "asay"
+		command = "say"
+	elem 
+		name = "F4"
+		command = "me"
 	elem 
 		name = "F5"
-		command = "aghost"
+		command = "asay"
 	elem 
 		name = "F6"
 		command = "Player-Panel"
@@ -285,16 +288,19 @@ macro "hotkeymode"
 		command = ".options"
 	elem 
 		name = "F2"
-		command = ".screenshot auto"
+		command = "ooc"
 	elem 
 		name = "SHIFT+F2"
 		command = ".screenshot"
 	elem 
 		name = "F3"
-		command = "asay"
+		command = "say"
+	elem 
+		name = "F4"
+		command = "me"
 	elem 
 		name = "F5"
-		command = "aghost"
+		command = "asay"
 	elem 
 		name = "F6"
 		command = "Player-Panel"
