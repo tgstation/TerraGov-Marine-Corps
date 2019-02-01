@@ -447,3 +447,87 @@
 	police = SKILL_POLICE_MP
 	powerloader = SKILL_POWERLOADER_MASTER
 	large_vehicle = SKILL_LARGE_VEHICLE_TRAINED
+
+//======//I.o.M.\\======\\
+
+/datum/skills/imperial
+	name = "Guardsman"
+	//cqc = SKILL_CQC_DEFAULT
+	//melee_weapons = SKILL_MELEE_DEFAULT
+
+	//firearms = SKILL_FIREARMS_DEFAULT
+	//pistols = SKILL_PISTOLS_DEFAULT
+	//shotguns = SKILL_SHOTGUNS_DEFAULT
+	//rifles = SKILL_RIFLES_DEFAULT
+	//smgs = SKILL_SMGS_DEFAULT
+	//heavy_weapons = SKILL_HEAVY_WEAPONS_DEFAULT
+	//smartgun = SKILL_SMART_DEFAULT
+	//spec_weapons = SKILL_SPEC_DEFAULT
+
+	//endurance = 0 - does nothing
+	//engineer = SKILL_ENGINEER_DEFAULT
+	//construction = SKILL_CONSTRUCTION_DEFAULT
+	//leadership = SKILL_LEAD_NOVICE
+	//medical = SKILL_MEDICAL_DEFAULT
+	//surgery = SKILL_SURGERY_DEFAULT
+	//pilot = SKILL_PILOT_DEFAULT
+	//police = SKILL_POLICE_DEFAULT
+	//powerloader = SKILL_POWERLOADER_DEFAULT
+	//large_vehicle = SKILL_LARGE_VEHICLE_DEFAULT
+
+/datum/skills/imperial/SL
+	name = "Guardsman Sergeant" // veteran guardsman, practically better in all
+	cqc = SKILL_CQC_TRAINED
+	melee_weapons = SKILL_MELEE_TRAINED
+	
+	firearms = SKILL_FIREARMS_TRAINED
+	// guardsmen don't use pistol, so he doesn't have experience with them, unless they use boltpistols
+	// shotguns too
+	rifles = SKILL_RIFLES_TRAINED
+	// smgs too
+	heavy_weapons = SKILL_HEAVY_WEAPONS_TRAINED
+	smartgun = SKILL_SMART_USE // can use smartgun
+	spec_weapons = SKILL_SPEC_TRAINED
+	
+	// normal SL skills
+	engineer = SKILL_ENGINEER_PLASTEEL
+	construction = SKILL_CONSTRUCTION_PLASTEEL
+	leadership = SKILL_LEAD_TRAINED
+	medical = SKILL_MEDICAL_CHEM
+	surgery = SKILL_SURGERY_AMATEUR
+
+/datum/skills/imperial/apothecary
+	name = "Guardsman Apothecary" // medic
+	
+	medical = SKILL_MEDICAL_MEDIC
+	surgery = SKILL_SURGERY_TRAINED
+
+/datum/skills/imperial/astartes
+	name = "Space Marine" // practically a god
+	cqc = SKILL_CQC_MASTER
+	melee_weapons = SKILL_MELEE_SUPER // chainswords are literally used about the same or more than their boltpistols
+
+	firearms = SKILL_FIREARMS_TRAINED
+	pistols = SKILL_PISTOLS_TRAINED
+	shotguns = SKILL_SHOTGUNS_TRAINED
+	rifles = SKILL_RIFLES_TRAINED
+	smgs = SKILL_SMGS_TRAINED
+	heavy_weapons = SKILL_HEAVY_WEAPONS_TRAINED
+	smartgun = SKILL_SMART_TRAINED
+	spec_weapons = SKILL_SPEC_TRAINED
+
+	//endurance = 0 - does nothing
+	engineer = SKILL_ENGINEER_PLASTEEL
+	construction = SKILL_CONSTRUCTION_PLASTEEL
+	leadership = SKILL_LEAD_TRAINED
+	medical = SKILL_MEDICAL_CHEM
+	surgery = SKILL_SURGERY_AMATEUR
+	powerloader = SKILL_POWERLOADER_DABBLING
+
+/datum/skills/imperial/astartes/apothecary
+	name = "Space Marine Apothecary" // a slightly less stronger space marine with medical skills
+	cqc = 4 // below SKILL_CQC_MASTER, no define for it
+	melee_weapons = SKILL_MELEE_TRAINED
+	
+	medical = SKILL_MEDICAL_CMO
+	surgery = SKILL_SURGERY_EXPERT

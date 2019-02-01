@@ -770,6 +770,11 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	armor = list(melee = 75, bullet = 60, laser = 55, energy = 40, bomb = 45, bio = 0, rad = 0)
 	brightness_on = 6 // better light
 
+/obj/item/clothing/suit/storage/marine/imperial/sergeant/Initialize()
+	. = ..()
+	pockets.storage_slots = 3
+	pockets.max_storage_space = 6
+
 /obj/item/clothing/suit/storage/marine/imperial/power
 	// Should this maybe require recharging?
 	name = "\improper salvaged Space Marine power armour"
@@ -777,6 +782,11 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	//icon_state
 	armor = list(melee = 70, bullet = 55, laser = 50, energy = 35, bomb = 40, bio = 10, rad = 10)
 	brightness_on = 6
+
+/obj/item/clothing/suit/storage/marine/imperial/power/Initialize()
+	. = ..()
+	pockets.storage_slots = 3
+	pockets.max_storage_space = 6
 
 /obj/item/clothing/suit/storage/marine/imperial/power/astartes
 	// This should either be admin only or only given to one person

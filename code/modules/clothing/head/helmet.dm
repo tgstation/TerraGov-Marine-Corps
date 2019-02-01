@@ -414,11 +414,22 @@
 	//icon_state
 	armor = list(melee = 70, bullet = 55, laser = 50, energy = 35, bomb = 40, bio = 0, rad = 0)
 
+/obj/item/clothing/head/helmet/marine/imperial/sergeant/Initialize()
+	. = ..()
+	// bigger helm = bigger pocketti
+	pockets.max_w_class = 2
+	pockets.max_storage_space = 6
+
 /obj/item/clothing/head/helmet/marine/imperial/power
 	name = "\improper salvaged Space Marine helmet"
 	desc = "A helmet that goes with the Space Marine power armour, this one has been salvaged from the battlefield."
 	//icon_state
 	armor = list(melee = 65, bullet = 50, laser = 45, energy = 30, bomb = 35, bio = 0, rad = 0)
+
+/obj/item/clothing/head/helmet/marine/imperial/power/Initialize()
+	. = ..()
+	pockets.max_w_class = 2
+	pockets.max_storage_space = 6
 
 /obj/item/clothing/head/helmet/marine/imperial/power/astartes
 	name = "\improper Space Marine helmet"
