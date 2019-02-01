@@ -1,0 +1,30 @@
+
+
+
+<div itemLabel>
+	<h2>Choose your tank loadout:</h2>
+</div>
+
+<div style="font-weight: bold ; float: left ; clear : both ; width: 50% ; color: gold">
+	Gold = Mandatory
+</div>
+
+<div style="font-weight: bold ; float: left ; clear : both ; width: 50% ; color: orange">
+	Orange = Recommended
+</div>
+
+<div itemLabel>
+	{{for data.displayed_records}}
+		{{if value.prod_color}}
+			<div style="padding-top: 5px ; font-weight: bold ; float: left ; clear : both ; width: 50% ; color: {{:value.prod_color}}">
+				{{:helper.link(value.prod_name, null, {'vend' : value.prod_index}, value.prod_available ? null : 'disabled', null)}}
+			</div>
+		{{else}}
+			<div style="padding-top: 5px ; font-weight: bold ; float: left ; clear : both ; width: 50%">
+				<span class="white">{{:value.prod_name}}</span>
+			</div>
+		{{/if}}
+
+
+	{{/for}}
+</div>
