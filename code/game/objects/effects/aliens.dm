@@ -135,6 +135,33 @@
 	acid_t = null
 	. = ..()
 
+/obj/effect/xenomorph/acid/attackby(var/obj/O as obj, var/mob/user as mob)
+	if(!istype(O, /obj/item/anti_acid))
+		..()
+		return
+
+	if(istype(O, /obj/effect/xenomorph/acid/strong))
+		to_chat(user, "That acid is too strong!")
+		return
+
+	var/obj/item/anti_acid/deacid = O
+	switch(acid_strength)
+		if(2.5)
+			if(deacid.use_time < 1)
+				return
+			deacid.use_time--
+			qdel(src)
+			visible_message("<span class='warning'>Anti-acid mixture sucsessfully neutrilize the acid!</span>")
+			return
+		if(1)
+			if(deacid.use_time < 5)
+				return
+			deacid.use_time -= 5
+			qdel(src)
+			visible_message("<span class='warning'>Anti-acid mixture barely neutrilize the acid!</span>")
+			return
+	return
+
 /obj/effect/xenomorph/acid/proc/tick(strength_t)
 	set waitfor = 0
 	if(!acid_t || !acid_t.loc)
