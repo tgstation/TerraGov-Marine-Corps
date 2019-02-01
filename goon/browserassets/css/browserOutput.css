@@ -123,7 +123,7 @@ a.popt {text-decoration: none;}
 #musicVolumeText {
 	background: #ddd;
     height: 30px;
-	padding: 5px 0;
+	padding: 5px 4px 5px 10px;
 	display: block;
 	color: #333;
 	text-decoration: none;
@@ -133,11 +133,11 @@ a.popt {text-decoration: none;}
 }
 #musicVolume {
 	position: absolute;
-	right: 25px;
+	right: 20px;
 }
 .icon-music {
 	display: block;
-	padding: 0 5px;
+	padding: 0;
 	font-size: 1.1em;
 	width: 22px;
 	text-align: center;
