@@ -1598,13 +1598,9 @@
 	drop_nade(get_turf(P))
 
 /datum/ammo/flare/proc/drop_nade(var/turf/T)
-	var/obj/item/device/flashlight/flare/G = new (T)
+	var/obj/item/explosive/grenade/flare/G = new (T)
 	G.visible_message("<span class='warning'>\A [G] bursts into brilliant light nearby!</span>")
-	G.on = 1
-	START_PROCESSING(SSobj, G)
-	G.icon_state = "flare-on"
-	G.damtype = "fire"
-	G.SetLuminosity(G.brightness_on)
+	G.turn_on()
 
 /datum/ammo/rocket/toy
 	name = "\improper toy rocket"

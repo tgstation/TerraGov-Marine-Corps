@@ -188,18 +188,13 @@
 	return 1
 
 /mob/living/simple_animal/Bumped(AM as mob|obj)
-	if(!AM) return
+	if(!AM) 
+		return
 
 	if(resting || buckled)
 		return
 
-	if(isturf(src.loc))
-		if(ismob(AM))
-			var/newamloc = src.loc
-			src.loc = AM:loc
-			AM:loc = newamloc
-		else
-			..()
+	return ..()
 
 /mob/living/simple_animal/blind_eyes()
 	return
