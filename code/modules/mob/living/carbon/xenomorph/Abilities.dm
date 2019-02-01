@@ -407,7 +407,8 @@
 		"<span class='xenowarning'>You stop emitting [X.current_aura] pheromones.</span>", null, 5)
 		X.current_aura = null
 	else
-		if(..())
+		. = ..()
+		if(.)
 			X.use_plasma(30)
 			X.current_aura = "recovery"
 			X.visible_message("<span class='xenowarning'>\The [X] begins to emit strange-smelling pheromones.</span>", \
@@ -432,7 +433,8 @@
 		"<span class='xenowarning'>You stop emitting [X.current_aura] pheromones.</span>", null, 5)
 		X.current_aura = null
 	else
-		if(..())
+		. = ..()
+		if(.)
 			X.use_plasma(30)
 			X.current_aura = "warding"
 			X.visible_message("<span class='xenowarning'>\The [X] begins to emit strange-smelling pheromones.</span>", \
@@ -457,7 +459,8 @@
 		"<span class='xenowarning'>You stop emitting [X.current_aura] pheromones.</span>", null, 5)
 		X.current_aura = null
 	else
-		if(..())
+		. = ..()
+		if(.)
 			X.use_plasma(30)
 			X.current_aura = "frenzy"
 			X.visible_message("<span class='xenowarning'>\The [X] begins to emit strange-smelling pheromones.</span>", \
