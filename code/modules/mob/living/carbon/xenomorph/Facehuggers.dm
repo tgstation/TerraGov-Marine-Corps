@@ -227,11 +227,11 @@
 			if(!i)
 				break
 			if(CanHug(M))
-				M.visible_message("<span class='warning'>\The scuttling [src] leaps at [M]!</span>", \
-				"<span class='warning'>The scuttling [src] leaps at [M]!</span>")
+				visible_message("<span class='warning'>\The scuttling [src] leaps at [M]!</span>")
 				leaping = TRUE
 				throw_at(M, 4, 1)
 				break
+			--i
 
 /obj/item/clothing/mask/facehugger/throw_at(atom/target, range, speed)
 	. = ..()
@@ -259,7 +259,7 @@
 		return ..()
 
 /obj/item/clothing/mask/facehugger/proc/fast_facehug(mob/M)
-	if(!QDELETED(M) && Adjacent(M) && CanHug(M))
+	if(!QDELETED(M) && Adjacent(M) && CanHug(M) && (isturf(M.loc) || M.loc == loc))
 		Attach(M)
 	else
 		fast_activate()
