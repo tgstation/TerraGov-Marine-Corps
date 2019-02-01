@@ -7,7 +7,7 @@
 	var/mob/living/carbon/Xenomorph/occupant = null
 	var/obj/machinery/computer/analyze_console/linked_console = null
 
-	use_power = 1
+	use_power = TRUE
 	idle_power_usage = 20
 	active_power_usage = 200
 
@@ -29,19 +29,19 @@
 
 /obj/machinery/alien_container/proc/put_mob(mob/living/carbon/M as mob)
 	if (stat & (NOPOWER|BROKEN))
-		to_chat(usr, "\red The chamber is not functioning.")
+		to_chat(usr, "<span class='notice'>The chamber is not functioning.</span>")
 		return
 	if (!istype(M))
-		to_chat(usr, "\red <B>The chamber cannot handle such a lifeform!</B>")
+		to_chat(usr, "<span class='warning'><B>The chamber cannot handle such a lifeform!</B></span>")
 		return
 	if (!isXeno(M))
-		to_chat(usr, "\red <B>You feel stupid...</B>")
+		to_chat(usr, "<span class='warning'><B>You feel stupid...</B></span>")
 		return
 	if (occupant)
-		to_chat(usr, "\red <B>The chamber is already occupied!</B>")
+		to_chat(usr, "<span class='warning'>The chamber is already occupied!</B></span>")
 		return
 	if (M.abiotic())
-		to_chat(usr, "\red Subject may not have abiotic items on.")
+		to_chat(usr, "<span class='warning'> Subject may not have abiotic items on.</span>")
 		return
 	M.forceMove(src)
 	occupant = M
@@ -49,14 +49,16 @@
 //	M.metabslow = 1
 	add_fingerprint(usr)
 	update_icon()
-	return 1
+	return TRUE
 
 /obj/machinery/alien_container/verb/move_eject()
 	set name = "Eject occupant"
 	set category = "Object"
+	set waitfor = FALSE
 	set src in oview(1)
+
 	if(usr == occupant)//If the user is inside the tube...
-		to_chat(usr, "\blue Release sequence activated. This will take two minutes.")
+		to_chat(usr, "<span class='notice'> Release sequence activated. This will take two minutes.</span>")
 		sleep(1200)
 		if(!src || !usr || !occupant || (occupant != usr)) //Check if someone's released/replaced/bombed him already
 			return
@@ -87,7 +89,7 @@ If chamber connected to the console, you can start research aliens. Just don't b
 
 	var/obj/machinery/alien_container/linked_chamber = null
 	var/screen = 1.0
-	var/errored = 0
+	var/errored = FALSE
 	req_access = list(ACCESS_MARINE_RESEARCH)
 
 /obj/machinery/computer/analyze_console/update_icon()
@@ -108,7 +110,48 @@ If chamber connected to the console, you can start research aliens. Just don't b
 		linked_chamber = D
 		D.linked_console = src
 		return
+	screen = 1.3
+	updateUsrDialog()
 	return
+
+/obj/machinery/computer/analyze_console/proc/harvest()
+	screen = 1.0
+	if(isXenoCrusher(linked_chamber.occupant))
+		new /obj/item/marineResearch/xenomorph/chitin/crusher(linked_chamber.loc)
+	else
+		new /obj/item/marineResearch/xenomorph/chitin(linked_chamber.loc)
+
+	new /obj/item/marineResearch/xenomorph/muscle(linked_chamber.loc)
+
+	switch(linked_chamber.occupant.caste_base_type)
+
+		if(/mob/living/carbon/Xenomorph/Warrior)
+			new /obj/item/marineResearch/xenomorph/muscle(linked_chamber.loc)
+
+		if(/mob/living/carbon/Xenomorph/Ravager)
+			new /obj/item/marineResearch/xenomorph/muscle(linked_chamber.loc)
+
+		if(/mob/living/carbon/Xenomorph/Drone)
+			new /obj/item/marineResearch/xenomorph/secretor(linked_chamber.loc)
+
+		if(/mob/living/carbon/Xenomorph/Sentinel)
+			new /obj/item/marineResearch/xenomorph/acid_gland(linked_chamber.loc)
+
+		if(/mob/living/carbon/Xenomorph/Spitter)
+			new /obj/item/marineResearch/xenomorph/acid_gland/spitter(linked_chamber.loc)
+
+		if(/mob/living/carbon/Xenomorph/Hivelord)
+			new /obj/item/marineResearch/xenomorph/secretor(linked_chamber.loc)
+			new /obj/item/marineResearch/xenomorph/secretor/hivelord(linked_chamber.loc)
+			new /obj/item/marineResearch/xenomorph/secretor/hivelord(linked_chamber.loc)
+
+		if(/mob/living/carbon/Xenomorph/Queen)
+			new /obj/item/marineResearch/xenomorph/acid_gland/spitter(linked_chamber.loc)
+			new /obj/item/marineResearch/xenomorph/secretor(linked_chamber.loc)
+			new /obj/item/marineResearch/xenomorph/secretor/hivelord(linked_chamber.loc)
+			new /obj/item/marineResearch/xenomorph/core(linked_chamber.loc)
+
+	updateUsrDialog()
 
 /obj/machinery/computer/analyze_console/Topic(href, href_list)				//Brutally teared from rdconsole.dm
 	if(..())
@@ -126,10 +169,7 @@ If chamber connected to the console, you can start research aliens. Just don't b
 
 	else if(href_list["find_device"]) //The R&D console looks for devices nearby to link up with.
 		screen = 0.0
-		spawn(20)
-			SyncRDevices()
-			screen = 1.3
-			updateUsrDialog()
+		addtimer(CALLBACK(src, .proc/SyncRDevices), 20)
 
 	else if(href_list["harvest"])
 		if(!linked_chamber)
@@ -137,48 +177,11 @@ If chamber connected to the console, you can start research aliens. Just don't b
 		else
 			if(!linked_chamber.occupant)
 				return
-			if(linked_chamber.occupant.autopsied == 1)
+			if(linked_chamber.occupant.autopsied == TRUE)
 				return
-			linked_chamber.occupant.autopsied = 1
+			linked_chamber.occupant.autopsied = TRUE
 			screen = 0.3
-			spawn(300)
-				screen = 1.0
-				if(isXenoCrusher(linked_chamber.occupant))
-					new /obj/item/marineResearch/xenomorph/chitin/crusher(linked_chamber.loc)
-				else
-					new /obj/item/marineResearch/xenomorph/chitin(linked_chamber.loc)
-
-				new /obj/item/marineResearch/xenomorph/muscle(linked_chamber.loc)
-
-				switch(linked_chamber.occupant.caste_base_type)
-
-					if(/mob/living/carbon/Xenomorph/Warrior)
-						new /obj/item/marineResearch/xenomorph/muscle(linked_chamber.loc)
-
-					if(/mob/living/carbon/Xenomorph/Ravager)
-						new /obj/item/marineResearch/xenomorph/muscle(linked_chamber.loc)
-
-					if(/mob/living/carbon/Xenomorph/Drone)
-						new /obj/item/marineResearch/xenomorph/secretor(linked_chamber.loc)
-
-					if(/mob/living/carbon/Xenomorph/Sentinel)
-						new /obj/item/marineResearch/xenomorph/acid_gland(linked_chamber.loc)
-
-					if(/mob/living/carbon/Xenomorph/Spitter)
-						new /obj/item/marineResearch/xenomorph/acid_gland/spitter(linked_chamber.loc)
-
-					if(/mob/living/carbon/Xenomorph/Hivelord)
-						new /obj/item/marineResearch/xenomorph/secretor(linked_chamber.loc)
-						new /obj/item/marineResearch/xenomorph/secretor/hivelord(linked_chamber.loc)
-						new /obj/item/marineResearch/xenomorph/secretor/hivelord(linked_chamber.loc)
-
-					if(/mob/living/carbon/Xenomorph/Queen)
-						new /obj/item/marineResearch/xenomorph/acid_gland/spitter(linked_chamber.loc)
-						new /obj/item/marineResearch/xenomorph/secretor(linked_chamber.loc)
-						new /obj/item/marineResearch/xenomorph/secretor/hivelord(linked_chamber.loc)
-						new /obj/item/marineResearch/xenomorph/core(linked_chamber.loc)
-
-				updateUsrDialog()
+			addtimer(CALLBACK(src, .proc/harvest), 300)
 
 	updateUsrDialog()
 
@@ -194,7 +197,7 @@ If chamber connected to the console, you can start research aliens. Just don't b
 				screen = 2.0
 			else if(linked_chamber.occupant == null)
 				screen = 2.1
-			else if(linked_chamber.occupant.autopsied == 1)
+			else if(linked_chamber.occupant.autopsied == TRUE)
 				screen = 2.3
 			else
 				screen = 2.2

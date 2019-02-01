@@ -8,7 +8,6 @@
 /obj/item/marineResearch/xenomorph
 	name = "An unidentified Alien Thingy"
 	desc = "Researchy thingy!"
-	icon_state = "biomass"
 
 
 

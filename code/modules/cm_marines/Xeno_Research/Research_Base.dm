@@ -25,28 +25,28 @@
 	return UNKNOWN_TECH
 
 /datum/marineResearch/proc/TechMakeReq(datum/marineTech/tech)
-	var/fl = 1														//Entire existance of this var pisses me the fuck off
+	var/fl = TRUE														//Entire existance of this var pisses me the fuck off
 	if(istype(tech, /datum/marineTech/Xenomorph))
 		return fl
 	for(var/req in tech.req_tech)
-		fl = 0
+		fl = FALSE
 		for(var/datum/marineTech/known in known_tech)
 			if(known.id == req)
-				fl = 1
+				fl = TRUE
 	return fl
 
 /datum/marineResearch/proc/TechMakeReqInDiss(tech) // Just for checking when about to dissected
-	var fl = 1
+	var fl = TRUE
 	for(var/datum/marineTech/possible in possible_tech)
 		if(tech != possible.id)
 			continue
 		if(!possible.need_item)
 			continue
 		for(var/T in possible.req_tech)
-			fl = 0
+			fl = FALSE
 			for(var/datum/marineTech/known in known_tech)
 				if(T == known.id)
-					fl = 1
+					fl = TRUE
 			return fl
 
 /datum/marineResearch/proc/AddToAvail(obj/item/marineResearch/xenomorph/A)
@@ -62,28 +62,28 @@
 	return
 
 /datum/marineResearch/proc/CheckAvail()
-	var/fl = 1
+	var/fl = TRUE
 	for(var/datum/marineTech/possible in possible_tech)
 		if(possible.need_item)
 			continue
 		for(var/id in possible.req_tech)
-			fl = 0
+			fl = FALSE
 			for(var/datum/marineTech/known in known_tech)
 				if(known.id == id)
-					fl = 1
-		if(fl == 1)
+					fl = TRUE
+		if(fl)
 			available_tech += possible
 			possible_tech -= possible
 	return
 
 /datum/marineResearch/proc/CheckDesigns()
-	var/fl = 0
+	var/fl = FALSE
 	for(var/datum/marine_design/design in possible_design)
 		for(var/id in design.req_tech)
-			fl = 0
+			fl = FALSE
 			for(var/datum/marineTech/known in known_tech)
 				if(id == known.id)
-					fl = 1
+					fl = TRUE
 		if(!fl)
 			continue
 		AddDesigns(design)
@@ -92,9 +92,11 @@
 	possible_design -= design
 	known_design += design
 
-/datum/marineResearch/proc/ForcedToKnown(datum/marineTech/tech)				//When we need it to be researched NOW
+/datum/marineResearch/proc/ToKnown(datum/marineTech/tech, forced = FALSE)				//Handles everything, what now will be researched. Forced used for disks
 	switch(Check_tech(tech.id))
 		if(UNKNOWN_TECH)								//Unknown tech
+			if(!forced)
+				return									//Not from disk
 			possible_tech -= tech
 			known_tech += tech
 			CheckDesigns()
@@ -105,11 +107,6 @@
 			known_tech += tech
 			CheckDesigns()
 
-/datum/marineResearch/proc/AvailToKnown(datum/marineTech/researched)			//Haphazardous
-	available_tech -= researched
-	known_tech += researched
-	CheckDesigns()
-
 /datum/marineTech
 	var/name = "name"					//Name of the technology.
 	var/desc = "description"			//Description before research
@@ -117,7 +114,7 @@
 	var/id = -1							//An easily referenced ID. Must be numeric.
 	var/time = 30						//What time takes to research. In seconds
 	var/list/req_tech = list()			//List of required teches
-	var/need_item = 1					//For cheking if item needed for research
+	var/need_item = TRUE					//For cheking if item needed for research
 
 /*
 ///// List of ids for teches/////
@@ -156,7 +153,7 @@ Queen thingy - RESEARCH_XENO_QUEEN
 	resdesc = "If we thought that humanity is a crowned kings of nature... Xenomorphs are Emperors. Resistant even for vacuum, they blood appears to be acid, that can even corrode tank armor... And don't even think about those claws.."
 	id = RESEARCH_XENO_BIOLOGY
 	req_tech = list(RESEARCH_XENOSTART)
-	need_item = 0									//No need for the item
+	need_item = FALSE									//No need for the item
 
 /datum/marineTech/BioPlating
 	name = "Xenomorph Chitin Plating"
@@ -211,7 +208,7 @@ Queen thingy - RESEARCH_XENO_QUEEN
 	resdesc = "It's not a flora. It's all resins. But our troops ignorant or stupid enough to come to this conclusion. But somehow, that resin acts like flora anyway and makes some enigmatic connection with xenobiology."
 	id = RESEARCH_XENO_FLORA
 	req_tech = list(RESEARCH_XENOSTART)
-	need_item = 0
+	need_item = FALSE
 
 /datum/marineTech/XenoWeed
 	name = "Xenoweed"

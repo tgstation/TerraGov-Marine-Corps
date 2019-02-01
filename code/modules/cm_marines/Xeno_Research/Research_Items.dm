@@ -7,17 +7,17 @@
 	desc = "Syringe for taking samples"
 	icon = 'icons/Marine/Research/Research_Items.dmi'
 	icon_state = "sampler_empty"
-	var/filled = 0
+	var/filled = FALSE
 	var/obj/item/marineResearch/xenomorph/weed/sample = null
 
 /obj/item/sampler/update_icon()
 	switch(filled)
-		if(1)
+		if(TRUE)
 			if(istype(sample, /obj/item/marineResearch/xenomorph/weed/sack))
 				icon_state = "sampler_sac"
 				return
 			icon_state = "sampler_weed"
-		if(0)
+		if(FALSE)
 			icon_state = "sampler_empty"
 	return
 
@@ -44,12 +44,12 @@
 	if(prob(50))
 		to_chat("You planted weed sac on the ground, but it pulsated once and crumble into mess!")
 		new /obj/effect/decal/cleanable/blood/xeno(src.loc)
-		filled = 0
+		filled = FALSE
 		sample = null
 		update_icon()
 		return
 	user.visible_message("[user] planted weed sac on the ground.", "You planted weed sac on the ground.")
-	filled = 0
+	filled = FALSE
 	sample = null
 	update_icon()
 	new /obj/effect/alien/weeds/node(user.loc, null, null)
@@ -68,10 +68,11 @@
 	volume = 1000
 
 /obj/item/reagent_container/spray/anti_weed/New()
-	..()
+	. = ..()
 	reagents.add_reagent("plantbgone", 1000)
 
 /obj/item/reagent_container/spray/anti_weed/Spray_at(atom/A)						// Need to be redone. Too big and not sure that is right
+	set waitfor = FALSE
 	var/obj/effect/decal/chempuff/D = new/obj/effect/decal/chempuff(get_turf(src))
 
 	if(A.loc == get_turf(src))
@@ -173,7 +174,7 @@
 	maxcharge = 200000
 
 /obj/item/cell/xba/New()
-	..()
+	. = ..()
 	update_icon()
 
 /obj/item/cell/xba/update_icon()
@@ -208,7 +209,7 @@
 	var/use_time				//1 against weak acid, 5 - acid, Strong acid is unpurgeable
 
 /obj/item/anti_acid/New()
-	..()
+	. = ..()
 	use_time = max_use
 
 
@@ -231,7 +232,7 @@
 	icon_state = "training_grenade"
 	det_time = 30
 	item_state = "grenade"
-	dangerous = 1
+	dangerous = TRUE
 	underslug_launchable = TRUE
 
 /obj/item/explosive/grenade/tesla/prime()
@@ -265,7 +266,7 @@
 	can_hold = list("/obj/item/explosive/grenade/tesla")
 
 /obj/item/storage/box/tesla_box/New()
-	..()
+	. = ..()
 	for(var/nade = 1 to storage_slots)
 		new /obj/item/explosive/grenade/tesla(src)
 /////////////
@@ -307,24 +308,21 @@
 /obj/item/weapon/gun/energy/tesla/able_to_fire(mob/living/user)
 	. = ..()
 	if(.)
-		if(isSynth(user))
-			to_chat(user, "Your programm forbids you use of this weapon")
-			return 0
-		if(!ishuman(user)) return 0
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.smartgun < SKILL_SMART_USE)
 			to_chat(user, "<span class='warning'>You don't seem to know how to use [src]...</span>")
-			return 0
-	return 1
+			return FALSE
+	return TRUE
 
 /obj/item/weapon/gun/energy/tesla/load_into_chamber()
-	if(charge - charge_cost < 0) return
+	if(charge - charge_cost < 0)
+		return
 
 	charge -= charge_cost
 	in_chamber = create_bullet(ammo)
 	return in_chamber
 
 /obj/item/weapon/gun/energy/tesla/reload_into_chamber(mob/user)			//To not listening for annoying *click*
-	return 1
+	return TRUE
 
 /obj/item/weapon/gun/energy/tesla/reload(mob/gunner, obj/item/tesla_powerpack/power_pack)
 	if(!(power_pack && power_pack.loc))
@@ -363,7 +361,7 @@
 
 /obj/item/tesla_powerpack/New()
 	select_gamemode_skin(/obj/item/smartgun_powerpack)
-	..()
+	. = ..()
 	charge_battery = new /obj/item/cell/high()
 
 /obj/item/tesla_powerpack/proc/reload(mob/user, obj/item/weapon/gun/energy/tesla/mygun)
@@ -372,7 +370,7 @@
 	reloading = FALSE
 
 /obj/item/tesla_powerpack/attack_self(mob/user, charge_cost)
-	if(!ishuman(user) || user.stat) return 0
+	if(!ishuman(user) || user.stat) return FALSE
 
 	var/obj/item/weapon/gun/energy/tesla/mygun = user.get_active_hand()
 
@@ -402,7 +400,7 @@
 		playsound(src,'sound/machines/buzz-two.ogg', 25, 1)
 		reloading = FALSE
 		return
-	return 1
+	return TRUE
 
 /datum/ammo/energy/tesla
 	name = "tesla bolt"
@@ -410,7 +408,7 @@
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_IGNORE_ARMOR
 
 /datum/ammo/energy/tesla/New()
-	..()
+	. = ..()
 	damage = config.min_hit_damage
 	max_range = config.short_shell_range
 	shell_speed = config.ultra_shell_speed
