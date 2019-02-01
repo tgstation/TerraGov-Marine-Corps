@@ -65,7 +65,14 @@ var opts = {
 	'colorPreset': 0,
 
 	// Whether to combine consecutive repeated messages into one, showing a counter
-	'messageCombining': true
+	'messageCombining': true,
+
+	//Admin music volume update
+	'volumeUpdateDelay': 5000, //Time from when the volume updates to data being sent to the server
+	'volumeUpdating': false, //True if volume update function set to fire
+	'updatedVolume': 0, //The volume level that is sent to the server
+
+	'defaultMusicVolume': 25,
 };
 
 // Array of names for colorblind presets.
@@ -74,6 +81,10 @@ var colorPresets = [
 	'normal',
 	'colorblindv1'
 ]
+
+function clamp(val, min, max) {
+	return Math.max(min, Math.min(val, max))
+}
 
 function outerHTML(el) {
     var wrap = document.createElement('div');
@@ -110,6 +121,24 @@ function linkify(text) {
 			return $1 ? $0: '<a href="http://'+$0+'">'+$0+'</a>';
 		}
 	});
+}
+
+function byondDecode(message) {
+	// Basically we url_encode twice server side so we can manually read the encoded version and actually do UTF-8.
+	// The replace for + is because FOR SOME REASON, BYOND replaces spaces with a + instead of %20, and a plus with %2b.
+	// Marvelous.
+	message = message.replace(/\+/g, "%20");
+	try { 
+		// This is a workaround for the above not always working when BYOND's shitty url encoding breaks. (byond bug id:2399401)
+		if (decodeURIComponent) {
+			message = decodeURIComponent(message);
+		} else {
+			throw new Error("Easiest way to trigger the fallback")
+		}
+	} catch (err) {
+		message = unescape(message);
+	}
+	return message;
 }
 
 //Actually turns the highlight term match into appropriate html
@@ -380,6 +409,8 @@ function ehjaxCallback(data) {
 		internalOutput('<div class="connectionClosed internal restarting">The connection has been closed because the server is restarting. Please wait while you automatically reconnect.</div>', 'internal');
 	} else if (data == 'stopaudio') {
 		$('.dectalk').remove();
+	} else if (data == 'stopMusic') {
+		$('#adminMusic').prop('src', '');
 	} else {
 		//Oh we're actually being sent data instead of an instruction
 		var dataJ;
@@ -403,6 +434,7 @@ function ehjaxCallback(data) {
 			} else {
 				handleClientData(data.clientData.ckey, data.clientData.ip, data.clientData.compid);
 			}
+			sendVolumeUpdate();
 		} else if (data.modeChange) {
 			changeMode(data.modeChange);
 		} else if (data.firebug) {
@@ -421,9 +453,25 @@ function ehjaxCallback(data) {
 				'<span class="italic">You hear a strange robotic voice...</span>' + message;
 			}
 			internalOutput(message, 'preventLink');
+		} else if (data.adminMusic) {
+			if (typeof data.adminMusic === 'string') {
+				var adminMusic = byondDecode(data.adminMusic);
+				adminMusic = adminMusic.match(/https?:\/\/\S+/) || '';
+				if (data.musicRate) {
+					var newRate = Number(data.musicRate);
+					if(newRate) {
+						$('#adminMusic').prop('defaultPlaybackRate', newRate);
+					}
+				} else {
+					$('#adminMusic').prop('defaultPlaybackRate', 1.0);
+				}
+				$('#adminMusic').prop('src', adminMusic);
+				$('#adminMusic').trigger("play");
+			}
 		}
 	}
 }
+
 
 function createPopup(contents, width) {
 	opts.popups++;
@@ -444,6 +492,13 @@ function toggleWasd(state) {
 	opts.wasd = (state == 'on' ? true : false);
 }
 
+
+function sendVolumeUpdate() {
+	opts.volumeUpdating = false;
+	if(opts.updatedVolume) {
+		runByond('?_src_=chat&proc=setMusicVolume&param[volume]='+opts.updatedVolume);
+	}
+}
 /*****************************************
 *
 * MAKE MACRO DICTIONARY
@@ -511,7 +566,8 @@ $(function() {
 		'shighlightTerms': getCookie('highlightterms'),
 		'shighlightColor': getCookie('highlightcolor'),
 		'scolorPreset': getCookie('colorpreset'),
-		'smessageCombining': getCookie('messagecombining')
+		'smessageCombining': getCookie('messagecombining'),
+		'smusicVolume': getCookie('musicVolume')
 	};
 
 	if (savedConfig.sfontSize) {
@@ -560,6 +616,18 @@ $(function() {
 		} else {
 			opts.messageCombining = true;
 		}
+	}
+
+	if (savedConfig.smusicVolume) {
+		var newVolume = clamp(savedConfig.smusicVolume, 0, 100);
+		$('#adminMusic').prop('volume', newVolume / 100);
+		$('#musicVolume').val(newVolume);
+		opts.updatedVolume = newVolume;
+		sendVolumeUpdate();
+		internalOutput('<span class="internal boldnshit">Loaded music volume of: '+savedConfig.smusicVolume+'</span>', 'internal');
+	}
+	else{
+		$('#adminMusic').prop('volume', opts.defaultMusicVolume / 100);
 	}
 
 	(function() {
@@ -911,6 +979,26 @@ $(function() {
 	$('#clearMessages').click(function() {
 		$messages.empty();
 		opts.messageCount = 0;
+	});
+
+	$('#musicVolumeSpan').hover(function() {
+		$('#musicVolumeText').addClass('hidden');
+		$('#musicVolume').removeClass('hidden');
+	}, function() {
+		$('#musicVolume').addClass('hidden');
+		$('#musicVolumeText').removeClass('hidden');
+	});
+
+	$('#musicVolume').change(function() {
+		var newVolume = $('#musicVolume').val();
+		newVolume = clamp(newVolume, 0, 100);
+		$('#adminMusic').prop('volume', newVolume / 100);
+		setCookie('musicVolume', newVolume, 365);
+		opts.updatedVolume = newVolume;
+		if(!opts.volumeUpdating) {
+			setTimeout(sendVolumeUpdate, opts.volumeUpdateDelay);
+			opts.volumeUpdating = true;
+		}
 	});
 
 	$('#changeColorPreset').click(function() {

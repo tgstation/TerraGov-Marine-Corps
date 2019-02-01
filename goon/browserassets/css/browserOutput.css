@@ -120,6 +120,30 @@ a.popt {text-decoration: none;}
     line-height: 28px;
     border-top: 1px solid #b4b4b4;
 }
+#musicVolumeText {
+	background: #ddd;
+    height: 30px;
+	padding: 5px 0;
+	display: block;
+	color: #333;
+	text-decoration: none;
+    line-height: 28px;
+    font-size: 0.9em;
+    border-top: 1px solid #b4b4b4;
+}
+#musicVolume {
+	position: absolute;
+	right: 25px;
+}
+.icon-music {
+	display: block;
+	padding: 0 5px;
+	font-size: 1.1em;
+	width: 22px;
+	text-align: center;
+	line-height: 30px;
+	float: right;
+}
 #options a:hover {background: #ccc;}
 #options .toggle {
 	width: 40px;

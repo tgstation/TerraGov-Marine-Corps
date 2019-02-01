@@ -339,8 +339,8 @@
 		if("Cancel")
 			return
 
-	log_admin("[key_name(usr)] played sound '[S]' for [heard_midi] player(s). [GLOB.clients.len - heard_midi] player(s) have disabled admin midis.")
-	message_admins("[ADMIN_TPMONTY(usr)] played sound '[S]' for [heard_midi] player(s). [GLOB.clients.len - heard_midi] player(s) have disabled admin midis.")
+	log_admin("[key_name(usr)] played sound '[S]' for [heard_midi] player(s). [length(GLOB.clients) - heard_midi] player(s) have disabled admin midis or were out of view.")
+	message_admins("[ADMIN_TPMONTY(usr)] played sound '[S]' for [heard_midi] player(s). [length(GLOB.clients) - heard_midi] player(s) have disabled admin midis or were out of view.")
 
 	// A 30 sec timer used to show Admins how many players are silencing the sound after it starts - see preferences_toggles.dm
 	var/midi_playing_timer = 300 // Should match with the midi_silenced spawn() in preferences_toggles.dm
@@ -375,6 +375,80 @@
 		return
 
 	usr.client.holder.sound_file(melody)
+
+
+/datum/admins/proc/sound_web()
+	set category = "Fun"
+	set name = "Play Internet Sound"
+
+	if(!check_rights(R_SOUND))
+		return
+
+	var/ytdl = CONFIG_GET(string/invoke_youtubedl)
+	if(!ytdl)
+		to_chat(usr, "<span class='warning'>Youtube-dl was not configured, action unavailable.</span>")
+		return
+
+	var/web_sound_input = input("Enter content URL (supported sites only, leave blank to stop playing)", "Play Internet Sound via youtube-dl") as text|null
+	if(istext(web_sound_input))
+		var/web_sound_url = ""
+		var/stop_web_sounds = FALSE
+		var/pitch
+		if(length(web_sound_input))
+
+			web_sound_input = trim(web_sound_input)
+			if(findtext(web_sound_input, ":") && !findtext(web_sound_input, GLOB.is_http_protocol))
+				to_chat(src, "<span class='warning'>Non-http(s) URIs are not allowed.</span>")
+				to_chat(src, "<span class='warning'>For youtube-dl shortcuts like ytsearch: please use the appropriate full url from the website.</span>")
+				return
+			var/shell_scrubbed_input = shell_url_scrub(web_sound_input)
+			var/list/output = world.shelleo("[ytdl] --format \"bestaudio\[ext=mp3]/best\[ext=mp4]\[height<=360]/bestaudio\[ext=m4a]/bestaudio\[ext=aac]\" --dump-single-json --no-playlist -- \"[shell_scrubbed_input]\"")
+			var/errorlevel = output[SHELLEO_ERRORLEVEL]
+			var/stdout = output[SHELLEO_STDOUT]
+			var/stderr = output[SHELLEO_STDERR]
+			if(!errorlevel)
+				var/list/data
+				try
+					data = json_decode(stdout)
+				catch(var/exception/e)
+					to_chat(usr, "<span class='warning'>Youtube-dl JSON parsing FAILED: [e]: [stdout]</span>")
+					return
+				if(data["url"])
+					web_sound_url = data["url"]
+					var/title = "[data["title"]]"
+					var/webpage_url = title
+					if(data["webpage_url"])
+						webpage_url = "<a href=\"[data["webpage_url"]]\">[title]</a>"
+
+					var/res = alert(usr, "Show the title of and link to this song to the players?\n[title]",, "Yes", "No", "Cancel")
+					switch(res)
+						if("Yes")
+							to_chat(world, "<span class='boldnotice'>An admin played: [webpage_url]</span>")
+						if("Cancel")
+							return
+					log_admin("[key_name(usr)] played web sound: [web_sound_input]")
+					message_admins("[ADMIN_TPMONTY(usr)] played web sound: [web_sound_input]")
+			else
+				to_chat(usr, "<span class='warning'>Youtube-dl URL retrieval FAILED: [stderr]</span>")
+		else
+			log_admin("[key_name(usr)] stopped web sound")
+			message_admins("[ADMIN_TPMONTY(usr)] stopped web sound")
+			web_sound_url = null
+			stop_web_sounds = TRUE
+
+		if(web_sound_url && !findtext(web_sound_url, GLOB.is_http_protocol))
+			to_chat(src, "<span class='warning'>BLOCKED: Content URL not using http(s) protocol</span>")
+			to_chat(src, "<span class='warning'>The media provider returned a content URL that isn't using the HTTP or HTTPS protocol</span>")
+			return
+		if(web_sound_url || stop_web_sounds)
+			for(var/m in GLOB.player_list)
+				var/mob/M = m
+				var/client/C = M.client
+				if((C.prefs.toggles_sound & SOUND_MIDI) && C.chatOutput && !C.chatOutput.broken && C.chatOutput.loaded)
+					if(!stop_web_sounds)
+						C.chatOutput.sendMusic(web_sound_url, pitch)
+					else
+						C.chatOutput.stopMusic()
 
 
 /datum/admins/proc/announce()
