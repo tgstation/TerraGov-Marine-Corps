@@ -94,7 +94,7 @@
 	network = "tcommsat"
 	produces_heat = 0
 	autolinkers = list("receiverCent")
-	freq_listening = list(ERT_FREQ, DTH_FREQ, PMC_FREQ, DUT_FREQ, YAUT_FREQ)
+	freq_listening = list(ERT_FREQ, DTH_FREQ, PMC_FREQ, DUT_FREQ, YAUT_FREQ, IMP_FREQ)
 
 
 //Buses
@@ -131,7 +131,7 @@
 /obj/machinery/telecomms/bus/preset_cent
 	id = "CentComm Bus"
 	network = "tcommsat"
-	freq_listening = list(ERT_FREQ, DTH_FREQ, PMC_FREQ, DUT_FREQ, YAUT_FREQ)
+	freq_listening = list(ERT_FREQ, DTH_FREQ, PMC_FREQ, DUT_FREQ, YAUT_FREQ, IMP_FREQ)
 	produces_heat = 0
 	autolinkers = list("processorCent", "centcomm")
 
@@ -213,7 +213,7 @@
 
 /obj/machinery/telecomms/server/presets/centcomm
 	id = "CentComm Server"
-	freq_listening = list(ERT_FREQ, DTH_FREQ, PMC_FREQ, DUT_FREQ, YAUT_FREQ)
+	freq_listening = list(ERT_FREQ, DTH_FREQ, PMC_FREQ, DUT_FREQ, YAUT_FREQ, IMP_FREQ)
 	produces_heat = 0
 	autolinkers = list("centcomm")
 
@@ -262,7 +262,7 @@
 /obj/machinery/telecomms/allinone/interceptor
 	name = "Message Intercept Mainframe"
 	intercept = 1
-	freq_listening = list(SYND_FREQ, RUS_FREQ)
+	freq_listening = list(SYND_FREQ, RUS_FREQ, IMP_FREQ)
 
 /obj/machinery/telecomms/allinone/receive_signal(datum/signal/signal)
 

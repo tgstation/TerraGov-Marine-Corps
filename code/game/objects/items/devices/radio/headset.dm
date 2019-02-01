@@ -466,6 +466,11 @@
 
 /obj/item/device/radio/headset/distress/imperial
 	name = "Imperial headset"
-	desc = "A headset used by the Imperial soldiers. There is only the Emperor's channel."
+	desc = "A headset used by Imperial soldiers. Use :h to talk on a private channel."
 	keyslot1 = new /obj/item/device/encryptionkey/imperial
-	frequency = IMP_FREQ
+	//frequency = IMP_FREQ
+	//freerange = TRUE - this only allows MAIN freq not to fuck up
+
+/obj/item/device/radio/headset/distress/imperial/New()
+	. = ..()
+	message_admins("Freq: [frequency]")

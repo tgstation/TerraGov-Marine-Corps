@@ -308,12 +308,18 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 		var/part_b = "</span><b> \icon[radio]\[[freq_text]\][part_b_extra]</b> <span class='message'>" // Tweaked for security headsets -- TLE
 		var/part_c = "</span></span>"
 
+		message_admins("Freq: [IMP_FREQ] display: [display_freq]")
+
 		// Antags!
 		if (display_freq in ANTAG_FREQS)
 			part_a = "<span class='syndradio'><span class='name'>"
 		// centcomm channels (deathsquid and ert)
 		else if (display_freq in CENT_FREQS)
 			part_a = "<span class='centradio'><span class='name'>"
+		
+		// imperial channel
+		else if (display_freq == IMP_FREQ)
+			part_a = "<span class='impradio'><span class='name'>"
 
 		// command channel
 		else if (display_freq == COMM_FREQ)
@@ -380,7 +386,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 					blackbox.msg_engineering += blackbox_msg
 				if(SEC_FREQ)
 					blackbox.msg_security += blackbox_msg
-				if(DTH_FREQ)
+				if(DTH_FREQ || IMP_FREQ)
 					blackbox.msg_deathsquad += blackbox_msg
 				if(SYND_FREQ)
 					blackbox.msg_syndicate += blackbox_msg
@@ -567,7 +573,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 					blackbox.msg_engineering += blackbox_msg
 				if(SEC_FREQ)
 					blackbox.msg_security += blackbox_msg
-				if(DTH_FREQ)
+				if(DTH_FREQ || IMP_FREQ)
 					blackbox.msg_deathsquad += blackbox_msg
 				if(SYND_FREQ)
 					blackbox.msg_syndicate += blackbox_msg

@@ -36,7 +36,7 @@
 	var/obj/item/clothing/suit/storage/marine/imperial/Suit = new /obj/item/clothing/suit/storage/marine/imperial(H)
 	H.equip_to_slot_or_del(Suit, SLOT_WEAR_SUIT)
 	
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/dutch(H), SLOT_EARS)
+	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/imperial(H), SLOT_EARS)
 
 /datum/job/imperial/guardsman/sergeant
 	title = "Guardsman Sergeant"
