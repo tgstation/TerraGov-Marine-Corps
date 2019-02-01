@@ -802,7 +802,7 @@
 	addtimer(CALLBACK(src, .proc/fire_supplydrop, current_squad, supplies, x_offset, y_offset), 10 SECONDS)
 
 /obj/machinery/computer/overwatch/proc/fire_supplydrop(datum/squad/S, list/supplies, x_offset, y_offset)
-	if(QDELETED(S.beacon))
+	if(QDELETED(S.sbeacon))
 		to_chat(usr, "[bicon(src)] <span class='warning'>Launch aborted! Supply beacon signal lost.</span>")
 		busy = FALSE
 		return
