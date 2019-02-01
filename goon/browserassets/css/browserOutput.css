@@ -269,20 +269,20 @@ h1.alert, h2.alert		{color: #000000;}
 .danger					{color: #ff0000;	font-weight: bold;}
 .xenodanger				{color: #2a623d;	font-weight: bold;}
 .avoidharm				{color:	#72a0e5;	font-weight: bold;}
-.highdanger				{color: #ff0000;	font-weight: bold; font-size: 3;}
-.xenohighdanger			{color: #2a623d; 	font-weight: bold; font-size: 3;}
-.xenoannounce           {color: #1a472a;    font-family: book-antiqua; font-weight: bold; font-style: italic; font-size: 3;}
+.highdanger				{color: #ff0000;	font-weight: bold; font-size: 1.5em;}
+.xenohighdanger			{color: #2a623d; 	font-weight: bold; font-size: 1.5em;}
+.xenoannounce           {color: #1a472a;    font-family: book-antiqua; font-weight: bold; font-style: italic; font-size: 1.5em;}
 
 .alien					{color: #543354;}
 .newscaster				{color: #800000;}
 
-.role_header			{color: #db0000		text-align: center; font-weight: bold; font-family: trebuchet-ms; font-size: 2;}
+.role_header			{color: #db0000;		text-align: center; font-weight: bold; font-family: trebuchet-ms; font-size: 1.5em;}
 .role_body				{color: #000099;	text-align: center;}
 
-.round_setup			{color: #db0000		font-family: impact; font-size: 2;}
-.round_header			{color: #db0000; 	text-align: center; font-family: courier; font-weight: bold; font-size: 4;}
-.round_body				{color: #001427; 	text-align: center; font-family: trebuchet-ms; font-weight: bold; font-size: 3;}
-.event_announcement		{color: #600d48; 	font-family: arial-narrow; font-weight: bold; font-size: 3;}
+.round_setup			{color: #db0000;		font-family: impact; font-size: 1.25em;}
+.round_header			{color: #db0000; 	display: block; text-align: center; font-family: courier; font-weight: bold; font-size: 2em;}
+.round_body				{color: #001427; 	display: block; text-align: center; font-family: trebuchet-ms; font-weight: bold; font-size: 1.5em;}
+.event_announcement		{color: #600d48; 	font-family: arial-narrow; font-weight: bold; font-size: 1.5em;}
 
 .centerbold				{				 	text-align: center; font-weight: bold;}
 
