@@ -43,18 +43,18 @@
 	H.equip_to_slot_or_del(new /obj/item/storage/pouch/flare/full(H), SLOT_L_STORE)
 	
 	var/obj/item/clothing/head/helmet/marine/imperial/Helm = new /obj/item/clothing/head/helmet/marine/imperial(H)
-	// custom injectors
-	
-	var/obj/item/reagent_container/hypospray/autoinjector/AI = new /obj/item/reagent_container/hypospray/autoinjector
-	AI.name = "Imperial autoinjector"
-	AI.desc = "An autoinjector filled with pain and healing medication together."
-	AI.list_reagents = 
-	
+	Helm.pockets.contents += new /obj/item/reagent_container/hypospray/autoinjector/tricordrazine
+	Helm.pockets.contents += new /obj/item/reagent_container/hypospray/autoinjector/oxycodone
 	H.equip_to_slot_or_del(Helm, SLOT_HEAD)
 	
 	var/obj/item/clothing/suit/storage/marine/imperial/Suit = new /obj/item/clothing/suit/storage/marine/imperial(H)
-	
+	Suit.pockets.contents += new /obj/item/explosive/grenade/frag
+	Suit.pockets.contents += new /obj/item/explosive/grenade/incendiary
 	H.equip_to_slot_or_del(Suit, SLOT_WEAR_SUIT)
+	
+	var/obj/item/storage/backpack/lightpack/Bag = new /obj/item/storage/backpack/lightpack(H)
+	Bag.contents += new /obj/item/storage/box/uscm_mre
+	H.equip_to_slot_or_del(Bag, SLOT_BACK)
 	
 	var/obj/item/storage/belt/marine/Belt = new /obj/item/storage/belt/marine(H)
 	Belt.contents += new /obj/item/cell/lasgun/M43
@@ -62,6 +62,7 @@
 	Belt.contents += new /obj/item/cell/lasgun/M43
 	Belt.contents += new /obj/item/cell/lasgun/M43
 	Belt.contents += new /obj/item/cell/lasgun/M43
+	H.equip_to_slot_or_del(Belt, SLOT_BELT)
 	
 	var/obj/item/weapon/gun/energy/lasgun/M43/stripped/G = new /obj/item/weapon/gun/energy/lasgun/M43/stripped(H)
 	G.reload(H, new /obj/item/cell/lasgun/M43(G))
