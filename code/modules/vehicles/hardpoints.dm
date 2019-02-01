@@ -255,7 +255,7 @@ All of the hardpoints, for the tank and APC
 		var/obj/item/projectile/P = new
 		P.generate_bullet(new A.default_ammo)
 		P.fire_at(T, owner, src, P.ammo.max_range, P.ammo.shell_speed)
-		//playsound(get_turf(src), 'sound/weapons/tank_autocannon_fire1.ogg', 60, 1)
+		playsound(get_turf(src), 'sound/weapons/tank_autocannon_fire1.ogg', 60, 1)
 		A.current_rounds--
 
 /obj/item/hardpoint/tank/primary/minigun
@@ -381,7 +381,7 @@ All of the hardpoints, for the tank and APC
 		var/obj/item/projectile/P = new
 		P.generate_bullet(new A.default_ammo)
 		P.fire_at(T, owner, src, P.ammo.max_range, P.ammo.shell_speed)
-		//playsound(get_turf(src), 'sound/weapons/tank_autocannon_fire1.ogg', 60, 1)
+		playsound(get_turf(src), 'sound/weapons/tank_autocannon_fire1.ogg', 60, 1)
 		A.current_rounds--
 
 
