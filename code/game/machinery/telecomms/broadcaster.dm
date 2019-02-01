@@ -308,7 +308,6 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 		var/part_b = "</span><b> \icon[radio]\[[freq_text]\][part_b_extra]</b> <span class='message'>" // Tweaked for security headsets -- TLE
 		var/part_c = "</span></span>"
 
-
 		// Antags!
 		if (display_freq in ANTAG_FREQS)
 			part_a = "<span class='syndradio'><span class='name'>"
