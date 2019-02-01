@@ -520,15 +520,17 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	var/list/namecounts = list()
 	for(var/mob/M in mobs)
 		var/name = M.name
-		if (name in names)
+		if(name in names)
 			namecounts[name]++
 			name = "[name] ([namecounts[name]])"
 		else
 			names.Add(name)
 			namecounts[name] = 1
-		if (M.real_name && M.real_name != M.name)
+		if(M.real_name && M.real_name != M.name)
 			name += " \[[M.real_name]\]"
-		if (M.stat == 2)
+		if(M.client.prefs.xeno_name && M.client.prefs.xeno_name != "Undefined")
+			name += " - [M.client.prefs.xeno_name]"
+		if(M.stat == DEAD)
 			if(istype(M, /mob/dead/observer/))
 				name += " \[ghost\]"
 			else
@@ -1645,9 +1647,6 @@ var/list/WALLITEMS = list(
 			y += ystep
 			error -= deltax
 	return line
-
-/proc/to_chat(target, message)
-	target << message
 
 //gives us the stack trace from CRASH() without ending the current proc.
 /proc/stack_trace(msg)

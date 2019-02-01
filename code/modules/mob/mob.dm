@@ -30,7 +30,7 @@
 		if(client.holder.rank.rights & (R_ADMIN|R_DEBUG))
 			if(statpanel("MC"))
 				stat("CPU:", "[world.cpu]")
-				stat("Instances:", "[num2text(world.contents.len, 10)]")
+				stat("Instances:", "[num2text(length(world.contents), 10)]")
 				stat("World Time:", "[world.time]")
 				stat(null)
 				if(Master)
