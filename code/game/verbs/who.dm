@@ -139,4 +139,4 @@
 				num_mentors_online++
 
 	to_chat(src, "\n<b> Current Admins ([num_admins_online]):</b>\n[msg]")
-	to_chat(src, "<b> Current Mentors ([num_mentors_online]):</b>\n[mentmsg]")
+	to_chat(src, "\n<b> Current Mentors ([num_mentors_online]):</b>\n[mentmsg]")
