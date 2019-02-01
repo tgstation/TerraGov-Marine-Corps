@@ -334,6 +334,15 @@ var/list/slot_equipment_priority = list( \
 		'html/coding.png',
 		'html/scales.png'
 		)
+
+	src << browse_rsc('html/changelog2015.html', "changelog2015.html") 
+	src << browse_rsc('html/changelog2016.html', "changelog2016.html") 
+	src << browse_rsc('html/changelog2017.html', "changelog2017.html") 
+	src << browse_rsc('html/changelog20181.html', "changelog20181.html") 
+	src << browse_rsc('html/changelog20182.html', "changelog20182.html")
+	src << browse_rsc('html/changelog.html', "changelog.html")  
+
+
 	src << browse('html/changelog.html', "window=changes;size=675x650")
 	if(prefs.lastchangelog != GLOB.changelog_hash)
 		prefs.lastchangelog = GLOB.changelog_hash
