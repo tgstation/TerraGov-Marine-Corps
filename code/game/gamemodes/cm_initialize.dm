@@ -59,8 +59,7 @@ Additional game mode variables.
 	var/xeno_required_num 	= 0 //We need at least one. You can turn this off in case we don't care if we spawn or don't spawn xenos.
 	var/xeno_starting_num 	= 0 //To clamp starting xenos.
 	var/xeno_bypass_timer 	= 0 //Bypass the five minute timer before respawning.
-	//var/xeno_queen_timer  	= list(0, 0, 0, 0, 0) //How long ago did the queen die?
-	var/xeno_queen_deaths 	= 0 //How many times the alien queen died.
+	var/queen_death_countdown = 0
 	var/surv_starting_num 	= 0 //To clamp starting survivors.
 	var/merc_starting_num 	= 0 //PMC clamp.
 	var/marine_starting_num = 0 //number of players not in something special
