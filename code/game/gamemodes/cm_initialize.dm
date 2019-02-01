@@ -45,7 +45,8 @@ Additional game mode variables.
 				list(/obj/item/weapon/gun/smg/mp7, /obj/item/ammo_magazine/smg/mp7),\
 				list(/obj/item/weapon/gun/shotgun/double/sawn, /obj/item/ammo_magazine/shotgun/flechette),\
 				list(/obj/item/weapon/gun/smg/uzi, /obj/item/ammo_magazine/smg/uzi),\
-				list(/obj/item/weapon/gun/smg/mp5, /obj/item/ammo_magazine/smg/mp5))
+				list(/obj/item/weapon/gun/smg/mp5, /obj/item/ammo_magazine/smg/mp5),\
+				list(/obj/item/weapon/gun/rifle/m16, /obj/item/ammo_magazine/rifle/m16))
 
 /datum/game_mode
 	var/datum/mind/xenomorphs[] = list() //These are our basic lists to keep track of who is in the game.
@@ -558,7 +559,8 @@ datum/game_mode/proc/initialize_post_queen_list()
 	var/weapons = pick(SURVIVOR_WEAPONS)
 	var/obj/item/weapon/W = weapons[1]
 	var/obj/item/ammo_magazine/A = weapons[2]
-	H.equip_to_slot_or_del(new W(H), SLOT_BELT)
+	H.equip_to_slot_or_del(new /obj/item/storage/belt/gun/m44/full(H), SLOT_BELT)
+	H.equip_to_slot_or_del(new W(H), SLOT_L_HAND)
 	H.equip_to_slot_or_del(new A(H), SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new A(H), SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new A(H), SLOT_IN_BACKPACK)
