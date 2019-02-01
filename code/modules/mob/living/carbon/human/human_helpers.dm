@@ -211,7 +211,7 @@
 	return FALSE
 
 /mob/living/carbon/human/has_mouth()
-	if(!has_limb("head"))
+	if(!has_limb(HEAD))
 		return FALSE
 	return TRUE
 
