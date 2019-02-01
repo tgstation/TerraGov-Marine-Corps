@@ -88,7 +88,7 @@
 	item_state = "egloves"
 
 /obj/item/clothing/gloves/marine/specialist
-	name = "\improper B18 defensive gauntlets"
+	name = " B18 defensive gauntlets"
 	desc = "A pair of heavily armored gloves."
 	icon_state = "black"
 	item_state = "bgloves"
@@ -104,7 +104,7 @@
 	armor = list(melee = 60, bullet = 60, laser = 35, energy = 20, bomb = 10, bio = 10, rad = 0)
 
 /obj/item/clothing/gloves/marine/veteran/PMC/commando
-	name = "\improper PMC commando gloves"
+	name = " PMC commando gloves"
 	desc = "A pair of heavily armored, insulated, acid-resistant gloves."
 	icon_state = "brown"
 	item_state = "browngloves"

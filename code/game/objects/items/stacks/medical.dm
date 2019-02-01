@@ -129,7 +129,7 @@
 				to_chat(user, "<span class='notice'>The [affecting.display_name] is cut open, you'll need more than a bandage!</span>")
 
 /obj/item/stack/medical/bruise_pack/tajaran
-	name = "\improper S'rendarr's Hand leaf"
+	name = " S'rendarr's Hand leaf"
 	singular_name = "S'rendarr's Hand leaf"
 	desc = "A poultice made of soft leaves that is rubbed on bruises."
 	icon = 'icons/obj/items/harvest.dmi'
@@ -138,7 +138,7 @@
 	stack_id = "Hand leaf"
 
 /obj/item/stack/medical/ointment/tajaran
-	name = "\improper Messa's Tear petals"
+	name = " Messa's Tear petals"
 	singular_name = "Messa's Tear petal"
 	desc = "A poultice made of cold, blue petals that is rubbed on burns."
 	icon = 'icons/obj/items/harvest.dmi'

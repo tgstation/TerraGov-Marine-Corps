@@ -105,20 +105,20 @@
 
 /obj/item/clothing/glasses/mgoggles
 	name = "marine ballistic goggles"
-	desc = "Standard issue TGMC goggles. Mostly used to decorate one's helmet."
+	desc = "Standard issue USCM goggles. Mostly used to decorate one's helmet."
 	icon_state = "mgoggles"
 	item_state = "mgoggles"
 	flags_equip_slot = SLOT_EYES|SLOT_FACE
 
 /obj/item/clothing/glasses/mgoggles/prescription
 	name = "prescription marine ballistic goggles"
-	desc = "Standard issue TGMC goggles. Mostly used to decorate one's helmet. Contains prescription lenses in case you weren't sure if they were lame or not."
+	desc = "Standard issue USCM goggles. Mostly used to decorate one's helmet. Contains prescription lenses in case you weren't sure if they were lame or not."
 	icon_state = "mgoggles"
 	item_state = "mgoggles"
 	prescription = 1
 
 /obj/item/clothing/glasses/m42_goggles
-	name = "\improper M42 scout sight"
+	name = " M42 scout sight"
 	desc = "A headset and goggles system for the M42 Scout Rifle. Allows highlighted imaging of surroundings. Click it to toggle."
 	icon = 'icons/obj/clothing/glasses.dmi'
 	icon_state = "m56_goggles"

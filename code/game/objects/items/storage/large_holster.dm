@@ -1,7 +1,7 @@
 
 
 /obj/item/storage/large_holster
-	name = "\improper Rifle Holster"
+	name = " Rifle Holster"
 	desc = "holster"
 	icon = 'icons/obj/items/storage/storage.dmi'
 	w_class = 4
@@ -49,7 +49,7 @@
 
 
 /obj/item/storage/large_holster/m37
-	name = "\improper L44 M37A2 scabbard"
+	name = " L44 M37A2 scabbard"
 	desc = "A large leather holster allowing the storage of an M37A2 Shotgun. It contains harnesses that allow it to be secured to the back for easy storage."
 	icon_state = "m37_holster"
 	can_hold = list(
@@ -69,7 +69,7 @@
 	new /obj/item/weapon/gun/shotgun/pump(src)
 
 /obj/item/storage/large_holster/machete
-	name = "\improper H5 pattern M2132 machete scabbard"
+	name = " H5 pattern M2132 machete scabbard"
 	desc = "A large leather scabbard used to carry a M2132 machete. It can be strapped to the back, waist or armor."
 	base_icon = "machete_holster"
 	icon_state = "machete_holster"
@@ -82,7 +82,7 @@
 	new /obj/item/weapon/claymore/mercsword/machete(src)
 
 /obj/item/storage/large_holster/katana
-	name = "\improper katana scabbard"
+	name = " katana scabbard"
 	desc = "A large, vibrantly colored katana scabbard used to carry a japanese sword. It can be strapped to the back, waist or armor. Because of the sturdy wood casing of the scabbard, it makes an okay defensive weapon in a pinch."
 	base_icon = "katana_holster"
 	icon_state = "katana_holster"
@@ -98,8 +98,8 @@
 
 
 /obj/item/storage/large_holster/m39
-	name = "\improper M276 pattern M39 holster rig"
-	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is designed for the M39 SMG, and features a larger frame to support the gun. Due to its unorthodox design, it isn't a very common sight, and is only specially issued."
+	name = " M276 pattern M39 holster rig"
+	desc = "The M276 is the standard load-bearing equipment of the USCM. It consists of a modular belt with various clips. This version is designed for the M39 SMG, and features a larger frame to support the gun. Due to its unorthodox design, it isn't a very common sight, and is only specially issued."
 	icon_state = "m39_holster"
 	icon = 'icons/obj/clothing/belts.dmi'
 	base_icon = "m39_holster"

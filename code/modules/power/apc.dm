@@ -157,7 +157,7 @@
 		area.apc |= src
 		opened = 1
 		operating = 0
-		name = "\improper [area.name] APC"
+		name = " [area.name] APC"
 		stat |= MAINT
 		update_icon()
 		spawn(5)
@@ -190,10 +190,10 @@
 	//If area isn't specified use current
 	if(isarea(A) && src.areastring == null)
 		area = A
-		name = "\improper [area.name] APC"
+		name = " [area.name] APC"
 	else
 		area = get_area_name(areastring)
-		name = "\improper [area.name] APC"
+		name = " [area.name] APC"
 	area.apc |= src
 	update_icon()
 	make_terminal()
@@ -1370,7 +1370,7 @@
 
 
 
-//------Theseus APCs ------//
+//------Almayer APCs ------//
 
 /obj/machinery/power/apc/almayer
 	cell_type = /obj/item/cell/high

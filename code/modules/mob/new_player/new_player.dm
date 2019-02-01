@@ -41,7 +41,7 @@
 
 		else
 			output += "<a href='byond://?src=\ref[src];lobby_choice=manifest'>View the Crew Manifest</A><br><br>"
-			output += "<p><a href='byond://?src=\ref[src];lobby_choice=late_join'>Join the TGMC!</A></p>"
+			output += "<p><a href='byond://?src=\ref[src];lobby_choice=late_join'>Join the USCM!</A></p>"
 			output += "<p><a href='byond://?src=\ref[src];lobby_choice=late_join_xeno'>Join the Hive!</A></p>"
 			if(ticker.mode.flags_round_type & MODE_PREDATOR)
 				if(ticker.mode.check_predator_late_join(src,0)) output += "<p><a href='byond://?src=\ref[src];lobby_choice=late_join_pred'>Join the Hunt!</A></p>"
@@ -77,7 +77,7 @@
 		if(!ticker)
 			return
 		if(ticker.hide_mode)
-			stat("Game Mode:", "TerraGov Marine Corps")
+			stat("Game Mode:", "United States Colonial Marines")
 		else
 			if(ticker.hide_mode == 0)
 				stat("Game Mode:", "[master_mode]") // Old setting for showing the game mode
@@ -348,11 +348,6 @@
 		data_core.manifest_inject(character)
 		ticker.minds += character.mind//Cyborgs and AIs handle this in the transform proc.	//TODO!!!!! ~Carn
 		ticker.mode.latejoin_tally++
-
-		for(var/datum/squad/sq in RoleAuthority.squads)
-			if(sq)
-				sq.max_engineers = engi_slot_formula(clients.len)
-				sq.max_medics = medic_slot_formula(clients.len)
 
 		if(ticker.mode.latejoin_larva_drop && ticker.mode.latejoin_tally >= ticker.mode.latejoin_larva_drop)
 			ticker.mode.latejoin_tally -= ticker.mode.latejoin_larva_drop

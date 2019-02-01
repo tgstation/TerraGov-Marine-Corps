@@ -101,7 +101,7 @@ datum/preferences
 
 		//Some faction information.
 	var/home_system = "Unset"           //System of birth.
-	var/citizenship = "TerraGov" //Current home system.
+	var/citizenship = "United Americas" //Current home system.
 	var/faction = "None"                //Antag faction/general associated faction.
 	var/religion = "None"               //Religious association.
 
@@ -128,7 +128,7 @@ datum/preferences
 	var/job_marines_low = 0
 
 	//Keeps track of preferrence for not getting any wanted jobs
-	var/alternate_option = 1 //Be a marine.
+	var/alternate_option = 2 //Modification: Return to Lobby
 
 	var/used_skillpoints = 0
 	var/skill_specialization = null
@@ -147,7 +147,7 @@ datum/preferences
 	var/exploit_record = ""
 	var/disabilities = 0
 
-	var/nanotrasen_relation = "Neutral"
+	var/weylandyutani_relation = "Neutral"
 
 	var/uplinklocation = "PDA"
 
@@ -414,7 +414,7 @@ datum/preferences
 	// dat += "<b>Faction</b>: <a href='byond://?src=\ref[user];preference=faction;task=input'>[faction]</a><br/>"
 	dat += "<b>Religion</b>: <a href='byond://?src=\ref[user];preference=religion;task=input'>[religion]</a><br/>"
 
-	dat += "<b>Corporate Relation:</b> <a href ='?_src_=prefs;preference=nt_relation;task=input'><b>[nanotrasen_relation]</b></a><br>"
+	dat += "<b>Corporate Relation:</b> <a href ='?_src_=prefs;preference=nt_relation;task=input'><b>[weylandyutani_relation]</b></a><br>"
 	dat += "<b>Preferred Squad:</b> <a href ='?_src_=prefs;preference=prefsquad;task=input'><b>[preferred_squad]</b></a><br>"
 
 	if(jobban_isbanned(user, "Records"))
@@ -921,13 +921,13 @@ datum/preferences
 					var/msg = input(usr,"Give a physical description of your character. This will be shown regardless of clothing.","Flavor Text",html_decode(flavor_texts[href_list["task"]])) as message
 					if(msg != null)
 						msg = copytext(msg, 1, 256)
-						msg = html_encode(msg)
+						msg = lhtml_encode(msg)
 					flavor_texts[href_list["task"]] = msg
 				else
 					var/msg = input(usr,"Set the flavor text for your [href_list["task"]].","Flavor Text",html_decode(flavor_texts[href_list["task"]])) as message
 					if(msg != null)
 						msg = copytext(msg, 1, 256)
-						msg = html_encode(msg)
+						msg = lhtml_encode(msg)
 					flavor_texts[href_list["task"]] = msg
 			SetFlavorText(user)
 			return
@@ -945,7 +945,7 @@ datum/preferences
 
 					if(medmsg != null)
 						medmsg = copytext(medmsg, 1, MAX_PAPER_MESSAGE_LEN)
-						medmsg = html_encode(medmsg)
+						medmsg = lhtml_encode(medmsg)
 
 						med_record = medmsg
 						SetRecords(user)
@@ -955,7 +955,7 @@ datum/preferences
 
 					if(secmsg != null)
 						secmsg = copytext(secmsg, 1, MAX_PAPER_MESSAGE_LEN)
-						secmsg = html_encode(secmsg)
+						secmsg = lhtml_encode(secmsg)
 
 						sec_record = secmsg
 						SetRecords(user)
@@ -964,7 +964,7 @@ datum/preferences
 
 					if(genmsg != null)
 						genmsg = copytext(genmsg, 1, MAX_PAPER_MESSAGE_LEN)
-						genmsg = html_encode(genmsg)
+						genmsg = lhtml_encode(genmsg)
 
 						gen_record = genmsg
 						SetRecords(user)
@@ -974,7 +974,7 @@ datum/preferences
 
 					if(exploitmsg != null)
 						exploitmsg = copytext(exploitmsg, 1, MAX_PAPER_MESSAGE_LEN)
-						exploitmsg = html_encode(exploitmsg)
+						exploitmsg = lhtml_encode(exploitmsg)
 
 						exploit_record = exploitmsg
 						SetAntagoptions(user)
@@ -1241,12 +1241,12 @@ datum/preferences
 							moth_wings = new_wings
 
 				if("nt_relation")
-					var/new_relation = input(user, "Choose your relation to the Nanotrasen company. Note that this represents what others can find out about your character by researching your background, not what your character actually thinks.", "Character Preference")  as null|anything in list("Loyal", "Supportive", "Neutral", "Skeptical", "Opposed")
+					var/new_relation = input(user, "Choose your relation to the Weyland-Yutani company. Note that this represents what others can find out about your character by researching your background, not what your character actually thinks.", "Character Preference")  as null|anything in list("Loyal", "Supportive", "Neutral", "Skeptical", "Opposed")
 					if(new_relation)
-						nanotrasen_relation = new_relation
+						weylandyutani_relation = new_relation
 
 				if("prefsquad")
-					var/new_pref_squad = input(user, "Choose your preferred squad.", "Character Preference")  as null|anything in list("Alpha", "Bravo", "Charlie", "Delta", "None")
+					var/new_pref_squad = input(user, "Choose your preferred squad.", "Character Preference")  as null|anything in list("Alpha", "Delta", "None")
 					if(new_pref_squad)
 						preferred_squad = new_pref_squad
 

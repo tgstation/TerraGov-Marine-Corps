@@ -14,7 +14,7 @@
 
 
 /obj/item/storage/box/sentry
-	name = "\improper UA 571-C sentry crate"
+	name = " UA 571-C sentry crate"
 	desc = "A large case containing all you need to set up an automated sentry, minus the tools."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "sentry_case"
@@ -38,7 +38,7 @@
 
 
 /obj/item/device/turret_top
-	name = "\improper UA 571-C turret"
+	name = " UA 571-C turret"
 	desc = "The turret part of an automated sentry turret."
 	unacidable = TRUE
 	w_class = 5
@@ -47,7 +47,7 @@
 
 
 /obj/item/device/turret_tripod
-	name = "\improper UA 571-C turret tripod"
+	name = " UA 571-C turret tripod"
 	desc = "The tripod part of an automated sentry turret. You should deploy it first."
 	unacidable = TRUE
 	w_class = 5
@@ -81,7 +81,7 @@
 
 
 /obj/machinery/turret_tripod_deployed
-	name = "\improper UA 571-C turret tripod"
+	name = " UA 571-C turret tripod"
 	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an M30 Autocannon and a 500-round drum magazine."
 	icon = 'icons/Marine/new_sentry_alt.dmi'
 	icon_state = "sentry_tripod"
@@ -203,7 +203,7 @@
 
 
 /obj/machinery/marine_turret
-	name = "\improper UA 571-C sentry gun"
+	name = " UA 571-C sentry gun"
 	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an M30 Autocannon and a 500-round drum magazine."
 	icon = 'icons/Marine/new_sentry_alt.dmi'
 	icon_state = "sentry_base"
@@ -1239,11 +1239,11 @@
 			notice = "<b>ALERT! [src]'s battery depleted at: [get_area(src)]. Coordinates: (X: [x], Y: [y]).</b>"
 	var/mob/living/silicon/ai/AI = new/mob/living/silicon/ai(src, null, null, 1)
 	AI.SetName("Sentry Alert System")
-	AI.aiRadio.talk_into(AI,"[notice]","Theseus","announces")
+	AI.aiRadio.talk_into(AI,"[notice]","Almayer","announces")
 	qdel(AI)
 
 /obj/machinery/marine_turret/mini
-	name = "\improper UA-580 Point Defense Sentry"
+	name = " UA-580 Point Defense Sentry"
 	desc = "A deployable, automated turret with AI targeting capabilities. This is a lightweight portable model meant for rapid deployment and point defense. Armed with an light, high velocity machine gun and a 500-round drum magazine."
 	icon = 'icons/Marine/miniturret.dmi'
 	icon_state = "minisentry_on"
@@ -1330,7 +1330,7 @@
 
 
 /obj/item/device/marine_turret/mini
-	name = "\improper UA-580 Point Defense Sentry (Folded)"
+	name = " UA-580 Point Defense Sentry (Folded)"
 	desc = "A deployable, automated turret with AI targeting capabilities. This is a lightweight portable model meant for rapid deployment and point defense. Armed with an light, high velocity machine gun and a 500-round drum magazine. It is currently folded up."
 	icon = 'icons/Marine/miniturret.dmi'
 	icon_state = "minisentry_packed"
@@ -1373,7 +1373,7 @@
 	gun_type = null
 
 /obj/item/storage/box/minisentry
-	name = "\improper UA-580 point defense sentry crate"
+	name = " UA-580 point defense sentry crate"
 	desc = "A large case containing all you need to set up an UA-580 point defense sentry."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "sentry_case"

@@ -18,7 +18,7 @@
 	var/list/filtered_gases = list("phoron", "sleeping_agent", "carbon_dioxide")
 
 /obj/item/clothing/mask/gas/PMC
-	name = "\improper M8 pattern armored balaclava"
+	name = " M8 pattern armored balaclava"
 	desc = "An armored balaclava designed to conceal both the identity of the operator and act as an air-filter."
 	item_state = "helmet"
 	icon_state = "pmc_mask"
@@ -29,11 +29,11 @@
 	flags_inv_hide = HIDEEARS|HIDEFACE|HIDEALLHAIR
 
 /obj/item/clothing/mask/gas/PMC/upp
-	name = "\improper UPP armored commando balaclava"
+	name = " UPP armored commando balaclava"
 	icon_state = "upp_mask"
 
 /obj/item/clothing/mask/gas/PMC/leader
-	name = "\improper M8 pattern armored balaclava"
+	name = " M8 pattern armored balaclava"
 	desc = "An armored balaclava designed to conceal both the identity of the operator and act as an air-filter. This particular suit looks like it belongs to a high-ranking officer."
 	icon_state = "officer_mask"
 
@@ -54,7 +54,7 @@
 	flags_armor_protection = HEAD|FACE
 
 /obj/item/clothing/mask/gas/swat
-	name = "\improper SWAT mask"
+	name = " SWAT mask"
 	desc = "A close-fitting tactical mask that can be connected to an air supply."
 	icon_state = "swat"
 	anti_hug = 1

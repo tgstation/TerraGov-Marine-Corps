@@ -369,9 +369,9 @@
 	var/list/dudes = list()
 	for(var/mob/living/carbon/human/man in player_list)
 		if(man.client)
-			if(man.client.prefs.nanotrasen_relation == "Opposed")
+			if(man.client.prefs.weylandyutani_relation == "Opposed")
 				dudes += man
-			else if(man.client.prefs.nanotrasen_relation == "Skeptical" && prob(50))
+			else if(man.client.prefs.weylandyutani_relation == "Skeptical" && prob(50))
 				dudes += man
 	if(dudes.len == 0)
 		return null

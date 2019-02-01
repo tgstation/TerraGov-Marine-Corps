@@ -325,3 +325,159 @@ datum/controller/vote
 
 	if(vote)
 		src << browse(vote.interface(client),"window=vote;can_close=0")
+
+
+
+var/MapDaemon_UID = -1 //-1 by default so we know when to set it
+var/force_mapdaemon_vote = 0
+
+//Basically, this completely ignores the voting datum etc in favor of editing a simple a simple list, player_votes
+//Upon request by MapDaemon, world/Topic() will it into JSON and send it away, so we do 0 handling in DM
+/client/verb/mapVote()
+	set category = "OOC"
+	set name = "Map Vote"
+
+	if(!ticker.mode || !ticker.mode.round_finished)
+		to_chat(src, "<span class='notice'>Please wait until the round ends.</span>")
+		return
+
+	var/list/L = list()
+	L += "Don't care"
+	L += NEXT_MAP_CANDIDATES.Copy()
+	var/selection = input("Vote for the next map to play on", "Vote:", "Don't care") as null|anything in L
+
+	if(!selection || !src) return
+
+	if(selection == "Don't care")
+		to_chat(src, "<span class='notice'>You have not voted.</span>")
+		return
+
+	to_chat(src, "<span class='notice'>You have voted for [selection].</span>")
+
+	player_votes[src.ckey] = selection
+
+/client/proc/forceMDMapVote()
+	set name = "Map Vote - Force Initiate"
+	set category = "Server"
+
+	force_mapdaemon_vote = !force_mapdaemon_vote
+	to_chat(src, "<span class='notice'>The server will [force_mapdaemon_vote ? "now" : "no longer"] tell Mapdaemon to start a vote the next time possible.</span>")
+
+	message_admins("[src] is attempting to force a MapDaemon vote.")
+	log_admin("[src] is attempting to force a MapDaemon vote.")
+
+//Uses an invalid ckey to rig the votes
+//Special case for }}} handled in World/Topic()
+//Set up so admins can fight over what the map will be, hurray
+/client/proc/forceNextMap()
+	set name = "Map Vote - Force"
+	set category = "Server"
+
+	if(alert("Are you sure you want to force the next map?",, "Yes", "No") == "No") return
+
+	var/selection = input("Vote for the next map to play on", "Vote:", "LV-624") as null|anything in NEXT_MAP_CANDIDATES
+
+	if(!selection || !src) return
+
+	to_chat(src, "<span class='notice'>You have forced the next map to be [selection]</span>")
+
+	log_admin("[src] just forced the next map to be [selection].")
+	message_admins("[src] just forced the next map to be [selection].")
+
+	player_votes["}}}"] = selection //}}} is an invalid ckey so we won't be in risk of someone using this cheekily
+
+
+var/enable_map_vote = 1
+/client/proc/cancelMapVote()
+	set name = "Map Vote - Toggle"
+	set category = "Server"
+
+	if(alert("Are you sure you want to turn the map vote [!enable_map_vote ? "on" : "off"]?",, "Yes", "No") == "No") return
+
+	enable_map_vote = !enable_map_vote
+
+	to_chat(world, "<span class='notice'>[src] has toggled the map vote [enable_map_vote ? "on" : "off"]</span>")
+	to_chat(src, "<span class='notice'>You have toggled the map vote [enable_map_vote ? "on" : "off"]</span>")
+
+	log_admin("[src] just toggled the map vote [enable_map_vote ? "on" : "off"].")
+	message_admins("[src] just toggled the map vote [enable_map_vote ? "on" : "off"].")
+
+/client/proc/showVotableMaps()
+	set name = "Map Vote - List Maps"
+	set category = "Server"
+
+	to_chat(src, "Next map candidates:")
+	var/i
+	for(i in NEXT_MAP_CANDIDATES)
+		to_chat(src, i)
+
+/client/proc/editVotableMaps()
+	set name = "Map Vote - Edit Maps"
+	set category = "Server"
+
+	if(alert("Are you sure you want to edit the map voting candidates?",, "Yes", "No") == "No") return
+
+	switch(alert("Do you want to add or remove a map?",, "Add", "Remove", "Cancel"))
+		if("Cancel")
+			return
+		if("Add")
+			var/selection = ""
+			switch(alert("Do you want to add one of the default map possibilities?",, "Yes", "No"))
+				if("Yes")
+					selection = input("Pick a default map.") as null|anything in DEFAULT_NEXT_MAP_CANDIDATES
+				if("No")
+					if(alert("Warning! This is a very dangerous option. If there is a typo in the map name and your choice wins, MapDaemon will crash. Please make sure you enter the exact name of the map. Are you sure you want to continue?", "WARNING", "Yes", "No") == "No") return
+					selection = input("Enter a map at your own risk.")
+
+			if(!selection || !src) return
+			if(NEXT_MAP_CANDIDATES.Find(selection))
+				alert("That option was already available.")
+				return
+			NEXT_MAP_CANDIDATES.Add(selection)
+			message_admins("[src] just added [selection] to the map pool.")
+			log_admin("[src] just added [selection] to the map pool.")
+		if("Remove")
+			var/selection = input("Pick a map to remove from the pool") as null|anything in NEXT_MAP_CANDIDATES
+			if(!selection || !src) return
+			NEXT_MAP_CANDIDATES.Remove(selection)
+			message_admins("[src] just removed [selection] from the map pool.")
+			log_admin("[src] just removed [selection] from the map pool.")
+
+var/kill_map_daemon = 0
+/client/proc/killMapDaemon()
+	set name = "Map Vote - Kill MapDaemon"
+	set category = "Server"
+
+	if(alert("Are you sure you want to kill MapDaemon?",, "Yes", "No") == "No") return
+
+	kill_map_daemon = 1
+
+	alert("MapDaemon will be killed on next round-end check.")
+	message_admins("[src] just killed MapDaemon. It may be restarted with \"Map Vote - Revive MapDaemon\".")
+	log_admin("[src] just killed MapDaemon. It may be restarted with \"Map Vote - Revive MapDaemon\".")
+
+/client/proc/reviveMapDaemon()
+	set name = "Map Vote - Revive MapDaemon"
+	set category = "Server"
+
+	kill_map_daemon = 0
+
+	message_admins("[src] is attempting to restart MapDaemon.")
+	log_admin("[src] is attempting to restart MapDaemon.")
+
+	run_mapdaemon_batch()
+
+//Need to return 1 so that the thing calling hooks wont think that this failed
+/hook/roundstart/proc/launchMapDaemon()
+
+	run_mapdaemon_batch()
+
+	return 1
+
+/proc/run_mapdaemon_batch()
+
+	set waitfor = 0
+
+	if(world.system_type != MS_WINDOWS) return 0 //Don't know if it'll work for non-Windows, so let's just abort
+
+	shell("run_mapdaemon.bat")

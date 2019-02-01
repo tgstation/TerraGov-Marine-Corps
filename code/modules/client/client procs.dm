@@ -38,9 +38,9 @@
 			var/mob/M = C
 			C = M.client
 		if(!C) return //Outdated links to logged players generate runtimes
-		if(unansweredMhelps[C.computer_id]) 
+		if(unansweredMhelps[C.computer_id])
 			unansweredMhelps.Remove(C.computer_id)
-		if(unansweredAhelps[C.computer_id]) 
+		if(unansweredAhelps[C.computer_id])
 			unansweredAhelps.Remove(C.computer_id)
 		cmd_admin_pm(C,null)
 		return
@@ -140,7 +140,7 @@
 	if(custom_event_msg && custom_event_msg != "")
 		to_chat(src, "<h1 class='alert'>Custom Event</h1>")
 		to_chat(src, "<h2 class='alert'>A custom event is taking place. OOC Info:</h2>")
-		to_chat(src, "<span class='alert'>[html_encode(custom_event_msg)]</span>")
+		to_chat(src, "<span class='alert'>[lhtml_encode(custom_event_msg)]</span>")
 		to_chat(src, "<br>")
 
 	if( (world.address == address || !address) && !host )

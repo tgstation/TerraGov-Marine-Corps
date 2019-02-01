@@ -16,7 +16,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	comm_title = "CO"
 	paygrade = "O4"
 	flag = ROLE_COMMANDING_OFFICER
-	supervisors = "TGMC high command"
+	supervisors = "USCM high command"
 	selection_color = "#ccccff"
 	idtype = /obj/item/card/id/gold
 	minimal_player_age = 7
@@ -40,7 +40,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 
 /datum/job/command/commander/generate_entry_message()
 		return {"As the commander of the [MAIN_SHIP_NAME] you are held by higher standard and are expected to act competently.
-While you may support Nanotrasen, you report to the TGMC High Command, not the corporate office.
+While you may support Weyland-Yutani, you report to the USCM High Command, not the corporate office.
 Your primary task is the safety of the ship and her crew, and ensuring the survival and success of the marines.
 Your first order of business should be briefing the marines on the mission they are about to undertake.
 If you require any help, use adminhelp to ask mentors about what you're supposed to do.
@@ -49,7 +49,7 @@ Godspeed, commander! And remember, you are not above the law."}
 /datum/job/command/commander/announce_entry_message(mob/living/carbon/human/H)
 	. = ..()
 	sleep(15)
-	if(H?.loc && flags_startup_parameters & ROLE_ADD_TO_MODE) 
+	if(H?.loc && flags_startup_parameters & ROLE_ADD_TO_MODE)
 		captain_announcement.Announce("All hands, Commander [H.real_name] on deck!")
 
 
@@ -89,7 +89,7 @@ Come hell or high water, you are going to be there for them."}
 /datum/job/command/executive/generate_entry_message(mob/living/carbon/human/H)
 		. = {"You are second in command aboard the ship, and are in next in the chain of command after the commander.
 You may need to fill in for other duties if areas are understaffed, and you are given access to do so.
-Make the TGMC proud!"}
+Make the USCM proud!"}
 
 
 //Staff Officer
@@ -99,8 +99,8 @@ Make the TGMC proud!"}
 	comm_title = "SO"
 	paygrade = "O2"
 	flag = ROLE_BRIDGE_OFFICER
-	total_positions = 5
-	spawn_positions = 5
+	total_positions = 3
+	spawn_positions = 3
 	scaled = 1
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_BRIG, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_BRIG, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS)
@@ -205,8 +205,8 @@ While you are an officer, your authority is limited to your own vehicle, where y
 	comm_title = "MP"
 	paygrade = "E6"
 	flag = ROLE_MILITARY_POLICE
-	total_positions = 5
-	spawn_positions = 5
+	total_positions = 3
+	spawn_positions = 3
 	scaled = 1
 	selection_color = "#ffdddd"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIG, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP)
@@ -467,7 +467,7 @@ Listen to the radio in case someone requests a supply drop via the overwatch sys
 
 
 /datum/job/medical/professor/generate_entry_message()
-	return {"You are a civilian, and are not subject to follow military chain of command, but you do work for the TGMC.
+	return {"You are a civilian, and are not subject to follow military chain of command, but you do work for the USCM.
 You have final authority over the medical department, medications, and treatments.
 Make sure that the doctors and nurses are doing their jobs and keeping the marines healthy and strong."}
 
@@ -510,7 +510,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	return (latejoin ? doc_slot_formula(get_total_marines()) : spawn_positions)
 
 /datum/job/medical/doctor/generate_entry_message(mob/living/carbon/human/H)
-	return {"You are a civilian, and are not subject to follow military chain of command, but you do work for the TGMC.
+	return {"You are a civilian, and are not subject to follow military chain of command, but you do work for the USCM.
 You are tasked with keeping the marines healthy and strong, usually in the form of surgery.
 You are also an expert when it comes to medication and treatment. If you do not know what you are doing, adminhelp so a mentor can assist you."}
 
@@ -555,7 +555,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	return (latejoin ? rsc_slot_formula(get_total_marines()) : spawn_positions)
 
 /datum/job/medical/researcher/generate_entry_message(mob/living/carbon/human/H)
-	return {"You are a civilian, and are not subject to follow military chain of command, but you do work for the TGMC.
+	return {"You are a civilian, and are not subject to follow military chain of command, but you do work for the USCM.
 You are tasked with researching and developing new medical treatments, helping your fellow doctors, and generally learning new things.
 Your role involves some roleplaying and gimmickry, but you can perform the function of a regular doctor."}
 
@@ -564,7 +564,7 @@ Your role involves some roleplaying and gimmickry, but you can perform the funct
 /datum/job/civilian/liaison
 	title = "Corporate Liaison"
 	comm_title = "CL"
-	paygrade = "NT"
+	paygrade = "WY"
 	flag = ROLE_CORPORATE_LIAISON
 	department_flag = ROLEGROUP_MARINE_COMMAND
 	total_positions = 1
@@ -588,9 +588,9 @@ Your role involves some roleplaying and gimmickry, but you can perform the funct
 		H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), WEAR_BACK)
 
 /datum/job/civilian/liaison/generate_entry_message(mob/living/carbon/human/H)
-		return {"As a representative of Nanotrasen Corporation you are expected to stay professional and loyal to the corporation at all times.
+		return {"As a representative of Weyland-Yutani Corporation you are expected to stay professional and loyal to the corporation at all times.
 You are not required to follow military orders; however, you cannot give military orders.
-Your primary job is to observe and report back your findings to Nanotrasen. Follow regular game rules unless told otherwise by your superiors.
+Your primary job is to observe and report back your findings to Weyland-Yutani. Follow regular game rules unless told otherwise by your superiors.
 Use your office fax machine to communicate with corporate headquarters or to acquire new directives. You may not receive anything back (especially if the game staff is absent or otherwise busy), and this is normal."}
 
 
@@ -631,7 +631,7 @@ Best to let the mercs do the killing and the dying, but remind them who pays the
 	if(H.client.prefs.synthetic_type == "Early Synthetic")
 		skills_type = /datum/skills/early_synthetic
 	//Most of the code below is copypasted from transform_predator().
-	if(!H.client.prefs) 
+	if(!H.client.prefs)
 		H.client.prefs = new /datum/preferences(H.client) //Let's give them one.
 	//They should have these set, but it's possible they don't have them.
 	H.real_name = H.client.prefs.synthetic_name
@@ -659,6 +659,6 @@ Best to let the mercs do the killing and the dying, but remind them who pays the
 
 /datum/job/civilian/synthetic/generate_entry_message()
 		return {"You are a Synthetic!
-Your primary job is to support and assist all TGMC Departments and Personnel on-board.
+Your primary job is to support and assist all USCM Departments and Personnel on-board.
 In addition, being a Synthetic gives you knowledge in every field and specialization possible on-board the ship.
 As a Synthetic you answer to the acting commander. Special circumstances may change this!"}

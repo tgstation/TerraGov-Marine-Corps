@@ -114,7 +114,7 @@ var/global/list/holodeck_programs = list(
 		playsound(src.loc, 'sound/effects/sparks4.ogg', 25, 1)
 		emagged = 1
 		to_chat(user, "<span class='notice'>You vastly increase projector power and override the safety and security protocols.</span>")
-		to_chat(user, "Warning.  Automatic shutoff and derezing protocols have been corrupted.  Please call Nanotrasen maintenance and do not use the simulator.")
+		to_chat(user, "Warning.  Automatic shutoff and derezing protocols have been corrupted.  Please call Weyland-Yutani maintenance and do not use the simulator.")
 		log_game("[key_name(usr)] emagged the Holodeck Control Computer")
 	src.updateUsrDialog()
 	return

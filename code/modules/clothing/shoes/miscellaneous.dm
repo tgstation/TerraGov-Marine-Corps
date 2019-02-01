@@ -15,7 +15,7 @@
 	icon_state = "mime"
 
 /obj/item/clothing/shoes/swat
-	name = "\improper SWAT shoes"
+	name = " SWAT shoes"
 	desc = "When you want to turn up the heat."
 	icon_state = "swat"
 	armor = list(melee = 80, bullet = 60, laser = 50,energy = 25, bomb = 50, bio = 10, rad = 0)

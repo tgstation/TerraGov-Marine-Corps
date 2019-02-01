@@ -52,22 +52,6 @@
 	usable = 1
 	radio_freq = ALPHA_FREQ
 
-/datum/squad/bravo
-	name = "Bravo"
-	id = BRAVO_SQUAD
-	color = 2
-	access = list(ACCESS_MARINE_BRAVO)
-	usable = 1
-	radio_freq = BRAVO_FREQ
-
-/datum/squad/charlie
-	name = "Charlie"
-	id = CHARLIE_SQUAD
-	color = 3
-	access = list(ACCESS_MARINE_CHARLIE)
-	usable = 1
-	radio_freq = CHARLIE_FREQ
-
 /datum/squad/delta
 	name = "Delta"
 	id = DELTA_SQUAD

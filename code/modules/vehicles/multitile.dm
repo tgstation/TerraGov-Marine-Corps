@@ -71,7 +71,7 @@ Vehicles are placed on the map by a spawner or admin verb
 
 //Super super generic, doesn't really need to exist
 /obj/vehicle/multitile
-	name = "\improper Multitile Vehicle"
+	name = " Multitile Vehicle"
 	desc = "You shouldn't see this"
 
 /obj/vehicle/multitile/relaymove()

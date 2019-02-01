@@ -35,18 +35,6 @@
 		to_chat(src, "<span class='warning'>The rules URL is not set in the server configuration.</span>")
 	return
 
-/client/verb/patreon()
-	set name = "Patreon"
-	set desc = "Like our server? Buy us and get satisfaction for your efforts."
-	set hidden = 1
-	if(config.donationurl)
-		if(alert("This will open our donation page in your browser. Are you sure?",,"Yes","No")=="No")
-			return
-		src << link(config.donationurl)
-	else
-		to_chat(src, "<span class='warning'>The donation URL is not set in the server configuration.</span>")
-	return
-
 /client/verb/submitbug()
 	set name = "Submit Bug"
 	set desc = "Submit a bug."
@@ -69,7 +57,7 @@
 	switch(choice)
 		if("Ship")
 			switch(MAIN_SHIP_NAME)
-				if("TGS Theseus")
+				if("USS Almayer")
 					ship_link = config.almayer_url
 			if(!ship_link)
 				to_chat(src, "<span class='warning'>This ship map has no webmap setup.</span>")
@@ -148,8 +136,7 @@ Any-Mode: (hotkey doesn't need to be on)
 
 	var/admin = {"<font color='purple'>
 Admin:
-\tF3 = Asay (adminsay)
-\tF5 = Aghost (admin-ghost)
+\tF5 = Asay (adminsay)
 \tF6 = player-panel
 \tF7 = admin-pm
 \tF8 = Invisimin

@@ -8,429 +8,429 @@
 	icon_state = "blue"
 
 /area/bigred/ground/ship
-	name = "\improper crashed vessel"
+	name = " crashed vessel"
 	icon_state = "syndie-ship"
 
 /area/bigred/ground/nexus
-	name = "\improper central nexus"
+	name = " central nexus"
 	icon_state = "hallC1"
 
 /area/bigred/ground/engineering/engineering_hall
-	name = "\improper engineering hallway"
+	name = " engineering hallway"
 	icon_state = "engine_hallway"
 
 /area/bigred/ground/central_hall
-	name = "\improper central hallway"
+	name = " central hallway"
 	icon_state = "hallC2"
 
 /area/bigred/ground/canteen
-	name = "\improper cafeteria"
+	name = " cafeteria"
 	icon_state = "cafeteria"
 
 /area/bigred/ground/kitchen
-	name = "\improper kitchen"
+	name = " kitchen"
 	icon_state = "kitchen"
 
 /area/bigred/ground/security
-	name = "\improper security module"
+	name = " security module"
 	icon_state = "security"
 
 /area/bigred/ground/bridge
-	name = "\improper command room"
+	name = " command room"
 	icon_state = "bridge"
 
 /area/bigred/ground/medbay
-	name = "\improper medical bay"
+	name = " medical bay"
 	icon_state = "medbay"
 
 /area/bigred/ground/medical/lobby
-	name = "\improper medical lobby"
+	name = " medical lobby"
 	icon_state = "medbay2"
 
 /area/bigred/ground/central_hall3
-	name = "\improper central hallway"
+	name = " central hallway"
 	icon_state = "hallC3"
 
 /area/bigred/ground/garden
-	name = "\improper garden"
+	name = " garden"
 	icon_state = "garden"
 
 /area/bigred/ground/cryogenics
-	name = "\improper cryogenic vault"
+	name = " cryogenic vault"
 	icon_state = "auxstorage"
 
 /area/bigred/ground/laundry
-	name = "\improper laundrette"
+	name = " laundrette"
 	icon_state = "green"
 
 /area/bigred/ground/hanger
-	name = "\improper hanger"
+	name = " hanger"
 	icon_state = "storage"
 
 /area/bigred/ground/crew_quarters
-	name = "\improper crew dormatories"
+	name = " crew dormatories"
 	icon_state = "crew_quarters"
 
 /area/bigred/ground/forehall
-	name = "\improper fore hallway"
+	name = " fore hallway"
 	icon_state = "hallF"
 
 /area/bigred/ground/chapel
-	name = "\improper chapel"
+	name = " chapel"
 	icon_state = "chapel"
 
 /area/bigred/ground/engineering/smes_room
-	name = "\improper power storage"
+	name = " power storage"
 	icon_state = "engine_storage"
 
 /area/bigred/ground/engineering/engine_control
-	name = "\improper core control"
+	name = " core control"
 	icon_state = "engine_control"
 
 /area/bigred/ground/engineering/engine
-	name = "\improper engine room"
+	name = " engine room"
 	icon_state = "engine"
 
 /area/bigred/ground/engineering/custodial
-	name = "\improper custodial storage"
+	name = " custodial storage"
 	icon_state = "janitor"
 
 /area/bigred/ground/engineering/atmospherics
-	name = "\improper atmospherics"
+	name = " atmospherics"
 	icon_state = "atmos"
 
 /area/bigred/ground/engineering/atmospherics/generator
-	name = "\improper terraforming processor"
+	name = " terraforming processor"
 	icon_state = "atmos"
 
 /area/bigred/ground/science/decon
-	name = "\improper decontamination"
+	name = " decontamination"
 	icon_state = "decontamination"
 
 /area/bigred/ground/science/hall
-	name = "\improper science hallway"
+	name = " science hallway"
 	icon_state = "blue-red2"
 
 /area/bigred/ground/science/robotics
-	name = "\improper robotics laboratory"
+	name = " robotics laboratory"
 	icon_state = "mechbay"
 
 /area/bigred/ground/science/assembly
-	name = "\improper Assembly room"
+	name = " Assembly room"
 	icon_state = "mechbay"
 
 /area/bigred/ground/science/office
-	name = "\improper Administration"
+	name = " Administration"
 	icon_state = "mechbay"
 
 /area/bigred/ground/science/research
-	name = "\improper research lab"
+	name = " research lab"
 	icon_state = "research"
 
 /area/bigred/ground/toilet
-	name = "\improper toilets"
+	name = " toilets"
 	icon_state = "yellow"
 
 /area/bigred/ground/hr
-	name = "\improper human resources office"
+	name = " human resources office"
 	icon_state = "head_quarters"
 
 /area/bigred/ground/maint/central
-	name = "\improper central maintenance shaft"
+	name = " central maintenance shaft"
 	icon_state = "maintcentral"
 
 /area/bigred/ground/maint/science
-	name = "\improper science maintenance"
+	name = " science maintenance"
 	icon_state = "maint_research_starboard"
 
 /area/bigred/ground/maint/command
-	name = "\improper command maintenance"
+	name = " command maintenance"
 	icon_state = "maintcentral"
 
 /area/bigred/ground/maint/engineering
-	name = "\improper engineering maintenance"
+	name = " engineering maintenance"
 	icon_state = "maint_engine"
 
 /area/bigred/ground/maint/atmos
-	name = "\improper atmospherics maintenance"
+	name = " atmospherics maintenance"
 	icon_state = "asmaint"
 
 /area/bigred/ground/exterior
-	name = "\improper underground"
+	name = " underground"
 	icon_state = "blue-red"
 	ambience = list('sound/ambience/ambiatm1.ogg')
 
 /area/bigred/ground/exterior/north
-	name = "\improper northern facility exterior"
+	name = " northern facility exterior"
 	icon_state = "north"
 
 
 /area/bigred/ground/exterior/south
-	name = "\improper southern facility exterior"
+	name = " southern facility exterior"
 	icon_state = "south"
 
 
 /area/bigred/ground/exterior/west
-	name = "\improper western facility exterior"
+	name = " western facility exterior"
 	icon_state = "west"
 
 
 /area/bigred/ground/exterior/east
-	name = "\improper eastern facility exterior"
+	name = " eastern facility exterior"
 	icon_state = "east"
 
 /area/bigred/ground/cargo
-	name = "\improper cargo bay"
+	name = " cargo bay"
 	icon_state = "primarystorage"
 
 /area/bigred/uground/lobby
-	name = "\improper research lobby"
+	name = " research lobby"
 	icon_state = "research"
 
 /area/bigred/uground/hallway
-	name = "\improper research hallway"
+	name = " research hallway"
 	icon_state = "research"
 
 /area/bigred/uground/xeno
-	name = "\improper xenobiology lab"
+	name = " xenobiology lab"
 	icon_state = "xeno_lab"
 
 /area/bigred/uground/xeno_flora
-	name = "\improper xeno-flora lab"
+	name = " xeno-flora lab"
 	icon_state = "xeno_f_lab"
 
 /area/bigred/uground/chemistry
-	name = "\improper chemistry lab"
+	name = " chemistry lab"
 	icon_state = "chem"
 
 /area/bigred/uground/disection
-	name = "\improper disection lab"
+	name = " disection lab"
 	icon_state = "observatory"
 
 /area/bigred/uground/misc_lab
-	name = "\improper miscellaneous lab"
+	name = " miscellaneous lab"
 	icon_state = "toxmisc"
 
 /area/bigred/uground/anomaly_lab
-	name = "\improper anomalous materials lab"
+	name = " anomalous materials lab"
 	icon_state = "blueold"
 
 /area/bigred/uground/teleporter
-	name = "\improper teleportation lab"
+	name = " teleportation lab"
 	icon_state = "teleporter"
 
 /area/bigred/uground/virology
-	name = "\improper virology laboratory"
+	name = " virology laboratory"
 	icon_state = "blue2"
 
 /area/bigred/uground/quarantine
-	name = "\improper quarantine zone"
+	name = " quarantine zone"
 	icon_state = "red2"
 
 /area/bigred/uground/cargo_elevator
-	name = "\improper cargo elevator"
+	name = " cargo elevator"
 	icon_state = "primarystorage"
 
 /area/bigred/uground/safe_room
-	name = "\improper Corporate Saferoom"
+	name = " Corporate Saferoom"
 	icon_state = "vault"
 
 /area/bigred/uground/lambda_labs/airlock
-	name = "\improper Lambda Labs Airlock"
+	name = " Lambda Labs Airlock"
 	icon_state = "decontamination"
 
 /area/bigred/uground/lambda_labs/lobby
-	name = "\improper Lambda Labs Reception"
+	name = " Lambda Labs Reception"
 	icon_state = "bluenew"
 
 /area/bigred/uground/lambda_labs/office
-	name = "\improper Lambda Labs Administration"
+	name = " Lambda Labs Administration"
 	icon_state = "heads_quarters"
 
 /area/bigred/uground/lambda_labs/laser_lab
-	name = "\improper Lambda Laser Laboratory"
+	name = " Lambda Laser Laboratory"
 	icon_state = "toxmisc"
 
 /area/bigred/uground/lambda_labs/hydro_office
-	name = "\improper Lambda Labs Bio-Dome"
+	name = " Lambda Labs Bio-Dome"
 	icon_state = "hydro"
 
 /area/bigred/uground/lambda_labs/hydro_lab
-	name = "\improper Lambda Labs Hydrophonics"
+	name = " Lambda Labs Hydrophonics"
 	icon_state = "garden"
 
 /area/bigred/uground/lambda_labs/fridge
-	name = "\improper Lambda Labs Refridgeration"
+	name = " Lambda Labs Refridgeration"
 	icon_state = "kitchen"
 
 /area/bigred/uground/lambda_labs/maintenance
-	name = "\improper Unknown Area"
+	name = " Unknown Area"
 	icon_state = "yellow"
 
 /area/bigred/uground/lambda_labs/maintenance2
-	name = "\improper Unknown Area"
+	name = " Unknown Area"
 	icon_state = "blue"
 
 
 //Big Red V2
 
 /area/bigredv2/outside
-	name = "\improper Colony Grounds"
+	name = " Colony Grounds"
 	icon_state = "red"
 	ceiling = CEILING_NONE
 
 /area/bigredv2/outside/ne
-	name = "\improper Northeast Colony Grounds"
+	name = " Northeast Colony Grounds"
 	icon_state = "northeast"
 
 /area/bigredv2/outside/nw
-	name = "\improper Northwest Colony Grounds"
+	name = " Northwest Colony Grounds"
 	icon_state = "northwest"
 
 /area/bigredv2/outside/c
-	name = "\improper Central Colony Grounds"
+	name = " Central Colony Grounds"
 	icon_state = "purple"
 
 /area/bigredv2/outside/n
-	name = "\improper Northern Colony Grounds"
+	name = " Northern Colony Grounds"
 	icon_state = "north"
 
 /area/bigredv2/outside/w
-	name = "\improper Western Colony Grounds"
+	name = " Western Colony Grounds"
 	icon_state = "west"
 
 /area/bigredv2/outside/e
-	name = "\improper Eastern Colony Grounds"
+	name = " Eastern Colony Grounds"
 	icon_state = "east"
 
 /area/bigredv2/outside/se
-	name = "\improper Southeast Colony Grounds"
+	name = " Southeast Colony Grounds"
 	icon_state = "southeast"
 
 /area/bigredv2/outside/s
-	name = "\improper Southern Colony Grounds"
+	name = " Southern Colony Grounds"
 	icon_state = "south"
 
 /area/bigredv2/outside/sw
-	name = "\improper Southwest Colony Grounds"
+	name = " Southwest Colony Grounds"
 	icon_state = "southwest"
 
 /area/bigredv2/caves
-	name = "\improper Unknown Area"
+	name = " Unknown Area"
 	icon_state = "bluenew"
 	ceiling = CEILING_UNDERGROUND
 
-/area/bigredv2/outside/nanotrasen_lab/outside
-	name = "\improper Nanotrasen Compound"
+/area/bigredv2/outside/weylandyutani_lab/outside
+	name = " Weyland-Yutani Compound"
 	icon_state = "yellow"
 	ceiling = CEILING_NONE
 
-/area/bigredv2/outside/nanotrasen_lab/inside
-	name = "\improper Nanotrasen Research Lab"
+/area/bigredv2/outside/weylandyutani_lab/inside
+	name = " Weyland-Yutani Research Lab"
 	icon_state = "engine"
 	ceiling = CEILING_UNDERGROUND_METAL
 
 /area/bigredv2/outside/cargo
-	name = "\improper Cargo"
+	name = " Cargo"
 	icon_state = "storage"
 	ceiling = CEILING_METAL
 
 /area/bigredv2/outside/general_store
-	name = "\improper General Store"
+	name = " General Store"
 	icon_state = "blueold"
 	ceiling = CEILING_METAL
 
 /area/bigredv2/outside/marshall_office
-	name = "\improper Marshall Offices"
+	name = " Marshall Offices"
 	icon_state = "brig"
 	ceiling = CEILING_METAL
 
 /area/bigredv2/outside/medical
-	name = "\improper Hospital"
+	name = " Hospital"
 	icon_state = "CMO"
 	ceiling = CEILING_METAL
 
 /area/bigredv2/outside/admin_building
-	name = "\improper Administration"
+	name = " Administration"
 	icon_state = "bridge"
 	ceiling = CEILING_METAL
 
 /area/bigredv2/outside/filtration_plant
-	name = "\improper Filtration Plant"
+	name = " Filtration Plant"
 	icon_state = "atmos"
 	ceiling = CEILING_METAL
 
 /area/bigredv2/outside/virology
-	name = "\improper Virology Lab"
+	name = " Virology Lab"
 	icon_state = "LP"
 	ceiling = CEILING_UNDERGROUND_METAL
 
 /area/bigredv2/outside/dorms
-	name = "\improper Dormitories"
+	name = " Dormitories"
 	icon_state = "fitness"
 	ceiling = CEILING_METAL
 
 /area/bigredv2/outside/bar
-	name = "\improper Bar"
+	name = " Bar"
 	icon_state = "bar"
 	ceiling = CEILING_METAL
 
 /area/bigredv2/outside/chapel
-	name = "\improper Chapel"
+	name = " Chapel"
 	icon_state = "courtroom"
 	ceiling = CEILING_METAL
 
 /area/bigredv2/outside/hydroponics
-	name = "\improper Hydroponics"
+	name = " Hydroponics"
 	icon_state = "garden"
 	ceiling = CEILING_METAL
 
 /area/bigredv2/outside/library
-	name = "\improper Library"
+	name = " Library"
 	icon_state = "library"
 	ceiling = CEILING_METAL
 
 /area/bigredv2/outside/office_complex
-	name = "\improper Office Complex"
+	name = " Office Complex"
 	icon_state = "explored"
 	ceiling = CEILING_METAL
 
 /area/bigredv2/outside/space_port
-	name = "\improper Space Port"
+	name = " Space Port"
 	icon_state = "green"
 	ceiling = CEILING_NONE
 
 /area/bigredv2/outside/telecomm
-	name = "\improper Telecommunications"
+	name = " Telecommunications"
 	icon_state = "ass_line"
 	ceiling = CEILING_UNDERGROUND_METAL
 
 /area/bigredv2/outside/engineering
-	name = "\improper Engineering Complex"
+	name = " Engineering Complex"
 	icon_state = "engine"
 	ceiling = CEILING_METAL
 
 /area/bigredv2/outside/storage
-	name = "\improper Storage"
+	name = " Storage"
 	icon_state = "storage"
 	ceiling = CEILING_METAL
 
 /area/bigredv2/outside/solar_plant
-	name = "\improper Solar Power Plant"
+	name = " Solar Power Plant"
 	icon_state = "substation"
 	ceiling = CEILING_METAL
 
 /area/bigredv2/outside/atmos
-	name = "\improper Atmospheric Stabilizer"
+	name = " Atmospheric Stabilizer"
 	icon_state = "party"
 	ceiling = CEILING_METAL
 
 /area/bigredv2/caves/lambda_lab
-	name = "\improper Lambda Lab"
+	name = " Lambda Lab"
 	icon_state = "party"
 	ceiling = CEILING_UNDERGROUND_METAL
 
 /area/bigredv2/outside/general_offices
-	name = "\improper General Offices"
+	name = " General Offices"
 	icon_state = "storage"
 	ceiling = CEILING_METAL

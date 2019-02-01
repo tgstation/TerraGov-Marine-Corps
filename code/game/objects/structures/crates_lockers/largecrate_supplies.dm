@@ -100,17 +100,17 @@
 	icon_state = "chest"
 
 /obj/structure/largecrate/supply/weapons/m41a
-	name = "\improper M41A pulse rifle weapons chest (x10)"
+	name = " M41A pulse rifle weapons chest (x10)"
 	desc = "A weapons chest containing ten M41A rifles."
 	supplies = list(/obj/item/weapon/gun/rifle/m41a = 10)
 
 /obj/structure/largecrate/supply/weapons/shotgun
-	name = "\improper M37A2 pump action shotgun weapons chest (x10)"
+	name = " M37A2 pump action shotgun weapons chest (x10)"
 	desc = "A weapons chest containing ten M37A2 pump shotguns."
 	supplies = list(/obj/item/weapon/gun/shotgun/pump = 10)
 
 /obj/structure/largecrate/supply/weapons/m39
-	name = "\improper M39 sub machinegun weapons chest (x8)"
+	name = " M39 sub machinegun weapons chest (x8)"
 	desc = "A weapons chest containing eight M39 submachine guns."
 	supplies = list(/obj/item/weapon/gun/smg/m39 = 8)
 
@@ -120,22 +120,22 @@
 	supplies = list(/obj/item/weapon/gun/revolver/m44 = 6, /obj/item/weapon/gun/pistol/m4a3 = 12)
 
 /obj/structure/largecrate/supply/weapons/flamers
-	name = "\improper M240A1 incinerator weapons chest (x4)"
+	name = " M240A1 incinerator weapons chest (x4)"
 	desc = "A weapons chest containing four M240A1 incinerator units."
 	supplies = list(/obj/item/weapon/gun/flamer = 4)
 
 /obj/structure/largecrate/supply/weapons/hpr
-	name = "\improper M41AE2 heavy pulse rifle weapons chest (x2)"
+	name = " M41AE2 heavy pulse rifle weapons chest (x2)"
 	desc = "A weapons chest containing two M41AE2 heavy pulse rifles."
 	supplies = list(/obj/item/weapon/gun/rifle/lmg = 2)
 
 /obj/structure/largecrate/supply/weapons/sentries
-	name = "\improper UA 571-C sentry chest (x2)"
+	name = " UA 571-C sentry chest (x2)"
 	desc = "A supply crate containing two boxed UA 571-C sentries."
 	supplies = list(/obj/item/storage/box/sentry = 2)
 
 /obj/structure/largecrate/supply/weapons/m56d
-	name = "\improper M56D mounted smartgun chest (x2)"
+	name = " M56D mounted smartgun chest (x2)"
 	desc = "A supply crate containing two boxed M56D mounted smartguns."
 	supplies = list(/obj/item/storage/box/m56d_hmg = 2)
 
@@ -146,12 +146,12 @@
 	icon_state = "case"
 
 /obj/structure/largecrate/supply/ammo/m41a
-	name = "\improper M41A magazine case (x20)"
+	name = " M41A magazine case (x20)"
 	desc = "An ammunition case containing 20 M41A magazines."
 	supplies = list(/obj/item/ammo_magazine/rifle = 20)
 
 /obj/structure/largecrate/supply/ammo/m41a_box
-	name = "\improper M41A ammunition box case (x4)"
+	name = " M41A ammunition box case (x4)"
 	desc = "An ammunition case containing four M41A 600 round boxes of ammunition."
 	supplies = list(/obj/item/big_ammo_box = 4)
 
@@ -161,7 +161,7 @@
 	supplies = list(/obj/item/ammo_magazine/shotgun = 8, /obj/item/ammo_magazine/shotgun/buckshot = 8, /obj/item/ammo_magazine/shotgun/flechette = 8)
 
 /obj/structure/largecrate/supply/ammo/m39
-	name = "\improper M39 magazine case (x16)"
+	name = " M39 magazine case (x16)"
 	desc = "An ammunition case containing sixteen M39 magazines."
 	supplies = list(/obj/item/ammo_magazine/smg/m39 = 16)
 
@@ -171,12 +171,12 @@
 	supplies = list(/obj/item/ammo_magazine/revolver = 16, /obj/item/ammo_magazine/pistol = 24)
 
 /obj/structure/largecrate/supply/ammo/sentry
-	name = "\improper UA 571-C ammunition drum case (x6)"
+	name = " UA 571-C ammunition drum case (x6)"
 	desc = "An ammunition case containing six UA 571-C sentry ammunition drums."
 	supplies = list(/obj/item/ammo_magazine/sentry = 6)
 
 /obj/structure/largecrate/supply/ammo/m56d
-	name = "\improper M56D ammunition drum case (x6)"
+	name = " M56D ammunition drum case (x6)"
 	desc = "An ammunition case containing six M56D ammunition drums."
 	supplies = list(/obj/item/ammo_magazine/m56d = 6)
 
@@ -188,12 +188,12 @@
 	icon_state = "case_double"
 
 /obj/structure/largecrate/supply/explosives/mines
-	name = "\improper M20 claymore case (x20)"
+	name = " M20 claymore case (x20)"
 	desc = "A case containing five four M20 claymore boxes."
 	supplies = list(/obj/item/storage/box/explosive_mines = 5)
 
 /obj/structure/largecrate/supply/explosives/grenades
-	name = "\improper M40 HDEP grenade case (x50)"
+	name = " M40 HDEP grenade case (x50)"
 	desc = "A case containing two twenty-five M40 HDEP grenade boxes."
 	supplies = list(/obj/item/storage/box/nade_box = 2)
 
@@ -243,17 +243,17 @@
 	supplies = list(/obj/item/frame/table = 10, /obj/item/frame/rack = 10)
 
 /obj/structure/largecrate/supply/supplies/mre
-	name = "\improper TGMC MRE crate (x50)"
-	desc = "A supply crate containing fifty TGMC MRE packets."
+	name = " USCM MRE crate (x50)"
+	desc = "A supply crate containing fifty USCM MRE packets."
 	supplies = list(/obj/item/storage/box/MRE = 50)
 
 /obj/structure/largecrate/supply/supplies/water
-	name = "\improper NT Bottled Water crate (x50)"
-	desc = "A crate containing fifty Nanotrasen Bottled Spring Water bottles."
+	name = " NT Bottled Water crate (x50)"
+	desc = "A crate containing fifty Weyland-Yutani Bottled Spring Water bottles."
 	supplies = list(/obj/item/reagent_container/food/drinks/cans/waterbottle = 50)
 
 /obj/structure/largecrate/supply/powerloader
-	name = "\improper Caterpillar P-5000 Work Loader crate"
+	name = " Caterpillar P-5000 Work Loader crate"
 	desc = "A crate containing one folded, but fully assembled, Caterpillar P-5000 Work Loader."
 	supplies = list(/obj/vehicle/powerloader = 1)
 
@@ -263,7 +263,7 @@
 	supplies = list(/obj/machinery/floodlight = 4)
 
 /obj/structure/largecrate/supply/generator
-	name = "\improper P.A.C.M.A.N. crate"
+	name = " P.A.C.M.A.N. crate"
 	desc = "A crate containing a P.A.C.M.A.N. generator, some fuel, and some cable coil to get your power up and going."
 	supplies = list(/obj/machinery/power/port_gen/pacman = 1, /obj/item/stack/sheet/mineral/phoron/medium_stack = 1, /obj/item/stack/cable_coil/yellow = 3)
 
@@ -289,7 +289,7 @@
 	supplies = list(/obj/item/reagent_container/blood/OMinus = 12)
 
 /obj/structure/largecrate/supply/medicine/iv
-	name = "\improper IV stand crate (x3)"
+	name = " IV stand crate (x3)"
 	desc = "A medical supply crate containing three IV drips."
 	supplies = list(/obj/machinery/iv_drip = 3)
 
@@ -299,8 +299,8 @@
 	supplies = list(/obj/machinery/optable = 1, /obj/item/storage/surgical_tray = 1, /obj/item/tank/anesthetic = 2, /obj/item/reagent_container/spray/cleaner = 1)
 
 /obj/structure/largecrate/supply/medicine/medivend
-	name = "\improper NanotrasenMed Plus crate (x1)"
-	desc = "A crate containing one Nanotrasen Plus medical vendor."
+	name = " Weyland-YutaniMed Plus crate (x1)"
+	desc = "A crate containing one Weyland-Yutani Plus medical vendor."
 	supplies = list(/obj/machinery/vending/medical = 1)
 
 

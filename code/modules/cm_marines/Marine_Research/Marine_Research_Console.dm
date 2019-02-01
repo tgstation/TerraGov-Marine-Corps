@@ -481,7 +481,7 @@
 	else if (href_list["organScan"])//initiate an organic scan - CM
 		if(linked_organic)
 			if(linked_organic.busy)
-				to_chat(usr, "<span class='warning'> The Nanotrasen Brand Organic Analyzer(TM) is busy at the moment.</span>")
+				to_chat(usr, "<span class='warning'> The Weyland-Yutani Brand Organic Analyzer(TM) is busy at the moment.</span>")
 			else
 				var/choice = input("Proceeding will destroy loaded item, preventing it's use for biomass.") in list("Proceed", "Cancel")
 				if(choice == "Cancel" || !linked_organic) return
@@ -494,7 +494,7 @@
 						linked_organic.busy = 0
 						if(!linked_organic.hacked)
 							if(!linked_organic.loaded_item)
-								to_chat(usr, "<span class='warning'> The Nanotrasen Brand Organic Analyzer(TM) appears to be empty.</span>")
+								to_chat(usr, "<span class='warning'> The Weyland-Yutani Brand Organic Analyzer(TM) appears to be empty.</span>")
 								screen = 1.0
 								return
 							if(linked_organic.loaded_item.reliability >= 90)
@@ -516,7 +516,7 @@
 	else if(href_list["eject_organ"]) //Eject the item inside the destructive analyzer.
 		if(linked_organic)
 			if(linked_organic.busy)
-				to_chat(usr, "<span class='warning'> The Nanotrasen Brand Organic Analyzer(TM) is busy at the moment.</span>")
+				to_chat(usr, "<span class='warning'> The Weyland-Yutani Brand Organic Analyzer(TM) is busy at the moment.</span>")
 
 			else if(linked_organic.loaded_item)
 				linked_organic.loaded_item.loc = linked_organic.loc
@@ -628,10 +628,10 @@
 			dat += "Main Menu:<BR><BR>"
 			dat += "<A href='?src=\ref[src];menu=1.1'>Current Research Levels</A><BR>"
 			if(linked_destroy != null) dat += "<A href='?src=\ref[src];menu=2.2'>Destructive Analyzer Menu</A><BR>"
-			if(linked_organic != null) dat += "<A href='?src=\ref[src];menu=5.2'>Nanotrasen Brand Organic Analyzer(TM) Menu</A><BR>"
+			if(linked_organic != null) dat += "<A href='?src=\ref[src];menu=5.2'>Weyland-Yutani Brand Organic Analyzer(TM) Menu</A><BR>"
 			if(linked_lathe != null) dat += "<A href='?src=\ref[src];menu=3.1'>Protolathe Construction Menu</A><BR>"
 			if(linked_imprinter != null) dat += "<A href='?src=\ref[src];menu=4.1'>Circuit Construction Menu</A><BR>"
-			if(linked_bioprinter != null) dat += "<A href='?src=\ref[src];menu=6.1'>Nanotrasen Brand Bioprinter(TM) menu</A><BR>"
+			if(linked_bioprinter != null) dat += "<A href='?src=\ref[src];menu=6.1'>Weyland-Yutani Brand Bioprinter(TM) menu</A><BR>"
 			dat += "<A href='?src=\ref[src];menu=1.6'>Settings</A>"
 
 		if(1.1) //Research viewer
@@ -674,13 +674,13 @@
 				dat += "* (No Circuit Imprinter Linked)<BR>"
 
 			if(linked_organic)
-				dat += "* Nanotrasen Brand Organic Analyzer(TM) <A href='?src=\ref[src];disconnect=organic'>(Disconnect)</A><BR>"
+				dat += "* Weyland-Yutani Brand Organic Analyzer(TM) <A href='?src=\ref[src];disconnect=organic'>(Disconnect)</A><BR>"
 			else
-				dat += "* (No Nanotrasen Brand Organic Analyzer(TM) linked)<BR>"
+				dat += "* (No Weyland-Yutani Brand Organic Analyzer(TM) linked)<BR>"
 			if(linked_bioprinter)
-				dat += "* Nanotrasen Brand Bioprinter(TM) <A href='?src=\ref[src];disconnect=bioprinter'>(Disconnect)</A><BR>"
+				dat += "* Weyland-Yutani Brand Bioprinter(TM) <A href='?src=\ref[src];disconnect=bioprinter'>(Disconnect)</A><BR>"
 			else
-				dat += "* (No Nanotrasen Brand Bioprinter(TM) linked)<BR>"
+				dat += "* (No Weyland-Yutani Brand Bioprinter(TM) linked)<BR>"
 		////////////////////DESTRUCTIVE ANALYZER SCREENS////////////////////////////
 		if(2.0)
 			dat += "NO DESTRUCTIVE ANALYZER LINKED TO CONSOLE<BR><BR>"
@@ -886,7 +886,7 @@
 
 				////////////////////ORGANIC ANALYZER SCREENS////////////////////////////
 		if(5.0)
-			dat += "NO NANOTRASEN BRAND ORGANIC ANALYZER(TM) LINKED TO CONSOLE<BR><BR>"
+			dat += "NO Weyland-Yutani BRAND ORGANIC ANALYZER(TM) LINKED TO CONSOLE<BR><BR>"
 			dat += "<A href='?src=\ref[src];menu=1.0'>Main Menu</A>"
 
 		if(5.1)
@@ -957,5 +957,5 @@
 
 
 /obj/machinery/computer/NTresearch/core
-	name = "Core Nanotrasen Research Console"
+	name = "Core Weyland-Yutani Research Console"
 	id = 1

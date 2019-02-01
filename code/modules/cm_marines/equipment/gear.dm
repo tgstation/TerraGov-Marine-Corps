@@ -12,8 +12,8 @@
 //MARINE SNIPER TARPS
 
 /obj/item/bodybag/tarp
-	name = "\improper V1 thermal-dapening tarp (folded)"
-	desc = "A tarp carried by TGMC Snipers. When laying underneath the tarp, the sniper is almost indistinguishable from the landscape if utilized correctly. The tarp contains a thermal-dampening weave to hide the wearer's heat signatures, optical camoflauge, and smell dampening."
+	name = " V1 thermal-dapening tarp (folded)"
+	desc = "A tarp carried by USCM Snipers. When laying underneath the tarp, the sniper is almost indistinguishable from the landscape if utilized correctly. The tarp contains a thermal-dampening weave to hide the wearer's heat signatures, optical camoflauge, and smell dampening."
 	icon = 'icons/obj/bodybag.dmi'
 	icon_state = "jungletarp_folded"
 	w_class = 3.0
@@ -27,9 +27,9 @@
 	unfolded_path = /obj/structure/closet/bodybag/tarp/snow
 
 /obj/structure/closet/bodybag/tarp
-	name = "\improper V1 thermal-dampening tarp"
+	name = " V1 thermal-dampening tarp"
 	bag_name = "V1 thermal-dampening tarp"
-	desc = "An active camo tarp carried by TGMC Snipers. When laying underneath the tarp, the sniper is almost indistinguishable from the landscape if utilized correctly. The tarp contains a thermal-dampening weave to hide the wearer's heat signatures, optical camouflage, and smell dampening."
+	desc = "An active camo tarp carried by USCM Snipers. When laying underneath the tarp, the sniper is almost indistinguishable from the landscape if utilized correctly. The tarp contains a thermal-dampening weave to hide the wearer's heat signatures, optical camouflage, and smell dampening."
 	icon = 'icons/obj/bodybag.dmi'
 	icon_state = "jungletarp_closed"
 	icon_closed = "jungletarp_closed"
@@ -129,7 +129,7 @@
 	flags_token = TOKEN_SPEC
 
 /obj/structure/broken_apc
-	name = "\improper M577 armored personnel carrier"
+	name = " M577 armored personnel carrier"
 	desc = "A large, armored behemoth capable of ferrying marines around. \nThis one is sitting nonfunctional."
 	anchored = 1
 	opacity = 1
@@ -139,7 +139,7 @@
 
 
 /obj/item/storage/box/uscm_mre
-	name = "\improper TGMC meal ready to eat"
+	name = " USCM meal ready to eat"
 	desc = "<B>Instructions:</B> Extract food using maximum firepower. Eat.\n\nOn the box is a picture of a shouting Squad Leader. \n\"YOU WILL EAT YOUR NUTRIENT GOO AND YOU WILL ENJOY IT, MAGGOT.\""
 	icon_state = "mre1"
 
@@ -167,7 +167,7 @@
 
 
 /obj/item/reagent_container/food/snacks/protein_pack
-	name = "stale TGMC protein bar"
+	name = "stale USCM protein bar"
 	desc = "The most fake looking protein bar you have ever laid eyes on, covered in the a subtitution chocolate. The powder used to make these is a subsitute of a substitute of whey substitute."
 	icon_state = "yummers"
 	filling_color = "#ED1169"
@@ -178,13 +178,13 @@
 
 
 /obj/item/reagent_container/food/snacks/mre_pack
-	name = "\improper generic MRE pack"
-	//trash = /obj/item/trash/TGMCtray
+	name = " generic MRE pack"
+	//trash = /obj/item/trash/USCMtray
 	trash = null
 	w_class = 2
 
 /obj/item/reagent_container/food/snacks/mre_pack/meal1
-	name = "\improper TGMC Prepared Meal (bread)"
+	name = " USCM Prepared Meal (bread)"
 	desc = "A staple of the Clown Planet, every clown baby's first solid food is a slice of banana bread with cream pie spread."
 	icon_state = "MREa"
 	filling_color = "#ED1169"
@@ -193,7 +193,7 @@
 	tastes = list("something funny" = 2, "bread" = 4)
 
 /obj/item/reagent_container/food/snacks/mre_pack/meal2
-	name = "\improper TGMC Prepared Meal (pork)"
+	name = " USCM Prepared Meal (pork)"
 	desc = "It's hard to go wrong with rice and pork."
 	icon_state = "MREb"
 	list_reagents = list("nutriment" = 9)
@@ -201,7 +201,7 @@
 	tastes = list("rice and pork" = 1)
 
 /obj/item/reagent_container/food/snacks/mre_pack/meal3
-	name = "\improper TGMC Prepared Meal (spag)"
+	name = " USCM Prepared Meal (spag)"
 	desc = "That's-a spicy meat-aball!"
 	icon_state = "MREc"
 	list_reagents = list("nutriment" = 9)
@@ -209,7 +209,7 @@
 	bitesize = 3
 
 /obj/item/reagent_container/food/snacks/mre_pack/meal4
-	name = "\improper TGMC Prepared Meal (pizza)"
+	name = " USCM Prepared Meal (pizza)"
 	desc = "Aubergine, carrot and sweetcorn, all on a bed of cheese and tomato sauce."
 	icon_state = "MREd"
 	list_reagents = list("nutriment" = 8)
@@ -217,7 +217,7 @@
 	bitesize = 1
 
 /obj/item/reagent_container/food/snacks/mre_pack/meal5
-	name = "\improper TGMC Prepared Meal (monkey)"
+	name = " USCM Prepared Meal (monkey)"
 	desc = "Sopa de Macaco, Uma Delicia."
 	icon_state = "MREe"
 	list_reagents = list("nutriment" = 10)
@@ -225,7 +225,7 @@
 	bitesize = 3
 
 /obj/item/reagent_container/food/snacks/mre_pack/meal6
-	name = "\improper TGMC Prepared Meal (tofu)"
+	name = " USCM Prepared Meal (tofu)"
 	desc = "BBQ sticky tofu in a bun, hand crafted by Hungarian children who believe in a galaxy with soldiers that kill people, not animals."
 	icon_state = "MREf"
 	list_reagents = list("nutriment" = 8)
@@ -233,7 +233,7 @@
 	bitesize = 2
 
 /obj/item/reagent_container/food/snacks/mre_pack/xmas1
-	name = "\improper Xmas Prepared Meal:sugar cookies"
+	name = " Xmas Prepared Meal:sugar cookies"
 	desc = "Delicious Sugar Cookies"
 	icon_state = "mreCookies"
 	list_reagents = list("nutriment" = 9, "sugar" = 1)
@@ -241,7 +241,7 @@
 	tastes = list("cookies" = 1, "artificial flavoring" = 1)
 
 /obj/item/reagent_container/food/snacks/mre_pack/xmas2
-	name = "\improper Xmas Prepared Meal:gingerbread cookie"
+	name = " Xmas Prepared Meal:gingerbread cookie"
 	desc = "A cookie without a soul."
 	icon_state = "mreGingerbread"
 	list_reagents = list("nutriment" = 9, "sugar" = 1)
@@ -249,7 +249,7 @@
 	bitesize = 2
 
 /obj/item/reagent_container/food/snacks/mre_pack/xmas3
-	name = "\improper Xmas Prepared Meal:fruitcake"
+	name = " Xmas Prepared Meal:fruitcake"
 	desc = "Also known as ''the Commander''."
 	icon_state = "mreFruitcake"
 	list_reagents = list("nutriment" = 9, "sugar" = 1)
@@ -287,8 +287,8 @@
 	info = "In loving memory of Cub Johnson."
 
 /obj/item/storage/box/wy_mre
-	name = "\improper Nanotrasen brand MRE"
-	desc = "A prepackaged, long-lasting food box from Nanotrasen Industries.\nOn the box is the Nanotrasen logo, with a slogan surrounding it: \n<b>NANOTRASEN. BUILDING BETTER LUNCHES</b>"
+	name = " Weyland-Yutani brand MRE"
+	desc = "A prepackaged, long-lasting food box from Weyland-Yutani Industries.\nOn the box is the Weyland-Yutani logo, with a slogan surrounding it: \n<b>Weyland-Yutani. BUILDING BETTER LUNCHES</b>"
 	icon_state = "mre2"
 	can_hold = list("/obj/item/reagent_container/food/snacks")
 	w_class = 4

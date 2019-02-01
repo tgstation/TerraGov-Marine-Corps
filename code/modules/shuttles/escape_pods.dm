@@ -15,8 +15,8 @@ with the original.*/
 /datum/shuttle/ferry/marine/evacuation_pod
 	location = 0
 	warmup_time = 5
-	shuttle_tag = "TGS Theseus Evac"
-	info_tag = "TGS Theseus Evac"
+	shuttle_tag = "USS Almayer Evac"
+	info_tag = "USS Almayer Evac"
 	sound_target = 18
 	sound_misc = 'sound/effects/escape_pod_launch.ogg'
 	var/static/passengers = 0 //How many living escape on the shuttle. Does not count simple animals.
@@ -73,7 +73,7 @@ suffice.
 		return FALSE
 
 	staging_area = T.loc //Grab the area and store it on file.
-	staging_area.name = "\improper[shuttle_tag]"
+	staging_area.name = "[shuttle_tag]"
 
 	D = locate() in staging_area
 	if(!D)
@@ -386,7 +386,7 @@ As such, a new tracker datum must be constructed to follow proper child inherita
 
 
 /obj/machinery/door/airlock/evacuation
-	name = "\improper Evacuation Airlock"
+	name = " Evacuation Airlock"
 	icon = 'icons/obj/doors/almayer/pod_doors.dmi'
 	heat_proof = 1
 	unacidable = 1

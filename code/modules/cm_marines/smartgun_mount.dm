@@ -22,7 +22,7 @@
 
 // Now we need a box for this.
 /obj/item/storage/box/m56d_hmg
-	name = "\improper M56D crate"
+	name = " M56D crate"
 	desc = "A large metal case with Japanese writing on the top. However it also comes with English text to the side. This is a M56D smartgun, it clearly has various labeled warnings. The most major one is that this does not have IFF features due to specialized ammo."
 	icon = 'icons/turf/whiskeyoutpost.dmi'
 	icon_state = "M56D_case" // I guess a placeholder? Not actually going to show up ingame for now.
@@ -45,7 +45,7 @@
 
 // The actual gun itself.
 /obj/item/device/m56d_gun
-	name = "\improper M56D Mounted Smartgun"
+	name = " M56D Mounted Smartgun"
 	desc = "The top half of a M56D Machinegun post. However it ain't much use without the tripod."
 	unacidable = TRUE
 	w_class = 5
@@ -90,7 +90,7 @@
 		return
 
 /obj/item/device/m56d_post //Adding this because I was fucken stupid and put a obj/machinery in a box. Realized I couldn't take it out
-	name = "\improper M56D folded mount"
+	name = " M56D folded mount"
 	desc = "The folded, foldable tripod mount for the M56D.  (Place on ground and drag to you to unfold)."
 	unacidable = TRUE
 	w_class = 5
@@ -109,7 +109,7 @@
 
 //The mount for the weapon.
 /obj/machinery/m56d_post
-	name = "\improper M56D mount"
+	name = " M56D mount"
 	desc = "A foldable tripod mount for the M56D, provides stability to the M56D."
 	icon = 'icons/turf/whiskeyoutpost.dmi'
 	icon_state = "M56D_mount"
@@ -216,7 +216,7 @@
 
 // The actual Machinegun itself, going to borrow some stuff from current sentry code to make sure it functions. Also because they're similiar.
 /obj/machinery/m56d_hmg
-	name = "\improper M56D mounted smartgun"
+	name = " M56D mounted smartgun"
 	desc = "A deployable, mounted smartgun. While it is capable of taking the same rounds as the M56, it fires specialized tungsten rounds for increased armor penetration.\n<span class='notice'>Use (ctrl-click) to shoot in bursts.</span>\n<span class='notice'>!!DANGER: M56D DOES NOT HAVE IFF FEATURES!!</span>"
 	icon = 'icons/turf/whiskeyoutpost.dmi'
 	icon_state = "M56D"
@@ -583,7 +583,7 @@
 	playsound(src.loc, 'sound/items/Deconstruct.ogg',25,1)
 
 /obj/machinery/m56d_hmg/mg_turret //Our mapbound version with stupid amounts of ammo.
-	name = "\improper M56D Smartgun Nest"
+	name = " M56D Smartgun Nest"
 	desc = "A M56D smartgun mounted upon a small reinforced post with sandbags to provide a small machinegun nest for all your defense purpose needs.\n<span class='notice'>Use (ctrl-click) to shoot in bursts.</span>\n<span class='notice'>!!DANGER: M56D DOES NOT HAVE IFF FEATURES!!</span>"
 	burst_fire = FALSE
 	burst_fire_toggled = FALSE

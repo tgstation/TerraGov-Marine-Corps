@@ -34,7 +34,7 @@
 
 
 /obj/machinery/marine_selector
-	name = "\improper Theoretical Marine selector"
+	name = " Theoretical Marine selector"
 	desc = ""
 	icon = 'icons/obj/machines/vending.dmi'
 	density = TRUE

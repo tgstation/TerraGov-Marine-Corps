@@ -29,7 +29,7 @@
 	name = "AI Integrated Encryption Key"
 	desc = "Integrated encryption key"
 	icon_state = "cap_cypherkey"
-	channels = list("Theseus" = TRUE, "Command" = TRUE, "MP" = TRUE, "Engi" = TRUE, "MedSci" = TRUE)
+	channels = list("Almayer" = TRUE, "Command" = TRUE, "MP" = TRUE, "Engi" = TRUE, "MedSci" = TRUE)
 
 /obj/item/device/encryptionkey/engi
 	name = "Engineering Radio Encryption Key"
@@ -62,7 +62,7 @@
 	channels = list("Req" = TRUE)
 
 /obj/item/device/encryptionkey/mmpo
-	name = "\improper Military Police radio encryption key"
+	name = " Military Police radio encryption key"
 	icon_state = "rob_cypherkey"
 	channels = list("MP" = TRUE, "Command" = TRUE)
 
@@ -80,12 +80,12 @@
 //MARINE ENCRYPTION KEYS
 
 /obj/item/device/encryptionkey/cmpcom
-	name = "\improper Marine Chief MP radio encryption key"
+	name = " Marine Chief MP radio encryption key"
 	icon_state = "cap_cypherkey"
 	channels = list("Command" = TRUE, "MP" = TRUE, "Alpha" = TRUE, "Bravo" = TRUE, "Charlie" = TRUE, "Delta" = TRUE, "Engi" = TRUE, "MedSci" = TRUE, "Req" = TRUE)
 
 /obj/item/device/encryptionkey/mcom
-	name = "\improper Marine Command radio encryption key"
+	name = " Marine Command radio encryption key"
 	icon_state = "cap_cypherkey"
 	channels = list("Command" = TRUE, "MP" = TRUE, "Alpha" = TRUE, "Bravo" = TRUE, "Charlie" = TRUE, "Delta" = TRUE, "Engi" = TRUE, "MedSci" = TRUE, "Req" = TRUE)
 
@@ -94,50 +94,50 @@
 
 
 /obj/item/device/encryptionkey/squadlead
-	name = "\improper Squad Leader encryption key"
+	name = " Squad Leader encryption key"
 	icon_state = "hop_cypherkey"
 	channels = list("Command" = TRUE)
 
 /obj/item/device/encryptionkey/alpha
-	name = "\improper Alpha Squad radio encryption key"
+	name = " Alpha Squad radio encryption key"
 	icon_state = "eng_cypherkey"
 	channels = list("Alpha" = TRUE)
 
 /obj/item/device/encryptionkey/bravo
-	name = "\improper Bravo Squad radio encryption key"
+	name = " Bravo Squad radio encryption key"
 	icon_state = "cypherkey"
 	channels = list("Bravo" = TRUE)
 
 /obj/item/device/encryptionkey/charlie
-	name = "\improper Charlie Squad radio encryption key"
+	name = " Charlie Squad radio encryption key"
 	icon_state = "sci_cypherkey"
 	channels = list("Charlie" = TRUE)
 
 /obj/item/device/encryptionkey/delta
-	name = "\improper Delta Squad radio encryption key"
+	name = " Delta Squad radio encryption key"
 	icon_state = "hos_cypherkey"
 	channels = list("Delta" = TRUE)
 
 /obj/item/device/encryptionkey/general
-    	name = "\improper General radio encryption key"
+    	name = " General radio encryption key"
     	icon_state = "cypherkey"
-    	channels = list("Theseus" = TRUE)
+    	channels = list("Almayer" = TRUE)
 
 
 //PMCs
 /obj/item/device/encryptionkey/dutch
-	name = "\improper Colonist encryption key"
+	name = " Colonist encryption key"
 	channels = list("Colonist" = TRUE)
 
 /obj/item/device/encryptionkey/PMC
-	name = "\improper Nanotrasen encryption key"
+	name = " Weyland-Yutani encryption key"
 	channels = list("NT PMC" = TRUE)
 
 /obj/item/device/encryptionkey/bears
-	name = "\improper UPP encryption key"
+	name = " UPP encryption key"
 	syndie = TRUE
 	channels = list("UPP" = TRUE)
 
 /obj/item/device/encryptionkey/commando
-	name = "\improper NT commando encryption key"
+	name = " NT commando encryption key"
 	channels = list("SpecOps" = TRUE)

@@ -19,7 +19,7 @@ var/list/weighted_mundaneevent_locations = list()
 //distance is measured in AU and co-relates to travel time
 /datum/trade_destination/centcomm
 	name = "CentComm"
-	description = "NanoTrasen's administrative centre for Tau Ceti."
+	description = "Weyland-Yutani's administrative centre for Tau Ceti."
 	distance = 1.2
 	willing_to_buy = list()
 	willing_to_sell = list()
@@ -38,7 +38,7 @@ var/list/weighted_mundaneevent_locations = list()
 /datum/trade_destination/anansi/get_custom_eventstring(var/event_type)
 	if(event_type == RESEARCH_BREAKTHROUGH)
 		return "Thanks to research conducted on the NSS Anansi, Second Red Cross Society wishes to announce a major breakthough in the field of \
-		[pick("mind-machine interfacing","neuroscience","nano-augmentation","genetics")]. NanoTrasen is expected to announce a co-exploitation deal within the fortnight."
+		[pick("mind-machine interfacing","neuroscience","nano-augmentation","genetics")]. Weyland-Yutani is expected to announce a co-exploitation deal within the fortnight."
 	return null
 
 /datum/trade_destination/icarus
@@ -61,12 +61,12 @@ var/list/weighted_mundaneevent_locations = list()
 /datum/trade_destination/redolant/get_custom_eventstring(var/event_type)
 	if(event_type == RESEARCH_BREAKTHROUGH)
 		return "Thanks to research conducted on the OAV Redolant, Osiris Atmospherics wishes to announce a major breakthough in the field of \
-		[pick("phoron research","high energy flux capacitance","super-compressed materials","theoretical particle physics")]. NanoTrasen is expected to announce a co-exploitation deal within the fortnight."
+		[pick("phoron research","high energy flux capacitance","super-compressed materials","theoretical particle physics")]. Weyland-Yutani is expected to announce a co-exploitation deal within the fortnight."
 	return null
 
 /datum/trade_destination/beltway
 	name = "Beltway mining chain"
-	description = "A co-operative effort between Beltway and NanoTrasen to exploit the rich outer asteroid belt of the Tau Ceti system."
+	description = "A co-operative effort between Beltway and Weyland-Yutani to exploit the rich outer asteroid belt of the Tau Ceti system."
 	distance = 7.5
 	willing_to_buy = list()
 	willing_to_sell = list()

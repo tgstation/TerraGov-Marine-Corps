@@ -603,7 +603,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 /obj/item/proc/zoom(mob/living/user, tileoffset = 11, viewsize = 12) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
 	if(!user)
 		return
-	var/zoom_device = zoomdevicename ? "\improper [zoomdevicename] of [src]" : "\improper [src]"
+	var/zoom_device = zoomdevicename ? " [zoomdevicename] of [src]" : " [src]"
 	var/mob/living/carbon/human/H = user
 
 	for(var/obj/item/I in user.contents)

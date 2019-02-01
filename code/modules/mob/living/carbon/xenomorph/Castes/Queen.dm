@@ -379,7 +379,7 @@
 
 	if(txt)
 		xeno_message("<B>The Queen has given a new order. Check Status panel for details.</B>",3,hivenumber)
-		hive.hive_orders = txt
+		hive.hive_orders = fix_rus_stats(txt)
 	else
 		hive.hive_orders = ""
 

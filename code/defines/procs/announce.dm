@@ -47,8 +47,8 @@
 	var/tmp/message_title = new_title ? new_title : title
 	var/tmp/message_sound = new_sound ? sound(new_sound) : sound
 
-	message = html_encode(message)
-	message_title = html_encode(message_title)
+	message = lhtml_encode(message)
+	message_title = lhtml_encode(message_title)
 
 	Message(message, message_title, to_xenos)
 	if(do_newscast)
@@ -69,7 +69,7 @@
 			to_chat(M, "<h2 class='alert'>[title]</h2>")
 			to_chat(M, "<span class='alert'>[message]</span>")
 			if (announcer)
-				to_chat(M, "<span class='alert'> -[html_encode(announcer)]</span>")
+				to_chat(M, "<span class='alert'> -[lhtml_encode(announcer)]</span>")
 
 /datum/announcement/minor/Message(message as text, message_title as text, var/to_xenos = 0)
 	for(var/mob/M in player_list)
@@ -87,7 +87,7 @@
 	to_chat(world, "<h1 class='alert'>[message_title]</h1>")
 	to_chat(world, "<span class='alert'>[message]</span>")
 	if(announcer)
-		to_chat(world, "<span class='alert'> -[html_encode(announcer)]</span>")
+		to_chat(world, "<span class='alert'> -[lhtml_encode(announcer)]</span>")
 	to_chat(world, "<br>")
 
 /datum/announcement/priority/command/Message(message as text, message_title as text, var/to_xenos = 0)
@@ -151,7 +151,7 @@
 /datum/news_announcement
 	var/round_time // time of the round at which this should be announced, in seconds
 	var/message // body of the message
-	var/author = "NanoTrasen Editor"
+	var/author = "Weyland-Yutani Editor"
 	var/channel_name = "Nyx Daily"
 	var/can_be_redacted = 0
 	var/message_type = "Story"

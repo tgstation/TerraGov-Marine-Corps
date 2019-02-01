@@ -13,7 +13,7 @@
 
 
 /obj/item/clothing/glasses/night/M4RA
-	name = "\improper M4RA Battle sight"
+	name = " M4RA Battle sight"
 	desc = "A headset and night vision goggles system for the M4RA Battle Rifle. Allows highlighted imaging of surroundings. Click it to toggle."
 	icon = 'icons/obj/clothing/glasses.dmi'
 	icon_state = "m56_goggles"
@@ -26,7 +26,7 @@
 
 
 /obj/item/clothing/glasses/night/m42_night_goggles
-	name = "\improper M42 scout sight"
+	name = " M42 scout sight"
 	desc = "A headset and night vision goggles system for the M42 Scout Rifle. Allows highlighted imaging of surroundings. Click it to toggle."
 	icon = 'icons/obj/clothing/glasses.dmi'
 	icon_state = "m56_goggles"
@@ -39,14 +39,14 @@
 
 
 /obj/item/clothing/glasses/night/m42_night_goggles/upp
-	name = "\improper Type 9 commando goggles"
+	name = " Type 9 commando goggles"
 	desc = "A headset and night vision goggles system used by UPP forces. Allows highlighted imaging of surroundings. Click it to toggle."
 	icon_state = "upp_goggles"
 	deactive_state = "upp_goggles_0"
 
 
 /obj/item/clothing/glasses/night/m56_goggles
-	name = "\improper M56 head mounted sight"
+	name = " M56 head mounted sight"
 	desc = "A headset and goggles system for the M56 Smartgun. Has a low-res short range imager, allowing for view of terrain."
 	icon = 'icons/obj/clothing/glasses.dmi'
 	icon_state = "m56_goggles"

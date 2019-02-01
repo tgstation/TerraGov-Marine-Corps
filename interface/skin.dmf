@@ -103,16 +103,19 @@ macro "macro"
 		command = ".options"
 	elem 
 		name = "F2"
-		command = ".screenshot auto"
+		command = "ooc"
 	elem 
 		name = "SHIFT+F2"
 		command = ".screenshot"
 	elem 
 		name = "F3"
-		command = "asay"
+		command = "say"
+	elem 
+		name = "F4"
+		command = "me"
 	elem 
 		name = "F5"
-		command = "aghost"
+		command = "asay"
 	elem 
 		name = "F6"
 		command = "Player-Panel"
@@ -285,16 +288,19 @@ macro "hotkeymode"
 		command = ".options"
 	elem 
 		name = "F2"
-		command = ".screenshot auto"
+		command = "ooc"
 	elem 
 		name = "SHIFT+F2"
 		command = ".screenshot"
 	elem 
 		name = "F3"
-		command = "asay"
+		command = "say"
+	elem 
+		name = "F4"
+		command = "me"
 	elem 
 		name = "F5"
-		command = "aghost"
+		command = "asay"
 	elem 
 		name = "F6"
 		command = "Player-Panel"
@@ -785,17 +791,6 @@ window "rpane"
 		text = "Submit Bug"
 		command = "submit-bug"
 		group = "rpanemode"
-	elem "patreon"
-		type = BUTTON
-		pos = 630,0
-		size = 90x20
-		anchor1 = 79,0
-		anchor2 = 92,0
-		background-color = #ff8040
-		saved-params = "is-checked"
-		text = "Patreon"
-		command = "patreon"
-		group = "rpanemode"
 	elem "rulesb"
 		type = BUTTON
 		pos = 270,0
@@ -903,7 +898,7 @@ window "infowindow"
 		is-default = true
 		saved-params = ""
 		highlight-color = #00aa00
-		allow-html = false
+		allow-html = true
 		on-show = ".winset\"rpane.infob.is-visible=true;rpane.browseb.is-visible=true?rpane.infob.pos=130,0:rpane.infob.pos=65,0 rpane.textb.is-visible=true rpane.infob.is-checked=true rpane.rpanewindow.pos=0,30 rpane.rpanewindow.size=0x0 rpane.rpanewindow.left=infowindow\""
 		on-hide = ".winset\"rpane.infob.is-visible=false;rpane.browseb.is-visible=true?rpane.browseb.is-checked=true rpane.rpanewindow.left=browserwindow:rpane.textb.is-visible=true rpane.rpanewindow.pos=0,30 rpane.rpanewindow.size=0x0 rpane.rpanewindow.left=\""
 

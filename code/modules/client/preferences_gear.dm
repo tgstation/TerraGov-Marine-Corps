@@ -18,61 +18,61 @@ var/global/list/gear_datums = list()
 // Headslot items
 
 /datum/gear/red_bandana
-	display_name = "TGMC bandana (red)"
+	display_name = "USCM bandana (red)"
 	path = /obj/item/clothing/head/bandana/red
 	cost = 3
 	slot = WEAR_HEAD
 
 /datum/gear/cmbandana
-	display_name = "TGMC bandana (green)"
+	display_name = "USCM bandana (green)"
 	path = /obj/item/clothing/head/cmbandana
 	cost = 3
 	slot = WEAR_HEAD
 
 /datum/gear/cmbandanatan
-	display_name = "TGMC bandana (tan)"
+	display_name = "USCM bandana (tan)"
 	path = /obj/item/clothing/head/cmbandana/tan
 	cost = 3
 	slot = WEAR_HEAD
 
 /datum/gear/cmberet
-	display_name = "TGMC beret (green)"
+	display_name = "USCM beret (green)"
 	path = /obj/item/clothing/head/cmberet
 	cost = 3
 	slot = WEAR_HEAD
 
 /datum/gear/cmberettan
-	display_name = "TGMC beret (tan)"
+	display_name = "USCM beret (tan)"
 	path = /obj/item/clothing/head/cmberet/tan
 	cost = 3
 	slot = WEAR_HEAD
 
 /datum/gear/cmheadband
-	display_name = "TGMC headband (green)"
+	display_name = "USCM headband (green)"
 	path = /obj/item/clothing/head/headband
 	cost = 3
 	slot = WEAR_HEAD
 
 /datum/gear/cmheadbandred
-	display_name = "TGMC headband (red)"
+	display_name = "USCM headband (red)"
 	path = /obj/item/clothing/head/headband/red
 	cost = 3
 	slot = WEAR_HEAD
 
 /datum/gear/cmheadset
-	display_name = "TGMC earpiece"
+	display_name = "USCM earpiece"
 	path = /obj/item/clothing/head/headset
 	cost = 3
 	slot = WEAR_HEAD
 
 /datum/gear/cmcap
-	display_name = "TGMC cap"
+	display_name = "USCM cap"
 	path = /obj/item/clothing/head/cmcap
 	cost = 3
 	slot = WEAR_HEAD
 
 /datum/gear/cmboonie
-	display_name = "TGMC boonie hat"
+	display_name = "USCM boonie hat"
 	path = /obj/item/clothing/head/boonie
 	cost = 3
 	slot = WEAR_HEAD

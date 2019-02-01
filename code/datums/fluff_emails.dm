@@ -4,7 +4,7 @@
 	var/entry_text //email content
 
 
-//emails for the Theseus computers
+//emails for the Almayer computers
 /datum/fluff_email/almayer
 
 
@@ -71,7 +71,7 @@
 					<br>
 					PS: The supply sergeant's grandparents are from Naples. Don't let him hear about this or he'll be sure to cause a big fuss.
 					Last time he went on a personal crusade on behalf of the entire battalion, those pricks over at central started supplying
-					the TGS Theseus store-rooms with only the 'Meatloaf' flavored MRE for months. I can still taste the stuff it in my mouth I think..
+					the USS Almayer store-rooms with only the 'Meatloaf' flavored MRE for months. I can still taste the stuff it in my mouth I think..
 				</html>
 				"}
 

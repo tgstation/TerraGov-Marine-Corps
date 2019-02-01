@@ -12,7 +12,7 @@
 
 
 /obj/machinery/door/firedoor
-	name = "\improper Emergency Shutter"
+	name = " Emergency Shutter"
 	desc = "Emergency air-tight shutter, capable of sealing off breached areas."
 	icon = 'icons/obj/doors/DoorHazard.dmi'
 	icon_state = "door_open"
@@ -25,7 +25,7 @@
 	power_channel = ENVIRON
 	use_power = TRUE
 	idle_power_usage = 5
-	
+
 	var/blocked = FALSE
 	var/lockdown = FALSE // When the door has detected a problem, it locks.
 	var/pdiff_alert = FALSE
@@ -348,7 +348,7 @@
 //ALMAYER FIRE DOOR
 
 /obj/machinery/door/firedoor/border_only/almayer
-	name = "\improper Emergency Shutter"
+	name = " Emergency Shutter"
 	desc = "Emergency air-tight shutter, capable of sealing off breached areas."
 	icon = 'icons/obj/doors/almayer/purinadoor.dmi'
 	openspeed = 4

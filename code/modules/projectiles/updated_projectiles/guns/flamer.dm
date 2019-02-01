@@ -1,7 +1,7 @@
 //FLAMETHROWER
 
 /obj/item/weapon/gun/flamer
-	name = "\improper M240A1 incinerator unit"
+	name = " M240A1 incinerator unit"
 	desc = "M240A1 incinerator unit has proven to be one of the most effective weapons at clearing out soft-targets. This is a weapon to be feared and respected as it is quite deadly."
 	origin_tech = "combat=4;materials=3"
 	icon_state = "m240"
@@ -333,7 +333,7 @@
 
 
 /obj/item/weapon/gun/flamer/M240T
-	name = "\improper M240-T incinerator unit"
+	name = " M240-T incinerator unit"
 	desc = "An improved version of the M240A1 incinerator unit, the M240-T model is capable of dispersing a larger variety of fuel types. Contains an underbarrel fire extinguisher!"
 	current_mag = /obj/item/ammo_magazine/flamer_tank/large
 	icon_state = "m240t"
