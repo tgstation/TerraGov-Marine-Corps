@@ -458,8 +458,8 @@
 	if(!check_rights(R_SOUND))
 		return
 
-	log_admin("[key_name(src)] stopped all currently playing sounds.")
-	message_admins("[ADMIN_TPMONTY(src)] stopped all currently playing sounds.")
+	log_admin("[key_name(usr)] stopped all currently playing sounds.")
+	message_admins("[ADMIN_TPMONTY(usr)] stopped all currently playing sounds.")
 	for(var/mob/M in GLOB.player_list)
 		if(M.client)
 			SEND_SOUND(M, sound(null))
