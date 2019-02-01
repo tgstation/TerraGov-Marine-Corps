@@ -823,7 +823,7 @@
 					continue
 				H.dropItemToGround(W)
 
-		M.forceMove(pick(tdome1))
+		M.forceMove(pick(GLOB.tdome1))
 
 		to_chat(M, "<span class='boldnotice'>You have been sent to the Thunderdome!</span>")
 

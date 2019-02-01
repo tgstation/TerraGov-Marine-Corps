@@ -45,7 +45,7 @@
 	name = "mapping tag"
 
 /obj/effect/landmark/map_tag/Initialize()
-	map_tag = name
+	GLOB.map_tag = name
 	return INITIALIZE_HINT_QDEL
 
 /obj/effect/landmark/start/latejoin/Initialize()

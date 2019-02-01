@@ -115,12 +115,7 @@ var/CHARGELEVEL = 0.0005 // Cap for how fast cells charge, as a percentage-per-t
 
 var/HangarUpperElevator
 var/HangarLowerElevator
-var/global/map_tag
-var/list/wizardstart = list()
-var/list/deathmatch = list()
-//	list/mazewarp = list()
-var/list/tdome1 = list()
-var/list/tdome2 = list()
+
 //	list/traitors = list()	//traitor list
 var/list/cardinal = list( NORTH, SOUTH, EAST, WEST )
 var/list/alldirs = list(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)

@@ -316,8 +316,8 @@
 
 
 /datum/game_mode/New()
-	if(!map_tag)
-		to_chat(world, "MT001: No mapping tag set, tell a coder. [map_tag]")
+	if(!GLOB.map_tag)
+		to_chat(world, "MT001: No mapping tag set, tell a coder. [GLOB.map_tag]")
 
 
 /datum/game_mode/proc/display_roundstart_logout_report()

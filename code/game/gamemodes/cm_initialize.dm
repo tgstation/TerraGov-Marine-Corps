@@ -546,7 +546,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 	J.generate_entry_conditions(H)
 	J.equip_identification(H)
 
-	if(map_tag == MAP_ICE_COLONY)
+	if(GLOB.map_tag == MAP_ICE_COLONY)
 		H.equip_to_slot_or_del(new /obj/item/clothing/head/ushanka(H), SLOT_HEAD)
 		H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/snow_suit(H), SLOT_WEAR_SUIT)
 		H.equip_to_slot_or_del(new /obj/item/clothing/mask/rebreather(H), SLOT_WEAR_MASK)
@@ -569,7 +569,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 	H.equip_to_slot_or_del(new /obj/item/storage/pouch/survival/full(H), SLOT_L_STORE)
 
 	to_chat(H, "<h2>You are a survivor!</h2>")
-	switch(map_tag)
+	switch(GLOB.map_tag)
 		if(MAP_PRISON_STATION)
 			to_chat(H, "<span class='notice'>You are a survivor of the attack on Fiorina Orbital Penitentiary. You worked or lived on the prison station, and managed to avoid the alien attacks.. until now.</span>")
 		if(MAP_ICE_COLONY)
@@ -901,7 +901,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 
 		var/products2[]
 		//if(istype(src, /datum/game_mode/ice_colony)) //Literally, we are in gamemode code
-		if(map_tag == MAP_ICE_COLONY)
+		if(GLOB.map_tag == MAP_ICE_COLONY)
 			products2 = list(
 						/obj/item/clothing/mask/rebreather/scarf = round(scale * 30),
 						/obj/item/clothing/mask/rebreather = round(scale * 30),
@@ -927,7 +927,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 
 /datum/game_mode/proc/spawn_map_items()
 	var/turf/T
-	switch(map_tag) // doing the switch first makes this a tiny bit quicker which for round setup is more important than pretty code
+	switch(GLOB.map_tag) // doing the switch first makes this a tiny bit quicker which for round setup is more important than pretty code
 		if(MAP_LV_624) 
 			while(GLOB.map_items.len)
 				T = GLOB.map_items[GLOB.map_items.len]

@@ -23,7 +23,7 @@
 
 	if(statpanel("Stats"))
 		stat("Operation Time: [worldtime2text()]")
-		stat("The current map is: [map_tag]")
+		stat("The current map is: [GLOB.map_tag]")
 
 
 	if(client?.holder?.rank?.rights)
