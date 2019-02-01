@@ -162,7 +162,7 @@ var/list/radiochannels = list(
 )
 
 // central command channels, i.e deathsquid & response teams
-var/list/CENT_FREQS = list(ERT_FREQ, DTH_FREQ, PMC_FREQ, DUT_FREQ, YAUT_FREQ, IMP_FREQ)
+var/list/CENT_FREQS = list(ERT_FREQ, DTH_FREQ, PMC_FREQ, DUT_FREQ, YAUT_FREQ)
 
 // Antag channels, i.e. Syndicate
 var/list/ANTAG_FREQS = list(SYND_FREQ, RUS_FREQ)

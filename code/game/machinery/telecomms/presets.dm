@@ -262,7 +262,7 @@
 /obj/machinery/telecomms/allinone/interceptor
 	name = "Message Intercept Mainframe"
 	intercept = 1
-	freq_listening = list(SYND_FREQ, RUS_FREQ, IMP_FREQ)
+	freq_listening = list(SYND_FREQ, RUS_FREQ)
 
 /obj/machinery/telecomms/allinone/receive_signal(datum/signal/signal)
 
