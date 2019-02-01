@@ -113,4 +113,7 @@ var/global/normal_ooc_colour = "#002eb8"
 	set name = "Stop Sounds"
 	set category = "OOC"
 	set desc = "Stop Current Sounds"
-	src << sound(null)
+
+	SEND_SOUND(src, sound(null))
+	if(chatOutput && !chatOutput.broken && chatOutput.loaded)
+		chatOutput.stopMusic()

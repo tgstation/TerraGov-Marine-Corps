@@ -10,18 +10,21 @@
 
 	if(istype(M, /mob/new_player))
 		return
-	else if(istype(M, /mob/dead/observer))
+	
+	if(istype(M, /mob/dead/observer))
 		var/mob/dead/observer/ghost = M
 		ghost.can_reenter_corpse = TRUE
 		ghost.reenter_corpse()
-	else
-		usr.client.change_view(world.view)
-		var/msg = usr.client.key
-		log_admin("[key_name(usr)] admin ghosted.")
+		return
+
+	usr.client.change_view(world.view)
+	var/msg = usr.client.key
+	log_admin("[key_name(usr)] admin ghosted.")
+	if(M.stat != DEAD)
 		message_admins("[ADMIN_TPMONTY(usr)] admin ghosted.")
-		M.ghostize(TRUE)
-		if(M && !M.key)
-			M.key = "@[msg]"
+	M.ghostize(TRUE)
+	if(M && !M.key)
+		M.key = "@[msg]"
 
 
 /datum/admins/proc/invisimin()
