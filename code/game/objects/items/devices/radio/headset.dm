@@ -470,7 +470,3 @@
 	keyslot1 = new /obj/item/device/encryptionkey/imperial
 	//frequency = IMP_FREQ
 	//freerange = TRUE - this only allows MAIN freq not to fuck up
-
-/obj/item/device/radio/headset/distress/imperial/New()
-	. = ..()
-	message_admins("Freq: [frequency]")
