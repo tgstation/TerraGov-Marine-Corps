@@ -141,7 +141,7 @@
 	if(custom_event_msg && custom_event_msg != "")
 		to_chat(src, "<h1 class='alert'>Custom Event</h1>")
 		to_chat(src, "<h2 class='alert'>A custom event is taking place. OOC Info:</h2>")
-		to_chat(src, "<span class='alert'>[html_encode(custom_event_msg)]</span>")
+		to_chat(src, "<span class='alert'>[custom_event_msg]</span>")
 		to_chat(src, "<br>")
 
 	if( (world.address == address || !address) && !host )
@@ -199,6 +199,9 @@
 	GLOB.clients -= src
 	return ..()
 
+
+/client/Destroy()
+	return QDEL_HINT_HARDDEL_NOW
 
 
 /client/proc/log_client_to_db()

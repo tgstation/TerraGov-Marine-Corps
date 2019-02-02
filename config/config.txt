@@ -69,6 +69,8 @@ ALLOW_METADATA
 
 USEALIENWHITELIST
 
+INVOKE_YOUTUBEDL youtube-dl
+
 
 ##################
 ## Game Options ##
