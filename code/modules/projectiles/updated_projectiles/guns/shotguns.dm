@@ -526,3 +526,29 @@ can cause issues with ammo types getting mixed up during the burst.
 	recoil_unwielded = CONFIG_GET(number/combat_define/high_recoil_value)
 	pump_delay = CONFIG_GET(number/combat_define/mhigh_fire_delay) * 2
 
+/obj/item/weapon/gun/shotgun/pump/bolt
+	name = "\improper Bolt action rifle"
+	desc = "A hunting rifle just like pappy used to own."
+	icon_state = "hg3712"
+	item_state = "hg3712"
+	fire_sound = 'sound/weapons/gun_shotgun_small.ogg'
+	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump/bolt
+	attachable_allowed = list(
+						/obj/item/attachable/compensator,
+						/obj/item/attachable/suppressor,
+						/obj/item/attachable/reddot,
+						/obj/item/attachable/scope/mini,
+						/obj/item/attachable/scope)
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 23, "under_x" = 19, "under_y" = 17, "stock_x" = 19, "stock_y" = 17)
+	starting_attachment_types = list(/obj/item/attachable/scope)
+
+/obj/item/weapon/gun/shotgun/pump/cmb/set_gun_config_values()
+	fire_delay = CONFIG_GET(number/combat_define/med_fire_delay) * 6
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/hmed_hit_accuracy_mult)
+	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/hmed_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/low_scatter_value)
+	scatter_unwielded = CONFIG_GET(number/combat_define/max_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
+	recoil = CONFIG_GET(number/combat_define/low_recoil_value)
+	recoil_unwielded = CONFIG_GET(number/combat_define/high_recoil_value)
+	pump_delay = CONFIG_GET(number/combat_define/mhigh_fire_delay) * 2
