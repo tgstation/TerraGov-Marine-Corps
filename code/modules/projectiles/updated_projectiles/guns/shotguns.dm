@@ -537,6 +537,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	fire_sound = 'sound/weapons/gun_shotgun_small.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump/bolt
 	gun_skill_category = GUN_SKILL_RIFLES
+	type_of_casings = "cartridge"
 	attachable_allowed = list(
 						/obj/item/attachable/compensator,
 						/obj/item/attachable/suppressor,
