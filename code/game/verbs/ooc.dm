@@ -11,7 +11,9 @@ var/global/normal_ooc_colour = "#002eb8"
 		to_chat(src, "Guests may not use OOC.")
 		return
 
-	msg = trim(copytext(sanitize(msg), 1, MAX_MESSAGE_LEN))
+	if(!check_rights(R_ADMIN, FALSE))
+		msg = trim(copytext(sanitize(msg), 1, MAX_MESSAGE_LEN))
+
 	if(!msg)
 		return
 
