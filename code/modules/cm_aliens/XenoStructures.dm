@@ -216,7 +216,7 @@
 
 /obj/effect/alien/resin/trap/proc/drop_hugger()
 	hugger.forceMove(loc)
-	addtimer(CALLBACK(hugger, /obj/item/clothing/mask/facehugger.proc/fast_activate), 1.5 SECONDS)
+	addtimer(CALLBACK(hugger, /obj/item/clothing/mask/facehugger.proc/fast_activate, TRUE), 1.5 SECONDS)
 	icon_state = "trap0"
 	visible_message("<span class='warning'>[hugger] gets out of [src]!</span>")
 	hugger = null
@@ -539,7 +539,7 @@
 	if(status != EGG_DESTROYED && hugger)
 		status = EGG_BURST
 		hugger.forceMove(loc)
-		hugger.fast_activate()
+		hugger.fast_activate(TRUE)
 		hugger = null
 
 /obj/effect/alien/egg/bullet_act(var/obj/item/projectile/P)

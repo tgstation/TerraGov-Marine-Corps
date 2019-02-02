@@ -22,6 +22,7 @@
 	layer = MOB_LAYER
 
 	var/stat = CONSCIOUS //UNCONSCIOUS is the idle state in this case
+	var/stasis = FALSE
 	var/hugger_tick = 0
 	var/sterile = FALSE
 	var/attached = FALSE
@@ -146,17 +147,19 @@
 		if(check_lifecycle())
 			leap_at_nearest_target()
 
-/obj/item/clothing/mask/facehugger/proc/GoIdle(stasis = FALSE) //Idle state does not count toward the death timer.
+/obj/item/clothing/mask/facehugger/proc/GoIdle(hybernate = FALSE) //Idle state does not count toward the death timer.
 	if(stat != CONSCIOUS)
 		return
 	update_stat(UNCONSCIOUS)
-	if(stasis)
+	if(hybernate)
+		stasis = TRUE
 		lifecycle = initial(lifecycle)
 	else if(!attached)
 		addtimer(CALLBACK(src, .proc/GoActive), rand(MIN_ACTIVE_TIME,MAX_ACTIVE_TIME))
 
-/obj/item/clothing/mask/facehugger/proc/GoActive()
-	if(stat == UNCONSCIOUS)
+/obj/item/clothing/mask/facehugger/proc/GoActive(unhybernate = FALSE)
+	if(stat == UNCONSCIOUS && (!stasis || unhybernate))
+		stasis = FALSE
 		update_stat(CONSCIOUS)
 		return TRUE
 	return FALSE
@@ -267,8 +270,8 @@
 	else
 		fast_activate()
 
-/obj/item/clothing/mask/facehugger/proc/fast_activate()
-	if(GoActive())
+/obj/item/clothing/mask/facehugger/proc/fast_activate(unhybernate = FALSE)
+	if(GoActive(unhybernate))
 		monitor_surrounding()
 
 /mob/proc/can_be_facehugged(obj/item/clothing/mask/facehugger/F, check_death = TRUE, check_mask = TRUE, provoked = FALSE)
@@ -284,8 +287,8 @@
 	if(check_death && stat == DEAD)
 		return FALSE
 
-	if(wear_mask)
-		if(check_mask)
+	if(check_mask)
+		if(wear_mask)
 			var/obj/item/W = wear_mask
 			if(W.flags_item & NODROP)
 				return FALSE
@@ -293,10 +296,10 @@
 				var/obj/item/clothing/mask/facehugger/hugger = W
 				if(hugger.stat != DEAD)
 					return FALSE
-		else if (wear_mask != F)
-			return FALSE
+	else if (wear_mask && wear_mask != F)
+		return FALSE
 
-		return TRUE
+	return TRUE
 
 /mob/living/carbon/human/can_be_facehugged(obj/item/clothing/mask/facehugger/F, check_death = TRUE, check_mask = TRUE, provoked = FALSE)
 	if((status_flags & (XENO_HOST|GODMODE)) || F.stat == DEAD)
@@ -311,8 +314,8 @@
 		if(species?.flags & IS_SYNTHETIC)
 			return FALSE
 
-	if(wear_mask)
-		if(check_mask)
+	if(check_mask)
+		if(wear_mask)
 			var/obj/item/W = wear_mask
 			if(W.flags_item & NODROP)
 				return FALSE
@@ -320,10 +323,10 @@
 				var/obj/item/clothing/mask/facehugger/hugger = W
 				if(hugger.stat != DEAD)
 					return FALSE
-		else if (wear_mask != F)
-			return FALSE
+	else if (wear_mask && wear_mask != F)
+		return FALSE
 
-		return TRUE
+	return TRUE
 
 /obj/item/clothing/mask/facehugger/proc/Attach(mob/living/carbon/M, self_done = FALSE)
 
