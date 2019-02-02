@@ -151,7 +151,7 @@
 	return TRUE // update UIs attached to this object
 
 /obj/machinery/chem_dispenser/attackby(var/obj/item/reagent_container/B as obj, var/mob/user as mob)
-	if(isrobot(user))
+	if(iscyborg(user))
 		return
 	if(src.beaker)
 		to_chat(user, "Something is already loaded into the machine.")
@@ -192,7 +192,7 @@
 
 /obj/machinery/chem_dispenser/soda/attackby(var/obj/item/B as obj, var/mob/user as mob)
 	..()
-	if(istype(B, /obj/item/device/multitool))
+	if(ismultitool(B))
 		if(hackedcheck == 0)
 			to_chat(user, "You change the mode from 'McNano' to 'Pizza King'.")
 			dispensable_reagents += list("thirteenloko","grapesoda")
@@ -219,7 +219,7 @@
 /obj/machinery/chem_dispenser/beer/attackby(var/obj/item/B as obj, var/mob/user as mob)
 	..()
 
-	if(istype(B, /obj/item/device/multitool))
+	if(ismultitool(B))
 		if(hackedcheck == 0)
 			to_chat(user, "You disable the 'nanotrasen-are-cheap-bastards' lock, enabling hidden and very expensive boozes.")
 			dispensable_reagents += list("goldschlager","patron","watermelonjuice","berryjuice")

@@ -147,7 +147,7 @@ var/global/list/cached_icons = list()
 
 /obj/item/paint/afterattack(turf/target, mob/user as mob, proximity)
 	if(!proximity) return
-	if(!istype(target) || istype(target, /turf/open/space))
+	if(!istype(target) || isspaceturf(target))
 		return
 	var/ind = "[initial(target.icon)][color]"
 	if(!cached_icons[ind])
@@ -179,7 +179,7 @@ datum/reagent/paint
 	description = "This paint will only adhere to floor tiles."
 
 	reaction_turf(var/turf/T, var/volume)
-		if(!istype(T) || istype(T, /turf/open/space))
+		if(!istype(T) || isspaceturf(T))
 			return
 		T.color = color
 

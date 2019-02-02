@@ -20,9 +20,9 @@
 
 
 /obj/item/implanter/attack(mob/M as mob, mob/user as mob)
-	if (!istype(M, /mob/living/carbon/human) && !istype(M, /mob/living/carbon/monkey))
+	if (!ishuman(M) && !ismonkey(M))
 		return
-	if(isYautja(M))
+	if(isyautja(M))
 		return
 	if (user && src.imp)
 		user.visible_message("<span class='warning'>[user] is attemping to implant [M].</span>", "<span class='notice'>You're attemping to implant [M].</span>")
@@ -34,7 +34,7 @@
 					M.visible_message("<span class='warning'>[M] has been implanted by [user].</span>")
 
 					log_combat(user, M, "implanted", src)
-					message_admins("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) implanted [key_name(M)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[M]'>?</A>)(<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[M.x];Y=[M.y];Z=[M.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[M]'>FLW</a>) with [src.name] (INTENT: [uppertext(usr.a_intent)])")
+					message_admins("[ADMIN_TPMONTY(usr)] implanted [ADMIN_TPMONTY(M)] with [src.name].")
 
 					src.imp.loc = M
 					src.imp.imp_in = M

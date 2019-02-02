@@ -45,11 +45,11 @@
 	user.mention = sender
 	return stc.Run(user, params) || TRUE
 
-/*
-
 #undef SERVICE_JSON_PARAM_HELPTEXT
 #undef SERVICE_JSON_PARAM_ADMINONLY
 #undef SERVICE_JSON_PARAM_REQUIREDPARAMETERS
+
+/*
 
 The MIT License
 

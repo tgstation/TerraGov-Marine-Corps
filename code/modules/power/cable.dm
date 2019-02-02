@@ -2,13 +2,13 @@
 
 /obj/machinery/power/attackby(obj/item/W, mob/user)
 
-	if(istype(W, /obj/item/stack/cable_coil))
+	if(iscablecoil(W))
 
 		var/obj/item/stack/cable_coil/coil = W
 
 		var/turf/T = user.loc
 
-		if(T.intact_tile || !istype(T, /turf/open/floor))
+		if(T.intact_tile || !isfloorturf(T))
 			return
 
 		if(get_dist(src, user) > 1)
@@ -77,7 +77,7 @@
 	var/turf/T = src.loc			// hide if turf is not intact
 
 	if(level==1) hide(T.intact_tile)
-	cable_list += src
+	GLOB.cable_list += src
 	update_icon()
 
 
@@ -85,7 +85,7 @@
 	if(!defer_powernet_rebuild)					// set if network will be rebuilt manually
 		if(powernet)
 			powernet.cut_cable(src)				// update the powernets
-	cable_list -= src
+	GLOB.cable_list -= src
 	. = ..()									// then go ahead and delete the cable
 
 /obj/structure/cable/hide(var/i)
@@ -112,7 +112,7 @@
 	if(T.intact_tile)
 		return
 
-	if(istype(W, /obj/item/tool/wirecutters))
+	if(iswirecutter(W))
 
 ///// Z-Level Stuff
 		if(src.d1 == 12 || src.d2 == 12)
@@ -141,19 +141,19 @@
 
 		for(var/mob/O in viewers(src, null))
 			O.show_message("<span class='warning'>[user] cuts the cable.</span>", 1)
-		log_admin("[key_name(user)] cut a wire at ([x],[y],[z])")
-		message_admins("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) cut a wire at ([x],[y],[z])")
+		log_admin("[key_name(user)] cut a wire at [AREACOORD(src.loc)].")
+		message_admins("[ADMIN_TPMONTY(user)] cut a wire.")
 
 		qdel(src)
 
 		return	// not needed, but for clarity
 
 
-	else if(istype(W, /obj/item/stack/cable_coil))
+	else if(iscablecoil(W))
 		var/obj/item/stack/cable_coil/coil = W
 		coil.cable_join(src, user)
 
-	else if(istype(W, /obj/item/device/multitool))
+	else if(ismultitool(W))
 
 		var/datum/powernet/PN = get_powernet()		// find the powernet
 

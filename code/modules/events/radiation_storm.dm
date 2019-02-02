@@ -18,7 +18,7 @@
 		command_announcement.Announce("The [station_name()] has entered the radiation belt. Please remain in a sheltered area until it has passed.", "Anomaly Alert")
 
 		for(var/i = 0, i < 10, i++)
-			for(var/mob/living/carbon/human/H in living_mob_list)
+			for(var/mob/living/carbon/human/H in GLOB.alive_human_list)
 				var/turf/T = get_turf(H)
 				if(!T)
 					continue
@@ -39,7 +39,7 @@
 							domutcheck(H,null,MUTCHK_FORCED)
 
 
-			for(var/mob/living/carbon/monkey/M in living_mob_list)
+			for(var/mob/living/carbon/monkey/M in GLOB.alive_mob_list)
 				var/turf/T = get_turf(M)
 				if(!T)
 					continue

@@ -159,7 +159,7 @@
 			if(!M.brainmob.key)
 				var/ghost_can_reenter = 0
 				if(M.brainmob.mind)
-					for(var/mob/dead/observer/G in player_list)
+					for(var/mob/dead/observer/G in GLOB.player_list)
 						if(G.can_reenter_corpse && G.mind == M.brainmob.mind)
 							ghost_can_reenter = 1
 							break
@@ -231,7 +231,7 @@
 			if(user.transferItemToLoc(W, src))
 				cell = W
 				to_chat(user, "<span class='notice'>You insert the cell!</span>")
-	if(istype(W, /obj/item/stack/cable_coil))
+	if(iscablecoil(W))
 		if(src.wires)
 			to_chat(user, "<span class='notice'>You have already inserted wire!</span>")
 			return

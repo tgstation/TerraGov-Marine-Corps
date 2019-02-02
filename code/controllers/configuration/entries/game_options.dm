@@ -141,3 +141,18 @@
 /datum/config_entry/flag/humans_need_surnames
 
 /datum/config_entry/flag/allow_ai
+
+/datum/config_entry/flag/fun_allowed //at the moment, when set equal to 1, allows players to *dab (and get limbs automatically blown off).
+
+/datum/config_entry/number/xeno_coefficient
+	integer = FALSE
+	config_entry_value = 1
+	min_val = 1
+
+/datum/config_entry/number/survivor_coefficient
+	integer = FALSE
+	config_entry_value = 1
+	min_val = 1
+
+/datum/config_entry/number/latejoin_larva_required_num
+	min_val = 0

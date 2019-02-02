@@ -38,7 +38,7 @@
 	see_invisible = SEE_INVISIBLE_MINIMUM
 	see_in_dark = 8
 
-	for(var/mob/dead/observer/M in player_list)
+	for(var/mob/dead/observer/M in GLOB.player_list)
 		to_chat(M, "<span class='danger'>A hellhound is now available to play! Please be sure you can follow the rules.</span>")
 		to_chat(M, "<span class='warning'> Click 'Join as hellhound' in the ghost panel to become one. First come first serve!</span>")
 		to_chat(M, "<span class='warning'> If you need help during play, click adminhelp and ask.</span>")
@@ -50,13 +50,13 @@
 		return
 
 	if(a_intent == "help")
-		if(isYautja(H))
+		if(isyautja(H))
 			visible_message("[src] licks [H].", "You slobber on [H].")
 		else
 			visible_message("[src] sniffs at [H].", "You sniff at [H].")
 		return
 	else if(a_intent == "disarm")
-		if(isYautja(H))
+		if(isyautja(H))
 			visible_message("[src] shoves [H].", "You shove [H].")
 			playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
 		else
@@ -73,7 +73,7 @@
 			O.show_message(text("<span class='warning'> [] has grabbed [H] in their jaws!</span>", src), 1)
 		src.start_pulling(H)
 	else
-		if(isYautja(H))
+		if(isyautja(H))
 			to_chat(src, "Your loyalty to the Yautja forbids you from harming them.")
 			return
 
@@ -137,7 +137,7 @@
 		if(istype(H,/mob/living/simple_animal/corgi)) //Kek
 			to_chat(src, "Awww.. it's so harmless. Better leave it alone.")
 			return
-		if(isYautja(H))
+		if(isyautja(H))
 			return
 		var/dmg = rand(3,8)
 		H.apply_damage(dmg,BRUTE,edge = 1) //Does NOT check armor.
@@ -274,7 +274,7 @@
 		if(radio_prefix == ":" || radio_prefix == ";") //Hellhounds do not actually get to talk on the radios, only listen.
 			message = trim(copytext(message,2))
 			if(!message) return
-			for(var/mob/living/carbon/hellhound/M in living_mob_list)
+			for(var/mob/living/carbon/hellhound/M in GLOB.alive_mob_list)
 				to_chat(M, "<span class='boldnotice'>\[RADIO\]: [src.name] [verb_used], '[message]'.</span>")
 			return
 

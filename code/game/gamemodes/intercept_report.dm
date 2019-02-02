@@ -93,7 +93,7 @@
 /*
 /datum/intercept_text/proc/pick_mob()
 	var/list/dudes = list()
-	for(var/mob/living/carbon/human/man in player_list)
+	for(var/mob/living/carbon/human/man in GLOB.player_list)
 		if (!man.mind) continue
 		if (man.mind.assigned_role=="MODE") continue
 		dudes += man
@@ -113,10 +113,10 @@
 
 /datum/intercept_text/proc/get_suspect()
 	var/list/dudes = list()
-	for(var/mob/living/carbon/human/man in player_list) if(man.client && man.client.prefs.nanotrasen_relation == "Opposed")
+	for(var/mob/living/carbon/human/man in GLOB.player_list) if(man.client && man.client.prefs.nanotrasen_relation == "Opposed")
 		dudes += man
-	for(var/i = 0, i < max(player_list.len/10,2), i++)
-		dudes += pick(player_list)
+	for(var/i = 0, i < max(GLOB.player_list.len/10,2), i++)
+		dudes += pick(GLOB.player_list)
 	return pick(dudes)
 
 /datum/intercept_text/proc/build_traitor(datum/mind/correct_person)

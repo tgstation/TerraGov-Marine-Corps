@@ -387,7 +387,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 				return	//took too long
 			newname = reject_bad_name(newname,allow_numbers)	//returns null if the name doesn't meet some basic requirements. Tidies up a few other things like bad-characters.
 
-			for(var/mob/living/M in player_list)
+			for(var/mob/living/M in GLOB.player_list)
 				if(M == src)
 					continue
 				if(!newname || M.real_name == newname)
@@ -422,7 +422,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 /proc/freeborg()
 	var/select = null
 	var/list/borgs = list()
-	for (var/mob/living/silicon/robot/A in player_list)
+	for (var/mob/living/silicon/robot/A in GLOB.player_list)
 		if (A.stat == 2 || A.connected_ai || A.scrambledcodes)
 			continue
 		var/name = "[A.real_name] ([A.modtype] [A.braintype])"
@@ -435,7 +435,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 //When a borg is activated, it can choose which AI it wants to be slaved to
 /proc/active_ais()
 	. = list()
-	for(var/mob/living/silicon/ai/A in living_mob_list)
+	for(var/mob/living/silicon/ai/A in GLOB.alive_mob_list)
 		if(A.stat == DEAD)
 			continue
 		if(A.control_disabled == 1)
@@ -520,15 +520,17 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	var/list/namecounts = list()
 	for(var/mob/M in mobs)
 		var/name = M.name
-		if (name in names)
+		if(name in names)
 			namecounts[name]++
 			name = "[name] ([namecounts[name]])"
 		else
 			names.Add(name)
 			namecounts[name] = 1
-		if (M.real_name && M.real_name != M.name)
+		if(M.real_name && M.real_name != M.name)
 			name += " \[[M.real_name]\]"
-		if (M.stat == 2)
+		if(M.client.prefs.xeno_name && M.client.prefs.xeno_name != "Undefined")
+			name += " - [M.client.prefs.xeno_name]"
+		if(M.stat == DEAD)
 			if(istype(M, /mob/dead/observer/))
 				name += " \[ghost\]"
 			else
@@ -543,7 +545,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	var/list/creatures = list()
 	var/list/namecounts = list()
 	for(var/mob/M in mobs)
-		if(!isYautja(M)) continue
+		if(!isyautja(M)) continue
 		var/name = M.name
 		if (name in names)
 			namecounts[name]++
@@ -568,7 +570,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	var/list/creatures = list()
 	var/list/namecounts = list()
 	for(var/mob/M in mobs)
-		if(isYautja(M)) continue
+		if(isyautja(M)) continue
 		if(iszombie(M))	continue
 		var/name = M.name
 		if (name in names)
@@ -594,7 +596,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	var/list/creatures = list()
 	var/list/namecounts = list()
 	for(var/mob/M in mobs)
-		if(isYautja(M))
+		if(isyautja(M))
 			continue
 		if(iszombie(M))
 			continue
@@ -618,7 +620,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 //Orders mobs by type then by name
 /proc/sortmobs()
 	var/list/moblist = list()
-	var/list/sortmob = sortNames(mob_list)
+	var/list/sortmob = sortNames(GLOB.mob_list)
 	for(var/mob/living/silicon/ai/M in sortmob)
 		moblist.Add(M)
 	for(var/mob/living/silicon/robot/M in sortmob)
@@ -643,7 +645,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 /proc/sortxenos()
 	var/list/xenolist = list()
-	var/list/sortmob = sortNames(mob_list)
+	var/list/sortmob = sortNames(GLOB.mob_list)
 	for(var/mob/living/carbon/Xenomorph/M in sortmob)
 		if(!M.client)
 			continue
@@ -652,18 +654,18 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 /proc/sortpreds()
 	var/list/predlist = list()
-	var/list/sortmob = sortNames(mob_list)
+	var/list/sortmob = sortNames(GLOB.mob_list)
 	for(var/mob/living/carbon/human/M in sortmob)
-		if(!M.client || !M.species.name == "Yautja")
+		if(!M.client || !isyautjastrict(M))
 			continue
 		predlist.Add(M)
 	return predlist
 
 /proc/sorthumans()
 	var/list/humanlist = list()
-	var/list/sortmob = sortNames(mob_list)
+	var/list/sortmob = sortNames(GLOB.mob_list)
 	for(var/mob/living/carbon/human/M in sortmob)
-		if(!M.client || M.species.name == "Yautja")
+		if(!M.client || isyautjastrict(M))
 			continue
 		humanlist.Add(M)
 	return humanlist
@@ -936,7 +938,8 @@ var/global/image/busy_indicator_hostile
 		return FALSE
 
 	var/mob/living/L
-	if(istype(user, /mob/living)) L = user //No more doing things while you're in crit
+	if(isliving(user))
+		L = user //No more doing things while you're in crit
 
 	var/image/busy_icon
 	if(show_busy_icon)
@@ -1107,7 +1110,7 @@ var/global/image/busy_indicator_hostile
 
 						// Find a new turf to take on the property of
 						var/turf/nextturf = get_step(corner, direction)
-						if(!nextturf || !istype(nextturf, /turf/open/space))
+						if(!nextturf || !isspaceturf(nextturf))
 							nextturf = get_step(corner, turn(direction, 180))
 
 
@@ -1243,7 +1246,7 @@ proc/DuplicateObject(obj/original, var/perfectcopy = 0 , var/sameloc = 0)
 					var/old_icon1 = T.icon
 
 					if(platingRequired)
-						if(istype(B, /turf/open/space))
+						if(isspaceturf(B))
 							continue moving
 
 					var/turf/X = new T.type(B)
@@ -1351,7 +1354,7 @@ proc/oview_or_orange(distance = world.view , center = usr , type)
 
 proc/get_mob_with_client_list()
 	var/list/mobs = list()
-	for(var/mob/M in mob_list)
+	for(var/mob/M in GLOB.mob_list)
 		if (M.client)
 			mobs += M
 	return mobs
@@ -1398,46 +1401,6 @@ var/global/list/common_tools = list(
 		return 1
 	return 0
 
-/proc/iswrench(O)
-	if(istype(O, /obj/item/tool/wrench))
-		return 1
-	return 0
-
-/proc/iswelder(O)
-	if(istype(O, /obj/item/tool/weldingtool))
-		return 1
-	return 0
-
-/proc/iscoil(O)
-	if(istype(O, /obj/item/stack/cable_coil))
-		return 1
-	return 0
-
-/proc/iswirecutter(O)
-	if(istype(O, /obj/item/tool/wirecutters))
-		return 1
-	return 0
-
-/proc/isscrewdriver(O)
-	if(istype(O, /obj/item/tool/screwdriver))
-		return 1
-	return 0
-
-/proc/ismultitool(O)
-	if(istype(O, /obj/item/device/multitool))
-		return 1
-	return 0
-
-/proc/iscrowbar(O)
-	if(istype(O, /obj/item/tool/crowbar))
-		return 1
-	return 0
-
-/proc/iswire(O)
-	if(istype(O, /obj/item/stack/cable_coil))
-		return 1
-	return 0
-
 proc/is_hot(obj/item/I)
 	return I.heat_source
 
@@ -1458,7 +1421,7 @@ proc/is_hot(obj/item/I)
 /proc/can_puncture(obj/item/W)		// For the record, WHAT THE HELL IS THIS METHOD OF DOING IT?
 	if(!istype(W)) return 0
 	return (W.sharp || W.heat_source >= 400 	|| \
-		istype(W, /obj/item/tool/screwdriver)	 || \
+		isscrewdriver(W)	 || \
 		istype(W, /obj/item/tool/pen) 		 || \
 		istype(W, /obj/item/tool/shovel) \
 	)
@@ -1685,9 +1648,6 @@ var/list/WALLITEMS = list(
 			error -= deltax
 	return line
 
-/proc/to_chat(target, message)
-	target << message
-
 //gives us the stack trace from CRASH() without ending the current proc.
 /proc/stack_trace(msg)
 	CRASH(msg)
@@ -1775,3 +1735,34 @@ var/list/WALLITEMS = list(
 
 /proc/pass()
 	return
+
+proc/pick_closest_path(value, list/matches = get_fancy_list_of_atom_types())
+	if (value == FALSE) //nothing should be calling us with a number, so this is safe
+		value = input("Enter type to find (blank for all, cancel to cancel)", "Search for type") as null|text
+		if (isnull(value))
+			return
+	value = trim(value)
+	if(!isnull(value) && value != "")
+		matches = filter_fancy_list(matches, value)
+
+	if(matches.len==0)
+		return
+
+	var/chosen
+	if(matches.len==1)
+		chosen = matches[1]
+	else
+		chosen = input("Select a type", "Pick Type", matches[1]) as null|anything in matches
+		if(!chosen)
+			return
+	chosen = matches[chosen]
+	return chosen
+
+
+/proc/IsValidSrc(datum/D)
+	if(istype(D))
+		return !QDELETED(D)
+	return FALSE
+
+
+#define isitem(A) (istype(A, /obj/item))

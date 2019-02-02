@@ -138,7 +138,7 @@
 
 	if(istype(W, /obj/item/grab) && get_dist(src, user) < 2)
 		var/obj/item/grab/G = W
-		if(istype(G.grabbed_thing, /mob/living))
+		if(isliving(G.grabbed_thing))
 			var/mob/living/M = G.grabbed_thing
 			var/state = user.grab_level
 			user.drop_held_item()
@@ -164,7 +164,7 @@
 	if(W.flags_item & NOBLUDGEON)
 		return
 
-	if(istype(W, /obj/item/tool/wirecutters))
+	if(iswirecutter(W))
 		user.visible_message("<span class='notice'>[user] starts cutting through [src] with [W].</span>",
 		"<span class='notice'>You start cutting through [src] with [W]")
 		playsound(src.loc, 'sound/items/Wirecutter.ogg', 25, 1)

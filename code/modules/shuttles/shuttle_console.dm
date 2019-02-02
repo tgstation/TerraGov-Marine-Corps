@@ -16,14 +16,14 @@
 	if(..(user))
 		return
 	//src.add_fingerprint(user)	//shouldn't need fingerprints just for looking at it.
-	if(!allowed(user) && !isXeno(user))
+	if(!allowed(user) && !isxeno(user))
 		to_chat(user, "<span class='warning'>Access denied.</span>")
 		return 1
 
 	user.set_interaction(src)
 
 	var/datum/shuttle/ferry/shuttle = shuttle_controller.shuttles[shuttle_tag]
-	if(!isXeno(user) && (onboard || z == 1) && !shuttle.iselevator)
+	if(!isxeno(user) && (onboard || z == 1) && !shuttle.iselevator)
 		if(shuttle.queen_locked)
 			if(world.time < shuttle.last_locked + SHUTTLE_LOCK_COOLDOWN)
 				to_chat(user, "<span class='warning'>You can't seem to re-enable remote control, some sort of safety cooldown is in place. Please wait another [round((shuttle.last_locked + SHUTTLE_LOCK_COOLDOWN - world.time)/600)] minutes before trying again.</span>")
@@ -144,7 +144,7 @@
 			else
 				to_chat(usr, "<span class='warning'>The shuttle's engines are still recharging and cooling down.</span>")
 			return
-		if(shuttle.queen_locked && !isXenoQueen(usr))
+		if(shuttle.queen_locked && !isxenoqueen(usr))
 			to_chat(usr, "<span class='warning'>The shuttle isn't responding to prompts, it looks like remote control was disabled.</span>")
 			return
 		//Comment to test
@@ -158,7 +158,7 @@
 				return
 
 			//Alert code is the Queen is the one calling it, the shuttle is on the ground and the shuttle still allows alerts
-			if(isXenoQueen(usr) && shuttle.location == 1 && shuttle.alerts_allowed && onboard && !shuttle.iselevator)
+			if(isxenoqueen(usr) && shuttle.location == 1 && shuttle.alerts_allowed && onboard && !shuttle.iselevator)
 				var/i = alert("Warning: Once you launch the shuttle you will not be able to bring it back. Confirm anyways?", "WARNING", "Yes", "No")
 				if(shuttle.moving_status != SHUTTLE_IDLE || shuttle.locked || shuttle.location != 1 || !shuttle.alerts_allowed || !shuttle.queen_locked || shuttle.recharging) return
 				if(istype(shuttle, /datum/shuttle/ferry/marine) && src.z == 1 && i == "Yes") //Shit's about to kick off now
@@ -177,15 +177,15 @@
 				else
 					shuttle.launch(src)
 
-			else if(!onboard && isXenoQueen(usr) && shuttle.location == 1 && !shuttle.iselevator)
+			else if(!onboard && isxenoqueen(usr) && shuttle.location == 1 && !shuttle.iselevator)
 				to_chat(usr, "<span class='alert'>Hrm, that didn't work. Maybe try the one on the ship?</span>")
 				return
 			else
 				if(z == 1)
 					shuttle.transit_gun_mission = FALSE //remote launch always do transport flight.
 				shuttle.launch(src)
-			log_admin("[usr] ([usr.key]) launched a [shuttle.iselevator? "elevator" : "shuttle"] from [src]")
-			message_admins("[usr] ([usr.key]) launched a [shuttle.iselevator? "elevator" : "shuttle"] using [src].")
+			log_admin("[key_name(usr)] launched a [shuttle.iselevator ? "elevator" : "shuttle"] from [src].")
+			message_admins("[ADMIN_TPMONTY(usr)] launched a [shuttle.iselevator ? "elevator" : "shuttle"] using [src].")
 
 	if(href_list["optimize"])
 		if(shuttle.transit_optimized)
@@ -225,7 +225,7 @@
 		if(shuttle_tag == "[MAIN_SHIP_NAME] Dropship 2")
 			ship_id = "sh_dropship2"
 
-		for(var/obj/machinery/door/airlock/dropship_hatch/M in machines)
+		for(var/obj/machinery/door/airlock/dropship_hatch/M in GLOB.machines)
 			if(M.id == ship_id)
 				if(M.locked && M.density)
 					continue // jobs done
@@ -238,10 +238,10 @@
 		var/obj/machinery/door/airlock/multi_tile/almayer/reardoor
 		switch(ship_id)
 			if("sh_dropship1")
-				for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds1/D in machines)
+				for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds1/D in GLOB.machines)
 					reardoor = D
 			if("sh_dropship2")
-				for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds2/D in machines)
+				for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds2/D in GLOB.machines)
 					reardoor = D
 
 		if(!reardoor.locked && reardoor.density)
@@ -264,7 +264,7 @@
 		if(shuttle_tag == "[MAIN_SHIP_NAME] Dropship 2")
 			ship_id = "sh_dropship2"
 
-		for(var/obj/machinery/door/airlock/dropship_hatch/M in machines)
+		for(var/obj/machinery/door/airlock/dropship_hatch/M in GLOB.machines)
 			if(M.id == ship_id)
 				if(M.z != 4)
 					M.unlock()
@@ -272,10 +272,10 @@
 		var/obj/machinery/door/airlock/multi_tile/almayer/reardoor
 		switch(ship_id)
 			if("sh_dropship1")
-				for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds1/D in machines)
+				for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds1/D in GLOB.machines)
 					reardoor = D
 			if("sh_dropship2")
-				for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds2/D in machines)
+				for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds2/D in GLOB.machines)
 					reardoor = D
 		if(reardoor.z != 4)
 			reardoor.unlock()
@@ -288,7 +288,7 @@
 		if(shuttle_tag == "[MAIN_SHIP_NAME] Dropship 2")
 			ship_id = "sh_dropship2"
 
-		for(var/obj/machinery/door/airlock/dropship_hatch/M in machines)
+		for(var/obj/machinery/door/airlock/dropship_hatch/M in GLOB.machines)
 			if(M.id == ship_id)
 				var/is_right_side = text2num(href_list["right side"])
 				if(is_right_side)
@@ -315,10 +315,10 @@
 		var/obj/machinery/door/airlock/multi_tile/almayer/reardoor
 		switch(ship_id)
 			if("sh_dropship1")
-				for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds1/D in machines)
+				for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds1/D in GLOB.machines)
 					reardoor = D
 			if("sh_dropship2")
-				for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds2/D in machines)
+				for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds2/D in GLOB.machines)
 					reardoor = D
 		if(reardoor)
 			if(reardoor.locked)
