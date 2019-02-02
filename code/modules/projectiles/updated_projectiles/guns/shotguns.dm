@@ -534,7 +534,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	desc = "A hunting rifle just like pappy used to own."
 	icon_state = "hg3712"
 	item_state = "hg3712"
-	fire_sound = 'sound/weapons/gun_shotgun_small.ogg'
+	fire_sound = 'sound/weapons/gun_sniper.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump/bolt
 	gun_skill_category = GUN_SKILL_RIFLES
 	type_of_casings = "cartridge"
