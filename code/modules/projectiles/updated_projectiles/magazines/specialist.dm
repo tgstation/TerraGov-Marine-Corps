@@ -185,5 +185,6 @@
 	default_ammo = /datum/ammo/bullet/minigun
 	max_rounds = 500
 	reload_delay = 50 //Hard to reload.
+	w_class = 3
 	gun_type = /obj/item/weapon/gun/minigun
 

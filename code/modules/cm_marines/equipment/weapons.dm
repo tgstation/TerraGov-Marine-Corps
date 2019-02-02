@@ -492,14 +492,14 @@
 	foldable = null
 	spec_set = "heavy gunner"
 
-	New()
-		..()
-		spawn(1)
-			new /obj/item/weapon/gun/launcher/m92(src)
-			new /obj/item/storage/belt/grenade/b18(src)
-			new /obj/item/clothing/gloves/marine/specialist(src)
-			new /obj/item/clothing/suit/storage/marine/specialist(src)
-			new /obj/item/clothing/head/helmet/marine/specialist(src)
+/obj/item/storage/box/spec/heavy_grenadier/New()
+	..()
+	spawn(1)
+		new /obj/item/weapon/gun/launcher/m92(src)
+		new /obj/item/storage/belt/grenade/b18(src)
+		new /obj/item/clothing/gloves/marine/specialist(src)
+		new /obj/item/clothing/suit/storage/marine/specialist(src)
+		new /obj/item/clothing/head/helmet/marine/specialist(src)
 
 
 /obj/item/storage/box/spec/heavy_gunner
@@ -514,16 +514,16 @@
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 	foldable = null
 
-	New()
-		..()
-		spawn(1)
-			new /obj/item/clothing/gloves/marine/specialist(src)
-			new /obj/item/clothing/suit/storage/marine/specialist(src)
-			new /obj/item/clothing/head/helmet/marine/specialist(src)
-			new /obj/item/weapon/gun/minigun(src)
-			new /obj/item/ammo_magazine/minigun(src)
-			new /obj/item/ammo_magazine/minigun(src)
-			new /obj/item/ammo_magazine/minigun(src)
+/obj/item/storage/box/spec/heavy_gunner/New()
+	..()
+	spawn(1)
+		new /obj/item/clothing/gloves/marine/specialist(src)
+		new /obj/item/clothing/suit/storage/marine/specialist(src)
+		new /obj/item/clothing/head/helmet/marine/specialist(src)
+		new /obj/item/weapon/gun/minigun(src)
+		new /obj/item/ammo_magazine/minigun(src)
+		new /obj/item/ammo_magazine/minigun(src)
+		new /obj/item/ammo_magazine/minigun(src)
 
 /obj/item/spec_kit //For events/WO, allowing the user to choose a specalist kit
 	name = "specialist kit"
