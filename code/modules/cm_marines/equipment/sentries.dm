@@ -1166,13 +1166,14 @@
 	ammo = /datum/ammo/bullet/turret/dumb
 	magazine_type = /obj/item/ammo_magazine/sentry/premade/dumb
 	rounds_max = 500
+	alerts_on = FALSE
 
 /obj/machinery/marine_turret/premade/dumb/Initialize()
 	. = ..()
 	rounds = 500
-	camera = null
 	camera.network = null
 	camera.c_tag = null
+	camera = null
 
 
 /obj/machinery/marine_turret/premade/dumb/attack_hand(mob/user as mob)
