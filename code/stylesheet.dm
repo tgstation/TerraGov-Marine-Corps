@@ -31,7 +31,7 @@ em						{font-style: normal;	font-weight: bold;}
 .deadsay				{color: #5c00e6;}
 .radio					{color: #4E4E4E;}
 .deptradio				{color: #993399;}
-.impradio				{color: #00ff00;}
+.impradio				{color: #ffd900;}
 .comradio				{color: #004080;}
 .syndradio				{color: #6D3F40;}
 .centradio				{color: #5C5C8A;}

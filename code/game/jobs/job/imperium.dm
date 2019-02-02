@@ -9,6 +9,9 @@
 	minimal_access = list()
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
 
+/datum/job/imperial/generate_entry_conditions(mob/living/carbon/human/H)
+	H.add_language("Imperial English")
+
 /datum/job/imperial/generate_equipment(mob/living/carbon/human/H)
 	// uniform, shoes, headset
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/imperial(H), SLOT_W_UNIFORM)
@@ -19,6 +22,8 @@
 	H.equip_to_slot_or_del(S, SLOT_SHOES)
 	
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/imperial(H), SLOT_EARS)
+	
+	generate_entry_conditions(H)
 
 /datum/job/imperial/guardsman
 	title = "Guardsman"
