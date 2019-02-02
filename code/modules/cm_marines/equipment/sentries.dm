@@ -279,6 +279,7 @@
 
 
 /obj/machinery/marine_turret/Initialize()
+	. = ..()
 	spark_system = new /datum/effect_system/spark_spread
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
@@ -1165,13 +1166,14 @@
 	ammo = /datum/ammo/bullet/turret/dumb
 	magazine_type = /obj/item/ammo_magazine/sentry/premade/dumb
 	rounds_max = 500
+	alerts_on = FALSE
 
 /obj/machinery/marine_turret/premade/dumb/Initialize()
 	. = ..()
 	rounds = 500
-	camera = null
 	camera.network = null
 	camera.c_tag = null
+	camera = null
 
 
 /obj/machinery/marine_turret/premade/dumb/attack_hand(mob/user as mob)

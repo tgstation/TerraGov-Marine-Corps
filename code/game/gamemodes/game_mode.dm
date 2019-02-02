@@ -84,6 +84,20 @@
 
 
 /datum/game_mode/proc/pre_setup()
+	if(flags_landmarks & MODE_LANDMARK_SPAWN_XENO_TUNNELS)
+		setup_xeno_tunnels()
+
+	if(flags_landmarks & MODE_LANDMARK_SPAWN_MAP_ITEM)
+		spawn_map_items()
+
+	if(flags_round_type & MODE_FOG_ACTIVATED)
+		spawn_fog_blockers()
+
+	var/obj/effect/landmark/L
+	while(GLOB.landmarks_round_start.len)
+		L = GLOB.landmarks_round_start[GLOB.landmarks_round_start.len]
+		GLOB.landmarks_round_start.len--
+		L.on_round_start(flags_round_type, flags_landmarks)
 	return FALSE
 
 
@@ -302,8 +316,8 @@
 
 
 /datum/game_mode/New()
-	if(!map_tag)
-		to_chat(world, "MT001: No mapping tag set, tell a coder. [map_tag]")
+	if(!GLOB.map_tag)
+		to_chat(world, "MT001: No mapping tag set, tell a coder. [GLOB.map_tag]")
 
 
 /datum/game_mode/proc/display_roundstart_logout_report()

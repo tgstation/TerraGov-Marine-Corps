@@ -225,3 +225,7 @@ var/list/RESTRICTED_CAMERA_NETWORKS = list( //Those networks can only be accesse
 
 #define HYPOSPRAY_INJECT_MODE_DRAW		0
 #define HYPOSPRAY_INJECT_MODE_INJECT	1
+
+// Random item spawns for huntergames
+#define HG_RANDOM_ITEM_CRAP 1
+#define HG_RANDOM_ITEM_GOOD 2

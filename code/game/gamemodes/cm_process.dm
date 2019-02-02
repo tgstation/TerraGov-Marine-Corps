@@ -210,11 +210,7 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 			to_chat(player, output)
 
 /datum/game_mode/proc/end_of_round_deathmatch()
-	var/list/spawns = list()
-
-	for(var/obj/effect/landmark/L in GLOB.landmarks_list)
-		if(L.name == "deathmatch")
-			spawns += L.loc
+	var/list/spawns = GLOB.deathmatch.Copy()
 
 	if(length(spawns) < 1)
 		log_runtime("ERROR: Failed to find any End of Round Deathmatch landmarks.")
@@ -241,10 +237,7 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 			picked = pick(spawns)
 			spawns -= picked
 		else
-			for(var/obj/effect/landmark/L in GLOB.landmarks_list)
-				switch(L.name)
-					if("deathmatch")
-						spawns += L.loc
+			spawns = GLOB.deathmatch.Copy()
 
 			if(length(spawns) < 1)
 				log_runtime("ERROR: Failed to regenerate End of Round Deathmatch landmarks.")
@@ -276,7 +269,7 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 
 //Spawns a larva in an appropriate location
 /datum/game_mode/proc/spawn_latejoin_larva()
-	var/mob/living/carbon/Xenomorph/Larva/new_xeno = new /mob/living/carbon/Xenomorph/Larva(pick(xeno_spawn))
+	var/mob/living/carbon/Xenomorph/Larva/new_xeno = new /mob/living/carbon/Xenomorph/Larva(pick(GLOB.xeno_spawn))
 	new_xeno.visible_message("<span class='xenodanger'>A larva suddenly burrows out of the ground!</span>",
 	"<span class='xenodanger'>You burrow out of the ground and awaken from your slumber. For the Hive!</span>")
 	new_xeno << sound('sound/effects/xeno_newlarva.ogg')
@@ -287,11 +280,9 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 	//to_chat(world, "<span class='boldnotice'>The fog north of the colony is starting to recede.</span>")
 	flags_round_type &= ~MODE_FOG_ACTIVATED
 	var/i
-	for(i in round_fog)
-		round_fog -= i
+	for(i in GLOB.fog_blockers)
 		qdel(i)
 		sleep(1)
-	round_fog = null
 
 //Delta is the randomness interval, in +/-. Might not be the exact mathematical definition
 /datum/game_mode/proc/announce_bioscans(var/delta = 2)

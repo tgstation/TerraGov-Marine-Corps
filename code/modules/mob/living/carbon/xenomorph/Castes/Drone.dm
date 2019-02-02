@@ -163,7 +163,7 @@
 		/datum/action/xeno_action/activable/salvage_plasma,
 		/datum/action/xeno_action/activable/corrosive_acid/drone,
 		/datum/action/xeno_action/activable/drone_sting,
-		/datum/action/xeno_action/emit_pheromones
+		/datum/action/xeno_action/toggle_pheromones
 		)
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/vent_crawl,
