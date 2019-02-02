@@ -433,17 +433,18 @@
 					message_admins("[ADMIN_TPMONTY(usr)] played web sound: [web_sound_input]")
 			else
 				to_chat(usr, "<span class='warning'>Youtube-dl URL retrieval FAILED: [stderr]</span>")
-		else if(alert(usr, "Do you want to stop all sounds?", "Warning", "Yes", "No") == "Yes")
-			for(var/m in GLOB.player_list)
-				var/mob/M = m
-				var/client/C = M.client
-				if((C.prefs.toggles_sound & SOUND_MIDI) && C.chatOutput && !C.chatOutput.broken && C.chatOutput.loaded)
-					C.chatOutput.stopMusic()
-			log_admin("[key_name(usr)] stopped web sound.")
-			message_admins("[ADMIN_TPMONTY(usr)] stopped web sound.")
-			return
 		else
-			return
+			var/a = alert(usr, "Do you want to stop all sounds?", "Warning", "Yes", "No"))
+			switch(a)
+				if("Yes")
+					for(var/m in GLOB.player_list)
+						var/mob/M = m
+						var/client/C = M.client
+						if((C.prefs.toggles_sound & SOUND_MIDI) && C.chatOutput && !C.chatOutput.broken && C.chatOutput.loaded)
+							C.chatOutput.stopMusic()
+					log_admin("[key_name(usr)] stopped web sound.")
+					message_admins("[ADMIN_TPMONTY(usr)] stopped web sound.")
+				return
 
 		if(web_sound_url && !findtext(web_sound_url, GLOB.is_http_protocol))
 			to_chat(src, "<span class='warning'>BLOCKED: Content URL not using http(s) protocol</span>")
