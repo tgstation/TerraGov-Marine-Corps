@@ -777,16 +777,16 @@
 		user.visible_message("<span class='info'>[user] starts becoming shimmery and indistinct...</span>")
 		if(do_after(user,100, TRUE, 5, BUSY_ICON_GENERIC))
 			// Teleport self.
-			user.visible_message("<span class='warning'>\icon[user][user] disappears!</span>")
+			user.visible_message("<span class='warning'>[bicon(user)][user] disappears!</span>")
 			var/tele_time = animation_teleport_quick_out(user)
 			// Also teleport whoever you're pulling.
 			var/mob/living/M = user.pulling
 			if(istype(M))
-				M.visible_message("<span class='warning'>\icon[M][M] disappears!</span>")
+				M.visible_message("<span class='warning'>[bicon(M)][M] disappears!</span>")
 				animation_teleport_quick_out(M)
 			sleep(tele_time)
 
-			var/turf/end_turf = pick(pred_spawn)
+			var/turf/end_turf = pick(GLOB.pred_spawn)
 			user.forceMove(end_turf)
 			animation_teleport_quick_in(user)
 			if(M && M.loc)

@@ -78,6 +78,10 @@
 /obj/item/cell/attack_self(mob/user as mob)
 	add_fingerprint(user)
 	if(rigged)
+		if(issynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
+			to_chat(user, "<span class='warning'>Your programming restricts using rigged power cells.</span>")
+			return
+		log_combat(user, src, "primed a rigged")
 		user.visible_message("<span class='danger'>[user] destabilizes [src]; it will detonate shortly!</span>",
 		"<span class='danger'>You destabilize [src]; it will detonate shortly!</span>")
 		msg_admin_attack("[key_name(user)] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[user.y];Z=[user.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) (<A HREF='?_src_=holder;adminmoreinfo=\ref[user]'>?</A>) primed \a [src].")
@@ -94,8 +98,11 @@
 	return ..()
 
 /obj/item/cell/attackby(obj/item/W, mob/user)
-	..()
+	. = ..()
 	if(istype(W, /obj/item/reagent_container/syringe))
+		if(issynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
+			to_chat(user, "<span class='warning'>Your programming restricts rigging of power cells.</span>")
+			return
 		var/obj/item/reagent_container/syringe/S = W
 
 		to_chat(user, "You inject the solution into the power cell.")
@@ -109,6 +116,9 @@
 
 		S.reagents.clear_reagents()
 	else if(ismultitool(W))
+		if(issynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
+			to_chat(user, "<span class='warning'>Your programming restricts rigging of power cells.</span>")
+			return
 		var/delay = SKILL_TASK_EASY
 		var/skill
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer) //Higher skill lowers the delay.
@@ -173,9 +183,6 @@
 		corrupt()
 		return
 	//explosion(T, 0, 1, 2, 2)
-
-	log_admin("Rigged power cell explosion at [AREACOORD(src.loc)], last touched by [key_name(fingerprintslast)].")
-	message_admins("Rigged power cell explosion at [ADMIN_VERBOSEJMP(src.loc)], last touched by [key_name_admin(fingerprintslast)].")
 
 	explosion(T, devastation_range, heavy_impact_range, light_impact_range, flash_range)
 

@@ -48,7 +48,7 @@
 
 /obj/machinery/vending/marine/select_gamemode_equipment(gamemode)
 	var/products2[]
-	switch(map_tag)
+	switch(GLOB.map_tag)
 		if(MAP_ICE_COLONY)
 			products2 = list(
 						/obj/item/clothing/mask/rebreather/scarf = 10,
@@ -112,7 +112,8 @@
 					/obj/item/weapon/gun/shotgun/pump = 10,
 					// /obj/item/weapon/gun/shotgun/combat = 1,
 					/obj/item/explosive/mine = 2,
-					/obj/item/storage/box/nade_box = 2,
+					/obj/item/storage/box/nade_box = 1,
+					/obj/item/storage/box/nade_box/impact = 1,
 					/obj/item/weapon/gun/energy/lasgun/M43 = 5,
 					/obj/item/explosive/grenade/frag/m15 = 2,
 					/obj/item/explosive/grenade/incendiary = 4,
@@ -630,7 +631,7 @@
 
 /obj/machinery/vending/marine_leader/select_gamemode_equipment(gamemode)
 	var/products2[]
-	switch(map_tag)
+	switch(GLOB.map_tag)
 		if(MAP_ICE_COLONY)
 			products2 = list( /obj/item/map/ice_colony_map = 3)
 		if(MAP_BIG_RED)

@@ -5,7 +5,7 @@
 	name = "M30 box magazine (10x28mm Caseless)"
 	desc = "A box of 500 10x28mm caseless rounds for the UA 571-C Sentry Gun. Just feed it into the sentry gun's ammo port when its ammo is depleted."
 	w_class = 4
-	icon = 'icons/Marine/new_sentry_alt.dmi'
+	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "ammo_can"
 	flags_magazine = NOFLAGS //can't be refilled or emptied by hand
 	caliber = "10x28mm"
@@ -43,7 +43,7 @@
 	desc = "The turret part of an automated sentry turret."
 	unacidable = TRUE
 	w_class = 5
-	icon = 'icons/Marine/new_sentry_alt.dmi'
+	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "sentry_head"
 
 
@@ -52,7 +52,7 @@
 	desc = "The tripod part of an automated sentry turret. You should deploy it first."
 	unacidable = TRUE
 	w_class = 5
-	icon = 'icons/Marine/new_sentry_alt.dmi'
+	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "sentry_tripod_folded"
 
 /obj/item/device/turret_tripod/attack_self(mob/user)
@@ -84,7 +84,7 @@
 /obj/machinery/turret_tripod_deployed
 	name = "\improper UA 571-C turret tripod"
 	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an M30 Autocannon and a 500-round drum magazine."
-	icon = 'icons/Marine/new_sentry_alt.dmi'
+	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "sentry_tripod"
 	anchored = FALSE
 	unacidable = TRUE
@@ -206,7 +206,7 @@
 /obj/machinery/marine_turret
 	name = "\improper UA 571-C sentry gun"
 	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an M30 Autocannon and a 500-round drum magazine."
-	icon = 'icons/Marine/new_sentry_alt.dmi'
+	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "sentry_base"
 	anchored = TRUE
 	unacidable = TRUE
@@ -279,6 +279,7 @@
 
 
 /obj/machinery/marine_turret/Initialize()
+	. = ..()
 	spark_system = new /datum/effect_system/spark_spread
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
@@ -698,14 +699,14 @@
 	return ..()
 
 /obj/machinery/marine_turret/update_icon()
-	var/image/battery_green = image('icons/Marine/new_sentry_alt.dmi', src, "sentry_batt_green")
-	var/image/battery_yellow = image('icons/Marine/new_sentry_alt.dmi', src, "sentry_batt_yellow")
-	var/image/battery_orange = image('icons/Marine/new_sentry_alt.dmi', src, "sentry_batt_orange")
-	var/image/battery_red = image('icons/Marine/new_sentry_alt.dmi', src, "sentry_batt_red")
-	var/image/battery_black = image('icons/Marine/new_sentry_alt.dmi', src, "sentry_batt_black")
-	var/image/active = image('icons/Marine/new_sentry_alt.dmi', src, "sentry_active")
-	var/image/ammo_full = image('icons/Marine/new_sentry_alt.dmi', src, "sentry_ammo")
-	var/image/ammo_empty = image('icons/Marine/new_sentry_alt.dmi', src, "sentry_ammo_empty")
+	var/image/battery_green = image('icons/Marine/sentry.dmi', src, "sentry_batt_green")
+	var/image/battery_yellow = image('icons/Marine/sentry.dmi', src, "sentry_batt_yellow")
+	var/image/battery_orange = image('icons/Marine/sentry.dmi', src, "sentry_batt_orange")
+	var/image/battery_red = image('icons/Marine/sentry.dmi', src, "sentry_batt_red")
+	var/image/battery_black = image('icons/Marine/sentry.dmi', src, "sentry_batt_black")
+	var/image/active = image('icons/Marine/sentry.dmi', src, "sentry_active")
+	var/image/ammo_full = image('icons/Marine/sentry.dmi', src, "sentry_ammo")
+	var/image/ammo_empty = image('icons/Marine/sentry.dmi', src, "sentry_ammo_empty")
 
 	overlays.Cut()
 	if(stat && health > 0) //Knocked over
@@ -1165,13 +1166,14 @@
 	ammo = /datum/ammo/bullet/turret/dumb
 	magazine_type = /obj/item/ammo_magazine/sentry/premade/dumb
 	rounds_max = 500
+	alerts_on = FALSE
 
 /obj/machinery/marine_turret/premade/dumb/Initialize()
 	. = ..()
 	rounds = 500
-	camera = null
 	camera.network = null
 	camera.c_tag = null
+	camera = null
 
 
 /obj/machinery/marine_turret/premade/dumb/attack_hand(mob/user as mob)
@@ -1208,7 +1210,7 @@
 	name = "M30 box magazine (10x28mm Caseless)"
 	desc = "A box of 500 10x28mm caseless rounds for the UA 571-C Sentry Gun. Just feed it into the sentry gun's ammo port when its ammo is depleted."
 	w_class = 4
-	icon = 'icons/Marine/new_sentry_alt.dmi'
+	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "ammo_can"
 	flags_magazine = NOFLAGS //can't be refilled or emptied by hand
 	caliber = "10x28mm"
@@ -1236,7 +1238,7 @@
 	name = "UA-577 box magazine (12x40mm Gauss Slugs)"
 	desc = "A box of 50000 12x40mm gauss slugs for the UA-577 Gauss Turret. Just feed it into the turret's ammo port when its ammo is depleted."
 	w_class = 4
-	icon = 'icons/Marine/new_sentry_alt.dmi'
+	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "ammo_can"
 	flags_magazine = NOFLAGS //can't be refilled or emptied by hand
 	caliber = "12x40mm"

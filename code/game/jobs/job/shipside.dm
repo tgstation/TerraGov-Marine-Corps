@@ -195,7 +195,7 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/tanker(H), SLOT_R_HAND)
 
 /datum/job/command/tank_crew/generate_entry_message(mob/living/carbon/human/H)
-	return {"Your job is to operate and maintain thee ship's armored vehicles.
+	return {"Your job is to operate and maintain the ship's armored vehicles.
 While you are an officer, your authority is limited to your own vehicle, where you have authority over the enlisted personnel. You will need MTs to repair and replace hardpoints."}
 
 

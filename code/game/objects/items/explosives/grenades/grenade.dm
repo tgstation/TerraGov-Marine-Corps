@@ -10,6 +10,8 @@
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
 	hitsound = 'sound/weapons/smash.ogg'
+	var/launched = FALSE //if launched from a UGL/grenade launcher
+	var/launchforce = 10 //bonus impact damage if launched from a UGL/grenade launcher
 	var/active = 0
 	var/det_time = 50
 	var/dangerous = TRUE 	//Does it make a danger overlay for humans? Can synths use it?
@@ -61,6 +63,7 @@
 		return
 
 	if(user)
+		log_combat(user, src, "primed")
 		msg_admin_attack("[ADMIN_TPMONTY(usr)] primed \a [src].")
 
 	icon_state = initial(icon_state) + "_active"
@@ -79,9 +82,8 @@
 		dangerous = 0
 	return
 
-/obj/item/explosive/grenade/proc/prime()
-//	playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
 
+/obj/item/explosive/grenade/proc/prime()
 
 
 /obj/item/explosive/grenade/attackby(obj/item/W as obj, mob/user as mob)

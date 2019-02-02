@@ -17,7 +17,7 @@ var/list/spawntypes = list()
 
 /datum/spawnpoint/arrivals/New()
 	..()
-	turfs = latejoin
+	turfs = GLOB.latejoin
 
 /datum/spawnpoint/gateway
 	display_name = "Gateway"
@@ -25,7 +25,7 @@ var/list/spawntypes = list()
 
 /datum/spawnpoint/gateway/New()
 	..()
-	turfs = latejoin_gateway
+	turfs = GLOB.latejoin_gateway
 
 /datum/spawnpoint/cryo
 	display_name = "Cryogenic Storage"
@@ -33,4 +33,4 @@ var/list/spawntypes = list()
 
 /datum/spawnpoint/cryo/New()
 	..()
-	turfs = latejoin_cryo
+	turfs = GLOB.latejoin_cryo

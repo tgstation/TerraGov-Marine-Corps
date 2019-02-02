@@ -226,19 +226,20 @@
 
 
 /datum/emergency_call/proc/get_spawn_point(is_for_items)
-	var/list/spawn_list = list()
+	var/index
+	if(is_for_items)
+		index = "[name_of_spawn]Item"
+	else
+		index = name_of_spawn
+	if(!GLOB.distress_spawns_by_name[index])
+		return FALSE
 
-	for(var/obj/effect/landmark/L in GLOB.landmarks_list)
-		if(is_for_items && L.name == "[name_of_spawn]Item")
-			spawn_list += L
-		else
-			if(L.name == name_of_spawn) //Default is "Distress"
-				spawn_list += L
+	var/list/spawn_list = GLOB.distress_spawns_by_name[index].Copy()
 
 	if(!length(spawn_list)) //Empty list somehow
 		return FALSE
 
-	var/turf/spawn_loc	= get_turf(pick(spawn_list))
+	var/turf/spawn_loc	= pick(spawn_list)
 	if(!istype(spawn_loc))
 		return FALSE
 

@@ -246,6 +246,15 @@
 	vision_flags = SEE_TURFS|SEE_MOBS|SEE_OBJS
 	var/hud_type = MOB_HUD_MEDICAL_OBSERVER|MOB_HUD_SECURITY_ADVANCED
 
+/obj/item/clothing/glasses/sunglasses/sa/equipped(mob/living/carbon/human/user, slot)
+	if(slot == SLOT_GLASSES)
+		user.see_invisible = SEE_INVISIBLE_MINIMUM
+		user.see_in_dark = 8
+
+/obj/item/clothing/glasses/sunglasses/sa/dropped(mob/living/carbon/human/user)
+	user.see_invisible = initial(user.see_invisible)
+	user.see_in_dark = initial(user.see_in_dark)
+
 /obj/item/clothing/glasses/sunglasses/sechud
 	name = "HUDSunglasses"
 	desc = "Sunglasses with a HUD."
