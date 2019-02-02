@@ -176,7 +176,7 @@
 		if(T == user.loc)
 			prev_T = T
 			continue
-		if((T.density && !istype(T, /turf/closed/wall/resin)) || istype(T, /turf/open/space))
+		if((T.density && !istype(T, /turf/closed/wall/resin)) || isspaceturf(T))
 			break
 		if(loc != user)
 			break
@@ -184,16 +184,31 @@
 			break
 		if(distance > max_range)
 			break
-		var/list/turf_targets
+
+		var/blocked = FALSE
 		for(var/obj/O in T)
-			if(O.density && !(O.flags_atom & ON_BORDER))
-				turf_targets.Add(O)
-		if(!prev_T.Adjacent(T, turf_targets))
-			break //on border objects without throwpass still blocked us.
+			if(O.density && !O.throwpass && !(O.flags_atom & ON_BORDER))
+				blocked = TRUE
+				break
+
+		var/turf/TF
+		if(!prev_T.Adjacent(T) && (T.x != prev_T.x || T.y != prev_T.y)) //diagonally blocked, it will seek for a cardinal turf by the former target.
+			blocked = TRUE
+			var/turf/Ty = locate(prev_T.x, T.y, prev_T.z)
+			var/turf/Tx = locate(T.x, prev_T.y, prev_T.z)
+			for(var/turf/TB in shuffle(list(Ty, Tx)))
+				if(prev_T.Adjacent(TB) && ((!TB.density && !isspaceturf(T)) || istype(T, /turf/closed/wall/resin)))
+					TF = TB
+					break
+			if(!TF)
+				break
+		else
+			TF = T
+
 		current_mag.current_rounds--
-		flame_turf(T,user, burntime, burnlevel, fire_color)
-		if(turf_targets)
-			break //we flamed a dense object, hurray bad code.
+		flame_turf(TF,user, burntime, burnlevel, fire_color)
+		if(blocked)
+			break
 		distance++
 		prev_T = T
 		sleep(1)

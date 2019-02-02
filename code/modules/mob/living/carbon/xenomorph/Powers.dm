@@ -1977,45 +1977,45 @@
 			prev_turf = get_turf(src)
 			continue //So we don't burn the tile we be standin on
 
-		for(var/obj/structure/barricade/EB in T)
-			if(get_dir(prev_turf, T) & EB.dir)
-				EB.health -= rand(45, 60) + 8 * upgrade
-				EB.update_health(TRUE)
+		for(var/obj/structure/barricade/B in prev_turf)
+			if(get_dir(prev_turf, T) & B.dir)
+				B.health -= rand(45, 60) + 8 * upgrade
+				B.update_health(TRUE)
 
 		if(T.density || isspaceturf(T))
 			break
 
-		if(prev_turf.Adjacent(T))
-			splat_turf(T)
-			for(var/obj/O in T)
-				if(istype(O, /obj/structure/barricade) && get_dir(T, prev_turf) & O.dir)
-					var/obj/structure/barricade/B = O
-					B.health -= rand(45, 60) + 8 * upgrade
-					B.update_health(TRUE)
-				if(!O.throwpass && O.density)
-					break
+		var/blocked = FALSE
+		for(var/obj/O in T)
+			if(O.density && !O.throwpass && !(O.flags_atom & ON_BORDER))
+				blocked = TRUE
+				break
 
-		else
-			var/list/directions
+		var/turf/TF
+		if(!prev_turf.Adjacent(T) && (T.x != prev_turf.x || T.y != prev_turf.y)) //diagonally blocked, it will seek for a cardinal turf by the former target.
+			blocked = TRUE
 			var/turf/Ty = locate(prev_turf.x, T.y, prev_turf.z)
-			if(Ty && !Ty.density && !isspaceturf(Ty) && Ty.Adjacent(T))
-				directions.Add(Ty)
 			var/turf/Tx = locate(T.x, prev_turf.y, prev_turf.z)
-			if(Tx && !Tx.density && !isspaceturf(Tx) && Tx.Adjacent(T))
-				directions.Add(Tx)
+			for(var/turf/TB in shuffle(list(Ty, Tx)))
+				if(prev_turf.Adjacent(TB) && !TB.density && !isspaceturf(TB))
+					TF = TB
+					break
+			if(!TF)
+				break
+		else
+			TF = T
 
-			var/turf/TF = pick(directions)
-			if(TF)
-				for(var/obj/structure/barricade/B in TF)
-					if(get_dir(TF, prev_turf) & B.dir)
-						B.health -= rand(45, 60) + 8 * upgrade
-						B.update_health(TRUE)
-				splat_turf(TF)
-			break
+		for(var/obj/structure/barricade/B in TF)
+			if(get_dir(TF, prev_turf) & B.dir)
+				B.health -= rand(45, 60) + 8 * upgrade
+				B.update_health(TRUE)
+
+		splat_turf(TF)
 
 		distance++
-		if(distance > 7)
+		if(distance > 7 || blocked)
 			break
+
 		prev_turf = T
 		sleep(2)
 
