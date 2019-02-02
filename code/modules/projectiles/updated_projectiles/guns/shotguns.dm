@@ -527,7 +527,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	pump_delay = CONFIG_GET(number/combat_define/mhigh_fire_delay) * 2
 
 //------------------------------------------------------
-//A hacky bolt action rifle.
+//A hacky bolt action rifle. in here for the "pump" or bolt working action.
 
 /obj/item/weapon/gun/shotgun/pump/bolt
 	name = "\improper Bolt action rifle"
