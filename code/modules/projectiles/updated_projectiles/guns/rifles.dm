@@ -416,13 +416,10 @@
 	fire_sound = "sound/weapons/gun_shotgun_automatic.ogg"
 	current_mag = /obj/item/ammo_magazine/rifle/autoshotgun
 	attachable_allowed = list(
-						/obj/item/attachable/quickfire,
 						/obj/item/attachable/bayonet,
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/verticalgrip,
 						/obj/item/attachable/angledgrip,
-						/obj/item/attachable/lasersight,
-						/obj/item/attachable/gyro,
 						/obj/item/attachable/flashlight,
 						/obj/item/attachable/extended_barrel,
 						/obj/item/attachable/heavy_barrel,
