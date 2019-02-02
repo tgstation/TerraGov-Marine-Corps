@@ -432,6 +432,7 @@
 /datum/action/xeno_action/pheromones/emit_frenzy
 	name = "Emit Frenzy Pheromones (30)"
 	action_icon_state = "emit_frenzy"
+	aura_type = "frenzy"
 
 /datum/action/xeno_action/activable/transfer_plasma
 	name = "Transfer Plasma"
