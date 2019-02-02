@@ -89,7 +89,7 @@
 
 		mind = body.mind	//we don't transfer the mind but we keep a reference to it.
 
-	if(!T)	T = pick(latejoin)			//Safety in case we cannot find the body's position
+	if(!T)	T = pick(GLOB.latejoin)			//Safety in case we cannot find the body's position
 	loc = T
 
 	if(!name)							//To prevent nameless ghosts

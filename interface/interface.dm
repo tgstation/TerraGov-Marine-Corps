@@ -76,7 +76,7 @@
 				return
 			src << link(ship_link)
 		if("Ground")
-			switch(map_tag)
+			switch(GLOB.map_tag)
 				if("Ice Colony")
 					ground_link = CONFIG_GET(string/icecolonyurl)
 				if("LV-624")

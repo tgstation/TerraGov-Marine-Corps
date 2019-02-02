@@ -336,7 +336,7 @@
 		var/turf/T
 		if(spawning_at) S = spawntypes[spawning_at]
 		if(istype(S)) 	T = pick(S.turfs)
-		else 			T = pick(latejoin)
+		else 			T = pick(GLOB.latejoin)
 
 		var/mob/living/carbon/human/character = create_character()	//creates the human and transfers vars and mind
 		RoleAuthority.equip_role(character, RoleAuthority.roles_for_mode[rank], T)
