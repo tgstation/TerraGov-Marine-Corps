@@ -52,7 +52,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 		/obj/item/storage/sparepouch,
 		/obj/item/storage/large_holster/machete,
 		/obj/item/storage/belt/gun/m4a3,
-		/obj/item/storage/belt/gun/m44,
+		/obj/item/storage/belt/gun/m44,)
 
 	var/brightness_on = 5 //Average attachable pocket light
 	var/flashlight_cooldown = 0 //Cooldown for toggling the light
