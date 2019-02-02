@@ -1977,27 +1977,46 @@
 			prev_turf = get_turf(src)
 			continue //So we don't burn the tile we be standin on
 
+		for(var/obj/structure/barricade/EB in T)
+			if(get_dir(prev_turf, T) & EB.dir)
+				EB.health -= rand(45, 60) + 8 * upgrade
+				EB.update_health(TRUE)
+
 		if(T.density || isspaceturf(T))
 			break
 
-		var/list/turf_targets
-		for(var/obj/O in T)
-			if(O.density && !(O.flags_atom & ON_BORDER))
-				turf_targets.Add(O)
-			var/obj/structure/barricade/B
-			if(istype(B))
-				if(get_dir(prev_turf, T) & B.dir) // > getting blocked by something actually behind it.
+		if(prev_turf.Adjacent(T))
+			splat_turf(T)
+			for(var/obj/O in T)
+				if(istype(O, /obj/structure/barricade) && get_dir(T, prev_turf) & O.dir)
+					var/obj/structure/barricade/B = O
 					B.health -= rand(45, 60) + 8 * upgrade
 					B.update_health(TRUE)
-		if(!prev_turf.Adjacent(T, turf_targets))
-			break //on border objects without throwpass still blocked us.
+				if(!O.throwpass && O.density)
+					break
 
-		distance++
-		if(distance > 7 || turf_targets)
+		else
+			var/list/directions
+			var/turf/Ty = locate(prev_turf.x, T.y, prev_turf.z)
+			if(Ty && !Ty.density && !isspaceturf(Ty) && Ty.Adjacent(T))
+				directions.Add(Ty)
+			var/turf/Tx = locate(T.x, prev_turf.y, prev_turf.z)
+			if(Tx && !Tx.density && !isspaceturf(Tx) && Tx.Adjacent(T))
+				directions.Add(Tx)
+
+			var/turf/TF = pick(directions)
+			if(TF)
+				for(var/obj/structure/barricade/B in TF)
+					if(get_dir(TF, prev_turf) & B.dir)
+						B.health -= rand(45, 60) + 8 * upgrade
+						B.update_health(TRUE)
+				splat_turf(TF)
 			break
 
+		distance++
+		if(distance > 7)
+			break
 		prev_turf = T
-		splat_turf(T)
 		sleep(2)
 
 
