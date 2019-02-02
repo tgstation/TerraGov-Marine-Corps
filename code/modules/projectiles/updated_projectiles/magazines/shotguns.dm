@@ -74,7 +74,7 @@ also doesn't really matter. You can only reload them with handfuls.
 	max_rounds = 8
 
 /obj/item/ammo_magazine/internal/shotgun/pump/bolt //The only cycle method.
-	default_ammo = /datum/ammo/bullet/rifle/m4ra
+	default_ammo = /datum/ammo/bullet/rifle/bolt
 	caliber = "7.62x51mm"
 	max_rounds = 5
 
