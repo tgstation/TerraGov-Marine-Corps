@@ -570,8 +570,6 @@
 	if(usr.client.handle_spam_prevention(msg, MUTE_DEADCHAT))
 		return
 
-	msg = copytext(sanitize(msg), 1, MAX_MESSAGE_LEN)
-
 	if(!msg)
 		return
 
