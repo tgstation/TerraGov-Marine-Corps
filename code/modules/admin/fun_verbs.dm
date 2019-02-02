@@ -434,7 +434,7 @@
 			else
 				to_chat(usr, "<span class='warning'>Youtube-dl URL retrieval FAILED: [stderr]</span>")
 		else
-			var/a = alert(usr, "Do you want to stop all sounds?", "Warning", "Yes", "No"))
+			var/a = alert(usr, "Do you want to stop all sounds?", "Warning", "Yes", "No")
 			switch(a)
 				if("Yes")
 					for(var/m in GLOB.player_list)
