@@ -4268,7 +4268,7 @@
 "bEy" = (/obj/effect/decal/cleanable/blood,/turf/open/floor{icon_state = "wood"},/area/bigredv2/outside/nanotrasen_lab/inside)
 "bEz" = (/obj/structure/bed/chair/comfy/brown,/turf/open/floor,/area/bigredv2/outside/nanotrasen_lab/inside)
 "bEA" = (/obj/machinery/atmospherics/pipe/simple/hidden/green,/obj/effect/decal/cleanable/dirt,/turf/open/floor{tag = "icon-darkyellowcorners2"; icon_state = "darkyellowcorners2"},/area/bigredv2/outside/nanotrasen_lab/inside)
-"bEB" = (/obj/structure/table,/obj/item/changestone,/turf/open/floor{icon_state = "wood"},/area/bigredv2/outside/nanotrasen_lab/inside)
+"bEB" = (/obj/structure/table,/turf/open/floor{icon_state = "wood"},/area/bigredv2/outside/nanotrasen_lab/inside)
 "bEC" = (/obj/machinery/light,/obj/structure/closet/cabinet,/obj/machinery/atmospherics/unary/vent_pump{dir = 1; on = 1},/turf/open/floor{icon_state = "wood"},/area/bigredv2/outside/nanotrasen_lab/inside)
 "bED" = (/obj/structure/bed,/obj/effect/landmark/corpsespawner/scientist,/turf/open/floor{icon_state = "wood"},/area/bigredv2/outside/nanotrasen_lab/inside)
 "bEE" = (/obj/structure/table,/obj/item/spacecash/c1000,/obj/item/spacecash/c1000,/turf/open/floor{icon_state = "wood"},/area/bigredv2/outside/nanotrasen_lab/inside)
