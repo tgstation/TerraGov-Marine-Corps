@@ -2195,10 +2195,9 @@
 
 	face_atom(H)
 	animation_attack_on(H)
-	H.reagents.add_reagent("xeno_toxin", DEFILER_STING_AMOUNT_INITIAL) //15 units transferred initially.
 	H.reagents.add_reagent("xeno_growthtoxin", DEFILER_STING_AMOUNT_INITIAL) //15 units transferred initially.
 	to_chat(H, "<span class='danger'>You feel a tiny prick.</span>")
-	to_chat(src, "<span class='xenowarning'>Your stinger injects your victim with neurotoxin and larval growth serum!</span>")
+	to_chat(src, "<span class='xenowarning'>Your stinger injects your victim with larval growth serum!</span>")
 	playsound(H, 'sound/effects/spray3.ogg', 15, 1)
 	playsound(H, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
 
@@ -2221,7 +2220,6 @@
 			return
 		animation_attack_on(H)
 		playsound(H, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
-		H.reagents.add_reagent("xeno_toxin", DEFILER_STING_AMOUNT_RECURRING) //10 units transferred.
 		H.reagents.add_reagent("xeno_growthtoxin", DEFILER_STING_AMOUNT_RECURRING)
 		overdose_check(H)
 		overdose_check(H, "xeno_growthtoxin")
