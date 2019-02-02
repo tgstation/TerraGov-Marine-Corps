@@ -55,7 +55,7 @@
 /datum/game_mode/colonialmarines/pre_setup()
 	. = ..()
 
-	if(!GLOB.fog_blockers.len) 
+	if(!GLOB.fog_blockers.len)
 		flags_round_type &= ~MODE_FOG_ACTIVATED
 	else
 		round_time_fog = rand(-2500,2500)
@@ -125,9 +125,9 @@
 		round_finished = MODE_GENERIC_DRAW_NUKE
 	else if(EvacuationAuthority.dest_status < NUKE_EXPLOSION_IN_PROGRESS) //If the nuke ISN'T in progress. We do not want to end the round before it detonates.
 		if(!num_humans && num_xenos)
-				round_finished = MODE_INFESTATION_X_MAJOR //No humans remain alive.
+			round_finished = MODE_INFESTATION_X_MAJOR //No humans remain alive.
 		else if(num_humans && !num_xenos)
-				round_finished = MODE_INFESTATION_M_MAJOR //Humans destroyed the xenomorphs.
+			round_finished = MODE_INFESTATION_M_MAJOR //Humans destroyed the xenomorphs.
 		else if(!num_humans && !num_xenos)
 			round_finished = MODE_INFESTATION_DRAW_DEATH //Both were somehow destroyed.
 
