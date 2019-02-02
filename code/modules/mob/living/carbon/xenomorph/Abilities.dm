@@ -396,7 +396,6 @@
 		to_chat(X, "<span class='xenowarning'>You need more than [plasma_cost] to emit this pheromone.</span>")
 		return FALSE
 
-	X.use_plasma(plasma_cost)
 	if(!aura_type)
 		return FALSE
 
@@ -406,6 +405,7 @@
 		X.current_aura = null
 
 	else
+		X.use_plasma(plasma_cost)
 		X.current_aura = aura_type
 		X.visible_message("<span class='xenowarning'>\The [X] begins to emit strange-smelling pheromones.</span>", \
 		"<span class='xenowarning'>You begin to emit '[X.current_aura]' pheromones.</span>", null, 5)
