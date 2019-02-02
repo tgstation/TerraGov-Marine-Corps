@@ -444,7 +444,7 @@
 							C.chatOutput.stopMusic()
 					log_admin("[key_name(usr)] stopped web sound.")
 					message_admins("[ADMIN_TPMONTY(usr)] stopped web sound.")
-				return
+			return
 
 		if(web_sound_url && !findtext(web_sound_url, GLOB.is_http_protocol))
 			to_chat(src, "<span class='warning'>BLOCKED: Content URL not using http(s) protocol</span>")
