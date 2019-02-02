@@ -75,7 +75,7 @@ RSF
 		if(stored_matter <= 0)
 			return
 
-	if(!istype(A, /obj/structure/table) && !istype(A, /turf/open/floor))
+	if(!istype(A, /obj/structure/table) && !isfloorturf(A))
 		return
 
 	playsound(src.loc, 'sound/machines/click.ogg', 25, 1)
@@ -105,7 +105,7 @@ RSF
 	to_chat(user, "Dispensing [product ? product : "product"]...")
 	product.loc = get_turf(A)
 
-	if(isrobot(user))
+	if(iscyborg(user))
 		var/mob/living/silicon/robot/R = user
 		if(R.cell)
 			R.cell.use(used_energy)

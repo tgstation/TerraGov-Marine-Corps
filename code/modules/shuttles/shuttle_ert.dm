@@ -35,7 +35,7 @@
 		else if(istype(area_station, /area/shuttle/distress/arrive_s_hangar))
 			umbili_id = "s_umbilical"
 		else return
-		for(var/obj/machinery/door/poddoor/PD in machines)
+		for(var/obj/machinery/door/poddoor/PD in GLOB.machines)
 			if(!PD.density && PD.id == umbili_id)
 				spawn(0)
 					PD.close()
@@ -65,7 +65,7 @@
 			umbili_id = "s_umbilical"
 		else return
 		//open the almayer's north of south umbilical shutters and the shuttle's north or south shutters
-		for(var/obj/machinery/door/poddoor/PD in machines)
+		for(var/obj/machinery/door/poddoor/PD in GLOB.machines)
 			if(PD.density && PD.id == umbili_id)
 				spawn(0)
 					PD.open()
@@ -84,7 +84,7 @@
 		else if(istype(area_station, /area/shuttle/distress/arrive_3))
 			shutter_id = "aftert"
 		if(shutter_id)
-			for(var/obj/machinery/door/poddoor/shutters/T in machines)
+			for(var/obj/machinery/door/poddoor/shutters/T in GLOB.machines)
 				if(T.density && shutter_id == T.id)
 					spawn(0)
 						T.open()

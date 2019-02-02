@@ -1,6 +1,0 @@
-author: "Ghommie"
-delete-after: True
-changes: 
-  - bugfix: "you don't refill blowtorchs by whacking fuel tanks with them anymore."
-  - bugfix: "the code back-end mechanical race can now fix itself with blowtorchs, differently to synthetics."
-  - code_imp: "Merges functionally identical reagents related procs/vars into the obj/ parent path."

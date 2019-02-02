@@ -104,7 +104,7 @@
 		if(T.intact_tile)
 			return		// prevent intraction when T-scanner revealed
 
-		if(istype(I, /obj/item/tool/screwdriver))
+		if(isscrewdriver(I))
 			open = !open
 
 			user.visible_message("[user] [open ? "opens" : "closes"] the beacon's cover.", "You [open ? "open" : "close"] the beacon's cover.")
@@ -184,7 +184,7 @@ Transponder Codes:<UL>"}
 		..()
 		if (usr.stat)
 			return
-		if ((in_range(src, usr) && istype(src.loc, /turf)) || (istype(usr, /mob/living/silicon)))
+		if ((in_range(src, usr) && istype(src.loc, /turf)) || (issilicon(usr)))
 			if(open && !locked)
 				usr.set_interaction(src)
 

@@ -129,6 +129,8 @@
 
 	. = ..()
 
+	GLOB.human_mob_list += src
+	GLOB.alive_human_list += src
 	round_statistics.total_humans_created++
 
 	if(dna)
@@ -136,6 +138,12 @@
 
 	prev_gender = gender // Debug for plural genders
 
+
+/mob/living/carbon/human/vv_get_dropdown()
+	. = ..()
+	. += "---"
+	.["Set Species"] = "?_src_=vars;[HrefToken()];setspecies=[REF(src)]"
+	.["Purrbation"] = "?_src_=vars;[HrefToken()];purrbation=[REF(src)]"
 
 
 /mob/living/carbon/human/prepare_huds()
@@ -155,34 +163,37 @@
 /mob/living/carbon/human/Destroy()
 	assigned_squad?.clean_marine_from_squad(src,FALSE)
 	remove_from_all_mob_huds()
+	GLOB.human_mob_list -= src
+	GLOB.alive_human_list -= src
+	GLOB.dead_human_list -= src
 	return ..()
 
 /mob/living/carbon/human/Stat()
-	if (!..())
-		return 0
+	. = ..()
+	
+	if(statpanel("Stats"))
+		if(EvacuationAuthority)
+			var/eta_status = EvacuationAuthority.get_status_panel_eta()
+			if(eta_status)
+				stat(null, eta_status)
 
-	if(EvacuationAuthority)
-		var/eta_status = EvacuationAuthority.get_status_panel_eta()
-		if(eta_status)
-			stat(null, eta_status)
+		if(internal)
+			stat("Internal Atmosphere Info", internal.name)
+			stat("Tank Pressure", internal.pressure)
+			stat("Distribution Pressure", internal.distribute_pressure)
 
-	if(internal)
-		stat("Internal Atmosphere Info", internal.name)
-		stat("Tank Pressure", internal.pressure)
-		stat("Distribution Pressure", internal.distribute_pressure)
+		if(assigned_squad)
+			if(assigned_squad.primary_objective)
+				stat("Primary Objective: ", assigned_squad.primary_objective)
+			if(assigned_squad.secondary_objective)
+				stat("Secondary Objective: ", assigned_squad.secondary_objective)
 
-	if(assigned_squad)
-		if(assigned_squad.primary_objective)
-			stat("Primary Objective: ", assigned_squad.primary_objective)
-		if(assigned_squad.secondary_objective)
-			stat("Secondary Objective: ", assigned_squad.secondary_objective)
-
-	if(mobility_aura)
-		stat(null, "You are affected by a MOVE order.")
-	if(protection_aura)
-		stat(null, "You are affected by a HOLD order.")
-	if(marskman_aura)
-		stat(null, "You are affected by a FOCUS order.")
+		if(mobility_aura)
+			stat(null, "You are affected by a MOVE order.")
+		if(protection_aura)
+			stat(null, "You are affected by a HOLD order.")
+		if(marskman_aura)
+			stat(null, "You are affected by a FOCUS order.")
 
 /mob/living/carbon/human/ex_act(severity)
 	flash_eyes()
@@ -278,8 +289,6 @@
 
 
 /mob/living/carbon/human/proc/implant_loyalty(mob/living/carbon/human/M, override = FALSE) // Won't override by default.
-	if(!CONFIG_GET(flag/use_loyalty_implants) && !override) return // Nuh-uh.
-
 	var/obj/item/implant/loyalty/L = new/obj/item/implant/loyalty(M)
 	L.imp_in = M
 	L.implanted = 1
@@ -534,9 +543,9 @@
 
 				else
 					if(r_store || l_store)
-						if(r_store && !(r_store.flags_item & NODROP) && !(r_store.flags_inventory & CANTSTRIP))
+						if(r_store && !(r_store.flags_item & NODROP))
 							dropItemToGround(r_store)
-						if(l_store && !(l_store.flags_item & NODROP) && !(l_store.flags_inventory & CANTSTRIP))
+						if(l_store && !(l_store.flags_item & NODROP))
 							dropItemToGround(l_store)
 					else
 						to_chat(usr, "<span class='notice'>[src]'s pockets are empty.</span>")
@@ -1005,10 +1014,12 @@
 		visible_message("<span class='warning'> [src] begins playing his ribcage like a xylophone. It's quite spooky.</span>","<span class='notice'> You begin to play a spooky refrain on your ribcage.</span>","<span class='warning'> You hear a spooky xylophone melody.</span>")
 		var/song = pick('sound/effects/xylophone1.ogg','sound/effects/xylophone2.ogg','sound/effects/xylophone3.ogg')
 		playsound(loc, song, 25, 1)
-		xylophone = 1
-		spawn(1200)
-			xylophone=0
+		xylophone = TRUE
+		addtimer(CALLBACK(src, .xylophone_cooldown), 1200)
 	return
+
+/mob/living/carbon/human/proc/xylophone_cooldown()
+	xylophone = FALSE
 
 /mob/living/carbon/human/proc/morph()
 	set name = "Morph"
@@ -1094,7 +1105,7 @@
 		src.verbs -= /mob/living/carbon/human/proc/remotesay
 		return
 	var/list/creatures = list()
-	for(var/mob/living/carbon/h in player_list)
+	for(var/mob/living/carbon/h in GLOB.player_list)
 		creatures += h
 	var/mob/target = input ("Who do you want to project your mind to ?") as null|anything in creatures
 	if (isnull(target))
@@ -1107,7 +1118,7 @@
 		target.show_message("<span class='notice'> You hear a voice that seems to echo around the room: [say]</span>")
 	usr.show_message("<span class='notice'> You project your mind into [target.real_name]: [say]</span>")
 	log_directed_talk(usr, target, say, LOG_SAY, "project mind")
-	for(var/mob/dead/observer/G in dead_mob_list)
+	for(var/mob/dead/observer/G in GLOB.dead_mob_list)
 		G.show_message("<i>Telepathic message from <b>[src]</b> to <b>[target]</b>: [say]</i>")
 
 /mob/living/carbon/human/proc/remoteobserve()
@@ -1132,7 +1143,7 @@
 
 	var/list/mob/creatures = list()
 
-	for(var/mob/living/carbon/h in player_list)
+	for(var/mob/living/carbon/h in GLOB.player_list)
 		var/turf/temp_turf = get_turf(h)
 		if((temp_turf.z != 1 && temp_turf.z != 5) || h.stat!=CONSCIOUS) //Not on mining or the station. Or dead
 			continue
@@ -1180,7 +1191,7 @@
 
 	//try to find the brain player in the decapitated head and put them back in control of the human
 	if(!client && !mind) //if another player took control of the human, we don't want to kick them out.
-		for (var/obj/item/limb/head/H in item_list)
+		for (var/obj/item/limb/head/H in GLOB.item_list)
 			if(H.brainmob)
 				if(H.brainmob.real_name == src.real_name)
 					if(H.brainmob.mind)
@@ -1255,11 +1266,11 @@
 	if(usr == src)
 		self = 1
 	if(!self)
-		usr.visible_message("<span class='notice'> [usr] kneels down, puts \his hand on [src]'s wrist and begins counting their pulse.</span>",\
-		"You begin counting [src]'s pulse", null, 3)
+		usr.visible_message("<span class='notice'>[usr] kneels down, puts [usr.p_their()] hand on [src]'s wrist and begins counting their pulse.</span>",\
+		"<span class='notice'>You begin counting [src]'s pulse...</span>", null, 3)
 	else
-		usr.visible_message("<span class='notice'> [usr] begins counting their pulse.</span>",\
-		"You begin counting your pulse.", null, 3)
+		usr.visible_message("<span class='notice'>[usr] begins counting their pulse.</span>",\
+		"<span class='notice'>You begin counting your pulse...</span>", null, 3)
 
 	if(src.pulse)
 		to_chat(usr, "<span class='notice'>[self ? "You have a" : "[src] has a"] pulse! Counting...</span>")
@@ -1318,7 +1329,7 @@
 
 	var/datum/species/oldspecies = species
 
-	species = all_species[new_species]
+	species = GLOB.all_species[new_species]
 
 	if(oldspecies)
 		//additional things to change when we're no longer that species
@@ -1469,7 +1480,64 @@
 		return FALSE
 	. = ..()
 
+/mob/living/carbon/human/disable_lights(armor = TRUE, guns = TRUE, flares = TRUE, misc = TRUE, sparks = FALSE, silent = FALSE)
+	if(luminosity <= 0)
+		return FALSE
 
+	if(sparks)
+		var/datum/effect_system/spark_spread/spark_system = new
+		spark_system.set_up(5, 0, src)
+		spark_system.attach(src)
+		spark_system.start(src)
+
+	var/light_off = 0
+	var/goes_out = 0
+	if(armor)
+		if(istype(wear_suit, /obj/item/clothing/suit/storage/marine))
+			var/obj/item/clothing/suit/storage/marine/S = wear_suit
+			if(S.turn_off_light(src))
+				light_off++
+	if(guns)
+		for(var/obj/item/weapon/gun/G in contents)
+			if(G.turn_off_light(src))
+				light_off++
+	if(flares)
+		for(var/obj/item/device/flashlight/flare/F in contents)
+			if(F.on) goes_out++
+			F.turn_off(src)
+	if(misc)
+		for(var/obj/item/device/flashlight/L in contents)
+			if(istype(L, /obj/item/device/flashlight/flare))
+				continue
+			if(L.turn_off_light(src))
+				light_off++
+		for(var/obj/item/tool/weldingtool/W in contents)
+			if(W.isOn())
+				W.toggle()
+				goes_out++
+		for(var/obj/item/tool/pickaxe/plasmacutter/W in contents)
+			if(W.powered)
+				W.toggle()
+				goes_out++
+		for(var/obj/item/tool/match/M in contents)
+			M.burn_out(src)
+		for(var/obj/item/tool/lighter/Z in contents)
+			if(Z.turn_off(src))
+				goes_out++
+	if(!silent)
+		if(goes_out && light_off)
+			to_chat(src, "<span class='notice'>Your sources of light short and fizzle out.</span>")
+		else if(goes_out)
+			if(goes_out > 1)
+				to_chat(src, "<span class='notice'>Your sources of light fizzle out.</span>")
+			else
+				to_chat(src, "<span class='notice'>Your source of light fizzles out.</span>")
+		else if(light_off)
+			if(light_off > 1)
+				to_chat(src, "<span class='notice'>Your sources of light short out.</span>")
+			else
+				to_chat(src, "<span class='notice'>Your source of light shorts out.</span>")
+		return TRUE
 
 //very similar to xeno's queen_locator() but this is for locating squad leader.
 /mob/living/carbon/human/proc/locate_squad_leader()

@@ -504,6 +504,20 @@ WEAPONS
 	containername = "\improper explosive M40 HEDP grenades crate (WARNING)"
 	group = "Weapons"
 
+/datum/supply_packs/explosives_M40_IMDP
+	name = "M40 IMDP impact grenades crate (x5)"
+	contains = list(
+					/obj/item/explosive/grenade/impact,
+					/obj/item/explosive/grenade/impact,
+					/obj/item/explosive/grenade/impact,
+					/obj/item/explosive/grenade/impact,
+					/obj/item/explosive/grenade/impact,
+					)
+	cost = RO_PRICE_VERY_CHEAP
+	containertype = /obj/structure/closet/crate/explosives
+	containername = "\improper explosive M40 IMDP grenades crate (WARNING)"
+	group = "Weapons"
+
 /datum/supply_packs/explosives_hedp
 	name = "M40 HEDP high explosive grenade box crate (x25)"
 	contains = list(
@@ -513,6 +527,37 @@ WEAPONS
 	containertype = /obj/structure/closet/crate/explosives
 	containername = "\improper explosive HEDP grenade crate (WARNING)"
 	group = "Weapons"
+
+/datum/supply_packs/explosives_hidp
+	name = "M40 HIDP incendiary explosive grenade box crate (x15)"
+	contains = list(
+					/obj/item/storage/box/nade_box/HIDP
+					)
+	cost = RO_PRICE_VERY_PRICY
+	containertype = /obj/structure/closet/crate/explosives
+	containername = "\improper explosive HIDP grenade crate (WARNING)"
+	group = "Weapons"
+
+/datum/supply_packs/explosives_m15
+	name = "M15 fragmentation grenade box crate (x25)"
+	contains = list(
+					/obj/item/storage/box/nade_box/M15
+					)
+	cost = RO_PRICE_VERY_PRICY
+	containertype = /obj/structure/closet/crate/explosives
+	containername = "\improper Fragmentation M15 grenade crate (WARNING)"
+	group = "Weapons"
+
+/datum/supply_packs/explosives_imdp
+	name = "M40 IMDP impact grenade box crate (x25)"
+	contains = list(
+					/obj/item/storage/box/nade_box/impact
+					)
+	cost = RO_PRICE_VERY_PRICY
+	containertype = /obj/structure/closet/crate/explosives
+	containername = "\improper explosive IMDP grenade crate (WARNING)"
+	group = "Weapons"
+
 
 /datum/supply_packs/plastique
 	name = "plastic explosives crate (x5)"

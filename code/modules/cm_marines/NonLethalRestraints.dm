@@ -13,9 +13,9 @@
 
 	origin_tech = "combat=2"
 
-	suicide_act(mob/user)
-		user.visible_message("<span class='danger'>[user] is putting the live [src.name] in \his mouth! It looks like \he's trying to commit suicide.</span>")
-		return (FIRELOSS)
+/obj/item/weapon/stunprod/suicide_act(mob/user)
+	user.visible_message("<span class='danger'>[user] is putting the live [src.name] in [user.p_their()] mouth! It looks like [p_theyre()] trying to commit suicide.</span>")
+	return (FIRELOSS)
 
 /obj/item/weapon/stunprod/update_icon()
 	if(status)
@@ -52,7 +52,7 @@
 			update_icon()
 		return
 
-	if(isrobot(M))
+	if(iscyborg(M))
 		..()
 		return
 

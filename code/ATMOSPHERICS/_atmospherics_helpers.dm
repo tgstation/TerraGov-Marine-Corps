@@ -14,12 +14,6 @@
 
 /obj/machinery/atmospherics/var/debug = 0
 
-/client/proc/atmos_toggle_debug(var/obj/machinery/atmospherics/M in view())
-	set name = "Toggle Debug Messages"
-	set category = "Debug"
-	M.debug = !M.debug
-	to_chat(usr, "[M]: Debug messages toggled [M.debug? "on" : "off"].")
-
 
 //This proc handles power usages.
 //Calling update_use_power() or use_power() too often will result in lag since updating area power can be costly.

@@ -39,13 +39,13 @@
 		var/fumbling_time = 50
 		if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
 			return
-	if(istype(target, /obj/structure/ladder) || istype(target, /obj/item) || istype(target, /turf/open))
+	if(istype(target, /obj/structure/ladder) || istype(target, /obj/item) || isopenturf(target))
 		return FALSE
 	if(istype(target, /obj/effect) || istype(target, /obj/machinery))
 		var/obj/O = target
 		if(O.unacidable)
 			return FALSE
-	if(istype(target, /turf/closed/wall))
+	if(iswallturf(target))
 		var/turf/closed/wall/W = target
 		if(W.hull)
 			return FALSE
@@ -69,11 +69,11 @@
 
 		if(ismob(target))
 			log_combat(user, target, "attached [src] to")
-			message_admins("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) planted [src.name] on [key_name(target)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[target]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[target.x];Y=[target.y];Z=[target.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[target]'>FLW</a>) with [timer] second fuse",0,1)
-			log_game("[key_name(usr)] planted [src.name] on [key_name(target)] with [timer] second fuse")
+			log_game("[key_name(usr)] planted [src.name] on [key_name(target)] with [timer] second fuse.")
+			message_admins("[ADMIN_TPMONTY(user)]  planted [src.name] on [ADMIN_TPMONTY(target)] with [timer] second fuse.")
 		else
-			message_admins("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) planted [src.name] on [target.name] at ([target.x],[target.y],[target.z]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[target.x];Y=[target.y];Z=[target.z]'>JMP</a>) with [timer] second fuse",0,1)
-			log_game("[key_name(usr)] planted [src.name] on [target.name] at ([target.x],[target.y],[target.z]) with [timer] second fuse")
+			log_game("[key_name(user)] planted [src.name] on [target.name] at [AREACOORD(target.loc)] with [timer] second fuse.")
+			message_admins("[ADMIN_TPMONTY(user)] planted [src.name] on [target.name] at [ADMIN_VERBOSEJMP(target.loc)] with [timer] second fuse.")
 
 		target.overlays += image('icons/obj/items/assemblies.dmi', "plastic-explosive_set_armed")
 		user.visible_message("<span class='warning'>[user] plants [name] on [target]!</span>",

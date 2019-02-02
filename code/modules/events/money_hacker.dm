@@ -22,7 +22,7 @@
 	var/sending = message + "<font color='blue'><b>Message dispatched by [my_department].</b></font>"
 
 	var/pass = 0
-	for(var/obj/machinery/message_server/MS in machines)
+	for(var/obj/machinery/message_server/MS in GLOB.machines)
 		if(!MS.active) continue
 		// /obj/machinery/message_server/proc/send_rc_message(var/recipient = "",var/sender = "",var/message = "",var/stamp = "", var/id_auth = "", var/priority = 1)
 		MS.send_rc_message("Engineering/Security/Bridge", my_department, message, "", "", 2)
@@ -41,7 +41,7 @@
 				if(!Console.silent)
 					playsound(Console.loc, 'sound/machines/twobeep.ogg', 25, 1)
 					for (var/mob/O in hearers(5, Console.loc))
-						O.show_message(text("\icon[Console] *The Requests Console beeps: 'PRIORITY Alert in [my_department]'"))
+						O.show_message(text("[bicon(Console)] *The Requests Console beeps: 'PRIORITY Alert in [my_department]'"))
 				Console.messages += "<B><FONT color='red'>High Priority message from [my_department]</FONT></B><BR>[sending]"
 
 /datum/event/money_hacker/tick()
@@ -83,7 +83,7 @@
 	var/sending = message + "<font color='blue'><b>Message dispatched by [my_department].</b></font>"
 
 	var/pass = 0
-	for(var/obj/machinery/message_server/MS in machines)
+	for(var/obj/machinery/message_server/MS in GLOB.machines)
 		if(!MS.active) continue
 		// /obj/machinery/message_server/proc/send_rc_message(var/recipient = "",var/sender = "",var/message = "",var/stamp = "", var/id_auth = "", var/priority = 1)
 		MS.send_rc_message("Engineering/Security/Bridge", my_department, message, "", "", 2)
@@ -102,5 +102,5 @@
 				if(!Console.silent)
 					playsound(Console.loc, 'sound/machines/twobeep.ogg', 25, 1)
 					for (var/mob/O in hearers(5, Console.loc))
-						O.show_message(text("\icon[Console] *The Requests Console beeps: 'PRIORITY Alert in [my_department]'"))
+						O.show_message(text("[bicon(Console)] *The Requests Console beeps: 'PRIORITY Alert in [my_department]'"))
 				Console.messages += "<B><FONT color='red'>High Priority message from [my_department]</FONT></B><BR>[sending]"

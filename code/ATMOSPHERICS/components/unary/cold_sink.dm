@@ -172,12 +172,12 @@
 
 //dismantling code. copied from autolathe
 /obj/machinery/atmospherics/unary/freezer/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	if(istype(O, /obj/item/tool/screwdriver))
+	if(isscrewdriver(O))
 		opened = !opened
 		to_chat(user, "You [opened ? "open" : "close"] the maintenance hatch of [src].")
 		return
 
-	if (opened && istype(O, /obj/item/tool/crowbar))
+	if (opened && iscrowbar(O))
 		dismantle()
 		return
 

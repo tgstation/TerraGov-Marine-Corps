@@ -24,15 +24,6 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	HDPT_ARMOR = "0,0",
 	HDPT_TREADS = "0,0")*/
 
-/client/proc/remove_players_from_vic()
-	set name = "Remove All From Tank"
-	set category = "Admin"
-
-	for(var/obj/vehicle/multitile/root/cm_armored/CA in view())
-		CA.remove_all_players()
-		log_admin("[src] forcibly removed all players from [CA]")
-		message_admins("[src] forcibly removed all players from [CA]")
-
 //The main object, should be an abstract class
 /obj/vehicle/multitile/root/cm_armored
 	name = "Armored Vehicle"
@@ -372,14 +363,14 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		var/facing = get_dir(src, M)
 		var/turf/T = loc
 		var/turf/temp = loc
-		if (isXenoQueen(A) || isXenoCrusher (A))
+		if (isxenoqueen(A) || isxenocrusher (A))
 			temp = get_step(T, facing)
 			T = temp
 			T = get_step(T, pick(cardinal))
 			M.throw_at(T, 2, 1, src, 0)
-			M.visible_message("<span class='danger'>[src] bumps into [M] pushing them away!</span>", "<span class='danger'>[src] bumps into you!</span>")
+			M.visible_message("<span class='danger'>[src] bumps into [M], pushing [M.p_them()] away!</span>", "<span class='danger'>[src] bumps into you!</span>")
 			return
-		if(M.lying==0 && !isXenoLarva(M))
+		if(M.lying==0 && !isxenolarva(M))
 			temp = get_step(T, facing)
 			T = temp
 			T = get_step(T, pick(cardinal))
@@ -389,7 +380,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 				M.throw_at(T, 2, 1, src, 1)
 			M.KnockDown(1)
 			M.apply_damage(10 + rand(0, 5), BRUTE)
-			M.visible_message("<span class='danger'>[src] bumps into [M] throwing them away!</span>", "<span class='danger'>[src] bumps into you!</span>")
+			M.visible_message("<span class='danger'>[src] bumps into [M], throwing [M.p_them()] away!</span>", "<span class='danger'>[src] violently bumps into you!</span>")
 		var/obj/vehicle/multitile/root/cm_armored/CA = root
 		var/list/slots = CA.get_activatable_hardpoints()
 		for(var/slot in slots)
@@ -401,7 +392,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		F.visible_message("<span class='danger'>[root] smashes through [F]!</span>")
 		F.health = 0
 		F.healthcheck()
-	else if(istype(A, /turf/closed/wall))
+	else if(iswallturf(A))
 		var/turf/closed/wall/W = A
 		W.take_damage(30)
 		var/obj/vehicle/multitile/root/cm_armored/CA = root
@@ -563,7 +554,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	M.visible_message("<span class='danger'>\The [M] slashes [src]!</span>", \
 	"<span class='danger'>You slash [src]!</span>")
 
-	take_damage_type(damage * ( (isXenoRavager(M)) ? 2 : 1 ), "slash", M) //Ravs do a bitchin double damage
+	take_damage_type(damage * ( (isxenoravager(M)) ? 2 : 1 ), "slash", M) //Ravs do a bitchin double damage
 
 	healthcheck()
 

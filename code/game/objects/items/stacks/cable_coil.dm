@@ -20,9 +20,9 @@
 	attack_verb = list("whipped", "lashed", "disciplined", "flogged")
 	stack_id = "cable coil"
 
-	suicide_act(mob/user)
-		user.visible_message("<span class='warning'><b>[user] is strangling \himself with the [src.name]! It looks like \he's trying to commit suicide.</b></span>")
-		return(OXYLOSS)
+/obj/item/stack/cable_coil/suicide_act(mob/user)
+	user.visible_message("<span class='danger'>[user] is strangling [p_them()]self with the [name]! It looks like [user.p_theyre()] trying to commit suicide.</span>")
+	return(OXYLOSS)
 
 
 /obj/item/stack/cable_coil/New(loc, length = MAXCOIL, var/param_color = null)
@@ -81,7 +81,7 @@
 	..()
 
 /obj/item/stack/cable_coil/attackby(obj/item/W, mob/user)
-	if( istype(W, /obj/item/tool/wirecutters) && src.amount > 1)
+	if(iswirecutter(W) && amount > 1)
 		src.amount--
 		new/obj/item/stack/cable_coil(user.loc, 1,color)
 		to_chat(user, "<span class='notice'>You cut a piece off the cable coil.</span>")
@@ -89,7 +89,7 @@
 		src.update_wclass()
 		return
 
-	else if( istype(W, /obj/item/stack/cable_coil) )
+	else if(iscablecoil(W))
 		var/obj/item/stack/cable_coil/C = W
 		if(C.amount >= MAXCOIL)
 			to_chat(user, "The coil is too long, you cannot add any more cable to it.")

@@ -10,7 +10,7 @@
 
 /obj/effect/acid_hole/New(loc)
 	..()
-	if(istype(loc, /turf/closed/wall))
+	if(iswallturf(loc))
 		var/turf/closed/wall/W = loc
 		W.acided_hole = src
 		holed_wall = W
@@ -39,7 +39,7 @@
 	if (!holed_wall)
 		return
 
-	if(M == user && isXeno(user))
+	if(M == user && isxeno(user))
 		use_wall_hole(user)
 
 

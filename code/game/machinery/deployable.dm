@@ -62,7 +62,7 @@
 				s.start()
 				visible_message("<span class='warning'> BZZzZZzZZzZT</span>")
 				return
-		else if (istype(W, /obj/item/tool/wrench))
+		else if (iswrench(W))
 			if (src.health < src.maxhealth)
 				src.health = src.maxhealth
 				src.emagged = 0

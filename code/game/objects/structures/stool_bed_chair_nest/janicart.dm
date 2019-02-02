@@ -21,7 +21,7 @@
 
 
 /obj/structure/bed/chair/janicart/examine(mob/user)
-	to_chat(user, "\icon[src] This [callme] contains [reagents.total_volume] unit\s of water!")
+	to_chat(user, "[bicon(src)] This [callme] contains [reagents.total_volume] unit\s of water!")
 	if(mybag)
 		to_chat(user, "\A [mybag] is hanging on the [callme].")
 

@@ -401,7 +401,7 @@ var/list/advance_cures = 	list(
 		for(var/datum/disease/advance/AD in active_diseases)
 			AD.Refresh()
 
-		for(var/mob/living/carbon/human/H in shuffle(living_mob_list))
+		for(var/mob/living/carbon/human/H in shuffle(GLOB.alive_human_list))
 			if(H.z != 1)
 				continue
 			if(!H.has_disease(D))
@@ -411,7 +411,7 @@ var/list/advance_cures = 	list(
 		var/list/name_symptoms = list()
 		for(var/datum/symptom/S in D.symptoms)
 			name_symptoms += S.name
-		message_admins("[key_name_admin(user)] has triggered a custom virus outbreak of [D.name]! It has these symptoms: [english_list(name_symptoms)]")
+		message_admins("[ADMIN_TPMONTY(user)] has triggered a custom virus outbreak of [D.name]! It has these symptoms: [english_list(name_symptoms)]")
 
 /*
 /mob/verb/test()

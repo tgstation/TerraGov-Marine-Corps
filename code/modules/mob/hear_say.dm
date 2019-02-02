@@ -30,7 +30,7 @@
 		style = language.colour
 
 	var/speaker_name = speaker.name
-	if(istype(speaker, /mob/living/carbon/human))
+	if(ishuman(speaker))
 		var/mob/living/carbon/human/H = speaker
 		speaker_name = H.GetVoice()
 		comm_paygrade = H.get_paygrade()
@@ -42,7 +42,7 @@
 		if(speaker == src)
 			to_chat(src, "<span class='warning'>You cannot hear yourself speak!</span>")
 		else
-			to_chat(src, "<span class='name'>[comm_paygrade][speaker_name]</span>[alt_name] talks but you cannot hear \him.")
+			to_chat(src, "<span class='name'>[comm_paygrade][speaker_name]</span>[alt_name] talks but you cannot hear [speaker.p_them()].")
 	else
 		to_chat(src, "<span class='game say'><span class='name'>[comm_paygrade][speaker_name]</span>[alt_name] [verb], <span class='message'><span class='[style]'>\"[message]\"</span></span></span>")
 		if (speech_sound && (get_dist(speaker, src) <= world.view && src.z == speaker.z))
@@ -92,7 +92,7 @@
 	if(vname)
 		speaker_name = vname
 
-	if(istype(speaker, /mob/living/carbon/human))
+	if(ishuman(speaker))
 		var/mob/living/carbon/human/H = speaker
 		comm_paygrade = H.get_paygrade()
 		if(H.voice)
@@ -103,7 +103,7 @@
 
 	var/changed_voice
 
-	if(istype(src, /mob/living/silicon/ai) && !hard_to_hear)
+	if(isAI(src) && !hard_to_hear)
 		var/jobname // the mob's "job"
 		var/mob/living/carbon/human/impersonating //The crewmember being impersonated, if any.
 
@@ -132,7 +132,7 @@
 		else if (isAI(speaker))
 			jobname = "AI"
 			comm_paygrade = ""
-		else if (isrobot(speaker))
+		else if (iscyborg(speaker))
 			jobname = "Cyborg"
 			comm_paygrade = ""
 		else
@@ -147,7 +147,7 @@
 		else
 			track = "<a href='byond://?src=\ref[src];trackname=[html_encode(speaker_name)];track=\ref[speaker]'>[speaker_name] ([jobname])</a>"
 
-	if(istype(src, /mob/dead/observer))
+	if(isobserver(src))
 		if(speaker_name != speaker.real_name && !isAI(speaker)) //Announce computer and various stuff that broadcasts doesn't use it's real name but AI's can't pretend to be other mobs.
 			speaker_name = "[speaker.real_name] ([speaker_name])"
 		track = "[speaker_name] (<a href='byond://?src=\ref[src];track=\ref[speaker]'>follow</a>)"
