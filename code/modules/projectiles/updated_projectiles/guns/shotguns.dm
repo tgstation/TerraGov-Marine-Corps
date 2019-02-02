@@ -526,6 +526,9 @@ can cause issues with ammo types getting mixed up during the burst.
 	recoil_unwielded = CONFIG_GET(number/combat_define/high_recoil_value)
 	pump_delay = CONFIG_GET(number/combat_define/mhigh_fire_delay) * 2
 
+//------------------------------------------------------
+//A hacky bolt action rifle.
+
 /obj/item/weapon/gun/shotgun/pump/bolt
 	name = "\improper Bolt action rifle"
 	desc = "A hunting rifle just like pappy used to own."
@@ -533,6 +536,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	item_state = "hg3712"
 	fire_sound = 'sound/weapons/gun_shotgun_small.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump/bolt
+	gun_skill_category = GUN_SKILL_RIFLES
 	attachable_allowed = list(
 						/obj/item/attachable/compensator,
 						/obj/item/attachable/suppressor,

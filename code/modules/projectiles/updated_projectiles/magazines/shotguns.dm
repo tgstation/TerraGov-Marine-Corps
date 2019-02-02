@@ -49,7 +49,7 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	default_ammo = /datum/ammo/bullet/rifle/bolt
 	caliber = "7.62x51mm" //or .308 win if you're american
 	gun_type = /obj/item/weapon/gun/shotgun/pump/bolt
-	max_rounds = 20 // Real rifle boxes are usually 20 rounds. This works with the new system, five handfuls.
+	max_rounds = 20 // Real rifle boxes are usually 20 rounds. This works with the new system, four handfuls.
 	w_class = 2 // CAN throw it in your pocket, friend.
 
 //-------------------------------------------------------
