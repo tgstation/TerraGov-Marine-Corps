@@ -187,7 +187,7 @@
 
 /obj/machinery/power/smes/add_load(var/amount)
 	if(terminal && terminal.powernet)
-		return terminal.powernet.draw_power(amount)
+		return terminal.add_load(amount)
 	return FALSE
 
 

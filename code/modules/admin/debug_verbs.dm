@@ -70,17 +70,17 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	var/procname = input("Proc path, eg: /proc/fake_blood","Path:", null) as text|null
 	if(!procname)
 		return
-	
+
 	//strip away everything but the proc name
 	var/list/proclist = splittext(procname, "/")
 	if (!length(proclist))
 		return
 	procname = proclist[proclist.len]
-	
+
 	var/proctype = "proc"
 	if ("verb" in proclist)
 		proctype = "verb"
-	
+
 	if(targetselected && !hascall(target, procname))
 		to_chat(usr, "<font color='red'>Error: callproc(): type [target.type] has no [proctype] named [procname].</font>")
 		return
@@ -89,7 +89,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		if(!procpath)
 			to_chat(usr, "<font color='red'>Error: callproc(): proc [procname] does not exist. (Did you forget the /proc/ part?)</font>")
 			return
-			
+
 	var/list/lst = usr.client.holder.get_callproc_args()
 	if(!lst)
 		return
@@ -251,11 +251,9 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	if(!check_rights(R_DEBUG))
 		return
 
-	makepowernets()
-
-	log_admin("[key_name(src)] has remade the powernets.")
-	message_admins("[ADMIN_TPMONTY(usr)] has remade the powernets.")
-
+	SSmachines.makepowernets()
+	log_admin("[key_name(src)] has remade the powernet. makepowernets() called.")
+	message_admins("[key_name_admin(src)] has remade the powernets. makepowernets() called.")
 
 /datum/admins/proc/debug_mob_lists()
 	set category = "Debug"

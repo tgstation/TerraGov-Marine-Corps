@@ -95,7 +95,7 @@
 		return
 
 	if (charging && !charging.fully_charged())
-		charging.give(active_power_usage*CELLRATE)
+		charging.give(active_power_usage*GLOB.CELLRATE)
 		update_use_power(2)
 
 		updateicon()

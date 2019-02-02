@@ -1128,7 +1128,7 @@
 
 /obj/machinery/power/apc/proc/last_surplus()
 	if(terminal && terminal.powernet)
-		return terminal.powernet.last_surplus()
+		return terminal.surplus()
 	else
 		return 0
 
@@ -1138,7 +1138,7 @@
 
 /obj/machinery/power/apc/add_load(var/amount)
 	if(terminal && terminal.powernet)
-		return terminal.powernet.draw_power(amount)
+		return terminal.add_load(amount)
 	return 0
 
 /obj/machinery/power/apc/avail()
@@ -1169,10 +1169,6 @@
 	var/excess = surplus()
 	var/power_excess = 0
 
-	var/perapc = 0
-	if(terminal && terminal.powernet)
-		perapc = terminal.powernet.perapc
-
 	if(debug)
 		log_runtime( "Status: [main_status] - Excess: [excess] - Last Equip: [lastused_equip] - Last Light: [lastused_light]")
 
@@ -1185,8 +1181,7 @@
 		//Calculate how much power the APC will try to get from the grid.
 		var/target_draw = lastused_total
 		if(attempt_charging())
-			target_draw += min((cell_maxcharge - cell.charge), (cell_maxcharge * CHARGELEVEL))/CELLRATE
-		target_draw = min(target_draw, perapc) //Limit power draw by perapc
+			target_draw += min((cell_maxcharge - cell.charge), (cell_maxcharge * GLOB.CHARGELEVEL))/GLOB.CELLRATE
 
 		//Try to draw power from the grid
 		var/power_drawn = 0
@@ -1201,8 +1196,8 @@
 			charging = APC_NOT_CHARGING
 
 			var/required_power = -power_excess
-			if(cell.charge >= required_power * CELLRATE) //Can we draw enough from cell to cover what's left over?
-				cell.use(required_power * CELLRATE)
+			if(cell.charge >= required_power * GLOB.CELLRATE) //Can we draw enough from cell to cover what's left over?
+				cell.use(required_power * GLOB.CELLRATE)
 
 			else if (autoflag != 0)	//Not enough power available to run the last tick!
 				chargecount = 0
@@ -1262,7 +1257,7 @@
 		//Now trickle-charge the cell
 		if(attempt_charging())
 			if(power_excess > 0) //Check to make sure we have enough to charge
-				cell.give(power_excess * CELLRATE) //Actually recharge the cell
+				cell.give(power_excess * GLOB.CELLRATE) //Actually recharge the cell
 			else
 				charging = APC_NOT_CHARGING //Stop charging
 				chargecount = 0
@@ -1275,7 +1270,7 @@
 		if(chargemode)
 			if(!charging)
 				//last_surplus() overestimates the amount of power available for charging, but it's equivalent to what APCs were doing before.
-				if(last_surplus() * CELLRATE >= cell_maxcharge * CHARGELEVEL)
+				if(last_surplus() * GLOB.CELLRATE >= cell_maxcharge * GLOB.CHARGELEVEL)
 					chargecount++
 				else
 					chargecount = 0
@@ -1399,7 +1394,7 @@
 
 	. = ..()
 
-/obj/machinery/power/apc/proc/disconnect_terminal()
+/obj/machinery/power/apc/disconnect_terminal()
 	if(terminal)
 		terminal.master = null
 		terminal = null

@@ -408,7 +408,7 @@ var/list/robot_verbs_default = list(
 		show_cell_power()
 		show_jetpack_pressure()
 		stat(null, text("Lights: [lights_on ? "ON" : "OFF"]"))
-	
+
 
 /mob/living/silicon/robot/is_mob_restrained()
 	return 0
@@ -635,7 +635,7 @@ var/list/robot_verbs_default = list(
 					connected_ai = null
 					to_chat(user, "You emag [src]'s interface.")
 					log_game("[key_name(user)] emagged cyborg [key_name(src)]. Laws overridden.")
-					message_admins("[ADMIN_TPMONTY(user)] emagged cyborg [ADMIN_TPMONTY(src)]. Laws overridden.")					
+					message_admins("[ADMIN_TPMONTY(user)] emagged cyborg [ADMIN_TPMONTY(src)]. Laws overridden.")
 					clear_supplied_laws()
 					clear_inherent_laws()
 					laws = new /datum/ai_laws/syndicate_override
@@ -1053,7 +1053,7 @@ var/list/robot_verbs_default = list(
 	if(cell.charge == 0)
 		return 0
 
-	if(cell.use(amount * CELLRATE * CYBORG_POWER_USAGE_MULTIPLIER))
+	if(cell.use(amount * GLOB.CELLRATE * CYBORG_POWER_USAGE_MULTIPLIER))
 		used_power_this_tick += amount * CYBORG_POWER_USAGE_MULTIPLIER
 		return 1
 	return 0

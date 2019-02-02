@@ -98,3 +98,15 @@
 #define NUKE_OFF_UNLOCKED	1
 #define NUKE_ON_TIMING		2
 #define NUKE_ON_EXPLODING	3
+
+//Cables directions and helping
+#define NODE 0
+#define NORTH 1
+#define SOUTH 2
+#define EAST 4
+#define WEST 8
+#define ISDIAGONALDIR(d) (d&(d-1))
+#define NSCOMPONENT(d) (d&(NORTH|SOUTH))
+#define EWCOMPONENT(d) (d&(EAST|WEST))
+#define NSDIRFLIP(d) (d^(NORTH|SOUTH))
+#define EWDIRFLIP(d) (d^(EAST|WEST))

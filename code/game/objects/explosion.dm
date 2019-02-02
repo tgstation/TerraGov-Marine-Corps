@@ -69,7 +69,7 @@
 		if(approximate_intensity > 30)
 			lighting_controller.processing = 0
 
-		var/powernet_rebuild_was_deferred_already = defer_powernet_rebuild
+		//var/powernet_rebuild_was_deferred_already = defer_powernet_rebuild //TODO
 		// Large enough explosion. For performance reasons, powernets will be rebuilt manually
 		if(!defer_powernet_rebuild && (approximate_intensity > 25))
 			defer_powernet_rebuild = 1
@@ -124,9 +124,9 @@
 			lighting_controller.processing = 1
 			lighting_controller.process() //Restart the lighting controller
 
-		if(!powernet_rebuild_was_deferred_already && defer_powernet_rebuild)
+		/*if(!powernet_rebuild_was_deferred_already && defer_powernet_rebuild)
 			makepowernets()
-			defer_powernet_rebuild = 0
+			defer_powernet_rebuild = 0*/
 
 	return 1
 

@@ -72,7 +72,7 @@
 		return 0
 
 	var/shieldload = between(500, max_stored_power - storedpower, power_draw)	//what we try to draw
-	shieldload = PN.draw_power(shieldload) //what we actually get
+	shieldload = C.add_load(shieldload) //what we actually get
 	storedpower += shieldload
 
 	//If we're still in the red, then there must not be enough available power to cover our load.

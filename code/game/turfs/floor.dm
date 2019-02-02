@@ -479,7 +479,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 	if(iscablecoil(C))
 		if(is_plating())
 			var/obj/item/stack/cable_coil/coil = C
-			coil.turf_place(src, user)
+			coil.place_turf(src, user)
 		else
 			to_chat(user, "<span class='warning'>You must remove the plating first.</span>")
 

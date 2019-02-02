@@ -347,28 +347,27 @@
 		if(!use_cable(1))
 			return reset()
 		var/obj/structure/cable/NC = new(new_turf)
-		NC.cableColor("red")
-		NC.d1 = 0
+		//NC.cableColor("red") //TODO
+		NC.d1 = NODE
 		NC.d2 = fdirn
-		NC.updateicon()
+		//NC.updateicon()
 
 		var/datum/powernet/PN
 		if(last_piece && last_piece.d2 != chassis.dir)
 			last_piece.d1 = min(last_piece.d2, chassis.dir)
 			last_piece.d2 = max(last_piece.d2, chassis.dir)
-			last_piece.updateicon()
+			//last_piece.updateicon()
 			PN = last_piece.powernet
 
 		if(!PN)
 			PN = new()
-			powernets += PN
+			SSmachines.powernets += PN
 		NC.powernet = PN
 		PN.cables += NC
 		NC.mergeConnectedNetworks(NC.d2)
 
-		//NC.mergeConnectedNetworksOnTurf()
 		last_piece = NC
-		return 1
+		return TRUE
 
 /obj/item/mecha_parts/mecha_equipment/tool/syringe_gun
 	name = "Syringe Gun"

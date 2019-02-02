@@ -1,6 +1,4 @@
-
 // the cable coil object, used for laying cable
-
 #define MAXCOIL 30
 /obj/item/stack/cable_coil
 	name = "cable coil"
@@ -11,7 +9,7 @@
 	color = COLOR_RED
 	desc = "A coil of power cable."
 	throwforce = 10
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 2
 	throw_range = 5
 	matter = list("metal" = 50, "glass" = 20)
@@ -27,7 +25,7 @@
 
 /obj/item/stack/cable_coil/New(loc, length = MAXCOIL, var/param_color = null)
 	..()
-	src.amount = length
+	amount = length
 	if (param_color) // It should be red by default, so only recolor it if parameter was specified.
 		color = param_color
 	pixel_x = rand(-2,2)
@@ -50,9 +48,9 @@
 
 /obj/item/stack/cable_coil/proc/update_wclass()
 	if(amount == 1)
-		w_class = 1.0
+		w_class = WEIGHT_CLASS_TINY
 	else
-		w_class = 2.0
+		w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/stack/cable_coil/examine(mob/user)
 	if(amount == 1)
@@ -69,13 +67,13 @@
 
 	if(ishuman(M) && !M.is_mob_incapacitated())
 		if(!istype(usr.loc,/turf)) return
-		if(src.amount <= 14)
+		if(amount <= 14)
 			to_chat(usr, "<span class='warning'>You need at least 15 lengths to make restraints!</span>")
 			return
 		var/obj/item/handcuffs/cable/B = new /obj/item/handcuffs/cable(usr.loc)
 		B.color = color
 		to_chat(usr, "<span class='notice'>You wind some cable together to make some restraints.</span>")
-		src.use(15)
+		use(15)
 	else
 		to_chat(usr, "<span class='notice'><span class='notice'> You cannot do that.</span>")
 	..()
@@ -85,8 +83,8 @@
 		src.amount--
 		new/obj/item/stack/cable_coil(user.loc, 1,color)
 		to_chat(user, "<span class='notice'>You cut a piece off the cable coil.</span>")
-		src.updateicon()
-		src.update_wclass()
+		updateicon()
+		update_wclass()
 		return
 
 	else if(iscablecoil(W))
@@ -98,13 +96,13 @@
 		if( (C.amount + src.amount <= MAXCOIL) )
 			to_chat(user, "You join the cable coils together.")
 			C.add(src.amount) // give it cable
-			src.use(src.amount) // make sure this one cleans up right
+			use(src.amount) // make sure this one cleans up right
 
 		else
 			var/amt = MAXCOIL - C.amount
 			to_chat(user, "You transfer [amt] length\s of cable from one coil to the other.")
 			C.add(amt)
-			src.use(amt)
+			use(amt)
 		return
 	..()
 
@@ -120,81 +118,109 @@
 		..()
 	return
 
+/obj/item/stack/cable_coil/attack(mob/M as mob, mob/user as mob)
+	if(hasorgans(M))
+
+		var/datum/limb/S = M:get_limb(user.zone_selected)
+		if(!(S.status & LIMB_ROBOT) || user.a_intent != "help")
+			return ..()
+
+		if(istype(M,/mob/living/carbon/human))
+			var/mob/living/carbon/human/H = M
+			if(H.species.flags & IS_SYNTHETIC)
+				if(M == user)
+					to_chat(user, "<span class='warning'>You can't repair damage to your own body - it's against OH&S.</span>")
+					return
+
+		if(S.burn_dam > 0 && use(1))
+			S.heal_damage(0,15,0,1)
+			user.visible_message("<span class='warning'> \The [user] repairs some burn damage on \the [M]'s [S.display_name] with \the [src].</span>")
+			return
+		else
+			to_chat(user, "Nothing to fix!")
+
+	else
+		return ..()
+
+
+/obj/item/stack/cable_coil/proc/get_new_cable(location)
+	var/path = /obj/structure/cable
+	return new path(location, color)
+
+
 /obj/item/stack/cable_coil/use(var/used)
 	if( ..() )
 		updateicon()
 		update_wclass()
-		return 1
+		return TRUE
 
 /obj/item/stack/cable_coil/add(var/extra)
 	if( ..() )
 		updateicon()
 		update_wclass()
-		return 1
+		return TRUE
 
-// called when cable_coil is clicked on a turf/open/floor
-
-/obj/item/stack/cable_coil/proc/turf_place(turf/open/floor/F, mob/user)
-
+// called when cable_coil is clicked on a turf
+/obj/item/stack/cable_coil/proc/place_turf(turf/T, mob/user, dirnew)
 	if(!isturf(user.loc))
 		return
 
-	if(get_dist(F,user) > 1)
-		to_chat(user, "<span class='warning'>You can't lay cable at a place that far away.</span>")
+	if(!isturf(T) || T.intact_tile || !T.can_have_cabling())
+		to_chat(user, "<span class='warning'>You can only lay cables on catwalks and plating!</span>")
 		return
 
-	if(F.intact_tile)		// if floor is intact, complain
-		to_chat(user, "<span class='warning'>You can't lay cable there unless the floor tiles are removed.</span>")
+	if(get_amount() < 1) // Out of cable
+		to_chat(user, "<span class='warning'>There is no cable left!</span>")
 		return
 
-	else
-		var/dirn
+	if(get_dist(T,user) > 1) // Too far
+		to_chat(user, "<span class='warning'>You can't lay cable at a place that far away!</span>")
+		return
 
-		if(user.loc == F)
-			dirn = user.dir			// if laying on the tile we're on, lay in the direction we're facing
+	var/dirn
+	if(!dirnew) //If we weren't given a direction, come up with one! (Called as null from catwalk.dm and floor.dm)
+		if(user.loc == T)
+			dirn = user.dir //If laying on the tile we're on, lay in the direction we're facing
 		else
-			dirn = get_dir(F, user)
+			dirn = get_dir(T, user)
+	else
+		dirn = dirnew
 
-		for(var/obj/structure/cable/LC in F)
-			if((LC.d1 == dirn && LC.d2 == 0 ) || ( LC.d2 == dirn && LC.d1 == 0))
-				to_chat(user, "<span class='warning'>There's already a cable at that position.</span>")
-				return
+	for(var/obj/structure/cable/LC in T)
+		if(LC.d2 == dirn && LC.d1 == NODE)
+			to_chat(user, "<span class='warning'>There's already a cable at that position!</span>")
+			return
 
-		for(var/obj/structure/cable/LC in F)
-			if((LC.d1 == dirn && LC.d2 == 0 ) || ( LC.d2 == dirn && LC.d1 == 0))
-				to_chat(user, "There's already a cable at that position.")
-				return
+	var/obj/structure/cable/C = get_new_cable(T)
 
-		var/obj/structure/cable/C = new(F)
+	//set up the new cable
+	C.d1 = NODE
+	C.d2 = dirn
+	C.add_fingerprint(user)
+	C.update_icon()
 
-		C.cableColor(color)
+	//create a new powernet with the cable, if needed it will be merged later
+	var/datum/powernet/PN = new()
+	PN.add_cable(C)
 
-		C.d1 = 0
-		C.d2 = dirn
-		C.add_fingerprint(user)
-		C.updateicon()
+	C.mergeConnectedNetworks(C.d2) //merge the powernet with adjacents powernets
+	C.mergeConnectedNetworksOnTurf() //merge the powernet with on turf powernets
 
-		C.powernet = new()
-		powernets += C.powernet
-		C.powernet.cables += C
+	if(ISDIAGONALDIR(C.d2))// if the cable is layed diagonally, check the others 2 possible directions
+		C.mergeDiagonalsNetworks(C.d2)
 
-		C.mergeConnectedNetworks(C.d2)
-		C.mergeConnectedNetworksOnTurf()
+	use(1)
 
+	if(C.shock(user, 50))
+		if(prob(50)) //fail
+			new /obj/item/stack/cable_coil(get_turf(C), 1, C.color)
+			C.deconstruct()
 
-		use(1)
-		if (C.shock(user, 50))
-			if (prob(50)) //fail
-				new/obj/item/stack/cable_coil(C.loc, 1, C.color)
-				qdel(C)
-		//src.laying = 1
-		//last = C
-
+	return C
 
 // called when cable_coil is click on an installed obj/cable
-
-/obj/item/stack/cable_coil/proc/cable_join(obj/structure/cable/C, mob/user)
-
+// or click on a turf that already contains a "node" cable
+/obj/item/stack/cable_coil/proc/cable_join(obj/structure/cable/C, mob/user, var/showerror = TRUE)
 	var/turf/U = user.loc
 	if(!isturf(U))
 		return
@@ -205,18 +231,24 @@
 		return
 
 	if(get_dist(C, user) > 1)		// make sure it's close enough
-		to_chat(user, "<span class='warning'>You can't lay cable at a place that far away.</span>")
+		to_chat(user, "<span class='warning'>You can't lay cable at a place that far away!</span>")
 		return
 
 
-	if(U == T)		// do nothing if we clicked a cable we're standing on
-		return		// may change later if can think of something logical to do
+	if(U == T) //if clicked on the turf we're standing on, try to put a cable in the direction we're facing
+		place_turf(T,user)
+		return
 
 	var/dirn = get_dir(C, user)
 
-	if(C.d1 == dirn || C.d2 == dirn)		// one end of the clicked cable is pointing towards us
-		if(U.intact_tile)						// can't place a cable if the floor is complete
-			to_chat(user, "<span class='warning'>You can't lay cable there unless the floor tiles are removed.</span>")
+	// one end of the clicked cable is pointing towards us
+	if(C.d1 == dirn || C.d2 == dirn)
+		if(!U.can_have_cabling())						//checking if it's a plating or catwalk
+			if (showerror)
+				to_chat(user, "<span class='warning'>You can only lay cables on catwalks and plating!</span>")
+			return
+		if(U.intact_tile)						//can't place a cable if it's a plating with a tile on it
+			to_chat(user, "<span class='warning'>You can't lay cable there unless the floor tiles are removed!</span>")
 			return
 		else
 			// cable is pointing at us, we're standing on an open tile
@@ -226,30 +258,37 @@
 
 			for(var/obj/structure/cable/LC in U)		// check to make sure there's not a cable there already
 				if(LC.d1 == fdirn || LC.d2 == fdirn)
-					to_chat(user, "<span class='warning'>There's already a cable at that position.</span>")
+					if (showerror)
+						to_chat(user, "<span class='warning'>There's already a cable at that position!</span>")
 					return
 
-			var/obj/structure/cable/NC = new(U)
-			NC.cableColor(color)
+			var/obj/structure/cable/NC = get_new_cable (U)
 
-			NC.d1 = 0
+			NC.d1 = NODE
 			NC.d2 = fdirn
-			NC.add_fingerprint()
-			NC.updateicon()
+			NC.add_fingerprint(user)
+			NC.update_icon()
 
-			if(C.powernet)
-				NC.powernet = C.powernet
-				NC.powernet.cables += NC
-				NC.mergeConnectedNetworks(NC.d2)
-				NC.mergeConnectedNetworksOnTurf()
+			//create a new powernet with the cable, if needed it will be merged later
+			var/datum/powernet/newPN = new()
+			newPN.add_cable(NC)
+
+			NC.mergeConnectedNetworks(NC.d2) //merge the powernet with adjacents powernets
+			NC.mergeConnectedNetworksOnTurf() //merge the powernet with on turf powernets
+
+			if(ISDIAGONALDIR(NC.d2))// if the cable is layed diagonally, check the others 2 possible directions
+				NC.mergeDiagonalsNetworks(NC.d2)
+
 			use(1)
+
 			if (NC.shock(user, 50))
 				if (prob(50)) //fail
-					new/obj/item/stack/cable_coil(NC.loc, 1, NC.color)
-					qdel(NC)
+					NC.deconstruct()
 
 			return
-	else if(C.d1 == 0)		// exisiting cable doesn't point at our position, so see if it's a stub
+
+	// exisiting cable doesn't point at our position, so see if it's a stub
+	else if(C.d1 == NODE)
 							// if so, make it a full cable pointing from it's old direction to our dirn
 		var/nd1 = C.d2	// these will be the new directions
 		var/nd2 = dirn
@@ -264,28 +303,43 @@
 			if(LC == C)			// skip the cable we're interacting with
 				continue
 			if((LC.d1 == nd1 && LC.d2 == nd2) || (LC.d1 == nd2 && LC.d2 == nd1) )	// make sure no cable matches either direction
-				to_chat(user, "<span class='warning'>There's already a cable at that position.</span>")
+				if (showerror)
+					to_chat(user, "<span class='warning'>There's already a cable at that position!</span>")
+
 				return
 
 
-		C.cableColor(color)
+		C.update_icon()
 
 		C.d1 = nd1
 		C.d2 = nd2
 
-		C.add_fingerprint()
-		C.updateicon()
+		//updates the stored cable coil
+		C.update_stored(2, color)
+
+		C.add_fingerprint(user)
+		C.update_icon()
 
 
-		C.mergeConnectedNetworks(C.d1)
-		C.mergeConnectedNetworks(C.d2)
+		C.mergeConnectedNetworks(C.d1) //merge the powernets...
+		C.mergeConnectedNetworks(C.d2) //...in the two new cable directions
 		C.mergeConnectedNetworksOnTurf()
 
+		if(ISDIAGONALDIR(C.d1))// if the cable is layed diagonally, check the others 2 possible directions
+			C.mergeDiagonalsNetworks(C.d1)
+
+		if(ISDIAGONALDIR(C.d2))// if the cable is layed diagonally, check the others 2 possible directions
+			C.mergeDiagonalsNetworks(C.d2)
+
 		use(1)
+
 		if (C.shock(user, 50))
 			if (prob(50)) //fail
-				new/obj/item/stack/cable_coil(C.loc, 2, C.color)
-				qdel(C)
+				C.deconstruct()
+				return
+
+		C.denode()// this call may have disconnected some cables that terminated on the centre of the turf, if so split the powernets.
+	return
 
 
 
@@ -324,27 +378,3 @@
 /obj/item/stack/cable_coil/random/New()
 	color = pick(COLOR_RED, COLOR_BLUE, COLOR_GREEN, COLOR_WHITE, COLOR_PINK, COLOR_YELLOW, COLOR_CYAN)
 	..()
-
-/obj/item/stack/cable_coil/attack(mob/M as mob, mob/user as mob)
-	if(hasorgans(M))
-
-		var/datum/limb/S = M:get_limb(user.zone_selected)
-		if(!(S.status & LIMB_ROBOT) || user.a_intent != "help")
-			return ..()
-
-		if(istype(M,/mob/living/carbon/human))
-			var/mob/living/carbon/human/H = M
-			if(H.species.flags & IS_SYNTHETIC)
-				if(M == user)
-					to_chat(user, "<span class='warning'>You can't repair damage to your own body - it's against OH&S.</span>")
-					return
-
-		if(S.burn_dam > 0 && use(1))
-			S.heal_damage(0,15,0,1)
-			user.visible_message("<span class='warning'> \The [user] repairs some burn damage on \the [M]'s [S.display_name] with \the [src].</span>")
-			return
-		else
-			to_chat(user, "Nothing to fix!")
-
-	else
-		return ..()

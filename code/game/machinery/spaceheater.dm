@@ -165,7 +165,7 @@
 				H.adjust_bodytemperature(min(round(T20C - H.bodytemperature)*0.7, 25), 0, T20C)
 
 
-			cell.use(50*CELLRATE)
+			cell.use(50*GLOB.CELLRATE)
 
 		else
 			on = 0

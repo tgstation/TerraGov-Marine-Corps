@@ -304,8 +304,8 @@
 /turf/proc/wet_floor()
 	return
 
-
-
+/turf/proc/can_have_cabling()
+	return TRUE
 
 
 //////////////////////////////////////////////////////////

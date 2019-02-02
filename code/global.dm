@@ -109,10 +109,6 @@ var/list/reg_dna = list(  )
 
 var/mouse_respawn_time = 15 //Amount of time that must pass between a player dying as a mouse and repawning as a mouse. In minutes.
 
-var/CELLRATE = 0.002	// multiplier for watts per tick <> cell storage (eg: 0.02 means if there is a load of 1000 watts, 20 units will be taken from a cell per second)
-						//It's a conversion constant. power_used*CELLRATE = charge_provided, or charge_used/CELLRATE = power_provided
-var/CHARGELEVEL = 0.0005 // Cap for how fast cells charge, as a percentage-per-tick (0.01 means cellcharge is capped to 1% per second)
-
 var/SupplyElevator
 var/HangarUpperElevator
 var/HangarLowerElevator
@@ -164,9 +160,6 @@ var/config_error_log
 */
 
 var/list/all_player_details = list()  // [ckey] = /datum/player_details
-
-
-var/list/powernets = list()
 
 var/Debug = 0	// global debug switch
 var/Debug2 = 0

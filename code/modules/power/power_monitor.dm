@@ -21,7 +21,7 @@
 	if(isturf(T))
 		attached = locate() in T
 	if(attached)
-		powernet = attached.get_powernet()
+		powernet = attached.powernet
 
 /obj/machinery/power/monitor/attack_ai(mob/user)
 	add_fingerprint(user)

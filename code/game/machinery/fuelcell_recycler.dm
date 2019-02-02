@@ -75,11 +75,11 @@
 		if(cell_left != null)
 			if(!cell_left.is_regenerated())
 				active = TRUE
-				cell_left.give(active_power_usage*(CELLRATE * 0.1))
+				cell_left.give(active_power_usage*(GLOB.CELLRATE * 0.1))
 		if(cell_right != null)
 			if(!cell_right.is_regenerated())
 				active = TRUE
-				cell_right.give(active_power_usage*(CELLRATE * 0.1))
+				cell_right.give(active_power_usage*(GLOB.CELLRATE * 0.1))
 		if(active)
 			update_use_power(2)
 		else
