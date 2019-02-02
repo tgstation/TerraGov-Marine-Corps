@@ -86,7 +86,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	if(targetselected && !hascall(target, procname))
 		to_chat(usr, "<font color='red'>Error: callproc(): type [target.type] has no [proctype] named [procname].</font>")
 		return
-	else
+	else if(!targetselected)
 		var/procpath = text2path("/[proctype]/[procname]")
 		if(!procpath)
 			to_chat(usr, "<font color='red'>Error: callproc(): proc [procname] does not exist. (Did you forget the /proc/ part?)</font>")
