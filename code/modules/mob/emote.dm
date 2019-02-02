@@ -7,12 +7,12 @@
 			to_chat(src, "You are unable to emote.")
 		return
 
-	if(istype(src, /mob/living/carbon/human))
+	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
 		comm_paygrade = H.get_paygrade()
 
 	var/muzzled = istype(wear_mask, /obj/item/clothing/mask/muzzle)
-	if(m_type == EMOTE_AUDIBLE && muzzled) 
+	if(m_type == EMOTE_AUDIBLE && muzzled)
 		return
 
 	var/input
@@ -31,10 +31,10 @@
 		log_message(message, LOG_EMOTE)
 
 
-		for(var/mob/M in player_list)
+		for(var/mob/M in GLOB.player_list)
 			if (!M.client)
 				continue //skip monkeys and leavers
-			if (istype(M, /mob/new_player))
+			if (isnewplayer(M))
 				continue
 			if(findtext(message," snores.")) //Because we have so many sleeping people.
 				break
@@ -77,15 +77,15 @@
 	if(message)
 		log_message(message, LOG_EMOTE)
 
-		for(var/mob/M in player_list)
-			if(istype(M, /mob/new_player))
+		for(var/client/C in GLOB.clients)
+			if(isnewplayer(C.mob))
 				continue
 
-			if(M.client?.holder && (M.client.holder.rights & (R_ADMIN|R_MOD)) && (M.client.prefs.toggles_chat & CHAT_DEAD)) // Show the emote to admins/mods
-				to_chat(M, message)
+			if(check_other_rights(C, R_ADMIN, FALSE) && (C.prefs.toggles_chat & CHAT_DEAD))
+				to_chat(C, message)
 
-			else if(M.stat == DEAD && (M.client.prefs.toggles_chat & CHAT_DEAD)) // Show the emote to regular ghosts with deadchat toggled on
-				M.show_message(message, 2)
+			else if(C.mob.stat == DEAD && (C.prefs.toggles_chat & CHAT_DEAD)) // Show the emote to regular ghosts with deadchat toggled on
+				to_chat(C, message)
 
 
 /mob/living/carbon/verb/show_emotes()

@@ -181,7 +181,7 @@
 		to_chat(src, "<span class='xenowarning'>You try to sting but are too disoriented!</span>")
 		return
 
-	if(!istype(H) || isXeno(H) || isrobot(H))
+	if(!istype(H) || isxeno(H) || iscyborg(H))
 		to_chat(src, "<span class='xenowarning'>Your sting won't affect this target!</span>")
 		return
 
@@ -218,16 +218,23 @@
 				return
 			to_chat(src, "<span class='xenowarning'>Your stinger retracts as it finishes discharging the neurotoxin.</span>")
 
+	addtimer(CALLBACK(src, .neurotoxin_sting_cooldown), NEUROTOXIN_STING_COOLDOWN)
 
-	spawn(NEUROTOXIN_STING_COOLDOWN)
-		playsound(loc, 'sound/voice/alien_drool1.ogg', 50, 1)
-		to_chat(src, "<span class='xenodanger'>You feel your neurotoxin glands refill. You can use your neurotoxin sting again.</span>")
-		update_action_button_icons()
-
+/mob/living/carbon/Xenomorph/Sentinel/proc/neurotoxin_sting_cooldown()
+	playsound(loc, 'sound/voice/alien_drool1.ogg', 50, 1)
+	to_chat(src, "<span class='xenodanger'>You feel your neurotoxin glands refill. You can use your neurotoxin sting again.</span>")
+	update_action_button_icons()
 
 /mob/living/carbon/Xenomorph/Sentinel/proc/neurotoxin_recurring_injection(var/mob/living/H)
+	if(!Adjacent(H))
+		to_chat(src, "<span class='xenowarning'>You try to continue your sting but are too far away from the target!</span>")
+		return
+	if(stagger)
+		to_chat(src, "<span class='xenowarning'>You try to continue your sting but are too disoriented!</span>")
+		return
 	face_atom(H)
 	animation_attack_on(H)
 	playsound(H, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
 	H.reagents.add_reagent("xeno_toxin", NEUROTOXIN_STING_AMOUNT_RECURRING) //10 units transferred.
+	overdose_check(H)
 	return TRUE

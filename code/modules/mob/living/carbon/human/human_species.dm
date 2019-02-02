@@ -59,4 +59,4 @@
 
 /datum/species/moth/handle_post_spawn(var/mob/living/carbon/human/H)
 	. = ..()
-	H.moth_wings = pick(moth_wings_list - "Burnt Off")
+	H.moth_wings = pick(GLOB.moth_wings_list - "Burnt Off")

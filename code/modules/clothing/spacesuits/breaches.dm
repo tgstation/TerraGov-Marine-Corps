@@ -194,9 +194,9 @@ var/global/list/breach_burn_descriptors = list(
 			repair_breaches(BURN, ( istype(P,/obj/item/stack/sheet/mineral/plastic) ? 3 : 5), user)
 		return
 
-	else if(istype(W, /obj/item/tool/weldingtool))
+	else if(iswelder(W))
 
-		if(istype(src.loc,/mob/living))
+		if(isliving(loc))
 			to_chat(user, "<span class='warning'>How do you intend to patch a hardsuit while someone is wearing it?</span>")
 			return
 

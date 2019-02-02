@@ -68,7 +68,7 @@
 		var/turf/pos = get_turf(C)
 
 		if(C && pos)
-			if(istype(C.loc, /mob/living/carbon/human))
+			if(ishuman(C.loc))
 
 				var/mob/living/carbon/human/H = C.loc
 				if(H.mind.special_role && H.loc.z == 1) continue // survivors
@@ -123,9 +123,9 @@
 
 
 /obj/machinery/computer/crew/proc/scan()
-	for(var/mob/living/carbon/human/H in mob_list)
+	for(var/mob/living/carbon/human/H in GLOB.human_mob_list)
 		if(!H || !istype(H)) continue
-		if(isYautja(H)) continue
+		if(isyautja(H)) continue
 		var/obj/item/clothing/under/C = H.w_uniform
 		if(!C || !istype(C)) continue
 		if(C.has_sensor && H.mind)

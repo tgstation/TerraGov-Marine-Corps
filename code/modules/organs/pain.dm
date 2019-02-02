@@ -27,7 +27,7 @@ mob/living/carbon/proc/pain(var/partname, var/amount, var/force, var/burning = 0
 			var/i
 			for(var/datum/limb/O in list(right_hand, left_hand))
 				if(!O || !O.is_usable()) continue //Not if the organ can't possibly function.
-				if(O.name == "l_hand") 	drop_l_hand()
+				if(O.body_part == HAND_LEFT) 	drop_l_hand()
 				else 					drop_r_hand()
 				i++
 			if(i) msg += ", [pick("fumbling with","struggling with","losing control of")] your [i < 2 ? "hand" : "hands"]"

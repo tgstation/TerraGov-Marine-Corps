@@ -175,10 +175,9 @@
 
 /mob/living/carbon/Xenomorph/Ravager/Stat()
 	. = ..()
-	if(!.)
-		return
 
-	stat(null, "Rage: [rage] / [RAVAGER_MAX_RAGE]")
+	if(statpanel("Stats"))
+		stat(null, "Rage: [rage] / [RAVAGER_MAX_RAGE]")
 
 /mob/living/carbon/Xenomorph/Ravager/proc/charge(atom/T)
 	if(!T) return
@@ -207,16 +206,17 @@
 
 	charge_delay = world.time + RAV_CHARGECOOLDOWN
 
-	spawn(RAV_CHARGECOOLDOWN)
-		usedPounce = FALSE
-		to_chat(src, "<span class='xenodanger'>Your exoskeleton quivers as you get ready to use Eviscerating Charge again.</span>")
-		playsound(src, "sound/effects/xeno_newlarva.ogg", 50, 0, 1)
-		update_action_button_icons()
+	addtimer(CALLBACK(src, .charge_cooldown), RAV_CHARGECOOLDOWN)
 
+/mob/living/carbon/Xenomorph/Ravager/proc/charge_cooldown()
+	usedPounce = FALSE
+	to_chat(src, "<span class='xenodanger'>Your exoskeleton quivers as you get ready to use Eviscerating Charge again.</span>")
+	playsound(src, "sound/effects/xeno_newlarva.ogg", 50, 0, 1)
+	update_action_button_icons()
 
 //Chance of insta limb amputation after a melee attack.
 /mob/living/carbon/Xenomorph/Ravager/proc/delimb(var/mob/living/carbon/human/H, var/datum/limb/O)
-	if (prob(isYautja(H)?10:20)) // lets halve this for preds
+	if (prob(isyautja(H)?10:20)) // lets halve this for preds
 		O = H.get_limb(check_zone(zone_selected))
 		if (O.body_part != CHEST && O.body_part != GROIN && O.body_part != HEAD) //Only limbs.
 			visible_message("<span class='danger'>The limb is sliced clean off!</span>","<span class='danger'>You slice off a limb!</span>")
@@ -326,15 +326,15 @@
 		if(M.stat == DEAD)
 			continue
 		fire_mod = 1
-		if(isXeno(M))
+		if(isxeno(M))
 			var/mob/living/carbon/Xenomorph/X = M
 			if(X.xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 				continue
-			fire_mod = X.xeno_caste.fire_resist + X.fire_resist_modifier
+			fire_mod = CLAMP(X.xeno_caste.fire_resist + X.fire_resist_modifier, 0, 1)
 		else if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			if(istype(H.wear_suit, /obj/item/clothing/suit/fire) || istype(H.wear_suit, /obj/item/clothing/suit/space/rig/atmos))
 				continue
 
 		M.adjustFireLoss(rand(20, 50) * fire_mod) //Fwoom!
-		to_chat(M, "[isXeno(M) ? "<span class='xenodanger'>":"<span class='highdanger'>"]Augh! You are roasted by the flames!</Sspan>")
+		to_chat(M, "[isxeno(M) ? "<span class='xenodanger'>":"<span class='highdanger'>"]Augh! You are roasted by the flames!</Sspan>")

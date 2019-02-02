@@ -44,7 +44,7 @@
 		return
 
 	if(!ishuman(user)) //only humans can reinforce a grab.
-		if (isXeno(user))
+		if (isxeno(user))
 			var/mob/living/carbon/Xenomorph/X = user
 			X.pull_power(grabbed_thing)
 		return
@@ -58,12 +58,12 @@
 		switch(user.grab_level)
 			if(GRAB_KILL)
 				icon_state = "disarm/kill1"
-				user.visible_message("<span class='danger'>[user] has tightened \his grip on [victim]'s neck!</span>", null, null, 5)
+				user.visible_message("<span class='danger'>[user] has tightened [user.p_their()] grip on [victim]'s neck!</span>", null, null, 5)
 				log_combat(user, victim, "strangled", addition="(kill intent)")
 				msg_admin_attack("[key_name(user)] strangled (kill intent) [key_name(victim)]")
 			if(GRAB_NECK)
 				icon_state = "disarm/kill"
-				user.visible_message("<span class='warning'>[user] has reinforced \his grip on [victim] (now neck)!</span>", null, null, 5)
+				user.visible_message("<span class='warning'>[user] has reinforced [user.p_their()] grip on [victim] (now neck)!</span>", null, null, 5)
 				log_combat(user, victim, "neck grabbed")
 				msg_admin_attack("[key_name(user)] grabbed the neck of [key_name(victim)]")
 			if(GRAB_AGGRESSIVE)
@@ -71,12 +71,12 @@
 		victim.update_canmove()
 
 /obj/item/grab/attack(mob/living/M, mob/living/user, def_zone)
-	if(M == user && user.pulling && isXeno(user))
+	if(M == user && user.pulling && isxeno(user))
 		var/mob/living/carbon/Xenomorph/X = user
 		var/mob/living/carbon/pulled = X.pulling
 		if(!istype(pulled))
 			return
-		if(isXeno(pulled) || isSynth(pulled))
+		if(isxeno(pulled) || issynth(pulled))
 			to_chat(X, "<span class='warning'>That wouldn't taste very good.</span>")
 			return 0
 		if(pulled.buckled)
@@ -91,9 +91,9 @@
 			/* Saving this in case we want to allow devouring of dead bodies UNLESS their client is still online somewhere
 			if(pulled.client) //The client is still inside the body
 			else // The client is observing
-				for(var/mob/dead/observer/G in player_list)
+				for(var/mob/dead/observer/G in GLOB.player_list)
 					if(ckey(G.mind.original.ckey) == pulled.ckey)
-						to_chat(src, "You start to devour [pulled] but realize \he is already dead.")
+						to_chat(src, "You start to devour [pulled] but realize [user.p_they()] is already dead.")
 						return */
 		X.visible_message("<span class='danger'>[X] starts to devour [pulled]!</span>", \
 		"<span class='danger'>You start to devour [pulled]!</span>", null, 5)
