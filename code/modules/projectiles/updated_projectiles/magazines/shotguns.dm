@@ -45,7 +45,7 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 /obj/item/ammo_magazine/rifle/bolt
 	name = "box of rifle bullets"
 	desc = "A box filled with rifle bullets."
-	icon_state = "sovie"
+	icon_state = "sovie" //Thank you Alterist
 	default_ammo = /datum/ammo/bullet/sniper/svd
 	caliber = "7.62x54mmR" //Cyka Blyat
 	gun_type = /obj/item/weapon/gun/shotgun/pump/bolt
