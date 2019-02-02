@@ -114,9 +114,9 @@
 			update_icon()
 		else
 			current_mag = new current_mag(src, spawn_empty ? 1 : 0)
-			ammo = current_mag.default_ammo ? ammo_list[current_mag.default_ammo] : ammo_list[/datum/ammo/bullet] //Latter should never happen, adding as a precaution.
+			ammo = current_mag.default_ammo ? GLOB.ammo_list[current_mag.default_ammo] : GLOB.ammo_list[/datum/ammo/bullet] //Latter should never happen, adding as a precaution.
 	else
-		ammo = ammo_list[ammo] //If they don't have a mag, they fire off their own thing.
+		ammo = GLOB.ammo_list[ammo] //If they don't have a mag, they fire off their own thing.
 	set_gun_config_values()
 	update_force_list() //This gives the gun some unique verbs for attacking.
 
@@ -141,10 +141,6 @@
 
 //Hotfix for attachment offsets being set AFTER the core New() proc. Causes a small graphical artifact when spawning, hopefully works even with lag
 /obj/item/weapon/gun/proc/handle_starting_attachment()
-
-	set waitfor = 0
-
-	sleep(1) //Give a moment to the rest of the proc to work out
 	if(starting_attachment_types && starting_attachment_types.len)
 		for(var/path in starting_attachment_types)
 			var/obj/item/attachable/A = new path(src)
@@ -200,11 +196,11 @@
 	else
 		dat += "The safety's off!<br>"
 
-	if(rail) 	dat += "It has \icon[rail] [rail.name] mounted on the top.<br>"
-	if(muzzle) 	dat += "It has \icon[muzzle] [muzzle.name] mounted on the front.<br>"
-	if(stock) 	dat += "It has \icon[stock] [stock.name] for a stock.<br>"
+	if(rail) 	dat += "It has [bicon(rail)] [rail.name] mounted on the top.<br>"
+	if(muzzle) 	dat += "It has [bicon(muzzle)] [muzzle.name] mounted on the front.<br>"
+	if(stock) 	dat += "It has [bicon(stock)] [stock.name] for a stock.<br>"
 	if(under)
-		dat += "It has \icon[under] [under.name]"
+		dat += "It has [bicon(under)] [under.name]"
 		if(under.flags_attach_features & ATTACH_WEAPON)
 			dat += " ([under.current_rounds]/[under.max_rounds])"
 		dat += " mounted underneath.<br>"
@@ -313,9 +309,9 @@
 	if(!magazine.default_ammo)
 		to_chat(user, "Something went horribly wrong. Ahelp the following: ERROR CODE A1: null ammo while reloading.")
 		log_runtime("ERROR CODE A1: null ammo while reloading. User: <b>[user]</b>")
-		ammo = ammo_list[/datum/ammo/bullet] //Looks like we're defaulting it.
+		ammo = GLOB.ammo_list[/datum/ammo/bullet] //Looks like we're defaulting it.
 	else
-		ammo = ammo_list[overcharge? magazine.overcharge_ammo : magazine.default_ammo]
+		ammo = GLOB.ammo_list[overcharge? magazine.overcharge_ammo : magazine.default_ammo]
 		//to_chat(user, "DEBUG: REPLACE AMMO. Ammo: [ammo]")
 
 //Hardcoded and horrible
@@ -523,7 +519,7 @@ and you're good to go.
 	if(!chambered)
 		to_chat(usr, "Something has gone horribly wrong. Ahelp the following: ERROR CODE I2: null ammo while create_bullet()")
 		log_runtime("ERROR CODE I2: null ammo while create_bullet(). User: <b>[usr]</b>")
-		chambered = ammo_list[/datum/ammo/bullet] //Slap on a default bullet if somehow ammo wasn't passed.
+		chambered = GLOB.ammo_list[/datum/ammo/bullet] //Slap on a default bullet if somehow ammo wasn't passed.
 
 	var/obj/item/projectile/P = new /obj/item/projectile(src)
 	P.generate_bullet(chambered)
@@ -736,11 +732,9 @@ and you're good to go.
 						playsound(user, actual_sound, sound_volume, 1)
 						simulate_recoil(2, user)
 						var/obj/item/weapon/gun/revolver/current_revolver = src
-						var/t = "[key_name(user)] committed suicide with [key_name(src)]" //Log it.
-						message_admins("[user.name] ([user.ckey]) committed suicide with [key_name(src)] (<A HREF='?_src_=holder;adminplayerobservejump=\ref[user]'>JMP</A>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[user.name]'>FLW</A>)", 1)
-						log_game("[user.name] ([user.ckey]) committed suicide with [key_name(src)].")
+						log_game("[key_name(user)] committed suicide with [src] at [AREACOORD(user.loc)].")
+						message_admins("[ADMIN_TPMONTY(user)] committed suicide with [src].")
 						if(istype(current_revolver) && current_revolver.russian_roulette) //If it's a revolver set to Russian Roulette.
-							t += " after playing Russian Roulette"
 							user.apply_damage(projectile_to_fire.damage * 3, projectile_to_fire.ammo.damage_type, "head", used_weapon = "An unlucky pull of the trigger during Russian Roulette!", sharp = 1)
 							user.apply_damage(200, OXY) //In case someone tried to defib them. Won't work.
 							user.death()
@@ -757,7 +751,7 @@ and you're good to go.
 									var/mob/living/carbon/human/HM = user
 									HM.undefibbable = TRUE //can't be defibbed back from self inflicted gunshot to head
 								user.death()
-						user.log_message(t, LOG_ATTACK, "red") //Apply the attack log.
+						user.log_message("commited suicide with [src]", LOG_ATTACK, "red") //Apply the attack log.
 						last_fired = world.time
 
 						projectile_to_fire.play_damage_effect(user)
@@ -797,7 +791,7 @@ and you're good to go.
 							var/obj/item/projectile/BP
 							for(var/i = 1 to projectile_to_fire.ammo.bonus_projectiles_amount)
 								BP = new /obj/item/projectile(M.loc)
-								BP.generate_bullet(ammo_list[projectile_to_fire.ammo.bonus_projectiles_type])
+								BP.generate_bullet(GLOB.ammo_list[projectile_to_fire.ammo.bonus_projectiles_type])
 								BP.dir = get_dir(user, M)
 								BP.distance_travelled = get_dist(user, M)
 								BP.ammo.on_hit_mob(M, BP)
@@ -838,7 +832,7 @@ and you're good to go.
 			return
 
 		if(!CONFIG_GET(flag/allow_synthetic_gun_use))
-			if(isSynth(user))
+			if(issynth(user))
 				to_chat(user, "<span class='warning'>Your program does not allow you to use firearms.</span>")
 				return
 

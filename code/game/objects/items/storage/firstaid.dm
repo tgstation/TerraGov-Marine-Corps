@@ -300,6 +300,7 @@
 
 /obj/item/storage/pill_bottle/hypervene
 	name = "hypervene pill bottle"
+	desc = "A purge medication used to treat overdoses and rapidly remove toxins. Causes pain and vomiting."
 	icon_state = "pill_canister7"
 	pill_type_to_fill = /obj/item/reagent_container/pill/hypervene
 

@@ -78,7 +78,7 @@
 
 	feedback_add_details("admin_verb","TDV") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/toggleprayers()
+/client/verb/toggleprayers()
 	set name = "Show/Hide Prayers"
 	set category = "Preferences"
 	set desc = "Toggles seeing prayers"
@@ -95,11 +95,11 @@
 	prefs.save_preferences()
 	if(prefs.toggles_sound & SOUND_LOBBY)
 		to_chat(src, "You will now hear music in the game lobby.")
-		if(istype(mob, /mob/new_player))
+		if(isnewplayer(mob))
 			playtitlemusic()
 	else
 		to_chat(src, "You will no longer hear music in the game lobby.")
-		if(istype(mob, /mob/new_player))
+		if(isnewplayer(mob))
 			src << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1) // stop the jamsz
 	feedback_add_details("admin_verb","TLobby") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -117,10 +117,10 @@
 		if(src.mob.client.midi_silenced)	return
 		if(midi_playing)
 			total_silenced++
-			message_admins("A player has silenced the currently playing midi. Total: [total_silenced] player(s).", 1)
-			src.mob.client.midi_silenced = 1
+			message_admins("[key_name(src)] has silenced the currently playing midi. Total: [total_silenced] player(s).")
+			src.mob.client.midi_silenced = TRUE
 			spawn(300) // Prevents message_admins() spam. Should match with the midi_playing_timer spawn() in playsound.dm
-				src.mob.client.midi_silenced = 0
+				src.mob.client.midi_silenced = FALSE
 	else
 		to_chat(src, "You have 'Play Admin Midis' disabled in your Character Setup, so this verb is useless to you.")
 	feedback_add_details("admin_verb","TMidi") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

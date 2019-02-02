@@ -22,10 +22,10 @@
 /obj/item/device/radio/headset/handle_message_mode(mob/living/M as mob, message, channel)
 	if (channel == "special")
 		if (translate_binary)
-			var/datum/language/binary = all_languages["Robot Talk"]
+			var/datum/language/binary = GLOB.all_languages["Robot Talk"]
 			binary.broadcast(M, message)
 		if (translate_hive)
-			var/datum/language/hivemind = all_languages["Hivemind"]
+			var/datum/language/hivemind = GLOB.all_languages["Hivemind"]
 			hivemind.broadcast(M, message)
 		return null
 
@@ -43,10 +43,10 @@
 /obj/item/device/radio/headset/attackby(obj/item/W as obj, mob/user as mob)
 //	..()
 	user.set_interaction(src)
-	if (!( istype(W, /obj/item/tool/screwdriver) || (istype(W, /obj/item/device/encryptionkey/ ))))
+	if (!( isscrewdriver(W) || (istype(W, /obj/item/device/encryptionkey/ ))))
 		return
 
-	if(istype(W, /obj/item/tool/screwdriver))
+	if(isscrewdriver(W))
 		if(keyslot1 || keyslot2 || keyslot3)
 
 
@@ -201,7 +201,7 @@
 	return ..(freq, level, 1)
 
 /obj/item/device/radio/headset/ert
-	name = "W-Y Response Team headset"
+	name = "NT Response Team headset"
 	desc = "The headset of the boss's boss. Channels are as follows: :h - Response Team :c - command, :p - security, :e - engineering, :m - medical."
 	icon_state = "com_headset"
 	item_state = "headset"

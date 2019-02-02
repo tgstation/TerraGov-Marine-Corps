@@ -23,7 +23,7 @@
 	return
 
 /obj/structure/largecrate/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/tool/crowbar))
+	if(iscrowbar(W))
 		new /obj/item/stack/sheet/wood(src)
 		var/turf/T = get_turf(src)
 		for(var/obj/O in contents)
@@ -42,7 +42,7 @@
 	icon_state = "lisacrate"
 
 /obj/structure/largecrate/lisa/attackby(obj/item/W as obj, mob/user as mob)	//ugly but oh well
-	if(istype(W, /obj/item/tool/crowbar))
+	if(iscrowbar(W))
 		new /mob/living/simple_animal/corgi/Lisa(loc)
 	..()
 
@@ -51,7 +51,7 @@
 	icon_state = "lisacrate"
 
 /obj/structure/largecrate/cow/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/tool/crowbar))
+	if(iscrowbar(W))
 		new /mob/living/simple_animal/cow(loc)
 	..()
 
@@ -60,7 +60,7 @@
 	icon_state = "lisacrate"
 
 /obj/structure/largecrate/goat/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/tool/crowbar))
+	if(iscrowbar(W))
 		new /mob/living/simple_animal/hostile/retaliate/goat(loc)
 	..()
 
@@ -69,7 +69,7 @@
 	icon_state = "lisacrate"
 
 /obj/structure/largecrate/chick/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/tool/crowbar))
+	if(iscrowbar(W))
 		var/num = rand(4, 6)
 		for(var/i = 0, i < num, i++)
 			new /mob/living/simple_animal/chick(loc)
@@ -81,7 +81,7 @@
 	icon_state = "mulecrate"
 
 /obj/structure/largecrate/hoverpod/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/tool/crowbar))
+	if(iscrowbar(W))
 		new /obj/mecha/hoverpod(loc)
 	..()
 
@@ -95,7 +95,8 @@
 /obj/structure/largecrate/random
 	name = "supply crate"
 	var/num_things = 0
-	var/list/stuff = list(/obj/item/cell/high,
+	var/list/stuff = list(
+						/obj/item/cell/high,
 						/obj/item/storage/belt/utility/full,
 						/obj/item/device/multitool,
 						/obj/item/tool/crowbar,
@@ -108,7 +109,8 @@
 						/obj/item/tool/wirecutters,
 						/obj/item/device/analyzer,
 						/obj/item/clothing/under/marine,
-						/obj/item/clothing/shoes/marine)
+						/obj/item/clothing/shoes/marine
+						)
 
 /obj/structure/largecrate/random/New()
 	..()
@@ -211,21 +213,29 @@
 		icon_state = "secure_crate"
 		strapped = 0
 
-
 /obj/structure/largecrate/guns
 	name = "\improper TGMC firearms crate (x3)"
 	var/num_guns = 3
-	var/num_mags = 0
+	var/num_mags = 3
 	var/list/stuff = list(
-					/obj/item/weapon/gun/pistol/m4a3 = /obj/item/ammo_magazine/pistol,
-					/obj/item/weapon/gun/pistol/m4a3 = /obj/item/ammo_magazine/pistol,
-					/obj/item/weapon/gun/revolver/m44 = /obj/item/ammo_magazine/revolver,
-					/obj/item/weapon/gun/rifle/m41a = /obj/item/ammo_magazine/rifle,
-					/obj/item/weapon/gun/rifle/m41a = /obj/item/ammo_magazine/rifle,
+					/obj/item/weapon/gun/pistol/m4a3 = /obj/item/ammo_magazine/pistol/hp,
+					/obj/item/weapon/gun/pistol/m4a3 = /obj/item/ammo_magazine/pistol/ap,
+					/obj/item/weapon/gun/revolver/m44 = /obj/item/ammo_magazine/revolver/marksman,
+					/obj/item/weapon/gun/revolver/m44 = /obj/item/ammo_magazine/revolver/heavy,
+					/obj/item/weapon/gun/rifle/m41a = /obj/item/ammo_magazine/rifle/extended,
+					/obj/item/weapon/gun/rifle/m41a = /obj/item/ammo_magazine/rifle/ap,
 					/obj/item/weapon/gun/shotgun/pump = /obj/item/ammo_magazine/shotgun,
-					/obj/item/weapon/gun/smg/m39 = /obj/item/ammo_magazine/smg/m39,
-					/obj/item/weapon/gun/smg/m39 = /obj/item/ammo_magazine/smg/m39
-				)
+					/obj/item/weapon/gun/shotgun/pump = /obj/item/ammo_magazine/shotgun/incendiary,
+					/obj/item/weapon/gun/shotgun/combat = /obj/item/ammo_magazine/shotgun/beanbag,
+					/obj/item/weapon/gun/smg/m39 = /obj/item/ammo_magazine/smg/m39/ap,
+					/obj/item/weapon/gun/smg/m39 = /obj/item/ammo_magazine/smg/m39/extended,
+					/obj/item/weapon/gun/smg/m39/elite = /obj/item/ammo_magazine/smg/m39/ap,
+					/obj/item/weapon/gun/flamer = /obj/item/ammo_magazine/flamer_tank,
+					/obj/item/weapon/gun/pistol/m4a3/custom = /obj/item/ammo_magazine/pistol/incendiary,
+					/obj/item/weapon/gun/rifle/m41aMK1 = /obj/item/ammo_magazine/rifle/m41aMK1,
+					/obj/item/weapon/gun/rifle/lmg = /obj/item/ammo_magazine/rifle/lmg,
+					/obj/item/weapon/gun/launcher/m81 = /obj/item/explosive/grenade/phosphorus
+					)
 
 /obj/structure/largecrate/guns/New()
 	..()
@@ -243,40 +253,40 @@
 	num_guns = 1
 	num_mags = 1
 	name = "\improper Nagant-Yamasaki firearm crate"
-	stuff = list(	/obj/item/weapon/gun/revolver/upp = /obj/item/ammo_magazine/revolver/upp,
+	stuff = list(
+					/obj/item/weapon/gun/revolver/upp = /obj/item/ammo_magazine/revolver/upp,
 					/obj/item/weapon/gun/pistol/c99 = /obj/item/ammo_magazine/pistol/c99,
 					/obj/item/weapon/gun/pistol/kt42 = /obj/item/ammo_magazine/pistol/automatic,
 					/obj/item/weapon/gun/rifle/mar40 = /obj/item/ammo_magazine/rifle/mar40,
 					/obj/item/weapon/gun/rifle/mar40/carbine = /obj/item/ammo_magazine/rifle/mar40/extended,
 					/obj/item/weapon/gun/rifle/sniper/svd = /obj/item/ammo_magazine/sniper/svd,
-					/obj/item/weapon/gun/smg/ppsh = /obj/item/ammo_magazine/smg/ppsh
+					/obj/item/weapon/gun/smg/ppsh = /obj/item/ammo_magazine/smg/ppsh,
+					/obj/item/weapon/gun/rifle/type71 = /obj/item/ammo_magazine/rifle/type71,
+					/obj/item/weapon/gun/rifle/sniper/svd = /obj/item/ammo_magazine/sniper/svd
 				)
 
 /obj/structure/largecrate/guns/merc
 	num_guns = 1
 	num_mags = 1
 	name = "\improper Black market firearm crate"
-	stuff = list(	/obj/item/weapon/gun/pistol/holdout = /obj/item/ammo_magazine/pistol/holdout,
+	stuff = list(
+					/obj/item/weapon/gun/pistol/holdout = /obj/item/ammo_magazine/pistol/holdout,
 					/obj/item/weapon/gun/pistol/highpower = /obj/item/ammo_magazine/pistol/highpower,
 					/obj/item/weapon/gun/pistol/m1911 = /obj/item/ammo_magazine/pistol/m1911,
 					/obj/item/weapon/gun/pistol/vp70 = /obj/item/ammo_magazine/pistol/vp70,
 					/obj/item/weapon/gun/pistol/heavy = /obj/item/ammo_magazine/pistol/heavy,
 					/obj/item/weapon/gun/revolver/small = /obj/item/ammo_magazine/revolver/small,
 					/obj/item/weapon/gun/revolver/cmb = /obj/item/ammo_magazine/revolver/cmb,
-					/obj/item/weapon/gun/shotgun/merc = /obj/item/ammo_magazine/shotgun,
+					/obj/item/weapon/gun/shotgun/merc = /obj/item/ammo_magazine/shotgun/flechette,
 					/obj/item/weapon/gun/shotgun/pump/cmb = /obj/item/ammo_magazine/shotgun/incendiary,
 					/obj/item/weapon/gun/shotgun/double = /obj/item/ammo_magazine/shotgun/buckshot,
+					/obj/item/weapon/gun/smg/mp5 = /obj/item/ammo_magazine/smg/mp5,
 					/obj/item/weapon/gun/smg/mp7 = /obj/item/ammo_magazine/smg/mp7,
 					/obj/item/weapon/gun/smg/skorpion = /obj/item/ammo_magazine/smg/skorpion,
 					/obj/item/weapon/gun/smg/uzi = /obj/item/ammo_magazine/smg/uzi,
-					/obj/item/weapon/gun/smg/p90 = /obj/item/ammo_magazine/smg/p90
+					/obj/item/weapon/gun/smg/p90 = /obj/item/ammo_magazine/smg/p90,
+					/obj/item/weapon/gun/rifle/m16 = /obj/item/ammo_magazine/rifle/m16
 				)
-
-
-
-
-
-
 
 
 /obj/structure/largecrate/hunter_games_construction

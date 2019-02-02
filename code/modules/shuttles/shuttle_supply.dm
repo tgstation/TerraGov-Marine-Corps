@@ -20,7 +20,7 @@
 
 /datum/shuttle/ferry/supply/New()
 	..()
-	var/turf/SupplyElevatorLoc = get_turf(SupplyElevator)
+	var/turf/SupplyElevatorLoc = get_turf(GLOB.supply_elevator)
 	SupplyElevator_x = SupplyElevatorLoc.x
 	SupplyElevator_y = SupplyElevatorLoc.y
 	SupplyElevator_z = SupplyElevatorLoc.z
@@ -120,7 +120,7 @@
 
 /datum/shuttle/ferry/supply/proc/raise_railings()
 	var/effective = 0
-	for(var/obj/machinery/door/poddoor/M in machines)
+	for(var/obj/machinery/door/poddoor/M in GLOB.machines)
 		if(M.id == railing_id && !M.density)
 			effective = 1
 			spawn()
@@ -131,7 +131,7 @@
 
 /datum/shuttle/ferry/supply/proc/lower_railings()
 	var/effective = 0
-	for(var/obj/machinery/door/poddoor/M in machines)
+	for(var/obj/machinery/door/poddoor/M in GLOB.machines)
 		if(M.id == railing_id && M.density)
 			effective = 1
 			spawn()
@@ -172,14 +172,14 @@
 	NE?.icon_state = "supply_elevator_raised"
 
 /datum/shuttle/ferry/supply/proc/start_gears(var/direction = 1)
-	for(var/obj/machinery/gear/M in machines)
+	for(var/obj/machinery/gear/M in GLOB.machines)
 		if(M.id == gear_id)
 			spawn()
 				M.icon_state = "gear_moving"
 				M.dir = direction
 
 /datum/shuttle/ferry/supply/proc/stop_gears()
-	for(var/obj/machinery/gear/M in machines)
+	for(var/obj/machinery/gear/M in GLOB.machines)
 		if(M.id == gear_id)
 			spawn()
 				M.icon_state = "gear"

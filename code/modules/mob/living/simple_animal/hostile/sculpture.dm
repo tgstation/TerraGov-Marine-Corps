@@ -149,7 +149,7 @@
 	if(prob(25)) //1 in 4 chance of checking out something new
 		var/list/turfs = new/list()
 		for(var/turf/T in view(7, src))
-			if(!istype(T, /turf/open/floor))
+			if(!isfloorturf(T))
 				continue
 			turfs += T
 		var/turf/target_turf = safepick(turfs)
@@ -262,8 +262,8 @@
 
 		//Logging stuff
 		log_combat(src, target, "neck snapped")
-		log_admin("[target] ([target.ckey]) has had his neck snapped by an active [src].")
-		message_admins("ALERT: <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[target.x];Y=[target.y];Z=[target.z]'>[target.real_name]</a> has had his neck snapped by an active [src].")
+		log_admin("[key_name(target)] has had his neck snapped by an active [src].")
+		message_admins("[ADMIN_TPMONTY(target)] has had his neck snapped by an active [src].")
 
 /mob/living/simple_animal/sculpture/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	..()

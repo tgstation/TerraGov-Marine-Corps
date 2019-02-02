@@ -298,9 +298,9 @@
 
 /obj/effect/particle_effect/smoke/xeno_burn/affect(var/mob/living/carbon/M)
 	..()
-	if(isXeno(M))
+	if(isxeno(M))
 		return
-	if(isYautja(M) && prob(75))
+	if(isyautja(M) && prob(75))
 		return
 	if(M.stat == DEAD)
 		return
@@ -342,16 +342,16 @@
 
 /obj/effect/particle_effect/smoke/xeno_weak/affect(var/mob/living/carbon/M)
 	..()
-	if(isXeno(M))
+	if(isxeno(M))
 		return
-	if(isYautja(M) && prob(75))
+	if(isyautja(M) && prob(75))
 		return
 	if(M.stat == DEAD)
 		return
 	if(istype(M.buckled, /obj/structure/bed/nest) && M.status_flags & XENO_HOST)
 		return
 
-	var/reagent_amount = rand(4,10) + rand(4,10) //Gaussian. Target number 7.
+	var/reagent_amount = rand(7,9)
 
 	//Gas masks protect from inhalation and face contact effects, even without internals. Breath masks don't for balance reasons
 	if(!istype(M.wear_mask, /obj/item/clothing/mask/gas))
@@ -369,7 +369,7 @@
 			spawn(15)
 				M.coughedtime = 0
 	else
-		M.reagents.add_reagent("xeno_toxin", reagent_amount * 0.5)
+		M.reagents.add_reagent("xeno_toxin", reagent_amount * 0.25)
 	//Topical damage (neurotoxin on exposed skin)
 	to_chat(M, "<span class='danger'>Your body is going numb, almost as if paralyzed!</span>")
 	if(prob(round(reagent_amount*5))) //Likely to momentarily freeze up/fall due to arms/hands seizing up

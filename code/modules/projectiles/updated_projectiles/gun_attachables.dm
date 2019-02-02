@@ -599,6 +599,18 @@ Defined in conflicts.dm of the #defines folder.
 	scatter_mod = -CONFIG_GET(number/combat_define/med_scatter_value)
 	movement_acc_penalty_mod = CONFIG_GET(number/combat_define/min_movement_acc_penalty)
 
+/obj/item/attachable/stock/scout
+	name = "\improper ZX-76 tactical stock"
+	desc = "A standard polymer stock for the ZX-76 assault shotgun. Designed for maximum ease of use in close quarters."
+	icon_state = "zx_stock"
+	wield_delay_mod = 0
+
+/obj/item/attachable/stock/scout/New()
+	. = ..()
+	accuracy_mod = CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
+	recoil_mod = -CONFIG_GET(number/combat_define/min_recoil_value)
+	scatter_mod = -CONFIG_GET(number/combat_define/min_scatter_value)
+
 /obj/item/attachable/stock/slavic
 	name = "wooden stock"
 	desc = "A non-standard heavy wooden stock for Slavic firearms."
@@ -713,7 +725,7 @@ Defined in conflicts.dm of the #defines folder.
 /obj/item/attachable/attached_gun/Initialize() //Let's make sure if something needs an ammo type, it spawns with one.
 	. = ..()
 	if(ammo)
-		ammo = ammo_list[ammo]
+		ammo = GLOB.ammo_list[ammo]
 
 
 /obj/item/attachable/attached_gun/Destroy()
@@ -803,12 +815,14 @@ Defined in conflicts.dm of the #defines folder.
 	var/nade_type = loaded_grenades[1]
 	var/obj/item/explosive/grenade/frag/G = new nade_type (get_turf(gun))
 	playsound(user.loc, fire_sound, 50, 1)
-	message_admins("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) fired an underslung grenade launcher")
-	log_game("[key_name_admin(user)] used an underslung grenade launcher.")
-	G.det_time = 15
+	log_game("[key_name(user)] fired an underslung grenade launcher at [AREACOORD(usr.loc)].")	
+	message_admins("[ADMIN_TPMONTY(usr)] fired an underslung grenade launcher.")
+	G.det_time = min(15, G.det_time)
 	G.throw_range = max_range
+	G.launched = TRUE
 	G.activate()
-	G.throw_at(target, max_range, 2, user)
+	G.throwforce += G.launchforce //Throws with signifcantly more force than a standard marine can.
+	G.throw_at(target, max_range, 3, user)
 	current_rounds--
 	loaded_grenades.Cut(1,2)
 
@@ -937,28 +951,29 @@ Defined in conflicts.dm of the #defines folder.
 
 		fire_mod = 1
 
-		if(isXeno(M))
+		if(isxeno(M))
 			var/mob/living/carbon/Xenomorph/X = M
 			if(X.xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 				continue
-			fire_mod = X.xeno_caste.fire_resist + X.fire_resist_modifier
+			fire_mod = CLAMP(X.xeno_caste.fire_resist + X.fire_resist_modifier, 0, 1)
 		else if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 
 			if(user)
+				var/area/A = get_area(user)
 				if(user.mind && !user.mind.special_role && H.mind && !H.mind.special_role)
 					log_combat(user, H, "shot", src)
-					msg_admin_ff("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) shot [key_name(H)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[H]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[H.x];Y=[H.y];Z=[H.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[H]'>FLW</a>) with \a [name] in [get_area(user)]")
+					msg_admin_ff("[ADMIN_TPMONTY(usr)] shot [ADMIN_TPMONTY(H)] with \a [name] in [ADMIN_VERBOSEJMP(A)].")
 				else
 					log_combat(user, H, "shot", src)
-					msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) shot [key_name(H)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[H]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[H.x];Y=[H.y];Z=[H.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[H]'>FLW</a>) with \a [name] in [get_area(user)]")
+					msg_admin_attack("[ADMIN_TPMONTY(usr)] shot [ADMIN_TPMONTY(H)] with \a [name] in [ADMIN_VERBOSEJMP(A)].")
 
 			if(istype(H.wear_suit, /obj/item/clothing/suit/fire) || istype(H.wear_suit,/obj/item/clothing/suit/space/rig/atmos))
 				continue
 
 		M.adjust_fire_stacks(rand(3,5))
 		M.adjustFireLoss(rand(20,40) * fire_mod) //fwoom!
-		to_chat(M, "[isXeno(M)?"<span class='xenodanger'>":"<span class='highdanger'>"]Augh! You are roasted by the flames!")
+		to_chat(M, "[isxeno(M)?"<span class='xenodanger'>":"<span class='highdanger'>"]Augh! You are roasted by the flames!")
 
 /obj/item/attachable/attached_gun/shotgun
 	name = "masterkey shotgun"

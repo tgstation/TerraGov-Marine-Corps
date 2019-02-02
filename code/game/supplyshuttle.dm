@@ -58,9 +58,9 @@ var/list/mechtoys = list(
 	if(istype(A, /obj/vehicle))	//no vehicles
 		return 0
 
-	if(istype(A, /mob/living)) // You Shall Not Pass!
+	if(isliving(A)) // You Shall Not Pass!
 		var/mob/living/M = A
-		if(!M.lying && !istype(M, /mob/living/carbon/monkey) && !istype(M, /mob/living/simple_animal/mouse) && !istype(M, /mob/living/silicon/robot/drone))  //If your not laying down, or a small creature, no pass.
+		if(!M.lying && !ismonkey(M) && !istype(M, /mob/living/simple_animal/mouse) && !ismaintdrone(M))  //If your not laying down, or a small creature, no pass.
 			return 0
 	return ..()
 
@@ -119,12 +119,8 @@ var/list/mechtoys = list(
 	var/comment = null
 
 /datum/controller/supply
-	var/processing = 1
-	var/processing_interval = 300
-	var/iteration = 0
 	//supply points
 	var/points = 120
-	var/points_per_process = 2
 	var/points_per_slip = 1
 	var/points_per_crate = 5
 	var/points_per_platinum = 5
@@ -152,20 +148,11 @@ var/list/mechtoys = list(
 			var/datum/supply_export/E = new typepath()
 			export_types += E
 
-		spawn(0)
-			set background = 1
-			while(1)
-				if(processing)
-					iteration++
-					points += points_per_process
-
-				sleep(processing_interval)
-
 	//To stop things being sent to centcomm which should not be sent to centcomm. Recursively checks for these types.
 	proc/forbidden_atoms_check(atom/A)
 		if(istype(A,/mob/living))
 			var/mob/living/X = A
-			if (!(isXeno(X) && X.stat == DEAD))
+			if (!(isxeno(X) && X.stat == DEAD))
 				return 1
 		if(istype(A,/obj/item/disk/nuclear))
 			return 1
@@ -218,7 +205,7 @@ var/list/mechtoys = list(
 						plat_count += P.get_amount()
 
 			//Sell Xeno Corpses
-			if (isXeno(MA))
+			if (isxeno(MA))
 				var/cost = 0
 				for(var/datum/supply_export in export_types)
 					var/datum/supply_export/E = supply_export
@@ -338,7 +325,7 @@ var/list/mechtoys = list(
 	if(..())
 		return
 
-	if( isturf(loc) && (in_range(src, usr) || istype(usr, /mob/living/silicon)) )
+	if( isturf(loc) && (in_range(src, usr) || issilicon(usr)) )
 		usr.set_interaction(src)
 
 	if(href_list["order"])
@@ -513,7 +500,7 @@ var/list/mechtoys = list(
 	if(..())
 		return
 
-	if(isturf(loc) && ( in_range(src, usr) || istype(usr, /mob/living/silicon) ) )
+	if(isturf(loc) && ( in_range(src, usr) || issilicon(usr) ) )
 		usr.set_interaction(src)
 
 	//Calling the shuttle

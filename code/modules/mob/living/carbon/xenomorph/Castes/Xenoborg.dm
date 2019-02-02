@@ -95,10 +95,8 @@
 	visible_message("<span class='xenowarning'>\The [src] fires its autocannon!</span>", \
 	"<span class='xenowarning'>You fire your autocannon!</span>" )
 	playsound(src.loc,'sound/weapons/gun_smg.ogg', 75, 1)
-	usedPounce = 1
-	spawn(1)
-		usedPounce = 0
-
+	usedPounce = TRUE
+	addtimer(CALLBACK(src, .proc/reset_pounce_delay), 1)
 
 /mob/living/carbon/Xenomorph/Xenoborg/emp_act(severity)
 	visible_message("<span class='danger'>\The [src] sparks and shudders!</span>", \
@@ -110,7 +108,7 @@
 
 /mob/living/carbon/Xenomorph/Xenoborg/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(user && O && stat != DEAD)
-		if(istype(O, /obj/item/tool/weldingtool))
+		if(iswelder(O))
 			var/obj/item/tool/weldingtool/WT = O
 			updatehealth()
 			if(health < maxHealth)

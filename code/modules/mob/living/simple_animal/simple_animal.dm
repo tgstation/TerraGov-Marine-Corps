@@ -81,17 +81,17 @@
 		else
 			stat = CONSCIOUS
 
+/mob/living/simple_animal/rejuvenate()
+	. = ..()
+	icon_state = icon_living
+	density = initial(density)
+	SetResting(FALSE)
+
 /mob/living/simple_animal/Life()
 	..()
 
 	//Health
-	if(stat != DEAD)
-		if(health > 0)
-			icon_state = icon_living
-			stat = CONSCIOUS
-			lying = 0
-			density = 1
-			reload_fullscreens()
+	if(stat == DEAD)
 		return 0
 
 	//Movement
@@ -188,18 +188,13 @@
 	return 1
 
 /mob/living/simple_animal/Bumped(AM as mob|obj)
-	if(!AM) return
+	if(!AM) 
+		return
 
 	if(resting || buckled)
 		return
 
-	if(isturf(src.loc))
-		if(ismob(AM))
-			var/newamloc = src.loc
-			src.loc = AM:loc
-			AM:loc = newamloc
-		else
-			..()
+	return ..()
 
 /mob/living/simple_animal/blind_eyes()
 	return
@@ -221,7 +216,10 @@
 
 /mob/living/simple_animal/death()
 	. = ..()
-		icon_state = icon_dead
+	health = 0
+	icon_state = icon_dead
+	density = FALSE
+	SetResting(TRUE)
 
 
 /mob/living/simple_animal/gib()
@@ -341,12 +339,12 @@
 	. += speed
 	. += CONFIG_GET(number/outdated_movedelay/animal_delay)
 
-/mob/living/simple_animal/Stat()
-	if (!..())
-		return 0
 
-	stat(null, "Health: [round((health / maxHealth) * 100)]%")
-	return 1
+/mob/living/simple_animal/Stat()
+	. = ..()
+
+	if(statpanel("Stats"))
+		stat(null, "Health: [round((health / maxHealth) * 100)]%")
 
 
 /mob/living/simple_animal/ex_act(severity)
@@ -363,9 +361,6 @@
 
 		if(3.0)
 			adjustBruteLoss(30)
-
-/mob/living/simple_animal/adjustBruteLoss(damage)
-	health = CLAMP(health - damage, 0, maxHealth)
 
 /mob/living/simple_animal/proc/SA_attackable(target_mob)
 	if (isliving(target_mob))

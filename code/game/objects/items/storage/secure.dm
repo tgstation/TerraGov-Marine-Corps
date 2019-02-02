@@ -46,12 +46,12 @@
 				to_chat(user, "You short out the lock on [src].")
 				return
 
-			if (istype(W, /obj/item/tool/screwdriver))
+			if (isscrewdriver(W))
 				if (do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
 					src.open =! src.open
 					user.show_message(text("<span class='notice'> You [] the service panel.</span>", (src.open ? "open" : "close")))
 				return
-			if ((istype(W, /obj/item/device/multitool)) && (src.open == 1)&& (!src.l_hacking))
+			if (ismultitool(W) && (src.open == 1)&& (!src.l_hacking))
 				user.show_message(text("<span class='warning'> Now attempting to reset internal memory, please hold.</span>"), 1)
 				src.l_hacking = 1
 				if (do_after(usr, 100, TRUE, 5, BUSY_ICON_BUILD))

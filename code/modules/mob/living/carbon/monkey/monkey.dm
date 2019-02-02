@@ -63,7 +63,7 @@
 	reagents = R
 	R.my_atom = src
 
-	species = all_species[greaterform]
+	species = GLOB.all_species[greaterform]
 	add_language(species.language)
 
 	if(name == initial(name)) //To stop Pun-Pun becoming generic.
@@ -304,8 +304,11 @@
 		return initial(pixel_y)
 
 /mob/living/carbon/monkey/Stat()
-	stat(null, text("Intent: []", a_intent))
-	stat(null, text("Move Mode: []", m_intent))
+	. = ..()
+
+	if(statpanel("Stats"))
+		stat(null, text("Intent: []", a_intent))
+		stat(null, text("Move Mode: []", m_intent))
 
 /mob/living/carbon/monkey/verb/removeinternal()
 	set name = "Remove Internals"
