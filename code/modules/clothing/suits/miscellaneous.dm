@@ -58,13 +58,6 @@
 	fire_resist = T0C+5200
 	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 
-
-/obj/item/clothing/suit/greatcoat
-	name = "great coat"
-	desc = "A heavy great coat"
-	icon_state = "heavy_coat"
-	item_state = "heavy_coat"
-
 /obj/item/clothing/suit/johnny_coat
 	name = "johnny~~ coat"
 	desc = "Johnny~~"
