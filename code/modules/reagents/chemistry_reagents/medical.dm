@@ -685,12 +685,32 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/M, alien)
 	custom_metabolism = 0.2
 	overdose_threshold = REAGENTS_OVERDOSE/5
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/5
+	var/list/purge_list = list()
+	var/duration = 0
 
 /datum/reagent/medicine/hyperzine/on_mob_add(mob/living/M)
-	M.reagent_move_delay_modifier -= 0.5
+	M.reagent_move_delay_modifier -= min(6, volume * 2) //greater the dose, the greater the speed; capped at 6
+	purge_list = list(/datum/reagent/medicine/dexalin, /datum/reagent/medicine/dexalinplus)
+	..()
+
+/datum/reagent/medicine/hyperzine/on_mob_delete(mob/living/M)
+	var/amount = M.adjustOxyLoss(duration * 4)
+	if(amount > 50)
+		M.KnockOut(amount * 0.1)
+		to_chat(M, "<span class='danger'>Your world convulses as a wave of extreme fatigue washes over you!</span>") //when hyperzine is removed from the body, there's a backlash as it struggles to transition and operate without the drug
+	else
+		M.KnockDown(amount * 0.05)
+		to_chat(M, "<span class='warning'>A sudden wave of fatigue washes over you.</span>")
 	..()
 
 /datum/reagent/medicine/hyperzine/on_mob_life(mob/living/M)
+	//M.reagents.remove_all_type(/datum/reagent/medicine/dexalin, REM, 0, 1) //purges dex and dexplus rapidly; this is mainly to prevent easy, prefab circumvention of the downside when the duration ends
+	//M.reagents.remove_all_type(/datum/reagent/medicine/dexalinplus, REM, 0, 1)
+	duration++ //to track how long hyperzine has been in the system
+	M.nutrition -= 5 * REM //Body burns through energy fast
+	for(var/datum/reagent/R in M.reagents.reagent_list)
+		if(R in purge_list)
+			M.reagents.remove_reagent(R.id,30)
 	if(prob(1))
 		M.emote(pick("twitch","blink_r","shiver"))
 		if(ishuman(M))
@@ -701,6 +721,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/M, alien)
 
 /datum/reagent/medicine/hyperzine/overdose_process(mob/living/M, alien)
 	if(ishuman(M))
+		M.Jitter(5)
 		var/mob/living/carbon/human/H = M
 		var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
 		if(E)
@@ -710,6 +731,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/M, alien)
 
 /datum/reagent/medicine/hyperzine/overdose_crit_process(mob/living/M, alien)
 	if(ishuman(M))
+		M.Jitter(10)
 		var/mob/living/carbon/human/H = M
 		var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
 		if(E)
@@ -729,7 +751,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/M, alien)
 	taste_multi = 2
 
 /datum/reagent/medicine/ultrazine/on_mob_life(mob/living/carbon/C)
-	C.reagent_move_delay_modifier -= 10
+	C.reagent_move_delay_modifier -= 5
 	if(prob(50))
 		C.AdjustKnockeddown(-1)
 		C.AdjustStunned(-1)

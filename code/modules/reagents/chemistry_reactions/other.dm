@@ -62,7 +62,6 @@
 	results = list("sdtoxin" = 2)
 	required_reagents = list("synaptizine" = 1, "dylovene" = 1)
 
-
 /datum/chemical_reaction/sleeptoxin
 	name = "Soporific"
 	id = "sleeptoxin"
