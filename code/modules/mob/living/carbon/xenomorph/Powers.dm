@@ -1879,6 +1879,8 @@
 	var/victims
 	var/target_facing
 	for (var/mob/living/carbon/human/H in L)
+		if(victims >= 3) //Max 3 victims
+			break
 		target_facing = get_dir(src, H)
 		if(target_facing != dir && target_facing != turn(dir,45) && target_facing != turn(dir,-45) ) //Have to be actually facing the target
 			continue
