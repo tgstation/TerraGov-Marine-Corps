@@ -76,8 +76,40 @@
 	equipment = TRUE
 
 /datum/job/imperial/guardsman/sergeant/generate_equipment(mob/living/carbon/human/H)
+	var/datum/job/imperial/J = new /datum/job/imperial
+	J.generate_equipment(H)
 	
+	// guardsman with c4, binos, and highcap ammo
 	
+	H.equip_to_slot_or_del(new /obj/item/storage/pouch/explosive/upp, SLOT_L_STORE)
+	H.equip_to_slot_or_del(new /obj/item/storage/pouch/field_pouch/full, SLOT_R_STORE)
+	
+	var/obj/item/clothing/head/helmet/marine/imperial/sergeant/Helm = new /obj/item/clothing/head/helmet/marine/imperial(H)
+	Helm.pockets.contents += new /obj/item/reagent_container/hypospray/autoinjector/tricordrazine
+	Helm.pockets.contents += new /obj/item/reagent_container/hypospray/autoinjector/oxycodone
+	H.equip_to_slot_or_del(Helm, SLOT_HEAD)
+	
+	var/obj/item/clothing/suit/storage/marine/imperial/sergeant/Suit = new /obj/item/clothing/suit/storage/marine/imperial(H)
+	Suit.pockets.contents += new /obj/item/explosive/grenade/frag
+	Suit.pockets.contents += new /obj/item/explosive/grenade/incendiary
+	Suit.pockets.contents += new /obj/item/explosive/grenade/incendiary
+	H.equip_to_slot_or_del(Suit, SLOT_WEAR_SUIT)
+	
+	var/obj/item/storage/backpack/lightpack/Bag = new /obj/item/storage/backpack/lightpack(H)
+	Bag.contents += new /obj/item/storage/box/uscm_mre
+	H.equip_to_slot_or_del(Bag, SLOT_BACK)
+	
+	var/obj/item/storage/belt/marine/Belt = new /obj/item/storage/belt/marine(H)
+	Belt.contents += new /obj/item/cell/lasgun/M43/highcap
+	Belt.contents += new /obj/item/cell/lasgun/M43/highcap
+	Belt.contents += new /obj/item/cell/lasgun/M43/highcap
+	Belt.contents += new /obj/item/cell/lasgun/M43/highcap
+	Belt.contents += new /obj/item/cell/lasgun/M43/highcap
+	H.equip_to_slot_or_del(Belt, SLOT_BELT)
+	
+	var/obj/item/weapon/gun/energy/lasgun/M43/stripped/G = new /obj/item/weapon/gun/energy/lasgun/M43/stripped(H)
+	G.reload(H, new /obj/item/cell/lasgun/M43/highcap(G))
+	H.equip_to_slot_or_del(G, SLOT_S_STORE)
 
 /datum/job/imperial/guardsman/apothecary
 	title = "Guardsman Apothecary"
@@ -87,7 +119,40 @@
 	equipment = TRUE
 
 /datum/job/imperial/guardsman/apothecary/generate_equipment(mob/living/carbon/human/H)
+	var/datum/job/imperial/J = new /datum/job/imperial
+	J.generate_equipment(H)
 	
+	var/obj/item/storage/pouch/medkit/MP = new /obj/item/storage/pouch/medkit(H)
+	new /obj/item/storage/firstaid/adv(MP)
+	H.equip_to_slot_or_del(MP, SLOT_L_STORE)
 	
+	var/obj/item/storage/pouch/autoinjector/AP = new /obj/item/storage/pouch/autoinjector(H)
+	H.equip_to_slot_or_del(AP, SLOT_R_STORE)
 	
+	var/obj/item/clothing/head/helmet/marine/imperial/Helm = new /obj/item/clothing/head/helmet/marine/imperial(H)
+	Helm.pockets.contents += new /obj/item/reagent_container/hypospray/autoinjector/tricordrazine
+	Helm.pockets.contents += new /obj/item/reagent_container/hypospray/autoinjector/oxycodone
+	H.equip_to_slot_or_del(Helm, SLOT_HEAD)
+	
+	var/obj/item/clothing/suit/storage/marine/imperial/Suit = new /obj/item/clothing/suit/storage/marine/imperial(H)
+	Suit.pockets.contents += new /obj/item/explosive/grenade/frag
+	Suit.pockets.contents += new /obj/item/explosive/grenade/incendiary
+	H.equip_to_slot_or_del(Suit, SLOT_WEAR_SUIT)
+	
+	var/obj/item/storage/backpack/lightpack/Bag = new /obj/item/storage/backpack/lightpack(H)
+	Bag.contents += new /obj/item/storage/box/uscm_mre
+	Bag.contents += new /obj/item/cell/lasgun/M43
+	Bag.contents += new /obj/item/cell/lasgun/M43
+	Bag.contents += new /obj/item/cell/lasgun/M43
+	Bag.contents += new /obj/item/cell/lasgun/M43
+	Bag.contents += new /obj/item/cell/lasgun/M43
+	H.equip_to_slot_or_del(Bag, SLOT_BACK)
+	
+	var/obj/item/storage/belt/combatLifesaver/Belt = new /obj/item/storage/belt/combatLifesaver(H)
+	Belt.contents += new /obj/item/storage/pill_bottle/zoom
+	H.equip_to_slot_or_del(Belt, SLOT_BELT)
+	
+	var/obj/item/weapon/gun/energy/lasgun/M43/stripped/G = new /obj/item/weapon/gun/energy/lasgun/M43/stripped(H)
+	G.reload(H, new /obj/item/cell/lasgun/M43(G))
+	H.equip_to_slot_or_del(G, SLOT_S_STORE)
 
