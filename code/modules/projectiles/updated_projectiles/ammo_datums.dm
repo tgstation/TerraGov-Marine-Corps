@@ -563,15 +563,6 @@
 	damage = CONFIG_GET(number/combat_define/med_hit_damage)
 	penetration= -CONFIG_GET(number/combat_define/mlow_armor_penetration)
 
-/datum/ammo/bullet/rifle/bolt
-	name = "heavy hunting rifle bullet"
-	hud_state = "rifle_heavy"
-
-/datum/ammo/bullet/rifle/bolt/New()
-	..()
-	accuracy = -CONFIG_GET(number/combat_define/low_hit_accuracy)
-	damage = CONFIG_GET(number/combat_define/med_hit_damage)
-	penetration= -CONFIG_GET(number/combat_define/mlow_armor_penetration)
 /*
 //================================================
 					Shotgun Ammo
