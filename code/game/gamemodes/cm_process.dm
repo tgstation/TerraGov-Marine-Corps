@@ -1,4 +1,5 @@
-#define QUEEN_DEATH_COUNTDOWN 			 12000 //20 minutes. Can be changed into a variable if it needs to be manipulated later.
+#define QUEEN_DEATH_COUNTDOWN 			15 MINUTES
+#define QUEEN_DEATH_NOLARVA				5 MINUTES
 
 #define MODE_INFESTATION_X_MAJOR		"Xenomorph Major Victory"
 #define MODE_INFESTATION_M_MAJOR		"Marine Major Victory"
@@ -8,9 +9,9 @@
 
 #define MODE_INFECTION_ZOMBIE_WIN		"Major Zombie Victory"
 
-#define MODE_BATTLEFIELD_W_MAJOR		"W-Y PMC Major Success"
+#define MODE_BATTLEFIELD_NT_MAJOR		"NT PMC Major Success"
 #define MODE_BATTLEFIELD_M_MAJOR		"Marine Major Success"
-#define MODE_BATTLEFIELD_W_MINOR		"W-Y PMC Minor Success"
+#define MODE_BATTLEFIELD_NT_MINOR		"NT PMC Minor Success"
 #define MODE_BATTLEFIELD_M_MINOR		"Marine Minor Success"
 #define MODE_BATTLEFIELD_DRAW_STALEMATE "DRAW: Stalemate"
 #define MODE_BATTLEFIELD_DRAW_DEATH		"DRAW: My Friends Are Dead"
@@ -27,6 +28,9 @@ of predators), but can be added to include variant game modes (like humans vs. h
 
 //If the queen is dead after a period of time, this will end the game.
 /datum/game_mode/proc/check_queen_status(queen_time)
+	return
+
+/datum/game_mode/proc/get_queen_countdown()
 	return
 
 //===================================================\\

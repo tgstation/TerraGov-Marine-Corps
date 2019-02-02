@@ -1,5 +1,0 @@
-author: "Hughgent"
-delete-after: True
-changes: 
-  - rscadd: "Added a tip of the round to every MOTD upon joining."
-  - rscadd: "Fortune cookies with the wisdom of the ages."

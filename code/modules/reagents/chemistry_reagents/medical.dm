@@ -627,6 +627,26 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/M, alien)
 /datum/reagent/medicine/bicaridine/overdose_crit_process(mob/living/M, alien)
 	M.apply_damages(1, 3, 2)
 
+/datum/reagent/medicine/meralyne
+	name = "Meralyne"
+	id = "meralyne"
+	description = "Meralyne is a concentrated form of bicardine and can be used to treat extensive blunt trauma."
+	color = "#E6666C"
+	overdose_threshold = REAGENTS_OVERDOSE*0.5
+	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL*0.5
+	scannable = TRUE
+
+/datum/reagent/medicine/meralyne/on_mob_life(mob/living/M, alien)
+	. = ..()
+	M.heal_limb_damage(4 * REM, 0)
+
+
+/datum/reagent/medicine/meralyne/overdose_process(mob/living/M, alien)
+	M.apply_damage(2, BURN)
+
+/datum/reagent/medicine/meralyne/overdose_crit_process(mob/living/M, alien)
+	M.apply_damages(2, 6, 4)
+
 /datum/reagent/medicine/quickclot
 	name = "Quick Clot"
 	id = "quickclot"

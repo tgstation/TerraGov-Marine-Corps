@@ -162,13 +162,20 @@
 
 /proc/get_centcom_access_desc(A)
 	switch(A)
-		if(ACCESS_NT_PMC_GREEN)			return "W-Y PMC Green"
-		if(ACCESS_NT_PMC_ORANGE)		return "W-Y PMC Orange"
-		if(ACCESS_NT_PMC_RED)			return "W-Y PMC Red"
-		if(ACCESS_NT_PMC_BLACK)			return "W-Y PMC Black"
-		if(ACCESS_NT_PMC_WHITE)			return "W-Y PMC White"
-		if(ACCESS_NT_CORPORATE)			return "W-Y Executive"
-		if(ACCESS_IFF_PMC) 				return "W-Y Identification"
+		if(ACCESS_NT_PMC_GREEN)
+			return "NT PMC Green"
+		if(ACCESS_NT_PMC_ORANGE)
+			return "NT PMC Orange"
+		if(ACCESS_NT_PMC_RED)
+			return "NT PMC Red"
+		if(ACCESS_NT_PMC_BLACK)
+			return "NT PMC Black"
+		if(ACCESS_NT_PMC_WHITE)
+			return "NT PMC White"
+		if(ACCESS_NT_CORPORATE)
+			return "NT Executive"
+		if(ACCESS_IFF_PMC)
+			return "NT Identification"
 
 
 /proc/get_all_jobs_titles()
@@ -257,12 +264,12 @@ proc/get_all_job_icons()
 		if("C") . = size ? "" : "Civilian"
 		if("CD") . = size ? "Dr. " : "Doctor"
 		if("CCMO") . = size ? "Prof. " : "Professor"
-		if("PMC1") . = size ? "PMC " : "PMC Standard"
-		if("PMC2") . = size ? "PMC " : "PMC Gunner"
-		if("PMC3") . = size ? "PMC " : "PMC Sniper"
-		if("PMC4") . = size ? "PMC " : "PMC Leader"
-		if("PMCDS") . = size ? "PMCDS " : "PMC Deathsquad"
-		if("PMCDSL") . = size ? "PMCDS " : "PMC Deathsquad Leader"
+		if("PMC1") . = size ? "PMC " : "PM Contractor"
+		if("PMC2") . = size ? "PMSC " : "PM Senior Contractor"
+		if("PMC3") . = size ? "PMSC " : "PM Senior Contractor"
+		if("PMC4") . = size ? "PMTL " : "PM Team Leader"
+		if("PMCDS") . = size ? "APS " : "Assets Protection Specialist"
+		if("PMCDSL") . = size ? "APTL " : "Assets Protection Team Leader"
 		if("NT") . = size ? (gender == "female" ? "Ms. " : "Mr. ") : "Junior Executive"
 		if("E1") . = size ? "PVT " : "Private"
 		if("E2") . = size ? "PFC " : "Private First Class"

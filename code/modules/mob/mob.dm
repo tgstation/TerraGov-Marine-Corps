@@ -30,7 +30,7 @@
 		if(client.holder.rank.rights & (R_ADMIN|R_DEBUG))
 			if(statpanel("MC"))
 				stat("CPU:", "[world.cpu]")
-				stat("Instances:", "[num2text(world.contents.len, 10)]")
+				stat("Instances:", "[num2text(length(world.contents), 10)]")
 				stat("World Time:", "[world.time]")
 				stat(null)
 				if(Master)
@@ -164,7 +164,6 @@
 			else
 				equip_to_slot(W, slot, redraw_mob) //This proc should not ever fail.
 				if(permanent)
-					W.flags_inventory |= CANTSTRIP
 					W.flags_item |= NODROP
 				if(W.loc == start_loc && get_active_held_item() != W)
 					//They moved it from hands to an inv slot or vice versa. This will unzoom and unwield items -without- triggering lights.
@@ -176,7 +175,6 @@
 	else
 		equip_to_slot(W, slot, redraw_mob) //This proc should not ever fail.
 		if(permanent)
-			W.flags_inventory |= CANTSTRIP
 			W.flags_item |= NODROP
 		if(W.loc == start_loc && get_active_held_item() != W)
 			//They moved it from hands to an inv slot or vice versa. This will unzoom and unwield items -without- triggering lights.
@@ -336,9 +334,18 @@ var/list/slot_equipment_priority = list( \
 		'html/coding.png',
 		'html/scales.png'
 		)
+
+	src << browse_rsc('html/changelog2015.html', "changelog2015.html") 
+	src << browse_rsc('html/changelog2016.html', "changelog2016.html") 
+	src << browse_rsc('html/changelog2017.html', "changelog2017.html") 
+	src << browse_rsc('html/changelog20181.html', "changelog20181.html") 
+	src << browse_rsc('html/changelog20182.html', "changelog20182.html")
+	src << browse_rsc('html/changelog.html', "changelog.html")  
+
+
 	src << browse('html/changelog.html', "window=changes;size=675x650")
-	if(prefs.lastchangelog != changelog_hash)
-		prefs.lastchangelog = changelog_hash
+	if(prefs.lastchangelog != GLOB.changelog_hash)
+		prefs.lastchangelog = GLOB.changelog_hash
 		prefs.save_preferences()
 		winset(src, "rpane.changelog", "background-color=none;font-style=;")
 

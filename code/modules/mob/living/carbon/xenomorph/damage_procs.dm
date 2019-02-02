@@ -109,25 +109,29 @@
 
 	switch(damagetype)
 		if(BRUTE)
-			adjustBruteLoss(damage)
+			adjustBruteLoss(damage, FALSE)
 		if(BURN)
-			adjustFireLoss(damage)
+			adjustFireLoss(damage, FALSE)
 
 	updatehealth()
 	return TRUE
 
 
-/mob/living/carbon/Xenomorph/adjustBruteLoss(amount)
+/mob/living/carbon/Xenomorph/adjustBruteLoss(amount, process_rage = TRUE)
+	if(process_rage)
+		amount = process_rage_damage(amount)
 	bruteloss = CLAMP(bruteloss + amount, 0, maxHealth - xeno_caste.crit_health)
 
-/mob/living/carbon/Xenomorph/adjustFireLoss(amount)
+/mob/living/carbon/Xenomorph/adjustFireLoss(amount, process_rage = TRUE)
+	if(process_rage)
+		amount = process_rage_damage(amount)
 	fireloss = CLAMP(fireloss + amount, 0, maxHealth - xeno_caste.crit_health)
 
 /mob/living/carbon/Xenomorph/proc/process_rage_damage(damage)
 	return damage
 
 /mob/living/carbon/Xenomorph/Ravager/process_rage_damage(damage)
-	if(!damage || world.time < last_damage)
+	if(damage < 1 || world.time < last_damage)
 		return damage
 	rage += round(damage * 0.3) //Gain Rage stacks equal to 30% of damage received.
 	last_rage = world.time //We incremented rage, so bookmark this.

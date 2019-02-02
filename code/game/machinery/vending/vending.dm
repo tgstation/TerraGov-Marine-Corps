@@ -53,7 +53,6 @@
 	var/shoot_inventory = 0 //Fire items at customers! We're broken!
 	var/shut_up = 0 //Stop spouting those godawful pitches!
 	var/extended_inventory = 0 //can we access the hidden inventory?
-	var/panel_open = 0 //Hacking that vending machine. Gonna get a free candy bar.
 	var/wires = 15
 	var/obj/item/coin/coin
 	var/tokensupport = TOKEN_GENERAL
@@ -272,9 +271,9 @@
 					//Just Vend it.
 					transfer_and_vend(CH)
 			else
-				to_chat(usr, "\icon[src]<span class='warning'>Connected account has been suspended.</span>")
+				to_chat(usr, "[bicon(src)]<span class='warning'>Connected account has been suspended.</span>")
 		else
-			to_chat(usr, "\icon[src]<span class='warning'>Error: Unable to access your account. Please contact technical support if problem persists.</span>")
+			to_chat(usr, "[bicon(src)]<span class='warning'>Error: Unable to access your account. Please contact technical support if problem persists.</span>")
 
 /obj/machinery/vending/proc/transfer_and_vend(var/datum/money_account/acc)
 	if(acc)
@@ -300,9 +299,9 @@
 			src.vend(src.currently_vending, usr)
 			currently_vending = null
 		else
-			to_chat(usr, "\icon[src]<span class='warning'>You don't have that much money!</span>")
+			to_chat(usr, "[bicon(src)]<span class='warning'>You don't have that much money!</span>")
 	else
-		to_chat(usr, "\icon[src]<span class='warning'>Error: Unable to access your account. Please contact technical support if problem persists.</span>")
+		to_chat(usr, "[bicon(src)]<span class='warning'>Error: Unable to access your account. Please contact technical support if problem persists.</span>")
 
 
 /obj/machinery/vending/attack_paw(mob/user as mob)
