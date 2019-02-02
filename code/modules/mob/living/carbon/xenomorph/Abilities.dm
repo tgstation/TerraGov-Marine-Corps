@@ -382,6 +382,7 @@
 /datum/action/xeno_action/pheromones
 	name = "SHOULD NOT EXIST"
 	plasma_cost = 30 //Base plasma cost for begin to emit pheromones
+	var/aura_type = null //String for aura to emit
 
 /datum/action/xeno_action/pheromones/can_use_action()
 	var/mob/living/carbon/Xenomorph/X = owner
@@ -394,85 +395,43 @@
 	if(!X.check_plasma(plasma_cost))
 		to_chat(X, "<span class='xenowarning'>You need more than [plasma_cost] to emit this pheromone.</span>")
 		return FALSE
+
+	X.use_plasma(plasma_cost)
+	if(!aura_type)
+		return FALSE
+
+	if(X.current_aura == aura_type)
+		X.visible_message("<span class='xenowarning'>\The [X] stops emitting strange pheromones.</span>", \
+		"<span class='xenowarning'>You stop emitting [X.current_aura] pheromones.</span>", null, 5)
+		X.current_aura = null
+
+	else
+		X.current_aura = aura_type
+		X.visible_message("<span class='xenowarning'>\The [X] begins to emit strange-smelling pheromones.</span>", \
+		"<span class='xenowarning'>You begin to emit '[X.current_aura]' pheromones.</span>", null, 5)
+		playsound(X.loc, "alien_drool", 25)
+
+	if(X.hivenumber && X.hivenumber <= hive_datum.len)
+		var/datum/hive_status/hive = hive_datum[X.hivenumber]
+		if(isxenoqueen(X) && hive.xeno_leader_list.len && X.anchored)
+			var/mob/living/carbon/Xenomorph/Queen/Q = X
+			for(var/mob/living/carbon/Xenomorph/L in hive.xeno_leader_list)
+				L.handle_xeno_leader_pheromones(Q)
 	return TRUE
 
 /datum/action/xeno_action/pheromones/emit_recovery //Type casted for easy removal/adding
 	name = "Emit Recovery Pheromones (30)"
 	action_icon_state = "emit_recovery"
-
-/datum/action/xeno_action/pheromones/emit_recovery/action_activate()
-	var/mob/living/carbon/Xenomorph/X = owner
-	if(X.current_aura == "recovery")
-		X.visible_message("<span class='xenowarning'>\The [X] stops emitting strange pheromones.</span>", \
-		"<span class='xenowarning'>You stop emitting [X.current_aura] pheromones.</span>", null, 5)
-		X.current_aura = null
-	else
-		. = ..()
-		if(.)
-			X.use_plasma(30)
-			X.current_aura = "recovery"
-			X.visible_message("<span class='xenowarning'>\The [X] begins to emit strange-smelling pheromones.</span>", \
-			"<span class='xenowarning'>You begin to emit '[X.current_aura]' pheromones.</span>", null, 5)
-			playsound(X.loc, "alien_drool", 25)
-
-	if(X.hivenumber && X.hivenumber <= hive_datum.len)
-		var/datum/hive_status/hive = hive_datum[X.hivenumber]
-		if(isxenoqueen(X) && hive.xeno_leader_list.len && X.anchored)
-			var/mob/living/carbon/Xenomorph/Queen/Q = X
-			for(var/mob/living/carbon/Xenomorph/L in hive.xeno_leader_list)
-				L.handle_xeno_leader_pheromones(Q)
+	aura_type = "recovery"
 
 /datum/action/xeno_action/pheromones/emit_warding
 	name = "Emit Warding Pheromones (30)"
 	action_icon_state = "emit_warding"
-
-/datum/action/xeno_action/pheromones/emit_warding/action_activate()
-	var/mob/living/carbon/Xenomorph/X = owner
-	if(X.current_aura == "warding")
-		X.visible_message("<span class='xenowarning'>\The [X] stops emitting strange pheromones.</span>", \
-		"<span class='xenowarning'>You stop emitting [X.current_aura] pheromones.</span>", null, 5)
-		X.current_aura = null
-	else
-		. = ..()
-		if(.)
-			X.use_plasma(30)
-			X.current_aura = "warding"
-			X.visible_message("<span class='xenowarning'>\The [X] begins to emit strange-smelling pheromones.</span>", \
-			"<span class='xenowarning'>You begin to emit '[X.current_aura]' pheromones.</span>", null, 5)
-			playsound(X.loc, "alien_drool", 25)
-
-	if(X.hivenumber && X.hivenumber <= hive_datum.len)
-		var/datum/hive_status/hive = hive_datum[X.hivenumber]
-		if(isxenoqueen(X) && hive.xeno_leader_list.len && X.anchored)
-			var/mob/living/carbon/Xenomorph/Queen/Q = X
-			for(var/mob/living/carbon/Xenomorph/L in hive.xeno_leader_list)
-				L.handle_xeno_leader_pheromones(Q)
+	aura_type = "warding"
 
 /datum/action/xeno_action/pheromones/emit_frenzy
 	name = "Emit Frenzy Pheromones (30)"
 	action_icon_state = "emit_frenzy"
-
-/datum/action/xeno_action/pheromones/emit_frenzy/action_activate()
-	var/mob/living/carbon/Xenomorph/X = owner
-	if(X.current_aura == "frenzy")
-		X.visible_message("<span class='xenowarning'>\The [X] stops emitting strange pheromones.</span>", \
-		"<span class='xenowarning'>You stop emitting [X.current_aura] pheromones.</span>", null, 5)
-		X.current_aura = null
-	else
-		. = ..()
-		if(.)
-			X.use_plasma(30)
-			X.current_aura = "frenzy"
-			X.visible_message("<span class='xenowarning'>\The [X] begins to emit strange-smelling pheromones.</span>", \
-			"<span class='xenowarning'>You begin to emit '[X.current_aura]' pheromones.</span>", null, 5)
-			playsound(X.loc, "alien_drool", 25)
-
-	if(X.hivenumber && X.hivenumber <= hive_datum.len)
-		var/datum/hive_status/hive = hive_datum[X.hivenumber]
-		if(isxenoqueen(X) && hive.xeno_leader_list.len && X.anchored)
-			var/mob/living/carbon/Xenomorph/Queen/Q = X
-			for(var/mob/living/carbon/Xenomorph/L in hive.xeno_leader_list)
-				L.handle_xeno_leader_pheromones(Q)
 
 /datum/action/xeno_action/activable/transfer_plasma
 	name = "Transfer Plasma"
