@@ -202,6 +202,8 @@ How many shots the weapon shoots each burst. Should be set to 1 if the gun doesn
 
 /datum/config_entry/number/combat_define/max_burst_value
 
+/datum/config_entry/number/combat_define/minigun_burst_value
+
 /*
 Fire delay.
 Ticks before the weapon can be fired again. Should be 6 for regular delay and 2 for burst delay.
