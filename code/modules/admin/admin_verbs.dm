@@ -238,10 +238,8 @@
 		E.set_frequency(S.radio_freq)
 	else
 		if(H.wear_ear)
-			qdel(H.wear_ear)
-			H.update_icons()
-		H.wear_ear = new /obj/item/device/radio/headset/almayer/marine
-		var/obj/item/device/radio/headset/almayer/marine/E = H.wear_ear
+			dropItemToGround(H.wear_ear)
+		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/marine(H), SLOT_EARS)
 		E.set_frequency(S.radio_freq)
 		H.update_icons()
 
