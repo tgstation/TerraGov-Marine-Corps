@@ -200,11 +200,13 @@
 	return ..()
 
 /obj/effect/alien/resin/trap/HasProximity(atom/movable/AM)
-	if(hugger?.CanHug(AM) && !isyautja(AM))
-		var/mob/living/L = AM
-		L.visible_message("<span class='warning'>[L] trips on [src]!</span>",\
+	if(!iscarbon(AM) || !hugger || isyautja(AM))
+		return
+	var/mob/living/carbon/C = AM
+	if(C.can_be_facehugged(hugger))
+		C.visible_message("<span class='warning'>[C] trips on [src]!</span>",\
 						"<span class='danger'>You trip on [src]!</span>")
-		L.KnockDown(1)
+		C.KnockDown(1)
 		if(!QDELETED(linked_carrier))
 			if(linked_carrier.stat == CONSCIOUS && linked_carrier.z == z)
 				var/area/A = get_area(src)
@@ -627,11 +629,13 @@
 	Burst(TRUE)
 
 /obj/effect/alien/egg/HasProximity(atom/movable/AM)
-	if(status == EGG_GROWN)
-		if(!hugger?.CanHug(AM) || isyautja(AM)) //Predators are too stealthy to trigger eggs to burst. Maybe the huggers are afraid of them.
-			return FALSE
-		Burst(FALSE)
-		return TRUE
+	if((status != EGG_GROWN) || QDELETED(hugger) || !iscarbon(AM) || isyautja(AM)) //Predators are too stealthy to trigger eggs to burst.
+		return FALSE
+	var/mob/living/carbon/C = AM
+	if(!C.can_be_facehugged(hugger))
+		return FALSE
+	Burst(FALSE)
+	return TRUE
 
 //The invisible traps around the egg to tell it there's a mob right next to it.
 /obj/effect/egg_trigger

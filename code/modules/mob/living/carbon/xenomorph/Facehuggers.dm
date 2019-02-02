@@ -88,14 +88,14 @@
 			return FALSE // The rest can't.
 	if(stat == DEAD || sterile)
 		return ..() // Dead or sterile (lamarr) can be picked.
-	else if(stat == CONSCIOUS && CanHug(user, provoked = TRUE)) // If you try to take a healthy one it will try to hug you.
+	else if(stat == CONSCIOUS && user.can_be_facehugged(src, provoked = TRUE)) // If you try to take a healthy one it will try to hug you.
 		Attach(user)
 	return FALSE // Else you can't pick.
 
 /obj/item/clothing/mask/facehugger/attack(mob/M, mob/user)
 	if(stat != CONSCIOUS)
 		return ..()
-	if(!CanHug(M, provoked = TRUE))
+	if(!M.can_be_facehugged(src, provoked = TRUE))
 		to_chat(user, "<span class='warning'>The facehugger refuses to attach.</span>")
 		return ..()
 	user.visible_message("<span class='warning'>\ [user] attempts to plant [src] on [M]'s face!</span>", \
@@ -215,19 +215,21 @@
 	return FALSE
 
 /obj/item/clothing/mask/facehugger/HasProximity(atom/movable/AM)
-	if(CanHug(AM))
-		Attach(AM)
-		return TRUE
+	if(iscarbon(AM))
+		var/mob/living/carbon/M = AM
+		if(M.can_be_facehugged(src))
+			Attach(M)
+			return TRUE
 	return FALSE
 
 /obj/item/clothing/mask/facehugger/proc/leap_at_nearest_target()
 	if(isturf(loc))
 		var/i = 10//So if we have a pile of dead bodies around, it doesn't scan everything, just ten iterations.
-		for(var/mob/living/M in view(4,src))
+		for(var/mob/living/carbon/M in view(4,src))
 			if(!i)
 				break
-			if(CanHug(M))
-				visible_message("<span class='warning'>\The scuttling [src] leaps at [M]!</span>")
+			if(M.can_be_facehugged(src))
+				visible_message("<span class='warning'>\The scuttling [src] leaps at [M]!</span>", null, 4)
 				leaping = TRUE
 				throw_at(M, 4, 1)
 				break
@@ -241,25 +243,26 @@
 /obj/item/clothing/mask/facehugger/throw_impact(atom/hit_atom, speed)
 	if(stat == DEAD)
 		return ..()
-	if(ismob(hit_atom))
-		if(leaping && CanHug(hit_atom)) //Standard leaping behaviour, not attributable to being _thrown_ such as by a Carrier.
-			Attach(hit_atom)
-		else if(hit_atom.density) //We hit something, cool.
+	if(iscarbon(hit_atom))
+		var/mob/living/carbon/M = hit_atom
+		if(leaping && M.can_be_facehugged(src)) //Standard leaping behaviour, not attributable to being _thrown_ such as by a Carrier.
+			Attach(M)
+		else if(M.density) //We hit something, cool.
 			step(src, turn(dir, 180)) //We want the hugger to bounce off if it hits a mob.
 			throwing = FALSE
 			leaping = FALSE
 			addtimer(CALLBACK(src, .proc/fast_activate), 1.5 SECONDS)
 
 	else
-		for(var/mob/M in loc)
-			if(CanHug(M))
+		for(var/mob/living/carbon/M in loc)
+			if(M.can_be_facehugged(src))
 				addtimer(CALLBACK(src, .proc/fast_facehug, M), 1.5 SECONDS)
 				return
 		addtimer(CALLBACK(src, .proc/fast_activate), rand(MIN_ACTIVE_TIME,MAX_ACTIVE_TIME))
 		return ..()
 
-/obj/item/clothing/mask/facehugger/proc/fast_facehug(mob/M)
-	if(!QDELETED(M) && Adjacent(M) && CanHug(M) && isturf(M.loc))
+/obj/item/clothing/mask/facehugger/proc/fast_facehug(mob/living/M)
+	if(!QDELETED(M) && Adjacent(M) && M.can_be_facehugged(src) && isturf(M.loc))
 		Attach(M)
 	else
 		fast_activate()
@@ -268,39 +271,59 @@
 	if(GoActive())
 		monitor_surrounding()
 
-/obj/item/clothing/mask/facehugger/proc/CanHug(mob/living/carbon/M, check_death = TRUE, check_mask = TRUE, provoked = FALSE)
-	if(!(ishuman(M) || ismonkey(M)) || stat == DEAD)
+/mob/proc/can_be_facehugged(obj/item/clothing/mask/facehugger/F, check_death = TRUE, check_mask = TRUE, provoked = FALSE)
+	return FALSE
+
+/mob/living/carbon/monkey/can_be_facehugged(obj/item/clothing/mask/facehugger/F, check_death = TRUE, check_mask = TRUE, provoked = FALSE)
+	if(!istype(F))
 		return FALSE
 
-	if(M.status_flags & (XENO_HOST|GODMODE))
+	if((status_flags & (XENO_HOST|GODMODE)) || F.stat == DEAD)
 		return FALSE
 
-	if(check_death && M.stat == DEAD)
+	if(check_death && stat == DEAD)
+		return FALSE
+
+	if(wear_mask)
+		if(check_mask)
+			var/obj/item/W = wear_mask
+			if(W.flags_item & NODROP)
+				return FALSE
+			if(istype(W, /obj/item/clothing/mask/facehugger))
+				var/obj/item/clothing/mask/facehugger/hugger = W
+				if(hugger.stat != DEAD)
+					return FALSE
+		else if (wear_mask != F)
+			return FALSE
+
+		return TRUE
+
+/mob/living/carbon/human/can_be_facehugged(obj/item/clothing/mask/facehugger/F, check_death = TRUE, check_mask = TRUE, provoked = FALSE)
+	if((status_flags & (XENO_HOST|GODMODE)) || F.stat == DEAD)
+		return FALSE
+
+	if(check_death && stat == DEAD)
 		return FALSE
 
 	if(!provoked)
-		if(iszombie(M))
+		if(iszombie(src))
 			return FALSE
-		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
-			if(H.species?.flags & IS_SYNTHETIC)
-				return FALSE
-
-	//Already have a hugger? NOPE
-	//This is to prevent eggs from bursting all over if you walk around with one on your face,
-	//or an unremovable mask.
-	if(check_mask && M.wear_mask)
-		var/obj/item/W = M.wear_mask
-		if(W.flags_item & NODROP)
+		if(species?.flags & IS_SYNTHETIC)
 			return FALSE
-		if(istype(W, /obj/item/clothing/mask/facehugger))
-			var/obj/item/clothing/mask/facehugger/hugger = W
-			if(hugger.stat != DEAD)
-				return FALSE
-	else if (M.wear_mask && M.wear_mask != src)
-		return FALSE
 
-	return TRUE
+	if(wear_mask)
+		if(check_mask)
+			var/obj/item/W = wear_mask
+			if(W.flags_item & NODROP)
+				return FALSE
+			if(istype(W, /obj/item/clothing/mask/facehugger))
+				var/obj/item/clothing/mask/facehugger/hugger = W
+				if(hugger.stat != DEAD)
+					return FALSE
+		else if (wear_mask != F)
+			return FALSE
+
+		return TRUE
 
 /obj/item/clothing/mask/facehugger/proc/Attach(mob/living/carbon/M, self_done = FALSE)
 
@@ -418,7 +441,7 @@
 
 /obj/item/clothing/mask/facehugger/proc/Impregnate(mob/living/carbon/target)
 	var/as_planned = target?.wear_mask == src ? TRUE : FALSE
-	if(CanHug(target, FALSE, FALSE) && !sterile) //double check for changes
+	if(target.can_be_facehugged(src, FALSE, FALSE) && !sterile) //double check for changes
 		var/embryos = 0
 		for(var/obj/item/alien_embryo/embryo in target) // already got one, stops doubling up
 			embryos++
@@ -458,8 +481,8 @@
 /obj/item/clothing/mask/facehugger/proc/reset_attach_status(forcedrop = TRUE)
 	flags_item &= ~NODROP
 	attached = FALSE
-	if(ismob(loc) && forcedrop) //Make it fall off the person so we can update their icons. Won't update if they're in containers thou
-		var/mob/M = loc
+	if(isliving(loc) && forcedrop) //Make it fall off the person so we can update their icons. Won't update if they're in containers thou
+		var/mob/living/M = loc
 		M.dropItemToGround(src)
 	update_icon()
 
