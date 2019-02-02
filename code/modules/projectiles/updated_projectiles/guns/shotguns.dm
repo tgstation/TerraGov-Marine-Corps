@@ -540,15 +540,22 @@ can cause issues with ammo types getting mixed up during the burst.
 	type_of_casings = "cartridge"
 	pump_sound = 'sound/weapons/working_the_bolt.ogg'
 	attachable_allowed = list(
-						/obj/item/attachable/compensator,
-						/obj/item/attachable/suppressor,
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/scope/mini,
 						/obj/item/attachable/scope,
 						/obj/item/attachable/bipod)
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 23, "under_x" = 19, "under_y" = 17, "stock_x" = 19, "stock_y" = 17)
 	starting_attachment_types = list(/obj/item/attachable/scope)
-
+/* because the weapon is too long for the sprite box.
+/obj/item/weapon/gun/shotgun/pump/bolt/Initialize()
+	. = ..()
+	var/obj/item/attachable/S = new /obj/item/attachable/slavicbarrel(src)
+	S.Attach(src)
+	S = new /obj/item/attachable/stock/slavic(src)
+	S.flags_attach_features &= ~ATTACH_REMOVABLE
+	S.Attach(src)
+	update_attachables()
+*/
 /obj/item/weapon/gun/shotgun/pump/cmb/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/med_fire_delay) * 6
 	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/hmed_hit_accuracy_mult)
