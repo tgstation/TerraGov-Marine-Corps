@@ -282,9 +282,14 @@
 	if(!check_rights(R_FUN))
 		return
 
-	switch(input("Do you want to change or clear the custom event info?") as null|anything in list("Change", "Clear"))
+	switch(input("Do you want to change or clear the custom event info?") as null|anything in list("Change", "Clear", "Cancel"))
 		if("Change")
 			custom_event_msg = input(usr, "Set the custom information players get on joining or via the OOC tab.",, custom_event_msg) as message|null
+			
+			custom_event_msg = noscript(custom_event_msg)
+
+			if(!custom_event_msg)
+				return
 
 			to_chat(world, "<h1 class='alert'>Custom Information</h1>")
 			to_chat(world, "<span class='alert'>[custom_event_msg]</span>")
@@ -477,6 +482,8 @@
 		return
 
 	var/message = input("Global message to send:", "Admin Announce") as message|null
+
+	message = noscript(message)
 
 	if(!message)
 		return

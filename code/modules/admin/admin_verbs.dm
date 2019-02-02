@@ -501,6 +501,8 @@
 	if(!check_rights(R_ASAY))
 		return
 
+	msg = noscript(msg)
+
 	if(!msg)
 		return
 
@@ -526,6 +528,8 @@
 
 	if(!check_rights(R_ADMIN, FALSE))
 		msg = copytext(sanitize(msg), 1, MAX_MESSAGE_LEN)
+	else
+		msg = noscript(msg)
 
 	if(!msg)
 		return
@@ -569,6 +573,8 @@
 
 	if(usr.client.handle_spam_prevention(msg, MUTE_DEADCHAT))
 		return
+
+	msg = noscript(msg)
 
 	if(!msg)
 		return

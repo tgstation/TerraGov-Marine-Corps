@@ -13,6 +13,8 @@ var/global/normal_ooc_colour = "#002eb8"
 
 	if(!check_rights(R_ADMIN, FALSE))
 		msg = trim(copytext(sanitize(msg), 1, MAX_MESSAGE_LEN))
+	else
+		msg = noscript(msg)
 
 	if(!msg)
 		return
