@@ -941,7 +941,7 @@
 //This gun is very powerful, but also has a kick.
 
 /obj/item/weapon/gun/minigun
-	name = "\improper MIC A7 Vindicator Minigun"
+	name = "\improper MIC-A7 Vindicator Minigun"
 	desc = "It's a damn minigun! The ultimate in man-portable firepower, spraying countless high velocity armor piercing rounds with a rotary action, this thing will no doubt pack a punch."
 	icon_state = "painless"
 	item_state = "painless"
