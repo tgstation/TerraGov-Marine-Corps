@@ -46,8 +46,8 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	name = "box of rifle bullets"
 	desc = "A box filled with rifle bullets."
 	icon_state = "slugs" //sprite me!
-	default_ammo = /datum/ammo/bullet/rifle/bolt
-	caliber = "7.62x51mm" //or .308 win if you're american
+	default_ammo = /datum/ammo/bullet/sniper/svd
+	caliber = "7.62x54mmR" //Cyka Blyat
 	gun_type = /obj/item/weapon/gun/shotgun/pump/bolt
 	max_rounds = 20 // Real rifle boxes are usually 20 rounds. This works with the new system, four handfuls.
 	w_class = 2 // CAN throw it in your pocket, friend.
@@ -74,8 +74,8 @@ also doesn't really matter. You can only reload them with handfuls.
 	max_rounds = 8
 
 /obj/item/ammo_magazine/internal/shotgun/pump/bolt //The only cycle method.
-	default_ammo = /datum/ammo/bullet/rifle/bolt
-	caliber = "7.62x51mm"
+	default_ammo = /datum/ammo/bullet/sniper/svd
+	caliber = "7.62x54mmR"
 	max_rounds = 5
 
 /obj/item/ammo_magazine/internal/shotgun/double //For a double barrel.
