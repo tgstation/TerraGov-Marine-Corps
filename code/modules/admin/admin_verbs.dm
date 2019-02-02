@@ -10,7 +10,7 @@
 
 	if(istype(M, /mob/new_player))
 		return
-	
+
 	if(istype(M, /mob/dead/observer))
 		var/mob/dead/observer/ghost = M
 		ghost.can_reenter_corpse = TRUE
@@ -238,8 +238,9 @@
 		E.set_frequency(S.radio_freq)
 	else
 		if(H.wear_ear)
-			dropItemToGround(H.wear_ear)
-		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/marine(H), SLOT_EARS)
+			H.dropItemToGround(H.wear_ear)
+		var/obj/item/device/radio/headset/almayer/marine/E = new /obj/item/device/radio/headset/almayer/marine(H)
+		H.equip_to_slot_or_del(E, SLOT_EARS)
 		E.set_frequency(S.radio_freq)
 		H.update_icons()
 
