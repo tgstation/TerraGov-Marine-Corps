@@ -285,7 +285,7 @@
 	switch(input("Do you want to change or clear the custom event info?") as null|anything in list("Change", "Clear", "Cancel"))
 		if("Change")
 			custom_event_msg = input(usr, "Set the custom information players get on joining or via the OOC tab.",, custom_event_msg) as message|null
-			
+
 			custom_event_msg = noscript(custom_event_msg)
 
 			if(!custom_event_msg)
@@ -397,10 +397,8 @@
 	var/web_sound_input = input("Enter content URL (supported sites only, leave blank to stop playing)", "Play Internet Sound via youtube-dl") as text|null
 	if(istext(web_sound_input))
 		var/web_sound_url = ""
-		var/stop_web_sounds = FALSE
 		var/pitch
 		if(length(web_sound_input))
-
 			web_sound_input = trim(web_sound_input)
 			if(findtext(web_sound_input, ":") && !findtext(web_sound_input, GLOB.is_http_protocol))
 				to_chat(src, "<span class='warning'>Non-http(s) URIs are not allowed.</span>")
@@ -435,25 +433,39 @@
 					message_admins("[ADMIN_TPMONTY(usr)] played web sound: [web_sound_input]")
 			else
 				to_chat(usr, "<span class='warning'>Youtube-dl URL retrieval FAILED: [stderr]</span>")
+		else if(alert(usr, "Do you want to stop all sounds?", "Warning", "Yes", "No") == "Yes")
+			for(var/m in GLOB.player_list)
+				var/mob/M = m
+				var/client/C = M.client
+				if((C.prefs.toggles_sound & SOUND_MIDI) && C.chatOutput && !C.chatOutput.broken && C.chatOutput.loaded)
+					C.chatOutput.stopMusic()
+			log_admin("[key_name(usr)] stopped web sound.")
+			message_admins("[ADMIN_TPMONTY(usr)] stopped web sound.")
+			return
 		else
-			log_admin("[key_name(usr)] stopped web sound")
-			message_admins("[ADMIN_TPMONTY(usr)] stopped web sound")
-			web_sound_url = null
-			stop_web_sounds = TRUE
+			return
 
 		if(web_sound_url && !findtext(web_sound_url, GLOB.is_http_protocol))
 			to_chat(src, "<span class='warning'>BLOCKED: Content URL not using http(s) protocol</span>")
 			to_chat(src, "<span class='warning'>The media provider returned a content URL that isn't using the HTTP or HTTPS protocol</span>")
 			return
-		if(web_sound_url || stop_web_sounds)
-			for(var/m in GLOB.player_list)
-				var/mob/M = m
-				var/client/C = M.client
-				if((C.prefs.toggles_sound & SOUND_MIDI) && C.chatOutput && !C.chatOutput.broken && C.chatOutput.loaded)
-					if(!stop_web_sounds)
-						C.chatOutput.sendMusic(web_sound_url, pitch)
-					else
-						C.chatOutput.stopMusic()
+
+		var/lst
+		var/style = alert(usr, "Do you want to play this globally or to the xenos/marines?",, "Globally", "Xenos", "Marines")
+		switch(style)
+			if("Globally")
+				lst = GLOB.mob_list
+			if("Xenos")
+				lst = GLOB.xeno_mob_list + GLOB.dead_mob_list
+			if("Marines")
+				lst = GLOB.human_mob_list + GLOB.dead_mob_list
+		for(var/m in lst)
+			var/mob/M = m
+			var/client/C = M.client
+			if(!C?.prefs)
+				continue
+			if((C.prefs.toggles_sound & SOUND_MIDI) && C.chatOutput && !C.chatOutput.broken && C.chatOutput.loaded)
+				C.chatOutput.sendMusic(web_sound_url, pitch)
 
 
 /datum/admins/proc/sound_stop()
