@@ -2,12 +2,10 @@
 	name = null
 	icon = 'icons/obj/power.dmi'
 	anchored = TRUE
-	var/datum/powernet/powernet = null
-	var/directwired = 1		// by default, power machines are connected by a cable in a neighbouring turf
-							// if set to 0, requires a 0-X cable on this turf
 	use_power = NO_POWER_USE
 	idle_power_usage = 0
 	active_power_usage = 0
+	var/datum/powernet/powernet = null
 
 /obj/machinery/power/Destroy()
 	disconnect_from_network()
@@ -362,100 +360,3 @@
 	for(var/obj/machinery/power/apc/APC in GLOB.apcs_list)
 		if(APC.area == src)
 			return APC
-
-// returns a list of all power-related objects (nodes, cable, junctions) in turf,
-// excluding source, that match the direction d
-// if unmarked==1, only return those with no powernet
-///proc/power_list(var/turf/T, var/source, var/d, var/unmarked=0)
-//	. = list()
-//	var/fdir = (!d)? 0 : turn(d, 180)
-			// the opposite direction to d (or 0 if d==0)
-///// Z-Level Stuff
-/*	var/Zdir
-	if(d==11)
-		Zdir = 11
-	else if (d==12)
-		Zdir = 12
-	else
-		Zdir = 999*/
-///// Z-Level Stuff
-//	log_world("d=[d] fdir=[fdir]")
-	//for(var/AM in T)
-	//	if(AM == source)	continue			//we don't want to return source
-//
-//		if(istype(AM,/obj/machinery/power))
-//			var/obj/machinery/power/P = AM
-//			if(P.powernet == 0)	continue		// exclude APCs which have powernet=0
-//
-//			if(!unmarked || !P.powernet)		//if unmarked=1 we only return things with no powernet
-//				if(P.directwired || (d == 0))
-//					. += P
-//
-//		else if(istype(AM,/obj/structure/cable))
-//			var/obj/structure/cable/C = AM
-//
-//			if(!unmarked || !C.powernet)
-///// Z-Level Stuff
-//				if(C.d1 == fdir || C.d2 == fdir || C.d1 == Zdir || C.d2 == Zdir)
-///// Z-Level Stuff
-//					. += C
-//				else if(C.d1 == turn(C.d2, 180))
-//					. += C
-//	return .
-
-
-/*/obj/structure/cable/proc/get_connections()
-	. = list()	// this will be a list of all connected power objects
-	var/turf/T = loc
-
-	if(d1)
-		if(d1 <= 10)
-			T = get_step(src, d1)
-			if(T)
-				. += power_list(T, src, d1, 1)
-		else if (d1 == 11 || d1 == 12)
-			if(id)
-				for(var/obj/structure/cable/C in GLOB.cable_list)
-					if(C == src)
-						continue // not ourself
-					if(id == C.id)
-						T = locate(C.x, C.y, C.z)
-						if(d1 == 12)
-							if(T)
-								. += power_list(T, src, 11, 1)
-						if(d1 == 11)
-							if(T)
-								. += power_list(T, src, 11, 1)
-						break // done
-
-	else if(!d1)
-		if(T)
-			. += power_list(T, src, d1, 1)
-
-
-///// Z-Level Stuff
-	if(d2 == 11 || d2 == 12)
-		if(id)
-			for(var/obj/structure/cable/C in GLOB.cable_list)
-				if(C == src)
-					continue // not ourself
-				if(id == C.id)
-					T = locate(C.x, C.y, C.z)
-					if(d2 == 12)
-						if(T)
-							. += power_list(T, src, 11, 1)
-					if(d2 == 11)
-						if(T)
-							. += power_list(T, src, 11, 1)
-					break // done
-
-	else
-		T = get_step(src, d2)
-		if(T)
-			. += power_list(T, src, d2, 1)
-
-///// Z-Level Stuff
-
-	return .
-
-	*/

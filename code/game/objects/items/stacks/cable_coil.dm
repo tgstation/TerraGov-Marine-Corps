@@ -1,12 +1,13 @@
 // the cable coil object, used for laying cable
 #define MAXCOIL 30
+
 /obj/item/stack/cable_coil
 	name = "cable coil"
 	icon = 'icons/obj/power.dmi'
 	icon_state = "coil"
 	amount = MAXCOIL
 	max_amount = MAXCOIL
-	color = COLOR_RED
+	var/item_color = "red"
 	desc = "A coil of power cable."
 	throwforce = 10
 	w_class = WEIGHT_CLASS_SMALL
@@ -23,19 +24,31 @@
 	return(OXYLOSS)
 
 
-/obj/item/stack/cable_coil/New(loc, length = MAXCOIL, var/param_color = null)
+/*/obj/item/stack/cable_coil/New(loc, length = MAXCOIL, var/param_color = null)
 	..()
 	amount = length
 	if (param_color) // It should be red by default, so only recolor it if parameter was specified.
-		color = param_color
+		color = GLOB.cable_colors[param_color]
+	else if (!color)
+		color = pick(COLOR_RED, COLOR_BLUE, COLOR_GREEN, COLOR_ORANGE, COLOR_WHITE, COLOR_PINK, COLOR_YELLOW, COLOR_CYAN)
 	pixel_x = rand(-2,2)
 	pixel_y = rand(-2,2)
 	updateicon()
+	update_wclass()*/
+
+/obj/item/stack/cable_coil/Initialize(mapload, new_amount = MAXCOIL, param_color = null)
+	. = ..()
+
+	var/list/cable_colors = GLOB.cable_colors
+	item_color = param_color || item_color || pick(cable_colors)
+	if(cable_colors[item_color])
+		color = cable_colors[item_color]
+	pixel_x = rand(-2,2)
+	pixel_y = rand(-2,2)
+	update_icon()
 	update_wclass()
 
 /obj/item/stack/cable_coil/proc/updateicon()
-	if (!color)
-		color = pick(COLOR_RED, COLOR_BLUE, COLOR_GREEN, COLOR_ORANGE, COLOR_WHITE, COLOR_PINK, COLOR_YELLOW, COLOR_CYAN)
 	if(amount == 1)
 		icon_state = "coil1"
 		name = "cable piece"
@@ -81,7 +94,7 @@
 /obj/item/stack/cable_coil/attackby(obj/item/W, mob/user)
 	if(iswirecutter(W) && amount > 1)
 		src.amount--
-		new/obj/item/stack/cable_coil(user.loc, 1,color)
+		new/obj/item/stack/cable_coil(user.loc, 1,item_color)
 		to_chat(user, "<span class='notice'>You cut a piece off the cable coil.</span>")
 		updateicon()
 		update_wclass()
@@ -108,7 +121,7 @@
 
 /obj/item/stack/cable_coil/attack_hand(mob/user as mob)
 	if (user.get_inactive_held_item() == src)
-		var/obj/item/stack/cable_coil/F = new /obj/item/stack/cable_coil(user, 1, color)
+		var/obj/item/stack/cable_coil/F = new /obj/item/stack/cable_coil(user, 1, item_color)
 		F.copy_evidences(src)
 		user.put_in_hands(F)
 		src.add_fingerprint(user)
@@ -120,7 +133,6 @@
 
 /obj/item/stack/cable_coil/attack(mob/M as mob, mob/user as mob)
 	if(hasorgans(M))
-
 		var/datum/limb/S = M:get_limb(user.zone_selected)
 		if(!(S.status & LIMB_ROBOT) || user.a_intent != "help")
 			return ..()
@@ -145,7 +157,7 @@
 
 /obj/item/stack/cable_coil/proc/get_new_cable(location)
 	var/path = /obj/structure/cable
-	return new path(location, color)
+	return new path(location, item_color)
 
 
 /obj/item/stack/cable_coil/use(var/used)
@@ -187,14 +199,14 @@
 		dirn = dirnew
 
 	for(var/obj/structure/cable/LC in T)
-		if(LC.d2 == dirn && LC.d1 == NODE)
+		if(LC.d2 == dirn && LC.d1 == CABLE_NODE)
 			to_chat(user, "<span class='warning'>There's already a cable at that position!</span>")
 			return
 
 	var/obj/structure/cable/C = get_new_cable(T)
 
 	//set up the new cable
-	C.d1 = NODE
+	C.d1 = CABLE_NODE
 	C.d2 = dirn
 	C.add_fingerprint(user)
 	C.update_icon()
@@ -213,7 +225,7 @@
 
 	if(C.shock(user, 50))
 		if(prob(50)) //fail
-			new /obj/item/stack/cable_coil(get_turf(C), 1, C.color)
+			new /obj/item/stack/cable_coil(get_turf(C), 1, C.cable_color)
 			C.deconstruct()
 
 	return C
@@ -221,11 +233,11 @@
 // called when cable_coil is click on an installed obj/cable
 // or click on a turf that already contains a "node" cable
 /obj/item/stack/cable_coil/proc/cable_join(obj/structure/cable/C, mob/user, var/showerror = TRUE)
-	var/turf/U = user.loc
+	var/turf/U = get_turf(user)
 	if(!isturf(U))
 		return
 
-	var/turf/T = C.loc
+	var/turf/T = get_turf(C)
 
 	if(!isturf(T) || T.intact_tile)		// sanity checks, also stop use interacting with T-scanner revealed cable
 		return
@@ -262,9 +274,9 @@
 						to_chat(user, "<span class='warning'>There's already a cable at that position!</span>")
 					return
 
-			var/obj/structure/cable/NC = get_new_cable (U)
+			var/obj/structure/cable/NC = get_new_cable(U)
 
-			NC.d1 = NODE
+			NC.d1 = CABLE_NODE
 			NC.d2 = fdirn
 			NC.add_fingerprint(user)
 			NC.update_icon()
@@ -288,7 +300,7 @@
 			return
 
 	// exisiting cable doesn't point at our position, so see if it's a stub
-	else if(C.d1 == NODE)
+	else if(C.d1 == CABLE_NODE)
 							// if so, make it a full cable pointing from it's old direction to our dirn
 		var/nd1 = C.d2	// these will be the new directions
 		var/nd2 = dirn
@@ -308,14 +320,12 @@
 
 				return
 
-
-		C.update_icon()
-
 		C.d1 = nd1
 		C.d2 = nd2
 
 		//updates the stored cable coil
-		C.update_stored(2, color)
+		C.update_stored(2, item_color)
+		C.cable_color = item_color
 
 		C.add_fingerprint(user)
 		C.update_icon()
@@ -355,26 +365,33 @@
 	update_wclass()
 
 /obj/item/stack/cable_coil/yellow
-	color = "#ffe28a"
+	item_color = "yellow"
+	color = "#FFFF00"
 
 /obj/item/stack/cable_coil/blue
-	color = "#a8c1dd"
+	item_color = "blue"
+	color = "#1919C8"
 
 /obj/item/stack/cable_coil/green
-	color = "#589471"
+	item_color = "green"
+	color = "#00AA00"
 
 /obj/item/stack/cable_coil/pink
-	color = "#6fcb9f"
+	item_color = "pink"
+	color = "#FF3CCD"
 
 /obj/item/stack/cable_coil/orange
-	color = "#ff9845"
+	item_color = "orange"
+	color = "#FF8000"
 
 /obj/item/stack/cable_coil/cyan
-	color = "#a8c1dd"
+	item_color = "cyan"
+	color = "#00FFFF"
 
 /obj/item/stack/cable_coil/white
+	item_color = "white"
 	color = "#FFFFFF"
 
 /obj/item/stack/cable_coil/random/New()
-	color = pick(COLOR_RED, COLOR_BLUE, COLOR_GREEN, COLOR_WHITE, COLOR_PINK, COLOR_YELLOW, COLOR_CYAN)
+	item_color = pick("red", "blue", "green", "white", "pink", "yellow", "cyan")
 	..()

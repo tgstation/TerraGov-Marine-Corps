@@ -8,7 +8,7 @@
 /obj/effect/landmark/New()
 	. = ..()
 	tag = "landmark*[name]"
-	invisibility = 101
+	invisibility = INVISIBILITY_MAXIMUM
 
 	switch(name)			//some of these are probably obsolete
 
@@ -110,7 +110,7 @@
 /obj/effect/landmark/start/New()
 	. = ..()
 	tag = "start*[name]"
-	invisibility = 101
+	invisibility = INVISIBILITY_MAXIMUM
 
 /obj/effect/landmark/map_tag
 	name = "mapping tag"

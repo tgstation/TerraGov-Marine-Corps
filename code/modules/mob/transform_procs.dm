@@ -10,7 +10,7 @@
 	canmove = 0
 	stunned = 1
 	icon = null
-	invisibility = 101
+	invisibility = INVISIBILITY_MAXIMUM
 	for(var/t in limbs)
 		qdel(t)
 	var/atom/movable/overlay/animation = new /atom/movable/overlay( loc )
@@ -74,7 +74,7 @@
 	monkeyizing = 1
 	canmove = 0
 	icon = null
-	invisibility = 101
+	invisibility = INVISIBILITY_MAXIMUM
 	return ..()
 
 /mob/proc/AIize()
@@ -140,7 +140,7 @@
 	monkeyizing = 1
 	canmove = 0
 	icon = null
-	invisibility = 101
+	invisibility = INVISIBILITY_MAXIMUM
 	for(var/t in limbs)
 		qdel(t)
 
@@ -194,7 +194,7 @@
 	monkeyizing = 1
 	canmove = 0
 	icon = null
-	invisibility = 101
+	invisibility = INVISIBILITY_MAXIMUM
 	for(var/t in limbs)
 		qdel(t)
 
@@ -220,7 +220,7 @@
 	monkeyizing = 1
 	canmove = 0
 	icon = null
-	invisibility = 101
+	invisibility = INVISIBILITY_MAXIMUM
 	for(var/t in limbs)
 		qdel(t)
 
@@ -246,7 +246,7 @@
 	monkeyizing = 1
 	canmove = 0
 	icon = null
-	invisibility = 101
+	invisibility = INVISIBILITY_MAXIMUM
 	for(var/t in limbs)	//this really should not be necessary
 		qdel(t)
 
@@ -278,7 +278,7 @@
 	monkeyizing = 1
 	canmove = 0
 	icon = null
-	invisibility = 101
+	invisibility = INVISIBILITY_MAXIMUM
 
 	for(var/t in limbs)
 		qdel(t)

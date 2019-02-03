@@ -54,7 +54,7 @@
 
 	if(idle_power_usage != charge_diff) // Force update, but only when our power usage changed this tick.
 		idle_power_usage = charge_diff
-		update_use_power(1,1)
+		update_use_power(1,TRUE)
 
 	current_internal_charge = min((current_internal_charge + ((charge_diff - 50) * GLOB.CELLRATE)), max_internal_charge)
 

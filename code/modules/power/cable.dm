@@ -38,14 +38,14 @@ By design, d1 is the smallest direction and d2 is the highest
 	var/datum/powernet/powernet
 	var/obj/item/stack/cable_coil/stored
 
-	var/d1 = NODE
+	var/d1 = CABLE_NODE
 	var/d2 = NORTH
+	var/cable_color = "red"
+	var/id //used for up/down cables
 	//var/obj/machinery/power/breakerbox/breaker_box
 	explosion_resistance = 150 //Fixes ground map stuff. Can't have them blow up all the time.
 
 
-	var/cable_color = "red"
-	color = COLOR_RED
 
 /obj/structure/cable/yellow
 	cable_color = "yellow"
@@ -86,23 +86,30 @@ By design, d1 is the smallest direction and d2 is the highest
 	var/turf/T = get_turf(src)			// hide if turf is not intact
 	if(level==1)
 		hide(T.intact_tile)
-	GLOB.cable_list += src //add it to the global cable list
-
-	if(d1 != 0)
-		stored = new/obj/item/stack/cable_coil(null,2,cable_color)
-	else
-		stored = new/obj/item/stack/cable_coil(null,1,cable_color)
+	SSmachines.cable_list += src //add it to the global cable list
+	if(d2 == UP_OR_DOWN)
+		SSmachines.zlevel_cables += src
 
 	var/list/cable_colors = GLOB.cable_colors
 	cable_color = param_color || cable_color || pick(cable_colors)
 	if(cable_colors[cable_color])
 		color = cable_colors[cable_color]
+
+	if(d1 != CABLE_NODE)
+		stored = new/obj/item/stack/cable_coil(null,2,cable_color)
+	else
+		stored = new/obj/item/stack/cable_coil(null,1,cable_color)
+
 	update_icon()
 
 /obj/structure/cable/Destroy()					// called when a cable is deleted
 	if(powernet)
 		cut_cable_from_powernet()				// update the powernets
-	GLOB.cable_list -= src							//remove it from global cable list
+
+	SSmachines.cable_list -= src				//remove it from global cable list
+	if(d2 == UP_OR_DOWN)
+		SSmachines.zlevel_cables -= src
+
 	return ..() // then go ahead and delete the cable
 
 /obj/structure/cable/proc/deconstruct(disassembled = TRUE)
@@ -125,11 +132,12 @@ By design, d1 is the smallest direction and d2 is the highest
 	icon_state = "[d1]-[d2]"
 	color = GLOB.cable_colors[cable_color]
 
-/obj/structure/cable/proc/handlecable(obj/item/W, mob/user, params)
+/obj/structure/cable/proc/handlecable(obj/item/I, mob/user, params)
 	var/turf/T = get_turf(src)
 	if(T.intact_tile)
 		return
-	if(iswirecutter(W))
+
+	if(iswirecutter(I))
 		/*if(breaker_box)
 			to_chat(user, "<span class='warning'>This cable is connected to nearby breaker box. Use breaker box to interact with it.</span>")
 			return*/
@@ -141,29 +149,22 @@ By design, d1 is the smallest direction and d2 is the highest
 		//investigate_log("was cut by [key_name(usr)] in [AREACOORD(src)]", INVESTIGATE_WIRES)
 		deconstruct()
 		return
-	//Z-Level Stuff ^
 
-	else if(iscablecoil(W))
-		var/obj/item/stack/cable_coil/coil = W
+	else if(iscablecoil(I))
+		var/obj/item/stack/cable_coil/coil = I
 		if (coil.get_amount() < 1)
 			to_chat(user, "<span class='warning'>Not enough cable!</span>")
 			return
 		coil.cable_join(src, user)
 
-	/*else if(istype(W, /obj/item/twohanded/rcl))
-		var/obj/item/twohanded/rcl/R = W
-		if(R.loaded)
-			R.loaded.cable_join(src, user)
-			R.is_empty(user)*/
-
-	else if(ismultitool(W))
+	else if(ismultitool(I))
 		if(powernet && (powernet.avail > 0))		// is it powered?
 			to_chat(user, "<span class='danger'>Total power: [powernet.avail]\nLoad: [powernet.load]\nExcess power: [surplus()]</span>")
 			//to_chat(user, "<span class='danger'>Total power: [DisplayPower(powernet.avail)]\nLoad: [DisplayPower(powernet.load)]\nExcess power: [DisplayPower(surplus())]</span>")
 		else
 			to_chat(user, "<span class='danger'>The cable is not powered.</span>")
 
-	if (W.flags_atom & CONDUCT)
+	if (I.flags_atom & CONDUCT)
 		shock(user, 5, 0.7)
 
 	add_fingerprint(user)
@@ -184,24 +185,9 @@ By design, d1 is the smallest direction and d2 is the highest
 
 /obj/structure/cable/proc/update_stored(length = 1, colorC = "red")
 	stored.amount = length
-	stored.color = colorC
+	stored.color = GLOB.cable_colors[colorC]
+	stored.item_color = colorC
 	stored.update_icon()
-
-	/////
-
-
-///// Z-Level Stuff
-		//if(src.d1 == 12 || src.d2 == 12)
-		//	to_chat(user, "<span class='warning'>You must cut this cable from above.</span>")
-		//	return
-
-		//if(src.d1 == 11 || src.d2 == 11)
-		//	return
-
-		//if(src.d1 == 12 || src.d2 == 12)
-		//	return
-
-///// Z-Level Stuff
 
 /obj/structure/cable/ex_act(severity)
 	if(z == 1 && layer < 2) //ground map - no blowie. They are buried underground.
@@ -218,12 +204,12 @@ By design, d1 is the smallest direction and d2 is the highest
 			qdel(src)
 		if(2.0)
 			if (prob(50))
-				new/obj/item/stack/cable_coil(loc, d1 ? 2 : 1, color)
+				new/obj/item/stack/cable_coil(loc, d1 ? 2 : 1, cable_color)
 				qdel(src)
 
 		if(3.0)
 			if (prob(25))
-				new/obj/item/stack/cable_coil(loc, d1 ? 2 : 1, color)
+				new/obj/item/stack/cable_coil(loc, d1 ? 2 : 1, cable_color)
 				qdel(src)
 
 ////////////////////////////////////////////
@@ -393,18 +379,31 @@ By design, d1 is the smallest direction and d2 is the highest
 	. += power_list(loc, src, d1, powernetless_only) //get on turf matching cables
 
 	//do the same on the second direction (which can't be 0)
-	T = get_step(src, d2)
-	if(T)
-		. += power_list(T, src, turn(d2, 180), powernetless_only) //get adjacents matching cables
+	//ZLevel check
+	if(d2 == UP_OR_DOWN)
+		if(id)
+			for(var/obj/structure/cable/C in SSmachines.zlevel_cables)
+				if(C == src)
+					continue
+				if(id == C.id && d2 == UP_OR_DOWN)
+					T = get_turf(C)
+					if(T)
+						. += power_list(T, src, UP_OR_DOWN, powernetless_only)
+					break
+	//(x,y) directions
+	else
+		T = get_step(src, d2)
+		if(T)
+			. += power_list(T, src, turn(d2, 180), powernetless_only) //get adjacents matching cables
 
-	if(ISDIAGONALDIR(d2)) //diagonal direction, must check the 4 possibles adjacents tiles
-		T = get_step(src,NSCOMPONENT(d2)) // go north/south
-		if(T)
-			. += power_list(T, src, NSDIRFLIP(d2), powernetless_only) //get diagonally matching cables
-		T = get_step(src,EWCOMPONENT(d2)) // go east/west
-		if(T)
-			. += power_list(T, src, EWDIRFLIP(d1), powernetless_only) //get diagonally matching cables
-	. += power_list(loc, src, d2, powernetless_only) //get on turf matching cables
+		if(ISDIAGONALDIR(d2)) //diagonal direction, must check the 4 possibles adjacents tiles
+			T = get_step(src,NSCOMPONENT(d2)) // go north/south
+			if(T)
+				. += power_list(T, src, NSDIRFLIP(d2), powernetless_only) //get diagonally matching cables
+			T = get_step(src,EWCOMPONENT(d2)) // go east/west
+			if(T)
+				. += power_list(T, src, EWDIRFLIP(d1), powernetless_only) //get diagonally matching cables
+		. += power_list(loc, src, d2, powernetless_only) //get on turf matching cables
 
 	return .
 
@@ -415,7 +414,7 @@ By design, d1 is the smallest direction and d2 is the highest
 	if(!T1)
 		return
 
-	var/list/powerlist = power_list(T1,src,NODE,FALSE) //find the other cables that ended in the centre of the turf, with or without a powernet
+	var/list/powerlist = power_list(T1,src,CABLE_NODE,FALSE) //find the other cables that ended in the centre of the turf, with or without a powernet
 	if(powerlist.len>0)
 		var/datum/powernet/PN = new()
 		propagate_network(powerlist[1],PN) //propagates the new powernet beginning at the source cable
@@ -423,7 +422,7 @@ By design, d1 is the smallest direction and d2 is the highest
 		if(PN.is_empty()) //can happen with machines made nodeless when smoothing cables
 			qdel(PN)
 
-/obj/structure/cable/proc/auto_propogate_cut_cable(obj/O)
+/obj/structure/cable/proc/auto_propagate_cut_cable(obj/O)
 	if(O && !QDELETED(O))
 		var/datum/powernet/newPN = new()// creates a new powernet...
 		propagate_network(O, newPN)//... and propagates it to the other side of the cable
@@ -455,10 +454,10 @@ By design, d1 is the smallest direction and d2 is the highest
 		loc = null
 	powernet.remove_cable(src) //remove the cut cable from its powernet
 
-	addtimer(CALLBACK(O, .proc/auto_propogate_cut_cable, O), 0) //so we don't rebuild the network X times when singulo/explosion destroys a line of X cables
+	addtimer(CALLBACK(O, .proc/auto_propagate_cut_cable, O), 0) //so we don't rebuild the network X times when singulo/explosion destroys a line of X cables
 
 	// Disconnect machines connected to nodes
-	if(d1 == NODE) // if we cut a node (O-X) cable
+	if(d1 == CABLE_NODE) // if we cut a node (O-X) cable
 		for(var/obj/machinery/power/P in T1)
 			if(!P.connect_to_network()) //can't find a node cable on a the turf to connect to
 				P.disconnect_from_network() //remove from current network

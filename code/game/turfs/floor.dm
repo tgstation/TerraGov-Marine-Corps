@@ -475,14 +475,6 @@ var/list/wood_icons = list("wood", "wood-broken")
 			else
 				to_chat(user, "<span class='notice'>This section is too damaged to support a tile. Use a welder to fix the damage.</span>")
 
-
-	if(iscablecoil(C))
-		if(is_plating())
-			var/obj/item/stack/cable_coil/coil = C
-			coil.place_turf(src, user)
-		else
-			to_chat(user, "<span class='warning'>You must remove the plating first.</span>")
-
 	if(istype(C, /obj/item/tool/shovel))
 		if(is_grass_floor())
 			new /obj/item/ore/glass(src)
@@ -505,8 +497,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 				else
 					to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
 
-
-
+	. = ..()
 
 /turf/open/floor/wet_floor(wet_level = FLOOR_WET_WATER)
 	if(wet >= wet_level) return

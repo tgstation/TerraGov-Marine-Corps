@@ -4,6 +4,8 @@ SUBSYSTEM_DEF(machines)
 	flags = SS_KEEP_TIMING
 	var/list/currentrunmachines = list()
 	var/list/powernets = list()
+	var/list/cable_list = list()
+	var/list/zlevel_cables = list() //up or down cables
 	var/list/currentrunareas = list()
 
 /datum/controller/subsystem/machines/Initialize()
@@ -16,7 +18,7 @@ SUBSYSTEM_DEF(machines)
 		qdel(PN)
 	powernets.Cut()
 
-	for(var/obj/structure/cable/PC in GLOB.cable_list)
+	for(var/obj/structure/cable/PC in cable_list)
 		if(!PC.powernet)
 			var/datum/powernet/NewPN = new()
 			NewPN.add_cable(PC)

@@ -144,6 +144,8 @@
 				ChangeTurf(/turf/open/ice)
 			return
 
+	. = ..()
+
 //Ice Secret Wall
 /turf/closed/ice/secret
 	icon_state = "ice_wall_0"

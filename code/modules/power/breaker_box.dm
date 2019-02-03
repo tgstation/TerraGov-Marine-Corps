@@ -8,13 +8,12 @@
 	name = "Breaker Box"
 	icon = 'icons/obj/power.dmi'
 	icon_state = "bbox_off"
-	directwired = 0
 	var/icon_state_on = "bbox_on"
 	var/icon_state_off = "bbox_off"
-	density = 1
-	anchored = 1
-	var/on = 0
-	var/busy = 0
+	density = TRUE
+	anchored = TRUE
+	var/on = FALSE
+	var/busy = FALSE
 	var/directions = list(1,2,4,8,5,6,9,10)
 
 /obj/machinery/power/breakerbox/activated

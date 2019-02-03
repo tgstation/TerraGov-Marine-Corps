@@ -347,16 +347,15 @@
 		if(!use_cable(1))
 			return reset()
 		var/obj/structure/cable/NC = new(new_turf)
-		//NC.cableColor("red") //TODO
-		NC.d1 = NODE
+		NC.d1 = CABLE_NODE
 		NC.d2 = fdirn
-		//NC.updateicon()
+		NC.update_icon()
 
 		var/datum/powernet/PN
 		if(last_piece && last_piece.d2 != chassis.dir)
 			last_piece.d1 = min(last_piece.d2, chassis.dir)
 			last_piece.d2 = max(last_piece.d2, chassis.dir)
-			//last_piece.updateicon()
+			last_piece.update_icon()
 			PN = last_piece.powernet
 
 		if(!PN)
