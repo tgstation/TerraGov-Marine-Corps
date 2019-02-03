@@ -26,7 +26,6 @@
 		if(dir != direction)
 			l_move_time = world.time
 			setDir(direction)
-			handle_rotation()
 			pick(playsound(src.loc, 'sound/mecha/powerloader_turn.ogg', 25, 1), playsound(src.loc, 'sound/mecha/powerloader_turn2.ogg', 25, 1))
 			. = TRUE
 		else
@@ -124,8 +123,9 @@
 
 	buckle_mob(M, usr)
 
-/obj/vehicle/powerloader/handle_rotation()
-	if(buckled_mob)
+/obj/vehicle/powerloader/setDir(newdir)
+	. = ..()
+	if(buckled_mob?.dir != dir)
 		buckled_mob.setDir(dir)
 
 /obj/vehicle/powerloader/explode()

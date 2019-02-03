@@ -288,7 +288,7 @@ GLOBAL_LIST_EMPTY(external_rsc_url)
 //Hook, override it to run code when dir changes
 //Like for /atoms, but clients are their own snowflake FUCK
 /client/proc/setDir(newdir)
-	dir = newdir	preload_rsc = GLOB.external_rsc_url
+	dir = newdir
 
 /client/proc/get_offset()
 	return max(abs(pixel_x / 32), abs(pixel_y / 32))

@@ -16,7 +16,7 @@
 	var/move_delay = 2
 
 /obj/structure/bed/chair/janicart/New()
-	handle_rotation()
+	. = ..()
 	create_reagents(100)
 
 

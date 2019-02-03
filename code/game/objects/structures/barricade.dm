@@ -878,6 +878,8 @@
 		pixel_y = -7
 	else if(dir == NORTH)
 		pixel_y = 7
+	else
+		pixel_y = 0
 
 
 /obj/structure/barricade/sandbags/attackby(obj/item/W, mob/user)
