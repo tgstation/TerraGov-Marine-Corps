@@ -685,32 +685,27 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/M, alien)
 	custom_metabolism = 0.2
 	overdose_threshold = REAGENTS_OVERDOSE/5
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/5
-	var/list/purge_list = list()
 	var/duration = 0
-
-/datum/reagent/medicine/hyperzine/on_mob_add(mob/living/M)
-	M.reagent_move_delay_modifier -= min(6, volume * 2) //greater the dose, the greater the speed; capped at 6
-	purge_list = list(/datum/reagent/medicine/dexalin, /datum/reagent/medicine/dexalinplus)
-	..()
 
 /datum/reagent/medicine/hyperzine/on_mob_delete(mob/living/M)
 	var/amount = M.adjustOxyLoss(duration * 4)
+	M.adjustHalLoss(amount)
 	if(amount > 50)
 		M.KnockOut(amount * 0.1)
 		to_chat(M, "<span class='danger'>Your world convulses as a wave of extreme fatigue washes over you!</span>") //when hyperzine is removed from the body, there's a backlash as it struggles to transition and operate without the drug
 	else
 		M.KnockDown(amount * 0.05)
 		to_chat(M, "<span class='warning'>A sudden wave of fatigue washes over you.</span>")
+	if(M.stat == DEAD)
+		to_chat(M, "<span class='danger'>Your body unable to bear the strain, you collapse dead.</span>")
+	duration = 0
 	..()
 
 /datum/reagent/medicine/hyperzine/on_mob_life(mob/living/M)
-	//M.reagents.remove_all_type(/datum/reagent/medicine/dexalin, REM, 0, 1) //purges dex and dexplus rapidly; this is mainly to prevent easy, prefab circumvention of the downside when the duration ends
-	//M.reagents.remove_all_type(/datum/reagent/medicine/dexalinplus, REM, 0, 1)
+	M.reagent_move_delay_modifier -= min(10, volume * 1.5)
 	duration++ //to track how long hyperzine has been in the system
-	M.nutrition -= 5 * REM //Body burns through energy fast
-	for(var/datum/reagent/R in M.reagents.reagent_list)
-		if(R in purge_list)
-			M.reagents.remove_reagent(R.id,30)
+	M.nutrition -= 10 * REM //Body burns through energy fast
+	to_chat(world, "DEBUG: Move Delay Mod: [M.reagent_move_delay_modifier] Nutrition: [M.nutrition]")
 	if(prob(1))
 		M.emote(pick("twitch","blink_r","shiver"))
 		if(ishuman(M))

@@ -27,6 +27,8 @@
 	var/list/viruses = list()
 	var/color = "#000000" // rgb: 0, 0, 0
 	var/can_synth = TRUE // can this reagent be synthesized? (example: odysseus syringe gun)
+	var/list/datum/reagent/purge_list = new/list() //Does this purge any specific chems?
+	var/purge_rate = 0 //rate at which it purges specific chems
 
 /datum/reagent/Destroy() // This should only be called by the holder, so it's already handled clearing its references
 	. = ..()
@@ -51,6 +53,15 @@
 	return
 
 /datum/reagent/proc/on_mob_life(mob/living/carbon/M, alien)
+	if(length(purge_list))
+		var/count = length(purge_list)
+		for(var/datum/reagent/R in M.reagents.reagent_list)
+			to_chat(world, "DEBUG: R: [R] R.name: [R.name] R.volume: [R.volume]")
+			if(count < 1)
+				break
+			if(is_type_in_list(R, purge_list))
+				count--
+				M.reagents.remove_reagent(R.id,purge_rate)
 	current_cycle++
 	holder.remove_reagent(id, custom_metabolism * M.metabolism_efficiency) //By default it slowly disappears.
 	return TRUE
