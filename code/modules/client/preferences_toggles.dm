@@ -180,10 +180,10 @@
 /client/verb/preferred_slot()
 	set category = "Preferences"
 	set name = "Set Preferred Slot"
-	set desc = "Set which slot equipment will prefer to draw from."
+	set desc = "Set which slot equipment will prefer to draw/equip from."
 
 	prefs.load_preferences()
-	var/slot = input("Which slot would you like to draw from?", "Preferred Slot") as null|anything in list("Suit Storage", "Suit Inside", "Belt", "Back", "Boot", "Left Pocket", "Right Pocket", "Webbing", "Belt Holster", "Suit Storage Holster", "Back Holster")
+	var/slot = input("Which slot would you like to draw/equip from?", "Preferred Slot") as null|anything in list("Suit Storage", "Suit Inside", "Belt", "Back", "Boot", "Left Pocket", "Right Pocket", "Webbing", "Belt Holster", "Suit Storage Holster", "Back Holster")
 	switch(slot)
 		if("Suit Storage")
 			prefs.preferred_slot = SLOT_S_STORE

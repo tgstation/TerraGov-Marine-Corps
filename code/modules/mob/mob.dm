@@ -238,6 +238,8 @@
 		if(!T.hold)
 			return FALSE
 		var/obj/item/storage/internal/S = T.hold
+		if(!length(S.contents))
+			return FALSE
 		var/obj/item/W = S.contents[1]
 		S.remove_from_storage(W)
 		put_in_hands(W)
