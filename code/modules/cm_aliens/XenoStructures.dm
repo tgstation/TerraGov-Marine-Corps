@@ -237,7 +237,9 @@
 /obj/effect/alien/resin/trap/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/clothing/mask/facehugger) && isxeno(user))
 		var/obj/item/clothing/mask/facehugger/FH = W
-		if(FH.stat == DEAD)
+		if(hugger)
+			to_chat(user, "<span class='warning'>There is already a facehugger in [src].</span>")
+		else if(FH.stat == DEAD)
 			to_chat(user, "<span class='warning'>You can't put a dead facehugger in [src].</span>")
 		else
 			user.transferItemToLoc(FH, src)
