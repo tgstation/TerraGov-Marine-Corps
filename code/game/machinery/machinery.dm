@@ -117,6 +117,10 @@ Class Procs:
 	layer = OBJ_LAYER
 	var/machine_processing = 0 // whether the machine is busy and requires process() calls in scheduler.
 
+	var/destructible = TRUE
+	var/damage = 0
+	var/damage_cap = 1000 //The point where things start breaking down.
+
 /obj/machinery/attackby(obj/item/C as obj, mob/user as mob)
 	. = ..()
 	if(istype(C, /obj/item/tool/pickaxe/plasmacutter) && !user.action_busy && !unacidable)
@@ -573,3 +577,20 @@ obj/machinery/proc/med_scan(mob/living/carbon/human/H, dat, var/list/known_impla
 	if(occ["sdisabilities"] & NEARSIGHTED)
 		dat += text("<font color='red'>Retinal misalignment detected.</font><BR>")
 	return dat
+
+
+//Damage
+/obj/machinery/proc/take_damage(dam)
+	if(!destructible)
+		return
+
+	if(!dam)
+		return
+
+	damage = max(0, damage + dam)
+
+	if(damage >= damage_cap)
+		playsound(src, 'sound/effects/metal_crash.ogg', 35)
+		qdel(src)
+	else
+		update_icon()
