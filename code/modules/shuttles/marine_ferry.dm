@@ -473,7 +473,7 @@
 			shake_camera(M, 10, 1)
 			M.KnockDown(3)
 
-	enter_allowed = 0 //No joining after dropship crash
+	GLOB.enter_allowed = FALSE //No joining after dropship crash
 
 	var/list/turfs_trg = get_shuttle_turfs(T_trg, info_datums) //Final destination turfs <insert bad jokey reference here>
 

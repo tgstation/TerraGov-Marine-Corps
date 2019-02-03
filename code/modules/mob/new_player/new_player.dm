@@ -200,7 +200,7 @@
 
 			if("SelectedJob")
 
-				if(!enter_allowed)
+				if(!GLOB.enter_allowed)
 					to_chat(usr, "<span class='warning'>Spawning currently disabled, pick another role or observe.</span>")
 					return
 
@@ -322,7 +322,7 @@
 		if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
 			to_chat(usr, "<span class='warning'>The round is either not ready, or has already finished!<spawn>")
 			return
-		if(!enter_allowed)
+		if(!GLOB.enter_allowed)
 			to_chat(usr, "<span class='warning'>Spawning currently disabled, pick another role or observe.<spawn>")
 			return
 		if(!RoleAuthority.assign_role(src, RoleAuthority.roles_for_mode[rank], 1))

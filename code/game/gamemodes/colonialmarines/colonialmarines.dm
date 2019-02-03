@@ -55,7 +55,7 @@
 /datum/game_mode/colonialmarines/pre_setup()
 	. = ..()
 
-	if(!GLOB.fog_blockers.len) 
+	if(!GLOB.fog_blockers.len)
 		flags_round_type &= ~MODE_FOG_ACTIVATED
 	else
 		round_time_fog = rand(-2500,2500)
@@ -121,20 +121,13 @@
 	var/num_humans = living_player_list[1]
 	var/num_xenos = living_player_list[2]
 
-	if(EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED)
-		round_finished = MODE_GENERIC_DRAW_NUKE //Nuke went off, ending the round.
-	else if(EvacuationAuthority.dest_status < NUKE_EXPLOSION_IN_PROGRESS)
-		//If the nuke ISN'T in progress. We do not want to end the round before it detonates.
-		if(!num_humans && num_xenos) //No humans remain alive.
-			if(EvacuationAuthority.evac_status > EVACUATION_STATUS_STANDING_BY)
-				round_finished = MODE_INFESTATION_X_MINOR //Evacuation successfully took place. //TODO Find out if anyone made it on.
-			else
-				round_finished = MODE_INFESTATION_X_MAJOR //Evacuation did not take place. Everyone died.
+	if(EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED) //Nuke went off, ending the round.
+		round_finished = MODE_GENERIC_DRAW_NUKE
+	else if(EvacuationAuthority.dest_status < NUKE_EXPLOSION_IN_PROGRESS) //If the nuke ISN'T in progress. We do not want to end the round before it detonates.
+		if(!num_humans && num_xenos)
+			round_finished = MODE_INFESTATION_X_MAJOR //No humans remain alive.
 		else if(num_humans && !num_xenos)
-			if(EvacuationAuthority.evac_status > EVACUATION_STATUS_STANDING_BY)
-				round_finished = MODE_INFESTATION_M_MINOR //Evacuation successfully took place.
-			else
-				round_finished = MODE_INFESTATION_M_MAJOR //Humans destroyed the xenomorphs.
+			round_finished = MODE_INFESTATION_M_MAJOR //Humans destroyed the xenomorphs.
 		else if(!num_humans && !num_xenos)
 			round_finished = MODE_INFESTATION_DRAW_DEATH //Both were somehow destroyed.
 

@@ -103,15 +103,15 @@
 	if(!check_rights(R_SERVER))
 		return
 
-	enter_allowed = !enter_allowed
+	GLOB.enter_allowed = !GLOB.enter_allowed
 
-	if(enter_allowed)
+	if(GLOB.enter_allowed)
 		to_chat(world, "<span class='boldnotice'>New players may now join the game.</span>")
 	else
 		to_chat(world, "<span class='boldnotice'>New players may no longer join the game.</span>")
 
-	log_admin("[key_name(usr)] [enter_allowed ? "enabled" : "disabled"] new player joining.")
-	message_admins("[ADMIN_TPMONTY(usr)] [enter_allowed ? "enabled" : "disabled"] new player joining.")
+	log_admin("[key_name(usr)] [GLOB.enter_allowed ? "enabled" : "disabled"] new player joining.")
+	message_admins("[ADMIN_TPMONTY(usr)] [GLOB.enter_allowed ? "enabled" : "disabled"] new player joining.")
 
 
 /datum/admins/proc/toggle_respawn()
