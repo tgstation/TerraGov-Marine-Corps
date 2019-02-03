@@ -249,3 +249,45 @@
 
 #define ICE_PLANET_min_cold_protection_temperature 		200 //For the ice planet map protection from the elements.
 //=================================================
+
+
+#define SLOT_EQUIP_ORDER list(\
+	SLOT_IN_HOLSTER,\
+	SLOT_IN_S_HOLSTER,\
+	SLOT_IN_B_HOLSTER,\
+	SLOT_BACK,\
+	SLOT_WEAR_ID,\
+	SLOT_W_UNIFORM,\
+	SLOT_ACCESSORY,\
+	SLOT_WEAR_SUIT,\
+	SLOT_WEAR_MASK,\
+	SLOT_HEAD,\
+	SLOT_SHOES,\
+	SLOT_GLOVES,\
+	SLOT_EARS,\
+	SLOT_GLASSES,\
+	SLOT_BELT,\
+	SLOT_S_STORE,\
+	SLOT_L_STORE,\
+	SLOT_R_STORE,\
+	SLOT_IN_BOOT,\
+	SLOT_IN_STORAGE,\
+	SLOT_IN_L_POUCH,\
+	SLOT_IN_R_POUCH\
+	)
+
+#define SLOT_DRAW_ORDER list(\
+	SLOT_IN_HOLSTER,\
+	SLOT_IN_S_HOLSTER,\
+	SLOT_IN_B_HOLSTER,\
+	SLOT_BACK,\
+	SLOT_ACCESSORY,\
+	SLOT_BELT,\
+	SLOT_S_STORE,\
+	SLOT_L_STORE,\
+	SLOT_R_STORE,\
+	SLOT_IN_BOOT,\
+	SLOT_IN_STORAGE,\
+	SLOT_IN_L_POUCH,\
+	SLOT_IN_R_POUCH\
+	)

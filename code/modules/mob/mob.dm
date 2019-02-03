@@ -193,43 +193,47 @@
 /mob/proc/equip_to_slot_or_del(obj/item/W, slot, permanent = 0)
 	return equip_to_slot_if_possible(W, slot, 1, 1, 1, 0, permanent)
 
-//The list of slots by priority. equip_to_appropriate_slot() uses this list. Doesn't matter if a mob type doesn't have a slot.
-var/list/slot_equipment_priority = list( \
-		SLOT_IN_HOLSTER,\
-		SLOT_IN_S_HOLSTER,\
-		SLOT_IN_B_HOLSTER,\
-		SLOT_BACK,\
-		SLOT_WEAR_ID,\
-		SLOT_W_UNIFORM,\
-		SLOT_ACCESSORY,\
-		SLOT_WEAR_SUIT,\
-		SLOT_WEAR_MASK,\
-		SLOT_HEAD,\
-		SLOT_SHOES,\
-		SLOT_GLOVES,\
-		SLOT_EARS,\
-		SLOT_GLASSES,\
-		SLOT_BELT,\
-		SLOT_S_STORE,\
-		SLOT_L_STORE,\
-		SLOT_R_STORE,\
-		SLOT_IN_BOOT,\
-		SLOT_IN_STORAGE,\
-		SLOT_IN_L_POUCH,\
-		SLOT_IN_R_POUCH\
-	)
 
-//puts the item "W" into an appropriate slot in a human's inventory
-//returns 0 if it cannot, 1 if successful
 /mob/proc/equip_to_appropriate_slot(obj/item/W, ignore_delay = TRUE)
 	if(!istype(W))
 		return FALSE
 
-	for(var/slot in slot_equipment_priority)
-		if(equip_to_slot_if_possible(W, slot, ignore_delay, 0, 1, 1)) //del_on_fail = 0; disable_warning = 0; redraw_mob = 1
+	for(var/slot in SLOT_EQUIP_ORDER)
+		if(equip_to_slot_if_possible(W, slot, ignore_delay, FALSE, TRUE, TRUE))
 			return TRUE
 
 	return FALSE
+
+
+/mob/proc/draw_from_slot_if_possible(slot)
+	if(!slot)
+		return FALSE
+
+	var/obj/item/I = get_item_by_slot(slot)
+
+	if(!I)
+		return FALSE
+
+	if(istype(I, /obj/item/storage/belt/gun))
+		var/obj/item/storage/belt/gun/B = I
+		if(B.current_gun)
+			var/obj/item/W = B.current_gun
+			B.remove_from_storage(W)
+			put_in_hands(W)
+			return TRUE
+	if(istype(I, /obj/item/storage) || istype(I, /obj/item/clothing/suit/storage))
+		var/obj/item/storage/S = I
+		if(!length(S.contents))
+			return FALSE
+		var/obj/item/W = S.contents[1]
+		S.remove_from_storage(W)
+		put_in_hands(W)
+		return TRUE
+	else
+		doUnEquip(I)
+		put_in_hands(I)
+		return TRUE
+
 
 /mob/proc/reset_view(atom/A)
 	if (client)
@@ -335,12 +339,12 @@ var/list/slot_equipment_priority = list( \
 		'html/scales.png'
 		)
 
-	src << browse_rsc('html/changelog2015.html', "changelog2015.html") 
-	src << browse_rsc('html/changelog2016.html', "changelog2016.html") 
-	src << browse_rsc('html/changelog2017.html', "changelog2017.html") 
-	src << browse_rsc('html/changelog20181.html', "changelog20181.html") 
+	src << browse_rsc('html/changelog2015.html', "changelog2015.html")
+	src << browse_rsc('html/changelog2016.html', "changelog2016.html")
+	src << browse_rsc('html/changelog2017.html', "changelog2017.html")
+	src << browse_rsc('html/changelog20181.html', "changelog20181.html")
 	src << browse_rsc('html/changelog20182.html', "changelog20182.html")
-	src << browse_rsc('html/changelog.html', "changelog.html")  
+	src << browse_rsc('html/changelog.html', "changelog.html")
 
 
 	src << browse('html/changelog.html', "window=changes;size=675x650")

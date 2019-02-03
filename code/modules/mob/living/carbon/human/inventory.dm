@@ -1,20 +1,25 @@
 /mob/living/carbon/human/verb/quick_equip()
 	set name = "quick-equip"
-	set hidden = 1
+	set hidden = TRUE
 
-	if(ishuman(src))
-		var/mob/living/carbon/human/H = src
-		var/obj/item/I = H.get_active_held_item()
-		if(!I)
-			to_chat(H, "<span class='notice'>You are not holding anything to equip.</span>")
-			return
-		if(H.equip_to_appropriate_slot(I, FALSE))
+
+	var/obj/item/I = get_active_held_item()
+	if(!I)
+		if(client?.prefs?.preferred_slot)
+			if(draw_from_slot_if_possible(client.prefs.preferred_slot))
+				return
+		for(var/slot in SLOT_DRAW_ORDER)
+			if(draw_from_slot_if_possible(slot))
+				return
+	else
+		if(equip_to_appropriate_slot(I, FALSE))
 			if(hand)
-				update_inv_l_hand(0)
+				update_inv_l_hand(FALSE)
 			else
-				update_inv_r_hand(0)
+				update_inv_r_hand(FALSE)
 		else
-			to_chat(H, "<span class='warning'>You are unable to equip that.</span>")
+			to_chat(src, "<span class='warning'>You are unable to equip that.</span>")
+
 
 /mob/living/carbon/human/proc/equip_in_one_of_slots(obj/item/W, list/slots, del_on_fail = 1)
 	for (var/slot in slots)

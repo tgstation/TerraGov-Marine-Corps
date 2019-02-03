@@ -175,3 +175,42 @@
 // 		prefs.UI_style_color = UI_style_color_new
 // 		prefs.save_preferences()
 // 		to_chat(usr, "UI was saved")
+
+
+/client/verb/preferred_slot()
+	set category = "Preferences"
+	set name = "Set Preferred Slot"
+	set desc = "Set which slot equipment will prefer to draw from."
+
+	prefs.load_preferences()
+	var/slot = input("Which slot would you like to draw from?", "Preferred Slot") as null|anything in list("Suit Storage", "Suit Inside", "Belt", "Back", "Boot", "Left Pocket", "Left Pocket Inside", "Right Pocket", "Right Pocket Inside", "Webbing", "Holster", "Suit Storage Holster", "Belt Holster")
+	switch(slot)
+		if("Suit Storage")
+			prefs.preferred_slot = SLOT_S_STORE
+		if("Suit Inside")
+			prefs.preferred_slot = SLOT_IN_STORAGE
+		if("Belt")
+			prefs.preferred_slot = SLOT_BELT
+		if("Back")
+			prefs.preferred_slot = SLOT_BACK
+		if("Boot")
+			prefs.preferred_slot = SLOT_IN_BOOT
+		if("Left Pocket")
+			prefs.preferred_slot = SLOT_L_STORE
+		if("Left Pocket Inside")
+			prefs.preferred_slot = SLOT_IN_L_POUCH
+		if("Right Pocket")
+			prefs.preferred_slot = SLOT_R_STORE
+		if("Right Pocket Inside")
+			prefs.preferred_slot = SLOT_IN_R_POUCH
+		if("Webbing")
+			prefs.preferred_slot = SLOT_ACCESSORY
+		if("Holster")
+			prefs.preferred_slot = SLOT_IN_HOLSTER
+		if("Suit Storage Holster")
+			prefs.preferred_slot = SLOT_IN_S_HOLSTER
+		if("Belt Holster")
+			prefs.preferred_slot = SLOT_IN_B_HOLSTER
+	prefs.save_preferences()
+
+	to_chat(src, "You will now draw from the [slot] slot first.")
