@@ -1,6 +1,8 @@
 ## Check code/controllers/configuration/entries for detailed explanations, all possible config options and some defaults.
 ## Anything after a "#" is commented out, uncomment things to enable them, comment to disable them.
 
+$include dbconfig.txt
+
 ## Server name: This appears at the top of the screen in-game.
 #SERVER_NAME TerraGov Marine Corps
 
