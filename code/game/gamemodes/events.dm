@@ -280,38 +280,12 @@
 	else
 		log_world("ERROR: Could not initate grey-tide. Unable find prison or brig area.")
 
-/proc/carp_migration() // -- Darem
-	for(var/obj/effect/landmark/C in GLOB.landmarks_list)
-		if(C.name == "carpspawn")
-			new /mob/living/simple_animal/hostile/carp(C.loc)
-	//sleep(100)
-	spawn(rand(300, 600)) //Delayed announcements to keep the crew on their toes.
-		command_announcement.Announce("Unknown biological entities have been detected near [station_name()], please stand-by.", "Lifesign Alert", new_sound = 'sound/AI/commandreport.ogg')
-
 /proc/lightsout(isEvent = 0, lightsoutAmount = 1,lightsoutRange = 25) //leave lightsoutAmount as 0 to break ALL lights
 	if(isEvent)
 		command_announcement.Announce("An Electrical storm has been detected in your area, please repair potential electronic overloads.","Electrical Storm Alert")
 
 	if(lightsoutAmount)
-		var/list/epicentreList = list()
-
-		for(var/i=1,i<=lightsoutAmount,i++)
-			var/list/possibleEpicentres = list()
-			for(var/obj/effect/landmark/newEpicentre in GLOB.landmarks_list)
-				if(newEpicentre.name == "lightsout" && !(newEpicentre in epicentreList))
-					possibleEpicentres += newEpicentre
-			if(possibleEpicentres.len)
-				epicentreList += pick(possibleEpicentres)
-			else
-				break
-
-		if(!epicentreList.len)
-			return
-
-		for(var/obj/effect/landmark/epicentre in epicentreList)
-			for(var/obj/machinery/power/apc/apc in range(epicentre,lightsoutRange))
-				apc.overload_lighting()
-
+		return
 	else
 		for(var/obj/machinery/power/apc/apc in GLOB.machines)
 			apc.overload_lighting()

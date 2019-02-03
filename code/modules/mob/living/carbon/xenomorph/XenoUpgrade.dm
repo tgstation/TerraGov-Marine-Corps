@@ -22,6 +22,9 @@
 			
 	generate_name() //Give them a new name now
 
+	hud_set_plasma()
+	med_hud_set_health()
+
 	hud_set_queen_overwatch() //update the upgrade level insignia on our xeno hud.
 
 	update_spits() //Update spits to new/better ones

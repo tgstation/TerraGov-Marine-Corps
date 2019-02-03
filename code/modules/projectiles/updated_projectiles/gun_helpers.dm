@@ -747,7 +747,12 @@ should be alright.
 	if(!usr)
 		return
 
-	rail?.activate_attachment(src, usr)
+	var/obj/item/weapon/gun/W = usr.get_active_held_item()
+
+	if(!istype(W))
+		return
+
+	W.rail?.activate_attachment(W, usr)
 
 
 /obj/item/weapon/gun/verb/toggle_ammo_hud()

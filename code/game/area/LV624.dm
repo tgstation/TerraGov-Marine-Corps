@@ -1,37 +1,4 @@
 //LV624 AREAS--------------------------------------//
-/obj/effect/landmark/lv624
-	icon = 'icons/misc/mark.dmi'
-
-//FOG.---------------------------------------------//
-/obj/effect/landmark/lv624/fog_blocker
-	name = "fog blocker"
-	icon_state = "spawn_event"
-
-/obj/effect/forcefield/fog
-	name = "dense fog"
-	desc = "It looks way too dangerous to traverse. Best wait until it has cleared up."
-	icon = 'icons/effects/effects.dmi'
-	icon_state = "smoke"
-	opacity = 1
-
-/obj/effect/forcefield/fog/Initialize()
-	. = ..()
-	dir  = pick(CARDINAL_DIRS)
-
-/obj/effect/forcefield/fog/attack_hand(mob/M)
-	to_chat(M, "<span class='notice'>You peer through the fog, but it's impossible to tell what's on the other side...</span>")
-
-/obj/effect/forcefield/fog/attack_alien(M)
-	return attack_hand(M)
-
-/obj/effect/forcefield/fog/attack_paw(M)
-	return attack_hand(M)
-//-------------------------------------------------//
-
-/obj/effect/landmark/lv624/xeno_tunnel
-	name = "xeno tunnel"
-	icon_state = "spawn_event"
-
 /area/lv624
 	icon_state = "lv-626"
 
