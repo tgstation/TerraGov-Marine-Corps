@@ -1,0 +1,4 @@
+author: "LaKiller8"
+delete-after: True
+changes: 
+  - bugfix: "You can now get up while being pulled as a xeno."

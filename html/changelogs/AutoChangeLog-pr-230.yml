@@ -1,4 +1,0 @@
-author: "LaKiller8"
-delete-after: True
-changes: 
-  - bugfix: "Preferences are now more likely to save properly."

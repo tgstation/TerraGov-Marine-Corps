@@ -325,7 +325,7 @@
 				to_chat(usr, "<span class='warning'>Error: [M] no longer has a client!</span>")
 				return
 			to_chat(M, "<span class='danger'>You have been kicked from the server by [usr.client.holder.fakekey ? "an Administrator" : "[usr.client.key]"].</span>")
-			del(M.client)
+			qdel(M.client)
 
 			log_admin_private("[key_name(usr)] kicked [key_name(M)].")
 			message_admins("[ADMIN_TPMONTY(usr)] kicked [ADMIN_TPMONTY(M)].")
@@ -367,7 +367,7 @@
 			qdel(mob_client)
 
 		log_admin_private("[key_name(usr)] has banned [key_name(M)] | Duration: [mins] minutes | Reason: [sanitize(reason)]")
-		notes_add(mob_key, "Banned by [usr.client.ckey] | Duration: [mins] minutes | Reason: [sanitize(reason)]", usr)
+		notes_add(mob_key, "Banned by [usr.client.holder.fakekey ? "an Administrator" : usr.client.ckey] | Duration: [mins] minutes | Reason: [sanitize(reason)]", usr)
 		message_admins("[ADMIN_TPMONTY(usr)] has banned [ADMIN_TPMONTY(M)] | Duration: [mins] minutes| Reason: [sanitize(reason)]")
 
 
@@ -614,9 +614,6 @@
 			if("Yes")
 				location = get_turf(usr)
 
-		var/mob/user = "[ADMIN_TPMONTY(usr)]"
-		var/mob/target = "[ADMIN_TPMONTY(M)]"
-
 		switch(href_list["transform"])
 			if("observer")
 				M.change_mob_type(/mob/dead/observer, location, null, delmob)
@@ -660,7 +657,7 @@
 				M.change_mob_type(/mob/living/carbon/human, location, null, delmob, "Moth")
 
 		log_admin("[key_name(usr)] has transformed [key_name(M)] into [href_list["transform"]].[delmob ? " Old mob deleted." : ""][location ? " Teleported to [AREACOORD(location)]" : ""]")
-		message_admins("[user] has transformed [target] into [href_list["transform"]].[delmob ? " Old mob deleted." : ""][location ? " Teleported to new location." : ""]")
+		message_admins("[ADMIN_TPMONTY(usr)] has transformed [ADMIN_TPMONTY(M)] into [href_list["transform"]].[delmob ? " Old mob deleted." : ""][location ? " Teleported to new location." : ""]")
 
 
 	else if(href_list["revive"])
@@ -739,16 +736,16 @@
 				return
 			var/turf/T = get_turf(M)
 			new /obj/item/reagent_container/food/snacks/fortunecookie(T)
-		else if(isXeno(M))
+		else if(isxeno(M))
 			if(alert("Are you sure you want to tell the Xeno a Xeno tip?", "Confirmation", "Yes", "No") != "Yes")
 				return
 			to_chat(M, "<span class='tip'>[pick(xenotips)]</span>")
-		
-		if(isXeno(M))
+
+		if(isxeno(M))
 			to_chat(M, "<span class='boldnotice'>Your prayers have been answered!! Hope the advice helped.</span>")
 		else
 			to_chat(M, "<span class='boldnotice'>Your prayers have been answered!! You received the best fortune cookie!</span>")
-		
+
 		log_admin("[key_name(M)] got their fortune cookie, spawned by [key_name(usr)]")
 		message_admins("[ADMIN_TPMONTY(M)] got their fortune cookie, spawned by [ADMIN_TPMONTY(usr)].")
 
@@ -770,6 +767,10 @@
 
 	if(href_list["deny"])
 		var/mob/M = locate(href_list["deny"])
+
+		if(!istype(M))
+			return
+
 		distress_cancel = TRUE
 		command_announcement.Announce("The distress signal has been blocked, the launch tubes are now recalibrating.", "Distress Beacon")
 		log_game("[key_name(usr)] has denied a distress beacon, requested by [key_name(M)]")
@@ -779,7 +780,10 @@
 	if(href_list["distress"])
 		var/mob/M = locate(href_list["distress"])
 
-		if(ticker?.mode?.waiting_for_candidates)
+		if(!istype(M))
+			return
+
+		if(!ticker?.mode || ticker.mode.waiting_for_candidates)
 			return
 
 		ticker.mode.activate_distress()
@@ -823,7 +827,7 @@
 					continue
 				H.dropItemToGround(W)
 
-		M.forceMove(pick(tdome1))
+		M.forceMove(pick(GLOB.tdome1))
 
 		to_chat(M, "<span class='boldnotice'>You have been sent to the Thunderdome!</span>")
 
@@ -854,7 +858,7 @@
 
 		var/mob/M = locate(href_list["lobby"])
 
-		if(istype(M, /mob/new_player))
+		if(isnewplayer(M))
 			return
 
 		if(!M.client)
@@ -881,7 +885,7 @@
 			return
 
 		var/mob/M = locate(href_list["jumpto"])
-		if(!ismob(M) || isobserver(M))
+		if(!istype(M))
 			return
 
 		usr.forceMove(M.loc)
@@ -895,7 +899,7 @@
 			return
 
 		var/mob/M = locate(href_list["getmob"])
-		if(!ismob(M) || isobserver(M))
+		if(!istype(M))
 			return
 
 		M.forceMove(usr.loc)
@@ -909,9 +913,9 @@
 			return
 
 		var/mob/M = locate(href_list["sendmob"])
-		if(!ismob(M) || isobserver(M))
-
+		if(!istype(M))
 			return
+
 		var/atom/target
 
 		switch(input("To an area or to a mob?", "Send Mob", null, null) as null|anything in list("Area", "Mob"))

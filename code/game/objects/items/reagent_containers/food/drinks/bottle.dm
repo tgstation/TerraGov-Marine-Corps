@@ -56,7 +56,7 @@
 	target.apply_damage(force, BRUTE, affecting, armor_block, sharp=0)
 
 	// You are going to knock someone out for longer if they are not wearing a helmet.
-	if(affecting == "head" && istype(target, /mob/living/carbon/) && !isXeno(target))
+	if(affecting == "head" && istype(target, /mob/living/carbon/) && !isxeno(target))
 
 		if(target != user)
 			user.visible_message("<span class='danger'>[target] has been hit over the head with a bottle of [name], by [user]!</span>")

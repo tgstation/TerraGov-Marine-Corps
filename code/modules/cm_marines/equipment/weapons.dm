@@ -143,7 +143,7 @@
 	if(!istype(user) || delay <= 0) return FALSE
 
 	var/mob/living/carbon/human/L
-	if(istype(user, /mob/living/carbon/human)) L = user
+	if(ishuman(user)) L = user
 
 	var/delayfraction = round(delay/numticks)
 	. = TRUE
@@ -211,8 +211,8 @@
 
 	open(var/mob/user as mob) //A ton of runtimes were caused by ticker being null, so now we do the special items when its first opened
 		if(!opened) //First time opening it, so add the round-specific items
-			if(map_tag)
-				switch(map_tag)
+			if(GLOB.map_tag)
+				switch(GLOB.map_tag)
 					if(MAP_ICE_COLONY)
 						new /obj/item/clothing/head/helmet/marine(src)
 					else
@@ -245,8 +245,8 @@
 
 	open(var/mob/user as mob)
 		if(!opened)
-			if(map_tag)
-				switch(map_tag)
+			if(GLOB.map_tag)
+				switch(GLOB.map_tag)
 					if(MAP_ICE_COLONY)
 						new /obj/item/clothing/under/marine/sniper(src)
 						new /obj/item/storage/backpack/marine/satchel(src)
@@ -373,8 +373,8 @@
 
 	open(mob/user) //A ton of runtimes were caused by ticker being null, so now we do the special items when its first opened
 		if(!opened) //First time opening it, so add the round-specific items
-			if(map_tag)
-				switch(map_tag)
+			if(GLOB.map_tag)
+				switch(GLOB.map_tag)
 					if(MAP_ICE_COLONY)
 						new /obj/item/clothing/head/helmet/marine(src)
 					else
@@ -413,7 +413,7 @@
 		new /obj/item/ammo_magazine/pistol/vp70(src)
 		new /obj/item/ammo_magazine/pistol/vp70(src)
 		new /obj/item/weapon/gun/rifle/m4ra(src)
-		new /obj/item/storage/backpack/marine/satchel/scout_cloak(src)
+		new /obj/item/storage/backpack/marine/satchel/scout_cloak/scout(src)
 		new /obj/item/device/motiondetector/scout(src)
 		new /obj/item/explosive/grenade/cloakbomb(src)
 		new /obj/item/explosive/grenade/cloakbomb(src)
@@ -446,7 +446,7 @@
 		new /obj/item/weapon/gun/shotgun/merc/scout(src)
 		new /obj/item/ammo_magazine/shotgun/incendiary(src)
 		new /obj/item/ammo_magazine/shotgun/incendiary(src)
-		new /obj/item/storage/backpack/marine/satchel/scout_cloak(src)
+		new /obj/item/storage/backpack/marine/satchel/scout_cloak/scout(src)
 		new /obj/item/device/motiondetector/scout(src)
 		new /obj/item/explosive/grenade/cloakbomb(src)
 		new /obj/item/explosive/grenade/cloakbomb(src)

@@ -144,7 +144,7 @@
 			icon_state = "mulebot0"
 
 		updateDialog()
-	else if (istype(I, /obj/item/tool/wrench))
+	else if (iswrench(I))
 		if (src.health < maxhealth)
 			src.health = min(maxhealth, src.health+25)
 			user.visible_message(
@@ -288,7 +288,7 @@
 		return
 	if (usr.stat)
 		return
-	if ((in_range(src, usr) && istype(src.loc, /turf)) || (istype(usr, /mob/living/silicon)))
+	if ((in_range(src, usr) && istype(src.loc, /turf)) || issilicon(usr))
 		usr.set_interaction(src)
 
 		switch(href_list["op"])
@@ -394,31 +394,31 @@
 
 
 			if("wirecut")
-				if(istype(usr.get_active_held_item(), /obj/item/tool/wirecutters))
+				if(iswirecutter(usr.get_active_held_item()))
 					var/wirebit = text2num(href_list["wire"])
 					wires &= ~wirebit
 				else
 					to_chat(usr, "<span class='notice'>You need wirecutters!</span>")
 			if("wiremend")
-				if(istype(usr.get_active_held_item(), /obj/item/tool/wirecutters))
+				if(iswirecutter(usr.get_active_held_item()))
 					var/wirebit = text2num(href_list["wire"])
 					wires |= wirebit
 				else
 					to_chat(usr, "<span class='notice'>You need wirecutters!</span>")
 
 			if("wirepulse")
-				if(istype(usr.get_active_held_item(), /obj/item/device/multitool))
+				if(ismultitool(usr.get_active_held_item()))
 					switch(href_list["wire"])
 						if("1","2")
-							to_chat(usr, "<span class='notice'>\icon[src] The charge light flickers.</span>")
+							to_chat(usr, "<span class='notice'>[bicon(src)] The charge light flickers.</span>")
 						if("4")
-							to_chat(usr, "<span class='notice'>\icon[src] The external warning lights flash briefly.</span>")
+							to_chat(usr, "<span class='notice'>[bicon(src)] The external warning lights flash briefly.</span>")
 						if("8")
-							to_chat(usr, "<span class='notice'>\icon[src] The load platform clunks.</span>")
+							to_chat(usr, "<span class='notice'>[bicon(src)] The load platform clunks.</span>")
 						if("16", "32")
-							to_chat(usr, "<span class='notice'>\icon[src] The drive motor whines briefly.</span>")
+							to_chat(usr, "<span class='notice'>[bicon(src)] The drive motor whines briefly.</span>")
 						else
-							to_chat(usr, "<span class='notice'>\icon[src] You hear a radio crackle.</span>")
+							to_chat(usr, "<span class='notice'>[bicon(src)] You hear a radio crackle.</span>")
 				else
 					to_chat(usr, "<span class='notice'>You need a multitool!</span>")
 

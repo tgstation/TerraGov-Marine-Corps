@@ -145,7 +145,7 @@
 
 	//breaking out of handcuffs & putting out fires
 	else if(iscarbon(L))
-		if (isXeno(L))
+		if (isxeno(L))
 			var/mob/living/carbon/Xenomorph/X = L
 			if (X.on_fire && X.canmove && !knocked_down)
 				X.fire_stacks = max(X.fire_stacks - rand(3, 6), 0)
@@ -286,6 +286,7 @@
 						to_chat(CM, "<span class='notice'>You successfully remove \the [CM.legcuffed].</span>")
 						CM.dropItemToGround(CM.legcuffed)
 
+
 /mob/living/proc/lay_down()
 	set name = "Rest"
 	set category = "IC"
@@ -297,12 +298,18 @@
 		resting = TRUE
 		to_chat(src, "<span class='notice'>You are now resting.</span>")
 		update_canmove()
+	else if(action_busy) // do_after is unoptimal
+		return
 	else
-		if(action_busy) // do_after is unoptimal
-			return
-		if(do_after(src, 10, FALSE, 5, BUSY_ICON_GENERIC))
-			to_chat(src, "<span class='notice'>You get up.</span>")
-			resting = FALSE
-			update_canmove()
-		else
-			to_chat(src, "<span class='notice'>You fail to get up.</span>")
+		overlays += get_busy_icon(BUSY_ICON_GENERIC)
+		addtimer(CALLBACK(src, .proc/get_up), 2 SECONDS)
+
+
+/mob/living/proc/get_up()
+	overlays -= get_busy_icon(BUSY_ICON_GENERIC)
+	if(!is_mob_incapacitated(TRUE))
+		to_chat(src, "<span class='notice'>You get up.</span>")
+		resting = FALSE
+		update_canmove()
+	else
+		to_chat(src, "<span class='notice'>You fail to get up.</span>")

@@ -246,11 +246,11 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 		if (R.client && !(R.client.prefs.toggles_chat & CHAT_RADIO)) //Adminning with 80 people on can be fun when you're trying to talk and all you can hear is radios.
 			continue
 
-		if(istype(R, /mob/new_player)) // we don't want new players to hear messages. rare but generates runtimes.
+		if(isnewplayer(R)) // we don't want new players to hear messages. rare but generates runtimes.
 			continue
 
 		// Ghosts hearing all radio chat don't want to hear syndicate intercepts, they're duplicates
-		if(data == 3 && istype(R, /mob/dead/observer) && R.client && (R.client.prefs.toggles_chat & CHAT_GHOSTRADIO))
+		if(data == 3 && isobserver(R) && R.client && (R.client.prefs.toggles_chat & CHAT_GHOSTRADIO))
 			continue
 
 		// --- Check for compression ---
@@ -305,7 +305,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 		var/part_b_extra = ""
 		if(data == 3) // intercepted radio message
 			part_b_extra = " <i>(Intercepted)</i>"
-		var/part_b = "</span><b> \icon[radio]\[[freq_text]\][part_b_extra]</b> <span class='message'>" // Tweaked for security headsets -- TLE
+		var/part_b = "</span><b> [bicon(radio)]\[[freq_text]\][part_b_extra]</b> <span class='message'>" // Tweaked for security headsets -- TLE
 		var/part_c = "</span></span>"
 
 		// Antags!
@@ -536,7 +536,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 		// Create a radio headset for the sole purpose of using its icon
 		var/obj/item/device/radio/headset/radio = new
 
-		var/part_b = "</span><b> \icon[radio]\[[freq_text]\][part_b_extra]</b> <span class='message'>" // Tweaked for security headsets -- TLE
+		var/part_b = "</span><b> [bicon(radio)]\[[freq_text]\][part_b_extra]</b> <span class='message'>" // Tweaked for security headsets -- TLE
 		var/part_c = "</span></span>"
 
 		if (display_freq in ANTAG_FREQS)

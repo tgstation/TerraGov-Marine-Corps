@@ -196,11 +196,11 @@
 	else
 		dat += "The safety's off!<br>"
 
-	if(rail) 	dat += "It has \icon[rail] [rail.name] mounted on the top.<br>"
-	if(muzzle) 	dat += "It has \icon[muzzle] [muzzle.name] mounted on the front.<br>"
-	if(stock) 	dat += "It has \icon[stock] [stock.name] for a stock.<br>"
+	if(rail) 	dat += "It has [bicon(rail)] [rail.name] mounted on the top.<br>"
+	if(muzzle) 	dat += "It has [bicon(muzzle)] [muzzle.name] mounted on the front.<br>"
+	if(stock) 	dat += "It has [bicon(stock)] [stock.name] for a stock.<br>"
 	if(under)
-		dat += "It has \icon[under] [under.name]"
+		dat += "It has [bicon(under)] [under.name]"
 		if(under.flags_attach_features & ATTACH_WEAPON)
 			dat += " ([under.current_rounds]/[under.max_rounds])"
 		dat += " mounted underneath.<br>"
@@ -832,7 +832,7 @@ and you're good to go.
 			return
 
 		if(!CONFIG_GET(flag/allow_synthetic_gun_use))
-			if(isSynth(user))
+			if(issynth(user))
 				to_chat(user, "<span class='warning'>Your program does not allow you to use firearms.</span>")
 				return
 

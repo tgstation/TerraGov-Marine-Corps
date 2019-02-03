@@ -42,7 +42,7 @@
 
 	set_datum()
 	//WO GAMEMODE
-	if(map_tag == MAP_WHISKEY_OUTPOST)
+	if(GLOB.map_tag == MAP_WHISKEY_OUTPOST)
 		xeno_caste.hardcore = 1 //Prevents healing and queen evolution
 	time_of_birth = world.time
 	add_language("Xenomorph") //xenocommon
@@ -69,6 +69,9 @@
 		generate_name()
 
 	regenerate_icons()
+
+	hud_set_plasma()
+	med_hud_set_health()
 
 	toggle_xeno_mobhud() //This is a verb, but fuck it, it just werks
 
@@ -113,7 +116,7 @@
 
 
 	//Larvas have their own, very weird naming conventions, let's not kick a beehive, not yet
-	if(isXenoLarva(src))
+	if(isxenolarva(src))
 		return
 
 	var/name_prefix = ""
@@ -133,7 +136,7 @@
 		remove_language("English") // its hacky doing it here sort of
 
 	//Queens have weird, hardcoded naming conventions based on upgrade levels. They also never get nicknumbers
-	if(isXenoQueen(src))
+	if(isxenoqueen(src))
 		switch(upgrade)
 			if(0) name = "[name_prefix]Queen"			 //Young
 			if(1) name = "[name_prefix]Elder Queen"	 //Mature
@@ -147,7 +150,7 @@
 
 /mob/living/carbon/Xenomorph/examine(mob/user)
 	..()
-	if(isXeno(user) && xeno_caste.caste_desc)
+	if(isxeno(user) && xeno_caste.caste_desc)
 		to_chat(user, xeno_caste.caste_desc)
 
 	if(stat == DEAD)
@@ -248,7 +251,7 @@
 
 /mob/living/carbon/Xenomorph/point_to_atom(atom/A, turf/T)
 	//xeno leader get a bit arrow and less cooldown
-	if(queen_chosen_lead || isXenoQueen(src))
+	if(queen_chosen_lead || isxenoqueen(src))
 		recently_pointed_to = world.time + 10
 		new /obj/effect/overlay/temp/point/big(T)
 	else

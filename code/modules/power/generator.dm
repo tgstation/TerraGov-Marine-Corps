@@ -81,7 +81,7 @@
 	interact(user)
 
 /obj/machinery/power/generator/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/tool/wrench))
+	if(iswrench(W))
 		anchored = !anchored
 		to_chat(user, "<span class='notice'>You [anchored ? "secure" : "unsecure"] the bolts holding [src] to the floor.</span>")
 		use_power = anchored
@@ -96,7 +96,7 @@
 
 
 /obj/machinery/power/generator/interact(mob/user)
-	if ( (get_dist(src, user) > 1 ) && (!istype(user, /mob/living/silicon/ai)))
+	if ( (get_dist(src, user) > 1 ) && (!isAI(user)))
 		user.unset_interaction()
 		user << browse(null, "window=teg")
 		return

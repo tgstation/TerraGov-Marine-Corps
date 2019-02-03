@@ -1,4 +1,0 @@
-author: "Ghommie"
-delete-after: True
-changes: 
-  - bugfix: "Fixes being able to fill shotgun belt and pouches beyond their storage capacity."

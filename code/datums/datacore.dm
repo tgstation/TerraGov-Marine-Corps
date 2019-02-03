@@ -77,7 +77,7 @@
 			squads[name] = squad_name
 			mar[name] = rank
 			department = 1
-		if(!department && !(name in heads))
+		if(!department && !(name in heads) && (real_rank in ROLES_REGULAR_ALL))
 			misc[name] = rank
 	if(heads.len > 0)
 		dat += "<tr><th colspan=3>Command Staff</th></tr>"
@@ -196,7 +196,8 @@ var/global/list/PDA_Manifest = list()
 		if(!nosleep)
 			sleep(40)
 		for(var/mob/living/carbon/human/H in GLOB.player_list)
-			if(H.species && H.species.name == "Yautja") continue
+			if(isyautjastrict(H))
+				continue
 			manifest_inject(H)
 		return
 

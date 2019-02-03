@@ -471,7 +471,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	if(dose_administered)
 		playsound(src,'sound/items/hypospray.ogg', 25, 0, 1)
 		details +=("Estimated [B18_CHEM_COOLDOWN/600] minute replenishment time for each dosage.")
-		to_chat(wearer, "<span class='notice'>\icon [src] beeps:</br> [details.Join(" ")]</span>")
+		to_chat(wearer, "<span class='notice'>[bicon(src)] beeps:</br> [details.Join(" ")]</span>")
 
 /obj/item/clothing/suit/storage/marine/specialist/proc/handle_chem_cooldown(code = B18_BRUTE_CODE, silent = FALSE)
 	if(code)
@@ -597,14 +597,14 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 			B18_automed_pain = round(B18_automed_pain)
 			B18_automed_pain = CLAMP(B18_automed_pain,B18_PAIN_MIN,B18_PAIN_MAX)
 		if(!( master ))
-			if(istype(loc, /mob/living/carbon/human))
+			if(ishuman(loc))
 				handle_interface(loc)
 			else
 				for(var/mob/living/carbon/human/M in viewers(1, src))
 					if(M.client)
 						handle_interface(M)
 		else
-			if(istype(master.loc, /mob/living/carbon/human))
+			if(ishuman(master.loc))
 				handle_interface(master.loc)
 			else
 				for(var/mob/living/carbon/human/M in viewers(1, master))

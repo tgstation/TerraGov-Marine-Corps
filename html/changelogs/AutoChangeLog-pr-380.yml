@@ -1,6 +1,0 @@
-author: "Ghommie"
-delete-after: True
-changes: 
-  - refactor: "Minor refactor on supply drops."
-  - balance: "supply pads can now load up to four unanchored objects per launch instead of a single one.
-their potential debris factor has been ever so slighty reduced."

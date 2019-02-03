@@ -218,12 +218,12 @@
 		/datum/action/xeno_action/grow_ovipositor,
 		/datum/action/xeno_action/activable/screech,
 		/datum/action/xeno_action/activable/corrosive_acid,
-		/datum/action/xeno_action/emit_pheromones,
 		/datum/action/xeno_action/activable/gut,
 		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/shift_spits,
 		/datum/action/xeno_action/activable/xeno_spit,
 		/datum/action/xeno_action/activable/larva_growth,
+		/datum/action/xeno_action/toggle_pheromones
 		)
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/claw_toggle,
@@ -495,7 +495,7 @@
 
 	for(var/mob/M in view())
 		if(M && M.client)
-			if(isXeno(M))
+			if(isxeno(M))
 				shake_camera(M, 10, 1)
 			else
 				shake_camera(M, 30, 1) //50 deciseconds, SORRY 5 seconds was way too long. 3 seconds now
@@ -537,7 +537,7 @@
 	if(last_special > world.time)
 		return
 
-	if(isSynth(victim))
+	if(issynth(victim))
 		var/datum/limb/head/synthhead = victim.get_limb("head")
 		if(synthhead.status & LIMB_DESTROYED)
 			return
@@ -552,7 +552,7 @@
 				to_chat(src, "<span class='xenowarning'>The child may still hatch! Not yet!</span>")
 				return
 
-	if(isXeno(victim))
+	if(isxeno(victim))
 		var/mob/living/carbon/Xenomorph/xeno = victim
 		if(hivenumber == xeno.hivenumber)
 			to_chat(src, "<span class='warning'>You can't bring yourself to harm a fellow sister to this magnitude.</span>")
@@ -595,7 +595,6 @@
 		/datum/action/xeno_action/regurgitate,\
 		/datum/action/xeno_action/remove_eggsac,\
 		/datum/action/xeno_action/activable/screech,\
-		/datum/action/xeno_action/emit_pheromones,\
 		/datum/action/xeno_action/psychic_whisper,\
 		/datum/action/xeno_action/watch_xeno,\
 		/datum/action/xeno_action/toggle_queen_zoom,\
@@ -604,6 +603,7 @@
 		/datum/action/xeno_action/queen_give_plasma,\
 		/datum/action/xeno_action/queen_order,\
 		/datum/action/xeno_action/deevolve, \
+		/datum/action/xeno_action/toggle_pheromones, \
 		)
 
 	for(var/path in immobile_abilities)
@@ -655,12 +655,12 @@
 			/datum/action/xeno_action/grow_ovipositor,
 			/datum/action/xeno_action/activable/screech,
 			/datum/action/xeno_action/activable/corrosive_acid,
-			/datum/action/xeno_action/emit_pheromones,
 			/datum/action/xeno_action/activable/gut,
 			/datum/action/xeno_action/psychic_whisper,
 		 	/datum/action/xeno_action/shift_spits,
 			/datum/action/xeno_action/activable/xeno_spit,
 			/datum/action/xeno_action/activable/larva_growth,
+			/datum/action/xeno_action/toggle_pheromones
 			)
 
 		for(var/path in mobile_abilities)
@@ -696,7 +696,7 @@
 			client.perspective = EYE_PERSPECTIVE
 			client.eye = observed_xeno
 		else
-			if (istype(A, /atom/movable))
+			if (ismovableatom(A))
 				client.perspective = EYE_PERSPECTIVE
 				client.eye = A
 			else

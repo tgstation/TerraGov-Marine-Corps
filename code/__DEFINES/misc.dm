@@ -53,3 +53,11 @@ Will print: "/mob/living/carbon/human/death" (you can optionally embed it in a s
 #define MAP_MAXX 4
 #define MAP_MAXY 5
 #define MAP_MAXZ 6
+var/global/TAB = "&nbsp;&nbsp;&nbsp;&nbsp;"
+
+#define CLIENT_FROM_VAR(I) (ismob(I) ? I:client : (istype(I, /client) ? I : (istype(I, /datum/mind) ? I:current?:client : null)))
+
+//world/proc/shelleo
+#define SHELLEO_ERRORLEVEL 1
+#define SHELLEO_STDOUT 2
+#define SHELLEO_STDERR 3

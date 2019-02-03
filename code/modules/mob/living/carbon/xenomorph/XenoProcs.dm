@@ -38,7 +38,7 @@
 				stat(null, "Upgrade Progress (FINISHED)")
 
 			if(xeno_caste.plasma_max > 0)
-				if(isXenoSilicon(src))
+				if(isxenosilicon(src))
 					stat(null, "Charge: [plasma_stored]/[xeno_caste.plasma_max]")
 				else
 					stat(null, "Plasma: [plasma_stored]/[xeno_caste.plasma_max]")
@@ -103,7 +103,7 @@
 
 	if(value)
 		if(plasma_stored < value)
-			if(isXenoSilicon(src))
+			if(isxenosilicon(src))
 				to_chat(src, "<span class='warning'>Beep. You do not have enough charge to do this. You require [value] charge but have only [plasma_stored] stored.</span>")
 			else
 				to_chat(src, "<span class='warning'>You do not have enough plasma to do this. You require [value] plasma but have only [plasma_stored] stored.</span>")
@@ -252,7 +252,7 @@
 
 	if(ismob(hit_atom)) //Hit a mob! This overwrites normal throw code.
 		var/mob/living/carbon/M = hit_atom
-		if(!M.stat && !isXeno(M))
+		if(!M.stat && !isxeno(M))
 			switch(xeno_caste.charge_type)
 				if(1 to 2)
 					if(ishuman(M) && M.dir in reverse_nearby_direction(dir))
@@ -262,7 +262,7 @@
 							throwing = FALSE //Reset throwing manually.
 							return FALSE
 
-						if(isYautja(H))
+						if(isyautja(H))
 							if(H.check_shields(0, "the pounce", 1))
 								visible_message("<span class='danger'>[H] blocks the pounce of [src] with the combistick!</span>",
 												"<span class='xenodanger'>[H] blocks your pouncing form with the combistick!</span>", null, 5)
@@ -280,7 +280,7 @@
 									"<span class='xenodanger'>You pounce on [M]!</span>", null, 5)
 					M.KnockDown(1)
 					step_to(src, M)
-					canmove = FALSE
+					stop_movement()
 					if(savage) //If Runner Savage is toggled on, attempt to use it.
 						if(!savage_used)
 							if(plasma_stored >= 10)
@@ -289,12 +289,12 @@
 								to_chat(src, "<span class='xenodanger'>You attempt to savage your victim, but you need [10-plasma_stored] more plasma.</span>")
 						else
 							to_chat(src, "<span class='xenodanger'>You attempt to savage your victim, but you aren't yet ready.</span>")
-					frozen = TRUE
+
 					if(xeno_caste.charge_type == 2)
 						M.attack_alien(src, null, "disarm") //Hunters get a free throttle in exchange for lower initial stun.
-					if(!isXenoSilicon(src))
+					if(!isxenosilicon(src))
 						playsound(loc, rand(0, 100) < 95 ? 'sound/voice/alien_pounce.ogg' : 'sound/voice/alien_pounce2.ogg', 25, 1)
-					addtimer(CALLBACK(src, .proc/reset_movement), xeno_caste.charge_type == 1 ? 5 : 15)	
+					addtimer(CALLBACK(src, .proc/reset_movement), xeno_caste.charge_type == 1 ? 5 : 15)
 					stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 
 				if(RAV_CHARGE_TYPE) //Ravagers get a free attack if they charge into someone.
@@ -302,14 +302,20 @@
 
 				if(4) //Predalien.
 					M.attack_alien(src) //Free hit/grab/tackle. Does not weaken, and it's just a regular slash if they choose to do that.
-
 		throwing = FALSE //Resert throwing since something was hit.
+		reset_movement()
 		return TRUE
 	process_ravager_charge(FALSE)
+	throwing = FALSE //Resert throwing since something was hit.
+	reset_movement()
 	return ..() //Do the parent otherwise, for turfs.
 
 /mob/living/carbon/Xenomorph/proc/reset_movement()
 	frozen = FALSE
+	update_canmove()
+
+/mob/living/carbon/Xenomorph/proc/stop_movement()
+	frozen = TRUE
 	update_canmove()
 
 //Bleuugh
@@ -487,7 +493,7 @@
 	if(charge_speed > charge_speed_buildup * charge_turfs_to_charge)
 
 		for(var/mob/living/carbon/M in loc)
-			if(M.lying && !isXeno(M) && M.stat != DEAD && !(M.status_flags & XENO_HOST && istype(M.buckled, /obj/structure/bed/nest)))
+			if(M.lying && !isxeno(M) && M.stat != DEAD && !(M.status_flags & XENO_HOST && istype(M.buckled, /obj/structure/bed/nest)))
 				visible_message("<span class='danger'>[src] runs [M] over!</span>",
 				"<span class='danger'>You run [M] over!</span>", null, 5)
 
@@ -496,10 +502,10 @@
 
 		var/shake_dist = min(round(charge_speed * 5), 8)
 		for(var/mob/living/carbon/M in range(shake_dist))
-			if(M.client && !isXeno(M))
+			if(M.client && !isxeno(M))
 				shake_camera(M, 1, 1)
 
-	lastturf = isturf(loc) && !istype(loc, /turf/open/space) ? loc : null//Set their turf, to make sure they're moving and not jumped in a locker or some shit
+	lastturf = isturf(loc) && !isspaceturf(loc) ? loc : null//Set their turf, to make sure they're moving and not jumped in a locker or some shit
 
 	update_icons()
 
@@ -575,13 +581,13 @@
 
 	hivenumber = newhivenumber
 
-	if(isXenoLarva(src))
+	if(isxenolarva(src))
 		var/mob/living/carbon/Xenomorph/Larva/L = src
 		L.update_icons() // larva renaming done differently
 	else
 		generate_name()
 		update_living_queens()
-		
+
 
 //////////// XENO CASTE PROCS //////////////////
 

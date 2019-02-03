@@ -71,7 +71,7 @@
 			var/location = ""
 			if(M)
 				location = get_area(M.loc)
-				dat += "<tr><td><a href='?priv_msg=[REF(M)]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
+				dat += "<tr><td><a href='?priv_msg=[REF(M)]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][(M.client?.prefs?.xeno_name && M.client.prefs.xeno_name != "Undefined") ? " - [M.client.prefs.xeno_name]" : ""][M.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
 				dat += "<td>[location]</td>"
 				dat += "<td><a href='?src=[ref];playerpanel=[REF(M)]'>PP</A></td></TR>"
 		dat += "</table>"
