@@ -140,7 +140,7 @@
 	if(!acid_t || !acid_t.loc)
 		qdel(src)
 		return
-	if(loc != acid_t.loc)
+	if(loc != acid_t.loc && !isturf(acid_t))
 		loc = acid_t.loc
 	if(++ticks >= strength_t)
 		visible_message("<span class='xenodanger'>[acid_t] collapses under its own weight into a puddle of goop and undigested debris!</span>")
