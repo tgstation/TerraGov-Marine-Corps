@@ -559,7 +559,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 	var/obj/item/weapon/W = weapons[1]
 	var/obj/item/ammo_magazine/A = weapons[2]
 	H.equip_to_slot_or_del(new /obj/item/storage/belt/gun/m44/full(H), SLOT_BELT)
-	H.equip_to_slot_or_del(new W(H), SLOT_L_HAND)
+	H.put_in_hands(new W(H))
 	H.equip_to_slot_or_del(new A(H), SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new A(H), SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new A(H), SLOT_IN_BACKPACK)
