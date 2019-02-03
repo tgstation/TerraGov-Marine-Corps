@@ -600,6 +600,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/M, alien)
 				if(M.bodytemperature > 169 && I.damage > 5) //can only fix very minor organ damage outside of cryo
 					return
 				I.damage = max(I.damage - 1, 0)
+	return ..()
 
 /datum/reagent/medicine/peridaxon/overdose_process(mob/living/M, alien)
 	M.apply_damage(2, BRUTE)
@@ -669,6 +670,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/M, alien)
 					X.update_damages()
 					if (X.update_icon())
 						X.owner.UpdateDamageIcon(1)
+	return ..()
 
 
 /datum/reagent/medicine/quickclot/overdose_process(mob/living/M, alien)
