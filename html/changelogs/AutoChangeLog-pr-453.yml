@@ -1,0 +1,4 @@
+author: "Ghommie"
+delete-after: True
+changes: 
+  - bugfix: "Fixes xeno queens being unable to maneuver the dropship consoles. add that up to my mistakes."
