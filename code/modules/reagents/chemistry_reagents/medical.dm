@@ -685,25 +685,23 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/M, alien)
 	custom_metabolism = 0.2
 	overdose_threshold = REAGENTS_OVERDOSE/5
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/5
-	var/duration = 0
 
 /datum/reagent/medicine/hyperzine/on_mob_delete(mob/living/M)
-	var/amount = M.adjustOxyLoss(duration * 4)
+	var/amount = current_cycle * 4
+	M.adjustOxyLoss(amount)
 	M.adjustHalLoss(amount)
-	if(amount > 50)
+	if(M.stat == DEAD)
+		to_chat(M, "<span class='danger'>Your body is unable to bear the strain. The last thing you feel, aside from crippling exhaustion, is an explosive pain in your chest as you drop dead. It's a sad thing your adventures have ended here!</span>")
+	else if(amount > 50)
 		M.KnockOut(amount * 0.1)
 		to_chat(M, "<span class='danger'>Your world convulses as a wave of extreme fatigue washes over you!</span>") //when hyperzine is removed from the body, there's a backlash as it struggles to transition and operate without the drug
 	else
 		M.KnockDown(amount * 0.05)
 		to_chat(M, "<span class='warning'>A sudden wave of fatigue washes over you.</span>")
-	if(M.stat == DEAD)
-		to_chat(M, "<span class='danger'>Your body unable to bear the strain, you collapse dead.</span>")
-	duration = 0
-	..()
+	return ..()
 
 /datum/reagent/medicine/hyperzine/on_mob_life(mob/living/M)
 	M.reagent_move_delay_modifier -= min(10, volume * 1.5)
-	duration++ //to track how long hyperzine has been in the system
 	M.nutrition -= 3 * REM * volume //Body burns through energy fast
 	if(prob(1))
 		M.emote(pick("twitch","blink_r","shiver"))
@@ -711,7 +709,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/M, alien)
 			var/mob/living/carbon/human/H = M
 			var/datum/internal_organ/heart/F = H.internal_organs_by_name["heart"]
 			F.take_damage(1, TRUE)
-	..()
+	return ..()
 
 /datum/reagent/medicine/hyperzine/overdose_process(mob/living/M, alien)
 	if(ishuman(M))
