@@ -388,11 +388,11 @@
 
 /mob/living/carbon/human/get_item_by_slot(slot_id)
 	switch(slot_id)
-		if(SLOT_BACK || SLOT_IN_B_HOLSTER)
+		if(SLOT_BACK)
 			return back
 		if(SLOT_WEAR_MASK)
 			return wear_mask
-		if(SLOT_BELT || SLOT_IN_HOLSTER)
+		if(SLOT_BELT)
 			return belt
 		if(SLOT_WEAR_ID)
 			return wear_id
@@ -408,7 +408,7 @@
 			return r_hand
 		if(SLOT_HEAD)
 			return head
-		if(SLOT_SHOES || SLOT_IN_BOOT)
+		if(SLOT_SHOES)
 			return shoes
 		if(SLOT_WEAR_SUIT)
 			return wear_suit
@@ -418,14 +418,24 @@
 			return l_store
 		if(SLOT_R_STORE)
 			return r_store
-		if(SLOT_S_STORE || SLOT_IN_S_HOLSTER)
+		if(SLOT_S_STORE)
 			return s_store
 		if(SLOT_HANDCUFFED)
 			return handcuffed
 		if(SLOT_LEGCUFFED)
 			return legcuffed
+		if(SLOT_IN_BOOT)
+			return shoes
+		if(SLOT_IN_B_HOLSTER)
+			return back
+		if(SLOT_IN_HOLSTER)
+			return belt
 		if(SLOT_IN_STORAGE)
-			return s_active
+			return wear_suit
+		if(SLOT_IN_S_HOLSTER)
+			return s_store
+		if(SLOT_IN_ACCESSORY)
+			return w_uniform
 
 
 /mob/living/carbon/human/stripPanelUnequip(obj/item/I, mob/M, slot_to_process)
