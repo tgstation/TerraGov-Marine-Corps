@@ -22,7 +22,7 @@
 		qdel(src)
 	extinguish()
 
-	dir = pick(cardinal)
+	setDir(pick(cardinal))
 	SetLuminosity(3)
 
 	for(var/mob/living/L in loc)//Mobs

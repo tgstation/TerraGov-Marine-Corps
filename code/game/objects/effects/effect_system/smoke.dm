@@ -71,7 +71,7 @@
 		if(foundsmoke)
 			continue
 		var/obj/effect/particle_effect/smoke/S = new type(T, amount)
-		S.dir = pick(cardinal)
+		S.setDir(pick(cardinal))
 		S.time_to_live = time_to_live
 		if(S.amount>0)
 			S.spread_smoke()

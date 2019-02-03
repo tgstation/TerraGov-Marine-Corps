@@ -25,7 +25,7 @@
 
 	..()
 
-	dir = CalcDir()
+	setDir(CalcDir())
 
 	if(!floor)
 		switch(dir) //offset to make it be on the wall rather than on the floor

@@ -170,7 +170,7 @@
 
 /mob/living/carbon/human/Stat()
 	. = ..()
-	
+
 	if(statpanel("Stats"))
 		if(EvacuationAuthority)
 			var/eta_status = EvacuationAuthority.get_status_panel_eta()
@@ -1550,7 +1550,7 @@
 	if(H.z != src.z || get_dist(src,H) < 1 || src == H)
 		hud_used.locate_leader.icon_state = "trackondirect"
 	else
-		hud_used.locate_leader.dir = get_dir(src,H)
+		hud_used.locate_leader.setDir(get_dir(src,H))
 		hud_used.locate_leader.icon_state = "trackon"
 
 

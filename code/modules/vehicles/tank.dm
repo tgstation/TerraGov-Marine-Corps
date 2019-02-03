@@ -34,7 +34,7 @@
 /obj/effect/multitile_spawner/cm_armored/tank/New()
 
 	var/obj/vehicle/multitile/root/cm_armored/tank/R = new(src.loc)
-	R.dir = EAST
+	R.setDir(EAST)
 
 	var/datum/coords/dimensions = new
 	dimensions.x_pos = width

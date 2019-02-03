@@ -69,7 +69,7 @@
 	anchored = 1
 
 	New(var/turf/nloc, var/ndir, var/temp)
-		dir = ndir
+		setDir(ndir)
 		..(nloc)
 
 		spawn(20)

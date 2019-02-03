@@ -181,7 +181,7 @@
 				spawn(0)
 					for(var/i in list(1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2,1,2))
 						canmove = FALSE
-						dir = i
+						setDir(i)
 						sleep(1)
 				canmove = TRUE
 
@@ -223,7 +223,7 @@
 
 	if(player_caused)
 		emotedown = TRUE
-		addtimer(CALLBACK(src, .proc/emote_cooldown), 50)		
+		addtimer(CALLBACK(src, .proc/emote_cooldown), 50)
 
 /mob/living/carbon/Xenomorph/proc/emote_cooldown()
 	emotedown = FALSE

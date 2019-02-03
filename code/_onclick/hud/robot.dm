@@ -5,7 +5,7 @@
 //Radio
 	using = new /obj/screen()
 	using.name = "radio"
-	using.dir = SOUTHWEST
+	using.setDir(SOUTHWEST)
 	using.icon = 'icons/mob/screen1_robot.dmi'
 	using.icon_state = "radio"
 	using.screen_loc = ui_movi
@@ -16,7 +16,7 @@
 
 	using = new /obj/screen()
 	using.name = "module1"
-	using.dir = SOUTHWEST
+	using.setDir(SOUTHWEST)
 	using.icon = 'icons/mob/screen1_robot.dmi'
 	using.icon_state = "inv1"
 	using.screen_loc = ui_inv1
@@ -26,7 +26,7 @@
 
 	using = new /obj/screen()
 	using.name = "module2"
-	using.dir = SOUTHWEST
+	using.setDir(SOUTHWEST)
 	using.icon = 'icons/mob/screen1_robot.dmi'
 	using.icon_state = "inv2"
 	using.screen_loc = ui_inv2
@@ -36,7 +36,7 @@
 
 	using = new /obj/screen()
 	using.name = "module3"
-	using.dir = SOUTHWEST
+	using.setDir(SOUTHWEST)
 	using.icon = 'icons/mob/screen1_robot.dmi'
 	using.icon_state = "inv3"
 	using.screen_loc = ui_inv3

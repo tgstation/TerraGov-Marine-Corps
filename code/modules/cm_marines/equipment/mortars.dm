@@ -237,7 +237,7 @@
 		"<span class='notice'>You deploy [src].")
 		playsound(loc, 'sound/weapons/gun_mortar_unpack.ogg', 25, 1)
 		var/obj/structure/mortar/M = new /obj/structure/mortar(get_turf(user))
-		M.dir = user.dir
+		M.setDir(user.dir)
 		qdel(src)
 
 /obj/item/mortal_shell

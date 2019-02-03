@@ -203,9 +203,9 @@
 			icon_state = "[table_prefix]tabledir3"
 
 	if(dir_sum in CARDINAL_ALL_DIRS)
-		dir = dir_sum
+		setDir(dir_sum)
 	else
-		dir = SOUTH
+		setDir(SOUTH)
 
 
 /obj/structure/table/attack_tk() // no telehulk sorry
@@ -419,7 +419,7 @@
 			spawn(0)
 				A.throw_at(pick(targets), 1, 1)
 
-	dir = direction
+	setDir(direction)
 	if(dir != NORTH)
 		layer = FLY_LAYER
 	flipped = TRUE

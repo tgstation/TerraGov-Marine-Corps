@@ -107,7 +107,7 @@
 		var/obj/structure/bed/nest/N = locate() in get_turf(src)
 		if(N)
 			M.buckled = N
-			M.dir = N.dir
+			M.setDir(N.dir)
 			M.update_canmove()
 			N.buckled_mob = M
 			N.afterbuckle(M)

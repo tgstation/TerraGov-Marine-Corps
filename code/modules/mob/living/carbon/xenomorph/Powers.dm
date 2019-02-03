@@ -171,7 +171,7 @@
 	set waitfor = 0
 
 	var/facing = get_cardinal_dir(src, T)
-	dir = facing
+	setDir(facing)
 
 	T = loc
 	for (var/i = 0, i < xeno_caste.acid_spray_range, i++)
@@ -1522,7 +1522,7 @@
 			xenoinfo = "<tr><td>[leader]<a href=?src=\ref[user];watch_xeno_number=[X.nicknumber]>[X.name]</a> "
 		else
 			xenoinfo = "<tr><td>[leader][X.name] "
-		if(!X.client) 
+		if(!X.client)
 			xenoinfo += " <i>(SSD)</i>"
 		else if(X.client.prefs.xeno_name && X.client.prefs.xeno_name != "Undefined")
 			xenoinfo += "- [X.client.prefs.xeno_name]"

@@ -29,7 +29,7 @@
 
 /obj/effect/accelerated_particle/New(loc, dir = 2)
 	src.loc = loc
-	src.dir = dir
+	setDir(dir)
 	if(movement_range > 20)
 		movement_range = 20
 	spawn(0)

@@ -206,7 +206,7 @@
 				wa.name = "Wired Windoor Assembly"
 			if (src.base_state == "right" || src.base_state == "rightsecure")
 				wa.facing = "r"
-			wa.dir = src.dir
+			wa.setDir(dir)
 			wa.state = "02"
 			wa.update_icon()
 

@@ -29,7 +29,7 @@
 		inv_box.icon_state =  slot_data["state"]
 
 		if(slot_data["dir"])
-			inv_box.dir = slot_data["dir"]
+			inv_box.setDir(slot_data["dir"])
 
 		if(slot_data["toggle"])
 			toggleable_inventory += inv_box
@@ -86,7 +86,7 @@
 
 		inv_box = new /obj/screen/inventory()
 		inv_box.name = "r_hand"
-		inv_box.dir = WEST
+		inv_box.setDir(WEST)
 		inv_box.icon = ui_style
 		inv_box.icon_state = "hand_inactive"
 		if(owner && !owner.hand)	//This being 0 or null means the right hand is in use
@@ -101,7 +101,7 @@
 
 		inv_box = new /obj/screen/inventory()
 		inv_box.name = "l_hand"
-		inv_box.dir = EAST
+		inv_box.setDir(EAST)
 		inv_box.icon = ui_style
 		inv_box.icon_state = "hand_inactive"
 		if(owner && owner.hand)	//This being 1 means the left hand is in use
@@ -116,7 +116,7 @@
 
 		using = new /obj/screen/inventory()
 		using.name = "hand"
-		using.dir = SOUTH
+		using.setDir(SOUTH)
 		using.icon = ui_style
 		using.icon_state = "hand1"
 		using.screen_loc = ui_swaphand1
@@ -127,7 +127,7 @@
 
 		using = new /obj/screen/inventory()
 		using.name = "hand"
-		using.dir = SOUTH
+		using.setDir(SOUTH)
 		using.icon = ui_style
 		using.icon_state = "hand2"
 		using.screen_loc = ui_swaphand2

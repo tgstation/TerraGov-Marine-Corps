@@ -116,7 +116,7 @@
 			src.loc = loc
 
 		if(direction)
-			src.dir = direction
+			setDir(direction)
 
 		buildstage = 0
 		wiresexposed = 1

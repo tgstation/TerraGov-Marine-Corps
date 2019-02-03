@@ -859,3 +859,9 @@ obj/proc/apply_overlay(var/icon = null, var/atom/A, var/icon_state = null, var/p
 	I.pixel_x = pixel_x
 	I.pixel_y = pixel_y
 	A.overlays += I
+
+//Hook, override to run code on- wait this is images
+//Images have dir without being an atom, so they get their own definition.
+//Lame.
+/image/proc/setDir(newdir)
+	dir = newdir

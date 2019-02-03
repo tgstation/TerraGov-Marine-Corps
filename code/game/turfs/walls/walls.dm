@@ -179,7 +179,7 @@
 
 		var/base_direction = base_dir(current_bulletholes,bullethole_increment)
 		var/current_direction = cur_dir(base_direction)
-		dir = current_direction
+		setDir(current_direction)
 		/*Hack. Image overlays behave as the parent object, so that means they are also attached to it and follow its directional.
 		Luckily, it doesn't matter what direction the walls are set to, they link together via icon_state it seems.
 		But I haven't thoroughly tested it.*/

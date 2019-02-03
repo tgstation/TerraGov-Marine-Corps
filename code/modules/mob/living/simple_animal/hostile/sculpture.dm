@@ -136,7 +136,7 @@
 			if(!next_turf.CanPass(src, next_turf)) //Once we cleared everything we could, check one last time if we can pass
 				break
 			forceMove(next_turf)
-			dir = get_dir(src, target)
+			setDir(get_dir(src, target))
 			next_turf = get_step(src, get_dir(next_turf,target))
 			num_turfs--
 
@@ -188,7 +188,7 @@
 				if(!next_turf.CanPass(src, next_turf)) //Once we cleared everything we could, check one last time if we can pass
 					break
 				forceMove(next_turf)
-				dir = get_dir(src, target_turf)
+				setDir(get_dir(src, target_turf))
 				next_turf = get_step(src, get_dir(next_turf,target_turf))
 				num_turfs--
 		//Coding note : This is known to allow SCP to end up on tiles that contain obstructing structures (doors, machinery, etc)

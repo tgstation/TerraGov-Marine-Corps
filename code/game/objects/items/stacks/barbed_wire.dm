@@ -85,7 +85,7 @@
 		if(!src) //Make sure the stack still exists
 			return
 		var/obj/structure/razorwire/M = new /obj/structure/razorwire(target)
-		M.dir = user.dir
+		M.setDir(user.dir)
 		user.visible_message("<span class='notice'>[user] assembles a [M].</span>",
 		"<span class='notice'>You assemble a [M].</span>")
 		playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1)

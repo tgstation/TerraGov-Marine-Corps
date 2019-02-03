@@ -12,7 +12,7 @@ obj/item/projectile/flareburst
 		damage_type = BURN
 		/*						//May come back to this
 		New(loc,dir)
-			src.dir = dir
+			setDir(dir)
 			..()
 			spawn()
 				while(1)

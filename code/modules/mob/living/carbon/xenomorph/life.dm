@@ -444,7 +444,7 @@
 		var/area/A = get_area(loc)
 		var/area/QA = get_area(hive.living_xeno_queen.loc)
 		if(A.fake_zlevel == QA.fake_zlevel)
-			hud_used.locate_leader.dir = get_dir(src,hive.living_xeno_queen)
+			hud_used.locate_leader.setDir(get_dir(src,hive.living_xeno_queen))
 			hud_used.locate_leader.icon_state = "trackon"
 		else
 			hud_used.locate_leader.icon_state = "trackondirect"
