@@ -101,7 +101,7 @@ var/list/be_special_flags = list(
 #define ROLEGROUP_MARINE_COMMAND		1
 
 #define ROLE_COMMANDING_OFFICER			1
-#define ROLE_EXECUTIVE_OFFICER			2
+#define ROLE_FIELD_OFFICER			2
 #define ROLE_BRIDGE_OFFICER				4
 #define ROLE_MILITARY_POLICE			8
 #define ROLE_CORPORATE_LIAISON			16
@@ -144,9 +144,9 @@ var/list/be_special_flags = list(
 //=================================================
 
 //Role defines, specifically lists of roles for job bans and the like.
-#define ROLES_COMMAND 		list("Commander", "Executive Officer", "Staff Officer", "Pilot Officer", "Tank Crewman", "Corporate Liaison", "Requisitions Officer", "Chief Engineer", "Chief Medical Officer", "Synthetic")
+#define ROLES_COMMAND 		list("Commander", "Field Officer", "Staff Officer", "Pilot Officer", "Tank Crewman", "Corporate Liaison", "Requisitions Officer", "Chief Engineer", "Chief Medical Officer", "Synthetic")
 #define ROLES_POLICE		list("Chief MP", "Military Police")
-#define ROLES_OFFICERS		list("Commander", "Executive Officer", "Staff Officer", "Pilot Officer", "Tank Crewman", "Corporate Liaison", "Synthetic")
+#define ROLES_OFFICERS		list("Commander", "Field Officer", "Staff Officer", "Pilot Officer", "Tank Crewman", "Corporate Liaison", "Synthetic")
 #define ROLES_ENGINEERING 	list("Chief Engineer", "Maintenance Tech")
 #define ROLES_REQUISITION 	list("Requisitions Officer", "Cargo Technician")
 #define ROLES_MEDICAL 		list("Chief Medical Officer", "Doctor","Researcher")
