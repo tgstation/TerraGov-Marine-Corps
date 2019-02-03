@@ -10,7 +10,7 @@
 
 /datum/admins/proc/gamemode_panel()
 	set category = "Admin"
-	set name = "Gamemode Panel"
+	set name = "Mode Panel"
 
 	if(!check_rights(R_ADMIN))
 		return
@@ -61,6 +61,10 @@
 	dat += "<a href='?src=[ref];evac_authority=cancel_dest'>Lock Self Destruct control panel for humans</a><br>"
 	dat += "<a href='?src=[ref];evac_authority=use_dest'>Destruct the [MAIN_SHIP_NAME] NOW</a><br>"
 	dat += "<a href='?src=[ref];evac_authority=toggle_dest'>Toggle Self Destruct Permission (does not affect evac in progress)</a><br>"
+
+	dat += "<br>"
+
+	dat += "<A HREF='?_src_=vars;[HrefToken()];vars=[REF(EvacuationAuthority)]'>VV Evacuation/SD Controller</A><br>"
 
 	dat += "<br><br>"
 
