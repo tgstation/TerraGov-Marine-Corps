@@ -243,7 +243,7 @@
 		put_in_hands(W)
 		return TRUE
 	else if(istype(I, /obj/item/clothing/suit/storage))
-		var/obj/item/suit/storage/S = I
+		var/obj/item/clothing/suit/storage/S = I
 		if(!S.pockets)
 			return FALSE
 		var/obj/item/storage/internal/P = S.pockets
