@@ -216,12 +216,44 @@
 
 	if(istype(I, /obj/item/storage/belt/gun))
 		var/obj/item/storage/belt/gun/B = I
-		if(B.current_gun)
-			var/obj/item/W = B.current_gun
-			B.remove_from_storage(W)
-			put_in_hands(W)
-			return TRUE
-	if(istype(I, /obj/item/storage) || istype(I, /obj/item/clothing/suit/storage))
+		if(!B.current_gun)
+			return FALSE
+		var/obj/item/W = B.current_gun
+		B.remove_from_storage(W)
+		put_in_hands(W)
+		return TRUE
+	else if(istype(I, /obj/item/clothing/shoes/marine))
+		var/obj/item/clothing/shoes/marine/S = I
+		if(!S.knife)
+			return FALSE
+		put_in_hands(S.knife)
+		S.knife = null
+		S.update_icon()
+		return TRUE
+	else if(istype(I, /obj/item/clothing/under))
+		var/obj/item/clothing/under/U = I
+		if(!U.hastie)
+			return FALSE
+		var/obj/item/clothing/tie/storage/T = U.hastie
+		if(!T.hold)
+			return FALSE
+		var/obj/item/storage/internal/S = T.hold
+		var/obj/item/W = S.contents[1]
+		S.remove_from_storage(W)
+		put_in_hands(W)
+		return TRUE
+	else if(istype(I, /obj/item/clothing/suit/storage))
+		var/obj/item/suit/storage/S = I
+		if(!S.pockets)
+			return FALSE
+		var/obj/item/storage/internal/P = S.pockets
+		if(!length(P.contents))
+			return FALSE
+		var/obj/item/W = P.contents[1]
+		P.remove_from_storage(W)
+		put_in_hands(W)
+		return TRUE
+	else if(istype(I, /obj/item/storage))
 		var/obj/item/storage/S = I
 		if(!length(S.contents))
 			return FALSE
