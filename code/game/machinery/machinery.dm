@@ -246,7 +246,7 @@ Class Procs:
 		return 1
 	if(usr.is_mob_restrained() || usr.lying || usr.stat)
 		return 1
-	if (!ishuman(usr))
+	if (!ishuman(usr) && !ismonkey(usr) && !issilicon(usr) && !isxeno(usr))
 		to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return 1
 
@@ -291,7 +291,7 @@ Class Procs:
 		return 1
 	if(user.lying || user.stat)
 		return 1
-	if (!ishuman(usr))
+	if (!ishuman(usr) && !ismonkey(usr) && !issilicon(usr) && !isxeno(usr))
 		to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return 1
 /*
