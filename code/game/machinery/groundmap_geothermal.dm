@@ -66,9 +66,9 @@
 			update_icon()
 			if(power_gen_percent < 100) power_gen_percent++
 			switch(power_gen_percent)
-				if(10) visible_message("\icon[src] <span class='notice'><b>[src]</b> begins to whirr as it powers up.</span>")
-				if(50) visible_message("\icon[src] <span class='notice'><b>[src]</b> begins to hum loudly as it reaches half capacity.</span>")
-				if(99) visible_message("\icon[src] <span class='notice'><b>[src]</b> rumbles loudly as the combustion and thermal chambers reach full strength.</span>")
+				if(10) visible_message("[bicon(src)] <span class='notice'><b>[src]</b> begins to whirr as it powers up.</span>")
+				if(50) visible_message("[bicon(src)] <span class='notice'><b>[src]</b> begins to hum loudly as it reaches half capacity.</span>")
+				if(99) visible_message("[bicon(src)] <span class='notice'><b>[src]</b> rumbles loudly as the combustion and thermal chambers reach full strength.</span>")
 			add_avail(power_generation_max * (power_gen_percent / 100) ) //Nope, all good, just add the power
 
 /obj/machinery/power/geothermal/proc/check_failure()
@@ -80,11 +80,11 @@
 		return 0
 	if(rand(1,100) < fail_rate) //Oh snap, we failed! Shut it down!
 		if(rand(0,3) == 0)
-			visible_message("\icon[src] <span class='notice'><b>[src]</b> beeps wildly and a fuse blows! Use wirecutters, then a wrench to repair it.")
+			visible_message("[bicon(src)] <span class='notice'><b>[src]</b> beeps wildly and a fuse blows! Use wirecutters, then a wrench to repair it.")
 			buildstate = 2
 			icon_state = "wire"
 		else
-			visible_message("\icon[src] <span class='notice'><b>[src]</b> beeps wildly and sprays random pieces everywhere! Use a wrench to repair it.")
+			visible_message("[bicon(src)] <span class='notice'><b>[src]</b> beeps wildly and sprays random pieces everywhere! Use a wrench to repair it.")
 			buildstate = 3
 			icon_state = "wrench"
 		is_on = 0
@@ -114,14 +114,14 @@
 		to_chat(usr, "<span class='info'>Use a wrench to repair it.")
 		return 0
 	if(is_on)
-		visible_message("\icon[src] <span class='warning'><b>[src]</b> beeps softly and the humming stops as [usr] shuts off the turbines.")
+		visible_message("[bicon(src)] <span class='warning'><b>[src]</b> beeps softly and the humming stops as [usr] shuts off the turbines.")
 		is_on = 0
 		power_gen_percent = 0
 		cur_tick = 0
 		icon_state = "off"
 		stop_processing()
 		return 1
-	visible_message("\icon[src] <span class='warning'><b>[src]</b> beeps loudly as [usr] turns on the turbines and the generator begins spinning up.")
+	visible_message("[bicon(src)] <span class='warning'><b>[src]</b> beeps loudly as [usr] turns on the turbines and the generator begins spinning up.")
 	icon_state = "on10"
 	is_on = 1
 	cur_tick = 0
@@ -417,7 +417,7 @@
 					to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
 			return TRUE
 
-		else if(iscoil(I))
+		else if(iscablecoil(I))
 			var/obj/item/stack/cable_coil/C = I
 			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
 				user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s wiring.</span>",

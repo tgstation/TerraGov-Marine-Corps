@@ -80,7 +80,7 @@
 		update_icon()
 		return 1
 
-	if (istype(O, /obj/item/tool/weldingtool))
+	if (iswelder(O))
 		var/obj/item/tool/weldingtool/WT = O
 		if (WT.remove_fuel(0))
 			if(health < maxHealth)
@@ -273,4 +273,4 @@
 /mob/living/simple_animal/spiderbot/examine(mob/user)
 	..()
 	if(held_item)
-		to_chat(user, "It is carrying \a [held_item] \icon[held_item].")
+		to_chat(user, "It is carrying \a [held_item] [bicon(held_item)].")

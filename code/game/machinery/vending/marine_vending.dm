@@ -48,7 +48,7 @@
 
 /obj/machinery/vending/marine/select_gamemode_equipment(gamemode)
 	var/products2[]
-	switch(map_tag)
+	switch(GLOB.map_tag)
 		if(MAP_ICE_COLONY)
 			products2 = list(
 						/obj/item/clothing/mask/rebreather/scarf = 10,
@@ -112,7 +112,8 @@
 					/obj/item/weapon/gun/shotgun/pump = 10,
 					// /obj/item/weapon/gun/shotgun/combat = 1,
 					/obj/item/explosive/mine = 2,
-					/obj/item/storage/box/nade_box = 2,
+					/obj/item/storage/box/nade_box = 1,
+					/obj/item/storage/box/nade_box/impact = 1,
 					/obj/item/weapon/gun/energy/lasgun/M43 = 5,
 					/obj/item/explosive/grenade/frag/m15 = 2,
 					/obj/item/explosive/grenade/incendiary = 4,
@@ -247,7 +248,7 @@
 
 /obj/machinery/vending/lasgun
 	name = "ColMarTech Lasgun Field Charger"
-	desc = "An automated power cell dispenser and charger. Used to recharge energy weapon power cells, including in the field. Has an internal battery that charges off the power grid."
+	desc = "An automated power cell dispenser and charger. Used to recharge energy weapon power cells, including in the field. Has an internal battery that charges off the power grid when wrenched down."
 	icon_state = "lascharger"
 	icon_vend = "lascharger-vend"
 	icon_deny = "lascharger-denied"
@@ -258,8 +259,8 @@
 	anchored = FALSE
 	idle_power_usage = 1
 	vend_power_usage = 50
-	machine_current_charge = 20000 //integrated battery for recharging energy weapons. Normally 10000.
-	machine_max_charge = 20000
+	machine_current_charge = 100000 //integrated battery for recharging energy weapons. Normally 10000.
+	machine_max_charge = 100000
 
 	product_ads = "Lasgun running low? Recharge here!;Need a charge?;Power up!;Electrifying!;Empower yourself!"
 	products = list(
@@ -630,7 +631,7 @@
 
 /obj/machinery/vending/marine_leader/select_gamemode_equipment(gamemode)
 	var/products2[]
-	switch(map_tag)
+	switch(GLOB.map_tag)
 		if(MAP_ICE_COLONY)
 			products2 = list( /obj/item/map/ice_colony_map = 3)
 		if(MAP_BIG_RED)

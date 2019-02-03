@@ -175,7 +175,7 @@
 /datum/action/xeno_action/activable/spray_acid/use_ability(atom/A)
 	var/mob/living/carbon/Xenomorph/X = owner
 
-	if (isXenoPraetorian(owner))
+	if (isxenopraetorian(owner))
 		X.acid_spray_cone(A)
 		return
 
@@ -185,7 +185,7 @@
 /datum/action/xeno_action/activable/spray_acid/action_cooldown_check()
 	var/mob/living/carbon/Xenomorph/X = owner
 
-	if (isXenoPraetorian(owner))
+	if (isxenopraetorian(owner))
 		return !X.used_acid_spray
 
 	var/mob/living/carbon/Xenomorph/B = X
@@ -354,51 +354,85 @@
 		X.layer = MOB_LAYER
 		to_chat(X, "<span class='notice'>You have stopped hiding.</span>")
 
-/datum/action/xeno_action/emit_pheromones
-	name = "Emit Pheromones (30)"
+/datum/action/xeno_action/toggle_pheromones
+	name = "Open/Collapse Pheromone Options"
 	action_icon_state = "emit_pheromones"
-	plasma_cost = 30
+	plasma_cost = 0
+	var/PheromonesOpen = FALSE //If the  pheromone choices buttons are already displayed or not
 
-/datum/action/xeno_action/emit_pheromones/can_use_action()
+/datum/action/xeno_action/toggle_pheromones/can_use_action()
+		return TRUE //No actual gameplay impact; should be able to collapse or open pheromone choices at any time
+
+/datum/action/xeno_action/toggle_pheromones/action_activate()
 	var/mob/living/carbon/Xenomorph/X = owner
-	if(X && !X.is_mob_incapacitated() && !X.lying && !X.buckled && (!X.current_aura || X.plasma_stored >= plasma_cost) && !X.stagger && !X.on_fire) //Can't emit pheromones while on fire!
-		return TRUE
-
-/datum/action/xeno_action/emit_pheromones/action_activate()
-	var/mob/living/carbon/Xenomorph/X = owner
-	if(!X.check_state())
-		return
-
-	if(X.current_aura)
-		X.current_aura = null
-		X.visible_message("<span class='xenowarning'>\The [X] stops emitting pheromones.</span>", \
-		"<span class='xenowarning'>You stop emitting pheromones.</span>", null, 5)
+	if(PheromonesOpen)
+		PheromonesOpen = FALSE
+		to_chat(X, "<span class ='xenonotice'>You collapse the pheromone button choices.</span>")
+		for(var/datum/action/path in owner.actions)
+			if(istype(path, /datum/action/xeno_action/pheromones))
+				path.remove_action(X)
 	else
-		if(!X.check_plasma(30))
-			return
-		var/choice = input(X, "Choose a pheromone") in X.xeno_caste.aura_allowed + "help" + "cancel"
-		if(choice == "help")
-			to_chat(X, "<span class='notice'><br>Pheromones provide a buff to all Xenos in range at the cost of some stored plasma every second. Burning Xenos can neither emit nor benefit from pheromones. Effects are as follows:<br><B>Frenzy</B> - Increased run speed, damage and tackle chance.<br><B>Warding</B> - Increased armor, reduced incoming damage and critical bleedout.<br><B>Recovery</B> - Increased plasma and health regeneration.<br></span>")
-			return
-		if(choice == "cancel") return
-		if(!X.check_state()) return
-		if(X.current_aura) //If they are stacking windows, disable all input
-			return
-		if(!X.check_plasma(30))
-			return
-		X.use_plasma(30)
-		X.current_aura = choice
+		PheromonesOpen = TRUE
+		to_chat(X, "<span class ='xenonotice'>You open the pheromone button choices.</span>")
+		var/list/subtypeactions = subtypesof(/datum/action/xeno_action/pheromones)
+		for(var/path in subtypeactions)
+			var/datum/action/xeno_action/pheromones/A = new path()
+			A.give_action(X)
+
+/datum/action/xeno_action/pheromones
+	name = "SHOULD NOT EXIST"
+	plasma_cost = 30 //Base plasma cost for begin to emit pheromones
+	var/aura_type = null //String for aura to emit
+
+/datum/action/xeno_action/pheromones/can_use_action()
+	var/mob/living/carbon/Xenomorph/X = owner
+	if(X.is_mob_incapacitated() || X.lying || X.buckled)
+		return FALSE
+	return TRUE
+
+/datum/action/xeno_action/pheromones/action_activate() //Must pass the basic plasma cost; reduces copy pasta
+	var/mob/living/carbon/Xenomorph/X = owner
+	if(!X.check_plasma(plasma_cost))
+		to_chat(X, "<span class='xenowarning'>You need more than [plasma_cost] to emit this pheromone.</span>")
+		return FALSE
+
+	if(!aura_type)
+		return FALSE
+
+	if(X.current_aura == aura_type)
+		X.visible_message("<span class='xenowarning'>\The [X] stops emitting strange pheromones.</span>", \
+		"<span class='xenowarning'>You stop emitting [X.current_aura] pheromones.</span>", null, 5)
+		X.current_aura = null
+
+	else
+		X.use_plasma(plasma_cost)
+		X.current_aura = aura_type
 		X.visible_message("<span class='xenowarning'>\The [X] begins to emit strange-smelling pheromones.</span>", \
-		"<span class='xenowarning'>You begin to emit '[choice]' pheromones.</span>", null, 5)
+		"<span class='xenowarning'>You begin to emit '[X.current_aura]' pheromones.</span>", null, 5)
 		playsound(X.loc, "alien_drool", 25)
 
 	if(X.hivenumber && X.hivenumber <= hive_datum.len)
 		var/datum/hive_status/hive = hive_datum[X.hivenumber]
-
-		if(isXenoQueen(X) && hive.xeno_leader_list.len && X.anchored)
+		if(isxenoqueen(X) && hive.xeno_leader_list.len && X.anchored)
 			var/mob/living/carbon/Xenomorph/Queen/Q = X
 			for(var/mob/living/carbon/Xenomorph/L in hive.xeno_leader_list)
 				L.handle_xeno_leader_pheromones(Q)
+	return TRUE
+
+/datum/action/xeno_action/pheromones/emit_recovery //Type casted for easy removal/adding
+	name = "Emit Recovery Pheromones (30)"
+	action_icon_state = "emit_recovery"
+	aura_type = "recovery"
+
+/datum/action/xeno_action/pheromones/emit_warding
+	name = "Emit Warding Pheromones (30)"
+	action_icon_state = "emit_warding"
+	aura_type = "warding"
+
+/datum/action/xeno_action/pheromones/emit_frenzy
+	name = "Emit Frenzy Pheromones (30)"
+	action_icon_state = "emit_frenzy"
+	aura_type = "frenzy"
 
 /datum/action/xeno_action/activable/transfer_plasma
 	name = "Transfer Plasma"
@@ -785,8 +819,8 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 	if(!X.check_state())
 		return
 	var/list/possible_xenos = list()
-	for(var/mob/living/carbon/Xenomorph/T in GLOB.alive_mob_list)
-		if(T.z != ADMIN_Z_LEVEL && !isXenoQueen(T) && X.hivenumber == T.hivenumber)
+	for(var/mob/living/carbon/Xenomorph/T in GLOB.alive_xeno_list)
+		if(T.z != ADMIN_Z_LEVEL && !isxenoqueen(T) && X.hivenumber == T.hivenumber)
 			possible_xenos += T
 
 	var/mob/living/carbon/Xenomorph/selected_xeno = input(X, "Target", "Watch which xenomorph?") as null|anything in possible_xenos
@@ -1257,7 +1291,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 
 /datum/action/xeno_action/activable/neurotox_sting/action_cooldown_check()
 	var/mob/living/carbon/Xenomorph/Sentinel/X = owner
-	if(world.time >= X.last_neurotoxin_sting + NEUROTOXIN_STING_COOLDOWN)
+	if(world.time >= X.last_neurotoxin_sting + SENTINEL_STING_COOLDOWN)
 		return TRUE
 
 //Defiler abilities
@@ -1321,6 +1355,20 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 	var/mob/living/carbon/Xenomorph/Defiler/X = owner
 	X.emit_neurogas()
 
+//Drone's Sting
+/datum/action/xeno_action/activable/drone_sting
+	name = "Larval Growth Sting"
+	action_icon_state = "drone_sting"
+	ability_name = "drone sting"
+
+/datum/action/xeno_action/activable/drone_sting/use_ability(atom/A)
+	var/mob/living/carbon/Xenomorph/Drone/X = owner
+	X.drone_sting(A)
+
+/datum/action/xeno_action/activable/drone_sting/action_cooldown_check()
+	var/mob/living/carbon/Xenomorph/Drone/X = owner
+	if(world.time >= X.last_drone_sting + DRONE_STING_COOLDOWN)
+		return TRUE
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 

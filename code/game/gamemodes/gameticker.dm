@@ -7,7 +7,7 @@ var/global/datum/controller/gameticker/ticker
 
 
 /datum/controller/gameticker
-	var/const/restart_timeout = 600
+	var/const/restart_timeout = 2 MINUTES
 	var/current_state = GAME_STATE_PREGAME
 
 	var/hide_mode = 0
@@ -39,10 +39,10 @@ var/global/datum/controller/gameticker/ticker
 
 	login_music = pick(
 	'sound/music/SpaceHero.ogg',
-	'sound/music/title1.ogg',
-	'sound/music/title2.ogg',
-	'sound/music/title3.ogg',
-	'sound/music/clown.ogg')
+	'sound/music/ManOfWar.ogg',
+	'sound/music/PraiseTheLord.ogg',
+	'sound/music/BloodUponTheRisers.ogg',
+	'sound/music/DawsonChristian.ogg')
 
 	do
 		pregame_timeleft = 180
@@ -198,7 +198,7 @@ var/global/datum/controller/gameticker/ticker
 
 	if(captainless)
 		for(var/mob/M in GLOB.player_list)
-			if(!istype(M, /mob/new_player))
+			if(!isnewplayer(M))
 				to_chat(M, "Marine commander position not forced on anyone.")
 
 
@@ -269,7 +269,7 @@ var/global/datum/controller/gameticker/ticker
 
 
 /datum/controller/gameticker/proc/declare_completion()
-	for(var/mob/living/silicon/ai/aiPlayer in GLOB.mob_list)
+	for(var/mob/living/silicon/ai/aiPlayer in GLOB.ai_list)
 		if(aiPlayer.stat != DEAD)
 			to_chat(world, "<b>[aiPlayer.name] (Played by: [aiPlayer.key])'s laws at the end of the round were:</b>")
 		else
@@ -284,8 +284,8 @@ var/global/datum/controller/gameticker/ticker
 
 	var/dronecount = 0
 
-	for(var/mob/living/silicon/robot/robo in GLOB.mob_list)
-		if(istype(robo, /mob/living/silicon/robot/drone))
+	for(var/mob/living/silicon/robot/robo in GLOB.silicon_mobs)
+		if(ismaintdrone(robo))
 			dronecount++
 			continue
 

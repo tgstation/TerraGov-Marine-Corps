@@ -1,4 +1,0 @@
-author: "jeser"
-delete-after: True
-changes: 
-  - bugfix: "Fixed M56d post folding bug."

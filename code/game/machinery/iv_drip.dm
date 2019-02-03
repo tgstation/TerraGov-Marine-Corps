@@ -149,7 +149,7 @@
 	set name = "Toggle Mode"
 	set src in view(1)
 
-	if(!istype(usr, /mob/living))
+	if(!isliving(usr))
 		return
 
 	if(usr.stat || usr.lying)

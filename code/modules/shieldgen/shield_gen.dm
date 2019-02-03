@@ -57,9 +57,9 @@
 		s.set_up(5, 1, src)
 		s.start()
 
-	else if(istype(W, /obj/item/tool/wrench))
+	else if(iswrench(W))
 		src.anchored = !src.anchored
-		src.visible_message("<span class='notice'> \icon[src] [src] has been [anchored?"bolted to the floor":"unbolted from the floor"] by [user].</span>")
+		src.visible_message("<span class='notice'> [bicon(src)] [src] has been [anchored?"bolted to the floor":"unbolted from the floor"] by [user].</span>")
 
 		if(active)
 			toggle()
@@ -93,7 +93,7 @@
 
 /obj/machinery/shield_gen/interact(mob/user)
 	if ( (get_dist(src, user) > 1 ) || (stat & (BROKEN)) )
-		if (!istype(user, /mob/living/silicon))
+		if (!issilicon(user))
 			user.unset_interaction()
 			user << browse(null, "window=shield_generator")
 			return
@@ -214,14 +214,14 @@
 		qdel(covered_turfs)
 
 		for(var/mob/M in view(5,src))
-			to_chat(M, "\icon[src] You hear heavy droning start up.")
+			to_chat(M, "[bicon(src)] You hear heavy droning start up.")
 	else
 		for(var/obj/effect/energy_field/D in field)
 			field.Remove(D)
 			D.loc = null
 
 		for(var/mob/M in view(5,src))
-			to_chat(M, "\icon[src] You hear heavy droning fade out.")
+			to_chat(M, "[bicon(src)] You hear heavy droning fade out.")
 
 /obj/machinery/shield_gen/update_icon()
 	if(stat & BROKEN)

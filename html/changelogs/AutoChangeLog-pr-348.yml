@@ -1,4 +1,0 @@
-author: "LaKiller8"
-delete-after: True
-changes: 
-  - admin: "Completely reworks the administration code and backend, ports Tickets and /tg/'s VV."

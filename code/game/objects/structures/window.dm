@@ -171,10 +171,10 @@
 
 /obj/structure/window/attackby(obj/item/W, mob/living/user)
 	if(istype(W, /obj/item/grab) && get_dist(src, user) < 2)
-		if(isXeno(user))
+		if(isxeno(user))
 			return
 		var/obj/item/grab/G = W
-		if(istype(G.grabbed_thing, /mob/living))
+		if(isliving(G.grabbed_thing))
 			var/mob/living/M = G.grabbed_thing
 			var/state = user.grab_level
 			user.drop_held_item()
@@ -221,7 +221,7 @@
 				healthcheck(0, 0, 1)
 				return
 
-	else if(istype(W, /obj/item/tool/screwdriver) && deconstructable)
+	else if(isscrewdriver(W) && deconstructable)
 		dismantle = TRUE
 		if(reinf && state >= 1)
 			state = 3 - state
@@ -239,7 +239,7 @@
 			to_chat(user, (anchored ? "<span class='notice'>You have fastened the window to the floor.</span>" : "<span class='notice'>You have unfastened the window.</span>"))
 		else if(static_frame && state == 0)
 			disassemble_window()
-	else if(istype(W, /obj/item/tool/crowbar) && reinf && state <= 1 && deconstructable)
+	else if(iscrowbar(W) && reinf && state <= 1 && deconstructable)
 		dismantle = TRUE
 		state = 1 - state
 		playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)

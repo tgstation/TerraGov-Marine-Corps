@@ -1,10 +1,11 @@
 
 /mob/living/carbon/Xenomorph/death(gibbed)
-	var/msg = isXenoSilicon(src) ? "begins to shudder, and the lights go out in its eyes as it lies still." : "lets out a waning guttural screech, green blood bubbling from its maw."
+	var/msg = isxenosilicon(src) ? "begins to shudder, and the lights go out in its eyes as it lies still." : "lets out a waning guttural screech, green blood bubbling from its maw."
 	. = ..(gibbed,msg)
 	if(!.) return //If they're already dead, it will return.
 
-	GLOB.living_xeno_list -= src
+	GLOB.alive_xeno_list -= src
+	GLOB.dead_xeno_list += src
 
 	if(is_zoomed)
 		zoom_out()
@@ -24,7 +25,7 @@
 	else return
 
 	if(z != ADMIN_Z_LEVEL) //so xeno players don't get death messages from admin tests
-		if(isXenoQueen(src))
+		if(isxenoqueen(src))
 			var/mob/living/carbon/Xenomorph/Queen/XQ = src
 			playsound(loc, 'sound/voice/alien_queen_died.ogg', 75, 0)
 			if(XQ.observed_xeno)
@@ -37,7 +38,7 @@
 					ticker.mode.stored_larva = round(ticker.mode.stored_larva * ((upgrade+1)/6.0)) // 83/66/50/33 for ancient/elder emp/elder queen/queen
 					var/turf/larva_spawn
 					while(ticker.mode.stored_larva > 0) // stil some left
-						larva_spawn = pick(xeno_spawn)
+						larva_spawn = pick(GLOB.xeno_spawn)
 						new /mob/living/carbon/Xenomorph/Larva(larva_spawn)
 						ticker.mode.stored_larva--
 
@@ -47,20 +48,29 @@
 				hive.slashing_allowed = 1
 				hive.living_xeno_queen = null
 				//on the off chance there was somehow two queen alive
-				for(var/mob/living/carbon/Xenomorph/Queen/Q in GLOB.alive_mob_list)
+				for(var/mob/living/carbon/Xenomorph/Queen/Q in GLOB.alive_xeno_list)
 					if(!isnull(Q) && Q != src && Q.stat != DEAD && Q.hivenumber == hivenumber)
 						hive.living_xeno_queen = Q
 						break
 				for(var/mob/living/carbon/Xenomorph/L in hive.xeno_leader_list)
 					L.handle_xeno_leader_pheromones(XQ)
-				if(ticker && ticker.mode)
-					ticker.mode.check_queen_status(hive.queen_time)
+				if(ticker?.mode)
+					var/i = 0
+					for(var/X in GLOB.alive_xeno_list)
+						if(isxenolarva(X) || isxenodrone(X))
+							i++
+					if(i > 0)
+						ticker.mode.queen_death_countdown = world.time + QUEEN_DEATH_COUNTDOWN
+						addtimer(CALLBACK(ticker.mode, /datum/game_mode.proc/check_queen_status, hive.queen_time), QUEEN_DEATH_COUNTDOWN)
+					else
+						ticker.mode.queen_death_countdown = world.time + QUEEN_DEATH_NOLARVA
+						addtimer(CALLBACK(ticker.mode, /datum/game_mode.proc/check_queen_status, hive.queen_time), QUEEN_DEATH_NOLARVA)
 		else
 			if(hive.living_xeno_queen && hive.living_xeno_queen.observed_xeno == src)
 				hive.living_xeno_queen.set_queen_overwatch(src, TRUE)
 			if(queen_chosen_lead)
 				queen_chosen_lead = FALSE
-			if(isXenoPredalien(src))
+			if(isxenopredalien(src))
 				playsound(loc, 'sound/voice/predalien_death.ogg', 75, 1)
 			else
 				playsound(loc, prob(50) == 1 ? 'sound/voice/alien_death.ogg' : 'sound/voice/alien_death2.ogg', 25, 1)
@@ -91,15 +101,15 @@
 	remains.icon = icon
 	remains.pixel_x = pixel_x //For 2x2.
 
-	if(isXenoBoiler(src))
+	if(isxenoboiler(src))
 		var/mob/living/carbon/Xenomorph/Boiler/B = src
 		visible_message("<span class='danger'>[src] begins to bulge grotesquely, and explodes in a cloud of corrosive gas!</span>")
 		B.smoke.set_up(2, 0, get_turf(src))
 		B.smoke.start()
 		remains.icon_state = "gibbed-a-corpse"
-	else if(isXenoRunner(src))
+	else if(isxenorunner(src))
 		remains.icon_state = "gibbed-a-corpse-runner"
-	else if(isXenoLarva(src))
+	else if(isxenolarva(src))
 		remains.icon_state = "larva_gib_corpse"
 	else
 		remains.icon_state = "gibbed-a-corpse"
@@ -112,9 +122,9 @@
 
 /mob/living/carbon/Xenomorph/gib_animation()
 	var/to_flick = "gibbed-a"
-	if(isXenoRunner(src))
+	if(isxenorunner(src))
 		to_flick = "gibbed-a-runner"
-	else if(isXenoLarva(src))
+	else if(isxenolarva(src))
 		to_flick = "larva_gib"
 	new /obj/effect/overlay/temp/gib_animation/xeno(loc, src, to_flick, icon)
 

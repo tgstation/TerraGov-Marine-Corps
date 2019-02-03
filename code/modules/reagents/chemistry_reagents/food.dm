@@ -160,7 +160,7 @@
 
 /datum/reagent/consumable/capsaicin/condensed/reaction_mob(mob/living/M, method=TOUCH, volume)
 	if(method in list(TOUCH, VAPOR, PATCH))
-		if(istype(M, /mob/living/carbon/human))
+		if(ishuman(M))
 			var/mob/living/carbon/human/victim = M
 			var/mouth_covered = 0
 			var/eyes_covered = 0

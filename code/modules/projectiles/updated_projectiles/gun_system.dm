@@ -196,11 +196,11 @@
 	else
 		dat += "The safety's off!<br>"
 
-	if(rail) 	dat += "It has \icon[rail] [rail.name] mounted on the top.<br>"
-	if(muzzle) 	dat += "It has \icon[muzzle] [muzzle.name] mounted on the front.<br>"
-	if(stock) 	dat += "It has \icon[stock] [stock.name] for a stock.<br>"
+	if(rail) 	dat += "It has [bicon(rail)] [rail.name] mounted on the top.<br>"
+	if(muzzle) 	dat += "It has [bicon(muzzle)] [muzzle.name] mounted on the front.<br>"
+	if(stock) 	dat += "It has [bicon(stock)] [stock.name] for a stock.<br>"
 	if(under)
-		dat += "It has \icon[under] [under.name]"
+		dat += "It has [bicon(under)] [under.name]"
 		if(under.flags_attach_features & ATTACH_WEAPON)
 			dat += " ([under.current_rounds]/[under.max_rounds])"
 		dat += " mounted underneath.<br>"
@@ -832,7 +832,7 @@ and you're good to go.
 			return
 
 		if(!CONFIG_GET(flag/allow_synthetic_gun_use))
-			if(isSynth(user))
+			if(issynth(user))
 				to_chat(user, "<span class='warning'>Your program does not allow you to use firearms.</span>")
 				return
 
@@ -936,18 +936,14 @@ and you're good to go.
 		if(skill_accuracy)
 			gun_accuracy_mult += skill_accuracy * CONFIG_GET(number/combat_define/low_hit_accuracy_mult) // Accuracy mult increase/decrease per level is equal to attaching/removing a red dot sight
 
-	projectile_to_fire.accuracy = round(projectile_to_fire.accuracy * gun_accuracy_mult) // Apply gun accuracy multiplier to projectile accuracy
-	projectile_to_fire.damage = round(projectile_to_fire.damage * damage_mult) 		// Apply gun damage multiplier to projectile damage
-	projectile_to_fire.damage_falloff	= round(projectile_to_fire.damage_falloff * damage_falloff_mult) 	// Apply gun damage bleed multiplier to projectile damage bleed
-	projectile_to_fire.projectile_speed += shell_speed_mod
-	projectile_to_fire.shot_from = src
-	projectile_to_fire.scatter += gun_scatter					//Add gun scatter value to projectile's scatter value
-
 	if(user) //The gun only messages when fired by a user.
 		gun_scatter += user.scatter_modifier //Any modifiers to scatter
 		projectile_to_fire.firer = user
 		if(iscarbon(user))
+			var/mob/living/carbon/C = user
 			projectile_to_fire.def_zone = user.zone_selected
+			if(C.stagger)
+				gun_scatter += 30
 
 		//firing from an attachment
 		if(active_attachable && active_attachable.flags_attach_features & ATTACH_PROJECTILE)
@@ -971,6 +967,15 @@ and you're good to go.
 				playsound(user, actual_sound, 25)
 				if(bullets_fired == 1)
 					to_chat(user, "<span class='warning'>You fire [src][reflex ? "by reflex":""]! [flags_gun_features & GUN_AMMO_COUNTER && current_mag ? "<B>[max(0,current_mag.current_rounds - ammo_per_shot)]</b>/[current_mag.max_rounds]" : ""]</span>")
+
+	projectile_to_fire.accuracy = round(projectile_to_fire.accuracy * gun_accuracy_mult) // Apply gun accuracy multiplier to projectile accuracy
+	projectile_to_fire.damage = round(projectile_to_fire.damage * damage_mult) 		// Apply gun damage multiplier to projectile damage
+	projectile_to_fire.damage_falloff	= round(projectile_to_fire.damage_falloff * damage_falloff_mult) 	// Apply gun damage bleed multiplier to projectile damage bleed
+	projectile_to_fire.projectile_speed += shell_speed_mod
+	projectile_to_fire.shot_from = src
+	projectile_to_fire.scatter += gun_scatter					//Add gun scatter value to projectile's scatter value
+
+
 	return TRUE
 
 /obj/item/weapon/gun/proc/simulate_scatter(obj/item/projectile/projectile_to_fire, atom/target, turf/targloc, total_scatter_chance = 0, mob/user, burst_scatter_bonus = 0)

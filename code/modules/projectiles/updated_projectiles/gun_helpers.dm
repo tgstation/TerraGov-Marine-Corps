@@ -198,7 +198,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 	if(!istype(user) || delay <= 0)
 		return FALSE
 	var/mob/living/L
-	if(istype(user, /mob/living))
+	if(isliving(user))
 		L = user
 	var/image/busy_icon
 	busy_icon = get_busy_icon(BUSY_ICON_HOSTILE)
@@ -632,17 +632,17 @@ should be alright.
 			if(flags_gun_features & GUN_FULL_AUTO_ON)
 				flags_gun_features &= ~GUN_FULL_AUTO_ON
 				flags_gun_features &= ~GUN_BURST_ON
-				to_chat(usr, "<span class='notice'>\icon[src] You set [src] to single fire mode.</span>")
+				to_chat(usr, "<span class='notice'>[bicon(src)] You set [src] to single fire mode.</span>")
 			else
 				flags_gun_features|= GUN_FULL_AUTO_ON
-				to_chat(usr, "<span class='notice'>\icon[src] You set [src] to full auto mode.</span>")
+				to_chat(usr, "<span class='notice'>[bicon(src)] You set [src] to full auto mode.</span>")
 		else
 			flags_gun_features |= GUN_BURST_ON
-			to_chat(usr, "<span class='notice'>\icon[src] You set [src] to burst fire mode.</span>")
+			to_chat(usr, "<span class='notice'>[bicon(src)] You set [src] to burst fire mode.</span>")
 	else
 		flags_gun_features ^= GUN_BURST_ON
 
-		to_chat(usr, "<span class='notice'>\icon[src] You [flags_gun_features & GUN_BURST_ON ? "<B>enable</b>" : "<B>disable</b>"] [src]'s burst fire mode.</span>")
+		to_chat(usr, "<span class='notice'>[bicon(src)] You [flags_gun_features & GUN_BURST_ON ? "<B>enable</b>" : "<B>disable</b>"] [src]'s burst fire mode.</span>")
 
 
 /obj/item/weapon/gun/verb/empty_mag()
@@ -747,7 +747,12 @@ should be alright.
 	if(!usr)
 		return
 
-	rail?.activate_attachment(src, usr)
+	var/obj/item/weapon/gun/W = usr.get_active_held_item()
+
+	if(!istype(W))
+		return
+
+	W.rail?.activate_attachment(W, usr)
 
 
 /obj/item/weapon/gun/verb/toggle_ammo_hud()

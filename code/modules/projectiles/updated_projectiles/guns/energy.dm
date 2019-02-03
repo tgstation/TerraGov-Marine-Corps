@@ -15,11 +15,11 @@
 	else
 		dat += "The safety's off!<br>"
 
-	if(rail) 	dat += "It has \icon[rail] [rail.name] mounted on the top.<br>"
-	if(muzzle) 	dat += "It has \icon[muzzle] [muzzle.name] mounted on the front.<br>"
-	if(stock) 	dat += "It has \icon[stock] [stock.name] for a stock.<br>"
+	if(rail) 	dat += "It has [bicon(rail)] [rail.name] mounted on the top.<br>"
+	if(muzzle) 	dat += "It has [bicon(muzzle)] [muzzle.name] mounted on the front.<br>"
+	if(stock) 	dat += "It has [bicon(stock)] [stock.name] for a stock.<br>"
 	if(under)
-		dat += "It has \icon[under] [under.name]"
+		dat += "It has [bicon(under)] [under.name]"
 		if(under.flags_attach_features & ATTACH_WEAPON)
 			dat += " ([under.current_rounds]/[under.max_rounds])"
 		dat += " mounted underneath.<br>"
@@ -156,20 +156,20 @@
 
 /obj/item/weapon/gun/energy/plasmarifle/examine(mob/user)
 	. = ..()
-	if(isYautja(user))
+	if(isyautja(user))
 		to_chat(user, "It currently has [cell.charge / charge_cost] shots remaining.")
 	else
 		to_chat(user, "This thing looks like an alien rifle of some kind. Strange.")
 
 /obj/item/weapon/gun/energy/plasmarifle/unique_action(mob/user)
-	if(!isYautja(user))
+	if(!isyautja(user))
 		to_chat(user, "<span class='warning'>You have no idea how this thing works!</span>")
 		return
 	zoom(user)
 	return ..()
 
 /obj/item/weapon/gun/energy/plasmarifle/able_to_fire(mob/user)
-	if(!isYautja(user))
+	if(!isyautja(user))
 		to_chat(user, "<span class='warning'>You have no idea how this thing works!</span>")
 		return
 	return ..()
@@ -200,13 +200,13 @@
 
 /obj/item/weapon/gun/energy/plasmapistol/examine(mob/user)
 	. = ..()
-	if(isYautja(user))
+	if(isyautja(user))
 		to_chat(user, "It currently has [cell.charge / charge_cost] shots remaining.")
 	else
 		to_chat(user, "This thing looks like an alien rifle of some kind. Strange.")
 
 /obj/item/weapon/gun/energy/plasmapistol/able_to_fire(mob/user)
-	if(!isYautja(user))
+	if(!isyautja(user))
 		to_chat(user, "<span class='warning'>You have no idea how this thing works!</span>")
 		return
 	return ..()
@@ -268,7 +268,7 @@
 	..()
 
 /obj/item/weapon/gun/energy/plasma_caster/able_to_fire(mob/user)
-	if(!isYautja(user))
+	if(!isyautja(user))
 		to_chat(user, "<span class='warning'>You have no idea how this thing works!</span>")
 		return
 	return ..()
@@ -380,7 +380,7 @@
 		ammo = GLOB.ammo_list[/datum/ammo/energy/lasgun/M43/overcharge]
 		fire_delay = M37_OVERCHARGE_FIRE_DELAY // 1 shot per second fire rate
 		fire_sound = 'sound/weapons/Laser3.ogg'
-		to_chat(user, "\icon[src] You [overcharge? "<B>disable</b>" : "<B>enable</b>" ] [src]'s overcharge mode.")
+		to_chat(user, "[bicon(src)] You [overcharge? "<B>disable</b>" : "<B>enable</b>" ] [src]'s overcharge mode.")
 		overcharge = TRUE
 	else
 		playsound(user, 'sound/weapons/emitter2.ogg', 15, 0, 2)
@@ -388,7 +388,7 @@
 		ammo = GLOB.ammo_list[/datum/ammo/energy/lasgun/M43]
 		fire_delay = CONFIG_GET(number/combat_define/low_fire_delay)
 		fire_sound = 'sound/weapons/Laser.ogg'
-		to_chat(user, "\icon[src] You [overcharge? "<B>disable</b>" : "<B>enable</b>" ] [src]'s overcharge mode.")
+		to_chat(user, "[bicon(src)] You [overcharge? "<B>disable</b>" : "<B>enable</b>" ] [src]'s overcharge mode.")
 		overcharge = FALSE
 
 	//load_into_chamber()

@@ -51,7 +51,7 @@
 	afterattack(atom/target as mob|obj|turf|area, mob/user as mob, flag)
 		if (flag)
 			return
-		if (!(istype(usr, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
+		if (!(ishuman(usr) || ticker) && ticker.mode.name != "monkey")
 			to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
 			return
 		src.add_fingerprint(user)

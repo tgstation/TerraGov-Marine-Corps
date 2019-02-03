@@ -18,7 +18,7 @@
 	attackby(obj/item/grab/G, mob/user)
 		if(!istype(G, /obj/item/grab))
 			return
-		if(istype(G.grabbed_thing, /mob/living/carbon/monkey))
+		if(ismonkey(G.grabbed_thing))
 			var/mob/living/carbon/monkey/M = G.grabbed_thing
 			if(!occupied)
 				icon_state = "spikebloody"

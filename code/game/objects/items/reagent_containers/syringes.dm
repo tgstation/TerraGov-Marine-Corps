@@ -67,7 +67,7 @@
 		if((CLUMSY in user.mutations) && prob(50))
 			target = user
 		var/mob/M = target
-		if(M != user && M.stat != DEAD && M.a_intent != "help" && !M.is_mob_incapacitated() && ((M.mind && M.mind.cm_skills && M.mind.cm_skills.cqc >= SKILL_CQC_MP) || isYautja(M))) // preds have null skills
+		if(M != user && M.stat != DEAD && M.a_intent != "help" && !M.is_mob_incapacitated() && ((M.mind && M.mind.cm_skills && M.mind.cm_skills.cqc >= SKILL_CQC_MP) || isyautja(M))) // preds have null skills
 			user.KnockDown(3)
 			log_combat(M, user, "blocked", addition="using their cqc skill (syringe injection)")
 			msg_admin_attack("[ADMIN_TPMONTY(usr)] got robusted by the cqc of [ADMIN_TPMONTY(M)].")
@@ -234,7 +234,7 @@
 	log_combat(user, target, "attacked", src, "(INTENT: [uppertext(user.a_intent)])")
 	msg_admin_attack("[ADMIN_TPMONTY(usr)] attacked [ADMIN_TPMONTY(target)] with [src.name].")
 
-	if(istype(target, /mob/living/carbon/human))
+	if(ishuman(target))
 
 		var/target_zone = ran_zone(check_zone(user.zone_selected, target))
 		var/datum/limb/affecting = target:get_limb(target_zone)
@@ -300,7 +300,7 @@
 				return
 
 			if(ismob(target))
-				if(istype(target, /mob/living/carbon))//I Do not want it to suck 50 units out of people
+				if(iscarbon(target))//I Do not want it to suck 50 units out of people
 					to_chat(usr, "<span class='warning'>This needle isn't designed for drawing blood.</span>")
 					return
 			else //if not mob

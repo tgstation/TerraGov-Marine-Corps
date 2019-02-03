@@ -54,7 +54,7 @@
 		return
 
 	var/mob/living/carbon/human/h_user = null
-	if (!istype(user, /mob/living/carbon/human))
+	if (!ishuman(user))
 		return
 	else
 		h_user = user
@@ -186,7 +186,7 @@
 	if (..())
 
 		// Charged above 1% and safeties are enabled.
-		if((charge > (capacity/100)) && safeties_enabled && (!istype(W, /obj/item/device/multitool)))
+		if((charge > (capacity/100)) && safeties_enabled && !ismultitool(W))
 			to_chat(user, "<span class='warning'>Safety circuit of [src] is preventing modifications while it's charged!</span>")
 			return
 
@@ -202,7 +202,7 @@
 			failure_probability = 0
 
 		// Crowbar - Disassemble the SMES.
-		if(istype(W, /obj/item/tool/crowbar))
+		if(iscrowbar(W))
 			if (terminal)
 				to_chat(user, "<span class='warning'>You have to disassemble the terminal first!</span>")
 				return
@@ -243,7 +243,7 @@
 				to_chat(usr, "<span class='warning'>You can't insert more coils to this SMES unit!</span>")
 
 		// Multitool - Toggle the safeties.
-		else if(istype(W, /obj/item/device/multitool))
+		else if(ismultitool(W))
 			safeties_enabled = !safeties_enabled
 			to_chat(user, "<span class='warning'>You [safeties_enabled ? "connected" : "disconnected"] the safety circuit.</span>")
-			src.visible_message("\icon[src] <b>[src]</b> beeps: \"Caution. Safety circuit has been: [safeties_enabled ? "re-enabled" : "disabled. Please excercise caution."]\"")
+			src.visible_message("[bicon(src)] <b>[src]</b> beeps: \"Caution. Safety circuit has been: [safeties_enabled ? "re-enabled" : "disabled. Please excercise caution."]\"")

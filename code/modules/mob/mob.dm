@@ -19,35 +19,18 @@
 
 
 /mob/Stat()
-	// Looking at contents of a tile
-	if(tile_contents_change)
-		tile_contents_change = FALSE
-		statpanel("Tile Contents")
-		client.statpanel = "Tile Contents"
-		stat(tile_contents)
-		client.stat_force_fast_update = TRUE
-		return FALSE
-
-	if(client.statpanel == "Tile Contents")
-		if(tile_contents.len && statpanel("Tile Contents"))
-			stat(tile_contents)
-			return FALSE
+	. = ..()
 
 	if(statpanel("Stats"))
 		stat("Operation Time: [worldtime2text()]")
+		stat("The current map is: [GLOB.map_tag]")
 
-	if(client.statpanel != "Stats")
-		statpanel("Stats")
-		if(statpanel("Stats"))
-			client.statpanel = "Stats"
-			stat("Operation Time: [worldtime2text()]")
-		client.stat_force_fast_update = TRUE
 
 	if(client?.holder?.rank?.rights)
 		if(client.holder.rank.rights & (R_ADMIN|R_DEBUG))
 			if(statpanel("MC"))
 				stat("CPU:", "[world.cpu]")
-				stat("Instances:", "[num2text(world.contents.len, 10)]")
+				stat("Instances:", "[num2text(length(world.contents), 10)]")
 				stat("World Time:", "[world.time]")
 				stat(null)
 				if(Master)
@@ -66,10 +49,11 @@
 			if(statpanel("Tickets"))
 				GLOB.ahelp_tickets.stat_entry()
 
-	if(statpanel("Stats") || client.statpanel != "Stats")
-		return TRUE
-	else
-		return FALSE
+
+	if(length(tile_contents))
+		if(statpanel("Tile Contents"))
+			stat(tile_contents)
+
 
 /mob/proc/prepare_huds()
 	hud_list = new
@@ -180,7 +164,6 @@
 			else
 				equip_to_slot(W, slot, redraw_mob) //This proc should not ever fail.
 				if(permanent)
-					W.flags_inventory |= CANTSTRIP
 					W.flags_item |= NODROP
 				if(W.loc == start_loc && get_active_held_item() != W)
 					//They moved it from hands to an inv slot or vice versa. This will unzoom and unwield items -without- triggering lights.
@@ -192,7 +175,6 @@
 	else
 		equip_to_slot(W, slot, redraw_mob) //This proc should not ever fail.
 		if(permanent)
-			W.flags_inventory |= CANTSTRIP
 			W.flags_item |= NODROP
 		if(W.loc == start_loc && get_active_held_item() != W)
 			//They moved it from hands to an inv slot or vice versa. This will unzoom and unwield items -without- triggering lights.
@@ -251,7 +233,7 @@ var/list/slot_equipment_priority = list( \
 
 /mob/proc/reset_view(atom/A)
 	if (client)
-		if (istype(A, /atom/movable))
+		if (ismovableatom(A))
 			client.perspective = EYE_PERSPECTIVE
 			client.eye = A
 		else
@@ -352,9 +334,18 @@ var/list/slot_equipment_priority = list( \
 		'html/coding.png',
 		'html/scales.png'
 		)
+
+	src << browse_rsc('html/changelog2015.html', "changelog2015.html") 
+	src << browse_rsc('html/changelog2016.html', "changelog2016.html") 
+	src << browse_rsc('html/changelog2017.html', "changelog2017.html") 
+	src << browse_rsc('html/changelog20181.html', "changelog20181.html") 
+	src << browse_rsc('html/changelog20182.html', "changelog20182.html")
+	src << browse_rsc('html/changelog.html', "changelog.html")  
+
+
 	src << browse('html/changelog.html', "window=changes;size=675x650")
-	if(prefs.lastchangelog != changelog_hash)
-		prefs.lastchangelog = changelog_hash
+	if(prefs.lastchangelog != GLOB.changelog_hash)
+		prefs.lastchangelog = GLOB.changelog_hash
 		prefs.save_preferences()
 		winset(src, "rpane.changelog", "background-color=none;font-style=;")
 
@@ -435,7 +426,7 @@ var/list/slot_equipment_priority = list( \
 		msg_admin_attack("[key_name(src)] grabbed [key_name(M)]" )
 
 		if(!no_msg)
-			visible_message("<span class='warning'>[src] has grabbed [M] [((istype(src, /mob/living/carbon/human) && istype(M, /mob/living/carbon/human)) && (zone_selected == "l_hand" || zone_selected == "r_hand")) ? "by their hands":"passively"]!</span>", null, null, 5)
+			visible_message("<span class='warning'>[src] has grabbed [M] [((ishuman(src) && ishuman(M)) && (zone_selected == "l_hand" || zone_selected == "r_hand")) ? "by their hands":"passively"]!</span>", null, null, 5)
 
 		if(M.mob_size > MOB_SIZE_HUMAN || !(M.status_flags & CANPUSH))
 			G.icon_state = "!reinforce"
@@ -555,6 +546,13 @@ var/list/slot_equipment_priority = list( \
 	return FALSE
 
 
+/proc/is_species(A, species_datum)
+	. = FALSE
+	if(ishuman(A))
+		var/mob/living/carbon/human/H = A
+		if(istype(H.species, species_datum))
+			. = TRUE
+
 /mob/proc/get_species()
 	return ""
 
@@ -643,7 +641,7 @@ mob/proc/yank_out_object()
 			return
 
 		affected.implants -= selection
-		if(!isYautja(H))
+		if(!isyautja(H))
 			H.shock_stage+=20
 		affected.take_damage((selection.w_class * 3), 0, 0, 1, "Embedded object extraction")
 

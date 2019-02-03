@@ -1,4 +1,0 @@
-author: "Surrealistik"
-delete-after: True
-changes: 
-  - rscadd: "Hyposprays can now flush reagents, draw reagents and inject reagents into non-mob reagent containers."
