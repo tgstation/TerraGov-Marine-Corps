@@ -1,6 +1,8 @@
 /obj/machinery/Research_Machinery
 	name = "Research Machinery"
 	icon = 'icons/Marine/Research/Research_Machinery.dmi'
+	density = 1
+	anchored = 1
 
 	var/obj/machinery/computer/XenoRnD/linked_console = null
 
@@ -65,8 +67,6 @@
 
 /obj/machinery/Research_Machinery/dissector/attackby(var/obj/O as obj, var/mob/user as mob)
 	. = ..()
-	if(!.)
-		return
 	if (istype(O, /obj/item) && !loaded_item)
 		if(isrobot(user)) //Don't put your module items in there!
 			return
