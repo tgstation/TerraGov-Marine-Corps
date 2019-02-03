@@ -209,7 +209,7 @@
 			prefs.preferred_slot = SLOT_IN_HOLSTER
 		if("Suit Storage Holster")
 			prefs.preferred_slot = SLOT_IN_S_HOLSTER
-		if("Belt Holster")
+		if("Back Holster")
 			prefs.preferred_slot = SLOT_IN_B_HOLSTER
 	prefs.save_preferences()
 
