@@ -148,9 +148,10 @@
 			leap_at_nearest_target()
 
 /obj/item/clothing/mask/facehugger/proc/GoIdle(hybernate = FALSE) //Idle state does not count toward the death timer.
-	if(stat != CONSCIOUS)
+	if(stat == DEAD)
 		return
-	update_stat(UNCONSCIOUS)
+	if(stat == CONSCIOUS)
+		update_stat(UNCONSCIOUS)
 	if(hybernate)
 		stasis = TRUE
 		lifecycle = initial(lifecycle)
