@@ -1971,12 +1971,12 @@ AMMO
 	containername = "\improper M56D emplacement ammo crate"
 	group = "Ammo"
 
-/datum/supply_packs/lasgun_charger
-	name = "ColMarTech Lasgun Field Charger (Stocked With: M43 Power Cells x10, M43 Expanded x2)"
-	contains = list()
+/datum/supply_packs/ammo_lasguncharger
+	name = "ColMarTech Lasgun Field Charger (Includes: M43 Power Cells x10, M43 Expanded x2)"
+	contains = list(/obj/machinery/vending/lasgun)
 	cost = RO_PRICE_PRICY
-	containertype = /obj/machinery/vending/lasgun
-	containername = "ColMarTech Lasgun Field Charger"
+	containertype = /obj/structure/largecrate
+	containername = "\improper ColMarTech Lasgun Field Charger"
 	group = "Ammo"
 
  /datum/supply_packs/ammo_M43lasgun
