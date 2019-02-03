@@ -395,6 +395,8 @@
 		<a href='?priv_msg=[M.ckey]'>PM</a> -
 		<a href='?src=[ref];subtlemessage=[REF(M)]'>SM</a> -
 		<a href='?_src_=vars;[HrefToken()];vars=[REF(M)]'>VV</a> -
+		<a href='?src=[ref];spanwcookie=[REF(M)]'>SC</a> -
+		<a href='?src=[ref];spawnfortunecookie=[REF(M)]'>SFC</a> -
 		<a href='?src=[ref];observejump=[REF(M)]'>JMP</a> -
 		<a href='?src=[ref];observefollow=[REF(M)]'>FLW</a> -
 		<a href='?src=[ref];individuallog=[REF(M)]'>LOGS</a> \]</b><br>
@@ -425,39 +427,38 @@
 		<br>
 	"}
 
-	if(M.client)
-		if(!istype(M, /mob/new_player))
-			body += {"<br>
-				<b>Transformation:</b><br>
-				\[ Observer: <a href='?src=[ref];transform=observer;mob=[REF(M)]'>Observer</a> \]
-				<br>\[ Humanoid: <a href='?src=[ref];transform=human;mob=[REF(M)]'>Human</a> |
-				<a href='?src=[ref];transform=monkey;mob=[REF(M)]'>Monkey</a> |
-				<a href='?src=[ref];transform=moth;mob=[REF(M)]'>Moth</a> \]
-				<br>\[ Alien Tier 0:
-				<a href='?src=[ref];transform=larva;mob=[REF(M)]'>Larva</a> \]
-				<br>\[ Alien Tier 1:
-				<a href='?src=[ref];transform=runner;mob=[REF(M)]'>Runner</a> |
-				<a href='?src=[ref];transform=drone;mob=[REF(M)]'>Drone</a> |
-				<a href='?src=[ref];transform=sentinel;mob=[REF(M)]'>Sentinel</a> |
-				<a href='?src=[ref];transform=defender;mob=[REF(M)]'>Defender</a> \]
-				<br>\[ Alien Tier 2:
-				<a href='?src=[ref];transform=hunter;mob=[REF(M)]'>Hunter</a> |
-				<a href='?src=[ref];transform=warrior;mob=[REF(M)]'>Warrior</a> |
-				<a href='?src=[ref];transform=spitter;mob=[REF(M)]'>Spitter</a> |
-				<a href='?src=[ref];transform=hivelord;mob=[REF(M)]'>Hivelord</a> |
-				<a href='?src=[ref];transform=carrier;mob=[REF(M)]'>Carrier</a> \]
-				<br>\[ Alien Tier 3:
-				<a href='?src=[ref];transform=ravager;mob=[REF(M)]'>Ravager</a> |
-				<a href='?src=[ref];transform=praetorian;mob=[REF(M)]'>Praetorian</a> |
-				<a href='?src=[ref];transform=boiler;mob=[REF(M)]'>Boiler</a> |
-				<a href='?src=[ref];transform=defiler;mob=[REF(M)]'>Defiler</a> |
-				<a href='?src=[ref];transform=crusher;mob=[REF(M)]'>Crusher</a> \]
-				<br>\[ Alien Tier 4:
-				<a href='?src=[ref];transform=queen;mob=[REF(M)]'>Queen</a> \]
-				<br>
-			"}
+	if(!istype(M, /mob/new_player))
+		body += {"<br>
+			<b>Transformation:</b><br>
+			\[ Observer: <a href='?src=[ref];transform=observer;mob=[REF(M)]'>Observer</a> \]
+			<br>\[ Humanoid: <a href='?src=[ref];transform=human;mob=[REF(M)]'>Human</a> |
+			<a href='?src=[ref];transform=monkey;mob=[REF(M)]'>Monkey</a> |
+			<a href='?src=[ref];transform=moth;mob=[REF(M)]'>Moth</a> \]
+			<br>\[ Alien Tier 0:
+			<a href='?src=[ref];transform=larva;mob=[REF(M)]'>Larva</a> \]
+			<br>\[ Alien Tier 1:
+			<a href='?src=[ref];transform=runner;mob=[REF(M)]'>Runner</a> |
+			<a href='?src=[ref];transform=drone;mob=[REF(M)]'>Drone</a> |
+			<a href='?src=[ref];transform=sentinel;mob=[REF(M)]'>Sentinel</a> |
+			<a href='?src=[ref];transform=defender;mob=[REF(M)]'>Defender</a> \]
+			<br>\[ Alien Tier 2:
+			<a href='?src=[ref];transform=hunter;mob=[REF(M)]'>Hunter</a> |
+			<a href='?src=[ref];transform=warrior;mob=[REF(M)]'>Warrior</a> |
+			<a href='?src=[ref];transform=spitter;mob=[REF(M)]'>Spitter</a> |
+			<a href='?src=[ref];transform=hivelord;mob=[REF(M)]'>Hivelord</a> |
+			<a href='?src=[ref];transform=carrier;mob=[REF(M)]'>Carrier</a> \]
+			<br>\[ Alien Tier 3:
+			<a href='?src=[ref];transform=ravager;mob=[REF(M)]'>Ravager</a> |
+			<a href='?src=[ref];transform=praetorian;mob=[REF(M)]'>Praetorian</a> |
+			<a href='?src=[ref];transform=boiler;mob=[REF(M)]'>Boiler</a> |
+			<a href='?src=[ref];transform=defiler;mob=[REF(M)]'>Defiler</a> |
+			<a href='?src=[ref];transform=crusher;mob=[REF(M)]'>Crusher</a> \]
+			<br>\[ Alien Tier 4:
+			<a href='?src=[ref];transform=queen;mob=[REF(M)]'>Queen</a> \]
+			<br>
+		"}
 
-	if(M.client)
+
 		body += {"<br><br>
 			<b>Other actions:</b>
 			<br>
