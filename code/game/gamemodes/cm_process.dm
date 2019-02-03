@@ -194,6 +194,16 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 		dat += "[round_statistics.weeds_destroyed] weed tiles removed."
 	if(round_statistics.carrier_traps)
 		dat += "[round_statistics.carrier_traps] hidey holes for huggers were made."
+	if(round_statistics.sentinel_neurotoxin_stings)
+		dat += "[round_statistics.sentinel_neurotoxin_stings] number of times Sentinels stung."
+	if(round_statistics.drone_stings)
+		dat += "[round_statistics.drone_stings] number of times Drones stung."
+	if(round_statistics.drone_salvage_plasma)
+		dat += "[round_statistics.drone_salvage_plasma] number of times Drones salvaged corpses."
+	if(round_statistics.defiler_defiler_stings)
+		dat += "[round_statistics.defiler_defiler_stings] number of times Defilers stung."
+	if(round_statistics.defiler_neurogas_uses)
+		dat += "[round_statistics.defiler_neurogas_uses] number of times Defilers vented neurogas."
 	var/output = jointext(dat, "<br>")
 	for(var/mob/player in GLOB.player_list)
 		if(player?.client?.prefs?.toggles_chat & CHAT_STATISTICS)

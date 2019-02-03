@@ -470,22 +470,7 @@
 		AdjustKnockeddown(-5)
 	return knocked_down
 
-/mob/living/carbon/Xenomorph/proc/handle_stagger()
-	if(stagger)
-		#if DEBUG_XENO_LIFE
-		world << "<span class='debuginfo'>Regen: Initial stagger is: <b>[stagger]</b></span>"
-		#endif
-		adjust_stagger(-1)
-		#if DEBUG_XENO_LIFE
-		world << "<span class='debuginfo'>Regen: Final stagger is: <b>[stagger]</b></span>"
-		#endif
-	return stagger
-
-/mob/living/carbon/Xenomorph/proc/adjust_stagger(amount)
-	stagger = max(stagger + amount,0)
-	return stagger
-
-/mob/living/carbon/Xenomorph/proc/handle_slowdown()
+/mob/living/carbon/Xenomorph/handle_slowdown()
 	if(slowdown)
 		#if DEBUG_XENO_LIFE
 		world << "<span class='debuginfo'>Regen: Initial slowdown is: <b>[slowdown]</b></span>"
@@ -496,11 +481,7 @@
 		#endif
 	return slowdown
 
-/mob/living/carbon/Xenomorph/proc/adjust_slowdown(amount)
-	slowdown = max(slowdown + amount,0)
-	return slowdown
-
-/mob/living/carbon/Xenomorph/proc/add_slowdown(amount)
+/mob/living/carbon/Xenomorph/add_slowdown(amount)
 	slowdown = adjust_slowdown(amount*XENO_SLOWDOWN_REGEN)
 	return slowdown
 

@@ -470,15 +470,14 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define HUNTER_STEALTH_STILL_ALPHA				13 //95% transparency
 #define HUNTER_STEALTH_WALK_ALPHA				38 //85% transparency
 #define HUNTER_STEALTH_RUN_ALPHA				128 //50% transparency
-#define HUNTER_STEALTH_STEALTH_DELAY			40 //4 seconds before 95% stealth
+#define HUNTER_STEALTH_STEALTH_DELAY			30 //3 seconds before 95% stealth
 #define HUNTER_STEALTH_INITIAL_DELAY			20 //2 seconds before we can increase stealth
-#define HUNTER_POUNCE_SNEAKATTACK_DELAY 		40 //4 seconds before we can sneak attack
+#define HUNTER_POUNCE_SNEAKATTACK_DELAY 		30 //3 seconds before we can sneak attack
 #define HANDLE_STEALTH_CHECK				1
 #define HANDLE_STEALTH_CODE_CANCEL		2
 #define HANDLE_SNEAK_ATTACK_CHECK		3
 
 // xeno defines
-
 
 #define XENO_SLOWDOWN_REGEN 0.4
 #define XENO_HALOSS_REGEN 3
@@ -537,10 +536,11 @@ var/list/global_mutations = list() // list of hidden mutation things
 
 //sentinel defines
 
-#define NEUROTOXIN_STING_COOLDOWN				30 SECONDS
-#define NEUROTOXIN_STING_INJECT_DELAY			1.5 SECONDS
-#define NEUROTOXIN_STING_AMOUNT_INITIAL			15
-#define NEUROTOXIN_STING_AMOUNT_RECURRING		10
+#define SENTINEL_STING_COOLDOWN				30 SECONDS
+#define SENTINEL_STING_INJECT_DELAY			1.5 SECONDS
+#define SENTINEL_STING_AMOUNT_INITIAL		15
+#define SENTINEL_STING_AMOUNT_RECURRING		10
+#define SENTINEL_STING_CHANNEL_TIME			1.5 SECONDS
 
 //Defiler defines
 
@@ -556,7 +556,15 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define DEFILER_STING_AMOUNT_INITIAL		15
 #define DEFILER_STING_AMOUNT_RECURRING		10
 #define DEFILER_STING_GROWTH_AMOUNT			30
-#define GROWTH_TOXIN_METARATE		0.3
+#define GROWTH_TOXIN_METARATE		0.2
+
+//Drone defines
+
+#define DRONE_STING_COOLDOWN				20 SECONDS
+#define DRONE_STING_AMOUNT_INITIAL			15
+#define DRONE_STING_AMOUNT_RECURRING		10
+#define DRONE_STING_CHANNEL_TIME			1.5 SECONDS
+
 
 #define CANNOT_HOLD_EGGS 0
 #define CAN_HOLD_TWO_HANDS 1
@@ -572,3 +580,7 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define CASTE_IS_INTELLIGENT		(1<<7)
 #define CASTE_IS_ROBOTIC			(1<<8)
 #define CASTE_DECAY_PROOF			(1<<9)
+
+//misc
+
+#define STANDARD_SLOWDOWN_REGEN 0.3
