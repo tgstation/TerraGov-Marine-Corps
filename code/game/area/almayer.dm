@@ -411,6 +411,28 @@
 	icon_state = "shuttle2"
 	requires_power = 0
 
+/area/vehicle_interior
+	name = "Vehicle Interior Placeholder"
+	icon = 'icons/turf/area_almayer.dmi'
+	ceiling = CEILING_METAL
+	luminosity = 1
+	requires_power = 0
+
+/area/vehicle_interior/apc_1
+	name = "APC_1 Interior"
+	icon = 'icons/turf/area_almayer.dmi'
+	icon_state = "apc_1"
+
+/area/vehicle_interior/apc_2
+	name = "APC_2 Interior"
+	icon = 'icons/turf/area_almayer.dmi'
+	icon_state = "apc_2"
+
+/area/vehicle_interior/apc_3
+	name = "APC_3 Interior"
+	icon = 'icons/turf/area_almayer.dmi'
+	icon_state = "apc_3"
+
 //Placeholder.
 /area/almayer/evacuation/pod1
 /area/almayer/evacuation/pod2

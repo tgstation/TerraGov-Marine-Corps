@@ -1819,12 +1819,12 @@ var/list/WALLITEMS = list(
 	usr = temp
 
 /proc/is_the_opposite_dir(hol_dir, hit_dir)
-	if(hol_dir == NORTH && (hit_dir in list(SOUTH, SOUTHEAST, SOUTHWEST)))
+	if(hol_dir == NORTH && (hit_dir in list(SOUTH, SOUTHEAST, SOUTHWEST, EAST, WEST)))
 		return TRUE
-	else if(hol_dir == SOUTH && (hit_dir in list(NORTH, NORTHEAST, NORTHWEST)))
+	else if(hol_dir == SOUTH && (hit_dir in list(NORTH, NORTHEAST, NORTHWEST, EAST, WEST)))
 		return TRUE
-	else if(hol_dir == EAST && (hit_dir in list(WEST, NORTHWEST, SOUTHWEST)))
+	else if(hol_dir == EAST && (hit_dir in list(WEST, NORTHWEST, SOUTHWEST, NORTH, SOUTH)))
 		return TRUE
-	else if(hol_dir == WEST && (hit_dir in list(EAST, NORTHEAST, SOUTHEAST)))
+	else if(hol_dir == WEST && (hit_dir in list(EAST, NORTHEAST, SOUTHEAST, NORTH, SOUTH)))
 		return TRUE
 	return FALSE
