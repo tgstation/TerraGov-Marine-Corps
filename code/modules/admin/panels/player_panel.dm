@@ -395,7 +395,7 @@
 		<a href='?priv_msg=[M.ckey]'>PM</a> -
 		<a href='?src=[ref];subtlemessage=[REF(M)]'>SM</a> -
 		<a href='?_src_=vars;[HrefToken()];vars=[REF(M)]'>VV</a> -
-		<a href='?src=[ref];spanwcookie=[REF(M)]'>SC</a> -
+		<a href='?src=[ref];spawncookie=[REF(M)]'>SC</a> -
 		<a href='?src=[ref];spawnfortunecookie=[REF(M)]'>SFC</a> -
 		<a href='?src=[ref];observejump=[REF(M)]'>JMP</a> -
 		<a href='?src=[ref];observefollow=[REF(M)]'>FLW</a> -
