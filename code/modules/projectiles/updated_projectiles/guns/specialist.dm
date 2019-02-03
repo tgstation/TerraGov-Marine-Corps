@@ -992,6 +992,11 @@
 
 
 /obj/item/weapon/gun/minigun/toggle_burst()
+	var/obj/item/weapon/gun/G = get_active_firearm(usr)
+	if(!G)
+		return
+	else if(G != src) //sanity
+		return ..()
 	to_chat(usr, "<span class='warning'>This weapon can only fire in bursts!</span>")
 
 /obj/item/weapon/gun/minigun/has_ammo_counter()

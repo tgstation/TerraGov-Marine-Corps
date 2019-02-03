@@ -236,7 +236,7 @@ WEAPONS
 	group = "Weapons"
 
 /datum/supply_packs/specminigun
-	name = "MIC-A7 Vindicator Minigun crate (MIC-A7 x1, Minigun Drums 3x)"
+	name = "MIC-A7 Vindicator Minigun crate (MIC-A7 x1)"
 	contains = list(
 					/obj/item/weapon/gun/minigun
 					)
