@@ -90,20 +90,23 @@ proc/spread_germs_to_organ(datum/limb/E, mob/living/carbon/human/user)
 			E.germ_level += user.wear_mask.germ_level * 0.1
 		else
 			E.germ_level += user.wear_mask.germ_level * 0.2
-	else if(prob(60))
+	else 
 		E.germ_level += user.germ_level * 0.33
 
 	//Suits
 	if(user.wear_suit)
 		if(istype(user.wear_suit, /obj/item/clothing/suit/surgical))
 			E.germ_level += user.germ_level * 0.1
-		else if(prob(60))
+		else
 			E.germ_level += user.germ_level * 0.2
+	else 
+		E.germ_level += user.germ_level * 0.33
 
 	if(locate(/obj/structure/bed/roller, E.owner.loc))
-		E.germ_level += 50
-	else if(locate(/obj/structure/table/, E.owner.loc))
 		E.germ_level += 75
+	else if(locate(/obj/structure/table/, E.owner.loc))
+		E.germ_level += 100
+
 
 proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 	if(!istype(M))
