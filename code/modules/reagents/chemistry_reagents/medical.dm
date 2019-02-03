@@ -704,7 +704,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/M, alien)
 /datum/reagent/medicine/hyperzine/on_mob_life(mob/living/M)
 	M.reagent_move_delay_modifier -= min(10, volume * 1.5)
 	duration++ //to track how long hyperzine has been in the system
-	M.nutrition -= 10 * REM //Body burns through energy fast
+	M.nutrition -= 3 * REM * volume //Body burns through energy fast
 	to_chat(world, "DEBUG: Move Delay Mod: [M.reagent_move_delay_modifier] Nutrition: [M.nutrition]")
 	if(prob(1))
 		M.emote(pick("twitch","blink_r","shiver"))
