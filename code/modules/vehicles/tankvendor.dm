@@ -27,10 +27,12 @@
 
 	listed_products = list(
 							list("PRIMARY WEAPON", null, null, null, null),
+							list("M78 Dual Cannon", null, /obj/item/hardpoint/apc/primary/dual_cannon, "primary", "orange"),
 							list("M21 Autocannon", 1, /obj/item/hardpoint/tank/primary/autocannon, "primary", "orange"),
 							list("M5 LTB Cannon", 2, /obj/item/hardpoint/tank/primary/cannon, "primary", "black"),
 							list("M74 LTAA-AP Minigun", 3, /obj/item/hardpoint/tank/primary/minigun, "primary", "black"),
 							list("SECONDARY WEAPON", null, null, null, null),
+							list("M26 Frontal Cannon", null, /obj/item/hardpoint/apc/secondary/front_cannon, "secondary", "orange"),
 							list("M56 \"Cupola\"", 2, /obj/item/hardpoint/tank/secondary/m56cupola, "secondary", "orange"),
 							list("M8-3 TOW Launcher", 2, /obj/item/hardpoint/tank/secondary/towlauncher, "secondary", "black"),
 							list("M7 \"Dragon\" Flamethrower Unit", 2, /obj/item/hardpoint/tank/secondary/flamer, "secondary", "black"),
@@ -46,6 +48,7 @@
 							list("M90 \"Paladin\" Armor", 10, /obj/item/hardpoint/tank/armor/paladin, "armor", "black"),
 							list("M37 \"Snowplow\" Armor", 4, /obj/item/hardpoint/tank/armor/snowplow, "armor", "black"),
 							list("TREADS", null, null, null, null),
+							list("M3 APC Wheels Kit", null, /obj/item/hardpoint/apc/wheels, "treads", "orange"),
 							list("M2 Tank Treads", 1, /obj/item/hardpoint/tank/treads/standard, "treads", "orange"),
 							list("M2-R Tank Treads", 3, /obj/item/hardpoint/tank/treads/heavy, "treads", "black"),
 							)

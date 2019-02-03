@@ -424,7 +424,7 @@
 	large_vehicle = SKILL_LARGE_VEHICLE_TRAINED
 	powerloader = SKILL_POWERLOADER_DABBLING
 	leadership = SKILL_LEAD_TRAINED
-	engineer = SKILL_ENGINEER_METAL
+	engineer = SKILL_ENGINEER_MT
 
 /datum/skills/spatial_agent
 	name = "Spatial Agent"

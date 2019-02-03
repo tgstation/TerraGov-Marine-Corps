@@ -14,7 +14,7 @@
 #define RO_PRICE_VERY_PRICY		100
 #define RO_PRICE_MAX_PRICY		120
 
-var/list/all_supply_groups = list("Operations", "Weapons", "Tank Hardpoint Modules", "Attachments", "Ammo", "Armor", "Clothing", "Medical", "Engineering", "Science", "Supplies")
+var/list/all_supply_groups = list("Operations", "Weapons", "Tank Hardpoint Modules", "APC Hardpoint Modules", "Attachments", "Ammo", "Armor", "Clothing", "Medical", "Engineering", "Science", "Supplies")
 
 /datum/supply_packs
 	var/name = null
@@ -791,6 +791,84 @@ HARDPOINT MODULES (and their ammo)
 	containertype = /obj/structure/closet/crate/ammo
 	containername = "tank ammo crate"
 	group = "Tank Hardpoint Modules"
+
+
+/*******************************************************************************
+APC Hardpoint Modules (and their ammo)
+*******************************************************************************/
+
+/datum/supply_packs/dual_cannon
+	name = "M78 Dual Cannon Assembly (x1)"
+	contains = list(/obj/item/hardpoint/apc/primary/dual_cannon)
+	cost = RO_PRICE_PRETTY_PRICY
+	containertype = /obj/structure/closet/crate/weapon
+	containername = "hardpoint module assembly crate"
+	group = "APC Hardpoint Modules"
+
+/datum/supply_packs/front_cannon
+	name = "M26 Frontal Cannon Assembly (x1)"
+	contains = list(/obj/item/hardpoint/apc/secondary/front_cannon)
+	cost = RO_PRICE_PRETTY_PRICY
+	containertype = /obj/structure/closet/crate/weapon
+	containername = "hardpoint module assembly crate"
+	group = "APC Hardpoint Modules"
+
+/datum/supply_packs/flare_launcher
+	name = "M9 Flare Launcher System Assembly (x1)"
+	contains = list(/obj/item/hardpoint/apc/support/flare_launcher)
+	cost = RO_PRICE_PRETTY_PRICY
+	containertype = /obj/structure/closet/crate/weapon
+	containername = "hardpoint module assembly crate"
+	group = "APC Hardpoint Modules"
+
+/datum/supply_packs/wheels
+	name = "M3 APC Wheels Kit Assembly (x1)"
+	contains = list(/obj/item/hardpoint/apc/wheels)
+	cost = RO_PRICE_PRETTY_PRICY
+	containertype = /obj/structure/closet/crate/weapon
+	containername = "hardpoint module assembly crate"
+	group = "APC Hardpoint Modules"
+
+/datum/supply_packs/dual_cannon_ammo
+	name = "M78 Dual Ñannon Magazines (x6)"
+	contains = list(
+					/obj/item/ammo_magazine/apc/dual_cannon,
+					/obj/item/ammo_magazine/apc/dual_cannon,
+					/obj/item/ammo_magazine/apc/dual_cannon,
+					/obj/item/ammo_magazine/apc/dual_cannon,
+					/obj/item/ammo_magazine/apc/dual_cannon,
+					/obj/item/ammo_magazine/apc/dual_cannon
+					)
+	cost = RO_PRICE_CHEAP
+	containertype = /obj/structure/closet/crate/ammo
+	containername = "apc ammo crate"
+	group = "APC Hardpoint Modules"
+
+/datum/supply_packs/front_cannon_ammo
+	name = "M26 Frontal Cannon Magazines (x3)"
+	contains = list(
+					/obj/item/ammo_magazine/apc/front_cannon,
+					/obj/item/ammo_magazine/apc/front_cannon,
+					/obj/item/ammo_magazine/apc/front_cannon
+					)
+	cost = RO_PRICE_CHEAP
+	containertype = /obj/structure/closet/crate/ammo
+	containername = "apc ammo crate"
+	group = "APC Hardpoint Modules"
+
+/datum/supply_packs/flare_launcher_ammo
+	name = "M9 Flare Launcher System Magazine (x5)"
+	contains = list(
+					/obj/item/ammo_magazine/apc/flare_launcher,
+					/obj/item/ammo_magazine/apc/flare_launcher,
+					/obj/item/ammo_magazine/apc/flare_launcher,
+					/obj/item/ammo_magazine/apc/flare_launcher,
+					/obj/item/ammo_magazine/apc/flare_launcher
+					)
+	cost = RO_PRICE_CHEAP
+	containertype = /obj/structure/closet/crate/ammo
+	containername = "apc ammo crate"
+	group = "APC Hardpoint Modules"
 
 
 /*******************************************************************************
