@@ -60,18 +60,6 @@
 	if(target)
 		user.loc = get_turf(target)
 
-/obj/machinery/gateway/centerstation/attack_ghost(mob/user as mob)
-	if(awaygate)
-		user.loc = awaygate.loc
-	else
-		to_chat(user, "[src] has no destination.")
-
-/obj/machinery/gateway/centeraway/attack_ghost(mob/user as mob)
-	if(stationgate)
-		user.loc = stationgate.loc
-	else
-		to_chat(user, "[src] has no destination.")
-
 /obj/structure/ladder/attack_ghost(mob/user as mob)
 	if(up && down)
 		switch( alert("Go up or down the ladder?", "Ladder", "Up", "Down", "Cancel") )
