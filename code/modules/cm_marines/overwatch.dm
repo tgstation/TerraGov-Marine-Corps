@@ -1065,6 +1065,8 @@
 		command_aura = choice
 	else
 		command_aura = which
+	if(!(command_aura in command_aura_allowed))
+		return
 	command_aura_cooldown = 45 //45 ticks
 	command_aura_tick = 10 //10 ticks
 	var/message = ""
