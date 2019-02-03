@@ -1,10 +1,10 @@
 /obj/machinery/computer/arcade
 	name = "Black Donnovan II: Double Revenge"
-	desc = "Two years after the average high school teenager Josh transformed into the powerful ninja 'Black Donnovan' and defeated the evil forces of Colonel Ranchenko and his UPP experiments to save his captured ninja girlfriend Reino, chaos is unleashed again on the world. Josh's Canadian cousin, transforming into the powerful ninja 'Fury Fuhrer', has created a world in Florida no longer exists. Josh once again transforms into 'Black Donnovan' to fight against Fury Fuhrer's legions of goons and restore the hellscape world to its former glory."
+	desc = "Does not support Pinball."
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "arcade"
 	circuit = "/obj/item/circuitboard/computer/arcade"
-	var/enemy_name = "Fury Fuhrer"
+	var/enemy_name = "Space Villain"
 	var/temp = "Sponsored by Nanotrasen and the TerraGov Marine Corps" //Temporary message, for attack messages, etc
 	var/player_hp = 30 //Player health/attack points
 	var/player_mp = 10

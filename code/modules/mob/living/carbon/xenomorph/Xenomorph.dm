@@ -42,7 +42,7 @@
 
 	set_datum()
 	//WO GAMEMODE
-	if(map_tag == MAP_WHISKEY_OUTPOST)
+	if(GLOB.map_tag == MAP_WHISKEY_OUTPOST)
 		xeno_caste.hardcore = 1 //Prevents healing and queen evolution
 	time_of_birth = world.time
 	add_language("Xenomorph") //xenocommon
@@ -69,6 +69,9 @@
 		generate_name()
 
 	regenerate_icons()
+
+	hud_set_plasma()
+	med_hud_set_health()
 
 	toggle_xeno_mobhud() //This is a verb, but fuck it, it just werks
 

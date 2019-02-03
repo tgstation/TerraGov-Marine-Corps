@@ -339,20 +339,11 @@ sorts them out by their department.
 	if(late_join) //If they late joined, we put them in cryo.
 		M.loc = late_join
 	else
-		var/obj/effect/landmark/L //To iterate.
-		var/obj/effect/landmark/S //Starting mark.
-		for(var/i in GLOB.landmarks_list) // This whole thing is fucking awful
-			if(!i)
-				stack_trace("null landmark in roleauthority landmarks_list iterator.")
-				continue
-			L = i
-			if(L.name == J.title && !locate(/mob/living) in L.loc)
-				S = L
-				break
-		if(!S)
-			S = locate("start*[J.title]") //Converts old spawns into new ones.
-		if(istype(S) && istype(S.loc, /turf))
-			M.loc = S.loc
+		var/turf/T
+		if(GLOB.marine_spawns_by_job[J.type]?.len)
+			T = pick(GLOB.marine_spawns_by_job[J.type])
+		if(isturf(T))
+			M.forceMove(T)
 		else
 			log_game("ERROR: No spawn location found for player [key_name(M)], job [J].")
 			message_admins("ERROR: No spawn location found for player [ADMIN_TPMONTY(M)], job [J].")
