@@ -1138,7 +1138,7 @@
 					message_admins("[ADMIN_TPMONTY(usr)] force-enabled the self-destruct system.")
 
 			if("cancel_dest")
-				if(!EvacuationAuthority.cancel_self_destruct(1))
+				if(!EvacuationAuthority.cancel_self_destruct(TRUE))
 					to_chat(usr, "<span class='warning'>You are unable to cancel the self-destruct right now!</span>")
 				else
 					log_admin("[key_name(usr)] canceled the self-destruct system.")
@@ -1149,10 +1149,11 @@
 				if(confirm != "Yes")
 					return
 
-				if(!EvacuationAuthority.initiate_self_destruct(1))
-					to_chat(usr, "<span class='warning'>You are unable to trigger the self-destruct right now!</span>")
-					return
 				if(alert("Are you sure you want to destroy the Almayer right now?",, "Yes", "No") != "Yes")
+					return
+
+				if(!EvacuationAuthority.initiate_self_destruct(TRUE))
+					to_chat(usr, "<span class='warning'>You are unable to trigger the self-destruct right now!</span>")
 					return
 
 				log_admin("[key_name(usr)] forced the self-destruct system, destroying the [MAIN_SHIP_NAME].")
