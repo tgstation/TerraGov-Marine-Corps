@@ -165,8 +165,9 @@
 	leadership = SKILL_LEAD_MASTER
 	medical = SKILL_MEDICAL_MEDIC
 	surgery = SKILL_SURGERY_AMATEUR
-	police = SKILL_POLICE_FLASH
+	police = SKILL_POLICE_MP
 	powerloader = SKILL_POWERLOADER_TRAINED
+	pistols = SKILL_PISTOLS_TRAINED
 
 /datum/skills/FO
 	name = "Field Officer"
@@ -175,13 +176,12 @@
 	leadership = SKILL_LEAD_MASTER
 	medical = SKILL_MEDICAL_MEDIC
 	surgery = SKILL_SURGERY_AMATEUR
-	police = SKILL_POLICE_FLASH
+	police = SKILL_POLICE_MP
 	powerloader = SKILL_POWERLOADER_TRAINED
 	cqc = SKILL_CQC_TRAINED
-	smartgun = SKILL_SMART_TRAINED
 	melee_weapons = SKILL_MELEE_TRAINED
 	spec_weapons = SKILL_SPEC_TRAINED
-
+	pistols = SKILL_PISTOLS_TRAINED
 
 /datum/skills/SO
 	name = "Staff Officer"
@@ -189,6 +189,7 @@
 	leadership = SKILL_LEAD_EXPERT
 	medical = SKILL_MEDICAL_MEDIC
 	surgery = SKILL_SURGERY_AMATEUR
+	pistols = SKILL_PISTOLS_TRAINED
 
 /datum/skills/pilot
 	name = "Pilot Officer"
