@@ -235,7 +235,7 @@ proc/get_all_job_icons()
 /proc/get_marine_jobs()
 		return list(
 				"Commander",
-				"Executive Officer",
+				"Field Officer",
 				"Staff Officer",
 				"Pilot Officer",
 				"Tank Crewman",
@@ -277,22 +277,27 @@ proc/get_all_job_icons()
 		if("E4") . = size ? "CPL " : "Corporal"
 		if("E5") . = size ? "SGT " : "Sergeant"
 		if("E6") . = size ? "SSGT " : "Staff Sergeant"
-		if("E6E") . = size ? "TSGT " : "Technical Sergeant"
-		if("E7") . = size ? "SFC " : "Sergeant First Class"
+		if("E7") . = size ? "GYSGT " : "Gunnery Sergeant"
 		if("E8") . = size ? "MSGT " : "Master Sergeant"
 		if("E8E") . = size ? "FSGT " : "First Sergeant"
-		if("E9") . = size ? "SGM " : "Sergeant Major"
-		if("E9E") . = size ? "CSGM " : "Command Sergeant Major"
+		if("E9") . = size ? "SGTMAJ " : "Sergeant Major"
+		if("E9E") . = size ? "CSGTMAJ " : "Command Sergeant Major"
 		if("O1") . = size ? "ENS " : "Ensign"
-		if("O2") . = size ? "LT " : "Lieutenant"
-		if("O3") . = size ? "LCDR " : "Lieutenant Commander"
-		if("O4") . = size ? "CDR " : "Commander"
-		if("O5") . = size ? "CPT " : "Captain"
-		if("O6") . = size ? "RADM " : "Rear Admiral"
-		if("O7") . = size ? "ADM " : "Admiral"
-		if("O8") . = size ? "FADM " : "Fleet Admiral"
-		if("O9") . = size ? "SMR " : "Sky Marshal"
+		if("O2") . = size ? "LTJG " : "Lieutenant Junior Grade"
+		if("O3") . = size ? "LT " : "Lieutenant"
+		if("O4") . = size ? "LCDR " : "Lieutenant Commander"
+		if("O5") . = size ? "CDR " : "Commander"
+		if("O6") . = size ? "CPT " : "Captain"
+		if("O7") . = size ? "COMM " : "Commodore"
+		if("O8") . = size ? "RADM " : "Rear Admiral"
+		if("O9") . = size ? "VADM " : "Vice Admiral"
+		if("10") . = size ? "ADM " : "Admiral"
+		if("11") . = size ? "FADM " : "Fleet Admiral"
+		if("PO") . = size ? "PO " : "Petty Officer"
+		if("CPO") . = size ? "CPO " : "Chief Petty Officer"
 		if("WO") . = size ? "WO " : "Warrant Officer"
+		if("CWO") . = size ? "CWO " : "Chief Warrant Officer"
+		if("MAJ") . = size ? "MAJ " : "Major"
 		if("UPP1") . = size ? "UPVT " : "UPP Private"
 		if("UPP2") . = size ? "UPFC " : "UPP Private First Class"
 		if("UPP3") . = size ? "UCPL " : "UPP Corporal"
@@ -318,8 +323,8 @@ proc/get_all_job_icons()
 		if("MRC3") . = size ? "MERC " : "MERC Engineer"
 		else . = paygrade + " " //custom paygrade
 
-#define PAYGRADES_MARINE list("C","E1","E2","E3","E4","E5","E6","E6E","E7","E8","E8E","E9","E9E","O1","O2","O3","O4", "WO")
-#define PAYGRADES_OFFICER list("O1","O2","O3","O4", "WO")
+#define PAYGRADES_MARINE list("C","E1","E2","E3","E4","E5","E6","E7","E8","E8E","E9","E9E","O1","O2","O3","O4","O5","PO","CPO","WO","MAJ")
+#define PAYGRADES_OFFICER list("O1","O2","O3","O4","O5","WO","CWO")
 #define PAYGRADES_ENLISTED list("C","E1","E2","E3","E4","E5","E6","E7","E8","E9")
 
 //Just marines
