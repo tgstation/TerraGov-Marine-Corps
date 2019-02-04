@@ -120,6 +120,15 @@
 /obj/item/reagent_container/spray/cleaner/New()
 	..()
 	reagents.add_reagent("cleaner", src.volume)
+
+
+/obj/item/reagent_container/spray/surgery
+	name = "sterilizing spray"
+	desc = "Infection and necrosis are a thing of the past!"
+	volume = 100
+	list_reagents = list("cleaner" = 50, "sterilizine" = 50)
+
+
 //pepperspray
 /obj/item/reagent_container/spray/pepper
 	name = "pepperspray"
