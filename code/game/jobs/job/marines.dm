@@ -101,7 +101,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 
 /datum/job/marine/smartgunner
 	title = "Squad Smartgunner"
-	comm_title = "Sgnr"
+	comm_title = "SGnr"
 	paygrade = "E4"
 	flag = ROLE_MARINE_SMARTGUN
 	total_positions = 4
