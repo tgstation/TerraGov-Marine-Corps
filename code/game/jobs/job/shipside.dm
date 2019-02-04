@@ -14,7 +14,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 /datum/job/command/commander
 	title = "Commander"
 	comm_title = "CO"
-	paygrade = "O4"
+	paygrade = "O5"
 	flag = ROLE_COMMANDING_OFFICER
 	supervisors = "TGMC high command"
 	selection_color = "#ccccff"
@@ -65,20 +65,20 @@ Come hell or high water, you are going to be there for them."}
 
 
 //Executive Officer
-/datum/job/command/executive
-	title = "Executive Officer"
-	comm_title = "XO"
-	paygrade = "O3"
-	flag = ROLE_EXECUTIVE_OFFICER
+/datum/job/command/fieldofficer
+	title = "Field Officer"
+	comm_title = "FO"
+	paygrade = "MAJ"
+	flag = ROLE_FIELD_OFFICER
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADD_TO_MODE|ROLE_ADMIN_NOTIFY
-	skills_type = /datum/skills/XO
+	skills_type = /datum/skills/FO
 	access = ALL_MARINE_ACCESS
 	minimal_access = ALL_MARINE_ACCESS
 	equipment = TRUE
 
 /datum/job/command/executive/generate_equipment(mob/living/carbon/human/H)
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/mcom(H), SLOT_EARS)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/exec(H), SLOT_W_UNIFORM)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/field(H), SLOT_W_UNIFORM)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/cmcap(H), SLOT_HEAD)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), SLOT_SHOES)
 	H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), SLOT_BACK)
@@ -87,8 +87,9 @@ Come hell or high water, you are going to be there for them."}
 	H.equip_to_slot_or_del(new /obj/item/device/binoculars(H), SLOT_L_HAND)
 
 /datum/job/command/executive/generate_entry_message(mob/living/carbon/human/H)
-		. = {"You are second in command aboard the ship, and are in next in the chain of command after the commander.
-You may need to fill in for other duties if areas are understaffed, and you are given access to do so.
+		. = {"You are charged with overseeing the operation on the ground, and are in next in the chain of command after the commander.
+Your duties are to ensure marines hold when ordered, and push when they are cowering behind barricades. 
+Do not ask your men to do anything you would not do side by side with them.
 Make the TGMC proud!"}
 
 
