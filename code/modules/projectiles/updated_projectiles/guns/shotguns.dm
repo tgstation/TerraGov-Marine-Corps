@@ -530,7 +530,7 @@ can cause issues with ammo types getting mixed up during the burst.
 //A hacky bolt action rifle. in here for the "pump" or bolt working action.
 
 /obj/item/weapon/gun/shotgun/pump/bolt
-	name = "\improper Bolt action rifle"
+	name = "\improper bolt action rifle"
 	desc = "A hunting rifle just like pappy used to own."
 	icon_state = "mosin"
 	item_state = "mosin"
@@ -566,3 +566,55 @@ can cause issues with ammo types getting mixed up during the burst.
 	recoil = CONFIG_GET(number/combat_define/low_recoil_value)
 	recoil_unwielded = CONFIG_GET(number/combat_define/high_recoil_value)
 	pump_delay = CONFIG_GET(number/combat_define/mhigh_fire_delay) * 2
+
+/obj/item/weapon/gun/shotgun/pump/bolt/unique_action(mob/user)
+	work_the_bolt()
+
+
+/obj/item/weapon/gun/shotgun/pump/proc/work_the_bolt(mob/user)	//We can't fire bursts with pumps.
+	if(world.time < (recent_pump + pump_delay) ) //Don't spam it.
+		return
+	if(pump_lock)
+		if(world.time > recent_notice + CONFIG_GET(number/combat_define/max_fire_delay))
+			playsound(user,'sound/weapons/throwtap.ogg', 25, 1)
+			to_chat(user,"<span class='warning'><b>[src] has already been pumped, locking the pump mechanism; fire or unload a shell to unlock it.</b></span>")
+			recent_notice = world.time
+		return
+
+	if(in_chamber) //eject the chambered round
+		in_chamber = null
+		var/obj/item/ammo_magazine/handful/new_handful = retrieve_shell(ammo.type)
+		new_handful.forceMove(get_turf(src))
+
+	ready_shotgun_tube()
+
+
+	if(current_mag.used_casings)
+		current_mag.used_casings--
+		make_casing(type_of_casings)
+
+	to_chat(user, "<span class='notice'><b>You pump [src].</b></span>")
+	playsound(user, pump_sound, 25, 1)
+	recent_pump = world.time
+	if(in_chamber) //Lock only if we have ammo loaded.
+		pump_lock = TRUE
+
+
+/obj/item/weapon/gun/shotgun/pump/reload_into_chamber(mob/user)
+	if(active_attachable)
+		make_casing(active_attachable.type_of_casings)
+	else
+		pump_lock = FALSE //fired successfully; unlock the pump
+		current_mag.used_casings++ //The shell was fired successfully. Add it to used.
+		in_chamber = null
+		//Time to move the tube position.
+		if(!current_mag.current_rounds && !in_chamber)
+			update_icon()//No rounds, nothing chambered.
+
+	return TRUE
+
+/obj/item/weapon/gun/shotgun/pump/unload(mob/user)
+	if(pump_lock)
+		to_chat(user, "<span class='notice'><b>You disengage [src]'s pump lock with the slide release.</b></span>")
+		pump_lock = FALSE //we're operating the slide release to unload, thus unlocking the pump
+	return ..()
