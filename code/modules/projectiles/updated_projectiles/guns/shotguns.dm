@@ -533,7 +533,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	name = "\improper bolt action rifle"
 	desc = "A hunting rifle just like pappy used to own."
 	icon_state = "mosin"
-	item_state = "mosin"
+	item_state = "mosin" //thank you Alterist
 	fire_sound = 'sound/weapons/gun_sniper.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump/bolt
 	gun_skill_category = GUN_SKILL_RIFLES
@@ -556,7 +556,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	S.Attach(src)
 	update_attachables()
 
-/obj/item/weapon/gun/shotgun/pump/cmb/set_gun_config_values()
+/obj/item/weapon/gun/shotgun/pump/bolt/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/med_fire_delay) * 6
 	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/hmed_hit_accuracy_mult)
 	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/hmed_hit_accuracy_mult)
