@@ -119,8 +119,8 @@
 	..()
 
 /obj/item/clothing/under/marine/officer/exec
-	name = "executive officer uniform"
-	desc = "A special-issue, kevlar-weaved, hazmat-tested, EMF-augmented worn by a first-liutenant executive-officer of the T-G-M-C. You suspect it's not as robust-proof as advertised."
+	name = "field officer uniform"
+	desc = "A special-issue, kevlar-weaved, hazmat-tested, EMF-augmented uniform worn by field-grade marine officers of the T-G-M-C. You suspect it's not as robust-proof as advertised."
 	icon_state = "XO_jumpsuit"
 
 /obj/item/clothing/under/marine/officer/exec/New()
