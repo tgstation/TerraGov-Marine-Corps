@@ -177,7 +177,7 @@
 		qdel(src)
 
 /obj/structure/closet/attack_alien(mob/living/carbon/Xenomorph/M)
-	if(M.a_intent == "hurt" && !unacidable)
+	if(M.a_intent == INTENT_HARM && !unacidable)
 		M.animation_attack_on(src)
 		if(!opened && prob(70))
 			break_open()

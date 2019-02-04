@@ -1698,7 +1698,7 @@
 	var/toss_distance = rand(3,5)
 	var/turf/T = loc
 	var/turf/temp = loc
-	if(a_intent == "hurt") //If we use the ability on hurt intent, we throw them in front; otherwise we throw them behind.
+	if(a_intent == INTENT_HARM) //If we use the ability on hurt intent, we throw them in front; otherwise we throw them behind.
 		for (var/x = 0, x < toss_distance, x++)
 			temp = get_step(T, facing)
 			if (!temp)
@@ -1900,7 +1900,7 @@
 			continue
 		if(H.stat != DEAD && !(istype(H.buckled, /obj/structure/bed/nest) && H.status_flags & XENO_HOST) ) //No bully
 			var/extra_dam = rand(xeno_caste.melee_damage_lower, xeno_caste.melee_damage_upper) * (1 + round(rage * 0.01) ) //+1% bonus damage per point of Rage.relative to base melee damage.
-			H.attack_alien(src,  extra_dam, FALSE, TRUE, FALSE, TRUE, "hurt")
+			H.attack_alien(src,  extra_dam, FALSE, TRUE, FALSE, TRUE, INTENT_HARM)
 			victims++
 			round_statistics.ravager_ravage_victims++
 		step_away(H, src, sweep_range, 2)

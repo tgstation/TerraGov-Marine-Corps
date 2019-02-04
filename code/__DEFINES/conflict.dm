@@ -4,6 +4,12 @@
 #define GRAB_NECK		2
 #define GRAB_KILL		3
 
+//intent defines
+#define INTENT_HELP   "help"
+#define INTENT_GRAB   "grab"
+#define INTENT_DISARM "disarm"
+#define INTENT_HARM "harm"
+
 //Ammo defines for gun/projectile related things.
 #define AMMO_EXPLOSIVE 			1
 #define AMMO_XENO_ACID 			2

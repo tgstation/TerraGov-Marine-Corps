@@ -14,7 +14,7 @@
 
 //Xenos digging up snow
 /turf/open/snow/attack_alien(mob/living/carbon/Xenomorph/M)
-	if(M.a_intent == "grab")
+	if(M.a_intent == INTENT_GRAB)
 
 		if(!slayer)
 			to_chat(M, "<span class='warning'>There is nothing to clear out!</span>")

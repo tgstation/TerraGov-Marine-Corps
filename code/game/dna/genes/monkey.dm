@@ -77,7 +77,7 @@
 	O.adjustToxLoss(M.getToxLoss() + 20)
 	O.adjustOxyLoss(M.getOxyLoss())
 	O.stat = M.stat
-	O.a_intent = "hurt"
+	O.a_intent = INTENT_HARM
 	for (var/obj/item/implant/I in implants)
 		I.loc = O
 		I.implanted = O

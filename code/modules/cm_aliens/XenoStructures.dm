@@ -220,7 +220,7 @@
 	hugger = null
 
 /obj/effect/alien/resin/trap/attack_alien(mob/living/carbon/Xenomorph/M)
-	if(M.a_intent != "hurt")
+	if(M.a_intent != INTENT_HARM)
 		if(M.xeno_caste.caste_flags & CASTE_CAN_HOLD_FACEHUGGERS)
 			if(!hugger)
 				to_chat(M, "<span class='warning'>[src] is empty.</span>")
@@ -278,7 +278,7 @@
 	..()
 
 /obj/structure/mineral_door/resin/attack_paw(mob/user as mob)
-	if(user.a_intent == "hurt")
+	if(user.a_intent == INTENT_HARM)
 		user.visible_message("<span class='xenowarning'>\The [user] claws at \the [src].</span>", \
 		"<span class='xenowarning'>You claw at \the [src].</span>")
 		playsound(loc, "alien_resin_break", 25)
@@ -303,7 +303,7 @@
 	var/turf/cur_loc = M.loc
 	if(!istype(cur_loc))
 		return FALSE //Some basic logic here
-	if(M.a_intent != "hurt")
+	if(M.a_intent != INTENT_HARM)
 		TryToSwitchState(M)
 		return TRUE
 
