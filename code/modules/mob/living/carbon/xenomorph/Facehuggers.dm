@@ -157,8 +157,9 @@
 		addtimer(CALLBACK(src, .proc/GoActive), rand(MIN_ACTIVE_TIME,MAX_ACTIVE_TIME))
 
 /obj/item/clothing/mask/facehugger/proc/GoActive(unhybernate = FALSE)
-	if(stat == UNCONSCIOUS && (!stasis || unhybernate))
+	if(unhybernate)
 		stasis = FALSE
+	if(stat == UNCONSCIOUS && !stasis)
 		update_stat(CONSCIOUS)
 		return TRUE
 	return FALSE
@@ -265,9 +266,9 @@
 
 /obj/item/clothing/mask/facehugger/proc/fast_facehug(mob/living/M)
 	if(!QDELETED(M) && Adjacent(M) && M.can_be_facehugged(src) && isturf(M.loc))
-		Attach(M)
-	else
-		fast_activate()
+		if(Attach(M))
+			return
+	fast_activate()
 
 /obj/item/clothing/mask/facehugger/proc/fast_activate(unhybernate = FALSE)
 	if(GoActive(unhybernate))
@@ -353,7 +354,7 @@
 		if(!H.has_limb(HEAD))
 			visible_message("<span class='warning'>[src] looks for a face to hug on [H], but finds none!</span>")
 			GoIdle()
-			return
+			return FALSE
 
 		if(isyautja(H) && !self_done)
 			var/catch_chance = 50
@@ -371,7 +372,7 @@
 				H.visible_message("<span class='notice'>[H] snatches [src] out of the air and squashes it!")
 				Die()
 				loc = H.loc
-				return
+				return FALSE
 
 		if(H.head)
 			var/obj/item/clothing/head/D = H.head
@@ -395,7 +396,7 @@
 			if(istype(W, /obj/item/clothing/mask/facehugger))
 				var/obj/item/clothing/mask/facehugger/hugger = W
 				if(hugger.stat != DEAD)
-					return
+					return FALSE
 
 			if(W.anti_hug > 0 || W.flags_item & NODROP)
 				if(!blocked)
