@@ -82,7 +82,7 @@ Come hell or high water, you are going to be there for them."}
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/cmcap(H), SLOT_HEAD)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), SLOT_SHOES)
 	H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), SLOT_BACK)
-	H.equip_to_slot_or_del(new /obj/item/storage/belt/gun/m4a3/vp78(H), SLOT_BELT)
+	H.equip_to_slot_or_del(new /obj/item/storage/belt/gun/m4a3/m1911(H), SLOT_BELT)
 	H.equip_to_slot_or_del(new /obj/item/storage/pouch/general/large(H), SLOT_R_STORE)
 	H.equip_to_slot_or_del(new /obj/item/device/binoculars/tactical(H), SLOT_L_HAND)
 	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/drinks/flask/marine(H), SLOT_R_HAND)
