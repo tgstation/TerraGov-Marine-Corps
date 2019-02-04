@@ -298,20 +298,20 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 	if(istext(argument))
 		switch(argument)
 			if(INTENT_HELP)
-				return 0
+				return INTENT_NUMBER_HELP
 			if(INTENT_DISARM)
-				return 1
+				return INTENT_NUMBER_DISARM
 			if(INTENT_GRAB)
-				return 2
+				return INTENT_NUMBER_GRAB
 			else
-				return 3
+				return INTENT_NUMBER_HARM
 	else
 		switch(argument)
-			if(0)
+			if(INTENT_NUMBER_HELP)
 				return INTENT_HELP
-			if(1)
+			if(INTENT_NUMBER_DISARM)
 				return INTENT_DISARM
-			if(2)
+			if(INTENT_NUMBER_GRAB)
 				return INTENT_GRAB
 			else
 				return INTENT_HARM
@@ -327,15 +327,15 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 				a_intent = INTENT_HELP
 			if(INTENT_HARM)
 				a_intent = INTENT_HARM
-			if("right","left")
+			if(INTENT_HOTKEY_RIGHT,INTENT_HOTKEY_LEFT)
 				a_intent = intent_numeric(intent_numeric(a_intent) - 3)
 	else
 		switch(input)
 			if(INTENT_HELP,INTENT_DISARM,INTENT_GRAB,INTENT_HARM)
 				a_intent = input
-			if("right")
+			if(INTENT_HOTKEY_RIGHT)
 				a_intent = intent_numeric((intent_numeric(a_intent)+1) % 4)
-			if("left")
+			if(INTENT_HOTKEY_LEFT)
 				a_intent = intent_numeric((intent_numeric(a_intent)+3) % 4)
 
 

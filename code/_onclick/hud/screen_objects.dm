@@ -404,7 +404,7 @@
 	screen_loc = ui_acti
 
 /obj/screen/act_intent/clicked(var/mob/user)
-	user.a_intent_change("right")
+	user.a_intent_change(INTENT_HOTKEY_RIGHT)
 	return TRUE
 
 /obj/screen/act_intent/corner/clicked(var/mob/user, var/list/mods)

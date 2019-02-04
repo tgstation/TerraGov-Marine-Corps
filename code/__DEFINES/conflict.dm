@@ -9,6 +9,15 @@
 #define INTENT_GRAB   "grab"
 #define INTENT_DISARM "disarm"
 #define INTENT_HARM "harm"
+//NOTE: INTENT_HOTKEY_* defines are not actual intents!
+//they are here to support hotkeys
+#define INTENT_HOTKEY_LEFT  "left"
+#define INTENT_HOTKEY_RIGHT "right"
+//intent magic numbers associations.
+#define INTENT_NUMBER_HELP		0
+#define INTENT_NUMBER_DISARM	1
+#define INTENT_NUMBER_GRAB		2
+#define INTENT_NUMBER_HARM		3
 
 //Ammo defines for gun/projectile related things.
 #define AMMO_EXPLOSIVE 			1
