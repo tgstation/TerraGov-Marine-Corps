@@ -256,8 +256,6 @@
 
 
 /datum/controller/configuration/proc/loadmaplist(filename)
-	return
-	/*
 	log_config("Loading config file [filename]...")
 	filename = "[directory]/[filename]"
 	var/list/Lines = world.file2list(filename)
@@ -291,7 +289,7 @@
 
 		switch (command)
 			if ("map")
-				currentmap = load_map_config("_maps/[data].json")
+				currentmap = load_map_config("maps/[data].json")
 				if(currentmap.defaulted)
 					log_config("Failed to load map config for [data]!")
 					currentmap = null
@@ -311,8 +309,6 @@
 				currentmap = null
 			else
 				log_config("Unknown command in map vote config: '[command]'")
-	*/
-
 
 /datum/controller/configuration/proc/pick_mode(mode_name)
 	// I wish I didn't have to instance the game modes in order to look up

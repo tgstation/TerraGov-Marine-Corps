@@ -166,7 +166,7 @@ SUBSYSTEM_DEF(mapping)
 	// load the station
 	station_start = world.maxz + 1
 	INIT_ANNOUNCE("Loading [config.map_name]...")
-	LoadGroup(FailedZs, "Station", "", "Z.01.LV624.dmm", config.traits, ZTRAITS_STATION)
+	LoadGroup(FailedZs, "Station", "", config.map_file, config.traits, ZTRAITS_STATION)
 
 //	if(SSdbcore.Connect())
 //		var/datum/DBQuery/query_round_map_name = SSdbcore.NewQuery("UPDATE [format_table_name("round")] SET map_name = '[config.map_name]' WHERE id = [GLOB.round_id]")
@@ -268,7 +268,7 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 	next_map_config = VM
 	return TRUE
 
-/datum/controller/subsystem/mapping/proc/preloadTemplates(path = "_maps/templates/") //see master controller setup
+/datum/controller/subsystem/mapping/proc/preloadTemplates(path = "maps/templates/") //see master controller setup
 	var/list/filelist = flist(path)
 	for(var/map in filelist)
 		var/datum/map_template/T = new(path = "[path][map]", rename = "[map]")

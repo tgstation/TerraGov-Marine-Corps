@@ -357,7 +357,9 @@ GLOBAL_LIST_INIT(admin_verbs_server, world.AVserver())
 	/datum/admins/proc/toggle_gun_restrictions,
 	/datum/admins/proc/toggle_synthetic_restrictions,
 	/datum/admins/proc/reload_admins,
-	/datum/admins/proc/reload_whitelist
+	/datum/admins/proc/reload_whitelist,
+	/client/proc/forcerandomrotate,
+	/client/proc/adminchangemap,
 	)
 
 GLOBAL_PROTECT(admin_verbs_debug)
