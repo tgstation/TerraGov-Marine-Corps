@@ -11,7 +11,7 @@
 /obj/effect/landmark/start/marine/commander
 	job = /datum/job/command/commander
 
-/obj/effect/landmark/start/marine/fieldofficer
+/obj/effect/landmark/start/marine/executiveofficer
 	job = /datum/job/command/fieldofficer
 	
 /obj/effect/landmark/start/marine/staffofficer
