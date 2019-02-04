@@ -44,7 +44,7 @@
 		return
 
 	if(!ishuman(user)) //only humans can reinforce a grab.
-		if (isXeno(user))
+		if (isxeno(user))
 			var/mob/living/carbon/Xenomorph/X = user
 			X.pull_power(grabbed_thing)
 		return
@@ -71,12 +71,12 @@
 		victim.update_canmove()
 
 /obj/item/grab/attack(mob/living/M, mob/living/user, def_zone)
-	if(M == user && user.pulling && isXeno(user))
+	if(M == user && user.pulling && isxeno(user))
 		var/mob/living/carbon/Xenomorph/X = user
 		var/mob/living/carbon/pulled = X.pulling
 		if(!istype(pulled))
 			return
-		if(isXeno(pulled) || isSynth(pulled))
+		if(isxeno(pulled) || issynth(pulled))
 			to_chat(X, "<span class='warning'>That wouldn't taste very good.</span>")
 			return 0
 		if(pulled.buckled)

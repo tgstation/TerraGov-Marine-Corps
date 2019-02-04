@@ -68,25 +68,22 @@
 
 //flags_inventory
 
-//Another flag for clothing items that determines a few other things now
-#define CANTSTRIP		1		// Can't be removed by others. No longer used by donor items, now only for facehuggers
-
 //SHOES ONLY===========================================================================================
-#define NOSLIPPING		2	//prevents from slipping on wet floors, in space etc
+#define NOSLIPPING		(1<<0) 	//prevents from slipping on wet floors, in space etc
 //SHOES ONLY===========================================================================================
 
 //HELMET AND MASK======================================================================================
-#define COVEREYES		4 // Covers the eyes/protects them.
-#define COVERMOUTH		8 // Covers the mouth.
-#define ALLOWINTERNALS	16	//mask allows internals
-#define ALLOWREBREATH	32 //Mask allows to breath in really hot or really cold air.
-#define BLOCKGASEFFECT	64 // blocks the effect that chemical clouds would have on a mob --glasses, mask and helmets
+#define COVEREYES		(1<<1) // Covers the eyes/protects them.
+#define COVERMOUTH		(1<<2) // Covers the mouth.
+#define ALLOWINTERNALS	(1<<3)	//mask allows internals
+#define ALLOWREBREATH	(1<<4) //Mask allows to breath in really hot or really cold air.
+#define BLOCKGASEFFECT	(1<<5) // blocks the effect that chemical clouds would have on a mob --glasses, mask and helmets
 //HELMET AND MASK======================================================================================
 
 //SUITS AND HELMETS====================================================================================
 //To successfully stop taking all pressure damage you must have both a suit and head item with this flag.
-#define BLOCKSHARPOBJ 	128  //From /tg: prevents syringes, parapens and hypos if the external suit or helmet (if targeting head) has this flag. Example: space suits, biosuit, bombsuits, thick suits that cover your body.
-#define NOPRESSUREDMAGE 256 //This flag is used on the flags variable for SUIT and HEAD items which stop pressure damage.
+#define BLOCKSHARPOBJ 	(1<<6)  //From /tg: prevents syringes, parapens and hypos if the external suit or helmet (if targeting head) has this flag. Example: space suits, biosuit, bombsuits, thick suits that cover your body.
+#define NOPRESSUREDMAGE (1<<7) //This flag is used on the flags variable for SUIT and HEAD items which stop pressure damage.
 //SUITS AND HELMETS====================================================================================
 
 

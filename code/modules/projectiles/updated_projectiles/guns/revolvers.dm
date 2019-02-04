@@ -46,7 +46,7 @@
 	icon_state = current_mag.chamber_closed ? copytext(icon_state,1,-2) : icon_state + "_o"
 
 /obj/item/weapon/gun/revolver/attackby(obj/item/P as obj, mob/user as mob)
-	if(istype(P, /obj/item/tool/screwdriver))
+	if(isscrewdriver(P))
 		to_chat(user, "[catchworking? "You adjust the cylinder lock to allow the cylinder to be spun.": "You adjust the cylinder lock to the correct depth."]")
 		catchworking = !catchworking
 	return ..()

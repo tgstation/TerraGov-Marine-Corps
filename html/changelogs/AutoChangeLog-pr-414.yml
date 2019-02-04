@@ -1,0 +1,4 @@
+author: "Ghommie"
+delete-after: True
+changes: 
+  - bugfix: "fixes aliens occasionally remaining stuck in permacrit when on a different z level than the queen's"

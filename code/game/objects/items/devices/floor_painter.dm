@@ -18,7 +18,7 @@
 	if(!proximity)
 		return
 
-	if(istype(A, /turf/open/floor))
+	if(isfloorturf(A))
 		var/turf/open/floor/F = A
 
 		if(F.is_plasteel_floor()) // only tiled floors

@@ -401,7 +401,7 @@ var/list/advance_cures = 	list(
 		for(var/datum/disease/advance/AD in active_diseases)
 			AD.Refresh()
 
-		for(var/mob/living/carbon/human/H in shuffle(GLOB.alive_mob_list))
+		for(var/mob/living/carbon/human/H in shuffle(GLOB.alive_human_list))
 			if(H.z != 1)
 				continue
 			if(!H.has_disease(D))

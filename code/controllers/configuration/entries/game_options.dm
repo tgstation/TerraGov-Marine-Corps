@@ -142,6 +142,8 @@
 
 /datum/config_entry/flag/allow_ai
 
+/datum/config_entry/flag/fun_allowed //at the moment, when set equal to 1, allows players to *dab (and get limbs automatically blown off).
+
 /datum/config_entry/number/xeno_coefficient
 	integer = FALSE
 	config_entry_value = 1

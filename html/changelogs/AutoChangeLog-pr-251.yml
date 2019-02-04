@@ -1,6 +1,0 @@
-author: "Ghommie"
-delete-after: True
-changes: 
-  - rscadd: "Added a prescription version of the big shades and un-prescriptioned sunglasses to the loadout selection."
-  - tweak: "Authentic (non-loadout ones) sunglasses now offer flash protection yet again."
-  - bugfix: "Fixed a couple duplicate items/loadouts in the code."

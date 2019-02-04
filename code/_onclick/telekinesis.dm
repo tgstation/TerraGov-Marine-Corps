@@ -198,7 +198,7 @@ var/const/tk_maxrange = 15
 
 //equip_to_slot_or_del(obj/item/W, slot, del_on_fail = 1)
 /*
-		if(istype(user, /mob/living/carbon))
+		if(iscarbon(user))
 			if(user:mutations & TK && get_dist(source, user) <= 7)
 				if(user:get_active_held_item())	return 0
 				var/X = source:x

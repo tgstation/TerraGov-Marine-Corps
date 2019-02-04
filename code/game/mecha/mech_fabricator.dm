@@ -183,11 +183,11 @@
 		time_coeff = diff
 
 /obj/machinery/mecha_part_fabricator/proc/operation_allowed(mob/M)
-	if(isrobot(M) || isAI(M))
+	if(iscyborg(M) || isAI(M))
 		return 1
 	if(!istype(req_access) || !req_access.len)
 		return 1
-	else if(istype(M, /mob/living/carbon/human))
+	else if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		for(var/ID in list(H.get_active_held_item(), H.wear_id, H.belt))
 			if(src.check_access(ID))
@@ -201,19 +201,19 @@
 	switch(emagged)
 		if(0)
 			emagged = 0.5
-			src.visible_message("\icon[src] <b>[src]</b> beeps: \"DB error \[Code 0x00F1\]\"")
+			src.visible_message("[bicon(src)] <b>[src]</b> beeps: \"DB error \[Code 0x00F1\]\"")
 			sleep(10)
-			src.visible_message("\icon[src] <b>[src]</b> beeps: \"Attempting auto-repair\"")
+			src.visible_message("[bicon(src)] <b>[src]</b> beeps: \"Attempting auto-repair\"")
 			sleep(15)
-			src.visible_message("\icon[src] <b>[src]</b> beeps: \"User DB corrupted \[Code 0x00FA\]. Truncating data structure...\"")
+			src.visible_message("[bicon(src)] <b>[src]</b> beeps: \"User DB corrupted \[Code 0x00FA\]. Truncating data structure...\"")
 			sleep(30)
-			src.visible_message("\icon[src] <b>[src]</b> beeps: \"User DB truncated. Please contact your WY system operator for future assistance.\"")
+			src.visible_message("[bicon(src)] <b>[src]</b> beeps: \"User DB truncated. Please contact your WY system operator for future assistance.\"")
 			req_access = null
 			emagged = 1
 		if(0.5)
-			src.visible_message("\icon[src] <b>[src]</b> beeps: \"DB not responding \[Code 0x0003\]...\"")
+			src.visible_message("[bicon(src)] <b>[src]</b> beeps: \"DB not responding \[Code 0x0003\]...\"")
 		if(1)
-			src.visible_message("\icon[src] <b>[src]</b> beeps: \"No records in User DB\"")
+			src.visible_message("[bicon(src)] <b>[src]</b> beeps: \"No records in User DB\"")
 	return
 
 /obj/machinery/mecha_part_fabricator/proc/convert_part_set(set_name as text)
@@ -361,7 +361,7 @@
 	src.desc = initial(src.desc)
 	if(being_built)
 		src.being_built.Move(get_step(src,output_dir))
-		src.visible_message("\icon[src] <b>[src]</b> beeps, \"The following has been completed: [src.being_built] is built\".")
+		src.visible_message("[bicon(src)] <b>[src]</b> beeps, \"The following has been completed: [src.being_built] is built\".")
 		src.being_built = null
 	src.updateUsrDialog()
 	return 1
@@ -407,14 +407,14 @@
 		if(stat&(NOPOWER|BROKEN))
 			return 0
 		if(!check_resources(part))
-			src.visible_message("\icon[src] <b>[src]</b> beeps, \"Not enough resources. Queue processing stopped\".")
+			src.visible_message("[bicon(src)] <b>[src]</b> beeps, \"Not enough resources. Queue processing stopped\".")
 			temp = {"<font color='red'>Not enough resources to build next part.</font><br>
 						<a href='?src=\ref[src];process_queue=1'>Try again</a>|<a href='?src=\ref[src];clear_temp=1'>Return</a><a>"}
 			return 0
 		remove_from_queue(1)
 		build_part(part)
 		part = listgetindex(src.queue, 1)
-	src.visible_message("\icon[src] <b>[src]</b> beeps, \"Queue processing finished successfully\".")
+	src.visible_message("[bicon(src)] <b>[src]</b> beeps, \"Queue processing finished successfully\".")
 	return 1
 
 /obj/machinery/mecha_part_fabricator/proc/list_queue()
@@ -507,12 +507,12 @@
 			temp += "<a href='?src=\ref[src];clear_temp=1'>Return</a>"
 			src.updateUsrDialog()
 		if(i || tech_output)
-			src.visible_message("\icon[src] <b>[src]</b> beeps, \"Successfully synchronized with R&D server. New data processed.\"")
+			src.visible_message("[bicon(src)] <b>[src]</b> beeps, \"Successfully synchronized with R&D server. New data processed.\"")
 	if(found == 0)
 		temp = "Couldn't contact R&D server.<br>"
 		temp += "<a href='?src=\ref[src];clear_temp=1'>Return</a>"
 		src.updateUsrDialog()
-		src.visible_message("\icon[src] <b>[src]</b> beeps, \"Error! Couldn't connect to R&D server.\"")
+		src.visible_message("[bicon(src)] <b>[src]</b> beeps, \"Error! Couldn't connect to R&D server.\"")
 	return
 
 /obj/machinery/mecha_part_fabricator/proc/get_resource_cost_w_coeff(var/obj/item/part as obj,var/resource as text, var/roundto=1)
@@ -539,7 +539,7 @@
 	user.set_interaction(src)
 	var/turf/exit = get_step(src,SOUTH)
 	if(exit.density)
-		src.visible_message("\icon[src] <b>[src]</b> beeps, \"Error! Part outlet is obstructed\".")
+		src.visible_message("[bicon(src)] <b>[src]</b> beeps, \"Error! Part outlet is obstructed\".")
 		return
 	if(temp)
 		left_part = temp
@@ -740,7 +740,7 @@
 			to_chat(user, "You close the maintenance hatch of [src].")
 		return
 	if (opened)
-		if(istype(W, /obj/item/tool/crowbar))
+		if(iscrowbar(W))
 			playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
 			var/obj/machinery/constructable_frame/machine_frame/M = new /obj/machinery/constructable_frame/machine_frame(src.loc)
 			M.state = 2

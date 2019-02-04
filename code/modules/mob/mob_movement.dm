@@ -76,7 +76,7 @@
 
 /client/verb/swap_hand()
 	set hidden = 1
-	if(istype(mob, /mob/living/carbon))
+	if(iscarbon(mob))
 		mob:swap_hand()
 	if(istype(mob,/mob/living/silicon/robot))
 		var/mob/living/silicon/robot/R = mob
@@ -94,7 +94,7 @@
 
 /client/verb/toggle_throw_mode()
 	set hidden = 1
-	if(!istype(mob, /mob/living/carbon))
+	if(!iscarbon(mob))
 		return
 	if (!mob.stat && isturf(mob.loc) && !mob.is_mob_restrained())
 		mob:toggle_throw_mode()
@@ -104,7 +104,7 @@
 
 /client/verb/drop_item()
 	set hidden = 1
-	if(!isrobot(mob))
+	if(!iscyborg(mob))
 		mob.drop_item_v()
 	return
 
@@ -145,7 +145,7 @@
 		return
 
 	// There should be a var/is_zoomed in mob code not this mess
-	if(isXeno(mob))
+	if(isxeno(mob))
 		if(mob:is_zoomed)
 			mob:zoom_out()
 

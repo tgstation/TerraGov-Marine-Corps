@@ -175,10 +175,9 @@
 
 /mob/living/carbon/Xenomorph/Ravager/Stat()
 	. = ..()
-	if(!.)
-		return
 
-	stat(null, "Rage: [rage] / [RAVAGER_MAX_RAGE]")
+	if(statpanel("Stats"))
+		stat(null, "Rage: [rage] / [RAVAGER_MAX_RAGE]")
 
 /mob/living/carbon/Xenomorph/Ravager/proc/charge(atom/T)
 	if(!T) return
@@ -217,7 +216,7 @@
 
 //Chance of insta limb amputation after a melee attack.
 /mob/living/carbon/Xenomorph/Ravager/proc/delimb(var/mob/living/carbon/human/H, var/datum/limb/O)
-	if (prob(isYautja(H)?10:20)) // lets halve this for preds
+	if (prob(isyautja(H)?10:20)) // lets halve this for preds
 		O = H.get_limb(check_zone(zone_selected))
 		if (O.body_part != CHEST && O.body_part != GROIN && O.body_part != HEAD) //Only limbs.
 			visible_message("<span class='danger'>The limb is sliced clean off!</span>","<span class='danger'>You slice off a limb!</span>")
@@ -327,15 +326,30 @@
 		if(M.stat == DEAD)
 			continue
 		fire_mod = 1
-		if(isXeno(M))
+		if(isxeno(M))
 			var/mob/living/carbon/Xenomorph/X = M
 			if(X.xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 				continue
-			fire_mod = X.xeno_caste.fire_resist + X.fire_resist_modifier
+			fire_mod = CLAMP(X.xeno_caste.fire_resist + X.fire_resist_modifier, 0, 1)
 		else if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			if(istype(H.wear_suit, /obj/item/clothing/suit/fire) || istype(H.wear_suit, /obj/item/clothing/suit/space/rig/atmos))
 				continue
 
 		M.adjustFireLoss(rand(20, 50) * fire_mod) //Fwoom!
-		to_chat(M, "[isXeno(M) ? "<span class='xenodanger'>":"<span class='highdanger'>"]Augh! You are roasted by the flames!</Sspan>")
+		to_chat(M, "[isxeno(M) ? "<span class='xenodanger'>":"<span class='highdanger'>"]Augh! You are roasted by the flames!</Sspan>")
+
+/mob/living/carbon/Xenomorph/Ravager/Bump(atom/A)
+	if(!throwing || !usedPounce || !throw_source || !thrower) //Must currently be charging to knock aside and slice marines in it's path
+		return ..() //It's not pouncing; do regular Bump() IE body block but not throw_impact() because ravager isn't being thrown
+	if(!ishuman(A)) //Must also be a human; regular Bump() will default to throw_impact() which means ravager will plow through tables but get stopped by cades and walls
+		return ..()
+	var/mob/living/carbon/human/H = A
+	var/extra_dam = rand(xeno_caste.melee_damage_lower, xeno_caste.melee_damage_upper) * (1 + round(rage * 0.04) ) //+4% bonus damage per point of Rage.relative to base melee damage.
+	H.attack_alien(src,  extra_dam, FALSE, TRUE, FALSE, TRUE, "hurt") //Location is always random, cannot crit, harm only
+	var/target_turf = get_step_away(src, H, rand(1, 3)) //This is where we blast our target
+	target_turf =  get_step_rand(target_turf) //Scatter
+	H.throw_at(get_turf(target_turf), RAV_CHARGEDISTANCE, RAV_CHARGESPEED, H)
+	H.KnockDown(1)
+	rage = 0
+	return

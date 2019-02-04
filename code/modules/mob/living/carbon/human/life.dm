@@ -17,7 +17,7 @@
 	life_tick++
 
 	voice = GetVoice()
-	if(stat == DEAD && species.name == "Zombie" && regenZ)
+	if(stat == DEAD && iszombie(src) && regenZ)
 		handle_organs()
 		return
 	//No need to update all of these procs if the guy is dead.

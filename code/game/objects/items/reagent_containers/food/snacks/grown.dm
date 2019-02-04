@@ -85,7 +85,7 @@
 
 /obj/item/reagent_container/food/snacks/grown/potato/attackby(obj/item/W as obj, mob/user as mob)
 	..()
-	if(istype(W, /obj/item/stack/cable_coil))
+	if(iscablecoil(W))
 		var/obj/item/stack/cable_coil/C = W
 		if(C.use(5))
 			to_chat(user, "<span class='notice'>You add some cable to the potato and slide it inside the battery encasing.</span>")

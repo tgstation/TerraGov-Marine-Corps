@@ -92,37 +92,3 @@
 	dat += "</div> <!-- /width-container -->"
 	dat += "</body>"
 	return dat
-
-
-/datum/admins/proc/view_cl_faxes()
-	set category = "Admin"
-	set name = "View CL Faxes"
-	set desc = "View all faxes from the CL this round"
-
-	var/body = "<html><head><title>Faxes from the CL</title></head>"
-	body += "<body><B>Faxes:</B>"
-	body += "<br><br>"
-
-	for(var/text in CLFaxes)
-		body += text
-		body += "<br><br>"
-
-	body += "<br><br></body></html>"
-	src << browse(body, "window=clfaxviewer;size=300x600")
-
-
-/datum/admins/proc/view_tgmc_faxes()
-	set category = "Admin"
-	set name = "View TGMC Faxes"
-	set desc = "View all faxes to TGMC this round"
-
-	var/body = "<html><head><title>Faxes</title></head>"
-	body += "<body><B>Faxes:</B>"
-	body += "<br><br>"
-
-	for(var/text in TGMCFaxes)
-		body += text
-		body += "<br><br>"
-
-	body += "<br><br></body></html>"
-	src << browse(body, "window=uscmfaxviewer;size=300x600")

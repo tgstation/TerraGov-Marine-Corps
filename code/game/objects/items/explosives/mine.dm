@@ -38,7 +38,7 @@
 
 /obj/item/explosive/mine/pmc
 	name = "\improper M20P Claymore anti-personnel mine"
-	desc = "The M20P Claymore is a directional proximity triggered anti-personnel mine designed by Armat Systems for use by the TerraGov Marine Corps. It has been modified for use by the W-Y PMC forces."
+	desc = "The M20P Claymore is a directional proximity triggered anti-personnel mine designed by Armat Systems for use by the TerraGov Marine Corps. It has been modified for use by the NT PMC forces."
 	icon_state = "m20p"
 	iff_signal = ACCESS_IFF_PMC
 
@@ -77,7 +77,7 @@
 
 //Disarming
 /obj/item/explosive/mine/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/device/multitool))
+	if(ismultitool(W))
 		if(anchored)
 			user.visible_message("<span class='notice'>[user] starts disarming [src].</span>", \
 			"<span class='notice'>You start disarming [src].</span>")
@@ -104,10 +104,10 @@
 /obj/item/explosive/mine/Bumped(mob/living/carbon/human/H)
 	if(!armed || triggered) return
 
-	if((istype(H) && H.get_target_lock(iff_signal)) || isrobot(H)) return
+	if((istype(H) && H.get_target_lock(iff_signal)) || iscyborg(H)) return
 
-	H.visible_message("<span class='danger'>\icon[src] The [name] clicks as [H] moves in front of it.</span>", \
-	"<span class='danger'>\icon[src] The [name] clicks as you move in front of it.</span>", \
+	H.visible_message("<span class='danger'>[bicon(src)] The [name] clicks as [H] moves in front of it.</span>", \
+	"<span class='danger'>[bicon(src)] The [name] clicks as you move in front of it.</span>", \
 	"<span class='danger'>You hear a click.</span>")
 
 	triggered = 1

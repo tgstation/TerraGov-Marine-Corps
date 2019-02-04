@@ -1,5 +1,0 @@
-author: "LaKiller8"
-delete-after: True
-changes: 
-  - tweak: "Bioscan now also shows a xeno location on the ship for the marines."
-  - code_imp: "Made the Bioscan code more readable."

@@ -1,4 +1,0 @@
-author: "Garen"
-delete-after: True
-changes: 
-  - bugfix: "Nanopaste stacks can be merged again after splitting."

@@ -360,7 +360,7 @@
 		if((istype(mob:shoes, /obj/item/clothing/shoes/magboots) && (mob:shoes.flags_inventory & NOSLIPPING)))
 			return
 
-	if(istype(get_turf(mob), /turf/open/space)) // Can't fall onto nothing.
+	if(isspaceturf(get_turf(mob))) // Can't fall onto nothing.
 		return
 
 	if((istype(mob,/mob/living/carbon/human/)) && (mob:m_intent == MOVE_INTENT_RUN)) // Only clumbsy humans can fall on their asses.

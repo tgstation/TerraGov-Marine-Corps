@@ -110,15 +110,15 @@
 	to_chat(world, "<span class='round_header'>The current game mode is - WHISKEY OUTPOST!</span>")
 	to_chat(world, "<span class='round_body'>It is the year 2181 on the planet LV-624, five years before the arrival of the [MAIN_SHIP_NAME] and the 7th 'Falling Falcons' Battalion in the sector</span>")
 	to_chat(world, "<span class='round_body'>The 3rd 'Dust Raiders' Battalion is charged with establishing a TGMC prescence in the Tychon's Rift sector</span>")
-	to_chat(world, "<span class='round_body'>[map_tag], one of the Dust Raider bases being established in the sector, has come under attack from unrecognized alien forces</span>")
-	to_chat(world, "<span class='round_body'>With casualties mounting and supplies running thin, the Dust Raiders at [map_tag] must survive for an hour to alert the rest of their battalion in the sector</span>")
+	to_chat(world, "<span class='round_body'>[GLOB.map_tag], one of the Dust Raider bases being established in the sector, has come under attack from unrecognized alien forces</span>")
+	to_chat(world, "<span class='round_body'>With casualties mounting and supplies running thin, the Dust Raiders at [GLOB.map_tag] must survive for an hour to alert the rest of their battalion in the sector</span>")
 	to_chat(world, "<span class='round_body'>Hold out for as long as you can.</span>")
 	world << sound('sound/effects/siren.ogg')
 
 	sleep(50)
 	switch(map_locale) //Switching it up.
 		if(0)
-			command_announcement.Announce("This is Captain Hans Naiche, commander of the 3rd Battalion 'Dust Raiders' forces here on [map_tag]. In our attempts to establish a base on this planet, several of our patrols were wiped out by hostile creatures.  We're setting up a distress call, but we need you to hold [map_tag] in order for our engineers to set up the relay. We're prepping several M402 mortar units to provide fire support. If they overrun your positon, we will be wiped out with no way to call for help. Hold the line or we all die.", "Captain Naich, 3rd Battalion Command, [map_tag] Garrison")
+			command_announcement.Announce("This is Captain Hans Naiche, commander of the 3rd Battalion 'Dust Raiders' forces here on [GLOB.map_tag]. In our attempts to establish a base on this planet, several of our patrols were wiped out by hostile creatures.  We're setting up a distress call, but we need you to hold [GLOB.map_tag] in order for our engineers to set up the relay. We're prepping several M402 mortar units to provide fire support. If they overrun your positon, we will be wiped out with no way to call for help. Hold the line or we all die.", "Captain Naich, 3rd Battalion Command, [GLOB.map_tag] Garrison")
 
 /datum/game_mode/whiskey_outpost/proc/spawn_player(var/mob/M)
 	set waitfor = 0 //Doing this before hand.
@@ -202,7 +202,7 @@
 				to_chat(H, "Coordinate your team and prepare defenses.")
 				to_chat(H, "Stay alive!")
 				to_chat(H, "Hold the outpost for one hour until the distress beacon can be broadcast to the remaining Dust Raiders!")
-				to_chat(H, "The local population warned you about establishing a base in the jungles of [map_tag]...")
+				to_chat(H, "The local population warned you about establishing a base in the jungles of [GLOB.map_tag]...")
 				to_chat(H, "________________________")
 			sleep(240) //So they can see it
 			if(H)
@@ -635,7 +635,7 @@
 		to_chat(H, "Gear up, prepare defenses, work as a team. Protect your doctors and commander!")
 		to_chat(H, "Motion trackers have detected movement from local creatures, and they are heading towards the outpost!")
 		to_chat(H, "Hold the outpost for one hour until the signal can be established!")
-		to_chat(H, "Ensure the Dust Raiders don't lose their foothold on [map_tag] so you can alert the main forces.")
+		to_chat(H, "Ensure the Dust Raiders don't lose their foothold on [GLOB.map_tag] so you can alert the main forces.")
 		to_chat(H, "________________________")
 
 	return 1
@@ -676,16 +676,16 @@
 
 			switch(xeno_wave)
 				if(1)
-					command_announcement.Announce("We're tracking the creatures that wiped out our patrols heading towards your outpost.. Stand-by while we attempt to establish a signal with the USS Alistoun to alert them of these creatures.", "Captain Naich, 3rd Battalion Command, [map_tag] Garrison")
+					command_announcement.Announce("We're tracking the creatures that wiped out our patrols heading towards your outpost.. Stand-by while we attempt to establish a signal with the USS Alistoun to alert them of these creatures.", "Captain Naich, 3rd Battalion Command, [GLOB.map_tag] Garrison")
 				if(8)
-					command_announcement.Announce("Captain Naiche speaking, we've been unsuccessful in establishing offworld communication for the moment. We're prepping our M402 mortars to destroy the inbound xeno force on the main road. Standby for fire support.", "Captain Naich, 3rd Battalion Command, [map_tag] Garrison")
+					command_announcement.Announce("Captain Naiche speaking, we've been unsuccessful in establishing offworld communication for the moment. We're prepping our M402 mortars to destroy the inbound xeno force on the main road. Standby for fire support.", "Captain Naich, 3rd Battalion Command, [GLOB.map_tag] Garrison")
 				if(9)
 					world << sound('sound/voice/alien_queen_command.ogg')
-					command_announcement.Announce("Our garrison forces are reaching seventy percent casualties, we are losing our grip on [map_tag]. It appears that vanguard of the hostile force is still approaching, and most of the other Dust Raider platoons have been shattered. We're counting on you to keep holding.", "Captain Naich, 3rd Battalion Command, [map_tag] Garrison")
+					command_announcement.Announce("Our garrison forces are reaching seventy percent casualties, we are losing our grip on [GLOB.map_tag]. It appears that vanguard of the hostile force is still approaching, and most of the other Dust Raider platoons have been shattered. We're counting on you to keep holding.", "Captain Naich, 3rd Battalion Command, [GLOB.map_tag] Garrison")
 				if(12)
 					command_announcement.Announce("This is Captain Naiche, we are picking up large signatures inbound, we'll see what we can do to delay them.", "Captain Naich, 3rd Battalion Command, LV-624")
 				if(14)
-					command_announcement.Announce("This is Captain Naiche, we've established our distress beacon for the USS Alistoun and the remaining Dust Raiders. Hold on for a bit longer while we trasmit our coordinates!", "Captain Naich, 3rd Battalion Command, [map_tag] Garrison")
+					command_announcement.Announce("This is Captain Naiche, we've established our distress beacon for the USS Alistoun and the remaining Dust Raiders. Hold on for a bit longer while we trasmit our coordinates!", "Captain Naich, 3rd Battalion Command, [GLOB.map_tag] Garrison")
 
 
 			//SUPPLY SPAWNER
@@ -985,7 +985,7 @@
 /datum/game_mode/whiskey_outpost/proc/count_humans()
 	var/human_count = 0
 
-	for(var/mob/living/carbon/human/H in GLOB.alive_mob_list)
+	for(var/mob/living/carbon/human/H in GLOB.alive_human_list)
 		if(H.client && istype(H) && H.stat == 0 && !istype(get_area(H.loc),/area/centcom) && !istype(get_area(H.loc),/area/tdome))
 			if(H.species != "Yautja") // Preds don't count in round end.
 				human_count += 1 //Add them to the amount of people who're alive.
@@ -994,7 +994,7 @@
 
 /datum/game_mode/whiskey_outpost/proc/count_xenos()//Counts braindead too
 	var/xeno_count = 0
-	for(var/mob/living/carbon/Xenomorph/X in GLOB.alive_mob_list)
+	for(var/mob/living/carbon/Xenomorph/X in GLOB.alive_xeno_list)
 		if(X) //Prevent any runtime errors
 			if(istype(X) && X.stat != DEAD && X.z != 0 && !istype(X.loc,/turf/open/space)) // If they're connected/unghosted and alive and not debrained
 				xeno_count += 1 //Add them to the amount of people who're alive.
@@ -1003,7 +1003,7 @@
 
 /datum/game_mode/whiskey_outpost/proc/CleanXenos()//moves dead xenos to space
 	var/xeno_count = 0
-	for(var/mob/living/carbon/Xenomorph/X in GLOB.dead_mob_list)
+	for(var/mob/living/carbon/Xenomorph/X in GLOB.dead_xeno_list)
 		if(X) //Prevent any runtime errors
 			if(istype(X) && X.stat == DEAD && X.z != 2)
 				X.loc = get_turf(locate(84,237,2)) //z.2
@@ -1272,9 +1272,7 @@
 			return
 		if(user.lying || user.stat)
 			return
-		if(istype(usr, /mob/living/silicon) || \
-			istype(usr, /mob/living/carbon/Xenomorph) || \
-			istype(usr, /mob/living/carbon/monkey))
+		if(!ishuman(usr))
 			to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
 			return
 		if(working)

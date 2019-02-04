@@ -46,7 +46,7 @@
 
 /*
 /obj/machinery/computer/pod/attackby(I as obj, user as mob)
-	if(istype(I, /obj/item/tool/screwdriver))
+	if(isscrewdriver(I))
 		playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
 		if(do_after(user, 20))
 			if(stat & BROKEN)
@@ -159,7 +159,7 @@
 /obj/machinery/computer/pod/Topic(href, href_list)
 	if(..())
 		return
-	if((usr.contents.Find(src) || (in_range(src, usr) && istype(loc, /turf))) || (istype(usr, /mob/living/silicon)))
+	if((usr.contents.Find(src) || (in_range(src, usr) && istype(loc, /turf))) || (issilicon(usr)))
 		usr.set_interaction(src)
 		if(href_list["power"])
 			var/t = text2num(href_list["power"])

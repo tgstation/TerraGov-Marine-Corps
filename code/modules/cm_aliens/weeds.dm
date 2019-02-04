@@ -37,14 +37,14 @@
 /obj/effect/alien/weeds/examine(mob/user)
 	..()
 	var/turf/T = get_turf(src)
-	if(istype(T, /turf/open/floor))
+	if(isfloorturf(T))
 		T.ceiling_desc(user)
 
 
 /obj/effect/alien/weeds/Crossed(atom/movable/AM)
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
-		if(!has_species(H,"Yautja")) //predators are immune to weed slowdown effect
+		if(!isyautjastrict(H)) //predators are immune to weed slowdown effect
 			H.next_move_slowdown += 1
 
 
@@ -68,7 +68,7 @@
 			if (W)
 				continue
 
-			if(istype(T, /turf/closed/wall))
+			if(iswallturf(T))
 				new /obj/effect/alien/weeds/weedwall(T)
 				continue
 
@@ -143,7 +143,7 @@
 	if(W.w_class < 4 || !W.sharp || W.force < 20) //only big strong sharp weapon are adequate
 		damage *= 0.25
 
-	if(istype(W, /obj/item/tool/weldingtool))
+	if(iswelder(W))
 		var/obj/item/tool/weldingtool/WT = W
 
 		if(WT.remove_fuel(0))
@@ -189,7 +189,7 @@
 	icon_state = "weedwall"
 
 /obj/effect/alien/weeds/weedwall/update_sprite()
-	if(istype(loc, /turf/closed/wall))
+	if(iswallturf(loc))
 		var/turf/closed/wall/W = loc
 		if(W.junctiontype)
 			icon_state = "weedwall[W.junctiontype]"

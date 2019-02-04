@@ -60,7 +60,7 @@
 		to_chat(M, "<span class='warning'>How do you expect to eat this with the package still on?</span>")
 		return FALSE
 
-	if(istype(M, /mob/living/carbon))
+	if(iscarbon(M))
 		var/fullness = M.nutrition + (M.reagents.get_reagent_amount("nutriment") * 25)
 		if(M == user)								//If you're eating it yourself
 			if(istype(M,/mob/living/carbon/human))
@@ -1120,6 +1120,7 @@
 	desc = "A true prophecy in each cookie!"
 	icon_state = "fortune_cookie"
 	filling_color = "#E8E79E"
+	trash = /obj/item/trash/fortunecookie
 	list_reagents = list("nutriment" = 3)
 	bitesize = 2
 	tastes = list("cookie" = 1)
@@ -1340,7 +1341,7 @@
 /obj/item/reagent_container/food/snacks/monkeycube/On_Consume(var/mob/M)
 	to_chat(M, "<span class = 'warning'>Something inside of you suddently expands!</span>")
 
-	if (istype(M, /mob/living/carbon/human))
+	if (ishuman(M))
 		//Do not try to understand.
 		var/obj/item/surprise = new(M)
 		var/mob/ook = monkey_type

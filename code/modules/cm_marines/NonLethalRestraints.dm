@@ -52,7 +52,7 @@
 			update_icon()
 		return
 
-	if(isrobot(M))
+	if(iscyborg(M))
 		..()
 		return
 

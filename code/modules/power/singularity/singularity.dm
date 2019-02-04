@@ -193,7 +193,7 @@ var/global/list/uneatable = list(
 	for(var/atom/X in orange(grav_pull,src))
 		var/dist = get_dist(X, src)
 		// Movable atoms only
-		if(dist > consume_range && istype(X, /atom/movable))
+		if(dist > consume_range && ismovableatom(X))
 			if(is_type_in_list(X, uneatable))	continue
 			if(((X) &&(!X:anchored) && (!istype(X,/mob/living/carbon/human)))|| (src.current_size >= 9))
 				step_towards(X,src)
@@ -205,7 +205,7 @@ var/global/list/uneatable = list(
 						continue
 				step_towards(H,src)
 		// Turf and movable atoms
-		else if(dist <= consume_range && (isturf(X) || istype(X, /atom/movable)))
+		else if(dist <= consume_range && (isturf(X) || ismovableatom(X)))
 			consume(X)
 	return
 

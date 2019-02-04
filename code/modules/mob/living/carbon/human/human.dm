@@ -129,6 +129,8 @@
 
 	. = ..()
 
+	GLOB.human_mob_list += src
+	GLOB.alive_human_list += src
 	round_statistics.total_humans_created++
 
 	if(dna)
@@ -161,34 +163,37 @@
 /mob/living/carbon/human/Destroy()
 	assigned_squad?.clean_marine_from_squad(src,FALSE)
 	remove_from_all_mob_huds()
+	GLOB.human_mob_list -= src
+	GLOB.alive_human_list -= src
+	GLOB.dead_human_list -= src
 	return ..()
 
 /mob/living/carbon/human/Stat()
-	if (!..())
-		return 0
+	. = ..()
+	
+	if(statpanel("Stats"))
+		if(EvacuationAuthority)
+			var/eta_status = EvacuationAuthority.get_status_panel_eta()
+			if(eta_status)
+				stat(null, eta_status)
 
-	if(EvacuationAuthority)
-		var/eta_status = EvacuationAuthority.get_status_panel_eta()
-		if(eta_status)
-			stat(null, eta_status)
+		if(internal)
+			stat("Internal Atmosphere Info", internal.name)
+			stat("Tank Pressure", internal.pressure)
+			stat("Distribution Pressure", internal.distribute_pressure)
 
-	if(internal)
-		stat("Internal Atmosphere Info", internal.name)
-		stat("Tank Pressure", internal.pressure)
-		stat("Distribution Pressure", internal.distribute_pressure)
+		if(assigned_squad)
+			if(assigned_squad.primary_objective)
+				stat("Primary Objective: ", assigned_squad.primary_objective)
+			if(assigned_squad.secondary_objective)
+				stat("Secondary Objective: ", assigned_squad.secondary_objective)
 
-	if(assigned_squad)
-		if(assigned_squad.primary_objective)
-			stat("Primary Objective: ", assigned_squad.primary_objective)
-		if(assigned_squad.secondary_objective)
-			stat("Secondary Objective: ", assigned_squad.secondary_objective)
-
-	if(mobility_aura)
-		stat(null, "You are affected by a MOVE order.")
-	if(protection_aura)
-		stat(null, "You are affected by a HOLD order.")
-	if(marskman_aura)
-		stat(null, "You are affected by a FOCUS order.")
+		if(mobility_aura)
+			stat(null, "You are affected by a MOVE order.")
+		if(protection_aura)
+			stat(null, "You are affected by a HOLD order.")
+		if(marskman_aura)
+			stat(null, "You are affected by a FOCUS order.")
 
 /mob/living/carbon/human/ex_act(severity)
 	flash_eyes()
@@ -538,9 +543,9 @@
 
 				else
 					if(r_store || l_store)
-						if(r_store && !(r_store.flags_item & NODROP) && !(r_store.flags_inventory & CANTSTRIP))
+						if(r_store && !(r_store.flags_item & NODROP))
 							dropItemToGround(r_store)
-						if(l_store && !(l_store.flags_item & NODROP) && !(l_store.flags_inventory & CANTSTRIP))
+						if(l_store && !(l_store.flags_item & NODROP))
 							dropItemToGround(l_store)
 					else
 						to_chat(usr, "<span class='notice'>[src]'s pockets are empty.</span>")
@@ -1475,7 +1480,64 @@
 		return FALSE
 	. = ..()
 
+/mob/living/carbon/human/disable_lights(armor = TRUE, guns = TRUE, flares = TRUE, misc = TRUE, sparks = FALSE, silent = FALSE)
+	if(luminosity <= 0)
+		return FALSE
 
+	if(sparks)
+		var/datum/effect_system/spark_spread/spark_system = new
+		spark_system.set_up(5, 0, src)
+		spark_system.attach(src)
+		spark_system.start(src)
+
+	var/light_off = 0
+	var/goes_out = 0
+	if(armor)
+		if(istype(wear_suit, /obj/item/clothing/suit/storage/marine))
+			var/obj/item/clothing/suit/storage/marine/S = wear_suit
+			if(S.turn_off_light(src))
+				light_off++
+	if(guns)
+		for(var/obj/item/weapon/gun/G in contents)
+			if(G.turn_off_light(src))
+				light_off++
+	if(flares)
+		for(var/obj/item/device/flashlight/flare/F in contents)
+			if(F.on) goes_out++
+			F.turn_off(src)
+	if(misc)
+		for(var/obj/item/device/flashlight/L in contents)
+			if(istype(L, /obj/item/device/flashlight/flare))
+				continue
+			if(L.turn_off_light(src))
+				light_off++
+		for(var/obj/item/tool/weldingtool/W in contents)
+			if(W.isOn())
+				W.toggle()
+				goes_out++
+		for(var/obj/item/tool/pickaxe/plasmacutter/W in contents)
+			if(W.powered)
+				W.toggle()
+				goes_out++
+		for(var/obj/item/tool/match/M in contents)
+			M.burn_out(src)
+		for(var/obj/item/tool/lighter/Z in contents)
+			if(Z.turn_off(src))
+				goes_out++
+	if(!silent)
+		if(goes_out && light_off)
+			to_chat(src, "<span class='notice'>Your sources of light short and fizzle out.</span>")
+		else if(goes_out)
+			if(goes_out > 1)
+				to_chat(src, "<span class='notice'>Your sources of light fizzle out.</span>")
+			else
+				to_chat(src, "<span class='notice'>Your source of light fizzles out.</span>")
+		else if(light_off)
+			if(light_off > 1)
+				to_chat(src, "<span class='notice'>Your sources of light short out.</span>")
+			else
+				to_chat(src, "<span class='notice'>Your source of light shorts out.</span>")
+		return TRUE
 
 //very similar to xeno's queen_locator() but this is for locating squad leader.
 /mob/living/carbon/human/proc/locate_squad_leader()

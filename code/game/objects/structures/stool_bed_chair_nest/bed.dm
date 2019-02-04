@@ -110,7 +110,7 @@ obj/structure/bed/Destroy()
 /obj/structure/bed/MouseDrop_T(atom/dropping, mob/user)
 	if(accepts_bodybag && !buckled_bodybag && !buckled_mob && istype(dropping,/obj/structure/closet/bodybag) && ishuman(user))
 		var/obj/structure/closet/bodybag/B = dropping
-		if(!B.roller_buckled)
+		if(!B.roller_buckled && !B.anchored)
 			do_buckle_bodybag(B, user)
 			return TRUE
 	else
@@ -119,7 +119,7 @@ obj/structure/bed/Destroy()
 /obj/structure/bed/MouseDrop(atom/over_object)
 	. = ..()
 	if(foldabletype && !buckled_mob && !buckled_bodybag)
-		if(istype(over_object, /mob/living/carbon/human))
+		if(ishuman(over_object))
 			var/mob/living/carbon/human/H = over_object
 			if(H == usr && !H.is_mob_incapacitated() && Adjacent(H) && in_range(src, over_object))
 				var/obj/item/I = new foldabletype(get_turf(src))
@@ -164,7 +164,7 @@ obj/structure/bed/Destroy()
 	else attack_hand(M)
 
 /obj/structure/bed/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/tool/wrench))
+	if(iswrench(W))
 		if(buildstacktype)
 			playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 			new buildstacktype(loc, buildstackamount)
@@ -297,6 +297,7 @@ var/global/list/activated_medevac_stretchers = list()
 	icon = 'icons/obj/rollerbed.dmi'
 	icon_state = "stretcher_down"
 	buckling_y = 6
+	buildstacktype = null
 	foldabletype = /obj/item/roller/medevac
 	base_bed_icon = "stretcher"
 	accepts_bodybag = TRUE

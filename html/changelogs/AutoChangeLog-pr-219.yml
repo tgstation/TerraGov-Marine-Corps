@@ -1,0 +1,7 @@
+author: "Surrealistik"
+delete-after: True
+changes: 
+  - rscadd: "Flare grenades are flares that can be fired from grenade launchers, and largely replace existing flares. They do minor burn damage on impact and inflict a small number of burn stacks if they impact someone while activated."
+  - rscadd: "Impact nades are a new standard issue grenade that comes standard with basic kits (subject to change). Upon impact with anything while primed, they detonate in a powerful explosion, flashing adjacent squares."
+  - tweak: "UGL and grenade launcher grenade movement speed slightly increased."
+  - tweak: "Grenades do slightly more damage on impact when launched."

@@ -251,13 +251,16 @@
 		powernet.nodes -= src
 		powernet = null
 	// Then find any cables on our location
-	var/turf/T = src.loc
+	var/turf/T = loc
+	if(!istype(T))
+		return FALSE //In a crate or something, can't be connecting to the powernet like that.
 	var/obj/structure/cable/C = T.get_cable_node()
-	if(!C || !C.powernet)	return 0
+	if(!C?.powernet)
+		return FALSE
 	// And connect us to their powernet
 	powernet = C.powernet
 	powernet.nodes += src
-	return 1
+	return TRUE
 
 /obj/machinery/power/proc/disconnect_from_network()
 	if(!powernet)

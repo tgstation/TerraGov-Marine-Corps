@@ -15,7 +15,7 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	if(!ticker || !ticker.current_state > GAME_STATE_PLAYING)
+	if(!ticker?.mode || !EvacuationAuthority)
 		return
 
 	var/dat
@@ -23,7 +23,7 @@
 
 	dat += "<html><head><title>Round Status</title></head>"
 	dat += "<body><h1><b>Round Status</b></h1>"
-	dat += "Current Game Mode: <B>[ticker.mode?.name]</B><BR>"
+	dat += "Current Game Mode: <B>[ticker.mode.name]</B><BR>"
 	dat += "Round Duration: <B>[round(world.time / 36000)]:[add_zero(world.time / 600 % 60, 2)]:[world.time / 100 % 6][world.time / 100 % 10]</B><BR>"
 
 	dat += "<b>Evacuation:</b> "
@@ -34,12 +34,15 @@
 			dat += "IN PROGRESS: [EvacuationAuthority.get_status_panel_eta()]"
 		if(EVACUATION_STATUS_COMPLETE) 
 			dat += "COMPLETE"
+
 	dat += "<br>"
 
 	dat += "<a href='?src=[ref];evac_authority=init_evac'>Initiate Evacuation</a><br>"
 	dat += "<a href='?src=[ref];evac_authority=cancel_evac'>Cancel Evacuation</a><br>"
 	dat += "<a href='?src=[ref];evac_authority=toggle_evac'>Toggle Evacuation Permission</a><br>"
 	dat += "<a href='?src=[ref];evac_authority=force_evac'>Force Evacuation Now</a><br>"
+
+	dat += "<br>"
 
 	dat += "<b>Self Destruct:</b> "
 	switch(EvacuationAuthority.dest_status)
@@ -51,6 +54,7 @@
 			dat += "IN PROGRESS"
 		if(NUKE_EXPLOSION_FINISHED)
 			dat += "FINISHED"
+
 	dat += "<br>"
 
 	dat += "<a href='?src=[ref];evac_authority=init_dest'>Unlock Self Destruct control panel for humans</a><br>"
@@ -58,36 +62,41 @@
 	dat += "<a href='?src=[ref];evac_authority=use_dest'>Destruct the [MAIN_SHIP_NAME] NOW</a><br>"
 	dat += "<a href='?src=[ref];evac_authority=toggle_dest'>Toggle Self Destruct Permission (does not affect evac in progress)</a><br>"
 
-	if(ticker.mode.xenomorphs.len)
-		dat += "<br><table cellspacing=5><tr><td><B>Aliens</B></td><td></td><td></td></tr>"
+	dat += "<br><br>"
+
+	if(length(ticker.mode.xenomorphs))
+		dat += "<table cellspacing=5><tr><td><B>Aliens</B></td><td></td><td></td></tr>"
 		for(var/datum/mind/L in ticker.mode.xenomorphs)
 			var/mob/M = L.current
-			var/location = get_area(M.loc)
+			var/location = ""
 			if(M)
-				dat += "<tr><td><a href='?priv_msg=[REF(M)]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == 2 ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
+				location = get_area(M.loc)
+				dat += "<tr><td><a href='?priv_msg=[REF(M)]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][(M.client?.prefs?.xeno_name && M.client.prefs.xeno_name != "Undefined") ? " - [M.client.prefs.xeno_name]" : ""][M.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
 				dat += "<td>[location]</td>"
-				dat += "<td><a href='?src=[ref];adminplayeropts=[REF(M)]'>PP</A></td></TR>"
+				dat += "<td><a href='?src=[ref];playerpanel=[REF(M)]'>PP</A></td></TR>"
 		dat += "</table>"
 
 	if(ticker.liaison)
 		dat += "<br><table cellspacing=5><tr><td><B>Corporate Liaison</B></td><td></td><td></td></tr>"
 		var/mob/M = ticker.liaison.current
-		var/location = get_area(M.loc)
+		var/location = ""
 		if(M)
-			dat += "<tr><td><a href='?priv_msg=[REF(M)]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == 2 ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
+			location = get_area(M.loc)
+			dat += "<tr><td><a href='?priv_msg=[REF(M)]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
 			dat += "<td>[location]</td>"
-			dat += "<td><a href='?src=[ref];adminplayeropts=[REF(M)]'>PP</A></td></TR>"
+			dat += "<td><a href='?src=[ref];playerpanel=[REF(M)]'>PP</A></td></TR>"
 		dat += "</table>"
 
-	if(ticker.mode.survivors.len)
+	if(length(ticker.mode.survivors))
 		dat += "<br><table cellspacing=5><tr><td><B>Survivors</B></td><td></td><td></td></tr>"
 		for(var/datum/mind/L in ticker.mode.survivors)
 			var/mob/M = L.current
-			var/location = get_area(M.loc)
+			var/location = ""
 			if(M)
-				dat += "<tr><td><a href='?priv_msg=[REF(M)]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == 2 ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
+				location = get_area(M.loc)
+				dat += "<tr><td><a href='?priv_msg=[REF(M)]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
 				dat += "<td>[location]</td>"
-				dat += "<td><a href='?src=[ref];adminplayeropts=[REF(M)]'>PP</A></td></TR>"
+				dat += "<td><a href='?src=[ref];playerpanel=[REF(M)]'>PP</A></td></TR>"
 		dat += "</table>"
 
 	dat += "</body></html>"

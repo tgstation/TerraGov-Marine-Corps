@@ -224,7 +224,7 @@
 			for(var/D in cardinal)
 				var/turf/target = get_step(current, D)
 				if(wallList)
-					if(istype(target, /turf/closed/wall))
+					if(iswallturf(target))
 						if(!(target in wallList))
 							wallList += target
 						continue
