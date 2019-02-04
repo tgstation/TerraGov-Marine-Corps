@@ -98,7 +98,7 @@ Make the TGMC proud!"}
 	title = "Staff Officer"
 	disp_title = "Staff Officer"
 	comm_title = "SO"
-	paygrade = "O2"
+	paygrade = "O3"
 	flag = ROLE_BRIDGE_OFFICER
 	total_positions = 5
 	spawn_positions = 5
@@ -127,20 +127,20 @@ Make the TGMC proud!"}
 
 /datum/job/command/bridge/generate_entry_message(mob/living/carbon/human/H)
 	return {"Your job is to monitor the marines, man the CIC, and listen to your superior officers.
-You are in charge of logistics and the overwatch system. You are also in line to take command after the executive officer."}
+You are in charge of logistics and the overwatch system."}
 
 
 //Pilot Officer
 /datum/job/command/pilot
 	title = "Pilot Officer"
 	comm_title = "PO"
-	paygrade = "O1" //Technically Second Lieutenant equivalent, but 2ndLT doesn't exist in Marine pay grade, so Ensign
+	paygrade = "WO"
 	flag = ROLE_PILOT_OFFICER
 	total_positions = 4
 	spawn_positions = 4
 	scaled = 1
-	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PILOT)
-	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PILOT)
+	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PILOT)
+	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PILOT)
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADD_TO_MODE
 	skills_type = /datum/skills/pilot
 	equipment = TRUE
@@ -165,7 +165,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 
 /datum/job/command/pilot/generate_entry_message(mob/living/carbon/human/H)
 	return {"Your job is to fly, protect, and maintain the ship's dropship.
-While you are an officer, your authority is limited to the dropship, where you have authority over the enlisted personnel.
+While you are a warrant officer, your authority is limited to the dropship, where you have authority over the enlisted personnel.
 If you are not piloting, there is an autopilot fallback for command, but don't leave the dropship without reason."}
 
 
@@ -173,12 +173,12 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 /datum/job/command/tank_crew
 	title = "Tank Crewman"
 	comm_title = "TC"
-	paygrade = "O1"
+	paygrade = "E7"
 	flag = ROLE_TANK_OFFICER
 	total_positions = 2
 	spawn_positions = 2
-	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_TANK)
-	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_TANK)
+	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_TANK)
+	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_TANK)
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADD_TO_MODE
 	skills_type = /datum/skills/tank_crew
 	idtype = /obj/item/card/id/dogtag
@@ -197,7 +197,7 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 
 /datum/job/command/tank_crew/generate_entry_message(mob/living/carbon/human/H)
 	return {"Your job is to operate and maintain the ship's armored vehicles.
-While you are an officer, your authority is limited to your own vehicle, where you have authority over the enlisted personnel. You will need MTs to repair and replace hardpoints."}
+While you are a senior NCO, your authority is limited to your own vehicle, where you have authority over the enlisted personnel. You will need MTs to repair and replace hardpoints."}
 
 
 //Military Police
@@ -246,7 +246,7 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 /datum/job/command/warrant
 	title = "Chief MP"
 	comm_title = "CMP"
-	paygrade = "WO"
+	paygrade = "E9"
 	flag = ROLE_CHIEF_MP
 	selection_color = "#ffaaaa"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIG, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_WO)
@@ -286,12 +286,12 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 /datum/job/logistics/engineering
 	title = "Chief Engineer"
 	comm_title = "CE"
-	paygrade = "O3"
+	paygrade = "O4"
 	flag = ROLE_CHIEF_ENGINEER
 	department_flag = ROLEGROUP_MARINE_ENGINEERING
 	selection_color = "#ffeeaa"
-	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_BRIDGE, ACCESS_CIVILIAN_ENGINEERING)
-	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_BRIDGE, ACCESS_CIVILIAN_ENGINEERING)
+	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_LOGISTICS, ACCESS_CIVILIAN_ENGINEERING)
+	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_LOGISTICS, ACCESS_CIVILIAN_ENGINEERING)
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADD_TO_MODE
 	skills_type = /datum/skills/CE
 	equipment = TRUE
@@ -316,7 +316,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 /datum/job/logistics/requisition
 	title = "Requisitions Officer"
 	comm_title = "RO"
-	paygrade = "O1"
+	paygrade = "CPO"
 	flag = ROLE_REQUISITION_OFFICER
 	department_flag = ROLEGROUP_MARINE_ENGINEERING
 	selection_color = "#9990B2"
@@ -351,7 +351,7 @@ A happy ship is a well-functioning ship."}
 /datum/job/logistics/tech/maint
 	title = "Maintenance Tech"
 	comm_title = "MT"
-	paygrade = "E6E"
+	paygrade = "PO"
 	flag = ROLE_MAINTENANCE_TECH
 	department_flag = ROLEGROUP_MARINE_ENGINEERING
 	faction = "Station"
@@ -385,14 +385,14 @@ A happy ship is a well-functioning ship."}
 
 /datum/job/logistics/tech/maint/generate_entry_message(mob/living/carbon/human/H)
 	return {"Your job is to make sure the ship is clean and the powergrid is operational.
-Start with the ship's engine, and don't forget radiation equipment."}
+Start with the ship's engine."}
 
 
 //Cargo Tech
 /datum/job/logistics/tech/cargo
 	title = "Cargo Technician"
 	comm_title = "CT"
-	paygrade = "E5"
+	paygrade = "PO"
 	flag = ROLE_REQUISITION_TECH
 	department_flag = ROLEGROUP_MARINE_ENGINEERING
 	total_positions = 2
