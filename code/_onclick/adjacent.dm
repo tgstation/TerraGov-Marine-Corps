@@ -148,7 +148,7 @@ Quick adjacency (to turf):
 
 		if( O.flags_atom & ON_BORDER) // windows have throwpass but are on border, check them first
 			if( O.dir & target_dir || O.dir&(O.dir-1) ) // full tile windows are just diagonals mechanically
-				return 0
+				return FALSE
 
 		else if( !border_only ) // dense, not on border, cannot pass over
 			return 0
