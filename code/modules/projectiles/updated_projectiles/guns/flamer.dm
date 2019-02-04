@@ -509,7 +509,10 @@
 
 	to_chat(src, "<span class='danger'>You are burned!</span>")
 
-/mob/living/carbon/human/flamer_fire_crossed(burnlevel, firelevel, fire_mod=1)
+
+/mob/living/carbon/human/flamer_fire_crossed(burnlevel, firelevel, fire_mod = 1)
+	if(istype(wear_suit, /obj/item/clothing/suit/storage/marine/M35) && istype(shoes, /obj/item/clothing/shoes/marine/pyro) && istype(head, /obj/item/clothing/head/helmet/marine/pyro))
+		return
 	. = ..()
 	if(isxeno(pulledby))
 		var/mob/living/carbon/Xenomorph/X = pulledby
