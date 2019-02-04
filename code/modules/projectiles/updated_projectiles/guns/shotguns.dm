@@ -568,7 +568,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	pump_delay = CONFIG_GET(number/combat_define/mhigh_fire_delay) * 2
 
 /obj/item/weapon/gun/shotgun/pump/bolt/unique_action(mob/user)
-	work_the_bolt()
+	work_the_bolt(user)
 
 
 /obj/item/weapon/gun/shotgun/pump/proc/work_the_bolt(mob/user)	//We can't fire bursts with pumps.
@@ -577,7 +577,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	if(pump_lock)
 		if(world.time > recent_notice + CONFIG_GET(number/combat_define/max_fire_delay))
 			playsound(user,'sound/weapons/throwtap.ogg', 25, 1)
-			to_chat(user,"<span class='warning'><b>[src] has already been pumped, locking the pump mechanism; fire or unload a shell to unlock it.</b></span>")
+			to_chat(user,"<span class='warning'><b>[src]'s bolt has already been worked, locking the action; fire or unload a cartridge to unlock it.</b></span>")
 			recent_notice = world.time
 		return
 
@@ -593,7 +593,7 @@ can cause issues with ammo types getting mixed up during the burst.
 		current_mag.used_casings--
 		make_casing(type_of_casings)
 
-	to_chat(user, "<span class='notice'><b>You pump [src].</b></span>")
+	to_chat(user, "<span class='notice'><b>You work [src]'s action.</b></span>")
 	playsound(user, pump_sound, 25, 1)
 	recent_pump = world.time
 	if(in_chamber) //Lock only if we have ammo loaded.
@@ -615,6 +615,6 @@ can cause issues with ammo types getting mixed up during the burst.
 
 /obj/item/weapon/gun/shotgun/pump/unload(mob/user)
 	if(pump_lock)
-		to_chat(user, "<span class='notice'><b>You disengage [src]'s pump lock with the slide release.</b></span>")
+		to_chat(user, "<span class='notice'><b>You disengage [src]'s bolt lock with the bolt handle.</b></span>")
 		pump_lock = FALSE //we're operating the slide release to unload, thus unlocking the pump
 	return ..()
