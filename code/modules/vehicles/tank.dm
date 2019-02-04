@@ -56,8 +56,6 @@
 		hardpoint_path = spawn_hardpoints[slot]
 		R.add_hardpoint(new hardpoint_path)
 
-	R.update_icon()
-
 	qdel(src)
 
 //Spawns a tank that has a bunch of broken hardpoints
@@ -180,7 +178,7 @@
 		handle_harm_attack(M, occupant)
 		return
 
-	if(!M.IsAdvancedToolUser() || isXeno(M))
+	if(!M.IsAdvancedToolUser())
 		to_chat(M, "<span class='warning'>You don't have the dexterity to drive [src]!</span>")
 		return
 	if(!allowed(M))

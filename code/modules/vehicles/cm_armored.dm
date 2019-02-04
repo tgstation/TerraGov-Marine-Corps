@@ -144,7 +144,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		to_chat(user, "<span class='warning'>The target is not within your firing arc.</span>")
 		return TRUE
 
-	HP.active_effect(get_turf(A))
+	HP.active_effect(A)
 	return TRUE
 
 //Used by the gunner to swap which module they are using
@@ -359,87 +359,104 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 //If fully repaired and moves at least once, the broken hitboxes will respawn according to multitile.dm
 /obj/vehicle/multitile/hitbox/cm_armored/Destroy()
 	var/obj/vehicle/multitile/root/cm_armored/C = root
-	if(C) C.take_damage_type(1000000, "abstract")
+	if(C)
+		C.take_damage_type(1000000, "abstract")
 	..()
 
 //Tramplin' time, but other than that identical
 /obj/vehicle/multitile/hitbox/cm_armored/Bump(var/atom/A)
 	. = ..()
-	if(isliving(A))
-		var/mob/living/M = A
-		var/facing = get_dir(src, M)
-		var/turf/T = loc
-		var/turf/temp = loc
-		if (isxenoqueen(A) || isxenocrusher (A))
-			temp = get_step(T, facing)
-			T = temp
-			T = get_step(T, pick(cardinal))
-			M.throw_at(T, 2, 1, src, 0)
-			M.visible_message("<span class='danger'>[src] bumps into [M], pushing [M.p_them()] away!</span>", "<span class='danger'>[src] bumps into you!</span>")
-			return
-		if(M.lying==0 && !isxenolarva(M))
-			temp = get_step(T, facing)
-			T = temp
-			T = get_step(T, pick(cardinal))
-			if(M.mob_size == MOB_SIZE_BIG)
-				M.throw_at(T, 2, 1, src, 0)
-			else
-				M.throw_at(T, 2, 1, src, 1)
-			M.KnockDown(1)
-			M.apply_damage(10 + rand(0, 5), BRUTE)
-			M.visible_message("<span class='danger'>[src] bumps into [M], throwing [M.p_them()] away!</span>", "<span class='danger'>[src] violently bumps into you!</span>")
-		var/obj/vehicle/multitile/root/cm_armored/CA = root
-		var/list/slots = CA.get_activatable_hardpoints()
-		for(var/slot in slots)
-			var/obj/item/hardpoint/H = CA.hardpoints[slot]
-			if(!H) continue
-			H.livingmob_interact(M)
-	else if(iswallturf(A))
-		var/turf/closed/wall/W = A
-		W.take_damage(30)
-		var/obj/vehicle/multitile/root/cm_armored/CA = root
-		CA.take_damage_type(10, "blunt", W)
-		if(world.time > lastsound + 10)
-			playsound(W, 'sound/effects/metal_crash.ogg', 35)
-			lastsound = world.time
-	else if(istype(A, /obj/machinery))
-		var/obj/machinery/M = A
-		M.take_damage(30)
-		var/obj/vehicle/multitile/root/cm_armored/CA = root
-		CA.take_damage_type(2, "blunt", M)
-		if(world.time > lastsound + 10)
-			M.visible_message("<span class='danger'>[root] rams into \the [M]!</span>")
-			playsound(M, 'sound/effects/metal_crash.ogg', 35)
-			lastsound = world.time
-	else if(istype(A, /obj/structure))
-		var/obj/structure/S = A
-		S.take_damage(30)
-		var/obj/vehicle/multitile/root/cm_armored/CA = root
-		CA.take_damage_type(2, "blunt", S)
-		if(world.time > lastsound + 10)
-			S.visible_message("<span class='danger'>[root] crushes \the [S]!</span>")
-			playsound(S, 'sound/effects/metal_crash.ogg', 35)
-			lastsound = world.time
+	var/facing = get_dir(src, A)
+	var/turf/temp = loc
+	var/turf/T = loc
+	A.tank_collision(src, facing, T, temp)
+
+/atom/proc/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
+	return
+
+/mob/living/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
+	if(!lying)
+		temp = get_step(T, facing)
+		T = temp
+		T = get_step(T, pick(cardinal))
+		if(mob_size == MOB_SIZE_BIG)
+			throw_at(T, 2, 1, C, 0)
+		else
+			throw_at(T, 2, 1, C, 1)
+		KnockDown(1)
+		apply_damage(10 + rand(0, 5), BRUTE)
+		visible_message("<span class='danger'>[C] bumps into [src], throwing [p_them()] away!</span>", "<span class='danger'>[C] violently bumps into you!</span>")
+	var/obj/vehicle/multitile/root/cm_armored/CA = C.root
+	var/list/slots = CA.get_activatable_hardpoints()
+	for(var/slot in slots)
+		var/obj/item/hardpoint/H = CA.hardpoints[slot]
+		if(!H)
+			continue
+		H.livingmob_interact(src)
+
+/mob/living/carbon/Xenomorph/Queen/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
+	temp = get_step(T, facing)
+	T = temp
+	T = get_step(T, pick(cardinal))
+	throw_at(T, 2, 1, C, 0)
+	visible_message("<span class='danger'>[C] bumps into [src], pushing [p_them()] away!</span>", "<span class='danger'>[C] bumps into you!</span>")
+	return
+
+/mob/living/carbon/Xenomorph/Crusher/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
+	temp = get_step(T, facing)
+	T = temp
+	T = get_step(T, pick(cardinal))
+	throw_at(T, 2, 1, C, 0)
+	visible_message("<span class='danger'>[C] bumps into [src], pushing [p_them()] away!</span>", "<span class='danger'>[C] bumps into you!</span>")
+	return
+
+/mob/living/carbon/Xenomorph/Larva/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
+	var/obj/vehicle/multitile/root/cm_armored/CA = C.root
+	var/list/slots = CA.get_activatable_hardpoints()
+	for(var/slot in slots)
+		var/obj/item/hardpoint/H = CA.hardpoints[slot]
+		if(!H)
+			continue
+		H.livingmob_interact(src)
+
+/turf/closed/wall/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
+	take_damage(30)
+	var/obj/vehicle/multitile/root/cm_armored/CA = C.root
+	CA.take_damage_type(10, "blunt", src)
+	if(world.time > C.lastsound + 1 SECONDS)
+		playsound(src, 'sound/effects/metal_crash.ogg', 35)
+		C.lastsound = world.time
+
+/obj/machinery/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
+	take_damage(30)
+	var/obj/vehicle/multitile/root/cm_armored/CA = C.root
+	CA.take_damage_type(2, "blunt", src)
+	if(world.time > C.lastsound + 1 SECONDS)
+		visible_message("<span class='danger'>[C.root] rams into \the [src]!</span>")
+		playsound(src, 'sound/effects/metal_crash.ogg', 35)
+		C.lastsound = world.time
+
+/obj/structure/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
+	take_damage(30)
+	var/obj/vehicle/multitile/root/cm_armored/CA = C.root
+	CA.take_damage_type(2, "blunt", src)
+	if(world.time > C.lastsound + 1 SECONDS)
+		visible_message("<span class='danger'>[C.root] crushes \the [src]!</span>")
+		playsound(src, 'sound/effects/metal_crash.ogg', 35)
+		C.lastsound = world.time
 
 
 /obj/vehicle/multitile/hitbox/cm_armored/Move(var/atom/A, var/direction)
 
 	for(var/mob/living/M in get_turf(src))
-		M.Sleeping(5) //Not 0, they just got driven over by a giant ass whatever and that hurts
+		M.KnockOut(5)
 
 	. = ..()
 
 	if(.)
 		for(var/mob/living/M in get_turf(A))
 			//I don't call Bump() otherwise that would encourage trampling for infinite unpunishable damage
-			M.Sleeping(5) //Maintain their lying-down-ness
-
-/obj/vehicle/multitile/hitbox/cm_armored/Uncrossed(var/atom/movable/A)
-	if(isliving(A))
-		var/mob/living/M = A
-		M.Sleeping(5)
-
-	return ..()
+			M.KnockOut(5) //Maintain their lying-down-ness
 
 //Can't hit yourself with your own bullet
 /obj/vehicle/multitile/hitbox/cm_armored/get_projectile_hit_chance(var/obj/item/projectile/P)
@@ -471,7 +488,8 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 
 //Returns the ratio of damage to take, just a housekeeping thing
 /obj/vehicle/multitile/root/cm_armored/proc/get_dmg_multi(var/type)
-	if(!dmg_multipliers.Find(type)) return 0
+	if(!dmg_multipliers.Find(type))
+		return 0
 	return dmg_multipliers[type] * dmg_multipliers["all"]
 
 //Generic proc for taking damage
@@ -581,7 +599,8 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	dmg_distribs = armorvic_dmg_distributions.Copy() //Assume full installs
 	for(var/slot in hardpoints)
 		var/obj/item/hardpoint/HP = hardpoints[slot]
-		if(!HP) dmg_distribs[slot] = 0.0 //Remove empty slots' damage mitigation
+		if(!HP)
+			dmg_distribs[slot] = 0.0 //Remove empty slots' damage mitigation
 	var/acc = 0
 	for(var/slot in dmg_distribs)
 		var/ratio = dmg_distribs[slot]
@@ -598,7 +617,6 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	if(istype(O, /obj/item/hardpoint)) //Are we trying to install stuff?
 		var/obj/item/hardpoint/HP = O
 		install_hardpoint(HP, user)
-		update_damage_distribs()
 		return
 
 	if(istype(O, /obj/item/ammo_magazine)) //Are we trying to reload?
@@ -613,7 +631,6 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 
 	if(iscrowbar(O)) //Are we trying to remove stuff?
 		uninstall_hardpoint(O, user)
-		update_damage_distribs()
 		return
 
 	if(!(O.flags_item & NOBLUDGEON))
@@ -769,8 +786,6 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 
 	add_hardpoint(HP, user)
 
-	update_icon()
-
 //User-orientated proc for taking of hardpoints
 //Again, similar to the above ones
 /obj/vehicle/multitile/root/cm_armored/proc/uninstall_hardpoint(obj/item/O, mob/user)
@@ -829,6 +844,8 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	HP.loc = src
 
 	hardpoints[HP.slot] = HP
+	update_damage_distribs()
+	update_icon()
 
 //General proc for taking off hardpoints
 //ALWAYS CALL THIS WHEN REMOVING HARDPOINTS
@@ -839,4 +856,5 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		qdel(old)
 
 	hardpoints[old.slot] = null
+	update_damage_distribs()
 	update_icon()
