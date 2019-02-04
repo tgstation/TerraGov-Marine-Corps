@@ -79,12 +79,13 @@ Come hell or high water, you are going to be there for them."}
 /datum/job/command/fieldofficer/generate_equipment(mob/living/carbon/human/H)
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/mcom(H), SLOT_EARS)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/exec(H), SLOT_W_UNIFORM)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/cmcap(H), SLOT_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/cmcap/ro(H), SLOT_HEAD)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), SLOT_SHOES)
 	H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), SLOT_BACK)
-	H.equip_to_slot_or_del(new /obj/item/storage/belt/gun/m4a3/vp70(H), SLOT_BELT)
+	H.equip_to_slot_or_del(new /obj/item/storage/belt/gun/m4a3/vp78(H), SLOT_BELT)
 	H.equip_to_slot_or_del(new /obj/item/storage/pouch/general/large(H), SLOT_R_STORE)
-	H.equip_to_slot_or_del(new /obj/item/device/binoculars(H), SLOT_L_HAND)
+	H.equip_to_slot_or_del(new /obj/item/device/binoculars/tactical(H), SLOT_L_HAND)
+	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/drinks/flask/marine(H), SLOT_R_HAND)
 
 /datum/job/command/fieldofficer/generate_entry_message(mob/living/carbon/human/H)
 		. = {"You are charged with overseeing the operation on the ground, and are in next in the chain of command after the commander.
