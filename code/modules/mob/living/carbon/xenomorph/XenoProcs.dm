@@ -300,15 +300,14 @@
 					addtimer(CALLBACK(src, .proc/reset_movement), xeno_caste.charge_type == 1 ? 5 : 15)
 					stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 
-				if(RAV_CHARGE_TYPE) //Ravagers get a free attack if they charge into someone.
-					process_ravager_charge(TRUE, M)
+				if(RAV_CHARGE_TYPE) //Ravagers plow straight through humans; we only stop on hitting a dense turf
+					return FALSE
 
 				if(4) //Predalien.
 					M.attack_alien(src) //Free hit/grab/tackle. Does not weaken, and it's just a regular slash if they choose to do that.
 		throwing = FALSE //Resert throwing since something was hit.
 		reset_movement()
 		return TRUE
-	process_ravager_charge(FALSE)
 	throwing = FALSE //Resert throwing since something was hit.
 	reset_movement()
 	return ..() //Do the parent otherwise, for turfs.
