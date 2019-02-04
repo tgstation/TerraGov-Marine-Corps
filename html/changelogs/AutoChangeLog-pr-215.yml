@@ -1,4 +1,0 @@
-author: "LaKiller8"
-delete-after: True
-changes: 
-  - bugfix: "Ammo boxes are now more modular and should work with any type of ammo. Also cleaned up ammo box code in general."

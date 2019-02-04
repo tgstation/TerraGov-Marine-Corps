@@ -38,7 +38,7 @@
 					ticker.mode.stored_larva = round(ticker.mode.stored_larva * ((upgrade+1)/6.0)) // 83/66/50/33 for ancient/elder emp/elder queen/queen
 					var/turf/larva_spawn
 					while(ticker.mode.stored_larva > 0) // stil some left
-						larva_spawn = pick(xeno_spawn)
+						larva_spawn = pick(GLOB.xeno_spawn)
 						new /mob/living/carbon/Xenomorph/Larva(larva_spawn)
 						ticker.mode.stored_larva--
 
@@ -54,8 +54,17 @@
 						break
 				for(var/mob/living/carbon/Xenomorph/L in hive.xeno_leader_list)
 					L.handle_xeno_leader_pheromones(XQ)
-				if(ticker && ticker.mode)
-					ticker.mode.check_queen_status(hive.queen_time)
+				if(ticker?.mode)
+					var/i = 0
+					for(var/X in GLOB.alive_xeno_list)
+						if(isxenolarva(X) || isxenodrone(X))
+							i++
+					if(i > 0)
+						ticker.mode.queen_death_countdown = world.time + QUEEN_DEATH_COUNTDOWN
+						addtimer(CALLBACK(ticker.mode, /datum/game_mode.proc/check_queen_status, hive.queen_time), QUEEN_DEATH_COUNTDOWN)
+					else
+						ticker.mode.queen_death_countdown = world.time + QUEEN_DEATH_NOLARVA
+						addtimer(CALLBACK(ticker.mode, /datum/game_mode.proc/check_queen_status, hive.queen_time), QUEEN_DEATH_NOLARVA)
 		else
 			if(hive.living_xeno_queen && hive.living_xeno_queen.observed_xeno == src)
 				hive.living_xeno_queen.set_queen_overwatch(src, TRUE)

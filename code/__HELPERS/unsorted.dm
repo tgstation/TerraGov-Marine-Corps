@@ -520,15 +520,17 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	var/list/namecounts = list()
 	for(var/mob/M in mobs)
 		var/name = M.name
-		if (name in names)
+		if(name in names)
 			namecounts[name]++
 			name = "[name] ([namecounts[name]])"
 		else
 			names.Add(name)
 			namecounts[name] = 1
-		if (M.real_name && M.real_name != M.name)
+		if(M.real_name && M.real_name != M.name)
 			name += " \[[M.real_name]\]"
-		if (M.stat == 2)
+		if(M.client.prefs.xeno_name && M.client.prefs.xeno_name != "Undefined")
+			name += " - [M.client.prefs.xeno_name]"
+		if(M.stat == DEAD)
 			if(istype(M, /mob/dead/observer/))
 				name += " \[ghost\]"
 			else
@@ -951,17 +953,18 @@ var/global/image/busy_indicator_hostile
 	if(selected_zone_check)
 		cur_zone_sel = user.zone_selected
 
-	var/delayfraction = round(delay/numticks)
 	var/original_loc = user.loc
 	var/original_turf = get_turf(user)
 	var/obj/holding = user.get_active_held_item()
+
 	. = TRUE
-	for(var/i = 0 to numticks)
-		sleep(delayfraction)
+	var/endtime = world.time + delay
+	while(world.time < endtime)
+		stoplag(1)
 		if(!user || user.loc != original_loc || get_turf(user) != original_turf || user.stat || user.knocked_down || user.stunned)
 			. = FALSE
 			break
-		if(L && L.health < CONFIG_GET(number/health_threshold_crit))
+		if(L?.health && L.health < CONFIG_GET(number/health_threshold_crit))
 			. = FALSE //catching mobs below crit level but haven't had their stat var updated
 			break
 		if(needhand)
@@ -1645,9 +1648,6 @@ var/list/WALLITEMS = list(
 			y += ystep
 			error -= deltax
 	return line
-
-/proc/to_chat(target, message)
-	target << message
 
 //gives us the stack trace from CRASH() without ending the current proc.
 /proc/stack_trace(msg)

@@ -10,6 +10,7 @@ GLOBAL_LIST_EMPTY(cargo_guns_vendors)				//Used by our gamemode code
 GLOBAL_LIST_EMPTY(marine_vendors)					//Used by our gamemode code
 GLOBAL_LIST_EMPTY(attachment_vendors)				//Used by our gamemode code
 
+GLOBAL_LIST_EMPTY(xeno_tunnels)						//list of all /obj/structure/tunnel
 GLOBAL_LIST_EMPTY(portals)					        //list of all /obj/effect/portal
 GLOBAL_LIST_EMPTY(airlocks)					        //list of all airlocks
 GLOBAL_LIST_EMPTY(mechas_list)				        //list of all mechs. Used by hostile mobs target tracking.

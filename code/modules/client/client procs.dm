@@ -23,12 +23,20 @@
 	if(!usr || usr != mob)	//stops us calling Topic for somebody else's client. Also helps prevent usr=null
 		return
 
+	if(href_list["_src_"] == "chat") // Oh god the ping hrefs.
+		return chatOutput.Topic(href, href_list)
+
 	//search the href for script injection
 	if(findtext(href,"<script", 1, 0))
 		log_world("[key_name(usr)] attempted use of scripts within a topic call.")
 		message_admins("[ADMIN_TPMONTY(usr)] attempted use of scripts within a topic call.")
 		//del(usr)
 		return
+/*
+	//Logs all hrefs, except chat pings
+	if(!(href_list["_src_"] == "chat" && href_list["proc"] == "ping" && length(href_list) == 2))
+		log_href("[src] (usr:[usr]\[[AREACOORD(usr)]\]) : [hsrc ? "[hsrc] " : ""][href]")*/
+
 
 	//Logs all hrefs
 	if(CONFIG_GET(flag/log_hrefs))
@@ -40,14 +48,20 @@
 		return
 
 	switch(href_list["_src_"])
-		if("holder")
+		if("holder")	
 			hsrc = holder
-		if("usr")
+		if("usr")		
 			hsrc = mob
-		if("prefs")
-			return prefs.process_link(usr,href_list)
-		if("vars")
+		if("prefs")		
+			return prefs.process_link(usr, href_list)
+		if("vars")		
 			return view_var_Topic(href, href_list, hsrc)
+		if("chat")
+			return chatOutput.Topic(href, href_list)
+
+	switch(href_list["action"])
+		if ("openLink")
+			src << link(href_list["link"])
 
 	return ..()	//redirect to hsrc.Topic()
 
@@ -85,6 +99,7 @@
 	//CONNECT//
 	///////////
 /client/New(TopicData)
+	chatOutput = new /datum/chatOutput(src)
 	TopicData = null							//Prevent calls to client.Topic from connect
 
 	if(!(connection in list("seeker", "web")))					//Invalid connection type.
@@ -121,11 +136,12 @@
 	prefs.last_id = computer_id			//these are gonna be used for banning
 
 	. = ..()	//calls mob.Login()
+	chatOutput.start() // Starts the chat
 
 	if(custom_event_msg && custom_event_msg != "")
 		to_chat(src, "<h1 class='alert'>Custom Event</h1>")
 		to_chat(src, "<h2 class='alert'>A custom event is taking place. OOC Info:</h2>")
-		to_chat(src, "<span class='alert'>[html_encode(custom_event_msg)]</span>")
+		to_chat(src, "<span class='alert'>[custom_event_msg]</span>")
 		to_chat(src, "<br>")
 
 	if( (world.address == address || !address) && !host )
@@ -154,7 +170,7 @@
 	create_clickcatcher()
 	apply_clickcatcher()
 
-	if(prefs.lastchangelog != changelog_hash) //bolds the changelog button on the interface so we know there are updates.
+	if(prefs.lastchangelog != GLOB.changelog_hash) //bolds the changelog button on the interface so we know there are updates.
 		winset(src, "rpane.changelog", "background-color=#ED9F9B;font-style=bold")
 
 
@@ -183,6 +199,9 @@
 	GLOB.clients -= src
 	return ..()
 
+
+/client/Destroy()
+	return QDEL_HINT_HARDDEL_NOW
 
 
 /client/proc/log_client_to_db()
@@ -265,3 +284,7 @@ GLOBAL_LIST_EMPTY(external_rsc_url)
 	if(!CONFIG_GET(string/resource_url))
 		return
 	preload_rsc = GLOB.external_rsc_url
+
+
+/client/proc/get_offset()
+	return max(abs(pixel_x / 32), abs(pixel_y / 32))

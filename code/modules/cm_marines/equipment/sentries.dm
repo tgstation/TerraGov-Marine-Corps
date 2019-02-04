@@ -5,7 +5,7 @@
 	name = "M30 box magazine (10x28mm Caseless)"
 	desc = "A box of 500 10x28mm caseless rounds for the UA 571-C Sentry Gun. Just feed it into the sentry gun's ammo port when its ammo is depleted."
 	w_class = 4
-	icon = 'icons/Marine/new_sentry_alt.dmi'
+	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "ammo_can"
 	flags_magazine = NOFLAGS //can't be refilled or emptied by hand
 	caliber = "10x28mm"
@@ -43,7 +43,7 @@
 	desc = "The turret part of an automated sentry turret."
 	unacidable = TRUE
 	w_class = 5
-	icon = 'icons/Marine/new_sentry_alt.dmi'
+	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "sentry_head"
 
 
@@ -52,7 +52,7 @@
 	desc = "The tripod part of an automated sentry turret. You should deploy it first."
 	unacidable = TRUE
 	w_class = 5
-	icon = 'icons/Marine/new_sentry_alt.dmi'
+	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "sentry_tripod_folded"
 
 /obj/item/device/turret_tripod/attack_self(mob/user)
@@ -84,7 +84,7 @@
 /obj/machinery/turret_tripod_deployed
 	name = "\improper UA 571-C turret tripod"
 	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an M30 Autocannon and a 500-round drum magazine."
-	icon = 'icons/Marine/new_sentry_alt.dmi'
+	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "sentry_tripod"
 	anchored = FALSE
 	unacidable = TRUE
@@ -206,7 +206,7 @@
 /obj/machinery/marine_turret
 	name = "\improper UA 571-C sentry gun"
 	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an M30 Autocannon and a 500-round drum magazine."
-	icon = 'icons/Marine/new_sentry_alt.dmi'
+	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "sentry_base"
 	anchored = TRUE
 	unacidable = TRUE
@@ -269,7 +269,7 @@
 	if(alerts_on)
 		details +=("Its alert mode is active.</br>")
 
-	if(!ammo)
+	if(!ammo || !rounds)
 		details +=("<span class='danger'>It has no ammo!</br></span>")
 
 	if(!cell || cell.charge == 0)
@@ -278,7 +278,8 @@
 	to_chat(user, "<span class='warning'>[details.Join(" ")]</span>")
 
 
-/obj/machinery/marine_turret/New()
+/obj/machinery/marine_turret/Initialize()
+	. = ..()
 	spark_system = new /datum/effect_system/spark_spread
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
@@ -286,8 +287,7 @@
 	camera = new (src)
 	camera.network = list("military")
 	camera.c_tag = "[name] ([rand(0, 1000)])"
-	spawn(2)
-		stat = 0
+	stat = NOFLAGS
 	//START_PROCESSING(SSobj, src)
 	ammo = GLOB.ammo_list[ammo]
 	update_icon()
@@ -699,14 +699,14 @@
 	return ..()
 
 /obj/machinery/marine_turret/update_icon()
-	var/image/battery_green = image('icons/Marine/new_sentry_alt.dmi', src, "sentry_batt_green")
-	var/image/battery_yellow = image('icons/Marine/new_sentry_alt.dmi', src, "sentry_batt_yellow")
-	var/image/battery_orange = image('icons/Marine/new_sentry_alt.dmi', src, "sentry_batt_orange")
-	var/image/battery_red = image('icons/Marine/new_sentry_alt.dmi', src, "sentry_batt_red")
-	var/image/battery_black = image('icons/Marine/new_sentry_alt.dmi', src, "sentry_batt_black")
-	var/image/active = image('icons/Marine/new_sentry_alt.dmi', src, "sentry_active")
-	var/image/ammo_full = image('icons/Marine/new_sentry_alt.dmi', src, "sentry_ammo")
-	var/image/ammo_empty = image('icons/Marine/new_sentry_alt.dmi', src, "sentry_ammo_empty")
+	var/image/battery_green = image('icons/Marine/sentry.dmi', src, "sentry_batt_green")
+	var/image/battery_yellow = image('icons/Marine/sentry.dmi', src, "sentry_batt_yellow")
+	var/image/battery_orange = image('icons/Marine/sentry.dmi', src, "sentry_batt_orange")
+	var/image/battery_red = image('icons/Marine/sentry.dmi', src, "sentry_batt_red")
+	var/image/battery_black = image('icons/Marine/sentry.dmi', src, "sentry_batt_black")
+	var/image/active = image('icons/Marine/sentry.dmi', src, "sentry_active")
+	var/image/ammo_full = image('icons/Marine/sentry.dmi', src, "sentry_ammo")
+	var/image/ammo_empty = image('icons/Marine/sentry.dmi', src, "sentry_ammo_empty")
 
 	overlays.Cut()
 	if(stat && health > 0) //Knocked over
@@ -1141,33 +1141,40 @@
 */
 /obj/machinery/marine_turret/premade
 	name = "UA-577 Gauss Turret"
+	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an armor penetrating MIC Gauss Cannon and a high-capacity drum magazine."
+	ammo = /datum/ammo/bullet/turret/gauss //This is a gauss cannon; it will be significantly deadlier
 	immobile = TRUE
 	on = TRUE
 	burst_fire = TRUE
-	rounds = 50000
 	rounds_max = 50000
 	icon_state = "sentry_base"
 
-/obj/machinery/marine_turret/premade/New()
-	spark_system = new /datum/effect_system/spark_spread
-	spark_system.set_up(5, 0, src)
-	spark_system.attach(src)
+/obj/machinery/marine_turret/premade/Initialize()
+	. = ..()
+	qdel(cell)
+	cell = null
 	var/obj/item/cell/super/H = new(src) //Better cells in these ones.
 	cell = H
-	camera = new (src)
-	camera.network = list("military")
-	camera.c_tag = "[src.name] ([rand(0,1000)])"
-	spawn(2)
-		stat = 0
-	ammo = GLOB.ammo_list[ammo]
 	rounds = 50000
-	update_icon()
+
+
 
 /obj/machinery/marine_turret/premade/dumb
-	name = "Modified UA-577 Gauss Sentry"
-	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an M30 Autocannon and a high-capacity drum magazine. This one's IFF system has been disabled, and it will open fire on any targets within range."
+	name = "\improper Modified UA 571-C sentry gun"
+	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an M30 Autocannon and a 500-round drum magazine. This one's IFF system has been disabled, and it will open fire on any targets within range."
 	iff_signal = 0
 	ammo = /datum/ammo/bullet/turret/dumb
+	magazine_type = /obj/item/ammo_magazine/sentry/premade/dumb
+	rounds_max = 500
+	alerts_on = FALSE
+
+/obj/machinery/marine_turret/premade/dumb/Initialize()
+	. = ..()
+	rounds = 500
+	camera.network = null
+	camera.c_tag = null
+	camera = null
+
 
 /obj/machinery/marine_turret/premade/dumb/attack_hand(mob/user as mob)
 
@@ -1191,10 +1198,6 @@
 		target = null
 		on = TRUE
 		SetLuminosity(7)
-		if(!camera)
-			camera = new /obj/machinery/camera(src)
-			camera.network = list("military")
-			camera.c_tag = src.name
 		update_icon()
 	else
 		on = FALSE
@@ -1204,22 +1207,21 @@
 		update_icon()
 
 /obj/item/ammo_magazine/sentry/premade/dumb
-	name = "UA-577 box magazine (12x40mm Gauss Slugs)"
-	desc = "A box of 500 12x40mm gauss slugs for the UA-577 Gauss Turret. Just feed it into the turret's ammo port when its ammo is depleted."
+	name = "M30 box magazine (10x28mm Caseless)"
+	desc = "A box of 500 10x28mm caseless rounds for the UA 571-C Sentry Gun. Just feed it into the sentry gun's ammo port when its ammo is depleted."
 	w_class = 4
-	icon = 'icons/Marine/new_sentry_alt.dmi'
+	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "ammo_can"
 	flags_magazine = NOFLAGS //can't be refilled or emptied by hand
-	caliber = "12x40mm"
-	max_rounds = 50000
+	caliber = "10x28mm"
+	max_rounds = 500
 	default_ammo = /datum/ammo/bullet/turret/dumb
 	gun_type = null
 
-
 //the turret inside the sentry deployment system
 /obj/machinery/marine_turret/premade/dropship
+	name = "UA-577 Gauss Dropship Turret"
 	density = FALSE
-	ammo = /datum/ammo/bullet/turret/gauss //This is a gauss cannon; it will be significantly deadlier
 	safety_off = TRUE
 	burst_size = 10
 	burst_delay = 15
@@ -1234,15 +1236,15 @@
 
 /obj/item/ammo_magazine/sentry/premade/dropship
 	name = "UA-577 box magazine (12x40mm Gauss Slugs)"
-	desc = "A box of 500 12x40mm gauss slugs for the UA-577 Gauss Turret. Just feed it into the turret's ammo port when its ammo is depleted."
+	desc = "A box of 50000 12x40mm gauss slugs for the UA-577 Gauss Turret. Just feed it into the turret's ammo port when its ammo is depleted."
 	w_class = 4
-	icon = 'icons/Marine/new_sentry_alt.dmi'
+	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "ammo_can"
 	flags_magazine = NOFLAGS //can't be refilled or emptied by hand
 	caliber = "12x40mm"
-	max_rounds = 50000
 	default_ammo = /datum/ammo/bullet/turret/gauss
 	gun_type = null
+	max_rounds = 50000
 
 /obj/machinery/marine_turret/proc/sentry_alert(alert_code, mob/M)
 	if(!alert_code)
@@ -1252,7 +1254,7 @@
 		if(SENTRY_ALERT_AMMO)
 			notice = "<b>ALERT! [src]'s ammo depleted at: [get_area(src)]. Coordinates: (X: [x], Y: [y]).</b>"
 		if(SENTRY_ALERT_HOSTILE)
-			notice = "<b>ALERT! Hostile/unknown: [M] Detected at: [get_area(M)]. Coordinates: (X: [M.x], Y: [M.y]).</b>"
+			notice = "<b>ALERT! [src] detected Hostile/Unknown: [M.name] at: [get_area(M)]. Coordinates: (X: [M.x], Y: [M.y]).</b>"
 		if(SENTRY_ALERT_FALLEN)
 			notice = "<b>ALERT! [src] has been knocked over at: [get_area(src)]. Coordinates: (X: [x], Y: [y]).</b>"
 		if(SENTRY_ALERT_DAMAGE)

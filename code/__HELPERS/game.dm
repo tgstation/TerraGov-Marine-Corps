@@ -310,7 +310,7 @@ proc/isInSight(var/atom/A, var/atom/B)
 			continue
 
 		//Admins get to skip the deathtime check, but only not while aghosted
-		if(check_other_rights(O.client, R_ADMIN, FALSE) && copytext(O.mind.current.key, 1, 1) != "@")
+		if(check_other_rights(O.client, R_ADMIN, FALSE) && copytext(O.mind?.current?.key, 1, 1) != "@")
 			candidates += O.key
 			continue
 

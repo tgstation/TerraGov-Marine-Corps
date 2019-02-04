@@ -75,33 +75,38 @@ proc/spread_germs_to_organ(datum/limb/E, mob/living/carbon/human/user)
 
 	//Gloves
 	if(user.gloves)
-		if(user.germ_level && istype(user.gloves, /obj/item/clothing/gloves/latex))
-			E.germ_level -= user.gloves.germ_level * 0.5
+		if(istype(user.gloves, /obj/item/clothing/gloves/latex))
+			E.germ_level += user.gloves.germ_level * 0.1
 		else if(user.gloves.germ_level && user.gloves.germ_level > 60)
-			E.germ_level += user.gloves.germ_level * 0.5
-	else if(user.germ_level)
-		E.germ_level += user.germ_level * 0.5
+			E.germ_level += user.gloves.germ_level * 0.2
+	else
+		E.germ_level += user.germ_level * 0.33
 
 	//Masks
 	if(user.wear_mask)
-		if(user.germ_level && istype(user.wear_mask, /obj/item/clothing/mask/cigarette))
-			E.germ_level += user.germ_level + 200  // fuck you smoking doctors
-		else if(user.wear_mask.germ_level && istype(user.wear_mask, /obj/item/clothing/mask/surgical))
-			E.germ_level -= user.wear_mask.germ_level * 0.5
+		if(istype(user.wear_mask, /obj/item/clothing/mask/cigarette))
+			E.germ_level += user.germ_level * 1
+		else if(istype(user.wear_mask, /obj/item/clothing/mask/surgical))
+			E.germ_level += user.wear_mask.germ_level * 0.1
 		else
-			E.germ_level += user.wear_mask.germ_level * 0.5
-	else if(user.germ_level && prob(60))
-		E.germ_level += user.germ_level * 0.5
+			E.germ_level += user.wear_mask.germ_level * 0.2
+	else 
+		E.germ_level += user.germ_level * 0.33
 
 	//Suits
 	if(user.wear_suit)
-		if(user.germ_level && istype(user.wear_suit, /obj/item/clothing/suit/surgical))
-			E.germ_level -= user.germ_level * 0.5
+		if(istype(user.wear_suit, /obj/item/clothing/suit/surgical))
+			E.germ_level += user.germ_level * 0.1
+		else
+			E.germ_level += user.germ_level * 0.2
+	else 
+		E.germ_level += user.germ_level * 0.33
 
 	if(locate(/obj/structure/bed/roller, E.owner.loc))
-		E.germ_level += 100
+		E.germ_level += 75
 	else if(locate(/obj/structure/table/, E.owner.loc))
-		E.germ_level += 200
+		E.germ_level += 100
+
 
 proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 	if(!istype(M))

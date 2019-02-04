@@ -265,7 +265,7 @@
 /obj/effect/particle_effect/smoke/xeno
 	lifetime = 6
 	spread_speed = 7
-	var/strength = 1 // Effects scale with Boiler upgrades.
+	var/strength = 1 // Effects scale with the emitter's bomb_strength upgrades.
 
 /obj/effect/particle_effect/smoke/xeno/smoke_mob(mob/living/carbon/C)
 	if(lifetime < 1 || !istype(C))
@@ -331,21 +331,25 @@
 		to_chat(C, "<span class='danger'>Your eyes sting. You can't see!</span>")
 	C.blur_eyes(4)
 	C.blind_eyes(2)
+	var/reagent_amount = 6 + strength * 2
+	C.reagents.add_reagent("xeno_toxin", reagent_amount)
+	if(prob(reagent_amount * 5)) //Likely to momentarily freeze up/fall due to arms/hands seizing up
+		if(prob(50))
+			to_chat(C, "<span class='danger'>Your body is going numb, almost as if paralyzed!</span>")
+		C.AdjustKnockeddown(1)
 	if(prob(50))
 		C.emote("cough")
 	else
 		C.emote("gasp")
 
 /obj/effect/particle_effect/smoke/xeno/neuro/effect_contact(mob/living/carbon/C)
-	var/reagent_amount = rand(7,9)
-	var/gas_protect = (C.internal || C.has_smoke_protection()) ? 0.25 : 1
-	C.reagents.add_reagent("xeno_toxin", reagent_amount * gas_protect)
-	//Topical damage (neurotoxin on exposed skin)
-	var/protection = min(C.get_permeability_protection(), 0.75)
-	if(prob(round(reagent_amount*5)*protection)) //Likely to momentarily freeze up/fall due to arms/hands seizing up
-		if(prob(50))
-			to_chat(C, "<span class='danger'>Your body is going numb, almost as if paralyzed!</span>")
-		C.AdjustKnockeddown(0.5)
+	if(!C.internal && !C.has_smoke_protection()) //skin protection won't matter if without gas protection
+		return
+	var/reagent_amount = 2 + strength
+	var/bio_vulnerability = 1 - min(C.get_permeability_protection(), 0.9)
+	C.reagents.add_reagent("xeno_toxin", round(reagent_amount * bio_vulnerability, 0.1))
+	if(prob(bio_vulnerability * 5))
+		to_chat(C, "<span class='danger'>Your body goes numb where the gas touches it!</span>")
 
 /////////////////////////////////////////////
 // Smoke spreads

@@ -1,5 +1,0 @@
-author: "Ghommie"
-delete-after: True
-changes: 
-  - balance: "Balances tasers, down to 20 shots from the former 100 (yessir, one, zero, zero). Improved accuracy and scatter, both wielded and unwielded. The bolts range has been reduced."
-  - bugfix: "Fixes tasers' skill check being broken."

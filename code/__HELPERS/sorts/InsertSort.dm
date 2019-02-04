@@ -8,12 +8,17 @@
 		if(toIndex <= 0)
 			toIndex += L.len + 1
 
-		sortInstance.L = L
-		sortInstance.cmp = cmp
-		sortInstance.associative = associative
+		var/datum/sortInstance/SI = GLOB.sortInstance
+		if(!SI)
+			SI = new
+		SI.L = L
+		SI.cmp = cmp
+		SI.associative = associative
+
+		SI.binarySort(fromIndex, toIndex, fromIndex)
 
 		//sortInstance.binarySort(fromIndex, toIndex, fromIndex)
-		test_bs(L, cmp, fromIndex, toIndex, fromIndex)
+		//test_bs(L, cmp, fromIndex, toIndex, fromIndex)
 
 	return L
 

@@ -89,7 +89,7 @@
 
 		mind = body.mind	//we don't transfer the mind but we keep a reference to it.
 
-	if(!T)	T = pick(latejoin)			//Safety in case we cannot find the body's position
+	if(!T)	T = pick(GLOB.latejoin)			//Safety in case we cannot find the body's position
 	loc = T
 
 	if(!name)							//To prevent nameless ghosts
@@ -226,6 +226,10 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			var/eta_status = EvacuationAuthority.get_status_panel_eta()
 			if(eta_status)
 				stat(null, eta_status)
+		if(ticker?.mode)
+			var/countdown = ticker.mode.get_queen_countdown()
+			if(countdown)
+				stat("Queen Re-Check:", countdown)
 
 /mob/dead/observer/verb/reenter_corpse()
 	set category = "Ghost"

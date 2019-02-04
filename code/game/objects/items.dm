@@ -654,7 +654,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		zoom = !zoom
 		if(user.interactee)
 			user.unset_interaction()
-		else
+		else if(!istype(src, /obj/item/attachable/scope))
 			user.set_interaction(src)
 		return
 

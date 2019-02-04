@@ -1,6 +1,0 @@
-author: "Surrealistik"
-delete-after: True
-changes: 
-  - balance: "Defender HP reduced,  Headbutt cooldown increased by 2 seconds and cost increased by 5. Tail Swipe cost increased by 5."
-  - bugfix: "Praetorian xeno datum garbage data cleaned up; melee attack improved, progression smoothed out."
-  - tweak: "More false variables substituted out for constants."

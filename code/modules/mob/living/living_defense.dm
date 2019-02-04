@@ -77,6 +77,11 @@
 		if(armor < 1)
 			apply_damage(throw_damage, dtype, null, armor, is_sharp(O), has_edge(O), O)
 
+		if(O.item_fire_stacks)
+			fire_stacks += O.item_fire_stacks
+		if(O.igniting)
+			IgniteMob()
+
 		O.throwing = 0		//it hit, so stop moving
 
 		if(ismob(O.thrower))

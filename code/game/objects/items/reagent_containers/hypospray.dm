@@ -3,7 +3,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 /obj/item/reagent_container/hypospray
-	name = "hypospray"
+	name = "\improper hypospray"
 	desc = "The hypospray is a sterile, air-needle reusable autoinjector for rapid administration of drugs to patients with customizable dosages. Comes complete with an internal reagent analyzer and digital labeler. Handy."
 	icon = 'icons/obj/items/syringe.dmi'
 	item_state = "hypo"

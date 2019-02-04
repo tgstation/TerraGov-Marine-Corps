@@ -232,7 +232,10 @@
 					else if(ismonkey(M))
 						M_job = "Monkey"
 					else if(isxeno(M))
-						M_job = "alien"
+						if(M.client?.prefs?.xeno_name && M.client.prefs.xeno_name != "Undefined")
+							M_job = "alien - [M.client.prefs.xeno_name]"
+						else
+							M_job = "alien"
 					else
 						M_job = "Carbon-based"
 
@@ -344,7 +347,10 @@
 		else if(ismonkey(M))
 			dat += "<td>Monkey</td>"
 		else if(isxeno(M))
-			dat += "<td>alien</td>"
+			if(M.client?.prefs?.xeno_name && M.client.prefs.xeno_name != "Undefined")
+				dat += "<td>alien - [M.client.prefs.xeno_name]</td>"
+			else
+				dat += "<td>alien</td>"
 		else
 			dat += "<td>Unknown</td>"
 

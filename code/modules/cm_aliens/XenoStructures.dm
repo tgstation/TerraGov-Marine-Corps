@@ -683,15 +683,14 @@ TUNNEL
 	var/obj/structure/tunnel/other = null
 	var/id = null //For mapping
 
-	New()
-		..()
-		spawn(5)
-			if(id && !other)
-				for(var/obj/structure/tunnel/T in GLOB.structure_list)
-					if(T.id == id && T != src && T.other == null) //Found a matching tunnel
-						T.other = src
-						other = T //Link them!
-						break
+/obj/structure/tunnel/Initialize()
+	. = ..()
+	if(id && !other)
+		for(var/obj/structure/tunnel/T in GLOB.xeno_tunnels)
+			if(T.id == id && T != src && T.other == null) //Found a matching tunnel
+				T.other = src
+				other = T //Link them!
+				break
 
 /obj/structure/tunnel/Destroy()
 	if(other)

@@ -1,7 +1,0 @@
-author: "LaKiller8"
-delete-after: True
-changes: 
-  - balance: "Slightly increased the amount of starting xenos, increased bonuses for xenos when marines late-join."
-  - balance: "Monkeys are now completely removed."
-  - balance: "Survivor loadouts are now more consistent, they start with more useful materials and ammo for their basic gun."
-  - bugfix: "Fixed rolling of xenos for admins."

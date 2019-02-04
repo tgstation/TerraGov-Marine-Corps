@@ -1,8 +1,8 @@
 
 //Some debug variables. Toggle them to 1 in order to see the related debug messages. Helpful when testing out formulas.
-#define DEBUG_HIT_CHANCE	0
-#define DEBUG_HUMAN_DEFENSE	0
-#define DEBUG_XENO_DEFENSE	0
+#define DEBUG_HIT_CHANCE	FALSE
+#define DEBUG_HUMAN_DEFENSE	FALSE
+#define DEBUG_XENO_DEFENSE	FALSE
 #define DEBUG_CREST_DEFENSE	0
 
 //The actual bullet objects.
@@ -50,6 +50,7 @@
 	var/in_flight = 0
 
 	var/projectile_speed = 0
+	var/armor_type = null
 
 /obj/item/projectile/New()
 	. = ..()
@@ -92,6 +93,7 @@
 	damage     *= rand(CONFIG_GET(number/combat_define/proj_variance_low)-ammo.damage_var_low, CONFIG_GET(number/combat_define/proj_variance_high)+ammo.damage_var_high) * CONFIG_GET(number/combat_define/proj_base_damage_mult)
 	damage_falloff = ammo.damage_falloff
 	list_reagents = ammo.ammo_reagents
+	armor_type = ammo.armor_type
 
 //Target, firer, shot from. Ie the gun
 /obj/item/projectile/proc/fire_at(atom/target,atom/F, atom/S, range = 30,speed = 1)
@@ -251,9 +253,11 @@
 					#if DEBUG_HIT_CHANCE
 					to_chat(world, "DEBUG: Hit Chance 1: [hit_chance], Hit Roll: [hit_roll]")
 					#endif
-					if(hit_roll < 25 && !shot_from.sniper_target(A)) //Sniper targets more likely to hit
-						def_zone = pick(base_miss_chance)	// Still hit but now we might hit the wrong body part
-					if(!shot_from.sniper_target(A))
+					if(hit_roll < 25) //Sniper targets more likely to hit
+						if(shot_from && !shot_from.sniper_target(A) || !shot_from) //Avoid sentry run times
+							def_zone = pick(base_miss_chance)	// Still hit but now we might hit the wrong body part
+
+					if(shot_from && !shot_from.sniper_target(A)) //Avoid sentry run times
 						hit_chance -= base_miss_chance[def_zone] // Reduce accuracy based on spot.
 						#if DEBUG_HIT_CHANCE
 						to_chat(world, "Hit Chance 2: [hit_chance]")
@@ -420,6 +424,8 @@
 	if(ishuman(P.firer))
 		var/mob/living/carbon/human/shooter_human = P.firer
 		. -= round(max(30,(shooter_human.traumatic_shock) * 0.2)) //Chance to hit declines with pain, being reduced by 0.2% per point of pain.
+		if(shooter_human.stagger)
+			. -= 30 //Being staggered fucks your aim.
 		if(shooter_human.marskman_aura)
 			. += shooter_human.marskman_aura * 1.5 //Flat buff of 3 % accuracy per aura level
 			. += P.distance_travelled * 0.35 * shooter_human.marskman_aura //Flat buff to accuracy per tile travelled
@@ -533,16 +539,13 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 	//Run armor check. We won't bother if there is no damage being done.
 	if( damage > 0 && !(P.ammo.flags_ammo_behavior & AMMO_IGNORE_ARMOR) )
 		var/armor //Damage types don't correspond to armor types. We are thus merging them.
-		switch(P.ammo.damage_type)
-			if(BRUTE) armor = P.ammo.flags_ammo_behavior & AMMO_ROCKET ? getarmor_organ(organ, "bomb") : getarmor_organ(organ, "bullet")
-			if(BURN) armor = P.ammo.flags_ammo_behavior & AMMO_ENERGY ? getarmor_organ(organ, "energy") : getarmor_organ(organ, "laser")
-			if(TOX, OXY, CLONE) armor = getarmor_organ(organ, "bio")
-			else armor = getarmor_organ(organ, "energy") //Won't be used, but just in case.
+		armor = getarmor_organ(organ, P.armor_type) //Should always have a type; this defaults to bullet if nothing else.
+
 		#if DEBUG_HUMAN_DEFENSE
 		to_chat(world, "<span class='debuginfo'>Initial armor is: <b>[armor]</b></span>")
 		#endif
 		var/penetration = P.ammo.penetration > 0 || armor > 0 ? P.ammo.penetration : 0
-		if(src == P.shot_from.sniper_target(src))
+		if(P.shot_from && src == P.shot_from.sniper_target(src)) //Runtimes bad
 			damage *= SNIPER_LASER_DAMAGE_MULTIPLIER //+50% damage vs the aimed target
 			penetration *= SNIPER_LASER_ARMOR_MULTIPLIER //+50% penetration vs the aimed target
 		armor -= penetration//Minus armor penetration from the bullet. If the bullet has negative penetration, adding to their armor, but they don't have armor, they get nothing.
@@ -658,7 +661,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 			#endif
 
 		var/penetration = P.ammo.penetration > 0 || armor > 0 ? P.ammo.penetration : 0
-		if(src == P.shot_from.sniper_target(src))
+		if(P.shot_from && src == P.shot_from.sniper_target(src))
 			damage *= SNIPER_LASER_DAMAGE_MULTIPLIER //+50% damage vs the aimed target
 			penetration *= SNIPER_LASER_ARMOR_MULTIPLIER //+50% penetration vs the aimed target
 

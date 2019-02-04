@@ -119,12 +119,8 @@ var/list/mechtoys = list(
 	var/comment = null
 
 /datum/controller/supply
-	var/processing = 1
-	var/processing_interval = 300
-	var/iteration = 0
 	//supply points
 	var/points = 120
-	var/points_per_process = 2
 	var/points_per_slip = 1
 	var/points_per_crate = 5
 	var/points_per_platinum = 5
@@ -151,15 +147,6 @@ var/list/mechtoys = list(
 		for(var/typepath in subtypesof(/datum/supply_export))
 			var/datum/supply_export/E = new typepath()
 			export_types += E
-
-		spawn(0)
-			set background = 1
-			while(1)
-				if(processing)
-					iteration++
-					points += points_per_process
-
-				sleep(processing_interval)
 
 	//To stop things being sent to centcomm which should not be sent to centcomm. Recursively checks for these types.
 	proc/forbidden_atoms_check(atom/A)

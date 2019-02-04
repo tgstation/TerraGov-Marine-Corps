@@ -222,7 +222,6 @@
 			return
 
 		health -= 200 * round(C.charge_speed / max(1, C.charge_speed_max),0.01)
-		to_chat(world, "DEBUG: Crusher damage: [150 * round(C.charge_speed / max(1, C.charge_speed_max),0.01)]. Speed: [C.charge_speed] Max Speed: [C.charge_speed_max]")
 		update_health()
 
 		var/def_zone = ran_zone()

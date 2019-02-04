@@ -22,7 +22,7 @@
 	plasma_gain = 14
 
 	// *** Health *** //
-	max_health = 225
+	max_health = 250
 
 	// *** Evolution *** //
 	upgrade_threshold = 400
@@ -33,9 +33,10 @@
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_BE_GIVEN_PLASMA
 
 	// *** Defense *** //
-	armor_deflection = 20
+	armor_deflection = 30
 
 	// *** Defiler Abilities *** //
+	bomb_strength = 1 //Used by the dispense neurogas power.
 	var/neuro_claws_amount = DEFILER_CLAW_AMOUNT
 
 /datum/xeno_caste/defiler/mature
@@ -59,15 +60,16 @@
 	plasma_gain = 17
 
 	// *** Health *** //
-	max_health = 275
+	max_health = 300
 
 	// *** Evolution *** //
 	upgrade_threshold = 800
 
 	// *** Defense *** //
-	armor_deflection = 30
+	armor_deflection = 35
 
 	// *** Defiler Abilities *** //
+	bomb_strength = 1.5
 	neuro_claws_amount = 7
 
 /datum/xeno_caste/defiler/elder
@@ -91,15 +93,16 @@
 	plasma_gain = 19
 
 	// *** Health *** //
-	max_health = 290
+	max_health = 325
 
 	// *** Evolution *** //
 	upgrade_threshold = 1600
 
 	// *** Defense *** //
-	armor_deflection = 37
+	armor_deflection = 38
 
 	// *** Defiler Abilities *** //
+	bomb_strength = 1.5
 	neuro_claws_amount = 7.7
 
 /datum/xeno_caste/defiler/ancient
@@ -123,7 +126,7 @@
 	plasma_gain = 20
 
 	// *** Health *** //
-	max_health = 300
+	max_health = 340
 
 	// *** Evolution *** //
 	upgrade_threshold = 1600
@@ -132,6 +135,7 @@
 	armor_deflection = 40
 
 	// *** Defiler Abilities *** //
+	bomb_strength = 2
 	neuro_claws_amount = 8
 
 /mob/living/carbon/Xenomorph/Defiler
@@ -139,6 +143,7 @@
 	name = "Defiler"
 	desc = "A large, powerfully muscled xeno replete with dripping spines and gas leaking dorsal vents."
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
+	icon_state = "Defiler Walking"
 	health = 225
 	maxHealth = 225
 	plasma_stored = 400
@@ -148,7 +153,7 @@
 	wound_type = "defiler" //used to match appropriate wound overlays
 	tier = 3
 	upgrade = 0
-	var/datum/effect_system/smoke_spread/smoke_system = null
+	var/datum/effect_system/smoke_spread/xeno/smoke_system = null
 	var/last_defiler_sting = null
 	var/last_emit_neurogas = null
 	var/last_use_neuroclaws = null

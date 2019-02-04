@@ -1,5 +1,0 @@
-author: "LaKiller8"
-delete-after: True
-changes: 
-  - tweak: "Renamed all instances of USS Almayer to TGS Theseus"
-  - bugfix: "Dropship equipment is now usable again."

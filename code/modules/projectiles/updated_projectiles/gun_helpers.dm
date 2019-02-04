@@ -404,7 +404,7 @@ should be alright.
 		return
 
 	var/final_delay = attachment.attach_delay
-	if (user.mind.cm_skills.firearms)
+	if(user.mind?.cm_skills?.firearms)
 		user.visible_message("<span class='notice'>[user] begins attaching [attachment] to [src].</span>",
 		"<span class='notice'>You begin attaching [attachment] to [src].</span>", null, 4)
 		if(user.mind.cm_skills.firearms >= SKILL_FIREARMS_DEFAULT) //See if the attacher is super skilled/panzerelite born to defeat never retreat etc
@@ -632,17 +632,17 @@ should be alright.
 			if(flags_gun_features & GUN_FULL_AUTO_ON)
 				flags_gun_features &= ~GUN_FULL_AUTO_ON
 				flags_gun_features &= ~GUN_BURST_ON
-				to_chat(usr, "<span class='notice'>\icon[src] You set [src] to single fire mode.</span>")
+				to_chat(usr, "<span class='notice'>[bicon(src)] You set [src] to single fire mode.</span>")
 			else
 				flags_gun_features|= GUN_FULL_AUTO_ON
-				to_chat(usr, "<span class='notice'>\icon[src] You set [src] to full auto mode.</span>")
+				to_chat(usr, "<span class='notice'>[bicon(src)] You set [src] to full auto mode.</span>")
 		else
 			flags_gun_features |= GUN_BURST_ON
-			to_chat(usr, "<span class='notice'>\icon[src] You set [src] to burst fire mode.</span>")
+			to_chat(usr, "<span class='notice'>[bicon(src)] You set [src] to burst fire mode.</span>")
 	else
 		flags_gun_features ^= GUN_BURST_ON
 
-		to_chat(usr, "<span class='notice'>\icon[src] You [flags_gun_features & GUN_BURST_ON ? "<B>enable</b>" : "<B>disable</b>"] [src]'s burst fire mode.</span>")
+		to_chat(usr, "<span class='notice'>[bicon(src)] You [flags_gun_features & GUN_BURST_ON ? "<B>enable</b>" : "<B>disable</b>"] [src]'s burst fire mode.</span>")
 
 
 /obj/item/weapon/gun/verb/empty_mag()
@@ -747,7 +747,12 @@ should be alright.
 	if(!usr)
 		return
 
-	rail?.activate_attachment(src, usr)
+	var/obj/item/weapon/gun/W = usr.get_active_held_item()
+
+	if(!istype(W))
+		return
+
+	W.rail?.activate_attachment(W, usr)
 
 
 /obj/item/weapon/gun/verb/toggle_ammo_hud()

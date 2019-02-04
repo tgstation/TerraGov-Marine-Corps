@@ -1,4 +1,0 @@
-author: "Ghommie"
-delete-after: True
-changes: 
-  - code_imp: "Better usage of \"is\" helpers across the code."

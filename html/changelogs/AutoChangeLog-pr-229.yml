@@ -1,5 +1,0 @@
-author: "Surrealistik"
-delete-after: True
-changes: 
-  - bugfix: "Fixes the cooldown for the neurotox sting."
-  - bugfix: "Fixes plasma cost being improperly deducted on middle click selection."

@@ -10,19 +10,11 @@
 	idle_power_usage = 20
 	icon = 'icons/obj/machines/drone_fab.dmi'
 	icon_state = "drone_fab_idle"
-	var/dropship_points = 0 //gains roughly 18 points per minute
 	var/busy = FALSE
-
-/obj/machinery/dropship_part_fabricator/New()
-	..()
-	start_processing()
 
 /obj/machinery/dropship_part_fabricator/power_change()
 	..()
 	update_icon()
-
-/obj/machinery/dropship_part_fabricator/process()
-	dropship_points++
 
 /obj/machinery/dropship_part_fabricator/update_icon()
 	if(stat & NOPOWER)
@@ -39,7 +31,7 @@
 		return
 	user.set_interaction(src)
 	var/dat = "<center><h2>Dropship Part Fabricator</h2></center><hr/>"
-	dat += "<h4>Points Available: [dropship_points]</h4>"
+	dat += "<h4>Points Available: [SSpoints.dropship_points]</h4>"
 	dat += "<h3>Dropship Equipment:</h3>"
 	for(var/build_type in typesof(/obj/structure/dropship_equipment))
 		var/obj/structure/dropship_equipment/DE = build_type
@@ -63,11 +55,11 @@
 
 /obj/machinery/dropship_part_fabricator/proc/build_dropship_part(part_type, cost, mob/user)
 	if(stat & NOPOWER) return
-	if(dropship_points < cost)
+	if(SSpoints.dropship_points < cost)
 		to_chat(user, "<span class='warning'>You don't have enough points to build that.</span>")
 		return
 	visible_message("<span class='notice'>[src] starts printing something.</span>")
-	dropship_points -= cost
+	SSpoints.dropship_points -= cost
 	update_icon()
 	busy = TRUE
 	addtimer(CALLBACK(src, .do_build_dropship_part, part_type), 10 SECONDS)

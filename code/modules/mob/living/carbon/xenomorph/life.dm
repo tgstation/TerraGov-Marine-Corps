@@ -40,7 +40,7 @@
 		adjust_slowdown( round(-rage * 0.1,0.01) ) //Recover 0.1 more stagger stacks per unit of rage; min 0.1, max 5
 		adjust_stagger( round(-rage * 0.1,0.01) ) //Recover 0.1 more stagger stacks per unit of rage; min 0.1, max 5
 		rage_resist = CLAMP(1-round(rage * 0.014,0.01),0.3,1) //+1.4% damage resist per point of rage, max 70%
-		fire_resist_modifier = -round(rage * 0.01,0.01) //+1% fire resistance per stack of rage, max +50%; initial resist is 50%
+		fire_resist_modifier = CLAMP(round(rage * -0.01,0.01),-0.5,0) //+1% fire resistance per stack of rage, max +50%; initial resist is 50%
 		attack_delay = initial(attack_delay) - round(rage * 0.05,0.01) //-0.05 attack delay to a maximum reduction of -2.5
 	return ..()
 
@@ -134,7 +134,7 @@
 	if(.)
 		return
 	if(!(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE) && on_fire) //Sanity check; have to be on fire to actually take the damage.
-		adjustFireLoss((fire_stacks + 3) * (xeno_caste.fire_resist + fire_resist_modifier)) // modifier is negative
+		adjustFireLoss((fire_stacks + 3) * CLAMP(xeno_caste.fire_resist + fire_resist_modifier, 0, 1) ) // modifier is negative
 
 /mob/living/carbon/Xenomorph/proc/handle_living_health_updates()
 	if(health < 0)
@@ -414,7 +414,7 @@
 	var/env_temperature = loc.return_temperature()
 	if(!(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE))
 		if(env_temperature > (T0C + 66))
-			adjustFireLoss((env_temperature - (T0C + 66)) / 5 * (xeno_caste.fire_resist + fire_resist_modifier)) //Might be too high, check in testing.
+			adjustFireLoss((env_temperature - (T0C + 66) ) * 0.2 * CLAMP(xeno_caste.fire_resist + fire_resist_modifier, 0, 1) ) //Might be too high, check in testing.
 			updatehealth() //unused while atmos is off
 			if(hud_used && hud_used.fire_icon)
 				hud_used.fire_icon.icon_state = "fire2"
@@ -470,22 +470,7 @@
 		AdjustKnockeddown(-5)
 	return knocked_down
 
-/mob/living/carbon/Xenomorph/proc/handle_stagger()
-	if(stagger)
-		#if DEBUG_XENO_LIFE
-		world << "<span class='debuginfo'>Regen: Initial stagger is: <b>[stagger]</b></span>"
-		#endif
-		adjust_stagger(-1)
-		#if DEBUG_XENO_LIFE
-		world << "<span class='debuginfo'>Regen: Final stagger is: <b>[stagger]</b></span>"
-		#endif
-	return stagger
-
-/mob/living/carbon/Xenomorph/proc/adjust_stagger(amount)
-	stagger = max(stagger + amount,0)
-	return stagger
-
-/mob/living/carbon/Xenomorph/proc/handle_slowdown()
+/mob/living/carbon/Xenomorph/handle_slowdown()
 	if(slowdown)
 		#if DEBUG_XENO_LIFE
 		world << "<span class='debuginfo'>Regen: Initial slowdown is: <b>[slowdown]</b></span>"
@@ -496,11 +481,7 @@
 		#endif
 	return slowdown
 
-/mob/living/carbon/Xenomorph/proc/adjust_slowdown(amount)
-	slowdown = max(slowdown + amount,0)
-	return slowdown
-
-/mob/living/carbon/Xenomorph/proc/add_slowdown(amount)
+/mob/living/carbon/Xenomorph/add_slowdown(amount)
 	slowdown = adjust_slowdown(amount*XENO_SLOWDOWN_REGEN)
 	return slowdown
 

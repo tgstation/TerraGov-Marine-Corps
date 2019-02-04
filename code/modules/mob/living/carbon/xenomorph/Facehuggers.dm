@@ -461,7 +461,7 @@
 	update_icon()
 
 /obj/item/clothing/mask/facehugger/proc/melt_away()
-	visible_message("\icon[src] <span class='danger'>\The [src] decays into a mass of acid and chitin.</span>")
+	visible_message("[bicon(src)] <span class='danger'>\The [src] decays into a mass of acid and chitin.</span>")
 	qdel(src)
 
 #undef FACEHUGGER_LIFECYCLE

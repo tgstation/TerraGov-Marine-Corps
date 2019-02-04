@@ -146,7 +146,7 @@
 		if(do_after(user, 15, TRUE, 5, BUSY_ICON_HOSTILE))
 			user.visible_message("<span class='notice'>[user] loads \a [mortar_shell.name] into [src].</span>",
 			"<span class='notice'>You load \a [mortar_shell.name] into [src].</span>")
-			visible_message("\icon[src] <span class='danger'>The [name] fires!</span>")
+			visible_message("[bicon(src)] <span class='danger'>The [name] fires!</span>")
 			user.transferItemToLoc(mortar_shell, src)
 			playsound(loc, 'sound/weapons/gun_mortar_fire.ogg', 50, 1)
 			busy = 0
