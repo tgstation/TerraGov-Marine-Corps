@@ -284,7 +284,7 @@
 						var/obj/item/xeno_egg/newegg = new /obj/item/xeno_egg(loc)
 						newegg.hivenumber = hivenumber
 
-			if(hivenumber == XENO_HIVE_NORMAL && loc.z == 1)
+			if(hivenumber == XENO_HIVE_NORMAL && loc.z == PLANET_Z_LEVEL)
 				if(ticker.mode.stored_larva)
 					if((last_larva_time + 600) < world.time) // every minute
 						last_larva_time = world.time

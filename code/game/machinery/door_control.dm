@@ -99,7 +99,7 @@
 		return
 	if(shuttle.door_override)
 		return // its been locked down by the queen
-	if(z == 3) // on the almayer
+	if(z == MAIN_SHIP_Z_LEVEL) // on the almayer
 		return
 	for(var/obj/machinery/door/airlock/dropship_hatch/M in GLOB.machines)
 		if(M.id == ship_id)

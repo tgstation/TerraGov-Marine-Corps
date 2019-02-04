@@ -212,7 +212,7 @@
 		update() //areas should be lit on startup
 
 		//Break few ACPs on the colony
-		if(!start_charge && z == 1 && prob(10))
+		if(!start_charge && z == PLANET_Z_LEVEL && prob(10))
 			addtimer(CALLBACK(src, .proc/set_broken), 5)
 
 

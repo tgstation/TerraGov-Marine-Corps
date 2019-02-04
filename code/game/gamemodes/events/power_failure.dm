@@ -16,7 +16,7 @@
 		S.power_change()
 
 	for(var/obj/machinery/power/apc/C in GLOB.machines)
-		if(C.cell && C.z == 3)
+		if(C.cell && C.z == MAIN_SHIP_Z_LEVEL)
 			C.cell.charge = 0
 
 	playsound_z(3, 'sound/effects/powerloss.ogg')
@@ -39,7 +39,7 @@
 		S.power_change()
 
 	for(var/obj/machinery/power/apc/C in GLOB.machines)
-		if(C.cell && C.z == 3)
+		if(C.cell && C.z == MAIN_SHIP_Z_LEVEL)
 			C.cell.charge = C.cell.maxcharge
 
 	sleep(100)

@@ -184,9 +184,9 @@
 		..()
 
 /obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/unlock()
-	if(z == 4)
+	if(z == LOW_ORBIT_Z_LEVEL)
 		return // in orbit
-	..()
+	return ..(TRUE)
 
 /obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds1
 	name = "\improper Alamo cargo door"

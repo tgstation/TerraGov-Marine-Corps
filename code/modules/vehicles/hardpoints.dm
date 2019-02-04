@@ -52,7 +52,7 @@ Currently only has the tank hardpoints
 
 //If our cooldown has elapsed
 /obj/item/hardpoint/proc/is_ready()
-	if(owner.z == 2 || owner.z == 3)
+	if(owner.z == ADMIN_Z_LEVEL || owner.z == MAIN_SHIP_Z_LEVEL)
 		to_chat(usr, "<span class='warning'>Don't fire here, you'll blow a hole in the ship!</span>")
 		return FALSE
 	return TRUE

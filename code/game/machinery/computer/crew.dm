@@ -71,7 +71,7 @@
 			if(ishuman(C.loc))
 
 				var/mob/living/carbon/human/H = C.loc
-				if(H.mind.special_role && H.loc.z == 1) continue // survivors
+				if(H.mind.special_role && H.loc.z == PLANET_Z_LEVEL) continue // survivors
 				if(H.w_uniform != C)
 					continue
 

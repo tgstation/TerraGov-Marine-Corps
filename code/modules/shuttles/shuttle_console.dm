@@ -23,7 +23,7 @@
 	user.set_interaction(src)
 
 	var/datum/shuttle/ferry/shuttle = shuttle_controller.shuttles[shuttle_tag]
-	if(!isxeno(user) && (onboard || z == 1) && !shuttle.iselevator)
+	if(!isxeno(user) && (onboard || z == PLANET_Z_LEVEL) && !shuttle.iselevator)
 		if(shuttle.queen_locked)
 			if(world.time < shuttle.last_locked + SHUTTLE_LOCK_COOLDOWN)
 				to_chat(user, "<span class='warning'>You can't seem to re-enable remote control, some sort of safety cooldown is in place. Please wait another [round((shuttle.last_locked + SHUTTLE_LOCK_COOLDOWN - world.time)/600)] minutes before trying again.</span>")
@@ -161,7 +161,7 @@
 			if(isxenoqueen(usr) && shuttle.location == 1 && shuttle.alerts_allowed && onboard && !shuttle.iselevator)
 				var/i = alert("Warning: Once you launch the shuttle you will not be able to bring it back. Confirm anyways?", "WARNING", "Yes", "No")
 				if(shuttle.moving_status != SHUTTLE_IDLE || shuttle.locked || shuttle.location != 1 || !shuttle.alerts_allowed || !shuttle.queen_locked || shuttle.recharging) return
-				if(istype(shuttle, /datum/shuttle/ferry/marine) && src.z == 1 && i == "Yes") //Shit's about to kick off now
+				if(istype(shuttle, /datum/shuttle/ferry/marine) && src.z == PLANET_Z_LEVEL && i == "Yes") //Shit's about to kick off now
 					var/datum/shuttle/ferry/marine/shuttle1 = shuttle
 					shuttle1.transit_gun_mission = 0
 					shuttle1.launch_crash()
@@ -181,7 +181,7 @@
 				to_chat(usr, "<span class='alert'>Hrm, that didn't work. Maybe try the one on the ship?</span>")
 				return
 			else
-				if(z == 1)
+				if(z == PLANET_Z_LEVEL)
 					shuttle.transit_gun_mission = FALSE //remote launch always do transport flight.
 				shuttle.launch(src)
 			log_admin("[key_name(usr)] launched a [shuttle.iselevator ? "elevator" : "shuttle"] from [src].")
@@ -218,7 +218,7 @@
 			shuttle.transit_gun_mission = TRUE
 
 	if(href_list["lockdown"])
-		if(shuttle.door_override || z == 3)
+		if(shuttle.door_override || z == MAIN_SHIP_Z_LEVEL)
 			return // its been locked down by the queen
 
 		var/ship_id = "sh_dropship1"
@@ -281,7 +281,7 @@
 			reardoor.unlock()
 
 	if(href_list["side door"])
-		if(shuttle.door_override || z == 3)
+		if(shuttle.door_override || z == MAIN_SHIP_Z_LEVEL)
 			return // its been locked down by the queen
 
 		var/ship_id = "sh_dropship1"
@@ -306,7 +306,7 @@
 					to_chat(usr, "<span class='warning'>You hear a [sidename] door lock.</span>")
 
 	if(href_list["rear door"])
-		if(shuttle.door_override || z == 3)
+		if(shuttle.door_override || z == MAIN_SHIP_Z_LEVEL)
 			return // its been locked down by the queen
 
 		var/ship_id = "sh_dropship1"

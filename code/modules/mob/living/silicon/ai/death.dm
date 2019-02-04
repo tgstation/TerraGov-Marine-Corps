@@ -11,19 +11,19 @@
 	remove_ai_verbs(src)
 
 	for(var/obj/machinery/computer/communications/commconsole in GLOB.machines)
-		if(commconsole.z == 2)
+		if(commconsole.z == ADMIN_Z_LEVEL)
 			continue
 		if(istype(commconsole.loc,/turf))
 			break
 
 	for(var/obj/item/circuitboard/computer/communications/commboard in GLOB.item_list)
-		if(commboard.z == 2)
+		if(commboard.z == ADMIN_Z_LEVEL)
 			continue
 		if(istype(commboard.loc,/turf) || istype(commboard.loc,/obj/item/storage))
 			break
 
 	for(var/mob/living/silicon/ai/shuttlecaller in GLOB.player_list)
-		if(shuttlecaller.z == 2)
+		if(shuttlecaller.z == ADMIN_Z_LEVEL)
 			continue
 		if(!shuttlecaller.stat && shuttlecaller.client && istype(shuttlecaller.loc,/turf))
 			break
