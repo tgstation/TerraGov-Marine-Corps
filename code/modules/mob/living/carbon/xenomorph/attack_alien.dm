@@ -210,7 +210,7 @@
 
 			playsound(loc, 'sound/weapons/alien_knockdown.ogg', 25, 1)
 
-			var/tackle_pain = (rand(M.xeno_caste.tackle_damage * 0.20, M.xeno_caste.tackle_damage * 0.80) + rand(M.xeno_caste.tackle_damage * 0.20, M.xeno_caste.tackle_damage * 0.80))
+			var/tackle_pain = M.xeno_caste.tackle_damage
 			if(M.frenzy_aura)
 				tackle_pain = tackle_pain * (1 + (0.05 * M.frenzy_aura))  //Halloss damage increased by 5% per rank of frenzy aura
 			if(protection_aura)
