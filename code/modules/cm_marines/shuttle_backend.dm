@@ -299,13 +299,12 @@ x_pos = 0 1 2 3 4 5 6
 	icon_state = "spawn_shuttle"
 	var/rotation = 0 //When loading to this landmark, how much to rotate the turfs. See /proc/rotate_shuttle_turfs()
 
-/obj/effect/landmark/shuttle_loc/New() // unfortunately these need to be New() because of init order
+/obj/effect/landmark/shuttle_loc/Initialize()
 	. = ..()
-	GLOB.shuttle_locations += src
+	link_location()
+	return INITIALIZE_HINT_QDEL
 
 /obj/effect/landmark/shuttle_loc/Destroy()
-	GLOB.shuttle_locations -= src
-	return ..()
 
 /obj/effect/landmark/shuttle_loc/proc/link_location()
 	set waitfor = 0
@@ -324,8 +323,7 @@ x_pos = 0 1 2 3 4 5 6
 var/datum/shuttle/ferry/marine/S = shuttle_controller.shuttles["[MAIN_SHIP_NAME] [T] [name]"]; \
 if(!S) {log_runtime("ERROR CODE SO1: unable to find shuttle with the tag of: ["[MAIN_SHIP_NAME] [T] [name]"]."); \
 return FALSE}; \
-L[get_turf(src)] = rotation; \
-qdel(src)
+L[get_turf(src)] = rotation
 
 /obj/effect/landmark/shuttle_loc/marine_src/dropship //Name these "1" or "2", etc.
 
@@ -342,7 +340,6 @@ qdel(src)
 		return FALSE
 	S.locs_dock[get_turf(src)] = rotation
 	S.link_support_units(get_turf(src)) //Process links.
-	qdel(src)
 
 /obj/effect/landmark/shuttle_loc/marine_int/dropship
 
@@ -364,7 +361,6 @@ qdel(src)
 /obj/effect/landmark/shuttle_loc/marine_crs/dropship/link_location()
 	..()
 	shuttle_controller.locs_crash[get_turf(src)] = rotation
-	qdel(src)
 
 #undef SHUTTLE_LINK_LOCATIONS
 

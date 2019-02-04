@@ -48,8 +48,8 @@
 		if(T)
 			T.update_icon()
 
-/obj/structure/table/New()
-	..()
+/obj/structure/table/Initialize()
+	. = ..()
 	for(var/obj/structure/table/T in src.loc)
 		if(T != src)
 			qdel(T)

@@ -48,7 +48,7 @@ SUBSYSTEM_DEF(mapping)
 		var/old_config = config
 		config = global.config.defaultmap
 		if(!config || config.defaulted)
-			to_chat(world, "<span class='boldannounce'>Unable to load next or default map config, defaulting to Box Station</span>")
+			to_chat(world, "<span class='boldannounce'>Unable to load next or default map config, defaulting to LV624</span>")
 			config = old_config
 	loadWorld()
 	//repopulate_sorted_areas() // we dont have glob.sortedareas yet
