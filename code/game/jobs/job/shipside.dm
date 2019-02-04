@@ -65,7 +65,7 @@ Come hell or high water, you are going to be there for them."}
 
 
 //Executive Officer
-/datum/job/command/field
+/datum/job/command/fieldofficer
 	title = "Field Officer"
 	comm_title = "FO"
 	paygrade = "MAJ"
@@ -76,7 +76,7 @@ Come hell or high water, you are going to be there for them."}
 	minimal_access = ALL_MARINE_ACCESS
 	equipment = TRUE
 
-/datum/job/command/field/generate_equipment(mob/living/carbon/human/H)
+/datum/job/command/fieldofficer/generate_equipment(mob/living/carbon/human/H)
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/mcom(H), SLOT_EARS)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/exec(H), SLOT_W_UNIFORM)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/cmcap(H), SLOT_HEAD)
@@ -86,7 +86,7 @@ Come hell or high water, you are going to be there for them."}
 	H.equip_to_slot_or_del(new /obj/item/storage/pouch/general/large(H), SLOT_R_STORE)
 	H.equip_to_slot_or_del(new /obj/item/device/binoculars(H), SLOT_L_HAND)
 
-/datum/job/command/field/generate_entry_message(mob/living/carbon/human/H)
+/datum/job/command/fieldofficer/generate_entry_message(mob/living/carbon/human/H)
 		. = {"You are charged with overseeing the operation on the ground, and are in next in the chain of command after the commander.
 Your duties are to ensure marines hold when ordered, and push when they are cowering behind barricades. 
 Do not ask your men to do anything you would not do side by side with them.
