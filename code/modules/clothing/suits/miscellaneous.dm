@@ -58,13 +58,6 @@
 	fire_resist = T0C+5200
 	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 
-
-/obj/item/clothing/suit/greatcoat
-	name = "great coat"
-	desc = "A heavy great coat"
-	icon_state = "nazi"
-	item_state = "nazi"
-
 /obj/item/clothing/suit/johnny_coat
 	name = "johnny~~ coat"
 	desc = "Johnny~~"
@@ -171,7 +164,7 @@
 	flags_inv_hide = HIDEJUMPSUIT
 /* not currently needed thanks to Manzehino who provided a different jumpsuit sprite.
 /obj/item/clothing/suit/white_dress_jacket
-	name = "White Dress Jacket" 
+	name = "White Dress Jacket"
 	desc = "The perfect white jacket to go with your white dress uniform."
 	icon_state = "white_dress_jacket" //with thanks to Baystation12
 	item_state = "white_dress_jacket" //with thanks to Baystation12

@@ -218,7 +218,7 @@
 		/datum/action/xeno_action/grow_ovipositor,
 		/datum/action/xeno_action/activable/screech,
 		/datum/action/xeno_action/activable/corrosive_acid,
-		/datum/action/xeno_action/activable/gut,
+		// /datum/action/xeno_action/activable/gut, We're taking this out for now.
 		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/shift_spits,
 		/datum/action/xeno_action/activable/xeno_spit,
@@ -655,7 +655,6 @@
 			/datum/action/xeno_action/grow_ovipositor,
 			/datum/action/xeno_action/activable/screech,
 			/datum/action/xeno_action/activable/corrosive_acid,
-			/datum/action/xeno_action/activable/gut,
 			/datum/action/xeno_action/psychic_whisper,
 		 	/datum/action/xeno_action/shift_spits,
 			/datum/action/xeno_action/activable/xeno_spit,

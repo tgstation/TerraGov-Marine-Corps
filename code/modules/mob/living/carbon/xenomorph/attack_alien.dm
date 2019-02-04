@@ -172,8 +172,10 @@
 
 			if(M.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
 				if(M.stealth_router(HANDLE_SNEAK_ATTACK_CHECK)) //Pouncing prevents us from making a sneak attack for 4 seconds
-					damage *= 3 //Massive damage on the sneak attack... hope you have armour.
+					damage *= 3.5 //Massive damage on the sneak attack... hope you have armour.
 					KnockOut(2) //...And we knock them out
+					adjust_stagger(3)
+					add_slowdown(3)
 					M.visible_message("<span class='danger'>\The [M] strikes [src] with vicious precision!</span>", \
 					"<span class='danger'>You strike [src] with vicious precision!</span>")
 				M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
@@ -216,14 +218,16 @@
 			if(M.stealth_router(HANDLE_STEALTH_CHECK))
 				if(M.stealth_router(HANDLE_SNEAK_ATTACK_CHECK))
 					KnockOut(2)
-					tackle_pain *= 3 //Halloss multiplied by 3.
+					tackle_pain *= 3.5 //Halloss multiplied by 3.
+					adjust_stagger(3)
+					add_slowdown(3)
 					M.visible_message("<span class='danger'>\The [M] strikes [src] with vicious precision!</span>", \
 					"<span class='danger'>You strike [src] with vicious precision!</span>")
 				M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 			M.neuroclaw_router(src) //if we have neuroclaws...
 			if(dam_bonus)
 				tackle_pain += dam_bonus
-			apply_damage(tackle_pain, HALLOSS, "chest", armor_block * 0.5) //Only half armour applies vs tackle
+			apply_damage(tackle_pain, HALLOSS, "chest", armor_block * 0.4) //Only half armour applies vs tackle
 			updatehealth()
 			updateshock()
 			var/throttle_message = "<span class='danger'>\The [M] throttles [src]!</span>"

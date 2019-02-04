@@ -432,6 +432,7 @@
 /datum/action/xeno_action/pheromones/emit_frenzy
 	name = "Emit Frenzy Pheromones (30)"
 	action_icon_state = "emit_frenzy"
+	aura_type = "frenzy"
 
 /datum/action/xeno_action/activable/transfer_plasma
 	name = "Transfer Plasma"
@@ -1290,7 +1291,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 
 /datum/action/xeno_action/activable/neurotox_sting/action_cooldown_check()
 	var/mob/living/carbon/Xenomorph/Sentinel/X = owner
-	if(world.time >= X.last_neurotoxin_sting + NEUROTOXIN_STING_COOLDOWN)
+	if(world.time >= X.last_neurotoxin_sting + SENTINEL_STING_COOLDOWN)
 		return TRUE
 
 //Defiler abilities
@@ -1354,6 +1355,20 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 	var/mob/living/carbon/Xenomorph/Defiler/X = owner
 	X.emit_neurogas()
 
+//Drone's Sting
+/datum/action/xeno_action/activable/drone_sting
+	name = "Larval Growth Sting"
+	action_icon_state = "drone_sting"
+	ability_name = "drone sting"
+
+/datum/action/xeno_action/activable/drone_sting/use_ability(atom/A)
+	var/mob/living/carbon/Xenomorph/Drone/X = owner
+	X.drone_sting(A)
+
+/datum/action/xeno_action/activable/drone_sting/action_cooldown_check()
+	var/mob/living/carbon/Xenomorph/Drone/X = owner
+	if(world.time >= X.last_drone_sting + DRONE_STING_COOLDOWN)
+		return TRUE
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 

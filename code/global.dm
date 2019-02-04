@@ -89,7 +89,6 @@ var/traitor_scaling = 1
 //var/goonsay_allowed = 0
 var/dna_ident = 1
 var/respawn_allowed = 0
-var/enter_allowed = 1
 var/guests_allowed = 0
 var/shuttle_frozen = 0
 var/shuttle_left = 0
