@@ -78,7 +78,7 @@ Come hell or high water, you are going to be there for them."}
 
 /datum/job/command/executive/generate_equipment(mob/living/carbon/human/H)
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/mcom(H), SLOT_EARS)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/field(H), SLOT_W_UNIFORM)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/exec(H), SLOT_W_UNIFORM)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/cmcap(H), SLOT_HEAD)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), SLOT_SHOES)
 	H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), SLOT_BACK)
