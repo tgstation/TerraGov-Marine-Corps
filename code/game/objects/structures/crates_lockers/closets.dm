@@ -4,6 +4,7 @@
 	icon = 'icons/obj/structures/closet.dmi'
 	icon_state = "closed"
 	density = TRUE
+	layer = BELOW_OBJ_LAYER
 	var/icon_closed = "closed"
 	var/icon_opened = "open"
 	var/opened = FALSE

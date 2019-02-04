@@ -137,8 +137,8 @@
 
 	Trigger(atom/movable/A)
 
-		if(yautja_teleport_loc.len)	//We have some possible locations.
-			var/turf/destination = pick(yautja_teleport_loc)	//Pick one of them at random.
+		if(GLOB.yautja_teleport_loc.len)	//We have some possible locations.
+			var/turf/destination = pick(GLOB.yautja_teleport_loc)	//Pick one of them at random.
 			teleport_x = destination.x	//Configure the destination locations.
 			teleport_y = destination.y
 			teleport_z = destination.z

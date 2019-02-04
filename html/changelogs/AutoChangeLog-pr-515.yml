@@ -1,0 +1,5 @@
+author: "LaKiller8"
+delete-after: True
+changes: 
+  - bugfix: "People with no skills can now also use attachments."
+  - bugfix: "Survivors should now start properly equipped."

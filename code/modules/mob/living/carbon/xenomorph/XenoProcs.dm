@@ -291,21 +291,23 @@
 							to_chat(src, "<span class='xenodanger'>You attempt to savage your victim, but you aren't yet ready.</span>")
 
 					if(xeno_caste.charge_type == 2)
-						M.attack_alien(src, null, "disarm") //Hunters get a free throttle in exchange for lower initial stun.
+						if(stealth_router(HANDLE_STEALTH_CHECK))
+							M.adjust_stagger(3)
+							M.add_slowdown(3)
+							to_chat(src, "<span class='xenodanger'>Pouncing from the shadows, you stagger your victim.</span>")
 					if(!isxenosilicon(src))
 						playsound(loc, rand(0, 100) < 95 ? 'sound/voice/alien_pounce.ogg' : 'sound/voice/alien_pounce2.ogg', 25, 1)
 					addtimer(CALLBACK(src, .proc/reset_movement), xeno_caste.charge_type == 1 ? 5 : 15)
 					stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 
-				if(RAV_CHARGE_TYPE) //Ravagers get a free attack if they charge into someone.
-					process_ravager_charge(TRUE, M)
+				if(RAV_CHARGE_TYPE) //Ravagers plow straight through humans; we only stop on hitting a dense turf
+					return FALSE
 
 				if(4) //Predalien.
 					M.attack_alien(src) //Free hit/grab/tackle. Does not weaken, and it's just a regular slash if they choose to do that.
 		throwing = FALSE //Resert throwing since something was hit.
 		reset_movement()
 		return TRUE
-	process_ravager_charge(FALSE)
 	throwing = FALSE //Resert throwing since something was hit.
 	reset_movement()
 	return ..() //Do the parent otherwise, for turfs.

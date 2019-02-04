@@ -396,7 +396,7 @@
 	return 1
 
 /obj/item/weapon/gun/smartgun/proc/toggle_restriction(mob/user)
-	to_chat(user, "\icon[src] You [restriction_toggled? "<B>disable</b>" : "<B>enable</b>"] the [src]'s fire restriction. You will [restriction_toggled ? "harm anyone in your way" : "target through IFF"].")
+	to_chat(user, "[bicon(src)] You [restriction_toggled? "<B>disable</b>" : "<B>enable</b>"] the [src]'s fire restriction. You will [restriction_toggled ? "harm anyone in your way" : "target through IFF"].")
 	playsound(loc,'sound/machines/click.ogg', 25, 1)
 	var/A = ammo
 	ammo = ammo_secondary
@@ -458,7 +458,7 @@
 	throw_range = 10
 	force = 5.0
 	wield_delay = 8
-	fire_sound = 'sound/weapons/armbomb.ogg'
+	fire_sound = 'sound/weapons/gun_m92_attachable.ogg'
 	cocked_sound = 'sound/weapons/gun_m92_cocked.ogg'
 	var/list/grenades = new/list()
 	var/max_grenades = 6
@@ -476,7 +476,8 @@
 	sleep(1)
 	grenades += new /obj/item/explosive/grenade/frag(src)
 	grenades += new /obj/item/explosive/grenade/frag(src)
-	grenades += new /obj/item/explosive/grenade/incendiary(src)
+	grenades += new /obj/item/explosive/grenade/frag(src)
+	grenades += new /obj/item/explosive/grenade/frag(src)
 	grenades += new /obj/item/explosive/grenade/frag(src)
 	grenades += new /obj/item/explosive/grenade/frag(src)
 
@@ -503,6 +504,7 @@
 		if(grenades.len < max_grenades)
 			if(user.transferItemToLoc(I, src))
 				grenades += I
+				playsound(user, 'sound/weapons/gun_shotgun_shell_insert.ogg', 25, 1)
 				to_chat(user, "<span class='notice'>You put [I] in the grenade launcher.</span>")
 				to_chat(user, "<span class='info'>Now storing: [grenades.len] / [max_grenades] grenades.</span>")
 		else
@@ -552,7 +554,6 @@
 
 
 /obj/item/weapon/gun/launcher/m92/proc/fire_grenade(atom/target, mob/user)
-	set waitfor = 0
 	playsound(user.loc, cocked_sound, 25, 1)
 	last_fired = world.time
 	for(var/mob/O in viewers(world.view, user))
@@ -562,17 +563,15 @@
 	grenades -= F
 	F.loc = user.loc
 	F.throw_range = 20
-	F.throw_at(target, 20, 2, user)
 	if(F && F.loc) //Apparently it can get deleted before the next thing takes place, so it runtimes.
-		log_game("[key_name(user)] fired a grenade [F.name] from \a [name] at [AREACOORD(user.loc)].")		
+		log_game("[key_name(user)] fired a grenade [F.name] from \a [name] at [AREACOORD(user.loc)].")
 		message_admins("[ADMIN_TPMONTY(user)] fired a grenade [F.name] from \a [name].")
-		F.icon_state = initial(F.icon_state) + "_active"
-		F.active = 1
-		F.updateicon()
+		F.det_time = min(10, F.det_time)
+		F.launched = TRUE
+		F.throwforce += F.launchforce //Throws with signifcantly more force than a standard marine can.
+		F.throw_at(target, 20, 3, user)
+		F.activate()
 		playsound(F.loc, fire_sound, 50, 1)
-		sleep(10)
-		if(F?.loc)
-			F.prime()
 
 /obj/item/weapon/gun/launcher/m92/has_ammo_counter()
 	return TRUE
@@ -694,7 +693,7 @@
 	F.throw_range = 20
 	F.throw_at(target, 20, 2, user)
 	if(F && F.loc) //Apparently it can get deleted before the next thing takes place, so it runtimes.
-		log_game("[key_name(user)] fired a grenade [F.name] from \a [name] at [AREACOORD(user.loc)].")		
+		log_game("[key_name(user)] fired a grenade [F.name] from \a [name] at [AREACOORD(user.loc)].")
 		message_admins("[ADMIN_TPMONTY(user)] fired a grenade [F.name] from \a [name].")
 		F.icon_state = initial(F.icon_state) + "_active"
 		F.active = 1

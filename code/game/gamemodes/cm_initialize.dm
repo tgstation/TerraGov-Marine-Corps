@@ -45,7 +45,8 @@ Additional game mode variables.
 				list(/obj/item/weapon/gun/smg/mp7, /obj/item/ammo_magazine/smg/mp7),\
 				list(/obj/item/weapon/gun/shotgun/double/sawn, /obj/item/ammo_magazine/shotgun/flechette),\
 				list(/obj/item/weapon/gun/smg/uzi, /obj/item/ammo_magazine/smg/uzi),\
-				list(/obj/item/weapon/gun/smg/mp5, /obj/item/ammo_magazine/smg/mp5))
+				list(/obj/item/weapon/gun/smg/mp5, /obj/item/ammo_magazine/smg/mp5),\
+				list(/obj/item/weapon/gun/rifle/m16, /obj/item/ammo_magazine/rifle/m16))
 
 /datum/game_mode
 	var/datum/mind/xenomorphs[] = list() //These are our basic lists to keep track of who is in the game.
@@ -58,8 +59,7 @@ Additional game mode variables.
 	var/xeno_required_num 	= 0 //We need at least one. You can turn this off in case we don't care if we spawn or don't spawn xenos.
 	var/xeno_starting_num 	= 0 //To clamp starting xenos.
 	var/xeno_bypass_timer 	= 0 //Bypass the five minute timer before respawning.
-	//var/xeno_queen_timer  	= list(0, 0, 0, 0, 0) //How long ago did the queen die?
-	var/xeno_queen_deaths 	= 0 //How many times the alien queen died.
+	var/queen_death_countdown = 0
 	var/surv_starting_num 	= 0 //To clamp starting survivors.
 	var/merc_starting_num 	= 0 //PMC clamp.
 	var/marine_starting_num = 0 //number of players not in something special
@@ -71,7 +71,6 @@ Additional game mode variables.
 	var/round_checkwin 		= 0
 	var/round_finished
 	var/round_started  		= 5 //This is a simple timer so we don't accidently check win conditions right in post-game
-	var/round_fog[]				//List of the fog locations.
 	var/round_time_lobby 		//Base time for the lobby, for fog dispersal.
 	var/round_time_fog 			//Variance time for fog dispersal, done during pre-setup.
 	var/latejoin_tally		= 0 //How many people latejoined Marines
@@ -88,6 +87,7 @@ Additional game mode variables.
 	var/bioscan_ongoing_interval = 20 MINUTES
 
 	var/flags_round_type = NOFLAGS
+	var/flags_landmarks = NOFLAGS
 
 //===================================================\\
 
@@ -205,7 +205,7 @@ datum/game_mode/proc/initialize_special_clamps()
 
 	var/mob/living/carbon/human/new_predator
 
-	new_predator = new(RoleAuthority.roles_whitelist[pred_candidate.ckey] & WHITELIST_YAUTJA_ELDER ? pick(pred_elder_spawn) : pick(pred_spawn))
+	new_predator = new(RoleAuthority.roles_whitelist[pred_candidate.ckey] & WHITELIST_YAUTJA_ELDER ? pick(GLOB.pred_elder_spawn) : pick(GLOB.pred_spawn))
 	new_predator.set_species("Yautja")
 
 	new_predator.mind_initialize()
@@ -290,7 +290,7 @@ datum/game_mode/proc/initialize_special_clamps()
 			xenomorphs += new_xeno
 			possible_xenomorphs -= new_xeno
 		else //Out of candidates, spawn in empty larvas directly
-			larvae_spawn = pick(xeno_spawn)
+			larvae_spawn = pick(GLOB.xeno_spawn)
 			new /mob/living/carbon/Xenomorph/Larva(larvae_spawn)
 		i--
 
@@ -467,7 +467,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 	var/mob/original = ghost_mind.current
 	var/mob/living/carbon/Xenomorph/new_xeno
 
-	new_xeno = new /mob/living/carbon/Xenomorph/Larva(pick(xeno_spawn))
+	new_xeno = new /mob/living/carbon/Xenomorph/Larva(pick(GLOB.xeno_spawn))
 	ghost_mind.transfer_to(new_xeno) //The mind is fine, since we already labeled them as a xeno. Away they go.
 	ghost_mind.name = ghost_mind.current.name
 
@@ -485,7 +485,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 	var/mob/living/carbon/Xenomorph/new_queen
 	var/datum/hive_status/hive = hive_datum[XENO_HIVE_NORMAL]
 	if(!hive.living_xeno_queen && original?.client?.prefs && (original.client.prefs.be_special & BE_QUEEN) && !jobban_isbanned(original, "Queen"))
-		new_queen = new /mob/living/carbon/Xenomorph/Queen (pick(xeno_spawn))
+		new_queen = new /mob/living/carbon/Xenomorph/Queen (pick(GLOB.xeno_spawn))
 	else
 		return FALSE
 	ghost_mind.transfer_to(new_queen)
@@ -539,14 +539,14 @@ datum/game_mode/proc/initialize_post_queen_list()
 /datum/game_mode/proc/transform_survivor(var/datum/mind/ghost)
 	var/mob/living/carbon/human/H = ghost.current
 
-	H.loc = pick(surv_spawn)
+	H.loc = pick(GLOB.surv_spawn)
 
 	var/datum/job/J = RoleAuthority.roles_by_equipment_paths[pick(subtypesof(/datum/job/other/survivor))]
 	J.generate_equipment(H)
 	J.generate_entry_conditions(H)
 	J.equip_identification(H)
 
-	if(map_tag == MAP_ICE_COLONY)
+	if(GLOB.map_tag == MAP_ICE_COLONY)
 		H.equip_to_slot_or_del(new /obj/item/clothing/head/ushanka(H), SLOT_HEAD)
 		H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/snow_suit(H), SLOT_WEAR_SUIT)
 		H.equip_to_slot_or_del(new /obj/item/clothing/mask/rebreather(H), SLOT_WEAR_MASK)
@@ -558,7 +558,8 @@ datum/game_mode/proc/initialize_post_queen_list()
 	var/weapons = pick(SURVIVOR_WEAPONS)
 	var/obj/item/weapon/W = weapons[1]
 	var/obj/item/ammo_magazine/A = weapons[2]
-	H.equip_to_slot_or_del(new W(H), SLOT_BELT)
+	H.equip_to_slot_or_del(new /obj/item/storage/belt/gun/m44/full(H), SLOT_BELT)
+	H.put_in_hands(new W(H))
 	H.equip_to_slot_or_del(new A(H), SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new A(H), SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new A(H), SLOT_IN_BACKPACK)
@@ -569,7 +570,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 	H.equip_to_slot_or_del(new /obj/item/storage/pouch/survival/full(H), SLOT_L_STORE)
 
 	to_chat(H, "<h2>You are a survivor!</h2>")
-	switch(map_tag)
+	switch(GLOB.map_tag)
 		if(MAP_PRISON_STATION)
 			to_chat(H, "<span class='notice'>You are a survivor of the attack on Fiorina Orbital Penitentiary. You worked or lived on the prison station, and managed to avoid the alien attacks.. until now.</span>")
 		if(MAP_ICE_COLONY)
@@ -901,7 +902,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 
 		var/products2[]
 		//if(istype(src, /datum/game_mode/ice_colony)) //Literally, we are in gamemode code
-		if(map_tag == MAP_ICE_COLONY)
+		if(GLOB.map_tag == MAP_ICE_COLONY)
 			products2 = list(
 						/obj/item/clothing/mask/rebreather/scarf = round(scale * 30),
 						/obj/item/clothing/mask/rebreather = round(scale * 30),
@@ -910,3 +911,51 @@ datum/game_mode/proc/initialize_post_queen_list()
 
 	//Scale the amount of cargo points through a direct multiplier
 	supply_controller.points = round(supply_controller.points * scale)
+
+// generic landmark setup
+
+#define MAX_TUNNELS_PER_MAP 3
+
+/datum/game_mode/proc/setup_xeno_tunnels()
+	var/obj/structure/tunnel/T
+	var/i = 0
+	var/turf/t
+	while(GLOB.xeno_tunnel_landmarks.len && i++ < MAX_TUNNELS_PER_MAP)
+		t = pick(GLOB.xeno_tunnel_landmarks)
+		GLOB.xeno_tunnel_landmarks -= t
+		T = new(t)
+		T.id = "hole[i]"
+
+/datum/game_mode/proc/spawn_map_items()
+	var/turf/T
+	switch(GLOB.map_tag) // doing the switch first makes this a tiny bit quicker which for round setup is more important than pretty code
+		if(MAP_LV_624) 
+			while(GLOB.map_items.len)
+				T = GLOB.map_items[GLOB.map_items.len]
+				GLOB.map_items--
+				new /obj/item/map/lazarus_landing_map(T)
+
+		if(MAP_ICE_COLONY) 
+			while(GLOB.map_items.len)
+				T = GLOB.map_items[GLOB.map_items.len]
+				GLOB.map_items--
+				new /obj/item/map/ice_colony_map(T)
+
+		if(MAP_BIG_RED) 
+			while(GLOB.map_items.len)
+				T = GLOB.map_items[GLOB.map_items.len]
+				GLOB.map_items--
+				new /obj/item/map/big_red_map(T)
+
+		if(MAP_PRISON_STATION) 
+			while(GLOB.map_items.len)
+				T = GLOB.map_items[GLOB.map_items.len]
+				GLOB.map_items--
+				new /obj/item/map/FOP_map(T)
+
+/datum/game_mode/proc/spawn_fog_blockers()
+	var/turf/T
+	while(GLOB.fog_blocker_locations.len)
+		T = GLOB.fog_blocker_locations[GLOB.fog_blocker_locations.len]
+		GLOB.fog_blocker_locations--
+		new /obj/effect/blocker/fog(T)

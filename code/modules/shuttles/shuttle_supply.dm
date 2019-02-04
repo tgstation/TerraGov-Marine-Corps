@@ -20,7 +20,7 @@
 
 /datum/shuttle/ferry/supply/New()
 	..()
-	var/turf/SupplyElevatorLoc = get_turf(SupplyElevator)
+	var/turf/SupplyElevatorLoc = get_turf(GLOB.supply_elevator)
 	SupplyElevator_x = SupplyElevatorLoc.x
 	SupplyElevator_y = SupplyElevatorLoc.y
 	SupplyElevator_z = SupplyElevatorLoc.z

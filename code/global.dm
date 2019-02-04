@@ -70,7 +70,6 @@ var/blobevent = 0
 var/diaryofmeanpeople = null
 var/station_name = "[MAIN_SHIP_NAME]"
 var/game_version = "TerraGov Marine Corps"
-var/changelog_hash = ""
 var/game_year = 2186
 
 var/datum/air_tunnel/air_tunnel1/SS13_airtunnel = null
@@ -90,7 +89,6 @@ var/traitor_scaling = 1
 //var/goonsay_allowed = 0
 var/dna_ident = 1
 var/respawn_allowed = 0
-var/enter_allowed = 1
 var/guests_allowed = 0
 var/shuttle_frozen = 0
 var/shuttle_left = 0
@@ -113,34 +111,9 @@ var/CELLRATE = 0.002	// multiplier for watts per tick <> cell storage (eg: 0.02 
 						//It's a conversion constant. power_used*CELLRATE = charge_provided, or charge_used/CELLRATE = power_provided
 var/CHARGELEVEL = 0.0005 // Cap for how fast cells charge, as a percentage-per-tick (0.01 means cellcharge is capped to 1% per second)
 
-var/SupplyElevator
 var/HangarUpperElevator
 var/HangarLowerElevator
-var/global/map_tag
-var/list/wizardstart = list()
-var/list/newplayer_start = list()
 
-//Spawnpoints.
-var/list/latejoin = list()
-var/list/latejoin_gateway = list()
-var/list/latejoin_cryo = list()
-
-var/list/prisonwarp = list()	//prisoners go to these
-var/list/holdingfacility = list()	//captured people go here
-var/list/xeno_spawn = list()//Aliens spawn at these.
-var/list/surv_spawn = list()//Survivors spawn at these
-var/list/pred_spawn = list()//Predators spawn at these
-var/list/pred_elder_spawn = list() //For elder preds.
-var/list/yautja_teleport_loc = list() //Yautja teleporter target location.
-var/list/deathmatch = list()
-//	list/mazewarp = list()
-var/list/tdome1 = list()
-var/list/tdome2 = list()
-var/list/tdomeobserve = list()
-var/list/tdomeadmin = list()
-var/list/prisonsecuritywarp = list()	//prison security goes to these
-var/list/prisonwarped = list()	//list of players already warped
-var/list/blobstart = list()
 //	list/traitors = list()	//traitor list
 var/list/cardinal = list( NORTH, SOUTH, EAST, WEST )
 var/list/alldirs = list(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)

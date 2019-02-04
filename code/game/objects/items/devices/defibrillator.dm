@@ -114,22 +114,22 @@
 		to_chat(user, "<span class='warning'>Take [src]'s paddles out first.</span>")
 		return
 	if(dcell.charge <= charge_cost)
-		user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: Internal battery depleted. Cannot analyze nor administer shock.</span>")
+		user.visible_message("<span class='warning'>[bicon(src)] \The [src] buzzes: Internal battery depleted. Cannot analyze nor administer shock.</span>")
 		return
 	if(H.stat != DEAD)
-		user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: Vital signs detected. Aborting.</span>")
+		user.visible_message("<span class='warning'>[bicon(src)] \The [src] buzzes: Vital signs detected. Aborting.</span>")
 		return
 
 	if(!H.is_revivable())
-		user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: Patient's general condition does not allow reviving.</span>")
+		user.visible_message("<span class='warning'>[bicon(src)] \The [src] buzzes: Patient's general condition does not allow reviving.</span>")
 		return
 
 	if(H.wear_suit && (istype(H.wear_suit, /obj/item/clothing/suit/armor) || istype(H.wear_suit, /obj/item/clothing/suit/storage/marine)) && prob(95))
-		user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: Paddles registering >100,000 ohms, Possible cause: Suit or Armor interferring.</span>")
+		user.visible_message("<span class='warning'>[bicon(src)] \The [src] buzzes: Paddles registering >100,000 ohms, Possible cause: Suit or Armor interferring.</span>")
 		return
 
 	if((!H.check_tod() && !issynth(H)) || H.suiciding) //synthetic species have no expiration date
-		user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: Patient is braindead.</span>")
+		user.visible_message("<span class='warning'>[bicon(src)] \The [src] buzzes: Patient is braindead.</span>")
 		return
 
 	var/mob/dead/observer/G = H.get_ghost()
@@ -140,7 +140,7 @@
 		to_chat(G, msg)
 	else if(!H.client)
 		//We couldn't find a suitable ghost, this means the person is not returning
-		user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: Patient has a DNR.</span>")
+		user.visible_message("<span class='warning'>[bicon(src)] \The [src] buzzes: Patient has a DNR.</span>")
 		return
 
 	user.visible_message("<span class='notice'>[user] starts setting up the paddles on [H]'s chest</span>", \
@@ -160,7 +160,7 @@
 		defib_cooldown = world.time + 10 //1 second cooldown before you can shock again
 
 		if(H.wear_suit && (istype(H.wear_suit, /obj/item/clothing/suit/armor) || istype(H.wear_suit, /obj/item/clothing/suit/storage/marine)) && prob(95))
-			user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: Defibrillation failed: Paddles registering >100,000 ohms, Possible cause: Suit or Armor interferring.</span>")
+			user.visible_message("<span class='warning'>[bicon(src)] \The [src] buzzes: Defibrillation failed: Paddles registering >100,000 ohms, Possible cause: Suit or Armor interferring.</span>")
 			return
 
 		var/datum/internal_organ/heart/heart = H.internal_organs_by_name["heart"]
@@ -168,28 +168,28 @@
 			heart.take_damage(5) //Allow the defibrilator to possibly worsen heart damage. Still rare enough to just be the "clone damage" of the defib
 
 		if(!H.is_revivable())
-			user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: Defibrillation failed. Patient's general condition does not allow reviving.</span>")
+			user.visible_message("<span class='warning'>[bicon(src)] \The [src] buzzes: Defibrillation failed. Patient's general condition does not allow reviving.</span>")
 			return
 
 		if((!H.check_tod() && !issynth(H)) || H.suiciding) //synthetic species have no expiration date
-			user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: Patient's brain has decayed too much.</span>")
+			user.visible_message("<span class='warning'>[bicon(src)] \The [src] buzzes: Patient's brain has decayed too much.</span>")
 			return
 
 		if(!H.client) //Freak case, no client at all. This is a braindead mob (like a colonist)
-			user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: No soul detected, Attempting to revive...</span>")
+			user.visible_message("<span class='warning'>[bicon(src)] \The [src] buzzes: No soul detected, Attempting to revive...</span>")
 
 		if(H.mind && !H.client) //Let's call up the correct ghost! Also, bodies with clients only, thank you.
 			G = H.get_ghost()
 			if(istype(G))
-				user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: Defibrillation failed. Patient's soul has almost departed, please try again.</span>")
+				user.visible_message("<span class='warning'>[bicon(src)] \The [src] buzzes: Defibrillation failed. Patient's soul has almost departed, please try again.</span>")
 				return
 			//We couldn't find a suitable ghost, this means the person is not returning
-			user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: Patient has a DNR.</span>")
+			user.visible_message("<span class='warning'>[bicon(src)] \The [src] buzzes: Patient has a DNR.</span>")
 			return
 
 
 		if(!H.client) //Freak case, no client at all. This is a braindead mob (like a colonist)
-			user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: Defibrillation failed. No soul detected.</span>")
+			user.visible_message("<span class='warning'>[bicon(src)] \The [src] buzzes: Defibrillation failed. No soul detected.</span>")
 			return
 
 		//At this point, the defibrillator is ready to work
@@ -200,7 +200,7 @@
 		H.adjustOxyLoss(-H.getOxyLoss())
 		H.updatehealth() //Needed for the check to register properly
 		if(H.health > CONFIG_GET(number/health_threshold_dead))
-			user.visible_message("<span class='notice'>\icon[src] \The [src] beeps: Defibrillation successful.</span>")
+			user.visible_message("<span class='notice'>[bicon(src)] \The [src] beeps: Defibrillation successful.</span>")
 			H.on_revive()
 			H.timeofdeath = 0
 			H.tod = null
@@ -216,7 +216,7 @@
 			H.updatehealth() //One more time, so it doesn't show the target as dead on HUDs
 			to_chat(H, "<span class='notice'>You suddenly feel a spark and your consciousness returns, dragging you back to the mortal plane.</span>")
 		else
-			user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: Defibrillation failed. Vital signs are too weak, repair damage and try again.</span>") //Freak case
+			user.visible_message("<span class='warning'>[bicon(src)] \The [src] buzzes: Defibrillation failed. Vital signs are too weak, repair damage and try again.</span>") //Freak case
 	else
 		user.visible_message("<span class='warning'>[user] stops setting up the paddles on [H]'s chest</span>", \
 		"<span class='warning'>You stop setting up the paddles on [H]'s chest</span>")

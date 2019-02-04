@@ -200,7 +200,7 @@
 
 			if("SelectedJob")
 
-				if(!enter_allowed)
+				if(!GLOB.enter_allowed)
 					to_chat(usr, "<span class='warning'>Spawning currently disabled, pick another role or observe.</span>")
 					return
 
@@ -322,7 +322,7 @@
 		if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
 			to_chat(usr, "<span class='warning'>The round is either not ready, or has already finished!<spawn>")
 			return
-		if(!enter_allowed)
+		if(!GLOB.enter_allowed)
 			to_chat(usr, "<span class='warning'>Spawning currently disabled, pick another role or observe.<spawn>")
 			return
 		if(!RoleAuthority.assign_role(src, RoleAuthority.roles_for_mode[rank], 1))
@@ -336,7 +336,7 @@
 		var/turf/T
 		if(spawning_at) S = spawntypes[spawning_at]
 		if(istype(S)) 	T = pick(S.turfs)
-		else 			T = pick(latejoin)
+		else 			T = pick(GLOB.latejoin)
 
 		var/mob/living/carbon/human/character = create_character()	//creates the human and transfers vars and mind
 		RoleAuthority.equip_role(character, RoleAuthority.roles_for_mode[rank], T)

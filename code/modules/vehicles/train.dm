@@ -23,7 +23,7 @@
 /obj/vehicle/train/Initialize()
 	. = ..()
 	for(var/obj/vehicle/train/T in orange(1, src))
-		latch(T)
+		latch(T,silent=TRUE)
 
 /obj/vehicle/train/Move()
 	var/old_loc = get_turf(src)
@@ -83,24 +83,30 @@
 	attack_hand(M)
 
 //attempts to attach src as a follower of the train T
-/obj/vehicle/train/proc/attach_to(obj/vehicle/train/T, mob/user)
+/obj/vehicle/train/proc/attach_to(obj/vehicle/train/T, mob/user, var/silent=FALSE)
+	if(!istype(user))
+		silent = TRUE
 	if (get_dist(src, T) > 1)
-		to_chat(user, "<span class='warning'>[src] is too far away from [T] to hitch them together.</span>")
+		if(!silent)
+			to_chat(user, "<span class='warning'>[src] is too far away from [T] to hitch them together.</span>")
 		return
 
 	if (lead)
-		to_chat(user, "<span class='warning'>[src] is already hitched to something.</span>")
+		if(!silent)
+			to_chat(user, "<span class='warning'>[src] is already hitched to something.</span>")
 		return
 
 	if (T.tow)
-		to_chat(user, "<span class='warning'>[T] is already towing something.</span>")
+		if(!silent)
+			to_chat(user, "<span class='warning'>[T] is already towing something.</span>")
 		return
 
 	//check for cycles.
 	var/obj/vehicle/train/next_car = T
 	while (next_car)
 		if (next_car == src)
-			to_chat(user, "<span class='warning'>That seems very silly.</span>")
+			if(!silent)
+				to_chat(user, "<span class='warning'>That seems very silly.</span>")
 			return
 		next_car = next_car.lead
 
@@ -109,22 +115,26 @@
 	T.tow = src
 	dir = lead.dir
 
-	if(user)
+	if(user && !silent)
 		to_chat(user, "<span class='notice'>You hitch [src] to [T].</span>")
 
 	update_stats()
 
 
 //detaches the train from whatever is towing it
-/obj/vehicle/train/proc/unattach(mob/user)
+/obj/vehicle/train/proc/unattach(mob/user, var/silent=FALSE)
+	if(!istype(user))
+		silent = TRUE
 	if (!lead)
-		to_chat(user, "<span class='warning'>[src] is not hitched to anything.</span>")
+		if(!silent)
+			to_chat(user, "<span class='warning'>[src] is not hitched to anything.</span>")
 		return
 
 	lead.tow = null
 	lead.update_stats()
 
-	to_chat(user, "<span class='notice'>You unhitch [src] from [lead].</span>")
+	if(!silent)
+		to_chat(user, "<span class='notice'>You unhitch [src] from [lead].</span>")
 	lead = null
 
 	update_stats()

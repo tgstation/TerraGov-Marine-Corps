@@ -123,6 +123,7 @@
 		"/obj/item/ammo_magazine/revolver",
 		"/obj/item/ammo_magazine/handful",
 		"/obj/item/device/flashlight/flare",
+		"/obj/item/explosive/grenade/flare",
 	    "/obj/item/reagent_container/hypospray",
 	    "/obj/item/bodybag",
 	    "/obj/item/device/defibrillator",
@@ -263,6 +264,7 @@
 	can_hold = list(
 		"/obj/item/weapon/combat_knife",
 		"/obj/item/device/flashlight/flare",
+		"/obj/item/explosive/grenade/flare",
 		"/obj/item/ammo_magazine/rifle",
 		"/obj/item/cell/lasgun",
 		"/obj/item/ammo_magazine/smg",

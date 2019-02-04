@@ -162,7 +162,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		s["version"] = game_version
 		s["mode"] = master_mode
 		s["respawn"] = config ? respawn_allowed : 0
-		s["enter"] = enter_allowed
+		s["enter"] = GLOB.enter_allowed
 		s["vote"] = CONFIG_GET(flag/allow_vote_mode)
 		s["host"] = host ? host : null
 		s["players"] = list()
@@ -236,26 +236,24 @@ var/world_topic_spam_protect_time = world.timeofday
 			s += "<a href=\"[CONFIG_GET(string/discordurl)]\"><b>[CONFIG_GET(string/server_name)] &#8212; [MAIN_SHIP_NAME]</a></b>"
 		else
 			s += "<b>[CONFIG_GET(string/server_name)] &#8212; [MAIN_SHIP_NAME]</b>"
-		if(ticker)
-			if(master_mode)
-				switch(map_tag)
-					if("Ice Colony")
-						s += "<br>Map: <a href=\"[CONFIG_GET(string/icecolonyurl)]\"><b>[map_tag]</a></b>"
-					if("LV-624")
-						s += "<br>Map: <a href=\"[CONFIG_GET(string/lv624url)]\"><b>[map_tag]</a></b>"
-					if("Solaris Ridge")
-						s += "<br>Map: <a href=\"[CONFIG_GET(string/bigredurl)]\"><b>[map_tag]</a></b>"
-					if("Prison Station")
-						s += "<br>Map: <a href=\"[CONFIG_GET(string/prisonstationurl)]\"><b>[map_tag]</a></b>"
-					if("Whiskey Outpost")
-						s += "<br>Map: <a href=\"[CONFIG_GET(string/whiskeyoutposturl)]\"><b>[map_tag]</a></b>"
-					else
-						s += "<br>Map: <b>[map_tag]</b>"
-				s += "<br>Mode: <b>[ticker.mode.name]</b>"
-				s += "<br>Round time: <b>[duration2text()]</b>"
+		if(ticker && master_mode)
+			switch(GLOB.map_tag)
+				if("Ice Colony")
+					s += "<br>Map: <a href=\"[CONFIG_GET(string/icecolonyurl)]\"><b>[GLOB.map_tag]</a></b>"
+				if("LV-624")
+					s += "<br>Map: <a href=\"[CONFIG_GET(string/lv624url)]\"><b>[GLOB.map_tag]</a></b>"
+				if("Solaris Ridge")
+					s += "<br>Map: <a href=\"[CONFIG_GET(string/bigredurl)]\"><b>[GLOB.map_tag]</a></b>"
+				if("Prison Station")
+					s += "<br>Map: <a href=\"[CONFIG_GET(string/prisonstationurl)]\"><b>[GLOB.map_tag]</a></b>"
+				if("Whiskey Outpost")
+					s += "<br>Map: <a href=\"[CONFIG_GET(string/whiskeyoutposturl)]\"><b>[GLOB.map_tag]</a></b>"
+				else
+					s += "<br>Map: <b>[GLOB.map_tag]</b>"
+			s += "<br>Mode: <b>[ticker.mode.name]</b>"
+			s += "<br>Round time: <b>[duration2text()]</b>"
 		else
-			s += "<br>Map: <b>[map_tag]</b>"
-		// s += enter_allowed ? "<br>Entering: <b>Enabled</b>" : "<br>Entering: <b>Disabled</b>"
+			s += "<br>Map: <b>[GLOB.map_tag]</b>"
 
 		status = s
 
