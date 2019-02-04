@@ -2065,7 +2065,7 @@ CLOTHING
 					/obj/item/clothing/under/rank/ro_suit,
 					/obj/item/clothing/under/marine/officer/bridge,
 					/obj/item/clothing/under/marine/officer/bridge,
-					/obj/item/clothing/under/marine/officer/field,
+					/obj/item/clothing/under/marine/officer/exec,
 					/obj/item/clothing/under/marine/officer/ce
 					)
 	name = "officer outfit crate"
