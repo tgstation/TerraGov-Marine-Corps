@@ -30,7 +30,7 @@
 	var/leaping = FALSE //Is actually attacking someone?
 	var/hivenumber = XENO_HIVE_NORMAL
 
-/obj/item/clothing/mask/facehugger/New()
+/obj/item/clothing/mask/facehugger/Initialize()
 	..()
 	START_PROCESSING(SSobj, src)
 

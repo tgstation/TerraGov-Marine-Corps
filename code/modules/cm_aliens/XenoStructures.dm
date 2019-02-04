@@ -229,6 +229,7 @@
 			else
 				icon_state = "trap0"
 				M.put_in_active_hand(hugger)
+				hugger.GoActive(TRUE)
 				hugger = null
 				to_chat(M, "<span class='xenonotice'>You remove the facehugger from [src].</span>")
 		return
@@ -463,7 +464,6 @@
 		hugger = new hugger_type(src)
 		hugger.hivenumber = hivenumber
 		hugger.GoIdle(TRUE)
-	create_egg_triggers()
 	addtimer(CALLBACK(src, .proc/Grow), rand(EGG_MIN_GROWTH_TIME, EGG_MAX_GROWTH_TIME))
 
 /obj/effect/alien/egg/Destroy()
@@ -475,20 +475,14 @@
 		update_status(EGG_GROWN)
 		deploy_egg_triggers()
 
-/obj/effect/alien/egg/proc/create_egg_triggers()
-	for(var/i = 1 to 8)
-		egg_triggers += new /obj/effect/egg_trigger(src, src)
-
 /obj/effect/alien/egg/proc/deploy_egg_triggers()
-	var/i = 1
-	var/x_coords = list(-1,-1,-1,0,0,1,1,1)
-	var/y_coords = list(1,0,-1,1,-1,1,0,-1)
-	for(var/atom/trigger in egg_triggers)
-		var/obj/effect/egg_trigger/ET = trigger
+	QDEL_LIST(egg_triggers)
+	for(var/i in 1 to 8)
+		var/x_coords = list(-1,-1,-1,0,0,1,1,1)
+		var/y_coords = list(1,0,-1,1,-1,1,0,-1)
 		var/turf/target_turf = locate(x+x_coords[i],y+y_coords[i], z)
 		if(target_turf)
-			ET.loc = target_turf
-			i++
+			egg_triggers += new /obj/effect/egg_trigger(target_turf, src)
 
 /obj/effect/alien/egg/ex_act(severity)
 	Burst(TRUE)//any explosion destroys the egg.
@@ -587,9 +581,10 @@
 			else if(!hugger)
 				visible_message("<span class='xenowarning'>[user] slides [F] back into [src].</span>","<span class='xenonotice'>You place the child back in to [src].</span>")
 				user.transferItemToLoc(F, src)
-				update_status(EGG_GROWN)
 				F.GoIdle(TRUE)
 				hugger = F
+				update_status(EGG_GROWN)
+				deploy_egg_triggers()
 			else
 				to_chat(user, "<span class='xenowarning'>This one is occupied with a child.</span>")
 		else
