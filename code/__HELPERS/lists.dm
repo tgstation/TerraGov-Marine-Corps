@@ -40,11 +40,6 @@ proc/listgetindex(var/list/L,index)
 			return L[index]
 	return
 
-proc/islist(list/list)
-	if(istype(list))
-		return 1
-	return 0
-
 //Return either pick(list) or null if list is not of type /list or is empty
 proc/safepick(list/list)
 	if(!islist(list) || !list.len)
@@ -63,6 +58,9 @@ proc/isemptylist(list/list)
 		if(istype(A, type))
 			return 1
 	return 0
+
+//Checks for specific types in specifically structured (Assoc "type" = TRUE) lists ('typecaches')
+#define is_type_in_typecache(A, L) (A && length(L) && L[(ispath(A) ? A : A:type)])
 
 //Empties the list by setting the length to 0. Hopefully the elements get garbage collected
 proc/clearlist(list/list)

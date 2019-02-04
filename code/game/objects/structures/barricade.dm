@@ -174,7 +174,7 @@
 				climbable = FALSE
 		return
 
-	if(istype(W, /obj/item/tool/wirecutters))
+	if(iswirecutter(W))
 		if(is_wired)
 			user.visible_message("<span class='notice'>[user] begin removing the barbed wire on [src].</span>",
 			"<span class='notice'>You begin removing the barbed wire on [src].</span>")
@@ -818,7 +818,7 @@
 	. = ..()
 
 /obj/structure/barricade/plasteel/attack_hand(mob/user as mob)
-	if(isXeno(user))
+	if(isxeno(user))
 		return
 
 	playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)

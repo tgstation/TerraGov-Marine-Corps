@@ -111,7 +111,7 @@
 		to_chat(user, "<span class='warning'>\The [src] is busy. Please wait for completion of previous operation.</span>")
 		return
 
-	if(istype(O, /obj/item/tool/screwdriver))
+	if(isscrewdriver(O))
 		opened = !opened
 		icon_state = (opened ? "autolathe_t": "autolathe")
 		to_chat(user, "You [opened ? "open" : "close"] the maintenance hatch of [src].")
@@ -120,12 +120,12 @@
 
 	if (opened)
 		//Don't eat multitools or wirecutters used on an open lathe.
-		if(istype(O, /obj/item/device/multitool) || istype(O, /obj/item/tool/wirecutters))
+		if(ismultitool(O) || iswirecutter(O))
 			attack_hand(user)
 			return
 
 		//Dismantle the frame.
-		if(istype(O, /obj/item/tool/crowbar))
+		if(iscrowbar(O))
 			dismantle()
 			return
 
@@ -269,7 +269,7 @@
 		var/temp_wire = href_list["wire"]
 		if(href_list["act"] == "pulse")
 
-			if (!istype(usr.get_active_held_item(), /obj/item/device/multitool))
+			if (!ismultitool(usr.get_active_held_item()))
 				to_chat(usr, "You need a multitool!")
 				return
 
@@ -299,7 +299,7 @@
 
 		else if(href_list["act"] == "wire")
 
-			if (!istype(usr.get_active_held_item(), /obj/item/tool/wirecutters))
+			if (!iswirecutter(usr.get_active_held_item()))
 				to_chat(usr, "You need wirecutters!")
 				return
 

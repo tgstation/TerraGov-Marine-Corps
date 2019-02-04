@@ -1,6 +1,0 @@
-author: "Surrealistik, edited sprites by Alterist"
-delete-after: True
-changes: 
-  - rscadd: "Adds the M43 Sunfury Lasgun, a longer range focused battle rifle."
-  - rscadd: "Adds the ColMarTech Lasgun Field Charger vendor used to recharge lasgun batteries."
-  - tweak: "You can now destabilize cells with a multitool to rig them and make them explode like a grenade."

@@ -10,6 +10,7 @@ em						{font-style: normal;	font-weight: bold;}
 	{color: #638500;	text-decoration: underline;}
 .motd a, .motd a:link, .motd a:visited, .motd a:active, .motd a:hover
 	{color: #638500;}
+.tip					{color: #a000c4;	font-weight: bold;}
 
 .prefix					{					font-weight: bold;}
 
@@ -104,7 +105,7 @@ h1.alert, h2.alert		{color: #000000;}
 .say_quote				{font-family: Georgia, Verdana, sans-serif;}
 
 
-.green					{color: #03ff39;}
+.green					{color: #37ba54;}
 .nicegreen				{color: #14a833;}
 .shadowling				{color: #3b2769;}
 .cult					{color: #960000;}

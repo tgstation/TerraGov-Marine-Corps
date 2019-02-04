@@ -25,7 +25,7 @@
 	power_channel = ENVIRON
 	use_power = TRUE
 	idle_power_usage = 5
-	
+
 	var/blocked = FALSE
 	var/lockdown = FALSE // When the door has detected a problem, it locks.
 	var/pdiff_alert = FALSE
@@ -212,7 +212,7 @@
 	add_fingerprint(user)
 	if(operating)
 		return//Already doing something.
-	if(istype(C, /obj/item/tool/weldingtool))
+	if(iswelder(C))
 		var/obj/item/tool/weldingtool/W = C
 		if(W.remove_fuel(0, user))
 			blocked = !blocked

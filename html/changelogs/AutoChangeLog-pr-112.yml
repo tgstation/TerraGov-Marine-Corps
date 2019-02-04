@@ -1,5 +1,0 @@
-author: "LaKiller"
-delete-after: True
-changes: 
-  - rscadd: "You can now choose a strict \"Prefer squad over role\" preference that will do anything to put you in your preferred squad first, potentially ignoring your rolled role."
-  - refactor: "RoleAuthority, GameTicker code refactor."

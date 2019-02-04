@@ -177,7 +177,7 @@ This can probably be done a lot more elegantly either way, but it'll suffice for
 			if(M)
 				n++ //No hiding in closets.
 				if(M.stat != DEAD && msg) to_chat(M, msg)
-		else if(istype(i, /mob/living/carbon/human) || istype(i, /mob/living/silicon/robot))
+		else if(ishuman(i) || iscyborg(i))
 			n++ //Dead or alive, counts as a thing.
 			M = i
 			if(M.stat != DEAD && msg) to_chat(M, msg)

@@ -63,7 +63,7 @@
 /obj/machinery/meter/examine(mob/user)
 	var/t = "A gas flow meter. "
 
-	if(get_dist(user, src) > 3 && !(istype(user, /mob/living/silicon/ai) || istype(user, /mob/dead)))
+	if(get_dist(user, src) > 3 && !(isAI(user) || istype(user, /mob/dead)))
 		t += "<span class='boldnotice'>You are too far away to read it.</span>"
 
 	else if(stat & (NOPOWER|BROKEN))
@@ -82,12 +82,12 @@
 /obj/machinery/meter/clicked(var/mob/user)
 	..()
 
-	if(istype(user, /mob/living/silicon/ai)) // ghosts can call ..() for examine
+	if(isAI(user)) // ghosts can call ..() for examine
 		examine(user)
 		return 1
 
 /obj/machinery/meter/attackby(var/obj/item/W as obj, var/mob/user as mob)
-	if (!istype(W, /obj/item/tool/wrench))
+	if (!iswrench(W))
 		return ..()
 	playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 	user.visible_message("<span class='notice'>[user] begins to unfasten [src].</span>",

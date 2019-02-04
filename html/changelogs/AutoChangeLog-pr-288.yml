@@ -1,5 +1,0 @@
-author: "Ghommie"
-delete-after: True
-changes: 
-  - server: "Ports in the automatic changelog generation. AddToChangelog.exe has been removed."
-  - server: "Added the guidelines for issue reports and pull requests."

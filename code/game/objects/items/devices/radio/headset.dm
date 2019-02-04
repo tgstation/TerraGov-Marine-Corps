@@ -43,10 +43,10 @@
 /obj/item/device/radio/headset/attackby(obj/item/W as obj, mob/user as mob)
 //	..()
 	user.set_interaction(src)
-	if (!( istype(W, /obj/item/tool/screwdriver) || (istype(W, /obj/item/device/encryptionkey/ ))))
+	if (!( isscrewdriver(W) || (istype(W, /obj/item/device/encryptionkey/ ))))
 		return
 
-	if(istype(W, /obj/item/tool/screwdriver))
+	if(isscrewdriver(W))
 		if(keyslot1 || keyslot2 || keyslot3)
 
 
@@ -201,7 +201,7 @@
 	return ..(freq, level, 1)
 
 /obj/item/device/radio/headset/ert
-	name = "W-Y Response Team headset"
+	name = "NT Response Team headset"
 	desc = "The headset of the boss's boss. Channels are as follows: :h - Response Team :c - command, :p - security, :e - engineering, :m - medical."
 	icon_state = "com_headset"
 	item_state = "headset"

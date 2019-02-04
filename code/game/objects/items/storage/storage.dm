@@ -41,7 +41,7 @@
 
 
 /obj/item/storage/MouseDrop(obj/over_object as obj)
-	if(ishuman(usr) || ismonkey(usr) || isrobot(usr)) //so monkeys can take off their backpacks -- Urist
+	if(ishuman(usr) || ismonkey(usr) || iscyborg(usr)) //so monkeys can take off their backpacks -- Urist
 
 		if(usr.lying)
 			return
@@ -449,7 +449,7 @@
 /obj/item/storage/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 
-	if(isrobot(user))
+	if(iscyborg(user))
 		to_chat(user, "<span class='notice'>You're a robot. No.</span>")
 		return //Robots can't interact with storage items.
 
@@ -600,7 +600,7 @@
 	. = ..()
 
 /obj/item/storage/emp_act(severity)
-	if(!istype(src.loc, /mob/living))
+	if(!isliving(loc))
 		for(var/obj/O in contents)
 			O.emp_act(severity)
 	..()

@@ -26,7 +26,7 @@
 			var/trans = 0
 
 			if(ismob(target))
-				if(istype(target , /mob/living/carbon/human))
+				if(ishuman(target))
 					var/mob/living/carbon/human/victim = target
 
 					var/obj/item/safe_thing = null

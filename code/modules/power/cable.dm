@@ -2,13 +2,13 @@
 
 /obj/machinery/power/attackby(obj/item/W, mob/user)
 
-	if(istype(W, /obj/item/stack/cable_coil))
+	if(iscablecoil(W))
 
 		var/obj/item/stack/cable_coil/coil = W
 
 		var/turf/T = user.loc
 
-		if(T.intact_tile || !istype(T, /turf/open/floor))
+		if(T.intact_tile || !isfloorturf(T))
 			return
 
 		if(get_dist(src, user) > 1)
@@ -112,7 +112,7 @@
 	if(T.intact_tile)
 		return
 
-	if(istype(W, /obj/item/tool/wirecutters))
+	if(iswirecutter(W))
 
 ///// Z-Level Stuff
 		if(src.d1 == 12 || src.d2 == 12)
@@ -149,11 +149,11 @@
 		return	// not needed, but for clarity
 
 
-	else if(istype(W, /obj/item/stack/cable_coil))
+	else if(iscablecoil(W))
 		var/obj/item/stack/cable_coil/coil = W
 		coil.cable_join(src, user)
 
-	else if(istype(W, /obj/item/device/multitool))
+	else if(ismultitool(W))
 
 		var/datum/powernet/PN = get_powernet()		// find the powernet
 

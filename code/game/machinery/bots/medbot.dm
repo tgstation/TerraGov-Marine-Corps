@@ -209,7 +209,7 @@
 
 	else
 		..()
-		if (health < maxhealth && !istype(W, /obj/item/tool/screwdriver) && W.force)
+		if (health < maxhealth && !isscrewdriver(W) && W.force)
 			step_to(src, (get_step_away(src,user)))
 
 /obj/machinery/bot/medbot/Emag(mob/user as mob)
@@ -263,7 +263,7 @@
 			src.speak(message)
 
 		for (var/mob/living/carbon/C in view(7,src)) //Time to find a patient!
-			if ((C.stat == 2) || !istype(C, /mob/living/carbon/human))
+			if ((C.stat == 2) || !ishuman(C))
 				continue
 
 			if ((C == src.oldpatient) && (world.time < src.last_found + 100))

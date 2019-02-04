@@ -32,7 +32,7 @@ var/global/list/medal_awards = list()
 	if(!medal_type) return
 	var/citation = copytext(sanitize(input("What should the medal citation read?","Medal Citation", null) as text|null), 1, MAX_MESSAGE_LEN)
 	if(!citation) return
-	for(var/mob/M in GLOB.alive_mob_list)
+	for(var/mob/M in GLOB.alive_human_list)
 		if(M.real_name == chosen_recipient)
 			posthumous = 0
 			break

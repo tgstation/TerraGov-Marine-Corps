@@ -1,0 +1,5 @@
+author: "Menshin & spookydonut"
+delete-after: True
+changes: 
+  - bugfix: "APC construction and deconstruction are working properly again"
+  - tweak: "various APC code tweaking and updating"

@@ -163,7 +163,8 @@
 		verbs -= /obj/item/clothing/suit/space/rig/verb/stow_mounted_device
 		return
 
-	if(!istype(usr, /mob/living)) return
+	if(!isliving(usr))
+		return
 	if(usr.stat) return
 
 	if(active_device)
@@ -185,7 +186,8 @@
 		verbs -= /obj/item/clothing/suit/space/rig/verb/stow_mounted_device
 		return
 
-	if(!istype(usr, /mob/living)) return
+	if(!isliving(usr))
+		return
 
 	if(usr.stat) return
 

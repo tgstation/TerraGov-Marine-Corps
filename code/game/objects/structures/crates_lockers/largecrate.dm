@@ -23,7 +23,7 @@
 	return
 
 /obj/structure/largecrate/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/tool/crowbar))
+	if(iscrowbar(W))
 		new /obj/item/stack/sheet/wood(src)
 		var/turf/T = get_turf(src)
 		for(var/obj/O in contents)
@@ -42,7 +42,7 @@
 	icon_state = "lisacrate"
 
 /obj/structure/largecrate/lisa/attackby(obj/item/W as obj, mob/user as mob)	//ugly but oh well
-	if(istype(W, /obj/item/tool/crowbar))
+	if(iscrowbar(W))
 		new /mob/living/simple_animal/corgi/Lisa(loc)
 	..()
 
@@ -51,7 +51,7 @@
 	icon_state = "lisacrate"
 
 /obj/structure/largecrate/cow/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/tool/crowbar))
+	if(iscrowbar(W))
 		new /mob/living/simple_animal/cow(loc)
 	..()
 
@@ -60,7 +60,7 @@
 	icon_state = "lisacrate"
 
 /obj/structure/largecrate/goat/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/tool/crowbar))
+	if(iscrowbar(W))
 		new /mob/living/simple_animal/hostile/retaliate/goat(loc)
 	..()
 
@@ -69,7 +69,7 @@
 	icon_state = "lisacrate"
 
 /obj/structure/largecrate/chick/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/tool/crowbar))
+	if(iscrowbar(W))
 		var/num = rand(4, 6)
 		for(var/i = 0, i < num, i++)
 			new /mob/living/simple_animal/chick(loc)
@@ -81,7 +81,7 @@
 	icon_state = "mulecrate"
 
 /obj/structure/largecrate/hoverpod/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/tool/crowbar))
+	if(iscrowbar(W))
 		new /obj/mecha/hoverpod(loc)
 	..()
 

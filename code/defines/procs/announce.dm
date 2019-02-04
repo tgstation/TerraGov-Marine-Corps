@@ -33,7 +33,7 @@
 	announcement_type = "Automated Announcement"
 
 /datum/announcement/priority/command/warning/Announce(message, new_sound)
-	for(var/mob/living/silicon/decoy/ship_ai/AI in GLOB.mob_list)
+	for(var/mob/living/silicon/decoy/ship_ai/AI in GLOB.silicon_mobs)
 		return AI.say(message, new_sound)
 
 /datum/announcement/priority/security/New(var/do_log = 1, var/new_sound = sound('sound/misc/notice2.ogg'), var/do_newscast = 0)
@@ -59,13 +59,13 @@
 /datum/announcement/proc/Message(message as text, message_title as text, var/to_xenos = 0)
 	for(var/mob/M in GLOB.player_list)
 		if(!to_xenos)
-			if(isXeno(M) || has_species(M, "Zombie")) //we reuse to_xenos arg for zombies
+			if(isxeno(M) || iszombie(M)) //we reuse to_xenos arg for zombies
 				continue
 			if(ishuman(M)) //what xenos can't hear, the survivors on the ground can't either.
 				var/mob/living/carbon/human/H = M
 				if(H.mind && H.mind.special_role == "Survivor" && H.z != MAIN_SHIP_Z_LEVEL)
 					continue
-		if(!istype(M,/mob/new_player) && !isdeaf(M))
+		if(!isnewplayer(M) && !isdeaf(M))
 			to_chat(M, "<h2 class='alert'>[title]</h2>")
 			to_chat(M, "<span class='alert'>[message]</span>")
 			if (announcer)
@@ -74,7 +74,7 @@
 /datum/announcement/minor/Message(message as text, message_title as text, var/to_xenos = 0)
 	for(var/mob/M in GLOB.player_list)
 		if(!to_xenos)
-			if(isXeno(M) || has_species(M, "Zombie")) //we reuse to_xenos arg for zombies
+			if(isxeno(M) || iszombie(M)) //we reuse to_xenos arg for zombies
 				continue
 			if(ishuman(M)) //what xenos can't hear, the survivors on the ground can't either.
 				var/mob/living/carbon/human/H = M
@@ -101,7 +101,7 @@
 	for(var/mob/M in GLOB.player_list)
 		if(istype(M,/mob/living/carbon/Xenomorph))
 			continue
-		if(!istype(M,/mob/new_player) && !isdeaf(M) && !isYautja(M))
+		if(!istype(M,/mob/new_player) && !isdeaf(M) && !isyautja(M))
 			to_chat(M, command)
 
 /datum/announcement/priority/security/Message(message as text, message_title as text, var/to_xenos = 0)
@@ -124,9 +124,9 @@
 	if(!message_sound)
 		return
 	for(var/mob/M in GLOB.player_list)
-		if(isXeno(M) && !to_xenos)
+		if(isxeno(M) && !to_xenos)
 			continue
-		if(!istype(M, /mob/new_player) && !isdeaf(M))
+		if(!isnewplayer(M) && !isdeaf(M))
 			M << message_sound
 
 /datum/announcement/proc/Sound(var/message_sound)

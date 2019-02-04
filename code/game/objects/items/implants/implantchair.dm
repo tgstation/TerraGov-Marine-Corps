@@ -54,7 +54,7 @@
 
 
 	Topic(href, href_list)
-		if((get_dist(src, usr) <= 1) || istype(usr, /mob/living/silicon/ai))
+		if((get_dist(src, usr) <= 1) || isAI(usr))
 			if(href_list["implant"])
 				if(src.occupant)
 					injecting = 1
@@ -116,7 +116,7 @@
 
 
 	implant(var/mob/M)
-		if (!istype(M, /mob/living/carbon))
+		if (!iscarbon(M))
 			return
 		if(!implant_list.len)	return
 		for(var/obj/item/implant/loyalty/imp in implant_list)

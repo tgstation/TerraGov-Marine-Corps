@@ -1,8 +1,0 @@
-author: "Surrealistik"
-delete-after: True
-changes: 
-  - bugfix: "Bug with WP rockets fixed; they will now create areas of fire as intended."
-  - bugfix: "B18 grenade belt now holds an appropriate amount of grenades."
-  - tweak: "The rocket launcher can now be unloaded; this takes half as much time as loading (3 seconds)."
-  - tweak: "The rocket launcher doesn't start with a rocket loaded; as compensation the demolitionist gets an additional WP rocket in its starting kit."
-  - tweak: "Plastique in demo kit replaced with detpacks."

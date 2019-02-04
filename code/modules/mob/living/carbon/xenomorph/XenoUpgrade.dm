@@ -19,8 +19,11 @@
 		//Final UPGRADE
 		if(3)
 			to_chat(src, "<span class='xenoannounce'>[xeno_caste.ancient_message]</span>")
-			
+
 	generate_name() //Give them a new name now
+
+	hud_set_plasma()
+	med_hud_set_health()
 
 	hud_set_queen_overwatch() //update the upgrade level insignia on our xeno hud.
 
@@ -154,4 +157,14 @@
 	upgrade = 2
 
 /mob/living/carbon/Xenomorph/Warrior/ancient
+	upgrade = 3
+
+
+/mob/living/carbon/Xenomorph/Defiler/mature
+	upgrade = 1
+
+/mob/living/carbon/Xenomorph/Defiler/elder
+	upgrade = 2
+
+/mob/living/carbon/Xenomorph/Defiler/ancient
 	upgrade = 3

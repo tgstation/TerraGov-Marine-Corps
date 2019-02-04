@@ -526,7 +526,7 @@
 	if (O.is_open_container())
 		return 0
 
-	if(istype(O, /obj/item/tool/wirecutters) || istype(O, /obj/item/tool/surgery/scalpel))
+	if(iswirecutter(O) || istype(O, /obj/item/tool/surgery/scalpel))
 
 		if(!seed)
 			to_chat(user, "There is nothing to take a sample from in \the [src].")
@@ -646,7 +646,7 @@
 		check_level_sanity()
 		update_icon()
 
-	else if(istype(O, /obj/item/tool/wrench))
+	else if(iswrench(O))
 
 		//If there's a connector here, the portable_atmospherics setup can handle it.
 		if(locate(/obj/machinery/atmospherics/portables_connector/) in loc)

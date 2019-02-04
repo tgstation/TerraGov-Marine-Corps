@@ -196,7 +196,7 @@
 	create_stomp() //Adds the visual effect. Wom wom wom
 
 	for(var/mob/living/M in range(2,loc))
-		if(isXeno(M) || M.stat == DEAD || ((M.status_flags & XENO_HOST) && istype(M.buckled, /obj/structure/bed/nest)))
+		if(isxeno(M) || M.stat == DEAD || ((M.status_flags & XENO_HOST) && istype(M.buckled, /obj/structure/bed/nest)))
 			continue
 		var/distance = get_dist(M, loc)
 		var/damage = (rand(xeno_caste.melee_damage_lower, xeno_caste.melee_damage_upper) * 1.5) / max(1,distance + 1)

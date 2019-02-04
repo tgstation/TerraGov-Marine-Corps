@@ -118,7 +118,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 			if(icon_state != "carpetsymbol")
 				var/connectdir = 0
 				for(var/direction in cardinal)
-					if(istype(get_step(src, direction), /turf/open/floor))
+					if(isfloorturf(get_step(src, direction)))
 						var/turf/open/floor/FF = get_step(src, direction)
 						if(FF.is_carpet_floor())
 							connectdir |= direction
@@ -277,7 +277,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 		spawn(5)
 			if(src)
 				for(var/direction in list(1, 2, 4, 8, 5, 6, 9, 10))
-					if(istype(get_step(src,direction), /turf/open/floor))
+					if(isfloorturf(get_step(src,direction)))
 						var/turf/open/floor/FF = get_step(src,direction)
 						FF.update_icon() //So siding get updated properly
 
@@ -401,7 +401,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 			else
 				to_chat(user, "<span class='notice'>The lightbulb seems fine, no need to replace it.</span>")
 
-	if(istype(C, /obj/item/tool/crowbar) && (!(is_plating())))
+	if(iscrowbar(C) && !is_plating())
 		if(broken || burnt)
 			to_chat(user, "<span class='warning'>You remove the broken plating.</span>")
 		else
@@ -415,7 +415,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 		playsound(src, 'sound/items/Crowbar.ogg', 25, 1)
 		return
 
-	if(istype(C, /obj/item/tool/screwdriver) && is_wood_floor())
+	if(isscrewdriver(C) && is_wood_floor())
 		if(broken || burnt)
 			return
 		else
@@ -460,12 +460,12 @@ var/list/wood_icons = list("wood", "wood-broken")
 					F.on = L.on
 				if(istype(T, /obj/item/stack/tile/grass))
 					for(var/direction in cardinal)
-						if(istype(get_step(src, direction), /turf/open/floor))
+						if(isfloorturf(get_step(src, direction)))
 							var/turf/open/floor/FF = get_step(src,direction)
 							FF.update_icon() //so siding gets updated properly
 				else if(istype(T, /obj/item/stack/tile/carpet))
 					for(var/direction in list(1, 2, 4, 8, 5, 6, 9, 10))
-						if(istype(get_step(src, direction), /turf/open/floor))
+						if(isfloorturf(get_step(src, direction)))
 							var/turf/open/floor/FF = get_step(src,direction)
 							FF.update_icon() //so siding gets updated properly
 				T.use(1)
@@ -476,7 +476,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 				to_chat(user, "<span class='notice'>This section is too damaged to support a tile. Use a welder to fix the damage.</span>")
 
 
-	if(istype(C, /obj/item/stack/cable_coil))
+	if(iscablecoil(C))
 		if(is_plating())
 			var/obj/item/stack/cable_coil/coil = C
 			coil.turf_place(src, user)
@@ -492,7 +492,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 		else
 			to_chat(user, "<span class='warning'>You cannot shovel this.</span>")
 
-	if(istype(C, /obj/item/tool/weldingtool))
+	if(iswelder(C))
 		var/obj/item/tool/weldingtool/welder = C
 		if(welder.isOn() && (is_plating()))
 			if(broken || burnt)

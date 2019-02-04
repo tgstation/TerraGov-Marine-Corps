@@ -75,7 +75,7 @@
 	if(!ishuman(user))
 		return
 
-	if (istype(W, /obj/item/tool/wrench))
+	if (iswrench(W))
 		if (!anchored)
 			anchored = 1
 			to_chat(user, "You anchor the [src] in place.")
@@ -83,7 +83,7 @@
 			anchored = 0
 			to_chat(user, "You remove the bolts from the [src].")
 
-	if (istype(W, /obj/item/tool/screwdriver))
+	if (isscrewdriver(W))
 		if (!open)
 			if(unlocked)
 				unlocked = 0
@@ -92,7 +92,7 @@
 				unlocked = 1
 				to_chat(user, "You unscrew the battery panel.")
 
-	if (istype(W, /obj/item/tool/crowbar))
+	if (iscrowbar(W))
 		if(unlocked)
 			if(open)
 				open = 0

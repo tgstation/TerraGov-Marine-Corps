@@ -44,7 +44,6 @@
 
 	var/base_icon_state = "darkmatter"
 
-	var/damage = 0
 	var/damage_archived = 0
 	var/safe_alert = "Crystaline hyperstructure returning to safe operating levels."
 	var/warning_point = 100
@@ -153,7 +152,7 @@
 				alert_msg = safe_alert
 				lastwarning = world.timeofday
 
-			if(!istype(L, /turf/open/space) && alert_msg)
+			if(!isspaceturf(L) && alert_msg)
 				radio.autosay(alert_msg, "Supermatter Monitor")
 				log_admin("[src] [alert_msg].")
 				message_admins("[src] [alert_msg].")
@@ -161,7 +160,7 @@
 		if(damage > explosion_point)
 			for(var/mob/living/mob in GLOB.alive_mob_list)
 				if( (src.loc && mob.loc) && ( loc.z == mob.loc.z ))
-					if(istype(mob, /mob/living/carbon/human))
+					if(ishuman(mob))
 						//Hilariously enough, running into a closet should make you get hit the hardest.
 						var/mob/living/carbon/human/H = mob
 						H.hallucination += max(50, min(300, DETONATION_HALLUCINATION * sqrt(1 / (get_dist(mob, src) + 1)) ) )
@@ -293,7 +292,7 @@
 
 
 /obj/machinery/power/supermatter/Bumped(atom/AM as mob|obj)
-	if(istype(AM, /mob/living))
+	if(isliving(AM))
 		AM.visible_message("<span class='warning'>\The [AM] slams into \the [src] inducing a resonance... [AM.p_their()] body starts to glow and catch flame before flashing into ash.</span>",\
 		"<span class='danger'>You slam into \the [src] as your ears are filled with unearthly ringing. Your last thought is \"Oh, fuck.\"</span>",\
 		"<span class='warning'>You hear an uneartly ringing, then what sounds like a shrilling kettle as you are washed with a wave of heat.</span>")
@@ -332,7 +331,7 @@
 	// Let's just make this one loop.
 	for(var/atom/X in orange(pull_radius,src))
 		// Movable atoms only
-		if(istype(X, /atom/movable))
+		if(ismovableatom(X))
 			if(is_type_in_list(X, uneatable))	continue
 			if(((X) && (!istype(X,/mob/living/carbon/human))))
 				step_towards(X,src)

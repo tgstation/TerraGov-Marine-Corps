@@ -103,12 +103,14 @@
 	walk(src,0)
 	. = ..()
 
-/mob/living/simple_animal/parrot/Stat()
-	if (!..())
-		return 0
 
-	stat("Held Item", held_item)
-	return 1
+/mob/living/simple_animal/parrot/Stat()
+	. = ..()
+
+	if(statpanel("Stats"))
+		stat("Held Item", held_item)
+
+
 /*
  * Inventory
  */
@@ -133,7 +135,7 @@
 		return
 
 	//Is the usr's mob type able to do this?
-	if(ishuman(usr) || ismonkey(usr) || isrobot(usr))
+	if(ishuman(usr) || ismonkey(usr) || iscyborg(usr))
 
 		//Removing from inventory
 		if(href_list["remove_inv"])

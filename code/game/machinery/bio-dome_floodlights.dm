@@ -138,7 +138,7 @@
 			to_chat(user, "<span class='warning'>It's already damaged.</span>")
 			return 0
 		else
-			if(isXenoLarva(user))
+			if(isxenolarva(user))
 				return //Larvae can't do shit
 			if(user.get_active_held_item())
 				to_chat(user, "<span class='warning'>You need your claws empty for this!</span>")

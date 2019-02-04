@@ -193,7 +193,7 @@ proc/cardinalrange(var/center)
 	matter = list("metal" = 100, "waste" = 2000)
 
 /obj/item/device/am_shielding_container/attackby(var/obj/item/I, var/mob/user)
-	if(istype(I, /obj/item/device/multitool) && istype(src.loc,/turf))
+	if(ismultitool(I) && isturf(loc))
 		new/obj/machinery/am_shielding(src.loc)
 		qdel(src)
 		return

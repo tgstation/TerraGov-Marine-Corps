@@ -70,29 +70,28 @@
 		return
 
 	Stat()
-		if (!..())
-			return 0
+		. = ..()
 
-		stat("Map:", "[map_tag]")
 		if(!ticker)
 			return
-		if(ticker.hide_mode)
-			stat("Game Mode:", "TerraGov Marine Corps")
-		else
-			if(ticker.hide_mode == 0)
-				stat("Game Mode:", "[master_mode]") // Old setting for showing the game mode
 
-		if(ticker.current_state == GAME_STATE_PREGAME)
-			stat("Time To Start:", "[ticker.pregame_timeleft][going ? "" : " (DELAYED)"]")
-			stat("Players: [totalPlayers]", "Players Ready: [totalPlayersReady]")
-			totalPlayers = 0
-			totalPlayersReady = 0
-			for(var/mob/new_player/player in GLOB.player_list)
-				stat("[player.key]", (player.ready)?("(Playing)"):(null))
-				totalPlayers++
-				if(player.ready)totalPlayersReady++
+		if(statpanel("Stats"))
+			if(ticker.hide_mode)
+				stat("Game Mode:", "TerraGov Marine Corps")
+			else
+				stat("Game Mode:", "[master_mode]")
 
-		return 1
+			if(ticker.current_state == GAME_STATE_PREGAME)
+				stat("Time To Start:", "[ticker.pregame_timeleft][going ? "" : " (DELAYED)"]")
+				stat("Players: [totalPlayers]", "Players Ready: [totalPlayersReady]")
+				totalPlayers = 0
+				totalPlayersReady = 0
+				for(var/mob/new_player/player in GLOB.player_list)
+					stat("[player.key]", (player.ready)?("(Playing)"):(null))
+					totalPlayers++
+					if(player.ready)
+						totalPlayersReady++
+
 
 
 	Topic(href, href_list[])
@@ -201,7 +200,7 @@
 
 			if("SelectedJob")
 
-				if(!enter_allowed)
+				if(!GLOB.enter_allowed)
 					to_chat(usr, "<span class='warning'>Spawning currently disabled, pick another role or observe.</span>")
 					return
 
@@ -323,7 +322,7 @@
 		if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
 			to_chat(usr, "<span class='warning'>The round is either not ready, or has already finished!<spawn>")
 			return
-		if(!enter_allowed)
+		if(!GLOB.enter_allowed)
 			to_chat(usr, "<span class='warning'>Spawning currently disabled, pick another role or observe.<spawn>")
 			return
 		if(!RoleAuthority.assign_role(src, RoleAuthority.roles_for_mode[rank], 1))
@@ -337,7 +336,7 @@
 		var/turf/T
 		if(spawning_at) S = spawntypes[spawning_at]
 		if(istype(S)) 	T = pick(S.turfs)
-		else 			T = pick(latejoin)
+		else 			T = pick(GLOB.latejoin)
 
 		var/mob/living/carbon/human/character = create_character()	//creates the human and transfers vars and mind
 		RoleAuthority.equip_role(character, RoleAuthority.roles_for_mode[rank], T)

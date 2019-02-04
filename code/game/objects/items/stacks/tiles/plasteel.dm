@@ -26,7 +26,7 @@
 	if (!( istype(T, /turf) ))
 		to_chat(user, "<span class='warning'>You must be on the ground!</span>")
 		return
-	if (!( istype(T, /turf/open/space) ))
+	if (!isspaceturf(T))
 		to_chat(user, "<span class='warning'>You cannot build on or repair this turf!</span>")
 		return
 	src.build(T)

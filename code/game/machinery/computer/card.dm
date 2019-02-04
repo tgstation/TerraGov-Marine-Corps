@@ -232,7 +232,7 @@
 		if ("reg")
 			if (is_authenticated())
 				var/t2 = modify
-				if ((modify == t2 && (in_range(src, usr) || (istype(usr, /mob/living/silicon))) && istype(loc, /turf)))
+				if ((modify == t2 && (in_range(src, usr) || issilicon(usr)) && isturf(loc)))
 					var/temp_name = reject_bad_name(href_list["reg"])
 					if(temp_name)
 						modify.registered_name = temp_name
@@ -243,7 +243,7 @@
 		if ("account")
 			if (is_authenticated())
 				var/t2 = modify
-				if ((modify == t2 && (in_range(src, usr) || (istype(usr, /mob/living/silicon))) && istype(loc, /turf)))
+				if ((modify == t2 && (in_range(src, usr) || issilicon(usr)) && istype(loc, /turf)))
 					var/account_num = text2num(href_list["account"])
 					modify.associated_account_number = account_num
 			nanomanager.update_uis(src)

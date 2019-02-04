@@ -1,4 +1,0 @@
-author: "Alterist"
-delete-after: True
-changes: 
-  - tweak: "deletes the useless stills on LV and replaces it with a autolathe"

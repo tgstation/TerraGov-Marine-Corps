@@ -49,7 +49,7 @@
 		return
 
 	flash_recharge()
-	if(isXeno(M))
+	if(isxeno(M))
 		to_chat(user, "You can't find any eyes!")
 		return
 
@@ -80,7 +80,7 @@
 	else
 		flashfail = 1
 
-	if(isrobot(user))
+	if(iscyborg(user))
 		spawn(0)
 			var/atom/movable/overlay/animation = new(user.loc)
 			animation.layer = user.layer + 1
@@ -137,7 +137,7 @@
 	playsound(src.loc, 'sound/weapons/flash.ogg', 25, 1)
 	user.log_message("flashed an area with [key_name(src)]", LOG_ATTACK)
 	//flick("flash2", src)
-	if(user && isrobot(user))
+	if(user && iscyborg(user))
 		spawn(0)
 			var/atom/movable/overlay/animation = new(user.loc)
 			animation.layer = user.layer + 1
@@ -168,7 +168,7 @@
 				icon_state = "flashburnt"
 				return
 			times_used++
-			if(istype(loc, /mob/living/carbon))
+			if(iscarbon(loc))
 				var/mob/living/carbon/M = loc
 				if(M.flash_eyes())
 					M.KnockDown(10)

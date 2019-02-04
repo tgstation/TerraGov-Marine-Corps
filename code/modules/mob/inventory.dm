@@ -202,7 +202,7 @@
 //proc to get the item in the active hand.
 /mob/proc/get_held_item()
 	if(issilicon(src))
-		if(isrobot(src))
+		if(iscyborg(src))
 			if(src:module_active)
 				return src:module_active
 	else
