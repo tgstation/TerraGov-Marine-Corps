@@ -532,8 +532,8 @@ can cause issues with ammo types getting mixed up during the burst.
 /obj/item/weapon/gun/shotgun/pump/bolt
 	name = "\improper Bolt action rifle"
 	desc = "A hunting rifle just like pappy used to own."
-	icon_state = "hg3712"
-	item_state = "hg3712"
+	icon_state = "mosin"
+	item_state = "mosin"
 	fire_sound = 'sound/weapons/gun_sniper.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump/bolt
 	gun_skill_category = GUN_SKILL_RIFLES
@@ -544,18 +544,18 @@ can cause issues with ammo types getting mixed up during the burst.
 						/obj/item/attachable/scope/mini,
 						/obj/item/attachable/scope,
 						/obj/item/attachable/bipod)
-	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 23, "under_x" = 19, "under_y" = 17, "stock_x" = 19, "stock_y" = 17)
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 16,"rail_x" = 8, "rail_y" = 21, "under_x" = 24, "under_y" = 13, "stock_x" = 20, "stock_y" = 14)
 	starting_attachment_types = list(/obj/item/attachable/scope)
-/* because the weapon is too long for the sprite box.
+
 /obj/item/weapon/gun/shotgun/pump/bolt/Initialize()
 	. = ..()
-	var/obj/item/attachable/S = new /obj/item/attachable/slavicbarrel(src)
+	var/obj/item/attachable/S = new /obj/item/attachable/mosinbarrel(src)
 	S.Attach(src)
-	S = new /obj/item/attachable/stock/slavic(src)
+	S = new /obj/item/attachable/stock/mosin(src)
 	S.flags_attach_features &= ~ATTACH_REMOVABLE
 	S.Attach(src)
 	update_attachables()
-*/
+
 /obj/item/weapon/gun/shotgun/pump/cmb/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/med_fire_delay) * 6
 	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/hmed_hit_accuracy_mult)
