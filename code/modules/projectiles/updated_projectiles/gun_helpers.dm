@@ -490,11 +490,12 @@ should be alright.
 
 
 /obj/item/weapon/gun/proc/get_active_firearm(mob/user)
-	if(!ishuman(usr))
+	if(!user.IsAdvancedToolUser())
+		to_chat(user, "<span class='warning'>You don't have the dexterity to do this.</span>")
 		return
 
-	if(!user.canmove || user.stat || user.is_mob_restrained() || !user.loc || !isturf(usr.loc))
-		to_chat(user, "<span class='warning'>Not right now.</span>")
+	if( user.is_mob_incapacitated() || !isturf(user.loc))
+		to_chat(user, "<span class='warning'>You can't do this right now.</span>")
 		return
 
 	var/obj/item/weapon/gun/G = user.get_held_item()
@@ -522,10 +523,8 @@ should be alright.
 	set src = usr.contents //We want to make sure one is picked at random, hence it's not in a list.
 
 	var/obj/item/weapon/gun/G = get_active_firearm(usr)
-
 	if(!G)
 		return
-
 	src = G
 
 	if(usr.action_busy)
@@ -676,24 +675,12 @@ should be alright.
 	set category = "Weapons"
 	set name = "Toggle Gun Safety"
 	set desc = "Toggle the safety of the held gun."
-	set src = usr.contents //We want to make sure one is picked at random, hence it's not in a list.
+	set src in usr //We want to make sure one is picked at random, hence it's not in a list.
 
 	var/obj/item/weapon/gun/G = get_active_firearm(usr)
-
 	if(!G)
 		return
-
 	src = G
-
-	if(flags_gun_features & GUN_BURST_FIRING)
-		return
-
-	if(!ishuman(usr))
-		return
-
-	if(usr.is_mob_incapacitated() || !usr.loc || !isturf(usr.loc))
-		to_chat(usr, "Not right now.")
-		return
 
 	to_chat(usr, "<span class='notice'>You toggle the safety [flags_gun_features & GUN_TRIGGER_SAFETY ? "<b>off</b>" : "<b>on</b>"].</span>")
 	playsound(usr, 'sound/machines/click.ogg', 15, 1)
@@ -705,7 +692,7 @@ should be alright.
 	set category = "Weapons"
 	set name = "Load From Attachment"
 	set desc = "Load from a gun attachment, such as a mounted grenade launcher, shotgun, or flamethrower."
-	set src = usr.contents
+	set src in usr
 
 	var/obj/item/weapon/gun/G = get_active_firearm(usr)
 	if(!G)
@@ -743,25 +730,26 @@ should be alright.
 	set category = "Weapons"
 	set name = "Toggle Rail Attachment"
 	set desc = "Uses the rail attachement currently attached to the gun."
+	set src in usr
 
-	if(!usr)
+	var/obj/item/weapon/gun/G = get_active_firearm(usr)
+	if(!G)
 		return
+	src = G
 
-	var/obj/item/weapon/gun/W = usr.get_active_held_item()
-
-	if(!istype(W))
-		return
-
-	W.rail?.activate_attachment(W, usr)
+	rail?.activate_attachment(src, usr)
 
 
 /obj/item/weapon/gun/verb/toggle_ammo_hud()
 	set category = "Weapons"
 	set name = "Toggle Ammo HUD"
 	set desc = "Toggles the Ammo HUD for this weapon."
+	set src in usr
 
-	if(!usr)
+	var/obj/item/weapon/gun/G = get_active_firearm(usr)
+	if(!G)
 		return
+	src = G
 
 	hud_enabled = !hud_enabled
 	var/obj/screen/ammo/A = usr.hud_used.ammo

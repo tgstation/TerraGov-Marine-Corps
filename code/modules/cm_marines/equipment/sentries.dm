@@ -1061,39 +1061,32 @@
 
 //Direct replacement to new proc. Everything works.
 /obj/machinery/marine_turret/handle_click(mob/living/carbon/human/user, atom/A, params)
-	if(!operator || !istype(user) || operator != user)
+	var/list/modifiers = params2list(params) //Only single clicks.
+	if(modifiers["middle"] || modifiers["shift"] || modifiers["alt"] || modifiers["ctrl"])
 		return FALSE
-	if(istype(A, /obj/screen))
-		return FALSE
-	if(!manual_override)
-		return FALSE
-	if(operator.interactee != src)
+	if(!manual_override || !operator || !istype(user) || operator != user || operator.interactee != src || istype(A, /obj/screen))
 		return FALSE
 	if(is_bursting)
-		return
+		return TRUE
 	if(get_dist(user, src) > 1 || user.is_mob_incapacitated())
 		user.visible_message("<span class='notice'>[user] lets go of [src]</span>",
 		"<span class='notice'>You let go of [src]</span>")
 		state("<span class='notice'>The [name] buzzes: AI targeting re-initialized.</span>")
 		user.unset_interaction()
 		return FALSE
-	if(user.get_active_held_item() != null)
+	if(user.get_active_held_item())
 		to_chat(usr, "<span class='warning'>You need a free hand to shoot [src].</span>")
-		return FALSE
+		return TRUE
 
 	target = A
 	if(!istype(target))
 		return FALSE
 
-	if(target.z != z || target.z == 0 || z == 0 || isnull(operator.loc) || isnull(loc))
+	if(target.z != z || !target.z|| !z || isnull(operator.loc) || isnull(loc))
 		return FALSE
 
 	if(get_dist(target, loc) > 10)
-		return FALSE
-
-	var/list/modifiers = params2list(params) //Only single clicks.
-	if(modifiers["middle"] || modifiers["shift"] || modifiers["alt"] || modifiers["ctrl"])
-		return FALSE
+		return TRUE
 
 	var/dx = target.x - x
 	var/dy = target.y - y //Calculate which way we are relative to them. Should be 90 degree cone..

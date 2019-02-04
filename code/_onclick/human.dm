@@ -10,8 +10,8 @@
 	var/last_chew = 0
 
 /mob/living/carbon/human/click(var/atom/A, var/list/mods)
-	if(interactee)
-		return interactee.handle_click(src, A, mods)
+	if(interactee?.handle_click(src, A, mods))
+		return
 
 	return ..()
 
