@@ -92,6 +92,11 @@ can cause issues with ammo types getting mixed up during the burst.
 	new_handful.generate_handful(selection, "12g", 5, 1, /obj/item/weapon/gun/shotgun)
 	return new_handful
 
+/obj/item/weapon/gun/shotgun/pump/bolt/retrieve_shell(selection)
+	var/obj/item/ammo_magazine/handful/new_handful = new /obj/item/ammo_magazine/handful()
+	new_handful.generate_handful(selection, "7.62x54mmR", 5, 1, /obj/item/weapon/gun/shotgun)
+	return new_handful
+
 /obj/item/weapon/gun/shotgun/proc/check_chamber_position()
 	return 1
 

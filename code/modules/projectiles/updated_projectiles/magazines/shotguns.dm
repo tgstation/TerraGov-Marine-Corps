@@ -74,6 +74,7 @@ also doesn't really matter. You can only reload them with handfuls.
 	max_rounds = 8
 
 /obj/item/ammo_magazine/internal/shotgun/pump/bolt //The only cycle method.
+	name = "internal magazine"
 	default_ammo = /datum/ammo/bullet/sniper/svd
 	caliber = "7.62x54mmR"
 	max_rounds = 5
