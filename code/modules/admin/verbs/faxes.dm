@@ -19,6 +19,7 @@ GLOBAL_LIST_EMPTY(faxes)
 	F.title = title
 	F.message = message
 	F.senttime = duration2text()
+	F.admin = admin
 
 	GLOB.faxes[F] = F
 
@@ -73,7 +74,7 @@ GLOBAL_LIST_EMPTY(faxes)
 	dat += "<body>"
 
 	for(var/datum/fax/F in GLOB.faxes)
-		dat += "[F.admin ? "STAFF " : ""]Fax titled '[F.title]', from department: [F.department], sent by [key_name_admin(F.sender)] at [F.senttime] - "
+		dat += "[F.admin ? "STAFF " : ""]Fax titled '[F.title]', department: [F.department], sent by [key_name_admin(F.sender)] at [F.senttime] - "
 		dat += "[check_rights(R_ADMIN, FALSE) ? "[ADMIN_PP(F.sender)] [ADMIN_VV(F)] " : ""][ADMIN_SM(F.sender)] (<a href='?src=[REF(usr.client.holder)];[HrefToken()];faxreply=[REF(F)]'>REPLY</a>) (<a href='?src=[REF(usr.client.holder)];[HrefToken()];faxview=[REF(F)]'>VIEW</a>)"
 		dat += "<br>"
 
