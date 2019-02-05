@@ -234,14 +234,15 @@ proc/get_all_job_icons()
 
 /proc/get_marine_jobs()
 		return list(
-				"Commander",
-				"Field Officer",
-				"Staff Officer",
+				"Captain",
+				"Field Commander",
+				"Intelligence Officer",
 				"Pilot Officer",
+				"Tank Commander",
 				"Tank Crewman",
 				"Corporate Liaison",
-				"Chief Engineer",
-				"Maintenance Tech",
+				"Chief Ship Engineer",
+				"Ship Engineer",
 				"Requisitions Officer",
 				"Cargo Technician",
 				"Squad Leader",
@@ -250,11 +251,11 @@ proc/get_all_job_icons()
 				"Squad Specialist",
 				"Squad Smartgunner",
 				"Squad Marine",
-				"Chief Medical Officer",
-				"Doctor",
+				"Chief Hospitalman",
+				"Hospitalman",
 				"Researcher",
-				"Military Police",
-				"Chief MP"
+				"Master at Arms",
+				"Command Master at Arms"
 				)
 
 /proc/get_paygrades(paygrade, size, gender)
@@ -262,8 +263,8 @@ proc/get_all_job_icons()
 		return
 	switch(paygrade)
 		if("C") . = size ? "" : "Civilian"
-		if("CD") . = size ? "Dr. " : "Doctor"
-		if("CCMO") . = size ? "Prof. " : "Professor"
+		if("CD") . = size ? "HM " : "Hospitalman"
+		if("CCMO") . = size ? "HMC " : "Chief Hospitalman"
 		if("PMC1") . = size ? "PMC " : "PM Contractor"
 		if("PMC2") . = size ? "PMSC " : "PM Senior Contractor"
 		if("PMC3") . = size ? "PMSC " : "PM Senior Contractor"
