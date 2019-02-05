@@ -12,9 +12,9 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 
 //Commander
 /datum/job/command/commander
-	title = "Commander"
-	comm_title = "CO"
-	paygrade = "O5"
+	title = "Captain"
+	comm_title = "CAPT"
+	paygrade = "O6"
 	flag = ROLE_COMMANDING_OFFICER
 	supervisors = "TGMC high command"
 	selection_color = "#ccccff"
@@ -39,18 +39,18 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	H.equip_to_slot_or_del(new /obj/item/device/binoculars(H), SLOT_L_HAND)
 
 /datum/job/command/commander/generate_entry_message()
-		return {"As the commander of the [MAIN_SHIP_NAME] you are held by higher standard and are expected to act competently.
+		return {"As the Captain of the [MAIN_SHIP_NAME] you are held by higher standard and are expected to act competently.
 While you may support Nanotrasen, you report to the TGMC High Command, not the corporate office.
 Your primary task is the safety of the ship and her crew, and ensuring the survival and success of the marines.
 Your first order of business should be briefing the marines on the mission they are about to undertake.
 If you require any help, use adminhelp to ask mentors about what you're supposed to do.
-Godspeed, commander! And remember, you are not above the law."}
+Godspeed, Captain! And remember, you are not above the law."}
 
 /datum/job/command/commander/announce_entry_message(mob/living/carbon/human/H)
 	. = ..()
 	sleep(15)
 	if(H?.loc && flags_startup_parameters & ROLE_ADD_TO_MODE)
-		captain_announcement.Announce("All hands, Commander [H.real_name] on deck!")
+		captain_announcement.Announce("All hands, Captain [H.real_name] on deck!")
 
 
 //Event version
@@ -65,9 +65,9 @@ Come hell or high water, you are going to be there for them."}
 
 
 //Executive Officer
-/datum/job/command/fieldofficer
-	title = "Field Officer"
-	comm_title = "FO"
+/datum/job/command/fieldcommander
+	title = "Field Commander"
+	comm_title = "FC"
 	paygrade = "MAJ"
 	flag = ROLE_FIELD_OFFICER
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADD_TO_MODE|ROLE_ADMIN_NOTIFY
@@ -76,7 +76,7 @@ Come hell or high water, you are going to be there for them."}
 	minimal_access = ALL_MARINE_ACCESS
 	equipment = TRUE
 
-/datum/job/command/fieldofficer/generate_equipment(mob/living/carbon/human/H)
+/datum/job/command/fieldcommander/generate_equipment(mob/living/carbon/human/H)
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/mcom(H), SLOT_EARS)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/exec(H), SLOT_W_UNIFORM)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/cmcap(H), SLOT_HEAD)
@@ -87,18 +87,17 @@ Come hell or high water, you are going to be there for them."}
 	H.equip_to_slot_or_del(new /obj/item/device/binoculars/tactical(H), SLOT_L_HAND)
 	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/drinks/flask/marine(H), SLOT_R_HAND)
 
-/datum/job/command/fieldofficer/generate_entry_message(mob/living/carbon/human/H)
-		. = {"You are charged with overseeing the operation on the ground, and are in next in the chain of command after the commander.
+/datum/job/command/fieldcommander/generate_entry_message(mob/living/carbon/human/H)
+		. = {"You are charged with overseeing the operation on the ground, and are in next in the chain of command after the Captain.
 Your duties are to ensure marines hold when ordered, and push when they are cowering behind barricades. 
 Do not ask your men to do anything you would not do side by side with them.
 Make the TGMC proud!"}
 
-
 //Staff Officer
 /datum/job/command/bridge
-	title = "Staff Officer"
-	disp_title = "Staff Officer"
-	comm_title = "SO"
+	title = "Intelligence Officer"
+	disp_title = "Intelligence Officer"
+	comm_title = "IO"
 	paygrade = "O3"
 	flag = ROLE_BRIDGE_OFFICER
 	total_positions = 5
@@ -128,7 +127,7 @@ Make the TGMC proud!"}
 
 /datum/job/command/bridge/generate_entry_message(mob/living/carbon/human/H)
 	return {"Your job is to monitor the marines, man the CIC, and listen to your superior officers.
-You are in charge of logistics and the overwatch system."}
+You are in charge of logistics and the overwatch system, and are next in line to take command after the Field Commander"}
 
 
 //Pilot Officer
@@ -169,15 +168,44 @@ You are in charge of logistics and the overwatch system."}
 While you are a warrant officer, your authority is limited to the dropship, where you have authority over the enlisted personnel.
 If you are not piloting, there is an autopilot fallback for command, but don't leave the dropship without reason."}
 
+//Tank Commander
+/datum/job/command/tank_commander
+	title = "Tank Commander"
+	comm_title = "TCDR"
+	paygrade = "E7"
+	flag = ROLE_TANK_COMMANDER
+	total_positions = 1
+	spawn_positions = 1
+	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_TANK)
+	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_TANK)
+	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADD_TO_MODE
+	skills_type = /datum/skills/tank_commander
+	idtype = /obj/item/card/id/dogtag
+	equipment = TRUE
+
+/datum/job/command/tank_crew/generate_equipment(mob/living/carbon/human/H)
+	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/mcom(H), SLOT_EARS)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/tanker(H), SLOT_W_UNIFORM)
+	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), SLOT_GLOVES)
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), SLOT_SHOES)
+	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/M3P/tanker(H), SLOT_WEAR_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), SLOT_BACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/belt/gun/m4a3/vp70(H), SLOT_BELT)
+	H.equip_to_slot_or_del(new /obj/item/storage/pouch/general/large(H), SLOT_R_STORE)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/tanker(H), SLOT_R_HAND)
+
+/datum/job/command/tank_crew/generate_entry_message(mob/living/carbon/human/H)
+	return {"Your job is to operate and maintain the ship's armored vehicles.
+While you are a senior NCO, your authority is limited to your own vehicle and your Tank Crewman below you, where you have authority over the enlisted personnel. You will need MTs to repair and replace hardpoints."}
 
 //Tank Crewmen
 /datum/job/command/tank_crew
 	title = "Tank Crewman"
 	comm_title = "TC"
-	paygrade = "E7"
+	paygrade = "E5"
 	flag = ROLE_TANK_OFFICER
-	total_positions = 2
-	spawn_positions = 2
+	total_positions = 1
+	spawn_positions = 1
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_TANK)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_TANK)
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADD_TO_MODE
@@ -198,14 +226,13 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 
 /datum/job/command/tank_crew/generate_entry_message(mob/living/carbon/human/H)
 	return {"Your job is to operate and maintain the ship's armored vehicles.
-While you are a senior NCO, your authority is limited to your own vehicle, where you have authority over the enlisted personnel. You will need MTs to repair and replace hardpoints."}
-
+While you are an NCO, your authority is limited to your own vehicle, where you have authority over the enlisted personnel. You will need MTs to repair and replace hardpoints."}
 
 //Military Police
 /datum/job/command/police
-	title = "Military Police"
-	comm_title = "MP"
-	paygrade = "E6"
+	title = "Master at Arms"
+	comm_title = "MA"
+	paygrade = "PO"
 	flag = ROLE_MILITARY_POLICE
 	total_positions = 5
 	spawn_positions = 5
@@ -245,9 +272,9 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 
 //Chief MP
 /datum/job/command/warrant
-	title = "Chief MP"
-	comm_title = "CMP"
-	paygrade = "E9"
+	title = "Command Master at Arms"
+	comm_title = "CMA"
+	paygrade = "O3"
 	flag = ROLE_CHIEF_MP
 	selection_color = "#ffaaaa"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIG, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_WO)
@@ -285,9 +312,9 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 
 //Chief Engineer
 /datum/job/logistics/engineering
-	title = "Chief Engineer"
-	comm_title = "CE"
-	paygrade = "O4"
+	title = "Chief Ship Engineer"
+	comm_title = "CSE"
+	paygrade = "O3"
 	flag = ROLE_CHIEF_ENGINEER
 	department_flag = ROLEGROUP_MARINE_ENGINEERING
 	selection_color = "#ffeeaa"
@@ -350,8 +377,8 @@ A happy ship is a well-functioning ship."}
 
 //Maintenance Tech
 /datum/job/logistics/tech/maint
-	title = "Maintenance Tech"
-	comm_title = "MT"
+	title = "Ship Engineer"
+	comm_title = "SE"
 	paygrade = "PO"
 	flag = ROLE_MAINTENANCE_TECH
 	department_flag = ROLEGROUP_MARINE_ENGINEERING
@@ -359,7 +386,7 @@ A happy ship is a well-functioning ship."}
 	total_positions = 4
 	spawn_positions = 4
 	scaled = 1
-	supervisors = "the chief engineer"
+	supervisors = "the chief ship engineer"
 	selection_color = "#fff5cc"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDBAY)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDBAY)
@@ -436,8 +463,8 @@ Listen to the radio in case someone requests a supply drop via the overwatch sys
 
 
 /datum/job/medical/professor
-	title = "Chief Medical Officer"
-	comm_title = "CMO"
+	title = "Chief Hospitalman"
+	comm_title = "HMC"
 	paygrade = "CCMO"
 	flag = ROLE_CHIEF_MEDICAL_OFFICER
 	total_positions = 1
@@ -469,21 +496,21 @@ Listen to the radio in case someone requests a supply drop via the overwatch sys
 
 
 /datum/job/medical/professor/generate_entry_message()
-	return {"You are a civilian, and are not subject to follow military chain of command, but you do work for the TGMC.
+	return {"You are the chief hospitalman of the TGMC Theseus, supervisor to the medical department.
 You have final authority over the medical department, medications, and treatments.
 Make sure that the doctors and nurses are doing their jobs and keeping the marines healthy and strong."}
 
 
 //Doctor
 /datum/job/medical/doctor
-	title = "Doctor"
-	comm_title = "Doc"
+	title = "Hospitalman"
+	comm_title = "HM"
 	paygrade = "CD"
 	flag = ROLE_CIVILIAN_DOCTOR
 	total_positions = 6
 	spawn_positions = 6
 	scaled = 1
-	supervisors = "the chief medical officer"
+	supervisors = "the chief hospitalman"
 	selection_color = "#BBFFBB"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY)
@@ -512,7 +539,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	return (latejoin ? doc_slot_formula(get_total_marines()) : spawn_positions)
 
 /datum/job/medical/doctor/generate_entry_message(mob/living/carbon/human/H)
-	return {"You are a civilian, and are not subject to follow military chain of command, but you do work for the TGMC.
+	return {"You are a military doctor stationed aboard the Theseus.
 You are tasked with keeping the marines healthy and strong, usually in the form of surgery.
 You are also an expert when it comes to medication and treatment. If you do not know what you are doing, adminhelp so a mentor can assist you."}
 
@@ -527,7 +554,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	total_positions = 2
 	spawn_positions = 2
 	scaled = 1
-	supervisors = "chief medical officer"
+	supervisors = "chief medical hospitalman"
 	selection_color = "#BBFFBB"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CHEMISTRY)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CHEMISTRY)
