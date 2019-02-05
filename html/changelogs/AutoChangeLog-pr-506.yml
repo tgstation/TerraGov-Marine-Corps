@@ -1,0 +1,5 @@
+author: "New xenomorph and marine sounds"
+delete-after: True
+changes: 
+  - soundadd: "Adds more sounds for xeno/larva roars, xeno growls, and human pain/scream noises."
+  - tweak: "The TF2 spy scream has a lower chance of playing, just like the wilhelm scream and the new joke sounds."

@@ -45,11 +45,11 @@
 	if(stat == DEAD)
 		return
 
-	if(health <= config.health_threshold_dead)
+	if(health <= CONFIG_GET(number/health_threshold_dead))
 		death()
 		return
 
-	var/crit_threshold = ishuman(src) ? config.health_threshold_crit : 0
+	var/crit_threshold = ishuman(src) ? CONFIG_GET(number/health_threshold_crit) : 0
 	if(knocked_out || sleeping || getOxyLoss() > 50 || health < crit_threshold)
 		if(stat != UNCONSCIOUS)
 			blind_eyes(1)
@@ -104,7 +104,7 @@
 		if(prob(20))
 			visible_message("<span class='warning'>\The [src] slumps to the ground, too weak to continue fighting.</span>", \
 			"<span class='warning'>You slump to the ground, you're in too much pain to keep going.</span>")
-			if(prob(25) && ishuman()) //only humans can scream, shame.
+			if(prob(25) && ishuman(src)) //only humans can scream, shame.
 				emote("scream")
 		KnockDown(5)
 		setHalLoss(maxHealth*2)
@@ -118,7 +118,7 @@
 		if(mind)
 			if((mind.active && client != null) || immune_to_ssd) //This also checks whether a client is connected, if not, sleep is not reduced.
 				AdjustSleeping(-1)
-		if(!isXeno(src))
+		if(!isxeno(src))
 			if(prob(2) && health && !hal_crit)
 				spawn()
 					emote("snore")
@@ -160,7 +160,7 @@
 				drowsyness += 5
 
 		if(drunkenness >= 91)
-			adjustBrainLoss(0.2)
+			adjustBrainLoss(0.2, TRUE)
 			if(prob(15 && !stat))
 				to_chat(src, "<span class='warning'>Just a quick nap...</span>")
 				Sleeping(40)
@@ -175,3 +175,29 @@
 			reagent_shock_modifier += PAIN_REDUCTION_MEDIUM
 		if(81 to INFINITY)
 			reagent_shock_modifier += PAIN_REDUCTION_HEAVY
+
+	handle_stagger()
+	handle_slowdown()
+
+
+/mob/living/carbon/proc/handle_stagger()
+	if(stagger)
+		adjust_stagger(-1)
+	return stagger
+
+/mob/living/carbon/proc/adjust_stagger(amount)
+	stagger = max(stagger + amount,0)
+	return stagger
+
+/mob/living/carbon/proc/handle_slowdown()
+	if(slowdown)
+		adjust_slowdown(-STANDARD_SLOWDOWN_REGEN)
+	return slowdown
+
+/mob/living/carbon/proc/adjust_slowdown(amount)
+	slowdown = max(slowdown + amount,0)
+	return slowdown
+
+/mob/living/carbon/proc/add_slowdown(amount)
+	slowdown = adjust_slowdown(amount*STANDARD_SLOWDOWN_REGEN)
+	return slowdown

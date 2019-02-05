@@ -39,37 +39,36 @@
 
 	for(var/x in total_calls)
 		var/datum/emergency_call/D = new x()
-		if(!D?.name) 
+		if(!D?.name)
 			continue //The default parent, don't add it
 		all_calls += D
 
 
 //Randomizes and chooses a call datum.
 /datum/game_mode/proc/get_random_call()
-	var/datum/emergency_call/chosen_call
-	var/list/valid_calls
+    var/datum/emergency_call/chosen_call
+    var/list/valid_calls = list()
 
-	for(var/datum/emergency_call/E in all_calls) //Loop through all potential candidates
-		if(probability < 1) //Those that are meant to be admin-only
-			continue
+    for(var/datum/emergency_call/E in all_calls) //Loop through all potential candidates
+        if(E.probability < 1) //Those that are meant to be admin-only
+            continue
 
-		valid_calls += E
+        valid_calls.Add(E)
 
-		if(prob(E.probability))
-			chosen_call = E
-			break
+        if(prob(E.probability))
+            chosen_call = E
+            break
 
-	if(!istype(chosen_call))
-		chosen_call = pick(valid_calls)
-		
-	return chosen_call
+    if(!istype(chosen_call))
+        chosen_call = pick(valid_calls)
 
+    return chosen_call
 
 /datum/emergency_call/proc/show_join_message()
 	if(!mob_max || !ticker?.mode) //Not a joinable distress call.
 		return
 
-	for(var/mob/dead/observer/M in player_list)
+	for(var/mob/dead/observer/M in GLOB.player_list)
 		if(M.client)
 			to_chat(M, "<br><font size='3'><span class='attack'>An emergency beacon has been activated. Use the <B>Ghost > Join Response Team</b> verb to join!</span><br>")
 			to_chat(M, "<span class='attack'>You cannot join if you have Ghosted before this message.</span><br>")
@@ -137,7 +136,7 @@
 		ticker.mode.waiting_for_candidates = TRUE
 
 	show_join_message() //Show our potential candidates the message to let them join.
-	message_admins("Distress beacon: '[name]' activated. Looking for candidates.", 1)
+	message_admins("Distress beacon: '[name]' activated. Looking for candidates.")
 
 	if(announce)
 		command_announcement.Announce("A distress beacon has been launched from the [MAIN_SHIP_NAME].", "Priority Alert", new_sound='sound/AI/distressbeacon.ogg')
@@ -146,7 +145,7 @@
 
 	spawn(1 MINUTES)
 		if(length(candidates) < mob_min)
-			message_admins("Aborting distress beacon [name], not enough candidates. Found [length(candidates)].", 1)
+			message_admins("Aborting distress beacon [name], not enough candidates. Found [length(candidates)].")
 			ticker.mode.waiting_for_candidates = FALSE
 			members = list() //Empty the members list.
 			candidates = list()
@@ -173,6 +172,9 @@
 					if(M.current?.stat != DEAD)
 						candidates -= M //Strip them from the list, they aren't dead anymore.
 						continue
+					if(name == "Xenomorphs" && !(M.current.client.prefs.be_special & BE_ALIEN))
+						candidates -= M
+						continue
 					picked_candidates += M
 					candidates -= M
 
@@ -184,7 +186,7 @@
 			if(announce)
 				command_announcement.Announce(dispatch_message, "Distress Beacon", new_sound='sound/AI/distressreceived.ogg') //Announcement that the Distress Beacon has been answered, does not hint towards the chosen ERT
 
-			message_admins("Distress beacon: [name] finalized, setting up candidates.", 1)
+			message_admins("Distress beacon: [name] finalized, setting up candidates.")
 			var/datum/shuttle/ferry/shuttle = shuttle_controller.shuttles[shuttle_id]
 
 			if(!shuttle || !istype(shuttle))
@@ -227,19 +229,20 @@
 
 
 /datum/emergency_call/proc/get_spawn_point(is_for_items)
-	var/list/spawn_list = list()
+	var/index
+	if(is_for_items)
+		index = "[name_of_spawn]Item"
+	else
+		index = name_of_spawn
+	if(!GLOB.distress_spawns_by_name[index])
+		return FALSE
 
-	for(var/obj/effect/landmark/L in landmarks_list)
-		if(is_for_items && L.name == "[name_of_spawn]Item")
-			spawn_list += L
-		else
-			if(L.name == name_of_spawn) //Default is "Distress"
-				spawn_list += L
+	var/list/spawn_list = GLOB.distress_spawns_by_name[index].Copy()
 
 	if(!length(spawn_list)) //Empty list somehow
 		return FALSE
 
-	var/turf/spawn_loc	= get_turf(pick(spawn_list))
+	var/turf/spawn_loc	= pick(spawn_list)
 	if(!istype(spawn_loc))
 		return FALSE
 

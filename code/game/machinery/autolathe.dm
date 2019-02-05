@@ -111,7 +111,7 @@
 		to_chat(user, "<span class='warning'>\The [src] is busy. Please wait for completion of previous operation.</span>")
 		return
 
-	if(istype(O, /obj/item/tool/screwdriver))
+	if(isscrewdriver(O))
 		opened = !opened
 		icon_state = (opened ? "autolathe_t": "autolathe")
 		to_chat(user, "You [opened ? "open" : "close"] the maintenance hatch of [src].")
@@ -120,12 +120,12 @@
 
 	if (opened)
 		//Don't eat multitools or wirecutters used on an open lathe.
-		if(istype(O, /obj/item/device/multitool) || istype(O, /obj/item/tool/wirecutters))
+		if(ismultitool(O) || iswirecutter(O))
 			attack_hand(user)
 			return
 
 		//Dismantle the frame.
-		if(istype(O, /obj/item/tool/crowbar))
+		if(iscrowbar(O))
 			dismantle()
 			return
 
@@ -182,7 +182,7 @@
 		var/obj/item/stack/stack = eating
 		stack.use(max(1,round(total_used/mass_per_sheet))) // Always use at least 1 to prevent infinite materials.
 	else
-		if(user.temp_drop_inv_item(O))
+		if(user.temporarilyRemoveItemFromInventory(O))
 			qdel(O)
 
 	updateUsrDialog()
@@ -225,9 +225,8 @@
 
 		//Exploit detection, not sure if necessary after rewrite.
 		if(!making || multiplier < 0 || multiplier > 100)
-			var/turf/exploit_loc = get_turf(usr)
-			message_admins("[key_name_admin(usr)] tried to exploit an autolathe to duplicate an item! ([exploit_loc ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[exploit_loc.x];Y=[exploit_loc.y];Z=[exploit_loc.z]'>JMP</a>" : "null"])", 0)
-			log_admin("EXPLOIT : [key_name(usr)] tried to exploit an autolathe to duplicate an item!")
+			log_admin("[key_name(usr)] tried to exploit an autolathe to duplicate an item!")
+			message_admins("[ADMIN_TPMONTY(usr)] tried to exploit an autolathe to duplicate an item!")
 			return
 
 		//This needs some work.
@@ -270,7 +269,7 @@
 		var/temp_wire = href_list["wire"]
 		if(href_list["act"] == "pulse")
 
-			if (!istype(usr.get_active_hand(), /obj/item/device/multitool))
+			if (!ismultitool(usr.get_active_held_item()))
 				to_chat(usr, "You need a multitool!")
 				return
 
@@ -300,7 +299,7 @@
 
 		else if(href_list["act"] == "wire")
 
-			if (!istype(usr.get_active_hand(), /obj/item/tool/wirecutters))
+			if (!iswirecutter(usr.get_active_held_item()))
 				to_chat(usr, "You need wirecutters!")
 				return
 

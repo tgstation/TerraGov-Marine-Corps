@@ -12,11 +12,6 @@
 /mob/verb/say_verb(message as text)
 	set name = "Say"
 	set category = "IC"
-	set hidden = TRUE
-
-	if(say_disabled)
-		to_chat(usr, "<span class='warning'>Speech is currently admin-disabled.</span>")
-		return
 
 	if(!message)
 		return
@@ -27,10 +22,6 @@
 /mob/verb/me_verb(message as text)
 	set name = "Me"
 	set category = "IC"
-	set hidden = TRUE
-
-	if(say_disabled)
-		to_chat(usr, "<span class='warning'>Speech is currently admin-disabled.</span>")
 
 	if(!message)
 		return
@@ -43,10 +34,6 @@
 
 /mob/proc/say_dead(var/message)
 	var/name = real_name
-
-	if(say_disabled)
-		to_chat(usr, "<span class='warning'>Speech is currently admin-disabled.</span>")
-		return
 
 	if(!client)
 		return
@@ -61,15 +48,15 @@
 
 	var/rendered = "<span class='game deadsay'><span class='prefix'>DEAD:</span> <span class='name'>[name]</span> says, <span class='message'>\"[message]\"</span></span>"
 
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 
-		if(istype(M, /mob/new_player))
+		if(isnewplayer(M))
 			continue
 
 		if(M.client && M.stat == DEAD && (M.client.prefs.toggles_chat & CHAT_DEAD))
 			to_chat(M, rendered)
 
-		else if(M.client?.holder && (M.client.holder.rights & (R_ADMIN|R_MOD)) && (M.client.prefs.toggles_chat & CHAT_DEAD)) // Show the message to admins/mods with deadchat toggled on
+		else if(check_other_rights(M.client, R_ADMIN, FALSE) && (M.client.prefs.toggles_chat & CHAT_DEAD)) // Show the message to admins/mods with deadchat toggled on
 			to_chat(M, rendered)
 
 
@@ -156,7 +143,7 @@
 /mob/proc/parse_language(var/message)
 	if(length(message) >= 2)
 		var/language_prefix = lowertext(copytext(message, 1 ,3))
-		var/datum/language/L = language_keys[language_prefix]
+		var/datum/language/L = GLOB.language_keys[language_prefix]
 		if(can_speak(L))
 			return L
 

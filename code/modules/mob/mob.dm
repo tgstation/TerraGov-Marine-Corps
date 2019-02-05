@@ -1,70 +1,59 @@
 
 /mob/Destroy()//This makes sure that mobs with clients/keys are not just deleted from the game.
-	mob_list -= src
-	dead_mob_list -= src
-	living_mob_list -= src
+	GLOB.mob_list -= src
+	GLOB.dead_mob_list -= src
+	GLOB.alive_mob_list -= src
 	ghostize()
 	clear_fullscreens()
 	. = ..()
 	return TA_PURGE_ME_NOW
 
-/mob/New()
-	mob_list += src
+/mob/Initialize()
+	GLOB.mob_list += src
 	if(stat == DEAD)
-		dead_mob_list += src
+		GLOB.dead_mob_list += src
 	else
-		living_mob_list += src
+		GLOB.alive_mob_list += src
 	prepare_huds()
-	..()
+	return ..()
 
 
 /mob/Stat()
-	if(check_rights(R_ADMIN|R_DEBUG))
-		if(statpanel("MC"))
-			stat("CPU:", "[world.cpu]")
-			stat("Instances:", "[num2text(world.contents.len, 10)]")
-			stat("World Time:", "[world.time]")
-			stat(null)
-			if(Master)
-				Master.stat_entry()
-			else
-				stat("Master Controller:", "ERROR")
-			if(Failsafe)
-				Failsafe.stat_entry()
-			else
-				stat("Failsafe Controller:", "ERROR")
-			if(Master)
-				stat(null)
-				for(var/datum/controller/subsystem/SS in Master.subsystems)
-					SS.stat_entry()
+	. = ..()
 
-	// Looking at contents of a tile
-	if (tile_contents_change)
-		tile_contents_change = 0
-		statpanel("Tile Contents")
-		client.statpanel = "Tile Contents"
-		stat(tile_contents)
-		client.stat_force_fast_update = 1
-		return 0
-
-	if (client.statpanel == "Tile Contents")
-		if (tile_contents.len && statpanel("Tile Contents"))
-			stat(tile_contents)
-			return 0
-
-	if (client.statpanel != "Stats")
-		statpanel("Stats")
-		if (statpanel("Stats"))
-			client.statpanel = "Stats"
-			stat("Operation Time: [worldtime2text()]")
-		client.stat_force_fast_update = 1
-		return 1
-
-	if (statpanel("Stats"))
+	if(statpanel("Stats"))
 		stat("Operation Time: [worldtime2text()]")
-		return 1
+		stat("The current map is: [GLOB.map_tag]")
 
-	return 0
+
+	if(client?.holder?.rank?.rights)
+		if(client.holder.rank.rights & (R_ADMIN|R_DEBUG))
+			if(statpanel("MC"))
+				stat("CPU:", "[world.cpu]")
+				stat("Instances:", "[num2text(length(world.contents), 10)]")
+				stat("World Time:", "[world.time]")
+				stat(null)
+				if(Master)
+					Master.stat_entry()
+				else
+					stat("Master Controller:", "ERROR")
+				if(Failsafe)
+					Failsafe.stat_entry()
+				else
+					stat("Failsafe Controller:", "ERROR")
+				if(Master)
+					stat(null)
+					for(var/datum/controller/subsystem/SS in Master.subsystems)
+						SS.stat_entry()
+		if(client.holder.rank.rights & (R_ADMIN|R_MENTOR))
+			if(statpanel("Tickets"))
+				GLOB.ahelp_tickets.stat_entry()
+
+
+	if(length(tile_contents))
+		if(statpanel("Tile Contents"))
+			stat(tile_contents)
+
 
 /mob/proc/prepare_huds()
 	hud_list = new
@@ -124,7 +113,7 @@
 
 
 /mob/proc/findname(msg)
-	for(var/mob/M in mob_list)
+	for(var/mob/M in GLOB.mob_list)
 		if (M.real_name == text("[]", msg))
 			return M
 	return 0
@@ -142,14 +131,14 @@
 
 //This proc is called whenever someone clicks an inventory ui slot.
 /mob/proc/attack_ui(slot)
-	var/obj/item/W = get_active_hand()
+	var/obj/item/W = get_active_held_item()
 	if(istype(W))
 		equip_to_slot_if_possible(W, slot, 0) // equiphere
 
 /mob/proc/put_in_any_hand_if_possible(obj/item/W as obj, del_on_fail = 0, disable_warning = 1, redraw_mob = 1)
-	if(equip_to_slot_if_possible(W, WEAR_L_HAND, 1, del_on_fail, disable_warning, redraw_mob))
+	if(equip_to_slot_if_possible(W, SLOT_L_HAND, 1, del_on_fail, disable_warning, redraw_mob))
 		return 1
-	else if(equip_to_slot_if_possible(W, WEAR_R_HAND, 1, del_on_fail, disable_warning, redraw_mob))
+	else if(equip_to_slot_if_possible(W, SLOT_R_HAND, 1, del_on_fail, disable_warning, redraw_mob))
 		return 1
 	return 0
 
@@ -175,9 +164,8 @@
 			else
 				equip_to_slot(W, slot, redraw_mob) //This proc should not ever fail.
 				if(permanent)
-					W.flags_inventory |= CANTSTRIP
 					W.flags_item |= NODROP
-				if(W.loc == start_loc && get_active_hand() != W)
+				if(W.loc == start_loc && get_active_held_item() != W)
 					//They moved it from hands to an inv slot or vice versa. This will unzoom and unwield items -without- triggering lights.
 					if(W.zoom)
 						W.zoom(src)
@@ -187,9 +175,8 @@
 	else
 		equip_to_slot(W, slot, redraw_mob) //This proc should not ever fail.
 		if(permanent)
-			W.flags_inventory |= CANTSTRIP
 			W.flags_item |= NODROP
-		if(W.loc == start_loc && get_active_hand() != W)
+		if(W.loc == start_loc && get_active_held_item() != W)
 			//They moved it from hands to an inv slot or vice versa. This will unzoom and unwield items -without- triggering lights.
 			if(W.zoom)
 				W.zoom(src)
@@ -208,28 +195,28 @@
 
 //The list of slots by priority. equip_to_appropriate_slot() uses this list. Doesn't matter if a mob type doesn't have a slot.
 var/list/slot_equipment_priority = list( \
-		WEAR_IN_HOLSTER,\
-		WEAR_IN_J_HOLSTER,\
-		WEAR_IN_B_HOLSTER,\
-		WEAR_BACK,\
-		WEAR_ID,\
-		WEAR_BODY,\
-		WEAR_ACCESSORY,\
-		WEAR_JACKET,\
-		WEAR_FACE,\
-		WEAR_HEAD,\
-		WEAR_FEET,\
-		WEAR_HANDS,\
-		WEAR_EAR,\
-		WEAR_EYES,\
-		WEAR_WAIST,\
-		WEAR_J_STORE,\
-		WEAR_L_STORE,\
-		WEAR_R_STORE,\
-		EQUIP_IN_BOOT,\
-		EQUIP_IN_STORAGE,\
-		EQUIP_IN_L_POUCH,\
-		EQUIP_IN_R_POUCH\
+		SLOT_IN_HOLSTER,\
+		SLOT_IN_S_HOLSTER,\
+		SLOT_IN_B_HOLSTER,\
+		SLOT_BACK,\
+		SLOT_WEAR_ID,\
+		SLOT_W_UNIFORM,\
+		SLOT_ACCESSORY,\
+		SLOT_WEAR_SUIT,\
+		SLOT_WEAR_MASK,\
+		SLOT_HEAD,\
+		SLOT_SHOES,\
+		SLOT_GLOVES,\
+		SLOT_EARS,\
+		SLOT_GLASSES,\
+		SLOT_BELT,\
+		SLOT_S_STORE,\
+		SLOT_L_STORE,\
+		SLOT_R_STORE,\
+		SLOT_IN_BOOT,\
+		SLOT_IN_STORAGE,\
+		SLOT_IN_L_POUCH,\
+		SLOT_IN_R_POUCH\
 	)
 
 //puts the item "W" into an appropriate slot in a human's inventory
@@ -246,7 +233,7 @@ var/list/slot_equipment_priority = list( \
 
 /mob/proc/reset_view(atom/A)
 	if (client)
-		if (istype(A, /atom/movable))
+		if (ismovableatom(A))
 			client.perspective = EYE_PERSPECTIVE
 			client.eye = A
 		else
@@ -264,10 +251,10 @@ var/list/slot_equipment_priority = list( \
 	var/dat = {"
 	<B><HR><FONT size=3>[name]</FONT></B>
 	<BR><HR>
-	<BR><B>Head(Mask):</B> <A href='?src=\ref[src];item=mask'>[(wear_mask ? wear_mask : "Nothing")]</A>
-	<BR><B>Left Hand:</B> <A href='?src=\ref[src];item=l_hand'>[(l_hand ? l_hand  : "Nothing")]</A>
-	<BR><B>Right Hand:</B> <A href='?src=\ref[src];item=r_hand'>[(r_hand ? r_hand : "Nothing")]</A>
-	<BR><B>Back:</B> <A href='?src=\ref[src];item=back'>[(back ? back : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(back, /obj/item/tank) && !( internal )) ? text(" <A href='?src=\ref[];item=internal'>Set Internal</A>", src) : "")]
+	<BR><B>Head(Mask):</B> <A href='?src=\ref[src];item=[SLOT_WEAR_MASK]'>[(wear_mask ? wear_mask : "Nothing")]</A>
+	<BR><B>Left Hand:</B> <A href='?src=\ref[src];item=[SLOT_L_HAND]'>[(l_hand ? l_hand  : "Nothing")]</A>
+	<BR><B>Right Hand:</B> <A href='?src=\ref[src];item=[SLOT_R_HAND]'>[(r_hand ? r_hand : "Nothing")]</A>
+	<BR><B>Back:</B> <A href='?src=\ref[src];item=[SLOT_BACK]'>[(back ? back : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(back, /obj/item/tank) && !( internal )) ? text(" <A href='?src=\ref[];item=internal'>Set Internal</A>", src) : "")]
 	<BR>[(internal ? text("<A href='?src=\ref[src];item=internal'>Remove Internal</A>") : "")]
 	<BR><A href='?src=\ref[src];item=pockets'>Empty Pockets</A>
 	<BR><A href='?src=\ref[user];refresh=1'>Refresh</A>
@@ -341,11 +328,24 @@ var/list/slot_equipment_priority = list( \
 		'html/chevron-expand.png',
 		'html/changelog.css',
 		'html/changelog.js',
-		'html/changelog.html'
+		'html/changelog.html',
+		'html/chrome-wrench.png',
+		'html/ban.png',
+		'html/coding.png',
+		'html/scales.png'
 		)
+
+	src << browse_rsc('html/changelog2015.html', "changelog2015.html") 
+	src << browse_rsc('html/changelog2016.html', "changelog2016.html") 
+	src << browse_rsc('html/changelog2017.html', "changelog2017.html") 
+	src << browse_rsc('html/changelog20181.html', "changelog20181.html") 
+	src << browse_rsc('html/changelog20182.html', "changelog20182.html")
+	src << browse_rsc('html/changelog.html', "changelog.html")  
+
+
 	src << browse('html/changelog.html', "window=changes;size=675x650")
-	if(prefs.lastchangelog != changelog_hash)
-		prefs.lastchangelog = changelog_hash
+	if(prefs.lastchangelog != GLOB.changelog_hash)
+		prefs.lastchangelog = GLOB.changelog_hash
 		prefs.save_preferences()
 		winset(src, "rpane.changelog", "background-color=none;font-style=;")
 
@@ -426,7 +426,7 @@ var/list/slot_equipment_priority = list( \
 		msg_admin_attack("[key_name(src)] grabbed [key_name(M)]" )
 
 		if(!no_msg)
-			visible_message("<span class='warning'>[src] has grabbed [M] [((istype(src, /mob/living/carbon/human) && istype(M, /mob/living/carbon/human)) && (zone_selected == "l_hand" || zone_selected == "r_hand")) ? "by their hands":"passively"]!</span>", null, null, 5)
+			visible_message("<span class='warning'>[src] has grabbed [M] [((ishuman(src) && ishuman(M)) && (zone_selected == "l_hand" || zone_selected == "r_hand")) ? "by their hands":"passively"]!</span>", null, null, 5)
 
 		if(M.mob_size > MOB_SIZE_HUMAN || !(M.status_flags & CANPUSH))
 			G.icon_state = "!reinforce"
@@ -546,6 +546,13 @@ var/list/slot_equipment_priority = list( \
 	return FALSE
 
 
+/proc/is_species(A, species_datum)
+	. = FALSE
+	if(ishuman(A))
+		var/mob/living/carbon/human/H = A
+		if(istype(H.species, species_datum))
+			. = TRUE
+
 /mob/proc/get_species()
 	return ""
 
@@ -597,12 +604,12 @@ mob/proc/yank_out_object()
 	var/obj/item/selection = input("What do you want to yank out?", "Embedded objects") in valid_objects
 
 	if(self)
-		if(get_active_hand())
+		if(get_active_held_item())
 			to_chat(src, "<span class='warning'>You need an empty hand for this!</span>")
 			return FALSE
 		to_chat(src, "<span class='warning'>You attempt to get a good grip on [selection] in your body.</span>")
 	else
-		if(get_active_hand())
+		if(get_active_held_item())
 			to_chat(U, "<span class='warning'>You need an empty hand for this!</span>")
 			return FALSE
 		to_chat(U, "<span class='warning'>You attempt to get a good grip on [selection] in [S]'s body.</span>")
@@ -634,7 +641,7 @@ mob/proc/yank_out_object()
 			return
 
 		affected.implants -= selection
-		if(!isYautja(H))
+		if(!isyautja(H))
 			H.shock_stage+=20
 		affected.take_damage((selection.w_class * 3), 0, 0, 1, "Embedded object extraction")
 
@@ -667,7 +674,7 @@ mob/proc/yank_out_object()
 
 /mob/on_stored_atom_del(atom/movable/AM)
 	if(istype(AM, /obj/item))
-		temp_drop_inv_item(AM, TRUE) //unequip before deletion to clear possible item references on the mob.
+		temporarilyRemoveItemFromInventory(AM, TRUE) //unequip before deletion to clear possible item references on the mob.
 
 /mob/forceMove(atom/destination)
 	stop_pulling()

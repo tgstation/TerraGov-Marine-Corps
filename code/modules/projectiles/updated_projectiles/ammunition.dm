@@ -11,7 +11,7 @@ They're all essentially identical when it comes to getting the job done.
 	item_state = "ammo_mag" //PLACEHOLDER. This ensures the mag doesn't use the icon state instead.
 	var/bonus_overlay = null //Sprite pointer in ammo.dmi to an overlay to add to the gun, for extended mags, box mags, and so on
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	matter = list("metal" = 1000)
 	origin_tech = "combat=2'materials=2" //Low.
 	throwforce = 2
@@ -46,14 +46,14 @@ They're all essentially identical when it comes to getting the job done.
 	// It should never have negative ammo after spawn. If it does, we need to know about it.
 	if(current_rounds < 0)
 		to_chat(user, "Something went horribly wrong. Ahelp the following: ERROR CODE R1: negative current_rounds on examine.")
-		log_debug("ERROR CODE R1: negative current_rounds on examine. User: <b>[usr]</b>")
+		log_runtime("ERROR CODE R1: negative current_rounds on examine. User: <b>[usr]</b>")
 	else
 		to_chat(user, "[src] has <b>[current_rounds]</b> rounds out of <b>[max_rounds]</b>.")
 
 
 /obj/item/ammo_magazine/attack_hand(mob/user)
 	if(flags_magazine & AMMUNITION_REFILLABLE) //actual refillable magazine, not just a handful of bullets or a fuel tank.
-		if(src == user.get_inactive_hand()) //Have to be holding it in the hand.
+		if(src == user.get_inactive_held_item()) //Have to be holding it in the hand.
 			if (current_rounds > 0)
 				if(create_handful(user))
 					return
@@ -69,7 +69,7 @@ They're all essentially identical when it comes to getting the job done.
 		if(MG.flags_magazine & AMMUNITION_HANDFUL) //got a handful of bullets
 			if(flags_magazine & AMMUNITION_REFILLABLE) //and a refillable magazine
 				var/obj/item/ammo_magazine/handful/transfer_from = I
-				if(src == user.get_inactive_hand() ) //It has to be held.
+				if(src == user.get_inactive_held_item() ) //It has to be held.
 					if(default_ammo == transfer_from.default_ammo)
 						transfer_ammo(transfer_from,user,transfer_from.current_rounds) // This takes care of the rest.
 					else
@@ -92,7 +92,7 @@ They're all essentially identical when it comes to getting the job done.
 	current_rounds += S
 	if(source.current_rounds <= 0 && istype(source, /obj/item/ammo_magazine/handful)) //We want to delete it if it's a handful.
 		if(user)
-			user.temp_drop_inv_item(source)
+			user.temporarilyRemoveItemFromInventory(source)
 		qdel(source) //Dangerous. Can mean future procs break if they reference the source. Have to account for this.
 	else source.update_icon()
 	update_icon(S)
@@ -115,10 +115,10 @@ They're all essentially identical when it comes to getting the job done.
 		to_chat(user, "<span class='notice'>You grab <b>[R]</b> round\s from [src].</span>")
 		update_icon(-R) //Update the other one.
 		return R //Give the number created.
-	else 
+	else
 		update_icon(-R)
 		return new_handful
-		
+
 
 //our magazine inherits ammo info from a source magazine
 /obj/item/ammo_magazine/proc/match_ammo(obj/item/ammo_magazine/source)
@@ -195,7 +195,7 @@ If it is the same and the other stack isn't full, transfer an amount (default 1)
 			to_chat(user, "Those aren't the same rounds. Better not mix them up.")
 
 /obj/item/ammo_magazine/handful/proc/generate_handful(new_ammo, new_caliber, maximum_rounds, new_rounds, new_gun_type)
-	var/datum/ammo/A = ammo_list[new_ammo]
+	var/datum/ammo/A = GLOB.ammo_list[new_ammo]
 	var/ammo_name = A.name //Let's pull up the name.
 
 	name = "handful of [ammo_name + (ammo_name == "shotgun buckshot"? " ":"s ") + "([new_caliber])"]"
@@ -283,7 +283,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	icon = 'icons/obj/items/ammo.dmi'
 	icon_state = "big_ammo_box"
 	item_state = "big_ammo_box"
-	flags_equip_slot = SLOT_BACK
+	flags_equip_slot = ITEM_SLOT_BACK
 	var/base_icon_state = "big_ammo_box"
 	var/default_ammo = /datum/ammo/bullet/rifle
 	var/bullet_amount = 600
@@ -343,7 +343,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 			AM.update_icon()
 			to_chat(user, "<span class='notice'>You put [S] rounds in [src].</span>")
 			if(AM.current_rounds <= 0)
-				user.temp_drop_inv_item(AM)
+				user.temporarilyRemoveItemFromInventory(AM)
 				qdel(AM)
 
 //explosion when using flamer procs.
@@ -371,9 +371,9 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	var/deployed = FALSE
 
 /obj/item/ammobox/update_icon()
-	if(magazine_amount > 0) 
+	if(magazine_amount > 0)
 		icon_state = "[initial(icon_state)]_deployed"
-	else 
+	else
 		icon_state = "[initial(icon_state)]_empty"
 
 /obj/item/ammobox/examine(mob/user)
@@ -422,7 +422,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 /obj/item/ammobox/MouseDrop(atom/over_object)
 	if(deployed == FALSE)
 		return
-	if(!istype(over_object, /mob/living/carbon/human))
+	if(!ishuman(over_object))
 		return
 	var/mob/living/carbon/human/H = over_object
 	if(H == usr && !H.is_mob_incapacitated() && Adjacent(H) && H.put_in_hands(src))
@@ -445,9 +445,9 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	var/deployed = FALSE
 
 /obj/item/ammo_magazine/shotgunbox/update_icon()
-	if(current_rounds > 0) 
+	if(current_rounds > 0)
 		icon_state = "[initial(icon_state)]_deployed"
-	else 
+	else
 		icon_state = "[initial(icon_state)]_empty"
 
 /obj/item/ammo_magazine/shotgunbox/attack_self(mob/user)

@@ -9,6 +9,7 @@
 	var/read_only = 0 //Well,it's still a floppy disk
 
 /obj/item/disk/data/Initialize()
+	. = ..()
 	buf = new
 	buf.dna=new
 
@@ -46,12 +47,12 @@
 		return
 
 	var/mob/selected = null
-	for(var/mob/living/M in player_list)
+	for(var/mob/living/M in GLOB.player_list)
 		//Dead people only thanks!
 		if ((M.stat != 2) || (!M.client))
 			continue
 		//They need a brain!
-		if(istype(M, /mob/living/carbon/human))
+		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			if(H.species.has_organ["brain"] && !H.has_brain())
 				continue

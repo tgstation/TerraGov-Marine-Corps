@@ -27,7 +27,7 @@
 	set category = "Object"
 	set src in oview(1)
 
-	if(!istype(usr, /mob/living)) //ew ew ew usr, but it's the only way to check.
+	if(!isliving(usr)) //ew ew ew usr, but it's the only way to check.
 		return
 
 	if( state != 4 )
@@ -77,7 +77,7 @@
 	if(istype(W,/obj/item/toy/crayon) ||istype(W,/obj/item/tool/stamp))
 		if( state in list(	1, 3, 6 ) )
 			if(!crayon)
-				if(user.drop_inv_item_to_loc(crayon, src))
+				if(user.transferItemToLoc(crayon, src))
 					crayon = W
 			else
 				..()
@@ -133,7 +133,7 @@
 
 		if(contents.len < 5)
 			if ( state in list(1, 3) )
-				if(user.drop_inv_item_to_loc(W, src))
+				if(user.transferItemToLoc(W, src))
 					state = 3
 			else
 				to_chat(user, "<span class='notice'>You can't put the item in right now.</span>")

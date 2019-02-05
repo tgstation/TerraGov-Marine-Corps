@@ -60,7 +60,7 @@
 	if(!usr || usr.stat) return
 	var/mob/living/carbon/human/M = usr
 	if(!istype(M)) return
-	if(M.species && M.species.name != "Yautja")
+	if(!isyautjastrict(M))
 		to_chat(M, "<span class='warning'>You have no idea how to work these things!</span>")
 		return
 	var/obj/item/clothing/gloves/yautja/Y = M.gloves //Doesn't actually reduce power, but needs the bracers anyway.
@@ -72,19 +72,19 @@
 		if(!istype(G,/obj/item/clothing/glasses/night/yautja) && !istype(G,/obj/item/clothing/glasses/meson/yautja) && !istype(G,/obj/item/clothing/glasses/thermal/yautja))
 			to_chat(M, "<span class='warning'>You need to remove your glasses first. Why are you even wearing these?</span>")
 			return
-		M.temp_drop_inv_item(G) //Get rid of ye existinge gogglors
+		M.temporarilyRemoveItemFromInventory(G) //Get rid of ye existinge gogglors
 		qdel(G)
 	switch(current_goggles)
 		if(0)
-			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/yautja(M), WEAR_EYES)
+			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/yautja(M), SLOT_GLASSES)
 			to_chat(M, "<span class='notice'>Low-light vision module: activated.</span>")
 			if(prob(50)) playsound(src,'sound/effects/pred_vision.ogg', 15, 1)
 		if(1)
-			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/thermal/yautja(M), WEAR_EYES)
+			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/thermal/yautja(M), SLOT_GLASSES)
 			to_chat(M, "<span class='notice'>Thermal sight module: activated.</span>")
 			if(prob(50)) playsound(src,'sound/effects/pred_vision.ogg', 15, 1)
 		if(2)
-			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/meson/yautja(M), WEAR_EYES)
+			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/meson/yautja(M), SLOT_GLASSES)
 			to_chat(M, "<span class='notice'>Material vision module: activated.</span>")
 			if(prob(50)) playsound(src,'sound/effects/pred_vision.ogg', 15, 1)
 		if(3)
@@ -96,7 +96,7 @@
 
 
 /obj/item/clothing/mask/gas/yautja/equipped(mob/living/carbon/human/user, slot)
-	if(slot == WEAR_FACE)
+	if(slot == SLOT_WEAR_MASK)
 		var/datum/mob_hud/H = huds[MOB_HUD_MEDICAL_ADVANCED]
 		H.add_hud_to(user)
 	..()
@@ -106,7 +106,7 @@
 		var/obj/item/G = mob.glasses
 		if(G)
 			if(istype(G,/obj/item/clothing/glasses/night/yautja) || istype(G,/obj/item/clothing/glasses/meson/yautja) || istype(G,/obj/item/clothing/glasses/thermal/yautja))
-				mob.temp_drop_inv_item(G)
+				mob.temporarilyRemoveItemFromInventory(G)
 				qdel(G)
 				mob.update_inv_glasses()
 		var/datum/mob_hud/H = huds[MOB_HUD_MEDICAL_ADVANCED]
@@ -120,7 +120,7 @@
 	icon_state = "halfarmor1"
 	item_state = "armor"
 	sprite_sheet_id = 1
-	flags_armor_protection = UPPER_TORSO|ARM_LEFT
+	flags_armor_protection = CHEST|ARM_LEFT
 	armor = list(melee = 75, bullet = 75, laser = 60, energy = 65, bomb = 65, bio = 20, rad = 20)
 	min_cold_protection_temperature = ARMOR_min_cold_protection_temperature
 	max_heat_protection_temperature = ARMOR_max_heat_protection_temperature
@@ -150,40 +150,40 @@
 			if(7128)
 				name = "\improper 'Armor of the Swamp Horror'"
 				icon_state = "halfarmor_elder_joshuu"
-				flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS
+				flags_armor_protection = CHEST|GROIN|ARMS
 				armor = list(melee = 70, bullet = 80, laser = 60, energy = 70, bomb = 65, bio = 25, rad = 25)
 			if(9867)
 				name = "\improper 'Armor of the Enforcer'"
 				icon_state = "halfarmor_elder_feweh"
-				flags_armor_protection = UPPER_TORSO|ARMS
+				flags_armor_protection = CHEST|ARMS
 				armor = list(melee = 75, bullet = 85, laser = 60, energy = 70, bomb = 65, bio = 25, rad = 25)
 			if(4879)
 				name = "\improper 'Armor of the Ambivalent Collector'"
 				icon_state = "halfarmor_elder_n"
-				flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS
+				flags_armor_protection = CHEST|GROIN|ARMS
 				armor = list(melee = 75, bullet = 85, laser = 60, energy = 70, bomb = 65, bio = 25, rad = 25)
 			else
 				name = "clan elder's armor"
 				icon_state = "halfarmor_elder"
-				flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS
+				flags_armor_protection = CHEST|GROIN|ARMS
 				armor = list(melee = 70, bullet = 80, laser = 60, energy = 70, bomb = 65, bio = 25, rad = 25)
 	else
 		switch(armor_number)
 			if(2)
 				icon_state = "halfarmor[armor_number]"
-				flags_armor_protection = UPPER_TORSO|ARMS
+				flags_armor_protection = CHEST|ARMS
 				armor = list(melee = 75, bullet = 75, laser = 60, energy = 65, bomb = 65, bio = 20, rad = 20)
 			if(3)
 				icon_state = "halfarmor[armor_number]"
-				flags_armor_protection = UPPER_TORSO|LOWER_TORSO
+				flags_armor_protection = CHEST|GROIN
 				armor = list(melee = 75, bullet = 75, laser = 60, energy = 65, bomb = 65, bio = 20, rad = 20)
 			if(4)
 				icon_state = "halfarmor[armor_number]"
-				flags_armor_protection = UPPER_TORSO
+				flags_armor_protection = CHEST
 				armor = list(melee = 75, bullet = 80, laser = 60, energy = 70, bomb = 70, bio = 20, rad = 20)
 			if(5,441)
 				icon_state = "halfarmor[armor_number]"
-				flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS
+				flags_armor_protection = CHEST|GROIN|ARMS
 				armor = list(melee = 70, bullet = 70, laser = 55, energy = 65, bomb = 65, bio = 20, rad = 20)
 	flags_cold_protection = flags_armor_protection
 	flags_heat_protection = flags_armor_protection
@@ -192,7 +192,7 @@
 	name = "heavy clan armor"
 	desc = "A suit of armor with heavy padding. It looks old, yet functional."
 	icon_state = "fullarmor"
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS
+	flags_armor_protection = CHEST|GROIN|ARMS
 	armor = list(melee = 90, bullet = 95, laser = 75, energy = 75, bomb = 75, bio = 25, rad = 25)
 	slowdown = 1
 
@@ -208,8 +208,8 @@
 	desc = "A dusty, yet powerful cape worn and passed down by elder Yautja."
 	icon = 'icons/obj/items/predator.dmi'
 	icon_state = "cape_elder"
-	flags_equip_slot = SLOT_BACK
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	flags_equip_slot = ITEM_SLOT_BACK
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
 	armor = list(melee = 10, bullet = 0, laser = 5, energy = 15, bomb = 0, bio = 0, rad = 0)
 	unacidable = 1
 
@@ -247,7 +247,7 @@
 	..()
 	icon_state = "y-boots[boot_number]"
 	if(boot_number != 1) //More overall protection, less defensive value.
-		flags_armor_protection = FEET|LEGS|LOWER_TORSO
+		flags_armor_protection = FEET|LEGS|GROIN
 		armor = list(melee = 65, bullet = 75, laser = 55, energy = 45, bomb = 45, bio = 20, rad = 20)
 	flags_cold_protection = flags_armor_protection
 	flags_heat_protection = flags_armor_protection
@@ -257,8 +257,8 @@
 	icon = 'icons/obj/clothing/uniforms.dmi'
 	desc = "A set of very fine chainlink in a meshwork for comfort and utility."
 	icon_state = "mesh_shirt"
-	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS|FEET|HANDS //Does not cover the head though.
-	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS|FEET|HANDS
+	flags_cold_protection = CHEST|GROIN|LEGS|ARMS|FEET|HANDS //Does not cover the head though.
+	flags_heat_protection = CHEST|GROIN|LEGS|ARMS|FEET|HANDS
 	has_sensor = 0
 	armor = list(melee = 10, bullet = 10, laser = 10, energy = 10, bomb = 10, bio = 10, rad = 10)
 	siemens_coefficient = 0.9
@@ -302,10 +302,8 @@
 
 /obj/item/clothing/gloves/yautja/equipped(mob/user, slot)
 	..()
-	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		if(slot == WEAR_HANDS && H.species && H.species.name == "Yautja")
-			START_PROCESSING(SSobj, src)
+	if(slot == SLOT_GLOVES && isyautjastrict(user))
+		START_PROCESSING(SSobj, src)
 
 /obj/item/clothing/gloves/yautja/dropped(mob/user)
 	STOP_PROCESSING(SSobj, src)
@@ -355,15 +353,15 @@
 	if(!usr.loc || !usr.canmove || usr.stat) return
 	var/mob/living/carbon/human/user = usr
 	if(!istype(user)) return
-	if(!isYautja(user))
+	if(!isyautja(user))
 		to_chat(user, "<span class='warning'>You have no idea how to work these things!</span>")
 		return
-	var/obj/item/weapon/wristblades/R = user.get_active_hand()
+	var/obj/item/weapon/wristblades/R = user.get_active_held_item()
 	if(R && istype(R)) //Turn it off.
 		to_chat(user, "<span class='notice'>You retract your wrist blades.</span>")
 		playsound(user.loc,'sound/weapons/wristblades_off.ogg', 15, 1)
 		blades_active = 0
-		user.drop_inv_item_to_loc(R, R.loc)
+		user.transferItemToLoc(R, R.loc)
 		return
 	else
 		if(!drain_power(user,50)) return
@@ -401,7 +399,7 @@
 	if(!usr || usr.stat) return
 	var/mob/living/carbon/human/M = usr
 	if(!istype(M)) return
-	if(!isYautja(usr))
+	if(!isyautja(usr))
 		to_chat(usr, "<span class='warning'>You have no idea how to work these things!</span>")
 		return 0
 	if(cloaked) //Turn it off.
@@ -458,7 +456,7 @@
 	if(!usr.loc || !usr.canmove || usr.stat) return
 	var/mob/living/carbon/human/M = usr
 	if(!istype(M)) return
-	if(!isYautja(usr))
+	if(!isyautja(usr))
 		to_chat(usr, "<span class='warning'>You have no idea how to work these things!</span>")
 		return
 	var/obj/item/weapon/gun/energy/plasma_caster/R = usr.r_hand
@@ -471,14 +469,14 @@
 			found = 1
 			usr.r_hand = null
 			if(R)
-				M.temp_drop_inv_item(R)
+				M.temporarilyRemoveItemFromInventory(R)
 				qdel(R)
 			M.update_inv_r_hand()
 		if(L && istype(L))
 			found = 1
 			usr.l_hand = null
 			if(L)
-				M.temp_drop_inv_item(L)
+				M.temporarilyRemoveItemFromInventory(L)
 				qdel(L)
 			M.update_inv_l_hand()
 		if(found)
@@ -487,7 +485,7 @@
 			caster_active = 0
 		return
 	else //Turn it on!
-		if(usr.get_active_hand())
+		if(usr.get_active_held_item())
 			to_chat(usr, "<span class='warning'>Your hand must be free to activate your caster!</span>")
 			return
 		if(!drain_power(usr,50)) return
@@ -523,18 +521,18 @@
 	if(M.stat == DEAD)
 		to_chat(M, "<span class='warning'>Little too late for that now!</span>")
 		return
-	if(!isYautja(M))
+	if(!isyautja(M))
 		to_chat(M, "<span class='warning'>You have no idea how to work these things!</span>")
 		return
 
-	var/obj/item/grab/G = M.get_active_hand()
+	var/obj/item/grab/G = M.get_active_held_item()
 	if(istype(G))
 		var/mob/living/carbon/human/comrade = G.grabbed_thing
-		if(isYautja(comrade) && comrade.stat == DEAD)
+		if(isyautja(comrade) && comrade.stat == DEAD)
 			var/obj/item/clothing/gloves/yautja/bracer = comrade.gloves
 			if(istype(bracer))
 				if(alert("Are you sure you want to send this Yautja into the great hunting grounds?","Explosive Bracers", "Yes", "No") == "Yes")
-					if(M.get_active_hand() == G && comrade && comrade.gloves == bracer && !bracer.exploding)
+					if(M.get_active_held_item() == G && comrade && comrade.gloves == bracer && !bracer.exploding)
 						bracer.explodey(comrade)
 						M.visible_message("<span class='warning'>[M] presses a few buttons on [comrade]'s wrist bracer.</span>","<span class='danger'>You activate the timer. May [comrade]'s final hunt be swift.</span>")
 			else
@@ -580,11 +578,11 @@
 	if(!usr.canmove || usr.stat || usr.is_mob_restrained())
 		return 0
 
-	if(!isYautja(usr))
+	if(!isyautja(usr))
 		to_chat(usr, "<span class='warning'>You have no idea how to work these things!/span>")
 		return
 
-	if(usr.get_active_hand())
+	if(usr.get_active_held_item())
 		to_chat(usr, "<span class='warning'>Your active hand must be empty!</span>")
 		return 0
 
@@ -614,7 +612,7 @@
 	if(usr.is_mob_incapacitated())
 		return 0
 
-	if(!isYautja(usr))
+	if(!isyautja(usr))
 		to_chat(usr, "<span class='warning'>You have no idea how to work these things!</span>")
 		return
 
@@ -642,7 +640,7 @@
 
 	if(!usr || usr.stat) return
 
-	if(!isYautja(usr))
+	if(!isyautja(usr))
 		to_chat(usr, "You have no idea how to work these things.")
 		return
 
@@ -668,7 +666,7 @@
 		var/mob/Q
 		for(Q in hearers(usr))
 			if(Q.stat == 1) continue //Unconscious
-			if(isXeno(Q) && upgrades != 2) continue
+			if(isxeno(Q) && upgrades != 2) continue
 			to_chat(Q, "<span class='info'>A strange voice says,</span> <span class='rough'>'[msg]'.</span>")
 
 //=================//\\=================\\
@@ -697,11 +695,11 @@
 		recalculateChannels()
 
 	talk_into(mob/living/M as mob, message, channel, var/verb = "commands", var/datum/language/speaking = "Sainja")
-		if(!isYautja(M)) //Nope.
+		if(!isyautja(M)) //Nope.
 			to_chat(M, "<span class='warning'>You try to talk into the headset, but just get a horrible shrieking in your ears!</span>")
 			return
 
-		for(var/mob/living/carbon/hellhound/H in player_list)
+		for(var/mob/living/carbon/hellhound/H in GLOB.player_list)
 			if(istype(H) && !H.stat)
 				to_chat(H, "\[Radio\]: [M.real_name] [verb], '<B>[message]</b>'.")
 		..()
@@ -721,7 +719,7 @@
 	desc = "A Yautja hunting pouch worn around the waist, made from a thick tanned hide. Capable of holding various devices and tools and used for the transport of trophies."
 	icon = 'icons/obj/items/predator.dmi'
 	icon_state = "beltbag"
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	max_w_class = 3
 	storage_slots = 10
 	max_storage_space = 30
@@ -761,7 +759,7 @@
 			return
 		var/mob/living/carbon/human/H = user
 		var/sure = alert("Really trigger it?","Sure?","Yes","No")
-		if(!isYautja(H))
+		if(!isyautja(H))
 			to_chat(user, "<span class='warning'>The screen angrily flashes three times!</span>")
 			playsound(user, 'sound/effects/EMPulse.ogg', 25, 1)
 			sleep(30)
@@ -769,7 +767,7 @@
 			if(loc)
 				if(ismob(loc))
 					user = loc
-					user.temp_drop_inv_item(src)
+					user.temporarilyRemoveItemFromInventory(src)
 				qdel(src)
 			return
 
@@ -779,16 +777,16 @@
 		user.visible_message("<span class='info'>[user] starts becoming shimmery and indistinct...</span>")
 		if(do_after(user,100, TRUE, 5, BUSY_ICON_GENERIC))
 			// Teleport self.
-			user.visible_message("<span class='warning'>\icon[user][user] disappears!</span>")
+			user.visible_message("<span class='warning'>[bicon(user)][user] disappears!</span>")
 			var/tele_time = animation_teleport_quick_out(user)
 			// Also teleport whoever you're pulling.
 			var/mob/living/M = user.pulling
 			if(istype(M))
-				M.visible_message("<span class='warning'>\icon[M][M] disappears!</span>")
+				M.visible_message("<span class='warning'>[bicon(M)][M] disappears!</span>")
 				animation_teleport_quick_out(M)
 			sleep(tele_time)
 
-			var/turf/end_turf = pick(pred_spawn)
+			var/turf/end_turf = pick(GLOB.pred_spawn)
 			user.forceMove(end_turf)
 			animation_teleport_quick_in(user)
 			if(M && M.loc)
@@ -866,7 +864,7 @@
 /obj/item/weapon/wristblades/New()
 	..()
 	if(usr)
-		var/obj/item/weapon/wristblades/W = usr.get_inactive_hand()
+		var/obj/item/weapon/wristblades/W = usr.get_inactive_held_item()
 		if(istype(W)) //wristblade in usr's other hand.
 			attack_speed = attack_speed - attack_speed/3
 	attack_verb = list("sliced", "slashed", "jabbed", "torn", "gored")
@@ -879,7 +877,7 @@
 /obj/item/weapon/wristblades/dropped(mob/living/carbon/human/M)
 	playsound(M,'sound/weapons/wristblades_off.ogg', 15, 1)
 	if(M)
-		var/obj/item/weapon/wristblades/W = M.get_inactive_hand()
+		var/obj/item/weapon/wristblades/W = M.get_inactive_held_item()
 		if(istype(W))
 			W.attack_speed = initial(attack_speed)
 	..()
@@ -887,7 +885,7 @@
 /obj/item/weapon/wristblades/afterattack(atom/A, mob/user, proximity)
 	if(!proximity || !user) return
 	if(user)
-		var/obj/item/weapon/wristblades/W = user.get_inactive_hand()
+		var/obj/item/weapon/wristblades/W = user.get_inactive_held_item()
 		attack_speed = (istype(W)) ? 4 : initial(attack_speed)
 
 	if (istype(A, /obj/machinery/door/airlock))
@@ -914,7 +912,7 @@
 	desc = "A segmented, lightweight whip made of durable, acid-resistant metal. Not very common among Yautja Hunters, but still a dangerous weapon capable of shredding prey."
 	icon_state = "whip"
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	force = 35
 	throwforce = 12
 	w_class = 3
@@ -926,7 +924,7 @@
 	attack(mob/target as mob, mob/living/user as mob)
 		if(user.zone_selected == "r_leg" || user.zone_selected == "l_leg" || user.zone_selected == "l_foot" || user.zone_selected == "r_foot")
 			if(prob(35) && !target.lying)
-				if(isXeno(target))
+				if(isxeno(target))
 					if(target.mob_size == MOB_SIZE_BIG) //Can't trip the big ones.
 						return ..()
 				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1)
@@ -941,7 +939,7 @@
 	icon_state = "predknife"
 	item_state = "knife"
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_STORE
+	flags_equip_slot = ITEM_SLOT_POCKET
 	sharp = IS_SHARP_ITEM_ACCURATE
 	force = 24
 	w_class = 1
@@ -954,7 +952,7 @@
 	unacidable = 1
 
 	attack_self(mob/living/carbon/human/user as mob)
-		if(!isYautja(user)) return
+		if(!isyautja(user)) return
 		if(!hasorgans(user)) return
 
 		var/pain_factor = 0 //Preds don't normally feel pain. This is an exception.
@@ -991,7 +989,7 @@
 	icon = 'icons/obj/items/predator.dmi'
 	icon_state = "clansword"
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_BACK
+	flags_equip_slot = ITEM_SLOT_BACK
 	sharp = IS_SHARP_ITEM_BIG
 	edge = 1
 	force = 45 //More damage than other weapons like it. Considering how "strong" this sword is supposed to be, 38 damage was laughable.
@@ -1003,7 +1001,7 @@
 	unacidable = 1
 
 	attack(mob/living/target as mob, mob/living/carbon/human/user as mob)
-		if(isYautja(user))
+		if(isyautja(user))
 			force = initial(force)
 			if(prob(22) && !target.lying)
 				user.visible_message("<span class='danger'>[user] slashes [target] so hard, they go flying!</span>")
@@ -1019,7 +1017,7 @@
 		return ..()
 
 	pickup(mob/living/user as mob)
-		if(!isYautja(user))
+		if(!isyautja(user))
 			to_chat(user, "<span class='warning'>You struggle to pick up the huge, unwieldy sword. It makes you dizzy just trying to hold it!</span>")
 			user.Dizzy(50)
 
@@ -1030,7 +1028,7 @@
 	icon_state = "predscythe"
 	item_state = "scythe"
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	sharp = IS_SHARP_ITEM_BIG
 	force = 32
 	w_class = 4.0
@@ -1043,10 +1041,10 @@
 	 icon_state = pick("predscythe","predscythe_alt")
 
 	attack(mob/living/target as mob, mob/living/carbon/human/user as mob)
-		if(!isYautja(user))
+		if(!isyautja(user))
 			if(prob(20))
 				user.visible_message("<span class='warning'>[src] slips out of your hands!</span>")
-				user.drop_inv_item_on_ground(src)
+				user.dropItemToGround(src)
 				return
 		..()
 		if(ishuman(target)) //Slicey dicey!
@@ -1056,7 +1054,7 @@
 				if(!affecting)
 					affecting = target:get_limb(ran_zone(user.zone_selected,90)) //No luck? Try again.
 				if(affecting)
-					if(affecting.body_part != UPPER_TORSO && affecting.body_part != LOWER_TORSO) //as hilarious as it is
+					if(affecting.body_part != CHEST && affecting.body_part != GROIN) //as hilarious as it is
 						user.visible_message("<span class='danger'>The limb is sliced clean off!</span>","<span class='danger'>You slice off a limb!</span>")
 						affecting.droplimb(1) //the second 1 is  amputation. This amputates.
 		else //Probably an alien
@@ -1072,7 +1070,7 @@
 	icon = 'icons/obj/items/predator.dmi'
 	icon_state = "combistick"
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_BACK
+	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = 4
 	force = 32
 	throwforce = 70
@@ -1114,7 +1112,7 @@
 	else
 		to_chat(user, "<span class='notice'>You collapse [src] for storage.</span>")
 		icon_state = initial(icon_state) + "_f"
-		flags_equip_slot = SLOT_STORE
+		flags_equip_slot = ITEM_SLOT_POCKET
 		w_class = 1
 		force = 0
 		throwforce = initial(throwforce) - 50
@@ -1166,7 +1164,7 @@
 
 	attack_self(mob/user)
 		if(!active)
-			if(!isYautja(user))
+			if(!isyautja(user))
 				to_chat(user, "What's this thing?")
 				return
 			to_chat(user, "<span class='warning'>You activate the hellhound beacon!</span>")
@@ -1176,7 +1174,7 @@
 				var/mob/living/carbon/C = user
 				C.throw_mode_on()
 		else
-			if(!isYautja(user)) return
+			if(!isyautja(user)) return
 			activated_turf = get_turf(user)
 			display_camera(user)
 		return
@@ -1186,7 +1184,7 @@
 			return
 
 		if(user)
-			msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) primed \a [src]")
+			msg_admin_attack("[ADMIN_TPMONTY(usr)] primed \a [src].")
 		icon_state = initial(icon_state) + "_active"
 		active = 1
 		if(dangerous)
@@ -1213,7 +1211,7 @@
 
 	proc/display_camera(var/mob/user as mob)
 		var/list/L = list()
-		for(var/mob/living/carbon/hellhound/H in mob_list)
+		for(var/mob/living/carbon/hellhound/H in GLOB.mob_list)
 			L += H.real_name
 		L["Cancel"] = "Cancel"
 
@@ -1223,7 +1221,7 @@
 			to_chat(user, "Stopping camera feed.")
 			return
 
-		for(var/mob/living/carbon/hellhound/Q in mob_list)
+		for(var/mob/living/carbon/hellhound/Q in GLOB.mob_list)
 			if(Q.real_name == choice)
 				current = Q.camera
 				break

@@ -6,7 +6,7 @@
 	origin_tech = "combat=4;materials=3"
 	icon_state = "m240"
 	item_state = "m240"
-	flags_equip_slot = SLOT_BACK
+	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = 4
 	force = 15
 	fire_sound = 'sound/weapons/gun_flamethrower2.ogg'
@@ -23,7 +23,7 @@
 	attachable_offset = list("rail_x" = 12, "rail_y" = 23)
 
 /obj/item/weapon/gun/flamer/set_gun_config_values()
-	fire_delay = config.max_fire_delay * 5
+	fire_delay = CONFIG_GET(number/combat_define/max_fire_delay) * 5
 
 /obj/item/weapon/gun/flamer/unique_action(mob/user)
 	toggle_flame(user)
@@ -219,21 +219,22 @@
 
 		fire_mod = 1
 
-		if(isXeno(M))
+		if(isxeno(M))
 			var/mob/living/carbon/Xenomorph/X = M
 			if(X.xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 				continue
-			fire_mod = X.xeno_caste.fire_resist + X.fire_resist_modifier
+			fire_mod = CLAMP(X.xeno_caste.fire_resist + X.fire_resist_modifier, 0, 1)
 		else if(ishuman(M))
 			var/mob/living/carbon/human/H = M //fixed :s
 
 			if(user)
+				var/area/A = get_area(user)
 				if(user.mind && !user.mind.special_role && H.mind && !H.mind.special_role)
 					log_combat(user, H, "shot", src)
-					msg_admin_ff("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) shot [key_name(H)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[H]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[H.x];Y=[H.y];Z=[H.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[H]'>FLW</a>) with \a [name] in [get_area(user)]")
+					msg_admin_ff("[ADMIN_TPMONTY(usr)] shot [ADMIN_TPMONTY(H)] with \a [name] in [ADMIN_VERBOSEJMP(A)].")
 				else
 					log_combat(user, H, "shot", src)
-					msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) shot [key_name(H)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[H]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[H.x];Y=[H.y];Z=[H.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[H]'>FLW</a>) with \a [name] in [get_area(user)]")
+					msg_admin_attack("[ADMIN_TPMONTY(usr)] shot [ADMIN_TPMONTY(H)] with \a [name] in [ADMIN_VERBOSEJMP(A)].")
 
 			if(istype(H.wear_suit, /obj/item/clothing/suit/fire) || (istype(H.wear_suit, /obj/item/clothing/suit/storage/marine/M35) && istype(H.head, /obj/item/clothing/head/helmet/marine/pyro)))
 				continue
@@ -249,7 +250,7 @@
 		M.adjust_fire_stacks(rand(5,burn*2))
 		M.IgniteMob()
 
-		to_chat(M, "[isXeno(M)?"<span class='xenodanger'>":"<span class='highdanger'>"]Augh! You are roasted by the flames!")
+		to_chat(M, "[isxeno(M)?"<span class='xenodanger'>":"<span class='highdanger'>"]Augh! You are roasted by the flames!")
 
 /obj/item/weapon/gun/flamer/proc/triangular_flame(var/atom/target, var/mob/living/user, var/burntime, var/burnlevel)
 	set waitfor = 0
@@ -476,7 +477,7 @@
 							var/armor_block = C.run_armor_check("chest", "energy")
 							C.apply_damage(fire_damage, BURN, null, armor_block)
 							C.IgniteMob()
-							C.visible_message("<span class='danger'>[C] bursts into flames!</span>","[isXeno(C)?"<span class='xenodanger'>":"<span class='highdanger'>"]You burst into flames!</span>")
+							C.visible_message("<span class='danger'>[C] bursts into flames!</span>","[isxeno(C)?"<span class='xenodanger'>":"<span class='highdanger'>"]You burst into flames!</span>")
 
 
 /obj/flamer_fire/Destroy()
@@ -487,33 +488,39 @@
 
 /obj/flamer_fire/Crossed(mob/living/M) //Only way to get it to reliable do it when you walk into it.
 	if(istype(M))
-		var/fire_mod = 1
-		if(isXeno(M))
-			var/mob/living/carbon/Xenomorph/X = M
-			if(X.fire_immune)
-				return
-			fire_mod = X.fire_resist
-		M.adjust_fire_stacks(burnlevel) //Make it possible to light them on fire later.
-		if (prob(firelevel + 2*M.fire_stacks)) //the more soaked in fire you are, the likelier to be ignited
-			M.IgniteMob()
+		M.flamer_fire_crossed(burnlevel, firelevel)
 
-		var/armor_block = M.run_armor_check(null, "energy")
-		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
-			if(isXeno(H.pulledby))
-				var/mob/living/carbon/Xenomorph/Z = H.pulledby
-				if(!Z.xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
-					Z.adjust_fire_stacks(burnlevel)
-					Z.IgniteMob()
-			if(istype(H.wear_suit, /obj/item/clothing/suit/fire) || (istype(H.wear_suit, /obj/item/clothing/suit/storage/marine/M35) && istype(H.head, /obj/item/clothing/head/helmet/marine/pyro)))
-				H.show_message(text("Your suit protects you from the flames."),1)
-				armor_block = CLAMP(armor_block * 1.5, 0.75, 1) //Min 75% resist, max 100%
-		M.apply_damage(round(burnlevel*0.5)* fire_mod, BURN, null, armor_block)
+/mob/living/carbon/human/run_armor_check(def_zone = null, attack_flag = "melee")
+	. = ..()
+	if(attack_flag == "energy")
+		if(istype(wear_suit, /obj/item/clothing/suit/fire) || (istype(wear_suit, /obj/item/clothing/suit/storage/marine/M35) && istype(head, /obj/item/clothing/head/helmet/marine/pyro)))
+			show_message(text("Your suit protects you from the flames."),1)
+			return CLAMP(. * 1.5, 0.75, 1) //Min 75% resist, max 100%
 
-		to_chat(M, "<span class='danger'>You are burned!</span>")
-		if(isXeno(M))
-			M.updatehealth()
+// override this proc to give different walking-over-fire effects
+/mob/living/proc/flamer_fire_crossed(burnlevel, firelevel, fire_mod=1)
+	if(fire_immune) // this is a /mob/living var that xenos use but humans dont
+		return
+	adjust_fire_stacks(burnlevel) //Make it possible to light them on fire later.
+	if (prob(firelevel + 2*fire_stacks)) //the more soaked in fire you are, the likelier to be ignited
+		IgniteMob()
+	var/armor_block = run_armor_check(null, "energy")
+	apply_damage(round(burnlevel*0.5)* fire_mod, BURN, null, armor_block)
 
+	to_chat(src, "<span class='danger'>You are burned!</span>")
+
+/mob/living/carbon/human/flamer_fire_crossed(burnlevel, firelevel, fire_mod=1)
+	. = ..()
+	if(isxeno(pulledby))
+		var/mob/living/carbon/Xenomorph/X = pulledby
+		X.flamer_fire_crossed(burnlevel, firelevel)
+
+/mob/living/carbon/Xenomorph/flamer_fire_crossed(burnlevel, firelevel, fire_mod=1)
+	if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
+		return
+	fire_mod = fire_resist
+	. = ..(burnlevel, firelevel, fire_mod) // reduce damage by src.fire_resist
+	updatehealth()
 
 /obj/flamer_fire/proc/updateicon()
 	if(burnlevel < 15)
@@ -546,44 +553,44 @@
 	T.flamer_fire_act()
 
 	var/j = 0
-	for(var/i in loc)
+	for(var/i in T)
 		if(++j >= 11)
 			break
-		if(isliving(i))
-			var/mob/living/I = i
-			if(istype(I,/mob/living/carbon/human))
-				var/mob/living/carbon/human/M = I
-				if(istype(M.wear_suit, /obj/item/clothing/suit/fire) || istype(M.wear_suit,/obj/item/clothing/suit/space/rig/atmos) || (istype(M.wear_suit, /obj/item/clothing/suit/storage/marine/M35) && istype(M.head, /obj/item/clothing/head/helmet/marine/pyro)))
-					M.show_message(text("Your suit protects you from the flames."),1)
-					M.adjustFireLoss(rand(0 ,burnlevel*0.25)) //Does small burn damage to a person wearing one of the suits.
-					continue
-			if(istype(I,/mob/living/carbon/Xenomorph/Queen))
-				var/mob/living/carbon/Xenomorph/Queen/X = I
-				X.show_message(text("Your extra-thick exoskeleton protects you from the flames."),1)
-				continue
-			if(istype(I,/mob/living/carbon/Xenomorph/Ravager))
-				if(!I.stat)
-					var/mob/living/carbon/Xenomorph/Ravager/X = I
-					X.plasma_stored = X.xeno_caste.plasma_max
-					X.usedcharge = 0 //Reset charge cooldown
-					X.show_message(text("<span class='danger'>The heat of the fire roars in your veins! KILL! CHARGE! DESTROY!</span>"),1)
-					if(rand(1,100) < 70)
-						X.emote("roar")
-				continue
+		var/atom/A = i
+		A.flamer_fire_act()
 
-
-			I.adjust_fire_stacks(burnlevel) //If i stand in the fire i deserve all of this. Also Napalm stacks quickly.
-			if(prob(firelevel))
-				I.IgniteMob()
-			//I.adjustFireLoss(rand(10 ,burnlevel)) //Including the fire should be way stronger.
-			I.show_message(text("<span class='warning'>You are burned!</span>"),1)
-			if(isXeno(I)) //Have no fucken idea why the Xeno thing was there twice.
-				var/mob/living/carbon/Xenomorph/X = I
-				X.updatehealth()
-		if(istype(i, /obj/))
-			var/obj/O = i
-			O.flamer_fire_act()
-
-	//This has been made a simple loop, for the most part flamer_fire_act() just does return, but for specific items it'll cause other effects.
 	firelevel -= 2 //reduce the intensity by 2 per tick
 	return
+
+// override this proc to give different idling-on-fire effects
+/mob/living/flamer_fire_act(burnlevel, firelevel)
+	adjust_fire_stacks(burnlevel) //If i stand in the fire i deserve all of this. Also Napalm stacks quickly.
+	if(prob(firelevel))
+		IgniteMob()
+	//I.adjustFireLoss(rand(10 ,burnlevel)) //Including the fire should be way stronger.
+	to_chat(src, "<span class='warning'>You are burned!</span>")
+
+/mob/living/carbon/human/flamer_fire_act(burnlevel, firelevel)
+	if(istype(wear_suit, /obj/item/clothing/suit/fire) || istype(wear_suit,/obj/item/clothing/suit/space/rig/atmos) || (istype(wear_suit, /obj/item/clothing/suit/storage/marine/M35) && istype(head, /obj/item/clothing/head/helmet/marine/pyro)))
+		to_chat(src, "<span class='warning'>Your suit protects you from the flames.</span>")
+		adjustFireLoss(rand(0 ,burnlevel*0.25)) //Does small burn damage to a person wearing one of the suits.
+		return
+	return ..()
+
+/mob/living/carbon/Xenomorph/flamer_fire_act(burnlevel, firelevel)
+	if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
+		return
+	. = ..()
+	updatehealth()
+
+/mob/living/carbon/Xenomorph/Queen/flamer_fire_act(burnlevel, firelevel)
+	to_chat(src, "<span class='xenowarning'>Your extra-thick exoskeleton protects you from the flames.</span>")
+
+/mob/living/carbon/Xenomorph/Ravager/flamer_fire_act(burnlevel, firelevel)
+	if(stat)
+		return
+	plasma_stored = xeno_caste.plasma_max
+	usedcharge = FALSE //Reset charge cooldown
+	to_chat(src, "<span class='xenodanger'>The heat of the fire roars in your veins! KILL! CHARGE! DESTROY!</span>")
+	if(prob(70))
+		emote("roar")

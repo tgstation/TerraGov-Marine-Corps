@@ -1,7 +1,0 @@
-author: "Ghommie"
-delete-after: True
-changes: 
-  - bugfix: "certain actually meanie grenades such as EMP and spawners are now considered dangerous."
-  - tweak: "Synthetics can now use non-dangerous grenades (and dangerous ones if the \"allow synthetic gun usage\" button is toggled.)"
-  - tweak: "Synth restrictions now go foul themselves upon round end."
-  - bugfix: "the back-end machine (ergo IPCs) race is no more affected by grenade restrictions."

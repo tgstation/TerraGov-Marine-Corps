@@ -84,17 +84,26 @@
 
 
 /datum/game_mode/proc/pre_setup()
+	if(flags_landmarks & MODE_LANDMARK_SPAWN_XENO_TUNNELS)
+		setup_xeno_tunnels()
+
+	if(flags_landmarks & MODE_LANDMARK_SPAWN_MAP_ITEM)
+		spawn_map_items()
+
+	if(flags_round_type & MODE_FOG_ACTIVATED)
+		spawn_fog_blockers()
+
+	var/obj/effect/landmark/L
+	while(GLOB.landmarks_round_start.len)
+		L = GLOB.landmarks_round_start[GLOB.landmarks_round_start.len]
+		GLOB.landmarks_round_start.len--
+		L.on_round_start(flags_round_type, flags_landmarks)
 	return FALSE
 
 
 /datum/game_mode/proc/post_setup()
 	spawn(ROUNDSTART_LOGOUT_REPORT_TIME)
 		display_roundstart_logout_report()
-
-	feedback_set_details("round_start","[time2text(world.realtime)]")
-	if(ticker?.mode)
-		feedback_set_details("game_mode","[ticker.mode]")
-	feedback_set_details("server_ip","[world.internet_address]:[world.port]")
 	return TRUE
 
 
@@ -126,7 +135,7 @@
 
 	var/list/area/escape_locations = list(/area/shuttle/escape/centcom, /area/shuttle/escape_pod1/centcom, /area/shuttle/escape_pod2/centcom, /area/shuttle/escape_pod3/centcom, /area/shuttle/escape_pod5/centcom)
 
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		if(M.client)
 			clients++
 			if(ishuman(M))
@@ -204,7 +213,7 @@
 		if(BE_SQUAD_STRICT)	roletext = "Prefer squad over role"
 
 	//Assemble a list of active players without jobbans.
-	for(var/mob/new_player/player in player_list)
+	for(var/mob/new_player/player in GLOB.player_list)
 		if(player.client && player.ready)
 			if(!jobban_isbanned(player, "Syndicate") && !jobban_isbanned(player, roletext))
 				players += player
@@ -215,7 +224,7 @@
 	//Get a list of all the people who want to be the antagonist for this round
 	for(var/mob/new_player/player in players)
 		if(player.client.prefs.be_special & role)
-			log_debug("[player.key] had [roletext] enabled, so we are drafting them.")
+			log_game("[player.key] had [roletext] enabled, so we are drafting them.")
 			candidates += player.mind
 			players -= player
 
@@ -224,7 +233,7 @@
 		for(var/key in round_voters)
 			for(var/mob/new_player/player in players)
 				if(player.ckey == key)
-					log_debug("[player.key] voted for this round, so we are drafting them.")
+					log_game("[player.key] voted for this round, so we are drafting them.")
 					candidates += player.mind
 					players -= player
 					break
@@ -264,7 +273,7 @@
 				candidates += applicant
 				drafted.Remove(applicant)
 				to_chat(world, "<span class='warning'>[applicant.key] was force-drafted as [roletext], because there aren't enough candidates.</span>")
-				log_debug("[applicant.key] was force-drafted as [roletext], because there aren't enough candidates.")
+				log_game("[applicant.key] was force-drafted as [roletext], because there aren't enough candidates.")
 
 		else //Not enough scrubs, ABORT ABORT ABORT
 			break
@@ -280,7 +289,7 @@
 
 /datum/game_mode/proc/ready_players()
 	var/num = 0
-	for(var/mob/new_player/P in player_list)
+	for(var/mob/new_player/P in GLOB.player_list)
 		if(P.client && P.ready)
 			num++
 	return num
@@ -288,7 +297,7 @@
 
 /datum/game_mode/proc/get_living_heads()
 	var/list/heads = list()
-	for(var/mob/living/carbon/human/player in mob_list)
+	for(var/mob/living/carbon/human/player in GLOB.human_mob_list)
 		if(player.stat != DEAD && player.mind && (player.mind.assigned_role in ROLES_COMMAND))
 			heads += player.mind
 	return heads
@@ -296,7 +305,7 @@
 
 /datum/game_mode/proc/get_all_heads()
 	var/list/heads = list()
-	for(var/mob/player in mob_list)
+	for(var/mob/player in GLOB.mob_list)
 		if(player.mind && (player.mind.assigned_role in ROLES_COMMAND ))
 			heads += player.mind
 	return heads
@@ -307,17 +316,17 @@
 
 
 /datum/game_mode/New()
-	if(!map_tag)
-		to_chat(world, "MT001: No mapping tag set, tell a coder. [map_tag]")
+	if(!GLOB.map_tag)
+		to_chat(world, "MT001: No mapping tag set, tell a coder. [GLOB.map_tag]")
 
 
 /datum/game_mode/proc/display_roundstart_logout_report()
-	var/msg = "<span class='notice'><b>Roundstart logout report</b></span>"
-	for(var/mob/living/L in mob_list)
+	var/msg = "<span class='notice'><b>Roundstart logout report</b></span>\n"
+	for(var/mob/living/L in GLOB.mob_living_list)
 
 		if(L.ckey)
 			var/found = 0
-			for(var/client/C in clients)
+			for(var/client/C in GLOB.clients)
 				if(C.ckey == L.ckey)
 					found = 1
 					break
@@ -326,7 +335,7 @@
 
 
 		if(L.ckey && L.client)
-			if(L.client.inactivity >= (ROUNDSTART_LOGOUT_REPORT_TIME / 2))	//Connected, but inactive (alt+tabbed or something)
+			if(L.client.inactivity >= (ROUNDSTART_LOGOUT_REPORT_TIME / 2))
 				msg += "<b>[L.name]</b> ([L.ckey]), the [L.job] (<font color='#ffcc00'><b>Connected, Inactive</b></font>)\n"
 				continue //AFK client
 			if(L.stat)
@@ -341,7 +350,7 @@
 					continue //Dead
 
 			continue //Happy connected client
-		for(var/mob/dead/observer/D in mob_list)
+		for(var/mob/dead/observer/D in GLOB.dead_mob_list)
 			if(D.mind && (D.mind.original == L || D.mind.current == L))
 				if(L.stat == DEAD)
 					if(L.suiciding)	//Suicider
@@ -352,7 +361,6 @@
 						continue //Dead mob, ghost abandoned
 				else
 					if(D.can_reenter_corpse)
-						msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), the [L.job] (<font color='red'><b>This shouldn't appear.</b></font>)\n"
 						continue //Lolwhat
 					else
 						msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), the [L.job] (<font color='red'><b>Ghosted</b></font>)\n"
@@ -360,14 +368,14 @@
 
 
 
-	for(var/mob/M in mob_list)
+	for(var/mob/M in GLOB.mob_list)
 		if(M.client && M.client.holder)
 			to_chat(M, msg)
 
 
 /datum/game_mode/proc/get_nt_opposed()
 	var/list/dudes = list()
-	for(var/mob/living/carbon/human/man in player_list)
+	for(var/mob/living/carbon/human/man in GLOB.player_list)
 		if(man.client)
 			if(man.client.prefs.nanotrasen_relation == "Opposed")
 				dudes += man
@@ -395,7 +403,7 @@
 	if(!player?.current)
 		return
 
-	if(config.objectives_disabled)
+	if(CONFIG_GET(flag/objectives_disabled))
 		show_generic_antag_text(player)
 		return
 

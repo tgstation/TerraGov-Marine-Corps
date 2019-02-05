@@ -81,17 +81,12 @@
 	removeVerb(/atom/movable/verb/pull)
 	log_message("[src.name] created.")
 	loc.Entered(src)
-	mechas_list += src //global mech list
+	GLOB.mechas_list += src //global mech list
 	return
 
 /obj/mecha/Destroy()
 	go_out()
-	mechas_list -= src //global mech list
-	SetLuminosity(0)
-
-/obj/mecha/Destroy()
-	go_out()
-	mechas_list -= src //global mech list
+	GLOB.mechas_list -= src //global mech list
 	SetLuminosity(0)
 	if(cell)
 		qdel(cell)
@@ -194,7 +189,7 @@
 	if(equipment && equipment.len)
 		to_chat(user, "It's equipped with:")
 		for(var/obj/item/mecha_parts/mecha_equipment/ME in equipment)
-			to_chat(user, "\icon[ME] [ME]")
+			to_chat(user, "[bicon(ME)] [ME]")
 
 
 /obj/mecha/proc/drop_item()//Derpfix, but may be useful in future for engineering exosuits.
@@ -290,7 +285,7 @@
 	if(move_result)
 		can_move = FALSE
 		use_power(step_energy_drain)
-		if(istype(src.loc, /turf/open/space))
+		if(isspaceturf(loc))
 			if(!src.check_for_support())
 				src.pr_inertial_movement.start(list(src,direction))
 				src.log_message("Movement control lost. Inertial movement started.")
@@ -482,7 +477,7 @@
 		src.occupant_message("<span class='notice'> The [A] bounces off the armor.</span>")
 		src.visible_message("The [A] bounces off the [src.name] armor")
 		src.log_append_to_last("Armor saved.")
-		if(istype(A, /mob/living))
+		if(isliving(A))
 			var/mob/living/M = A
 			M.take_limb_damage(10)
 	else if(istype(A, /obj))
@@ -652,7 +647,7 @@
 				to_chat(user, "<span class='warning'>Invalid ID: Access denied.</span>")
 		else
 			to_chat(user, "<span class='warning'>Maintenance protocols disabled by operator.</span>")
-	else if(istype(W, /obj/item/tool/wrench))
+	else if(iswrench(W))
 		if(state==1)
 			state = 2
 			to_chat(user, "You undo the securing bolts.")
@@ -660,7 +655,7 @@
 			state = 1
 			to_chat(user, "You tighten the securing bolts.")
 		return
-	else if(istype(W, /obj/item/tool/crowbar))
+	else if(iscrowbar(W))
 		if(state==2)
 			state = 3
 			to_chat(user, "You open the hatch to the power unit")
@@ -668,7 +663,7 @@
 			state=2
 			to_chat(user, "You close the hatch to the power unit")
 		return
-	else if(istype(W, /obj/item/stack/cable_coil))
+	else if(iscablecoil(W))
 		if(state == 3 && hasInternalDamage(MECHA_INT_SHORT_CIRCUIT))
 			var/obj/item/stack/cable_coil/CC = W
 			if(CC.use(2))
@@ -677,7 +672,7 @@
 			else
 				to_chat(user, "There's not enough wire to finish the task.")
 		return
-	else if(istype(W, /obj/item/tool/screwdriver))
+	else if(isscrewdriver(W))
 		if(state==3 && src.cell)
 			src.cell.forceMove(src.loc)
 			src.cell = null
@@ -701,7 +696,7 @@
 				to_chat(user, "There's already a powercell installed.")
 		return
 
-	else if(istype(W, /obj/item/tool/weldingtool) && user.a_intent != "hurt")
+	else if(iswelder(W) && user.a_intent != INTENT_HARM)
 		var/obj/item/tool/weldingtool/WT = W
 		if (!WT.remove_fuel(0,user))
 			return
@@ -713,7 +708,7 @@
 		return
 
 	else if(istype(W, /obj/item/mecha_parts/mecha_tracking))
-		user.drop_inv_item_to_loc(W, src)
+		user.transferItemToLoc(W, src)
 		user.visible_message("[user] attaches [W] to [src].", "You attach [W] to [src]")
 		return
 
@@ -726,7 +721,7 @@
 
 /*
 /obj/mecha/attack_ai(var/mob/living/silicon/ai/user as mob)
-	if(!istype(user, /mob/living/silicon/ai))
+	if(!isAI(user))
 		return
 	var/output = {"<b>Assume direct control over [src]?</b>
 						<a href='?src=\ref[src];ai_take_control=\ref[user];duration=3000'>Yes</a><br>
@@ -1008,7 +1003,7 @@
 		else if(mmi_as_oc.brainmob.stat)
 			to_chat(user, "Beta-rhythm below acceptable level.")
 			return 0
-		user.temp_drop_inv_item(mmi_as_oc)
+		user.temporarilyRemoveItemFromInventory(mmi_as_oc)
 		var/mob/brainmob = mmi_as_oc.brainmob
 		brainmob.reset_view(src)
 	/*
@@ -1069,7 +1064,7 @@
 	var/atom/movable/mob_container
 	if(ishuman(occupant))
 		mob_container = src.occupant
-	else if(istype(occupant, /mob/living/brain))
+	else if(isbrain(occupant))
 		var/mob/living/brain/brain = occupant
 		mob_container = brain.container
 	else
@@ -1101,14 +1096,14 @@
 /////////////////////////
 
 /obj/mecha/proc/operation_allowed(mob/living/carbon/human/H)
-	for(var/ID in list(H.get_active_hand(), H.wear_id, H.belt))
+	for(var/ID in list(H.get_active_held_item(), H.wear_id, H.belt))
 		if(src.check_access(ID,src.operation_req_access))
 			return 1
 	return 0
 
 
 /obj/mecha/proc/internals_access_allowed(mob/living/carbon/human/H)
-	for(var/atom/ID in list(H.get_active_hand(), H.wear_id, H.belt))
+	for(var/atom/ID in list(H.get_active_held_item(), H.wear_id, H.belt))
 		if(src.check_access(ID,src.internals_req_access))
 			return 1
 	return 0
@@ -1350,7 +1345,7 @@
 /obj/mecha/proc/occupant_message(message as text)
 	if(message)
 		if(occupant && occupant.client)
-			to_chat(occupant, "\icon[src] [message]")
+			to_chat(occupant, "[bicon(src)] [message]")
 	return
 
 /obj/mecha/log_message(message as text, message_type=LOG_GAME, color=null)
@@ -1522,7 +1517,7 @@
 		return
 	if(href_list["dna_lock"])
 		if(usr != src.occupant)	return
-		if(istype(occupant, /mob/living/brain))
+		if(isbrain(occupant))
 			occupant_message("You are a brain. No.")
 			return
 		if(src.occupant)

@@ -3,7 +3,7 @@
 	desc = "A specialised prod designed for incapacitating xenomorphic lifeforms with."
 	icon_state = "stunbaton"
 	item_state = "baton"
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	force = 12
 	throwforce = 7
 	w_class = 3
@@ -13,9 +13,9 @@
 
 	origin_tech = "combat=2"
 
-	suicide_act(mob/user)
-		user.visible_message("<span class='danger'>[user] is putting the live [src.name] in \his mouth! It looks like \he's trying to commit suicide.</span>")
-		return (FIRELOSS)
+/obj/item/weapon/stunprod/suicide_act(mob/user)
+	user.visible_message("<span class='danger'>[user] is putting the live [src.name] in [user.p_their()] mouth! It looks like [p_theyre()] trying to commit suicide.</span>")
+	return (FIRELOSS)
 
 /obj/item/weapon/stunprod/update_icon()
 	if(status)
@@ -52,11 +52,11 @@
 			update_icon()
 		return
 
-	if(isrobot(M))
+	if(iscyborg(M))
 		..()
 		return
 
-	if(user.a_intent == "hurt")
+	if(user.a_intent == INTENT_HARM)
 		return
 	else if(!status)
 		M.visible_message("<span class='warning'>[M] has been poked with [src] whilst it's turned off by [user].</span>")

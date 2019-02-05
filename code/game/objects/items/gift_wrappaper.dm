@@ -46,7 +46,7 @@
 /obj/effect/spresent/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 
-	if (!istype(W, /obj/item/tool/wirecutters))
+	if (!iswirecutter(W))
 		to_chat(user, "<span class='notice'>I need wirecutters for that.</span>")
 		return
 
@@ -105,7 +105,7 @@
 	if(!ispath(gift_type,/obj/item))	return
 
 	var/obj/item/I = new gift_type(M)
-	M.temp_drop_inv_item(src)
+	M.temporarilyRemoveItemFromInventory(src)
 	M.put_in_hands(I)
 	I.add_fingerprint(M)
 	qdel(src)
@@ -126,7 +126,7 @@
 	if (!( locate(/obj/structure/table, src.loc) ))
 		to_chat(user, "<span class='notice'>You MUST put the paper on a table!</span>")
 	if (W.w_class < 4)
-		if ((istype(user.l_hand, /obj/item/tool/wirecutters) || istype(user.r_hand, /obj/item/tool/wirecutters)))
+		if (iswirecutter(user.l_hand) || iswirecutter(user.r_hand))
 			var/a_used = 2 ** (src.w_class - 1)
 			if (src.amount < a_used)
 				to_chat(user, "<span class='notice'>You need more paper!</span>")
@@ -163,7 +163,7 @@
 
 
 /obj/item/wrapping_paper/attack(mob/target as mob, mob/user as mob)
-	if (!istype(target, /mob/living/carbon/human)) return
+	if (!ishuman(target)) return
 	var/mob/living/carbon/human/H = target
 
 	if (istype(H.wear_suit, /obj/item/clothing/suit/straight_jacket) || H.stat)

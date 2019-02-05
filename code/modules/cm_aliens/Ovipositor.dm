@@ -61,26 +61,26 @@
 //Every other type of nonhuman mob
 /obj/ovipositor/attack_alien(mob/living/carbon/Xenomorph/M)
 	switch(M.a_intent)
-		if("help")
+		if(INTENT_HELP)
 			M.visible_message("<span class='notice'>\The [M] caresses [src] with its scythe-like arm.</span>", \
 			"<span class='notice'>You caress [src] with your scythe-like arm.</span>")
 			return 0
 
-		if("grab")
+		if(INTENT_GRAB)
 			if(M == src || anchored)
 				return 0
 
 			if(Adjacent(M)) //Logic!
 				M.start_pulling(src)
 
-		if("hurt")
+		if(INTENT_HARM)
 			var/damage = (rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper) + 3)
 			M.visible_message("<span class='danger'>\The [M] bites [src]!</span>", \
 			"<span class='danger'>You bite [src]!</span>")
 			health -= damage
 			return 1
 
-		if("disarm")
+		if(INTENT_DISARM)
 			to_chat(M, "<span class='warning'>There's nothing to disarm!</span>")
 
 	return 0

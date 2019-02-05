@@ -19,7 +19,7 @@
 	desc = "Feminine fashion for the style concious RD. Its fabric provides minor protection from biological contaminants."
 	icon_state = "dress_rd"
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 0)
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS
+	flags_armor_protection = CHEST|GROIN|ARMS
 
 /obj/item/clothing/under/rank/scientist
 	desc = "It's made of a special fiber that provides minor protection against small explosions. It has markings that denote the wearer as a scientist."
@@ -70,7 +70,7 @@
 	icon_state = "nursesuit"
 	permeability_coefficient = 0.50
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 0)
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO
+	flags_armor_protection = CHEST|GROIN
 
 /obj/item/clothing/under/rank/nurse
 	desc = "A dress commonly worn by the nursing staff in the medical department."
@@ -78,7 +78,7 @@
 	icon_state = "nurse"
 	permeability_coefficient = 0.50
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 0)
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO
+	flags_armor_protection = CHEST|GROIN
 	rollable_sleeves = FALSE
 
 /obj/item/clothing/under/rank/orderly

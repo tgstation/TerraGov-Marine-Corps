@@ -46,9 +46,7 @@ SUBSYSTEM_DEF(timer)
 
 	if(lit && lit < last_check && head_offset < last_check && last_invoke_warning < last_check)
 		last_invoke_warning = world.time
-		var/msg = "No regular timers processed in the last [BUCKET_LEN*1.5] ticks[bucket_auto_reset ? ", resetting buckets" : ""]!"
-		message_admins(msg)
-		WARNING(msg)
+		message_admins("No regular timers processed in the last [BUCKET_LEN * 1.5] ticks[bucket_auto_reset ? ", resetting buckets" : ""].")
 		if(bucket_auto_reset)
 			bucket_resolution = 0
 

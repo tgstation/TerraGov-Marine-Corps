@@ -3,7 +3,7 @@
 	desc = "A stun baton for incapacitating people with."
 	icon_state = "stunbaton"
 	item_state = "baton"
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	force = 15
 	sharp = 0
 	edge = 0
@@ -20,7 +20,7 @@
 	var/has_user_lock = TRUE //whether the baton prevents people without correct access from using it.
 
 /obj/item/weapon/baton/suicide_act(mob/user)
-	user.visible_message("<span class='suicide'>[user] is putting the live [name] in \his mouth! It looks like \he's trying to commit suicide.</span>")
+	user.visible_message("<span class='suicide'>[user] is putting the live [name] in [user.p_their()] mouth! It looks like [user.p_theyre()] trying to commit suicide.</span>")
 	return (FIRELOSS)
 
 /obj/item/weapon/baton/New()
@@ -100,7 +100,7 @@
 		else
 			to_chat(user, "<span class='notice'>[src] already has a cell.</span>")
 
-	else if(istype(W, /obj/item/tool/screwdriver))
+	else if(isscrewdriver(W))
 		if(bcell)
 			bcell.updateicon()
 			bcell.loc = get_turf(src.loc)
@@ -139,7 +139,7 @@
 		deductcharge(hitcost)
 		return
 
-	if(isrobot(M))
+	if(iscyborg(M))
 		..()
 		return
 
@@ -148,7 +148,7 @@
 	var/mob/living/L = M
 
 	var/target_zone = check_zone(user.zone_selected)
-	if(user.a_intent == "hurt")
+	if(user.a_intent == INTENT_HARM)
 		if (!..())	//item/attack() does it's own messaging and logs
 			return 0	// item/attack() will return 1 if they hit, 0 if they missed.
 		agony *= 0.5	//whacking someone causes a much poorer contact than prodding them.

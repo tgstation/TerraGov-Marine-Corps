@@ -5,7 +5,7 @@
 	block=MONKEYBLOCK
 
 /datum/dna/gene/monkey/can_activate(var/mob/M,var/flags)
-	return istype(M, /mob/living/carbon/human) || istype(M,/mob/living/carbon/monkey)
+	return ishuman(M) || istype(M,/mob/living/carbon/monkey)
 
 /datum/dna/gene/monkey/activate(var/mob/living/M, var/connected, var/flags)
 	if(!istype(M,/mob/living/carbon/human))
@@ -22,7 +22,7 @@
 		for(var/obj/item/W in (H.contents-implants))
 			if (W==H.w_uniform) // will be teared
 				continue
-			H.drop_inv_item_on_ground(W)
+			H.dropItemToGround(W)
 		M.monkeyizing = 1
 		M.canmove = 0
 		M.icon = null
@@ -77,7 +77,7 @@
 	O.adjustToxLoss(M.getToxLoss() + 20)
 	O.adjustOxyLoss(M.getOxyLoss())
 	O.stat = M.stat
-	O.a_intent = "hurt"
+	O.a_intent = INTENT_HARM
 	for (var/obj/item/implant/I in implants)
 		I.loc = O
 		I.implanted = O
@@ -97,7 +97,7 @@
 		W.loc = null
 	if(!connected)
 		for(var/obj/item/W in (Mo.contents-implants))
-			Mo.drop_inv_item_on_ground(W)
+			Mo.dropItemToGround(W)
 		M.monkeyizing = 1
 		M.canmove = 0
 		M.icon = null

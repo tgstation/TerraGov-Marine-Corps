@@ -83,14 +83,6 @@
 		/obj/structure/window/framed/almayer,
 		/obj/machinery/door/airlock)
 
-	New()
-		spawn(0) //
-			relativewall_neighbours()
-		..()
-
-
-
-
 /obj/machinery/door/airlock/multi_tile/almayer/generic
 	name = "\improper Airlock"
 	icon = 'icons/obj/doors/almayer/2x1generic.dmi'

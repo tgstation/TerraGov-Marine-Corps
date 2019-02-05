@@ -18,14 +18,14 @@
 	attackby(obj/item/grab/G, mob/user)
 		if(!istype(G, /obj/item/grab))
 			return
-		if(istype(G.grabbed_thing, /mob/living/carbon/monkey))
+		if(ismonkey(G.grabbed_thing))
 			var/mob/living/carbon/monkey/M = G.grabbed_thing
 			if(!occupied)
 				icon_state = "spikebloody"
 				occupied = 1
 				meat = 5
 				meattype = 1
-				visible_message("<span class='warning'> [user] has forced [M] onto the spike, killing them instantly!</span>")
+				visible_message("<span class='warning'> [user] has forced [M] onto the spike, killing [M.p_them()] instantly!</span>")
 				M.death()
 				qdel(M)
 				G.grabbed_thing = null

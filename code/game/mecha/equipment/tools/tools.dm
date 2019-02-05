@@ -17,7 +17,7 @@
 		if(!cargo_holder) return
 		if(istype(target, /obj/structure/bed/stool)) return
 		for(var/M in target.contents)
-			if(istype(M, /mob/living))
+			if(isliving(M))
 				return
 
 		if(istype(target,/obj))
@@ -48,7 +48,7 @@
 		else if(istype(target,/mob/living))
 			var/mob/living/M = target
 			if(M.stat>1) return
-			if(chassis.occupant.a_intent == "hurt")
+			if(chassis.occupant.a_intent == INTENT_HARM)
 				M.take_overall_damage(dam_force)
 				M.adjustOxyLoss(round(dam_force/2))
 				M.updatehealth()
@@ -88,7 +88,7 @@
 		var/C = target.loc	//why are these backwards? we may never know -Pete
 		if(do_after_cooldown(target))
 			if(T == chassis.loc && src == chassis.selected)
-				if(istype(target, /turf/closed/wall/r_wall) || istype(target, /turf/open/floor))
+				if(isrwallturf(target) || isfloorturf(target))
 					occupant_message("<font color='red'>[target] is too durable to drill through.</font>")
 				else if(target.loc == C)
 					log_message("Drilled through [target].")
@@ -117,7 +117,7 @@
 		var/C = target.loc	//why are these backwards? we may never know -Pete
 		if(do_after_cooldown(target))
 			if(T == chassis.loc && src == chassis.selected)
-				if(istype(target, /turf/closed/wall/r_wall))
+				if(isrwallturf(target))
 					if(do_after_cooldown(target))//To slow down how fast mechs can drill through the station
 						log_message("Drilled through [target]")
 						target.ex_act(3)
@@ -225,7 +225,7 @@
 		//meh
 		switch(mode)
 			if(0)
-				if (istype(target, /turf/closed/wall))
+				if (iswallturf(target))
 					occupant_message("Deconstructing [target]...")
 					set_ready_state(0)
 					if(do_after_cooldown(target))
@@ -234,7 +234,7 @@
 						target:ChangeTurf(/turf/open/floor/plating)
 						playsound(target, 'sound/items/Deconstruct.ogg', 25, 1)
 						chassis.use_power(energy_drain)
-				else if (istype(target, /turf/open/floor))
+				else if (isfloorturf(target))
 					occupant_message("Deconstructing [target]...")
 					set_ready_state(0)
 					if(do_after_cooldown(target))
@@ -253,7 +253,7 @@
 						qdel(target)
 						chassis.use_power(energy_drain)
 			if(1)
-				if(istype(target, /turf/open/space))
+				if(isspaceturf(target))
 					occupant_message("Building Floor...")
 					set_ready_state(0)
 					if(do_after_cooldown(target))
@@ -262,7 +262,7 @@
 						playsound(target, 'sound/items/Deconstruct.ogg', 25, 1)
 						chassis.spark_system.start()
 						chassis.use_power(energy_drain*2)
-				else if(istype(target, /turf/open/floor))
+				else if(isfloorturf(target))
 					occupant_message("Building Wall...")
 					set_ready_state(0)
 					if(do_after_cooldown(target))
@@ -272,7 +272,7 @@
 						chassis.spark_system.start()
 						chassis.use_power(energy_drain*2)
 			if(2)
-				if(istype(target, /turf/open/floor))
+				if(isfloorturf(target))
 					occupant_message("Building Airlock...")
 					set_ready_state(0)
 					if(do_after_cooldown(target))
@@ -553,11 +553,11 @@
 	proc/dynhitby(atom/movable/A)
 		if(!action_checks(A))
 			return chassis.dynhitby(A)
-		if(prob(chassis.deflect_chance*deflect_coeff) || istype(A, /mob/living) || istype(A, /obj/item/mecha_parts/mecha_tracking))
+		if(prob(chassis.deflect_chance*deflect_coeff) || isliving(A) || istype(A, /obj/item/mecha_parts/mecha_tracking))
 			chassis.occupant_message("<span class='notice'> The [A] bounces off the armor.</span>")
 			chassis.visible_message("The [A] bounces off the [chassis] armor")
 			chassis.log_append_to_last("Armor saved.")
-			if(istype(A, /mob/living))
+			if(isliving(A))
 				var/mob/living/M = A
 				M.take_limb_damage(10)
 		else if(istype(A, /obj))
@@ -981,15 +981,15 @@
 		else if(istype(target,/mob/living))
 			var/mob/living/M = target
 			if(M.stat>1) return
-			if(chassis.occupant.a_intent == "hurt")
+			if(chassis.occupant.a_intent == INTENT_HARM)
 				chassis.occupant_message("<span class='warning'> You obliterate [target] with [src.name], leaving blood and guts everywhere.</span>")
 				chassis.visible_message("<span class='warning'> [chassis] destroys [target] in an unholy fury.</span>")
-			if(chassis.occupant.a_intent == "disarm")
+			if(chassis.occupant.a_intent == INTENT_DISARM)
 				chassis.occupant_message("<span class='warning'> You tear [target]'s limbs off with [src.name].</span>")
 				chassis.visible_message("<span class='warning'> [chassis] rips [target]'s arms off.</span>")
 			else
 				step_away(M,chassis)
-				chassis.occupant_message("You smash into [target], sending them flying.")
+				chassis.occupant_message("You smash into [target], sending [target.p_them()] flying.")
 				chassis.visible_message("[chassis] tosses [target] like a piece of paper.")
 			set_ready_state(0)
 			chassis.use_power(energy_drain)

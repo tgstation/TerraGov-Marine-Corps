@@ -7,7 +7,7 @@ var/global/datum/controller/gameticker/ticker
 
 
 /datum/controller/gameticker
-	var/const/restart_timeout = 600
+	var/const/restart_timeout = 2 MINUTES
 	var/current_state = GAME_STATE_PREGAME
 
 	var/hide_mode = 0
@@ -39,10 +39,10 @@ var/global/datum/controller/gameticker/ticker
 
 	login_music = pick(
 	'sound/music/SpaceHero.ogg',
-	'sound/music/title1.ogg',
-	'sound/music/title2.ogg',
-	'sound/music/title3.ogg',
-	'sound/music/clown.ogg')
+	'sound/music/ManOfWar.ogg',
+	'sound/music/PraiseTheLord.ogg',
+	'sound/music/BloodUponTheRisers.ogg',
+	'sound/music/DawsonChristian.ogg')
 
 	do
 		pregame_timeleft = 180
@@ -54,7 +54,7 @@ var/global/datum/controller/gameticker/ticker
 				vote.process()
 			if(going)
 				pregame_timeleft--
-			if(pregame_timeleft == config.vote_autogamemode_timeleft)
+			if(pregame_timeleft == CONFIG_GET(number/vote_autogamemode_timeleft))
 				if(!vote.time_remaining)
 					vote.autogamemode()	//Quit calling this over and over and over and over.
 					while(vote.time_remaining)
@@ -74,7 +74,7 @@ var/global/datum/controller/gameticker/ticker
 	var/list/datum/game_mode/runnable_modes
 	if((master_mode=="random") || (master_mode=="secret"))
 
-		runnable_modes = config.get_runnable_modes()
+		runnable_modes = config.modes
 		if(runnable_modes.len==0)
 			current_state = GAME_STATE_PREGAME
 			Master.SetRunLevel(RUNLEVEL_LOBBY)
@@ -150,14 +150,14 @@ var/global/datum/controller/gameticker/ticker
 	spawn(0)
 		mode.post_setup()
 
-		for(var/obj/effect/landmark/start/S in landmarks_list)
+		for(var/obj/effect/landmark/start/S in GLOB.landmarks_list)
 			if(S.name != "AI")
 				qdel(S)
 
 		to_chat(world, "<span class='notice'><b>Enjoy the game!</b></span>")
 		Holiday_Game_Start()
 
-	if(config.autooocmute)
+	if(CONFIG_GET(flag/autooocmute))
 		to_chat(world, "<span class='danger'>The OOC channel has been globally disabled due to round start!</span>")
 		ooc_allowed = FALSE
 
@@ -167,7 +167,7 @@ var/global/datum/controller/gameticker/ticker
 
 
 /datum/controller/gameticker/proc/create_characters()
-	for(var/mob/new_player/player in player_list)
+	for(var/mob/new_player/player in GLOB.player_list)
 		if(!player?.ready || !player.mind?.assigned_role)
 			continue
 		player.create_character()
@@ -175,7 +175,7 @@ var/global/datum/controller/gameticker/ticker
 
 
 /datum/controller/gameticker/proc/collect_minds()
-	for(var/mob/living/player in player_list)
+	for(var/mob/living/player in GLOB.player_list)
 		if(player.mind)
 			ticker.minds += player.mind
 
@@ -186,7 +186,7 @@ var/global/datum/controller/gameticker/ticker
 	if(mode && istype(mode, /datum/game_mode/huntergames))
 		return
 
-	for(var/player in player_list)
+	for(var/player in GLOB.player_list)
 		var/mob/living/carbon/human/H = player
 		if(istype(H) && H.mind?.assigned_role)
 			if(H.mind.assigned_role == "Commander")
@@ -197,8 +197,8 @@ var/global/datum/controller/gameticker/ticker
 				EquipCustomItems(H)
 
 	if(captainless)
-		for(var/mob/M in player_list)
-			if(!istype(M, /mob/new_player))
+		for(var/mob/M in GLOB.player_list)
+			if(!isnewplayer(M))
 				to_chat(M, "Marine commander position not forced on anyone.")
 
 
@@ -211,7 +211,7 @@ var/global/datum/controller/gameticker/ticker
 	var/game_finished = FALSE
 	var/mode_finished = FALSE
 
-	if(config.continous_rounds)
+	if(CONFIG_GET(flag/continous_rounds))
 		if(EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED)
 			game_finished = TRUE
 		mode_finished = (!post_game && mode.check_finished())
@@ -233,11 +233,11 @@ var/global/datum/controller/gameticker/ticker
 			else
 				feedback_set_details("end_proper","proper completion")
 
-			if(config.autooocmute && !ooc_allowed)
+			if(CONFIG_GET(flag/autooocmute) && !ooc_allowed)
 				to_chat(world, "<span class='warning'><b>The OOC channel has been globally enabled due to round end!</b></span>")
 				ooc_allowed = TRUE
 
-			config.allow_synthetic_gun_use = TRUE
+			CONFIG_SET(flag/allow_synthetic_gun_use, TRUE)
 
 			if(blackbox)
 				blackbox.save_all_data_to_sql()
@@ -269,7 +269,7 @@ var/global/datum/controller/gameticker/ticker
 
 
 /datum/controller/gameticker/proc/declare_completion()
-	for(var/mob/living/silicon/ai/aiPlayer in mob_list)
+	for(var/mob/living/silicon/ai/aiPlayer in GLOB.ai_list)
 		if(aiPlayer.stat != DEAD)
 			to_chat(world, "<b>[aiPlayer.name] (Played by: [aiPlayer.key])'s laws at the end of the round were:</b>")
 		else
@@ -284,8 +284,8 @@ var/global/datum/controller/gameticker/ticker
 
 	var/dronecount = 0
 
-	for(var/mob/living/silicon/robot/robo in mob_list)
-		if(istype(robo, /mob/living/silicon/robot/drone))
+	for(var/mob/living/silicon/robot/robo in GLOB.silicon_mobs)
+		if(ismaintdrone(robo))
 			dronecount++
 			continue
 

@@ -19,7 +19,11 @@
 	w_class = 3.0
 	unfolded_path = /obj/structure/closet/bodybag/tarp
 
-
+/obj/item/bodybag/tarp/deploy_bodybag(mob/user, atom/location)
+	if(locate(/obj/structure/closet) in location)
+		to_chat(user, "<span class='warning'>\the [src] can't be deployed here.</span>")
+		return
+	return ..()
 
 /obj/item/bodybag/tarp/snow
 	icon = 'icons/obj/bodybag.dmi'
@@ -39,25 +43,31 @@
 	item_path = /obj/item/bodybag/tarp
 	anchored = 1
 	closet_stun_delay = 0
+	var/process_count = 0
 
 /obj/structure/closet/bodybag/tarp/close()
 	. = ..()
 	var/mob/M = locate() in src //need to be occupied
 	if(!opened && M)
 		playsound(loc,'sound/effects/cloak_scout_on.ogg', 15, 1) //stealth mode engaged!
-		processing_second.Add(src)
+		START_PROCESSING(SSfastprocess, src)
 
 /obj/structure/closet/bodybag/tarp/process() //We only process until stealth fully achieved to save resources.
+	if(process_count++ < 4)
+		return
+
+	process_count = 0
+
 	var/mob/M = locate() in src //need to be occupied
 	if(opened || !M) //Abort if no mob inside.
 		alpha = initial(alpha)
-		processing_second.Remove(src)
+		STOP_PROCESSING(SSfastprocess, src)
 		return
 
 	alpha = max(alpha - 85, 13)
 
 	if(alpha <= 13)
-		processing_second.Remove(src)
+		STOP_PROCESSING(SSfastprocess, src)
 		return
 
 /obj/structure/closet/bodybag/tarp/fire_act(exposed_temperature, exposed_volume)
@@ -89,7 +99,7 @@
 
 /obj/structure/closet/bodybag/tarp/open()
 	. = ..()
-	processing_second.Remove(src)
+	STOP_PROCESSING(SSfastprocess, src)
 	if(alpha != initial(alpha))
 		playsound(loc,'sound/effects/cloak_scout_off.ogg', 15, 1)
 		alpha = initial(alpha) //stealth mode disengaged

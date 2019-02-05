@@ -15,11 +15,11 @@
 	else
 		dat += "The safety's off!<br>"
 
-	if(rail) 	dat += "It has \icon[rail] [rail.name] mounted on the top.<br>"
-	if(muzzle) 	dat += "It has \icon[muzzle] [muzzle.name] mounted on the front.<br>"
-	if(stock) 	dat += "It has \icon[stock] [stock.name] for a stock.<br>"
+	if(rail) 	dat += "It has [bicon(rail)] [rail.name] mounted on the top.<br>"
+	if(muzzle) 	dat += "It has [bicon(muzzle)] [muzzle.name] mounted on the front.<br>"
+	if(stock) 	dat += "It has [bicon(stock)] [stock.name] for a stock.<br>"
 	if(under)
-		dat += "It has \icon[under] [under.name]"
+		dat += "It has [bicon(under)] [under.name]"
 		if(under.flags_attach_features & ATTACH_WEAPON)
 			dat += " ([under.current_rounds]/[under.max_rounds])"
 		dat += " mounted underneath.<br>"
@@ -107,12 +107,12 @@
 	cell_type = /obj/item/cell/high
 
 /obj/item/weapon/gun/energy/taser/set_gun_config_values()
-	fire_delay = config.high_fire_delay * 2
-	accuracy_mult = config.base_hit_accuracy_mult + config.low_hit_accuracy_mult
-	accuracy_mult_unwielded = config.base_hit_accuracy_mult
-	scatter = config.mlow_scatter_value
-	scatter_unwielded = config.low_scatter_value
-	damage_mult = config.base_hit_damage_mult
+	fire_delay = CONFIG_GET(number/combat_define/high_fire_delay) * 2
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/low_hit_accuracy_mult)
+	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/mlow_scatter_value)
+	scatter_unwielded = CONFIG_GET(number/combat_define/low_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
 
 /obj/item/weapon/gun/energy/taser/update_icon()
 	if(!cell || cell.charge - charge_cost < 0)
@@ -140,36 +140,36 @@
 	ammo = /datum/ammo/energy/yautja/rifle/bolt
 	muzzle_flash = null // TO DO, add a decent one.
 	zoomdevicename = "scope"
-	flags_equip_slot = SLOT_BACK
+	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = 5
 	charge_cost = 100
 	flags_gun_features = GUN_UNUSUAL_DESIGN
 	cell_type = /obj/item/cell/high
 
 /obj/item/weapon/gun/energy/plasmarifle/set_gun_config_values()
-	fire_delay = config.high_fire_delay*2
-	accuracy_mult = config.base_hit_accuracy_mult + config.max_hit_accuracy_mult
-	accuracy_mult_unwielded = config.base_hit_accuracy_mult + config.max_hit_accuracy_mult
-	scatter = config.med_scatter_value
-	scatter_unwielded = config.med_scatter_value
-	damage_mult = config.base_hit_damage_mult
+	fire_delay = CONFIG_GET(number/combat_define/high_fire_delay) * 2
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/max_hit_accuracy_mult)
+	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/max_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
+	scatter_unwielded = CONFIG_GET(number/combat_define/med_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
 
 /obj/item/weapon/gun/energy/plasmarifle/examine(mob/user)
 	. = ..()
-	if(isYautja(user))
+	if(isyautja(user))
 		to_chat(user, "It currently has [cell.charge / charge_cost] shots remaining.")
 	else
 		to_chat(user, "This thing looks like an alien rifle of some kind. Strange.")
 
 /obj/item/weapon/gun/energy/plasmarifle/unique_action(mob/user)
-	if(!isYautja(user))
+	if(!isyautja(user))
 		to_chat(user, "<span class='warning'>You have no idea how this thing works!</span>")
 		return
 	zoom(user)
 	return ..()
 
 /obj/item/weapon/gun/energy/plasmarifle/able_to_fire(mob/user)
-	if(!isYautja(user))
+	if(!isyautja(user))
 		to_chat(user, "<span class='warning'>You have no idea how this thing works!</span>")
 		return
 	return ..()
@@ -184,29 +184,29 @@
 	origin_tech = "combat=8;materials=7;bluespace=6"
 	unacidable = 1
 	fire_sound = 'sound/weapons/pulse3.ogg'
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	ammo = /datum/ammo/energy/yautja/pistol
 	muzzle_flash = null // TO DO, add a decent one.
 	w_class = 3
 	flags_gun_features = GUN_UNUSUAL_DESIGN
 
 /obj/item/weapon/gun/energy/plasmapistol/set_gun_config_values()
-	fire_delay = config.med_fire_delay
-	accuracy_mult = config.base_hit_accuracy_mult + config.med_hit_accuracy_mult
-	accuracy_mult_unwielded = config.base_hit_accuracy_mult + config.high_hit_accuracy_mult
-	scatter = config.low_scatter_value
-	scatter_unwielded = config.med_scatter_value
-	damage_mult = config.base_hit_damage_mult
+	fire_delay = CONFIG_GET(number/combat_define/med_fire_delay)
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/med_hit_accuracy_mult)
+	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/high_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/low_scatter_value)
+	scatter_unwielded = CONFIG_GET(number/combat_define/med_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
 
 /obj/item/weapon/gun/energy/plasmapistol/examine(mob/user)
 	. = ..()
-	if(isYautja(user))
+	if(isyautja(user))
 		to_chat(user, "It currently has [cell.charge / charge_cost] shots remaining.")
 	else
 		to_chat(user, "This thing looks like an alien rifle of some kind. Strange.")
 
 /obj/item/weapon/gun/energy/plasmapistol/able_to_fire(mob/user)
-	if(!isYautja(user))
+	if(!isyautja(user))
 		to_chat(user, "<span class='warning'>You have no idea how this thing works!</span>")
 		return
 	return ..()
@@ -232,43 +232,43 @@
 	flags_gun_features = GUN_UNUSUAL_DESIGN
 
 /obj/item/weapon/gun/energy/plasma_caster/set_gun_config_values()
-	fire_delay = config.high_fire_delay
-	accuracy_mult = config.base_hit_accuracy_mult
-	accuracy_mult_unwielded = config.base_hit_accuracy_mult + config.high_fire_delay
-	scatter = config.med_scatter_value
-	scatter_unwielded = config.med_scatter_value
-	damage_mult = config.base_hit_damage_mult
+	fire_delay = CONFIG_GET(number/combat_define/high_fire_delay)
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
+	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/high_fire_delay)
+	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
+	scatter_unwielded = CONFIG_GET(number/combat_define/med_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
 
 /obj/item/weapon/gun/energy/plasma_caster/attack_self(mob/living/user)
 	switch(mode)
 		if(0)
 			mode = 1
 			charge_cost = 100
-			fire_delay = config.med_fire_delay * 4
+			fire_delay = CONFIG_GET(number/combat_define/med_fire_delay) * 4
 			fire_sound = 'sound/weapons/emitter2.ogg'
 			to_chat(user, "<span class='notice'>[src] is now set to fire medium plasma blasts.</span>")
-			ammo = ammo_list[/datum/ammo/energy/yautja/caster/blast]
+			ammo = GLOB.ammo_list[/datum/ammo/energy/yautja/caster/blast]
 		if(1)
 			mode = 2
 			charge_cost = 300
-			fire_delay = config.high_fire_delay * 20
+			fire_delay = CONFIG_GET(number/combat_define/high_fire_delay) * 20
 			fire_sound = 'sound/weapons/pulse.ogg'
 			to_chat(user, "<span class='notice'>[src] is now set to fire heavy plasma spheres.</span>")
-			ammo = ammo_list[/datum/ammo/energy/yautja/caster/sphere]
+			ammo = GLOB.ammo_list[/datum/ammo/energy/yautja/caster/sphere]
 		if(2)
 			mode = 0
 			charge_cost = 30
-			fire_delay = config.high_fire_delay
+			fire_delay = CONFIG_GET(number/combat_define/high_fire_delay)
 			fire_sound = 'sound/weapons/pred_lasercannon.ogg'
 			to_chat(user, "<span class='notice'>[src] is now set to fire light plasma bolts.</span>")
-			ammo = ammo_list[/datum/ammo/energy/yautja/caster/bolt]
+			ammo = GLOB.ammo_list[/datum/ammo/energy/yautja/caster/bolt]
 
 /obj/item/weapon/gun/energy/plasma_caster/dropped(mob/living/carbon/human/M)
 	playsound(M,'sound/weapons/pred_plasmacaster_off.ogg', 15, 1)
 	..()
 
 /obj/item/weapon/gun/energy/plasma_caster/able_to_fire(mob/user)
-	if(!isYautja(user))
+	if(!isyautja(user))
 		to_chat(user, "<span class='warning'>You have no idea how this thing works!</span>")
 		return
 	return ..()
@@ -284,7 +284,7 @@
 	fire_sound = 'sound/weapons/Laser.ogg'
 	matter = list("metal" = 2000)
 	ammo = /datum/ammo/energy/lasgun
-	flags_equip_slot = SLOT_BACK
+	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = 4
 	force = 15
 	overcharge = FALSE
@@ -295,12 +295,12 @@
 
 
 /obj/item/weapon/gun/energy/lasgun/set_gun_config_values()
-	fire_delay = config.low_fire_delay
-	accuracy_mult = config.base_hit_accuracy_mult + config.max_hit_accuracy_mult
-	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.high_hit_accuracy_mult
-	damage_mult = config.base_hit_damage_mult
-	scatter_unwielded = config.max_scatter_value * 2 //Heavy and unwieldy
-	damage_falloff_mult = config.med_damage_falloff_mult
+	fire_delay = CONFIG_GET(number/combat_define/low_fire_delay)
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/max_hit_accuracy_mult)
+	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/high_hit_accuracy_mult)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
+	scatter_unwielded = CONFIG_GET(number/combat_define/max_scatter_value) * 2 //Heavy and unwieldy
+	damage_falloff_mult = CONFIG_GET(number/combat_define/med_damage_falloff_mult)
 
 
 //-------------------------------------------------------
@@ -346,12 +346,12 @@
 	S.icon_state = initial(S.icon_state)
 
 /obj/item/weapon/gun/energy/lasgun/M43/set_gun_config_values()
-	fire_delay = config.low_fire_delay
-	accuracy_mult = config.base_hit_accuracy_mult + config.max_hit_accuracy_mult
-	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.max_hit_accuracy_mult //Heavy and unwieldy; you don't one hand this.
-	damage_mult = config.base_hit_damage_mult
-	scatter_unwielded = config.max_scatter_value * 2.5 //Heavy and unwieldy; you don't one hand this.
-	damage_falloff_mult = config.low_damage_falloff_mult
+	fire_delay = CONFIG_GET(number/combat_define/low_fire_delay)
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/max_hit_accuracy_mult)
+	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/max_hit_accuracy_mult) //Heavy and unwieldy; you don't one hand this.
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
+	scatter_unwielded = CONFIG_GET(number/combat_define/max_scatter_value) * 2.5 //Heavy and unwieldy; you don't one hand this.
+	damage_falloff_mult = CONFIG_GET(number/combat_define/low_damage_falloff_mult)
 
 //variant without ugl attachment
 /obj/item/weapon/gun/energy/lasgun/M43/stripped
@@ -377,18 +377,18 @@
 		//While overcharge is active, double ammo consumption, and
 		playsound(user, 'sound/weapons/emitter.ogg', 15, 0, 2)
 		charge_cost = M37_OVERCHARGE_AMMO_COST
-		ammo = ammo_list[/datum/ammo/energy/lasgun/M43/overcharge]
+		ammo = GLOB.ammo_list[/datum/ammo/energy/lasgun/M43/overcharge]
 		fire_delay = M37_OVERCHARGE_FIRE_DELAY // 1 shot per second fire rate
 		fire_sound = 'sound/weapons/Laser3.ogg'
-		to_chat(user, "\icon[src] You [overcharge? "<B>disable</b>" : "<B>enable</b>" ] [src]'s overcharge mode.")
+		to_chat(user, "[bicon(src)] You [overcharge? "<B>disable</b>" : "<B>enable</b>" ] [src]'s overcharge mode.")
 		overcharge = TRUE
 	else
 		playsound(user, 'sound/weapons/emitter2.ogg', 15, 0, 2)
 		charge_cost = M37_STANDARD_AMMO_COST
-		ammo = ammo_list[/datum/ammo/energy/lasgun/M43]
-		fire_delay = config.low_fire_delay
+		ammo = GLOB.ammo_list[/datum/ammo/energy/lasgun/M43]
+		fire_delay = CONFIG_GET(number/combat_define/low_fire_delay)
 		fire_sound = 'sound/weapons/Laser.ogg'
-		to_chat(user, "\icon[src] You [overcharge? "<B>disable</b>" : "<B>enable</b>" ] [src]'s overcharge mode.")
+		to_chat(user, "[bicon(src)] You [overcharge? "<B>disable</b>" : "<B>enable</b>" ] [src]'s overcharge mode.")
 		overcharge = FALSE
 
 	//load_into_chamber()
@@ -514,7 +514,7 @@
 /obj/item/weapon/gun/energy/lasgun/replace_magazine(mob/user, obj/item/cell/lasgun/new_cell)
 	cell = new_cell
 	if(user)
-		user.drop_inv_item_to_loc(new_cell, src) //Click!
+		user.transferItemToLoc(new_cell, src) //Click!
 		user.visible_message("<span class='notice'>[user] loads [new_cell] into [src]!</span>",
 		"<span class='notice'>You load [new_cell] into [src]!</span>", null, 3)
 		if(reload_sound)

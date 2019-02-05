@@ -35,7 +35,7 @@
 		if(M == usr)
 			to_chat(usr, "<span class='notice'>You finish eating \the [src].</span>")
 		M.visible_message("<span class='notice'>[M] finishes eating \the [src].</span>")
-		usr.drop_inv_item_on_ground(src)	//so icons update :[
+		usr.dropItemToGround(src)	//so icons update :[
 
 		if(trash)
 			if(ispath(trash,/obj/item))
@@ -52,7 +52,7 @@
 /obj/item/reagent_container/food/snacks/attack(mob/M, mob/user, def_zone)
 	if(!reagents.total_volume)						//Shouldn't be needed but it checks to see if it has anything left in it.
 		to_chat(user, "<span class='warning'>None of [src] left, oh no!</span>")
-		M.drop_inv_item_on_ground(src)	//so icons update :[
+		M.dropItemToGround(src)	//so icons update :[
 		qdel(src)
 		return FALSE
 
@@ -60,7 +60,7 @@
 		to_chat(M, "<span class='warning'>How do you expect to eat this with the package still on?</span>")
 		return FALSE
 
-	if(istype(M, /mob/living/carbon))
+	if(iscarbon(M))
 		var/fullness = M.nutrition + (M.reagents.get_reagent_amount("nutriment") * 25)
 		if(M == user)								//If you're eating it yourself
 			if(istype(M,/mob/living/carbon/human))
@@ -189,7 +189,7 @@
 		if(!iscarbon(user))
 			return TRUE
 
-		if(user.drop_inv_item_to_loc(W, src))
+		if(user.transferItemToLoc(W, src))
 			to_chat(user, "<span class='warning'>You slip [W] inside [src].</span>")
 			add_fingerprint(user)
 		return
@@ -1120,6 +1120,7 @@
 	desc = "A true prophecy in each cookie!"
 	icon_state = "fortune_cookie"
 	filling_color = "#E8E79E"
+	trash = /obj/item/trash/fortunecookie
 	list_reagents = list("nutriment" = 3)
 	bitesize = 2
 	tastes = list("cookie" = 1)
@@ -1340,7 +1341,7 @@
 /obj/item/reagent_container/food/snacks/monkeycube/On_Consume(var/mob/M)
 	to_chat(M, "<span class = 'warning'>Something inside of you suddently expands!</span>")
 
-	if (istype(M, /mob/living/carbon/human))
+	if (ishuman(M))
 		//Do not try to understand.
 		var/obj/item/surprise = new(M)
 		var/mob/ook = monkey_type
@@ -2293,7 +2294,7 @@
 		return
 
 	if( boxes.len > 0 )
-		if( user.get_inactive_hand() != src )
+		if( user.get_inactive_held_item() != src )
 			..()
 			return
 
@@ -2331,7 +2332,7 @@
 				boxestoadd += i
 
 			if( (boxes.len+1) + boxestoadd.len <= 5 )
-				user.drop_inv_item_to_loc(box, src)
+				user.transferItemToLoc(box, src)
 				box.boxes = list() // Clear the box boxes so we don't have boxes inside boxes. - Xzibit
 				src.boxes.Add( boxestoadd )
 
@@ -2349,7 +2350,7 @@
 	if( istype(I, /obj/item/reagent_container/food/snacks/sliceable/pizza/) ) // Long ass fucking object name
 
 		if(open)
-			user.drop_inv_item_to_loc(I, src)
+			user.transferItemToLoc(I, src)
 			pizza = I
 
 			update_icon()
@@ -2747,7 +2748,7 @@
 	name = "CHUNK box"
 	desc = "A bar of \"The <b>CHUNK</b>\" brand chocolate. <i>\"The densest chocolate permitted to exist according to federal law. We are legally required to ask you not to use this blunt object for anything other than nutrition.\"</i>"
 	icon_state = "chunk"
-	force = 10 //LEGAL LIMIT OF CHOCOLATE
+	force = 35 //LEGAL LIMIT OF CHOCOLATE
 	bitesize = 3
 	wrapper = /obj/item/trash/chunk
 	list_reagents = list("nutriment" = 5, "coco" = 10)

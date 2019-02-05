@@ -34,7 +34,7 @@
 				continue
 			else if(L in friends)
 				continue
-			else if (istype(src, /mob/living/simple_animal/hostile/alien) && (isXeno(L) || (isrobot(L))))
+			else if (istype(src, /mob/living/simple_animal/hostile/alien) && (isxeno(L) || (iscyborg(L))))
 				continue
 			else
 				if(!L.stat)
@@ -115,7 +115,7 @@
 
 /mob/living/simple_animal/hostile/proc/ListTargets(var/dist = 7)
 	var/list/L = hearers(src, dist)
-	L += mechas_list
+	L += GLOB.mechas_list
 	return L
 
 /mob/living/simple_animal/hostile/death()

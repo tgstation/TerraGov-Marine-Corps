@@ -69,16 +69,16 @@
 			to_chat(user, "<span class='warning'>That won't fit!</span>")
 			return
 
-		if(user.drop_inv_item_to_loc(W, src))
+		if(user.transferItemToLoc(W, src))
 			beaker = W
 
 			var/reagentnames = ""
 			for(var/datum/reagent/R in beaker.reagents.reagent_list)
 				reagentnames += ";[R.name]"
 
-			message_admins("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) put a [beaker] into [src], containing [reagentnames] at ([src.loc.x],[src.loc.y],[src.loc.z]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[src.loc.x];Y=[src.loc.y];Z=[src.loc.z]'>JMP</a>).", 1)
-			log_admin("[key_name(usr)] put a [beaker] into [src], containing [reagentnames] at ([src.loc.x],[src.loc.y],[src.loc.z]).")
-
+			log_admin("[key_name(usr)] put a [beaker] into [src], containing [reagentnames] at [AREACOORD(src.loc)].")
+			message_admins("[ADMIN_TPMONTY(usr)] put a [beaker] into [src], containing [reagentnames].")
+			
 			to_chat(user, "You attach \the [W] to \the [src].")
 			update_icon()
 		return
@@ -149,7 +149,7 @@
 	set name = "Toggle Mode"
 	set src in view(1)
 
-	if(!istype(usr, /mob/living))
+	if(!isliving(usr))
 		return
 
 	if(usr.stat || usr.lying)

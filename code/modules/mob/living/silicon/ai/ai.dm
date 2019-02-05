@@ -86,7 +86,7 @@ var/list/ai_verbs_default = list(
 /mob/living/silicon/ai/proc/remove_ai_verbs()
 	src.verbs -= ai_verbs_default
 
-/mob/living/silicon/ai/New(loc, var/datum/ai_laws/L, var/obj/item/device/mmi/B, var/safety = 0)
+/mob/living/silicon/ai/Initialize(loc, var/datum/ai_laws/L, var/obj/item/device/mmi/B, var/safety = 0)
 	announcement = new()
 	announcement.title = "A.I. Announcement"
 	announcement.announcement_type = "A.I. Announcement"
@@ -97,7 +97,7 @@ var/list/ai_verbs_default = list(
 	var/pickedName = null
 	while(!pickedName)
 		pickedName = pick(ai_names)
-		for (var/mob/living/silicon/ai/A in mob_list)
+		for (var/mob/living/silicon/ai/A in GLOB.ai_list)
 			if (A.real_name == pickedName && possibleNames.len > 1) //fixing the theoretically possible infinite loop
 				possibleNames -= pickedName
 				pickedName = null
@@ -158,8 +158,7 @@ var/list/ai_verbs_default = list(
 		new /obj/machinery/ai_powersupply(src)
 
 	ai_list += src
-	..()
-	return
+	return ..()
 
 /mob/living/silicon/ai/Destroy()
 	ai_list -= src
@@ -362,9 +361,9 @@ var/list/ai_verbs_default = list(
 		statelaws()
 
 	if (href_list["track"])
-		var/mob/target = locate(href_list["track"]) in mob_list
+		var/mob/target = locate(href_list["track"]) in GLOB.mob_list
 
-		if(target && (!istype(target, /mob/living/carbon/human) || html_decode(href_list["trackname"]) == target:get_face_name()))
+		if(target && (!ishuman(target) || html_decode(href_list["trackname"]) == target:get_face_name()))
 			ai_actual_track(target)
 		else
 			to_chat(src, "<span class='warning'>System error. Cannot locate [html_decode(href_list["trackname"])].</span>")
@@ -489,7 +488,7 @@ var/list/ai_verbs_default = list(
 
 	var/list/ai_emotions = list("Very Happy", "Happy", "Neutral", "Unsure", "Confused", "Surprised", "Sad", "Upset", "Angry", "Awesome", "BSOD", "Blank", "Problems?", "Facepalm", "Friend Computer")
 	var/emote = input("Please, select a status!", "AI Status", null, null) in ai_emotions
-	for (var/obj/machinery/M in machines) //change status
+	for (var/obj/machinery/M in GLOB.machines) //change status
 		if(istype(M, /obj/machinery/ai_status_display))
 			var/obj/machinery/ai_status_display/AISD = M
 			AISD.emotion = emote
@@ -604,7 +603,7 @@ var/list/ai_verbs_default = list(
 
 
 /mob/living/silicon/ai/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/tool/wrench))
+	if(iswrench(W))
 		if(anchored)
 			user.visible_message("<span class='notice'> \The [user] starts to unbolt \the [src] from the plating...</span>")
 			if(!do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))

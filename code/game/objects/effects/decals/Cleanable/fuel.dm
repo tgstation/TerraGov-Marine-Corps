@@ -8,8 +8,8 @@ obj/effect/decal/cleanable/liquid_fuel
 
 	New(turf/newLoc, amt = 1, nologs = 0)
 		if(!nologs)
-			message_admins("[amt] units of liquid fuel have spilled in [newLoc.loc.name] ([newLoc.x],[newLoc.y],[newLoc.z]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[newLoc.x];Y=[newLoc.y];Z=[newLoc.z]'>JMP</a>)")
-			log_game("[amt] units of liquid fuel has spilled in [newLoc.loc.name] ([newLoc.x],[newLoc.y],[newLoc.z])")
+			log_game("[amt] units of liquid fuel have spilled in [AREACOORD(newLoc.loc)].")
+			message_admins("[amt] units of liquid fuel have spilled in [ADMIN_VERBOSEJMP(newLoc.loc)].")
 		amount = amt
 
 		//Be absorbed by any other liquid fuel in the tile.

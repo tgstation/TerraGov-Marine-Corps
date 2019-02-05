@@ -6,7 +6,7 @@
 	item_state = "cleaner"
 	container_type = OPENCONTAINER_NOUNIT
 	flags_item = NOBLUDGEON
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	throwforce = 3
 	w_class = 2.0
 	throw_speed = 2
@@ -60,8 +60,8 @@
 	for(var/X in reagents.reagent_list)
 		var/datum/reagent/R = X
 		if(R.spray_warning)
-			message_admins("[key_name_admin(user)] fired [R.name] from \a [src].")
-			log_game("[key_name(user)] fired [R.name] from \a [src].")
+			log_game("[key_name(user)] fired [R.name] from \a [src] in [AREACOORD(src.loc)].")
+			message_admins("[ADMIN_TPMONTY(user)] sprayed [R.name] from \a [src].")
 
 /obj/item/reagent_container/spray/proc/Spray_at(atom/A)
 	var/obj/effect/decal/chempuff/D = new/obj/effect/decal/chempuff(get_turf(src))
@@ -120,6 +120,15 @@
 /obj/item/reagent_container/spray/cleaner/New()
 	..()
 	reagents.add_reagent("cleaner", src.volume)
+
+
+/obj/item/reagent_container/spray/surgery
+	name = "sterilizing spray"
+	desc = "Infection and necrosis are a thing of the past!"
+	volume = 100
+	list_reagents = list("cleaner" = 50, "sterilizine" = 50)
+
+
 //pepperspray
 /obj/item/reagent_container/spray/pepper
 	name = "pepperspray"

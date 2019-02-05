@@ -30,7 +30,7 @@
 	max_co2 = 0
 	max_tox = 0
 
-	a_intent = "harm" //so they don't get pushed around
+	a_intent = INTENT_HARM //so they don't get pushed around
 
 	wall_smash = 1
 
@@ -137,7 +137,7 @@
 
 	proc/AttemptToEat(var/atom/target)
 		if(istype(target,/turf/closed/wall))
-			if((!istype(target,/turf/closed/wall/r_wall) && eatingDuration >= 100) || eatingDuration >= 200) //need 20 ticks to eat an rwall, 10 for a regular one
+			if((!isrwallturf(target) && eatingDuration >= 100) || eatingDuration >= 200) //need 20 ticks to eat an rwall, 10 for a regular one
 				var/turf/closed/wall/wall = target
 				wall.ChangeTurf(/turf/open/floor)
 				new /obj/item/stack/sheet/metal(src, flatPlasmaValue)

@@ -41,13 +41,13 @@
 		. = M.client.prefs.GetPlayerAltTitle(src)
 		if(. && lowercase) . = lowertext(.)
 
-/datum/job/proc/set_spawn_positions(var/count) 
+/datum/job/proc/set_spawn_positions(var/count)
 	return spawn_positions
 
-/datum/job/proc/generate_equipment(mob/living/carbon/human/H) 
+/datum/job/proc/generate_equipment(mob/living/carbon/human/H)
 	return //This should ONLY be used to list things that the character can wear, or show on their sprite.
 
-/datum/job/proc/generate_entry_message() 
+/datum/job/proc/generate_entry_message()
 	return //The job description that characters get, along with anything else that may be appropriate.
 
 /datum/job/proc/announce_entry_message(mob/living/carbon/human/H, datum/money_account/M) //The actual message that is displayed to the mob when they enter the game as a new player.
@@ -87,11 +87,11 @@
 	for(i in H.client.prefs.gear)
 		G = gear_datums[i]
 		if(G)
-			if(G.allowed_roles && !(title in G.allowed_roles)) 				
+			if(G.allowed_roles && !(title in G.allowed_roles))
 				continue //Is the role allowed?
 			if(G.whitelisted && !is_alien_whitelisted(G.whitelisted))
 				continue //is the role whitelisted? //TODO Remove this.
-			H.equip_to_slot_or_del(new G.path(H), G.slot ? G.slot : WEAR_IN_BACK)
+			H.equip_to_slot_or_del(new G.path(H), G.slot ? G.slot : SLOT_IN_BACKPACK)
 
 	//Give humans wheelchairs, if they need them.
 	var/datum/limb/l_foot = H.get_limb("l_foot")
@@ -108,10 +108,10 @@
 	if(H.disabilities & NEARSIGHTED)
 		var/obj/item/clothing/glasses/regular/P = new (H)
 		P.prescription = 1
-		H.equip_to_slot_or_del(P, WEAR_EYES)
+		H.equip_to_slot_or_del(P, SLOT_GLASSES)
 
 /datum/job/proc/equip_identification(mob/living/carbon/human/H)
-	if(!istype(H))	
+	if(!istype(H))
 		return
 	var/obj/item/card/id/C
 	var/title_alt
@@ -126,24 +126,24 @@
 	C.name = "[C.registered_name]'s ID Card ([C.assignment])"
 
 	//put the player's account number onto the ID
-	if(H.mind?.initial_account) 
+	if(H.mind?.initial_account)
 		C.associated_account_number = H.mind.initial_account.account_number
-	H.equip_to_slot_or_del(C, WEAR_ID)
+	H.equip_to_slot_or_del(C, SLOT_WEAR_ID)
 	return TRUE
 
 /datum/job/proc/get_access()
-	if(!config || config.jobs_have_minimal_access)							
+	if(CONFIG_GET(flag/jobs_have_minimal_access))
 		return minimal_access.Copy() //Need to copy, because we want a new list here. Not the datum's list.
-	return access.Copy() 
-		
+	return access.Copy()
+
 //If the configuration option is set to require players to be logged as old enough to play certain jobs, then this proc checks that they are, otherwise it just returns 1
 /datum/job/proc/player_old_enough(client/C)
-	if(available_in_days(C) == 0) 
+	if(available_in_days(C) == 0)
 		return TRUE	//If available in 0 days, the player is old enough to play. Can be compared to null, but I think this is clearer.
 
 /datum/job/proc/available_in_days(client/C)
 	//Checking the player's age is only possible through a db connection, so if there isn't one, player age will be a text string instead.
-	if(!istype(C) || !config.use_age_restriction_for_jobs || !isnum(C.player_age) || !isnum(minimal_player_age)) 
+	if(!istype(C) || !CONFIG_GET(flag/use_age_restriction_for_jobs) || !isnum(C.player_age) || !isnum(minimal_player_age))
 		return FALSE //One of the few times when returning 0 is the proper behavior.
 	return max(0, minimal_player_age - C.player_age)
 

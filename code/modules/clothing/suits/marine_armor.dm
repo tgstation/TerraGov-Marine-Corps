@@ -1,21 +1,3 @@
-#define DEBUG_ARMOR_PROTECTION 0
-
-#if DEBUG_ARMOR_PROTECTION
-/mob/living/carbon/human/verb/check_overall_protection()
-	set name = "Get Armor Value"
-	set category = "Debug"
-	set desc = "Shows the armor value of the bullet category."
-
-	var/armor = 0
-	var/counter = 0
-	for(var/X in H.limbs)
-		var/datum/limb/E = X
-		armor = getarmor_organ(E, "bullet")
-		to_chat(src, "<span class='debuginfo'><b>[E.name]</b> is protected with <b>[armor]</b> armor against bullets.</span>")
-		counter += armor
-	to_chat(src, "<span class='debuginfo'>The overall armor score is: <b>[counter]</b>.</span>")
-#endif
-
 //=======================================================================\\
 //=======================================================================
 
@@ -50,35 +32,27 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	name = "\improper M3 pattern marine armor"
 	desc = "A standard TerraGov Marine Corps M3 Pattern Chestplate. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
 	icon = 'icons/obj/clothing/cm_suits.dmi'
-	icon_state = "6"
+	icon_state = "3"
 	item_state = "armor"
 	sprite_sheet_id = 1
 	flags_atom = CONDUCT
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
-	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
-	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
+	flags_cold_protection = CHEST|GROIN|ARMS|LEGS
+	flags_heat_protection = CHEST|GROIN|ARMS|LEGS
 	min_cold_protection_temperature = ARMOR_min_cold_protection_temperature
 	max_heat_protection_temperature = ARMOR_max_heat_protection_temperature
 	blood_overlay_type = "armor"
-	armor = list(melee = 50, bullet = 40, laser = 35, energy = 20, bomb = 25, bio = 0, rad = 0)
+	armor = list(melee = 50, bullet = 40, laser = 35, energy = 20, bomb = 25, bio = 10, rad = 10)
 	siemens_coefficient = 0.7
 	permeability_coefficient = 0.8
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
 	allowed = list(/obj/item/weapon/gun/,
 		/obj/item/tank/emergency_oxygen,
-		/obj/item/device/flashlight,
-		/obj/item/ammo_magazine/,
-		/obj/item/storage/fancy/cigarettes,
-		/obj/item/tool/lighter,
-		/obj/item/explosive/grenade,
 		/obj/item/storage/bible,
-		/obj/item/device/binoculars,
-		/obj/item/weapon/combat_knife,
 		/obj/item/storage/sparepouch,
 		/obj/item/storage/large_holster/machete,
 		/obj/item/storage/belt/gun/m4a3,
-		/obj/item/storage/belt/gun/m44,
-		/obj/item/device/healthanalyzer)
+		/obj/item/storage/belt/gun/m44,)
 
 	var/brightness_on = 5 //Average attachable pocket light
 	var/flashlight_cooldown = 0 //Cooldown for toggling the light
@@ -163,7 +137,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 /obj/item/clothing/suit/storage/marine/item_action_slot_check(mob/user, slot)
 	if(!ishuman(user))
 		return FALSE
-	if(slot != WEAR_JACKET)
+	if(slot != SLOT_WEAR_SUIT)
 		return FALSE
 	return TRUE //only give action button when armor is worn.
 
@@ -186,23 +160,17 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 
 /obj/item/clothing/suit/storage/marine/M3HB
 	name = "\improper M3-H pattern marine armor"
-	desc = "A standard Marine M3 Heavy Build Pattern Chestplate. Increased protection at the cost of a slowdown."
+	desc = "A standard Marine M3 Heavy Build Pattern Chestplate. Increased protection at the cost of slowdown."
 	icon_state = "1"
-	armor = list(melee = 60, bullet = 70, laser = 35, energy = 20, bomb = 50, bio = 0, rad = 0)
+	armor = list(melee = 60, bullet = 70, laser = 45, energy = 30, bomb = 60, bio = 20, rad = 20)
 	slowdown = SLOWDOWN_ARMOR_HEAVY
 
 /obj/item/clothing/suit/storage/marine/M3LB
 	name = "\improper M3-LB pattern marine armor"
 	desc = "A standard Marine M3 Light Build Pattern Chestplate. Lesser encumbrance and protection."
 	icon_state = "2"
-	armor = list(melee = 30, bullet = 20, laser = 35, energy = 20, bomb = 15, bio = 0, rad = 0)
+	armor = list(melee = 30, bullet = 20, laser = 25, energy = 10, bomb = 15, bio = 0, rad = 0)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
-
-/obj/item/clothing/suit/storage/marine/M3P
-	name = "\improper M3-P pattern marine armor"
-	desc = "A standard Marine M3 Padded Pattern Chestplate. Better protection against bullets and explosions, but worse against melee."
-	icon_state = "3"
-	armor = list(melee = 30, bullet = 60, laser = 35, energy = 20, bomb = 60, bio = 0, rad = 0)
 
 /obj/item/clothing/suit/storage/marine/M3IS
 	name = "\improper M3-IS pattern marine armor"
@@ -224,13 +192,19 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	name = "\improper M3-E pattern marine armor"
 	desc = "A standard Marine M3 Edge Pattern Chestplate. High protection against cuts and slashes, but very little padding against bullets or explosions."
 	icon_state = "5"
-	armor = list(melee = 70, bullet = 20, laser = 35, energy = 20, bomb = 15, bio = 0, rad = 0)
+	armor = list(melee = 70, bullet = 20, laser = 35, energy = 20, bomb = 15, bio = 10, rad = 10)
+
+/obj/item/clothing/suit/storage/marine/M3P
+	name = "\improper M3-P pattern marine armor"
+	desc = "A standard Marine M3 Padded Pattern Chestplate. Better protection against bullets and explosions, with limited thermal shielding against energy weapons, but worse against melee."
+	icon_state = "6"
+	armor = list(melee = 30, bullet = 70, laser = 45, energy = 30, bomb = 60, bio = 10, rad = 10)
 
 /obj/item/clothing/suit/storage/marine/MP
 	name = "\improper M2 pattern MP armor"
 	desc = "A standard TerraGov Marine Corps M2 Pattern Chestplate. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
 	icon_state = "mp"
-	armor = list(melee = 40, bullet = 70, laser = 35, energy = 20, bomb = 25, bio = 0, rad = 0)
+	armor = list(melee = 40, bullet = 70, laser = 35, energy = 20, bomb = 25, bio = 10, rad = 10)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	allowed = list(/obj/item/weapon/gun,
 		/obj/item/tank/emergency_oxygen,
@@ -251,14 +225,14 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	icon_state = "warrant_officer"
 	name = "\improper M3 pattern MP armor"
 	desc = "A well-crafted suit of M3 Pattern Armor typically distributed to Chief MPs. Useful for letting your men know who is in charge."
-	armor = list(melee = 50, bullet = 80, laser = 40, energy = 25, bomb = 30, bio = 0, rad = 0)
+	armor = list(melee = 50, bullet = 80, laser = 40, energy = 25, bomb = 30, bio = 10, rad = 10)
 
 /obj/item/clothing/suit/storage/marine/MP/admiral
 	icon_state = "admiral"
 	name = "\improper M3 pattern admiral armor"
 	desc = "A well-crafted suit of M3 Pattern Armor with a gold shine. It looks very expensive, but shockingly fairly easy to carry and wear."
 	w_class = 3
-	armor = list(melee = 50, bullet = 80, laser = 40, energy = 25, bomb = 30, bio = 0, rad = 0)
+	armor = list(melee = 50, bullet = 80, laser = 40, energy = 25, bomb = 30, bio = 10, rad = 10)
 
 /obj/item/clothing/suit/storage/marine/MP/RO
 	icon_state = "officer"
@@ -275,10 +249,10 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	desc = "A heavy protective vest designed to be worn with the M56 Smartgun System. \nIt has specially designed straps and reinforcement to carry the Smartgun and accessories."
 	icon_state = "8"
 	item_state = "armor"
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
-	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
-	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
-	armor = list(melee = 55, bullet = 75, laser = 35, energy = 35, bomb = 35, bio = 0, rad = 0)
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
+	flags_cold_protection = CHEST|GROIN|ARMS|LEGS
+	flags_heat_protection = CHEST|GROIN|ARMS|LEGS
+	armor = list(melee = 55, bullet = 75, laser = 35, energy = 35, bomb = 35, bio = 10, rad = 10)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	allowed = list(/obj/item/tank/emergency_oxygen,
 					/obj/item/device/flashlight,
@@ -320,9 +294,9 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	desc = "A heavy, rugged set of armor plates for when you really, really need to not die horribly. Slows you down though.\nHas an automated diagnostics and medical system for keeping its wearer alive."
 	icon_state = "xarmor"
 	armor = list(melee = 80, bullet = 110, laser = 80, energy = 80, bomb = 80, bio = 20, rad = 20)
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS|FEET
-	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS|FEET
-	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS|FEET
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET
+	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|FEET
+	flags_heat_protection = CHEST|GROIN|ARMS|LEGS|FEET
 	slowdown = SLOWDOWN_ARMOR_HEAVY
 	var/mob/living/carbon/human/wearer = null
 	var/B18_burn_cooldown = null
@@ -334,7 +308,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	var/B18_automed_damage = 50
 	var/B18_automed_pain = 70
 	var/obj/item/device/healthanalyzer/integrated/B18_analyzer = null
-	supporting_limbs = list(UPPER_TORSO, LOWER_TORSO, ARM_LEFT, ARM_RIGHT, HAND_LEFT, HAND_RIGHT, LEG_LEFT, LEG_RIGHT, FOOT_LEFT, FOOT_RIGHT) //B18 effectively stabilizes these.
+	supporting_limbs = list(CHEST, GROIN, ARM_LEFT, ARM_RIGHT, HAND_LEFT, HAND_RIGHT, LEG_LEFT, LEG_RIGHT, FOOT_LEFT, FOOT_RIGHT) //B18 effectively stabilizes these.
 	unacidable = TRUE
 
 	New(loc,expected_type 	= type,
@@ -380,7 +354,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 
 /obj/item/clothing/suit/storage/marine/specialist/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
-	if(slot == WEAR_JACKET)
+	if(slot == SLOT_WEAR_SUIT)
 		wearer = user
 		b18automed_turn_on(user)
 
@@ -489,7 +463,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	if(dose_administered)
 		playsound(src,'sound/items/hypospray.ogg', 25, 0, 1)
 		details +=("Estimated [B18_CHEM_COOLDOWN/600] minute replenishment time for each dosage.")
-		to_chat(wearer, "<span class='notice'>\icon [src] beeps:</br> [details.Join(" ")]</span>")
+		to_chat(wearer, "<span class='notice'>[bicon(src)] beeps:</br> [details.Join(" ")]</span>")
 
 /obj/item/clothing/suit/storage/marine/specialist/proc/handle_chem_cooldown(code = B18_BRUTE_CODE, silent = FALSE)
 	if(code)
@@ -615,14 +589,14 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 			B18_automed_pain = round(B18_automed_pain)
 			B18_automed_pain = CLAMP(B18_automed_pain,B18_PAIN_MIN,B18_PAIN_MAX)
 		if(!( master ))
-			if(istype(loc, /mob/living/carbon/human))
+			if(ishuman(loc))
 				handle_interface(loc)
 			else
 				for(var/mob/living/carbon/human/M in viewers(1, src))
 					if(M.client)
 						handle_interface(M)
 		else
-			if(istype(master.loc, /mob/living/carbon/human))
+			if(ishuman(master.loc))
 				handle_interface(master.loc)
 			else
 				for(var/mob/living/carbon/human/M in viewers(1, master))
@@ -635,7 +609,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	name = "\improper M3-T light armor"
 	desc = "A custom set of M3 armor designed for users of long ranged explosive weaponry."
 	icon_state = "demolitionist"
-	armor = list(melee = 65, bullet = 50, laser = 40, energy = 25, bomb = 50, bio = 0, rad = 0)
+	armor = list(melee = 65, bullet = 50, laser = 40, energy = 25, bomb = 50, bio = 10, rad = 10)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	allowed = list(/obj/item/weapon/gun/launcher/rocket)
 
@@ -647,7 +621,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	name = "\improper M3-S light armor"
 	desc = "A custom set of M3 armor designed for TGMC Scouts."
 	icon_state = "scout_armor"
-	armor = list(melee = 65, bullet = 80, laser = 40, energy = 25, bomb = 35, bio = 0, rad = 0)
+	armor = list(melee = 65, bullet = 80, laser = 40, energy = 25, bomb = 35, bio = 10, rad = 10)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 
 	New()
@@ -657,13 +631,13 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 
 /obj/item/clothing/suit/storage/marine/M35
 	name = "\improper M35 armor"
-	desc = "A custom set of M35 armor designed for use by TGMC Pyrotechnicians. Contains thick kevlar shielding."
+	desc = "A custom set of M35 armor designed for use by TGMC Pyrotechnicians. Contains thick kevlar shielding, partial environmental shielding and thermal dissipators."
 	icon_state = "pyro_armor"
-	armor = list(melee = 70, bullet = 90, laser = 60, energy = 60, bomb = 30, bio = 0, rad = 0)
+	armor = list(melee = 70, bullet = 90, laser = 60, energy = 60, bomb = 30, bio = 30, rad = 50)
 	max_heat_protection_temperature = FIRESUIT_max_heat_protection_temperature
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS|FEET
-	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS|FEET
-	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS|FEET
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET
+	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|FEET
+	flags_heat_protection = CHEST|GROIN|ARMS|LEGS|FEET
 
 	New()
 		select_gamemode_skin(type)
@@ -674,7 +648,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	name = "\improper M3 pattern recon armor"
 	desc = "A custom modified set of M3 armor designed for recon missions."
 	icon_state = "marine_sniper"
-	armor = list(melee = 65, bullet = 70, laser = 40, energy = 25, bomb = 30, bio = 0, rad = 0)
+	armor = list(melee = 65, bullet = 70, laser = 40, energy = 25, bomb = 30, bio = 10, rad = 10)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 
 	New(loc,expected_type 	= type,
@@ -685,9 +659,9 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	name = "\improper M3 pattern marksman armor"
 	icon_state = "marine_sniperm"
 	slowdown = SLOWDOWN_ARMOR_LIGHT
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
+	flags_cold_protection = CHEST|GROIN|LEGS|ARMS
+	flags_heat_protection = CHEST|GROIN|LEGS|ARMS
 
 	New(loc,expected_type 	= type,
 		new_name[] 		= list(MAP_ICE_COLONY = "\improper M3 pattern marksman snow armor"))
@@ -726,9 +700,9 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 /obj/item/clothing/suit/storage/marine/veteran/PMC/sniper
 	name = "\improper M4 pattern PMC sniper armor"
 	icon_state = "pmc_sniper"
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS
-	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS
-	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS
+	flags_armor_protection = CHEST|GROIN|LEGS
+	flags_cold_protection = CHEST|GROIN|LEGS
+	flags_heat_protection = CHEST|GROIN|LEGS
 	armor = list(melee = 60, bullet = 70, laser = 50, energy = 60, bomb = 65, bio = 10, rad = 10)
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDELOWHAIR
@@ -738,9 +712,9 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	desc = "A modification of the standard Armat Systems M3 armor. Hooked up with harnesses and straps allowing the user to carry an M56 Smartgun."
 	icon_state = "heavy_armor"
 	slowdown = SLOWDOWN_ARMOR_HEAVY
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
-	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
-	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
+	flags_cold_protection = CHEST|GROIN|ARMS|LEGS
+	flags_heat_protection = CHEST|GROIN|ARMS|LEGS
 	armor = list(melee = 85, bullet = 85, laser = 55, energy = 65, bomb = 70, bio = 20, rad = 20)
 
 /obj/item/clothing/suit/storage/marine/veteran/PMC/commando
@@ -757,7 +731,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	name = "\improper H1 Iron Bears vest"
 	desc = "A protective vest worn by Iron Bears mercenaries."
 	icon_state = "bear_armor"
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO
+	flags_armor_protection = CHEST|GROIN
 	armor = list(melee = 70, bullet = 70, laser = 50, energy = 60, bomb = 50, bio = 10, rad = 10)
 	slowdown = SLOWDOWN_ARMOR_VERY_LIGHT
 
@@ -765,7 +739,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	name = "\improper D2 armored vest"
 	desc = "A protective vest worn by some seriously experienced mercs."
 	icon_state = "dutch_armor"
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO
+	flags_armor_protection = CHEST|GROIN
 	armor = list(melee = 70, bullet = 85, laser = 55,energy = 65, bomb = 70, bio = 10, rad = 10)
 	slowdown = SLOWDOWN_ARMOR_VERY_LIGHT
 
@@ -778,13 +752,13 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	icon = 'icons/obj/clothing/cm_suits.dmi'
 	sprite_sheet_id = 1
 	flags_atom = CONDUCT
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
-	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
-	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
+	flags_cold_protection = CHEST|GROIN|ARMS|LEGS
+	flags_heat_protection = CHEST|GROIN|ARMS|LEGS
 	min_cold_protection_temperature = ARMOR_min_cold_protection_temperature
 	max_heat_protection_temperature = ARMOR_max_heat_protection_temperature
 	blood_overlay_type = "armor"
-	armor = list(melee = 50, bullet = 40, laser = 35, energy = 20, bomb = 25, bio = 0, rad = 0)
+	armor = list(melee = 50, bullet = 40, laser = 35, energy = 20, bomb = 25, bio = 10, rad = 10)
 	siemens_coefficient = 0.7
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
 	allowed = list(/obj/item/weapon/gun,
@@ -857,7 +831,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 
 /obj/item/clothing/suit/storage/faction/item_action_slot_check(mob/user, slot)
 	if(!ishuman(user)) return FALSE
-	if(slot != WEAR_JACKET) return FALSE
+	if(slot != SLOT_WEAR_SUIT) return FALSE
 	return TRUE //only give action button when armor is worn.
 
 /obj/item/clothing/suit/storage/faction/proc/toggle_armor_light(mob/user)
@@ -884,7 +858,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	desc = "Standard body armor of the UPP military, the UM5 (Union Medium MK5) is a medium body armor, roughly on par with the venerable M3 pattern body armor in service with the TGMC. Unlike the M3, however, the plate has a heavier neckplate, but unfortunately restricts movement slightly more. This has earned many TGMC members to refer to UPP soldiers as 'tin men'."
 	icon_state = "upp_armor"
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO
+	flags_armor_protection = CHEST|GROIN
 	armor = list(melee = 60, bullet = 60, laser = 50, energy = 60, bomb = 40, bio = 10, rad = 10)
 
 /obj/item/clothing/suit/storage/faction/UPP/commando
@@ -898,7 +872,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	desc = "An extremely heavy duty set of body armor in service with the UPP military, the UH7 (Union Heavy MK5) is known for being a rugged set of armor, capable of taking immesnse punishment. Although the armor doesn't protect certain areas, it provides unmatchable protection from the front, which UPP engineers summerized as the most likely target for enemy fire. In order to cut costs, the head shielding in the MK6 has been stripped down a bit in the MK7, but this comes at much more streamlined production.  "
 	icon_state = "upp_armor_heavy"
 	slowdown = SLOWDOWN_ARMOR_HEAVY
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS
+	flags_armor_protection = CHEST|GROIN|LEGS
 	armor = list(melee = 85, bullet = 85, laser = 50, energy = 60, bomb = 60, bio = 10, rad = 10)
 
 /obj/item/clothing/suit/storage/marine/smartgunner/UPP
@@ -906,7 +880,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	desc = "An extremely heavy duty set of body armor in service with the UPP military, the UH7 (Union Heavy MK5) is known for being a rugged set of armor, capable of taking immesnse punishment. Although the armor doesn't protect certain areas, it provides unmatchable protection from the front, which UPP engineers summerized as the most likely target for enemy fire. In order to cut costs, the head shielding in the MK6 has been stripped down a bit in the MK7, but this comes at much more streamlined production.  "
 	icon_state = "upp_armor_heavy"
 	slowdown = SLOWDOWN_ARMOR_HEAVY
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO
+	flags_armor_protection = CHEST|GROIN
 	armor = list(melee = 85, bullet = 85, laser = 50, energy = 60, bomb = 60, bio = 10, rad = 10)
 
 //===========================FREELANCER================================
@@ -916,7 +890,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	desc = "A armored protective chestplate scrapped together from various plates. It keeps up remarkably well, as the craftsmanship is solid, and the design mirrors such armors in the UPP and the TGMC. The many skilled craftsmen in the freelancers ranks produce these vests at a rate about one a month."
 	icon_state = "freelancer_armor"
 	slowdown = SLOWDOWN_ARMOR_LIGHT
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO
+	flags_armor_protection = CHEST|GROIN
 	armor = list(melee = 60, bullet = 60, laser = 50, energy = 60, bomb = 40, bio = 10, rad = 10)
 
 //this one is for CLF
@@ -927,7 +901,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	icon_state = "rebel_armor"
 	sprite_sheet_id = 1
 	slowdown = SLOWDOWN_ARMOR_VERY_LIGHT
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS
+	flags_armor_protection = CHEST|GROIN|LEGS
 	armor = list(melee = 40, bullet = 40, laser = 40, energy = 30, bomb = 60, bio = 30, rad = 30)
 	allowed = list(/obj/item/weapon/gun,
 		/obj/item/tank/emergency_oxygen,
@@ -940,7 +914,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 		/obj/item/storage/large_holster/machete,
 		/obj/item/weapon/baseballbat,
 		/obj/item/weapon/baseballbat/metal)
-	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
+	flags_cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	min_cold_protection_temperature = SPACE_SUIT_min_cold_protection_temperature
 
 /obj/item/clothing/suit/storage/CMB
@@ -948,14 +922,14 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	desc = "A green jacket worn by crew on the Colonial Marshals."
 	icon_state = "CMB_jacket"
 	blood_overlay_type = "coat"
-	flags_armor_protection = UPPER_TORSO|ARMS
+	flags_armor_protection = CHEST|ARMS
 
 /obj/item/clothing/suit/storage/RO
 	name = "\improper RO jacket"
 	desc = "A green jacket worn by TGMC personnel. The back has the flag of the TerraGov on it."
 	icon_state = "RO_jacket"
 	blood_overlay_type = "coat"
-	flags_armor_protection = UPPER_TORSO|ARMS
+	flags_armor_protection = CHEST|ARMS
 
 //===========================//HELGHAST - MERCENARY\\================================
 

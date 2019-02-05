@@ -1,5 +1,3 @@
-var/global/datum/global_init/init
-
 SUBSYSTEM_DEF(ticker)
 	name = "Ticker"
 	init_order = INIT_ORDER_TICKER
@@ -9,7 +7,6 @@ SUBSYSTEM_DEF(ticker)
 	runlevels = RUNLEVEL_LOBBY | RUNLEVEL_SETUP | RUNLEVEL_GAME
 
 /datum/controller/subsystem/ticker/Initialize(timeofday)
-	init = new ()
 	if(!ticker)
 		ticker = new /datum/controller/gameticker()
 

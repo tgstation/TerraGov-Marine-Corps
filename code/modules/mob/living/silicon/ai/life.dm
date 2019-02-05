@@ -33,7 +33,7 @@
 		handle_stunned()
 
 		//stage = 1
-		//if (istype(src, /mob/living/silicon/ai)) // Are we not sure what we are?
+		//if (isAI(src)) // Are we not sure what we are?
 		var/blind = 0
 		//stage = 2
 		var/area/loc = null
@@ -86,7 +86,7 @@
 			see_in_dark = 0
 			see_invisible = SEE_INVISIBLE_LIVING
 
-			if (((!loc.master.power_equip) || istype(T, /turf/open/space)) && !istype(src.loc,/obj/item))
+			if (((!loc.master.power_equip) || isspaceturf(T)) && !istype(loc,/obj/item))
 				if (src:aiRestorePowerRoutine==0)
 					src:aiRestorePowerRoutine = 1
 
@@ -101,7 +101,7 @@
 						to_chat(src, "Backup battery online. Scanners, camera, and radio interface offline. Beginning fault-detection.")
 						sleep(50)
 						if (loc.master.power_equip)
-							if (!istype(T, /turf/open/space))
+							if (!isspaceturf(T))
 								to_chat(src, "Alert cancelled. Power has been restored without our assistance.")
 								src:aiRestorePowerRoutine = 0
 								set_blindness(0)
@@ -110,7 +110,7 @@
 						sleep(20)
 						to_chat(src, "Emergency control system online. Verifying connection to power network.")
 						sleep(50)
-						if (istype(T, /turf/open/space))
+						if (isspaceturf(T))
 							to_chat(src, "Unable to verify! No power connection detected!")
 							src:aiRestorePowerRoutine = 2
 							return
@@ -141,7 +141,7 @@
 								src:aiRestorePowerRoutine = 2
 								return
 							if (loc.master.power_equip)
-								if (!istype(T, /turf/open/space))
+								if (!isspaceturf(T))
 									to_chat(src, "Alert cancelled. Power has been restored without our assistance.")
 									src:aiRestorePowerRoutine = 0
 									set_blindness(0)
@@ -169,7 +169,7 @@
 	if(status_flags & GODMODE)
 		return
 	if(stat != DEAD)
-		if(health <= config.health_threshold_dead)
+		if(health <= CONFIG_GET(number/health_threshold_dead))
 			death()
 			return
 		else if(stat == UNCONSCIOUS)

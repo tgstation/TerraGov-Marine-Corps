@@ -14,7 +14,7 @@
 
 //Xenos digging up snow
 /turf/open/snow/attack_alien(mob/living/carbon/Xenomorph/M)
-	if(M.a_intent == "grab")
+	if(M.a_intent == INTENT_GRAB)
 
 		if(!slayer)
 			to_chat(M, "<span class='warning'>There is nothing to clear out!</span>")
@@ -73,7 +73,7 @@
 			var/mob/living/carbon/C = AM
 			var/slow_amount = 0.75
 			var/can_stuck = 1
-			if(istype(C, /mob/living/carbon/Xenomorph)||isYautja(C))
+			if(isxeno(C)||isyautja(C))
 				slow_amount = 0.25
 				can_stuck = 0
 			C.next_move_slowdown += slow_amount * slayer

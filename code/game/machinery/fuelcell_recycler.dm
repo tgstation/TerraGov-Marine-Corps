@@ -16,11 +16,11 @@
 /obj/machinery/fuelcell_recycler/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/fuelCell))
 		if(!cell_left)
-			if(user.drop_inv_item_to_loc(I, src))
+			if(user.transferItemToLoc(I, src))
 				cell_left = I
 				start_processing()
 		else if(!cell_right)
-			if(user.drop_inv_item_to_loc(I, src))
+			if(user.transferItemToLoc(I, src))
 				cell_right = I
 				start_processing()
 		else

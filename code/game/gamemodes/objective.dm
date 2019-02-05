@@ -223,7 +223,7 @@ datum/objective/harm
 		if(already_completed)
 			return 1
 
-		if(target && target.current && istype(target.current, /mob/living/carbon/human))
+		if(target && target.current && ishuman(target.current))
 			if(target.current.stat == DEAD)
 				return 0
 
@@ -342,10 +342,10 @@ datum/objective/steal
 			if("a functional AI")
 				for(var/obj/item/device/aicard/C in all_items) //Check for ai card
 					for(var/mob/living/silicon/ai/M in C)
-						if(istype(M, /mob/living/silicon/ai) && M.stat != 2) //See if any AI's are alive inside that card.
+						if(isAI(M) && M.stat != DEAD) //See if any AI's are alive inside that card.
 							return 1
 
-				for(var/mob/living/silicon/ai/ai in living_mob_list)
+				for(var/mob/living/silicon/ai/ai in GLOB.ai_list)
 					if(istype(ai.loc, /turf))
 						var/area/check_area = get_area(ai)
 						if(istype(check_area, /area/shuttle/escape/centcom))

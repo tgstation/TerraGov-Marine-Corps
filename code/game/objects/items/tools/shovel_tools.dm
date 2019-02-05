@@ -11,7 +11,7 @@
 	icon_state = "shovel"
 	item_state = "shovel"
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	force = 8
 	throwforce = 4
 	w_class = 3

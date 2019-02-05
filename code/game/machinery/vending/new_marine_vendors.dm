@@ -202,6 +202,8 @@
 						to_chat(H, "<span class='warning'>You already have a specialist specialization.</span>")
 						return
 					var/p_name = L[1]
+					if(findtext(p_name, "Scout Set")) //Makes sure there can only be one Scout kit taken despite the two variants.
+						p_name = "Scout Set"
 					if(!available_specialist_sets.Find(p_name))
 						to_chat(H, "<span class='warning'>That set is already taken</span>")
 						return
@@ -232,13 +234,15 @@
 				new headset_type(loc)
 				new gloves_type(loc)
 				//if(istype(ticker.mode, /datum/game_mode/ice_colony))//drop a coif with the uniform on ice colony
-				if(map_tag == MAP_ICE_COLONY)
+				if(GLOB.map_tag == MAP_ICE_COLONY)
 					new /obj/item/clothing/mask/rebreather/scarf(loc)
 
 
 			if(bitf == MARINE_CAN_BUY_ESSENTIALS)
 				if(vendor_role == "Squad Specialist" && H.mind && H.mind.assigned_role == "Squad Specialist")
 					var/p_name = L[1]
+					if(findtext(p_name, "Scout Set")) //Makes sure there can only be one Scout kit taken despite the two variants.
+						p_name = "Scout Set"
 					if(p_name)
 						H.specset = p_name
 					else
@@ -589,7 +593,6 @@
 							list("Medium general pouch", 0, /obj/item/storage/pouch/general/medium, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
 							list("Flare pouch", 0, /obj/item/storage/pouch/flare/full, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
 							list("Firstaid pouch", 0, /obj/item/storage/pouch/firstaid/full, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
-							list("Explosive pouch", 0, /obj/item/storage/pouch/explosive, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
 							list("Large pistol magazine pouch", 0, /obj/item/storage/pouch/magazine/pistol/large, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
 							list("Pistol pouch", 0, /obj/item/storage/pouch/pistol, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
 							list("Explosive pouch", 0, /obj/item/storage/pouch/explosive, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
@@ -911,7 +914,8 @@ var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolition
 
 	listed_products = list(
 							list("SPECIALIST SETS (Choose one)", 0, null, null, null),
-							list("Scout Set", 0, /obj/item/storage/box/spec/scout, MARINE_CAN_BUY_ESSENTIALS, "white"),
+							list("Scout Set (Battle Rifle)", 0, /obj/item/storage/box/spec/scout, MARINE_CAN_BUY_ESSENTIALS, "white"),
+							list("Scout Set (Shotgun)", 0, /obj/item/storage/box/spec/scoutshotgun, MARINE_CAN_BUY_ESSENTIALS, "white"),
 							list("Sniper Set", 0, /obj/item/storage/box/spec/sniper, MARINE_CAN_BUY_ESSENTIALS, "white"),
 							list("Demolitionist Set", 0, /obj/item/storage/box/spec/demolitionist, MARINE_CAN_BUY_ESSENTIALS, "white"),
 							list("Heavy Grenadier Set", 0, /obj/item/storage/box/spec/heavy_grenadier, MARINE_CAN_BUY_ESSENTIALS, "white"),
@@ -969,8 +973,9 @@ var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolition
 							list("Detonation pack", 5, /obj/item/device/radio/detpack, null, "black"),
 							list("Smoke grenade", 2, /obj/item/explosive/grenade/smokebomb, null, "black"),
 							list("Cloak grenade", 3, /obj/item/explosive/grenade/cloakbomb, null, "black"),
-							list("M40 HIDP incendiary grenade", 4, /obj/item/explosive/grenade/incendiary, null, "black"),
-							list("M40 HEDP grenade", 4, /obj/item/explosive/grenade/frag, null, "black"),
+							list("M40 HIDP incendiary grenade", 3, /obj/item/explosive/grenade/incendiary, null, "black"),
+							list("M40 HEDP grenade", 3, /obj/item/explosive/grenade/frag, null, "black"),
+							list("M40 IMDP grenade", 3, /obj/item/explosive/grenade/impact, null, "black"),
 							list("M41AE2 heavy pulse rifle", 12, /obj/item/weapon/gun/rifle/lmg, null, "orange"),
 							list("M41AE2 ammo box (10x24mm)", 4, /obj/item/ammo_magazine/rifle/lmg, null, "black"),
 							list("Flamethrower", 12, /obj/item/weapon/gun/flamer, null, "orange"),
@@ -1090,7 +1095,7 @@ var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolition
 						/obj/item/cell/high,
 						/obj/item/tool/shovel/etool,
 						/obj/item/device/lightreplacer,
-						/obj/item/circuitboard/general,
+						/obj/item/circuitboard/general
 						)
 
 

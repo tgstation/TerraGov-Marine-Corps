@@ -1,4 +1,4 @@
-#define TYPING_INDICATOR_LIFETIME 3 SECONDS	//grace period after which typing indicator disappears regardless of text in chatbar
+#define TYPING_INDICATOR_LIFETIME 3 SECONDS	//Grace period after which typing indicator disappears regardless of text in chatbar.
 
 mob/var/typing
 mob/var/last_typed
@@ -7,14 +7,14 @@ mob/var/last_typed_time
 var/global/image/typing_indicator = image('icons/mob/talk.dmi', null, "typing")
 
 
-/mob/proc/toggle_typing_indicator(var/type)
+/mob/proc/toggle_typing_indicator()
 	if(!typing_indicator)
 		return
 
-	if(!client?.prefs?.toggles_chat & SHOW_TYPING)
+	if(!(client?.prefs?.toggles_chat & SHOW_TYPING))
 		overlays -= typing_indicator
 		return
-	
+
 	if(typing)
 		overlays -= typing_indicator
 		typing = FALSE
@@ -28,12 +28,8 @@ var/global/image/typing_indicator = image('icons/mob/talk.dmi', null, "typing")
 	set name = ".Say"
 	set hidden = TRUE
 
-	if(say_disabled)
-		to_chat(usr, "<span class='warning'><b>Speech is currently admin-disabled.</b>.")
-		return
-
 	toggle_typing_indicator()
-	var/message = input("","say (text)") as text
+	var/message = input("", "Say") as text
 	toggle_typing_indicator()
 
 	if(!message)
@@ -46,12 +42,8 @@ var/global/image/typing_indicator = image('icons/mob/talk.dmi', null, "typing")
 	set name = ".Me"
 	set hidden = TRUE
 
-	if(say_disabled)
-		to_chat(usr, "<span class='warning'><b>Speech is currently admin-disabled.</b>.")
-		return
-
 	toggle_typing_indicator()
-	var/message = input("", "me (text)") as text
+	var/message = input("", "Me") as text
 	toggle_typing_indicator()
 
 	if(!message)
@@ -67,11 +59,8 @@ var/global/image/typing_indicator = image('icons/mob/talk.dmi', null, "typing")
 
 	prefs.toggles_chat ^= SHOW_TYPING
 	prefs.save_preferences()
-	to_chat(src, "You will [(prefs.toggles_chat & SHOW_TYPING) ? "no longer" : "now"] display a typing indicator.")
+	to_chat(src, "You will [(prefs.toggles_chat & SHOW_TYPING) ? "now" : "no longer"] display a typing indicator.")
 
-	// Clear out any existing typing indicator.
-	if(prefs.toggles_chat & SHOW_TYPING)
-		if(istype(mob)) 
-			mob.toggle_typing_indicator()
-
-	feedback_add_details("admin_verb","TID") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	//Clear out any existing typing indicator.
+	if(!(prefs.toggles_chat & SHOW_TYPING) && istype(mob))
+		mob.toggle_typing_indicator()

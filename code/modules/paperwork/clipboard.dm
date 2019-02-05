@@ -9,7 +9,7 @@
 	throw_range = 10
 	var/obj/item/tool/pen/haspen		//The stored pen.
 	var/obj/item/toppaper	//The topmost piece of paper.
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 
 /obj/item/clipboard/New()
 	update_icon()
@@ -23,10 +23,10 @@
 		if(!M.is_mob_restrained() && !M.stat)
 			switch(over_object.name)
 				if("r_hand")
-					M.drop_inv_item_on_ground(src)
+					M.dropItemToGround(src)
 					M.put_in_r_hand(src)
 				if("l_hand")
-					M.drop_inv_item_on_ground(src)
+					M.dropItemToGround(src)
 					M.put_in_l_hand(src)
 
 			add_fingerprint(usr)
@@ -97,7 +97,7 @@
 
 		else if(href_list["addpen"])
 			if(!haspen)
-				var/obj/item/tool/pen/W = usr.get_active_hand()
+				var/obj/item/tool/pen/W = usr.get_active_held_item()
 				if(istype(W, /obj/item/tool/pen))
 					if(usr.drop_held_item())
 						W.forceMove(src)
@@ -109,7 +109,7 @@
 
 			if(P && (P.loc == src) && istype(P, /obj/item/paper) && (P == toppaper) )
 
-				var/obj/item/I = usr.get_active_hand()
+				var/obj/item/I = usr.get_active_held_item()
 
 				if(istype(I, /obj/item/tool/pen))
 
@@ -135,7 +135,7 @@
 
 			if(P && (P.loc == src) && istype(P, /obj/item/paper) )
 
-				if(!(istype(usr, /mob/living/carbon/human) || istype(usr, /mob/dead/observer) || istype(usr, /mob/living/silicon)))
+				if(!(ishuman(usr) || isobserver(usr) || issilicon(usr)))
 					usr << browse("<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[stars(P.info)][P.stamps]</BODY></HTML>", "window=[P.name]")
 					onclose(usr, "[P.name]")
 				else

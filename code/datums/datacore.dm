@@ -22,6 +22,7 @@
 	var/list/med = new()
 	var/list/mar = new()
 	var/list/heads = new()
+	var/list/police = new()
 	var/list/misc = new()
 	var/list/isactive = new()
 	var/list/squads = new()
@@ -50,7 +51,7 @@
 
 		if(OOC)
 			var/active = 0
-			for(var/mob/M in player_list)
+			for(var/mob/M in GLOB.player_list)
 				if(M.real_name == name && M.client && M.client.inactivity <= 10 * 60 * 10)
 					active = 1
 					break
@@ -63,6 +64,9 @@
 		if(real_rank in ROLES_COMMAND)
 			heads[name] = rank
 			department = 1
+		if(real_rank in ROLES_POLICE)
+			police[name] = rank
+			department = 1
 		if(real_rank in ROLES_ENGINEERING)
 			eng[name] = rank
 			department = 1
@@ -73,12 +77,17 @@
 			squads[name] = squad_name
 			mar[name] = rank
 			department = 1
-		if(!department && !(name in heads))
+		if(!department && !(name in heads) && (real_rank in ROLES_REGULAR_ALL))
 			misc[name] = rank
 	if(heads.len > 0)
 		dat += "<tr><th colspan=3>Command Staff</th></tr>"
 		for(name in heads)
 			dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[heads[name]]</td><td>[isactive[name]]</td></tr>"
+			even = !even
+	if(police.len > 0)
+		dat += "<tr><th colspan=3>Military Police</th></tr>"
+		for(name in police)
+			dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[police[name]]</td><td>[isactive[name]]</td></tr>"
 			even = !even
 	if(mar.len > 0)
 		dat += "<tr><th colspan=3>Marines</th></tr>"
@@ -186,8 +195,9 @@ var/global/list/PDA_Manifest = list()
 	spawn()
 		if(!nosleep)
 			sleep(40)
-		for(var/mob/living/carbon/human/H in player_list)
-			if(H.species && H.species.name == "Yautja") continue
+		for(var/mob/living/carbon/human/H in GLOB.player_list)
+			if(isyautjastrict(H))
+				continue
 			manifest_inject(H)
 		return
 
@@ -326,8 +336,8 @@ proc/get_id_photo(var/mob/living/carbon/human/H)
 	var/icon/icobase = H.species.icobase
 	var/icon/temp
 
-	var/datum/ethnicity/ET = ethnicities_list[H.ethnicity]
-	var/datum/body_type/B = body_types_list[H.body_type]
+	var/datum/ethnicity/ET = GLOB.ethnicities_list[H.ethnicity]
+	var/datum/body_type/B = GLOB.body_types_list[H.body_type]
 
 	var/e_icon
 	var/b_icon
@@ -365,13 +375,13 @@ proc/get_id_photo(var/mob/living/carbon/human/H)
 
 	eyes_s.Blend(rgb(H.r_eyes, H.g_eyes, H.b_eyes), ICON_ADD)
 
-	var/datum/sprite_accessory/hair_style = hair_styles_list[H.h_style]
+	var/datum/sprite_accessory/hair_style = GLOB.hair_styles_list[H.h_style]
 	if(hair_style)
 		var/icon/hair_s = new/icon("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]_s")
 		hair_s.Blend(rgb(H.r_hair, H.g_hair, H.b_hair), ICON_ADD)
 		eyes_s.Blend(hair_s, ICON_OVERLAY)
 
-	var/datum/sprite_accessory/facial_hair_style = facial_hair_styles_list[H.f_style]
+	var/datum/sprite_accessory/facial_hair_style = GLOB.facial_hair_styles_list[H.f_style]
 	if(facial_hair_style)
 		var/icon/facial_s = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_s")
 		facial_s.Blend(rgb(H.r_facial, H.g_facial, H.b_facial), ICON_ADD)

@@ -9,7 +9,7 @@
 
 		update_sight()
 
-		if(stat == UNCONSCIOUS && health <= config.health_threshold_crit)
+		if(stat == UNCONSCIOUS && health <= CONFIG_GET(number/health_threshold_crit))
 			var/severity = 0
 			switch(health)
 				if(-20 to -10) severity = 1

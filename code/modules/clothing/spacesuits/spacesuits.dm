@@ -25,13 +25,13 @@
 	w_class = 4//bulky item
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.02
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
+	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	allowed = list(/obj/item/device/flashlight,/obj/item/tank/emergency_oxygen,/obj/item/device/suit_cooling_unit)
 	slowdown = 3
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 100, rad = 50)
 	flags_inventory = BLOCKSHARPOBJ|NOPRESSUREDMAGE
 	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL
-	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
+	flags_cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	min_cold_protection_temperature = SPACE_SUIT_min_cold_protection_temperature
 	siemens_coefficient = 0.9
 	species_restricted = list("exclude","Vox")

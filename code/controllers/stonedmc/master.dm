@@ -54,7 +54,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	var/static/restart_clear = 0
 	var/static/restart_timeout = 0
 	var/static/restart_count = 0
-	
+
 	var/static/random_seed
 
 	//current tick limit, assigned before running a subsystem.
@@ -69,7 +69,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	if(!random_seed)
 		random_seed = (TEST_RUN_PARAMETER in world.params) ? 29051994 : rand(1, 1e9)
 		rand_seed(random_seed)
-	
+
 	var/list/_subsystems = list()
 	subsystems = _subsystems
 	if (Master != src)
@@ -148,7 +148,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 				msg = "The [BadBoy.name] subsystem seems to be destabilizing the MC and will be offlined."
 				BadBoy.flags |= SS_NO_FIRE
 		if(msg)
-			to_chat(admins, "<span class='boldannounce'>[msg]</span>")
+			to_chat(GLOB.admins, "<span class='boldannounce'>[msg]</span>")
 			log_world(msg)
 
 	if (istype(Master.subsystems))
@@ -183,7 +183,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 
 	var/start_timeofday = REALTIMEOFDAY
 	// Initialize subsystems.
-	current_ticklimit = config.tick_limit_mc_init
+	current_ticklimit = CONFIG_GET(number/tick_limit_mc_init)
 	for (var/datum/controller/subsystem/SS in subsystems)
 		if (SS.flags & SS_NO_INIT)
 			continue
@@ -202,14 +202,14 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	// Sort subsystems by display setting for easy access.
 	sortTim(subsystems, /proc/cmp_subsystem_display)
 	// Set world options.
-	world.fps = config.fps
+	world.fps = CONFIG_GET(number/fps)
 	var/initialized_tod = REALTIMEOFDAY
 
 	if(sleep_offline_after_initializations)
 		world.sleep_offline = TRUE
 	sleep(1)
 
-	if(sleep_offline_after_initializations && config.resume_after_initializations)
+	if(sleep_offline_after_initializations && CONFIG_GET(flag/resume_after_initializations))
 		world.sleep_offline = FALSE
 	initializations_finished_with_no_players_logged_in = initialized_tod < REALTIMEOFDAY - 10
 	// Loop.
@@ -220,7 +220,6 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	if(isnull(old_runlevel))
 		old_runlevel = "NULL"
 
-	testing("MC: Runlevel changed from [old_runlevel] to [new_runlevel]")
 	current_runlevel = log(2, new_runlevel) + 1
 	if(current_runlevel < 1)
 		CRASH("Attempted to set invalid runlevel: [new_runlevel]")
@@ -230,17 +229,16 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	set waitfor = 0
 	if(delay)
 		sleep(delay)
-	testing("Master starting processing")
 	var/rtn = Loop()
-	if (rtn > 0 || processing < 0)
+	if(rtn > 0 || processing < 0)
 		return //this was suppose to happen.
 	//loop ended, restart the mc
-	log_game("MC crashed or runtimed, restarting")
-	message_admins("MC crashed or runtimed, restarting")
+	log_game("MC crashed or runtimed, restarting.")
+	message_admins("MC crashed or runtimed, restarting.")
 	var/rtn2 = Recreate_MC()
-	if (rtn2 <= 0)
-		log_game("Failed to recreate MC (Error code: [rtn2]), it's up to the failsafe now")
-		message_admins("Failed to recreate MC (Error code: [rtn2]), it's up to the failsafe now")
+	if(rtn2 <= 0)
+		log_game("Failed to recreate MC (Error code: [rtn2]), it's up to the failsafe now.")
+		message_admins("Failed to recreate MC (Error code: [rtn2]), it's up to the failsafe now.")
 		Failsafe.defcon = 2
 
 // Main loop.
@@ -610,8 +608,8 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 /datum/controller/master/proc/UpdateTickRate()
 	if (!processing)
 		return
-	var/client_count = length(clients)
-	if (client_count < config.disable_high_pop_mc_mode_amount)
-		processing = config.base_mc_tick_rate
-	else if (client_count > config.high_pop_mc_mode_amount)
-		processing = config.high_pop_mc_tick_rate
+	var/client_count = length(GLOB.clients)
+	if (client_count < CONFIG_GET(number/mc_tick_rate/disable_high_pop_mc_mode_amount))
+		processing = CONFIG_GET(number/mc_tick_rate/base_mc_tick_rate)
+	else if (client_count > CONFIG_GET(number/mc_tick_rate/high_pop_mc_mode_amount))
+		processing = CONFIG_GET(number/mc_tick_rate/high_pop_mc_tick_rate)

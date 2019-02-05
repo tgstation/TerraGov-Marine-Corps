@@ -39,13 +39,13 @@ var/const/tk_maxrange = 15
 
 /obj/item/attack_tk(mob/user)
 	if(user.stat || !isturf(loc)) return
-	if((TK in user.mutations) && !user.get_active_hand()) // both should already be true to get here
+	if((TK in user.mutations) && !user.get_active_held_item()) // both should already be true to get here
 		var/obj/item/tk_grab/O = new(src)
 		user.put_in_active_hand(O)
 		O.host = user
 		O.focus_object(src)
 	else
-		warning("Strange attack_tk(): TK([TK in user.mutations]) empty hand([!user.get_active_hand()])")
+		warning("Strange attack_tk(): TK([TK in user.mutations]) empty hand([!user.get_active_held_item()])")
 	return
 
 
@@ -86,7 +86,7 @@ var/const/tk_maxrange = 15
 
 	//stops TK grabs being equipped anywhere but into hands
 	equipped(var/mob/user, var/slot)
-		if( (slot == WEAR_L_HAND) || (slot== WEAR_R_HAND) )	return
+		if( (slot == SLOT_L_HAND) || (slot== SLOT_R_HAND) )	return
 		if(!gc_destroyed)
 			qdel(src)
 
@@ -198,9 +198,9 @@ var/const/tk_maxrange = 15
 
 //equip_to_slot_or_del(obj/item/W, slot, del_on_fail = 1)
 /*
-		if(istype(user, /mob/living/carbon))
+		if(iscarbon(user))
 			if(user:mutations & TK && get_dist(source, user) <= 7)
-				if(user:get_active_hand())	return 0
+				if(user:get_active_held_item())	return 0
 				var/X = source:x
 				var/Y = source:y
 				var/Z = source:z

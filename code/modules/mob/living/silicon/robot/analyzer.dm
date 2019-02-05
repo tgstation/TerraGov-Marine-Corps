@@ -7,7 +7,7 @@
 	item_state = "analyzer"
 	desc = "A hand-held scanner able to diagnose robotic injuries."
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	throwforce = 3
 	w_class = 2.0
 	throw_speed = 5
@@ -26,10 +26,10 @@
 		user.show_message("<span class='notice'> Key: Suffocation/Toxin/Burns/Brute</span>", 1)
 		user.show_message("<span class='notice'> Body Temperature: ???</span>", 1)
 		return
-	if(!(istype(user, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
+	if(!(ishuman(user) || ticker) && ticker.mode.name != "monkey")
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return
-	if(!istype(M, /mob/living/silicon/robot) && !(ishuman(M) && (M:species.flags & IS_SYNTHETIC)))
+	if(!iscyborg(M) && !(ishuman(M) && (M:species.flags & IS_SYNTHETIC)))
 		to_chat(user, "<span class='warning'>You can't analyze non-robotic things!</span>")
 		return
 
@@ -42,7 +42,7 @@
 	if(M.tod && M.stat == DEAD)
 		user.show_message("<span class='notice'> Time of Disable: [M.tod]</span>")
 
-	if (istype(M, /mob/living/silicon/robot))
+	if (iscyborg(M))
 		var/mob/living/silicon/robot/H = M
 		var/list/damaged = H.get_damaged_components(1,1,1)
 		user.show_message("<span class='notice'> Localized Damage:</span>",1)

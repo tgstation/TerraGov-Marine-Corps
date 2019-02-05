@@ -5,7 +5,7 @@
 	name = "tank"
 	icon = 'icons/obj/items/tank.dmi'
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_BACK
+	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = 3
 
 	var/pressure_full = ONE_ATMOSPHERE*4
@@ -44,7 +44,7 @@
 			else
 				descriptive = "furiously hot"
 
-		to_chat(user, "<span class='notice'>\The \icon[src][src] feels [descriptive]</span>")
+		to_chat(user, "<span class='notice'>\The [bicon(src)][src] feels [descriptive]</span>")
 
 
 /obj/item/tank/attackby(obj/item/W as obj, mob/user as mob)
@@ -52,11 +52,11 @@
 
 	if ((istype(W, /obj/item/device/analyzer)) && get_dist(user, src) <= 1)
 		for (var/mob/O in viewers(user, null))
-			to_chat(O, "<span class='warning'>[user] has used [W] on \icon[src] [src]</span>")
+			to_chat(O, "<span class='warning'>[user] has used [W] on [bicon(src)] [src]</span>")
 
 		manipulated_by = user.real_name			//This person is aware of the contents of the tank.
 
-		to_chat(user, "<span class='notice'>Results of analysis of \icon[src]</span>")
+		to_chat(user, "<span class='notice'>Results of analysis of [bicon(src)]</span>")
 		if (pressure>0)
 			to_chat(user, "<span class='notice'>Pressure: [round(pressure,0.1)] kPa</span>")
 

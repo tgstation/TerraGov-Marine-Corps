@@ -136,9 +136,9 @@
 	var/instant = 0
 	var/colourName = "red" //for updateIcon purposes
 
-	suicide_act(mob/user)
-		user.visible_message("<span class='danger'>[user] is jamming the [src.name] up \his nose and into \his brain. It looks like \he's trying to commit suicide.</span>")
-		return (BRUTELOSS|OXYLOSS)
+/obj/item/toy/crayon/suicide_act(mob/user)
+	user.visible_message("<span class='danger'>[user] is jamming the [name] up [user.p_their()] nose and into [user.p_their()] brain. It looks like [user.p_theyre()] trying to commit suicide.</span>")
+	return (BRUTELOSS|OXYLOSS)
 
 /*
  * Snap pops
@@ -377,7 +377,7 @@
 	icon_state = "inflatable"
 	item_state = "inflatable"
 	icon = 'icons/obj/clothing/belts.dmi'
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 
 
 /obj/item/toy/beach_ball

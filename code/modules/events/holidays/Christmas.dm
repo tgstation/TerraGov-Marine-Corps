@@ -1,14 +1,14 @@
 /proc/Christmas_Game_Start()
-	for(var/obj/structure/flora/tree/pine/xmas in structure_list)
+	for(var/obj/structure/flora/tree/pine/xmas in GLOB.structure_list)
 		if(xmas.z != 1)	continue
 		for(var/turf/open/floor/T in orange(1,xmas))
 			for(var/i=1,i<=rand(1,5),i++)
 				new /obj/item/a_gift(T)
-	//for(var/mob/living/simple_animal/corgi/Ian/Ian in mob_list)
+	//for(var/mob/living/simple_animal/corgi/Ian/Ian in GLOB.mob_living_list)
 	//	Ian.place_on_head(new /obj/item/clothing/head/helmet/space/santahat(Ian))
 
 /proc/ChristmasEvent()
-	for(var/obj/structure/flora/tree/pine/xmas in structure_list)
+	for(var/obj/structure/flora/tree/pine/xmas in GLOB.structure_list)
 		var/mob/living/simple_animal/hostile/tree/evil_tree = new /mob/living/simple_animal/hostile/tree(xmas.loc)
 		evil_tree.icon_state = xmas.icon_state
 		evil_tree.icon_living = evil_tree.icon_state
@@ -27,7 +27,7 @@
 	..()
 
 /obj/item/toy/xmas_cracker/attack(mob/target, mob/user)
-	if( !cracked && istype(target,/mob/living/carbon/human) && (target.stat == CONSCIOUS) && !target.get_active_hand() )
+	if( !cracked && istype(target,/mob/living/carbon/human) && (target.stat == CONSCIOUS) && !target.get_active_held_item() )
 		target.visible_message("<span class='notice'>[user] and [target] pop \an [src]! *pop*</span>", "<span class='notice'>You pull \an [src] with [target]! *pop*</span>", "<span class='notice'>You hear a *pop*.</span>")
 		var/obj/item/paper/Joke = new /obj/item/paper(user.loc)
 		Joke.name = "[pick("awful","terrible","unfunny")] joke"

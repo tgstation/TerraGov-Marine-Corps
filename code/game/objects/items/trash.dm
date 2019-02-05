@@ -89,6 +89,13 @@
 	name = "EAT bar wrapper"
 	icon_state = "eat"
 
+/obj/item/trash/fortunecookie
+	name = "Fortune cookie fortune"
+	icon_state = "fortune" //Thank you Alterist
+
+/obj/item/trash/fortunecookie/Initialize()
+	desc = "The fortune reads. <br><span class='tip'>[pick(marinetips)]</span>"
+
 /obj/item/trash/c_tube
 	name = "cardboard tube"
 	desc = "A tube... of cardboard."

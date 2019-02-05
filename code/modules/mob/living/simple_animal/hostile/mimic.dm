@@ -104,7 +104,7 @@
 
 /mob/living/simple_animal/hostile/mimic/crate/proc/trigger()
 	if(!attempt_open)
-		visible_message("<span class='warning'>\icon[src] [src] starts to move!</span>")
+		visible_message("<span class='warning'>[bicon(src)] [src] starts to move!</span>")
 		attempt_open = 1
 
 //
@@ -121,8 +121,8 @@ var/global/list/protected_objects = list(/obj/structure/table, /obj/structure/ca
 	var/destroy_objects = 0
 	var/knockdown_people = 0
 
-/mob/living/simple_animal/hostile/mimic/copy/New(loc, var/obj/copy, var/mob/living/creator)
-	..(loc)
+/mob/living/simple_animal/hostile/mimic/copy/Initialize(loc, var/obj/copy, var/mob/living/creator)
+	. = ..(loc)
 	CopyObject(copy, creator)
 
 /mob/living/simple_animal/hostile/mimic/copy/death()

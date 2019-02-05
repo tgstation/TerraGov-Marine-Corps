@@ -20,7 +20,7 @@
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "wrench"
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	force = 5.0
 	throwforce = 7.0
 	w_class = 2.0
@@ -38,7 +38,7 @@
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "screwdriver"
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	force = 5.0
 	w_class = 1.0
 	throwforce = 5.0
@@ -47,10 +47,9 @@
 	matter = list("metal" = 75)
 	attack_verb = list("stabbed")
 
-	suicide_act(mob/user)
-		user.visible_message(pick("<span class='danger'>[user] is stabbing the [src.name] into \his temple! It looks like \he's trying to commit suicide.</span>", \
-							"<span class='danger'>[user] is stabbing the [src.name] into \his heart! It looks like \he's trying to commit suicide.</span>"))
-		return(BRUTELOSS)
+/obj/item/tool/screwdriver/suicide_act(mob/user)
+	user.visible_message("<span class='danger'>[user] is stabbing the [name] into [user.p_their()] [pick("temple","heart")]! It looks like [user.p_theyre()] trying to commit suicide.</span>")
+	return(BRUTELOSS)
 
 /obj/item/tool/screwdriver/New()
 	switch(pick("red","blue","purple","brown","green","cyan","yellow"))
@@ -97,7 +96,7 @@
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "cutters"
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	force = 6.0
 	throw_speed = 2
 	throw_range = 9
@@ -132,7 +131,7 @@
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "welder"
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 
 	//Amount of OUCH when it's thrown
 	force = 3.0
@@ -199,10 +198,10 @@
 		var/datum/limb/S = H.get_limb(user.zone_selected)
 
 		if (!S) return
-		if(!(S.status & LIMB_ROBOT) || user.a_intent != "help")
+		if(!(S.status & LIMB_ROBOT) || user.a_intent != INTENT_HELP)
 			return ..()
 
-		if(isSynth(H))
+		if(issynth(H))
 			if(M == user)
 				to_chat(user, "<span class='warning'>You can't repair damage to your own body - it's against OH&S.</span>")
 				return
@@ -384,7 +383,7 @@
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "crowbar"
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	force = 5.0
 	throwforce = 7.0
 	item_state = "crowbar"
@@ -410,7 +409,7 @@
 /obj/item/tool/weldpack
 	name = "Welding kit"
 	desc = "A heavy-duty, portable welding fluid carrier."
-	flags_equip_slot = SLOT_BACK
+	flags_equip_slot = ITEM_SLOT_BACK
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "welderpack"
 	w_class = 4.0
@@ -423,11 +422,11 @@
 	R.add_reagent("fuel", max_fuel)
 
 /obj/item/tool/weldpack/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/tool/weldingtool))
+	if(iswelder(W))
 		var/obj/item/tool/weldingtool/T = W
 		if(T.welding & prob(50))
-			message_admins("[key_name_admin(user)] triggered a fueltank explosion.")
-			log_game("[key_name(user)] triggered a fueltank explosion.")
+			message_admins("[ADMIN_TPMONTY(user)] triggered a fueltank explosion at [ADMIN_VERBOSEJMP(src.loc)].")
+			log_game("[key_name(user)] triggered a fueltank explosion at [AREACOORD(src.loc)].")
 			to_chat(user, "<span class='warning'>That was stupid of you.</span>")
 			explosion(get_turf(src),-1,0,2)
 			if(src)

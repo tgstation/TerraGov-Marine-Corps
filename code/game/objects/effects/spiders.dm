@@ -28,7 +28,7 @@
 
 	var/damage = W.force / 4.0
 
-	if(istype(W, /obj/item/tool/weldingtool))
+	if(iswelder(W))
 		var/obj/item/tool/weldingtool/WT = W
 
 		if(WT.remove_fuel(0, user))
@@ -62,7 +62,7 @@
 /obj/effect/spider/stickyweb/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover, /mob/living/simple_animal/hostile/giant_spider))
 		return 1
-	else if(istype(mover, /mob/living))
+	else if(isliving(mover))
 		if(prob(50))
 			to_chat(mover, "<span class='warning'>You get stuck in [src] for a moment.</span>")
 			return 0

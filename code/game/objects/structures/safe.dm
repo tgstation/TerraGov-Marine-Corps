@@ -10,15 +10,14 @@ FLOOR SAFES
 	name = "Secure Safe Combination"
 	var/obj/structure/safe/safe = null
 
-/obj/item/paper/safe_key/New()
-	..()
-	spawn(10)
-		for(var/obj/structure/safe/safe in loc)
-			if(safe)
-				info = "This looks like a handwritten page with two numbers on it: \n\n<b>[safe.tumbler_1_open]|[safe.tumbler_2_open]</b>."
-				info_links = info
-				icon_state = "paper_words"
-				break
+/obj/item/paper/safe_key/Initialize()
+	. = ..()
+	for(var/obj/structure/safe/safe in loc)
+		if(safe)
+			info = "This looks like a handwritten page with two numbers on it: \n\n<b>[safe.tumbler_1_open]|[safe.tumbler_2_open]</b>."
+			info_links = info
+			icon_state = "paper_words"
+			break
 
 /obj/structure/safe
 	name = "safe"
@@ -40,20 +39,13 @@ FLOOR SAFES
 	var/space = 0		//the combined w_class of everything in the safe
 	var/maxspace = 24	//the maximum combined w_class of stuff in the safe
 
-
-/obj/structure/safe/New()
-	..()
+/obj/structure/safe/Initialize()
+	. = ..()
 	tumbler_1_pos = 0
 	tumbler_1_open = (rand(0,10) * 5)
 
 	tumbler_2_pos = 0
 	tumbler_2_open = (rand(0,10) * 5)
-
-	spawn(5)
-		if(loc && spawnkey)
-			new /obj/item/paper/safe_key(loc) //Spawn the key on top of the safe.
-
-/obj/structure/safe/Initialize()
 	for(var/obj/item/I in loc)
 		if(istype(I,/obj/item/paper/safe_key))
 			continue
@@ -62,6 +54,10 @@ FLOOR SAFES
 		if(I.w_class + space <= maxspace)
 			space += I.w_class
 			I.loc = src
+	
+	// do this after swallowing items for obvious reasons
+	if(loc && spawnkey)
+		new /obj/item/paper/safe_key(loc) //Spawn the key on top of the safe.
 
 
 /obj/structure/safe/proc/check_unlocked(mob/user as mob, canhear)
@@ -177,7 +173,7 @@ FLOOR SAFES
 	if(open)
 		if(I.w_class + space <= maxspace)
 			space += I.w_class
-			if(user.drop_inv_item_to_loc(I, src))
+			if(user.transferItemToLoc(I, src))
 				to_chat(user, "<span class='notice'>You put [I] in [src].</span>")
 			updateUsrDialog()
 			return
@@ -202,7 +198,7 @@ obj/structure/safe/ex_act(severity)
 
 
 /obj/structure/safe/floor/Initialize()
-	..()
+	. = ..()
 	var/turf/T = loc
 	hide(T.intact_tile)
 

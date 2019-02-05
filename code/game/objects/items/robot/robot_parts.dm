@@ -4,7 +4,7 @@
 	item_state = "buildpipe"
 	icon_state = "blank"
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	matter = list("metal" = 500, "glass" = 0)
 	var/construction_time = 100
 	var/list/construction_cost = list("metal"=20000,"glass"=5000)
@@ -105,32 +105,32 @@
 	..()
 	if(istype(W, /obj/item/robot_parts/l_leg))
 		if(l_leg)	return
-		if(user.drop_inv_item_to_loc(W, src))
+		if(user.transferItemToLoc(W, src))
 			l_leg = W
 			updateicon()
 
 	if(istype(W, /obj/item/robot_parts/r_leg))
 		if(r_leg)	return
-		if(user.drop_inv_item_to_loc(W, src))
+		if(user.transferItemToLoc(W, src))
 			r_leg = W
 			updateicon()
 
 	if(istype(W, /obj/item/robot_parts/l_arm))
 		if(l_arm)	return
-		if(user.drop_inv_item_to_loc(W, src))
+		if(user.transferItemToLoc(W, src))
 			l_arm = W
 			updateicon()
 
 	if(istype(W, /obj/item/robot_parts/r_arm))
 		if(r_arm)	return
-		if(user.drop_inv_item_to_loc(W, src))
+		if(user.transferItemToLoc(W, src))
 			r_arm = W
 			updateicon()
 
 	if(istype(W, /obj/item/robot_parts/chest))
 		if(chest)	return
 		if(W:wires && W:cell)
-			if(user.drop_inv_item_to_loc(W, src))
+			if(user.transferItemToLoc(W, src))
 				chest = W
 				updateicon()
 		else if(!W:wires)
@@ -141,7 +141,7 @@
 	if(istype(W, /obj/item/robot_parts/head))
 		if(head)	return
 		if(W:flash2 && W:flash1)
-			if(user.drop_inv_item_to_loc(W, src))
+			if(user.transferItemToLoc(W, src))
 				head = W
 				updateicon()
 		else
@@ -159,7 +159,7 @@
 			if(!M.brainmob.key)
 				var/ghost_can_reenter = 0
 				if(M.brainmob.mind)
-					for(var/mob/dead/observer/G in player_list)
+					for(var/mob/dead/observer/G in GLOB.player_list)
 						if(G.can_reenter_corpse && G.mind == M.brainmob.mind)
 							ghost_can_reenter = 1
 							break
@@ -228,10 +228,10 @@
 			to_chat(user, "<span class='notice'>You have already inserted a cell!</span>")
 			return
 		else
-			if(user.drop_inv_item_to_loc(W, src))
+			if(user.transferItemToLoc(W, src))
 				cell = W
 				to_chat(user, "<span class='notice'>You insert the cell!</span>")
-	if(istype(W, /obj/item/stack/cable_coil))
+	if(iscablecoil(W))
 		if(src.wires)
 			to_chat(user, "<span class='notice'>You have already inserted wire!</span>")
 			return
@@ -252,17 +252,17 @@
 			to_chat(user, "<span class='notice'>You have already inserted the eyes!</span>")
 			return
 		else if(src.flash1)
-			if(user.drop_inv_item_to_loc(W, src))
+			if(user.transferItemToLoc(W, src))
 				flash2 = W
 				to_chat(user, "<span class='notice'>You insert the flash into the eye socket!</span>")
 		else
-			user.drop_inv_item_to_loc(W, src)
+			user.transferItemToLoc(W, src)
 			flash1 = W
 			to_chat(user, "<span class='notice'>You insert the flash into the eye socket!</span>")
 	else if(istype(W, /obj/item/stock_parts/manipulator))
 		to_chat(user, "<span class='notice'>You install some manipulators and modify the head, creating a functional spider-bot!</span>")
 		new /mob/living/simple_animal/spiderbot(get_turf(loc))
-		user.temp_drop_inv_item(W)
+		user.temporarilyRemoveItemFromInventory(W)
 		qdel(W)
 		qdel(src)
 		return

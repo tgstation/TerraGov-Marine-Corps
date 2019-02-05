@@ -1,0 +1,4 @@
+author: "LaKiller8"
+delete-after: True
+changes: 
+  - bugfix: "The nuke overlay now disappears after 15 seconds so everyone can enjoy their EORD yet again."

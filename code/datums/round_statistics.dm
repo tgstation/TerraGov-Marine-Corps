@@ -52,3 +52,7 @@ var/datum/round_statistics/round_statistics = new()
 	var/queen_screech = 0
 	var/now_pregnant = 0
 	var/sentinel_neurotoxin_stings = 0
+	var/defiler_defiler_stings = 0
+	var/defiler_neurogas_uses = 0
+	var/drone_stings = 0
+	var/drone_salvage_plasma = 0

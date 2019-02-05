@@ -6,7 +6,7 @@
 	item_state = "flashlight"
 	w_class = 2
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	matter = list("metal" = 50,"glass" = 20)
 	actions_types = list(/datum/action/item_action)
 	var/on = FALSE
@@ -72,7 +72,7 @@
 			var/obj/item/storage/S = loc
 			S.remove_from_storage(src)
 		if(loc == user)
-			user.drop_inv_item_on_ground(src) //This part is important to make sure our light sources update, as it calls dropped()
+			user.dropItemToGround(src) //This part is important to make sure our light sources update, as it calls dropped()
 		var/obj/item/attachable/flashlight/F = new(src.loc)
 		user.put_in_hands(F) //This proc tries right, left, then drops it all-in-one.
 		to_chat(user, "<span class='notice'>You modify [src]. It can now be mounted on a weapon.</span>")
@@ -89,25 +89,25 @@
 		if(((CLUMSY in user.mutations) || user.getBrainLoss() >= 60) && prob(50))	//too dumb to use flashlight properly
 			return ..()	//just hit them in the head
 
-		if(!(istype(user, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")	//don't have dexterity
+		if(!(ishuman(user) || ticker) && ticker.mode.name != "monkey")	//don't have dexterity
 			to_chat(user, "<span class='notice'>You don't have the dexterity to do this!</span>")
 			return
 
 		var/mob/living/carbon/human/H = M	//mob has protective eyewear
-		if(istype(M, /mob/living/carbon/human) && ((H.head && H.head.flags_inventory & COVEREYES) || (H.wear_mask && H.wear_mask.flags_inventory & COVEREYES) || (H.glasses && H.glasses.flags_inventory & COVEREYES)))
+		if(ishuman(M) && ((H.head && H.head.flags_inventory & COVEREYES) || (H.wear_mask && H.wear_mask.flags_inventory & COVEREYES) || (H.glasses && H.glasses.flags_inventory & COVEREYES)))
 			to_chat(user, "<span class='notice'>You're going to need to remove that [(H.head && H.head.flags_inventory & COVEREYES) ? "helmet" : (H.wear_mask && H.wear_mask.flags_inventory & COVEREYES) ? "mask": "glasses"] first.</span>")
 			return
 
 		if(M == user)	//they're using it on themselves
 			M.flash_eyes()
-			M.visible_message("<span class='notice'>[M] directs [src] to \his eyes.</span>", \
+			M.visible_message("<span class='notice'>[M] directs [src] to [M.p_their()] eyes.</span>", \
 									 "<span class='notice'>You wave the light in front of your eyes! Trippy!</span>")
 			return
 
 		user.visible_message("<span class='notice'>[user] directs [src] to [M]'s eyes.</span>", \
 							 "<span class='notice'>You direct [src] to [M]'s eyes.</span>")
 
-		if(istype(M, /mob/living/carbon/human) || istype(M, /mob/living/carbon/monkey))	//robots and aliens are unaffected
+		if(ishuman(M) || ismonkey(M))	//robots and aliens are unaffected
 			if(M.stat == DEAD || M.sdisabilities & BLIND)	//mob is dead or fully blind
 				to_chat(user, "<span class='notice'>[M] pupils does not react to the light!</span>")
 			else if(XRAY in M.mutations)	//mob has X-RAY vision

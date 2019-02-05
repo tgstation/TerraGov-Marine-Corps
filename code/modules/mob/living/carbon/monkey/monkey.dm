@@ -57,13 +57,13 @@
 	env_low_temp_resistance = ICE_PLANET_min_cold_protection_temperature
 
 
-/mob/living/carbon/monkey/New()
+/mob/living/carbon/monkey/Initialize()
 	verbs += /mob/living/proc/lay_down
 	var/datum/reagents/R = new/datum/reagents(1000)
 	reagents = R
 	R.my_atom = src
 
-	species = all_species[greaterform]
+	species = GLOB.all_species[greaterform]
 	add_language(species.language)
 
 	if(name == initial(name)) //To stop Pun-Pun becoming generic.
@@ -97,19 +97,19 @@
 
 		update_muts=1
 
-	..()
+	return ..()
 
 
-/mob/living/carbon/monkey/unathi/New()
-	..()
+/mob/living/carbon/monkey/unathi/Initialize()
+	. = ..()
 	dna.mutantrace = "lizard"
 
-/mob/living/carbon/monkey/skrell/New()
-	..()
+/mob/living/carbon/monkey/skrell/Initialize()
+	. = ..()
 	dna.mutantrace = "skrell"
 
-/mob/living/carbon/monkey/tajara/New()
-	..()
+/mob/living/carbon/monkey/tajara/Initialize()
+	. = ..()
 	dna.mutantrace = "tajaran"
 
 /mob/living/carbon/monkey/movement_delay()
@@ -124,7 +124,7 @@
 	if(bodytemperature < 283.222)
 		. += (283.222 - bodytemperature) / 10 * 1.75
 
-	. += config.monkey_delay
+	. += CONFIG_GET(number/outdated_movedelay/monkey_delay)
 
 /mob/living/carbon/monkey/get_permeability_protection()
 	var/protection = 0
@@ -151,7 +151,7 @@
 				if(what)
 					usr.stripPanelUnequip(what,src,slot)
 				else
-					what = usr.get_active_hand()
+					what = usr.get_active_held_item()
 					usr.stripPanelEquip(what,src,slot)
 
 	if(href_list["internal"])
@@ -185,10 +185,10 @@
 /mob/living/carbon/monkey/attack_paw(mob/M as mob)
 	..()
 
-	if (M.a_intent == "help")
+	if (M.a_intent == INTENT_HARM)
 		help_shake_act(M)
 	else
-		if ((M.a_intent == "hurt" && !( istype(wear_mask, /obj/item/clothing/mask/muzzle) )))
+		if ((M.a_intent == INTENT_HARM && !( istype(wear_mask, /obj/item/clothing/mask/muzzle) )))
 			if ((prob(75) && health > 0))
 				playsound(loc, 'sound/weapons/bite.ogg', 25, 1)
 				for(var/mob/O in viewers(src, null))
@@ -216,7 +216,7 @@
 	if(M.gloves)
 		var/obj/item/clothing/gloves/G = M.gloves
 		if(G.cell)
-			if(M.a_intent == "hurt")//Stungloves. Any contact will stun the alien.
+			if(M.a_intent == INTENT_HARM)//Stungloves. Any contact will stun the alien.
 				if(G.cell.charge >= 2500)
 					G.cell.use(2500)
 					KnockDown(5)
@@ -232,10 +232,10 @@
 					to_chat(M, "<span class='warning'>Not enough charge! </span>")
 					return
 
-	if (M.a_intent == "help")
+	if (M.a_intent == INTENT_HELP)
 		help_shake_act(M)
 	else
-		if (M.a_intent == "hurt")
+		if (M.a_intent == INTENT_HARM)
 			var/datum/unarmed_attack/attack = M.species.unarmed
 			if ((prob(75) && health > 0))
 				visible_message("<span class='danger'>[M] [pick(attack.attack_verb)]ed [src]!</span>")
@@ -258,7 +258,7 @@
 				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1)
 				visible_message("<span class='danger'>[M] tried to [pick(attack.attack_verb)] [src]!</span>")
 		else
-			if (M.a_intent == "grab")
+			if (M.a_intent == INTENT_GRAB)
 				if(M == src || anchored)
 					return 0
 
@@ -304,8 +304,11 @@
 		return initial(pixel_y)
 
 /mob/living/carbon/monkey/Stat()
-	stat(null, text("Intent: []", a_intent))
-	stat(null, text("Move Mode: []", m_intent))
+	. = ..()
+
+	if(statpanel("Stats"))
+		stat(null, text("Intent: []", a_intent))
+		stat(null, text("Move Mode: []", m_intent))
 
 /mob/living/carbon/monkey/verb/removeinternal()
 	set name = "Remove Internals"
@@ -382,11 +385,11 @@
 	//Check hands
 	var/obj/item/card/id/id_card
 	var/obj/item/held_item
-	held_item = get_active_hand()
+	held_item = get_active_held_item()
 	if(held_item) //Check active hand
 		id_card = held_item.GetID()
 	if(!id_card) //If there is no id, check the other hand
-		held_item = get_inactive_hand()
+		held_item = get_inactive_held_item()
 		if(held_item)
 			id_card = held_item.GetID()
 	if(id_card)

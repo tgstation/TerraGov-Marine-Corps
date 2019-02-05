@@ -352,7 +352,7 @@ var/global/datum/shuttle_controller/shuttle_controller
 
 	//search for the controllers, if we have one.
 	if(dock_controller_map.len)
-		for(var/obj/machinery/embedded_controller/radio/C in machines)	//only radio controllers are supported at the moment
+		for(var/obj/machinery/embedded_controller/radio/C in GLOB.machines)	//only radio controllers are supported at the moment
 			if (istype(C.program, /datum/computer/file/embedded_program/docking))
 				if(C.id_tag in dock_controller_map)
 					shuttle = dock_controller_map[C.id_tag]

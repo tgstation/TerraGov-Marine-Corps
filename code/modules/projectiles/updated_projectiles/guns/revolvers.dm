@@ -2,7 +2,7 @@
 
 //Generic parent object.
 /obj/item/weapon/gun/revolver
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	w_class = 3
 	origin_tech = "combat=3;materials=2"
 	matter = list("metal" = 2000)
@@ -28,14 +28,14 @@
 	replace_cylinder(current_mag.current_rounds)
 
 /obj/item/weapon/gun/revolver/set_gun_config_values()
-	fire_delay = config.mlow_fire_delay
-	accuracy_mult = config.base_hit_accuracy_mult
-	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.low_hit_accuracy_mult
-	scatter = config.med_scatter_value
-	scatter_unwielded = config.high_scatter_value
-	damage_mult = config.base_hit_damage_mult
-	recoil = config.min_recoil_value
-	recoil_unwielded = config.med_recoil_value
+	fire_delay = CONFIG_GET(number/combat_define/mlow_fire_delay)
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
+	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/low_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
+	scatter_unwielded = CONFIG_GET(number/combat_define/high_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
+	recoil = CONFIG_GET(number/combat_define/min_recoil_value)
+	recoil_unwielded = CONFIG_GET(number/combat_define/med_recoil_value)
 
 
 /obj/item/weapon/gun/revolver/examine(mob/user)
@@ -46,7 +46,7 @@
 	icon_state = current_mag.chamber_closed ? copytext(icon_state,1,-2) : icon_state + "_o"
 
 /obj/item/weapon/gun/revolver/attackby(obj/item/P as obj, mob/user as mob)
-	if(istype(P, /obj/item/tool/screwdriver))
+	if(isscrewdriver(P))
 		to_chat(user, "[catchworking? "You adjust the cylinder lock to allow the cylinder to be spun.": "You adjust the cylinder lock to the correct depth."]")
 		catchworking = !catchworking
 	return ..()
@@ -77,7 +77,7 @@
 //The cylinder is always emptied out before a reload takes place.
 /obj/item/weapon/gun/revolver/proc/add_to_cylinder(mob/user) //Bullets are added forward.
 	//First we're going to try and replace the current bullet.
-	if(!current_mag.current_rounds) 
+	if(!current_mag.current_rounds)
 		current_mag.chamber_contents[current_mag.chamber_position] = "bullet"
 	else//Failing that, we'll try to replace the next bullet in line.
 		if( (current_mag.chamber_position + 1) > current_mag.max_rounds)
@@ -222,11 +222,11 @@
 	if(loc && user)
 		invisibility = 0
 		playsound(user, thud_sound, 25, 1)
-		if(user.get_inactive_hand())
+		if(user.get_inactive_held_item())
 			user.visible_message("[user] catches [src] with the same hand!","<span class='notice'> You catch [src] as it spins in to your hand!</span>")
 		else
 			user.visible_message("[user] catches [src] with his other hand!","<span class='notice'> You snatch [src] with your other hand! Awesome!</span>")
-			user.temp_drop_inv_item(src)
+			user.temporarilyRemoveItemFromInventory(src)
 			user.put_in_inactive_hand(src)
 			user.swap_hand()
 			user.update_inv_l_hand(0)
@@ -241,7 +241,7 @@
 	//Pain is largely ignored, since it deals its own effects on the mob. We're just concerned with health.
 	//And this proc will only deal with humans for now.
 
-	var/obj/item/weapon/gun/revolver/double = user.get_inactive_hand()
+	var/obj/item/weapon/gun/revolver/double = user.get_inactive_held_item()
 	if(prob(chance))
 		switch(rand(1,8))
 			if(1)
@@ -329,12 +329,12 @@
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 21,"rail_x" = 14, "rail_y" = 23, "under_x" = 24, "under_y" = 19, "stock_x" = 24, "stock_y" = 19)
 
 /obj/item/weapon/gun/revolver/upp/set_gun_config_values()
-	fire_delay = config.mlow_fire_delay
-	accuracy_mult = config.base_hit_accuracy_mult
-	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.med_hit_accuracy_mult
-	scatter = config.med_scatter_value
-	scatter_unwielded = config.high_scatter_value
-	damage_mult = config.base_hit_damage_mult + config.min_hit_damage_mult
+	fire_delay = CONFIG_GET(number/combat_define/mlow_fire_delay)
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
+	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/med_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
+	scatter_unwielded = CONFIG_GET(number/combat_define/high_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult) + CONFIG_GET(number/combat_define/min_hit_damage_mult)
 	recoil = 0
 	recoil_unwielded = 0
 
@@ -354,12 +354,12 @@
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 12, "rail_y" = 21, "under_x" = 20, "under_y" = 15, "stock_x" = 20, "stock_y" = 15)
 
 /obj/item/weapon/gun/revolver/small/set_gun_config_values()
-	fire_delay = config.mlow_fire_delay
-	accuracy_mult = config.base_hit_accuracy_mult
-	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.low_hit_accuracy_mult
-	scatter = config.med_scatter_value
-	scatter_unwielded = config.med_scatter_value
-	damage_mult = config.base_hit_damage_mult
+	fire_delay = CONFIG_GET(number/combat_define/mlow_fire_delay)
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
+	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/low_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
+	scatter_unwielded = CONFIG_GET(number/combat_define/med_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
 	recoil = 0
 	recoil_unwielded = 0
 
@@ -389,16 +389,16 @@
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 21, "under_x" = 22, "under_y" = 15, "stock_x" = 22, "stock_y" = 15)
 
 /obj/item/weapon/gun/revolver/mateba/set_gun_config_values()
-	fire_delay = config.max_fire_delay
-	burst_amount = config.low_burst_value
-	burst_delay = config.med_fire_delay
-	accuracy_mult = config.base_hit_accuracy_mult
-	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.high_hit_accuracy_mult
-	scatter = config.med_scatter_value
-	scatter_unwielded = config.med_scatter_value
-	damage_mult = config.base_hit_damage_mult + config.min_hit_damage_mult
-	recoil = config.min_recoil_value
-	recoil_unwielded = config.med_recoil_value
+	fire_delay = CONFIG_GET(number/combat_define/max_fire_delay)
+	burst_amount = CONFIG_GET(number/combat_define/low_burst_value)
+	burst_delay = CONFIG_GET(number/combat_define/med_fire_delay)
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
+	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/high_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
+	scatter_unwielded = CONFIG_GET(number/combat_define/med_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult) + CONFIG_GET(number/combat_define/min_hit_damage_mult)
+	recoil = CONFIG_GET(number/combat_define/min_recoil_value)
+	recoil_unwielded = CONFIG_GET(number/combat_define/med_recoil_value)
 
 
 
@@ -417,7 +417,7 @@
 /obj/item/weapon/gun/revolver/mateba/cmateba/Initialize()
 	. = ..()
 	select_gamemode_skin(/obj/item/weapon/gun/revolver/mateba/cmateba)
-	
+
 //-------------------------------------------------------
 //MARSHALS REVOLVER //Spearhead exists in Alien cannon.
 
@@ -439,13 +439,13 @@
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 22,"rail_x" = 11, "rail_y" = 25, "under_x" = 20, "under_y" = 18, "stock_x" = 20, "stock_y" = 18)
 
 /obj/item/weapon/gun/revolver/cmb/set_gun_config_values()
-	fire_delay = config.mhigh_fire_delay*2
-	burst_amount = config.med_burst_value
-	burst_delay = config.high_fire_delay
-	accuracy_mult = config.base_hit_accuracy_mult
-	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.med_hit_accuracy_mult
-	scatter = config.med_scatter_value
-	scatter_unwielded = config.med_scatter_value
-	damage_mult = config.base_hit_damage_mult + config.min_hit_damage_mult
-	recoil = config.min_recoil_value
-	recoil_unwielded = config.med_recoil_value
+	fire_delay = CONFIG_GET(number/combat_define/mhigh_fire_delay) * 2
+	burst_amount = CONFIG_GET(number/combat_define/med_burst_value)
+	burst_delay = CONFIG_GET(number/combat_define/high_fire_delay)
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
+	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/med_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
+	scatter_unwielded = CONFIG_GET(number/combat_define/med_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult) + CONFIG_GET(number/combat_define/min_hit_damage_mult)
+	recoil = CONFIG_GET(number/combat_define/min_recoil_value)
+	recoil_unwielded = CONFIG_GET(number/combat_define/med_recoil_value)

@@ -13,7 +13,7 @@
 
 /obj/structure/ore_box/attackby(obj/item/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/ore))
-		user.drop_inv_item_to_loc(W, src)
+		user.transferItemToLoc(W, src)
 	else if (istype(W, /obj/item/storage))
 		var/obj/item/storage/S = W
 		S.hide_from(usr)
@@ -63,7 +63,7 @@
 	set category = "Object"
 	set src in view(1)
 
-	if(!istype(usr, /mob/living/carbon/human)) //Only living, intelligent creatures with hands can empty ore boxes.
+	if(!ishuman(usr)) //Only living, intelligent creatures with hands can empty ore boxes.
 		to_chat(usr, "<span class='warning'>You are physically incapable of emptying the ore box.</span>")
 		return
 

@@ -245,9 +245,8 @@ its easier to just keep the beam vertical.
 	A.examine(src)
 
 /atom/proc/examine(mob/user)
-
 	if(!istype(src, /obj/item))
-		to_chat(user, "\icon[src] That's \a [src].")
+		to_chat(user, "[bicon(src)] That's \a [src].")
 
 	else // No component signaling, dropping it here.
 		var/obj/item/I = src
@@ -263,7 +262,7 @@ its easier to just keep the beam vertical.
 				size = "bulky"
 			if(6 to INFINITY)
 				size = "huge"
-		to_chat(user, "This is a [blood_DNA ? blood_color != "#030303" ? "bloody " : "oil-stained " : ""]\icon[src][src.name]. It is a [size] item.")
+		to_chat(user, "This is a [blood_DNA ? blood_color != "#030303" ? "bloody " : "oil-stained " : ""][bicon(src)][src.name]. It is a [size] item.")
 
 
 	if(desc)
@@ -286,7 +285,7 @@ its easier to just keep the beam vertical.
 				else
 					to_chat(user, "<span class='warning'>It's empty.</span>")
 			else if(container_type & AMOUNT_SKILLCHECK)
-				if(isXeno())
+				if(isxeno(user))
 					return
 				if(!user.mind || !user.mind.cm_skills || user.mind.cm_skills.medical >= SKILL_MEDICAL_CHEM) // If they have no skillset(admin-spawn, etc), or are properly skilled.
 					to_chat(user, "It contains:")
@@ -534,8 +533,6 @@ its easier to just keep the beam vertical.
 			log_emote(log_text)
 		if(LOG_DSAY)
 			log_dsay(log_text)
-		if(LOG_PDA)
-			log_pda(log_text)
 		if(LOG_OOC)
 			log_ooc(log_text)
 		if(LOG_ADMIN)
@@ -543,7 +540,7 @@ its easier to just keep the beam vertical.
 		if(LOG_ADMIN_PRIVATE)
 			log_admin_private(log_text)
 		if(LOG_ASAY)
-			log_adminsay(log_text)
+			log_admin_private_asay(log_text)
 		if(LOG_OWNERSHIP)
 			log_game(log_text)
 		if(LOG_GAME)
@@ -628,3 +625,10 @@ Proc for attack log creation, because really why not
 //called if Initialize returns INITIALIZE_HINT_LATELOAD
 /atom/proc/LateInitialize()
 	return
+
+
+/atom/vv_get_dropdown()
+	. = ..()
+	. += "---"
+	.["Modify Transform"] = "?_src_=vars;[HrefToken()];modtransform=[REF(src)]"
+	.["Add reagent"] = "?_src_=vars;[HrefToken()];addreagent=[REF(src)]"

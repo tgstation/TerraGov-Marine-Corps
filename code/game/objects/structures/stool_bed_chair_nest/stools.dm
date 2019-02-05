@@ -21,13 +21,13 @@
 /obj/item/stool/proc/deploy(var/mob/user)
 
 	if(!origin)
-		user.temp_drop_inv_item(src)
+		user.temporarilyRemoveItemFromInventory(src)
 		qdel(src)
 		return
 
 	if(user)
 		origin.loc = get_turf(user)
-		user.temp_drop_inv_item(src)
+		user.temporarilyRemoveItemFromInventory(src)
 		user.visible_message("<span class='notice'> [user] puts [src] down.</span>", "<span class='notice'> You put [src] down.</span>")
 		qdel(src)
 
@@ -38,11 +38,11 @@
 /obj/item/stool/attack(mob/M as mob, mob/user as mob)
 	if (prob(25) && istype(M,/mob/living))
 		user.visible_message("<span class='warning'> [user] breaks [src] over [M]'s back!</span>")
-		user.temp_drop_inv_item(src)
+		user.temporarilyRemoveItemFromInventory(src)
 		var/obj/item/stack/sheet/metal/m = new/obj/item/stack/sheet/metal
 		m.loc = get_turf(src)
 		var/mob/living/T = M
-		if(istype(T) && !isXeno(T))
+		if(istype(T) && !isxeno(T))
 			T.KnockDown(10)
 		T.apply_damage(20)
 		qdel(src)

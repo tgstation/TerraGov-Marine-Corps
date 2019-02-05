@@ -71,7 +71,7 @@
 	slowdown = 1
 	armor = list(melee = 40, bullet = 5, laser = 20,energy = 5, bomb = 35, bio = 100, rad = 20)
 	allowed = list(/obj/item/device/flashlight,/obj/item/tank,/obj/item/device/suit_cooling_unit)
-	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
+	flags_heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	max_heat_protection_temperature = SPACE_SUIT_max_heat_protection_temperature
 
 	species_restricted = list("exclude","Unathi","Tajara","Vox")
@@ -120,7 +120,7 @@
 			to_chat(M, "Your suit's helmet deploys with a hiss.")
 			//TODO: Species check, skull damage for forcing an unfitting helmet on?
 			helmet.loc = H
-			H.equip_to_slot(helmet, WEAR_HEAD)
+			H.equip_to_slot(helmet, SLOT_HEAD)
 			helmet.flags_item |= NODROP
 
 	if(attached_boots && boots)
@@ -129,7 +129,7 @@
 		else
 			to_chat(M, "Your suit's boots deploy with a hiss.")
 			boots.loc = H
-			H.equip_to_slot(boots, WEAR_FEET)
+			H.equip_to_slot(boots, SLOT_SHOES)
 			boots.flags_item |= NODROP
 
 /obj/item/clothing/suit/space/rig/dropped()
@@ -142,14 +142,14 @@
 		if(istype(H))
 			if(helmet && H.head == helmet)
 				helmet.flags_item &= ~NODROP
-				H.drop_inv_item_to_loc(helmet, src)
+				H.transferItemToLoc(helmet, src)
 
 	if(boots)
 		H = boots.loc
 		if(istype(H))
 			if(boots && H.shoes == boots)
 				boots.flags_item &= ~NODROP
-				H.drop_inv_item_to_loc(boots, src)
+				H.transferItemToLoc(boots, src)
 
 /*
 /obj/item/clothing/suit/space/rig/verb/get_mounted_device()
@@ -163,7 +163,8 @@
 		verbs -= /obj/item/clothing/suit/space/rig/verb/stow_mounted_device
 		return
 
-	if(!istype(usr, /mob/living)) return
+	if(!isliving(usr))
+		return
 	if(usr.stat) return
 
 	if(active_device)
@@ -185,7 +186,8 @@
 		verbs -= /obj/item/clothing/suit/space/rig/verb/stow_mounted_device
 		return
 
-	if(!istype(usr, /mob/living)) return
+	if(!isliving(usr))
+		return
 
 	if(usr.stat) return
 
@@ -214,7 +216,7 @@
 
 	if(H.head == helmet)
 		helmet.flags_item &= ~NODROP
-		H.drop_inv_item_to_loc(helmet, src)
+		H.transferItemToLoc(helmet, src)
 		to_chat(H, "<span class='notice'>You retract your hardsuit helmet.</span>")
 	else
 		if(H.head)
@@ -223,7 +225,7 @@
 		//TODO: Species check, skull damage for forcing an unfitting helmet on?
 		helmet.loc = H
 		helmet.pickup(H)
-		H.equip_to_slot(helmet, WEAR_HEAD)
+		H.equip_to_slot(helmet, SLOT_HEAD)
 		helmet.flags_item |= NODROP
 		to_chat(H, "<span class='notice'>You deploy your hardsuit helmet, sealing you off from the world.</span>")
 
@@ -231,7 +233,7 @@
 
 	if(!istype(user,/mob/living)) return
 
-	if(user.a_intent == "help")
+	if(user.a_intent == INTENT_HELP)
 
 		if(istype(src.loc,/mob/living))
 			to_chat(user, "How do you propose to modify a hardsuit while it is being worn?")

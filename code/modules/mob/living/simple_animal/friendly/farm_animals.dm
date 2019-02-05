@@ -24,10 +24,10 @@
 	melee_damage_upper = 5
 	var/datum/reagents/udder = null
 
-/mob/living/simple_animal/hostile/retaliate/goat/New()
+/mob/living/simple_animal/hostile/retaliate/goat/Initialize()
 	udder = new(50)
 	udder.my_atom = src
-	..()
+	return ..()
 
 /mob/living/simple_animal/hostile/retaliate/goat/Life()
 	. = ..()
@@ -106,10 +106,10 @@
 	health = 50
 	var/datum/reagents/udder = null
 
-/mob/living/simple_animal/cow/New()
+/mob/living/simple_animal/cow/Initialize()
 	udder = new(50)
 	udder.my_atom = src
-	..()
+	return ..()
 
 /mob/living/simple_animal/cow/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	var/obj/item/reagent_container/glass/G = O
@@ -130,7 +130,7 @@
 			udder.add_reagent("milk", rand(5, 10))
 
 /mob/living/simple_animal/cow/attack_hand(mob/living/carbon/M as mob)
-	if(!stat && M.a_intent == "disarm" && icon_state != icon_dead)
+	if(!stat && M.a_intent == INTENT_DISARM && icon_state != icon_dead)
 		M.visible_message("<span class='warning'>[M] tips over [src].</span>","<span class='notice'>You tip over [src].</span>")
 		KnockDown(30)
 		icon_state = icon_dead
@@ -169,8 +169,8 @@
 	flags_pass = PASSTABLE|PASSGRILLE
 	mob_size = MOB_SIZE_SMALL
 
-/mob/living/simple_animal/chick/New()
-	..()
+/mob/living/simple_animal/chick/Initialize()
+	. = ..()
 	pixel_x = rand(-6, 6)
 	pixel_y = rand(0, 10)
 
@@ -211,8 +211,8 @@ var/global/chicken_count = 0
 	flags_pass = PASSTABLE
 	mob_size = MOB_SIZE_SMALL
 
-/mob/living/simple_animal/chicken/New()
-	..()
+/mob/living/simple_animal/chicken/Initialize()
+	. = ..()
 	if(!body_color)
 		body_color = pick( list("brown","black","white") )
 	icon_state = "chicken_[body_color]"

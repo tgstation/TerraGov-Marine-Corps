@@ -49,8 +49,8 @@
 		else if(prob(5))
 			emote("snuffles")
 
-/mob/living/simple_animal/mouse/New()
-	..()
+/mob/living/simple_animal/mouse/Initialize()
+	. = ..()
 
 	verbs += /mob/living/proc/ventcrawl
 	verbs += /mob/living/proc/hide
@@ -80,7 +80,7 @@
 	if( ishuman(AM) )
 		if(!stat)
 			var/mob/M = AM
-			to_chat(M, "<span class='notice'>\icon[src] Squeek!</span>")
+			to_chat(M, "<span class='notice'>[bicon(src)] Squeek!</span>")
 			M << 'sound/effects/mousesqueek.ogg'
 	..()
 

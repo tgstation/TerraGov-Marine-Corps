@@ -14,7 +14,7 @@
 	melee_damage_upper = 30
 
 	// *** Tackle *** //
-	tackle_damage = 30 
+	tackle_damage = 30
 
 	// *** Speed *** //
 	speed = 0
@@ -27,20 +27,23 @@
 	max_health = 200
 
 	// *** Evolution *** //
+	evolution_threshold = 200
 	upgrade_threshold = 200
 
-	deevolves_to = /mob/living/carbon/Xenomorph/Drone 
+	deevolves_to = /mob/living/carbon/Xenomorph/Drone
+
+	evolves_to = list(/mob/living/carbon/Xenomorph/Defiler)
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_BE_GIVEN_PLASMA
+	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_BE_GIVEN_PLASMA
 	can_hold_eggs = CAN_HOLD_ONE_HAND
-	
+
 	// *** Defense *** //
 	armor_deflection = 5
 
-	// *** Pheromones *** //	
+	// *** Pheromones *** //
 	aura_strength = 1 //Carrier's pheromones are equivalent to Hivelord. Climbs 0.5 up to 2.5
-	aura_allowed = list("frenzy", "warding", "recovery") 
+	aura_allowed = list("frenzy", "warding", "recovery")
 
 	// *** Carrier Abilities *** //
 	huggers_max = 8
@@ -76,7 +79,7 @@
 	// *** Defense *** //
 	armor_deflection = 10
 
-	// *** Pheromones *** //	
+	// *** Pheromones *** //
 	aura_strength = 1.5
 
 	// *** Carrier Abilities *** //
@@ -113,7 +116,7 @@
 	// *** Defense *** //
 	armor_deflection = 10
 
-	// *** Pheromones *** //	
+	// *** Pheromones *** //
 	aura_strength = 2
 
 	// *** Carrier Abilities *** //
@@ -150,14 +153,14 @@
 	// *** Defense *** //
 	armor_deflection = 15
 
-	// *** Pheromones *** //	
+	// *** Pheromones *** //
 	aura_strength = 2.5
 
 	// *** Carrier Abilities *** //
 	huggers_max = 11
 	hugger_delay = 1.0 SECONDS
-	eggs_max = 6	
-					
+	eggs_max = 6
+
 /mob/living/carbon/Xenomorph/Carrier
 	caste_base_type = /mob/living/carbon/Xenomorph/Carrier
 	name = "Carrier"
@@ -170,7 +173,7 @@
 	drag_delay = 6 //pulling a big dead xeno is hard
 	speed = 0
 	mob_size = MOB_SIZE_BIG
-	var/huggers_cur = 0
+	var/list/huggers = list()
 	var/threw_a_hugger = 0
 	var/eggs_cur = 0
 	var/used_spawn_facehugger = FALSE
@@ -185,54 +188,59 @@
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
 		/datum/action/xeno_action/plant_weeds,
-		/datum/action/xeno_action/emit_pheromones,
 		/datum/action/xeno_action/activable/throw_hugger,
 		/datum/action/xeno_action/activable/retrieve_egg,
 		/datum/action/xeno_action/place_trap,
 		/datum/action/xeno_action/spawn_hugger,
+		/datum/action/xeno_action/toggle_pheromones
 		)
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/vent_crawl,
 		)
 
-	death(gibbed)
-		if(..() && !gibbed && huggers_cur)
-			var/obj/item/clothing/mask/facehugger/F
-			var/i = 3
-			var/chance = 75
-			visible_message("<span class='xenowarning'>The chittering mass of tiny aliens is trying to escape [src]!</span>")
-			while(i && huggers_cur)
-				if(prob(chance))
-					huggers_cur--
-					F = new(loc)
-					F.hivenumber = hivenumber
-					step_away(F,src,1)
-				i--
-				chance -= 30
-
+/mob/living/carbon/Xenomorph/Carrier/death(gibbed)
+	. = ..()
+	if(. && !gibbed && length(huggers))
+		var/chance = 75
+		visible_message("<span class='xenowarning'>The chittering mass of tiny aliens is trying to escape [src]!</span>")
+		for(var/i in 1 to 3)
+			var/obj/item/clothing/mask/facehugger/F = pick_n_take(huggers)
+			if(!F)
+				return
+			if(prob(chance))
+				F.forceMove(loc)
+				step_away(F,src,1)
+				addtimer(CALLBACK(F, /obj/item/clothing/mask/facehugger.proc/GoActive), 2 SECONDS)
+			else
+				qdel(F)
+			chance -= 30
+		QDEL_LIST(huggers)
 
 /mob/living/carbon/Xenomorph/Carrier/Stat()
-	if (!..())
-		return 0
+	. = ..()
 
-	stat(null, "Stored Huggers: [huggers_cur] / [xeno_caste.huggers_max]")
-	stat(null, "Stored Eggs: [eggs_cur] / [xeno_caste.eggs_max]")
-	return 1
+	if(statpanel("Stats"))
+		stat(null, "Stored Huggers: [huggers.len] / [xeno_caste.huggers_max]")
+		stat(null, "Stored Eggs: [eggs_cur] / [xeno_caste.eggs_max]")
 
-/mob/living/carbon/Xenomorph/Carrier/proc/store_hugger(obj/item/clothing/mask/facehugger/F)
-	if(huggers_cur < xeno_caste.huggers_max)
-		if(F.stat == CONSCIOUS && !F.sterile)
-			huggers_cur++
-			to_chat(src, "<span class='notice'>You store the facehugger and carry it for safekeeping. Now sheltering: [huggers_cur] / [xeno_caste.huggers_max].</span>")
-			qdel(F)
-		else
+
+/mob/living/carbon/Xenomorph/Carrier/proc/store_hugger(obj/item/clothing/mask/facehugger/F, message = TRUE)
+	if(huggers.len < xeno_caste.huggers_max)
+		if(F.stat == CONSCIOUS)
+			transferItemToLoc(F, src)
+			F.GoIdle(TRUE)
+			huggers.Add(F)
+			if(message)
+				to_chat(src, "<span class='notice'>You store the facehugger and carry it for safekeeping. Now sheltering: [huggers.len] / [xeno_caste.huggers_max].</span>")
+		else if(message)
 			to_chat(src, "<span class='warning'>This [F.name] looks too unhealthy.</span>")
-	else
+	else if(message)
 		to_chat(src, "<span class='warning'>You can't carry more facehuggers on you.</span>")
 
 
 /mob/living/carbon/Xenomorph/Carrier/proc/throw_hugger(atom/T)
-	if(!T) return
+	if(!T)
+		return
 
 	if(!check_state())
 		return
@@ -243,22 +251,21 @@
 		if(isturf(F.loc) && Adjacent(F))
 			if(F.hivenumber != hivenumber)
 				to_chat(src, "<span class='warning'>That facehugger is tainted!</span>")
-				drop_inv_item_on_ground(F)
+				dropItemToGround(F)
 				return
 			store_hugger(F)
 			return
 
-	var/obj/item/clothing/mask/facehugger/F = get_active_hand()
+	var/obj/item/clothing/mask/facehugger/F = get_active_held_item()
 	if(!F) //empty active hand
 		//if no hugger in active hand, we take one from our storage
-		if(huggers_cur <= 0)
+		if(huggers.len <= 0)
 			to_chat(src, "<span class='warning'>You don't have any facehuggers to use!</span>")
 			return
-		F = new()
-		F.hivenumber = hivenumber
-		huggers_cur--
+		F = pick_n_take(huggers)
 		put_in_active_hand(F)
-		to_chat(src, "<span class='xenonotice'>You grab one of the facehugger in your storage. Now sheltering: [huggers_cur] / [xeno_caste.huggers_max].</span>")
+		F.GoActive()
+		to_chat(src, "<span class='xenonotice'>You grab one of the facehugger in your storage. Now sheltering: [huggers.len] / [xeno_caste.huggers_max].</span>")
 		return
 
 	if(!istype(F)) //something else in our hand
@@ -266,17 +273,17 @@
 		return
 
 	if(!threw_a_hugger)
-		threw_a_hugger = 1
+		threw_a_hugger = TRUE
 		update_action_button_icons()
-		drop_inv_item_on_ground(F)
+		dropItemToGround(F)
 		F.throw_at(T, CARRIER_HUGGER_THROW_DISTANCE, CARRIER_HUGGER_THROW_SPEED)
 		visible_message("<span class='xenowarning'>\The [src] throws something towards \the [T]!</span>", \
 		"<span class='xenowarning'>You throw a facehugger towards \the [T]!</span>")
-		spawn(xeno_caste.hugger_delay)
-			threw_a_hugger = 0
-			update_action_button_icons()
+		addtimer(CALLBACK(src, .hugger_throw_cooldown), xeno_caste.hugger_delay)
 
-
+/mob/living/carbon/Xenomorph/Carrier/proc/hugger_throw_cooldown()
+	threw_a_hugger = FALSE
+	update_action_button_icons()
 
 /mob/living/carbon/Xenomorph/Carrier/proc/store_egg(obj/item/xeno_egg/E)
 	if(E.hivenumber != hivenumber)
@@ -306,7 +313,7 @@
 			store_egg(E)
 			return
 
-	var/obj/item/xeno_egg/E = get_active_hand()
+	var/obj/item/xeno_egg/E = get_active_held_item()
 	if(!E) //empty active hand
 		//if no hugger in active hand, we take one from our storage
 		if(eggs_cur <= 0)

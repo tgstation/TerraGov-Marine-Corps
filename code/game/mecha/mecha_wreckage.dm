@@ -31,7 +31,7 @@
 
 
 /obj/effect/decal/mecha_wreckage/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/tool/weldingtool))
+	if(iswelder(W))
 		var/obj/item/tool/weldingtool/WT = W
 		if(salvage_num <= 0)
 			to_chat(user, "You don't see anything that can be cut with [W].")
@@ -49,7 +49,7 @@
 		else
 			to_chat(user, "<span class='notice'>You need more welding fuel to complete this task.</span>")
 			return
-	if(istype(W, /obj/item/tool/wirecutters))
+	if(iswirecutter(W))
 		if(salvage_num <= 0)
 			to_chat(user, "You don't see anything that can be cut with [W].")
 			return
@@ -61,7 +61,7 @@
 				salvage_num--
 			else
 				to_chat(user, "You failed to salvage anything valuable from [src].")
-	if(istype(W, /obj/item/tool/crowbar))
+	if(iscrowbar(W))
 		if(!isemptylist(crowbar_salvage))
 			var/obj/S = pick(crowbar_salvage)
 			if(S)
@@ -76,7 +76,7 @@
 	return
 
 /obj/effect/decal/mecha_wreckage/attack_alien(mob/living/carbon/Xenomorph/M)
-    if(M.a_intent != "help")
+    if(M.a_intent != INTENT_HARM)
         playsound(src, 'sound/effects/metal_crash.ogg', 50, 1)
         M.visible_message("<span class='danger'>[M] slices [src] apart!</span>","<span class='danger'>You slice [src] apart!</span>")
         robogibs(src)

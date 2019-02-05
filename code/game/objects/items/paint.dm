@@ -123,7 +123,7 @@ var/global/list/cached_icons = list()
 
 	attack_self(mob/user as mob)
 		var/t1 = input(user, "Please select a color:", "Locking Computer", null) in list( "red", "blue", "green", "yellow", "black", "white")
-		if ((user.get_active_hand() != src || user.stat || user.is_mob_restrained()))
+		if ((user.get_active_held_item() != src || user.stat || user.is_mob_restrained()))
 			return
 		switch(t1)
 			if("red")
@@ -147,7 +147,7 @@ var/global/list/cached_icons = list()
 
 /obj/item/paint/afterattack(turf/target, mob/user as mob, proximity)
 	if(!proximity) return
-	if(!istype(target) || istype(target, /turf/open/space))
+	if(!istype(target) || isspaceturf(target))
 		return
 	var/ind = "[initial(target.icon)][color]"
 	if(!cached_icons[ind])
@@ -179,7 +179,7 @@ datum/reagent/paint
 	description = "This paint will only adhere to floor tiles."
 
 	reaction_turf(var/turf/T, var/volume)
-		if(!istype(T) || istype(T, /turf/open/space))
+		if(!istype(T) || isspaceturf(T))
 			return
 		T.color = color
 

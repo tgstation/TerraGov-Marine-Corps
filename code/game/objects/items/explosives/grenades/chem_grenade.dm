@@ -48,7 +48,7 @@
 		path = 1
 		to_chat(user, "<span class='notice'>You add [W] to the metal casing.</span>")
 		playsound(src.loc, 'sound/items/Screwdriver2.ogg', 25, 0, 6)
-		user.temp_drop_inv_item(det)
+		user.temporarilyRemoveItemFromInventory(det)
 		det.forceMove(src)
 		detonator = det
 		icon_state = initial(icon_state) +"_ass"
@@ -114,7 +114,7 @@
 		icon_state = initial(icon_state) + "_active"
 
 		if(user)
-			msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) primed \a [src]")
+			msg_admin_attack("[ADMIN_TPMONTY(usr)] primed \a [src].")
 
 	return
 
@@ -152,9 +152,9 @@
 				if( A == src ) continue
 				src.reagents.reaction(A, 1, 10)
 
-		if(istype(loc, /mob/living/carbon))		//drop dat grenade if it goes off in your hand
+		if(iscarbon(loc))		//drop dat grenade if it goes off in your hand
 			var/mob/living/carbon/C = loc
-			C.drop_inv_item_on_ground(src)
+			C.dropItemToGround(src)
 			C.throw_mode_off()
 
 		invisibility = INVISIBILITY_MAXIMUM //Why am i doing this?

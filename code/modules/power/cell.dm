@@ -2,12 +2,11 @@
 // charge from 0 to 100%
 // fits in APC to provide backup power
 
-/obj/item/cell/New()
-	..()
+/obj/item/cell/Initialize()
+	. = ..()
 	charge = maxcharge
 
-	spawn(5)
-		updateicon()
+	updateicon()
 
 /obj/item/cell/proc/updateicon()
 	overlays.Cut()
@@ -79,6 +78,10 @@
 /obj/item/cell/attack_self(mob/user as mob)
 	add_fingerprint(user)
 	if(rigged)
+		if(issynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
+			to_chat(user, "<span class='warning'>Your programming restricts using rigged power cells.</span>")
+			return
+		log_combat(user, src, "primed a rigged")
 		user.visible_message("<span class='danger'>[user] destabilizes [src]; it will detonate shortly!</span>",
 		"<span class='danger'>You destabilize [src]; it will detonate shortly!</span>")
 		msg_admin_attack("[key_name(user)] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[user.y];Z=[user.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) (<A HREF='?_src_=holder;adminmoreinfo=\ref[user]'>?</A>) primed \a [src].")
@@ -95,8 +98,11 @@
 	return ..()
 
 /obj/item/cell/attackby(obj/item/W, mob/user)
-	..()
+	. = ..()
 	if(istype(W, /obj/item/reagent_container/syringe))
+		if(issynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
+			to_chat(user, "<span class='warning'>Your programming restricts rigging of power cells.</span>")
+			return
 		var/obj/item/reagent_container/syringe/S = W
 
 		to_chat(user, "You inject the solution into the power cell.")
@@ -105,11 +111,14 @@
 
 			rigged = 1
 
-			log_admin("LOG: [user.name] ([user.ckey]) injected a power cell with phoron, rigging it to explode.")
-			message_admins("LOG: [user.name] ([user.ckey]) injected a power cell with phoron, rigging it to explode.")
+			log_admin("[key_name(usr)] injected a power cell with phoron, rigging it to explode.")
+			message_admins("[ADMIN_TPMONTY(usr)] injected a power cell with phoron, rigging it to explode.")
 
 		S.reagents.clear_reagents()
-	else if(istype(W, /obj/item/device/multitool))
+	else if(ismultitool(W))
+		if(issynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
+			to_chat(user, "<span class='warning'>Your programming restricts rigging of power cells.</span>")
+			return
 		var/delay = SKILL_TASK_EASY
 		var/skill
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer) //Higher skill lowers the delay.
@@ -174,9 +183,6 @@
 		corrupt()
 		return
 	//explosion(T, 0, 1, 2, 2)
-
-	log_admin("LOG: Rigged power cell explosion, last touched by [fingerprintslast]")
-	message_admins("LOG: Rigged power cell explosion, last touched by [fingerprintslast]")
 
 	explosion(T, devastation_range, heavy_impact_range, light_impact_range, flash_range)
 

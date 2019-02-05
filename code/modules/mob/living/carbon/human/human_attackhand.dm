@@ -30,7 +30,7 @@
 
 	M.next_move += 7 //Adds some lag to the 'attack'. This will add up to 10
 	switch(M.a_intent)
-		if("help")
+		if(INTENT_HELP)
 
 			if(on_fire && M != src)
 				fire_stacks = max(fire_stacks - 1, 0)
@@ -43,7 +43,7 @@
 					ExtinguishMob()
 				return 1
 
-			if(health >= config.health_threshold_crit)
+			if(health >= CONFIG_GET(number/health_threshold_crit))
 				help_shake_act(M)
 				return 1
 //			if(M.health < -75)	return 0
@@ -61,7 +61,7 @@
 			M.visible_message("<span class='danger'>[M] is trying perform CPR on [src]!</span>", null, null, 4)
 
 			if(do_mob(M, src, HUMAN_STRIP_DELAY, BUSY_ICON_GENERIC, BUSY_ICON_MEDICAL))
-				if(health > config.health_threshold_dead && health < config.health_threshold_crit)
+				if(health > CONFIG_GET(number/health_threshold_dead) && health < CONFIG_GET(number/health_threshold_crit))
 					var/suff = min(getOxyLoss(), 5) //Pre-merge level, less healing, more prevention of dieing.
 					adjustOxyLoss(-suff)
 					updatehealth()
@@ -72,7 +72,7 @@
 
 			return 1
 
-		if("grab")
+		if(INTENT_GRAB)
 			if(M == src || anchored)
 				return 0
 			if(w_uniform)
@@ -82,7 +82,7 @@
 
 			return 1
 
-		if("hurt")
+		if(INTENT_HARM)
 			// See if they can attack, and which attacks to use.
 			var/datum/unarmed_attack/attack = M.species.unarmed
 			if(!attack.is_usable(M)) attack = M.species.secondary_unarmed
@@ -118,7 +118,7 @@
 			apply_damage(damage, BRUTE, affecting, armor_block, sharp=attack.sharp, edge=attack.edge)
 
 
-		if("disarm")
+		if(INTENT_DISARM)
 			log_combat(M, src, "disarmed")
 
 			M.animation_attack_on(src)
@@ -189,7 +189,7 @@
 
 
 /mob/living/carbon/human/help_shake_act(mob/living/carbon/M)
-	if (health >= config.health_threshold_crit)
+	if (health >= CONFIG_GET(number/health_threshold_crit))
 		if(src == M)
 			if(holo_card_color) //if we have a triage holocard printed on us, we remove it.
 				holo_card_color = null
@@ -202,8 +202,12 @@
 
 			for(var/datum/limb/org in limbs)
 				var/status = ""
+				var/treat = ""
 				var/brutedamage = org.brute_dam
 				var/burndamage = org.burn_dam
+				var/brute_treated = org.is_bandaged()
+				var/burn_treated = org.is_salved()
+
 				if(halloss > 0)
 					status = "tingling"
 
@@ -234,7 +238,14 @@
 				if(org.status & LIMB_DESTROYED)
 					status = "MISSING!"
 
-				to_chat(src, "\t [status=="OK"?"<span class='notice'> ":"<span class='warning'> "]My [org.display_name] is [status].</span>")
+				if(brute_treated == FALSE && brutedamage > 0)
+					treat = "(Bandaged)"
+				if(brute_treated == FALSE && burn_treated == FALSE && brutedamage > 0 && burndamage > 0)
+					treat += " and "
+				if(burn_treated == FALSE && burndamage > 0)
+					treat += "(Salved)"
+
+				to_chat(src, "\t [status=="OK"?"<span class='notice'> ":"<span class='warning'> "]My [org.display_name] is [status]. [treat]</span>")
 			if((SKELETON in mutations) && !w_uniform && !wear_suit)
 				play_xylophone()
 	return ..()

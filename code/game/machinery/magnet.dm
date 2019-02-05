@@ -182,7 +182,8 @@
 						step_towards(M, center)
 
 				for(var/mob/living/silicon/S in orange(magnetic_field, center))
-					if(istype(S, /mob/living/silicon/ai)) continue
+					if(isAI(S))
+						continue
 					step_towards(S, center)
 
 			use_power(electricity_level * 5)
@@ -222,7 +223,7 @@
 		..()
 
 		if(autolink)
-			for(var/obj/machinery/magnetic_module/M in machines)
+			for(var/obj/machinery/magnetic_module/M in GLOB.machines)
 				if(M.freq == frequency && M.code == code)
 					magnets.Add(M)
 
@@ -238,7 +239,7 @@
 
 	process()
 		if(magnets.len == 0 && autolink)
-			for(var/obj/machinery/magnetic_module/M in machines)
+			for(var/obj/machinery/magnetic_module/M in GLOB.machines)
 				if(M.freq == frequency && M.code == code)
 					magnets.Add(M)
 

@@ -46,9 +46,9 @@
 	if((!isassembly(D))||(!isassembly(D2)))	return 0
 	if((D:secured)||(D2:secured))	return 0
 	if(user)
-		user.temp_drop_inv_item(D)
+		user.temporarilyRemoveItemFromInventory(D)
 		if(D2.loc == user)
-			user.temp_drop_inv_item(D2)
+			user.temporarilyRemoveItemFromInventory(D2)
 		else if(istype(D2.loc, /obj/item/storage))
 			var/obj/item/storage/S = D2.loc
 			S.remove_from_storage(D2)
@@ -193,7 +193,7 @@
 /obj/item/device/assembly_holder/process_activation(var/obj/D, var/normal = 1, var/special = 1)
 	if(!D)	return 0
 	if(!secured)
-		visible_message("\icon[src] *beep* *beep*", "*beep* *beep*")
+		visible_message("[bicon(src)] *beep* *beep*", "*beep* *beep*")
 	if((normal) && (a_right) && (a_left))
 		if(a_right != D)
 			a_right.pulsed(0)

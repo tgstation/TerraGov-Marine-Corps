@@ -63,14 +63,14 @@
 		to_chat(user, "<span class='warning'>This syringe is broken!</span>")
 		return
 
-	if (user.a_intent == "hurt" && ismob(target))
+	if (user.a_intent == INTENT_HARM && ismob(target))
 		if((CLUMSY in user.mutations) && prob(50))
 			target = user
 		var/mob/M = target
-		if(M != user && M.stat != DEAD && M.a_intent != "help" && !M.is_mob_incapacitated() && ((M.mind && M.mind.cm_skills && M.mind.cm_skills.cqc >= SKILL_CQC_MP) || isYautja(M))) // preds have null skills
+		if(M != user && M.stat != DEAD && M.a_intent != INTENT_HELP && !M.is_mob_incapacitated() && ((M.mind && M.mind.cm_skills && M.mind.cm_skills.cqc >= SKILL_CQC_MP) || isyautja(M))) // preds have null skills
 			user.KnockDown(3)
 			log_combat(M, user, "blocked", addition="using their cqc skill (syringe injection)")
-			msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) got robusted by the cqc of [key_name(M)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[M]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[M.x];Y=[M.y];Z=[M.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[M]'>FLW</a>)")
+			msg_admin_attack("[ADMIN_TPMONTY(usr)] got robusted by the cqc of [ADMIN_TPMONTY(M)].")
 			M.visible_message("<span class='danger'>[M]'s reflexes kick in and knock [user] to the ground before they could use \the [src]'!</span>", \
 				"<span class='warning'>You knock [user] to the ground before they could inject you!</span>", null, 5)
 			playsound(user.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
@@ -184,7 +184,7 @@
 							injected += R.name
 						var/contained = english_list(injected)
 						log_combat(user, M, "injected", src, "Reagents: [contained]")
-						msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) injected [key_name(M)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[M]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[M.x];Y=[M.y];Z=[M.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[M]'>FLW</a>) with [src.name]. Reagents: [contained] (INTENT: [uppertext(user.a_intent)])")
+						msg_admin_attack("[ADMIN_TPMONTY(usr)] injected [ADMIN_TPMONTY(M)] with [src.name]. Reagents: [contained].")
 
 				reagents.reaction(target, INJECT)
 
@@ -232,9 +232,9 @@
 /obj/item/reagent_container/syringe/proc/syringestab(mob/living/carbon/target as mob, mob/living/carbon/user as mob)
 
 	log_combat(user, target, "attacked", src, "(INTENT: [uppertext(user.a_intent)])")
-	msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) attacked [key_name(target)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[target]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[target.x];Y=[target.y];Z=[target.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[target]'>FLW</a>) with [src.name] (INTENT: [uppertext(user.a_intent)])")
+	msg_admin_attack("[ADMIN_TPMONTY(usr)] attacked [ADMIN_TPMONTY(target)] with [src.name].")
 
-	if(istype(target, /mob/living/carbon/human))
+	if(ishuman(target))
 
 		var/target_zone = ran_zone(check_zone(user.zone_selected, target))
 		var/datum/limb/affecting = target:get_limb(target_zone)
@@ -253,7 +253,7 @@
 		if (target != user && target.getarmor(target_zone, "melee") > 5 && prob(50))
 			for(var/mob/O in viewers(world.view, user))
 				O.show_message(text("<span class='danger'>[user] tries to stab [target] in \the [hit_area] with [src.name], but the attack is deflected by armor!</span>"), 1)
-			user.temp_drop_inv_item(src)
+			user.temporarilyRemoveItemFromInventory(src)
 			qdel(src)
 			return
 
@@ -300,7 +300,7 @@
 				return
 
 			if(ismob(target))
-				if(istype(target, /mob/living/carbon))//I Do not want it to suck 50 units out of people
+				if(iscarbon(target))//I Do not want it to suck 50 units out of people
 					to_chat(usr, "<span class='warning'>This needle isn't designed for drawing blood.</span>")
 					return
 			else //if not mob

@@ -55,7 +55,7 @@
 		if(!B.brainmob.key)
 			var/ghost_can_reenter = 0
 			if(B.brainmob.mind)
-				for(var/mob/dead/observer/G in player_list)
+				for(var/mob/dead/observer/G in GLOB.player_list)
 					if(G.can_reenter_corpse && G.mind == B.brainmob.mind)
 						ghost_can_reenter = 1
 						break
@@ -73,14 +73,14 @@
 
 
 
-		user.drop_inv_item_to_loc(O, src)
+		user.transferItemToLoc(O, src)
 		to_chat(user, "<span class='notice'>You install [O] in [src]!</span>")
 		mmi = O
 		transfer_personality(O)
 		update_icon()
 		return 1
 
-	if (istype(O, /obj/item/tool/weldingtool))
+	if (iswelder(O))
 		var/obj/item/tool/weldingtool/WT = O
 		if (WT.remove_fuel(0))
 			if(health < maxHealth)
@@ -187,19 +187,19 @@
 	eject_brain()
 	. = ..()
 
-/mob/living/simple_animal/spiderbot/New()
+/mob/living/simple_animal/spiderbot/Initialize()
 
 	radio = new /obj/item/device/radio/borg(src)
 	camera = new /obj/machinery/camera(src)
 	camera.c_tag = "Spiderbot-[real_name]"
 	camera.network = list("SS13")
 
-	..()
+	return ..()
 
 /mob/living/simple_animal/spiderbot/death()
 
-	living_mob_list -= src
-	dead_mob_list += src
+	GLOB.alive_mob_list -= src
+	GLOB.dead_mob_list += src
 
 	if(camera)
 		camera.status = 0
@@ -273,4 +273,4 @@
 /mob/living/simple_animal/spiderbot/examine(mob/user)
 	..()
 	if(held_item)
-		to_chat(user, "It is carrying \a [held_item] \icon[held_item].")
+		to_chat(user, "It is carrying \a [held_item] [bicon(held_item)].")

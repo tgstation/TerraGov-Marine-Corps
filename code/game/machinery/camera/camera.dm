@@ -13,7 +13,6 @@
 	var/c_tag_order = 999
 	var/status = 1.0
 	anchored = 1.0
-	var/panel_open = 0 // 0 = Closed / 1 = Open
 	var/invuln = null
 	var/bugged = FALSE
 	var/obj/item/frame/camera/assembly = null
@@ -45,9 +44,9 @@
 	*/
 	if(!src.network || src.network.len < 1)
 		if(loc)
-			error("[src.name] in [get_area(src)] (x:[src.x] y:[src.y] z:[src.z] has errored. [src.network?"Empty network list":"Null network list"]")
+			stack_trace("[src.name] in [get_area(src)] (x:[src.x] y:[src.y] z:[src.z] has errored. [src.network?"Empty network list":"Null network list"]")
 		else
-			error("[src.name] in [get_area(src)]has errored. [src.network?"Empty network list":"Null network list"]")
+			stack_trace("[src.name] in [get_area(src)]has errored. [src.network?"Empty network list":"Null network list"]")
 		ASSERT(src.network)
 		ASSERT(src.network.len > 0)
 
@@ -151,7 +150,7 @@
 			itemname = P.name
 			info = P.notehtml
 		to_chat(U, "You hold \a [itemname] up to the camera ...")
-		for(var/mob/living/silicon/ai/O in living_mob_list)
+		for(var/mob/living/silicon/ai/O in GLOB.ai_list)
 			if(!O.client)
 				continue
 			if(U.name == "Unknown")
@@ -159,7 +158,7 @@
 			else
 				to_chat(O, "<b><a href='byond://?src=\ref[O];track2=\ref[O];track=\ref[U]'>[U]</a></b> holds \a [itemname] up to one of your cameras...")
 			O << browse(text("<HTML><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", itemname, info), text("window=[]", itemname))
-		for(var/mob/O in player_list)
+		for(var/mob/O in GLOB.player_list)
 			if (istype(O.interactee, /obj/machinery/computer/security))
 				var/obj/machinery/computer/security/S = O.interactee
 				if (S.current == src)
@@ -199,7 +198,7 @@
 
 //This might be redundant, because of check_eye()
 /obj/machinery/camera/proc/kick_viewers()
-	for(var/mob/O in player_list)
+	for(var/mob/O in GLOB.player_list)
 		if (istype(O.interactee, /obj/machinery/computer/security))
 			var/obj/machinery/computer/security/S = O.interactee
 			if (S.current == src)
@@ -209,13 +208,13 @@
 
 /obj/machinery/camera/proc/triggerCameraAlarm()
 	alarm_on = TRUE
-	for(var/mob/living/silicon/S in mob_list)
+	for(var/mob/living/silicon/S in GLOB.silicon_mobs)
 		S.triggerAlarm("Camera", get_area(src), list(src), src)
 
 
 /obj/machinery/camera/proc/cancelCameraAlarm()
 	alarm_on = FALSE
-	for(var/mob/living/silicon/S in mob_list)
+	for(var/mob/living/silicon/S in GLOB.silicon_mobs)
 		S.cancelAlarm("Camera", get_area(src), src)
 
 /obj/machinery/camera/proc/can_use()

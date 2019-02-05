@@ -28,7 +28,7 @@
 
 /obj/item/blueprints/Topic(href, href_list)
 	..()
-	if ((usr.is_mob_restrained() || usr.stat || usr.get_active_hand() != src))
+	if ((usr.is_mob_restrained() || usr.stat || usr.get_active_held_item() != src))
 		return
 	if (!href_list["action"])
 		return
@@ -186,7 +186,7 @@ move an amendment</a> to the drawing.</p>
 	//TODO: much much more. Unnamed airlocks, cameras, etc.
 
 /obj/item/blueprints/proc/check_tile_is_border(var/turf/T2,var/dir)
-	if (istype(T2, /turf/open/space))
+	if (isspaceturf(T2))
 		return BORDER_SPACE //omg hull breach we all going to die here
 	if (istype(T2, /turf/open/shuttle))
 		return BORDER_SPACE
@@ -194,7 +194,7 @@ move an amendment</a> to the drawing.</p>
 		return BORDER_SPACE
 	if (get_area_type(T2.loc)!=AREA_SPACE)
 		return BORDER_BETWEEN
-	if (istype(T2, /turf/closed/wall))
+	if (iswallturf(T2))
 		return BORDER_2NDTILE
 
 	for (var/obj/structure/window/W in T2)

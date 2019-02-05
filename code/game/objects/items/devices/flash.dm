@@ -37,7 +37,7 @@
 	if(!ishuman(M)) return
 
 	log_combat(user, M, "attempted to flash", src)
-	msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) used the [src.name] to flash [key_name(M)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[M]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[M.x];Y=[M.y];Z=[M.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[M]'>FLW</a>)")
+	msg_admin_attack("[ADMIN_TPMONTY(usr)] used the [src.name] to flash [ADMIN_TPMONTY(M)].")
 
 	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.police < SKILL_POLICE_FLASH)
 		to_chat(user, "<span class='warning'>You don't seem to know how to use [src]...</span>")
@@ -49,7 +49,7 @@
 		return
 
 	flash_recharge()
-	if(isXeno(M))
+	if(isxeno(M))
 		to_chat(user, "You can't find any eyes!")
 		return
 
@@ -80,7 +80,7 @@
 	else
 		flashfail = 1
 
-	if(isrobot(user))
+	if(iscyborg(user))
 		spawn(0)
 			var/atom/movable/overlay/animation = new(user.loc)
 			animation.layer = user.layer + 1
@@ -137,7 +137,7 @@
 	playsound(src.loc, 'sound/weapons/flash.ogg', 25, 1)
 	user.log_message("flashed an area with [key_name(src)]", LOG_ATTACK)
 	//flick("flash2", src)
-	if(user && isrobot(user))
+	if(user && iscyborg(user))
 		spawn(0)
 			var/atom/movable/overlay/animation = new(user.loc)
 			animation.layer = user.layer + 1
@@ -168,7 +168,7 @@
 				icon_state = "flashburnt"
 				return
 			times_used++
-			if(istype(loc, /mob/living/carbon))
+			if(iscarbon(loc))
 				var/mob/living/carbon/M = loc
 				if(M.flash_eyes())
 					M.KnockDown(10)

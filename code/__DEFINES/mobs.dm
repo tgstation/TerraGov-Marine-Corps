@@ -210,6 +210,13 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define ORGAN_ASSISTED	1
 #define ORGAN_ROBOT		2
 
+#define ORGAN_HEART 1
+#define ORGAN_LUNGS 2
+#define ORGAN_LIVER 3
+#define ORGAN_KIDNEYS 4
+#define ORGAN_BRAIN 5
+#define ORGAN_EYES 6
+#define ORGAN_APPENDIX 7
 
 ///////////////SURGERY DEFINES///////////////
 #define SPECIAL_SURGERY_INVALID	"special_surgery_invalid"
@@ -463,15 +470,14 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define HUNTER_STEALTH_STILL_ALPHA				13 //95% transparency
 #define HUNTER_STEALTH_WALK_ALPHA				38 //85% transparency
 #define HUNTER_STEALTH_RUN_ALPHA				128 //50% transparency
-#define HUNTER_STEALTH_STEALTH_DELAY			40 //4 seconds before 95% stealth
+#define HUNTER_STEALTH_STEALTH_DELAY			30 //3 seconds before 95% stealth
 #define HUNTER_STEALTH_INITIAL_DELAY			20 //2 seconds before we can increase stealth
-#define HUNTER_POUNCE_SNEAKATTACK_DELAY 		40 //4 seconds before we can sneak attack
+#define HUNTER_POUNCE_SNEAKATTACK_DELAY 		30 //3 seconds before we can sneak attack
 #define HANDLE_STEALTH_CHECK				1
 #define HANDLE_STEALTH_CODE_CANCEL		2
 #define HANDLE_SNEAK_ATTACK_CHECK		3
 
 // xeno defines
-
 
 #define XENO_SLOWDOWN_REGEN 0.4
 #define XENO_HALOSS_REGEN 3
@@ -490,12 +496,12 @@ var/list/global_mutations = list() // list of hidden mutation things
 
 //Ravager defines:
 #define RAVAGER_MAX_RAGE 50
-#define RAV_CHARGESPEED					3
+#define RAV_CHARGESPEED					100
 #define RAV_CHARGESTRENGTH				3
 #define RAV_CHARGEDISTANCE				7
 #define RAV_CHARGECOOLDOWN				30 SECONDS
 #define RAV_CHARGE_TYPE					3
-#define RAV_SECOND_WIND_COOLDOWN		4 MINUTES
+#define RAV_SECOND_WIND_COOLDOWN		240 SECONDS
 #define RAV_RAVAGE_COOLDOWN				10 SECONDS
 #define RAV_HANDLE_CHARGE				1
 
@@ -530,10 +536,35 @@ var/list/global_mutations = list() // list of hidden mutation things
 
 //sentinel defines
 
-#define NEUROTOXIN_STING_COOLDOWN				30 SECONDS
-#define NEUROTOXIN_STING_INJECT_DELAY			1.5 SECONDS
-#define NEUROTOXIN_STING_AMOUNT_INITIAL			15
-#define NEUROTOXIN_STING_AMOUNT_RECURRING		10
+#define SENTINEL_STING_COOLDOWN				30 SECONDS
+#define SENTINEL_STING_INJECT_DELAY			1.5 SECONDS
+#define SENTINEL_STING_AMOUNT_INITIAL		15
+#define SENTINEL_STING_AMOUNT_RECURRING		10
+#define SENTINEL_STING_CHANNEL_TIME			1.5 SECONDS
+
+//Defiler defines
+
+#define DEFILER_STING_COOLDOWN				20 SECONDS
+#define DEFILER_GAS_COOLDOWN				40 SECONDS
+#define DEFILER_CLAWS_COOLDOWN				1 SECONDS
+
+#define DEFILER_GAS_CHANNEL_TIME			2 SECONDS
+#define DEFILER_GAS_DELAY					1 SECONDS
+#define DEFILER_GAS_CLOUD_COUNT				2
+#define DEFILER_STING_CHANNEL_TIME			1.5 SECONDS
+#define DEFILER_CLAW_AMOUNT					6
+#define DEFILER_STING_AMOUNT_INITIAL		15
+#define DEFILER_STING_AMOUNT_RECURRING		10
+#define DEFILER_STING_GROWTH_AMOUNT			30
+#define GROWTH_TOXIN_METARATE		0.2
+
+//Drone defines
+
+#define DRONE_STING_COOLDOWN				20 SECONDS
+#define DRONE_STING_AMOUNT_INITIAL			15
+#define DRONE_STING_AMOUNT_RECURRING		10
+#define DRONE_STING_CHANNEL_TIME			1.5 SECONDS
+
 
 #define CANNOT_HOLD_EGGS 0
 #define CAN_HOLD_TWO_HANDS 1
@@ -549,3 +580,7 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define CASTE_IS_INTELLIGENT		(1<<7)
 #define CASTE_IS_ROBOTIC			(1<<8)
 #define CASTE_DECAY_PROOF			(1<<9)
+
+//misc
+
+#define STANDARD_SLOWDOWN_REGEN 0.3

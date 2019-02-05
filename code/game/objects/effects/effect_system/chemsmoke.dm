@@ -76,22 +76,14 @@
 		contained += " [reagent] "
 	if(contained)
 		contained = "\[[contained]\]"
-	var/area/A = get_area(location)
-
-	var/where = "[A.name]|[location.x], [location.y]"
-	var/whereLink = "<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>[where]</a>"
 
 	if(carry.my_atom.fingerprintslast)
 		var/mob/M = get_mob_by_key(carry.my_atom.fingerprintslast)
-		var/more = ""
-		if(M)
-			more = "(<A HREF='?_src_=holder;adminmoreinfo=\ref[M]'>?</a>)"
-		message_admins("A chemical smoke reaction has taken place in ([whereLink])[contained]. Last associated key is [carry.my_atom.fingerprintslast][more].", 0, 1)
-		log_game("A chemical smoke reaction has taken place in ([where])[contained]. Last associated key is [carry.my_atom.fingerprintslast].")
+		log_game("A chemical smoke reaction has taken place in [AREACOORD(location)] [contained]. Last associated key is [key_name(M)].")
+		message_admins("A chemical smoke reaction has taken place in [ADMIN_VERBOSEJMP(location)] [contained]. Last associated mob is [ADMIN_TPMONTY(M)].")
 	else
-		message_admins("A chemical smoke reaction has taken place in ([whereLink]). No associated key.", 0, 1)
-		log_game("A chemical smoke reaction has taken place in ([where])[contained]. No associated key.")
-
+		log_game("A chemical smoke reaction has taken place in [AREACOORD(location)] [contained]. No associated key.")
+		message_admins("A chemical smoke reaction has taken place in [ADMIN_VERBOSEJMP(location)] [contained]. No associated key.")
 
 //------------------------------------------
 //Runs the chem smoke effect
@@ -232,7 +224,7 @@
 			for(var/D in cardinal)
 				var/turf/target = get_step(current, D)
 				if(wallList)
-					if(istype(target, /turf/closed/wall))
+					if(iswallturf(target))
 						if(!(target in wallList))
 							wallList += target
 						continue

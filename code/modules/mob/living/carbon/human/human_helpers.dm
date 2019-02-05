@@ -73,7 +73,6 @@
 				return "[ethnicity]_left_foot"
 
 			else
-				message_admins("DEBUG: Something called get_limb_icon_name() incorrectly, they use the name [limb_name]")
 				return null
 	else
 		switch(limb_name)
@@ -137,12 +136,11 @@
 			if ("left foot")
 				return "l_foot"
 			else
-				message_admins("DEBUG: Something called get_limb_icon_name() incorrectly, they use the name [limb_name]")
 				return null
 
 /mob/living/carbon/human/proc/set_limb_icons()
-	var/datum/ethnicity/E = ethnicities_list[ethnicity]
-	var/datum/body_type/B = body_types_list[body_type]
+	var/datum/ethnicity/E = GLOB.ethnicities_list[ethnicity]
+	var/datum/body_type/B = GLOB.body_types_list[body_type]
 
 	var/e_icon
 	var/b_icon
@@ -220,66 +218,19 @@
 
 /mob/living/carbon/human/has_legs()
 	. = 0
-	if(has_limb("r_foot") && has_limb("r_leg"))
+	if(has_limb(FOOT_RIGHT) && has_limb(LEG_RIGHT))
 		.++
-	if(has_limb("l_foot") && has_limb("l_leg"))
+	if(has_limb(FOOT_LEFT) && has_limb(LEG_LEFT))
 		.++
-
-/mob/living/carbon/human/proc/disable_lights(var/armor = 1, var/guns = 1, var/flares = 1, var/misc = 1)
-	var/light_off = 0
-	var/goes_out = 0
-	if(armor)
-		if(istype(wear_suit, /obj/item/clothing/suit/storage/marine))
-			var/obj/item/clothing/suit/storage/marine/S = wear_suit
-			if(S.turn_off_light(src))
-				light_off++
-	if(guns)
-		for(var/obj/item/weapon/gun/G in contents)
-			if(G.turn_off_light(src))
-				light_off++
-	if(flares)
-		for(var/obj/item/device/flashlight/flare/F in contents)
-			if(F.on) goes_out++
-			F.turn_off(src)
-	if(misc)
-		for(var/obj/item/device/flashlight/L in contents)
-			if(istype(L, /obj/item/device/flashlight/flare)) continue
-			if(L.turn_off_light(src))
-				light_off++
-		for(var/obj/item/tool/weldingtool/W in contents)
-			if(W.isOn())
-				W.toggle()
-				goes_out++
-		for(var/obj/item/tool/pickaxe/plasmacutter/W in contents)
-			if(W.powered)
-				W.toggle()
-				goes_out++
-		for(var/obj/item/tool/match/M in contents)
-			M.burn_out(src)
-		for(var/obj/item/tool/lighter/Z in contents)
-			if(Z.turn_off(src))
-				goes_out++
-	if(goes_out && light_off)
-		to_chat(src, "<span class='notice'>Your sources of light short and fizzle out.</span>")
-	else if(goes_out)
-		if(goes_out > 1)
-			to_chat(src, "<span class='notice'>Your sources of light fizzle out.</span>")
-		else
-			to_chat(src, "<span class='notice'>Your source of light fizzles out.</span>")
-	else if(light_off)
-		if(light_off > 1)
-			to_chat(src, "<span class='notice'>Your sources of light short out.</span>")
-		else
-			to_chat(src, "<span class='notice'>Your source of light shorts out.</span>")
 
 /mob/living/carbon/human/get_permeability_protection()
 	var/list/prot = list("hands"=0, "chest"=0, "groin"=0, "legs"=0, "feet"=0, "arms"=0, "head"=0)
 	for(var/obj/item/I in get_equipped_items())
 		if(I.body_parts_covered & HANDS)
 			prot["hands"] = max(1 - I.permeability_coefficient, prot["hands"])
-		if(I.body_parts_covered & UPPER_TORSO)
+		if(I.body_parts_covered & CHEST)
 			prot["chest"] = max(1 - I.permeability_coefficient, prot["chest"])
-		if(I.body_parts_covered & LOWER_TORSO)
+		if(I.body_parts_covered & GROIN)
 			prot["groin"] = max(1 - I.permeability_coefficient, prot["groin"])
 		if(I.body_parts_covered & LEGS)
 			prot["legs"] = max(1 - I.permeability_coefficient, prot["legs"])

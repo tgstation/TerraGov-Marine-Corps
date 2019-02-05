@@ -39,10 +39,8 @@
 	var/list/choices = list()
 	for(var/mob/living/carbon/M in view(1,src))
 		if(Adjacent(M) && M.stat)
-			if(istype(M,/mob/living/carbon/human))
-				var/mob/living/carbon/human/Q = M
-				if(Q.species && Q.species.name == "Yautja")
-					continue
+			if(isyautjastrict(M))
+				continue
 			choices += M
 
 	if(src in choices)
@@ -127,7 +125,7 @@
 				new /obj/item/stack/sheet/animalhide/human(T.loc)
 				new /obj/effect/decal/remains/human(T.loc)
 			if(T.legcuffed)
-				T.drop_inv_item_on_ground(T.legcuffed)
+				T.dropItemToGround(T.legcuffed)
 			T.butchery_progress = 5 //Won't really matter.
 			playsound(loc, 'sound/weapons/slice.ogg', 25)
 			to_chat(src, "<span class='notice'>You finish butchering!</span>")
@@ -151,7 +149,7 @@
 		to_chat(src, "You're not able to do that right now.")
 		return
 
-	if(!isYautja(src))
+	if(!isyautja(src))
 		to_chat(src, "How did you get this verb?")
 		return
 

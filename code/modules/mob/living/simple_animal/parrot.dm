@@ -82,8 +82,8 @@
 	var/obj/item/held_item = null
 
 
-/mob/living/simple_animal/parrot/New()
-	..()
+/mob/living/simple_animal/parrot/Initialize()
+	. = ..()
 	if(!ears)
 		var/headset = pick(	/obj/item/device/radio/headset)
 		ears = new headset(src)
@@ -103,12 +103,14 @@
 	walk(src,0)
 	. = ..()
 
-/mob/living/simple_animal/parrot/Stat()
-	if (!..())
-		return 0
 
-	stat("Held Item", held_item)
-	return 1
+/mob/living/simple_animal/parrot/Stat()
+	. = ..()
+
+	if(statpanel("Stats"))
+		stat("Held Item", held_item)
+
+
 /*
  * Inventory
  */
@@ -133,7 +135,7 @@
 		return
 
 	//Is the usr's mob type able to do this?
-	if(ishuman(usr) || ismonkey(usr) || isrobot(usr))
+	if(ishuman(usr) || ismonkey(usr) || iscyborg(usr))
 
 		//Removing from inventory
 		if(href_list["remove_inv"])
@@ -157,7 +159,7 @@
 		//Adding things to inventory
 		else if(href_list["add_inv"])
 			var/add_to = href_list["add_inv"]
-			if(!usr.get_active_hand())
+			if(!usr.get_active_held_item())
 				to_chat(usr, "<span class='warning'>You have nothing in your hand to put on its [add_to].</span>")
 				return
 			switch(add_to)
@@ -166,7 +168,7 @@
 						to_chat(usr, "<span class='warning'>It's already wearing something.</span>")
 						return
 					else
-						var/obj/item/item_to_add = usr.get_active_hand()
+						var/obj/item/item_to_add = usr.get_active_held_item()
 						if(!item_to_add)
 							return
 
@@ -176,7 +178,7 @@
 
 						var/obj/item/device/radio/headset/headset_to_add = item_to_add
 
-						usr.drop_inv_item_to_loc(headset_to_add, src)
+						usr.transferItemToLoc(headset_to_add, src)
 						ears = headset_to_add
 						to_chat(usr, "You fit the headset onto [src].")
 
@@ -211,7 +213,7 @@
 /mob/living/simple_animal/parrot/attack_hand(mob/living/carbon/M as mob)
 	..()
 	if(client) return
-	if(!stat && M.a_intent == "hurt")
+	if(!stat && M.a_intent == INTENT_HARM)
 
 		icon_state = "parrot_fly" //It is going to be flying regardless of whether it flees or attacks
 
@@ -621,7 +623,7 @@
 			stolen_item = C.r_hand
 
 		if(stolen_item)
-			if(C.drop_inv_item_to_loc(stolen_item, src))
+			if(C.transferItemToLoc(stolen_item, src))
 				held_item = stolen_item
 				visible_message("[src] grabs the [held_item] out of [C]'s hand!", "<span class='notice'> You snag the [held_item] out of [C]'s hand!</span>", "You hear the sounds of wings flapping furiously.")
 				return held_item
@@ -694,10 +696,10 @@
 	desc = "Poly the Parrot. An expert on quantum cracker theory."
 	speak = list("Poly wanna cracker!", ":e Check the singlo, you chucklefucks!",":e Wire the solars, you lazy bums!",":e WHO TOOK THE DAMN HARDSUITS?",":e OH GOD ITS FREE CALL THE SHUTTLE")
 
-/mob/living/simple_animal/parrot/Poly/New()
+/mob/living/simple_animal/parrot/Poly/Initialize()
 	ears = new /obj/item/device/radio/headset(src)
 	available_channels = list(":e")
-	..()
+	return ..()
 
 /mob/living/simple_animal/parrot/say(var/message)
 

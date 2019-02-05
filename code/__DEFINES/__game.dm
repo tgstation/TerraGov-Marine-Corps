@@ -30,27 +30,6 @@ These are used with cdel (clean delete). For example, qdel(atom, TA_REVIVE_ME) w
 #define TA_IGNORE_ME	5 //Ignore this atom, don't do anything with it. In case the atom will die on its own or something.
 					 	  //Shouldn't usually use this as garbage collection is far better.
 
-//A set of constants used to determine which type of mute an admin wishes to apply:
-//Please read and understand the muting/automuting stuff before changing these. MUTE_IC_AUTO etc = (MUTE_IC << 1)
-//Therefore there needs to be a gap between the flags for the automute flags
-#define MUTE_IC			1
-#define MUTE_OOC		2
-#define MUTE_PRAY		4
-#define MUTE_ADMINHELP	8
-#define MUTE_DEADCHAT	16
-#define MUTE_ALL		31
-
-//Number of identical messages required to get the spam-prevention automute thing to trigger warnings and automutes
-#define SPAM_TRIGGER_WARNING 5
-#define SPAM_TRIGGER_AUTOMUTE 10
-
-//Some constants for DB_Ban
-#define BANTYPE_PERMA		1
-#define BANTYPE_TEMP		2
-#define BANTYPE_JOB_PERMA	3
-#define BANTYPE_JOB_TEMP	4
-#define BANTYPE_ANY_FULLBAN	5 //used to locate stuff to unban.
-
 #define SEE_INVISIBLE_MINIMUM 5
 
 #define SEE_INVISIBLE_OBSERVER_NOLIGHTING 15
@@ -98,7 +77,7 @@ These are used with cdel (clean delete). For example, qdel(atom, TA_REVIVE_ME) w
 #define CHAT_STATISTICS		(1 << 13)
 //=================================================
 
-#define TOGGLES_CHAT_DEFAULT (CHAT_OOC|CHAT_DEAD|CHAT_GHOSTEARS|CHAT_GHOSTSIGHT|CHAT_PRAYER|CHAT_RADIO|CHAT_ATTACKLOGS|CHAT_GHOSTHIVEMIND|CHAT_STATISTICS)
+#define TOGGLES_CHAT_DEFAULT (CHAT_OOC|CHAT_DEAD|CHAT_GHOSTEARS|CHAT_GHOSTSIGHT|CHAT_PRAYER|CHAT_RADIO|CHAT_ATTACKLOGS|SHOW_TYPING|CHAT_GHOSTHIVEMIND|CHAT_STATISTICS)
 
 #define TOGGLES_SOUND_DEFAULT (SOUND_ADMINHELP|SOUND_MIDI|SOUND_AMBIENCE|SOUND_LOBBY)
 
@@ -160,11 +139,6 @@ These are used with cdel (clean delete). For example, qdel(atom, TA_REVIVE_ME) w
 #define HOSTILE_STANCE_ATTACK 3
 #define HOSTILE_STANCE_ATTACKING 4
 #define HOSTILE_STANCE_TIRED 5
-//=================================================
-
-#define ROUNDSTART_LOGOUT_REPORT_TIME 6000 //Amount of time (in deciseconds) after the rounds starts, that the player disconnect report is issued.
-
-
 //=================================================
 
 //computer3 error codes, move lower in the file when it passes dev -Sayu

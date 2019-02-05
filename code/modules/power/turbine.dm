@@ -40,22 +40,21 @@
 
 // the inlet stage of the gas turbine electricity generator
 
-/obj/machinery/compressor/New()
-	..()
+/obj/machinery/compressor/Initialize()
+	. = ..()
 
 	inturf = get_step(src, dir)
 
-	spawn(5)
-		for(var/dr in cardinal)
-			turbine = locate() in get_step(src,dr)
-			if(turbine)
-				break
+	for(var/dr in cardinal)
+		turbine = locate() in get_step(src,dr)
+		if(turbine)
+			break
 
-		if(!turbine)
-			stat |= BROKEN
-		else
-			turbine.stat &= ~BROKEN
-			turbine.compressor = src
+	if(!turbine)
+		stat |= BROKEN
+	else
+		turbine.stat &= ~BROKEN
+		turbine.compressor = src
 
 
 #define COMPFRICTION 5e5
@@ -95,22 +94,21 @@
 		overlays += image('icons/obj/pipes.dmi', "comp-o1", FLY_LAYER)
 	 //TODO: DEFERRED
 
-/obj/machinery/power/turbine/New()
-	..()
+/obj/machinery/power/turbine/Initialize()
+	. = ..()
 
 	outturf = get_step(src, dir)
 
-	spawn(5)
-		for(var/dr in cardinal)
-			compressor = locate() in get_step(src,dr)
-			if(compressor)
-				break
+	for(var/dr in cardinal)
+		compressor = locate() in get_step(src,dr)
+		if(compressor)
+			break
 
-		if(!compressor)
-			stat |= BROKEN
-		else
-			compressor.stat &= ~BROKEN
-			compressor.turbine = src
+	if(!compressor)
+		stat |= BROKEN
+	else
+		compressor.stat &= ~BROKEN
+		compressor.turbine = src
 
 
 #define TURBPRES 9000000
@@ -141,7 +139,7 @@
 
 /obj/machinery/power/turbine/attack_hand(mob/user)
 
-	if ( (get_dist(src, user) > 1 ) || (stat & (NOPOWER|BROKEN)) && (!istype(user, /mob/living/silicon/ai)) )
+	if ( (get_dist(src, user) > 1 ) || (stat & (NOPOWER|BROKEN)) && !isAI(user) )
 		user.unset_interaction()
 		user << browse(null, "window=turbine")
 		return
@@ -168,14 +166,14 @@
 	..()
 	if(stat & BROKEN)
 		return
-	if (usr.is_mob_incapacitated() || usr.is_mob_restrained() )
+	if (usr.is_mob_incapacitated(TRUE))
 		return
-	if (!(istype(usr, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
-		if(!istype(usr, /mob/living/silicon/ai))
+	if (!(ishuman(usr) || ticker) && ticker.mode.name != "monkey")
+		if(!isAI(usr))
 			to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
 			return
 
-	if (( usr.interactee==src && ((get_dist(src, usr) <= 1) && istype(src.loc, /turf))) || (istype(usr, /mob/living/silicon/ai)))
+	if (( usr.interactee==src && ((get_dist(src, usr) <= 1) && isturf(loc))) || isAI(usr))
 
 
 		if( href_list["close"] )
@@ -204,19 +202,18 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/obj/machinery/computer/turbine_computer/New()
-	..()
-	spawn(5)
-		for(var/obj/machinery/compressor/C in machines)
-			if(id == C.comp_id)
-				compressors += C
-		for(var/obj/machinery/door/poddoor/P in machines)
-			if(P.id == id)
-				doors += P
+/obj/machinery/computer/turbine_computer/Initialize()
+	. = ..()
+	for(var/obj/machinery/compressor/C in GLOB.machines)
+		if(id == C.comp_id)
+			compressors += C
+	for(var/obj/machinery/door/poddoor/P in GLOB.machines)
+		if(P.id == id)
+			doors += P
 
 /*
 /obj/machinery/computer/turbine_computer/attackby(I as obj, user as mob)
-	if(istype(I, /obj/item/tool/screwdriver))
+	if(isscrewdriver(I))
 		playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 		if(do_after(user, 20))
 			if (src.stat & BROKEN)
@@ -304,7 +301,7 @@
 /obj/machinery/computer/turbine_computer/Topic(href, href_list)
 	if(..())
 		return
-	if ((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))) || (istype(usr, /mob/living/silicon)))
+	if ((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))) || (issilicon(usr)))
 		usr.set_interaction(src)
 
 		if( href_list["view"] )

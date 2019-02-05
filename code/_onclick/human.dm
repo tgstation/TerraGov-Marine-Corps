@@ -24,17 +24,22 @@
 		return
 
 
-	if (!H.handcuffed) return
-	if (H.a_intent != "hurt") return
-	if (H.zone_selected != "mouth") return
-	if (H.wear_mask) return
-	if (istype(H.wear_suit, /obj/item/clothing/suit/straight_jacket)) return
+	if (!H.handcuffed)
+		return
+	if (H.a_intent != INTENT_HARM)
+		return
+	if (H.zone_selected != "mouth")
+		return
+	if (H.wear_mask)
+		return
+	if (istype(H.wear_suit, /obj/item/clothing/suit/straight_jacket))
+		return
 
 	var/datum/limb/O = H.get_limb(H.hand?"l_hand":"r_hand")
 	if (!O) return
 
-	var/s = "<span class='warning'> [H.name] chews on \his [O.display_name]!</span>"
-	H.visible_message(s, "<span class='warning'> You chew on your [O.display_name]!</span>")
+	var/s = "<span class='warning'>[H.name] chews on [H.p_their()] [O.display_name]!</span>"
+	H.visible_message(s, "<span class='warning'>You chew on your [O.display_name]!</span>")
 	H.log_message("[s] ([key_name(H)])", LOG_ATTACK)
 
 	if(O.take_damage(1,0,1,1,"teeth marks"))
@@ -66,7 +71,7 @@
 
 	if(!gloves && !mutations.len) return
 	var/obj/item/clothing/gloves/G = gloves
-	if((LASER in mutations) && a_intent == "hurt")
+	if((LASER in mutations) && a_intent == INTENT_HARM)
 		LaserEyes(A) // moved into a proc below
 
 	else if(istype(G) && G.Touch(A,0)) // for magic gloves

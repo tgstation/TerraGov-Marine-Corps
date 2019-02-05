@@ -5,17 +5,17 @@
 	item_state = "electronic"
 	w_class = 2.0
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	var/flush = null
 	origin_tech = "programming=4;materials=4"
 
 
 	attack(mob/living/silicon/ai/M as mob, mob/user as mob)
-		if(!istype(M, /mob/living/silicon/ai))//If target is not an AI.
+		if(!isAI(M))//If target is not an AI.
 			return ..()
 
 		log_combat(user, M, "carded", src)
-		msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) used the [src.name] to card [key_name(M)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[M]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[M.x];Y=[M.y];Z=[M.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[M]'>FLW</a>)")
+		msg_admin_attack("[ADMIN_TPMONTY(usr)] used the [src.name] to card [ADMIN_TPMONTY(M)].")
 
 		transfer_ai("AICORE", "AICARD", M, user)
 		return

@@ -8,7 +8,7 @@
 	var/embedded_flag	  //To check if we've need to roll for damage on movement while an item is imbedded in us.
 	var/regenZ = 1 //Temp zombie thing until I write a better method ~Apop
 
-/mob/living/carbon/human/New(var/new_loc, var/new_species = null)
+/mob/living/carbon/human/Initialize()
 	verbs += /mob/living/proc/lay_down
 	b_type = pick(7;"O-", 38;"O+", 6;"A-", 34;"A+", 2;"B-", 9;"B+", 1;"AB-", 3;"AB+")
 
@@ -17,10 +17,7 @@
 		// Species name is handled by set_species()
 
 	if(!species)
-		if(new_species)
-			set_species(new_species)
-		else
-			set_species()
+		set_species()
 
 	switch(pick("female", "male"))
 		if("female")
@@ -130,8 +127,10 @@
 	reagents = R
 	R.my_atom = src
 
-	..()
+	. = ..()
 
+	GLOB.human_mob_list += src
+	GLOB.alive_human_list += src
 	round_statistics.total_humans_created++
 
 	if(dna)
@@ -139,6 +138,12 @@
 
 	prev_gender = gender // Debug for plural genders
 
+
+/mob/living/carbon/human/vv_get_dropdown()
+	. = ..()
+	. += "---"
+	.["Set Species"] = "?_src_=vars;[HrefToken()];setspecies=[REF(src)]"
+	.["Purrbation"] = "?_src_=vars;[HrefToken()];purrbation=[REF(src)]"
 
 
 /mob/living/carbon/human/prepare_huds()
@@ -158,34 +163,37 @@
 /mob/living/carbon/human/Destroy()
 	assigned_squad?.clean_marine_from_squad(src,FALSE)
 	remove_from_all_mob_huds()
+	GLOB.human_mob_list -= src
+	GLOB.alive_human_list -= src
+	GLOB.dead_human_list -= src
 	return ..()
 
 /mob/living/carbon/human/Stat()
-	if (!..())
-		return 0
+	. = ..()
+	
+	if(statpanel("Stats"))
+		if(EvacuationAuthority)
+			var/eta_status = EvacuationAuthority.get_status_panel_eta()
+			if(eta_status)
+				stat(null, eta_status)
 
-	if(EvacuationAuthority)
-		var/eta_status = EvacuationAuthority.get_status_panel_eta()
-		if(eta_status)
-			stat(null, eta_status)
+		if(internal)
+			stat("Internal Atmosphere Info", internal.name)
+			stat("Tank Pressure", internal.pressure)
+			stat("Distribution Pressure", internal.distribute_pressure)
 
-	if(internal)
-		stat("Internal Atmosphere Info", internal.name)
-		stat("Tank Pressure", internal.pressure)
-		stat("Distribution Pressure", internal.distribute_pressure)
+		if(assigned_squad)
+			if(assigned_squad.primary_objective)
+				stat("Primary Objective: ", assigned_squad.primary_objective)
+			if(assigned_squad.secondary_objective)
+				stat("Secondary Objective: ", assigned_squad.secondary_objective)
 
-	if(assigned_squad)
-		if(assigned_squad.primary_objective)
-			stat("Primary Objective: ", assigned_squad.primary_objective)
-		if(assigned_squad.secondary_objective)
-			stat("Secondary Objective: ", assigned_squad.secondary_objective)
-
-	if(mobility_aura)
-		stat(null, "You are affected by a MOVE order.")
-	if(protection_aura)
-		stat(null, "You are affected by a HOLD order.")
-	if(marskman_aura)
-		stat(null, "You are affected by a FOCUS order.")
+		if(mobility_aura)
+			stat(null, "You are affected by a MOVE order.")
+		if(protection_aura)
+			stat(null, "You are affected by a HOLD order.")
+		if(marskman_aura)
+			stat(null, "You are affected by a FOCUS order.")
 
 /mob/living/carbon/human/ex_act(severity)
 	flash_eyes()
@@ -281,8 +289,6 @@
 
 
 /mob/living/carbon/human/proc/implant_loyalty(mob/living/carbon/human/M, override = FALSE) // Won't override by default.
-	if(!config.use_loyalty_implants && !override) return // Nuh-uh.
-
 	var/obj/item/implant/loyalty/L = new/obj/item/implant/loyalty(M)
 	L.imp_in = M
 	L.implanted = 1
@@ -311,23 +317,23 @@
 	var/dat = {"
 	<B><HR><FONT size=3>[name]</FONT></B>
 	<BR><HR>
-	<BR><B>Head(Mask):</B> <A href='?src=\ref[src];item=face'>[(wear_mask ? wear_mask : "Nothing")]</A>
-	<BR><B>Left Hand:</B> <A href='?src=\ref[src];item=l_hand'>[(l_hand ? l_hand  : "Nothing")]</A>
-	<BR><B>Right Hand:</B> <A href='?src=\ref[src];item=r_hand'>[(r_hand ? r_hand : "Nothing")]</A>
-	<BR><B>Gloves:</B> <A href='?src=\ref[src];item=hands'>[(gloves ? gloves : "Nothing")]</A>
-	<BR><B>Eyes:</B> <A href='?src=\ref[src];item=eyes'>[(glasses ? glasses : "Nothing")]</A>
-	<BR><B>Left Ear:</B> <A href='?src=\ref[src];item=wear_ear'>[(wear_ear ? wear_ear : "Nothing")]</A>
-	<BR><B>Head:</B> <A href='?src=\ref[src];item=head'>[(head ? head : "Nothing")]</A>
-	<BR><B>Shoes:</B> <A href='?src=\ref[src];item=feet'>[(shoes ? shoes : "Nothing")]</A>
-	<BR><B>Belt:</B> <A href='?src=\ref[src];item=waist'>[(belt ? belt : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(belt, /obj/item/tank) && !internal) ? " <A href='?src=\ref[src];internal=1'>Set Internal</A>" : "")]
-	<BR><B>Uniform:</B> <A href='?src=\ref[src];item=body'>[(w_uniform ? w_uniform : "Nothing")]</A> [(suit) ? ((suit.has_sensor == 1) ? " <A href='?src=\ref[src];sensor=1'>Sensors</A>" : "") :]
-	<BR><B>(Exo)Suit:</B> <A href='?src=\ref[src];item=jacket'>[(wear_suit ? wear_suit : "Nothing")]</A>
-	<BR><B>Back:</B> <A href='?src=\ref[src];item=back'>[(back ? back : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(back, /obj/item/tank) && !( internal )) ? " <A href='?src=\ref[src];internal=1'>Set Internal</A>" : "")]
-	<BR><B>ID:</B> <A href='?src=\ref[src];item=id'>[(wear_id ? wear_id : "Nothing")]</A>
-	<BR><B>Suit Storage:</B> <A href='?src=\ref[src];item=j_store'>[(s_store ? s_store : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(s_store, /obj/item/tank) && !( internal )) ? " <A href='?src=\ref[src];internal=1'>Set Internal</A>" : "")]
+	<BR><B>Head(Mask):</B> <A href='?src=\ref[src];item=[SLOT_WEAR_MASK]'>[(wear_mask ? wear_mask : "Nothing")]</A>
+	<BR><B>Left Hand:</B> <A href='?src=\ref[src];item=[SLOT_L_HAND]'>[(l_hand ? l_hand  : "Nothing")]</A>
+	<BR><B>Right Hand:</B> <A href='?src=\ref[src];item=[SLOT_R_HAND]'>[(r_hand ? r_hand : "Nothing")]</A>
+	<BR><B>Gloves:</B> <A href='?src=\ref[src];item=[SLOT_GLOVES]'>[(gloves ? gloves : "Nothing")]</A>
+	<BR><B>Eyes:</B> <A href='?src=\ref[src];item=[SLOT_GLASSES]'>[(glasses ? glasses : "Nothing")]</A>
+	<BR><B>Left Ear:</B> <A href='?src=\ref[src];item=[SLOT_EARS]'>[(wear_ear ? wear_ear : "Nothing")]</A>
+	<BR><B>Head:</B> <A href='?src=\ref[src];item=[SLOT_HEAD]'>[(head ? head : "Nothing")]</A>
+	<BR><B>Shoes:</B> <A href='?src=\ref[src];item=[SLOT_SHOES]'>[(shoes ? shoes : "Nothing")]</A>
+	<BR><B>Belt:</B> <A href='?src=\ref[src];item=[SLOT_BELT]'>[(belt ? belt : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(belt, /obj/item/tank) && !internal) ? " <A href='?src=\ref[src];internal=1'>Set Internal</A>" : "")]
+	<BR><B>Uniform:</B> <A href='?src=\ref[src];item=[SLOT_W_UNIFORM]'>[(w_uniform ? w_uniform : "Nothing")]</A> [(suit) ? ((suit.has_sensor == 1) ? " <A href='?src=\ref[src];sensor=1'>Sensors</A>" : "") :]
+	<BR><B>(Exo)Suit:</B> <A href='?src=\ref[src];item=[SLOT_WEAR_SUIT]'>[(wear_suit ? wear_suit : "Nothing")]</A>
+	<BR><B>Back:</B> <A href='?src=\ref[src];item=[SLOT_BACK]'>[(back ? back : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(back, /obj/item/tank) && !( internal )) ? " <A href='?src=\ref[src];internal=1'>Set Internal</A>" : "")]
+	<BR><B>ID:</B> <A href='?src=\ref[src];item=[SLOT_WEAR_ID]'>[(wear_id ? wear_id : "Nothing")]</A>
+	<BR><B>Suit Storage:</B> <A href='?src=\ref[src];item=[SLOT_S_STORE]'>[(s_store ? s_store : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(s_store, /obj/item/tank) && !( internal )) ? " <A href='?src=\ref[src];internal=1'>Set Internal</A>" : "")]
 	<BR>
-	[handcuffed ? "<BR><A href='?src=\ref[src];item=handcuffs'>Handcuffed</A>" : ""]
-	[legcuffed ? "<BR><A href='?src=\ref[src];item=legcuffs'>Legcuffed</A>" : ""]
+	[handcuffed ? "<BR><A href='?src=\ref[src];item=[SLOT_HANDCUFFED]'>Handcuffed</A>" : ""]
+	[legcuffed ? "<BR><A href='?src=\ref[src];item=[SLOT_LEGCUFFED]'>Legcuffed</A>" : ""]
 	[suit && suit.hastie ? "<BR><A href='?src=\ref[src];tie=1'>Remove Accessory</A>" : ""]
 	[internal ? "<BR><A href='?src=\ref[src];internal=1'>Remove Internal</A>" : ""]
 	[istype(wear_id, /obj/item/card/id/dogtag) ? "<BR><A href='?src=\ref[src];item=id'>Retrieve Info Tag</A>" : ""]
@@ -434,11 +440,11 @@
 	//Check hands
 	var/obj/item/card/id/id_card
 	var/obj/item/held_item
-	held_item = get_active_hand()
+	held_item = get_active_held_item()
 	if(held_item) //Check active hand
 		id_card = held_item.GetID()
 	if(!id_card) //If there is no id, check the other hand
-		held_item = get_inactive_hand()
+		held_item = get_inactive_held_item()
 		if(held_item)
 			id_card = held_item.GetID()
 
@@ -484,8 +490,9 @@
 
 
 	if (href_list["item"])
+		var/slot = text2num(href_list["item"])
 		if(!usr.is_mob_incapacitated() && Adjacent(usr))
-			if(href_list["item"] == "id")
+			if(slot == SLOT_WEAR_ID)
 				if(istype(wear_id, /obj/item/card/id/dogtag))
 					var/obj/item/card/id/dogtag/DT = wear_id
 					if(!DT.dogtag_taken)
@@ -504,22 +511,21 @@
 					return
 			//police skill lets you strip multiple items from someone at once.
 			if(!usr.action_busy || (!usr.mind || !usr.mind.cm_skills || usr.mind.cm_skills.police >= SKILL_POLICE_MP))
-				var/slot = href_list["item"]
 				var/obj/item/what = get_item_by_slot(slot)
 				if(what)
 					usr.stripPanelUnequip(what,src,slot)
 				else
-					what = usr.get_active_hand()
+					what = usr.get_active_held_item()
 					usr.stripPanelEquip(what,src,slot)
 
 	if(href_list["pockets"])
 
 		if(!usr.action_busy)
-			var/obj/item/place_item = usr.get_active_hand() // Item to place in the pocket, if it's empty
+			var/obj/item/place_item = usr.get_active_held_item() // Item to place in the pocket, if it's empty
 
 			var/placing = FALSE
 
-			if(place_item && !(place_item.flags_item & ITEM_ABSTRACT) && (place_item.mob_can_equip(src, WEAR_L_STORE, TRUE) || place_item.mob_can_equip(src, WEAR_R_STORE, TRUE)))
+			if(place_item && !(place_item.flags_item & ITEM_ABSTRACT) && (place_item.mob_can_equip(src, SLOT_L_STORE, TRUE) || place_item.mob_can_equip(src, SLOT_R_STORE, TRUE)))
 				to_chat(usr, "<span class='notice'>You try to place [place_item] into [src]'s pocket.</span>")
 				placing = TRUE
 			else
@@ -527,20 +533,20 @@
 
 			if(do_mob(usr, src, POCKET_STRIP_DELAY))
 				if(placing)
-					if(place_item && place_item == usr.get_active_hand())
-						if(place_item.mob_can_equip(src, WEAR_R_STORE, TRUE))
-							drop_inv_item_on_ground(place_item)
-							equip_to_slot_if_possible(place_item, WEAR_R_STORE, 1, 0, 1)
-						if(place_item.mob_can_equip(src, WEAR_L_STORE, TRUE))
-							drop_inv_item_on_ground(place_item)
-							equip_to_slot_if_possible(place_item, WEAR_L_STORE, 1, 0, 1)
+					if(place_item && place_item == usr.get_active_held_item())
+						if(place_item.mob_can_equip(src, SLOT_R_STORE, TRUE))
+							dropItemToGround(place_item)
+							equip_to_slot_if_possible(place_item, SLOT_R_STORE, 1, 0, 1)
+						if(place_item.mob_can_equip(src, SLOT_L_STORE, TRUE))
+							dropItemToGround(place_item)
+							equip_to_slot_if_possible(place_item, SLOT_L_STORE, 1, 0, 1)
 
 				else
 					if(r_store || l_store)
-						if(r_store && !(r_store.flags_item & NODROP) && !(r_store.flags_inventory & CANTSTRIP))
-							drop_inv_item_on_ground(r_store)
-						if(l_store && !(l_store.flags_item & NODROP) && !(l_store.flags_inventory & CANTSTRIP))
-							drop_inv_item_on_ground(l_store)
+						if(r_store && !(r_store.flags_item & NODROP))
+							dropItemToGround(r_store)
+						if(l_store && !(l_store.flags_item & NODROP))
+							dropItemToGround(l_store)
 					else
 						to_chat(usr, "<span class='notice'>[src]'s pockets are empty.</span>")
 
@@ -1008,10 +1014,12 @@
 		visible_message("<span class='warning'> [src] begins playing his ribcage like a xylophone. It's quite spooky.</span>","<span class='notice'> You begin to play a spooky refrain on your ribcage.</span>","<span class='warning'> You hear a spooky xylophone melody.</span>")
 		var/song = pick('sound/effects/xylophone1.ogg','sound/effects/xylophone2.ogg','sound/effects/xylophone3.ogg')
 		playsound(loc, song, 25, 1)
-		xylophone = 1
-		spawn(1200)
-			xylophone=0
+		xylophone = TRUE
+		addtimer(CALLBACK(src, .xylophone_cooldown), 1200)
 	return
+
+/mob/living/carbon/human/proc/xylophone_cooldown()
+	xylophone = FALSE
 
 /mob/living/carbon/human/proc/morph()
 	set name = "Morph"
@@ -1097,7 +1105,7 @@
 		src.verbs -= /mob/living/carbon/human/proc/remotesay
 		return
 	var/list/creatures = list()
-	for(var/mob/living/carbon/h in player_list)
+	for(var/mob/living/carbon/h in GLOB.player_list)
 		creatures += h
 	var/mob/target = input ("Who do you want to project your mind to ?") as null|anything in creatures
 	if (isnull(target))
@@ -1110,7 +1118,7 @@
 		target.show_message("<span class='notice'> You hear a voice that seems to echo around the room: [say]</span>")
 	usr.show_message("<span class='notice'> You project your mind into [target.real_name]: [say]</span>")
 	log_directed_talk(usr, target, say, LOG_SAY, "project mind")
-	for(var/mob/dead/observer/G in dead_mob_list)
+	for(var/mob/dead/observer/G in GLOB.dead_mob_list)
 		G.show_message("<i>Telepathic message from <b>[src]</b> to <b>[target]</b>: [say]</i>")
 
 /mob/living/carbon/human/proc/remoteobserve()
@@ -1135,7 +1143,7 @@
 
 	var/list/mob/creatures = list()
 
-	for(var/mob/living/carbon/h in player_list)
+	for(var/mob/living/carbon/h in GLOB.player_list)
 		var/turf/temp_turf = get_turf(h)
 		if((temp_turf.z != 1 && temp_turf.z != 5) || h.stat!=CONSCIOUS) //Not on mining or the station. Or dead
 			continue
@@ -1183,7 +1191,7 @@
 
 	//try to find the brain player in the decapitated head and put them back in control of the human
 	if(!client && !mind) //if another player took control of the human, we don't want to kick them out.
-		for (var/obj/item/limb/head/H in item_list)
+		for (var/obj/item/limb/head/H in GLOB.item_list)
 			if(H.brainmob)
 				if(H.brainmob.real_name == src.real_name)
 					if(H.brainmob.mind)
@@ -1258,11 +1266,11 @@
 	if(usr == src)
 		self = 1
 	if(!self)
-		usr.visible_message("<span class='notice'> [usr] kneels down, puts \his hand on [src]'s wrist and begins counting their pulse.</span>",\
-		"You begin counting [src]'s pulse", null, 3)
+		usr.visible_message("<span class='notice'>[usr] kneels down, puts [usr.p_their()] hand on [src]'s wrist and begins counting their pulse.</span>",\
+		"<span class='notice'>You begin counting [src]'s pulse...</span>", null, 3)
 	else
-		usr.visible_message("<span class='notice'> [usr] begins counting their pulse.</span>",\
-		"You begin counting your pulse.", null, 3)
+		usr.visible_message("<span class='notice'>[usr] begins counting their pulse.</span>",\
+		"<span class='notice'>You begin counting your pulse...</span>", null, 3)
 
 	if(src.pulse)
 		to_chat(usr, "<span class='notice'>[self ? "You have a" : "[src] has a"] pulse! Counting...</span>")
@@ -1287,6 +1295,13 @@
 	dat += data_core.get_manifest()
 
 	src << browse(dat, "window=manifest;size=370x420;can_close=1")
+
+/mob/living/carbon/human/species
+	var/race = null
+
+/mob/living/carbon/human/species/Initialize()
+	. = ..()
+	set_species(race)
 
 /mob/living/carbon/human/proc/set_species(var/new_species, var/default_colour)
 
@@ -1314,7 +1329,7 @@
 
 	var/datum/species/oldspecies = species
 
-	species = all_species[new_species]
+	species = GLOB.all_species[new_species]
 
 	if(oldspecies)
 		//additional things to change when we're no longer that species
@@ -1427,7 +1442,7 @@
 			face_exposed = 0
 		if(C.flags_armor_protection & EYES)
 			eyes_exposed = 0
-		if(C.flags_armor_protection & UPPER_TORSO)
+		if(C.flags_armor_protection & CHEST)
 			torso_exposed = 0
 		if(C.flags_armor_protection & ARMS)
 			arms_exposed = 0
@@ -1465,7 +1480,64 @@
 		return FALSE
 	. = ..()
 
+/mob/living/carbon/human/disable_lights(armor = TRUE, guns = TRUE, flares = TRUE, misc = TRUE, sparks = FALSE, silent = FALSE)
+	if(luminosity <= 0)
+		return FALSE
 
+	if(sparks)
+		var/datum/effect_system/spark_spread/spark_system = new
+		spark_system.set_up(5, 0, src)
+		spark_system.attach(src)
+		spark_system.start(src)
+
+	var/light_off = 0
+	var/goes_out = 0
+	if(armor)
+		if(istype(wear_suit, /obj/item/clothing/suit/storage/marine))
+			var/obj/item/clothing/suit/storage/marine/S = wear_suit
+			if(S.turn_off_light(src))
+				light_off++
+	if(guns)
+		for(var/obj/item/weapon/gun/G in contents)
+			if(G.turn_off_light(src))
+				light_off++
+	if(flares)
+		for(var/obj/item/device/flashlight/flare/F in contents)
+			if(F.on) goes_out++
+			F.turn_off(src)
+	if(misc)
+		for(var/obj/item/device/flashlight/L in contents)
+			if(istype(L, /obj/item/device/flashlight/flare))
+				continue
+			if(L.turn_off_light(src))
+				light_off++
+		for(var/obj/item/tool/weldingtool/W in contents)
+			if(W.isOn())
+				W.toggle()
+				goes_out++
+		for(var/obj/item/tool/pickaxe/plasmacutter/W in contents)
+			if(W.powered)
+				W.toggle()
+				goes_out++
+		for(var/obj/item/tool/match/M in contents)
+			M.burn_out(src)
+		for(var/obj/item/tool/lighter/Z in contents)
+			if(Z.turn_off(src))
+				goes_out++
+	if(!silent)
+		if(goes_out && light_off)
+			to_chat(src, "<span class='notice'>Your sources of light short and fizzle out.</span>")
+		else if(goes_out)
+			if(goes_out > 1)
+				to_chat(src, "<span class='notice'>Your sources of light fizzle out.</span>")
+			else
+				to_chat(src, "<span class='notice'>Your source of light fizzles out.</span>")
+		else if(light_off)
+			if(light_off > 1)
+				to_chat(src, "<span class='notice'>Your sources of light short out.</span>")
+			else
+				to_chat(src, "<span class='notice'>Your source of light shorts out.</span>")
+		return TRUE
 
 //very similar to xeno's queen_locator() but this is for locating squad leader.
 /mob/living/carbon/human/proc/locate_squad_leader()

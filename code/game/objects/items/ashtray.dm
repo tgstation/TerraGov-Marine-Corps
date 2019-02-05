@@ -21,7 +21,7 @@
 		if (contents.len >= max_butts)
 			to_chat(user, "This ashtray is full.")
 			return
-		user.drop_inv_item_to_loc(W, src)
+		user.transferItemToLoc(W, src)
 
 		if (istype(W,/obj/item/clothing/mask/cigarette))
 			var/obj/item/clothing/mask/cigarette/cig = W

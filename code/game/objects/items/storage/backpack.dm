@@ -7,7 +7,7 @@
 	desc = "You wear this on your back and put items into it."
 	icon_state = "backpack"
 	w_class = 4
-	flags_equip_slot = SLOT_BACK	//ERROOOOO
+	flags_equip_slot = ITEM_SLOT_BACK	//ERROOOOO
 	max_w_class = 3
 	storage_slots = null
 	max_storage_space = 30
@@ -17,7 +17,7 @@
 	if(!worn_accessible && ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.back == src)
-/*			if(user.drop_inv_item_on_ground(src))
+/*			if(user.dropItemToGround(src))
 				pickup(user)
 				add_fingerprint(user)
 				if(!user.put_in_active_hand(src))
@@ -58,7 +58,7 @@
 	return 1
 
 /obj/item/storage/backpack/equipped(mob/user, slot)
-	if(slot == WEAR_BACK)
+	if(slot == SLOT_BACK)
 		mouse_opacity = 2 //so it's easier to click when properly equipped.
 		if(use_sound)
 			playsound(loc, use_sound, 15, 1, 6)
@@ -382,6 +382,7 @@
 					"/obj/item/ammo_magazine/sentry",
 					"/obj/item/ammo_magazine/minisentry",
 					"/obj/item/device/marine_turret/mini",
+					"/obj/item/stack/razorwire",
 					"/obj/item/stack/sandbags"
 					)
 
@@ -428,6 +429,7 @@
 	var/shimmer_alpha = SCOUT_CLOAK_RUN_ALPHA
 	var/stealth_delay = null
 	actions_types = list(/datum/action/item_action/toggle)
+	var/process_count = 0
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/scout
 
@@ -438,7 +440,7 @@
 /obj/item/storage/backpack/marine/satchel/scout_cloak/dropped(mob/user)
 	camo_off(user)
 	wearer = null
-	processing_second.Remove(src)
+	STOP_PROCESSING(SSfastprocess, src)
 	return ..()
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/verb/use_camouflage()
@@ -456,7 +458,7 @@
 	if (!istype(M))
 		return
 
-	if(M.species.name == "Zombie")
+	if(iszombie(M))
 		return
 
 	if (M.back != src)
@@ -497,7 +499,7 @@
 	spawn(1)
 		anim(M.loc,M,'icons/mob/mob.dmi',,"cloak",,M.dir)
 
-	processing_second.Add(src)
+	START_PROCESSING(SSfastprocess, src)
 	wearer.cloaking = TRUE
 
 	return TRUE
@@ -506,7 +508,7 @@
 	if (!user)
 		camo_active = FALSE
 		wearer = null
-		processing_second.Remove(src)
+		STOP_PROCESSING(SSfastprocess, src)
 		return 0
 
 	if(!camo_active)
@@ -532,7 +534,7 @@
 		camo_cooldown_timer = world.time + cooldown //recalibration and recharge time scales inversely with charge remaining
 		to_chat(user, "<span class='warning'>Your thermal cloak is recalibrating! It will be ready in [(camo_cooldown_timer - world.time) * 0.1] seconds.")
 		process_camo_cooldown(user, cooldown)
-	processing_second.Remove(src)
+	STOP_PROCESSING(SSfastprocess, src)
 	wearer.cloaking = FALSE
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/process_camo_cooldown(mob/living/user, cooldown)
@@ -563,7 +565,7 @@
 /obj/item/storage/backpack/marine/satchel/scout_cloak/item_action_slot_check(mob/user, slot)
 	if(!ishuman(user))
 		return FALSE
-	if(slot != WEAR_BACK)
+	if(slot != SLOT_BACK)
 		return FALSE
 	return TRUE
 
@@ -580,9 +582,17 @@
 		camo_off(user)
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/process()
-	if(!wearer || wearer.stat == DEAD)
+	if(!wearer)
 		camo_off()
 		return
+	else if(wearer.stat == DEAD)
+		camo_off(wearer)
+		return
+
+	if(process_count++ < 4)
+		return
+
+	process_count = 0
 
 	stealth_delay = world.time - SCOUT_CLOAK_STEALTH_DELAY
 	if(camo_last_shimmer > stealth_delay) //Shimmer after taking aggressive actions; no energy regeneration
@@ -603,8 +613,11 @@
 	shimmer_alpha = SCOUT_CLOAK_RUN_ALPHA * 0.5 //Half the normal shimmer transparency.
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/sniper/process()
-	if(!wearer || wearer.stat == DEAD)
+	if(!wearer)
 		camo_off()
+		return
+	else if(wearer.stat == DEAD)
+		camo_off(wearer)
 		return
 
 	stealth_delay = world.time - SCOUT_CLOAK_STEALTH_DELAY * 0.5
@@ -635,7 +648,7 @@
 
 
 /obj/item/storage/backpack/marine/engineerpack/attackby(obj/item/W, mob/living/user)
-	if(istype(W, /obj/item/tool/weldingtool))
+	if(iswelder(W))
 		var/obj/item/tool/weldingtool/T = W
 		if(T.welding)
 			to_chat(user, "<span class='warning'>That was close! However you realized you had the welder on and prevented disaster.</span>")

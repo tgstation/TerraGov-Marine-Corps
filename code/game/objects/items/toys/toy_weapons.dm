@@ -14,7 +14,7 @@
 	desc = "There are 0 caps left. Looks almost like the real thing! Ages 8 and up. Please recycle in an autolathe when you're out of caps!"
 	icon_state = "capgun"
 	item_state = "gun"
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	w_class = 3.0
 
 	matter = list("glass" = 10,"metal" = 10)
@@ -51,7 +51,7 @@
 	afterattack(atom/target as mob|obj|turf|area, mob/user as mob, flag)
 		if (flag)
 			return
-		if (!(istype(usr, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
+		if (!(ishuman(usr) || ticker) && ticker.mode.name != "monkey")
 			to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
 			return
 		src.add_fingerprint(user)
@@ -239,7 +239,7 @@
 	icon_state = "katana"
 	flags_atom = CONDUCT
 	flags_item = NOSHIELD
-	flags_equip_slot = SLOT_WAIST|SLOT_BACK
+	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_BACK
 	force = 5
 	throwforce = 5
 	w_class = 3

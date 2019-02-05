@@ -50,43 +50,40 @@
 //flags_inv_hide
 //Bit flags for the flags_inv_hide variable, which determine when a piece of clothing hides another. IE a helmet hiding glasses.
 
-#define HIDEGLOVES		1
-#define HIDESUITSTORAGE	2
-#define HIDEJUMPSUIT	4
-#define HIDESHOES		8
-#define HIDEMASK		16
-#define HIDEEARS		32		//(ears means headsets and such)
-#define HIDEEYES		64		//(eyes means glasses)
-#define HIDELOWHAIR		128		// temporarily removes the user's facial hair overlay.
-#define HIDETOPHAIR		256		// temporarily removes the user's hair overlay. Leaves facial hair.
-#define HIDEALLHAIR		512		// temporarily removes the user's hair, facial and otherwise.
-#define HIDETAIL 		1024
-#define HIDEFACE		2056	//Dictates whether we appear as unknown.
+#define HIDEGLOVES		(1<<0)
+#define HIDESUITSTORAGE	(1<<1)
+#define HIDEJUMPSUIT	(1<<2)
+#define HIDESHOES		(1<<3)
+#define HIDEMASK		(1<<4)
+#define HIDEEARS		(1<<5)		//(ears means headsets and such)
+#define HIDEEYES		(1<<6)		//(eyes means glasses)
+#define HIDELOWHAIR		(1<<7)		// temporarily removes the user's facial hair overlay.
+#define HIDETOPHAIR		(1<<8)		// temporarily removes the user's hair overlay. Leaves facial hair.
+#define HIDEALLHAIR		(1<<9)		// temporarily removes the user's hair, facial and otherwise.
+#define HIDETAIL 		(1<<10)
+#define HIDEFACE		(1<<11)	//Dictates whether we appear as unknown.
 
 
 //==========================================================================================
 
 //flags_inventory
 
-//Another flag for clothing items that determines a few other things now
-#define CANTSTRIP		1		// Can't be removed by others. No longer used by donor items, now only for facehuggers
-
 //SHOES ONLY===========================================================================================
-#define NOSLIPPING		2	//prevents from slipping on wet floors, in space etc
+#define NOSLIPPING		(1<<0) 	//prevents from slipping on wet floors, in space etc
 //SHOES ONLY===========================================================================================
 
 //HELMET AND MASK======================================================================================
-#define COVEREYES		4 // Covers the eyes/protects them.
-#define COVERMOUTH		8 // Covers the mouth.
-#define ALLOWINTERNALS	16	//mask allows internals
-#define ALLOWREBREATH	32 //Mask allows to breath in really hot or really cold air.
-#define BLOCKGASEFFECT	64 // blocks the effect that chemical clouds would have on a mob --glasses, mask and helmets
+#define COVEREYES		(1<<1) // Covers the eyes/protects them.
+#define COVERMOUTH		(1<<2) // Covers the mouth.
+#define ALLOWINTERNALS	(1<<3)	//mask allows internals
+#define ALLOWREBREATH	(1<<4) //Mask allows to breath in really hot or really cold air.
+#define BLOCKGASEFFECT	(1<<5) // blocks the effect that chemical clouds would have on a mob --glasses, mask and helmets
 //HELMET AND MASK======================================================================================
 
 //SUITS AND HELMETS====================================================================================
 //To successfully stop taking all pressure damage you must have both a suit and head item with this flag.
-#define BLOCKSHARPOBJ 	128  //From /tg: prevents syringes, parapens and hypos if the external suit or helmet (if targeting head) has this flag. Example: space suits, biosuit, bombsuits, thick suits that cover your body.
-#define NOPRESSUREDMAGE 256 //This flag is used on the flags variable for SUIT and HEAD items which stop pressure damage.
+#define BLOCKSHARPOBJ 	(1<<6)  //From /tg: prevents syringes, parapens and hypos if the external suit or helmet (if targeting head) has this flag. Example: space suits, biosuit, bombsuits, thick suits that cover your body.
+#define NOPRESSUREDMAGE (1<<7) //This flag is used on the flags variable for SUIT and HEAD items which stop pressure damage.
 //SUITS AND HELMETS====================================================================================
 
 
@@ -111,75 +108,107 @@
 //===========================================================================================
 
 //ITEM INVENTORY SLOT BITMASKS
-#define SLOT_OCLOTHING 		1
-#define SLOT_ICLOTHING 		2
-#define SLOT_HANDS 			4
-#define SLOT_EYES 			8
-#define SLOT_EAR 			16
-#define SLOT_FACE 			32
-#define SLOT_HEAD 			64
-#define SLOT_FEET 			128
-#define SLOT_ID 			256
-#define SLOT_WAIST			512
-#define SLOT_BACK 			1024
-#define SLOT_STORE 			2048	//this is to allow items with a w_class of 3 or 4 to fit in pockets.
-#define SLOT_NO_STORE		4096	//this is to deny items with a w_class of 2 or 1 to fit in pockets.
-#define SLOT_LEGS 			16384
+#define ITEM_SLOT_OCLOTHING 	(1<<0)
+#define ITEM_SLOT_ICLOTHING 	(1<<1)
+#define ITEM_SLOT_GLOVES 		(1<<2)
+#define ITEM_SLOT_EYES 			(1<<3)
+#define ITEM_SLOT_EARS 			(1<<4)
+#define ITEM_SLOT_MASK 			(1<<5)
+#define ITEM_SLOT_HEAD 			(1<<6)
+#define ITEM_SLOT_FEET 			(1<<7)
+#define ITEM_SLOT_ID 			(1<<8)
+#define ITEM_SLOT_BELT			(1<<9)
+#define ITEM_SLOT_BACK 			(1<<10)
+#define ITEM_SLOT_POCKET 		(1<<11)	//this is to allow items with a w_class of 3 or 4 to fit in pockets.
+#define ITEM_SLOT_DENYPOCKET	(1<<12)	//this is to deny items with a w_class of 2 or 1 to fit in pockets.
+#define ITEM_SLOT_LEGS 			(1<<13)
 //=================================================
 
 //slots
 //Text strings so that the slots can be associated when doing inventory lists.
-#define WEAR_ID				"id"
-#define WEAR_EAR			"wear_ear"
-#define WEAR_BODY			"body"
-#define WEAR_LEGS			"legs"
-#define WEAR_FEET			"feet"
-#define WEAR_HANDS			"hands"
-#define WEAR_WAIST			"waist"
-#define WEAR_JACKET			"jacket"
-#define WEAR_EYES			"eyes"
-#define WEAR_FACE			"face"
-#define WEAR_HEAD			"head"
-#define WEAR_BACK			"back"
-#define WEAR_L_STORE		"l_store"
-#define WEAR_R_STORE		"r_store"
-#define WEAR_ACCESSORY		"accessory"
-#define WEAR_J_STORE		"j_store"
-#define WEAR_L_HAND			"l_hand"
-#define WEAR_R_HAND			"r_hand"
-#define WEAR_HANDCUFFS		"handcuffs"
-#define WEAR_LEGCUFFS		"legcuffs"
-#define EQUIP_IN_BOOT		"in_boot"
-#define WEAR_IN_BACK		"in_back"
-#define WEAR_IN_JACKET		"in_jacket"
-#define WEAR_IN_ACCESSORY	"in_accessory"
-#define WEAR_IN_HOLSTER		"in_holster"
-#define WEAR_IN_B_HOLSTER	"in_b_holster"
-#define WEAR_IN_J_HOLSTER	"in_j_holster"
-#define EQUIP_IN_STORAGE	"in_storage"
-#define EQUIP_IN_L_POUCH	"in_l_pouch"
-#define EQUIP_IN_R_POUCH	"in_r_pouch"
+#define SLOT_WEAR_ID		1
+#define SLOT_EARS			2
+#define SLOT_W_UNIFORM		3
+#define SLOT_LEGS			4
+#define SLOT_SHOES			5
+#define SLOT_GLOVES			6
+#define SLOT_BELT			7
+#define SLOT_WEAR_SUIT		8
+#define SLOT_GLASSES		9
+#define SLOT_WEAR_MASK		10
+#define SLOT_HEAD			11
+#define SLOT_BACK			12
+#define SLOT_L_STORE		13
+#define SLOT_R_STORE		14
+#define SLOT_ACCESSORY		15
+#define SLOT_S_STORE		16
+#define SLOT_L_HAND			17
+#define SLOT_R_HAND			18
+#define SLOT_HANDCUFFED		19
+#define SLOT_LEGCUFFED		20
+#define SLOT_IN_BOOT		21
+#define SLOT_IN_BACKPACK	22
+#define SLOT_IN_SUIT		23
+#define SLOT_IN_ACCESSORY	24
+#define SLOT_IN_HOLSTER		25
+#define SLOT_IN_B_HOLSTER	26
+#define SLOT_IN_S_HOLSTER	27
+#define SLOT_IN_STORAGE		28
+#define SLOT_IN_L_POUCH		29
+#define SLOT_IN_R_POUCH		30
 //=================================================
 
+//I hate that this has to exist
+/proc/slotdefine2slotbit(slotdefine) //Keep this up to date with the value of SLOT BITMASKS and SLOTS (the two define sections above)
+	. = 0
+	switch(slotdefine)
+		if(SLOT_BACK)
+			. = ITEM_SLOT_BACK
+		if(SLOT_WEAR_MASK)
+			. = ITEM_SLOT_MASK
+		if(SLOT_BELT)
+			. = ITEM_SLOT_BELT
+		if(SLOT_WEAR_ID)
+			. = ITEM_SLOT_ID
+		if(SLOT_EARS)
+			. = ITEM_SLOT_EARS
+		if(SLOT_GLASSES)
+			. = ITEM_SLOT_EYES
+		if(SLOT_GLOVES)
+			. = ITEM_SLOT_GLOVES
+		if(SLOT_HEAD)
+			. = ITEM_SLOT_HEAD
+		if(SLOT_SHOES)
+			. = ITEM_SLOT_FEET
+		if(SLOT_WEAR_SUIT)
+			. = ITEM_SLOT_OCLOTHING
+		if(SLOT_W_UNIFORM)
+			. = ITEM_SLOT_ICLOTHING
+		if(SLOT_L_STORE, SLOT_R_STORE)
+			. = ITEM_SLOT_POCKET
+		if(SLOT_LEGS)
+			. = ITEM_SLOT_LEGS
+
+//=================================================
 // bitflags for clothing parts
-#define HEAD			1
-#define FACE			2
-#define EYES			4
-#define UPPER_TORSO		8
-#define LOWER_TORSO		16
-#define LEG_LEFT		32
-#define LEG_RIGHT		64
-#define LEGS			96
-#define FOOT_LEFT		128
-#define FOOT_RIGHT		256
-#define FEET			384
-#define ARM_LEFT		512
-#define ARM_RIGHT		1024
-#define ARMS			1536
-#define HAND_LEFT		2048
-#define HAND_RIGHT		4096
-#define HANDS			6144
-#define FULL_BODY		8191
+#define HEAD			(1<<0)
+#define FACE			(1<<1)
+#define EYES			(1<<2)
+#define CHEST		(1<<3)
+#define GROIN		(1<<4)
+#define LEG_LEFT		(1<<5)
+#define LEG_RIGHT		(1<<6)
+#define LEGS			(LEG_RIGHT|LEG_LEFT)
+#define FOOT_LEFT		(1<<7)
+#define FOOT_RIGHT		(1<<8)
+#define FEET			(FOOT_RIGHT|FOOT_LEFT)
+#define ARM_LEFT		(1<<9)
+#define ARM_RIGHT		(1<<10)
+#define ARMS			(ARM_RIGHT|ARM_LEFT)
+#define HAND_LEFT		(1<<11)
+#define HAND_RIGHT		(1<<12)
+#define HANDS			(HAND_RIGHT|HAND_LEFT)
+#define FULL_BODY		(~0)
 //=================================================
 
 //defense zones for selecting them via the hud.

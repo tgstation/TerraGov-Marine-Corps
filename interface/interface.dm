@@ -3,10 +3,10 @@
 	set name = "wiki"
 	set desc = "Visit the wiki."
 	set hidden = 1
-	if(config.wikiurl)
+	if(CONFIG_GET(string/wikiurl))
 		if(alert("This will open the wiki in your browser. Are you sure?",,"Yes","No")=="No")
 			return
-		src << link(config.wikiurl)
+		src << link(CONFIG_GET(string/wikiurl))
 	else
 		to_chat(src, "<span class='warning'>The wiki URL is not set in the server configuration.</span>")
 	return
@@ -15,10 +15,10 @@
 	set name = "forum"
 	set desc = "Visit the forum."
 	set hidden = 1
-	if(config.forumurl)
+	if(CONFIG_GET(string/forumurl))
 		if(alert("This will open the forum in your browser. Are you sure?",,"Yes","No")=="No")
 			return
-		src << link(config.forumurl)
+		src << link(CONFIG_GET(string/forumurl))
 	else
 		to_chat(src, "<span class='warning'>The forum URL is not set in the server configuration.</span>")
 	return
@@ -27,10 +27,10 @@
 	set name = "rules"
 	set desc = "Read our rules."
 	set hidden = 1
-	if(config.rulesurl)
+	if(CONFIG_GET(string/rulesurl))
 		if(alert("This will open the rules in your browser. Are you sure?",,"Yes","No")=="No")
 			return
-		src << link(config.rulesurl)
+		src << link(CONFIG_GET(string/rulesurl))
 	else
 		to_chat(src, "<span class='warning'>The rules URL is not set in the server configuration.</span>")
 	return
@@ -39,10 +39,10 @@
 	set name = "Patreon"
 	set desc = "Like our server? Buy us and get satisfaction for your efforts."
 	set hidden = 1
-	if(config.donationurl)
+	if(CONFIG_GET(string/donationurl))
 		if(alert("This will open our donation page in your browser. Are you sure?",,"Yes","No")=="No")
 			return
-		src << link(config.donationurl)
+		src << link(CONFIG_GET(string/donationurl))
 	else
 		to_chat(src, "<span class='warning'>The donation URL is not set in the server configuration.</span>")
 	return
@@ -51,10 +51,10 @@
 	set name = "Submit Bug"
 	set desc = "Submit a bug."
 	set hidden = 1
-	if(config.bugtrackerurl)
+	if(CONFIG_GET(string/githuburl))
 		if(alert("This will open our bug tracker page in your browser. Are you sure?",,"Yes","No")=="No")
 			return
-		src << link(config.bugtrackerurl)
+		src << link(CONFIG_GET(string/githuburl))
 	else
 		to_chat(src, "<span class='warning'>The bug tracker URL is not set in the server configuration.</span>")
 	return
@@ -70,23 +70,23 @@
 		if("Ship")
 			switch(MAIN_SHIP_NAME)
 				if("TGS Theseus")
-					ship_link = config.almayer_url
+					ship_link = CONFIG_GET(string/shipurl)
 			if(!ship_link)
 				to_chat(src, "<span class='warning'>This ship map has no webmap setup.</span>")
 				return
 			src << link(ship_link)
 		if("Ground")
-			switch(map_tag)
+			switch(GLOB.map_tag)
 				if("Ice Colony")
-					ground_link = config.icecolony_url
+					ground_link = CONFIG_GET(string/icecolonyurl)
 				if("LV-624")
-					ground_link = config.lv624_url
+					ground_link = CONFIG_GET(string/lv624url)
 				if("Solaris Ridge")
-					ground_link = config.bigred_url
+					ground_link = CONFIG_GET(string/bigredurl)
 				if("Prison Station")
-					ground_link = config.prisonstation_url
+					ground_link = CONFIG_GET(string/prisonstationurl)
 				if("Whiskey Outpost")
-					ground_link = config.whiskeyoutpost_url
+					ground_link = CONFIG_GET(string/whiskeyoutposturl)
 			if(!ground_link)
 				to_chat(src, "<span class='warning'>This ground map has no webmap setup.</span>")
 				return
@@ -96,7 +96,7 @@
 	return
 
 /client/verb/hotkeys_help()
-	set name = "hotkeys-help"
+	set name = "Hotkeys"
 	set category = "OOC"
 
 	var/hotkey_mode = {"<font color='purple'>

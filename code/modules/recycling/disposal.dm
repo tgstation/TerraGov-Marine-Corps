@@ -25,30 +25,29 @@
 	var/disposal_pressure = 0
 
 //Create a new disposal, find the attached trunk (if present) and init gas resvr.
-/obj/machinery/disposal/New()
-	..()
-	spawn(5)
-		trunk = locate() in loc
-		if(!trunk)
-			mode = 0
-			flush = 0
-		else
-			trunk.linked = src	//Link the pipe trunk to self
+/obj/machinery/disposal/Initialize()
+	. = ..()
+	trunk = locate() in loc
+	if(!trunk)
+		mode = 0
+		flush = 0
+	else
+		trunk.linked = src	//Link the pipe trunk to self
 
-		update()
-		start_processing()
+	update()
+	start_processing()
 
 //Attack by item places it in to disposal
 /obj/machinery/disposal/attackby(var/obj/item/I, var/mob/user)
 	if(stat & BROKEN || !I || !user)
 		return
 
-	if(isXeno(user)) //No, fuck off. Concerns trashing Marines and facehuggers
+	if(isxeno(user)) //No, fuck off. Concerns trashing Marines and facehuggers
 		return
 
 	add_fingerprint(user)
 	if(mode <= 0) //It's off
-		if(istype(I, /obj/item/tool/screwdriver))
+		if(isscrewdriver(I))
 			if(contents.len > 0)
 				to_chat(user, "<span class='warning'>Eject the contents first!</span>")
 				return
@@ -62,7 +61,7 @@
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 				to_chat(user, "<span class='notice'>You attach the screws around the power connection.</span>")
 				return
-		else if(istype(I, /obj/item/tool/weldingtool) && mode == -1)
+		else if(iswelder(I) && mode == -1)
 			if(contents.len > 0)
 				to_chat(user, "<span class='warning'>Eject the contents first!</span>")
 				return
@@ -104,23 +103,23 @@
 				user.visible_message("<span class='warning'>[user] puts [GM] into [src].</span>",
 				"<span class='warning'>[user] puts [GM] into [src].</span>")
 				log_combat(user, GM, "placed", addition="into disposals")
-				message_admins("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) placed [key_name(GM)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[GM]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[GM.x];Y=[GM.y];Z=[GM.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[GM]'>FLW</a>) in a disposals unit.")
+				message_admins("[ADMIN_TPMONTY(usr)] placed [ADMIN_TPMONTY(GM)] in a disposals unit.")
 				flush()
 		return
 
-	if(isrobot(user))
+	if(iscyborg(user))
 		return
 	if(!I)
 		return
 
-	if(user.drop_inv_item_to_loc(I, src))
+	if(user.transferItemToLoc(I, src))
 		user.visible_message("<span class='notice'>[user] places [I] into [src].</span>",
 		"<span class='notice'>You place [I] into [src].</span>")
 	update()
 
 //Mouse drop another mob or self
 /obj/machinery/disposal/MouseDrop_T(mob/target, mob/user)
-	if(!istype(target) || target.anchored || target.buckled || get_dist(user, src) > 1 || get_dist(user, target) > 1 || user.is_mob_incapacitated(TRUE) || istype(user, /mob/living/silicon/ai) || target.mob_size >= MOB_SIZE_BIG)
+	if(!istype(target) || target.anchored || target.buckled || get_dist(user, src) > 1 || get_dist(user, target) > 1 || user.is_mob_incapacitated(TRUE) || isAI(user) || target.mob_size >= MOB_SIZE_BIG)
 		return
 	if(isanimal(user) && target != user) return //Animals cannot put mobs other than themselves into disposal
 	add_fingerprint(user)
@@ -145,7 +144,7 @@
 		"<span class ='warning'>You stuff [target] into [src]!</span>")
 
 		log_combat(user, target, "placed", addition="into disposals")
-		message_admins("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) placed [key_name(target)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[target]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[target.x];Y=[target.y];Z=[target.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[target]'>FLW</a>) in a disposals unit")
+		message_admins("[ADMIN_TPMONTY(usr)] placed [ADMIN_TPMONTY(target)] in a disposals unit.")
 
 	target.forceMove(src)
 	flush()
@@ -415,7 +414,7 @@
 			target = get_offset_target_turf(loc, rand(5) - rand(5), rand(5) - rand(5))
 			AM.loc = loc
 			AM.pipe_eject(0)
-			if(!istype(AM, /mob/living/silicon/robot/drone)) //Poor drones kept smashing windows and taking system damage being fired out of disposals. ~Z
+			if(!ismaintdrone(AM)) //Poor drones kept smashing windows and taking system damage being fired out of disposals. ~Z
 				spawn(1)
 					if(AM)
 						AM.throw_at(target, 5, 1)
@@ -459,7 +458,7 @@
 	//Check for any living mobs trigger hasmob.
 	//hasmob effects whether the package goes to cargo or its tagged destination.
 	for(var/mob/living/M in D)
-		if(M && M.stat != DEAD && !istype(M, /mob/living/silicon/robot/drone))
+		if(M?.stat != DEAD && !ismaintdrone(M))
 			hasmob = 1
 
 	//Checks 1 contents level deep. This means that players can be sent through disposals...
@@ -467,7 +466,7 @@
 	for(var/obj/O in D)
 		if(O.contents)
 			for(var/mob/living/M in O.contents)
-				if(M && M.stat != 2 && !istype(M, /mob/living/silicon/robot/drone))
+				if(M && M.stat != 2 && !ismaintdrone(M))
 					hasmob = 1
 
 	//Now everything inside the disposal gets put into the holder
@@ -485,7 +484,7 @@
 			var/obj/item/smallDelivery/T = AM
 			destinationTag = T.sortTag
 		//Drones can mail themselves through maint.
-		if(istype(AM, /mob/living/silicon/robot/drone))
+		if(ismaintdrone(AM))
 			var/mob/living/silicon/robot/drone/drone = AM
 			destinationTag = drone.mail_destination
 
@@ -510,8 +509,8 @@
 	while(active)
 		if(hasmob && prob(3))
 			for(var/mob/living/H in src)
-				if(!istype(H, /mob/living/silicon/robot/drone)) //Drones use the mailing code to move through the disposal system,
-					if(map_tag != MAP_WHISKEY_OUTPOST)
+				if(!ismaintdrone(H)) //Drones use the mailing code to move through the disposal system,
+					if(GLOB.map_tag != MAP_WHISKEY_OUTPOST)
 						H.take_overall_damage(20, 0, "Blunt Trauma") //Horribly maim any living creature jumping down disposals.  c'est la vie
 
 		if(has_fat_guy && prob(2)) //Chance of becoming stuck per segment if contains a fat guy
@@ -659,7 +658,7 @@
 //Update the icon_state to reflect hidden status
 /obj/structure/disposalpipe/proc/update()
 	var/turf/T = loc
-	hide(T.intact_tile && !istype(T, /turf/open/space)) //Space never hides pipes
+	hide(T.intact_tile && !isspaceturf(T)) //Space never hides pipes
 
 //Hide called by levelupdate if turf intact status changes, change visibility status and force update of icon
 /obj/structure/disposalpipe/hide(var/intact)
@@ -681,7 +680,7 @@
 		H.active = 0
 		H.loc = src
 		return
-	if(istype(T, /turf/open/floor)) //intact floor, pop the tile
+	if(isfloorturf(T)) //intact floor, pop the tile
 		var/turf/open/floor/F = T
 		if(!F.is_plating())
 			if(!F.broken && !F.burnt)
@@ -689,7 +688,7 @@
 			F.make_plating()
 
 	if(direction) //Direction is specified
-		if(istype(T, /turf/open/space)) //If ended in space, then range is unlimited
+		if(isspaceturf(T)) //If ended in space, then range is unlimited
 			target = get_edge_target_turf(T, direction)
 		else //Otherwise limit to 10 tiles
 			target = get_ranged_target_turf(T, direction, 10)
@@ -780,7 +779,7 @@
 	if(T.intact_tile)
 		return //Prevent interaction with T-scanner revealed pipes
 	add_fingerprint(user)
-	if(istype(I, /obj/item/tool/weldingtool))
+	if(iswelder(I))
 		var/obj/item/tool/weldingtool/W = I
 
 		if(W.remove_fuel(0, user))
@@ -952,7 +951,7 @@
 	var/obj/structure/disposalpipe/P
 
 	if(nextdir == 12)
-		for(var/obj/structure/disposalpipe/down/almayer/F in structure_list)
+		for(var/obj/structure/disposalpipe/down/almayer/F in GLOB.structure_list)
 			if(id == F.id)
 				P = F
 				break // stop at first found match
@@ -980,7 +979,7 @@
 	var/obj/structure/disposalpipe/P
 
 	if(nextdir == 11)
-		for(var/obj/structure/disposalpipe/up/almayer/F in structure_list)
+		for(var/obj/structure/disposalpipe/up/almayer/F in GLOB.structure_list)
 			if(id == F.id)
 				P = F
 				break // stop at first found match
@@ -1242,7 +1241,7 @@
 	if(T.intact_tile)
 		return //Prevent interaction with T-scanner revealed pipes
 	add_fingerprint(user)
-	if(istype(I, /obj/item/tool/weldingtool))
+	if(iswelder(I))
 		var/obj/item/tool/weldingtool/W = I
 		if(W.remove_fuel(0, user))
 			playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
@@ -1332,7 +1331,7 @@
 		for(var/atom/movable/AM in H)
 			AM.loc = src.loc
 			AM.pipe_eject(dir)
-			if(!istype(AM, /mob/living/silicon/robot/drone)) //Drones keep smashing windows from being fired out of chutes. Bad for the station. ~Z
+			if(!ismaintdrone(AM)) //Drones keep smashing windows from being fired out of chutes. Bad for the station. ~Z
 				spawn(5)
 					AM.throw_at(target, 3, 1)
 		qdel(H)
@@ -1341,7 +1340,7 @@
 	if(!I || !user)
 		return
 	add_fingerprint(user)
-	if(istype(I, /obj/item/tool/screwdriver))
+	if(isscrewdriver(I))
 		if(mode == 0)
 			mode = 1
 			playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
@@ -1350,7 +1349,7 @@
 			mode = 0
 			playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
 			to_chat(user, "<span class='notice'>You attach the screws around the power connection.</span>")
-	else if(istype(I, /obj/item/tool/weldingtool) && mode == 1)
+	else if(iswelder(I) && mode == 1)
 		var/obj/item/tool/weldingtool/W = I
 		if(W.remove_fuel(0, user))
 			playsound(loc, 'sound/items/Welder2.ogg', 25, 1)

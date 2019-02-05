@@ -57,9 +57,9 @@
 				return
 			else
 				// insert cell
-				var/obj/item/cell/C = usr.get_active_hand()
+				var/obj/item/cell/C = usr.get_active_held_item()
 				if(istype(C))
-					if(user.drop_inv_item_to_loc(C, src))
+					if(user.transferItemToLoc(C, src))
 						cell = C
 						C.add_fingerprint(usr)
 
@@ -67,7 +67,7 @@
 		else
 			to_chat(user, "The hatch must be open to insert a power cell.")
 			return
-	else if(istype(I, /obj/item/tool/screwdriver))
+	else if(isscrewdriver(I))
 		open = !open
 		user.visible_message("<span class='notice'> [user] [open ? "opens" : "closes"] the hatch on the [src].</span>", "<span class='notice'> You [open ? "open" : "close"] the hatch on the [src].</span>")
 		update_icon()
@@ -119,7 +119,7 @@
 /obj/machinery/space_heater/Topic(href, href_list)
 	if (usr.stat)
 		return
-	if ((in_range(src, usr) && istype(src.loc, /turf)) || (istype(usr, /mob/living/silicon)))
+	if ((in_range(src, usr) && istype(src.loc, /turf)) || issilicon(usr))
 		usr.set_interaction(src)
 
 		switch(href_list["op"])
@@ -131,7 +131,7 @@
 				set_temperature = dd_range(T0C, T0C + 90, set_temperature + value)
 
 			if("cellremove")
-				if(open && cell && !usr.get_active_hand())
+				if(open && cell && !usr.get_active_held_item())
 					usr.visible_message("<span class='notice'> [usr] removes \the [cell] from \the [src].</span>", "<span class='notice'> You remove \the [cell] from \the [src].</span>")
 					cell.updateicon()
 					usr.put_in_hands(cell)
@@ -141,7 +141,7 @@
 
 			if("cellinstall")
 				if(open && !cell)
-					var/obj/item/cell/C = usr.get_active_hand()
+					var/obj/item/cell/C = usr.get_active_held_item()
 					if(istype(C))
 						if(usr.drop_held_item())
 							cell = C

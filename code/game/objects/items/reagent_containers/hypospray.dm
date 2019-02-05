@@ -3,7 +3,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 /obj/item/reagent_container/hypospray
-	name = "hypospray"
+	name = "\improper hypospray"
 	desc = "The hypospray is a sterile, air-needle reusable autoinjector for rapid administration of drugs to patients with customizable dosages. Comes complete with an internal reagent analyzer and digital labeler. Handy."
 	icon = 'icons/obj/items/syringe.dmi'
 	item_state = "hypo"
@@ -13,7 +13,7 @@
 	volume = 60
 	possible_transfer_amounts = null
 	container_type = OPENCONTAINER
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	flags_item = NOBLUDGEON
 	w_class = 2.0
 	var/skilllock = 1
@@ -124,16 +124,16 @@
 
 	if(ismob(A))
 		var/mob/M = A
-		if(M != user && M.stat != DEAD && M.a_intent != "help" && !M.is_mob_incapacitated() && ((M.mind && M.mind.cm_skills && M.mind.cm_skills.cqc >= SKILL_CQC_MP) || isYautja(M))) // preds have null skills
+		if(M != user && M.stat != DEAD && M.a_intent != INTENT_HELP && !M.is_mob_incapacitated() && ((M.mind && M.mind.cm_skills && M.mind.cm_skills.cqc >= SKILL_CQC_MP) || isyautjastrict(M))) // preds have null skills
 			user.KnockDown(3)
 			log_combat(M, user, "blocked", addition="using their cqc skill (hypospray injection)")
-			msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) got robusted by the cqc of [key_name(M)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[M]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[M.x];Y=[M.y];Z=[M.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[M]'>FLW</a>)")
+			msg_admin_attack("[ADMIN_TPMONTY(usr)] got robusted by the cqc of [ADMIN_TPMONTY(M)].")
 			M.visible_message("<span class='danger'>[M]'s reflexes kick in and knock [user] to the ground before they could use \the [src]'!</span>", \
 				"<span class='warning'>You knock [user] to the ground before they could inject you!</span>", null, 5)
 			playsound(user.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 			return FALSE
 
-		msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) injected [key_name(M)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[M]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[M.x];Y=[M.y];Z=[M.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[M]'>FLW</a>) with [name]. Reagents: [contained] (INTENT: [uppertext(user.a_intent)])")
+		msg_admin_attack("[ADMIN_TPMONTY(usr)] injected [ADMIN_TPMONTY(M)] with [name]. Reagents: [contained] (INTENT: [uppertext(user.a_intent)]).")
 		to_chat(user, "<span class='notice'>You inject [M] with [src]</span>.")
 		to_chat(M, "<span class='warning'>You feel a tiny prick!</span>")
 

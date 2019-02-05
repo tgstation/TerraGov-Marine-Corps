@@ -27,10 +27,9 @@
 	var/image/wired_overlay
 	flags_barrier = HANDLE_BARRIER_CHANCE
 
-/obj/structure/barricade/New()
-	..()
-	spawn(0)
-		update_icon()
+/obj/structure/barricade/Initialize()
+	. = ..()
+	update_icon()
 
 /obj/structure/barricade/handle_barrier_chance(mob/living/M)
 	return prob(max(30,(100.0*health)/maxhealth))
@@ -175,7 +174,7 @@
 				climbable = FALSE
 		return
 
-	if(istype(W, /obj/item/tool/wirecutters))
+	if(iswirecutter(W))
 		if(is_wired)
 			user.visible_message("<span class='notice'>[user] begin removing the barbed wire on [src].</span>",
 			"<span class='notice'>You begin removing the barbed wire on [src].</span>")
@@ -343,7 +342,7 @@
 			to_chat(user, "You can't get near that, it's melting!")
 			return
 	//Removing the barricades
-	if(istype(W, /obj/item/tool/shovel) && user.a_intent != "hurt")
+	if(istype(W, /obj/item/tool/shovel) && user.a_intent != INTENT_HARM)
 		var/obj/item/tool/shovel/ET = W
 		if(ET.folded)
 			return
@@ -819,7 +818,7 @@
 	. = ..()
 
 /obj/structure/barricade/plasteel/attack_hand(mob/user as mob)
-	if(isXeno(user))
+	if(isxeno(user))
 		return
 
 	playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
@@ -891,7 +890,7 @@
 			to_chat(user, "You can't get near that, it's melting!")
 			return
 
-	if(istype(W, /obj/item/tool/shovel) && user.a_intent != "hurt")
+	if(istype(W, /obj/item/tool/shovel) && user.a_intent != INTENT_HARM)
 		var/obj/item/tool/shovel/ET = W
 		if(!ET.folded)
 			user.visible_message("<span class='notice'>[user] starts disassembling [src].</span>",

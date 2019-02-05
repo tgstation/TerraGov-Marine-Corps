@@ -4,7 +4,7 @@
 	icon_state = "whistle"
 	w_class = 1.0
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_FACE
+	flags_equip_slot = ITEM_SLOT_MASK
 
 	var/volume = 60
 	var/spamcheck = 0
@@ -38,15 +38,15 @@
 		spamcheck = 0
 
 /obj/item/device/whistle/MouseDrop(obj/over_object as obj)
-	if(ishuman(usr) || ismonkey(usr) || isrobot(usr))
+	if(ishuman(usr) || ismonkey(usr) || iscyborg(usr))
 
 		if(!usr.is_mob_restrained() && !usr.stat && usr.wear_mask == src)
 			switch(over_object.name)
 				if("r_hand")
-					usr.drop_inv_item_on_ground(src)
+					usr.dropItemToGround(src)
 					usr.put_in_r_hand(src)
 				if("l_hand")
-					usr.drop_inv_item_on_ground(src)
+					usr.dropItemToGround(src)
 					usr.put_in_l_hand(src)
 			add_fingerprint(usr)
 

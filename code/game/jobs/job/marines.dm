@@ -18,7 +18,7 @@
 
 /datum/job/marine/generate_entry_conditions(mob/living/carbon/human/H)
 	. = ..()
-	if(flags_startup_parameters & ROLE_ADD_TO_MODE) 
+	if(flags_startup_parameters & ROLE_ADD_TO_MODE)
 		H.nutrition = rand(60,250) //Start hungry for the default marine.
 
 
@@ -40,7 +40,7 @@
 What you lack alone, you gain standing shoulder to shoulder with the men and women of the corps. Ooh-rah!"}
 
 /datum/job/marine/standard/generate_equipment(mob/living/carbon/human/H)
-	H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), WEAR_BACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), SLOT_BACK)
 
 
 /datum/job/marine/engineer
@@ -68,7 +68,7 @@ Your squaddies will look to you when it comes to construction in the field of ba
 	return (slots*4)
 
 /datum/job/marine/engineer/generate_equipment(mob/living/carbon/human/H)
-	H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/tech(H), WEAR_BACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/tech(H), SLOT_BACK)
 
 
 /datum/job/marine/medic
@@ -96,7 +96,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	return (slots*4)
 
 /datum/job/marine/medic/generate_equipment(mob/living/carbon/human/H)
-	H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/medic(H), WEAR_BACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/medic(H), SLOT_BACK)
 
 
 /datum/job/marine/smartgunner
@@ -115,7 +115,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	. = ..() + {"\nYou are the smartgunner. Your job is to provide heavy weapons support."}
 
 /datum/job/marine/smartgunner/generate_equipment(mob/living/carbon/human/H)
-	H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), WEAR_BACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), SLOT_BACK)
 
 
 /datum/job/marine/specialist
@@ -135,8 +135,8 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 You can serve a variety of roles, so choose carefully."}
 
 /datum/job/marine/specialist/generate_equipment(mob/living/carbon/human/H)
-	H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), WEAR_BACK)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/specrag(H), WEAR_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), SLOT_BACK)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/specrag(H), SLOT_HEAD)
 
 
 /datum/job/marine/leader
@@ -157,4 +157,4 @@ You can serve a variety of roles, so choose carefully."}
 You are also in charge of communicating with command and letting them know about the situation first hand. Keep out of harm's way."}
 
 /datum/job/marine/leader/generate_equipment(mob/living/carbon/human/H)
-	H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), WEAR_BACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), SLOT_BACK)

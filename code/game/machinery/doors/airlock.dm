@@ -109,6 +109,7 @@ Airlock index -> wire color are { 9, 4, 6, 7, 5, 8, 1, 2, 3 }.
 	var/list/airlockWireColorToIndex
 	var/no_panel = 0 //the airlock has no panel that can be screwdrivered open
 	var/not_weldable = 0 // stops people welding the door if true
+	damage_cap = 3000
 
 	tiles_with = list(
 		/turf/closed/wall)
@@ -658,7 +659,7 @@ About the new airlock wires panel:
 	M.forceMove(loc)
 
 /obj/machinery/door/airlock/attack_hand(mob/user as mob)
-	if(!istype(usr, /mob/living/silicon))
+	if(!issilicon(usr))
 		if(src.isElectrified())
 			if(src.shock(user, 100))
 				return
@@ -743,7 +744,7 @@ About the new airlock wires panel:
 			if(!do_after(usr, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
 		if(href_list["wires"])
 			var/t1 = text2num(href_list["wires"])
-			if(!( istype(usr.get_active_hand(), /obj/item/tool/wirecutters) ))
+			if(!iswirecutter(usr.get_active_held_item()))
 				to_chat(usr, "You need wirecutters!")
 				return
 			if(src.isWireColorCut(t1))
@@ -752,7 +753,7 @@ About the new airlock wires panel:
 				src.cut(t1)
 		else if(href_list["pulse"])
 			var/t1 = text2num(href_list["pulse"])
-			if(!istype(usr.get_active_hand(), /obj/item/device/multitool))
+			if(!ismultitool(usr.get_active_held_item()))
 				to_chat(usr, "You need a multitool!")
 				return
 			if(src.isWireColorCut(t1))
@@ -762,13 +763,13 @@ About the new airlock wires panel:
 				src.pulse(t1)
 		else if(href_list["signaler"])
 			var/wirenum = text2num(href_list["signaler"])
-			if(!istype(usr.get_active_hand(), /obj/item/device/assembly/signaler))
+			if(!istype(usr.get_active_held_item(), /obj/item/device/assembly/signaler))
 				to_chat(usr, "You need a signaller!")
 				return
 			if(src.isWireColorCut(wirenum))
 				to_chat(usr, "You can't attach a signaller to a cut wire.")
 				return
-			var/obj/item/device/assembly/signaler/R = usr.get_active_hand()
+			var/obj/item/device/assembly/signaler/R = usr.get_active_held_item()
 			if(R.secured)
 				to_chat(usr, "This radio can't be attached!")
 				return
@@ -788,7 +789,7 @@ About the new airlock wires panel:
 			src.signalers[wirenum] = null
 
 
-	if(istype(usr, /mob/living/silicon))
+	if(issilicon(usr))
 		if (!check_synth_access(usr))
 			return
 
@@ -975,7 +976,7 @@ About the new airlock wires panel:
 			var/obj/item/clothing/mask/cigarette/L = C
 			L.light("<span class='notice'>[user] lights their [L] on an electrical arc from the [src]")
 			return
-	if(!istype(user, /mob/living/silicon))
+	if(!issilicon(user))
 		if(isElectrified())
 			if(shock(user, 75))
 				return
@@ -1020,7 +1021,7 @@ About the new airlock wires panel:
 		return
 
 
-	if((istype(C, /obj/item/tool/weldingtool) && !operating && density))
+	if(iswelder(C) && !operating && density)
 		var/obj/item/tool/weldingtool/W = C
 
 		if(not_weldable)
@@ -1039,7 +1040,7 @@ About the new airlock wires panel:
 					src.welded = null
 				src.update_icon()
 		return
-	else if(istype(C, /obj/item/tool/screwdriver))
+	else if(isscrewdriver(C))
 		if(no_panel)
 			to_chat(user, "<span class='warning'>\The [src] has no panel to open!</span>")
 			return
@@ -1047,9 +1048,9 @@ About the new airlock wires panel:
 		p_open = !p_open
 		to_chat(user, "<span class='notice'>You [p_open ? "open" : "close"] [src]'s panel.</span>")
 		update_icon()
-	else if(istype(C, /obj/item/tool/wirecutters))
+	else if(iswirecutter(C))
 		return src.attack_hand(user)
-	else if(istype(C, /obj/item/device/multitool))
+	else if(ismultitool(C))
 		return src.attack_hand(user)
 	else if(istype(C, /obj/item/device/assembly/signaler))
 		return src.attack_hand(user)
@@ -1160,7 +1161,7 @@ About the new airlock wires panel:
 
 	for(var/turf/turf in locs)
 		for(var/mob/living/M in turf)
-			if(isrobot(M))
+			if(iscyborg(M))
 				M.apply_damage(DOOR_CRUSH_DAMAGE, BRUTE)
 			else
 				M.apply_damage(DOOR_CRUSH_DAMAGE, BRUTE)
@@ -1205,8 +1206,8 @@ About the new airlock wires panel:
 		return 1
 	return 0
 
-/obj/machinery/door/airlock/New()
-	..()
+/obj/machinery/door/airlock/Initialize()
+	. = ..()
 
 	//wires
 	if (!secured_wires)
@@ -1217,15 +1218,14 @@ About the new airlock wires panel:
 	else
 		randomize_wires()
 
-	if(src.closeOtherId != null)
-		spawn (5)
-			for (var/obj/machinery/door/airlock/A in machines)
-				if(A.closeOtherId == src.closeOtherId && A != src)
-					src.closeOther = A
-					break
+	if(closeOtherId != null)
+		for (var/obj/machinery/door/airlock/A in GLOB.machines)
+			if(A.closeOtherId == src.closeOtherId && A != src)
+				src.closeOther = A
+				break
+
 	// fix smoothing
-	spawn(10)
-		relativewall_neighbours()
+	relativewall_neighbours()
 
 /obj/machinery/door/airlock/proc/randomize_wires()
 	var/wire_assignments = CreateRandomAirlockWires()

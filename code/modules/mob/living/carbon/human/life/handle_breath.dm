@@ -14,14 +14,14 @@
 	var/list/air_info
 
 	// HACK NEED CHANGING LATER
-	if(health < config.health_threshold_crit && !reagents.has_reagent("inaprovaline"))
+	if(health < CONFIG_GET(number/health_threshold_crit) && !reagents.has_reagent("inaprovaline"))
 		losebreath++
 
 	if(losebreath > 0) //Suffocating so do not take a breath
 		losebreath--
 		if(prob(10)) //Gasp per 10 ticks? Sounds about right.
 			spawn emote("gasp")
-		if(istype(loc, /atom/movable))
+		if(ismovableatom(loc))
 			var/atom/movable/container = loc
 			container.handle_internal_lifeform(src)
 	else
@@ -30,7 +30,7 @@
 
 		//No breath from internal atmosphere so get breath from location
 		if(!air_info)
-			if(istype(loc, /atom/movable))
+			if(ismovableatom(loc))
 				var/atom/movable/container = loc
 				air_info = container.handle_internal_lifeform(src)
 				if(istype(wear_mask) && air_info)
@@ -70,7 +70,7 @@
 							break //If they breathe in the nasty stuff once, no need to continue checking
 
 		else //Still give container the chance to interact
-			if(istype(loc, /atom/movable))
+			if(ismovableatom(loc))
 				var/atom/movable/container = loc
 				container.handle_internal_lifeform(src)
 
@@ -105,7 +105,7 @@
 			failed_last_breath = 1
 			oxygen_alert = max(oxygen_alert, 1)
 			return 0
-		if(health > config.health_threshold_crit)
+		if(health > CONFIG_GET(number/health_threshold_crit))
 			adjustOxyLoss(HUMAN_MAX_OXYLOSS)
 			failed_last_breath = 1
 		else
@@ -174,7 +174,7 @@
 				oxygen_alert = 0
 
 		if(GAS_TYPE_N2O)
-			if(!isYautja(src)) // Prevent Predator anesthetic memes
+			if(!isyautja(src)) // Prevent Predator anesthetic memes
 				var/SA_pp = air_info[3]
 				if(SA_pp > 20) // Enough to make us paralysed for a bit
 					KnockOut(3) // 3 gives them one second to wake up and run away a bit!

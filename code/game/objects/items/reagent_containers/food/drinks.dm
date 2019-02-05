@@ -58,13 +58,13 @@
 		var/rgt_list_text = get_reagent_list_text()
 
 		log_combat(user, M, "fed", src, "Reagents: [rgt_list_text]")
-		msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) fed [key_name(M)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[M]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[M.x];Y=[M.y];Z=[M.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[M]'>FLW</a>) with [src.name] Reagents: [rgt_list_text] (INTENT: [uppertext(user.a_intent)])")
+		msg_admin_attack("[ADMIN_TPMONTY(usr)] fed [ADMIN_TPMONTY(M)] with [src.name] Reagents: [rgt_list_text] (INTENT: [uppertext(user.a_intent)]).")
 
 		if(reagents.total_volume)
 			reagents.reaction(M, INGEST)
 			reagents.trans_to(M, gulp_size)
 
-		if(isrobot(user)) //Cyborg modules that include drinks automatically refill themselves, but drain the borg's cell
+		if(iscyborg(user)) //Cyborg modules that include drinks automatically refill themselves, but drain the borg's cell
 			var/mob/living/silicon/robot/bro = user
 			bro.cell.use(30)
 			var/refill = R.get_master_reagent_id()
@@ -94,14 +94,14 @@
 
 		var/datum/reagent/refill
 		var/datum/reagent/refillName
-		if(isrobot(user))
+		if(iscyborg(user))
 			refill = reagents.get_master_reagent_id()
 			refillName = reagents.get_master_reagent_name()
 
 		var/trans = src.reagents.trans_to(target, amount_per_transfer_from_this)
 		to_chat(user, "<span class='notice'>You transfer [trans] units of the solution to [target].</span>")
 
-		if(isrobot(user)) //Cyborg modules that include drinks automatically refill themselves, but drain the borg's cell
+		if(iscyborg(user)) //Cyborg modules that include drinks automatically refill themselves, but drain the borg's cell
 			var/mob/living/silicon/robot/bro = user
 			var/chargeAmount = max(30,4*trans)
 			bro.cell.use(chargeAmount)

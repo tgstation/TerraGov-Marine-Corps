@@ -45,17 +45,17 @@
 	B.contents += new /obj/item/storage/box/m94
 
 
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/dutch(H), WEAR_EAR)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/freelancer(H), WEAR_BODY)
-	H.equip_to_slot_or_del(J, WEAR_JACKET)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/frelancer(H), WEAR_HEAD)
-	H.equip_to_slot_or_del(W, WEAR_WAIST)
-	H.equip_to_slot_or_del(B, WEAR_BACK)
-	H.equip_to_slot_or_del(S, WEAR_FEET)
-	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(H), WEAR_HANDS)
-	H.equip_to_slot_or_del(new /obj/item/storage/pouch/firstaid/full(H), WEAR_L_STORE)
-	H.equip_to_slot_or_del(RS, WEAR_R_STORE)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/mar40(H), WEAR_J_STORE)
+	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/dutch(H), SLOT_EARS)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/freelancer(H), SLOT_W_UNIFORM)
+	H.equip_to_slot_or_del(J, SLOT_WEAR_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/frelancer(H), SLOT_HEAD)
+	H.equip_to_slot_or_del(W, SLOT_BELT)
+	H.equip_to_slot_or_del(B, SLOT_BACK)
+	H.equip_to_slot_or_del(S, SLOT_SHOES)
+	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(H), SLOT_GLOVES)
+	H.equip_to_slot_or_del(new /obj/item/storage/pouch/firstaid/full(H), SLOT_L_STORE)
+	H.equip_to_slot_or_del(RS, SLOT_R_STORE)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/mar40(H), SLOT_S_STORE)
 
 
 //Freelancer Medic
@@ -93,18 +93,18 @@
 	B.contents += new /obj/item/ammo_magazine/smg/p90
 	B.contents += new /obj/item/ammo_magazine/smg/p90
 
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/dutch(H), WEAR_EAR)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/freelancer(H), WEAR_BODY)
-	H.equip_to_slot_or_del(J, WEAR_JACKET)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/frelancer(H), WEAR_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/storage/belt/combatLifesaver/upp(H), WEAR_WAIST)
-	H.equip_to_slot_or_del(B, WEAR_BACK)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), WEAR_FEET)
-	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(H), WEAR_HANDS)
-	H.equip_to_slot_or_del(new /obj/item/storage/pouch/medical/full(H), WEAR_L_STORE)
-	H.equip_to_slot_or_del(RS, WEAR_R_STORE)
-	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/hud/health(H), WEAR_EYES)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/p90(H), WEAR_J_STORE)
+	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/dutch(H), SLOT_EARS)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/freelancer(H), SLOT_W_UNIFORM)
+	H.equip_to_slot_or_del(J, SLOT_WEAR_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/frelancer(H), SLOT_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/storage/belt/combatLifesaver/upp(H), SLOT_BELT)
+	H.equip_to_slot_or_del(B, SLOT_BACK)
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), SLOT_SHOES)
+	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(H), SLOT_GLOVES)
+	H.equip_to_slot_or_del(new /obj/item/storage/pouch/medical/full(H), SLOT_L_STORE)
+	H.equip_to_slot_or_del(RS, SLOT_R_STORE)
+	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/hud/health(H), SLOT_GLASSES)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/p90(H), SLOT_S_STORE)
 
 
 //Freelancer Leader
@@ -146,14 +146,14 @@
 	B.contents += new /obj/item/storage/box/m94
 
 
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/dutch(H), WEAR_EAR)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/freelancer(H), WEAR_BODY)
-	H.equip_to_slot_or_del(J, WEAR_JACKET)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/frelancer/beret(H), WEAR_HEAD)
-	H.equip_to_slot_or_del(W, WEAR_WAIST)
-	H.equip_to_slot_or_del(B, WEAR_BACK)
-	H.equip_to_slot_or_del(S, WEAR_FEET)
-	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(H), WEAR_HANDS)
-	H.equip_to_slot_or_del(new /obj/item/storage/pouch/firstaid/full(H), WEAR_L_STORE)
-	H.equip_to_slot_or_del(RS, WEAR_R_STORE)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/mar40/carbine(H), WEAR_J_STORE)
+	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/dutch(H), SLOT_EARS)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/freelancer(H), SLOT_W_UNIFORM)
+	H.equip_to_slot_or_del(J, SLOT_WEAR_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/frelancer/beret(H), SLOT_HEAD)
+	H.equip_to_slot_or_del(W, SLOT_BELT)
+	H.equip_to_slot_or_del(B, SLOT_BACK)
+	H.equip_to_slot_or_del(S, SLOT_SHOES)
+	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(H), SLOT_GLOVES)
+	H.equip_to_slot_or_del(new /obj/item/storage/pouch/firstaid/full(H), SLOT_L_STORE)
+	H.equip_to_slot_or_del(RS, SLOT_R_STORE)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/mar40/carbine(H), SLOT_S_STORE)

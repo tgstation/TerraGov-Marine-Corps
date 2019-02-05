@@ -42,7 +42,7 @@
 
 	log_attack("<font color='red'>[user.name] ([user.ckey]) attacked [M.name] ([M.ckey]) with [src.name] (INTENT: [uppertext(user.a_intent)])</font>")
 
-	if (!(istype(user, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
+	if (!(ishuman(user) || ticker) && ticker.mode.name != "monkey")
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return
 	if(!chaplain)
@@ -67,7 +67,7 @@
 			to_chat(M, "<span class='warning'>The power of [src.deity_name] clears your mind of heresy!</span>")
 			to_chat(user, "<span class='warning'>You see how [M]'s eyes become clear, the cult no longer holds control over him!</span>")
 			ticker.mode.remove_cultist(M.mind)*/
-		if ((istype(M, /mob/living/carbon/human) && prob(60)))
+		if ((ishuman(M) && prob(60)))
 			bless(M)
 			for(var/mob/O in viewers(M, null))
 				O.show_message(text("<span class='danger'>[] heals [] with the power of [src.deity_name]!</span>", user, M), 1)
@@ -75,7 +75,7 @@
 			playsound(src.loc, "punch", 25, 1)
 		else
 			if(ishuman(M) && !istype(M:head, /obj/item/clothing/head/helmet))
-				M.adjustBrainLoss(10)
+				M.adjustBrainLoss(10, TRUE)
 				to_chat(M, "<span class='warning'>You feel dumber.</span>")
 			for(var/mob/O in viewers(M, null))
 				O.show_message(text("<span class='danger'>[] beats [] over the head with []!</span>", user, M, src), 1)
@@ -88,7 +88,7 @@
 */
 /obj/item/storage/bible/afterattack(atom/A, mob/user as mob, proximity)
 	if(!proximity) return
-/*	if (istype(A, /turf/open/floor))
+/*	if (isfloorturf(A))
 		to_chat(user, "<span class='notice'>You hit the floor with the bible.</span>")
 		if(user.mind && (user.mind.assigned_role == "Chaplain"))
 			call(/obj/effect/rune/proc/revealrunes)(src)*/

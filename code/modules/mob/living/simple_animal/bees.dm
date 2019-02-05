@@ -16,8 +16,8 @@
 	turns_per_move = 6
 	var/obj/machinery/portable_atmospherics/hydroponics/my_hydrotray
 
-/mob/living/simple_animal/bee/New(loc, var/obj/machinery/apiary/new_parent)
-	..()
+/mob/living/simple_animal/bee/Initialize(loc, var/obj/machinery/apiary/new_parent)
+	. = ..()
 	parent = new_parent
 	verbs -= /atom/movable/verb/pull
 

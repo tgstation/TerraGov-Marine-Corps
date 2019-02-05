@@ -541,19 +541,19 @@
 		return
 
 	if ( (get_dist(src, user) > 1 ))
-		if (!istype(user, /mob/living/silicon))
+		if (!issilicon(user))
 			user.unset_interaction()
 			user << browse(null, "window=air_alarm")
 			user << browse(null, "window=AAlarmwires")
 			return
 
 
-		else if (istype(user, /mob/living/silicon) && aidisabled)
+		else if (issilicon(user) && aidisabled)
 			to_chat(user, "AI control for this Air Alarm interface has been disabled.")
 			user << browse(null, "window=air_alarm")
 			return
 
-	if(wiresexposed && (!istype(user, /mob/living/silicon)))
+	if(wiresexposed && !issilicon(user))
 		var/t1 = text("<html><head><title>[alarm_area.name] Air Alarm Wires</title></head><body><B>Access Panel</B><br>\n")
 		var/list/wirecolors = list(
 			"Orange" = 1,
@@ -585,7 +585,7 @@
 	return
 
 /obj/machinery/alarm/proc/return_text(mob/user)
-	if(!(istype(user, /mob/living/silicon)) && locked)
+	if(!issilicon(user) && locked)
 		return "<html><head><title>\The [src]</title></head><body>[return_status()]<hr>[rcon_text()]<hr><i>(Swipe ID card to unlock interface)</i></body></html>"
 	else
 		return "<html><head><title>\The [src]</title></head><body>[return_status()]<hr>[rcon_text()]<hr>[return_controls()]</body></html>"
@@ -825,7 +825,7 @@ table tr:first-child th:first-child { border: none;}
 	return output
 
 /obj/machinery/alarm/Topic(href, href_list)
-	if(..() || !( Adjacent(usr) || istype(usr, /mob/living/silicon)) ) // dont forget calling super in machine Topics -walter0o
+	if(..() || !( Adjacent(usr) || issilicon(usr)) ) // dont forget calling super in machine Topics -walter0o
 		usr.unset_interaction()
 		usr << browse(null, "window=air_alarm")
 		usr << browse(null, "window=AAlarmwires")
@@ -859,7 +859,7 @@ table tr:first-child th:first-child { border: none;}
 			target_temperature = input_temperature + T0C
 
 	// hrefs that need the AA unlocked -walter0o
-	if(!locked || istype(usr, /mob/living/silicon))
+	if(!locked || issilicon(usr))
 
 		if(href_list["command"])
 			var/device_id = href_list["id_tag"]
@@ -955,7 +955,7 @@ table tr:first-child th:first-child { border: none;}
 
 		if (href_list["AAlarmwires"])
 			var/t1 = text2num(href_list["AAlarmwires"])
-			if (!( istype(usr.get_held_item(), /obj/item/tool/wirecutters) ))
+			if (!iswirecutter(usr.get_held_item()))
 				to_chat(usr, "You need wirecutters!")
 				return
 			if (isWireColorCut(t1))
@@ -971,7 +971,7 @@ table tr:first-child th:first-child { border: none;}
 
 		else if (href_list["pulse"])
 			var/t1 = text2num(href_list["pulse"])
-			if (!istype(usr.get_held_item(), /obj/item/device/multitool))
+			if (!ismultitool(usr.get_held_item()))
 				to_chat(usr, "You need a multitool!")
 				return
 			if (isWireColorCut(t1))
@@ -984,7 +984,7 @@ table tr:first-child th:first-child { border: none;}
 
 
 /obj/machinery/alarm/attackby(obj/item/W as obj, mob/user as mob)
-/*	if (istype(W, /obj/item/tool/wirecutters))
+/*	if (iswirecutter(W))
 		stat ^= BROKEN
 		add_fingerprint(user)
 		for(var/mob/O in viewers(user, null))
@@ -1003,7 +1003,7 @@ table tr:first-child th:first-child { border: none;}
 				update_icon()
 				return
 
-			if(wiresexposed && ((istype(W, /obj/item/device/multitool) || istype(W, /obj/item/tool/wirecutters))))
+			if(wiresexposed && (ismultitool(W) || iswirecutter(W)))
 				return attack_hand(user)
 
 			if(istype(W, /obj/item/card/id) || istype(W, /obj/item/device/pda))// trying to unlock the interface with an ID card
@@ -1020,7 +1020,7 @@ table tr:first-child th:first-child { border: none;}
 			return
 
 		if(1)
-			if(iscoil(W))
+			if(iscablecoil(W))
 				var/obj/item/stack/cable_coil/C = W
 				if(C.use(5))
 					to_chat(user, "<span class='notice'>You wire \the [src].</span>")

@@ -7,7 +7,7 @@
 	icon = 'icons/obj/items/spray.dmi'
 	item_state = "spray"
 	flags_item = NOBLUDGEON
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	throwforce = 4
 	w_class = 2.0
 	throw_speed = 2
@@ -134,7 +134,7 @@
 	w_class = 4.0
 	flags_atom = CONDUCT
 	flags_item = NOSHIELD
-	flags_equip_slot = SLOT_BACK
+	flags_equip_slot = ITEM_SLOT_BACK
 	origin_tech = "materials=2;combat=2"
 	attack_verb = list("chopped", "sliced", "cut", "reaped")
 

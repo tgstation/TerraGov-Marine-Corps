@@ -32,8 +32,8 @@
 				tank_two = item
 				item.forceMove(src)
 				to_chat(user, "<span class='notice'>You attach the tank to the transfer valve.</span>")
-				message_admins("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) attached both tanks to a transfer valve (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>JMP</a>).")
 				log_game("[key_name(usr)] attached both tanks to a transfer valve.")
+				message_admins("[ADMIN_TPMONTY(usr)] attached both tanks to a transfer valve.")
 
 		update_icon()
 		nanomanager.update_uis(src) // update all UIs attached to src
@@ -46,7 +46,7 @@
 		if(attached_device)
 			to_chat(user, "<span class='warning'>There is already an device attached to the valve, remove it first.</span>")
 			return
-		user.temp_drop_inv_item(A)
+		user.temporarilyRemoveItemFromInventory(A)
 		attached_device = A
 		A.forceMove(src)
 		to_chat(user, "<span class='notice'>You attach the [item] to the valve controls and secure it.</span>")

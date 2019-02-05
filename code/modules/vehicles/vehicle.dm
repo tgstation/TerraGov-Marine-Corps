@@ -44,17 +44,17 @@
 
 /obj/vehicle/attackby(obj/item/W, mob/user)
 
-	if(istype(W, /obj/item/tool/screwdriver))
+	if(isscrewdriver(W))
 		if(!locked)
 			open = !open
 			update_icon()
 			to_chat(user, "<span class='notice'>Maintenance panel is now [open ? "opened" : "closed"].</span>")
-	else if(istype(W, /obj/item/tool/crowbar) && cell && open)
+	else if(iscrowbar(W) && cell && open)
 		remove_cell(user)
 
 	else if(istype(W, /obj/item/cell) && !cell && open)
 		insert_cell(W, user)
-	else if(istype(W, /obj/item/tool/weldingtool))
+	else if(iswelder(W))
 		var/obj/item/tool/weldingtool/WT = W
 		if(WT.remove_fuel(1, user))
 			if(health < maxhealth)
@@ -80,7 +80,7 @@
 		..()
 
 /obj/vehicle/attack_alien(mob/living/carbon/Xenomorph/M)
-	if(M.a_intent == "hurt")
+	if(M.a_intent == INTENT_HARM)
 		M.animation_attack_on(src)
 		playsound(loc, "alien_claw_metal", 25, 1)
 		M.flick_attack_overlay(src, "slash")
@@ -212,7 +212,7 @@
 	if(!istype(C))
 		return
 
-	H.drop_inv_item_to_loc(C, src)
+	H.transferItemToLoc(C, src)
 	cell = C
 	powercheck()
 	to_chat(usr, "<span class='notice'>You install [C] in [src].</span>")

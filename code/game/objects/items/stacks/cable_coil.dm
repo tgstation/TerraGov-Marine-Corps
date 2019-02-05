@@ -15,14 +15,14 @@
 	throw_speed = 2
 	throw_range = 5
 	matter = list("metal" = 50, "glass" = 20)
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	item_state = "coil"
 	attack_verb = list("whipped", "lashed", "disciplined", "flogged")
 	stack_id = "cable coil"
 
-	suicide_act(mob/user)
-		user.visible_message("<span class='warning'><b>[user] is strangling \himself with the [src.name]! It looks like \he's trying to commit suicide.</b></span>")
-		return(OXYLOSS)
+/obj/item/stack/cable_coil/suicide_act(mob/user)
+	user.visible_message("<span class='danger'>[user] is strangling [p_them()]self with the [name]! It looks like [user.p_theyre()] trying to commit suicide.</span>")
+	return(OXYLOSS)
 
 
 /obj/item/stack/cable_coil/New(loc, length = MAXCOIL, var/param_color = null)
@@ -81,7 +81,7 @@
 	..()
 
 /obj/item/stack/cable_coil/attackby(obj/item/W, mob/user)
-	if( istype(W, /obj/item/tool/wirecutters) && src.amount > 1)
+	if(iswirecutter(W) && amount > 1)
 		src.amount--
 		new/obj/item/stack/cable_coil(user.loc, 1,color)
 		to_chat(user, "<span class='notice'>You cut a piece off the cable coil.</span>")
@@ -89,7 +89,7 @@
 		src.update_wclass()
 		return
 
-	else if( istype(W, /obj/item/stack/cable_coil) )
+	else if(iscablecoil(W))
 		var/obj/item/stack/cable_coil/C = W
 		if(C.amount >= MAXCOIL)
 			to_chat(user, "The coil is too long, you cannot add any more cable to it.")
@@ -109,7 +109,7 @@
 	..()
 
 /obj/item/stack/cable_coil/attack_hand(mob/user as mob)
-	if (user.get_inactive_hand() == src)
+	if (user.get_inactive_held_item() == src)
 		var/obj/item/stack/cable_coil/F = new /obj/item/stack/cable_coil(user, 1, color)
 		F.copy_evidences(src)
 		user.put_in_hands(F)
@@ -329,7 +329,7 @@
 	if(hasorgans(M))
 
 		var/datum/limb/S = M:get_limb(user.zone_selected)
-		if(!(S.status & LIMB_ROBOT) || user.a_intent != "help")
+		if(!(S.status & LIMB_ROBOT) || user.a_intent != INTENT_HARM)
 			return ..()
 
 		if(istype(M,/mob/living/carbon/human))

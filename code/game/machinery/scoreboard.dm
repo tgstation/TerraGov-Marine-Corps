@@ -68,7 +68,7 @@
 	active = 1
 	icon_state = "launcheract"
 
-	for(var/obj/machinery/scoreboard/X in machines)
+	for(var/obj/machinery/scoreboard/X in GLOB.machines)
 		if(X.id == id)
 			X.reset_scores()
 

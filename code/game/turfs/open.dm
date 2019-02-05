@@ -235,9 +235,9 @@
 						to_chat(H, "<span class='warning'> Your bracers hiss and spark as they short out!</span>")
 						Y.decloak(H)
 
-		else if(isXeno(C))
+		else if(isxeno(C))
 			river_slowdown = 1.3
-			if(isXenoBoiler(C))
+			if(isxenoboiler(C))
 				river_slowdown = -0.5
 
 		if(C.on_fire)

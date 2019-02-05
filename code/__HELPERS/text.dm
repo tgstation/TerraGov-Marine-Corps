@@ -18,6 +18,9 @@
 	var/sqltext = dbcon.Quote(t);
 	return copytext(sqltext, 2, lentext(sqltext));//Quote() adds quotes around input, we already do that
 
+/proc/format_table_name(table as text)
+	return CONFIG_GET(string/feedback_tableprefix) + table
+
 /*
  * Text sanitization
  */
@@ -328,3 +331,22 @@ proc/TextPreview(var/string,var/len=40)
 			return string
 	else
 		return "[copytext(string, 1, 37)]..."
+
+
+//finds the first occurrence of one of the characters from needles argument inside haystack
+//it may appear this can be optimised, but it really can't. findtext() is so much faster than anything you can do in byondcode.
+//stupid byond :(
+/proc/findchar(haystack, needles, start=1, end=0)
+	var/temp
+	var/len = length(needles)
+	for(var/i=1, i<=len, i++)
+		temp = findtextEx(haystack, ascii2text(text2ascii(needles,i)), start, end)	//Note: ascii2text(text2ascii) is faster than copytext()
+		if(temp)
+			end = temp
+	return end
+
+
+/proc/noscript(text)
+	text = replacetext(text, "<script>", "")
+	text = replacetext(text, "</script>", "")
+	return text

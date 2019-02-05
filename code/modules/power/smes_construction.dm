@@ -54,7 +54,7 @@
 		return
 
 	var/mob/living/carbon/human/h_user = null
-	if (!istype(user, /mob/living/carbon/human))
+	if (!ishuman(user))
 		return
 	else
 		h_user = user
@@ -68,8 +68,8 @@
 		var/obj/item/clothing/gloves/G = h_user.gloves
 		if(G.siemens_coefficient == 0)
 			user_protected = 1
-	log_game("SMES FAILURE: <b>[src.x]X [src.y]Y [src.z]Z</b> User: [usr.ckey], Intensity: [intensity]/100")
-	message_admins("SMES FAILURE: <b>[src.x]X [src.y]Y [src.z]Z</b> User: [key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>), Intensity: [intensity]/100")
+	log_game("SMES failure by [key_name(user)], Intensity: [intensity] / 100.")
+	message_admins("SMES failure by [ADMIN_TPMONTY(user)], Intensity: [intensity] / 100.")
 
 
 	switch (intensity)
@@ -137,8 +137,8 @@
 
 			if (prob(50))
 				// Added admin-notifications so they can stop it when griffed.
-				log_game("SMES explosion imminent.")
-				message_admins("SMES explosion imminent.")
+				log_game("SMES explosion imminent [AREACOORD(src.loc)].")
+				message_admins("SMES explosion imminent [ADMIN_VERBOSEJMP(src.loc)].")
 				src.ping("DANGER! Magnetic containment field unstable! Containment field failure imminent!")
 				failing = 1
 				// 30 - 60 seconds and then BAM!
@@ -186,7 +186,7 @@
 	if (..())
 
 		// Charged above 1% and safeties are enabled.
-		if((charge > (capacity/100)) && safeties_enabled && (!istype(W, /obj/item/device/multitool)))
+		if((charge > (capacity/100)) && safeties_enabled && !ismultitool(W))
 			to_chat(user, "<span class='warning'>Safety circuit of [src] is preventing modifications while it's charged!</span>")
 			return
 
@@ -202,7 +202,7 @@
 			failure_probability = 0
 
 		// Crowbar - Disassemble the SMES.
-		if(istype(W, /obj/item/tool/crowbar))
+		if(iscrowbar(W))
 			if (terminal)
 				to_chat(user, "<span class='warning'>You have to disassemble the terminal first!</span>")
 				return
@@ -235,7 +235,7 @@
 					return
 
 				to_chat(usr, "You install the coil into the SMES unit!")
-				if(user.drop_inv_item_to_loc(W, src))
+				if(user.transferItemToLoc(W, src))
 					cur_coils ++
 					component_parts += W
 					recalc_coils()
@@ -243,7 +243,7 @@
 				to_chat(usr, "<span class='warning'>You can't insert more coils to this SMES unit!</span>")
 
 		// Multitool - Toggle the safeties.
-		else if(istype(W, /obj/item/device/multitool))
+		else if(ismultitool(W))
 			safeties_enabled = !safeties_enabled
 			to_chat(user, "<span class='warning'>You [safeties_enabled ? "connected" : "disconnected"] the safety circuit.</span>")
-			src.visible_message("\icon[src] <b>[src]</b> beeps: \"Caution. Safety circuit has been: [safeties_enabled ? "re-enabled" : "disabled. Please excercise caution."]\"")
+			src.visible_message("[bicon(src)] <b>[src]</b> beeps: \"Caution. Safety circuit has been: [safeties_enabled ? "re-enabled" : "disabled. Please excercise caution."]\"")

@@ -222,7 +222,7 @@
 
 /////////////////////////// DNA MISC-PROCS
 /proc/updateappearance(mob/M as mob , structure)
-	if(istype(M, /mob/living/carbon/human))
+	if(ishuman(M))
 		M.dna.check_integrity()
 		var/mob/living/carbon/human/H = M
 		H.r_hair = hex2num(getblock(structure,1,3))
@@ -387,13 +387,13 @@
 		to_chat(M, "Your eyes feel weird...")
 
 	/* If you want the new mutations to work, UNCOMMENT THIS.
-	if(istype(M, /mob/living/carbon))
+	if(iscarbon(M))
 		for (var/datum/mutations/mut in global_mutations)
 			mut.check_mutation(M)
 	*/
 
 //////////////////////////////////////////////////////////// Monkey Block
-	if (isblockon(getblock(M.dna.struc_enzymes, MONKEYBLOCK,3),MONKEYBLOCK) && istype(M, /mob/living/carbon/human))
+	if (isblockon(getblock(M.dna.struc_enzymes, MONKEYBLOCK,3),MONKEYBLOCK) && ishuman(M))
 	// human > monkey
 		var/mob/living/carbon/human/H = M
 		H.monkeyizing = 1
@@ -461,7 +461,7 @@
 		O.adjustToxLoss(M.getToxLoss() + 20)
 		O.adjustOxyLoss(M.getOxyLoss())
 		O.stat = M.stat
-		O.a_intent = "hurt"
+		O.a_intent = INTENT_HARM
 		for (var/obj/item/weapon/implant/I in implants)
 			I.loc = O
 			I.implanted = O
@@ -469,7 +469,7 @@
 		del(M)
 		return
 
-	if (!isblockon(getblock(M.dna.struc_enzymes, MONKEYBLOCK,3),MONKEYBLOCK) && !istype(M, /mob/living/carbon/human))
+	if (!isblockon(getblock(M.dna.struc_enzymes, MONKEYBLOCK,3),MONKEYBLOCK) && !ishuman(M))
 	// monkey > human,
 		var/mob/living/carbon/monkey/Mo = M
 		Mo.monkeyizing = 1

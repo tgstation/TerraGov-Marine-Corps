@@ -160,7 +160,7 @@
 			if(src.maketiles)
 				if(src.target == null || !src.target)
 					for(var/obj/item/stack/sheet/metal/M in view(7, src))
-						if(!(M in floorbottargets) && M != src.oldtarget && M.amount == 1 && !(istype(M.loc, /turf/closed)))
+						if(!(M in floorbottargets) && M != src.oldtarget && M.amount == 1 && !isclosedturf(M.loc))
 							src.oldtarget = M
 							src.target = M
 							break
@@ -180,7 +180,7 @@
 						break
 			*/
 			var/turf/T = get_step(src, targetdirection)
-			if(istype(T, /turf/open/space))
+			if(isspaceturf(T))
 				src.oldtarget = T
 				src.target = T
 		if(!src.target || src.target == null)
@@ -191,7 +191,7 @@
 					break
 		if((!src.target || src.target == null ) && src.improvefloors)
 			for (var/turf/open/floor/F in view(7,src))
-				if(!(F in floorbottargets) && F != src.oldtarget && F.icon_state == "Floor1" && !(istype(F, /turf/open/floor/plating)))
+				if(!(F in floorbottargets) && F != src.oldtarget && F.icon_state == "Floor1" && !F.is_plating())
 					src.oldtarget = F
 					src.target = F
 					break
@@ -261,16 +261,16 @@
 
 
 /obj/machinery/bot/floorbot/proc/repair(var/turf/target)
-	if(istype(target, /turf/open/space/))
+	if(isspaceturf(target))
 		if(target.loc.name == "Space")
 			return
-	else if(!istype(target, /turf/open/floor))
+	else if(!isfloorturf(target))
 		return
 	if(src.amount <= 0)
 		return
 	src.anchored = 1
 	src.icon_state = "floorbot-c"
-	if(istype(target, /turf/open/space/))
+	if(isspaceturf(target))
 		visible_message("<span class='warning'> [src] begins to repair the hole</span>")
 		var/obj/item/stack/tile/plasteel/T = new /obj/item/stack/tile/plasteel
 		src.repairing = 1
@@ -381,7 +381,7 @@
 		var/obj/item/frame/toolbox_tiles/B = new /obj/item/frame/toolbox_tiles
 		user.put_in_hands(B)
 		to_chat(user, "<span class='notice'>You add the tiles into the empty toolbox. They protrude from the top.</span>")
-		user.temp_drop_inv_item(src)
+		user.temporarilyRemoveItemFromInventory(src)
 		qdel(src)
 	else
 		to_chat(user, "<span class='warning'>You need 10 floortiles for a floorbot.</span>")

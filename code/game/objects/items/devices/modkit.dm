@@ -23,7 +23,7 @@
 
 	if(!parts)
 		to_chat(user, "<span class='warning'>This kit has no parts for this modification left.</span>")
-		user.temp_drop_inv_item(src)
+		user.temporarilyRemoveItemFromInventory(src)
 		qdel(src)
 		return
 
@@ -59,7 +59,7 @@
 		parts &= ~MODKIT_SUIT
 
 	if(!parts)
-		user.temp_drop_inv_item(src)
+		user.temporarilyRemoveItemFromInventory(src)
 		qdel(src)
 
 /obj/item/device/modkit/examine(mob/user)

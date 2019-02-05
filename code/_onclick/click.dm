@@ -44,7 +44,7 @@
 		return
 
 	if(client.buildmode)
-		if (istype(A, /obj/effect/bmode))
+		if(istype(A, /obj/effect/bmode))
 			A.clicked(src, mods)
 			return
 
@@ -76,7 +76,7 @@
 		throw_item(A)
 		return
 
-	var/obj/item/W = get_active_hand()
+	var/obj/item/W = get_active_held_item()
 
 	// Special gun mode stuff.
 	if(W == A)
@@ -186,7 +186,7 @@
 */
 /mob/proc/RangedAttack(var/atom/A, var/params)
 	if(!mutations.len) return
-	if((LASER in mutations) && a_intent == "harm")
+	if((LASER in mutations) && a_intent == INTENT_HARM)
 		LaserEyes(A) // moved into a proc below
 	else if(TK in mutations)
 		switch(get_dist(src,A))

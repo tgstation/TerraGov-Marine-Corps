@@ -33,10 +33,10 @@
 
 	reducible_tally += reagent_move_delay_modifier //hyperzine and ultrazine
 
-	if(shock_stage >= 10 && !isYautja(src))
+	if(shock_stage >= 10 && !isyautja(src))
 		reducible_tally += 3
 
-	if(bodytemperature < species.cold_level_1 && !isYautja(src))
+	if(bodytemperature < species.cold_level_1 && !isyautja(src))
 		reducible_tally += 2 //Major slowdown if you're freezing
 
 	if(temporary_slowdown)
@@ -46,8 +46,8 @@
 	//Compile reducible tally and send it to total tally. Cannot go more than 1 units faster from the reducible tally!
 	. += max(-0.7, reducible_tally)
 
-	if(istype(get_active_hand(), /obj/item/weapon/gun))
-		var/obj/item/weapon/gun/G = get_active_hand() //If wielding, it will ALWAYS be on the active hand
+	if(istype(get_active_held_item(), /obj/item/weapon/gun))
+		var/obj/item/weapon/gun/G = get_active_held_item() //If wielding, it will ALWAYS be on the active hand
 		. += G.slowdown
 
 	if(istype(buckled, /obj/structure/bed/chair/wheelchair))
@@ -80,7 +80,7 @@
 
 	Process_Cloaking_Router(src)
 
-	. += config.human_delay
+	. += CONFIG_GET(number/outdated_movedelay/human_delay)
 
 
 /mob/living/carbon/human/proc/Process_Cloaking_Router(mob/living/carbon/human/user)

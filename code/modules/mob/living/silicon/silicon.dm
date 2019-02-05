@@ -18,9 +18,14 @@
 	var/sec_hud = MOB_HUD_SECURITY_ADVANCED //Determines the sec hud to use
 	var/list/HUD_toggled = list(0,0,0)
 
-/mob/living/silicon/New()
-	..()
+/mob/living/silicon/Initialize()
+	. = ..()
+	GLOB.silicon_mobs += src
 	add_language("English")
+
+/mob/living/silicon/Destroy()
+	GLOB.silicon_mobs -= src
+	return ..()
 
 /mob/living/silicon/proc/show_laws()
 	return
@@ -28,7 +33,7 @@
 /mob/living/silicon/drop_held_item()
 	return
 
-/mob/living/silicon/drop_held_items()
+/mob/living/silicon/drop_all_held_items()
 	return
 
 /mob/living/simple_animal/update_transform()
@@ -115,13 +120,12 @@
 
 // This adds the basic clock, shuttle recall timer, and malf_ai info to all silicon lifeforms
 /mob/living/silicon/Stat()
-	if (!..())
-		return 0
+	. = ..()
 
-	show_station_time()
-	show_emergency_shuttle_eta()
-	show_system_integrity()
-	return 1
+	if(statpanel("Stats"))
+		show_station_time()
+		show_emergency_shuttle_eta()
+		show_system_integrity()
 
 // this function displays the stations manifest in a separate window
 /mob/living/silicon/proc/show_station_manifest()
@@ -147,7 +151,7 @@
 
 /mob/living/silicon/add_language(var/language, var/can_speak=1)
 	if (..(language) && can_speak)
-		speech_synthesizer_langs.Add(all_languages[language])
+		speech_synthesizer_langs.Add(GLOB.all_languages[language])
 		return 1
 
 /mob/living/silicon/remove_language(var/rem_language)

@@ -631,7 +631,7 @@
 "mk" = (/obj/effect/landmark{icon_state = "x"; name = "whiskey_outpost_xeno_1"},/turf/open/jungle{bushes_spawn = 0; icon_state = "grass_impenetrable"},/area/whiskey_outpost/outside/south)
 "ml" = (/turf/closed/wall/r_wall,/area/whiskey_outpost/outside/south)
 "mm" = (/obj/machinery/door/poddoor/four_tile_hor,/turf/closed/wall/r_wall,/area/whiskey_outpost/outside/south)
-"mn" = (/obj/effect/landmark/start{name = "Squad Marine"},/turf/open/floor/plating{dir = 1; icon_state = "asteroidfloor"},/area/space)
+"mn" = (/obj/effect/landmark/start/marine/squadmarine,/turf/open/floor/plating{dir = 1; icon_state = "asteroidfloor"},/area/space)
 "mo" = (/turf/open/floor/plating{dir = 1; icon_state = "asteroidfloor"},/area/space)
 "mp" = (/obj/structure/campfire{name = "IF YOU CAN SEE THIS FIRE AFTER THE LAG, AHELP SAYING THAT ART'S FIX DIDN'T WORK"},/turf/open/floor/plating{dir = 1; icon_state = "asteroidfloor"},/area/space)
 

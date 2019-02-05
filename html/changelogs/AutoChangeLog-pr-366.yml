@@ -1,0 +1,11 @@
+author: "Surrealistik"
+delete-after: True
+changes: 
+  - bugfix: "Fixed sentries not spawning with ammo."
+  - bugfix: "'Dumb' fire sentries are no longer connected to the camera network."
+  - bugfix: "Supply drop pads fixed to work with lasgun power pack rechargers."
+  - bugfix: "Misc Ravager rage fixes."
+  - bugfix: "Fixed runtimes for projectiles."
+  - bugfix: "Assault shotgun uses specialist skill."
+  - bugfix: "Movement during pounces causing wonky/unintended behaviour."
+  - tweak: "Minor sentry alert tweaks."

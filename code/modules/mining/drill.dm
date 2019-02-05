@@ -165,7 +165,7 @@
 			if(storage)
 				to_chat(user, "The drill already has a matter bin installed.")
 			else
-				if(user.drop_inv_item_to_loc(W, src))
+				if(user.transferItemToLoc(W, src))
 					storage = W
 					to_chat(user, "You install \the [W].")
 			return
@@ -173,7 +173,7 @@
 			if(cutter)
 				to_chat(user, "The drill already has a cutting head installed.")
 			else
-				if(user.drop_inv_item_to_loc(W, src))
+				if(user.transferItemToLoc(W, src))
 					cutter = W
 					to_chat(user, "You install \the [W].")
 			return
@@ -181,7 +181,7 @@
 			if(cellmount)
 				to_chat(user, "The drill already has a cell capacitor installed.")
 			else
-				if(user.drop_inv_item_to_loc(W, src))
+				if(user.transferItemToLoc(W, src))
 					cellmount = W
 					to_chat(user, "You install \the [W].")
 			return
@@ -189,7 +189,7 @@
 			if(cell)
 				to_chat(user, "The drill already has a cell installed.")
 			else
-				if(user.drop_inv_item_to_loc(W, src))
+				if(user.transferItemToLoc(W, src))
 					cell = W
 					to_chat(user, "You install \the [W].")
 			return
