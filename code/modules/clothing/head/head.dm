@@ -60,7 +60,7 @@
 	icon_state = "beretred"
 
 /obj/item/clothing/head/cmberet/wo
-	name = "\improper TGMC chief MP beret"
+	name = "\improper TGMC CMA beret"
 	desc = "A beret with the lieutenant insignia emblazoned on it. It shines with the glow of corrupt authority and a smudge of doughnut."
 	icon_state = "beretwo"
 
@@ -147,7 +147,7 @@
 	icon_state = "cargocap"
 
 /obj/item/clothing/head/cmo
-	name = "\improper Chief Medical hat"
+	name = "\improper Chief Hospitalman hat"
 	desc = "A somewhat fancy hat, typically worn by those who wish to command medical respect."
 	icon_state = "cmohat"
 
@@ -163,8 +163,8 @@
 	flags_inventory = BLOCKSHARPOBJ
 
 /obj/item/clothing/head/beret/marine/commander
-	name = "marine commander beret"
-	desc = "A beret with the commander insignia emblazoned on it. Wearer may suffer the heavy weight of responsibility upon his head and shoulders."
+	name = "marine captain beret"
+	desc = "A beret with the captain insignia emblazoned on it. Wearer may suffer the heavy weight of responsibility upon his head and shoulders."
 	icon_state = "centcomcaptain"
 
 /obj/item/clothing/head/beret/marine/chiefofficer
