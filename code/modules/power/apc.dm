@@ -280,7 +280,7 @@
 			update_state |= UPSTATE_OPENED1
 		if(opened == APC_COVER_REMOVED)
 			update_state |= UPSTATE_OPENED2
-	else if(wiresexposed && !(stat & (BROKEN|MAINT)))
+	if(panel_open)
 		update_state |= UPSTATE_WIREEXP
 	if(!update_state)
 		update_state |= UPSTATE_ALLGOOD
@@ -322,7 +322,7 @@
 		else if(environ == 2)
 			update_overlay |= APC_UPOVERLAY_ENVIRON2
 	else if(opened && !(stat & (UPSTATE_MAINT)) && cell)
-		if((opened == 1 && !(stat & BROKEN)) || opened == 2)
+		if((opened == APC_COVER_OPENED && !(stat & BROKEN)) || opened == APC_COVER_REMOVED)
 			update_overlay |= APC_UPOVERLAY_CELL_IN
 
 	var/results = 0
