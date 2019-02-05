@@ -943,114 +943,146 @@
 
 
 	else if(href_list["faxreply"])
-		var/mob/living/carbon/human/H = locate(href_list["faxreply"])
-		var/obj/machinery/faxmachine/fax = locate(href_list["originfax"])
+		var/ref = locate(href_list["faxreply"])
+		if(!ref)
+			return
+		var/datum/fax/F = GLOB.faxes[ref]
+		if(!F)
+			return
 
-		var/template_choice = input("Which template do you want to use?") in list("TGMC High Command", "TGMC Provost General", "Corporate Liaison", "Custom")
-		var/fax_message = ""
-		switch(template_choice)
+		var/mob/sender = F.sender
+
+		var/department = input("Which department do you want to reply as?", "Fax Message") as null|anything in list("TGMC High Command", "TGMC Provost General", "Nanotrasen")
+		if(!department)
+			return
+
+		var/subject = input("Enter the subject line", "Fax Message", "") as text|null
+		if(!subject)
+			return
+
+		var/fax_message
+		var/type = input("Do you want to use the template or type a custom message?", "Template") as null|anything in list("Template", "Custom")
+		if(!type)
+			return
+
+		switch(type)
+			if("Template")
+				var/addressed_to
+				var/addressed = input("Address it to the sender or custom?", "Fax Message") as null|anything in list("Sender", "Custom")
+				if(!addressed)
+					return
+
+				switch(addressed)
+					if("Sender")
+						addressed_to = "[sender.real_name]"
+					if("Custom")
+						addressed_to = input("Who is it addressed to?", "Fax Message", "") as text|null
+						if(!addressed_to)
+							return
+
+				var/message_body = input("Enter Message Body, use <p></p> for paragraphs", "Fax Message", "") as message|null
+				if(!message_body)
+					return
+
+				var/sent_by = input("Enter the name and rank you are sending from.", "Fax Message", "") as text|null
+				if(!sent_by)
+					return
+
+				fax_message = generate_templated_fax(FALSE, department, subject, addressed_to, message_body, sent_by, subject, department)
+
 			if("Custom")
-				var/input = input("Please enter a message to reply to [key_name(H)] via secure connection.", "Outgoing message", "") as text|null
+				var/input = input("Please enter a message to send via secure connection.", "Fax Message", "") as text|null
 				if(!input)
 					return
 				fax_message = "[input]"
 
-			if("TGMC High Command", "TGMC Provost General")
-				var/subject = input("Enter subject line", "Outgoing message", "") as text|null
-				if(!subject)
-					return
-				var/addressed_to = ""
-				var/address_option = input("Address it to the sender or custom?") in list("Sender", "Custom")
-				if(address_option == "Sender")
-					addressed_to = "[H.real_name]"
-				else if(address_option == "Custom")
-					addressed_to = input("Who is it addressed to?", "Outgoing message", "") as text|null
-					if(!addressed_to)
-						return
-				else
-					return
-				var/message_body = input("Enter Message Body, use <p></p> for paragraphs", "Outgoing message", "") as message|null
-				if(!message_body)
-					return
-				var/sent_by = input("Enter the name and rank you are sending from.", "Outgoing message from USCM", "") as text|null
-				if(!sent_by)
-					return
+		if(!fax_message)
+			return
 
-				var/sent_title = template_choice
+		usr << browse(fax_message, "window=faxpreview;size=600x600")
 
+		if(alert("Send this fax?", "Confirmation", "Yes", "No") != "Yes")
+			return
 
-				fax_message = generate_templated_fax(FALSE, "TGMC CENTRAL COMMAND", subject, addressed_to, message_body, sent_by, sent_title, "TerraGov Marine Corps")
+		send_fax(usr, null, F.department, subject, fax_message, TRUE)
 
-
-				usr << browse(fax_message, "window=tgmcfaxpreview;size=600x600")
-
-				if(alert("Send this fax?", "Confirmation", "Yes", "No") != "Yes")
-					return
-
-				fax_contents += fax_message
-
-
-			if("Corporate Liaison")
-				var/subject = input("Enter subject line", "Outgoing message", "") as text|null
-				if(!subject)
-					return
-				var/addressed_to = ""
-				var/address_option = input("Address it to the sender or custom?") in list("Sender", "Custom")
-				if(address_option == "Sender")
-					addressed_to = "[H.real_name]"
-				else if(address_option == "Custom")
-					addressed_to = input("Who do you want to address it to?", "Outgoing message", "") as text|null
-					if(!addressed_to)
-						return
-				else
-					return
-				var/message_body = input("Enter Message Body, use <p></p> for paragraphs", "Outgoing message", "") as message|null
-				if(!message_body)
-					return
-				var/sent_by = input("Enter the name you are sending this from", "Outgoing message", "") as text|null
-				if(!sent_by)
-					return
-
-				fax_message = generate_templated_fax(TRUE, "NANOTRASEN CORPORATE AFFAIRS - TGS THESEUS", subject, addressed_to, message_body, sent_by, "Corporate Affairs Director", "Nanotrasen")
-
-				usr << browse(fax_message, "window=clfaxpreview;size=600x600")
-
-				if(alert("Send this fax?", "Confirmation", "Yes", "No") != "Yes")
-					return
-
-				fax_contents += fax_message
-
-		var/customname = input("Pick a title for the report", "Title") as text|null
-
-		for(var/obj/machinery/faxmachine/F in GLOB.machines)
-			if(F == fax)
-				if(!(F.stat & (BROKEN|NOPOWER)))
-					flick("faxreceive", F)
-
-					spawn(20)
-						var/obj/item/paper/P = new /obj/item/paper( F.loc )
-						P.name = "USCM High Command - [customname]"
-						P.info = fax_message
-						P.update_icon()
-
-						playsound(F.loc, "sound/machines/fax.ogg", 15)
-
-						var/image/stampoverlay = image('icons/obj/items/paper.dmi')
-						stampoverlay.icon_state = "paper_stamp-uscm"
-						if(!P.stamped)
-							P.stamped = new
-						P.stamped += /obj/item/tool/stamp
-						P.overlays += stampoverlay
-						P.stamps += "<HR><i>This paper has been stamped by the High Command Quantum Relay.</i>"
-
-				log_admin("[key_name(usr)] replied to a fax message from [key_name(H)]: [fax_message]")
-				message_admins("[ADMIN_TPMONTY(usr)] replied to a fax message from [ADMIN_TPMONTY(H)].")
+		log_admin("[key_name(usr)] replied to a fax message from [key_name(sender)].")
+		message_admins("[ADMIN_TPMONTY(usr)] replied to a fax message from [ADMIN_TPMONTY(sender)].")
 
 
 	else if(href_list["faxview"])
-		var/info = locate(href_list["faxview"])
+		var/ref = locate(href_list["faxview"])
+		if(!ref)
+			return
+		var/datum/fax/F = GLOB.faxes[ref]
+		if(!F)
+			return
 
-		usr << browse("<HTML><HEAD><TITLE>Fax Message</TITLE></HEAD><BODY>[info]</BODY></HTML>", "window=Fax Message")
+		var/dat = "<html><head><title>Fax Message: [F.title]</title></head>"
+		dat += "<body>[F.message]</body></html>"
+
+		usr << browse(dat, "window=fax")
+
+
+	else if(href_list["faxcreate"])
+		var/mob/sender = locate(href_list["faxcreate"])
+
+		var/dep = input("Who do you want to message?", "Fax Message") as null|anything in list("Corporate Liaison", "Chief Military Police", "Warden")
+		if(!dep)
+			return
+
+		if(dep == "Warden" && GLOB.map_tag != MAP_PRISON_STATION)
+			if(alert("Are you sure? By default noone will receive this fax unless you spawned the proper fax machine.", "Warning", "Yes", "No" != "Yes"))
+				return
+
+		var/department = input("Which department do you want to reply AS?", "Fax Message") as null|anything in list("TGMC High Command", "TGMC Provost General", "Nanotrasen")
+		if(!department)
+			return
+
+		var/subject = input("Enter the subject line", "Fax Message", "") as text|null
+		if(!subject)
+			return
+
+		var/fax_message
+		var/addressed_to
+		var/type = input("Do you want to use the template or type a custom message?", "Template") as null|anything in list("Template", "Custom")
+		if(!type)
+			return
+
+		switch(type)
+			if("Template")
+				addressed_to = input("Who is it addressed to?", "Fax Message", "") as text|null
+				if(!addressed_to)
+					return
+
+				var/message_body = input("Enter Message Body, use <p></p> for paragraphs", "Fax Message", "") as message|null
+				if(!message_body)
+					return
+
+				var/sent_by = input("Enter the name and rank you are sending from.", "Fax Message", "") as text|null
+				if(!sent_by)
+					return
+
+				fax_message = generate_templated_fax(FALSE, department, subject, addressed_to, message_body, sent_by, subject, department)
+
+			if("Custom")
+				var/input = input("Please enter a message to send via secure connection.", "Fax Message", "") as text|null
+				if(!input)
+					return
+				fax_message = "[input]"
+
+		if(!fax_message)
+			return
+
+		usr << browse(fax_message, "window=faxpreview;size=600x600")
+
+		if(alert("Send this fax?", "Confirmation", "Yes", "No") != "Yes")
+			return
+
+		send_fax(sender, null, dep, subject, fax_message, TRUE)
+
+		log_admin("[key_name(usr)] created a new fax to: [dep].")
+		message_admins("[ADMIN_TPMONTY(usr)] created a new fax to: [dep].")
 
 
 	else if(href_list["create_object"])
