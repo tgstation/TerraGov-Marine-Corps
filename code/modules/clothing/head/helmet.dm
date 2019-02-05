@@ -412,7 +412,7 @@
 	name = "\improper Imperial Guard carapace helmet"
 	desc = "A heavy helmet that goes with the carapace armour, unlike the flak variant, this one will actually protect you."
 	icon_state = "guardvethelm"
-	armor = list(melee = 70, bullet = 55, laser = 50, energy = 35, bomb = 40, bio = 0, rad = 0)
+	armor = list(melee = 85, bullet = 85, laser = 85, energy = 85, bomb = 85, bio = 25, rad = 25)
 
 /obj/item/clothing/head/helmet/marine/imperial/sergeant/Initialize()
 	. = ..()
@@ -424,7 +424,7 @@
 	name = "\improper salvaged Space Marine helmet"
 	desc = "A helmet that goes with the Space Marine power armour, this one has been salvaged from the battlefield."
 	//icon_state
-	armor = list(melee = 65, bullet = 50, laser = 45, energy = 30, bomb = 35, bio = 0, rad = 0)
+	armor = list(melee = 75, bullet = 60, laser = 55, energy = 40, bomb = 45, bio = 15, rad = 15)
 
 /obj/item/clothing/head/helmet/marine/imperial/power/Initialize()
 	. = ..()
@@ -435,7 +435,7 @@
 	name = "\improper Space Marine helmet"
 	desc = "You are intimidated by the appearance of the helmet. This is the helmet that goes with the powerful Space Marine power armour."
 	//icon_state
-	armor = list(melee = 80, bullet = 80, laser = 80, energy = 80, bomb = 80, bio = 80, rad = 80)
+	armor = list(melee = 90, bullet = 90, laser = 90, energy = 90, bomb = 90, bio = 90, rad = 90)
 
 
 
