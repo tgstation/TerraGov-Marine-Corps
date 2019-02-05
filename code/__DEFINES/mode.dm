@@ -130,7 +130,7 @@ var/list/be_special_flags = list(
 #define ROLEGROUP_MARINE_SQUAD_MARINES 	8
 
 #define ROLE_MARINE_LEADER			1
-#define ROLE_MARINE_MEDIC			2
+#define ROLE_MARINE_CORPSMAN			2
 #define ROLE_MARINE_ENGINEER		4
 #define ROLE_MARINE_STANDARD		8
 #define ROLE_MARINE_SPECIALIST		16
