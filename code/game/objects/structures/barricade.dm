@@ -342,7 +342,7 @@
 			to_chat(user, "You can't get near that, it's melting!")
 			return
 	//Removing the barricades
-	if(istype(W, /obj/item/tool/shovel) && user.a_intent != "hurt")
+	if(istype(W, /obj/item/tool/shovel) && user.a_intent != INTENT_HARM)
 		var/obj/item/tool/shovel/ET = W
 		if(ET.folded)
 			return
@@ -890,7 +890,7 @@
 			to_chat(user, "You can't get near that, it's melting!")
 			return
 
-	if(istype(W, /obj/item/tool/shovel) && user.a_intent != "hurt")
+	if(istype(W, /obj/item/tool/shovel) && user.a_intent != INTENT_HARM)
 		var/obj/item/tool/shovel/ET = W
 		if(!ET.folded)
 			user.visible_message("<span class='notice'>[user] starts disassembling [src].</span>",

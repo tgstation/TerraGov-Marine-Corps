@@ -767,7 +767,7 @@ and you're good to go.
 				flags_gun_features ^= GUN_CAN_POINTBLANK //Reset this.
 			return
 
-		else if(user.a_intent == "hurt") //Point blanking doesn't actually fire the projectile. No reason to.
+		else if(user.a_intent == INTENT_HARM) //Point blanking doesn't actually fire the projectile. No reason to.
 			if(able_to_fire(user)) //If you can't fire the gun in the first place, we're just going to hit them with it.
 				if(!active_attachable && (flags_gun_features & GUN_BURST_ON) && burst_amount > 1)
 					..()

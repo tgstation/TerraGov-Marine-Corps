@@ -338,3 +338,18 @@
 
 		M.adjustFireLoss(rand(20, 50) * fire_mod) //Fwoom!
 		to_chat(M, "[isxeno(M) ? "<span class='xenodanger'>":"<span class='highdanger'>"]Augh! You are roasted by the flames!</Sspan>")
+
+/mob/living/carbon/Xenomorph/Ravager/Bump(atom/A)
+	if(!throwing || !usedPounce || !throw_source || !thrower) //Must currently be charging to knock aside and slice marines in it's path
+		return ..() //It's not pouncing; do regular Bump() IE body block but not throw_impact() because ravager isn't being thrown
+	if(!ishuman(A)) //Must also be a human; regular Bump() will default to throw_impact() which means ravager will plow through tables but get stopped by cades and walls
+		return ..()
+	var/mob/living/carbon/human/H = A
+	var/extra_dam = rand(xeno_caste.melee_damage_lower, xeno_caste.melee_damage_upper) * (1 + round(rage * 0.04) ) //+4% bonus damage per point of Rage.relative to base melee damage.
+	H.attack_alien(src,  extra_dam, FALSE, TRUE, FALSE, TRUE, "hurt") //Location is always random, cannot crit, harm only
+	var/target_turf = get_step_away(src, H, rand(1, 3)) //This is where we blast our target
+	target_turf =  get_step_rand(target_turf) //Scatter
+	H.throw_at(get_turf(target_turf), RAV_CHARGEDISTANCE, RAV_CHARGESPEED, H)
+	H.KnockDown(1)
+	rage = 0
+	return

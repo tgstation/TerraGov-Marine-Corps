@@ -110,7 +110,7 @@
 	playsound(loc, 'sound/effects/glassknock.ogg', 15, 1)
 
 /obj/structure/window/attack_alien(mob/living/carbon/Xenomorph/M)
-	if(M.a_intent == "help")
+	if(M.a_intent == INTENT_HELP)
 		playsound(src.loc, 'sound/effects/glassknock.ogg', 25, 1)
 		M.visible_message("<span class='warning'>\The [M] creepily taps on [src] with its huge claw.</span>", \
 		"<span class='warning'>You creepily tap on [src].</span>", \
@@ -126,7 +126,7 @@
 			health -= 500
 		healthcheck(1, 1, 1, user)
 
-	else if(user.a_intent == "hurt")
+	else if(user.a_intent == INTENT_HARM)
 
 		if(istype(user,/mob/living/carbon/human))
 			var/mob/living/carbon/human/H = user

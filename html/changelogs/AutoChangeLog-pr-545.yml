@@ -1,0 +1,4 @@
+author: "LaKiller8"
+delete-after: True
+changes: 
+  - tweak: "Briefing chairs can now only be deconstructed by welding them."

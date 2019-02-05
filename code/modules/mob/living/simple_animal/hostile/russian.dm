@@ -18,7 +18,7 @@
 	melee_damage_lower = 15
 	melee_damage_upper = 15
 	attacktext = "punches"
-	a_intent = "harm"
+	a_intent = INTENT_HARM
 	var/corpse = /obj/effect/landmark/corpsespawner/russian
 	var/weapon1 = /obj/item/tool/kitchen/knife
 	min_oxy = 5
@@ -65,7 +65,7 @@
 	melee_damage_lower = 15
 	melee_damage_upper = 15
 	attacktext = "punches"
-	a_intent = "harm"
+	a_intent = INTENT_HARM
 	//var/corpse = /obj/effect/landmark/corpsespawner/russian
 	//var/weapon1 = /obj/item/tool/kitchen/knife
 	min_oxy = 5

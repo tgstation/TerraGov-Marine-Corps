@@ -329,7 +329,7 @@
 	if(hasorgans(M))
 
 		var/datum/limb/S = M:get_limb(user.zone_selected)
-		if(!(S.status & LIMB_ROBOT) || user.a_intent != "help")
+		if(!(S.status & LIMB_ROBOT) || user.a_intent != INTENT_HARM)
 			return ..()
 
 		if(istype(M,/mob/living/carbon/human))

@@ -83,7 +83,7 @@
 	var/knocked_down = 0.0
 	var/losebreath = 0 //Carbon
 	var/shakecamera = 0
-	var/a_intent = "help"//Living
+	var/a_intent = INTENT_HELP //Living
 	var/m_intent = MOVE_INTENT_RUN//Living
 	var/lastKnownIP = null
 	var/obj/buckled = null//Living

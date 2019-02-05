@@ -109,6 +109,7 @@ Airlock index -> wire color are { 9, 4, 6, 7, 5, 8, 1, 2, 3 }.
 	var/list/airlockWireColorToIndex
 	var/no_panel = 0 //the airlock has no panel that can be screwdrivered open
 	var/not_weldable = 0 // stops people welding the door if true
+	damage_cap = 3000
 
 	tiles_with = list(
 		/turf/closed/wall)

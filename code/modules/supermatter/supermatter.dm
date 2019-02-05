@@ -44,7 +44,6 @@
 
 	var/base_icon_state = "darkmatter"
 
-	var/damage = 0
 	var/damage_archived = 0
 	var/safe_alert = "Crystaline hyperstructure returning to safe operating levels."
 	var/warning_point = 100
