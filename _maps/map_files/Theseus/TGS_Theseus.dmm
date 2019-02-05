@@ -474,7 +474,7 @@
 "ajf" = (/obj/machinery/door/airlock/almayer/maint{req_access_txt = "19"; req_one_access_txt = "0"},/obj/machinery/door/poddoor/almayer{density = 0; dir = 4; icon_state = "pdoor0"; id = "CIC Lockdown"; name = "\improper Combat Information Center Blast Door"; opacity = 0},/turf/open/floor/almayer{icon_regular_floor = "mono"; icon_state = "mono"},/area/almayer/living/commandbunks)
 "ajg" = (/obj/structure/flora/pottedplant,/turf/open/floor/wood,/area/almayer/living/commandbunks)
 "ajh" = (/obj/structure/bed/chair/office/dark{dir = 1},/turf/open/floor/wood,/area/almayer/living/commandbunks)
-"aji" = (/obj/structure/closet/secure_closet/bar{name = "Success Cabinet"; req_access = null; req_access_txt = "1"},/turf/open/floor/wood,/area/almayer/living/commandbunks)
+"aji" = (/obj/structure/closet/secure_closet/bar{name = "Success Cabinet"; req_access_txt = "1"},/turf/open/floor/wood,/area/almayer/living/commandbunks)
 "ajj" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/open/floor/wood,/area/almayer/living/commandbunks)
 "ajk" = (/obj/machinery/light{icon_state = "tube1"; dir = 8},/obj/effect/decal/warning_stripes{tag = "icon-S"; icon_state = "S"},/turf/open/floor/almayer{tag = "icon-redcorner (NORTH)"; icon_state = "redcorner"; dir = 1},/area/almayer/shipboard/starboard_missiles)
 "ajl" = (/obj/effect/decal/warning_stripes{tag = "icon-S"; icon_state = "S"},/turf/open/floor/almayer{dir = 1; icon_regular_floor = "cargo_arrow"; icon_state = "cargo_arrow"},/area/almayer/shipboard/starboard_missiles)

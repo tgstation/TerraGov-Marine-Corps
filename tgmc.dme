@@ -10,6 +10,7 @@
 #define DEBUG
 // END_PREFERENCES
 // BEGIN_INCLUDE
+#include "_maps\_basemap.dm"
 #include "code\global.dm"
 #include "code\names.dm"
 #include "code\stylesheet.dm"
@@ -1458,7 +1459,4 @@
 #include "goon\code\datums\browserOutput.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\Z.02.Admin_Level.dmm"
-#include "maps\Z.03.TGS_Theseus.dmm"
-#include "maps\Z.04.Low_Orbit.dmm"
 // END_INCLUDE

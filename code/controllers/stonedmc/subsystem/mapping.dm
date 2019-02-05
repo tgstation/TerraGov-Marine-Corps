@@ -24,7 +24,7 @@ SUBSYSTEM_DEF(mapping)
 	var/clearing_reserved_turfs = FALSE
 
 	// Z-manager stuff
-	var/station_start  // should only be used for maploading-related tasks
+	var/ground_start  // should only be used for maploading-related tasks
 	var/space_levels_so_far = 0
 	var/list/z_list
 	var/datum/space_level/transit
@@ -121,7 +121,7 @@ SUBSYSTEM_DEF(mapping)
 	var/total_z = 0
 	var/list/parsed_maps = list()
 	for (var/file in files)
-		var/full_path = "maps/[file]"
+		var/full_path = "_maps/[path]/[file]"
 		var/datum/parsed_map/pm = new(file(full_path))
 		var/bounds = pm?.bounds
 		if (!bounds)
@@ -163,10 +163,23 @@ SUBSYSTEM_DEF(mapping)
 	// ensure we have space_level datums for compiled-in maps
 	InitializeDefaultZLevels()
 
-	// load the station
-	station_start = world.maxz + 1
+	// load the ground level
+	ground_start = world.maxz + 1
 	INIT_ANNOUNCE("Loading [config.map_name]...")
-	LoadGroup(FailedZs, "Station", "", config.map_file, config.traits, ZTRAITS_STATION)
+	LoadGroup(FailedZs, "Ground", config.map_path, config.map_file, config.traits, ZTRAITS_GROUND)
+
+	var/datum/map_config/theseus = new
+	theseus.LoadConfig("_maps/theseus.json")
+
+	INIT_ANNOUNCE("Loading [MAIN_SHIP_NAME]...")
+	LoadGroup(FailedZs, MAIN_SHIP_NAME, theseus.map_path, theseus.map_file, theseus.traits, ZTRAITS_MAIN_SHIP)
+
+	var/datum/map_config/low_orbit = new
+	low_orbit.LoadConfig("_maps/low_orbit.json")
+
+	INIT_ANNOUNCE("Loading Low Orbit...")
+	LoadGroup(FailedZs, "Low Orbit", low_orbit.map_path, low_orbit.map_file, low_orbit.traits, ZTRAITS_LOW_ORBIT)
+
 
 //	if(SSdbcore.Connect())
 //		var/datum/DBQuery/query_round_map_name = SSdbcore.NewQuery("UPDATE [format_table_name("round")] SET map_name = '[config.map_name]' WHERE id = [GLOB.round_id]")
@@ -175,9 +188,9 @@ SUBSYSTEM_DEF(mapping)
 
 #ifndef LOWMEMORYMODE
 	// TODO: remove this when the DB is prepared for the z-levels getting reordered
-	while (world.maxz < (5 - 1) && space_levels_so_far < config.space_ruin_levels)
-		++space_levels_so_far
-		add_new_zlevel("Empty Area [space_levels_so_far]", ZTRAITS_SPACE)
+	//while (world.maxz < (5 - 1) && space_levels_so_far < config.space_ruin_levels)
+	//	++space_levels_so_far
+	//	add_new_zlevel("Empty Area [space_levels_so_far]", ZTRAITS_SPACE)
 
 	// load mining
 //	if(config.minetype == "lavaland")
@@ -268,7 +281,7 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 	next_map_config = VM
 	return TRUE
 
-/datum/controller/subsystem/mapping/proc/preloadTemplates(path = "maps/templates/") //see master controller setup
+/datum/controller/subsystem/mapping/proc/preloadTemplates(path = "_maps/templates/") //see master controller setup
 	var/list/filelist = flist(path)
 	for(var/map in filelist)
 		var/datum/map_template/T = new(path = "[path][map]", rename = "[map]")
