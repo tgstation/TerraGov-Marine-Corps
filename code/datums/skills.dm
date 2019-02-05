@@ -428,8 +428,14 @@
 	name = "Tank Crew"
 	large_vehicle = SKILL_LARGE_VEHICLE_TRAINED
 	powerloader = SKILL_POWERLOADER_DABBLING
-	leadership = SKILL_LEAD_TRAINED
 	engineer = SKILL_ENGINEER_METAL
+
+/datum/skills/tank_commander
+	name = "Tank CO"
+	large_vehicle = SKILL_LARGE_VEHICLE_TRAINED
+	powerloader = SKILL_POWERLOADER_TRAINED
+	leadership = SKILL_LEAD_TRAINED
+	engineer = SKILL_ENGINEER_PLASTEEL
 
 /datum/skills/spatial_agent
 	name = "Spatial Agent"
