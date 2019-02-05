@@ -111,7 +111,7 @@
 		to_chat(user, "<span class='warning'>The maintenance drone chassis not compatible with \the [W].</span>")
 		return
 
-	else if (istype(W, /obj/item/tool/crowbar))
+	else if(iscrowbar(W))
 		to_chat(user, "The machine is hermetically sealed. You can't open the case.")
 		return
 
@@ -238,7 +238,7 @@
 		if(custom_name)
 			return 0
 
-		for (var/mob/living/silicon/robot/drone/A in GLOB.mob_list)
+		for (var/mob/living/silicon/robot/drone/A in GLOB.silicon_mobs)
 			if(newname == A.nicknumber)
 				to_chat(src, "<span class='warning'>That identifier is taken, pick again.</span>")
 				return 0

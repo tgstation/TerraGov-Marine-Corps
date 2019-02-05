@@ -1,5 +1,0 @@
-author: "Ghommie"
-delete-after: True
-changes: 
-  - spellcheck: "Made military uniforms/fatigues descriptions less pedantically verbose."
-  - code_imp: "Removes a snowflake check from marine uniforms sensors as the parent path already has it covered."

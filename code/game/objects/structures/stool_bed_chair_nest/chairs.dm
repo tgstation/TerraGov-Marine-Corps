@@ -108,7 +108,7 @@
 		occupant.apply_effect(6, STUTTER, blocked)
 		occupant.apply_damage(10, BRUTE, def_zone, blocked)
 		playsound(src.loc, 'sound/weapons/punch1.ogg', 25, 1)
-		if(istype(A, /mob/living))
+		if(isliving(A))
 			var/mob/living/victim = A
 			def_zone = ran_zone()
 			blocked = victim.run_armor_check(def_zone, "melee")
@@ -213,7 +213,7 @@
 		fold_down(1)
 
 /obj/structure/bed/chair/dropship/passenger/attackby(obj/item/W, mob/living/user)
-	if(istype(W, /obj/item/tool/wrench))
+	if(iswrench(W))
 		switch(chair_state)
 			if(DROPSHIP_CHAIR_UNFOLDED)
 				user.visible_message("<span class='warning'>[user] begins loosening the bolts on \the [src].</span>",
@@ -236,7 +236,7 @@
 			if(DROPSHIP_CHAIR_BROKEN)
 				to_chat(user, "<span class='warning'>\The [src] appears to be broken and needs welding.</span>")
 				return
-	else if((istype(W, /obj/item/tool/weldingtool) && chair_state == DROPSHIP_CHAIR_BROKEN))
+	else if(iswelder(W) && chair_state == DROPSHIP_CHAIR_BROKEN)
 		var/obj/item/tool/weldingtool/C = W
 		if(C.remove_fuel(0,user))
 			playsound(src.loc, 'sound/items/weldingtool_weld.ogg', 25)

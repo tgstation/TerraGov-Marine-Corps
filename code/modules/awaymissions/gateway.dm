@@ -219,7 +219,7 @@ obj/machinery/gateway/centerstation/process()
 /obj/machinery/gateway/centeraway/Bumped(atom/movable/M as mob|obj)
 	if(!ready)	return
 	if(!active)	return
-	if(istype(M, /mob/living/carbon))
+	if(iscarbon(M))
 		for(var/obj/item/implant/exile/E in M)//Checking that there is an exile implant in the contents
 			if(E.imp_in == M)//Checking that it's actually implanted vs just in their pocket
 				to_chat(M, "The station gate has detected your exile implant and is blocking your entry.")

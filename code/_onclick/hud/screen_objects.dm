@@ -243,17 +243,17 @@
 			return TRUE
 
 		if("module1")
-			if(istype(user, /mob/living/silicon/robot))
+			if(iscyborg(user))
 				user:toggle_module(1)
 			return TRUE
 
 		if("module2")
-			if(istype(user, /mob/living/silicon/robot))
+			if(iscyborg(user))
 				user:toggle_module(2)
 			return TRUE
 
 		if("module3")
-			if(istype(user, /mob/living/silicon/robot))
+			if(iscyborg(user))
 				user:toggle_module(3)
 			return TRUE
 
@@ -393,7 +393,7 @@
 		if(MOVE_INTENT_WALK)
 			user.m_intent = MOVE_INTENT_RUN
 			icon_state = "running"
-	if(isXeno(user))
+	if(isxeno(user))
 		user.update_icons()
 	return TRUE
 
@@ -558,7 +558,7 @@
 /obj/screen/queen_locator/clicked(var/mob/user)
 	if (..())
 		return TRUE
-	if (isXeno(user))
+	if (isxeno(user))
 		var/mob/living/carbon/Xenomorph/X = user
 		X.hive_status()
 	return TRUE

@@ -34,7 +34,7 @@
 
 			playsound(M.loc,'sound/items/drink.ogg', 15, 1)
 			return 1
-		else if( istype(M, /mob/living/carbon/human) )
+		else if( ishuman(M) )
 
 			for(var/mob/O in viewers(world.view, user))
 				O.show_message("<span class='warning'>[user] attempts to feed [M] [src].</span>", 1)

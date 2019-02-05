@@ -440,7 +440,7 @@
 
 
 /turf/closed/wall/resin/attack_alien(mob/living/carbon/Xenomorph/M)
-	if(isXenoLarva(M)) //Larvae can't do shit
+	if(isxenolarva(M)) //Larvae can't do shit
 		return 0
 	M.animation_attack_on(src)
 	M.visible_message("<span class='xenonotice'>\The [M] claws \the [src]!</span>", \

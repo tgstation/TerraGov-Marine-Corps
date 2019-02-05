@@ -1,9 +1,0 @@
-author: "Surrealistik"
-delete-after: True
-changes: 
-  - bugfix: "Minor runtime fixed with medvac bed deployment, and medbeacon link code cleaned p."
-  - bugfix: "Second Wind Cooldown Fixed"
-  - bugfix: "Facehuggers can no longer be attacked while attached."
-  - bugfix: "Larva getting stuck in the autodoc."
-  - bugfix: "Projectiles clipping through windows without reason."
-  - bugfix: "Sleeper interface issues fixed."

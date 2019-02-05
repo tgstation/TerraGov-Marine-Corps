@@ -1,6 +1,0 @@
-author: "Surrealistik"
-delete-after: True
-changes: 
-  - rscadd: "Sniper camo tarp readded. Now has an active camo that activates after a 3 second delay while occupied. Available in Scout and Sniper kits, the SL vendor for 5 points each, as well as packs of 5 being purchasable via Req for 30 supply. People hiding in tarps can be forced out with fire and explosives (and acid puddles soon)."
-  - tweak: "Cloak grenades added to the Sniper kit."
-  - rscadd: "Sniper now has the M68-B Thermal Cloak variant. This can only be worn with the M3 Recon armor, and provides superior stationary invisibility (including increased transparency when shimmering due to shooting/hostile actions) at the cost of all mobile transparency."

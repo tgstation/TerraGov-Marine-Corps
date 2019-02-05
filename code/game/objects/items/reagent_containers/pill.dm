@@ -34,7 +34,7 @@ var/global/list/randomized_pill_icons
 
 	if(M == user)
 
-		if(istype(M, /mob/living/carbon/human))
+		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			if(H.species.flags & IS_SYNTHETIC)
 				to_chat(H, "<span class='warning'>You can't eat pills.</span>")
@@ -48,7 +48,7 @@ var/global/list/randomized_pill_icons
 		qdel(src)
 		return TRUE
 
-	else if(istype(M, /mob/living/carbon/human) )
+	else if(ishuman(M) )
 
 		var/mob/living/carbon/human/H = M
 		if(H.species.flags & IS_SYNTHETIC)

@@ -8,8 +8,8 @@
 	//When we get into galloping mode, we stay there until both runs win less often than MIN_GALLOP consecutive times.
 #define MIN_GALLOP 7
 
-	//This is a global instance to allow much of this code to be reused. The interfaces are kept seperately
-var/datum/sortInstance/sortInstance = new()
+//This is a global instance to allow much of this code to be reused. The interfaces are kept seperately
+GLOBAL_DATUM_INIT(sortInstance, /datum/sortInstance, new())
 /datum/sortInstance
 	//The array being sorted.
 	var/list/L
@@ -27,7 +27,7 @@ var/datum/sortInstance/sortInstance = new()
 	//Stores information regarding runs yet to be merged.
 	//Run i starts at runBase[i] and extends for runLen[i] elements.
 	//runBase[i] + runLen[i] == runBase[i+1]
-	//var/stackSize
+
 	var/list/runBases = list()
 	var/list/runLens = list()
 
@@ -114,7 +114,7 @@ start	the index of the first element in the range that is	not already known to b
 		//in other words, find where the pivot element should go using bisection search
 		while(left < right)
 			var/mid = (left + right) >> 1	//round((left+right)/2)
-			if(call(cmp)(fetchElement(L,mid), pivot) < 0)
+			if(call(cmp)(fetchElement(L,mid), pivot) > 0)
 				right = mid
 			else
 				left = mid+1
@@ -341,8 +341,6 @@ reverse a descending sequence without violating stability.
 		while(offset < maxOffset && call(cmp)(key, fetchElement(L,base+hint+offset)) >= 0)
 			lastOffset = offset
 			offset = (offset << 1) + 1
-			//if(offset <= 0)	//int overflow, not an issue here since we are using floats
-			//	offset = maxOffset
 
 		if(offset > maxOffset)
 			offset = maxOffset
@@ -641,8 +639,6 @@ reverse a descending sequence without violating stability.
 				break
 			++end1
 			++cursor1
-			//if(++cursor1 >= end1)
-			//	break
 
 			val2 = fetchElement(L,cursor2)
 

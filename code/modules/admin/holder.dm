@@ -271,13 +271,12 @@ GLOBAL_LIST_INIT(admin_verbs_admin, world.AVadmin())
 	/datum/admins/proc/show_player_panel,
 	/datum/admins/proc/player_panel_extended,
 	/datum/admins/proc/secrets_panel,
-	/datum/admins/proc/view_cl_faxes,
-	/datum/admins/proc/view_tgmc_faxes,
 	/datum/admins/proc/remove_from_tank,
 	/datum/admins/proc/game_panel,
 	/datum/admins/proc/gamemode_panel,
-	/client/proc/cmd_admin_pm_panel, //REWORK THIS
-	/client/proc/cmd_admin_pm_context //REWORK THIS
+	/datum/admins/proc/not_looc,
+	/client/proc/private_message_panel,
+	/client/proc/private_message_context
 	)
 
 GLOBAL_PROTECT(admin_verbs_mentor)
@@ -286,12 +285,10 @@ GLOBAL_LIST_INIT(admin_verbs_mentor, world.AVmentor())
 	return list(
 	/datum/admins/proc/msay,
 	/datum/admins/proc/dsay,
-	/datum/admins/proc/view_cl_faxes,
-	/datum/admins/proc/view_tgmc_faxes,
 	/datum/admins/proc/admin_ghost,
 	/datum/admins/proc/subtle_message,
-	/client/proc/cmd_admin_pm_panel, //REWORK THIS
-	/client/proc/cmd_admin_pm_context //REWORK THIS
+	/client/proc/private_message_panel,
+	/client/proc/private_message_context
 	)
 
 GLOBAL_PROTECT(admin_verbs_ban)
@@ -314,6 +311,8 @@ GLOBAL_PROTECT(admin_verbs_fun)
 GLOBAL_LIST_INIT(admin_verbs_fun, world.AVfun())
 /world/proc/AVfun()
 	return list(
+	/datum/admins/proc/select_rank,
+	/datum/admins/proc/select_equipment,
 	/datum/admins/proc/set_view_range,
 	/datum/admins/proc/gib_self,
 	/datum/admins/proc/gib,
@@ -330,12 +329,11 @@ GLOBAL_LIST_INIT(admin_verbs_fun, world.AVfun())
 	/datum/admins/proc/custom_info,
 	/datum/admins/proc/announce,
 	/datum/admins/proc/force_distress,
+	/datum/admins/proc/force_dropship,
 	/datum/admins/proc/force_ert_shuttle,
 	/datum/admins/proc/object_sound,
 	/datum/admins/proc/drop_bomb,
 	/datum/admins/proc/change_security_level,
-	/datum/admins/proc/select_rank,
-	/datum/admins/proc/select_equipment,
 	/datum/admins/proc/possess,
 	/datum/admins/proc/release,
 	/datum/admins/proc/edit_appearance,
@@ -358,7 +356,6 @@ GLOBAL_LIST_INIT(admin_verbs_server, world.AVserver())
 	/datum/admins/proc/delay,
 	/datum/admins/proc/toggle_gun_restrictions,
 	/datum/admins/proc/toggle_synthetic_restrictions,
-	/datum/admins/proc/adjust_weapon_mult,
 	/datum/admins/proc/reload_admins,
 	/datum/admins/proc/reload_whitelist
 	)
@@ -407,7 +404,9 @@ GLOBAL_LIST_INIT(admin_verbs_sound, world.AVsound())
 /world/proc/AVsound()
 	return list(
 	/datum/admins/proc/sound_file,
-	/datum/admins/proc/sound_list
+	/datum/admins/proc/sound_list,
+	/datum/admins/proc/sound_web,
+	/datum/admins/proc/sound_stop
 	)
 
 GLOBAL_PROTECT(admin_verbs_spawn)
@@ -519,6 +518,18 @@ GLOBAL_LIST_INIT(admin_verbs_spawn, world.AVspawn())
 	return txt
 
 
+/client/proc/create_stealth_key()
+	var/num = (rand(0,1000))
+	var/i = 0
+	while(i == 0)
+		i = 1
+		for(var/P in GLOB.stealthminID)
+			if(num == GLOB.stealthminID[P])
+				num++
+				i = 0
+	GLOB.stealthminID["[ckey]"] = "@[num2text(num)]"
+
+
 /proc/WrapAdminProcCall(datum/target, procname, list/arguments)
 	if(target && procname == "Del")
 		to_chat(usr, "Calling Del() is not allowed")
@@ -527,10 +538,12 @@ GLOBAL_LIST_INIT(admin_verbs_spawn, world.AVspawn())
 	if(target != GLOBAL_PROC && !target.CanProcCall(procname))
 		to_chat(usr, "Proccall on [target.type]/proc/[procname] is disallowed!")
 		return
+
 	var/current_caller = GLOB.AdminProcCaller
 	var/ckey = usr ? usr.client.ckey : GLOB.AdminProcCaller
 	if(!ckey)
 		CRASH("WrapAdminProcCall with no ckey: [target] [procname] [english_list(arguments)]")
+
 	if(current_caller && current_caller != ckey)
 		if(!GLOB.AdminProcCallSpamPrevention[ckey])
 			to_chat(usr, "<span class='adminnotice'>Another set of admin called procs are still running, your proc will be run after theirs finish.</span>")
@@ -540,9 +553,11 @@ GLOBAL_LIST_INIT(admin_verbs_spawn, world.AVspawn())
 			GLOB.AdminProcCallSpamPrevention -= ckey
 		else
 			UNTIL(!GLOB.AdminProcCaller)
+
 	GLOB.LastAdminCalledProc = procname
 	if(target != GLOBAL_PROC)
 		GLOB.LastAdminCalledTargetRef = "[REF(target)]"
+
 	GLOB.AdminProcCaller = ckey	//if this runtimes, too bad for you
 	++GLOB.AdminProcCallCount
 	. = world.WrapAdminProcCall(target, procname, arguments)

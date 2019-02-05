@@ -1,6 +1,8 @@
 ## Check code/controllers/configuration/entries for detailed explanations, all possible config options and some defaults.
 ## Anything after a "#" is commented out, uncomment things to enable them, comment to disable them.
 
+$include dbconfig.txt
+
 ## Server name: This appears at the top of the screen in-game.
 #SERVER_NAME TerraGov Marine Corps
 
@@ -29,12 +31,12 @@ DONATIONURL https://www.patreon.com/tgstation
 GITHUBURL https://github.com/tgstation/TerraGov-Marine-Corps/
 BANAPPEALS https://tgstation13.org/phpBB/viewforum.php?f=70
 
-SHIPURL https://affectedarc07.github.io/SS13WebMap/TGMC/Almayer/index.html
-LV624URL https://affectedarc07.github.io/SS13WebMap/TGMC/LV624/index.html
-BIGREDURL https://affectedarc07.github.io/SS13WebMap/TGMC/BigRed/index.html
-ICECOLONYURL https://affectedarc07.github.io/SS13WebMap/TGMC/IceColony/index.html
-PRISONSTATIONURL https://affectedarc07.github.io/SS13WebMap/TGMC/PrisonStation/index.html
-WHISKEYOUTPOSTURL https://affectedarc07.github.io/SS13WebMap/TGMC/WhiskeyOutpost/index.html
+SHIPURL https://goo.gl/utUdpq
+LV624URL https://goo.gl/6tuwfg
+BIGREDURL https://goo.gl/TN7mmT
+ICECOLONYURL https://goo.gl/KYKNgJ
+PRISONSTATIONURL https://goo.gl/GXoxnA
+WHISKEYOUTPOSTURL https://goo.gl/ZwTS5X
 
 ## Logging
 LOG_OOC
@@ -69,6 +71,8 @@ ALLOW_METADATA
 
 USEALIENWHITELIST
 
+INVOKE_YOUTUBEDL youtube-dl
+
 
 ##################
 ## Game Options ##
@@ -102,8 +106,6 @@ MONKEY_DELAY 0
 ANIMAL_DELAY 0
 
 REVIVE_GRACE_PERIOD 3000
-
-
 
 #####################
 ## COMBAT DEFINES ###
@@ -155,6 +157,8 @@ MHIGH_HIT_DAMAGE 80
 MAX_HIT_DAMAGE 90
 SUPER_HIT_DAMAGE 120
 ULTRA_HIT_DAMAGE 150
+APROCKET_HIT_DAMAGE 250
+LTB_HIT_DAMAGE 300
 
 BASE_HIT_DAMAGE_MULT 1
 MIN_HIT_DAMAGE_MULT 0.05
@@ -188,6 +192,7 @@ MAX_BURST_VALUE 6
 
 NO_FIRE_DELAY 0.1
 MIN_FIRE_DELAY 1
+VLOW_FIRE_DELAY 1.5
 MLOW_FIRE_DELAY 2
 LOW_FIRE_DELAY 3
 MED_FIRE_DELAY 4
@@ -246,6 +251,8 @@ HIGH_ARMOR_PENETRATION 50
 MHIGH_ARMOR_PENETRATION 60
 VHIGH_ARMOR_PENETRATION 70
 MAX_ARMOR_PENETRATION 80
+APROCKET_ARMOR_PENETRATION 150
+LTB_ARMOR_PENETRATION 200
 
 MIN_PROJ_EXTRA 1
 LOW_PROJ_EXTRA 2

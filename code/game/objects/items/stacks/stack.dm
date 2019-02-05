@@ -135,7 +135,7 @@
 				if(R.one_per_turf == 2 && (O.flags_atom & ON_BORDER) && O.dir == usr.dir) //We check overlapping dir here. Doesn't have to be the same type
 					to_chat(usr, "<span class='warning'>There is already \a [O.name] in this direction!</span>")
 					return
-		if(R.on_floor && istype(usr.loc, /turf/open))
+		if(R.on_floor && isopenturf(usr.loc))
 			var/turf/open/OT = usr.loc
 			if(!OT.allow_construction)
 				to_chat(usr, "<span class='warning'>\The [R.title] must be constructed on a proper surface!</span>")

@@ -4,7 +4,7 @@
 		//ADMIN THINGS//
 		////////////////
 	var/datum/admins/holder = null
-	var/buildmode		= 0
+	var/buildmode		= FALSE
 
 	var/last_message	= "" //Contains the last message sent by this client - used to protect against copy-paste spamming.
 	var/last_message_count = 0 //contins a number of how many times a message identical to last_message was sent.
@@ -18,9 +18,6 @@
 	var/adminobs			= null
 	var/area			= null
 	var/time_died_as_mouse 		= null //when the client last died as a mouse
-
-	var/donator = 0
-	var/adminhelped = 0
 
 	var/obj/screen/click_catcher/void
 
@@ -50,12 +47,12 @@
 	var/related_accounts_ip = "Requires database"	//So admins know why it isn't working - Used to determine what other accounts previously logged in from this ip
 	var/related_accounts_cid = "Requires database"	//So admins know why it isn't working - Used to determine what other accounts previously logged in from this computer id
 
-	//Statpanel stuff
-	var/last_statpanel = null 	// The statpanel the client last registered
-	var/stat_fast_update = 0	// Helps with forcing client to render statpanels in client/Stat()
-	var/stat_force_fast_update = 0	// Helps with forcing client to render statpanels from outside of client/Stat()
-
 	var/datum/player_details/player_details //these persist between logins/logouts during the same round.
 
 
 	preload_rsc = 0 // This is 0 so we can set it to an URL once the player logs in and have them download the resources from a different server.
+
+	var/datum/chatOutput/chatOutput
+
+	// This gets set by goonchat.
+	var/encoding = "1252"

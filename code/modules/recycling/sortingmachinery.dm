@@ -363,7 +363,7 @@
 	return
 
 /obj/machinery/disposal/deliveryChute/Bumped(var/atom/movable/AM) //Go straight into the chute
-	if(istype(AM, /obj/item/projectile) || istype(AM, /obj/effect))	
+	if(istype(AM, /obj/item/projectile) || istype(AM, /obj/effect))
 		return
 	switch(dir)
 		if(NORTH)
@@ -408,7 +408,7 @@
 	if(!I || !user)
 		return
 
-	if(istype(I, /obj/item/tool/screwdriver))
+	if(isscrewdriver(I))
 		if(c_mode==0)
 			c_mode=1
 			playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
@@ -425,7 +425,7 @@
 			playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
 			to_chat(user, "You start slicing the floorweld off the delivery chute.")
 			if(do_after(user,20, TRUE, 5, BUSY_ICON_BUILD))
-				if(!src || !W.isOn()) 
+				if(!src || !W.isOn())
 					return
 				to_chat(user, "You sliced the floorweld off the delivery chute.")
 				var/obj/structure/disposalconstruct/C = new (src.loc)

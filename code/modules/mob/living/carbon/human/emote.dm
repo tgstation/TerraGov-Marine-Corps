@@ -83,6 +83,31 @@
 		if("cry")
 			message = "<B>[comm_paygrade][src]</B> cries."
 
+		if("dab")
+			if(!CONFIG_GET(flag/fun_allowed)) //fun_allowed is in the config folder. change it in game by Debug>debug controllers> ctrl+f fun_allowed.
+				return
+			if(is_mob_incapacitated())
+				to_chat(src, "You cannot dab in your current state.")
+				return
+			var/datum/limb/l_arm/A = get_limb("l_arm")
+			var/datum/limb/r_arm/B = get_limb("r_arm")
+			if((!A || A.status & LIMB_DESTROYED) && (!B || B.status & LIMB_DESTROYED))
+				to_chat(src, "You cannot dab without your arms.")
+				return
+
+			message = "<B>[comm_paygrade][src]</B> dabs"
+			var/risk = rand (1, 100)
+			switch(risk)
+				if(1 to 3)
+					if(A || A.status && !LIMB_DESTROYED)
+						A.droplimb()
+						message += " so hard their left arm goes flying off"
+				if(4 to 6)
+					if(B || B.status && !LIMB_DESTROYED)
+						B.droplimb()
+						message += " so hard their right arm goes flying off"
+			message += "."
+
 		if("drool")
 			message = "<B>[comm_paygrade][src]</B> drools."
 
@@ -209,7 +234,7 @@
 		if("salute")
 			m_type = EMOTE_AUDIBLE
 			if(audio_emote_cooldown(player_caused) || buckled)
-				return	
+				return
 			if(param)
 				message = "<B>[comm_paygrade][src]</B> salutes to [param]."
 			else
@@ -288,18 +313,27 @@
 			message = "<B>[comm_paygrade][src]</B> yawns."
 
 		if("help")
+			//this is the default *help message
 			var/msg = {"<br><br><b>To use an emote, type an asterix (*) before a following word. Emotes with a sound are <span style='color: green;'>green</span>. Spamming emotes with sound will likely get you in trouble, don't do it.<br><br> \
-blink, blink_r, bow-(mob name), chuckle, <span style='color: green;'>clap</span>, collapse, cough, cry, drool, eyebrow, facepalm, 
+blink, blink_r, bow-(mob name), chuckle, <span style='color: green;'>clap</span>, collapse, cough, cry, drool, eyebrow, facepalm,
+faint, frown, gasp, giggle, glare-(mob name), <span style='color: green;'>golfclap</span>, grin, grumble, handshake, hug-(mob name),
+laugh, look-(mob name), me, <span style='color: green;'>medic</span>, moan, mumble, nod, point, <span style='color: green;'>salute</span>,
+scream, shakehead, shiver, shrug, sigh, signal-#1-10, smile, sneeze, snore, stare-(mob name), twitch, wave, yawn</b><br>"}
+			
+			if(CONFIG_GET(flag/fun_allowed)) //this is the *help message when fun_allowed = 1.
+				msg = {"<br><br><b>To use an emote, type an asterix (*) before a following word. Emotes with a sound are <span style='color: green;'>green</span>. Emotes that are <span style='color: red;'>RED</span> are done at your own risk. Spamming emotes with sound will likely get you in trouble, don't do it.<br><br> \
+blink, blink_r, bow-(mob name), chuckle, <span style='color: green;'>clap</span>, collapse, cough, cry, <span style='color: red;'>dab</span>, drool, eyebrow, facepalm, 
 faint, frown, gasp, giggle, glare-(mob name), <span style='color: green;'>golfclap</span>, grin, grumble, handshake, hug-(mob name), 
 laugh, look-(mob name), me, <span style='color: green;'>medic</span>, moan, mumble, nod, point, <span style='color: green;'>salute</span>, 
 scream, shakehead, shiver, shrug, sigh, signal-#1-10, smile, sneeze, snore, stare-(mob name), twitch, wave, yawn</b><br>"}
+		
 			to_chat(src, msg)
-			if(has_species(src,"Yautja"))
+			if (isyautjastrict(src))
 				var/yautja_msg = {"<br><b>As a Predator, you have the following additional emotes. Tip: The *medic emote has neither a cooldown nor a visibile origin...<br><br>\
-<span style='color: green;'>anytime</span>, <span style='color: green;'>click</span>, <span style='color: green;'>helpme</span>, 
-<span style='color: green;'>iseeyou</span>, <span style='color: green;'>itsatrap</span>, <span style='color: green;'>laugh1</span>, 
-<span style='color: green;'>laugh2</span>, <span style='color: green;'>laugh3</span>, <span style='color: green;'>malescream</span>, 
-<span style='color: green;'>femalescream</span>, me, <span style='color: green;'>overhere</span>, <span style='color: green;'>turnaround</span>, 
+<span style='color: green;'>anytime</span>, <span style='color: green;'>click</span>, <span style='color: green;'>helpme</span>,
+<span style='color: green;'>iseeyou</span>, <span style='color: green;'>itsatrap</span>, <span style='color: green;'>laugh1</span>,
+<span style='color: green;'>laugh2</span>, <span style='color: green;'>laugh3</span>, <span style='color: green;'>malescream</span>,
+<span style='color: green;'>femalescream</span>, me, <span style='color: green;'>overhere</span>, <span style='color: green;'>turnaround</span>,
 <span style='color: green;'>roar</span></b><br>"}
 				to_chat(src, yautja_msg)
 
@@ -308,12 +342,12 @@ scream, shakehead, shiver, shrug, sigh, signal-#1-10, smile, sneeze, snore, star
 			m_type = EMOTE_AUDIBLE
 			if(muzzled || audio_emote_cooldown(player_caused))
 				return
-			if(has_species(src, "Yautja"))
+			if(isyautjastrict(src))
 				playsound(loc, 'sound/voice/pred_anytime.ogg', 25, 0)
 
 		if("click")
 			m_type = EMOTE_AUDIBLE
-			if(muzzled || audio_emote_cooldown(player_caused) || !has_species(src, "Yautja"))
+			if(muzzled || audio_emote_cooldown(player_caused) || !isyautjastrict(src))
 				return
 			spawn(2)
 				if(prob(50))
@@ -322,55 +356,55 @@ scream, shakehead, shiver, shrug, sigh, signal-#1-10, smile, sneeze, snore, star
 					playsound(loc, 'sound/voice/pred_click2.ogg', 25, 1)
 		if("helpme")
 			m_type = EMOTE_AUDIBLE
-			if(muzzled || audio_emote_cooldown(player_caused) || !has_species(src, "Yautja"))
+			if(muzzled || audio_emote_cooldown(player_caused) || !isyautjastrict(src))
 				return
 			playsound(loc, 'sound/voice/pred_helpme.ogg', 25, 0)
 
 		if("malescream")
 			m_type = EMOTE_AUDIBLE
-			if(muzzled || audio_emote_cooldown(player_caused) || !has_species(src, "Yautja"))
+			if(muzzled || audio_emote_cooldown(player_caused) || !isyautjastrict(src))
 				return
 			playsound(loc, "male_scream", 50)
 
 		if("femalescream")
 			m_type = EMOTE_AUDIBLE
-			if(muzzled || audio_emote_cooldown(player_caused) || !has_species(src, "Yautja"))
+			if(muzzled || audio_emote_cooldown(player_caused) || !isyautjastrict(src))
 				return
 			playsound(loc, "female_scream", 50)
 
 		if("iseeyou")
 			m_type = EMOTE_AUDIBLE
-			if(muzzled || audio_emote_cooldown(player_caused) || !has_species(src, "Yautja"))
+			if(muzzled || audio_emote_cooldown(player_caused) || !isyautjastrict(src))
 				return
 			playsound(loc, 'sound/hallucinations/i_see_you2.ogg', 25, 0)
 
 		if("itsatrap")
-			if(muzzled || audio_emote_cooldown(player_caused) || !has_species(src, "Yautja"))
+			if(muzzled || audio_emote_cooldown(player_caused) || !isyautjastrict(src))
 				return
 			playsound(loc, 'sound/voice/pred_itsatrap.ogg', 25, 0)
 
 		if("laugh1")
-			if(muzzled || audio_emote_cooldown(player_caused) || !has_species(src, "Yautja"))
+			if(muzzled || audio_emote_cooldown(player_caused) || !isyautjastrict(src))
 				return
 			playsound(loc, 'sound/voice/pred_laugh1.ogg', 25, 0)
 
 		if("laugh2")
-			if(muzzled || audio_emote_cooldown(player_caused) || !has_species(src, "Yautja"))
+			if(muzzled || audio_emote_cooldown(player_caused) || !isyautjastrict(src))
 				return
 			playsound(loc, 'sound/voice/pred_laugh2.ogg', 25, 0)
 
 		if("laugh3")
-			if(muzzled || audio_emote_cooldown(player_caused) || !has_species(src, "Yautja"))
+			if(muzzled || audio_emote_cooldown(player_caused) || !isyautjastrict(src))
 				return
 			playsound(loc, 'sound/voice/pred_laugh3.ogg', 25, 0)
 
 		if("overhere")
-			if(muzzled || audio_emote_cooldown(player_caused) || !has_species(src, "Yautja"))
+			if(muzzled || audio_emote_cooldown(player_caused) || !isyautjastrict(src))
 				return
 			playsound(loc, 'sound/voice/pred_overhere.ogg', 25, 0)
 
 		if("roar")
-			if(muzzled || audio_emote_cooldown(player_caused) || !has_species(src, "Yautja"))
+			if(muzzled || audio_emote_cooldown(player_caused) || !isyautjastrict(src))
 				return
 			message = "<B>[src] roars!</b>"
 			spawn(2)
@@ -380,7 +414,7 @@ scream, shakehead, shiver, shrug, sigh, signal-#1-10, smile, sneeze, snore, star
 					playsound(loc, 'sound/voice/pred_roar2.ogg', 50, 1)
 
 		if("turnaround")
-			if(muzzled || audio_emote_cooldown(player_caused) || !has_species(src, "Yautja"))
+			if(muzzled || audio_emote_cooldown(player_caused) || !isyautjastrict(src))
 				return
 			playsound(loc, 'sound/voice/pred_turnaround.ogg', 25, 0)
 
@@ -392,7 +426,7 @@ scream, shakehead, shiver, shrug, sigh, signal-#1-10, smile, sneeze, snore, star
 		log_message(message, LOG_EMOTE)
 
 		for(var/mob/M in GLOB.dead_mob_list)
-			if(!M.client || istype(M, /mob/new_player))
+			if(!M.client || isnewplayer(M))
 				continue
 			if(M.stat == DEAD && M.client.prefs && (M.client.prefs.toggles_chat & CHAT_GHOSTSIGHT) && !(M in viewers(src,null)))
 				M.show_message(message, m_type)

@@ -1,4 +1,5 @@
-#define QUEEN_DEATH_COUNTDOWN 			 12000 //20 minutes. Can be changed into a variable if it needs to be manipulated later.
+#define QUEEN_DEATH_COUNTDOWN 			15 MINUTES
+#define QUEEN_DEATH_NOLARVA				5 MINUTES
 
 #define MODE_INFESTATION_X_MAJOR		"Xenomorph Major Victory"
 #define MODE_INFESTATION_M_MAJOR		"Marine Major Victory"
@@ -8,9 +9,9 @@
 
 #define MODE_INFECTION_ZOMBIE_WIN		"Major Zombie Victory"
 
-#define MODE_BATTLEFIELD_W_MAJOR		"W-Y PMC Major Success"
+#define MODE_BATTLEFIELD_NT_MAJOR		"NT PMC Major Success"
 #define MODE_BATTLEFIELD_M_MAJOR		"Marine Major Success"
-#define MODE_BATTLEFIELD_W_MINOR		"W-Y PMC Minor Success"
+#define MODE_BATTLEFIELD_NT_MINOR		"NT PMC Minor Success"
 #define MODE_BATTLEFIELD_M_MINOR		"Marine Minor Success"
 #define MODE_BATTLEFIELD_DRAW_STALEMATE "DRAW: Stalemate"
 #define MODE_BATTLEFIELD_DRAW_DEATH		"DRAW: My Friends Are Dead"
@@ -27,6 +28,9 @@ of predators), but can be added to include variant game modes (like humans vs. h
 
 //If the queen is dead after a period of time, this will end the game.
 /datum/game_mode/proc/check_queen_status(queen_time)
+	return
+
+/datum/game_mode/proc/get_queen_countdown()
 	return
 
 //===================================================\\
@@ -68,11 +72,11 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 		if(m.mind)
 			if(m.stat == DEAD) "<span class='round_body'>You met your demise during the events of [upper_text(name)].</span>"
 			else
-				if(isYautja(m))
+				if(isyautja(m))
 
 				if(ishuman(m))
 					is_mob_immobalized()
-				if(isXeno(m))
+				if(isxeno(m))
 
 
 				var/turf/T = get_turf(m)
@@ -190,17 +194,23 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 		dat += "[round_statistics.weeds_destroyed] weed tiles removed."
 	if(round_statistics.carrier_traps)
 		dat += "[round_statistics.carrier_traps] hidey holes for huggers were made."
+	if(round_statistics.sentinel_neurotoxin_stings)
+		dat += "[round_statistics.sentinel_neurotoxin_stings] number of times Sentinels stung."
+	if(round_statistics.drone_stings)
+		dat += "[round_statistics.drone_stings] number of times Drones stung."
+	if(round_statistics.drone_salvage_plasma)
+		dat += "[round_statistics.drone_salvage_plasma] number of times Drones salvaged corpses."
+	if(round_statistics.defiler_defiler_stings)
+		dat += "[round_statistics.defiler_defiler_stings] number of times Defilers stung."
+	if(round_statistics.defiler_neurogas_uses)
+		dat += "[round_statistics.defiler_neurogas_uses] number of times Defilers vented neurogas."
 	var/output = jointext(dat, "<br>")
 	for(var/mob/player in GLOB.player_list)
 		if(player?.client?.prefs?.toggles_chat & CHAT_STATISTICS)
 			to_chat(player, output)
 
 /datum/game_mode/proc/end_of_round_deathmatch()
-	var/list/spawns = list()
-
-	for(var/obj/effect/landmark/L in GLOB.landmarks_list)
-		if(L.name == "deathmatch")
-			spawns += L.loc
+	var/list/spawns = GLOB.deathmatch.Copy()
 
 	if(length(spawns) < 1)
 		log_runtime("ERROR: Failed to find any End of Round Deathmatch landmarks.")
@@ -227,10 +237,7 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 			picked = pick(spawns)
 			spawns -= picked
 		else
-			for(var/obj/effect/landmark/L in GLOB.landmarks_list)
-				switch(L.name)
-					if("deathmatch")
-						spawns += L.loc
+			spawns = GLOB.deathmatch.Copy()
 
 			if(length(spawns) < 1)
 				log_runtime("ERROR: Failed to regenerate End of Round Deathmatch landmarks.")
@@ -262,7 +269,7 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 
 //Spawns a larva in an appropriate location
 /datum/game_mode/proc/spawn_latejoin_larva()
-	var/mob/living/carbon/Xenomorph/Larva/new_xeno = new /mob/living/carbon/Xenomorph/Larva(pick(xeno_spawn))
+	var/mob/living/carbon/Xenomorph/Larva/new_xeno = new /mob/living/carbon/Xenomorph/Larva(pick(GLOB.xeno_spawn))
 	new_xeno.visible_message("<span class='xenodanger'>A larva suddenly burrows out of the ground!</span>",
 	"<span class='xenodanger'>You burrow out of the ground and awaken from your slumber. For the Hive!</span>")
 	new_xeno << sound('sound/effects/xeno_newlarva.ogg')
@@ -273,11 +280,9 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 	//to_chat(world, "<span class='boldnotice'>The fog north of the colony is starting to recede.</span>")
 	flags_round_type &= ~MODE_FOG_ACTIVATED
 	var/i
-	for(i in round_fog)
-		round_fog -= i
+	for(i in GLOB.fog_blockers)
 		qdel(i)
 		sleep(1)
-	round_fog = null
 
 //Delta is the randomness interval, in +/-. Might not be the exact mathematical definition
 /datum/game_mode/proc/announce_bioscans(var/delta = 2)
@@ -297,22 +302,22 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 	for(var/mob/M in GLOB.player_list) //Scan through and detect Xenos and Hosts, but only those with clients.
 		if(M.stat != DEAD)
 			var/area/A = get_area(M)
-			if(isXeno(M))
+			if(isxeno(M))
 				switch(A?.z)
 					if(PLANET_Z_LEVEL || LOW_ORBIT_Z_LEVEL)
-						if(isXenoLarva(M))
+						if(isxenolarva(M))
 							numLarvaPlanet++
 						numXenosPlanet++
 						xenoLocationsP += A
 					if(MAIN_SHIP_Z_LEVEL)
-						if(isXenoLarva(M))
+						if(isxenolarva(M))
 							numLarvaShip++
 						numXenosShip++
 						xenoLocationsS += A
 
 				activeXenos += M
 
-			if(ishuman(M) && !isYautja(M))
+			if(ishuman(M) && !isyautja(M))
 				switch(A?.z)
 					if(PLANET_Z_LEVEL || LOW_ORBIT_Z_LEVEL)
 						numHostsPlanet++
@@ -363,7 +368,7 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 	message_admins("Bioscan - Xenos: [numXenosPlanetr] on the planet[numXenosPlanetr > 0 && xenoLocationP ? ". Location:[xenoLocationP]":""]. [numXenosShip] on the ship.[xenoLocationS ? " Location: [xenoLocationS].":""]", 1)
 
 	for(var/mob/M in observers) // Extra information for all ghosts
-		if(istype(M, /mob/new_player))
+		if(isnewplayer(M))
 			continue
 		to_chat(M, "<h2 class='alert'>Detailed Information</h2>")
 		to_chat(M, {"<span class='alert'>[numXenosPlanet] xenos on the planet, including [numLarvaPlanet] larva.
@@ -383,12 +388,12 @@ Only checks living mobs with a client attached.
 	var/num_xenos = 0
 
 	for(var/mob/M in GLOB.player_list)
-		if(M.z && (M.z in z_levels) && M.stat != DEAD && !istype(M.loc, /turf/open/space)) //If they have a z var, they are on a turf.
+		if(M.z && (M.z in z_levels) && M.stat != DEAD && !isspaceturf(M.loc)) //If they have a z var, they are on a turf.
 			if(ishuman(M) && !(M.status_flags & XENO_HOST) && !iszombie(M))
 				var/mob/living/carbon/human/H = M
 				if(H.species && H.species.count_human) //only real humans count
 					num_humans++
-			else if(isXeno(M))
+			else if(isxeno(M))
 				var/mob/living/carbon/Xenomorph/X = M
 				if(!X.stealth_router(HANDLE_STEALTH_CHECK)) //We don't count stealthed Beanos due to delay potential
 					num_xenos++
@@ -401,8 +406,8 @@ Only checks living mobs with a client attached.
 	var/num_pmcs = 0
 
 	for(var/mob/M in GLOB.player_list)
-		if(M.z && (M.z in z_levels) && M.stat != DEAD && !istype(M.loc, /turf/open/space))
-			if(ishuman(M) && !isYautja(M))
+		if(M.z && (M.z in z_levels) && M.stat != DEAD && !isspaceturf(M.loc))
+			if(ishuman(M) && !isyautja(M))
 				if(M.mind && M.mind.special_role == "PMC") 	num_pmcs++
 				else if(M.mind && !M.mind.special_role)		num_marines++
 

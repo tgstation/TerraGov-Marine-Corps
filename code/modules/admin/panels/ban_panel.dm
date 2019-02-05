@@ -402,7 +402,7 @@ var/savefile/Banlist
 	Banlist.cd = "/base"
 	for(var/A in Banlist.dir)
 		Banlist.cd = "/base/[A]"
-		if(!Banlist["key"] || !Banlist["id"])
+		if(!Banlist["key"] && !Banlist["id"])
 			RemoveBan(A)
 			log_admin_private("Invalid Ban.")
 			message_admins("Invalid Ban.")
@@ -529,7 +529,7 @@ var/jobban_keylist[0]		//to store the keys & ranks
 
 	if(!length(jobban_keylist))
 		jobban_keylist = list()
-		log_admin_private("jobban_keylist was empty.")
+		log_admin_private("Jobban keylist was empty.")
 
 
 /proc/jobban_savebanfile()

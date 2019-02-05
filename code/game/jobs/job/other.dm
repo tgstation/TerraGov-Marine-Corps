@@ -142,16 +142,6 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/revolver/cmb(H), SLOT_L_HAND)
 
 
-/datum/job/other/survivor/prisoner
-	disp_title = "Prisoner"
-	skills_type = /datum/skills/civilian/survivor/prisoner
-
-/datum/job/other/survivor/prisoner/generate_equipment(mob/living/carbon/human/H)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/color/orange(H), SLOT_W_UNIFORM)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/orange(H), SLOT_SHOES)
-	H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/sec(H), SLOT_BACK)
-
-
 /datum/job/other/survivor/civilian
 	disp_title = "Civilian"
 
@@ -251,11 +241,6 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/clown_hat(H), SLOT_WEAR_MASK)
 	H.equip_to_slot_or_del(new /obj/item/tool/stamp/clown(H), SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_container/spray/waterflower(H), SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/grown/banana(H), SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/grown/banana(H), SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/grown/banana(H), SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/grown/banana(H), SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/grown/banana(H), SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/grown/banana(H), SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/grown/banana(H), SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/toy/bikehorn(H), SLOT_IN_BACKPACK)

@@ -133,7 +133,7 @@
 		losebreath--
 		if (prob(75)) //High chance of gasping for air
 			spawn emote("gasp")
-		if(istype(loc, /atom/movable))
+		if(ismovableatom(loc))
 			var/atom/movable/container = loc
 			container.handle_internal_lifeform(src)
 	else
@@ -142,7 +142,7 @@
 
 		//No breath from internal atmosphere so get breath from location
 		if(!air_info)
-			if(istype(loc, /atom/movable))
+			if(ismovableatom(loc))
 				var/atom/movable/container = loc
 				air_info = container.handle_internal_lifeform(src)
 				if(istype(wear_mask, /obj/item/clothing/mask) && air_info)
@@ -173,7 +173,7 @@
 
 
 		else //Still give container the chance to interact
-			if(istype(loc, /atom/movable))
+			if(ismovableatom(loc))
 				var/atom/movable/container = loc
 				container.handle_internal_lifeform(src)
 

@@ -61,7 +61,7 @@
 			unbuckle() //clicking the powerloader with its own clamp unbuckles the pilot.
 			playsound(loc, 'sound/mecha/powerloader_unbuckle.ogg', 25)
 			return TRUE
-	else if(istype(W, /obj/item/tool/screwdriver))
+	else if(isscrewdriver(W))
 		to_chat(user, "<span class='notice'>You screw the panel [panel_open ? "closed" : "open"].</span>")
 		playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
 		panel_open = !panel_open
@@ -155,7 +155,7 @@
 	if(M == linked_powerloader.buckled_mob)
 		unbuckle() //if the pilot clicks themself with the clamp, it unbuckles them.
 		return 1
-	else if(isXeno(M) && user.a_intent == "help")
+	else if(isxeno(M) && user.a_intent == "help")
 		var/mob/living/carbon/Xenomorph/X = M
 		if(X.stat == DEAD)
 			if(!X.anchored)

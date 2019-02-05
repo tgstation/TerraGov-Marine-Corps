@@ -411,7 +411,7 @@
 	var/datum/hive_status/hive = hive_datum[XENO_HIVE_NORMAL]
 	var/list/left_behind = list()
 	var/list/with_queen = list()
-	for(var/mob/living/carbon/Xenomorph/xeno in GLOB.living_xeno_list)
+	for(var/mob/living/carbon/Xenomorph/xeno in GLOB.alive_xeno_list)
 		if(xeno.hivenumber != XENO_HIVE_NORMAL) continue
 		if(xeno.loc.z == hive.living_xeno_queen.loc.z || xeno.loc.z in MAIN_SHIP_AND_DROPSHIPS_Z_LEVELS) // yes loc because of vent crawling, xeno must be with queen or on round end Z levels
 			with_queen += xeno
@@ -463,7 +463,7 @@
 	var/datum/shuttle/ferry/hangar/hangarelevator = shuttle_controller.shuttles["Hangar"]
 	hangarelevator.process_state = FORCE_CRASH
 
-	for(var/mob/living/carbon/M in GLOB.mob_list) //knock down mobs
+	for(var/mob/living/carbon/M in GLOB.mob_living_list) //knock down mobs
 		if(M.z != T_trg.z) continue
 		if(M.buckled)
 			to_chat(M, "<span class='warning'>You are jolted against [M.buckled]!</span>")
@@ -473,7 +473,7 @@
 			shake_camera(M, 10, 1)
 			M.KnockDown(3)
 
-	enter_allowed = 0 //No joining after dropship crash
+	GLOB.enter_allowed = FALSE //No joining after dropship crash
 
 	var/list/turfs_trg = get_shuttle_turfs(T_trg, info_datums) //Final destination turfs <insert bad jokey reference here>
 
@@ -672,7 +672,7 @@
 		T = i
 		if(!istype(T)) continue
 
-		if(istype(T, /turf/closed/wall))
+		if(iswallturf(T))
 			var/turf/closed/wall/W = T
 			if(prob(20)) W.thermitemelt()
 			else if(prob(25)) W.take_damage(W.damage_cap) //It should leave a girder

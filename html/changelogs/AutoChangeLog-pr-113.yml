@@ -1,5 +1,0 @@
-author: "Arachnidnexus"
-delete-after: True
-changes: 
-  - imageadd: "New xeno weeds, resin nest, hole, sticky resin and associated UI icons"
-  - imagedel: "Removed the old versions"

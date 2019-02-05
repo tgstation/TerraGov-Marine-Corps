@@ -19,7 +19,7 @@
 
 /obj/item/xeno_egg/examine(mob/user)
 	..()
-	if(isXeno(user))
+	if(isxeno(user))
 		to_chat(user, "A queen egg, it needs to be planted on weeds to start growing.")
 		if(hivenumber == XENO_HIVE_CORRUPTED)
 			to_chat(user, "This one appears to have been laid by a corrupted Queen.")
@@ -27,7 +27,7 @@
 /obj/item/xeno_egg/afterattack(atom/target, mob/user, proximity)
 	if(!proximity)
 		return
-	if(isXeno(user))
+	if(isxeno(user))
 		var/turf/T = get_turf(target)
 		plant_egg(user, T)
 	if(ishuman(user))
@@ -65,7 +65,7 @@
 	user.visible_message("<span class='xenonotice'>[user] starts planting [src].</span>", \
 					"<span class='xenonotice'>You start planting [src].</span>", null, 5)
 	var/plant_time = 35
-	if(!isXenoDrone(user))
+	if(!isxenodrone(user))
 		plant_time = 25
 	if(!do_after(user, plant_time, TRUE, 5, BUSY_ICON_BUILD))
 		return
@@ -82,9 +82,9 @@
 
 
 /obj/item/xeno_egg/attack_self(mob/user)
-	if(isXeno(user))
+	if(isxeno(user))
 		var/mob/living/carbon/Xenomorph/X = user
-		if(isXenoCarrier(X))
+		if(isxenocarrier(X))
 			var/mob/living/carbon/Xenomorph/Carrier/C = X
 			C.store_egg(src)
 		else

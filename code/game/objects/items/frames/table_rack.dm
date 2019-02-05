@@ -20,7 +20,7 @@
 /obj/item/frame/table/attackby(obj/item/W, mob/user)
 
 	..()
-	if(istype(W, /obj/item/tool/wrench))
+	if(iswrench(W))
 		new /obj/item/stack/sheet/metal(user.loc)
 		qdel(src)
 
@@ -72,7 +72,7 @@
 
 /obj/item/frame/table/reinforced/attackby(obj/item/W as obj, mob/user as mob)
 
-	if(istype(W, /obj/item/tool/wrench))
+	if(iswrench(W))
 		new /obj/item/stack/sheet/metal(get_turf(src))
 		new /obj/item/stack/rods(get_turf(src))
 		qdel(src)
@@ -90,7 +90,7 @@
 
 /obj/item/frame/table/wood/attackby(obj/item/W as obj, mob/user as mob)
 
-	if(istype(W, /obj/item/tool/wrench))
+	if(iswrench(W))
 		new /obj/item/stack/sheet/wood(get_turf(src))
 		qdel(src)
 
@@ -114,12 +114,12 @@
 
 /obj/item/frame/table/gambling/attackby(obj/item/W as obj, mob/user as mob)
 
-	if(istype(W, /obj/item/tool/wrench))
+	if(iswrench(W))
 		new /obj/item/stack/sheet/wood(get_turf(src))
 		new /obj/item/stack/tile/carpet(get_turf(src))
 		qdel(src)
 
-	if(istype(W, /obj/item/tool/crowbar))
+	if(iscrowbar(W))
 		to_chat(user, "<span class='notice'>You pry the carpet out of [src].</span>")
 		new /obj/item/stack/tile/carpet(get_turf(src))
 		new /obj/item/frame/table/wood(get_turf(src))
@@ -145,7 +145,7 @@
 
 /obj/item/frame/rack/attackby(obj/item/W as obj, mob/user as mob)
 	..()
-	if(istype(W, /obj/item/tool/wrench))
+	if(iswrench(W))
 		new /obj/item/stack/sheet/metal(get_turf(src))
 		qdel(src)
 

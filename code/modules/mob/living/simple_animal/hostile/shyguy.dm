@@ -170,7 +170,7 @@
 	examine_urge_values[index] = examine_urge
 
 /mob/living/simple_animal/shyguy/examine(var/userguy)
-	if (istype(userguy, /mob/living/carbon))
+	if (iscarbon(userguy))
 		if (!(userguy in shitlist))
 			to_chat(userguy, target_desc_1)
 			shitlist += userguy

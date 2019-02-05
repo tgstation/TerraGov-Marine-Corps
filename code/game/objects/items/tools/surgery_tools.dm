@@ -269,7 +269,7 @@
 	set src in usr*/
 	if(resetting)
 		to_chat(usr, "Tool is currently returning to factory default.  If you have been waiting, try running the reset again.")
-	if(!isXeno(T))
+	if(!isxeno(T))
 		to_chat(usr, "What are you, some sort of fucking MONSTER?")
 		return
 	if(T.health > 0)

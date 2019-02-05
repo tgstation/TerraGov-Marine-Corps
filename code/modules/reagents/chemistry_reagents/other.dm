@@ -173,7 +173,7 @@
 
 /datum/reagent/space_drugs/on_mob_life(mob/living/M)
 	M.set_drugginess(15)
-	if(isturf(M.loc) && !istype(M.loc, /turf/open/space))
+	if(isturf(M.loc) && !isspaceturf(M.loc))
 		if(M.canmove && !M.is_mob_restrained())
 			if(prob(10))
 				step(M, pick(cardinal))
@@ -287,7 +287,7 @@
 	taste_multi = 0
 
 /datum/reagent/mercury/on_mob_life(mob/living/M)
-	if(M.canmove && !M.is_mob_restrained() && istype(M.loc, /turf/open/space))
+	if(M.canmove && !M.is_mob_restrained() && !isspaceturf(M.loc))
 		step(M, pick(cardinal))
 	if(prob(5))
 		M.emote(pick("twitch","drool","moan"))
@@ -311,7 +311,7 @@
 	taste_description = "sour chalk"
 
 /datum/reagent/carbon/reaction_turf(turf/T, volume)
-	if(!istype(T, /turf/open/space))
+	if(!isspaceturf(T))
 		var/obj/effect/decal/cleanable/dirt/dirtoverlay = locate(/obj/effect/decal/cleanable/dirt, T)
 		if(!dirtoverlay)
 			dirtoverlay = new/obj/effect/decal/cleanable/dirt(T)
@@ -385,7 +385,7 @@
 	taste_description = "metal"
 
 /datum/reagent/lithium/on_mob_life(mob/living/M)
-	if(M.canmove && !M.is_mob_restrained() && istype(M.loc, /turf/open/space))
+	if(M.canmove && !M.is_mob_restrained() && !isspaceturf(M.loc))
 		step(M, pick(cardinal))
 	if(prob(5))
 		M.emote(pick("twitch","drool","moan"))
@@ -427,7 +427,7 @@
 
 /datum/reagent/radium/reaction_turf(var/turf/T, var/volume)
 	if(volume >= 3)
-		if(!istype(T, /turf/open/space))
+		if(!isspaceturf(T))
 			var/obj/effect/decal/cleanable/greenglow/glow = locate(/obj/effect/decal/cleanable/greenglow, T)
 			if(!glow)
 				new /obj/effect/decal/cleanable/greenglow(T)
@@ -443,7 +443,7 @@
 /datum/reagent/thermite/reaction_turf(var/turf/T, var/volume)
 	src = null
 	if(volume >= 5)
-		if(istype(T, /turf/closed/wall))
+		if(iswallturf(T))
 			var/turf/closed/wall/W = T
 			W.thermite = TRUE
 			W.overlays += image('icons/effects/effects.dmi',icon_state = "#673910")
@@ -502,7 +502,7 @@
 
 /datum/reagent/uranium/reaction_turf(turf/T, reac_volume)
 	if(reac_volume >= 3)
-		if(!istype(T, /turf/open/space))
+		if(!isspaceturf(T))
 			var/obj/effect/decal/cleanable/greenglow/glow = locate(/obj/effect/decal/cleanable/greenglow, T)
 			if(!glow)
 				new /obj/effect/decal/cleanable/greenglow(T)
@@ -792,7 +792,7 @@
 	color = "#CF3600" // rgb: 207, 54, 0
 	custom_metabolism = 1.25 // Fast meta rate.
 	overdose_threshold = REAGENTS_OVERDOSE
-	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
+	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL * 1.2 //make this a little more forgiving in light of the lethality
 
 /datum/reagent/xeno_neurotoxin/on_mob_life(mob/living/M)
 	. = ..()
@@ -814,11 +814,6 @@
 
 /datum/reagent/xeno_neurotoxin/overdose_process(mob/living/M)
 	M.adjustOxyLoss(min(2,volume * 0.1 * REM)) //Overdose starts applying more oxy damage
-	M.Jitter(3) //Lets Xenos know they're ODing and should probably stop.
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		if(prob(10))
-			H.vomit()
 
 /datum/reagent/xeno_neurotoxin/overdose_crit_process(mob/living/M)
 	M.adjustOxyLoss(min(4,volume * 0.2 * REM)) //Overdose starts applying more oxy damage
@@ -835,23 +830,12 @@
 	description = "A metabolic accelerant that dramatically increases the rate of larval growth in a host."
 	reagent_state = LIQUID
 	color = "#CF3600" // rgb: 207, 54, 0
-	custom_metabolism = GROWTH_TOXIN_METARATE // 0.3, slow meta rate.
+	custom_metabolism = GROWTH_TOXIN_METARATE // 0.2, slow meta rate.
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 
-/datum/reagent/xeno_neurotoxin/overdose_process(mob/living/M)
-	M.adjustOxyLoss(min(2,volume * 0.1 * REM)) //Overdose starts applying more oxy damage
-	M.Jitter(3) //Lets Xenos know they're ODing and should probably stop.
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		if(prob(10))
-			H.vomit()
+/datum/reagent/xeno_growthtoxin/overdose_process(mob/living/M)
+	M.adjustOxyLoss(1) //Overdose starts applying more oxy damage
 
-/datum/reagent/xeno_neurotoxin/overdose_crit_process(mob/living/M)
-	M.adjustOxyLoss(min(4,volume * 0.2 * REM)) //Overdose starts applying more oxy damage
-	M.losebreath = max(10, M.losebreath-10) //Can't breathe; for punishing the bullies
-	M.Jitter(6) //Lets Xenos know they're ODing and should probably stop.
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		if(prob(10))
-			H.vomit()
+/datum/reagent/xeno_growthtoxin/overdose_crit_process(mob/living/M)
+	M.adjustOxyLoss(2) //Overdose starts applying more oxy damage

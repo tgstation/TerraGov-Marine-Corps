@@ -363,14 +363,14 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		var/facing = get_dir(src, M)
 		var/turf/T = loc
 		var/turf/temp = loc
-		if (isXenoQueen(A) || isXenoCrusher (A))
+		if (isxenoqueen(A) || isxenocrusher (A))
 			temp = get_step(T, facing)
 			T = temp
 			T = get_step(T, pick(cardinal))
 			M.throw_at(T, 2, 1, src, 0)
 			M.visible_message("<span class='danger'>[src] bumps into [M], pushing [M.p_them()] away!</span>", "<span class='danger'>[src] bumps into you!</span>")
 			return
-		if(M.lying==0 && !isXenoLarva(M))
+		if(M.lying==0 && !isxenolarva(M))
 			temp = get_step(T, facing)
 			T = temp
 			T = get_step(T, pick(cardinal))
@@ -387,12 +387,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 			var/obj/item/hardpoint/H = CA.hardpoints[slot]
 			if(!H) continue
 			H.livingmob_interact(M)
-	else if(istype(A, /obj/structure/fence))
-		var/obj/structure/fence/F = A
-		F.visible_message("<span class='danger'>[root] smashes through [F]!</span>")
-		F.health = 0
-		F.healthcheck()
-	else if(istype(A, /turf/closed/wall))
+	else if(iswallturf(A))
 		var/turf/closed/wall/W = A
 		W.take_damage(30)
 		var/obj/vehicle/multitile/root/cm_armored/CA = root
@@ -400,38 +395,25 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		if(world.time > lastsound + 10)
 			playsound(W, 'sound/effects/metal_crash.ogg', 35)
 			lastsound = world.time
-	else if(istype(A, /obj/structure/mineral_door/resin))
-		var/obj/structure/mineral_door/resin/R = A
-		R.health = 0
-		R.healthcheck()
-	else if(istype(A, /obj/structure/table))
-		var/obj/structure/table/T = A
-		T.visible_message("<span class='danger'>[root] crushes [T]!</span>")
-		T.destroy_structure(TRUE)
-	else if(istype(A, /obj/structure/showcase))
-		var/obj/structure/showcase/S = A
-		S.visible_message("<span class='danger'>[root] bulldozes over [S]!</span>")
-		S.destroy_structure(TRUE)
-	else if(istype(A, /obj/structure/rack))
-		var/obj/structure/rack/R = A
-		R.visible_message("<span class='danger'>[root] smashes through the [R]!</span>")
-		R.destroy_structure(TRUE)
-	else if(istype(A, /obj/structure/window/framed))
-		var/obj/structure/window/framed/W = A
-		W.visible_message("<span class='danger'>[root] crashes through the [W]!</span>")
-		W.shatter_window(1)
-	else if(istype(A, /obj/structure/window_frame))
-		var/obj/structure/window_frame/WF = A
-		WF.visible_message("<span class='danger'>[root] runs over the [WF]!</span>")
-		WF.Destroy()
-	else if(istype(A, /obj/structure/girder))
-		var/obj/structure/girder/G = A
-		G.dismantle()
+	else if(istype(A, /obj/machinery))
+		var/obj/machinery/M = A
+		M.take_damage(30)
 		var/obj/vehicle/multitile/root/cm_armored/CA = root
-		CA.take_damage_type(10, "blunt", G)
+		CA.take_damage_type(2, "blunt", M)
 		if(world.time > lastsound + 10)
-			playsound(G, 'sound/effects/metal_crash.ogg', 35)
+			M.visible_message("<span class='danger'>[root] rams into \the [M]!</span>")
+			playsound(M, 'sound/effects/metal_crash.ogg', 35)
 			lastsound = world.time
+	else if(istype(A, /obj/structure))
+		var/obj/structure/S = A
+		S.take_damage(30)
+		var/obj/vehicle/multitile/root/cm_armored/CA = root
+		CA.take_damage_type(2, "blunt", S)
+		if(world.time > lastsound + 10)
+			S.visible_message("<span class='danger'>[root] crushes \the [S]!</span>")
+			playsound(S, 'sound/effects/metal_crash.ogg', 35)
+			lastsound = world.time
+
 
 /obj/vehicle/multitile/hitbox/cm_armored/Move(var/atom/A, var/direction)
 
@@ -554,7 +536,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	M.visible_message("<span class='danger'>\The [M] slashes [src]!</span>", \
 	"<span class='danger'>You slash [src]!</span>")
 
-	take_damage_type(damage * ( (isXenoRavager(M)) ? 2 : 1 ), "slash", M) //Ravs do a bitchin double damage
+	take_damage_type(damage * ( (isxenoravager(M)) ? 2 : 1 ), "slash", M) //Ravs do a bitchin double damage
 
 	healthcheck()
 

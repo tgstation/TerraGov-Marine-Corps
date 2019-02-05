@@ -97,7 +97,7 @@ var/list/ai_verbs_default = list(
 	var/pickedName = null
 	while(!pickedName)
 		pickedName = pick(ai_names)
-		for (var/mob/living/silicon/ai/A in GLOB.mob_list)
+		for (var/mob/living/silicon/ai/A in GLOB.ai_list)
 			if (A.real_name == pickedName && possibleNames.len > 1) //fixing the theoretically possible infinite loop
 				possibleNames -= pickedName
 				pickedName = null
@@ -363,7 +363,7 @@ var/list/ai_verbs_default = list(
 	if (href_list["track"])
 		var/mob/target = locate(href_list["track"]) in GLOB.mob_list
 
-		if(target && (!istype(target, /mob/living/carbon/human) || html_decode(href_list["trackname"]) == target:get_face_name()))
+		if(target && (!ishuman(target) || html_decode(href_list["trackname"]) == target:get_face_name()))
 			ai_actual_track(target)
 		else
 			to_chat(src, "<span class='warning'>System error. Cannot locate [html_decode(href_list["trackname"])].</span>")
@@ -603,7 +603,7 @@ var/list/ai_verbs_default = list(
 
 
 /mob/living/silicon/ai/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/tool/wrench))
+	if(iswrench(W))
 		if(anchored)
 			user.visible_message("<span class='notice'> \The [user] starts to unbolt \the [src] from the plating...</span>")
 			if(!do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))

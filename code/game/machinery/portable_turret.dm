@@ -367,11 +367,11 @@ Status: []<BR>"},
 						targets += C
 						continue
 
-				if (istype(C, /mob/living/carbon/human)) // if the target is a human, analyze threat level
+				if (ishuman(C)) // if the target is a human, analyze threat level
 					if(src.assess_perp(C)<4)
 						continue // if threat level < 4, keep going
 
-				else if (istype(C, /mob/living/carbon/monkey))
+				else if (ismonkey(C))
 					continue // Don't target monkeys or borgs/AIs you dumb shit
 
 				if (C.lying) // if the perp is lying down, it's still a target but a less-important target
@@ -384,7 +384,7 @@ Status: []<BR>"},
 
 		var/atom/t = pick(targets) // pick a perp from the list of targets. Targets go first because they are the most important
 
-		if (istype(t, /mob/living)) // if a mob
+		if (isliving(t)) // if a mob
 			var/mob/living/M = t // simple typecasting
 			if (M.stat!=2) // if the target is not dead
 				spawn() popUp() // pop the turret up if it's not already up.
@@ -394,7 +394,7 @@ Status: []<BR>"},
 	else
 		if(secondarytargets.len>0) // if there are no primary targets, go for secondary targets
 			var/mob/t = pick(secondarytargets)
-			if (istype(t, /mob/living))
+			if (isliving(t))
 				if (t.stat!=2)
 					spawn() popUp()
 					dir=get_dir(src,t)

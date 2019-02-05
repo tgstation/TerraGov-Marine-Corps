@@ -85,10 +85,8 @@ var/datum/mob_hud/huds = list(
 /datum/mob_hud/medical/advanced
 
 /datum/mob_hud/medical/advanced/add_to_single_hud(mob/user, mob/living/carbon/human/target)
-	if(istype(target))
-		if(target.species && target.species.name == "Yautja") //so you can't tell a pred's health with hud glasses.
-			return
-	..()
+	if(!isyautjastrict(target)) //so you can't tell a pred's health with hud glasses.
+		return ..()
 
 //medical hud used by ghosts
 /datum/mob_hud/medical/observer
@@ -201,8 +199,9 @@ var/datum/mob_hud/huds = list(
 	if(stat == DEAD)
 		holder.icon_state = "xenohealth0"
 	else
-		var/amount = round(health*100/maxHealth, 10)
-		if(!amount) amount = 1 //don't want the 'zero health' icon when we still have 4% of our health
+		var/amount = round(health * 100 / maxHealth, 10)
+		if(!amount) 
+			amount = 1 //don't want the 'zero health' icon when we still have 4% of our health
 		holder.icon_state = "xenohealth[amount]"
 
 

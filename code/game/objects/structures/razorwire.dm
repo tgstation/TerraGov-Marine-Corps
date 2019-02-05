@@ -97,10 +97,10 @@
 	if(!W)
 		return
 	if(istype(W, /obj/item/grab))
-		if(isXeno(user))
+		if(isxeno(user))
 			return
 		var/obj/item/grab/G = W
-		if(istype(G.grabbed_thing, /mob/living))
+		if(isliving(G.grabbed_thing))
 			var/mob/living/M = G.grabbed_thing
 			if(user.a_intent == "hurt")
 				if(user.grab_level > GRAB_AGGRESSIVE)
@@ -123,7 +123,7 @@
 				"<span class='danger'>You throw [M] on [src].</span>")
 		return
 
-	if(istype(W, /obj/item/tool/wirecutters))
+	if(iswirecutter(W))
 		user.visible_message("<span class='notice'>[user] starts disassembling [src].</span>",
 		"<span class='notice'>You start disassembling [src].</span>")
 		var/delay_disassembly = SKILL_TASK_AVERAGE
@@ -136,7 +136,7 @@
 			destroyed(TRUE)
 		return
 
-	if(istype(W, /obj/item/tool/weldingtool))
+	if(iswelder(W))
 		var/obj/item/tool/weldingtool/WT = W
 		if(WT.remove_fuel(0, user))
 			var/delay = SKILL_TASK_TOUGH
@@ -162,7 +162,7 @@
 				destroyed()
 		return
 
-	if((W.flags_item & ITEM_ABSTRACT) || isrobot(user))
+	if((W.flags_item & ITEM_ABSTRACT) || iscyborg(user))
 		return
 
 	var/damage = W.force
@@ -222,7 +222,6 @@
 			return
 
 		health -= 200 * round(C.charge_speed / max(1, C.charge_speed_max),0.01)
-		to_chat(world, "DEBUG: Crusher damage: [150 * round(C.charge_speed / max(1, C.charge_speed_max),0.01)]. Speed: [C.charge_speed] Max Speed: [C.charge_speed_max]")
 		update_health()
 
 		var/def_zone = ran_zone()

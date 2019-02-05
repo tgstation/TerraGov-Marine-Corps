@@ -10,6 +10,8 @@
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
 	hitsound = 'sound/weapons/smash.ogg'
+	var/launched = FALSE //if launched from a UGL/grenade launcher
+	var/launchforce = 10 //bonus impact damage if launched from a UGL/grenade launcher
 	var/active = 0
 	var/det_time = 50
 	var/dangerous = TRUE 	//Does it make a danger overlay for humans? Can synths use it?
@@ -32,7 +34,7 @@
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return
 
-	if(isSynth(user) && dangerous && !CONFIG_GET(flag/allow_synthetic_gun_use))
+	if(issynth(user) && dangerous && !CONFIG_GET(flag/allow_synthetic_gun_use))
 		to_chat(user, "<span class='warning'>Your programming prevents you from operating this device!</span>")
 		return
 
@@ -46,7 +48,7 @@
 	else
 		user.visible_message("<span class='warning'>[user] primes \a [name]!</span>", \
 		"<span class='warning'>You prime \a [name]!</span>")
-		if(initial(dangerous) && has_species(user, "Human"))
+		if(initial(dangerous) && ishumanbasic(user))
 			var/nade_sound = user.gender == FEMALE ? get_sfx("female_fragout") : get_sfx("male_fragout")
 
 			for(var/mob/living/carbon/human/H in hearers(6,user))
@@ -61,6 +63,7 @@
 		return
 
 	if(user)
+		log_combat(user, src, "primed")
 		msg_admin_attack("[ADMIN_TPMONTY(usr)] primed \a [src].")
 
 	icon_state = initial(icon_state) + "_active"
@@ -79,9 +82,8 @@
 		dangerous = 0
 	return
 
-/obj/item/explosive/grenade/proc/prime()
-//	playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
 
+/obj/item/explosive/grenade/proc/prime()
 
 
 /obj/item/explosive/grenade/attackby(obj/item/W as obj, mob/user as mob)

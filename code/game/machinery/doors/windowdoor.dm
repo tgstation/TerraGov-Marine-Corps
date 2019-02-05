@@ -105,7 +105,7 @@
 	src.operating = 0
 	return TRUE
 
-/obj/machinery/door/window/proc/take_damage(var/damage)
+/obj/machinery/door/window/take_damage(var/damage)
 	src.health = max(0, src.health - damage)
 	if (src.health <= 0)
 		new /obj/item/shard(src.loc)
@@ -192,7 +192,7 @@
 		return TRUE
 
 	//If it's emagged, crowbar can pry electronics out.
-	if (src.operating == -1 && istype(I, /obj/item/tool/crowbar))
+	if (src.operating == -1 && iscrowbar(I))
 		playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
 		user.visible_message("[user] removes the electronics from the windoor.", "You start to remove electronics from the windoor.")
 		if (do_after(user,40, TRUE, 5, BUSY_ICON_BUILD))

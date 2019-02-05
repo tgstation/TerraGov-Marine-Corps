@@ -227,7 +227,7 @@
 					var/turf/T = object
 					T.ChangeTurf(/turf/open/space)
 					return
-				else if(istype(object,/turf/closed/wall/r_wall))
+				else if(isrwallturf(object))
 					var/turf/T = object
 					T.ChangeTurf(/turf/closed/wall)
 					return
@@ -283,7 +283,7 @@
 
 		if(4)
 			if(mods["left"])
-				if(istype(object, /atom/movable))
+				if(ismovableatom(object))
 					holder.throw_atom = object
 			if(mods["right"])
 				if(holder.throw_atom)

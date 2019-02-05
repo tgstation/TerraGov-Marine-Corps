@@ -1,4 +1,0 @@
-author: "LaKiller8"
-delete-after: True
-changes: 
-  - rscadd: "Adds a new Queen ability, advance larval growth. It costs 300 plasma and has a 60 second cooldown, can be used on an impregnated host to advance the stage of the larva up to stage 3."

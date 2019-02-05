@@ -12,7 +12,6 @@
 /mob/verb/say_verb(message as text)
 	set name = "Say"
 	set category = "IC"
-	set hidden = TRUE
 
 	if(!message)
 		return
@@ -23,7 +22,6 @@
 /mob/verb/me_verb(message as text)
 	set name = "Me"
 	set category = "IC"
-	set hidden = TRUE
 
 	if(!message)
 		return
@@ -52,7 +50,7 @@
 
 	for(var/mob/M in GLOB.player_list)
 
-		if(istype(M, /mob/new_player))
+		if(isnewplayer(M))
 			continue
 
 		if(M.client && M.stat == DEAD && (M.client.prefs.toggles_chat & CHAT_DEAD))
