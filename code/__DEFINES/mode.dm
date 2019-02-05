@@ -110,6 +110,7 @@ var/list/be_special_flags = list(
 #define ROLE_CHIEF_MP					128
 #define ROLE_SYNTHETIC					256
 #define ROLE_TANK_OFFICER				512
+#define ROLE_TANK_COMMANDER				1024
 //=================================================
 
 #define ROLEGROUP_MARINE_ENGINEERING 	2
@@ -144,12 +145,12 @@ var/list/be_special_flags = list(
 //=================================================
 
 //Role defines, specifically lists of roles for job bans and the like.
-#define ROLES_COMMAND 		list("Commander", "Field Officer", "Staff Officer", "Pilot Officer", "Tank Crewman", "Corporate Liaison", "Requisitions Officer", "Chief Engineer", "Chief Medical Officer", "Synthetic")
-#define ROLES_POLICE		list("Chief MP", "Military Police")
-#define ROLES_OFFICERS		list("Commander", "Field Officer", "Staff Officer", "Pilot Officer", "Tank Crewman", "Corporate Liaison", "Synthetic")
-#define ROLES_ENGINEERING 	list("Chief Engineer", "Maintenance Tech")
+#define ROLES_COMMAND 		list("Captain", "Field Officer", "Intelligence Officer", "Pilot Officer", "Tank Commander", "Tank Crewman", "Corporate Liaison", "Requisitions Officer", "Chief Ship Engineer", "Chief Hospitalman", "Synthetic")
+#define ROLES_POLICE		list("Command Master at Arms", "Master at Arms")
+#define ROLES_OFFICERS		list("Captain", "Field Officer", "Intelligence Officer", "Pilot Officer", "Tank Commander", "Tank Crewman", "Corporate Liaison", "Synthetic")
+#define ROLES_ENGINEERING 	list("Chief Ship Engineer", "Ship Engineer")
 #define ROLES_REQUISITION 	list("Requisitions Officer", "Cargo Technician")
-#define ROLES_MEDICAL 		list("Chief Medical Officer", "Doctor","Researcher")
+#define ROLES_MEDICAL 		list("Chief Hospitalman", "Hospitalman","Researcher")
 #define ROLES_MARINES		list("Squad Leader", "Squad Specialist", "Squad Smartgunner", "Squad Medic", "Squad Engineer", "Squad Marine")
 #define ROLES_SQUAD_ALL		list("Alpha", "Bravo", "Charlie" ,"Delta")
 #define ROLES_REGULAR_ALL	ROLES_OFFICERS + ROLES_POLICE + ROLES_ENGINEERING + ROLES_REQUISITION + ROLES_MEDICAL + ROLES_MARINES
