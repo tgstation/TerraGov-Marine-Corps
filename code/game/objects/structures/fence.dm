@@ -194,7 +194,7 @@
 	..()
 
 	if(start_dir)
-		dir = start_dir
+		setDir(start_dir)
 
 	update_nearby_icons()
 
@@ -206,7 +206,7 @@
 /obj/structure/fence/Move()
 	var/ini_dir = dir
 	..()
-	dir = ini_dir
+	setDir(ini_dir)
 
 //This proc is used to update the icons of nearby windows.
 /obj/structure/fence/proc/update_nearby_icons()

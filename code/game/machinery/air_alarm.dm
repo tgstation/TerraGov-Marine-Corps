@@ -116,7 +116,7 @@
 			loc = location
 
 		if(direction)
-			dir = direction
+			setDir(direction)
 
 		buildstage = 0
 		wiresexposed = TRUE

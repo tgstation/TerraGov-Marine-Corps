@@ -16,7 +16,7 @@
 	var/move_delay = 2
 
 /obj/structure/bed/chair/janicart/New()
-	handle_rotation()
+	. = ..()
 	create_reagents(100)
 
 
@@ -82,7 +82,7 @@
 
 /obj/structure/bed/chair/janicart/proc/update_mob()
 	if(buckled_mob)
-		buckled_mob.dir = dir
+		buckled_mob.setDir(dir)
 		switch(dir)
 			if(SOUTH)
 				buckled_mob.pixel_x = 0

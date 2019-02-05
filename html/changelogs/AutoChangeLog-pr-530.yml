@@ -1,0 +1,5 @@
+author: "Ghommie"
+delete-after: True
+changes: 
+  - bugfix: "Fixes rogue barricade layers."
+  - code_imp: "Hooks istances of dir = newdir to setDir(newdir)"

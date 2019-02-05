@@ -31,7 +31,7 @@ FIRE ALARM
 		loc = location
 
 	if(direction)
-		dir = direction
+		setDir(direction)
 
 	if(building)
 		buildstage = 0

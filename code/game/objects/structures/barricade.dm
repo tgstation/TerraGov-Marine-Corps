@@ -224,6 +224,10 @@
 			health -= rand(10, 33)
 	update_health()
 
+/obj/structure/barricade/setDir(newdir)
+	. = ..()
+	update_icon()
+
 /obj/structure/barricade/update_icon()
 	if(!closed)
 		if(can_change_dmg_state)
@@ -231,9 +235,12 @@
 		else
 			icon_state = "[barricade_type]"
 		switch(dir)
-			if(SOUTH) layer = ABOVE_MOB_LAYER
-			if(NORTH) layer = initial(layer) - 0.01
-			else layer = initial(layer)
+			if(SOUTH)
+				layer = ABOVE_MOB_LAYER
+			if(NORTH)
+				layer = initial(layer) - 0.01
+			else
+				layer = initial(layer)
 		if(!anchored)
 			layer = initial(layer)
 	else
@@ -294,8 +301,7 @@
 		to_chat(usr, "<span class='warning'>It is fastened to the floor, you can't rotate it!</span>")
 		return FALSE
 
-	dir = turn(dir, 90)
-	update_icon()
+	setDir(turn(dir, 90))
 	return
 
 /obj/structure/barricade/verb/revrotate()
@@ -307,8 +313,7 @@
 		to_chat(usr, "<span class='warning'>It is fastened to the floor, you can't rotate it!</span>")
 		return FALSE
 
-	dir = turn(dir, 270)
-	update_icon()
+	setDir(turn(dir, 270))
 	return
 
 
@@ -327,11 +332,6 @@
 	stack_amount = 3
 	destroyed_stack_amount = 0
 	can_wire = FALSE
-
-/obj/structure/barricade/snow/New(loc, direction)
-	if(direction)
-		dir = direction
-	..()
 
 
 
@@ -872,15 +872,14 @@
 	barricade_type = "sandbag"
 	can_wire = TRUE
 
-/obj/structure/barricade/sandbags/New(loc, direction)
-	if(direction)
-		dir = direction
-
+/obj/structure/barricade/sandbags/update_icon()
+	. = ..()
 	if(dir == SOUTH)
 		pixel_y = -7
 	else if(dir == NORTH)
 		pixel_y = 7
-	..()
+	else
+		pixel_y = 0
 
 
 /obj/structure/barricade/sandbags/attackby(obj/item/W, mob/user)

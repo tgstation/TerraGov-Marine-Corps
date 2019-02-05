@@ -171,7 +171,7 @@
 	set waitfor = 0
 
 	var/facing = get_cardinal_dir(src, T)
-	dir = facing
+	setDir(facing)
 
 	T = loc
 	for (var/i = 0, i < xeno_caste.acid_spray_range, i++)
@@ -2096,20 +2096,20 @@
 	if(!check_plasma(200))
 		return
 
-	last_emit_neurogas = world.time
-	use_plasma(200)
-
 	//give them fair warning
 	visible_message("<span class='danger'>Tufts of smoke begin to billow from [src]!</span>", \
 	"<span class='xenodanger'>Your dorsal vents widen, preparing to emit neurogas. Keep still!</span>")
-
-	addtimer(CALLBACK(src, .defiler_gas_cooldown), DEFILER_GAS_COOLDOWN)
 
 	emitting_gas = TRUE //We gain bump movement immunity while we're emitting gas.
 	if(!do_after(src, DEFILER_GAS_CHANNEL_TIME, TRUE, 5, BUSY_ICON_HOSTILE))
 		emitting_gas = FALSE
 		return
 	emitting_gas = FALSE
+
+	addtimer(CALLBACK(src, .defiler_gas_cooldown), DEFILER_GAS_COOLDOWN)
+
+	last_emit_neurogas = world.time
+	use_plasma(200)
 
 	if(stagger) //If we got staggered, return
 		to_chat(src, "<span class='xenowarning'>You try to emit neurogas but are staggered!</span>")

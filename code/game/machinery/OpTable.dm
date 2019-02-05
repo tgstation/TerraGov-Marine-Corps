@@ -112,7 +112,7 @@
 	H.internal = anes_tank
 	H.visible_message("<span class='notice'>[user] fits the mask over [H]'s face and turns on the anesthetic.</span>'")
 	to_chat(H, "<span class='information'>You begin to feel sleepy.</span>")
-	H.dir = SOUTH
+	H.setDir(SOUTH)
 	..()
 
 /obj/machinery/optable/unbuckle(mob/living/user)
