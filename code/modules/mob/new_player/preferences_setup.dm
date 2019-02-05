@@ -304,7 +304,7 @@ datum/preferences
 					clothes_s.Blend(new /icon('icons/mob/head_1.dmi', "helmet"), ICON_OVERLAY)
 					clothes_s.Blend(new /icon('icons/mob/back.dmi', "marinesat"), ICON_OVERLAY)
 					clothes_s.Blend(new /icon('icons/mob/belt.dmi', "marinebelt"), ICON_OVERLAY)
-				if(ROLE_MARINE_MEDIC)
+				if(ROLE_MARINE_CORPSMAN)
 					clothes_s = new /icon('icons/mob/uniform_0.dmi', "marine_medic")
 					clothes_s.Blend(new /icon('icons/mob/feet.dmi', "jackboots"), ICON_UNDERLAY)
 					clothes_s.Blend(new /icon('icons/mob/hands.dmi', "bgloves"), ICON_UNDERLAY)
