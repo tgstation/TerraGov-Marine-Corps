@@ -337,6 +337,8 @@ REAGENT SCANNER
 			var/synaptizine_amount = reagents_in_body["synaptizine"]
 			var/hyperzine_amount = reagents_in_body["hyperzine"]
 			var/paracetamol_amount = reagents_in_body["paracetamol"]
+			var/neurotoxin_amount = reagents_in_body["xeno_toxin"]
+			var/growthtoxin_amount = reagents_in_body["xeno_growthtoxin"]
 			//Recurring chems:
 			var/peridaxon = ""
 			var/tricordrazine = ""
@@ -422,7 +424,10 @@ REAGENT SCANNER
 				if(reagents_in_body["dexalin"] < 5)
 					dexalin = "dexalin"
 				if(reagents_in_body["dexalinplus"] < 1)
-					dexplus = "dexalin plus"
+					if(hyperzine_amount)
+						dexplus = "dexalin plus after hyperzine is purged or metabolizes."
+					else
+						dexplus = "dexalin plus"
 				advice += "<span class='scanner'><b>Oxygen Deprivation:</b> Administer one dose of: [dexalin] | [dexplus].</span>\n"
 			if(H.getFireLoss(1)  > 10)
 				var/kelotane = ""
@@ -469,9 +474,13 @@ REAGENT SCANNER
 			if(synaptizine_amount)
 				advice += "<span class='scanner'><b>Synaptizine Detected:</b> DO NOT administer dylovene until synaptizine is purged or metabolized.</span>\n"
 			if(hyperzine_amount)
-				advice += "<span class='scanner'><b>Hyperzine Detected:</b> DO NOT administer peridaxon until hyperzine is purged or metabolized.</span>\n"
+				advice += "<span class='scanner'><b>Hyperzine Detected:</b> DO NOT administer peridaxon or dexalin plus until hyperzine is purged or metabolized.</span>\n"
 			if(paracetamol_amount)
 				advice += "<span class='scanner'><b>Paracetamol Detected:</b> DO NOT administer tramadol until paracetamol is purged or metabolized.</span>\n"
+			if(neurotoxin_amount)
+				advice += "<span class='scanner'><b>Xenomorph Neurotoxin Detected:</b> Administer hypervene to purge.</span>\n"
+			if(growthtoxin_amount)
+				advice += "<span class='scanner'><b>Xenomorph Growth Toxin Detected:</b> Administer hypervene to purge.</span>\n"
 			if(advice != "")
 				dat += "\t<span class='scanner'> <b>Contraindications:</b></span>\n"
 				dat += advice

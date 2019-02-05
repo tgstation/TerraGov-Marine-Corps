@@ -682,11 +682,12 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/M, alien)
 /datum/reagent/medicine/hyperzine
 	name = "Hyperzine"
 	id = "hyperzine"
-	description = "Hyperzine is a highly effective, long lasting, muscle stimulant.  May cause heart damage"
+	description = "Hyperzine is a highly effective, muscle and adrenal stimulant that massively accelerates metabolism.  May cause heart damage"
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	custom_metabolism = 0.2
 	overdose_threshold = REAGENTS_OVERDOSE/5
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/5
+	scannable = TRUE
 
 /datum/reagent/medicine/hyperzine/on_mob_delete(mob/living/M)
 	var/amount = current_cycle * 4
