@@ -498,9 +498,9 @@
 		return B?.beacon_cam
 
 //Sends a string to our currently selected squad.
-/obj/machinery/computer/overwatch/proc/send_to_squad(var/txt = "", var/plus_name = FALSE, var/only_leader = FALSE)
-	if(txt == "" || !current_squad || !operator)
-		return //Logic
+/obj/machinery/computer/overwatch/proc/send_to_squad(txt, plus_name = FALSE, only_leader = FALSE)
+	if(!txt || !current_squad || !operator)
+		return
 	var/text = copytext(sanitize(txt), 1, MAX_MESSAGE_LEN)
 	var/nametext = ""
 	if(plus_name)
@@ -521,13 +521,13 @@
 					to_chat(M, "[bicon(src)] <font color='blue'><B>\[SL Overwatch\]:</b> [nametext][text]</font>")
 					return
 
-/obj/machinery/computer/overwatch/proc/send_to_squads(var/txt = "", var/plus_name = FALSE, var/only_leader = FALSE)
-	if(!squads.len)
+/obj/machinery/computer/overwatch/proc/send_to_squads(txt, plus_name = FALSE, only_leader = FALSE)
+	if(!length(squads))
 		return FALSE
 	var/squad_backup = current_squad
 	for(var/datum/squad/S in squads)
 		current_squad = S
-		send_to_squad(txt,plus_name,only_leader)
+		send_to_squad(txt, plus_name, only_leader)
 	current_squad = squad_backup
 
 /obj/machinery/computer/overwatch/proc/handle_bombard()
@@ -564,7 +564,7 @@
 
 /obj/machinery/computer/overwatch/proc/do_fire_bombard(var/turf/T, var/user)
 	state("<span class='boldnotice'>Orbital bombardment has fired! Impact imminent!</span>")
-	send_to_squads("<span class='danger'>WARNING! Ballistic trans-atmospheric launch detected! Get outside of Danger Close!</span>")
+	send_to_squads("WARNING! Ballistic trans-atmospheric launch detected! Get outside of Danger Close!")
 	addtimer(CALLBACK(src, .do_land_bombard, T, user), 2.5 SECONDS)
 
 /obj/machinery/computer/overwatch/proc/do_land_bombard(var/turf/T, var/user)
