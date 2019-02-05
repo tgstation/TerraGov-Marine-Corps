@@ -65,6 +65,7 @@
 	dat += "<br>"
 
 	dat += "<A HREF='?_src_=vars;[HrefToken()];vars=[REF(EvacuationAuthority)]'>VV Evacuation/SD Controller</A><br>"
+	dat += "<A HREF='?_src_=vars;[HrefToken()];vars=[REF(GLOB.faxes)]'>VV Faxes List</A><br>"
 
 	dat += "<br><br>"
 
