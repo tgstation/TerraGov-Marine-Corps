@@ -957,7 +957,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 	var/turf/T
 	while(GLOB.fog_blocker_locations.len)
 		T = GLOB.fog_blocker_locations[GLOB.fog_blocker_locations.len]
-		GLOB.fog_blocker_locations--
+		GLOB.fog_blocker_locations.len--
 		new /obj/effect/forcefield/fog(T)
 
 /obj/effect/forcefield/fog
