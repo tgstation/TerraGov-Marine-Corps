@@ -301,10 +301,11 @@ x_pos = 0 1 2 3 4 5 6
 
 /obj/effect/landmark/shuttle_loc/Initialize()
 	. = ..()
-	link_location()
-	return INITIALIZE_HINT_QDEL
+	GLOB.shuttle_locations += src
 
 /obj/effect/landmark/shuttle_loc/Destroy()
+	GLOB.shuttle_locations -= src
+	return ..()
 
 /obj/effect/landmark/shuttle_loc/proc/link_location()
 	set waitfor = 0
