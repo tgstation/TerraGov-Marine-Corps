@@ -209,4 +209,4 @@
 			prefs.preferred_slot = SLOT_IN_B_HOLSTER
 	prefs.save_preferences()
 
-	to_chat(src, "You will now draw from the [slot] slot first.")
+	to_chat(src, "You will now equip/draw from the [slot] slot first.")

@@ -17,16 +17,15 @@
 				next_move = world.time + 3
 				return
 	else
-		if((client?.prefs?.preferred_slot && equip_to_slot_if_possible(I, client.prefs.preferred_slot, FALSE)) || equip_to_appropriate_slot(I, FALSE))
-			if(hand)
-				update_inv_l_hand(FALSE)
-			else
-				update_inv_r_hand(FALSE)
-			next_move = world.time + 3
-		else
-			to_chat(src, "<span class='warning'>You are unable to equip that.</span>")
+		if(client?.prefs?.preferred_slot)
+			if(equip_to_slot_if_possible(I, client.prefs.preferred_slot, FALSE, FALSE, FALSE))
+				return
+		if(!equip_to_appropriate_slot(I, FALSE))
 			return
-
+		if(hand)
+			update_inv_l_hand(FALSE)
+		else
+			update_inv_r_hand(FALSE)
 
 
 /mob/living/carbon/human/proc/equip_in_one_of_slots(obj/item/W, list/slots, del_on_fail = 1)
@@ -361,15 +360,15 @@
 			S.handle_item_insertion(W, TRUE, src)
 		if(SLOT_IN_SUIT)
 			var/obj/item/clothing/suit/storage/S = wear_suit
-			if(istype(S) && S.pockets.storage_slots)
-				W.loc = S.pockets//Has to have some slots available.
+			var/obj/item/storage/internal/T = S.pockets
+			T.handle_item_insertion(W, FALSE)
+			T.close(src)
 		if(SLOT_IN_ACCESSORY)
 			var/obj/item/clothing/under/U = w_uniform
-			if(U?.hastie)
-				return
 			var/obj/item/clothing/tie/storage/T = U.hastie
-			if(istype(T) && T.hold.storage_slots) 
-				W.loc = T.hold
+			var/obj/item/storage/internal/S = T.hold
+			S.handle_item_insertion(W, FALSE)
+			S.close(src)
 		if(SLOT_IN_HOLSTER)
 			var/obj/item/storage/S = belt
 			S.handle_item_insertion(W, FALSE, src)

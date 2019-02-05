@@ -133,27 +133,25 @@
 /mob/proc/attack_ui(slot)
 	var/obj/item/W = get_active_held_item()
 	if(istype(W))
-		equip_to_slot_if_possible(W, slot, 0) // equiphere
+		equip_to_slot_if_possible(W, slot, FALSE) // equiphere
 
-/mob/proc/put_in_any_hand_if_possible(obj/item/W as obj, del_on_fail = 0, disable_warning = 1, redraw_mob = 1)
-	if(equip_to_slot_if_possible(W, SLOT_L_HAND, 1, del_on_fail, disable_warning, redraw_mob))
-		return 1
-	else if(equip_to_slot_if_possible(W, SLOT_R_HAND, 1, del_on_fail, disable_warning, redraw_mob))
-		return 1
-	return 0
+/mob/proc/put_in_any_hand_if_possible(obj/item/W as obj, del_on_fail = FALSE, warning = FALSE, redraw_mob = TRUE)
+	if(equip_to_slot_if_possible(W, SLOT_L_HAND, TRUE, del_on_fail, warning, redraw_mob))
+		return TRUE
+	else if(equip_to_slot_if_possible(W, SLOT_R_HAND, TRUE, del_on_fail, warning, redraw_mob))
+		return TRUE
+	return FALSE
 
 //This is a SAFE proc. Use this instead of equip_to_splot()!
 //set del_on_fail to have it delete W if it fails to equip
-//set disable_warning to disable the 'you are unable to equip that' warning.
 //unset redraw_mob to prevent the mob from being redrawn at the end.
-/mob/proc/equip_to_slot_if_possible(obj/item/W, slot, ignore_delay = TRUE, del_on_fail = FALSE, disable_warning = FALSE, redraw_mob = TRUE, permanent = FALSE)
+/mob/proc/equip_to_slot_if_possible(obj/item/W, slot, ignore_delay = TRUE, del_on_fail = FALSE, warning = TRUE, redraw_mob = TRUE, permanent = FALSE)
 	if(!istype(W))
 		return
-
-	if(!W.mob_can_equip(src, slot, disable_warning))
+	if(!W.mob_can_equip(src, slot, warning))
 		if(del_on_fail)
 			qdel(W)
-		else if(!disable_warning)
+		else if(warning)
 			to_chat(src, "<span class='warning'>You are unable to equip that.</span>")
 		return
 	var/start_loc = W.loc
@@ -190,8 +188,8 @@
 	return
 
 //This is just a commonly used configuration for the equip_to_slot_if_possible() proc, used to equip people when the rounds tarts and when events happen and such.
-/mob/proc/equip_to_slot_or_del(obj/item/W, slot, permanent = 0)
-	return equip_to_slot_if_possible(W, slot, 1, 1, 1, 0, permanent)
+/mob/proc/equip_to_slot_or_del(obj/item/W, slot, permanent = FALSE)
+	return equip_to_slot_if_possible(W, slot, TRUE, TRUE, FALSE, FALSE, permanent)
 
 
 /mob/proc/equip_to_appropriate_slot(obj/item/W, ignore_delay = TRUE)
@@ -199,7 +197,7 @@
 		return FALSE
 
 	for(var/slot in SLOT_EQUIP_ORDER)
-		if(equip_to_slot_if_possible(W, slot, ignore_delay, FALSE, TRUE, TRUE))
+		if(equip_to_slot_if_possible(W, slot, ignore_delay, FALSE, FALSE, FALSE))
 			return TRUE
 
 	return FALSE
