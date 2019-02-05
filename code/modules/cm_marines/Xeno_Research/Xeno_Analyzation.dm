@@ -109,6 +109,8 @@ If chamber connected to the console, you can start research aliens. Just don't b
 			continue
 		linked_chamber = D
 		D.linked_console = src
+		screen = 1.3
+		updateUsrDialog()
 		return
 	screen = 1.3
 	updateUsrDialog()
