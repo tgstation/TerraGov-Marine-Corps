@@ -128,19 +128,19 @@ Class Procs:
 			qdel()
 		return
 
-/obj/machinery/New()
+/obj/machinery/Initialize()
 	. = ..()
 	GLOB.machines += src
 	var/area/A = get_area(src)
 	if(A)
-		A.master.area_machines += src
+		A.area_machines += src
 
 /obj/machinery/Destroy()
 	GLOB.machines -= src
 	processing_machines -= src
 	var/area/A = get_area(src)
 	if(A)
-		A.master.area_machines -= src
+		A.area_machines -= src
 	. = ..()
 
 /obj/machinery/proc/start_processing()

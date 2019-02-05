@@ -286,8 +286,7 @@
 				break
 
 	if(!node1 && !node2)
-		qdel(src)
-		return
+		return INITIALIZE_HINT_QDEL
 
 	var/turf/T = get_turf(src)
 	if(istype(T))

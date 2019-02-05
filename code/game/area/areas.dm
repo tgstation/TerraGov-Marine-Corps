@@ -24,7 +24,7 @@
 	return ..()
 
 /area/Initialize()
-	..()
+	. = ..()
 
 	icon_state = "" //Used to reset the icon overlay, I assume.
 	layer = AREAS_LAYER
@@ -277,7 +277,7 @@
 // called when power status changes
 
 /area/proc/power_change()
-	master.powerupdate = 2
+	powerupdate = 2
 	for(var/area/RA in related)
 		for(var/obj/machinery/M in RA)	// for each machine in the area
 			M.power_change()				// reverify power status (to update icons etc.)
