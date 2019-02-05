@@ -77,7 +77,7 @@ Your squaddies will look to you when it comes to construction in the field of ba
 	paygrade = "E3"
 	total_positions = 16
 	spawn_positions = 16
-	flag = ROLE_MARINE_MEDIC
+	flag = ROLE_MARINE_CORPSMAN
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_MEDBAY)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_MEDBAY)
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADD_TO_MODE|ROLE_ADD_TO_SQUAD
