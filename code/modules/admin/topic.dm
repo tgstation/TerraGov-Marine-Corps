@@ -1248,7 +1248,7 @@
 
 						if(!QDELETED(O))
 							if(obj_dir)
-								O.dir = obj_dir
+								O.setDir(obj_dir)
 							if(obj_name)
 								O.name = obj_name
 								if(ismob(O))

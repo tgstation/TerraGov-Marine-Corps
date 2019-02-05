@@ -70,7 +70,7 @@
 		playsound(src.loc, 'sound/weapons/mine_armed.ogg', 25, 1)
 		icon_state += "_armed"
 		user.drop_held_item()
-		dir = user.dir //The direction it is planted in is the direction the user faces at that time
+		setDir(user.dir) //The direction it is planted in is the direction the user faces at that time
 		var/tripwire_loc = get_turf(get_step(loc, dir))
 		tripwire = new /obj/effect/mine_tripwire(tripwire_loc)
 		tripwire.linked_claymore = src

@@ -48,13 +48,13 @@
 		return
 
 	switch(href_list["_src_"])
-		if("holder")	
+		if("holder")
 			hsrc = holder
-		if("usr")		
+		if("usr")
 			hsrc = mob
-		if("prefs")		
+		if("prefs")
 			return prefs.process_link(usr, href_list)
-		if("vars")		
+		if("vars")
 			return view_var_Topic(href, href_list, hsrc)
 		if("chat")
 			return chatOutput.Topic(href, href_list)
@@ -285,6 +285,10 @@ GLOBAL_LIST_EMPTY(external_rsc_url)
 		return
 	preload_rsc = GLOB.external_rsc_url
 
+//Hook, override it to run code when dir changes
+//Like for /atoms, but clients are their own snowflake FUCK
+/client/proc/setDir(newdir)
+	dir = newdir
 
 /client/proc/get_offset()
 	return max(abs(pixel_x / 32), abs(pixel_y / 32))

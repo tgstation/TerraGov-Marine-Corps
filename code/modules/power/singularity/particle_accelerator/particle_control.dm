@@ -82,7 +82,7 @@
 	if(href_list["togglep"])
 		src.toggle_power()
 		if(active)
-			log_game("[key_name(usr)] turned on a PA computer in [AREACOORD(src.loc)].")			
+			log_game("[key_name(usr)] turned on a PA computer in [AREACOORD(src.loc)].")
 			message_admins("[ADMIN_TPMONTY(usr)] turned on a PA computer.")
 	else if(href_list["scan"])
 		src.part_scan()
@@ -92,7 +92,7 @@
 		if(strength > 2)
 			strength = 2
 		else
-			log_game("[key_name(usr)] increased PA computer to [strength] in [AREACOORD(src.loc)].")			
+			log_game("[key_name(usr)] increased PA computer to [strength] in [AREACOORD(src.loc)].")
 			message_admins("[ADMIN_TPMONTY(usr)] increased PA computer to [strength].")
 		for(var/obj/structure/particle_accelerator/part in connected_parts)
 			part.strength = strength
@@ -144,7 +144,7 @@
 
 /obj/machinery/particle_accelerator/control_box/proc/part_scan()
 	for(var/obj/structure/particle_accelerator/fuel_chamber/F in orange(1,src))
-		src.dir = F.dir
+		setDir(F.dir)
 	connected_parts = list()
 	var/tally = 0
 	var/ldir = turn(dir,-90)

@@ -112,7 +112,7 @@
 	shot_from = S
 	in_flight = 1
 
-	dir = get_dir(loc, target_turf)
+	setDir(get_dir(loc, target_turf))
 
 	round_statistics.total_projectiles_fired++
 	if(ammo.flags_ammo_behavior & AMMO_BALLISTIC)
