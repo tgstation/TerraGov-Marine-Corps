@@ -69,7 +69,7 @@ Come hell or high water, you are going to be there for them."}
 	title = "Field Commander"
 	comm_title = "FCDR"
 	paygrade = "MAJ"
-	flag = ROLE_FIELD_OFFICER
+	flag = ROLE_FIELD_COMMANDER
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADD_TO_MODE|ROLE_ADMIN_NOTIFY
 	skills_type = /datum/skills/FO
 	access = ALL_MARINE_ACCESS
