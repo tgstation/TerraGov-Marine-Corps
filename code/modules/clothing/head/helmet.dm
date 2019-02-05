@@ -411,7 +411,7 @@
 /obj/item/clothing/head/helmet/marine/imperial/sergeant
 	name = "\improper Imperial Guard carapace helmet"
 	desc = "A heavy helmet that goes with the carapace armour, unlike the flak variant, this one will actually protect you."
-	//icon_state
+	icon_state = "guardvethelm"
 	armor = list(melee = 70, bullet = 55, laser = 50, energy = 35, bomb = 40, bio = 0, rad = 0)
 
 /obj/item/clothing/head/helmet/marine/imperial/sergeant/Initialize()
