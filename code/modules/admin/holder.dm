@@ -260,6 +260,7 @@ GLOBAL_LIST_INIT(admin_verbs_admin, world.AVadmin())
 	/datum/admins/proc/get_mob,
 	/datum/admins/proc/get_key,
 	/datum/admins/proc/send_mob,
+	/datum/admins/proc/send_key,
 	/datum/admins/proc/msay,
 	/datum/admins/proc/dsay,
 	/datum/admins/proc/pref_attack_logs,

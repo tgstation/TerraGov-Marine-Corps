@@ -79,16 +79,7 @@ var/secret_force_mode = "secret" // if this is anything but "secret", the secret
 
 var/datum/engine_eject/engine_eject_control = null
 var/host = null
-var/aliens_allowed = 1
-var/ooc_allowed = 1
-var/looc_allowed = 1
-var/dsay_allowed = 1
-var/dooc_allowed = 1
-var/dlooc_allowed = 0
-var/traitor_scaling = 1
-//var/goonsay_allowed = 0
 var/dna_ident = 1
-var/respawn_allowed = 0
 var/guests_allowed = 0
 var/shuttle_frozen = 0
 var/shuttle_left = 0
@@ -99,7 +90,6 @@ var/respawntime = 15
 
 var/list/jobMax = list()
 var/list/bombers = list(  )
-var/list/admin_log = list (  )
 var/list/lastsignalers = list(	)	//keeps last 100 signals here in format: "[src] used \ref[src] @ location [src.loc]: [freq]/[code]"
 var/list/lawchanges = list(  ) //Stores who uploaded laws to which silicon-based lifeform, and what the law was
 var/list/reg_dna = list(  )
@@ -123,18 +113,6 @@ var/list/reverse_dir = list(2, 1, 3, 8, 10, 9, 11, 4, 6, 5, 7, 12, 14, 13, 15, 3
 var/datum/station_state/start_state = null
 var/datum/sun/sun = null
 
-//Logging
-/*
-var/log_directory
-var/world_game_log
-var/world_attack_log
-var/world_runtime_log
-var/world_ra_log
-var/world_pda_log
-var/world_href_log
-var/sql_error_log
-var/config_error_log
-*/
 
 var/list/all_player_details = list()  // [ckey] = /datum/player_details
 
@@ -214,20 +192,6 @@ var/sqlfdbklogin = "root"
 var/sqlfdbkpass = ""
 
 var/sqllogging = 0 // Should we log deaths, population stats, etc?
-
-
-
-	// Forum MySQL configuration (for use with forum account/key authentication)
-	// These are all default values that will load should the forumdbconfig.txt
-	// file fail to read for whatever reason.
-
-var/forumsqladdress = "localhost"
-var/forumsqlport = "3306"
-var/forumsqldb = "tgstation"
-var/forumsqllogin = "root"
-var/forumsqlpass = ""
-var/forum_activated_group = "2"
-var/forum_authenticated_group = "10"
 
 	// For FTP requests. (i.e. downloading runtime logs.)
 	// However it'd be ok to use for accessing attack logs and such too, which are even laggier.

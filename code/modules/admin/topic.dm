@@ -12,9 +12,9 @@
 /datum/admins/Topic(href, href_list)
 	. = ..()
 
-	if(usr.client != src.owner || !check_rights(0))
+	if(usr.client != src.owner || !check_rights(NONE))
 		log_admin("[key_name(usr)] tried to use the admin panel without authorization.")
-		message_admins("[ADMIN_TPMONTY(usr)] has attempted to override the admin panel!")
+		message_admins("[ADMIN_TPMONTY(usr)] tried to use the admin panel without authorization.")
 		return
 
 	if(!CheckAdminHref(href, href_list))
@@ -94,6 +94,8 @@
 
 
 	else if(href_list["playerpanel"])
+		if(!check_rights(R_ADMIN))
+			return
 		var/mob/M = locate(href_list["playerpanel"])
 		show_player_panel(M)
 
@@ -104,11 +106,13 @@
 
 
 	else if(href_list["individuallog"])
+		if(!check_rights(R_ADMIN))
+			return
 		var/mob/M = locate(href_list["individuallog"])
 		show_individual_logging_panel(M, href_list["log_src"], href_list["log_type"])
 
 
-	else if(href_list["observecoodjump"])
+	else if(href_list["observecoordjump"])
 		if(istype(usr, /mob/new_player))
 			return
 
