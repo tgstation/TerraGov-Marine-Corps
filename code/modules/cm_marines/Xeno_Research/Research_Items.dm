@@ -7,6 +7,7 @@
 	desc = "Syringe for taking samples"
 	icon = 'icons/Marine/Research/Research_Items.dmi'
 	icon_state = "sampler_empty"
+	w_class = 2
 	var/filled = FALSE
 	var/obj/item/marineResearch/xenomorph/weed/sample = null
 
