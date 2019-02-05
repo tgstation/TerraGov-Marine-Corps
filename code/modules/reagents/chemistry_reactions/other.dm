@@ -64,7 +64,7 @@
 
 /datum/chemical_reaction/sdtoxin
 	name = "Toxin"
-	id = "sdtoxin"
+	id = "sdtoxin2"
 	results = list("sdtoxin" = 2)
 	required_reagents = list("synaptizine" = 1, "dylovene" = 1)
 

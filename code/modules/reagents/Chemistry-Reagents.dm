@@ -58,16 +58,6 @@
 	holder.remove_reagent(id, custom_metabolism * M.metabolism_efficiency) //By default it slowly disappears.
 	return TRUE
 
-/datum/reagent/proc/purge(mob/living/carbon/M)
-	if(length(purge_list))
-		var/count = length(purge_list)
-		for(var/datum/reagent/R in M.reagents.reagent_list)
-			if(count < 1)
-				break
-			if(is_type_in_list(R, purge_list))
-				count--
-				M.reagents.remove_reagent(R.id,purge_rate)
-
 // Called when this reagent is first added to a mob
 /datum/reagent/proc/on_mob_add(mob/living/L)
 	return

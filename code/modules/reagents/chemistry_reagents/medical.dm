@@ -695,12 +695,16 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/M, alien)
 	M.adjustHalLoss(amount)
 	if(M.stat == DEAD)
 		to_chat(M, "<span class='danger'>Your body is unable to bear the strain. The last thing you feel, aside from crippling exhaustion, is an explosive pain in your chest as you drop dead. It's a sad thing your adventures have ended here!</span>")
-	else if(amount > 50)
-		M.KnockOut(amount * 0.1)
-		to_chat(M, "<span class='danger'>Your world convulses as a wave of extreme fatigue washes over you!</span>") //when hyperzine is removed from the body, there's a backlash as it struggles to transition and operate without the drug
-	else
-		M.KnockDown(amount * 0.05)
-		to_chat(M, "<span class='warning'>A sudden wave of fatigue washes over you.</span>")
+	switch(amount)
+		if(1 to 20)
+			to_chat(M, "<span class='warning'>You feel a bit tired.</span>")
+		if(21 to 50)
+			M.KnockDown(amount * 0.05)
+			to_chat(M, "<span class='warning'>You collapse as a sudden wave of fatigue washes over you.</span>")
+		if(50 to INFINITY)
+			M.KnockOut(amount * 0.1)
+			to_chat(M, "<span class='danger'>Your world convulses as a wave of extreme fatigue washes over you!</span>") //when hyperzine is removed from the body, there's a backlash as it struggles to transition and operate without the drug
+
 	return ..()
 
 /datum/reagent/medicine/hyperzine/on_mob_life(mob/living/M)
