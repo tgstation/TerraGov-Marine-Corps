@@ -2,12 +2,10 @@
 	set name = "quick-equip"
 	set hidden = TRUE
 
-
-	if(next_move > world.time)
-		return
-
 	var/obj/item/I = get_active_held_item()
 	if(!I)
+		if(next_move > world.time)
+			return
 		if(client?.prefs?.preferred_slot)
 			if(draw_from_slot_if_possible(client.prefs.preferred_slot))
 				next_move = world.time + 3
