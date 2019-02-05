@@ -352,7 +352,7 @@ datum/preferences
 					clothes_s.Blend(new /icon('icons/mob/back.dmi', "marinesat"), ICON_OVERLAY)
 					clothes_s.Blend(new /icon('icons/mob/belt.dmi', "m4a3_holster_g"), ICON_OVERLAY)
 					clothes_s.Blend(new /icon('icons/mob/mob.dmi', "card-id"), ICON_OVERLAY)
-				if(ROLE_FIELD_OFFICER)
+				if(ROLE_FIELD_COMMANDER)
 					clothes_s = new /icon('icons/mob/uniform_0.dmi', "XO_jumpsuit")
 					clothes_s.Blend(new /icon('icons/mob/feet.dmi', "jackboots"), ICON_UNDERLAY)
 					clothes_s.Blend(new /icon('icons/mob/ears.dmi', "headset"), ICON_OVERLAY)
