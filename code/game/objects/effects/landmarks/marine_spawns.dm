@@ -12,7 +12,7 @@
 	job = /datum/job/command/commander
 
 /obj/effect/landmark/start/marine/executiveofficer
-	job = /datum/job/command/fieldofficer
+	job = /datum/job/command/fieldcommander
 	
 /obj/effect/landmark/start/marine/staffofficer
 	job = /datum/job/command/bridge
