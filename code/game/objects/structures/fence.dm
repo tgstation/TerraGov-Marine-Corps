@@ -66,7 +66,7 @@
 		health -= 100
 		healthcheck(1, 1, user)
 
-	else if(ishuman(user) && user.a_intent == "hurt")
+	else if(ishuman(user) && user.a_intent == INTENT_HARM)
 		var/mob/living/carbon/human/H = user
 		if(H.species.can_shred(H))
 			attack_generic(H, 25)

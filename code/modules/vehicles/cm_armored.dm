@@ -543,7 +543,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 //Special case for entering the vehicle without using the verb
 /obj/vehicle/multitile/root/cm_armored/attack_hand(var/mob/user)
 
-	if(user.a_intent == "hurt")
+	if(user.a_intent == INTENT_HARM)
 		handle_harm_attack(user)
 		return
 

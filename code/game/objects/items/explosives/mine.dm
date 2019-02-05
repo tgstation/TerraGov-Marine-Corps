@@ -128,7 +128,8 @@
 	if(triggered) //Mine is already set to go off
 		return
 
-	if(M.a_intent == "help") return
+	if(M.a_intent == INTENT_HELP)
+		return
 	M.visible_message("<span class='danger'>[M] has slashed [src]!</span>", \
 	"<span class='danger'>You slash [src]!</span>")
 	playsound(loc, 'sound/weapons/slice.ogg', 25, 1)
