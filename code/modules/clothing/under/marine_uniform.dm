@@ -21,8 +21,8 @@
 	..()
 
 /obj/item/clothing/under/marine/medic
-	name = "\improper TGMC medic fatigues"
-	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented combat medic fatigues. You suspect it's not as robust-proof as advertised."
+	name = "\improper TGMC corpsman fatigues"
+	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented combat corpsman fatigues. You suspect it's not as robust-proof as advertised."
 	icon_state = "marine_medic"
 
 /obj/item/clothing/under/marine/medic/New(loc,expected_type 		= type,
