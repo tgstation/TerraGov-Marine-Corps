@@ -504,7 +504,7 @@
 	openspeed = 4 //shorter open animation.
 	unacidable = TRUE
 	no_panel = TRUE
-	not_weldable = FALSE
+	not_weldable = TRUE
 	destructible = FALSE
 
 /obj/machinery/door/airlock/dropship_hatch/ex_act(severity)
