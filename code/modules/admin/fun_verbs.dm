@@ -550,6 +550,18 @@
 	if(!istype(ticker.mode.picked_call))
 		return
 
+	var/max = input("What should the maximum amount of mobs be?", "Max Mobs", 20) as null|num
+	if(!max || max < 1)
+		return
+
+	ticker.mode.picked_call.mob_max = max
+
+	var/min = input("What should the minimum amount of mobs be?", "Min Mobs", 1) as null|num
+	if(!min || min < 1)
+		return
+
+	ticker.mode.picked_call.mob_min = min
+
 	var/is_announcing = TRUE
 	if(alert(usr, "Would you like to announce the distress beacon to the server population? This will reveal the distress beacon to all players.", "Announce distress beacon?", "Yes", "No") != "Yes")
 		is_announcing = FALSE

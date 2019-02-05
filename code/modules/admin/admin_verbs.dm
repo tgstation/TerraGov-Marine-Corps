@@ -608,12 +608,13 @@
 		return
 
 	var/mob/M = usr
+	var/target = pick(get_area_turfs(A))
 	M.on_mob_jump()
-	M.forceMove(pick(get_area_turfs(A)))
+	M.forceMove(target)
 
-	log_admin("[key_name(usr)] jumped to [AREACOORD(usr.loc)].")
-	if(!istype(M, /mob/dead/observer))
-		message_admins("[ADMIN_TPMONTY(usr)] jumped to [ADMIN_VERBOSEJMP(usr.loc)].")
+	log_admin("[key_name(usr)] jumped to [AREACOORD(M)].")
+	if(!isobserver(M))
+		message_admins("[ADMIN_TPMONTY(usr)] jumped to [ADMIN_VERBOSEJMP(M)].")
 
 
 /datum/admins/proc/jump_turf()
@@ -623,7 +624,7 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/selection = input("Please, select a turf!", "Jump to turf", null, null) as null|anything in GLOB.turfs
+	var/selection = input("Please, select a turf.", "Jump to turf") as null|anything in GLOB.turfs
 	if(!selection)
 		return
 
@@ -633,9 +634,9 @@
 	M.on_mob_jump()
 	M.forceMove(T)
 
-	log_admin("[key_name(usr)] jumped to turf [AREACOORD(M.loc)].")
-	if(!istype(M, /mob/dead/observer))
-		message_admins("[ADMIN_TPMONTY(usr)] jumped to turf [ADMIN_VERBOSEJMP(M.loc)].")
+	log_admin("[key_name(M)] jumped to turf [AREACOORD(T)].")
+	if(!isobserver(M))
+		message_admins("[ADMIN_TPMONTY(M)] jumped to turf [ADMIN_VERBOSEJMP(T)].")
 
 
 /datum/admins/proc/jump_coord(tx as num, ty as num, tz as num)
@@ -650,11 +651,12 @@
 	M.x = tx
 	M.y = ty
 	M.z = tz
-	M.forceMove(M.loc)
+	var/turf/T = get_turf(M)
+	M.forceMove(T)
 
-	log_admin("[key_name(usr)] jumped to coordinate [AREACOORD(M.loc)].")
-	if(!istype(usr, /mob/dead/observer))
-		message_admins("[ADMIN_TPMONTY(usr)] jumped to coordinate [ADMIN_VERBOSEJMP(M.loc)].")
+	log_admin("[key_name(M)] jumped to coordinate [AREACOORD(T)].")
+	if(!isobserver(M))
+		message_admins("[ADMIN_TPMONTY(M)] jumped to coordinate [ADMIN_VERBOSEJMP(T)].")
 
 
 /datum/admins/proc/jump_mob()
@@ -664,7 +666,7 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/selection = input("Please, select a mob!", "Jump to Mob", null, null) as null|anything in sortmobs(GLOB.mob_list)
+	var/selection = input("Please, select a mob.", "Jump to Mob") as null|anything in sortmobs(GLOB.mob_list)
 	if(!selection)
 		return
 
@@ -675,9 +677,9 @@
 	N.on_mob_jump()
 	N.forceMove(T)
 
-	log_admin("[key_name(usr)] jumped to [key_name(M)]'s mob [AREACOORD(M.loc)]")
-	if(!istype(N, /mob/dead/observer))
-		message_admins("[ADMIN_TPMONTY(usr)] jumped to [ADMIN_TPMONTY(M)].")
+	log_admin("[key_name(N)] jumped to [key_name(M)]'s mob [AREACOORD(T)]")
+	if(!isobserver(N))
+		message_admins("[ADMIN_TPMONTY(N)] jumped to [ADMIN_TPMONTY(T)].")
 
 
 /datum/admins/proc/jump_key()
@@ -691,7 +693,7 @@
 	for(var/mob/M in GLOB.player_list)
 		keys += M.client
 
-	var/selection = input("Please, select a key!", "Jump to Key", null, null) as null|anything in sortKey(keys)
+	var/selection = input("Please, select a key.", "Jump to Key") as null|anything in sortKey(keys)
 	if(!selection)
 		return
 
@@ -702,9 +704,9 @@
 	N.on_mob_jump()
 	N.forceMove(T)
 
-	log_admin("[key_name(usr)] jumped to [key_name(M)]'s key [AREACOORD(M.loc)].")
-	if(!istype(N, /mob/dead/observer))
-		message_admins("[ADMIN_TPMONTY(usr)] jumped to [ADMIN_TPMONTY(M)]")
+	log_admin("[key_name(usr)] jumped to [key_name(M)]'s key [AREACOORD(T)].")
+	if(!isobserver(N))
+		message_admins("[ADMIN_TPMONTY(usr)] jumped to [ADMIN_TPMONTY(T)].")
 
 
 /datum/admins/proc/get_mob()
@@ -714,7 +716,7 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/selection = input("Please, select a mob!", "Get Mob", null, null) as null|anything in sortmobs(GLOB.mob_list)
+	var/selection = input("Please, select a mob.", "Get Mob") as null|anything in sortmobs(GLOB.mob_list)
 	if(!selection)
 		return
 
@@ -741,7 +743,7 @@
 	for(var/mob/M in GLOB.player_list)
 		keys += M.client
 
-	var/selection = input("Please, select a key!", "Get Key", null, null) as null|anything in sortKey(keys)
+	var/selection = input("Please, select a key.", "Get Key") as null|anything in sortKey(keys)
 	if(!selection)
 		return
 
@@ -769,17 +771,61 @@
 	var/atom/target
 
 
-	switch(input("To an area or to a mob?", "Send Mob", null, null) as null|anything in list("Area", "Mob"))
+	switch(input("Where do you want to send it to?", "Send Mob") as null|anything in list("Area", "Mob", "Key"))
 		if("Area")
 			var/area/A = input("Pick an area.", "Pick an area") as null|anything in return_sorted_areas()
 			if(!A || !M)
 				return
 			target = pick(get_area_turfs(A))
 		if("Mob")
-			var/mob/N = input("Pick an area.", "Pick an area") as null|anything in sortmobs(GLOB.mob_list)
+			var/mob/N = input("Pick a mob.", "Pick a mob") as null|anything in sortmobs(GLOB.mob_list)
 			if(!N || !M)
 				return
 			target = N.loc
+		if("Key")
+			var/client/C = input("Pick a key.", "Pick a key") as null|anything in sortKey(GLOB.clients)
+			if(!C || !M)
+				return
+			target = C.mob.loc
+
+	M.on_mob_jump()
+	M.forceMove(target)
+
+	log_admin("[key_name(usr)] teleported [key_name(M)] to [AREACOORD(M.loc)].")
+	message_admins("[ADMIN_TPMONTY(usr)] teleported [ADMIN_TPMONTY(M)] to [ADMIN_VERBOSEJMP(M.loc)].")
+
+
+/datum/admins/proc/send_key()
+	set category = "Admin"
+	set name = "Send Key"
+
+	if(!check_rights(R_ADMIN))
+		return
+
+	var/selection = input("Please, select a key!", "Send Key") as null|anything in sortKey(GLOB.clients)
+	if(!selection)
+		return
+
+	var/mob/M = selection
+	var/atom/target
+
+
+	switch(input("Where do you want to send it to?", "Send Key") as null|anything in list("Area", "Mob", "Key"))
+		if("Area")
+			var/area/A = input("Pick an area.", "Pick an area") as null|anything in return_sorted_areas()
+			if(!A || !M)
+				return
+			target = pick(get_area_turfs(A))
+		if("Mob")
+			var/mob/N = input("Pick a mob.", "Pick a mob") as null|anything in sortmobs(GLOB.mob_list)
+			if(!N || !M)
+				return
+			target = N.loc
+		if("Key")
+			var/client/C = input("Pick a key.", "Pick a key") as null|anything in sortKey(GLOB.clients)
+			if(!C || !M)
+				return
+			target = C.mob.loc
 
 	M.on_mob_jump()
 	M.forceMove(target)
