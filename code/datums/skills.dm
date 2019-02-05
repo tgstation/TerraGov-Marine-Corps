@@ -452,28 +452,6 @@
 
 /datum/skills/imperial
 	name = "Guardsman"
-	//cqc = SKILL_CQC_DEFAULT
-	//melee_weapons = SKILL_MELEE_DEFAULT
-
-	//firearms = SKILL_FIREARMS_DEFAULT
-	//pistols = SKILL_PISTOLS_DEFAULT
-	//shotguns = SKILL_SHOTGUNS_DEFAULT
-	//rifles = SKILL_RIFLES_DEFAULT
-	//smgs = SKILL_SMGS_DEFAULT
-	//heavy_weapons = SKILL_HEAVY_WEAPONS_DEFAULT
-	//smartgun = SKILL_SMART_DEFAULT
-	//spec_weapons = SKILL_SPEC_DEFAULT
-
-	//endurance = 0 - does nothing
-	//engineer = SKILL_ENGINEER_DEFAULT
-	//construction = SKILL_CONSTRUCTION_DEFAULT
-	//leadership = SKILL_LEAD_NOVICE
-	//medical = SKILL_MEDICAL_DEFAULT
-	//surgery = SKILL_SURGERY_DEFAULT
-	//pilot = SKILL_PILOT_DEFAULT
-	//police = SKILL_POLICE_DEFAULT
-	//powerloader = SKILL_POWERLOADER_DEFAULT
-	//large_vehicle = SKILL_LARGE_VEHICLE_DEFAULT
 
 /datum/skills/imperial/SL
 	name = "Guardsman Sergeant" // veteran guardsman, practically better in all

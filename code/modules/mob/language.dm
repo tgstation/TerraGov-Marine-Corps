@@ -128,8 +128,8 @@
 	colour = "soghun"
 	key = "3"
 
-/datum/language/imperial_english
-	name = "Imperial English"
+/datum/language/imperial
+	name = "Imperial"
 	desc = "English 2: Electric Boogaloo"
 	speech_verb = "says"
 	colour = "impradio" // same color is radio
