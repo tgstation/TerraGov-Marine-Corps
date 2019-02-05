@@ -398,6 +398,7 @@
 	if(istext(web_sound_input))
 		var/web_sound_url = ""
 		var/pitch
+		var/show = FALSE
 		if(length(web_sound_input))
 			web_sound_input = trim(web_sound_input)
 			if(findtext(web_sound_input, ":") && !findtext(web_sound_input, GLOB.is_http_protocol))
@@ -419,15 +420,11 @@
 				if(data["url"])
 					web_sound_url = data["url"]
 					var/title = "[data["title"]]"
-					var/webpage_url = title
-					if(data["webpage_url"])
-						webpage_url = "<a href=\"[data["webpage_url"]]\">[title]</a>"
-
-					var/title = FALSE
 					var/res = alert(usr, "Show the title of and link to this song to the players?\n[title]",, "Yes", "No", "Cancel")
 					switch(res)
 						if("Yes")
-							title = TRUE
+							if(data["webpage_url"])
+								show = "<a href=\"[data["webpage_url"]]\">[title]</a>"
 						if("Cancel")
 							return
 					log_admin("[key_name(usr)] played web sound: [web_sound_input]")
@@ -468,8 +465,8 @@
 				continue
 			if((C.prefs.toggles_sound & SOUND_MIDI) && C.chatOutput && !C.chatOutput.broken && C.chatOutput.loaded)
 				C.chatOutput.sendMusic(web_sound_url, pitch)
-				if(title)
-					to_chat(C, "<span class='boldnotice'>An admin played: [webpage_url]</span>")
+				if(show)
+					to_chat(C, "<span class='boldnotice'>An admin played: [show]</span>")
 
 
 /datum/admins/proc/sound_stop()

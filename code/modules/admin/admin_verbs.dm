@@ -689,15 +689,14 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/list/keys = list()
-	for(var/mob/M in GLOB.player_list)
-		keys += M.client
-
-	var/selection = input("Please, select a key.", "Jump to Key") as null|anything in sortKey(keys)
+	var/selection = input("Please, select a key.", "Jump to Key") as null|anything in sortKey(GLOB.clients)
 	if(!selection)
 		return
 
 	var/mob/M = selection:mob
+	if(!M)
+		return
+
 	var/mob/N = usr
 	var/turf/T = get_turf(M)
 

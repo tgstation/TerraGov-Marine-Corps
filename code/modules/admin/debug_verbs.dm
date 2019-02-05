@@ -264,22 +264,42 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	set category = "Debug"
 	set name = "Debug Mob Lists"
 
-	switch(input("Which list?") in list("Players", "Admins", "Mobs", "Living Mobs", "Dead Mobs", "Clients"))
-		if("Players")
-			to_chat(usr, list2text(GLOB.player_list,","))
-		if("Admins")
-			to_chat(usr, list2text(GLOB.admins,","))
-		if("Mobs")
-			to_chat(usr, list2text(GLOB.mob_list,","))
-		if("Living Mobs")
-			to_chat(usr, list2text(GLOB.alive_mob_list,","))
-		if("Dead Mobs")
-			to_chat(usr, list2text(GLOB.dead_mob_list,","))
-		if("Clients")
-			to_chat(usr, list2text(GLOB.clients,","))
+	var/dat
 
-	log_admin("[key_name(usr)] is debugging mob lists.")
-	message_admins("[ADMIN_TPMONTY(usr)] is debugging mob lists.")
+	var/choice = input("Which list?") as null|anything in list("Players", "Admins", "Clients", "Mobs", "Living Mobs", "Dead Mobs", "Xenos", "Alive Xenos", "Dead Xenos")
+	if(!choice)
+		return
+
+	switch(choice)
+		if("Players")
+			dat += list2text(GLOB.player_list, "<br>")
+		if("Admins")
+			dat += list2text(GLOB.admins, "<br>")
+		if("Clients")
+			dat += list2text(GLOB.clients, "<br>")
+		if("Mobs")
+			dat += list2text(GLOB.mob_list, "<br>")
+		if("Living Mobs")
+			dat += list2text(GLOB.alive_mob_list, "<br>")
+		if("Dead Mobs")
+			dat += list2text(GLOB.dead_mob_list, "<br>")
+		if("Xenos")
+			dat += list2text(GLOB.xeno_mob_list, "<br>")
+		if("Alive Xenos")
+			dat += list2text(GLOB.alive_xeno_list, "<br>")
+		if("Dead Xenos")
+			dat += list2text(GLOB.dead_xeno_list, "<br>")
+		if("Humans")
+			dat += list2text(GLOB.human_mob_list, "<br>")
+		if("Alive Humans")
+			dat += list2text(GLOB.alive_human_list, "<br>")
+		if("Dead Xenos")
+			dat += list2text(GLOB.dead_human_list, "<br>")
+
+	usr << browse(dat, "window=moblists")
+
+	log_admin("[key_name(usr)] is debugging the [choice] list.")
+	message_admins("[ADMIN_TPMONTY(usr)] is debugging the [choice] list.")
 
 
 /datum/admins/proc/spawn_atom(var/object as text)
@@ -431,17 +451,31 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	if(!check_rights(R_DEBUG))
 		return
 
-	var/selection = input("Please, select a mob!", "Check Contents", null, null) as null|anything in sortmobs(GLOB.mob_list)
-	if(!selection)
+	var/choice = input("Check contents of", "Check Contents") as null|anything in list("Key", "Mob")
+	if(!choice)
 		return
 
-	var/mob/M = selection
-	var/dat = "<b>Contents of [key_name(M)]:</b><hr>"
+	var/mob/M
+	switch(choice)
+		if("Key")
+			var/selection = input("Please, select a key.", "Check Contents") as null|anything in sortKey(GLOB.clients)
+			if(!selection)
+				return
+			M = selection:mob
+		if("Mob")
+			var/selection = input("Please, select a mob.", "Check Contents") as null|anything in sortmobs(GLOB.mob_list)
+			if(!selection)
+				return
+			M = selection
 
+	if(!isliving(M))
+		return
+
+	var/dat = "<b>Contents of [key_name(M)]:</b><hr>"
 
 	var/list/L = M.get_contents()
 	for(var/t in L)
-		dat += "[t]\n"
+		dat += "[t]<br>"
 
 	usr << browse(dat, "window=contents")
 

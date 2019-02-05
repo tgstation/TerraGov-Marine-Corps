@@ -175,10 +175,6 @@
 	if(Storage) //If it called itself
 		L += Storage.return_inv()
 
-		//Leave this commented out, it will cause storage items to exponentially add duplicate to the list
-		//for(var/obj/item/storage/S in Storage.return_inv()) //Check for storage items
-		//	L += get_contents(S)
-
 		for(var/obj/item/gift/G in Storage.return_inv()) //Check for gift-wrapped items
 			L += G.gift
 			if(istype(G.gift, /obj/item/storage))
@@ -192,28 +188,29 @@
 
 	else
 
-		L += src.contents
-		for(var/obj/item/storage/S in src.contents)	//Check for storage items
+		L += contents
+		for(var/obj/item/storage/S in contents)	//Check for storage items
 			L += get_contents(S)
 
-		for(var/obj/item/gift/G in src.contents) //Check for gift-wrapped items
+		for(var/obj/item/gift/G in contents) //Check for gift-wrapped items
 			L += G.gift
 			if(istype(G.gift, /obj/item/storage))
 				L += get_contents(G.gift)
 
-		for(var/obj/item/smallDelivery/D in src.contents) //Check for package wrapped items
+		for(var/obj/item/smallDelivery/D in contents) //Check for package wrapped items
 			L += D.wrapped
 			if(istype(D.wrapped, /obj/item/storage)) //this should never happen
 				L += get_contents(D.wrapped)
 		return L
 
-/mob/living/proc/check_contents_for(A)
-	var/list/L = src.get_contents()
 
-	for(var/obj/B in L)
-		if(B.type == A)
-			return 1
-	return 0
+/mob/living/proc/check_contents_for(A)
+	var/list/L = get_contents()
+
+	for(var/obj/O in L)
+		if(O.type == A)
+			return TRUE
+	return FALSE
 
 
 /mob/living/proc/get_limbzone_target()
