@@ -72,7 +72,7 @@ Your squaddies will look to you when it comes to construction in the field of ba
 
 
 /datum/job/marine/medic
-	title = "Squad Medic"
+	title = "Squad Corpsman"
 	comm_title = "Med"
 	paygrade = "E3"
 	total_positions = 16
