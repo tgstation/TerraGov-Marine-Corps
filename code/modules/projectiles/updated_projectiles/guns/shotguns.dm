@@ -549,7 +549,7 @@ can cause issues with ammo types getting mixed up during the burst.
 						/obj/item/attachable/scope/mini,
 						/obj/item/attachable/scope,
 						/obj/item/attachable/bipod)
-	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 16,"rail_x" = 8, "rail_y" = 21, "under_x" = 24, "under_y" = 13, "stock_x" = 20, "stock_y" = 14)
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 16,"rail_x" = 8, "rail_y" = 21, "under_x" = 24, "under_y" = 15, "stock_x" = 20, "stock_y" = 14)
 	starting_attachment_types = list(/obj/item/attachable/scope)
 
 /obj/item/weapon/gun/shotgun/pump/bolt/Initialize()
@@ -557,7 +557,6 @@ can cause issues with ammo types getting mixed up during the burst.
 	var/obj/item/attachable/S = new /obj/item/attachable/mosinbarrel(src)
 	S.Attach(src)
 	S = new /obj/item/attachable/stock/mosin(src)
-	S.flags_attach_features &= ~ATTACH_REMOVABLE
 	S.Attach(src)
 	update_attachables()
 
