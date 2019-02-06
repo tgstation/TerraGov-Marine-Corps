@@ -251,8 +251,8 @@ proc/get_all_job_icons()
 				"Squad Specialist",
 				"Squad Smartgunner",
 				"Squad Marine",
-				"Chief Hospitalman",
-				"Hospitalman",
+				"Chief Medical Officer",
+				"Medical Officer",
 				"Researcher",
 				"Master at Arms",
 				"Command Master at Arms"
@@ -263,7 +263,7 @@ proc/get_all_job_icons()
 		return
 	switch(paygrade)
 		if("C") . = size ? "" : "Civilian"
-		if("CD") . = size ? "HM " : "Hospitalman"
+		if("CD") . = size ? "Doc. " : "Researcher"
 		if("CCMO") . = size ? "HMC " : "Chief Hospitalman"
 		if("PMC1") . = size ? "PMC " : "PM Contractor"
 		if("PMC2") . = size ? "PMSC " : "PM Senior Contractor"
