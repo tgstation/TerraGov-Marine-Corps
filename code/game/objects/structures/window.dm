@@ -421,6 +421,10 @@
 	reinf = TRUE
 
 
+/obj/structure/window/reinforced/briefing/get_projectile_hit_chance(obj/item/projectile/P)
+	return TRUE
+
+
 /obj/structure/window/Initialize(Loc, constructed = 0)
 	. = ..()
 

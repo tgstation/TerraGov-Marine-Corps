@@ -261,6 +261,10 @@
 	health = 1000
 
 
+/obj/machinery/door/window/briefing/get_projectile_hit_chance(obj/item/projectile/P)
+	return TRUE
+
+
 /obj/machinery/door/window/northleft
 	dir = NORTH
 
