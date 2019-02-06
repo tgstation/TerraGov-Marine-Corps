@@ -1034,7 +1034,7 @@
 			return
 
 		if(dep == "Warden" && GLOB.map_tag != MAP_PRISON_STATION)
-			if(alert("Are you sure? By default noone will receive this fax unless you spawned the proper fax machine.", "Warning", "Yes", "No" != "Yes"))
+			if(alert("Are you sure? By default noone will receive this fax unless you spawned the proper fax machine.", "Warning", "Yes", "No") != "Yes")
 				return
 
 		var/department = input("Which department do you want to reply AS?", "Fax Message") as null|anything in list("TGMC High Command", "TGMC Provost General", "Nanotrasen")
