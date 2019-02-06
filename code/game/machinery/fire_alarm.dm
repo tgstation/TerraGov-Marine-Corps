@@ -52,8 +52,7 @@ FIRE ALARM
 
 /obj/machinery/firealarm/update_icon()
 	overlays.Cut()
-
-	icon_state = "fire[detecting]"
+	icon_state = "fire1"
 
 	if(wiresexposed || (stat & BROKEN))
 		overlays += image(icon, "fire_ob[buildstage]")
@@ -64,6 +63,7 @@ FIRE ALARM
 		overlays += image(icon, "fire_o[alert]")
 		var/area/A = get_area(src)
 		if(A?.flags_alarm_state & ALARM_WARNING_FIRE)
+			icon_state = "fire0"
 			overlays += image(icon, "fire_o1")
 
 /obj/machinery/firealarm/fire_act(temperature, volume)

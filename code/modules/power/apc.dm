@@ -252,9 +252,9 @@
 
 	if(update & 2)
 		if(update_overlay & APC_UPOVERLAY_CELL_IN)
-			overlays += "apco_cell"
+			overlays += "apco-cell"
 		else if(update_overlay & APC_UPOVERLAY_BLUESCREEN)
-			overlays += image(icon, "apco_emag")
+			overlays += image(icon, "apco-emag")
 		else
 			if(!(panel_open || opened))
 				overlays += image(icon, "apcox-[locked]")
