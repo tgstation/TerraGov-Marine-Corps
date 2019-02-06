@@ -677,6 +677,7 @@ Defined in conflicts.dm of the #defines folder.
 	name = "VP70 stock and holster"
 	desc = "A rare holster-stock distributed in small numbers to TGMC forces. Compatible with the MOD88, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl"
 	slot = "stock"
+	w_class = 3.0
 	wield_delay_mod = WIELD_DELAY_FAST
 	melee_mod = 5
 	size_mod = 1
@@ -684,7 +685,7 @@ Defined in conflicts.dm of the #defines folder.
 	attach_icon = "vp70stock_a"
 	pixel_shift_x = 39
 	pixel_shift_y = 11
-	var/obj/item/storage/internal/holster
+	var/obj/item/storage/internal/pockets
 
 /obj/item/attachable/stock/vp70/Initialize()
 	. = ..()
@@ -697,12 +698,6 @@ Defined in conflicts.dm of the #defines folder.
 	pockets.max_w_class = 1
 	pockets.bypass_w_limit = list("/obj/item/weapon/gun/pistol/vp70")
 	pockets.max_storage_space = 3
-
-/obj/item/attachable/stock/vp70
-	var/obj/item/storage/internal/pockets
-
-/obj/item/attachable/stock/vp70/New()
-	. = ..()
 	
 /obj/item/attachable/stock/vp70/attack_hand(mob/user)
 	if(loc == user && pockets.contents.len)
