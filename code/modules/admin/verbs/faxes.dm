@@ -61,7 +61,6 @@ GLOBAL_LIST_EMPTY(faxes)
 		playsound(FM.loc, "sound/items/polaroid1.ogg", 15, 1)
 
 
-
 /datum/admins/proc/view_faxes()
 	set category = "Admin"
 	set name = "View Faxes"
@@ -75,7 +74,7 @@ GLOBAL_LIST_EMPTY(faxes)
 
 	for(var/datum/fax/F in GLOB.faxes)
 		dat += "[F.admin ? "STAFF " : ""]Fax titled '[F.title]', department: [F.department], sent by [key_name_admin(F.sender)] at [F.senttime] - "
-		dat += "[check_rights(R_ADMIN, FALSE) ? "[ADMIN_PP(F.sender)] [ADMIN_VV(F)] " : ""][ADMIN_SM(F.sender)] (<a href='?src=[REF(usr.client.holder)];[HrefToken()];faxreply=[REF(F)]'>REPLY</a>) (<a href='?src=[REF(usr.client.holder)];[HrefToken()];faxview=[REF(F)]'>VIEW</a>)"
+		dat += "[check_rights(R_ADMIN, FALSE) ? "[ADMIN_PP(F.sender)] " : ""][ADMIN_SM(F.sender)] (<a href='?src=[REF(usr.client.holder)];[HrefToken()];faxreply=[REF(F)]'>REPLY</a>) (<a href='?src=[REF(usr.client.holder)];[HrefToken()];faxview=[REF(F)]'>VIEW</a>)"
 		dat += "<br>"
 
 	dat += "<a href='?src=[REF(usr.client.holder)];[HrefToken()];faxcreate=[REF(usr)]'>CREATE NEW FAX</a>"
@@ -84,7 +83,7 @@ GLOBAL_LIST_EMPTY(faxes)
 	usr << browse(dat, "window=faxview")
 
 
-/proc/generate_templated_fax(var/show_nt_logo, var/fax_header, var/fax_subject, var/addressed_to, var/message_body, var/sent_by, var/sent_title, var/sent_department)
+/proc/generate_templated_fax(show_nt_logo, fax_header, fax_subject, addressed_to, message_body, sent_by, sent_department)
 	var/dat = ""
 	dat += "<style>"
 	dat += "body {"
@@ -146,11 +145,6 @@ GLOBAL_LIST_EMPTY(faxes)
 	dat += "<body>"
 	dat += "<div id='width-container'>"
 
-	if(show_nt_logo)
-		dat += "<div id='fax-logo'>"
-		dat += "<img src='https://i.imgur.com/mEUy6g9.png'/>"
-		dat += "</div>"
-
 	dat += "<div class='message-header-text'>"
 	dat += "<p id='header-title'>[fax_header]</p>"
 	dat += "<p id='header-subtitle'>[fax_subject] - [time2text(world.realtime, "DD Month")] [game_year]</p>"
@@ -167,8 +161,6 @@ GLOBAL_LIST_EMPTY(faxes)
 	dat += "<div class='message-signature-text'>"
 	dat += "<p>"
 	dat += "<em>[sent_by]</em>"
-	dat += "<br/>"
-	dat += "<em>[sent_title]</em>"
 	dat += "<br/>"
 	dat += "<em>[sent_department]</em>"
 	dat += "<br/>"

@@ -871,7 +871,7 @@
 			to_chat(usr, "<span class='warning'>[M] doesn't seem to have an active client.</span>")
 			return
 
-		if(alert("Send [key_name(M)] back to Lobby?", "Confirmation", "Yes", "No") != "Yes")
+		if(alert("Send [key_name(M)] back to Lobby?", "Send to Lobby", "Yes", "No") != "Yes")
 			return
 
 		log_admin("[key_name(usr)] has sent [key_name(M)] back to the lobby.")
@@ -886,6 +886,48 @@
 		else
 			M.ghostize()
 
+
+	else if(href_list["cryo"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/mob/M = locate(href_list["cryo"])
+		if(!istype(M))
+			return
+
+		if(alert("Cryo [key_name(M)]?", "Cryosleep", "Yes", "No") != "Yes")
+			return
+
+		var/client/C = M.client
+		if(C && alert("They have a client attached, are you sure?", "Cryosleep", "Yes", "No") != "Yes")
+			return
+
+		var/turf/T = get_turf(M)
+		var/obj/machinery/cryopod/P = new(T)
+		P.density = FALSE
+		P.alpha = 0
+		P.name = null
+		P.occupant = M
+		P.time_till_despawn = 0
+		P.process()
+		qdel(P)
+
+		var/lobby
+		if(C && alert("Do you also want to send them to the lobby?", "Cryosleep", "Yes", "No") == "Yes")
+			lobby = TRUE
+			var/mob/new_player/NP = new()
+			NP.key = C.key
+			if(NP.client)
+				NP.client.change_view(world.view)
+			if(isobserver(C.mob))
+				qdel(C.mob)
+			else
+				C.mob.ghostize()
+
+		log_admin("[key_name(usr)] has cryo'd [key_name(M)][lobby ? ", sending them to the lobby" : ""].")
+		message_admins("[ADMIN_TPMONTY(usr)] has cryo'd [key_name_admin(M)][lobby ? ", sending them to the lobby" : ""].")
+
+
 	else if(href_list["jumpto"])
 		if(!check_rights(R_ADMIN))
 			return
@@ -896,8 +938,8 @@
 
 		usr.forceMove(M.loc)
 
-		log_admin("[key_name(usr)] has jumped to [key_name(M)].")
-		message_admins("[ADMIN_TPMONTY(usr)] has jumped to [ADMIN_TPMONTY(M)].")
+		log_admin("[key_name(usr)] has jumped to [key_name(M)]'s mob.")
+		message_admins("[ADMIN_TPMONTY(usr)] has jumped to [ADMIN_TPMONTY(M)]'s mob.")
 
 
 	else if(href_list["getmob"])
@@ -924,17 +966,22 @@
 
 		var/atom/target
 
-		switch(input("To an area or to a mob?", "Send Mob", null, null) as null|anything in list("Area", "Mob"))
+		switch(input("Where do you want to send it to?", "Send Mob") as null|anything in list("Area", "Mob", "Key"))
 			if("Area")
 				var/area/A = input("Pick an area.", "Pick an area") as null|anything in return_sorted_areas()
 				if(!A || !M)
 					return
 				target = pick(get_area_turfs(A))
 			if("Mob")
-				var/mob/N = input("Pick an area.", "Pick an area") as null|anything in sortmobs(GLOB.mob_list)
+				var/mob/N = input("Pick a mob.", "Pick a mob") as null|anything in sortmobs(GLOB.mob_list)
 				if(!N || !M)
 					return
 				target = N.loc
+			if("Key")
+				var/client/C = input("Pick a key.", "Pick a key") as null|anything in sortKey(GLOB.clients)
+				if(!C || !M)
+					return
+				target = C.mob.loc
 
 		M.on_mob_jump()
 		M.forceMove(target)
@@ -990,7 +1037,7 @@
 				if(!sent_by)
 					return
 
-				fax_message = generate_templated_fax(FALSE, department, subject, addressed_to, message_body, sent_by, null, department)
+				fax_message = generate_templated_fax(department, subject, addressed_to, message_body, sent_by, department)
 
 			if("Custom")
 				var/input = input("Please enter a message to send via secure connection.", "Fax Message", "") as text|null
@@ -1013,6 +1060,9 @@
 
 
 	else if(href_list["faxview"])
+		if(!check_rights(R_ADMIN|R_MENTOR))
+			return
+
 		var/ref = locate(href_list["faxview"])
 		if(!ref)
 			return
@@ -1027,6 +1077,9 @@
 
 
 	else if(href_list["faxcreate"])
+		if(!check_rights(R_ADMIN|R_MENTOR))
+			return
+
 		var/mob/sender = locate(href_list["faxcreate"])
 
 		var/dep = input("Who do you want to message?", "Fax Message") as null|anything in list("Corporate Liaison", "Chief Military Police", "Warden")
@@ -1065,7 +1118,7 @@
 				if(!sent_by)
 					return
 
-				fax_message = generate_templated_fax(FALSE, department, subject, addressed_to, message_body, sent_by, null, department)
+				fax_message = generate_templated_fax(department, subject, addressed_to, message_body, sent_by, department)
 
 			if("Custom")
 				var/input = input("Please enter a message to send via secure connection.", "Fax Message", "") as text|null
@@ -1141,6 +1194,9 @@
 
 
 	if(href_list["evac_authority"])
+		if(!check_rights(R_ADMIN))
+			return
+
 		switch(href_list["evac_authority"])
 			if("init_evac")
 				if(!EvacuationAuthority.initiate_evacuation())

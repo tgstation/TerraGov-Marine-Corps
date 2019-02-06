@@ -409,6 +409,7 @@
 		<a href='?src=[ref];ban=[REF(M)]'>Ban</a> |
 		<a href='?src=[ref];jobbanpanel=[REF(M)]'>Jobban</a> |
 		<a href='?src=[ref];notes=show;mob=[REF(M)]'>Notes</a> |
+		<a href='?src=[ref];cryo=[REF(M)]'>Cryo</a> |
 	"}
 
 	if(M.client?.prefs)
