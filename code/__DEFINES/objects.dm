@@ -229,3 +229,7 @@ var/list/RESTRICTED_CAMERA_NETWORKS = list( //Those networks can only be accesse
 // Random item spawns for huntergames
 #define HG_RANDOM_ITEM_CRAP 1
 #define HG_RANDOM_ITEM_GOOD 2
+
+//Lighter
+
+#define LIGHTER_LUMINOSITY	2

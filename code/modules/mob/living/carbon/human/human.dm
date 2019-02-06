@@ -1505,7 +1505,15 @@
 		for(var/obj/item/device/flashlight/flare/F in contents)
 			if(F.on) goes_out++
 			F.turn_off(src)
+		for(var/obj/item/explosive/grenade/flare/FL in contents)
+			if(FL.active) goes_out++
+			FL.turn_off(src)
 	if(misc)
+		for(var/obj/item/clothing/head/hardhat/H in contents)
+			if(istype(H, /obj/item/clothing/head/hardhat))
+				continue
+			if(H.turn_off_light(src))
+				light_off++
 		for(var/obj/item/device/flashlight/L in contents)
 			if(istype(L, /obj/item/device/flashlight/flare))
 				continue

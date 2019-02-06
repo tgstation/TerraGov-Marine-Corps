@@ -286,9 +286,10 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 
 /obj/item/explosive/grenade/flare/Destroy()
 	if(ismob(loc))
-		loc.SetLuminosity(-FLARE_BRIGHTNESS)
+		var/mob/U = loc
+		update_brightness(U)
 	else
-		SetLuminosity(0)
+		update_brightness(null)
 	STOP_PROCESSING(SSobj, src)
 	. = ..()
 
@@ -306,8 +307,8 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	force = initial(force)
 	damtype = initial(damtype)
 	if(ismob(loc))
-		var/mob/U = loc
-		update_brightness(U)
+		var/mob/user = loc
+		update_brightness(user)
 	else
 		update_brightness(null)
 
@@ -353,28 +354,36 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	START_PROCESSING(SSobj, src)
 
 /obj/item/explosive/grenade/flare/proc/update_brightness(var/mob/user = null)
+	if(!user && ismob(loc))
+		user = loc
 	if(active)
 		icon_state = "[initial(icon_state)]_active"
 		if(loc && loc == user)
-			user.SetLuminosity(FLARE_BRIGHTNESS)
+			user.light_sources.Add(FLARE_BRIGHTNESS)
+			user.SetLuminosity()
+			to_chat(world, "FLARE UPDATE BRIGHTNESS DEBUG: user: [user] light_sources length: [length(user.light_sources)]")
+			SetLuminosity(0)
 		else if(isturf(loc))
 			SetLuminosity(FLARE_BRIGHTNESS)
 	else
 		icon_state = initial(icon_state)
 		if(loc && loc == user)
-			user.SetLuminosity(-FLARE_BRIGHTNESS)
+			user.light_sources.Remove(FLARE_BRIGHTNESS)
+			user.SetLuminosity()
 		else if(isturf(loc))
-			SetLuminosity(0)
+			SetLuminosity()
 
 /obj/item/explosive/grenade/flare/pickup(mob/user)
 	if(active && loc != user)
-		user.SetLuminosity(FLARE_BRIGHTNESS)
+		user.light_sources.Add(FLARE_BRIGHTNESS)
+		user.SetLuminosity()
 		SetLuminosity(0)
 	return ..()
 
 /obj/item/explosive/grenade/flare/dropped(mob/user)
 	if(active && loc != user)
-		user.SetLuminosity(-FLARE_BRIGHTNESS)
+		user.light_sources.Remove(FLARE_BRIGHTNESS)
+		user.SetLuminosity()
 		SetLuminosity(FLARE_BRIGHTNESS)
 	return ..()
 

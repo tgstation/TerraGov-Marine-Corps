@@ -157,8 +157,13 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 
 
 /obj/item/weapon/gun/proc/turn_off_light(mob/bearer)
+	if(!bearer && ismob(src.loc))
+		bearer = src.loc
+	else
+		return FALSE //We have to have a user
 	if(flags_gun_features & GUN_FLASHLIGHT_ON)
-		bearer.SetLuminosity(-rail.light_mod)
+		bearer.light_sources.Remove(rail.light_mod)
+		bearer.SetLuminosity()
 		SetLuminosity(rail.light_mod)
 		return TRUE
 	return FALSE
@@ -168,7 +173,8 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 	..()
 
 	if(flags_gun_features & GUN_FLASHLIGHT_ON)
-		user.SetLuminosity(rail.light_mod)
+		user.light_sources.Add(rail.light_mod)
+		user.SetLuminosity()
 		SetLuminosity(0)
 
 	unwield(user)

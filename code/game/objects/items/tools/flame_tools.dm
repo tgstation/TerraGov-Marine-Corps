@@ -142,10 +142,15 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	heat_source = 1000
 	damtype = "burn"
 	icon_state = "match_lit"
+	var/mob/user
 	if(ismob(loc))
-		loc.SetLuminosity(2)
+		user = loc
+	if(loc && loc == user)
+		user.light_sources.Add(LIGHTER_LUMINOSITY)
+		user.SetLuminosity()
 	else
-		SetLuminosity(2)
+		SetLuminosity(LIGHTER_LUMINOSITY)
+
 	START_PROCESSING(SSobj, src)
 	update_icon()
 
@@ -156,7 +161,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	icon_state = "match_burnt"
 	item_state = "cigoff"
 	if(user && loc != user)
-		user.SetLuminosity(-2)
+		user.light_sources.Remove(LIGHTER_LUMINOSITY)
+		user.SetLuminosity()
 	SetLuminosity(0)
 	name = "burnt match"
 	desc = "A match. This one has seen better days."
@@ -164,8 +170,9 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/tool/lighter/dropped(mob/user)
 	if(heat_source && src.loc != user)
-		user.SetLuminosity(-2)
-		SetLuminosity(2)
+		user.light_sources.Remove(LIGHTER_LUMINOSITY)
+		user.SetLuminosity()
+		SetLuminosity(LIGHTER_LUMINOSITY)
 	return ..()
 //////////////////
 //FINE SMOKABLES//
@@ -512,9 +519,10 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/tool/lighter/Destroy()
 	if(ismob(src.loc))
-		src.loc.SetLuminosity(-2)
-	else
-		SetLuminosity(0)
+		var/mob/user = loc
+		user.light_sources.Remove(LIGHTER_LUMINOSITY)
+		user.SetLuminosity()
+	SetLuminosity(0)
 	. = ..()
 
 /obj/item/tool/lighter/attack_self(mob/living/user)
@@ -536,7 +544,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 						user.apply_damage(2,BURN,"r_hand")
 					user.visible_message("<span class='notice'>After a few attempts, [user] manages to light the [src], they however burn their finger in the process.</span>")
 
-			user.SetLuminosity(2)
+			user.light_sources.Add(LIGHTER_LUMINOSITY)
+			user.SetLuminosity()
 			START_PROCESSING(SSobj, src)
 		else
 			turn_off(user, 0)
@@ -554,8 +563,9 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 				bearer.visible_message("<span class='rose'>You hear a quiet click, as [bearer] shuts off [src] without even looking at what they're doing.")
 			else
 				bearer.visible_message("<span class='notice'>[bearer] quietly shuts off the [src].")
-
-		bearer.SetLuminosity(-2)
+		bearer.light_sources.Remove(LIGHTER_LUMINOSITY)
+		bearer.SetLuminosity()
+		SetLuminosity(0)
 		STOP_PROCESSING(SSobj, src)
 		return 1
 	return 0
@@ -583,14 +593,16 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 
 /obj/item/tool/lighter/pickup(mob/user)
-	if(heat_source && src.loc != user)
+	if(heat_source && loc != user)
+		user.light_sources.Add(LIGHTER_LUMINOSITY)
+		user.SetLuminosity()
 		SetLuminosity(0)
-		user.SetLuminosity(2)
 	return
 
 
 /obj/item/tool/lighter/dropped(mob/user)
-	if(heat_source && src.loc != user)
-		user.SetLuminosity(-2)
-		SetLuminosity(2)
+	if(heat_source && loc != user)
+		user.light_sources.Remove(LIGHTER_LUMINOSITY)
+		user.SetLuminosity()
+		SetLuminosity(LIGHTER_LUMINOSITY)
 	return ..()

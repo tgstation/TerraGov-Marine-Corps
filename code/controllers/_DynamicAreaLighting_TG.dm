@@ -209,13 +209,23 @@ atom/proc/AddLuminosity(delta_luminosity)
 //This slightly modifies human luminosity. Source of light do NOT stack.
 //When you drop a light source it should keep a running total of your actual luminosity and set it accordingly.
 mob/SetLuminosity(new_luminosity, trueLum)
-	if(!new_luminosity) //Our new addition is positive. Add it to our running total.
+	luminosity_total = 0 //reset this
+	var/current_light
+	for(var/L in light_sources) //get the most powerful light source
+		//to_chat(world, "SET LUMINOSITY MOB DEBUG L: [L] current_light: [current_light]")
+		if(current_light > L)
+			continue
+		current_light = L
+
+	//to_chat(world, "SET LUMINOSITY MOB DEBUG 2 current_light: [current_light]")
+	if(!current_light) //Our new addition is positive. Add it to our running total.
 		return..(0, trueLum)  //Set to ZERO.
 	else
-		luminosity_total += new_luminosity //Keep track of our new total.
+		luminosity_total += current_light //Keep track of our new total.
+		//to_chat(world, "SET LUMINOSITY MOB DEBUG 3 luminosity total: [luminosity_total] current_light: [current_light]")
 
-	if(new_luminosity > luminosity) //The lum we want to set to is higher. Use it.
-		..(new_luminosity, trueLum)
+	if(current_light > luminosity) //The lum we want to set to is higher. Use it.
+		..(current_light, trueLum)
 
 	else if(luminosity_total < luminosity) //We want to drop our actual luminosity.
 		..(luminosity_total, trueLum)

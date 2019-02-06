@@ -24,23 +24,28 @@
 
 /obj/item/device/flashlight/Destroy()
 	if(ismob(src.loc))
-		src.loc.SetLuminosity(-brightness_on)
-	else
-		SetLuminosity(0)
+		var/mob/user = loc
+		user.light_sources.Remove(brightness_on)
+		user.SetLuminosity()
+	SetLuminosity(0)
 	. = ..()
 
 
 /obj/item/device/flashlight/proc/update_brightness(var/mob/user = null)
+	if(!user && ismob(loc))
+		user = loc
 	if(on)
 		icon_state = "[initial(icon_state)]-on"
 		if(loc && loc == user)
-			user.SetLuminosity(brightness_on)
+			user.light_sources.Add(brightness_on)
+			user.SetLuminosity()
 		else if(isturf(loc))
 			SetLuminosity(brightness_on)
 	else
 		icon_state = initial(icon_state)
 		if(loc && loc == user)
-			user.SetLuminosity(-brightness_on)
+			user.light_sources.Remove(brightness_on)
+			user.SetLuminosity()
 		else if(isturf(loc))
 			SetLuminosity(0)
 
@@ -49,7 +54,7 @@
 		to_chat(user, "You cannot turn the light on while in [user.loc].")
 		return 0
 	on = !on
-	update_brightness(user)
+	update_brightness()
 	update_action_button_icons()
 	return 1
 
@@ -121,15 +126,17 @@
 
 
 /obj/item/device/flashlight/pickup(mob/user)
-	if(on && src.loc != user)
-		user.SetLuminosity(brightness_on)
+	if(on && loc != user)
+		user.light_sources.Add(brightness_on)
+		user.SetLuminosity()
 		SetLuminosity(0)
 	..()
 
 
 /obj/item/device/flashlight/dropped(mob/user)
-	if(on && src.loc != user)
-		user.SetLuminosity(-brightness_on)
+	if(on && loc != user)
+		user.light_sources.Remove(brightness_on)
+		user.SetLuminosity()
 		SetLuminosity(brightness_on)
 	..()
 

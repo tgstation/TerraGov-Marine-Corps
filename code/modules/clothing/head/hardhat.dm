@@ -11,43 +11,67 @@
 	siemens_coefficient = 0.9
 	flags_inventory = BLOCKSHARPOBJ
 
-	attack_self(mob/user)
-		if(!isturf(user.loc))
-			to_chat(user, "You cannot turn the light on while in [user.loc]")
-			return
-		on = !on
-		icon_state = "hardhat[on]_[hardhat_color]"
-		item_state = "hardhat[on]_[hardhat_color]"
+/obj/item/clothing/head/hardhat/attack_self(mob/user)
+	if(!isturf(user.loc))
+		to_chat(user, "You cannot turn the light on while in [user.loc]")
+		return
+	on = !on
+	icon_state = "hardhat[on]_[hardhat_color]"
+	item_state = "hardhat[on]_[hardhat_color]"
 
-		if(on)	user.SetLuminosity(brightness_on)
-		else	user.SetLuminosity(-brightness_on)
+	if(user == loc)
+		var/mob/M = loc
+		M.update_inv_head()
 
-		if(ismob(loc))
-			var/mob/M = loc
-			M.update_inv_head()
+	update_brightness()
+	update_action_button_icons()
 
+/obj/item/clothing/head/hardhat/proc/turn_off_light(mob/bearer)
+	if(on)
+		on = 0
+		update_brightness(bearer)
 		update_action_button_icons()
+		return 1
+	return 0
 
-	pickup(mob/user)
-		if(on)
-			user.SetLuminosity(brightness_on)
-//			user.UpdateLuminosity()	//TODO: Carn
-			SetLuminosity(0)
-		..()
-
-	dropped(mob/user)
-		if(on)
-			user.SetLuminosity(-brightness_on)
-//			user.UpdateLuminosity()
+/obj/item/clothing/head/hardhat/proc/update_brightness(var/mob/user = null)
+	if(!user && ismob(loc))
+		user = loc
+	if(on)
+		if(loc && loc == user)
+			user.light_sources.Add(brightness_on)
+			user.SetLuminosity()
+		else if(isturf(loc))
 			SetLuminosity(brightness_on)
-		..()
-
-	Destroy()
-		if(ismob(src.loc))
-			src.loc.SetLuminosity(-brightness_on)
-		else
+	else
+		icon_state = initial(icon_state)
+		if(loc && loc == user)
+			user.light_sources.Remove(brightness_on)
+			user.SetLuminosity()
+		else if(isturf(loc))
 			SetLuminosity(0)
-		. = ..()
+
+/obj/item/clothing/head/hardhat/pickup(mob/user)
+	if(on && loc != user)
+		user.light_sources.Add(brightness_on)
+		user.SetLuminosity()
+		SetLuminosity(0)
+	..()
+
+/obj/item/clothing/head/hardhat/dropped(mob/user)
+	if(on && loc != user)
+		user.light_sources.Remove(brightness_on)
+		user.SetLuminosity()
+		SetLuminosity(brightness_on)
+	..()
+
+/obj/item/clothing/head/hardhat/Destroy()
+	if(ismob(src.loc))
+		var/mob/user = loc
+		user.light_sources.Remove(brightness_on)
+		user.SetLuminosity()
+	SetLuminosity(0)
+	. = ..()
 
 
 /obj/item/clothing/head/hardhat/orange
