@@ -1522,7 +1522,7 @@
 			xenoinfo = "<tr><td>[leader]<a href=?src=\ref[user];watch_xeno_number=[X.nicknumber]>[X.name]</a> "
 		else
 			xenoinfo = "<tr><td>[leader][X.name] "
-		if(!X.client) 
+		if(!X.client)
 			xenoinfo += " <i>(SSD)</i>"
 		else if(X.client.prefs.xeno_name && X.client.prefs.xeno_name != "Undefined")
 			xenoinfo += "- [X.client.prefs.xeno_name]"
@@ -1980,7 +1980,8 @@
 	var/turf/prev_turf
 	var/distance = 0
 
-	for(var/turf/T in turflist)
+	for(var/X in turflist)
+		var/turf/T = X
 
 		if(!prev_turf && turflist.len > 1)
 			prev_turf = get_turf(src)

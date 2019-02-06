@@ -172,7 +172,9 @@
 	var/distance = 1
 	var/turf/prev_T
 
-	for(var/turf/T in turfs)
+	for(var/F in turfs)
+		var/turf/T = F
+
 		if(T == user.loc)
 			prev_T = T
 			continue
