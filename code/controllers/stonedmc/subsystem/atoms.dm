@@ -25,6 +25,9 @@ SUBSYSTEM_DEF(atoms)
 
 	lighting_controller.Initialize()
 
+	if(!EvacuationAuthority)
+		EvacuationAuthority = new
+
 	return ..()
 
 /datum/controller/subsystem/atoms/proc/InitializeAtoms(list/atoms)
