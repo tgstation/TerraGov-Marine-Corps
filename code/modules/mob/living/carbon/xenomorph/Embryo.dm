@@ -180,8 +180,7 @@
 	victim.chestburst = 1
 	to_chat(src, "<span class='danger'>You start bursting out of [victim]'s chest!</span>")
 
-	if(victim.knocked_out < 1)
-		victim.KnockOut(20)
+	victim.KnockOut(20)
 	victim.visible_message("<span class='danger'>\The [victim] starts shaking uncontrollably!</span>", \
 								 "<span class='danger'>You feel something ripping up your insides!</span>")
 	victim.Jitter(300)
@@ -190,7 +189,7 @@
 
 
 /mob/living/carbon/Xenomorph/Larva/proc/burst(mob/living/carbon/victim)
-	if(!victim || !victim.loc)
+	if(QDELETED(victim))
 		return
 
 	if(loc != victim)
@@ -215,8 +214,7 @@
 	if(ishuman(victim))
 		var/mob/living/carbon/human/H = victim
 		var/datum/internal_organ/O
-		var/i
-		for(i in list("heart", "lungs")) //This removes (and later garbage collects) both organs. No heart means instant death.
+		for(var/i in list("heart", "lungs")) //This removes (and later garbage collects) both organs. No heart means instant death.
 			O = H.internal_organs_by_name[i]
 			H.internal_organs_by_name -= i
 			H.internal_organs -= O
