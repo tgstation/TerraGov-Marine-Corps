@@ -171,6 +171,8 @@
 /obj/item/clothing/mask/facehugger/proc/check_lifecycle()
 	if(sterile)
 		return TRUE
+	if(check_neighbours())
+		return FALSE
 	if(lifecycle - 4 SECONDS <= 0)
 		if(isturf(loc))
 			var/obj/effect/alien/egg/E = locate() in loc
