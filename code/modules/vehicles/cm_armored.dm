@@ -251,7 +251,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 			C.z_pos = 0
 
 			var/obj/vehicle/multitile/hitbox/cm_armored/H = new(locate(src.x + C.x_pos, src.y + C.y_pos, src.z))
-			H.dir = dir
+			H.setDir(dir)
 			H.root = src
 			linked_objs[C] = H
 

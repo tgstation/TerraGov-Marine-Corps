@@ -16,11 +16,11 @@
 
 	switch(intent)
 
-		if("help")
+		if(INTENT_HELP)
 			M.visible_message("<span class='notice'>\The [M] caresses [src] with its scythe-like arm.</span>", \
 			"<span class='notice'>You caress [src] with your scythe-like arm.</span>", null, 5)
 
-		if("grab")
+		if(INTENT_GRAB)
 			if(M == src || anchored || buckled)
 				return FALSE
 
@@ -36,7 +36,7 @@
 			if(M.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
 				M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 
-		if("hurt")
+		if(INTENT_HARM)
 			var/datum/hive_status/hive
 			if(M.hivenumber && M.hivenumber <= hive_datum.len)
 				hive = hive_datum[M.hivenumber]
@@ -187,7 +187,7 @@
 
 			M.process_rage_attack() //Process Ravager rage gains on attack
 
-		if("disarm")
+		if(INTENT_DISARM)
 			if(M.legcuffed && isyautja(src))
 				to_chat(M, "<span class='xenodanger'>You don't have the dexterity to tackle the headhunter with that thing on your leg!</span>")
 				return FALSE
@@ -210,7 +210,7 @@
 
 			playsound(loc, 'sound/weapons/alien_knockdown.ogg', 25, 1)
 
-			var/tackle_pain = (rand(M.xeno_caste.tackle_damage * 0.20, M.xeno_caste.tackle_damage * 0.80) + rand(M.xeno_caste.tackle_damage * 0.20, M.xeno_caste.tackle_damage * 0.80))
+			var/tackle_pain = M.xeno_caste.tackle_damage
 			if(M.frenzy_aura)
 				tackle_pain = tackle_pain * (1 + (0.05 * M.frenzy_aura))  //Halloss damage increased by 5% per rank of frenzy aura
 			if(protection_aura)
@@ -258,19 +258,19 @@
 		return FALSE
 
 	switch(M.a_intent)
-		if("help")
+		if(INTENT_HELP)
 			M.visible_message("<span class='notice'>\The [M] caresses [src] with its scythe-like arm.</span>", \
 			"<span class='notice'>You caress [src] with your scythe-like arm.</span>", null, 5)
 			return FALSE
 
-		if("grab")
+		if(INTENT_GRAB)
 			if(M == src || anchored || buckled)
 				return FALSE
 
 			if(Adjacent(M)) //Logic!
 				M.start_pulling(src)
 
-		if("hurt")
+		if(INTENT_HARM)
 			if(isxeno(src) && xeno_hivenumber(src) == M.hivenumber)
 				M.visible_message("<span class='warning'>\The [M] nibbles [src].</span>", \
 				"<span class='warning'>You nibble [src].</span>", null, 5)
@@ -330,7 +330,7 @@
 			playsound(loc, "alien_claw_flesh", 25, 1)
 			apply_damage(damage, BRUTE)
 
-		if("disarm")
+		if(INTENT_DISARM)
 			playsound(loc, 'sound/weapons/alien_knockdown.ogg', 25, 1)
 			M.visible_message("<span class='warning'>\The [M] shoves [src]!</span>", \
 			"<span class='warning'>You shove [src]!</span>", null, 5)

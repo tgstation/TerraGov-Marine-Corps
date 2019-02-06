@@ -176,7 +176,7 @@
 /obj/machinery/bot/chefbot/attack_hand(mob/living/carbon/human/M)
 	if(Adjacent(M) && !M.incapacitated() && !M.lying)
 		switch(M.a_intent)
-			if (I_HELP)
+			if (INTENT_HELP)
 				visible_message("[M] tries to turn \the [src] off, but there's no switch!")
 			else
 				var/damage = rand(2, 9)

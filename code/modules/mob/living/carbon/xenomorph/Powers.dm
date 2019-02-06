@@ -171,7 +171,7 @@
 	set waitfor = 0
 
 	var/facing = get_cardinal_dir(src, T)
-	dir = facing
+	setDir(facing)
 
 	T = loc
 	for (var/i = 0, i < xeno_caste.acid_spray_range, i++)
@@ -1698,7 +1698,7 @@
 	var/toss_distance = rand(3,5)
 	var/turf/T = loc
 	var/turf/temp = loc
-	if(a_intent == "hurt") //If we use the ability on hurt intent, we throw them in front; otherwise we throw them behind.
+	if(a_intent == INTENT_HARM) //If we use the ability on hurt intent, we throw them in front; otherwise we throw them behind.
 		for (var/x = 0, x < toss_distance, x++)
 			temp = get_step(T, facing)
 			if (!temp)
@@ -1868,14 +1868,6 @@
 		to_chat(src, "<span class='xenowarning'>You must gather your strength before Ravaging. Ravage can be used in [(ravage_delay - world.time) * 0.1] seconds.</span>")
 		return
 
-	var/dist = get_dist(src,A)
-	if (dist > 2)
-		if(world.time > (recent_notice + notice_delay)) //anti-notice spam
-			to_chat(src, "<span class='xenowarning'>Your target is too far away!</span>")
-
-			recent_notice = world.time //anti-notice spam
-		return
-
 	if (!check_plasma(40))
 		return
 
@@ -1885,9 +1877,6 @@
 	"<span class='xenowarning'>You thrash about in a murderous frenzy!</span>")
 
 	face_atom(A)
-	if(dist > 1) //Lunge towards the target turf
-		step_towards(src,A,2)
-
 	var/sweep_range = 1
 	var/list/L = orange(sweep_range)		// Not actually the fruit
 	var/victims
@@ -1900,12 +1889,12 @@
 			continue
 		if(H.stat != DEAD && !(istype(H.buckled, /obj/structure/bed/nest) && H.status_flags & XENO_HOST) ) //No bully
 			var/extra_dam = rand(xeno_caste.melee_damage_lower, xeno_caste.melee_damage_upper) * (1 + round(rage * 0.01) ) //+1% bonus damage per point of Rage.relative to base melee damage.
-			H.attack_alien(src,  extra_dam, FALSE, TRUE, FALSE, TRUE, "hurt")
+			H.attack_alien(src,  extra_dam, FALSE, TRUE, FALSE, TRUE, INTENT_HARM)
 			victims++
 			round_statistics.ravager_ravage_victims++
-		step_away(H, src, sweep_range, 2)
-		shake_camera(H, 2, 1)
-		H.KnockDown(1, 1)
+			step_away(H, src, sweep_range, 2)
+			shake_camera(H, 2, 1)
+			H.KnockDown(1, 1)
 
 	victims = CLAMP(victims,0,3) //Just to be sure
 	rage = (0 + 10 * victims) //rage resets to 0, though we regain 10 rage per victim.
@@ -1915,10 +1904,9 @@
 
 	ravage_delay = world.time + (RAV_RAVAGE_COOLDOWN - (victims * 30))
 
-
 	reset_movement()
 
-	//10 second cooldown base, minus 2 per victim
+	//10 second cooldown base, minus 3 seconds per victim
 	addtimer(CALLBACK(src, .ravage_cooldown), CLAMP(RAV_RAVAGE_COOLDOWN - (victims * 30),10,100))
 
 /mob/living/carbon/Xenomorph/Ravager/proc/ravage_cooldown()
@@ -2108,20 +2096,20 @@
 	if(!check_plasma(200))
 		return
 
-	last_emit_neurogas = world.time
-	use_plasma(200)
-
 	//give them fair warning
 	visible_message("<span class='danger'>Tufts of smoke begin to billow from [src]!</span>", \
 	"<span class='xenodanger'>Your dorsal vents widen, preparing to emit neurogas. Keep still!</span>")
-
-	addtimer(CALLBACK(src, .defiler_gas_cooldown), DEFILER_GAS_COOLDOWN)
 
 	emitting_gas = TRUE //We gain bump movement immunity while we're emitting gas.
 	if(!do_after(src, DEFILER_GAS_CHANNEL_TIME, TRUE, 5, BUSY_ICON_HOSTILE))
 		emitting_gas = FALSE
 		return
 	emitting_gas = FALSE
+
+	addtimer(CALLBACK(src, .defiler_gas_cooldown), DEFILER_GAS_COOLDOWN)
+
+	last_emit_neurogas = world.time
+	use_plasma(200)
 
 	if(stagger) //If we got staggered, return
 		to_chat(src, "<span class='xenowarning'>You try to emit neurogas but are staggered!</span>")

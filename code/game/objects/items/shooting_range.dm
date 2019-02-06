@@ -115,7 +115,7 @@
 
 			if(Proj.ammo.damage >= 20)
 				bmark.icon_state = "scorch"
-				bmark.dir = pick(NORTH,SOUTH,EAST,WEST) // random scorch design
+				bmark.setDir(pick(NORTH,SOUTH,EAST,WEST)) // random scorch design
 
 
 			else

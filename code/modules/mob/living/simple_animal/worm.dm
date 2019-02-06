@@ -30,7 +30,7 @@
 	max_co2 = 0
 	max_tox = 0
 
-	a_intent = "harm" //so they don't get pushed around
+	a_intent = INTENT_HARM //so they don't get pushed around
 
 	wall_smash = 1
 
@@ -75,7 +75,7 @@
 			if(stat == CONSCIOUS || stat == UNCONSCIOUS)
 				icon_state = "spacewormhead[previous?1:0]"
 				if(previous)
-					dir = get_dir(previous,src)
+					setDir(get_dir(previous,src))
 			else
 				icon_state = "spacewormheaddead"
 
@@ -129,7 +129,7 @@
 				icon_state = "spaceworm[get_dir(src,previous)|get_dir(src,next)]" //see 3 lines below
 			else //tail
 				icon_state = "spacewormtail"
-				dir = get_dir(src,next) //next will always be present since it's not a head and if it's dead, it goes in the other if branch
+				setDir(get_dir(src,next)) //next will always be present since it's not a head and if it's dead, it goes in the other if branch
 		else
 			icon_state = "spacewormdead"
 

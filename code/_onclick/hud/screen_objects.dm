@@ -404,7 +404,7 @@
 	screen_loc = ui_acti
 
 /obj/screen/act_intent/clicked(var/mob/user)
-	user.a_intent_change("right")
+	user.a_intent_change(INTENT_HOTKEY_RIGHT)
 	return TRUE
 
 /obj/screen/act_intent/corner/clicked(var/mob/user, var/list/mods)
@@ -412,16 +412,16 @@
 	var/_y = text2num(mods["icon-y"])
 
 	if(_x<=16 && _y<=16)
-		user.a_intent_change("hurt")
+		user.a_intent_change(INTENT_HARM)
 
 	else if(_x<=16 && _y>=17)
-		user.a_intent_change("help")
+		user.a_intent_change(INTENT_HELP)
 
 	else if(_x>=17 && _y<=16)
-		user.a_intent_change("grab")
+		user.a_intent_change(INTENT_GRAB)
 
 	else if(_x>=17 && _y>=17)
-		user.a_intent_change("disarm")
+		user.a_intent_change(INTENT_DISARM)
 
 	return TRUE
 

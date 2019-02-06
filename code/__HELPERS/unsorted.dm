@@ -763,7 +763,7 @@ proc/anim(turf/location,atom/target,a_icon,a_icon_state as text,flick_anim as te
 //The variables should be apparent enough.
 	var/atom/movable/overlay/animation = new(location)
 	if(direction)
-		animation.dir = direction
+		animation.setDir(direction)
 	animation.icon = a_icon
 	animation.layer = target.layer+0.1
 	if(a_icon_state)
@@ -1092,7 +1092,7 @@ var/global/image/busy_indicator_hostile
 					var/old_icon1 = T.icon
 
 					var/turf/X = B.ChangeTurf(T.type)
-					X.dir = old_dir1
+					X.setDir(old_dir1)
 					X.icon_state = old_icon_state1
 					X.icon = old_icon1 //Shuttle floors are in shuttle.dmi while the defaults are floors.dmi
 
@@ -1251,7 +1251,7 @@ proc/DuplicateObject(obj/original, var/perfectcopy = 0 , var/sameloc = 0)
 							continue moving
 
 					var/turf/X = new T.type(B)
-					X.dir = old_dir1
+					X.setDir(old_dir1)
 					X.icon_state = old_icon_state1
 					X.icon = old_icon1 //Shuttle floors are in shuttle.dmi while the defaults are floors.dmi
 

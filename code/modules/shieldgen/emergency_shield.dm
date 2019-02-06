@@ -13,7 +13,7 @@
 	var/shield_idle_power = 1500		//how much power we use when just being sustained.
 
 /obj/machinery/shield/New()
-	src.dir = pick(1,2,3,4)
+	setDir(pick(1,2,3,4))
 	..()
 
 /obj/machinery/shield/Destroy()

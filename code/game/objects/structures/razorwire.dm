@@ -102,7 +102,7 @@
 		var/obj/item/grab/G = W
 		if(isliving(G.grabbed_thing))
 			var/mob/living/M = G.grabbed_thing
-			if(user.a_intent == "hurt")
+			if(user.a_intent == INTENT_HARM)
 				if(user.grab_level > GRAB_AGGRESSIVE)
 					var/armor_block = null
 					var/def_zone = ran_zone()

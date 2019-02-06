@@ -32,6 +32,10 @@
 		recent_moles_transferred = 0
 		update_icon()
 
+/obj/machinery/atmospherics/binary/circulator/setDir()
+	. = ..()
+	desc = initial(desc) + " Its outlet port is to the [dir2text(dir)]."
+
 /obj/machinery/atmospherics/binary/circulator/update_icon()
 	if(stat & (BROKEN|NOPOWER) || !anchored)
 		icon_state = "circ-p"
@@ -86,9 +90,7 @@
 	if (usr.stat || usr.is_mob_restrained() || anchored)
 		return
 
-	src.dir = turn(src.dir, 90)
-	desc = initial(desc) + " Its outlet port is to the [dir2text(dir)]."
-
+	setDir(turn(src.dir, 90))
 
 /obj/machinery/atmospherics/binary/circulator/verb/rotate_anticlockwise()
 	set category = "Object"
@@ -98,5 +100,4 @@
 	if (usr.stat || usr.is_mob_restrained() || anchored)
 		return
 
-	src.dir = turn(src.dir, -90)
-	desc = initial(desc) + " Its outlet port is to the [dir2text(dir)]."
+	setDir(turn(src.dir, -90))
