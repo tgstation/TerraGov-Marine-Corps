@@ -758,8 +758,15 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	name = "\improper Imperial Guard sergeant armour"
 	desc = "A body armour that offers much better protection than the flak armour."
 	icon_state = "guardSLarmor"
+	item_state = "guardSLarmor"
 	armor = list(melee = 85, bullet = 85, laser = 85, energy = 85, bomb = 85, bio = 25, rad = 25)
 	brightness_on = 6 // better light
+
+/obj/item/clothing/suit/storage/marine/imperial/apothecary
+	name = "\improper Imperial Guard apothecary armour"
+	desc = "An armour worn by the apothecaries of the Imperial Guard."
+	icon_state = "guardmedicarmor"
+	item_state = "guardmedicarmor"
 
 /obj/item/clothing/suit/storage/marine/imperial/sergeant/Initialize()
 	. = ..()
@@ -770,6 +777,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	name = "\improper Imperial Guard carapace armour"
 	desc = "A heavy full body armour that protects the wearer a lot more than the flak armour, also slows down considerably."
 	icon_state = "guardvetarmor"
+	item_state = "guardvetarmor"
 	slowdown = SLOWDOWN_ARMOR_HEAVY
 	armor = list(melee = 90, bullet = 90, laser = 90, energy = 90, bomb = 90, bio = 30, rad = 30)
 

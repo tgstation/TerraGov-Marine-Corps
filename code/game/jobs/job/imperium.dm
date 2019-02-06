@@ -139,7 +139,7 @@
 	Helm.pockets.contents += new /obj/item/reagent_container/hypospray/autoinjector/oxycodone
 	H.equip_to_slot_or_del(Helm, SLOT_HEAD)
 	
-	var/obj/item/clothing/suit/storage/marine/imperial/Suit = new /obj/item/clothing/suit/storage/marine/imperial(H)
+	var/obj/item/clothing/suit/storage/marine/imperial/Suit = new /obj/item/clothing/suit/storage/marine/imperial/apothecary(H)
 	Suit.pockets.contents += new /obj/item/explosive/grenade/frag
 	Suit.pockets.contents += new /obj/item/explosive/grenade/incendiary
 	H.equip_to_slot_or_del(Suit, SLOT_WEAR_SUIT)
@@ -151,6 +151,7 @@
 	Bag.contents += new /obj/item/cell/lasgun/M43
 	Bag.contents += new /obj/item/cell/lasgun/M43
 	Bag.contents += new /obj/item/cell/lasgun/M43
+	Bag.contents += new /obj/item/device/defibrillator
 	H.equip_to_slot_or_del(Bag, SLOT_BACK)
 	
 	var/obj/item/storage/belt/combatLifesaver/Belt = new /obj/item/storage/belt/combatLifesaver(H)
