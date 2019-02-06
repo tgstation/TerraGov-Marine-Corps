@@ -654,9 +654,9 @@
 			if("queen")
 				M.change_mob_type(/mob/living/carbon/Xenomorph/Queen, location, null, delmob)
 			if("human")
-				M.change_mob_type(/mob/living/carbon/human, location, null, delmob,)
+				M.change_mob_type(/mob/living/carbon/human, location, null, delmob)
 			if("monkey")
-				M.change_mob_type(/mob/living/carbon/monkey, location, null, delmob,)
+				M.change_mob_type(/mob/living/carbon/monkey, location, null, delmob)
 			if("moth")
 				M.change_mob_type(/mob/living/carbon/human, location, null, delmob, "Moth")
 
