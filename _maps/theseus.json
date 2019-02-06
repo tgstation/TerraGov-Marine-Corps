@@ -2,7 +2,7 @@
     "map_name": "Theseus",
     "map_path": "map_files/Theseus",
     "map_file": "TGS_Theseus.dmm",
-	"traits": [{"Marine Ship": true}, {"Marine Main Ship": true}], 
+	"traits": [{"Marine Main Ship": true}], 
     "shuttles": {
     }
 }

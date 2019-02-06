@@ -38,7 +38,7 @@ require only minor tweaks.
 #define ZTRAIT_SPACE_RUINS "Space Ruins"
 #define ZTRAIT_LAVA_RUINS "Lava Ruins"
 #define ZTRAIT_GROUND "Ground"
-#define ZTRAIT_MARINE_SHIP "Marine Ship"
+#define ZTRAIT_LOW_ORBIT "Low Orbit"
 #define ZTRAIT_MARINE_MAIN_SHIP "Marine Main Ship"
 
 // number - bombcap is multiplied by this before being applied to bombs
@@ -64,8 +64,8 @@ require only minor tweaks.
 #define ZTRAIT_BASETURF "Baseturf"
 
 // default trait definitions, used by SSmapping
-#define ZTRAITS_MAIN_SHIP list(ZTRAIT_MARINE_SHIP = TRUE, ZTRAIT_MARINE_MAIN_SHIP = TRUE)
-#define ZTRAITS_LOW_ORBIT list(ZTRAIT_MARINE_SHIP = TRUE)
+#define ZTRAITS_MAIN_SHIP list(ZTRAIT_MARINE_MAIN_SHIP = TRUE)
+#define ZTRAITS_LOW_ORBIT list(ZTRAIT_LOW_ORBIT = TRUE, ZTRAIT_STATION = FALSE)
 #define ZTRAITS_GROUND list(ZTRAIT_GROUND = TRUE)
 #define ZTRAITS_CENTCOM list(ZTRAIT_CENTCOM = TRUE)
 #define ZTRAITS_STATION list(ZTRAIT_LINKAGE = CROSSLINKED, ZTRAIT_STATION = TRUE)

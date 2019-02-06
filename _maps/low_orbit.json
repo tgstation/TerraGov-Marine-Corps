@@ -2,7 +2,7 @@
     "map_name": "Low Orbit",
     "map_path": "map_files/Low_Orbit",
     "map_file": "Low_Orbit.dmm",
-	"traits": [{"Marine Ship": true}], 
+	"traits": [{"Low Orbit": true}], 
     "shuttles": {
     }
 }

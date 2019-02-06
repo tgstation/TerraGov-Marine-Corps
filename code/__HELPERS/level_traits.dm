@@ -5,6 +5,14 @@
 
 #define is_station_level(z) SSmapping.level_trait(z, ZTRAIT_STATION)
 
+#define is_ground_level(z) SSmapping.level_trait(z, ZTRAIT_GROUND)
+
+#define is_mainship_level(z) SSmapping.level_trait(z, ZTRAIT_MARINE_MAIN_SHIP)
+
+#define is_low_orbit_level(z) SSmapping.level_trait(z, ZTRAIT_LOW_ORBIT)
+
+#define is_mainship_or_low_orbit_level(z) SSmapping.level_trait(z, ZTRAIT_MARINE_MAIN_SHIP) || SSmapping.level_trait(z, ZTRAIT_LOW_ORBIT)
+
 #define is_mining_level(z) SSmapping.level_trait(z, ZTRAIT_MINING)
 
 #define is_reebe(z) SSmapping.level_trait(z, ZTRAIT_REEBE)
