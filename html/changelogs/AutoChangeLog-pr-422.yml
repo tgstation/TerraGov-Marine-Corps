@@ -1,5 +1,0 @@
-author: "Ghommie"
-delete-after: True
-changes: 
-  - imageadd: "Relatively minor adjustment to the automatic sentry sprites."
-  - imagedel: "Removes the unused and legacy turret sprites and some duplicates."
