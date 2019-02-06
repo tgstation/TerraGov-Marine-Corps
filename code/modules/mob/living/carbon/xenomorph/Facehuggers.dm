@@ -440,7 +440,7 @@
 	if(ishuman(user))
 		playsound(loc, (user.gender == MALE ?'sound/misc/facehugged_male.ogg' : 'sound/misc/facehugged_female.ogg') , 25, 0)
 	if(!sterile)
-		if(!issynth(user) || !isIPC(user)) //synthetics aren't paralyzed
+		if(!issynth(user) && !isIPC(user)) //synthetics aren't paralyzed
 			if(user.disable_lights(sparks = TRUE, silent = TRUE)) //Knock out the lights so the victim can't be cam tracked/spotted as easily
 				user.visible_message("<span class='danger'>[user]'s lights flicker and short out in a struggle!</span>", "<span class='danger'>Your equipment's lights flicker and short out in a struggle!</span>")
 			user.KnockOut(FACEHUGGER_KNOCKOUT) //THIS MIGHT NEED TWEAKS
@@ -462,6 +462,7 @@
 		reset_attach_status(as_planned)
 		playsound(loc, 'sound/voice/alien_facehugger_dies.ogg', 25, 1)
 		addtimer(CALLBACK(src, .proc/GoActive), rand(MIN_ACTIVE_TIME,MAX_ACTIVE_TIME))
+		update_icon()
 
 	if(as_planned)
 		if(sterile || target.status_flags & XENO_HOST)
