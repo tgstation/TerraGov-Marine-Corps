@@ -254,11 +254,11 @@
 
 /obj/machinery/door/window/briefing
 	name = "reinforced safety windoor"
-	icon = 'icons/obj/doors/windoor.dmi'
+	desc = "An extremely strong windoor, capable of stopping the fiercest of riots."
 	icon_state = "leftsecure"
 	base_state = "leftsecure"
 	req_access = list(ACCESS_MARINE_BRIDGE)
-	health = 3000
+	health = 1000
 
 
 /obj/machinery/door/window/northleft

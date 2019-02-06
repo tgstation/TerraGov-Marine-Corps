@@ -414,10 +414,10 @@
 
 /obj/structure/window/reinforced/briefing
 	name = "reinforced safety glass"
-	desc = "A very tough looking glass window with a special rod matrice, probably bullet proof."
+	desc = "An extremely tough looking glass window with a special titanium rod matrice, most definitely bullet proof."
 	icon_state = "rwindow"
 	basestate = "rwindow"
-	health = 3000
+	health = 1500
 	reinf = TRUE
 
 
