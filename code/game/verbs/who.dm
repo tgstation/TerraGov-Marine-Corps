@@ -92,7 +92,7 @@
 			if(check_other_rights(C, R_ADMIN, FALSE))
 				if(!check_rights(R_ADMIN, FALSE) && C.holder.fakekey)
 					continue
-				msg += "\t[C] is [C.holder.rank]"
+				msg += "\t[C] - [C.holder.rank]"
 
 				if(C.holder.fakekey)
 					msg += " as ([C.holder.fakekey])"
