@@ -52,7 +52,7 @@
 /obj/structure/shipmast
 	name = "\the Ships Mast"
 	icon = 'icons/obj/structures/structures.dmi'
-	icon_state = "shipmast"
+	icon_state = "shipmast" //Thank you to Spyroshark and Arachnidnexus
 	desc = "A piece of old earth that was. The plaque reads<br><br><span class='name'>HMS Victory Sailed 1765 to 1922.</span><br><span class='name'>Relaunched 2393.</span><br><span class='name'>On loan from the First Sea Lord.</span><br><br>"
 	density = 1
 	anchored = 1
