@@ -465,9 +465,9 @@ Listen to the radio in case someone requests a supply drop via the overwatch sys
 
 
 /datum/job/medical/professor
-	title = "Chief Hospitalman"
-	comm_title = "HMC"
-	paygrade = "CCMO"
+	title = "Chief Medical Officer"
+	comm_title = "CMO"
+	paygrade = "O3"
 	flag = ROLE_CHIEF_MEDICAL_OFFICER
 	total_positions = 1
 	spawn_positions = 1
@@ -505,14 +505,14 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 
 //Doctor
 /datum/job/medical/doctor
-	title = "Hospitalman"
-	comm_title = "HM"
-	paygrade = "CD"
+	title = "Medical Officer"
+	comm_title = "MO"
+	paygrade = "O1"
 	flag = ROLE_CIVILIAN_DOCTOR
 	total_positions = 6
 	spawn_positions = 6
 	scaled = 1
-	supervisors = "the chief hospitalman"
+	supervisors = "the chief medical officer"
 	selection_color = "#BBFFBB"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY)
@@ -556,7 +556,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	total_positions = 2
 	spawn_positions = 2
 	scaled = 1
-	supervisors = "chief medical hospitalman"
+	supervisors = "the chief medical officer"
 	selection_color = "#BBFFBB"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CHEMISTRY)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CHEMISTRY)
