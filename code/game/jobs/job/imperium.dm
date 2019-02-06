@@ -10,7 +10,7 @@
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
 
 /datum/job/imperial/generate_entry_conditions(mob/living/carbon/human/H)
-	H.add_language("Imperial English")
+	H.add_language("Imperial")
 
 /datum/job/imperial/generate_equipment(mob/living/carbon/human/H)
 	// uniform, shoes, headset
@@ -89,12 +89,12 @@
 	H.equip_to_slot_or_del(new /obj/item/storage/pouch/explosive/upp, SLOT_L_STORE)
 	H.equip_to_slot_or_del(new /obj/item/storage/pouch/field_pouch/full, SLOT_R_STORE)
 	
-	var/obj/item/clothing/head/helmet/marine/imperial/sergeant/Helm = new /obj/item/clothing/head/helmet/marine/imperial(H)
+	var/obj/item/clothing/head/helmet/marine/imperial/sergeant/Helm = new /obj/item/clothing/head/helmet/marine/imperial/sergeant(H)
 	Helm.pockets.contents += new /obj/item/reagent_container/hypospray/autoinjector/tricordrazine
 	Helm.pockets.contents += new /obj/item/reagent_container/hypospray/autoinjector/oxycodone
 	H.equip_to_slot_or_del(Helm, SLOT_HEAD)
 	
-	var/obj/item/clothing/suit/storage/marine/imperial/sergeant/Suit = new /obj/item/clothing/suit/storage/marine/imperial(H)
+	var/obj/item/clothing/suit/storage/marine/imperial/sergeant/Suit = new /obj/item/clothing/suit/storage/marine/imperial/sergeant(H)
 	Suit.pockets.contents += new /obj/item/explosive/grenade/frag
 	Suit.pockets.contents += new /obj/item/explosive/grenade/incendiary
 	Suit.pockets.contents += new /obj/item/explosive/grenade/incendiary

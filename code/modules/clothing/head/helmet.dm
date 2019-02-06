@@ -409,16 +409,22 @@
 	armor = list(melee = 70, bullet = 40, laser = 35, energy = 25, bomb = 30, bio = 0, rad = 0)
 
 /obj/item/clothing/head/helmet/marine/imperial/sergeant
-	name = "\improper Imperial Guard carapace helmet"
-	desc = "A heavy helmet that goes with the carapace armour, unlike the flak variant, this one will actually protect you."
-	icon_state = "guardvethelm"
-	armor = list(melee = 85, bullet = 85, laser = 85, energy = 85, bomb = 85, bio = 25, rad = 25)
+	name = "\improper Imperial Guard sergeant helmet"
+	desc = "A helmet that goes with the sergeant armour, unlike the flak variant, this one will actually protect you."
+	icon_state = "guardhelm"
+	armor = list(melee = 80, bullet = 80, laser = 80, energy = 80, bomb = 80, bio = 25, rad = 25)
 
 /obj/item/clothing/head/helmet/marine/imperial/sergeant/Initialize()
 	. = ..()
 	// bigger helm = bigger pocketti
 	pockets.max_w_class = 2
 	pockets.max_storage_space = 6
+
+/obj/item/clothing/head/helmet/marine/imperial/sergeant/veteran
+	name = "\improper Imperial Guard carapace helmet"
+	desc = "A helmet that goes with the heavy carapace armour, this is some serious protection."
+	icon_state = "guardvethelm"
+	armor = list(melee = 90, bullet = 90, laser = 90, energy = 90, bomb = 90, bio = 30, rad = 30)
 
 /obj/item/clothing/head/helmet/marine/imperial/power
 	name = "\improper salvaged Space Marine helmet"
@@ -435,7 +441,7 @@
 	name = "\improper Space Marine helmet"
 	desc = "You are intimidated by the appearance of the helmet. This is the helmet that goes with the powerful Space Marine power armour."
 	//icon_state
-	armor = list(melee = 90, bullet = 90, laser = 90, energy = 90, bomb = 90, bio = 90, rad = 90)
+	armor = list(melee = 95, bullet = 95, laser = 95, energy = 95, bomb = 95, bio = 95, rad = 95)
 
 
 

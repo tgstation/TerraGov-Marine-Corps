@@ -751,14 +751,13 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	desc = "A cheap, mass produced armour worn by the Imperial Guard, which are also cheap and mass produced. You can make out what appears to be <i>Cadia stands</i> carved into the armour."
 	icon_state = "guardarmor"
 	item_state = "guardarmor"
-	armor = list(melee = 60, bullet = 50, laser = 45, energy = 30, bomb = 35, bio = 0, rad = 0)
+	armor = list(melee = 70, bullet = 50, laser = 45, energy = 30, bomb = 35, bio = 0, rad = 0)
 
 /obj/item/clothing/suit/storage/marine/imperial/sergeant
-	// carapace armour, better than flak, covers everything
-	name = "\improper Imperial Guard carapace armour"
-	desc = "A heavy body armour that offers much better protection than the flak armour, but it is also heavier."
-	icon_state = "guardvetarmor"
-	slowdown = SLOWDOWN_ARMOR_HEAVY
+	// SL armour, better than flak, covers more
+	name = "\improper Imperial Guard sergeant armour"
+	desc = "A body armour that offers much better protection than the flak armour."
+	icon_state = "guardSLarmor"
 	armor = list(melee = 85, bullet = 85, laser = 85, energy = 85, bomb = 85, bio = 25, rad = 25)
 	brightness_on = 6 // better light
 
@@ -766,6 +765,13 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	. = ..()
 	pockets.storage_slots = 3
 	pockets.max_storage_space = 6
+
+/obj/item/clothing/suit/storage/marine/imperial/sergeant/veteran
+	name = "\improper Imperial Guard carapace armour"
+	desc = "A heavy full body armour that protects the wearer a lot more than the flak armour, also slows down considerably."
+	icon_state = "guardvetarmor"
+	slowdown = SLOWDOWN_ARMOR_HEAVY
+	armor = list(melee = 90, bullet = 90, laser = 90, energy = 90, bomb = 90, bio = 30, rad = 30)
 
 /obj/item/clothing/suit/storage/marine/imperial/power
 	// Should this maybe require recharging?
@@ -786,7 +792,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	desc = "You feel a chill running down your spine just looking at this. This is the power armour that the Space Marines wear themselves. The servos inside the power armour allow you to move at incredible speeds."
 	//icon_state
 	slowdown = SLOWDOWN_ARMOR_LIGHT // beefed up space marine inside an armor that boosts speed
-	armor = list(melee = 90, bullet = 90, laser = 90, energy = 90, bomb = 90, bio = 90, rad = 90)
+	armor = list(melee = 95, bullet = 95, laser = 95, energy = 95, bomb = 95, bio = 95, rad = 95)
 
 //===========================//U.P.P\\================================
 
