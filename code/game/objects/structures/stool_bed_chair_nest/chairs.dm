@@ -48,6 +48,8 @@
 			return
 		if(!usr || !isturf(usr.loc))
 			return
+		if(!Adjacent(usr))
+			return
 		if(usr.stat || usr.is_mob_restrained())
 			return
 
@@ -64,10 +66,17 @@
 /obj/structure/bed/chair/reinforced/rotate()
 	set name = "Rotate Chair"
 	set category = "Object"
-	set src in oview(1)
+	set src in oview(0)
 
-	if(isliving(usr))
-		to_chat(usr, "<span class='warning'>The chair is bolted into the ground and won't budge!</span>")
+	if(!isliving(usr))
+		return
+
+	var/mob/living/M = usr
+	if(M.next_move > world.time)
+		return
+	M.next_move = world.time + 10
+	to_chat(M, "<span class='notice'>You rotate the heavy chair.</span>")
+	return ..()
 
 
 /obj/structure/bed/chair/reinforced/attackby(obj/item/W, mob/user)
