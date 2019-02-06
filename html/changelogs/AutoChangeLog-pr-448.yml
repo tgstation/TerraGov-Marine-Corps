@@ -1,5 +1,0 @@
-author: "ma44"
-delete-after: True
-changes: 
-  - rscadd: "Pheromone xenomorphs now can open or collapse a selection of all pheromones able to be used."
-  - rscadd: "Clicking any of the action buttons associated with the pheromones will instantly set that as current pheromone to be emitted, click it again to stop it."

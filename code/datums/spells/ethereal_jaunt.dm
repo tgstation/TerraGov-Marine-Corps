@@ -33,7 +33,7 @@
 			animation.layer = FLY_LAYER
 			animation.master = holder
 			if(phaseshift == 1)
-				animation.dir = target.dir
+				animation.setDir(target.dir)
 				flick("phase_shift",animation)
 				target.loc = holder
 				target.client.eye = holder
@@ -42,7 +42,7 @@
 				animation.loc = mobloc
 				target.canmove = 0
 				sleep(20)
-				animation.dir = target.dir
+				animation.setDir(target.dir)
 				flick("phase_shift2",animation)
 				sleep(5)
 				if(!target.Move(mobloc))

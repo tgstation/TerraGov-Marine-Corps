@@ -63,8 +63,8 @@
 				message = "<B>The [src.name]</B> dances around!"
 				m_type = 1
 				spawn(0)
-					for(var/i in list(1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2))
-						dir = i
+					for(var/i in list(NORTH,SOUTH,EAST,WEST,EAST,SOUTH,NORTH,SOUTH,EAST,WEST,EAST,SOUTH,NORTH,SOUTH,EAST,WEST,EAST,SOUTH))
+						setDir(i)
 						sleep(1)
 		if("help")
 			text += "scratch, whimper, roar, tail, paw, sway, snore, grunt, rumble, howl, growl, stare, sniff, dance"

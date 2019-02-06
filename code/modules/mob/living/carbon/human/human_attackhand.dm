@@ -30,7 +30,7 @@
 
 	M.next_move += 7 //Adds some lag to the 'attack'. This will add up to 10
 	switch(M.a_intent)
-		if("help")
+		if(INTENT_HELP)
 
 			if(on_fire && M != src)
 				fire_stacks = max(fire_stacks - 1, 0)
@@ -78,7 +78,7 @@
 
 			return TRUE
 
-		if("grab")
+		if(INTENT_GRAB)
 			if(M == src || anchored)
 				return 0
 			if(w_uniform)
@@ -88,7 +88,7 @@
 
 			return 1
 
-		if("hurt")
+		if(INTENT_HARM)
 			// See if they can attack, and which attacks to use.
 			var/datum/unarmed_attack/attack = M.species.unarmed
 			if(!attack.is_usable(M)) attack = M.species.secondary_unarmed
@@ -124,7 +124,7 @@
 			apply_damage(damage, BRUTE, affecting, armor_block, sharp=attack.sharp, edge=attack.edge)
 
 
-		if("disarm")
+		if(INTENT_DISARM)
 			log_combat(M, src, "disarmed")
 
 			M.animation_attack_on(src)

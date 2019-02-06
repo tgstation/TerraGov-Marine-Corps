@@ -1,6 +1,0 @@
-author: "ma44"
-delete-after: True
-changes: 
-  - balance: "Eviscerating charge now plows through humans, slicing and knocking them around. Ravagers suffer slowdown upon hitting humans no more, nor to they bounce upon hitting dense turfs."
-  - tweak: "Ravage no longer has a two tile range limitation for activating the ability, it will also no longer move you one tile in a direction. Using the ability will now make you face the general direction of the mouse and slice all nearly marines in that direction."
-  - tweak: "Ravage can now also hit more than three humans; the rage gained from hitting humans is still capped at 30 rage from hitting 3 humans"

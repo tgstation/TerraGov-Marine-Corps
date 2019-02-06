@@ -183,7 +183,8 @@
 		else
 			to_chat(userguy, target_desc_2)
 		if(will_scream)
-			if(!buckled) dir = 2
+			if(!buckled)
+				setDir(SOUTH)
 			visible_message("<span class='danger'>[src] SCREAMS!</span>")
 			playsound(get_turf(src), 'sound/voice/scream_horror1.ogg', 50, 1)
 			screaming = 1
@@ -267,7 +268,7 @@
 					next_turf = target_turf
 					to_chat(target, "<span class='danger'>DID YOU THINK YOU COULD HIDE?</span>")
 				else
-					dir = get_dir(src, target)
+					setDir(get_dir(src, target))
 					next_turf = get_step(src, get_dir(next_turf,target))
 			limit--
 			sleep(move_to_delay + round(staggered/8))
@@ -332,7 +333,7 @@
 	if(T)
 		T.loc = src.loc
 		visible_message("<span class='danger'>[src] grabs [T]!</span>")
-		dir = 2
+		setDir(SOUTH)
 		T.KnockDown(10)
 		T.anchored = 1
 		var/original_y = T.pixel_y

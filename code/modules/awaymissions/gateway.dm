@@ -122,13 +122,13 @@ obj/machinery/gateway/centerstation/process()
 	if(!awaygate)	return
 	if(awaygate.calibrated)
 		M.loc = get_step(awaygate.loc, SOUTH)
-		M.dir = SOUTH
+		M.setDir(SOUTH)
 		return
 	else
 		var/obj/effect/landmark/dest = pick(awaydestinations)
 		if(dest)
 			M.loc = dest.loc
-			M.dir = SOUTH
+			M.setDir(SOUTH)
 			use_power(5000)
 		return
 
@@ -225,7 +225,7 @@ obj/machinery/gateway/centerstation/process()
 				to_chat(M, "The station gate has detected your exile implant and is blocking your entry.")
 				return
 	M.loc = get_step(stationgate.loc, SOUTH)
-	M.dir = SOUTH
+	M.setDir(SOUTH)
 
 
 /obj/machinery/gateway/centeraway/attackby(obj/item/device/W as obj, mob/user as mob)

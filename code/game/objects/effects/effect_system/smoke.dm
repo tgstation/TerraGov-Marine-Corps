@@ -71,7 +71,7 @@
 		apply_smoke_effect(T)
 		var/obj/effect/particle_effect/smoke/S = new type(T)
 		S.chemholder = chemholder
-		S.dir = pick(cardinal)
+		S.setDir(pick(cardinal))
 		S.amount = amount-1
 		S.lifetime = lifetime
 		if(S.amount > 0)
