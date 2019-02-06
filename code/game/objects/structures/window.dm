@@ -422,7 +422,11 @@
 
 
 /obj/structure/window/reinforced/briefing/get_projectile_hit_chance(obj/item/projectile/P)
-	return TRUE
+	if((flags_atom & ON_BORDER) && P.dir != dir && P.dir != reverse_direction(dir))
+		return FALSE
+	else
+		return TRUE
+
 
 
 /obj/structure/window/Initialize(Loc, constructed = 0)
