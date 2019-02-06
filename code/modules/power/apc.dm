@@ -151,13 +151,13 @@
 
 	switch(dir)
 		if(NORTH)
-			pixel_y = 32
-		if(SOUTH)
 			pixel_y = -32
+		if(SOUTH)
+			pixel_y = 32
 		if(EAST)
-			pixel_x = 32
-		if(WEST)
 			pixel_x = -32
+		if(WEST)
+			pixel_x = 32
 
 	if(building)
 		var/area/A = get_area(src)
@@ -256,12 +256,13 @@
 		else if(update_overlay & APC_UPOVERLAY_BLUESCREEN)
 			overlays += image(icon, "apco_emag")
 		else
-			overlays += image(icon, "apcox-[locked]")
-			overlays += image(icon, "apco3-[charging]")
-			if(update_overlay & APC_UPOVERLAY_OPERATING)
-				overlays += image(icon, "apco0-[equipment]")
-				overlays += image(icon, "apco1-[lighting]")
-				overlays += image(icon, "apco2-[environ]")
+			if(!(panel_open || opened))
+				overlays += image(icon, "apcox-[locked]")
+				overlays += image(icon, "apco3-[charging]")
+				if(update_overlay & APC_UPOVERLAY_OPERATING)
+					overlays += image(icon, "apco0-[equipment]")
+					overlays += image(icon, "apco1-[lighting]")
+					overlays += image(icon, "apco2-[environ]")
 
 /obj/machinery/power/apc/proc/check_updates()
 
@@ -285,15 +286,13 @@
 	if(!update_state)
 		update_state |= UPSTATE_ALLGOOD
 
-	if(operating)
-		update_overlay |= APC_UPOVERLAY_OPERATING
-
 	if(update_state & UPSTATE_ALLGOOD)
 		if(emagged)
 			update_overlay |= APC_UPOVERLAY_BLUESCREEN
 		if(locked)
 			update_overlay |= APC_UPOVERLAY_LOCKED
-
+		if(operating)
+			update_overlay |= APC_UPOVERLAY_OPERATING
 		if(!charging)
 			update_overlay |= APC_UPOVERLAY_CHARGEING0
 		else if(charging == APC_CHARGING)
@@ -321,8 +320,8 @@
 			update_overlay |= APC_UPOVERLAY_ENVIRON1
 		else if(environ == 2)
 			update_overlay |= APC_UPOVERLAY_ENVIRON2
-	else if(opened && !(stat & (UPSTATE_MAINT)) && cell)
-		if((opened == APC_COVER_OPENED && !(stat & BROKEN)) || opened == APC_COVER_REMOVED)
+	if(opened && cell && !(update_state & UPSTATE_MAINT))
+		if((opened == APC_COVER_OPENED && !(update_state & UPSTATE_BROKE)) || opened == APC_COVER_REMOVED)
 			update_overlay |= APC_UPOVERLAY_CELL_IN
 
 	var/results = 0

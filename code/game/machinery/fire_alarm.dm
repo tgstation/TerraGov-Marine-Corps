@@ -39,13 +39,13 @@ FIRE ALARM
 
 	switch(dir)
 		if(NORTH)
-			pixel_y = 32
-		if(SOUTH)
 			pixel_y = -32
+		if(SOUTH)
+			pixel_y = 32
 		if(EAST)
-			pixel_x = 32
-		if(WEST)
 			pixel_x = -32
+		if(WEST)
+			pixel_x = 32
 
 	update_icon()
 	start_processing()

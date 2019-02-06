@@ -14,7 +14,7 @@
 	overlay_welded = "walllockerwelded"
 
 /obj/structure/closet/walllocker/north
-	pixel_y = 32
+	pixel_y = -32
 	dir = NORTH
 
 /obj/structure/closet/walllocker/west
