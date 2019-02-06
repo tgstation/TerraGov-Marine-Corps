@@ -2101,15 +2101,23 @@
 	"<span class='xenodanger'>Your dorsal vents widen, preparing to emit neurogas. Keep still!</span>")
 
 	emitting_gas = TRUE //We gain bump movement immunity while we're emitting gas.
+	use_plasma(200)
+	icon_state = "Defiler Power Up"
+
 	if(!do_after(src, DEFILER_GAS_CHANNEL_TIME, TRUE, 5, BUSY_ICON_HOSTILE))
+		smoke_system = new /datum/effect_system/smoke_spread/xeno_weaken()
+		smoke_system.amount = 1
+		smoke_system.set_up(1, 0, get_turf(src))
+		to_chat(src, "<span class='xenodanger'>You abort emitting neurogas, your expended plasma resulting in only a feeble wisp.</span>")
 		emitting_gas = FALSE
+		icon_state = "Defiler Running"
 		return
 	emitting_gas = FALSE
+	icon_state = "Defiler Running"
 
 	addtimer(CALLBACK(src, .defiler_gas_cooldown), DEFILER_GAS_COOLDOWN)
 
 	last_emit_neurogas = world.time
-	use_plasma(200)
 
 	if(stagger) //If we got staggered, return
 		to_chat(src, "<span class='xenowarning'>You try to emit neurogas but are staggered!</span>")
