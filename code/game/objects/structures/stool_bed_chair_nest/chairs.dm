@@ -34,13 +34,14 @@
 	if(buckled_mob)
 		buckled_mob.setDir(dir)
 
+
 /obj/structure/bed/chair/verb/rotate()
 	set name = "Rotate Chair"
 	set category = "Object"
 	set src in oview(1)
 
 	if(CONFIG_GET(flag/ghost_interaction))
-		setDir(turn(src.dir, 90))
+		setDir(turn(dir, 90))
 		return
 	else
 		if(istype(usr, /mob/living/simple_animal/mouse))
@@ -50,13 +51,23 @@
 		if(usr.stat || usr.is_mob_restrained())
 			return
 
-		setDir(turn(src.dir, 90))
+		setDir(turn(dir, 90))
+
 
 //Chair types
 /obj/structure/bed/chair/reinforced
 	name = "reinforced chair"
 	desc = "Some say that the TGMC shouldn't spent this much money on reinforced chairs, but the documents from briefing riots prove otherwise."
 	buildstackamount = 2
+
+
+/obj/structure/bed/chair/reinforced/rotate()
+	set name = "Rotate Chair"
+	set category = "Object"
+	set src in oview(1)
+
+	if(isliving(usr))
+		to_chat(usr, "<span class='warning'>The chair is bolted into the ground and won't budge!</span>")
 
 
 /obj/structure/bed/chair/reinforced/attackby(obj/item/W, mob/user)

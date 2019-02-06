@@ -252,6 +252,15 @@
 	health = 300.0 //Stronger doors for prison (regular window door health is 200)
 
 
+/obj/machinery/door/window/briefing
+	name = "reinforced safety windoor"
+	icon = 'icons/obj/doors/windoor.dmi'
+	icon_state = "leftsecure"
+	base_state = "leftsecure"
+	req_access = list(ACCESS_MARINE_BRIDGE)
+	health = 3000
+
+
 /obj/machinery/door/window/northleft
 	dir = NORTH
 
@@ -312,6 +321,39 @@
 	base_state = "rightsecure"
 
 /obj/machinery/door/window/brigdoor/southright
+	dir = SOUTH
+	icon_state = "rightsecure"
+	base_state = "rightsecure"
+
+
+/obj/machinery/door/window/briefing/northleft
+	dir = NORTH
+
+/obj/machinery/door/window/briefing/eastleft
+	dir = EAST
+
+/obj/machinery/door/window/briefing/westleft
+	dir = WEST
+
+/obj/machinery/door/window/briefing/southleft
+	dir = SOUTH
+
+/obj/machinery/door/window/briefing/northright
+	dir = NORTH
+	icon_state = "rightsecure"
+	base_state = "rightsecure"
+
+/obj/machinery/door/window/briefing/eastright
+	dir = EAST
+	icon_state = "rightsecure"
+	base_state = "rightsecure"
+
+/obj/machinery/door/window/briefing/westright
+	dir = WEST
+	icon_state = "rightsecure"
+	base_state = "rightsecure"
+
+/obj/machinery/door/window/briefing/southright
 	dir = SOUTH
 	icon_state = "rightsecure"
 	base_state = "rightsecure"
