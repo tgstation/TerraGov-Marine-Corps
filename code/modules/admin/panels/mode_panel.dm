@@ -26,6 +26,10 @@
 	dat += "Current Game Mode: <B>[ticker.mode.name]</B><BR>"
 	dat += "Round Duration: <B>[round(world.time / 36000)]:[add_zero(world.time / 600 % 60, 2)]:[world.time / 100 % 6][world.time / 100 % 10]</B><BR>"
 
+	var/countdown = ticker.mode.get_queen_countdown()
+	if(countdown)
+		dat += "Queen Re-Check: [countdown]"
+
 	dat += "<b>Evacuation:</b> "
 	switch(EvacuationAuthority.evac_status)
 		if(EVACUATION_STATUS_STANDING_BY) 
@@ -105,4 +109,7 @@
 		dat += "</table>"
 
 	dat += "</body></html>"
+
+	log_admin("[key_name(usr)] opened the mode panel.")
+
 	usr << browse(dat, "window=roundstatus;size=600x500")

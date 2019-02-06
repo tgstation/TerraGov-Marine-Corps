@@ -18,12 +18,12 @@ GLOBAL_LIST_EMPTY(faxes)
 	F.department = department
 	F.title = title
 	F.message = message
-	F.senttime = duration2text()
+	F.senttime = worldtime2text()
 	F.admin = admin
 
 	GLOB.faxes[F] = F
 
-	log_admin("[key_name(sender)] sent a fax to [department], titled [title] with them message: [message]")
+	log_admin("[key_name(sender)] sent a fax, department: [department], titled [title] with them message: [message]")
 
 	if(sendmachine)
 		for(var/client/C in GLOB.admins)

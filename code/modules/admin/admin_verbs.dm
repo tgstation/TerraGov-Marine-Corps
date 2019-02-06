@@ -805,7 +805,7 @@
 	if(!selection)
 		return
 
-	var/mob/M = selection
+	var/mob/M = selection:mob
 	var/atom/target
 
 

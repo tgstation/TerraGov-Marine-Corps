@@ -312,6 +312,8 @@
 	</body></html>
 	"}
 
+	log_admin("[key_name(usr)] opened the player panel.")
+
 	usr << browse(dat, "window=players;size=600x480")
 
 
@@ -365,6 +367,8 @@
 
 
 	dat += "</table></body></html>"
+
+	log_admin("[key_name(usr)] opened the extended player panel.")
 
 	usr << browse(dat, "window=players;size=640x480")
 
@@ -471,5 +475,7 @@
 	<br>
 	</body></html>
 	"}
+
+	log_admin("[key_name(usr)] opened the player panel of [key_name(M)].")
 
 	usr << browse(body, "window=adminplayeropts;size=550x515")

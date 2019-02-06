@@ -1308,3 +1308,45 @@
 				if(ispath(path, /mob))
 					message_admins("[ADMIN_TPMONTY(usr)] created [number]ea [english_list(paths)].")
 					break
+
+
+	else if(href_list["admin_log"])
+		if(!check_rights(R_ASAY))
+			return
+
+		var/dat = "<html><head><title>Admin Log</title></head><body>"
+
+		for(var/x in GLOB.admin_log)
+			dat += "[x]<br>"
+
+		dat += "</body></html>"
+
+		usr << browse(dat, "window=adminlog")
+
+
+	else if(href_list["ffattack_log"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/dat = "<html><head><title>FF Attack Log</title></head><body>"
+
+		for(var/x in GLOB.ffattack_log)
+			dat += "[x]<br>"
+
+		dat += "</body></html>"
+
+		usr << browse(dat, "window=ffattack_log")
+
+
+	else if(href_list["explosion_log"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/dat = "<html><head><title>Explosion Log</title></head><body>"
+
+		for(var/x in GLOB.explosion_log)
+			dat += "[x]<br>"
+
+		dat += "</body></html>"
+
+		usr << browse(dat, "window=explosion_log")

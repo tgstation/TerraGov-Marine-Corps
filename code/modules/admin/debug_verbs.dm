@@ -264,7 +264,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	set category = "Debug"
 	set name = "Debug Mob Lists"
 
-	var/dat
+	var/dat = "<html><head><title>"
 
 	var/choice = input("Which list?") as null|anything in list("Players", "Admins", "Clients", "Mobs", "Living Mobs", "Dead Mobs", "Xenos", "Alive Xenos", "Dead Xenos")
 	if(!choice)
@@ -272,29 +272,43 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 	switch(choice)
 		if("Players")
+			dat += "Players</title></head><body>"
 			dat += list2text(GLOB.player_list, "<br>")
 		if("Admins")
+			dat += "Admins</title></head><body>"
 			dat += list2text(GLOB.admins, "<br>")
 		if("Clients")
+			dat += "Clients</title></head><body>"
 			dat += list2text(GLOB.clients, "<br>")
 		if("Mobs")
+			dat += "Mobs</title></head><body>"
 			dat += list2text(GLOB.mob_list, "<br>")
 		if("Living Mobs")
+			dat += "Living Mobs</title></head><body>"
 			dat += list2text(GLOB.alive_mob_list, "<br>")
 		if("Dead Mobs")
+			dat += "Dead Mobs</title></head><body>"
 			dat += list2text(GLOB.dead_mob_list, "<br>")
 		if("Xenos")
+			dat += "Xenos</title></head><body>"
 			dat += list2text(GLOB.xeno_mob_list, "<br>")
 		if("Alive Xenos")
+			dat += "Alive Xenos</title></head><body>"
 			dat += list2text(GLOB.alive_xeno_list, "<br>")
 		if("Dead Xenos")
+			dat += "Dead Xenos</title></head><body>"
 			dat += list2text(GLOB.dead_xeno_list, "<br>")
 		if("Humans")
+			dat += "Humans</title></head><body>"
 			dat += list2text(GLOB.human_mob_list, "<br>")
 		if("Alive Humans")
+			dat += "Alive Humans</title></head><body>"
 			dat += list2text(GLOB.alive_human_list, "<br>")
 		if("Dead Xenos")
+			dat += "Dead Xenos</title></head><body>"
 			dat += list2text(GLOB.dead_human_list, "<br>")
+
+	dat += "</body></html>"
 
 	usr << browse(dat, "window=moblists")
 
@@ -331,7 +345,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		if(!chosen)
 			return
 
-	if(ispath(chosen,/turf))
+	if(ispath(chosen, /turf))
 		var/turf/T = get_turf(usr.loc)
 		T.ChangeTurf(chosen)
 	else
