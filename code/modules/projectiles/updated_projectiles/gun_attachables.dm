@@ -673,6 +673,60 @@ Defined in conflicts.dm of the #defines folder.
 	scatter_mod = -CONFIG_GET(number/combat_define/med_scatter_value)
 	movement_acc_penalty_mod = CONFIG_GET(number/combat_define/min_movement_acc_penalty)
 
+/obj/item/attachable/stock/vp70
+	name = "VP70 stock and holster"
+	desc = "A rare holster-stock distributed in small numbers to TGMC forces. Compatible with the MOD88, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl"
+	slot = "stock"
+	wield_delay_mod = WIELD_DELAY_FAST
+	melee_mod = 5
+	size_mod = 1
+	icon_state = "vp70stock"
+	attach_icon = "vp70stock_a"
+	pixel_shift_x = 39
+	pixel_shift_y = 11
+	var/obj/item/storage/internal/holster
+
+/obj/item/attachable/stock/vp70/Initialize()
+	. = ..()
+	accuracy_mod = CONFIG_GET(number/combat_define/low_hit_accuracy_mult)
+	recoil_mod = -CONFIG_GET(number/combat_define/med_recoil_value)
+	scatter_mod = -CONFIG_GET(number/combat_define/med_scatter_value)
+	movement_acc_penalty_mod = CONFIG_GET(number/combat_define/min_movement_acc_penalty)
+	pockets = new/obj/item/storage/internal(src)
+	pockets.storage_slots = 1
+	pockets.max_w_class = 1
+	pockets.bypass_w_limit = list("/obj/item/weapon/gun/pistol/vp70")
+	pockets.max_storage_space = 3
+
+/obj/item/attachable/stock/vp70
+	var/obj/item/storage/internal/pockets
+
+/obj/item/attachable/stock/vp70/New()
+	. = ..()
+	
+/obj/item/attachable/stock/vp70/attack_hand(mob/user)
+	if(loc == user && pockets.contents.len)
+		var/obj/item/I = pockets.contents[pockets.contents.len]
+		I.attack_hand(user)
+		return
+	else if(pockets.handle_attack_hand(user))
+		return ..()
+
+/obj/item/attachable/stock/vp70/MouseDrop(obj/over_object)
+	if(pockets.handle_mousedrop(usr, over_object))
+		return ..(over_object)
+
+/obj/item/attachable/stock/vp70/attackby(obj/item/W, mob/user)
+	. = ..()
+	return pockets.attackby(W, user)
+
+/obj/item/attachable/stock/vp70/emp_act(severity)
+	pockets.emp_act(severity)
+	return ..()
+
+/obj/item/attachable/stock/vp70/hear_talk(mob/M, msg)
+	pockets.hear_talk(M, msg)
+	return ..()
 
 /obj/item/attachable/stock/revolver
 	name = "\improper M44 magnum sharpshooter stock"
