@@ -659,6 +659,8 @@
 				M.change_mob_type(/mob/living/carbon/monkey, location, null, delmob)
 			if("moth")
 				M.change_mob_type(/mob/living/carbon/human, location, null, delmob, "Moth")
+			if("yautja")
+				M.change_mob_type(/mob/living/carbon/human, location, null, delmob, "Yautja")
 
 		log_admin("[key_name(usr)] has transformed [key_name(M)] into [href_list["transform"]].[delmob ? " Old mob deleted." : ""][location ? " Teleported to [AREACOORD(location)]" : ""]")
 		message_admins("[ADMIN_TPMONTY(usr)] has transformed [ADMIN_TPMONTY(M)] into [href_list["transform"]].[delmob ? " Old mob deleted." : ""][location ? " Teleported to new location." : ""]")
