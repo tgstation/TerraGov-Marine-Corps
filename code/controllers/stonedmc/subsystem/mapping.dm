@@ -56,15 +56,15 @@ SUBSYSTEM_DEF(mapping)
 	preloadTemplates()
 #ifndef LOWMEMORYMODE
 	// Create space ruin levels
-	while (space_levels_so_far < config.space_ruin_levels)
-		++space_levels_so_far
-		add_new_zlevel("Empty Area [space_levels_so_far]", ZTRAITS_SPACE)
+	//while (space_levels_so_far < config.space_ruin_levels)
+	//	++space_levels_so_far
+	//	add_new_zlevel("Empty Area [space_levels_so_far]", ZTRAITS_SPACE)
 	// and one level with no ruins
-	for (var/i in 1 to config.space_empty_levels)
-		++space_levels_so_far
-		empty_space = add_new_zlevel("Empty Area [space_levels_so_far]", list(ZTRAIT_LINKAGE = CROSSLINKED))
+	//for (var/i in 1 to config.space_empty_levels)
+	//	++space_levels_so_far
+	//	empty_space = add_new_zlevel("Empty Area [space_levels_so_far]", list(ZTRAIT_LINKAGE = CROSSLINKED))
 	// and the transit level
-	transit = add_new_zlevel("Transit/Reserved", list(ZTRAIT_RESERVED = TRUE))
+	//transit = add_new_zlevel("Transit/Reserved", list(ZTRAIT_RESERVED = TRUE))
 
 	// Pick a random away mission.
 	//if(CONFIG_GET(flag/roundstart_away))
@@ -166,7 +166,7 @@ SUBSYSTEM_DEF(mapping)
 	// load the ground level
 	ground_start = world.maxz + 1
 	INIT_ANNOUNCE("Loading [config.map_name]...")
-	LoadGroup(FailedZs, "Ground", config.map_path, config.map_file, config.traits, ZTRAITS_GROUND)
+	LoadGroup(FailedZs, config.map_name, config.map_path, config.map_file, config.traits, ZTRAITS_GROUND)
 
 	var/datum/map_config/theseus = new
 	theseus.LoadConfig("_maps/theseus.json")
@@ -214,7 +214,7 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 	var/list/station_areas_blacklist = typecacheof(list(/area/space, /area/mine))
 	for(var/area/A in world)
 		var/turf/picked = safepick(get_area_turfs(A.type))
-		if(picked && is_station_level(picked.z))
+		if(picked && is_mainship_level(picked.z))
 			if(!(A.type in GLOB.the_station_areas) && !is_type_in_typecache(A, station_areas_blacklist))
 				GLOB.the_station_areas.Add(A.type)
 
@@ -309,3 +309,8 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 			if(reserve.Reserve(width, height, z))
 				return reserve
 	QDEL_NULL(reserve)
+
+/datum/controller/subsystem/mapping/proc/reg_in_areas_in_z(list/areas)
+	for(var/B in areas)
+		var/area/A = B
+		A.reg_in_areas_in_z()

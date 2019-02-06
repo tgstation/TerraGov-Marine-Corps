@@ -71,9 +71,6 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 		RoleAuthority = new /datum/authority/branch/role()
 		to_chat(world, "<span class='danger'>Job setup complete</span>")
 
-	if(!EvacuationAuthority)
-		EvacuationAuthority = new
-
 	world.tick_lag = CONFIG_GET(number/ticklag)
 
 	spawn(3000)
