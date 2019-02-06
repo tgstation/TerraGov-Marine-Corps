@@ -49,16 +49,24 @@
 			to_chat(user, "<span class='notice'>You wet [I] in [src].</span>")
 			playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
 
+/obj/structure/shipmast
+	name = "\the Ships Mast"
+	icon = 'icons/obj/structures/structures.dmi'
+	icon_state = "shipmast"
+	desc = "A piece of old earth that was. The plaque reads<br><br><span class='name'>HMS Victory Sailed 1765 to 1922.</span><br><span class='name'>Relaunched 2393.</span><br><span class='name'>On loan from the First Sea Lord.</span><br><br>"
+	density = 1
+	anchored = 1
 
-
-
-
-
-
-
-
-
-
+/obj/structure/shipmast/attack_hand(var/mob/user)
+	. = ..()
+	if(user.a_intent == INTENT_HELP)
+		visible_message("[usr] rubs the [src] for good luck.")
+	if(user.a_intent == INTENT_DISARM)
+		visible_message("[usr] pushes the [src]. It's surprisingly solid.")
+	if(user.a_intent == INTENT_GRAB)
+		visible_message("[usr] hugs the [src].")
+	if(user.a_intent == INTENT_HARM)
+		visible_message("[usr] punches the [src] while letting out a muttered curse.")
 
 //ICE COLONY RESEARCH DECORATION-----------------------//
 //Most of icons made by ~Morrinn
