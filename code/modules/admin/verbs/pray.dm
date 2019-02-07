@@ -36,7 +36,7 @@
 		to_chat(usr, "Your prayers have been received by the gods.")
 
 
-/proc/Centcomm_announce(var/text , var/mob/sender , var/iamessage)
+/proc/tgmc_message(text, mob/sender)
 	text = copytext(sanitize(text), 1, MAX_MESSAGE_LEN)
 	for(var/client/C in GLOB.admins)
 		if(check_other_rights(C, R_ADMIN, FALSE))

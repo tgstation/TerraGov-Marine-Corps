@@ -109,10 +109,10 @@ Currently only has the tank hardpoints
 
 	var/nx = dx * cos(deg) - dy * sin(deg)
 	var/ny = dx * sin(deg) + dy * cos(deg)
-	if(nx == 0) 
+	if(nx == 0)
 		return max_angle >= 90
 	var/angle = arctan(ny/nx)
-	if(nx < 0) 
+	if(nx < 0)
 		angle += 180
 	return abs(angle) <= max_angle
 
@@ -186,6 +186,8 @@ Currently only has the tank hardpoints
 		T = get_step(T, pick(cardinal))
 	var/obj/item/projectile/P = new
 	P.generate_bullet(new ammo.default_ammo)
+	log_combat(usr, usr, "fired the [src].")
+	log_explosion("[usr] fired the [src].")
 	P.fire_at(T, owner, src, P.ammo.max_range, P.ammo.shell_speed)
 	playsound(get_turf(src), pick('sound/weapons/tank_cannon_fire1.ogg', 'sound/weapons/tank_cannon_fire2.ogg'), 60, 1)
 	ammo.current_rounds--
@@ -355,6 +357,8 @@ Currently only has the tank hardpoints
 		T = get_step(T, pick(cardinal))
 	var/obj/item/projectile/P = new
 	P.generate_bullet(new ammo.default_ammo)
+	log_combat(usr, usr, "fired the [src].")
+	log_explosion("[usr] fired the [src].")
 	P.fire_at(T, owner, src, P.ammo.max_range, P.ammo.shell_speed)
 	ammo.current_rounds--
 
@@ -448,6 +452,8 @@ Currently only has the tank hardpoints
 		T = get_step(T, pick(cardinal))
 	var/obj/item/projectile/P = new
 	P.generate_bullet(new ammo.default_ammo)
+	log_combat(usr, usr, "fired the [src].")
+	log_explosion("[usr] fired the [src].")
 	P.fire_at(T, owner, src, P.ammo.max_range, P.ammo.shell_speed)
 	playsound(get_turf(src), 'sound/weapons/gun_m92_attachable.ogg', 60, 1)
 	ammo.current_rounds--
@@ -518,9 +524,9 @@ Currently only has the tank hardpoints
 	else if(new_dir in list(EAST, WEST))
 		icon_suffix = "EW"
 
-	if(health <= 0) 
+	if(health <= 0)
 		icon_state_suffix = "1"
-	else if(ammo.current_rounds <= 0) 
+	else if(ammo.current_rounds <= 0)
 		icon_state_suffix = "2"
 
 	return image(icon = "[disp_icon]_[icon_suffix]", icon_state = "[disp_icon_state]_[icon_state_suffix]", pixel_x = x_offset, pixel_y = y_offset)
@@ -596,10 +602,10 @@ Currently only has the tank hardpoints
 
 /obj/item/hardpoint/support/artillery_module/active_effect(var/turf/T)
 	var/obj/vehicle/multitile/root/cm_armored/tank/C = owner
-	if(!C.gunner) 
+	if(!C.gunner)
 		return
 	var/mob/M = C.gunner
-	if(!M.client) 
+	if(!M.client)
 		return
 	if(is_active)
 		M.client.change_view(7)
@@ -625,10 +631,10 @@ Currently only has the tank hardpoints
 
 /obj/item/hardpoint/support/artillery_module/deactivate()
 	var/obj/vehicle/multitile/root/cm_armored/tank/C = owner
-	if(!C.gunner) 
+	if(!C.gunner)
 		return
 	var/mob/M = C.gunner
-	if(!M.client) 
+	if(!M.client)
 		return
 	is_active = FALSE
 	M.client.change_view(7)

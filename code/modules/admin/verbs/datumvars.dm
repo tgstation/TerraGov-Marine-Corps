@@ -1122,3 +1122,60 @@
 				H.head.update_icon()
 				log_admin("[key_name(usr)] has purrbated [key_name(H)].")
 				message_admins("[ADMIN_TPMONTY(usr)] has purrbated [ADMIN_TPMONTY(H)].")
+
+
+		else if(href_list["getatom"])
+			if(!check_rights(R_DEBUG))
+				return
+
+			var/atom/movable/A = locate(href_list["getatom"])
+			if(!istype(A))
+				to_chat(usr, "This can only be done to instances of type /atom")
+				return
+
+			var/turf/T = get_turf(usr)
+			if(!istype(T))
+				return
+
+			A.forceMove(T)
+
+			log_admin("[key_name(usr)] has sent atom [A] to themselves.")
+			message_admins("[ADMIN_TPMONTY(usr)] has sent atom [A] to themselves.")
+
+
+		else if(href_list["sendatom"])
+			if(!check_rights(R_DEBUG))
+				return
+
+			var/atom/movable/A = locate(href_list["sendatom"])
+			if(!istype(A))
+				to_chat(usr, "This can only be done to instances of type /atom")
+				return
+
+			var/atom/target
+
+			switch(input("Where do you want to send it to?", "Send Mob") as null|anything in list("Area", "Mob", "Key"))
+				if("Area")
+					var/area/AR = input("Pick an area.", "Pick an area") as null|anything in return_sorted_areas()
+					if(!AR || !A)
+						return
+					target = pick(get_area_turfs(AR))
+				if("Mob")
+					var/mob/N = input("Pick a mob.", "Pick a mob") as null|anything in sortmobs(GLOB.mob_list)
+					if(!N || !A)
+						return
+					target = get_turf(N)
+				if("Key")
+					var/client/C = input("Pick a key.", "Pick a key") as null|anything in sortKey(GLOB.clients)
+					if(!C || !A)
+						return
+					target = get_turf(C.mob)
+
+			if(istype(A, /atom/movable))
+				var/atom/movable/B = A
+				B.forceMove(target)
+			else
+				A.loc = target
+
+			log_admin("[key_name(usr)] has sent atom [A] to [target].")
+			message_admins("[ADMIN_TPMONTY(usr)] has sent atom [A] to [target].")
