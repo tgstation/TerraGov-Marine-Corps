@@ -210,7 +210,7 @@ atom/proc/AddLuminosity(delta_luminosity)
 //When you drop a light source it should keep a running total of your actual luminosity and set it accordingly.
 mob/SetLuminosity(new_luminosity, trueLum)
 	luminosity_total = 0 //reset this
-	var/current_light
+	var/current_light = 0
 	for(var/L in light_sources) //get the most powerful light source
 		//to_chat(world, "SET LUMINOSITY MOB DEBUG L: [L] current_light: [current_light]")
 		if(current_light > L)
