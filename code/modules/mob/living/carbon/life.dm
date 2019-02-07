@@ -212,19 +212,17 @@
 	if(!need_breathe())
 		return
 
-	var/list/breath
-
 	if(health < get_crit_threshold() && !reagents.has_reagent("inaprovaline"))
 		Losebreath(1, TRUE)
 	else
 		adjust_Losebreath(-1, TRUE)
 
 	if(!losebreath)
-		breath = get_breath_from_internal()
-		if(!breath)
-			breath = get_breath_from_environment()
+		. = get_breath_from_internal()
+		if(!.)
+			. = get_breath_from_environment()
 
-	handle_breath(breath)
+	handle_breath(.)
 
 /mob/living/carbon/proc/get_breath_from_internal()
 	if(internal)
@@ -237,24 +235,22 @@
 		if(!wear_mask || !(wear_mask.flags_inventory & ALLOWINTERNALS))
 			internal = null
 		if(internal)
-			hud_used.internals.icon_state= "internal1"
+			hud_used.internals.icon_state = "internal1"
 			return internal.return_air()
-		else if(hud_used && hud_used.internals)
-			hud_used.internals.icon_state= "internal0"
+		else if(hud_used?.internals)
+			hud_used.internals.icon_state = "internal0"
 
 /mob/living/carbon/proc/get_breath_from_environment()
-	var/list/air_info
 	if(istype(loc, /atom/movable))
 		var/atom/movable/container = loc
-		air_info = container.handle_internal_lifeform(src)
+		. = container.handle_internal_lifeform(src)
 
 	else if(isturf(loc))
 		var/turf/T = loc
-		air_info = T.return_air()
+		. = T.return_air()
 
-	if(istype(wear_mask) && air_info)
-		return wear_mask.filter_air(air_info)
-	return air_info
+	if(istype(wear_mask) && .)
+		. = wear_mask.filter_air(.)
 
 /mob/living/carbon/proc/handle_breath(list/air_info)
 	if(!air_info || suiciding)
