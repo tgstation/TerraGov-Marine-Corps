@@ -596,6 +596,11 @@
 		update_living_queens()
 
 
+/mob/living/carbon/Xenomorph/Larva/death(gibbed, deathmessage)
+	log_admin("[key_name(src)] died as a Larva at [AREACOORD(src.loc)].")
+	message_admins("[ADMIN_TPMONTY(src)] died as a Larva.")
+
+
 //////////// XENO CASTE PROCS //////////////////
 
 /datum/xeno_caste/proc/handle_decay(mob/living/carbon/Xenomorph/X)
