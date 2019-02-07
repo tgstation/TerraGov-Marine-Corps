@@ -97,7 +97,7 @@
 		var/cutting_time = CLAMP(10, 20, 100/cut_force) SECONDS
 		if(do_after(usr, cutting_time , TRUE, 5, BUSY_ICON_BUILD))
 			user.visible_message("<span class='notice'>[user] fells [src] with the [W].</span>","<span class='notice'>You fell [src] with the [W].</span>", "You hear the sound of a tree falling.")
-			playsound(get_turf(src), 'sound/effects/meteorimpact.ogg', 100 , 0, 0)
+			playsound(get_turf(src), 'sound/effects/meteorimpact.ogg', 60 , 0, 0)
 			for(var/i=1 to log_amount)
 				new /obj/item/grown/log(get_turf(src))
 
