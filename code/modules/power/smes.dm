@@ -179,7 +179,7 @@
 	to_chat(user, "<span class='notice'>You start adding cable to the [src].</span>")
 	if(do_after(user, 50, TRUE, 5, BUSY_ICON_BUILD))
 		terminal = new /obj/machinery/power/terminal(tempLoc)
-		terminal.dir = tempDir
+		terminal.setDir(tempDir)
 		terminal.master = src
 		return FALSE
 	return TRUE

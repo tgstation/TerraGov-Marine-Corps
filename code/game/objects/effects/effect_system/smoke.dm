@@ -71,7 +71,7 @@
 		if(foundsmoke)
 			continue
 		var/obj/effect/particle_effect/smoke/S = new type(T, amount)
-		S.dir = pick(cardinal)
+		S.setDir(pick(cardinal))
 		S.time_to_live = time_to_live
 		if(S.amount>0)
 			S.spread_smoke()
@@ -369,11 +369,11 @@
 			spawn(15)
 				M.coughedtime = 0
 	else
-		M.reagents.add_reagent("xeno_toxin", reagent_amount * 0.25)
-	//Topical damage (neurotoxin on exposed skin)
-	to_chat(M, "<span class='danger'>Your body is going numb, almost as if paralyzed!</span>")
-	if(prob(round(reagent_amount*5))) //Likely to momentarily freeze up/fall due to arms/hands seizing up
-		M.AdjustKnockeddown(0.5)
+		var/bio_vulnerability = CLAMP(1 - M.run_armor_check("chest", "bio"),0,1) //Your bio resist matters now if you have a gas mask
+		if(bio_vulnerability > 0) //Less than perfect resistance means there will be skin absorption
+			M.reagents.add_reagent("xeno_toxin", reagent_amount * 0.3 * bio_vulnerability)
+			//Topical damage (neurotoxin on exposed skin)
+			to_chat(M, "<span class='danger'>Your body goes numb where the gas touches it!</span>")
 
 /////////////////////////////////////////////
 // Smoke spread

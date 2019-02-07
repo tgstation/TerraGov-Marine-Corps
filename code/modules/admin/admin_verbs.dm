@@ -10,18 +10,21 @@
 
 	if(istype(M, /mob/new_player))
 		return
-	else if(istype(M, /mob/dead/observer))
+
+	if(istype(M, /mob/dead/observer))
 		var/mob/dead/observer/ghost = M
 		ghost.can_reenter_corpse = TRUE
 		ghost.reenter_corpse()
-	else
-		usr.client.change_view(world.view)
-		var/msg = usr.client.key
-		log_admin("[key_name(usr)] admin ghosted.")
+		return
+
+	usr.client.change_view(world.view)
+	var/msg = usr.client.key
+	log_admin("[key_name(usr)] admin ghosted.")
+	if(M.stat != DEAD)
 		message_admins("[ADMIN_TPMONTY(usr)] admin ghosted.")
-		M.ghostize(TRUE)
-		if(M && !M.key)
-			M.key = "@[msg]"
+	M.ghostize(TRUE)
+	if(M && !M.key)
+		M.key = "@[msg]"
 
 
 /datum/admins/proc/invisimin()
@@ -235,10 +238,9 @@
 		E.set_frequency(S.radio_freq)
 	else
 		if(H.wear_ear)
-			qdel(H.wear_ear)
-			H.update_icons()
-		H.wear_ear = new /obj/item/device/radio/headset/almayer/marine
-		var/obj/item/device/radio/headset/almayer/marine/E = H.wear_ear
+			H.dropItemToGround(H.wear_ear)
+		var/obj/item/device/radio/headset/almayer/marine/E = new /obj/item/device/radio/headset/almayer/marine(H)
+		H.equip_to_slot_or_del(E, SLOT_EARS)
 		E.set_frequency(S.radio_freq)
 		H.update_icons()
 
@@ -498,6 +500,8 @@
 	if(!check_rights(R_ASAY))
 		return
 
+	msg = noscript(msg)
+
 	if(!msg)
 		return
 
@@ -521,7 +525,10 @@
 	if(!check_rights(R_ADMIN|R_MENTOR))
 		return
 
-	msg = copytext(sanitize(msg), 1, MAX_MESSAGE_LEN)
+	if(!check_rights(R_ADMIN, FALSE))
+		msg = copytext(sanitize(msg), 1, MAX_MESSAGE_LEN)
+	else
+		msg = noscript(msg)
 
 	if(!msg)
 		return
@@ -538,9 +545,9 @@
 		if(check_other_rights(C, R_ADMIN, FALSE))
 			to_chat(C, "<span class='[color]'><span class='prefix'>[usr.client.holder.rank.name]:</span> [ADMIN_TPMONTY(usr)]: <span class='message'>[msg]</span></span>")
 		else if(is_mentor(C) && usr.stat == DEAD)
-			to_chat(C, "<span class='[color]'><span class='prefix'>[usr.client.holder.rank.name]:</span> [key_name_admin(usr, TRUE, TRUE, FALSE)] [ADMIN_JMP(C.mob)] [ADMIN_FLW(C.mob)]: <span class='message'>[msg]</span></span>")
+			to_chat(C, "<span class='[color]'><span class='prefix'>[usr.client.holder.rank.name]:</span> [key_name_admin(usr, TRUE, TRUE, FALSE)] [ADMIN_JMP(usr)] [ADMIN_FLW(usr)]: <span class='message'>[msg]</span></span>")
 		else if(is_mentor(C))
-			to_chat(C, "<span class='[color]'><span class='prefix'>[usr.client.holder.rank.name]:</span> [key_name_admin(usr, TRUE, FALSE, FALSE)] [ADMIN_JMP(C.mob)] [ADMIN_FLW(C.mob)]: <span class='message'>[msg]</span></span>")
+			to_chat(C, "<span class='[color]'><span class='prefix'>[usr.client.holder.rank.name]:</span> [key_name_admin(usr, TRUE, FALSE, FALSE)] [ADMIN_JMP(usr)] [ADMIN_FLW(usr)]: <span class='message'>[msg]</span></span>")
 
 
 /datum/admins/proc/dsay(msg as text)
@@ -566,7 +573,7 @@
 	if(usr.client.handle_spam_prevention(msg, MUTE_DEADCHAT))
 		return
 
-	msg = copytext(sanitize(msg), 1, MAX_MESSAGE_LEN)
+	msg = noscript(msg)
 
 	if(!msg)
 		return
@@ -938,7 +945,12 @@
 		send2irc("[AH ? "#[AH.id] " : ""]Reply: [ckey]", rawmsg)
 	else
 		if(check_other_rights(recipient, R_ADMIN, FALSE) || is_mentor(recipient))
-			if(check_rights(R_ADMIN, FALSE) || is_mentor(src))	//Both are staff
+			if(check_rights(R_ADMIN, FALSE) || is_mentor(src)) //Both are staff
+				if(!current_ticket && !recipient.current_ticket)
+					if(check_other_rights(recipient, R_ADMIN, FALSE) && check_rights(R_ADMIN, FALSE))
+						new /datum/admin_help(msg, recipient, TRUE, TICKET_ADMIN)
+					else
+						new /datum/admin_help(msg, recipient, TRUE, TICKET_MENTOR)
 				to_chat(recipient, "<font size='3' color='red'>Staff PM from-<b>[key_name(src, recipient, TRUE)]</b>: <span class='linkify'>[keywordparsedmsg]</span></font>")
 				to_chat(src, "<font size='3' color='blue'>Staff PM to-<b>[key_name(recipient, src, TRUE)]</b>: <span class='linkify'>[keywordparsedmsg]</span></font>")
 
@@ -1004,13 +1016,13 @@
 				if(X.key == key || X.key == recipient.key)
 					continue
 				if(check_other_rights(X, R_ADMIN, FALSE))
-					to_chat(X, "PM: <font color='blue'><B>[key_name(src, X, FALSE)]-&gt;[key_name(recipient, X, FALSE)]:</B> [keywordparsedmsg]</font>")
+					to_chat(X, "<font color='blue'><B>PM: [key_name(src, X, FALSE)]-&gt;[key_name(recipient, X, FALSE)]:</B> [keywordparsedmsg]</font>")
 			if(AH && AH.tier == TICKET_MENTOR)
 				for(var/client/X in GLOB.admins)
 					if(X.key == key || X.key == recipient.key)
 						continue
 					if(is_mentor(X))
-						to_chat(X, "<font color='blue'><B>[key_name(src, X, FALSE)]-&gt;[key_name(recipient, X, FALSE)]:</B> [keywordparsedmsg]</font>")
+						to_chat(X, "<font color='blue'><B>PM: [key_name(src, X, FALSE)]-&gt;[key_name(recipient, X, FALSE)]:</B> [keywordparsedmsg]</font>")
 
 #define IRC_AHELP_USAGE "Usage: ticket <close|resolve|icissue|reject|reopen \[ticket #\]|list>"
 /proc/IrcPm(target,msg,sender)
@@ -1184,7 +1196,7 @@
 	if(!msg)
 		return
 
-	var/message = "<font color='#6699CC'><span class='ooc'><span class='prefix'>LOOC:</span> <EM>[usr.client.holder.fakekey ? "Administrator" : usr.client.key]:</EM> <span class='message'>[msg]</span></span></font>"
+	var/message = "<font color='#6699CC'><span class='ooc'><span class='prefix'>LOOC:</span> [usr.client.holder.fakekey ? "Administrator" : usr.client.key]: <span class='message'>[msg]</span></span></font>"
 
 	usr.visible_message(message, message, message)
 

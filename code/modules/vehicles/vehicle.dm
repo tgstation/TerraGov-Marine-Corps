@@ -80,7 +80,7 @@
 		..()
 
 /obj/vehicle/attack_alien(mob/living/carbon/Xenomorph/M)
-	if(M.a_intent == "hurt")
+	if(M.a_intent == INTENT_HARM)
 		M.animation_attack_on(src)
 		playsound(loc, "alien_claw_metal", 25, 1)
 		M.flick_attack_overlay(src, "slash")

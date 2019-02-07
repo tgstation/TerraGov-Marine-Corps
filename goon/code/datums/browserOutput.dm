@@ -26,6 +26,8 @@ For the main html chat area
 	var/cookieSent   = 0 // Has the client sent a cookie for analysis
 	var/list/connectionHistory = list() //Contains the connection history passed from chat cookie
 	var/broken       = FALSE
+	var/adminMusicVolume = 25 //This is for the Play Global Sound verb
+
 
 /datum/chatOutput/New(client/C)
 	. = ..()
@@ -113,6 +115,9 @@ For the main html chat area
 			else
 				stack_trace("Unknown encoding received from client: \"[sanitize(encoding)]\". Please report this as a bug.")
 
+		if("setMusicVolume")
+			data = setMusicVolume(arglist(params))
+
 	if(data)
 		ehjax_send(data = data)
 
@@ -142,6 +147,25 @@ For the main html chat area
 	if(islist(data))
 		data = json_encode(data)
 	C << output("[data]", "[window]:ehjaxCallback")
+
+
+/datum/chatOutput/proc/sendMusic(music, pitch)
+	if(!findtext(music, GLOB.is_http_protocol))
+		return
+	var/list/music_data = list("adminMusic" = url_encode(url_encode(music)))
+	if(pitch)
+		music_data["musicRate"] = pitch
+	ehjax_send(data = music_data)
+
+
+/datum/chatOutput/proc/stopMusic()
+	ehjax_send(data = "stopMusic")
+
+
+/datum/chatOutput/proc/setMusicVolume(volume = "")
+	if(volume)
+		adminMusicVolume = CLAMP(text2num(volume), 0, 100)
+
 
 //Sends client connection details to the chat to handle and save
 /datum/chatOutput/proc/sendClientData()

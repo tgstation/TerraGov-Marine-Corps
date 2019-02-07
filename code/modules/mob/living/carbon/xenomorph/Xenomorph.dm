@@ -70,6 +70,9 @@
 
 	regenerate_icons()
 
+	hud_set_plasma()
+	med_hud_set_health()
+
 	toggle_xeno_mobhud() //This is a verb, but fuck it, it just werks
 
 /mob/living/carbon/Xenomorph/proc/set_datum()

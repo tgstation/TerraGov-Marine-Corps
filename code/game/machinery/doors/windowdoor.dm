@@ -105,7 +105,7 @@
 	src.operating = 0
 	return TRUE
 
-/obj/machinery/door/window/proc/take_damage(var/damage)
+/obj/machinery/door/window/take_damage(var/damage)
 	src.health = max(0, src.health - damage)
 	if (src.health <= 0)
 		new /obj/item/shard(src.loc)
@@ -206,7 +206,7 @@
 				wa.name = "Wired Windoor Assembly"
 			if (src.base_state == "right" || src.base_state == "rightsecure")
 				wa.facing = "r"
-			wa.dir = src.dir
+			wa.setDir(dir)
 			wa.state = "02"
 			wa.update_icon()
 

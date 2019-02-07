@@ -186,7 +186,7 @@
 /obj/structure/bed/nest/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(isxenolarva(M)) //Larvae can't do shit
 		return
-	if(M.a_intent == "hurt")
+	if(M.a_intent == INTENT_HARM)
 		M.visible_message("<span class='danger'>\The [M] claws at \the [src]!</span>", \
 		"<span class='danger'>You claw at \the [src].</span>")
 		playsound(loc, "alien_resin_break", 25)

@@ -16,7 +16,7 @@
 	melee_damage_lower = 25
 	melee_damage_upper = 25
 	attacktext = "slashes"
-	a_intent = "harm"
+	a_intent = INTENT_HARM
 	attack_sound = 'sound/weapons/alien_claw_flesh1.ogg'
 	min_oxy = 0
 	max_oxy = 0

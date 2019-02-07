@@ -13,7 +13,7 @@
 	for(var/client/C in GLOB.clients)
 		if(isobserver(C.mob))
 			count_observers++
-			if(!check_other_rights(C, R_ADMIN, FALSE) || !is_mentor(C))
+			if(!check_other_rights(C, R_ADMIN, FALSE))
 				count_nonadmin_observers++
 		if(C.mob && C.mob.stat != DEAD)
 			if(ishuman(C.mob) && !iszombie(C.mob))
@@ -90,9 +90,12 @@
 	if(check_rights(R_ADMIN|R_MENTOR, FALSE))
 		for(var/client/C in GLOB.admins)
 			if(check_other_rights(C, R_ADMIN, FALSE))
-				if(is_mentor(src) && C.holder.fakekey)
+				if(!check_rights(R_ADMIN, FALSE) && C.holder.fakekey)
 					continue
-				msg += "\t[C] is [C.holder.rank]"
+				msg += "\t[C] - [C.holder.rank]"
+
+				if(C.holder.fakekey)
+					msg += " as ([C.holder.fakekey])"
 
 				if(isobserver(C.mob))
 					msg += " - Observing"
@@ -104,7 +107,7 @@
 				if(C.is_afk())
 					msg += " (AFK)"
 
-				msg += "[isobserver(C.mob) || istype(C.mob, /mob/new_player) ? "" : "as [C.mob.real_name]"] (<A HREF='?src=[REF(usr.client.holder)];[HrefToken()];moreinfo=[REF(C.mob)]'>?</A>)"
+				msg += "[isobserver(C.mob) || istype(C.mob, /mob/new_player) ? "" : " as [C.mob.real_name]"] (<A HREF='?src=[REF(usr.client.holder)];[HrefToken()];moreinfo=[REF(C.mob)]'>?</A>)"
 
 				msg += "\n"
 				num_admins_online++
@@ -136,4 +139,4 @@
 				num_mentors_online++
 
 	to_chat(src, "\n<b> Current Admins ([num_admins_online]):</b>\n[msg]")
-	to_chat(src, "<b> Current Mentors ([num_mentors_online]):</b>\n[mentmsg]")
+	to_chat(src, "\n<b> Current Mentors ([num_mentors_online]):</b>\n[mentmsg]")

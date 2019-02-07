@@ -120,6 +120,30 @@ a.popt {text-decoration: none;}
     line-height: 28px;
     border-top: 1px solid #b4b4b4;
 }
+#musicVolumeText {
+	background: #ddd;
+    height: 30px;
+	padding: 5px 4px 5px 10px;
+	display: block;
+	color: #333;
+	text-decoration: none;
+    line-height: 28px;
+    font-size: 0.9em;
+    border-top: 1px solid #b4b4b4;
+}
+#musicVolume {
+	position: absolute;
+	right: 20px;
+}
+.icon-music {
+	display: block;
+	padding: 0;
+	font-size: 1.1em;
+	width: 22px;
+	text-align: center;
+	line-height: 30px;
+	float: right;
+}
 #options a:hover {background: #ccc;}
 #options .toggle {
 	width: 40px;
@@ -206,6 +230,7 @@ a.popt {text-decoration: none;}
 	{color: #638500;	text-decoration: underline;}
 .motd a, .motd a:link, .motd a:visited, .motd a:active, .motd a:hover
 	{color: #638500;}
+.tip					{color: #a000c4;	font-weight: bold;}
 
 .prefix					{					font-weight: bold;}
 

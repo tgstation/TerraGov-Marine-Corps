@@ -815,8 +815,8 @@ Defined in conflicts.dm of the #defines folder.
 	var/nade_type = loaded_grenades[1]
 	var/obj/item/explosive/grenade/frag/G = new nade_type (get_turf(gun))
 	playsound(user.loc, fire_sound, 50, 1)
-	log_game("[key_name(user)] fired an underslung grenade launcher at [AREACOORD(usr.loc)].")	
-	message_admins("[ADMIN_TPMONTY(usr)] fired an underslung grenade launcher.")
+	log_attack("[key_name(user)] fired an underslung grenade launcher at [AREACOORD(usr.loc)].")	
+	log_combat(user, src, "fired an")
 	G.det_time = min(15, G.det_time)
 	G.throw_range = max_range
 	G.launched = TRUE
