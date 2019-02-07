@@ -1181,4 +1181,4 @@
 			A.forceMove(target)
 
 			log_admin("[key_name(usr)] has sent atom [A] to [AREACOORD(target)].")
-			message_admins("[ADMIN_TPMONTY(usr)] has sent atom [A] to [ADMIN_VERBOJMP(target)].")
+			message_admins("[ADMIN_TPMONTY(usr)] has sent atom [A] to [ADMIN_VERBOSEJMP(target)].")
