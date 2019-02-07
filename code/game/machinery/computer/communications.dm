@@ -506,7 +506,7 @@
 	name = "Medical console"
 	desc = "This can be used for various important functions."
 	icon_state = "comm"
-	req_access = list(ACCESS_MARINE_BRIDGE, ACCESS_MARINE_CMO)
+	req_access = list(ACCESS_MARINE_CMO)
 	circuit = "/obj/item/circuitboard/computer/communications"
 	prints_intercept = FALSE
 	authenticated = 0
@@ -545,7 +545,7 @@
 			if(istype(I))
 				if(check_access(I))
 					authenticated = 1
-				if(ACCESS_MARINE_BRIDGE in I.access)
+				if(ACCESS_MARINE_CMO in I.access)
 					authenticated = 2
 					crew_announcement.announcer = GetNameAndAssignmentFromId(I)
 			else
@@ -553,14 +553,14 @@
 				if(istype(I))
 					if(check_access(I))
 						authenticated = 1
-					if(ACCESS_MARINE_BRIDGE in I.access)
+					if(ACCESS_MARINE_CMO in I.access)
 						authenticated = 2
 						crew_announcement.announcer = GetNameAndAssignmentFromId(I)
 		if("logout")
 			authenticated = 0
 			crew_announcement.announcer = ""
 
-		if("swipeidseclevel")
+	/*	if("swipeidseclevel")
 			var/mob/M = usr
 			var/obj/item/card/id/I = M.get_active_held_item()
 			if(istype(I))
@@ -587,9 +587,9 @@
 				tmp_alertlevel = SEC_LEVEL_GREEN //Reset to green.
 				state = STATE_DEFAULT
 			else
-				to_chat(usr, "<span class='warning'>You need to swipe your ID.</span>")
+				to_chat(usr, "<span class='warning'>You need to swipe your ID.</span>") */
 
-		if("announce")
+	/*	if("announce")
 			if(authenticated == 2)
 				if(world.time < cooldown_message + COOLDOWN_COMM_MESSAGE)
 					to_chat(usr, "<span class='warning'>Please allow at least [COOLDOWN_COMM_MESSAGE*0.1] second\s to pass between announcements.</span>")
@@ -600,17 +600,17 @@
 					return FALSE
 
 				crew_announcement.Announce(input, to_xenos = 0)
-				cooldown_message = world.time
+				cooldown_message = world.time */
 
 		if("award")
 			if(!usr.mind || usr.mind.assigned_role != "Chief Medical Officer")
-				to_chat(usr, "<span class='warning'>Only the Chief Medical Officer can award medals.</span>")
+				to_chat(usr, "<span class='warning'>Only the Chief Medical Officer can award medals on this computer.</span>")
 				return
 
 			if(give_medal_award(loc))
 				visible_message("<span class='notice'>[src] prints a medal.</span>")
 
-		if("evacuation_start")
+	/*	if("evacuation_start")
 			if(state == STATE_EVACUATION)
 				if(world.time < EVACUATION_TIME_LOCK) //Cannot call it early in the round.
 					to_chat(usr, "<span class='warning'>TGMC protocol does not allow immediate evacuation. Please wait another [round((EVACUATION_TIME_LOCK-world.time)/600)] minutes before trying again.</span>")
@@ -639,9 +639,9 @@
 				post_status("shuttle")
 				return TRUE
 
-			state = STATE_EVACUATION
+			state = STATE_EVACUATION */
 
-		if("evacuation_cancel")
+	/*	if("evacuation_cancel")
 			if(state == STATE_EVACUATION_CANCEL)
 				if(!EvacuationAuthority.cancel_evacuation())
 					to_chat(usr, "<span class='warning'>You are unable to cancel the evacuation right now!</span>")
@@ -658,9 +658,9 @@
 				message_admins("[ADMIN_TPMONTY(usr)] has canceled the emergency evacuation.")
 				return TRUE
 
-			state = STATE_EVACUATION_CANCEL
+			state = STATE_EVACUATION_CANCEL */
 
-		if("distress")
+	/*	if("distress")
 			if(state == STATE_DISTRESS)
 				if(world.time < DISTRESS_TIME_LOCK)
 					to_chat(usr, "<span class='warning'>The distress beacon cannot be launched this early in the operation. Please wait another [round((DISTRESS_TIME_LOCK-world.time)/600)] minutes before trying again.</span>")
@@ -707,7 +707,7 @@
 						message_admins("A distress beacon requested by [ADMIN_TPMONTY(usr)] was automatically sent due to not receiving an answer within 60 seconds.")
 						return TRUE
 			else
-				state = STATE_DISTRESS
+				state = STATE_DISTRESS */
 
 		if("messagelist")
 			currmsg = 0
@@ -817,7 +817,7 @@
 			if(authenticated)
 				dat += "<BR>\[ <A HREF='?src=\ref[src];operation=logout'>LOG OUT</A> \]"
 				//dat += "<BR>\[ <A HREF='?src=\ref[src];operation=changeseclevel'>Change alert level</A> \]"
-				//dat += "<BR>\[ <A HREF='?src=\ref[src];operation=status'>Set status display</A> \]"
+				dat += "<BR>\[ <A HREF='?src=\ref[src];operation=status'>Set status display</A> \]"
 				dat += "<BR>\[ <A HREF='?src=\ref[src];operation=messagelist'>Message list</A> \]"
 				dat += "<BR><hr>"
 
@@ -868,11 +868,11 @@
 		if(STATE_STATUSDISPLAY)
 			dat += "Set Status Displays<BR>"
 			dat += "\[ <A HREF='?src=\ref[src];operation=setstat;statdisp=blank'>Clear</A> \]<BR>"
-			dat += "\[ <A HREF='?src=\ref[src];operation=setstat;statdisp=time'>Station Time</A> \]<BR>"
-			dat += "\[ <A HREF='?src=\ref[src];operation=setstat;statdisp=shuttle'>Shuttle ETA</A> \]<BR>"
-			dat += "\[ <A HREF='?src=\ref[src];operation=setstat;statdisp=message'>Message</A> \]"
-			dat += "<ul><li> Line 1: <A HREF='?src=\ref[src];operation=setmsg1'>[ stat_msg1 ? stat_msg1 : "(none)"]</A>"
-			dat += "<li> Line 2: <A HREF='?src=\ref[src];operation=setmsg2'>[ stat_msg2 ? stat_msg2 : "(none)"]</A></ul><br>"
+			//dat += "\[ <A HREF='?src=\ref[src];operation=setstat;statdisp=time'>Station Time</A> \]<BR>"
+			//dat += "\[ <A HREF='?src=\ref[src];operation=setstat;statdisp=shuttle'>Shuttle ETA</A> \]<BR>"
+			//dat += "\[ <A HREF='?src=\ref[src];operation=setstat;statdisp=message'>Message</A> \]"
+			//dat += "<ul><li> Line 1: <A HREF='?src=\ref[src];operation=setmsg1'>[ stat_msg1 ? stat_msg1 : "(none)"]</A>"
+			//dat += "<li> Line 2: <A HREF='?src=\ref[src];operation=setmsg2'>[ stat_msg2 ? stat_msg2 : "(none)"]</A></ul><br>"
 			dat += "\[ Alert: <A HREF='?src=\ref[src];operation=setstat;statdisp=alert;alert=default'>None</A> |"
 			//dat += " <A HREF='?src=\ref[src];operation=setstat;statdisp=alert;alert=redalert'>Red Alert</A> |"
 			//dat += " <A HREF='?src=\ref[src];operation=setstat;statdisp=alert;alert=lockdown'>Lockdown</A> |"
