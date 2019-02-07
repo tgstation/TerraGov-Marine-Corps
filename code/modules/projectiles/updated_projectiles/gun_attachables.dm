@@ -681,7 +681,7 @@ Defined in conflicts.dm of the #defines folder.
 	wield_delay_mod = WIELD_DELAY_FAST
 	melee_mod = 5
 	size_mod = 1
-	icon_state = "vp70stock"
+	icon_state = "vp70stock" // Thank you to Manezinho
 	attach_icon = "vp70stock_a"
 	pixel_shift_x = 39
 	pixel_shift_y = 11
