@@ -120,7 +120,8 @@ These are used with cdel (clean delete). For example, qdel(atom, TA_REVIVE_ME) w
 #define SEC_LEVEL_GREEN	0
 #define SEC_LEVEL_BLUE	1
 #define SEC_LEVEL_RED	2
-#define SEC_LEVEL_DELTA	3
+#define SEC_LEVEL_BIO	3
+#define SEC_LEVEL_DELTA	4
 
 //Alarm levels.
 #define ALARM_WARNING_FIRE 	1

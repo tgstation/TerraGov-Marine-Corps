@@ -424,6 +424,14 @@
 /*
  * Premade paper
  */
+
+
+/obj/item/paper/commendation/
+	var/field = "<span class=\"paper_field\"></span>"
+	name = "Commendation"
+	//info = "<center><H1>Commendation<H2>of Medical Excellence</H2></H1><br>Proudly presented to<br><H2><I>[field]</I></H2><b>for superior performance and excellency in medical skills.</b><br><br><hr><br><small>They have gone above and beyond in saving human lives, treating wounded, chemical knowledge and surgical performance. Even when working in a difficult environment, they have shown outstanding courage, determination and commitment to save those in need.<br>They are a true example of the ideal doctor.</small><br><br><hr><br><b>Date</b><br><I>[field] - 2186</I><br><br><b>Granted by</b><br><I>Prof. [field]</I><br><small>Chief Medical Officer</small><br>[field]</center>"
+	icon_state = "commendation"
+
 /obj/item/paper/Court
 	name = "Judgement"
 	info = "For crimes against the station, the offender is sentenced to:<BR>\n<BR>\n"

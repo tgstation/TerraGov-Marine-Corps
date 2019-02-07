@@ -560,16 +560,18 @@
 			authenticated = 0
 			crew_announcement.announcer = ""
 
-	/*	if("swipeidseclevel")
+		if("swipeidseclevel")
 			var/mob/M = usr
 			var/obj/item/card/id/I = M.get_active_held_item()
 			if(istype(I))
-				if(ACCESS_MARINE_COMMANDER in I.access || ACCESS_MARINE_BRIDGE in I.access) //Let heads change the alert level.
+				if(ACCESS_MARINE_CMO in I.access) //Let heads change the alert level.
 					switch(tmp_alertlevel)
 						if(-INFINITY to SEC_LEVEL_GREEN)
 							tmp_alertlevel = SEC_LEVEL_GREEN //Cannot go below green.
-						if(SEC_LEVEL_BLUE to INFINITY)
-							tmp_alertlevel = SEC_LEVEL_BLUE //Cannot go above blue.
+						if(SEC_LEVEL_BLUE to SEC_LEVEL_BIO)
+							tmp_alertlevel = SEC_LEVEL_BLUE
+						if(SEC_LEVEL_BIO to INFINITY)
+							tmp_alertlevel = SEC_LEVEL_BIO //Can't go higher than Bio for the CMO
 
 					var/old_level = security_level
 					set_security_level(tmp_alertlevel)
@@ -582,12 +584,14 @@
 								feedback_inc("alert_comms_green",1)
 							if(SEC_LEVEL_BLUE)
 								feedback_inc("alert_comms_blue",1)
+							if(SEC_LEVEL_BIO)
+								feedback_inc("alert_comms_bio",1)
 				else
 					to_chat(usr, "<span class='warning'>You are not authorized to do this.</span>")
 				tmp_alertlevel = SEC_LEVEL_GREEN //Reset to green.
 				state = STATE_DEFAULT
 			else
-				to_chat(usr, "<span class='warning'>You need to swipe your ID.</span>") */
+				to_chat(usr, "<span class='warning'>You need to swipe your ID.</span>")
 
 	/*	if("announce")
 			if(authenticated == 2)
