@@ -69,7 +69,7 @@ var/blobevent = 0
 var/diaryofmeanpeople = null
 var/station_name = "[MAIN_SHIP_NAME]"
 var/game_version = "TerraGov Marine Corps"
-var/game_year = "[GAME_YEAR]"
+var/game_year = GAME_YEAR
 
 var/datum/air_tunnel/air_tunnel1/SS13_airtunnel = null
 var/going = 1.0
