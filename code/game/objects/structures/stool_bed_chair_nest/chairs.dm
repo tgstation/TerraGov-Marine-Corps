@@ -74,7 +74,7 @@
 	var/mob/living/M = usr
 	if(M.next_move > world.time)
 		return
-	M.next_move = world.time + 10
+	M.next_move = world.time + 5
 	to_chat(M, "<span class='notice'>You rotate the heavy chair.</span>")
 	return ..()
 
