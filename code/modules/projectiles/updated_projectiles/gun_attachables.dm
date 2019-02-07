@@ -677,12 +677,13 @@ Defined in conflicts.dm of the #defines folder.
 	name = "VP70 stock and holster"
 	desc = "A rare holster-stock distributed in small numbers to TGMC forces. Compatible with the MOD88, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl"
 	slot = "stock"
+	flags_equip_slot = ITEM_SLOT_POCKET
 	w_class = 3.0
 	wield_delay_mod = WIELD_DELAY_FAST
 	melee_mod = 5
 	size_mod = 1
 	icon_state = "vp70stock" // Thank you to Manezinho
-	attach_icon = "vp70stock_a"
+	attach_icon = "vp70stock_a" // Thank you to Manezinho
 	pixel_shift_x = 39
 	pixel_shift_y = 11
 	var/obj/item/storage/internal/pockets
