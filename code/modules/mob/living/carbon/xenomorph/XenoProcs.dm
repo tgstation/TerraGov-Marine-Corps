@@ -599,6 +599,7 @@
 /mob/living/carbon/Xenomorph/Larva/death(gibbed, deathmessage)
 	log_admin("[key_name(src)] died as a Larva at [AREACOORD(src.loc)].")
 	message_admins("[ADMIN_TPMONTY(src)] died as a Larva.")
+	return ..()
 
 
 //////////// XENO CASTE PROCS //////////////////
