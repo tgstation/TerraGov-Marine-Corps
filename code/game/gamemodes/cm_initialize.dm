@@ -932,32 +932,32 @@ datum/game_mode/proc/initialize_post_queen_list()
 		if(MAP_LV_624)
 			while(GLOB.map_items.len)
 				T = GLOB.map_items[GLOB.map_items.len]
-				GLOB.map_items--
+				GLOB.map_items.len--
 				new /obj/item/map/lazarus_landing_map(T)
 
 		if(MAP_ICE_COLONY)
 			while(GLOB.map_items.len)
 				T = GLOB.map_items[GLOB.map_items.len]
-				GLOB.map_items--
+				GLOB.map_items.len--
 				new /obj/item/map/ice_colony_map(T)
 
 		if(MAP_BIG_RED)
 			while(GLOB.map_items.len)
 				T = GLOB.map_items[GLOB.map_items.len]
-				GLOB.map_items--
+				GLOB.map_items.len--
 				new /obj/item/map/big_red_map(T)
 
 		if(MAP_PRISON_STATION)
 			while(GLOB.map_items.len)
 				T = GLOB.map_items[GLOB.map_items.len]
-				GLOB.map_items--
+				GLOB.map_items.len--
 				new /obj/item/map/FOP_map(T)
 
 /datum/game_mode/proc/spawn_fog_blockers()
 	var/turf/T
 	while(GLOB.fog_blocker_locations.len)
 		T = GLOB.fog_blocker_locations[GLOB.fog_blocker_locations.len]
-		GLOB.fog_blocker_locations--
+		GLOB.fog_blocker_locations.len--
 		new /obj/effect/forcefield/fog(T)
 
 /obj/effect/forcefield/fog

@@ -226,7 +226,7 @@
 "aer" = (/obj/structure/bookcase{icon_state = "book-5"},/turf/open/floor/carpet,/area/almayer/living/numbertwobunks)
 "aes" = (/obj/structure/flora/pottedplant,/turf/open/floor/wood,/area/almayer/living/commandbunks)
 "aet" = (/obj/structure/bed/chair/office/dark{dir = 1},/turf/open/floor/wood,/area/almayer/living/commandbunks)
-"aeu" = (/obj/structure/closet/secure_closet/bar/commander{name = "Success Cabinet"},/turf/open/floor/wood,/area/almayer/living/commandbunks)
+"aeu" = (/obj/structure/closet/secure_closet/bar/commander,/turf/open/floor/wood,/area/almayer/living/commandbunks)
 "aev" = (/obj/machinery/light{icon_state = "tube1"; dir = 8},/turf/open/floor/carpet,/area/almayer/living/commandbunks)
 "aew" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/open/floor/almayer{icon_regular_floor = "mono"; icon_state = "mono"},/area/almayer/living/commandbunks)
 "aex" = (/obj/structure/table/woodentable,/turf/open/floor/wood,/area/almayer/living/commandbunks)
