@@ -701,8 +701,8 @@ Defined in conflicts.dm of the #defines folder.
 	pockets.max_storage_space = 3
 	
 /obj/item/attachable/stock/vp70/attack_hand(mob/user)
-	if(loc == user && pockets.contents.len)
-		var/obj/item/I = pockets.contents[pockets.contents.len]
+	if(loc == user && length(pockets.contents))
+		var/obj/item/I = pockets.contents[length(pockets.contents)]
 		I.attack_hand(user)
 		return
 	else if(pockets.handle_attack_hand(user))
