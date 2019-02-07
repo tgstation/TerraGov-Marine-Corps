@@ -4302,7 +4302,7 @@
 "bEL" = (/obj/effect/landmark/start/marine/doctor,/turf/open/floor/almayer{icon_state = "dark_sterile"; tag = "icon-sterile"},/area/almayer/medical/operating_room_three)
 "bEM" = (/turf/open/floor/almayer{icon_state = "dark_sterile"; tag = "icon-sterile"},/area/almayer/medical/operating_room_three)
 "bEN" = (/obj/structure/cable{d2 = 2; icon_state = "0-2"},/obj/machinery/power/apc/almayer{dir = 4},/turf/open/floor/almayer{dir = 4; icon_state = "sterile_green_side"; tag = "icon-sterile_green_side"},/area/almayer/medical/operating_room_three)
-"bEO" = (/obj/structure/shipmast{step_y = 2},/turf/open/floor/almayer,/area/almayer/squads/req)
+"bEO" = (/obj/structure/shipmast{pixel_y = 2; step_y = 0},/turf/open/floor/almayer,/area/almayer/squads/req)
 "bEP" = (/obj/machinery/door/poddoor/shutters/almayer{dir = 4; id = "ROlobby2"; name = "\improper RO Line 2"},/obj/machinery/door/firedoor/border_only/almayer,/obj/structure/window/framed/almayer/requisitions,/turf/open/floor/plating,/area/almayer/squads/req)
 "bEQ" = (/obj/structure/table/almayer,/obj/machinery/cell_charger,/obj/item/tool/screwdriver,/turf/open/floor/almayer{icon_regular_floor = "mono"; icon_state = "mono"},/area/almayer/squads/req)
 "bER" = (/obj/effect/landmark/start/marine/squadmedic,/obj/effect/decal/warning_stripes{tag = "icon-W"; icon_state = "W"},/turf/open/floor/almayer{dir = 4; icon_state = "emerald"; tag = "icon-emerald"},/area/almayer/living/cryo_cells)
