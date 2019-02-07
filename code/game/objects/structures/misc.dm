@@ -60,14 +60,15 @@
 
 /obj/structure/shipmast/attack_hand(var/mob/user)
 	. = ..()
-	if(user.a_intent == INTENT_HELP)
-		visible_message("[usr] rubs the [src] for good luck.")
-	if(user.a_intent == INTENT_DISARM)
-		visible_message("[usr] pushes the [src]. It's surprisingly solid.")
-	if(user.a_intent == INTENT_GRAB)
-		visible_message("[usr] hugs the [src].")
-	if(user.a_intent == INTENT_HARM)
-		visible_message("[usr] punches the [src] while letting out a muttered curse.")
+	switch(user.a_intent)
+		if(INTENT_HELP)
+			visible_message("[usr] rubs the [src] for good luck.")
+		if(INTENT_DISARM)
+			visible_message("[usr] pushes the [src]. It's surprisingly solid.")
+		if(INTENT_GRAB)
+			visible_message("[usr] hugs the [src].")
+		if(INTENT_HARM)
+			visible_message("[usr] punches the [src] while letting out a muttered curse.")
 
 //ICE COLONY RESEARCH DECORATION-----------------------//
 //Most of icons made by ~Morrinn
