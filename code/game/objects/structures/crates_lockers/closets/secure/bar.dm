@@ -38,6 +38,5 @@
 
 /obj/structure/closet/secure_closet/bar/commander
 	name = "Success Cabinet"
-	req_access = null
-	req_access_txt = "1"
+	req_access = list(ACCESS_MARINE_COMMANDER)
 	
