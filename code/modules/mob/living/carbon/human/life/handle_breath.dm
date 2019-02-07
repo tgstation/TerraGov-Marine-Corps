@@ -8,8 +8,12 @@
 	return ..()
 
 /mob/living/carbon/human/handle_breath(list/air_info)
+	if(status_flags & GODMODE)
+		return
 	. = ..()
 	if(!.)
+		if(prob(10) && !(species?.flags & NO_BREATHE))
+			emote("gasp")
 		return FALSE
 
 	if(!is_lung_ruptured())
@@ -44,13 +48,14 @@
 				if (O2_pp == 0)
 					O2_pp = 0.01
 				var/ratio = O2_pp/safe_pressure_min
-				//Don't fuck them up too fast (space only does CARBON_MAX_OXYLOSS after all!)
-				adjustOxyLoss(max(CARBON_MAX_OXYLOSS * (1 - ratio), 0))
+				adjustOxyLoss(min(5*ratio, CARBON_MAX_OXYLOSS)) //Don't fuck them up too fast (space only does CARBON_MAX_OXYLOSS after all!)
 				oxygen_alert = TRUE
+				failed_last_breath = TRUE
 
 			else 									// We're in safe limits
-				adjustOxyLoss(-5)
+				adjustOxyLoss(CARBON_RECOVERY_OXYLOSS)
 				oxygen_alert = FALSE
+				failed_last_breath = FALSE
 
 		if(GAS_TYPE_OXYGEN)
 			var/O2_pp = air_info[3]
@@ -60,29 +65,31 @@
 				if (O2_pp == 0)
 					O2_pp = 0.01
 				var/ratio = O2_pp/safe_pressure_min
-				//Don't fuck them up too fast (space only does CARBON_MAX_OXYLOSS after all!)
-				adjustOxyLoss(max(CARBON_MAX_OXYLOSS * (1 - ratio), 0))
+				adjustOxyLoss(min(5*ratio, CARBON_MAX_OXYLOSS)) //Don't fuck them up too fast (space only does CARBON_MAX_OXYLOSS after all!)
 				oxygen_alert = TRUE
+				failed_last_breath = TRUE
 
 			else 									// We're in safe limits
-				adjustOxyLoss(-5)
+				adjustOxyLoss(CARBON_RECOVERY_OXYLOSS)
 				oxygen_alert = FALSE
+				failed_last_breath = FALSE
 
 		if(GAS_TYPE_N2O)
 			if(!isyautja(src)) // Prevent Predator anesthetic memes
 				var/SA_pp = air_info[3]
-				if(SA_pp > 20) // Enough to make us paralysed for a bit
+				if(SA_pp > 30)
+					Sleeping(10)
+				else if(SA_pp > 20) // Enough to make us paralysed for a bit
 					KnockOut(3) // 3 gives them one second to wake up and run away a bit!
-					//Enough to make us sleep as well
-					if(SA_pp > 30)
-						Sleeping(10)
 				else if(SA_pp > 1)	// There is sleeping gas in their lungs, but only a little, so give them a bit of a warning
 					if(prob(20))
 						emote(pick("giggle", "laugh"))
+			failed_last_breath = FALSE
 
 		else
 			adjustOxyLoss(CARBON_MAX_OXYLOSS)
 			oxygen_alert = TRUE
+			failed_last_breath = TRUE
 
 
 	var/breath_temp = air_info[2]

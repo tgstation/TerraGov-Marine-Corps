@@ -22,15 +22,6 @@
 		return
 	//No need to update all of these procs if the guy is dead.
 
-	if(stat != DEAD)
-		if((life_tick % CARBON_BREATH_DELAY == 0) || failed_last_breath) //First, resolve location and get a breath
-			breathe() //Only try to take a breath every 4 ticks, unless suffocating
-
-		else //Still give containing object the chance to interact
-			if(isobj(loc))
-				var/obj/location_as_object = loc
-				location_as_object.handle_internal_lifeform(src)
-
 	if(!in_stasis)
 		if(stat != DEAD)
 

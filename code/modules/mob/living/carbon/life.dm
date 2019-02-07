@@ -6,6 +6,13 @@
 	if(stat != DEAD) //Chemicals in body and some other stuff.
 		handle_organs()
 
+		if((life_tick % CARBON_BREATH_DELAY == 0) || failed_last_breath) //First, resolve location and get a breath
+			breathe() //Only try to take a breath every 4 ticks, unless suffocating
+
+		else if(isobj(loc))//Still give containing object the chance to interact
+			var/obj/location_as_object = loc
+			location_as_object.handle_internal_lifeform(src)
+
 	. = ..()
 
 	handle_fire() //Check if we're on fire
@@ -212,9 +219,7 @@
 	else
 		adjust_Losebreath(-1, TRUE)
 
-	if(losebreath && prob(10))
-		emote("gasp")
-	else
+	if(!losebreath)
 		breath = get_breath_from_internal()
 		if(!breath)
 			breath = get_breath_from_environment()
@@ -249,11 +254,9 @@
 
 	if(istype(wear_mask) && air_info)
 		return wear_mask.filter_air(air_info)
+	return air_info
 
 /mob/living/carbon/proc/handle_breath(list/air_info)
-	if(status_flags & GODMODE)
-		return FALSE
-
 	if(!air_info || suiciding)
 		if(suiciding)
 			adjustOxyLoss(2, TRUE)
@@ -264,9 +267,5 @@
 
 		failed_last_breath = TRUE
 		oxygen_alert = TRUE
-		return FALSE
-
-/mob/living/carbon/proc/need_breathe()
-	if(reagents.has_reagent("lexorin") || in_stasis)
 		return FALSE
 	return TRUE

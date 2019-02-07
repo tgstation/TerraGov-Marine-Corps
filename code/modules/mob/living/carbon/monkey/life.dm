@@ -10,15 +10,6 @@
 	life_tick++
 
 	if (stat != DEAD)
-		//First, resolve location and get a breath
-
-		if(life_tick % CARBON_BREATH_DELAY == 0 || failed_last_breath)
-			//Only try to take a breath every 8 seconds, unless suffocating
-			breathe()
-		else //Still give containing object the chance to interact
-			if(isobj(loc))
-				var/obj/location_as_object = loc
-				location_as_object.handle_internal_lifeform(src)
 
 		//Mutations and radiation
 		handle_mutations_and_radiation()
@@ -113,8 +104,12 @@
 					emote("gasp")
 
 /mob/living/carbon/monkey/handle_breath(list/air_info)
+	if(status_flags & GODMODE)
+		return
 	. = ..()
 	if(!.)
+		if(prob(10))
+			emote("gasp")
 		return FALSE
 
 	var/safe_pressure_min = 16 //Minimum safe partial pressure of breathable gas in kPa
@@ -123,48 +118,54 @@
 		if(GAS_TYPE_AIR)
 			var/O2_pp = air_info[3]*0.2 //20% oxygen in air
 			if(O2_pp < safe_pressure_min)// Too little oxygen
-				if(prob(20))
+				if(prob(10))
 					emote("gasp")
 				if (O2_pp == 0)
 					O2_pp = 0.01
 				var/ratio = O2_pp/safe_pressure_min
-				adjustOxyLoss(max(CARBON_MAX_OXYLOSS * (1 - ratio), 0))
+				adjustOxyLoss(min(5*ratio, CARBON_MAX_OXYLOSS))
 				oxygen_alert = TRUE
+				failed_last_breath = TRUE
 
 			else 									// We're in safe limits
-				adjustOxyLoss(-5)
+				adjustOxyLoss(CARBON_RECOVERY_OXYLOSS)
 				oxygen_alert = FALSE
+				failed_last_breath = FALSE
 
 		if(GAS_TYPE_OXYGEN)
 			var/O2_pp = air_info[3]
 			if(O2_pp < safe_pressure_min)// Too little oxygen
-				if(prob(20))
+				if(prob(10))
 					emote("gasp")
 				if (O2_pp == 0)
 					O2_pp = 0.01
 				var/ratio = O2_pp/safe_pressure_min
-				adjustOxyLoss(max(CARBON_MAX_OXYLOSS * (1 - ratio), 0))
+				adjustOxyLoss(min(5*ratio, CARBON_MAX_OXYLOSS))
 				oxygen_alert = TRUE
+				failed_last_breath = TRUE
 
 			else 									// We're in safe limits
-				adjustOxyLoss(-5)
+				adjustOxyLoss(CARBON_RECOVERY_OXYLOSS)
 				oxygen_alert = FALSE
+				failed_last_breath = FALSE
 
 		if(GAS_TYPE_N2O) //Anesthetic
 			var/SA_pp = air_info[3]
-			if(SA_pp > 20) // Enough to make us paralysed for a bit
+			if(SA_pp > 30)
+				Sleeping(10)
+			else if(SA_pp > 20) // Enough to make us paralysed for a bit
 				KnockOut(3) // 3 gives them one second to wake up and run away a bit!
 				//Enough to make us sleep as well
-				if(SA_pp > 30)
-					Sleeping(10)
 			else if(SA_pp > 1)	// There is sleeping gas in their lungs, but only a little, so give them a bit of a warning
-				if(prob(20))
+				if(prob(10))
 					emote(pick("giggle", "laugh"))
+			failed_last_breath = FALSE
 
 
 		else
 			adjustOxyLoss(CARBON_MAX_OXYLOSS)
 			oxygen_alert = TRUE
+			failed_last_breath = TRUE
 
 	var/breath_temp = air_info[2]
 
