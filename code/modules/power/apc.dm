@@ -159,9 +159,9 @@
 	// offset 24 pixels in direction of dir
 	// this allows the APC to be embedded in a wall, yet still inside an area
 	if (building)
-		dir = ndir
+		setDir(ndir)
 	tdir = dir // to fix Vars bug
-	dir = SOUTH
+	setDir(SOUTH)
 
 	switch(tdir)
 		if(NORTH)
@@ -224,7 +224,7 @@
 	//Create a terminal object at the same position as original turf loc
 	//Wires will attach to this
 	terminal = new/obj/machinery/power/terminal(src.loc)
-	terminal.dir = tdir
+	terminal.setDir(tdir)
 	terminal.master = src
 
 /obj/machinery/power/apc/examine(mob/user)
@@ -723,7 +723,7 @@
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 
-		if(H.species.flags & IS_SYNTHETIC && H.a_intent == "grab")
+		if(H.species.flags & IS_SYNTHETIC && H.a_intent == INTENT_GRAB)
 			if(emagged || stat & BROKEN)
 				var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 				s.set_up(3, 1, src)

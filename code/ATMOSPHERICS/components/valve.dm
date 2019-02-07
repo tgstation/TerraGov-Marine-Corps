@@ -114,9 +114,9 @@
 
 /obj/machinery/atmospherics/valve/proc/normalize_dir()
 	if(dir==3)
-		dir = 1
+		setDir(NORTH)
 	else if(dir==12)
-		dir = 4
+		setDir(EAST)
 
 /obj/machinery/atmospherics/valve/attack_ai(mob/user as mob)
 	return

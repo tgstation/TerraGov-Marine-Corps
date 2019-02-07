@@ -1,0 +1,6 @@
+author: "Ghommie"
+delete-after: True
+changes: 
+  - bugfix: "Fixes boiler sprays not going through open girders."
+  - bugfix: "Fixes flames & projectiles going through fogs."
+  - code_imp: "Removes a couple useless statements related to windows."

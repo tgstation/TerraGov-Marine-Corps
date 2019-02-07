@@ -110,7 +110,7 @@
 			to_chat(usr, "You must unfasten the pipe before rotating it.")
 			return
 
-		dir = turn(dir, -90)
+		setDir(turn(dir, -90))
 		update()
 
 	verb/flip()
@@ -124,7 +124,7 @@
 			to_chat(usr, "You must unfasten the pipe before flipping it.")
 			return
 
-		dir = turn(dir, 180)
+		setDir(turn(dir, 180))
 		switch(ptype)
 			if(2)
 				ptype = 3
@@ -259,7 +259,7 @@
 							var/obj/structure/disposalpipe/P = new pipetype(src.loc)
 							src.transfer_fingerprints_to(P)
 							P.base_icon_state = base_state
-							P.dir = dir
+							P.setDir(dir)
 							P.dpdir = dpdir
 							P.updateicon()
 
@@ -277,7 +277,7 @@
 
 							var/obj/structure/disposaloutlet/P = new /obj/structure/disposaloutlet(src.loc)
 							src.transfer_fingerprints_to(P)
-							P.dir = dir
+							P.setDir(dir)
 							var/obj/structure/disposalpipe/trunk/Trunk = CP
 							Trunk.linked = P
 
@@ -285,7 +285,7 @@
 
 							var/obj/machinery/disposal/deliveryChute/P = new /obj/machinery/disposal/deliveryChute(src.loc)
 							src.transfer_fingerprints_to(P)
-							P.dir = dir
+							P.setDir(dir)
 
 						qdel(src)
 						return

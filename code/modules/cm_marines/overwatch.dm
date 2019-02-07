@@ -498,9 +498,9 @@
 		return B?.beacon_cam
 
 //Sends a string to our currently selected squad.
-/obj/machinery/computer/overwatch/proc/send_to_squad(var/txt = "", var/plus_name = FALSE, var/only_leader = FALSE)
-	if(txt == "" || !current_squad || !operator)
-		return //Logic
+/obj/machinery/computer/overwatch/proc/send_to_squad(txt, plus_name = FALSE, only_leader = FALSE)
+	if(!txt || !current_squad || !operator)
+		return
 	var/text = copytext(sanitize(txt), 1, MAX_MESSAGE_LEN)
 	var/nametext = ""
 	if(plus_name)
@@ -521,13 +521,13 @@
 					to_chat(M, "[bicon(src)] <font color='blue'><B>\[SL Overwatch\]:</b> [nametext][text]</font>")
 					return
 
-/obj/machinery/computer/overwatch/proc/send_to_squads(var/txt = "", var/plus_name = FALSE, var/only_leader = FALSE)
-	if(!squads.len)
+/obj/machinery/computer/overwatch/proc/send_to_squads(txt, plus_name = FALSE, only_leader = FALSE)
+	if(!length(squads))
 		return FALSE
 	var/squad_backup = current_squad
 	for(var/datum/squad/S in squads)
 		current_squad = S
-		send_to_squad(txt,plus_name,only_leader)
+		send_to_squad(txt, plus_name, only_leader)
 	current_squad = squad_backup
 
 /obj/machinery/computer/overwatch/proc/handle_bombard()
@@ -564,7 +564,7 @@
 
 /obj/machinery/computer/overwatch/proc/do_fire_bombard(var/turf/T, var/user)
 	state("<span class='boldnotice'>Orbital bombardment has fired! Impact imminent!</span>")
-	send_to_squads("<span class='danger'>WARNING! Ballistic trans-atmospheric launch detected! Get outside of Danger Close!</span>")
+	send_to_squads("WARNING! Ballistic trans-atmospheric launch detected! Get outside of Danger Close!")
 	addtimer(CALLBACK(src, .do_land_bombard, T, user), 2.5 SECONDS)
 
 /obj/machinery/computer/overwatch/proc/do_land_bombard(var/turf/T, var/user)
@@ -1065,27 +1065,29 @@
 		command_aura = choice
 	else
 		command_aura = which
+	if(!(command_aura in command_aura_allowed))
+		return
 	command_aura_cooldown = 45 //45 ticks
 	command_aura_tick = 10 //10 ticks
 	var/message = ""
 	switch(command_aura)
 		if("move")
-			message = pick(";GET MOVING!", ";GO, GO, GO!", ";WE ARE ON THE MOVE!", ";MOVE IT!", ";DOUBLE TIME!")
-			say(message)
 			var/image/move = image('icons/mob/talk.dmi', icon_state = "order_move")
 			overlays += move
+			message = pick(";GET MOVING!", ";GO, GO, GO!", ";WE ARE ON THE MOVE!", ";MOVE IT!", ";DOUBLE TIME!")
+			say(message)
 			addtimer(CALLBACK(src, .proc/remove_emote_overlay, move), 5 SECONDS)
 		if("hold")
-			message = pick(";DUCK AND COVER!", ";HOLD THE LINE!", ";HOLD POSITION!", ";STAND YOUR GROUND!", ";STAND AND FIGHT!")
-			say(message)
 			var/image/hold = image('icons/mob/talk.dmi', icon_state = "order_hold")
 			overlays += hold
+			message = pick(";DUCK AND COVER!", ";HOLD THE LINE!", ";HOLD POSITION!", ";STAND YOUR GROUND!", ";STAND AND FIGHT!")
+			say(message)
 			addtimer(CALLBACK(src, .proc/remove_emote_overlay, hold), 5 SECONDS)
 		if("focus")
-			message = pick(";FOCUS FIRE!", ";PICK YOUR TARGETS!", ";CENTER MASS!", ";CONTROLLED BURSTS!", ";AIM YOUR SHOTS!")
-			say(message)
 			var/image/focus = image('icons/mob/talk.dmi', icon_state = "order_focus")
 			overlays += focus
+			message = pick(";FOCUS FIRE!", ";PICK YOUR TARGETS!", ";CENTER MASS!", ";CONTROLLED BURSTS!", ";AIM YOUR SHOTS!")
+			say(message)
 			addtimer(CALLBACK(src, .proc/remove_emote_overlay, focus), 5 SECONDS)
 	update_action_buttons()
 

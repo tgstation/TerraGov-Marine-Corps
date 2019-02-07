@@ -149,8 +149,6 @@
 	var/attack_delay = 0 //Bonus or pen to time in between attacks. + makes slashes slower.
 	var/speed = -0.5 //Regular xeno speed modifier. Positive makes you go slower. (1.5 is equivalent to FAT mutation)
 	var/speed_modifier = 0 //Speed bonus/penalties. Positive makes you go slower.
-	var/slowdown = 0 //Temporary penalty on movement. Regenerates each tick.
-	var/stagger = 0 //Temporary inability to use special actions. Regenerates each tick.
 	var/tier = 1 //This will track their "tier" to restrict/limit evolutions
 
 	var/emotedown = 0

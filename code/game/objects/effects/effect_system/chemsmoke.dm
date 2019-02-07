@@ -187,7 +187,7 @@
 		chemholder.reagents.copy_to(smoke, chemholder.reagents.total_volume / dist, safety = 1)	//copy reagents to the smoke so mob/breathe() can handle inhaling the reagents
 	smoke.icon = I
 	smoke.layer = FLY_LAYER
-	smoke.dir = pick(cardinal)
+	smoke.setDir(pick(cardinal))
 	smoke.pixel_x = -32 + rand(-8,8)
 	smoke.pixel_y = -32 + rand(-8,8)
 	walk_to(smoke, T)
@@ -239,7 +239,7 @@
 					continue
 				for(var/atom/movable/M in target)
 					if(M.flags_atom & ON_BORDER)
-						if(M.dir == get_dir(target, current))
+						if(M.setDir(get_dir(target, current)))
 							continue
 					else if(M.density)
 						continue

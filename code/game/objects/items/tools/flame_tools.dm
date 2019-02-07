@@ -370,7 +370,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 				light("<span class='notice'>[user] lights their [src] with the burning ground.</span>")
 				return
 
-		if(isliving(target) && user.a_intent == "help")
+		if(isliving(target) && user.a_intent == INTENT_HELP)
 			var/mob/living/M = target
 			if(M.on_fire)
 				if(user == M)

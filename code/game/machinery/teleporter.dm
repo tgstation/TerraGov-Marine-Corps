@@ -25,11 +25,11 @@
 
 	if(istype(station))
 		station.com = hub
-		station.dir = dir
+		station.setDir(dir)
 
 	if(istype(hub))
 		hub.com = src
-		hub.dir = dir
+		hub.setDir(dir)
 
 /obj/machinery/computer/teleporter/attackby(I as obj, mob/living/user as mob)
 	if(istype(I, /obj/item/card/data/))

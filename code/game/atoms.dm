@@ -632,6 +632,10 @@ Proc for attack log creation, because really why not
 		var/atom/A = a
 		A.HandleTurfChange(T)
 
+//Hook for running code when a dir change occurs
+/atom/proc/setDir(newdir)
+	dir = newdir
+
 /atom/vv_get_dropdown()
 	. = ..()
 	. += "---"

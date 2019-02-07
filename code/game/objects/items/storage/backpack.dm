@@ -382,6 +382,7 @@
 					"/obj/item/ammo_magazine/sentry",
 					"/obj/item/ammo_magazine/minisentry",
 					"/obj/item/device/marine_turret/mini",
+					"/obj/item/stack/razorwire",
 					"/obj/item/stack/sandbags"
 					)
 
@@ -581,8 +582,11 @@
 		camo_off(user)
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/process()
-	if(!wearer || wearer.stat == DEAD)
+	if(!wearer)
 		camo_off()
+		return
+	else if(wearer.stat == DEAD)
+		camo_off(wearer)
 		return
 
 	if(process_count++ < 4)
@@ -609,8 +613,11 @@
 	shimmer_alpha = SCOUT_CLOAK_RUN_ALPHA * 0.5 //Half the normal shimmer transparency.
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/sniper/process()
-	if(!wearer || wearer.stat == DEAD)
+	if(!wearer)
 		camo_off()
+		return
+	else if(wearer.stat == DEAD)
+		camo_off(wearer)
 		return
 
 	stealth_delay = world.time - SCOUT_CLOAK_STEALTH_DELAY * 0.5

@@ -93,7 +93,7 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 
 /datum/authority/branch/evacuation/proc/initiate_evacuation() //Begins the evacuation procedure.
 	if(evac_status == EVACUATION_STATUS_STANDING_BY && !(flags_scuttle & FLAGS_EVACUATION_DENY))
-		enter_allowed = 0 //No joining during evac.
+		GLOB.enter_allowed = FALSE //No joining during evac.
 		evac_time = world.time
 		evac_status = EVACUATION_STATUS_INITIATING
 		command_announcement.Announce("Emergency evacuation has been triggered. Please proceed to the escape pods.", "Priority Alert", new_sound='sound/AI/evacuate.ogg', to_xenos = 0)
@@ -107,7 +107,7 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 
 /datum/authority/branch/evacuation/proc/cancel_evacuation() //Cancels the evac procedure. Useful if admins do not want the marines leaving.
 	if(evac_status == EVACUATION_STATUS_INITIATING)
-		enter_allowed = 1
+		GLOB.enter_allowed = TRUE
 		evac_time = null
 		evac_status = EVACUATION_STATUS_STANDING_BY
 		command_announcement.Announce("Evacuation has been cancelled.", "Priority Alert", new_sound='sound/AI/evacuate_cancelled.ogg')
@@ -211,9 +211,9 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 		return TRUE
 
 /datum/authority/branch/evacuation/proc/trigger_self_destruct(list/z_levels = list(MAIN_SHIP_Z_LEVEL), origin = dest_master, override)
-	set waitfor = 0
+	set waitfor = FALSE
 	if(dest_status < NUKE_EXPLOSION_IN_PROGRESS) //One more check for good measure, in case it's triggered through a bomb instead of the destruct mechanism/admin panel.
-		enter_allowed = 0 //Do not want baldies spawning in as everything is exploding.
+		GLOB.enter_allowed = FALSE //Do not want baldies spawning in as everything is exploding.
 		dest_status = NUKE_EXPLOSION_IN_PROGRESS
 		playsound(origin, 'sound/machines/Alarm.ogg', 75, 0, 30)
 		world << pick('sound/theme/nuclear_detonation1.ogg','sound/theme/nuclear_detonation2.ogg')
@@ -263,6 +263,8 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 		world << sound('sound/effects/explosionfar.ogg')
 		C.icon_state = ship_status ? "summary_spared" : "summary_destroyed"
 
+		addtimer(CALLBACK(src, .proc/remove_overlay, C), 15 SECONDS)
+
 		dest_status = NUKE_EXPLOSION_FINISHED
 
 		if(!ticker || !ticker.mode) //Just a safety, just in case a mode isn't running, somehow.
@@ -271,6 +273,12 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 			log_game("Rebooting due to nuclear detonation.")
 			world.Reboot()
 		return TRUE
+
+
+/datum/authority/branch/evacuation/proc/remove_overlay(overlay)
+	for(var/client/C in GLOB.player_list)
+		C.screen -= overlay
+
 
 /datum/authority/branch/evacuation/proc/process_self_destruct()
 	set background = 1

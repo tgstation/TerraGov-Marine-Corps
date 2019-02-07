@@ -48,7 +48,7 @@
 		else if(istype(target,/mob/living))
 			var/mob/living/M = target
 			if(M.stat>1) return
-			if(chassis.occupant.a_intent == "hurt")
+			if(chassis.occupant.a_intent == INTENT_HARM)
 				M.take_overall_damage(dam_force)
 				M.adjustOxyLoss(round(dam_force/2))
 				M.updatehealth()
@@ -981,10 +981,10 @@
 		else if(istype(target,/mob/living))
 			var/mob/living/M = target
 			if(M.stat>1) return
-			if(chassis.occupant.a_intent == "hurt")
+			if(chassis.occupant.a_intent == INTENT_HARM)
 				chassis.occupant_message("<span class='warning'> You obliterate [target] with [src.name], leaving blood and guts everywhere.</span>")
 				chassis.visible_message("<span class='warning'> [chassis] destroys [target] in an unholy fury.</span>")
-			if(chassis.occupant.a_intent == "disarm")
+			if(chassis.occupant.a_intent == INTENT_DISARM)
 				chassis.occupant_message("<span class='warning'> You tear [target]'s limbs off with [src.name].</span>")
 				chassis.visible_message("<span class='warning'> [chassis] rips [target]'s arms off.</span>")
 			else

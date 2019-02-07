@@ -1,4 +1,0 @@
-author: "Alterist"
-delete-after: True
-changes: 
-  - bugfix: "Fixes the color of vendor backgrounds, no more jarring grey and blue, rejoice!"

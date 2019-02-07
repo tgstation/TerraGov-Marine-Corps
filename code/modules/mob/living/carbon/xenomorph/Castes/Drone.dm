@@ -151,6 +151,7 @@
 	pixel_x = 0
 	old_x = 0
 	pull_speed = -2
+	var/last_drone_sting = null
 	wound_type = "alien" //used to match appropriate wound overlays
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
@@ -161,6 +162,7 @@
 		/datum/action/xeno_action/activable/transfer_plasma,
 		/datum/action/xeno_action/activable/salvage_plasma,
 		/datum/action/xeno_action/activable/corrosive_acid/drone,
+		/datum/action/xeno_action/activable/drone_sting,
 		/datum/action/xeno_action/toggle_pheromones
 		)
 	inherent_verbs = list(

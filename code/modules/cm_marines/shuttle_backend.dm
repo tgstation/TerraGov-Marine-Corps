@@ -451,7 +451,7 @@ L[get_turf(src)] = rotation
 		var/old_icon = T.icon
 
 		target.ChangeTurf(T.type)
-		target.dir = old_dir
+		target.setDir(old_dir)
 		target.icon_state = old_icon_state
 		target.icon = old_icon
 

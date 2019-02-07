@@ -113,7 +113,7 @@
 	//latch with src as the follower
 	lead = T
 	T.tow = src
-	dir = lead.dir
+	setDir(lead.dir)
 
 	if(user && !silent)
 		to_chat(user, "<span class='notice'>You hitch [src] to [T].</span>")
