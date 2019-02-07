@@ -1170,12 +1170,15 @@
 					if(!C || !A)
 						return
 					target = get_turf(C.mob)
+				if("Coords")
+					var/X = input("Select coordinate X", "Coordinate X") as null|num
+					var/Y = input("Select coordinate Y", "Coordinate Y") as null|num
+					var/Z = input("Select coordinate Z", "Coordinate Z") as null|num
+					if(isnull(X) || isnull(Y) || isnull(Z) || !A)
+						return
+					target = locate(X, Y, Z)
 
-			if(istype(A, /atom/movable))
-				var/atom/movable/B = A
-				B.forceMove(target)
-			else
-				A.loc = target
+			A.forceMove(target)
 
 			log_admin("[key_name(usr)] has sent atom [A] to [target].")
 			message_admins("[ADMIN_TPMONTY(usr)] has sent atom [A] to [target].")
