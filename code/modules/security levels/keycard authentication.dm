@@ -150,6 +150,8 @@
 		if("Revoke Emergency Maintenance Access")
 			revoke_maint_all_access()
 			feedback_inc("alert_keycard_auth_maintRevoke",1)
+		if("Biohazard")
+			set_security_level(SEC_LEVEL_BIO)
 		if("Emergency Response Team")
 			if(is_ert_blocked())
 				to_chat(usr, "<span class='warning'>All emergency response teams are dispatched and can not be called at this time.</span>")

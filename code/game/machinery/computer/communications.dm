@@ -420,6 +420,7 @@
 			else
 				dat += "<A HREF='?src=\ref[src];operation=securitylevel;newalertlevel=[SEC_LEVEL_BLUE]'>Blue</A><BR>"
 				dat += "<A HREF='?src=\ref[src];operation=securitylevel;newalertlevel=[SEC_LEVEL_GREEN]'>Green</A>"
+				dat += "<A HREF='?src=\ref[src];operation=securitylevel;newalertlevel=[SEC_LEVEL_BIO]'>Biohazard</A>"
 
 		if(STATE_CONFIRM_LEVEL)
 			dat += "Current alert level: [get_security_level()]<BR>"
@@ -581,10 +582,13 @@
 						message_admins("[ADMIN_TPMONTY(usr)] has changed the security level to [get_security_level()].")
 						switch(security_level)
 							if(SEC_LEVEL_GREEN)
+								set_security_level(SEC_LEVEL_GREEN)
 								feedback_inc("alert_comms_green",1)
 							if(SEC_LEVEL_BLUE)
+								set_security_level(SEC_LEVEL_BLUE)
 								feedback_inc("alert_comms_blue",1)
 							if(SEC_LEVEL_BIO)
+								set_security_level(SEC_LEVEL_BIO)
 								feedback_inc("alert_comms_bio",1)
 				else
 					to_chat(usr, "<span class='warning'>You are not authorized to do this.</span>")
@@ -898,10 +902,10 @@
 			//	dat += "<A HREF='?src=\ref[src];operation=securitylevel;newalertlevel=[SEC_LEVEL_BLUE]'>Blue</A><BR>"
 			//	dat += "<A HREF='?src=\ref[src];operation=securitylevel;newalertlevel=[SEC_LEVEL_GREEN]'>Green</A>"
 
-		//if(STATE_CONFIRM_LEVEL)
-		//	dat += "Current alert level: [get_security_level()]<BR>"
-		//	dat += "Confirm the change to: [num2seclevel(tmp_alertlevel)]<BR>"
-		//	dat += "<A HREF='?src=\ref[src];operation=swipeidseclevel'>Swipe ID</A> to confirm change.<BR>"
+		if(STATE_CONFIRM_LEVEL)
+			dat += "Current alert level: [get_security_level()]<BR>"
+			dat += "Confirm the change to: [num2seclevel(tmp_alertlevel)]<BR>"
+			dat += "<A HREF='?src=\ref[src];operation=swipeidseclevel'>Swipe ID</A> to confirm change.<BR>"
 
 	dat += "<BR>\[ [(state != STATE_DEFAULT) ? "<A HREF='?src=\ref[src];operation=main'>Main Menu</A>|" : ""]<A HREF='?src=\ref[user];mach_close=communications'>Close</A> \]"
 	user << browse(dat, "window=communications;size=400x500")

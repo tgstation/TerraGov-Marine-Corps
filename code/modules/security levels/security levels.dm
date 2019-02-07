@@ -15,7 +15,7 @@
 			level = SEC_LEVEL_BLUE
 		if("red")
 			level = SEC_LEVEL_RED
-		if("bio")
+		if("biohazard")
 			level = SEC_LEVEL_BIO
 		if("delta")
 			level = SEC_LEVEL_DELTA
@@ -82,6 +82,7 @@
 				else
 					if(announce)
 						command_announcement.Announce("Attention: There is a Biohazard present on the ship - there is an immediate threat to the ship.", "Priority Alert", no_sound ? null : 'sound/AI/code_red_lowered.ogg')
+				security_level = SEC_LEVEL_BIO		
 
 			if(SEC_LEVEL_DELTA)
 				if(announce)
@@ -110,7 +111,7 @@
 		if(SEC_LEVEL_RED)
 			return "red"
 		if(SEC_LEVEL_BIO)
-			return "bio"
+			return "biohazard"
 		if(SEC_LEVEL_DELTA)
 			return "delta"
 
@@ -123,7 +124,7 @@
 		if(SEC_LEVEL_RED)
 			return "red"
 		if(SEC_LEVEL_BIO)
-			return "bio"
+			return "biohazard"
 		if(SEC_LEVEL_DELTA)
 			return "delta"
 
@@ -135,7 +136,7 @@
 			return SEC_LEVEL_BLUE
 		if("red")
 			return SEC_LEVEL_RED
-		if("bio")
+		if("biohazard")
 			return SEC_LEVEL_BIO
 		if("delta")
 			return SEC_LEVEL_DELTA
