@@ -404,7 +404,7 @@ should be alright.
 		return
 
 	var/final_delay = attachment.attach_delay
-	if (user.mind.cm_skills.firearms)
+	if(user.mind?.cm_skills?.firearms)
 		user.visible_message("<span class='notice'>[user] begins attaching [attachment] to [src].</span>",
 		"<span class='notice'>You begin attaching [attachment] to [src].</span>", null, 4)
 		if(user.mind.cm_skills.firearms >= SKILL_FIREARMS_DEFAULT) //See if the attacher is super skilled/panzerelite born to defeat never retreat etc
@@ -747,7 +747,12 @@ should be alright.
 	if(!usr)
 		return
 
-	rail?.activate_attachment(src, usr)
+	var/obj/item/weapon/gun/W = usr.get_active_held_item()
+
+	if(!istype(W))
+		return
+
+	W.rail?.activate_attachment(W, usr)
 
 
 /obj/item/weapon/gun/verb/toggle_ammo_hud()

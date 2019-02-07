@@ -56,7 +56,7 @@ obj/structure/bed/Destroy()
 	B.visible_message("<span class='notice'>[user] buckles [B] to [src]!</span>")
 	B.roller_buckled = src
 	B.loc = loc
-	B.dir = dir
+	B.setDir(dir)
 	buckled_bodybag = B
 	density = TRUE
 	update_icon()
@@ -154,7 +154,7 @@ obj/structure/bed/Destroy()
 				qdel(src)
 
 /obj/structure/bed/attack_alien(mob/living/carbon/Xenomorph/M)
-	if(M.a_intent == "hurt")
+	if(M.a_intent == INTENT_HARM)
 		M.animation_attack_on(src)
 		playsound(src, hit_bed_sound, 25, 1)
 		M.visible_message("<span class='danger'>[M] slices [src] apart!</span>",

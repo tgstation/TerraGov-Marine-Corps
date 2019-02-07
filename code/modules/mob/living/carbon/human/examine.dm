@@ -5,7 +5,7 @@
 
 		if(icon)
 			msg += "[bicon(icon)] "
-		msg += "<EM>[src.name]</EM>!\n"
+		msg += "<b>[name]</b>!\n"
 
 		if(species.flags & IS_SYNTHETIC)
 			msg += "<span style='font-weight: bold; color: purple;'>You sense this creature is not organic.</span>\n"

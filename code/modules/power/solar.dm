@@ -99,7 +99,7 @@ var/list/solars_list = list()
 		overlays += image('icons/obj/power.dmi', icon_state = "solar_panel-b", layer = FLY_LAYER)
 	else
 		overlays += image('icons/obj/power.dmi', icon_state = "solar_panel", layer = FLY_LAYER)
-		src.dir = angle2dir(adir)
+		setDir(angle2dir(adir))
 	return
 
 

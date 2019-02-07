@@ -64,8 +64,8 @@
 	engineer = SKILL_ENGINEER_MT
 	construction = SKILL_CONSTRUCTION_MASTER
 
-/datum/skills/civilian/survivor/marshall
-	name = "Survivor Marshall"
+/datum/skills/civilian/survivor/marshal
+	name = "Survivor Marshal"
 	cqc = SKILL_CQC_MP
 	firearms = SKILL_FIREARMS_DEFAULT
 	melee_weapons = SKILL_MELEE_DEFAULT

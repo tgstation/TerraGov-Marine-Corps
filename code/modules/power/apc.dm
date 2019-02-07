@@ -100,7 +100,6 @@
 	var/lastused_total = 0
 	var/main_status = APC_EXTERNAL_POWER_NONE
 	var/apcwires = 15
-	//powernet = 0 //Set so that APCs aren't found as powernet nodes //Hackish, Horrible, was like this before I changed it :(
 	var/debug = 0
 	var/has_electronics = APC_ELECTRONICS_MISSING
 	var/overload = 1 //Used for the Blackout malf module
@@ -162,9 +161,9 @@
 	// offset 24 pixels in direction of dir
 	// this allows the APC to be embedded in a wall, yet still inside an area
 	if (building)
-		dir = ndir
+		setDir(ndir)
 	tdir = dir // to fix Vars bug
-	dir = SOUTH
+	setDir(SOUTH)
 
 	switch(tdir)
 		if(NORTH)
@@ -177,8 +176,8 @@
 			pixel_x = -25
 
 	if(building)
-		area = get_area(src)
-		area = area.master
+		var/area/A = get_area(src)
+		area = A.master
 		opened = APC_COVER_OPENED
 		operating = FALSE
 		name = "\improper [area.name] APC"
@@ -237,7 +236,7 @@
 	//Create a terminal object at the same position as original turf loc
 	//Wires will attach to this
 	terminal = new/obj/machinery/power/terminal(src.loc)
-	terminal.dir = tdir
+	terminal.setDir(tdir)
 	terminal.master = src
 
 /obj/machinery/power/apc/examine(mob/user)
@@ -720,7 +719,7 @@
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 
-		if(H.species.flags & IS_SYNTHETIC && H.a_intent == "grab")
+		if(H.species.flags & IS_SYNTHETIC && H.a_intent == INTENT_GRAB)
 			if(emagged || stat & BROKEN)
 				var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 				s.set_up(3, 1, src)
@@ -1187,7 +1186,7 @@
 			else	// not enough power available to run the last tick!
 				charging = APC_NOT_CHARGING
 				chargecount = 0
-				// This turns everything off in the case that there is still a charge left on the battery, just not enough to run the room.
+				//This turns everything off in the case that there is still a charge left on the battery, just not enough to run the room.
 				equipment = autoset(equipment, 0)
 				lighting = autoset(lighting, 0)
 				environ = autoset(environ, 0)
@@ -1265,12 +1264,10 @@
 	//Update icon & area power if anything changed
 
 	if(last_lt != lighting || last_eq != equipment || last_en != environ)
-		//rce_update = 0
 		queue_icon_update()
 		update()
 	else if (last_ch != charging)
 		queue_icon_update()
-	//UpdateDialog()
 
 //val 0 = off, 1 = off(auto) 2 = on, 3 = on(auto)
 //on 0 = off, 1 = auto-on, 2 = auto-off

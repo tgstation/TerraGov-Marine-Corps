@@ -38,7 +38,7 @@
 					ticker.mode.stored_larva = round(ticker.mode.stored_larva * ((upgrade+1)/6.0)) // 83/66/50/33 for ancient/elder emp/elder queen/queen
 					var/turf/larva_spawn
 					while(ticker.mode.stored_larva > 0) // stil some left
-						larva_spawn = pick(xeno_spawn)
+						larva_spawn = pick(GLOB.xeno_spawn)
 						new /mob/living/carbon/Xenomorph/Larva(larva_spawn)
 						ticker.mode.stored_larva--
 

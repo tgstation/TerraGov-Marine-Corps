@@ -786,7 +786,7 @@
 				animation_teleport_quick_out(M)
 			sleep(tele_time)
 
-			var/turf/end_turf = pick(pred_spawn)
+			var/turf/end_turf = pick(GLOB.pred_spawn)
 			user.forceMove(end_turf)
 			animation_teleport_quick_in(user)
 			if(M && M.loc)

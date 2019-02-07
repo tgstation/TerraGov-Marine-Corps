@@ -626,6 +626,9 @@ Proc for attack log creation, because really why not
 /atom/proc/LateInitialize()
 	return
 
+//Hook for running code when a dir change occurs
+/atom/proc/setDir(newdir)
+	dir = newdir
 
 /atom/vv_get_dropdown()
 	. = ..()

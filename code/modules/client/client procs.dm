@@ -48,13 +48,13 @@
 		return
 
 	switch(href_list["_src_"])
-		if("holder")	
+		if("holder")
 			hsrc = holder
-		if("usr")		
+		if("usr")
 			hsrc = mob
-		if("prefs")		
+		if("prefs")
 			return prefs.process_link(usr, href_list)
-		if("vars")		
+		if("vars")
 			return view_var_Topic(href, href_list, hsrc)
 		if("chat")
 			return chatOutput.Topic(href, href_list)
@@ -141,7 +141,7 @@
 	if(custom_event_msg && custom_event_msg != "")
 		to_chat(src, "<h1 class='alert'>Custom Event</h1>")
 		to_chat(src, "<h2 class='alert'>A custom event is taking place. OOC Info:</h2>")
-		to_chat(src, "<span class='alert'>[html_encode(custom_event_msg)]</span>")
+		to_chat(src, "<span class='alert'>[custom_event_msg]</span>")
 		to_chat(src, "<br>")
 
 	if( (world.address == address || !address) && !host )
@@ -170,7 +170,7 @@
 	create_clickcatcher()
 	apply_clickcatcher()
 
-	if(prefs.lastchangelog != changelog_hash) //bolds the changelog button on the interface so we know there are updates.
+	if(prefs.lastchangelog != GLOB.changelog_hash) //bolds the changelog button on the interface so we know there are updates.
 		winset(src, "rpane.changelog", "background-color=#ED9F9B;font-style=bold")
 
 
@@ -199,6 +199,9 @@
 	GLOB.clients -= src
 	return ..()
 
+
+/client/Destroy()
+	return QDEL_HINT_HARDDEL_NOW
 
 
 /client/proc/log_client_to_db()
@@ -281,3 +284,11 @@ GLOBAL_LIST_EMPTY(external_rsc_url)
 	if(!CONFIG_GET(string/resource_url))
 		return
 	preload_rsc = GLOB.external_rsc_url
+
+//Hook, override it to run code when dir changes
+//Like for /atoms, but clients are their own snowflake FUCK
+/client/proc/setDir(newdir)
+	dir = newdir
+
+/client/proc/get_offset()
+	return max(abs(pixel_x / 32), abs(pixel_y / 32))

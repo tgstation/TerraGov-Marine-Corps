@@ -169,7 +169,7 @@
 // wires will attach to this
 /obj/machinery/power/smes/proc/make_terminal(turf/T)
 	terminal = new/obj/machinery/power/terminal(T)
-	terminal.dir = (get_dir(T,src))
+	terminal.setDir(get_dir(T,src))
 	terminal.master = src
 	stat &= ~BROKEN
 

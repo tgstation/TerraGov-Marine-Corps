@@ -235,6 +235,16 @@ WEAPONS
 	containername = "\improper Sniper Specialist crate"
 	group = "Weapons"
 
+/datum/supply_packs/specminigun
+	name = "MIC-A7 Vindicator Minigun crate (MIC-A7 x1)"
+	contains = list(
+					/obj/item/weapon/gun/minigun
+					)
+	cost = RO_PRICE_VERY_PRICY
+	containertype = /obj/structure/closet/crate/weapon
+	containername = "\improper MIC A7 Vindicator Minigun crate"
+	group = "Weapons"
+
 /datum/supply_packs/flamethrower
 	name = "M240 Flamethrower crate (M240 x3)"
 	contains = list(
@@ -1971,12 +1981,12 @@ AMMO
 	containername = "\improper M56D emplacement ammo crate"
 	group = "Ammo"
 
-/datum/supply_packs/lasgun_charger
-	name = "ColMarTech Lasgun Field Charger (Stocked With: M43 Power Cells x10, M43 Expanded x2)"
-	contains = list()
+/datum/supply_packs/ammo_lasguncharger
+	name = "ColMarTech Lasgun Field Charger (Includes: M43 Power Cells x10, M43 Expanded x2)"
+	contains = list(/obj/machinery/vending/lasgun)
 	cost = RO_PRICE_PRICY
-	containertype = /obj/machinery/vending/lasgun
-	containername = "ColMarTech Lasgun Field Charger"
+	containertype = /obj/structure/largecrate
+	containername = "\improper ColMarTech Lasgun Field Charger"
 	group = "Ammo"
 
  /datum/supply_packs/ammo_M43lasgun
@@ -2018,6 +2028,18 @@ AMMO
 	containertype = /obj/structure/closet/crate/ammo
 	containername = "ammo crate"
 	group = "Ammo"
+
+/datum/supply_packs/ammo_minigun
+	name = "Vindicator Minigun Ammo Drums (x3)"
+	contains = list(
+					/obj/item/ammo_magazine/minigun,
+					/obj/item/ammo_magazine/minigun,
+					/obj/item/ammo_magazine/minigun)
+	cost = RO_PRICE_CHEAP
+	containertype = /obj/structure/closet/crate/ammo
+	containername = "\improper minigun ammo crate"
+	group = "Ammo"
+
 
 /*******************************************************************************
 ARMOR

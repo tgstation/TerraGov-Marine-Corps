@@ -23,21 +23,8 @@ GLOBAL_PROTECT(world_manifest_log)
 GLOBAL_LIST_EMPTY(admin_log)
 GLOBAL_PROTECT(admin_log)
 
-GLOBAL_LIST_EMPTY(combatlog)
-GLOBAL_PROTECT(combatlog)
-GLOBAL_LIST_EMPTY(IClog)
-GLOBAL_PROTECT(IClog)
-GLOBAL_LIST_EMPTY(OOClog)
-GLOBAL_PROTECT(OOClog)
+GLOBAL_LIST_EMPTY(ffattack_log)
+GLOBAL_PROTECT(ffattack_log)
 
-GLOBAL_LIST_EMPTY(active_turfs_startlist)
-
-/////Picture logging
-GLOBAL_VAR(picture_log_directory)
-GLOBAL_PROTECT(picture_log_directory)
-
-GLOBAL_VAR_INIT(picture_logging_id, TRUE)
-GLOBAL_PROTECT(picture_logging_id)
-GLOBAL_VAR(picture_logging_prefix)
-GLOBAL_PROTECT(picture_logging_prefix)
-/////
+GLOBAL_LIST_EMPTY(explosion_log)
+GLOBAL_PROTECT(explosion_log)

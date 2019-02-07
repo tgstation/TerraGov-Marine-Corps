@@ -23,19 +23,6 @@
 	user.visible_message("<span class='danger'>[user] is strangling [p_them()]self with the [name]! It looks like [user.p_theyre()] trying to commit suicide.</span>")
 	return(OXYLOSS)
 
-
-/*/obj/item/stack/cable_coil/New(loc, length = MAXCOIL, var/param_color = null)
-	..()
-	amount = length
-	if (param_color) // It should be red by default, so only recolor it if parameter was specified.
-		color = GLOB.cable_colors[param_color]
-	else if (!color)
-		color = pick(COLOR_RED, COLOR_BLUE, COLOR_GREEN, COLOR_ORANGE, COLOR_WHITE, COLOR_PINK, COLOR_YELLOW, COLOR_CYAN)
-	pixel_x = rand(-2,2)
-	pixel_y = rand(-2,2)
-	updateicon()
-	update_wclass()*/
-
 /obj/item/stack/cable_coil/Initialize(mapload, new_amount = MAXCOIL, param_color = null)
 	. = ..()
 
@@ -129,12 +116,11 @@
 		use(1)
 	else
 		..()
-	return
 
 /obj/item/stack/cable_coil/attack(mob/M as mob, mob/user as mob)
 	if(hasorgans(M))
 		var/datum/limb/S = M:get_limb(user.zone_selected)
-		if(!(S.status & LIMB_ROBOT) || user.a_intent != "help")
+		if(!(S.status & LIMB_ROBOT) || user.a_intent != INTENT_HELP)
 			return ..()
 
 		if(istype(M,/mob/living/carbon/human))
@@ -153,7 +139,6 @@
 
 	else
 		return ..()
-
 
 /obj/item/stack/cable_coil/proc/get_new_cable(location)
 	var/path = /obj/structure/cable
@@ -395,3 +380,4 @@
 /obj/item/stack/cable_coil/random/New()
 	item_color = pick("red", "blue", "green", "white", "pink", "yellow", "cyan")
 	..()
+

@@ -188,11 +188,11 @@
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
 		/datum/action/xeno_action/plant_weeds,
-		/datum/action/xeno_action/emit_pheromones,
 		/datum/action/xeno_action/activable/throw_hugger,
 		/datum/action/xeno_action/activable/retrieve_egg,
 		/datum/action/xeno_action/place_trap,
 		/datum/action/xeno_action/spawn_hugger,
+		/datum/action/xeno_action/toggle_pheromones
 		)
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/vent_crawl,
@@ -210,7 +210,7 @@
 			if(prob(chance))
 				F.forceMove(loc)
 				step_away(F,src,1)
-				addtimer(CALLBACK(F, /obj/item/clothing/mask/facehugger.proc/GoActive), 2 SECONDS)
+				addtimer(CALLBACK(F, /obj/item/clothing/mask/facehugger.proc/GoActive, TRUE), 2 SECONDS)
 			else
 				qdel(F)
 			chance -= 30
@@ -222,7 +222,7 @@
 	if(statpanel("Stats"))
 		stat(null, "Stored Huggers: [huggers.len] / [xeno_caste.huggers_max]")
 		stat(null, "Stored Eggs: [eggs_cur] / [xeno_caste.eggs_max]")
-	
+
 
 /mob/living/carbon/Xenomorph/Carrier/proc/store_hugger(obj/item/clothing/mask/facehugger/F, message = TRUE)
 	if(huggers.len < xeno_caste.huggers_max)
@@ -264,7 +264,7 @@
 			return
 		F = pick_n_take(huggers)
 		put_in_active_hand(F)
-		F.GoActive()
+		F.GoActive(TRUE)
 		to_chat(src, "<span class='xenonotice'>You grab one of the facehugger in your storage. Now sheltering: [huggers.len] / [xeno_caste.huggers_max].</span>")
 		return
 

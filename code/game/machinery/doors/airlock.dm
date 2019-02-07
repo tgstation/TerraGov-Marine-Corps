@@ -109,6 +109,7 @@ Airlock index -> wire color are { 9, 4, 6, 7, 5, 8, 1, 2, 3 }.
 	var/list/airlockWireColorToIndex
 	var/no_panel = 0 //the airlock has no panel that can be screwdrivered open
 	var/not_weldable = 0 // stops people welding the door if true
+	damage_cap = 3000
 
 	tiles_with = list(
 		/turf/closed/wall)
@@ -1070,7 +1071,7 @@ About the new airlock wires panel:
 
 				var/obj/structure/door_assembly/da = new assembly_type(src.loc)
 				if (istype(da, /obj/structure/door_assembly/multi_tile))
-					da.dir = src.dir
+					da.setDir(dir)
 
  				da.anchored = 1
 				if(mineral)

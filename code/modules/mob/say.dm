@@ -12,7 +12,6 @@
 /mob/verb/say_verb(message as text)
 	set name = "Say"
 	set category = "IC"
-	set hidden = TRUE
 
 	if(!message)
 		return
@@ -23,7 +22,6 @@
 /mob/verb/me_verb(message as text)
 	set name = "Me"
 	set category = "IC"
-	set hidden = TRUE
 
 	if(!message)
 		return
@@ -40,7 +38,7 @@
 	if(!client)
 		return
 
-	if(!client.holder && !dsay_allowed)
+	if(!client.holder && !GLOB.dsay_allowed)
 		to_chat(src, "<span class='warning'>Deadchat is globally muted</span>")
 		return
 

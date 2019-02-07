@@ -43,6 +43,11 @@
 #define MODE_INFECTION			(1 << 5)
 #define MODE_HUMAN_ANTAGS		(1 << 6)
 
+#define MODE_LANDMARK_RANDOM_ITEMS			(1 << 0)
+#define MODE_LANDMARK_SPAWN_XENO_TUNNELS	(1 << 1)
+#define MODE_LANDMARK_HELLHOUND_BLOCKER		(1 << 2)
+#define MODE_LANDMARK_SPAWN_MAP_ITEM		(1 << 3)
+
 #define BE_ALIEN		(1 << 0)
 #define BE_QUEEN		(1 << 1)
 #define BE_SURVIVOR		(1 << 2)

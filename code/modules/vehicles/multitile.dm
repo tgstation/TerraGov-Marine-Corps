@@ -180,10 +180,10 @@ Vehicles are placed on the map by a spawner or admin verb
 	save_locs()
 	if(!try_move(linked_objs, direction))
 		revert_locs()
-		dir = old_dir
+		setDir(old_dir)
 		return 0 //Failed movement
 
-	dir = old_dir //Preserve the direction you're facing when moving backwards
+	setDir(old_dir) //Preserve the direction you're facing when moving backwards
 	return 1
 
 /obj/vehicle/multitile/root/New()
@@ -289,7 +289,7 @@ Vehicles are placed on the map by a spawner or admin verb
 	for(var/datum/coords/C in linked_objs)
 
 		var/atom/movable/A = linked_objs[C]
-		A.dir = turn(A.dir, deg) //Turn the thing at that tile
+		A.setDir(turn(A.dir, deg)) //Turn the thing at that tile
 
 		//Update coords
 		var/new_x = C.x_pos*cos(deg) - C.y_pos*sin(deg)

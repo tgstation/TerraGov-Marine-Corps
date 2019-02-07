@@ -20,12 +20,14 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	if(!check_rights(R_DEBUG))
 		return
 
-	var/procname = input("Proc name, eg: fake_blood","Proc:", null) as text|null
+	var/procname = input("Proc name, eg: attack_hand", "Proc:", null) as text|null
 	if(!procname)
 		return
-	if(!hascall(A,procname))
+
+	if(!hascall(A, procname))
 		to_chat(usr, "<font color='red'>Error: callproc_datum(): type [A.type] has no proc named [procname].</font>")
 		return
+
 	var/list/lst = usr.client.holder.get_callproc_args()
 	if(!lst)
 		return
@@ -33,13 +35,13 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	if(!A || !IsValidSrc(A))
 		to_chat(usr, "<span class='warning'>Error: callproc_datum(): owner of proc no longer exists.</span>")
 		return
-	log_admin("[key_name(src)] called [A]'s [procname]() with [lst.len ? "the arguments [list2params(lst)]":"no arguments"].")
-	var/msg = "[key_name(src)] called [A]'s [procname]() with [lst.len ? "the arguments [list2params(lst)]":"no arguments"]."
-	message_admins(msg)
-	admin_ticket_log(A, msg)
+
+	log_admin("[key_name(usr)] called [A]'s [procname]() with [length(lst) ? "the arguments [list2params(lst)]" : "no arguments"].")
+	message_admins("[ADMIN_TPMONTY(usr)] called [A]'s [procname]() with [length(lst) ? "the arguments [list2params(lst)]" : "no arguments"].")
+	admin_ticket_log(A, "[key_name_admin(usr)] called [A]'s [procname]() with [length(lst) ? "the arguments [list2params(lst)]" : "no arguments"].")
 
 	var/returnval = WrapAdminProcCall(A, procname, lst) // Pass the lst as an argument list to the proc
-	. = usr.client.holder.get_callproc_returnval(returnval,procname)
+	. = usr.client.holder.get_callproc_returnval(returnval, procname)
 	if(.)
 		to_chat(usr, .)
 
@@ -56,36 +58,39 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	var/targetselected = 0
 	var/returnval = null
 
-	switch(alert("Proc owned by something?",,"Yes","No"))
+	switch(alert("Proc owned by something?",, "Yes", "No"))
 		if("Yes")
-			targetselected = 1
+			targetselected = TRUE
 			var/list/value = usr.client.vv_get_value(default_class = VV_ATOM_REFERENCE, classes = list(VV_ATOM_REFERENCE, VV_DATUM_REFERENCE, VV_MOB_REFERENCE, VV_CLIENT))
-			if (!value["class"] || !value["value"])
+			if(!value["class"] || !value["value"])
 				return
 			target = value["value"]
 		if("No")
 			target = null
-			targetselected = 0
+			targetselected = FALSE
 
-	var/procname = input("Proc path, eg: /proc/fake_blood","Path:", null) as text|null
+	var/procname = input("Proc path, eg: /proc/attack_hand", "Path:", null) as text|null
 	if(!procname)
 		return
 
 	//strip away everything but the proc name
 	var/list/proclist = splittext(procname, "/")
-	if (!length(proclist))
+	if(!length(proclist))
 		return
-	procname = proclist[proclist.len]
+
+	procname = proclist[length(proclist)]
 
 	var/proctype = "proc"
-	if ("verb" in proclist)
+	if("verb" in proclist)
 		proctype = "verb"
 
+
+	var/procpath
 	if(targetselected && !hascall(target, procname))
 		to_chat(usr, "<font color='red'>Error: callproc(): type [target.type] has no [proctype] named [procname].</font>")
 		return
-	else
-		var/procpath = text2path("[proctype]/[procname]")
+	else if(!targetselected)
+		procpath = text2path("/[proctype]/[procname]")
 		if(!procpath)
 			to_chat(usr, "<font color='red'>Error: callproc(): proc [procname] does not exist. (Did you forget the /proc/ part?)</font>")
 			return
@@ -98,27 +103,27 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		if(!target)
 			to_chat(usr, "<font color='red'>Error: callproc(): owner of proc no longer exists.</font>")
 			return
-		var/msg = "[key_name(src)] called [target]'s [procname]() with [lst.len ? "the arguments [list2params(lst)]":"no arguments"]."
-		log_admin(msg)
-		message_admins(msg)
-		admin_ticket_log(target, msg)
+		log_admin("[key_name(usr)] called [target]'s [procname]() with [length(lst) ? "the arguments [list2params(lst)]" : "no arguments"].")
+		message_admins("[ADMIN_TPMONTY(usr)] called [target]'s [procname]() with [length(lst) ? "the arguments [list2params(lst)]" : "no arguments"].")
+		admin_ticket_log(target, "[key_name(usr)] called [target]'s [procname]() with [length(lst) ? "the arguments [list2params(lst)]" : "no arguments"].")
 		returnval = WrapAdminProcCall(target, procname, lst) // Pass the lst as an argument list to the proc
 	else
 		//this currently has no hascall protection. wasn't able to get it working.
-		log_admin("[key_name(src)] called [procname]() with [lst.len ? "the arguments [list2params(lst)]":"no arguments"].")
-		message_admins("[key_name(src)] called [procname]() with [lst.len ? "the arguments [list2params(lst)]":"no arguments"].")
-		returnval = WrapAdminProcCall(GLOBAL_PROC, procname, lst) // Pass the lst as an argument list to the proc
+		log_admin("[key_name(usr)] called [procname]() with [length(lst) ? "the arguments [list2params(lst)]" : "no arguments"].")
+		message_admins("[ADMIN_TPMONTY(usr)] called [procname]() with [length(lst) ? "the arguments [list2params(lst)]" : "no arguments"].")
+		returnval = WrapAdminProcCall(GLOBAL_PROC, procpath, lst) // Pass the lst as an argument list to the proc
+
 	. = usr.client.holder.get_callproc_returnval(returnval, procname)
 	if(.)
 		to_chat(usr, .)
 
 
-/datum/admins/proc/get_callproc_returnval(returnval,procname)
+/datum/admins/proc/get_callproc_returnval(returnval, procname)
 	. = ""
 	if(islist(returnval))
 		var/list/returnedlist = returnval
 		. = "<font color='blue'>"
-		if(returnedlist.len)
+		if(length(returnedlist))
 			var/assoc_check = returnedlist[1]
 			if(istext(assoc_check) && (returnedlist[assoc_check] != null))
 				. += "[procname] returned an associative list:"
@@ -138,7 +143,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 
 /datum/admins/proc/get_callproc_args()
-	var/argnum = input("Number of arguments","Number:",0) as num|null
+	var/argnum = input("Number of arguments", "Number:", 0) as num|null
 	if(isnull(argnum))
 		return
 
@@ -259,22 +264,56 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	set category = "Debug"
 	set name = "Debug Mob Lists"
 
-	switch(input("Which list?") in list("Players", "Admins", "Mobs", "Living Mobs", "Dead Mobs", "Clients"))
-		if("Players")
-			to_chat(usr, list2text(GLOB.player_list,","))
-		if("Admins")
-			to_chat(usr, list2text(GLOB.admins,","))
-		if("Mobs")
-			to_chat(usr, list2text(GLOB.mob_list,","))
-		if("Living Mobs")
-			to_chat(usr, list2text(GLOB.alive_mob_list,","))
-		if("Dead Mobs")
-			to_chat(usr, list2text(GLOB.dead_mob_list,","))
-		if("Clients")
-			to_chat(usr, list2text(GLOB.clients,","))
+	var/dat = "<html><head><title>"
 
-	log_admin("[key_name(usr)] is debugging mob lists.")
-	message_admins("[ADMIN_TPMONTY(usr)] is debugging mob lists.")
+	var/choice = input("Which list?") as null|anything in list("Players", "Admins", "Clients", "Mobs", "Living Mobs", "Dead Mobs", "Xenos", "Alive Xenos", "Dead Xenos")
+	if(!choice)
+		return
+
+	switch(choice)
+		if("Players")
+			dat += "Players</title></head><body>"
+			dat += tg_list2text(GLOB.player_list, "<br>")
+		if("Admins")
+			dat += "Admins</title></head><body>"
+			dat += tg_list2text(GLOB.admins, "<br>")
+		if("Clients")
+			dat += "Clients</title></head><body>"
+			dat += tg_list2text(GLOB.clients, "<br>")
+		if("Mobs")
+			dat += "Mobs</title></head><body>"
+			dat += tg_list2text(GLOB.mob_list, "<br>")
+		if("Living Mobs")
+			dat += "Living Mobs</title></head><body>"
+			dat += tg_list2text(GLOB.alive_mob_list, "<br>")
+		if("Dead Mobs")
+			dat += "Dead Mobs</title></head><body>"
+			dat += tg_list2text(GLOB.dead_mob_list, "<br>")
+		if("Xenos")
+			dat += "Xenos</title></head><body>"
+			dat += tg_list2text(GLOB.xeno_mob_list, "<br>")
+		if("Alive Xenos")
+			dat += "Alive Xenos</title></head><body>"
+			dat += tg_list2text(GLOB.alive_xeno_list, "<br>")
+		if("Dead Xenos")
+			dat += "Dead Xenos</title></head><body>"
+			dat += tg_list2text(GLOB.dead_xeno_list, "<br>")
+		if("Humans")
+			dat += "Humans</title></head><body>"
+			dat += tg_list2text(GLOB.human_mob_list, "<br>")
+		if("Alive Humans")
+			dat += "Alive Humans</title></head><body>"
+			dat += tg_list2text(GLOB.alive_human_list, "<br>")
+		if("Dead Xenos")
+			dat += "Dead Xenos</title></head><body>"
+			dat += tg_list2text(GLOB.dead_human_list, "<br>")
+
+	dat += "</body></html>"
+
+	usr << browse(dat, "window=moblists")
+
+	log_admin("[key_name(usr)] is debugging the [choice] list.")
+	message_admins("[ADMIN_TPMONTY(usr)] is debugging the [choice] list.")
 
 
 /datum/admins/proc/spawn_atom(var/object as text)
@@ -306,7 +345,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		if(!chosen)
 			return
 
-	if(ispath(chosen,/turf))
+	if(ispath(chosen, /turf))
 		var/turf/T = get_turf(usr.loc)
 		T.ChangeTurf(chosen)
 	else
@@ -426,17 +465,31 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	if(!check_rights(R_DEBUG))
 		return
 
-	var/selection = input("Please, select a mob!", "Check Contents", null, null) as null|anything in sortmobs(GLOB.mob_list)
-	if(!selection)
+	var/choice = input("Check contents of", "Check Contents") as null|anything in list("Key", "Mob")
+	if(!choice)
 		return
 
-	var/mob/M = selection
-	var/dat = "<b>Contents of [key_name(M)]:</b><hr>"
+	var/mob/M
+	switch(choice)
+		if("Key")
+			var/selection = input("Please, select a key.", "Check Contents") as null|anything in sortKey(GLOB.clients)
+			if(!selection)
+				return
+			M = selection:mob
+		if("Mob")
+			var/selection = input("Please, select a mob.", "Check Contents") as null|anything in sortmobs(GLOB.mob_list)
+			if(!selection)
+				return
+			M = selection
 
+	if(!isliving(M))
+		return
+
+	var/dat = "<b>Contents of [key_name(M)]:</b><hr>"
 
 	var/list/L = M.get_contents()
 	for(var/t in L)
-		dat += "[t]\n"
+		dat += "[t]<br>"
 
 	usr << browse(dat, "window=contents")
 

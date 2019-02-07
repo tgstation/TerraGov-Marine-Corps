@@ -89,7 +89,7 @@
 
 		mind = body.mind	//we don't transfer the mind but we keep a reference to it.
 
-	if(!T)	T = pick(latejoin)			//Safety in case we cannot find the body's position
+	if(!T)	T = pick(GLOB.latejoin)			//Safety in case we cannot find the body's position
 	loc = T
 
 	if(!name)							//To prevent nameless ghosts
@@ -192,7 +192,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /mob/dead/observer/Move(NewLoc, direct)
 	unfollow()
-	dir = direct
+	setDir(direct)
 	if(NewLoc)
 		loc = NewLoc
 		for(var/obj/effect/step_trigger/S in NewLoc)

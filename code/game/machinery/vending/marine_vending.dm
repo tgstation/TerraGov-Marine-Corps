@@ -48,7 +48,7 @@
 
 /obj/machinery/vending/marine/select_gamemode_equipment(gamemode)
 	var/products2[]
-	switch(map_tag)
+	switch(GLOB.map_tag)
 		if(MAP_ICE_COLONY)
 			products2 = list(
 						/obj/item/clothing/mask/rebreather/scarf = 10,
@@ -631,7 +631,7 @@
 
 /obj/machinery/vending/marine_leader/select_gamemode_equipment(gamemode)
 	var/products2[]
-	switch(map_tag)
+	switch(GLOB.map_tag)
 		if(MAP_ICE_COLONY)
 			products2 = list( /obj/item/map/ice_colony_map = 3)
 		if(MAP_BIG_RED)

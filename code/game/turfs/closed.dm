@@ -181,27 +181,31 @@
 //randomized on New().
 /turf/closed/ice_rock/northWall
 	icon_state = "north_wall"
-	New()
-		..()
-		dir = pick(NORTH,SOUTH,EAST,WEST)
+
+/turf/closed/ice_rock/northWall/New()
+	. = ..()
+	setDir(pick(NORTH,SOUTH,EAST,WEST))
 
 /turf/closed/ice_rock/southWall
 	icon_state = "south_wall"
-	New()
-		..()
-		dir = pick(NORTH,SOUTH,EAST,WEST)
+
+/turf/closed/ice_rock/southWall/New()
+	. = ..()
+	setDir(pick(NORTH,SOUTH,EAST,WEST))
 
 /turf/closed/ice_rock/westWall
 	icon_state = "west_wall"
-	New()
-		..()
-		dir = pick(NORTH,SOUTH,EAST,WEST)
+
+/turf/closed/ice_rock/westWall/New()
+	. = ..()
+	setDir(pick(NORTH,SOUTH,EAST,WEST))
 
 /turf/closed/ice_rock/eastWall
 	icon_state = "east_wall"
-	New()
-		..()
-		dir = pick(NORTH,SOUTH,EAST,WEST)
+
+/turf/closed/ice_rock/eastWall/New()
+	. = ..()
+	setDir(pick(NORTH,SOUTH,EAST,WEST))
 
 /turf/closed/ice_rock/cornerOverlay
 	icon_state = "corner_overlay"

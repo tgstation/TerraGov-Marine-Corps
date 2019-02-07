@@ -23,7 +23,7 @@
 
 	if(statpanel("Stats"))
 		stat("Operation Time: [worldtime2text()]")
-		stat("The current map is: [map_tag]")
+		stat("The current map is: [GLOB.map_tag]")
 
 
 	if(client?.holder?.rank?.rights)
@@ -334,9 +334,18 @@ var/list/slot_equipment_priority = list( \
 		'html/coding.png',
 		'html/scales.png'
 		)
+
+	src << browse_rsc('html/changelog2015.html', "changelog2015.html") 
+	src << browse_rsc('html/changelog2016.html', "changelog2016.html") 
+	src << browse_rsc('html/changelog2017.html', "changelog2017.html") 
+	src << browse_rsc('html/changelog20181.html', "changelog20181.html") 
+	src << browse_rsc('html/changelog20182.html', "changelog20182.html")
+	src << browse_rsc('html/changelog.html', "changelog.html")  
+
+
 	src << browse('html/changelog.html', "window=changes;size=675x650")
-	if(prefs.lastchangelog != changelog_hash)
-		prefs.lastchangelog = changelog_hash
+	if(prefs.lastchangelog != GLOB.changelog_hash)
+		prefs.lastchangelog = GLOB.changelog_hash
 		prefs.save_preferences()
 		winset(src, "rpane.changelog", "background-color=none;font-style=;")
 
@@ -523,12 +532,12 @@ var/list/slot_equipment_priority = list( \
 
 
 /mob/proc/facedir(var/ndir)
-	if(!canface())	return 0
-	dir = ndir
+	if(!canface())
+		return FALSE
+	setDir(ndir)
 	if(buckled && !buckled.anchored)
-		buckled.dir = ndir
-		buckled.handle_rotation()
-	return 1
+		buckled.setDir(ndir)
+	return TRUE
 
 
 

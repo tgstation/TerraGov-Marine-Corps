@@ -59,6 +59,9 @@ proc/isemptylist(list/list)
 			return 1
 	return 0
 
+//Checks for specific types in specifically structured (Assoc "type" = TRUE) lists ('typecaches')
+#define is_type_in_typecache(A, L) (A && length(L) && L[(ispath(A) ? A : A:type)])
+
 //Empties the list by setting the length to 0. Hopefully the elements get garbage collected
 proc/clearlist(list/list)
 	if(istype(list))

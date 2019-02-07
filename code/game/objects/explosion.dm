@@ -7,7 +7,7 @@
 	else		return dy + (0.5*dx)
 
 
-/proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog = 1, z_transfer = 0, flame_range = 0)
+/proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog = TRUE, z_transfer = FALSE, flame_range = 0)
 	src = null	//so we don't abort once src is deleted
 	spawn(0)
 		if(CONFIG_GET(flag/use_recursive_explosions))
@@ -61,7 +61,7 @@
 						if(!isspaceturf(M.loc))
 							M << 'sound/effects/explosionfar.ogg'
 		if(adminlog)
-			log_game("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range]) in [AREACOORD(epicenter)].")
+			log_explosion("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range]) in [AREACOORD(epicenter)].")
 			message_admins("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range]) in [ADMIN_VERBOSEJMP(epicenter)].")
 
 		var/approximate_intensity = (devastation_range * 3) + (heavy_impact_range * 2) + light_impact_range

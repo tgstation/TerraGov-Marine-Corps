@@ -7,7 +7,7 @@ var/global/datum/controller/gameticker/ticker
 
 
 /datum/controller/gameticker
-	var/const/restart_timeout = 600
+	var/const/restart_timeout = 2 MINUTES
 	var/current_state = GAME_STATE_PREGAME
 
 	var/hide_mode = 0
@@ -159,7 +159,7 @@ var/global/datum/controller/gameticker/ticker
 
 	if(CONFIG_GET(flag/autooocmute))
 		to_chat(world, "<span class='danger'>The OOC channel has been globally disabled due to round start!</span>")
-		ooc_allowed = FALSE
+		GLOB.ooc_allowed = FALSE
 
 	supply_controller.process()
 
@@ -233,9 +233,9 @@ var/global/datum/controller/gameticker/ticker
 			else
 				feedback_set_details("end_proper","proper completion")
 
-			if(CONFIG_GET(flag/autooocmute) && !ooc_allowed)
+			if(CONFIG_GET(flag/autooocmute) && !GLOB.ooc_allowed)
 				to_chat(world, "<span class='warning'><b>The OOC channel has been globally enabled due to round end!</b></span>")
-				ooc_allowed = TRUE
+				GLOB.ooc_allowed = TRUE
 
 			CONFIG_SET(flag/allow_synthetic_gun_use, TRUE)
 

@@ -33,67 +33,7 @@
 										/obj/item/clothing/under/gladiator, \
 										/obj/item/clothing/head/helmet/gladiator))
 
-#define HUNTER_GOOD_ITEM  pick(\
-								200; /obj/item/weapon/claymore/mercsword/machete, \
-								170; /obj/item/clothing/suit/armor/vest/security, \
-								165; /obj/item/clothing/head/helmet/riot, \
-								160; /obj/item/clothing/gloves/marine/veteran/PMC, \
-								150; /obj/item/weapon/claymore/mercsword, \
-								125; /obj/item/weapon/twohanded/fireaxe, \
-								100; /obj/item/storage/backpack/commando, \
-								100; /obj/item/storage/backpack/yautja, \
-								100; /obj/item/storage/belt/knifepouch, \
-								100; /obj/item/storage/belt/utility/full, \
-								100; /obj/item/clothing/tie/storage/webbing, \
-								100; /obj/item/weapon/claymore, \
-								100; /obj/item/weapon/katana, \
-								100; /obj/item/weapon/harpoon/yautja, \
-								100; /obj/item/device/binoculars, \
-								100; /obj/item/explosive/grenade/frag, \
-								100; /obj/item/explosive/grenade/incendiary, \
-								75; /obj/item/storage/box/wy_mre, \
-								50; /obj/item/device/flash, \
-								50; /obj/item/explosive/plastique, \
-								50; /obj/item/weapon/shield/riot, \
-								50; /obj/item/storage/firstaid/regular, \
-								50; /obj/item/storage/firstaid/fire, \
-								25; /obj/item/explosive/grenade/flashbang, \
-								25; /obj/item/legcuffs/yautja)
 
-#define HUNTER_OKAY_ITEM  pick(\
-								400; /obj/item/weapon/twohanded/spear, \
-								300; /obj/item/tool/crowbar, \
-								300; /obj/item/tool/hatchet, \
-								200; /obj/item/weapon/baseballbat, \
-								200; /obj/item/weapon/throwing_knife, \
-								250; /obj/item/explosive/grenade/flare, \
-								100; /obj/item/weapon/baseballbat/metal, \
-								100; /obj/item/weapon/butterfly, \
-								100; /obj/item/weapon/harpoon, \
-								100; /obj/item/tool/scythe, \
-								100; /obj/item/tool/kitchen/knife/butcher, \
-								100; /obj/item/cell/high, \
-								100; /obj/item/tool/wirecutters, \
-								100; /obj/item/tool/weldingtool, \
-								100; /obj/item/tool/wrench, \
-								100; /obj/item/device/multitool, \
-								100; /obj/item/storage/backpack, \
-								100; /obj/item/storage/backpack/cultpack, \
-								100; /obj/item/storage/backpack/satchel, \
-								100; /obj/item/clothing/suit/storage/CMB, \
-								75; /obj/item/storage/pill_bottle/tramadol, \
-								75; /obj/item/weapon/combat_knife, \
-								75; /obj/item/device/flashlight, \
-								75; /obj/item/device/flashlight/combat, \
-								75; /obj/item/stack/medical/bruise_pack, \
-								75; /obj/item/stack/medical/ointment, \
-								75; /obj/item/reagent_container/food/snacks/donkpocket, \
-								75; /obj/item/clothing/gloves/brown, \
-								50; /obj/item/weapon/katana/replica, \
-								50; /obj/item/explosive/grenade/smokebomb, \
-								50; /obj/item/explosive/grenade/empgrenade, \
-								25; /obj/item/bananapeel, \
-								25; /obj/item/tool/soap)
 
 #define HUNTER_BODY list(\
 							/obj/item/clothing/under/marine,\
@@ -115,17 +55,36 @@
 
 var/waiting_for_drop_votes = 0
 
+/obj/effect/landmark/huntergames_primary_spawn/Initialize()
+	GLOB.huntergames_primary_spawns += loc
+	return INITIALIZE_HINT_QDEL
 
+/obj/effect/landmark/huntergames_secondary_spawn/Initialize()
+	GLOB.huntergames_secondary_spawns += loc
+	return INITIALIZE_HINT_QDEL
+
+/obj/effect/landmark/hell_hound_blocker/Initialize()
+	. = ..()
+	GLOB.landmarks_round_start += src
+
+/obj/effect/landmark/hell_hound_blocker/Destroy()
+	GLOB.landmarks_round_start -= src
+	return ..()
+
+/obj/effect/landmark/hell_hound_blocker/on_round_start(flags_round_type=NOFLAGS,flags_landmarks=NOFLAGS)
+	if(flags_landmarks & MODE_LANDMARK_HELLHOUND_BLOCKER)
+		new /obj/effect/step_trigger/hell_hound_blocker(loc)
+	qdel(src)
 
 /datum/game_mode/huntergames
 	name = "Hunter Games"
 	config_tag = "Hunter Games"
 	required_players = 1
 	flags_round_type = MODE_NO_LATEJOIN
+	flags_landmarks = MODE_LANDMARK_RANDOM_ITEMS|MODE_LANDMARK_HELLHOUND_BLOCKER
 
 	var/last_count
-	var/primary_spawns[]
-	var/secondary_spawns[]
+	var/list/spawn_points
 	var/supply_votes[]
 
 /obj/effect/step_trigger/hell_hound_blocker/Trigger(mob/living/carbon/hellhound/H)
@@ -139,26 +98,8 @@ var/waiting_for_drop_votes = 0
 	return TRUE
 
 /datum/game_mode/huntergames/pre_setup()
-	primary_spawns = list()
-	secondary_spawns = list()
+	. = ..()
 	supply_votes = list()
-
-	for(var/obj/effect/landmark/L in GLOB.landmarks_list)
-		switch(L.name)
-			if("hunter_primary")
-				primary_spawns += L.loc
-			if("hunter_secondary")
-				secondary_spawns += L.loc
-			if("crap_item")
-				place_initial_item(L.loc, HUNTER_OKAY_ITEM)
-			if("good_item")
-				place_initial_item(L.loc, HUNTER_GOOD_ITEM)
-			if("block_hellhound")
-				new /obj/effect/step_trigger/hell_hound_blocker(L.loc)
-			if("fog blocker")
-				qdel(L)
-			if("xeno tunnel")
-				qdel(L)
 
 	for(var/obj/item/weapon/gun/G in GLOB.item_list)
 		qdel(G) //No guns or ammo allowed.
@@ -174,6 +115,7 @@ var/waiting_for_drop_votes = 0
 	return TRUE
 
 /datum/game_mode/huntergames/post_setup()
+	spawn_points = GLOB.huntergames_primary_spawns.Copy()
 	var/mob/M
 	for(M in GLOB.mob_list)
 		if(M.client && ishuman(M))
@@ -190,12 +132,12 @@ var/waiting_for_drop_votes = 0
 /datum/game_mode/huntergames/proc/spawn_contestant(var/mob/living/carbon/H)
 	var/turf/picked
 
-	if(primary_spawns.len)
-		picked = pick(primary_spawns)
-		primary_spawns -= picked
+	if(spawn_points.len)
+		picked = pick(spawn_points)
+		spawn_points -= picked
 	else
-		if(secondary_spawns.len)
-			picked = pick(secondary_spawns)
+		if(GLOB.huntergames_secondary_spawns.len)
+			picked = pick(GLOB.huntergames_secondary_spawns)
 		else
 			regenerate_spawns()
 			spawn_contestant(H)
@@ -353,21 +295,8 @@ var/waiting_for_drop_votes = 0
 	for(var/item in L)
 		new item(location)
 
-/datum/game_mode/huntergames/proc/place_initial_item(turf/T, item)
-	if(!istype(T))
-		return FALSE
-
-	new item(T)
-
 /datum/game_mode/huntergames/proc/regenerate_spawns()
-	for(var/obj/effect/landmark/L in GLOB.landmarks_list)
-		switch(L.name)
-			if("hunter_primary")
-				primary_spawns += L.loc
-			if("hunter_secondary")
-				secondary_spawns += L.loc
+	spawn_points = GLOB.huntergames_primary_spawns.Copy()
 
-#undef HUNTER_GOOD_ITEM
-#undef HUNTER_OKAY_ITEM
 #undef HUNTER_BODY
 #undef HUNTER_FEET
