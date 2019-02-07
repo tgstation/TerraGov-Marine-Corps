@@ -113,7 +113,7 @@
 				num_admins_online++
 
 			else if(is_mentor(C))
-				mentmsg += "\t[C] is [C.holder.rank]"
+				mentmsg += "\t[C] - [C.holder.rank]"
 				if(isobserver(C.mob))
 					mentmsg += " - Observing"
 				else if(istype(C.mob, /mob/new_player))
@@ -132,10 +132,10 @@
 	else
 		for(var/client/C in GLOB.admins)
 			if(check_other_rights(C, R_ADMIN, FALSE) && !C.holder.fakekey)
-				msg += "\t[C] is a [C.holder.rank]\n"
+				msg += "\t[C] - [C.holder.rank]\n"
 				num_admins_online++
 			else if(is_mentor(C))
-				mentmsg += "\t[C] is a [C.holder.rank]\n"
+				mentmsg += "\t[C] - [C.holder.rank]\n"
 				num_mentors_online++
 
 	to_chat(src, "\n<b> Current Admins ([num_admins_online]):</b>\n[msg]")
