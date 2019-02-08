@@ -548,7 +548,7 @@
 			user.client.pixel_x = -1 * view_tile_offset * 32
 			user.client.pixel_y = 0
 	operator = user
-	user.verbs |= /mob/living/proc/toogle_mg_burst_fire
+	user.verbs += /mob/living/proc/toogle_mg_burst_fire
 
 /obj/machinery/m56d_hmg/on_unset_interaction(mob/user)
 	flags_atom &= ~RELAY_CLICK
@@ -558,7 +558,7 @@
 		user.client.pixel_y = 0
 	if(operator == user)
 		operator = null
-	user.verbs &= ~/mob/living/proc/toogle_mg_burst_fire
+	user.verbs -= /mob/living/proc/toogle_mg_burst_fire
 
 /obj/machinery/m56d_hmg/check_eye(mob/user)
 	if(user.lying || !Adjacent(user) || user.is_mob_incapacitated() || !user.client)
@@ -567,14 +567,10 @@
 /mob/living/proc/toogle_mg_burst_fire(obj/machinery/m56d_hmg/MG in list(interactee))
 	set name = "Toggle MG Burst Fire"
 	set category = "Weapons"
-	set src = usr
 
-	if(!istype(MG))
-		usr.verbs &= ~/mob/living/proc/toogle_mg_burst_fire
-		return
-	if(!usr.is_mob_incapacitated() && MG.operator == usr)
+	if(!is_mob_incapacitated() && MG.operator == src)
 		MG.burst_fire = !MG.burst_fire
-		to_chat(usr, "<span class='notice'>You set [MG] to [MG.burst_fire ? "burst fire" : "single fire"] mode.</span>")
+		to_chat(src, "<span class='notice'>You set [MG] to [MG.burst_fire ? "burst fire" : "single fire"] mode.</span>")
 		playsound(loc, 'sound/items/Deconstruct.ogg',25,1)
 
 /obj/machinery/m56d_hmg/mg_turret //Our mapbound version with stupid amounts of ammo.
