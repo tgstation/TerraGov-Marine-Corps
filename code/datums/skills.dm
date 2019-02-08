@@ -170,7 +170,7 @@
 	pistols = SKILL_PISTOLS_TRAINED
 
 /datum/skills/FC
-	name = "Field Officer"
+	name = "Field Commander"
 	engineer = SKILL_ENGINEER_ENGI 
 	construction = SKILL_CONSTRUCTION_PLASTEEL
 	leadership = SKILL_LEAD_MASTER
