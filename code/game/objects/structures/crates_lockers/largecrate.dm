@@ -160,6 +160,10 @@
 	else
 		return attack_hand(user)
 
+/obj/structure/largecrate/random/barrel/attack_hand(mob/user)
+	to_chat(user, "<span class='notice'>You need a blowtorch to weld this open!</span>")
+	return
+
 /obj/structure/largecrate/random/barrel
 	name = "blue barrel"
 	desc = "A blue storage barrel"
