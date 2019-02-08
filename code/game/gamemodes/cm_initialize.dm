@@ -755,6 +755,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 		CA.contraband = list(
 						/obj/item/ammo_magazine/smg/ppsh/ = round(scale * 20),
 						/obj/item/ammo_magazine/smg/ppsh/extended = round(scale * 4),
+						/obj/item/ammo_magazine/rifle/bolt = round(scale * 10),
 						/obj/item/ammo_magazine/sniper = 0,
 						/obj/item/ammo_magazine/sniper/incendiary = 0,
 						/obj/item/ammo_magazine/sniper/flak = 0,
@@ -829,6 +830,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 		CG.contraband = list(
 						/obj/item/weapon/gun/smg/ppsh = round(scale * 4),
 						/obj/item/weapon/gun/shotgun/double = round(scale * 2),
+						/obj/item/weapon/gun/shotgun/pump/bolt = round(scale * 2),
 						/obj/item/weapon/gun/smg/m39/elite = 0,
 						/obj/item/weapon/gun/rifle/m41aMK1 = 0,
 						/obj/item/weapon/gun/rifle/m41a/elite = 0,
