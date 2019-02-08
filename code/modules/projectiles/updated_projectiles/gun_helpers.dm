@@ -498,10 +498,12 @@ should be alright.
 		to_chat(user, "<span class='warning'>You can't do this right now.</span>")
 		return
 
-	var/obj/item/weapon/gun/G = user.get_held_item()
+	var/obj/item/weapon/gun/G = user.get_active_held_item()
+	if(!istype(G))
+		G = user.get_inactive_held_item()
 
 	if(!istype(G))
-		to_chat(user, "<span class='warning'>You need a gun in your active hand to do that!</span>")
+		to_chat(user, "<span class='warning'>You need a gun in your hands to do that!</span>")
 		return
 
 	if(G.flags_gun_features & GUN_BURST_FIRING)
@@ -520,10 +522,13 @@ should be alright.
 	set category = "Weapons"
 	set name = "Field Strip Weapon"
 	set desc = "Remove all attachables from a weapon."
+	set src = usr.contents //We want to make sure one is picked at random, hence it's not in a list.
 
 	var/obj/item/weapon/gun/G = get_active_firearm(usr)
+
 	if(!G)
 		return
+
 	src = G
 
 	if(usr.action_busy)
@@ -608,6 +613,7 @@ should be alright.
 	set category = "Weapons"
 	set name = "Toggle Burst Fire Mode"
 	set desc = "Toggle on or off your weapon burst mode, if it has one. Greatly reduces accuracy."
+	set src = usr.contents
 
 	var/obj/item/weapon/gun/G = get_active_firearm(usr)
 	if(!G)
@@ -646,6 +652,7 @@ should be alright.
 	set category = "Weapons"
 	set name = "Unload Weapon"
 	set desc = "Removes the magazine from your current gun and drops it on the ground, or clears the chamber if your gun is already empty."
+	set src = usr.contents
 
 	var/obj/item/weapon/gun/G = get_active_firearm(usr)
 	if(!G)
@@ -658,6 +665,7 @@ should be alright.
 	set category = "Weapons"
 	set name = "Unique Action"
 	set desc = "Use anything unique your firearm is capable of. Includes pumping a shotgun or spinning a revolver."
+	set src = usr.contents
 
 	var/obj/item/weapon/gun/G = get_active_firearm(usr)
 	if(!G)
@@ -671,6 +679,7 @@ should be alright.
 	set category = "Weapons"
 	set name = "Toggle Gun Safety"
 	set desc = "Toggle the safety of the held gun."
+	set src = usr.contents //We want to make sure one is picked at random, hence it's not in a list.
 
 	var/obj/item/weapon/gun/G = get_active_firearm(usr)
 	if(!G)
@@ -682,11 +691,11 @@ should be alright.
 	flags_gun_features ^= GUN_TRIGGER_SAFETY
 
 
-
 /obj/item/weapon/gun/verb/activate_attachment_verb()
 	set category = "Weapons"
 	set name = "Load From Attachment"
 	set desc = "Load from a gun attachment, such as a mounted grenade launcher, shotgun, or flamethrower."
+	set src = usr.contents
 
 	var/obj/item/weapon/gun/G = get_active_firearm(usr)
 	if(!G)
@@ -724,10 +733,12 @@ should be alright.
 	set category = "Weapons"
 	set name = "Toggle Rail Attachment"
 	set desc = "Uses the rail attachement currently attached to the gun."
+	set src = usr.contents
 
 	var/obj/item/weapon/gun/G = get_active_firearm(usr)
 	if(!G)
 		return
+	src = G
 
 	G.rail?.activate_attachment(G, usr)
 
@@ -736,16 +747,18 @@ should be alright.
 	set category = "Weapons"
 	set name = "Toggle Ammo HUD"
 	set desc = "Toggles the Ammo HUD for this weapon."
+	set src = usr.contents
 
 	var/obj/item/weapon/gun/G = get_active_firearm(usr)
 	if(!G)
 		return
+	src = G
 
-	G.hud_enabled = !G.hud_enabled
+	hud_enabled = !hud_enabled
 	var/obj/screen/ammo/A = usr.hud_used.ammo
-	G.hud_enabled ? A.add_hud(usr) : A.remove_hud(usr)
+	hud_enabled ? A.add_hud(usr) : A.remove_hud(usr)
 	A.update_hud(usr)
-	to_chat(usr, "<span class='notice'>[G.hud_enabled ? "You enable the Ammo HUD for this weapon." : "You disable the Ammo HUD for this weapon."]</span>")
+	to_chat(usr, "<span class='notice'>[hud_enabled ? "You enable the Ammo HUD for this weapon." : "You disable the Ammo HUD for this weapon."]</span>")
 
 
 /obj/item/weapon/gun/item_action_slot_check(mob/user, slot)
