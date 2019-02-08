@@ -919,16 +919,18 @@
 									R.fields[text("com_[counter]")] = text("Made by [U.name] ([U.modtype] [U.braintype]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [game_year]<BR>[t1]")
 
 	if (href_list["medholocard"])
-		if(species?.count_human)
+		if(!species?.count_human)
 			to_chat(usr, "<span class='warning'>Triage holocards only works on organic humanoid entities.</span>")
 			return
 		var/newcolor = input("Choose a triage holo card to add to the patient:", "Triage holo card", null, null) in list("black", "red", "orange", "none")
-		if(!newcolor) return
+		if(!newcolor)
+			return
 		if(get_dist(usr, src) > 7)
 			to_chat(usr, "<span class='warning'>[src] is too far away.</span>")
 			return
 		if(newcolor == "none")
-			if(!holo_card_color) return
+			if(!holo_card_color)
+				return
 			holo_card_color = null
 			to_chat(usr, "<span class='notice'>You remove the holo card on [src].</span>")
 		else if(newcolor != holo_card_color)

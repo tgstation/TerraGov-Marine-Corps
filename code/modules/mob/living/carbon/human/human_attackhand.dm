@@ -137,7 +137,7 @@
 			var/datum/limb/affecting = get_limb(ran_zone(M.zone_selected))
 
 			//Accidental gun discharge
-			if(!M.mind || !M.mind.cm_skills || M.mind.cm_skills.cqc < SKILL_CQC_MP)
+			if(!M.mind?.cm_skills || M.mind.cm_skills.cqc < SKILL_CQC_MP)
 				if (istype(r_hand,/obj/item/weapon/gun) || istype(l_hand,/obj/item/weapon/gun))
 					var/obj/item/weapon/gun/W = null
 					var/chance = 0
@@ -150,8 +150,9 @@
 						W = r_hand
 						chance = !hand ? 40 : 20
 
-					if (prob(chance))
-						visible_message("<span class='danger'>[src]'s [W.name] goes off during struggle!", null, null, 5)
+					if(prob(chance))
+						log_combat(M, src, "disarmed, making their [W] go off")
+						visible_message("<span class='danger'>[src]'s [W] goes off during struggle!", null, null, 5)
 						var/list/turfs = list()
 						for(var/turf/T in view())
 							turfs += T

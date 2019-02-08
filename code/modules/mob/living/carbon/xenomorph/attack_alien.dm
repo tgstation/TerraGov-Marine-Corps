@@ -162,11 +162,12 @@
 
 			if(status_flags & XENO_HOST && stat != DEAD)
 				if(istype(buckled, /obj/structure/bed/nest))
-					var/area/A = get_area(M)
-					log_combat(M, src, log, addition="while they were infected and nested")
-					msg_admin_ff("[ADMIN_TPMONTY(M)] slashed [ADMIN_TPMONTY(src)] while they were infected and nested in [ADMIN_VERBOSEJMP(A)].")
+					var/turf/T = get_turf(M)
+					log_ffattack("[key_name(M)] slashed [key_name(src)] while they were infected and nested in [AREACOORD(T)].")
+					log_combat(M, src, log, addition = "while they were infected and nested")
+					msg_admin_ff("[ADMIN_TPMONTY(M)] slashed [ADMIN_TPMONTY(src)] while they were infected and nested in [ADMIN_VERBOSEJMP(T)].")
 				else
-					log_combat(M, src, log, addition="while they were infected")
+					log_combat(M, src, log, addition = "while they were infected")
 			else //Normal xenomorph friendship with benefits
 				log_combat(M, src, log)
 

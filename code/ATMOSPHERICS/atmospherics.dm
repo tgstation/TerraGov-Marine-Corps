@@ -51,7 +51,8 @@ Pipelines + Other Objects -> Pipe network
 
 /obj/machinery/atmospherics/Initialize()
 	. = ..()
-	initialize()
+	if(initialize() == INITIALIZE_HINT_QDEL)
+		return INITIALIZE_HINT_QDEL
 
 /obj/machinery/atmospherics/Destroy()
 	for(var/mob/living/M in src) //ventcrawling is serious business
