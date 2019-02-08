@@ -288,7 +288,7 @@
 					return FALSE
 
 				var/msg = input(usr, "Please choose a message to transmit to the TGMC High Command.  Please be aware that this process is very expensive, and abuse will lead to termination.  Transmission does not guarantee a response. There is a small delay before you may send another message. Be clear and concise.", "To abort, send an empty message.", "")
-				if(!msg || !(usr in view(1, src)) || authenticated != 2 || world.time < cooldown_central + COOLDOWN_COMM_CENTRAL)
+				if(!msg || !usr.Adjacent(src) || authenticated != 2 || world.time < cooldown_central + COOLDOWN_COMM_CENTRAL)
 					return FALSE
 
 
