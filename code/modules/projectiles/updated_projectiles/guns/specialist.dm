@@ -774,7 +774,7 @@
 		current_mag = null
 
 	log_combat(usr, usr, "fired the [src].")
-	log_explosion("[usr] fired the [src] at [AREACOORD(get_turf(usr)].")
+	log_explosion("[usr] fired the [src] at [AREACOORD(loc)].")
 
 /obj/item/weapon/gun/launcher/rocket/wield(mob/living/user)
 	. = ..()
