@@ -656,7 +656,6 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/stock/mosin/Initialize()
 	. = ..()
-	accuracy_mod = CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
 	recoil_mod = -CONFIG_GET(number/combat_define/med_recoil_value)
 	scatter_mod = -CONFIG_GET(number/combat_define/med_scatter_value)
 	movement_acc_penalty_mod = CONFIG_GET(number/combat_define/min_movement_acc_penalty)
