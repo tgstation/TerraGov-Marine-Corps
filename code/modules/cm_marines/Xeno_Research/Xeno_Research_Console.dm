@@ -129,7 +129,7 @@
 		if(!linked_dissector.loaded_item)
 			to_chat(usr, "\red The organic dissector appears to be empty.")
 			screen = MARINE_RESEARCH_MENU_MAIN
-		return
+			return
 		linked_dissector.icon_state = "d_analyzer"
 		files.AddToAvail(linked_dissector.loaded_item)
 		linked_dissector.loaded_item = null
