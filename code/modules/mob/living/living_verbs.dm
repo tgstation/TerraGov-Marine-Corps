@@ -298,14 +298,16 @@
 		resting = TRUE
 		to_chat(src, "<span class='notice'>You are now resting.</span>")
 		update_canmove()
-	else if(action_busy) // do_after is unoptimal
+	else if(action_busy)
 		return
 	else
+		action_busy = TRUE
 		overlays += get_busy_icon(BUSY_ICON_GENERIC)
 		addtimer(CALLBACK(src, .proc/get_up), 2 SECONDS)
 
 
 /mob/living/proc/get_up()
+	action_busy = FALSE
 	overlays -= get_busy_icon(BUSY_ICON_GENERIC)
 	if(!is_mob_incapacitated(TRUE))
 		to_chat(src, "<span class='notice'>You get up.</span>")
