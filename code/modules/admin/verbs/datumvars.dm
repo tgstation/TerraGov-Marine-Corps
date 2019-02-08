@@ -1154,7 +1154,7 @@
 
 			var/atom/target
 
-			switch(input("Where do you want to send it to?", "Send Mob") as null|anything in list("Area", "Mob", "Key"))
+			switch(input("Where do you want to send it to?", "Send Mob") as null|anything in list("Area", "Mob", "Key", "Coords"))
 				if("Area")
 					var/area/AR = input("Pick an area.", "Pick an area") as null|anything in return_sorted_areas()
 					if(!AR || !A)
@@ -1177,6 +1177,9 @@
 					if(isnull(X) || isnull(Y) || isnull(Z) || !A)
 						return
 					target = locate(X, Y, Z)
+
+			if(!target)
+				return
 
 			A.forceMove(target)
 
