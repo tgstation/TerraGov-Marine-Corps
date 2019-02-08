@@ -169,7 +169,7 @@
 	powerloader = SKILL_POWERLOADER_TRAINED
 	pistols = SKILL_PISTOLS_TRAINED
 
-/datum/skills/FO
+/datum/skills/FC
 	name = "Field Officer"
 	engineer = SKILL_ENGINEER_ENGI 
 	construction = SKILL_CONSTRUCTION_PLASTEEL
