@@ -56,6 +56,9 @@
 		return
 	icon_state = "paper"
 
+/obj/item/paper/commendation/update_icon() //it looks fancy and we want it to stay fancy.
+	return
+
 /obj/item/paper/examine(mob/user)
 //	..()	//We don't want them to see the dumb "this is a paper" thing every time.
 // I didn't like the idea that people can read tiny pieces of paper from across the room.
