@@ -238,7 +238,7 @@
 		var/obj/item/storage/internal/S = T.hold
 		if(!length(S.contents))
 			return FALSE
-		var/obj/item/W = S.contents[1]
+		var/obj/item/W = S.contents[length(S.contents)]
 		S.remove_from_storage(W)
 		put_in_hands(W)
 		return TRUE
@@ -249,7 +249,7 @@
 		var/obj/item/storage/internal/P = S.pockets
 		if(!length(P.contents))
 			return FALSE
-		var/obj/item/W = P.contents[1]
+		var/obj/item/W = P.contents[length(P.contents)]
 		P.remove_from_storage(W)
 		put_in_hands(W)
 		return TRUE
@@ -257,7 +257,7 @@
 		var/obj/item/storage/S = I
 		if(!length(S.contents))
 			return FALSE
-		var/obj/item/W = S.contents[1]
+		var/obj/item/W = S.contents[length(S.contents)]
 		S.remove_from_storage(W)
 		put_in_hands(W)
 		return TRUE
