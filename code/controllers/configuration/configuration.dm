@@ -21,10 +21,18 @@
 	var/motd
 
 /datum/controller/configuration/proc/loadtips()
-	GLOB.metatips = world.file2list("config/tips/metatips.txt")
-	GLOB.marinetips = world.file2list("config/tips/marinetips.txt")
-	GLOB.xenotips = world.file2list("config/tips/xenotips.txt")
-	GLOB.joketips = world.file2list("config/tips/joketips.txt")
+	GLOB.metatips = world.file2list("[directory]/tips/metatips.txt")
+	if (!GLOB.metatips)
+		log_config("Failed to load tips/metatips.txt")
+	GLOB.marinetips = world.file2list("[directory]/tips/marinetips.txt")
+	if (!GLOB.marinetips)
+		log_config("Failed to load tips/marinetips.txt")
+	GLOB.xenotips = world.file2list("[directory]/tips/xenotips.txt")
+	if (!GLOB.xenotips)
+		log_config("Failed to load tips/xenotips.txt")
+	GLOB.joketips = world.file2list("[directory]/tips/joketips.txt")
+	if (!GLOB.joketips)
+		log_config("Failed to load tips/joketips.txt")
 
 /datum/controller/configuration/proc/admin_reload()
 	if(IsAdminAdvancedProcCall())
