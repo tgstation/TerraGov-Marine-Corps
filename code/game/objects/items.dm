@@ -462,14 +462,16 @@ cases. Override_icon_state should be a list.*/
 				if (!H.back || !istype(H.back, /obj/item/storage/backpack))
 					return FALSE
 				var/obj/item/storage/backpack/B = H.back
-				if(src.w_class <= B.max_w_class && B.can_be_inserted(src, warning))
-					return TRUE
+				if(w_class > B.max_w_class || !B.can_be_inserted(src, warning))
+					return FALSE
+				return TRUE
 			if(SLOT_IN_B_HOLSTER)
-				if (H.back && istype(H.back, /obj/item/storage/large_holster))
-					var/obj/item/storage/S = H.back
-					if(S.can_be_inserted(src, warning))
-						return TRUE
-				return FALSE
+				if(!H.back || !istype(H.back, /obj/item/storage/large_holster))
+					return FALSE
+				var/obj/item/storage/S = H.back
+				if(!S.can_be_inserted(src, warning))
+					return FALSE
+				return TRUE
 			if(SLOT_IN_HOLSTER)
 				if((H.belt && istype(H.belt,/obj/item/storage/large_holster)) || (H.belt && istype(H.belt,/obj/item/storage/belt/gun)))
 					var/obj/item/storage/S = H.belt
