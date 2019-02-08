@@ -535,8 +535,8 @@ can cause issues with ammo types getting mixed up during the burst.
 //A hacky bolt action rifle. in here for the "pump" or bolt working action.
 
 /obj/item/weapon/gun/shotgun/pump/bolt
-	name = "\improper bolt action rifle"
-	desc = "A hunting rifle just like pappy used to own."
+	name = "\improper mosin nagant rifle"
+	desc = "A mosin nagant rifle, even just looking at it you can feel the cosmoline already."
 	icon_state = "mosin"
 	item_state = "mosin" //thank you Alterist
 	fire_sound = 'sound/weapons/gun_sniper.ogg'
