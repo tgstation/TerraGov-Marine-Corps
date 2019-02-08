@@ -146,7 +146,7 @@
 
 
 /obj/item/tank/return_air()
-	return list(gas_type, temperature, pressure)
+	return list(gas_type, temperature, distribute_pressure)
 
 /obj/item/tank/return_pressure()
 	return pressure
