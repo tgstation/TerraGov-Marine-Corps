@@ -128,3 +128,13 @@
 		rs += "[R.name], [R.volume]"
 
 	return rs.Join(" | ")
+
+/datum/reagent/proc/purge(mob/living/carbon/M)
+	if(length(purge_list))
+		var/count = length(purge_list)
+		for(var/datum/reagent/R in M.reagents.reagent_list)
+			if(count < 1)
+				break
+			if(is_type_in_list(R, purge_list))
+				count--
+				M.reagents.remove_reagent(R.id,purge_rate)

@@ -9,6 +9,7 @@
 	taste_description = "bitterness"
 
 /datum/reagent/medicine/on_mob_life(mob/living/carbon/M)
+	purge(M)
 	current_cycle++
 	holder.remove_reagent(src.id, custom_metabolism / M.metabolism_efficiency) //so far metabolism efficiency is fixed to 1, but medicine reagents last longer the better it is.
 
