@@ -171,10 +171,6 @@
 	else
 		tipped_level = 0
 
-/obj/structure/inflatable/attack_alien(mob/living/carbon/Xenomorph/M)
-	M.animation_attack_on(src)
-	deflate(1)
-
 /obj/machinery/vending/proc/tip_over()
 	var/matrix/A = matrix()
 	tipped_level = 2
