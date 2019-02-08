@@ -1691,6 +1691,15 @@
 	if(M.mob_size >= MOB_SIZE_BIG) //We can't fling big aliens/mobs
 		to_chat(src, "<span class='xenowarning'>[M] is too large to fling!</span>")
 		return
+	if(M.anchored)
+		visible_message("<span class='xenowarning'>[src] tries to fling [M] to no avail!</span>","<span class='xenowarning'>You try to fling [M] but [M.p_they()] happens to be stuck in place!</span>", null, 4)
+		cresttoss_used = TRUE
+		icon_state = "Crusher Charging"  //Momentarily lower the crest for visual effect
+		use_plasma(CRUSHER_CRESTTOSS_COST/2)
+		playsound(src, 'sound/weapons/alien_claw_swipe.ogg')
+		addtimer(CALLBACK(src, .cresttoss_cooldown), CRUSHER_CRESTTOSS_COOLDOWN)
+		addtimer(CALLBACK(src, .reset_intent_icon_state), 3)
+		return
 
 	face_atom(M) //Face towards the target so we don't look silly
 
@@ -1699,7 +1708,7 @@
 	var/turf/T = loc
 	var/turf/temp = loc
 	if(a_intent == INTENT_HARM) //If we use the ability on hurt intent, we throw them in front; otherwise we throw them behind.
-		for (var/x = 0, x < toss_distance, x++)
+		for (var/x in 1 to toss_distance)
 			temp = get_step(T, facing)
 			if (!temp)
 				break
