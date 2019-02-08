@@ -12,11 +12,11 @@ var/global/list/active_diseases = list()
 var/global/list/events = list()
 
 //tips
-GLOBAL_LIST_INIT(metatips, world.file2list("config/tips/metatips.txt"))
-GLOBAL_LIST_INIT(marinetips, world.file2list("config/tips/marinetips.txt"))
-GLOBAL_LIST_INIT(xenotips, world.file2list("config/tips/xenotips.txt"))
-GLOBAL_LIST_INIT(joketips, world.file2list("config/tips/joketips.txt"))
-GLOBAL_LIST_INIT(alltips, GLOB.marinetips + GLOB.xenotips + GLOB.joketips + GLOB.metatips)
+GLOBAL_LIST_EMPTY(metatips)
+GLOBAL_LIST_EMPTY(marinetips)
+GLOBAL_LIST_EMPTY(xenotips)
+GLOBAL_LIST_EMPTY(joketips)
+#define ALLTIPS (GLOB.marinetips + GLOB.xenotips + GLOB.joketips + GLOB.metatips)
 
 //used by binoculars for dropship bombardment
 var/global/list/active_laser_targets = list()

@@ -20,6 +20,11 @@
 
 	var/motd
 
+/datum/controller/configuration/proc/loadtips()
+	GLOB.metatips = world.file2list("config/tips/metatips.txt")
+	GLOB.marinetips = world.file2list("config/tips/marinetips.txt")
+	GLOB.xenotips = world.file2list("config/tips/xenotips.txt")
+	GLOB.joketips = world.file2list("config/tips/joketips.txt")
 
 /datum/controller/configuration/proc/admin_reload()
 	if(IsAdminAdvancedProcCall())
@@ -48,7 +53,9 @@
 					LoadEntries(J)
 				break
 	loadmaplist(CONFIG_MAPS_FILE)
+	loadtips()
 	LoadMOTD()
+
 
 
 /datum/controller/configuration/proc/full_wipe()
@@ -246,7 +253,7 @@
 
 /datum/controller/configuration/proc/LoadMOTD()
 	join_motd = file2text("[directory]/motd.txt")
-	join_motd += "<br><br><span class='tip'>[pick(GLOB.alltips)]<br></span>"
+	join_motd += "<br><br><span class='tip'>[pick(ALLTIPS)]<br></span>"
 
 	/*
 	var/tm_info = GLOB.revdata.GetTestMergeInfo()
