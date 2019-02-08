@@ -12,9 +12,9 @@
 /datum/admins/Topic(href, href_list)
 	. = ..()
 
-	if(usr.client != src.owner || !check_rights(0))
+	if(usr.client != src.owner || !check_rights(NONE))
 		log_admin("[key_name(usr)] tried to use the admin panel without authorization.")
-		message_admins("[ADMIN_TPMONTY(usr)] has attempted to override the admin panel!")
+		message_admins("[ADMIN_TPMONTY(usr)] tried to use the admin panel without authorization.")
 		return
 
 	if(!CheckAdminHref(href, href_list))
@@ -94,6 +94,8 @@
 
 
 	else if(href_list["playerpanel"])
+		if(!check_rights(R_ADMIN))
+			return
 		var/mob/M = locate(href_list["playerpanel"])
 		show_player_panel(M)
 
@@ -104,11 +106,13 @@
 
 
 	else if(href_list["individuallog"])
+		if(!check_rights(R_ADMIN))
+			return
 		var/mob/M = locate(href_list["individuallog"])
 		show_individual_logging_panel(M, href_list["log_src"], href_list["log_type"])
 
 
-	else if(href_list["observecoodjump"])
+	else if(href_list["observecoordjump"])
 		if(istype(usr, /mob/new_player))
 			return
 
@@ -650,11 +654,13 @@
 			if("queen")
 				M.change_mob_type(/mob/living/carbon/Xenomorph/Queen, location, null, delmob)
 			if("human")
-				M.change_mob_type(/mob/living/carbon/human, location, null, delmob,)
+				M.change_mob_type(/mob/living/carbon/human, location, null, delmob)
 			if("monkey")
-				M.change_mob_type(/mob/living/carbon/monkey, location, null, delmob,)
+				M.change_mob_type(/mob/living/carbon/monkey, location, null, delmob)
 			if("moth")
 				M.change_mob_type(/mob/living/carbon/human, location, null, delmob, "Moth")
+			if("yautja")
+				M.change_mob_type(/mob/living/carbon/human, location, null, delmob, "Yautja")
 
 		log_admin("[key_name(usr)] has transformed [key_name(M)] into [href_list["transform"]].[delmob ? " Old mob deleted." : ""][location ? " Teleported to [AREACOORD(location)]" : ""]")
 		message_admins("[ADMIN_TPMONTY(usr)] has transformed [ADMIN_TPMONTY(M)] into [href_list["transform"]].[delmob ? " Old mob deleted." : ""][location ? " Teleported to new location." : ""]")
@@ -865,7 +871,7 @@
 			to_chat(usr, "<span class='warning'>[M] doesn't seem to have an active client.</span>")
 			return
 
-		if(alert("Send [key_name(M)] back to Lobby?", "Confirmation", "Yes", "No") != "Yes")
+		if(alert("Send [key_name(M)] back to Lobby?", "Send to Lobby", "Yes", "No") != "Yes")
 			return
 
 		log_admin("[key_name(usr)] has sent [key_name(M)] back to the lobby.")
@@ -880,6 +886,48 @@
 		else
 			M.ghostize()
 
+
+	else if(href_list["cryo"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/mob/M = locate(href_list["cryo"])
+		if(!istype(M))
+			return
+
+		if(alert("Cryo [key_name(M)]?", "Cryosleep", "Yes", "No") != "Yes")
+			return
+
+		var/client/C = M.client
+		if(C && alert("They have a client attached, are you sure?", "Cryosleep", "Yes", "No") != "Yes")
+			return
+
+		var/turf/T = get_turf(M)
+		var/obj/machinery/cryopod/P = new(T)
+		P.density = FALSE
+		P.alpha = 0
+		P.name = null
+		P.occupant = M
+		P.time_till_despawn = 0
+		P.process()
+		qdel(P)
+
+		var/lobby
+		if(C && alert("Do you also want to send them to the lobby?", "Cryosleep", "Yes", "No") == "Yes")
+			lobby = TRUE
+			var/mob/new_player/NP = new()
+			NP.key = C.key
+			if(NP.client)
+				NP.client.change_view(world.view)
+			if(isobserver(C.mob))
+				qdel(C.mob)
+			else
+				C.mob.ghostize()
+
+		log_admin("[key_name(usr)] has cryo'd [key_name(M)][lobby ? ", sending them to the lobby" : ""].")
+		message_admins("[ADMIN_TPMONTY(usr)] has cryo'd [key_name_admin(M)][lobby ? ", sending them to the lobby" : ""].")
+
+
 	else if(href_list["jumpto"])
 		if(!check_rights(R_ADMIN))
 			return
@@ -890,8 +938,8 @@
 
 		usr.forceMove(M.loc)
 
-		log_admin("[key_name(usr)] has jumped to [key_name(M)].")
-		message_admins("[ADMIN_TPMONTY(usr)] has jumped to [ADMIN_TPMONTY(M)].")
+		log_admin("[key_name(usr)] has jumped to [key_name(M)]'s mob.")
+		message_admins("[ADMIN_TPMONTY(usr)] has jumped to [ADMIN_TPMONTY(M)]'s mob.")
 
 
 	else if(href_list["getmob"])
@@ -918,17 +966,22 @@
 
 		var/atom/target
 
-		switch(input("To an area or to a mob?", "Send Mob", null, null) as null|anything in list("Area", "Mob"))
+		switch(input("Where do you want to send it to?", "Send Mob") as null|anything in list("Area", "Mob", "Key"))
 			if("Area")
 				var/area/A = input("Pick an area.", "Pick an area") as null|anything in return_sorted_areas()
 				if(!A || !M)
 					return
 				target = pick(get_area_turfs(A))
 			if("Mob")
-				var/mob/N = input("Pick an area.", "Pick an area") as null|anything in sortmobs(GLOB.mob_list)
+				var/mob/N = input("Pick a mob.", "Pick a mob") as null|anything in sortmobs(GLOB.mob_list)
 				if(!N || !M)
 					return
 				target = N.loc
+			if("Key")
+				var/client/C = input("Pick a key.", "Pick a key") as null|anything in sortKey(GLOB.clients)
+				if(!C || !M)
+					return
+				target = C.mob.loc
 
 		M.on_mob_jump()
 		M.forceMove(target)
@@ -939,114 +992,152 @@
 
 
 	else if(href_list["faxreply"])
-		var/mob/living/carbon/human/H = locate(href_list["faxreply"])
-		var/obj/machinery/faxmachine/fax = locate(href_list["originfax"])
+		var/ref = locate(href_list["faxreply"])
+		if(!ref)
+			return
+		var/datum/fax/F = GLOB.faxes[ref]
+		if(!F)
+			return
 
-		var/template_choice = input("Which template do you want to use?") in list("TGMC High Command", "TGMC Provost General", "Corporate Liaison", "Custom")
-		var/fax_message = ""
-		switch(template_choice)
+		var/mob/sender = F.sender
+
+		var/department = input("Which department do you want to reply as?", "Fax Message") as null|anything in list("TGMC High Command", "TGMC Provost General", "Nanotrasen")
+		if(!department)
+			return
+
+		var/subject = input("Enter the subject line", "Fax Message", "") as text|null
+		if(!subject)
+			return
+
+		var/fax_message
+		var/type = input("Do you want to use the template or type a custom message?", "Template") as null|anything in list("Template", "Custom")
+		if(!type)
+			return
+
+		switch(type)
+			if("Template")
+				var/addressed_to
+				var/addressed = input("Address it to the sender or custom?", "Fax Message") as null|anything in list("Sender", "Custom")
+				if(!addressed)
+					return
+
+				switch(addressed)
+					if("Sender")
+						addressed_to = "[sender.real_name]"
+					if("Custom")
+						addressed_to = input("Who is it addressed to?", "Fax Message", "") as text|null
+						if(!addressed_to)
+							return
+
+				var/message_body = input("Enter Message Body, use <p></p> for paragraphs", "Fax Message", "") as message|null
+				if(!message_body)
+					return
+
+				var/sent_by = input("Enter the name and rank you are sending from.", "Fax Message", "") as text|null
+				if(!sent_by)
+					return
+
+				fax_message = generate_templated_fax(department, subject, addressed_to, message_body, sent_by, department)
+
 			if("Custom")
-				var/input = input("Please enter a message to reply to [key_name(H)] via secure connection.", "Outgoing message", "") as text|null
+				var/input = input("Please enter a message to send via secure connection.", "Fax Message", "") as text|null
 				if(!input)
 					return
 				fax_message = "[input]"
 
-			if("TGMC High Command", "TGMC Provost General")
-				var/subject = input("Enter subject line", "Outgoing message", "") as text|null
-				if(!subject)
-					return
-				var/addressed_to = ""
-				var/address_option = input("Address it to the sender or custom?") in list("Sender", "Custom")
-				if(address_option == "Sender")
-					addressed_to = "[H.real_name]"
-				else if(address_option == "Custom")
-					addressed_to = input("Who is it addressed to?", "Outgoing message", "") as text|null
-					if(!addressed_to)
-						return
-				else
-					return
-				var/message_body = input("Enter Message Body, use <p></p> for paragraphs", "Outgoing message", "") as message|null
-				if(!message_body)
-					return
-				var/sent_by = input("Enter the name and rank you are sending from.", "Outgoing message from USCM", "") as text|null
-				if(!sent_by)
-					return
+		if(!fax_message)
+			return
 
-				var/sent_title = template_choice
+		usr << browse(fax_message, "window=faxpreview;size=600x600")
 
+		if(alert("Send this fax?", "Confirmation", "Yes", "No") != "Yes")
+			return
 
-				fax_message = generate_templated_fax(FALSE, "TGMC CENTRAL COMMAND", subject, addressed_to, message_body, sent_by, sent_title, "TerraGov Marine Corps")
+		send_fax(usr, null, F.department, subject, fax_message, TRUE)
 
-
-				usr << browse(fax_message, "window=tgmcfaxpreview;size=600x600")
-
-				if(alert("Send this fax?", "Confirmation", "Yes", "No") != "Yes")
-					return
-
-				fax_contents += fax_message
-
-
-			if("Corporate Liaison")
-				var/subject = input("Enter subject line", "Outgoing message", "") as text|null
-				if(!subject)
-					return
-				var/addressed_to = ""
-				var/address_option = input("Address it to the sender or custom?") in list("Sender", "Custom")
-				if(address_option == "Sender")
-					addressed_to = "[H.real_name]"
-				else if(address_option == "Custom")
-					addressed_to = input("Who do you want to address it to?", "Outgoing message", "") as text|null
-					if(!addressed_to)
-						return
-				else
-					return
-				var/message_body = input("Enter Message Body, use <p></p> for paragraphs", "Outgoing message", "") as message|null
-				if(!message_body)
-					return
-				var/sent_by = input("Enter the name you are sending this from", "Outgoing message", "") as text|null
-				if(!sent_by)
-					return
-
-				fax_message = generate_templated_fax(TRUE, "NANOTRASEN CORPORATE AFFAIRS - TGS THESEUS", subject, addressed_to, message_body, sent_by, "Corporate Affairs Director", "Nanotrasen")
-
-				usr << browse(fax_message, "window=clfaxpreview;size=600x600")
-
-				if(alert("Send this fax?", "Confirmation", "Yes", "No") != "Yes")
-					return
-
-				fax_contents += fax_message
-
-		var/customname = input("Pick a title for the report", "Title") as text|null
-
-		for(var/obj/machinery/faxmachine/F in GLOB.machines)
-			if(F == fax)
-				if(!(F.stat & (BROKEN|NOPOWER)))
-					flick("faxreceive", F)
-
-					spawn(20)
-						var/obj/item/paper/P = new /obj/item/paper( F.loc )
-						P.name = "USCM High Command - [customname]"
-						P.info = fax_message
-						P.update_icon()
-
-						playsound(F.loc, "sound/machines/fax.ogg", 15)
-
-						var/image/stampoverlay = image('icons/obj/items/paper.dmi')
-						stampoverlay.icon_state = "paper_stamp-uscm"
-						if(!P.stamped)
-							P.stamped = new
-						P.stamped += /obj/item/tool/stamp
-						P.overlays += stampoverlay
-						P.stamps += "<HR><i>This paper has been stamped by the High Command Quantum Relay.</i>"
-
-				log_admin("[key_name(usr)] replied to a fax message from [key_name(H)]: [fax_message]")
-				message_admins("[ADMIN_TPMONTY(usr)] replied to a fax message from [ADMIN_TPMONTY(H)].")
+		log_admin("[key_name(usr)] replied to a fax message from [key_name(sender)].")
+		message_admins("[ADMIN_TPMONTY(usr)] replied to a fax message from [ADMIN_TPMONTY(sender)].")
 
 
 	else if(href_list["faxview"])
-		var/info = locate(href_list["faxview"])
+		if(!check_rights(R_ADMIN|R_MENTOR))
+			return
 
-		usr << browse("<HTML><HEAD><TITLE>Fax Message</TITLE></HEAD><BODY>[info]</BODY></HTML>", "window=Fax Message")
+		var/ref = locate(href_list["faxview"])
+		if(!ref)
+			return
+		var/datum/fax/F = GLOB.faxes[ref]
+		if(!F)
+			return
+
+		var/dat = "<html><head><title>Fax Message: [F.title]</title></head>"
+		dat += "<body>[F.message]</body></html>"
+
+		usr << browse(dat, "window=fax")
+
+
+	else if(href_list["faxcreate"])
+		if(!check_rights(R_ADMIN|R_MENTOR))
+			return
+
+		var/mob/sender = locate(href_list["faxcreate"])
+
+		var/dep = input("Who do you want to message?", "Fax Message") as null|anything in list("Corporate Liaison", "Chief Military Police", "Warden")
+		if(!dep)
+			return
+
+		if(dep == "Warden" && GLOB.map_tag != MAP_PRISON_STATION)
+			if(alert("Are you sure? By default noone will receive this fax unless you spawned the proper fax machine.", "Warning", "Yes", "No") != "Yes")
+				return
+
+		var/department = input("Which department do you want to reply AS?", "Fax Message") as null|anything in list("TGMC High Command", "TGMC Provost General", "Nanotrasen")
+		if(!department)
+			return
+
+		var/subject = input("Enter the subject line", "Fax Message", "") as text|null
+		if(!subject)
+			return
+
+		var/fax_message
+		var/addressed_to
+		var/type = input("Do you want to use the template or type a custom message?", "Template") as null|anything in list("Template", "Custom")
+		if(!type)
+			return
+
+		switch(type)
+			if("Template")
+				addressed_to = input("Who is it addressed to?", "Fax Message", "") as text|null
+				if(!addressed_to)
+					return
+
+				var/message_body = input("Enter Message Body, use <p></p> for paragraphs", "Fax Message", "") as message|null
+				if(!message_body)
+					return
+
+				var/sent_by = input("Enter the name and rank you are sending from.", "Fax Message", "") as text|null
+				if(!sent_by)
+					return
+
+				fax_message = generate_templated_fax(department, subject, addressed_to, message_body, sent_by, department)
+
+			if("Custom")
+				var/input = input("Please enter a message to send via secure connection.", "Fax Message", "") as text|null
+				if(!input)
+					return
+				fax_message = "[input]"
+
+		if(!fax_message)
+			return
+
+		usr << browse(fax_message, "window=faxpreview;size=600x600")
+
+		if(alert("Send this fax?", "Confirmation", "Yes", "No") != "Yes")
+			return
+
+		send_fax(sender, null, dep, subject, fax_message, TRUE)
+
+		log_admin("[key_name(usr)] created a new fax to: [dep].")
+		message_admins("[ADMIN_TPMONTY(usr)] created a new fax to: [dep].")
 
 
 	else if(href_list["create_object"])
@@ -1103,6 +1194,9 @@
 
 
 	if(href_list["evac_authority"])
+		if(!check_rights(R_ADMIN))
+			return
+
 		switch(href_list["evac_authority"])
 			if("init_evac")
 				if(!EvacuationAuthority.initiate_evacuation())
@@ -1138,7 +1232,7 @@
 					message_admins("[ADMIN_TPMONTY(usr)] force-enabled the self-destruct system.")
 
 			if("cancel_dest")
-				if(!EvacuationAuthority.cancel_self_destruct(1))
+				if(!EvacuationAuthority.cancel_self_destruct(TRUE))
 					to_chat(usr, "<span class='warning'>You are unable to cancel the self-destruct right now!</span>")
 				else
 					log_admin("[key_name(usr)] canceled the self-destruct system.")
@@ -1149,10 +1243,11 @@
 				if(confirm != "Yes")
 					return
 
-				if(!EvacuationAuthority.initiate_self_destruct(1))
-					to_chat(usr, "<span class='warning'>You are unable to trigger the self-destruct right now!</span>")
-					return
 				if(alert("Are you sure you want to destroy the Almayer right now?",, "Yes", "No") != "Yes")
+					return
+
+				if(!EvacuationAuthority.initiate_self_destruct(TRUE))
+					to_chat(usr, "<span class='warning'>You are unable to trigger the self-destruct right now!</span>")
 					return
 
 				log_admin("[key_name(usr)] forced the self-destruct system, destroying the [MAIN_SHIP_NAME].")
@@ -1247,7 +1342,7 @@
 
 						if(!QDELETED(O))
 							if(obj_dir)
-								O.dir = obj_dir
+								O.setDir(obj_dir)
 							if(obj_name)
 								O.name = obj_name
 								if(ismob(O))
@@ -1271,3 +1366,45 @@
 				if(ispath(path, /mob))
 					message_admins("[ADMIN_TPMONTY(usr)] created [number]ea [english_list(paths)].")
 					break
+
+
+	else if(href_list["admin_log"])
+		if(!check_rights(R_ASAY))
+			return
+
+		var/dat = "<html><head><title>Admin Log</title></head><body>"
+
+		for(var/x in GLOB.admin_log)
+			dat += "[x]<br>"
+
+		dat += "</body></html>"
+
+		usr << browse(dat, "window=adminlog")
+
+
+	else if(href_list["ffattack_log"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/dat = "<html><head><title>FF Attack Log</title></head><body>"
+
+		for(var/x in GLOB.ffattack_log)
+			dat += "[x]<br>"
+
+		dat += "</body></html>"
+
+		usr << browse(dat, "window=ffattack_log")
+
+
+	else if(href_list["explosion_log"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/dat = "<html><head><title>Explosion Log</title></head><body>"
+
+		for(var/x in GLOB.explosion_log)
+			dat += "[x]<br>"
+
+		dat += "</body></html>"
+
+		usr << browse(dat, "window=explosion_log")

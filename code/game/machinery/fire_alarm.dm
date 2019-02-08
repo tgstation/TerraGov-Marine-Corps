@@ -261,7 +261,7 @@ FIRE ALARM
 		src.loc = loc
 
 	if(dir)
-		src.dir = dir
+		setDir(dir)
 
 	if(building)
 		buildstage = 0

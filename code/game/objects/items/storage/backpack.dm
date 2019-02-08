@@ -382,6 +382,7 @@
 					"/obj/item/ammo_magazine/sentry",
 					"/obj/item/ammo_magazine/minisentry",
 					"/obj/item/device/marine_turret/mini",
+					"/obj/item/stack/razorwire",
 					"/obj/item/stack/sandbags"
 					)
 

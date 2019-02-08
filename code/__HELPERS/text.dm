@@ -348,5 +348,8 @@ proc/TextPreview(var/string,var/len=40)
 
 /proc/noscript(text)
 	text = replacetext(text, "<script>", "")
+	text = replacetext(text, "<script", "")
+	text = replacetext(text, "script>", "")
 	text = replacetext(text, "</script>", "")
+	text = replacetext(text, "/script", "")
 	return text

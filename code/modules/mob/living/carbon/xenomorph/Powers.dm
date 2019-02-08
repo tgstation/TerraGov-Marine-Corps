@@ -171,7 +171,7 @@
 	set waitfor = 0
 
 	var/facing = get_cardinal_dir(src, T)
-	dir = facing
+	setDir(facing)
 
 	T = loc
 	for (var/i = 0, i < xeno_caste.acid_spray_range, i++)
@@ -1698,7 +1698,7 @@
 	var/toss_distance = rand(3,5)
 	var/turf/T = loc
 	var/turf/temp = loc
-	if(a_intent == "hurt") //If we use the ability on hurt intent, we throw them in front; otherwise we throw them behind.
+	if(a_intent == INTENT_HARM) //If we use the ability on hurt intent, we throw them in front; otherwise we throw them behind.
 		for (var/x = 0, x < toss_distance, x++)
 			temp = get_step(T, facing)
 			if (!temp)
@@ -1889,7 +1889,7 @@
 			continue
 		if(H.stat != DEAD && !(istype(H.buckled, /obj/structure/bed/nest) && H.status_flags & XENO_HOST) ) //No bully
 			var/extra_dam = rand(xeno_caste.melee_damage_lower, xeno_caste.melee_damage_upper) * (1 + round(rage * 0.01) ) //+1% bonus damage per point of Rage.relative to base melee damage.
-			H.attack_alien(src,  extra_dam, FALSE, TRUE, FALSE, TRUE, "hurt")
+			H.attack_alien(src,  extra_dam, FALSE, TRUE, FALSE, TRUE, INTENT_HARM)
 			victims++
 			round_statistics.ravager_ravage_victims++
 			step_away(H, src, sweep_range, 2)
@@ -1916,14 +1916,14 @@
 	update_action_button_icons()
 
 /mob/living/carbon/Xenomorph/Ravager/proc/Second_Wind()
-	if (!check_state())
+	if(!check_state())
 		return
 
 	if(stagger)
 		to_chat(src, "<span class='xenowarning'>Your limbs fail to respond as you try to shake off the shock!</span>")
 		return
 
-	if (second_wind_used)
+	if(second_wind_used)
 		to_chat(src, "<span class='xenowarning'>You must gather your strength before using Second Wind. Second Wind can be used in [(second_wind_delay - world.time) * 0.1] seconds.</span>")
 		return
 
@@ -1964,42 +1964,58 @@
 
 	if(isnull(turflist))
 		return
+
 	var/turf/prev_turf
 	var/distance = 0
 
-	turf_loop:
-		for(var/turf/T in turflist)
-			distance++
+	for(var/X in turflist)
+		var/turf/T = X
 
-			if(!prev_turf && turflist.len > 1)
-				prev_turf = get_turf(src)
-				continue //So we don't burn the tile we be standin on
+		if(!prev_turf && turflist.len > 1)
+			prev_turf = get_turf(src)
+			continue //So we don't burn the tile we be standin on
 
-			if(T.density || isspaceturf(T))
-				break
-			if(distance > 7)
-				break
-
-			if(locate(/obj/structure/girder, T))
-				break //Nope.avi
-
-			var/obj/machinery/M = locate() in T
-			if(M?.density)
-				break
-
-			if(prev_turf && LinkBlocked(prev_turf, T))
-				break
-
-			for(var/obj/structure/barricade/B in T)
+		for(var/obj/structure/barricade/B in prev_turf)
+			if(get_dir(prev_turf, T) & B.dir)
 				B.health -= rand(45, 60) + 8 * upgrade
 				B.update_health(TRUE)
-				if(prev_turf)
-					if(get_dir(B, prev_turf) & B.dir)
-						break turf_loop
 
-			prev_turf = T
-			splat_turf(T)
-			sleep(2)
+		if(T.density || isspaceturf(T))
+			break
+
+		var/blocked = FALSE
+		for(var/obj/O in T)
+			if(O.density && !O.throwpass && !(O.flags_atom & ON_BORDER))
+				blocked = TRUE
+				break
+
+		var/turf/TF
+		if(!prev_turf.Adjacent(T) && (T.x != prev_turf.x || T.y != prev_turf.y)) //diagonally blocked, it will seek for a cardinal turf by the former target.
+			blocked = TRUE
+			var/turf/Ty = locate(prev_turf.x, T.y, prev_turf.z)
+			var/turf/Tx = locate(T.x, prev_turf.y, prev_turf.z)
+			for(var/turf/TB in shuffle(list(Ty, Tx)))
+				if(prev_turf.Adjacent(TB) && !TB.density && !isspaceturf(TB))
+					TF = TB
+					break
+			if(!TF)
+				break
+		else
+			TF = T
+
+		for(var/obj/structure/barricade/B in TF)
+			if(get_dir(TF, prev_turf) & B.dir)
+				B.health -= rand(45, 60) + 8 * upgrade
+				B.update_health(TRUE)
+
+		splat_turf(TF)
+
+		distance++
+		if(distance > 7 || blocked)
+			break
+
+		prev_turf = T
+		sleep(2)
 
 
 /mob/living/carbon/Xenomorph/proc/splat_turf(var/turf/target)
@@ -2096,20 +2112,28 @@
 	if(!check_plasma(200))
 		return
 
-	last_emit_neurogas = world.time
-	use_plasma(200)
-
 	//give them fair warning
 	visible_message("<span class='danger'>Tufts of smoke begin to billow from [src]!</span>", \
 	"<span class='xenodanger'>Your dorsal vents widen, preparing to emit neurogas. Keep still!</span>")
 
-	addtimer(CALLBACK(src, .defiler_gas_cooldown), DEFILER_GAS_COOLDOWN)
-
 	emitting_gas = TRUE //We gain bump movement immunity while we're emitting gas.
+	use_plasma(200)
+	icon_state = "Defiler Power Up"
+
 	if(!do_after(src, DEFILER_GAS_CHANNEL_TIME, TRUE, 5, BUSY_ICON_HOSTILE))
+		smoke_system = new /datum/effect_system/smoke_spread/xeno_weaken()
+		smoke_system.amount = 1
+		smoke_system.set_up(1, 0, get_turf(src))
+		to_chat(src, "<span class='xenodanger'>You abort emitting neurogas, your expended plasma resulting in only a feeble wisp.</span>")
 		emitting_gas = FALSE
+		icon_state = "Defiler Running"
 		return
 	emitting_gas = FALSE
+	icon_state = "Defiler Running"
+
+	addtimer(CALLBACK(src, .defiler_gas_cooldown), DEFILER_GAS_COOLDOWN)
+
+	last_emit_neurogas = world.time
 
 	if(stagger) //If we got staggered, return
 		to_chat(src, "<span class='xenowarning'>You try to emit neurogas but are staggered!</span>")

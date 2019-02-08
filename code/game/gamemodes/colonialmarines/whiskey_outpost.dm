@@ -958,7 +958,7 @@
 				X.plasma_stored = X.xeno_caste.plasma_max
 				X.flags_pass = 0 // Runners cannot pass trough tables
 
-				//X.a_intent = "harm" This caused problems
+				//X.a_intent = INTENT_HARM This caused problems
 				//if(istype(X,/mob/living/carbon/Xenomorph/Carrier))
 				//	X:huggers_cur = 6 //Max out huggers
 				break
@@ -975,7 +975,7 @@
 				X.plasma_stored = X.xeno_caste.plasma_max
 				X.flags_pass = 0 // Runners cannot pass trough tables
 
-				//X.a_intent = "harm" This caused problems
+				//X.a_intent = INTENT_HARM This caused problems
 				//if(istype(X,/mob/living/carbon/Xenomorph/Carrier))
 				//	X:huggers_cur = 6 //Max out huggers
 

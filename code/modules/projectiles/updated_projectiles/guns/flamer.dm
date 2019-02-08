@@ -172,21 +172,44 @@
 	var/distance = 1
 	var/turf/prev_T
 
-	for(var/turf/T in turfs)
+	for(var/F in turfs)
+		var/turf/T = F
+
 		if(T == user.loc)
 			prev_T = T
 			continue
+		if((T.density && !istype(T, /turf/closed/wall/resin)) || isspaceturf(T))
+			break
 		if(loc != user)
 			break
-		if(!current_mag || !current_mag.current_rounds)
+		if(!current_mag?.current_rounds)
 			break
 		if(distance > max_range)
 			break
-		if(prev_T && LinkPreBlocksFire(prev_T, T))
-			break
+
+		var/blocked = FALSE
+		for(var/obj/O in T)
+			if(O.density && !O.throwpass && !(O.flags_atom & ON_BORDER))
+				blocked = TRUE
+				break
+
+		var/turf/TF
+		if(!prev_T.Adjacent(T) && (T.x != prev_T.x || T.y != prev_T.y)) //diagonally blocked, it will seek for a cardinal turf by the former target.
+			blocked = TRUE
+			var/turf/Ty = locate(prev_T.x, T.y, prev_T.z)
+			var/turf/Tx = locate(T.x, prev_T.y, prev_T.z)
+			for(var/turf/TB in shuffle(list(Ty, Tx)))
+				if(prev_T.Adjacent(TB) && ((!TB.density && !isspaceturf(T)) || istype(T, /turf/closed/wall/resin)))
+					TF = TB
+					break
+			if(!TF)
+				break
+		else
+			TF = T
+
 		current_mag.current_rounds--
-		flame_turf(T,user, burntime, burnlevel, fire_color)
-		if(PostBlocksFire(T))
+		flame_turf(TF,user, burntime, burnlevel, fire_color)
+		if(blocked)
 			break
 		distance++
 		prev_T = T
@@ -509,7 +532,10 @@
 
 	to_chat(src, "<span class='danger'>You are burned!</span>")
 
-/mob/living/carbon/human/flamer_fire_crossed(burnlevel, firelevel, fire_mod=1)
+
+/mob/living/carbon/human/flamer_fire_crossed(burnlevel, firelevel, fire_mod = 1)
+	if(istype(wear_suit, /obj/item/clothing/suit/storage/marine/M35) && istype(shoes, /obj/item/clothing/shoes/marine/pyro) && istype(head, /obj/item/clothing/head/helmet/marine/pyro))
+		return
 	. = ..()
 	if(isxeno(pulledby))
 		var/mob/living/carbon/Xenomorph/X = pulledby
