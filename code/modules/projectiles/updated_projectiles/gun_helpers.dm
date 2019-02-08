@@ -716,7 +716,7 @@ should be alright.
 		usable_attachments += muzzle
 
 	if(!usable_attachments.len) //No usable attachments.
-		to_chat(usr, "<span class='warning'>[src] does not have any usable attachments!</span>")
+		to_chat(usr, "<span class='warning'>[src] does not have any usable attachment!</span>")
 		return
 
 	if(usable_attachments.len == 1) //Activates the only attachment if there is only one.
@@ -738,9 +738,10 @@ should be alright.
 	var/obj/item/weapon/gun/G = get_active_firearm(usr)
 	if(!G)
 		return
-	src = G
 
-	G.rail?.activate_attachment(G, usr)
+	if(!G.rail)
+		to_chat(usr, "<span class='warning'>[src] does not have any usable rail attachment!</span>")
+	G.rail.activate_attachment(G, usr)
 
 
 /obj/item/weapon/gun/verb/toggle_ammo_hud()
