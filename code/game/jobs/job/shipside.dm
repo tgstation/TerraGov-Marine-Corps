@@ -13,7 +13,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 //Commander
 /datum/job/command/commander
 	title = "Captain"
-	comm_title = "CAPT"
+	comm_title = "CPT"
 	paygrade = "O6"
 	flag = ROLE_COMMANDING_OFFICER
 	supervisors = "TGMC high command"
