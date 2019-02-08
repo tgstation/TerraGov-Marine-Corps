@@ -1,8 +1,8 @@
 /obj/machinery/Research_Machinery
 	name = "Research Machinery"
 	icon = 'icons/Marine/Research/Research_Machinery.dmi'
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 
 	var/obj/machinery/computer/XenoRnD/linked_console = null
 
