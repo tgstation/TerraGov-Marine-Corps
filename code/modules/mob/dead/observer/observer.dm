@@ -55,7 +55,7 @@
 	sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS|SEE_SELF
 	see_invisible = SEE_INVISIBLE_OBSERVER
 	see_in_dark = 100
-	verbs += /mob/dead/observer/proc/teleport
+	verbs += /mob/dead/observer/proc/dead_tele
 
 	stat = DEAD
 
@@ -294,20 +294,27 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			to_chat(src, "<span class='boldnotice'>[hud_choice] [ghost_xenohud?"Enabled":"Disabled"]</span>")
 
 
-/mob/dead/observer/proc/teleport()
+/mob/dead/observer/proc/dead_tele()
 	set category = "Ghost"
 	set name = "Teleport"
-	set desc = "Teleport to a location"
-
-	var/area/A = input("Area to jump to:", "Teleport") as null|anything in return_sorted_areas()
-	if(!A)
+	set desc= "Teleport to a location"
+	if(!isobserver(usr))
+		to_chat(usr, "Not when you're not dead!")
 		return
+	var/A
+	A = input("Area to jump to", "BOOYEA", A) as null|anything in ghostteleportlocs
+	var/area/thearea = ghostteleportlocs[A]
+	if(!thearea)	return
 
-	var/turf/T = pick(get_area_turfs(A))
+	var/list/L = list()
+	for(var/turf/T in get_area_turfs(thearea.type))
+		L+=T
 
-	forceMove(T)
+	if(!L || !L.len)
+		to_chat(usr, "No area available.")
+
+	usr.loc = pick(L)
 	unfollow()
-
 
 /mob/dead/observer/verb/follow()
 	set category = "Ghost"
