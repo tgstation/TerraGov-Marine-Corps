@@ -202,9 +202,9 @@
 	id = "chemsmoke"
 	required_reagents = list("potassium" = 1, "sugar" = 1, "phosphorus" = 1)
 
-/datum/chemical_reaction/chemsmoke/on_reaction(var/datum/reagents/holder, var/created_volume)
+/datum/chemical_reaction/chemsmoke/on_reaction(datum/reagents/holder, created_volume)
+	var/smoke_radius = round(sqrt(created_volume * 1.5), 1)
 	var/location = get_turf(holder.my_atom)
-	var/smoke_radius = round(sqrt(created_volume / 2), 1)
 	var/datum/effect_system/smoke_spread/chem/S = new
 	S.attach(location)
 	playsound(location, 'sound/effects/smoke.ogg', 50, 1, -3)

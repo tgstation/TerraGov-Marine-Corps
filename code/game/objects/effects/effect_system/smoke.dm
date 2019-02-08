@@ -32,7 +32,6 @@
 /obj/effect/particle_effect/smoke/proc/kill_smoke()
 	STOP_PROCESSING(SSobj, src)
 	INVOKE_ASYNC(src, .proc/fade_out)
-	QDEL_NULL(chemholder)
 	QDEL_IN(src, 10)
 
 /obj/effect/particle_effect/smoke/proc/fade_out(frames = 16)
@@ -71,6 +70,7 @@
 		apply_smoke_effect(T)
 		var/obj/effect/particle_effect/smoke/S = new type(T)
 		S.chemholder = chemholder
+		S.icon = icon
 		S.setDir(pick(cardinal))
 		S.amount = amount-1
 		S.lifetime = lifetime
@@ -80,7 +80,6 @@
 			S.lifetime += rand(-1,1)
 	if(opaque)
 		SetOpacity(TRUE)
-	lifetime += rand(-1,1)
 
 	if(newsmokes.len)
 		addtimer(CALLBACK(src, .proc/spawn_smoke, newsmokes), 1) //the smoke spreads rapidly but not instantly
@@ -129,9 +128,7 @@
 	var/lifetime
 
 /datum/effect_system/smoke_spread/set_up(radius = 2, loca, smoke_time)
-	if(isturf(loca))
-		location = loca
-	else
+	if(!isturf(loca))
 		location = get_turf(loca)
 	range = radius
 	if(smoke_time)
@@ -421,8 +418,9 @@ datum/effect_system/smoke_spread/tactical
 
 /datum/effect_system/smoke_spread/chem/New()
 	. = ..()
-	chemholder = new /obj()
+	chemholder = new
 	chemholder.create_reagents(500)
+	QDEL_IN(chemholder, lifetime * SSobj.wait)
 
 /datum/effect_system/smoke_spread/chem/set_up(datum/reagents/carry = null, radius = 1, loca, smoke_time, silent = FALSE)
 	. = ..()
@@ -436,27 +434,31 @@ datum/effect_system/smoke_spread/tactical
 		if(contained)
 			contained = "\[[contained]\]"
 
+		var/where = "[AREACOORD(location)]"
 		if(carry.my_atom.fingerprintslast)
 			var/mob/M = get_mob_by_key(carry.my_atom.fingerprintslast)
-			log_game("A chemical smoke reaction has taken place in [AREACOORD(location)] [contained]. Last associated key is [key_name(M)].")
-			message_admins("A chemical smoke reaction has taken place in [ADMIN_VERBOSEJMP(location)] [contained]. Last associated mob is [ADMIN_TPMONTY(M)].")
+			var/more = ""
+			if(M)
+				more = "[ADMIN_LOOKUPFLW(M)] "
+			message_admins("Smoke: ([ADMIN_VERBOSEJMP(location)])[contained]. Key: [more ? more : carry.my_atom.fingerprintslast].")
+			log_game("A chemical smoke reaction has taken place in ([where])[contained]. Last touched by [carry.my_atom.fingerprintslast].")
 		else
-			log_game("A chemical smoke reaction has taken place in [AREACOORD(location)] [contained]. No associated key.")
-			message_admins("A chemical smoke reaction has taken place in [ADMIN_VERBOSEJMP(location)] [contained]. No associated key.")
-
+			message_admins("Smoke: ([ADMIN_VERBOSEJMP(location)])[contained]. No associated key.")
+			log_game("A chemical smoke reaction has taken place in ([where])[contained]. No associated key.")
 
 /datum/effect_system/smoke_spread/chem/start()
 	if(holder)
 		location = get_turf(holder)
+
 	var/obj/effect/particle_effect/smoke/chem/S = new smoke_type(location)
 
 	if(chemholder.reagents.total_volume > 1) // can't split 1 very well
 		S.chemholder = chemholder
 
-	var/color = mix_color_from_reagents(chemholder.reagents.reagent_list)
-	if(color)
-		S.icon = icon('icons/effects/chemsmoke.dmi')
-		S.icon += color
+		var/color = mix_color_from_reagents(chemholder.reagents.reagent_list)
+		if(color)
+			S.icon = icon('icons/effects/chemsmoke.dmi')
+			S.icon += color
 
 	if(lifetime)
 		S.lifetime = lifetime

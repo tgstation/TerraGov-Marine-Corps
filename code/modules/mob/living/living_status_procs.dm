@@ -85,7 +85,7 @@
 		nutrition = CLAMP(nutrition + amount, min_nutri, max_nutri)
 
 /mob/living/proc/set_nutrition(amount, forced = FALSE)
-	nutrition = CLAMP(0, amount, NUTRITION_LEVEL_MAX)
+	nutrition = CLAMP(amount, 0, NUTRITION_LEVEL_MAX)
 
 /mob/living/proc/adjust_overeating(amount, min_binge = 0, max_binge = OVEREATING_LEVEL_MAX, forced = FALSE)
 	overeatduration = max(0, overeatduration)
@@ -93,4 +93,4 @@
 		overeatduration = CLAMP(nutrition + amount, min_binge, max_binge)
 
 /mob/living/proc/set_overeating(amount, forced = FALSE)
-	overeatduration = CLAMP(0, amount, OVEREATING_LEVEL_MAX)
+	overeatduration = CLAMP(amount, 0, OVEREATING_LEVEL_MAX)
