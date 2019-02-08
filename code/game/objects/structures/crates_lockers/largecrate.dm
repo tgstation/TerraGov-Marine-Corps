@@ -20,7 +20,7 @@
 
 /obj/structure/largecrate/attack_hand(mob/user as mob)
 	to_chat(user, "<span class='notice'>You need a crowbar to pry this open!</span>")
-	return
+	return FALSE
 
 /obj/structure/largecrate/attackby(obj/item/W as obj, mob/user as mob)
 	if(iscrowbar(W))
@@ -162,6 +162,7 @@
 
 /obj/structure/largecrate/random/barrel/attack_hand(mob/user)
 	to_chat(user, "<span class='notice'>You need a blowtorch to weld this open!</span>")
+	return FALSE
 
 /obj/structure/largecrate/random/barrel
 	name = "blue barrel"
@@ -216,6 +217,7 @@
 
 /obj/structure/largecrate/random/barrel/attack_hand(mob/user)
 	to_chat(user, "<span class='notice'>You need something sharp to cut off the straps.</span>")
+	return FALSE
 
 /obj/structure/largecrate/guns
 	name = "\improper TGMC firearms crate (x3)"
