@@ -40,21 +40,6 @@
 	matter = list("metal" = 50)
 	attack_verb = list("bludgeoned", "whacked", "disciplined", "thrashed")
 
-
-
-/*
-/obj/item/game_kit
-	name = "Gaming Kit"
-	icon = 'icons/obj/items/items.dmi'
-	icon_state = "game_kit"
-	var/selected = null
-	var/board_stat = null
-	var/data = ""
-	var/base_url = "http://svn.slurm.us/public/spacestation13/misc/game_kit"
-	item_state = "sheet-metal"
-	w_class = 5.0
-*/
-
 /obj/item/gift
 	name = "gift"
 	desc = "A wrapped item."
@@ -64,9 +49,6 @@
 	var/obj/item/gift = null
 	item_state = "gift"
 	w_class = 4.0
-
-
-
 
 /obj/item/staff
 	name = "wizards staff"
@@ -110,7 +92,7 @@
 /obj/item/skub
 	desc = "It's skub."
 	name = "skub"
-	icon = 'icons/obj/items/weapons.dmi'
+	icon = 'icons/obj/items/items.dmi'
 	icon_state = "skub"
 	w_class = 4.0
 	attack_verb = list("skubbed")
@@ -121,10 +103,3 @@
 	gender = PLURAL
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "ectoplasm"
-
-/obj/item/research//Makes testing much less of a pain -Sieve
-	name = "research"
-	icon = 'icons/obj/stock_parts.dmi'
-	icon_state = "capacitor"
-	desc = "A debug item for research."
-	origin_tech = "materials=8;programming=8;magnets=8;powerstorage=8;bluespace=8;combat=8;biotech=8;syndicate=8;phorontech=8;engineering=8"
