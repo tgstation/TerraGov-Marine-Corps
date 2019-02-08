@@ -345,7 +345,7 @@
 
 
 /obj/machinery/power/smes/proc/ion_act()
-	if(src.z == PLANET_Z_LEVEL)
+	if(is_ground_level(z))
 		if(prob(1)) //explosion
 			for(var/mob/M in viewers(src))
 				M.show_message("<span class='warning'> The [src.name] is making strange noises!</span>", 3, "<span class='warning'> You hear sizzling electronics.</span>", 2)

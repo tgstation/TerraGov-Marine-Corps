@@ -281,33 +281,32 @@
 	var/source_level = 0 //0 means lower level or left side, depending on map, 1 means upper level or right side
 	var/target_level = 0
 
-	switch(z)
-		if(MAIN_SHIP_Z_LEVEL) //on the Theseus
-			switch(y)
-				if(0 to 100)
-					source_level = 0
-				if(100 to 200)
-					source_level = 1
-				else
-					source_level = 2
-			switch(target_turf.y)
-				if(0 to 100)
-					target_level = 0
-				if(100 to 200)
-					target_level = 1
-				else
-					target_level = 2
-		if(LOW_ORBIT_Z_LEVEL) //dropships
-			switch(x)
-				if (0 to 44)
-					source_level = 0
-				else
-					source_level = 1
-			switch(target_turf.x)
-				if (0 to 44)
-					target_level = 0
-				else
-					target_level = 1
+	if(is_mainship_level(z))//on the Theseus
+		switch(y)
+			if(0 to 100)
+				source_level = 0
+			if(100 to 200)
+				source_level = 1
+			else
+				source_level = 2
+		switch(target_turf.y)
+			if(0 to 100)
+				target_level = 0
+			if(100 to 200)
+				target_level = 1
+			else
+				target_level = 2
+	if(is_low_orbit_level(z)) //dropships
+		switch(x)
+			if (0 to 44)
+				source_level = 0
+			else
+				source_level = 1
+		switch(target_turf.x)
+			if (0 to 44)
+				target_level = 0
+			else
+				target_level = 1
 
 	if(source_level != target_level)
 		return 1

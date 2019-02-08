@@ -185,7 +185,7 @@
 		..()
 
 /obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/unlock()
-	if(z == LOW_ORBIT_Z_LEVEL)
+	if(is_low_orbit_level(z))
 		return // in orbit
 	return ..(TRUE)
 

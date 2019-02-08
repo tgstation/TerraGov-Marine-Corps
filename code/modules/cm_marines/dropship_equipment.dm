@@ -281,7 +281,7 @@
 		to_chat(user, "<span class='warning'>[src] is busy.</span>")
 		return //prevents spamming deployment/undeployment
 	if(deployed_turret.loc == src) //not deployed
-		if(z == LOW_ORBIT_Z_LEVEL)
+		if(is_low_orbit_level(z))
 			to_chat(user, "<span class='warning'>[src] can't deploy mid-flight.</span>")
 		else
 			to_chat(user, "<span class='notice'>You deploy [src].</span>")

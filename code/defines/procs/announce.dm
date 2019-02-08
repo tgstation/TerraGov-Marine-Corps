@@ -63,7 +63,7 @@
 				continue
 			if(ishuman(M)) //what xenos can't hear, the survivors on the ground can't either.
 				var/mob/living/carbon/human/H = M
-				if(H.mind && H.mind.special_role == "Survivor" && H.z != MAIN_SHIP_Z_LEVEL)
+				if(H.mind && H.mind.special_role == "Survivor" && !is_mainship_level(H.z))
 					continue
 		if(!isnewplayer(M) && !isdeaf(M))
 			to_chat(M, "<h2 class='alert'>[title]</h2>")
@@ -78,7 +78,7 @@
 				continue
 			if(ishuman(M)) //what xenos can't hear, the survivors on the ground can't either.
 				var/mob/living/carbon/human/H = M
-				if(H.mind && H.mind.special_role == "Survivor" && H.z != MAIN_SHIP_Z_LEVEL)
+				if(H.mind && H.mind.special_role == "Survivor" && !is_mainship_level(H.z))
 					continue
 		if(!istype(M,/mob/new_player) && !isdeaf(M))
 			to_chat(M, "<b>[message]</b>")

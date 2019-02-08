@@ -125,7 +125,7 @@
 	if(!istype(TU))
 		return
 	var/is_outside = FALSE
-	if(TU.z == PLANET_Z_LEVEL)
+	if(is_ground_level(TU.z))
 		switch(targ_area.ceiling)
 			if(CEILING_NONE)
 				is_outside = TRUE

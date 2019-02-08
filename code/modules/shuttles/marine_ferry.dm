@@ -413,7 +413,7 @@
 	var/list/with_queen = list()
 	for(var/mob/living/carbon/Xenomorph/xeno in GLOB.alive_xeno_list)
 		if(xeno.hivenumber != XENO_HIVE_NORMAL) continue
-		if(xeno.loc.z == hive.living_xeno_queen.loc.z || xeno.loc.z in MAIN_SHIP_AND_DROPSHIPS_Z_LEVELS) // yes loc because of vent crawling, xeno must be with queen or on round end Z levels
+		if(xeno.loc.z == hive.living_xeno_queen.loc.z || is_mainship_or_low_orbit_level(xeno.loc.z)) // yes loc because of vent crawling, xeno must be with queen or on round end Z levels
 			with_queen += xeno
 		else
 			left_behind += xeno
@@ -500,10 +500,10 @@
 
 	//Stolen from events.dm. WARNING: This code is old as hell
 	for (var/obj/machinery/power/apc/APC in GLOB.machines)
-		if(APC.z == MAIN_SHIP_Z_LEVEL || APC.z == LOW_ORBIT_Z_LEVEL)
+		if(is_mainship_or_low_orbit_level(APC.z))
 			APC.ion_act()
 	for (var/obj/machinery/power/smes/SMES in GLOB.machines)
-		if(SMES.z == MAIN_SHIP_Z_LEVEL || SMES.z == LOW_ORBIT_Z_LEVEL)
+		if(is_mainship_or_low_orbit_level(SMES.z))
 			SMES.ion_act()
 
 	if(security_level < SEC_LEVEL_RED) //automatically set security level to red.

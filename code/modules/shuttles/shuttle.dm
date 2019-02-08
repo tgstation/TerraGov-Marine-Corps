@@ -224,7 +224,7 @@
 	for(var/turf/T in origin) // WOW so hacky - who cares. Abby
 		if(iselevator)
 			if(istype(T,/turf/open/space))
-				if(T.z == MAIN_SHIP_Z_LEVEL)
+				if(is_mainship_level(T.z))
 					T.ChangeTurf(/turf/open/floor/almayer/empty)
 				else
 					T.ChangeTurf(/turf/open/gm/empty)

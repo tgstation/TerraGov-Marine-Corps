@@ -132,7 +132,7 @@
 /obj/item/alien_embryo/proc/become_larva()
 	// We do not allow chest bursts on the Centcomm Z-level, to prevent
 	// stranded players from admin experiments and other issues
-	if (!affected_mob || affected_mob.z == ADMIN_Z_LEVEL)
+	if (!affected_mob || is_centcom_level(affected_mob.z))
 		return
 
 	var/picked
@@ -214,7 +214,7 @@
 	victim.update_burst()
 
 	var/datum/hive_status/hive = hive_datum[XENO_HIVE_NORMAL]
-	if((!key || !client) && loc.z == PLANET_Z_LEVEL && (locate(/obj/structure/bed/nest) in loc) && hivenumber == XENO_HIVE_NORMAL && hive.living_xeno_queen && hive.living_xeno_queen.z == src.loc.z)
+	if((!key || !client) && is_ground_level(loc.z) && (locate(/obj/structure/bed/nest) in loc) && hivenumber == XENO_HIVE_NORMAL && hive.living_xeno_queen && hive.living_xeno_queen.z == src.loc.z)
 		visible_message("<span class='xenodanger'>[src] quickly burrows into the ground.</span>")
 		round_statistics.total_xenos_created-- // keep stats sane
 		ticker.mode.stored_larva++

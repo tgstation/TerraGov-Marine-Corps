@@ -950,7 +950,7 @@
 			//sleep(300)
 		else
 			for(var/area/A in all_areas)
-				if(A.z == PLANET_Z_LEVEL && A.requires_power)
+				if(is_ground_level(A.z) && A.requires_power)
 					for(var/obj/machinery/light/L in A)
 						if(prob(75)) L.flicker(10)
 						else if(prob(5)) L.broken()

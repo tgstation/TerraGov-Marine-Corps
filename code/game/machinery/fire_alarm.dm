@@ -269,7 +269,7 @@ FIRE ALARM
 		pixel_x = (dir & 3)? 0 : (dir == 4 ? -24 : 24)
 		pixel_y = (dir & 3)? (dir ==1 ? -24 : 24) : 0
 
-	if(z == PLANET_Z_LEVEL || z == 5)
+	if(is_ground_level(z))
 		if(security_level)
 			src.overlays += image('icons/obj/monitors.dmi', "overlay_[get_security_level()]")
 		else

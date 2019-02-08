@@ -20,3 +20,5 @@
 #define is_reserved_level(z) SSmapping.level_trait(z, ZTRAIT_RESERVED)
 
 #define is_away_level(z) SSmapping.level_trait(z, ZTRAIT_AWAY)
+
+#define is_gameplay_level(z) SSmapping.level_trait(z, ZTRAIT_MARINE_MAIN_SHIP) || SSmapping.level_trait(z, ZTRAIT_LOW_ORBIT) || SSmapping.level_trait(z, ZTRAIT_GROUND)

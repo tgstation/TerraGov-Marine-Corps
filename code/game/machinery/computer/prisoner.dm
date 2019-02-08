@@ -49,7 +49,7 @@
 			if(!T.implanted) continue
 			var/loc_display = "Unknown"
 			var/mob/living/carbon/M = T.imp_in
-			if(M.z == PLANET_Z_LEVEL && !isspaceturf(M.loc))
+			if(is_ground_level(M.z) && !isspaceturf(M.loc))
 				var/turf/mob_loc = get_turf(M)
 				loc_display = mob_loc.loc
 			if(T.malfunction)

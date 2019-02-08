@@ -201,7 +201,7 @@
 				var/Ship[] = ticker.mode.count_humans_and_xenos()
 				var/ShipMarines[] = Ship[1]
 				var/ShipXenos[] = Ship[2]
-				var/Planet[] = ticker.mode.count_humans_and_xenos(list(MAIN_SHIP_Z_LEVEL))
+				var/Planet[] = ticker.mode.count_humans_and_xenos(SSmapping.levels_by_trait(ZTRAIT_MARINE_MAIN_SHIP))
 				var/PlanetMarines[] = Planet[1]
 				var/PlanetXenos[] = Planet[2]
 				if((PlanetXenos < round(PlanetMarines * 0.8)) && (ShipXenos < round(ShipMarines * 0.5))) //If there's less humans (weighted) than xenos, humans get home-turf advantage

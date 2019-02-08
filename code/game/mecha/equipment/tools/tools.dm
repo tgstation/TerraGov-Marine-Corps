@@ -315,7 +315,7 @@
 	range = RANGED
 
 	action(atom/target)
-		if(!action_checks(target) || src.loc.z == ADMIN_Z_LEVEL) return
+		if(!action_checks(target) || is_centcom_level(loc.z)) return
 		var/turf/T = get_turf(target)
 		if(T)
 			set_ready_state(0)
@@ -336,7 +336,8 @@
 
 
 	action(atom/target)
-		if(!action_checks(target) || src.loc.z == ADMIN_Z_LEVEL) return
+		if(!action_checks(target) || is_centcom_level(loc.z)) 
+			return
 		var/list/theareas = list()
 		for(var/area/AR in orange(100, chassis))
 			if(AR in theareas) continue

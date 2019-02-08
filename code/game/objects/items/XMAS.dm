@@ -101,7 +101,7 @@
 
 /obj/item/weapon/gun/launcher/rocket/m57a4/XMAS/able_to_fire(mob/living/user)
 	var/turf/current_turf = get_turf(user)
-	if (current_turf.z in MAIN_SHIP_AND_DROPSHIPS_Z_LEVELS) //Can't fire on the Theseus, bub.
+	if (is_mainship_or_low_orbit_level(current_turf.z)) //Can't fire on the Theseus, bub.
 		click_empty(user)
 		to_chat(user, "<span class='warning'>You can't fire that here!</span>")
 		return FALSE

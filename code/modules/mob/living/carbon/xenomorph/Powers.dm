@@ -1498,7 +1498,7 @@
 	var/leader_list = ""
 
 	for(var/mob/living/carbon/Xenomorph/X in GLOB.alive_xeno_list)
-		if(X.z == ADMIN_Z_LEVEL)
+		if(is_centcom_level(X.z))
 			continue //don't show xenos in the thunderdome when admins test stuff.
 		if(istype(user)) // cover calling it without parameters
 			if(X.hivenumber != user.hivenumber)

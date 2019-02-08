@@ -3,12 +3,6 @@
 #define DEBUG 0
 
 //Game defining directives.
-#define PLANET_Z_LEVEL 4
-#define MAIN_SHIP_Z_LEVEL 2 //the main ship
-#define LOW_ORBIT_Z_LEVEL 3 //where the Theseus dropships stand when in transit.
-#define MAIN_SHIP_AND_DROPSHIPS_Z_LEVELS list(MAIN_SHIP_Z_LEVEL,LOW_ORBIT_Z_LEVEL) //the main ship and the z level where dropships transit
-#define ADMIN_Z_LEVEL 1
-#define GAME_PLAY_Z_LEVELS list(MAIN_SHIP_Z_LEVEL,LOW_ORBIT_Z_LEVEL,PLANET_Z_LEVEL)
 #define MAIN_AI_SYSTEM "ARES v3.2"
 #define MAIN_SHIP_ESCAPE_POD_NUMBER 11
 

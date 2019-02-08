@@ -521,7 +521,7 @@
 		..()
 
 /obj/machinery/door/airlock/dropship_hatch/unlock()
-	if(z == LOW_ORBIT_Z_LEVEL) // in flight
+	if(is_low_orbit_level(z)) // in flight
 		return
 	return ..(TRUE)
 
