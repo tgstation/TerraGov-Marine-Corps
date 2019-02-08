@@ -773,6 +773,9 @@
 		current_mag.update_icon()
 		current_mag = null
 
+	log_combat(usr, usr, "fired the [src].")
+	log_explosion("[usr] fired the [src] at [AREACOORD(get_turf(usr)].")
+
 /obj/item/weapon/gun/launcher/rocket/wield(mob/living/user)
 	. = ..()
 	if(user.mind?.cm_skills && user.mind.cm_skills.spec_weapons < 0)
