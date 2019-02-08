@@ -442,7 +442,7 @@
 
 // New proc for MGs and stuff replaced handle_manual_fire(). Same arguements though, so alls good.
 /obj/machinery/m56d_hmg/handle_click(mob/living/carbon/human/user, atom/A, var/list/mods)
-	if(mods["middle"] || mods["shift"] || mods["alt"] || istype(A,/obj/screen) || !operator || operator != user)
+	if(mods["middle"] || mods["shift"] || mods["alt"] || !operator || operator != user)
 		return FALSE
 	if(is_bursting)
 		return TRUE

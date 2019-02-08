@@ -735,9 +735,8 @@ should be alright.
 	var/obj/item/weapon/gun/G = get_active_firearm(usr)
 	if(!G)
 		return
-	src = G
 
-	rail?.activate_attachment(src, usr)
+	G.rail?.activate_attachment(G, usr)
 
 
 /obj/item/weapon/gun/verb/toggle_ammo_hud()
@@ -749,13 +748,12 @@ should be alright.
 	var/obj/item/weapon/gun/G = get_active_firearm(usr)
 	if(!G)
 		return
-	src = G
 
-	hud_enabled = !hud_enabled
+	G.hud_enabled = !G.hud_enabled
 	var/obj/screen/ammo/A = usr.hud_used.ammo
-	hud_enabled ? A.add_hud(usr) : A.remove_hud(usr)
+	G.hud_enabled ? A.add_hud(usr) : A.remove_hud(usr)
 	A.update_hud(usr)
-	to_chat(usr, "<span class='notice'>[hud_enabled ? "You enable the Ammo HUD for this weapon." : "You disable the Ammo HUD for this weapon."]</span>")
+	to_chat(usr, "<span class='notice'>[G.hud_enabled ? "You enable the Ammo HUD for this weapon." : "You disable the Ammo HUD for this weapon."]</span>")
 
 
 /obj/item/weapon/gun/item_action_slot_check(mob/user, slot)
