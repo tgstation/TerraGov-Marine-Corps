@@ -347,9 +347,12 @@
 				ok = TRUE
 				break
 		if(!ok)
-			if(warning)
-				if(istype(W, /obj/item/tool/hand_labeler))
-					return FALSE
+			if(istype(W, /obj/item/tool/hand_labeler))
+				var/obj/item/tool/hand_labeler/L = W
+				if(!L.mode)
+					return TRUE
+				to_chat(usr, "<span class='warning'>You must turn off the [L] first.</span>")
+			else if(warning)
 				to_chat(usr, "<span class='notice'>[src] cannot hold [W].</span>")
 			return FALSE
 
