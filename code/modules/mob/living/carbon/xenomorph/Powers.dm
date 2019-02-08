@@ -1916,14 +1916,14 @@
 	update_action_button_icons()
 
 /mob/living/carbon/Xenomorph/Ravager/proc/Second_Wind()
-	if (!check_state())
+	if(!check_state())
 		return
 
 	if(stagger)
 		to_chat(src, "<span class='xenowarning'>Your limbs fail to respond as you try to shake off the shock!</span>")
 		return
 
-	if (second_wind_used)
+	if(second_wind_used)
 		to_chat(src, "<span class='xenowarning'>You must gather your strength before using Second Wind. Second Wind can be used in [(second_wind_delay - world.time) * 0.1] seconds.</span>")
 		return
 
