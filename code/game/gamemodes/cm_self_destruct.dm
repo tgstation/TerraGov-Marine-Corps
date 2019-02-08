@@ -211,7 +211,7 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 		return TRUE
 
 /datum/authority/branch/evacuation/proc/trigger_self_destruct(list/z_levels = list(MAIN_SHIP_Z_LEVEL), origin = dest_master, override)
-	set waitfor = 0
+	set waitfor = FALSE
 	if(dest_status < NUKE_EXPLOSION_IN_PROGRESS) //One more check for good measure, in case it's triggered through a bomb instead of the destruct mechanism/admin panel.
 		GLOB.enter_allowed = FALSE //Do not want baldies spawning in as everything is exploding.
 		dest_status = NUKE_EXPLOSION_IN_PROGRESS
@@ -263,6 +263,8 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 		world << sound('sound/effects/explosionfar.ogg')
 		C.icon_state = ship_status ? "summary_spared" : "summary_destroyed"
 
+		addtimer(CALLBACK(src, .proc/remove_overlay, C), 15 SECONDS)
+
 		dest_status = NUKE_EXPLOSION_FINISHED
 
 		if(!ticker || !ticker.mode) //Just a safety, just in case a mode isn't running, somehow.
@@ -271,6 +273,12 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 			log_game("Rebooting due to nuclear detonation.")
 			world.Reboot()
 		return TRUE
+
+
+/datum/authority/branch/evacuation/proc/remove_overlay(overlay)
+	for(var/client/C in GLOB.player_list)
+		C.screen -= overlay
+
 
 /datum/authority/branch/evacuation/proc/process_self_destruct()
 	set background = 1

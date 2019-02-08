@@ -8,20 +8,25 @@
 	var/ref = "[REF(usr.client.holder)];[HrefToken()]"
 	var/dat = {"
 		<center><B>Game Panel</B></center><hr>\n
-		<A href='?src=[ref];modemenu=1'>Change Game Mode</A><br>
-		<BR>
-		<A href='?src=[ref];create_object=1'>Create Object</A><br>
-		<A href='?src=[ref];quick_create_object=1'>Quick Create Object</A><br>
-		<A href='?src=[ref];create_turf=1'>Create Turf</A><br>
-		<A href='?src=[ref];create_mob=1'>Create Mob</A><br>
+		<a href='?src=[ref];modemenu=1'>Change Game Mode</a><br>
+		<br>
+		<a href='?src=[ref];create_object=1'>Create Object</a><br>
+		<a href='?src=[ref];quick_create_object=1'>Quick Create Object</a><br>
+		<a href='?src=[ref];create_turf=1'>Create Turf</a><br>
+		<a href='?src=[ref];create_mob=1'>Create Mob</a><br>
+		<br>
+		<a href='?src=[ref];admin_log=1'>Admin Log</a><br>
+		<a href='?src=[ref];ffattack_log=1'>FF Log</a><br>
+		<a href='?src=[ref];explosion_log=1'>Explosion Log</a><br>
 		"}
 
 	usr << browse(dat, "window=admin2;size=210x280")
-	return
-
 
 
 /datum/admins/proc/create_mob(mob/user)
+	if(!check_rights(R_SPAWN))
+		return
+
 	var/static/create_mob_html
 	if(!create_mob_html)
 		var/mobjs = null
@@ -77,6 +82,9 @@
 
 
 /datum/admins/proc/create_turf(mob/user)
+	if(!check_rights(R_SPAWN))
+		return
+
 	var/static/create_turf_html
 	if(!create_turf_html)
 		var/turfjs = null

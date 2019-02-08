@@ -1,0 +1,4 @@
+author: "AvalonHunter"
+delete-after: True
+changes: 
+  - bugfix: "Fixed attachable_offset for the MAC-15 so the suppressor is no longer mis-aligned"

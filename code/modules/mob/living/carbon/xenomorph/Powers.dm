@@ -171,7 +171,7 @@
 	set waitfor = 0
 
 	var/facing = get_cardinal_dir(src, T)
-	dir = facing
+	setDir(facing)
 
 	T = loc
 	for (var/i = 0, i < xeno_caste.acid_spray_range, i++)
@@ -1698,7 +1698,7 @@
 	var/toss_distance = rand(3,5)
 	var/turf/T = loc
 	var/turf/temp = loc
-	if(a_intent == "hurt") //If we use the ability on hurt intent, we throw them in front; otherwise we throw them behind.
+	if(a_intent == INTENT_HARM) //If we use the ability on hurt intent, we throw them in front; otherwise we throw them behind.
 		for (var/x = 0, x < toss_distance, x++)
 			temp = get_step(T, facing)
 			if (!temp)
@@ -1868,14 +1868,6 @@
 		to_chat(src, "<span class='xenowarning'>You must gather your strength before Ravaging. Ravage can be used in [(ravage_delay - world.time) * 0.1] seconds.</span>")
 		return
 
-	var/dist = get_dist(src,A)
-	if (dist > 2)
-		if(world.time > (recent_notice + notice_delay)) //anti-notice spam
-			to_chat(src, "<span class='xenowarning'>Your target is too far away!</span>")
-
-			recent_notice = world.time //anti-notice spam
-		return
-
 	if (!check_plasma(40))
 		return
 
@@ -1885,9 +1877,6 @@
 	"<span class='xenowarning'>You thrash about in a murderous frenzy!</span>")
 
 	face_atom(A)
-	if(dist > 1) //Lunge towards the target turf
-		step_towards(src,A,2)
-
 	var/sweep_range = 1
 	var/list/L = orange(sweep_range)		// Not actually the fruit
 	var/victims
@@ -1900,12 +1889,12 @@
 			continue
 		if(H.stat != DEAD && !(istype(H.buckled, /obj/structure/bed/nest) && H.status_flags & XENO_HOST) ) //No bully
 			var/extra_dam = rand(xeno_caste.melee_damage_lower, xeno_caste.melee_damage_upper) * (1 + round(rage * 0.01) ) //+1% bonus damage per point of Rage.relative to base melee damage.
-			H.attack_alien(src,  extra_dam, FALSE, TRUE, FALSE, TRUE, "hurt")
+			H.attack_alien(src,  extra_dam, FALSE, TRUE, FALSE, TRUE, INTENT_HARM)
 			victims++
 			round_statistics.ravager_ravage_victims++
-		step_away(H, src, sweep_range, 2)
-		shake_camera(H, 2, 1)
-		H.KnockDown(1, 1)
+			step_away(H, src, sweep_range, 2)
+			shake_camera(H, 2, 1)
+			H.KnockDown(1, 1)
 
 	victims = CLAMP(victims,0,3) //Just to be sure
 	rage = (0 + 10 * victims) //rage resets to 0, though we regain 10 rage per victim.
@@ -1915,10 +1904,9 @@
 
 	ravage_delay = world.time + (RAV_RAVAGE_COOLDOWN - (victims * 30))
 
-
 	reset_movement()
 
-	//10 second cooldown base, minus 2 per victim
+	//10 second cooldown base, minus 3 seconds per victim
 	addtimer(CALLBACK(src, .ravage_cooldown), CLAMP(RAV_RAVAGE_COOLDOWN - (victims * 30),10,100))
 
 /mob/living/carbon/Xenomorph/Ravager/proc/ravage_cooldown()
@@ -1928,14 +1916,14 @@
 	update_action_button_icons()
 
 /mob/living/carbon/Xenomorph/Ravager/proc/Second_Wind()
-	if (!check_state())
+	if(!check_state())
 		return
 
 	if(stagger)
 		to_chat(src, "<span class='xenowarning'>Your limbs fail to respond as you try to shake off the shock!</span>")
 		return
 
-	if (second_wind_used)
+	if(second_wind_used)
 		to_chat(src, "<span class='xenowarning'>You must gather your strength before using Second Wind. Second Wind can be used in [(second_wind_delay - world.time) * 0.1] seconds.</span>")
 		return
 
@@ -1976,42 +1964,58 @@
 
 	if(isnull(turflist))
 		return
+
 	var/turf/prev_turf
 	var/distance = 0
 
-	turf_loop:
-		for(var/turf/T in turflist)
-			distance++
+	for(var/X in turflist)
+		var/turf/T = X
 
-			if(!prev_turf && turflist.len > 1)
-				prev_turf = get_turf(src)
-				continue //So we don't burn the tile we be standin on
+		if(!prev_turf && turflist.len > 1)
+			prev_turf = get_turf(src)
+			continue //So we don't burn the tile we be standin on
 
-			if(T.density || isspaceturf(T))
-				break
-			if(distance > 7)
-				break
-
-			if(locate(/obj/structure/girder, T))
-				break //Nope.avi
-
-			var/obj/machinery/M = locate() in T
-			if(M?.density)
-				break
-
-			if(prev_turf && LinkBlocked(prev_turf, T))
-				break
-
-			for(var/obj/structure/barricade/B in T)
+		for(var/obj/structure/barricade/B in prev_turf)
+			if(get_dir(prev_turf, T) & B.dir)
 				B.health -= rand(45, 60) + 8 * upgrade
 				B.update_health(TRUE)
-				if(prev_turf)
-					if(get_dir(B, prev_turf) & B.dir)
-						break turf_loop
 
-			prev_turf = T
-			splat_turf(T)
-			sleep(2)
+		if(T.density || isspaceturf(T))
+			break
+
+		var/blocked = FALSE
+		for(var/obj/O in T)
+			if(O.density && !O.throwpass && !(O.flags_atom & ON_BORDER))
+				blocked = TRUE
+				break
+
+		var/turf/TF
+		if(!prev_turf.Adjacent(T) && (T.x != prev_turf.x || T.y != prev_turf.y)) //diagonally blocked, it will seek for a cardinal turf by the former target.
+			blocked = TRUE
+			var/turf/Ty = locate(prev_turf.x, T.y, prev_turf.z)
+			var/turf/Tx = locate(T.x, prev_turf.y, prev_turf.z)
+			for(var/turf/TB in shuffle(list(Ty, Tx)))
+				if(prev_turf.Adjacent(TB) && !TB.density && !isspaceturf(TB))
+					TF = TB
+					break
+			if(!TF)
+				break
+		else
+			TF = T
+
+		for(var/obj/structure/barricade/B in TF)
+			if(get_dir(TF, prev_turf) & B.dir)
+				B.health -= rand(45, 60) + 8 * upgrade
+				B.update_health(TRUE)
+
+		splat_turf(TF)
+
+		distance++
+		if(distance > 7 || blocked)
+			break
+
+		prev_turf = T
+		sleep(2)
 
 
 /mob/living/carbon/Xenomorph/proc/splat_turf(var/turf/target)
@@ -2108,20 +2112,20 @@
 	if(!check_plasma(200))
 		return
 
-	last_emit_neurogas = world.time
-	use_plasma(200)
-
 	//give them fair warning
 	visible_message("<span class='danger'>Tufts of smoke begin to billow from [src]!</span>", \
 	"<span class='xenodanger'>Your dorsal vents widen, preparing to emit neurogas. Keep still!</span>")
-
-	addtimer(CALLBACK(src, .defiler_gas_cooldown), DEFILER_GAS_COOLDOWN)
 
 	emitting_gas = TRUE //We gain bump movement immunity while we're emitting gas.
 	if(!do_after(src, DEFILER_GAS_CHANNEL_TIME, TRUE, 5, BUSY_ICON_HOSTILE))
 		emitting_gas = FALSE
 		return
 	emitting_gas = FALSE
+
+	addtimer(CALLBACK(src, .defiler_gas_cooldown), DEFILER_GAS_COOLDOWN)
+
+	last_emit_neurogas = world.time
+	use_plasma(200)
 
 	if(stagger) //If we got staggered, return
 		to_chat(src, "<span class='xenowarning'>You try to emit neurogas but are staggered!</span>")

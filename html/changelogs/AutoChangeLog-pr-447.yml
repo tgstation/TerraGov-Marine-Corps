@@ -1,4 +1,0 @@
-author: "LaKiller8"
-delete-after: True
-changes: 
-  - bugfix: "Toggle-rail-attachment now only toggles the gun in your active hand."

@@ -188,7 +188,7 @@
 	return 1
 
 /mob/living/simple_animal/Bumped(AM as mob|obj)
-	if(!AM) 
+	if(!AM)
 		return
 
 	if(resting || buckled)
@@ -274,20 +274,20 @@
 
 	switch(M.a_intent)
 
-		if("help")
+		if(INTENT_HELP)
 			if (health > 0)
 				for(var/mob/O in viewers(src, null))
 					if ((O.client && !is_blind(O)))
 						O.show_message("<span class='notice'> [M] [response_help] [src]</span>")
 
-		if("grab")
+		if(INTENT_GRAB)
 			if(M == src || anchored)
 				return 0
 			M.start_pulling(src)
 
 			return 1
 
-		if("hurt", "disarm")
+		if(INTENT_HARM, INTENT_DISARM)
 			adjustBruteLoss(harm_intent_damage)
 			for(var/mob/O in viewers(src, null))
 				if ((O.client && !is_blind(O)))

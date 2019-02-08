@@ -9,7 +9,7 @@
 	if(alert("Restart the game world?", "Restart", "Yes", "No") != "Yes")
 		return
 
-	to_chat(world, "<span class='danger'>Restarting world!</span><br><span class='notice'>Initiated by: [usr.key]</span>")
+	to_chat(world, "<span class='danger'>Restarting world!</span><span class='notice'>Initiated by: [usr.key]</span>")
 
 	log_admin("[key_name(usr)] initiated a restart.")
 	message_admins("[ADMIN_TPMONTY(usr)] initiated a restart.")
@@ -26,15 +26,15 @@
 	if(!check_rights(R_SERVER))
 		return
 
-	ooc_allowed = !(ooc_allowed)
+	GLOB.ooc_allowed = !(GLOB.ooc_allowed)
 
-	if(ooc_allowed)
+	if(GLOB.ooc_allowed)
 		to_chat(world, "<span class='boldnotice'>The OOC channel has been globally enabled!</span>")
 	else
 		to_chat(world, "<span class='boldnotice'>The OOC channel has been globally disabled!</span>")
 
-	log_admin("[key_name(usr)] [ooc_allowed ? "enabled" : "disabled"] OOC.")
-	message_admins("[ADMIN_TPMONTY(usr)] [ooc_allowed ? "enabled" : "disabled"] OOC.")
+	log_admin("[key_name(usr)] [GLOB.ooc_allowed ? "enabled" : "disabled"] OOC.")
+	message_admins("[ADMIN_TPMONTY(usr)] [GLOB.ooc_allowed ? "enabled" : "disabled"] OOC.")
 
 
 /datum/admins/proc/toggle_deadchat()
@@ -45,15 +45,15 @@
 	if(!check_rights(R_SERVER))
 		return
 
-	dsay_allowed = !dsay_allowed
+	GLOB.dsay_allowed = !GLOB.dsay_allowed
 
-	if(dsay_allowed)
+	if(GLOB.dsay_allowed)
 		to_chat(world, "<span class='boldnotice'>Deadchat has been globally enabled!</span>")
 	else
 		to_chat(world, "<span class='boldnotice'>Deadchat has been globally disabled!</span>")
 
-	log_admin("[key_name(usr)] [dsay_allowed ? "enabled" : "disabled"] deadchat.")
-	message_admins("[ADMIN_TPMONTY(usr)] [dsay_allowed ? "enabled" : "disabled"] deadchat.")
+	log_admin("[key_name(usr)] [GLOB.dsay_allowed ? "enabled" : "disabled"] deadchat.")
+	message_admins("[ADMIN_TPMONTY(usr)] [GLOB.dsay_allowed ? "enabled" : "disabled"] deadchat.")
 
 
 /datum/admins/proc/toggle_deadooc()
@@ -64,15 +64,15 @@
 	if(!check_rights(R_SERVER))
 		return
 
-	dooc_allowed = !dooc_allowed
+	GLOB.dooc_allowed = !GLOB.dooc_allowed
 
-	if(dsay_allowed)
+	if(GLOB.dooc_allowed)
 		to_chat(world, "<span class='boldnotice'>Dead player OOC has been globally enabled!</span>")
 	else
 		to_chat(world, "<span class='boldnotice'>Dead player OOC has been globally disabled!</span>")
 
-	log_admin("[key_name(usr)] [dooc_allowed ? "enabled" : "disabled"] dead player OOC.")
-	message_admins("[ADMIN_TPMONTY(usr)] [dooc_allowed ? "enabled" : "disabled"] dead player OOC.")
+	log_admin("[key_name(usr)] [GLOB.dooc_allowed ? "enabled" : "disabled"] dead player OOC.")
+	message_admins("[ADMIN_TPMONTY(usr)] [GLOB.dooc_allowed ? "enabled" : "disabled"] dead player OOC.")
 
 
 /datum/admins/proc/start()
@@ -122,15 +122,15 @@
 	if(!check_rights(R_SERVER))
 		return
 
-	respawn_allowed = !respawn_allowed
+	GLOB.respawn_allowed = !GLOB.respawn_allowed
 
-	if(respawn_allowed)
+	if(GLOB.respawn_allowed)
 		to_chat(world, "<span class='boldnotice'>You may now respawn.</span>")
 	else
 		to_chat(world, "<span class='boldnotice'>You may no longer respawn.</span>")
 
-	log_admin("[key_name(usr)] [respawn_allowed ? "enabled" : "disabled"] respawning.")
-	message_admins("[ADMIN_TPMONTY(usr)] [respawn_allowed ? "enabled" : "disabled"] respawning.")
+	log_admin("[key_name(usr)] [GLOB.respawn_allowed ? "enabled" : "disabled"] respawning.")
+	message_admins("[ADMIN_TPMONTY(usr)] [GLOB.respawn_allowed ? "enabled" : "disabled"] respawning.")
 
 
 /datum/admins/proc/set_respawn_time(time as num)

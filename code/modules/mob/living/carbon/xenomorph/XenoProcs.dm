@@ -300,15 +300,14 @@
 					addtimer(CALLBACK(src, .proc/reset_movement), xeno_caste.charge_type == 1 ? 5 : 15)
 					stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 
-				if(RAV_CHARGE_TYPE) //Ravagers get a free attack if they charge into someone.
-					process_ravager_charge(TRUE, M)
+				if(RAV_CHARGE_TYPE) //Ravagers plow straight through humans; we only stop on hitting a dense turf
+					return FALSE
 
 				if(4) //Predalien.
 					M.attack_alien(src) //Free hit/grab/tackle. Does not weaken, and it's just a regular slash if they choose to do that.
 		throwing = FALSE //Resert throwing since something was hit.
 		reset_movement()
 		return TRUE
-	process_ravager_charge(FALSE)
 	throwing = FALSE //Resert throwing since something was hit.
 	reset_movement()
 	return ..() //Do the parent otherwise, for turfs.
@@ -569,7 +568,7 @@
 /mob/living/carbon/Xenomorph/Ravager/process_ravager_charge(hit = TRUE, mob/living/carbon/M = null)
 	if(hit)
 		var/extra_dam = rand(xeno_caste.melee_damage_lower, xeno_caste.melee_damage_upper) * (1 + round(rage * 0.04) ) //+4% bonus damage per point of Rage.relative to base melee damage.
-		M.attack_alien(src,  extra_dam, FALSE, TRUE, FALSE, TRUE, "hurt") //Location is always random, cannot crit, harm only
+		M.attack_alien(src,  extra_dam, FALSE, TRUE, FALSE, TRUE, INTENT_HARM) //Location is always random, cannot crit, harm only
 		var/target_turf = get_step_away(src,M,rand(1,3)) //This is where we blast our target
 		target_turf =  get_step_rand(target_turf) //Scatter
 		throw_at(get_turf(target_turf), RAV_CHARGEDISTANCE, RAV_CHARGESPEED, M)
