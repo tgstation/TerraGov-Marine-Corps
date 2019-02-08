@@ -31,8 +31,6 @@
 	if(wear_suit)
 		reducible_tally += wear_suit.slowdown
 
-	reducible_tally += reagent_move_delay_modifier //hyperzine and ultrazine
-
 	if(shock_stage >= 10 && !isyautja(src))
 		reducible_tally += 3
 
@@ -81,6 +79,8 @@
 	Process_Cloaking_Router(src)
 
 	. += CONFIG_GET(number/outdated_movedelay/human_delay)
+
+	. = max(-2.5, . + reagent_move_delay_modifier) //hyperzine and ultrazine
 
 
 /mob/living/carbon/human/proc/Process_Cloaking_Router(mob/living/carbon/human/user)

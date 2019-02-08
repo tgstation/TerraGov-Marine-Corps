@@ -709,7 +709,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/M, alien)
 	return ..()
 
 /datum/reagent/medicine/hyperzine/on_mob_life(mob/living/M)
-	M.reagent_move_delay_modifier -= min(10, volume * 1.5)
+	M.reagent_move_delay_modifier -= min(2.5, volume * 0.5)
 	M.nutrition -= 3 * REM * volume //Body burns through energy fast
 	if(prob(1))
 		M.emote(pick("twitch","blink_r","shiver"))
@@ -751,7 +751,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/M, alien)
 	taste_multi = 2
 
 /datum/reagent/medicine/ultrazine/on_mob_life(mob/living/carbon/C)
-	C.reagent_move_delay_modifier -= 5
+	C.reagent_move_delay_modifier -= 2
 	if(prob(50))
 		C.AdjustKnockeddown(-1)
 		C.AdjustStunned(-1)
