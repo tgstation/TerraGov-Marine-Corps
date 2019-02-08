@@ -10,7 +10,7 @@
 
 /datum/admins/proc/gamemode_panel()
 	set category = "Admin"
-	set name = "Gamemode Panel"
+	set name = "Mode Panel"
 
 	if(!check_rights(R_ADMIN))
 		return
@@ -25,6 +25,10 @@
 	dat += "<body><h1><b>Round Status</b></h1>"
 	dat += "Current Game Mode: <B>[ticker.mode.name]</B><BR>"
 	dat += "Round Duration: <B>[round(world.time / 36000)]:[add_zero(world.time / 600 % 60, 2)]:[world.time / 100 % 6][world.time / 100 % 10]</B><BR>"
+
+	var/countdown = ticker.mode.get_queen_countdown()
+	if(countdown)
+		dat += "Queen Re-Check: [countdown]"
 
 	dat += "<b>Evacuation:</b> "
 	switch(EvacuationAuthority.evac_status)
@@ -61,6 +65,11 @@
 	dat += "<a href='?src=[ref];evac_authority=cancel_dest'>Lock Self Destruct control panel for humans</a><br>"
 	dat += "<a href='?src=[ref];evac_authority=use_dest'>Destruct the [MAIN_SHIP_NAME] NOW</a><br>"
 	dat += "<a href='?src=[ref];evac_authority=toggle_dest'>Toggle Self Destruct Permission (does not affect evac in progress)</a><br>"
+
+	dat += "<br>"
+
+	dat += "<A HREF='?_src_=vars;[HrefToken()];vars=[REF(EvacuationAuthority)]'>VV Evacuation/SD Controller</A><br>"
+	dat += "<A HREF='?_src_=vars;[HrefToken()];vars=[REF(GLOB.faxes)]'>VV Faxes List</A><br>"
 
 	dat += "<br><br>"
 
@@ -100,4 +109,7 @@
 		dat += "</table>"
 
 	dat += "</body></html>"
+
+	log_admin("[key_name(usr)] opened the mode panel.")
+
 	usr << browse(dat, "window=roundstatus;size=600x500")

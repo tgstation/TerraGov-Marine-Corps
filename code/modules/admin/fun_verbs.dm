@@ -398,6 +398,7 @@
 	if(istext(web_sound_input))
 		var/web_sound_url = ""
 		var/pitch
+		var/show = FALSE
 		if(length(web_sound_input))
 			web_sound_input = trim(web_sound_input)
 			if(findtext(web_sound_input, ":") && !findtext(web_sound_input, GLOB.is_http_protocol))
@@ -419,14 +420,11 @@
 				if(data["url"])
 					web_sound_url = data["url"]
 					var/title = "[data["title"]]"
-					var/webpage_url = title
-					if(data["webpage_url"])
-						webpage_url = "<a href=\"[data["webpage_url"]]\">[title]</a>"
-
 					var/res = alert(usr, "Show the title of and link to this song to the players?\n[title]",, "Yes", "No", "Cancel")
 					switch(res)
 						if("Yes")
-							to_chat(world, "<span class='boldnotice'>An admin played: [webpage_url]</span>")
+							if(data["webpage_url"])
+								show = "<a href=\"[data["webpage_url"]]\">[title]</a>"
 						if("Cancel")
 							return
 					log_admin("[key_name(usr)] played web sound: [web_sound_input]")
@@ -467,6 +465,8 @@
 				continue
 			if((C.prefs.toggles_sound & SOUND_MIDI) && C.chatOutput && !C.chatOutput.broken && C.chatOutput.loaded)
 				C.chatOutput.sendMusic(web_sound_url, pitch)
+				if(show)
+					to_chat(C, "<span class='boldnotice'>An admin played: [show]</span>")
 
 
 /datum/admins/proc/sound_stop()
@@ -549,6 +549,18 @@
 
 	if(!istype(ticker.mode.picked_call))
 		return
+
+	var/max = input("What should the maximum amount of mobs be?", "Max Mobs", 20) as null|num
+	if(!max || max < 1)
+		return
+
+	ticker.mode.picked_call.mob_max = max
+
+	var/min = input("What should the minimum amount of mobs be?", "Min Mobs", 1) as null|num
+	if(!min || min < 1)
+		return
+
+	ticker.mode.picked_call.mob_min = min
 
 	var/is_announcing = TRUE
 	if(alert(usr, "Would you like to announce the distress beacon to the server population? This will reveal the distress beacon to all players.", "Announce distress beacon?", "Yes", "No") != "Yes")

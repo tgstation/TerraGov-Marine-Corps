@@ -929,33 +929,61 @@ datum/game_mode/proc/initialize_post_queen_list()
 /datum/game_mode/proc/spawn_map_items()
 	var/turf/T
 	switch(GLOB.map_tag) // doing the switch first makes this a tiny bit quicker which for round setup is more important than pretty code
-		if(MAP_LV_624) 
+		if(MAP_LV_624)
 			while(GLOB.map_items.len)
 				T = GLOB.map_items[GLOB.map_items.len]
-				GLOB.map_items--
+				GLOB.map_items.len--
 				new /obj/item/map/lazarus_landing_map(T)
 
-		if(MAP_ICE_COLONY) 
+		if(MAP_ICE_COLONY)
 			while(GLOB.map_items.len)
 				T = GLOB.map_items[GLOB.map_items.len]
-				GLOB.map_items--
+				GLOB.map_items.len--
 				new /obj/item/map/ice_colony_map(T)
 
-		if(MAP_BIG_RED) 
+		if(MAP_BIG_RED)
 			while(GLOB.map_items.len)
 				T = GLOB.map_items[GLOB.map_items.len]
-				GLOB.map_items--
+				GLOB.map_items.len--
 				new /obj/item/map/big_red_map(T)
 
-		if(MAP_PRISON_STATION) 
+		if(MAP_PRISON_STATION)
 			while(GLOB.map_items.len)
 				T = GLOB.map_items[GLOB.map_items.len]
-				GLOB.map_items--
+				GLOB.map_items.len--
 				new /obj/item/map/FOP_map(T)
 
 /datum/game_mode/proc/spawn_fog_blockers()
 	var/turf/T
 	while(GLOB.fog_blocker_locations.len)
 		T = GLOB.fog_blocker_locations[GLOB.fog_blocker_locations.len]
-		GLOB.fog_blocker_locations--
-		new /obj/effect/blocker/fog(T)
+		GLOB.fog_blocker_locations.len--
+		new /obj/effect/forcefield/fog(T)
+
+/obj/effect/forcefield/fog
+	name = "dense fog"
+	desc = "It looks way too dangerous to traverse. Best wait until it has cleared up."
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "smoke"
+	opacity = 1
+
+/obj/effect/forcefield/fog/Initialize()
+	. = ..()
+	dir  = pick(CARDINAL_DIRS)
+	GLOB.fog_blockers += src
+
+/obj/effect/forcefield/fog/Destroy()
+	GLOB.fog_blockers -= src
+	return ..()
+
+/obj/effect/forcefield/fog/attack_hand(mob/M)
+	to_chat(M, "<span class='notice'>You peer through the fog, but it's impossible to tell what's on the other side...</span>")
+
+/obj/effect/forcefield/fog/attack_alien(M)
+	return attack_hand(M)
+
+/obj/effect/forcefield/fog/attack_paw(M)
+	return attack_hand(M)
+
+/obj/effect/forcefield/fog/attack_animal(M)
+	return attack_hand(M)

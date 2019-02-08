@@ -83,7 +83,7 @@
 /obj/structure/window/CheckExit(atom/movable/O, turf/target)
 	if(istype(O) && O.checkpass(PASSGLASS))
 		return TRUE
-	if(get_dir(O.loc, target) == dir)
+	if(get_dir(O.loc, target) == dir && !is_full_window())
 		return FALSE
 	return TRUE
 
@@ -468,10 +468,6 @@
 	for(var/obj/effect/alien/weeds/weedwall/window/WW in loc)
 		qdel(WW)
 	. = ..()
-
-
-/obj/structure/window/framed/is_full_window()
-	return TRUE
 
 /obj/structure/window/framed/update_nearby_icons()
 	relativewall_neighbours()
