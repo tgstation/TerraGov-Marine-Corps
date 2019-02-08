@@ -39,37 +39,32 @@
 		user = loc
 	if(on)
 		if(loc && loc == user)
-			user.light_sources.Add(brightness_on)
-			user.SetLuminosity()
+			user.SetLuminosity(brightness_on)
 		else if(isturf(loc))
 			SetLuminosity(brightness_on)
 	else
 		icon_state = initial(icon_state)
 		if(loc && loc == user)
-			user.light_sources.Remove(brightness_on)
-			user.SetLuminosity()
+			user.SetLuminosity(-brightness_on)
 		else if(isturf(loc))
 			SetLuminosity(0)
 
 /obj/item/clothing/head/hardhat/pickup(mob/user)
 	if(on && loc != user)
-		user.light_sources.Add(brightness_on)
-		user.SetLuminosity()
+		user.SetLuminosity(brightness_on)
 		SetLuminosity(0)
 	..()
 
 /obj/item/clothing/head/hardhat/dropped(mob/user)
 	if(on && loc != user)
-		user.light_sources.Remove(brightness_on)
-		user.SetLuminosity()
+		user.SetLuminosity(-brightness_on)
 		SetLuminosity(brightness_on)
 	..()
 
 /obj/item/clothing/head/hardhat/Destroy()
 	if(ismob(src.loc))
 		var/mob/user = loc
-		user.light_sources.Remove(brightness_on)
-		user.SetLuminosity()
+		user.SetLuminosity(-brightness_on)
 	SetLuminosity(0)
 	. = ..()
 

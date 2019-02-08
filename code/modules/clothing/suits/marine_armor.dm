@@ -94,7 +94,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 
 /obj/item/clothing/suit/storage/marine/pickup(mob/user)
 	if(flags_marine_armor & ARMOR_LAMP_ON && src.loc != user)
-		user.light_sources.Add(brightness_on)
+		user.SetLuminosity(brightness_on)
 		SetLuminosity(0)
 	return ..()
 
@@ -113,8 +113,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 /obj/item/clothing/suit/storage/marine/Destroy()
 	if(ismob(loc))
 		var/mob/user = loc
-		user.light_sources.Remove(brightness_on)
-		user.SetLuminosity()
+		user.SetLuminosity(-brightness_on)
 	SetLuminosity(0)
 	if(pockets)
 		qdel(pockets)
@@ -145,14 +144,12 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	flashlight_cooldown = world.time + 2 SECONDS //2 seconds cooldown every time the light is toggled
 	if(flags_marine_armor & ARMOR_LAMP_ON) //Turn it off.
 		if(user)
-			user.light_sources.Remove(brightness_on)
-			user.SetLuminosity()
+			user.SetLuminosity(-brightness_on)
 		else
 			SetLuminosity(0)
 	else //Turn it on.
 		if(user)
-			user.light_sources.Add(brightness_on)
-			user.SetLuminosity()
+			user.SetLuminosity(brightness_on)
 		else
 			SetLuminosity(brightness_on)
 	flags_marine_armor ^= ARMOR_LAMP_ON

@@ -359,8 +359,7 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	if(active)
 		icon_state = "[initial(icon_state)]_active"
 		if(loc && loc == user)
-			user.light_sources.Add(FLARE_BRIGHTNESS)
-			user.SetLuminosity()
+			user.SetLuminosity(FLARE_BRIGHTNESS)
 			to_chat(world, "FLARE UPDATE BRIGHTNESS DEBUG: user: [user] light_sources length: [length(user.light_sources)]")
 			SetLuminosity(0)
 		else if(isturf(loc))
@@ -368,22 +367,19 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	else
 		icon_state = initial(icon_state)
 		if(loc && loc == user)
-			user.light_sources.Remove(FLARE_BRIGHTNESS)
-			user.SetLuminosity()
+			user.SetLuminosity(-FLARE_BRIGHTNESS)
 		else if(isturf(loc))
 			SetLuminosity()
 
 /obj/item/explosive/grenade/flare/pickup(mob/user)
 	if(active && loc != user)
-		user.light_sources.Add(FLARE_BRIGHTNESS)
-		user.SetLuminosity()
+		user.SetLuminosity(FLARE_BRIGHTNESS)
 		SetLuminosity(0)
 	return ..()
 
 /obj/item/explosive/grenade/flare/dropped(mob/user)
 	if(active && loc != user)
-		user.light_sources.Remove(FLARE_BRIGHTNESS)
-		user.SetLuminosity()
+		user.SetLuminosity(-FLARE_BRIGHTNESS)
 		SetLuminosity(FLARE_BRIGHTNESS)
 	return ..()
 

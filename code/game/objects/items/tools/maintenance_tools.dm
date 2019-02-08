@@ -165,8 +165,7 @@
 		if(ismob(loc))
 			user = loc
 		if(loc && loc == user)
-			user.light_sources.Add(LIGHTER_LUMINOSITY)
-			user.SetLuminosity()
+			user.SetLuminosity(-LIGHTER_LUMINOSITY)
 		else
 			SetLuminosity(0)
 		STOP_PROCESSING(SSobj, src)
@@ -287,8 +286,7 @@
 			welding = 1
 			if(M)
 				to_chat(M, "<span class='notice'>You switch [src] on.</span>")
-				M.light_sources.Add(LIGHTER_LUMINOSITY)
-				M.SetLuminosity()
+				M.SetLuminosity(LIGHTER_LUMINOSITY)
 			else
 				SetLuminosity(LIGHTER_LUMINOSITY)
 			weld_tick += 8 //turning the tool on does not consume fuel directly, but it advances the process that regularly consumes fuel.
@@ -315,8 +313,7 @@
 				to_chat(M, "<span class='notice'>You switch [src] off.</span>")
 			else
 				to_chat(M, "<span class='warning'>[src] shuts off!</span>")
-			M.light_sources.Add(LIGHTER_LUMINOSITY)
-			M.SetLuminosity()
+			M.SetLuminosity(-LIGHTER_LUMINOSITY)
 			if(M.r_hand == src)
 				M.update_inv_r_hand()
 			if(M.l_hand == src)
@@ -340,14 +337,12 @@
 /obj/item/tool/weldingtool/pickup(mob/user)
 	if(welding && loc != user)
 		SetLuminosity(0)
-		user.light_sources.Add(LIGHTER_LUMINOSITY)
-		user.SetLuminosity()
+		user.SetLuminosity(LIGHTER_LUMINOSITY)
 
 
 /obj/item/tool/weldingtool/dropped(mob/user)
 	if(welding && loc != user)
-		user.light_sources.Remove(LIGHTER_LUMINOSITY)
-		user.SetLuminosity()
+		user.SetLuminosity(-LIGHTER_LUMINOSITY)
 		SetLuminosity(LIGHTER_LUMINOSITY)
 	return ..()
 

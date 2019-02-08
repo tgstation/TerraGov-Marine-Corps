@@ -238,8 +238,7 @@
 		damtype = "brute"
 		heat_source = 0
 		if(loc == user)
-			user.light_sources.Remove(LIGHTER_LUMINOSITY)
-			user.SetLuminosity()
+			user.SetLuminosity(-LIGHTER_LUMINOSITY)
 		SetLuminosity(0)
 	else
 		icon_state = "plasma_cutter_on"
@@ -248,22 +247,19 @@
 		damtype = "fire"
 		heat_source = 3800
 		if(loc == user)
-			user.light_sources.Add(LIGHTER_LUMINOSITY)
-			user.SetLuminosity()
+			user.SetLuminosity(LIGHTER_LUMINOSITY)
 		SetLuminosity(LIGHTER_LUMINOSITY)
 
 
 /obj/item/tool/pickaxe/plasmacutter/pickup(mob/user)
 	if(powered && loc != user)
-		user.light_sources.Add(LIGHTER_LUMINOSITY)
-		user.SetLuminosity()
+		user.SetLuminosity(LIGHTER_LUMINOSITY)
 		SetLuminosity(0)
 	..()
 
 /obj/item/tool/pickaxe/plasmacutter/dropped(mob/user)
 	if(powered && loc != user)
-		user.light_sources.Remove(LIGHTER_LUMINOSITY)
-		user.SetLuminosity()
+		user.SetLuminosity(-LIGHTER_LUMINOSITY)
 		SetLuminosity(LIGHTER_LUMINOSITY)
 	..()
 
@@ -273,8 +269,7 @@
 	if(ismob(loc))
 		user = loc
 	if(loc && loc == user)
-		user.light_sources.Remove(LIGHTER_LUMINOSITY)
-		user.SetLuminosity()
+		user.SetLuminosity(-LIGHTER_LUMINOSITY)
 	SetLuminosity(0)
 	return ..()
 

@@ -436,16 +436,14 @@ Defined in conflicts.dm of the #defines folder.
 		icon_state = "flashlight"
 		attach_icon = "flashlight_a"
 		if(user && G.loc == user)
-			user.light_sources.Remove(light_mod)
-			user.SetLuminosity()
+			user.SetLuminosity(-light_mod)
 		else
 			G.SetLuminosity(0)
 	else
 		icon_state = "flashlight-on"
 		attach_icon = "flashlight_a-on"
 		if(user && G.loc == user)
-			user.light_sources.Add(light_mod)
-			user.SetLuminosity()
+			user.SetLuminosity(light_mod)
 		else
 			G.SetLuminosity(light_mod)
 

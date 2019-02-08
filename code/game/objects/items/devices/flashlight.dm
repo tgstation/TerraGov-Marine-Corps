@@ -25,8 +25,7 @@
 /obj/item/device/flashlight/Destroy()
 	if(ismob(src.loc))
 		var/mob/user = loc
-		user.light_sources.Remove(brightness_on)
-		user.SetLuminosity()
+		user.SetLuminosity(-brightness_on)
 	SetLuminosity(0)
 	. = ..()
 
@@ -37,15 +36,13 @@
 	if(on)
 		icon_state = "[initial(icon_state)]-on"
 		if(loc && loc == user)
-			user.light_sources.Add(brightness_on)
-			user.SetLuminosity()
+			user.SetLuminosity(brightness_on)
 		else if(isturf(loc))
 			SetLuminosity(brightness_on)
 	else
 		icon_state = initial(icon_state)
 		if(loc && loc == user)
-			user.light_sources.Remove(brightness_on)
-			user.SetLuminosity()
+			user.SetLuminosity(-brightness_on)
 		else if(isturf(loc))
 			SetLuminosity(0)
 
@@ -127,16 +124,14 @@
 
 /obj/item/device/flashlight/pickup(mob/user)
 	if(on && loc != user)
-		user.light_sources.Add(brightness_on)
-		user.SetLuminosity()
+		user.SetLuminosity(brightness_on)
 		SetLuminosity(0)
 	..()
 
 
 /obj/item/device/flashlight/dropped(mob/user)
 	if(on && loc != user)
-		user.light_sources.Remove(brightness_on)
-		user.SetLuminosity()
+		user.SetLuminosity(-brightness_on)
 		SetLuminosity(brightness_on)
 	..()
 

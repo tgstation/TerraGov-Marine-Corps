@@ -159,8 +159,7 @@
 		flags_gun_features &= ~GUN_FLASHLIGHT_ON
 		if(ismob(loc))
 			var/mob/bearer = loc
-			bearer.light_sources.Remove(rail.light_mod)
-			bearer.SetLuminosity()
+			bearer.SetLuminosity(-(rail.light_mod) )
 		SetLuminosity(0)
 	rail 			= null
 	under 			= null

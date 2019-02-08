@@ -209,15 +209,29 @@ atom/proc/AddLuminosity(delta_luminosity)
 //This slightly modifies human luminosity. Source of light do NOT stack.
 //When you drop a light source it should keep a running total of your actual luminosity and set it accordingly.
 mob/SetLuminosity(new_luminosity, trueLum)
-	luminosity_total = 0 //reset this
-	for(var/L in light_sources) //get the most powerful light source
-		//to_chat(world, "SET LUMINOSITY MOB DEBUG L: [L] current_light: [current_light]")
-		if(luminosity_total > L)
-			continue
-		luminosity_total = L
+	to_chat(world, "MOB SET LUM DEBUG 1: luminosity_total: [luminosity_total] new_luminosity: [new_luminosity] length: [length(light_sources)]")
+	if( new_luminosity > 0 ) //If positive add a light source to the light source list.
+		light_sources.Add(new_luminosity)
+	else if ( new_luminosity < 0 ) //If negative, subtract the light source from the list instead.
+		light_sources.Remove(new_luminosity * -1)
 
-	//to_chat(world, "SET LUMINOSITY MOB DEBUG 2 current_light: [current_light]")
-	if(!luminosity_total) //Our new addition is positive. Add it to our running total.
+	if( luminosity_total > new_luminosity ) //Check to see if the new light source is more powerful than the current one; if so not, check for light loss
+		if(new_luminosity > -1) //We're not losing a light source; abort.
+			return
+		if(luminosity_total <= (new_luminosity * -1) ) //We're losing a light source of magnitude equal to or greater than our current one; recalc luminosity from the list of remaining sources
+			to_chat(world, "MOB SET LUM DEBUG 2: luminosity_total: [luminosity_total] new_luminosity: [new_luminosity] length: [length(light_sources)]")
+			luminosity_total = 0
+			if(length(light_sources)) //only check if we have any remaining light sources
+				for(var/L in light_sources)
+					if(luminosity_total > L) //get the most powerful remaining light source
+						continue
+					luminosity_total = L
+					to_chat(world, "MOB SET LUM DEBUG 3: luminosity_total: [luminosity_total] new_luminosity: [new_luminosity] length: [length(light_sources)]")
+	else
+		luminosity_total = new_luminosity //we use the more powerful light source
+
+	to_chat(world, "MOB SET LUM DEBUG 4: luminosity_total: [luminosity_total] new_luminosity: [new_luminosity] length: [length(light_sources)]")
+	if(!luminosity_total)
 		return..(0, trueLum)  //Set to ZERO.
 
 	if(luminosity_total != luminosity) //Set the new luminosity
