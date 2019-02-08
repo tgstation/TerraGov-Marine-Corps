@@ -520,7 +520,6 @@ should be alright.
 	set category = "Weapons"
 	set name = "Field Strip Weapon"
 	set desc = "Remove all attachables from a weapon."
-	set src = usr.contents //We want to make sure one is picked at random, hence it's not in a list.
 
 	var/obj/item/weapon/gun/G = get_active_firearm(usr)
 	if(!G)
@@ -609,7 +608,6 @@ should be alright.
 	set category = "Weapons"
 	set name = "Toggle Burst Fire Mode"
 	set desc = "Toggle on or off your weapon burst mode, if it has one. Greatly reduces accuracy."
-	set src = usr.contents
 
 	var/obj/item/weapon/gun/G = get_active_firearm(usr)
 	if(!G)
@@ -648,7 +646,6 @@ should be alright.
 	set category = "Weapons"
 	set name = "Unload Weapon"
 	set desc = "Removes the magazine from your current gun and drops it on the ground, or clears the chamber if your gun is already empty."
-	set src = usr.contents
 
 	var/obj/item/weapon/gun/G = get_active_firearm(usr)
 	if(!G)
@@ -661,7 +658,6 @@ should be alright.
 	set category = "Weapons"
 	set name = "Unique Action"
 	set desc = "Use anything unique your firearm is capable of. Includes pumping a shotgun or spinning a revolver."
-	set src = usr.contents
 
 	var/obj/item/weapon/gun/G = get_active_firearm(usr)
 	if(!G)
@@ -675,7 +671,6 @@ should be alright.
 	set category = "Weapons"
 	set name = "Toggle Gun Safety"
 	set desc = "Toggle the safety of the held gun."
-	set src in usr //We want to make sure one is picked at random, hence it's not in a list.
 
 	var/obj/item/weapon/gun/G = get_active_firearm(usr)
 	if(!G)
@@ -692,7 +687,6 @@ should be alright.
 	set category = "Weapons"
 	set name = "Load From Attachment"
 	set desc = "Load from a gun attachment, such as a mounted grenade launcher, shotgun, or flamethrower."
-	set src in usr
 
 	var/obj/item/weapon/gun/G = get_active_firearm(usr)
 	if(!G)
@@ -730,7 +724,6 @@ should be alright.
 	set category = "Weapons"
 	set name = "Toggle Rail Attachment"
 	set desc = "Uses the rail attachement currently attached to the gun."
-	set src in usr
 
 	var/obj/item/weapon/gun/G = get_active_firearm(usr)
 	if(!G)
@@ -743,7 +736,6 @@ should be alright.
 	set category = "Weapons"
 	set name = "Toggle Ammo HUD"
 	set desc = "Toggles the Ammo HUD for this weapon."
-	set src in usr
 
 	var/obj/item/weapon/gun/G = get_active_firearm(usr)
 	if(!G)
