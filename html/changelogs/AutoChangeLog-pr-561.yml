@@ -1,0 +1,4 @@
+author: "by Surrealistik"
+delete-after: True
+changes: 
+  - tweak: "Defiler has a new stance for emitting neurogas. Defiler gas no longer goes on cooldown if you abort using the gas. However, you do lose the plasma investment. Aborting neurogas releases a pathetic, small wisp of neuro."
