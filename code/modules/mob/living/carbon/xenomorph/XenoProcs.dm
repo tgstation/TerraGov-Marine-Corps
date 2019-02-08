@@ -313,12 +313,22 @@
 	return ..() //Do the parent otherwise, for turfs.
 
 /mob/living/carbon/Xenomorph/proc/reset_movement()
-	frozen = FALSE
+	set_frozen(FALSE)
 	update_canmove()
 
 /mob/living/carbon/Xenomorph/proc/stop_movement()
-	frozen = TRUE
+	set_frozen(TRUE)
 	update_canmove()
+
+/mob/living/carbon/Xenomorph/set_frozen(freeze = TRUE)
+	if(fortify && !freeze)
+		return FALSE
+	return ..()
+
+/mob/living/carbon/Xenomorph/Queen/set_frozen(freeze = TRUE)
+	if(ovipositor && !freeze)
+		return FALSE
+	return ..()
 
 //Bleuugh
 /mob/living/carbon/Xenomorph/proc/empty_gut()

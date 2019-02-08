@@ -869,7 +869,7 @@
 			to_chat(src, "<span class='xenowarning'>You tuck yourself into a defensive stance.</span>")
 		armor_bonus += xeno_caste.fortify_armor
 		xeno_explosion_resistance = 3
-		frozen = TRUE
+		set_frozen(TRUE)
 		anchored = TRUE
 		update_canmove()
 		update_icons()
@@ -884,8 +884,8 @@
 	to_chat(src, "<span class='xenowarning'>You resume your normal stance.</span>")
 	armor_bonus -= xeno_caste.fortify_armor
 	xeno_explosion_resistance = 0
-	frozen = FALSE
 	fortify = FALSE
+	set_frozen(FALSE)
 	anchored = FALSE
 	playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 30, 1)
 	update_canmove()
@@ -910,7 +910,7 @@
 	if (burrow)
 		// TODO Make immune to all damage here.
 		to_chat(src, "<span class='xenowarning'>You burrow yourself into the ground.</span>")
-		frozen = 1
+		set_frozen(TRUE)
 		invisibility = 101
 		anchored = 1
 		density = 0
@@ -936,7 +936,7 @@
 /mob/living/carbon/Xenomorph/proc/burrow_off()
 
 	to_chat(src, "<span class='notice'>You resurface.</span>")
-	frozen = 0
+	set_frozen(FALSE)
 	invisibility = 0
 	anchored = 0
 	density = 1
@@ -1691,15 +1691,6 @@
 	if(M.mob_size >= MOB_SIZE_BIG) //We can't fling big aliens/mobs
 		to_chat(src, "<span class='xenowarning'>[M] is too large to fling!</span>")
 		return
-	if(M.anchored)
-		visible_message("<span class='xenowarning'>[src] tries to fling [M] to no avail!</span>","<span class='xenowarning'>You try to fling [M] but [M.p_they()] happens to be stuck in place!</span>", null, 4)
-		cresttoss_used = TRUE
-		icon_state = "Crusher Charging"  //Momentarily lower the crest for visual effect
-		use_plasma(CRUSHER_CRESTTOSS_COST/2)
-		playsound(src, 'sound/weapons/alien_claw_swipe.ogg')
-		addtimer(CALLBACK(src, .cresttoss_cooldown), CRUSHER_CRESTTOSS_COOLDOWN)
-		addtimer(CALLBACK(src, .reset_intent_icon_state), 3)
-		return
 
 	face_atom(M) //Face towards the target so we don't look silly
 
@@ -1744,18 +1735,16 @@
 
 	M.throw_at(T, toss_distance, 1, src)
 
+	var/mob/living/carbon/Xenomorph/X = M
 	//Handle the damage
-	if(!isxeno(M)) //Friendly xenos don't take damage.
+	if(!istype(X) || hivenumber != X.hivenumber) //Friendly xenos don't take damage.
 		var/damage = toss_distance * 5
 		if(frenzy_aura)
 			damage *= (1 + round(frenzy_aura * 0.1,0.01)) //+10% damage per level of frenzy
 		var/armor_block = M.run_armor_check("chest", "melee")
+		M.take_overall_damage(rand(damage * 0.75, damage * 1.25) * 0.5, armor_block) //Armour functions against this.
 		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
-			H.take_overall_damage(rand(damage * 0.75,damage * 1.25) * 0.5, armor_block) //Armour functions against this.
-		else
-			M.take_overall_damage(rand(damage * 0.75,damage * 1.25) * 0.5, armor_block) //Armour functions against this.
-		M.apply_damage(damage, HALLOSS) //...But decent armour ignoring Halloss
+			M.apply_damage(damage, HALLOSS) //...But decent armour ignoring Halloss
 		shake_camera(M, 2, 2)
 		playsound(M,pick('sound/weapons/alien_claw_block.ogg','sound/weapons/alien_bite2.ogg'), 50, 1)
 		M.KnockDown(1, 1)
