@@ -325,11 +325,6 @@
 		return FALSE
 	return ..()
 
-/mob/living/carbon/Xenomorph/Queen/set_frozen(freeze = TRUE)
-	if(ovipositor && !freeze)
-		return FALSE
-	return ..()
-
 //Bleuugh
 /mob/living/carbon/Xenomorph/proc/empty_gut()
 	if(stomach_contents.len)
