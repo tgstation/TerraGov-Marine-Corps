@@ -4374,7 +4374,7 @@
 "bGf" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/machinery/atmospherics/pipe/simple/hidden/supply{tag = "icon-intact-supply (EAST)"; icon_state = "intact-supply"; dir = 4},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 4; icon_state = "intact-scrubbers"},/turf/open/floor/plating/plating_catwalk/prison,/area/prison/cellblock/highsec/south/north)
 "bGg" = (/turf/closed/wall/r_wall/prison,/area/prison/maintenance/hangar_barracks)
 "bGh" = (/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/prison/monorail/east)
-"bGi" = (/obj/machinery/door/unpowered/shuttle,/obj/machinery/door/poddoor/shutters/transit{density = 0; icon_state = "shutter0"; opacity = 0},/turf/open/shuttle/dropship{tag = "icon-rasputin3"; icon_state = "rasputin3"},/area/prison/monorail/east)
+"bGi" = (/obj/machinery/door/airlock/unpowered/shuttle,/obj/machinery/door/poddoor/shutters/transit{density = 0; icon_state = "shutter0"; opacity = 0},/turf/open/shuttle/dropship{tag = "icon-rasputin3"; icon_state = "rasputin3"},/area/prison/monorail/east)
 "bGj" = (/obj/machinery/door/airlock/almayer/generic,/obj/machinery/door/poddoor/shutters/transit{density = 0; icon_state = "shutter0"; opacity = 0},/turf/open/floor/prison,/area/prison/monorail/east)
 "bGk" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/turf/open/floor/prison{dir = 8; icon_state = "darkred2"},/area/prison/monorail/east)
 "bGl" = (/obj/structure/bed/chair/comfy{dir = 8},/obj/machinery/light{dir = 4; icon_state = "tube1"},/turf/open/floor/prison{tag = "icon-darkredfull2 (SOUTHWEST)"; icon_state = "darkredfull2"; dir = 10},/area/prison/monorail/east)
