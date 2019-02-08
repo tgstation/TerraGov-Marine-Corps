@@ -431,7 +431,7 @@
 	engineer = SKILL_ENGINEER_METAL
 
 /datum/skills/tank_commander
-	name = "Tank CO"
+	name = "Tank Commander"
 	large_vehicle = SKILL_LARGE_VEHICLE_TRAINED
 	powerloader = SKILL_POWERLOADER_TRAINED
 	leadership = SKILL_LEAD_TRAINED
