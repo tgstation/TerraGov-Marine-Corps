@@ -27,7 +27,7 @@
 	var/list/viruses = list()
 	var/color = "#000000" // rgb: 0, 0, 0
 	var/can_synth = TRUE // can this reagent be synthesized? (example: odysseus syringe gun)
-	var/list/datum/reagent/purge_list = new/list() //Does this purge any specific chems?
+	var/list/datum/reagent/purge_list = list() //Does this purge any specific chems?
 	var/purge_rate = 0 //rate at which it purges specific chems
 
 /datum/reagent/Destroy() // This should only be called by the holder, so it's already handled clearing its references
