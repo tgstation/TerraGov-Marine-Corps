@@ -162,7 +162,6 @@
 
 /obj/structure/largecrate/random/barrel/attack_hand(mob/user)
 	to_chat(user, "<span class='notice'>You need a blowtorch to weld this open!</span>")
-	return
 
 /obj/structure/largecrate/random/barrel
 	name = "blue barrel"
@@ -202,12 +201,10 @@
 
 /obj/structure/largecrate/random/secure/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	if (!strapped)
-		..()
-		return
+		return ..()
 
 	if (!W.sharp)
-		to_chat(user, "<span class='notice'>You need something sharp to cut off the straps.</span>")
-		return
+		return attack_hand(user)
 
 	to_chat(user, "<span class='notice'>You begin to cut the straps off \the [src]...</span>")
 
@@ -216,6 +213,9 @@
 		to_chat(user, "<span class='notice'>You cut the straps away.</span>")
 		icon_state = "secure_crate"
 		strapped = 0
+
+/obj/structure/largecrate/random/barrel/attack_hand(mob/user)
+	to_chat(user, "<span class='notice'>You need something sharp to cut off the straps.</span>")
 
 /obj/structure/largecrate/guns
 	name = "\improper TGMC firearms crate (x3)"
