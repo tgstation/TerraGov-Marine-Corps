@@ -986,7 +986,7 @@
 				var/X = input("Select coordinate X", "Coordinate X") as null|num
 				var/Y = input("Select coordinate Y", "Coordinate Y") as null|num
 				var/Z = input("Select coordinate Z", "Coordinate Z") as null|num
-				if(isnull(X) || isnull(Y) || isnull(Z) || !A)
+				if(isnull(X) || isnull(Y) || isnull(Z) || !M)
 					return
 				target = locate(X, Y, Z)
 
