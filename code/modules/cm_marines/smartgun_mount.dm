@@ -254,7 +254,7 @@
 		operator.unset_interaction()
 	SetLuminosity(0)
 	STOP_PROCESSING(SSobj, src)
-	. = ..()
+	return ..()
 
 /obj/machinery/m56d_hmg/examine(mob/user) //Let us see how much ammo we got in this thing.
 	..()
@@ -564,7 +564,7 @@
 	if(user.lying || !Adjacent(user) || user.is_mob_incapacitated() || !user.client)
 		user.unset_interaction()
 
-/mob/living/proc/toogle_mg_burst_fire(obj/machinery/m56d_hmg/MG in interactee)
+/mob/living/proc/toogle_mg_burst_fire(obj/machinery/m56d_hmg/MG in list(interactee))
 	set name = "Toggle MG Burst Fire"
 	set category = "Weapons"
 	set src = usr
