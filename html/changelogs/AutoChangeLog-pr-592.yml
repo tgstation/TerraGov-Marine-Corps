@@ -1,0 +1,8 @@
+author: "Menshin"
+delete-after: True
+changes: 
+  - refactor: "The power code has been completely refactored and ported to /tg. Report any bug found on Github."
+  - rscadd: "Cable laying facilities (as in/tg, click on tile to lay the cable, automatically merges with present node cables)"
+  - rscadd: "Terminals are now constructibles (cable coils) and deconstructibles (wirecutters)"
+  - bugfix: "APCs not connected to powernets on startup (no need to deconstruct them anymore)"
+  - bugfix: "machines  will now correctly draw power when active"
