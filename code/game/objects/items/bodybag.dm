@@ -20,11 +20,14 @@
 			deploy_bodybag(user, T)
 
 /obj/item/bodybag/proc/deploy_bodybag(mob/user, atom/location)
+	if(!isturf(user.loc))
+		return FALSE
 	var/obj/structure/closet/bodybag/R = new unfolded_path(location, src)
 	R.add_fingerprint(user)
 	R.open(user)
 	user.temporarilyRemoveItemFromInventory(src)
 	qdel(src)
+	return TRUE
 
 
 /obj/item/bodybag/cryobag

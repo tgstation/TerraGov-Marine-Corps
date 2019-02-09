@@ -20,9 +20,10 @@
 	unfolded_path = /obj/structure/closet/bodybag/tarp
 
 /obj/item/bodybag/tarp/deploy_bodybag(mob/user, atom/location)
-	if(locate(/obj/structure/closet) in location)
-		to_chat(user, "<span class='warning'>\the [src] can't be deployed here.</span>")
-		return
+	for(var/obj/O in location)
+		if(istype(O, /obj/structure/closet) || O.density)
+			to_chat(user, "<span class='warning'>\the [src] can't be deployed here.</span>")
+			return FALSE
 	return ..()
 
 /obj/item/bodybag/tarp/snow
