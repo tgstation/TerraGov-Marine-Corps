@@ -1,8 +1,9 @@
-
-
 #define FUSION_ENGINE_MAX_POWER_GEN	50000 //Full capacity
-
 #define FUSION_ENGINE_FAIL_CHECK_TICKS	100 //Check for failure every this many ticks
+#define FUSION_ENGINE_NO_DAMAGE     0
+#define FUSION_ENGINE_LIGHT_DAMAGE  1
+#define FUSION_ENGINE_MEDIUM_DAMAGE 2
+#define FUSION_ENGINE_HEAVY_DAMAGE  3
 
 /obj/machinery/power/fusion_engine
 	name = "\improper S-52 fusion reactor"
@@ -14,19 +15,17 @@
 	density = TRUE
 
 	var/power_gen_percent = 0 //50,000W at full capacity
-	var/buildstate = 0 //What state of building it are we on, 0-3, 1 is "broken", the default
+	var/buildstate = FUSION_ENGINE_NO_DAMAGE //What state of building it are we on, 0-3, 1 is "broken", the default
 	var/is_on = FALSE  //Is this damn thing on or what?
 	var/fail_rate = 5 //% chance of failure each fail_tick check
 	var/cur_tick = 0 //Tick updater
 
 	var/obj/item/fuelCell/fusion_cell = new //Starts with a fuel cell loaded in.  Maybe replace with the plasma tanks in the future and have it consume plasma?  Possibly remove this later if it's irrelevent...
-	var/fuel_rate = 0.00 //Rate at which fuel is used.  Based mostly on how long the generator has been running.
+	var/fuel_rate = 0 //Rate at which fuel is used.  Based mostly on how long the generator has been running.
 
-/obj/machinery/power/fusion_engine/New()
-	buildstate = 0 //This is needed to set the state for repair interactions
-	fusion_cell.fuel_amount = rand(50,100)
+/obj/machinery/power/fusion_engine/Initialize()
+	fusion_cell.set_fuel_amount(rand(50,100))
 	update_icon()
-	connect_to_network() //Should start with a cable piece underneath, if it doesn't, something's messed up in mapping
 	..()
 
 /obj/machinery/power/fusion_engine/power_change()
@@ -43,7 +42,7 @@
 	if (fusion_cell.fuel_amount <= 0)
 		visible_message("[bicon(src)] <b>[src]</b> flashes that the fuel cell is empty as the engine seizes.")
 		fuel_rate = 0
-		buildstate = 2  //No fuel really fucks it.
+		buildstate = FUSION_ENGINE_MEDIUM_DAMAGE  //No fuel really fucks it.
 		is_on = FALSE
 		power_gen_percent = 0
 		fail_rate+=2 //Each time the engine is allowed to seize up it's fail rate for the future increases because reasons.
@@ -53,34 +52,23 @@
 
 	if(!check_failure())
 
-		if(power_gen_percent < 100) power_gen_percent++
+		if(power_gen_percent < 100)
+			power_gen_percent++
 
-		switch(power_gen_percent) //Flavor text!
-			if(10)
-				visible_message("[bicon(src)] <span class='notice'><b>[src]</b> begins to whirr as it powers up.</span>")
-				fuel_rate = 0.025
-			if(50)
-				visible_message("[bicon(src)] <span class='notice'><b>[src]</b> begins to hum loudly as it reaches half capacity.</span>")
-				fuel_rate = 0.05
-			if(99)
-				visible_message("[bicon(src)] <span class='notice'><b>[src]</b> rumbles loudly as the combustion and thermal chambers reach full strength.</span>")
-				fuel_rate = 0.1
+			switch(power_gen_percent) //Flavor text!
+				if(10)
+					visible_message("[bicon(src)] <span class='notice'><b>[src]</b> begins to whirr as it powers up.</span>")
+					fuel_rate = 0.025
+				if(50)
+					visible_message("[bicon(src)] <span class='notice'><b>[src]</b> begins to hum loudly as it reaches half capacity.</span>")
+					fuel_rate = 0.05
+				if(100)
+					visible_message("[bicon(src)] <span class='notice'><b>[src]</b> rumbles loudly as the combustion and thermal chambers reach full strength.</span>")
+					fuel_rate = 0.1
 
 		add_avail(FUSION_ENGINE_MAX_POWER_GEN * (power_gen_percent / 100) ) //Nope, all good, just add the power
-		fusion_cell.fuel_amount-=fuel_rate //Consumes fuel
-
-		switch(fusion_cell.fuel_amount)
-			if(0 to 10)
-				icon_state = "on-10"
-			if(11 to 25)
-				icon_state = "on-25"
-			if(26 to 50)
-				icon_state = "on-50"
-			if(51 to 75)
-				icon_state = "on-75"
-			if(76 to INFINITY)
-				icon_state = "on-100"
-
+		fusion_cell.take(fuel_rate) //Consumes fuel
+		update_icon()
 
 /obj/machinery/power/fusion_engine/attack_hand(mob/user)
 	if(!ishuman(user))
@@ -88,13 +76,13 @@
 		return FALSE
 	add_fingerprint(user)
 	switch(buildstate)
-		if(1)
+		if(FUSION_ENGINE_HEAVY_DAMAGE)
 			to_chat(user, "<span class='info'>Use a blowtorch, then wirecutters, then wrench to repair it.</span>")
 			return FALSE
-		if(2)
+		if(FUSION_ENGINE_MEDIUM_DAMAGE)
 			to_chat(user, "<span class='notice'>Use a wirecutters, then wrench to repair it.</span>")
 			return FALSE
-		if(3)
+		if(FUSION_ENGINE_LIGHT_DAMAGE)
 			to_chat(user, "<span class='notice'>Use a wrench to repair it.</span>")
 			return FALSE
 	if(is_on)
@@ -110,11 +98,6 @@
 		to_chat(user, "<span class='notice'>The reactor requires a fuel cell before you can turn it on.</span>")
 		return FALSE
 
-	if(!powernet)
-		if(!connect_to_network())
-			to_chat(user, "<span class='warning'>Power network not found, make sure the engine is connected to a cable.</span>")
-			return FALSE
-
 	if(fusion_cell.fuel_amount <= 10)
 		to_chat(user, "[bicon(src)] <span class='warning'><b>[src]</b>: Fuel levels critically low.</span>")
 	visible_message("[bicon(src)] <span class='warning'><b>[src]</b> beeps loudly as [user] turns the generator on and begins the process of fusion...</span>")
@@ -124,7 +107,6 @@
 	update_icon()
 	start_processing()
 	return TRUE
-
 
 /obj/machinery/power/fusion_engine/attackby(obj/item/O, mob/user)
 	if(istype(O, /obj/item/fuelCell))
@@ -142,7 +124,7 @@
 			return TRUE
 		return TRUE
 	else if(iswelder(O))
-		if(buildstate == 1)
+		if(buildstate == FUSION_ENGINE_HEAVY_DAMAGE)
 			var/obj/item/tool/weldingtool/WT = O
 			if(WT.remove_fuel(1, user))
 				if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
@@ -154,9 +136,9 @@
 				user.visible_message("<span class='notice'>[user] starts welding [src]'s internal damage.</span>",
 				"<span class='notice'>You start welding [src]'s internal damage.</span>")
 				if(do_after(user, 200, TRUE, 5, BUSY_ICON_BUILD))
-					if(buildstate != 1 || is_on || !WT.isOn()) return FALSE
+					if(buildstate != FUSION_ENGINE_HEAVY_DAMAGE || is_on || !WT.isOn()) return FALSE
 					playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
-					buildstate = 2
+					buildstate = FUSION_ENGINE_MEDIUM_DAMAGE
 					user.visible_message("<span class='notice'>[user] welds [src]'s internal damage.</span>",
 					"<span class='notice'>You weld [src]'s internal damage.</span>")
 					update_icon()
@@ -165,7 +147,7 @@
 				to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
 				return FALSE
 	else if(istype(O,/obj/item/tool/wirecutters))
-		if(buildstate == 2 && !is_on)
+		if(buildstate == FUSION_ENGINE_MEDIUM_DAMAGE && !is_on)
 			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
 				user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s wiring.</span>",
 				"<span class='notice'>You fumble around figuring out [src]'s wiring.</span>")
@@ -175,15 +157,15 @@
 			user.visible_message("<span class='notice'>[user] starts securing [src]'s wiring.</span>",
 			"<span class='notice'>You start securing [src]'s wiring.</span>")
 			if(do_after(user, 120, TRUE, 12, BUSY_ICON_BUILD))
-				if(buildstate != 2 || is_on) return FALSE
+				if(buildstate != FUSION_ENGINE_MEDIUM_DAMAGE || is_on) return FALSE
 				playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
-				buildstate = 3
+				buildstate = FUSION_ENGINE_LIGHT_DAMAGE
 				user.visible_message("<span class='notice'>[user] secures [src]'s wiring.</span>",
 				"<span class='notice'>You secure [src]'s wiring.</span>")
 				update_icon()
 				return TRUE
 	else if(iswrench(O))
-		if(buildstate == 3 && !is_on)
+		if(buildstate == FUSION_ENGINE_LIGHT_DAMAGE && !is_on)
 			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
 				user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s tubing and plating.</span>",
 				"<span class='notice'>You fumble around figuring out [src]'s tubing and plating.</span>")
@@ -193,15 +175,15 @@
 			user.visible_message("<span class='notice'>[user] starts repairing [src]'s tubing and plating.</span>",
 			"<span class='notice'>You start repairing [src]'s tubing and plating.</span>")
 			if(do_after(user, 150, TRUE, 15, BUSY_ICON_BUILD))
-				if(buildstate != 3 || is_on) return FALSE
+				if(buildstate != FUSION_ENGINE_LIGHT_DAMAGE || is_on) return FALSE
 				playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
-				buildstate = 0
+				buildstate = FUSION_ENGINE_NO_DAMAGE
 				user.visible_message("<span class='notice'>[user] repairs [src]'s tubing and plating.</span>",
 				"<span class='notice'>You repair [src]'s tubing and plating.</span>")
 				update_icon()
 				return TRUE
 	else if(iscrowbar(O))
-		if(buildstate)
+		if(buildstate != FUSION_ENGINE_NO_DAMAGE)
 			to_chat(user, "<span class='warning'>You must repair the generator before working with its fuel cell.</span>")
 			return
 		if(is_on)
@@ -219,7 +201,7 @@
 			user.visible_message("<span class='notice'>[user] starts prying [src]'s fuel receptacle open.</span>",
 			"<span class='notice'>You start prying [src]'s fuel receptacle open.</span>")
 			if(do_after(user, 100, TRUE, 15, BUSY_ICON_BUILD))
-				if(buildstate != 0 || is_on || !fusion_cell) return FALSE
+				if(buildstate != FUSION_ENGINE_NO_DAMAGE || is_on || !fusion_cell) return FALSE
 				user.visible_message("<span class='notice'>[user] pries [src]'s fuel receptacle open and removes the cell.</span>",
 				"<span class='notice'>You pry [src]'s fuel receptacle open and remove the cell..</span>")
 				fusion_cell.update_icon()
@@ -233,14 +215,14 @@
 /obj/machinery/power/fusion_engine/examine(mob/user)
 	..()
 	if(ishuman(user))
-		if(buildstate)
+		if(buildstate != FUSION_ENGINE_NO_DAMAGE)
 			to_chat(user, "<span class='info'>It's broken.</span>")
 			switch(buildstate)
-				if(1)
+				if(FUSION_ENGINE_HEAVY_DAMAGE)
 					to_chat(user, "<span class='info'>Use a blowtorch, then wirecutters, then wrench to repair it.</span>")
-				if(2)
+				if(FUSION_ENGINE_MEDIUM_DAMAGE)
 					to_chat(user, "<span class='info'>Use a wirecutters, then wrench to repair it.</span>")
-				if(3)
+				if(FUSION_ENGINE_LIGHT_DAMAGE)
 					to_chat(user, "<span class='info'>Use a wrench to repair it.</span>")
 			return FALSE
 
@@ -260,14 +242,16 @@
 						to_chat(user, "<span class='info'>The fuel cell is a little under halfway.</span>")
 					if(51 to 75)
 						to_chat(user, "<span class='info'>The fuel cell is a little above halfway.</span>")
-					if(76 to INFINITY)
+					if(76 to 99)
 						to_chat(user, "<span class='info'>The fuel cell is nearly full.</span>")
+					if(100)
+						to_chat(user, "<span class='info'>The fuel cell is full.</span>")
 		else
 			to_chat(user, "<span class='info'>There is no fuel cell in the receptacle.</span>")
 
 /obj/machinery/power/fusion_engine/update_icon()
 	switch(buildstate)
-		if(0)
+		if(FUSION_ENGINE_NO_DAMAGE)
 			if(fusion_cell)
 				var/pstatus = is_on ? "on" : "off"
 				switch(fusion_cell.fuel_amount)
@@ -284,11 +268,11 @@
 			else
 				icon_state = "off"
 
-		if(1)
+		if(FUSION_ENGINE_HEAVY_DAMAGE)
 			icon_state = "weld"
-		if(2)
+		if(FUSION_ENGINE_MEDIUM_DAMAGE)
 			icon_state = "wire"
-		if(3)
+		if(FUSION_ENGINE_LIGHT_DAMAGE)
 			icon_state = "wrench"
 
 
@@ -300,10 +284,10 @@
 	if(rand(1,100) < fail_rate) //Oh snap, we failed! Shut it down!
 		if(prob(25))
 			visible_message("[bicon(src)] <span class='notice'><b>[src]</b> beeps wildly and a fuse blows! Use wirecutters, then a wrench to repair it.")
-			buildstate = 2
+			buildstate = FUSION_ENGINE_MEDIUM_DAMAGE
 		else
 			visible_message("[bicon(src)] <span class='notice'><b>[src]</b> beeps wildly and sprays random pieces everywhere! Use a wrench to repair it.")
-			buildstate = 3
+			buildstate = FUSION_ENGINE_LIGHT_DAMAGE
 		is_on = FALSE
 		power_gen_percent = 0
 		update_icon()
@@ -312,11 +296,12 @@
 	else
 		return FALSE
 
-
-
-
-
-
+#undef FUSION_ENGINE_MAX_POWER_GEN
+#undef FUSION_ENGINE_FAIL_CHECK_TICKS
+#undef FUSION_ENGINE_NO_DAMAGE
+#undef FUSION_ENGINE_LIGHT_DAMAGE
+#undef FUSION_ENGINE_MEDIUM_DAMAGE
+#undef FUSION_ENGINE_HEAVY_DAMAGE
 
 //FUEL CELL
 /obj/item/fuelCell
@@ -324,8 +309,8 @@
 	icon = 'icons/Marine/shuttle-parts.dmi'
 	icon_state = "cell-full"
 	desc = "A rechargable fuel cell designed to work as a power source for the Cheyenne-Class transport or for Westingland S-52 Reactors."
-	var/fuel_amount = 100.0
-	var/max_fuel_amount = 100.0
+	var/fuel_amount = 100
+	var/max_fuel_amount = 100
 
 /obj/item/fuelCell/update_icon()
 	switch(get_fuel_percent())
@@ -352,6 +337,15 @@
 	return (fuel_amount == max_fuel_amount)
 
 /obj/item/fuelCell/proc/give(amount)
-	fuel_amount += amount
-	if(fuel_amount > max_fuel_amount)
-		fuel_amount = max_fuel_amount
+	fuel_amount = min(fuel_amount + amount, max_fuel_amount)
+	update_icon()
+
+/obj/item/fuelCell/proc/take(amount)
+	fuel_amount = max(fuel_amount - amount, 0)
+	update_icon()
+
+/obj/item/fuelCell/proc/set_fuel_amount(amount)
+	if(amount < 0 || amount > max_fuel_amount)
+		return
+	fuel_amount = amount
+	update_icon()
