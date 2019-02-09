@@ -911,9 +911,9 @@
 		// TODO Make immune to all damage here.
 		to_chat(src, "<span class='xenowarning'>You burrow yourself into the ground.</span>")
 		set_frozen(TRUE)
-		invisibility = 101
-		anchored = 1
-		density = 0
+		invisibility = INVISIBILITY_MAXIMUM
+		anchored = TRUE
+		density = FALSE
 		update_canmove()
 		update_icons()
 		do_burrow_cooldown()

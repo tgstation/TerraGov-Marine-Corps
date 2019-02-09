@@ -437,7 +437,7 @@
 //Virtual disposal object, travels through pipes in lieu of actual items
 //Contents will be items flushed by the disposal, this allows the gas flushed to be tracked
 /obj/structure/disposalholder
-	invisibility = 101
+	invisibility = INVISIBILITY_MAXIMUM
 	var/active = 0	//True if the holder is moving, otherwise inactive
 	dir = 0
 	var/count = 2048 //Can travel 2048 steps before going inactive (in case of loops)
@@ -662,7 +662,7 @@
 
 //Hide called by levelupdate if turf intact status changes, change visibility status and force update of icon
 /obj/structure/disposalpipe/hide(var/intact)
-	invisibility = intact ? 101: 0	// hide if floor is intact
+	invisibility = intact ? INVISIBILITY_MAXIMUM: 0	// hide if floor is intact
 	updateicon()
 
 //Update actual icon_state depending on visibility, if invisible, append "f" to icon_state to show faded version, this will be revealed if a T-scanner is used
@@ -727,7 +727,7 @@
 				var/obj/structure/disposalpipe/broken/P = new(loc)
 				P.setDir(D)
 
-	invisibility = 101	//Make invisible (since we won't delete the pipe immediately)
+	invisibility = INVISIBILITY_MAXIMUM	//Make invisible (since we won't delete the pipe immediately)
 	var/obj/structure/disposalholder/H = locate() in src
 	if(H)
 		//Holder was present
