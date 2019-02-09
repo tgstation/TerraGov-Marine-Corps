@@ -911,6 +911,8 @@
 		if(C && alert("They have a client attached, are you sure?", "Cryosleep", "Yes", "No") != "Yes")
 			return
 
+		var/mob/target = M
+
 		var/turf/T = get_turf(M)
 		var/obj/machinery/cryopod/P = new(T)
 		P.density = FALSE
@@ -933,8 +935,8 @@
 			else
 				C.mob.ghostize()
 
-		log_admin("[key_name(usr)] has cryo'd [key_name(M)][lobby ? ", sending them to the lobby" : ""].")
-		message_admins("[ADMIN_TPMONTY(usr)] has cryo'd [key_name_admin(M)][lobby ? ", sending them to the lobby" : ""].")
+		log_admin("[key_name(usr)] has cryo'd [key_name(target)][lobby ? ", sending them to the lobby" : ""].")
+		message_admins("[ADMIN_TPMONTY(usr)] has cryo'd [key_name_admin(target)][lobby ? ", sending them to the lobby" : ""].")
 
 
 	else if(href_list["jumpto"])
