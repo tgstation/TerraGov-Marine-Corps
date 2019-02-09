@@ -3631,7 +3631,7 @@
 "brQ" = (/turf/closed/wall/almayer,/area/almayer/engineering/engine_core)
 "brR" = (/obj/machinery/light/small{dir = 1},/turf/open/floor/plating/plating_catwalk,/area/almayer/hull/lower_hull)
 "brS" = (/obj/effect/decal/warning_stripes{tag = "icon-SE-out"; icon_state = "SE-out"},/turf/open/floor/almayer{icon_regular_floor = "mono"; icon_state = "mono"},/area/almayer/hull/lower_hull)
-"brT" = (/obj/machinery/power/apc/almayer{dir = 1},/turf/open/floor/almayer{dir = 9; icon_state = "red"; tag = "icon-red"},/area/almayer/shipboard/starboard_missiles)
+"brT" = (/obj/machinery/power/apc/almayer{dir = 1},/obj/structure/cable{tag = "icon-0-2"; icon_state = "0-2"},/turf/open/floor/almayer{dir = 9; icon_state = "red"; tag = "icon-red"},/area/almayer/shipboard/starboard_missiles)
 "brU" = (/obj/effect/decal/warning_stripes{tag = "icon-S"; icon_state = "S"},/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/open/floor/almayer,/area/almayer/shipboard/starboard_missiles)
 "brV" = (/obj/effect/decal/warning_stripes{tag = "icon-S"; icon_state = "S"},/turf/open/floor/almayer,/area/almayer/shipboard/starboard_missiles)
 "brW" = (/obj/effect/decal/warning_stripes{tag = "icon-S"; icon_state = "S"},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/turf/open/floor/almayer,/area/almayer/shipboard/starboard_missiles)
