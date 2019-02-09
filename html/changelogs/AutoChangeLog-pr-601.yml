@@ -1,5 +1,0 @@
-author: "Ghommie"
-delete-after: True
-changes: 
-  - bugfix: "Defender's fortify mode mobility shouldn't no more reset after being thrown around by a Crusher's crest toss."
-  - bugfix: "Crusher's crest toss should now properly damage enemy hives' xenos now."
