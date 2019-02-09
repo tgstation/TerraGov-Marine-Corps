@@ -548,8 +548,8 @@ can cause issues with ammo types getting mixed up during the burst.
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/scope/mini,
 						/obj/item/attachable/scope,
-						/obj/item/attachable/bipod)
-	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 16,"rail_x" = 8, "rail_y" = 21, "under_x" = 24, "under_y" = 15, "stock_x" = 20, "stock_y" = 14)
+						/obj/item/attachable/bayonet)
+	attachable_offset = list("muzzle_x" = 50, "muzzle_y" = 21,"rail_x" = 8, "rail_y" = 21, "under_x" = 37, "under_y" = 16, "stock_x" = 20, "stock_y" = 14)
 	starting_attachment_types = list(/obj/item/attachable/scope)
 
 /obj/item/weapon/gun/shotgun/pump/bolt/Initialize()
