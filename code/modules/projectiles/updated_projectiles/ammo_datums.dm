@@ -188,7 +188,7 @@
 		set waitfor = 0
 		var/i
 		for(i = 1 to bonus_projectiles_amount) //Want to run this for the number of bonus projectiles.
-			var/obj/item/projectile/P = new /obj/item/projectile(original_P.shot_from)
+			var/obj/item/projectile/P = new /obj/item/projectile(original_P.firer)
 			P.generate_bullet(GLOB.ammo_list[bonus_projectiles_type]) //No bonus damage or anything.
 			var/turf/new_target = null
 
@@ -206,7 +206,7 @@
 
 			if(!new_target)
 				new_target = original_P.target_turf
-			P.fire_at(new_target,original_P.firer,original_P.shot_from,P.ammo.max_range,P.ammo.shell_speed) //Fire!
+			P.fire_at(new_target,original_P.firer,original_P.firer,P.ammo.max_range,P.ammo.shell_speed) //Fire!
 
 	//This is sort of a workaround for now. There are better ways of doing this ~N.
 	proc/stun_living(mob/living/target, obj/item/projectile/P) //Taser proc to stun folks.
