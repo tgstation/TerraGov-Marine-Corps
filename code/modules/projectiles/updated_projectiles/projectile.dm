@@ -1,8 +1,8 @@
 
 //Some debug variables. Toggle them to 1 in order to see the related debug messages. Helpful when testing out formulas.
-#define DEBUG_HIT_CHANCE	FALSE
-#define DEBUG_HUMAN_DEFENSE	FALSE
-#define DEBUG_XENO_DEFENSE	FALSE
+#define DEBUG_HIT_CHANCE	0
+#define DEBUG_HUMAN_DEFENSE	0
+#define DEBUG_XENO_DEFENSE	0
 #define DEBUG_CREST_DEFENSE	0
 
 //The actual bullet objects.
