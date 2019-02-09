@@ -419,7 +419,7 @@
 
 /mob/living/carbon/Xenomorph/proc/punch(var/mob/living/M)
 
-	if (!M)
+	if (!M || M == src || !isliving(M) )
 		return
 
 	if (!check_state() || agility)

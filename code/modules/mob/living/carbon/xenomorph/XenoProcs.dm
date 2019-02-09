@@ -525,7 +525,7 @@
 
 
 /mob/living/carbon/Xenomorph/proc/update_spits()
-	if(!ammo || !xeno_caste.spit_types.len) //Only update xenos with ammo and spit types.
+	if(!ammo || !xeno_caste.spit_types || !xeno_caste.spit_types.len) //Only update xenos with ammo and spit types.
 		return
 	for(var/i in 1 to xeno_caste.spit_types.len)
 		if(ammo.icon_state == GLOB.ammo_list[xeno_caste.spit_types[i]].icon_state)
