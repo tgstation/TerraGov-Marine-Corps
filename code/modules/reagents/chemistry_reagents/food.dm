@@ -18,7 +18,7 @@
 	current_cycle++
 	M.adjust_nutrition(nutriment_factor * REM)
 	if(adj_temp)
-		M.adjust_bodytemperature(adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT, (adj_temp < 0 ? targ_temp : 0), (adj_temp > 0 ? targ_temp : INFINITY))
+		M.adjust_bodytemperature(adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT, (adj_temp < 0 ? targ_temp : INFINITY), (adj_temp > 0 ? 0 : targ_temp))
 	holder.remove_reagent(src.id, custom_metabolism)
 	return TRUE
 
@@ -153,7 +153,7 @@
 	color = "#B31008" // rgb: 179, 16, 8
 	taste_description = "scorching agony"
 	taste_multi = 10
-	targ_temp = BODYTEMP_HEAT_DAMAGE_LIMIT + 5
+	targ_temp = BODYTEMP_HEAT_DAMAGE_LIMIT - 5
 	discomfort_message = "<span class='danger'>You feel like your insides are burning!</span>"
 	agony_start = 3
 	agony_amount = 4
@@ -163,52 +163,44 @@
 		if(!M.has_eyes() && !M.has_mouth())
 			if(prob(5))
 				to_chat(M, "<span class='italics'>You sense something spicy in the air for a moment...</span>")
-			return
-		if(ishuman(M))
-			var/mob/living/carbon/human/victim = M
+		if(ishuman(M) || ismonkey(M))
+			var/stunnable = TRUE
+			if(ishuman(M))
+				var/mob/living/carbon/human/H = M
+				if(H.species?.flags & NO_PAIN)
+					stunnable = FALSE
 			var/mouth_covered = FALSE
 			var/eyes_covered = FALSE
-			var/obj/item/safe_thing = null
-			if(victim.are_eyes_covered(check_mask = FALSE, check_head = FALSE))
+			if(M.are_eyes_covered(check_mask = FALSE, check_head = FALSE))
 				eyes_covered = TRUE
-				safe_thing = victim.glasses
-			if(victim.are_eyes_covered(check_head = FALSE, check_eyes = FALSE))
+			if(M.are_eyes_covered(check_head = FALSE, check_eyes = FALSE))
 				eyes_covered = TRUE
-				safe_thing = victim.wear_mask
-			if(victim.is_mouth_covered(check_head = FALSE))
+			if(M.is_mouth_covered(check_head = FALSE))
 				mouth_covered = TRUE
-				safe_thing = victim.wear_mask
-			if(victim.are_eyes_covered(check_mask = FALSE, check_eyes = FALSE))
+			if(M.are_eyes_covered(check_mask = FALSE, check_eyes = FALSE))
 				eyes_covered = TRUE
-				safe_thing = victim.head
-			if(victim.is_mouth_covered(check_mask = FALSE))
+			if(M.is_mouth_covered(check_mask = FALSE))
 				mouth_covered = TRUE
-				safe_thing = victim.head
 			if(eyes_covered && mouth_covered)
-				to_chat(victim, "<span class='danger'>Your [safe_thing.name] protects you from the pepperspray!</span>")
 				return
 			if(mouth_covered)	// Reduced effects if partially protected
-				to_chat(victim, "<span class='danger'>Your [safe_thing] protect your face from the pepperspray!</span>")
-				victim.blur_eyes(15)
-				victim.blind_eyes(5)
-				victim.Stun(5)
-				victim.KnockDown(5)
+				M.blur_eyes(15)
+				M.blind_eyes(5)
+				if(stunnable)
+					M.KnockDown(5)
+			else if(eyes_covered) // Mouth cover is better than eye cover, except it's actually the opposite.
+				if(stunnable && prob(10))
+					M.Stun(1)
+				M.blur_eyes(5)
 				return
-			if(eyes_covered) // Mouth cover is better than eye cover, except it's actually the opposite.
-				to_chat(victim, "<span class='danger'>Your [safe_thing] protects you from most of the pepperspray!</span>")
-				if(!(victim.species?.flags & NO_PAIN))
+			else
+				if(stunnable)
+					M.Stun(5)
+					M.KnockDown(5)
 					if(prob(10))
-						victim.Stun(1)
-				victim.blur_eyes(5)
-				return
-			if(!(victim.species?.flags & NO_PAIN))
-				if(prob(10))
-					victim.emote("scream")
-			to_chat(victim, "<span class='danger'>You're sprayed directly in the eyes with pepperspray!</span>")
-			victim.blur_eyes(25)
-			victim.blind_eyes(10)
-			victim.Stun(5)
-			victim.KnockDown(5)
+						M.emote("scream")
+				M.blur_eyes(25)
+				M.blind_eyes(10)
 
 
 /datum/reagent/consumable/frostoil

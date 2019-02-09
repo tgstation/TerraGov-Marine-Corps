@@ -15,14 +15,20 @@
 	var/lifetime = 5
 	var/opaque = TRUE //whether the smoke can block the view when in enough amount
 	var/list/current_cloud // for associated chemical smokes.
+	var/fraction = 0.2
 
 	//Remove this bit to use the old smoke
 	icon = 'icons/effects/96x96.dmi'
 	pixel_x = -32
 	pixel_y = -32
 
-/obj/effect/particle_effect/smoke/Initialize()
+/obj/effect/particle_effect/smoke/Initialize(mapload, range, smoketime)
 	. = ..()
+	if(smoketime)
+		lifetime = smoketime
+		fraction = INVERSE(smoketime)
+	if(range)
+		amount = range
 	create_reagents(500)
 	current_cloud = list(src)
 	START_PROCESSING(SSobj, src)
@@ -30,7 +36,7 @@
 /obj/effect/particle_effect/smoke/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	for(var/obj/effect/particle_effect/smoke/C in current_cloud)
-		C.current_cloud.Remove(src)
+		C.current_cloud -= src
 	return ..()
 
 /obj/effect/particle_effect/smoke/proc/kill_smoke()
@@ -74,18 +80,19 @@
 		apply_smoke_effect(T)
 		var/obj/effect/particle_effect/smoke/S = new type(T)
 		reagents.copy_to(S, reagents.total_volume)
-		S.current_cloud.Add(current_cloud)
+		S.current_cloud += current_cloud
 		for(var/obj/effect/particle_effect/smoke/C in current_cloud)
-			C.current_cloud.Add(S)
-			to_chat(world, "yeeeeaaaahw!")
+			C.current_cloud += S
 		S.icon = icon
 		S.setDir(pick(cardinal))
 		S.amount = amount-1
 		S.lifetime = lifetime
+		S.fraction = INVERSE(lifetime)
 		if(S.amount > 0)
 			newsmokes.Add(S)
 		else
 			S.lifetime += rand(-1,1)
+	lifetime += rand(-1,1)
 	if(opaque)
 		SetOpacity(TRUE)
 
@@ -147,10 +154,7 @@
 /datum/effect_system/smoke_spread/start()
 	if(!QDELETED(holder))
 		location = get_turf(holder)
-	var/obj/effect/particle_effect/smoke/S = new smoke_type(location)
-	if(lifetime)
-		S.lifetime = lifetime
-	S.amount = range
+	var/obj/effect/particle_effect/smoke/S = new smoke_type(location, range, lifetime)
 	if(S.amount)
 		S.spread_smoke()
 
@@ -185,6 +189,10 @@
 	apply_smoke_effect(get_turf(src))
 
 /obj/effect/particle_effect/smoke/tactical/Destroy()
+	apply_smoke_effect(get_turf(src))
+	return ..()
+
+/obj/effect/particle_effect/smoke/tactical/kill_smoke()
 	apply_smoke_effect(get_turf(src))
 	return ..()
 
@@ -384,10 +392,8 @@ datum/effect_system/smoke_spread/tactical
 /datum/effect_system/smoke_spread/xeno/start()
 	if(holder)
 		location = get_turf(holder)
-	var/obj/effect/particle_effect/smoke/xeno/S = new smoke_type(location)
+	var/obj/effect/particle_effect/smoke/xeno/S = new smoke_type(location, range, lifetime)
 	S.strength = strength
-	if(lifetime)
-		S.lifetime = lifetime
 	if(S.amount)
 		S.spread_smoke()
 
@@ -402,41 +408,36 @@ datum/effect_system/smoke_spread/tactical
 /////////////////////////////////////////////
 /obj/effect/particle_effect/smoke/chem
 	lifetime = 10
-	var/fraction
 	var/list/smoked_mobs
 
 /obj/effect/particle_effect/smoke/chem/Destroy()
-	if(length(smoked_mobs))
-		for(var/obj/effect/particle_effect/smoke/chem/C in current_cloud)
-			C.smoked_mobs.Cut()
-	. = ..()
+	if(length(smoked_mobs) && alpha) //so the whole cloud won't stop working somehow
+		var/obj/effect/particle_effect/smoke/chem/neighbor = pick(current_cloud)
+		neighbor.chemical_effect()
 
 /obj/effect/particle_effect/smoke/chem/apply_smoke_effect(turf/T)
 	. = ..()
-	reagents.reaction(T, TOUCH, fraction)
+	reagents.reaction(T, VAPOR, fraction)
 	for(var/obj/O in T)
 		if(O.type == type)
 			continue
 		if(T.intact_tile && O.level == 1) //hidden under the floor
 			continue
-		reagents.reaction(O, TOUCH, fraction)
+		reagents.reaction(O, VAPOR, fraction)
 
 /obj/effect/particle_effect/smoke/chem/effect_contact(mob/living/carbon/C)
-	reagents.reaction(C, TOUCH, fraction)
+	reagents.reaction(C, VAPOR, fraction)
 
 /obj/effect/particle_effect/smoke/chem/effect_inhale(mob/living/carbon/C)
 	if(!length(smoked_mobs))
-		addtimer(CALLBACK(src, .proc/chemical_effect), 5)
+		addtimer(CALLBACK(src, .proc/chemical_effect), 4)
 	for(var/obj/effect/particle_effect/smoke/chem/S in current_cloud)
-		S.smoked_mobs.Add(C)
+		smoked_mobs += C
 
 /obj/effect/particle_effect/smoke/chem/proc/chemical_effect()
 	for(var/mob/living/carbon/C in smoked_mobs)
-		if(QDELETED(C))
-			smoked_mobs.Remove(C)
-			return
-		reagents.reaction(C, INGEST, fraction / smoked_mobs.len)
-		reagents.copy_to(C, reagents.total_volume, fraction / smoked_mobs.len)
+		reagents.reaction(C, INGEST, fraction / length(smoked_mobs))
+		reagents.copy_to(C, reagents.total_volume, fraction / length(smoked_mobs))
 	for(var/obj/effect/particle_effect/smoke/chem/S in current_cloud)
 		S.smoked_mobs.Cut()
 
@@ -483,7 +484,7 @@ datum/effect_system/smoke_spread/tactical
 	var/mixcolor = mix_color_from_reagents(chemholder.reagents.reagent_list)
 	if(!QDELETED(holder))
 		location = get_turf(holder)
-	var/obj/effect/particle_effect/smoke/chem/S = new smoke_type(location)
+	var/obj/effect/particle_effect/smoke/chem/S = new smoke_type(location, range, lifetime)
 
 	if(chemholder.reagents.total_volume > 1) // can't split 1 very well
 		chemholder.reagents.copy_to(S, chemholder.reagents.total_volume)
@@ -492,10 +493,6 @@ datum/effect_system/smoke_spread/tactical
 		S.icon = icon('icons/effects/chemsmoke.dmi')
 		S.icon += mixcolor
 
-	if(lifetime)
-		S.lifetime = lifetime
-		S.fraction = INVERSE(lifetime)
-	S.amount = range
 	if(S.amount)
 		S.spread_smoke()
 

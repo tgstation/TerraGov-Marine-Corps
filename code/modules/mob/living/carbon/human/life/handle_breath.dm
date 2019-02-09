@@ -48,27 +48,6 @@
 						if(prob(5))
 							rupture_lung()
 
-				//Handle filtering
-				var/block = 0
-				if(wear_mask)
-					if(wear_mask.flags_inventory & BLOCKGASEFFECT)
-						block = 1
-				if(glasses)
-					if(glasses.flags_inventory & BLOCKGASEFFECT)
-						block = 1
-				if(head)
-					if(head.flags_inventory & BLOCKGASEFFECT)
-						block = 1
-
-				if(!block)
-					for(var/obj/effect/particle_effect/smoke/chem/smoke in view(1, src))
-						if(smoke.reagents.total_volume)
-							smoke.reagents.reaction(src, INGEST)
-							spawn(5)
-								if(smoke)
-									smoke.reagents.copy_to(src, 10) //I dunno, maybe the reagents enter the blood stream through the lungs?
-							break //If they breathe in the nasty stuff once, no need to continue checking
-
 		else //Still give container the chance to interact
 			if(ismovableatom(loc))
 				var/atom/movable/container = loc
