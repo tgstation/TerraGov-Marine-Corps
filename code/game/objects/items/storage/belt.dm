@@ -101,7 +101,7 @@
 	item_state = "medical"
 	storage_slots = 14 //can hold 2 "rows" of very limited medical equipment and ammo.
 	max_w_class = 3
-	max_storage_space = 28
+	max_storage_space = 29
 
 	can_hold = list(
 		"/obj/item/device/healthanalyzer",
@@ -145,6 +145,7 @@
 	new /obj/item/storage/pill_bottle/tramadol(src)
 	new /obj/item/storage/pill_bottle/peridaxon(src)
 	new /obj/item/storage/pill_bottle/quickclot(src)
+	new /obj/item/device/healthanalyzer(src)
 
 
 /obj/item/storage/belt/combatLifesaver
