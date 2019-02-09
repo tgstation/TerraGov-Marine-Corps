@@ -28,12 +28,13 @@
 				I.rank = "N/A"
 				update_file = 1
 			dat += "<font color=#008800>[I.content]</font> <i>by [I.author] ([I.rank])</i> on <i><font color=blue>[I.timestamp]</i></font> "
-			if(I.author == usr.key || I.author == "Adminbot" || check_rights(R_EVERYTHING))
+			if(I.author == usr.key || I.author == "TGMC Adminbot" || check_rights(R_PERMISSIONS))
 				dat += "<A href='?src=[ref];notes_remove=[key];remove_index=[i]'>Remove</A> "
+				dat += "<A href='?src=[ref];notes_edit=[key];edit_index=[i]'>Edit</A> "
 			if(I.hidden)
-				dat += "<A href='?src=[ref];notes_unhide=[key];remove_index=[i]'>Unhide</A>"
+				dat += "<A href='?src=[ref];notes_unhide=[key];unhide_index=[i]'>Unhide</A>"
 			else
-				dat += "<A href='?src=[ref];notes_hide=[key];remove_index=[i]'>Hide</A>"
+				dat += "<A href='?src=[ref];notes_hide=[key];hide_index=[i]'>Hide</A>"
 			dat += "<br><br>"
 		if(update_file) to_chat(info, infos)
 
@@ -209,6 +210,32 @@
 
 	log_admin_private("[key_name(usr)] has made visible [key]'s note: [item.content]")
 	message_admins("[ADMIN_TPMONTY(usr)] has made visible [key]'s note: [item.content]")
+
+
+/proc/notes_edit(var/key, var/index)
+	if(!check_rights(R_BAN))
+		return
+
+	key = ckey(key)
+	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
+	var/list/infos
+	info >> infos
+	if(!infos || length(infos) < index)
+		return
+
+	var/datum/player_info/item = infos[index]
+
+	var/note = input(usr, "What do you want the note to say?", "Edit Note", item.content) as message|null
+	if(!note)
+		return
+
+	item.content = note
+
+	to_chat(info, infos)
+	qdel(info)
+
+	log_admin_private("[key_name(usr)] has edited [key]'s note: [note]")
+	message_admins("[ADMIN_TPMONTY(usr)] has edited [key]'s note: [note]")
 
 
 

@@ -284,7 +284,7 @@
 	set category = "Admin"
 	set name = "Get Server Logs"
 
-	if(!check_rights(R_ADMIN))
+	if(!check_rights(R_ASAY))
 		return
 
 	usr.client.holder.browse_server_logs()
@@ -295,7 +295,7 @@
 	set name = "Get Current Logs"
 	set desc = "View/retrieve logfiles for the current round."
 
-	if(!check_rights(R_ADMIN))
+	if(!check_rights(R_ASAY))
 		return
 
 	usr.client.holder.browse_server_logs("[GLOB.log_directory]/")
@@ -306,7 +306,7 @@
 	set desc = "Please use responsibly."
 	set category = "Admin"
 
-	if(!check_rights(R_ADMIN))
+	if(!check_rights(R_ASAY))
 		return
 
 	var/choice = alert("Due to the way BYOND handles files, you WILL need a click macro. This function is also recurive and prone to fucking up, especially if you select the wrong folder. Are you absolutely sure you want to proceed?", "WARNING", "Yes", "No")

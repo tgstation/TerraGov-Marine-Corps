@@ -404,7 +404,7 @@
 			return
 
 		var/key = href_list["notes_hide"]
-		var/index = text2num(href_list["remove_index"])
+		var/index = text2num(href_list["hide_index"])
 
 		notes_hide(key, index)
 		player_notes_show(key)
@@ -415,10 +415,19 @@
 			return
 
 		var/key = href_list["notes_unhide"]
-		var/index = text2num(href_list["remove_index"])
+		var/index = text2num(href_list["unhide_index"])
 
 		notes_unhide(key, index)
 		player_notes_show(key)
+
+
+	else if(href_list["notes_edit"])
+		if(!check_rights(R_BAN))
+			return
+
+		var/key = href_list["notes_edit"]
+		var/index = text2num(href_list["edit_index"])
+		notes_edit(key, index)
 
 
 	else if(href_list["notes"])
