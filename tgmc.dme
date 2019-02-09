@@ -1315,7 +1315,7 @@
 #include "code\modules\power\singularity\particle_accelerator\particle_power.dm"
 #include "code\modules\projectiles\position_point_vector.dm"
 #include "code\modules\projectiles\targeting.dm"
-#include "code\modules\projectiles\zprojectiles.dm"
+#include "code\modules\projectiles\tgprojectile.dm"
 #include "code\modules\projectiles\updated_projectiles\ammo_datums.dm"
 #include "code\modules\projectiles\updated_projectiles\ammunition.dm"
 #include "code\modules\projectiles\updated_projectiles\gun_attachables.dm"
