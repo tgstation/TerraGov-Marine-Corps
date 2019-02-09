@@ -94,8 +94,8 @@ var/global/normal_ooc_colour = "#002eb8"
 	if(!mob)
 		return
 
-	if(mob.stat == DEAD || !isliving(mob))
-		to_chat(src, "<span class='warning'>You must be alive to use LOOC.</span>")
+	if(mob.stat != CONSCIOUS || !isliving(mob))
+		to_chat(src, "<span class='warning'>You must be alive and conscious to use LOOC.</span>")
 		return
 
 	if(IsGuestKey(key))
