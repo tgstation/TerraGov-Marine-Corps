@@ -157,6 +157,8 @@ datum/preferences
 	var/metadata = ""
 	var/slot_name = ""
 
+	var/preferred_slot = SLOT_S_STORE
+
 /datum/preferences/New(client/C)
 	if(istype(C))
 		if(!IsGuestKey(C.key))

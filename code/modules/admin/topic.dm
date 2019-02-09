@@ -745,7 +745,7 @@
 		else if(isxeno(M))
 			if(alert("Are you sure you want to tell the Xeno a Xeno tip?", "Confirmation", "Yes", "No") != "Yes")
 				return
-			to_chat(M, "<span class='tip'>[pick(xenotips)]</span>")
+			to_chat(M, "<span class='tip'>[pick(GLOB.xenotips)]</span>")
 
 		if(isxeno(M))
 			to_chat(M, "<span class='boldnotice'>Your prayers have been answered!! Hope the advice helped.</span>")

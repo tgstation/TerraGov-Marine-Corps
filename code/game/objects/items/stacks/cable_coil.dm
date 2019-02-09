@@ -116,11 +116,11 @@
 		use(1)
 	else
 		..()
-
+    
 /obj/item/stack/cable_coil/attack(mob/M as mob, mob/user as mob)
 	if(hasorgans(M))
 		var/datum/limb/S = M:get_limb(user.zone_selected)
-		if(!(S.status & LIMB_ROBOT) || user.a_intent != INTENT_HELP)
+		if(!(S.status & LIMB_ROBOT) || user.a_intent == INTENT_HARM)
 			return ..()
 
 		if(istype(M,/mob/living/carbon/human))
@@ -380,4 +380,3 @@
 /obj/item/stack/cable_coil/random/New()
 	item_color = pick("red", "blue", "green", "white", "pink", "yellow", "cyan")
 	..()
-
