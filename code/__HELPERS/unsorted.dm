@@ -1703,6 +1703,3 @@ proc/pick_closest_path(value, list/matches = get_fancy_list_of_atom_types())
 	if(istype(D))
 		return !QDELETED(D)
 	return FALSE
-
-
-#define isitem(A) (istype(A, /obj/item))
