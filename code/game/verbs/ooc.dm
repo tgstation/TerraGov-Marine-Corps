@@ -139,7 +139,7 @@ var/global/normal_ooc_colour = "#002eb8"
 		if(!check_rights(R_ADMIN, FALSE))
 			continue
 		if(C.prefs.toggles_chat & CHAT_OOC)
-			to_chat(C, "<font color='#6699CC'><span class='ooc'><span class='prefix'>LOOC: [key_name_admin(mob)]</span>: <span class='message'>[msg]</span></span></font>")
+			to_chat(C, "<font color='#6699CC'><span class='ooc'><span class='prefix'>LOOC: [key_name(mob)]</span>: <span class='message'>[msg]</span></span></font>")
 
 
 /client/verb/setup_character()
