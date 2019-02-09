@@ -36,7 +36,7 @@
 		eye_blind = amount
 		if(client && !old_eye_blind)
 			overlay_fullscreen("blind", /obj/screen/fullscreen/blind)
-	else if(!eye_blind)
+	else if(eye_blind)
 		var/blind_minimum = 0
 		if(stat != CONSCIOUS)
 			blind_minimum = 1

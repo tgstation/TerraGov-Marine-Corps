@@ -14,19 +14,23 @@
 	var/spread_speed = 1 //time in decisecond for a smoke to spread one tile.
 	var/lifetime = 5
 	var/opaque = TRUE //whether the smoke can block the view when in enough amount
-	var/obj/chemholder // for chemical smokes.
+	var/list/current_cloud // for associated chemical smokes.
 
 	//Remove this bit to use the old smoke
 	icon = 'icons/effects/96x96.dmi'
 	pixel_x = -32
 	pixel_y = -32
 
-/obj/effect/particle_effect/smoke/New(loc)
+/obj/effect/particle_effect/smoke/Initialize()
 	. = ..()
+	create_reagents(500)
+	current_cloud = list(src)
 	START_PROCESSING(SSobj, src)
 
 /obj/effect/particle_effect/smoke/Destroy()
 	STOP_PROCESSING(SSobj, src)
+	for(var/obj/effect/particle_effect/smoke/C in current_cloud)
+		C.current_cloud.Remove(src)
 	return ..()
 
 /obj/effect/particle_effect/smoke/proc/kill_smoke()
@@ -69,7 +73,11 @@
 			continue
 		apply_smoke_effect(T)
 		var/obj/effect/particle_effect/smoke/S = new type(T)
-		S.chemholder = chemholder
+		reagents.copy_to(S, reagents.total_volume)
+		S.current_cloud.Add(current_cloud)
+		for(var/obj/effect/particle_effect/smoke/C in current_cloud)
+			C.current_cloud.Add(S)
+			to_chat(world, "yeeeeaaaahw!")
 		S.icon = icon
 		S.setDir(pick(cardinal))
 		S.amount = amount-1
@@ -106,7 +114,7 @@
 	C.smoke_delay = TRUE
 	addtimer(CALLBACK(src, .proc/remove_smoke_delay, C), 10)
 	effect_contact(C)
-	if(!C.internal || !C.has_smoke_protection())
+	if(!C.internal && !C.has_smoke_protection())
 		effect_inhale(C)
 
 /obj/effect/particle_effect/smoke/proc/remove_smoke_delay(mob/living/carbon/C)
@@ -128,14 +136,16 @@
 	var/lifetime
 
 /datum/effect_system/smoke_spread/set_up(radius = 2, loca, smoke_time)
-	if(!isturf(loca))
+	if(isturf(loca))
+		location = loca
+	else
 		location = get_turf(loca)
 	range = radius
 	if(smoke_time)
 		lifetime = smoke_time
 
 /datum/effect_system/smoke_spread/start()
-	if(holder)
+	if(!QDELETED(holder))
 		location = get_turf(holder)
 	var/obj/effect/particle_effect/smoke/S = new smoke_type(location)
 	if(lifetime)
@@ -393,24 +403,42 @@ datum/effect_system/smoke_spread/tactical
 /obj/effect/particle_effect/smoke/chem
 	lifetime = 10
 	var/fraction
+	var/list/smoked_mobs
 
-/obj/effect/particle_effect/smoke/chem/New()
+/obj/effect/particle_effect/smoke/chem/Destroy()
+	if(length(smoked_mobs))
+		for(var/obj/effect/particle_effect/smoke/chem/C in current_cloud)
+			C.smoked_mobs.Cut()
 	. = ..()
-	fraction = INVERSE(lifetime)
 
 /obj/effect/particle_effect/smoke/chem/apply_smoke_effect(turf/T)
-	if(chemholder?.reagents)
-		chemholder.reagents.reaction(T, TOUCH, fraction * chemholder.reagents.total_volume)
-	return ..()
+	. = ..()
+	reagents.reaction(T, TOUCH, fraction)
+	for(var/obj/O in T)
+		if(O.type == type)
+			continue
+		if(T.intact_tile && O.level == 1) //hidden under the floor
+			continue
+		reagents.reaction(O, TOUCH, fraction)
 
 /obj/effect/particle_effect/smoke/chem/effect_contact(mob/living/carbon/C)
-	if(chemholder?.reagents)
-		chemholder.reagents.reaction(C, TOUCH, fraction * chemholder.reagents.total_volume)
+	reagents.reaction(C, TOUCH, fraction)
 
 /obj/effect/particle_effect/smoke/chem/effect_inhale(mob/living/carbon/C)
-	if(chemholder?.reagents)
-		chemholder.reagents.reaction(C, INGEST, fraction * chemholder.reagents.total_volume)
-		chemholder.reagents.trans_to(C, fraction * chemholder.reagents.total_volume)
+	if(!length(smoked_mobs))
+		addtimer(CALLBACK(src, .proc/chemical_effect), 5)
+	for(var/obj/effect/particle_effect/smoke/chem/S in current_cloud)
+		S.smoked_mobs.Add(C)
+
+/obj/effect/particle_effect/smoke/chem/proc/chemical_effect()
+	for(var/mob/living/carbon/C in smoked_mobs)
+		if(QDELETED(C))
+			smoked_mobs.Remove(C)
+			return
+		reagents.reaction(C, INGEST, fraction / smoked_mobs.len)
+		reagents.copy_to(C, reagents.total_volume, fraction / smoked_mobs.len)
+	for(var/obj/effect/particle_effect/smoke/chem/S in current_cloud)
+		S.smoked_mobs.Cut()
 
 /datum/effect_system/smoke_spread/chem
 	var/obj/chemholder
@@ -418,12 +446,17 @@ datum/effect_system/smoke_spread/tactical
 
 /datum/effect_system/smoke_spread/chem/New()
 	. = ..()
-	chemholder = new
+	chemholder = new()
 	chemholder.create_reagents(500)
-	QDEL_IN(chemholder, lifetime * SSobj.wait)
 
 /datum/effect_system/smoke_spread/chem/set_up(datum/reagents/carry = null, radius = 1, loca, smoke_time, silent = FALSE)
-	. = ..()
+	if(isturf(loca))
+		location = loca
+	else
+		location = get_turf(loca)
+	range = radius
+	if(smoke_time)
+		lifetime = smoke_time
 
 	carry.copy_to(chemholder, carry.total_volume)
 
@@ -447,21 +480,22 @@ datum/effect_system/smoke_spread/tactical
 			log_game("A chemical smoke reaction has taken place in ([where])[contained]. No associated key.")
 
 /datum/effect_system/smoke_spread/chem/start()
-	if(holder)
+	var/mixcolor = mix_color_from_reagents(chemholder.reagents.reagent_list)
+	if(!QDELETED(holder))
 		location = get_turf(holder)
-
 	var/obj/effect/particle_effect/smoke/chem/S = new smoke_type(location)
 
 	if(chemholder.reagents.total_volume > 1) // can't split 1 very well
-		S.chemholder = chemholder
+		chemholder.reagents.copy_to(S, chemholder.reagents.total_volume)
 
-		var/color = mix_color_from_reagents(chemholder.reagents.reagent_list)
-		if(color)
-			S.icon = icon('icons/effects/chemsmoke.dmi')
-			S.icon += color
+	if(mixcolor)
+		S.icon = icon('icons/effects/chemsmoke.dmi')
+		S.icon += mixcolor
 
 	if(lifetime)
 		S.lifetime = lifetime
+		S.fraction = INVERSE(lifetime)
 	S.amount = range
 	if(S.amount)
 		S.spread_smoke()
+
