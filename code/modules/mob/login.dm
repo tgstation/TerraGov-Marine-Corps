@@ -33,7 +33,7 @@
 	if(!hud_used) create_hud()
 	if(hud_used) hud_used.show_hud(hud_used.hud_version)
 
-	log_message("[src] has logged in.", LOG_OOC, "blue")
+	log_message("has logged in.", LOG_OOC, "blue")
 
 	reload_fullscreens()
 
