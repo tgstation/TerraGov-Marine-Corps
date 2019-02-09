@@ -372,7 +372,7 @@ Defined in conflicts.dm of the #defines folder.
 	scatter_mod = -CONFIG_GET(number/combat_define/low_scatter_value)
 
 /obj/item/attachable/mosinbarrel
-	name = "sniper barrel"
+	name = "mosin barrel"
 	icon_state = "mosinbarrel"
 	desc = "A heavy barrel. CANNOT BE REMOVED."
 	slot = "under" //only way for it to work with a bayonet is to make this take the underbarrel slot. no more bipods.
