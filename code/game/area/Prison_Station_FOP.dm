@@ -1,6 +1,7 @@
 //Base Instance
 /area/prison
 	name = "Fiorina Orbital Penitentiary"
+	ceiling = CEILING_GLASS
 
 //SECURITY
 /area/prison/security
