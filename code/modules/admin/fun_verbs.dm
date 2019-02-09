@@ -322,16 +322,12 @@
 	if(!check_rights(R_SOUND))
 		return
 
-	var/midi_warning = ""
-
-	if(midi_playing)
-		to_chat(usr, "<span class='warning'>A sound was played recently. Please wait.</span>")
-		return
-
 	var/sound/uploaded_sound = sound(S, repeat = 0, wait = 1, channel = 777)
 	uploaded_sound.priority = 250
 
-	switch(alert("Play sound globally or locally?", "Sound", "Global", "Local", "Cancel"))
+
+	var/style = alert("Play sound globally or locally?", "Sound", "Global", "Local", "Cancel")
+	switch(style)
 		if("Global")
 			for(var/mob/M in GLOB.player_list)
 				if(M.client.prefs.toggles_sound & SOUND_MIDI)
@@ -344,42 +340,8 @@
 		if("Cancel")
 			return
 
-	log_admin("[key_name(usr)] played sound '[S]' for [heard_midi] player(s). [length(GLOB.clients) - heard_midi] player(s) have disabled admin midis or were out of view.")
-	message_admins("[ADMIN_TPMONTY(usr)] played sound '[S]' for [heard_midi] player(s). [length(GLOB.clients) - heard_midi] player(s) have disabled admin midis or were out of view.")
-
-	// A 30 sec timer used to show Admins how many players are silencing the sound after it starts - see preferences_toggles.dm
-	var/midi_playing_timer = 300 // Should match with the midi_silenced spawn() in preferences_toggles.dm
-	midi_playing = TRUE
-	spawn(midi_playing_timer)
-		midi_playing = 0
-		if(heard_midi == 0)
-			message_admins("No-one heard the midi")
-			total_silenced = 0
-			return
-		if((total_silenced / heard_midi) != 0)
-			midi_warning = "[round((total_silenced / heard_midi) * 100)]% of players don't want to hear it, and likely more if the midi is longer than 30 seconds."
-		message_admins("'Silence Current Midi' usage reporting 30-sec timer has expired. [total_silenced] player(s) silenced the midi in the first 30 seconds out of [heard_midi] total player(s) that have 'Play Admin Midis' enabled. [midi_warning]")
-		heard_midi = 0
-		total_silenced = 0
-
-
-/datum/admins/proc/sound_list()
-	set category = "Fun"
-	set name = "Play Sound From List"
-	set desc = "Play a sound already in the project from a pre-made list."
-
-	if(!check_rights(R_SOUND))
-		return
-
-	var/list/sounds = file2list("sound/soundlist.txt");
-	sounds += "--CANCEL--"
-
-	var/melody = input("Select a sound to play", "Sound list", "--CANCEL--") in sounds
-
-	if(melody == "--CANCEL--")
-		return
-
-	usr.client.holder.sound_file(melody)
+	log_admin("[key_name(usr)] played sound '[S]' for [heard_midi] player(s). [length(GLOB.clients) - heard_midi] player(s) [style == "Global" ? "have disabled admin midis" : "were out of view"].")
+	message_admins("[ADMIN_TPMONTY(usr)] played sound '[S]' for [heard_midi] player(s). [length(GLOB.clients) - heard_midi] player(s) [style == "Global" ? "have disabled admin midis" : "were out of view"].")
 
 
 /datum/admins/proc/sound_web()
@@ -394,63 +356,51 @@
 		to_chat(usr, "<span class='warning'>Youtube-dl was not configured, action unavailable.</span>")
 		return
 
-	var/web_sound_input = input("Enter content URL (supported sites only, leave blank to stop playing)", "Play Internet Sound via youtube-dl") as text|null
-	if(istext(web_sound_input))
-		var/web_sound_url = ""
-		var/pitch
-		var/show = FALSE
-		if(length(web_sound_input))
-			web_sound_input = trim(web_sound_input)
-			if(findtext(web_sound_input, ":") && !findtext(web_sound_input, GLOB.is_http_protocol))
-				to_chat(src, "<span class='warning'>Non-http(s) URIs are not allowed.</span>")
-				to_chat(src, "<span class='warning'>For youtube-dl shortcuts like ytsearch: please use the appropriate full url from the website.</span>")
-				return
-			var/shell_scrubbed_input = shell_url_scrub(web_sound_input)
-			var/list/output = world.shelleo("[ytdl] --format \"bestaudio\[ext=mp3]/best\[ext=mp4]\[height<=360]/bestaudio\[ext=m4a]/bestaudio\[ext=aac]\" --dump-single-json --no-playlist -- \"[shell_scrubbed_input]\"")
-			var/errorlevel = output[SHELLEO_ERRORLEVEL]
-			var/stdout = output[SHELLEO_STDOUT]
-			var/stderr = output[SHELLEO_STDERR]
-			if(!errorlevel)
-				var/list/data
-				try
-					data = json_decode(stdout)
-				catch(var/exception/e)
-					to_chat(usr, "<span class='warning'>Youtube-dl JSON parsing FAILED: [e]: [stdout]</span>")
-					return
-				if(data["url"])
-					web_sound_url = data["url"]
-					var/title = "[data["title"]]"
-					var/res = alert(usr, "Show the title of and link to this song to the players?\n[title]",, "Yes", "No", "Cancel")
-					switch(res)
-						if("Yes")
-							if(data["webpage_url"])
-								show = "<a href=\"[data["webpage_url"]]\">[title]</a>"
-						if("Cancel")
-							return
-					log_admin("[key_name(usr)] played web sound: [web_sound_input]")
-					message_admins("[ADMIN_TPMONTY(usr)] played web sound: [web_sound_input]")
-			else
-				to_chat(usr, "<span class='warning'>Youtube-dl URL retrieval FAILED: [stderr]</span>")
-		else
-			var/a = alert(usr, "Do you want to stop all sounds?", "Warning", "Yes", "No")
-			switch(a)
-				if("Yes")
-					for(var/m in GLOB.player_list)
-						var/mob/M = m
-						var/client/C = M.client
-						if((C.prefs.toggles_sound & SOUND_MIDI) && C.chatOutput && !C.chatOutput.broken && C.chatOutput.loaded)
-							C.chatOutput.stopMusic()
-					log_admin("[key_name(usr)] stopped web sound.")
-					message_admins("[ADMIN_TPMONTY(usr)] stopped web sound.")
+	var/web_sound_input = input("Enter content URL (supported sites only)", "Play Internet Sound via youtube-dl") as text|null
+	if(!istext(web_sound_input))
+		return
+
+	var/web_sound_url = ""
+	var/pitch
+	var/show = FALSE
+	if(length(web_sound_input))
+		web_sound_input = trim(web_sound_input)
+		if(findtext(web_sound_input, ":") && !findtext(web_sound_input, GLOB.is_http_protocol))
+			to_chat(usr, "<span class='warning'>Non-http(s) URIs are not allowed.</span>")
+			to_chat(usr, "<span class='warning'>For youtube-dl shortcuts like ytsearch: please use the appropriate full url from the website.</span>")
 			return
+		var/shell_scrubbed_input = shell_url_scrub(web_sound_input)
+		var/list/output = world.shelleo("[ytdl] --format \"bestaudio\[ext=mp3]/best\[ext=mp4]\[height<=360]/bestaudio\[ext=m4a]/bestaudio\[ext=aac]\" --dump-single-json --no-playlist -- \"[shell_scrubbed_input]\"")
+		var/errorlevel = output[SHELLEO_ERRORLEVEL]
+		var/stdout = output[SHELLEO_STDOUT]
+		var/stderr = output[SHELLEO_STDERR]
+		if(!errorlevel)
+			var/list/data
+			try
+				data = json_decode(stdout)
+			catch(var/exception/e)
+				to_chat(usr, "<span class='warning'>Youtube-dl JSON parsing FAILED: [e]: [stdout]</span>")
+				return
+			if(data["url"])
+				web_sound_url = data["url"]
+				var/title = "[data["title"]]"
+				var/res = alert(usr, "Show the title of and link to this song to the players?\n[title]",, "Yes", "No", "Cancel")
+				switch(res)
+					if("Yes")
+						if(data["webpage_url"])
+							show = "<a href=\"[data["webpage_url"]]\">[title]</a>"
+					if("Cancel")
+						return
+		else
+			to_chat(usr, "<span class='warning'>Youtube-dl URL retrieval FAILED: [stderr]</span>")
 
 		if(web_sound_url && !findtext(web_sound_url, GLOB.is_http_protocol))
-			to_chat(src, "<span class='warning'>BLOCKED: Content URL not using http(s) protocol</span>")
-			to_chat(src, "<span class='warning'>The media provider returned a content URL that isn't using the HTTP or HTTPS protocol</span>")
+			to_chat(usr, "<span class='warning'>BLOCKED: Content URL not using http(s) protocol</span>")
+			to_chat(usr, "<span class='warning'>The media provider returned a content URL that isn't using the HTTP or HTTPS protocol</span>")
 			return
 
 		var/lst
-		var/style = alert(usr, "Do you want to play this globally or to the xenos/marines?",, "Globally", "Xenos", "Marines")
+		var/style = input("Do you want to play this globally or to the xenos/marines?") as null|anything in list("Globally", "Xenos", "Marines", "Locally")
 		switch(style)
 			if("Globally")
 				lst = GLOB.mob_list
@@ -458,6 +408,12 @@
 				lst = GLOB.xeno_mob_list + GLOB.dead_mob_list
 			if("Marines")
 				lst = GLOB.human_mob_list + GLOB.dead_mob_list
+			if("Locally")
+				lst = viewers(usr.client.view, usr)
+
+		if(!lst)
+			return
+
 		for(var/m in lst)
 			var/mob/M = m
 			var/client/C = M.client
@@ -467,6 +423,9 @@
 				C.chatOutput.sendMusic(web_sound_url, pitch)
 				if(show)
 					to_chat(C, "<span class='boldnotice'>An admin played: [show]</span>")
+
+		log_admin("[key_name(usr)] played web sound: [web_sound_input] - [show] - [style]")
+		message_admins("[ADMIN_TPMONTY(usr)] played web sound: [web_sound_input] - [show] - [style]")
 
 
 /datum/admins/proc/sound_stop()
