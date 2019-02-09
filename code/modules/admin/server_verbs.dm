@@ -37,6 +37,25 @@
 	message_admins("[ADMIN_TPMONTY(usr)] [GLOB.ooc_allowed ? "enabled" : "disabled"] OOC.")
 
 
+/datum/admins/proc/toggle_looc()
+	set category = "Server"
+	set name = "Toggle LOOC"
+	set desc = "Toggles LOOC for non-admins."
+
+	if(!check_rights(R_SERVER))
+		return
+
+	GLOB.looc_allowed = !(GLOB.looc_allowed)
+
+	if(GLOB.looc_allowed)
+		to_chat(world, "<span class='boldnotice'>LOOC has been globally enabled!</span>")
+	else
+		to_chat(world, "<span class='boldnotice'>LOOC has been globally disabled!</span>")
+
+	log_admin("[key_name(usr)] [GLOB.looc_allowed ? "enabled" : "disabled"] LOOC.")
+	message_admins("[ADMIN_TPMONTY(usr)] [GLOB.looc_allowed ? "enabled" : "disabled"] LOOC.")
+
+
 /datum/admins/proc/toggle_deadchat()
 	set category = "Server"
 	set name = "Toggle Deadchat"

@@ -1228,12 +1228,14 @@
 		message_admins("[ADMIN_TPMONTY(usr)] forcibly removed all players from [CA].")
 
 
-/datum/admins/proc/not_looc(msg as text)
+/datum/admins/proc/local_message(msg as text)
 	set category = "Admin"
-	set name = "Not LOOC"
+	set name = "Local Message"
 
 	if(!check_rights(R_ADMIN))
 		return
+
+	msg = noscript(msg)
 
 	if(!msg)
 		return
@@ -1243,5 +1245,5 @@
 	usr.visible_message(message, message, message)
 
 
-	log_admin("[key_name(usr)] has used Not LOOC to say: [msg]")
-	message_admins("[ADMIN_TPMONTY(usr)] has used Not LOOC to say: [msg]")
+	log_admin("[key_name(usr)] has used local message to say: [msg]")
+	message_admins("[ADMIN_TPMONTY(usr)] has used local message to say: [msg]")

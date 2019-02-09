@@ -233,6 +233,9 @@ macro "hotkeymode"
 		name = "O"
 		command = "ooc"
 	elem 
+		name = "L"
+		command = "looc"
+	elem 
 		name = "Q"
 		command = ".northwest"
 	elem 
