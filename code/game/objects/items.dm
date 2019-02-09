@@ -511,7 +511,7 @@ cases. Override_icon_state should be a list.*/
 					return TRUE
 			if(SLOT_IN_ACCESSORY)
 				var/obj/item/clothing/under/U = H.w_uniform
-				if(!U || !U.hastie)
+				if(!U?.hastie)
 					return FALSE
 				var/obj/item/clothing/tie/storage/T = U.hastie
 				if(!istype(T))
