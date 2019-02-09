@@ -16,12 +16,12 @@
 	var/move_delay = 2
 
 /obj/structure/bed/chair/janicart/New()
-	handle_rotation()
+	. = ..()
 	create_reagents(100)
 
 
 /obj/structure/bed/chair/janicart/examine(mob/user)
-	to_chat(user, "\icon[src] This [callme] contains [reagents.total_volume] unit\s of water!")
+	to_chat(user, "[bicon(src)] This [callme] contains [reagents.total_volume] unit\s of water!")
 	if(mybag)
 		to_chat(user, "\A [mybag] is hanging on the [callme].")
 
@@ -82,7 +82,7 @@
 
 /obj/structure/bed/chair/janicart/proc/update_mob()
 	if(buckled_mob)
-		buckled_mob.dir = dir
+		buckled_mob.setDir(dir)
 		switch(dir)
 			if(SOUTH)
 				buckled_mob.pixel_x = 0

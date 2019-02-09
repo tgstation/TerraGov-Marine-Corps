@@ -233,7 +233,7 @@
 
 	if(!istype(user,/mob/living)) return
 
-	if(user.a_intent == "help")
+	if(user.a_intent == INTENT_HELP)
 
 		if(istype(src.loc,/mob/living))
 			to_chat(user, "How do you propose to modify a hardsuit while it is being worn?")

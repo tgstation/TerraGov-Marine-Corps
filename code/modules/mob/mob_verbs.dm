@@ -19,37 +19,36 @@
 		next_move = world.time + 2
 	return
 
-/mob/verb/point_to(atom/A in view())
+/mob/verb/point_to(atom/A in view(client.view + client.get_offset(), loc))
 	set name = "Point To"
 	set category = "Object"
 
-	if(!isturf(src.loc) || !(A in view(src.loc)))//target is no longer visible to us
-		return 0
+	if(!isturf(loc))
+		return FALSE
 
-	if(!A.mouse_opacity)//can't click it? can't point at it.
-		return 0
+	if(!(A in view(client.view + client.get_offset(), loc))) //Target is no longer visible to us.
+		return FALSE
 
-	if(is_mob_incapacitated() || (status_flags & FAKEDEATH)) //incapacitated, can't point
-		return 0
+	if(!A.mouse_opacity) //Can't click it? can't point at it.
+		return FALSE
+
+	if(is_mob_incapacitated() || (status_flags & FAKEDEATH)) //Incapacitated, can't point.
+		return FALSE
 
 	var/tile = get_turf(A)
-	if (!tile)
-		return 0
-
+	if(!tile)
+		return FALSE
 
 	if(next_move > world.time)
-		return 0
+		return FALSE
 
 	if(recently_pointed_to > world.time)
-		return 0
+		return FALSE
 
 	next_move = world.time + 2
 
 	point_to_atom(A, tile)
-	return 1
-
-
-
+	return TRUE
 
 
 /mob/verb/memory()
@@ -80,7 +79,7 @@
 	set name = "Respawn"
 	set category = "OOC"
 
-	if(!respawn_allowed || !check_rights(R_ADMIN, FALSE))
+	if(!GLOB.respawn_allowed || !check_rights(R_ADMIN, FALSE))
 		to_chat(usr, "<span class='notice'>Respawn is disabled.</span>")
 		return
 	if(stat != DEAD)

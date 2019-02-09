@@ -5,7 +5,7 @@
 	name = "M30 box magazine (10x28mm Caseless)"
 	desc = "A box of 500 10x28mm caseless rounds for the UA 571-C Sentry Gun. Just feed it into the sentry gun's ammo port when its ammo is depleted."
 	w_class = 4
-	icon = 'icons/Marine/new_sentry_alt.dmi'
+	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "ammo_can"
 	flags_magazine = NOFLAGS //can't be refilled or emptied by hand
 	caliber = "10x28mm"
@@ -43,7 +43,7 @@
 	desc = "The turret part of an automated sentry turret."
 	unacidable = TRUE
 	w_class = 5
-	icon = 'icons/Marine/new_sentry_alt.dmi'
+	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "sentry_head"
 
 
@@ -52,7 +52,7 @@
 	desc = "The tripod part of an automated sentry turret. You should deploy it first."
 	unacidable = TRUE
 	w_class = 5
-	icon = 'icons/Marine/new_sentry_alt.dmi'
+	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "sentry_tripod_folded"
 
 /obj/item/device/turret_tripod/attack_self(mob/user)
@@ -73,7 +73,7 @@
 		if(!src) //Make sure the sentry still exists
 			return
 		var/obj/machinery/turret_tripod_deployed/S = new /obj/machinery/turret_tripod_deployed/(target)
-		S.dir = user.dir
+		S.setDir(user.dir)
 		user.visible_message("<span class='notice'>[user] unfolds \the [S].</span>",
 			"<span class='notice'>You unfold \the [S].</span>")
 		playsound(target, 'sound/weapons/mine_armed.ogg', 25)
@@ -84,7 +84,7 @@
 /obj/machinery/turret_tripod_deployed
 	name = "\improper UA 571-C turret tripod"
 	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an M30 Autocannon and a 500-round drum magazine."
-	icon = 'icons/Marine/new_sentry_alt.dmi'
+	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "sentry_tripod"
 	anchored = FALSE
 	unacidable = TRUE
@@ -179,7 +179,7 @@
 
 			if(do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
 				var/obj/machinery/marine_turret/S = new /obj/machinery/marine_turret(loc)
-				S.dir = dir
+				S.setDir(dir)
 				user.visible_message("<span class='notice'>[user] finishes \the [S].</span>",
 					"<span class='notice'>You finish \the [S].</span>")
 				playsound(S.loc, 'sound/weapons/mine_armed.ogg', 25)
@@ -206,7 +206,7 @@
 /obj/machinery/marine_turret
 	name = "\improper UA 571-C sentry gun"
 	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an M30 Autocannon and a 500-round drum magazine."
-	icon = 'icons/Marine/new_sentry_alt.dmi'
+	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "sentry_base"
 	anchored = TRUE
 	unacidable = TRUE
@@ -279,6 +279,7 @@
 
 
 /obj/machinery/marine_turret/Initialize()
+	. = ..()
 	spark_system = new /datum/effect_system/spark_spread
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
@@ -602,13 +603,13 @@
 		user.visible_message("<span class='notice'>[user] rotates [src].</span>",
 		"<span class='notice'>You rotate [src].</span>")
 		if(dir == NORTH)
-			dir = EAST
+			setDir(EAST)
 		else if(dir == EAST)
-			dir = SOUTH
+			setDir(SOUTH)
 		else if(dir == SOUTH)
-			dir = WEST
+			setDir(WEST)
 		else if(dir == WEST)
-			dir = NORTH
+			setDir(NORTH)
 		return
 
 
@@ -698,14 +699,14 @@
 	return ..()
 
 /obj/machinery/marine_turret/update_icon()
-	var/image/battery_green = image('icons/Marine/new_sentry_alt.dmi', src, "sentry_batt_green")
-	var/image/battery_yellow = image('icons/Marine/new_sentry_alt.dmi', src, "sentry_batt_yellow")
-	var/image/battery_orange = image('icons/Marine/new_sentry_alt.dmi', src, "sentry_batt_orange")
-	var/image/battery_red = image('icons/Marine/new_sentry_alt.dmi', src, "sentry_batt_red")
-	var/image/battery_black = image('icons/Marine/new_sentry_alt.dmi', src, "sentry_batt_black")
-	var/image/active = image('icons/Marine/new_sentry_alt.dmi', src, "sentry_active")
-	var/image/ammo_full = image('icons/Marine/new_sentry_alt.dmi', src, "sentry_ammo")
-	var/image/ammo_empty = image('icons/Marine/new_sentry_alt.dmi', src, "sentry_ammo_empty")
+	var/image/battery_green = image('icons/Marine/sentry.dmi', src, "sentry_batt_green")
+	var/image/battery_yellow = image('icons/Marine/sentry.dmi', src, "sentry_batt_yellow")
+	var/image/battery_orange = image('icons/Marine/sentry.dmi', src, "sentry_batt_orange")
+	var/image/battery_red = image('icons/Marine/sentry.dmi', src, "sentry_batt_red")
+	var/image/battery_black = image('icons/Marine/sentry.dmi', src, "sentry_batt_black")
+	var/image/active = image('icons/Marine/sentry.dmi', src, "sentry_active")
+	var/image/ammo_full = image('icons/Marine/sentry.dmi', src, "sentry_ammo")
+	var/image/ammo_empty = image('icons/Marine/sentry.dmi', src, "sentry_ammo_empty")
 
 	overlays.Cut()
 	if(stat && health > 0) //Knocked over
@@ -762,8 +763,8 @@
 		stat = 2
 		state("<span class='warning'>The [name] starts spitting out sparks and smoke!")
 		playsound(loc, 'sound/mecha/critdestrsyndi.ogg', 25, 1)
-		for(var/i = 1 to 6)
-			dir = pick(1, 2, 3, 4)
+		for(var/i in 1 to 6)
+			setDir(pick(NORTH, SOUTH, EAST, WEST))
 			sleep(2)
 		spawn(10)
 			if(src && loc)
@@ -806,8 +807,8 @@
 		if(prob(50))
 			state("<span class='danger'>[src] beeps and buzzes wildly, flashing odd symbols on its screen before shutting down!</span>")
 			playsound(loc, 'sound/mecha/critdestrsyndi.ogg', 25, 1)
-			for(var/i = 1 to 6)
-				dir = pick(1, 2, 3, 4)
+			for(var/i in 1 to 6)
+				setDir(pick(NORTH, SOUTH, EAST, WEST))
 				sleep(2)
 			on = FALSE
 	if(health > 0)
@@ -941,7 +942,7 @@
 	//	return
 
 	if(radial_mode && !manual_override)
-		dir = target_dir
+		setDir(target_dir)
 
 
 	if(load_into_chamber())
@@ -964,7 +965,7 @@
 
 			//Setup projectile
 			in_chamber.original = target
-			in_chamber.dir = dir
+			in_chamber.setDir(dir)
 			in_chamber.def_zone = pick("chest", "chest", "chest", "head")
 
 			//Shoot at the thing
@@ -1165,13 +1166,14 @@
 	ammo = /datum/ammo/bullet/turret/dumb
 	magazine_type = /obj/item/ammo_magazine/sentry/premade/dumb
 	rounds_max = 500
+	alerts_on = FALSE
 
 /obj/machinery/marine_turret/premade/dumb/Initialize()
 	. = ..()
 	rounds = 500
-	camera = null
 	camera.network = null
 	camera.c_tag = null
+	camera = null
 
 
 /obj/machinery/marine_turret/premade/dumb/attack_hand(mob/user as mob)
@@ -1208,7 +1210,7 @@
 	name = "M30 box magazine (10x28mm Caseless)"
 	desc = "A box of 500 10x28mm caseless rounds for the UA 571-C Sentry Gun. Just feed it into the sentry gun's ammo port when its ammo is depleted."
 	w_class = 4
-	icon = 'icons/Marine/new_sentry_alt.dmi'
+	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "ammo_can"
 	flags_magazine = NOFLAGS //can't be refilled or emptied by hand
 	caliber = "10x28mm"
@@ -1236,7 +1238,7 @@
 	name = "UA-577 box magazine (12x40mm Gauss Slugs)"
 	desc = "A box of 50000 12x40mm gauss slugs for the UA-577 Gauss Turret. Just feed it into the turret's ammo port when its ammo is depleted."
 	w_class = 4
-	icon = 'icons/Marine/new_sentry_alt.dmi'
+	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "ammo_can"
 	flags_magazine = NOFLAGS //can't be refilled or emptied by hand
 	caliber = "12x40mm"
@@ -1379,7 +1381,7 @@
 		if(!src) //Make sure the sentry still exists
 			return
 		var/obj/machinery/marine_turret/mini/M = new /obj/machinery/marine_turret/mini(target)
-		M.dir = user.dir
+		M.setDir(user.dir)
 		user.visible_message("<span class='notice'>[user] deploys [M].</span>",
 		"<span class='notice'>You deploy [M].</span>")
 		playsound(target, 'sound/weapons/mine_armed.ogg', 25)

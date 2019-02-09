@@ -51,6 +51,8 @@ datum/preferences
 	//Synthetic specific preferences
 	var/synthetic_name = "Undefined"
 	var/synthetic_type = "Synthetic"
+	//Xenomorph specific preferences
+	var/xeno_name = "Undefined"
 	//Predator specific preferences.
 	var/predator_name = "Undefined"
 	var/predator_gender = MALE
@@ -154,6 +156,8 @@ datum/preferences
 		// OOC Metadata:
 	var/metadata = ""
 	var/slot_name = ""
+
+	var/preferred_slot = SLOT_S_STORE
 
 /datum/preferences/New(client/C)
 	if(istype(C))
@@ -291,7 +295,9 @@ datum/preferences
 		dat += "<b>Greave style:</b> <a href='?_src_=prefs;preference=pred_boot_type;task=input'>([predator_boot_type])</a><br><br>"
 
 	dat += "<br><b>Synthetic name:</b> <a href='?_src_=prefs;preference=synth_name;task=input'>[synthetic_name]</a><br>"
-	dat += "<br><b>Synthetic Type:</b> <a href='?_src_=prefs;preference=synth_type;task=input'>[synthetic_type]</a><br>"
+	dat += "<b>Synthetic Type:</b> <a href='?_src_=prefs;preference=synth_type;task=input'>[synthetic_type]</a><br>"
+
+	dat +="<br><b>Xenomorph name:</b> <a href='?_src_=prefs;preference=xeno_name;task=input'>[xeno_name]</a><br>"
 
 	dat += "<div id='wrapper'>"
 	dat += "<big><big><b>Name:</b> "
@@ -1062,6 +1068,14 @@ datum/preferences
 				if("synth_type")
 					var/new_synth_type = input(user, "Choose your model of synthetic:", "Make and Model") as null|anything in SYNTH_TYPES
 					if(new_synth_type) synthetic_type = new_synth_type
+				if("xeno_name")
+					var/raw_name = input(user, "Choose your Xenomorph name:", "Character Preference")  as text|null
+					if(raw_name) // Check to ensure that the user entered text (rather than cancel.)
+						var/new_name = reject_bad_name(raw_name)
+						if(new_name)
+							xeno_name = new_name
+						else
+							to_chat(user, "<font color='red'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</font>")
 				if("pred_name")
 					var/raw_name = input(user, "Choose your Predator's name:", "Character Preference")  as text|null
 					if(raw_name) // Check to ensure that the user entered text (rather than cancel.)

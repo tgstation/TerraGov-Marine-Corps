@@ -142,7 +142,7 @@
 		to_chat(M, "<span class='warning'>There's no reason to bother with that old piece of trash.</span>")
 		return FALSE
 
-	if(M.a_intent == "hurt")
+	if(M.a_intent == INTENT_HARM)
 		M.animation_attack_on(src)
 		if(prob(M.xeno_caste.melee_damage_lower))
 			playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
@@ -271,9 +271,9 @@
 					//Just Vend it.
 					transfer_and_vend(CH)
 			else
-				to_chat(usr, "\icon[src]<span class='warning'>Connected account has been suspended.</span>")
+				to_chat(usr, "[bicon(src)]<span class='warning'>Connected account has been suspended.</span>")
 		else
-			to_chat(usr, "\icon[src]<span class='warning'>Error: Unable to access your account. Please contact technical support if problem persists.</span>")
+			to_chat(usr, "[bicon(src)]<span class='warning'>Error: Unable to access your account. Please contact technical support if problem persists.</span>")
 
 /obj/machinery/vending/proc/transfer_and_vend(var/datum/money_account/acc)
 	if(acc)
@@ -299,9 +299,9 @@
 			src.vend(src.currently_vending, usr)
 			currently_vending = null
 		else
-			to_chat(usr, "\icon[src]<span class='warning'>You don't have that much money!</span>")
+			to_chat(usr, "[bicon(src)]<span class='warning'>You don't have that much money!</span>")
 	else
-		to_chat(usr, "\icon[src]<span class='warning'>Error: Unable to access your account. Please contact technical support if problem persists.</span>")
+		to_chat(usr, "[bicon(src)]<span class='warning'>Error: Unable to access your account. Please contact technical support if problem persists.</span>")
 
 
 /obj/machinery/vending/attack_paw(mob/user as mob)

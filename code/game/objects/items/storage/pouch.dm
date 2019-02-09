@@ -349,7 +349,8 @@
 	storage_slots = 5
 	draw_mode = 1
 	icon_state = "flare"
-	can_hold = list("/obj/item/device/flashlight/flare")
+	can_hold = list("/obj/item/device/flashlight/flare",
+					"/obj/item/explosive/grenade/flare")
 
 /obj/item/storage/pouch/flare/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/storage/box/m94))
@@ -376,11 +377,11 @@
 
 /obj/item/storage/pouch/flare/full/New()
 	..()
-	new /obj/item/device/flashlight/flare(src)
-	new /obj/item/device/flashlight/flare(src)
-	new /obj/item/device/flashlight/flare(src)
-	new /obj/item/device/flashlight/flare(src)
-	new /obj/item/device/flashlight/flare(src)
+	new /obj/item/explosive/grenade/flare(src)
+	new /obj/item/explosive/grenade/flare(src)
+	new /obj/item/explosive/grenade/flare(src)
+	new /obj/item/explosive/grenade/flare(src)
+	new /obj/item/explosive/grenade/flare(src)
 
 
 

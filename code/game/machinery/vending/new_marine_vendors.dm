@@ -204,6 +204,8 @@
 					var/p_name = L[1]
 					if(findtext(p_name, "Scout Set")) //Makes sure there can only be one Scout kit taken despite the two variants.
 						p_name = "Scout Set"
+					else if(findtext(p_name, "Heavy Armor Set")) //Makes sure there can only be one Heavy kit taken despite the two variants.
+						p_name = "Heavy Armor Set"
 					if(!available_specialist_sets.Find(p_name))
 						to_chat(H, "<span class='warning'>That set is already taken</span>")
 						return
@@ -234,7 +236,7 @@
 				new headset_type(loc)
 				new gloves_type(loc)
 				//if(istype(ticker.mode, /datum/game_mode/ice_colony))//drop a coif with the uniform on ice colony
-				if(map_tag == MAP_ICE_COLONY)
+				if(GLOB.map_tag == MAP_ICE_COLONY)
 					new /obj/item/clothing/mask/rebreather/scarf(loc)
 
 
@@ -243,6 +245,8 @@
 					var/p_name = L[1]
 					if(findtext(p_name, "Scout Set")) //Makes sure there can only be one Scout kit taken despite the two variants.
 						p_name = "Scout Set"
+					else if(findtext(p_name, "Heavy Armor Set")) //Makes sure there can only be one Heavy kit taken despite the two variants.
+						p_name = "Heavy Armor Set"
 					if(p_name)
 						H.specset = p_name
 					else
@@ -902,7 +906,7 @@
 
 
 //the global list of specialist sets that haven't been claimed yet.
-var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolitionist Set", "Heavy Grenadier Set", "Pyro Set")
+var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolitionist Set", "Heavy Armor Set", "Pyro Set")
 
 
 /obj/machinery/marine_selector/gear/spec
@@ -918,7 +922,8 @@ var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolition
 							list("Scout Set (Shotgun)", 0, /obj/item/storage/box/spec/scoutshotgun, MARINE_CAN_BUY_ESSENTIALS, "white"),
 							list("Sniper Set", 0, /obj/item/storage/box/spec/sniper, MARINE_CAN_BUY_ESSENTIALS, "white"),
 							list("Demolitionist Set", 0, /obj/item/storage/box/spec/demolitionist, MARINE_CAN_BUY_ESSENTIALS, "white"),
-							list("Heavy Grenadier Set", 0, /obj/item/storage/box/spec/heavy_grenadier, MARINE_CAN_BUY_ESSENTIALS, "white"),
+							list("Heavy Armor Set (Grenadier)", 0, /obj/item/storage/box/spec/heavy_grenadier, MARINE_CAN_BUY_ESSENTIALS, "white"),
+							list("Heavy Armor Set (Minigun)", 0, /obj/item/storage/box/spec/heavy_gunner, MARINE_CAN_BUY_ESSENTIALS, "white"),
 							list("Pyro Set", 0, /obj/item/storage/box/spec/pyro, MARINE_CAN_BUY_ESSENTIALS, "white"),
 
 							list("SPECIAL AMMUNITION", 0, null, null, null),
@@ -973,8 +978,9 @@ var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolition
 							list("Detonation pack", 5, /obj/item/device/radio/detpack, null, "black"),
 							list("Smoke grenade", 2, /obj/item/explosive/grenade/smokebomb, null, "black"),
 							list("Cloak grenade", 3, /obj/item/explosive/grenade/cloakbomb, null, "black"),
-							list("M40 HIDP incendiary grenade", 4, /obj/item/explosive/grenade/incendiary, null, "black"),
-							list("M40 HEDP grenade", 4, /obj/item/explosive/grenade/frag, null, "black"),
+							list("M40 HIDP incendiary grenade", 3, /obj/item/explosive/grenade/incendiary, null, "black"),
+							list("M40 HEDP grenade", 3, /obj/item/explosive/grenade/frag, null, "black"),
+							list("M40 IMDP grenade", 3, /obj/item/explosive/grenade/impact, null, "black"),
 							list("M41AE2 heavy pulse rifle", 12, /obj/item/weapon/gun/rifle/lmg, null, "orange"),
 							list("M41AE2 ammo box (10x24mm)", 4, /obj/item/ammo_magazine/rifle/lmg, null, "black"),
 							list("Flamethrower", 12, /obj/item/weapon/gun/flamer, null, "orange"),
@@ -1094,7 +1100,7 @@ var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolition
 						/obj/item/cell/high,
 						/obj/item/tool/shovel/etool,
 						/obj/item/device/lightreplacer,
-						/obj/item/circuitboard/general,
+						/obj/item/circuitboard/general
 						)
 
 

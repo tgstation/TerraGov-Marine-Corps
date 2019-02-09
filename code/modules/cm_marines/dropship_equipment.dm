@@ -138,6 +138,7 @@
 	var/datum/shuttle/ferry/marine/linked_shuttle
 	var/screen_mode = 0 //used by the dropship console code when this equipment is selected
 	var/point_cost = 0 //how many points it costs to build this with the fabricator, set to 0 if unbuildable.
+	breakable = FALSE
 
 /obj/structure/dropship_equipment/Destroy()
 	if(ammo_equipped)
@@ -292,10 +293,10 @@
 
 /obj/structure/dropship_equipment/sentry_holder/update_equipment()
 	if(ship_base)
-		dir = ship_base.dir
+		setDir(ship_base.dir)
 		icon_state = "sentry_system_installed"
 		if(deployed_turret)
-			deployed_turret.dir = dir
+			deployed_turret.setDir(dir)
 			if(linked_shuttle && deployed_turret.camera)
 				if(linked_shuttle.shuttle_tag == "[MAIN_SHIP_NAME] Dropship 1")
 					deployed_turret.camera.network.Add("dropship1") //accessible via the dropship camera console
@@ -307,7 +308,7 @@
 				if(EAST) deployed_turret.pixel_x = -8
 				if(WEST) deployed_turret.pixel_x = 8
 	else
-		dir = initial(dir)
+		setDir(initial(dir))
 		if(deployed_turret)
 			if(deployed_turret.camera)
 				if(deployed_turret.camera.network.Find("dropship1"))
@@ -318,7 +319,7 @@
 			deployed_turret.pixel_y = 0
 			deployed_turret.pixel_x = 0
 			deployed_turret.loc = src
-			deployed_turret.dir = dir
+			deployed_turret.setDir(dir)
 			deployed_turret.on = 0
 		else
 			icon_state = "sentry_system_destroyed"
@@ -583,11 +584,11 @@
 
 /obj/structure/dropship_equipment/weapon/update_equipment()
 	if(ship_base)
-		dir = ship_base.dir
+		setDir(ship_base.dir)
 		bound_width = 32
 		bound_height = 32
 	else
-		dir = initial(dir)
+		setDir(initial(dir))
 		bound_width = initial(bound_width)
 		bound_height = initial(bound_height)
 	update_icon()

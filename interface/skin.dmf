@@ -198,7 +198,7 @@ macro "hotkeymode"
 		command = "a-intent grab"
 	elem 
 		name = "4"
-		command = "a-intent hurt"
+		command = "a-intent harm"
 	elem 
 		name = "CTRL+4"
 		command = "a-intent hurt"
@@ -278,6 +278,27 @@ macro "hotkeymode"
 		name = "CTRL+Z"
 		command = "Activate-Held-Object"
 	elem 
+		name = "Numpad1"
+		command = "a-select-zone \"rleg\""
+	elem 
+		name = "Numpad2"
+		command = "a-select-zone \"groin\""
+	elem 
+		name = "Numpad3"
+		command = "a-select-zone \"lleg\""
+	elem 
+		name = "Numpad4"
+		command = "a-select-zone \"rarm\""
+	elem 
+		name = "Numpad5"
+		command = "a-select-zone \"chest\""
+	elem 
+		name = "Numpad6"
+		command = "a-select-zone \"larm\""
+	elem 
+		name = "Numpad8"
+		command = "a-select-zone \"head\""
+	elem 
 		name = "F1"
 		command = "adminhelp"
 	elem 
@@ -307,28 +328,6 @@ macro "hotkeymode"
 	elem 
 		name = "F12"
 		command = "F12"
-	elem 
-		name = "Numpad8"
-		command = "a-select-zone \"head\""
-	elem 
-		name = "Numpad5"
-		command = "a-select-zone \"chest\""
-	elem 
-		name = "Numpad2"
-		command = "a-select-zone \"groin\""
-	elem 
-		name = "Numpad4"
-		command = "a-select-zone \"rarm\""
-	elem 
-		name = "Numpad6"
-		command = "a-select-zone \"larm\""
-	elem 
-		name = "Numpad1"
-		command = "a-select-zone \"rleg\""
-	elem 
-		name = "Numpad3"
-		command = "a-select-zone \"lleg\""
-
 
 
 menu "menu"
@@ -737,15 +736,16 @@ window "outputwindow"
 		can-minimize = false
 		can-resize = false
 		is-pane = true
-	elem "output"
-		type = OUTPUT
+	elem "browseroutput"
+		type = BROWSER
 		pos = 0,0
 		size = 640x480
 		anchor1 = 0,0
 		anchor2 = 100,100
-		is-default = true
-		saved-params = "max-lines"
-		style = ".system {color:#ff0000;}"
+		background-color = #ffffff
+		is-disabled = true
+		saved-params = ""
+		auto-format = false
 
 window "rpane"
 	elem "rpane"

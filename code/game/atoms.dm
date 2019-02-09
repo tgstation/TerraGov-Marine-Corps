@@ -246,7 +246,7 @@ its easier to just keep the beam vertical.
 
 /atom/proc/examine(mob/user)
 	if(!istype(src, /obj/item))
-		to_chat(user, "\icon[src] That's \a [src].")
+		to_chat(user, "[bicon(src)] That's \a [src].")
 
 	else // No component signaling, dropping it here.
 		var/obj/item/I = src
@@ -262,7 +262,7 @@ its easier to just keep the beam vertical.
 				size = "bulky"
 			if(6 to INFINITY)
 				size = "huge"
-		to_chat(user, "This is a [blood_DNA ? blood_color != "#030303" ? "bloody " : "oil-stained " : ""]\icon[src][src.name]. It is a [size] item.")
+		to_chat(user, "This is a [blood_DNA ? blood_color != "#030303" ? "bloody " : "oil-stained " : ""][bicon(src)][src.name]. It is a [size] item.")
 
 
 	if(desc)
@@ -626,6 +626,9 @@ Proc for attack log creation, because really why not
 /atom/proc/LateInitialize()
 	return
 
+//Hook for running code when a dir change occurs
+/atom/proc/setDir(newdir)
+	dir = newdir
 
 /atom/vv_get_dropdown()
 	. = ..()

@@ -195,7 +195,7 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/tanker(H), SLOT_R_HAND)
 
 /datum/job/command/tank_crew/generate_entry_message(mob/living/carbon/human/H)
-	return {"Your job is to operate and maintain thee ship's armored vehicles.
+	return {"Your job is to operate and maintain the ship's armored vehicles.
 While you are an officer, your authority is limited to your own vehicle, where you have authority over the enlisted personnel. You will need MTs to repair and replace hardpoints."}
 
 
@@ -237,7 +237,7 @@ While you are an officer, your authority is limited to your own vehicle, where y
 /datum/job/command/police/generate_entry_message(mob/living/carbon/human/H)
 	return {"You are held by a higher standard and are required to not abuse your position to severely hinder the progress of the round.
 Failure to do so may result in a job ban.
-Your primary job is to uphold the <a href='https://tgstation13.org/wiki/Space_Law'>Space Law</a>, and peace and stability aboard the ship. Marines can get rowdy after a few weeks of cryosleep!
+Your primary job is to uphold the <a href='https://tgstation13.org/wiki/TGMC:Military_Law'>Military Law</a>, and peace and stability aboard the ship. Marines can get rowdy after a few weeks of cryosleep!
 In addition, you are tasked with the security of high-ranking personnel, including the command staff. Keep them safe!"}
 
 
@@ -269,7 +269,7 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 /datum/job/command/warrant/generate_entry_message(mob/living/carbon/human/H)
 	return {"You are held by a higher standard and are required to not abuse your position to severely hinder the progress of the round.
 Failure to do so may result in a job ban.
-You lead the Military Police, ensure your officers uphold the <a href='https://tgstation13.org/wiki/Space_Law'>Space Law</a>, and maintain peace and stability aboard the ship. Marines can get rowdy after a few weeks of cryosleep!
+You lead the Military Police, ensure your officers uphold the <a href='https://tgstation13.org/wiki/TGMC:Military_Law'>Military Law</a>,, and maintain peace and stability aboard the ship. Marines can get rowdy after a few weeks of cryosleep!
 In addition, you are tasked with the security of high-ranking personnel, including the command staff. Keep them safe!"}
 
 

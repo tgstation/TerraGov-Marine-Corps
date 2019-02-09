@@ -20,7 +20,7 @@
 
 /datum/shuttle/ferry/supply/New()
 	..()
-	var/turf/SupplyElevatorLoc = get_turf(SupplyElevator)
+	var/turf/SupplyElevatorLoc = get_turf(GLOB.supply_elevator)
 	SupplyElevator_x = SupplyElevatorLoc.x
 	SupplyElevator_y = SupplyElevatorLoc.y
 	SupplyElevator_z = SupplyElevatorLoc.z
@@ -176,7 +176,7 @@
 		if(M.id == gear_id)
 			spawn()
 				M.icon_state = "gear_moving"
-				M.dir = direction
+				M.setDir(direction)
 
 /datum/shuttle/ferry/supply/proc/stop_gears()
 	for(var/obj/machinery/gear/M in GLOB.machines)

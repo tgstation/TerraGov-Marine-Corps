@@ -38,7 +38,7 @@
 			newlight = new /obj/machinery/light_construct/small(constrloc)
 		if("tube")
 			newlight = new /obj/machinery/light_construct(constrloc)
-	newlight.dir = constrdir
+	newlight.setDir(constrdir)
 	newlight.fingerprints = src.fingerprints
 	newlight.fingerprintshidden = src.fingerprintshidden
 	newlight.fingerprintslast = src.fingerprintslast

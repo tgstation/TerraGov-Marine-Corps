@@ -184,67 +184,6 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 	return destination
 
-
-//among other things, used by flamethrower and boiler spray to calculate if flame/spray can pass through.
-/proc/PostBlocksFire(turf/loc) //Will be affected by fire but not allow it to spread further.
-	if(loc.density)
-		return TRUE
-	for(var/obj/structure/window/D in loc)
-		if(!D.density)
-			continue
-		if(D.is_full_window())
-			return TRUE
-	for(var/obj/machinery/door/D in loc)
-		if(!D.density)
-			continue
-		if(!istype(D, /obj/machinery/door/window))
-			return TRUE	// it's a real, air blocking door
-	for(var/obj/structure/mineral_door/D in loc)
-		if(D.density)
-			return TRUE
-	return FALSE
-
-/proc/LinkPreBlocksFire(turf/A, turf/B) //Will cut fire, protecting the tile.
-	if(A == null || B == null)
-		return TRUE
-	var/abdir = get_dir(A,B)
-	if(abdir & (abdir-1))//is diagonal direction
-		var/turf/Y = get_step(A,abdir&(NORTH|SOUTH))
-		if(!DirPreBlockedFire(A,Y) && !DirPreBlockedFire(Y,B))
-			return FALSE // can go through the Y axis
-		var/turf/X = get_step(A,abdir&(EAST|WEST))
-		if(!DirPreBlockedFire(A,X) && !DirPreBlockedFire(X,B))
-			return FALSE // can go through the X axis
-		return TRUE // both directions blocked
-	if(DirPreBlockedFire(A,B))
-		return TRUE
-	return FALSE
-
-/proc/DirPreBlockedFire(turf/A,turf/B)
-	var/abdir = get_dir(A,B)
-	var/badir = get_dir(B,A)
-	for(var/obj/structure/window/D in A)
-		if(!D.density)
-			continue
-		if(D.dir == abdir)
-			return TRUE
-	for(var/obj/machinery/door/D in A)
-		if(!D.density)
-			continue
-		if(D.dir == abdir)
-			return TRUE
-	for(var/obj/structure/window/D in B)
-		if(!D.density)
-			continue
-		if(D.dir == badir)
-			return TRUE
-	for(var/obj/machinery/door/D in B)
-		if(!D.density)
-			continue
-		if(D.dir == badir)
-			return TRUE
-	return FALSE
-
 /proc/LinkBlocked(turf/A, turf/B)
 	if(A == null || B == null)
 		return TRUE
@@ -520,15 +459,17 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	var/list/namecounts = list()
 	for(var/mob/M in mobs)
 		var/name = M.name
-		if (name in names)
+		if(name in names)
 			namecounts[name]++
 			name = "[name] ([namecounts[name]])"
 		else
 			names.Add(name)
 			namecounts[name] = 1
-		if (M.real_name && M.real_name != M.name)
+		if(M.real_name && M.real_name != M.name)
 			name += " \[[M.real_name]\]"
-		if (M.stat == 2)
+		if(M.client.prefs.xeno_name && M.client.prefs.xeno_name != "Undefined")
+			name += " - [M.client.prefs.xeno_name]"
+		if(M.stat == DEAD)
 			if(istype(M, /mob/dead/observer/))
 				name += " \[ghost\]"
 			else
@@ -761,7 +702,7 @@ proc/anim(turf/location,atom/target,a_icon,a_icon_state as text,flick_anim as te
 //The variables should be apparent enough.
 	var/atom/movable/overlay/animation = new(location)
 	if(direction)
-		animation.dir = direction
+		animation.setDir(direction)
 	animation.icon = a_icon
 	animation.layer = target.layer+0.1
 	if(a_icon_state)
@@ -951,17 +892,18 @@ var/global/image/busy_indicator_hostile
 	if(selected_zone_check)
 		cur_zone_sel = user.zone_selected
 
-	var/delayfraction = round(delay/numticks)
 	var/original_loc = user.loc
 	var/original_turf = get_turf(user)
 	var/obj/holding = user.get_active_held_item()
+
 	. = TRUE
-	for(var/i = 0 to numticks)
-		sleep(delayfraction)
+	var/endtime = world.time + delay
+	while(world.time < endtime)
+		stoplag(1)
 		if(!user || user.loc != original_loc || get_turf(user) != original_turf || user.stat || user.knocked_down || user.stunned)
 			. = FALSE
 			break
-		if(L && L.health < CONFIG_GET(number/health_threshold_crit))
+		if(L?.health && L.health < CONFIG_GET(number/health_threshold_crit))
 			. = FALSE //catching mobs below crit level but haven't had their stat var updated
 			break
 		if(needhand)
@@ -1089,7 +1031,7 @@ var/global/image/busy_indicator_hostile
 					var/old_icon1 = T.icon
 
 					var/turf/X = B.ChangeTurf(T.type)
-					X.dir = old_dir1
+					X.setDir(old_dir1)
 					X.icon_state = old_icon_state1
 					X.icon = old_icon1 //Shuttle floors are in shuttle.dmi while the defaults are floors.dmi
 
@@ -1248,7 +1190,7 @@ proc/DuplicateObject(obj/original, var/perfectcopy = 0 , var/sameloc = 0)
 							continue moving
 
 					var/turf/X = new T.type(B)
-					X.dir = old_dir1
+					X.setDir(old_dir1)
 					X.icon_state = old_icon_state1
 					X.icon = old_icon1 //Shuttle floors are in shuttle.dmi while the defaults are floors.dmi
 
@@ -1646,9 +1588,6 @@ var/list/WALLITEMS = list(
 			error -= deltax
 	return line
 
-/proc/to_chat(target, message)
-	target << message
-
 //gives us the stack trace from CRASH() without ending the current proc.
 /proc/stack_trace(msg)
 	CRASH(msg)
@@ -1764,6 +1703,3 @@ proc/pick_closest_path(value, list/matches = get_fancy_list_of_atom_types())
 	if(istype(D))
 		return !QDELETED(D)
 	return FALSE
-
-
-#define isitem(A) (istype(A, /obj/item))

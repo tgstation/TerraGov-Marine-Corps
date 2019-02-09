@@ -4,8 +4,7 @@
 	name = "supply spawner"
 	var/list/supply = list()
 
-/obj/effect/landmark/supplyspawner/New()
-	..()
+/obj/effect/landmark/supplyspawner/Initialize()
 	if(/turf/open in range(1))
 		var/list/T = list()
 		for(var/turf/open/O in range(1))
@@ -15,8 +14,7 @@
 				var/amount = supply[s]
 				for(var/i = 1, i <= amount, i++)
 					new s (pick(T))
-		sleep(-1)
-	qdel()
+	return INITIALIZE_HINT_QDEL
 
 
 /obj/effect/landmark/supplyspawner/weapons
@@ -86,14 +84,13 @@
 	name = "supply crate"
 	var/list/supplies = list()
 
-/obj/structure/largecrate/supply/New()
-	..()
+/obj/structure/largecrate/supply/Initialize()
+	. = ..()
 	if(supplies.len)
 		for(var/s in supplies)
 			var/amount = supplies[s]
 			for(var/i = 1, i <= amount, i++)
 				new s (src)
-	sleep(-1)
 
 /obj/structure/largecrate/supply/weapons
 	name = "weapons chest"

@@ -215,6 +215,11 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		if(FL.heat_source)
 			light("<span class='notice'>[user] lights their [name] with [W].</span>")
 
+	else if(istype(W, /obj/item/explosive/grenade/flare))
+		var/obj/item/explosive/grenade/flare/FL2 = W
+		if(FL2.heat_source)
+			light("<span class='notice'>[user] lights their [name] with [W].</span>")
+
 	else if(istype(W, /obj/item/tool/lighter))
 		var/obj/item/tool/lighter/L = W
 		if(L.heat_source)
@@ -365,7 +370,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 				light("<span class='notice'>[user] lights their [src] with the burning ground.</span>")
 				return
 
-		if(isliving(target) && user.a_intent == "help")
+		if(isliving(target) && user.a_intent == INTENT_HELP)
 			var/mob/living/M = target
 			if(M.on_fire)
 				if(user == M)

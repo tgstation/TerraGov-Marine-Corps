@@ -42,7 +42,8 @@
 	things considerably
 */
 /mob/living/carbon/monkey/RestrainedClickOn(var/atom/A)
-	if(a_intent != "harm" || !ismob(A)) return
+	if(a_intent != INTENT_HARM || !ismob(A))
+		return
 	if(istype(wear_mask, /obj/item/clothing/mask/muzzle))
 		return
 	var/mob/living/carbon/ML = A

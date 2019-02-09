@@ -132,24 +132,14 @@
 
 
 /datum/job/other/survivor/security
-	disp_title = "Security"
-	skills_type = /datum/skills/civilian/survivor/marshall
+	disp_title = "Security Guard"
+	skills_type = /datum/skills/civilian/survivor/marshal
 
 /datum/job/other/survivor/security/generate_equipment(mob/living/carbon/human/H)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/security/corp(H), SLOT_W_UNIFORM)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), SLOT_SHOES)
 	H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/sec(H), SLOT_BACK)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/revolver/cmb(H), SLOT_L_HAND)
-
-
-/datum/job/other/survivor/prisoner
-	disp_title = "Prisoner"
-	skills_type = /datum/skills/civilian/survivor/prisoner
-
-/datum/job/other/survivor/prisoner/generate_equipment(mob/living/carbon/human/H)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/color/orange(H), SLOT_W_UNIFORM)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/orange(H), SLOT_SHOES)
-	H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/sec(H), SLOT_BACK)
 
 
 /datum/job/other/survivor/civilian
@@ -228,11 +218,11 @@
 	H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel(H), SLOT_BACK)
 
 
-/datum/job/other/survivor/marshall
-	disp_title = "Colonial Marshall"
-	skills_type = /datum/skills/civilian/survivor/marshall
+/datum/job/other/survivor/marshal
+	disp_title = "Colonial Marshal"
+	skills_type = /datum/skills/civilian/survivor/marshal
 
-/datum/job/other/survivor/marshall/generate_equipment(mob/living/carbon/human/H)
+/datum/job/other/survivor/marshal/generate_equipment(mob/living/carbon/human/H)
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/CMB(H), SLOT_WEAR_SUIT)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/CM_uniform(H), SLOT_W_UNIFORM)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/jackboots(H), SLOT_SHOES)
@@ -251,11 +241,6 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/clown_hat(H), SLOT_WEAR_MASK)
 	H.equip_to_slot_or_del(new /obj/item/tool/stamp/clown(H), SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_container/spray/waterflower(H), SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/grown/banana(H), SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/grown/banana(H), SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/grown/banana(H), SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/grown/banana(H), SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/grown/banana(H), SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/grown/banana(H), SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/grown/banana(H), SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/toy/bikehorn(H), SLOT_IN_BACKPACK)

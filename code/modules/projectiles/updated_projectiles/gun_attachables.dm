@@ -810,17 +810,19 @@ Defined in conflicts.dm of the #defines folder.
 		prime_grenade(target,gun,user)
 
 
-/obj/item/attachable/attached_gun/grenade/proc/prime_grenade(atom/target,obj/item/weapon/gun/gun,mob/living/user)
-	set waitfor = 0
+/obj/item/attachable/attached_gun/grenade/proc/prime_grenade(atom/target, obj/item/weapon/gun/gun, mob/living/user)
+	set waitfor = FALSE
 	var/nade_type = loaded_grenades[1]
 	var/obj/item/explosive/grenade/frag/G = new nade_type (get_turf(gun))
 	playsound(user.loc, fire_sound, 50, 1)
-	log_game("[key_name(user)] fired an underslung grenade launcher at [AREACOORD(usr.loc)].")	
-	message_admins("[ADMIN_TPMONTY(usr)] fired an underslung grenade launcher.")
-	G.det_time = 15
+	log_explosion("[key_name(user)] fired a grenade [G] from [src] at [AREACOORD(user.loc)].")
+	log_combat(user, src, "fired a grenade [G] from")
+	G.det_time = min(15, G.det_time)
 	G.throw_range = max_range
+	G.launched = TRUE
 	G.activate()
-	G.throw_at(target, max_range, 2, user)
+	G.throwforce += G.launchforce //Throws with signifcantly more force than a standard marine can.
+	G.throw_at(target, max_range, 3, user)
 	current_rounds--
 	loaded_grenades.Cut(1,2)
 
@@ -958,13 +960,13 @@ Defined in conflicts.dm of the #defines folder.
 			var/mob/living/carbon/human/H = M
 
 			if(user)
-				var/area/A = get_area(user)
-				if(user.mind && !user.mind.special_role && H.mind && !H.mind.special_role)
+				if(user.mind?.special_role && H.mind?.special_role && user.mind.special_role != H.mind.special_role)
 					log_combat(user, H, "shot", src)
-					msg_admin_ff("[ADMIN_TPMONTY(usr)] shot [ADMIN_TPMONTY(H)] with \a [name] in [ADMIN_VERBOSEJMP(A)].")
+					log_ffattack("[key_name(usr)] shot [key_name(H)] with [name] in [AREACOORD(T)].")
+					msg_admin_ff("[ADMIN_TPMONTY(usr)] shot [ADMIN_TPMONTY(H)] with [name] in [ADMIN_VERBOSEJMP(T)].")
 				else
 					log_combat(user, H, "shot", src)
-					msg_admin_attack("[ADMIN_TPMONTY(usr)] shot [ADMIN_TPMONTY(H)] with \a [name] in [ADMIN_VERBOSEJMP(A)].")
+					msg_admin_attack("[ADMIN_TPMONTY(usr)] shot [ADMIN_TPMONTY(H)] with [name] in [ADMIN_VERBOSEJMP(T)].")
 
 			if(istype(H.wear_suit, /obj/item/clothing/suit/fire) || istype(H.wear_suit,/obj/item/clothing/suit/space/rig/atmos))
 				continue

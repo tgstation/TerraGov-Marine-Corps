@@ -10,7 +10,7 @@
 	response_harm   = "punches"
 	icon_dead = "shade_dead"
 	speed = -1
-	a_intent = "harm"
+	a_intent = INTENT_HARM
 	stop_automated_movement = 1
 	status_flags = CANPUSH
 	universal_speak = 1
@@ -41,7 +41,7 @@
 	qdel(src)
 
 /mob/living/simple_animal/construct/examine(mob/user)
-	var/msg = "<span cass='info'>*---------*\nThis is \icon[src] \a <EM>[src]</EM>!\n"
+	var/msg = "<span cass='info'>*---------*\nThis is [bicon(src)] \a <EM>[src]</EM>!\n"
 	if (health < maxHealth)
 		msg += "<span class='warning'>"
 		if (health >= maxHealth/2)

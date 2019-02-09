@@ -1,5 +1,5 @@
 #define SAVEFILE_VERSION_MIN	12
-#define SAVEFILE_VERSION_MAX	16
+#define SAVEFILE_VERSION_MAX	18
 
 //handles converting savefiles to new formats
 //MAKE SURE YOU KEEP THIS UP TO DATE!
@@ -7,41 +7,51 @@
 //this will mean that savefile_version will still be over SAVEFILE_VERSION_MIN, meaning
 //this savefile update doesn't run everytime we load from the savefile.
 //This is mainly for format changes, such as the bitflags in toggles changing order or something.
-//if a file can't be updated, return 0 to delete it and start again
-//if a file was updated, return 1
+//if a file can't be updated, return FALSE to delete it and start again
+//if a file was updated, return TRUE
 /datum/preferences/proc/savefile_update(savefile/S)
 	if(!isnum(savefile_version) || savefile_version < SAVEFILE_VERSION_MIN)	//lazily delete everything + additional files so they can be saved in the new format
 		for(var/ckey in preferences_datums)
 			var/datum/preferences/D = preferences_datums[ckey]
 			if(D == src)
-				var/delpath = "data/player_saves/[copytext(ckey,1,2)]/[ckey]/"
+				var/delpath = "data/player_saves/[copytext(ckey, 1, 2)]/[ckey]/"
 				if(delpath && fexists(delpath))
 					fdel(delpath)
 				break
-		return 0
+		return FALSE
 
-	if(savefile_version < 16) //we've split toggles into toggles_sound and toggles_chat
-//		if(S["toggles"])
-//			qdel(S["toggles"])
 
+	if(savefile_version < 16)
 		S["ghost_medhud"]		<< 1
 		S["ghost_sechud"] 		<< 0
 		S["ghost_squadhud"] 	<< 1
 		S["ghost_xenohud"] 		<< 1
 
-	savefile_version = SAVEFILE_VERSION_MAX
-	return 1
+	if(savefile_version < 17)
+		S["xeno_name"] << "Undefined"
 
-/datum/preferences/proc/load_path(ckey,filename="preferences.sav")
-	if(!ckey)	return
-	path = "data/player_saves/[copytext(ckey,1,2)]/[ckey]/[filename]"
+	if(savefile_version < 18)
+		S["preferred_slot"] << SLOT_S_STORE
+
 	savefile_version = SAVEFILE_VERSION_MAX
+	return TRUE
+
+
+/datum/preferences/proc/load_path(ckey, filename= "preferences.sav" )
+	if(!ckey)	
+		return
+	path = "data/player_saves/[copytext(ckey, 1, 2)]/[ckey]/[filename]"
+	savefile_version = SAVEFILE_VERSION_MAX
+
 
 /datum/preferences/proc/load_preferences()
-	if(!path)				return 0
-	if(!fexists(path))		return 0
+	if(!path)				
+		return FALSE
+	if(!fexists(path))		
+		return FALSE
 	var/savefile/S = new /savefile(path)
-	if(!S)					return 0
+	if(!S)					
+		return FALSE
 	S.cd = "/"
 
 	S["version"] >> savefile_version
@@ -51,7 +61,7 @@
 			savefile_version = SAVEFILE_VERSION_MAX
 			save_preferences()
 			save_character()
-			return 0
+			return FALSE
 
 	//general preferences
 	S["ooccolor"]			>> ooccolor
@@ -66,6 +76,7 @@
 
 	S["synth_name"]			>> synthetic_name
 	S["synth_type"]			>> synthetic_type
+	S["xeno_name"]			>> xeno_name
 	S["pred_name"]			>> predator_name
 	S["pred_gender"]		>> predator_gender
 	S["pred_age"]			>> predator_age
@@ -77,6 +88,8 @@
 	S["ghost_sechud"] 		>> ghost_sechud
 	S["ghost_squadhud"] 	>> ghost_squadhud
 	S["ghost_xenohud"] 		>> ghost_xenohud
+
+	S["preferred_slot"] 	>> preferred_slot
 
 	//Sanitize
 	ooccolor		= sanitize_hexcolor(ooccolor, initial(ooccolor))
@@ -94,23 +107,26 @@
 	predator_name 		= predator_name ? sanitize_text(predator_name, initial(predator_name)) : initial(predator_name)
 	predator_gender 	= sanitize_text(predator_gender, initial(predator_gender))
 	predator_age 		= sanitize_integer(predator_age, 100, 10000, initial(predator_age))
-	predator_mask_type 	= sanitize_integer(predator_mask_type,1,1000000,initial(predator_mask_type))
-	predator_armor_type = sanitize_integer(predator_armor_type,1,1000000,initial(predator_armor_type))
-	predator_boot_type 	= sanitize_integer(predator_boot_type,1,1000000,initial(predator_boot_type))
+	predator_mask_type 	= sanitize_integer(predator_mask_type, 1, 1000000, initial(predator_mask_type))
+	predator_armor_type = sanitize_integer(predator_armor_type, 1, 1000000, initial(predator_armor_type))
+	predator_boot_type 	= sanitize_integer(predator_boot_type, 1, 1000000, initial(predator_boot_type))
 
-	ghost_medhud    = sanitize_integer(ghost_medhud,0,1,initial(ghost_medhud))
-	ghost_sechud    = sanitize_integer(ghost_sechud,0,1,initial(ghost_sechud))
-	ghost_squadhud  = sanitize_integer(ghost_squadhud,0,1,initial(ghost_squadhud))
-	ghost_xenohud   = sanitize_integer(ghost_xenohud,0,1,initial(ghost_xenohud))
+	ghost_medhud    = sanitize_integer(ghost_medhud, 0, 1, initial(ghost_medhud))
+	ghost_sechud    = sanitize_integer(ghost_sechud, 0, 1, initial(ghost_sechud))
+	ghost_squadhud  = sanitize_integer(ghost_squadhud, 0, 1, initial(ghost_squadhud))
+	ghost_xenohud   = sanitize_integer(ghost_xenohud, 0, 1, initial(ghost_xenohud))
 
-	return 1
+	return TRUE
+
 
 /datum/preferences/proc/save_preferences()
-	if(!path)				return 0
+	if(!path)				
+		return FALSE
 	var/savefile/S = new /savefile(path)
-	if(!S)					return 0
-	S.cd = "/"
+	if(!S)					
+		return FALSE
 
+	S.cd = "/"
 	S["version"] << savefile_version
 
 	//general preferences
@@ -124,6 +140,7 @@
 
 	S["synth_name"] 		<< synthetic_name
 	S["synth_type"]			<< synthetic_type
+	S["xeno_name"]			<< xeno_name
 	S["pred_name"] 			<< predator_name
 	S["pred_gender"] 		<< predator_gender
 	S["pred_age"]			<< predator_age
@@ -136,15 +153,22 @@
 	S["ghost_squadhud"] 	<< ghost_squadhud
 	S["ghost_xenohud"] 		<< ghost_xenohud
 
-	return 1
+	S["preferred_slot"] 	<< preferred_slot
+
+	return TRUE
+
 
 /datum/preferences/proc/load_character(slot)
-	if(!path)				return 0
-	if(!fexists(path))		return 0
+	if(!path)				
+		return FALSE
+	if(!fexists(path))		
+		return FALSE
 	var/savefile/S = new /savefile(path)
-	if(!S)					return 0
+	if(!S)					
+		return FALSE
 	S.cd = "/"
-	if(!slot)	slot = default_slot
+	if(!slot)	
+		slot = default_slot
 	slot = sanitize_integer(slot, 1, MAX_SAVE_SLOTS, initial(default_slot))
 	if(slot != default_slot)
 		default_slot = slot
@@ -243,9 +267,13 @@
 	metadata		= sanitize_text(metadata, initial(metadata))
 	real_name		= reject_bad_name(real_name)
 
-	if(isnull(language)) language = "None"
-	if(isnull(spawnpoint)) spawnpoint = "Arrivals Shuttle"
-	if(isnull(nanotrasen_relation)) nanotrasen_relation = initial(nanotrasen_relation)
+	if(isnull(language)) 
+		language = "None"
+	if(isnull(spawnpoint)) 
+		spawnpoint = "Arrivals Shuttle"
+	if(isnull(nanotrasen_relation)) 
+		nanotrasen_relation = initial(nanotrasen_relation)
+
 	be_random_name	= sanitize_integer(be_random_name, 0, 1, initial(be_random_name))
 	gender			= sanitize_gender(gender)
 	age				= sanitize_integer(age, AGE_MIN, AGE_MAX, initial(age))
@@ -266,6 +294,7 @@
 	r_eyes			= sanitize_integer(r_eyes, 0, 255, initial(r_eyes))
 	g_eyes			= sanitize_integer(g_eyes, 0, 255, initial(g_eyes))
 	b_eyes			= sanitize_integer(b_eyes, 0, 255, initial(b_eyes))
+
 	if(gender == MALE)
 		underwear		= sanitize_integer(underwear, 1, GLOB.underwear_m.len, initial(underwear))
 	else
@@ -293,26 +322,40 @@
 	if(!real_name)
 		var/datum/species/Species = GLOB.all_species[species]
 		real_name = Species.random_name(gender)
-	if(!skills) skills = list()
-	if(!used_skillpoints) used_skillpoints= 0
-	if(isnull(disabilities)) disabilities = 0
-	if(!player_alt_titles) player_alt_titles = new()
-	if(!organ_data) src.organ_data = list()
-	if(!gear) src.gear = list()
+	if(!skills) 
+		skills = list()
+	if(!used_skillpoints) 
+		used_skillpoints= 0
+	if(isnull(disabilities)) 
+		disabilities = 0
+	if(!player_alt_titles) 
+		player_alt_titles = new()
+	if(!organ_data) 
+		organ_data = list()
+	if(!gear) 
+		gear = list()
 	//if(!skin_style) skin_style = "Default"
 
-	if(!home_system) home_system = "Unset"
-	if(!citizenship) citizenship = "None"
-	if(!faction)     faction =     "None"
-	if(!religion)    religion =    "None"
-	if(!preferred_squad)	preferred_squad = "None"
+	if(!home_system) 
+		home_system = "Unset"
+	if(!citizenship) 
+		citizenship = "None"
+	if(!faction)     
+		faction =     "None"
+	if(!religion)    
+		religion =    "None"
+	if(!preferred_squad)	
+		preferred_squad = "None"
 
-	return 1
+	return TRUE
+
 
 /datum/preferences/proc/save_character()
-	if(!path)				return 0
+	if(!path)				
+		return FALSE
 	var/savefile/S = new /savefile(path)
-	if(!S)					return 0
+	if(!S)					
+		return FALSE
 	S.cd = "/character[default_slot]"
 
 	//Character
@@ -401,7 +444,7 @@
 	S["UI_style_color"]		<< UI_style_color
 	S["UI_style_alpha"]		<< UI_style_alpha
 
-	return 1
+	return TRUE
 
 
 #undef SAVEFILE_VERSION_MAX

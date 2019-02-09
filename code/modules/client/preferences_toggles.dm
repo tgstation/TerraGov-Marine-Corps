@@ -103,28 +103,6 @@
 			src << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1) // stop the jamsz
 	feedback_add_details("admin_verb","TLobby") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/verb/togglemidis()
-	set name = "Silence Current Midi"
-	set category = "Preferences"
-	set desc = "Toggles hearing sounds uploaded by admins"
-	// prefs.toggles_sound ^= SOUND_MIDI // Toggle on/off
-	// prefs.save_preferences() // We won't save the change - it'll be a temporary switch instead of permanent, but they can still make it permanent in character setup.
-	if(prefs.toggles_sound & SOUND_MIDI) // Not using && midi_playing here - since we can't tell how long an admin midi is, the user should always be able to turn it off at any time.
-		to_chat(src, "The currently playing midi has been silenced.")
-		var/sound/break_sound = sound(null, repeat = 0, wait = 0, channel = 777)
-		break_sound.priority = 250
-		src << break_sound
-		if(src.mob.client.midi_silenced)	return
-		if(midi_playing)
-			total_silenced++
-			message_admins("[key_name(src)] has silenced the currently playing midi. Total: [total_silenced] player(s).")
-			src.mob.client.midi_silenced = TRUE
-			spawn(300) // Prevents message_admins() spam. Should match with the midi_playing_timer spawn() in playsound.dm
-				src.mob.client.midi_silenced = FALSE
-	else
-		to_chat(src, "You have 'Play Admin Midis' disabled in your Character Setup, so this verb is useless to you.")
-	feedback_add_details("admin_verb","TMidi") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
 /client/verb/listen_ooc()
 	set name = "Show/Hide OOC"
 	set category = "Preferences"
@@ -197,3 +175,38 @@
 // 		prefs.UI_style_color = UI_style_color_new
 // 		prefs.save_preferences()
 // 		to_chat(usr, "UI was saved")
+
+
+/client/verb/preferred_slot()
+	set category = "Preferences"
+	set name = "Set Preferred Slot"
+	set desc = "Set which slot equipment will prefer to draw/equip from."
+
+	prefs.load_preferences()
+	var/slot = input("Which slot would you like to draw/equip from?", "Preferred Slot") as null|anything in list("Suit Storage", "Suit Inside", "Belt", "Back", "Boot", "Left Pocket", "Right Pocket", "Webbing", "Belt Holster", "Suit Storage Holster", "Back Holster")
+	switch(slot)
+		if("Suit Storage")
+			prefs.preferred_slot = SLOT_S_STORE
+		if("Suit Inside")
+			prefs.preferred_slot = SLOT_WEAR_SUIT
+		if("Belt")
+			prefs.preferred_slot = SLOT_BELT
+		if("Back")
+			prefs.preferred_slot = SLOT_BACK
+		if("Boot")
+			prefs.preferred_slot = SLOT_IN_BOOT
+		if("Left Pocket")
+			prefs.preferred_slot = SLOT_L_STORE
+		if("Right Pocket")
+			prefs.preferred_slot = SLOT_R_STORE
+		if("Webbing")
+			prefs.preferred_slot = SLOT_IN_ACCESSORY
+		if("Belt Holster")
+			prefs.preferred_slot = SLOT_IN_HOLSTER
+		if("Suit Storage Holster")
+			prefs.preferred_slot = SLOT_IN_S_HOLSTER
+		if("Back Holster")
+			prefs.preferred_slot = SLOT_IN_B_HOLSTER
+	prefs.save_preferences()
+
+	to_chat(src, "You will now equip/draw from the [slot] slot first.")

@@ -13,7 +13,7 @@
 	var/shield_idle_power = 1500		//how much power we use when just being sustained.
 
 /obj/machinery/shield/New()
-	src.dir = pick(1,2,3,4)
+	setDir(pick(1,2,3,4))
 	..()
 
 /obj/machinery/shield/Destroy()
@@ -250,14 +250,14 @@
 		return
 
 	if (src.active)
-		user.visible_message("<span class='notice'> \icon[src] [user] deactivated the shield generator.</span>", \
-			"<span class='notice'> \icon[src] You deactivate the shield generator.</span>", \
+		user.visible_message("<span class='notice'> [bicon(src)] [user] deactivated the shield generator.</span>", \
+			"<span class='notice'> [bicon(src)] You deactivate the shield generator.</span>", \
 			"You hear heavy droning fade out.")
 		src.shields_down()
 	else
 		if(anchored)
-			user.visible_message("<span class='notice'> \icon[src] [user] activated the shield generator.</span>", \
-				"<span class='notice'> \icon[src] You activate the shield generator.</span>", \
+			user.visible_message("<span class='notice'> [bicon(src)] [user] activated the shield generator.</span>", \
+				"<span class='notice'> [bicon(src)] You activate the shield generator.</span>", \
 				"You hear heavy droning.")
 			src.shields_up()
 		else

@@ -17,6 +17,9 @@
 
 	var/explosion_resistance = 0
 
+	var/igniting = FALSE	//Whether it ignites on impact
+	var/item_fire_stacks = 0	//How many fire stacks it applies
+
 /obj/New()
 	..()
 	GLOB.object_list += src
@@ -193,7 +196,7 @@
 	send_buckling_message(M, user)
 	M.buckled = src
 	M.loc = src.loc
-	M.dir = src.dir
+	M.setDir(dir)
 	M.update_canmove()
 	src.buckled_mob = M
 	src.add_fingerprint(user)
