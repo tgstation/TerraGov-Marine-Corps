@@ -49,7 +49,7 @@
 	var/datum/point/vector/trajectory
 	var/trajectory_ignore_forcemove = FALSE	//instructs forceMove to NOT reset our trajectory to the new location!
 
-	var/speed = 100000			//Amount of deciseconds it takes for projectile to travel
+	var/speed = 10000			//Amount of deciseconds it takes for projectile to travel
 	var/Angle = 0
 	var/original_angle = 0		//Angle at firing
 	var/nondirectional_sprite = FALSE //Set TRUE to prevent projectiles from having their sprites rotated based on firing angle
@@ -136,6 +136,7 @@
 	return ..()
 
 /obj/item/projectile/Bump(atom/A)
+	message_admins("Bump [A.name]")
 	var/datum/point/pcache = trajectory.copy_to()
 	if(check_ricochet(A) && check_ricochet_flag(A) && ricochets < ricochets_max)
 		ricochets++
@@ -158,6 +159,7 @@
 	def_zone = ran_zone(def_zone, max(100-(7*distance), 5)) //Lower accurancy/longer range tradeoff. 7 is a balanced number to use.
 
 	if(isturf(A) && hitsound_wall)
+		message_admins("Bump turf")
 		var/volume = CLAMP(vol_by_damage() + 20, 0, 100)
 		if(suppressed)
 			volume = 5
@@ -172,6 +174,7 @@
 			trajectory_ignore_forcemove = FALSE
 		return FALSE
 
+	message_admins("Shooting [A.name]")
 	var/permutation = A.bullet_act(src, def_zone) // searches for return value, could be deleted after run so check A isn't null
 	if(permutation == -1 || forcedodge)// the bullet passes through a dense object!
 		trajectory_ignore_forcemove = TRUE
@@ -212,6 +215,7 @@
 // target, firer, shot from, range, speed
 /obj/item/projectile/proc/fire_at(atom/target,atom/F, atom/S, range = 30,speed = 1)
 	message_admins("fire_at [Get_Angle(F, target)]")
+	preparePixelProjectile(target, F, null)
 	fire(Get_Angle(F, target), null)
 	
 	round_statistics.total_projectiles_fired++
@@ -434,7 +438,11 @@
 
 //Returns true if the target atom is on our current turf and above the right layer
 /obj/item/projectile/proc/can_hit_target(atom/target, var/list/passthrough)
-	message_admins("[target ? "V" : "X"] [target.layer >= PROJECTILE_HIT_THRESHHOLD_LAYER ? "lay" : "X"] [ismob(target) ? "mob" : "X"] [loc == get_turf(target) ? "loc" : "X"] [!(target in passthrough) ? "pass" : "X"]")
+	message_admins("a[target ? "trg" : "X"]")
+	message_admins("b[target.layer >= PROJECTILE_HIT_THRESHHOLD_LAYER ? "lay" : "X"]")
+	message_admins("c[ismob(target) ? "mob" : "X"]")
+	message_admins("d[loc == get_turf(target) ? "loc" : "X"]")
+	message_admins("e[!(target in passthrough) ? "pass" : "X"]")
 	return (target && ((target.layer >= PROJECTILE_HIT_THRESHHOLD_LAYER) || ismob(target)) && (loc == get_turf(target)) && (!(target in passthrough)))
 
 //Spread is FORCED!
