@@ -1,6 +1,0 @@
-author: "Ghommie"
-delete-after: True
-changes: 
-  - bugfix: "Trees can be chopped again."
-  - tweak: "Reduced the noise of trees falling by 40%."
-  - bugfix: "healing robotic limbs with cable requires the user to be not on harm intent yet again."
