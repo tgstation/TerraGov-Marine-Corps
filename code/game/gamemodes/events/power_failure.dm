@@ -4,7 +4,7 @@
 
 	for(var/obj/machinery/power/smes/S in GLOB.machines)
 		var/area/current_area = get_area(S)
-		if(current_area.type in skipped_areas || S.z != 3) // Ship only
+		if(current_area.type in skipped_areas || !is_mainship_level(S.z)) // Ship only
 			continue
 		S.last_charge = S.charge
 		S.last_output = S.output
@@ -30,7 +30,7 @@
 
 	for(var/obj/machinery/power/smes/S in GLOB.machines)
 		var/area/current_area = get_area(S)
-		if(current_area.type in skipped_areas || S.z != 3)
+		if(current_area.type in skipped_areas || !is_mainship_level(S.z))
 			continue
 		S.charge = S.capacity
 		S.output = S.output_level_max
@@ -49,7 +49,7 @@
 /proc/power_restore_quick(var/announce = 1)
 
 	for(var/obj/machinery/power/smes/S in GLOB.machines)
-		if(S.z != 3) // Ship only
+		if(!is_mainship_level(S.z)) // Ship only
 			continue
 		S.charge = S.capacity
 		S.output = S.output_level_max

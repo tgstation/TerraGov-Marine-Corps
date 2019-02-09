@@ -151,7 +151,7 @@
 		var/turf/T = get_turf(H)
 		if(!T)
 			continue
-		if(T.z != 1)
+		if(!is_ground_level(T.z))
 			continue
 		for(var/datum/disease/D in H.viruses)
 			foundAlready = 1
@@ -216,7 +216,7 @@
 		var/turf/T = get_turf(H)
 		if(!T)
 			continue
-		if(T.z != 1)
+		if(!is_ground_level(T.z))
 			continue
 		if(istype(H,/mob/living/carbon/human))
 			H.apply_effect((rand(15,75)),IRRADIATE,0)
@@ -233,7 +233,7 @@
 		var/turf/T = get_turf(M)
 		if(!T)
 			continue
-		if(T.z != 1)
+		if(!is_ground_level(T.z))
 			continue
 		M.apply_effect((rand(15,75)),IRRADIATE,0)
 	sleep(100)

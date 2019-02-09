@@ -974,7 +974,7 @@
 		return ..()
 
 /obj/item/device/squad_beacon/bomb/proc/activate(mob/living/carbon/human/H)
-	if(H.z != 1)
+	if(!is_ground_level(H.z))
 		to_chat(H, "<span class='warning'>You have to be on the planet to use this or it won't transmit.</span>")
 		return
 	var/area/A = get_area(H)

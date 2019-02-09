@@ -423,7 +423,7 @@
 			to_chat(about_to_die, "<span class='xenoannounce'>The Queen has left without you, you quickly find a hiding place to enter hibernation as you lose touch with the hive mind.</span>")
 			qdel(about_to_die) // just delete them
 	for(var/mob/living/carbon/potential_host in GLOB.alive_mob_list)
-		if(potential_host.loc.z != 1) continue // ground level
+		if(!is_ground_level(potential_host.loc.z)) continue // ground level
 		if(potential_host.status_flags & XENO_HOST) // a host
 			for(var/obj/item/alien_embryo/embryo in potential_host)
 				qdel(embryo)

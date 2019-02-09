@@ -1005,7 +1005,7 @@
 	var/xeno_count = 0
 	for(var/mob/living/carbon/Xenomorph/X in GLOB.dead_xeno_list)
 		if(X) //Prevent any runtime errors
-			if(istype(X) && X.stat == DEAD && X.z != 2)
+			if(istype(X) && X.stat == DEAD && !is_centcom_level(X.z))
 				X.loc = get_turf(locate(84,237,2)) //z.2
 				xeno_count++
 
@@ -1571,7 +1571,7 @@
 		to_chat(user, "It doesn't seem to do anything for you.")
 		return
 
-	if(user.z != 1)
+	if(!is_ground_level(user.z))
 		to_chat(user, "You have to be on the ground to use this or it won't transmit.")
 		return
 

@@ -266,7 +266,7 @@
 
 		for(var/obj/machinery/door/airlock/dropship_hatch/M in GLOB.machines)
 			if(M.id == ship_id)
-				if(M.z != 4)
+				if(!is_low_orbit_level(M.z))
 					M.unlock()
 
 		var/obj/machinery/door/airlock/multi_tile/almayer/reardoor
@@ -277,7 +277,7 @@
 			if("sh_dropship2")
 				for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds2/D in GLOB.machines)
 					reardoor = D
-		if(reardoor.z != 4)
+		if(!is_low_orbit_level(reardoor.z))
 			reardoor.unlock()
 
 	if(href_list["side door"])

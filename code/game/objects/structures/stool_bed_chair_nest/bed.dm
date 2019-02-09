@@ -355,7 +355,7 @@ var/global/list/activated_medevac_stretchers = list()
 		update_icon()
 
 	else
-		if(z != 1)
+		if(!is_ground_level(z))
 			to_chat(user, "<span class='warning'>You can't activate [src]'s beacon here.</span>")
 			return
 

@@ -117,7 +117,7 @@
 
 
 /datum/game_mode/colonialmarines/check_win()
-	var/living_player_list[] = count_humans_and_xenos(EvacuationAuthority.get_affected_zlevels())
+	var/living_player_list[] = count_humans_and_xenos()
 	var/num_humans = living_player_list[1]
 	var/num_xenos = living_player_list[2]
 
