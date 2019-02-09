@@ -192,7 +192,7 @@
 /obj/item/storage/pill_bottle
 	name = "pill bottle"
 	desc = "It's an airtight container for storing medication."
-	icon_state = "pill_canister"
+	icon_state = "pill_canister1"
 	icon = 'icons/obj/items/chemistry.dmi'
 	item_state = "contsolid"
 	w_class = 2.0
@@ -264,7 +264,7 @@
 
 /obj/item/storage/pill_bottle/dexalin
 	name = "dexalin pill bottle"
-	icon_state = "pill_canister1"
+	icon_state = "pill_canister12"
 	pill_type_to_fill = /obj/item/reagent_container/pill/dexalin
 
 //Alkysine

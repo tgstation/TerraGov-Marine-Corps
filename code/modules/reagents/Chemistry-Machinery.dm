@@ -249,6 +249,7 @@
 	var/condi = 0
 	var/useramount = 30 // Last used amount
 	var/pillamount = 16
+	var/pillbottlesprite = "1"
 	var/bottlesprite = "1" //yes, strings
 	var/pillsprite = "1"
 	var/autoinjectorsprite = "1"
@@ -395,6 +396,18 @@
 				beaker = null
 				reagents.clear_reagents()
 				icon_state = "mixer0"
+		
+		else if (href_list["createpillbottle"])
+			if(!condi)
+				if(loaded_pill_bottle)
+					to_chat(user, "<span class='warning'>A pill bottle is already loaded into the machine.</span>")
+					return
+				var/obj/item/storage/pill_bottle/I = new/obj/item/storage/pill_bottle
+				I.icon_state = "pill_canister"+pillbottlesprite
+				loaded_pill_bottle = I
+				to_chat(user, "<span class='notice'>The Chemmaster 3000 sets a pill bottle into the dispenser slot.</span>")
+				updateUsrDialog()
+
 		else if (href_list["createpill"] || href_list["createpill_multiple"])
 			var/count = 1
 
@@ -465,8 +478,17 @@
 				var/obj/item/reagent_container/hypospray/autoinjector/P = new/obj/item/reagent_container/hypospray/autoinjector(loc)
 				reagents.trans_to(P,50)
 
+		else if(href_list["change_pill_bottle"])
+			#define MAX_PILL_BOTTLE_SPRITE 12 //max icon state of the pill sprites
+			var/dat = "<table>"
+			for(var/i = 1 to MAX_PILL_BOTTLE_SPRITE)
+				dat += "<tr><td><a href=\"?src=\ref[src]&pill_bottle_sprite=[i]\"><img src=\"pill_canister[i].png\" /></a></td></tr>"
+			dat += "</table>"
+			user << browse(dat, "window=chem_master")
+			return
+
 		else if(href_list["change_pill"])
-			#define MAX_PILL_SPRITE 20 //max icon state of the pill sprites
+			#define MAX_PILL_SPRITE 21 //max icon state of the pill sprites
 			var/dat = "<table>"
 			for(var/i = 1 to MAX_PILL_SPRITE)
 				dat += "<tr><td><a href=\"?src=\ref[src]&pill_sprite=[i]\"><img src=\"pill[i].png\" /></a></td></tr>"
@@ -492,6 +514,8 @@
 			user << browse(dat, "window=chem_master")
 			return
 		
+		else if(href_list["pill_bottle_sprite"])
+			pillbottlesprite = href_list["pill_bottle_sprite"]
 		else if(href_list["pill_sprite"])
 			pillsprite = href_list["pill_sprite"]
 		else if(href_list["bottle_sprite"])
@@ -509,6 +533,8 @@
 	if(!(user.client in has_sprites))
 		spawn()
 			has_sprites += user.client
+			for(var/i = 1 to MAX_PILL_BOTTLE_SPRITE)
+				user << browse_rsc(icon('icons/obj/items/chemistry.dmi', "pill_canister" + num2text(i)), "pill_canister[i].png")
 			for(var/i = 1 to MAX_PILL_SPRITE)
 				user << browse_rsc(icon('icons/obj/items/chemistry.dmi', "pill" + num2text(i)), "pill[i].png")
 			for(var/i = 1 to MAX_BOTTLE_SPRITE)
@@ -555,14 +581,15 @@
 		else
 			dat += "Empty<BR>"
 		if(!condi)
-			dat += "<HR><BR><A href='?src=\ref[src];createpill=1'>Create pill (60 units max)</A><a href=\"?src=\ref[src]&change_pill=1\"><img src=\"pill[pillsprite].png\" /></a><BR>"
+			dat += "<HR><BR><A href='?src=\ref[src];createpillbottle=1'>Load pill bottle</A><a href=\"?src=\ref[src]&change_pill_bottle=1\"><img src=\"pill_canister[pillbottlesprite].png\" /></a><BR>"
+			dat += "<A href='?src=\ref[src];createpill=1'>Create pill (60 units max)</A><a href=\"?src=\ref[src]&change_pill=1\"><img src=\"pill[pillsprite].png\" /></a><BR>"
 			dat += "<A href='?src=\ref[src];createpill_multiple=1'>Create multiple pills</A><BR>"
 			dat += "<A href='?src=\ref[src];createbottle=1'>Create bottle (60 units max)<a href=\"?src=\ref[src]&change_bottle=1\"><img src=\"bottle-[bottlesprite].png\" /></A><BR>"
 			dat += "<A href='?src=\ref[src];createautoinjector=1'>Create autoinjector (60 units max)<a href=\"?src=\ref[src]&change_autoinjector=1\"><img src=\"autoinjector-[autoinjectorsprite].png\" /></A>"
 		else
 			dat += "<A href='?src=\ref[src];createbottle=1'>Create bottle (50 units max)</A>"
 	if(!condi)
-		user << browse("<TITLE>Chemmaster 3000</TITLE>Chemmaster menu:<BR><BR>[dat]", "window=chem_master;size=575x400")
+		user << browse("<TITLE>Chemmaster 3000</TITLE>Chemmaster menu:<BR><BR>[dat]", "window=chem_master;size=575x450")
 	else
 		user << browse("<TITLE>Condimaster 3000</TITLE>Condimaster menu:<BR><BR>[dat]", "window=chem_master;size=575x400")
 	onclose(user, "chem_master")
