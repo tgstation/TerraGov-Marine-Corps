@@ -1008,6 +1008,14 @@
 
 		var/mob/sender = F.sender
 
+		var/dep = input("Who do you want to message?", "Fax Message") as null|anything in list("Corporate Liaison", "Chief Military Police", "Warden")
+		if(!dep)
+			return
+
+		if(dep == "Warden" && GLOB.map_tag != MAP_PRISON_STATION)
+			if(alert("Are you sure? By default noone will receive this fax unless you spawned the proper fax machine.", "Warning", "Yes", "No") != "Yes")
+				return
+
 		var/department = input("Which department do you want to reply as?", "Fax Message") as null|anything in list("TGMC High Command", "TGMC Provost General", "Nanotrasen")
 		if(!department)
 			return
@@ -1060,7 +1068,7 @@
 		if(alert("Send this fax?", "Confirmation", "Yes", "No") != "Yes")
 			return
 
-		send_fax(usr, null, F.department, subject, fax_message, TRUE)
+		send_fax(usr, null, dep, subject, fax_message, TRUE)
 
 		log_admin("[key_name(usr)] replied to a fax message from [key_name(sender)].")
 		message_admins("[ADMIN_TPMONTY(usr)] replied to a fax message from [ADMIN_TPMONTY(sender)].")
