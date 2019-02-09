@@ -169,17 +169,18 @@
 
 	switch(target_zone)
 		if("head")
-			if(head && head.flags_inventory & THICKMATERIAL)
+			if(head?.flags_inventory & THICKMATERIAL)
 				. = FALSE
 		else
-			if(wear_suit && wear_suit.flags_inventory & THICKMATERIAL)
+			if(wear_suit?.flags_inventory & THICKMATERIAL)
 				. = FALSE
 
 	if(check_limb)
 		var/datum/limb/affecting = get_limb(target_zone)
 		if(affecting.status & (LIMB_ROBOT|LIMB_DESTROYED))
 			. = FALSE
-			message += "<span class='alert'>.. In fact, there is no [target_zone] at all.</span>"
+			if(affecting.status & LIMB_DESTROYED)
+				message += "<span class='alert'>.. In fact, there is no [target_zone] at all.</span>"
 
 	if(!. && error_msg && user)
  		// Might need re-wording.
@@ -214,6 +215,22 @@
 	if(!has_limb(HEAD))
 		return FALSE
 	return TRUE
+
+/mob/living/carbon/human/is_mouth_covered(check_head = TRUE, check_mask = TRUE, check_limb = FALSE)
+	if(check_head && head?.flags_inventory & COVERMOUTH)
+		return head
+	if(check_mask && wear_mask?.flags_inventory & COVERMOUTH)
+		return wear_mask
+	return ..()
+
+/mob/living/carbon/human/are_eyes_covered(check_glasses = TRUE, check_head = TRUE, check_mask = TRUE, check_limb = FALSE)
+	if(check_head && head?.flags_inventory & COVEREYES)
+		return head
+	if(check_mask && wear_mask?.flags_inventory & COVEREYES)
+		return wear_mask
+	if(check_glasses && glasses?.flags_inventory & COVEREYES)
+		return glasses
+	return ..()
 
 /mob/living/carbon/human/is_mob_restrained(var/check_grab = 1)
 	if(check_grab && pulledby && pulledby.grab_level >= GRAB_NECK)

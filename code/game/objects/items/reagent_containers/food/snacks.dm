@@ -50,7 +50,7 @@
 	return
 
 /obj/item/reagent_container/food/snacks/attack(mob/M, mob/user, def_zone)
-	if(user.a_intent == "harm")
+	if(user.a_intent == INTENT_HARM)
 		return ..()
 
 	if(!reagents.total_volume)						//Shouldn't be needed but it checks to see if it has anything left in it.

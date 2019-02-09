@@ -119,13 +119,6 @@ Contains most of the procs that are called when a mob is attacked by something
 			I.emp_act(severity)
 	..()
 
-/mob/living/carbon/human/is_mouth_covered(check_head = TRUE, check_mask = TRUE, check_limb = FALSE)
-	if(check_head && head?.flags_inventory & COVERMOUTH)
-		return head
-	if(check_mask && wear_mask?.flags_inventory & COVERMOUTH)
-		return wear_mask
-	return ..()
-
 /mob/living/carbon/human/has_smoke_protection()
 	if(wear_mask?.flags_inventory & BLOCKGASEFFECT)
 		return TRUE
@@ -135,15 +128,6 @@ Contains most of the procs that are called when a mob is attacked by something
 		var/obj/item/clothing/CH = head
 		if(CH.flags_inventory & BLOCKGASEFFECT)
 			return TRUE
-	return ..()
-
-/mob/living/carbon/human/are_eyes_covered(check_glasses = TRUE, check_head = TRUE, check_mask = TRUE, check_limb = FALSE)
-	if(check_head && head?.flags_inventory & COVEREYES)
-		return head
-	if(check_mask && wear_mask?.flags_inventory & COVEREYES)
-		return wear_mask
-	if(check_glasses && glasses?.flags_inventory & COVEREYES)
-		return glasses
 	return ..()
 
 //Returns 1 if the attack hit, 0 if it missed.

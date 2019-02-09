@@ -95,7 +95,7 @@
 
 
 		// Without enough blood you slowly go hungry.
-		if(blood_volume < BLOOD_VOLUME_SAFE)
+		if(blood_volume < BLOOD_VOLUME_SAFE && nutrition >= 200)
 			var/nutriloss = nutrition >= 300 ? 10 : 3
 			adjust_nutrition(-nutriloss)
 

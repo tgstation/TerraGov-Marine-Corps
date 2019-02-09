@@ -193,31 +193,33 @@
 
 /obj/item/tool/kitchen/rollingpin/attack(mob/living/M, mob/living/user, def_zone)
 	if((CLUMSY in user.mutations) && prob(50))
-		to_chat(user, "<span class='warning'>The [src] slips out of your hand and hits your head.</span>")
-		user.take_limb_damage(10)
+		var/headless = TRUE
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			if(H.has_limb(HEAD))
+				headless = FALSE
+				H.visible_message(user, "<span class='warning'>/the [src] slips out of [H]'s hand and hits [H.p_their()] head.</span>", "<span class='warning'>/the [src] slips out of your hand and hits your head.</span>")
+				var/datum/limb/L = H.get_limb("head")
+				L.take_damage(10)
+		if(headless)
+			user.visible_message(user, "<span class='warning'>[user] fumbles with /the [src] and whacks [user.p_them()]self.</span>", "<span class='warning'>You fumble with /the [src] and whack yourself.</span>")
+			user.take_limb_damage(10)
 		user.KnockOut(2)
 		return
 
 	. = ..()
 
-	log_combat(user, M, "attacked", src)
-	msg_admin_attack("[ADMIN_TPMONTY(usr)] used the [src.name] to attack [ADMIN_TPMONTY(M)].")
-
-	var/t = user:zone_selected
-	if (t == "head")
-		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
-			if (H.stat != DEAD && H.health < 50 && prob(90) && (ishuman(M) || ismonkey(M)) && def_zone == "head")
-				var/masterchef = M.getarmor(def_zone, "melee")
-				if(prob(masterchef > 5 ? masterchef + 30 : 0))
-					to_chat(M, "<span class = 'warning'>Your armor protects you from the blow to the head!</span>")
-					return
-				var/time = rand(2, 6)
-				if (prob(75))
-					H.KnockOut(time)
-				else
-					H.KnockDown(time)
-				user.visible_message("<span class='danger'>[H] has been knocked down!</span>", "<span class='danger'>You knock [H] down!</B>", null, 5)
+	if(M.stat == CONSCIOUS && M.health < 50 && prob(90) && (ishuman(M) || ismonkey(M)) && def_zone == "head")
+		var/masterchef = M.getarmor(def_zone, "melee")
+		if(masterchef > 5 && prob(masterchef))
+			to_chat(M, "<span class = 'warning'>Your armor protects you from the blow to the head!</span>")
+			return
+		var/time = rand(2, 6)
+		if (prob(75))
+			M.KnockOut(time)
+		else
+			M.KnockDown(time)
+		user.visible_message("<span class='danger'>[M] has been knocked down!</span>", "<span class='danger'>You knock [M] down!</span>", null, 5)
 
 /*
  * Trays - Agouri
