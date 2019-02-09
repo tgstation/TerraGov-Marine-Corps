@@ -360,7 +360,7 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 		icon_state = "[initial(icon_state)]_active"
 		if(loc && loc == user)
 			user.SetLuminosity(FLARE_BRIGHTNESS)
-			to_chat(world, "FLARE UPDATE BRIGHTNESS DEBUG: user: [user] light_sources length: [length(user.light_sources)]")
+			//message_admins("FLARE UPDATE BRIGHTNESS DEBUG: user: [user] light_sources length: [length(user.light_sources)]")
 			SetLuminosity(0)
 		else if(isturf(loc))
 			SetLuminosity(FLARE_BRIGHTNESS)
