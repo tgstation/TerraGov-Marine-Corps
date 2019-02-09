@@ -548,15 +548,15 @@ You are also an expert when it comes to medication and treatment. If you do not 
 
 //Researcher
 /datum/job/medical/researcher
-	title = "Researcher"
-	disp_title = "Medical Researcher"
+	title = "Corporate Researcher"
+	disp_title = "Researcher"
 	comm_title = "Rsr"
 	paygrade = "CD"
 	flag = ROLE_CIVILIAN_RESEARCHER
 	total_positions = 2
 	spawn_positions = 2
 	scaled = 1
-	supervisors = "the chief medical officer"
+	supervisors = "the NT corporate office"
 	selection_color = "#BBFFBB"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CHEMISTRY)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CHEMISTRY)
@@ -586,9 +586,10 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	return (latejoin ? rsc_slot_formula(get_total_marines()) : spawn_positions)
 
 /datum/job/medical/researcher/generate_entry_message(mob/living/carbon/human/H)
-	return {"You are a civilian, and are not subject to follow military chain of command, but you do work for the TGMC.
-You are tasked with researching and developing new medical treatments, helping your fellow doctors, and generally learning new things.
-Your role involves some roleplaying and gimmickry, but you can perform the function of a regular doctor."}
+	return {"You are a civilian, working for the Nanotrasen Corporation and are not subject to follow military chain of command.
+You are tasked with researching and developing new medical treatments, weapons, xenomorph studies, and generally learning new things.
+Your role involves some roleplaying and gimmickry, but you can perform the function of a regular doctor.
+While the Corporate Liaison is not your boss, it would be wise to consult them on your findings or ask to use their corporate fax machine."}
 
 
 //Liaison
