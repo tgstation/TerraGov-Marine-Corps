@@ -44,6 +44,7 @@
 	var/scatter					= 0				//How much the bullet scatters when fired.
 	var/burst_scatter_mult		= 3				//Multiplier. Increases or decreases how much bonus scatter is added when burst firing (wielded only).
 
+	var/accuracy_mod			= 0				//accuracy modifier, used by most attachments.
 	var/accuracy_mult_unwielded 		= 1		//same vars as above but for unwielded firing.
 	var/recoil_unwielded 				= 0
 	var/scatter_unwielded 				= 0
