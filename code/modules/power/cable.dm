@@ -113,6 +113,8 @@ By design, d1 is the smallest direction and d2 is the highest
 	return ..() // then go ahead and delete the cable
 
 /obj/structure/cable/proc/deconstruct(disassembled = TRUE)
+	if(d1 == UP_OR_DOWN || d2 == UP_OR_DOWN)
+		return
 	var/turf/T = loc
 	stored.forceMove(T)
 	qdel(src)
@@ -141,6 +143,10 @@ By design, d1 is the smallest direction and d2 is the highest
 		/*if(breaker_box)
 			to_chat(user, "<span class='warning'>This cable is connected to nearby breaker box. Use breaker box to interact with it.</span>")
 			return*/
+
+		if(d1 == UP_OR_DOWN || d2 == UP_OR_DOWN)
+			to_chat(user,"<span class='warning'>Despite your best efforts, you can't even make a dent on this cable heavy coating.</span>")
+			return
 
 		if (shock(user, 50))
 			return
@@ -192,10 +198,7 @@ By design, d1 is the smallest direction and d2 is the highest
 	if(z == 1 && layer < 2) //ground map - no blowie. They are buried underground.
 		return
 
-	if(d1 == 11 || d2 == 11)
-		return
-
-	if(d1 == 12 || d2 == 12)
+	if(d1 == UP_OR_DOWN || d2 == UP_OR_DOWN)
 		return
 
 	switch(severity)
