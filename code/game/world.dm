@@ -244,7 +244,7 @@ var/world_topic_spam_protect_time = world.timeofday
 					s += "<br>Map: <a href='[CONFIG_GET(string/whiskeyoutposturl)]'><b>[GLOB.map_tag]</a></b>"
 				else
 					s += "<br>Map: <b>[GLOB.map_tag]</b>"
-			s += "<br>Mode: <b>[ticker.mode.name]</b>"
+			s += "<br>Mode: <b>[ticker.mode ? ticker.mode.name : "Lobby"]</b>"
 			s += "<br>Round time: <b>[duration2text()]</b>"
 		else
 			s += "<br>Map: <b>[GLOB.map_tag]</b>"

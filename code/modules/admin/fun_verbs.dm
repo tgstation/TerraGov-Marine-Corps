@@ -176,11 +176,13 @@
 				C.messagetitle.Add("[command_name()] Update")
 				C.messagetext.Add(P.info)
 
-	switch(alert("Should this be announced to the general population?",, "Yes", "No"))
+	switch(alert("Should this be announced to the general population?", "Announce", "Yes", "No", "Cancel"))
 		if("Yes")
-			command_announcement.Announce(input, customname, new_sound = 'sound/AI/commandreport.ogg');
+			command_announcement.Announce(input, customname, new_sound = 'sound/AI/commandreport.ogg', admin = TRUE);
 		if("No")
-			command_announcement.Announce("<span class='warning'> New update available at all communication consoles.</span>", customname, new_sound = 'sound/AI/commandreport.ogg')
+			command_announcement.Announce("<span class='warning'>New update available at all communication consoles.</span>", customname, new_sound = 'sound/AI/commandreport.ogg', admin = TRUE)
+		if("Cancel")
+			return
 
 	log_admin("[key_name(usr)] has created a command report: [input]")
 	message_admins("[ADMIN_TPMONTY(usr)] has created a command report.")

@@ -158,12 +158,13 @@
 	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
 	var/list/infos
 	info >> infos
-	if(!infos || infos.len < index)
+	if(!infos || length(infos) < index)
 		return
 
 	var/datum/player_info/item = infos[index]
 	infos.Remove(item)
-	to_chat(info, infos)
+	
+	info >> infos
 	qdel(info)
 
 	log_admin_private("[key_name(usr)] has deleted [key]'s note: [item.content]")
@@ -178,13 +179,13 @@
 	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
 	var/list/infos
 	info >> infos
-	if(!infos || infos.len < index)
+	if(!infos || length(infos) < index)
 		return
 
 	var/datum/player_info/item = infos[index]
 	item.hidden = TRUE
 
-	to_chat(info, infos)
+	info >> infos
 	qdel(info)
 
 	log_admin_private("[key_name(usr)] has hidden [key]'s note: [item.content]")
@@ -199,13 +200,13 @@
 	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
 	var/list/infos
 	info >> infos
-	if(!infos || infos.len < index)
+	if(!infos || length(infos) < index)
 		return
 
 	var/datum/player_info/item = infos[index]
 	item.hidden = FALSE
 
-	to_chat(info, infos)
+	info >> infos
 	qdel(info)
 
 	log_admin_private("[key_name(usr)] has made visible [key]'s note: [item.content]")
@@ -265,7 +266,7 @@
 		note_keys = sortList(note_keys)
 
 		// Display the notes on the current page
-		var/number_pages = note_keys.len / PLAYER_NOTES_ENTRIES_PER_PAGE
+		var/number_pages = length(note_keys) / PLAYER_NOTES_ENTRIES_PER_PAGE
 		// Emulate ceil(why does BYOND not have ceil)
 		if(number_pages != round(number_pages))
 			number_pages = round(number_pages) + 1
@@ -275,7 +276,7 @@
 
 		var/lower_bound = page_index * PLAYER_NOTES_ENTRIES_PER_PAGE + 1
 		var/upper_bound = (page_index + 1) * PLAYER_NOTES_ENTRIES_PER_PAGE
-		upper_bound = min(upper_bound, note_keys.len)
+		upper_bound = min(upper_bound, length(note_keys))
 		for(var/index = lower_bound, index <= upper_bound, index++)
 			var/t = note_keys[index]
 			dat += "<tr><td><a href='?src=[ref];notes=show;ckey=[t]'>[t]</a></td></tr>"
@@ -300,7 +301,7 @@
 	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
 	var/list/infos
 	info >> infos
-	if(!infos || !infos.len)
+	if(!infos || !length(infos))
 		return FALSE
 	else
 		return TRUE
