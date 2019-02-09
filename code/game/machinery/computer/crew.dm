@@ -1,3 +1,5 @@
+var/sortkey = "name"
+
 /obj/machinery/computer/crew
 	name = "Crew monitoring computer"
 	desc = "Used to monitor active health sensors built into most of the crew's uniforms."
@@ -8,7 +10,6 @@
 //	circuit = "/obj/item/circuitboard/computer/crew"
 	var/list/tracked = list()
 	var/list/crewmembers = list()
-
 
 /obj/machinery/computer/crew/New()
 	tracked = list()
@@ -50,6 +51,10 @@
 	if(href_list["update"])
 		updateDialog()
 		return TRUE
+	if(href_list["sortkey"])
+		sortkey = href_list["sortkey"]
+		return TRUE
+
 
 /obj/machinery/computer/crew/interact(mob/living/user)
 	ui_interact(user)
@@ -96,8 +101,8 @@
 
 				var/area/A = get_area(H)
 				crewmemberData["area"] = sanitize(A.name)
-//				crewmemberData["x"] = pos.x
-//				crewmemberData["y"] = pos.y
+				crewmemberData["x"] = pos.x
+				crewmemberData["y"] = pos.y
 
 				crewmembers += list(crewmemberData)
 
@@ -129,5 +134,5 @@
 			tracked |= C
 	return TRUE
 
-/proc/sensor_compare(list/a, list/b, key="name")
-	return sorttext(b[key], a[key])
+/proc/sensor_compare(list/a, list/b)
+	return sorttext(b[sortkey], a[sortkey])
