@@ -617,18 +617,15 @@
 		message_admins("[ADMIN_TPMONTY(usr)] jumped to [ADMIN_VERBOSEJMP(M)].")
 
 
-/datum/admins/proc/jump_turf()
+/datum/admins/proc/jump_turf(var/turf/T in GLOB.turfs)
 	set category = "Admin"
 	set name = "Jump to Turf"
 
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/selection = input("Please, select a turf.", "Jump to turf") as null|anything in GLOB.turfs
-	if(!selection)
+	if(!T)
 		return
-
-	var/turf/T = selection
 
 	var/mob/M = usr
 	M.on_mob_jump()
