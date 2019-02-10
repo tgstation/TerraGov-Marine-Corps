@@ -302,7 +302,7 @@
 	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
 	var/list/infos
 	info >> infos
-	if(!infos || !length(infos))
+	if(!length(infos))
 		return FALSE
 	else
 		return TRUE
