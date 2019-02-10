@@ -25,11 +25,14 @@
 	if(!buildstate && is_on)
 		desc = "A thermoelectric generator sitting atop a borehole dug deep in the planet's surface. It generates energy by boiling the plasma steam that rises from the well.\nIt is old technology and has a large failure rate, and must be repaired frequently.\nIt is currently on, and beeping randomly amid faint hisses of steam."
 		switch(power_gen_percent)
-			if(25) icon_state = "on[power_gen_percent]"
-			if(50) icon_state = "on[power_gen_percent]"
-			if(75) icon_state = "on[power_gen_percent]"
-			if(100) icon_state = "on[power_gen_percent]"
-
+			if(25)
+				icon_state = "on[power_gen_percent]"
+			if(50)
+				icon_state = "on[power_gen_percent]"
+			if(75)
+				icon_state = "on[power_gen_percent]"
+			if(100)
+				icon_state = "on[power_gen_percent]"
 
 	else if (!buildstate && !is_on)
 		icon_state = "off"
@@ -57,9 +60,12 @@
 			power_gen_percent++
 			update_icon()
 			switch(power_gen_percent)
-				if(10) visible_message("[bicon(src)] <span class='notice'><b>[src]</b> begins to whirr as it powers up.</span>")
-				if(50) visible_message("[bicon(src)] <span class='notice'><b>[src]</b> begins to hum loudly as it reaches half capacity.</span>")
-				if(100) visible_message("[bicon(src)] <span class='notice'><b>[src]</b> rumbles loudly as the combustion and thermal chambers reach full strength.</span>")
+				if(10)
+					visible_message("[bicon(src)] <span class='notice'><b>[src]</b> begins to whirr as it powers up.</span>")
+				if(50)
+					visible_message("[bicon(src)] <span class='notice'><b>[src]</b> begins to hum loudly as it reaches half capacity.</span>")
+				if(100)
+					visible_message("[bicon(src)] <span class='notice'><b>[src]</b> rumbles loudly as the combustion and thermal chambers reach full strength.</span>")
 		add_avail(power_generation_max * (power_gen_percent / 100) ) //Nope, all good, just add the power
 
 /obj/machinery/power/geothermal/proc/check_failure()
@@ -87,8 +93,10 @@
 	return FALSE //Nope, all fine
 
 /obj/machinery/power/geothermal/attack_hand(mob/user as mob)
-	if(!anchored) return FALSE //Shouldn't actually be possible
-	if(user.is_mob_incapacitated()) return FALSE
+	if(!anchored) //Shouldn't actually be possible
+		return FALSE
+	if(user.is_mob_incapacitated())
+		return FALSE
 	if(!ishuman(user))
 		to_chat(user, "<span class='warning'>You have no idea how to use that.</span>")
 		return FALSE
@@ -126,14 +134,16 @@
 				user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s internals.</span>",
 				"<span class='notice'>You fumble around figuring out [src]'s internals.</span>")
 				var/fumbling_time = 100 - 20 * user.mind.cm_skills.engineer
-				if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
+				if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+					return
 			var/obj/item/tool/weldingtool/WT = O
 			if(WT.remove_fuel(1, user))
 				playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
 				user.visible_message("<span class='notice'>[user] starts welding [src]'s internal damage.</span>",
 				"<span class='notice'>You start welding [src]'s internal damage.</span>")
 				if(do_after(user, 200, TRUE, 5, BUSY_ICON_BUILD))
-					if(buildstate != GEOTHERMAL_HEAVY_DAMAGE || is_on || !WT.isOn()) return FALSE
+					if(buildstate != GEOTHERMAL_HEAVY_DAMAGE || is_on || !WT.isOn())
+						return FALSE
 					playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
 					buildstate = GEOTHERMAL_MEDIUM_DAMAGE
 					user.visible_message("<span class='notice'>[user] welds [src]'s internal damage.</span>",
@@ -149,12 +159,14 @@
 				user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s wiring.</span>",
 				"<span class='notice'>You fumble around figuring out [src]'s wiring.</span>")
 				var/fumbling_time = 100 - 20 * user.mind.cm_skills.engineer
-				if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
+				if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+					return
 			playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
 			user.visible_message("<span class='notice'>[user] starts securing [src]'s wiring.</span>",
 			"<span class='notice'>You start securing [src]'s wiring.</span>")
 			if(do_after(user, 120, TRUE, 12, BUSY_ICON_BUILD))
-				if(buildstate != GEOTHERMAL_MEDIUM_DAMAGE || is_on) return FALSE
+				if(buildstate != GEOTHERMAL_MEDIUM_DAMAGE || is_on)
+					return FALSE
 				playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
 				buildstate = GEOTHERMAL_LIGHT_DAMAGE
 				user.visible_message("<span class='notice'>[user] secures [src]'s wiring.</span>",
@@ -167,12 +179,14 @@
 				user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s tubing and plating.</span>",
 				"<span class='notice'>You fumble around figuring out [src]'s tubing and plating.</span>")
 				var/fumbling_time = 100 - 20 * user.mind.cm_skills.engineer
-				if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
+				if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+					return
 			playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 			user.visible_message("<span class='notice'>[user] starts repairing [src]'s tubing and plating.</span>",
 			"<span class='notice'>You start repairing [src]'s tubing and plating.</span>")
 			if(do_after(user, 150, TRUE, 15, BUSY_ICON_BUILD))
-				if(buildstate != GEOTHERMAL_LIGHT_DAMAGE || is_on) return FALSE
+				if(buildstate != GEOTHERMAL_LIGHT_DAMAGE || is_on)
+					return FALSE
 				playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 				buildstate = GEOTHERMAL_NO_DAMAGE
 				user.visible_message("<span class='notice'>[user] repairs [src]'s tubing and plating.</span>",
@@ -257,10 +271,10 @@
 /obj/machinery/colony_floodlight_switch/attack_hand(mob/user as mob)
 	if(!ishuman(user))
 		to_chat(user, "Nice try.")
-		return 0
+		return FALSE
 	if(stat & NOPOWER)
 		to_chat(user, "Nothing happens.")
-		return 0
+		return FALSE
 	playsound(src,'sound/machines/click.ogg', 15, 1)
 	toggle_lights()
 	toggle_power()
@@ -334,7 +348,8 @@
 				user.visible_message("<span class='notice'>[user] fumbles around figuring out [src] maintenance hatch's screws.</span>",
 				"<span class='notice'>You fumble around figuring out [src] maintenance hatch's screws.</span>")
 				var/fumbling_time = 60 - 20 * user.mind.cm_skills.engineer
-				if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
+				if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+					return
 
 			if(repair_state == FLOODLIGHT_REPAIR_UNSCREW)
 				playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
@@ -371,7 +386,8 @@
 				user.visible_message("<span class='notice'>[user] fumbles around figuring out an opening for [src]'s maintenance hatch.</span>",
 				"<span class='notice'>You fumble around figuring out an opening for [src]'s maintenance hatch.</span>")
 				var/fumbling_time = 60 - 20 * user.mind.cm_skills.engineer
-				if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
+				if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+					return
 
 			if(repair_state == FLOODLIGHT_REPAIR_CROWBAR)
 				playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
@@ -393,7 +409,8 @@
 				user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s internals.</span>",
 				"<span class='notice'>You fumble around figuring out [src]'s internals.</span>")
 				var/fumbling_time = 60 - 20 * user.mind.cm_skills.engineer
-				if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
+				if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+					return
 
 			if(repair_state == FLOODLIGHT_REPAIR_WELD)
 				if(WT.remove_fuel(1, user))
@@ -407,7 +424,7 @@
 						repair_state = FLOODLIGHT_REPAIR_CABLE
 						user.visible_message("<span class='notice'>[user] welds [src]'s damage.</span>",
 						"<span class='notice'>You weld [src]'s damage.</span>")
-						return 1
+						return TRUE
 				else
 					to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
 			return TRUE
@@ -418,7 +435,8 @@
 				user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s wiring.</span>",
 				"<span class='notice'>You fumble around figuring out [src]'s wiring.</span>")
 				var/fumbling_time = 60 - 20 * user.mind.cm_skills.engineer
-				if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
+				if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+					return
 
 			if(repair_state == FLOODLIGHT_REPAIR_CABLE)
 				if(C.get_amount() < 2)
