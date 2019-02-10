@@ -235,6 +235,11 @@
 	if(!M?.client || !msg)
 		return
 
+	if(check_rights(R_ADMIN, FALSE))
+		msg = noscript(msg)
+	else
+		msg = sanitize(msg)
+
 	to_chat(M, "<b>You hear a voice in your head... [msg]</b>")
 
 	admin_ticket_log(M, "[key_name_admin(usr)] used Subtle Message: [sanitize(msg)]")
