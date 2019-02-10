@@ -1196,7 +1196,7 @@ All of the hardpoints, for the tank and APC
 	caliber = "30mm"
 	icon_state = "autocannon_1"
 	w_class = 10
-	//default_ammo = /datum/ammo/rocket/autocannon
+	default_ammo = /datum/ammo/rocket/autocannon
 	current_rounds = 40
 	max_rounds = 40
 	point_cost = 0
@@ -1697,7 +1697,7 @@ All of the hardpoints, for the tank and APC
 	health = 500
 	point_cost = 25
 
-	icon_state = "tires"
+	icon_state = "wheels"
 
 	disp_icon = "apcarrier"
 	disp_icon_state = "wheels"
