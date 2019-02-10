@@ -405,7 +405,7 @@
 		<a href='?src=[ref];observefollow=[REF(M)]'>FLW</a> -
 		<a href='?src=[ref];individuallog=[REF(M)]'>LOGS</a> \]</b><br>
 		<b>Mob Type:</b> [M.type]<br>
-		<b>Mob Location: [AREACOORD(M.loc)]<br>
+		<b>Mob Location:</b> [AREACOORD(M.loc)]<br>
 		<a href='?src=[ref];kick=[REF(M)]'>Kick</a> |
 		<a href='?src=[ref];ban=[REF(M)]'>Ban</a> |
 		<a href='?src=[ref];jobbanpanel=[REF(M)]'>Jobban</a> |
