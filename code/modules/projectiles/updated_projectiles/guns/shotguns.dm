@@ -550,15 +550,9 @@ can cause issues with ammo types getting mixed up during the burst.
 						/obj/item/attachable/scope,
 						/obj/item/attachable/bayonet)
 	attachable_offset = list("muzzle_x" = 50, "muzzle_y" = 21,"rail_x" = 8, "rail_y" = 21, "under_x" = 37, "under_y" = 16, "stock_x" = 20, "stock_y" = 14)
-	starting_attachment_types = list(/obj/item/attachable/scope)
-
-/obj/item/weapon/gun/shotgun/pump/bolt/Initialize()
-	. = ..()
-	var/obj/item/attachable/S = new /obj/item/attachable/mosinbarrel(src)
-	S.Attach(src)
-	S = new /obj/item/attachable/stock/mosin(src)
-	S.Attach(src)
-	update_attachables()
+	starting_attachment_types = list(/obj/item/attachable/scope,
+									/obj/item/attachable/mosinbarrel,
+									/obj/item/attachable/stock/mosin)
 
 /obj/item/weapon/gun/shotgun/pump/bolt/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/med_fire_delay) * 6
