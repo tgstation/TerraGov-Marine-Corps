@@ -1257,8 +1257,7 @@
 "ayi" = (/turf/open/gm/dirtgrassborder{icon_state = "grassdirt_corner2"},/area/lv624/ground/jungle5)
 "ayj" = (/obj/structure/jungle/vines{icon_state = "Light2"},/turf/open/gm/dirt,/area/lv624/ground/jungle5)
 "ayk" = (/obj/structure/jungle/vines{icon_state = "Light2"},/turf/open/gm/dirtgrassborder{dir = 8},/area/lv624/ground/jungle5)
-"ayl" = (/obj/structure/cable/yellow{d2 = 4; icon_state = "0-4"},/obj/machinery/power/
-,/turf/open/floor{icon_state = "dark"},/area/lv624/lazarus/armory)
+"ayl" = (/obj/structure/cable/yellow{d2 = 4; icon_state = "0-4"},/obj/machinery/power/,/turf/open/floor{icon_state = "dark"},/area/lv624/lazarus/armory)
 "aym" = (/obj/effect/landmark/monkey_spawn,/turf/open/gm/dirt,/area/lv624/ground/sand7)
 "ayn" = (/obj/structure/jungle/vines/heavy,/turf/open/gm/grass,/area/lv624/ground/jungle6)
 "ayo" = (/obj/structure/flora/ausbushes/fullgrass,/turf/open/gm/dirt,/area/lv624/ground/jungle6)
