@@ -1008,7 +1008,7 @@
 
 
 /mob/living/carbon/Xenomorph/proc/xeno_transfer_plasma(atom/A, amount = 50, transfer_delay = 20, max_range = 2)
-	if(!isxeno(A) || !check_state())
+	if(!isxeno(A) || !check_state() || A == src)
 		return
 
 	var/mob/living/carbon/Xenomorph/target = A
@@ -1054,7 +1054,7 @@
 	playsound(src, "alien_drool", 25)
 
 /mob/living/carbon/Xenomorph/proc/xeno_salvage_plasma(atom/A, amount, salvage_delay, max_range)
-	if(!isxeno(A) || !check_state())
+	if(!isxeno(A) || !check_state() || A == src)
 		return
 
 	var/mob/living/carbon/Xenomorph/target = A
