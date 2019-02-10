@@ -52,7 +52,6 @@
 #define GUN_POLICE				(1 << 14)
 #define GUN_ENERGY				(1 << 15)
 #define GUN_LOAD_INTO_CHAMBER	(1 << 16)
-#define GUN_HUD_DISABLED		(1 << 17) // disabled because currently everything has it enabled.
 
 //Gun attachable related flags.
 #define ATTACH_REMOVABLE	1
