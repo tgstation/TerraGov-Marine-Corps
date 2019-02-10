@@ -249,6 +249,8 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 	SEND_SOUND(world, 'sound/effects/explosionfar.ogg')
 	E.icon_state = ship_status ? "summary_spared" : "summary_destroyed"
 
+	dest_status = NUKE_EXPLOSION_FINISHED
+
 	addtimer(CALLBACK(src, .proc/remove_cinematic, E), 10 SECONDS)
 
 
@@ -257,8 +259,6 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 	for(var/x in GLOB.clients)
 		var/client/C = x
 		C.screen -= E
-
-	dest_status = NUKE_EXPLOSION_FINISHED
 
 
 /datum/authority/branch/evacuation/proc/process_self_destruct()
