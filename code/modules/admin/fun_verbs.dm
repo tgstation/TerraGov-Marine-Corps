@@ -726,7 +726,7 @@
 
 	switch(alert("Modify the rank or give them a new one?", "Select Rank", "New Rank", "Modify", "Cancel"))
 		if("New Rank")
-			var/newrank = input("Select new rank for [H]", "Change the mob's rank and skills") as null|anything in sortNames(RoleAuthority.roles_by_name)
+			var/newrank = input("Select new rank for [H]", "Change the mob's rank and skills") as null|anything in sortList(RoleAuthority.roles_by_name)
 			if(!newrank)
 				return
 
