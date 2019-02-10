@@ -7,6 +7,7 @@
 	var/obj/item/cell/cell //1000 power.
 	var/charge_cost = 10 //100 shots.
 	var/cell_type = /obj/item/cell
+	flags_gun_features = GUN_AMMO_COUNTER
 
 /obj/item/weapon/gun/energy/examine(mob/user)
 	var/list/dat = list()
@@ -74,9 +75,6 @@
 	update_icon()
 	return ..()
 
-/obj/item/weapon/gun/energy/has_ammo_counter()
-	return TRUE
-
 /obj/item/weapon/gun/energy/get_ammo_type()
 	if(!ammo)
 		return list("unknown", "unknown")
@@ -101,7 +99,7 @@
 	matter = list("metal" = 2000)
 	ammo = /datum/ammo/energy/taser
 	charge_cost = 500
-	flags_gun_features = GUN_UNUSUAL_DESIGN
+	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_AMMO_COUNTER
 	gun_skill_category = GUN_SKILL_PISTOLS
 	movement_acc_penalty_mult = 0
 	cell_type = /obj/item/cell/high
@@ -143,7 +141,7 @@
 	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = 5
 	charge_cost = 100
-	flags_gun_features = GUN_UNUSUAL_DESIGN
+	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_AMMO_COUNTER
 	cell_type = /obj/item/cell/high
 
 /obj/item/weapon/gun/energy/plasmarifle/set_gun_config_values()
@@ -188,7 +186,7 @@
 	ammo = /datum/ammo/energy/yautja/pistol
 	muzzle_flash = null // TO DO, add a decent one.
 	w_class = 3
-	flags_gun_features = GUN_UNUSUAL_DESIGN
+	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_AMMO_COUNTER
 
 /obj/item/weapon/gun/energy/plasmapistol/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/med_fire_delay)
@@ -229,7 +227,7 @@
 	actions_types = list(/datum/action/item_action/toggle)
 	flags_atom = CONDUCT
 	flags_item = NOBLUDGEON|DELONDROP //Can't bludgeon with this.
-	flags_gun_features = GUN_UNUSUAL_DESIGN
+	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_AMMO_COUNTER
 
 /obj/item/weapon/gun/energy/plasma_caster/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/high_fire_delay)
@@ -288,7 +286,7 @@
 	w_class = 4
 	force = 15
 	overcharge = FALSE
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ENERGY
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER
 	aim_slowdown = SLOWDOWN_ADS_RIFLE
 	wield_delay = WIELD_DELAY_SLOW
 	gun_skill_category = GUN_SKILL_RIFLES
@@ -331,7 +329,7 @@
 						/obj/item/attachable/scope,
 						/obj/item/attachable/scope/mini)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
 	starting_attachment_types = list(/obj/item/attachable/attached_gun/grenade, /obj/item/attachable/stock/lasgun)
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 15, "stock_x" = 22, "stock_y" = 12)
 

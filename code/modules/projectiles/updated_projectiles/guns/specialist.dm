@@ -369,9 +369,6 @@
 	if(power_pack && power_pack.loc)
 		power_pack.attack_self(smart_gunner, TRUE)
 
-/obj/item/weapon/gun/smartgun/has_ammo_counter()
-	return TRUE
-
 /obj/item/weapon/gun/smartgun/get_ammo_type()
 	if(!ammo)
 		return list("unknown", "unknown")
@@ -426,7 +423,7 @@
 	attachable_allowed = list(
 						/obj/item/attachable/magnetic_harness)
 
-	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY
+	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	gun_skill_category = GUN_SKILL_SPEC
 	var/datum/effect_system/smoke_spread/smoke
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
@@ -526,9 +523,6 @@
 		F.throw_at(target, 20, 3, user)
 		F.activate()
 		playsound(F.loc, fire_sound, 50, 1)
-
-/obj/item/weapon/gun/launcher/m92/has_ammo_counter()
-	return TRUE
 
 /obj/item/weapon/gun/launcher/m92/get_ammo_type()
 	if(length(grenades) == 0)
@@ -687,7 +681,7 @@
 						/obj/item/attachable/magnetic_harness,
 						/obj/item/attachable/scope/mini)
 
-	flags_gun_features = GUN_WIELDED_FIRING_ONLY
+	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	gun_skill_category = GUN_SKILL_SPEC
 	reload_sound = 'sound/weapons/gun_mortar_reload.ogg'
 	var/datum/effect_system/smoke_spread/smoke
@@ -798,9 +792,6 @@
 
 		. = ..()
 
-/obj/item/weapon/gun/launcher/rocket/has_ammo_counter()
-	return TRUE
-
 /obj/item/weapon/gun/launcher/rocket/get_ammo_type()
 	if(!ammo)
 		return list("unknown", "unknown")
@@ -868,11 +859,6 @@
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 8, "rail_y" = 18, "under_x" = 24, "under_y" = 12, "stock_x" = 13, "stock_y" = 15)
 	starting_attachment_types = list(/obj/item/attachable/stock/scout)
 
-/obj/item/weapon/gun/shotgun/merc/scout/New()
-	. = ..()
-	if(current_mag && current_mag.current_rounds > 0)
-		load_into_chamber()
-
 /obj/item/weapon/gun/shotgun/merc/scout/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/scoutshottie_fire_delay)
 	burst_amount = CONFIG_GET(number/combat_define/low_burst_value)
@@ -903,18 +889,13 @@
 	wield_delay = 15
 	gun_skill_category = GUN_SKILL_SPEC
 	aim_slowdown = SLOWDOWN_ADS_RIFLE
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_BURST_ON|GUN_WIELDED_FIRING_ONLY
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_BURST_ON|GUN_WIELDED_FIRING_ONLY|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	attachable_allowed = list(
 						/obj/item/attachable/flashlight,
 						/obj/item/attachable/magnetic_harness,
 						/obj/item/attachable/gyro,
 						/obj/item/attachable/bipod)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 12)
-
-/obj/item/weapon/gun/minigun/Initialize(loc, spawn_empty)
-	. = ..()
-	if(current_mag && current_mag.current_rounds > 0)
-		load_into_chamber()
 
 /obj/item/weapon/gun/minigun/Fire(atom/target, mob/living/user, params, reflex = 0, dual_wield)
 	if(user.action_busy)
@@ -946,9 +927,6 @@
 	else if(G != src) //sanity
 		return ..()
 	to_chat(usr, "<span class='warning'>This weapon can only fire in bursts!</span>")
-
-/obj/item/weapon/gun/minigun/has_ammo_counter()
-	return TRUE
 
 /obj/item/weapon/gun/minigun/get_ammo_type()
 	if(!ammo)

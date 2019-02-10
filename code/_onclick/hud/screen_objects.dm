@@ -631,7 +631,7 @@
 
 	var/obj/item/weapon/gun/G = user.get_active_held_item()
 
-	if(!G || !G.has_ammo_counter() || !G.hud_enabled)
+	if(!G || !(G.flags_gun_features & GUN_AMMO_COUNTER) || !G.hud_enabled)
 		return
 
 	user.client.screen += src
@@ -645,7 +645,7 @@
 
 	var/obj/item/weapon/gun/G = user.get_active_held_item()
 
-	if(!G || !istype(G) || !G.has_ammo_counter() || !G.hud_enabled || !G.get_ammo_type() || isnull(G.get_ammo_count()))
+	if(!G || !istype(G) || !(G.flags_gun_features & GUN_AMMO_COUNTER) || !G.hud_enabled || !G.get_ammo_type() || isnull(G.get_ammo_count()))
 		remove_hud()
 		return
 
