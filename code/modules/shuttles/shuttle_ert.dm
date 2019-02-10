@@ -46,11 +46,6 @@
 	if(!A || !istype(A)) //somehow
 		return
 
-	for(var/obj/machinery/door/unpowered/D in A)
-		if(D.density)
-			spawn(0)
-				D.open()
-
 	for(var/obj/machinery/door/airlock/D in A)
 		if(D.density)
 			spawn(0)
