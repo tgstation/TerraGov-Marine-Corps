@@ -88,7 +88,7 @@ Come hell or high water, you are going to be there for them."}
 	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/drinks/flask/marine(H), SLOT_R_HAND)
 
 /datum/job/command/fieldcommander/generate_entry_message(mob/living/carbon/human/H)
-		. = {"You are charged with overseeing the operation on the ground, and are in next in the chain of command after the Captain.
+		. = {"You are charged with overseeing the operation on the ground, and are the highest-ranked deployed marine.
 Your duties are to ensure marines hold when ordered, and push when they are cowering behind barricades. 
 Do not ask your men to do anything you would not do side by side with them.
 Make the TGMC proud!"}
