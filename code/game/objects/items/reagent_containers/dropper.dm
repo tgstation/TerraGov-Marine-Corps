@@ -35,15 +35,15 @@
 			var/eyes = M.has_eyes() ? TRUE : FALSE
 			if(ishuman(M))
 				var/mob/living/carbon/human/H = M
-				if(H.are_eyes_covered(check_mask = FALSE, check_head = FALSE))
-					safe_thing = H.glasses
-				if(H.are_eyes_covered(check_head = FALSE, check_eyes = FALSE))
-					safe_thing = H.wear_mask
-				if(H.are_eyes_covered(check_mask = FALSE, check_eyes = FALSE))
+				if(H.are_eyes_covered(FALSE, TRUE, FALSE))
 					safe_thing = H.head
+				else if(H.are_eyes_covered(FALSE, FALSE, TRUE))
+					safe_thing = H.wear_mask
+				else if(H.are_eyes_covered(TRUE, FALSE, FALSE))
+					safe_thing = H.glasses
 			else if(ismonkey(M))
 				var/mob/living/carbon/monkey/B = M
-				if(B.are_eyes_covered(check_head = FALSE, check_eyes = FALSE))
+				if(B.are_eyes_covered(FALSE, FALSE, TRUE))
 					safe_thing = B.wear_mask
 
 			if(safe_thing)

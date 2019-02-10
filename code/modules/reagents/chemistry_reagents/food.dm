@@ -171,15 +171,9 @@
 					stunnable = FALSE
 			var/mouth_covered = FALSE
 			var/eyes_covered = FALSE
-			if(M.are_eyes_covered(check_mask = FALSE, check_head = FALSE))
+			if(M.are_eyes_covered())
 				eyes_covered = TRUE
-			if(M.are_eyes_covered(check_head = FALSE, check_eyes = FALSE))
-				eyes_covered = TRUE
-			if(M.is_mouth_covered(check_head = FALSE))
-				mouth_covered = TRUE
-			if(M.are_eyes_covered(check_mask = FALSE, check_eyes = FALSE))
-				eyes_covered = TRUE
-			if(M.is_mouth_covered(check_mask = FALSE))
+			if(M.is_mouth_covered())
 				mouth_covered = TRUE
 			if(eyes_covered && mouth_covered)
 				return

@@ -83,11 +83,8 @@
 		S.current_cloud += current_cloud
 		for(var/obj/effect/particle_effect/smoke/C in current_cloud)
 			C.current_cloud += S
-		S.icon = icon
+		S.copy_stats(src)
 		S.setDir(pick(cardinal))
-		S.amount = amount-1
-		S.lifetime = lifetime
-		S.fraction = INVERSE(lifetime)
 		if(S.amount > 0)
 			newsmokes.Add(S)
 		else
@@ -98,6 +95,11 @@
 
 	if(newsmokes.len)
 		addtimer(CALLBACK(src, .proc/spawn_smoke, newsmokes), 1) //the smoke spreads rapidly but not instantly
+
+/obj/effect/particle_effect/smoke/proc/copy_stats(obj/effect/particle_effect/smoke/parent)
+	amount = parent.amount-1
+	lifetime = parent.lifetime
+	fraction = INVERSE(parent.lifetime)
 
 /obj/effect/particle_effect/smoke/proc/spawn_smoke(list/newsmokes)
 	for(var/obj/effect/particle_effect/smoke/SM in newsmokes)
@@ -282,6 +284,10 @@
 	spread_speed = 7
 	var/strength = 1 // Effects scale with the emitter's bomb_strength upgrades.
 
+/obj/effect/particle_effect/smoke/xeno/copy_stats(obj/effect/particle_effect/smoke/xeno/parent)
+	strength = parent.strength
+	return ..()
+
 /obj/effect/particle_effect/smoke/xeno/smoke_mob(mob/living/carbon/C)
 	if(lifetime < 1 || !istype(C))
 		return FALSE
@@ -304,15 +310,6 @@
 /obj/effect/particle_effect/smoke/xeno/burn
 	color = "#86B028" //Mostly green?
 
-/obj/effect/particle_effect/smoke/xeno/burn/effect_inhale(mob/living/carbon/C)
-	C.adjustOxyLoss(5)
-	C.adjustFireLoss(strength*rand(10, 15))
-	if(!C.stat)
-		if(prob(50))
-			C.emote("cough")
-		else
-			C.emote("gasp")
-
 /obj/effect/particle_effect/smoke/xeno/burn/apply_smoke_effect(turf/T)
 	for(var/mob/living/carbon/C in get_turf(src))
 		smoke_mob(C)
@@ -328,7 +325,7 @@
 
 
 /obj/effect/particle_effect/smoke/xeno/burn/effect_contact(mob/living/carbon/C)
-	var/protection = max(C.get_permeability_protection(), 0.25)
+	var/protection = max(1 - C.get_permeability_protection(), 0.25)
 	if(prob(50) * protection)
 		to_chat(C, "<span class='danger'>Your skin feels like it is melting away!</span>")
 	if(ishuman(C))
@@ -336,6 +333,15 @@
 		H.adjustFireLoss(strength*rand(15, 20)*protection) //Burn damage, randomizes between various parts //strength corresponds to upgrade level, 1 to 2.5
 	else
 		C.burn_skin(5* protection) //Failsafe for non-humans
+
+/obj/effect/particle_effect/smoke/xeno/burn/effect_inhale(mob/living/carbon/C)
+	C.adjustOxyLoss(5)
+	C.adjustFireLoss(strength*rand(10, 15))
+	if(!C.stat)
+		if(prob(50))
+			C.emote("cough")
+		else
+			C.emote("gasp")
 
 //Xeno neurotox smoke.
 /obj/effect/particle_effect/smoke/xeno/neuro
@@ -414,6 +420,10 @@ datum/effect_system/smoke_spread/tactical
 	if(length(smoked_mobs) && alpha) //so the whole cloud won't stop working somehow
 		var/obj/effect/particle_effect/smoke/chem/neighbor = pick(current_cloud)
 		neighbor.chemical_effect()
+
+/obj/effect/particle_effect/smoke/chem/copy_stats(obj/effect/particle_effect/smoke/parent)
+	icon = parent.icon
+	return ..()
 
 /obj/effect/particle_effect/smoke/chem/apply_smoke_effect(turf/T)
 	. = ..()

@@ -15,21 +15,32 @@
 	..()
 
 /obj/item/storage/briefcase/attack(mob/living/M, mob/living/user, def_zone)
-	if ((CLUMSY in user.mutations) && prob(50))
-		to_chat(user, "<span class='warning'>The [src] slips out of your hand and hits your head.</span>")
-		user.take_limb_damage(10)
+	if((CLUMSY in user.mutations) && prob(50))
+		var/headless = TRUE
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			if(H.has_limb(HEAD))
+				headless = FALSE
+				H.visible_message(user, "<span class='warning'>/the [src] slips out of [H]'s hand and hits [H.p_their()] head.</span>", "<span class='warning'>/the [src] slips out of your hand and hits your head.</span>")
+				var/datum/limb/L = H.get_limb("head")
+				L.take_damage(10)
+		if(headless)
+			user.visible_message(user, "<span class='warning'>[user] fumbles with /the [src] and whacks [user.p_them()]self.</span>", "<span class='warning'>You fumble with /the [src] and whack yourself.</span>")
+			user.take_limb_damage(10)
 		user.KnockOut(2)
-		return
+		return FALSE
 
 	. = ..()
 
-	log_combat(user, M, "attack", src)
-	msg_admin_attack("[user.name] ([user.ckey]) attacked [M.name] ([M.ckey]) with [src.name] (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminmoreinfo=\ref[user]'>?</A>)")
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(!H.has_limb(HEAD))
+			return
 
-	if (M.stat != DEAD && M.health < 50 && prob(90) && (ishuman(M) || ismonkey(M)) && def_zone == "head")
+	if (M.stat == CONSCIOUS && M.health < 50 && prob(90) && (ishuman(M) || ismonkey(M)) && user.zone_selected == "head")
 		if(ishuman(M))
-			var/lawyering = M.getarmor(def_zone, "melee")
-			if(prob(lawyering > 5 ? lawyering + 30 : 0))
+			var/lawyering = M.getarmor("head", "melee")
+			if(lawyering > 5 && prob(lawyering + 30))
 				to_chat(M, "<span class = 'warning'>Your armor protects you from the blow to the head!</span>")
 				return
 		var/time = rand(2, 6)

@@ -168,9 +168,6 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 	sdisabilities = 0
 	disabilities = 0
 
-	// fix blindness and deafness
-	set_blindness(0, TRUE)
-	set_blurriness(0, TRUE)
 	setEarDamage(0, 0)
 	heal_overall_damage(getBruteLoss(), getFireLoss())
 
@@ -185,6 +182,11 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 
 	// restore us to conciousness
 	stat = CONSCIOUS
+
+	// fix blindness here, as it checks for consciousness.
+	set_blindness(0, TRUE)
+	set_blurriness(0, TRUE)
+
 	updatehealth()
 
 	// make the icons look correct

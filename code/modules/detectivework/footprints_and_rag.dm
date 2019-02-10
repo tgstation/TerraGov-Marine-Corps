@@ -33,7 +33,7 @@
 		var/mob/living/carbon/C = A
 		var/reagentlist = pretty_string_from_reagent_list(reagents)
 		var/log_object = "a damp rag containing [reagentlist]"
-		if(user.a_intent == "harm" && !C.is_mouth_covered(check_limb = TRUE))
+		if(user.a_intent == INTENT_HARM && !C.is_mouth_covered(check_limb = TRUE))
 			reagents.reaction(C, INGEST)
 			reagents.trans_to(C, reagents.total_volume)
 			C.visible_message("<span class='danger'>[user] has smothered [C] with [src]!</span>", "<span class='danger'>[user] has smothered you with \the [src]!</span>", "<span class='italics'>You hear some struggling and muffled cries of surprise.</span>")
@@ -49,4 +49,3 @@
 		if(do_after(user,30, TRUE, 5, BUSY_ICON_GENERIC))
 			user.visible_message("[user] finishes wiping off [A]!", "<span class='notice'>You finish wiping off [A].</span>")
 			A.clean_blood()
-	return

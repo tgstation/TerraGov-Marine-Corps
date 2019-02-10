@@ -1464,15 +1464,14 @@
 
 
 /datum/ammo/xeno/boiler_gas/New()
-	..()
+	. = ..()
 	set_xeno_smoke()
 	accuracy_var_high = CONFIG_GET(number/combat_define/max_proj_variance)
 	max_range = CONFIG_GET(number/combat_define/long_shell_range)
 
 /datum/ammo/xeno/boiler_gas/Destroy()
-	qdel(smoke_system)
-	smoke_system = null
-	. = ..()
+	QDEL_NULL(smoke_system)
+	return ..()
 
 /datum/ammo/xeno/boiler_gas/on_hit_mob(mob/M, obj/item/projectile/P)
 	if(iscarbon(M))
@@ -1514,7 +1513,7 @@
 	danger_message = "<span class='danger'>A glob of acid lands with a splat and explodes into corrosive bile!</span>"
 
 /datum/ammo/xeno/boiler_gas/corrosive/New()
-	..()
+	. = ..()
 	damage = CONFIG_GET(number/combat_define/med_hit_damage)
 	damage_var_high = CONFIG_GET(number/combat_define/max_proj_variance)
 	damage_type = BURN

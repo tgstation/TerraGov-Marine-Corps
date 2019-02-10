@@ -46,7 +46,6 @@
 			if(health >= CONFIG_GET(number/health_threshold_crit))
 				help_shake_act(M)
 				return 1
-//			if(M.health < -75)	return 0
 
 			if(M.is_mouth_covered(check_mask = FALSE))
 				to_chat(M, "<span class='boldnotice'>Remove your headgear first!</B>")
@@ -67,13 +66,23 @@
 			M.visible_message("<span class='notice'>[M] is trying to perform CPR on [name]!</span>", \
 							"<span class='notice'>You try to perform CPR on [name]... Hold still!</span>", null, 4)
 
-			if(do_mob(M, src, HUMAN_STRIP_DELAY, BUSY_ICON_GENERIC, BUSY_ICON_MEDICAL))
-				if(health > CONFIG_GET(number/health_threshold_dead) && health < CONFIG_GET(number/health_threshold_crit))
-					var/suff = min(getOxyLoss(), 5) //Pre-merge level, less healing, more prevention of dieing.
-					adjustOxyLoss(-suff)
-					updatehealth()
-					M.visible_message("[M] performs CPR on [name]!", "<span class='notice'>You perform CPR on [name].</span>")
+			if(!do_mob(M, src, HUMAN_STRIP_DELAY, BUSY_ICON_GENERIC, BUSY_ICON_MEDICAL))
+				to_chat(M, "<span class='warning'>You fail to perform CPR on [src]!</span>")
+				return FALSE
+
+			if(health > CONFIG_GET(number/health_threshold_dead) && health < CONFIG_GET(number/health_threshold_crit))
+				M.visible_message("[M] performs CPR on [name]!", "<span class='notice'>You perform CPR on [name].</span>")
+
+				var/they_breathe = !(species?.flags & NO_BREATHE)
+				var/they_lung = internal_organs_by_name["lungs"]
+
+				if(they_breathe && they_lung)
+					adjustOxyLoss(-5)
 					to_chat(src, "<span class='boldnotice'>You feel a breath of fresh air enter your lungs... It feels good...</span>")
+				else if(they_breathe && !they_lung)
+					to_chat(src, "<span class='unconscious'>You feel a breath of fresh air... but you don't feel any better...</span>")
+				else
+					to_chat(src, "<span class='unconscious'>You feel a breath of fresh air... which is a sensation you don't recognise...</span>")
 
 
 			return TRUE

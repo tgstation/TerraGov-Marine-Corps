@@ -84,18 +84,18 @@
 
 /obj/item/device/flashlight/attack(mob/living/M as mob, mob/living/user as mob)
 	add_fingerprint(user)
-	if(on && user.zone_selected == "eyes")
+	if(on && user.zone_selected == "eyes" && (ishuman(M) || ismonkey(M)) && user.a_intent != INTENT_HARM)
 
 		if(((CLUMSY in user.mutations) || user.getBrainLoss() >= 60) && prob(50))	//too dumb to use flashlight properly
 			return ..()	//just hit them in the head
 
-		if(!(ishuman(user) || ticker) && ticker.mode.name != "monkey")	//don't have dexterity
+		if(!user.IsAdvancedToolUser())	//don't have dexterity
 			to_chat(user, "<span class='notice'>You don't have the dexterity to do this!</span>")
 			return
 
 		var/mob/living/carbon/human/H = M	//mob has protective eyewear
 		if(M.are_eyes_covered())
-			to_chat(user, "<span class='notice'>You're going to need to remove that [(H.head && H.head.flags_inventory & COVEREYES) ? "helmet" : (H.wear_mask && H.wear_mask.flags_inventory & COVEREYES) ? "mask": "glasses"] first.</span>")
+			to_chat(user, "<span class='notice'>You're going to need to remove that [H?.head.flags_inventory & COVEREYES ? "helmet" : H?.wear_mask.flags_inventory & COVEREYES ? "mask": "glasses"] first.</span>")
 			return
 
 		if(M == user)	//they're using it on themselves
@@ -107,15 +107,14 @@
 		user.visible_message("<span class='notice'>[user] directs [src] to [M]'s eyes.</span>", \
 							 "<span class='notice'>You direct [src] to [M]'s eyes.</span>")
 
-		if(ishuman(M) || ismonkey(M))	//robots and aliens are unaffected
-			if(M.stat == DEAD || M.sdisabilities & BLIND)	//mob is dead or fully blind
-				to_chat(user, "<span class='notice'>[M] pupils does not react to the light!</span>")
-			else if(XRAY in M.mutations)	//mob has X-RAY vision
-				M.flash_eyes()
-				to_chat(user, "<span class='notice'>[M] pupils give an eerie glow!</span>")
-			else	//they're okay!
-				M.flash_eyes()
-				to_chat(user, "<span class='notice'>[M]'s pupils narrow.</span>")
+		if(M.stat == DEAD || M.sdisabilities & BLIND)	//mob is dead or fully blind
+			to_chat(user, "<span class='notice'>[M] pupils does not react to the light!</span>")
+		else if(XRAY in M.mutations)	//mob has X-RAY vision
+			M.flash_eyes()
+			to_chat(user, "<span class='notice'>[M] pupils give an eerie glow!</span>")
+		else	//they're okay!
+			M.flash_eyes()
+			to_chat(user, "<span class='notice'>[M]'s pupils narrow.</span>")
 	else
 		return ..()
 

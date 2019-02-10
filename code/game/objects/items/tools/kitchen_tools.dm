@@ -39,7 +39,7 @@
 	if(!istype(M))
 		return ..()
 
-	if(user.a_intent != INTENT_HELP)
+	if(user.a_intent == INTENT_HARM)
 		return ..()
 
 	if (reagents.total_volume > 0)
@@ -205,13 +205,18 @@
 			user.visible_message(user, "<span class='warning'>[user] fumbles with /the [src] and whacks [user.p_them()]self.</span>", "<span class='warning'>You fumble with /the [src] and whack yourself.</span>")
 			user.take_limb_damage(10)
 		user.KnockOut(2)
-		return
+		return FALSE
 
 	. = ..()
 
-	if(M.stat == CONSCIOUS && M.health < 50 && prob(90) && (ishuman(M) || ismonkey(M)) && def_zone == "head")
-		var/masterchef = M.getarmor(def_zone, "melee")
-		if(masterchef > 5 && prob(masterchef))
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(!H.has_limb(HEAD))
+			return
+
+	if(M.stat == CONSCIOUS && M.health < 50 && prob(90) && (ishuman(M) || ismonkey(M)) && user.zone_selected == "head")
+		var/masterchef = M.getarmor("head", "melee")
+		if(masterchef > 5 && prob(masterchef + 30))
 			to_chat(M, "<span class = 'warning'>Your armor protects you from the blow to the head!</span>")
 			return
 		var/time = rand(2, 6)

@@ -69,7 +69,7 @@
 		to_chat(user, "<span class='warning'>This syringe is broken!</span>")
 		return
 
-	if (user.a_intent == INTENT_HARM && ismob(target))
+	if (user.a_intent == INTENT_HARM && ismob(target) && target != user)
 		if((CLUMSY in user.mutations) && prob(50))
 			target = user
 		var/mob/M = target
@@ -107,17 +107,20 @@
 				if(C.get_blood_id() && reagents.has_reagent(C.get_blood_id()))
 					to_chat(user, "<span class='warning'>There is already a blood sample in this syringe.</span>")
 					return
-				user.visible_message("<span class='warning'>[user] is trying to take a blood sample from [target]!</span>", \
-					"<span class='danger'>You start trying to take a blood sample from [target]...</span>")
-				if(!do_mob(user, target, injection_time, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
-					return
+				if(target != user)
+					user.visible_message("<span class='warning'>[user] is trying to take a blood sample from [target]!</span>", \
+						"<span class='danger'>You start trying to take a blood sample from [target]...</span>")
+					if(!do_mob(user, target, injection_time, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+						return
 				if(!C.take_blood(src, amount, user))
 					return
 
 				on_reagent_change()
 				reagents.handle_reactions()
-				user.visible_message("<span clas='warning'>[user] takes a blood sample from [target].</span>",
-										"<span class='notice'>You take a blood sample from [target].</span>", null, 4)
+
+				var/juicebox = target == user ? "[user.p_them()]self" : "target"
+				user.visible_message("<span clas='warning'>[user] takes a blood sample from [juicebox].</span>",
+										"<span class='notice'>You take a blood sample from [juicebox].</span>", null, 4)
 
 			else //if not mob
 				if(!target.reagents.total_volume)
@@ -155,14 +158,16 @@
 					user.visible_message("<span class='danger'>[user] is trying to inject [target]!</span>", "<span class='notice'>You start trying to inject [target]...</span>", null, 5)
 					if(!do_mob(user, target, injection_time, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 						return
-					user.visible_message("<span class='warning'>[user] injects [target] with the syringe!</span>", "<span class='notice'>You inject [target] with [src]!</span>", null, 5)
 
-					var/list/injected = list()
-					for(var/datum/reagent/R in reagents.reagent_list)
-						injected += R.name
-					var/contained = english_list(injected)
-					log_combat(user, M, "injected", src, "Reagents: [contained]")
-					msg_admin_attack("[ADMIN_TPMONTY(usr)] injected [ADMIN_TPMONTY(M)] with [src.name]. Reagents: [contained].")
+				var/juicebox = target == user ? "[user.p_them()]self" : "target"
+				user.visible_message("<span class='warning'>[user] injects [juicebox] with the syringe!</span>", "<span class='notice'>You inject [juicebox] with [src]!</span>", null, 5)
+
+				var/list/injected = list()
+				for(var/datum/reagent/R in reagents.reagent_list)
+					injected += R.name
+				var/contained = english_list(injected)
+				log_combat(user, M, "injected", src, "Reagents: [contained]")
+				msg_admin_attack("[ADMIN_TPMONTY(usr)] injected [ADMIN_TPMONTY(M)] with [src.name]. Reagents: [contained].")
 
 				reagents.reaction(target, INJECT)
 
