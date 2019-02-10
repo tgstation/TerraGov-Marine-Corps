@@ -90,7 +90,7 @@
 		to_chat(usr, "Name = <b>[M.name]</b>; Real_name = [M.real_name]; Mind_name = [M.mind ? "[M.mind.name]" : ""]; Key = <b>[M.key]</b>;")
 		to_chat(usr, "Location = [location_description];")
 		to_chat(usr, "[special_role_description]")
-		to_chat(usr, ADMIN_FULLMONTY_NONAME(M))
+		to_chat(usr, ADMIN_FULLMONTY(M))
 
 
 	else if(href_list["playerpanel"])
