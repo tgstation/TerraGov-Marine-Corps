@@ -157,11 +157,6 @@
 
 
 
-
-
-
-
-
 /turf/closed/wall/indestructible
 	name = "wall"
 	icon = 'icons/turf/walls.dmi'
@@ -181,7 +176,10 @@
 /turf/closed/wall/indestructible/can_be_dissolved()
 	return 0
 
-
+/turf/closed/wall/indestructible/mineral
+	name = "impenetrable rock"
+	icon = 'icons/turf/walls.dmi'
+	icon_state = "rock"
 
 /turf/closed/wall/indestructible/bulkhead
 	name = "bulkhead"
@@ -207,11 +205,6 @@
 
 /turf/closed/wall/indestructible/other
 	icon_state = "r_wall"
-
-
-
-
-
 
 // Mineral Walls
 
