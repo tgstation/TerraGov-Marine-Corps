@@ -461,23 +461,6 @@
 	desc = "What an enormous tree!"
 	layer = ABOVE_FLY_LAYER
 
-/obj/structure/jungle/tree/bigtreeTR
-	name = "huge tree"
-	icon_state = "bigtreeTR"
-
-/obj/structure/jungle/tree/bigtreeTL
-	name = "huge tree"
-	icon_state = "bigtreeTL"
-
-/obj/structure/jungle/tree/bigtreeBOT
-	name = "huge tree"
-	icon_state = "bigtreeBOT"
-
-/obj/structure/jungle/treeblocker
-	name = "huge tree"
-	icon_state = ""	//will this break it?? - Nope
-	density = 1
-
 /obj/structure/jungle/vines
 	name = "vines"
 	desc = "A mass of twisted vines."
