@@ -1,6 +1,8 @@
 /obj/machinery/Research_Machinery
 	name = "Research Machinery"
 	icon = 'icons/Marine/Research/Research_Machinery.dmi'
+	density = TRUE
+	anchored = TRUE
 
 	var/obj/machinery/computer/XenoRnD/linked_console = null
 
@@ -65,8 +67,8 @@
 
 /obj/machinery/Research_Machinery/dissector/attackby(var/obj/O as obj, var/mob/user as mob)
 	. = ..()
-	if(!.)
-		return
+	if(.)
+		return TRUE
 	if (istype(O, /obj/item) && !loaded_item)
 		if(isrobot(user)) //Don't put your module items in there!
 			return
@@ -106,7 +108,6 @@
 /obj/machinery/Research_Machinery/marineprotolathe
 	name = "Armory Protolathe"
 	icon_state = "protolathe"
-	flags_atom = OPENCONTAINER
 
 	idle_power_usage = 30
 	active_power_usage = 5000
@@ -138,8 +139,6 @@
 	max_per_resource = list("metal" = round(max_stored/3), "glass" = round(max_stored/3), "biomass" = round(max_stored/3))
 
 /obj/machinery/Research_Machinery/marineprotolathe/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	if (O.is_open_container())
-		return TRUE
 	if (istype(O, /obj/item/tool/screwdriver))
 		if (!opened)
 			opened = TRUE
@@ -218,11 +217,11 @@
 	if(amount > stack.get_amount())
 		amount = stack.get_amount()
 	if(istype(stack, /obj/item/stack/sheet/metal))
-		if(max_per_resource["metal"] < (amount*stack.perunit))//Can't overfill
-			amount = min(stack.amount, round((max_per_resource[stack.name])/stack.perunit))
+		if(max_per_resource["metal"] - material_storage[stack.name] < (amount*stack.perunit))//Can't overfill
+			amount = min(stack.amount, round((max_per_resource[stack.name] - material_storage[stack.name])/stack.perunit))
 	if(istype(stack, /obj/item/stack/sheet/glass))
-		if(max_per_resource["glass"] < (amount*stack.perunit))//Can't overfill
-			amount = min(stack.amount, round((max_per_resource[stack.name])/stack.perunit))
+		if(max_per_resource["glass"] - material_storage[stack.name] < (amount*stack.perunit))//Can't overfill
+			amount = min(stack.amount, round((max_per_resource[stack.name] - material_storage[stack.name])/stack.perunit))
 
 	busy = TRUE
 	use_power(max(1000, (3750*amount/10)))
