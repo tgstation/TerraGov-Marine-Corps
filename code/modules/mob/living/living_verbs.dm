@@ -299,6 +299,7 @@
 		to_chat(src, "<span class='notice'>You are now resting.</span>")
 		update_canmove()
 	else if(action_busy)
+		to_chat(src, "<span class='warning'>You are still in the process of standing up.</span>")
 		return
 	else
 		action_busy = TRUE

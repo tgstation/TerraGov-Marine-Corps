@@ -28,7 +28,8 @@
 				I.rank = "N/A"
 				update_file = 1
 			dat += "<font color=#008800>[I.content]</font> <i>by [I.author] ([I.rank])</i> on <i><font color=blue>[I.timestamp]</i></font> "
-			if(I.author == usr.key || I.author == "TGMC Adminbot" || check_rights(R_PERMISSIONS))
+			var/bot = CONFIG_GET(string/server_name) ? "[CONFIG_GET(string/server_name)] Bot" : "Adminbot"
+			if(I.author == usr.key || I.author == bot || check_rights(R_PERMISSIONS))
 				dat += "<A href='?src=[ref];notes_remove=[key];remove_index=[i]'>Remove</A> "
 				dat += "<A href='?src=[ref];notes_edit=[key];edit_index=[i]'>Edit</A> "
 			if(I.hidden)
@@ -124,7 +125,7 @@
 		P.author = usr.key
 		P.rank = usr.client.holder.rank
 	else
-		P.author = "TGMC Adminbot"
+		P.author = CONFIG_GET(string/server_name) ? "[CONFIG_GET(string/server_name)] Bot" : "Adminbot"
 		P.rank = "Silicon"
 	P.content = note
 	P.timestamp = "[hourminute_string] [copytext(full_date, 1, day_loc)][day_string][copytext(full_date, day_loc + 2)]"
