@@ -212,10 +212,10 @@
 					DB.icon_state = "detector_blip_dir_dead"
 				if(MOTION_DETECTOR_FUBAR)
 					DB.icon_state = "detector_blip_dir_fubar"
-			DB.dir = diff_dir_x + diff_dir_y
+			DB.setDir(diff_dir_x + diff_dir_y)
 
 		else
-			DB.dir = initial(DB.dir) //Update the ping sprite
+			DB.setDir(initial(DB.dir)) //Update the ping sprite
 			switch(status)
 				if(MOTION_DETECTOR_HOSTILE)
 					DB.icon_state = "detector_blip"

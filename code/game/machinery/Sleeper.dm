@@ -364,9 +364,10 @@
 		toggle_filter()
 	if(!occupant)
 		return
+	if(occupant in contents)
+		occupant.forceMove(loc)
 	occupant.in_stasis = null //disable stasis
 	stasis = FALSE
-	occupant.forceMove(loc)
 	occupant = null
 	stop_processing()
 	connected.stop_processing()

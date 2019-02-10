@@ -783,7 +783,7 @@ and you're good to go.
 					if(projectile_to_fire) //We actually have a projectile, let's move on. We're going to simulate the fire cycle.
 						user.visible_message("<span class='danger'>[user] fires [src] point blank at [M]!</span>")
 						apply_bullet_effects(projectile_to_fire, user) //We add any damage effects that we need.
-						projectile_to_fire.dir = get_dir(user, M)
+						projectile_to_fire.setDir(get_dir(user, M))
 						projectile_to_fire.distance_travelled = get_dist(user, M)
 						simulate_recoil(1, user)
 
@@ -792,7 +792,7 @@ and you're good to go.
 							for(var/i = 1 to projectile_to_fire.ammo.bonus_projectiles_amount)
 								BP = new /obj/item/projectile(M.loc)
 								BP.generate_bullet(GLOB.ammo_list[projectile_to_fire.ammo.bonus_projectiles_type])
-								BP.dir = get_dir(user, M)
+								BP.setDir(get_dir(user, M))
 								BP.distance_travelled = get_dist(user, M)
 								BP.ammo.on_hit_mob(M, BP)
 								M.bullet_act(BP)

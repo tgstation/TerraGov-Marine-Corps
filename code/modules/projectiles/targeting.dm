@@ -20,7 +20,7 @@
 			Aim(M) //Aha!  Aim at them!
 		else if(!ismob(M) || (ismob(M) && !(M in view(user)))) //Nope!  They weren't there!
 			Fire(A,user,params)  //Fire like normal, then.
-	usr.dir = get_cardinal_dir(src, A)
+	usr.setDir(get_cardinal_dir(src, A))
 
 //Aiming at the target mob.
 /obj/item/weapon/gun/proc/Aim(var/mob/living/M)
@@ -51,7 +51,7 @@
 	else
 		click_empty(M)
 
-	usr.dir = get_cardinal_dir(src, T)
+	usr.setDir(get_cardinal_dir(src, T))
 
 	if (!firerate) // If firerate is set to lower aim after one shot, untarget the target
 		T.NotTargeted(src)

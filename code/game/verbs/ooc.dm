@@ -24,10 +24,10 @@ var/global/normal_ooc_colour = "#002eb8"
 		return
 
 	if(!holder)
-		if(!ooc_allowed)
+		if(!GLOB.ooc_allowed)
 			to_chat(src, "<span class='warning'>OOC is globally muted</span>")
 			return
-		if(!dooc_allowed && (mob.stat == DEAD))
+		if(!GLOB.dooc_allowed && (mob.stat == DEAD))
 			to_chat(usr, "<span class='warning'>OOC for dead mobs has been turned off.</span>")
 			return
 		if(prefs.muted & MUTE_OOC)

@@ -1,4 +1,0 @@
-author: "Ghommie"
-delete-after: True
-changes: 
-  - code_imp: "Replaced a_intent text strings with defines."

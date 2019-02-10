@@ -392,7 +392,7 @@
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 	foldable = null
-	spec_set = "scout"
+	spec_set = "scout battle rifle"
 
 /obj/item/storage/box/spec/scout/New()
 	. = ..()
@@ -431,7 +431,7 @@
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 	foldable = null
-	spec_set = "scout"
+	spec_set = "scout shotgun"
 
 /obj/item/storage/box/spec/scoutshotgun/New()
 	. = ..()
@@ -459,7 +459,7 @@
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "armor_case"
 	w_class = 5
-	storage_slots = 8
+	storage_slots = 9
 	slowdown = 1
 	can_hold = list()
 	foldable = null
@@ -471,6 +471,7 @@
 		spawn(1)
 			new /obj/item/clothing/suit/storage/marine/M35(src)
 			new /obj/item/clothing/head/helmet/marine/pyro(src)
+			new /obj/item/clothing/shoes/marine/pyro(src)
 			new /obj/item/storage/backpack/marine/engineerpack/flamethrower(src)
 			new /obj/item/weapon/gun/flamer/M240T(src)
 			new /obj/item/ammo_magazine/flamer_tank/large(src)
@@ -482,7 +483,7 @@
 
 /obj/item/storage/box/spec/heavy_grenadier
 	name = "\improper Heavy Grenadier case"
-	desc = "A large case containing M50 Heavy Armor and a heavy-duty multi-shot grenade launcher, the Armat Systems M92. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+	desc = "A large case containing B18 Heavy Armor and a heavy-duty multi-shot grenade launcher, the Armat Systems M92. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "grenade_case"
 	w_class = 5
@@ -490,17 +491,40 @@
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 	foldable = null
+	spec_set = "heavy gunner"
+
+/obj/item/storage/box/spec/heavy_grenadier/New()
+	..()
+	spawn(1)
+		new /obj/item/weapon/gun/launcher/m92(src)
+		new /obj/item/storage/belt/grenade/b18(src)
+		new /obj/item/clothing/gloves/marine/specialist(src)
+		new /obj/item/clothing/suit/storage/marine/specialist(src)
+		new /obj/item/clothing/head/helmet/marine/specialist(src)
+
+
+/obj/item/storage/box/spec/heavy_gunner
+	name = "\improper Heavy Minigunner case"
+	desc = "A large case containing B18 armor, munitions, and a goddamn minigun. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+	icon = 'icons/Marine/marine-weapons.dmi'
+	icon_state = "rocket_case"
 	spec_set = "heavy grenadier"
+	w_class = 5
+	storage_slots = 16
+	slowdown = 1
+	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
+	foldable = null
 
-	New()
-		..()
-		spawn(1)
-			new /obj/item/weapon/gun/launcher/m92(src)
-			new /obj/item/storage/belt/grenade/b18(src)
-			new /obj/item/clothing/gloves/marine/specialist(src)
-			new /obj/item/clothing/suit/storage/marine/specialist(src)
-			new /obj/item/clothing/head/helmet/marine/specialist(src)
-
+/obj/item/storage/box/spec/heavy_gunner/New()
+	..()
+	spawn(1)
+		new /obj/item/clothing/gloves/marine/specialist(src)
+		new /obj/item/clothing/suit/storage/marine/specialist(src)
+		new /obj/item/clothing/head/helmet/marine/specialist(src)
+		new /obj/item/weapon/gun/minigun(src)
+		new /obj/item/ammo_magazine/minigun(src)
+		new /obj/item/ammo_magazine/minigun(src)
+		new /obj/item/ammo_magazine/minigun(src)
 
 /obj/item/spec_kit //For events/WO, allowing the user to choose a specalist kit
 	name = "specialist kit"
@@ -509,13 +533,15 @@
 	icon_state = "deliverycrate"
 
 /obj/item/spec_kit/attack_self(mob/user as mob)
-	var/choice = input(user, "Please pick a specalist kit!","Selection") in list("Pyro","Grenadier","Sniper","Scout","Demo")
+	var/choice = input(user, "Please pick a specalist kit!","Selection") in list("Pyro","Heavy Armor (Grenadier)","Heavy Armor (Minigun)","Sniper","Scout (Battle Rifle)","Scout (Shotgun)","Demo")
 	var/obj/item/storage/box/spec/S = null
 	switch(choice)
 		if("Pyro")
 			S = /obj/item/storage/box/spec/pyro
-		if("Grenadier")
+		if("Heavy Armor (Grenadier)")
 			S = /obj/item/storage/box/spec/heavy_grenadier
+		if("Heavy Armor (Minigun)")
+			S = /obj/item/storage/box/spec/heavy_gunner
 		if("Sniper")
 			S = /obj/item/storage/box/spec/sniper
 		if("Scout (Battle Rifle)")
@@ -545,3 +571,5 @@
 		if("Demo")
 			new /obj/item/storage/box/spec/demolitionist (T)
 	qdel(src)
+
+

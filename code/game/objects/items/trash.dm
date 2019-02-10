@@ -94,7 +94,7 @@
 	icon_state = "fortune" //Thank you Alterist
 
 /obj/item/trash/fortunecookie/Initialize()
-	desc = "The fortune reads. <br><span class='tip'>[pick(marinetips)]</span>"
+	desc = "The fortune reads. <br><span class='tip'>[pick(GLOB.marinetips)]</span>"
 
 /obj/item/trash/c_tube
 	name = "cardboard tube"

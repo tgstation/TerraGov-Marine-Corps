@@ -261,10 +261,9 @@
 	else
 		if(dx > 0)	direction = EAST
 		else		direction = WEST
-	usr.dir = direction
+	usr.setDir(direction)
 	if(buckled)
-		buckled.dir = direction
-		buckled.handle_rotation()
+		buckled.setDir(direction)
 
 
 

@@ -1,5 +1,0 @@
-author: "Jimminian95"
-delete-after: True
-changes: 
-  - rscadd: "Swaps the brig and the OB room, with the OB as an extension of the hangar and the Brig in front of CIC. Moves all bunks, including the SO and XO bunks, the CL office and the Officer's mess into the CIC ring. Expands CIC armoury while adding engi/medical equipment, adding a hallway surrounding the CIC itself."
-  - rscadd: "Remapped the brig from scratch into a Panopticon design. Adds a large permabrig (complete with hydro, basketball, bedrooms, and food to keep prisoners busy), conference and interrogation rooms, open reception area (Any crew can get into the brig's main hall), MP bunks and an observation bubble complete with buttons to lock down the brig and flash various areas."

@@ -56,7 +56,7 @@ obj/machinery/atmospherics/mains_pipe
 
 	hide(var/i)
 		if(level == 1 && istype(loc, /turf))
-			invisibility = i ? 101 : 0
+			invisibility = i ? INVISIBILITY_MAXIMUM : 0
 		update_icon()
 
 	proc/burst()
@@ -110,9 +110,9 @@ obj/machinery/atmospherics/mains_pipe/simple
 
 	proc/normalize_dir()
 		if(dir==3)
-			dir = 1
+			setDir(NORTH)
 		else if(dir==12)
-			dir = 4
+			setDir(EAST)
 
 	update_icon()
 		if(nodes[1] && nodes[2])
@@ -121,7 +121,7 @@ obj/machinery/atmospherics/mains_pipe/simple
 			//var/node1_direction = get_dir(src, node1)
 			//var/node2_direction = get_dir(src, node2)
 
-			//dir = node1_direction|node2_direction
+			//setDir(node1_direction|node2_direction)
 
 		else
 			if(!nodes[1]&&!nodes[2])
@@ -570,9 +570,9 @@ obj/machinery/atmospherics/mains_pipe/valve
 
 	proc/normalize_dir()
 		if(dir==3)
-			dir = 1
+			setDir(NORTH)
 		else if(dir==12)
-			dir = 4
+			setDir(EAST)
 
 	proc/open()
 		if(open) return 0

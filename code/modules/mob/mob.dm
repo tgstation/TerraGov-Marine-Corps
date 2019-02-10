@@ -133,27 +133,25 @@
 /mob/proc/attack_ui(slot)
 	var/obj/item/W = get_active_held_item()
 	if(istype(W))
-		equip_to_slot_if_possible(W, slot, 0) // equiphere
+		equip_to_slot_if_possible(W, slot, FALSE) // equiphere
 
-/mob/proc/put_in_any_hand_if_possible(obj/item/W as obj, del_on_fail = 0, disable_warning = 1, redraw_mob = 1)
-	if(equip_to_slot_if_possible(W, SLOT_L_HAND, 1, del_on_fail, disable_warning, redraw_mob))
-		return 1
-	else if(equip_to_slot_if_possible(W, SLOT_R_HAND, 1, del_on_fail, disable_warning, redraw_mob))
-		return 1
-	return 0
+/mob/proc/put_in_any_hand_if_possible(obj/item/W as obj, del_on_fail = FALSE, warning = FALSE, redraw_mob = TRUE)
+	if(equip_to_slot_if_possible(W, SLOT_L_HAND, TRUE, del_on_fail, warning, redraw_mob))
+		return TRUE
+	else if(equip_to_slot_if_possible(W, SLOT_R_HAND, TRUE, del_on_fail, warning, redraw_mob))
+		return TRUE
+	return FALSE
 
 //This is a SAFE proc. Use this instead of equip_to_splot()!
 //set del_on_fail to have it delete W if it fails to equip
-//set disable_warning to disable the 'you are unable to equip that' warning.
 //unset redraw_mob to prevent the mob from being redrawn at the end.
-/mob/proc/equip_to_slot_if_possible(obj/item/W, slot, ignore_delay = TRUE, del_on_fail = FALSE, disable_warning = FALSE, redraw_mob = TRUE, permanent = FALSE)
+/mob/proc/equip_to_slot_if_possible(obj/item/W, slot, ignore_delay = TRUE, del_on_fail = FALSE, warning = TRUE, redraw_mob = TRUE, permanent = FALSE)
 	if(!istype(W))
 		return
-
-	if(!W.mob_can_equip(src, slot, disable_warning))
+	if(!W.mob_can_equip(src, slot, warning))
 		if(del_on_fail)
 			qdel(W)
-		else if(!disable_warning)
+		else if(warning)
 			to_chat(src, "<span class='warning'>You are unable to equip that.</span>")
 		return
 	var/start_loc = W.loc
@@ -190,46 +188,84 @@
 	return
 
 //This is just a commonly used configuration for the equip_to_slot_if_possible() proc, used to equip people when the rounds tarts and when events happen and such.
-/mob/proc/equip_to_slot_or_del(obj/item/W, slot, permanent = 0)
-	return equip_to_slot_if_possible(W, slot, 1, 1, 1, 0, permanent)
+/mob/proc/equip_to_slot_or_del(obj/item/W, slot, permanent = FALSE)
+	return equip_to_slot_if_possible(W, slot, TRUE, TRUE, FALSE, FALSE, permanent)
 
-//The list of slots by priority. equip_to_appropriate_slot() uses this list. Doesn't matter if a mob type doesn't have a slot.
-var/list/slot_equipment_priority = list( \
-		SLOT_IN_HOLSTER,\
-		SLOT_IN_S_HOLSTER,\
-		SLOT_IN_B_HOLSTER,\
-		SLOT_BACK,\
-		SLOT_WEAR_ID,\
-		SLOT_W_UNIFORM,\
-		SLOT_ACCESSORY,\
-		SLOT_WEAR_SUIT,\
-		SLOT_WEAR_MASK,\
-		SLOT_HEAD,\
-		SLOT_SHOES,\
-		SLOT_GLOVES,\
-		SLOT_EARS,\
-		SLOT_GLASSES,\
-		SLOT_BELT,\
-		SLOT_S_STORE,\
-		SLOT_L_STORE,\
-		SLOT_R_STORE,\
-		SLOT_IN_BOOT,\
-		SLOT_IN_STORAGE,\
-		SLOT_IN_L_POUCH,\
-		SLOT_IN_R_POUCH\
-	)
 
-//puts the item "W" into an appropriate slot in a human's inventory
-//returns 0 if it cannot, 1 if successful
 /mob/proc/equip_to_appropriate_slot(obj/item/W, ignore_delay = TRUE)
 	if(!istype(W))
 		return FALSE
 
-	for(var/slot in slot_equipment_priority)
-		if(equip_to_slot_if_possible(W, slot, ignore_delay, 0, 1, 1)) //del_on_fail = 0; disable_warning = 0; redraw_mob = 1
+	for(var/slot in SLOT_EQUIP_ORDER)
+		if(equip_to_slot_if_possible(W, slot, ignore_delay, FALSE, FALSE, FALSE))
 			return TRUE
 
 	return FALSE
+
+
+/mob/proc/draw_from_slot_if_possible(slot)
+	if(!slot)
+		return FALSE
+
+	var/obj/item/I = get_item_by_slot(slot)
+
+	if(!I)
+		return FALSE
+
+	if(istype(I, /obj/item/storage/belt/gun))
+		var/obj/item/storage/belt/gun/B = I
+		if(!B.current_gun)
+			return FALSE
+		var/obj/item/W = B.current_gun
+		B.remove_from_storage(W)
+		put_in_hands(W)
+		return TRUE
+	else if(istype(I, /obj/item/clothing/shoes/marine))
+		var/obj/item/clothing/shoes/marine/S = I
+		if(!S.knife)
+			return FALSE
+		put_in_hands(S.knife)
+		S.knife = null
+		S.update_icon()
+		return TRUE
+	else if(istype(I, /obj/item/clothing/under))
+		var/obj/item/clothing/under/U = I
+		if(!U.hastie)
+			return FALSE
+		var/obj/item/clothing/tie/storage/T = U.hastie
+		if(!T.hold)
+			return FALSE
+		var/obj/item/storage/internal/S = T.hold
+		if(!length(S.contents))
+			return FALSE
+		var/obj/item/W = S.contents[length(S.contents)]
+		S.remove_from_storage(W)
+		put_in_hands(W)
+		return TRUE
+	else if(istype(I, /obj/item/clothing/suit/storage))
+		var/obj/item/clothing/suit/storage/S = I
+		if(!S.pockets)
+			return FALSE
+		var/obj/item/storage/internal/P = S.pockets
+		if(!length(P.contents))
+			return FALSE
+		var/obj/item/W = P.contents[length(P.contents)]
+		P.remove_from_storage(W)
+		put_in_hands(W)
+		return TRUE
+	else if(istype(I, /obj/item/storage))
+		var/obj/item/storage/S = I
+		if(!length(S.contents))
+			return FALSE
+		var/obj/item/W = S.contents[length(S.contents)]
+		S.remove_from_storage(W)
+		put_in_hands(W)
+		return TRUE
+	else
+		doUnEquip(I)
+		put_in_hands(I)
+		return TRUE
+
 
 /mob/proc/reset_view(atom/A)
 	if (client)
@@ -335,12 +371,12 @@ var/list/slot_equipment_priority = list( \
 		'html/scales.png'
 		)
 
-	src << browse_rsc('html/changelog2015.html', "changelog2015.html") 
-	src << browse_rsc('html/changelog2016.html', "changelog2016.html") 
-	src << browse_rsc('html/changelog2017.html', "changelog2017.html") 
-	src << browse_rsc('html/changelog20181.html', "changelog20181.html") 
+	src << browse_rsc('html/changelog2015.html', "changelog2015.html")
+	src << browse_rsc('html/changelog2016.html', "changelog2016.html")
+	src << browse_rsc('html/changelog2017.html', "changelog2017.html")
+	src << browse_rsc('html/changelog20181.html', "changelog20181.html")
 	src << browse_rsc('html/changelog20182.html', "changelog20182.html")
-	src << browse_rsc('html/changelog.html', "changelog.html")  
+	src << browse_rsc('html/changelog.html', "changelog.html")
 
 
 	src << browse('html/changelog.html', "window=changes;size=675x650")
@@ -532,12 +568,12 @@ var/list/slot_equipment_priority = list( \
 
 
 /mob/proc/facedir(var/ndir)
-	if(!canface())	return 0
-	dir = ndir
+	if(!canface())
+		return FALSE
+	setDir(ndir)
 	if(buckled && !buckled.anchored)
-		buckled.dir = ndir
-		buckled.handle_rotation()
-	return 1
+		buckled.setDir(ndir)
+	return TRUE
 
 
 
