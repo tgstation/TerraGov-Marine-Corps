@@ -188,6 +188,11 @@
 	center_of_mass = list("x"=15, "y"=10)
 	list_reagents = list("coffee" = 30)
 
+/obj/item/reagent_container/food/drinks/coffee/cafe_latte
+	name = "\improper Cafe Latte"
+	desc = "The beverage you're about to enjoy is hot."
+	list_reagents = list("cafe_latte" = 30)
+
 /obj/item/reagent_container/food/drinks/tea
 	name = "\improper Duke Purple Tea"
 	desc = "An insult to Duke Purple is an insult to the Space Queen! Any proper gentleman will fight you, if you sully this tea."
