@@ -1265,11 +1265,7 @@
 					message_admins("[ADMIN_TPMONTY(usr)] canceled the self-destruct system.")
 
 			if("use_dest")
-				var/confirm = alert("Are you sure you want to self-destruct the Almayer?", "Self-Destruct", "Yes", "Cancel")
-				if(confirm != "Yes")
-					return
-
-				if(alert("Are you sure you want to destroy the Almayer right now?",, "Yes", "No") != "Yes")
+				if(alert("Are you sure you want to destroy the [MAIN_SHIP_NAME] right now?", "Self-Destruct", "Yes", "No") != "Yes")
 					return
 
 				if(!EvacuationAuthority.initiate_self_destruct(TRUE))
