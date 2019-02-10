@@ -20,10 +20,9 @@
 	var/hud_state = "grenade_he"
 	var/hud_state_empty = "grenade_empty"
 
+
 /obj/item/explosive/grenade/New()
-
-	..()
-
+	. = ..()
 	det_time = rand(det_time - 10, det_time + 10)
 
 /obj/item/explosive/grenade/attack_self(mob/user)
@@ -63,11 +62,11 @@
 		return
 
 	if(user)
+		log_explosion("[key_name(user)] primed [src] at [AREACOORD(user.loc)].")
 		log_combat(user, src, "primed")
-		msg_admin_attack("[ADMIN_TPMONTY(usr)] primed \a [src].")
 
 	icon_state = initial(icon_state) + "_active"
-	active = 1
+	active = TRUE
 	playsound(loc, arm_sound, 25, 1, 6)
 	if(dangerous)
 		round_statistics.grenades_thrown++

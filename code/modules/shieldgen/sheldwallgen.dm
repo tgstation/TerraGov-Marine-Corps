@@ -16,7 +16,6 @@
 		var/recalc = 0
 		var/locked = 1
 		var/destroyed = 0
-		var/directwired = 1
 //		var/maxshieldload = 200
 		var/obj/structure/cable/attached		// the attached cable
 		var/storedpower = 0
@@ -72,7 +71,7 @@
 		return 0
 
 	var/shieldload = between(500, max_stored_power - storedpower, power_draw)	//what we try to draw
-	shieldload = PN.draw_power(shieldload) //what we actually get
+	shieldload = C.add_load(shieldload) //what we actually get
 	storedpower += shieldload
 
 	//If we're still in the red, then there must not be enough available power to cover our load.
@@ -159,7 +158,7 @@
 		var/obj/machinery/shieldwall/CF = new/obj/machinery/shieldwall/(src, G) //(ref to this gen, ref to connected gen)
 		if(!CF) return
 		CF.loc = T
-		CF.dir = field_dir
+		CF.setDir(field_dir)
 
 
 /obj/machinery/shieldwallgen/attackby(obj/item/W, mob/user)

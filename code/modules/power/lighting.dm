@@ -109,7 +109,7 @@
 				if ("bulb")
 					newlight = new /obj/machinery/light/small/built(src.loc)
 
-			newlight.dir = src.dir
+			newlight.setDir(src.dir)
 			src.transfer_fingerprints_to(newlight)
 			qdel(src)
 			return
@@ -364,7 +364,7 @@
 				if("bulb")
 					newlight = new /obj/machinery/light_construct/small(src.loc)
 					newlight.icon_state = "bulb-construct-stage2"
-			newlight.dir = src.dir
+			newlight.setDir(dir)
 			newlight.stage = 2
 			newlight.fingerprints = src.fingerprints
 			newlight.fingerprintshidden = src.fingerprintshidden
@@ -701,7 +701,7 @@
 		return
 	if(istype(target, /obj/machinery/light))
 		return
-	if(user.a_intent != "hurt")
+	if(user.a_intent != INTENT_HARM)
 		return
 
 	shatter()

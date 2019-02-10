@@ -117,7 +117,7 @@
 
 	if (PN)
 		var/power_draw = between(0, max_charge - stored_charge, charge_rate) //what we are trying to draw
-		power_draw = PN.draw_power(power_draw) //what we actually get
+		power_draw = C.add_load(power_draw) //what we actually get
 		stored_charge += power_draw
 
 	time_since_fail++
@@ -155,5 +155,5 @@
 	if (src.anchored)
 		to_chat(usr, "It is fastened to the floor!")
 		return
-	src.dir = turn(src.dir, 270)
+	setDir(turn(dir, 270))
 	return

@@ -128,8 +128,8 @@
 	..()
 
 /obj/item/clothing/under/marine/officer/command
-	name = "commander uniform"
-	desc = "A special-issue, well-ironed, kevlar-weaved, hazmat-tested, EMF-augmented uniform worthy of a TGMC captain. Even looking at it the wrong way could result in being court-marshalled."
+	name = "captain's uniform"
+	desc = "A special-issue, well-ironed, kevlar-weaved, hazmat-tested, EMF-augmented uniform worthy of a TerraGov Navy Captain. Even looking at it the wrong way could result in being court-marshalled."
 	icon_state = "CO_jumpsuit"
 
 /obj/item/clothing/under/marine/officer/command/New()

@@ -100,7 +100,7 @@
 		var/obj/structure/bed/chair/wheelchair/W = new (H.loc)
 		H.buckled = W
 		H.update_canmove()
-		W.dir = H.dir
+		W.setDir(H.dir)
 		W.buckled_mob = H
 		W.add_fingerprint(H)
 

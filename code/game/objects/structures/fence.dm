@@ -66,7 +66,7 @@
 		health -= 100
 		healthcheck(1, 1, user)
 
-	else if(ishuman(user) && user.a_intent == "hurt")
+	else if(ishuman(user) && user.a_intent == INTENT_HARM)
 		var/mob/living/carbon/human/H = user
 		if(H.species.can_shred(H))
 			attack_generic(H, 25)
@@ -194,7 +194,7 @@
 	..()
 
 	if(start_dir)
-		dir = start_dir
+		setDir(start_dir)
 
 	update_nearby_icons()
 
@@ -206,7 +206,7 @@
 /obj/structure/fence/Move()
 	var/ini_dir = dir
 	..()
-	dir = ini_dir
+	setDir(ini_dir)
 
 //This proc is used to update the icons of nearby windows.
 /obj/structure/fence/proc/update_nearby_icons()

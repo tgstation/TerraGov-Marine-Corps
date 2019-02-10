@@ -196,7 +196,7 @@
 	send_buckling_message(M, user)
 	M.buckled = src
 	M.loc = src.loc
-	M.dir = src.dir
+	M.setDir(dir)
 	M.update_canmove()
 	src.buckled_mob = M
 	src.add_fingerprint(user)

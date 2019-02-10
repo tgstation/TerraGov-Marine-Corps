@@ -209,6 +209,7 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 		if(player?.client?.prefs?.toggles_chat & CHAT_STATISTICS)
 			to_chat(player, output)
 
+
 /datum/game_mode/proc/end_of_round_deathmatch()
 	var/list/spawns = GLOB.deathmatch.Copy()
 
@@ -253,6 +254,20 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 				M.mind.special_role = "Deathmatch"
 			M.forceMove(picked)
 			M.revive()
+			if(isbrain(M))
+				M.change_mob_type(/mob/living/carbon/human, M.loc, null, TRUE)
+			M = C.mob
+			if(isxeno(M))
+				var/mob/living/carbon/Xenomorph/X = M
+				X.set_hive_number(pick(XENO_HIVE_NORMAL, XENO_HIVE_CORRUPTED, XENO_HIVE_ALPHA, XENO_HIVE_BETA, XENO_HIVE_ZETA))
+			if(ishuman(M))
+				var/mob/living/carbon/human/H = M
+				if(!H.w_uniform)
+					var/job = pick(/datum/job/clf/leader, /datum/job/upp/commando/leader, /datum/job/freelancer/leader)
+					var/datum/job/J = new job
+					J.generate_equipment(H)
+					H.regenerate_icons()
+
 			to_chat(M, "<br><br><h1><span class='danger'>Fight for your life!</span></h1><br><br>")
 		else
 			to_chat(M, "<br><br><h1><span class='danger'>Failed to find a valid location for End of Round Deathmatch. Please do not grief.</span></h1><br><br>")

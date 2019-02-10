@@ -1,14 +1,14 @@
 //These are macros used to reduce on proc calls
 #define fetchElement(L, i) (associative) ? L[L[i]] : L[i]
 
-	//Minimum sized sequence that will be merged. Anything smaller than this will use binary-insertion sort.
-	//Should be a power of 2
+//Minimum sized sequence that will be merged. Anything smaller than this will use binary-insertion sort.
+//Should be a power of 2
 #define MIN_MERGE 32
 
-	//When we get into galloping mode, we stay there until both runs win less often than MIN_GALLOP consecutive times.
+//When we get into galloping mode, we stay there until both runs win less often than MIN_GALLOP consecutive times.
 #define MIN_GALLOP 7
 
-//This is a global instance to allow much of this code to be reused. The interfaces are kept seperately
+//This is a global instance to allow much of this code to be reused. The interfaces are kept separately
 GLOBAL_DATUM_INIT(sortInstance, /datum/sortInstance, new())
 /datum/sortInstance
 	//The array being sorted.
@@ -27,7 +27,6 @@ GLOBAL_DATUM_INIT(sortInstance, /datum/sortInstance, new())
 	//Stores information regarding runs yet to be merged.
 	//Run i starts at runBase[i] and extends for runLen[i] elements.
 	//runBase[i] + runLen[i] == runBase[i+1]
-
 	var/list/runBases = list()
 	var/list/runLens = list()
 
@@ -326,8 +325,6 @@ reverse a descending sequence without violating stability.
 		while(offset < maxOffset && call(cmp)(key, fetchElement(L,base+hint-offset)) < 0)	//we are iterating backwards
 			lastOffset = offset
 			offset = (offset << 1) + 1	//1 3 7 15
-			//if(offset <= 0)	//int overflow, not an issue here since we are using floats
-			//	offset = maxOffset
 
 		if(offset > maxOffset)
 			offset = maxOffset
@@ -461,7 +458,7 @@ reverse a descending sequence without violating stability.
 
 	if(len1 == 1)
 		//ASSERT(len2 > 0)
-		moveRange(L, cursor1, cursor2+len2)
+		moveElement(L, cursor1, cursor2+len2)
 
 	//else
 		//ASSERT(len2 == 0)
@@ -484,7 +481,6 @@ reverse a descending sequence without violating stability.
 		return
 
 	moveElement(L, cursor1--, cursor2-- + 1)
-
 	--len1
 
 	outer:
@@ -528,8 +524,6 @@ reverse a descending sequence without violating stability.
 
 					cursor2 -= count1
 					len1 -= count1
-
-					moveRange(L, cursor1+1, cursor2+1, count1)
 
 					if(len1 == 0)
 						break outer
@@ -576,7 +570,6 @@ reverse a descending sequence without violating stability.
 
 	//If array is small, do an insertion sort
 	if(remaining < MIN_MERGE)
-		//var/initRunLen = countRunAndMakeAscending(start, end)
 		binarySort(start, end, start/*+initRunLen*/)
 		return
 
@@ -627,14 +620,13 @@ reverse a descending sequence without violating stability.
 	var/val2 = fetchElement(L,cursor2)
 
 	while(1)
-		if(call(cmp)(val1,val2) < 0)
+		if(call(cmp)(val1,val2) <= 0)
 			if(++cursor1 >= end1)
 				break
 			val1 = fetchElement(L,cursor1)
 		else
 			moveElement(L,cursor2,cursor1)
 
-			++cursor2
 			if(++cursor2 >= end2)
 				break
 			++end1

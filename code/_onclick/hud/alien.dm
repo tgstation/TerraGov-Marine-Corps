@@ -23,7 +23,7 @@
 	inv_box = new /obj/screen/inventory()
 	inv_box.name = "r_hand"
 	inv_box.icon = 'icons/mob/screen1_alien.dmi'
-	inv_box.dir = 1 //north is sprite for right hand, south is left hand.
+	inv_box.setDir(NORTH) //north is sprite for right hand, south is left hand.
 	inv_box.icon_state = "hand_inactive"
 	if(owner && !owner.hand)	//This being 0 or null means the right hand is in use
 		using.icon_state = "hand_active"

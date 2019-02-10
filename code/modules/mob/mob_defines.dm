@@ -77,13 +77,13 @@
 	var/specset //Simple way to track which set has the player taken
 
 	var/overeatduration = 0		// How long this guy is overeating //Carbon
-	var/knocked_out = 0.0
-	var/stunned = 0.0
-	var/frozen = 0.0
-	var/knocked_down = 0.0
-	var/losebreath = 0.0//Carbon
+	var/knocked_out = 0.
+	var/stunned = 0
+	var/frozen = 0
+	var/knocked_down = 0
+	var/losebreath = 0 //Carbon
 	var/shakecamera = 0
-	var/a_intent = "help"//Living
+	var/a_intent = INTENT_HELP //Living
 	var/m_intent = MOVE_INTENT_RUN//Living
 	var/lastKnownIP = null
 	var/obj/buckled = null//Living

@@ -62,7 +62,7 @@
 		connected.loc = src
 	else
 		if(step(connected, dir))
-			connected.dir = dir
+			connected.setDir(dir)
 			for(var/atom/movable/A in src)
 				A.forceMove(connected.loc)
 		else

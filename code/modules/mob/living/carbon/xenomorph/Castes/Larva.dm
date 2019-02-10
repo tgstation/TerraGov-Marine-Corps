@@ -60,7 +60,7 @@
 	caste_base_type = /mob/living/carbon/Xenomorph/Larva/predalien
 
 /mob/living/carbon/Xenomorph/Larva/UnarmedAttack(atom/A)
-	a_intent = "help" //Forces help intent for all interactions.
+	a_intent = INTENT_HELP //Forces help intent for all interactions.
 	. = ..()
 
 /mob/living/carbon/Xenomorph/Larva/Stat()

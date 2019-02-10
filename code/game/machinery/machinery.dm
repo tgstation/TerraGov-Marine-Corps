@@ -132,19 +132,19 @@ Class Procs:
 			qdel()
 		return
 
-/obj/machinery/New()
+/obj/machinery/Initialize()
 	. = ..()
 	GLOB.machines += src
 	var/area/A = get_area(src)
 	if(A)
-		A.master.area_machines += src
+		A.area_machines += src
 
 /obj/machinery/Destroy()
 	GLOB.machines -= src
 	processing_machines -= src
 	var/area/A = get_area(src)
 	if(A)
-		A.master.area_machines -= src
+		A.area_machines -= src
 	. = ..()
 
 /obj/machinery/proc/start_processing()
@@ -208,30 +208,27 @@ Class Procs:
 	if(!powered(power_channel))
 		if(use_power && (machine_current_charge > idle_power_usage)) //Does it have an integrated battery/reserve power to tap into?
 			machine_current_charge -= min(machine_current_charge, idle_power_usage) //Sterilize with min; no negatives allowed.
-			//to_chat(world, "<span class='warning'>DEBUG: Machine Auto_Use_Power: Idle Power Usage: [idle_power_usage] Machine Current Charge: [machine_current_charge].</span>")
 			update_icon()
 			return TRUE
 		else if(machine_current_charge > active_power_usage)
 			machine_current_charge -= min(machine_current_charge, active_power_usage)
-			//to_chat(world, "<span class='warning'>DEBUG: Machine Auto_Use_Power: Active Power Usage: [active_power_usage] Machine Current Charge: [machine_current_charge].</span>")
 			update_icon()
 			return TRUE
 		else
 			return FALSE
 
-	if(use_power)
-		if((machine_current_charge < machine_max_charge) && anchored) //here we handle recharging the internal battery of machines
-			//to_chat(world, "<span class='warning'>DEBUG: Machine Auto_Use_Power: Machine Current Charge: [machine_current_charge] .</span>")
-			var/power_usage = (min(500,max(0,machine_max_charge - machine_current_charge)))
-			machine_current_charge += power_usage //recharge internal cell at max rate of 500
-			use_power(power_usage,power_channel, TRUE)
-			//to_chat(world, "<span class='warning'>DEBUG: Machine Auto_Use_Power: Power Usage: [power_usage] Machine Current Charge: [machine_current_charge].</span>")
-			update_icon()
-		else
-			use_power(idle_power_usage,power_channel, TRUE)
+	switch(use_power)
+		if(IDLE_POWER_USE)
+			if((machine_current_charge < machine_max_charge) && anchored) //here we handle recharging the internal battery of machines
+				var/power_usage = (min(500,max(0,machine_max_charge - machine_current_charge)))
+				machine_current_charge += power_usage //recharge internal cell at max rate of 500
+				use_power(power_usage,power_channel, TRUE)
+				update_icon()
+			else
+				use_power(idle_power_usage,power_channel, TRUE)
 
-	else if(use_power >= 2)
-		use_power(active_power_usage,power_channel, TRUE)
+		if(ACTIVE_POWER_USE)
+			use_power(active_power_usage,power_channel, TRUE)
 	return TRUE
 
 /obj/machinery/proc/operable(var/additional_flags = 0)

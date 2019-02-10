@@ -38,7 +38,7 @@
 	if(!client)
 		return
 
-	if(!client.holder && !dsay_allowed)
+	if(!client.holder && !GLOB.dsay_allowed)
 		to_chat(src, "<span class='warning'>Deadchat is globally muted</span>")
 		return
 

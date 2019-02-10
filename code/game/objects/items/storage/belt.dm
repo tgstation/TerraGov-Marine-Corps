@@ -101,7 +101,7 @@
 	item_state = "medical"
 	storage_slots = 14 //can hold 2 "rows" of very limited medical equipment and ammo.
 	max_w_class = 3
-	max_storage_space = 28
+	max_storage_space = 29
 
 	can_hold = list(
 		"/obj/item/device/healthanalyzer",
@@ -145,6 +145,7 @@
 	new /obj/item/storage/pill_bottle/tramadol(src)
 	new /obj/item/storage/pill_bottle/peridaxon(src)
 	new /obj/item/storage/pill_bottle/quickclot(src)
+	new /obj/item/device/healthanalyzer(src)
 
 
 /obj/item/storage/belt/combatLifesaver
@@ -491,18 +492,22 @@
 
 
 //There are only two types here that can be inserted, and they are mutually exclusive. We only track the gun.
-/obj/item/storage/belt/gun/can_be_inserted(obj/item/W, stop_messages) //We don't need to stop messages, but it can be left in.
-	if( ..() ) //If the parent did their thing, this should be fine. It pretty much handles all the checks.
-		if(istype(W,/obj/item/weapon/gun)) //Is it a gun?
-			if(holds_guns_now == holds_guns_max) //Are we at our gun capacity?
-				if(!stop_messages) to_chat(usr, "<span class='warning'>[src] already holds a gun.</span>")
-				return //Nothing else to do.
-		else //Must be ammo.
-		//We have slots open for the gun, so in total we should have storage_slots - guns_max in slots, plus whatever is already in the belt.
-			if(( (storage_slots - holds_guns_max) + holds_guns_now) <= contents.len) // We're over capacity, and the space is reserved for a gun.
-				if(!stop_messages) to_chat(usr, "<span class='warning'>[src] can't hold any more magazines.</span>")
-				return
-		return 1
+/obj/item/storage/belt/gun/can_be_inserted(obj/item/W, warning) //We don't need to stop messages, but it can be left in.
+	. = ..()
+	if(!.) //If the parent did their thing, this should be fine. It pretty much handles all the checks.
+		return
+	if(istype(W,/obj/item/weapon/gun)) //Is it a gun?
+		if(holds_guns_now == holds_guns_max) //Are we at our gun capacity?
+			if(warning) 
+				to_chat(usr, "<span class='warning'>[src] already holds a gun.</span>")
+			return FALSE
+	else //Must be ammo.
+	//We have slots open for the gun, so in total we should have storage_slots - guns_max in slots, plus whatever is already in the belt.
+		if(((storage_slots - holds_guns_max) + holds_guns_now) <= length(contents)) // We're over capacity, and the space is reserved for a gun.
+			if(warning) 
+				to_chat(usr, "<span class='warning'>[src] can't hold any more magazines.</span>")
+			return FALSE
+	return TRUE
 
 /obj/item/storage/belt/gun/m4a3
 	name = "\improper M276 pattern M4A3 holster rig"

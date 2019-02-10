@@ -168,6 +168,7 @@
 	unacidable = TRUE
 	no_panel = TRUE
 	not_weldable = TRUE
+	destructible = FALSE
 
 /obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ex_act(severity)
 	return
