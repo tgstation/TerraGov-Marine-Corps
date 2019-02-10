@@ -52,13 +52,15 @@
 	set name = "Discord"
 	set desc = "Like our server? Buy us and get satisfaction for your efforts."
 	set hidden = TRUE
-	if(CONFIG_GET(string/discordurl))
-		if(alert("This will open our Discord in your browser. Are you sure?", "Confirmation", "Yes", "No") != "Yes")
-			return
-		src << link(CONFIG_GET(string/discordurl))
-	else
+
+	if(!CONFIG_GET(string/discordurl))
 		to_chat(src, "<span class='warning'>The Discord URL is not set in the server configuration.</span>")
-	return
+		return
+
+	if(alert("This will open our Discord in your browser. Are you sure?", "Confirmation", "Yes", "No") != "Yes")
+		return
+
+	src << link(CONFIG_GET(string/discordurl))
 
 
 /client/verb/submitbug()
