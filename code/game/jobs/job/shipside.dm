@@ -548,7 +548,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 
 //Researcher
 /datum/job/medical/researcher
-	title = "Corporate Researcher"
+	title = "Researcher"
 	disp_title = "Researcher"
 	comm_title = "Rsr"
 	paygrade = "CD"
