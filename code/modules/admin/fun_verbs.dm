@@ -724,56 +724,63 @@
 	if(!istype(H))
 		return
 
-	var/rank_list = list("Custom") + RoleAuthority.roles_by_name
+	switch(alert("Modify the rank or give them a new one?", "Select Rank", "New Rank", "Modify", "Cancel"))
+		if("New Rank")
+			var/newrank = input("Select new rank for [H]", "Change the mob's rank and skills") as null|anything in sortNames(RoleAuthority.roles_by_name)
+			if(!newrank)
+				return
 
-	var/newrank = input("Select new rank for [H]", "Change the mob's rank and skills") as null|anything in rank_list
+			if(!H?.mind)
+				return
 
-	if(!newrank)
-		return
-
-	if(!H?.mind)
-		return
-
-	if(newrank != "Custom")
-		H.set_everything(H, newrank)
-		log_admin("[key_name(usr)] has set the rank of [key_name(H)] to [newrank].")
-		message_admins("[ADMIN_TPMONTY(usr)] has set the rank of [ADMIN_TPMONTY(H)] to [newrank].")
-		return
-	else
-		var/obj/item/card/id/I = H.wear_id
-		if(!istype(I) || I != H.wear_id)
-			H.wear_id = new /obj/item/card/id(H)
-		switch(input("What do you want to edit?") as null|anything in list("Comms Title - \[Engineering (Title)]", "Chat Title - Title John Doe screams!", "ID title - Jane Doe's ID Card (Title)", "Skills"))
-			if("Comms Title - \[Engineering (Title)]")
-				var/newcommtitle = input("Write the custom title appearing on the comms themselves, for example: \[Command (Title)]", "Comms title") as null|text
-				if(!newcommtitle || !H?.mind)
+			H.set_everything(H, newrank)
+			log_admin("[key_name(usr)] has set the rank of [key_name(H)] to [newrank].")
+			message_admins("[ADMIN_TPMONTY(usr)] has set the rank of [ADMIN_TPMONTY(H)] to [newrank].")
+		if("Modify")
+			var/obj/item/card/id/I = H.wear_id
+			if(!istype(I) || I != H.wear_id)
+				H.wear_id = new /obj/item/card/id(H)
+			switch(input("What do you want to edit?") as null|anything in list("Comms Title - \[Engineering (Title)]", "Chat Title - Title John Doe screams!", "ID title - Jane Doe's ID Card (Title)", "Registered Name - Jane Doe's ID Card", "Skills"))
+				if("Comms Title - \[Engineering (Title)]")
+					var/commtitle = input("Write the custom title appearing on the comms themselves, for example: \[Command (Title)]", "Comms title") as null|text
+					if(!commtitle || !H?.mind)
+						return
+					H.mind.role_comm_title = commtitle
+				if("Chat Title - Title John Doe screams!")
+					var/chattitle = input("Write the custom title appearing in all chats: Title Jane Doe screams!", "Chat title") as null|text
+					if(chattitle || !H)
+						return
+					if(!istype(I) || I != H.wear_id)
+						H.wear_id = new /obj/item/card/id(H)
+					I.paygrade = chattitle
+				if("ID title - Jane Doe's ID Card (Title)")
+					var/idtitle = input("Write the custom title appearing on the ID itself: Jane Doe's ID Card (Title)", "ID title") as null|text
+					if(!H || I != H.wear_id)
+						return
+					if(!istype(I) || I != H.wear_id)
+						H.wear_id = new /obj/item/card/id(H)
+					I.rank = idtitle
+					I.assignment = idtitle
+					I.name = "[I.registered_name]'s ID Card[idtitle ? " ([I.assignment])" : ""]"
+				if("Registered Name - Jane Doe's ID Card")
+					var/regname = input("Write the name appearing on the ID itself: Jane Doe's ID Card", "Registered Name") as null|text
+					if(!H || I != H.wear_id)
+						return
+					if(!istype(I) || I != H.wear_id)
+						H.wear_id = new /obj/item/card/id(H)
+					I.registered_name = regname
+					I.name = "[regname]'s ID Card ([I.assignment])"
+				if("Skills")
+					var/newskillset = input("Select a skillset", "Skill Set") as null|anything in RoleAuthority.roles_by_name
+					if(!newskillset || !H?.mind)
+						return
+					var/datum/job/J = RoleAuthority.roles_by_name[newskillset]
+					H.mind.set_cm_skills(J.skills_type)
+				else
 					return
-				H.mind.role_comm_title = newcommtitle
-			if("Chat Title - Title John Doe screams!")
-				var/newchattitle = input("Write the custom title appearing in all chats: Title Jane Doe screams!", "Chat title") as null|text
-				if(!H || newchattitle)
-					return
-				if(!istype(I) || I != H.wear_id)
-					H.wear_id = new I(H)
-				I.paygrade = newchattitle
-			if("ID title - Jane Doe's ID Card (Title)")
-				var/IDtitle = input("Write the custom title appearing on the ID itself: Jane Doe's ID Card (Title)", "ID title") as null|text
-				if(!H || I != H.wear_id)
-					return
-				if(!istype(I) || I != H.wear_id)
-					H.wear_id = new I(H)
-				I.rank = IDtitle
-				I.assignment = IDtitle
-				I.name = "[I.registered_name]'s ID Card[IDtitle ? " ([I.assignment])" : ""]"
-			if("Skills")
-				var/newskillset = input("Select a skillset", "Skill Set") as null|anything in RoleAuthority.roles_by_name
-				if(!newskillset || !H?.mind)
-					return
-				var/datum/job/J = RoleAuthority.roles_by_name[newskillset]
-				H.mind.set_cm_skills(J.skills_type)
 
-		log_admin("[key_name(usr)] has made a custom rank/skill change for [key_name(H)].")
-		message_admins("[ADMIN_TPMONTY(usr)] has made a custom rank/skill change for [ADMIN_TPMONTY(H)].")
+			log_admin("[key_name(usr)] has made a custom rank/skill change for [key_name(H)].")
+			message_admins("[ADMIN_TPMONTY(usr)] has made a custom rank/skill change for [ADMIN_TPMONTY(H)].")
 
 
 /datum/admins/proc/select_equipment(var/mob/living/carbon/human/M in GLOB.human_mob_list)
@@ -783,22 +790,18 @@
 	if(!ishuman(M))
 		return
 
-	var/list/dresspacks = list("Strip") + RoleAuthority.roles_by_equipment
-	var/list/paths = list("Strip") + RoleAuthority.roles_by_equipment_paths
+	var/list/dresspacks = sortList(RoleAuthority.roles_by_equipment)
 
 	var/dresscode = input("Choose equipment for [M]", "Select Equipment") as null|anything in dresspacks
-
 	if(!dresscode)
 		return
-
-	var/path = paths[dresspacks.Find(dresscode)]
 
 	for(var/obj/item/I in M)
 		if(istype(I, /obj/item/implant) || istype(I, /obj/item/card/id))
 			continue
 		qdel(I)
 
-	var/datum/job/J = new path
+	var/datum/job/J = dresspacks[dresscode]
 	J.generate_equipment(M)
 	M.regenerate_icons()
 
