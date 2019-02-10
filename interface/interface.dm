@@ -50,7 +50,6 @@
 
 /client/verb/discord()
 	set name = "Discord"
-	set desc = "Like our server? Buy us and get satisfaction for your efforts."
 	set hidden = TRUE
 
 	if(!CONFIG_GET(string/discordurl))
