@@ -442,10 +442,10 @@
 	if(!target || !src)	return 0
 	if(pulling) stop_pulling() //being thrown breaks pulls.
 	if(pulledby) pulledby.stop_pulling()
-	frozen = TRUE //can't move while being thrown
+	set_frozen(TRUE) //can't move while being thrown
 	update_canmove()
 	. = ..()
-	frozen = FALSE
+	set_frozen(FALSE)
 	update_canmove()
 
 //to make an attack sprite appear on top of the target atom.

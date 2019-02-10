@@ -379,7 +379,7 @@
 	name = "illumination flare"
 	desc = "Report this if you actually see this FUCK"
 	icon_state = "" //No sprite
-	invisibility = 101
+	invisibility = INVISIBILITY_MAXIMUM
 	mouse_opacity = 0
 	brightness_on = 7 //Magnesium/sodium fires (White star) really are bright
 

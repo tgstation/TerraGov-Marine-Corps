@@ -30,7 +30,7 @@ Vehicles are placed on the map by a spawner or admin verb
 	desc = "Marker for the entrance of a multitile vehicle."
 
 	var/obj/vehicle/multitile/root/master
-	invisibility = 101
+	invisibility = INVISIBILITY_MAXIMUM
 
 /obj/effect/multitile_entrance/Destroy(var/override = 0)
 	if(!override) return TA_IGNORE_ME
@@ -55,7 +55,7 @@ Vehicles are placed on the map by a spawner or admin verb
 	name = "Landmark"
 	desc = "Marker for the exit of the interior"
 
-	invisibility = 101
+	invisibility = INVISIBILITY_MAXIMUM
 
 	var/obj/vehicle/multitile/root/master
 */
@@ -84,7 +84,7 @@ Vehicles are placed on the map by a spawner or admin verb
 	desc = "Generic multitile vehicle hitbox"
 
 	var/obj/vehicle/multitile/root/root
-	invisibility = 101
+	invisibility = INVISIBILITY_MAXIMUM
 
 /obj/vehicle/multitile/root
 	name = "Root"

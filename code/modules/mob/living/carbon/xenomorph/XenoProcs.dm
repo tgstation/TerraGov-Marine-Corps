@@ -313,12 +313,17 @@
 	return ..() //Do the parent otherwise, for turfs.
 
 /mob/living/carbon/Xenomorph/proc/reset_movement()
-	frozen = FALSE
+	set_frozen(FALSE)
 	update_canmove()
 
 /mob/living/carbon/Xenomorph/proc/stop_movement()
-	frozen = TRUE
+	set_frozen(TRUE)
 	update_canmove()
+
+/mob/living/carbon/Xenomorph/set_frozen(freeze = TRUE)
+	if(fortify && !freeze)
+		return FALSE
+	return ..()
 
 //Bleuugh
 /mob/living/carbon/Xenomorph/proc/empty_gut()
@@ -525,7 +530,7 @@
 
 
 /mob/living/carbon/Xenomorph/proc/update_spits()
-	if(!ammo || !xeno_caste.spit_types.len) //Only update xenos with ammo and spit types.
+	if(!ammo || !xeno_caste.spit_types || !xeno_caste.spit_types.len) //Only update xenos with ammo and spit types.
 		return
 	for(var/i in 1 to xeno_caste.spit_types.len)
 		if(ammo.icon_state == GLOB.ammo_list[xeno_caste.spit_types[i]].icon_state)

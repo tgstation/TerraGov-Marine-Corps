@@ -47,7 +47,7 @@
 				gib()
 	else if(!chestburst && (status_flags & XENO_HOST) && isxenolarva(user))
 		var/mob/living/carbon/Xenomorph/Larva/L = user
-		L.chest_burst(src)
+		L.initiate_burst(src)
 
 
 /mob/living/carbon/gib()
