@@ -104,6 +104,14 @@
 						to_chat(target, "<span class='highdanger'>The blast knocks you off your feet!</span>")
 			step_away(M,P)
 
+	proc/area_stagger_burst(turf/Center, obj/item/projectile/P, var/max_range = 2, var/stun = 0, var/weaken = 1, var/stagger = 2, var/slowdown = 1, var/knockback = 1, var/shake = 1, var/soft_size_threshold = 3, var/hard_size_threshold = 2)	//by Jeser specifically for autocannon. Mix of Burst() and Stagger(): Deals damage in area + applies stagger to mobs in area
+		if(!Center || !P)
+			return
+		for(var/mob/living/carbon/M in range(1,Center))
+			M.visible_message("<span class='danger'>[M] got a concussion from \a [P.name]!</span>","[isXeno(M)?"<span class='xenodanger'>":"<span class='highdanger'>"]You are concussed from \a </b>[P.name] explosion</b>!</span>")
+			M.apply_damage(rand(10,P.damage/2), BRUTE)
+			staggerstun(M, P, config.max_shell_range, max_range, stun, weaken, stagger, slowdown, knockback, shake, soft_size_threshold, hard_size_threshold)
+
 	proc/staggerstun(mob/M, obj/item/projectile/P, var/max_range = 2, var/stun = 0, var/weaken = 1, var/stagger = 2, var/slowdown = 1, var/knockback = 1, var/shake = 1, var/soft_size_threshold = 3, var/hard_size_threshold = 2)
 		if(!M || M == P.firer)
 			return
@@ -1657,3 +1665,56 @@
 	name = "smoke grenade shell"
 	nade_type = /obj/item/explosive/grenade/smokebomb
 	icon_state = "smoke_shell"
+
+/datum/ammo/rocket/autocannon
+	name = "autocannon round"
+	icon_state = "redbullet"
+	iff_signal = ACCESS_IFF_MARINE
+	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_SKIPS_HUMANS
+
+/datum/ammo/rocket/autocannon/New()
+	..()
+	accuracy = config.med_hit_accuracy
+	accurate_range = config.long_shell_range
+	max_range = config.max_shell_range
+	damage = config.hlow_hit_damage
+	penetration= config.mlow_armor_penetration
+	shell_speed = config.fast_shell_speed
+
+/datum/ammo/rocket/autocannon/on_hit_mob(mob/M, obj/item/projectile/P)
+	staggerstun(M, P, config.max_shell_range, 0, 0, 3, 7, 0, 1, 3, 2)
+
+/datum/ammo/rocket/autocannon/on_hit_obj(obj/O, obj/item/projectile/P)
+	area_stagger_burst(get_turf(P), P, 0, 0, 3, 5, 0, 1, 3, 2)
+
+/datum/ammo/rocket/autocannon/on_hit_turf(turf/T, obj/item/projectile/P)
+	area_stagger_burst(get_turf(P), P, 0, 0, 3, 5, 0, 1, 3, 2)
+
+/datum/ammo/rocket/autocannon/do_at_max_range(obj/item/projectile/P)
+	area_stagger_burst(get_turf(P), P, 0, 0, 3, 5, 0, 1, 3, 2)
+
+//no IFF for communistic pigs!
+/datum/ammo/rocket/autocannon/upp
+	icon_state = "bullet"
+	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET
+
+/datum/ammo/rocket/autocannon/upp/New()
+	..()
+	accuracy = config.med_hit_accuracy
+	accurate_range = config.long_shell_range
+	max_range = config.max_shell_range
+	damage = config.med_hit_damage
+	penetration= config.mlow_armor_penetration
+	shell_speed = config.fast_shell_speed
+
+/datum/ammo/rocket/autocannon/upp/on_hit_mob(mob/M, obj/item/projectile/P)
+	staggerstun(M, P, config.max_shell_range, 0, 0, 3, 7, 0, 1, 3, 2)
+
+/datum/ammo/rocket/autocannon/upp/on_hit_obj(obj/O, obj/item/projectile/P)
+	area_stagger_burst(get_turf(P), P, 0, 0, 3, 5, 0, 1, 3, 2)
+
+/datum/ammo/rocket/autocannon/upp/on_hit_turf(turf/T, obj/item/projectile/P)
+	area_stagger_burst(get_turf(P), P, 0, 0, 3, 5, 0, 1, 3, 2)
+
+/datum/ammo/rocket/autocannon/upp/do_at_max_range(obj/item/projectile/P)
+	area_stagger_burst(get_turf(P), P, 0, 0, 3, 5, 0, 1, 3, 2)

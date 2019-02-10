@@ -469,6 +469,10 @@ var/list/apc_dmg_distributions = list(
 		var/mob/living/M = A
 		if(isXeno(M))
 			var/mob/living/carbon/Xenomorph/XEN = M
+			if(isXenoQueen(XEN))
+				return
+			if(isXenoCrusher(XEN))
+				return
 			switch(XEN.upgrade)
 				if(0)
 					M.KnockDown(5)
