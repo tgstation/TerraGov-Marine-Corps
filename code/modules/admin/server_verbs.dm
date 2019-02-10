@@ -184,7 +184,7 @@
 	if(ticker.current_state != GAME_STATE_PREGAME)
 		ticker.delay_end = !ticker.delay_end
 	else
-		to_chat(world, "<hr><span class='centerbold'>The game [!going ? "game will start soon" : "start has been delayed"].</span><hr>")
+		to_chat(world, "<hr><span class='centerbold'>The game [!going ? "will start soon" : "start has been delayed"].</span><hr>")
 
 	going = !going
 
