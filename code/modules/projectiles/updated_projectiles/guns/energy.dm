@@ -332,18 +332,8 @@
 						/obj/item/attachable/scope/mini)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY
-	starting_attachment_types = list(/obj/item/attachable/attached_gun/grenade)
+	starting_attachment_types = list(/obj/item/attachable/attached_gun/grenade, /obj/item/attachable/stock/lasgun)
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 15, "stock_x" = 22, "stock_y" = 12)
-
-/obj/item/weapon/gun/energy/lasgun/M43/Initialize()
-	. = ..()
-	cell = null
-	var/obj/item/attachable/stock/lasgun/S = new(src)
-	S.flags_attach_features &= ~ATTACH_REMOVABLE
-	S.Attach(src)
-	update_attachables()
-	update_icon()
-	S.icon_state = initial(S.icon_state)
 
 /obj/item/weapon/gun/energy/lasgun/M43/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/low_fire_delay)

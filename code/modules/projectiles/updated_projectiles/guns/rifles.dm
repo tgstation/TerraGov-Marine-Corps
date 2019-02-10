@@ -348,15 +348,7 @@
 	name = "\improper Type 71 pulse rifle"
 	desc = " This appears to be a less common variant of the usual Type 71, with an undermounted flamethrower and improved iron sights."
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 20, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
-
-/obj/item/weapon/gun/rifle/type71/flamer/Initialize()
-	. = ..()
-	var/obj/item/attachable/attached_gun/flamer/S = new(src)
-	S.flags_attach_features &= ~ATTACH_REMOVABLE
-	S.Attach(src)
-	update_attachable(S.slot)
-
-
+	starting_attachment_types = list(/obj/item/attachable/attached_gun/flamer/unremovable)
 
 /obj/item/weapon/gun/rifle/type71/carbine
 	name = "\improper Type 71 pulse carbine"
@@ -372,27 +364,7 @@
 	item_state = "type73"
 	wield_delay = 0 //Ends up being .5 seconds due to scope
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 18, "stock_x" = 21, "stock_y" = 18)
-
-/obj/item/weapon/gun/rifle/type71/carbine/commando/Initialize()//Making the gun have an invisible silencer since it's supposed to have one.
-	. = ..()
-	//supressor
-	var/obj/item/attachable/suppressor/S = new(src)
-	S.attach_icon = ""
-	S.icon_state = ""
-	S.flags_attach_features &= ~ATTACH_REMOVABLE
-	S.Attach(src)
-	update_attachable(S.slot)
-	S.icon_state = initial(S.icon_state)
-	//scope
-	var/obj/item/attachable/scope/F = new(src)
-	F.attach_icon = ""
-	F.icon_state = ""
-	F.flags_attach_features &= ~ATTACH_REMOVABLE
-	F.Attach(src)
-	update_attachable(F.slot)
-	F.icon_state = initial(F.icon_state)
-
-
+	starting_attachment_types = list(/obj/item/attachable/suppressor/unremovable/invisible, /obj/item/attachable/scope/unremovable)
 
 /obj/item/weapon/gun/rifle/type71/carbine/commando/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/high_fire_delay)

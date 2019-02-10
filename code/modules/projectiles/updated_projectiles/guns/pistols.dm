@@ -210,16 +210,8 @@
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 18, "stock_x" = 21, "stock_y" = 18)
-
-/obj/item/weapon/gun/pistol/c99/Initialize()//Making the gun have an invisible silencer since it's supposed to have one.
-	. = ..()
-	var/obj/item/attachable/suppressor/S = new(src)
-	S.attach_icon = ""
-	S.icon_state = ""
-	S.flags_attach_features &= ~ATTACH_REMOVABLE
-	S.Attach(src)
-	update_attachable(S.slot)
-	S.icon_state = initial(S.icon_state)
+	//Making the gun have an invisible silencer since it's supposed to have one.
+	starting_attachment_types = list(/obj/item/attachable/suppressor/unremovable/invisible)
 
 /obj/item/weapon/gun/pistol/c99/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/high_fire_delay)
