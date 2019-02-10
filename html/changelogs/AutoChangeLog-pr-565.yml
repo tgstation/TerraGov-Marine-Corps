@@ -1,0 +1,4 @@
+author: "LaKiller8"
+delete-after: True
+changes: 
+  - balance: "Pyro spec now takes damage when walking over fire, still can't get set on fire nor burn."

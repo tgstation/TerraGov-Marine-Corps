@@ -69,6 +69,10 @@
 	resting = max(max(resting,amount),0)
 	return
 
+/mob/proc/set_frozen(freeze = TRUE)
+	frozen = freeze
+	return TRUE
+
 /mob/proc/SetResting(amount)
 	resting = max(amount,0)
 	return

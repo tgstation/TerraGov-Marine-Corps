@@ -1,4 +1,0 @@
-author: "Ghommie"
-delete-after: True
-changes: 
-  - bugfix: "clicking a red barrel/ without a blowtorch in the active hand won't give off wrong instructions anymore."
