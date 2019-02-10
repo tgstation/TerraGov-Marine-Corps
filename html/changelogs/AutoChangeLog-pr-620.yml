@@ -1,4 +1,0 @@
-author: "Alterist"
-delete-after: True
-changes: 
-  - bugfix: "Lasgun chargers and ammo should be orderable again"
