@@ -109,4 +109,4 @@
 	icon_state = "brown"
 	item_state = "browngloves"
 	armor = list(melee = 90, bullet = 120, laser = 100, energy = 90, bomb = 50, bio = 30, rad = 30)
-	unacidable = 1
+	unacidable = TRUE
