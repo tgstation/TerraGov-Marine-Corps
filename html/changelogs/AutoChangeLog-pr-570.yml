@@ -1,0 +1,5 @@
+author: "LaKiller8"
+delete-after: True
+changes: 
+  - bugfix: "Larvas should now have proper icons in all stages, observers can now see embryo status properly."
+  - code_imp: "Embryo code is a little better now."

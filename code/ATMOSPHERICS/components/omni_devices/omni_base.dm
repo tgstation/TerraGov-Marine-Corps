@@ -67,7 +67,7 @@
 		on = 0
 
 	if((stat & (NOPOWER|BROKEN)) || !on)
-		update_use_power(0)	//usually we get here because a player turned a pump off - definitely want to update.
+		update_use_power(NO_POWER_USE)	//usually we get here because a player turned a pump off - definitely want to update.
 		last_flow_rate = 0
 		return 0
 	return 1

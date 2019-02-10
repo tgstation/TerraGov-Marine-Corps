@@ -9,7 +9,6 @@
 	icon_state = "off"
 	density = 1
 	anchored = 0
-	directwired = 0
 	var/t_status = 0
 	var/t_per = 5000
 	var/filter = 1
