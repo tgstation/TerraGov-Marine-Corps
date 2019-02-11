@@ -11,11 +11,10 @@
 		canopened = TRUE
 		container_type = OPENCONTAINER_NOUNIT
 		return
-	else
-		var/obj/item/reagent_container/H = usr.get_active_held_item()
-		var/N = input("Amount per transfer from this:","[H]") as null|anything in H.possible_transfer_amounts
-		if (N)
-			H.amount_per_transfer_from_this = N
+	var/obj/item/reagent_container/H = usr.get_active_held_item()
+	var/N = input("Amount per transfer from this:","[H]") as null|anything in H.possible_transfer_amounts
+	if (N)
+		H.amount_per_transfer_from_this = N
 
 /obj/item/reagent_container/food/drinks/cans/attack(mob/M as mob, mob/user as mob, def_zone)
 	if (canopened == FALSE)
