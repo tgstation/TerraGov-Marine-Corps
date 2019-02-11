@@ -146,6 +146,7 @@
 			message_admins("[ADMIN_TPMONTY(user)] triggered a fueltank explosion with a blowtorch.")
 			var/self_message = user.a_intent != INTENT_HARM ? "<span class='danger'>You begin welding on the fueltank, and in a last moment of lucidity realize this might not have been the smartest thing you've ever done.</span>" : "<span class='danger'>[src] catastrophically explodes in a wave of flames as you begin to weld it.</span>"
 			user.visible_message("<span class='warning'>[user] catastrophically fails at refilling \his [W.name]!</span>", self_message)
+			explode()
 		return
 
 	return ..()
@@ -156,7 +157,7 @@
 
 	. = ..()
 
-	if(Proj.damage > 10 && prob(60) && Proj.ammo.damage_type in list(BRUTE|BURN))
+	if(Proj.damage > 10 && prob(60) && (Proj.ammo.damage_type in list(BRUTE, BURN)))
 		if(ismob(Proj.firer))
 			var/mob/shooter = Proj.firer
 			if(shooter.client)
@@ -172,11 +173,11 @@
 		return
 	exploding = TRUE
 	if (reagents.total_volume > 500)
-		explosion(src.loc,0,0,3, flame_range = 4)
+		explosion(loc,0,0,3, flame_range = 4)
 	else if (reagents.total_volume > 100)
-		explosion(src.loc,0,0,2, flame_range = 3)
+		explosion(loc,0,0,2, flame_range = 3)
 	else
-		explosion(src.loc,0,0,1, flame_range = 2)
+		explosion(loc,0,0,1, flame_range = 2)
 	if(src)
 		qdel(src)
 
