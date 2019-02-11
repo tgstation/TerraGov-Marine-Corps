@@ -399,9 +399,7 @@ Only checks living mobs with a client attached.
 */
 /datum/game_mode/proc/count_humans_and_xenos(list/z_levels)
 	if(!z_levels)
-		z_levels = SSmapping.levels_by_any_trait(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_LOW_ORBIT, ZTRAIT_GROUND)
-
-	NOTICE(json_encode(z_levels))
+		z_levels = SSmapping.levels_by_any_trait(list(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_LOW_ORBIT, ZTRAIT_GROUND))
 
 	var/num_humans = 0
 	var/num_xenos = 0
