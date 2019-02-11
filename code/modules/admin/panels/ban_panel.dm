@@ -24,9 +24,9 @@
 		var/expiry
 		if(Banlist["temp"])
 			expiry = GetExp(Banlist["minutes"])
-			if(!expiry)		
+			if(!expiry)
 				expiry = "Removal Pending"
-		else				
+		else
 			expiry = "Permaban"
 		var/unban_link = "<a href='?src=[ref];unban=[key][id]'>(U)</A><A href='?src=[ref];editban=[key][id]'>(E)</a>"
 		var/perma_links = ""
@@ -72,10 +72,10 @@
 	jobs += "<table cellpadding='1' cellspacing='0' width='100%'>"
 	jobs += "<tr align='center' bgcolor='ccccff'><th colspan='[length(ROLES_COMMAND)]'><a href='?src=[ref];jobban=commanddept;mob=[REF(M)]'>Command Positions</a></th></tr><tr align='center'>"
 	for(var/jobPos in ROLES_COMMAND)
-		if(!jobPos)	
+		if(!jobPos)
 			continue
 		var/datum/job/job = RoleAuthority.roles_by_name[jobPos]
-		if(!job) 
+		if(!job)
 			continue
 
 		if(jobban_isbanned(M, job.title))
@@ -95,10 +95,10 @@
 	jobs += "<table cellpadding='1' cellspacing='0' width='100%'>"
 	jobs += "<tr align='center' bgcolor='ffbab7'><th colspan='[length(ROLES_POLICE)]'><a href='?src=[ref];jobban=policedept;mob=[REF(M)]'>Police Positions</a></th></tr><tr align='center'>"
 	for(var/jobPos in ROLES_POLICE)
-		if(!jobPos)	
+		if(!jobPos)
 			continue
 		var/datum/job/job = RoleAuthority.roles_by_name[jobPos]
-		if(!job) 
+		if(!job)
 			continue
 
 		if(jobban_isbanned(M, job.title))
@@ -119,11 +119,11 @@
 	jobs += "<table cellpadding='1' cellspacing='0' width='100%'>"
 	jobs += "<tr bgcolor='fff5cc'><th colspan='[length(ROLES_ENGINEERING)]'><a href='?src=[ref];jobban=engineeringdept;mob=[REF(M)]'>Engineering Positions</a></th></tr><tr align='center'>"
 	for(var/jobPos in ROLES_ENGINEERING)
-		if(!jobPos)	
+		if(!jobPos)
 			continue
 		var/datum/job/job = RoleAuthority.roles_by_name[jobPos]
 
-		if(!job) 
+		if(!job)
 			continue
 
 		if(jobban_isbanned(M, job.title))
@@ -143,10 +143,10 @@
 	jobs += "<table cellpadding='1' cellspacing='0' width='100%'>"
 	jobs += "<tr bgcolor='fff5cc'><th colspan='[length(ROLES_REQUISITION)]'><a href='?src=[ref];jobban=cargodept;mob=[REF(M)]'>Requisition Positions</a></th></tr><tr align='center'>"
 	for(var/jobPos in ROLES_REQUISITION)
-		if(!jobPos)	
+		if(!jobPos)
 			continue
 		var/datum/job/job = RoleAuthority.roles_by_name[jobPos]
-		if(!job) 
+		if(!job)
 			continue
 
 		if(jobban_isbanned(M, job.title))
@@ -166,10 +166,10 @@
 	jobs += "<table cellpadding='1' cellspacing='0' width='100%'>"
 	jobs += "<tr bgcolor='ffeef0'><th colspan='[length(ROLES_MEDICAL)]'><a href='?src=[ref];jobban=medicaldept;mob=[REF(M)]'>Medical Positions</a></th></tr><tr align='center'>"
 	for(var/jobPos in ROLES_MEDICAL)
-		if(!jobPos)	
+		if(!jobPos)
 			continue
 		var/datum/job/job = RoleAuthority.roles_by_name[jobPos]
-		if(!job) 
+		if(!job)
 			continue
 
 		if(jobban_isbanned(M, job.title))
@@ -189,10 +189,10 @@
 	jobs += "<table cellpadding='1' cellspacing='0' width='100%'>"
 	jobs += "<tr bgcolor='fff5cc'><th colspan='[length(ROLES_MARINES)]'><a href='?src=[ref];jobban=marinedept;mob=[REF(M)]'>Marine Positions</a></th></tr><tr align='center'>"
 	for(var/jobPos in ROLES_MARINES)
-		if(!jobPos)	
+		if(!jobPos)
 			continue
 		var/datum/job/job = RoleAuthority.roles_by_name[jobPos]
-		if(!job) 
+		if(!job)
 			continue
 
 		if(jobban_isbanned(M, job.title))
@@ -258,47 +258,49 @@
 	usr << browse(dat, "window=jobban;size=800x490")
 
 
-/client/proc/mute(var/mob/M, mute_type, force = FALSE)
-	if(!force && !check_rights(R_BAN, FALSE))
-		return
+/client/proc/mute(var/client/C, mute_type, force = FALSE)
+	if(!force)
+		if(!check_if_greater_rights_than(C) && !check_rights(R_BAN, FALSE))
+			return
 
-	if(!M?.client?.prefs || !check_if_greater_rights_than(M.client))
+	if(!C?.prefs)
 		return
 
 	var/muteunmute
 	var/mute_string
 
 	switch(mute_type)
-		if(MUTE_IC)			
+		if(MUTE_IC)
 			mute_string = "IC"
-		if(MUTE_OOC)		
+		if(MUTE_OOC)
 			mute_string = "OOC"
-		if(MUTE_PRAY)		
+		if(MUTE_PRAY)
 			mute_string = "pray"
-		if(MUTE_ADMINHELP)	
+		if(MUTE_ADMINHELP)
 			mute_string = "adminhelps and PMs"
-		if(MUTE_DEADCHAT)	
+		if(MUTE_DEADCHAT)
 			mute_string = "deadchat"
-		if(MUTE_ALL)		
+		if(MUTE_ALL)
 			mute_string = "everything"
-		else				
+		else
 			return
 
-	M.client.prefs.load_preferences()
+	C.prefs.load_preferences()
 
-	if(M.client.prefs.muted & mute_type)
+	if(C.prefs.muted & mute_type)
 		muteunmute = "unmuted"
-		M.client.prefs.muted &= ~mute_type
+		C.prefs.muted &= ~mute_type
 	else
 		muteunmute = "muted"
-		M.client.prefs.muted |= mute_type
+		C.prefs.muted |= mute_type
 
-	M.client.prefs.save_preferences()
+	C.prefs.save_preferences()
 
-	to_chat(M, "<span clas='danger'>You have been [muteunmute] from [mute_string].</span>")
+	to_chat(C, "<span clas='danger'>You have been [muteunmute] from [mute_string].</span>")
 
-	log_admin_private("[key_name(usr)] has [muteunmute] [key_name(M)] from [mute_string].")
-	message_admins("[ADMIN_TPMONTY(usr)] has [muteunmute] [ADMIN_TPMONTY(M)] from [mute_string].")
+	if(!force)
+		log_admin_private("[key_name(usr)] has [muteunmute] [key_name(C)] from [mute_string].")
+		message_admins("[ADMIN_TPMONTY(usr)] has [muteunmute] [ADMIN_TPMONTY(C.mob)] from [mute_string].")
 
 
 /world/IsBanned(key,address,computer_id)
@@ -384,7 +386,7 @@ var/savefile/Banlist
 	Banlist = new("data/banlist.bdb")
 	log_admin_private("Loading Banlist.")
 
-	if(!length(Banlist.dir)) 
+	if(!length(Banlist.dir))
 		log_admin_private("Banlist is empty.")
 
 	if(!Banlist.dir.Find("base"))
@@ -446,7 +448,7 @@ var/savefile/Banlist
 	Banlist["id"] >> id
 	Banlist.cd = "/base"
 
-	if(!Banlist.dir.Remove(foldername)) 
+	if(!Banlist.dir.Remove(foldername))
 		return FALSE
 
 	for(var/A in Banlist.dir)
@@ -489,7 +491,7 @@ var/jobban_keylist[0]		//to store the keys & ranks
 
 
 /proc/jobban_fullban(mob/M, rank, reason)
-	if(!M || !M.ckey) 
+	if(!M || !M.ckey)
 		return
 	rank = check_jobban_path(rank)
 	jobban_keylist[rank][M.ckey] = reason
