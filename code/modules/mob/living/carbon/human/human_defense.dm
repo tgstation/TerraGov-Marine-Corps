@@ -284,7 +284,7 @@ Contains most of the procs that are called when a mob is attacked by something
 
 		O.throwing = 0		//it hit, so stop moving
 
-		if ((O.thrower != src) && check_shields(throw_damage, "[O]"))
+		if ((O.thrower != src) && check_shields(throw_damage, "[O]", O.dir))
 			return
 
 		var/datum/limb/affecting = get_limb(zone)
