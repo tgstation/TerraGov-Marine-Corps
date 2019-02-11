@@ -1066,7 +1066,7 @@
 				fax_message = generate_templated_fax(department, subject, addressed_to, message_body, sent_by, department)
 
 			if("Custom")
-				var/input = input("Please enter a message to send via secure connection.", "Fax Message", "") as text|null
+				var/input = input("Please enter a message to send via secure connection.", "Fax Message", "") as message|null
 				if(!input)
 					return
 				fax_message = "[input]"
@@ -1147,7 +1147,7 @@
 				fax_message = generate_templated_fax(department, subject, addressed_to, message_body, sent_by, department)
 
 			if("Custom")
-				var/input = input("Please enter a message to send via secure connection.", "Fax Message", "") as text|null
+				var/input = input("Please enter a message to send via secure connection.", "Fax Message", "") as message|null
 				if(!input)
 					return
 				fax_message = "[input]"
