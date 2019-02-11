@@ -369,6 +369,7 @@
 
 	var/web_sound_url = ""
 	var/pitch
+	var/title
 	var/show = FALSE
 	if(length(web_sound_input))
 		web_sound_input = trim(web_sound_input)
@@ -390,7 +391,7 @@
 				return
 			if(data["url"])
 				web_sound_url = data["url"]
-				var/title = "[data["title"]]"
+				title = "[data["title"]]"
 				var/res = alert(usr, "Show the title of and link to this song to the players?\n[title]",, "Yes", "No", "Cancel")
 				switch(res)
 					if("Yes")
