@@ -98,11 +98,6 @@
 	if(!area || !istype(area)) //somehow
 		return
 
-	for(var/obj/machinery/door/unpowered/D in area)
-		if(!D.density && !D.locked)
-			spawn(0)
-				D.close()
-
 	for(var/obj/machinery/door/poddoor/shutters/P in area)
 		if(!P.density)
 			spawn(0)
@@ -122,17 +117,17 @@
 					D.lock()
 				else
 					D.lock()
+	else
+		for(var/obj/machinery/door/airlock/unpowered/D in area)
+			if(!D.density && !D.locked)
+				spawn(0)
+					D.close()
 
 
 
 /datum/shuttle/proc/open_doors(var/area/area)
 	if(!area || !istype(area)) //somehow
 		return
-
-	for(var/obj/machinery/door/unpowered/D in area)
-		if(D.density && !D.locked)
-			spawn(0)
-				D.open()
 
 	for(var/obj/machinery/door/poddoor/shutters/P in area)
 		if(P.density)
@@ -151,6 +146,11 @@
 				spawn(0)
 					D.unlock()
 			if (D.density)
+				spawn(0)
+					D.open()
+	else
+		for(var/obj/machinery/door/airlock/unpowered/D in area)
+			if(D.density && !D.locked)
 				spawn(0)
 					D.open()
 

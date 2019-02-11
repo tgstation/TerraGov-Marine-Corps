@@ -152,7 +152,7 @@
 	name = "claymore tripwire"
 	anchored = 1
 	mouse_opacity = 0
-	invisibility = 101
+	invisibility = INVISIBILITY_MAXIMUM
 	unacidable = 1 //You never know
 	var/obj/item/explosive/mine/linked_claymore
 

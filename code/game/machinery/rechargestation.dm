@@ -35,7 +35,7 @@
 	// Power Stuff
 
 	if(stat & NOPOWER)
-		current_internal_charge = max(0, (current_internal_charge - (50 * CELLRATE))) // Internal Circuitry, 50W load. No power - Runs from internal cell
+		current_internal_charge = max(0, (current_internal_charge - (50 * GLOB.CELLRATE))) // Internal Circuitry, 50W load. No power - Runs from internal cell
 		return // No external power = No charging
 
 
@@ -44,7 +44,7 @@
 		current_internal_charge = max_internal_charge// Safety check if varedit adminbus or something screws up
 	// Calculating amount of power to draw
 	var/charge_diff = max_internal_charge - current_internal_charge // OK we have charge differences
-	charge_diff = charge_diff / CELLRATE 							// Deconvert from Charge to Joules
+	charge_diff = charge_diff / GLOB.CELLRATE 							// Deconvert from Charge to Joules
 	if(chargemode)													// Decide if use passive or active power
 		charge_diff = between(0, charge_diff, charging_cap_active)	// Trim the values to limits
 	else															// We should have load for this tick in Watts
@@ -54,9 +54,9 @@
 
 	if(idle_power_usage != charge_diff) // Force update, but only when our power usage changed this tick.
 		idle_power_usage = charge_diff
-		update_use_power(1,1)
+		update_use_power(1,TRUE)
 
-	current_internal_charge = min((current_internal_charge + ((charge_diff - 50) * CELLRATE)), max_internal_charge)
+	current_internal_charge = min((current_internal_charge + ((charge_diff - 50) * GLOB.CELLRATE)), max_internal_charge)
 
 	if(icon_update_tick >= 10)
 		update_icon()

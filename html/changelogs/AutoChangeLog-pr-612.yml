@@ -1,0 +1,5 @@
+author: "Hughgent"
+delete-after: True
+changes: 
+  - refactor: "set-transfer-amount is no more, it has been changed to the attack_self() proc. Activate-held-object or clicking the container also works."
+  - bugfix: "No more selecting transfer amounts for containers not in your active hand."

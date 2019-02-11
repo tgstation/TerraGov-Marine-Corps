@@ -1,18 +1,15 @@
 
-/proc/power_failure(var/announce = 1)
+/proc/power_failure(var/announce = TRUE)
 	var/list/skipped_areas = list(/area/turret_protected/ai)
 
 	for(var/obj/machinery/power/smes/S in GLOB.machines)
 		var/area/current_area = get_area(S)
 		if(current_area.type in skipped_areas || !is_mainship_level(S.z)) // Ship only
 			continue
-		S.last_charge = S.charge
-		S.last_output = S.output
-		S.last_online = S.online
 		S.charge = 0
-		S.output = 0
-		S.online = 0
-		S.updateicon()
+		S.output_level = 0
+		S.outputting = FALSE
+		S.update_icon()
 		S.power_change()
 
 	for(var/obj/machinery/power/apc/C in GLOB.machines)
@@ -25,7 +22,7 @@
 	if(announce)
 		command_announcement.Announce("Abnormal activity detected in the ship power system. As a precaution, power must be shut down for an indefinite duration.", "Critical Power Failure", new_sound = 'sound/AI/poweroff.ogg')
 
-/proc/power_restore(var/announce = 1)
+/proc/power_restore(var/announce = TRUE)
 	var/list/skipped_areas = list(/area/turret_protected/ai)
 
 	for(var/obj/machinery/power/smes/S in GLOB.machines)
@@ -33,9 +30,9 @@
 		if(current_area.type in skipped_areas || !is_mainship_level(S.z))
 			continue
 		S.charge = S.capacity
-		S.output = S.output_level_max
-		S.online = 1
-		S.updateicon()
+		S.output_level = S.output_level_max
+		S.outputting = TRUE
+		S.update_icon()
 		S.power_change()
 
 	for(var/obj/machinery/power/apc/C in GLOB.machines)
@@ -52,9 +49,9 @@
 		if(!is_mainship_level(S.z)) // Ship only
 			continue
 		S.charge = S.capacity
-		S.output = S.output_level_max
-		S.online = 1
-		S.updateicon()
+		S.output_level = S.output_level_max
+		S.outputting = TRUE
+		S.update_icon()
 		S.power_change()
 
 	sleep(100)
@@ -65,9 +62,9 @@
 
 	for(var/obj/machinery/power/smes/S in GLOB.machines)
 		S.charge = S.capacity
-		S.output = S.output_level_max
-		S.online = 1
-		S.updateicon()
+		S.output_level = S.output_level_max
+		S.outputting = TRUE
+		S.update_icon()
 		S.power_change()
 
 	for(var/obj/machinery/power/apc/C in GLOB.machines)
