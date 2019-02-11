@@ -222,6 +222,8 @@
 	victim.death() // Certain species were still surviving bursting (predators), DEFINITELY kill them this time.
 	victim.chestburst = 2
 	victim.update_burst()
+	log_combat(src, src, "chestbursted as a [src].")
+	log_game("[key_name(src)] chestbursted as a [src] at [AREACOORD(src)].")
 
 	var/datum/hive_status/hive = hive_datum[XENO_HIVE_NORMAL]
 	if((!key || !client) && loc.z == PLANET_Z_LEVEL && (locate(/obj/structure/bed/nest) in loc) && hivenumber == XENO_HIVE_NORMAL && hive.living_xeno_queen && hive.living_xeno_queen.z == loc.z)

@@ -163,7 +163,6 @@
 
 /obj/item/clothing/head/kitty/update_icon(mob/living/carbon/human/user, remove = FALSE)
 	if(!istype(user)) 
-		to_chat(world, "Not an user")
 		return
 	
 	ears = new /icon("icon" = 'icons/mob/head_0.dmi', "icon_state" = "kitty")
