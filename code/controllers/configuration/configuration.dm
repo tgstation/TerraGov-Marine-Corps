@@ -9,7 +9,7 @@
 	var/list/entries_by_type
 
 	var/list/maplist
-	var/datum/map_config/defaultmap
+	var/datum/votablemap/defaultmap
 
 	var/list/modes // allowed modes
 	var/list/gamemode_cache
@@ -271,13 +271,12 @@
 
 
 /datum/controller/configuration/proc/loadmaplist(filename)
-	return
-	/*
 	log_config("Loading config file [filename]...")
 	filename = "[directory]/[filename]"
-	var/list/Lines = world.file2list(filename)
+	var/list/Lines = file2list(filename)
 
-	var/datum/map_config/currentmap = null
+	var/datum/votablemap/currentmap = null
+	config.maplist = list()
 	for(var/t in Lines)
 		if(!t)
 			continue
@@ -306,27 +305,24 @@
 
 		switch (command)
 			if ("map")
-				currentmap = load_map_config("_maps/[data].json")
-				if(currentmap.defaulted)
-					log_config("Failed to load map config for [data]!")
-					currentmap = null
+				currentmap = new (data)
+			if ("friendlyname")
+				currentmap.friendlyname = data
 			if ("minplayers","minplayer")
-				currentmap.config_min_users = text2num(data)
+				currentmap.minusers = text2num(data)
 			if ("maxplayers","maxplayer")
-				currentmap.config_max_users = text2num(data)
+				currentmap.maxusers = text2num(data)
+			if ("friendlyname")
+				currentmap.friendlyname = data
 			if ("weight","voteweight")
 				currentmap.voteweight = text2num(data)
 			if ("default","defaultmap")
-				defaultmap = currentmap
+				config.defaultmap = currentmap
 			if ("endmap")
-				LAZYINITLIST(maplist)
-				maplist[currentmap.map_name] = currentmap
-				currentmap = null
-			if ("disabled")
+				config.maplist[currentmap.name] = currentmap
 				currentmap = null
 			else
 				log_config("Unknown command in map vote config: '[command]'")
-	*/
 
 
 /datum/controller/configuration/proc/pick_mode(mode_name)

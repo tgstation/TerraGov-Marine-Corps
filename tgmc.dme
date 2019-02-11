@@ -10,6 +10,7 @@
 #define DEBUG
 // END_PREFERENCES
 // BEGIN_INCLUDE
+#include "_maps\lv624.dm"
 #include "code\global.dm"
 #include "code\names.dm"
 #include "code\stylesheet.dm"
@@ -199,6 +200,7 @@
 #include "code\datums\sun.dm"
 #include "code\datums\supplyexports.dm"
 #include "code\datums\supplypacks.dm"
+#include "code\datums\votablemap.dm"
 #include "code\datums\weakrefs.dm"
 #include "code\datums\diseases\appendicitis.dm"
 #include "code\datums\diseases\beesease.dm"
@@ -860,6 +862,7 @@
 #include "code\modules\admin\verbs\buildmode.dm"
 #include "code\modules\admin\verbs\datumvars.dm"
 #include "code\modules\admin\verbs\faxes.dm"
+#include "code\modules\admin\verbs\maprotation.dm"
 #include "code\modules\admin\verbs\player_notes.dm"
 #include "code\modules\admin\verbs\pray.dm"
 #include "code\modules\admin\verbs\varedit.dm"
@@ -1018,6 +1021,7 @@
 #include "code\modules\hydroponics\seed_machines.dm"
 #include "code\modules\hydroponics\seeds.dm"
 #include "code\modules\hydroponics\vines.dm"
+#include "code\modules\mapchanger\mapchanger.dm"
 #include "code\modules\mining\abandonedcrates.dm"
 #include "code\modules\mining\alloys.dm"
 #include "code\modules\mining\drill.dm"
@@ -1445,8 +1449,4 @@
 #include "goon\code\datums\browserOutput.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\Z.01.LV624.dmm"
-#include "maps\Z.02.Admin_Level.dmm"
-#include "maps\Z.03.TGS_Theseus.dmm"
-#include "maps\Z.04.Low_Orbit.dmm"
 // END_INCLUDE

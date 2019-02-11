@@ -252,3 +252,15 @@ Legacy - work on reworking/removing these.
 /datum/config_entry/flag/usealienwhitelist
 
 /datum/config_entry/flag/load_legacy_ranks_only
+
+//map rotation
+
+/datum/config_entry/string/tgs3_commandline_path
+	protection = CONFIG_ENTRY_LOCKED | CONFIG_ENTRY_HIDDEN
+	config_entry_value = "C:\\Program Files (x86)\\TG Station Server\\TGCommandLine.exe"
+
+/datum/config_entry/flag/maprotation
+
+/datum/config_entry/number/maprotation_chance_delta
+	integer = FALSE
+	config_entry_value = 2

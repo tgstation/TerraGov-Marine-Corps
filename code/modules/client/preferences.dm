@@ -143,6 +143,8 @@ datum/preferences
 	var/metadata = ""
 	var/slot_name = ""
 
+	var/preferred_map = null
+
 	var/preferred_slot = SLOT_S_STORE
 
 
@@ -332,7 +334,24 @@ datum/preferences
 
 	if(CONFIG_GET(flag/allow_metadata))
 		dat += "<b>OOC Notes:</b> <a href='?_src_=prefs;preference=metadata;task=input'> Edit </a><br>"
+#ifdef TGS_V3_API
+	var/p_map = preferred_map
+	if (!p_map)
+		p_map = "Default"
+		if (config.defaultmap)
+			p_map += " ([config.defaultmap.friendlyname])"
+	else
+		var/datum/votablemap/VM = config.maplist[p_map]
+		if (!VM)
+			p_map += " (No longer exists)"
+		else
+			p_map = VM.friendlyname
 
+		if (VM.voteweight <= 0)
+			p_map += " (disabled)"
+
+	dat += "<b>Preferred Map:</b> <a href='?_src_=prefs;preference=preferred_map;task=input'>[p_map]</a>"
+#endif
 	dat += "<br>"
 	dat += "</div>"
 
@@ -936,6 +955,31 @@ datum/preferences
 					var/new_metadata = input(user, "Enter any information you'd like others to see, such as Roleplay-preferences:", "Game Preference" , metadata)  as message|null
 					if(new_metadata)
 						metadata = sanitize(copytext(new_metadata,1,MAX_MESSAGE_LEN))
+
+#ifdef TGS_V3_API
+				if ("preferred_map")
+					var/maplist = list()
+					var/default = "Default"
+					if (config.defaultmap)
+						default += " ([config.defaultmap.friendlyname])"
+					for (var/M in config.maplist)
+						var/datum/votablemap/VM = config.maplist[M]
+						var/friendlyname = "[VM.friendlyname] "
+						if (VM.voteweight <= 0)
+							friendlyname += " (disabled)"
+						maplist[friendlyname] = VM.name
+					maplist[default] = null
+					var/pickedmap = input(user, "Choose your preferred map. This will be used to help weight random map selection.", "Character Preference")  as null|anything in maplist
+					if (pickedmap)
+						preferred_map = maplist[pickedmap]
+
+#endif
+				/*
+				if("b_type")
+					var/new_b_type = input(user, "Choose your character's blood-type:", "Character Preference") as null|anything in list( "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-" )
+					if(new_b_type)
+						b_type = new_b_type
+				*/
 
 				if("hair")
 					if(species == "Human" || species == "Unathi" || species == "Tajara" || species == "Skrell")

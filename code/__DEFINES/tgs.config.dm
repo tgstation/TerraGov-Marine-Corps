@@ -1,6 +1,6 @@
 #define TGS_EXTERNAL_CONFIGURATION
 #define TGS_V3_API
-#define TGS_DEFINE_AND_SET_GLOBAL(Name, Value) GLOBAL_VAR_INIT(##Name, ##Value); GLOBAL_PROTECT(##Name)
+#define TGS_DEFINE_AND_SET_GLOBAL(Name, Value) GLOBAL_DATUM_INIT(##Name, /datum/tgs_api, ##Value); GLOBAL_PROTECT(##Name)
 #define TGS_READ_GLOBAL(Name) GLOB.##Name
 #define TGS_WRITE_GLOBAL(Name, Value) GLOB.##Name = ##Value
 #define TGS_WORLD_ANNOUNCE(message) to_chat(world, "<span class='centerbold'><span class='notice'>[html_encode(##message)]</span></span>")

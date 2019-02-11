@@ -96,7 +96,7 @@
 					ground_link = CONFIG_GET(string/icecolonyurl)
 				if("LV-624")
 					ground_link = CONFIG_GET(string/lv624url)
-				if("Solaris Ridge")
+				if("Big Red")
 					ground_link = CONFIG_GET(string/bigredurl)
 				if("Prison Station")
 					ground_link = CONFIG_GET(string/prisonstationurl)

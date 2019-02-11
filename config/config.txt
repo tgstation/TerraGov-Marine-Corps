@@ -75,6 +75,22 @@ INVOKE_YOUTUBEDL youtube-dl
 
 LOOC_ENABLED
 
+## Map rotation
+## This feature requires you are running a Windows OS and that you are using version 3 of the tgstation-server toolset.
+## You should edit maps.txt to match your configuration when you enable this.
+#MAPROTATION
+
+## Map rotate chance delta
+## This is the chance of map rotation factored to the round length.
+## A value of 1 would mean the map rotation chance is the round length in minutes (hour long round == 60% rotation chance)
+## A value of 0.5 would mean the map rotation chance is half of the round length in minutes (hour long round == 30% rotation chance)
+MAPROTATIONCHANCEDELTA 2
+
+## Map rotation tgstation-server command line path
+## This should be the path to the TGCommandLine.exe program in your tgstation-server install.
+## Defaults to C:\Program Files (x86)\TG Station Server\TGCommandLine.exe
+#TGS3_COMMANDLINE_PATH
+
 
 ##################
 ## Game Options ##

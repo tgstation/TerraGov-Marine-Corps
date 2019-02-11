@@ -22,8 +22,10 @@
 	. = ..()
 
 	if(statpanel("Stats"))
-		stat("Operation Time: [worldtime2text()]")
-		stat("The current map is: [GLOB.map_tag]")
+		stat("Operation Time:", worldtime2text())
+		stat("The current map is:", GLOB.map_tag)
+		if (nextmap && istype(nextmap))
+			stat("Next Map:", nextmap.friendlyname)
 
 
 	if(client?.holder?.rank?.rights)

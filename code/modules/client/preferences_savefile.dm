@@ -73,6 +73,8 @@
 	S["toggles_sound"]		>> toggles_sound
 	S["UI_style_color"]		>> UI_style_color
 	S["UI_style_alpha"]		>> UI_style_alpha
+	S["preferred_map"]		>> preferred_map
+
 
 	S["synth_name"]			>> synthetic_name
 	S["synth_type"]			>> synthetic_type
@@ -137,6 +139,7 @@
 	S["default_slot"]		<< default_slot
 	S["toggles_chat"]		<< toggles_chat
 	S["toggles_sound"]		<< toggles_sound
+	S["preferred_map"]		<< preferred_map
 
 	S["synth_name"] 		<< synthetic_name
 	S["synth_type"]			<< synthetic_type

@@ -361,6 +361,10 @@ GLOBAL_LIST_INIT(admin_verbs_server, world.AVserver())
 	/datum/admins/proc/toggle_gun_restrictions,
 	/datum/admins/proc/toggle_synthetic_restrictions,
 	/datum/admins/proc/reload_admins,
+#ifdef TGS_V3_API
+	/client/proc/forcerandomrotate,
+	/client/proc/adminchangemap,
+#endif
 	/datum/admins/proc/reload_whitelist
 	)
 

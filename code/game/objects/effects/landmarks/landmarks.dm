@@ -42,8 +42,11 @@
 	return
 
 /obj/effect/landmark/map_tag
-	name = "mapping tag"
-
+#ifdef MAP_NAME
+	name = MAP_NAME
+#else
+	name = "Mapping Tag"
+#endif
 /obj/effect/landmark/map_tag/Initialize()
 	GLOB.map_tag = name
 	return INITIALIZE_HINT_QDEL

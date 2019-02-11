@@ -236,7 +236,7 @@ var/world_topic_spam_protect_time = world.timeofday
 					s += "<br>Map: <a href='[CONFIG_GET(string/icecolonyurl)]'><b>[GLOB.map_tag]</a></b>"
 				if("LV-624")
 					s += "<br>Map: <a href='[CONFIG_GET(string/lv624url)]'><b>[GLOB.map_tag]</a></b>"
-				if("Solaris Ridge")
+				if("Big Red")
 					s += "<br>Map: <a href='[CONFIG_GET(string/bigredurl)]'><b>[GLOB.map_tag]</a></b>"
 				if("Prison Station")
 					s += "<br>Map: <a href='[CONFIG_GET(string/prisonstationurl)]'><b>[GLOB.map_tag]</a></b>"

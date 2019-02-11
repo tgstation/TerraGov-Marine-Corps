@@ -330,7 +330,7 @@
 "agr" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_x = 0},/obj/structure/cable{d1 = 2; d2 = 4; icon_state = "2-4"},/obj/machinery/atmospherics/pipe/manifold/hidden/green{dir = 1},/turf/open/floor{tag = "icon-asteroidwarning (NORTH)"; icon_state = "asteroidwarning"; dir = 1},/area/bigredv2/outside/space_port)
 "ags" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_x = 0},/obj/machinery/atmospherics/pipe/simple/hidden/green{dir = 4; layer = 2.4},/turf/open/floor{tag = "icon-asteroidwarning (NORTHEAST)"; icon_state = "asteroidwarning"; dir = 5},/area/bigredv2/outside/space_port)
 "agt" = (/obj/machinery/atmospherics/pipe/simple/hidden/green{dir = 4; layer = 2.4},/obj/structure/cable{d1 = 1; d2 = 8; icon_state = "1-8"},/turf/open/floor/plating,/area/bigredv2/outside/space_port)
-"agu" = (/obj/effect/landmark/map_tag{name = "Solaris Ridge"},/turf/closed/mineral{color = "#db3413"},/area/bigredv2/caves)
+"agu" = (/obj/effect/landmark/map_tag{name = "Big Red"},/turf/closed/mineral{color = "#db3413"},/area/bigredv2/caves)
 "agv" = (/turf/open/floor/plating{tag = "icon-platingdmg2 (WEST)"; icon_state = "platingdmg2"; dir = 8},/area/bigredv2/outside/space_port)
 "agw" = (/obj/item/stack/rods,/turf/open/floor/plating{tag = "icon-platingdmg3 (WEST)"; icon_state = "platingdmg3"; dir = 8},/area/bigredv2/outside/space_port)
 "agx" = (/obj/structure/girder/displaced,/turf/open/floor/plating{tag = "icon-platingdmg3 (WEST)"; icon_state = "platingdmg3"; dir = 8},/area/bigredv2/outside/space_port)

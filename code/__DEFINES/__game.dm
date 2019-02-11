@@ -14,7 +14,7 @@
 
 #define MAP_ICE_COLONY "Ice Colony"
 #define MAP_LV_624 "LV-624"
-#define MAP_BIG_RED "Solaris Ridge"
+#define MAP_BIG_RED "Big Red"
 #define MAP_PRISON_STATION "Prison Station"
 #define MAP_WHISKEY_OUTPOST "Whiskey Outpost"
 
