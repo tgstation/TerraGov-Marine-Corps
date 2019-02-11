@@ -163,7 +163,7 @@
 		return
 
 	var/datum/player_info/item = infos[index]
-	infos.Remove(item)
+	info.Remove(item)
 	
 	info >> infos
 	qdel(info)
