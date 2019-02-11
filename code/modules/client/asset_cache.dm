@@ -429,12 +429,6 @@ GLOBAL_LIST_EMPTY(asset_datums)
 	)
 
 
-/datum/asset/simple/IRV
-	assets = list(
-		"jquery-ui.custom-core-widgit-mouse-sortable-min.js" = 'html/IRV/jquery-ui.custom-core-widgit-mouse-sortable-min.js',
-	)
-
-
 /datum/asset/group/IRV
 	children = list(
 		/datum/asset/simple/jquery,
@@ -477,18 +471,17 @@ GLOBAL_LIST_EMPTY(asset_datums)
 /datum/asset/simple/jquery
 	verify = FALSE
 	assets = list(
-		"jquery.min.js"            = 'code/modules/goonchat/browserassets/js/jquery.min.js',
+		"jquery.min.js"            = 'goon/browserassets/js/jquery.min.js'
 	)
 
 
 /datum/asset/simple/goonchat
 	verify = FALSE
 	assets = list(
-		"json2.min.js"             = 'code/modules/goonchat/browserassets/js/json2.min.js',
-		"errorHandler.js"          = 'code/modules/goonchat/browserassets/js/errorHandler.js',
-		"browserOutput.js"         = 'code/modules/goonchat/browserassets/js/browserOutput.js',
-		"font-awesome.css"	       = 'code/modules/goonchat/browserassets/css/font-awesome.css',
-		"browserOutput.css"	       = 'code/modules/goonchat/browserassets/css/browserOutput.css',
+		"json2.min.js"             = 'goon/browserassets/js/json2.min.js',
+		"browserOutput.js"         = 'goon/browserassets/js/browserOutput.js',
+		"font-awesome.css"	       = 'goon/browserassets/css/font-awesome.css',
+		"browserOutput.css"	       = 'goon/browserassets/css/browserOutput.css'
 	)
 
 
