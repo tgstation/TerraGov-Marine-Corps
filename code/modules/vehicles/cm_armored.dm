@@ -395,20 +395,22 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		H.livingmob_interact(src)
 
 /mob/living/carbon/Xenomorph/Queen/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
+	if(lying)
+		return ..()
 	temp = get_step(T, facing)
 	T = temp
 	T = get_step(T, pick(cardinal))
 	throw_at(T, 2, 1, C, 0)
 	visible_message("<span class='danger'>[C] bumps into [src], pushing [p_them()] away!</span>", "<span class='danger'>[C] bumps into you!</span>")
-	return
 
 /mob/living/carbon/Xenomorph/Crusher/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
+	if(lying)
+		return ..()
 	temp = get_step(T, facing)
 	T = temp
 	T = get_step(T, pick(cardinal))
 	throw_at(T, 2, 1, C, 0)
 	visible_message("<span class='danger'>[C] bumps into [src], pushing [p_them()] away!</span>", "<span class='danger'>[C] bumps into you!</span>")
-	return
 
 /mob/living/carbon/Xenomorph/Larva/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
 	var/obj/vehicle/multitile/root/cm_armored/CA = C.root

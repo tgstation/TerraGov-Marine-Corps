@@ -174,7 +174,7 @@
 		return
 
 	var/occupant = (slot == "Driver") ? driver : gunner
-	if(M.a_intent == "harm")
+	if(M.a_intent == INTENT_HARM && occupant)
 		handle_harm_attack(M, occupant)
 		return
 
@@ -217,11 +217,11 @@
 //Deposits you onto the exit marker
 /obj/vehicle/multitile/root/cm_armored/tank/handle_player_exit(mob/M)
 
-	var/forced = FALSE
-	if(!(M in list(gunner, driver)))
-		forced = TRUE //someone whom isn't supposed to be here to begin with.
+	if(!(M in list(gunner, driver))) //someone whom isn't supposed to be here to begin with.
+		exit_tank(M, TRUE)
+		return
 
-	else if(occupant_exiting != M)
+	if(!M.action_busy)
 		if(occupant_exiting)
 			to_chat(M, "<span class='notice'>Someone is already getting out of the vehicle.</span>")
 			return
@@ -229,13 +229,13 @@
 
 	to_chat(M, "<span class='notice'>You start climbing out of [src].</span>")
 
-	addtimer(CALLBACK(src, .proc/exit_tank, M, forced), 5 SECONDS)
+	addtimer(CALLBACK(src, .proc/exit_tank, M), 5 SECONDS)
 
 /obj/vehicle/multitile/root/cm_armored/tank/proc/exit_tank(mob/M, forced = FALSE, silent = FALSE)
 	if(!forced)
 		occupant_exiting = null
 
-	if(!M || get_turf(M) != get_turf(src) || M.is_mob_incapacitated())
+	if(!M || get_turf(M) != get_turf(src) || (M.is_mob_incapacitated() && !forced))
 		return
 
 	if(forced)
