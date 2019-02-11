@@ -477,12 +477,12 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 				return
 			M = selection:mob
 		if("Cliented Mob")
-			var/selection = input("Please, select a cliented mob.", "Check Contents") as null|anything in sortmobs(GLOB.player_list)
+			var/selection = input("Please, select a cliented mob.", "Check Contents") as null|anything in sortList(GLOB.player_list)
 			if(!selection)
 				return
 			M = selection
 		if("Mob")
-			var/selection = input("Please, select a mob.", "Check Contents") as null|anything in sortmobs(GLOB.mob_list)
+			var/selection = input("Please, select a mob.", "Check Contents") as null|anything in sortList(GLOB.mob_list)
 			if(!selection)
 				return
 			M = selection
