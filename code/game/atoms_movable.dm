@@ -395,3 +395,10 @@
 			return TRUE //Blocked; we can't proceed further.
 
 	return FALSE
+
+
+/atom/movable/vv_get_dropdown()
+	. = ..()
+	. += "---"
+	.["Get"] = "?_src_=vars;[HrefToken()];getatom=[REF(src)]"
+	.["Send"] = "?_src_=vars;[HrefToken()];sendatom=[REF(src)]"

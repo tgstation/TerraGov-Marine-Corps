@@ -157,5 +157,5 @@ Admin:
 
 	src << hotkey_mode
 	src << other
-	if(holder)
+	if(!check_rights(R_ADMIN, FALSE))
 		src << admin
