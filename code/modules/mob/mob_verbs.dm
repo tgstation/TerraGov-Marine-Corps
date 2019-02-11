@@ -24,7 +24,7 @@
 	set name = "Point To"
 	set category = "Object"
 
-	if(!isturf(loc)) 
+	if(!isturf(loc))
 		return FALSE
 
 	if(!(A in view(client.view + client.get_offset(), loc))) //Target is no longer visible to us.
@@ -80,7 +80,7 @@
 	set name = "Respawn"
 	set category = "OOC"
 
-	if(!respawn_allowed || !check_rights(R_ADMIN, FALSE))
+	if(!GLOB.respawn_allowed || !check_rights(R_ADMIN, FALSE))
 		to_chat(usr, "<span class='notice'>Respawn is disabled.</span>")
 		return
 	if(stat != DEAD)

@@ -1,18 +1,18 @@
-//This is to replace the previous datum/disease/alien_embryo for slightly improved handling and maintainability
-//It functions almost identically (see code/datums/diseases/alien_embryo.dm)
 /obj/item/alien_embryo
 	name = "alien embryo"
 	desc = "All slimy and yucky."
 	icon = 'icons/Xeno/1x1_Xenos.dmi'
 	icon_state = "Larva Dead"
 	var/mob/living/affected_mob
-	var/stage = 0
-	var/counter = 0 //How developed the embryo is, if it ages up highly enough it has a chance to burst
-	var/larva_autoburst_countdown = 20 //to kick the larva out
+	var/stage = 0 //The stage of the bursts, with worsening effects.
+	var/counter = 0 //How developed the embryo is, if it ages up highly enough it has a chance to burst.
+	var/larva_autoburst_countdown = 20 //How long before the larva is kicked out.
 	var/hivenumber = XENO_HIVE_NORMAL
+	var/admin = FALSE
+
 
 /obj/item/alien_embryo/New()
-	..()
+	. = ..()
 	if(isliving(loc))
 		affected_mob = loc
 		affected_mob.status_flags |= XENO_HOST
@@ -23,6 +23,7 @@
 	else
 		qdel(src)
 
+
 /obj/item/alien_embryo/Destroy()
 	if(affected_mob)
 		affected_mob.status_flags &= ~(XENO_HOST)
@@ -31,15 +32,16 @@
 			C.med_hud_set_status()
 		STOP_PROCESSING(SSobj, src)
 		affected_mob = null
-	. = ..()
+	return ..()
+
 
 /obj/item/alien_embryo/process()
-	if(!affected_mob) //The mob we were gestating in is straight up gone, we shouldn't be here
+	if(!affected_mob)
 		STOP_PROCESSING(SSobj, src)
 		qdel(src)
 		return FALSE
 
-	if(loc != affected_mob) //Our location is not the host
+	if(loc != affected_mob)
 		affected_mob.status_flags &= ~(XENO_HOST)
 		STOP_PROCESSING(SSobj, src)
 		if(iscarbon(affected_mob))
@@ -54,13 +56,13 @@
 			if(H.check_tod()) //Can't be defibbed.
 				var/mob/living/carbon/Xenomorph/Larva/L = locate() in affected_mob
 				if(L)
-					L.chest_burst(affected_mob)
+					L.initiate_burst(affected_mob)
 				STOP_PROCESSING(SSobj, src)
 				return FALSE
 		else
 			var/mob/living/carbon/Xenomorph/Larva/L = locate() in affected_mob
 			if(L)
-				L.chest_burst(affected_mob)
+				L.initiate_burst(affected_mob)
 			STOP_PROCESSING(SSobj, src)
 			return FALSE
 
@@ -69,9 +71,8 @@
 
 	process_growth()
 
-/obj/item/alien_embryo/proc/process_growth()
 
-	//Low temperature seriously hampers larva growth (as in, way below livable), so does stasis
+/obj/item/alien_embryo/proc/process_growth() //Low temperature seriously hampers larva growth (as in, way below livable), so does stasis
 	var/stasis = FALSE
 	if(affected_mob.in_stasis || affected_mob.bodytemperature < 170)
 		stasis = TRUE
@@ -79,10 +80,11 @@
 			counter += 0.33
 		else if(stage == 4)
 			counter += 0.11
-	else if(istype(affected_mob.buckled, /obj/structure/bed/nest)) //Hosts who are nested in resin nests provide an ideal setting, larva grows faster
-		counter += 1 + max(0,(0.03 * affected_mob.health)) //Up to +300% faster, depending on the health of the host
+	else if(istype(affected_mob.buckled, /obj/structure/bed/nest)) //Hosts who are nested in resin nests provide an ideal setting, larva grows faster.
+		counter += 1 + max(0, (0.03 * affected_mob.health)) //Up to +300% faster, depending on the health of the host.
 	else if(stage <= 4)
 		counter++
+
 	if(isliving(affected_mob) && !stasis) //Cold temperatures and stasis prevent the growth toxin from having an effect.
 		var/mob/living/L = affected_mob
 		if(L.reagents.get_reagent_amount("xeno_growthtoxin"))
@@ -125,29 +127,29 @@
 			if(!larva_autoburst_countdown)
 				var/mob/living/carbon/Xenomorph/Larva/L = locate() in affected_mob
 				if(L)
-					L.chest_burst(affected_mob)
+					L.initiate_burst(affected_mob)
 
-//We look for a candidate. If found, we spawn the candidate as a larva
-//Order of priority is bursted individual (if xeno is enabled), then random candidate, and then it's up for grabs and spawns braindead
+
+//We look for a candidate. If found, we spawn the candidate as a larva.
+//Order of priority is bursted individual (if xeno is enabled), then random candidate, and then it's up for grabs and spawns braindead.
 /obj/item/alien_embryo/proc/become_larva()
-	// We do not allow chest bursts on the Centcomm Z-level, to prevent
-	// stranded players from admin experiments and other issues
-	if (!affected_mob || affected_mob.z == 2)
+	if(!affected_mob)
+		return
+
+	if(affected_mob.z == ADMIN_Z_LEVEL && !admin)
 		return
 
 	var/picked
 
-	// If the bursted person themselves has Xeno enabled, they get the honor of first dibs on the new larva
-	if (affected_mob.client && affected_mob.client.prefs && (affected_mob.client.prefs.be_special & BE_ALIEN) && !jobban_isbanned(affected_mob, "Alien"))
+	//If the bursted person themselves has Xeno enabled, they get the honor of first dibs on the new larva.
+	if(affected_mob.client?.prefs && (affected_mob.client.prefs.be_special & BE_ALIEN) && !jobban_isbanned(affected_mob, "Alien"))
 		picked = affected_mob.key
-	else
-		// Get a candidate from observers
+	else //Get a candidate from observers.
 		var/list/candidates = get_alien_candidates()
-
-		if (candidates.len)
+		if(length(candidates))
 			picked = pick(candidates)
 
-	// Spawn the larva
+	//Spawn the larva.
 	var/mob/living/carbon/Xenomorph/Larva/new_xeno
 
 	if(isyautja(affected_mob))
@@ -158,7 +160,7 @@
 	new_xeno.hivenumber = hivenumber
 	new_xeno.update_icons()
 
-	// If we have a candidate, transfer it over
+	//If we have a candidate, transfer it over.
 	if(picked)
 		new_xeno.key = picked
 
@@ -170,28 +172,31 @@
 
 	stage = 6
 
-/mob/living/carbon/Xenomorph/Larva/proc/chest_burst(mob/living/carbon/victim)
-	set waitfor = 0
-	if(victim.chestburst || loc != victim) return
+
+/mob/living/carbon/Xenomorph/Larva/proc/initiate_burst(mob/living/carbon/victim)
+	if(victim.chestburst || loc != victim)
+		return
+
 	victim.chestburst = 1
 	to_chat(src, "<span class='danger'>You start bursting out of [victim]'s chest!</span>")
-	if(victim.knocked_out < 1)
-		victim.KnockOut(20)
+
+	victim.KnockOut(20)
 	victim.visible_message("<span class='danger'>\The [victim] starts shaking uncontrollably!</span>", \
 								 "<span class='danger'>You feel something ripping up your insides!</span>")
 	victim.Jitter(300)
-	sleep(30)
-	if(!victim || !victim.loc) return//host could've been deleted, or we could've been removed from host.
+
+	addtimer(CALLBACK(src, .proc/burst, victim), 3 SECONDS)
+
+
+/mob/living/carbon/Xenomorph/Larva/proc/burst(mob/living/carbon/victim)
+	if(QDELETED(victim))
+		return
+
 	if(loc != victim)
 		victim.chestburst = 0
 		return
+
 	victim.update_burst()
-	sleep(6) //Sprite delay
-	if(!victim || !victim.loc) return
-	if(loc != victim)
-		victim.chestburst = 0 //if a doc removes the larva during the sleep(6), we must remove the 'bursting' overlay on the human
-		victim.update_burst()
-		return
 
 	if(isyautja(victim))
 		victim.emote("roar")
@@ -205,22 +210,24 @@
 	playsound(src, pick('sound/voice/alien_chestburst.ogg','sound/voice/alien_chestburst2.ogg'), 25)
 	round_statistics.total_larva_burst++
 	var/obj/item/alien_embryo/AE = locate() in victim
+
 	if(AE)
 		qdel(AE)
+
 	if(ishuman(victim))
 		var/mob/living/carbon/human/H = victim
 		var/datum/internal_organ/O
-		var/i
-		for(i in list("heart","lungs")) //This removes (and later garbage collects) both organs. No heart means instant death.
+		for(var/i in list("heart", "lungs")) //This removes (and later garbage collects) both organs. No heart means instant death.
 			O = H.internal_organs_by_name[i]
 			H.internal_organs_by_name -= i
 			H.internal_organs -= O
+
 	victim.death() // Certain species were still surviving bursting (predators), DEFINITELY kill them this time.
 	victim.chestburst = 2
 	victim.update_burst()
 
 	var/datum/hive_status/hive = hive_datum[XENO_HIVE_NORMAL]
-	if((!key || !client) && loc.z == 1 && (locate(/obj/structure/bed/nest) in loc) && hivenumber == XENO_HIVE_NORMAL && hive.living_xeno_queen && hive.living_xeno_queen.z == src.loc.z)
+	if((!key || !client) && loc.z == PLANET_Z_LEVEL && (locate(/obj/structure/bed/nest) in loc) && hivenumber == XENO_HIVE_NORMAL && hive.living_xeno_queen && hive.living_xeno_queen.z == loc.z)
 		visible_message("<span class='xenodanger'>[src] quickly burrows into the ground.</span>")
 		round_statistics.total_xenos_created-- // keep stats sane
 		ticker.mode.stored_larva++

@@ -47,9 +47,6 @@ var/global/TAB = "&nbsp;&nbsp;&nbsp;&nbsp;"
 
 #define CLIENT_FROM_VAR(I) (ismob(I) ? I:client : (istype(I, /client) ? I : (istype(I, /datum/mind) ? I:current?:client : null)))
 
-//Run the world with this parameter to enable a single run though of the game setup and tear down process with unit tests in between
-#define TEST_RUN_PARAMETER "test-run"
-
 //world/proc/shelleo
 #define SHELLEO_ERRORLEVEL 1
 #define SHELLEO_STDOUT 2
