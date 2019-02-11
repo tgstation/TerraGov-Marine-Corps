@@ -28,11 +28,11 @@
 
 /obj/item/clothing/head/hardhat/proc/turn_off_light(mob/bearer)
 	if(on)
-		on = 0
+		on = FALSE
 		update_brightness(bearer)
 		update_action_button_icons()
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /obj/item/clothing/head/hardhat/proc/update_brightness(var/mob/user = null)
 	if(!user && ismob(loc))
@@ -53,16 +53,16 @@
 	if(on && loc != user)
 		user.SetLuminosity(brightness_on)
 		SetLuminosity(0)
-	..()
+	return ..()
 
 /obj/item/clothing/head/hardhat/dropped(mob/user)
 	if(on && loc != user)
 		user.SetLuminosity(-brightness_on)
 		SetLuminosity(brightness_on)
-	..()
+	return ..()
 
 /obj/item/clothing/head/hardhat/Destroy()
-	if(ismob(src.loc))
+	if(ismob(loc))
 		var/mob/user = loc
 		user.SetLuminosity(-brightness_on)
 	SetLuminosity(0)

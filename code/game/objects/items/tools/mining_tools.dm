@@ -256,13 +256,13 @@
 	if(powered && loc != user)
 		user.SetLuminosity(LIGHTER_LUMINOSITY)
 		SetLuminosity(0)
-	..()
+	return ..()
 
 /obj/item/tool/pickaxe/plasmacutter/dropped(mob/user)
 	if(powered && loc != user)
 		user.SetLuminosity(-LIGHTER_LUMINOSITY)
 		SetLuminosity(LIGHTER_LUMINOSITY)
-	..()
+	return ..()
 
 
 /obj/item/tool/pickaxe/plasmacutter/Destroy()
