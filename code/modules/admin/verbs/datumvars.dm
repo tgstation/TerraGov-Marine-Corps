@@ -1119,7 +1119,7 @@
 				H.dropItemToGround(H.head)
 				H.head = new /obj/item/clothing/head/kitty(H)
 				H.regenerate_icons()
-				H.head.update_icon()
+				H.head.update_icon(H)
 				log_admin("[key_name(usr)] has purrbated [key_name(H)].")
 				message_admins("[ADMIN_TPMONTY(usr)] has purrbated [ADMIN_TPMONTY(H)].")
 
