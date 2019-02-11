@@ -258,8 +258,8 @@
 	usr << browse(dat, "window=jobban;size=800x490")
 
 
-/datum/admins/proc/mute(var/mob/M, mute_type)
-	if(!check_rights(R_BAN))
+/client/proc/mute(var/mob/M, mute_type, force = FALSE)
+	if(!check_rights(R_BAN) && !force)
 		return
 
 	if(!M?.client?.prefs || !check_if_greater_rights_than(M.client))
