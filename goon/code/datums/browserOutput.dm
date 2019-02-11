@@ -2,6 +2,10 @@
 For the main html chat area
 *********************************/
 
+//Precaching a bunch of shit
+GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of icons for the browser output
+
+
 /var/list/chatResources = list(
 	"code/modules/html_interface/jquery.min.js",
 	"goon/browserassets/js/json2.min.js",
