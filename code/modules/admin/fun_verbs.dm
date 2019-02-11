@@ -431,8 +431,8 @@
 				if(show)
 					to_chat(C, "<span class='boldnotice'>An admin played: [show]</span>")
 
-		log_admin("[key_name(usr)] played web sound: [web_sound_input] - [show] - [style]")
-		message_admins("[ADMIN_TPMONTY(usr)] played web sound: [web_sound_input] - [show] - [style]")
+		log_admin("[key_name(usr)] played web sound: [web_sound_input] - [title] - [style]")
+		message_admins("[ADMIN_TPMONTY(usr)] played web sound: [web_sound_input] - [title] - [style]")
 
 
 /datum/admins/proc/sound_stop()
