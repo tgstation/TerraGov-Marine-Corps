@@ -37,7 +37,7 @@ GLOBAL_LIST_EMPTY(faxes)
 	for(var/obj/machinery/faxmachine/FM in GLOB.faxmachines)
 		if(FM == sendmachine)
 			continue
-		if(FM.department == department)
+		if(FM.department != department)
 			continue
 		if(FM.stat & (BROKEN|NOPOWER))
 			continue
