@@ -431,8 +431,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 
 /datum/asset/group/IRV
 	children = list(
-		/datum/asset/simple/jquery,
-		/datum/asset/simple/IRV
+		/datum/asset/simple/jquery
 	)
 
 
@@ -471,7 +470,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 /datum/asset/simple/jquery
 	verify = FALSE
 	assets = list(
-		"jquery.min.js"            = 'goon/browserassets/js/jquery.min.js'
+		"jquery.min.js"            = 'code/modules/html_interface/jquery.min.js'
 	)
 
 
