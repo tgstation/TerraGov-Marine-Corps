@@ -183,6 +183,7 @@
 
 			M.neuroclaw_router(src) //if we have neuroclaws...
 
+			damage = M.hit_and_run_bonus(damage) //Apply Runner hit and run bonus damage if applicable
 			apply_damage(damage, BRUTE, affecting, armor_block, sharp = 1, edge = 1) //This should slicey dicey
 			updatehealth()
 
@@ -228,6 +229,9 @@
 			M.neuroclaw_router(src) //if we have neuroclaws...
 			if(dam_bonus)
 				tackle_pain += dam_bonus
+
+			tackle_pain = M.hit_and_run_bonus(tackle_pain) //Apply Runner hit and run bonus damage if applicable
+
 			apply_damage(tackle_pain, HALLOSS, "chest", armor_block * 0.4) //Only half armour applies vs tackle
 			updatehealth()
 			updateshock()

@@ -2411,3 +2411,11 @@
 
 /mob/living/carbon/human/species/synthetic/can_sting()
 	return FALSE
+
+/mob/living/carbon/Xenomorph/proc/hit_and_run_bonus(damage)
+	return damage
+
+/mob/living/carbon/Xenomorph/Runner/hit_and_run_bonus(damage)
+	var/bonus = 1 + max(0, (10 - (world.time - last_move_intent) ) ) * 0.075 //Runner can deal up to +75% damage if there is no delay between his last movement and his attack; not likely. Probably will cap at ~50% in most cases.
+	damage *= bonus
+	return damage
