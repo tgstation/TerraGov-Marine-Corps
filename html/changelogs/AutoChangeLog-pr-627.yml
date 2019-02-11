@@ -1,0 +1,4 @@
+author: "by Surrealistik"
+delete-after: True
+changes: 
+  - tweak: "Ship hulls no longer have absolutely insane amounts of health; instead they now have health comparable to reinforced walls."
