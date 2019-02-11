@@ -740,7 +740,7 @@
 			message_admins("[ADMIN_TPMONTY(usr)] has set the rank of [ADMIN_TPMONTY(H)] to [newrank].")
 		if("Modify")
 			var/obj/item/card/id/I = H.wear_id
-			if(!istype(I) || I != H.wear_id)
+			if(!istype(I))
 				H.wear_id = new /obj/item/card/id(H)
 			switch(input("What do you want to edit?") as null|anything in list("Comms Title - \[Engineering (Title)]", "Chat Title - Title John Doe screams!", "ID title - Jane Doe's ID Card (Title)", "Registered Name - Jane Doe's ID Card", "Skills"))
 				if("Comms Title - \[Engineering (Title)]")
