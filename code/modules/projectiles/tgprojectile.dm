@@ -195,6 +195,12 @@
 
 	var/temporary_unstoppable_movement = FALSE
 
+///obj/item/projectile/CanPass(atom/movable/AM)
+//	return TRUE
+
+///obj/item/projectile/Cross(atom/movable/AM)
+//	return CanPass(AM, AM.loc)
+
 /obj/item/projectile/Initialize()
 	. = ..()
 	message_admins("init")
@@ -244,7 +250,7 @@
 /obj/item/projectile/Bumped(atom/A)
 	message_admins("Bumped [A.name]")
 
-/obj/item/projectile/Bump(atom/A)
+/obj/item/projectile/Bump(atom/A as mob|obj|turf|area)
 	message_admins("Bump [A.name]")
 	var/datum/point/pcache = trajectory.copy_to()
 	var/turf/T = get_turf(A)
@@ -600,6 +606,9 @@
 		angle = ATAN2(y - oy, x - ox)
 	return list(angle, p_x, p_y)
 
+/obj/item/projectile/ex_act()
+	return FALSE
+
 /obj/item/projectile/Crossed(atom/movable/AM) //A mob moving on a tile with a projectile is hit by it.
 	. = ..()
 	if(isliving(AM) && !(flags_pass & PASSMOB))
@@ -615,6 +624,9 @@
 		return
 	if(can_hit_target(original, permutated, TRUE))
 		Bump(original)
+	for(var/atom/i in (get_turf(newloc)).contents)
+		if(i.density && i.loc == loc)
+			Bump(i)
 	// go through all atoms on the turf, check if we can hit
 	//for(var/atom/movable/A in get_turf(newloc))
 	//	if(can_hit_target(A, permutated, TRUE))
