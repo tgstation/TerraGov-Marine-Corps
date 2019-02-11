@@ -409,9 +409,6 @@ GLOBAL_LIST_EMPTY(asset_datums)
 		"blank"			= 'icons/pda_icons/pda_blank.png',
 		"boom"			= 'icons/pda_icons/pda_boom.png',
 		"bucket"		= 'icons/pda_icons/pda_bucket.png',
-		"medbot"		= 'icons/pda_icons/pda_medbot.png',
-		"floorbot"		= 'icons/pda_icons/pda_floorbot.png',
-		"cleanbot"		= 'icons/pda_icons/pda_cleanbot.png',
 		"crate"			= 'icons/pda_icons/pda_crate.png',
 		"cuffs"			= 'icons/pda_icons/pda_cuffs.png',
 		"eject"			= 'icons/pda_icons/pda_eject.png',
@@ -428,25 +425,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 		"refresh"		= 'icons/pda_icons/pda_refresh.png',
 		"scanner"		= 'icons/pda_icons/pda_scanner.png',
 		"signaler"		= 'icons/pda_icons/pda_signaler.png',
-		"status"		= 'icons/pda_icons/pda_status.png',
-		"dronephone"	= 'icons/pda_icons/pda_dronephone.png'
-	)
-
-
-/datum/asset/spritesheet/simple/paper
-	name = "paper"
-	assets = list(
-		"stamp-clown" = 'icons/stamp_icons/large_stamp-clown.png',
-		"stamp-deny" = 'icons/stamp_icons/large_stamp-deny.png',
-		"stamp-ok" = 'icons/stamp_icons/large_stamp-ok.png',
-		"stamp-hop" = 'icons/stamp_icons/large_stamp-hop.png',
-		"stamp-cmo" = 'icons/stamp_icons/large_stamp-cmo.png',
-		"stamp-ce" = 'icons/stamp_icons/large_stamp-ce.png',
-		"stamp-hos" = 'icons/stamp_icons/large_stamp-hos.png',
-		"stamp-rd" = 'icons/stamp_icons/large_stamp-rd.png',
-		"stamp-cap" = 'icons/stamp_icons/large_stamp-cap.png',
-		"stamp-qm" = 'icons/stamp_icons/large_stamp-qm.png',
-		"stamp-law" = 'icons/stamp_icons/large_stamp-law.png'
+		"status"		= 'icons/pda_icons/pda_status.png'
 	)
 
 
@@ -508,10 +487,6 @@ GLOBAL_LIST_EMPTY(asset_datums)
 		"json2.min.js"             = 'code/modules/goonchat/browserassets/js/json2.min.js',
 		"errorHandler.js"          = 'code/modules/goonchat/browserassets/js/errorHandler.js',
 		"browserOutput.js"         = 'code/modules/goonchat/browserassets/js/browserOutput.js',
-		"fontawesome-webfont.eot"  = 'tgui/assets/fonts/fontawesome-webfont.eot',
-		"fontawesome-webfont.svg"  = 'tgui/assets/fonts/fontawesome-webfont.svg',
-		"fontawesome-webfont.ttf"  = 'tgui/assets/fonts/fontawesome-webfont.ttf',
-		"fontawesome-webfont.woff" = 'tgui/assets/fonts/fontawesome-webfont.woff',
 		"font-awesome.css"	       = 'code/modules/goonchat/browserassets/css/font-awesome.css',
 		"browserOutput.css"	       = 'code/modules/goonchat/browserassets/css/browserOutput.css',
 	)
@@ -519,52 +494,6 @@ GLOBAL_LIST_EMPTY(asset_datums)
 
 /datum/asset/spritesheet/goonchat
 	name = "chat"
-
-
-/datum/asset/spritesheet/goonchat/register()
-	return ..()
-
-
-/datum/asset/simple/permissions
-	assets = list(
-		"padlock.png"	= 'html/padlock.png'
-	)
-
-
-/datum/asset/simple/notes
-	assets = list(
-		"high_button.png" = 'html/high_button.png',
-		"medium_button.png" = 'html/medium_button.png',
-		"minor_button.png" = 'html/minor_button.png',
-		"none_button.png" = 'html/none_button.png',
-	)
-
-
-/datum/asset/simple/pills
-	assets = list(
-		"pill1" = 'icons/UI_Icons/Pills/pill1.png',
-		"pill2" = 'icons/UI_Icons/Pills/pill2.png',
-		"pill3" = 'icons/UI_Icons/Pills/pill3.png',
-		"pill4" = 'icons/UI_Icons/Pills/pill4.png',
-		"pill5" = 'icons/UI_Icons/Pills/pill5.png',
-		"pill6" = 'icons/UI_Icons/Pills/pill6.png',
-		"pill7" = 'icons/UI_Icons/Pills/pill7.png',
-		"pill8" = 'icons/UI_Icons/Pills/pill8.png',
-		"pill9" = 'icons/UI_Icons/Pills/pill9.png',
-		"pill10" = 'icons/UI_Icons/Pills/pill10.png',
-		"pill11" = 'icons/UI_Icons/Pills/pill11.png',
-		"pill12" = 'icons/UI_Icons/Pills/pill12.png',
-		"pill13" = 'icons/UI_Icons/Pills/pill13.png',
-		"pill14" = 'icons/UI_Icons/Pills/pill14.png',
-		"pill15" = 'icons/UI_Icons/Pills/pill15.png',
-		"pill16" = 'icons/UI_Icons/Pills/pill16.png',
-		"pill17" = 'icons/UI_Icons/Pills/pill17.png',
-		"pill18" = 'icons/UI_Icons/Pills/pill18.png',
-		"pill19" = 'icons/UI_Icons/Pills/pill19.png',
-		"pill20" = 'icons/UI_Icons/Pills/pill20.png',
-		"pill21" = 'icons/UI_Icons/Pills/pill21.png',
-		"pill22" = 'icons/UI_Icons/Pills/pill22.png',
-	)
 
 
 /datum/asset/spritesheet/pipes
@@ -575,11 +504,3 @@ GLOBAL_LIST_EMPTY(asset_datums)
 	for (var/each in list('icons/obj/pipes/regular.dmi', 'icons/obj/pipes/disposal.dmi', 'icons/obj/pipes/transit_tube.dmi'))
 		InsertAll("", each, GLOB.alldirs)
 	return ..()
-
-
-/datum/asset/simple/genetics
-	assets = list(
-		"dna_discovered.png"	= 'html/dna_discovered.png',
-		"dna_undiscovered.png"	= 'html/dna_undiscovered.png',
-		"dna_extra.png" 		= 'html/dna_extra.png'
-)
