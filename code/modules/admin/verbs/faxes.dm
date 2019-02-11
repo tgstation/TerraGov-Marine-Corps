@@ -35,6 +35,8 @@ GLOBAL_LIST_EMPTY(faxes)
 				C << 'sound/effects/sos-morse-code.ogg'
 
 	for(var/obj/machinery/faxmachine/FM in GLOB.faxmachines)
+		if(FM == sendmachine)
+			continue
 		if(FM.department != department)
 			continue
 		if(FM.stat & (BROKEN|NOPOWER))
