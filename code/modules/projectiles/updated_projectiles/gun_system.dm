@@ -44,6 +44,7 @@
 	var/scatter					= 0				//How much the bullet scatters when fired.
 	var/burst_scatter_mult		= 3				//Multiplier. Increases or decreases how much bonus scatter is added when burst firing (wielded only).
 
+	var/accuracy_mod			= 0				//accuracy modifier, used by most attachments.
 	var/accuracy_mult_unwielded 		= 1		//same vars as above but for unwielded firing.
 	var/recoil_unwielded 				= 0
 	var/scatter_unwielded 				= 0
@@ -128,6 +129,7 @@
 //amounts to get specific values in each gun subtype's New().
 //This makes reading each gun's values MUCH easier.
 /obj/item/weapon/gun/proc/set_gun_config_values()
+	accuracy_mod = CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
 	fire_delay = CONFIG_GET(number/combat_define/mhigh_fire_delay)
 	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
 	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)

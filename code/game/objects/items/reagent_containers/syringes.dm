@@ -89,9 +89,10 @@
 	if(user.mind && user.mind.cm_skills)
 		injection_time = max(5, 50 - 10*user.mind.cm_skills.medical)
 
+	var/target_zone = user.zone_selected
 	if(isliving(target))
 		var/mob/living/L = target
-		if(!L.can_inject(user, TRUE))
+		if(!L.can_inject(user, TRUE, target_zone))
 			return
 
 	switch(mode)
@@ -112,15 +113,14 @@
 						"<span class='danger'>You start trying to take a blood sample from [target]...</span>")
 					if(!do_mob(user, target, injection_time, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 						return
-				if(!C.take_blood(src, amount, user))
+				if(!C.take_blood(src, amount, user, target_zone))
 					return
 
 				on_reagent_change()
 				reagents.handle_reactions()
 
-				var/juicebox = target == user ? "[user.p_them()]self" : "target"
-				user.visible_message("<span clas='warning'>[user] takes a blood sample from [juicebox].</span>",
-										"<span class='notice'>You take a blood sample from [juicebox].</span>", null, 4)
+				user.visible_message("<span clas='warning'>[user] takes a blood sample from [target == user ? "[user.p_them()]self" : "target"].</span>",
+										"<span class='notice'>You take a blood sample from [target == user ? "yourself" : "target"].</span>", null, 4)
 
 			else //if not mob
 				if(!target.reagents.total_volume)
@@ -158,9 +158,11 @@
 					user.visible_message("<span class='danger'>[user] is trying to inject [target]!</span>", "<span class='notice'>You start trying to inject [target]...</span>", null, 5)
 					if(!do_mob(user, target, injection_time, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 						return
+					if(!M.can_inject(user, FALSE, target_zone))
+						return
 
-				var/juicebox = target == user ? "[user.p_them()]self" : "target"
-				user.visible_message("<span class='warning'>[user] injects [juicebox] with the syringe!</span>", "<span class='notice'>You inject [juicebox] with [src]!</span>", null, 5)
+				user.visible_message("<span class='warning'>[user] injects [target == user ? "[user.p_them()]self" : "target"] with the syringe!</span>",
+									"<span class='notice'>You inject [target == user ? "yourself" : "target"] with [src]!</span>", null, 4)
 
 				var/list/injected = list()
 				for(var/datum/reagent/R in reagents.reagent_list)
@@ -217,7 +219,7 @@
 	log_combat(user, target, "attacked", src, "(INTENT: [uppertext(user.a_intent)])")
 	msg_admin_attack("[ADMIN_TPMONTY(usr)] attacked [ADMIN_TPMONTY(target)] with [src.name].")
 
-	var/target_zone = ran_zone(check_zone(user.zone_selected, target))
+	var/target_zone = get_zone_with_miss_chance(user.zone_selected, target)
 	if(!target_zone)
 		user.visible_message("<span class='danger'>[user] tries to stab [target] with [src], but misses!",
 							"<span class='danger'>You try to stab [target] with [src], but miss!</span>", null, 5)
@@ -235,7 +237,7 @@
 			return
 
 	var/malpractice = target.getarmor(target_zone, "melee")
-	if ((target != user && prob(malpractice > 5 ? malpractice + 30 : 0)) || !target.can_inject(user))
+	if ((target != user && malpractice > 5 && prob(malpractice/2)) || !target.can_inject(user, FALSE, target_zone))
 		user.visible_message("<span class='danger'>[user] tries to stab [target] [hit_area ? "in [hit_area]" : ""] with [src], but the attack is deflected by armor!</span>",
 							"<span class='danger'>You try to stab [target] in [hit_area ? "in [hit_area]" : ""] with [src], but the attack is deflected by armor!</span>", null, 5)
 		user.temporarilyRemoveItemFromInventory(src)

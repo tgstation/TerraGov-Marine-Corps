@@ -228,7 +228,7 @@
 
 
 //Gets blood from mob to the container, preserving all data in it.
-/mob/living/carbon/proc/take_blood(obj/O, amount, user)
+/mob/living/carbon/proc/take_blood(obj/O, amount, user, target_zone)
 	if(!O.reagents)
 		return
 
@@ -257,9 +257,12 @@
 	return 1
 
 
-/mob/living/carbon/human/take_blood(obj/O, amount, user)
+/mob/living/carbon/human/take_blood(obj/O, amount, user, target_zone)
 
-	if(species && species.flags & NO_BLOOD)
+	if(target_zone && !can_inject(user, FALSE, target_zone))
+		return
+
+	if(species?.flags & NO_BLOOD)
 		to_chat(user, "<span class='warning'>You are unable to locate any blood.</span>")
 		return
 

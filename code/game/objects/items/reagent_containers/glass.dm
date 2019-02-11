@@ -26,8 +26,9 @@
 		if(!is_open_container())
 			to_chat(user, "<span class='info'>An airtight lid seals it completely.</span>")
 
-/obj/item/reagent_container/glass/attack_self()
-	..()
+/obj/item/reagent_container/glass/verb/attach_lid()
+	set name = "Attach/Detach lid"
+	set category = "Object"
 	if(is_open_container())
 		to_chat(usr, "<span class='notice'>You put the lid on \the [src].</span>")
 		container_type ^= OPENCONTAINER

@@ -19,12 +19,6 @@
 	w_class = 3.0
 	unfolded_path = /obj/structure/closet/bodybag/tarp
 
-/obj/item/bodybag/tarp/deploy_bodybag(mob/user, atom/location)
-	if(locate(/obj/structure/closet) in location)
-		to_chat(user, "<span class='warning'>\the [src] can't be deployed here.</span>")
-		return
-	return ..()
-
 /obj/item/bodybag/tarp/snow
 	icon = 'icons/obj/bodybag.dmi'
 	icon_state = "snowtarp_folded"

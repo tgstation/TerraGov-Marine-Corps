@@ -46,7 +46,7 @@
 		var/time = rand(2, 6)
 		if (prob(75))
 			M.KnockOut(time)
-		else
+		else if(!M.is_mob_incapacitated())
 			M.KnockDown(time)
-		user.visible_message("<span class='danger'>[M] has been knocked down!</span>", "<span class='danger'>You knock [M] down!</B>", null, 5)
+			user.visible_message("<span class='danger'>[M] has been knocked down!</span>", "<span class='danger'>You knock [M] down!</B>", null, 5)
 

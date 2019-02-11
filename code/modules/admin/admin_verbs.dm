@@ -284,7 +284,7 @@
 	set category = "Admin"
 	set name = "Get Server Logs"
 
-	if(!check_rights(R_ADMIN))
+	if(!check_rights(R_ASAY))
 		return
 
 	usr.client.holder.browse_server_logs()
@@ -295,7 +295,7 @@
 	set name = "Get Current Logs"
 	set desc = "View/retrieve logfiles for the current round."
 
-	if(!check_rights(R_ADMIN))
+	if(!check_rights(R_ASAY))
 		return
 
 	usr.client.holder.browse_server_logs("[GLOB.log_directory]/")
@@ -306,7 +306,7 @@
 	set desc = "Please use responsibly."
 	set category = "Admin"
 
-	if(!check_rights(R_ADMIN))
+	if(!check_rights(R_ASAY))
 		return
 
 	var/choice = alert("Due to the way BYOND handles files, you WILL need a click macro. This function is also recurive and prone to fucking up, especially if you select the wrong folder. Are you absolutely sure you want to proceed?", "WARNING", "Yes", "No")
@@ -617,18 +617,15 @@
 		message_admins("[ADMIN_TPMONTY(usr)] jumped to [ADMIN_VERBOSEJMP(M)].")
 
 
-/datum/admins/proc/jump_turf()
+/datum/admins/proc/jump_turf(var/turf/T in GLOB.turfs)
 	set category = "Admin"
 	set name = "Jump to Turf"
 
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/selection = input("Please, select a turf.", "Jump to turf") as null|anything in GLOB.turfs
-	if(!selection)
+	if(!T)
 		return
-
-	var/turf/T = selection
 
 	var/mob/M = usr
 	M.on_mob_jump()
