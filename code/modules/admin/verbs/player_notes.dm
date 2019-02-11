@@ -163,9 +163,9 @@
 		return
 
 	var/datum/player_info/item = infos[index]
-	info.Remove(item)
+	infos.Remove(item)
 	
-	info >> infos
+	to_chat(info, infos)
 	qdel(info)
 
 	log_admin_private("[key_name(usr)] has deleted [key]'s note: [item.content]")
@@ -186,7 +186,7 @@
 	var/datum/player_info/item = infos[index]
 	item.hidden = TRUE
 
-	info >> infos
+	to_chat(info, infos)
 	qdel(info)
 
 	log_admin_private("[key_name(usr)] has hidden [key]'s note: [item.content]")
@@ -207,7 +207,7 @@
 	var/datum/player_info/item = infos[index]
 	item.hidden = FALSE
 
-	info >> infos
+	to_chat(info, infos)
 	qdel(info)
 
 	log_admin_private("[key_name(usr)] has made visible [key]'s note: [item.content]")
