@@ -419,17 +419,10 @@
 
 /mob/living/carbon/Xenomorph/proc/punch(var/mob/living/M)
 
-	if (!M || M == src || !isliving(M) )
+	if (!M || M == src || !isliving(M))
 		return
 
 	if (!check_state() || agility)
-		return
-
-	if (used_punch)
-		to_chat(src, "<span class='xenowarning'>You must gather your strength before punching.</span>")
-		return
-
-	if (!check_plasma(30))
 		return
 
 	if (!Adjacent(M))
@@ -437,6 +430,16 @@
 
 	if(stagger)
 		to_chat(src, "<span class='xenowarning'>Your limbs fail to respond as you try to shake off the shock!</span>")
+		return
+
+	if (used_punch)
+		to_chat(src, "<span class='xenowarning'>You must gather your strength before punching.</span>")
+		return
+
+	if(xeno_hivenumber(M) == hivenumber)
+		return M.attack_alien(src, force_intent = INTENT_HARM) //harmless nibbling.
+
+	if (!check_plasma(30))
 		return
 
 	if(M.stat == DEAD || ((M.status_flags & XENO_HOST) && istype(M.buckled, /obj/structure/bed/nest))) //Can't bully the dead/nested hosts.
