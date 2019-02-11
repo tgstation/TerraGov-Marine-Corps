@@ -373,7 +373,7 @@
 // Warrior Fling
 /mob/living/carbon/Xenomorph/proc/fling(atom/A)
 
-	if (!A || !ishuman(A) || !check_state() || agility || !check_plasma(10) || !Adjacent(A))
+	if (!A || !ishuman(A) || !check_state() || agility || !check_plasma(30) || !Adjacent(A))
 		return
 
 	if (used_fling)
@@ -393,7 +393,7 @@
 	"<span class='xenowarning'>You effortlessly fling [H] to the side!</span>")
 	playsound(H,'sound/weapons/alien_claw_block.ogg', 75, 1)
 	used_fling = TRUE
-	use_plasma(10)
+	use_plasma(30)
 	H.apply_effects(1,2) 	// Stun
 	shake_camera(H, 2, 1)
 
@@ -429,7 +429,7 @@
 		to_chat(src, "<span class='xenowarning'>You must gather your strength before punching.</span>")
 		return
 
-	if (!check_plasma(20))
+	if (!check_plasma(30))
 		return
 
 	if (!Adjacent(M))
@@ -451,7 +451,7 @@
 	var/armor_block = M.run_armor_check(target_zone)
 	var/damage = rand(xeno_caste.melee_damage_lower, xeno_caste.melee_damage_upper)
 	used_punch = TRUE
-	use_plasma(20)
+	use_plasma(30)
 	playsound(M, S, 50, 1)
 
 	if(!ishuman(M))
@@ -1008,7 +1008,7 @@
 
 
 /mob/living/carbon/Xenomorph/proc/xeno_transfer_plasma(atom/A, amount = 50, transfer_delay = 20, max_range = 2)
-	if(!isxeno(A) || !check_state())
+	if(!isxeno(A) || !check_state() || A == src)
 		return
 
 	var/mob/living/carbon/Xenomorph/target = A
@@ -1054,7 +1054,7 @@
 	playsound(src, "alien_drool", 25)
 
 /mob/living/carbon/Xenomorph/proc/xeno_salvage_plasma(atom/A, amount, salvage_delay, max_range)
-	if(!isxeno(A) || !check_state())
+	if(!isxeno(A) || !check_state() || A == src)
 		return
 
 	var/mob/living/carbon/Xenomorph/target = A
