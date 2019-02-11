@@ -259,7 +259,7 @@
 
 
 /client/proc/mute(var/mob/M, mute_type, force = FALSE)
-	if(!check_rights(R_BAN) && !force)
+	if(!force && !check_rights(R_BAN, FALSE))
 		return
 
 	if(!M?.client?.prefs || !check_if_greater_rights_than(M.client))
