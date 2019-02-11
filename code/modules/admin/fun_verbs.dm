@@ -329,6 +329,7 @@
 	if(!check_rights(R_SOUND))
 		return
 
+	heard_midi = 0
 	var/sound/uploaded_sound = sound(S, repeat = 0, wait = 1, channel = 777)
 	uploaded_sound.priority = 250
 
