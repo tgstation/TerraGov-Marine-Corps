@@ -1,0 +1,6 @@
+author: "by Surrealistik"
+delete-after: True
+changes: 
+  - tweak: "Lunge knockdown duration reduced from 3 ticks to 2 ticks."
+  - tweak: "Warrior stat progression smoothed out; starts with less plasma capacity but gains more at higher tiers, as well as higher plasma regeneration."
+  - tweak: "Punch plasma cost increased to 30 from 20. Lunge plasma cost increased to 30 from 10."
