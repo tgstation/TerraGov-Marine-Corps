@@ -25,9 +25,11 @@
 
 	var/mob/living/carbon/Xenomorph/new_xeno
 
+	if(original.client)
+		(original.client.change_view(world.view))
+
 	if(original)
 		qdel(original)
-
 
 	if(!leader)
 		new_xeno = new /mob/living/carbon/Xenomorph/Ravager(spawn_loc)

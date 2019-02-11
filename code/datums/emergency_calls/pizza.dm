@@ -22,6 +22,9 @@
 	if(original)
 		qdel(original)
 
+	if(H.client)
+		(H.client.change_view(world.view))
+
 	print_backstory(H)
 
 	var/datum/job/J = new /datum/job/other/pizza
