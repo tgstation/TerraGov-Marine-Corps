@@ -696,6 +696,14 @@ window "mainwindow"
 		text = "Chat"
 		command = ".winset \"saybutton.is-checked=true?input.command=\"!say \\\"\" macrobutton.is-checked=false:input.command=\""
 		button-type = pushbox
+	elem "asset_cache_browser"
+		type = BROWSER
+		pos = 0,0
+		size = 200x200
+		anchor1 = none
+		anchor2 = none
+		is-visible = false
+		saved-params = ""
 
 window "mapwindow"
 	elem "mapwindow"
