@@ -69,7 +69,7 @@
 
 
 /obj/item/device/encryptionkey/ert
-	name = "W-Y ERT Radio Encryption Key"
+	name = "ERT Radio Encryption Key"
 	channels = list("Response Team" = TRUE, "Command" = TRUE, "MedSci" = TRUE, "Engi" = TRUE)
 
 

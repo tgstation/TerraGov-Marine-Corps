@@ -29,11 +29,12 @@
 	width = 3
 	height = 3
 	spawn_dir = EAST
+	var/list/spawn_hardpoints = list()
 
 /obj/effect/multitile_spawner/cm_armored/tank/New()
 
 	var/obj/vehicle/multitile/root/cm_armored/tank/R = new(src.loc)
-	R.dir = EAST
+	R.setDir(EAST)
 
 	var/datum/coords/dimensions = new
 	dimensions.x_pos = width
@@ -50,45 +51,29 @@
 	R.load_hitboxes(dimensions, root_pos)
 	R.load_entrance_marker(entr_mark)
 
+	var/hardpoint_path
+	for(var/slot in spawn_hardpoints)
+		hardpoint_path = spawn_hardpoints[slot]
+		R.add_hardpoint(new hardpoint_path, R.hardpoints[slot])
+
 	R.update_icon()
 
-	del(src)
+	qdel(src)
 
-//Pretty similar to the previous one
-//TODO: Make this code better and less repetetive
 //Spawns a tank that has a bunch of broken hardpoints
-/obj/effect/multitile_spawner/cm_armored/tank/decrepit/New()
+/obj/effect/multitile_spawner/cm_armored/tank/decrepit
+	spawn_hardpoints = list(HDPT_PRIMARY = /obj/item/hardpoint/primary/cannon/broken,
+							HDPT_SECDGUN = /obj/item/hardpoint/secondary/m56cupola/broken,
+							HDPT_SUPPORT = /obj/item/hardpoint/support/smoke_launcher/broken,
+							HDPT_ARMOR = /obj/item/hardpoint/armor/ballistic/broken,
+							HDPT_TREADS = /obj/item/hardpoint/treads/standard/broken)
 
-	var/obj/vehicle/multitile/root/cm_armored/tank/R = new(src.loc)
-	R.dir = EAST
-
-	var/datum/coords/dimensions = new
-	dimensions.x_pos = width
-	dimensions.y_pos = height
-	var/datum/coords/root_pos = new
-	root_pos.x_pos = 1
-	root_pos.y_pos = 1
-
-	var/datum/coords/entr_mark = new
-	entr_mark.x_pos = -2
-	entr_mark.y_pos = 0
-
-	R.load_hitboxes(dimensions, root_pos)
-	R.load_entrance_marker(entr_mark)
-
-	//Manually adding those hardpoints
-	R.add_hardpoint(new /obj/item/hardpoint/primary/cannon, R.hardpoints[HDPT_PRIMARY])
-	R.add_hardpoint(new /obj/item/hardpoint/secondary/m56cupola, R.hardpoints[HDPT_SECDGUN])
-	R.add_hardpoint(new /obj/item/hardpoint/support/smoke_launcher, R.hardpoints[HDPT_SUPPORT])
-	R.add_hardpoint(new /obj/item/hardpoint/armor/ballistic, R.hardpoints[HDPT_ARMOR])
-	R.add_hardpoint(new /obj/item/hardpoint/treads/standard, R.hardpoints[HDPT_TREADS])
-	R.update_damage_distribs()
-
-	R.take_damage_type(1e8, "abstract") //OOF.ogg
-
-	R.healthcheck()
-
-	del(src)
+/obj/effect/multitile_spawner/cm_armored/tank/fixed
+	spawn_hardpoints = list(HDPT_PRIMARY = /obj/item/hardpoint/primary/cannon,
+							HDPT_SECDGUN = /obj/item/hardpoint/secondary/m56cupola,
+							HDPT_SUPPORT = /obj/item/hardpoint/support/smoke_launcher,
+							HDPT_ARMOR = /obj/item/hardpoint/armor/ballistic,
+							HDPT_TREADS = /obj/item/hardpoint/treads/standard)
 
 //For the tank, start forcing people out if everything is broken
 /obj/vehicle/multitile/root/cm_armored/tank/handle_all_modules_broken()

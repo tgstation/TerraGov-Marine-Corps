@@ -4,29 +4,22 @@
 	req_access = list(ACCESS_CIVILIAN_PUBLIC)
 	var/registered_name = null
 
-/obj/structure/closet/secure_closet/personal/New()
-	..()
-	spawn(2)
-		if(prob(50))
-			new /obj/item/storage/backpack(src)
-		else
-			new /obj/item/storage/backpack/satchel/norm(src)
-		new /obj/item/device/radio/headset( src )
-	return
-
+/obj/structure/closet/secure_closet/personal/Initialize()
+	. = ..()
+	if(prob(50))
+		new /obj/item/storage/backpack(src)
+	else
+		new /obj/item/storage/backpack/satchel/norm(src)
+	new /obj/item/device/radio/headset( src )
 
 /obj/structure/closet/secure_closet/personal/patient
 	name = "patient's closet"
 
-/obj/structure/closet/secure_closet/personal/patient/New()
-	..()
-	spawn(4)
-		contents = list()
-		new /obj/item/clothing/under/color/white( src )
-		new /obj/item/clothing/shoes/white( src )
-	return
-
-
+/obj/structure/closet/secure_closet/personal/patient/Initialize()
+	. = ..()
+	contents = list()
+	new /obj/item/clothing/under/color/white( src )
+	new /obj/item/clothing/shoes/white( src )
 
 /obj/structure/closet/secure_closet/personal/cabinet
 	icon_state = "cabinetdetective_locked"
@@ -48,13 +41,11 @@
 		else
 			icon_state = icon_opened
 
-/obj/structure/closet/secure_closet/personal/cabinet/New()
-	..()
-	spawn(4)
-		contents = list()
-		new /obj/item/storage/backpack/satchel( src )
-		new /obj/item/device/radio/headset( src )
-	return
+/obj/structure/closet/secure_closet/personal/cabinet/Initialize()
+	. = ..()
+	contents = list()
+	new /obj/item/storage/backpack/satchel( src )
+	new /obj/item/device/radio/headset( src )
 
 /obj/structure/closet/secure_closet/personal/attackby(obj/item/W as obj, mob/user as mob)
 	if (src.opened)
@@ -67,7 +58,7 @@
 		if (W) W.loc = src.loc
 	else if(istype(W, /obj/item/card/id))
 		if(src.broken)
-			to_chat(user, "\red It appears to be broken.")
+			to_chat(user, "<span class='warning'>It appears to be broken.</span>")
 			return
 		var/obj/item/card/id/I = W
 		if(!I || !I.registered_name)	return
@@ -81,7 +72,7 @@
 				src.registered_name = I.registered_name
 				src.desc = "Owned by [I.registered_name]."
 		else
-			to_chat(user, "\red Access Denied")
+			to_chat(user, "<span class='warning'>Access Denied</span>")
 	else if(istype(W, /obj/item/card/emag))
 		if(broken) return
 		broken = 1
@@ -89,7 +80,7 @@
 		desc = "It appears to be broken."
 		icon_state = src.icon_broken
 	else
-		to_chat(user, "\red Access Denied")
+		to_chat(user, "<span class='warning'>Access Denied</span>")
 	return
 
 /obj/structure/closet/secure_closet/personal/verb/reset()
@@ -101,9 +92,9 @@
 	if(ishuman(usr))
 		src.add_fingerprint(usr)
 		if (src.locked || !src.registered_name)
-			to_chat(usr, "\red You need to unlock it first.")
+			to_chat(usr, "<span class='warning'>You need to unlock it first.</span>")
 		else if (src.broken)
-			to_chat(usr, "\red It appears to be broken.")
+			to_chat(usr, "<span class='warning'>It appears to be broken.</span>")
 		else
 			if (src.opened)
 				if(!src.close())

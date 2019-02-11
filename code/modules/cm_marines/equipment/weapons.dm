@@ -25,7 +25,7 @@
 	icon = 'icons/obj/items/storage/storage.dmi'
 	icon_state = "powerpack"
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_BACK
+	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = 5.0
 	var/obj/item/cell/pcell = null
 	var/rounds_remaining = 500
@@ -42,7 +42,7 @@
 	if(!ishuman(user) || user.stat)
 		return FALSE
 
-	var/obj/item/weapon/gun/smartgun/mygun = user.get_active_hand()
+	var/obj/item/weapon/gun/smartgun/mygun = user.get_active_held_item()
 
 	if(isnull(mygun) || !mygun || !istype(mygun))
 		to_chat(user, "You must be holding an M56 Smartgun to begin the reload process.")
@@ -92,7 +92,7 @@
 	return TRUE
 
 /obj/item/smartgun_powerpack/attack_hand()
-	if(usr.get_inactive_hand() == src && pcell)
+	if(usr.get_inactive_held_item() == src && pcell)
 		usr.put_in_hands(pcell)
 		playsound(src,'sound/machines/click.ogg', 25, 1)
 		to_chat(usr, "You take out the [pcell] out of the [src].")
@@ -143,7 +143,7 @@
 	if(!istype(user) || delay <= 0) return FALSE
 
 	var/mob/living/carbon/human/L
-	if(istype(user, /mob/living/carbon/human)) L = user
+	if(ishuman(user)) L = user
 
 	var/delayfraction = round(delay/numticks)
 	. = TRUE
@@ -152,7 +152,7 @@
 		if(!user)
 			. = FALSE
 			break
-		if(!(L.s_store == mygun) && !(user.get_active_hand() == mygun) && !(user.get_inactive_hand() == mygun) || !(L.back == powerpack)) //power pack and gun aren't where they should be.
+		if(!(L.s_store == mygun) && !(user.get_active_held_item() == mygun) && !(user.get_inactive_held_item() == mygun) || !(L.back == powerpack)) //power pack and gun aren't where they should be.
 			. = FALSE
 			break
 
@@ -197,22 +197,22 @@
 		..()
 		spawn(1)
 			new /obj/item/clothing/suit/storage/marine/sniper(src)
-			new /obj/item/clothing/glasses/m42_goggles(src)
+			new /obj/item/clothing/glasses/night/m42_night_goggles(src)
 			new /obj/item/ammo_magazine/sniper(src)
 			new /obj/item/ammo_magazine/sniper/incendiary(src)
 			new /obj/item/ammo_magazine/sniper/flak(src)
-			new /obj/item/device/binoculars(src)
+			new /obj/item/device/binoculars/tactical(src)
 			new /obj/item/storage/backpack/marine/smock(src)
 			new /obj/item/weapon/gun/pistol/vp70(src)
 			new /obj/item/ammo_magazine/pistol/vp70(src)
 			new /obj/item/ammo_magazine/pistol/vp70(src)
 			new /obj/item/weapon/gun/rifle/sniper/M42A(src)
-
+			new /obj/item/bodybag/tarp(src)
 
 	open(var/mob/user as mob) //A ton of runtimes were caused by ticker being null, so now we do the special items when its first opened
 		if(!opened) //First time opening it, so add the round-specific items
-			if(map_tag)
-				switch(map_tag)
+			if(GLOB.map_tag)
+				switch(GLOB.map_tag)
 					if(MAP_ICE_COLONY)
 						new /obj/item/clothing/head/helmet/marine(src)
 					else
@@ -245,8 +245,8 @@
 
 	open(var/mob/user as mob)
 		if(!opened)
-			if(map_tag)
-				switch(map_tag)
+			if(GLOB.map_tag)
+				switch(GLOB.map_tag)
 					if(MAP_ICE_COLONY)
 						new /obj/item/clothing/under/marine/sniper(src)
 						new /obj/item/storage/backpack/marine/satchel(src)
@@ -313,7 +313,7 @@
 	icon_state = "rocket_case"
 	spec_set = "demolitionist"
 	w_class = 5
-	storage_slots = 15
+	storage_slots = 16
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 	foldable = null
@@ -329,10 +329,11 @@
 			new /obj/item/ammo_magazine/rocket/ap(src)
 			new /obj/item/ammo_magazine/rocket/ap(src)
 			new /obj/item/ammo_magazine/rocket/wp(src)
+			new /obj/item/ammo_magazine/rocket/wp(src)
 			new /obj/item/explosive/mine(src)
 			new /obj/item/explosive/mine(src)
-			new /obj/item/explosive/plastique(src)
-			new /obj/item/explosive/plastique(src)
+			new /obj/item/device/radio/detpack(src)
+			new /obj/item/device/radio/detpack(src)
 			new /obj/item/device/radio/detpack(src)
 			new /obj/item/device/radio/detpack(src)
 			new /obj/item/device/assembly/signaler(src)
@@ -345,7 +346,7 @@
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "sniper_case"
 	w_class = 5
-	storage_slots = 11
+	storage_slots = 15
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 	foldable = null
@@ -359,17 +360,21 @@
 			new /obj/item/ammo_magazine/sniper(src)
 			new /obj/item/ammo_magazine/sniper/incendiary(src)
 			new /obj/item/ammo_magazine/sniper/flak(src)
-			new /obj/item/device/binoculars(src)
-			new /obj/item/storage/backpack/marine/smock(src)
+			new /obj/item/device/binoculars/tactical(src)
 			new /obj/item/weapon/gun/pistol/vp70(src)
 			new /obj/item/ammo_magazine/pistol/vp70(src)
 			new /obj/item/ammo_magazine/pistol/vp70(src)
+			new /obj/item/storage/backpack/marine/satchel/scout_cloak/sniper(src)
 			new /obj/item/weapon/gun/rifle/sniper/M42A(src)
+			new /obj/item/explosive/grenade/cloakbomb(src)
+			new /obj/item/explosive/grenade/cloakbomb(src)
+			new /obj/item/explosive/grenade/cloakbomb(src)
+			new /obj/item/bodybag/tarp(src)
 
 	open(mob/user) //A ton of runtimes were caused by ticker being null, so now we do the special items when its first opened
 		if(!opened) //First time opening it, so add the round-specific items
-			if(map_tag)
-				switch(map_tag)
+			if(GLOB.map_tag)
+				switch(GLOB.map_tag)
 					if(MAP_ICE_COLONY)
 						new /obj/item/clothing/head/helmet/marine(src)
 					else
@@ -379,7 +384,46 @@
 
 /obj/item/storage/box/spec/scout
 	name = "\improper Scout equipment"
-	desc = "A large case containing Scout equipment. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+	desc = "A large case containing Scout equipment; this one features the M4RA battle rifle. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+	icon = 'icons/Marine/marine-weapons.dmi'
+	icon_state = "sniper_case"
+	w_class = 5
+	storage_slots = 22
+	slowdown = 1
+	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
+	foldable = null
+	spec_set = "scout battle rifle"
+
+/obj/item/storage/box/spec/scout/New()
+	. = ..()
+	spawn(1)
+		new /obj/item/clothing/suit/storage/marine/M3S(src)
+		new /obj/item/clothing/head/helmet/marine/scout(src)
+		new /obj/item/clothing/glasses/night/M4RA(src)
+		new /obj/item/ammo_magazine/rifle/m4ra(src)
+		new /obj/item/ammo_magazine/rifle/m4ra(src)
+		new /obj/item/ammo_magazine/rifle/m4ra(src)
+		new /obj/item/ammo_magazine/rifle/m4ra(src)
+		new /obj/item/ammo_magazine/rifle/m4ra/incendiary(src)
+		new /obj/item/ammo_magazine/rifle/m4ra/incendiary(src)
+		new /obj/item/ammo_magazine/rifle/m4ra/impact(src)
+		new /obj/item/ammo_magazine/rifle/m4ra/impact(src)
+		new /obj/item/device/binoculars/tactical/scout(src)
+		new /obj/item/weapon/gun/pistol/vp70(src)
+		new /obj/item/ammo_magazine/pistol/vp70(src)
+		new /obj/item/ammo_magazine/pistol/vp70(src)
+		new /obj/item/weapon/gun/rifle/m4ra(src)
+		new /obj/item/storage/backpack/marine/satchel/scout_cloak/scout(src)
+		new /obj/item/device/motiondetector/scout(src)
+		new /obj/item/explosive/grenade/cloakbomb(src)
+		new /obj/item/explosive/grenade/cloakbomb(src)
+		new /obj/item/explosive/grenade/cloakbomb(src)
+		new /obj/item/bodybag/tarp(src)
+
+
+/obj/item/storage/box/spec/scoutshotgun
+	name = "\improper Scout equipment"
+	desc = "A large case containing Scout equipment; this one features the ZX-76 assault shotgun. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "sniper_case"
 	w_class = 5
@@ -387,33 +431,26 @@
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 	foldable = null
-	spec_set = "scout"
+	spec_set = "scout shotgun"
 
-	New()
-		..()
-		spawn(1)
-			new /obj/item/clothing/suit/storage/marine/M3S(src)
-			new /obj/item/clothing/head/helmet/marine/scout(src)
-			new /obj/item/clothing/glasses/night/M4RA(src)
-			new /obj/item/ammo_magazine/rifle/m4ra(src)
-			new /obj/item/ammo_magazine/rifle/m4ra(src)
-			new /obj/item/ammo_magazine/rifle/m4ra(src)
-			new /obj/item/ammo_magazine/rifle/m4ra(src)
-			new /obj/item/ammo_magazine/rifle/m4ra/incendiary(src)
-			new /obj/item/ammo_magazine/rifle/m4ra/incendiary(src)
-			new /obj/item/ammo_magazine/rifle/m4ra/impact(src)
-			new /obj/item/ammo_magazine/rifle/m4ra/impact(src)
-			new /obj/item/device/binoculars/tactical/scout(src)
-			new /obj/item/weapon/gun/pistol/vp70(src)
-			new /obj/item/ammo_magazine/pistol/vp70(src)
-			new /obj/item/ammo_magazine/pistol/vp70(src)
-			new /obj/item/weapon/gun/rifle/m4ra(src)
-			new /obj/item/storage/backpack/marine/satchel/scout_cloak(src)
-			new /obj/item/device/motiondetector/scout(src)
-			new /obj/item/explosive/grenade/cloakbomb(src)
-			new /obj/item/explosive/grenade/cloakbomb(src)
-			new /obj/item/explosive/grenade/cloakbomb(src)
-
+/obj/item/storage/box/spec/scoutshotgun/New()
+	. = ..()
+	spawn(1)
+		new /obj/item/clothing/suit/storage/marine/M3S(src)
+		new /obj/item/clothing/head/helmet/marine/scout(src)
+		new /obj/item/clothing/glasses/night/M4RA(src)
+		new /obj/item/device/binoculars/tactical/scout(src)
+		new /obj/item/weapon/gun/pistol/vp70(src)
+		new /obj/item/ammo_magazine/pistol/vp70(src)
+		new /obj/item/ammo_magazine/pistol/vp70(src)
+		new /obj/item/weapon/gun/shotgun/merc/scout(src)
+		new /obj/item/ammo_magazine/shotgun/incendiary(src)
+		new /obj/item/ammo_magazine/shotgun/incendiary(src)
+		new /obj/item/storage/backpack/marine/satchel/scout_cloak/scout(src)
+		new /obj/item/device/motiondetector/scout(src)
+		new /obj/item/explosive/grenade/cloakbomb(src)
+		new /obj/item/explosive/grenade/cloakbomb(src)
+		new /obj/item/explosive/grenade/cloakbomb(src)
 
 
 /obj/item/storage/box/spec/pyro
@@ -422,7 +459,7 @@
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "armor_case"
 	w_class = 5
-	storage_slots = 8
+	storage_slots = 9
 	slowdown = 1
 	can_hold = list()
 	foldable = null
@@ -434,6 +471,7 @@
 		spawn(1)
 			new /obj/item/clothing/suit/storage/marine/M35(src)
 			new /obj/item/clothing/head/helmet/marine/pyro(src)
+			new /obj/item/clothing/shoes/marine/pyro(src)
 			new /obj/item/storage/backpack/marine/engineerpack/flamethrower(src)
 			new /obj/item/weapon/gun/flamer/M240T(src)
 			new /obj/item/ammo_magazine/flamer_tank/large(src)
@@ -445,7 +483,7 @@
 
 /obj/item/storage/box/spec/heavy_grenadier
 	name = "\improper Heavy Grenadier case"
-	desc = "A large case containing M50 Heavy Armor and a heavy-duty multi-shot grenade launcher, the Armat Systems M92. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+	desc = "A large case containing B18 Heavy Armor and a heavy-duty multi-shot grenade launcher, the Armat Systems M92. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "grenade_case"
 	w_class = 5
@@ -453,17 +491,40 @@
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 	foldable = null
+	spec_set = "heavy gunner"
+
+/obj/item/storage/box/spec/heavy_grenadier/New()
+	..()
+	spawn(1)
+		new /obj/item/weapon/gun/launcher/m92(src)
+		new /obj/item/storage/belt/grenade/b18(src)
+		new /obj/item/clothing/gloves/marine/specialist(src)
+		new /obj/item/clothing/suit/storage/marine/specialist(src)
+		new /obj/item/clothing/head/helmet/marine/specialist(src)
+
+
+/obj/item/storage/box/spec/heavy_gunner
+	name = "\improper Heavy Minigunner case"
+	desc = "A large case containing B18 armor, munitions, and a goddamn minigun. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+	icon = 'icons/Marine/marine-weapons.dmi'
+	icon_state = "rocket_case"
 	spec_set = "heavy grenadier"
+	w_class = 5
+	storage_slots = 16
+	slowdown = 1
+	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
+	foldable = null
 
-	New()
-		..()
-		spawn(1)
-			new /obj/item/weapon/gun/launcher/m92(src)
-			new /obj/item/storage/belt/grenade/b18(src)
-			new /obj/item/clothing/gloves/marine/specialist(src)
-			new /obj/item/clothing/suit/storage/marine/specialist(src)
-			new /obj/item/clothing/head/helmet/marine/specialist(src)
-
+/obj/item/storage/box/spec/heavy_gunner/New()
+	..()
+	spawn(1)
+		new /obj/item/clothing/gloves/marine/specialist(src)
+		new /obj/item/clothing/suit/storage/marine/specialist(src)
+		new /obj/item/clothing/head/helmet/marine/specialist(src)
+		new /obj/item/weapon/gun/minigun(src)
+		new /obj/item/ammo_magazine/minigun(src)
+		new /obj/item/ammo_magazine/minigun(src)
+		new /obj/item/ammo_magazine/minigun(src)
 
 /obj/item/spec_kit //For events/WO, allowing the user to choose a specalist kit
 	name = "specialist kit"
@@ -472,17 +533,21 @@
 	icon_state = "deliverycrate"
 
 /obj/item/spec_kit/attack_self(mob/user as mob)
-	var/choice = input(user, "Please pick a specalist kit!","Selection") in list("Pyro","Grenadier","Sniper","Scout","Demo")
+	var/choice = input(user, "Please pick a specalist kit!","Selection") in list("Pyro","Heavy Armor (Grenadier)","Heavy Armor (Minigun)","Sniper","Scout (Battle Rifle)","Scout (Shotgun)","Demo")
 	var/obj/item/storage/box/spec/S = null
 	switch(choice)
 		if("Pyro")
 			S = /obj/item/storage/box/spec/pyro
-		if("Grenadier")
+		if("Heavy Armor (Grenadier)")
 			S = /obj/item/storage/box/spec/heavy_grenadier
+		if("Heavy Armor (Minigun)")
+			S = /obj/item/storage/box/spec/heavy_gunner
 		if("Sniper")
 			S = /obj/item/storage/box/spec/sniper
-		if("Scout")
+		if("Scout (Battle Rifle)")
 			S = /obj/item/storage/box/spec/scout
+		if("Scout (Shotgun)")
+			S = /obj/item/storage/box/spec/scoutshotgun
 		if("Demo")
 			S = /obj/item/storage/box/spec/demolitionist
 	new S(loc)
@@ -506,3 +571,5 @@
 		if("Demo")
 			new /obj/item/storage/box/spec/demolitionist (T)
 	qdel(src)
+
+

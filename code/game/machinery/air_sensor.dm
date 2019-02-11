@@ -55,7 +55,8 @@
 	frequency = new_frequency
 	radio_connection = radio_controller.add_object(src, frequency, RADIO_ATMOSIA)
 
-/obj/machinery/air_sensor/initialize()
+/obj/machinery/air_sensor/Initialize()
+	. = ..()
 	set_frequency(frequency)
 
 /obj/machinery/air_sensor/New()

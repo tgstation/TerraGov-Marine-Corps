@@ -1,21 +1,6 @@
 var/global/list/seed_types = list()       // A list of all seed data.
 var/global/list/gene_tag_masks = list()   // Gene obfuscation for delicious trial and error goodness.
 
-// Debug for testing seed genes.
-/client/proc/show_plant_genes()
-	set category = "Debug"
-	set name = "Show Plant Genes"
-	set desc = "Prints the round's plant gene masks."
-
-	if(!holder)	return
-
-	if(!gene_tag_masks)
-		to_chat(usr, "Gene masks not set.")
-		return
-
-	for(var/mask in gene_tag_masks)
-		to_chat(usr, "[mask]: [gene_tag_masks[mask]]")
-
 // Predefined/roundstart varieties use a string key to make it
 // easier to grab the new variety when mutating. Post-roundstart
 // and mutant varieties use their uid converted to a string instead.
@@ -32,7 +17,7 @@ proc/populate_seed_list()
 
 	// Make sure any seed packets that were mapped in are updated
 	// correctly (since the seed datums did not exist a tick ago).
-	for(var/obj/item/seeds/S in item_list)
+	for(var/obj/item/seeds/S in GLOB.item_list)
 		S.update_seed()
 
 	//Might as well mask the gene types while we're at it.
@@ -315,7 +300,7 @@ proc/populate_seed_list()
 
 	if(!degree || immutable > 0) return
 
-	source_turf.visible_message("\blue \The [display_name] quivers!")
+	source_turf.visible_message("<span class='notice'> \The [display_name] quivers!</span>")
 
 	//This looks like shit, but it's a lot easier to read/change this way.
 	var/total_mutations = rand(1,1+degree)
@@ -324,7 +309,7 @@ proc/populate_seed_list()
 			if(0) //Plant cancer!
 				lifespan = max(0,lifespan-rand(1,5))
 				endurance = max(0,endurance-rand(10,20))
-				source_turf.visible_message("\red \The [display_name] withers rapidly!")
+				source_turf.visible_message("<span class='warning'> \The [display_name] withers rapidly!</span>")
 			if(1)
 				nutrient_consumption =      max(0,  min(5,   nutrient_consumption + rand(-(degree*0.1),(degree*0.1))))
 				water_consumption =         max(0,  min(50,  water_consumption    + rand(-degree,degree)))
@@ -343,7 +328,7 @@ proc/populate_seed_list()
 				if(prob(degree*5))
 					carnivorous =           max(0,  min(2,   carnivorous          + rand(-degree,degree)))
 					if(carnivorous)
-						source_turf.visible_message("\blue \The [display_name] shudders hungrily.")
+						source_turf.visible_message("<span class='notice'> \The [display_name] shudders hungrily.</span>")
 			if(6)
 				weed_tolerance  =           max(0,  min(10,  weed_tolerance       + (rand(-2,2)   * degree)))
 				if(prob(degree*5))          parasite = !parasite
@@ -357,7 +342,7 @@ proc/populate_seed_list()
 				potency =                   max(0,  min(200, potency              + (rand(-20,20) * degree)))
 				if(prob(degree*5))
 					spread =                max(0,  min(2,   spread               + rand(-1,1)))
-					source_turf.visible_message("\blue \The [display_name] spasms visibly, shifting in the tray.")
+					source_turf.visible_message("<span class='notice'> \The [display_name] spasms visibly, shifting in the tray.</span>")
 			if(9)
 				maturation =                max(0,  min(30,  maturation      + (rand(-1,1)   * degree)))
 				if(prob(degree*5))
@@ -366,22 +351,22 @@ proc/populate_seed_list()
 				if(prob(degree*2))
 					biolum = !biolum
 					if(biolum)
-						source_turf.visible_message("\blue \The [display_name] begins to glow!")
+						source_turf.visible_message("<span class='notice'> \The [display_name] begins to glow!</span>")
 						if(prob(degree*2))
 							biolum_colour = "#[pick(list("FF0000","FF7F00","FFFF00","00FF00","0000FF","4B0082","8F00FF"))]"
-							source_turf.visible_message("\blue \The [display_name]'s glow <font color='[biolum_colour]'>changes colour</font>!")
+							source_turf.visible_message("<span class='notice'> \The [display_name]'s glow <font color='[biolum_colour]'>changes colour</font>!</span>")
 					else
-						source_turf.visible_message("\blue \The [display_name]'s glow dims...")
+						source_turf.visible_message("<span class='notice'> \The [display_name]'s glow dims...</span>")
 			if(11)
 				if(prob(degree*2))
 					flowers = !flowers
 					if(flowers)
-						source_turf.visible_message("\blue \The [display_name] sprouts a bevy of flowers!")
+						source_turf.visible_message("<span class='notice'> \The [display_name] sprouts a bevy of flowers!</span>")
 						if(prob(degree*2))
 							flower_colour = "#[pick(list("FF0000","FF7F00","FFFF00","00FF00","0000FF","4B0082","8F00FF"))]"
-						source_turf.visible_message("\blue \The [display_name]'s flowers <font=[flower_colour]>changes colour</font>!")
+						source_turf.visible_message("<span class='notice'> \The [display_name]'s flowers <font=[flower_colour]>changes colour</font>!</span>")
 					else
-						source_turf.visible_message("\blue \The [display_name]'s flowers wither and fall off.")
+						source_turf.visible_message("<span class='notice'> \The [display_name]'s flowers wither and fall off.</span>")
 	return
 
 //Mutates a specific trait/set of traits.
@@ -569,7 +554,7 @@ proc/populate_seed_list()
 		got_product = 1
 
 	if(!got_product && !harvest_sample)
-		to_chat(user, "\red You fail to harvest anything useful.")
+		to_chat(user, "<span class='warning'>You fail to harvest anything useful.</span>")
 	else
 		to_chat(user, "You [harvest_sample ? "take a sample" : "harvest"] from the [display_name].")
 
@@ -608,7 +593,7 @@ proc/populate_seed_list()
 
 			//Handle spawning in living, mobile products (like dionaea).
 			if(istype(product,/mob/living))
-				product.visible_message("\blue The pod disgorges [product]!")
+				product.visible_message("<span class='notice'> The pod disgorges [product]!</span>")
 
 			// Make sure the product is inheriting the correct seed type reference.
 			else if(istype(product,/obj/item/reagent_container/food/snacks/grown))

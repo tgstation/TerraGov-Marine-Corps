@@ -28,15 +28,15 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	flags_whitelist = WHITELIST_COMMANDER
 
 /datum/job/command/commander/generate_equipment(mob/living/carbon/human/H)
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/mcom(H), WEAR_EAR)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/command(H), WEAR_BODY)
-	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/techofficer/commander(H), WEAR_HANDS)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/cmberet/tan(H), WEAR_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marinechief/commander(H), WEAR_FEET)
-	H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), WEAR_BACK)
-	H.equip_to_slot_or_del(new /obj/item/storage/belt/gun/mateba/cmateba/full(H), WEAR_WAIST)
-	H.equip_to_slot_or_del(new /obj/item/storage/pouch/general/large(H), WEAR_R_STORE)
-	H.equip_to_slot_or_del(new /obj/item/device/binoculars(H), WEAR_L_HAND)
+	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/mcom(H), SLOT_EARS)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/command(H), SLOT_W_UNIFORM)
+	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/techofficer/commander(H), SLOT_GLOVES)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/cmberet/tan(H), SLOT_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marinechief/commander(H), SLOT_SHOES)
+	H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), SLOT_BACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/belt/gun/mateba/cmateba/full(H), SLOT_BELT)
+	H.equip_to_slot_or_del(new /obj/item/storage/pouch/general/large(H), SLOT_R_STORE)
+	H.equip_to_slot_or_del(new /obj/item/device/binoculars(H), SLOT_L_HAND)
 
 /datum/job/command/commander/generate_entry_message()
 		return {"As the commander of the [MAIN_SHIP_NAME] you are held by higher standard and are expected to act competently.
@@ -49,7 +49,7 @@ Godspeed, commander! And remember, you are not above the law."}
 /datum/job/command/commander/announce_entry_message(mob/living/carbon/human/H)
 	. = ..()
 	sleep(15)
-	if(H?.loc && flags_startup_parameters & ROLE_ADD_TO_MODE) 
+	if(H?.loc && flags_startup_parameters & ROLE_ADD_TO_MODE)
 		captain_announcement.Announce("All hands, Commander [H.real_name] on deck!")
 
 
@@ -77,14 +77,14 @@ Come hell or high water, you are going to be there for them."}
 	equipment = TRUE
 
 /datum/job/command/executive/generate_equipment(mob/living/carbon/human/H)
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/mcom(H), WEAR_EAR)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/exec(H), WEAR_BODY)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/cmcap(H), WEAR_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), WEAR_FEET)
-	H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), WEAR_BACK)
-	H.equip_to_slot_or_del(new /obj/item/storage/belt/gun/m4a3/vp70(H), WEAR_WAIST)
-	H.equip_to_slot_or_del(new /obj/item/storage/pouch/general/large(H), WEAR_R_STORE)
-	H.equip_to_slot_or_del(new /obj/item/device/binoculars(H), WEAR_L_HAND)
+	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/mcom(H), SLOT_EARS)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/exec(H), SLOT_W_UNIFORM)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/cmcap(H), SLOT_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), SLOT_SHOES)
+	H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), SLOT_BACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/belt/gun/m4a3/vp70(H), SLOT_BELT)
+	H.equip_to_slot_or_del(new /obj/item/storage/pouch/general/large(H), SLOT_R_STORE)
+	H.equip_to_slot_or_del(new /obj/item/device/binoculars(H), SLOT_L_HAND)
 
 /datum/job/command/executive/generate_entry_message(mob/living/carbon/human/H)
 		. = {"You are second in command aboard the ship, and are in next in the chain of command after the commander.
@@ -109,14 +109,14 @@ Make the TGMC proud!"}
 	equipment = TRUE
 
 /datum/job/command/bridge/generate_equipment(mob/living/carbon/human/H)
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/mcom(H), WEAR_EAR)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/bridge(H), WEAR_BODY)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/cmcap/ro(H), WEAR_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), WEAR_FEET)
-	H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), WEAR_BACK)
-	H.equip_to_slot_or_del(new /obj/item/storage/belt/gun/m4a3/commander(H), WEAR_WAIST)
-	H.equip_to_slot_or_del(new /obj/item/storage/pouch/general/large(H), WEAR_R_STORE)
-	H.equip_to_slot_or_del(new /obj/item/device/binoculars(H), WEAR_L_HAND)
+	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/mcom(H), SLOT_EARS)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/bridge(H), SLOT_W_UNIFORM)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/cmcap/ro(H), SLOT_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), SLOT_SHOES)
+	H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), SLOT_BACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/belt/gun/m4a3/commander(H), SLOT_BELT)
+	H.equip_to_slot_or_del(new /obj/item/storage/pouch/general/large(H), SLOT_R_STORE)
+	H.equip_to_slot_or_del(new /obj/item/device/binoculars(H), SLOT_L_HAND)
 
 /datum/job/command/bridge/set_spawn_positions(var/count)
 	spawn_positions = so_slot_formula(count)
@@ -145,16 +145,16 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	equipment = TRUE
 
 /datum/job/command/pilot/generate_equipment(mob/living/carbon/human/H)
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/mcom(H), WEAR_EAR)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/pilot(H), WEAR_BODY)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), WEAR_FEET)
-	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), WEAR_HANDS)
-	H.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/vest/pilot(H), WEAR_JACKET)
-	H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), WEAR_BACK)
-	H.equip_to_slot_or_del(new /obj/item/storage/belt/gun/m4a3/vp70(H), WEAR_WAIST)
-	H.equip_to_slot_or_del(new /obj/item/storage/pouch/general/large(H), WEAR_R_STORE)
-	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses(H), WEAR_L_HAND)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/pilot(H), WEAR_R_HAND)
+	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/mcom(H), SLOT_EARS)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/pilot(H), SLOT_W_UNIFORM)
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), SLOT_SHOES)
+	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), SLOT_GLOVES)
+	H.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/vest/pilot(H), SLOT_WEAR_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), SLOT_BACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/belt/gun/m4a3/vp70(H), SLOT_BELT)
+	H.equip_to_slot_or_del(new /obj/item/storage/pouch/general/large(H), SLOT_R_STORE)
+	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses(H), SLOT_L_HAND)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/pilot(H), SLOT_R_HAND)
 
 /datum/job/command/pilot/set_spawn_positions(var/count)
 	spawn_positions = po_slot_formula(count)
@@ -184,18 +184,18 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 	equipment = TRUE
 
 /datum/job/command/tank_crew/generate_equipment(mob/living/carbon/human/H)
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/mcom(H), WEAR_EAR)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/tanker(H), WEAR_BODY)
-	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), WEAR_HANDS)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), WEAR_FEET)
-	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/M3P/tanker(H), WEAR_JACKET)
-	H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), WEAR_BACK)
-	H.equip_to_slot_or_del(new /obj/item/storage/belt/gun/m4a3/vp70(H), WEAR_WAIST)
-	H.equip_to_slot_or_del(new /obj/item/storage/pouch/general/large(H), WEAR_R_STORE)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/tanker(H), WEAR_R_HAND)
+	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/mcom(H), SLOT_EARS)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/tanker(H), SLOT_W_UNIFORM)
+	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), SLOT_GLOVES)
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), SLOT_SHOES)
+	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/M3P/tanker(H), SLOT_WEAR_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), SLOT_BACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/belt/gun/m4a3/vp70(H), SLOT_BELT)
+	H.equip_to_slot_or_del(new /obj/item/storage/pouch/general/large(H), SLOT_R_STORE)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/tanker(H), SLOT_R_HAND)
 
 /datum/job/command/tank_crew/generate_entry_message(mob/living/carbon/human/H)
-	return {"Your job is to operate and maintain thee ship's armored vehicles.
+	return {"Your job is to operate and maintain the ship's armored vehicles.
 While you are an officer, your authority is limited to your own vehicle, where you have authority over the enlisted personnel. You will need MTs to repair and replace hardpoints."}
 
 
@@ -217,16 +217,16 @@ While you are an officer, your authority is limited to your own vehicle, where y
 	equipment = TRUE
 
 /datum/job/command/police/generate_equipment(mob/living/carbon/human/H)
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/mmpo(H), WEAR_EAR)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/cmberet/red(H), WEAR_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/mp(H), WEAR_BODY)
-	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(H), WEAR_HANDS)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), WEAR_FEET)
-	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/MP(H), WEAR_JACKET)
-	H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/sec(H), WEAR_BACK)
-	H.equip_to_slot_or_del(new /obj/item/storage/belt/security/MP/full(H), WEAR_WAIST)
-	H.equip_to_slot_or_del(new /obj/item/storage/pouch/general/medium(H), WEAR_R_STORE)
-	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/sechud(H), WEAR_EYES)
+	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/mmpo(H), SLOT_EARS)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/cmberet/red(H), SLOT_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/mp(H), SLOT_W_UNIFORM)
+	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(H), SLOT_GLOVES)
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), SLOT_SHOES)
+	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/MP(H), SLOT_WEAR_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/sec(H), SLOT_BACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/belt/security/MP/full(H), SLOT_BELT)
+	H.equip_to_slot_or_del(new /obj/item/storage/pouch/general/medium(H), SLOT_R_STORE)
+	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/sechud(H), SLOT_GLASSES)
 
 /datum/job/command/police/set_spawn_positions(var/count)
 	spawn_positions = mp_slot_formula(count)
@@ -237,7 +237,7 @@ While you are an officer, your authority is limited to your own vehicle, where y
 /datum/job/command/police/generate_entry_message(mob/living/carbon/human/H)
 	return {"You are held by a higher standard and are required to not abuse your position to severely hinder the progress of the round.
 Failure to do so may result in a job ban.
-Your primary job is to uphold the <a href='https://tgstation13.org/wiki/Space_Law'>Space Law</a>, and peace and stability aboard the ship. Marines can get rowdy after a few weeks of cryosleep!
+Your primary job is to uphold the <a href='https://tgstation13.org/wiki/TGMC:Military_Law'>Military Law</a>, and peace and stability aboard the ship. Marines can get rowdy after a few weeks of cryosleep!
 In addition, you are tasked with the security of high-ranking personnel, including the command staff. Keep them safe!"}
 
 
@@ -255,21 +255,21 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 	equipment = TRUE
 
 /datum/job/command/warrant/generate_equipment(mob/living/carbon/human/H)
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/cmpcom(H), WEAR_EAR)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/cmberet/wo(H), WEAR_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/warrant(H), WEAR_BODY)
-	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(H), WEAR_HANDS)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), WEAR_FEET)
-	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/MP/WO(H), WEAR_JACKET)
-	H.equip_to_slot_or_del(new /obj/item/storage/backpack/security(H), WEAR_BACK)
-	H.equip_to_slot_or_del(new /obj/item/storage/belt/security/MP/full(H), WEAR_WAIST)
-	H.equip_to_slot_or_del(new /obj/item/storage/pouch/general/large(H), WEAR_R_STORE)
-	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/sechud(H), WEAR_EYES)
+	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/cmpcom(H), SLOT_EARS)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/cmberet/wo(H), SLOT_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/warrant(H), SLOT_W_UNIFORM)
+	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(H), SLOT_GLOVES)
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), SLOT_SHOES)
+	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/MP/WO(H), SLOT_WEAR_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/storage/backpack/security(H), SLOT_BACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/belt/security/MP/full(H), SLOT_BELT)
+	H.equip_to_slot_or_del(new /obj/item/storage/pouch/general/large(H), SLOT_R_STORE)
+	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/sechud(H), SLOT_GLASSES)
 
 /datum/job/command/warrant/generate_entry_message(mob/living/carbon/human/H)
 	return {"You are held by a higher standard and are required to not abuse your position to severely hinder the progress of the round.
 Failure to do so may result in a job ban.
-You lead the Military Police, ensure your officers uphold the <a href='https://tgstation13.org/wiki/Space_Law'>Space Law</a>, and maintain peace and stability aboard the ship. Marines can get rowdy after a few weeks of cryosleep!
+You lead the Military Police, ensure your officers uphold the <a href='https://tgstation13.org/wiki/TGMC:Military_Law'>Military Law</a>,, and maintain peace and stability aboard the ship. Marines can get rowdy after a few weeks of cryosleep!
 In addition, you are tasked with the security of high-ranking personnel, including the command staff. Keep them safe!"}
 
 
@@ -301,14 +301,14 @@ If you have no idea how to set up the engine, or it's your first time, adminhelp
 You are also next in the chain of command, should the bridge crew fall in the line of duty."}
 
 /datum/job/logistics/engineering/generate_equipment(mob/living/carbon/human/H)
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/mcom(H), WEAR_EAR)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/ce(H), WEAR_BODY)
-	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), WEAR_HANDS)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), WEAR_FEET)
-	H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel/tech(H), WEAR_BACK)
-	H.equip_to_slot_or_del(new /obj/item/storage/belt/utility/full(H), WEAR_WAIST)
-	H.equip_to_slot_or_del(new /obj/item/storage/pouch/electronics(H), WEAR_R_STORE)
-	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/welding(H), WEAR_EYES)
+	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/mcom(H), SLOT_EARS)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/ce(H), SLOT_W_UNIFORM)
+	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), SLOT_GLOVES)
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), SLOT_SHOES)
+	H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel/tech(H), SLOT_BACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/belt/utility/full(H), SLOT_BELT)
+	H.equip_to_slot_or_del(new /obj/item/storage/pouch/electronics(H), SLOT_R_STORE)
+	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/welding(H), SLOT_GLASSES)
 
 
 //Requisitions Officer
@@ -326,14 +326,14 @@ You are also next in the chain of command, should the bridge crew fall in the li
 	equipment = TRUE
 
 /datum/job/logistics/requisition/generate_equipment(mob/living/carbon/human/H)
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/mcom(H), WEAR_EAR)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/ro_suit(H), WEAR_BODY)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/cmcap/req(H), WEAR_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), WEAR_HANDS)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), WEAR_FEET)
-	H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), WEAR_BACK)
-	H.equip_to_slot_or_del(new /obj/item/storage/belt/gun/m44/full(H), WEAR_WAIST)
-	H.equip_to_slot_or_del(new /obj/item/storage/pouch/general/large(H), WEAR_R_STORE)
+	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/mcom(H), SLOT_EARS)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/ro_suit(H), SLOT_W_UNIFORM)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/cmcap/req(H), SLOT_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), SLOT_GLOVES)
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), SLOT_SHOES)
+	H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), SLOT_BACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/belt/gun/m44/full(H), SLOT_BELT)
+	H.equip_to_slot_or_del(new /obj/item/storage/pouch/general/large(H), SLOT_R_STORE)
 
 /datum/job/logistics/requisition/generate_entry_message(mob/living/carbon/human/H)
 	return {"Your job is to dispense supplies to the marines, including weapon attachments.
@@ -366,15 +366,15 @@ A happy ship is a well-functioning ship."}
 	equipment = TRUE
 
 /datum/job/logistics/tech/maint/generate_equipment(mob/living/carbon/human/H)
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/mt(H), WEAR_EAR)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/engi(H), WEAR_BODY)
-	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), WEAR_HANDS)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), WEAR_FEET)
-	H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), WEAR_BACK)
-	H.equip_to_slot_or_del(new /obj/item/storage/belt/utility/full(H), WEAR_WAIST)
-	H.equip_to_slot_or_del(new /obj/item/storage/pouch/general/medium(H), WEAR_R_STORE)
-	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/welding(H), WEAR_EYES)
-	H.equip_to_slot_or_del(new /obj/item/tool/weldpack(H), WEAR_L_HAND)
+	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/mt(H), SLOT_EARS)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/engi(H), SLOT_W_UNIFORM)
+	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), SLOT_GLOVES)
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), SLOT_SHOES)
+	H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), SLOT_BACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/belt/utility/full(H), SLOT_BELT)
+	H.equip_to_slot_or_del(new /obj/item/storage/pouch/general/medium(H), SLOT_R_STORE)
+	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/welding(H), SLOT_GLASSES)
+	H.equip_to_slot_or_del(new /obj/item/tool/weldpack(H), SLOT_L_HAND)
 
 /datum/job/logistics/tech/maint/set_spawn_positions(var/count)
 	spawn_positions = mt_slot_formula(count)
@@ -406,16 +406,16 @@ Start with the ship's engine, and don't forget radiation equipment."}
 	equipment = TRUE
 
 /datum/job/logistics/tech/cargo/generate_equipment(mob/living/carbon/human/H)
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/ct(H), WEAR_EAR)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/cargotech(H), WEAR_BODY)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/beanie(H), WEAR_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), WEAR_HANDS)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), WEAR_FEET)
-	H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), WEAR_BACK)
-	H.equip_to_slot_or_del(new /obj/item/storage/belt/utility/full(H), WEAR_WAIST)
-	H.equip_to_slot_or_del(new /obj/item/storage/pouch/general/medium(H), WEAR_R_STORE)
-	H.equip_to_slot_or_del(new /obj/item/storage/pouch/magazine/pistol/large/full(H), WEAR_L_STORE)
-	H.equip_to_slot_or_del(new /obj/item/clothing/tie/holster/m4a3(H), WEAR_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/ct(H), SLOT_EARS)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/cargotech(H), SLOT_W_UNIFORM)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/beanie(H), SLOT_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), SLOT_GLOVES)
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), SLOT_SHOES)
+	H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), SLOT_BACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/belt/utility/full(H), SLOT_BELT)
+	H.equip_to_slot_or_del(new /obj/item/storage/pouch/general/medium(H), SLOT_R_STORE)
+	H.equip_to_slot_or_del(new /obj/item/storage/pouch/magazine/pistol/large/full(H), SLOT_L_STORE)
+	H.equip_to_slot_or_del(new /obj/item/clothing/tie/holster/m4a3(H), SLOT_ACCESSORY)
 
 /datum/job/logistics/tech/cargo/set_spawn_positions(var/count)
 	spawn_positions = ct_slot_formula(count)
@@ -450,20 +450,20 @@ Listen to the radio in case someone requests a supply drop via the overwatch sys
 	equipment = TRUE
 
 /datum/job/medical/professor/generate_equipment(mob/living/carbon/human/H)
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/cmo(H), WEAR_EAR)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/medical/green(H), WEAR_BODY)
-	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/latex(H), WEAR_HANDS)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/white(H), WEAR_FEET)
-	H.equip_to_slot_or_del(new /obj/item/clothing/mask/surgical(H), WEAR_FACE)
-	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/hud/health(H), WEAR_EYES)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/surgery/green(H), WEAR_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), WEAR_BACK)
-	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/labcoat(H), WEAR_JACKET)
-	H.equip_to_slot_or_del(new /obj/item/storage/belt/medical(H), WEAR_WAIST)
-	H.equip_to_slot_or_del(new /obj/item/storage/pouch/medkit(H), WEAR_R_STORE)
-	H.equip_to_slot_or_del(new /obj/item/storage/pouch/medical/full(H), WEAR_L_STORE)
-	H.equip_to_slot_or_del(new /obj/item/storage/firstaid/adv(H), WEAR_L_HAND)
-	H.equip_to_slot_or_del(new /obj/item/device/flashlight/pen(H), WEAR_J_STORE)
+	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/cmo(H), SLOT_EARS)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/medical/green(H), SLOT_W_UNIFORM)
+	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/latex(H), SLOT_GLOVES)
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/white(H), SLOT_SHOES)
+	H.equip_to_slot_or_del(new /obj/item/clothing/mask/surgical(H), SLOT_WEAR_MASK)
+	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/hud/health(H), SLOT_GLASSES)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/surgery/green(H), SLOT_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), SLOT_BACK)
+	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/labcoat(H), SLOT_WEAR_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/storage/belt/medical(H), SLOT_BELT)
+	H.equip_to_slot_or_del(new /obj/item/storage/pouch/medkit(H), SLOT_R_STORE)
+	H.equip_to_slot_or_del(new /obj/item/storage/pouch/medical/full(H), SLOT_L_STORE)
+	H.equip_to_slot_or_del(new /obj/item/storage/firstaid/adv(H), SLOT_L_HAND)
+	H.equip_to_slot_or_del(new /obj/item/device/flashlight/pen(H), SLOT_S_STORE)
 
 
 /datum/job/medical/professor/generate_entry_message()
@@ -490,18 +490,18 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	equipment = TRUE
 
 /datum/job/medical/doctor/generate_equipment(mob/living/carbon/human/H)
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/doc(H), WEAR_EAR)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/medical/green(H), WEAR_BODY)
-	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/latex(H), WEAR_HANDS)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/white(H), WEAR_FEET)
-	H.equip_to_slot_or_del(new /obj/item/clothing/mask/surgical(H), WEAR_FACE)
-	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/hud/health(H), WEAR_EYES)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/surgery/green(H), WEAR_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), WEAR_BACK)
-	H.equip_to_slot_or_del(new /obj/item/storage/belt/medical(H), WEAR_WAIST)
-	H.equip_to_slot_or_del(new /obj/item/storage/pouch/medkit(H), WEAR_R_STORE)
-	H.equip_to_slot_or_del(new /obj/item/storage/pouch/medical/full(H), WEAR_L_STORE)
-	H.equip_to_slot_or_del(new /obj/item/storage/firstaid/adv(H), WEAR_L_HAND)
+	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/doc(H), SLOT_EARS)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/medical/green(H), SLOT_W_UNIFORM)
+	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/latex(H), SLOT_GLOVES)
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/white(H), SLOT_SHOES)
+	H.equip_to_slot_or_del(new /obj/item/clothing/mask/surgical(H), SLOT_WEAR_MASK)
+	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/hud/health(H), SLOT_GLASSES)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/surgery/green(H), SLOT_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), SLOT_BACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/belt/medical(H), SLOT_BELT)
+	H.equip_to_slot_or_del(new /obj/item/storage/pouch/medkit(H), SLOT_R_STORE)
+	H.equip_to_slot_or_del(new /obj/item/storage/pouch/medical/full(H), SLOT_L_STORE)
+	H.equip_to_slot_or_del(new /obj/item/storage/firstaid/adv(H), SLOT_L_HAND)
 
 /datum/job/medical/doctor/set_spawn_positions(var/count)
 	spawn_positions = doc_slot_formula(count)
@@ -534,19 +534,19 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	equipment = TRUE
 
 /datum/job/medical/researcher/generate_equipment(mob/living/carbon/human/H)
-		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/doc(H), WEAR_EAR)
-		H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/researcher(H), WEAR_BODY)
-		H.equip_to_slot_or_del(new /obj/item/clothing/gloves/latex(H), WEAR_HANDS)
-		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/laceup(H), WEAR_FEET)
-		H.equip_to_slot_or_del(new /obj/item/clothing/mask/surgical(H), WEAR_FACE)
-		H.equip_to_slot_or_del(new /obj/item/clothing/glasses/hud/health(H), WEAR_EYES)
-		H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/labcoat/researcher(H), WEAR_JACKET)
-		H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), WEAR_BACK)
-		H.equip_to_slot_or_del(new /obj/item/storage/belt/medical(H), WEAR_WAIST)
-		H.equip_to_slot_or_del(new /obj/item/storage/pouch/medkit(H), WEAR_R_STORE)
-		H.equip_to_slot_or_del(new /obj/item/storage/pouch/medical/full(H), WEAR_L_STORE)
-		H.equip_to_slot_or_del(new /obj/item/storage/firstaid/adv(H), WEAR_L_HAND)
-		H.equip_to_slot_or_del(new /obj/item/device/flashlight/pen(H), WEAR_J_STORE)
+		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/doc(H), SLOT_EARS)
+		H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/researcher(H), SLOT_W_UNIFORM)
+		H.equip_to_slot_or_del(new /obj/item/clothing/gloves/latex(H), SLOT_GLOVES)
+		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/laceup(H), SLOT_SHOES)
+		H.equip_to_slot_or_del(new /obj/item/clothing/mask/surgical(H), SLOT_WEAR_MASK)
+		H.equip_to_slot_or_del(new /obj/item/clothing/glasses/hud/health(H), SLOT_GLASSES)
+		H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/labcoat/researcher(H), SLOT_WEAR_SUIT)
+		H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), SLOT_BACK)
+		H.equip_to_slot_or_del(new /obj/item/storage/belt/medical(H), SLOT_BELT)
+		H.equip_to_slot_or_del(new /obj/item/storage/pouch/medkit(H), SLOT_R_STORE)
+		H.equip_to_slot_or_del(new /obj/item/storage/pouch/medical/full(H), SLOT_L_STORE)
+		H.equip_to_slot_or_del(new /obj/item/storage/firstaid/adv(H), SLOT_L_HAND)
+		H.equip_to_slot_or_del(new /obj/item/device/flashlight/pen(H), SLOT_S_STORE)
 
 /datum/job/medical/researcher/set_spawn_positions(var/count)
 	spawn_positions = rsc_slot_formula(count)
@@ -569,7 +569,7 @@ Your role involves some roleplaying and gimmickry, but you can perform the funct
 	department_flag = ROLEGROUP_MARINE_COMMAND
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the W-Y corporate office"
+	supervisors = "the NT corporate office"
 	selection_color = "#ffeedd"
 	access = list(ACCESS_IFF_MARINE, ACCESS_NT_CORPORATE, ACCESS_ILLEGAL_PIRATE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_LOGISTICS)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_NT_CORPORATE, ACCESS_ILLEGAL_PIRATE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_LOGISTICS)
@@ -582,10 +582,10 @@ Your role involves some roleplaying and gimmickry, but you can perform the funct
 		if(ticker && H.mind) ticker.liaison = H.mind //TODO Look into CL tracking in game mode.
 
 /datum/job/civilian/liaison/generate_equipment(mob/living/carbon/human/H)
-		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/mcom(H), WEAR_EAR)
-		H.equip_to_slot_or_del(new /obj/item/clothing/under/liaison_suit(H), WEAR_BODY)
-		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/laceup(H), WEAR_FEET)
-		H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), WEAR_BACK)
+		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/mcom(H), SLOT_EARS)
+		H.equip_to_slot_or_del(new /obj/item/clothing/under/liaison_suit(H), SLOT_W_UNIFORM)
+		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/laceup(H), SLOT_SHOES)
+		H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), SLOT_BACK)
 
 /datum/job/civilian/liaison/generate_entry_message(mob/living/carbon/human/H)
 		return {"As a representative of Nanotrasen Corporation you are expected to stay professional and loyal to the corporation at all times.
@@ -631,7 +631,7 @@ Best to let the mercs do the killing and the dying, but remind them who pays the
 	if(H.client.prefs.synthetic_type == "Early Synthetic")
 		skills_type = /datum/skills/early_synthetic
 	//Most of the code below is copypasted from transform_predator().
-	if(!H.client.prefs) 
+	if(!H.client.prefs)
 		H.client.prefs = new /datum/preferences(H.client) //Let's give them one.
 	//They should have these set, but it's possible they don't have them.
 	H.real_name = H.client.prefs.synthetic_name
@@ -648,14 +648,14 @@ Best to let the mercs do the killing and the dying, but remind them who pays the
 	H.name = H.get_visible_name()
 
 /datum/job/civilian/synthetic/generate_equipment(mob/living/carbon/human/H)
-		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/mcom(H), WEAR_EAR)
-		H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/synthetic(H), WEAR_BODY)
-		H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), WEAR_HANDS)
-		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/white(H), WEAR_FEET)
-		H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), WEAR_BACK)
-		H.equip_to_slot_or_del(new /obj/item/storage/belt/utility/full(H), WEAR_WAIST)
-		H.equip_to_slot_or_del(new /obj/item/storage/pouch/general/medium(H), WEAR_R_STORE)
-		H.equip_to_slot_or_del(new /obj/item/storage/pouch/general/medium(H), WEAR_L_STORE)
+		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/mcom(H), SLOT_EARS)
+		H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/synthetic(H), SLOT_W_UNIFORM)
+		H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), SLOT_GLOVES)
+		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/white(H), SLOT_SHOES)
+		H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), SLOT_BACK)
+		H.equip_to_slot_or_del(new /obj/item/storage/belt/utility/full(H), SLOT_BELT)
+		H.equip_to_slot_or_del(new /obj/item/storage/pouch/general/medium(H), SLOT_R_STORE)
+		H.equip_to_slot_or_del(new /obj/item/storage/pouch/general/medium(H), SLOT_L_STORE)
 
 /datum/job/civilian/synthetic/generate_entry_message()
 		return {"You are a Synthetic!

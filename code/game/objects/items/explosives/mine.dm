@@ -46,7 +46,7 @@
 
 /obj/item/explosive/mine/pmc
 	name = "\improper M20P Claymore anti-personnel mine"
-	desc = "The M20P Claymore is a directional proximity triggered anti-personnel mine designed by Armat Systems for use by the TerraGov Marine Corps. It has been modified for use by the W-Y PMC forces."
+	desc = "The M20P Claymore is a directional proximity triggered anti-personnel mine designed by Armat Systems for use by the TerraGov Marine Corps. It has been modified for use by the NT PMC forces."
 	icon_state = "m20p"
 	iff_signal = ACCESS_IFF_PMC
 
@@ -78,7 +78,7 @@
 		playsound(src.loc, 'sound/weapons/mine_armed.ogg', 25, 1)
 		icon_state += "_armed"
 		user.drop_held_item()
-		dir = user.dir //The direction it is planted in is the direction the user faces at that time
+		setDir(user.dir) //The direction it is planted in is the direction the user faces at that time
 		camera = new (src)
 		camera.network = list("LEADER")
 		camera.c_tag = "M20 Mine: [get_area(src)] | X: [x] | Y: [y]| [camera_number]" //Update Camera name
@@ -88,7 +88,7 @@
 
 //Disarming
 /obj/item/explosive/mine/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/device/multitool))
+	if(ismultitool(W))
 		if(anchored)
 			user.visible_message("<span class='notice'>[user] starts disarming [src].</span>", \
 			"<span class='notice'>You start disarming [src].</span>")
@@ -115,10 +115,10 @@
 /obj/item/explosive/mine/Bumped(mob/living/carbon/human/H)
 	if(!armed || triggered) return
 
-	if((istype(H) && H.get_target_lock(iff_signal)) || isrobot(H)) return
+	if((istype(H) && H.get_target_lock(iff_signal)) || iscyborg(H)) return
 
-	H.visible_message("<span class='danger'>\icon[src] The [name] clicks as [H] moves in front of it.</span>", \
-	"<span class='danger'>\icon[src] The [name] clicks as you move in front of it.</span>", \
+	H.visible_message("<span class='danger'>[bicon(src)] The [name] clicks as [H] moves in front of it.</span>", \
+	"<span class='danger'>[bicon(src)] The [name] clicks as you move in front of it.</span>", \
 	"<span class='danger'>You hear a click.</span>")
 
 	triggered = 1
@@ -136,7 +136,8 @@
 	if(triggered) //Mine is already set to go off
 		return
 
-	if(M.a_intent == "help") return
+	if(M.a_intent == INTENT_HELP)
+		return
 	M.visible_message("<span class='danger'>[M] has slashed [src]!</span>", \
 	"<span class='danger'>You slash [src]!</span>")
 	playsound(loc, 'sound/weapons/slice.ogg', 25, 1)
@@ -159,7 +160,7 @@
 	name = "claymore tripwire"
 	anchored = 1
 	mouse_opacity = 0
-	invisibility = 101
+	invisibility = INVISIBILITY_MAXIMUM
 	unacidable = 1 //You never know
 	var/obj/item/explosive/mine/linked_claymore
 

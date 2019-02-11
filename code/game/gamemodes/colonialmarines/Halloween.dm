@@ -122,41 +122,41 @@
 	var/randjob = rand(0,9)
 	switch(randjob)
 		if(0) //assistant
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/color/grey(H), WEAR_BODY)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/color/grey(H), SLOT_W_UNIFORM)
 		if(1) //civilian in pajamas
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/pj/red(H), WEAR_BODY)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/pj/red(H), SLOT_W_UNIFORM)
 		if(2) //Scientist
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/scientist(H), WEAR_BODY)
-			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/labcoat(H), WEAR_JACKET)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/scientist(H), SLOT_W_UNIFORM)
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/labcoat(H), SLOT_WEAR_SUIT)
 		if(3) //Doctor
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/medical(H), WEAR_BODY)
-			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/labcoat(H), WEAR_JACKET)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/medical(H), SLOT_W_UNIFORM)
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/labcoat(H), SLOT_WEAR_SUIT)
 		if(4) //Chef!
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/chef(H), WEAR_BODY)
-			H.equip_to_slot_or_del(new /obj/item/clothing/suit/chef(H), WEAR_JACKET)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/chef(H), SLOT_W_UNIFORM)
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/chef(H), SLOT_WEAR_SUIT)
 		if(5) //Botanist
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/hydroponics(H), WEAR_BODY)
-			H.equip_to_slot_or_del(new /obj/item/clothing/suit/apron(H), WEAR_JACKET)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/hydroponics(H), SLOT_W_UNIFORM)
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/apron(H), SLOT_WEAR_SUIT)
 		if(6)//Atmos
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/atmospheric_technician(H), WEAR_BODY)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/atmospheric_technician(H), SLOT_W_UNIFORM)
 		if(7) //Chaplain
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/chaplain(H), WEAR_BODY)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/chaplain(H), SLOT_W_UNIFORM)
 		if(8) //Miner
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/miner(H), WEAR_BODY)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/miner(H), SLOT_W_UNIFORM)
 		if(9) //Corporate guy
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/liaison_suit(H), WEAR_BODY)
-			H.equip_to_slot_or_del(new /obj/item/clothing/suit/wcoat(H), WEAR_JACKET)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/liaison_suit(H), SLOT_W_UNIFORM)
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/wcoat(H), SLOT_WEAR_SUIT)
 
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), WEAR_FEET)
-	H.equip_to_slot_or_del(new /obj/item/device/flashlight(H), WEAR_R_STORE)
-	H.equip_to_slot_or_del(new /obj/item/weapon/crowbar(H), WEAR_L_STORE)
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_SHOES)
+	H.equip_to_slot_or_del(new /obj/item/device/flashlight(H), SLOT_R_STORE)
+	H.equip_to_slot_or_del(new /obj/item/weapon/crowbar(H), SLOT_L_STORE)
 	H.update_icons()
 
 	//Give them some information
 	spawn(4)
 		to_chat(H, "<h2>You are a survivor!</h2>")
-		to_chat(H, "\blue You are a survivor of the attack on LV-624. You worked or lived in the archaeology colony, and managed to avoid the alien attacks.. until now.")
-		to_chat(H, "\blue You are fully aware of the xenomorph threat and are able to use this knowledge as you see fit.")
+		to_chat(H, "<span class='notice'>You are a survivor of the attack on LV-624. You worked or lived in the archaeology colony, and managed to avoid the alien attacks.. until now.</span>")
+		to_chat(H, "<span class='notice'>You are fully aware of the xenomorph threat and are able to use this knowledge as you see fit.</span>")
 	return 1
 
 //This is processed each tick, but check_win is only checked 5 ticks, so we don't go crazy with scanning for mobs.
@@ -185,7 +185,7 @@
 //It does NOT check for valid species or marines. vs. survivors.
 /datum/game_mode/Halloween/proc/count_humans()
 	var/human_count = 0
-	for(var/mob/living/carbon/human/H in living_mob_list)
+	for(var/mob/living/carbon/human/H in GLOB.alive_human_list)
 		if(H) //Prevent any runtime errors
 			if(H.client && istype(H) && H.stat != DEAD && !(H.status_flags & XENO_HOST) && H.z != 0 && !istype(H.loc,/turf/space)) // If they're connected/unghosted and alive and not debrained
 				if(H.species != "Yautja") // Preds don't count in round end.
@@ -200,7 +200,7 @@
 //Played by a person, is not dead, is not in a closet, is not in space.
 /datum/game_mode/Halloween/proc/count_xenos()
 	var/xeno_count = 0
-	for(var/mob/living/carbon/Xenomorph/X in living_mob_list)
+	for(var/mob/living/carbon/Xenomorph/X in GLOB.alive_xeno_list)
 		if(X) //Prevent any runtime errors
 			if(X.client && istype(X) && X.stat != DEAD && X.z != 0 && !istype(X.loc,/turf/space)) // If they're connected/unghosted and alive and not debrained
 				xeno_count += 1 //Add them to the amount of people who're alive.
@@ -255,7 +255,7 @@
 /datum/game_mode/Halloween/declare_completion()
 	if(finished == 1)
 		feedback_set_details("round_end_result","alien major victory - marine incursion fails")
-		to_chat(world, "\red <FONT size = 4><B>Alien major victory!</B></FONT>")
+		to_chat(world, "<span class='round_header'>Alien major victory!</span>")
 		to_chat(world, "<FONT size = 3><B>The aliens have successfully wiped out the marines and will live to spread the infestation!</B></FONT>")
 		if(prob(50))
 			world << 'sound/misc/Game_Over_Man.ogg'
@@ -265,7 +265,7 @@
 
 	else if(finished == 2)
 		feedback_set_details("round_end_result","marine major victory - xenomorph infestation eradicated")
-		to_chat(world, "\red <FONT size = 4><B>Marines major victory!</B></FONT>")
+		to_chat(world, "<span class='round_header'>Marines major victory!</span>")
 		to_chat(world, "<FONT size = 3><B>The marines managed to wipe out the aliens and stop the infestation!</B></FONT>")
 		if(prob(50))
 			world << 'sound/misc/hardon.ogg'
@@ -275,25 +275,25 @@
 
 	else if(finished == 3)
 		feedback_set_details("round_end_result","marine minor victory - infestation stopped at a great cost")
-		to_chat(world, "\red <FONT size = 3><B>Marine minor victory.</B></FONT>")
+		to_chat(world, "<span class='warning'> <FONT size = 3><B>Marine minor victory.</B></FONT></span>")
 		to_chat(world, "<FONT size = 3><B>Both the marines and the aliens have been terminated. At least the infestation has been eradicated!</B></FONT>")
 		world << 'sound/misc/sadtrombone.ogg'
 		log_game("Marine minor victory (Both dead)\nXenos Remaining: [count_xenos()]. Humans remaining: [count_humans()]\nRound time: [duration2text()]")
 
 	else if(finished == 4)
 		feedback_set_details("round_end_result","alien minor victory - infestation survives")
-		to_chat(world, "\red <FONT size = 3><B>Alien minor victory.</B></FONT>")
+		to_chat(world, "<span class='warning'> <FONT size = 3><B>Alien minor victory.</B></FONT></span>")
 		to_chat(world, "<FONT size = 3><B>The [MAIN_SHIP_NAME] has been evacuated... but the infestation remains!</B></FONT>")
 		log_game("Alien minor victory (Evac)\nXenos Remaining: [count_xenos()]. Humans remaining: [count_humans()]\nRound time: [duration2text()]")
 
 	else if(finished == 5)
 		feedback_set_details("round_end_result","draw - the station has been nuked")
-		to_chat(world, "\red <FONT size = 3><B>Draw.</B></FONT>")
+		to_chat(world, "<span class='warning'> <FONT size = 3><B>Draw.</B></FONT></span>")
 		to_chat(world, "<FONT size = 3><B>The station has blown by a nuclear fission device... there are no winners!</B></FONT>")
 		world << 'sound/misc/sadtrombone.ogg'
 		log_game("Draw (Nuke)\nXenos Remaining: [count_xenos()]. Humans remaining: [count_humans()]\nRound time: [duration2text()]")
 	else
-		to_chat(world, "\red Whoops, something went wrong with declare_completion(), finished: [finished]. Blame the coders!")
+		to_chat(world, "<span class='warning'> Whoops, something went wrong with declare_completion(), finished: [finished]. Blame the coders!</span>")
 
 	to_chat(world, "Xenos Remaining: [count_xenos()]. Humans remaining: [count_humans()].")
 

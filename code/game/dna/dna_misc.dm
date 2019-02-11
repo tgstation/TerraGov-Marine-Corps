@@ -222,7 +222,7 @@
 
 /////////////////////////// DNA MISC-PROCS
 /proc/updateappearance(mob/M as mob , structure)
-	if(istype(M, /mob/living/carbon/human))
+	if(ishuman(M))
 		M.dna.check_integrity()
 		var/mob/living/carbon/human/H = M
 		H.r_hair = hex2num(getblock(structure,1,3))
@@ -287,60 +287,60 @@
 
 	if(ismuton(NOBREATHBLOCK,M))
 		if(probinj(45,inj) || (mNobreath in old_mutations))
-			to_chat(M, "\blue You feel no need to breathe.")
+			to_chat(M, "<span class='notice'>You feel no need to breathe.</span>")
 			M.mutations.Add(mNobreath)
 	if(ismuton(REMOTEVIEWBLOCK,M))
 		if(probinj(45,inj) || (mRemote in old_mutations))
-			to_chat(M, "\blue Your mind expands")
+			to_chat(M, "<span class='notice'>Your mind expands</span>")
 			M.mutations.Add(mRemote)
 	if(ismuton(REGENERATEBLOCK,M))
 		if(probinj(45,inj) || (mRegen in old_mutations))
-			to_chat(M, "\blue You feel strange")
+			to_chat(M, "<span class='notice'>You feel strange</span>")
 			M.mutations.Add(mRegen)
 	if(ismuton(INCREASERUNBLOCK,M))
 		if(probinj(45,inj) || (mRun in old_mutations))
-			to_chat(M, "\blue You feel quick")
+			to_chat(M, "<span class='notice'>You feel quick</span>")
 			M.mutations.Add(mRun)
 	if(ismuton(REMOTETALKBLOCK,M))
 		if(probinj(45,inj) || (mRemotetalk in old_mutations))
-			to_chat(M, "\blue You expand your mind outwards")
+			to_chat(M, "<span class='notice'>You expand your mind outwards</span>")
 			M.mutations.Add(mRemotetalk)
 	if(ismuton(MORPHBLOCK,M))
 		if(probinj(45,inj) || (mMorph in old_mutations))
 			M.mutations.Add(mMorph)
-			to_chat(M, "\blue Your skin feels strange")
+			to_chat(M, "<span class='notice'>Your skin feels strange</span>")
 	if(ismuton(BLENDBLOCK,M))
 		if(probinj(45,inj) || (mBlend in old_mutations))
 			M.mutations.Add(mBlend)
-			to_chat(M, "\blue You feel alone")
+			to_chat(M, "<span class='notice'>You feel alone</span>")
 	if(ismuton(HALLUCINATIONBLOCK,M))
 		if(probinj(45,inj) || (mHallucination in old_mutations))
 			M.mutations.Add(mHallucination)
-			to_chat(M, "\blue Your mind says 'Hello'")
+			to_chat(M, "<span class='notice'>Your mind says 'Hello'</span>")
 	if(ismuton(NOPRINTSBLOCK,M))
 		if(probinj(45,inj) || (mFingerprints in old_mutations))
 			M.mutations.Add(mFingerprints)
-			to_chat(M, "\blue Your fingers feel numb")
+			to_chat(M, "<span class='notice'>Your fingers feel numb</span>")
 	if(ismuton(SHOCKIMMUNITYBLOCK,M))
 		if(probinj(45,inj) || (mShock in old_mutations))
 			M.mutations.Add(mShock)
-			to_chat(M, "\blue You feel strange")
+			to_chat(M, "<span class='notice'>You feel strange</span>")
 	if(ismuton(SMALLSIZEBLOCK,M))
 		if(probinj(45,inj) || (mSmallsize in old_mutations))
-			to_chat(M, "\blue Your skin feels rubbery")
+			to_chat(M, "<span class='notice'>Your skin feels rubbery</span>")
 			M.mutations.Add(mSmallsize)
 
 
 
 	if (isblockon(getblock(M.dna.struc_enzymes, HULKBLOCK,3),HULKBLOCK))
 		if(probinj(5,inj) || (HULK in old_mutations))
-			to_chat(M, "\blue Your muscles hurt.")
+			to_chat(M, "<span class='notice'>Your muscles hurt.</span>")
 			M.mutations.Add(HULK)
 	if (isblockon(getblock(M.dna.struc_enzymes, HEADACHEBLOCK,3),HEADACHEBLOCK))
 		M.disabilities |= EPILEPSY
-		to_chat(M, "\red You get a headache.")
+		to_chat(M, "<span class='warning'>You get a headache.</span>")
 	if (isblockon(getblock(M.dna.struc_enzymes, FAKEBLOCK,3),FAKEBLOCK))
-		to_chat(M, "\red You feel strange.")
+		to_chat(M, "<span class='warning'>You feel strange.</span>")
 		if (prob(95))
 			if(prob(50))
 				randmutb(M)
@@ -350,50 +350,50 @@
 			randmutg(M)
 	if (isblockon(getblock(M.dna.struc_enzymes, COUGHBLOCK,3),COUGHBLOCK))
 		M.disabilities |= COUGHING
-		to_chat(M, "\red You start coughing.")
+		to_chat(M, "<span class='warning'>You start coughing.</span>")
 	if (isblockon(getblock(M.dna.struc_enzymes, CLUMSYBLOCK,3),CLUMSYBLOCK))
-		to_chat(M, "\red You feel lightheaded.")
+		to_chat(M, "<span class='warning'>You feel lightheaded.</span>")
 		M.mutations.Add(CLUMSY)
 	if (isblockon(getblock(M.dna.struc_enzymes, TWITCHBLOCK,3),TWITCHBLOCK))
 		M.disabilities |= TOURETTES
-		to_chat(M, "\red You twitch.")
+		to_chat(M, "<span class='warning'>You twitch.</span>")
 	if (isblockon(getblock(M.dna.struc_enzymes, XRAYBLOCK,3),XRAYBLOCK))
 		if(probinj(30,inj) || (XRAY in old_mutations))
-			to_chat(M, "\blue The walls suddenly disappear.")
+			to_chat(M, "<span class='notice'>The walls suddenly disappear.</span>")
 //			M.sight |= (SEE_MOBS|SEE_OBJS|SEE_TURFS)
 //			M.see_in_dark = 8
 //			M.see_invisible = 2
 			M.mutations.Add(XRAY)
 	if (isblockon(getblock(M.dna.struc_enzymes, NERVOUSBLOCK,3),NERVOUSBLOCK))
 		M.disabilities |= NERVOUS
-		to_chat(M, "\red You feel nervous.")
+		to_chat(M, "<span class='warning'>You feel nervous.</span>")
 	if (isblockon(getblock(M.dna.struc_enzymes, FIREBLOCK,3),FIREBLOCK))
 		if(probinj(30,inj) || (COLD_RESISTANCE in old_mutations))
-			to_chat(M, "\blue Your body feels warm.")
+			to_chat(M, "<span class='notice'>Your body feels warm.</span>")
 			M.mutations.Add(COLD_RESISTANCE)
 	if (isblockon(getblock(M.dna.struc_enzymes, BLINDBLOCK,3),BLINDBLOCK))
 		M.sdisabilities |= BLIND
-		to_chat(M, "\red You can't seem to see anything.")
+		to_chat(M, "<span class='warning'>You can't seem to see anything.</span>")
 	if (isblockon(getblock(M.dna.struc_enzymes, TELEBLOCK,3),TELEBLOCK))
 		if(probinj(15,inj) || (TK in old_mutations))
-			to_chat(M, "\blue You feel smarter.")
+			to_chat(M, "<span class='notice'>You feel smarter.</span>")
 			M.mutations.Add(TK)
 	if (isblockon(getblock(M.dna.struc_enzymes, DEAFBLOCK,3),DEAFBLOCK))
 		M.sdisabilities |= DEAF
 		M.ear_deaf = 1
-		to_chat(M, "\red Its kinda quiet..")
+		to_chat(M, "<span class='warning'>Its kinda quiet..</span>")
 	if (isblockon(getblock(M.dna.struc_enzymes, GLASSESBLOCK,3),GLASSESBLOCK))
 		M.disabilities |= NEARSIGHTED
 		to_chat(M, "Your eyes feel weird...")
 
 	/* If you want the new mutations to work, UNCOMMENT THIS.
-	if(istype(M, /mob/living/carbon))
+	if(iscarbon(M))
 		for (var/datum/mutations/mut in global_mutations)
 			mut.check_mutation(M)
 	*/
 
 //////////////////////////////////////////////////////////// Monkey Block
-	if (isblockon(getblock(M.dna.struc_enzymes, MONKEYBLOCK,3),MONKEYBLOCK) && istype(M, /mob/living/carbon/human))
+	if (isblockon(getblock(M.dna.struc_enzymes, MONKEYBLOCK,3),MONKEYBLOCK) && ishuman(M))
 	// human > monkey
 		var/mob/living/carbon/human/H = M
 		H.monkeyizing = 1
@@ -410,7 +410,7 @@
 			M.monkeyizing = 1
 			M.canmove = 0
 			M.icon = null
-			M.invisibility = 101
+			M.invisibility = INVISIBILITY_MAXIMUM
 			var/atom/movable/overlay/animation = new( M.loc )
 			animation.icon_state = "blank"
 			animation.icon = 'icons/mob/mob.dmi'
@@ -461,7 +461,7 @@
 		O.adjustToxLoss(M.getToxLoss() + 20)
 		O.adjustOxyLoss(M.getOxyLoss())
 		O.stat = M.stat
-		O.a_intent = "hurt"
+		O.a_intent = INTENT_HARM
 		for (var/obj/item/weapon/implant/I in implants)
 			I.loc = O
 			I.implanted = O
@@ -469,7 +469,7 @@
 		del(M)
 		return
 
-	if (!isblockon(getblock(M.dna.struc_enzymes, MONKEYBLOCK,3),MONKEYBLOCK) && !istype(M, /mob/living/carbon/human))
+	if (!isblockon(getblock(M.dna.struc_enzymes, MONKEYBLOCK,3),MONKEYBLOCK) && !ishuman(M))
 	// monkey > human,
 		var/mob/living/carbon/monkey/Mo = M
 		Mo.monkeyizing = 1
@@ -483,7 +483,7 @@
 			M.monkeyizing = 1
 			M.canmove = 0
 			M.icon = null
-			M.invisibility = 101
+			M.invisibility = INVISIBILITY_MAXIMUM
 			var/atom/movable/overlay/animation = new( M.loc )
 			animation.icon_state = "blank"
 			animation.icon = 'icons/mob/mob.dmi'

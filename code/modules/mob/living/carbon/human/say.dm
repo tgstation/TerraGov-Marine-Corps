@@ -7,7 +7,7 @@
 
 	if(client)
 		if(client.prefs.muted & MUTE_IC)
-			to_chat(src, "\red You cannot speak in IC (Muted).")
+			to_chat(src, "<span class='warning'>You cannot speak in IC (Muted).</span>")
 			return
 
 	message =  trim(copytext(sanitize(message), 1, MAX_MESSAGE_LEN))
@@ -35,7 +35,7 @@
 	if(speaking)
 		message = copytext(message,3)
 	else if(species.default_language)
-		speaking = all_languages[species.default_language]
+		speaking = GLOB.all_languages[species.default_language]
 
 	var/ending = copytext(message, length(message))
 	if (speaking)
@@ -144,9 +144,9 @@
 
 	//These only pertain to common. Languages are handled by mob/say_understands()
 	if (!speaking)
-		if (istype(other, /mob/living/silicon))
+		if (issilicon(other))
 			return 1
-		if (istype(other, /mob/living/brain))
+		if (isbrain(other))
 			return 1
 
 	//This is already covered by mob/say_understands()

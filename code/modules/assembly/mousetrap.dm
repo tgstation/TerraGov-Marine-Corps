@@ -41,7 +41,7 @@
 				H.updatehealth()
 		else if(ismouse(target))
 			var/mob/living/simple_animal/mouse/M = target
-			visible_message("\red <b>SPLAT!</b>")
+			visible_message("<span class='danger'>SPLAT!</span>")
 			M.splat()
 		if(!target) return
 		playsound(target.loc, 'sound/effects/snap.ogg', 25, 1)

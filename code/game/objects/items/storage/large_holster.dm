@@ -5,7 +5,7 @@
 	desc = "holster"
 	icon = 'icons/obj/items/storage/storage.dmi'
 	w_class = 4
-	flags_equip_slot = SLOT_BACK
+	flags_equip_slot = ITEM_SLOT_BACK
 	max_w_class = 4
 	storage_slots = 1
 	max_storage_space = 4
@@ -23,7 +23,7 @@
 
 
 /obj/item/storage/large_holster/equipped(mob/user, slot)
-	if(slot == WEAR_BACK || slot == WEAR_WAIST || slot == WEAR_J_STORE)
+	if(slot == SLOT_BACK || slot == SLOT_BELT || slot == SLOT_S_STORE)
 		mouse_opacity = 2 //so it's easier to click when properly equipped.
 	..()
 
@@ -73,7 +73,7 @@
 	desc = "A large leather scabbard used to carry a M2132 machete. It can be strapped to the back, waist or armor."
 	base_icon = "machete_holster"
 	icon_state = "machete_holster"
-	flags_equip_slot = SLOT_WAIST|SLOT_BACK
+	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_BACK
 	can_hold = list("/obj/item/weapon/claymore/mercsword/machete")
 
 /obj/item/storage/large_holster/machete/full/New()
@@ -88,7 +88,7 @@
 	icon_state = "katana_holster"
 	force = 12
 	attack_verb = list("bludgeoned", "struck", "cracked")
-	flags_equip_slot = SLOT_WAIST|SLOT_BACK
+	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_BACK
 	can_hold = list("/obj/item/weapon/katana")
 
 /obj/item/storage/large_holster/katana/full/New()
@@ -103,7 +103,7 @@
 	icon_state = "m39_holster"
 	icon = 'icons/obj/clothing/belts.dmi'
 	base_icon = "m39_holster"
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	can_hold = list("/obj/item/weapon/gun/smg/m39")
 
 /obj/item/storage/large_holster/m39/update_icon()

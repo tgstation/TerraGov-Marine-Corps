@@ -33,10 +33,10 @@
 
 	reducible_tally += reagent_move_delay_modifier //hyperzine and ultrazine
 
-	if(shock_stage >= 10 && !isYautja(src))
+	if(shock_stage >= 10 && !isyautja(src))
 		reducible_tally += 3
 
-	if(bodytemperature < species.cold_level_1 && !isYautja(src))
+	if(bodytemperature < species.cold_level_1 && !isyautja(src))
 		reducible_tally += 2 //Major slowdown if you're freezing
 
 	if(temporary_slowdown)
@@ -46,8 +46,8 @@
 	//Compile reducible tally and send it to total tally. Cannot go more than 1 units faster from the reducible tally!
 	. += max(-0.7, reducible_tally)
 
-	if(istype(get_active_hand(), /obj/item/weapon/gun))
-		var/obj/item/weapon/gun/G = get_active_hand() //If wielding, it will ALWAYS be on the active hand
+	if(istype(get_active_held_item(), /obj/item/weapon/gun))
+		var/obj/item/weapon/gun/G = get_active_held_item() //If wielding, it will ALWAYS be on the active hand
 		. += G.slowdown
 
 	if(istype(buckled, /obj/structure/bed/chair/wheelchair))
@@ -78,15 +78,21 @@
 	if(mRun in mutations)
 		. = 0
 
-	Process_Cloaking(src)
+	Process_Cloaking_Router(src)
 
-	. += config.human_delay
+	. += CONFIG_GET(number/outdated_movedelay/human_delay)
 
 
-/mob/living/carbon/human/proc/Process_Cloaking(mob/living/carbon/human/user)
-	if(!istype(back, /obj/item/storage/backpack/marine/satchel/scout_cloak) )
+/mob/living/carbon/human/proc/Process_Cloaking_Router(mob/living/carbon/human/user)
+	if(!user.cloaking)
 		return
-	var/obj/item/storage/backpack/marine/satchel/scout_cloak/S = back
+	if(istype(back, /obj/item/storage/backpack/marine/satchel/scout_cloak/scout) )
+		Process_Cloaking_Scout(user)
+	else if(istype(back, /obj/item/storage/backpack/marine/satchel/scout_cloak/sniper) )
+		Process_Cloaking_Sniper(user)
+
+/mob/living/carbon/human/proc/Process_Cloaking_Scout(mob/living/carbon/human/user)
+	var/obj/item/storage/backpack/marine/satchel/scout_cloak/scout/S = back
 	if(!S.camo_active)
 		return
 	if(S.camo_last_shimmer > world.time - SCOUT_CLOAK_STEALTH_DELAY) //Shimmer after taking aggressive actions
@@ -103,6 +109,12 @@
 	else
 		alpha = SCOUT_CLOAK_RUN_ALPHA //50% invisible
 		S.camo_adjust_energy(src, SCOUT_CLOAK_RUN_DRAIN)
+
+/mob/living/carbon/human/proc/Process_Cloaking_Sniper(mob/living/carbon/human/user)
+	var/obj/item/storage/backpack/marine/satchel/scout_cloak/sniper/S = back
+	if(!S.camo_active)
+		return
+	alpha = initial(alpha) //Sniper variant has *no* mobility stealth, but no drain on movement either
 
 /mob/living/carbon/human/Process_Spacemove(var/check_drift = 0)
 	//Can we act

@@ -126,9 +126,9 @@ datum/mind
 		)
 		var/text = ""
 		var/mob/living/carbon/human/H = current
-		if (istype(current, /mob/living/carbon/human) || istype(current, /mob/living/carbon/monkey))
+		if (ishuman(current) || ismonkey(current))
 			/** Impanted**/
-			if(istype(current, /mob/living/carbon/human))
+			if(ishuman(current))
 				if(H.is_loyalty_implanted(H))
 					text = "Loyalty Implant:<a href='?src=\ref[src];implant=remove'>Remove</a>|<b>Implanted</b></br>"
 				else
@@ -142,7 +142,7 @@ datum/mind
 		if (ticker.mode.config_tag=="traitor")
 			text = uppertext(text)
 		text = "<i><b>[text]</b></i>: "
-		if(istype(current, /mob/living/carbon/human))
+		if(ishuman(current))
 			if (H.is_loyalty_implanted(H))
 				text +="traitor|<b>LOYAL EMPLOYEE</b>"
 			else
@@ -224,7 +224,7 @@ datum/mind
 
 					var/list/possible_targets = list("Free objective")
 					for(var/datum/mind/possible_target in ticker.minds)
-						if ((possible_target != src) && istype(possible_target.current, /mob/living/carbon/human))
+						if ((possible_target != src) && ishuman(possible_target.current))
 							possible_targets += possible_target.current
 
 					var/mob/def_target = null
@@ -313,7 +313,7 @@ datum/mind
 						ticker.mode.traitors -= src
 						special_role = null
 						current.hud_set_special_role()
-						to_chat(current, "\red <FONT size = 3><B>You have been brainwashed! You are no longer a traitor!</B></FONT>")
+						to_chat(current, "<span class='warning'><FONT size = 3><B>You have been brainwashed! You are no longer a traitor!</B></FONT></span>")
 						log_admin("[key_name_admin(usr)] has de-traitor'ed [current].")
 						if(isAI(current))
 							var/mob/living/silicon/ai/A = current
@@ -325,45 +325,35 @@ datum/mind
 						ticker.mode.traitors += src
 						special_role = "traitor"
 						current.hud_set_special_role()
-						to_chat(current, "<B>\red You are a traitor!</B>")
+						to_chat(current, "<span class='danger'> You are a traitor!</span>")
 						log_admin("[key_name_admin(usr)] has traitor'ed [current].")
 						show_objectives()
 
-						if(istype(current, /mob/living/silicon))
+						if(issilicon(current))
 							var/mob/living/silicon/A = current
 							call(/datum/game_mode/proc/add_law_zero)(A)
 							A.show_laws()
 
 				if("autoobjectives")
-					if (!config.objectives_disabled)
+					if(!CONFIG_GET(flag/objectives_disabled))
 						ticker.mode.forge_traitor_objectives(src)
-						to_chat(usr, "\blue The objectives for traitor [key] have been generated. You can edit them and anounce manually.")
+						to_chat(usr, "<span class='notice'>The objectives for traitor [key] have been generated. You can edit them and anounce manually.</span>")
 
 		else if (href_list["common"])
 			switch(href_list["common"])
 				if("undress")
 					for(var/obj/item/W in current)
-						current.drop_inv_item_on_ground(W)
+						current.dropItemToGround(W)
 				if("takeuplink")
 					take_uplink()
 					memory = null//Remove any memory they may have had.
-				if("crystals")
-					if (usr.client.holder.rights & R_FUN)
-						var/obj/item/device/uplink/hidden/suplink = find_syndicate_uplink()
-						var/crystals
-						if (suplink)
-							crystals = suplink.uses
-						crystals = input("Amount of telecrystals for [key]","Syndicate uplink", crystals) as null|num
-						if (!isnull(crystals))
-							if (suplink)
-								suplink.uses = crystals
 				if("uplink")
 					if (!ticker.mode.equip_traitor(current, !(src in ticker.mode.traitors)))
-						to_chat(usr, "\red Equipping a syndicate failed!")
+						to_chat(usr, "<span class='warning'>Equipping a syndicate failed!</span>")
 
 		else if (href_list["obj_announce"])
 			var/obj_count = 1
-			to_chat(current, "\blue Your current objectives:")
+			to_chat(current, "<span class='notice'>Your current objectives:</span>")
 			for(var/datum/objective/objective in objectives)
 				to_chat(current, "<B>Objective #[obj_count]</B>: [objective.explanation_text]")
 				obj_count++
@@ -386,7 +376,7 @@ datum/mind
 		if(!(src in ticker.mode.traitors))
 			ticker.mode.traitors += src
 			special_role = "traitor"
-			if (!config.objectives_disabled)
+			if(!CONFIG_GET(flag/objectives_disabled))
 				ticker.mode.forge_traitor_objectives(src)
 			ticker.mode.finalize_traitor(src)
 			ticker.mode.greet_traitor(src)

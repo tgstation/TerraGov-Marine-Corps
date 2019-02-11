@@ -2,6 +2,7 @@
 //Abby
 
 //Xeno Overlays Indexes//////////
+#define X_LASER_LAYER			9
 #define X_WOUND_LAYER			8
 #define X_HEAD_LAYER			7
 #define X_SUIT_LAYER			6
@@ -10,7 +11,7 @@
 #define X_TARGETED_LAYER		3
 #define X_LEGCUFF_LAYER			2
 #define X_FIRE_LAYER			1
-#define X_TOTAL_LAYERS			8
+#define X_TOTAL_LAYERS			9
 /////////////////////////////////
 
 /mob/living/carbon/Xenomorph/apply_overlay(cache_index)
@@ -39,6 +40,9 @@
 			icon_state = "[xeno_caste.caste_name] Walking"
 	update_fire() //the fire overlay depends on the xeno's stance, so we must update it.
 	update_wounds()
+	
+	hud_set_plasma()
+	med_hud_set_health()
 
 /mob/living/carbon/Xenomorph/regenerate_icons()
 	..()
@@ -105,15 +109,11 @@
 
 /mob/living/carbon/Xenomorph/proc/create_shriekwave()
 	overlays_standing[X_SUIT_LAYER] = image("icon"='icons/Xeno/2x2_Xenos.dmi', "icon_state" = "shriek_waves") //Ehh, suit layer's not being used.
-	apply_overlay(X_SUIT_LAYER)
-	spawn(30)
-		remove_overlay(X_SUIT_LAYER)
+	apply_temp_overlay(X_SUIT_LAYER, 3 SECONDS)
 
 /mob/living/carbon/Xenomorph/proc/create_stomp()
 	overlays_standing[X_SUIT_LAYER] = image("icon"='icons/Xeno/2x2_Xenos.dmi', "icon_state" = "stomp") //Ehh, suit layer's not being used.
-	apply_overlay(X_SUIT_LAYER)
-	spawn(12)
-		remove_overlay(X_SUIT_LAYER)
+	apply_temp_overlay(X_SUIT_LAYER, 1.2 SECONDS)
 
 /mob/living/carbon/Xenomorph/update_fire()
 	remove_overlay(X_FIRE_LAYER)
@@ -175,6 +175,7 @@
 		I.alpha = src.alpha
 		overlays_standing[X_WOUND_LAYER] = I
 		apply_overlay(X_WOUND_LAYER)
+
 
 
 

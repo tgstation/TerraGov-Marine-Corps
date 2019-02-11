@@ -7,7 +7,7 @@
 	var/totalPlayersReady = 0
 	universal_speak = 1
 
-	invisibility = 101
+	invisibility = INVISIBILITY_MAXIMUM
 
 	density = 0
 	stat = 2
@@ -16,7 +16,7 @@
 	anchored = 1	//  don't get pushed around
 
 	New()
-		mob_list += src
+		GLOB.mob_list += src
 
 	proc/version_check()
 		if(client.byond_version < world.byond_version)
@@ -24,7 +24,7 @@
 			Direct Download (Windows Installer): http://www.byond.com/download/build/[world.byond_version]/[world.byond_version].[world.byond_build]_byond.exe <br> \
 			Other versions (search for [world.byond_build] or higher): http://www.byond.com/download/build/[world.byond_version]</span>")
 
-			qdel(client)
+			del(client)
 
 	verb/new_player_panel()
 		set src = usr
@@ -70,29 +70,28 @@
 		return
 
 	Stat()
-		if (!..())
-			return 0
+		. = ..()
 
-		stat("Map:", "[map_tag]")
 		if(!ticker)
 			return
-		if(ticker.hide_mode)
-			stat("Game Mode:", "TerraGov Marine Corps")
-		else
-			if(ticker.hide_mode == 0)
-				stat("Game Mode:", "[master_mode]") // Old setting for showing the game mode
 
-		if(ticker.current_state == GAME_STATE_PREGAME)
-			stat("Time To Start:", "[ticker.pregame_timeleft][going ? "" : " (DELAYED)"]")
-			stat("Players: [totalPlayers]", "Players Ready: [totalPlayersReady]")
-			totalPlayers = 0
-			totalPlayersReady = 0
-			for(var/mob/new_player/player in player_list)
-				stat("[player.key]", (player.ready)?("(Playing)"):(null))
-				totalPlayers++
-				if(player.ready)totalPlayersReady++
+		if(statpanel("Stats"))
+			if(ticker.hide_mode)
+				stat("Game Mode:", "TerraGov Marine Corps")
+			else
+				stat("Game Mode:", "[master_mode]")
 
-		return 1
+			if(ticker.current_state == GAME_STATE_PREGAME)
+				stat("Time To Start:", "[ticker.pregame_timeleft][going ? "" : " (DELAYED)"]")
+				stat("Players: [totalPlayers]", "Players Ready: [totalPlayersReady]")
+				totalPlayers = 0
+				totalPlayersReady = 0
+				for(var/mob/new_player/player in GLOB.player_list)
+					stat("[player.key]", (player.ready)?("(Playing)"):(null))
+					totalPlayers++
+					if(player.ready)
+						totalPlayersReady++
+
 
 
 	Topic(href, href_list[])
@@ -133,7 +132,7 @@
 					observer.icon = client.prefs.preview_icon
 					observer.alpha = 127
 
-					var/datum/species/species = all_species[client.prefs.species] || all_species[DEFAULT_SPECIES]
+					var/datum/species/species = GLOB.all_species[client.prefs.species] || GLOB.all_species[DEFAULT_SPECIES]
 
 					if(client.prefs.be_random_name)
 						client.prefs.real_name = species.random_name(client.prefs.gender)
@@ -158,7 +157,7 @@
 					return
 
 				if(client.prefs.species != "Human")
-					if(!is_alien_whitelisted(client.prefs.species) && config.usealienwhitelist)
+					if(!is_alien_whitelisted(client.prefs.species) && CONFIG_GET(flag/usealienwhitelist))
 						to_chat(src, alert("You are currently not whitelisted to play [client.prefs.species]."))
 						return
 
@@ -201,12 +200,12 @@
 
 			if("SelectedJob")
 
-				if(!enter_allowed)
+				if(!GLOB.enter_allowed)
 					to_chat(usr, "<span class='warning'>Spawning currently disabled, pick another role or observe.</span>")
 					return
 
 				if(client.prefs.species != "Human")
-					if(!is_alien_whitelisted(client.prefs.species) && config.usealienwhitelist)
+					if(!is_alien_whitelisted(client.prefs.species) && CONFIG_GET(flag/usealienwhitelist))
 						to_chat(src, alert("You are currently not whitelisted to play [client.prefs.species]."))
 						return 0
 
@@ -323,7 +322,7 @@
 		if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
 			to_chat(usr, "<span class='warning'>The round is either not ready, or has already finished!<spawn>")
 			return
-		if(!enter_allowed)
+		if(!GLOB.enter_allowed)
 			to_chat(usr, "<span class='warning'>Spawning currently disabled, pick another role or observe.<spawn>")
 			return
 		if(!RoleAuthority.assign_role(src, RoleAuthority.roles_for_mode[rank], 1))
@@ -337,7 +336,7 @@
 		var/turf/T
 		if(spawning_at) S = spawntypes[spawning_at]
 		if(istype(S)) 	T = pick(S.turfs)
-		else 			T = pick(latejoin)
+		else 			T = pick(GLOB.latejoin)
 
 		var/mob/living/carbon/human/character = create_character()	//creates the human and transfers vars and mind
 		RoleAuthority.equip_role(character, RoleAuthority.roles_for_mode[rank], T)
@@ -351,8 +350,8 @@
 
 		for(var/datum/squad/sq in RoleAuthority.squads)
 			if(sq)
-				sq.max_engineers = engi_slot_formula(clients.len)
-				sq.max_medics = medic_slot_formula(clients.len)
+				sq.max_engineers = engi_slot_formula(GLOB.clients.len)
+				sq.max_medics = medic_slot_formula(GLOB.clients.len)
 
 		if(ticker.mode.latejoin_larva_drop && ticker.mode.latejoin_tally >= ticker.mode.latejoin_larva_drop)
 			ticker.mode.latejoin_tally -= ticker.mode.latejoin_larva_drop
@@ -389,7 +388,7 @@
 			if(!RoleAuthority.check_role_entry(src, J, 1)) continue
 			var/active = 0
 			// Only players with the job assigned and AFK for less than 10 minutes count as active
-			for(var/mob/M in player_list)
+			for(var/mob/M in GLOB.player_list)
 				if(M.mind && M.client && M.mind.assigned_role == J.title && M.client.inactivity <= 10 * 60 * 10)
 					active++
 			dat += "<a href='byond://?src=\ref[src];lobby_choice=SelectedJob;job_selected=[J.title]'>[J.disp_title] ([J.current_positions]) (Active: [active])</a><br>"
@@ -406,7 +405,7 @@
 
 		var/datum/species/chosen_species
 		if(client.prefs.species)
-			chosen_species = all_species[client.prefs.species]
+			chosen_species = GLOB.all_species[client.prefs.species]
 		if(chosen_species)
 			// Have to recheck admin due to no usr at roundstart. Latejoins are fine though.
 			if(is_alien_whitelisted(client.prefs.species))
@@ -419,9 +418,9 @@
 
 		var/datum/language/chosen_language
 		if(client.prefs.language)
-			chosen_language = all_languages["[client.prefs.language]"]
+			chosen_language = GLOB.all_languages["[client.prefs.language]"]
 		if(chosen_language)
-			if(is_alien_whitelisted(client.prefs.language) || !config.usealienwhitelist || !(chosen_language.flags & WHITELISTED) || (new_character.species && (chosen_language.name in new_character.species.secondary_langs)))
+			if(is_alien_whitelisted(client.prefs.language) || !CONFIG_GET(flag/usealienwhitelist) || !(chosen_language.flags & WHITELISTED) || (new_character.species && (chosen_language.name in new_character.species.secondary_langs)))
 				new_character.add_language("[client.prefs.language]")
 
 		if(ticker.random_players)
@@ -473,7 +472,7 @@
 /mob/new_player/get_species()
 	var/datum/species/chosen_species
 	if(client.prefs.species)
-		chosen_species = all_species[client.prefs.species]
+		chosen_species = GLOB.all_species[client.prefs.species]
 	if(!chosen_species)
 		return "Human"
 

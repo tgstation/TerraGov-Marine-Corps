@@ -8,20 +8,22 @@
 	density = 1
 	anchored = 0
 	container_type = AMOUNT_VISIBLE
-
+	var/tank_volume = 1000
 	var/amount_per_transfer_from_this = 10
 	var/possible_transfer_amounts = list(10,25,50,100)
 
 /obj/structure/reagent_dispensers/attackby(obj/item/W as obj, mob/user as mob)
-	return
+	if(W.is_refillable())
+		return FALSE //so we can refill them via their afterattack.
+	else
+		return ..()
 
 /obj/structure/reagent_dispensers/New()
-	var/datum/reagents/R = new/datum/reagents(1000)
-	reagents = R
-	R.my_atom = src
+	. = ..()
+	create_reagents(tank_volume)
 	if (!possible_transfer_amounts)
 		src.verbs -= /obj/structure/reagent_dispensers/verb/set_APTFT
-	..()
+	add_initial_reagents()
 
 /obj/structure/reagent_dispensers/verb/set_APTFT() //set amount_per_transfer_from_this
 	set name = "Set transfer amount"
@@ -64,10 +66,7 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "watertank"
 	amount_per_transfer_from_this = 10
-
-/obj/structure/reagent_dispensers/watertank/New()
-	..()
-	reagents.add_reagent("water",1000)
+	list_reagents = list("water" = 1000)
 
 
 
@@ -76,83 +75,102 @@
 	desc = "A fueltank"
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "weldtank"
-	amount_per_transfer_from_this = 10
-	var/modded = 0
+	list_reagents = list("fuel" = 1000)
+	var/modded = FALSE
 	var/obj/item/device/assembly_holder/rig = null
-	var/exploding = 0
+	var/exploding = FALSE
 
-/obj/structure/reagent_dispensers/fueltank/New()
-	..()
-	reagents.add_reagent("fuel",1000)
 
 /obj/structure/reagent_dispensers/fueltank/examine(mob/user)
-	..()
-	if(user != loc) return
+	. = ..()
+	if(user != loc)
+
+		return
 	if(modded)
-		to_chat(user, "\red Fuel faucet is wrenched open, leaking the fuel!")
+		to_chat(user, "<span class='warning'> Fuel faucet is wrenched open, leaking the fuel!</span>")
 	if(rig)
-		to_chat(user, "<span class='notice'>There is some kind of device rigged to the tank.")
+		to_chat(user, "<span class='notice'>There is some kind of device rigged to the tank.</span>")
 
 /obj/structure/reagent_dispensers/fueltank/attack_hand()
 	if (rig)
-		usr.visible_message("[usr] begins to detach [rig] from \the [src].", "You begin to detach [rig] from \the [src]")
+		usr.visible_message("[usr] begins to detach [rig] from \the [src].", "You begin to detach [rig] from \the [src]...")
 		if(do_after(usr, 20, TRUE, 5, BUSY_ICON_BUILD))
-			usr.visible_message("\blue [usr] detaches [rig] from \the [src].", "\blue  You detach [rig] from \the [src]")
+			usr.visible_message("<span class='notice'>[usr] detaches [rig] from \the [src].</span>", "<span class='notice'>You detach [rig] from \the [src].</span>")
 			rig.loc = get_turf(usr)
 			rig = null
 			overlays = new/list()
 
-/obj/structure/reagent_dispensers/fueltank/attackby(obj/item/W as obj, mob/user as mob)
-	src.add_fingerprint(user)
-	if (istype(W,/obj/item/tool/wrench))
+/obj/structure/reagent_dispensers/fueltank/attackby(obj/item/I, mob/user)
+	add_fingerprint(user)
+	if(iswrench(I))
 		user.visible_message("[user] wrenches [src]'s faucet [modded ? "closed" : "open"].", \
-			"You wrench [src]'s faucet [modded ? "closed" : "open"]")
-		modded = modded ? 0 : 1
-		if (modded)
-			message_admins("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) opened fueltank at [loc.loc.name] ([loc.x],[loc.y],[loc.z]), leaking fuel.")
-			log_game("[key_name(usr)] opened fueltank at [loc.loc.name] ([loc.x],[loc.y],[loc.z]), leaking fuel.")
-			leak_fuel(amount_per_transfer_from_this)
-	if (istype(W,/obj/item/device/assembly_holder))
-		if (rig)
-			to_chat(user, "\red There is another device in the way.")
-			return ..()
-		user.visible_message("[user] begins rigging [W] to \the [src].", "You begin rigging [W] to \the [src]")
-		if(do_after(user, 20, TRUE, 5, BUSY_ICON_HOSTILE))
-			user.visible_message("\blue [user] rigs [W] to \the [src].", "\blue  You rig [W] to \the [src]")
-
-			var/obj/item/device/assembly_holder/H = W
+		"You wrench [src]'s faucet [modded ? "closed" : "open"]")
+		modded = !modded
+	if(modded)
+		message_admins("[ADMIN_TPMONTY(usr)] opened fueltank at [ADMIN_VERBOSEJMP(loc)], leaking fuel.")
+		log_game("[key_name(usr)] opened fueltank at [AREACOORD(loc)], leaking fuel.")
+		leak_fuel(amount_per_transfer_from_this)
+		return
+	if(istype(I,/obj/item/device/assembly_holder))
+		if(rig)
+			to_chat(user, "<span class='warning'>There is another device in the way.</span>")
+			return
+		user.visible_message("[user] begins rigging [I] to \the [src].", "You begin rigging [I] to \the [src]")
+		if(do_after(user, 20, TRUE, 5, BUSY_ICON_HOSTILE) && !rig)
+			user.visible_message("<span class='notice'>[user] rigs [I] to \the [src].</span>", "<span class='notice'>You rig [I] to \the [src].</span>")
+			var/obj/item/device/assembly_holder/H = I
 			if (istype(H.a_left,/obj/item/device/assembly/igniter) || istype(H.a_right,/obj/item/device/assembly/igniter))
-				message_admins("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) rigged fueltank at [loc.loc.name] ([loc.x],[loc.y],[loc.z]) for explosion.")
-				log_game("[key_name(user)] rigged fueltank at [loc.loc.name] ([loc.x],[loc.y],[loc.z]) for explosion.")
+				message_admins("[ADMIN_TPMONTY(usr)] rigged fueltank at [ADMIN_VERBOSEJMP(loc)] for explosion.")
+				log_game("[key_name(user)] rigged fueltank at [AREACOORD(loc)] for explosion.")
+			rig = I
+			user.transferItemToLoc(I, src)
 
-			rig = W
-			user.drop_inv_item_to_loc(W, src)
-
-			var/icon/test = getFlatIcon(W)
+			var/icon/test = getFlatIcon(I)
 			test.Shift(NORTH,1)
 			test.Shift(EAST,6)
 			overlays += test
+			return
+
+	if(iswelder(I))
+		var/obj/item/tool/weldingtool/W = I
+		if(!W.welding)
+			if(W.reagents.has_reagent("welding_fuel", W.max_fuel))
+				to_chat(user, "<span class='warning'>Your [W.name] is already full!</span>")
+				return
+			reagents.trans_to(W, W.max_fuel)
+			W.weld_tick = 0
+			user.visible_message("<span class='notice'>[user] refills [W].</span>", "<span class='notice'>You refill [W].</span>")
+			playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
+		else
+			log_game("[key_name(user)] triggered a fueltank explosion with a blowtorch at [AREACOORD(src.loc)].")
+			message_admins("[ADMIN_TPMONTY(user)] triggered a fueltank explosion with a blowtorch.")
+			var/self_message = user.a_intent != INTENT_HARM ? "<span class='danger'>You begin welding on the fueltank, and in a last moment of lucidity realize this might not have been the smartest thing you've ever done.</span>" : "<span class='danger'>[src] catastrophically explodes in a wave of flames as you begin to weld it.</span>"
+			user.visible_message("<span class='warning'>[user] catastrophically fails at refilling \his [W.name]!</span>", self_message)
+		return
 
 	return ..()
 
+/obj/structure/reagent_dispensers/fueltank/bullet_act(obj/item/projectile/Proj)
+	if(exploding)
+		return FALSE
 
-/obj/structure/reagent_dispensers/fueltank/bullet_act(var/obj/item/projectile/Proj)
-	if(exploding) return 0
-	if(istype(Proj.firer,/mob/living/carbon/human))
-		message_admins("[key_name(Proj.firer)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[Proj.firer]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[Proj.firer.x];Y=[Proj.firer.y];Z=[Proj.firer.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[Proj.firer]'>FLW</a>) shot fueltank at [loc.loc.name] ([loc.x],[loc.y],[loc.z]).")
-		log_game("[key_name(Proj.firer)] shot fueltank at [loc.loc.name] ([loc.x],[loc.y],[loc.z]).")
+	. = ..()
 
-	if(Proj.damage > 10 && prob(60))
-		exploding = 1
+	if(Proj.damage > 10 && prob(60) && Proj.ammo.damage_type in list(BRUTE|BURN))
+		if(ismob(Proj.firer))
+			var/mob/shooter = Proj.firer
+			if(shooter.client)
+				message_admins("[ADMIN_TPMONTY(shooter)] shot a fueltank at [ADMIN_VERBOSEJMP(loc)], setting it off.")
+				log_game("[key_name(shooter)] shot a fueltank at [AREACOORD(loc)], setting it off.")
 		explode()
-	return 1
 
 /obj/structure/reagent_dispensers/fueltank/ex_act()
-	if(exploding) return
-	exploding = 1
 	explode()
 
 /obj/structure/reagent_dispensers/fueltank/proc/explode()
+	if(exploding)
+		return
+	exploding = TRUE
 	if (reagents.total_volume > 500)
 		explosion(src.loc,0,0,3, flame_range = 4)
 	else if (reagents.total_volume > 100)
@@ -182,8 +200,6 @@
 /obj/structure/reagent_dispensers/fueltank/flamer_fire_act()
 	explode()
 
-
-
 /obj/structure/reagent_dispensers/peppertank
 	name = "pepper spray refiller"
 	desc = "Refill pepper spray canisters."
@@ -192,25 +208,18 @@
 	anchored = 1
 	density = 0
 	amount_per_transfer_from_this = 45
-
-/obj/structure/reagent_dispensers/peppertank/New()
-	..()
-	reagents.add_reagent("condensedcapsaicin", 1000)
-
-
+	list_reagents = list("condensedcapsaicin" = 1000)
 
 /obj/structure/reagent_dispensers/water_cooler
-	name = "Water-Cooler"
+	name = "water cooler"
 	desc = "A machine that dispenses water to drink."
 	amount_per_transfer_from_this = 5
 	icon = 'icons/obj/machines/vending.dmi'
 	icon_state = "water_cooler"
 	possible_transfer_amounts = null
-	anchored = 1
-
-/obj/structure/reagent_dispensers/water_cooler/New()
-	..()
-	reagents.add_reagent("water",500)
+	anchored = TRUE
+	tank_volume = 500
+	list_reagents = list("water" = 500)
 
 
 /obj/structure/reagent_dispensers/beerkeg
@@ -218,22 +227,13 @@
 	desc = "A beer keg"
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "beertankTEMP"
-	amount_per_transfer_from_this = 10
-
-/obj/structure/reagent_dispensers/beerkeg/New()
-	..()
-	reagents.add_reagent("beer",1000)
-
+	list_reagents = list("beer" = 1000)
 
 /obj/structure/reagent_dispensers/virusfood
 	name = "virus food dispenser"
 	desc = "A dispenser of virus food."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "virusfoodtank"
-	amount_per_transfer_from_this = 10
 	anchored = 1
 	density = 0
-
-/obj/structure/reagent_dispensers/virusfood/New()
-	..()
-	reagents.add_reagent("virusfood", 1000)
+	list_reagents = list("virusfood" = 1000)

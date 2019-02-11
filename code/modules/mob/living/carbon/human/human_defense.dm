@@ -19,9 +19,9 @@ Contains most of the procs that are called when a mob is attacked by something
 				c_hand = r_hand
 
 			if(c_hand && (stun_amount || agony_amount > 10))
-				msg_admin_attack("[src.name] ([src.ckey]) was disarmed by a stun effect")
+				msg_admin_attack("[ADMIN_TPMONTY(src)] was disarmed by a stun effect.")
 
-				drop_inv_item_on_ground(c_hand)
+				dropItemToGround(c_hand)
 				if (affected.status & LIMB_ROBOT)
 					emote("me", 1, "drops what they were holding, their [affected.display_name] malfunctioning!")
 				else
@@ -94,7 +94,7 @@ Contains most of the procs that are called when a mob is attacked by something
 				return 1
 		var/obj/item/weapon/I = l_hand
 		if(I.IsShield() && (prob(50 - round(damage / 3))))
-			visible_message("\red <B>[src] blocks [attack_text] with the [l_hand.name]!</B>", null, null, 5)
+			visible_message("<span class='danger'>[src] blocks [attack_text] with the [l_hand.name]!</span>", null, null, 5)
 			return 1
 	if(r_hand && istype(r_hand, /obj/item/weapon))
 		if(combistick && istype(r_hand,/obj/item/weapon/combistick))
@@ -103,7 +103,7 @@ Contains most of the procs that are called when a mob is attacked by something
 				return 1
 		var/obj/item/weapon/I = r_hand
 		if(I.IsShield() && (prob(50 - round(damage / 3))))
-			visible_message("\red <B>[src] blocks [attack_text] with the [r_hand.name]!</B>", null, null, 5)
+			visible_message("<span class='danger'>[src] blocks [attack_text] with the [r_hand.name]!</span>", null, null, 5)
 			return 1
 	return 0
 
@@ -130,7 +130,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	if(user == src) // Attacking yourself can't miss
 		target_zone = user.zone_selected
 	if(!target_zone)
-		visible_message("\red <B>[user] misses [src] with \the [I]!", null, null, 5)
+		visible_message("<span class='danger'>[user] misses [src] with \the [I]!</span>", null, null, 5)
 		return 0
 
 	var/datum/limb/affecting = get_limb(target_zone)
@@ -145,9 +145,9 @@ Contains most of the procs that are called when a mob is attacked by something
 		return 0
 
 	if(I.attack_verb && I.attack_verb.len)
-		visible_message("\red <B>[src] has been [pick(I.attack_verb)] in the [hit_area] with [I.name] by [user]!</B>", null, null, 5)
+		visible_message("<span class='danger'>[src] has been [pick(I.attack_verb)] in the [hit_area] with [I.name] by [user]!</span>", null, null, 5)
 	else
-		visible_message("\red <B>[src] has been attacked in the [hit_area] with [I.name] by [user]!</B>", null, null, 5)
+		visible_message("<span class='danger'>[src] has been attacked in the [hit_area] with [I.name] by [user]!</span>", null, null, 5)
 
 	var/armor = run_armor_check(affecting, "melee", "Your armor has protected your [hit_area].", "Your armor has softened hit to your [hit_area].")
 	var/weapon_sharp = is_sharp(I)
@@ -204,7 +204,7 @@ Contains most of the procs that are called when a mob is attacked by something
 			if("chest")//Easier to score a stun but lasts less time
 				if(prob((I.force + 10)))
 					apply_effect(6, WEAKEN, armor)
-					visible_message("\red <B>[src] has been knocked down!</B>", null, null, 5)
+					visible_message("<span class='danger'>[src] has been knocked down!</span>", null, null, 5)
 
 				if(bloody)
 					bloody_body(src)
@@ -213,7 +213,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	if (I.damtype == BRUTE && !I.is_robot_module() && !(I.flags_item & (NODROP|DELONDROP)))
 		var/damage = I.force
 		if(damage > 40) damage = 40  //Some sanity, mostly for yautja weapons. CONSTANT STICKY ICKY
-		if (!armor && weapon_sharp && prob(3) && !isYautja(user)) // make yautja less likely to get their weapon stuck
+		if (!armor && weapon_sharp && prob(3) && !isyautja(user)) // make yautja less likely to get their weapon stuck
 			affecting.embed(I)
 
 	return 1
@@ -223,7 +223,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	if(istype(AM,/obj/))
 		var/obj/O = AM
 
-		if(in_throw_mode && !get_active_hand() && speed <= 5)	//empty active hand and we're in throw mode
+		if(in_throw_mode && !get_active_held_item() && speed <= 5)	//empty active hand and we're in throw mode
 			if(!is_mob_incapacitated())
 				if(isturf(O.loc))
 					if(put_in_active_hand(O))
@@ -238,7 +238,7 @@ Contains most of the procs that are called when a mob is attacked by something
 		var/throw_damage = O.throwforce*(speed/5)
 
 		var/zone
-		if (istype(O.thrower, /mob/living))
+		if (isliving(O.thrower))
 			var/mob/living/L = O.thrower
 			zone = check_zone(L.zone_selected)
 		else
@@ -252,7 +252,7 @@ Contains most of the procs that are called when a mob is attacked by something
 			zone = get_zone_with_miss_chance(zone, src, 15)
 
 		if(!zone)
-			visible_message("\blue \The [O] misses [src] narrowly!", null, null, 5)
+			visible_message("<span class='notice'> \The [O] misses [src] narrowly!</span>", null, null, 5)
 			return
 
 		O.throwing = 0		//it hit, so stop moving
@@ -263,11 +263,16 @@ Contains most of the procs that are called when a mob is attacked by something
 		var/datum/limb/affecting = get_limb(zone)
 		var/hit_area = affecting.display_name
 
-		src.visible_message("\red [src] has been hit in the [hit_area] by [O].", null, null, 5)
+		src.visible_message("<span class='warning'> [src] has been hit in the [hit_area] by [O].</span>", null, null, 5)
 		var/armor = run_armor_check(affecting, "melee", "Your armor has protected your [hit_area].", "Your armor has softened hit to your [hit_area].") //I guess "melee" is the best fit here
 
 		if(armor < 1)
 			apply_damage(throw_damage, dtype, zone, armor, is_sharp(O), has_edge(O), O)
+
+		if(O.item_fire_stacks)
+			fire_stacks += O.item_fire_stacks
+		if(O.igniting)
+			IgniteMob()
 
 		if(ismob(O.thrower))
 			var/mob/M = O.thrower
@@ -275,7 +280,7 @@ Contains most of the procs that are called when a mob is attacked by something
 			if(assailant)
 				log_combat(M, src, "hit", O, "(thrown)")
 				if(!istype(src,/mob/living/simple_animal/mouse))
-					msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) was hit by a [O], thrown by [key_name(M)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[M]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[M.x];Y=[M.y];Z=[M.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[M]'>FLW</a>)")
+					msg_admin_attack("[ADMIN_TPMONTY(usr)] was hit by a [O], thrown by [ADMIN_TPMONTY(M)].")
 
 		//thrown weapon embedded object code.
 		if(dtype == BRUTE && istype(O,/obj/item))
@@ -300,7 +305,7 @@ Contains most of the procs that are called when a mob is attacked by something
 			var/momentum = speed/2
 			var/dir = get_dir(O.throw_source, src)
 
-			visible_message("\red [src] staggers under the impact!","\red You stagger under the impact!", null, null, 5)
+			visible_message("<span class='warning'> [src] staggers under the impact!</span>","<span class='warning'> You stagger under the impact!</span>", null, null, 5)
 			src.throw_at(get_edge_target_turf(src,dir),1,momentum)
 
 
@@ -347,7 +352,7 @@ Contains most of the procs that are called when a mob is attacked by something
 /mob/living/carbon/human/proc/get_target_lock(unique_access)
 	//Streamlined for faster processing. Needs a unique access, otherwise it will just hit everything.
 	var/obj/item/card/id/C = wear_id
-	if(!istype(C)) C = get_active_hand()
+	if(!istype(C)) C = get_active_held_item()
 	if(!istype(C)) return
 	if(!(unique_access in C.access)) return
 	return 1

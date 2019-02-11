@@ -382,7 +382,7 @@
 /datum/surgery_step/internal/replace_organ/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message("<span class='notice'>[user] has transplanted \the [tool] into [target]'s [affected.display_name].</span>", \
 	"<span class='notice'>You have transplanted \the [tool] into [target]'s [affected.display_name].</span>")
-	user.temp_drop_inv_item(tool)
+	user.temporarilyRemoveItemFromInventory(tool)
 	var/obj/item/organ/O = tool
 
 	if(istype(O))

@@ -9,7 +9,7 @@
 	var/eye_step
 
 /datum/surgery_step/eye/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected, checks_only)
-	if(!affected || (affected.status & DESTROYED))
+	if(!affected || (affected.status & LIMB_DESTROYED))
 		return 0
 
 	if(target_zone != "eyes")
@@ -121,7 +121,7 @@
 	/obj/item/tool/lighter = 50,    \
 	/obj/item/tool/weldingtool = 25
 	)
-	
+
 	min_duration = EYE_CAUTERISE_MIN_DURATION
 	max_duration = EYE_CAUTERISE_MAX_DURATION
 	eye_step = 3

@@ -77,3 +77,6 @@ also doesn't really matter. You can only reload them with handfuls.
 /obj/item/ammo_magazine/internal/shotgun/merc
 	max_rounds = 5
 
+/obj/item/ammo_magazine/internal/shotgun/scout
+	max_rounds = 10
+	current_rounds = 0

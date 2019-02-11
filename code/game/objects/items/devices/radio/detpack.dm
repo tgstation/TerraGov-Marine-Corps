@@ -18,7 +18,8 @@
 	var/atom/plant_target = null //which atom the detpack is planted on
 	var/target_drag_delay = null //store this for restoration later
 	var/boom = FALSE //confirms whether we actually detted.
-
+	var/detonation_pending
+	var/sound_timer
 
 /obj/item/device/radio/detpack/examine(mob/user)
 	. = ..()
@@ -37,7 +38,10 @@
 
 
 /obj/item/device/radio/detpack/Destroy()
-	processing_second.Remove(src)
+	if(sound_timer)
+		deltimer(sound_timer)
+	if(detonation_pending)
+		deltimer(detonation_pending)
 	if(plant_target && !boom) //whatever name you give it
 		loc = get_turf(src)
 		nullvars()
@@ -55,7 +59,7 @@
 
 /obj/item/device/radio/detpack/attackby(obj/item/W as obj, mob/user as mob)
 	. = ..()
-	if(istype(W, /obj/item/device/multitool))
+	if(ismultitool(W))
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_METAL)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use the [src].</span>",
 			"<span class='notice'>You fumble around figuring out how to use [src].</span>")
@@ -88,7 +92,7 @@
 	return ..()
 
 /obj/item/device/radio/detpack/proc/nullvars()
-	if(istype(plant_target, /atom/movable) && plant_target.loc)
+	if(ismovableatom(plant_target) && plant_target.loc)
 		var/atom/movable/T = plant_target
 		if(T.drag_delay == 3)
 			T.drag_delay = target_drag_delay //reset the drag delay of whatever we attached the detpack to
@@ -108,10 +112,16 @@
 			return
 		armed = TRUE
 		//bombtick()
-		processing_second.Add(src)
+		detonation_pending = addtimer(CALLBACK(src, .proc/do_detonate), timer SECONDS)
+		if(timer > 10)
+			sound_timer = addtimer(CALLBACK(src, .proc/do_play_sound_normal), 1 SECONDS, TIMER_LOOP)
+			addtimer(CALLBACK(src, .proc/change_to_loud_sound), timer-10)
+		else
+			sound_timer = addtimer(CALLBACK(src, .proc/do_play_sound_loud), 1 SECONDS, TIMER_LOOP)
 		update_icon()
 	else
 		armed = FALSE
+		disarm()
 		update_icon()
 
 	if(master && wires & WIRE_RECEIVE)
@@ -122,7 +132,7 @@
 	//..()
 	if(usr.stat || usr.is_mob_restrained())
 		return
-	if(((istype(usr, /mob/living/carbon/human) && ((!( ticker ) || (ticker && ticker.mode != "monkey")) && usr.contents.Find(src))) || (usr.contents.Find(master) || (in_range(src, usr) && istype(loc, /turf)))))
+	if(((ishuman(usr) && ((!( ticker ) || (ticker && ticker.mode != "monkey")) && usr.contents.Find(src))) || (usr.contents.Find(master) || (in_range(src, usr) && istype(loc, /turf)))))
 		usr.set_interaction(src)
 		if(href_list["freq"])
 			var/new_frequency = (frequency + text2num(href_list["freq"]))
@@ -166,7 +176,7 @@
 
 /obj/item/device/radio/detpack/attack_self(mob/user as mob, flag1)
 
-	if(!istype(user, /mob/living/carbon/human))
+	if(!ishuman(user))
 		return
 	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_METAL)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
@@ -194,7 +204,7 @@
 <A href='byond://?src=\ref[src];code=1'>+</A>
 <A href='byond://?src=\ref[src];code=5'>+</A><BR>
 
-<B>Timer (Max 300 seconds, Min 10 seconds):</B><BR>
+<B>Timer (Max 300 seconds, Min 5 seconds):</B><BR>
 <A href='byond://?src=\ref[src];timer=-50'>-</A>
 <A href='byond://?src=\ref[src];timer=-10'>-</A>
 <A href='byond://?src=\ref[src];timer=-5'>-</A>
@@ -219,7 +229,7 @@
 		var/obj/O = target
 		if(O.unacidable)
 			return FALSE
-	if(istype(target, /turf/closed/wall))
+	if(iswallturf(target))
 		var/turf/closed/wall/W = target
 		if(W.hull)
 			return FALSE
@@ -247,15 +257,15 @@
 		location = target
 		forceMove(location)
 
-		message_admins("[key_name(user, user.client)](<A HREF='?_src_=holder;adminmoreinfo=\ref[user]'>?</A>) planted [src.name] on [target.name] at ([target.x],[target.y],[target.z] - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[target.x];Y=[target.y];Z=[target.z]'>JMP</a>) with [timer] second fuse",0,1)
-		log_game("[key_name(user)] planted [src.name] on [target.name] at ([target.x],[target.y],[target.z]) with [timer] second fuse")
+		log_game("[key_name(user)] planted [src.name] on [target.name] at [AREACOORD(target.loc)] with [timer] second fuse.")
+		message_admins("[ADMIN_TPMONTY(user)] planted [src.name] on [target.name] at [ADMIN_VERBOSEJMP(target.loc)] with [timer] second fuse.")
 
 		//target.overlays += image('icons/obj/items/assemblies.dmi', "plastic-explosive2")
 		user.visible_message("<span class='warning'>[user] plants [name] on [target]!</span>",
 		"<span class='warning'>You plant [name] on [target]! Timer set for [timer] seconds.</span>")
 
 		plant_target = target
-		if(istype(plant_target, /atom/movable))
+		if(ismovableatom(plant_target))
 			var/atom/movable/T = plant_target
 			T.vis_contents += src
 			if(T.drag_delay < 3) //Anything with a fast drag delay we need to modify to avoid kamikazi tactics
@@ -263,34 +273,48 @@
 				T.drag_delay = 3
 		update_icon()
 
+/obj/item/device/radio/detpack/proc/change_to_loud_sound()
+	if(sound_timer)
+		deltimer(sound_timer)
+		sound_timer = addtimer(CALLBACK(src, .do_play_sound_loud), 1 SECONDS, TIMER_LOOP)
 
-/obj/item/device/radio/detpack/process()
+/obj/item/device/radio/detpack/proc/do_play_sound_normal()
+	timer--
+	playsound(loc, 'sound/weapons/mine_tripped.ogg', 50, FALSE)
+
+/obj/item/device/radio/detpack/proc/do_play_sound_loud()
+	timer--
+	playsound(loc, 'sound/weapons/mine_tripped.ogg', 160 + (timer-timer*2)*10, FALSE) //Gets louder as we count down to armaggedon
+
+/obj/item/device/radio/detpack/proc/disarm()
+	if(timer < DETPACK_TIMER_MIN) //reset to minimum 5 seconds; no 'cooking' with aborted detonations.
+		timer = DETPACK_TIMER_MIN
+	deltimer(sound_timer)
+	if(detonation_pending)
+		deltimer(detonation_pending)
+	sound_timer = null
+	update_icon()
+
+/obj/item/device/radio/detpack/proc/do_detonate()
+	detonation_pending = null
 	if(plant_target == null || !plant_target.loc) //need a target to be attached to
-		processing_second.Remove(src)
-		if(timer < DETPACK_TIMER_MIN) //reset to minimum 10 seconds; no 'cooking' with aborted detonations.
+		if(timer < DETPACK_TIMER_MIN) //reset to minimum 5 seconds; no 'cooking' with aborted detonations.
 			timer = DETPACK_TIMER_MIN
+		deltimer(sound_timer)
+		sound_timer = null
 		nullvars()
 		return
 	if(!on) //need to be active and armed.
-		processing_second.Remove(src)
 		armed = FALSE
 		if(timer < DETPACK_TIMER_MIN) //reset to minimum 5 seconds; no 'cooking' with aborted detonations.
 			timer = DETPACK_TIMER_MIN
+		deltimer(sound_timer)
+		sound_timer = null
 		update_icon()
 		return
 	if(!armed)
-		if(timer < DETPACK_TIMER_MIN) //reset to minimum 5 seconds; no 'cooking' with aborted detonations.
-			timer = DETPACK_TIMER_MIN
-		processing_second.Remove(src)
-		update_icon()
-		return
-	if(timer) //Timer is still counting down to armaggedon...
-		timer--
-		if(timer < 11)
-			playsound(src.loc, 'sound/weapons/mine_tripped.ogg', 160 + (timer-timer*2)*10, FALSE) //Gets louder as we count down to armaggedon
-		else
-			playsound(src.loc, 'sound/weapons/mine_tripped.ogg', 50, FALSE)
-		return
+		disarm()
+
 	//Time to go boom
 	playsound(src.loc, 'sound/weapons/ring.ogg', 200, FALSE)
 	boom = TRUE
@@ -304,7 +328,6 @@
 			if(!istype(plant_target,/obj/vehicle/multitile/root/cm_armored))
 				qdel(plant_target)
 	qdel(src)
-
 
 /obj/item/device/radio/detpack/attack(mob/M as mob, mob/user as mob, def_zone)
 	return

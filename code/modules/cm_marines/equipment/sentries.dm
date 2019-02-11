@@ -1,10 +1,11 @@
 //Deployable turrets. They can be either automated, manually fired, or installed with a pAI.
 //They are built in stages, and only engineers have access to them.
+
 /obj/item/ammo_magazine/sentry
 	name = "M30 box magazine (10x28mm Caseless)"
 	desc = "A box of 500 10x28mm caseless rounds for the UA 571-C Sentry Gun. Just feed it into the sentry gun's ammo port when its ammo is depleted."
 	w_class = 4
-	icon = 'icons/Marine/new_sentry_alt.dmi'
+	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "ammo_can"
 	flags_magazine = NOFLAGS //can't be refilled or emptied by hand
 	caliber = "10x28mm"
@@ -42,7 +43,7 @@
 	desc = "The turret part of an automated sentry turret."
 	unacidable = TRUE
 	w_class = 5
-	icon = 'icons/Marine/new_sentry_alt.dmi'
+	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "sentry_head"
 
 
@@ -51,7 +52,7 @@
 	desc = "The tripod part of an automated sentry turret. You should deploy it first."
 	unacidable = TRUE
 	w_class = 5
-	icon = 'icons/Marine/new_sentry_alt.dmi'
+	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "sentry_tripod_folded"
 
 /obj/item/device/turret_tripod/attack_self(mob/user)
@@ -72,7 +73,7 @@
 		if(!src) //Make sure the sentry still exists
 			return
 		var/obj/machinery/turret_tripod_deployed/S = new /obj/machinery/turret_tripod_deployed/(target)
-		S.dir = user.dir
+		S.setDir(user.dir)
 		user.visible_message("<span class='notice'>[user] unfolds \the [S].</span>",
 			"<span class='notice'>You unfold \the [S].</span>")
 		playsound(target, 'sound/weapons/mine_armed.ogg', 25)
@@ -83,7 +84,7 @@
 /obj/machinery/turret_tripod_deployed
 	name = "\improper UA 571-C turret tripod"
 	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an M30 Autocannon and a 500-round drum magazine."
-	icon = 'icons/Marine/new_sentry_alt.dmi'
+	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "sentry_tripod"
 	anchored = FALSE
 	unacidable = TRUE
@@ -178,7 +179,7 @@
 
 			if(do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
 				var/obj/machinery/marine_turret/S = new /obj/machinery/marine_turret(loc)
-				S.dir = dir
+				S.setDir(dir)
 				user.visible_message("<span class='notice'>[user] finishes \the [S].</span>",
 					"<span class='notice'>You finish \the [S].</span>")
 				playsound(S.loc, 'sound/weapons/mine_armed.ogg', 25)
@@ -205,7 +206,7 @@
 /obj/machinery/marine_turret
 	name = "\improper UA 571-C sentry gun"
 	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an M30 Autocannon and a 500-round drum magazine."
-	icon = 'icons/Marine/new_sentry_alt.dmi'
+	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "sentry_base"
 	anchored = TRUE
 	unacidable = TRUE
@@ -269,7 +270,7 @@
 	if(alerts_on)
 		details +=("Its alert mode is active.</br>")
 
-	if(!ammo)
+	if(!ammo || !rounds)
 		details +=("<span class='danger'>It has no ammo!</br></span>")
 
 	if(!cell || cell.charge == 0)
@@ -278,19 +279,19 @@
 	to_chat(user, "<span class='warning'>[details.Join(" ")]</span>")
 
 
-/obj/machinery/marine_turret/New()
+/obj/machinery/marine_turret/Initialize()
+	. = ..()
 	spark_system = new /datum/effect_system/spark_spread
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
 	cell = new /obj/item/cell/high(src)
 	camera_number = rand(1,1000)
 	camera = new (src)
-	camera.network = list("LEADER")
+	camera.network = list("military")
 	camera.c_tag = "Sentry: [get_area(src)] | X: [x] | Y: [y]| [camera_number]" //Update Camera name
-	spawn(2)
-		stat = 0
+	stat = NOFLAGS
 	//START_PROCESSING(SSobj, src)
-	ammo = ammo_list[ammo]
+	ammo = GLOB.ammo_list[ammo]
 	update_icon()
 
 
@@ -312,7 +313,7 @@
 	. = ..()
 
 /obj/machinery/marine_turret/attack_hand(mob/user as mob)
-	if(isYautja(user))
+	if(isyautja(user))
 		to_chat(user, "<span class='warning'>You punch [src] but nothing happens.</span>")
 		return
 	src.add_fingerprint(user)
@@ -402,7 +403,7 @@
 			if(burst_fire)
 				burst_fire = 0
 				state("A green light on [src] blinks slowly.")
-				to_chat(usr, "\blue You deactivate the burst fire mode.")
+				to_chat(usr, "<span class='notice'>You deactivate the burst fire mode.</span>")
 			else
 				burst_fire = 1
 				fire_delay = burst_delay
@@ -605,17 +606,17 @@
 		user.visible_message("<span class='notice'>[user] rotates [src].</span>",
 		"<span class='notice'>You rotate [src].</span>")
 		if(dir == NORTH)
-			dir = EAST
+			setDir(EAST)
 		else if(dir == EAST)
-			dir = SOUTH
+			setDir(SOUTH)
 		else if(dir == SOUTH)
-			dir = WEST
+			setDir(WEST)
 		else if(dir == WEST)
-			dir = NORTH
+			setDir(NORTH)
 		return
 
 
-	if(istype(O, /obj/item/tool/weldingtool))
+	if(iswelder(O))
 		var/obj/item/tool/weldingtool/WT = O
 		if(health < 0 || stat)
 			to_chat(user, "<span class='warning'>[src]'s internal circuitry is ruined, there's no way you can salvage this on the go.</span>")
@@ -665,7 +666,7 @@
 		user.visible_message("<span class='notice'>[user] begins installing \a [O.name] into [src].</span>",
 		"<span class='notice'>You begin installing \a [O.name] into [src].</span>")
 		if(do_after(user, work_time, TRUE, 5, BUSY_ICON_BUILD))
-			user.drop_inv_item_to_loc(O, src)
+			user.transferItemToLoc(O, src)
 			user.visible_message("<span class='notice'>[user] installs \a [O.name] into [src].</span>",
 			"<span class='notice'>You install \a [O.name] into [src].</span>")
 			cell = O
@@ -701,14 +702,14 @@
 	return ..()
 
 /obj/machinery/marine_turret/update_icon()
-	var/image/battery_green = image('icons/Marine/new_sentry_alt.dmi', src, "sentry_batt_green")
-	var/image/battery_yellow = image('icons/Marine/new_sentry_alt.dmi', src, "sentry_batt_yellow")
-	var/image/battery_orange = image('icons/Marine/new_sentry_alt.dmi', src, "sentry_batt_orange")
-	var/image/battery_red = image('icons/Marine/new_sentry_alt.dmi', src, "sentry_batt_red")
-	var/image/battery_black = image('icons/Marine/new_sentry_alt.dmi', src, "sentry_batt_black")
-	var/image/active = image('icons/Marine/new_sentry_alt.dmi', src, "sentry_active")
-	var/image/ammo_full = image('icons/Marine/new_sentry_alt.dmi', src, "sentry_ammo")
-	var/image/ammo_empty = image('icons/Marine/new_sentry_alt.dmi', src, "sentry_ammo_empty")
+	var/image/battery_green = image('icons/Marine/sentry.dmi', src, "sentry_batt_green")
+	var/image/battery_yellow = image('icons/Marine/sentry.dmi', src, "sentry_batt_yellow")
+	var/image/battery_orange = image('icons/Marine/sentry.dmi', src, "sentry_batt_orange")
+	var/image/battery_red = image('icons/Marine/sentry.dmi', src, "sentry_batt_red")
+	var/image/battery_black = image('icons/Marine/sentry.dmi', src, "sentry_batt_black")
+	var/image/active = image('icons/Marine/sentry.dmi', src, "sentry_active")
+	var/image/ammo_full = image('icons/Marine/sentry.dmi', src, "sentry_ammo")
+	var/image/ammo_empty = image('icons/Marine/sentry.dmi', src, "sentry_ammo_empty")
 
 	overlays.Cut()
 	if(stat && health > 0) //Knocked over
@@ -719,6 +720,7 @@
 		return
 	else
 		density = initial(density)
+		icon_state = "sentry_base"
 
 	if(rounds)
 		overlays += ammo_full
@@ -764,8 +766,8 @@
 		stat = 2
 		state("<span class='warning'>The [name] starts spitting out sparks and smoke!")
 		playsound(loc, 'sound/mecha/critdestrsyndi.ogg', 25, 1)
-		for(var/i = 1 to 6)
-			dir = pick(1, 2, 3, 4)
+		for(var/i in 1 to 6)
+			setDir(pick(NORTH, SOUTH, EAST, WEST))
 			sleep(2)
 		spawn(10)
 			if(src && loc)
@@ -808,8 +810,8 @@
 		if(prob(50))
 			state("<span class='danger'>[src] beeps and buzzes wildly, flashing odd symbols on its screen before shutting down!</span>")
 			playsound(loc, 'sound/mecha/critdestrsyndi.ogg', 25, 1)
-			for(var/i = 1 to 6)
-				dir = pick(1, 2, 3, 4)
+			for(var/i in 1 to 6)
+				setDir(pick(NORTH, SOUTH, EAST, WEST))
 				sleep(2)
 			on = FALSE
 	if(health > 0)
@@ -830,7 +832,7 @@
 
 
 /obj/machinery/marine_turret/attack_alien(mob/living/carbon/Xenomorph/M)
-	if(isXenoLarva(M)) return //Larvae can't do shit
+	if(isxenolarva(M)) return //Larvae can't do shit
 	M.visible_message("<span class='danger'>[M] has slashed [src]!</span>",
 	"<span class='danger'>You slash [src]!</span>")
 	M.animation_attack_on(src)
@@ -943,7 +945,7 @@
 	//	return
 
 	if(radial_mode && !manual_override)
-		dir = target_dir
+		setDir(target_dir)
 
 
 	if(load_into_chamber())
@@ -953,7 +955,7 @@
 				//Apply scatter
 				var/scatter_chance = in_chamber.ammo.scatter
 				scatter_chance += (burst_size * 2)
-				in_chamber.accuracy = round(in_chamber.accuracy * (config.base_hit_accuracy_mult - config.min_hit_accuracy_mult * max(0,burst_size - 2) ) ) //Accuracy penalty scales with burst count.
+				in_chamber.accuracy = round(in_chamber.accuracy * (CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/min_hit_accuracy_mult) * max(0,burst_size - 2) ) ) //Accuracy penalty scales with burst count.
 
 				if (prob(scatter_chance))
 					var/scatter_x = rand(-1, 1)
@@ -962,11 +964,11 @@
 					if(new_target) //Looks like we found a turf.
 						target = new_target
 			else
-				in_chamber.accuracy = round(in_chamber.accuracy * (config.base_hit_accuracy_mult + config.med_hit_accuracy_mult)) //much more accurate on single fire
+				in_chamber.accuracy = round(in_chamber.accuracy * (CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/med_hit_accuracy_mult))) //much more accurate on single fire
 
 			//Setup projectile
 			in_chamber.original = target
-			in_chamber.dir = dir
+			in_chamber.setDir(dir)
 			in_chamber.def_zone = pick("chest", "chest", "chest", "head")
 
 			//Shoot at the thing
@@ -1011,9 +1013,9 @@
 	var/mob/living/M
 
 	for(M in oview(range, src))
-		if(M.stat == DEAD || isrobot(M)) //No dead or robots.
+		if(M.stat == DEAD || iscyborg(M)) //No dead or robots.
 			continue
-		if(!safety_off && !isXeno(M)) //When safeties are on, Xenos only.
+		if(!safety_off && !isxeno(M)) //When safeties are on, Xenos only.
 			continue
 		/*
 		I really, really need to replace this with some that isn't insane. You shouldn't have to fish for access like this.
@@ -1078,7 +1080,7 @@
 		state("<span class='notice'>The [name] buzzes: AI targeting re-initialized.</span>")
 		user.unset_interaction()
 		return FALSE
-	if(user.get_active_hand() != null)
+	if(user.get_active_held_item() != null)
 		to_chat(usr, "<span class='warning'>You need a free hand to shoot [src].</span>")
 		return FALSE
 
@@ -1130,7 +1132,7 @@
 	var/obj/machinery/camera/current = null
 
 	check_eye(var/mob/user as mob)
-		if (user.z == 0 || user.stat || ((get_dist(user, src) > 1 || is_blind(user)) && !istype(user, /mob/living/silicon))) //user can't see - not sure why canmove is here.
+		if (user.z == 0 || user.stat || ((get_dist(user, src) > 1 || is_blind(user)) && !issilicon(user))) //user can't see - not sure why canmove is here.
 			return null
 		if(!linked_turret || isnull(linked_turret.camera))
 			return null
@@ -1142,39 +1144,44 @@
 */
 /obj/machinery/marine_turret/premade
 	name = "UA-577 Gauss Turret"
+	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an armor penetrating MIC Gauss Cannon and a high-capacity drum magazine."
+	ammo = /datum/ammo/bullet/turret/gauss //This is a gauss cannon; it will be significantly deadlier
 	immobile = TRUE
 	on = TRUE
 	burst_fire = TRUE
-	rounds = 500
-	rounds_max = 500
+	rounds_max = 50000
 	icon_state = "sentry_base"
 
-/obj/machinery/marine_turret/premade/New()
-	spark_system = new /datum/effect_system/spark_spread
-	spark_system.set_up(5, 0, src)
-	spark_system.attach(src)
+/obj/machinery/marine_turret/premade/Initialize()
+	. = ..()
+	qdel(cell)
+	cell = null
 	var/obj/item/cell/super/H = new(src) //Better cells in these ones.
 	cell = H
-	camera = new (src)
-	camera.network = list("LEADER")
-	camera.c_tag = "[name] ([get_area(src)] | X: [x] | Y: [y]| [camera_number])" //Update Camera name
-	spawn(2)
-		stat = 0
-	ammo = ammo_list[ammo]
-	update_icon()
+	rounds = 50000
+
+
 
 /obj/machinery/marine_turret/premade/dumb
-	name = "Modified UA-577 Gauss Turret"
-	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an M30 Autocannon and a high-capacity drum magazine. This one's IFF system has been disabled, and it will open fire on any targets within range."
+	name = "\improper Modified UA 571-C sentry gun"
+	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an M30 Autocannon and a 500-round drum magazine. This one's IFF system has been disabled, and it will open fire on any targets within range."
 	iff_signal = 0
-	alerts_on = FALSE
-	safety_off = TRUE
-	rounds = 1000000
 	ammo = /datum/ammo/bullet/turret/dumb
+	magazine_type = /obj/item/ammo_magazine/sentry/premade/dumb
+	rounds_max = 500
+	alerts_on = FALSE
+
+/obj/machinery/marine_turret/premade/dumb/Initialize()
+	. = ..()
+	rounds = 500
+	camera.network = null
+	camera.c_tag = null
+	camera = null
+
 
 /obj/machinery/marine_turret/premade/dumb/attack_hand(mob/user as mob)
 
-	if(isYautja(user))
+	if(isyautja(user))
 		to_chat(user, "<span class='warning'>You punch [src] but nothing happens.</span>")
 		return
 	src.add_fingerprint(user)
@@ -1189,14 +1196,14 @@
 
 	if(!on)
 		to_chat(user, "You turn on the [src].")
-		visible_message("\blue [src] hums to life and emits several beeps.")
+		visible_message("<span class='notice'> [src] hums to life and emits several beeps.</span>")
 		state("[src] buzzes in a monotone: 'Default systems initiated.'")
 		target = null
 		on = TRUE
 		SetLuminosity(7)
 		if(!camera)
-			camera = new /obj/machinery/camera(src)
 			camera.network = list("LEADER")
+			camera = new /obj/machinery/camera(src)
 		camera.c_tag = "[name] ([get_area(src)] | X: [x] | Y: [y]| [camera_number])" //Update Camera name
 		update_icon()
 	else
@@ -1206,15 +1213,27 @@
 		state("<span class='notice'>The [name] powers down and goes silent.</span>")
 		update_icon()
 
+/obj/item/ammo_magazine/sentry/premade/dumb
+	name = "M30 box magazine (10x28mm Caseless)"
+	desc = "A box of 500 10x28mm caseless rounds for the UA 571-C Sentry Gun. Just feed it into the sentry gun's ammo port when its ammo is depleted."
+	w_class = 4
+	icon = 'icons/Marine/sentry.dmi'
+	icon_state = "ammo_can"
+	flags_magazine = NOFLAGS //can't be refilled or emptied by hand
+	caliber = "10x28mm"
+	max_rounds = 500
+	default_ammo = /datum/ammo/bullet/turret/dumb
+	gun_type = null
+
 //the turret inside the sentry deployment system
 /obj/machinery/marine_turret/premade/dropship
+	name = "UA-577 Gauss Dropship Turret"
 	density = FALSE
-	ammo = /datum/ammo/bullet/turret/gauss //This is a gauss cannon; it will be significantly deadlier
-	rounds = 1000000
 	safety_off = TRUE
 	burst_size = 10
 	burst_delay = 15
 	var/obj/structure/dropship_equipment/sentry_holder/deployment_system
+	magazine_type = /obj/item/ammo_magazine/sentry/premade/dropship
 
 /obj/machinery/marine_turret/premade/dropship/Destroy()
 	if(deployment_system)
@@ -1222,6 +1241,17 @@
 		deployment_system = null
 	. = ..()
 
+/obj/item/ammo_magazine/sentry/premade/dropship
+	name = "UA-577 box magazine (12x40mm Gauss Slugs)"
+	desc = "A box of 50000 12x40mm gauss slugs for the UA-577 Gauss Turret. Just feed it into the turret's ammo port when its ammo is depleted."
+	w_class = 4
+	icon = 'icons/Marine/sentry.dmi'
+	icon_state = "ammo_can"
+	flags_magazine = NOFLAGS //can't be refilled or emptied by hand
+	caliber = "12x40mm"
+	default_ammo = /datum/ammo/bullet/turret/gauss
+	gun_type = null
+	max_rounds = 50000
 
 /obj/machinery/marine_turret/proc/sentry_alert(alert_code, mob/M)
 	if(!alert_code)
@@ -1231,7 +1261,7 @@
 		if(SENTRY_ALERT_AMMO)
 			notice = "<b>ALERT! [src]'s ammo depleted at: [get_area(src)]. Coordinates: (X: [x], Y: [y]).</b>"
 		if(SENTRY_ALERT_HOSTILE)
-			notice = "<b>ALERT! Hostile/unknown: [M] Detected at: [get_area(M)]. Coordinates: (X: [M.x], Y: [M.y]).</b>"
+			notice = "<b>ALERT! [src] detected Hostile/Unknown: [M.name] at: [get_area(M)]. Coordinates: (X: [M.x], Y: [M.y]).</b>"
 		if(SENTRY_ALERT_FALLEN)
 			notice = "<b>ALERT! [src] has been knocked over at: [get_area(src)]. Coordinates: (X: [x], Y: [y]).</b>"
 		if(SENTRY_ALERT_DAMAGE)
@@ -1307,6 +1337,7 @@
 		stop_processing()
 		return
 	else
+		icon_state = "minisentry_off"
 		density = initial(density)
 
 	if(!cell)
@@ -1341,7 +1372,7 @@
 	item_state = "minisentry_packed"
 	w_class = 4
 	health = 150 //We keep track of this when folding up the sentry.
-	flags_equip_slot = SLOT_BACK
+	flags_equip_slot = ITEM_SLOT_BACK
 
 /obj/item/device/marine_turret/mini/attack_self(mob/user) //click the sentry to deploy it.
 	if(!ishuman(usr))
@@ -1357,7 +1388,7 @@
 		if(!src) //Make sure the sentry still exists
 			return
 		var/obj/machinery/marine_turret/mini/M = new /obj/machinery/marine_turret/mini(target)
-		M.dir = user.dir
+		M.setDir(user.dir)
 		user.visible_message("<span class='notice'>[user] deploys [M].</span>",
 		"<span class='notice'>You deploy [M].</span>")
 		playsound(target, 'sound/weapons/mine_armed.ogg', 25)
@@ -1366,8 +1397,8 @@
 		qdel(src)
 
 /obj/item/ammo_magazine/minisentry
-	name = "M30 box magazine (10x28mm Caseless)"
-	desc = "A box of 500 10x20mm caseless rounds for the UA-580 Point Defense Sentry. Just feed it into the sentry gun's ammo port when its ammo is depleted."
+	name = "M30 box magazine (10x20mm Caseless)"
+	desc = "A box of 500 10x20mm armor piercing caseless rounds for the UA-580 Point Defense Sentry. Just feed it into the sentry gun's ammo port when its ammo is depleted."
 	w_class = 3
 	icon_state = "ua580"
 	flags_magazine = NOFLAGS //can't be refilled or emptied by hand
@@ -1395,3 +1426,5 @@
 		new /obj/item/tool/wrench(src) //wrench to hold it down into the ground
 		new /obj/item/tool/screwdriver(src) //screw the gun onto the post.
 		new /obj/item/ammo_magazine/minisentry(src)
+
+

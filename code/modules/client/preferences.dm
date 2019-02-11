@@ -51,6 +51,8 @@ datum/preferences
 	//Synthetic specific preferences
 	var/synthetic_name = "Undefined"
 	var/synthetic_type = "Synthetic"
+	//Xenomorph specific preferences
+	var/xeno_name = "Undefined"
 	//Predator specific preferences.
 	var/predator_name = "Undefined"
 	var/predator_gender = MALE
@@ -155,6 +157,8 @@ datum/preferences
 	var/metadata = ""
 	var/slot_name = ""
 
+	var/preferred_slot = SLOT_S_STORE
+
 /datum/preferences/New(client/C)
 	if(istype(C))
 		if(!IsGuestKey(C.key))
@@ -163,7 +167,7 @@ datum/preferences
 				if(load_character())
 					return
 	gender = pick(MALE, FEMALE)
-	var/datum/species/S = all_species[species]
+	var/datum/species/S = GLOB.all_species[species]
 	real_name = S.random_name(gender)
 	gear = list()
 	age = rand(18,23)
@@ -291,7 +295,9 @@ datum/preferences
 		dat += "<b>Greave style:</b> <a href='?_src_=prefs;preference=pred_boot_type;task=input'>([predator_boot_type])</a><br><br>"
 
 	dat += "<br><b>Synthetic name:</b> <a href='?_src_=prefs;preference=synth_name;task=input'>[synthetic_name]</a><br>"
-	dat += "<br><b>Synthetic Type:</b> <a href='?_src_=prefs;preference=synth_type;task=input'>[synthetic_type]</a><br>"
+	dat += "<b>Synthetic Type:</b> <a href='?_src_=prefs;preference=synth_type;task=input'>[synthetic_type]</a><br>"
+
+	dat +="<br><b>Xenomorph name:</b> <a href='?_src_=prefs;preference=xeno_name;task=input'>[xeno_name]</a><br>"
 
 	dat += "<div id='wrapper'>"
 	dat += "<big><big><b>Name:</b> "
@@ -318,7 +324,7 @@ datum/preferences
 	dat += "<b>Poor Eyesight:</b> <a href='?_src_=prefs;preference=disabilities'><b>[disabilities == 0 ? "No" : "Yes"]</b></a><br>"
 	dat += "<br>"
 
-	var/datum/species/current_species = all_species[species]
+	var/datum/species/current_species = GLOB.all_species[species]
 	if(current_species.preferences)
 		for(var/preference_id in current_species.preferences)
 			dat += "<b>[current_species.preferences[preference_id]]:</b> <a href='?_src_=prefs;preference=[preference_id];task=input'><b>[vars[preference_id]]</b></a><br>"
@@ -356,13 +362,13 @@ datum/preferences
 
 	dat += "<big><b><u>Marine Gear:</u></b></big><br>"
 	if(gender == MALE)
-		dat += "<b>Underwear:</b> <a href ='?_src_=prefs;preference=underwear;task=input'><b>[underwear_m[underwear]]</b></a><br>"
+		dat += "<b>Underwear:</b> <a href ='?_src_=prefs;preference=underwear;task=input'><b>[GLOB.underwear_m[underwear]]</b></a><br>"
 	else
-		dat += "<b>Underwear:</b> <a href ='?_src_=prefs;preference=underwear;task=input'><b>[underwear_f[underwear]]</b></a><br>"
+		dat += "<b>Underwear:</b> <a href ='?_src_=prefs;preference=underwear;task=input'><b>[GLOB.underwear_f[underwear]]</b></a><br>"
 
-	dat += "<b>Undershirt:</b> <a href='?_src_=prefs;preference=undershirt;task=input'><b>[undershirt_t[undershirt]]</b></a><br>"
+	dat += "<b>Undershirt:</b> <a href='?_src_=prefs;preference=undershirt;task=input'><b>[GLOB.undershirt_t[undershirt]]</b></a><br>"
 
-	dat += "<b>Backpack Type:</b> <a href ='?_src_=prefs;preference=bag;task=input'><b>[backbaglist[backbag]]</b></a><br>"
+	dat += "<b>Backpack Type:</b> <a href ='?_src_=prefs;preference=bag;task=input'><b>[GLOB.backbaglist[backbag]]</b></a><br>"
 
 	dat += "<b>Custom Loadout:</b> "
 	var/total_cost = 0
@@ -433,7 +439,7 @@ datum/preferences
 	dat += "<b>Ghost Radio:</b> <a href='?_src_=prefs;preference=ghost_radio'><b>[(toggles_chat & CHAT_GHOSTRADIO) ? "All Chatter" : "Nearest Speakers"]</b></a><br>"
 	dat += "<b>Ghost Hivemind:</b> <a href='?_src_=prefs;preference=ghost_hivemind'><b>[(toggles_chat & CHAT_GHOSTHIVEMIND) ? "Show Hivemind" : "Hide Hivemind"]</b></a><br>"
 
-	if(config.allow_Metadata)
+	if(CONFIG_GET(flag/allow_metadata))
 		dat += "<b>OOC Notes:</b> <a href='?_src_=prefs;preference=metadata;task=input'> Edit </a><br>"
 
 	dat += "<br>"
@@ -803,7 +809,8 @@ datum/preferences
 	return 1
 
 /datum/preferences/proc/process_link(mob/user, list/href_list)
-	if(!istype(user, /mob/new_player) && !istype(user, /mob/dead/observer)) return
+	if(!istype(user))
+		return
 
 	switch(href_list["preference"])
 		if("job")
@@ -999,7 +1006,7 @@ datum/preferences
 		if ("random")
 			switch (href_list["preference"])
 				if ("name")
-					var/datum/species/S = all_species[species]
+					var/datum/species/S = GLOB.all_species[species]
 					real_name = S.random_name(gender)
 				if ("age")
 					age = rand(AGE_MIN, AGE_MAX)
@@ -1020,10 +1027,10 @@ datum/preferences
 				if ("f_style")
 					f_style = random_facial_hair_style(gender, species)
 				if ("underwear")
-					underwear = rand(1,underwear_m.len)
+					underwear = rand(1,GLOB.underwear_m.len)
 					ShowChoices(user)
 				if ("undershirt")
-					undershirt = rand(1,undershirt_t.len)
+					undershirt = rand(1,GLOB.undershirt_t.len)
 					ShowChoices(user)
 				if ("eyes")
 					r_eyes = rand(0,255)
@@ -1036,7 +1043,7 @@ datum/preferences
 				if ("bag")
 					backbag = rand(1,4)
 				if ("moth_wings")
-					moth_wings = pick(moth_wings_list - "Burnt Off")
+					moth_wings = pick(GLOB.moth_wings_list - "Burnt Off")
 				if ("all")
 					randomize_appearance_for()	//no params needed
 		if("input")
@@ -1059,8 +1066,16 @@ datum/preferences
 						else
 							to_chat(user, "<font color='red'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</font>")
 				if("synth_type")
-					var/new_synth_type = input(user, "Choose your model of synthetic:", "Make and Model") as null|anything in synth_types
+					var/new_synth_type = input(user, "Choose your model of synthetic:", "Make and Model") as null|anything in SYNTH_TYPES
 					if(new_synth_type) synthetic_type = new_synth_type
+				if("xeno_name")
+					var/raw_name = input(user, "Choose your Xenomorph name:", "Character Preference")  as text|null
+					if(raw_name) // Check to ensure that the user entered text (rather than cancel.)
+						var/new_name = reject_bad_name(raw_name)
+						if(new_name)
+							xeno_name = new_name
+						else
+							to_chat(user, "<font color='red'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</font>")
 				if("pred_name")
 					var/raw_name = input(user, "Choose your Predator's name:", "Character Preference")  as text|null
 					if(raw_name) // Check to ensure that the user entered text (rather than cancel.)
@@ -1092,11 +1107,11 @@ datum/preferences
 				if("language")
 					var/languages_available
 					var/list/new_languages = list("None")
-					var/datum/species/S = all_species[species]
+					var/datum/species/S = GLOB.all_species[species]
 
-					if(config.usealienwhitelist)
-						for(var/L in all_languages)
-							var/datum/language/lang = all_languages[L]
+					if(CONFIG_GET(flag/usealienwhitelist))
+						for(var/L in GLOB.all_languages)
+							var/datum/language/lang = GLOB.all_languages[L]
 							if((!(lang.flags & RESTRICTED)) && (is_alien_whitelisted(L)||(!( lang.flags & WHITELISTED ))||(S && (L in S.secondary_langs))))
 								new_languages += lang
 
@@ -1105,8 +1120,8 @@ datum/preferences
 						if(!(languages_available))
 							alert(user, "There are not currently any available secondary languages.")
 					else
-						for(var/L in all_languages)
-							var/datum/language/lang = all_languages[L]
+						for(var/L in GLOB.all_languages)
+							var/datum/language/lang = GLOB.all_languages[L]
 							if(!(lang.flags & RESTRICTED))
 								new_languages += lang.name
 
@@ -1134,25 +1149,25 @@ datum/preferences
 
 				if("h_style")
 					var/list/valid_hairstyles = list()
-					for(var/hairstyle in hair_styles_list)
-						var/datum/sprite_accessory/S = hair_styles_list[hairstyle]
+					for(var/hairstyle in GLOB.hair_styles_list)
+						var/datum/sprite_accessory/S = GLOB.hair_styles_list[hairstyle]
 						if( !(species in S.species_allowed))
 							continue
 
-						valid_hairstyles[hairstyle] = hair_styles_list[hairstyle]
+						valid_hairstyles[hairstyle] = GLOB.hair_styles_list[hairstyle]
 
 					var/new_h_style = input(user, "Choose your character's hair style:", "Character Preference")  as null|anything in valid_hairstyles
 					if(new_h_style)
 						h_style = new_h_style
 
 				if ("ethnicity")
-					var/new_ethnicity = input(user, "Choose your character's ethnicity:", "Character Preferences") as null|anything in ethnicities_list
+					var/new_ethnicity = input(user, "Choose your character's ethnicity:", "Character Preferences") as null|anything in GLOB.ethnicities_list
 
 					if (new_ethnicity)
 						ethnicity = new_ethnicity
 
 				if ("body_type")
-					var/new_body_type = input(user, "Choose your character's body type:", "Character Preferences") as null|anything in body_types_list
+					var/new_body_type = input(user, "Choose your character's body type:", "Character Preferences") as null|anything in GLOB.body_types_list
 
 					if (new_body_type)
 						body_type = new_body_type
@@ -1171,8 +1186,8 @@ datum/preferences
 
 				if("f_style")
 					var/list/valid_facialhairstyles = list()
-					for(var/facialhairstyle in facial_hair_styles_list)
-						var/datum/sprite_accessory/S = facial_hair_styles_list[facialhairstyle]
+					for(var/facialhairstyle in GLOB.facial_hair_styles_list)
+						var/datum/sprite_accessory/S = GLOB.facial_hair_styles_list[facialhairstyle]
 						if(gender == MALE && S.gender == FEMALE)
 							continue
 						if(gender == FEMALE && S.gender == MALE)
@@ -1180,7 +1195,7 @@ datum/preferences
 						if( !(species in S.species_allowed))
 							continue
 
-						valid_facialhairstyles[facialhairstyle] = facial_hair_styles_list[facialhairstyle]
+						valid_facialhairstyles[facialhairstyle] = GLOB.facial_hair_styles_list[facialhairstyle]
 
 					var/new_f_style = input(user, "Choose your character's facial-hair style:", "Character Preference")  as null|anything in valid_facialhairstyles
 					if(new_f_style)
@@ -1189,9 +1204,9 @@ datum/preferences
 				if("underwear")
 					var/list/underwear_options
 					if(gender == MALE)
-						underwear_options = underwear_m
+						underwear_options = GLOB.underwear_m
 					else
-						underwear_options = underwear_f
+						underwear_options = GLOB.underwear_f
 
 					var/new_underwear = input(user, "Choose your character's underwear:", "Character Preference")  as null|anything in underwear_options
 					if(new_underwear)
@@ -1200,7 +1215,7 @@ datum/preferences
 
 				if("undershirt")
 					var/list/undershirt_options
-					undershirt_options = undershirt_t
+					undershirt_options = GLOB.undershirt_t
 
 					var/new_undershirt = input(user, "Choose your character's undershirt:", "Character Preference") as null|anything in undershirt_options
 					if (new_undershirt)
@@ -1229,13 +1244,13 @@ datum/preferences
 						ooccolor = new_ooccolor
 
 				if("bag")
-					var/new_backbag = input(user, "Choose your character's style of bag:", "Character Preference")  as null|anything in backbaglist
+					var/new_backbag = input(user, "Choose your character's style of bag:", "Character Preference")  as null|anything in GLOB.backbaglist
 					if(new_backbag)
-						backbag = backbaglist.Find(new_backbag)
+						backbag = GLOB.backbaglist.Find(new_backbag)
 
 				if("moth_wings")
 					if(species == "Moth")
-						var/new_wings = input(user, "Choose your character's wings: ", "Character Preferences") as null|anything in (moth_wings_list - "Burnt Off")
+						var/new_wings = input(user, "Choose your character's wings: ", "Character Preferences") as null|anything in (GLOB.moth_wings_list - "Burnt Off")
 
 						if(new_wings)
 							moth_wings = new_wings
@@ -1475,10 +1490,10 @@ datum/preferences
 
 /datum/preferences/proc/copy_to(mob/living/carbon/human/character, safety = 0)
 	if(be_random_name)
-		var/datum/species/S = all_species[species]
+		var/datum/species/S = GLOB.all_species[species]
 		real_name = S.random_name(gender)
 
-	if(config.humans_need_surnames && species == "Human")
+	if(CONFIG_GET(flag/humans_need_surnames) && species == "Human")
 		var/firstspace = findtext(real_name, " ")
 		var/name_length = length(real_name)
 		if(!firstspace)	//we need a surname
@@ -1560,11 +1575,11 @@ datum/preferences
 				else if(status == "mechanical")
 					I.mechanize()
 
-	if(underwear > underwear_f.len || underwear < 1)
+	if(underwear > GLOB.underwear_f.len || underwear < 1)
 		underwear = 0 //I'm sure this is 100% unnecessary, but I'm paranoid... sue me. //HAH NOW NO MORE MAGIC CLONING UNDIES
 	character.underwear = underwear
 
-	if(undershirt > undershirt_t.len || undershirt < 1)
+	if(undershirt > GLOB.undershirt_t.len || undershirt < 1)
 		undershirt = 0
 	character.undershirt = undershirt
 
@@ -1575,7 +1590,7 @@ datum/preferences
 	//Debugging report to track down a bug, which randomly assigned the plural gender to people.
 	if(character.gender in list(PLURAL, NEUTER))
 		if(isliving(src)) //Ghosts get neuter by default
-			message_admins("[character] ([character.ckey]) has spawned with their gender as plural or neuter. Please notify coders.")
+			message_admins("[ADMIN_TPMONTY(usr)] has spawned with their gender as plural or neuter. Please notify coders.")
 			character.gender = MALE
 
 	character.update_body(0,1)

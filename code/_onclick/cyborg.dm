@@ -41,7 +41,7 @@
 
 	face_atom(A)
 	if (world.time <= next_move) return
-	var/obj/item/W = get_active_hand()
+	var/obj/item/W = get_active_held_item()
 
 	// Cyborgs have no range-checking unless there is item use
 	if(!W)

@@ -25,7 +25,7 @@
 	evolves_to = list(/mob/living/carbon/Xenomorph/Drone, /mob/living/carbon/Xenomorph/Runner, /mob/living/carbon/Xenomorph/Sentinel, /mob/living/carbon/Xenomorph/Defender)
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_INNATE_HEALING
+	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_INNATE_HEALING|CASTE_DECAY_PROOF
 
 /mob/living/carbon/Xenomorph/Larva
 	caste_base_type = /mob/living/carbon/Xenomorph/Larva
@@ -60,15 +60,14 @@
 	caste_base_type = /mob/living/carbon/Xenomorph/Larva/predalien
 
 /mob/living/carbon/Xenomorph/Larva/UnarmedAttack(atom/A)
-	a_intent = "help" //Forces help intent for all interactions.
+	a_intent = INTENT_HELP //Forces help intent for all interactions.
 	. = ..()
 
 /mob/living/carbon/Xenomorph/Larva/Stat()
-	if (!..())
-		return 0
+	. = ..()
 
-	stat(null, "Progress: [amount_grown]/[max_grown]")
-	return 1
+	if(statpanel("Stats"))
+		stat(null, "Progress: [amount_grown]/[max_grown]")
 
 
 //Larva Progression.. Most of this stuff is obsolete.

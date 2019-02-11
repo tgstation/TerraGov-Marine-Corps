@@ -18,9 +18,9 @@
 	var/construction_time=100
 	matter = list("metal" = 700, "glass" = 50)
 
-	suicide_act(mob/user)
-		viewers(user) << "\red <b>[user] is licking the electrodes of the [src.name]! It looks like \he's trying to commit suicide.</b>"
-		return (FIRELOSS)
+/obj/item/cell/suicide_act(mob/user)
+	user.visible_message("<span class='danger'>[user] is licking the electrodes of the [src.name]! It looks like [user.p_theyre()] trying to commit suicide.</span>")
+	return (FIRELOSS)
 
 /obj/item/cell/crap
 	name = "\improper Nanotrasen brand rechargable AA battery"

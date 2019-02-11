@@ -66,22 +66,25 @@ var/global/datum/authority/branch/role/RoleAuthority
 	for(var/i in roles_all) //Setting up our roles.
 		J = new i
 
-		if(!J.title) //In case you forget to subtract one of those variable holder jobs
-			continue
-
 		roles_by_path[J.type] = J
 
 
 		if(J.flags_startup_parameters & ROLE_ADD_TO_MODE)
-			roles_for_mode[J.title] = J
+			if(J.title)
+				roles_for_mode[J.title] = J
 
 		if(J.flags_startup_parameters & ROLE_ADD_TO_DEFAULT)
 			if(J.title)
 				roles_by_name[J.title] = J
 				roles_by_name_paths[J.type] = J
 			if(J.equipment)
-				roles_by_equipment[J.title] = J
-				roles_by_equipment_paths[J.type] = J
+				if(J.title)
+					roles_by_equipment[J.title] = J
+					roles_by_equipment_paths[J.type] = J
+				else if(J.disp_title)
+					roles_by_equipment[J.disp_title] = J
+					roles_by_equipment_paths[J.type] = J
+				
 
 
 /*
@@ -182,7 +185,7 @@ sorts them out by their department.
 	unassigned_players = new
 	var/mob/new_player/M
 
-	for(var/i in player_list) //Get all players who are ready.
+	for(var/i in GLOB.player_list) //Get all players who are ready.
 		M = i
 		if(istype(M) && M.ready && M.mind && !M.mind.assigned_role)
 			unassigned_players += M
@@ -209,8 +212,8 @@ sorts them out by their department.
 		unassigned_players -= M
 
 	if(length(unassigned_players))
-		log_game("ERROR: unassigned_players still has players left. Length: [length(unassigned_players)].")
-		message_admins("ERROR: unassigned_players still has players left. Length: [length(unassigned_players)].")
+		log_game("ERROR: There are still [length(unassigned_players)] unassigned players.")
+		message_admins("ERROR: There are still [length(unassigned_players)] unassigned players.")
 
 	unassigned_players = null
 
@@ -278,8 +281,8 @@ sorts them out by their department.
 		else if(assign_role(M, roles_by_name["Squad Marine"]))
 			return roles_to_iterate
 		else
-			log_game("ERROR: Failed to assign random role to [M].")
-			message_admins("ERROR: Failed to assign random role to [M].")
+			log_game("ERROR: Failed to assign random role to [key_name(M)].")
+			message_admins("ERROR: Failed to assign random role to [ADMIN_TPMONTY(M)].")
 			return roles_to_iterate
 	
 
@@ -319,7 +322,7 @@ sorts them out by their department.
 /datum/authority/branch/role/proc/reset_roles()
 	var/mob/new_player/M
 	var/i
-	for(i in player_list)
+	for(i in GLOB.player_list)
 		M = i
 		if(istype(M) && M.mind)
 			M.mind.assigned_role = null
@@ -336,21 +339,14 @@ sorts them out by their department.
 	if(late_join) //If they late joined, we put them in cryo.
 		M.loc = late_join
 	else
-		var/i
-		var/obj/effect/landmark/L //To iterate.
-		var/obj/effect/landmark/S //Starting mark.
-		for(i in landmarks_list)
-			L = i
-			if(L.name == J.title && !locate(/mob/living) in L.loc)
-				S = L
-				break
-		if(!S)
-			S = locate("start*[J.title]") //Converts old spawns into new ones.
-		if(istype(S) && istype(S.loc, /turf))
-			M.loc = S.loc
+		var/turf/T
+		if(GLOB.marine_spawns_by_job[J.type]?.len)
+			T = pick(GLOB.marine_spawns_by_job[J.type])
+		if(isturf(T))
+			M.forceMove(T)
 		else
-			log_game("ERROR: No spawn location found for player [M], job [J].")
-			message_admins("ERROR: No spawn location found for player [M], job [J].")
+			log_game("ERROR: No spawn location found for player [key_name(M)], job [J].")
+			message_admins("ERROR: No spawn location found for player [ADMIN_TPMONTY(M)], job [J].")
 
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
@@ -525,6 +521,6 @@ sorts them out by their department.
 						
 			return FALSE
 
-	log_game("ERROR: Could not assign squad for [M].")
-	message_admins("ERROR: Could not assign squad for [M].")
+	log_game("ERROR: Could not assign squad for [key_name(M)].")
+	message_admins("ERROR: Could not assign squad for [ADMIN_TPMONTY(M)].")
 	return FALSE

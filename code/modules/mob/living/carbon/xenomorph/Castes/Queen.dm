@@ -46,6 +46,10 @@
 	// *** Queen Abilities *** //
 	queen_leader_limit = 1 //Amount of leaders allowed
 
+/datum/xeno_caste/queen/handle_decay(mob/living/carbon/Xenomorph/X)
+	if(prob(20+abs(3*upgrade)))
+		X.use_plasma(min(rand(1,2), X.plasma_stored))
+
 /datum/xeno_caste/queen/mature
 	caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs"
 
@@ -166,7 +170,7 @@
 			if(hive.living_xeno_queen)
 				if(hive.living_xeno_queen.hivenumber == hive.hivenumber)
 					continue
-			for(var/mob/living/carbon/Xenomorph/Queen/Q in living_mob_list)
+			for(var/mob/living/carbon/Xenomorph/Queen/Q in GLOB.alive_xeno_list)
 				if(Q.hivenumber == hive.hivenumber)
 					hive.living_xeno_queen = Q
 					xeno_message("<span class='xenoannounce'>A new Queen has risen to lead the Hive! Rejoice!</span>",3,hive.hivenumber)
@@ -214,11 +218,12 @@
 		/datum/action/xeno_action/grow_ovipositor,
 		/datum/action/xeno_action/activable/screech,
 		/datum/action/xeno_action/activable/corrosive_acid,
-		/datum/action/xeno_action/emit_pheromones,
-		/datum/action/xeno_action/activable/gut,
+		// /datum/action/xeno_action/activable/gut, We're taking this out for now.
 		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/shift_spits,
 		/datum/action/xeno_action/activable/xeno_spit,
+		/datum/action/xeno_action/activable/larva_growth,
+		/datum/action/xeno_action/toggle_pheromones
 		)
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/claw_toggle,
@@ -238,8 +243,8 @@
 /mob/living/carbon/Xenomorph/Queen/Zeta
 	hivenumber = XENO_HIVE_ZETA
 
-/mob/living/carbon/Xenomorph/Queen/New()
-	..()
+/mob/living/carbon/Xenomorph/Queen/Initialize()
+	. = ..()
 	if(z != ADMIN_Z_LEVEL)//so admins can safely spawn Queens in Thunderdome for tests.
 		if(hivenumber && hivenumber <= hive_datum.len)
 			var/datum/hive_status/hive = hive_datum[hivenumber]
@@ -342,7 +347,7 @@
 /mob/living/carbon/Xenomorph/Queen/proc/delimb(var/mob/living/carbon/human/H, var/datum/limb/O)
 	if (prob(20))
 		O = H.get_limb(check_zone(zone_selected))
-		if (O.body_part != UPPER_TORSO && O.body_part != LOWER_TORSO && O.body_part != HEAD) //Only limbs.
+		if (O.body_part != CHEST && O.body_part != GROIN && O.body_part != HEAD) //Only limbs.
 			visible_message("<span class='danger'>The limb is sliced clean off!</span>","<span class='danger'>You slice off a limb!</span>")
 			O.droplimb()
 			return 1
@@ -405,13 +410,12 @@
 				to_chat(X, "[queensWord]")
 
 	spawn(0)
-		for(var/mob/dead/observer/G in player_list)
+		for(var/mob/dead/observer/G in GLOB.player_list)
 			G << sound(get_sfx("queen"),wait = 0,volume = 50)
 			to_chat(G, "[queensWord]")
 
-	log_admin("[key_name(src)] has created a Word of the Queen report:")
-	log_admin("[queensWord]")
-	message_admins("[key_name_admin(src)] has created a Word of the Queen report.", 1)
+	log_admin("[key_name(src)] has created a Word of the Queen report: [queensWord]")
+	message_admins("[ADMIN_TPMONTY(src)] has created a Word of the Queen report.")
 
 
 /mob/living/carbon/Xenomorph/proc/claw_toggle()
@@ -431,10 +435,9 @@
 		to_chat(src, "<span class='warning'>You must wait a bit before you can toggle this again.</span>")
 		return
 
-	spawn(300)
-		pslash_delay = 0
+	addtimer(CALLBACK(src, .slash_toggle_delay), 300)
 
-	pslash_delay = 1
+	pslash_delay = TRUE
 
 	var/datum/hive_status/hive
 	if(hivenumber && hivenumber <= hive_datum.len)
@@ -455,6 +458,9 @@
 		to_chat(src, "<span class='xenonotice'>You forbid slashing entirely.</span>")
 		xeno_message("The Queen has <b>forbidden</b> the harming of hosts. You can no longer slash your enemies.")
 		hive.slashing_allowed = 0
+
+/mob/living/carbon/Xenomorph/proc/slash_toggle_delay()
+	pslash_delay = FALSE
 
 /mob/living/carbon/Xenomorph/Queen/proc/queen_screech()
 	if(!check_state())
@@ -478,14 +484,9 @@
 		if(FH.stat != DEAD)
 			FH.Die()
 
-	has_screeched = 1
+	has_screeched = TRUE
 	use_plasma(250)
-	spawn(500)
-		has_screeched = 0
-		to_chat(src, "<span class='warning'>You feel your throat muscles vibrate. You are ready to screech again.</span>")
-		for(var/Z in actions)
-			var/datum/action/A = Z
-			A.update_button_icon()
+	addtimer(CALLBACK(src, .screech_cooldown), 500)
 	playsound(loc, 'sound/voice/alien_queen_screech.ogg', 75, 0)
 	visible_message("<span class='xenohighdanger'>\The [src] emits an ear-splitting guttural roar!</span>")
 	round_statistics.queen_screech++
@@ -494,7 +495,7 @@
 
 	for(var/mob/M in view())
 		if(M && M.client)
-			if(isXeno(M))
+			if(isxeno(M))
 				shake_camera(M, 10, 1)
 			else
 				shake_camera(M, 30, 1) //50 deciseconds, SORRY 5 seconds was way too long. 3 seconds now
@@ -512,8 +513,13 @@
 			H.apply_damage(halloss_damage, HALLOSS)
 			if(!H.ear_deaf)
 				H.ear_deaf += stun_duration * 20  //Deafens them temporarily
-			spawn(31)
-				shake_camera(H, stun_duration * 10, 0.75) //Perception distorting effects of the psychic scream
+			//Perception distorting effects of the psychic scream
+			addtimer(CALLBACK(GLOBAL_PROC, /proc/shake_camera, H, stun_duration * 10, 0.75), 31)
+
+/mob/living/carbon/Xenomorph/Queen/proc/screech_cooldown()
+	has_screeched = FALSE
+	to_chat(src, "<span class='warning'>You feel your throat muscles vibrate. You are ready to screech again.</span>")
+	update_action_buttons()
 
 /mob/living/carbon/Xenomorph/Queen/proc/queen_gut(atom/A)
 
@@ -531,7 +537,7 @@
 	if(last_special > world.time)
 		return
 
-	if(isSynth(victim))
+	if(issynth(victim))
 		var/datum/limb/head/synthhead = victim.get_limb("head")
 		if(synthhead.status & LIMB_DESTROYED)
 			return
@@ -546,7 +552,7 @@
 				to_chat(src, "<span class='xenowarning'>The child may still hatch! Not yet!</span>")
 				return
 
-	if(isXeno(victim))
+	if(isxeno(victim))
 		var/mob/living/carbon/Xenomorph/xeno = victim
 		if(hivenumber == xeno.hivenumber)
 			to_chat(src, "<span class='warning'>You can't bring yourself to harm a fellow sister to this magnitude.</span>")
@@ -572,7 +578,7 @@
 		if(victim.loc != cur_loc)
 			return
 		visible_message("<span class='xenodanger'>\The [src] viciously smashes and wrenches \the [victim] apart!</span>", \
-		"<span class='xenodanger'>You suddenly unleash pure anger on \the [victim], instantly wrenching \him apart!</span>")
+		"<span class='xenodanger'>You suddenly unleash pure anger on \the [victim], instantly wrenching [victim.p_them()] apart!</span>")
 		emote("roar")
 		log_combat(victim, src, "gibbed")
 		victim.gib() //Splut
@@ -589,7 +595,6 @@
 		/datum/action/xeno_action/regurgitate,\
 		/datum/action/xeno_action/remove_eggsac,\
 		/datum/action/xeno_action/activable/screech,\
-		/datum/action/xeno_action/emit_pheromones,\
 		/datum/action/xeno_action/psychic_whisper,\
 		/datum/action/xeno_action/watch_xeno,\
 		/datum/action/xeno_action/toggle_queen_zoom,\
@@ -598,6 +603,7 @@
 		/datum/action/xeno_action/queen_give_plasma,\
 		/datum/action/xeno_action/queen_order,\
 		/datum/action/xeno_action/deevolve, \
+		/datum/action/xeno_action/toggle_pheromones, \
 		)
 
 	for(var/path in immobile_abilities)
@@ -649,11 +655,11 @@
 			/datum/action/xeno_action/grow_ovipositor,
 			/datum/action/xeno_action/activable/screech,
 			/datum/action/xeno_action/activable/corrosive_acid,
-			/datum/action/xeno_action/emit_pheromones,
-			/datum/action/xeno_action/activable/gut,
 			/datum/action/xeno_action/psychic_whisper,
-		  /datum/action/xeno_action/shift_spits,
+		 	/datum/action/xeno_action/shift_spits,
 			/datum/action/xeno_action/activable/xeno_spit,
+			/datum/action/xeno_action/activable/larva_growth,
+			/datum/action/xeno_action/toggle_pheromones
 			)
 
 		for(var/path in mobile_abilities)
@@ -689,7 +695,7 @@
 			client.perspective = EYE_PERSPECTIVE
 			client.eye = observed_xeno
 		else
-			if (istype(A, /atom/movable))
+			if (ismovableatom(A))
 				client.perspective = EYE_PERSPECTIVE
 				client.eye = A
 			else
@@ -731,7 +737,7 @@
 			return
 		if(!ovipositor)
 			return
-		var/mob/living/carbon/Xenomorph/target = locate(href_list["queentrack"]) in living_mob_list
+		var/mob/living/carbon/Xenomorph/target = locate(href_list["queentrack"]) in GLOB.alive_xeno_list
 		if(!istype(target))
 			return
 		if(target.stat == DEAD || target.z == ADMIN_Z_LEVEL)
@@ -745,7 +751,7 @@
 		if(!check_state())
 			return
 		var/xeno_num = text2num(href_list["watch_xeno_number"])
-		for(var/mob/living/carbon/Xenomorph/X in living_mob_list)
+		for(var/mob/living/carbon/Xenomorph/X in GLOB.alive_xeno_list)
 			if(X.z != ADMIN_Z_LEVEL && X.nicknumber == xeno_num)
 				if(observed_xeno == X)
 					set_queen_overwatch(X, TRUE)

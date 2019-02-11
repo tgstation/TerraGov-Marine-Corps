@@ -1,13 +1,19 @@
-## Server name: This appears at the top of the screen in-game. In this case it will read "tgstation: station_name" where station_name is the randomly generated name of the station for the round. Remove the # infront of SERVERNAME and replace 'tgstation' with the name of your choice
-# SERVERNAME spacestation13
+## Check code/controllers/configuration/entries for detailed explanations, all possible config options and some defaults.
+## Anything after a "#" is commented out, uncomment things to enable them, comment to disable them.
 
-## Alert levels
-ALERT_GREEN All threats to the station have passed. Security may not have weapons visible, privacy laws are once again fully enforced.
-ALERT_BLUE_UPTO The station has received reliable information about possible hostile activity on the station. Security staff may have weapons visible, random searches are permitted.
-ALERT_BLUE_DOWNTO The immediate threat has passed. Security may no longer have weapons drawn at all times, but may continue to have them visible. Random searches are still allowed.
-ALERT_RED_UPTO There is an immediate serious threat to the station. Security may have weapons unholstered at all times. Random searches are allowed and advised.
-ALERT_RED_DOWNTO The self-destruct mechanism has been deactivated, there is still however an immediate serious threat to the station. Security may have weapons unholstered at all times, random searches are allowed and advised.
-ALERT_DELTA The station's self-destruct mechanism has been engaged. All crew are instructed to obey all instructions given by heads of staff. Any violations of these orders can be punished by death. This is not a drill.
+$include dbconfig.txt
+
+## Server name: This appears at the top of the screen in-game.
+#SERVER_NAME TerraGov Marine Corps
+
+## Hosted by name for unix platforms
+#HOSTEDBY yournamehere
+
+## Password to make your server appear on the hub.
+HUBPASSWORD kMZy3U5jJHSiBQjr
+
+## Optional URL for faster resource downloading.
+#RESOURCE_URL url
 
 ## Add a # infront of this if you want to use the SQL based admin system, the legacy system uses admins.txt. You need to set up your database to use the SQL based system.
 ADMIN_LEGACY_SYSTEM
@@ -15,294 +21,253 @@ ADMIN_LEGACY_SYSTEM
 ## Add a # infront of this if you want to use the SQL based banning system. The legacy systems use the files in the data folder. You need to set up your database to use the SQL based system.
 BAN_LEGACY_SYSTEM
 
-## Add a # here if you wish to use the setup where jobs have more access. This is intended for servers with low populations - where there are not enough players to fill all roles, so players need to do more than just one job. Also for servers where they don't want people to hide in their own departments.
-JOBS_HAVE_MINIMAL_ACCESS
+LOCALHOST_RANK
 
-## Unhash this entry to have certain jobs require your account to be at least a certain number of days old to select. You can configure the exact age requirement for different jobs by editing
-## the minimal_player_age variable in the files in folder /code/game/jobs/job/.. for the job you want to edit. Set minimal_player_age to 0 to disable age requirement for that job.
-## REQUIRES the database set up to work. Keep it hashed if you don't have a database set up.
-## NOTE: If you have just set-up the database keep this DISABLED, as player age is determined from the first time they connect to the server with the database up. If you just set it up, it means
-## you have noone older than 0 days, since noone has been logged yet. Only turn this on once you have had the database up for 30 days.
-#USE_AGE_RESTRICTION_FOR_JOBS
-
-## Unhash this to use recursive explosions, keep it hashed to use circle explosions. Recursive explosions react to walls, airlocks and blast doors, making them look a lot cooler than the boring old circular explosions. They require more CPU and are (as of january 2013) experimental
-#USE_RECURSIVE_EXPLOSIONS
-
-## Unhash this to permit husking from flames.
-#HUSKING_ON
-
-## log OOC channel
-LOG_OOC
-
-## log client Say
-LOG_SAY
-
-## log client Hivemind
-LOG_HIVEMIND
-
-## log admin actions
-LOG_ADMIN
-
-## log admin chat
-LOG_ADMINCHAT
-
-## log client access (logon/logoff)
-LOG_ACCESS
-
-## log game actions (start of round, results, etc.)
-LOG_GAME
-
-## log player votes
-LOG_VOTE
-
-## log client Whisper
-LOG_WHISPER
-
-## log emotes
-LOG_EMOTE
-
-## log attack messages
-LOG_ATTACK
-
-## log pda messages
-LOG_PDA
-
-## log all Topic() calls (for use by coders in tracking down Topic issues)
-LOG_HREFS
-
-## log world/Topic() calls
-LOG_WORLD_TOPIC
-
-## log world.log and runtime errors to a file
-LOG_RUNTIME
-
-## log admin warning messages
-##LOG_ADMINWARN  ## Also duplicates a bunch of other messages.
-
-## sql switching
-# SQL_ENABLED
-
-## disconnect players who did nothing during 10 minutes
-#KICK_INACTIVE
-
-##Show mods on staffwho
-SHOW_MODS
-
-##Show mentors on staffwho
-SHOW_MENTORS
-
-## Use Mentors instead of Moderators.  Mentors are designed with the idea that
-###they help in pushing new people to be better at roleplay.  If you uncomment
-###this it will reduce the rights that your mods have.
-#MENTORS
-
-
-## probablities for game modes chosen in "secret" and "random" modes
-##
-## default probablity is 1, increase to make that mode more likely to be picked
-## set to 0 to disable that mode
-PROBABILITY EXTENDED 1
-PROBABILITY MALFUNCTION 1
-PROBABILITY NUCLEAR 1
-PROBABILITY WIZARD 1
-PROBABILITY CHANGELING 1
-PROBABILITY CULT 1
-PROBABILITY EXTEND-A-TRAITORMONGOUS 6
-
-## Hash out to disable random events during the round.
-#ALLOW_RANDOM_EVENTS
-
-## if amount of traitors scales or not
-TRAITOR_SCALING
-
-## if objectives are disabled
-#OBJECTIVES_DISABLED
-
-## make ERT's be only called by admins
-ERT_ADMIN_ONLY
-
-## If security is prohibited from being most antagonists
-#PROTECT_ROLES_FROM_ANTAGONIST
-
-## Comment this out to stop admins being able to choose their personal ooccolor
-#ALLOW_ADMIN_OOCCOLOR
-
-## If metadata is supported
-# ALLOW_METADATA
-
-## allow players to initiate a restart vote
-ALLOW_VOTE_RESTART
-
-## allow players to initate a mode-change start
-#ALLOW_VOTE_MODE
-
-## min delay (deciseconds) between voting sessions (default 10 minutes)
-VOTE_DELAY 6000
-
-## time period (deciseconds) which voting session will last (default 1 minute)
-VOTE_PERIOD 600
-
-## autovote initial delay (deciseconds) before first automatic transfer vote call (default 180 minutes)
-VOTE_AUTOTRANSFER_INITIAL 99108000
-
-##autovote delay (deciseconds) before sequential automatic transfer votes are called (default 60 minutes)
-VOTE_AUTOTRANSFER_INTERVAL 99936000
-
-## Time left (seconds) before round start when automatic gamemote vote is called (default 100).
-VOTE_AUTOGAMEMODE_TIMELEFT 99999999
-
-## prevents dead players from voting or starting votes
-#NO_DEAD_VOTE
-
-## players' votes default to "No vote" (otherwise,  default to "No change")
-#DEFAULT_NO_VOTE
-
-## Allow ghosts to see antagonist through AntagHUD
-ALLOW_ANTAG_HUD
-
-## If ghosts use antagHUD they are no longer allowed to join the round.
-ANTAG_HUD_RESTRICTED
-
-## allow AI job
-ALLOW_AI
-
-
-## disable abandon mob
-NORESPAWN
-
-## disables calling del(src) on newmobs if they logout before spawnin in
-# DONT_DEL_NEWMOB
-
-## set a hosted by name for unix platforms
-HOSTEDBY yournamehere
-
-## Set to jobban "Guest-" accounts from Captain, HoS, HoP, CE, RD, CMO, Warden, Security, Detective, and AI positions.
-## Set to 1 to jobban them from those positions, set to 0 to allow them.
-GUEST_JOBBAN
-
-## Uncomment this to stop people connecting to your server without a registered ckey. (i.e. guest-* are all blocked from connecting)
-GUEST_BAN
-## Set to jobban everyone who's key is not listed in data/whitelist.txt from Captain, HoS, HoP, CE, RD, CMO, Warden, Security, Detective, and AI positions.
-## Uncomment to 1 to jobban, leave commented out to allow these positions for everyone (but see GUEST_JOBBAN above and regular jobbans)
-# USEWHITELIST
-
-## set a server location for world reboot. Don't include the byond://, just give the address and port.
-#SERVER server.net:port
-
-## forum address
 FORUMURL https://tgstation13.org/phpBB/viewforum.php?f=64
-
-## Wiki address
 WIKIURL https://tgstation13.org/wiki/TGMC
-
-## Rules address
 RULESURL https://tgstation13.org/wiki/TGMC:Rules
-
-## Chat address
-CHATURL https://discord.gg/2dFpfNE
-
-## Donation address
+DISCORDURL https://discord.gg/2dFpfNE
 DONATIONURL https://www.patreon.com/tgstation
-
-## Bug tracker address
-BUGTRACKERURL https://github.com/tgstation/TerraGov-Marine-Corps/issues
-
-## Ban appeals URL - usually for a forum or wherever people should go to contact your admins.
+GITHUBURL https://github.com/tgstation/TerraGov-Marine-Corps/
 BANAPPEALS https://tgstation13.org/phpBB/viewforum.php?f=70
 
-## In-game features
-## spawns a spellbook which gives object-type spells instead of verb-type spells for the wizard
-# FEATURE_OBJECT_SPELL_SYSTEM
+SHIPURL https://goo.gl/utUdpq
+LV624URL https://goo.gl/6tuwfg
+BIGREDURL https://goo.gl/TN7mmT
+ICECOLONYURL https://goo.gl/KYKNgJ
+PRISONSTATIONURL https://goo.gl/GXoxnA
+WHISKEYOUTPOSTURL https://goo.gl/ZwTS5X
 
-##Toggle for having jobs load up from the .txt
-# LOAD_JOBS_FROM_TXT
+## Logging
+LOG_OOC
+LOG_SAY
+LOG_HIVEMIND
+LOG_ADMIN
+LOG_ADMINCHAT
+LOG_ACCESS
+LOG_GAME
+LOG_VOTE
+LOG_WHISPER
+LOG_EMOTE
+LOG_ATTACK
+LOG_HREFS
+LOG_RUNTIME
 
-##Remove the # mark infront of this to forbid admins from posssessing the singularity.
-#FORBID_SINGULO_POSSESSION
+ALLOW_VOTE_RESTART
 
-## Remove the # to show a popup 'reply to' window to every non-admin that recieves an adminPM.
-## The intention is to make adminPMs more visible. (although I fnd popups annoying so this defaults to off)
-#POPUP_ADMIN_PM
+VOTE_DELAY 6000
 
-## Remove the # to allow special 'Easter-egg' events on special holidays such as seasonal holidays and stuff like 'Talk Like a Pirate Day' :3 YAARRR
-ALLOW_HOLIDAYS
-##Defines the ticklag for the world.  0.9 is the normal one, 0.5 is smoother.
+VOTE_PERIOD 600
+
+VOTE_AUTOGAMEMODE_TIMELEFT 99999999
+
+GUEST_JOBBAN
+
 TICKLAG 0.5
 
-## Defines if Tick Compensation is used.  It results in a minor slowdown of movement of all mobs, but attempts to result in a level movement speed across all ticks.  Recommended if tickrate is lowered.
 TICKCOMP 0
 
-## Whether the server will talk to other processes through socket_talk
-SOCKET_TALK 0
+ALLOW_METADATA
 
-## Uncomment this to ban use of ToR
-#TOR_BAN
-
-## Comment this out to disable automuting
-#AUTOMUTE_ON
-
-## How long the delay is before the Away Mission gate opens. Default is half an hour.
-GATEWAY_DELAY 18000
-
-## Remove the # to give assistants maint access.
-#ASSISTANT_MAINT
-
-## Remove the # to make rounds which end instantly (Rev, Wizard, Malf) to continue until the shuttle is called or the station is nuked.
-## Malf and Rev will let the shuttle be called when the antags/protags are dead.
-#CONTINUOUS_ROUNDS
-
-## Uncomment to restrict non-admins from using humanoid alien races
 USEALIENWHITELIST
 
-## Comment this to unrestrict the number of alien players allowed in the round. The number represents the number of alien players for every human player.
-#ALIEN_PLAYER_RATIO 0.2
-##Remove the # to let ghosts spin chairs
-#GHOST_INTERACTION
+INVOKE_YOUTUBEDL youtube-dl
 
-## Password used for authorizing ircbot and other external tools.
-#COMMS_PASSWORD
 
-## Uncomment to enable sending data to the IRC bot.
-#USE_IRC_BOT
+##################
+## Game Options ##
+##################
 
-## Host where the IRC bot is hosted.  Port 45678 needs to be open.
-#IRC_BOT_HOST localhost
+XENO_COEFFICIENT 5
+SURVIVOR_COEFFICIENT 15
+LATEJOIN_LARVA_REQUIRED_NUM 6
 
-## IRC channel to send information to.  Leave blank to disable.
-#MAIN_IRC #main
+ALLOW_AI
 
-## IRC channel to send adminhelps to.  Leave blank to disable adminhelps-to-irc.
-#ADMIN_IRC #admin
+JOBS_HAVE_MINIMAL_ACCESS
 
-## Path to the python2 executable on the system.  Leave blank for default.
-## Default is "python" on Windows, "/usr/bin/env python2" on UNIX.
-#PYTHON_PATH
+HEALTH_THRESHOLD_CRIT -50
+HEALTH_THRESHOLD_DEAD -100
 
-## Uncomment to use the C library nudge instead of the python script.
-## This helps security and stability on Linux, but you need to compile the library first.
-#USE_LIB_NUDGE
+BONES_CAN_BREAK 1
+LIMBS_CAN_BREAK 1
 
-## Uncommen to allow ghosts to write in blood during Cult rounds.
-ALLOW_CULT_GHOSTWRITER
+ORGAN_HEALTH_MULTIPLIER 1
+ORGAN_REGENERATION_MULTIPLIER 1
 
-## Sets the minimum number of cultists needed for ghosts to write in blood.
-REQ_CULT_GHOSTWRITER 6
+REVIVAL_BRAIN_LIFE -1
 
-## Uncomment to use overmap system for zlevel travel
-#USE_OVERMAP
+RUN_DELAY 1
+WALK_DELAY 1
 
-## Uncomment to make proccall require R_ADMIN instead of R_DEBUG
-## designed for environments where you have testers but don't want them
-## able to use the more powerful debug options.
-#DEBUG_PARANOID
+HUMAN_DELAY 0
+ROBOT_DELAY 0
+MONKEY_DELAY 0
+ANIMAL_DELAY 0
 
-## Automute the OOC channel. OOC mutes itself at round-start and unmutes itself at round-end.
-#AUTOOOCMUTE
+REVIVE_GRACE_PERIOD 3000
 
-# MAP URLS
-ALMAYER_URL https://affectedarc07.github.io/SS13WebMap/TGMC/Almayer/index.html
-BIGRED_URL https://affectedarc07.github.io/SS13WebMap/TGMC/BigRed/index.html
-ICECOLONY_URL https://affectedarc07.github.io/SS13WebMap/TGMC/IceColony/index.html
-LV624_URL https://affectedarc07.github.io/SS13WebMap/TGMC/LV624/index.html
-PRISONSTATION_URL https://affectedarc07.github.io/SS13WebMap/TGMC/PrisonStation/index.html
-WHISKEYOUTPOST_URL https://affectedarc07.github.io/SS13WebMap/TGMC/WhiskeyOutpost/index.html
+#####################
+## COMBAT DEFINES ###
+#####################
+
+PROJ_BASE_ACCURACY_MULT 0.01
+PROJ_BASE_DAMAGE_MULT 0.01
+
+PROJ_VARIANCE_HIGH 105
+PROJ_VARIANCE_LOW 95
+
+CRITICAL_CHANCE_LOW 5 
+CRITICAL_CHANCE_HIGH 10
+
+BASE_ARMOR_RESIST_LOW 1.0 
+BASE_ARMOR_RESIST_HIGH 2.0
+
+XENO_ARMOR_RESIST_LOW 0.5
+XENO_ARMOR_RESIST_HIGH 1.5
+
+MIN_HIT_ACCURACY 5
+LOW_HIT_ACCURACY 10
+MED_HIT_ACCURACY 15
+HMED_HIT_ACCURACY 20
+HIGH_HIT_ACCURACY 30
+MAX_HIT_ACCURACY 40
+
+BASE_HIT_ACCURACY_MULT 1
+MIN_HIT_ACCURACY_MULT 0.05
+LOW_HIT_ACCURACY_MULT 0.10
+MLOW_HIT_ACCURACY_MULT 0.15
+MED_HIT_ACCURACY_MULT 0.20
+HMED_HIT_ACCURACY_MULT 0.30
+HIGH_HIT_ACCURACY_MULT 0.40
+MAX_HIT_ACCURACY_MULT 0.50
+
+BASE_HIT_DAMAGE 10
+MIN_HIT_DAMAGE 15
+LLOW_HIT_DAMAGE 20
+MLOW_HIT_DAMAGE 25
+LOW_HIT_DAMAGE 30
+HLOW_HIT_DAMAGE 35
+LMED_HIT_DAMAGE 40
+LMMED_HIT_DAMAGE 45
+MED_HIT_DAMAGE 50
+HMED_HIT_DAMAGE 55
+HIGH_HIT_DAMAGE 70
+MHIGH_HIT_DAMAGE 80
+MAX_HIT_DAMAGE 90
+SUPER_HIT_DAMAGE 120
+ULTRA_HIT_DAMAGE 150
+APROCKET_HIT_DAMAGE 250
+LTB_HIT_DAMAGE 300
+
+BASE_HIT_DAMAGE_MULT 1
+MIN_HIT_DAMAGE_MULT 0.05
+LOW_HIT_DAMAGE_MULT 0.10
+MED_HIT_DAMAGE_MULT 0.20
+TACSHOTTIE_DAMAGE_MULT 0.25
+HMED_HIT_DAMAGE_MULT 0.30
+HIGH_HIT_DAMAGE_MULT 0.40
+MAX_HIT_DAMAGE_MULT 0.50
+
+REG_DAMAGE_FALLOFF 1
+SMG_DAMAGE_FALLOFF 1.5
+BUCKSHOT_DAMAGE_FALLOFF 5
+EXTRA_DAMAGE_FALLOFF 10
+
+BASE_DAMAGE_FALLOFF_MULT 1
+MIN_DAMAGE_FALLOFF_MULT 0.1
+LOW_DAMAGE_FALLOFF_MULT 0.25
+LMED_DAMAGE_FALLOFF_MULT 0.4
+MED_DAMAGE_FALLOFF_MULT 0.5
+HMED_DAMAGE_FALLOFF_MULT 0.75
+HIGH_DAMAGE_FALLOFF_MULT 1.5
+MAX_DAMAGE_FALLOFF_MULT 2
+
+MIN_BURST_VALUE 1
+LOW_BURST_VALUE 2
+MED_BURST_VALUE 3
+HIGH_BURST_VALUE 4
+MHIGH_BURST_VALUE 5
+MAX_BURST_VALUE 6
+MINIGUN_BURST_VALUE 10
+
+NO_FIRE_DELAY 0.1
+MIN_FIRE_DELAY 1
+VLOW_FIRE_DELAY 1.5
+MLOW_FIRE_DELAY 2
+LOW_FIRE_DELAY 3
+MED_FIRE_DELAY 4
+HIGH_FIRE_DELAY 5
+MHIGH_FIRE_DELAY 6
+MAX_FIRE_DELAY 7
+TACSHOTTIE_FIRE_DELAY 15
+SCOUTSHOTTIE_FIRE_DELAY 20
+
+MIN_SCATTER_VALUE 5
+MLOW_SCATTER_VALUE 10
+LOW_SCATTER_VALUE 15
+MED_SCATTER_VALUE 20
+HIGH_SCATTER_VALUE 25
+THIRTY_SCATTER_VALUE 30
+MHIGH_SCATTER_VALUE 35
+MAX_SCATTER_VALUE 40
+
+MIN_RECOIL_VALUE 1
+LOW_RECOIL_VALUE 2
+MED_RECOIL_VALUE 3
+HIGH_RECOIL_VALUE 4
+MAX_RECOIL_VALUE 5
+
+MIN_SHRAPNEL_CHANCE 5
+LOW_SHRAPNEL_CHANCE 10
+MLOW_SHRAPNEL_CHANCE 20
+MED_SHRAPNEL_CHANCE 25
+HIGH_SHRAPNEL_CHANCE 45
+MAX_SHRAPNEL_CHANCE 75
+
+MIN_SHELL_RANGE 3
+CLOSE_SHELL_RANGE 5
+SCREEN_SHELL_RANGE 7
+NEAR_SHELL_RANGE 10
+SHORT_SHELL_RANGE 15
+NORM_SHELL_RANGE 20
+LNORM_SHELL_RANGE 25
+LONG_SHELL_RANGE 30
+VLONG_SHELL_RANGE 35
+MAX_SHELL_RANGE 40
+
+SLOW_SHELL_SPEED 1
+REG_SHELL_SPEED 2
+FAST_SHELL_SPEED 3
+SUPER_SHELL_SPEED 4
+ULTRA_SHELL_SPEED 5
+
+MIN_ARMOR_PENETRATION 5
+MLOW_ARMOR_PENETRATION 10
+LOW_ARMOR_PENETRATION 20
+LMED_ARMOR_PENETRATION 25
+MED_ARMOR_PENETRATION 30
+HMED_ARMOR_PENETRATION 40
+HIGH_ARMOR_PENETRATION 50
+MHIGH_ARMOR_PENETRATION 60
+VHIGH_ARMOR_PENETRATION 70
+MAX_ARMOR_PENETRATION 80
+APROCKET_ARMOR_PENETRATION 150
+LTB_ARMOR_PENETRATION 200
+
+MIN_PROJ_EXTRA 1
+LOW_PROJ_EXTRA 2
+MED_PROJ_EXTRA 3
+HMED_PROJ_EXTRA 4
+HIGH_PROJ_EXTRA 5
+MHIGH_PROJ_EXTRA 6
+VHIGH_PROJ_EXTRA 7
+MAX_PROJ_EXTRA 8
+
+MIN_PROJ_VARIANCE 1
+LOW_PROJ_VARIANCE 3
+MLOW_PROJ_VARIANCE 5
+MED_PROJ_VARIANCE 7
+HMED_PROJ_VARIANCE 8
+HIGH_PROJ_VARIANCE 9
+MAX_PROJ_VARIANCE 10

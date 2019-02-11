@@ -17,7 +17,7 @@
 
 	health = species.total_health - oxy_l - tox_l - clone_l - total_burn - total_brute
 
-	if(config.husking_on && ((species.total_health - total_burn) < config.health_threshold_dead * 4))
+	if(CONFIG_GET(flag/husking_on) && ((species.total_health - total_burn) < CONFIG_GET(number/health_threshold_dead) * 4))
 		ChangeToHusk()
 
 
@@ -27,14 +27,15 @@
 
 
 
-/mob/living/carbon/human/adjustBrainLoss(var/amount)
+/mob/living/carbon/human/adjustBrainLoss(amount, silent = FALSE)
 
-	if(status_flags & GODMODE)	return 0	//godmode
+	if(status_flags & GODMODE)
+		return FALSE	//godmode
 
-	if(species && species.has_organ["brain"])
+	if(species?.has_organ["brain"])
 		var/datum/internal_organ/brain/sponge = internal_organs_by_name["brain"]
 		if(sponge)
-			sponge.take_damage(amount)
+			sponge.take_damage(amount, silent)
 			sponge.damage = CLAMP(sponge.damage, 0, maxHealth*2)
 			brainloss = sponge.damage
 		else
@@ -42,11 +43,12 @@
 	else
 		brainloss = 0
 
-/mob/living/carbon/human/setBrainLoss(var/amount)
+/mob/living/carbon/human/setBrainLoss(amount)
 
-	if(status_flags & GODMODE)	return 0	//godmode
+	if(status_flags & GODMODE)
+		return FALSE	//godmode
 
-	if(species && species.has_organ["brain"])
+	if(species?.has_organ["brain"])
 		var/datum/internal_organ/brain/sponge = internal_organs_by_name["brain"]
 		if(sponge)
 			sponge.damage = CLAMP(amount, 0, maxHealth*2)
@@ -58,14 +60,15 @@
 
 /mob/living/carbon/human/getBrainLoss()
 
-	if(status_flags & GODMODE)	return 0	//godmode
+	if(status_flags & GODMODE)
+		return FALSE	//godmode
 
-	if(species && species.has_organ["brain"])
+	if(species?.has_organ["brain"])
 		var/datum/internal_organ/brain/sponge = internal_organs_by_name["brain"]
-		if(istype(sponge)) //Make sure they actually have a brain
+		if(sponge) //Make sure they actually have a brain
 			brainloss = min(sponge.damage,maxHealth*2)
 		else
-			brainloss = 50 //No brain!
+			brainloss = 200 //No brain!
 	else
 		brainloss = 0
 	return brainloss

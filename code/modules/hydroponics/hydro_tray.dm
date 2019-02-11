@@ -460,7 +460,7 @@
 	pestlevel = 0
 	sampled = 0
 	update_icon()
-	visible_message("\blue [src] has been overtaken by [seed.display_name].")
+	visible_message("<span class='notice'> [src] has been overtaken by [seed.display_name].</span>")
 
 	return
 
@@ -517,7 +517,7 @@
 	weedlevel = 0
 
 	update_icon()
-	visible_message("\red The \blue [previous_plant] \red has suddenly mutated into \blue [seed.display_name]!")
+	visible_message("<span class='warning'> The <span class='notice'> [previous_plant] <span class='warning'> has suddenly mutated into <span class='notice'> [seed.display_name]!</span>")
 
 	return
 
@@ -526,7 +526,7 @@
 	if (O.is_open_container())
 		return 0
 
-	if(istype(O, /obj/item/tool/wirecutters) || istype(O, /obj/item/tool/surgery/scalpel))
+	if(iswirecutter(O) || istype(O, /obj/item/tool/surgery/scalpel))
 
 		if(!seed)
 			to_chat(user, "There is nothing to take a sample from in \the [src].")
@@ -611,16 +611,16 @@
 			update_icon()
 
 		else
-			to_chat(user, "\red \The [src] already has seeds in it!")
+			to_chat(user, "<span class='warning'>\The [src] already has seeds in it!</span>")
 
 	else if (istype(O, /obj/item/tool/minihoe))  // The minihoe
 
 		if(weedlevel > 0)
-			user.visible_message("\red [user] starts uprooting the weeds.", "\red You remove the weeds from the [src].")
+			user.visible_message("<span class='warning'> [user] starts uprooting the weeds.</span>", "<span class='warning'> You remove the weeds from the [src].</span>")
 			weedlevel = 0
 			update_icon()
 		else
-			to_chat(user, "\red This plot is completely devoid of weeds. It doesn't need uprooting.")
+			to_chat(user, "<span class='warning'>This plot is completely devoid of weeds. It doesn't need uprooting.</span>")
 
 	else if (istype(O, /obj/item/storage/bag/plants))
 
@@ -646,7 +646,7 @@
 		check_level_sanity()
 		update_icon()
 
-	else if(istype(O, /obj/item/tool/wrench))
+	else if(iswrench(O))
 
 		//If there's a connector here, the portable_atmospherics setup can handle it.
 		if(locate(/obj/machinery/atmospherics/portables_connector/) in loc)
@@ -659,7 +659,7 @@
 	else if(istype(O, /obj/item/frame/apiary))
 
 		if(seed)
-			to_chat(user, "\red [src] is already occupied!")
+			to_chat(user, "<span class='warning'>[src] is already occupied!</span>")
 		else
 			user.drop_held_item()
 			qdel(O)
@@ -691,17 +691,17 @@
 
 	else
 		if(seed && !dead)
-			to_chat(usr, "[src] has \blue [seed.display_name] \black planted.")
+			to_chat(usr, "[src] has <span class='notice'> [seed.display_name] \black planted.</span>")
 			if(health <= (seed.endurance / 2))
-				to_chat(usr, "The plant looks \red unhealthy.")
+				to_chat(usr, "The plant looks <span class='warning'> unhealthy.</span>")
 		else
 			to_chat(usr, "[src] is empty.")
 		to_chat(usr, "Water: [round(waterlevel,0.1)]/100")
 		to_chat(usr, "Nutrient: [round(nutrilevel,0.1)]/10")
 		if(weedlevel >= 5)
-			to_chat(usr, "[src] is \red filled with weeds!")
+			to_chat(usr, "[src] is <span class='warning'> filled with weeds!</span>")
 		if(pestlevel >= 5)
-			to_chat(usr, "[src] is \red filled with tiny worms!")
+			to_chat(usr, "[src] is <span class='warning'> filled with tiny worms!</span>")
 
 		if(!istype(src,/obj/machinery/portable_atmospherics/hydroponics/soil))
 

@@ -8,7 +8,7 @@
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "pickaxe"
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	force = 15.0
 	throwforce = 4.0
 	item_state = "pickaxe"
@@ -92,7 +92,7 @@
 	icon_state = "plasma_cutter_off"
 	item_state = "plasmacutter"
 	w_class = 4.0
-	flags_equip_slot = SLOT_WAIST|SLOT_BACK
+	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_BACK
 	force = 40.0
 	damtype = "fire"
 	digspeed = 20 //Can slice though normal walls, all girders, or be used in reinforced wall deconstruction/ light thermite on fire
@@ -105,11 +105,11 @@
 	var/dirt_amt_per_dig = 5
 	var/obj/item/cell/high/cell //Starts with a high capacity energy cell.
 
-/obj/item/tool/pickaxe/plasmacutter/New()
-	..()
+/obj/item/tool/pickaxe/plasmacutter/Initialize()
+	. = ..()
 	cell = new /obj/item/cell/high(src)
 	powered = TRUE
-	update_plasmacutter()
+	update_plasmacutter(silent=TRUE)
 
 
 /obj/item/tool/pickaxe/plasmacutter/examine(mob/user)
@@ -227,13 +227,14 @@
 	update_plasmacutter()
 	..()
 
-/obj/item/tool/pickaxe/plasmacutter/proc/update_plasmacutter(mob/user) //Updates the icon and power on/off status of the plasma cutter
+/obj/item/tool/pickaxe/plasmacutter/proc/update_plasmacutter(mob/user, var/silent=FALSE) //Updates the icon and power on/off status of the plasma cutter
 	if(!cell || cell.charge <= 0 || powered == FALSE)
 		icon_state = "plasma_cutter_off"
 		if(powered)
-			playsound(loc, 'sound/weapons/saberoff.ogg', 25)
 			powered = FALSE
-			to_chat(user, "<span class='warning'>The plasma cutter abruptly shuts down due to a lack of power!</span>")
+			if(!silent)
+				playsound(loc, 'sound/weapons/saberoff.ogg', 25)
+				to_chat(user, "<span class='warning'>The plasma cutter abruptly shuts down due to a lack of power!</span>")
 		force = 5
 		damtype = "brute"
 		heat_source = 0
@@ -269,7 +270,7 @@
 
 
 /obj/item/tool/pickaxe/plasmacutter/attack_hand(mob/user)
-	if(user.get_inactive_hand() != src)
+	if(user.get_inactive_held_item() != src)
 		return ..()
 	if(!cell)
 		return ..()

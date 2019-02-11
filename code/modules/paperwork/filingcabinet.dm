@@ -27,7 +27,8 @@
 	icon_state = "tallcabinet"
 
 
-/obj/structure/filingcabinet/initialize()
+/obj/structure/filingcabinet/Initialize()
+	. = ..()
 	for(var/obj/item/I in loc)
 		if(istype(I, /obj/item/paper) || istype(I, /obj/item/folder) || istype(I, /obj/item/photo) || istype(I, /obj/item/paper_bundle))
 			I.loc = src
@@ -36,12 +37,12 @@
 /obj/structure/filingcabinet/attackby(obj/item/P as obj, mob/user as mob)
 	if(istype(P, /obj/item/paper) || istype(P, /obj/item/folder) || istype(P, /obj/item/photo) || istype(P, /obj/item/paper_bundle))
 		to_chat(user, "<span class='notice'>You put [P] in [src].</span>")
-		if(user.drop_inv_item_to_loc(P, src))
+		if(user.transferItemToLoc(P, src))
 			icon_state = "[initial(icon_state)]-open"
 			sleep(5)
 			icon_state = initial(icon_state)
 			updateUsrDialog()
-	else if(istype(P, /obj/item/tool/wrench))
+	else if(iswrench(P))
 		playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 		anchored = !anchored
 		to_chat(user, "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>")

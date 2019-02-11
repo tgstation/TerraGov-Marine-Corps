@@ -29,7 +29,7 @@
 		inv_box.icon_state =  slot_data["state"]
 
 		if(slot_data["dir"])
-			inv_box.dir = slot_data["dir"]
+			inv_box.setDir(slot_data["dir"])
 
 		if(slot_data["toggle"])
 			toggleable_inventory += inv_box
@@ -86,13 +86,13 @@
 
 		inv_box = new /obj/screen/inventory()
 		inv_box.name = "r_hand"
-		inv_box.dir = WEST
+		inv_box.setDir(WEST)
 		inv_box.icon = ui_style
 		inv_box.icon_state = "hand_inactive"
 		if(owner && !owner.hand)	//This being 0 or null means the right hand is in use
 			inv_box.icon_state = "hand_active"
 		inv_box.screen_loc = ui_rhand
-		inv_box.slot_id = WEAR_R_HAND
+		inv_box.slot_id = SLOT_R_HAND
 		inv_box.layer = HUD_LAYER
 		inv_box.color = ui_color
 		inv_box.alpha = ui_alpha
@@ -101,13 +101,13 @@
 
 		inv_box = new /obj/screen/inventory()
 		inv_box.name = "l_hand"
-		inv_box.dir = EAST
+		inv_box.setDir(EAST)
 		inv_box.icon = ui_style
 		inv_box.icon_state = "hand_inactive"
 		if(owner && owner.hand)	//This being 1 means the left hand is in use
 			inv_box.icon_state = "hand_active"
 		inv_box.screen_loc = ui_lhand
-		inv_box.slot_id = WEAR_L_HAND
+		inv_box.slot_id = SLOT_L_HAND
 		inv_box.layer = HUD_LAYER
 		inv_box.color = ui_color
 		inv_box.alpha = ui_alpha
@@ -116,7 +116,7 @@
 
 		using = new /obj/screen/inventory()
 		using.name = "hand"
-		using.dir = SOUTH
+		using.setDir(SOUTH)
 		using.icon = ui_style
 		using.icon_state = "hand1"
 		using.screen_loc = ui_swaphand1
@@ -127,7 +127,7 @@
 
 		using = new /obj/screen/inventory()
 		using.name = "hand"
-		using.dir = SOUTH
+		using.setDir(SOUTH)
 		using.icon = ui_style
 		using.icon_state = "hand2"
 		using.screen_loc = ui_swaphand2
@@ -281,11 +281,11 @@
 	f_style = "Shaved"
 	if(dna.species == "Human") //no more xenos losing ears/tentacles
 		h_style = pick("Bedhead", "Bedhead 2", "Bedhead 3")
-	undershirt = undershirt_t.Find("None")
+	undershirt = GLOB.undershirt_t.Find("None")
 	if(gender == MALE)
-		underwear = underwear_m.Find("None")
+		underwear = GLOB.underwear_m.Find("None")
 	else
-		underwear = underwear_f.Find("None")
+		underwear = GLOB.underwear_f.Find("None")
 	regenerate_icons()
 
 

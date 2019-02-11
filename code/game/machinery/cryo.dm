@@ -141,7 +141,7 @@
 		occupantData["stat"] = occupant.stat
 		occupantData["health"] = occupant.health
 		occupantData["maxHealth"] = occupant.maxHealth
-		occupantData["minHealth"] = config.health_threshold_dead
+		occupantData["minHealth"] = CONFIG_GET(number/health_threshold_dead)
 		occupantData["bruteLoss"] = occupant.getBruteLoss()
 		occupantData["oxyLoss"] = occupant.getOxyLoss()
 		occupantData["toxLoss"] = occupant.getToxLoss()
@@ -238,11 +238,12 @@
 		var/reagentnames = ""
 		for(var/datum/reagent/R in beaker.reagents.reagent_list)
 			reagentnames += ";[R.name]"
+			
+		log_admin("[key_name(usr)] put a [beaker] into [src], containing [reagentnames] at [AREACOORD(src.loc)].")
+		message_admins("[ADMIN_TPMONTY(usr)] put a [beaker] into [src], containing [reagentnames].")
 
-		message_admins("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) put a [beaker] into [src], containing [reagentnames] at ([src.loc.x],[src.loc.y],[src.loc.z]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[src.loc.x];Y=[src.loc.y];Z=[src.loc.z]'>JMP</a>).", 1)
-		log_admin("[key_name(usr)] put a [beaker] into [src], containing [reagentnames] at ([src.loc.x],[src.loc.y],[src.loc.z]).")
 
-		if(user.drop_inv_item_to_loc(W, src))
+		if(user.transferItemToLoc(W, src))
 			user.visible_message("[user] adds \a [W] to \the [src]!", "You add \a [W] to \the [src]!")
 		return
 
@@ -335,7 +336,8 @@
 	if (occupant.client)
 		occupant.client.eye = occupant.client.mob
 		occupant.client.perspective = MOB_PERSPECTIVE
-	occupant.loc = get_step(loc, SOUTH)	//this doesn't account for walls or anything, but i don't forsee that being a problem.
+	if(occupant in contents)
+		occupant.loc = get_step(loc, SOUTH)	//this doesn't account for walls or anything, but i don't forsee that being a problem.
 	if (occupant.bodytemperature < 261 && occupant.bodytemperature >= 70) //Patch by Aranclanos to stop people from taking burn damage after being ejected
 		occupant.bodytemperature = 261									  // Changed to 70 from 140 by Zuhayr due to reoccurance of bug.
 	if(auto_eject) //Turn off and announce if auto-ejected because patient is recovered or dead.
@@ -361,7 +363,7 @@
 
 /obj/machinery/cryo_cell/proc/turn_on()
 	if (stat & (NOPOWER|BROKEN))
-		to_chat(usr, "\red The cryo cell is not functioning.")
+		to_chat(usr, "<span class='warning'>The cryo cell is not functioning.</span>")
 		return
 	on = TRUE
 	start_processing()
@@ -369,16 +371,16 @@
 
 /obj/machinery/cryo_cell/proc/put_mob(mob/living/carbon/M as mob, put_in = null)
 	if (stat & (NOPOWER|BROKEN))
-		to_chat(usr, "\red The cryo cell is not functioning.")
+		to_chat(usr, "<span class='warning'>The cryo cell is not functioning.</span>")
 		return
 	if(!ishuman(M)) // stop fucking monkeys and xenos being put in.
 		to_chat(usr, "<span class='notice'>\ [src] is compatible with humanoid anatomies only!</span>")
 		return
 	if (occupant)
-		to_chat(usr, "\red <B>The cryo cell is already occupied!</B>")
+		to_chat(usr, "<span class='danger'>The cryo cell is already occupied!</span>")
 		return
 	if (M.abiotic())
-		to_chat(usr, "\red Subject may not have abiotic items on.")
+		to_chat(usr, "<span class='warning'>Subject may not have abiotic items on.</span>")
 		return
 	if(put_in) //Select an appropriate message
 		visible_message("<span class='notice'>[usr] puts [M] in [src].</span>", 3)
@@ -386,7 +388,7 @@
 		visible_message("<span class='notice'>[usr] climbs into [src].</span>", 3)
 	M.forceMove(src)
 	if(M.health > -100 && (M.health < 0 || M.sleeping))
-		to_chat(M, "\blue <b>You feel a cold liquid surround you. Your skin starts to freeze up.</b>")
+		to_chat(M, "<span class='boldnotice'>You feel a cold liquid surround you. Your skin starts to freeze up.</span>")
 	occupant = M
 	update_use_power(2)
 //	M.metabslow = 1
@@ -401,7 +403,7 @@
 	if(usr == occupant)//If the user is inside the tube...
 		if (usr.stat == 2)//and he's not dead....
 			return
-		to_chat(usr, "\blue Auto release sequence activated. You will be released when you have recovered.")
+		to_chat(usr, "<span class='notice'>Auto release sequence activated. You will be released when you have recovered.</span>")
 		auto_release = TRUE
 	else
 		if (usr.stat != 0)

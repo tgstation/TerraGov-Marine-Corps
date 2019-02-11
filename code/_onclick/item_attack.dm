@@ -77,7 +77,7 @@
 			if("fire")
 				if (!(COLD_RESISTANCE in M.mutations))
 					M.apply_damage(power,BURN)
-					to_chat(M, "\red It burns!")
+					to_chat(M, "<span class='warning'>It burns!</span>")
 		M.updatehealth()
 	else
 		var/mob/living/carbon/human/H = M

@@ -58,14 +58,19 @@
 			miss_chance = min(15*(distance-2), 0)
 
 		if (prob(miss_chance))
-			visible_message("\blue \The [O] misses [src] narrowly!", null, null, 5)
+			visible_message("<span class='notice'> \The [O] misses [src] narrowly!</span>", null, null, 5)
 			return
 
-		src.visible_message("\red [src] has been hit by [O].", null, null, 5)
+		src.visible_message("<span class='warning'> [src] has been hit by [O].</span>", null, null, 5)
 		var/armor = run_armor_check(null, "melee")
 
 		if(armor < 1)
 			apply_damage(throw_damage, dtype, null, armor, is_sharp(O), has_edge(O), O)
+
+		if(O.item_fire_stacks)
+			fire_stacks += O.item_fire_stacks
+		if(O.igniting)
+			IgniteMob()
 
 		O.throwing = 0		//it hit, so stop moving
 
@@ -74,8 +79,8 @@
 			var/client/assailant = M.client
 			if(assailant)
 				log_combat(M, src, "hit", O, "(thrown)")
-				if(!istype(src,/mob/living/simple_animal/mouse))
-					msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) was hit by a [O], thrown by [key_name(M)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[M]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[M.x];Y=[M.y];Z=[M.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[M]'>FLW</a>)")
+				if(!istype(src, /mob/living/simple_animal/mouse))
+					msg_admin_attack("[ADMIN_TPMONTY(usr)] was hit by a [O], thrown by [ADMIN_TPMONTY(M)].")
 
 		// Begin BS12 momentum-transfer code.
 		if(O.throw_source && speed >= 15)
@@ -83,7 +88,7 @@
 			var/momentum = speed/2
 			var/dir = get_dir(O.throw_source, src)
 
-			visible_message("\red [src] staggers under the impact!","\red You stagger under the impact!", null, 5)
+			visible_message("<span class='warning'> [src] staggers under the impact!</span>","<span class='warning'> You stagger under the impact!</span>", null, 5)
 			src.throw_at(get_edge_target_turf(src,dir),1,momentum)
 
 			if(!W || !src) return
@@ -133,14 +138,14 @@
 	. = ..()
 	if(.)
 		SetLuminosity(min(fire_stacks,5)) // light up xenos
-		var/obj/item/clothing/mask/facehugger/F = get_active_hand()
-		var/obj/item/clothing/mask/facehugger/G = get_inactive_hand()
+		var/obj/item/clothing/mask/facehugger/F = get_active_held_item()
+		var/obj/item/clothing/mask/facehugger/G = get_inactive_held_item()
 		if(istype(F))
 			F.Die()
-			drop_inv_item_on_ground(F)
+			dropItemToGround(F)
 		if(istype(G))
 			G.Die()
-			drop_inv_item_on_ground(G)
+			dropItemToGround(G)
 
 /mob/living/proc/ExtinguishMob()
 	if(on_fire)

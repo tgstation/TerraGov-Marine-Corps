@@ -57,7 +57,7 @@
 				if("Description")
 					var/str = trim(copytext(sanitize(input(usr,"Label text?","Set label","")),1,MAX_MESSAGE_LEN))
 					if(!str || !length(str))
-						to_chat(usr, "\red Invalid text.")
+						to_chat(usr, "<span class='warning'>Invalid text.</span>")
 						return
 					if(!examtext && !nameset)
 						examtext = str
@@ -166,7 +166,7 @@
 				if("Description")
 					var/str = trim(copytext(sanitize(input(usr,"Label text?","Set label","")),1,MAX_MESSAGE_LEN))
 					if(!str || !length(str))
-						to_chat(usr, "\red Invalid text.")
+						to_chat(usr, "<span class='warning'>Invalid text.</span>")
 						return
 					if(!examtext && !nameset)
 						examtext = str
@@ -293,7 +293,7 @@
 			else if(src.amount < 3)
 				to_chat(user, "<span class='warning'>You need more paper.</span>")
 		else
-			to_chat(user, "\blue The object you are trying to wrap is unsuitable for the sorting machinery!")
+			to_chat(user, "<span class='notice'>The object you are trying to wrap is unsuitable for the sorting machinery!</span>")
 		if (src.amount <= 0)
 			new /obj/item/trash/c_tube( src.loc )
 			qdel(src)
@@ -303,7 +303,7 @@
 	examine(mob/user)
 		..()
 		if(get_dist(src, user) < 2)
-			to_chat(user, "\blue There are [amount] units of package wrap left!")
+			to_chat(user, "<span class='notice'>There are [amount] units of package wrap left!</span>")
 
 
 /obj/item/device/destTagger
@@ -315,7 +315,7 @@
 	w_class = 2
 	item_state = "electronic"
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 
 	proc/openwindow(mob/user as mob)
 		var/dat = "<tt><center><h1><b>TagMaster 2.3</b></h1></center>"
@@ -350,90 +350,91 @@
 
 	var/c_mode = 0
 
-	New()
-		..()
-		spawn(5)
-			trunk = locate() in src.loc
-			if(trunk)
-				trunk.linked = src	// link the pipe trunk to self
+/obj/machinery/disposal/deliveryChute/Initialize()
+	. = ..()
+	trunk = locate() in loc
+	if(trunk)
+		trunk.linked = src	// link the pipe trunk to self
 
-	interact()
+/obj/machinery/disposal/deliveryChute/interact()
+	return
+
+/obj/machinery/disposal/deliveryChute/update()
+	return
+
+/obj/machinery/disposal/deliveryChute/Bumped(var/atom/movable/AM) //Go straight into the chute
+	if(istype(AM, /obj/item/projectile) || istype(AM, /obj/effect))
 		return
+	switch(dir)
+		if(NORTH)
+			if(AM.loc.y != loc.y+1) return
+		if(EAST)
+			if(AM.loc.x != loc.x+1) return
+		if(SOUTH)
+			if(AM.loc.y != loc.y-1) return
+		if(WEST)
+			if(AM.loc.x != loc.x-1) return
 
-	update()
-		return
-
-	Bumped(var/atom/movable/AM) //Go straight into the chute
-		if(istype(AM, /obj/item/projectile) || istype(AM, /obj/effect))	return
-		switch(dir)
-			if(NORTH)
-				if(AM.loc.y != src.loc.y+1) return
-			if(EAST)
-				if(AM.loc.x != src.loc.x+1) return
-			if(SOUTH)
-				if(AM.loc.y != src.loc.y-1) return
-			if(WEST)
-				if(AM.loc.x != src.loc.x-1) return
-
-		if(istype(AM, /obj))
-			var/obj/O = AM
-			O.loc = src
-		else if(istype(AM, /mob))
-			var/mob/M = AM
-			M.loc = src
-		src.flush()
-
+	if(istype(AM, /obj))
+		var/obj/O = AM
+		O.loc = src
+	else if(istype(AM, /mob))
+		var/mob/M = AM
+		M.loc = src
 	flush()
-		flushing = 1
-		flick("intake-closing", src)
-		var/obj/structure/disposalholder/H = new()	// virtual holder object which actually
-													// travels through the pipes.
 
-		sleep(10)
-		playsound(src, 'sound/machines/disposalflush.ogg', 25, 0)
-		sleep(5) // wait for animation to finish
+/obj/machinery/disposal/deliveryChute/flush()
+	flushing = 1
+	flick("intake-closing", src)
+	var/obj/structure/disposalholder/H = new()	// virtual holder object which actually
+												// travels through the pipes.
 
-		H.init(src)	// copy the contents of disposer to holder
+	sleep(10)
+	playsound(src, 'sound/machines/disposalflush.ogg', 25, 0)
+	sleep(5) // wait for animation to finish
 
-		H.start(src) // start the holder processing movement
-		flushing = 0
-		// now reset disposal state
-		flush = 0
-		if(mode == 2)	// if was ready,
-			mode = 1	// switch to charging
-		update()
+	H.init(src)	// copy the contents of disposer to holder
+
+	H.start(src) // start the holder processing movement
+	flushing = 0
+	// now reset disposal state
+	flush = 0
+	if(mode == 2)	// if was ready,
+		mode = 1	// switch to charging
+	update()
+	return
+
+/obj/machinery/disposal/deliveryChute/attackby(var/obj/item/I, var/mob/user)
+	if(!I || !user)
 		return
 
-	attackby(var/obj/item/I, var/mob/user)
-		if(!I || !user)
+	if(isscrewdriver(I))
+		if(c_mode==0)
+			c_mode=1
+			playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
+			to_chat(user, "You remove the screws around the power connection.")
 			return
-
-		if(istype(I, /obj/item/tool/screwdriver))
-			if(c_mode==0)
-				c_mode=1
-				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
-				to_chat(user, "You remove the screws around the power connection.")
-				return
-			else if(c_mode==1)
-				c_mode=0
-				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
-				to_chat(user, "You attach the screws around the power connection.")
-				return
-		else if(istype(I,/obj/item/tool/weldingtool) && c_mode==1)
-			var/obj/item/tool/weldingtool/W = I
-			if(W.remove_fuel(0,user))
-				playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
-				to_chat(user, "You start slicing the floorweld off the delivery chute.")
-				if(do_after(user,20, TRUE, 5, BUSY_ICON_BUILD))
-					if(!src || !W.isOn()) return
-					to_chat(user, "You sliced the floorweld off the delivery chute.")
-					var/obj/structure/disposalconstruct/C = new (src.loc)
-					C.ptype = 8 // 8 =  Delivery chute
-					C.update()
-					C.anchored = 1
-					C.density = 1
-					qdel(src)
-				return
-			else
-				to_chat(user, "You need more welding fuel to complete this task.")
-				return
+		else if(c_mode==1)
+			c_mode=0
+			playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
+			to_chat(user, "You attach the screws around the power connection.")
+			return
+	else if(istype(I,/obj/item/tool/weldingtool) && c_mode==1)
+		var/obj/item/tool/weldingtool/W = I
+		if(W.remove_fuel(0,user))
+			playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
+			to_chat(user, "You start slicing the floorweld off the delivery chute.")
+			if(do_after(user,20, TRUE, 5, BUSY_ICON_BUILD))
+				if(!src || !W.isOn())
+					return
+				to_chat(user, "You sliced the floorweld off the delivery chute.")
+				var/obj/structure/disposalconstruct/C = new (src.loc)
+				C.ptype = 8 // 8 =  Delivery chute
+				C.update()
+				C.anchored = 1
+				C.density = 1
+				qdel(src)
+			return
+		else
+			to_chat(user, "You need more welding fuel to complete this task.")
+			return

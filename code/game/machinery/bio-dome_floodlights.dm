@@ -11,12 +11,11 @@
 	unacidable = 1
 	var/list/floodlist = list() // This will save our list of floodlights on the map
 
-/obj/machinery/hydro_floodlight_switch/New() //Populate our list of floodlights so we don't need to scan for them ever again
-	sleep(5) //let's make sure it exists first..
-	for(var/obj/machinery/hydro_floodlight/F in machines)
+/obj/machinery/hydro_floodlight_switch/Initialize() //Populate our list of floodlights so we don't need to scan for them ever again
+	for(var/obj/machinery/hydro_floodlight/F in GLOB.machines)
 		floodlist += F
 		F.fswitch = src
-	..()
+	. = ..()
 	start_processing()
 
 /obj/machinery/hydro_floodlight_switch/process()
@@ -139,9 +138,9 @@
 			to_chat(user, "<span class='warning'>It's already damaged.</span>")
 			return 0
 		else
-			if(isXenoLarva(user))
+			if(isxenolarva(user))
 				return //Larvae can't do shit
-			if(user.get_active_hand())
+			if(user.get_active_held_item())
 				to_chat(user, "<span class='warning'>You need your claws empty for this!</span>")
 				return FALSE
 			user.visible_message("<span class='danger'>[user] starts to slash and claw away at [src]!</span>",

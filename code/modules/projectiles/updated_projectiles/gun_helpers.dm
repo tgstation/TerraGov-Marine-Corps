@@ -126,17 +126,17 @@ DEFINES in setup.dm, referenced here.
 
 
 /obj/item/weapon/gun/attack_hand(mob/user)
-	var/obj/item/weapon/gun/in_hand = user.get_inactive_hand()
+	var/obj/item/weapon/gun/in_hand = user.get_inactive_held_item()
 	if(in_hand == src && (flags_item & TWOHANDED))
 		unload(user)//It has to be held if it's a two hander.
-	else 
+	else
 		return ..()
 
 
 /obj/item/weapon/gun/throw_at(atom/target, range, speed, thrower)
 	if( harness_check(thrower) )
 		to_chat(usr, "<span class='warning'>\The [src] clanks on the ground.</span>")
-	else 
+	else
 		return ..()
 
 /*
@@ -175,7 +175,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 
 
 /obj/item/weapon/gun/proc/police_allowed_check(mob/living/carbon/human/user)
-	if(config && config.remove_gun_restrictions)
+	if(CONFIG_GET(flag/remove_gun_restrictions))
 		return TRUE //Not if the config removed it.
 
 	if(user.mind)
@@ -198,28 +198,28 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 	if(!istype(user) || delay <= 0)
 		return FALSE
 	var/mob/living/L
-	if(istype(user, /mob/living))
+	if(isliving(user))
 		L = user
 	var/image/busy_icon
 	busy_icon = get_busy_icon(BUSY_ICON_HOSTILE)
 	user.overlays += busy_icon
 	user.action_busy = TRUE
 	var/delayfraction = round(delay/5)
-	var/obj/holding = user.get_active_hand()
+	var/obj/holding = user.get_active_held_item()
 	. = TRUE
 	for(var/i = 1 to 5)
 		sleep(delayfraction)
 		if(!user || user.stat || user.knocked_down || user.stunned)
 			. = FALSE
 			break
-		if(L && L.health < config.health_threshold_crit)
+		if(L && L.health < CONFIG_GET(number/health_threshold_crit))
 			. = FALSE
 			break
 		if(holding)
-			if(!holding.loc || user.get_active_hand() != holding)
+			if(!holding.loc || user.get_active_held_item() != holding)
 				. = FALSE
 				break
-		else if(user.get_active_hand())
+		else if(user.get_active_held_item())
 			. = FALSE
 			break
 		if(world.time > wield_time)
@@ -252,8 +252,8 @@ should be alright.
 	if(loc && user)
 		if(isnull(user.s_store) && isturf(loc))
 			var/obj/item/I = user.wear_suit
-			user.equip_to_slot_if_possible(src,WEAR_J_STORE)
-			if(user.s_store == src) 
+			user.equip_to_slot_if_possible(src,SLOT_S_STORE)
+			if(user.s_store == src)
 				to_chat(user, "<span class='warning'>[src] snaps into place on [I].</span>")
 			user.update_inv_s_store()
 
@@ -348,7 +348,7 @@ should be alright.
 
 /obj/item/weapon/gun/proc/check_inactive_hand(mob/user)
 	if(user)
-		var/obj/item/weapon/gun/in_hand = user.get_inactive_hand()
+		var/obj/item/weapon/gun/in_hand = user.get_inactive_held_item()
 		if( in_hand != src ) //It has to be held.
 			to_chat(user, "<span class='warning'>You have to hold [src] to do that!</span>")
 			return
@@ -404,7 +404,7 @@ should be alright.
 		return
 
 	var/final_delay = attachment.attach_delay
-	if (user.mind.cm_skills.firearms)
+	if(user.mind?.cm_skills?.firearms)
 		user.visible_message("<span class='notice'>[user] begins attaching [attachment] to [src].</span>",
 		"<span class='notice'>You begin attaching [attachment] to [src].</span>", null, 4)
 		if(user.mind.cm_skills.firearms >= SKILL_FIREARMS_DEFAULT) //See if the attacher is super skilled/panzerelite born to defeat never retreat etc
@@ -418,7 +418,7 @@ should be alright.
 		if(attachment && attachment.loc)
 			user.visible_message("<span class='notice'>[user] attaches [attachment] to [src].</span>",
 			"<span class='notice'>You attach [attachment] to [src].</span>", null, 4)
-			user.temp_drop_inv_item(attachment)
+			user.temporarilyRemoveItemFromInventory(attachment)
 			attachment.Attach(src)
 			update_attachable(attachment.slot)
 			playsound(user, 'sound/machines/click.ogg', 15, 1, 4)
@@ -632,17 +632,17 @@ should be alright.
 			if(flags_gun_features & GUN_FULL_AUTO_ON)
 				flags_gun_features &= ~GUN_FULL_AUTO_ON
 				flags_gun_features &= ~GUN_BURST_ON
-				to_chat(usr, "<span class='notice'>\icon[src] You set [src] to single fire mode.</span>")
+				to_chat(usr, "<span class='notice'>[bicon(src)] You set [src] to single fire mode.</span>")
 			else
 				flags_gun_features|= GUN_FULL_AUTO_ON
-				to_chat(usr, "<span class='notice'>\icon[src] You set [src] to full auto mode.</span>")
+				to_chat(usr, "<span class='notice'>[bicon(src)] You set [src] to full auto mode.</span>")
 		else
 			flags_gun_features |= GUN_BURST_ON
-			to_chat(usr, "<span class='notice'>\icon[src] You set [src] to burst fire mode.</span>")
+			to_chat(usr, "<span class='notice'>[bicon(src)] You set [src] to burst fire mode.</span>")
 	else
 		flags_gun_features ^= GUN_BURST_ON
 
-		to_chat(usr, "<span class='notice'>\icon[src] You [flags_gun_features & GUN_BURST_ON ? "<B>enable</b>" : "<B>disable</b>"] [src]'s burst fire mode.</span>")
+		to_chat(usr, "<span class='notice'>[bicon(src)] You [flags_gun_features & GUN_BURST_ON ? "<B>enable</b>" : "<B>disable</b>"] [src]'s burst fire mode.</span>")
 
 
 /obj/item/weapon/gun/verb/empty_mag()
@@ -747,7 +747,12 @@ should be alright.
 	if(!usr)
 		return
 
-	rail?.activate_attachment(src, usr)
+	var/obj/item/weapon/gun/W = usr.get_active_held_item()
+
+	if(!istype(W))
+		return
+
+	W.rail?.activate_attachment(W, usr)
 
 
 /obj/item/weapon/gun/verb/toggle_ammo_hud()
@@ -766,7 +771,7 @@ should be alright.
 
 
 /obj/item/weapon/gun/item_action_slot_check(mob/user, slot)
-	if(slot != WEAR_L_HAND && slot != WEAR_R_HAND)
+	if(slot != SLOT_L_HAND && slot != SLOT_R_HAND)
 		return FALSE
 	return TRUE
 

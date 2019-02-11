@@ -40,25 +40,25 @@
 
 	if(istype(W, /obj/item/cell) && anchored)
 		if(charging)
-			to_chat(user, "\red There is already a cell in the charger.")
+			to_chat(user, "<span class='warning'>There is already a cell in the charger.</span>")
 			return
 		else
 			var/area/a = loc.loc // Gets our locations location, like a dream within a dream
 			if(!isarea(a))
 				return
 			if(a.power_equip == 0) // There's no APC in this area, don't try to cheat power!
-				to_chat(user, "\red The [name] blinks red as you try to insert the cell!")
+				to_chat(user, "<span class='warning'>The [name] blinks red as you try to insert the cell!</span>")
 				return
 
-			if(user.drop_inv_item_to_loc(W, src))
+			if(user.transferItemToLoc(W, src))
 				charging = W
 				user.visible_message("[user] inserts a cell into the charger.", "You insert a cell into the charger.")
 				chargelevel = -1
 				start_processing()
 		updateicon()
-	else if(istype(W, /obj/item/tool/wrench))
+	else if(iswrench(W))
 		if(charging)
-			to_chat(user, "\red Remove the cell first!")
+			to_chat(user, "<span class='warning'>Remove the cell first!</span>")
 			return
 
 		anchored = !anchored
@@ -95,7 +95,7 @@
 		return
 
 	if (charging && !charging.fully_charged())
-		charging.give(active_power_usage*CELLRATE)
+		charging.give(active_power_usage*GLOB.CELLRATE)
 		update_use_power(2)
 
 		updateicon()

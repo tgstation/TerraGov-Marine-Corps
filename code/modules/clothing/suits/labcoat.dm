@@ -4,7 +4,7 @@
 	icon_state = "labcoat_open"
 	item_state = "labcoat" //Is this even used for anything?
 	blood_overlay_type = "coat"
-	flags_armor_protection = UPPER_TORSO|ARMS
+	flags_armor_protection = CHEST|ARMS
 	allowed = list(/obj/item/device/analyzer,/obj/item/stack/medical,/obj/item/dnainjector,/obj/item/reagent_container/dropper,/obj/item/reagent_container/syringe,/obj/item/reagent_container/hypospray,/obj/item/device/healthanalyzer,/obj/item/device/flashlight/pen,/obj/item/reagent_container/glass/bottle,/obj/item/reagent_container/glass/beaker,/obj/item/reagent_container/pill,/obj/item/storage/pill_bottle,/obj/item/paper)
 	permeability_coefficient = 0.6
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 50, rad = 0)
@@ -187,8 +187,8 @@
 	desc = "A standard snow suit. It can protect the wearer from extreme cold."
 	icon = 'icons/obj/clothing/suits.dmi'
 	icon_state = "snowsuit_alpha"
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS
-	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	flags_armor_protection = CHEST|GROIN|ARMS
+	flags_cold_protection = CHEST|GROIN|ARMS|LEGS
 	armor = list(melee = 15, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
 	blood_overlay_type = "armor"

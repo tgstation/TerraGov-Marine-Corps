@@ -133,7 +133,7 @@ Flow Rate Regulator: <A href='?src=\ref[src];volume_adj=-1000'>-</A> <A href='?s
 	name = "[name] (ID [id])"
 
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/attack_hand(var/mob/user as mob)
-		to_chat(usr, "\blue You can't directly interact with this machine. Use the scrubber control console.")
+		to_chat(usr, "<span class='notice'>You can't directly interact with this machine. Use the scrubber control console.</span>")
 
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/update_icon()
 	src.overlays = 0
@@ -159,21 +159,21 @@ Flow Rate Regulator: <A href='?src=\ref[src];volume_adj=-1000'>-</A> <A href='?s
 	last_power_draw = 0
 
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/attackby(var/obj/item/I as obj, var/mob/user as mob)
-	if(istype(I, /obj/item/tool/wrench))
+	if(iswrench(I))
 		if(on)
-			to_chat(user, "\blue Turn it off first!")
+			to_chat(user, "<span class='notice'>Turn it off first!</span>")
 			return
 
 		anchored = !anchored
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
-		to_chat(user, "\blue You [anchored ? "wrench" : "unwrench"] \the [src].")
+		to_chat(user, "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>")
 
 		return
 
 	//doesn't use power cells
 	if(istype(I, /obj/item/cell))
 		return
-	if (istype(I, /obj/item/tool/screwdriver))
+	if (isscrewdriver(I))
 		return
 
 	//doesn't hold tanks
@@ -187,8 +187,8 @@ Flow Rate Regulator: <A href='?src=\ref[src];volume_adj=-1000'>-</A> <A href='?s
 	name = "Stationary Air Scrubber"
 
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/attackby(var/obj/item/I as obj, var/mob/user as mob)
-	if(istype(I, /obj/item/tool/wrench))
-		to_chat(user, "\blue The bolts are too tight for you to unscrew!")
+	if(iswrench(I))
+		to_chat(user, "<span class='notice'>The bolts are too tight for you to unscrew!</span>")
 		return
 
 	..()

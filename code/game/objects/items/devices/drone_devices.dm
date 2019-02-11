@@ -51,7 +51,7 @@
 		wrapped = null
 		return
 
-	to_chat(src.loc, "\red You drop \the [wrapped].")
+	to_chat(src.loc, "<span class='warning'>You drop \the [wrapped].</span>")
 	wrapped.loc = get_turf(src)
 	wrapped = null
 	//update_icon()
@@ -107,7 +107,7 @@
 			wrapped = I
 			return
 		else
-			to_chat(user, "\red Your gripper cannot hold \the [target].")
+			to_chat(user, "<span class='warning'>Your gripper cannot hold \the [target].</span>")
 
 	else if(istype(target,/obj/machinery/power/apc))
 		var/obj/machinery/power/apc/A = target
@@ -124,7 +124,7 @@
 				A.charging = 0
 				A.update_icon()
 
-				user.visible_message("\red [user] removes the power cell from [A]!", "You remove the power cell.")
+				user.visible_message("<span class='warning'> [user] removes the power cell from [A]!</span>", "You remove the power cell.")
 
 
 
@@ -163,7 +163,7 @@
 
 	for(var/mob/M in T)
 		if(istype(M,/mob/living/simple_animal/lizard) || istype(M,/mob/living/simple_animal/mouse))
-			src.loc.visible_message("\red [src.loc] sucks [M] into its decompiler. There's a horrible crunching noise.","\red It's a bit of a struggle, but you manage to suck [M] into your decompiler. It makes a series of visceral crunching noises.")
+			src.loc.visible_message("<span class='warning'> [src.loc] sucks [M] into its decompiler. There's a horrible crunching noise.</span>","<span class='warning'> It's a bit of a struggle, but you manage to suck [M] into your decompiler. It makes a series of visceral crunching noises.</span>")
 			new/obj/effect/decal/cleanable/blood/splatter(get_turf(src))
 			qdel(M)
 			stored_comms["wood"]++
@@ -179,15 +179,15 @@
 			if(!istype(D))
 				return
 
-			to_chat(D, "\red You begin decompiling the other drone.")
+			to_chat(D, "<span class='warning'>You begin decompiling the other drone.</span>")
 
 			if(!do_after(D, 50, FALSE, 5, BUSY_ICON_GENERIC))
-				to_chat(D, "\red You need to remain still while decompiling such a large object.")
+				to_chat(D, "<span class='warning'>You need to remain still while decompiling such a large object.</span>")
 				return
 
 			if(!M || !D) return
 
-			to_chat(D, "\red You carefully and thoroughly decompile your downed fellow, storing as much of its resources as you can within yourself.")
+			to_chat(D, "<span class='warning'>You carefully and thoroughly decompile your downed fellow, storing as much of its resources as you can within yourself.</span>")
 
 			qdel(M)
 			new/obj/effect/decal/cleanable/blood/oil(get_turf(src))
@@ -260,7 +260,7 @@
 		grabbed_something = 1
 
 	if(grabbed_something)
-		to_chat(user, "\blue You deploy your decompiler and clear out the contents of \the [T].")
+		to_chat(user, "<span class='notice'>You deploy your decompiler and clear out the contents of \the [T].</span>")
 	else
-		to_chat(user, "\red Nothing on \the [T] is useful to you.")
+		to_chat(user, "<span class='warning'>Nothing on \the [T] is useful to you.</span>")
 	return

@@ -18,7 +18,7 @@
 	speed = -0.3
 
 	// *** Plasma *** //
-	plasma_max = 100
+	plasma_max = 80
 	plasma_gain = 8
 
 	// *** Health *** //
@@ -28,7 +28,7 @@
 	evolution_threshold = 200
 	upgrade_threshold = 200
 
-	evolves_to = list(/mob/living/carbon/Xenomorph/Praetorian, /mob/living/carbon/Xenomorph/Crusher)
+	evolves_to = list(/mob/living/carbon/Xenomorph/Crusher)
 	deevolves_to = /mob/living/carbon/Xenomorph/Defender
 
 	// *** Flags *** //
@@ -51,17 +51,17 @@
 	melee_damage_upper = 45
 
 	// *** Tackle *** //
-	tackle_damage = 45
+	tackle_damage = 50
 
 	// *** Speed *** //
 	speed = -0.4
 
 	// *** Plasma *** //
 	plasma_max = 100
-	plasma_gain = 8
+	plasma_gain = 10
 
 	// *** Health *** //
-	max_health = 250
+	max_health = 240
 
 	// *** Evolution *** //
 	upgrade_threshold = 400
@@ -82,14 +82,14 @@
 	melee_damage_upper = 45
 
 	// *** Tackle *** //
-	tackle_damage = 50
+	tackle_damage = 53
 
 	// *** Speed *** //
-	speed = -0.4
+	speed = -0.45
 
 	// *** Plasma *** //
-	plasma_max = 100
-	plasma_gain = 8
+	plasma_max = 115
+	plasma_gain = 11
 
 	// *** Health *** //
 	max_health = 260
@@ -120,11 +120,11 @@
 	speed = -0.5
 
 	// *** Plasma *** //
-	plasma_max = 100
-	plasma_gain = 8
+	plasma_max = 120
+	plasma_gain = 12
 
 	// *** Health *** //
-	max_health = 265
+	max_health = 270
 
 	// *** Evolution *** //
 	upgrade_threshold = 800
@@ -194,7 +194,7 @@
 
 	var/mob/living/L = AM
 
-	if(!isXeno(AM))
+	if(!isxeno(AM))
 		if (used_lunge && !lunge)
 			to_chat(src, "<span class='xenowarning'>You must gather your strength before neckgrabbing again.</span>")
 			return FALSE
@@ -208,22 +208,19 @@
 	. = ..(AM, lunge, TRUE) //no_msg = true because we don't want to show the defaul pull message
 
 	if(.) //successful pull
-		if(!isXeno(AM))
+		if(!isxeno(AM))
 			use_plasma(10)
 
-		if(!isXeno(L) && !isYautja(L))
+		if(!isxeno(L) && !isyautja(L))
 			round_statistics.warrior_grabs++
 			grab_level = GRAB_NECK
-			L.drop_held_items()
-			L.KnockDown(3)
+			L.drop_all_held_items()
+			L.KnockDown(2)
 			visible_message("<span class='xenowarning'>\The [src] grabs [L] by the throat!</span>", \
 			"<span class='xenowarning'>You grab [L] by the throat!</span>")
 
-	if(!lunge && !isXeno(AM))
-		spawn(WARRIOR_LUNGE_COOLDOWN)
-			used_lunge = 0
-			to_chat(src, "<span class='notice'>You get ready to lunge again.</span>")
-			update_action_button_icons()
+	if(!lunge && !isxeno(AM))
+		addtimer(CALLBACK(src, .proc/lunge_reset), WARRIOR_LUNGE_COOLDOWN)
 
 /mob/living/carbon/Xenomorph/Warrior/hitby(atom/movable/AM as mob|obj,var/speed = 5)
 	if(ishuman(AM))

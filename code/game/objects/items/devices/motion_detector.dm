@@ -37,7 +37,7 @@
 	icon_state = "detector_off"
 	item_state = "electronic"
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	var/list/blip_pool = list()
 	var/detector_range = 14
 	var/detector_mode = MOTION_DETECTOR_LONG
@@ -70,7 +70,7 @@
 	for(var/obj/X in blip_pool)
 		qdel(X)
 	blip_pool = list()
-	..()
+	return ..()
 
 /obj/item/device/motiondetector/dropped(mob/user)
 	. = ..()
@@ -121,8 +121,10 @@
 
 	if(!detector_mode)
 		long_range_cooldown--
-		if(long_range_cooldown) return
-		else long_range_cooldown = initial(long_range_cooldown)
+		if(long_range_cooldown)
+			return
+		else
+			long_range_cooldown = initial(long_range_cooldown)
 
 	if(ping)
 		playsound(loc, 'sound/items/detector.ogg', 60, 0, 7, 2)
@@ -132,7 +134,7 @@
 	for(var/mob/living/M in orange(detector_range, operator))
 		if(!isturf(M.loc))
 			continue
-		if(isrobot(M))
+		if(iscyborg(M))
 			continue
 		status = MOTION_DETECTOR_HOSTILE //Reset the status to default
 		if(ishuman(M))
@@ -166,7 +168,7 @@
 
 
 /obj/item/device/motiondetector/proc/show_blip(mob/user, mob/target, status)
-	set waitfor = 0
+	set waitfor = FALSE
 	if(user.client)
 
 		if(!blip_pool[target])
@@ -210,10 +212,10 @@
 					DB.icon_state = "detector_blip_dir_dead"
 				if(MOTION_DETECTOR_FUBAR)
 					DB.icon_state = "detector_blip_dir_fubar"
-			DB.dir = diff_dir_x + diff_dir_y
+			DB.setDir(diff_dir_x + diff_dir_y)
 
 		else
-			DB.dir = initial(DB.dir) //Update the ping sprite
+			DB.setDir(initial(DB.dir)) //Update the ping sprite
 			switch(status)
 				if(MOTION_DETECTOR_HOSTILE)
 					DB.icon_state = "detector_blip"
@@ -226,13 +228,18 @@
 
 		DB.screen_loc = "[CLAMP(c_view + 1 - view_x_offset + (target.x - user.x), 1, 2*c_view+1)],[CLAMP(c_view + 1 - view_y_offset + (target.y - user.y), 1, 2*c_view+1)]"
 		user.client.screen += DB
-		sleep(12)
-		if(user.client)
-			user.client.screen -= DB
+		addtimer(CALLBACK(src, .proc/remove_blip, user, DB), 1 SECONDS)
+
+
+/obj/item/device/motiondetector/proc/remove_blip(mob/user, blip)
+	if(!user?.client)
+		return
+	user.client.screen -= blip
+
 
 /obj/item/device/motiondetector/pmc
 	name = "motion detector (PMC)"
-	desc = "A device that detects hostile movement. Hostiles appear as red blips. Friendlies with the correct IFF signature appear as green, and their bodies as blue, unrevivable bodies as dark blue. It has a mode selection interface. This one has been modified for use by the W-Y PMC forces."
+	desc = "A device that detects hostile movement. Hostiles appear as red blips. Friendlies with the correct IFF signature appear as green, and their bodies as blue, unrevivable bodies as dark blue. It has a mode selection interface. This one has been modified for use by the NT PMC forces."
 	iff_signal = ACCESS_IFF_PMC
 
 
@@ -240,7 +247,7 @@
 	//..()
 	if(usr.stat || usr.is_mob_restrained())
 		return
-	if(((istype(usr, /mob/living/carbon/human) && ((!( ticker ) || (ticker && ticker.mode != "monkey")) && usr.contents.Find(src))) || (usr.contents.Find(master) || (in_range(src, usr) && istype(loc, /turf)))))
+	if(((ishuman(usr) && ((!( ticker ) || (ticker && ticker.mode != "monkey")) && usr.contents.Find(src))) || (usr.contents.Find(master) || (in_range(src, usr) && istype(loc, /turf)))))
 		usr.set_interaction(src)
 		if(href_list["power"])
 			active = !active
@@ -287,16 +294,15 @@
 						attack_self(M)
 	else
 		usr << browse(null, "window=radio")
-		return
-	return
+
 
 /obj/item/device/motiondetector/attack_self(mob/user as mob, flag1)
-	if(!istype(user, /mob/living/carbon/human))
+	if(!ishuman(user))
 		return
 	user.set_interaction(src)
 	var/dat = {"<TT>
 
-<A href='?src=\ref[src];power=1'><B>Power Control:</B>  [active ? "Off" : "On"]</A><BR>
+<A href='?src=\ref[src];power=1'><B>Power Control:</B>  [active ? "On" : "Off"]</A><BR>
 <BR>
 <B>Detection Settings:</B><BR>
 <BR>
@@ -314,7 +320,7 @@
  </TT>"}
 	user << browse(dat, "window=radio")
 	onclose(user, "radio")
-	return
+
 
 /obj/item/device/motiondetector/scout
 	name = "MK2 recon tactical sensor"
@@ -323,10 +329,9 @@
 	w_class = 1 //We can have this in our pocket and still get pings
 	ping = FALSE //Stealth modo
 
+
 /obj/item/device/motiondetector/scout/update_icon()
 	if(active)
 		icon_state = "minidetector_on_[detector_mode]"
 	else
 		icon_state = "minidetector_off"
-	return
-

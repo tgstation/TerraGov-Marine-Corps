@@ -51,20 +51,19 @@
 
 
 
-/obj/machinery/bot/medbot/New()
-	..()
+/obj/machinery/bot/medbot/Initialize()
+	. = ..()
 	src.icon_state = "medibot[src.on]"
 
-	spawn(4)
-		if(src.skin)
-			src.overlays += image('icons/obj/aibots.dmi', "medskin_[src.skin]")
+	if(src.skin)
+		src.overlays += image('icons/obj/aibots.dmi', "medskin_[src.skin]")
 
-		src.botcard = new /obj/item/card/id(src)
-		if(isnull(src.botcard_access) || (src.botcard_access.len < 1))
-			var/datum/job/J = RoleAuthority ? RoleAuthority.roles_by_path[/datum/job/medical/doctor] : new /datum/job/medical/doctor
-			botcard.access = J.get_access()
-		else
-			src.botcard.access = src.botcard_access
+	src.botcard = new /obj/item/card/id(src)
+	if(isnull(src.botcard_access) || (src.botcard_access.len < 1))
+		var/datum/job/J = RoleAuthority ? RoleAuthority.roles_by_path[/datum/job/medical/doctor] : new /datum/job/medical/doctor
+		botcard.access = J.get_access()
+	else
+		src.botcard.access = src.botcard_access
 	start_processing()
 
 /obj/machinery/bot/medbot/turn_on()
@@ -202,7 +201,7 @@
 			to_chat(user, "<span class='notice'>There is already a beaker loaded.</span>")
 			return
 
-		if(user.drop_inv_item_to_loc(W, src))
+		if(user.transferItemToLoc(W, src))
 			reagent_glass = W
 			to_chat(user, "<span class='notice'>You insert [W].</span>")
 			src.updateUsrDialog()
@@ -210,7 +209,7 @@
 
 	else
 		..()
-		if (health < maxhealth && !istype(W, /obj/item/tool/screwdriver) && W.force)
+		if (health < maxhealth && !isscrewdriver(W) && W.force)
 			step_to(src, (get_step_away(src,user)))
 
 /obj/machinery/bot/medbot/Emag(mob/user as mob)
@@ -219,7 +218,7 @@
 		if(user) to_chat(user, "<span class='warning'>You short out [src]'s reagent synthesis circuits.</span>")
 		spawn(0)
 			for(var/mob/O in hearers(src, null))
-				O.show_message("\red <B>[src] buzzes oddly!</B>", 1)
+				O.show_message("<span class='danger'>[src] buzzes oddly!</span>", 1)
 		flick("medibot_spark", src)
 		src.patient = null
 		if(user) src.oldpatient = user
@@ -264,7 +263,7 @@
 			src.speak(message)
 
 		for (var/mob/living/carbon/C in view(7,src)) //Time to find a patient!
-			if ((C.stat == 2) || !istype(C, /mob/living/carbon/human))
+			if ((C.stat == 2) || !ishuman(C))
 				continue
 
 			if ((C == src.oldpatient) && (world.time < src.last_found + 100))
@@ -438,7 +437,7 @@
 		return
 	else
 		src.icon_state = "medibots"
-		visible_message("\red <B>[src] is trying to inject [src.patient]!</B>")
+		visible_message("<span class='danger'>[src] is trying to inject [src.patient]!</span>")
 		spawn(30)
 			if ((get_dist(src, src.patient) <= 1) && (src.on))
 				if(reagent_id == "internal_beaker" && reagent_glass && reagent_glass.reagents.total_volume)
@@ -446,7 +445,7 @@
 					src.reagent_glass.reagents.reaction(src.patient, 2)
 				else
 					src.patient.reagents.add_reagent(reagent_id,src.injection_amount)
-				visible_message("\red <B>[src] injects [src.patient] with the syringe!</B>")
+				visible_message("<span class='danger'>[src] injects [src.patient] with the syringe!</span>")
 
 			src.icon_state = "medibot[src.on]"
 			src.currently_healing = 0
@@ -465,7 +464,7 @@
 
 /obj/machinery/bot/medbot/explode()
 	src.on = 0
-	visible_message("\red <B>[src] blows apart!</B>", 1)
+	visible_message("<span class='danger'>[src] blows apart!</span>", 1)
 	var/turf/Tsec = get_turf(src)
 
 	new /obj/item/storage/firstaid(Tsec)
@@ -534,5 +533,5 @@
 	qdel(S)
 	user.put_in_hands(A)
 	to_chat(user, "<span class='notice'>You add the robot arm to the first aid kit.</span>")
-	user.temp_drop_inv_item(src)
+	user.temporarilyRemoveItemFromInventory(src)
 	qdel(src)

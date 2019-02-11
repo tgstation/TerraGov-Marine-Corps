@@ -18,31 +18,30 @@
 /obj/machinery/gibber/autogibber
 	var/turf/input_plate
 
-	New()
-		..()
-		spawn(5)
-			for(var/i in cardinal)
-				var/obj/machinery/mineral/input/input_obj = locate( /obj/machinery/mineral/input, get_step(src.loc, i) )
-				if(input_obj)
-					if(isturf(input_obj.loc))
-						input_plate = input_obj.loc
-						qdel(input_obj)
-						break
+/obj/machinery/gibber/autogibber/Initialize()
+	. = ..()
+	for(var/i in cardinal)
+		var/obj/machinery/mineral/input/input_obj = locate( /obj/machinery/mineral/input, get_step(src.loc, i) )
+		if(input_obj)
+			if(isturf(input_obj.loc))
+				input_plate = input_obj.loc
+				qdel(input_obj)
+				break
 
-			if(!input_plate)
-				log_misc("a [src] didn't find an input plate.")
-				return
+	if(!input_plate)
+		log_runtime("a [src] didn't find an input plate.")
+		return
 
-	Bumped(var/atom/A)
-		if(!input_plate) return
+/obj/machinery/gibber/autogibber/Bumped(var/atom/A)
+	if(!input_plate) return
 
-		if(ismob(A))
-			var/mob/M = A
+	if(ismob(A))
+		var/mob/M = A
 
-			if(M.loc == input_plate
-			)
-				M.loc = src
-				M.gib()
+		if(M.loc == input_plate
+		)
+			M.loc = src
+			M.gib()
 
 
 /obj/machinery/gibber/New()
@@ -74,7 +73,7 @@
 	if(stat & (NOPOWER|BROKEN))
 		return
 	if(operating)
-		to_chat(user, "\red It's locked and running")
+		to_chat(user, "<span class='warning'>It's locked and running</span>")
 		return
 	else
 		src.startgibbing(user)
@@ -137,10 +136,10 @@
 	if(src.operating)
 		return
 	if(!src.occupant)
-		visible_message("\red You hear a loud metallic grinding sound.")
+		visible_message("<span class='warning'> You hear a loud metallic grinding sound.</span>")
 		return
 	use_power(1000)
-	visible_message("\red You hear a loud squelchy grinding sound.")
+	visible_message("<span class='warning'> You hear a loud squelchy grinding sound.</span>")
 	src.operating = 1
 	update_icon()
 
@@ -164,7 +163,7 @@
 
 
 		log_combat(user, src.occupant, "gibbed") //One shall not simply gib a mob unnoticed!
-		msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) gibbed [key_name(src.occupant)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[src.occupant]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[src.occupant.x];Y=[src.occupant.y];Z=[src.occupant.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[src.occupant]'>FLW</a>)")
+		msg_admin_attack("[ADMIN_TPMONTY(usr)] gibbed [ADMIN_TPMONTY(src.occupant)].")
 
 		src.occupant.death(1)
 		src.occupant.ghostize()
@@ -198,7 +197,7 @@
 
 		if(occupant.client) // Gibbed a cow with a client in it? log that shit
 			log_combat(occupant, user, "gibbed")
-			msg_admin_attack("\[[time_stamp()]\] <b>[key_name(user)]</b> gibbed <b>[key_name(src.occupant)]</b>")
+			msg_admin_attack("[ADMIN_TPMONTY(user)] gibbed [ADMIN_TPMONTY(src.occupant)].")
 
 		occupant.death(1)
 		occupant.ghostize()

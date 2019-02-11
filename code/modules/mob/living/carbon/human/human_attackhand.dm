@@ -2,7 +2,7 @@
 	..()
 
 	if((M != src) && check_shields(0, M.name))
-		visible_message("\red <B>[M] attempted to touch [src]!</B>", null, null, 5)
+		visible_message("<span class='danger'>[M] attempted to touch [src]!</span>", null, null, 5)
 		return 0
 
 	if(M.gloves && istype(M.gloves, /obj/item/clothing/gloves/boxing/hologlove))
@@ -10,7 +10,7 @@
 		var/damage = rand(0, 9)
 		if(!damage)
 			playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1)
-			visible_message("\red <B>[M] has attempted to punch [src]!</B>")
+			visible_message("<span class='danger'>[M] has attempted to punch [src]!</span>")
 			return 0
 		var/datum/limb/affecting = get_limb(ran_zone(M.zone_selected))
 		var/armor_block = run_armor_check(affecting, "melee")
@@ -19,18 +19,18 @@
 
 		playsound(loc, "punch", 25, 1)
 
-		visible_message("\red <B>[M] has punched [src]!</B>")
+		visible_message("<span class='danger'>[M] has punched [src]!</span>")
 
 		apply_damage(damage, HALLOSS, affecting, armor_block)
 		if(damage >= 9)
-			visible_message("\red <B>[M] has weakened [src]!</B>")
+			visible_message("<span class='danger'>[M] has weakened [src]!</span>")
 			apply_effect(4, WEAKEN, armor_block)
 
 		return
 
 	M.next_move += 7 //Adds some lag to the 'attack'. This will add up to 10
 	switch(M.a_intent)
-		if("help")
+		if(INTENT_HELP)
 
 			if(on_fire && M != src)
 				fire_stacks = max(fire_stacks - 1, 0)
@@ -43,36 +43,36 @@
 					ExtinguishMob()
 				return 1
 
-			if(health >= config.health_threshold_crit)
+			if(health >= CONFIG_GET(number/health_threshold_crit))
 				help_shake_act(M)
 				return 1
 //			if(M.health < -75)	return 0
 
 			if((M.head && (M.head.flags_inventory & COVERMOUTH)) || (M.wear_mask && (M.wear_mask.flags_inventory & COVERMOUTH)))
-				to_chat(M, "\blue <B>Remove your mask!</B>")
+				to_chat(M, "<span class='boldnotice'>Remove your mask!</span>")
 				return 0
 			if((head && (head.flags_inventory & COVERMOUTH)) || (wear_mask && (wear_mask.flags_inventory & COVERMOUTH)))
-				to_chat(M, "\blue <B>Remove his mask!</B>")
+				to_chat(M, "<span class='boldnotice'>Remove his mask!</span>")
 				return 0
 
 			//CPR
 			if(M.action_busy)
 				return 1
-			M.visible_message("\red <B>[M] is trying perform CPR on [src]!</B>", null, null, 4)
+			M.visible_message("<span class='danger'>[M] is trying perform CPR on [src]!</span>", null, null, 4)
 
 			if(do_mob(M, src, HUMAN_STRIP_DELAY, BUSY_ICON_GENERIC, BUSY_ICON_MEDICAL))
-				if(health > config.health_threshold_dead && health < config.health_threshold_crit)
+				if(health > CONFIG_GET(number/health_threshold_dead) && health < CONFIG_GET(number/health_threshold_crit))
 					var/suff = min(getOxyLoss(), 5) //Pre-merge level, less healing, more prevention of dieing.
 					adjustOxyLoss(-suff)
 					updatehealth()
-					visible_message("\red [M] performs CPR on [src]!", null, null, 3)
-					to_chat(src, "\blue <b>You feel a breath of fresh air enter your lungs. It feels good.</b>")
-					to_chat(M, "\red Repeat at least every 7 seconds.")
+					visible_message("<span class='warning'> [M] performs CPR on [src]!</span>", null, null, 3)
+					to_chat(src, "<span class='boldnotice'>You feel a breath of fresh air enter your lungs. It feels good.</span>")
+					to_chat(M, "<span class='warning'>Repeat at least every 7 seconds.</span>")
 
 
 			return 1
 
-		if("grab")
+		if(INTENT_GRAB)
 			if(M == src || anchored)
 				return 0
 			if(w_uniform)
@@ -82,7 +82,7 @@
 
 			return 1
 
-		if("hurt")
+		if(INTENT_HARM)
 			// See if they can attack, and which attacks to use.
 			var/datum/unarmed_attack/attack = M.species.unarmed
 			if(!attack.is_usable(M)) attack = M.species.secondary_unarmed
@@ -118,7 +118,7 @@
 			apply_damage(damage, BRUTE, affecting, armor_block, sharp=attack.sharp, edge=attack.edge)
 
 
-		if("disarm")
+		if(INTENT_DISARM)
 			log_combat(M, src, "disarmed")
 
 			M.animation_attack_on(src)
@@ -131,7 +131,7 @@
 			var/datum/limb/affecting = get_limb(ran_zone(M.zone_selected))
 
 			//Accidental gun discharge
-			if(!M.mind || !M.mind.cm_skills || M.mind.cm_skills.cqc < SKILL_CQC_MP)
+			if(!M.mind?.cm_skills || M.mind.cm_skills.cqc < SKILL_CQC_MP)
 				if (istype(r_hand,/obj/item/weapon/gun) || istype(l_hand,/obj/item/weapon/gun))
 					var/obj/item/weapon/gun/W = null
 					var/chance = 0
@@ -144,8 +144,9 @@
 						W = r_hand
 						chance = !hand ? 40 : 20
 
-					if (prob(chance))
-						visible_message("<span class='danger'>[src]'s [W.name] goes off during struggle!", null, null, 5)
+					if(prob(chance))
+						log_combat(M, src, "disarmed, making their [W] go off")
+						visible_message("<span class='danger'>[src]'s [W] goes off during struggle!", null, null, 5)
 						var/list/turfs = list()
 						for(var/turf/T in view())
 							turfs += T
@@ -163,23 +164,23 @@
 			if (randn <= 25)
 				apply_effect(3, WEAKEN, run_armor_check(affecting, "melee"))
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
-				visible_message("\red <B>[M] has pushed [src]!</B>", null, null, 5)
+				visible_message("<span class='danger'>[M] has pushed [src]!</span>", null, null, 5)
 				return
 
 			if(randn <= 60)
 				//BubbleWrap: Disarming breaks a pull
 				if(pulling)
-					visible_message("\red <b>[M] has broken [src]'s grip on [pulling]!</B>", null, null, 5)
+					visible_message("<span class='danger'>[M] has broken [src]'s grip on [pulling]!</span>", null, null, 5)
 					stop_pulling()
 				else
 					drop_held_item()
-					visible_message("\red <B>[M] has disarmed [src]!</B>", null, null, 5)
+					visible_message("<span class='danger'>[M] has disarmed [src]!</span>", null, null, 5)
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 				return
 
 
 			playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, 7)
-			visible_message("\red <B>[M] attempted to disarm [src]!</B>", null, null, 5)
+			visible_message("<span class='danger'>[M] attempted to disarm [src]!</span>", null, null, 5)
 	return
 
 /mob/living/carbon/human/proc/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, inrange, params)
@@ -189,7 +190,7 @@
 
 
 /mob/living/carbon/human/help_shake_act(mob/living/carbon/M)
-	if (health >= config.health_threshold_crit)
+	if (health >= CONFIG_GET(number/health_threshold_crit))
 		if(src == M)
 			if(holo_card_color) //if we have a triage holocard printed on us, we remove it.
 				holo_card_color = null
@@ -202,8 +203,12 @@
 
 			for(var/datum/limb/org in limbs)
 				var/status = ""
+				var/treat = ""
 				var/brutedamage = org.brute_dam
 				var/burndamage = org.burn_dam
+				var/brute_treated = org.is_bandaged()
+				var/burn_treated = org.is_salved()
+
 				if(halloss > 0)
 					status = "tingling"
 
@@ -234,7 +239,14 @@
 				if(org.status & LIMB_DESTROYED)
 					status = "MISSING!"
 
-				to_chat(src, "\t [status=="OK"?"\blue ":"\red "]My [org.display_name] is [status].")
+				if(brute_treated == FALSE && brutedamage > 0)
+					treat = "(Bandaged)"
+				if(brute_treated == FALSE && burn_treated == FALSE && brutedamage > 0 && burndamage > 0)
+					treat += " and "
+				if(burn_treated == FALSE && burndamage > 0)
+					treat += "(Salved)"
+
+				to_chat(src, "\t [status=="OK"?"<span class='notice'> ":"<span class='warning'> "]My [org.display_name] is [status]. [treat]</span>")
 			if((SKELETON in mutations) && !w_uniform && !wear_suit)
 				play_xylophone()
 	return ..()

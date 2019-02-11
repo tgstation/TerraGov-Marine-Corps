@@ -231,14 +231,14 @@
 				modify.name = text("[modify.registered_name]'s ID Card ([modify.assignment])")
 				if(ishuman(usr))
 					modify.loc = usr.loc
-					if(!usr.get_active_hand())
+					if(!usr.get_active_held_item())
 						usr.put_in_hands(modify)
 					modify = null
 				else
 					modify.loc = loc
 					modify = null
 			else
-				var/obj/item/I = usr.get_active_hand()
+				var/obj/item/I = usr.get_active_held_item()
 				if (istype(I, /obj/item/card/id))
 					usr.drop_held_item()
 					I.loc = src
@@ -248,24 +248,24 @@
 			if (scan)
 				if(ishuman(usr))
 					scan.loc = usr.loc
-					if(!usr.get_active_hand())
+					if(!usr.get_active_held_item())
 						usr.put_in_hands(scan)
 					scan = null
 				else
 					scan.loc = src.loc
 					scan = null
 			else
-				var/obj/item/I = usr.get_active_hand()
+				var/obj/item/I = usr.get_active_held_item()
 				if (istype(I, /obj/item/card/id))
 					usr.drop_held_item()
 					I.loc = src
 					scan = I
 			authenticated = 0
 		if ("auth")
-			if ((!( authenticated ) && (scan || (istype(usr, /mob/living/silicon))) && (modify || mode)))
+			if ((!( authenticated ) && (scan || (issilicon(usr))) && (modify || mode)))
 				if (check_access(scan))
 					authenticated = 1
-			else if ((!( authenticated ) && (istype(usr, /mob/living/silicon))) && (!modify))
+			else if ((!( authenticated ) && (issilicon(usr))) && (!modify))
 				to_chat(usr, "You can't modify an ID without an ID inserted to modify. Once one is in the modify slot on the computer, you can log in.")
 		if ("logout")
 			authenticated = 0
@@ -295,11 +295,11 @@
 							break
 
 					if(!jobdatum)
-						to_chat(usr, "\red No log exists for this job.")
+						to_chat(usr, "<span class='warning'>No log exists for this job.</span>")
 						return
 
 					if(!modify)
-						to_chat(usr, "\red No card to modify!")
+						to_chat(usr, "<span class='warning'>No card to modify!</span>")
 						return
 
 					modify.access = jobdatum.get_access()
@@ -310,7 +310,7 @@
 			if (authenticated)
 				var/t2 = modify
 				//var/t1 = input(usr, "What name?", "ID computer", null)  as text
-				if ((authenticated && modify == t2 && (in_range(src, usr) || (istype(usr, /mob/living/silicon))) && istype(loc, /turf)))
+				if ((authenticated && modify == t2 && (in_range(src, usr) || (issilicon(usr))) && istype(loc, /turf)))
 					var/temp_name = reject_bad_name(href_list["reg"])
 					if(temp_name)
 						modify.registered_name = temp_name
@@ -320,13 +320,13 @@
 			if (authenticated)
 				var/t2 = modify
 				//var/t1 = input(usr, "What name?", "ID computer", null)  as text
-				if ((authenticated && modify == t2 && (in_range(src, usr) || (istype(usr, /mob/living/silicon))) && istype(loc, /turf)))
+				if ((authenticated && modify == t2 && (in_range(src, usr) || (issilicon(usr))) && istype(loc, /turf)))
 					var/account_num = text2num(href_list["account"])
 					modify.associated_account_number = account_num
 		if ("paygrade")
 			if(authenticated)
 				var/t2 = modify
-				if ((authenticated && modify == t2 && (in_range(src, usr) || (istype(usr, /mob/living/silicon))) && istype(loc, /turf)))
+				if ((authenticated && modify == t2 && (in_range(src, usr) || (issilicon(usr))) && istype(loc, /turf)))
 					modify.paygrade = href_list["paygrade"]
 		if ("mode")
 			mode = text2num(href_list["mode_target"])
@@ -438,11 +438,11 @@
 		if(href_list["card"])
 			if(modify)
 				modify.loc = src.loc
-				if(!usr.get_active_hand() && istype(usr,/mob/living/carbon/human))
+				if(!usr.get_active_held_item() && istype(usr,/mob/living/carbon/human))
 					usr.put_in_hands(modify)
 				modify = null
 			else
-				var/obj/item/I = usr.get_active_hand()
+				var/obj/item/I = usr.get_active_held_item()
 				if (istype(I, /obj/item/card/id))
 					usr.drop_held_item()
 					I.loc = src

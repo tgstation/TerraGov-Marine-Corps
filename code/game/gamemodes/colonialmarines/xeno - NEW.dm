@@ -84,7 +84,7 @@
 /datum/game_mode/proc/transform_player2(mob/living/carbon/human/H)
 	H.take_limb_damage(rand(1,25), rand(1,25))
 	to_chat(H.client, "<h2>You are a survivor!</h2>")
-	to_chat(H.client, "\blue You were a crew member on the Nostromo. Your crew was wiped out by an alien infestation. You should try to locate and help other survivors (If there are any other than you.)")
+	to_chat(H.client, "<span class='notice'>You were a crew member on the Nostromo. Your crew was wiped out by an alien infestation. You should try to locate and help other survivors (If there are any other than you.)</span>")
 	return 1
 
 
@@ -107,12 +107,12 @@
 	aliensurvivors = 0
 
 	//For each survivor, add one to the count. Should work accurately enough.
-	for(var/mob/living/carbon/human/H in living_mob_list)
+	for(var/mob/living/carbon/human/H in GLOB.alive_human_list)
 		var/nestedhost = (H.status_flags & XENO_HOST) && H.buckled
 		if(H) //Prevent any runtime errors
 			if(H.client && H.brain_op_stage != 4 && H.stat != DEAD && !nestedhost) // If they're connected/unghosted, alive, not debrained, and not a nested host
 				humansurvivors += 1 //Add them to the amount of people who're alive.
-	for(var/mob/living/carbon/alien/A in living_mob_list)
+	for(var/mob/living/carbon/alien/A in GLOB.alive_mob_list)
 		if(A) //Prevent any runtime errors
 			if(A.client && A.brain_op_stage != 4 && A.stat != DEAD) // If they're connected/unghosted and alive and not debrained
 				aliensurvivors += 1
@@ -184,8 +184,8 @@ datum/game_mode/infestation/proc/check_alien_victory()
 /datum/game_mode/infestation/declare_completion()
 	if(finished == 1)
 		feedback_set_details("round_end_result","alien major victory - marine incursion fails")
-		to_chat(world, "\red <FONT size = 4><B>Alien major victory!</B></FONT>")
-		to_chat(world, "\red <FONT size = 3><B>The aliens have successfully wiped out the marines and will live to spread the infestation!</B></FONT>")
+		to_chat(world, "<span class='round_header'>Alien major victory!</span>")
+		to_chat(world, "<span class='warning'> <FONT size = 3><B>The aliens have successfully wiped out the marines and will live to spread the infestation!</B></FONT></span>")
 		if(prob(50))
 			world << 'sound/misc/Game_Over_Man.ogg'
 		else
@@ -194,8 +194,8 @@ datum/game_mode/infestation/proc/check_alien_victory()
 
 	else if(finished == 2)
 		feedback_set_details("round_end_result","marine major victory - xenomorph infestation erradicated")
-		to_chat(world, "\red <FONT size = 4><B>Marines major victory!</B></FONT>")
-		to_chat(world, "\red <FONT size = 3><B>The marines managed to wipe out the aliens and stop the infestation!</B></FONT>")
+		to_chat(world, "<span class='round_header'>Marines major victory!</span>")
+		to_chat(world, "<span class='warning'> <FONT size = 3><B>The marines managed to wipe out the aliens and stop the infestation!</B></FONT></span>")
 		if(prob(50))
 			world << 'sound/misc/hardon.ogg'
 		else
@@ -204,19 +204,19 @@ datum/game_mode/infestation/proc/check_alien_victory()
 
 	else if(finished == 3)
 		feedback_set_details("round_end_result","marine minor victory - infestation stopped at a great cost")
-		to_chat(world, "\red <FONT size = 3><B>Marine minor victory.</B></FONT>")
-		to_chat(world, "\red <FONT size = 3><B>Both the marines and the aliens have been terminated. At least the infestation has been erradicated!</B></FONT>")
+		to_chat(world, "<span class='warning'> <FONT size = 3><B>Marine minor victory.</B></FONT></span>")
+		to_chat(world, "<span class='warning'> <FONT size = 3><B>Both the marines and the aliens have been terminated. At least the infestation has been erradicated!</B></FONT></span>")
 
 	else if(finished == 4)
 		feedback_set_details("round_end_result","alien minor victory - infestation survives")
-		to_chat(world, "\red <FONT size = 3><B>Alien minor victory.</B></FONT>")
-		to_chat(world, "\red <FONT size = 3><B>The station has been evacuated... but the infestation remains!</B></FONT>")
+		to_chat(world, "<span class='warning'> <FONT size = 3><B>Alien minor victory.</B></FONT></span>")
+		to_chat(world, "<span class='warning'> <FONT size = 3><B>The station has been evacuated... but the infestation remains!</B></FONT></span>")
 		round_end_situation += 4
 
 	else if(finished == 5)
 		feedback_set_details("round_end_result","draw - the station has been nuked")
-		to_chat(world, "\red <FONT size = 3><B>Draw.</B></FONT>")
-		to_chat(world, "\red <FONT size = 3><B>The station has blown by a nuclear fission device... there are no winners!</B></FONT>")
+		to_chat(world, "<span class='warning'> <FONT size = 3><B>Draw.</B></FONT></span>")
+		to_chat(world, "<span class='warning'> <FONT size = 3><B>The station has blown by a nuclear fission device... there are no winners!</B></FONT></span>")
 		round_end_situation +=5
 
 	..()
@@ -226,7 +226,7 @@ datum/game_mode/infestation/proc/check_alien_victory()
 /datum/game_mode/proc/auto_declare_completion_infestation()
 	if( aliens.len || (ticker && istype(ticker.mode,/datum/game_mode/infestation)) )
 		var/text = "<FONT size = 2><B>The aliens were:</B></FONT>"
-		for(var/mob/living/L in mob_list)
+		for(var/mob/living/L in GLOB.mob_living_list)
 			if(L.mind && L.mind.assigned_role)
 				if(L.mind.assigned_role == "Alien")
 					var/mob/M = L.mind.current

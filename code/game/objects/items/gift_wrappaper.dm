@@ -30,7 +30,7 @@
 		user.put_in_active_hand(gift)
 		gift.add_fingerprint(user)
 	else
-		to_chat(user, "\blue The gift was empty!")
+		to_chat(user, "<span class='notice'>The gift was empty!</span>")
 	qdel(src)
 	return
 
@@ -41,16 +41,16 @@
 /obj/effect/spresent/relaymove(mob/user)
 	if (user.stat)
 		return
-	to_chat(user, "\blue You cant move.")
+	to_chat(user, "<span class='notice'>You cant move.</span>")
 
 /obj/effect/spresent/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 
-	if (!istype(W, /obj/item/tool/wirecutters))
-		to_chat(user, "\blue I need wirecutters for that.")
+	if (!iswirecutter(W))
+		to_chat(user, "<span class='notice'>I need wirecutters for that.</span>")
 		return
 
-	to_chat(user, "\blue You cut open the present.")
+	to_chat(user, "<span class='notice'>You cut open the present.</span>")
 
 	for(var/mob/M in src) //Should only be one but whatever.
 		M.loc = src.loc
@@ -105,7 +105,7 @@
 	if(!ispath(gift_type,/obj/item))	return
 
 	var/obj/item/I = new gift_type(M)
-	M.temp_drop_inv_item(src)
+	M.temporarilyRemoveItemFromInventory(src)
 	M.put_in_hands(I)
 	I.add_fingerprint(M)
 	qdel(src)
@@ -124,12 +124,12 @@
 /obj/item/wrapping_paper/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 	if (!( locate(/obj/structure/table, src.loc) ))
-		to_chat(user, "\blue You MUST put the paper on a table!")
+		to_chat(user, "<span class='notice'>You MUST put the paper on a table!</span>")
 	if (W.w_class < 4)
-		if ((istype(user.l_hand, /obj/item/tool/wirecutters) || istype(user.r_hand, /obj/item/tool/wirecutters)))
+		if (iswirecutter(user.l_hand) || iswirecutter(user.r_hand))
 			var/a_used = 2 ** (src.w_class - 1)
 			if (src.amount < a_used)
-				to_chat(user, "\blue You need more paper!")
+				to_chat(user, "<span class='notice'>You need more paper!</span>")
 				return
 			else
 				if(istype(W, /obj/item/smallDelivery) || istype(W, /obj/item/gift)) //No gift wrapping gifts!
@@ -151,9 +151,9 @@
 				qdel(src)
 				return
 		else
-			to_chat(user, "\blue You need scissors!")
+			to_chat(user, "<span class='notice'>You need scissors!</span>")
 	else
-		to_chat(user, "\blue The object is FAR too large!")
+		to_chat(user, "<span class='notice'>The object is FAR too large!</span>")
 	return
 
 
@@ -163,7 +163,7 @@
 
 
 /obj/item/wrapping_paper/attack(mob/target as mob, mob/user as mob)
-	if (!istype(target, /mob/living/carbon/human)) return
+	if (!ishuman(target)) return
 	var/mob/living/carbon/human/H = target
 
 	if (istype(H.wear_suit, /obj/item/clothing/suit/straight_jacket) || H.stat)
@@ -181,6 +181,6 @@
 			msg_admin_attack("[key_name(user)] used [src] to wrap [key_name(H)]")
 
 		else
-			to_chat(user, "\blue You need more paper.")
+			to_chat(user, "<span class='notice'>You need more paper.</span>")
 	else
 		to_chat(user, "They are moving around too much. A straightjacket would help.")

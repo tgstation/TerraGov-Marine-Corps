@@ -13,25 +13,24 @@
 	var/is_watching = 0
 	var/obj/machinery/camera/cam
 
-/obj/structure/ladder/New()
-	..()
-	spawn(8)
-		cam = new /obj/machinery/camera(src)
-		cam.network = list("LADDER")
-		cam.c_tag = name
+/obj/structure/ladder/Initialize()
+	. = ..()
+	cam = new /obj/machinery/camera(src)
+	cam.network = list("LADDER")
+	cam.c_tag = name
 
-		for(var/obj/structure/ladder/L in structure_list)
-			if(L.id == id)
-				if(L.height == (height - 1))
-					down = L
-					continue
-				if(L.height == (height + 1))
-					up = L
-					continue
+	for(var/obj/structure/ladder/L in GLOB.structure_list)
+		if(L.id == id)
+			if(L.height == (height - 1))
+				down = L
+				continue
+			if(L.height == (height + 1))
+				up = L
+				continue
 
-			if(up && down)	//If both our connections are filled
-				break
-		update_icon()
+		if(up && down)	//If both our connections are filled
+			break
+	update_icon()
 
 /obj/structure/ladder/Destroy()
 	if(down)
@@ -137,7 +136,7 @@
 //Peeking up/down
 /obj/structure/ladder/MouseDrop(over_object, src_location, over_location)
 	if((over_object == usr && (in_range(src, usr))))
-		if(isXenoLarva(usr) || isobserver(usr) || usr.is_mob_incapacitated() || is_blind(usr) || usr.lying)
+		if(isxenolarva(usr) || isobserver(usr) || usr.is_mob_incapacitated() || is_blind(usr) || usr.lying)
 			to_chat(usr, "You can't do that in your current state.")
 			return
 		if(is_watching)
@@ -210,7 +209,7 @@
 			"<span class='warning'>You throw [G] [ladder_dir_name] [src]</span>")
 			user.drop_held_item()
 			G.forceMove(ladder_dest.loc)
-			G.dir = pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
+			G.setDir(pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
 			step_away(G, src, rand(1, 5))
 			if(!G.active)
 				G.activate(user)
@@ -242,7 +241,7 @@
 			"<span class='warning'>You throw [F] [ladder_dir_name] [src]</span>")
 			user.drop_held_item()
 			F.forceMove(ladder_dest.loc)
-			F.dir = pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
+			F.setDir(pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
 			step_away(F,src,rand(1, 5))
 	else
 		return attack_hand(user)

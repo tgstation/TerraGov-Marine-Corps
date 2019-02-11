@@ -18,10 +18,8 @@
 	<div class="itemContent">
 		{{:helper.link('Auto', 'refresh', {'cmode' : 1}, data.chargeMode ? 'selected' : null)}}{{:helper.link('Off', 'close', {'cmode' : 1}, data.chargeMode ? null : 'selected')}}
 		&nbsp;
-		{{if data.charging == 2}}
+		{{if data.charging == 1}}
 			[<span class='good'>Charging</span>]
-		{{else data.charging == 1}}
-			[<span class='average'>Partially Charging</span>]
 		{{else}}
 			[<span class='bad'>Not Charging</span>]
 		{{/if}}

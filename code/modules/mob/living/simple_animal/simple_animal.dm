@@ -81,17 +81,17 @@
 		else
 			stat = CONSCIOUS
 
+/mob/living/simple_animal/rejuvenate()
+	. = ..()
+	icon_state = icon_living
+	density = initial(density)
+	SetResting(FALSE)
+
 /mob/living/simple_animal/Life()
 	..()
 
 	//Health
-	if(stat != DEAD)
-		if(health > 0)
-			icon_state = icon_living
-			stat = CONSCIOUS
-			lying = 0
-			density = 1
-			reload_fullscreens()
+	if(stat == DEAD)
 		return 0
 
 	//Movement
@@ -188,18 +188,13 @@
 	return 1
 
 /mob/living/simple_animal/Bumped(AM as mob|obj)
-	if(!AM) return
+	if(!AM)
+		return
 
 	if(resting || buckled)
 		return
 
-	if(isturf(src.loc))
-		if(ismob(AM))
-			var/newamloc = src.loc
-			src.loc = AM:loc
-			AM:loc = newamloc
-		else
-			..()
+	return ..()
 
 /mob/living/simple_animal/blind_eyes()
 	return
@@ -221,7 +216,10 @@
 
 /mob/living/simple_animal/death()
 	. = ..()
-		icon_state = icon_dead
+	health = 0
+	icon_state = icon_dead
+	density = FALSE
+	SetResting(TRUE)
 
 
 /mob/living/simple_animal/gib()
@@ -259,8 +257,7 @@
 	else
 		if(M.attack_sound)
 			playsound(loc, M.attack_sound, 25, 1)
-		for(var/mob/O in viewers(src, null))
-			O.show_message("\red <B>[M]</B> [M.attacktext] [src]!", 1)
+		visible_message("<span class='danger'>[M] [M.attacktext] [src]!</span>", 1)
 		log_combat(M, src, "attacked")
 		var/damage = rand(M.melee_damage_lower, M.melee_damage_upper)
 		adjustBruteLoss(damage)
@@ -277,24 +274,24 @@
 
 	switch(M.a_intent)
 
-		if("help")
+		if(INTENT_HELP)
 			if (health > 0)
 				for(var/mob/O in viewers(src, null))
 					if ((O.client && !is_blind(O)))
-						O.show_message("\blue [M] [response_help] [src]")
+						O.show_message("<span class='notice'> [M] [response_help] [src]</span>")
 
-		if("grab")
+		if(INTENT_GRAB)
 			if(M == src || anchored)
 				return 0
 			M.start_pulling(src)
 
 			return 1
 
-		if("hurt", "disarm")
+		if(INTENT_HARM, INTENT_DISARM)
 			adjustBruteLoss(harm_intent_damage)
 			for(var/mob/O in viewers(src, null))
 				if ((O.client && !is_blind(O)))
-					O.show_message("\red [M] [response_harm] [src]")
+					O.show_message("<span class='warning'> [M] [response_harm] [src]</span>")
 
 	return
 
@@ -310,9 +307,9 @@
 					MED.use(1)
 					for(var/mob/M in viewers(src, null))
 						if ((M.client && !is_blind(M)))
-							M.show_message("\blue [user] applies the [MED] on [src]")
+							M.show_message("<span class='notice'> [user] applies the [MED] on [src]</span>")
 		else
-			to_chat(user, "\blue this [src] is dead, medical items won't bring it back to life.")
+			to_chat(user, "<span class='notice'>this [src] is dead, medical items won't bring it back to life.</span>")
 	if(meat_type && (stat == DEAD))	//if the animal has a meat, and if it is dead.
 		if(istype(O, /obj/item/tool/kitchen/knife) || istype(O, /obj/item/tool/kitchen/knife/butcher))
 			new meat_type (get_turf(src))
@@ -328,26 +325,26 @@
 			adjustBruteLoss(damage)
 			for(var/mob/M in viewers(src, null))
 				if ((M.client && !is_blind(M)))
-					M.show_message("\red \b [src] has been attacked with the [O] by [user]. ")
+					M.show_message("<span class='danger'> [src] has been attacked with the [O] by [user]. </span>")
 		else
-			to_chat(usr, "\red This weapon is ineffective, it does no damage.")
+			to_chat(usr, "<span class='warning'>This weapon is ineffective, it does no damage.</span>")
 			for(var/mob/M in viewers(src, null))
 				if ((M.client && !is_blind(M)))
-					M.show_message("\red [user] gently taps [src] with the [O]. ")
+					M.show_message("<span class='warning'> [user] gently taps [src] with the [O]. </span>")
 
 
 
 /mob/living/simple_animal/movement_delay()
 	. = ..()
 	. += speed
-	. += config.animal_delay
+	. += CONFIG_GET(number/outdated_movedelay/animal_delay)
+
 
 /mob/living/simple_animal/Stat()
-	if (!..())
-		return 0
+	. = ..()
 
-	stat(null, "Health: [round((health / maxHealth) * 100)]%")
-	return 1
+	if(statpanel("Stats"))
+		stat(null, "Health: [round((health / maxHealth) * 100)]%")
 
 
 /mob/living/simple_animal/ex_act(severity)
@@ -364,9 +361,6 @@
 
 		if(3.0)
 			adjustBruteLoss(30)
-
-/mob/living/simple_animal/adjustBruteLoss(damage)
-	health = CLAMP(health - damage, 0, maxHealth)
 
 /mob/living/simple_animal/proc/SA_attackable(target_mob)
 	if (isliving(target_mob))

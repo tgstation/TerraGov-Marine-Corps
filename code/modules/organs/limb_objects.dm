@@ -22,8 +22,8 @@ obj/item/limb/New(loc, mob/living/carbon/human/H)
 
 
 	icon = base
-	var/datum/ethnicity/E = ethnicities_list[H.ethnicity]
-	var/datum/body_type/B = body_types_list[H.body_type]
+	var/datum/ethnicity/E = GLOB.ethnicities_list[H.ethnicity]
+	var/datum/body_type/B = GLOB.body_types_list[H.body_type]
 
 	var/e_icon
 	var/b_icon
@@ -39,7 +39,7 @@ obj/item/limb/New(loc, mob/living/carbon/human/H)
 		b_icon = B.icon_name
 
 	icon_state = "[get_limb_icon_name(H.species, b_icon, H.gender, name, e_icon)]"
-	dir = SOUTH
+	setDir(SOUTH)
 	transform = turn(transform, rand(70,130))
 
 
@@ -86,7 +86,7 @@ obj/item/limb/New(loc, mob/living/carbon/human/H)
 		return
 	//Add (facial) hair.
 	if(H.f_style)
-		var/datum/sprite_accessory/facial_hair_style = facial_hair_styles_list[H.f_style]
+		var/datum/sprite_accessory/facial_hair_style = GLOB.facial_hair_styles_list[H.f_style]
 		if(facial_hair_style)
 			var/icon/facial = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_s")
 			if(facial_hair_style.do_colouration)
@@ -95,7 +95,7 @@ obj/item/limb/New(loc, mob/living/carbon/human/H)
 			overlays.Add(facial) // icon.Blend(facial, ICON_OVERLAY)
 
 	if(H.h_style && !(H.head && (H.head.flags_inv_hide & HIDETOPHAIR)))
-		var/datum/sprite_accessory/hair_style = hair_styles_list[H.h_style]
+		var/datum/sprite_accessory/hair_style = GLOB.hair_styles_list[H.h_style]
 		if(hair_style)
 			var/icon/hair = new/icon("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]_s")
 			if(hair_style.do_colouration)
@@ -133,14 +133,14 @@ obj/item/limb/New(loc, mob/living/carbon/human/H)
 	if(istype(W,/obj/item/tool/surgery/scalpel))
 		switch(brain_op_stage)
 			if(0)
-				user.visible_message("<span class='warning'>[brainmob] is beginning to have \his head cut open with [W] by [user].</span>", \
+				user.visible_message("<span class='warning'>[brainmob] is beginning to have [brainmob.p_their()] head cut open with [W] by [user].</span>", \
 									"<span class='warning'>You cut [brainmob]'s head open with [W]!</span>")
 				to_chat(brainmob, "<span class='warning'>[user] begins to cut open your head with [W]!</span>")
 
 				brain_op_stage = 1
 
 			if(2)
-				user.visible_message("<span class='warning'>[brainmob] is having \his connections to the brain delicately severed with [W] by [user].</span>", \
+				user.visible_message("<span class='warning'>[brainmob] is having [brainmob.p_their()] connections to the brain delicately severed with [W] by [user].</span>", \
 									"<span class='warning'>You cut [brainmob]'s head open with [W]!</span>")
 				to_chat(brainmob, "<span class='warning'>[user] begins to cut open your head with [W]!</span>")
 
@@ -150,17 +150,17 @@ obj/item/limb/New(loc, mob/living/carbon/human/H)
 	else if(istype(W,/obj/item/tool/surgery/circular_saw))
 		switch(brain_op_stage)
 			if(1)
-				user.visible_message("<span class='warning'>[brainmob] has \his head sawed open with [W] by [user].</span>", \
+				user.visible_message("<span class='warning'>[brainmob] has [brainmob.p_their()] head sawed open with [W] by [user].</span>", \
 							"<span class='warning'>You saw [brainmob]'s head open with [W]!</span>")
 				to_chat(brainmob, "<span class='warning'>[user] saw open your head with [W]!</span>")
 				brain_op_stage = 2
 			if(3)
-				user.visible_message("<span class='warning'>[brainmob] has \his spine's connection to the brain severed with [W] by [user].</span>", \
+				user.visible_message("<span class='warning'>[brainmob] has [brainmob.p_their()] spine's connection to the brain severed with [W] by [user].</span>", \
 									"<span class='warning'>You sever [brainmob]'s brain's connection to the spine with [W]!</span>")
 				to_chat(brainmob, "<span class='warning'>[user] severs your brain's connection to the spine with [W]!</span>")
 
 				log_combat(user, brainmob, "debrained", W, "(INTENT: [uppertext(user.a_intent)])")
-				msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) debrained [key_name(brainmob)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[brainmob]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[brainmob.x];Y=[brainmob.y];Z=[brainmob.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[brainmob]'>FLW</a>) (INTENT: [uppertext(user.a_intent)])")
+				msg_admin_attack("[ADMIN_TPMONTY(usr)] debrained [ADMIN_TPMONTY(brainmob)].")
 
 				//TODO: ORGAN REMOVAL UPDATE.
 				var/obj/item/organ/brain/B = new brain_item_type(loc)

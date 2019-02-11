@@ -13,7 +13,7 @@
 
 
 /datum/event/brand_intelligence/start()
-	for(var/obj/machinery/vending/V in machines)
+	for(var/obj/machinery/vending/V in GLOB.machines)
 		if(V.z != 3 || V.z != 4)	continue
 		vendingMachines.Add(V)
 

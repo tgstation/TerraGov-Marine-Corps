@@ -243,17 +243,17 @@
 			return TRUE
 
 		if("module1")
-			if(istype(user, /mob/living/silicon/robot))
+			if(iscyborg(user))
 				user:toggle_module(1)
 			return TRUE
 
 		if("module2")
-			if(istype(user, /mob/living/silicon/robot))
+			if(iscyborg(user))
 				user:toggle_module(2)
 			return TRUE
 
 		if("module3")
-			if(istype(user, /mob/living/silicon/robot))
+			if(iscyborg(user))
 				user:toggle_module(3)
 			return TRUE
 
@@ -393,7 +393,7 @@
 		if(MOVE_INTENT_WALK)
 			user.m_intent = MOVE_INTENT_RUN
 			icon_state = "running"
-	if(isXeno(user))
+	if(isxeno(user))
 		user.update_icons()
 	return TRUE
 
@@ -404,7 +404,7 @@
 	screen_loc = ui_acti
 
 /obj/screen/act_intent/clicked(var/mob/user)
-	user.a_intent_change("right")
+	user.a_intent_change(INTENT_HOTKEY_RIGHT)
 	return TRUE
 
 /obj/screen/act_intent/corner/clicked(var/mob/user, var/list/mods)
@@ -412,16 +412,16 @@
 	var/_y = text2num(mods["icon-y"])
 
 	if(_x<=16 && _y<=16)
-		user.a_intent_change("hurt")
+		user.a_intent_change(INTENT_HARM)
 
 	else if(_x<=16 && _y>=17)
-		user.a_intent_change("help")
+		user.a_intent_change(INTENT_HELP)
 
 	else if(_x>=17 && _y<=16)
-		user.a_intent_change("grab")
+		user.a_intent_change(INTENT_GRAB)
 
 	else if(_x>=17 && _y>=17)
-		user.a_intent_change("disarm")
+		user.a_intent_change(INTENT_DISARM)
 
 	return TRUE
 
@@ -558,7 +558,7 @@
 /obj/screen/queen_locator/clicked(var/mob/user)
 	if (..())
 		return TRUE
-	if (isXeno(user))
+	if (isxeno(user))
 		var/mob/living/carbon/Xenomorph/X = user
 		X.hive_status()
 	return TRUE
@@ -629,7 +629,7 @@
 	if(!user?.client)
 		return
 
-	var/obj/item/weapon/gun/G = user.get_active_hand()
+	var/obj/item/weapon/gun/G = user.get_active_held_item()
 
 	if(!G || !G.has_ammo_counter() || !G.hud_enabled)
 		return
@@ -643,7 +643,7 @@
 	if(!user?.client?.screen.Find(src))
 		return
 
-	var/obj/item/weapon/gun/G = user.get_active_hand()
+	var/obj/item/weapon/gun/G = user.get_active_held_item()
 
 	if(!G || !istype(G) || !G.has_ammo_counter() || !G.hud_enabled || !G.get_ammo_type() || isnull(G.get_ammo_count()))
 		remove_hud()

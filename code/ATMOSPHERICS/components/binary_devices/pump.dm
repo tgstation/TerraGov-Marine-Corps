@@ -54,7 +54,7 @@ node2, network2 correspond to output
 
 /obj/machinery/atmospherics/binary/pump/process()
 	if((stat & (NOPOWER|BROKEN)) || !on)
-		update_use_power(0)	//usually we get here because a player turned a pump off - definitely want to update.
+		update_use_power(NO_POWER_USE)	//usually we get here because a player turned a pump off - definitely want to update.
 		last_power_draw = 0
 		last_flow_rate = 0
 		return
@@ -155,7 +155,7 @@ node2, network2 correspond to output
 		return
 	src.add_fingerprint(usr)
 	if(!src.allowed(user))
-		to_chat(user, "\red Access denied.")
+		to_chat(user, "<span class='warning'>Access denied.</span>")
 		return
 	usr.set_interaction(src)
 	ui_interact(user)

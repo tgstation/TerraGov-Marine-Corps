@@ -147,7 +147,7 @@
 	target.UpdateDamageIcon()
 
 	//Deal with the limb item properly
-	user.temp_drop_inv_item(tool)
+	user.temporarilyRemoveItemFromInventory(tool)
 	qdel(tool)
 
 /datum/surgery_step/limb/attach/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)

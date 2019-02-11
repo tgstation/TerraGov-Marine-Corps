@@ -55,22 +55,22 @@
 	if(user.action_busy)
 		return TRUE //no afterattack
 	if(health > 0)
-		if(istype(W, /obj/item/tool/wrench))
+		if(iswrench(W))
 			if(!anchored)
 				if(istype(get_area(src.loc),/area/shuttle || istype(get_area(src.loc),/area/sulaco/hangar)))
 					to_chat(user, "<span class='warning'>No. This area is needed for the dropships and personnel.</span>")
 					return
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
-				to_chat(user, "\blue Now securing the girder")
+				to_chat(user, "<span class='notice'>Now securing the girder</span>")
 				if(do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
-					to_chat(user, "\blue You secured the girder!")
+					to_chat(user, "<span class='notice'>You secured the girder!</span>")
 					new/obj/structure/girder( src.loc )
 					qdel(src)
 			else if (dismantlectr %2 == 0)
 				if(do_after(user,15, TRUE, 5, BUSY_ICON_BUILD))
 					dismantlectr++
 					health -= 15
-					to_chat(user, "\blue You unfasten a bolt from the girder!")
+					to_chat(user, "<span class='notice'>You unfasten a bolt from the girder!</span>")
 				return
 
 
@@ -87,32 +87,32 @@
 				update_state()
 
 		else if(istype(W, /obj/item/tool/pickaxe/diamonddrill))
-			to_chat(user, "\blue You drill through the girder!")
+			to_chat(user, "<span class='notice'>You drill through the girder!</span>")
 			dismantle()
 
-		else if(istype(W, /obj/item/tool/screwdriver) && state == 2 && istype(src,/obj/structure/girder/reinforced))
+		else if(isscrewdriver(W) && state == 2 && istype(src,/obj/structure/girder/reinforced))
 			playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
-			to_chat(user, "\blue Now unsecuring support struts")
+			to_chat(user, "<span class='notice'>Now unsecuring support struts</span>")
 			if(do_after(user,40, TRUE, 5, BUSY_ICON_BUILD))
 				if(!src) return
-				to_chat(user, "\blue You unsecured the support struts!")
+				to_chat(user, "<span class='notice'>You unsecured the support struts!</span>")
 				state = 1
 
-		else if(istype(W, /obj/item/tool/wirecutters) && istype(src,/obj/structure/girder/reinforced) && state == 1)
+		else if(iswirecutter(W) && istype(src,/obj/structure/girder/reinforced) && state == 1)
 			playsound(src.loc, 'sound/items/Wirecutter.ogg', 25, 1)
-			to_chat(user, "\blue Now removing support struts")
+			to_chat(user, "<span class='notice'>Now removing support struts</span>")
 			if(do_after(user,40, TRUE, 5, BUSY_ICON_BUILD))
 				if(!src) return
-				to_chat(user, "\blue You removed the support struts!")
+				to_chat(user, "<span class='notice'>You removed the support struts!</span>")
 				new/obj/structure/girder( src.loc )
 				qdel(src)
 
-		else if(istype(W, /obj/item/tool/crowbar) && state == 0 && anchored )
+		else if(iscrowbar(W) && state == 0 && anchored)
 			playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
-			to_chat(user, "\blue Now dislodging the girder...")
+			to_chat(user, "<span class='notice'>Now dislodging the girder...</span>")
 			if(do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
 				if(!src) return
-				to_chat(user, "\blue You dislodged the girder!")
+				to_chat(user, "<span class='notice'>You dislodged the girder!</span>")
 				new/obj/structure/girder/displaced( src.loc )
 				qdel(src)
 
@@ -158,7 +158,7 @@
 
 			add_hiddenprint(usr)
 
-		else if(istype(W, /obj/item/tool/weldingtool) && buildctr %2 != 0)
+		else if(iswelder(W) && buildctr %2 != 0)
 			var/obj/item/tool/weldingtool/WT = W
 			if (WT.remove_fuel(0,user))
 				playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
@@ -168,9 +168,9 @@
 						build_wall()
 						return
 					buildctr++
-					to_chat(user, "\blue You weld the metal to the girder!")
+					to_chat(user, "<span class='notice'>You weld the metal to the girder!</span>")
 			return
-		else if(istype(W, /obj/item/tool/wirecutters) && dismantlectr %2 != 0)
+		else if(iswirecutter(W) && dismantlectr %2 != 0)
 			if(do_after(user,15, TRUE, 5, BUSY_ICON_BUILD))
 				if (dismantlectr >= 5)
 					dismantle()
@@ -178,7 +178,7 @@
 					return
 				health -= 15
 				dismantlectr++
-				to_chat(user, "\blue You cut away from structural piping!")
+				to_chat(user, "<span class='notice'>You cut away from structural piping!</span>")
 			return
 
 		else if(istype(W, /obj/item/pipe))
@@ -186,7 +186,7 @@
 			if (P.pipe_type in list(0, 1, 5))	//simple pipes, simple bends, and simple manifolds.
 				user.drop_held_item()
 				P.loc = src.loc
-				to_chat(user, "\blue You fit the pipe into the [src]!")
+				to_chat(user, "<span class='notice'>You fit the pipe into the [src]!</span>")
 		else
 	else
 		if (repair_state == 0)
@@ -203,10 +203,10 @@
 					repair_state = 1
 				return
 		if (repair_state == 1)
-			if(istype(W, /obj/item/tool/weldingtool))
+			if(iswelder(W))
 				if(do_after(user,30, TRUE, 5, BUSY_ICON_BUILD))
 					if(gc_destroyed || repair_state != 1) return
-					to_chat(user, "\blue You weld the girder together!")
+					to_chat(user, "<span class='notice'>You weld the girder together!</span>")
 					repair()
 				return
 		..()

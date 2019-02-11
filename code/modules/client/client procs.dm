@@ -23,49 +23,57 @@
 	if(!usr || usr != mob)	//stops us calling Topic for somebody else's client. Also helps prevent usr=null
 		return
 
+	if(href_list["_src_"] == "chat") // Oh god the ping hrefs.
+		return chatOutput.Topic(href, href_list)
 
 	//search the href for script injection
-	if( findtext(href,"<script",1,0) )
-		log_world("Attempted use of scripts within a topic call, by [src]")
-		message_admins("Attempted use of scripts within a topic call, by [src]")
+	if(findtext(href,"<script", 1, 0))
+		log_world("[key_name(usr)] attempted use of scripts within a topic call.")
+		message_admins("[ADMIN_TPMONTY(usr)] attempted use of scripts within a topic call.")
 		//del(usr)
 		return
+/*
+	//Logs all hrefs, except chat pings
+	if(!(href_list["_src_"] == "chat" && href_list["proc"] == "ping" && length(href_list) == 2))
+		log_href("[src] (usr:[usr]\[[AREACOORD(usr)]\]) : [hsrc ? "[hsrc] " : ""][href]")*/
 
-	//Admin PM //Why is this not in /datums/admin/Topic()
-	if(href_list["priv_msg"])
-		var/client/C = locate(href_list["priv_msg"])
-		if(ismob(C)) 		//Old stuff can feed-in mobs instead of clients
-			var/mob/M = C
-			C = M.client
-		if(!C) return //Outdated links to logged players generate runtimes
-		if(unansweredMhelps[C.computer_id]) 
-			unansweredMhelps.Remove(C.computer_id)
-		if(unansweredAhelps[C.computer_id]) 
-			unansweredAhelps.Remove(C.computer_id)
-		cmd_admin_pm(C,null)
-		return
 
 	//Logs all hrefs
-	if(config && config.log_hrefs)
+	if(CONFIG_GET(flag/log_hrefs))
 		log_href("[time2text(world.timeofday,"hh:mm")] [src] (usr:[usr]) || [hsrc ? "[hsrc] " : ""][href]")
 
-	switch(href_list["_src_"])
-		if("holder")	hsrc = holder
-		if("usr")		hsrc = mob
-		if("prefs")		return prefs.process_link(usr,href_list)
-		if("vars")		return view_var_Topic(href,href_list,hsrc)
+	// Admin PM
+	if(href_list["priv_msg"])
+		private_message(href_list["priv_msg"], null)
+		return
 
-	..()	//redirect to hsrc.Topic()
+	switch(href_list["_src_"])
+		if("holder")
+			hsrc = holder
+		if("usr")
+			hsrc = mob
+		if("prefs")
+			return prefs.process_link(usr, href_list)
+		if("vars")
+			return view_var_Topic(href, href_list, hsrc)
+		if("chat")
+			return chatOutput.Topic(href, href_list)
+
+	switch(href_list["action"])
+		if ("openLink")
+			src << link(href_list["link"])
+
+	return ..()	//redirect to hsrc.Topic()
 
 /client/proc/handle_spam_prevention(var/message, var/mute_type)
-	if(config.automute_on && !holder && src.last_message == message)
+	if(CONFIG_GET(flag/automute_on) && !holder && src.last_message == message)
 		src.last_message_count++
 		if(src.last_message_count >= SPAM_TRIGGER_AUTOMUTE)
-			to_chat(src, "\red You have exceeded the spam filter limit for identical messages. An auto-mute was applied.")
-			cmd_admin_mute(src.mob, mute_type, 1)
+			to_chat(src, "<span class='warning'>You have exceeded the spam filter limit for identical messages. An auto-mute was applied.</span>")
+			//cmd_admin_mute(src.mob, mute_type, 1)
 			return 1
 		if(src.last_message_count >= SPAM_TRIGGER_WARNING)
-			to_chat(src, "\red You are nearing the spam filter limit for identical messages.")
+			to_chat(src, "<span class='warning'>You are nearing the spam filter limit for identical messages.</span>")
 			return 0
 	else
 		last_message = message
@@ -91,6 +99,7 @@
 	//CONNECT//
 	///////////
 /client/New(TopicData)
+	chatOutput = new /datum/chatOutput(src)
 	TopicData = null							//Prevent calls to client.Topic from connect
 
 	if(!(connection in list("seeker", "web")))					//Invalid connection type.
@@ -103,29 +112,20 @@
 		qdel(src)
 		return
 
-	// Change the way they should download resources.
-	if(config.resource_urls)
-		src.preload_rsc = pick(config.resource_urls)
-	else src.preload_rsc = 1 // If config.resource_urls is not set, preload like normal.
+	preload_rsc = TRUE // If config.resource_urls is not set, preload like normal.
 
-	to_chat(src, "\red If the title screen is black, resources are still downloading. Please be patient until the title screen appears.")
+	to_chat(src, "<span class='warning'>If the title screen is black, resources are still downloading. Please be patient until the title screen appears.</span>")
 
 
-	clients += src
-	directory[ckey] = src
+	GLOB.clients += src
+	GLOB.directory[ckey] = src
 
-	//Admin Authorisation
-	holder = admin_datums[ckey]
-	if(holder)
-		admins += src
-		holder.owner = src
-	else // If it matters put a config check for this feature on this line
+	if(CONFIG_GET(flag/localhost_rank))
 		var/static/list/localhost_addresses = list("127.0.0.1", "::1")
 		if(isnull(address) || (address in localhost_addresses))
-			var/datum/admins/rank = new("!localhost!", ALL, ckey)
-			holder = rank
-			admins += src
-			rank.owner = src
+			var/datum/admin_rank/rank = new("!localhost!", R_EVERYTHING, , R_EVERYTHING)
+			var/datum/admins/admin = new(rank, ckey, TRUE)
+			admin.associate(src)
 
 	//preferences datum - also holds some persistant data for the client (because we may as well keep these datums to a minimum)
 	prefs = preferences_datums[ckey]
@@ -136,20 +136,31 @@
 	prefs.last_id = computer_id			//these are gonna be used for banning
 
 	. = ..()	//calls mob.Login()
+	chatOutput.start() // Starts the chat
 
 	if(custom_event_msg && custom_event_msg != "")
 		to_chat(src, "<h1 class='alert'>Custom Event</h1>")
 		to_chat(src, "<h2 class='alert'>A custom event is taking place. OOC Info:</h2>")
-		to_chat(src, "<span class='alert'>[html_encode(custom_event_msg)]</span>")
+		to_chat(src, "<span class='alert'>[custom_event_msg]</span>")
 		to_chat(src, "<br>")
 
 	if( (world.address == address || !address) && !host )
 		host = key
 		world.update_status()
 
+
+	GLOB.ahelp_tickets.ClientLogin(src)
+	holder = GLOB.admin_datums[ckey]
 	if(holder)
-		add_admin_verbs()
-		admin_memo_show()
+		GLOB.admins |= src
+		holder.owner = src
+		holder.activate()
+		if(check_rights(R_ADMIN, FALSE))
+			message_admins("Admin login: [key_name_admin(src)].")
+		else if(check_rights(R_MENTOR, FALSE))
+			message_staff("Mentor login: [key_name_admin(src)].")
+	else if(GLOB.deadmins[ckey])
+		verbs += /client/proc/readmin
 
 	log_client_to_db()
 
@@ -159,17 +170,9 @@
 	create_clickcatcher()
 	apply_clickcatcher()
 
-	if(prefs.lastchangelog != changelog_hash) //bolds the changelog button on the interface so we know there are updates.
+	if(prefs.lastchangelog != GLOB.changelog_hash) //bolds the changelog button on the interface so we know there are updates.
 		winset(src, "rpane.changelog", "background-color=#ED9F9B;font-style=bold")
 
-
-	var/file = file2text("config/donators.txt")
-	var/lines = text2list(file, "\n")
-
-	for(var/line in lines)
-		if(src.ckey == line)
-			src.donator = 1
-			verbs += /client/proc/set_ooc_color_self
 
 	if(all_player_details[ckey])
 		player_details = all_player_details[ckey]
@@ -182,12 +185,23 @@
 	//////////////
 /client/Del()
 	if(holder)
+		if(check_rights(R_ADMIN, FALSE))
+			message_admins("Admin logout: [key_name(src)].")
+		else if(check_rights(R_MENTOR, FALSE))
+			message_staff("Mentor logout: [key_name(src)].")
 		holder.owner = null
-		admins -= src
-	directory -= ckey
-	clients -= src
+		GLOB.admins -= src
+
+	GLOB.ahelp_tickets.ClientLogout(src)
+	GLOB.directory -= ckey
+	GLOB.clients -= src
+	GLOB.directory -= ckey
+	GLOB.clients -= src
 	return ..()
 
+
+/client/Destroy()
+	return QDEL_HINT_HARDDEL_NOW
 
 
 /client/proc/log_client_to_db()
@@ -264,57 +278,17 @@
 	if(inactivity > duration)	return inactivity
 	return 0
 
+GLOBAL_LIST_EMPTY(external_rsc_url)
 //send resources to the client. It's here in its own proc so we can move it around easiliy if need be
 /client/proc/send_resources()
+	if(!CONFIG_GET(string/resource_url))
+		return
+	preload_rsc = GLOB.external_rsc_url
 
-	getFiles(
-		'html/search.js',
-		'html/panels.css',
-		'html/loading.gif',
-		'icons/pda_icons/pda_atmos.png',
-		'icons/pda_icons/pda_back.png',
-		'icons/pda_icons/pda_bell.png',
-		'icons/pda_icons/pda_blank.png',
-		'icons/pda_icons/pda_boom.png',
-		'icons/pda_icons/pda_bucket.png',
-		'icons/pda_icons/pda_crate.png',
-		'icons/pda_icons/pda_cuffs.png',
-		'icons/pda_icons/pda_eject.png',
-		'icons/pda_icons/pda_exit.png',
-		'icons/pda_icons/pda_flashlight.png',
-		'icons/pda_icons/pda_honk.png',
-		'icons/pda_icons/pda_mail.png',
-		'icons/pda_icons/pda_medical.png',
-		'icons/pda_icons/pda_menu.png',
-		'icons/pda_icons/pda_mule.png',
-		'icons/pda_icons/pda_notes.png',
-		'icons/pda_icons/pda_power.png',
-		'icons/pda_icons/pda_rdoor.png',
-		'icons/pda_icons/pda_reagent.png',
-		'icons/pda_icons/pda_refresh.png',
-		'icons/pda_icons/pda_scanner.png',
-		'icons/pda_icons/pda_signaler.png',
-		'icons/pda_icons/pda_status.png',
-		'html/images/wylogo.png'
-		)
+//Hook, override it to run code when dir changes
+//Like for /atoms, but clients are their own snowflake FUCK
+/client/proc/setDir(newdir)
+	dir = newdir
 
-/client/Stat()
-	// We just did a short sleep because of a change, do another to render quickly, but flip the flag back.
-	if (stat_fast_update)
-		stat_fast_update = 0
-		Stat()
-		return 0
-
-	last_statpanel = statpanel
-
-	. = ..() // Do our regular Stat stuff
-
-	//statpanel changed? We doin a short sleep
-	if (statpanel != last_statpanel || stat_force_fast_update)
-		stat_fast_update = 1
-		stat_force_fast_update = 0
-		return .
-
-	// Nothing happening, long sleep
-	sleep(32)
-	return .
+/client/proc/get_offset()
+	return max(abs(pixel_x / 32), abs(pixel_y / 32))

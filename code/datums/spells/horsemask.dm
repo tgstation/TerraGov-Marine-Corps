@@ -31,7 +31,7 @@
 	var/obj/item/clothing/mask/horsehead/magic/magichead = new /obj/item/clothing/mask/horsehead/magic
 	target.visible_message(	"<span class='danger'>[target]'s face  lights up in fire, and after the event a horse's head takes its place!</span>", \
 							"<span class='danger'>Your face burns up, and shortly after the fire you realise you have the face of a horse!</span>")
-	target.equip_to_slot(magichead, WEAR_FACE)
+	target.equip_to_slot(magichead, SLOT_WEAR_MASK)
 	target.flash_eyes(1, TRUE)
 
 //item used by the horsehead spell
@@ -43,6 +43,6 @@
 		..()
 
 	equipped(var/mob/user, var/slot)
-		if (slot == WEAR_FACE)
+		if (slot == SLOT_WEAR_MASK)
 			flags_item |= NODROP		//curses!
 		..()

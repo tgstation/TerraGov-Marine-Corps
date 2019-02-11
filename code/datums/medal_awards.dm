@@ -32,7 +32,7 @@ var/global/list/medal_awards = list()
 	if(!medal_type) return
 	var/citation = copytext(sanitize(input("What should the medal citation read?","Medal Citation", null) as text|null), 1, MAX_MESSAGE_LEN)
 	if(!citation) return
-	for(var/mob/M in living_mob_list)
+	for(var/mob/M in GLOB.alive_human_list)
 		if(M.real_name == chosen_recipient)
 			posthumous = 0
 			break
@@ -55,7 +55,7 @@ var/global/list/medal_awards = list()
 		MD.recipient_name = chosen_recipient
 		MD.medal_citation = citation
 		MD.recipient_rank = recipient_rank
-	message_admins("[key_name_admin(usr)] awarded a [medal_type] to [chosen_recipient] for: \'[citation]\'.")
-	log_admin("[key_name_admin(usr)] awarded a [medal_type] to [chosen_recipient] for: \'[citation]\'.")
-
+		
+	log_admin("[key_name(usr)] awarded a [medal_type] to [chosen_recipient] for: '[citation]'.")
+	message_admins("[ADMIN_TPMONTY(usr)] awarded a [medal_type] to [chosen_recipient] for: '[citation]'.")
 	return TRUE

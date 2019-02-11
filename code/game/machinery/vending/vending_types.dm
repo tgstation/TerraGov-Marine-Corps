@@ -68,7 +68,10 @@
 	vend_delay = 34
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
 	vend_power_usage = 85000 //85 kJ to heat a 250 mL cup of coffee
-	products = list(/obj/item/reagent_container/food/drinks/coffee = 25,/obj/item/reagent_container/food/drinks/tea = 25,/obj/item/reagent_container/food/drinks/h_chocolate = 25)
+	products = list(/obj/item/reagent_container/food/drinks/coffee = 20,
+					/obj/item/reagent_container/food/drinks/coffee/cafe_latte = 20,
+					/obj/item/reagent_container/food/drinks/tea = 25,
+					/obj/item/reagent_container/food/drinks/h_chocolate = 25)
 	contraband = list(/obj/item/reagent_container/food/drinks/ice = 10)
 	prices = list()
 
@@ -336,11 +339,11 @@
 
 /obj/machinery/vending/engivend
 	name = "Engi-Vend"
-	desc = "Spare tool vending. What? Did you expect some witty description?"
+	desc = "Spare electronics vending. What? Did you expect some witty description?"
 	icon_state = "engivend"
 	icon_deny = "engivend-deny"
 	req_access_txt = "7" //Engineering Equipment access
-	products = list(/obj/item/clothing/glasses/meson = 2,/obj/item/device/multitool = 4,/obj/item/circuitboard/airlock = 10,/obj/item/circuitboard/apc = 10,/obj/item/circuitboard/airalarm = 10,/obj/item/cell/high = 10)
+	products = list(/obj/item/clothing/glasses/meson = 2,/obj/item/device/multitool = 4,/obj/item/circuitboard/airlock = 10,/obj/item/circuitboard/apc = 10,/obj/item/circuitboard/airalarm = 10, /obj/item/circuitboard/general = 20, /obj/item/cell/high = 10)
 	contraband = list(/obj/item/cell/potato = 3)
 	premium = list(/obj/item/storage/belt/utility = 3)
 

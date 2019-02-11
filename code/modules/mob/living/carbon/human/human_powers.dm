@@ -47,7 +47,7 @@
 
 	for(var/mob/O in viewers(src, null))
 		if ((O.client && !( is_blind(O) )))
-			O.show_message(text("\red <B>[] [failed ? "tried to tackle" : "has tackled"] down []!</B>", src, T), 1)
+			O.show_message(text("<span class='danger'>[] [failed ? "tried to tackle" : "has tackled"] down []!</span>", src, T), 1)
 
 /mob/living/carbon/human/proc/leap()
 	set category = "Abilities"
@@ -92,7 +92,7 @@
 	if(status_flags & LEAPING) status_flags &= ~LEAPING
 
 	if(!src.Adjacent(T))
-		to_chat(src, "\red You miss!")
+		to_chat(src, "<span class='warning'>You miss!</span>")
 		return
 
 	T.KnockDown(5)
@@ -116,16 +116,16 @@
 		return
 
 	if(is_mob_incapacitated(TRUE) || lying)
-		to_chat(src, "\red You cannot do that in your current state.")
+		to_chat(src, "<span class='warning'>You cannot do that in your current state.</span>")
 		return
 
 	var/obj/item/grab/G = locate() in src
 	if(!G || !istype(G))
-		to_chat(src, "\red You are not grabbing anyone.")
+		to_chat(src, "<span class='warning'>You are not grabbing anyone.</span>")
 		return
 
 	if(usr.grab_level < GRAB_AGGRESSIVE)
-		to_chat(src, "\red You must have an aggressive grab to gut your prey!")
+		to_chat(src, "<span class='warning'>You must have an aggressive grab to gut your prey!</span>")
 		return
 
 	last_special = world.time + 50
@@ -166,18 +166,18 @@
 
 	var/mob/M = targets[target]
 
-	if(istype(M, /mob/dead/observer) || M.stat == DEAD)
+	if(isobserver(M) || M.stat == DEAD)
 		to_chat(src, "Not even a [src.species.name] can speak to the dead.")
 		return
 
 	log_directed_talk(src, M, text, LOG_SAY, "telepathic commune")
 
-	to_chat(M, "\blue Like lead slabs crashing into the ocean, alien thoughts drop into your mind: [text]")
+	to_chat(M, "<span class='notice'>Like lead slabs crashing into the ocean, alien thoughts drop into your mind: [text]</span>")
 	if(istype(M,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = M
-		if(H.species.name == src.species.name)
+		if(is_species(H, species))
 			return
-		to_chat(H, "\red Your nose begins to bleed...")
+		to_chat(H, "<span class='warning'>Your nose begins to bleed...</span>")
 		H.drip(1)
 
 /mob/living/carbon/human/proc/psychic_whisper(mob/M as mob in oview())
@@ -188,6 +188,6 @@
 	var/msg = sanitize(input("Message:", "Psychic Whisper") as text|null)
 	if(msg)
 		log_directed_talk(src, M, msg, LOG_SAY, "psychic whisper")
-		to_chat(M, "\green You hear a strange, alien voice in your head... \italic [msg]")
-		to_chat(src, "\green You said: \"[msg]\" to [M]")
+		to_chat(M, "<span class='green'> You hear a strange, alien voice in your head... \italic [msg]</span>")
+		to_chat(src, "<span class='green'> You said: \"[msg]\" to [M]</span>")
 	return

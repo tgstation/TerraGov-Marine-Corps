@@ -56,7 +56,7 @@ obj/structure/bed/Destroy()
 	B.visible_message("<span class='notice'>[user] buckles [B] to [src]!</span>")
 	B.roller_buckled = src
 	B.loc = loc
-	B.dir = dir
+	B.setDir(dir)
 	buckled_bodybag = B
 	density = TRUE
 	update_icon()
@@ -110,7 +110,7 @@ obj/structure/bed/Destroy()
 /obj/structure/bed/MouseDrop_T(atom/dropping, mob/user)
 	if(accepts_bodybag && !buckled_bodybag && !buckled_mob && istype(dropping,/obj/structure/closet/bodybag) && ishuman(user))
 		var/obj/structure/closet/bodybag/B = dropping
-		if(!B.roller_buckled)
+		if(!B.roller_buckled && !B.anchored)
 			do_buckle_bodybag(B, user)
 			return TRUE
 	else
@@ -119,7 +119,7 @@ obj/structure/bed/Destroy()
 /obj/structure/bed/MouseDrop(atom/over_object)
 	. = ..()
 	if(foldabletype && !buckled_mob && !buckled_bodybag)
-		if(istype(over_object, /mob/living/carbon/human))
+		if(ishuman(over_object))
 			var/mob/living/carbon/human/H = over_object
 			if(H == usr && !H.is_mob_incapacitated() && Adjacent(H) && in_range(src, over_object))
 				var/obj/item/I = new foldabletype(get_turf(src))
@@ -131,8 +131,9 @@ obj/structure/bed/Destroy()
 						M.last_teleport = B.last_teleport
 					if(B.linked_beacon)
 						M.linked_beacon = B.linked_beacon
-					if(B.linked_beacon?.linked_bed_deployed == src)
-						M.linked_beacon.linked_bed = M
+						if(B.linked_beacon.linked_bed_deployed == B)
+							M.linked_beacon.linked_bed = M
+							B.linked_beacon.linked_bed_deployed = null
 				H.visible_message("<span class='warning'>[H] grabs [src] from the floor!</span>",
 				"<span class='warning'>You grab [src] from the floor!</span>")
 				qdel(src)
@@ -153,7 +154,7 @@ obj/structure/bed/Destroy()
 				qdel(src)
 
 /obj/structure/bed/attack_alien(mob/living/carbon/Xenomorph/M)
-	if(M.a_intent == "hurt")
+	if(M.a_intent == INTENT_HARM)
 		M.animation_attack_on(src)
 		playsound(src, hit_bed_sound, 25, 1)
 		M.visible_message("<span class='danger'>[M] slices [src] apart!</span>",
@@ -163,7 +164,7 @@ obj/structure/bed/Destroy()
 	else attack_hand(M)
 
 /obj/structure/bed/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/tool/wrench))
+	if(iswrench(W))
 		if(buildstacktype)
 			playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 			new buildstacktype(loc, buildstackamount)
@@ -244,17 +245,20 @@ obj/structure/bed/Destroy()
 			return
 	. = ..()
 
-/obj/item/roller/proc/deploy_roller(mob/user, atom/location, last_teleport = null, linked_beacon = null)
+/obj/item/roller/proc/deploy_roller(mob/user, atom/location)
 	var/obj/structure/bed/roller/R = new rollertype(location)
 	R.add_fingerprint(user)
-	user.temp_drop_inv_item(src)
+	user.temporarilyRemoveItemFromInventory(src)
 	if(istype(R,/obj/structure/bed/medevac_stretcher)) //We need to preserve key variables like linked beacons and cooldowns.
 		var/obj/item/roller/medevac/I = src
 		var/obj/structure/bed/medevac_stretcher/B = R
-		B.last_teleport = I.last_teleport
-		B.linked_beacon = I.linked_beacon
-		if(B.linked_beacon.linked_bed == src)
-			B.linked_beacon.linked_bed_deployed = B
+		if(I.last_teleport)
+			B.last_teleport = I.last_teleport
+		if(I.linked_beacon)
+			B.linked_beacon = I.linked_beacon
+			if(B.linked_beacon.linked_bed == I)
+				B.linked_beacon.linked_bed_deployed = B
+				B.linked_beacon.linked_bed = null
 	qdel(src)
 
 /obj/item/roller_holder
@@ -293,6 +297,7 @@ var/global/list/activated_medevac_stretchers = list()
 	icon = 'icons/obj/rollerbed.dmi'
 	icon_state = "stretcher_down"
 	buckling_y = 6
+	buildstacktype = null
 	foldabletype = /obj/item/roller/medevac
 	base_bed_icon = "stretcher"
 	accepts_bodybag = TRUE
@@ -510,7 +515,7 @@ var/global/list/activated_medevac_stretchers = list()
 	rollertype = /obj/structure/bed/medevac_stretcher
 
 /obj/item/roller/medevac/attack_self(mob/user)
-	deploy_roller(user, user.loc, last_teleport, linked_beacon)
+	deploy_roller(user, user.loc)
 
 
 /obj/item/roller/medevac/examine(mob/user)

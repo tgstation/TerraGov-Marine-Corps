@@ -3,7 +3,6 @@
 	name = "Infection"
 	config_tag = "Infection"
 	required_players = 0 //otherwise... no zambies
-	latejoin_larva_drop = 0
 	flags_round_type = MODE_INFECTION //Apparently without this, the game mode checker ignores this as a potential legit game mode.
 
 	uplink_welcome = "IF YOU SEE THIS, SHIT A BRICK AND AHELP"
@@ -60,16 +59,16 @@
 	to_chat(world, "<span class='round_header'>|Round Complete|</span>")
 	feedback_set_details("round_end_result",round_finished)
 
-	to_chat(world, "<span class='round_body'>Thus ends the story of the brave men and women of the [MAIN_SHIP_NAME] and their struggle on [map_tag].</span>")
+	to_chat(world, "<span class='round_body'>Thus ends the story of the brave men and women of the [MAIN_SHIP_NAME] and their struggle on [GLOB.map_tag].</span>")
 	var/musical_track = pick('sound/theme/sad_loss1.ogg','sound/theme/sad_loss2.ogg')
 	to_chat(world, musical_track)
 	to_chat(world, "<span class='round_body'>The zombies have been victorious!</span>")
 
 	var/dat = ""
 	//if(flags_round_type & MODE_INFESTATION)
-		//var/living_player_list[] = count_humans_and_xenos()
-		//dat = "\nXenomorphs remaining: [living_player_list[2]]. Humans remaining: [living_player_list[1]]."
-	log_game("[round_finished][dat]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [clients.len]\nTotal xenos spawned: [round_statistics.total_xenos_created]\nTotal Preds spawned: [predators.len]\nTotal humans spawned: [round_statistics.total_humans_created]")
+		//var/living_GLOB.player_list[] = count_humans_and_xenos()
+		//dat = "\nXenomorphs remaining: [living_GLOB.player_list[2]]. Humans remaining: [living_GLOB.player_list[1]]."
+	log_game("[round_finished][dat]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [GLOB.clients.len]\nTotal xenos spawned: [round_statistics.total_xenos_created]\nTotal Preds spawned: [predators.len]\nTotal humans spawned: [round_statistics.total_humans_created]")
 
 	to_chat(world, dat)
 

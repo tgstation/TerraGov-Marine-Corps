@@ -1,48 +1,39 @@
-var/list/obj/machinery/faxmachine/allfaxes = list()
-var/list/alldepartments = list()
-
 /obj/machinery/faxmachine
 	name = "fax machine"
 	icon = 'icons/obj/machines/library.dmi'
 	icon_state = "fax"
-//	req_one_access = list(ACCESS_MARINE_BRIDGE) //Warden needs to be able to Fax solgov too.
-	anchored = 1
-	density = 1
-	use_power = 1
+	anchored = TRUE
+	density = TRUE
+	use_power = TRUE
 	idle_power_usage = 30
 	active_power_usage = 200
 	power_channel = EQUIP
 
-	var/obj/item/card/id/scan = null // identification
-	var/authenticated = 0
+	var/obj/item/card/id/idscan = null
+	var/authenticated = FALSE
 
-	var/obj/item/paper/tofax = null // what we're sending
-	var/sendcooldown = 0 // to avoid spamming fax messages
+	var/obj/item/paper/message = null
+	var/sendcooldown = 0
 
-	var/department = "Liaison" // our department
-
-	var/dpt = "Nanotrasen" // the department we're sending to
+	var/department = "Corporate Liasion"
 
 
-/obj/machinery/faxmachine/New()
-	..()
-	allfaxes += src
+/obj/machinery/faxmachine/Initialize()
+	. = ..()
+	GLOB.faxmachines += src
 
-	if( !("[department]" in alldepartments) ) //Initialize departments. This will work with multiple fax machines.
-		alldepartments += department
-	if(!("Nanotrasen" in alldepartments))
-		alldepartments += "Nanotrasen"
-	if(!("TGMC High Command" in alldepartments))
-		alldepartments += "TGMC High Command"
 
 /obj/machinery/faxmachine/process()
-	return 0
+	return FALSE
+
 
 /obj/machinery/faxmachine/attack_ai(mob/user as mob)
 	return attack_hand(user)
 
+
 /obj/machinery/faxmachine/attack_paw(mob/user as mob)
 	return attack_hand(user)
+
 
 /obj/machinery/faxmachine/attack_hand(mob/user as mob)
 	user.set_interaction(src)
@@ -50,8 +41,8 @@ var/list/alldepartments = list()
 	var/dat = "Fax Machine<BR>"
 
 	var/scan_name
-	if(scan)
-		scan_name = scan.name
+	if(idscan)
+		scan_name = idscan.name
 	else
 		scan_name = "--------"
 
@@ -66,103 +57,84 @@ var/list/alldepartments = list()
 
 	if(authenticated)
 		dat += "<b>Logged in to:</b> Nanotrasen Private Corporate Network<br><br>"
-
-		if(tofax)
+		if(message)
 			dat += "<a href='byond://?src=\ref[src];remove=1'>Remove Paper</a><br><br>"
-
 			if(sendcooldown)
 				dat += "<b>Transmitter arrays realigning. Please stand by.</b><br>"
-
 			else
 				dat += "<a href='byond://?src=\ref[src];send=1'>Send</a><br>"
-				dat += "<b>Currently sending:</b> [tofax.name]<br>"
-				dat += "<b>Sending to:</b> <a href='byond://?src=\ref[src];dept=1'>[dpt]</a><br>"
-
+				dat += "<b>Currently sending:</b> [message.name]<br>"
+				dat += "<b>Sending to:</b> <a href='byond://?src=\ref[src];dept=1'>[department]</a><br>"
 		else
 			if(sendcooldown)
 				dat += "Please insert paper to send via secure connection.<br><br>"
 				dat += "<b>Transmitter arrays realigning. Please stand by.</b><br>"
 			else
 				dat += "Please insert paper to send via secure connection.<br><br>"
-
 	else
 		dat += "Proper authentication is required to use this device.<br><br>"
-
-		if(tofax)
+		if(message)
 			dat += "<a href ='byond://?src=\ref[src];remove=1'>Remove Paper</a><br>"
 
-	user << browse(dat, "window=copier")
-	onclose(user, "copier")
-	return
+	user << browse(dat, "window=fax")
+	onclose(user, "fax")
+
 
 /obj/machinery/faxmachine/Topic(href, href_list)
 	if(href_list["send"])
-		if(tofax)
-
-			if(dpt == "TGMC High Command")
-				Centcomm_fax(src, tofax.info, tofax.name, usr)
-				sendcooldown = 1200
-
-			else if(dpt == "Nanotrasen")
-				Solgov_fax(src, tofax.info, tofax.name, usr)
-				sendcooldown = 1200
-			else
-				SendFax(tofax.info, tofax.name, usr, dpt)
-				sendcooldown = 600
-
+		if(message)
+			send_fax(usr, src, department, message.name, message, FALSE)
 			to_chat(usr, "Message transmitted successfully.")
-
-			spawn(sendcooldown) // cooldown time
+			spawn(sendcooldown)
 				sendcooldown = 0
-
 	if(href_list["remove"])
-		if(tofax)
+		if(message)
 			if(!ishuman(usr))
 				to_chat(usr, "<span class='warning'>You can't do it.</span>")
 			else
-				tofax.loc = usr.loc
-				usr.put_in_hands(tofax)
+				message.loc = usr.loc
+				usr.put_in_hands(message)
 				to_chat(usr, "<span class='notice'>You take the paper out of \the [src].</span>")
-				tofax = null
-
+				message = null
 	if(href_list["scan"])
-		if (scan)
+		if(idscan)
 			if(ishuman(usr))
-				scan.loc = usr.loc
-				if(!usr.get_active_hand())
-					usr.put_in_hands(scan)
-				scan = null
+				idscan.loc = usr.loc
+				if(!usr.get_active_held_item())
+					usr.put_in_hands(idscan)
+				idscan = null
 			else
-				scan.loc = src.loc
-				scan = null
+				idscan.loc = loc
+				idscan = null
 		else
-			var/obj/item/I = usr.get_active_hand()
-			if (istype(I, /obj/item/card/id))
-				usr.drop_inv_item_to_loc(I, src)
-				scan = I
-		authenticated = 0
+			var/obj/item/I = usr.get_active_held_item()
+			if(istype(I, /obj/item/card/id))
+				usr.transferItemToLoc(I, src)
+				idscan = I
+		authenticated = FALSE
 
 	if(href_list["dept"])
-		var/lastdpt = dpt
-		dpt = input(usr, "Which department?", "Choose a department", "") as null|anything in alldepartments
-		if(!dpt) dpt = lastdpt
+		var/choice = input(usr, "Which department?", "Choose a department", "") as null|anything in list("Nanotrasen", "TGMC High Command", "TGMC Provost Marshall")
+		if(!choice)
+			return
+		department = choice
 
 	if(href_list["auth"])
-		if ( (!( authenticated ) && (scan)) )
-			if (check_access(scan))
-				authenticated = 1
+		if(!authenticated && idscan)
+			if(check_access(idscan))
+				authenticated = TRUE
 
 	if(href_list["logout"])
-		authenticated = 0
+		authenticated = FALSE
 
 	updateUsrDialog()
 
-/obj/machinery/faxmachine/attackby(obj/item/O as obj, mob/user as mob)
 
+/obj/machinery/faxmachine/attackby(obj/item/O as obj, mob/user as mob)
 	if(istype(O, /obj/item/paper))
-		if(!tofax)
-			user.drop_inv_item_to_loc(O, src)
-			tofax = O
+		if(!message)
+			user.transferItemToLoc(O, src)
+			message = O
 			to_chat(user, "<span class='notice'>You insert the paper into \the [src].</span>")
 			flick("faxsend", src)
 			updateUsrDialog()
@@ -170,49 +142,20 @@ var/list/alldepartments = list()
 			to_chat(user, "<span class='notice'>There is already something in \the [src].</span>")
 
 	else if(istype(O, /obj/item/card/id))
-
 		var/obj/item/card/id/idcard = O
-		if(!scan)
-			user.drop_inv_item_to_loc(idcard, src)
-			scan = idcard
+		if(!idscan)
+			user.transferItemToLoc(idcard, src)
+			idscan = idcard
 
-	else if(istype(O, /obj/item/tool/wrench))
+	else if(iswrench(O))
 		playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 		anchored = !anchored
 		to_chat(user, "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>")
-	return
 
-/proc/Centcomm_fax(var/originfax, var/sent, var/sentname, var/mob/Sender)
-	var/faxcontents = "[sent]"
-	fax_contents += faxcontents
-	var/msg = "\blue <b><font color='#006100'>TGMC FAX: </font>[key_name(Sender, 1)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[Sender]'>?</A>) (<A HREF='?_src_=holder;mark=\ref[src]'>Mark</A>) (<A HREF='?_src_=holder;adminplayeropts=\ref[Sender]'>PP</A>) (<A HREF='?_src_=vars;Vars=\ref[Sender]'>VV</A>) (<A HREF='?_src_=holder;subtlemessage=\ref[Sender]'>SM</A>) (<A HREF='?_src_=holder;adminplayerobservejump=\ref[Sender]'>JMP</A>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[Sender]'>FLW</A>) (<A HREF='?_src_=holder;secretsadmin=check_antagonist'>CA</A>) (<a href='?_src_=holder;TGMCFaxReply=\ref[Sender];originfax=\ref[originfax]'>RPLY</a>)</b>: Receiving '[sentname]' via secure connection ... <a href='?_src_=holder;CentcommFaxView=\ref[faxcontents]'>view message</a>"
-	TGMCFaxes.Add("<a href='?_src_=holder;CentcommFaxView=\ref[faxcontents]'>\[view message at [world.timeofday]\]</a> <a href='?_src_=holder;TGMCFaxReply=\ref[Sender];originfax=\ref[originfax]'>REPLY</a>")
-	for(var/client/C in admins)
-		to_chat(C, msg)
 
-/proc/Solgov_fax(var/originfax, var/sent, var/sentname, var/mob/Sender)
-	var/faxcontents = "[sent]"
-	fax_contents += faxcontents
-	var/msg = "\blue <b><font color='#1F66A0'>NANOTRASEN FAX: </font>[key_name(Sender, 1)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[Sender]'>?</A>) (<A HREF='?_src_=holder;ccmark=\ref[Sender]'>Mark</A>) (<A HREF='?_src_=holder;adminplayeropts=\ref[Sender]'>PP</A>) (<A HREF='?_src_=vars;Vars=\ref[Sender]'>VV</A>) (<A HREF='?_src_=holder;subtlemessage=\ref[Sender]'>SM</A>) (<A HREF='?_src_=holder;adminplayerobservejump=\ref[Sender]'>JMP</A>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[Sender]'>FLW</A>) (<A HREF='?_src_=holder;secretsadmin=check_antagonist'>CA</A>) (<a href='?_src_=holder;CLFaxReply=\ref[Sender];originfax=\ref[originfax]'>RPLY</a>)</b>: Receiving '[sentname]' via secure connection ... <a href='?_src_=holder;CentcommFaxView=\ref[faxcontents]'>view message</a>"
-	CLFaxes.Add("<a href='?_src_=holder;CentcommFaxView=\ref[faxcontents]'>\[view message at [world.timeofday]\]</a> <a href='?_src_=holder;CLFaxReply=\ref[Sender];originfax=\ref[originfax]'>REPLY</a>")
-	for(var/client/C in admins)
-		if((R_ADMIN|R_MOD) & C.holder.rights)
-			to_chat(C, msg)
-			C << 'sound/effects/sos-morse-code.ogg'
+/obj/machinery/faxmachine/cmp
+	department = "Chief Military Police"
 
-proc/SendFax(var/sent, var/sentname, var/mob/Sender, var/dpt)
 
-	for(var/obj/machinery/faxmachine/F in allfaxes)
-		if( F.department == dpt )
-			if(! (F.stat & (BROKEN|NOPOWER) ) )
-
-				flick("faxreceive", F)
-
-				// give the sprite some time to flick
-				spawn(20)
-					var/obj/item/paper/P = new /obj/item/paper( F.loc )
-					P.name = "[sentname]"
-					P.info = "[sent]"
-					P.update_icon()
-
-					playsound(F.loc, "sound/items/polaroid1.ogg", 15, 1)
+/obj/machinery/faxmachine/prison
+	department = "Warden"

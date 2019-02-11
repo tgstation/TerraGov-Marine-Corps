@@ -21,8 +21,10 @@
 	for(var/atom/movable/I in contents)
 		qdel(I)
 
-	if(pulledby) pulledby.stop_pulling()
-	if(throw_source) throw_source = null
+	if(pulledby)
+		pulledby.stop_pulling()
+	if(throw_source)
+		throw_source = null
 
 	if(loc)
 		loc.on_stored_atom_del(src) //things that container need to do when a movable atom inside it is deleted
@@ -30,11 +32,7 @@
 	. = ..()
 	loc = null //so we move into null space. Must be after ..() b/c atom's Dispose handles deleting our lighting stuff
 
-
 //===========================================================================
-
-/atom/movable/proc/initialize()
-	return
 
 /atom/movable/Move(NewLoc, direct)
 	/*
@@ -77,7 +75,8 @@
 	var/old_dir = dir
 
 	. = ..()
-	if(flags_atom & DIRLOCK) dir = old_dir
+	if(flags_atom & DIRLOCK)
+		setDir(old_dir)
 	move_speed = world.time - l_move_time
 	l_move_time = world.time
 	if ((oldloc != loc && oldloc && oldloc.z == z))
@@ -141,7 +140,7 @@
 
 	else if(isobj(hit_atom)) // Thrown object hits another object and moves it
 		var/obj/O = hit_atom
-		if(!O.anchored && !isXeno(src))
+		if(!O.anchored && !isxeno(src))
 			step(O, src.dir)
 		O.hitby(src,speed)
 
@@ -201,7 +200,7 @@
 	var/area/a = get_area(src.loc)
 	if(dist_x > dist_y)
 		var/error = dist_x/2 - dist_y
-		while(src && !gc_destroyed && target &&((((src.x < target.x && dx == EAST) || (src.x > target.x && dx == WEST)) && dist_travelled < range) || (a && a.has_gravity == 0)  || istype(src.loc, /turf/open/space)) && src.throwing && istype(src.loc, /turf))
+		while(!gc_destroyed && target &&((((x < target.x && dx == EAST) || (x > target.x && dx == WEST)) && dist_travelled < range) || (a && a.has_gravity == 0)  || isspaceturf(loc)) && throwing && istype(src.loc, /turf))
 			// only stop when we've gone the whole distance (or max throw range) and are on a non-space tile, or hit something, or hit the end of the map, or someone picks it up
 			if(error < 0)
 				var/atom/step = get_step(src, dy)
@@ -230,7 +229,7 @@
 			a = get_area(src.loc)
 	else
 		var/error = dist_y/2 - dist_x
-		while(src && !gc_destroyed && target &&((((src.y < target.y && dy == NORTH) || (src.y > target.y && dy == SOUTH)) && dist_travelled < range) || (a && a.has_gravity == 0)  || istype(src.loc, /turf/open/space)) && src.throwing && istype(src.loc, /turf))
+		while(!gc_destroyed && target &&((((y < target.y && dy == NORTH) || (y > target.y && dy == SOUTH)) && dist_travelled < range) || a?.has_gravity == 0 || isspaceturf(loc)) && throwing && istype(src.loc, /turf))
 			// only stop when we've gone the whole distance (or max throw range) and are on a non-space tile, or hit something, or hit the end of the map, or someone picks it up
 			if(error < 0)
 				var/atom/step = get_step(src, dx)
@@ -354,7 +353,7 @@
 
 	while (duration > turn_delay)
 		sleep(turn_delay)
-		dir = turn(dir, spin_degree)
+		setDir(turn(dir, spin_degree))
 		duration -= turn_delay
 
 /atom/movable/proc/spin_circle(var/num_circles = 1, var/turn_delay = 1, var/clockwise = 0, var/cardinal_only = 1)
@@ -375,7 +374,7 @@
 
 	for (var/x = 0, x < num_circles, x++)
 		sleep(turn_delay)
-		dir = turn(dir, spin_degree)
+		setDir(turn(dir, spin_degree))
 
 
 //called when a mob tries to breathe while inside us.

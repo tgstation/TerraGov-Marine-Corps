@@ -65,12 +65,12 @@
 
 	if(stat & (NOPOWER|BROKEN) || !on)
 		heating = 0
-		update_use_power(0)
+		update_use_power(NO_POWER_USE)
 		update_icon()
 		return
 
 	heating = 1
-	update_use_power(1)
+	update_use_power(IDLE_POWER_USE)
 
 	update_icon()
 
@@ -164,12 +164,12 @@
 
 //dismantling code. copied from autolathe
 /obj/machinery/atmospherics/unary/heater/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	if(istype(O, /obj/item/tool/screwdriver))
+	if(isscrewdriver(O))
 		opened = !opened
 		to_chat(user, "You [opened ? "open" : "close"] the maintenance hatch of [src].")
 		return
 
-	if (opened && istype(O, /obj/item/tool/crowbar))
+	if (opened && iscrowbar(O))
 		dismantle()
 		return
 

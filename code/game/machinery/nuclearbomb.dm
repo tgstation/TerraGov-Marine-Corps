@@ -60,7 +60,7 @@ var/bomb_set
 
 /obj/machinery/nuclearbomb/attackby(obj/item/O as obj, mob/user as mob)
 
-	if (istype(O, /obj/item/tool/screwdriver))
+	if (isscrewdriver(O))
 		src.add_fingerprint(user)
 		if (src.auth)
 			if (src.opened == 0)
@@ -82,14 +82,14 @@ var/bomb_set
 			flick("nuclearbombc", src)
 
 		return
-	if (istype(O, /obj/item/tool/wirecutters) || istype(O, /obj/item/device/multitool))
+	if (iswirecutter(O) || ismultitool(O))
 		if (src.opened == 1)
 			nukehack_win(user)
 		return
 
 	if (extended)
 		if (istype(O, /obj/item/disk/nuclear))
-			if(user.drop_inv_item_to_loc(O, src))
+			if(user.transferItemToLoc(O, src))
 				auth = O
 				add_fingerprint(user)
 			return
@@ -169,11 +169,11 @@ var/bomb_set
 /obj/machinery/nuclearbomb/attack_hand(mob/user as mob)
 	if (src.extended)
 		if (!ishuman(user))
-			to_chat(usr, "\red You don't have the dexterity to do this!")
+			to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
 			return 1
 
 		if (!ishuman(user))
-			to_chat(usr, "\red You don't have the dexterity to do this!")
+			to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
 			return 1
 		user.set_interaction(src)
 		var/dat = text("<TT><B>Nuclear Fission Explosive</B><BR>\nAuth. Disk: <A href='?src=\ref[];auth=1'>[]</A><HR>", src, (src.auth ? "++++++++++" : "----------"))
@@ -198,9 +198,9 @@ var/bomb_set
 	else if (src.deployable)
 		if(removal_stage < 5)
 			src.anchored = 1
-			visible_message("\red With a steely snap, bolts slide out of [src] and anchor it to the flooring!")
+			visible_message("<span class='warning'> With a steely snap, bolts slide out of [src] and anchor it to the flooring!</span>")
 		else
-			visible_message("\red \The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut.")
+			visible_message("<span class='warning'> \The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut.</span>")
 		if(!src.lighthack)
 			flick("nuclearbombc", src)
 			src.icon_state = "nuclearbomb1"
@@ -226,14 +226,14 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 	if (!usr.canmove || usr.stat || usr.is_mob_restrained())
 		return
 	if (!ishuman(usr))
-		to_chat(usr, "\red You don't have the dexterity to do this!")
+		to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return 1
 
 	if (src.deployable)
-		to_chat(usr, "\red You close several panels to make [src] undeployable.")
+		to_chat(usr, "<span class='warning'>You close several panels to make [src] undeployable.</span>")
 		src.deployable = 0
 	else
-		to_chat(usr, "\red You adjust some panels to make [src] deployable.")
+		to_chat(usr, "<span class='warning'>You adjust some panels to make [src] deployable.</span>")
 		src.deployable = 1
 	return
 
@@ -247,7 +247,7 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 		if(href_list["act"])
 			var/temp_wire = href_list["wire"]
 			if(href_list["act"] == "pulse")
-				if (!istype(usr.get_active_hand(), /obj/item/device/multitool))
+				if (!ismultitool(usr.get_active_held_item()))
 					to_chat(usr, "You need a multitool!")
 				else
 					if(src.wires[temp_wire])
@@ -263,14 +263,14 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 							src.safety = !src.safety
 							spawn(100) src.safety = !src.safety
 							if(src.safety == 1)
-								visible_message("\blue The [src] quiets down.")
+								visible_message("<span class='notice'> The [src] quiets down.</span>")
 								if(!src.lighthack)
 									if (src.icon_state == "nuclearbomb2")
 										src.icon_state = "nuclearbomb1"
 							else
-								visible_message("\blue The [src] emits a quiet whirling noise!")
+								visible_message("<span class='notice'> The [src] emits a quiet whirling noise!</span>")
 			if(href_list["act"] == "wire")
-				if (!istype(usr.get_active_hand(), /obj/item/tool/wirecutters))
+				if (!iswirecutter(usr.get_active_held_item()))
 					to_chat(usr, "You need wirecutters!")
 				else
 					wires[temp_wire] = !wires[temp_wire]
@@ -293,7 +293,7 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 				src.yes_code = 0
 				src.auth = null
 			else
-				var/obj/item/I = usr.get_active_hand()
+				var/obj/item/I = usr.get_active_held_item()
 				if (istype(I, /obj/item/disk/nuclear))
 					if(usr.drop_held_item())
 						I.forceMove(src)
@@ -323,7 +323,7 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 					if (src.timing == -1.0)
 						return
 					if (src.safety)
-						to_chat(usr, "\red The safety is still on.")
+						to_chat(usr, "<span class='warning'>The safety is still on.</span>")
 						return
 					src.timing = !( src.timing )
 					if (src.timing)
@@ -347,14 +347,14 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 
 					if(removal_stage == 5)
 						src.anchored = 0
-						visible_message("\red \The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut.")
+						visible_message("<span class='warning'> \The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut.</span>")
 						return
 
 					src.anchored = !( src.anchored )
 					if(src.anchored)
-						visible_message("\red With a steely snap, bolts slide out of [src] and anchor it to the flooring.")
+						visible_message("<span class='warning'> With a steely snap, bolts slide out of [src] and anchor it to the flooring.</span>")
 					else
-						visible_message("\red The anchoring bolts slide back into the depths of [src].")
+						visible_message("<span class='warning'> The anchoring bolts slide back into the depths of [src].</span>")
 
 		src.add_fingerprint(usr)
 		for(var/mob/M in viewers(1, src))
@@ -383,8 +383,8 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 	return TRUE
 
 /obj/item/disk/nuclear/Destroy()
-	if(blobstart.len > 0)
-		var/obj/D = new /obj/item/disk/nuclear(pick(blobstart))
-		message_admins("[src] has been destroyed. Spawning [D] at ([D.x], [D.y], [D.z]).")
-		log_game("[src] has been destroyed. Spawning [D] at ([D.x], [D.y], [D.z]).")
+	if(GLOB.yautja_teleport_loc.len > 0)
+		var/obj/D = new /obj/item/disk/nuclear(pick(GLOB.yautja_teleport_loc))
+		message_admins("[src] has been destroyed. Spawning [D] at [AREACOORD(D.loc)].")
+		log_game("[src] has been destroyed. Spawning [D] at [ADMIN_VERBOSEJMP(D.loc)].")
 	. = ..()

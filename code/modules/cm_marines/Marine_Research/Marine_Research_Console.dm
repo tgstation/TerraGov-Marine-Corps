@@ -111,7 +111,7 @@
 
 /obj/machinery/computer/NTresearch/proc/griefProtection()
 //this should be fine.  The RND server will get adjusted to work so that we can support legacy as well.
-	for(var/obj/machinery/r_n_d/server/centcom/C in machines)
+	for(var/obj/machinery/r_n_d/server/centcom/C in GLOB.machines)
 		for(var/datum/tech/T in files.known_tech)
 			C.files.AddTech2Known(T)
 		for(var/datum/design/D in files.known_designs)
@@ -126,10 +126,11 @@
 			S.initialize()
 			break*/  //THIS TOO!
 
-/obj/machinery/computer/NTresearch/initialize()
+/obj/machinery/computer/NTresearch/Initialize()
+	. = ..()
 	SyncRDevices()
 
-/*  //LEAVING THIS FOR NOW.  Eventually, they'll be able to use a W-Y DATACUBE to copy the entire system.  Either for merc theft, Russian shenanigans, or W-Y retreival.
+/*  //LEAVING THIS FOR NOW.  Eventually, they'll be able to use a NT DATACUBE to copy the entire system.  Either for merc theft, Russian shenanigans, or NT retreival.
 /obj/machinery/computer/rdconsole/attackby(var/obj/item/D as obj, var/mob/user as mob)
 	//Loading a disk into it.
 	if(istype(D, /obj/item/disk))
@@ -140,15 +141,15 @@
 		if(istype(D, /obj/item/disk/tech_disk)) t_disk = D
 		else if (istype(D, /obj/item/disk/design_disk)) d_disk = D
 		else
-			to_chat(user, "\red Machine cannot accept disks in that format.")
+			to_chat(user, "<span class='warning'>Machine cannot accept disks in that format.</span>")
 			return
 		user.drop_held_item()
 		D.loc = src
-		to_chat(user, "\blue You add the disk to the machine!")
+		to_chat(user, "<span class='notice'>You add the disk to the machine!</span>")
 	else if(istype(D, /obj/item/card/emag) && !emagged)
 		playsound(src.loc, 'sound/effects/sparks4.ogg', 75, 1)
 		emagged = 1
-		to_chat(user, "\blue You you disable the security protocols")
+		to_chat(user, "<span class='notice'>You you disable the security protocols</span>")
 	else
 		//The construction/deconstruction of the console code.
 		..()
@@ -181,7 +182,7 @@
 	else if(href_list["eject_item"]) //Eject the item inside the destructive analyzer.
 		if(linked_destroy)
 			if(linked_destroy.busy)
-				to_chat(usr, "\red The destructive analyzer is busy at the moment.")
+				to_chat(usr, "<span class='warning'>The destructive analyzer is busy at the moment.</span>")
 
 			else if(linked_destroy.loaded_item)
 				linked_destroy.loaded_item.loc = linked_destroy.loc
@@ -192,7 +193,7 @@
 	else if(href_list["deconstruct"]) //Deconstruct the item in the destructive analyzer and update the research holder.
 		if(linked_destroy)
 			if(linked_destroy.busy)
-				to_chat(usr, "\red The destructive analyzer is busy at the moment.")
+				to_chat(usr, "<span class='warning'>The destructive analyzer is busy at the moment.</span>")
 			else
 				var/choice = input("Proceeding will destroy loaded item.") in list("Proceed", "Cancel")
 				if(choice == "Cancel" || !linked_destroy) return
@@ -205,7 +206,7 @@
 						linked_destroy.busy = 0
 						if(!linked_destroy.hacked)
 							if(!linked_destroy.loaded_item)
-								to_chat(usr, "\red The destructive analyzer appears to be empty.")
+								to_chat(usr, "<span class='warning'>The destructive analyzer appears to be empty.</span>")
 								screen = 1.0
 								return
 							if(linked_destroy.loaded_item.reliability >= 90)
@@ -246,12 +247,12 @@
 	else if(href_list["sync"]) //Sync the research holder with all the R&D consoles in the game that aren't sync protected.
 		screen = 0.0
 		if(!sync)
-			to_chat(usr, "\red You must connect to the network first!")
+			to_chat(usr, "<span class='warning'>You must connect to the network first!</span>")
 		else
 			griefProtection() //Putting this here because I dont trust the sync process
 			spawn(30)
 				if(src)
-					for(var/obj/machinery/r_n_d/server/S in machines)
+					for(var/obj/machinery/r_n_d/server/S in GLOB.machines)
 						var/server_processed = 0
 						if(S.disabled)
 							continue
@@ -292,7 +293,6 @@
 				screen = 0.3
 				linked_lathe.busy = 1
 				flick("protolathe_n",linked_lathe)
-				var/key = usr.key	//so we don't lose the info during the spawn delay
 				spawn(16)
 					use_power(power)
 					spawn(16)
@@ -319,8 +319,6 @@
 						if(being_built.build_path)
 							var/buildPath = text2path(being_built.build_path)
 							var/obj/new_item = new buildPath(src)
-							if( new_item.type == /obj/item/storage/backpack/holding )
-								new_item.investigate_log("built by [key]","singulo")
 							new_item.reliability = being_built.reliability
 							if(linked_lathe.hacked) being_built.reliability = max((reliability / 2), 0)
 							/*if(being_built.locked)
@@ -480,7 +478,7 @@
 	else if (href_list["organScan"])//initiate an organic scan - CM
 		if(linked_organic)
 			if(linked_organic.busy)
-				to_chat(usr, "\red The Nanotrasen Brand Organic Analyzer(TM) is busy at the moment.")
+				to_chat(usr, "<span class='warning'> The Nanotrasen Brand Organic Analyzer(TM) is busy at the moment.</span>")
 			else
 				var/choice = input("Proceeding will destroy loaded item, preventing it's use for biomass.") in list("Proceed", "Cancel")
 				if(choice == "Cancel" || !linked_organic) return
@@ -493,7 +491,7 @@
 						linked_organic.busy = 0
 						if(!linked_organic.hacked)
 							if(!linked_organic.loaded_item)
-								to_chat(usr, "\red The Nanotrasen Brand Organic Analyzer(TM) appears to be empty.")
+								to_chat(usr, "<span class='warning'> The Nanotrasen Brand Organic Analyzer(TM) appears to be empty.</span>")
 								screen = 1.0
 								return
 							if(linked_organic.loaded_item.reliability >= 90)
@@ -515,7 +513,7 @@
 	else if(href_list["eject_organ"]) //Eject the item inside the destructive analyzer.
 		if(linked_organic)
 			if(linked_organic.busy)
-				to_chat(usr, "\red The Nanotrasen Brand Organic Analyzer(TM) is busy at the moment.")
+				to_chat(usr, "<span class='warning'> The Nanotrasen Brand Organic Analyzer(TM) is busy at the moment.</span>")
 
 			else if(linked_organic.loaded_item)
 				linked_organic.loaded_item.loc = linked_organic.loc
