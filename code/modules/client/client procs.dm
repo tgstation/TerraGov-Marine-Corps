@@ -168,7 +168,7 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 	. = ..()	//calls mob.Login()
 	chatOutput.start() // Starts the chat
 
-	if(byond_version < 512)
+	if(byond_version >= 512)
 		if(!byond_build || byond_build < 1386)
 			message_admins("[key_name(src)] has been detected as spoofing their byond version. Connection rejected.")
 			log_access("Failed Login: [key] - Spoofed byond version")
