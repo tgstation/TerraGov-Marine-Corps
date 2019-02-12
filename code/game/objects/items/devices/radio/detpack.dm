@@ -112,6 +112,7 @@
 			return
 		armed = TRUE
 		//bombtick()
+		log_explosion("[key_name(usr)] triggered [src] explosion at [AREACOORD(loc)].")
 		detonation_pending = addtimer(CALLBACK(src, .proc/do_detonate), timer SECONDS)
 		if(timer > 10)
 			sound_timer = addtimer(CALLBACK(src, .proc/do_play_sound_normal), 1 SECONDS, TIMER_LOOP)

@@ -16,6 +16,7 @@
 	var/sendcooldown = 0
 
 	var/department = "Corporate Liasion"
+	var/selected = "Nanotrasen"
 
 
 /obj/machinery/faxmachine/Initialize()
@@ -64,7 +65,7 @@
 			else
 				dat += "<a href='byond://?src=\ref[src];send=1'>Send</a><br>"
 				dat += "<b>Currently sending:</b> [message.name]<br>"
-				dat += "<b>Sending to:</b> <a href='byond://?src=\ref[src];dept=1'>[department]</a><br>"
+				dat += "<b>Sending to:</b> <a href='byond://?src=\ref[src];dept=1'>[selected]</a><br>"
 		else
 			if(sendcooldown)
 				dat += "Please insert paper to send via secure connection.<br><br>"
@@ -83,7 +84,7 @@
 /obj/machinery/faxmachine/Topic(href, href_list)
 	if(href_list["send"])
 		if(message)
-			send_fax(usr, src, department, message.name, message.info, FALSE)
+			send_fax(usr, src, selected, message.name, message.info, FALSE)
 			to_chat(usr, "Message transmitted successfully.")
 			spawn(sendcooldown)
 				sendcooldown = 0
@@ -114,10 +115,10 @@
 		authenticated = FALSE
 
 	if(href_list["dept"])
-		var/choice = input(usr, "Which department?", "Choose a department", "") as null|anything in list("Nanotrasen", "TGMC High Command", "TGMC Provost Marshall")
+		var/choice = input(usr, "Who do you want to message?", "Fax", "") as null|anything in list("Nanotrasen", "TGMC High Command", "TGMC Provost Marshall")
 		if(!choice)
 			return
-		department = choice
+		selected = choice
 
 	if(href_list["auth"])
 		if(!authenticated && idscan)
