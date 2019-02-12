@@ -98,7 +98,7 @@
 	storage_slots = 5
 	can_hold = list(
 					"/obj/item/stack/medical/ointment",
-					"/obj/item/reagent_container/hypospray/autoinjector/",
+					"/obj/item/reagent_container/hypospray/autoinjector",
 					"/obj/item/stack/medical/bruise_pack",
 					"/obj/item/stack/medical/splint"
 					)
