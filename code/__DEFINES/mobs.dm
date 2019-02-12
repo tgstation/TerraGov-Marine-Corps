@@ -46,6 +46,8 @@
 #define CARBON_CRIT_MAX_OXYLOSS (round(SSmobs.wait/30, 0.1)) //The amount of damage you'll get when in critical condition.
 #define CARBON_RECOVERY_OXYLOSS -5 //the amount of oxyloss recovery per successful breath tick.
 
+#define CARBON_KO_OXYLOSS 50
+
 #define HEAT_DAMAGE_LEVEL_1 2 //Amount of damage applied when your body temperature just passes the 360.15k safety point
 #define HEAT_DAMAGE_LEVEL_2 4 //Amount of damage applied when your body temperature passes the 400K point
 #define HEAT_DAMAGE_LEVEL_3 8 //Amount of damage applied when your body temperature passes the 1000K point
