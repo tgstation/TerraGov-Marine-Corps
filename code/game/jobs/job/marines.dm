@@ -46,7 +46,7 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 /datum/job/marine/engineer
 	title = "Squad Engineer"
 	comm_title = "Eng"
-	paygrade = "E4"
+	paygrade = "E3"
 	total_positions = 12
 	spawn_positions = 12
 	flag = ROLE_MARINE_ENGINEER
@@ -72,12 +72,12 @@ Your squaddies will look to you when it comes to construction in the field of ba
 
 
 /datum/job/marine/medic
-	title = "Squad Medic"
-	comm_title = "Med"
-	paygrade = "E4"
+	title = "Squad Corpsman"
+	comm_title = "Corp"
+	paygrade = "E3"
 	total_positions = 16
 	spawn_positions = 16
-	flag = ROLE_MARINE_MEDIC
+	flag = ROLE_MARINE_CORPSMAN
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_MEDBAY)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_MEDBAY)
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADD_TO_MODE|ROLE_ADD_TO_SQUAD
@@ -101,8 +101,8 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 
 /datum/job/marine/smartgunner
 	title = "Squad Smartgunner"
-	comm_title = "LCpl"
-	paygrade = "E3"
+	comm_title = "SGnr"
+	paygrade = "E4"
 	flag = ROLE_MARINE_SMARTGUN
 	total_positions = 4
 	spawn_positions = 4
