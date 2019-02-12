@@ -420,7 +420,6 @@
 			else
 				dat += "<A HREF='?src=\ref[src];operation=securitylevel;newalertlevel=[SEC_LEVEL_BLUE]'>Blue</A><BR>"
 				dat += "<A HREF='?src=\ref[src];operation=securitylevel;newalertlevel=[SEC_LEVEL_GREEN]'>Green</A>"
-				dat += "<A HREF='?src=\ref[src];operation=securitylevel;newalertlevel=[SEC_LEVEL_BIO]'>Biohazard</A>"
 
 		if(STATE_CONFIRM_LEVEL)
 			dat += "Current alert level: [get_security_level()]<BR>"
@@ -500,6 +499,7 @@
 			status_signal.data["picture_state"] = data1
 
 	frequency.post_signal(src, status_signal)*/
+
 
 #undef STATE_DEFAULT
 #undef STATE_MESSAGELIST
