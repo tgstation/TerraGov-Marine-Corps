@@ -15,8 +15,8 @@ proc
 
 	list2json(list/L)
 		if (prob(50))
-			return json2list_byond(L)
-		return json2list_softcoded(L)
+			return list2json_byond(L)
+		return list2json_softcoded(L)
 	list2json_byond(list/L)
 		return json_encode(L)
 	list2json_softcoded(list/L)
