@@ -12,7 +12,7 @@
 	job = /datum/job/command/commander
 
 /obj/effect/landmark/start/marine/executiveofficer
-	job = /datum/job/command/executive
+	job = /datum/job/command/fieldcommander
 	
 /obj/effect/landmark/start/marine/staffofficer
 	job = /datum/job/command/bridge
@@ -22,6 +22,9 @@
 
 /obj/effect/landmark/start/marine/tankcrewman
 	job = /datum/job/command/tank_crew
+
+/obj/effect/landmark/start/marine/tankcrewman
+	job = datum/job/command/tank_commander
 	
 /obj/effect/landmark/start/marine/mp
 	job = /datum/job/command/police
