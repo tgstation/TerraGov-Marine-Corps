@@ -19,6 +19,9 @@
 	
 /obj/effect/landmark/start/marine/pilotofficer
 	job = /datum/job/command/pilot
+	
+/obj/effect/landmark/start/marine/tankcommander
+	job = /datum/job/command/tank_commander
 
 /obj/effect/landmark/start/marine/tankcrewman
 	job = /datum/job/command/tank_crew
