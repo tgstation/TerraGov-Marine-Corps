@@ -165,19 +165,23 @@
 	leadership = SKILL_LEAD_MASTER
 	medical = SKILL_MEDICAL_MEDIC
 	surgery = SKILL_SURGERY_AMATEUR
-	police = SKILL_POLICE_FLASH
+	police = SKILL_POLICE_MP
 	powerloader = SKILL_POWERLOADER_TRAINED
+	pistols = SKILL_PISTOLS_TRAINED
 
-/datum/skills/XO
-	name = "Executive Officer"
+/datum/skills/FC
+	name = "Field Commander"
 	engineer = SKILL_ENGINEER_ENGI //to fix CIC apc.
 	construction = SKILL_CONSTRUCTION_PLASTEEL
 	leadership = SKILL_LEAD_MASTER
 	medical = SKILL_MEDICAL_MEDIC
 	surgery = SKILL_SURGERY_AMATEUR
-	police = SKILL_POLICE_FLASH
+	police = SKILL_POLICE_MP
 	powerloader = SKILL_POWERLOADER_TRAINED
-
+	pistols = SKILL_PISTOLS_TRAINED
+	cqc = CQC_SKILL_TRAINED
+	melee_weapons = SKILL_MELEE_TRAINED
+	spec_weapons = SKILL_SPEC_TRAINED
 
 /datum/skills/SO
 	name = "Staff Officer"
@@ -185,6 +189,7 @@
 	leadership = SKILL_LEAD_EXPERT
 	medical = SKILL_MEDICAL_MEDIC
 	surgery = SKILL_SURGERY_AMATEUR
+	pistols = SKILL_PISTOLS_TRAINED
 
 /datum/skills/pilot
 	name = "Pilot Officer"
@@ -202,6 +207,7 @@
 	cqc = SKILL_CQC_MP
 	police = SKILL_POLICE_MP
 	leadership = SKILL_LEAD_TRAINED
+	pistols = SKILL_PISTOLS_TRAINED
 
 /datum/skills/CE
 	name = "Chief Engineer"
@@ -210,12 +216,14 @@
 	leadership = SKILL_LEAD_MASTER
 	police = SKILL_POLICE_FLASH
 	powerloader = SKILL_POWERLOADER_TRAINED
+	pistols = SKILL_PISTOLS_TRAINED
 
 /datum/skills/RO
 	name = "Requisition Officer"
 	construction = SKILL_CONSTRUCTION_PLASTEEL
 	leadership = SKILL_LEAD_TRAINED
 	powerloader = SKILL_POWERLOADER_TRAINED
+	pistols = SKILL_PISTOLS_TRAINED
 
 /datum/skills/MT
 	name = "Maintenance Technician"
@@ -423,8 +431,15 @@
 	name = "Tank Crew"
 	large_vehicle = SKILL_LARGE_VEHICLE_TRAINED
 	powerloader = SKILL_POWERLOADER_DABBLING
+	engineer = SKILL_ENGINEER_METAL
+	
+/datum/skills/tank_commander
+	name = "Tank Commander"
+	large_vehicle = SKILL_LARGE_VEHICLE_TRAINED
+	powerloader = SKILL_POWERLOADER_DABBLING
 	leadership = SKILL_LEAD_TRAINED
 	engineer = SKILL_ENGINEER_METAL
+	pistols = SKILL_PISTOLS_TRAINED
 
 /datum/skills/spatial_agent
 	name = "Spatial Agent"
