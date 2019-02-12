@@ -57,7 +57,7 @@
 			stop_processing()
 		return FALSE
 	if (fusion_cell.fuel_amount <= 0)
-		visible_message("[bicon(src)] <b>[src]</b> flashes that the fuel cell is empty as the engine seizes.")
+		visible_message("[icon2html(src, viewers(src))] <b>[src]</b> flashes that the fuel cell is empty as the engine seizes.")
 		fuel_rate = 0
 		buildstate = FUSION_ENGINE_MEDIUM_DAMAGE  //No fuel really fucks it.
 		is_on = FALSE
@@ -74,14 +74,15 @@
 
 			switch(power_gen_percent) //Flavor text!
 				if(10)
-					visible_message("[bicon(src)] <span class='notice'><b>[src]</b> begins to whirr as it powers up.</span>")
+					visible_message("[icon2html(src, viewers(src))] <span class='notice'><b>[src]</b> begins to whirr as it powers up.</span>")
 					fuel_rate = FUSION_ENGINE_FULL_STRENGTH_FULL_RATE * 0.25
 				if(50)
-					visible_message("[bicon(src)] <span class='notice'><b>[src]</b> begins to hum loudly as it reaches half capacity.</span>")
+					visible_message("[icon2html(src, viewers(src))] <span class='notice'><b>[src]</b> begins to hum loudly as it reaches half capacity.</span>")
 					fuel_rate = FUSION_ENGINE_FULL_STRENGTH_FULL_RATE * 0.5
 				if(100)
-					visible_message("[bicon(src)] <span class='notice'><b>[src]</b> rumbles loudly as the combustion and thermal chambers reach full strength.</span>")
+					visible_message("[icon2html(src, viewers(src))] <span class='notice'><b>[src]</b> rumbles loudly as the combustion and thermal chambers reach full strength.</span>")
 					fuel_rate = FUSION_ENGINE_FULL_STRENGTH_FULL_RATE
+
 
 		add_avail(FUSION_ENGINE_MAX_POWER_GEN * (power_gen_percent / 100) ) //Nope, all good, just add the power
 		fusion_cell.take(fuel_rate) //Consumes fuel
@@ -103,7 +104,7 @@
 			to_chat(user, "<span class='notice'>Use a wrench to repair it.</span>")
 			return FALSE
 	if(is_on)
-		visible_message("[bicon(src)] <span class='warning'><b>[src]</b> beeps softly and the humming stops as [usr] shuts off the generator.</span>")
+		visible_message("[icon2html(src, viewers(src))] <span class='warning'><b>[src]</b> beeps softly and the humming stops as [usr] shuts off the generator.</span>")
 		is_on = FALSE
 		power_gen_percent = 0
 		cur_tick = 0
@@ -119,9 +120,10 @@
 		return FALSE
 
 	if(fusion_cell.fuel_amount <= 10)
-		to_chat(user, "[bicon(src)] <span class='warning'><b>[src]</b>: Fuel levels critically low.</span>")
-	visible_message("[bicon(src)] <span class='warning'><b>[src]</b> beeps loudly as [user] turns the generator on and begins the process of fusion...</span>")
+		to_chat(user, "[icon2html(src, user)] <span class='warning'><b>[src]</b>: Fuel levels critically low.</span>")
+	visible_message("[icon2html(src, viewers(src))] <span class='warning'><b>[src]</b> beeps loudly as [user] turns the generator on and begins the process of fusion...</span>")
 	fuel_rate = FUSION_ENGINE_FULL_STRENGTH_FULL_RATE * 0.1
+
 	is_on = TRUE
 	cur_tick = 0
 	update_icon()
@@ -311,10 +313,10 @@
 	cur_tick = 0 //reset the timer
 	if(rand(1,100) < fail_rate) //Oh snap, we failed! Shut it down!
 		if(prob(25))
-			visible_message("[bicon(src)] <span class='notice'><b>[src]</b> beeps wildly and a fuse blows! Use wirecutters, then a wrench to repair it.")
+			visible_message("[icon2html(src, viewers(src))] <span class='notice'><b>[src]</b> beeps wildly and a fuse blows! Use wirecutters, then a wrench to repair it.")
 			buildstate = FUSION_ENGINE_MEDIUM_DAMAGE
 		else
-			visible_message("[bicon(src)] <span class='notice'><b>[src]</b> beeps wildly and sprays random pieces everywhere! Use a wrench to repair it.")
+			visible_message("[icon2html(src, viewers(src))] <span class='notice'><b>[src]</b> beeps wildly and sprays random pieces everywhere! Use a wrench to repair it.")
 			buildstate = FUSION_ENGINE_LIGHT_DAMAGE
 		is_on = FALSE
 		power_gen_percent = 0

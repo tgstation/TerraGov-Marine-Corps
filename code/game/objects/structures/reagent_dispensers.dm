@@ -144,8 +144,10 @@
 		else
 			log_game("[key_name(user)] triggered a fueltank explosion with a blowtorch at [AREACOORD(src.loc)].")
 			message_admins("[ADMIN_TPMONTY(user)] triggered a fueltank explosion with a blowtorch.")
+			log_explosion("[key_name(user)] triggered a fueltank explosion with a blowtorch at [AREACOORD(user.loc)].")
 			var/self_message = user.a_intent != INTENT_HARM ? "<span class='danger'>You begin welding on the fueltank, and in a last moment of lucidity realize this might not have been the smartest thing you've ever done.</span>" : "<span class='danger'>[src] catastrophically explodes in a wave of flames as you begin to weld it.</span>"
 			user.visible_message("<span class='warning'>[user] catastrophically fails at refilling \his [W.name]!</span>", self_message)
+			explode()
 		return
 
 	return ..()
@@ -156,7 +158,7 @@
 
 	. = ..()
 
-	if(Proj.damage > 10 && prob(60) && Proj.ammo.damage_type in list(BRUTE|BURN))
+	if(Proj.damage > 10 && prob(60) && (Proj.ammo.damage_type in list(BRUTE, BURN)))
 		if(ismob(Proj.firer))
 			var/mob/shooter = Proj.firer
 			if(shooter.client)
@@ -168,6 +170,7 @@
 	explode()
 
 /obj/structure/reagent_dispensers/fueltank/proc/explode()
+	log_explosion("[key_name(usr)] triggered a fueltank explosion at [AREACOORD(loc)].")
 	if(exploding)
 		return
 	exploding = TRUE

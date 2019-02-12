@@ -600,7 +600,7 @@
 		if(!isnum(mute_type))
 			return
 
-		mute(M, mute_type)
+		usr.client.mute(M.client, mute_type)
 
 
 
