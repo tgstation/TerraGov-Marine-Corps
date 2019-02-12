@@ -351,13 +351,6 @@
 				to_chat(usr, "<span class='notice'>[src] cannot hold [W].</span>")
 			return FALSE
 
-	if(istype(W, /obj/item/tool/hand_labeler))
-		var/obj/item/tool/hand_labeler/L = W
-		if(L.on)
-			return FALSE
-		else
-			return TRUE
-
 	for(var/A in cant_hold) //Check for specific items which this container can't hold.
 		if(istype(W, text2path(A) ))
 			if(warning)
@@ -390,6 +383,13 @@
 			if(warning)
 				to_chat(usr, "<span class='notice'>[src] cannot hold [W] as it's a storage item of the same size.</span>")
 			return FALSE //To prevent the stacking of same sized storage items.
+
+	if(istype(W, /obj/item/tool/hand_labeler))
+		var/obj/item/tool/hand_labeler/L = W
+		if(L.on)
+			return FALSE
+		else
+			return TRUE
 
 	return TRUE
 
