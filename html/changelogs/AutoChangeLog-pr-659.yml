@@ -1,4 +1,0 @@
-author: "LaKiller8"
-delete-after: True
-changes: 
-  - code_imp: "Asset cache has been ported from /tg/, goonchat should no longer lag."
