@@ -2,6 +2,7 @@
 	name = "surgical tray"
 	desc = "A small metallic tray covered in sterile tarp. Intended to store surgical tools in a neat and clean fashion."
 	icon_state = "surgical_tray"
+	OOC_info = "Contains all the tools required for surgery, check the OOC information for each individual tool. You can keep this on the table and open it's inventory by clicking and dragging it's sprite onto your sprite."
 	flags_atom = CONDUCT
 	w_class = 4 //Should not fit in backpacks
 	storage_slots = 12

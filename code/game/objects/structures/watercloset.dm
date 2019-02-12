@@ -352,6 +352,7 @@
 	name = "sink"
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "sink"
+	OOC_info = "Used to clean items of filth such as blood, dirt and, oil. clicking this with an empty hand will remove all the germs from you and will help prevent infections during surgery."
 	desc = "A sink used for washing one's hands and face."
 	anchored = 1
 	var/busy = 0 	//Something's being washed at the moment

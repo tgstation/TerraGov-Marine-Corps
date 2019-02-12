@@ -12,6 +12,7 @@
 	name = "retractor"
 	desc = "Retracts stuff."
 	icon_state = "retractor"
+	OOC_info = "Used to open and close things during surgery. Notably Ribcages and Skulls. to open a bone follow these steps 1. Circular Saw, 2. Retractor. To close a bone, 1. Retractor, 2. Bone Gel."
 	matter = list("metal" = 10000, "glass" = 5000)
 	flags_atom = CONDUCT
 	w_class = 2.0
@@ -24,6 +25,7 @@
 	name = "hemostat"
 	desc = "You think you have seen this before."
 	icon_state = "hemostat"
+	OOC_info = "used to clamp bleeding in an open surgery incision (not internal bleeding). is used to extract foreign objects such as Larva or Shrapnel. As Larva revmoval is important, the steps are 1. target chest, 2. Incision Management System, 3. Circular Saw, 4. Retractor, 5. Hemostat."
 	matter = list("metal" = 5000, "glass" = 2500)
 	flags_atom = CONDUCT
 	w_class = 2.0
@@ -37,6 +39,7 @@
 	name = "cautery"
 	desc = "This stops bleeding."
 	icon_state = "cautery"
+	OOC_info = "Used to finish a surgery. Apply at the end of a surgery chain that closes up the incision. Can also reduce infection (but not necrosis) by repeating these steps 1. Incision Management System, 2. Cautery."
 	matter = list("metal" = 5000, "glass" = 2500)
 	flags_atom = CONDUCT
 	w_class = 1
@@ -50,6 +53,7 @@
 	name = "surgical drill"
 	desc = "You can drill using this item. You dig?"
 	icon_state = "drill"
+	OOC_info = "Not used for surgery much at all. Can be used to implant certain implants in the chest, groin, and head locations. These implants are not available to doctors or researchers without admin intervention."
 	hitsound = 'sound/weapons/circsawhit.ogg'
 	matter = list("metal" = 15000, "glass" = 10000)
 	flags_atom = CONDUCT
@@ -69,6 +73,7 @@
 	name = "scalpel"
 	desc = "Cut, cut, and once more cut."
 	icon_state = "scalpel"
+	OOC_info = "Used to begin a surgery or to perform necrosis removal. If you are using this instead of the incision management system to begin a surgery you must also include the retractor and hemostat as the next steps. You should use the Incision Management System instead. Can also be used for necrosis removal by 1. Scalpel, 2. Advanced Trauma Kit."
 	flags_atom = CONDUCT
 	force = 10.0
 	sharp = IS_SHARP_ITEM_ACCURATE
@@ -114,6 +119,7 @@
 	name = "incision management system"
 	desc = "A true extension of the surgeon's body, this marvel instantly and completely prepares an incision allowing for the immediate commencement of therapeutic steps."
 	icon_state = "scalpel_manager_on"
+	OOC_info = "This is the first tool to use for any surgery. have the correct body part selected then click your patient with this tool to begin surgery on that body part. Can also be used for necrosis removal by 1. Incision Management System, 2. Advanced Trauma Kit."
 	force = 7.5
 
 /*
@@ -123,6 +129,7 @@
 	name = "circular saw"
 	desc = "For heavy duty cutting."
 	icon_state = "saw3"
+	OOC_info = "Used to prepare the ribcage or skull for surgery inside those locations. Use the retractor next to actually open up the skull or ribcage."
 	hitsound = 'sound/weapons/circsawhit.ogg'
 	flags_atom = CONDUCT
 	force = 15.0
@@ -140,6 +147,7 @@
 /obj/item/tool/surgery/bonegel
 	name = "bone gel"
 	icon_state = "bone-gel"
+	OOC_info = "Use to repair bones. close a ribcage or skull by 1. retractor then 2. bone gel, fix a bone by 1. bone gel 2. bone setter. A broken bone cannot be fixed if that body part has more than ~30 brute damage. Give your patient Bicaridine."
 	force = 0
 	w_class = 2.0
 	throwforce = 1.0
@@ -147,6 +155,7 @@
 /obj/item/tool/surgery/FixOVein
 	name = "FixOVein"
 	icon_state = "fixovein"
+	OOC_info = "Use to fix internal bleeding. Once you've prepared the correct body part ready for surgery with the Incision Management System, you can apply the fixovein to repair all the brute damage caused by the internal bleeding."
 	force = 0
 	throwforce = 1.0
 	origin_tech = "materials=1;biotech=3"
@@ -156,6 +165,7 @@
 /obj/item/tool/surgery/bonesetter
 	name = "bone setter"
 	icon_state = "bone setter"
+	OOC_info = "Used to repair bones. fix a bone by 1. applying bone gel. 2. using the bone setter. A broken bone cannot be fixed if that body part has more than ~30 brute damage. Give your patient Bicaridine."
 	force = 8.0
 	throwforce = 9.0
 	throw_speed = 3

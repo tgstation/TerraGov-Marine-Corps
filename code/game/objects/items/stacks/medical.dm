@@ -152,6 +152,7 @@
 	singular_name = "advanced trauma kit"
 	desc = "An advanced trauma kit for severe injuries."
 	icon_state = "traumakit"
+	OOC_info = "used to stop bleeding or perform organ repair surgery. Heals ~12 brute upon application to a location. You cannot apply the Advanced Trauma Kit to a location more than once. Organ repair surgery happens by clicking the location (groin or chest) with the Advanced Trauma Kit when those locations are open. Organs are inside of the ribcage in the chest (Heart, Lungs, Liver), and also inside the groin (Appendix, Kidneys)."
 	heal_brute = 12
 	origin_tech = "biotech=1"
 	stack_id = "advanced bruise pack"

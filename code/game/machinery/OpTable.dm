@@ -3,6 +3,7 @@
 	desc = "Used for advanced medical procedures."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "table2-idle"
+	OOC_info = "This is the operating table. Shift and clicking it will show if it contains an anesthetic tank. Put a patient on it by 1. grabbing them on grab intent, 2. clicking the Operating Table. Then you can attach your patient to the anesthetic by clicking and dragging their sprite to the table. Click the table once you are done to remove the anesthetic from your patient."
 	density = 1
 	layer = TABLE_LAYER
 	anchored = 1
