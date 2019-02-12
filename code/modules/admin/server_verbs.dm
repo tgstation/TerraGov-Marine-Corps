@@ -9,7 +9,7 @@
 	if(alert("Restart the game world?", "Restart", "Yes", "No") != "Yes")
 		return
 
-	to_chat(world, "<span class='danger'>Restarting world!</span><span class='notice'>Initiated by: [usr.key]</span>")
+	to_chat(world, "<span class='danger'>Restarting world!</span> <span class='notice'>Initiated by: [usr.key]</span>")
 
 	log_admin("[key_name(usr)] initiated a restart.")
 	message_admins("[ADMIN_TPMONTY(usr)] initiated a restart.")
@@ -184,7 +184,7 @@
 	if(ticker.current_state != GAME_STATE_PREGAME)
 		ticker.delay_end = !ticker.delay_end
 	else
-		to_chat(world, "<hr><span class='centerbold'>The game [!going ? "game will start soon" : "start has been delayed"].</span><hr>")
+		to_chat(world, "<hr><span class='centerbold'>The game [!going ? "will start soon" : "start has been delayed"].</span><hr>")
 
 	going = !going
 

@@ -1,0 +1,4 @@
+author: "Ghommie"
+delete-after: True
+changes: 
+  - bugfix: "Xeno warrior's Punch ability shouldn't damage xenos of the same team anymore."
