@@ -56,8 +56,8 @@
 			else
 				clear_fullscreen("brute")
 
-		if(hud_used.locate_leader && hud_used.locate_leader.alpha && prob(25)) //not invisible, 25% to not call it all the time
-			locate_squad_leader()
+		if(world.time > (sl_locator_next_update + HUD_SL_LOCATOR_PROCESS_COOLDOWN))
+			Process_SL_Locator()
 
 		if(hud_used.healths)
 			if(analgesic)

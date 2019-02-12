@@ -219,8 +219,12 @@
 	icon_state = "cargo_headset"
 	item_state = "headset"
 	frequency = PUB_FREQ
-	var/headset_hud_on = 1
 	var/obj/machinery/camera/camera
+	var/datum/mob_hud/squadhud = null
+	var/mob/living/carbon/human/wearer = null
+	var/headset_hud_on = FALSE
+	var/sl_direction = FALSE
+	var/sl_indicator = FALSE
 
 /obj/item/device/radio/headset/almayer/New()
 	. = ..()
@@ -229,13 +233,12 @@
 
 /obj/item/device/radio/headset/almayer/equipped(mob/living/carbon/human/user, slot)
 	if(slot == SLOT_EARS)
-		if(headset_hud_on)
-			var/datum/mob_hud/H = huds[MOB_HUD_SQUAD]
-			H.add_hud_to(user)
-			//squad leader locator is no longer invisible on our player HUD.
-			if(user.mind && user.assigned_squad && user.hud_used && user.hud_used.locate_leader)
-				user.hud_used.locate_leader.alpha = 255
-				user.hud_used.locate_leader.mouse_opacity = 1
+		wearer = user
+		squadhud = huds[MOB_HUD_SQUAD]
+		headset_hud_on = FALSE //So we always activate on equip.
+		sl_direction = FALSE
+		sl_indicator = FALSE
+		toggle_squadhud(wearer)
 	if(camera)
 		camera.c_tag = user.name
 	return ..()
@@ -243,43 +246,156 @@
 /obj/item/device/radio/headset/almayer/dropped(mob/living/carbon/human/user)
 	if(istype(user) && headset_hud_on)
 		if(user.wear_ear == src) //dropped() is called before the inventory reference is update.
-			var/datum/mob_hud/H = huds[MOB_HUD_SQUAD]
-			H.remove_hud_from(user)
-			//squad leader locator is invisible again
-			if(user.hud_used && user.hud_used.locate_leader)
-				user.hud_used.locate_leader.alpha = 0
-				user.hud_used.locate_leader.mouse_opacity = 0
+			squadhud.remove_hud_from(user)
+			user.hud_used.locate_leader.alpha = 0
+			user.hud_used.locate_leader.mouse_opacity = 0
+			user.hud_used.SL_locator.alpha = 0
+			wearer = null
+			squadhud = null
 	if(camera)
 		camera.c_tag = "Unknown"
 	return ..()
 
 
+/obj/item/device/radio/headset/almayer/Destroy()
+	if(wearer && headset_hud_on)
+		if(wearer.wear_ear == src)
+			squadhud.remove_hud_from(wearer)
+			wearer.SL_directional = null
+			wearer.sl_headset_active = null
+			wearer.sl_indicator_active = null
+			wearer.sl_direction_active = null
+			wearer = null
+	squadhud = null
+	headset_hud_on = null
+	sl_direction = null
+	sl_indicator = null
+	..()
 
-/obj/item/device/radio/headset/almayer/verb/toggle_squadhud()
-	set name = "Toggle headset HUD"
+
+/obj/item/device/radio/headset/almayer/proc/toggle_squadhud(mob/living/carbon/human/user)
+	if(headset_hud_on)
+		squadhud.remove_hud_from(user)
+		if(user.hud_used?.locate_leader)
+			user.sl_headset_active = FALSE
+			if(sl_direction)
+				toggle_sl_direction(user)
+			if(sl_indicator)
+				toggle_sl_indicator(user)
+			to_chat(user, "<span class='notice'>You toggle the Squad HUD off.</span>")
+			playsound(src.loc, 'sound/machines/click.ogg', 15, 0, 1)
+		headset_hud_on = FALSE
+	else
+		squadhud.add_hud_to(user)
+		headset_hud_on = TRUE
+		if(user.mind && user.assigned_squad && user.hud_used?.locate_leader)
+			user.sl_headset_active = TRUE
+			if(!sl_direction)
+				toggle_sl_direction(user)
+			if(!sl_indicator)
+				toggle_sl_indicator(user)
+			user.Process_SL_Locator()
+			to_chat(user, "<span class='notice'>You toggle the Squad HUD on.</span>")
+			playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
+
+/obj/item/device/radio/headset/almayer/proc/toggle_sl_indicator(mob/living/carbon/human/user)
+	if(!headset_hud_on)
+		to_chat(user, "<span class='warning'>You need to turn the HUD on first!</span>")
+		return
+
+	if(sl_indicator)
+		if(user.mind && user.assigned_squad && user.hud_used?.locate_leader)
+			user.hud_used.locate_leader.alpha = 0
+			user.hud_used.locate_leader.mouse_opacity = 0
+			user.sl_indicator_active = FALSE
+			sl_indicator = FALSE
+			to_chat(user, "<span class='notice'>You toggle the SL indicator display off.</span>")
+			playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
+	else
+		if(user.mind && user.assigned_squad && user.hud_used?.locate_leader)
+			user.hud_used.locate_leader.alpha = 255
+			user.hud_used.locate_leader.mouse_opacity = 1
+			user.sl_indicator_active = TRUE
+			sl_indicator = TRUE
+			to_chat(user, "<span class='notice'>You toggle the SL indicator display on.</span>")
+			playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
+
+/obj/item/device/radio/headset/almayer/proc/toggle_sl_direction(mob/living/carbon/human/user)
+	if(!headset_hud_on)
+		to_chat(user, "<span class='warning'>You need to turn the HUD on first!</span>")
+		return
+
+	if(sl_direction)
+		if(user.mind && user.assigned_squad && user.hud_used?.locate_leader)
+			user.hud_used.SL_locator.alpha = 0
+			user.sl_direction_active = FALSE
+			sl_direction = FALSE
+			to_chat(user, "<span class='notice'>You toggle the SL directional display off.</span>")
+			playsound(src.loc, 'sound/machines/click.ogg', 15, 0, 1)
+	else
+		if(user.mind && user.assigned_squad && user.hud_used?.locate_leader)
+			user.hud_used.SL_locator.alpha = 128
+			user.sl_direction_active = TRUE
+			user.Process_SL_Locator()
+			sl_direction = TRUE
+			to_chat(user, "<span class='notice'>You toggle the SL directional display on.</span>")
+			playsound(src.loc, 'sound/machines/click.ogg', 15, 0, 1)
+
+
+/obj/item/device/radio/headset/almayer/verb/configure_squadhud()
+	set name = "Configure Headset HUD"
 	set category = "Object"
 	set src in usr
 
-	if(usr.is_mob_incapacitated())
-		return 0
-	headset_hud_on = !headset_hud_on
-	if(ishuman(usr))
+	if(usr.is_mob_incapacitated() || usr != wearer || !ishuman(usr))
+		return FALSE
+
+	handle_interface(usr)
+
+/obj/item/device/radio/headset/almayer/proc/handle_interface(mob/living/carbon/human/user, flag1)
+	user.set_interaction(src)
+	var/dat = {"<TT>
+	<b><A href='?src=\ref[src];headset_hud_on=1'>Turn Squad HUD: [headset_hud_on ? "Off" : "On"]</A></b><BR>
+	<BR>
+	<b><A href='?src=\ref[src];sl_direction=1'>Turn Squad Leader Directional Indicator: [sl_direction ? "Off" : "On"]</A></b><BR>
+	<BR>
+	<b><A href='?src=\ref[src];sl_indicator=1'>Turn Squad Leader HUD Indicator: [sl_indicator ? "Off" : "On"]</A></b><BR>
+	</TT>"}
+	user << browse(dat, "window=radio")
+	onclose(user, "radio")
+	return
+
+/obj/item/device/radio/headset/almayer/Topic(href, href_list)
+	if(usr.is_mob_incapacitated() || usr != wearer || !ishuman(usr))
+		return
+	if(usr.contents.Find(src) )
+		usr.set_interaction(src)
 		var/mob/living/carbon/human/user = usr
-		if(src == user.wear_ear) //worn
-			var/datum/mob_hud/H = huds[MOB_HUD_SQUAD]
-			if(headset_hud_on)
-				H.add_hud_to(usr)
-				if(user.mind && user.assigned_squad && user.hud_used && user.hud_used.locate_leader)
-					user.hud_used.locate_leader.alpha = 255
-					user.hud_used.locate_leader.mouse_opacity = 1
-					camera.status = TRUE //Allows us to turn the camera back on.
+		if(href_list["headset_hud_on"])
+			toggle_squadhud(user)
+
+		else if(href_list["sl_direction"])
+			toggle_sl_direction(user)
+
+		else if(href_list["sl_indicator"])
+			toggle_sl_indicator(user)
+
+		if(!master)
+			if(ishuman(loc))
+				handle_interface(loc)
 			else
-				H.remove_hud_from(usr)
-				if(user.hud_used && user.hud_used.locate_leader)
-					user.hud_used.locate_leader.alpha = 0
-					user.hud_used.locate_leader.mouse_opacity = 0
-	to_chat(usr, "<span class='notice'>You toggle [src]'s headset HUD [headset_hud_on ? "on":"off"].</span>")
-	playsound(src,'sound/machines/click.ogg', 20, 1)
+				for(var/mob/living/carbon/human/M in viewers(1, src))
+					if(M.client)
+						handle_interface(M)
+		else
+			if(ishuman(master.loc))
+				handle_interface(master.loc)
+			else
+				for(var/mob/living/carbon/human/M in viewers(1, master))
+					if(M.client)
+						handle_interface(M)
+	else
+		usr << browse(null, "window=radio")
 
 
 /obj/item/device/radio/headset/almayer/ce

@@ -1543,7 +1543,8 @@
 
 //very similar to xeno's queen_locator() but this is for locating squad leader.
 /mob/living/carbon/human/proc/locate_squad_leader()
-	if(!assigned_squad) return
+	if(!assigned_squad)
+		return
 	var/mob/living/carbon/human/H = assigned_squad.squad_leader
 	if(!H)
 		hud_used.locate_leader.icon_state = "trackoff"
