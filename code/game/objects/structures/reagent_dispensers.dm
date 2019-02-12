@@ -170,7 +170,7 @@
 	explode()
 
 /obj/structure/reagent_dispensers/fueltank/proc/explode()
-	log_explosion("[key_name(usr)] triggered a fueltank explosion at [AREACOORD(user.loc)].")
+	log_explosion("[key_name(usr)] triggered a fueltank explosion at [AREACOORD(loc)].")
 	if(exploding)
 		return
 	exploding = TRUE
