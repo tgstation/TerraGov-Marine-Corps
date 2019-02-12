@@ -93,6 +93,7 @@
 	icon_state = "catwalk0"
 	name = "catwalk"
 	desc = "Cats really don't like these things."
+	layer = 2.4
 
 
 
