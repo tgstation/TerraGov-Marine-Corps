@@ -1,8 +1,8 @@
 #define START_TRACK_LEADER(squad, mob) \
-	SSdirection.processing[squad].Add(mob);
+	SSdirection.processing_mobs[squad].Add(mob);
 
 #define STOP_TRACK_LEADER(squad, mob) \
-	SSdirection.processing[squad].Remove(mob);
+	SSdirection.processing_mobs[squad].Remove(mob);
 
 #define SET_TRACK_LEADER(squad, mob) \
 	SSdirection.leader_mapping[squad] = mob;
@@ -17,13 +17,14 @@ SUBSYSTEM_DEF(direction)
 	name = "Direction"
 	priority = FIRE_PRIORITY_DIRECTION
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
+	wait = 1 SECONDS
 
 	// this is a map of defines to mob references, eg; list(CHARLIE_SL = <mob ref>, XENO_NORMAL_QUEEN = <mob ref>)
 	var/list/leader_mapping = list()
 
 	// this is a two d list of defines to lists of mobs tracking that leader
 	// eg; list(CHARLIE_SL = list(<list of references to squad marines), XENO_NORMAL_QUEEN = list(<list of xeno mob refs))
-	var/list/processing = list()
+	var/list/processing_mobs = list()
 
 	// the purpose of separating these two things is it avoids having to do anything for mobs tracking a particular
 	//  leader when the leader changes, and its cached to avoid looking up via hive/squad datums.
@@ -35,23 +36,21 @@ SUBSYSTEM_DEF(direction)
 /datum/controller/subsystem/direction/Initialize(start_timeofday)
 	leader_mapping = list(TRACK_ALPHA_SQUAD,TRACK_BRAVO_SQUAD,TRACK_CHARLIE_SQUAD,TRACK_DELTA_SQUAD)
 	for(var/a in leader_mapping)
-		processing.Add(a)
-		processing[a] = list()
+		processing_mobs.Add(a)
+		processing_mobs[a] = list()
 	return ..()
 
 /datum/controller/subsystem/direction/stat_entry()
-	var/mobs = 0
-	for(var/L in processing)
-		mobs += length(processing[L])
-	..("P:[mobs]")
+	var/mobcount = 0
+	for(var/L in processing_mobs)
+		mobcount += length(processing_mobs[L])
+	..("P:[mobcount]")
 
 /datum/controller/subsystem/direction/fire(resumed = FALSE)
 	if(!resumed)
-		currentrun = processing.Copy()
+		currentrun = deepCopyList(processing_mobs)
 
 	for(var/L in currentrun)
-		if(!currentrun[L])
-			continue
 		var/mob/living/carbon/human/H
 		if(iscarbon(leader_mapping[L]))
 			var/mob/living/carbon/C = leader_mapping[L]

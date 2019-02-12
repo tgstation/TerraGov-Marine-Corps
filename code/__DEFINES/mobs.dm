@@ -594,7 +594,7 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define DELTA_SQUAD 4
 
 // tracking map ID, add more squads/ert leaders/hives etc to track via SSdirection here
-#define TRACK_ALPHA_SQUAD 1
-#define TRACK_BRAVO_SQUAD 2
-#define TRACK_CHARLIE_SQUAD 3
-#define TRACK_DELTA_SQUAD 4
+#define TRACK_ALPHA_SQUAD "alpha"
+#define TRACK_BRAVO_SQUAD "bravo"
+#define TRACK_CHARLIE_SQUAD "charlie"
+#define TRACK_DELTA_SQUAD "delta"
