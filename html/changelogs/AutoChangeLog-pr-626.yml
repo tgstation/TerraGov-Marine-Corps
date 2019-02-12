@@ -1,6 +1,0 @@
-author: "Menshin"
-delete-after: True
-changes: 
-  - refactor: "generators and floodlights code has been cleaned up
-wip: power behavior at startup has been changed (enough engines to power the ship are powered and fuelled, some others are in derelict state, fuel cells are empty)."
-  - tweak: "fusion engines are now generating more power and are less prone to fail."
