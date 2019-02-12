@@ -117,6 +117,9 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 ///////////////
 //  CONNECT  //
 ///////////////
+GLOBAL_VAR_INIT(external_rsc_url)
+
+
 /client/New(TopicData)
 	chatOutput = new /datum/chatOutput(src)
 	TopicData = null							//Prevent calls to client.Topic from connect
@@ -189,7 +192,9 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		host = key
 		world.update_status()
 
-	send_resources()
+	preload_rsc = GLOB.external_rsc_url
+
+	send_assets()
 	nanomanager.send_resources(src)
 
 	create_clickcatcher()
@@ -240,11 +245,8 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	return FALSE
 
 
-GLOBAL_LIST_EMPTY(external_rsc_url)
-
 //send resources to the client. It's here in its own proc so we can move it around easiliy if need be
-/client/proc/send_resources()
-	preload_rsc = GLOB.external_rsc_url
+/client/proc/send_assets()
 	//get the common files
 	getFiles(
 		'html/search.js',
