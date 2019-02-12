@@ -56,8 +56,8 @@
 			else
 				clear_fullscreen("brute")
 
-		if(world.time > (sl_locator_next_update + HUD_SL_LOCATOR_PROCESS_COOLDOWN))
-			Process_SL_Locator()
+		//if(world.time > (sl_locator_next_update + HUD_SL_LOCATOR_PROCESS_COOLDOWN))
+			//Process_SL_Locator()
 
 		if(hud_used.healths)
 			if(analgesic)

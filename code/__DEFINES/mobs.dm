@@ -586,3 +586,15 @@ var/list/global_mutations = list() // list of hidden mutation things
 //misc
 
 #define STANDARD_SLOWDOWN_REGEN 0.3
+// Squad ID defines moved from game\jobs\job\squad.dm
+#define NO_SQUAD 0
+#define ALPHA_SQUAD 1
+#define BRAVO_SQUAD 2
+#define CHARLIE_SQUAD 3
+#define DELTA_SQUAD 4
+
+// tracking map ID, add more squads/ert leaders/hives etc to track via SSdirection here
+#define TRACK_ALPHA_SQUAD 1
+#define TRACK_BRAVO_SQUAD 2
+#define TRACK_CHARLIE_SQUAD 3
+#define TRACK_DELTA_SQUAD 4

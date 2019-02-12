@@ -161,6 +161,7 @@
 #include "code\controllers\stonedmc\subsystem\air.dm"
 #include "code\controllers\stonedmc\subsystem\atoms.dm"
 #include "code\controllers\stonedmc\subsystem\dbcore.dm"
+#include "code\controllers\stonedmc\subsystem\direction.dm"
 #include "code\controllers\stonedmc\subsystem\disease.dm"
 #include "code\controllers\stonedmc\subsystem\events.dm"
 #include "code\controllers\stonedmc\subsystem\garbage.dm"

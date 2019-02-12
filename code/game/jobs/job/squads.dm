@@ -4,15 +4,10 @@
 //Note: some important procs are held by the job controller, in job_controller.dm.
 //In particular, get_lowest_squad() and randomize_squad()
 
-#define NO_SQUAD 0
-#define ALPHA_SQUAD 1
-#define BRAVO_SQUAD 2
-#define CHARLIE_SQUAD 3
-#define DELTA_SQUAD 4
-
 /datum/squad
 	var/name = "Empty Squad"  //Name of the squad
 	var/id = NO_SQUAD //Just a little number identifier
+	var/tracking_id = null // for use with SSdirection
 	var/max_positions = -1 //Maximum number allowed in a squad. Defaults to infinite
 	var/color = 0 //Color for helmets, etc.
 	var/list/access = list() //Which special access do we grant them
@@ -44,9 +39,15 @@
 	var/list/squad_orbital_beacons = list()
 	var/list/squad_laser_targets = list()
 
+/datum/squad/New()
+	. = ..()
+	if(tracking_id)
+		SETUP_LEADER_MAP(tracking_id)
+
 /datum/squad/alpha
 	name = "Alpha"
 	id = ALPHA_SQUAD
+	tracking_id = TRACK_ALPHA_SQUAD
 	color = 1
 	access = list(ACCESS_MARINE_ALPHA)
 	usable = 1
@@ -55,6 +56,7 @@
 /datum/squad/bravo
 	name = "Bravo"
 	id = BRAVO_SQUAD
+	tracking_id = TRACK_BRAVO_SQUAD
 	color = 2
 	access = list(ACCESS_MARINE_BRAVO)
 	usable = 1
@@ -63,6 +65,7 @@
 /datum/squad/charlie
 	name = "Charlie"
 	id = CHARLIE_SQUAD
+	tracking_id = TRACK_CHARLIE_SQUAD
 	color = 3
 	access = list(ACCESS_MARINE_CHARLIE)
 	usable = 1
@@ -71,6 +74,7 @@
 /datum/squad/delta
 	name = "Delta"
 	id = DELTA_SQUAD
+	tracking_id = TRACK_DELTA_SQUAD
 	color = 4
 	access = list(ACCESS_MARINE_DELTA)
 	usable = 1
