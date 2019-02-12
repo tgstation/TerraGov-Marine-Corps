@@ -168,22 +168,22 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 	. = ..()	//calls mob.Login()
 	chatOutput.start() // Starts the chat
 
-	if(byond_version >= 512)
-		if(!byond_build || byond_build < 1386)
-			message_admins("[key_name(src)] has been detected as spoofing their byond version. Connection rejected.")
-			log_access("Failed Login: [key] - Spoofed byond version")
-			qdel(src)
-			return
-
-		if(num2text(byond_build) in GLOB.blacklisted_builds)
-			log_access("Failed login: [key] - blacklisted byond version")
-			to_chat(src, "<span class='userdanger'>Your version of byond is blacklisted.</span>")
-			to_chat(src, "<span class='danger'>Byond build [byond_build] ([byond_version].[byond_build]) has been blacklisted for the following reason: [GLOB.blacklisted_builds[num2text(byond_build)]].</span>")
-			to_chat(src, "<span class='danger'>Please download a new version of byond. If [byond_build] is the latest, you can go to <a href=\"https://secure.byond.com/download/build\">BYOND's website</a> to download other versions.</span>")
-			addtimer(CALLBACK(src, qdel(src), 2 SECONDS))
-			return
-	else
+	if(byond_version < 512)
 		to_chat(src, "<span class='userdanger'>Your version of byond is severely out of date.</span>")
+		to_chat(src, "<span class='danger'>Please download a new version of byond. If [byond_build] is the latest, you can go to <a href=\"https://secure.byond.com/download/build\">BYOND's website</a> to download other versions.</span>")
+		addtimer(CALLBACK(src, qdel(src), 2 SECONDS))
+		return
+
+	if(!byond_build || byond_build < 1386)
+		message_admins("[key_name(src)] has been detected as spoofing their byond version. Connection rejected.")
+		log_access("Failed Login: [key] - Spoofed byond version")
+		qdel(src)
+		return
+
+	if(num2text(byond_build) in GLOB.blacklisted_builds)
+		log_access("Failed login: [key] - blacklisted byond version")
+		to_chat(src, "<span class='userdanger'>Your version of byond is blacklisted.</span>")
+		to_chat(src, "<span class='danger'>Byond build [byond_build] ([byond_version].[byond_build]) has been blacklisted for the following reason: [GLOB.blacklisted_builds[num2text(byond_build)]].</span>")
 		to_chat(src, "<span class='danger'>Please download a new version of byond. If [byond_build] is the latest, you can go to <a href=\"https://secure.byond.com/download/build\">BYOND's website</a> to download other versions.</span>")
 		addtimer(CALLBACK(src, qdel(src), 2 SECONDS))
 		return
