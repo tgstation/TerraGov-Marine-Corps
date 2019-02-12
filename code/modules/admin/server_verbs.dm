@@ -45,15 +45,19 @@
 	if(!check_rights(R_SERVER))
 		return
 
-	GLOB.looc_allowed = !(GLOB.looc_allowed)
+	if(!config)
+		return
 
-	if(GLOB.looc_allowed)
-		to_chat(world, "<span class='boldnotice'>LOOC has been globally enabled!</span>")
+	if(CONFIG_GET(flag/looc_enabled))
+		CONFIG_SET(flag/looc_enabled, FALSE)
+		to_chat(world, "<span class='boldnotice'>LOOC channel has been enabled!</span>")
 	else
-		to_chat(world, "<span class='boldnotice'>LOOC has been globally disabled!</span>")
+		CONFIG_SET(flag/looc_enabled, TRUE)
+		to_chat(world, "<span class='boldnotice'>LOOC channel has been disabled!</span>")
 
-	log_admin("[key_name(usr)] [GLOB.looc_allowed ? "enabled" : "disabled"] LOOC.")
-	message_admins("[ADMIN_TPMONTY(usr)] [GLOB.looc_allowed ? "enabled" : "disabled"] LOOC.")
+
+	log_admin("[key_name(usr)] has [CONFIG_GET(flag/looc_enabled) ? "enabled" : "disabled"] LOOC.")
+	message_admins("[ADMIN_TPMONTY(usr)] has [CONFIG_GET(flag/looc_enabled) ? "enabled" : "disabled"] LOOC.")
 
 
 /datum/admins/proc/toggle_deadchat()

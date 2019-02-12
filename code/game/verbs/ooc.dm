@@ -115,7 +115,7 @@ var/global/normal_ooc_colour = "#002eb8"
 		return
 
 	if(!check_rights(R_ADMIN, FALSE))
-		if(!GLOB.ooc_allowed)
+		if(!CONFIG_GET(flag/looc_enabled))
 			to_chat(src, "<span class='warning'>LOOC is globally muted</span>")
 			return
 		if(prefs.muted & MUTE_OOC)
