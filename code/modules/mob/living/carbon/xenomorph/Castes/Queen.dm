@@ -288,13 +288,13 @@
 				if(ticker.mode.stored_larva)
 					if((last_larva_time + 600) < world.time) // every minute
 						last_larva_time = world.time
-						var/list/players_with_xeno_pref = get_alien_candidates()
-						if(players_with_xeno_pref.len)
+						var/picked = get_alien_candidate()
+						if(picked)
 							var/mob/living/carbon/Xenomorph/Larva/new_xeno = new /mob/living/carbon/Xenomorph/Larva(loc)
 							new_xeno.visible_message("<span class='xenodanger'>A larva suddenly burrows out of the ground!</span>",
 							"<span class='xenodanger'>You burrow out of the ground and awaken from your slumber. For the Hive!</span>")
 							new_xeno << sound('sound/effects/xeno_newlarva.ogg')
-							new_xeno.key = pick(players_with_xeno_pref)
+							new_xeno.key = picked
 
 							if(new_xeno.client)
 								new_xeno.client.change_view(world.view)

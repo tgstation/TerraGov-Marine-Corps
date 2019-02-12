@@ -210,7 +210,7 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 		trigger_self_destruct(,,override)
 		return TRUE
 
-/datum/authority/branch/evacuation/proc/trigger_self_destruct(list/z_levels, origin = dest_master, override)
+/datum/authority/branch/evacuation/proc/trigger_self_destruct(list/z_levels = list(SSmapping.levels_by_trait(ZTRAIT_MARINE_MAIN_SHIP)), origin = dest_master, override)
 	set waitfor = FALSE
 	if(dest_status < NUKE_EXPLOSION_IN_PROGRESS) //One more check for good measure, in case it's triggered through a bomb instead of the destruct mechanism/admin panel.
 		GLOB.enter_allowed = FALSE //Do not want baldies spawning in as everything is exploding.
@@ -219,64 +219,45 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 		world << pick('sound/theme/nuclear_detonation1.ogg','sound/theme/nuclear_detonation2.ogg')
 
 		var/ship_status = 1
-		z_levels = SSmapping.levels_by_trait(ZTRAIT_MARINE_MAIN_SHIP)
-		for(var/i in z_levels)
+		var/f = SSmapping.levels_by_trait(ZTRAIT_MARINE_MAIN_SHIP)
+		if(f in z_levels)
 			ship_status = 0 //Destroyed.
 
-		var/L1[] = new //Everyone who will be destroyed on the zlevel(s).
-		var/L2[] = new //Everyone who only needs to see the cinematic.
-		var/mob/M
-		var/turf/T
-		for(M in GLOB.player_list) //This only does something cool for the people about to die, but should prove pretty interesting.
-			if(!M?.loc)
-				continue //In case something changes when we sleep().
-			T = get_turf(M)
-			if(T.z in z_levels)
-				if(M.stat == DEAD)
-					L2 |= M
-				else
-					L1 |= M
-					shake_camera(M, 110, 4)
+		for(var/x in GLOB.player_list)
+			var/mob/M = x
+			if(isobserver(M))
+				continue
+			shake_camera(M, 110, 4)
 
 
-		sleep(100)
-		/*Hardcoded for now, since this was never really used for anything else.
-		Would ideally use a better system for showing cutscenes.*/
-		var/obj/screen/cinematic/explosion/C = new
-
-		for(M in L1 + L2)
-			if(M && M.loc && M.client)
-				M.client.screen |= C //They may have disconnected in the mean time.
-
-		sleep(15) //Extra 1.5 seconds to look at the ship.
-		flick(override ? "intro_override" : "intro_nuke", C)
-		sleep(35)
-		for(M in L1)
-			if(M && M.loc) //Who knows, maybe they escaped, or don't exist anymore.
-				T = get_turf(M)
-				if(T.z in z_levels)
-					M.death()
-				else
-					M.client.screen -= C //those who managed to escape the z level at last second shouldn't have their view obstructed.
-		flick(ship_status ? "ship_spared" : "ship_destroyed", C)
-		world << sound('sound/effects/explosionfar.ogg')
-		C.icon_state = ship_status ? "summary_spared" : "summary_destroyed"
-
-		addtimer(CALLBACK(src, .proc/remove_overlay, C), 15 SECONDS)
-
-		dest_status = NUKE_EXPLOSION_FINISHED
-
-		if(!ticker || !ticker.mode) //Just a safety, just in case a mode isn't running, somehow.
-			to_chat(world, "<span class='round_body'>Resetting in 30 seconds!</span>")
-			sleep(300)
-			log_game("Rebooting due to nuclear detonation.")
-			world.Reboot()
-		return TRUE
+		addtimer(CALLBACK(src, .proc/show_cinematic, override, ship_status), 10 SECONDS)
 
 
-/datum/authority/branch/evacuation/proc/remove_overlay(overlay)
-	for(var/client/C in GLOB.player_list)
-		C.screen -= overlay
+/datum/authority/branch/evacuation/proc/show_cinematic(override, ship_status)
+	set waitfor = FALSE
+	var/obj/screen/cinematic/explosion/E = new
+
+	for(var/x in GLOB.clients)
+		var/client/C = x
+		C.screen += E
+		C.change_view(world.view)
+
+	sleep(15)
+	flick(override ? "intro_override" : "intro_nuke", E)
+	flick(ship_status ? "ship_spared" : "ship_destroyed", E)
+	SEND_SOUND(world, 'sound/effects/explosionfar.ogg')
+	E.icon_state = ship_status ? "summary_spared" : "summary_destroyed"
+
+	dest_status = NUKE_EXPLOSION_FINISHED
+
+	addtimer(CALLBACK(src, .proc/remove_cinematic, E), 10 SECONDS)
+
+
+
+/datum/authority/branch/evacuation/proc/remove_cinematic(obj/screen/cinematic/explosion/E)
+	for(var/x in GLOB.clients)
+		var/client/C = x
+		C.screen -= E
 
 
 /datum/authority/branch/evacuation/proc/process_self_destruct()

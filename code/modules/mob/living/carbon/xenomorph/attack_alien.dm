@@ -254,11 +254,13 @@
 
 
 //Every other type of nonhuman mob
-/mob/living/attack_alien(mob/living/carbon/Xenomorph/M)
+/mob/living/attack_alien(mob/living/carbon/Xenomorph/M, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
 	if (M.fortify)
 		return FALSE
 
-	switch(M.a_intent)
+	var/intent = force_intent ? force_intent : M.a_intent
+
+	switch(intent)
 		if(INTENT_HELP)
 			M.visible_message("<span class='notice'>\The [M] caresses [src] with its scythe-like arm.</span>", \
 			"<span class='notice'>You caress [src] with your scythe-like arm.</span>", null, 5)

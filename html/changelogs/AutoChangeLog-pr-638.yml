@@ -1,0 +1,4 @@
+author: "LaKiller8"
+delete-after: True
+changes: 
+  - bugfix: "Nuclear detonation screen now disappears properly."
