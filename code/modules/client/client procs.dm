@@ -168,11 +168,12 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 	. = ..()	//calls mob.Login()
 	chatOutput.start() // Starts the chat
 
-	if(byond_version >= 512)
+	if(byond_version >= 511)
 		if(!byond_build || byond_build < 1386)
 			message_admins("[key_name(src)] has been detected as spoofing their byond version. Connection rejected.")
 			log_access("Failed Login: [key] - Spoofed byond version")
 			qdel(src)
+			return
 
 		if(num2text(byond_build) in GLOB.blacklisted_builds)
 			log_access("Failed login: [key] - blacklisted byond version")
@@ -181,6 +182,11 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 			to_chat(src, "<span class='danger'>Please download a new version of byond. If [byond_build] is the latest, you can go to <a href=\"https://secure.byond.com/download/build\">BYOND's website</a> to download other versions.</span>")
 			qdel(src)
 			return
+	else
+		to_chat(src, "<span class='userdanger'>Your version of byond is severely out of date.</span>")
+		to_chat(src, "<span class='danger'>Please download a new version of byond. If [byond_build] is the latest, you can go to <a href=\"https://secure.byond.com/download/build\">BYOND's website</a> to download other versions.</span>")
+		qdel(src)
+		return
 
 	if(custom_event_msg && custom_event_msg != "")
 		to_chat(src, "<h1 class='alert'>Custom Event</h1>")
