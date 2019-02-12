@@ -47,8 +47,6 @@
 
 	sense()
 		var/turf/mainloc = get_turf(src)
-//		if(scanning && cooldown <= 0)
-//			mainloc.visible_message("[icon2html(src, viewers(mainloc))] *boop* *boop*", "*boop* *boop*")
 		if((!holder && !secured)||(!scanning)||(cooldown > 0))	return 0
 		pulse(0)
 		if(!holder)
