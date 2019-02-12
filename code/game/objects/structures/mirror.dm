@@ -17,7 +17,7 @@
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 
-		if(H.a_intent == "hurt")
+		if(H.a_intent == INTENT_HARM)
 			if(shattered)
 				playsound(src.loc, 'sound/effects/hit_on_shattered_glass.ogg', 25, 1)
 				return
@@ -74,7 +74,7 @@
 		playsound(loc, 'sound/effects/hit_on_shattered_glass.ogg', 25, 1)
 		return TRUE
 
-	if(M.a_intent == "help")
+	if(M.a_intent == INTENT_HELP)
 		M.visible_message("<span class='warning'>\The [M] oogles its own reflection in [src].</span>", \
 		"<span class='warning'>You oogle your own reflection in [src].</span>", null, 5)
 	else

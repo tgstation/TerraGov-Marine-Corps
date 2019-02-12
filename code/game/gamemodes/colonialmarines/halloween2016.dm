@@ -1,6 +1,5 @@
 #define EVENT_MAJOR_INTERVAL 	3000 // 5 minutes
 #define EVENT_MINOR_INTERVAL 	900 // 1.5 minutes
-#define FOG_DELAY_INTERVAL		6000 // 8 minutes
 #define BATTLEFIELD_END			36000 // 60 minutes
 #define MAX_BLOOD_ATTUNED		5
 #define BATTLEFIELD_DEBUG		0
@@ -61,7 +60,7 @@
 	var/event_time_minor	= EVENT_MINOR_INTERVAL
 	var/total_attuned		= MAX_BLOOD_ATTUNED
 	var/obj/item/device/omega_array/mcguffin
-	var/obj/effect/blocker/fog/fog_blockers[]
+	var/obj/effect/forcefield/fog/fog_blockers[]
 	var/turf/marine_spawns[]
 	var/turf/pmc_spawns[]
 	var/turf/horror_spawns[]
@@ -100,7 +99,7 @@
 	var/obj/effect/landmark/L
 	var/obj/effect/step_trigger/attunement/R
 	var/obj/effect/step_trigger/jason/J
-	var/obj/effect/blocker/fog/F
+	var/obj/effect/forcefield/fog/F
 	fog_blockers 		= new
 	horror_spawns		= new
 	pmc_spawns	 		= new
@@ -362,32 +361,6 @@
 
 /obj/item/device/omega_array/array
 	icon_state = "omega_array_l"
-
-/obj/effect/blocker/fog
-	name = "dense fog"
-	desc = "It looks way too dangerous to traverse. Best wait until it has cleared up."
-	icon = 'icons/effects/effects.dmi'
-	icon_state = "smoke"
-	anchored = 1
-	density = 1
-	opacity = 1
-	unacidable = 1
-
-/obj/effect/blocker/fog/Initialize()
-	. = ..()
-	dir  = pick(CARDINAL_DIRS)
-	GLOB.fog_blockers += src
-
-/obj/effect/blocker/fog/Destroy()
-	GLOB.fog_blockers -= src
-	return ..()
-
-/obj/effect/blocker/fog/attack_hand(mob/M)
-	to_chat(M, "<span class='notice'>You peer through the fog, but it's impossible to tell what's on the other side...</span>")
-
-/obj/effect/blocker/fog/attack_alien(M)
-	return attack_hand(M)
-
 
 /obj/effect/step_trigger/jason/Trigger(mob/living/M)
 	if(istype(M) && M.stat != DEAD && (!M.mind || !M.mind.special_role || M.mind.special_role == "PMC"))

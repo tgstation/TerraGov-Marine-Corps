@@ -105,7 +105,7 @@ They're all essentially identical when it comes to getting the job done.
 		return
 
 	var/obj/item/ammo_magazine/handful/new_handful = new /obj/item/ammo_magazine/handful()
-	var/MR = caliber == "12g" ? 5 : 8
+	var/MR = (caliber in list("12g", "7.62x54mmR")) ? 5 : 8
 	R = transfer_amount ? min(current_rounds, transfer_amount) : min(current_rounds, MR)
 	new_handful.generate_handful(default_ammo, caliber, MR, R, gun_type)
 	current_rounds -= R
@@ -179,7 +179,7 @@ bullets/shells. ~N
 	if(max_rounds >= current_rounds)
 		var/I = current_rounds*50 // For the metal.
 		matter = list("metal" = I)
-		dir = current_rounds + round(current_rounds/3)
+		setDir(current_rounds + round(current_rounds/3))
 
 
 /*
@@ -199,7 +199,7 @@ If it is the same and the other stack isn't full, transfer an amount (default 1)
 	var/ammo_name = A.name //Let's pull up the name.
 
 	name = "handful of [ammo_name + (ammo_name == "shotgun buckshot"? " ":"s ") + "([new_caliber])"]"
-	icon_state = new_caliber == "12g" ? ammo_name : "bullet"
+	icon_state = new_caliber == "12g" ? ammo_name : new_caliber == "7.62x54mmR" ? "mosin" : "bullet" //What am I even doing with my life?
 	default_ammo = new_ammo
 	caliber = new_caliber
 	max_rounds = maximum_rounds
@@ -254,7 +254,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 		var/I = current_casings*8 // For the metal.
 		matter = list("metal" = I)
 		var/base_direction = current_casings - (current_icon * 8)
-		dir = base_direction + round(base_direction)/3
+		setDir(base_direction + round(base_direction)/3)
 		switch(current_casings)
 			if(3 to 5) w_class = 2 //Slightly heavier.
 			if(9 to 10) w_class = 3 //Can't put it in your pockets and stuff.

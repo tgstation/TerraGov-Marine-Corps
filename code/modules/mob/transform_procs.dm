@@ -10,7 +10,7 @@
 	canmove = 0
 	stunned = 1
 	icon = null
-	invisibility = 101
+	invisibility = INVISIBILITY_MAXIMUM
 	for(var/t in limbs)
 		qdel(t)
 	var/atom/movable/overlay/animation = new /atom/movable/overlay( loc )
@@ -34,7 +34,7 @@
 	O.dna.SetSEValueRange(MONKEYBLOCK,0xDAC, 0xFFF)
 	O.loc = loc
 	O.viruses = viruses
-	O.a_intent = "hurt"
+	O.a_intent = INTENT_HARM
 
 	for(var/datum/disease/D in O.viruses)
 		D.affected_mob = O
@@ -74,7 +74,7 @@
 	monkeyizing = 1
 	canmove = 0
 	icon = null
-	invisibility = 101
+	invisibility = INVISIBILITY_MAXIMUM
 	return ..()
 
 /mob/proc/AIize()
@@ -140,7 +140,7 @@
 	monkeyizing = 1
 	canmove = 0
 	icon = null
-	invisibility = 101
+	invisibility = INVISIBILITY_MAXIMUM
 	for(var/t in limbs)
 		qdel(t)
 
@@ -194,14 +194,14 @@
 	monkeyizing = 1
 	canmove = 0
 	icon = null
-	invisibility = 101
+	invisibility = INVISIBILITY_MAXIMUM
 	for(var/t in limbs)
 		qdel(t)
 
 //	var/alien_caste = "larva"
 	var/mob/living/carbon/Xenomorph/Larva/new_xeno = new /mob/living/carbon/Xenomorph/Larva(loc)
 
-	new_xeno.a_intent = "hurt"
+	new_xeno.a_intent = INTENT_HARM
 	new_xeno.key = key
 	if(new_xeno.client) new_xeno.client.change_view(world.view)
 
@@ -220,14 +220,14 @@
 	monkeyizing = 1
 	canmove = 0
 	icon = null
-	invisibility = 101
+	invisibility = INVISIBILITY_MAXIMUM
 	for(var/t in limbs)
 		qdel(t)
 
 //	var/alien_caste = "Drone"
 	var/mob/living/carbon/Xenomorph/Drone/new_xeno = new /mob/living/carbon/Xenomorph/Drone(loc)
 
-	new_xeno.a_intent = "hurt"
+	new_xeno.a_intent = INTENT_HARM
 	new_xeno.key = key
 	if(new_xeno.client) new_xeno.client.change_view(world.view)
 
@@ -246,12 +246,12 @@
 	monkeyizing = 1
 	canmove = 0
 	icon = null
-	invisibility = 101
+	invisibility = INVISIBILITY_MAXIMUM
 	for(var/t in limbs)	//this really should not be necessary
 		qdel(t)
 
 	var/mob/living/simple_animal/corgi/new_corgi = new /mob/living/simple_animal/corgi (loc)
-	new_corgi.a_intent = "hurt"
+	new_corgi.a_intent = INTENT_HARM
 	new_corgi.key = key
 	if(new_corgi.client) new_corgi.client.change_view(world.view)
 
@@ -278,7 +278,7 @@
 	monkeyizing = 1
 	canmove = 0
 	icon = null
-	invisibility = 101
+	invisibility = INVISIBILITY_MAXIMUM
 
 	for(var/t in limbs)
 		qdel(t)
@@ -287,7 +287,7 @@
 
 	new_mob.key = key
 	if(new_mob.client) new_mob.client.change_view(world.view)
-	new_mob.a_intent = "hurt"
+	new_mob.a_intent = INTENT_HARM
 
 
 	to_chat(new_mob, "You suddenly feel more... animalistic.")
@@ -308,7 +308,7 @@
 
 	new_mob.key = key
 	if(new_mob.client) new_mob.client.change_view(world.view)
-	new_mob.a_intent = "hurt"
+	new_mob.a_intent = INTENT_HARM
 	to_chat(new_mob, "You feel more... animalistic")
 
 	qdel(src)

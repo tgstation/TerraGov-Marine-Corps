@@ -73,7 +73,7 @@
 		if(!src) //Make sure the sentry still exists
 			return
 		var/obj/machinery/turret_tripod_deployed/S = new /obj/machinery/turret_tripod_deployed/(target)
-		S.dir = user.dir
+		S.setDir(user.dir)
 		user.visible_message("<span class='notice'>[user] unfolds \the [S].</span>",
 			"<span class='notice'>You unfold \the [S].</span>")
 		playsound(target, 'sound/weapons/mine_armed.ogg', 25)
@@ -179,7 +179,7 @@
 
 			if(do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
 				var/obj/machinery/marine_turret/S = new /obj/machinery/marine_turret(loc)
-				S.dir = dir
+				S.setDir(dir)
 				user.visible_message("<span class='notice'>[user] finishes \the [S].</span>",
 					"<span class='notice'>You finish \the [S].</span>")
 				playsound(S.loc, 'sound/weapons/mine_armed.ogg', 25)
@@ -603,13 +603,13 @@
 		user.visible_message("<span class='notice'>[user] rotates [src].</span>",
 		"<span class='notice'>You rotate [src].</span>")
 		if(dir == NORTH)
-			dir = EAST
+			setDir(EAST)
 		else if(dir == EAST)
-			dir = SOUTH
+			setDir(SOUTH)
 		else if(dir == SOUTH)
-			dir = WEST
+			setDir(WEST)
 		else if(dir == WEST)
-			dir = NORTH
+			setDir(NORTH)
 		return
 
 
@@ -763,8 +763,8 @@
 		stat = 2
 		state("<span class='warning'>The [name] starts spitting out sparks and smoke!")
 		playsound(loc, 'sound/mecha/critdestrsyndi.ogg', 25, 1)
-		for(var/i = 1 to 6)
-			dir = pick(1, 2, 3, 4)
+		for(var/i in 1 to 6)
+			setDir(pick(NORTH, SOUTH, EAST, WEST))
 			sleep(2)
 		spawn(10)
 			if(src && loc)
@@ -807,8 +807,8 @@
 		if(prob(50))
 			state("<span class='danger'>[src] beeps and buzzes wildly, flashing odd symbols on its screen before shutting down!</span>")
 			playsound(loc, 'sound/mecha/critdestrsyndi.ogg', 25, 1)
-			for(var/i = 1 to 6)
-				dir = pick(1, 2, 3, 4)
+			for(var/i in 1 to 6)
+				setDir(pick(NORTH, SOUTH, EAST, WEST))
 				sleep(2)
 			on = FALSE
 	if(health > 0)
@@ -942,7 +942,7 @@
 	//	return
 
 	if(radial_mode && !manual_override)
-		dir = target_dir
+		setDir(target_dir)
 
 
 	if(load_into_chamber())
@@ -965,7 +965,7 @@
 
 			//Setup projectile
 			in_chamber.original = target
-			in_chamber.dir = dir
+			in_chamber.setDir(dir)
 			in_chamber.def_zone = pick("chest", "chest", "chest", "head")
 
 			//Shoot at the thing
@@ -1374,7 +1374,7 @@
 		if(!src) //Make sure the sentry still exists
 			return
 		var/obj/machinery/marine_turret/mini/M = new /obj/machinery/marine_turret/mini(target)
-		M.dir = user.dir
+		M.setDir(user.dir)
 		user.visible_message("<span class='notice'>[user] deploys [M].</span>",
 		"<span class='notice'>You deploy [M].</span>")
 		playsound(target, 'sound/weapons/mine_armed.ogg', 25)

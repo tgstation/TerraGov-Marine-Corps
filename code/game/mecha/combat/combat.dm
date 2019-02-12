@@ -27,7 +27,7 @@
 	if(!melee_can_hit || !istype(target, /atom)) return
 	if(isliving(target))
 		var/mob/living/M = target
-		if(src.occupant.a_intent == "hurt")
+		if(src.occupant.a_intent == INTENT_HARM)
 			playsound(src, 'sound/weapons/punch4.ogg', 25, 1)
 			if(damtype == "brute")
 				step_away(M,src,15)

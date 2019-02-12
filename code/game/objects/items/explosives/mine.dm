@@ -70,7 +70,7 @@
 		playsound(src.loc, 'sound/weapons/mine_armed.ogg', 25, 1)
 		icon_state += "_armed"
 		user.drop_held_item()
-		dir = user.dir //The direction it is planted in is the direction the user faces at that time
+		setDir(user.dir) //The direction it is planted in is the direction the user faces at that time
 		var/tripwire_loc = get_turf(get_step(loc, dir))
 		tripwire = new /obj/effect/mine_tripwire(tripwire_loc)
 		tripwire.linked_claymore = src
@@ -128,7 +128,8 @@
 	if(triggered) //Mine is already set to go off
 		return
 
-	if(M.a_intent == "help") return
+	if(M.a_intent == INTENT_HELP)
+		return
 	M.visible_message("<span class='danger'>[M] has slashed [src]!</span>", \
 	"<span class='danger'>You slash [src]!</span>")
 	playsound(loc, 'sound/weapons/slice.ogg', 25, 1)
@@ -151,7 +152,7 @@
 	name = "claymore tripwire"
 	anchored = 1
 	mouse_opacity = 0
-	invisibility = 101
+	invisibility = INVISIBILITY_MAXIMUM
 	unacidable = 1 //You never know
 	var/obj/item/explosive/mine/linked_claymore
 

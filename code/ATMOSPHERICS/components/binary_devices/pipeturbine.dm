@@ -102,7 +102,7 @@
 		if (usr.stat || usr.is_mob_restrained() || anchored)
 			return
 
-		src.dir = turn(src.dir, -90)
+		setDir(turn(dir, -90))
 
 
 	verb/rotate_anticlockwise()
@@ -113,7 +113,7 @@
 		if (usr.stat || usr.is_mob_restrained() || anchored)
 			return
 
-		src.dir = turn(src.dir, 90)
+		setDir(turn(dir, 90))
 
 //Goddamn copypaste from binary base class because atmospherics machinery API is not damn flexible
 	network_expand(datum/pipe_network/new_network, obj/machinery/atmospherics/pipe/reference)
@@ -243,7 +243,7 @@
 		if (usr.stat || usr.is_mob_restrained()  || anchored)
 			return
 
-		src.dir = turn(src.dir, -90)
+		setDir(turn(dir, -90))
 
 	verb/rotate_anticlock()
 		set category = "Object"
@@ -253,4 +253,4 @@
 		if (usr.stat || usr.is_mob_restrained()  || anchored)
 			return
 
-		src.dir = turn(src.dir, 90)
+		setDir(turn(dir, 90))

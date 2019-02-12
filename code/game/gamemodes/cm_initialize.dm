@@ -46,7 +46,8 @@ Additional game mode variables.
 				list(/obj/item/weapon/gun/shotgun/double/sawn, /obj/item/ammo_magazine/shotgun/flechette),\
 				list(/obj/item/weapon/gun/smg/uzi, /obj/item/ammo_magazine/smg/uzi),\
 				list(/obj/item/weapon/gun/smg/mp5, /obj/item/ammo_magazine/smg/mp5),\
-				list(/obj/item/weapon/gun/rifle/m16, /obj/item/ammo_magazine/rifle/m16))
+				list(/obj/item/weapon/gun/rifle/m16, /obj/item/ammo_magazine/rifle/m16),\
+				list(/obj/item/weapon/gun/shotgun/pump/bolt, /obj/item/ammo_magazine/rifle/bolt))
 
 /datum/game_mode
 	var/datum/mind/xenomorphs[] = list() //These are our basic lists to keep track of who is in the game.
@@ -255,8 +256,6 @@ datum/game_mode/proc/initialize_special_clamps()
 	new_predator.update_icons()
 	initialize_predator(new_predator)
 	return new_predator
-
-#undef DEBUG_PREDATOR_INITIALIZE
 
 //===================================================\\
 
@@ -756,6 +755,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 		CA.contraband = list(
 						/obj/item/ammo_magazine/smg/ppsh/ = round(scale * 20),
 						/obj/item/ammo_magazine/smg/ppsh/extended = round(scale * 4),
+						/obj/item/ammo_magazine/rifle/bolt = round(scale * 10),
 						/obj/item/ammo_magazine/sniper = 0,
 						/obj/item/ammo_magazine/sniper/incendiary = 0,
 						/obj/item/ammo_magazine/sniper/flak = 0,
@@ -830,6 +830,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 		CG.contraband = list(
 						/obj/item/weapon/gun/smg/ppsh = round(scale * 4),
 						/obj/item/weapon/gun/shotgun/double = round(scale * 2),
+						/obj/item/weapon/gun/shotgun/pump/bolt = round(scale * 2),
 						/obj/item/weapon/gun/smg/m39/elite = 0,
 						/obj/item/weapon/gun/rifle/m41aMK1 = 0,
 						/obj/item/weapon/gun/rifle/m41a/elite = 0,
@@ -929,33 +930,61 @@ datum/game_mode/proc/initialize_post_queen_list()
 /datum/game_mode/proc/spawn_map_items()
 	var/turf/T
 	switch(GLOB.map_tag) // doing the switch first makes this a tiny bit quicker which for round setup is more important than pretty code
-		if(MAP_LV_624) 
+		if(MAP_LV_624)
 			while(GLOB.map_items.len)
 				T = GLOB.map_items[GLOB.map_items.len]
-				GLOB.map_items--
+				GLOB.map_items.len--
 				new /obj/item/map/lazarus_landing_map(T)
 
-		if(MAP_ICE_COLONY) 
+		if(MAP_ICE_COLONY)
 			while(GLOB.map_items.len)
 				T = GLOB.map_items[GLOB.map_items.len]
-				GLOB.map_items--
+				GLOB.map_items.len--
 				new /obj/item/map/ice_colony_map(T)
 
-		if(MAP_BIG_RED) 
+		if(MAP_BIG_RED)
 			while(GLOB.map_items.len)
 				T = GLOB.map_items[GLOB.map_items.len]
-				GLOB.map_items--
+				GLOB.map_items.len--
 				new /obj/item/map/big_red_map(T)
 
-		if(MAP_PRISON_STATION) 
+		if(MAP_PRISON_STATION)
 			while(GLOB.map_items.len)
 				T = GLOB.map_items[GLOB.map_items.len]
-				GLOB.map_items--
+				GLOB.map_items.len--
 				new /obj/item/map/FOP_map(T)
 
 /datum/game_mode/proc/spawn_fog_blockers()
 	var/turf/T
 	while(GLOB.fog_blocker_locations.len)
 		T = GLOB.fog_blocker_locations[GLOB.fog_blocker_locations.len]
-		GLOB.fog_blocker_locations--
-		new /obj/effect/blocker/fog(T)
+		GLOB.fog_blocker_locations.len--
+		new /obj/effect/forcefield/fog(T)
+
+/obj/effect/forcefield/fog
+	name = "dense fog"
+	desc = "It looks way too dangerous to traverse. Best wait until it has cleared up."
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "smoke"
+	opacity = 1
+
+/obj/effect/forcefield/fog/Initialize()
+	. = ..()
+	dir  = pick(CARDINAL_DIRS)
+	GLOB.fog_blockers += src
+
+/obj/effect/forcefield/fog/Destroy()
+	GLOB.fog_blockers -= src
+	return ..()
+
+/obj/effect/forcefield/fog/attack_hand(mob/M)
+	to_chat(M, "<span class='notice'>You peer through the fog, but it's impossible to tell what's on the other side...</span>")
+
+/obj/effect/forcefield/fog/attack_alien(M)
+	return attack_hand(M)
+
+/obj/effect/forcefield/fog/attack_paw(M)
+	return attack_hand(M)
+
+/obj/effect/forcefield/fog/attack_animal(M)
+	return attack_hand(M)

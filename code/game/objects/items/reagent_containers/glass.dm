@@ -26,8 +26,9 @@
 		if(!is_open_container())
 			to_chat(user, "<span class='info'>An airtight lid seals it completely.</span>")
 
-/obj/item/reagent_container/glass/attack_self()
-	..()
+/obj/item/reagent_container/glass/verb/attach_lid()
+	set name = "Attach/Detach lid"
+	set category = "Object"
 	if(is_open_container())
 		to_chat(usr, "<span class='notice'>You put the lid on \the [src].</span>")
 		container_type ^= OPENCONTAINER
@@ -70,7 +71,7 @@
 		var/trans = target.reagents.trans_to(src, amount_per_transfer_from_this)
 		to_chat(user, "<span class='notice'>You fill [src] with [trans] unit\s of the contents of [target].</span>")
 
-	if(user.a_intent == "harm")
+	if(user.a_intent == INTENT_HARM)
 		if(ismob(target) && target.reagents && reagents.total_volume)
 			to_chat(user, "<span class='notice'>You splash the solution onto [target].</span>")
 			playsound(target, 'sound/effects/slosh.ogg', 25, 1)

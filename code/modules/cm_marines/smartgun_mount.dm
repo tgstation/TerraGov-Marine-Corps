@@ -101,7 +101,7 @@
 	if(!ishuman(usr)) return
 	to_chat(user, "<span class='notice'>You deploy [src].</span>")
 	var/obj/machinery/m56d_post/P = new(user.loc)
-	P.dir = user.dir
+	P.setDir(user.dir)
 	P.update_icon()
 	qdel(src)
 
@@ -166,7 +166,7 @@
 	if(istype(O,/obj/item/tool/wrench)) //rotate the mount
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 		user.visible_message("<span class='notice'>[user] rotates [src].</span>","<span class='notice'>You rotate [src].</span>")
-		dir = turn(dir, -90)
+		setDir(turn(dir, -90))
 		return
 
 	if(istype(O,/obj/item/device/m56d_gun)) //lets mount the MG onto the mount.
@@ -207,7 +207,7 @@
 				user.visible_message("<span class='notice'> [user] screws the M56D into the mount.</span>","<span class='notice'> You finalize the M56D mounted smartgun system.</span>")
 				var/obj/machinery/m56d_hmg/G = new(src.loc) //Here comes our new turret.
 				G.visible_message("[bicon(G)] <B>[G] is now complete!</B>") //finished it for everyone to
-				G.dir = src.dir //make sure we face the right direction
+				G.setDir(dir) //make sure we face the right direction
 				G.rounds = src.gun_rounds //Inherent the amount of ammo we had.
 				G.update_icon()
 				qdel(src)
@@ -284,7 +284,7 @@
 		else
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 			user.visible_message("[user] rotates the [src].","You rotate the [src].")
-			dir = turn(dir, -90)
+			setDir(turn(dir, -90))
 		return
 
 	if(isscrewdriver(O)) // Lets take it apart.
@@ -425,7 +425,7 @@
 	if(load_into_chamber() == 1)
 		if(istype(in_chamber,/obj/item/projectile))
 			in_chamber.original = target
-			in_chamber.dir = src.dir
+			in_chamber.setDir(dir)
 			in_chamber.def_zone = pick("chest","chest","chest","head")
 			playsound(src.loc, 'sound/weapons/gun_rifle.ogg', 75, 1)
 			in_chamber.fire_at(U,src,null,ammo.max_range,ammo.shell_speed)

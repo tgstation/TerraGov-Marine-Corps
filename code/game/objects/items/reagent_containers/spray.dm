@@ -21,7 +21,7 @@
 
 /obj/item/reagent_container/spray/New()
 	..()
-	src.verbs -= /obj/item/reagent_container/verb/set_APTFT
+	src.verbs -= /obj/item/reagent_container/proc/set_APTFT
 
 /obj/item/reagent_container/spray/afterattack(atom/A as mob|obj, mob/user)
 	//this is what you get for using afterattack() TODO: make is so this is only called if attackby() returns 0 or something
@@ -120,6 +120,15 @@
 /obj/item/reagent_container/spray/cleaner/New()
 	..()
 	reagents.add_reagent("cleaner", src.volume)
+
+
+/obj/item/reagent_container/spray/surgery
+	name = "sterilizing spray"
+	desc = "Infection and necrosis are a thing of the past!"
+	volume = 100
+	list_reagents = list("cleaner" = 50, "sterilizine" = 50)
+
+
 //pepperspray
 /obj/item/reagent_container/spray/pepper
 	name = "pepperspray"

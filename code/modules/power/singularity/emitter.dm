@@ -43,14 +43,13 @@
 	if (src.anchored || usr:stat)
 		to_chat(usr, "It is fastened to the floor!")
 		return 0
-	src.dir = turn(src.dir, 90)
+	setDir(turn(dir, 90))
 	return 1
 
 /obj/machinery/power/emitter/Initialize()
 	..()
 	if(state == 2 && anchored)
 		connect_to_network()
-		src.directwired = 1
 
 /obj/machinery/power/emitter/Destroy()
 	log_game("Emitter deleted at [AREACOORD(src.loc)].")
@@ -190,7 +189,6 @@
 						state = 2
 						to_chat(user, "You weld the [src] to the floor.")
 						connect_to_network()
-						src.directwired = 1
 				else
 					to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
 			if(2)
@@ -204,7 +202,6 @@
 						state = 1
 						to_chat(user, "You cut the [src] free from the floor.")
 						disconnect_from_network()
-						src.directwired = 0
 				else
 					to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
 		return

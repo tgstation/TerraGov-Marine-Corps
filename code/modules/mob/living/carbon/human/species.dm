@@ -783,7 +783,7 @@
 // Called when using the shredding behavior.
 /datum/species/proc/can_shred(var/mob/living/carbon/human/H)
 
-	if(H.a_intent != "hurt")
+	if(H.a_intent != INTENT_HARM)
 		return 0
 
 	if(unarmed.is_usable(H))
@@ -896,7 +896,7 @@
 		)
 
 /datum/hud_data/New()
-	..()
+	. = ..()
 	for(var/slot in gear)
 		equip_slots |= gear[slot]["slot"]
 
@@ -912,6 +912,7 @@
 		equip_slots |= SLOT_IN_HOLSTER
 	if(SLOT_WEAR_SUIT in equip_slots)
 		equip_slots |= SLOT_IN_S_HOLSTER
+		equip_slots |= SLOT_IN_SUIT
 	if(SLOT_SHOES in equip_slots)
 		equip_slots |= SLOT_LEGCUFFED
 		equip_slots |= SLOT_IN_BOOT
@@ -920,3 +921,4 @@
 		equip_slots |= SLOT_IN_L_POUCH
 		equip_slots |= SLOT_IN_R_POUCH
 		equip_slots |= SLOT_ACCESSORY
+		equip_slots |= SLOT_IN_ACCESSORY

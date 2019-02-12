@@ -5,7 +5,6 @@
 	desc = "A thermoelectric generator sitting atop a plasma-filled borehole. This one is heavily damaged. Use a blowtorch, then wirecutters, and then a wrench to repair it."
 	anchored = 1
 	density = 1
-	directwired = 0     //Requires a cable directly underneath
 	unacidable = 1      //NOPE.jpg
 	var/power_gen_percent = 0 //100,000W at full capacity
 	var/power_generation_max = 100000 //Full capacity

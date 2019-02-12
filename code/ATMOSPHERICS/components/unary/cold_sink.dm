@@ -124,12 +124,12 @@
 	..()
 	if(stat & (NOPOWER|BROKEN) || !on)
 		cooling = 0
-		update_use_power(0)
+		update_use_power(NO_POWER_USE)
 		update_icon()
 		return
 
 	cooling = 1
-	update_use_power(1)
+	update_use_power(IDLE_POWER_USE)
 
 	update_icon()
 

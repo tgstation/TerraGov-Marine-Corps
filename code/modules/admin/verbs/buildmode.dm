@@ -65,15 +65,15 @@
 /obj/effect/bmode/builddir/clicked()
 	switch(dir)
 		if(NORTH)
-			dir = EAST
+			setDir(EAST)
 		if(EAST)
-			dir = SOUTH
+			setDir(SOUTH)
 		if(SOUTH)
-			dir = WEST
+			setDir(WEST)
 		if(WEST)
-			dir = NORTHWEST
+			setDir(NORTHWEST)
 		if(NORTHWEST)
-			dir = NORTH
+			setDir(NORTH)
 	return 1
 
 /obj/effect/bmode/buildhelp
@@ -178,7 +178,7 @@
 				if(master.buildmode.varholder in locked && !check_rights(R_DEBUG,0))
 					return TRUE
 				var/thetype = input(usr,"Select variable type:" ,"Type") in list("text","number","mob-reference","obj-reference","turf-reference")
-				if(!thetype) 
+				if(!thetype)
 					return TRUE
 				switch(thetype)
 					if("text")
@@ -200,7 +200,7 @@
 			holder = H
 			break
 
-	if(!holder) 
+	if(!holder)
 		return
 
 	switch(buildmode)
@@ -240,19 +240,19 @@
 				switch(holder.builddir.dir)
 					if(NORTH)
 						var/obj/structure/window/reinforced/WIN = new/obj/structure/window/reinforced(get_turf(object))
-						WIN.dir = NORTH
+						WIN.setDir(NORTH)
 					if(SOUTH)
 						var/obj/structure/window/reinforced/WIN = new/obj/structure/window/reinforced(get_turf(object))
-						WIN.dir = SOUTH
+						WIN.setDir(SOUTH)
 					if(EAST)
 						var/obj/structure/window/reinforced/WIN = new/obj/structure/window/reinforced(get_turf(object))
-						WIN.dir = EAST
+						WIN.setDir(EAST)
 					if(WEST)
 						var/obj/structure/window/reinforced/WIN = new/obj/structure/window/reinforced(get_turf(object))
-						WIN.dir = WEST
+						WIN.setDir(WEST)
 					if(NORTHWEST)
 						var/obj/structure/window/reinforced/WIN = new/obj/structure/window/reinforced(get_turf(object))
-						WIN.dir = NORTHWEST
+						WIN.setDir(NORTHWEST)
 		if(2)
 			if(mods["left"])
 				if(ispath(holder.buildmode.objholder,/turf))
@@ -260,7 +260,7 @@
 					T.ChangeTurf(holder.buildmode.objholder)
 				else
 					var/obj/A = new holder.buildmode.objholder (get_turf(object))
-					A.dir = holder.builddir.dir
+					A.setDir(holder.builddir.dir)
 			else if(mods["middle"])
 				holder.buildmode.objholder = text2path("[object.type]")
 				to_chat(usr, "Selected: [object.type]")
