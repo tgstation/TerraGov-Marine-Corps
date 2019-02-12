@@ -741,6 +741,8 @@ should be alright.
 
 	if(!G.rail)
 		to_chat(usr, "<span class='warning'>[src] does not have any usable rail attachment!</span>")
+		return
+
 	G.rail.activate_attachment(G, usr)
 
 
