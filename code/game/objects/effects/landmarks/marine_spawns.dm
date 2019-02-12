@@ -23,7 +23,7 @@
 /obj/effect/landmark/start/marine/tankcrewman
 	job = /datum/job/command/tank_crew
 
-/obj/effect/landmark/start/marine/tankcrewman
+/obj/effect/landmark/start/marine/tankcommander
 	job = datum/job/command/tank_commander
 	
 /obj/effect/landmark/start/marine/mp
