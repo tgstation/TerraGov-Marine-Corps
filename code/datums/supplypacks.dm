@@ -150,6 +150,20 @@ OPERATIONS
 	containername = "\improper Delta Supply Crate"
 	group = "Operations"
 
+/datum/supply_packs/tarps
+	name = "V1 thermal-dampening tarp crate (x5)"
+	contains = list(
+					/obj/item/bodybag/tarp,
+					/obj/item/bodybag/tarp,
+					/obj/item/bodybag/tarp,
+					/obj/item/bodybag/tarp,
+					/obj/item/bodybag/tarp
+					)
+	cost = RO_PRICE_CHEAP
+	containertype = /obj/structure/closet/crate/ammo
+	containername = "\improper V1 thermal-dampening tarp crate"
+	group = "Operations"
+
 /datum/supply_packs/contraband
 	randomised_num_contained = 5
 	contains = list(
@@ -166,24 +180,10 @@ OPERATIONS
 	contraband = 1
 	group = "Operations"
 
-/datum/supply_packs/tarps
-	name = "V1 thermal-dampening tarp crate (x5)"
-	contains = list(
-					/obj/item/bodybag/tarp,
-					/obj/item/bodybag/tarp,
-					/obj/item/bodybag/tarp,
-					/obj/item/bodybag/tarp,
-					/obj/item/bodybag/tarp
-					)
-	cost = RO_PRICE_CHEAP
-	containertype = /obj/structure/closet/crate/ammo
-	containername = "\improper V1 thermal-dampening tarp crate"
-	group = "Operations"
 
 /*******************************************************************************
 WEAPONS
 *******************************************************************************/
-
 
 /datum/supply_packs/specgrenadier
 	name = "Grenadier Specialist crate (M92 x1)"
@@ -233,6 +233,16 @@ WEAPONS
 	cost = RO_PRICE_VERY_PRICY
 	containertype = /obj/structure/closet/crate/weapon
 	containername = "\improper Sniper Specialist crate"
+	group = "Weapons"
+
+/datum/supply_packs/specminigun
+	name = "MIC-A7 Vindicator Minigun crate (MIC-A7 x1)"
+	contains = list(
+					/obj/item/weapon/gun/minigun
+					)
+	cost = RO_PRICE_VERY_PRICY
+	containertype = /obj/structure/closet/crate/weapon
+	containername = "\improper MIC A7 Vindicator Minigun crate"
 	group = "Weapons"
 
 /datum/supply_packs/flamethrower
@@ -303,7 +313,7 @@ WEAPONS
 					/obj/item/ammo_magazine/shotgun/buckshot,
 					/obj/item/ammo_magazine/shotgun/buckshot,
 					/obj/item/ammo_magazine/shotgun/flechette,
-					/obj/item/ammo_magazine/shotgun/flechette,
+					/obj/item/ammo_magazine/shotgun/flechette
 					)
 	name = "surplus shotguns crate (M37A2 x2, M37A2 ammo x2 each)"
 	cost = RO_PRICE_VERY_CHEAP
@@ -318,7 +328,7 @@ WEAPONS
 					/obj/item/ammo_magazine/smg/m39,
 					/obj/item/ammo_magazine/smg/m39,
 					/obj/item/ammo_magazine/smg/m39/ap,
-					/obj/item/ammo_magazine/smg/m39/ap,
+					/obj/item/ammo_magazine/smg/m39/ap
 					)
 	name = "surplus SMG crate (M39 x2, M39 ammo x2 AP, 2x Standard)"
 	cost = RO_PRICE_VERY_CHEAP
@@ -333,7 +343,7 @@ WEAPONS
 					/obj/item/ammo_magazine/rifle,
 					/obj/item/ammo_magazine/rifle,
 					/obj/item/ammo_magazine/rifle/ap,
-					/obj/item/ammo_magazine/rifle/ap,
+					/obj/item/ammo_magazine/rifle/ap
 					)
 	name = "surplus rifles crate (M41A x2, M41A ammo x2 AP, 2x Standard)"
 	cost = RO_PRICE_VERY_CHEAP
@@ -346,7 +356,7 @@ WEAPONS
 					/obj/item/weapon/gun/energy/lasgun/M43,
 					/obj/item/weapon/gun/energy/lasgun/M43,
 					/obj/item/cell/lasgun/M43,
-					/obj/item/cell/lasgun/M43,
+					/obj/item/cell/lasgun/M43
 					)
 	name = "surplus lasrifle crate (M43 lasgun x2, M43 battery packs x2)"
 	cost = RO_PRICE_VERY_CHEAP
@@ -376,7 +386,7 @@ WEAPONS
 					/obj/item/ammo_magazine/rifle/lmg,
 					/obj/item/ammo_magazine/rifle/lmg,
 					/obj/item/ammo_magazine/rifle/lmg,
-					/obj/item/ammo_magazine/rifle/lmg,
+					/obj/item/ammo_magazine/rifle/lmg
 					)
 	name = "M41AE2 HPR squad crate (HPR x5, HPR ammo box x5)"
 	cost = RO_PRICE_PRETTY_PRICY
@@ -745,7 +755,8 @@ HARDPOINT MODULES (and their ammo)
 					/obj/item/ammo_magazine/tank/ltb_cannon,
 					/obj/item/ammo_magazine/tank/ltb_cannon,
 					/obj/item/ammo_magazine/tank/ltb_cannon,
-					/obj/item/ammo_magazine/tank/ltb_cannon)
+					/obj/item/ammo_magazine/tank/ltb_cannon
+					)
 	cost = RO_PRICE_CHEAP
 	containertype = /obj/structure/closet/crate/ammo
 	containername = "\improper tank ammo crate"
@@ -756,7 +767,8 @@ HARDPOINT MODULES (and their ammo)
 	contains = list(
 					/obj/item/ammo_magazine/tank/ltaaap_minigun,
 					/obj/item/ammo_magazine/tank/ltaaap_minigun,
-					/obj/item/ammo_magazine/tank/ltaaap_minigun)
+					/obj/item/ammo_magazine/tank/ltaaap_minigun
+					)
 	cost = RO_PRICE_CHEAP
 	containertype = /obj/structure/closet/crate/ammo
 	containername = "\improper tank ammo crate"
@@ -774,7 +786,8 @@ HARDPOINT MODULES (and their ammo)
 					/obj/item/ammo_magazine/tank/tank_glauncher,
 					/obj/item/ammo_magazine/tank/tank_glauncher,
 					/obj/item/ammo_magazine/tank/tank_glauncher,
-					/obj/item/ammo_magazine/tank/tank_glauncher)
+					/obj/item/ammo_magazine/tank/tank_glauncher
+					)
 	cost = RO_PRICE_CHEAP
 	containertype = /obj/structure/closet/crate/ammo
 	containername = "\improper tank ammo crate"
@@ -792,7 +805,8 @@ HARDPOINT MODULES (and their ammo)
 					/obj/item/ammo_magazine/tank/tank_slauncher,
 					/obj/item/ammo_magazine/tank/tank_slauncher,
 					/obj/item/ammo_magazine/tank/tank_slauncher,
-					/obj/item/ammo_magazine/tank/tank_slauncher)
+					/obj/item/ammo_magazine/tank/tank_slauncher
+					)
 	cost = RO_PRICE_CHEAP
 	containertype = /obj/structure/closet/crate/ammo
 	containername = "\improper tank ammo crate"
@@ -804,7 +818,8 @@ HARDPOINT MODULES (and their ammo)
 					/obj/item/ammo_magazine/tank/towlauncher,
 					/obj/item/ammo_magazine/tank/towlauncher,
 					/obj/item/ammo_magazine/tank/towlauncher,
-					/obj/item/ammo_magazine/tank/towlauncher)
+					/obj/item/ammo_magazine/tank/towlauncher
+					)
 	cost = RO_PRICE_CHEAP
 	containertype = /obj/structure/closet/crate/ammo
 	containername = "\improper tank ammo crate"
@@ -814,7 +829,8 @@ HARDPOINT MODULES (and their ammo)
 	name = "M56 Cupola Magazines (x2)"
 	contains = list(
 					/obj/item/ammo_magazine/tank/m56_cupola,
-					/obj/item/ammo_magazine/tank/m56_cupola)
+					/obj/item/ammo_magazine/tank/m56_cupola
+					)
 	cost = RO_PRICE_CHEAP
 	containertype = /obj/structure/closet/crate/ammo
 	containername = "\improper tank ammo crate"
@@ -827,7 +843,8 @@ HARDPOINT MODULES (and their ammo)
 					/obj/item/ammo_magazine/tank/flamer,
 					/obj/item/ammo_magazine/tank/flamer,
 					/obj/item/ammo_magazine/tank/flamer,
-					/obj/item/ammo_magazine/tank/flamer)
+					/obj/item/ammo_magazine/tank/flamer
+					)
 	cost = RO_PRICE_CHEAP
 	containertype = /obj/structure/closet/crate/ammo
 	containername = "\improper tank ammo crate"
@@ -1157,11 +1174,11 @@ ATTACHMENTS
 /datum/supply_packs/stock_rifle
 	name = "rifle stock attachment crate (x4)"
 	contains = list(
-			/obj/item/attachable/stock/rifle,
-			/obj/item/attachable/stock/rifle,
-			/obj/item/attachable/stock/rifle,
-			/obj/item/attachable/stock/rifle
-			)
+					/obj/item/attachable/stock/rifle,
+					/obj/item/attachable/stock/rifle,
+					/obj/item/attachable/stock/rifle,
+					/obj/item/attachable/stock/rifle
+					)
 	cost = RO_PRICE_VERY_CHEAP
 	containertype = /obj/structure/closet/crate
 	containername = "\improper rifle stock attachment crate"
@@ -1775,7 +1792,6 @@ AMMO
 	containername = "\improper black market ammo crate"
 	group = "Ammo"
 
-//This crate has a little bit of everything, mostly okay stuff, but it does have some really unique picks.
 /datum/supply_packs/surplus
 	name = "surplus ammo crate (x10)"
 	randomised_num_contained = 10
@@ -1811,7 +1827,7 @@ AMMO
 	name = "M56 smartgun powerpack crate (x2)"
 	contains = list(
 					/obj/item/smartgun_powerpack,
-					/obj/item/smartgun_powerpack,
+					/obj/item/smartgun_powerpack
 					)
 	cost = RO_PRICE_CHEAP
 	containertype = /obj/structure/closet/crate/ammo
@@ -1953,7 +1969,7 @@ AMMO
 	contains = list(
 					/obj/item/ammo_magazine/minisentry,
 					/obj/item/ammo_magazine/minisentry,
-					/obj/item/ammo_magazine/minisentry,
+					/obj/item/ammo_magazine/minisentry
 					)
 	cost = RO_PRICE_NORMAL
 	containertype = /obj/structure/closet/crate/ammo
@@ -1964,7 +1980,7 @@ AMMO
 	name = "M56D mounted smartgun ammo crate (x2)"
 	contains = list(
 					/obj/item/ammo_magazine/m56d,
-					/obj/item/ammo_magazine/m56d,
+					/obj/item/ammo_magazine/m56d
 					)
 	cost = RO_PRICE_NORMAL
 	containertype = /obj/structure/closet/crate/ammo
@@ -1972,15 +1988,17 @@ AMMO
 	group = "Ammo"
 
 /datum/supply_packs/ammo_lasguncharger
-	name = "ColMarTech Lasgun Field Charger (Includes: M43 Power Cells x10, M43 Expanded x2)"
-	contains = list(/obj/machinery/vending/lasgun)
+	name = "ColMarTech Lasgun Field Charger (M43 x10, M43 Highcap x2)"
+	contains = list(
+					/obj/machinery/vending/lasgun
+					)
 	cost = RO_PRICE_PRICY
-	containertype = /obj/structure/largecrate
+	containertype = /obj/structure/closet/crate/ammo
 	containername = "\improper ColMarTech Lasgun Field Charger"
 	group = "Ammo"
 
- /datum/supply_packs/ammo_M43lasgun
-	name = "M43 lasgun battery crate (M43 x15 each)"
+/datum/supply_packs/ammo_lasgun
+	name = "M43 lasgun battery crate (M43 x15)"
 	contains = list(
 					/obj/item/cell/lasgun/M43,
 					/obj/item/cell/lasgun/M43,
@@ -1996,15 +2014,15 @@ AMMO
 					/obj/item/cell/lasgun/M43,
 					/obj/item/cell/lasgun/M43,
 					/obj/item/cell/lasgun/M43,
-					/obj/item/cell/lasgun/M43,
+					/obj/item/cell/lasgun/M43
 					)
 	cost = RO_PRICE_CHEAP
 	containertype = /obj/structure/closet/crate/ammo
 	containername = "lasgun battery crate"
 	group = "Ammo"
 
- /datum/supply_packs/ammo_M43lasgun_highcap
-	name = "M43 lasgun highcap battery crate (M43 highcap x7 each)"
+/datum/supply_packs/ammo_lasgun_highcap
+	name = "M43 lasgun highcap battery crate (M43 highcap x7)"
 	contains = list(
 					/obj/item/cell/lasgun/M43/highcap,
 					/obj/item/cell/lasgun/M43/highcap,
@@ -2012,12 +2030,25 @@ AMMO
 					/obj/item/cell/lasgun/M43/highcap,
 					/obj/item/cell/lasgun/M43/highcap,
 					/obj/item/cell/lasgun/M43/highcap,
-					/obj/item/cell/lasgun/M43/highcap,
+					/obj/item/cell/lasgun/M43/highcap
 					)
 	cost = RO_PRICE_CHEAP
 	containertype = /obj/structure/closet/crate/ammo
 	containername = "ammo crate"
 	group = "Ammo"
+
+/datum/supply_packs/ammo_minigun
+	name = "Vindicator Minigun Ammo Drums (x3)"
+	contains = list(
+					/obj/item/ammo_magazine/minigun,
+					/obj/item/ammo_magazine/minigun,
+					/obj/item/ammo_magazine/minigun
+					)
+	cost = RO_PRICE_CHEAP
+	containertype = /obj/structure/closet/crate/ammo
+	containername = "\improper minigun ammo crate"
+	group = "Ammo"
+
 
 /*******************************************************************************
 ARMOR
@@ -2158,7 +2189,7 @@ CLOTHING
 					/obj/item/storage/pouch/medical,
 					/obj/item/storage/pouch/syringe,
 					/obj/item/storage/pouch/medkit,
-					/obj/item/storage/pouch/autoinjector,
+					/obj/item/storage/pouch/autoinjector
 					)
 	cost = RO_PRICE_VERY_CHEAP
 	containertype = /obj/structure/closet/crate
@@ -2317,7 +2348,7 @@ MEDICAL
 					/obj/item/reagent_container/hypospray/advanced,
 					/obj/item/reagent_container/hypospray/advanced,
 					/obj/item/reagent_container/hypospray/advanced,
-					/obj/item/reagent_container/hypospray/advanced,
+					/obj/item/reagent_container/hypospray/advanced
 					)
 	cost = RO_PRICE_CHEAP
 	containertype = /obj/structure/closet/crate/secure/surgery
@@ -2329,7 +2360,7 @@ MEDICAL
 	name = "medvac system crate (medvac stretcher and beacon)"
 	contains = list(
 					/obj/item/roller/medevac,
-					/obj/item/device/medevac_beacon,
+					/obj/item/device/medevac_beacon
 					)
 	cost = RO_PRICE_VERY_PRICY
 	containertype = /obj/structure/closet/crate/secure/surgery
@@ -2506,7 +2537,7 @@ ENGINEERING
 					/obj/item/circuitboard/general,
 					/obj/item/circuitboard/general,
 					/obj/item/circuitboard/general,
-					/obj/item/device/multitool,
+					/obj/item/device/multitool
 					)
 
 /*******************************************************************************

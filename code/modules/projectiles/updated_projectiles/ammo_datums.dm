@@ -896,10 +896,9 @@
 
 /datum/ammo/bullet/minigun/New()
 	..()
-	accuracy = -CONFIG_GET(number/combat_define/low_hit_accuracy)
 	accuracy_var_low = CONFIG_GET(number/combat_define/low_proj_variance)
 	accuracy_var_high = CONFIG_GET(number/combat_define/low_proj_variance)
-	accurate_range = CONFIG_GET(number/combat_define/short_shell_range)
+	accurate_range = CONFIG_GET(number/combat_define/close_shell_range)
 	damage = CONFIG_GET(number/combat_define/med_hit_damage)
 	penetration= CONFIG_GET(number/combat_define/low_armor_penetration)
 	shrapnel_chance = CONFIG_GET(number/combat_define/med_shrapnel_chance)
@@ -1299,7 +1298,8 @@
 	var/mob/living/carbon/C = M
 	if(C.status_flags & XENO_HOST && istype(C.buckled, /obj/structure/bed/nest) || C.stat == DEAD)
 		return
-	staggerstun(C, P, CONFIG_GET(number/combat_define/close_shell_range), 0, 0, 1, 1) //Staggers and slows down briefly
+	staggerstun(C, P, CONFIG_GET(number/combat_define/close_shell_range), 0, 0, 1, 1, 0) //Staggers and slows down briefly
+
 	return ..()
 
 /datum/ammo/xeno/toxin/upgrade1

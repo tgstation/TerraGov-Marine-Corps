@@ -22,13 +22,17 @@
 		rotate()
 	return
 
+/obj/structure/bed/chair/setDir(newdir)
+	. = ..()
+	handle_rotation()
+
 /obj/structure/bed/chair/handle_rotation() //Making this into a seperate proc so office chairs can call it on Move()
 	if(src.dir == NORTH)
 		src.layer = FLY_LAYER
 	else
 		src.layer = OBJ_LAYER
 	if(buckled_mob)
-		buckled_mob.dir = dir
+		buckled_mob.setDir(dir)
 
 /obj/structure/bed/chair/verb/rotate()
 	set name = "Rotate Chair"
@@ -36,8 +40,7 @@
 	set src in oview(1)
 
 	if(CONFIG_GET(flag/ghost_interaction))
-		src.dir = turn(src.dir, 90)
-		handle_rotation()
+		setDir(turn(src.dir, 90))
 		return
 	else
 		if(istype(usr, /mob/living/simple_animal/mouse))
@@ -47,9 +50,7 @@
 		if(usr.stat || usr.is_mob_restrained())
 			return
 
-		dir = turn(src.dir, 90)
-		handle_rotation()
-		return
+		setDir(turn(src.dir, 90))
 
 //Chair types
 /obj/structure/bed/chair/reinforced

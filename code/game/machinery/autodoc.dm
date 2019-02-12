@@ -705,7 +705,8 @@
 /obj/machinery/autodoc/proc/go_out(notice_code = FALSE)
 	if(!occupant)
 		return
-	occupant.forceMove(loc)
+	if(occupant in contents)
+		occupant.forceMove(loc)
 	if(connected.release_notice) //If auto-release notices are on as they should be, let the doctors know what's up
 		var/reason = "Reason for discharge: Procedural completion."
 		switch(notice_code)

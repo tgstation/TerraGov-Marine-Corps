@@ -437,7 +437,7 @@
 //Virtual disposal object, travels through pipes in lieu of actual items
 //Contents will be items flushed by the disposal, this allows the gas flushed to be tracked
 /obj/structure/disposalholder
-	invisibility = 101
+	invisibility = INVISIBILITY_MAXIMUM
 	var/active = 0	//True if the holder is moving, otherwise inactive
 	dir = 0
 	var/count = 2048 //Can travel 2048 steps before going inactive (in case of loops)
@@ -498,7 +498,7 @@
 
 	loc = D.trunk
 	active = 1
-	dir = DOWN
+	setDir(DOWN)
 	spawn(1)
 		move() //Spawn off the movement process
 
@@ -639,7 +639,7 @@
 //Transfer the holder through this pipe segment, overriden for special behaviour
 /obj/structure/disposalpipe/proc/transfer(var/obj/structure/disposalholder/H)
 	var/nextdir = nextdir(H.dir)
-	H.dir = nextdir
+	H.setDir(nextdir)
 	var/turf/T = H.nextloc()
 	var/obj/structure/disposalpipe/P = H.findpipe(T)
 
@@ -662,7 +662,7 @@
 
 //Hide called by levelupdate if turf intact status changes, change visibility status and force update of icon
 /obj/structure/disposalpipe/hide(var/intact)
-	invisibility = intact ? 101: 0	// hide if floor is intact
+	invisibility = intact ? INVISIBILITY_MAXIMUM: 0	// hide if floor is intact
 	updateicon()
 
 //Update actual icon_state depending on visibility, if invisible, append "f" to icon_state to show faded version, this will be revealed if a T-scanner is used
@@ -725,9 +725,9 @@
 		for(var/D in cardinal)
 			if(D & dpdir)
 				var/obj/structure/disposalpipe/broken/P = new(loc)
-				P.dir = D
+				P.setDir(D)
 
-	invisibility = 101	//Make invisible (since we won't delete the pipe immediately)
+	invisibility = INVISIBILITY_MAXIMUM	//Make invisible (since we won't delete the pipe immediately)
 	var/obj/structure/disposalholder/H = locate() in src
 	if(H)
 		//Holder was present
@@ -830,7 +830,7 @@
 		if("pipe-tagger-partial")
 			C.ptype = 14
 	transfer_fingerprints_to(C)
-	C.dir = dir
+	C.setDir(dir)
 	C.density = 0
 	C.anchored = 1
 	C.update()
@@ -867,7 +867,7 @@
 
 /obj/structure/disposalpipe/up/transfer(var/obj/structure/disposalholder/H)
 	var/nextdir = nextdir(H.dir)
-	H.dir = nextdir
+	H.setDir(nextdir)
 
 	var/turf/T
 	var/obj/structure/disposalpipe/P
@@ -910,7 +910,7 @@
 
 /obj/structure/disposalpipe/down/transfer(var/obj/structure/disposalholder/H)
 	var/nextdir = nextdir(H.dir)
-	H.dir = nextdir
+	H.setDir(nextdir)
 
 	var/turf/T
 	var/obj/structure/disposalpipe/P
@@ -945,7 +945,7 @@
 
 /obj/structure/disposalpipe/up/almayer/transfer(var/obj/structure/disposalholder/H)
 	var/nextdir = nextdir(H.dir)
-	H.dir = nextdir
+	H.setDir(nextdir)
 
 	var/turf/T
 	var/obj/structure/disposalpipe/P
@@ -973,7 +973,7 @@
 
 /obj/structure/disposalpipe/down/almayer/transfer(var/obj/structure/disposalholder/H)
 	var/nextdir = nextdir(H.dir)
-	H.dir = nextdir
+	H.setDir(nextdir)
 
 	var/turf/T
 	var/obj/structure/disposalpipe/P
@@ -1164,7 +1164,7 @@
 
 /obj/structure/disposalpipe/sortjunction/transfer(var/obj/structure/disposalholder/H)
 	var/nextdir = nextdir(H.dir, H.destinationTag)
-	H.dir = nextdir
+	H.setDir(nextdir)
 	var/turf/T = H.nextloc()
 	var/obj/structure/disposalpipe/P = H.findpipe(T)
 

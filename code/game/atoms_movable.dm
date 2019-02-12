@@ -75,7 +75,8 @@
 	var/old_dir = dir
 
 	. = ..()
-	if(flags_atom & DIRLOCK) dir = old_dir
+	if(flags_atom & DIRLOCK)
+		setDir(old_dir)
 	move_speed = world.time - l_move_time
 	l_move_time = world.time
 	if ((oldloc != loc && oldloc && oldloc.z == z))
@@ -352,7 +353,7 @@
 
 	while (duration > turn_delay)
 		sleep(turn_delay)
-		dir = turn(dir, spin_degree)
+		setDir(turn(dir, spin_degree))
 		duration -= turn_delay
 
 /atom/movable/proc/spin_circle(var/num_circles = 1, var/turn_delay = 1, var/clockwise = 0, var/cardinal_only = 1)
@@ -373,7 +374,7 @@
 
 	for (var/x = 0, x < num_circles, x++)
 		sleep(turn_delay)
-		dir = turn(dir, spin_degree)
+		setDir(turn(dir, spin_degree))
 
 
 //called when a mob tries to breathe while inside us.
@@ -394,3 +395,10 @@
 			return TRUE //Blocked; we can't proceed further.
 
 	return FALSE
+
+
+/atom/movable/vv_get_dropdown()
+	. = ..()
+	. += "---"
+	.["Get"] = "?_src_=vars;[HrefToken()];getatom=[REF(src)]"
+	.["Send"] = "?_src_=vars;[HrefToken()];sendatom=[REF(src)]"

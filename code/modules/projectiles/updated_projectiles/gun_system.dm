@@ -44,6 +44,7 @@
 	var/scatter					= 0				//How much the bullet scatters when fired.
 	var/burst_scatter_mult		= 3				//Multiplier. Increases or decreases how much bonus scatter is added when burst firing (wielded only).
 
+	var/accuracy_mod			= 0				//accuracy modifier, used by most attachments.
 	var/accuracy_mult_unwielded 		= 1		//same vars as above but for unwielded firing.
 	var/recoil_unwielded 				= 0
 	var/scatter_unwielded 				= 0
@@ -128,6 +129,7 @@
 //amounts to get specific values in each gun subtype's New().
 //This makes reading each gun's values MUCH easier.
 /obj/item/weapon/gun/proc/set_gun_config_values()
+	accuracy_mod = CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
 	fire_delay = CONFIG_GET(number/combat_define/mhigh_fire_delay)
 	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
 	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
@@ -196,11 +198,11 @@
 	else
 		dat += "The safety's off!<br>"
 
-	if(rail) 	dat += "It has [bicon(rail)] [rail.name] mounted on the top.<br>"
-	if(muzzle) 	dat += "It has [bicon(muzzle)] [muzzle.name] mounted on the front.<br>"
-	if(stock) 	dat += "It has [bicon(stock)] [stock.name] for a stock.<br>"
+	if(rail) 	dat += "It has [icon2html(rail, user)] [rail.name] mounted on the top.<br>"
+	if(muzzle) 	dat += "It has [icon2html(muzzle, user)] [muzzle.name] mounted on the front.<br>"
+	if(stock) 	dat += "It has [icon2html(stock, user)] [stock.name] for a stock.<br>"
 	if(under)
-		dat += "It has [bicon(under)] [under.name]"
+		dat += "It has [icon2html(under, user)] [under.name]"
 		if(under.flags_attach_features & ATTACH_WEAPON)
 			dat += " ([under.current_rounds]/[under.max_rounds])"
 		dat += " mounted underneath.<br>"
@@ -783,7 +785,7 @@ and you're good to go.
 					if(projectile_to_fire) //We actually have a projectile, let's move on. We're going to simulate the fire cycle.
 						user.visible_message("<span class='danger'>[user] fires [src] point blank at [M]!</span>")
 						apply_bullet_effects(projectile_to_fire, user) //We add any damage effects that we need.
-						projectile_to_fire.dir = get_dir(user, M)
+						projectile_to_fire.setDir(get_dir(user, M))
 						projectile_to_fire.distance_travelled = get_dist(user, M)
 						simulate_recoil(1, user)
 
@@ -792,7 +794,7 @@ and you're good to go.
 							for(var/i = 1 to projectile_to_fire.ammo.bonus_projectiles_amount)
 								BP = new /obj/item/projectile(M.loc)
 								BP.generate_bullet(GLOB.ammo_list[projectile_to_fire.ammo.bonus_projectiles_type])
-								BP.dir = get_dir(user, M)
+								BP.setDir(get_dir(user, M))
 								BP.distance_travelled = get_dist(user, M)
 								BP.ammo.on_hit_mob(M, BP)
 								M.bullet_act(BP)

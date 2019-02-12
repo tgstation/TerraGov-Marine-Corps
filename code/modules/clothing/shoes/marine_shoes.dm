@@ -49,6 +49,9 @@
 			icon_state = initial(icon_state)
 
 
+/obj/item/clothing/shoes/marine/pyro
+	name = "flame-resistant combat boots"
+	desc = "Protects you from fire and even contains a pouch for your knife!"	
 
 
 /obj/item/clothing/shoes/marinechief

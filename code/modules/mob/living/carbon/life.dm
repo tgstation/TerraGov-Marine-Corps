@@ -56,7 +56,7 @@
 		death()
 		return
 
-	if(knocked_out || sleeping || getOxyLoss() > 50 || health < get_crit_threshold())
+	if(knocked_out || sleeping || getOxyLoss() > CARBON_KO_OXYLOSS || health < get_crit_threshold())
 		if(stat != UNCONSCIOUS)
 			blind_eyes(1)
 		stat = UNCONSCIOUS
@@ -225,29 +225,31 @@
 	handle_breath(.)
 
 /mob/living/carbon/proc/get_breath_from_internal()
+	if(!internal)
+		return FALSE
+	if(istype(buckled,/obj/machinery/optable))
+		var/obj/machinery/optable/O = buckled
+		if(O.anes_tank)
+			return O.anes_tank.return_air()
+	if(!contents.Find(internal))
+		internal = null
+	if(!wear_mask || !(wear_mask.flags_inventory & ALLOWINTERNALS))
+		internal = null
 	if(internal)
-		if(istype(buckled,/obj/machinery/optable))
-			var/obj/machinery/optable/O = buckled
-			if(O.anes_tank)
-				return O.anes_tank.return_air()
-		if(!contents.Find(internal))
-			internal = null
-		if(!wear_mask || !(wear_mask.flags_inventory & ALLOWINTERNALS))
-			internal = null
-		if(internal)
-			hud_used.internals.icon_state = "internal1"
-			return internal.return_air()
-		else if(hud_used?.internals)
-			hud_used.internals.icon_state = "internal0"
+		hud_used.internals.icon_state = "internal1"
+		return internal.return_air()
+	else if(hud_used?.internals)
+		hud_used.internals.icon_state = "internal0"
+	return FALSE
 
 /mob/living/carbon/proc/get_breath_from_environment()
-	if(istype(loc, /atom/movable))
-		var/atom/movable/container = loc
-		. = container.handle_internal_lifeform(src)
-
-	else if(isturf(loc))
+	if(isturf(loc))
 		var/turf/T = loc
 		. = T.return_air()
+
+	else if(istype(loc, /atom/movable))
+		var/atom/movable/container = loc
+		. = container.handle_internal_lifeform(src)
 
 	if(istype(wear_mask) && .)
 		. = wear_mask.filter_air(.)

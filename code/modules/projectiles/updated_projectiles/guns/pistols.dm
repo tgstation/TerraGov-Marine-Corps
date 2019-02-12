@@ -312,9 +312,8 @@
 	fire_sound = 'sound/weapons/gun_kt42.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/highpower
 	force = 10
-	attachable_allowed = list()
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
-	attachable_offset = list("muzzle_x" = 27, "muzzle_y" = 20,"rail_x" = 8, "rail_y" = 22, "under_x" = 16, "under_y" = 15, "stock_x" = 16, "stock_y" = 15)
+	attachable_offset = list("muzzle_x" = 27, "muzzle_y" = 20,"rail_x" = 8, "rail_y" = 22, "under_x" = 18, "under_y" = 15, "stock_x" = 16, "stock_y" = 15)
 
 /obj/item/weapon/gun/pistol/highpower/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/high_fire_delay) * 2
@@ -338,7 +337,18 @@
 	fire_sound = 'sound/weapons/vp70.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/vp70
 	force = 8
-	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 20,"rail_x" = 11, "rail_y" = 22, "under_x" = 21, "under_y" = 16, "stock_x" = 21, "stock_y" = 16)
+	attachable_allowed = list(
+						/obj/item/attachable/suppressor,
+						/obj/item/attachable/reddot,
+						/obj/item/attachable/flashlight,
+						/obj/item/attachable/compensator,
+						/obj/item/attachable/lasersight,
+						/obj/item/attachable/extended_barrel,
+						/obj/item/attachable/heavy_barrel,
+						/obj/item/attachable/quickfire,
+						/obj/item/attachable/burstfire_assembly,
+						/obj/item/attachable/stock/vp70)
+	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 20,"rail_x" = 11, "rail_y" = 22, "under_x" = 21, "under_y" = 16, "stock_x" = 18, "stock_y" = 11)
 
 /obj/item/weapon/gun/pistol/vp70/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/low_fire_delay)

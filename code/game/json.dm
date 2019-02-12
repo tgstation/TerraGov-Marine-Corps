@@ -83,7 +83,7 @@ proc/makejson()
 	world.Reboot("Switching to [newmap]")
 
 obj/mapinfo
-	invisibility = 101
+	invisibility = INVISIBILITY_MAXIMUM
 	var/mapname = "thismap"
 	var/decks = 4
 proc/GetMapInfo()

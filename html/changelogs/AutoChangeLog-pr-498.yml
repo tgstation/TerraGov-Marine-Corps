@@ -1,5 +1,0 @@
-author: "LaKiller8"
-delete-after: True
-changes: 
-  - bugfix: "New players may no longer join after crash."
-  - bugfix: "Evacuating does not cause the round to end anymore."

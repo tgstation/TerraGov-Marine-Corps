@@ -371,6 +371,21 @@ Defined in conflicts.dm of the #defines folder.
 	accuracy_mod = CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
 	scatter_mod = -CONFIG_GET(number/combat_define/low_scatter_value)
 
+/obj/item/attachable/mosinbarrel
+	name = "mosin barrel"
+	icon_state = "mosinbarrel"
+	desc = "A heavy barrel. CANNOT BE REMOVED."
+	slot = "under" //only way for it to work with a bayonet is to make this take the underbarrel slot. no more bipods.
+
+	pixel_shift_x = 20
+	pixel_shift_y = 16
+	flags_attach_features = NOFLAGS
+
+/obj/item/attachable/mosinbarrel/Initialize()
+	. = ..()
+	accuracy_mod = CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
+	scatter_mod = -CONFIG_GET(number/combat_define/low_scatter_value)
+
 /obj/item/attachable/sniperbarrel
 	name = "sniper barrel"
 	icon_state = "sniperbarrel"
@@ -621,9 +636,26 @@ Defined in conflicts.dm of the #defines folder.
 	matter = null
 	flags_attach_features = NOFLAGS
 
+
 /obj/item/attachable/stock/slavic/Initialize()
 	. = ..()
 	accuracy_mod = CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
+	recoil_mod = -CONFIG_GET(number/combat_define/med_recoil_value)
+	scatter_mod = -CONFIG_GET(number/combat_define/med_scatter_value)
+	movement_acc_penalty_mod = CONFIG_GET(number/combat_define/min_movement_acc_penalty)
+
+/obj/item/attachable/stock/mosin
+	name = "wooden stock"
+	desc = "A standard heavy wooden stock for Slavic firearms."
+	icon_state = "mosinstock"
+	wield_delay_mod = WIELD_DELAY_NORMAL
+	pixel_shift_x = 32
+	pixel_shift_y = 13
+	matter = null
+	flags_attach_features = NOFLAGS
+
+/obj/item/attachable/stock/mosin/Initialize()
+	. = ..()
 	recoil_mod = -CONFIG_GET(number/combat_define/med_recoil_value)
 	scatter_mod = -CONFIG_GET(number/combat_define/med_scatter_value)
 	movement_acc_penalty_mod = CONFIG_GET(number/combat_define/min_movement_acc_penalty)
@@ -673,6 +705,56 @@ Defined in conflicts.dm of the #defines folder.
 	scatter_mod = -CONFIG_GET(number/combat_define/med_scatter_value)
 	movement_acc_penalty_mod = CONFIG_GET(number/combat_define/min_movement_acc_penalty)
 
+/obj/item/attachable/stock/vp70
+	name = "VP70 stock and holster"
+	desc = "A rare holster-stock distributed in small numbers to TGMC forces. Compatible with the MOD88, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl"
+	slot = "stock"
+	flags_equip_slot = ITEM_SLOT_POCKET
+	w_class = 3.0
+	wield_delay_mod = WIELD_DELAY_FAST
+	melee_mod = 5
+	size_mod = 1
+	icon_state = "vp70stock" // Thank you to Manezinho
+	attach_icon = "vp70stock_a" // Thank you to Manezinho
+	pixel_shift_x = 39
+	pixel_shift_y = 11
+	var/obj/item/storage/internal/pockets
+
+/obj/item/attachable/stock/vp70/Initialize()
+	. = ..()
+	accuracy_mod = CONFIG_GET(number/combat_define/low_hit_accuracy_mult)
+	recoil_mod = -CONFIG_GET(number/combat_define/med_recoil_value)
+	scatter_mod = -CONFIG_GET(number/combat_define/med_scatter_value)
+	movement_acc_penalty_mod = CONFIG_GET(number/combat_define/min_movement_acc_penalty)
+	pockets = new/obj/item/storage/internal(src)
+	pockets.storage_slots = 1
+	pockets.max_w_class = 1
+	pockets.bypass_w_limit = list("/obj/item/weapon/gun/pistol/vp70")
+	pockets.max_storage_space = 3
+	
+/obj/item/attachable/stock/vp70/attack_hand(mob/user)
+	if(loc == user && length(pockets.contents))
+		var/obj/item/I = pockets.contents[length(pockets.contents)]
+		I.attack_hand(user)
+		return
+	else if(pockets.handle_attack_hand(user))
+		return ..()
+
+/obj/item/attachable/stock/vp70/MouseDrop(obj/over_object)
+	if(pockets.handle_mousedrop(usr, over_object))
+		return ..(over_object)
+
+/obj/item/attachable/stock/vp70/attackby(obj/item/W, mob/user)
+	. = ..()
+	return pockets.attackby(W, user)
+
+/obj/item/attachable/stock/vp70/emp_act(severity)
+	pockets.emp_act(severity)
+	return ..()
+
+/obj/item/attachable/stock/vp70/hear_talk(mob/M, msg)
+	pockets.hear_talk(M, msg)
+	return ..()
 
 /obj/item/attachable/stock/revolver
 	name = "\improper M44 magnum sharpshooter stock"
@@ -810,13 +892,13 @@ Defined in conflicts.dm of the #defines folder.
 		prime_grenade(target,gun,user)
 
 
-/obj/item/attachable/attached_gun/grenade/proc/prime_grenade(atom/target,obj/item/weapon/gun/gun,mob/living/user)
-	set waitfor = 0
+/obj/item/attachable/attached_gun/grenade/proc/prime_grenade(atom/target, obj/item/weapon/gun/gun, mob/living/user)
+	set waitfor = FALSE
 	var/nade_type = loaded_grenades[1]
 	var/obj/item/explosive/grenade/frag/G = new nade_type (get_turf(gun))
 	playsound(user.loc, fire_sound, 50, 1)
-	log_attack("[key_name(user)] fired an underslung grenade launcher at [AREACOORD(usr.loc)].")	
-	log_combat(user, src, "fired an")
+	log_explosion("[key_name(user)] fired a grenade [G] from [src] at [AREACOORD(user.loc)].")
+	log_combat(user, src, "fired a grenade [G] from")
 	G.det_time = min(15, G.det_time)
 	G.throw_range = max_range
 	G.launched = TRUE
@@ -960,13 +1042,13 @@ Defined in conflicts.dm of the #defines folder.
 			var/mob/living/carbon/human/H = M
 
 			if(user)
-				var/area/A = get_area(user)
-				if(user.mind && !user.mind.special_role && H.mind && !H.mind.special_role)
+				if(user.mind?.special_role && H.mind?.special_role && user.mind.special_role != H.mind.special_role)
 					log_combat(user, H, "shot", src)
-					msg_admin_ff("[ADMIN_TPMONTY(usr)] shot [ADMIN_TPMONTY(H)] with \a [name] in [ADMIN_VERBOSEJMP(A)].")
+					log_ffattack("[key_name(usr)] shot [key_name(H)] with [name] in [AREACOORD(T)].")
+					msg_admin_ff("[ADMIN_TPMONTY(usr)] shot [ADMIN_TPMONTY(H)] with [name] in [ADMIN_VERBOSEJMP(T)].")
 				else
 					log_combat(user, H, "shot", src)
-					msg_admin_attack("[ADMIN_TPMONTY(usr)] shot [ADMIN_TPMONTY(H)] with \a [name] in [ADMIN_VERBOSEJMP(A)].")
+					msg_admin_attack("[ADMIN_TPMONTY(usr)] shot [ADMIN_TPMONTY(H)] with [name] in [ADMIN_VERBOSEJMP(T)].")
 
 			if(istype(H.wear_suit, /obj/item/clothing/suit/fire) || istype(H.wear_suit,/obj/item/clothing/suit/space/rig/atmos))
 				continue
