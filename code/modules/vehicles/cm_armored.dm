@@ -359,8 +359,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 //If fully repaired and moves at least once, the broken hitboxes will respawn according to multitile.dm
 /obj/vehicle/multitile/hitbox/cm_armored/Destroy()
 	var/obj/vehicle/multitile/root/cm_armored/C = root
-	if(C)
-		C.take_damage_type(1000000, "abstract")
+	C?.take_damage_type(1000000, "abstract")
 	..()
 
 //Tramplin' time, but other than that identical
@@ -375,6 +374,11 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	return
 
 /mob/living/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
+	if(loc == C.loc) // treaded over.
+		if(!knocked_down)
+			KnockDown(12)
+		apply_damage(rand(5, 7.5), BRUTE)
+		return
 	if(!lying)
 		temp = get_step(T, facing)
 		T = temp
@@ -384,18 +388,16 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		else
 			throw_at(T, 2, 1, C, 1)
 		KnockDown(1)
-		apply_damage(10 + rand(0, 5), BRUTE)
+		apply_damage(rand(10, 15), BRUTE)
 		visible_message("<span class='danger'>[C] bumps into [src], throwing [p_them()] away!</span>", "<span class='danger'>[C] violently bumps into you!</span>")
 	var/obj/vehicle/multitile/root/cm_armored/CA = C.root
 	var/list/slots = CA.get_activatable_hardpoints()
 	for(var/slot in slots)
 		var/obj/item/hardpoint/H = CA.hardpoints[slot]
-		if(!H)
-			continue
-		H.livingmob_interact(src)
+		H?.livingmob_interact(src)
 
 /mob/living/carbon/Xenomorph/Queen/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
-	if(lying)
+	if(lying || loc == C.loc)
 		return ..()
 	temp = get_step(T, facing)
 	T = temp
@@ -404,7 +406,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	visible_message("<span class='danger'>[C] bumps into [src], pushing [p_them()] away!</span>", "<span class='danger'>[C] bumps into you!</span>")
 
 /mob/living/carbon/Xenomorph/Crusher/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
-	if(lying)
+	if(lying || loc == C.loc)
 		return ..()
 	temp = get_step(T, facing)
 	T = temp
@@ -413,13 +415,16 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	visible_message("<span class='danger'>[C] bumps into [src], pushing [p_them()] away!</span>", "<span class='danger'>[C] bumps into you!</span>")
 
 /mob/living/carbon/Xenomorph/Larva/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
+	if(loc == C.loc) // treaded over.
+		if(!knocked_down)
+			KnockDown(12)
+		apply_damage(rand(5, 7.5), BRUTE)
+		return
 	var/obj/vehicle/multitile/root/cm_armored/CA = C.root
 	var/list/slots = CA.get_activatable_hardpoints()
 	for(var/slot in slots)
 		var/obj/item/hardpoint/H = CA.hardpoints[slot]
-		if(!H)
-			continue
-		H.livingmob_interact(src)
+		H?.livingmob_interact(src)
 
 /turf/closed/wall/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
 	take_damage(30)
@@ -448,17 +453,16 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		C.lastsound = world.time
 
 
-/obj/vehicle/multitile/hitbox/cm_armored/Move(var/atom/A, var/direction)
+/obj/vehicle/multitile/hitbox/cm_armored/Move(atom/A, direction)
 
 	for(var/mob/living/M in get_turf(src))
-		M.KnockOut(5)
+		M.tank_collision(src)
 
 	. = ..()
 
 	if(.)
 		for(var/mob/living/M in get_turf(A))
-			//I don't call Bump() otherwise that would encourage trampling for infinite unpunishable damage
-			M.KnockOut(5) //Maintain their lying-down-ness
+			M.tank_collision(src)
 
 //Can't hit yourself with your own bullet
 /obj/vehicle/multitile/hitbox/cm_armored/get_projectile_hit_chance(var/obj/item/projectile/P)

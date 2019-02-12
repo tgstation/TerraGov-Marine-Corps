@@ -6,7 +6,7 @@
 
 
 /obj/vehicle/multitile/root/cm_armored/tank
-	name = "/improper M34A2 Longstreet Light Tank"
+	name = "\improper M34A2 Longstreet Light Tank"
 	desc = "A giant piece of armor with a big gun, you know what to do. Entrance in the back."
 
 	icon = 'icons/obj/tank_NS.dmi'
@@ -90,7 +90,7 @@
 
 /obj/vehicle/multitile/root/cm_armored/tank/remove_all_players()
 	deactivate_all_hardpoints()
-	for(var/mob/living/L in (src.contents + loc.contents))
+	for(var/mob/living/L in (contents + loc.contents))
 		if(!entrance) //Something broke, uh oh
 			forceMove(get_turf(src))
 		else
