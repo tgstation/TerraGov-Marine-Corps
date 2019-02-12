@@ -101,7 +101,7 @@ var/list/be_special_flags = list(
 #define ROLEGROUP_MARINE_COMMAND		1
 
 #define ROLE_COMMANDING_OFFICER			1
-#define ROLE_EXECUTIVE_OFFICER			2
+#define ROLE_FIELD_COMMANDER			2
 #define ROLE_BRIDGE_OFFICER				4
 #define ROLE_MILITARY_POLICE			8
 #define ROLE_CORPORATE_LIAISON			16
@@ -110,6 +110,7 @@ var/list/be_special_flags = list(
 #define ROLE_CHIEF_MP					128
 #define ROLE_SYNTHETIC					256
 #define ROLE_TANK_OFFICER				512
+#define ROLE_TANK_COMMANDER				1024
 //=================================================
 
 #define ROLEGROUP_MARINE_ENGINEERING 	2
@@ -129,7 +130,7 @@ var/list/be_special_flags = list(
 #define ROLEGROUP_MARINE_SQUAD_MARINES 	8
 
 #define ROLE_MARINE_LEADER			1
-#define ROLE_MARINE_MEDIC			2
+#define ROLE_MARINE_CORPSMAN			2
 #define ROLE_MARINE_ENGINEER		4
 #define ROLE_MARINE_STANDARD		8
 #define ROLE_MARINE_SPECIALIST		16
@@ -144,13 +145,13 @@ var/list/be_special_flags = list(
 //=================================================
 
 //Role defines, specifically lists of roles for job bans and the like.
-#define ROLES_COMMAND 		list("Commander", "Executive Officer", "Staff Officer", "Pilot Officer", "Tank Crewman", "Corporate Liaison", "Requisitions Officer", "Chief Engineer", "Chief Medical Officer", "Synthetic")
-#define ROLES_POLICE		list("Chief MP", "Military Police")
-#define ROLES_OFFICERS		list("Commander", "Executive Officer", "Staff Officer", "Pilot Officer", "Tank Crewman", "Corporate Liaison", "Synthetic")
-#define ROLES_ENGINEERING 	list("Chief Engineer", "Maintenance Tech")
+#define ROLES_COMMAND 		list("Captain", "Field Commander", "Intelligence Officer", "Pilot Officer", "Tank Crewman", "Tank Commander", "Corporate Liaison", "Requisitions Officer", "Chief Ship Engineer", "Chief Medical Officer", "Synthetic")
+#define ROLES_POLICE		list("Command Master at Arms", "Master at Arms")
+#define ROLES_OFFICERS		list("Captain", "Field Commander", "Intelligence Officer", "Pilot Officer", "Tank Commander", "Corporate Liaison", "Synthetic")
+#define ROLES_ENGINEERING 	list("Chief Ship Engineer", "Ship Engineer")
 #define ROLES_REQUISITION 	list("Requisitions Officer", "Cargo Technician")
-#define ROLES_MEDICAL 		list("Chief Medical Officer", "Doctor","Researcher")
-#define ROLES_MARINES		list("Squad Leader", "Squad Specialist", "Squad Smartgunner", "Squad Medic", "Squad Engineer", "Squad Marine")
+#define ROLES_MEDICAL 		list("Chief Medical Officer", "Medical Officer","Researcher")
+#define ROLES_MARINES		list("Squad Leader", "Squad Specialist", "Squad Smartgunner", "Squad Corpsman", "Squad Engineer", "Squad Marine")
 #define ROLES_SQUAD_ALL		list("Alpha", "Bravo", "Charlie" ,"Delta")
 #define ROLES_REGULAR_ALL	ROLES_OFFICERS + ROLES_POLICE + ROLES_ENGINEERING + ROLES_REQUISITION + ROLES_MEDICAL + ROLES_MARINES
 #define ROLES_UNASSIGNED	list("Squad Marine")
