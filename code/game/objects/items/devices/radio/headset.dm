@@ -215,7 +215,7 @@
 
 /obj/item/device/radio/headset/almayer
 	name = "marine radio headset"
-	desc = "A standard military radio headset. Has a small built in camera."
+	desc = "A standard military radio headset."
 	icon_state = "cargo_headset"
 	item_state = "headset"
 	frequency = PUB_FREQ
@@ -224,12 +224,6 @@
 	var/mob/living/carbon/human/wearer = null
 	var/headset_hud_on = FALSE
 	var/sl_direction = FALSE
-	var/obj/machinery/camera/camera
-
-/obj/item/device/radio/headset/almayer/New()
-	..()
-	camera = new /obj/machinery/camera(src)
-	camera.network = list("LEADER")
 
 /obj/item/device/radio/headset/almayer/New()
 	. = ..()
