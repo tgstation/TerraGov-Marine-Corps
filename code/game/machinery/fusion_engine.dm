@@ -9,7 +9,6 @@
 	icon = 'icons/Marine/fusion_eng.dmi'
 	icon_state = "off-0"
 	desc = "A Westingland S-52 Fusion Reactor.  Takes fuels cells and converts them to power for the ship.  Also produces a large amount of heat."
-	directwired = FALSE     //Requires a cable directly underneath
 	unacidable = TRUE      //NOPE.jpg
 	anchored = TRUE
 	density = TRUE
@@ -42,7 +41,7 @@
 			stop_processing()
 		return FALSE
 	if (fusion_cell.fuel_amount <= 0)
-		visible_message("\icon[src] <b>[src]</b> flashes that the fuel cell is empty as the engine seizes.")
+		visible_message("[bicon(src)] <b>[src]</b> flashes that the fuel cell is empty as the engine seizes.")
 		fuel_rate = 0
 		buildstate = 2  //No fuel really fucks it.
 		is_on = FALSE
@@ -58,13 +57,13 @@
 
 		switch(power_gen_percent) //Flavor text!
 			if(10)
-				visible_message("\icon[src] <span class='notice'><b>[src]</b> begins to whirr as it powers up.</span>")
+				visible_message("[bicon(src)] <span class='notice'><b>[src]</b> begins to whirr as it powers up.</span>")
 				fuel_rate = 0.025
 			if(50)
-				visible_message("\icon[src] <span class='notice'><b>[src]</b> begins to hum loudly as it reaches half capacity.</span>")
+				visible_message("[bicon(src)] <span class='notice'><b>[src]</b> begins to hum loudly as it reaches half capacity.</span>")
 				fuel_rate = 0.05
 			if(99)
-				visible_message("\icon[src] <span class='notice'><b>[src]</b> rumbles loudly as the combustion and thermal chambers reach full strength.</span>")
+				visible_message("[bicon(src)] <span class='notice'><b>[src]</b> rumbles loudly as the combustion and thermal chambers reach full strength.</span>")
 				fuel_rate = 0.1
 
 		add_avail(FUSION_ENGINE_MAX_POWER_GEN * (power_gen_percent / 100) ) //Nope, all good, just add the power
@@ -99,7 +98,7 @@
 			to_chat(user, "<span class='notice'>Use a wrench to repair it.</span>")
 			return FALSE
 	if(is_on)
-		visible_message("\icon[src] <span class='warning'><b>[src]</b> beeps softly and the humming stops as [usr] shuts off the generator.</span>")
+		visible_message("[bicon(src)] <span class='warning'><b>[src]</b> beeps softly and the humming stops as [usr] shuts off the generator.</span>")
 		is_on = FALSE
 		power_gen_percent = 0
 		cur_tick = 0
@@ -117,8 +116,8 @@
 			return FALSE
 
 	if(fusion_cell.fuel_amount <= 10)
-		to_chat(user, "\icon[src] <span class='warning'><b>[src]</b>: Fuel levels critically low.</span>")
-	visible_message("\icon[src] <span class='warning'><b>[src]</b> beeps loudly as [user] turns the generator on and begins the process of fusion...</span>")
+		to_chat(user, "[bicon(src)] <span class='warning'><b>[src]</b>: Fuel levels critically low.</span>")
+	visible_message("[bicon(src)] <span class='warning'><b>[src]</b> beeps loudly as [user] turns the generator on and begins the process of fusion...</span>")
 	fuel_rate = 0.01
 	is_on = TRUE
 	cur_tick = 0
@@ -133,7 +132,7 @@
 			to_chat(user, "<span class='warning'>The [src] needs to be turned off first.</span>")
 			return TRUE
 		if(!fusion_cell)
-			if(user.drop_inv_item_to_loc(O, src.))
+			if(user.transferItemToLoc(O, src.))
 				fusion_cell = O
 				update_icon()
 				to_chat(user, "<span class='notice'>You load the [src] with the [O].</span>")
@@ -300,10 +299,10 @@
 	cur_tick = 0 //reset the timer
 	if(rand(1,100) < fail_rate) //Oh snap, we failed! Shut it down!
 		if(prob(25))
-			visible_message("\icon[src] <span class='notice'><b>[src]</b> beeps wildly and a fuse blows! Use wirecutters, then a wrench to repair it.")
+			visible_message("[bicon(src)] <span class='notice'><b>[src]</b> beeps wildly and a fuse blows! Use wirecutters, then a wrench to repair it.")
 			buildstate = 2
 		else
-			visible_message("\icon[src] <span class='notice'><b>[src]</b> beeps wildly and sprays random pieces everywhere! Use a wrench to repair it.")
+			visible_message("[bicon(src)] <span class='notice'><b>[src]</b> beeps wildly and sprays random pieces everywhere! Use a wrench to repair it.")
 			buildstate = 3
 		is_on = FALSE
 		power_gen_percent = 0

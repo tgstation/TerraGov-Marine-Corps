@@ -27,28 +27,24 @@
 	maptext_height = 26
 	maptext_width = 32
 
-/obj/machinery/door_timer/New()
-	..()
+/obj/machinery/door_timer/Initialize()
+	. = ..()
 
-	spawn(20)
-		for(var/obj/machinery/door/window/brigdoor/M in machines)
-			if (M.id == src.id)
-				targets += M
+	for(var/obj/machinery/door/window/brigdoor/M in GLOB.machines)
+		if (M.id == src.id)
+			targets += M
 
-		for(var/obj/machinery/flasher/F in machines)
-			if(F.id == src.id)
-				targets += F
+	for(var/obj/machinery/flasher/F in GLOB.machines)
+		if(F.id == src.id)
+			targets += F
 
-		for(var/obj/structure/closet/secure_closet/brig/C in structure_list)
-			if(C.id == src.id)
-				targets += C
+	for(var/obj/structure/closet/secure_closet/brig/C in GLOB.structure_list)
+		if(C.id == src.id)
+			targets += C
 
-		if(targets.len==0)
-			stat |= BROKEN
-		update_icon()
-		return
-	return
-
+	if(targets.len==0)
+		stat |= BROKEN
+	update_icon()
 
 //Main door timer loop, if it's timing and time is >0 reduce time by 1.
 // if it's less than 0, open door, reset timer

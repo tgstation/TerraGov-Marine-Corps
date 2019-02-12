@@ -170,7 +170,7 @@
 	examine_urge_values[index] = examine_urge
 
 /mob/living/simple_animal/shyguy/examine(var/userguy)
-	if (istype(userguy, /mob/living/carbon))
+	if (iscarbon(userguy))
 		if (!(userguy in shitlist))
 			to_chat(userguy, target_desc_1)
 			shitlist += userguy
@@ -183,7 +183,8 @@
 		else
 			to_chat(userguy, target_desc_2)
 		if(will_scream)
-			if(!buckled) dir = 2
+			if(!buckled)
+				setDir(SOUTH)
 			visible_message("<span class='danger'>[src] SCREAMS!</span>")
 			playsound(get_turf(src), 'sound/voice/scream_horror1.ogg', 50, 1)
 			screaming = 1
@@ -267,7 +268,7 @@
 					next_turf = target_turf
 					to_chat(target, "<span class='danger'>DID YOU THINK YOU COULD HIDE?</span>")
 				else
-					dir = get_dir(src, target)
+					setDir(get_dir(src, target))
 					next_turf = get_step(src, get_dir(next_turf,target))
 			limit--
 			sleep(move_to_delay + round(staggered/8))
@@ -332,7 +333,7 @@
 	if(T)
 		T.loc = src.loc
 		visible_message("<span class='danger'>[src] grabs [T]!</span>")
-		dir = 2
+		setDir(SOUTH)
 		T.KnockDown(10)
 		T.anchored = 1
 		var/original_y = T.pixel_y
@@ -358,8 +359,8 @@
 
 		//Logging stuff
 		log_combat(src, T, "torn apart")
-		log_admin("[T] ([T.ckey]) has been torn apart by an active [src].")
-		message_admins("ALERT: <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[T.x];Y=[T.y];Z=[T.z]'>[T.real_name]</a> has been torn apart by an active [src].")
+		log_admin("[key_name(T)] has been torn apart by an active [src].")
+		message_admins("[ADMIN_TPMONTY(T)] has been torn apart by an active [src].")
 		shitlist -= T
 
 		if (target == T)

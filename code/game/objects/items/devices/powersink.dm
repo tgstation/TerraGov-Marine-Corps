@@ -23,7 +23,7 @@
 	var/obj/structure/cable/attached		// the attached cable
 
 	attackby(var/obj/item/I, var/mob/user)
-		if(istype(I, /obj/item/tool/screwdriver))
+		if(isscrewdriver(I))
 			if(mode == 0)
 				var/turf/T = loc
 				if(isturf(T) && !T.intact_tile)
@@ -34,10 +34,7 @@
 					else
 						anchored = 1
 						mode = 1
-						to_chat(user, "You attach the device to the cable.")
-						for(var/mob/M in viewers(user))
-							if(M == user) continue
-							to_chat(M, "[user] attaches the power sink to the cable.")
+						user.visible_message("[user] attaches the power sink to the cable.", "You attach the device to the cable.")
 						return
 				else
 					to_chat(user, "Device must be placed over an exposed cable to attach to it.")
@@ -47,10 +44,7 @@
 					STOP_PROCESSING(SSobj, src) // Now the power sink actually stops draining the station's power if you unhook it. --NeoFite
 				anchored = 0
 				mode = 0
-				to_chat(user, "You detach	the device from the cable.")
-				for(var/mob/M in viewers(user))
-					if(M == user) continue
-					to_chat(M, "[user] detaches the power sink from the cable.")
+				user.visible_message("[user] detaches the power sink from the cable.", "You detach the device from the cable.")
 				SetLuminosity(0)
 				icon_state = "powersink0"
 
@@ -72,19 +66,13 @@
 				..()
 
 			if(1)
-				to_chat(user, "You activate the device!")
-				for(var/mob/M in viewers(user))
-					if(M == user) continue
-					to_chat(M, "[user] activates the power sink!")
+				user.visible_message("[user] activates the power sink!", "You activate the device!")
 				mode = 2
 				icon_state = "powersink1"
 				START_PROCESSING(SSobj, src)
 
 			if(2)  //This switch option wasn't originally included. It exists now. --NeoFite
-				to_chat(user, "You deactivate the device!")
-				for(var/mob/M in viewers(user))
-					if(M == user) continue
-					to_chat(M, "[user] deactivates the power sink!")
+				user.visible_message("[user] deactivates the power sink!", "You deactivate the device!")
 				mode = 1
 				SetLuminosity(0)
 				icon_state = "powersink0"
@@ -92,14 +80,14 @@
 
 	process()
 		if(attached)
-			var/datum/powernet/PN = attached.get_powernet()
+			var/datum/powernet/PN = attached.powernet
 			if(PN)
 				SetLuminosity(12)
 
 				// found a powernet, so drain up to max power from it
 
 				var/drained = min ( drain_rate, PN.avail )
-				PN.newload += drained
+				attached.add_delayedload(drained)
 				power_drained += drained
 
 				// if tried to drain more than available on powernet

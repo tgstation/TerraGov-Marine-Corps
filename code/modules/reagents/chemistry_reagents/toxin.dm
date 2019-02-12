@@ -117,7 +117,7 @@
 /datum/reagent/toxin/cyanide/on_mob_life(mob/living/M)
 	M.adjustOxyLoss(4*REM)
 	if(current_cycle > 10)
-		M.sleeping += 2
+		M.Sleeping(2)
 	..()
 
 /datum/reagent/toxin/minttoxin
@@ -187,7 +187,7 @@
 
 /datum/reagent/toxin/mindbreaker/overdose_crit_process(mob/living/M, alien)
 	M.adjustToxLoss(1)
-	M.adjustBrainLoss(1)
+	M.adjustBrainLoss(1, TRUE)
 	M.Jitter(5)
 	if(prob(10) && !M.stat)
 		M.KnockOut(5)
@@ -431,7 +431,7 @@
 				return
 
 		if(!M.unacidable)
-			if(istype(M, /mob/living/carbon/human) && volume >= 10)
+			if(ishuman(M) && volume >= 10)
 				var/mob/living/carbon/human/H = M
 				var/datum/limb/affecting = H.get_limb("head")
 				if(affecting)
@@ -454,7 +454,7 @@
 			var/obj/effect/decal/cleanable/molten_item/I = new/obj/effect/decal/cleanable/molten_item(O.loc)
 			I.desc = "Looks like this was \an [O] some time ago."
 			for(var/mob/M in viewers(5, O))
-				to_chat(M, "\red \the [O] melts.")
+				to_chat(M, "<span class='warning'>\the [O] melts.</span>")
 				qdel(O)
 
 /datum/reagent/toxin/acid/polyacid

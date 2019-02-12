@@ -2,10 +2,10 @@
 	var/active = 0
 	flags_atom = NOBLOODY
 
-	suicide_act(mob/user)
-		viewers(user) << pick("\red <b>[user] is slitting \his stomach open with the [src.name]! It looks like \he's trying to commit seppuku.</b>", \
-							"\red <b>[user] is falling on the [src.name]! It looks like \he's trying to commit suicide.</b>")
-		return (BRUTELOSS|FIRELOSS)
+/obj/item/weapon/energy/suicide_act(mob/user)
+	user.visible_message(pick("<span class='danger'>[user] is slitting [user.p_their()] stomach open with the [name]! It looks like [user.p_theyre()] trying to commit seppuku.</span>", \
+						"<span class='danger'>[user] is falling on the [name]! It looks like [user.p_theyre()] trying to commit suicide.</span>"))
+	return (BRUTELOSS|FIRELOSS)
 
 
 
@@ -26,19 +26,19 @@
 	edge = 1
 
 /obj/item/weapon/energy/axe/suicide_act(mob/user)
-	viewers(user) << "\red <b>[user] swings the [src.name] towards /his head! It looks like \he's trying to commit suicide.</b>"
+	user.visible_message("<span class='danger'>[user] swings the [name] towards [user.p_their()] head! It looks like [user.p_theyre()] trying to commit suicide.</span>")
 	return (BRUTELOSS|FIRELOSS)
 
 /obj/item/weapon/energy/axe/attack_self(mob/user)
 	active = !active
 	if(active)
-		to_chat(user, "\blue The axe is now energised.")
+		to_chat(user, "<span class='notice'>The axe is now energised.</span>")
 		force = 150
 		icon_state = "axe1"
 		w_class = 5
 		heat_source = 3500
 	else
-		to_chat(user, "\blue The axe can now be concealed.")
+		to_chat(user, "<span class='notice'>The axe can now be concealed.</span>")
 		force = 40
 		icon_state = "axe0"
 		w_class = 5
@@ -76,7 +76,7 @@
 
 /obj/item/weapon/energy/sword/attack_self(mob/living/user as mob)
 	if ((CLUMSY in user.mutations) && prob(50))
-		to_chat(user, "\red You accidentally cut yourself with [src].")
+		to_chat(user, "<span class='warning'>You accidentally cut yourself with [src].</span>")
 		user.take_limb_damage(5,5)
 	active = !active
 	if (active)
@@ -88,7 +88,7 @@
 			icon_state = "sword[sword_color]"
 		w_class = 4
 		playsound(user, 'sound/weapons/saberon.ogg', 25, 1)
-		to_chat(user, "\blue [src] is now active.")
+		to_chat(user, "<span class='notice'>[src] is now active.</span>")
 
 	else
 		force = 3
@@ -96,7 +96,7 @@
 		icon_state = "[base_sword_icon]0"
 		w_class = 2
 		playsound(user, 'sound/weapons/saberoff.ogg', 25, 1)
-		to_chat(user, "\blue [src] can now be concealed.")
+		to_chat(user, "<span class='notice'>[src] can now be concealed.</span>")
 
 	if(istype(user,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = user

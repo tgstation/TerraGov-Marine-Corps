@@ -13,15 +13,14 @@
 	var/lastgenlev = -1
 
 
-/obj/machinery/power/generator_type2/New()
-	..()
-	spawn(5)
-		input1 = locate(/obj/machinery/atmospherics/unary/generator_input) in get_step(src,turn(dir, 90))
-		input2 = locate(/obj/machinery/atmospherics/unary/generator_input) in get_step(src,turn(dir, -90))
-		if(!input1 || !input2)
-			stat |= BROKEN
-		updateicon()
-		start_processing()
+/obj/machinery/power/generator_type2/Initialize()
+	. = ..()
+	input1 = locate(/obj/machinery/atmospherics/unary/generator_input) in get_step(src,turn(dir, 90))
+	input2 = locate(/obj/machinery/atmospherics/unary/generator_input) in get_step(src,turn(dir, -90))
+	if(!input1 || !input2)
+		stat |= BROKEN
+	updateicon()
+	start_processing()
 
 
 /obj/machinery/power/generator_type2/proc/updateicon()
@@ -63,7 +62,7 @@
 
 
 /obj/machinery/power/generator_type2/interact(mob/user)
-	if ( (get_dist(src, user) > 1 ) && (!istype(user, /mob/living/silicon/ai)))
+	if ( (get_dist(src, user) > 1 ) && (!isAI(user)))
 		user.unset_interaction()
 		user << browse(null, "window=teg")
 		return

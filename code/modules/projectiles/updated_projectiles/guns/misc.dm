@@ -18,7 +18,7 @@
 
 /obj/item/weapon/gun/flare/examine(mob/user)
 	. = ..()
-	fire_delay = config.low_fire_delay*3
+	fire_delay = CONFIG_GET(number/combat_define/low_fire_delay) * 3
 	if(num_flares)
 		to_chat(user, "<span class='warning'>It has a flare loaded!</span>")
 
@@ -41,18 +41,18 @@
 
 /obj/item/weapon/gun/flare/delete_bullet(var/obj/item/projectile/projectile_to_fire, refund = 0)
 	qdel(projectile_to_fire)
-	if(refund) 
+	if(refund)
 		num_flares++
 	return TRUE
 
 /obj/item/weapon/gun/flare/attackby(obj/item/I, mob/user)
-	if(istype(I,/obj/item/device/flashlight/flare))
-		var/obj/item/device/flashlight/flare/flare = I
+	if(istype(I,/obj/item/explosive/grenade/flare))
+		var/obj/item/explosive/grenade/flare = I
 		if(num_flares >= max_flares)
 			to_chat(user, "It's already full.")
 			return
 		num_flares++
-		user.temp_drop_inv_item(flare)
+		user.temporarilyRemoveItemFromInventory(flare)
 		sleep(-1)
 		qdel(flare)
 		to_chat(user, "<span class='notice'>You insert the flare.</span>")
@@ -63,67 +63,16 @@
 
 /obj/item/weapon/gun/flare/unload(mob/user)
 	if(num_flares)
-		var/obj/item/device/flashlight/flare/new_flare = new()
-		if(user) 
+		var/obj/item/explosive/grenade/flare/new_flare = new()
+		if(user)
 			user.put_in_hands(new_flare)
-		else 
+		else
 			new_flare.loc = get_turf(src)
 		num_flares--
 		to_chat(user, "<span class='notice'>You unload a flare from [src].</span>")
 		update_icon()
 	else
 		to_chat(user, "<span class='warning'>It's empty!</span>")
-
-//-------------------------------------------------------
-//This gun is very powerful, but also has a kick.
-
-/obj/item/weapon/gun/minigun
-	name = "\improper Ol' Painless"
-	desc = "An enormous multi-barreled rotating gatling gun. This thing will no doubt pack a punch."
-	icon_state = "painless"
-	item_state = "painless"
-	origin_tech = "combat=7;materials=5"
-	fire_sound = 'sound/weapons/gun_minigun.ogg'
-	cocked_sound = 'sound/weapons/gun_minigun_cocked.ogg'
-	current_mag = /obj/item/ammo_magazine/minigun
-	type_of_casings = "cartridge"
-	w_class = 5
-	force = 20
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_BURST_ON|GUN_WIELDED_FIRING_ONLY
-
-/obj/item/weapon/gun/minigun/New(loc, spawn_empty)
-	. = ..()
-	if(current_mag && current_mag.current_rounds > 0) 
-		load_into_chamber()
-
-/obj/item/weapon/gun/minigun/set_gun_config_values()
-	fire_delay = config.low_fire_delay
-	burst_amount = config.max_burst_value
-	burst_delay = config.min_fire_delay
-	accuracy_mult = config.base_hit_accuracy_mult - config.med_hit_accuracy_mult
-	accuracy_mult_unwielded = config.base_hit_accuracy_mult
-	scatter = config.med_scatter_value
-	scatter_unwielded = config.med_scatter_value
-	damage_mult = config.base_hit_damage_mult
-	recoil = config.med_recoil_value
-
-/obj/item/weapon/gun/minigun/toggle_burst()
-	to_chat(usr, "<span class='warning'>This weapon can only fire in bursts!</span>")
-
-/obj/item/weapon/gun/minigun/has_ammo_counter()
-	return TRUE
-
-/obj/item/weapon/gun/minigun/get_ammo_type()
-	if(!ammo)
-		return list("unknown", "unknown")
-	else
-		return list(ammo.hud_state, ammo.hud_state_empty)
-
-/obj/item/weapon/gun/minigun/get_ammo_count()
-	if(!current_mag)
-		return in_chamber ? 1 : 0
-	else
-		return in_chamber ? (current_mag.current_rounds + 1) : current_mag.current_rounds
 
 //-------------------------------------------------------
 //Toy rocket launcher.
@@ -148,7 +97,7 @@
 	unacidable = 1
 	fire_sound = 'sound/effects/woodhit.ogg' // TODO: Decent THWOK noise.
 	ammo = /datum/ammo/alloy_spike
-	flags_equip_slot = SLOT_WAIST|SLOT_BACK
+	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_BACK
 	w_class = 3 //Fits in yautja bags.
 	var/spikes = 12
 	var/max_spikes = 12
@@ -165,7 +114,7 @@
 		last_regen = world.time
 		update_icon()
 
-/obj/item/weapon/gun/launcher/spike/New()
+/obj/item/weapon/gun/launcher/spike/Initialize()
 	. = ..()
 	START_PROCESSING(SSobj, src)
 	last_regen = world.time
@@ -176,16 +125,16 @@
 	verbs -= /obj/item/weapon/gun/verb/use_unique_action
 
 /obj/item/weapon/gun/launcher/spike/set_gun_config_values()
-	fire_delay = config.high_fire_delay
-	accuracy_mult = config.base_hit_accuracy_mult
-	accuracy_mult_unwielded = config.base_hit_accuracy_mult
-	scatter = config.med_scatter_value
-	scatter_unwielded = config.med_scatter_value
-	damage_mult = config.base_hit_damage_mult
+	fire_delay = CONFIG_GET(number/combat_define/high_fire_delay)
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
+	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
+	scatter_unwielded = CONFIG_GET(number/combat_define/med_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
 
 
 /obj/item/weapon/gun/launcher/spike/examine(mob/user)
-	if(isYautja(user))
+	if(isyautja(user))
 		..()
 		to_chat(user, "It currently has [spikes] / [max_spikes] spikes.")
 	else
@@ -196,7 +145,7 @@
 	update_special_overlay(new_icon_state)
 
 /obj/item/weapon/gun/launcher/spike/able_to_fire(mob/user)
-	if(!isYautja(user))
+	if(!isyautja(user))
 		to_chat(user, "<span class='warning'>You have no idea how this thing works!</span>")
 		return
 
@@ -214,7 +163,7 @@
 
 /obj/item/weapon/gun/launcher/spike/delete_bullet(obj/item/projectile/projectile_to_fire, refund = 0)
 	qdel(projectile_to_fire)
-	if(refund) 
+	if(refund)
 		spikes++
 	return TRUE
 
@@ -237,22 +186,22 @@
 /obj/item/weapon/gun/syringe/examine(mob/user)
 	..()
 	if(user != loc) return
-	to_chat(user, "\blue [syringes.len] / [max_syringes] syringes.")
+	to_chat(user, "<span class='notice'>[syringes.len] / [max_syringes] syringes.</span>")
 
 /obj/item/weapon/gun/syringe/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/reagent_container/syringe))
 		var/obj/item/reagent_container/syringe/S = I
 		if(S.mode != 2)//SYRINGE_BROKEN in syringes.dm
 			if(syringes.len < max_syringes)
-				user.drop_inv_item_to_loc(I, src)
+				user.transferItemToLoc(I, src)
 				syringes += I
 				update_icon()
-				to_chat(user, "\blue You put the syringe in [src].")
-				to_chat(user, "\blue [syringes.len] / [max_syringes] syringes.")
+				to_chat(user, "<span class='notice'>You put the syringe in [src].</span>")
+				to_chat(user, "<span class='notice'>[syringes.len] / [max_syringes] syringes.</span>")
 			else
-				to_chat(usr, "\red [src] cannot hold more syringes.")
+				to_chat(usr, "<span class='warning'>[src] cannot hold more syringes.</span>")
 		else
-			to_chat(usr, "\red This syringe is broken!")
+			to_chat(usr, "<span class='warning'>This syringe is broken!</span>")
 
 
 /obj/item/weapon/gun/syringe/afterattack(obj/target, mob/user , flag)
@@ -270,7 +219,7 @@
 	if(syringes.len)
 		spawn(0) fire_syringe(target,user)
 	else
-		to_chat(usr, "\red [src] is empty.")
+		to_chat(usr, "<span class='warning'>[src] is empty.</span>")
 
 /obj/item/weapon/gun/syringe/proc/fire_syringe(atom/target, mob/user)
 	if (locate (/obj/structure/table, src.loc))
@@ -305,11 +254,11 @@
 							R += num2text(A.volume) + "),"
 					if (istype(M, /mob))
 						log_combat(user, M, "shot", src, "Reagents: ([R])")
-						msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) shot [key_name(M)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[M]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[M.x];Y=[M.y];Z=[M.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[M]'>FLW</a>) with a syringegun ([R])")
+						msg_admin_attack("[ADMIN_TPMONTY(usr)] shot [ADMIN_TPMONTY(M)] with a syringegun ([R]).")
 
 					else
 						M.log_message("<b>UNKNOWN SUBJECT (No longer exists)</b> shot <b>[key_name(M)]</b> with a <b>[src]</b> Reagents: ([R])", LOG_ATTACK)
-						msg_admin_attack("UNKNOWN shot [key_name(M)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[M]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[M.x];Y=[M.y];Z=[M.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[M]'>FLW</a>) with a <b>syringegun</b> ([R])")
+						msg_admin_attack("UNKNOWN shot [ADMIN_TPMONTY(M)] with a syringegun ([R]).")
 
 					M.visible_message("<span class='danger'>[M] is hit by the syringe!</span>")
 
@@ -348,6 +297,6 @@
 	anchored = 1
 	density = 0
 
-/obj/effect/syringe_gun_dummy/New()
+/obj/effect/syringe_gun_dummy/Initialize()
 	create_reagents(15)
 	return ..()

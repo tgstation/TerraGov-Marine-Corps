@@ -2,18 +2,22 @@
 	icon = 'icons/obj/structures/structures.dmi'
 	var/climbable
 	var/climb_delay = 50
-	var/breakable
+	var/breakable = TRUE
 	var/parts
 	var/flags_barrier = 0
 	anchored = TRUE
 
+	var/damage = 0
+	var/damage_cap = 500 //The point where things start breaking down.
+
+
 /obj/structure/New()
 	..()
-	structure_list += src
+	GLOB.structure_list += src
 
 /obj/structure/Destroy()
 	. = ..()
-	structure_list -= src
+	GLOB.structure_list -= src
 
 /obj/structure/proc/destroy_structure(deconstruct)
 	if(parts)
@@ -72,8 +76,8 @@
 		if(3.0)
 			return
 
-/obj/structure/New()
-	..()
+/obj/structure/Initialize()
+	. = ..()
 	if(climbable)
 		verbs += /obj/structure/proc/climb_on
 
@@ -198,7 +202,7 @@
 			return //No spamming this on people.
 
 		M.KnockDown(5)
-		to_chat(M, "\red You topple as \the [src] moves under you!")
+		to_chat(M, "<span class='warning'>You topple as \the [src] moves under you!</span>")
 
 		if(prob(25))
 
@@ -250,3 +254,20 @@
 		to_chat(user, "<span class='notice'>You need hands for this.</span>")
 		return FALSE
 	return TRUE
+
+
+//Damage
+/obj/structure/proc/take_damage(dam)
+	if(!breakable)
+		return
+
+	if(!dam)
+		return
+
+	damage = max(0, damage + dam)
+
+	if(damage >= damage_cap)
+		playsound(src, 'sound/effects/metal_crash.ogg', 35)
+		qdel(src)
+	else
+		update_icon()

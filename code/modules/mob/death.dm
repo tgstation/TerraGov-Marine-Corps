@@ -35,7 +35,8 @@
 
 
 
-/mob/proc/death(gibbed, deathmessage="seizes up and falls limp...")
+/mob/proc/death(gibbed, deathmessage = "seizes up and falls limp...")
+	log_combat(src, src, "[deathmessage]")
 	if(stat == DEAD)
 		return FALSE
 
@@ -65,8 +66,8 @@
 	timeofdeath = world.time
 	mind?.store_memory("Time of death: [worldtime2text()]", 0)
 
-	living_mob_list -= src
-	dead_mob_list |= src
+	GLOB.alive_mob_list -= src
+	GLOB.dead_mob_list |= src
 
 	med_hud_set_health()
 	med_hud_set_status()

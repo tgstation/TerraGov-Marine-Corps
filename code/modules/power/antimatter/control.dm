@@ -134,7 +134,7 @@
 
 /obj/machinery/power/am_control_unit/attackby(obj/item/W, mob/user)
 	if(!istype(W) || !user) return
-	if(istype(W, /obj/item/tool/wrench))
+	if(iswrench(W))
 		if(!anchored)
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 			user.visible_message("[user.name] secures the [src.name] to the floor.", \
@@ -150,14 +150,14 @@
 			src.anchored = 0
 			disconnect_from_network()
 		else
-			to_chat(user, "\red Once bolted and linked to a shielding unit it the [src.name] is unable to be moved!")
+			to_chat(user, "<span class='warning'>Once bolted and linked to a shielding unit it the [src.name] is unable to be moved!</span>")
 		return
 
 	if(istype(W, /obj/item/am_containment))
 		if(fueljar)
-			to_chat(user, "\red There is already a [fueljar] inside!")
+			to_chat(user, "<span class='warning'>There is already a [fueljar] inside!</span>")
 			return
-		if(user.drop_inv_item_to_loc(W, src))
+		if(user.transferItemToLoc(W, src))
 			fueljar = W
 			user.visible_message("[user.name] loads an [W.name] into the [src.name].", \
 					"You load an [W.name].", \
@@ -245,7 +245,7 @@
 
 /obj/machinery/power/am_control_unit/interact(mob/user)
 	if((get_dist(src, user) > 1) || (stat & (BROKEN|NOPOWER)))
-		if(!istype(user, /mob/living/silicon/ai))
+		if(!isAI(user))
 			user.unset_interaction()
 			user << browse(null, "window=AMcontrol")
 			return
@@ -285,7 +285,7 @@
 /obj/machinery/power/am_control_unit/Topic(href, href_list)
 	..()
 	//Ignore input if we are broken or guy is not touching us, AI can control from a ways away
-	if(stat & (BROKEN|NOPOWER) || (get_dist(src, usr) > 1 && !istype(usr, /mob/living/silicon/ai)))
+	if(stat & (BROKEN|NOPOWER) || (get_dist(src, usr) > 1 && !isAI(usr)))
 		usr.unset_interaction()
 		usr << browse(null, "window=AMcontrol")
 		return

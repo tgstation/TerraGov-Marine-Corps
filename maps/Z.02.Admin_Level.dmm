@@ -12,7 +12,7 @@
 "al" = (/obj/machinery/vending/coffee,/turf/open/floor{icon_state = "redbluefull"; dir = 8},/area/tdome/tdomeobserve)
 "am" = (/obj/structure/closet/secure_closet/freezer/meat,/turf/open/floor{icon_state = "white"},/area/tdome)
 "an" = (/obj/structure/closet/secure_closet/freezer/fridge,/turf/open/floor{icon_state = "white"},/area/tdome)
-"ao" = (/obj/structure/bed/chair,/obj/effect/landmark{name = "tdomeobserve"},/turf/open/floor{icon_state = "redbluefull"; dir = 8},/area/tdome/tdomeobserve)
+"ao" = (/obj/structure/bed/chair,/obj/effect/landmark/thunderdome/observe,/turf/open/floor{icon_state = "redbluefull"; dir = 8},/area/tdome/tdomeobserve)
 "ap" = (/obj/structure/disposalpipe/trunk,/obj/structure/disposaloutlet,/turf/open/floor{icon_state = "redbluefull"; dir = 8},/area/tdome/tdomeobserve)
 "aq" = (/obj/machinery/vending/snack,/turf/open/floor{icon_state = "redbluefull"; dir = 8},/area/tdome/tdomeobserve)
 "ar" = (/obj/item/storage/box/donkpockets{pixel_x = 3; pixel_y = 3},/obj/item/storage/box/donkpockets{pixel_x = 3; pixel_y = 3},/obj/item/storage/box/donkpockets{pixel_x = 3; pixel_y = 3},/obj/item/storage/box/donkpockets{pixel_x = 3; pixel_y = 3},/obj/structure/table,/turf/open/floor{icon_state = "white"},/area/tdome)
@@ -21,7 +21,7 @@
 "au" = (/obj/machinery/computer/security/telescreen,/turf/open/floor{icon_state = "redbluefull"; dir = 8},/area/tdome/tdomeobserve)
 "av" = (/obj/item/device/camera,/turf/open/floor{icon_state = "redbluefull"; dir = 8},/area/tdome/tdomeobserve)
 "aw" = (/obj/structure/disposalpipe/segment,/turf/open/floor{icon_state = "redbluefull"; dir = 8},/area/tdome/tdomeobserve)
-"ax" = (/obj/structure/bed/chair,/obj/structure/disposalpipe/segment,/obj/effect/landmark{name = "tdomeobserve"},/turf/open/floor{icon_state = "redbluefull"; dir = 8},/area/tdome/tdomeobserve)
+"ax" = (/obj/structure/bed/chair,/obj/structure/disposalpipe/segment,/obj/effect/landmark/thunderdome/observe,/turf/open/floor{icon_state = "redbluefull"; dir = 8},/area/tdome/tdomeobserve)
 "ay" = (/turf/open/space{icon_state = "black"; opacity = 1},/area/space)
 "az" = (/turf/open/floor{icon_state = "plating"; name = "plating"},/area/tdome)
 "aA" = (/obj/structure/window/reinforced{dir = 5; health = 80},/obj/effect/forcefield{desc = "You can't get in. Heh."; layer = 1; name = "Blocker"},/turf/open/floor,/area/tdome)
@@ -32,11 +32,11 @@
 "aF" = (/obj/structure/disposalpipe/segment,/turf/open/floor,/area/tdome)
 "aG" = (/turf/open/space/transit/north/shuttlespace_ns10,/area/space)
 "aH" = (/turf/open/space/transit/north/shuttlespace_ns15,/area/space)
-"aI" = (/obj/effect/landmark{name = "tdome2"},/turf/open/floor{icon_state = "plating"; name = "plating"},/area/tdome/tdome2)
+"aI" = (/obj/effect/landmark/thunderdome/two,/turf/open/floor{icon_state = "plating"; name = "plating"},/area/tdome/tdome2)
 "aJ" = (/obj/machinery/door/poddoor{id = "thunderdome"; name = "Thunderdome Blast Door"},/turf/open/floor{icon_state = "plating"; name = "plating"},/area/tdome)
 "aK" = (/turf/open/floor{icon_state = "red"; dir = 8},/area/tdome)
 "aL" = (/turf/open/floor{icon_state = "green"; dir = 4},/area/tdome)
-"aM" = (/obj/effect/landmark{name = "tdome1"},/turf/open/floor{icon_state = "plating"; name = "plating"},/area/tdome/tdome1)
+"aM" = (/obj/effect/landmark/thunderdome/one,/turf/open/floor{icon_state = "plating"; name = "plating"},/area/tdome/tdome1)
 "aN" = (/turf/open/space/transit/north/shuttlespace_ns11,/area/space)
 "aO" = (/turf/open/space/transit/north/shuttlespace_ns14,/area/space)
 "aP" = (/turf/open/space/transit/north/shuttlespace_ns12,/area/space)
@@ -64,10 +64,10 @@
 "bl" = (/obj/structure/window/reinforced{dir = 5; health = 80},/obj/effect/forcefield{desc = "You can't get in. Heh."; layer = 1; name = "Blocker"},/obj/machinery/atmospherics/pipe/simple/visible,/turf/open/floor,/area/tdome)
 "bm" = (/turf/open/space/transit/north/shuttlespace_ns7,/area/space)
 "bn" = (/turf/open/floor{icon_state = "redyellowfull"; dir = 5},/area/tdome/tdomeadmin)
-"bo" = (/obj/structure/bed/chair{dir = 1},/obj/effect/landmark{name = "tdomeadmin"},/turf/open/floor{icon_state = "redyellowfull"; dir = 5},/area/tdome/tdomeadmin)
+"bo" = (/obj/structure/bed/chair{dir = 1},/obj/effect/landmark/thunderdome/admin,/turf/open/floor{icon_state = "redyellowfull"; dir = 5},/area/tdome/tdomeadmin)
 "bp" = (/obj/item/tool/extinguisher,/turf/open/floor{icon_state = "redyellowfull"; dir = 5},/area/tdome/tdomeadmin)
 "bq" = (/obj/machinery/atmospherics/valve,/turf/open/floor{icon_state = "redyellowfull"; dir = 5},/area/tdome/tdomeadmin)
-"br" = (/obj/structure/bed/chair{dir = 1},/obj/structure/disposalpipe/segment,/obj/effect/landmark{name = "tdomeadmin"},/turf/open/floor{icon_state = "redyellowfull"; dir = 5},/area/tdome/tdomeadmin)
+"br" = (/obj/structure/bed/chair{dir = 1},/obj/structure/disposalpipe/segment,/obj/effect/landmark/thunderdome/admin,/turf/open/floor{icon_state = "redyellowfull"; dir = 5},/area/tdome/tdomeadmin)
 "bs" = (/turf/open/space/transit/north/shuttlespace_ns6,/area/space)
 "bt" = (/obj/machinery/computer/security/telescreen,/turf/open/floor{icon_state = "redyellowfull"; dir = 5},/area/tdome/tdomeadmin)
 "bu" = (/obj/machinery/atmospherics/portables_connector{dir = 1},/obj/machinery/portable_atmospherics/canister/sleeping_agent{pixel_x = 1},/turf/open/floor{icon_state = "redyellowfull"; dir = 5},/area/tdome/tdomeadmin)
@@ -149,12 +149,12 @@
 "cS" = (/obj/structure/table/reinforced{layer = 2.69},/obj/item/device/flashlight/lantern,/turf/open/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
 "cT" = (/obj/structure/table/reinforced{layer = 2.69},/obj/item/reagent_container/hypospray/autoinjector/yautja,/obj/item/reagent_container/hypospray/autoinjector/yautja,/turf/open/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
 "cU" = (/obj/structure/table/reinforced{layer = 2.69},/obj/item/weapon/yautja_knife,/turf/open/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
-"cV" = (/obj/structure/bed/alien,/obj/effect/landmark{name = "pred_elder_spawn"},/turf/open/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"cV" = (/obj/structure/bed/alien,/obj/effect/landmark/start/pred_spawn/elder,/turf/open/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
 "cW" = (/obj/structure/table/reinforced,/obj/item/tool/surgery/retractor/predatorretractor,/obj/item/tool/surgery/circular_saw/predatorbonesaw,/obj/item/tool/surgery/cautery/predatorcautery,/turf/open/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
 "cX" = (/obj/machinery/light/small{tag = "icon-bulb1 (NORTH)"; icon_state = "bulb1"; dir = 1},/obj/machinery/optable,/turf/open/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
 "cY" = (/obj/structure/table/reinforced,/obj/item/tool/surgery/bonegel/predatorbonegel,/obj/item/tool/surgery/hemostat/predatorhemostat,/obj/item/tool/surgery/bonesetter/predatorbonesetter,/turf/open/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
 "cZ" = (/obj/structure/table/reinforced,/obj/item/tank/anesthetic,/obj/item/clothing/mask/breath/medical,/turf/open/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
-"da" = (/obj/structure/bed/alien,/obj/effect/landmark{name = "pred_spawn"},/turf/open/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"da" = (/obj/structure/bed/alien,/obj/effect/landmark/start/pred_spawn,/turf/open/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
 "db" = (/obj/structure/rack,/obj/item/storage/box/lights/bulbs,/obj/item/storage/box/lights/bulbs,/turf/open/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
 "dc" = (/obj/machinery/light/small{tag = "icon-bulb1 (WEST)"; icon_state = "bulb1"; dir = 8},/turf/open/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
 "dd" = (/obj/machinery/light/small{tag = "icon-bulb1 (EAST)"; icon_state = "bulb1"; dir = 4},/turf/open/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
@@ -402,52 +402,52 @@
 "hL" = (/obj/structure/bed,/turf/open/floor{icon_state = "floorscorched2"},/area/centcom/solitary)
 "hM" = (/obj/effect/decal/cleanable/blood,/turf/open/floor{icon_state = "plating"; name = "plating"},/area/centcom/solitary)
 "hN" = (/turf/closed/shuttle/ert,/area/shuttle/distress/start)
-"hO" = (/obj/structure/rack,/obj/effect/landmark{name = "DistressItem"},/obj/item/storage/toolbox/mechanical,/obj/item/device/multitool,/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/distress/start)
+"hO" = (/obj/structure/rack,/obj/effect/landmark/distress_item,/obj/item/storage/toolbox/mechanical,/obj/item/device/multitool,/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/distress/start)
 "hP" = (/turf/open/shuttle/dropship{tag = "icon-rasputin6"; icon_state = "rasputin6"},/area/shuttle/distress/start)
 "hQ" = (/turf/open/shuttle/dropship{icon_state = "floor8"; tag = "icon-rasputin7"},/area/shuttle/distress/start)
 "hR" = (/turf/open/shuttle/dropship{tag = "icon-rasputin7"; icon_state = "rasputin7"},/area/shuttle/distress/start)
-"hS" = (/obj/structure/rack,/obj/effect/landmark{name = "DistressItem"},/obj/item/storage/firstaid/adv,/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/distress/start)
+"hS" = (/obj/structure/rack,/obj/effect/landmark/distress_item,/obj/item/storage/firstaid/adv,/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/distress/start)
 "hT" = (/turf/closed/shuttle/ert{icon_state = "stan5"},/area/shuttle/distress/start)
 "hU" = (/turf/closed/shuttle/ert{icon_state = "wy18"},/area/shuttle/distress/start_pmc)
-"hV" = (/obj/structure/rack,/obj/effect/landmark{name = "Distress_PMCItem"},/obj/item/storage/toolbox/mechanical,/obj/item/device/multitool,/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/distress/start_pmc)
+"hV" = (/obj/structure/rack,/obj/effect/landmark/distress_pmcitem,/obj/item/storage/toolbox/mechanical,/obj/item/device/multitool,/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/distress/start_pmc)
 "hW" = (/turf/open/shuttle/dropship{tag = "icon-rasputin6"; icon_state = "rasputin6"},/area/shuttle/distress/start_pmc)
 "hX" = (/turf/open/shuttle/dropship{icon_state = "floor8"; tag = "icon-rasputin7"},/area/shuttle/distress/start_pmc)
 "hY" = (/turf/open/shuttle/dropship{tag = "icon-rasputin7"; icon_state = "rasputin7"},/area/shuttle/distress/start_pmc)
-"hZ" = (/obj/structure/rack,/obj/effect/landmark{name = "Distress_PMCItem"},/obj/item/storage/firstaid/adv,/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/distress/start_pmc)
+"hZ" = (/obj/structure/rack,/obj/effect/landmark/distress_pmcitem,/obj/item/storage/firstaid/adv,/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/distress/start_pmc)
 "ia" = (/turf/closed/shuttle/ert{icon_state = "wy19"},/area/shuttle/distress/start_pmc)
 "ib" = (/turf/closed/shuttle/ert{icon_state = "upp4"},/area/shuttle/distress/start_upp)
-"ic" = (/obj/structure/rack,/obj/effect/landmark{name = "Distress_UPPItem"},/obj/item/storage/toolbox/mechanical,/obj/item/device/multitool,/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/distress/start_upp)
+"ic" = (/obj/structure/rack,/obj/effect/landmark/distress_uppitem,/obj/item/storage/toolbox/mechanical,/obj/item/device/multitool,/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/distress/start_upp)
 "id" = (/turf/open/shuttle/dropship{tag = "icon-rasputin6"; icon_state = "rasputin6"},/area/shuttle/distress/start_upp)
 "ie" = (/turf/open/shuttle/dropship{icon_state = "floor8"; tag = "icon-rasputin7"},/area/shuttle/distress/start_upp)
 "if" = (/turf/open/shuttle/dropship{tag = "icon-rasputin7"; icon_state = "rasputin7"},/area/shuttle/distress/start_upp)
-"ig" = (/obj/structure/rack,/obj/item/storage/firstaid/adv,/obj/effect/landmark{name = "Distress_UPPItem"},/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/distress/start_upp)
+"ig" = (/obj/structure/rack,/obj/item/storage/firstaid/adv,/obj/effect/landmark/distress_uppitem,/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/distress/start_upp)
 "ih" = (/turf/closed/shuttle/ert{icon_state = "upp5"},/area/shuttle/distress/start_upp)
 "ii" = (/obj/machinery/light/small{dir = 1},/turf/open/shuttle{icon_state = "floor6"},/area/yautja)
 "ij" = (/obj/structure/table/reinforced,/obj/item/handcuffs,/obj/item/handcuffs,/obj/item/handcuffs,/obj/item/handcuffs,/obj/item/handcuffs,/obj/item/handcuffs,/turf/open/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
 "ik" = (/obj/structure/table/reinforced,/obj/item/legcuffs,/obj/item/legcuffs,/obj/item/legcuffs,/obj/item/legcuffs,/obj/item/legcuffs,/obj/item/legcuffs,/turf/open/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
-"il" = (/obj/effect/landmark{name = "prisonwarp"},/turf/open/floor{icon_state = "plating"; name = "plating"},/area/centcom/solitary)
+"il" = (/obj/effect/landmark/prisonwarp,/turf/open/floor{icon_state = "plating"; name = "plating"},/area/centcom/solitary)
 "im" = (/turf/open/floor{icon_state = "floorgrime"},/area/centcom/solitary)
 "in" = (/turf/open/floor/almayer{tag = "icon-test_floor4"; icon_state = "test_floor4"},/area/centcom/suppy)
 "io" = (/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/distress/start)
-"ip" = (/obj/effect/landmark{name = "Distress"},/turf/open/shuttle/dropship{tag = "icon-rasputin3"; icon_state = "rasputin3"},/area/shuttle/distress/start)
-"iq" = (/obj/structure/bed/chair/dropship/passenger,/obj/effect/landmark{name = "Distress"},/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/distress/start)
+"ip" = (/obj/effect/landmark/distress,/turf/open/shuttle/dropship{tag = "icon-rasputin3"; icon_state = "rasputin3"},/area/shuttle/distress/start)
+"iq" = (/obj/structure/bed/chair/dropship/passenger,/obj/effect/landmark/distress,/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/distress/start)
 "ir" = (/turf/open/floor/plating/plating_catwalk,/area/centcom/suppy)
 "is" = (/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/distress/start_pmc)
-"it" = (/obj/effect/landmark{name = "Distress_PMC"},/turf/open/shuttle/dropship{tag = "icon-rasputin3"; icon_state = "rasputin3"},/area/shuttle/distress/start_pmc)
-"iu" = (/obj/structure/bed/chair/dropship/passenger,/obj/effect/landmark{name = "Distress_PMC"},/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/distress/start_pmc)
+"it" = (/obj/effect/landmark/distress_pmc,/turf/open/shuttle/dropship{tag = "icon-rasputin3"; icon_state = "rasputin3"},/area/shuttle/distress/start_pmc)
+"iu" = (/obj/structure/bed/chair/dropship/passenger,/obj/effect/landmark/distress_pmc,/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/distress/start_pmc)
 "iv" = (/turf/open/floor/almayer{dir = 1; icon_regular_floor = "cargo_arrow"; icon_state = "cargo_arrow"},/area/centcom/suppy)
 "iw" = (/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/distress/start_upp)
-"ix" = (/obj/effect/landmark{name = "Distress_UPP"},/turf/open/shuttle/dropship{tag = "icon-rasputin3"; icon_state = "rasputin3"},/area/shuttle/distress/start_upp)
-"iy" = (/obj/structure/bed/chair/dropship/passenger,/obj/effect/landmark{name = "Distress_UPP"},/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/distress/start_upp)
-"iz" = (/obj/structure/bed/chair/dropship/passenger{dir = 4},/obj/effect/landmark{name = "Distress"},/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/distress/start)
-"iA" = (/obj/structure/bed/chair/dropship/passenger{dir = 8},/obj/effect/landmark{name = "Distress"},/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/distress/start)
+"ix" = (/obj/effect/landmark/distress_upp,/turf/open/shuttle/dropship{tag = "icon-rasputin3"; icon_state = "rasputin3"},/area/shuttle/distress/start_upp)
+"iy" = (/obj/structure/bed/chair/dropship/passenger,/obj/effect/landmark/distress_upp,/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/distress/start_upp)
+"iz" = (/obj/structure/bed/chair/dropship/passenger{dir = 4},/obj/effect/landmark/distress,/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/distress/start)
+"iA" = (/obj/structure/bed/chair/dropship/passenger{dir = 8},/obj/effect/landmark/distress,/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/distress/start)
 "iB" = (/turf/closed/shuttle/ert{icon_state = "wy16"},/area/shuttle/distress/start_pmc)
-"iC" = (/obj/structure/bed/chair/dropship/passenger{dir = 4},/obj/effect/landmark{name = "Distress_PMC"},/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/distress/start_pmc)
-"iD" = (/obj/structure/bed/chair/dropship/passenger{dir = 8},/obj/effect/landmark{name = "Distress_PMC"},/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/distress/start_pmc)
+"iC" = (/obj/structure/bed/chair/dropship/passenger{dir = 4},/obj/effect/landmark/distress_pmc,/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/distress/start_pmc)
+"iD" = (/obj/structure/bed/chair/dropship/passenger{dir = 8},/obj/effect/landmark/distress_pmc,/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/distress/start_pmc)
 "iE" = (/turf/closed/shuttle/ert{icon_state = "wy17"},/area/shuttle/distress/start_pmc)
 "iF" = (/turf/closed/shuttle/ert{icon_state = "upp16"},/area/shuttle/distress/start_upp)
-"iG" = (/obj/structure/bed/chair/dropship/passenger{dir = 4},/obj/effect/landmark{name = "Distress_UPP"},/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/distress/start_upp)
-"iH" = (/obj/structure/bed/chair/dropship/passenger{dir = 8},/obj/effect/landmark{name = "Distress_UPP"},/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/distress/start_upp)
+"iG" = (/obj/structure/bed/chair/dropship/passenger{dir = 4},/obj/effect/landmark/distress_upp,/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/distress/start_upp)
+"iH" = (/obj/structure/bed/chair/dropship/passenger{dir = 8},/obj/effect/landmark/distress_upp,/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/distress/start_upp)
 "iI" = (/obj/structure/morgue/sarcophagus,/turf/open/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
 "iJ" = (/obj/machinery/door/airlock/secure{name = "\improper Fore Rooms"},/turf/open/shuttle{icon_state = "floor6"},/area/yautja)
 "iK" = (/obj/structure/table/reinforced,/obj/item/XenoBio/Blood,/obj/item/XenoBio/Blood,/turf/open/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
@@ -474,19 +474,19 @@
 "jf" = (/obj/machinery/door/airlock/secure{name = "\improper Burial Room"},/turf/open/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
 "jg" = (/obj/machinery/door/airlock/secure{name = "\improper Growth and Research Chamber"},/turf/open/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
 "jh" = (/obj/machinery/door/airlock/external{name = "\improper Airlock"},/turf/open/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
-"ji" = (/obj/effect/landmark/start,/turf/open/floor,/area/start)
-"jj" = (/obj/structure/rack,/obj/effect/landmark{name = "DistressItem"},/obj/item/storage/firstaid/regular,/obj/item/storage/belt/combatLifesaver,/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/distress/start)
+"ji" = (/obj/effect/landmark/newplayer_start,/turf/open/floor,/area/start)
+"jj" = (/obj/structure/rack,/obj/effect/landmark/distress_item,/obj/item/storage/firstaid/regular,/obj/item/storage/belt/combatLifesaver,/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/distress/start)
 "jk" = (/turf/open/shuttle/dropship{icon_state = "rasputin4"; tag = "icon-rasputin7"},/area/shuttle/distress/start)
 "jl" = (/turf/open/shuttle/dropship{icon_state = "rasputin8"; tag = "icon-rasputin7"},/area/shuttle/distress/start)
 "jm" = (/turf/closed/shuttle/ert{icon_state = "wy4"},/area/shuttle/distress/start_pmc)
-"jn" = (/obj/structure/rack,/obj/effect/landmark{name = "Distress_PMCItem"},/obj/item/storage/firstaid/regular,/obj/item/storage/belt/combatLifesaver,/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/distress/start_pmc)
+"jn" = (/obj/structure/rack,/obj/effect/landmark/distress_pmcitem,/obj/item/storage/firstaid/regular,/obj/item/storage/belt/combatLifesaver,/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/distress/start_pmc)
 "jo" = (/turf/open/shuttle/dropship{icon_state = "rasputin4"; tag = "icon-rasputin7"},/area/shuttle/distress/start_pmc)
 "jp" = (/turf/open/shuttle/dropship{icon_state = "rasputin8"; tag = "icon-rasputin7"},/area/shuttle/distress/start_pmc)
 "jq" = (/turf/closed/shuttle/ert{icon_state = "wy5"},/area/shuttle/distress/start_pmc)
-"jr" = (/obj/structure/rack,/obj/effect/landmark{name = "Distress_UPPItem"},/obj/item/storage/firstaid/regular,/obj/item/storage/belt/combatLifesaver,/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/distress/start_upp)
+"jr" = (/obj/structure/rack,/obj/effect/landmark/distress_uppitem,/obj/item/storage/firstaid/regular,/obj/item/storage/belt/combatLifesaver,/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/distress/start_upp)
 "js" = (/turf/open/shuttle/dropship{icon_state = "rasputin4"; tag = "icon-rasputin7"},/area/shuttle/distress/start_upp)
 "jt" = (/turf/open/shuttle/dropship{icon_state = "rasputin8"; tag = "icon-rasputin7"},/area/shuttle/distress/start_upp)
-"ju" = (/obj/structure/rack,/obj/item/storage/firstaid/regular,/obj/item/storage/belt/combatLifesaver,/obj/effect/landmark{name = "Distress_UPPItem"},/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/distress/start_upp)
+"ju" = (/obj/structure/rack,/obj/item/storage/firstaid/regular,/obj/item/storage/belt/combatLifesaver,/obj/effect/landmark/distress_uppitem,/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/distress/start_upp)
 "jv" = (/obj/effect/decal/warning_stripes{tag = "icon-W"; icon_state = "W"},/turf/open/floor/plating/almayer,/area/shuttle/distress/start_big)
 "jw" = (/obj/machinery/door/airlock/secure{name = "Navigator's Room"},/turf/open/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
 "jx" = (/obj/effect/alien/egg,/obj/machinery/light/small,/turf/open/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
@@ -781,13 +781,13 @@
 "pa" = (/obj/machinery/door_control{id = "CC_BigshuttleHallway"; name = "Big Shuttle Lockdown"; pixel_y = -32},/turf/open/floor/almayer,/area/centcom)
 "pb" = (/obj/machinery/hologram/holopad,/obj/structure/prop/almayer/valmoric,/turf/open/floor/carpet,/area/centcom)
 "pc" = (/turf/closed/wall/almayer/outer,/area/deathmatch)
-"pd" = (/obj/effect/landmark{name = "deathmatch"},/turf/open/gm/grass,/area/deathmatch)
-"pe" = (/obj/effect/landmark{name = "deathmatch"},/turf/open/gm/river,/area/deathmatch)
-"pf" = (/obj/structure/bed/chair/dropship/pilot{icon_state = "pilot_chair"; dir = 1},/obj/effect/landmark{name = "deathmatch"},/turf/open/shuttle/brig,/area/deathmatch)
-"pg" = (/obj/structure/bed/chair/dropship/passenger{icon_state = "shuttle_chair"; dir = 8},/obj/machinery/light{icon_state = "tube1"; dir = 4},/obj/effect/landmark{name = "deathmatch"},/turf/open/shuttle/brig,/area/deathmatch)
-"ph" = (/obj/effect/landmark{name = "deathmatch"},/turf/open/floor,/area/deathmatch)
-"pi" = (/obj/structure/bed/chair/dropship/passenger{icon_state = "shuttle_chair"; dir = 8},/obj/effect/landmark{name = "deathmatch"},/turf/open/shuttle/brig,/area/deathmatch)
-"pj" = (/obj/structure/bed/chair/dropship/passenger{icon_state = "shuttle_chair"; dir = 4},/obj/effect/landmark{name = "deathmatch"},/turf/open/shuttle/brig,/area/deathmatch)
+"pd" = (/obj/effect/landmark/deathmatch,/turf/open/gm/grass,/area/deathmatch)
+"pe" = (/obj/effect/landmark/deathmatch,/turf/open/gm/river,/area/deathmatch)
+"pf" = (/obj/structure/bed/chair/dropship/pilot{icon_state = "pilot_chair"; dir = 1},/obj/effect/landmark/deathmatch,/turf/open/shuttle/brig,/area/deathmatch)
+"pg" = (/obj/structure/bed/chair/dropship/passenger{icon_state = "shuttle_chair"; dir = 8},/obj/machinery/light{icon_state = "tube1"; dir = 4},/obj/effect/landmark/deathmatch,/turf/open/shuttle/brig,/area/deathmatch)
+"ph" = (/obj/effect/landmark/deathmatch,/turf/open/floor,/area/deathmatch)
+"pi" = (/obj/structure/bed/chair/dropship/passenger{icon_state = "shuttle_chair"; dir = 8},/obj/effect/landmark/deathmatch,/turf/open/shuttle/brig,/area/deathmatch)
+"pj" = (/obj/structure/bed/chair/dropship/passenger{icon_state = "shuttle_chair"; dir = 4},/obj/effect/landmark/deathmatch,/turf/open/shuttle/brig,/area/deathmatch)
 "pk" = (/obj/effect/decal/cleanable/blood,/turf/open/shuttle/brig,/area/deathmatch)
 "pl" = (/obj/effect/decal/cleanable/blood/drip{icon_state = "4"},/turf/open/shuttle/brig,/area/deathmatch)
 "pm" = (/obj/effect/decal/cleanable/blood/drip{icon_state = "4"},/turf/open/gm/grass,/area/deathmatch)
@@ -798,7 +798,7 @@
 "pr" = (/obj/effect/decal/cleanable/blood/splatter,/turf/open/gm/dirtgrassborder{dir = 8},/area/deathmatch)
 "ps" = (/obj/structure/grille{density = 0; icon_state = "brokengrille"},/obj/item/shard,/turf/open/floor{icon_state = "plating"; name = "plating"},/area/deathmatch)
 "pt" = (/turf/open/gm/grass,/area/deathmatch)
-"pu" = (/turf/closed/gm/dense,/area/deathmatch)
+"pu" = (/obj/structure/largecrate/guns/russian,/obj/item/tool/crowbar,/turf/open/gm/grass,/area/deathmatch)
 "pv" = (/obj/structure/flora/ausbushes/sparsegrass,/turf/open/gm/grass,/area/deathmatch)
 "pw" = (/turf/open/gm/dirtgrassborder{dir = 4},/area/deathmatch)
 "px" = (/turf/open/gm/dirt,/area/deathmatch)
@@ -818,7 +818,7 @@
 "pL" = (/obj/structure/fence,/turf/open/gm/grass,/area/deathmatch)
 "pM" = (/obj/structure/fence,/turf/open/gm/dirtgrassborder{dir = 4},/area/deathmatch)
 "pN" = (/obj/structure/closet/medical_wall{pixel_y = 32},/turf/open/floor{icon_state = "panelscorched"},/area/deathmatch)
-"pO" = (/obj/structure/fence,/turf/open/gm/dirtgrassborder{dir = 8},/area/deathmatch)
+"pO" = (/obj/structure/largecrate/guns/merc,/obj/item/tool/crowbar,/turf/open/gm/grass,/area/deathmatch)
 "pP" = (/obj/item/weapon/gun/shotgun/pump,/turf/open/shuttle/brig,/area/deathmatch)
 "pQ" = (/obj/structure/bed/chair/dropship/passenger,/turf/open/shuttle/brig,/area/deathmatch)
 "pR" = (/obj/machinery/door/airlock/almayer/generic,/turf/open/shuttle/brig,/area/deathmatch)
@@ -896,49 +896,56 @@
 "rl" = (/obj/structure/rack,/obj/item/weapon/gun/rifle/m16,/obj/item/ammo_magazine/rifle/m16,/obj/item/ammo_magazine/rifle/m16,/turf/open/floor,/area/deathmatch)
 "rm" = (/obj/item/weapon/gun/rifle/mar40,/turf/open/shuttle/brig,/area/deathmatch)
 "rn" = (/obj/structure/table,/obj/machinery/light,/obj/item/weapon/gun/flare,/turf/open/floor,/area/deathmatch)
-"ro" = (/obj/structure/window/shuttle,/obj/structure/grille{density = 0; icon_state = "brokengrille"},/turf/open/shuttle/brig,/area/deathmatch)
+"ro" = (/obj/effect/landmark/deathmatch,/turf/open/shuttle/brig,/area/deathmatch)
+"rp" = (/obj/structure/flora/tree/jungle,/turf/open/gm/grass,/area/deathmatch)
+"rq" = (/obj/structure/largecrate/supply/weapons/flamers,/turf/open/shuttle/brig,/area/deathmatch)
+"rr" = (/obj/structure/grille{density = 0; icon_state = "brokengrille"},/turf/open/shuttle/brig,/area/deathmatch)
+"rs" = (/obj/structure/largecrate/guns,/obj/item/tool/crowbar,/turf/open/gm/grass,/area/deathmatch)
+"rt" = (/obj/item/weapon/gun/revolver/mateba/admiral,/turf/open/gm/river,/area/deathmatch)
+"ru" = (/obj/item/weapon/twohanded/glaive,/turf/open/gm/river,/area/deathmatch)
+"rv" = (/obj/item/weapon/baseballbat/metal,/turf/open/gm/river,/area/deathmatch)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaapcpcpcpcpcpcpcpcpcpcpcpcpcpcpcpcpcpcpcpcpcpcpcpcpcpcpcpcpcpcpcpcpcpcpcpcpcpcpcpcpcpcpcpcpcaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaapcptptptptptptptptptptptptptptptptpLpwpxpypzpzpzpApxpBpLptptpuptptptptptptptpuptptptptptpcaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaagYgZhaaaaaaaaaaaaaaaaaaaaaaaaahbhchdaaaaaaaaaaaaaaaaaaaaaaaahehfhgaaaaaaaaaaaaaaaapcptpuptpupuptptptpuptptptpdpuptptpLpMpxpypzpzpzpApxpOpLptptptptpuptptptptptptpvptptpdptpcaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadXdXdXdXdXgYhrhshthuhrhadXdYdYdYdYdYdYdXhbhvhwhxhyhvhddXdYdYdYdYdYdYdXhehzhAhBhChzhgdXaaaaaaaaaapcptptpdptpuptptptpuptptpuptptptpvptpwpxpypzpepzpApxpBptptptptpCpCpDpCpDpCpCptptptptptptpcaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadXeoeoeodXhNhOhPhQhRhShTdXeoeoeoeoeoeodXhUhVhWhXhYhZiadXeoeoeoeoeoeodXibicidieifigihdXaaaaaaaaaapcptptptptpupEptptptptptptptptptptptpwpxpypzpzpzpApxpBptptptpCpCpGpHpCpkpIpCpCptptpupuptpcaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaepepepepepepepepepepdXeoeoeodXevioipiqipioevdXeoeoeoeoeoeodXewisitiuitisewdXeoeoeoeoeoeodXexiwixiyixiwexdXaaaaaaaaaapcptptptptptptptptptpuptptptptptptptpwpxpypzpzpzpApxpBptptpEpCpGpHpHpfpHpHpIpCptptptpuptpcaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaepeEeyeGeFeIeHeUeTeVdXeoeoeoeWhNizipiqipiAhTdXeoeXeYeYeZeodXiBiCitiuitiDiEdXeoeXeYeYeZeodXiFiGixiyixiHihdXaaaaaaaaaapcptpuptptptptqBptpvptptptptpuptptpLpMpxpypzpzpzpApxpOpLptptpCpCpCpHdWpHpCpCpCptptptptptpcaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaepfafafafbfafafafbfadXeoeoeoeWhNizipiqipiAhTdXeoeoeYeYeoeodXiSiCitiuitiDiTdXeoeoeYeYeoeodXibiGixiyixiHihdXaaaaaaaaaapcpupuptptptptptptptptptptptptptpLpLpwpxpypzpzpFpApxpBpLptptpCpQpCqmpCqmpCpQpCpdptptptptpcaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaepfafafafafafafafafafdeoeoeoeWhNizipiqipiAhTdXeoeXeYeYeZeodXjciCitiuitiDjddXeoeXeYeYeZeodXibiGixiyixiHihdXaaaaaaaaaapcptptptpSpSpSpSpSpSpSpSptptptpLpLpTpUpxpypzpzpzpApxpBpLpvptpRpHpNpHpCpHpVpHpRptptptqBptpcaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaapcpuptptptptptptptptptptptptptptptpLpwpxpypzpzpzpApxpBpLptptptptptptptptptptptptptptptpOpcaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaagYgZhaaaaaaaaaaaaaaaaaaaaaaaaahbhchdaaaaaaaaaaaaaaaaaaaaaaaahehfhgaaaaaaaaaaaaaaaapcptptptptptptptptptptptptpdptptptpLpwpxpypzpzpzpApxpBpLptptptptptptptptptptptpvptptpdptpcaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadXdXdXdXdXgYhrhshthuhrhadXdYdYdYdYdYdYdXhbhvhwhxhyhvhddXdYdYdYdYdYdYdXhehzhAhBhChzhgdXaaaaaaaaaapcptptpdptptptptptptptptptptptptpvptpwpxpypzpepzpApxpBptptptptpCpCpspCpDpCpCptptptptptptpcaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadXeoeoeodXhNhOhPhQhRhShTdXeoeoeoeoeoeodXhUhVhWhXhYhZiadXeoeoeoeoeoeodXibicidieifigihdXaaaaaaaaaapcptptptptptpEptqBptptptptptptptptptpwpxpypzpzpzpApxpBptptptpCpCpGpHpCpkpIpCpCptqBptptptpcaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaepepepepepepepepepepdXeoeoeodXevioipiqipioevdXeoeoeoeoeoeodXewisitiuitisewdXeoeoeoeoeoeodXexiwixiyixiwexdXaaaaaaaaaapcptptptptptptptptptptptptqBptptptptpwpxpypzpzpzpApxpBptptpEpCpGpHpHpfpHpHpIpCptptptptptpcaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaepeEeyeGeFeIeHeUeTeVdXeoeoeoeWhNizipiqipiAhTdXeoeXeYeYeZeodXiBiCitiuitiDiEdXeoeXeYeYeZeodXiFiGixiyixiHihdXaaaaaaaaaapcptptptptptptqBptpvptptptptptptptpLpMpxpypzpzpzpApxpBpLptptpCpCpCpHdWpHpCpCpCptptptptptpcaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaepfafafafbfafafafbfadXeoeoeoeWhNizipiqipiAhTdXeoeoeYeYeoeodXiSiCitiuitiDiTdXeoeoeYeYeoeodXibiGixiyixiHihdXaaaaaaaaaapcptptptptptptptptptptptptptptptpLpLpwpxpypzpzpFpApxpBpLptptpCpQpCqmpCqmpCpQpCpdptptptptpcaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaepfafafafafafafafafafdeoeoeoeWhNizipiqipiAhTdXeoeXeYeYeZeodXjciCitiuitiDjddXeoeXeYeYeZeodXibiGixiyixiHihdXaaaaaaaaaapcptptpdpSpSpSpSpSpSpSpSptptptpLpLpTpUpxpypzpzpzpApxpBpLpvptpRpHpNpHpCpHpVpHpRptptptqBptpcaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaepfafafafafafafafafadXeoeoeodXevioipiqipioevdXeoeoeYeYeoeodXewisitiuitisewdXeoeoeYeYeoeodXexiwixiyixiwexdXaaaaaaaaaapcptptpSpSpWpJqppYpXpZpSpSptptpLpTpUpxpxpypzpzpzpApxpBpLptptpRpHpHpgpCqdpHpPpRptptptptptpcaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaepfefefefefffefefefedXfgeoeodXhNjjjkhQjljjhTdXeoeXeYeYeZeodXjmjnjohXjpjnjqdXeoeXeYeYeZeodXibjrjsiejtjuihdXaaaaaaaaaapcptptpSqeqeqeqeqeqeqeqepSptptpLpwpxpxpxpypzpzpzpApxpBpLptptpCpHpkpIpCpGpHpHpCptpuptptptpcaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaepfhfhfhfhfhfhfhfhfhdXeoeoeodXjyjziojAiojBjCdXeoeoeYeYeoeodXjDjEisjFisjGjHdXeoeoeYeYeoeodXjIjJiwjKiwjLjMdXaaaaaaaaaapcptptpSqeqfqeqfqeqfqgqepSptptpLpwpxqhqiqjpzpzpzpApxpOpLptptpCpGpHpHqkpHqlpIpCptptptptptpcaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaepfhfhfifhfjfhfkfhfhdXeoeoeodXjNhNiojAiohTjOdXeoeXeYeYeZeodXjPjmisjFisjqjQdXeoeXeYeYeZeodXjRibiwjKiwihjSdXaaaaaaaaaapcptptqtqeqeqeqeqephqeqeqtptptpLpwpxpypzpzpzpzpzpApxpBptptptpCpCqnqopHplpHpCpCptptptpuptpcaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaepfhfhfhfhfhfhfhfhfhdXeoeoeodXjThNiojAiohTjUdXeoeoeoeoeoeodXjVjmisjFisjqjWdXeoeoeoeoeoeodXjXibiwjKiwihjYdXaaaaaaaaaapcptptpSqzqeqfqeqfqeqfqGpSptptpLpwpxpypzpzpeqqqrqspxpOpLptptptpCqmpCqxqopHqoqoptptptptptpcaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaepfmflflflfofnfsfrftdXeoeoeodXkbkcfukefukfkgdXeoeoeoeoeoeodXkhkifvkkfvklkmdXeoeoeoeoeoeodXknkofwkqfwkrksdXaaaaaaaaaapcptptqtqeqeqeqeqeqeqeqeqtptptpLpMpxpypzpzpzpApxpxpxpBpLptptptpCpHqlpHqxpHqoptptptptptptpcaa
-aaaaaaaaaaaaaafxfxfxfxfxfxfxfxfxfxfxfxfxfxfxfxfxfxfxfxfxfxfxfxfxfxfxfxfxfxfxfxfxfxdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXeoeoeodXdXdXfydXfydXdXdXdXdXfzeodXdXdXdXdXfAdXfAdXdXdXdXdXfzeodXdXdXdXdXfBdXfBdXdXdXaaaaaaaaaapcpvptpSqeqfqeqfqeqfqeqepSptptptpwpxpypzpzpzpApxpxquqvpLptpuptqoqoqoqoptqoqoptptptptpuptpcaa
-aaaaaaaaaaaaaafxfCfCfCfCfCfCfCfCfCfCfCfCfCfCfCfCfCfCfCfCfDfFfFfFfFfFfFfFfFfFfFfFfFoefZeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeofHfXfGfIfGfGfJeoeoeoeoeoeoeoeofKghfLfMfLfLfNeoeoeoeoeoeoeoeofPkufOfQfOfOfRdXaaaaaaaaaapcptptpSqeqgqeqeqeqeqeqepSptptpLpMpxpypzpzpzpApxquqvpLpLptpuptptptptpmqoqoptptptptptptptpcaa
-aaaaaaaaaaaaaafxfCfCfCfCfCfCfCfCfCfCfCfCfCfCfCfCfCfCfCfCfDfFfWfWfWfWfWfWfWfWfWfWfFoeeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeodXaaaaaaaaaapcptptpSqeqeqeqwqOqeqeqepSptptpLpwpxpypzpzpzpApxpBpLpLptptptptpuptqoptptptptptpupdptptptpcaa
-aaaaaaaaaaaaaafxfCfCfCfCfCfCfCfCfCfCnhiWniniiWnhfCfCfCfCfDfFfFfFfFfFfFfFfFfFfFfFfFoYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYgceoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeodXaaaaaaaaaapcptptpSpSqUqepSpSqUqepSpSptpvpLpwpxpypzpzpzpApxpBpLptptptpdptptpupnptqyptptptptptptptptpcaa
-aaaaaaaaaaaaaafxfCfCfCfCfCfCiUiWiWiUiUjejvktnjiUiUiUiUiUiUgdgdgdgdgdgdgdgdgdgdgdgdgfgegegegegegegegegfgggfgegegegegegegedXdXdXdXdXnreokddXdXdXdXdXdXdXdXdXdXdXdXdXdXdXgigigigigigigigigigigigigidXdXdXaaaaaaaaaapcptpEptpSqeqeqeqIqeqepSptptptpLpwpxpypzpzpzpApxpBpLptpuptpuptptptptptptptqBptptptpEptpupcaa
-aaaaaaaaaaaaaafxfCfCfCfCfCiUiUkykykziUkAjvktkBiUkCkDkEkFiUfCfCfCfCfCfCfCfCfCfCfCfCgfgjgjgjgjgjgjgjgjgjgjgjgjgjgjgjgjgjgjdXnsnsnsdXgweogvdXgmeogmdXgkgngngngngngngldXgigigigigigigigigigigigigigigidXaaaaaaaaaaaapcptptptqAqEqeqeqeqPraqAptpdptpLpwpxpypzpzpzpApxpBpLptptptptptptpoptptqoqoqoptptptptptpupcaa
-aaaaaaaaaaaaaafxfCfCfCfCfCiWkGkHkHkIiUkJjvktkKkLkKkHkHkMiUiUiWiWiUiUfCfCfCfCfCfCfCgfgjgogogogjgqgpgpgjgjgjgjgjgjgjgjgjgjntnDnxnMnLgweogvdXgmgsgmdXgweoeoeoeoeoeogvdXgigxgigxgxgxgxgigxgxgxgxgigxgigyaaaaaaaaaaaapcptptpdqArbqeqCqeqeqDqAptqyptpLpwpxpypzpzpzpApxpBpLptpvptpuptptptqoqoqoqoqopCptptptptptpcaa
-aaaaaaaaaaaaaafxfCfCfCfCfCiUkNkOkPkQiUiWkRkRiWiUkSkKkTkUiUkVkWkXkYiWfCfCfCfCfCfCfCgfgjgjgjgjgjgjgjgjgjgjgjgjgjgjgjgjgjgjntnNnMnNnLgweogvdXgmeogmdXgweoeoeoeoeoeogvdXgigxgigigigigigigigigigigigxgigyaaaaaaaaaaaapcptqBptqAppqeqephqPraqAptptptpLpMpxpypzpzpzpApxpOpLptptptpqptptqoqoqoqoqxpHpCptptptptptpcaa
-aaaaaaaaaaaaaafxfCfCfCiUiWiUiUiUkZiUiUlajvktlbiUiUlciUiUiUldlekXlfiUiUiWiUiUfCfCfCgfgjgWgWgWgjgqgpgpgjirininivininirgjgjntnVnNnYnLgweogvdXgmeogmdXgweonZeokdiViVkjdXgigxgimRkpmTmSmUkpmTmSmVgigxgigyaaaaaaaaaaaapcptptptqArcqeqeqeqerdqAptpuptptpwpxpypzpzpzpApxpBptptptpuptptptpCqnqFpHpHpHpCptptptptptpcaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaepfefefefefffefefefedXfgeoeodXhNjjjkhQjljjhTdXeoeXeYeYeZeodXjmjnjohXjpjnjqdXeoeXeYeYeZeodXibjrjsiejtjuihdXaaaaaaaaaapcptptpSqeqeqeqeqeqeqeqepSptptpLpwpxpxpxpypzpzpzpApxpBpLptptpCpHpkpIpCpGpHpHpCptptptptptpcaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaepfhfhfhfhfhfhfhfhfhdXeoeoeodXjyjziojAiojBjCdXeoeoeYeYeoeodXjDjEisjFisjGjHdXeoeoeYeYeoeodXjIjJiwjKiwjLjMdXaaaaaaaaaapcptptpSqeqfqeqfqeqfqgqepSptptpLpwpxqhqiqjpzpzpzpApxpBptptptpCpGpHpHqkroqlpIpCptptptptptpcaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaepfhfhfifhfjfhfkfhfhdXeoeoeodXjNhNiojAiohTjOdXeoeXeYeYeZeodXjPjmisjFisjqjQdXeoeXeYeYeZeodXjRibiwjKiwihjSdXaaaaaaaaaapcptptqtqeqeqeqeqephqeqeqtptptpLpwpxpypzpzpzpzpzpApxpBptptptpCpCqnqopHplpHpCpCptptptptptpcaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaepfhfhfhfhfhfhfhfhfhdXeoeoeodXjThNiojAiohTjUdXeoeoeoeoeoeodXjVjmisjFisjqjWdXeoeoeoeoeoeodXjXibiwjKiwihjYdXaaaaaaaaaapcptptpSqzqeqfqeqfqeqfqGpSptptpLpwpxpypzpzpeqqqrqspxpBpLptptptpCqmpCqxqopHqoqoptptptptptpcaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaepfmflflflfofnfsfrftdXeoeoeodXkbkcfukefukfkgdXeoeoeoeoeoeodXkhkifvkkfvklkmdXeoeoeoeoeoeodXknkofwkqfwkrksdXaaaaaaaaaapcptptqtqeqeqeqeqeqeqeqeqtptptptpwpxpypzpzpzpApxpxpxpBpLptptptpCpHqlpHqxpHqoptptqBptptptpcaa
+aaaaaaaaaaaaaafxfxfxfxfxfxfxfxfxfxfxfxfxfxfxfxfxfxfxfxfxfxfxfxfxfxfxfxfxfxfxfxfxfxdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXeoeoeodXdXdXfydXfydXdXdXdXdXfzeodXdXdXdXdXfAdXfAdXdXdXdXdXfzeodXdXdXdXdXfBdXfBdXdXdXaaaaaaaaaapcpvptpSqeqfqeqfqeqfqeqepSptptptpwpxpypzpzpzpApxpxquqvpLptptptqoqoqoqoptqoqoptptptptptptpcaa
+aaaaaaaaaaaaaafxfCfCfCfCfCfCfCfCfCfCfCfCfCfCfCfCfCfCfCfCfDfFfFfFfFfFfFfFfFfFfFfFfFoefZeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeofHfXfGfIfGfGfJeoeoeoeoeoeoeoeofKghfLfMfLfLfNeoeoeoeoeoeoeoeofPkufOfQfOfOfRdXaaaaaaaaaapcptptpSqeqgqeqeqeqeqeqepSptptpLpwpxpypzrtpzpApxquqvpLpLptptptptptptpmqoqoptptptptptptptpcaa
+aaaaaaaaaaaaaafxfCfCfCfCfCfCfCfCfCfCfCfCfCfCfCfCfCfCfCfCfDfFfWfWfWfWfWfWfWfWfWfWfFoeeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeodXaaaaaaaaaapcptptpSphqeqeqwqOqeqeqepSptptpLpwpxpypzpzpzpApxpBpLpLptptptptptptqoptptptptptptpdptptptpcaa
+aaaaaaaaaaaaaafxfCfCfCfCfCfCfCfCfCfCnhiWniniiWnhfCfCfCfCfDfFfFfFfFfFfFfFfFfFfFfFfFoYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYgceoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeodXaaaaaaaaaapcptptpSpSqUqepSpSqUqepSpSptpvpLpwpxpypzpzpzpApxpBpLptptptpdptptptpnptqyptptptptptptptptpcaa
+aaaaaaaaaaaaaafxfCfCfCfCfCfCiUiWiWiUiUjejvktnjiUiUiUiUiUiUgdgdgdgdgdgdgdgdgdgdgdgdgfgegegegegegegegegfgggfgegegegegegegedXdXdXdXdXnreokddXdXdXdXdXdXdXdXdXdXdXdXdXdXdXgigigigigigigigigigigigigidXdXdXaaaaaaaaaapcptpEptpSqephqeqIqeqepSptptptpLpwpxpypzpzpzpApxpBpLptptptptptptptptptptptqBptptptpEptptpcaa
+aaaaaaaaaaaaaafxfCfCfCfCfCiUiUkykykziUkAjvktkBiUkCkDkEkFiUfCfCfCfCfCfCfCfCfCfCfCfCgfgjgjgjgjgjgjgjgjgjgjgjgjgjgjgjgjgjgjdXnsnsnsdXgweogvdXgmeogmdXgkgngngngngngngldXgigigigigigigigigigigigigigigidXaaaaaaaaaaaapcptptptqAqEqeqeqeqPraqAptpdptpLpwpxpypzpepzpApxpBpLptptptptptptpoptptqoqoqoptptptptptptpcaa
+aaaaaaaaaaaaaafxfCfCfCfCfCiWkGkHkHkIiUkJjvktkKkLkKkHkHkMiUiUiWiWiUiUfCfCfCfCfCfCfCgfgjgogogogjgqgpgpgjgjgjgjgjgjgjgjgjgjntnDnxnMnLgweogvdXgmgsgmdXgweoeoeoeoeoeogvdXgigxgigxgxgxgxgigxgxgxgxgigxgigyaaaaaaaaaaaapcptptpdqArbqeqCqeqeqDqAptqyptpLpwpxpypzpzpzpApxpBpLptpvrpptptptptqoqoqoqoqopCptptptptptpcaa
+aaaaaaaaaaaaaafxfCfCfCfCfCiUkNkOkPkQiUiWkRkRiWiUkSkKkTkUiUkVkWkXkYiWfCfCfCfCfCfCfCgfgjgjgjgjgjgjgjgjgjgjgjgjgjgjgjgjgjgjntnNnMnNnLgweogvdXgmeogmdXgweoeoeoeoeoeogvdXgigxgigigigigigigigigigigigxgigyaaaaaaaaaaaapcptqBptqAppqeqephqPraqAptptptpLpwpxpypzpzpzpApxpBpLptptptpqptptqoqoqoqoqxpHpCptqBptptptpcaa
+aaaaaaaaaaaaaafxfCfCfCiUiWiUiUiUkZiUiUlajvktlbiUiUlciUiUiUldlekXlfiUiUiWiUiUfCfCfCgfgjgWgWgWgjgqgpgpgjirininivininirgjgjntnVnNnYnLgweogvdXgmeogmdXgweonZeokdiViVkjdXgigxgimRkpmTmSmUkpmTmSmVgigxgigyaaaaaaaaaaaapcptptptqArcqeqeqeqerdqAptptptptpwpxpypzrupzpApxpBptptptptptptptpCqnqFpHrqpHpCptptptptptpcaa
 aaaaaaaaaaaaaafxfCfCiUiUlglhiUliljlklllmjvktlilllkljlklniUlolpkXlqiUlrlsltiUiUfCfCgfgjgjgjgjgjgjgjgjgjinejejejejejingjgjntnNnYoLnLgweogvdXdXmWdXdXgwmXmZmYgvdXdXdXdXgigxginbnandncnenandncnfgigxgigyaaaaaaaaaaaapcptptptpSqeqeqMqHqeqepSptptptptpwpxpypzpzpzpApxpBptpmptptptpvpCpCqmpCqmpCqmpCpCptptptptpcaa
-aaaaaaaaaaaaaafxfCfCiWlulvlwiUlwlxlylylylzlAlylylylBlClDiUiUiUlEiUiUlFlGlHlIiWfCfCgfgjngngnggjgqgpgpgjinejelejelejingjgjntnYoMoNnLgweonkgngneonldXgwmXnmmYgvdXnonndXgigiginbnenenenenenenenfgigigigyaaaaaaaaaaaapcpuptpSpSqUqepSpSqUqepSpSptptptpwpxpypzpzpzpApxprptptqBptptptpCpGpHpHqJpHpHpIpCptpuptptpcaa
-aaaaaaaaaaaaaafxfCfCiUlJlKlLlMlLktlklklkjvktlklklklNlkjvlOlPlQlRlSlOlLlTlUlViWfCfCgfgjgjgjgjgjgjgjgjgjnpejejejejejnqgjgjntoNnBnVnLgwnZeoeoeoeoeonueomXnvmYeonwnyoOdXgigiginbnenznepbnAnenenfgigigigyaaaaaaaaaaaapcptptpSpXqeqereqbqeqeqXpSptptpLpMpxpypzpzpzpApxpOpLptptptptptpspGqlpIpCpGpHpIpKptptptptpcaa
-aaaaaaaaaaaaaafxfCfCiWlWlXlYiUlYlZlylylylzlAlylylymalymbiUiUiWmciWiUmdmemfmgiWfCfCgfgjnCnCnCgjgqgpgpgjinejelejelejingjgjntoNoPoMnLgweokdiViVeonldXgwmXnEmYgvdXnonFdXgigxginbnenenenenenenenfgigxgigyaaaaaaaaaaaapcpEptpSqVqephqeqeqeqgqWpSptptpLpwpxpypzpzpzpApxpBpLptptpuptptpCrfpHpipCpGqapHpCptptptptpcaa
-aaaaaaaaaaaaaafxfCfCiUiUmhmiiUmjljlkmklijvktlimklkljlklniUmlmmmnmoiUmpmqmriUiUfCfCgfgjgjgjgjgjgjgjgjgjinejejejejejingjgjntnVoQnMnLgweogvdXdXnGdXdXgwmXnHmYgvdXdXdXdXgigxginbnandncnenandncnfgigxgigyaaaaaaaaaaaapcptptpSqeqeqKqLqKrgqeqepSpvptpLpwpxpyrhpzpzpApxpBpLptpupuptptpRpHpHqcpCqdpHpHpRptptptpupcaa
-aaaaaaaaaaaaaafxfCfCfCiUiWiUiUiUmsiUiUlajvktlbiUiUmtiUiUiUmumvmwmxiUiUiWiUiUfCfCfCgfgjnInInIgjgqgpgpgjnJininnKininirgjgjntnNnNoPnLgweogvdXnOeonOdXgweonZeonkgngngldXgigxginQnPnSnRnTnPnSnRnUgigxgigyaaaaaaaaaaaapcptptqtqeqeriqeqeqQqeqeqtptptpLpwpxpypzpzpzpApxpBpLptptptptptpRqnpHpIpCpGpHpHpRptptptptpcaa
-aaaaaaaaaaaaaafxfCfCfCfCfCiUmyjvktmziUiWkRkRiWiUmAlNiUmBiUmlmmmnmCiUfCfCfCoRobobobgfgjgjgjgjgjgjgjgjgjgjgjgjgjgjgjgjgjgjntoPoQnNnLgweogvdXnOeonOdXgweoeoeoeoeoeogvdXgigxgigigigigigigigigigigigxgigyaaaaaaaaaaaapcptptpSqzqeqRqeqerjqeqGpSptptpLpwpxpypzpzpzpApxpBpLpvptptpdptpCpHpHpIpCpjpHpHpCptptptptpcaa
-aaaaaaaaaaaaaafxfCfCfCfCfCiWmymDmEmFiUmGjvktliiUmHmImJmKiUiUiUiUiUiUfCfCfCocfFfFfFgfgjnWnWnWgjgqgpgpgjgjgjgjgjgjgjgjgjgjntnMoSnxnLgweogvdXnOgsnOdXgweoeoeoeoeoeogvdXgigigigxgxgxnXgigxgxgxgxgigigigyaaaaaaaaaaaapcptptqtqeqerkqKqSrlqeqeqtptptpLpMpxpypepzpzpApxpOpLptptptpuptpCpGpHpHqkpHpHpIpCptptptptpcaa
+aaaaaaaaaaaaaafxfCfCiWlulvlwiUlwlxlylylylzlAlylylylBlClDiUiUiUlEiUiUlFlGlHlIiWfCfCgfgjngngnggjgqgpgpgjinejelejelejingjgjntnYoMoNnLgweonkgngneonldXgwmXnmmYgvdXnonndXgigiginbnenenenenenenenfgigigigyaaaaaaaaaaaapcptptpSpSqUqepSpSqUqepSpSptptptpwpxpypzpzpzpApxprptptqBptpdptpCpGpHpHqJpHpHpIpCptptptptpcaa
+aaaaaaaaaaaaaafxfCfCiUlJlKlLlMlLktlklklkjvktlklklklNlkjvlOlPlQlRlSlOlLlTlUlViWfCfCgfgjgjgjgjgjgjgjgjgjnpejejejejejnqgjgjntoNnBnVnLgwnZeoeoeoeoeonueomXnvmYeonwnyoOdXgigiginbnenznepbnAnenenfgigigigyaaaaaaaaaaaapcptptpSpXqeqereqbqeqeqXpSptptpLpwpxpypzpzpzpApxpBpLptptptptptpspGqlpIpCpGpHpIpKptptptptpcaa
+aaaaaaaaaaaaaafxfCfCiWlWlXlYiUlYlZlylylylzlAlylylymalymbiUiUiWmciWiUmdmemfmgiWfCfCgfgjnCnCnCgjgqgpgpgjinejelejelejingjgjntoNoPoMnLgweokdiViVeonldXgwmXnEmYgvdXnonFdXgigxginbnenenenenenenenfgigxgigyaaaaaaaaaaaapcpEptpSqVqephqeqeqeqgqWpSptptpLpwpxpypzpzpzpApxpBpLptptptptptpCrfpHpipCpGqapHpCptptptptpcaa
+aaaaaaaaaaaaaafxfCfCiUiUmhmiiUmjljlkmklijvktlimklkljlklniUmlmmmnmoiUmpmqmriUiUfCfCgfgjgjgjgjgjgjgjgjgjinejejejejejingjgjntnVoQnMnLgweogvdXdXnGdXdXgwmXnHmYgvdXdXdXdXgigxginbnandncnenandncnfgigxgigyaaaaaaaaaaaapcptptpSqeqeqKqLqKrgqeqepSpvptpLpwpxpyrhpzpzpApxpBpLptptptptptpRpHpHqcpCqdpHpHpRptptptptpcaa
+aaaaaaaaaaaaaafxfCfCfCiUiWiUiUiUmsiUiUlajvktlbiUiUmtiUiUiUmumvmwmxiUiUiWiUiUfCfCfCgfgjnInInIgjgqgpgpgjnJininnKininirgjgjntnNnNoPnLgweogvdXnOeonOdXgweonZeonkgngngldXgigxginQnPnSnRnTnPnSnRnUgigxgigyaaaaaaaaaaaapcptptqtqeqeriqeqeqQqeqeqtptptpLpwpxpypzpzpzpApxpBpLptqBptptptpRqnpHpIpCpGpHpHpRptptptptpcaa
+aaaaaaaaaaaaaafxfCfCfCfCfCiUmyjvktmziUiWkRkRiWiUmAlNiUmBiUmlmmmnmCiUfCfCfCoRobobobgfgjgjgjgjgjgjgjgjgjgjgjgjgjgjgjgjgjgjntoPoQnNnLgweogvdXnOeonOdXgweoeoeoeoeoeogvdXgigxgigigigigigigigigigigigxgigyaaaaaaaaaaaapcptptpSqzqeqRqephrjqeqGpSptptpLpwpxpypzpzpzpApxpBpLpvptptpdptpCpHpHpIpCpjpHpHpCptptptptpcaa
+aaaaaaaaaaaaaafxfCfCfCfCfCiWmymDmEmFiUmGjvktliiUmHmImJmKiUiUiUiUiUiUfCfCfCocfFfFfFgfgjnWnWnWgjgqgpgpgjgjgjgjgjgjgjgjgjgjntnMoSnxnLgweogvdXnOgsnOdXgweoeoeoeoeoeogvdXgigigigxgxgxnXgigxgxgxgxgigigigyaaaaaaaaaaaapcptptqtqeqerkqKqSrlqeqeqtptptptpwpxpypepzpzpApxpBptptptptptptpCpGpHpHqkpHpHpIpCptptptptpcaa
 aaaaaaaaaaaaaafxfCfCfCfCfCiUiUmLmMmNiUmOjvktmPiUmAlNiUmQiUfCfCfCfCfCfCfCfCocfFoTfFgfgjgjgjgjgjgjgjgjgjgjgjgjgjgjgjgjgjgjdXnsnsnsdXgweogvdXnOeonOdXoaiViViViViViVkjdXgigigigigigigigigigigigigigigidXaaaaaaaaaaaapcptptpSqeqeqeqeqeqeqeqepSptptptpwpxpypzpzpzpApxpBptptptptptptpCpCqYpHpHrmqZpCpCptptpdptpcaa
-aaaaaaaaaaaaaafxfCfCfCfCfCfCiUiWiWiUiUlijvktoUiUiUiWiUiUiUoboboboboboboboboVfFfFfFgfgegegegegegegegegfgggfgegegegegegegedXdXdXdXdXoWeonkdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXgigigigigigigigigigigigigidXdXdXaaaaaaaaaapcpuptpSpSqNpXqTrnpXqNpSpSptptpLpMpxpypzpzpzpApxpOpLptpuptptptptpCpCpDpCropCpCptptptptptpcaa
-aaaaaaaaaaaaaafxfCfCfCfCfCfCfCfCfCfCnhiWoXoXiWnhfCfCfCfCocfFfFfFfFfFfFfFfFfFfFfFfFoZododododododododododododododododododofeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeodXaaaaaaaaaapcptpEptpSpSpSpSpSpSpSpSptptptpLpwpxpypzpzpzpApxpBpLptptptptpvptptptptptptptptptptptptptpcaa
-aaaaaaaaaaaaaafxfCfCfCfCfCfCfCfCfCfCfCfCfCfCfCfCfCfCfCfCocfFfWfWfWfWfWfWfWfWfWfWfFoeeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeodXaaaaaaaaaapcptpuptpvptptptptptpuptptpuptpLpwpxpypzpzpzpApxpBpLptqBptpuptpEptptptptptptptptptptpuptpcaa
-aaaaaaaaaaaaaafxfCfCfCfCfCfCfCfCfCfCfCfCfCfCfCfCfCfCfCfCocfFfFfFfFfFfFfFfFfFfFfFfFoepaeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeodXaaaaaaaaaapcptpuptpuptptpdpuptpvptpupuptpLpwpxpypzpzpzpApxpBpLptptptptptptptptpupuptptptqBptpuptptpcaa
+aaaaaaaaaaaaaafxfCfCfCfCfCfCiUiWiWiUiUlijvktoUiUiUiWiUiUiUoboboboboboboboboVfFfFfFgfgegegegegegegegegfgggfgegegegegegegedXdXdXdXdXoWeonkdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXgigigigigigigigigigigigigidXdXdXaaaaaaaaaapcptptpSpSqNpXqTrnpXqNpSpSptptpLpwpxpypzpzpzpApxpBpLptptptptptptpCpCpDpCrrpCpCptptptptptpcaa
+aaaaaaaaaaaaaafxfCfCfCfCfCfCfCfCfCfCnhiWoXoXiWnhfCfCfCfCocfFfFfFfFfFfFfFfFfFfFfFfFoZododododododododododododododododododofeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeodXaaaaaaaaaapcptpEptpSpSpSpSpSpSpSpSptptptpLpwpxpypzrvpzpApxpBpLptptptptpvptptptptptptptptptptptptptpcaa
+aaaaaaaaaaaaaafxfCfCfCfCfCfCfCfCfCfCfCfCfCfCfCfCfCfCfCfCocfFfWfWfWfWfWfWfWfWfWfWfFoeeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeodXaaaaaaaaaapcptptptpvptptptptptptptptptptpLpwpxpypzpzpepApxpBpLptqBptptptpEptptptptptptptptptptptptpcaa
+aaaaaaaaaaaaaafxfCfCfCfCfCfCfCfCfCfCfCfCfCfCfCfCfCfCfCfCocfFfFfFfFfFfFfFfFfFfFfFfFoepaeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeoeodXaaaaaaaaaapcrsptptptptptpdptptpvptptptptpLpwpxpypzpzpzpApxpBpLptptptptptptptptptptptptptqBptptptrspcaa
 aaaaaaaaaaaaaafxfxfxfxfxfxfxfxfxfxfxfxfxfxfxfxfxfxfxfxfxfxfxfxfxfxfxfxfxfxfxfxfxfxdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXdXaaaaaaaaaapcpcpcpcpcpcpcpcpcpcpcpcpcpcpcpcpcpcpcpcpcpcpcpcpcpcpcpcpcpcpcpcpcpcpcpcpcpcpcpcpcpcpcpcpcaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa

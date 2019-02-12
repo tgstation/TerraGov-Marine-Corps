@@ -10,7 +10,7 @@
 
 /obj/structure/lattice/New()
 	..()
-	if(!istype(src.loc, /turf/open/space))
+	if(!isspaceturf(loc))
 		qdel(src)
 	for(var/obj/structure/lattice/LAT in src.loc)
 		if(LAT != src)
@@ -51,17 +51,17 @@
 		var/turf/T = get_turf(src)
 		T.attackby(C, user) //BubbleWrap - hand this off to the underlying turf instead
 		return
-	if (istype(C, /obj/item/tool/weldingtool))
+	if (iswelder(C))
 		var/obj/item/tool/weldingtool/WT = C
 		if(WT.remove_fuel(0, user))
-			to_chat(user, "\blue Slicing lattice joints ...")
+			to_chat(user, "<span class='notice'>Slicing lattice joints ...</span>")
 		new /obj/item/stack/rods(src.loc)
 		qdel(src)
 
 	return
 
 /obj/structure/lattice/proc/updateOverlays()
-	//if(!(istype(src.loc, /turf/open/space)))
+	//if(!isspaceturf(loc))
 	//	qdel(src)
 	spawn(1)
 		overlays = list()
@@ -72,7 +72,7 @@
 			if(locate(/obj/structure/lattice, get_step(src, direction)))
 				dir_sum += direction
 			else
-				if(!(istype(get_step(src, direction), /turf/open/space)))
+				if(!isspaceturf(get_step(src, direction)))
 					dir_sum += direction
 
 		icon_state = "lattice[dir_sum]"

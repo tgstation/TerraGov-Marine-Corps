@@ -47,7 +47,7 @@ using metal and glass, it uses glass and reagents (usually sulfuric acis).
 	attackby(var/obj/item/O as obj, var/mob/user as mob)
 		if (shocked)
 			shock(user,50)
-		if (istype(O, /obj/item/tool/screwdriver))
+		if (isscrewdriver(O))
 			if (!opened)
 				opened = 1
 				if(linked_console)
@@ -61,7 +61,7 @@ using metal and glass, it uses glass and reagents (usually sulfuric acis).
 				to_chat(user, "You close the maintenance hatch of [src].")
 			return
 		if (opened)
-			if(istype(O, /obj/item/tool/crowbar))
+			if(iscrowbar(O))
 				playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
 				var/obj/machinery/constructable_frame/machine_frame/M = new /obj/machinery/constructable_frame/machine_frame(src.loc)
 				M.state = 2
@@ -87,7 +87,7 @@ using metal and glass, it uses glass and reagents (usually sulfuric acis).
 				qdel(src)
 				return 1
 			else
-				to_chat(user, "\red You can't load the [src.name] while it's opened.")
+				to_chat(user, "<span class='warning'>You can't load the [src.name] while it's opened.</span>")
 				return 1
 		if (disabled)
 			to_chat(user, "\The [name] appears to not be working!")
@@ -98,16 +98,16 @@ using metal and glass, it uses glass and reagents (usually sulfuric acis).
 		if (O.is_open_container())
 			return 0
 		if (!istype(O, /obj/item/stack/sheet/glass) && !istype(O, /obj/item/stack/sheet/mineral/gold) && !istype(O, /obj/item/stack/sheet/mineral/diamond) && !istype(O, /obj/item/stack/sheet/mineral/uranium))
-			to_chat(user, "\red You cannot insert this item into the [name]!")
+			to_chat(user, "<span class='warning'>You cannot insert this item into the [name]!</span>")
 			return 1
 		if (stat)
 			return 1
 		if (busy)
-			to_chat(user, "\red The [name] is busy. Please wait for completion of previous operation.")
+			to_chat(user, "<span class='warning'>The [name] is busy. Please wait for completion of previous operation.</span>")
 			return 1
 		var/obj/item/stack/sheet/stack = O
 		if ((TotalMaterials() + stack.perunit) > max_material_amount)
-			to_chat(user, "\red The [name] is full. Please remove glass from the protolathe in order to insert more.")
+			to_chat(user, "<span class='warning'>The [name] is full. Please remove glass from the protolathe in order to insert more.</span>")
 			return 1
 
 		var/amount = round(input("How many sheets do you want to add?") as num)
@@ -123,7 +123,7 @@ using metal and glass, it uses glass and reagents (usually sulfuric acis).
 		var/stacktype = stack.type
 		stack.use(amount)
 		if(do_after(usr, 15, TRUE, 5, BUSY_ICON_FRIENDLY))
-			to_chat(user, "\blue You add [amount] sheets to the [src.name].")
+			to_chat(user, "<span class='notice'>You add [amount] sheets to the [src.name].</span>")
 			switch(stacktype)
 				if(/obj/item/stack/sheet/glass)
 					g_amount += amount * 3750

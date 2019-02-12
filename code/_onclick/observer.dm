@@ -6,9 +6,9 @@
 	if(!client) return
 	client.inquisitive_ghost = !client.inquisitive_ghost
 	if(client.inquisitive_ghost)
-		to_chat(src, "\blue You will now examine everything you click on.")
+		to_chat(src, "<span class='notice'>You will now examine everything you click on.</span>")
 	else
-		to_chat(src, "\blue You will no longer examine things you click on.")
+		to_chat(src, "<span class='notice'>You will no longer examine things you click on.</span>")
 
 /mob/dead/observer/click(var/atom/A, var/list/mods)
 	if (..())
@@ -59,18 +59,6 @@
 /obj/effect/portal/attack_ghost(mob/user as mob)
 	if(target)
 		user.loc = get_turf(target)
-
-/obj/machinery/gateway/centerstation/attack_ghost(mob/user as mob)
-	if(awaygate)
-		user.loc = awaygate.loc
-	else
-		to_chat(user, "[src] has no destination.")
-
-/obj/machinery/gateway/centeraway/attack_ghost(mob/user as mob)
-	if(stationgate)
-		user.loc = stationgate.loc
-	else
-		to_chat(user, "[src] has no destination.")
 
 /obj/structure/ladder/attack_ghost(mob/user as mob)
 	if(up && down)

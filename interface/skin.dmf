@@ -198,7 +198,7 @@ macro "hotkeymode"
 		command = "a-intent grab"
 	elem 
 		name = "4"
-		command = "a-intent hurt"
+		command = "a-intent harm"
 	elem 
 		name = "CTRL+4"
 		command = "a-intent hurt"
@@ -228,7 +228,7 @@ macro "hotkeymode"
 		command = "holster"
 	elem 
 		name = "M"
-		command = "me"
+		command = ".me"
 	elem 
 		name = "O"
 		command = "ooc"
@@ -278,6 +278,27 @@ macro "hotkeymode"
 		name = "CTRL+Z"
 		command = "Activate-Held-Object"
 	elem 
+		name = "Numpad1"
+		command = "a-select-zone \"rleg\""
+	elem 
+		name = "Numpad2"
+		command = "a-select-zone \"groin\""
+	elem 
+		name = "Numpad3"
+		command = "a-select-zone \"lleg\""
+	elem 
+		name = "Numpad4"
+		command = "a-select-zone \"rarm\""
+	elem 
+		name = "Numpad5"
+		command = "a-select-zone \"chest\""
+	elem 
+		name = "Numpad6"
+		command = "a-select-zone \"larm\""
+	elem 
+		name = "Numpad8"
+		command = "a-select-zone \"head\""
+	elem 
 		name = "F1"
 		command = "adminhelp"
 	elem 
@@ -307,28 +328,6 @@ macro "hotkeymode"
 	elem 
 		name = "F12"
 		command = "F12"
-	elem 
-		name = "Numpad8"
-		command = "a-select-zone \"head\""
-	elem 
-		name = "Numpad5"
-		command = "a-select-zone \"chest\""
-	elem 
-		name = "Numpad2"
-		command = "a-select-zone \"groin\""
-	elem 
-		name = "Numpad4"
-		command = "a-select-zone \"rarm\""
-	elem 
-		name = "Numpad6"
-		command = "a-select-zone \"larm\""
-	elem 
-		name = "Numpad1"
-		command = "a-select-zone \"rleg\""
-	elem 
-		name = "Numpad3"
-		command = "a-select-zone \"lleg\""
-
 
 
 menu "menu"
@@ -737,15 +736,16 @@ window "outputwindow"
 		can-minimize = false
 		can-resize = false
 		is-pane = true
-	elem "output"
-		type = OUTPUT
+	elem "browseroutput"
+		type = BROWSER
 		pos = 0,0
 		size = 640x480
 		anchor1 = 0,0
 		anchor2 = 100,100
-		is-default = true
-		saved-params = "max-lines"
-		style = ".system {color:#ff0000;}"
+		background-color = #ffffff
+		is-disabled = true
+		saved-params = ""
+		auto-format = false
 
 window "rpane"
 	elem "rpane"
@@ -767,39 +767,49 @@ window "rpane"
 		is-vert = false
 	elem "webmap"
 		type = BUTTON
-		pos = 720,0
-		size = 90x20
-		anchor1 = 92,0
-		anchor2 = 104,0
+		pos = 740,0
+		size = 80x20
+		anchor1 = 105,0
+		anchor2 = 117,0
 		saved-params = "is-checked"
 		text = "Webmap"
 		command = "webmap"
 		group = "rpanemode"
 	elem "submitbug"
 		type = BUTTON
-		pos = 540,0
-		size = 90x20
-		anchor1 = 67,0
-		anchor2 = 79,0
+		pos = 580,0
+		size = 80x20
+		anchor1 = 79,0
+		anchor2 = 92,0
 		saved-params = "is-checked"
 		text = "Submit Bug"
 		command = "submit-bug"
 		group = "rpanemode"
 	elem "patreon"
 		type = BUTTON
-		pos = 630,0
-		size = 90x20
-		anchor1 = 79,0
-		anchor2 = 92,0
+		pos = 660,0
+		size = 80x20
+		anchor1 = 92,0
+		anchor2 = 105,0
 		background-color = #ff8040
 		saved-params = "is-checked"
 		text = "Patreon"
 		command = "patreon"
 		group = "rpanemode"
+	elem "discord"
+		type = BUTTON
+		pos = 340,0
+		size = 80x20
+		anchor1 = 42,0
+		anchor2 = 55,0
+		saved-params = "is-checked"
+		text = "Discord"
+		command = "discord"
+		group = "rpanemode"
 	elem "rulesb"
 		type = BUTTON
-		pos = 270,0
-		size = 90x20
+		pos = 260,0
+		size = 80x20
 		anchor1 = 30,0
 		anchor2 = 42,0
 		saved-params = "is-checked"
@@ -809,7 +819,7 @@ window "rpane"
 	elem "changelog"
 		type = BUTTON
 		pos = 180,0
-		size = 90x20
+		size = 80x20
 		anchor1 = 18,0
 		anchor2 = 31,0
 		saved-params = "is-checked"
@@ -818,20 +828,20 @@ window "rpane"
 		group = "rpanemode"
 	elem "forumb"
 		type = BUTTON
-		pos = 450,0
-		size = 90x20
-		anchor1 = 55,0
-		anchor2 = 67,0
+		pos = 500,0
+		size = 80x20
+		anchor1 = 67,0
+		anchor2 = 80,0
 		saved-params = "is-checked"
 		text = "Forum"
 		command = "forum"
 		group = "rpanemode"
 	elem "wikib"
 		type = BUTTON
-		pos = 360,0
-		size = 90x20
-		anchor1 = 42,0
-		anchor2 = 55,0
+		pos = 420,0
+		size = 80x20
+		anchor1 = 55,0
+		anchor2 = 68,0
 		saved-params = "is-checked"
 		text = "Wiki"
 		command = "wiki"

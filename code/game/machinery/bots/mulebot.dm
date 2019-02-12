@@ -69,8 +69,8 @@
 
 	var/bloodiness = 0		// count of bloodiness
 
-/obj/machinery/bot/mulebot/New()
-	..()
+/obj/machinery/bot/mulebot/Initialize()
+	. = ..()
 	botcard = new(src)
 	var/datum/job/J = RoleAuthority ? RoleAuthority.roles_by_path[/datum/job/logistics/tech/cargo] : new /datum/job/logistics/tech/cargo
 	botcard.access = J.get_access()
@@ -80,17 +80,16 @@
 	cell.maxcharge = 2000
 	setup_wires()
 
-	spawn(5)	// must wait for map loading to finish
-		if(radio_controller)
-			radio_controller.add_object(src, control_freq, filter = RADIO_MULEBOT)
-			radio_controller.add_object(src, beacon_freq, filter = RADIO_NAVBEACONS)
+	if(radio_controller)
+		radio_controller.add_object(src, control_freq, filter = RADIO_MULEBOT)
+		radio_controller.add_object(src, beacon_freq, filter = RADIO_NAVBEACONS)
 
-		var/count = 0
-		for(var/obj/machinery/bot/mulebot/other in machines)
-			count++
-		if(!suffix)
-			suffix = "#[count]"
-		name = "Mulebot ([suffix])"
+	var/count = 0
+	for(var/obj/machinery/bot/mulebot/other in GLOB.machines)
+		count++
+	if(!suffix)
+		suffix = "#[count]"
+	name = "Mulebot ([suffix])"
 
 	verbs -= /atom/movable/verb/pull
 
@@ -122,42 +121,42 @@
 /obj/machinery/bot/mulebot/attackby(var/obj/item/I, var/mob/user)
 	if(istype(I,/obj/item/card/emag))
 		locked = !locked
-		to_chat(user, "\blue You [locked ? "lock" : "unlock"] the mulebot's controls!")
+		to_chat(user, "<span class='notice'>You [locked ? "lock" : "unlock"] the mulebot's controls!</span>")
 		flick("mulebot-emagged", src)
 		playsound(src.loc, 'sound/effects/sparks1.ogg', 25, 0)
 	else if(istype(I,/obj/item/cell) && open && !cell)
 		var/obj/item/cell/C = I
-		if(user.drop_inv_item_to_loc(C, src))
+		if(user.transferItemToLoc(C, src))
 			cell = C
 			updateDialog()
 	else if(istype(I,/obj/item/tool/screwdriver))
 		if(locked)
-			to_chat(user, "\blue The maintenance hatch cannot be opened or closed while the controls are locked.")
+			to_chat(user, "<span class='notice'>The maintenance hatch cannot be opened or closed while the controls are locked.</span>")
 			return
 
 		open = !open
 		if(open)
-			src.visible_message("[user] opens the maintenance hatch of [src]", "\blue You open [src]'s maintenance hatch.")
+			src.visible_message("[user] opens the maintenance hatch of [src]", "<span class='notice'> You open [src]'s maintenance hatch.</span>")
 			on = 0
 			icon_state="mulebot-hatch"
 		else
-			src.visible_message("[user] closes the maintenance hatch of [src]", "\blue You close [src]'s maintenance hatch.")
+			src.visible_message("[user] closes the maintenance hatch of [src]", "<span class='notice'> You close [src]'s maintenance hatch.</span>")
 			icon_state = "mulebot0"
 
 		updateDialog()
-	else if (istype(I, /obj/item/tool/wrench))
+	else if (iswrench(I))
 		if (src.health < maxhealth)
 			src.health = min(maxhealth, src.health+25)
 			user.visible_message(
-				"\red [user] repairs [src]!",
-				"\blue You repair [src]!"
+				"<span class='warning'> [user] repairs [src]!</span>",
+				"<span class='notice'> You repair [src]!</span>"
 			)
 		else
-			to_chat(user, "\blue [src] does not need a repair!")
+			to_chat(user, "<span class='notice'>[src] does not need a repair!</span>")
 	else if(load && ismob(load))  // chance to knock off rider
 		if(prob(1+I.force * 2))
 			unload(0)
-			user.visible_message("\red [user] knocks [load] off [src] with \the [I]!", "\red You knock [load] off [src] with \the [I]!")
+			user.visible_message("<span class='warning'> [user] knocks [load] off [src] with \the [I]!</span>", "<span class='warning'> You knock [load] off [src] with \the [I]!</span>")
 		else
 			to_chat(user, "You hit [src] with \the [I] but to no effect.")
 	else
@@ -181,7 +180,7 @@
 	if(prob(50) && !isnull(load))
 		unload(0)
 	if(prob(25))
-		src.visible_message("\red Something shorts out inside [src]!")
+		src.visible_message("<span class='warning'> Something shorts out inside [src]!</span>")
 		var/index = 1<< (rand(0,9))
 		if(wires & index)
 			wires &= ~index
@@ -289,7 +288,7 @@
 		return
 	if (usr.stat)
 		return
-	if ((in_range(src, usr) && istype(src.loc, /turf)) || (istype(usr, /mob/living/silicon)))
+	if ((in_range(src, usr) && istype(src.loc, /turf)) || issilicon(usr))
 		usr.set_interaction(src)
 
 		switch(href_list["op"])
@@ -298,14 +297,14 @@
 					locked = !locked
 					updateDialog()
 				else
-					to_chat(usr, "\red Access denied.")
+					to_chat(usr, "<span class='warning'>Access denied.</span>")
 					return
 			if("power")
 				if (src.on)
 					turn_off()
 				else if (cell && !open)
 					if (!turn_on())
-						to_chat(usr, "\red You can't switch on [src].")
+						to_chat(usr, "<span class='warning'>You can't switch on [src].</span>")
 						return
 				else
 					return
@@ -314,25 +313,25 @@
 
 
 			if("cellremove")
-				if(open && cell && !usr.get_active_hand())
+				if(open && cell && !usr.get_active_held_item())
 					cell.updateicon()
 					usr.put_in_active_hand(cell)
 					cell.add_fingerprint(usr)
 					cell = null
 
-					usr.visible_message("\blue [usr] removes the power cell from [src].", "\blue You remove the power cell from [src].")
+					usr.visible_message("<span class='notice'> [usr] removes the power cell from [src].</span>", "<span class='notice'> You remove the power cell from [src].</span>")
 					updateDialog()
 
 			if("cellinsert")
 				if(open && !cell)
-					var/obj/item/cell/C = usr.get_active_hand()
+					var/obj/item/cell/C = usr.get_active_held_item()
 					if(istype(C))
 						if(usr.drop_held_item())
 							cell = C
 							C.forceMove(src)
 							C.add_fingerprint(usr)
 
-							usr.visible_message("\blue [usr] inserts a power cell into [src].", "\blue You insert the power cell into [src].")
+							usr.visible_message("<span class='notice'> [usr] inserts a power cell into [src].</span>", "<span class='notice'> You insert the power cell into [src].</span>")
 							updateDialog()
 
 
@@ -395,33 +394,33 @@
 
 
 			if("wirecut")
-				if(istype(usr.get_active_hand(), /obj/item/tool/wirecutters))
+				if(iswirecutter(usr.get_active_held_item()))
 					var/wirebit = text2num(href_list["wire"])
 					wires &= ~wirebit
 				else
-					to_chat(usr, "\blue You need wirecutters!")
+					to_chat(usr, "<span class='notice'>You need wirecutters!</span>")
 			if("wiremend")
-				if(istype(usr.get_active_hand(), /obj/item/tool/wirecutters))
+				if(iswirecutter(usr.get_active_held_item()))
 					var/wirebit = text2num(href_list["wire"])
 					wires |= wirebit
 				else
-					to_chat(usr, "\blue You need wirecutters!")
+					to_chat(usr, "<span class='notice'>You need wirecutters!</span>")
 
 			if("wirepulse")
-				if(istype(usr.get_active_hand(), /obj/item/device/multitool))
+				if(ismultitool(usr.get_active_held_item()))
 					switch(href_list["wire"])
 						if("1","2")
-							to_chat(usr, "\blue \icon[src] The charge light flickers.")
+							to_chat(usr, "<span class='notice'>[bicon(src)] The charge light flickers.</span>")
 						if("4")
-							to_chat(usr, "\blue \icon[src] The external warning lights flash briefly.")
+							to_chat(usr, "<span class='notice'>[bicon(src)] The external warning lights flash briefly.</span>")
 						if("8")
-							to_chat(usr, "\blue \icon[src] The load platform clunks.")
+							to_chat(usr, "<span class='notice'>[bicon(src)] The load platform clunks.</span>")
 						if("16", "32")
-							to_chat(usr, "\blue \icon[src] The drive motor whines briefly.")
+							to_chat(usr, "<span class='notice'>[bicon(src)] The drive motor whines briefly.</span>")
 						else
-							to_chat(usr, "\blue \icon[src] You hear a radio crackle.")
+							to_chat(usr, "<span class='notice'>[bicon(src)] You hear a radio crackle.</span>")
 				else
-					to_chat(usr, "\blue You need a multitool!")
+					to_chat(usr, "<span class='notice'>You need a multitool!</span>")
 
 
 
@@ -610,14 +609,14 @@
 						var/obj/effect/decal/cleanable/blood/tracks/B = new(loc)
 						var/newdir = get_dir(next, loc)
 						if(newdir == dir)
-							B.dir = newdir
+							B.setDir(newdir)
 						else
 							newdir = newdir|dir
 							if(newdir == 3)
 								newdir = 1
 							else if(newdir == 12)
 								newdir = 4
-							B.dir = newdir
+							B.setDir(newdir)
 						bloodiness--
 
 
@@ -775,9 +774,9 @@
 		var/mob/M = obs
 		if(ismob(M))
 			if(istype(M,/mob/living/silicon/robot))
-				src.visible_message("\red [src] bumps into [M]!")
+				src.visible_message("<span class='warning'> [src] bumps into [M]!</span>")
 			else
-				src.visible_message("\red [src] knocks over [M]!")
+				src.visible_message("<span class='warning'> [src] knocks over [M]!</span>")
 				M.stop_pulling()
 				M.Stun(8)
 				M.KnockDown(5)
@@ -791,7 +790,7 @@
 // called from mob/living/carbon/human/Crossed()
 // when mulebot is in the same loc
 /obj/machinery/bot/mulebot/proc/RunOver(var/mob/living/carbon/human/H)
-	src.visible_message("\red [src] drives over [H]!")
+	src.visible_message("<span class='warning'> [src] drives over [H]!</span>")
 	playsound(src.loc, 'sound/effects/splat.ogg', 25, 1)
 
 	var/damage = rand(5,15)
@@ -943,7 +942,7 @@
 
 
 /obj/machinery/bot/mulebot/explode()
-	src.visible_message("\red <B>[src] blows apart!</B>", 1)
+	src.visible_message("<span class='danger'>[src] blows apart!</span>", 1)
 	var/turf/Tsec = get_turf(src)
 
 	new /obj/item/device/assembly/prox_sensor(Tsec)

@@ -28,7 +28,7 @@
 	var/adjusted_pressure = calculate_affecting_pressure(pressure)
 	var/loc_temp = loc.return_temperature()
 
-	if(!istype(get_turf(src), /turf/open/space)) //Space is not meant to change your body temperature.
+	if(!isspaceturf(get_turf(src))) //Space is not meant to change your body temperature.
 
 		if(adjusted_pressure < species.warning_high_pressure && adjusted_pressure > species.warning_low_pressure && abs(loc_temp - bodytemperature) < 20 && bodytemperature < species.heat_level_1 && bodytemperature > species.cold_level_1)
 			pressure_alert = 0

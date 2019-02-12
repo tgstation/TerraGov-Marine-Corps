@@ -84,7 +84,7 @@
 
 	if(user.species.can_shred(user) && !(stat & BROKEN))
 		playsound(src.loc, 'sound/weapons/slash.ogg', 25, 1, -1)
-		visible_message("\red <B>[user] has slashed at [src]!</B>")
+		visible_message("<span class='danger'>[user] has slashed at [src]!</span>")
 		src.take_damage(15)
 	return
 
@@ -235,7 +235,7 @@
 
 /obj/machinery/turret/proc/target()
 	while(src && enabled && !stat && check_target(cur_target))
-		src.dir = get_dir(src, cur_target)
+		setDir(get_dir(src, cur_target))
 		shootAt(cur_target)
 		sleep(shot_delay)
 	return
@@ -376,11 +376,11 @@
 
 /obj/machinery/turretid/attackby(obj/item/weapon/W, mob/user)
 	if(stat & BROKEN) return
-	if (istype(user, /mob/living/silicon))
+	if (issilicon(user))
 		return src.attack_hand(user)
 
 	if (istype(W, /obj/item/weapon/card/emag) && !emagged)
-		to_chat(user, "\red You short out the turret controls' access analysis module.")
+		to_chat(user, "<span class='warning'>You short out the turret controls' access analysis module.</span>")
 		emagged = 1
 		locked = 0
 		if(user.machine==src)
@@ -430,7 +430,7 @@
 	var/area/area = loc
 	var/t = "<TT><B>Turret Control Panel</B> ([area.name])<HR>"
 
-	if(src.locked && (!istype(user, /mob/living/silicon)))
+	if(locked && !issilicon(user))
 		t += "<I>(Swipe ID card to unlock control panel.)</I><BR>"
 	else
 		t += text("Turrets [] - <A href='?src=\ref[];toggleOn=1'>[]?</a><br>\n", src.enabled?"activated":"deactivated", src, src.enabled?"Disable":"Enable")
@@ -443,20 +443,20 @@
 /obj/machinery/turret/attack_animal(mob/living/M as mob)
 	if(M.melee_damage_upper == 0)	return
 	if(!(stat & BROKEN))
-		visible_message("\red <B>[M] [M.attacktext] [src]!</B>")
+		visible_message("<span class='danger'>[M] [M.attacktext] [src]!</span>")
 		log_combat(M, src, "attacked")
 		src.health -= M.melee_damage_upper
 		if (src.health <= 0)
 			src.die()
 	else
-		to_chat(M, "\red That object is useless to you.")
+		to_chat(M, "<span class='warning'>That object is useless to you.</span>")
 	return
 
 /obj/machinery/turretid/Topic(href, href_list, var/nowindow = 0)
 	if(..(href, href_list))
 		return
 	if (src.locked)
-		if (!istype(usr, /mob/living/silicon))
+		if(!issilicon(usr))
 			to_chat(usr, "Control panel is locked!")
 			return
 	if ( get_dist(src, usr) == 0 || issilicon(usr))
@@ -631,7 +631,7 @@
 		if(!target)
 			cur_target = null
 			return
-		src.dir = get_dir(src,target)
+		setDir(get_dir(src,target))
 		var/turf/targloc = get_turf(target)
 		var/target_x = targloc.x
 		var/target_y = targloc.y

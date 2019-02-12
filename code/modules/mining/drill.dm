@@ -137,7 +137,7 @@
 	if(istype(W,/obj/item/tool/screwdriver))
 		if(active) return
 		open = !open
-		to_chat(user, "\blue You [open ? "open" : "close"] the maintenance panel.")
+		to_chat(user, "<span class='notice'>You [open ? "open" : "close"] the maintenance panel.</span>")
 		return
 	else
 		if(!open || active) return ..()
@@ -165,7 +165,7 @@
 			if(storage)
 				to_chat(user, "The drill already has a matter bin installed.")
 			else
-				if(user.drop_inv_item_to_loc(W, src))
+				if(user.transferItemToLoc(W, src))
 					storage = W
 					to_chat(user, "You install \the [W].")
 			return
@@ -173,7 +173,7 @@
 			if(cutter)
 				to_chat(user, "The drill already has a cutting head installed.")
 			else
-				if(user.drop_inv_item_to_loc(W, src))
+				if(user.transferItemToLoc(W, src))
 					cutter = W
 					to_chat(user, "You install \the [W].")
 			return
@@ -181,7 +181,7 @@
 			if(cellmount)
 				to_chat(user, "The drill already has a cell capacitor installed.")
 			else
-				if(user.drop_inv_item_to_loc(W, src))
+				if(user.transferItemToLoc(W, src))
 					cellmount = W
 					to_chat(user, "You install \the [W].")
 			return
@@ -189,7 +189,7 @@
 			if(cell)
 				to_chat(user, "The drill already has a cell installed.")
 			else
-				if(user.drop_inv_item_to_loc(W, src))
+				if(user.transferItemToLoc(W, src))
 					cell = W
 					to_chat(user, "You install \the [W].")
 			return
@@ -208,14 +208,14 @@
 		if(use_cell_power())
 			active = !active
 			if(active)
-				to_chat(user, "\blue You engage \the [src] and it lurches downwards, grinding noisily.")
+				to_chat(user, "<span class='notice'>You engage \the [src] and it lurches downwards, grinding noisily.</span>")
 				need_update_field = 1
 			else
-				to_chat(user, "\blue You disengage \the [src] and it shudders to a grinding halt.")
+				to_chat(user, "<span class='notice'>You disengage \the [src] and it shudders to a grinding halt.</span>")
 		else
-			to_chat(user, "\blue The drill is unpowered.")
+			to_chat(user, "<span class='notice'>The drill is unpowered.</span>")
 	else
-		to_chat(user, "\blue Turning on a piece of industrial machinery without sufficient bracing is a bad idea.")
+		to_chat(user, "<span class='notice'>Turning on a piece of industrial machinery without sufficient bracing is a bad idea.</span>")
 
 	update_icon()
 
@@ -248,7 +248,7 @@
 
 /obj/machinery/mining/drill/proc/system_error(var/error)
 
-	if(error) src.visible_message("\red \The [src] flashes a '[error]' warning.")
+	if(error) src.visible_message("<span class='warning'> \The [src] flashes a '[error]' warning.</span>")
 	need_player_check = 1
 	active = 0
 	update_icon()
@@ -301,9 +301,9 @@
 	if(B)
 		for(var/obj/item/ore/O in contents)
 			O.loc = B
-		to_chat(usr, "\red You unload the drill's storage cache into the ore box.")
+		to_chat(usr, "<span class='warning'>You unload the drill's storage cache into the ore box.</span>")
 	else
-		to_chat(usr, "\red You must move an ore box up to the drill before you can unload it.")
+		to_chat(usr, "<span class='warning'>You must move an ore box up to the drill before you can unload it.</span>")
 */
 
 /obj/machinery/mining/brace
@@ -318,15 +318,15 @@
 	if(istype(W,/obj/item/tool/wrench))
 
 		if(istype(get_turf(src),/turf/space))
-			to_chat(user, "\blue You can't anchor something to empty space. Idiot.")
+			to_chat(user, "<span class='notice'>You can't anchor something to empty space. Idiot.</span>")
 			return
 
 		if(connected && connected.active)
-			to_chat(user, "\blue You can't unanchor the brace of a running drill!")
+			to_chat(user, "<span class='notice'>You can't unanchor the brace of a running drill!</span>")
 			return
 
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
-		to_chat(user, "\blue You [anchored ? "un" : ""]anchor the brace.")
+		to_chat(user, "<span class='notice'>You [anchored ? "un" : ""]anchor the brace.</span>")
 
 		anchored = !anchored
 		if(anchored)
@@ -339,7 +339,7 @@
 	var/turf/T = get_step(get_turf(src), src.dir)
 
 	if(!T.has_resources)
-		src.visible_message("\red The terrain near the brace is unsuitable!")
+		src.visible_message("<span class='warning'> The terrain near the brace is unsuitable!</span>")
 		return
 
 	for(var/thing in T.contents)

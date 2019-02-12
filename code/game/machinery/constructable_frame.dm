@@ -30,11 +30,11 @@
 /obj/machinery/constructable_frame/machine_frame
 	attackby(obj/item/P as obj, mob/user as mob)
 		if(P.crit_fail)
-			to_chat(user, "\red This part is faulty, you cannot add this to the machine!")
+			to_chat(user, "<span class='warning'>This part is faulty, you cannot add this to the machine!</span>")
 			return
 		switch(state)
 			if(1)
-				if(iscoil(P))
+				if(iscablecoil(P))
 					var/obj/item/stack/cable_coil/C = P
 					if(C.get_amount() < 5)
 						to_chat(user, "<span class='warning'>You need five lengths of cable to add them to the frame.</span>")
@@ -51,15 +51,15 @@
 				else
 					if(iswrench(P))
 						playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
-						to_chat(user, "\blue You dismantle the frame")
+						to_chat(user, "<span class='notice'>You dismantle the frame</span>")
 						new /obj/item/stack/sheet/metal(src.loc, 5)
 						qdel(src)
 			if(2)
 				if(istype(P, /obj/item/circuitboard/machine))
 					playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
-					to_chat(user, "\blue You add the circuit board to the frame.")
+					to_chat(user, "<span class='notice'>You add the circuit board to the frame.</span>")
 					circuit = P
-					if(user.drop_inv_item_to_loc(P, src))
+					if(user.transferItemToLoc(P, src))
 						icon_state = "box_2"
 						state = 3
 						components = list()
@@ -78,24 +78,24 @@
 						to_chat(user, desc)
 
 				else
-					if(istype(P, /obj/item/tool/wirecutters))
+					if(iswirecutter(P))
 						playsound(src.loc, 'sound/items/Wirecutter.ogg', 25, 1)
-						to_chat(user, "\blue You remove the cables.")
+						to_chat(user, "<span class='notice'>You remove the cables.</span>")
 						state = 1
 						icon_state = "box_0"
 						var/obj/item/stack/cable_coil/A = new /obj/item/stack/cable_coil( src.loc )
 						A.amount = 5
 
 			if(3)
-				if(istype(P, /obj/item/tool/crowbar))
+				if(iscrowbar(P))
 					playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
 					state = 2
 					circuit.loc = src.loc
 					circuit = null
 					if(components.len == 0)
-						to_chat(user, "\blue You remove the circuit board.")
+						to_chat(user, "<span class='notice'>You remove the circuit board.</span>")
 					else
-						to_chat(user, "\blue You remove the circuit board and other components.")
+						to_chat(user, "<span class='notice'>You remove the circuit board and other components.</span>")
 						for(var/obj/item/W in components)
 							W.loc = src.loc
 					desc = initial(desc)
@@ -103,7 +103,7 @@
 					components = null
 					icon_state = "box_1"
 				else
-					if(istype(P, /obj/item/tool/screwdriver))
+					if(isscrewdriver(P))
 						var/component_check = 1
 						for(var/R in req_components)
 							if(req_components[R] > 0)
@@ -125,7 +125,7 @@
 							for(var/I in req_components)
 								if(istype(P, text2path(I)) && (req_components[I] > 0))
 									playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
-									if(istype(P, /obj/item/stack/cable_coil))
+									if(iscablecoil(P))
 										var/obj/item/stack/cable_coil/CP = P
 										if(CP.get_amount() > 1)
 											var/camt = min(CP.amount, req_components[I]) // amount of cable to take, idealy amount required, but limited by amount provided
@@ -137,12 +137,12 @@
 											req_components[I] -= camt
 											update_desc()
 											break
-									if(user.drop_inv_item_to_loc(P, src))
+									if(user.transferItemToLoc(P, src))
 										components += P
 										req_components[I]--
 										update_desc()
 									break
 							to_chat(user, desc)
-							if(P && P.loc != src && !istype(P, /obj/item/stack/cable_coil))
-								to_chat(user, "\red You cannot add that component to the machine!")
+							if(P && P.loc != src && !iscablecoil(P))
+								to_chat(user, "<span class='warning'>You cannot add that component to the machine!</span>")
 

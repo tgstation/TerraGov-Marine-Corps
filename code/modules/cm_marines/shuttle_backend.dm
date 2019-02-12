@@ -299,9 +299,16 @@ x_pos = 0 1 2 3 4 5 6
 	icon_state = "spawn_shuttle"
 	var/rotation = 0 //When loading to this landmark, how much to rotate the turfs. See /proc/rotate_shuttle_turfs()
 
-	New()
-		set waitfor = 0
-		..()
+/obj/effect/landmark/shuttle_loc/New() // unfortunately these need to be New() because of init order
+	. = ..()
+	GLOB.shuttle_locations += src
+
+/obj/effect/landmark/shuttle_loc/Destroy()
+	GLOB.shuttle_locations -= src
+	return ..()
+
+/obj/effect/landmark/shuttle_loc/proc/link_location()
+	set waitfor = 0
 
 /obj/effect/landmark/shuttle_loc/marine_src
 	icon_state = "spawn_shuttle_dock"
@@ -313,48 +320,51 @@ x_pos = 0 1 2 3 4 5 6
 	icon_state = "spawn_shuttle_crash"
 
 #define SHUTTLE_LINK_LOCATIONS(T, L) \
-sleep(50); \
 ..(); \
 var/datum/shuttle/ferry/marine/S = shuttle_controller.shuttles["[MAIN_SHIP_NAME] [T] [name]"]; \
-if(!S) {log_debug("ERROR CODE SO1: unable to find shuttle with the tag of: ["[MAIN_SHIP_NAME] [T] [name]"]."); \
+if(!S) {log_runtime("ERROR CODE SO1: unable to find shuttle with the tag of: ["[MAIN_SHIP_NAME] [T] [name]"]."); \
 return FALSE}; \
 L[get_turf(src)] = rotation; \
 qdel(src)
 
 /obj/effect/landmark/shuttle_loc/marine_src/dropship //Name these "1" or "2", etc.
-	New()
-		SHUTTLE_LINK_LOCATIONS("Dropship", S.locs_dock)
+
+/obj/effect/landmark/shuttle_loc/marine_src/dropship/link_location()
+	SHUTTLE_LINK_LOCATIONS("Dropship", S.locs_dock)
 
 /obj/effect/landmark/shuttle_loc/marine_src/evacuation
-	New()
-		sleep(50)
-		..()
-		var/datum/shuttle/ferry/marine/evacuation_pod/S = shuttle_controller.shuttles["[MAIN_SHIP_NAME] Evac [name]"]
-		if(!S)
-			log_debug("ERROR CODE SO1: unable to find shuttle with the tag of: ["[MAIN_SHIP_NAME] Evac [name]"].")
-			return FALSE
-		S.locs_dock[get_turf(src)] = rotation
-		S.link_support_units(get_turf(src)) //Process links.
-		qdel(src)
+
+/obj/effect/landmark/shuttle_loc/marine_src/evacuation/link_location()
+	..()
+	var/datum/shuttle/ferry/marine/evacuation_pod/S = shuttle_controller.shuttles["[MAIN_SHIP_NAME] Evac [name]"]
+	if(!S)
+		log_runtime("ERROR CODE SO1: unable to find shuttle with the tag of: ["[MAIN_SHIP_NAME] Evac [name]"].")
+		return FALSE
+	S.locs_dock[get_turf(src)] = rotation
+	S.link_support_units(get_turf(src)) //Process links.
+	qdel(src)
 
 /obj/effect/landmark/shuttle_loc/marine_int/dropship
-	New()
-		SHUTTLE_LINK_LOCATIONS("Dropship", S.locs_move)
+
+/obj/effect/landmark/shuttle_loc/marine_int/dropship/link_location()
+	SHUTTLE_LINK_LOCATIONS("Dropship", S.locs_move)
 
 /obj/effect/landmark/shuttle_loc/marine_trg/landing
-	New()
-		SHUTTLE_LINK_LOCATIONS("Dropship", S.locs_land)
+
+/obj/effect/landmark/shuttle_loc/marine_trg/landing/link_location()
+	SHUTTLE_LINK_LOCATIONS("Dropship", S.locs_land)
 
 /obj/effect/landmark/shuttle_loc/marine_trg/evacuation
-	New()
-		SHUTTLE_LINK_LOCATIONS("Evac", S.locs_land)
+
+/obj/effect/landmark/shuttle_loc/marine_trg/evacuation/link_location()
+	SHUTTLE_LINK_LOCATIONS("Evac", S.locs_land)
 
 /obj/effect/landmark/shuttle_loc/marine_crs/dropship
-	New()
-		sleep(50)
-		..()
-		shuttle_controller.locs_crash[get_turf(src)] = rotation
-		qdel(src)
+
+/obj/effect/landmark/shuttle_loc/marine_crs/dropship/link_location()
+	..()
+	shuttle_controller.locs_crash[get_turf(src)] = rotation
+	qdel(src)
 
 #undef SHUTTLE_LINK_LOCATIONS
 
@@ -444,7 +454,7 @@ qdel(src)
 		var/old_icon = T.icon
 
 		target.ChangeTurf(T.type)
-		target.dir = old_dir
+		target.setDir(old_dir)
 		target.icon_state = old_icon_state
 		target.icon = old_icon
 

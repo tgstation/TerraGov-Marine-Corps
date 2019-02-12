@@ -29,6 +29,7 @@ Currently only has the tank hardpoints
 
 	var/list/backup_clips = list()
 	var/max_clips = 1 //1 so they can reload their backups and actually reload once
+	var/buyable = TRUE
 
 //Called on attaching, for weapons sets the actual cooldowns
 /obj/item/hardpoint/proc/apply_buff()
@@ -74,7 +75,7 @@ Currently only has the tank hardpoints
 		to_chat(user, "<span class='warning'>Something interrupted you while reloading [owner].</span>")
 		return FALSE
 
-	user.temp_drop_inv_item(A, 0)
+	user.temporarilyRemoveItemFromInventory(A, 0)
 	to_chat(user, "<span class='notice'>You install \the [A] in \the [owner].</span>")
 	backup_clips += A
 	return TRUE
@@ -108,10 +109,10 @@ Currently only has the tank hardpoints
 
 	var/nx = dx * cos(deg) - dy * sin(deg)
 	var/ny = dx * sin(deg) + dy * cos(deg)
-	if(nx == 0) 
+	if(nx == 0)
 		return max_angle >= 90
 	var/angle = arctan(ny/nx)
-	if(nx < 0) 
+	if(nx < 0)
 		angle += 180
 	return abs(angle) <= max_angle
 
@@ -154,6 +155,10 @@ Currently only has the tank hardpoints
 	max_clips = 3
 	max_angle = 45
 
+/obj/item/hardpoint/primary/cannon/broken
+	health = 0
+	buyable = FALSE
+
 /obj/item/hardpoint/primary/cannon/apply_buff()
 	owner.cooldowns["primary"] = 200
 	owner.accuracies["primary"] = 0.97
@@ -181,6 +186,8 @@ Currently only has the tank hardpoints
 		T = get_step(T, pick(cardinal))
 	var/obj/item/projectile/P = new
 	P.generate_bullet(new ammo.default_ammo)
+	log_combat(usr, usr, "fired the [src].")
+	log_explosion("[usr] fired the [src] at [AREACOORD(loc)].")
 	P.fire_at(T, owner, src, P.ammo.max_range, P.ammo.shell_speed)
 	playsound(get_turf(src), pick('sound/weapons/tank_cannon_fire1.ogg', 'sound/weapons/tank_cannon_fire2.ogg'), 60, 1)
 	ammo.current_rounds--
@@ -350,6 +357,8 @@ Currently only has the tank hardpoints
 		T = get_step(T, pick(cardinal))
 	var/obj/item/projectile/P = new
 	P.generate_bullet(new ammo.default_ammo)
+	log_combat(usr, usr, "fired the [src].")
+	log_explosion("[usr] fired the [src] at [AREACOORD(loc)].")
 	P.fire_at(T, owner, src, P.ammo.max_range, P.ammo.shell_speed)
 	ammo.current_rounds--
 
@@ -369,6 +378,10 @@ Currently only has the tank hardpoints
 	ammo = new /obj/item/ammo_magazine/tank/m56_cupola
 	max_clips = 1
 	max_angle = 90
+
+/obj/item/hardpoint/secondary/m56cupola/broken
+	health = 0
+	buyable = FALSE
 
 /obj/item/hardpoint/secondary/m56cupola/apply_buff()
 	owner.cooldowns["secondary"] = 5
@@ -439,6 +452,8 @@ Currently only has the tank hardpoints
 		T = get_step(T, pick(cardinal))
 	var/obj/item/projectile/P = new
 	P.generate_bullet(new ammo.default_ammo)
+	log_combat(usr, usr, "fired the [src].")
+	log_explosion("[usr] fired the [src] at [AREACOORD(loc)].")
 	P.fire_at(T, owner, src, P.ammo.max_range, P.ammo.shell_speed)
 	playsound(get_turf(src), 'sound/weapons/gun_m92_attachable.ogg', 60, 1)
 	ammo.current_rounds--
@@ -466,6 +481,10 @@ Currently only has the tank hardpoints
 	ammo = new /obj/item/ammo_magazine/tank/tank_slauncher
 	max_clips = 4
 	is_activatable = TRUE
+
+/obj/item/hardpoint/support/smoke_launcher/broken
+	health = 0
+	buyable = FALSE
 
 /obj/item/hardpoint/support/smoke_launcher/apply_buff()
 	owner.cooldowns["support"] = 30
@@ -505,9 +524,9 @@ Currently only has the tank hardpoints
 	else if(new_dir in list(EAST, WEST))
 		icon_suffix = "EW"
 
-	if(health <= 0) 
+	if(health <= 0)
 		icon_state_suffix = "1"
-	else if(ammo.current_rounds <= 0) 
+	else if(ammo.current_rounds <= 0)
 		icon_state_suffix = "2"
 
 	return image(icon = "[disp_icon]_[icon_suffix]", icon_state = "[disp_icon_state]_[icon_state_suffix]", pixel_x = x_offset, pixel_y = y_offset)
@@ -583,10 +602,10 @@ Currently only has the tank hardpoints
 
 /obj/item/hardpoint/support/artillery_module/active_effect(var/turf/T)
 	var/obj/vehicle/multitile/root/cm_armored/tank/C = owner
-	if(!C.gunner) 
+	if(!C.gunner)
 		return
 	var/mob/M = C.gunner
-	if(!M.client) 
+	if(!M.client)
 		return
 	if(is_active)
 		M.client.change_view(7)
@@ -612,10 +631,10 @@ Currently only has the tank hardpoints
 
 /obj/item/hardpoint/support/artillery_module/deactivate()
 	var/obj/vehicle/multitile/root/cm_armored/tank/C = owner
-	if(!C.gunner) 
+	if(!C.gunner)
 		return
 	var/mob/M = C.gunner
-	if(!M.client) 
+	if(!M.client)
 		return
 	is_active = FALSE
 	M.client.change_view(7)
@@ -648,6 +667,10 @@ Currently only has the tank hardpoints
 
 	disp_icon = "tank"
 	disp_icon_state = "ballistic_armor"
+
+/obj/item/hardpoint/armor/ballistic/broken
+	health = 0
+	buyable = FALSE
 
 /obj/item/hardpoint/armor/ballistic/apply_buff()
 	owner.dmg_multipliers["bullet"] = 0.5
@@ -777,6 +800,10 @@ Currently only has the tank hardpoints
 
 	disp_icon = "tank"
 	disp_icon_state = "treads"
+
+/obj/item/hardpoint/treads/standard/broken
+	health = 0
+	buyable = FALSE
 
 /obj/item/hardpoint/treads/standard/get_icon_image(var/x_offset, var/y_offset, var/new_dir)
 	return null //Handled in update_icon()

@@ -49,6 +49,9 @@
 			icon_state = initial(icon_state)
 
 
+/obj/item/clothing/shoes/marine/pyro
+	name = "flame-resistant combat boots"
+	desc = "Protects you from fire and even contains a pouch for your knife!"	
 
 
 /obj/item/clothing/shoes/marinechief
@@ -63,6 +66,9 @@
 	name = "commander shoes"
 	desc = "Has special soles for better trampling those underneath."
 
+/obj/item/clothing/shoes/marinechief/sa
+	name = "spatial agent's shoes"
+	desc = "Shoes worn by a spatial agent."
 
 /obj/item/clothing/shoes/veteran
 

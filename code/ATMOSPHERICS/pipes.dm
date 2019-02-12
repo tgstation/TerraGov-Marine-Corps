@@ -17,7 +17,7 @@
 /obj/machinery/atmospherics/pipe/New()
 	..()
 	//so pipes under walls are hidden
-	if(istype(loc, /turf/closed))
+	if(isclosedturf(loc))
 		level = 1
 	//build_network()
 
@@ -80,7 +80,7 @@
 	if(istype(W, /obj/item/device/pipe_painter))
 		return 0
 
-	if(!istype(W, /obj/item/tool/wrench))
+	if(!iswrench(W))
 		return ..()
 	var/turf/T = src.loc
 	if(level == 1 && isturf(T) && T.intact_tile)
@@ -185,7 +185,7 @@
 
 /obj/machinery/atmospherics/pipe/simple/hide(var/i)
 	if(level == 1 && istype(loc, /turf))
-		invisibility = i ? 101 : 0
+		invisibility = i ? INVISIBILITY_MAXIMUM : 0
 	update_icon()
 
 /obj/machinery/atmospherics/pipe/simple/process()
@@ -199,7 +199,7 @@
 	return 1
 
 /obj/machinery/atmospherics/pipe/simple/proc/burst()
-	src.visible_message("\red \bold [src] bursts!");
+	src.visible_message("<span class='danger'> [src] bursts!</span>");
 	playsound(src.loc, 'sound/effects/bang.ogg', 50, 1)
 	var/datum/effect_system/smoke_spread/smoke = new
 	smoke.set_up(0,0, src.loc, 0)
@@ -208,9 +208,9 @@
 
 /obj/machinery/atmospherics/pipe/simple/proc/normalize_dir()
 	if(dir==3)
-		dir = 1
+		setDir(NORTH)
 	else if(dir==12)
-		dir = 4
+		setDir(EAST)
 
 /obj/machinery/atmospherics/pipe/simple/Destroy()
 	var/obj/machinery/atmospherics/n1 = node1
@@ -286,8 +286,7 @@
 				break
 
 	if(!node1 && !node2)
-		qdel(src)
-		return
+		return INITIALIZE_HINT_QDEL
 
 	var/turf/T = get_turf(src)
 	if(istype(T))
@@ -425,7 +424,7 @@
 
 /obj/machinery/atmospherics/pipe/manifold/hide(var/i)
 	if(level == 1 && istype(loc, /turf))
-		invisibility = i ? 101 : 0
+		invisibility = i ? INVISIBILITY_MAXIMUM : 0
 	update_icon()
 
 /obj/machinery/atmospherics/pipe/manifold/pipeline_expansion()
@@ -787,7 +786,7 @@
 
 /obj/machinery/atmospherics/pipe/manifold4w/hide(var/i)
 	if(level == 1 && istype(loc, /turf))
-		invisibility = i ? 101 : 0
+		invisibility = i ? INVISIBILITY_MAXIMUM : 0
 	update_icon()
 
 /obj/machinery/atmospherics/pipe/manifold4w/initialize()
@@ -926,7 +925,7 @@
 
 /obj/machinery/atmospherics/pipe/cap/hide(var/i)
 	if(level == 1 && istype(loc, /turf))
-		invisibility = i ? 101 : 0
+		invisibility = i ? INVISIBILITY_MAXIMUM : 0
 	update_icon()
 
 /obj/machinery/atmospherics/pipe/cap/pipeline_expansion()
@@ -1107,15 +1106,15 @@
 
 	if(istype(W, /obj/item/device/analyzer) && in_range(user, src))
 		for (var/mob/O in viewers(user, null))
-			to_chat(O, "\red [user] has used the analyzer on \icon[icon]")
+			to_chat(O, "<span class='warning'>[user] has used the analyzer on [bicon(icon)]</span>")
 
-		to_chat(user, "\blue Results of analysis of \icon[icon]")
+		to_chat(user, "<span class='notice'>Results of analysis of [bicon(icon)]</span>")
 		if (pressure>0)
-			to_chat(user, "\blue Pressure: [round(pressure,0.1)] kPa")
-			to_chat(user, "\blue [gas_type]: [100]%")
-			to_chat(user, "\blue Temperature: [round(temperature-T0C)]&deg;C")
+			to_chat(user, "<span class='notice'>Pressure: [round(pressure,0.1)] kPa</span>")
+			to_chat(user, "<span class='notice'>[gas_type]: [100]%</span>")
+			to_chat(user, "<span class='notice'>Temperature: [round(temperature-T0C)]&deg;C</span>")
 		else
-			to_chat(user, "\blue Tank is empty!")
+			to_chat(user, "<span class='notice'>Tank is empty!</span>")
 
 /obj/machinery/atmospherics/pipe/tank/air
 	name = "Pressure Tank (Air)"
@@ -1215,7 +1214,7 @@
 	if(node1)
 		icon_state = "intact"
 
-		dir = get_dir(src, node1)
+		setDir(get_dir(src, node1))
 
 	else
 		icon_state = "exposed"
@@ -1247,7 +1246,7 @@
 /obj/machinery/atmospherics/pipe/vent/hide(var/i) //to make the little pipe section invisible, the icon changes.
 	if(node1)
 		icon_state = "[i == 1 && istype(loc, /turf) ? "h" : "" ]intact"
-		dir = get_dir(src, node1)
+		setDir(get_dir(src, node1))
 	else
 		icon_state = "exposed"
 

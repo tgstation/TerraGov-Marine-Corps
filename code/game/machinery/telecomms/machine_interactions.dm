@@ -14,12 +14,13 @@
 	var/temp = "" // output message
 	var/construct_op = 0
 	var/deconstructable = FALSE
+	destructible = FALSE
 
 
 /obj/machinery/telecomms/attackby(obj/item/P as obj, mob/user as mob)
 
 	// Using a multitool lets you access the receiver's interface
-	if(istype(P, /obj/item/device/multitool))
+	if(ismultitool(P))
 		attack_hand(user)
 
 	else
@@ -43,25 +44,25 @@
 
 	switch(construct_op)
 		if(0)
-			if(istype(P, /obj/item/tool/screwdriver) && deconstructable)
+			if(isscrewdriver(P) && deconstructable)
 				to_chat(user, "You unfasten the bolts.")
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 				construct_op ++
 		if(1)
-			if(istype(P, /obj/item/tool/screwdriver))
+			if(isscrewdriver(P))
 				to_chat(user, "You fasten the bolts.")
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 				construct_op --
-			if(istype(P, /obj/item/tool/wrench))
+			if(iswrench(P))
 				to_chat(user, "You dislodge the external plating.")
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 				construct_op ++
 		if(2)
-			if(istype(P, /obj/item/tool/wrench))
+			if(iswrench(P))
 				to_chat(user, "You secure the external plating.")
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 				construct_op --
-			if(istype(P, /obj/item/tool/wirecutters))
+			if(iswirecutter(P))
 				playsound(src.loc, 'sound/items/Wirecutter.ogg', 25, 1)
 				to_chat(user, "You remove the cables.")
 				construct_op ++
@@ -69,7 +70,7 @@
 				A.amount = 5
 				stat |= BROKEN // the machine's been borked!
 		if(3)
-			if(istype(P, /obj/item/stack/cable_coil))
+			if(iscablecoil(P))
 				var/obj/item/stack/cable_coil/A = P
 				if (A.use(5))
 					to_chat(user, "<span class='notice'>You insert the cables.</span>")
@@ -77,7 +78,7 @@
 					stat &= ~BROKEN // the machine's not borked anymore!
 				else
 					to_chat(user, "<span class='warning'>You need five coils of wire for this.</span>")
-			if(istype(P, /obj/item/tool/crowbar))
+			if(iscrowbar(P))
 				to_chat(user, "You begin prying out the circuit board other components...")
 				playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
 				if(do_after(user,60, TRUE, 5, BUSY_ICON_BUILD))
@@ -98,7 +99,7 @@
 								newpath = text2path(I)
 								var/obj/item/s = new newpath
 								s.loc = user.loc
-								if(istype(P, /obj/item/stack/cable_coil))
+								if(iscablecoil(P))
 									var/obj/item/stack/cable_coil/A = P
 									A.amount = 1
 
@@ -124,7 +125,7 @@
 			var/fumbling_time = 50 * ( SKILL_ENGINEER_MT - user.mind.cm_skills.engineer )
 			if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
 		// istype returns false if the value is null
-		if(!istype(user.get_active_hand(), /obj/item/device/multitool))
+		if(!ismultitool(user.get_active_held_item()))
 			return
 
 	if(stat & (BROKEN|NOPOWER))
@@ -212,14 +213,14 @@
 
 	var/obj/item/device/multitool/P = null
 	// Let's double check
-	if(!issilicon(user) && istype(user.get_active_hand(), /obj/item/device/multitool))
-		P = user.get_active_hand()
+	if(!issilicon(user) && ismultitool(user.get_active_held_item()))
+		P = user.get_active_held_item()
 	else if(isAI(user))
 		var/mob/living/silicon/ai/U = user
 		P = U.aiMulti
-	else if(isrobot(user) && in_range(user, src))
-		if(istype(user.get_active_hand(), /obj/item/device/multitool))
-			P = user.get_active_hand()
+	else if(iscyborg(user) && in_range(user, src))
+		if(ismultitool(user.get_active_held_item()))
+			P = user.get_active_held_item()
 	return P
 
 // Additional Options for certain machines. Use this when you want to add an option to a specific machine.
@@ -300,7 +301,7 @@
 /obj/machinery/telecomms/Topic(href, href_list)
 
 	if(!issilicon(usr))
-		if(!istype(usr.get_active_hand(), /obj/item/device/multitool))
+		if(!ismultitool(usr.get_active_held_item()))
 			return
 
 	if(stat & (BROKEN|NOPOWER))

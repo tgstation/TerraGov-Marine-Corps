@@ -47,7 +47,12 @@ Pipelines + Other Objects -> Pipe network
 		pipe_vision_img = null
 
 	start_processing()
-	..()
+	return ..()
+
+/obj/machinery/atmospherics/Initialize()
+	. = ..()
+	if(initialize() == INITIALIZE_HINT_QDEL)
+		return INITIALIZE_HINT_QDEL
 
 /obj/machinery/atmospherics/Destroy()
 	for(var/mob/living/M in src) //ventcrawling is serious business
@@ -58,6 +63,9 @@ Pipelines + Other Objects -> Pipe network
 			A.forceMove(loc)
 	stop_processing()
 	. = ..()
+
+/obj/machinery/atmospherics/proc/initialize() // temporary until someone unfucks atmos
+	return
 
 /obj/machinery/atmospherics/power_change()
 	return // overriding this for pipes etc, powered stuff overrides this.

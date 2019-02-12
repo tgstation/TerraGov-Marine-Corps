@@ -74,7 +74,7 @@
 	icon = 'icons/obj/items/paper.dmi'
 	icon_state = "pen"
 	item_state = "pen"
-	flags_equip_slot = SLOT_WAIST|SLOT_EAR
+	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_EARS
 	throwforce = 0
 	w_class = 1
 	throw_speed = 7
@@ -104,9 +104,9 @@
 	if(!ismob(M))
 		return
 	to_chat(user, "<span class='warning'>You stab [M] with the pen.</span>")
-//	to_chat(M, "\red You feel a tiny prick!")
+//	to_chat(M, "<span class='warning'>You feel a tiny prick!</span>")
 	log_combat(user, M, "stabbed", src)
-	msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) used the [name] to stab [key_name(M)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[M]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[M.x];Y=[M.y];Z=[M.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[M]'>FLW</a>)")
+	msg_admin_attack("[ADMIN_TPMONTY(usr)] used the [name] to stab [ADMIN_TPMONTY(M)].")
 	return
 
 
@@ -116,7 +116,7 @@
 /obj/item/tool/pen/sleepypen
 	desc = "It's a black ink pen with a sharp point and a carefully engraved \"Waffle Co.\""
 	container_type = OPENCONTAINER
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	origin_tech = "materials=2;syndicate=5"
 
 
@@ -144,7 +144,7 @@
  */
  /obj/item/tool/pen/paralysis
 	container_type = OPENCONTAINER
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	origin_tech = "materials=2;syndicate=5"
 
 

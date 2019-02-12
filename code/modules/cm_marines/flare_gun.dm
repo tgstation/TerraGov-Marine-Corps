@@ -12,7 +12,7 @@ obj/item/projectile/flareburst
 		damage_type = BURN
 		/*						//May come back to this
 		New(loc,dir)
-			src.dir = dir
+			setDir(dir)
 			..()
 			spawn()
 				while(1)
@@ -29,7 +29,7 @@ obj/item/projectile/flareburst
 	force = 3.0
 	w_class = 1.0
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	var/loaded_s = 0 //any shell loaded
 	var/shell_name = "nothing"
 	desc = "Save your life in one shot."
@@ -170,7 +170,7 @@ obj/item/projectile/flareburst
 	w_class =0.5
 	origin_tech="combat=1;materials=1"
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST|SLOT_STORE
+	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_POCKET
 
 /obj/item/flareround_sp
 	name = "Howl Flare Shell"
@@ -180,4 +180,4 @@ obj/item/projectile/flareburst
 	w_class =0.5
 	origin_tech="combat=1;materials=1"
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST|SLOT_STORE
+	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_POCKET

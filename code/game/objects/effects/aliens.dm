@@ -64,6 +64,9 @@
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
 		var/armor_block
+		if(H.acid_process_cooldown > world.time - 10) //one second reprieve
+			return
+		H.acid_process_cooldown = world.time
 		if(!H.lying)
 			to_chat(H, "<span class='danger'>Your feet scald and burn! Argh!</span>")
 			H.emote("pain")
@@ -90,10 +93,7 @@
 		return
 
 	for(var/mob/living/carbon/M in loc)
-		if(isXeno(M))
-			continue
-		if(M.acid_process_cooldown)
-			M.acid_process_cooldown = 0 //Enjoy your very temporary reprieve
+		if(isxeno(M))
 			continue
 		Crossed(M)
 
@@ -109,17 +109,20 @@
 	var/atom/acid_t
 	var/ticks = 0
 	var/acid_strength = 1 //100% speed, normal
+	var/acid_damage = 125 //acid damage on pick up, subject to armor
 
 //Sentinel weakest acid
 /obj/effect/xenomorph/acid/weak
 	name = "weak acid"
 	acid_strength = 2.5 //250% normal speed
+	acid_damage = 75
 	icon_state = "acid_weak"
 
 //Superacid
 /obj/effect/xenomorph/acid/strong
 	name = "strong acid"
 	acid_strength = 0.4 //20% normal speed
+	acid_damage = 175
 	icon_state = "acid_strong"
 
 /obj/effect/xenomorph/acid/New(loc, target)
@@ -137,12 +140,14 @@
 	if(!acid_t || !acid_t.loc)
 		qdel(src)
 		return
+	if(loc != acid_t.loc && !isturf(acid_t))
+		loc = acid_t.loc
 	if(++ticks >= strength_t)
 		visible_message("<span class='xenodanger'>[acid_t] collapses under its own weight into a puddle of goop and undigested debris!</span>")
 		playsound(src, "acid_hit", 25)
 
 		if(istype(acid_t, /turf))
-			if(istype(acid_t, /turf/closed/wall))
+			if(iswallturf(acid_t))
 				var/turf/closed/wall/W = acid_t
 				new /obj/effect/acid_hole (W)
 			else

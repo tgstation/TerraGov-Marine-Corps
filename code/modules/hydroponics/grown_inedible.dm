@@ -107,8 +107,8 @@
 
 /obj/item/grown/nettle/pickup(mob/living/carbon/human/user as mob)
 	if(istype(user) && !user.gloves)
-		to_chat(user, "\red The nettle burns your bare hand!")
-		if(istype(user, /mob/living/carbon/human))
+		to_chat(user, "<span class='warning'>The nettle burns your bare hand!</span>")
+		if(ishuman(user))
 			var/organ = ((user.hand ? "l_":"r_") + "arm")
 			var/datum/limb/affecting = user.get_limb(organ)
 			if(affecting.take_damage(0,force))
@@ -128,12 +128,12 @@
 	if(force <= 0)
 		if(user)
 			to_chat(user, "All the leaves have fallen off \the [src] from violent whacking.")
-			user.temp_drop_inv_item(src)
+			user.temporarilyRemoveItemFromInventory(src)
 		qdel(src)
 
 /obj/item/grown/nettle/death // -- Skie
 	plantname = "deathnettle"
-	desc = "The \red glowing \black nettle incites \red<B>rage</B>\black in you just from looking at it!"
+	desc = "The <span class='warning'> glowing \black nettle incites <span class='warning'><B>rage</B>\black in you just from looking at it!</span>"
 	name = "deathnettle"
 	icon_state = "deathnettle"
 	origin_tech = "combat=3"
@@ -143,7 +143,7 @@
 
 	if(..() && prob(50))
 		user.KnockOut(5)
-		to_chat(user, "\red You are stunned by the deathnettle when you try picking it up!")
+		to_chat(user, "<span class='warning'>You are stunned by the deathnettle when you try picking it up!</span>")
 
 /obj/item/grown/nettle/attack(mob/living/carbon/M as mob, mob/user as mob)
 
@@ -155,11 +155,11 @@
 
 	if(!..()) return
 
-	if(istype(M, /mob/living))
-		to_chat(M, "\red You are stunned by the powerful acid of the deathnettle!")
+	if(isliving(M))
+		to_chat(M, "<span class='warning'>You are stunned by the powerful acid of the deathnettle!</span>")
 
 		log_combat(user, M, "hit", src)
-		msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) used the [src.name] on [key_name(M)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[M]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[M.x];Y=[M.y];Z=[M.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[M]'>FLW</a>)")
+		msg_admin_attack("[ADMIN_TPMONTY(usr)] used the [src.name] on [ADMIN_TPMONTY(M)].")
 
 		M.adjust_blurriness(force/7)
 		if(prob(20))

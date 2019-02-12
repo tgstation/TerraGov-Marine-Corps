@@ -15,18 +15,18 @@
 		if(filled)
 
 			if(target.reagents.total_volume >= target.reagents.maximum_volume)
-				to_chat(user, "\red [target] is full.")
+				to_chat(user, "<span class='warning'>[target] is full.</span>")
 				return
 
 			if(!target.is_injectable() && !ismob(target)) //You can inject humans and food but you cant remove the shit.
-				to_chat(user, "\red You cannot directly fill this object.")
+				to_chat(user, "<span class='warning'>You cannot directly fill this object.</span>")
 				return
 
 
 			var/trans = 0
 
 			if(ismob(target))
-				if(istype(target , /mob/living/carbon/human))
+				if(ishuman(target))
 					var/mob/living/carbon/human/victim = target
 
 					var/obj/item/safe_thing = null
@@ -46,12 +46,12 @@
 						trans = src.reagents.trans_to(safe_thing, amount_per_transfer_from_this)
 
 						for(var/mob/O in viewers(world.view, user))
-							O.show_message(text("\red <B>[] tries to squirt something into []'s eyes, but fails!</B>", user, target), 1)
+							O.show_message(text("<span class='danger'>[] tries to squirt something into []'s eyes, but fails!</span>", user, target), 1)
 						spawn(5)
 							src.reagents.reaction(safe_thing, TOUCH)
 
 
-						to_chat(user, "\blue You transfer [trans] units of the solution.")
+						to_chat(user, "<span class='notice'>You transfer [trans] units of the solution.</span>")
 						if (reagents.total_volume<=0)
 							filled = 0
 							icon_state = "dropper[filled]"
@@ -59,7 +59,7 @@
 
 
 				for(var/mob/O in viewers(world.view, user))
-					O.show_message(text("\red <B>[] squirts something into []'s eyes!</B>", user, target), 1)
+					O.show_message(text("<span class='danger'>[] squirts something into []'s eyes!</span>", user, target), 1)
 				reagents.reaction(target, TOUCH)
 
 				var/mob/M = target
@@ -68,11 +68,11 @@
 					injected += R.name
 				var/contained = english_list(injected)
 				log_combat(user, M, "squirted", src, "Reagents: [contained]")
-				msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) squirted [key_name(M)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[M]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[M.x];Y=[M.y];Z=[M.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[M]'>FLW</a>) with [src.name]. Reagents: [contained] (INTENT: [uppertext(user.a_intent)])")
+				msg_admin_attack("[ADMIN_TPMONTY(usr)] squirted [ADMIN_TPMONTY(M)] with [src.name]. Reagents: [contained].")
 
 
 			trans = src.reagents.trans_to(target, amount_per_transfer_from_this)
-			to_chat(user, "\blue You transfer [trans] units of the solution.")
+			to_chat(user, "<span class='notice'>You transfer [trans] units of the solution.</span>")
 			if (src.reagents.total_volume<=0)
 				filled = 0
 				icon_state = "dropper[filled]"
@@ -80,16 +80,16 @@
 		else
 
 			if(!target.is_open_container() && !istype(target,/obj/structure/reagent_dispensers))
-				to_chat(user, "\red You cannot directly remove reagents from [target].")
+				to_chat(user, "<span class='warning'>You cannot directly remove reagents from [target].</span>")
 				return
 
 			if(!target.reagents.total_volume)
-				to_chat(user, "\red [target] is empty.")
+				to_chat(user, "<span class='warning'>[target] is empty.</span>")
 				return
 
 			var/trans = target.reagents.trans_to(src, amount_per_transfer_from_this)
 
-			to_chat(user, "\blue You fill the dropper with [trans] units of the solution.")
+			to_chat(user, "<span class='notice'>You fill the dropper with [trans] units of the solution.</span>")
 
 			filled = 1
 			icon_state = "dropper[filled]"

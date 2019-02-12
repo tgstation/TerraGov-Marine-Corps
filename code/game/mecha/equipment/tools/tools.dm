@@ -17,7 +17,7 @@
 		if(!cargo_holder) return
 		if(istype(target, /obj/structure/bed/stool)) return
 		for(var/M in target.contents)
-			if(istype(M, /mob/living))
+			if(isliving(M))
 				return
 
 		if(istype(target,/obj))
@@ -48,12 +48,12 @@
 		else if(istype(target,/mob/living))
 			var/mob/living/M = target
 			if(M.stat>1) return
-			if(chassis.occupant.a_intent == "hurt")
+			if(chassis.occupant.a_intent == INTENT_HARM)
 				M.take_overall_damage(dam_force)
 				M.adjustOxyLoss(round(dam_force/2))
 				M.updatehealth()
-				occupant_message("\red You squeeze [target] with the [src.name]!")
-				chassis.visible_message("\red [chassis] squeezes [target]!")
+				occupant_message("<span class='warning'> You squeeze [target] with the [src.name]!</span>")
+				chassis.visible_message("<span class='warning'> [chassis] squeezes [target]!</span>")
 				log_combat(chassis.occupant, M, "squeezed", src)
 				playsound(chassis.loc, 'sound/mecha/powerloader_attack.ogg', 25, 1)
 			else
@@ -88,7 +88,7 @@
 		var/C = target.loc	//why are these backwards? we may never know -Pete
 		if(do_after_cooldown(target))
 			if(T == chassis.loc && src == chassis.selected)
-				if(istype(target, /turf/closed/wall/r_wall) || istype(target, /turf/open/floor))
+				if(isrwallturf(target) || isfloorturf(target))
 					occupant_message("<font color='red'>[target] is too durable to drill through.</font>")
 				else if(target.loc == C)
 					log_message("Drilled through [target].")
@@ -117,7 +117,7 @@
 		var/C = target.loc	//why are these backwards? we may never know -Pete
 		if(do_after_cooldown(target))
 			if(T == chassis.loc && src == chassis.selected)
-				if(istype(target, /turf/closed/wall/r_wall))
+				if(isrwallturf(target))
 					if(do_after_cooldown(target))//To slow down how fast mechs can drill through the station
 						log_message("Drilled through [target]")
 						target.ex_act(3)
@@ -150,12 +150,12 @@
 			if( istype(target, /obj/structure/reagent_dispensers/watertank) && get_dist(chassis,target) <= 1)
 				var/obj/o = target
 				o.reagents.trans_to(src, 200)
-				occupant_message("\blue \The [src] is now refilled")
+				occupant_message("<span class='notice'> \The [src] is now refilled</span>")
 				playsound(chassis, 'sound/effects/refill.ogg', 25, 1, 4)
 				return
 
 			if (src.reagents.total_volume < 1)
-				occupant_message("\red \The [src] is empty.")
+				occupant_message("<span class='warning'> \The [src] is empty.</span>")
 				return
 
 			playsound(chassis, 'sound/effects/extinguish.ogg', 25, 1, 10)
@@ -225,7 +225,7 @@
 		//meh
 		switch(mode)
 			if(0)
-				if (istype(target, /turf/closed/wall))
+				if (iswallturf(target))
 					occupant_message("Deconstructing [target]...")
 					set_ready_state(0)
 					if(do_after_cooldown(target))
@@ -234,7 +234,7 @@
 						target:ChangeTurf(/turf/open/floor/plating)
 						playsound(target, 'sound/items/Deconstruct.ogg', 25, 1)
 						chassis.use_power(energy_drain)
-				else if (istype(target, /turf/open/floor))
+				else if (isfloorturf(target))
 					occupant_message("Deconstructing [target]...")
 					set_ready_state(0)
 					if(do_after_cooldown(target))
@@ -253,7 +253,7 @@
 						qdel(target)
 						chassis.use_power(energy_drain)
 			if(1)
-				if(istype(target, /turf/open/space))
+				if(isspaceturf(target))
 					occupant_message("Building Floor...")
 					set_ready_state(0)
 					if(do_after_cooldown(target))
@@ -262,7 +262,7 @@
 						playsound(target, 'sound/items/Deconstruct.ogg', 25, 1)
 						chassis.spark_system.start()
 						chassis.use_power(energy_drain*2)
-				else if(istype(target, /turf/open/floor))
+				else if(isfloorturf(target))
 					occupant_message("Building Wall...")
 					set_ready_state(0)
 					if(do_after_cooldown(target))
@@ -272,7 +272,7 @@
 						chassis.spark_system.start()
 						chassis.use_power(energy_drain*2)
 			if(2)
-				if(istype(target, /turf/open/floor))
+				if(isfloorturf(target))
 					occupant_message("Building Airlock...")
 					set_ready_state(0)
 					if(do_after_cooldown(target))
@@ -488,7 +488,7 @@
 			return chassis.dynattackby(W,user)
 		chassis.log_message("Attacked by [W]. Attacker - [user]")
 		if(prob(chassis.deflect_chance*deflect_coeff))
-			to_chat(user, "\red The [W] bounces off [chassis] armor.")
+			to_chat(user, "<span class='warning'>The [W] bounces off [chassis] armor.</span>")
 			chassis.log_append_to_last("Armor saved.")
 		else
 			chassis.occupant_message("<font color='red'><b>[user] hits [chassis] with [W].</b></font>")
@@ -539,7 +539,7 @@
 		if(!action_checks(src))
 			return chassis.dynbulletdamage(Proj)
 		if(prob(chassis.deflect_chance*deflect_coeff))
-			chassis.occupant_message("\blue The armor deflects incoming projectile.")
+			chassis.occupant_message("<span class='notice'> The armor deflects incoming projectile.</span>")
 			chassis.visible_message("The [chassis.name] armor deflects the projectile")
 			chassis.log_append_to_last("Armor saved.")
 		else
@@ -553,11 +553,11 @@
 	proc/dynhitby(atom/movable/A)
 		if(!action_checks(A))
 			return chassis.dynhitby(A)
-		if(prob(chassis.deflect_chance*deflect_coeff) || istype(A, /mob/living) || istype(A, /obj/item/mecha_parts/mecha_tracking))
-			chassis.occupant_message("\blue The [A] bounces off the armor.")
+		if(prob(chassis.deflect_chance*deflect_coeff) || isliving(A) || istype(A, /obj/item/mecha_parts/mecha_tracking))
+			chassis.occupant_message("<span class='notice'> The [A] bounces off the armor.</span>")
 			chassis.visible_message("The [A] bounces off the [chassis] armor")
 			chassis.log_append_to_last("Armor saved.")
-			if(istype(A, /mob/living))
+			if(isliving(A))
 				var/mob/living/M = A
 				M.take_limb_damage(10)
 		else if(istype(A, /obj))
@@ -981,15 +981,15 @@
 		else if(istype(target,/mob/living))
 			var/mob/living/M = target
 			if(M.stat>1) return
-			if(chassis.occupant.a_intent == "hurt")
-				chassis.occupant_message("\red You obliterate [target] with [src.name], leaving blood and guts everywhere.")
-				chassis.visible_message("\red [chassis] destroys [target] in an unholy fury.")
-			if(chassis.occupant.a_intent == "disarm")
-				chassis.occupant_message("\red You tear [target]'s limbs off with [src.name].")
-				chassis.visible_message("\red [chassis] rips [target]'s arms off.")
+			if(chassis.occupant.a_intent == INTENT_HARM)
+				chassis.occupant_message("<span class='warning'> You obliterate [target] with [src.name], leaving blood and guts everywhere.</span>")
+				chassis.visible_message("<span class='warning'> [chassis] destroys [target] in an unholy fury.</span>")
+			if(chassis.occupant.a_intent == INTENT_DISARM)
+				chassis.occupant_message("<span class='warning'> You tear [target]'s limbs off with [src.name].</span>")
+				chassis.visible_message("<span class='warning'> [chassis] rips [target]'s arms off.</span>")
 			else
 				step_away(M,chassis)
-				chassis.occupant_message("You smash into [target], sending them flying.")
+				chassis.occupant_message("You smash into [target], sending [target.p_them()] flying.")
 				chassis.visible_message("[chassis] tosses [target] like a piece of paper.")
 			set_ready_state(0)
 			chassis.use_power(energy_drain)
@@ -1023,7 +1023,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/tool/passenger/proc/move_inside(var/mob/user)
 	if (chassis)
-		chassis.visible_message("\blue [user] starts to climb into [chassis].")
+		chassis.visible_message("<span class='notice'> [user] starts to climb into [chassis].</span>")
 
 	if(do_after(user, 40, FALSE, 5, BUSY_ICON_GENERIC))
 		if(!src.occupant)
@@ -1032,7 +1032,7 @@
 			log_message("[user] boarded.")
 			occupant_message("[user] boarded.")
 		else if(src.occupant != user)
-			to_chat(user, "\red [src.occupant] was faster. Try better next time, loser.")
+			to_chat(user, "<span class='warning'>[src.occupant] was faster. Try better next time, loser.</span>")
 	else
 		to_chat(user, "You stop entering the exosuit.")
 
@@ -1106,13 +1106,13 @@
 		return
 
 	if (!isturf(usr.loc))
-		to_chat(usr, "\red You can't reach the passenger compartment from here.")
+		to_chat(usr, "<span class='warning'>You can't reach the passenger compartment from here.</span>")
 		return
 
 	if(iscarbon(usr))
 		var/mob/living/carbon/C = usr
 		if(C.handcuffed)
-			to_chat(usr, "\red Kinda hard to climb in while handcuffed don't you think?")
+			to_chat(usr, "<span class='warning'>Kinda hard to climb in while handcuffed don't you think?</span>")
 			return
 
 	//search for a valid passenger compartment
@@ -1132,10 +1132,10 @@
 	//didn't find anything
 	switch (feedback)
 		if (OCCUPIED)
-			to_chat(usr, "\red The passenger compartment is already occupied!")
+			to_chat(usr, "<span class='warning'>The passenger compartment is already occupied!</span>")
 		if (LOCKED)
-			to_chat(usr, "\red The passenger compartment hatch is locked!")
+			to_chat(usr, "<span class='warning'>The passenger compartment hatch is locked!</span>")
 		if (OCCUPIED|LOCKED)
-			to_chat(usr, "\red All of the passenger compartments are already occupied or locked!")
+			to_chat(usr, "<span class='warning'>All of the passenger compartments are already occupied or locked!</span>")
 		if (0)
-			to_chat(usr, "\red \The [src] doesn't have a passenger compartment.")
+			to_chat(usr, "<span class='warning'>\The [src] doesn't have a passenger compartment.</span>")

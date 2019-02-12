@@ -17,10 +17,10 @@
 	if(check_access(I))
 		return TRUE
 
-/obj/item/proc/GetAccess() 
+/obj/item/proc/GetAccess()
 	return list()
 
-/obj/item/proc/GetID() 
+/obj/item/proc/GetID()
 	return
 
 /obj/proc/check_access(obj/item/I)
@@ -162,13 +162,20 @@
 
 /proc/get_centcom_access_desc(A)
 	switch(A)
-		if(ACCESS_NT_PMC_GREEN)			return "W-Y PMC Green"
-		if(ACCESS_NT_PMC_ORANGE)		return "W-Y PMC Orange"
-		if(ACCESS_NT_PMC_RED)			return "W-Y PMC Red"
-		if(ACCESS_NT_PMC_BLACK)			return "W-Y PMC Black"
-		if(ACCESS_NT_PMC_WHITE)			return "W-Y PMC White"
-		if(ACCESS_NT_CORPORATE)			return "W-Y Executive"
-		if(ACCESS_IFF_PMC) 				return "W-Y Identification"
+		if(ACCESS_NT_PMC_GREEN)
+			return "NT PMC Green"
+		if(ACCESS_NT_PMC_ORANGE)
+			return "NT PMC Orange"
+		if(ACCESS_NT_PMC_RED)
+			return "NT PMC Red"
+		if(ACCESS_NT_PMC_BLACK)
+			return "NT PMC Black"
+		if(ACCESS_NT_PMC_WHITE)
+			return "NT PMC White"
+		if(ACCESS_NT_CORPORATE)
+			return "NT Executive"
+		if(ACCESS_IFF_PMC)
+			return "NT Identification"
 
 
 /proc/get_all_jobs_titles()
@@ -181,32 +188,32 @@
 	return all_jobs_titles
 
 
-/proc/get_all_centcom_jobs() 
+/proc/get_all_centcom_jobs()
 	return list()
 
 
 //gets the actual job rank (ignoring alt titles)
 //this is used solely for sechuds
 /obj/proc/GetJobRealName()
-	if (!istype(src,/obj/item/card/id)) 
+	if (!istype(src,/obj/item/card/id))
 		return
 	var/obj/item/card/id/I = src
-	if(I.rank in joblist) 
+	if(I.rank in joblist)
 		return I.rank
-	if(I.assignment in joblist) 
+	if(I.assignment in joblist)
 		return I.assignment
 	return "Unknown"
 
 proc/FindNameFromID(mob/living/carbon/human/H)
 	ASSERT(istype(H))
 	var/obj/item/card/id/I = H.wear_id
-	if(istype(I)) 
+	if(istype(I))
 		return I.registered_name
-	I = H.get_active_hand()
-	if(istype(I)) 
+	I = H.get_active_held_item()
+	if(istype(I))
 		return I.registered_name
 
-proc/get_all_job_icons() 
+proc/get_all_job_icons()
 	return joblist + list("Prisoner")//For all existing HUD icons
 
 /obj/proc/GetJobName() //Used in secHUD icon generation
@@ -214,13 +221,13 @@ proc/get_all_job_icons()
 	if(istype(I))
 		var/job_icons = get_all_job_icons()
 		var/centcom = get_all_centcom_jobs()
-		if(I.assignment	in job_icons) 	
+		if(I.assignment	in job_icons)
 			return I.assignment//Check if the job has a hud icon
-		if(I.rank in job_icons) 		
+		if(I.rank in job_icons)
 			return I.rank
-		if(I.assignment	in centcom) 	
+		if(I.assignment	in centcom)
 			return "Centcom"//Return with the NT logo if it is a Centcom job
-		if(I.rank in centcom) 			
+		if(I.rank in centcom)
 			return "Centcom"
 	return "Unknown" //Return unknown if none of the above apply
 
@@ -251,18 +258,18 @@ proc/get_all_job_icons()
 				)
 
 /proc/get_paygrades(paygrade, size, gender)
-	if(!paygrade) 
+	if(!paygrade)
 		return
 	switch(paygrade)
 		if("C") . = size ? "" : "Civilian"
 		if("CD") . = size ? "Dr. " : "Doctor"
 		if("CCMO") . = size ? "Prof. " : "Professor"
-		if("PMC1") . = size ? "PMC " : "PMC Standard"
-		if("PMC2") . = size ? "PMC " : "PMC Gunner"
-		if("PMC3") . = size ? "PMC " : "PMC Sniper"
-		if("PMC4") . = size ? "PMC " : "PMC Leader"
-		if("PMCDS") . = size ? "PMCDS " : "PMC Deathsquad"
-		if("PMCDSL") . = size ? "PMCDS " : "PMC Deathsquad Leader"
+		if("PMC1") . = size ? "PMC " : "PM Contractor"
+		if("PMC2") . = size ? "PMSC " : "PM Senior Contractor"
+		if("PMC3") . = size ? "PMSC " : "PM Senior Contractor"
+		if("PMC4") . = size ? "PMTL " : "PM Team Leader"
+		if("PMCDS") . = size ? "APS " : "Assets Protection Specialist"
+		if("PMCDSL") . = size ? "APTL " : "Assets Protection Team Leader"
 		if("NT") . = size ? (gender == "female" ? "Ms. " : "Mr. ") : "Junior Executive"
 		if("E1") . = size ? "PVT " : "Private"
 		if("E2") . = size ? "PFC " : "Private First Class"
@@ -316,7 +323,7 @@ proc/get_all_job_icons()
 #define PAYGRADES_ENLISTED list("C","E1","E2","E3","E4","E5","E6","E7","E8","E9")
 
 //Just marines
-#define ALL_MARINE_ACCESS list(ACCESS_IFF_MARINE, ACCESS_MARINE_COMMANDER, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_BRIG, ACCESS_MARINE_ARMORY, ACCESS_MARINE_WO, ACCESS_MARINE_CMO, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_ENGPREP,ACCESS_MARINE_SMARTPREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_SPECPREP, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PILOT, ACCESS_MARINE_TANK)
+#define ALL_MARINE_ACCESS list(ACCESS_IFF_MARINE, ACCESS_MARINE_COMMANDER, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_BRIG, ACCESS_MARINE_ARMORY, ACCESS_MARINE_WO, ACCESS_MARINE_CMO, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_ENGPREP,ACCESS_MARINE_SMARTPREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_SPECPREP, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PILOT, ACCESS_MARINE_TANK, ACCESS_CIVILIAN_ENGINEERING)
 
 //Literally everything
 #define ALL_ACCESS list(ACCESS_IFF_MARINE, ACCESS_MARINE_COMMANDER, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_BRIG, ACCESS_MARINE_ARMORY, ACCESS_MARINE_WO, ACCESS_MARINE_CMO, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_ENGPREP,ACCESS_MARINE_SMARTPREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_SPECPREP, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PILOT, ACCESS_MARINE_TANK, ACCESS_CIVILIAN_PUBLIC, ACCESS_CIVILIAN_RESEARCH, ACCESS_CIVILIAN_ENGINEERING, ACCESS_CIVILIAN_LOGISTICS, ACCESS_NT_PMC_GREEN, ACCESS_NT_PMC_ORANGE, ACCESS_NT_PMC_RED, ACCESS_NT_PMC_BLACK, ACCESS_NT_PMC_WHITE, ACCESS_NT_CORPORATE, ACCESS_ILLEGAL_PIRATE, ACCESS_IFF_PMC)

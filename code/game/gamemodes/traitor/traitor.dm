@@ -29,7 +29,7 @@
 
 /datum/game_mode/traitor/pre_setup()
 
-	if(config.protect_roles_from_antagonist)
+	if(CONFIG_GET(flag/protect_roles_from_antagonist))
 		restricted_jobs += protected_jobs
 
 	var/list/possible_traitors = get_players_for_role(BE_TRAITOR)
@@ -40,7 +40,7 @@
 
 	var/num_traitors = 1
 
-	if(config.traitor_scaling)
+	if(CONFIG_GET(flag/traitor_scaling))
 		num_traitors = max(1, round((ready_players())/(traitor_scaling_coeff)))
 	else
 		num_traitors = max(1, min(ready_players(), traitors_possible))
@@ -65,7 +65,7 @@
 
 /datum/game_mode/traitor/post_setup()
 	for(var/datum/mind/traitor in traitors)
-		if (!config.objectives_disabled)
+		if(!CONFIG_GET(flag/objectives_disabled))
 			forge_traitor_objectives(traitor)
 		spawn(rand(10,100))
 			finalize_traitor(traitor)
@@ -78,10 +78,10 @@
 
 
 /datum/game_mode/proc/forge_traitor_objectives(var/datum/mind/traitor)
-	if (config.objectives_disabled)
+	if(CONFIG_GET(flag/objectives_disabled))
 		return
 
-	if(istype(traitor.current, /mob/living/silicon))
+	if(issilicon(traitor.current))
 		var/datum/objective/assassinate/kill_objective = new
 		kill_objective.owner = traitor
 		kill_objective.find_target()
@@ -121,7 +121,7 @@
 
 
 /datum/game_mode/proc/finalize_traitor(var/datum/mind/traitor)
-	if (istype(traitor.current, /mob/living/silicon))
+	if (issilicon(traitor.current))
 		add_law_zero(traitor.current)
 	else
 		equip_traitor(traitor.current)
@@ -181,7 +181,7 @@
 				special_role_text = lowertext(traitor.special_role)
 			else
 				special_role_text = "antagonist"
-			if(!config.objectives_disabled)
+			if(!CONFIG_GET(flag/objectives_disabled))
 				if(traitorwin)
 					text += "<br><font color='green'><B>The [special_role_text] was successful!</B></font>"
 					feedback_add_details("traitor_success","SUCCESS")
@@ -277,5 +277,5 @@
 	// Tell them about people they might want to contact.
 	var/mob/living/carbon/human/M = get_nt_opposed()
 	if(M && M != traitor_mob)
-		to_chat(traitor_mob, "We have received credible reports that [M.real_name] might be willing to help our cause. If you need assistance, consider contacting them.")
+		to_chat(traitor_mob, "We have received credible reports that [M.real_name] might be willing to help our cause. If you need assistance, consider contacting [M.p_them()].")
 		traitor_mob.mind.store_memory("<b>Potential Collaborator</b>: [M.real_name]")

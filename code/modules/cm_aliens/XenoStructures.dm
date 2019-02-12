@@ -71,7 +71,7 @@
 	healthcheck()
 
 /obj/effect/alien/resin/attack_alien(mob/living/carbon/Xenomorph/M)
-	if(isXenoLarva(M)) //Larvae can't do shit
+	if(isxenolarva(M)) //Larvae can't do shit
 		return 0
 	M.visible_message("<span class='xenonotice'>\The [M] claws \the [src]!</span>", \
 	"<span class='xenonotice'>You claw \the [src].</span>")
@@ -159,16 +159,16 @@
 	anchored = 1
 	health = 5
 	layer = RESIN_STRUCTURE_LAYER
-	var/hugger = FALSE
-	var/carrier_number //the nicknumber of the carrier that placed us.
+	var/obj/item/clothing/mask/facehugger/hugger = null
+	var/mob/living/linked_carrier //The carrier that placed us.
 
-/obj/effect/alien/resin/trap/New(loc, mob/living/carbon/Xenomorph/Carrier/C)
-	if(C)
-		carrier_number = C.nicknumber
+/obj/effect/alien/resin/trap/New(loc, mob/living/builder)
+	if(builder)
+		linked_carrier = builder
 	..()
 
 /obj/effect/alien/resin/trap/examine(mob/user)
-	if(isXeno(user))
+	if(isxeno(user))
 		to_chat(user, "A hole for a little one to hide in ambush.")
 		if(hugger)
 			to_chat(user, "There's a little one inside.")
@@ -180,17 +180,17 @@
 
 /obj/effect/alien/resin/trap/flamer_fire_act()
 	if(hugger)
-		var/obj/item/clothing/mask/facehugger/FH = new (loc)
-		FH.Die()
-		hugger = FALSE
+		hugger.forceMove(loc)
+		hugger.Die()
+		hugger = null
 		icon_state = "trap0"
 	..()
 
 /obj/effect/alien/resin/trap/fire_act()
 	if(hugger)
-		var/obj/item/clothing/mask/facehugger/FH = new (loc)
-		FH.Die()
-		hugger = FALSE
+		hugger.forceMove(loc)
+		hugger.Die()
+		hugger = null
 		icon_state = "trap0"
 	..()
 
@@ -200,61 +200,59 @@
 	return ..()
 
 /obj/effect/alien/resin/trap/HasProximity(atom/movable/AM)
-	if(hugger)
-		if(CanHug(AM) && !isYautja(AM) && !isSynth(AM))
-			var/mob/living/L = AM
-			L.visible_message("<span class='warning'>[L] trips on [src]!</span>",\
-							"<span class='danger'>You trip on [src]!</span>")
-			L.KnockDown(1)
-			if(carrier_number)
-				for(var/mob/living/carbon/Xenomorph/X in living_mob_list)
-					if(X.nicknumber == carrier_number)
-						if(!X.stat)
-							var/area/A = get_area(src)
-							if(A)
-								to_chat(X, "<span class='xenoannounce'>You sense one of your traps at [A.name] has been triggered!</span>")
-						break
-			drop_hugger()
+	if(!iscarbon(AM) || !hugger || isyautja(AM))
+		return
+	var/mob/living/carbon/C = AM
+	if(C.can_be_facehugged(hugger))
+		C.visible_message("<span class='warning'>[C] trips on [src]!</span>",\
+						"<span class='danger'>You trip on [src]!</span>")
+		C.KnockDown(1)
+		if(!QDELETED(linked_carrier))
+			if(linked_carrier.stat == CONSCIOUS && linked_carrier.z == z)
+				var/area/A = get_area(src)
+				if(A)
+					to_chat(linked_carrier, "<span class='xenoannounce'>You sense one of your traps at [A.name] has been triggered!</span>")
+		drop_hugger()
 
 /obj/effect/alien/resin/trap/proc/drop_hugger()
-	set waitfor = 0
-	var/obj/item/clothing/mask/facehugger/FH = new (loc)
-	hugger = FALSE
+	hugger.forceMove(loc)
+	addtimer(CALLBACK(hugger, /obj/item/clothing/mask/facehugger.proc/fast_activate, TRUE), 1.5 SECONDS)
 	icon_state = "trap0"
-	visible_message("<span class='warning'>[FH] gets out of [src]!</span>")
-	sleep(15)
-	if(FH.stat == CONSCIOUS && FH.loc) //Make sure we're conscious and not idle or dead.
-		FH.leap_at_nearest_target()
+	visible_message("<span class='warning'>[hugger] gets out of [src]!</span>")
+	hugger = null
 
 /obj/effect/alien/resin/trap/attack_alien(mob/living/carbon/Xenomorph/M)
-	if(M.a_intent != "hurt")
+	if(M.a_intent != INTENT_HARM)
 		if(M.xeno_caste.caste_flags & CASTE_CAN_HOLD_FACEHUGGERS)
 			if(!hugger)
 				to_chat(M, "<span class='warning'>[src] is empty.</span>")
 			else
-				hugger = FALSE
 				icon_state = "trap0"
-				var/obj/item/clothing/mask/facehugger/F = new ()
-				M.put_in_active_hand(F)
+				M.put_in_active_hand(hugger)
+				hugger.GoActive(TRUE)
+				hugger = null
 				to_chat(M, "<span class='xenonotice'>You remove the facehugger from [src].</span>")
 		return
 	..()
 
 /obj/effect/alien/resin/trap/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/clothing/mask/facehugger) && isXeno(user))
+	if(istype(W, /obj/item/clothing/mask/facehugger) && isxeno(user))
 		var/obj/item/clothing/mask/facehugger/FH = W
-		if(FH.stat == DEAD)
+		if(hugger)
+			to_chat(user, "<span class='warning'>There is already a facehugger in [src].</span>")
+		else if(FH.stat == DEAD)
 			to_chat(user, "<span class='warning'>You can't put a dead facehugger in [src].</span>")
 		else
-			hugger = TRUE
+			user.transferItemToLoc(FH, src)
+			FH.GoIdle(TRUE)
+			hugger = FH
 			icon_state = "trap1"
 			to_chat(user, "<span class='xenonotice'>You place a facehugger in [src].</span>")
-			qdel(FH)
 	else
 		return ..()
 
 /obj/effect/alien/resin/trap/Crossed(atom/A)
-	if(ismob(A))
+	if(iscarbon(A))
 		HasProximity(A)
 
 /obj/effect/alien/resin/trap/Destroy()
@@ -285,7 +283,7 @@
 	..()
 
 /obj/structure/mineral_door/resin/attack_paw(mob/user as mob)
-	if(user.a_intent == "hurt")
+	if(user.a_intent == INTENT_HARM)
 		user.visible_message("<span class='xenowarning'>\The [user] claws at \the [src].</span>", \
 		"<span class='xenowarning'>You claw at \the [src].</span>")
 		playsound(loc, "alien_resin_break", 25)
@@ -310,7 +308,7 @@
 	var/turf/cur_loc = M.loc
 	if(!istype(cur_loc))
 		return FALSE //Some basic logic here
-	if(M.a_intent != "hurt")
+	if(M.a_intent != INTENT_HARM)
 		TryToSwitchState(M)
 		return TRUE
 
@@ -343,7 +341,7 @@
 		qdel(src)
 
 /obj/structure/mineral_door/resin/TryToSwitchState(atom/user)
-	if(isXeno(user))
+	if(isxeno(user))
 		return ..()
 
 /obj/structure/mineral_door/resin/Open()
@@ -437,15 +435,15 @@
 /*
  * Egg
  */
-/var/const //for the status var
-	BURST = 0
-	BURSTING = 1
-	GROWING = 2
-	GROWN = 3
-	DESTROYED = 4
 
-	MIN_GROWTH_TIME = 100 //time it takes for the egg to mature once planted
-	MAX_GROWTH_TIME = 150
+#define EGG_BURST 0
+#define EGG_BURSTING 1
+#define EGG_GROWING 2
+#define EGG_GROWN 3
+#define EGG_DESTROYED 4
+
+#define EGG_MIN_GROWTH_TIME 10 SECONDS //time it takes for the egg to mature once planted
+#define EGG_MAX_GROWTH_TIME 15 SECONDS
 
 /obj/effect/alien/egg
 	desc = "It looks like a weird egg"
@@ -454,23 +452,45 @@
 	density = 0
 
 	health = 80
+	var/obj/item/clothing/mask/facehugger/hugger = null
+	var/hugger_type = /obj/item/clothing/mask/facehugger
 	var/list/egg_triggers = list()
-	var/status = GROWING //can be GROWING, GROWN or BURST; all mutually exclusive
+	var/status = EGG_GROWING
 	var/hivenumber = XENO_HIVE_NORMAL
 
 /obj/effect/alien/egg/New()
 	..()
-	create_egg_triggers()
-	Grow()
+	if(hugger_type)
+		hugger = new hugger_type(src)
+		hugger.hivenumber = hivenumber
+		hugger.GoIdle(TRUE)
+	addtimer(CALLBACK(src, .proc/Grow), rand(EGG_MIN_GROWTH_TIME, EGG_MAX_GROWTH_TIME))
 
 /obj/effect/alien/egg/Destroy()
+	QDEL_LIST(egg_triggers)
 	. = ..()
-	delete_egg_triggers()
+
+/obj/effect/alien/egg/proc/Grow()
+	if(status == EGG_GROWING)
+		update_status(EGG_GROWN)
+		deploy_egg_triggers()
+
+/obj/effect/alien/egg/proc/deploy_egg_triggers()
+	QDEL_LIST(egg_triggers)
+	for(var/i in 1 to 8)
+		var/x_coords = list(-1,-1,-1,0,0,1,1,1)
+		var/y_coords = list(1,0,-1,1,-1,1,0,-1)
+		var/turf/target_turf = locate(x+x_coords[i],y+y_coords[i], z)
+		if(target_turf)
+			egg_triggers += new /obj/effect/egg_trigger(target_turf, src)
 
 /obj/effect/alien/egg/ex_act(severity)
 	Burst(TRUE)//any explosion destroys the egg.
 
 /obj/effect/alien/egg/attack_alien(mob/living/carbon/Xenomorph/M)
+
+	if(!istype(M))
+		return attack_hand(M)
 
 	if(M.hivenumber != hivenumber)
 		M.animation_attack_on(src)
@@ -478,79 +498,45 @@
 		Burst(TRUE)
 		return
 
-	if(!istype(M))
-		return attack_hand(M)
-
 	switch(status)
-		if(BURST, DESTROYED)
+		if(EGG_BURST, EGG_DESTROYED)
 			if(M.xeno_caste.can_hold_eggs)
 				M.visible_message("<span class='xenonotice'>\The [M] clears the hatched egg.</span>", \
 				"<span class='xenonotice'>You clear the hatched egg.</span>")
 				playsound(src.loc, "alien_resin_break", 25)
 				M.plasma_stored++
 				qdel(src)
-		if(GROWING)
+		if(EGG_GROWING)
 			to_chat(M, "<span class='xenowarning'>The child is not developed yet.</span>")
-		if(GROWN)
-			if(isXenoLarva(M))
+		if(EGG_GROWN)
+			if(isxenolarva(M))
 				to_chat(M, "<span class='xenowarning'>You nudge the egg, but nothing happens.</span>")
 				return
 			to_chat(M, "<span class='xenonotice'>You retrieve the child.</span>")
 			Burst(FALSE)
 
-/obj/effect/alien/egg/proc/Grow()
-	set waitfor = 0
-	update_icon()
-	sleep(rand(MIN_GROWTH_TIME,MAX_GROWTH_TIME))
-	if(status == GROWING)
-		icon_state = "Egg"
-		status = GROWN
-		update_icon()
-		deploy_egg_triggers()
-
-/obj/effect/alien/egg/proc/create_egg_triggers()
-	for(var/i=1, i<=8, i++)
-		egg_triggers += new /obj/effect/egg_trigger(src, src)
-
-/obj/effect/alien/egg/proc/deploy_egg_triggers()
-	var/i = 1
-	var/x_coords = list(-1,-1,-1,0,0,1,1,1)
-	var/y_coords = list(1,0,-1,1,-1,1,0,-1)
-	var/turf/target_turf
-	for(var/atom/trigger in egg_triggers)
-		var/obj/effect/egg_trigger/ET = trigger
-		target_turf = locate(x+x_coords[i],y+y_coords[i], z)
-		if(target_turf)
-			ET.loc = target_turf
-			i++
-
-/obj/effect/alien/egg/proc/delete_egg_triggers()
-	for(var/atom/trigger in egg_triggers)
-		egg_triggers -= trigger
-		qdel(trigger)
-
 /obj/effect/alien/egg/proc/Burst(kill = TRUE) //drops and kills the hugger if any is remaining
-	set waitfor = 0
 	if(kill)
-		if(status != DESTROYED)
-			delete_egg_triggers()
-			status = DESTROYED
-			icon_state = "Egg Exploded"
+		if(status != EGG_DESTROYED)
+			QDEL_NULL(hugger)
+			QDEL_LIST(egg_triggers)
+			update_status(EGG_DESTROYED)
 			flick("Egg Exploding", src)
 			playsound(src.loc, "sound/effects/alien_egg_burst.ogg", 25)
 	else
-		if(status == GROWN || status == GROWING)
-			status = BURSTING
-			delete_egg_triggers()
-			icon_state = "Egg Opened"
+		if(status in list(EGG_GROWN, EGG_GROWING))
+			update_status(EGG_BURSTING)
+			QDEL_LIST(egg_triggers)
 			flick("Egg Opening", src)
 			playsound(src.loc, "sound/effects/alien_egg_move.ogg", 25)
-			sleep(10)
-			if(loc && status != DESTROYED)
-				status = BURST
-				var/obj/item/clothing/mask/facehugger/child = new(loc)
-				child.hivenumber = hivenumber
-				child.leap_at_nearest_target()
+			addtimer(CALLBACK(src, .proc/unleash_hugger), 1 SECONDS)
+
+/obj/effect/alien/egg/proc/unleash_hugger()
+	if(status != EGG_DESTROYED && hugger)
+		status = EGG_BURST
+		hugger.forceMove(loc)
+		hugger.fast_activate(TRUE)
+		hugger = null
 
 /obj/effect/alien/egg/bullet_act(var/obj/item/projectile/P)
 	..()
@@ -561,34 +547,46 @@
 	P.ammo.on_hit_obj(src,P)
 	return 1
 
+/obj/effect/alien/egg/proc/update_status(new_stat)
+	if(new_stat)
+		status = new_stat
+		update_icon()
+
 /obj/effect/alien/egg/update_icon()
 	overlays.Cut()
 	if(hivenumber && hivenumber <= hive_datum.len)
 		var/datum/hive_status/hive = hive_datum[hivenumber]
 		if(hive.color)
 			color = hive.color
+	switch(status)
+		if(EGG_DESTROYED)
+			icon_state = "Egg Exploded"
+			return
+		if(EGG_BURSTING || EGG_BURST)
+			icon_state = "Egg Opened"
+		if(EGG_GROWING)
+			icon_state = "Egg Growing"
+		if(EGG_GROWN)
+			icon_state = "Egg"
 	if(on_fire)
 		overlays += "alienegg_fire"
 
 /obj/effect/alien/egg/attackby(obj/item/W, mob/living/user)
-	if(health <= 0)
-		return
 
 	if(istype(W,/obj/item/clothing/mask/facehugger))
 		var/obj/item/clothing/mask/facehugger/F = W
 		if(F.stat != DEAD)
-			switch(status)
-				if(BURST)
-					if(user)
-						visible_message("<span class='xenowarning'>[user] slides [F] back into [src].</span>","<span class='xenonotice'>You place the child back in to [src].</span>")
-						user.temp_drop_inv_item(F)
-					else
-						visible_message("<span class='xenowarning'>[F] crawls back into [src]!</span>") //Not sure how, but let's roll with it for now.
-					status = GROWN
-					icon_state = "Egg"
-					qdel(F)
-				if(DESTROYED) to_chat(user, "<span class='xenowarning'>This egg is no longer usable.</span>")
-				if(GROWING,GROWN) to_chat(user, "<span class='xenowarning'>This one is occupied with a child.</span>")
+			if(EGG_DESTROYED)
+				to_chat(user, "<span class='xenowarning'>This egg is no longer usable.</span>")
+			else if(!hugger)
+				visible_message("<span class='xenowarning'>[user] slides [F] back into [src].</span>","<span class='xenonotice'>You place the child back in to [src].</span>")
+				user.transferItemToLoc(F, src)
+				F.GoIdle(TRUE)
+				hugger = F
+				update_status(EGG_GROWN)
+				deploy_egg_triggers()
+			else
+				to_chat(user, "<span class='xenowarning'>This one is occupied with a child.</span>")
 		else
 			to_chat(user, "<span class='xenowarning'>This child is dead.</span>")
 		return
@@ -604,7 +602,7 @@
 	var/damage = W.force
 	if(W.w_class < 4 || !W.sharp || W.force < 20) //only big strong sharp weapon are adequate
 		damage /= 4
-	if(istype(W, /obj/item/tool/weldingtool))
+	if(iswelder(W))
 		var/obj/item/tool/weldingtool/WT = W
 
 		if(WT.remove_fuel(0, user))
@@ -621,17 +619,20 @@
 	if(health <= 0)
 		Burst(TRUE)
 
-/obj/effect/alien/egg/HasProximity(atom/movable/AM as mob|obj)
-	if(status == GROWN)
-		if(!CanHug(AM) || isYautja(AM) || isSynth(AM)) //Predators are too stealthy to trigger eggs to burst. Maybe the huggers are afraid of them.
-			return
-		Burst(FALSE)
-
 /obj/effect/alien/egg/flamer_fire_act() // gotta kill the egg + hugger
 	Burst(TRUE)
 
 /obj/effect/alien/egg/fire_act()
 	Burst(TRUE)
+
+/obj/effect/alien/egg/HasProximity(atom/movable/AM)
+	if((status != EGG_GROWN) || QDELETED(hugger) || !iscarbon(AM) || isyautja(AM)) //Predators are too stealthy to trigger eggs to burst.
+		return FALSE
+	var/mob/living/carbon/C = AM
+	if(!C.can_be_facehugged(hugger))
+		return FALSE
+	Burst(FALSE)
+	return TRUE
 
 //The invisible traps around the egg to tell it there's a mob right next to it.
 /obj/effect/egg_trigger
@@ -684,15 +685,14 @@ TUNNEL
 	var/obj/structure/tunnel/other = null
 	var/id = null //For mapping
 
-	New()
-		..()
-		spawn(5)
-			if(id && !other)
-				for(var/obj/structure/tunnel/T in structure_list)
-					if(T.id == id && T != src && T.other == null) //Found a matching tunnel
-						T.other = src
-						other = T //Link them!
-						break
+/obj/structure/tunnel/Initialize()
+	. = ..()
+	if(id && !other)
+		for(var/obj/structure/tunnel/T in GLOB.xeno_tunnels)
+			if(T.id == id && T != src && T.other == null) //Found a matching tunnel
+				T.other = src
+				other = T //Link them!
+				break
 
 /obj/structure/tunnel/Destroy()
 	if(other)
@@ -702,7 +702,7 @@ TUNNEL
 
 /obj/structure/tunnel/examine(mob/user)
 	..()
-	if(!isXeno(user) && !isobserver(user))
+	if(!isxeno(user) && !isobserver(user))
 		return
 
 	if(!other)
@@ -739,7 +739,7 @@ TUNNEL
 	healthcheck()
 
 /obj/structure/tunnel/attackby(obj/item/W as obj, mob/user as mob)
-	if(!isXeno(user))
+	if(!isxeno(user))
 		return ..()
 	attack_alien(user)
 
@@ -753,7 +753,7 @@ TUNNEL
 		if(!hive.living_xeno_queen)
 			to_chat(M, "<span class='xenowarning'>There is no Queen. You must choose a queen first.</span>")
 			return FALSE
-		else if(isXenoQueen(M))
+		else if(isxenoqueen(M))
 			to_chat(M, "<span class='xenowarning'>There is no reason to leave the safety of the caves yet.</span>")
 			return FALSE
 
@@ -766,7 +766,7 @@ TUNNEL
 	if(M.mob_size == MOB_SIZE_BIG) //Big xenos take WAY longer
 		tunnel_time = 120
 
-	if(isXenoLarva(M)) //Larva can zip through near-instantly, they are wormlike after all
+	if(isxenolarva(M)) //Larva can zip through near-instantly, they are wormlike after all
 		tunnel_time = 5
 
 	if(!other || !isturf(other.loc))
@@ -791,4 +791,3 @@ TUNNEL
 			to_chat(M, "<span class='warning'>\The [src] ended unexpectedly, so you return back up.</span>")
 	else
 		to_chat(M, "<span class='warning'>Your crawling was interrupted!</span>")
-

@@ -14,7 +14,7 @@
 	desc = "There are 0 caps left. Looks almost like the real thing! Ages 8 and up. Please recycle in an autolathe when you're out of caps!"
 	icon_state = "capgun"
 	item_state = "gun"
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	w_class = 3.0
 
 	matter = list("glass" = 10,"metal" = 10)
@@ -30,17 +30,17 @@
 
 		if (istype(A, /obj/item/toy/gun_ammo))
 			if (src.bullets >= 7)
-				to_chat(user, "\blue It's already fully loaded!")
+				to_chat(user, "<span class='notice'>It's already fully loaded!</span>")
 				return 1
 			if (A.amount_left <= 0)
-				to_chat(user, "\red There is no more caps!")
+				to_chat(user, "<span class='warning'>There is no more caps!</span>")
 				return 1
 			if (A.amount_left < (7 - bullets))
 				src.bullets += A.amount_left
-				to_chat(user, "\red You reload [A.amount_left] caps\s!")
+				to_chat(user, "<span class='warning'>You reload [A.amount_left] caps\s!</span>")
 				A.amount_left = 0
 			else
-				to_chat(user, "\red You reload [7 - bullets] caps\s!")
+				to_chat(user, "<span class='warning'>You reload [7 - bullets] caps\s!</span>")
 				A.amount_left -= 7 - bullets
 				bullets = 7
 			A.update_icon()
@@ -51,18 +51,18 @@
 	afterattack(atom/target as mob|obj|turf|area, mob/user as mob, flag)
 		if (flag)
 			return
-		if (!(istype(usr, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
-			to_chat(usr, "\red You don't have the dexterity to do this!")
+		if (!(ishuman(usr) || ticker) && ticker.mode.name != "monkey")
+			to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
 			return
 		src.add_fingerprint(user)
 		if (src.bullets < 1)
-			user.show_message("\red *click* *click*", 2)
+			user.show_message("<span class='warning'> *click* *click*</span>", 2)
 			playsound(user, 'sound/weapons/gun_empty.ogg', 15, 1)
 			return
 		playsound(user, 'sound/weapons/Gunshot.ogg', 15, 1)
 		src.bullets--
 		for(var/mob/O in viewers(user, null))
-			O.show_message(text("\red <B>[] fires a cap gun at []!</B>", user, target), 1, "\red You hear a gunshot", 2)
+			O.show_message(text("<span class='danger'>[] fires a cap gun at []!</span>", user, target), 1, "<span class='warning'> You hear a gunshot</span>", 2)
 
 /obj/item/toy/gun_ammo
 	name = "ammo-caps"
@@ -97,7 +97,7 @@
 	examine(mob/user)
 		..()
 		if (bullets)
-			to_chat(user, "\blue It is loaded with [bullets] foam darts!")
+			to_chat(user, "<span class='notice'>It is loaded with [bullets] foam darts!</span>")
 
 	attackby(obj/item/I as obj, mob/user as mob)
 		if(istype(I, /obj/item/toy/crossbow_ammo))
@@ -105,9 +105,9 @@
 				if(user.drop_held_item())
 					qdel(I)
 					bullets++
-					to_chat(user, "\blue You load the foam dart into the crossbow.")
+					to_chat(user, "<span class='notice'>You load the foam dart into the crossbow.</span>")
 			else
-				to_chat(usr, "\red It's already fully loaded.")
+				to_chat(usr, "<span class='warning'>It's already fully loaded.</span>")
 
 
 	afterattack(atom/target as mob|obj|turf|area, mob/user as mob, flag)
@@ -133,7 +133,7 @@
 						if(!istype(M,/mob/living)) continue
 						if(M == user) continue
 						for(var/mob/O in viewers(world.view, D))
-							O.show_message(text("\red [] was hit by the foam dart!", M), 1)
+							O.show_message(text("<span class='warning'> [] was hit by the foam dart!</span>", M), 1)
 						new /obj/item/toy/crossbow_ammo(M.loc)
 						qdel(D)
 						return
@@ -155,7 +155,7 @@
 		else if (bullets == 0)
 			user.KnockDown(5)
 			for(var/mob/O in viewers(world.view, user))
-				O.show_message(text("\red [] realized they were out of ammo and starting scrounging for some!", user), 1)
+				O.show_message(text("<span class='warning'> [] realized they were out of ammo and starting scrounging for some!</span>", user), 1)
 
 
 	attack(mob/M as mob, mob/user as mob)
@@ -167,15 +167,15 @@
 
 			for(var/mob/O in viewers(M, null))
 				if(O.client)
-					O.show_message(text("\red <B>[] casually lines up a shot with []'s head and pulls the trigger!</B>", user, M), 1, "\red You hear the sound of foam against skull", 2)
-					O.show_message(text("\red [] was hit in the head by the foam dart!", M), 1)
+					O.show_message(text("<span class='danger'>[] casually lines up a shot with []'s head and pulls the trigger!</span>", user, M), 1, "<span class='warning'> You hear the sound of foam against skull</span>", 2)
+					O.show_message(text("<span class='warning'> [] was hit in the head by the foam dart!</span>", M), 1)
 
 			playsound(user.loc, 'sound/items/syringeproj.ogg', 15, 1)
 			new /obj/item/toy/crossbow_ammo(M.loc)
 			src.bullets--
 		else if (M.lying && src.bullets == 0)
 			for(var/mob/O in viewers(M, null))
-				if (O.client)	O.show_message(text("\red <B>[] casually lines up a shot with []'s head, pulls the trigger, then realizes they are out of ammo and drops to the floor in search of some!</B>", user, M), 1, "\red You hear someone fall", 2)
+				if (O.client)	O.show_message(text("<span class='danger'>[] casually lines up a shot with []'s head, pulls the trigger, then realizes they are out of ammo and drops to the floor in search of some!</span>", user, M), 1, "<span class='warning'> You hear someone fall</span>", 2)
 			user.KnockDown(5)
 		return
 
@@ -212,13 +212,13 @@
 	attack_self(mob/user as mob)
 		src.active = !( src.active )
 		if (src.active)
-			to_chat(user, "\blue You extend the plastic blade with a quick flick of your wrist.")
+			to_chat(user, "<span class='notice'>You extend the plastic blade with a quick flick of your wrist.</span>")
 			playsound(user, 'sound/weapons/saberon.ogg', 15, 1)
 			src.icon_state = "swordblue"
 			src.item_state = "swordblue"
 			src.w_class = 4
 		else
-			to_chat(user, "\blue You push the plastic blade back down into the handle.")
+			to_chat(user, "<span class='notice'>You push the plastic blade back down into the handle.</span>")
 			playsound(user, 'sound/weapons/saberoff.ogg', 15, 1)
 			src.icon_state = "sword0"
 			src.item_state = "sword0"
@@ -239,7 +239,7 @@
 	icon_state = "katana"
 	flags_atom = CONDUCT
 	flags_item = NOSHIELD
-	flags_equip_slot = SLOT_WAIST|SLOT_BACK
+	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_BACK
 	force = 5
 	throwforce = 5
 	w_class = 3

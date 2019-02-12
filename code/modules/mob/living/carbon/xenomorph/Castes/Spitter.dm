@@ -28,7 +28,7 @@
 	evolution_threshold = 200
 	upgrade_threshold = 200
 
-	evolves_to = list(/mob/living/carbon/Xenomorph/Boiler)
+	evolves_to = list(/mob/living/carbon/Xenomorph/Boiler, /mob/living/carbon/Xenomorph/Praetorian)
 	deevolves_to = /mob/living/carbon/Xenomorph/Sentinel
 
 	// *** Flags *** //

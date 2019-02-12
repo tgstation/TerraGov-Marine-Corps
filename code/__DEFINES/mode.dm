@@ -13,8 +13,10 @@
 #define EVACUATION_STATUS_COMPLETE 3
 
 #define COOLDOWN_COMM_REQUEST 5 MINUTES
-#define COOLDOWN_COMM_MESSAGE 1 MINUTE
+#define COOLDOWN_COMM_MESSAGE 1 MINUTES
 #define COOLDOWN_COMM_CENTRAL 30 SECONDS
+
+#define FOG_DELAY_INTERVAL	30 MINUTES
 
 #define NUKE_EXPLOSION_INACTIVE 0
 #define NUKE_EXPLOSION_ACTIVE	1
@@ -40,6 +42,11 @@
 #define MODE_FOG_ACTIVATED 		(1 << 4)
 #define MODE_INFECTION			(1 << 5)
 #define MODE_HUMAN_ANTAGS		(1 << 6)
+
+#define MODE_LANDMARK_RANDOM_ITEMS			(1 << 0)
+#define MODE_LANDMARK_SPAWN_XENO_TUNNELS	(1 << 1)
+#define MODE_LANDMARK_HELLHOUND_BLOCKER		(1 << 2)
+#define MODE_LANDMARK_SPAWN_MAP_ITEM		(1 << 3)
 
 #define BE_ALIEN		(1 << 0)
 #define BE_QUEEN		(1 << 1)
@@ -137,14 +144,15 @@ var/list/be_special_flags = list(
 //=================================================
 
 //Role defines, specifically lists of roles for job bans and the like.
-#define ROLES_COMMAND 		list("Commander","Executive Officer","Staff Officer","Pilot Officer","Tank Crewman","Military Police","Corporate Liaison","Requisitions Officer","Chief Engineer","Chief Medical Officer","Chief MP")
-#define ROLES_OFFICERS		list("Commander","Executive Officer","Staff Officer","Pilot Officer","Tank Crewman","Chief MP","Military Police","Corporate Liaison", "Synthetic")
-#define ROLES_ENGINEERING 	list("Chief Engineer","Maintenance Tech")
-#define ROLES_REQUISITION 	list("Requisitions Officer","Cargo Technician")
-#define ROLES_MEDICAL 		list("Chief Medical Officer","Doctor","Researcher")
-#define ROLES_MARINES		list("Squad Leader","Squad Specialist","Squad Smartgunner","Squad Medic","Squad Engineer","Squad Marine")
-#define ROLES_SQUAD_ALL		list("Alpha","Bravo","Charlie","Delta")
-#define ROLES_REGULAR_ALL	ROLES_OFFICERS + ROLES_ENGINEERING + ROLES_REQUISITION + ROLES_MEDICAL + ROLES_MARINES
+#define ROLES_COMMAND 		list("Commander", "Executive Officer", "Staff Officer", "Pilot Officer", "Tank Crewman", "Corporate Liaison", "Requisitions Officer", "Chief Engineer", "Chief Medical Officer", "Synthetic")
+#define ROLES_POLICE		list("Chief MP", "Military Police")
+#define ROLES_OFFICERS		list("Commander", "Executive Officer", "Staff Officer", "Pilot Officer", "Tank Crewman", "Corporate Liaison", "Synthetic")
+#define ROLES_ENGINEERING 	list("Chief Engineer", "Maintenance Tech")
+#define ROLES_REQUISITION 	list("Requisitions Officer", "Cargo Technician")
+#define ROLES_MEDICAL 		list("Chief Medical Officer", "Doctor","Researcher")
+#define ROLES_MARINES		list("Squad Leader", "Squad Specialist", "Squad Smartgunner", "Squad Medic", "Squad Engineer", "Squad Marine")
+#define ROLES_SQUAD_ALL		list("Alpha", "Bravo", "Charlie" ,"Delta")
+#define ROLES_REGULAR_ALL	ROLES_OFFICERS + ROLES_POLICE + ROLES_ENGINEERING + ROLES_REQUISITION + ROLES_MEDICAL + ROLES_MARINES
 #define ROLES_UNASSIGNED	list("Squad Marine")
 //=================================================
 
@@ -161,3 +169,4 @@ var/list/be_special_flags = list(
 //=================================================
 
 
+#define LATEJOIN_LARVA_DISABLED 0

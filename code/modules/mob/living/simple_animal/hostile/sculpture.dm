@@ -136,7 +136,7 @@
 			if(!next_turf.CanPass(src, next_turf)) //Once we cleared everything we could, check one last time if we can pass
 				break
 			forceMove(next_turf)
-			dir = get_dir(src, target)
+			setDir(get_dir(src, target))
 			next_turf = get_step(src, get_dir(next_turf,target))
 			num_turfs--
 
@@ -149,7 +149,7 @@
 	if(prob(25)) //1 in 4 chance of checking out something new
 		var/list/turfs = new/list()
 		for(var/turf/T in view(7, src))
-			if(!istype(T, /turf/open/floor))
+			if(!isfloorturf(T))
 				continue
 			turfs += T
 		var/turf/target_turf = safepick(turfs)
@@ -188,7 +188,7 @@
 				if(!next_turf.CanPass(src, next_turf)) //Once we cleared everything we could, check one last time if we can pass
 					break
 				forceMove(next_turf)
-				dir = get_dir(src, target_turf)
+				setDir(get_dir(src, target_turf))
 				next_turf = get_step(src, get_dir(next_turf,target_turf))
 				num_turfs--
 		//Coding note : This is known to allow SCP to end up on tiles that contain obstructing structures (doors, machinery, etc)
@@ -262,8 +262,8 @@
 
 		//Logging stuff
 		log_combat(src, target, "neck snapped")
-		log_admin("[target] ([target.ckey]) has had his neck snapped by an active [src].")
-		message_admins("ALERT: <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[target.x];Y=[target.y];Z=[target.z]'>[target.real_name]</a> has had his neck snapped by an active [src].")
+		log_admin("[key_name(target)] has had his neck snapped by an active [src].")
+		message_admins("[ADMIN_TPMONTY(target)] has had his neck snapped by an active [src].")
 
 /mob/living/simple_animal/sculpture/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	..()

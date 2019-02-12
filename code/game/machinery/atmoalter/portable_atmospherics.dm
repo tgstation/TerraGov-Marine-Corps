@@ -14,7 +14,7 @@
 	var/maximum_pressure = 90*ONE_ATMOSPHERE
 
 
-/obj/machinery/portable_atmospherics/initialize()
+/obj/machinery/portable_atmospherics/Initialize()
 	. = ..()
 	spawn()
 		var/obj/machinery/atmospherics/portables_connector/port = locate() in loc
@@ -64,35 +64,35 @@
 
 /obj/machinery/portable_atmospherics/attackby(obj/item/W, mob/user)
 	var/obj/icon = src
-	if (istype(W, /obj/item/tool/wrench))
+	if (iswrench(W))
 		if(connected_port)
 			disconnect()
-			to_chat(user, "\blue You disconnect [name] from the port.")
+			to_chat(user, "<span class='notice'>You disconnect [name] from the port.</span>")
 			update_icon()
 			return
 		else
 			var/obj/machinery/atmospherics/portables_connector/possible_port = locate(/obj/machinery/atmospherics/portables_connector/) in loc
 			if(possible_port)
 				if(connect(possible_port))
-					to_chat(user, "\blue You connect [name] to the port.")
+					to_chat(user, "<span class='notice'>You connect [name] to the port.</span>")
 					update_icon()
 					return
 				else
-					to_chat(user, "\blue [name] failed to connect to the port.")
+					to_chat(user, "<span class='notice'>[name] failed to connect to the port.</span>")
 					return
 			else
-				to_chat(user, "\blue Nothing happens.")
+				to_chat(user, "<span class='notice'>Nothing happens.</span>")
 				return
 
 	else if ((istype(W, /obj/item/device/analyzer)) && Adjacent(user))
-		visible_message("\red [user] has used [W] on \icon[icon]")
-		to_chat(user, "\blue Results of analysis of \icon[icon]")
+		visible_message("<span class='warning'> [user] has used [W] on [bicon(icon)]</span>")
+		to_chat(user, "<span class='notice'>Results of analysis of [bicon(icon)]</span>")
 		if (pressure>0)
-			to_chat(user, "\blue Pressure: [round(pressure,0.1)] kPa")
-			to_chat(user, "\blue [gas_type]: [100]%")
-			to_chat(user, "\blue Temperature: [round(temperature-T0C)]&deg;C")
+			to_chat(user, "<span class='notice'>Pressure: [round(pressure,0.1)] kPa</span>")
+			to_chat(user, "<span class='notice'>[gas_type]: [100]%</span>")
+			to_chat(user, "<span class='notice'>Temperature: [round(temperature-T0C)]&deg;C</span>")
 		else
-			to_chat(user, "\blue Tank is empty!")
+			to_chat(user, "<span class='notice'>Tank is empty!</span>")
 
 
 
@@ -111,18 +111,18 @@
 
 		var/obj/item/cell/C = I
 
-		if(user.drop_inv_item_to_loc(C, src))
+		if(user.transferItemToLoc(C, src))
 			C.add_fingerprint(user)
 			cell = C
-			user.visible_message("\blue [user] opens the panel on [src] and inserts [C].", "\blue You open the panel on [src] and insert [C].")
+			user.visible_message("<span class='notice'> [user] opens the panel on [src] and inserts [C].</span>", "<span class='notice'> You open the panel on [src] and insert [C].</span>")
 		return
 
-	if(istype(I, /obj/item/tool/screwdriver))
+	if(isscrewdriver(I))
 		if(!cell)
-			to_chat(user, "\red There is no power cell installed.")
+			to_chat(user, "<span class='warning'>There is no power cell installed.</span>")
 			return
 
-		user.visible_message("\blue [user] opens the panel on [src] and removes [cell].", "\blue You open the panel on [src] and remove [cell].")
+		user.visible_message("<span class='notice'> [user] opens the panel on [src] and removes [cell].</span>", "<span class='notice'> You open the panel on [src] and remove [cell].</span>")
 		cell.add_fingerprint(user)
 		cell.loc = src.loc
 		cell = null

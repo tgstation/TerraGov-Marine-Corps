@@ -32,18 +32,18 @@
 	B.contents += new /obj/item/handcuffs
 
 
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(H), WEAR_EAR)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC(H), WEAR_BODY)
-	H.equip_to_slot_or_del(J, WEAR_JACKET)
-	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(H), WEAR_HANDS)
-	H.equip_to_slot_or_del(D, WEAR_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC(H), WEAR_FEET)
-	H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMC(H), WEAR_FACE)
-	H.equip_to_slot_or_del(B, WEAR_BACK)
-	H.equip_to_slot_or_del(new /obj/item/storage/belt/gun/m4a3/vp70(H), WEAR_WAIST)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/m39/elite(H), WEAR_J_STORE)
-	H.equip_to_slot_or_del(new /obj/item/storage/pouch/firstaid/full(H), WEAR_L_STORE)
-	H.equip_to_slot_or_del(new /obj/item/storage/pouch/magazine/large/pmc_m39(H), WEAR_R_STORE)
+	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(H), SLOT_EARS)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC(H), SLOT_W_UNIFORM)
+	H.equip_to_slot_or_del(J, SLOT_WEAR_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(H), SLOT_GLOVES)
+	H.equip_to_slot_or_del(D, SLOT_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC(H), SLOT_SHOES)
+	H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMC(H), SLOT_WEAR_MASK)
+	H.equip_to_slot_or_del(B, SLOT_BACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/belt/gun/m4a3/vp70(H), SLOT_BELT)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/m39/elite(H), SLOT_S_STORE)
+	H.equip_to_slot_or_del(new /obj/item/storage/pouch/firstaid/full(H), SLOT_L_STORE)
+	H.equip_to_slot_or_del(new /obj/item/storage/pouch/magazine/large/pmc_m39(H), SLOT_R_STORE)
 
 
 //PMC Gunner
@@ -67,19 +67,19 @@
 	D.pockets.contents += new /obj/item/reagent_container/food/snacks/eat_bar
 	D.pockets.contents += new /obj/item/reagent_container/food/snacks/eat_bar
 
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(H), WEAR_EAR)
-	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/m56_goggles(H), WEAR_EYES)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC(H), WEAR_BODY)
-	H.equip_to_slot_or_del(J, WEAR_JACKET)
-	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(H), WEAR_HANDS)
-	H.equip_to_slot_or_del(D, WEAR_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC(H), WEAR_FEET)
-	H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMC/leader(H), WEAR_FACE)
-	H.equip_to_slot_or_del(new /obj/item/smartgun_powerpack/snow(H), WEAR_BACK)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/smartgun(H), WEAR_J_STORE)
-	H.equip_to_slot_or_del(new /obj/item/storage/pouch/firstaid/full(H), WEAR_L_STORE)
-	H.equip_to_slot_or_del(RS, WEAR_R_STORE)
-	H.equip_to_slot_or_del(new /obj/item/storage/belt/gun/m4a3/vp70(H), WEAR_WAIST)
+	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(H), SLOT_EARS)
+	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/m56_goggles(H), SLOT_GLASSES)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC(H), SLOT_W_UNIFORM)
+	H.equip_to_slot_or_del(J, SLOT_WEAR_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(H), SLOT_GLOVES)
+	H.equip_to_slot_or_del(D, SLOT_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC(H), SLOT_SHOES)
+	H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMC/leader(H), SLOT_WEAR_MASK)
+	H.equip_to_slot_or_del(new /obj/item/smartgun_powerpack/snow(H), SLOT_BACK)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/smartgun(H), SLOT_S_STORE)
+	H.equip_to_slot_or_del(new /obj/item/storage/pouch/firstaid/full(H), SLOT_L_STORE)
+	H.equip_to_slot_or_del(RS, SLOT_R_STORE)
+	H.equip_to_slot_or_del(new /obj/item/storage/belt/gun/m4a3/vp70(H), SLOT_BELT)
 
 
 //PMC Sniper
@@ -106,18 +106,18 @@
 	B.contents += new /obj/item/handcuffs
 
 
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(H), WEAR_EAR)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC(H), WEAR_BODY)
-	H.equip_to_slot_or_del(J, WEAR_JACKET)
-	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(H), WEAR_HANDS)
-	H.equip_to_slot_or_del(D, WEAR_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC(H), WEAR_FEET)
-	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/m42_goggles(H), WEAR_EYES)
-	H.equip_to_slot_or_del(B, WEAR_BACK)
-	H.equip_to_slot_or_del(new /obj/item/storage/belt/gun/m4a3/vp70(H), WEAR_WAIST)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/sniper/elite(H), WEAR_J_STORE)
-	H.equip_to_slot_or_del(new /obj/item/storage/pouch/firstaid/full(H), WEAR_L_STORE)
-	H.equip_to_slot_or_del(new /obj/item/storage/pouch/magazine/large/pmc_sniper(H), WEAR_R_STORE)
+	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(H), SLOT_EARS)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC(H), SLOT_W_UNIFORM)
+	H.equip_to_slot_or_del(J, SLOT_WEAR_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(H), SLOT_GLOVES)
+	H.equip_to_slot_or_del(D, SLOT_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC(H), SLOT_SHOES)
+	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/m42_goggles(H), SLOT_GLASSES)
+	H.equip_to_slot_or_del(B, SLOT_BACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/belt/gun/m4a3/vp70(H), SLOT_BELT)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/sniper/elite(H), SLOT_S_STORE)
+	H.equip_to_slot_or_del(new /obj/item/storage/pouch/firstaid/full(H), SLOT_L_STORE)
+	H.equip_to_slot_or_del(new /obj/item/storage/pouch/magazine/large/pmc_sniper(H), SLOT_R_STORE)
 
 
 //PMC Leader
@@ -145,18 +145,18 @@
 	B.contents += new /obj/item/explosive/plastique
 
 
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(H), WEAR_EAR)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC/leader(H), WEAR_BODY)
-	H.equip_to_slot_or_del(J, WEAR_JACKET)
-	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(H), WEAR_HANDS)
-	H.equip_to_slot_or_del(D, WEAR_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC(H), WEAR_FEET)
-	H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMC/leader(H), WEAR_FACE)
-	H.equip_to_slot_or_del(B, WEAR_BACK)
-	H.equip_to_slot_or_del(new /obj/item/storage/belt/gun/m4a3/vp78(H), WEAR_WAIST)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a/elite(H), WEAR_J_STORE)
-	H.equip_to_slot_or_del(new /obj/item/storage/pouch/firstaid/full(H), WEAR_L_STORE)
-	H.equip_to_slot_or_del(new /obj/item/storage/pouch/magazine/large/pmc_rifle(H), WEAR_R_STORE)
+	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(H), SLOT_EARS)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC/leader(H), SLOT_W_UNIFORM)
+	H.equip_to_slot_or_del(J, SLOT_WEAR_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(H), SLOT_GLOVES)
+	H.equip_to_slot_or_del(D, SLOT_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC(H), SLOT_SHOES)
+	H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMC/leader(H), SLOT_WEAR_MASK)
+	H.equip_to_slot_or_del(B, SLOT_BACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/belt/gun/m4a3/vp78(H), SLOT_BELT)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a/elite(H), SLOT_S_STORE)
+	H.equip_to_slot_or_del(new /obj/item/storage/pouch/firstaid/full(H), SLOT_L_STORE)
+	H.equip_to_slot_or_del(new /obj/item/storage/pouch/magazine/large/pmc_rifle(H), SLOT_R_STORE)
 
 
 //PM Deathsquad
@@ -191,19 +191,19 @@
 	B.contents += new /obj/item/device/assembly/signaler
 
 
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/commando(H), WEAR_EAR)
-	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/m42_goggles(H), WEAR_EYES)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC/commando(H), WEAR_BODY)
-	H.equip_to_slot_or_del(J, WEAR_JACKET)
-	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC/commando(H), WEAR_HANDS)
-	H.equip_to_slot_or_del(D, WEAR_HEAD)
-	H.equip_to_slot_or_del(B, WEAR_BACK)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC/commando(H), WEAR_FEET)
-	H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMC(H), WEAR_FACE)
-	H.equip_to_slot_or_del(new /obj/item/storage/pouch/firstaid/full, WEAR_L_STORE)
-	H.equip_to_slot_or_del(new /obj/item/storage/pouch/magazine/large/pmc_rifle, WEAR_R_STORE)
-	H.equip_to_slot_or_del(new /obj/item/storage/belt/gun/mateba/admiral(H), WEAR_WAIST)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a/elite(H), WEAR_J_STORE)
+	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/commando(H), SLOT_EARS)
+	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/m42_goggles(H), SLOT_GLASSES)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC/commando(H), SLOT_W_UNIFORM)
+	H.equip_to_slot_or_del(J, SLOT_WEAR_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC/commando(H), SLOT_GLOVES)
+	H.equip_to_slot_or_del(D, SLOT_HEAD)
+	H.equip_to_slot_or_del(B, SLOT_BACK)
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC/commando(H), SLOT_SHOES)
+	H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMC(H), SLOT_WEAR_MASK)
+	H.equip_to_slot_or_del(new /obj/item/storage/pouch/firstaid/full, SLOT_L_STORE)
+	H.equip_to_slot_or_del(new /obj/item/storage/pouch/magazine/large/pmc_rifle, SLOT_R_STORE)
+	H.equip_to_slot_or_del(new /obj/item/storage/belt/gun/mateba/admiral(H), SLOT_BELT)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a/elite(H), SLOT_S_STORE)
 
 
 //PMC Deathsquad Leader
@@ -239,16 +239,16 @@
 	RS.contents += new /obj/item/ammo_magazine/rocket/m57a4
 
 
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/commando(H), WEAR_EAR)
-	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/m42_goggles(H), WEAR_EYES)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC/commando(H), WEAR_BODY)
-	H.equip_to_slot_or_del(J, WEAR_JACKET)
-	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC/commando(H), WEAR_HANDS)
-	H.equip_to_slot_or_del(D, WEAR_HEAD)
-	H.equip_to_slot_or_del(B, WEAR_BACK)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC/commando(H), WEAR_FEET)
-	H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMC(H), WEAR_FACE)
-	H.equip_to_slot_or_del(new /obj/item/storage/pouch/firstaid/full, WEAR_L_STORE)
-	H.equip_to_slot_or_del(RS, WEAR_R_STORE)
-	H.equip_to_slot_or_del(new /obj/item/storage/belt/gun/mateba/admiral(H), WEAR_WAIST)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/launcher/rocket/m57a4(H), WEAR_J_STORE)
+	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/commando(H), SLOT_EARS)
+	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/m42_goggles(H), SLOT_GLASSES)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC/commando(H), SLOT_W_UNIFORM)
+	H.equip_to_slot_or_del(J, SLOT_WEAR_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC/commando(H), SLOT_GLOVES)
+	H.equip_to_slot_or_del(D, SLOT_HEAD)
+	H.equip_to_slot_or_del(B, SLOT_BACK)
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC/commando(H), SLOT_SHOES)
+	H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMC(H), SLOT_WEAR_MASK)
+	H.equip_to_slot_or_del(new /obj/item/storage/pouch/firstaid/full, SLOT_L_STORE)
+	H.equip_to_slot_or_del(RS, SLOT_R_STORE)
+	H.equip_to_slot_or_del(new /obj/item/storage/belt/gun/mateba/admiral(H), SLOT_BELT)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/launcher/rocket/m57a4(H), SLOT_S_STORE)

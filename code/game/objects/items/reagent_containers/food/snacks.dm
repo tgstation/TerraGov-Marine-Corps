@@ -35,7 +35,7 @@
 		if(M == usr)
 			to_chat(usr, "<span class='notice'>You finish eating \the [src].</span>")
 		M.visible_message("<span class='notice'>[M] finishes eating \the [src].</span>")
-		usr.drop_inv_item_on_ground(src)	//so icons update :[
+		usr.dropItemToGround(src)	//so icons update :[
 
 		if(trash)
 			if(ispath(trash,/obj/item))
@@ -52,7 +52,7 @@
 /obj/item/reagent_container/food/snacks/attack(mob/M, mob/user, def_zone)
 	if(!reagents.total_volume)						//Shouldn't be needed but it checks to see if it has anything left in it.
 		to_chat(user, "<span class='warning'>None of [src] left, oh no!</span>")
-		M.drop_inv_item_on_ground(src)	//so icons update :[
+		M.dropItemToGround(src)	//so icons update :[
 		qdel(src)
 		return FALSE
 
@@ -60,7 +60,7 @@
 		to_chat(M, "<span class='warning'>How do you expect to eat this with the package still on?</span>")
 		return FALSE
 
-	if(istype(M, /mob/living/carbon))
+	if(iscarbon(M))
 		var/fullness = M.nutrition + (M.reagents.get_reagent_amount("nutriment") * 25)
 		if(M == user)								//If you're eating it yourself
 			if(istype(M,/mob/living/carbon/human))
@@ -189,7 +189,7 @@
 		if(!iscarbon(user))
 			return TRUE
 
-		if(user.drop_inv_item_to_loc(W, src))
+		if(user.transferItemToLoc(W, src))
 			to_chat(user, "<span class='warning'>You slip [W] inside [src].</span>")
 			add_fingerprint(user)
 		return
@@ -481,7 +481,7 @@
 	..()
 	new/obj/effect/decal/cleanable/egg_smudge(src.loc)
 	src.reagents.reaction(hit_atom, TOUCH)
-	src.visible_message("\red [src.name] has been squashed.","\red You hear a smack.")
+	src.visible_message("<span class='warning'> [src.name] has been squashed.</span>","<span class='warning'> You hear a smack.</span>")
 	qdel(src)
 
 /obj/item/reagent_container/food/snacks/egg/attackby(obj/item/W as obj, mob/user as mob)
@@ -490,10 +490,10 @@
 		var/clr = C.colourName
 
 		if(!(clr in list("blue","green","mime","orange","purple","rainbow","red","yellow")))
-			to_chat(usr, "\blue The egg refuses to take on this color!")
+			to_chat(usr, "<span class='notice'>The egg refuses to take on this color!</span>")
 			return
 
-		to_chat(usr, "\blue You color \the [src] [clr]")
+		to_chat(usr, "<span class='notice'>You color \the [src] [clr]</span>")
 		icon_state = "egg-[clr]"
 		egg_color = clr
 	else
@@ -840,7 +840,7 @@
 /obj/item/reagent_container/food/snacks/pie/throw_impact(atom/hit_atom)
 	..()
 	new /obj/effect/decal/cleanable/pie_smudge(loc)
-	visible_message("\red [src.name] splats.","\red You hear a splat.")
+	visible_message("<span class='warning'> [src.name] splats.</span>","<span class='warning'> You hear a splat.</span>")
 	qdel(src)
 
 /obj/item/reagent_container/food/snacks/berryclafoutis
@@ -1015,7 +1015,7 @@
 
 /obj/item/reagent_container/food/snacks/popcorn/On_Consume()
 	if(prob(unpopped))	//lol ...what's the point?
-		to_chat(usr, "\red You bite down on an un-popped kernel!")
+		to_chat(usr, "<span class='warning'>You bite down on an un-popped kernel!</span>")
 		unpopped = max(0, unpopped-1)
 	return ..()
 
@@ -1120,6 +1120,7 @@
 	desc = "A true prophecy in each cookie!"
 	icon_state = "fortune_cookie"
 	filling_color = "#E8E79E"
+	trash = /obj/item/trash/fortunecookie
 	list_reagents = list("nutriment" = 3)
 	bitesize = 2
 	tastes = list("cookie" = 1)
@@ -1340,7 +1341,7 @@
 /obj/item/reagent_container/food/snacks/monkeycube/On_Consume(var/mob/M)
 	to_chat(M, "<span class = 'warning'>Something inside of you suddently expands!</span>")
 
-	if (istype(M, /mob/living/carbon/human))
+	if (ishuman(M))
 		//Do not try to understand.
 		var/obj/item/surprise = new(M)
 		var/mob/ook = monkey_type
@@ -1373,7 +1374,7 @@
 
 /obj/item/reagent_container/food/snacks/monkeycube/proc/Expand()
 	for(var/mob/M in viewers(src,7))
-		to_chat(M, "\red \The [src] expands!")
+		to_chat(M, "<span class='warning'>\The [src] expands!</span>")
 	var/turf/T = get_turf(src)
 	if(T)
 		new monkey_type(T)
@@ -2287,13 +2288,13 @@
 	if( open && pizza )
 		user.put_in_hands( pizza )
 
-		to_chat(user, "\red You take the [src.pizza] out of the [src].")
+		to_chat(user, "<span class='warning'>You take the [src.pizza] out of the [src].</span>")
 		src.pizza = null
 		update_icon()
 		return
 
 	if( boxes.len > 0 )
-		if( user.get_inactive_hand() != src )
+		if( user.get_inactive_held_item() != src )
 			..()
 			return
 
@@ -2301,7 +2302,7 @@
 		boxes -= box
 
 		user.put_in_hands( box )
-		to_chat(user, "\red You remove the topmost [src] from your hand.")
+		to_chat(user, "<span class='warning'>You remove the topmost [src] from your hand.</span>")
 		box.update_icon()
 		update_icon()
 		return
@@ -2331,32 +2332,32 @@
 				boxestoadd += i
 
 			if( (boxes.len+1) + boxestoadd.len <= 5 )
-				user.drop_inv_item_to_loc(box, src)
+				user.transferItemToLoc(box, src)
 				box.boxes = list() // Clear the box boxes so we don't have boxes inside boxes. - Xzibit
 				src.boxes.Add( boxestoadd )
 
 				box.update_icon()
 				update_icon()
 
-				to_chat(user, "\red You put the [box] ontop of the [src]!")
+				to_chat(user, "<span class='warning'>You put the [box] ontop of the [src]!</span>")
 			else
-				to_chat(user, "\red The stack is too high!")
+				to_chat(user, "<span class='warning'>The stack is too high!</span>")
 		else
-			to_chat(user, "\red Close the [box] first!")
+			to_chat(user, "<span class='warning'>Close the [box] first!</span>")
 
 		return
 
 	if( istype(I, /obj/item/reagent_container/food/snacks/sliceable/pizza/) ) // Long ass fucking object name
 
 		if(open)
-			user.drop_inv_item_to_loc(I, src)
+			user.transferItemToLoc(I, src)
 			pizza = I
 
 			update_icon()
 
-			to_chat(user, "\red You put the [I] in the [src]!")
+			to_chat(user, "<span class='warning'>You put the [I] in the [src]!</span>")
 		else
-			to_chat(user, "\red You try to push the [I] through the lid but it doesn't work!")
+			to_chat(user, "<span class='warning'>You try to push the [I] through the lid but it doesn't work!</span>")
 		return
 
 	if( istype(I, /obj/item/tool/pen/) )
@@ -2747,7 +2748,7 @@
 	name = "CHUNK box"
 	desc = "A bar of \"The <b>CHUNK</b>\" brand chocolate. <i>\"The densest chocolate permitted to exist according to federal law. We are legally required to ask you not to use this blunt object for anything other than nutrition.\"</i>"
 	icon_state = "chunk"
-	force = 10 //LEGAL LIMIT OF CHOCOLATE
+	force = 35 //LEGAL LIMIT OF CHOCOLATE
 	bitesize = 3
 	wrapper = /obj/item/trash/chunk
 	list_reagents = list("nutriment" = 5, "coco" = 10)

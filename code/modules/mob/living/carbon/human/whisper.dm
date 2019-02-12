@@ -2,15 +2,11 @@
 /mob/living/carbon/human/whisper(message as text)
 	var/alt_name = ""
 
-	if(say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, "\red Speech is currently admin-disabled.")
-		return
-
 	log_talk(message, LOG_WHISPER)
 
 	if (src.client)
 		if (src.client.prefs.muted & MUTE_IC)
-			to_chat(src, "\red You cannot whisper (muted).")
+			to_chat(src, "<span class='warning'>You cannot whisper (muted).</span>")
 			return
 
 		if (src.client.handle_spam_prevention(message,MUTE_IC))
@@ -88,7 +84,7 @@
 	listening |= src
 
 	//ghosts
-	for (var/mob/M in dead_mob_list)	//does this include players who joined as observers as well?
+	for (var/mob/M in GLOB.dead_mob_list)	//does this include players who joined as observers as well?
 		if (!(M.client))
 			continue
 		if(M.stat == DEAD && M.client && (M.client.prefs.toggles_chat & CHAT_GHOSTEARS))
@@ -132,15 +128,7 @@
 				to_chat(M, speech_bubble)
 			M.hear_say(new_message, verb, speaking, alt_name, italics, src)
 
-	spawn(30)
-		if(client) client.images -= speech_bubble
-		if(not_dead_speaker)
-			for(var/mob/M in listening)
-				if(M.client) M.client.images -= speech_bubble
-			for(var/mob/M in eavesdropping)
-				if(M.client) M.client.images -= speech_bubble
-		qdel(speech_bubble)
-
+	addtimer(CALLBACK(src, .proc/remove_speech_bubble, client, speech_bubble, (not_dead_speaker?listening : null)), 30)
 
 	if (watching.len)
 		var/rendered = "<span class='game say'><span class='name'>[src.name]</span> whispers something.</span>"

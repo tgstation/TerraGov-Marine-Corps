@@ -9,7 +9,7 @@
 	anchored = 1
 	layer = ABOVE_MOB_LAYER		//just above mobs
 	density = 0
-	invisibility = 101
+	invisibility = INVISIBILITY_MAXIMUM
 	var/strength = 0
 	var/ticks_recovering = 10
 
@@ -27,7 +27,7 @@
 	//if we take too much damage, drop out - the generator will bring us back up if we have enough power
 	ticks_recovering = min(ticks_recovering + 2, 10)
 	if(strength < 1)
-		invisibility = 101
+		invisibility = INVISIBILITY_MAXIMUM
 		density = 0
 		ticks_recovering = 10
 		strength = 0
@@ -45,7 +45,7 @@
 		invisibility = 0
 		density = 1
 	else if(strength < 1)
-		invisibility = 101
+		invisibility = INVISIBILITY_MAXIMUM
 		density = 0
 
 

@@ -11,14 +11,9 @@
 	var/processing = 0
 	var/exproof = 0
 
-/obj/machinery/computer/New()
-	..()
-	if(ticker)
-		initialize()
+/obj/machinery/computer/Initialize()
+	. = ..()
 	start_processing()
-
-
-/obj/machinery/computer/initialize()
 	power_change()
 
 /obj/machinery/computer/process()
@@ -94,7 +89,7 @@
 
 
 /obj/machinery/computer/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/tool/screwdriver) && circuit)
+	if(isscrewdriver(I) && circuit)
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_MT)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to deconstruct [src].</span>",
 			"<span class='notice'>You fumble around figuring out how to deconstruct [src].</span>")
@@ -109,18 +104,18 @@
 			for (var/obj/C in src)
 				C.loc = src.loc
 			if (src.stat & BROKEN)
-				to_chat(user, "\blue The broken glass falls out.")
+				to_chat(user, "<span class='notice'>The broken glass falls out.</span>")
 				new /obj/item/shard( src.loc )
 				A.state = 3
 				A.icon_state = "3"
 			else
-				to_chat(user, "\blue You disconnect the monitor.")
+				to_chat(user, "<span class='notice'>You disconnect the monitor.</span>")
 				A.state = 4
 				A.icon_state = "4"
 			M.deconstruct(src)
 			qdel(src)
 	else
-		if(isXeno(user))
+		if(isxeno(user))
 			src.attack_alien(user)
 			return
 		src.attack_hand(user)

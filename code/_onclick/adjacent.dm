@@ -94,6 +94,22 @@ Quick adjacency (to turf):
 		return 0
 	return (T.Adjacent(neighbor,src))
 
+
+//This is a temporary solution to make dropship equipment work correctly.
+//TODO: Make multitile.
+/obj/structure/dropship_equipment/Adjacent(var/atom/neighbor)
+	for(var/turf/T in locs)
+		if(T.Adjacent(neighbor,src))
+			return TRUE
+	return FALSE
+
+
+/obj/structure/ship_ammo/Adjacent(var/atom/neighbor)
+	for(var/turf/T in locs)
+		if(T.Adjacent(neighbor,src))
+			return TRUE
+	return FALSE
+
 // This is necessary for storage items not on your person.
 /obj/item/Adjacent(var/atom/neighbor, var/recurse = 1)
 	if(neighbor == loc)
@@ -132,12 +148,7 @@ Quick adjacency (to turf):
 
 		if( O.flags_atom & ON_BORDER) // windows have throwpass but are on border, check them first
 			if( O.dir & target_dir || O.dir&(O.dir-1) ) // full tile windows are just diagonals mechanically
-				var/obj/structure/window/W = target_atom
-				if(istype(W))
-					if(!W.is_full_window())	//exception for breaking full tile windows on top of single pane windows
-						return 0
-				else
-					return 0
+				return FALSE
 
 		else if( !border_only ) // dense, not on border, cannot pass over
 			return 0
@@ -167,4 +178,3 @@ Quick adjacency (to turf):
 
 /turf/handle_barriers(mob/living/M)
 	return src
-	

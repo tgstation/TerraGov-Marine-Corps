@@ -21,7 +21,7 @@
 	if(isturf(T))
 		attached = locate() in T
 	if(attached)
-		powernet = attached.get_powernet()
+		powernet = attached.powernet
 
 /obj/machinery/power/monitor/attack_ai(mob/user)
 	add_fingerprint(user)
@@ -40,7 +40,7 @@
 /obj/machinery/power/monitor/interact(mob/user)
 
 	if ( (get_dist(src, user) > 1 ) || (stat & (BROKEN|NOPOWER)) )
-		if (!istype(user, /mob/living/silicon))
+		if (!issilicon(user))
 			user.unset_interaction()
 			user << browse(null, "window=powcomp")
 			return
@@ -53,7 +53,7 @@
 	t += "<BR><HR><A href='?src=\ref[src];close=1'>Close</A>"
 
 	if(!powernet)
-		t += "\red No connection"
+		t += "<span class='warning'> No connection</span>"
 	else
 
 		var/list/L = list()
@@ -111,7 +111,7 @@
 
 //copied from computer.dm
 /obj/machinery/power/monitor/attackby(I as obj, user as mob)
-	if(istype(I, /obj/item/tool/screwdriver) && circuit)
+	if(isscrewdriver(I) && circuit)
 		playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 		if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
 			var/obj/structure/computerframe/A = new( src.loc )
@@ -121,12 +121,12 @@
 			for (var/obj/C in src)
 				C.loc = src.loc
 			if (src.stat & BROKEN)
-				to_chat(user, "\blue The broken glass falls out.")
+				to_chat(user, "<span class='notice'>The broken glass falls out.</span>")
 				new /obj/item/shard( src.loc )
 				A.state = 3
 				A.icon_state = "3"
 			else
-				to_chat(user, "\blue You disconnect the monitor.")
+				to_chat(user, "<span class='notice'>You disconnect the monitor.</span>")
 				A.state = 4
 				A.icon_state = "4"
 			M.deconstruct(src)

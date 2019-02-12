@@ -1,4 +1,0 @@
-author: "Surrealistik, sprites by Arachnidnexus"
-delete-after: True
-changes: 
-  - rscadd: "Xenos at less than 50% health now have wound overlays, giving instant visual confirmation of their injuries."

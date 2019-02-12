@@ -57,131 +57,24 @@
 
 	var/datum/effect/effect/system/spark_spread/spark_system // the spark system, used for generating... sparks?
 
-	New()
-		..()
-		icon_state = "[lasercolor]grey_target_prism"
-		// Sets up a spark system
-		spark_system = new /datum/effect/effect/system/spark_spread
-		spark_system.set_up(5, 0, src)
-		spark_system.attach(src)
-		sleep(10)
-		if(!installation)// if for some reason the turret has no gun (ie, admin spawned) it resorts to basic taser shots
-			projectile = /obj/item/projectile
-			eprojectile = /obj/item/projectile
-			reqpower = 200
-			sound = 1
-			iconholder = 1
-		else
-			/*
-			var/obj/item/weapon/gun/energy/E=new installation
-					// All energy-based weapons are applicable
-			switch(E.type)
-				if(/obj/item/weapon/gun/energy/laser/bluetag)
-					projectile = /obj/item/projectile/beam/lastertag/blue
-					eprojectile = /obj/item/projectile/beam/lastertag/omni//This bolt will stun ERRYONE with a vest
-					iconholder = null
-					reqpower = 100
-					lasercolor = "b"
-					req_access = list(access_sulaco_engineering)
-					check_records = 0
-					criminals = 0
-					auth_weapons = 1
-					stun_all = 0
-					check_anomalies = 0
-					shot_delay = 30
+/obj/machinery/porta_turret/Initialize()
+	. = ..()
+	icon_state = "[lasercolor]grey_target_prism"
+	// Sets up a spark system
+	spark_system = new /datum/effect/effect/system/spark_spread
+	spark_system.set_up(5, 0, src)
+	spark_system.attach(src)
+	if(!installation)// if for some reason the turret has no gun (ie, admin spawned) it resorts to basic taser shots
+		projectile = /obj/item/projectile
+		eprojectile = /obj/item/projectile
+		reqpower = 200
+		sound = 1
+		iconholder = 1
 
-				if(/obj/item/weapon/gun/energy/laser/redtag)
-					projectile = /obj/item/projectile/beam/lastertag/red
-					eprojectile = /obj/item/projectile/beam/lastertag/omni
-					iconholder = null
-					reqpower = 100
-					lasercolor = "r"
-					req_access = list(access_sulaco_engineering)
-					check_records = 0
-					criminals = 0
-					auth_weapons = 1
-					stun_all = 0
-					check_anomalies = 0
-					shot_delay = 30
-
-				if(/obj/item/weapon/gun/energy/laser/practice)
-					projectile = /obj/item/projectile/beam/practice
-					eprojectile = /obj/item/projectile/beam
-					iconholder = null
-					reqpower = 100
-
-				if(/obj/item/weapon/gun/energy/pulse_rifle)
-					projectile = /obj/item/projectile/beam/pulse
-					eprojectile = projectile
-					iconholder = null
-					reqpower = 700
-
-				if(/obj/item/weapon/gun/energy/staff)
-					projectile = /obj/item/projectile/change
-					eprojectile = projectile
-					iconholder = 1
-					reqpower = 700
-
-				if(/obj/item/weapon/gun/energy/ionrifle)
-					projectile = /obj/item/projectile/ion
-					eprojectile = projectile
-					iconholder = 1
-					reqpower = 700
-
-				if(/obj/item/weapon/gun/energy/taser)
-					projectile = /obj/item/projectile/beam/stun
-					eprojectile = projectile
-					iconholder = 1
-					reqpower = 200
-
-				if(/obj/item/weapon/gun/energy/stunrevolver)
-					projectile = /obj/item/projectile/energy/electrode
-					eprojectile = projectile
-					iconholder = 1
-					reqpower = 200
-
-				if(/obj/item/weapon/gun/energy/lasercannon)
-					projectile = /obj/item/projectile/beam/heavylaser
-					eprojectile = projectile
-					iconholder = null
-					reqpower = 600
-
-				if(/obj/item/weapon/gun/energy/decloner)
-					projectile = /obj/item/projectile/energy/declone
-					eprojectile = projectile
-					iconholder = null
-					reqpower = 600
-
-				if(/obj/item/weapon/gun/energy/crossbow/largecrossbow)
-					projectile = /obj/item/projectile/energy/bolt/large
-					eprojectile = projectile
-					iconholder = null
-					reqpower = 125
-
-				if(/obj/item/weapon/gun/energy/crossbow)
-					projectile = /obj/item/projectile/energy/bolt
-					eprojectile = projectile
-					iconholder = null
-					reqpower = 50
-
-				if(/obj/item/weapon/gun/energy/laser)
-					projectile = /obj/item/projectile/beam
-					eprojectile = projectile
-					iconholder = null
-					reqpower = 500
-
-				else // Energy gun shots
-					projectile = /obj/item/projectile/beam/stun// if it hasn't been emagged, it uses normal taser shots
-					eprojectile = /obj/item/projectile/beam//If it has, going to kill mode
-					iconholder = 1
-					egun = 1
-					reqpower = 200
-				*/
-
-	Del()
-		// deletes its own cover with it
-		del(cover)
-		..()
+/obj/machinery/porta_turret/Destroy()
+	// deletes its own cover with it
+	qdel(cover)
+	return ..()
 
 
 /obj/machinery/porta_turret/attack_ai(mob/user as mob)
@@ -242,7 +135,7 @@ Status: []<BR>"},
 		if(anchored) // you can't turn a turret on/off if it's not anchored/secured
 			on = !on // toggle on/off
 		else
-			to_chat(usr, "\red It has to be secured first!")
+			to_chat(usr, "<span class='warning'>It has to be secured first!</span>")
 
 		updateUsrDialog()
 		return
@@ -313,10 +206,10 @@ Status: []<BR>"},
 		// Emagging the turret makes it go bonkers and stun everyone. It also makes
 		// the turret shoot much, much faster.
 
-		to_chat(user, "\red You short out [src]'s threat assessment circuits.")
+		to_chat(user, "<span class='warning'>You short out [src]'s threat assessment circuits.</span>")
 		spawn(0)
 			for(var/mob/O in hearers(src, null))
-				O.show_message("\red [src] hums oddly...", 1)
+				O.show_message("<span class='warning'> [src] hums oddly...</span>", 1)
 		emagged = 1
 		src.on = 0 // turns off the turret temporarily
 		sleep(60) // 6 seconds for the traitor to gtfo of the area before the turret decides to ruin his shit
@@ -346,7 +239,7 @@ Status: []<BR>"},
 			locked = !src.locked
 			to_chat(user, "Controls are now [locked ? "locked." : "unlocked."]")
 		else
-			to_chat(user, "\red Access denied.")
+			to_chat(user, "<span class='warning'>Access denied.</span>")
 
 	else
 		// if the turret was attacked with the intention of harming it:
@@ -474,11 +367,11 @@ Status: []<BR>"},
 						targets += C
 						continue
 
-				if (istype(C, /mob/living/carbon/human)) // if the target is a human, analyze threat level
+				if (ishuman(C)) // if the target is a human, analyze threat level
 					if(src.assess_perp(C)<4)
 						continue // if threat level < 4, keep going
 
-				else if (istype(C, /mob/living/carbon/monkey))
+				else if (ismonkey(C))
 					continue // Don't target monkeys or borgs/AIs you dumb shit
 
 				if (C.lying) // if the perp is lying down, it's still a target but a less-important target
@@ -491,7 +384,7 @@ Status: []<BR>"},
 
 		var/atom/t = pick(targets) // pick a perp from the list of targets. Targets go first because they are the most important
 
-		if (istype(t, /mob/living)) // if a mob
+		if (isliving(t)) // if a mob
 			var/mob/living/M = t // simple typecasting
 			if (M.stat!=2) // if the target is not dead
 				spawn() popUp() // pop the turret up if it's not already up.
@@ -501,7 +394,7 @@ Status: []<BR>"},
 	else
 		if(secondarytargets.len>0) // if there are no primary targets, go for secondary targets
 			var/mob/t = pick(secondarytargets)
-			if (istype(t, /mob/living))
+			if (isliving(t))
 				if (t.stat!=2)
 					spawn() popUp()
 					dir=get_dir(src,t)
@@ -687,7 +580,7 @@ Status: []<BR>"},
 		if(0) // first step
 			if(istype(W, /obj/item/weapon/wrench) && !anchored)
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
-				to_chat(user, "\blue You secure the external bolts.")
+				to_chat(user, "<span class='notice'>You secure the external bolts.</span>")
 				anchored = 1
 				build_step = 1
 				return
@@ -721,7 +614,7 @@ Status: []<BR>"},
 		if(2)
 			if(istype(W, /obj/item/weapon/wrench))
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
-				to_chat(user, "\blue You bolt the metal armor into place.")
+				to_chat(user, "<span class='notice'>You bolt the metal armor into place.</span>")
 				build_step = 3
 				return
 
@@ -729,7 +622,7 @@ Status: []<BR>"},
 				var/obj/item/weapon/weldingtool/WT = W
 				if(!WT.isOn()) return
 				if (WT.get_fuel() < 5) // uses up 5 fuel.
-					to_chat(user, "\red You need more fuel to complete this task.")
+					to_chat(user, "<span class='warning'>You need more fuel to complete this task.</span>")
 					return
 
 				playsound(src.loc, pick('sound/items/Welder.ogg', 'sound/items/Welder2.ogg'), 50, 1)
@@ -747,7 +640,7 @@ Status: []<BR>"},
 				var/obj/item/weapon/gun/energy/E = W // typecasts the item to an energy gun
 				installation = W.type // installation becomes W.type
 				gun_charge = E.power_supply.charge // the gun's charge is stored in src.gun_charge
-				to_chat(user, "\blue You add \the [W] to the turret.")
+				to_chat(user, "<span class='notice'>You add \the [W] to the turret.</span>")
 				build_step = 4
 				del(W) // delete the gun :(
 				return
@@ -761,7 +654,7 @@ Status: []<BR>"},
 		if(4)
 			if(isprox(W))
 				build_step = 5
-				to_chat(user, "\blue You add the prox sensor to the turret.")
+				to_chat(user, "<span class='notice'>You add the prox sensor to the turret.</span>")
 				del(W)
 				return
 
@@ -771,7 +664,7 @@ Status: []<BR>"},
 			if(istype(W, /obj/item/weapon/screwdriver))
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 100, 1)
 				build_step = 6
-				to_chat(user, "\blue You close the internal access hatch.")
+				to_chat(user, "<span class='notice'>You close the internal access hatch.</span>")
 				return
 
 			// attack_hand() removes the prox sensor
@@ -797,13 +690,13 @@ Status: []<BR>"},
 				var/obj/item/weapon/weldingtool/WT = W
 				if(!WT.isOn()) return
 				if (WT.get_fuel() < 5)
-					to_chat(user, "\red You need more fuel to complete this task.")
+					to_chat(user, "<span class='warning'>You need more fuel to complete this task.</span>")
 
 				playsound(src.loc, pick('sound/items/Welder.ogg', 'sound/items/Welder2.ogg'), 50, 1)
 				if(do_after(user, 30))
 					if(!src || !WT.remove_fuel(5, user)) return
 					build_step = 8
-					to_chat(user, "\blue You weld the turret's armor down.")
+					to_chat(user, "<span class='notice'>You weld the turret's armor down.</span>")
 
 					// The final step: create a full turret
 					var/obj/machinery/porta_turret/Turret = new/obj/machinery/porta_turret(locate(x,y,z))
@@ -974,7 +867,7 @@ Status: []<BR>"},
 			else
 				Parent_Turret.on=1
 		else
-			to_chat(usr, "\red It has to be secured first!")
+			to_chat(usr, "<span class='warning'>It has to be secured first!</span>")
 
 		updateUsrDialog()
 		return
@@ -998,10 +891,10 @@ Status: []<BR>"},
 /obj/machinery/porta_turret_cover/attackby(obj/item/W as obj, mob/user as mob)
 
 	if ((istype(W, /obj/item/weapon/card/emag)) && (!Parent_Turret.emagged))
-		to_chat(user, "\red You short out [Parent_Turret]'s threat assessment circuits.")
+		to_chat(user, "<span class='warning'>You short out [Parent_Turret]'s threat assessment circuits.</span>")
 		spawn(0)
 			for(var/mob/O in hearers(Parent_Turret, null))
-				O.show_message("\red [Parent_Turret] hums oddly...", 1)
+				O.show_message("<span class='warning'> [Parent_Turret] hums oddly...</span>", 1)
 		Parent_Turret.emagged = 1
 		Parent_Turret.on = 0
 		sleep(40)
@@ -1028,7 +921,7 @@ Status: []<BR>"},
 			to_chat(user, "Controls are now [Parent_Turret.locked ? "locked." : "unlocked."]")
 			updateUsrDialog()
 		else
-			to_chat(user, "\red Access denied.")
+			to_chat(user, "<span class='warning'>Access denied.</span>")
 
 	else
 		Parent_Turret.health -= W.force * 0.5

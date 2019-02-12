@@ -18,23 +18,23 @@
 	attackby(obj/item/grab/G, mob/user)
 		if(!istype(G, /obj/item/grab))
 			return
-		if(istype(G.grabbed_thing, /mob/living/carbon/monkey))
+		if(ismonkey(G.grabbed_thing))
 			var/mob/living/carbon/monkey/M = G.grabbed_thing
 			if(!occupied)
 				icon_state = "spikebloody"
 				occupied = 1
 				meat = 5
 				meattype = 1
-				visible_message("\red [user] has forced [M] onto the spike, killing them instantly!")
+				visible_message("<span class='warning'> [user] has forced [M] onto the spike, killing [M.p_them()] instantly!</span>")
 				M.death()
 				qdel(M)
 				G.grabbed_thing = null
 				qdel(G)
 
 			else
-				to_chat(user, "\red The spike already has something on it, finish collecting its meat first!")
+				to_chat(user, "<span class='warning'>The spike already has something on it, finish collecting its meat first!</span>")
 		else
-			to_chat(user, "\red They are too big for the spike, try something smaller!")
+			to_chat(user, "<span class='warning'>They are too big for the spike, try something smaller!</span>")
 			return
 
 //	MouseDrop_T(var/atom/movable/C, mob/user)

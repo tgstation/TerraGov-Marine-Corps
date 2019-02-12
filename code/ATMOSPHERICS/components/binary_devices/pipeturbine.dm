@@ -62,9 +62,9 @@
 			overlays += image('icons/obj/pipeturbine.dmi', "hi-turb")
 
 	attackby(obj/item/W as obj, mob/user as mob)
-		if(istype(W, /obj/item/tool/wrench))
+		if(iswrench(W))
 			anchored = !anchored
-			to_chat(user, "\blue You [anchored ? "secure" : "unsecure"] the bolts holding [src] to the floor.")
+			to_chat(user, "<span class='notice'>You [anchored ? "secure" : "unsecure"] the bolts holding [src] to the floor.</span>")
 
 			if(anchored)
 				if(dir & (NORTH|SOUTH))
@@ -102,7 +102,7 @@
 		if (usr.stat || usr.is_mob_restrained() || anchored)
 			return
 
-		src.dir = turn(src.dir, -90)
+		setDir(turn(dir, -90))
 
 
 	verb/rotate_anticlockwise()
@@ -113,7 +113,7 @@
 		if (usr.stat || usr.is_mob_restrained() || anchored)
 			return
 
-		src.dir = turn(src.dir, 90)
+		setDir(turn(dir, 90))
 
 //Goddamn copypaste from binary base class because atmospherics machinery API is not damn flexible
 	network_expand(datum/pipe_network/new_network, obj/machinery/atmospherics/pipe/reference)
@@ -227,10 +227,10 @@
 
 
 	attackby(obj/item/W as obj, mob/user as mob)
-		if(istype(W, /obj/item/tool/wrench))
+		if(iswrench(W))
 			anchored = !anchored
 			turbine = null
-			to_chat(user, "\blue You [anchored ? "secure" : "unsecure"] the bolts holding [src] to the floor.")
+			to_chat(user, "<span class='notice'>You [anchored ? "secure" : "unsecure"] the bolts holding [src] to the floor.</span>")
 			updateConnection()
 		else
 			..()
@@ -243,7 +243,7 @@
 		if (usr.stat || usr.is_mob_restrained()  || anchored)
 			return
 
-		src.dir = turn(src.dir, -90)
+		setDir(turn(dir, -90))
 
 	verb/rotate_anticlock()
 		set category = "Object"
@@ -253,4 +253,4 @@
 		if (usr.stat || usr.is_mob_restrained()  || anchored)
 			return
 
-		src.dir = turn(src.dir, 90)
+		setDir(turn(dir, 90))

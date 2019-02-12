@@ -11,18 +11,13 @@
 	use_power = 1
 	idle_power_usage = 15
 
-/obj/machinery/meter/New()
-	..()
-	src.target = locate(/obj/machinery/atmospherics/pipe) in loc
-	return 1
-
 /obj/machinery/meter/Destroy()
 	target = null
 	. = ..()
 
-/obj/machinery/meter/initialize()
-	if (!target)
-		src.target = locate(/obj/machinery/atmospherics/pipe) in loc
+/obj/machinery/meter/Initialize()
+	. = ..()
+	target = locate(/obj/machinery/atmospherics/pipe) in loc
 
 /obj/machinery/meter/process()
 	if(!target)
@@ -68,11 +63,11 @@
 /obj/machinery/meter/examine(mob/user)
 	var/t = "A gas flow meter. "
 
-	if(get_dist(user, src) > 3 && !(istype(user, /mob/living/silicon/ai) || istype(user, /mob/dead)))
-		t += "\blue <B>You are too far away to read it.</B>"
+	if(get_dist(user, src) > 3 && !(isAI(user) || istype(user, /mob/dead)))
+		t += "<span class='boldnotice'>You are too far away to read it.</span>"
 
 	else if(stat & (NOPOWER|BROKEN))
-		t += "\red <B>The display is off.</B>"
+		t += "<span class='danger'>The display is off.</span>"
 
 	else if(target)
 		if(target.return_pressure())
@@ -87,12 +82,12 @@
 /obj/machinery/meter/clicked(var/mob/user)
 	..()
 
-	if(istype(user, /mob/living/silicon/ai)) // ghosts can call ..() for examine
+	if(isAI(user)) // ghosts can call ..() for examine
 		examine(user)
 		return 1
 
 /obj/machinery/meter/attackby(var/obj/item/W as obj, var/mob/user as mob)
-	if (!istype(W, /obj/item/tool/wrench))
+	if (!iswrench(W))
 		return ..()
 	playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 	user.visible_message("<span class='notice'>[user] begins to unfasten [src].</span>",
@@ -106,15 +101,9 @@
 
 // TURF METER - REPORTS A TILE'S AIR CONTENTS
 
-/obj/machinery/meter/turf/New()
-	..()
-	src.target = loc
-	return 1
-
-
-/obj/machinery/meter/turf/initialize()
-	if (!target)
-		src.target = loc
+/obj/machinery/meter/turf/Initialize()
+	. = ..()
+	target = loc
 
 /obj/machinery/meter/turf/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	return

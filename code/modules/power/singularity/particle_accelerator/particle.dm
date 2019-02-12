@@ -29,7 +29,7 @@
 
 /obj/effect/accelerated_particle/New(loc, dir = 2)
 	src.loc = loc
-	src.dir = dir
+	setDir(dir)
 	if(movement_range > 20)
 		movement_range = 20
 	spawn(0)
@@ -67,7 +67,7 @@
 			radiation = round(radiation/2,1)*/
 	M.apply_effect((radiation*3),IRRADIATE,0)
 	M.updatehealth()
-	//to_chat(M, "\red You feel odd.")
+	//to_chat(M, "<span class='warning'>You feel odd.</span>")
 	return
 
 

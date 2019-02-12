@@ -299,7 +299,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 					var/mob/living/carbon/human/H = C
 					var/datum/internal_organ/heart/L = H.internal_organs_by_name["heart"]
 					if(istype(L))
-						L.take_damage(2, 0)
+						L.take_damage(2)
 		if(200 to INFINITY)
 			C.stuttering += 1
 			C.adjustToxLoss(1)
@@ -314,7 +314,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 					if(H.species.flags ~! NO_PAIN)
 						to_chat(H, "<span class='danger'>You clutch for a moment as you feel a scorching pain covering your abdomen!</span>")
 						H.Stun(3)
-					L.take_damage(20, 0) //used to be 100 each tick without prob
+					L.take_damage(20) //used to be 100 each tick without prob
 	..()
 
 /datum/reagent/consumable/ethanol/deadrum

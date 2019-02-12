@@ -10,7 +10,7 @@
 
 
 /obj/structure/extinguisher_cabinet/attackby(obj/item/O, mob/user)
-	if(isrobot(user))
+	if(iscyborg(user))
 		return
 	if(istype(O, /obj/item/tool/extinguisher))
 		if(!has_extinguisher && opened)
@@ -26,7 +26,7 @@
 
 
 /obj/structure/extinguisher_cabinet/attack_hand(mob/user)
-	if(isrobot(user))
+	if(iscyborg(user))
 		return
 
 	if(has_extinguisher)

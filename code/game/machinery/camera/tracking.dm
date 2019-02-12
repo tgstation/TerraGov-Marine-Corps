@@ -56,20 +56,20 @@
 
 	loc = copytext(sanitize(loc), 1, MAX_MESSAGE_LEN)
 	if(!loc)
-		to_chat(src, "\red Must supply a location name")
+		to_chat(src, "<span class='warning'>Must supply a location name</span>")
 		return
 
 	if(stored_locations.len >= max_locations)
-		to_chat(src, "\red Cannot store additional locations. Remove one first")
+		to_chat(src, "<span class='warning'>Cannot store additional locations. Remove one first</span>")
 		return
 
 	if(loc in stored_locations)
-		to_chat(src, "\red There is already a stored location by this name")
+		to_chat(src, "<span class='warning'>There is already a stored location by this name</span>")
 		return
 
 	var/L = src.eyeobj.getLoc()
 	if (InvalidTurf(get_turf(L)))
-		to_chat(src, "\red Unable to store this location")
+		to_chat(src, "<span class='warning'>Unable to store this location</span>")
 		return
 
 	stored_locations[loc] = L
@@ -84,7 +84,7 @@
 	set desc = "Returns to the selected camera location"
 
 	if (!(loc in stored_locations))
-		to_chat(src, "\red Location [loc] not found")
+		to_chat(src, "<span class='warning'>Location [loc] not found</span>")
 		return
 
 	var/L = stored_locations[loc]
@@ -96,7 +96,7 @@
 	set desc = "Deletes the selected camera location"
 
 	if (!(loc in stored_locations))
-		to_chat(src, "\red Location [loc] not found")
+		to_chat(src, "<span class='warning'>Location [loc] not found</span>")
 		return
 
 	stored_locations.Remove(loc)
@@ -116,7 +116,7 @@
 		return list()
 
 	var/datum/trackable/TB = new()
-	for(var/mob/living/M in mob_list)
+	for(var/mob/living/M in GLOB.mob_living_list)
 		// Easy checks first.
 		// Don't detect mobs on Centcom. Since the wizard den is on Centcomm, we only need this.
 		if(InvalidTurf(get_turf(M)))
@@ -130,7 +130,7 @@
 
 		// Human check
 		var/human = 0
-		if(istype(M, /mob/living/carbon/human))
+		if(ishuman(M))
 			human = 1
 			var/mob/living/carbon/human/H = M
 			//Cameras can't track people wearing an agent card or a ninja hood.
@@ -193,7 +193,7 @@
 		while (U.cameraFollow == target)
 			if (U.cameraFollow == null)
 				return
-			if (istype(target, /mob/living/carbon/human))
+			if (ishuman(target))
 				var/mob/living/carbon/human/H = target
 				if(H.wear_id && istype(H.wear_id.GetID(), /obj/item/card/id/syndicate))
 					U.ai_cancel_tracking(1)
@@ -221,7 +221,7 @@
 /proc/near_camera(var/mob/living/M)
 	if (!isturf(M.loc))
 		return 0
-	if(isrobot(M))
+	if(iscyborg(M))
 		var/mob/living/silicon/robot/R = M
 		if(!(R.camera && R.camera.can_use()) && !cameranet.checkCameraVis(M))
 			return 0

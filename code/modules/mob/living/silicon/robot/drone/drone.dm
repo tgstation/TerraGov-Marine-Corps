@@ -31,11 +31,11 @@
 
 	holder_type = /obj/item/holder/drone
 
-/mob/living/silicon/robot/drone/New()
+/mob/living/silicon/robot/drone/Initialize()
 
 	nicknumber = rand(100,999)
 
-	..()
+	. = ..()
 
 
 	verbs += /mob/living/proc/hide
@@ -108,10 +108,10 @@
 /mob/living/silicon/robot/drone/attackby(obj/item/W, mob/living/user)
 
 	if(istype(W, /obj/item/robot/upgrade/))
-		to_chat(user, "\red The maintenance drone chassis not compatible with \the [W].")
+		to_chat(user, "<span class='warning'>The maintenance drone chassis not compatible with \the [W].</span>")
 		return
 
-	else if (istype(W, /obj/item/tool/crowbar))
+	else if(iscrowbar(W))
 		to_chat(user, "The machine is hermetically sealed. You can't open the case.")
 		return
 
@@ -143,13 +143,13 @@
 //CONSOLE PROCS
 /mob/living/silicon/robot/drone/proc/law_resync()
 	if(stat != 2)
-		to_chat(src, "\red A reset-to-factory directive packet filters through your data connection, and you obediently modify your programming to suit it.")
+		to_chat(src, "<span class='warning'>A reset-to-factory directive packet filters through your data connection, and you obediently modify your programming to suit it.</span>")
 		full_law_reset()
 		show_laws()
 
 /mob/living/silicon/robot/drone/proc/shut_down()
 	if(stat != 2)
-		to_chat(src, "\red You feel a system kill order percolate through your tiny brain, and you obediently destroy yourself.")
+		to_chat(src, "<span class='warning'>You feel a system kill order percolate through your tiny brain, and you obediently destroy yourself.</span>")
 		death()
 
 /mob/living/silicon/robot/drone/proc/full_law_reset()
@@ -161,7 +161,7 @@
 //Reboot procs.
 
 /mob/living/silicon/robot/drone/proc/request_player()
-	for(var/mob/dead/observer/O in player_list)
+	for(var/mob/dead/observer/O in GLOB.player_list)
 		if(jobban_isbanned(O, "Cyborg"))
 			continue
 
@@ -238,7 +238,7 @@
 		if(custom_name)
 			return 0
 
-		for (var/mob/living/silicon/robot/drone/A in mob_list)
+		for (var/mob/living/silicon/robot/drone/A in GLOB.silicon_mobs)
 			if(newname == A.nicknumber)
 				to_chat(src, "<span class='warning'>That identifier is taken, pick again.</span>")
 				return 0

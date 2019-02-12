@@ -2,7 +2,7 @@
 
 /mob/living/carbon/proc/handcuff_update()
 	if(handcuffed)
-		drop_held_items()
+		drop_all_held_items()
 		stop_pulling()
 	update_inv_handcuffed()
 
@@ -15,7 +15,7 @@
 	update_inv_legcuffed()
 
 
-/mob/living/carbon/u_equip(obj/item/I, atom/newloc, nomoveupdate, force)
+/mob/living/carbon/doUnEquip(obj/item/I, atom/newloc, nomoveupdate, force)
 	. = ..()
 	if(!. || !I)
 		return FALSE
@@ -33,7 +33,6 @@
 	else if(I == legcuffed)
 		legcuffed = null
 		legcuff_update()
-
 
 /mob/living/carbon/proc/wear_mask_update(obj/item/I)
 	update_inv_wear_mask()

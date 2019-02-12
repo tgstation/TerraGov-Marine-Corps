@@ -8,8 +8,10 @@
 	throw_speed = 3
 	throw_range = 7
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	hitsound = 'sound/weapons/smash.ogg'
+	var/launched = FALSE //if launched from a UGL/grenade launcher
+	var/launchforce = 10 //bonus impact damage if launched from a UGL/grenade launcher
 	var/active = 0
 	var/det_time = 50
 	var/dangerous = TRUE 	//Does it make a danger overlay for humans? Can synths use it?
@@ -18,10 +20,9 @@
 	var/hud_state = "grenade_he"
 	var/hud_state_empty = "grenade_empty"
 
+
 /obj/item/explosive/grenade/New()
-
-	..()
-
+	. = ..()
 	det_time = rand(det_time - 10, det_time + 10)
 
 /obj/item/explosive/grenade/attack_self(mob/user)
@@ -32,7 +33,7 @@
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return
 
-	if(isSynth(user) && dangerous && !config.allow_synthetic_gun_use)
+	if(issynth(user) && dangerous && !CONFIG_GET(flag/allow_synthetic_gun_use))
 		to_chat(user, "<span class='warning'>Your programming prevents you from operating this device!</span>")
 		return
 
@@ -46,7 +47,7 @@
 	else
 		user.visible_message("<span class='warning'>[user] primes \a [name]!</span>", \
 		"<span class='warning'>You prime \a [name]!</span>")
-		if(initial(dangerous) && has_species(user, "Human"))
+		if(initial(dangerous) && ishumanbasic(user))
 			var/nade_sound = user.gender == FEMALE ? get_sfx("female_fragout") : get_sfx("male_fragout")
 
 			for(var/mob/living/carbon/human/H in hearers(6,user))
@@ -61,10 +62,11 @@
 		return
 
 	if(user)
-		msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) primed \a [src].")
+		log_explosion("[key_name(user)] primed [src] at [AREACOORD(user.loc)].")
+		log_combat(user, src, "primed")
 
 	icon_state = initial(icon_state) + "_active"
-	active = 1
+	active = TRUE
 	playsound(loc, arm_sound, 25, 1, 6)
 	if(dangerous)
 		round_statistics.grenades_thrown++
@@ -79,9 +81,8 @@
 		dangerous = 0
 	return
 
-/obj/item/explosive/grenade/proc/prime()
-//	playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
 
+/obj/item/explosive/grenade/proc/prime()
 
 
 /obj/item/explosive/grenade/attackby(obj/item/W as obj, mob/user as mob)

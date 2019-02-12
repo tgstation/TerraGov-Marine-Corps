@@ -3,7 +3,7 @@
 	endWhen = 10
 
 /datum/event/mundane_news/proc/random_name()
-	return pick(all_species).random_name(pick(MALE, FEMALE))
+	return pick(GLOB.all_species).random_name(pick(MALE, FEMALE))
 
 /datum/event/mundane_news/announce()
 	var/datum/trade_destination/affected_dest = pickweight(weighted_mundaneevent_locations)

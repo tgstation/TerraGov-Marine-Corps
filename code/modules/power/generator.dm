@@ -15,11 +15,10 @@
 	var/lastgen = 0
 	var/lastgenlev = -1
 
-/obj/machinery/power/generator/New()
-	..()
+/obj/machinery/power/generator/Initialize()
+	. = ..()
 
-	spawn(1)
-		reconnect()
+	reconnect()
 	start_processing()
 
 //generators connect in dir and reverse_dir(dir) directions
@@ -82,9 +81,9 @@
 	interact(user)
 
 /obj/machinery/power/generator/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/tool/wrench))
+	if(iswrench(W))
 		anchored = !anchored
-		to_chat(user, "\blue You [anchored ? "secure" : "unsecure"] the bolts holding [src] to the floor.")
+		to_chat(user, "<span class='notice'>You [anchored ? "secure" : "unsecure"] the bolts holding [src] to the floor.</span>")
 		use_power = anchored
 		reconnect()
 	else
@@ -97,7 +96,7 @@
 
 
 /obj/machinery/power/generator/interact(mob/user)
-	if ( (get_dist(src, user) > 1 ) && (!istype(user, /mob/living/silicon/ai)))
+	if ( (get_dist(src, user) > 1 ) && (!isAI(user)))
 		user.unset_interaction()
 		user << browse(null, "window=teg")
 		return
@@ -158,7 +157,7 @@
 	if (usr.stat || usr.is_mob_restrained()  || anchored)
 		return
 
-	src.dir = turn(src.dir, 90)
+	setDir(turn(src.dir, 90))
 
 /obj/machinery/power/generator/verb/rotate_anticlock()
 	set category = "Object"
@@ -168,4 +167,4 @@
 	if (usr.stat || usr.is_mob_restrained()  || anchored)
 		return
 
-	src.dir = turn(src.dir, -90)
+	setDir(turn(src.dir, -90))

@@ -53,7 +53,7 @@
 	M.entangle_delay = world.time + duration
 	M.visible_message("<span class='danger'>[M] gets entangled in the barbed wire!</span>",
 	"<span class='danger'>You get entangled in the barbed wire! Resist to untangle yourself after [(M.entangle_delay - world.time) * 0.1] seconds!</span>", null, 5)
-	M.frozen += 1
+	M.set_frozen(TRUE)
 	entangled_list += M //Add the entangled person to the trapped list.
 	M.entangled_by = src
 
@@ -66,7 +66,7 @@
 	entangled_list -= M
 	M.entangled_by = null
 	M.entangle_delay = null
-	M.frozen = FALSE
+	M.set_frozen(FALSE)
 	M.update_canmove()
 	M.apply_damage(rand(RAZORWIRE_BASE_DAMAGE * 0.8, RAZORWIRE_BASE_DAMAGE * 1.2), BRUTE, def_zone, armor_block, null, 1) //Apply damage as we tear free
 	M.next_move_slowdown += RAZORWIRE_SLOWDOWN //big slowdown
@@ -81,7 +81,7 @@
 /obj/structure/razorwire/Destroy()
 	. = ..()
 	for(var/mob/living/M in entangled_list)
-		M.frozen = FALSE
+		M.set_frozen(FALSE)
 		M.update_canmove()
 		if(M.entangled_by == src)
 			M.entangled_by = null
@@ -97,12 +97,12 @@
 	if(!W)
 		return
 	if(istype(W, /obj/item/grab))
-		if(isXeno(user))
+		if(isxeno(user))
 			return
 		var/obj/item/grab/G = W
-		if(istype(G.grabbed_thing, /mob/living))
+		if(isliving(G.grabbed_thing))
 			var/mob/living/M = G.grabbed_thing
-			if(user.a_intent == "hurt")
+			if(user.a_intent == INTENT_HARM)
 				if(user.grab_level > GRAB_AGGRESSIVE)
 					var/armor_block = null
 					var/def_zone = ran_zone()
@@ -123,7 +123,7 @@
 				"<span class='danger'>You throw [M] on [src].</span>")
 		return
 
-	if(istype(W, /obj/item/tool/wirecutters))
+	if(iswirecutter(W))
 		user.visible_message("<span class='notice'>[user] starts disassembling [src].</span>",
 		"<span class='notice'>You start disassembling [src].</span>")
 		var/delay_disassembly = SKILL_TASK_AVERAGE
@@ -136,7 +136,7 @@
 			destroyed(TRUE)
 		return
 
-	if(istype(W, /obj/item/tool/weldingtool))
+	if(iswelder(W))
 		var/obj/item/tool/weldingtool/WT = W
 		if(WT.remove_fuel(0, user))
 			var/delay = SKILL_TASK_TOUGH
@@ -162,7 +162,7 @@
 				destroyed()
 		return
 
-	if((W.flags_item & ITEM_ABSTRACT) || isrobot(user))
+	if((W.flags_item & ITEM_ABSTRACT) || iscyborg(user))
 		return
 
 	var/damage = W.force
@@ -222,7 +222,6 @@
 			return
 
 		health -= 200 * round(C.charge_speed / max(1, C.charge_speed_max),0.01)
-		to_chat(world, "DEBUG: Crusher damage: [150 * round(C.charge_speed / max(1, C.charge_speed_max),0.01)]. Speed: [C.charge_speed] Max Speed: [C.charge_speed_max]")
 		update_health()
 
 		var/def_zone = ran_zone()

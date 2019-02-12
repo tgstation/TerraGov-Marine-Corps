@@ -46,29 +46,28 @@
 		var/datum/nanoui/ui = nanomanager.get_open_ui(user, src, "main")
 		user.unset_interaction()
 		ui.close()
-		return 0
+		return FALSE
 	if(href_list["update"])
 		updateDialog()
-		return 1
+		return TRUE
 
 /obj/machinery/computer/crew/interact(mob/living/user)
 	ui_interact(user)
 
-/obj/machinery/computer/crew/ui_interact(mob/living/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/computer/crew/ui_interact(mob/living/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = TRUE)
 	if(stat & (BROKEN|NOPOWER))
 		return
 	user.set_interaction(src)
 	scan()
 
-	var/data[0]
-	crewmembers = list()
+	var/list/data = list()
+	crewmembers.Cut()
 
 	for(var/obj/item/clothing/under/C in tracked)
-
 		var/turf/pos = get_turf(C)
 
 		if(C && pos)
-			if(istype(C.loc, /mob/living/carbon/human))
+			if(ishuman(C.loc))
 
 				var/mob/living/carbon/human/H = C.loc
 				if(H.mind.special_role && H.loc.z == 1) continue // survivors
@@ -100,11 +99,9 @@
 //				crewmemberData["x"] = pos.x
 //				crewmemberData["y"] = pos.y
 
-				// Works around list += list2 merging lists; it's not pretty but it works
-				crewmembers += "temporary item"
-				crewmembers[crewmembers.len] = crewmemberData
+				crewmembers += list(crewmemberData)
 
-	data["crewmembers"] = sortRecord(crewmembers, "name")
+	data["crewmembers"] = sortTim(crewmembers, /proc/sensor_compare)
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
@@ -119,15 +116,18 @@
 		ui.open()
 
 		// should make the UI auto-update; doesn't seem to?
-		ui.set_auto_update(1)
+		ui.set_auto_update(TRUE)
 
 
 /obj/machinery/computer/crew/proc/scan()
-	for(var/mob/living/carbon/human/H in mob_list)
+	for(var/mob/living/carbon/human/H in GLOB.human_mob_list)
 		if(!H || !istype(H)) continue
-		if(isYautja(H)) continue
+		if(isyautja(H)) continue
 		var/obj/item/clothing/under/C = H.w_uniform
 		if(!C || !istype(C)) continue
 		if(C.has_sensor && H.mind)
 			tracked |= C
-	return 1
+	return TRUE
+
+/proc/sensor_compare(list/a, list/b, key="name")
+	return sorttext(b[key], a[key])

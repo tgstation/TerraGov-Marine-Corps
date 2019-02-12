@@ -100,11 +100,11 @@
 		to_chat(user, "<span class='warning'>\The [M] is too big to fit in [src].</span>")
 		return
 
-	if(!isXeno(user))
+	if(!isxeno(user))
 		to_chat(user, "<span class='warning'>Gross! You're not touching that stuff.</span>")
 		return
 
-	if(isYautja(M))
+	if(isyautja(M))
 		to_chat(user, "<span class='warning'>\The [M] seems to be wearing some kind of resin-resistant armor!</span>")
 		return
 
@@ -120,7 +120,7 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(!H.lying) //Don't ask me why is has to be
-			to_chat(user, "<span class='warning'>[M] is resisting, ground them.</span>")
+			to_chat(user, "<span class='warning'>[M] is resisting, ground [M.p_them()].</span>")
 			return
 
 	user.visible_message("<span class='warning'>[user] pins [M] into [src], preparing the securing resin.</span>",
@@ -134,7 +134,7 @@
 		if(ishuman(M)) //Improperly stunned Marines won't be nested
 			var/mob/living/carbon/human/H = M
 			if(!H.lying) //Don't ask me why is has to be
-				to_chat(user, "<span class='warning'>[M] is resisting, ground them.</span>")
+				to_chat(user, "<span class='warning'>[M] is resisting, ground [M.p_them()].</span>")
 				return
 		do_buckle(M, user)
 
@@ -184,9 +184,9 @@
 	healthcheck()
 
 /obj/structure/bed/nest/attack_alien(mob/living/carbon/Xenomorph/M)
-	if(isXenoLarva(M)) //Larvae can't do shit
+	if(isxenolarva(M)) //Larvae can't do shit
 		return
-	if(M.a_intent == "hurt")
+	if(M.a_intent == INTENT_HARM)
 		M.visible_message("<span class='danger'>\The [M] claws at \the [src]!</span>", \
 		"<span class='danger'>You claw at \the [src].</span>")
 		playsound(loc, "alien_resin_break", 25)

@@ -329,7 +329,7 @@
 		last_piece = null
 
 	proc/dismantleFloor(var/turf/new_turf)
-		if(istype(new_turf, /turf/open/floor))
+		if(isfloorturf(new_turf))
 			var/turf/open/floor/T = new_turf
 			if(!T.is_plating())
 				if(!T.broken && !T.burnt)
@@ -347,28 +347,26 @@
 		if(!use_cable(1))
 			return reset()
 		var/obj/structure/cable/NC = new(new_turf)
-		NC.cableColor("red")
-		NC.d1 = 0
+		NC.d1 = CABLE_NODE
 		NC.d2 = fdirn
-		NC.updateicon()
+		NC.update_icon()
 
 		var/datum/powernet/PN
 		if(last_piece && last_piece.d2 != chassis.dir)
 			last_piece.d1 = min(last_piece.d2, chassis.dir)
 			last_piece.d2 = max(last_piece.d2, chassis.dir)
-			last_piece.updateicon()
+			last_piece.update_icon()
 			PN = last_piece.powernet
 
 		if(!PN)
 			PN = new()
-			powernets += PN
+			SSmachines.powernets += PN
 		NC.powernet = PN
 		PN.cables += NC
 		NC.mergeConnectedNetworks(NC.d2)
 
-		//NC.mergeConnectedNetworksOnTurf()
 		last_piece = NC
-		return 1
+		return TRUE
 
 /obj/item/mecha_parts/mecha_equipment/tool/syringe_gun
 	name = "Syringe Gun"

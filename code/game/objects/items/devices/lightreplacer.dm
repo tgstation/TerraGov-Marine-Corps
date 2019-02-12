@@ -48,7 +48,7 @@
 	item_state = "electronic"
 
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	origin_tech = "magnets=3;materials=2"
 
 	var/max_uses = 50
@@ -99,7 +99,7 @@
 
 /obj/item/device/lightreplacer/attack_self(mob/user)
 	/* // This would probably be a bit OP. If you want it though, uncomment the code.
-	if(isrobot(user))
+	if(iscyborg(user))
 		var/mob/living/silicon/robot/R = user
 		if(R.emagged)
 			src.Emag()

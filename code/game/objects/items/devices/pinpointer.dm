@@ -2,7 +2,7 @@
 	name = "pinpointer"
 	icon_state = "pinoff"
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	w_class = 1
 	item_state = "electronic"
 	throw_speed = 4
@@ -16,11 +16,11 @@
 		if(!active)
 			active = 1
 			workdisk()
-			to_chat(usr, "\blue You activate the pinpointer")
+			to_chat(usr, "<span class='notice'>You activate the pinpointer</span>")
 		else
 			active = 0
 			icon_state = "pinoff"
-			to_chat(usr, "\blue You deactivate the pinpointer")
+			to_chat(usr, "<span class='notice'>You deactivate the pinpointer</span>")
 
 	proc/workdisk()
 		if(!active) return
@@ -29,7 +29,7 @@
 			if(!the_disk)
 				icon_state = "pinonnull"
 				return
-		dir = get_dir(src,the_disk)
+		setDir(get_dir(src,the_disk))
 		switch(get_dist(src,the_disk))
 			if(0)
 				icon_state = "pinondirect"
@@ -43,7 +43,7 @@
 
 	examine(mob/user)
 		..()
-		for(var/obj/machinery/nuclearbomb/bomb in machines)
+		for(var/obj/machinery/nuclearbomb/bomb in GLOB.machines)
 			if(bomb.timing)
 				to_chat(user, "Extreme danger.  Arming signal detected.   Time remaining: [bomb.timeleft]")
 
@@ -64,11 +64,11 @@
 				worklocation()
 			if(mode == 2)
 				workobj()
-			to_chat(usr, "\blue You activate the pinpointer")
+			to_chat(usr, "<span class='notice'>You activate the pinpointer</span>")
 		else
 			active = 0
 			icon_state = "pinoff"
-			to_chat(usr, "\blue You deactivate the pinpointer")
+			to_chat(usr, "<span class='notice'>You deactivate the pinpointer</span>")
 
 
 	proc/worklocation()
@@ -77,7 +77,7 @@
 		if(!location)
 			icon_state = "pinonnull"
 			return
-		dir = get_dir(src,location)
+		setDir(get_dir(src,location))
 		switch(get_dist(src,location))
 			if(0)
 				icon_state = "pinondirect"
@@ -96,7 +96,7 @@
 		if(!target)
 			icon_state = "pinonnull"
 			return
-		dir = get_dir(src,target)
+		setDir(get_dir(src,target))
 		switch(get_dist(src,target))
 			if(0)
 				icon_state = "pinondirect"
@@ -160,7 +160,7 @@
 					var/DNAstring = input("Input DNA string to search for." , "Please Enter String." , "")
 					if(!DNAstring)
 						return
-					for(var/mob/living/carbon/M in mob_list)
+					for(var/mob/living/carbon/M in GLOB.mob_list)
 						if(!M.dna)
 							continue
 						if(M.dna.unique_enzymes == DNAstring)
@@ -213,7 +213,7 @@
 //	if(loc.z != the_disk.z)	//If you are on a different z-level from the disk
 //		icon_state = "pinonnull"
 //	else
-	dir = get_dir(src, the_disk)
+	setDir(get_dir(src, the_disk))
 	switch(get_dist(src, the_disk))
 		if(0)
 			icon_state = "pinondirect"
@@ -246,7 +246,7 @@
 	if(loc.z != home.z)	//If you are on a different z-level from the shuttle
 		icon_state = "pinonnull"
 	else
-		dir = get_dir(src, home)
+		setDir(get_dir(src, home))
 		switch(get_dist(src, home))
 			if(0)
 				icon_state = "pinondirect"

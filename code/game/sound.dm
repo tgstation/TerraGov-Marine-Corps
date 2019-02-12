@@ -17,8 +17,7 @@
 	soundin = get_sfx(soundin) // same sound for everyone
 
 	if(isarea(source))
-		error("[source] is an area and is trying to make the sound: [soundin]")
-		return
+		CRASH("[source] is an area and is trying to make the sound: [soundin]")
 
 	var/frequency = GET_RANDOM_FREQ // Same frequency for everybody
 	var/turf/turf_source = get_turf(source)
@@ -26,7 +25,7 @@
  	// Looping through the player list has the added bonus of working for mobs inside containers
 	var/mob/M
 	var/turf/T
-	for(var/i in player_list)
+	for(var/i in GLOB.player_list)
 		M = i
 		if(!istype(M) || !M.client) continue
 		if(get_dist(M, turf_source) <= sound_range)
@@ -109,7 +108,7 @@
 /proc/playsound_z(atom/z, soundin, volume) // Play sound for all online mobs on a given Z-level. Good for ambient sounds.
 	soundin = get_sfx(soundin)
 
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		if (M.z)
 			M << sound(soundin, volume)
 
@@ -188,7 +187,7 @@
 			if("alien_talk")
 				S = pick('sound/voice/alien_talk.ogg','sound/voice/alien_talk2.ogg','sound/voice/alien_talk3.ogg')
 			if("alien_growl")
-				S = pick('sound/voice/alien_growl1.ogg','sound/voice/alien_growl2.ogg','sound/voice/alien_growl3.ogg')
+				S = pick('sound/voice/alien_growl1.ogg','sound/voice/alien_growl2.ogg','sound/voice/alien_growl3.ogg','sound/voice/alien_growl4.ogg')
 			if("alien_hiss")
 				S = pick('sound/voice/alien_hiss1.ogg','sound/voice/alien_hiss2.ogg','sound/voice/alien_hiss3.ogg')
 			if("alien_tail_swipe")
@@ -198,16 +197,16 @@
 			if("alien_drool")
 				S = pick('sound/voice/alien_drool1.ogg','sound/voice/alien_drool2.ogg')
 			if("alien_roar")
-				S = pick('sound/voice/alien_roar1.ogg','sound/voice/alien_roar2.ogg','sound/voice/alien_roar3.ogg','sound/voice/alien_roar4.ogg','sound/voice/alien_roar5.ogg','sound/voice/alien_roar6.ogg')
+				S = pick('sound/voice/alien_roar1.ogg','sound/voice/alien_roar2.ogg','sound/voice/alien_roar3.ogg','sound/voice/alien_roar4.ogg','sound/voice/alien_roar5.ogg','sound/voice/alien_roar6.ogg','sound/voice/alien_roar7.ogg','sound/voice/alien_roar8.ogg','sound/voice/alien_roar9.ogg','sound/voice/alien_roar10.ogg','sound/voice/alien_roar11.ogg','sound/voice/alien_roar12.ogg')
 			if("alien_roar_larva")
-				S = pick('sound/voice/alien_roar_larva1.ogg','sound/voice/alien_roar_larva2.ogg')
+				S = pick('sound/voice/alien_roar_larva1.ogg','sound/voice/alien_roar_larva2.ogg','sound/voice/alien_roar_larva3.ogg','sound/voice/alien_roar_larva4.ogg')
 			if("queen")
 				S = pick('sound/voice/alien_queen_command.ogg','sound/voice/alien_queen_command2.ogg','sound/voice/alien_queen_command3.ogg')
 			// Human
 			if("male_scream")
-				S = pick('sound/voice/human_male_scream_1.ogg','sound/voice/human_male_scream_2.ogg','sound/voice/human_male_scream_3.ogg','sound/voice/human_male_scream_4.ogg',5;'sound/voice/human_male_scream_5.ogg','sound/voice/human_male_scream_6.ogg')
+				S = pick('sound/voice/human_male_scream_1.ogg','sound/voice/human_male_scream_2.ogg','sound/voice/human_male_scream_3.ogg','sound/voice/human_male_scream_4.ogg','sound/voice/human_male_scream_5.ogg','sound/voice/human_male_scream_6.ogg',5;'sound/voice/human_male_scream_joke1.ogg',5;'sound/voice/human_male_scream_joke2.ogg',5;'sound/voice/human_male_scream_joke3.ogg',5;'sound/voice/human_male_scream_joke4.ogg')
 			if("male_pain")
-				S = pick('sound/voice/human_male_pain_1.ogg','sound/voice/human_male_pain_2.ogg','sound/voice/human_male_pain_3.ogg','sound/voice/human_male_scream_6.ogg')
+				S = pick('sound/voice/human_male_pain_1.ogg','sound/voice/human_male_pain_2.ogg','sound/voice/human_male_pain_3.ogg','sound/voice/human_male_pain_4.ogg','sound/voice/human_male_pain_5.ogg','sound/voice/human_male_pain_6.ogg','sound/voice/human_male_pain_7.ogg','sound/voice/human_male_pain_8.ogg',5;'sound/voice/human_male_pain_joke1.ogg',5;'sound/voice/human_male_pain_joke2.ogg')
 			if("male_fragout")
 				S = pick('sound/voice/human_male_grenadethrow_1.ogg', 'sound/voice/human_male_grenadethrow_2.ogg', 'sound/voice/human_male_grenadethrow_3.ogg')
 			if("female_scream")

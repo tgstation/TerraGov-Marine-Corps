@@ -210,3 +210,22 @@ var/list/RESTRICTED_CAMERA_NETWORKS = list( //Those networks can only be accesse
 #define RAZORWIRE_MAX_DAMAGE_MULT_MED	1.2
 #define RAZORWIRE_MIN_DAMAGE_MULT_HIGH	1.6 //pouncing into it
 #define RAZORWIRE_MAX_DAMAGE_MULT_HIGH	2.4
+
+//Flares
+
+#define FLARE_BRIGHTNESS				5
+
+//Scope accuracy defines
+#define SCOPE_RAIL				0.4
+#define SCOPE_RAIL_MINI			0.2
+#define SCOPE_RAIL_SNIPER		0.5
+
+
+//Hypospray
+
+#define HYPOSPRAY_INJECT_MODE_DRAW		0
+#define HYPOSPRAY_INJECT_MODE_INJECT	1
+
+// Random item spawns for huntergames
+#define HG_RANDOM_ITEM_CRAP 1
+#define HG_RANDOM_ITEM_GOOD 2
