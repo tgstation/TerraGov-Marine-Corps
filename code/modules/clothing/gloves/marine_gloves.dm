@@ -82,7 +82,7 @@
 	permeability_coefficient = 0.01
 
 /obj/item/clothing/gloves/marine/techofficer/commander
-	name = "commander's gloves"
+	name = "captain's gloves"
 	desc = "You may like these gloves, but THEY think you are unworthy of them."
 	icon_state = "captain"
 	item_state = "egloves"
@@ -109,4 +109,4 @@
 	icon_state = "brown"
 	item_state = "browngloves"
 	armor = list(melee = 90, bullet = 120, laser = 100, energy = 90, bomb = 50, bio = 30, rad = 30)
-	unacidable = 1
+	unacidable = TRUE
