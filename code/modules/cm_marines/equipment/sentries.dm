@@ -442,9 +442,6 @@
 
 		if("manual") //Alright so to clean this up, fuck that manual control pop up. Its a good idea but its not working out in practice.
 			if(!manual_override)
-				if(user.interactee != src) //Make sure if we're using a machine we can't use another one (ironically now impossible due to handle_click())
-					to_chat(user, "<span class='warning'>You can't multitask like this!</span>")
-					return
 				if(operator != user && operator) //Don't question this. If it has operator != user it wont fucken work. Like for some reason this does it proper.
 					to_chat(user, "<span class='warning'>Someone is already controlling [src].</span>")
 					return
@@ -1059,55 +1056,6 @@
 
 	if(targets.len) . = pick(targets)
 
-//Direct replacement to new proc. Everything works.
-/obj/machinery/marine_turret/handle_click(mob/living/carbon/human/user, atom/A, params)
-	var/list/modifiers = params2list(params) //Only single clicks.
-	if(modifiers["middle"] || modifiers["shift"] || modifiers["alt"] || modifiers["ctrl"])
-		return FALSE
-	if(!manual_override || !operator || !istype(user) || operator != user || operator.interactee != src || istype(A, /obj/screen))
-		return FALSE
-	if(is_bursting)
-		return TRUE
-	if(get_dist(user, src) > 1 || user.is_mob_incapacitated())
-		user.visible_message("<span class='notice'>[user] lets go of [src]</span>",
-		"<span class='notice'>You let go of [src]</span>")
-		state("<span class='notice'>The [name] buzzes: AI targeting re-initialized.</span>")
-		user.unset_interaction()
-		return FALSE
-	if(user.get_active_held_item())
-		to_chat(usr, "<span class='warning'>You need a free hand to shoot [src].</span>")
-		return TRUE
-
-	target = A
-	if(!istype(target))
-		return FALSE
-
-	if(target.z != z || !target.z|| !z || isnull(operator.loc) || isnull(loc))
-		return FALSE
-
-	if(get_dist(target, loc) > 10)
-		return TRUE
-
-	var/dx = target.x - x
-	var/dy = target.y - y //Calculate which way we are relative to them. Should be 90 degree cone..
-	var/direct
-
-	if(abs(dx) < abs(dy))
-		if(dy > 0)
-			direct = NORTH
-		else
-			direct = SOUTH
-	else
-		if(dx > 0)
-			direct = EAST
-		else
-			direct = WEST
-
-	if(direct == dir && target.loc != src.loc && target.loc != operator.loc)
-		process_shot()
-		return TRUE
-
-	return FALSE
 /*
 /obj/item/turret_laptop
 	name = "UA 571-C Turret Control Laptop"

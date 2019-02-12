@@ -250,8 +250,7 @@
 	update_icon()
 
 /obj/machinery/m56d_hmg/Destroy() //Make sure we pick up our trash.
-	if(operator)
-		operator.unset_interaction()
+	operator?.unset_interaction()
 	SetLuminosity(0)
 	STOP_PROCESSING(SSobj, src)
 	return ..()
@@ -439,45 +438,6 @@
 				playsound(src.loc, 'sound/weapons/smg_empty_alarm.ogg', 25, 1)
 				update_icon() //final safeguard.
 	return
-
-// New proc for MGs and stuff replaced handle_manual_fire(). Same arguements though, so alls good.
-/obj/machinery/m56d_hmg/handle_click(mob/living/carbon/human/user, atom/A, var/list/mods)
-	if(mods["middle"] || mods["shift"] || mods["alt"] || !operator || operator != user)
-		return FALSE
-	if(is_bursting)
-		return TRUE
-	if(user.lying || !Adjacent(user) || user.is_mob_incapacitated())
-		user.unset_interaction()
-		return FALSE
-	if(user.get_active_held_item())
-		to_chat(usr, "<span class='warning'>You need a free hand to shoot the [src].</span>")
-		return TRUE
-	target = A
-	if(!istype(target))
-		return FALSE
-	if(target.z != z || !target.z || !z || isnull(operator.loc) || isnull(loc))
-		return FALSE
-	if(get_dist(target,src.loc) > 15)
-		return TRUE
-
-	if(mods["ctrl"])
-		burst_fire = !burst_fire
-		burst_fire_toggled = TRUE
-
-	var/angle = get_dir(src,target)
-	//we can only fire in a 90 degree cone
-	if((dir & angle) && target.loc != src.loc && target.loc != operator.loc)
-
-		if(!rounds)
-			to_chat(user, "<span class='warning'><b>*click*</b></span>")
-			playsound(src, 'sound/weapons/gun_empty.ogg', 25, 1, 5)
-		else
-			process_shot()
-		return TRUE
-
-	if(burst_fire_toggled)
-		burst_fire = !burst_fire
-	return FALSE
 
 /obj/machinery/m56d_hmg/proc/muzzle_flash(var/angle) // Might as well keep this too.
 	if(isnull(angle))
