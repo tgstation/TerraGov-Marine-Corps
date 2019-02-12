@@ -1714,13 +1714,13 @@
 
 /datum/ammo/bullet/shrapnel/flechette/New()
 	. = ..()
-	accuracy = config.max_hit_accuracy
-	accurate_range = config.min_shell_range
-	accuracy_var_low = config.med_proj_variance
-	accuracy_var_high = config.med_proj_variance
-	max_range = config.close_shell_range
-	damage = config.low_hit_damage
-	damage_var_low = -config.low_proj_variance
-	damage_var_high = config.low_proj_variance
+	accuracy = CONFIG_GET(number/combat_define/max_hit_accuracy)
+	accurate_range = CONFIG_GET(number/combat_define/min_shell_range)
+	accuracy_var_low = CONFIG_GET(number/combat_define/med_proj_variance)
+	accuracy_var_high = CONFIG_GET(number/combat_define/med_proj_variance)
+	max_range = CONFIG_GET(number/combat_define/close_shell_range)
+	damage = CONFIG_GET(number/combat_define/low_hit_damage)
+	damage_var_low = -CONFIG_GET(number/combat_define/low_proj_variance)
+	damage_var_high = CONFIG_GET(number/combat_define/low_proj_variance)
 	damage_falloff *= 0.5
-	penetration = config.high_armor_penetration
+	penetration = CONFIG_GET(number/combat_define/high_armor_penetration)

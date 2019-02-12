@@ -150,9 +150,9 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	var/angle_increment = 360 / max(1,projectiles)
 	var/current_angle = angle_increment
 	var/obj/item/projectile/A
-	var/datum/ammo/ammo = ammo_list[P]
+	var/datum/ammo/ammo = GLOB.ammo_list[P]
 	for(var/i = 1 to projectiles)
-		A = rnew(/obj/item/projectile, initial_turf)
+		A = new /obj/item/projectile(initial_turf)
 		A.generate_bullet(ammo)
 		T = get_step(initial_turf, angle2dir(current_angle)) //First get the basic cardinal
 		if(angle_increment < 45)
