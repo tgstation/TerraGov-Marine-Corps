@@ -19,6 +19,7 @@
 
 	var/igniting = FALSE	//Whether it ignites on impact
 	var/item_fire_stacks = 0	//How many fire stacks it applies
+	var/OOC_info = "There is no OOC Information about this object."		//OOC information about the object, accessible via the objects tab. If you've got something to add, please make a PR and add 'OOC_info = ' to the object with your information.
 
 /obj/New()
 	..()
@@ -27,6 +28,14 @@
 /obj/Destroy()
 	. = ..()
 	GLOB.object_list -= src
+
+/obj/verb/OOC_info()
+	set name = "OOC object information"
+	set desc = "Reveals some Out of Character knowledge about an item. a mini-mentor really."
+	set category = "Object"
+	set src in range(1)
+	to_chat(usr, "[src.OOC_info]")
+	
 
 /obj/proc/add_initial_reagents()
 	if(reagents && list_reagents)
