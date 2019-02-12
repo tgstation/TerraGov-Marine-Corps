@@ -15,8 +15,6 @@
 			level = SEC_LEVEL_BLUE
 		if("red")
 			level = SEC_LEVEL_RED
-		if("biohazard")
-			level = SEC_LEVEL_BIO
 		if("delta")
 			level = SEC_LEVEL_DELTA
 
@@ -51,7 +49,7 @@
 					if(SD.z == MAIN_SHIP_Z_LEVEL)
 						SD.set_picture("default")
 			if(SEC_LEVEL_RED)
-				if(security_level < SEC_LEVEL_BIO)
+				if(security_level < SEC_LEVEL_RED)
 					if(announce)
 						command_announcement.Announce("Attention: Security level elevated to RED - there is an immediate threat to the ship.", "Priority Alert", no_sound ? null : 'sound/AI/code_red_elevated.ogg')
 				else
@@ -74,16 +72,6 @@
 				for(var/obj/machinery/status_display/SD in GLOB.machines)
 					if(SD.z == MAIN_SHIP_Z_LEVEL)
 						SD.set_picture("redalert")
-			
-			if(SEC_LEVEL_BIO)
-				if(security_level < SEC_LEVEL_DELTA)
-					if(announce)
-						command_announcement.Announce("Attention: There is a Biohazard present on the ship. - there is an immediate threat to the ship.", "Priority Alert", no_sound ? null : 'sound/AI/code_red_elevated.ogg')
-				else
-					if(announce)
-						command_announcement.Announce("Attention: There is a Biohazard present on the ship - there is an immediate threat to the ship.", "Priority Alert", no_sound ? null : 'sound/AI/code_red_lowered.ogg')
-				security_level = SEC_LEVEL_BIO		
-
 			if(SEC_LEVEL_DELTA)
 				if(announce)
 					command_announcement.Announce("Attention! Delta security level reached! " + CONFIG_GET(string/alert_delta), "Priority Alert")
@@ -110,8 +98,6 @@
 			return "blue"
 		if(SEC_LEVEL_RED)
 			return "red"
-		if(SEC_LEVEL_BIO)
-			return "biohazard"
 		if(SEC_LEVEL_DELTA)
 			return "delta"
 
@@ -123,8 +109,6 @@
 			return "blue"
 		if(SEC_LEVEL_RED)
 			return "red"
-		if(SEC_LEVEL_BIO)
-			return "biohazard"
 		if(SEC_LEVEL_DELTA)
 			return "delta"
 
@@ -136,7 +120,5 @@
 			return SEC_LEVEL_BLUE
 		if("red")
 			return SEC_LEVEL_RED
-		if("biohazard")
-			return SEC_LEVEL_BIO
 		if("delta")
 			return SEC_LEVEL_DELTA

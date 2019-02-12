@@ -500,7 +500,6 @@
 
 	frequency.post_signal(src, status_signal)*/
 
-
 #undef STATE_DEFAULT
 #undef STATE_MESSAGELIST
 #undef STATE_VIEWMESSAGE
