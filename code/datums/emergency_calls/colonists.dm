@@ -21,7 +21,7 @@
 	if(original)
 		qdel(original)
 
-	H.client?.change_view(world.view))
+	H.client?.change_view(world.view)
 
 	print_backstory(H)
 

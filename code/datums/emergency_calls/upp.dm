@@ -21,7 +21,7 @@
 		return
 
 	var/mob/living/carbon/human/H = new /mob/living/carbon/human(spawn_loc)
-	
+
 	if(H.gender == MALE)
 		H.name = pick(first_names_male_russian) + " " + pick(last_names_russian)
 		H.real_name = H.name
@@ -30,13 +30,13 @@
 		H.name = pick(first_names_female_russian) + " " + pick(last_names_russian)
 		H.real_name = H.name
 		H.voice_name = H.name
-		
+
 	H.key = M.key
 
 	if(original)
 		qdel(original)
 
-	H.client?.change_view(world.view))
+	H.client?.change_view(world.view)
 
 	print_backstory(H)
 

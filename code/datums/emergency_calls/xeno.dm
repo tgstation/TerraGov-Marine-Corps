@@ -2,7 +2,7 @@
 	name = "Xenomorphs"
 	probability = 10
 	auto_shuttle_launch = TRUE
-	
+
 
 /datum/emergency_call/xenomorphs/print_backstory(mob/living/carbon/Xenomorph/X)
 	to_chat(X, "<B>You are Xenomorph from a distant hive.</b>")
@@ -20,12 +20,12 @@
 	var/turf/spawn_loc = get_spawn_point()
 	var/mob/original = M.current
 
-	if(!istype(spawn_loc)) 
+	if(!istype(spawn_loc))
 		return
 
 	var/mob/living/carbon/Xenomorph/new_xeno
 
-	original.client?.change_view(world.view))
+	original.client?.change_view(world.view)
 
 	if(original)
 		qdel(original)
