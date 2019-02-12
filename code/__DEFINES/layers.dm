@@ -80,7 +80,7 @@
 
 //#define MOB_LAYER 4
 
-#define FACEHUGGER_LAYER 4.1
+#define FACEHUGGER_LAYER 4.05
 
 #define ABOVE_MOB_LAYER 4.1
 
