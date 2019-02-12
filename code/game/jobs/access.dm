@@ -234,27 +234,28 @@ proc/get_all_job_icons()
 
 /proc/get_marine_jobs()
 		return list(
-				"Commander",
-				"Executive Officer",
-				"Staff Officer",
+				"Captain",
+				"Field Commander",
+				"Intelligence Officer",
 				"Pilot Officer",
+				"Tank Commander",
 				"Tank Crewman",
 				"Corporate Liaison",
-				"Chief Engineer",
+				"Chief Ship Engineer",
 				"Maintenance Tech",
 				"Requisitions Officer",
 				"Cargo Technician",
 				"Squad Leader",
 				"Squad Engineer",
-				"Squad Medic",
+				"Squad Corpsman",
 				"Squad Specialist",
 				"Squad Smartgunner",
 				"Squad Marine",
 				"Chief Medical Officer",
-				"Doctor",
+				"Medical Officer",
 				"Researcher",
-				"Military Police",
-				"Chief MP"
+				"Master at Arms",
+				"Command Master at Arms"
 				)
 
 /proc/get_paygrades(paygrade, size, gender)
@@ -277,22 +278,27 @@ proc/get_all_job_icons()
 		if("E4") . = size ? "CPL " : "Corporal"
 		if("E5") . = size ? "SGT " : "Sergeant"
 		if("E6") . = size ? "SSGT " : "Staff Sergeant"
-		if("E6E") . = size ? "TSGT " : "Technical Sergeant"
-		if("E7") . = size ? "SFC " : "Sergeant First Class"
+		if("E7") . = size ? "GYSGT " : "Gunnery Sergeant"
 		if("E8") . = size ? "MSGT " : "Master Sergeant"
 		if("E8E") . = size ? "FSGT " : "First Sergeant"
-		if("E9") . = size ? "SGM " : "Sergeant Major"
-		if("E9E") . = size ? "CSGM " : "Command Sergeant Major"
+		if("E9") . = size ? "SGMAJ " : "Sergeant Major"
+		if("E9E") . = size ? "CSGTMAJ " : "Command Sergeant Major"
 		if("O1") . = size ? "ENS " : "Ensign"
-		if("O2") . = size ? "LT " : "Lieutenant"
-		if("O3") . = size ? "LCDR " : "Lieutenant Commander"
-		if("O4") . = size ? "CDR " : "Commander"
-		if("O5") . = size ? "CPT " : "Captain"
-		if("O6") . = size ? "RADM " : "Rear Admiral"
-		if("O7") . = size ? "ADM " : "Admiral"
-		if("O8") . = size ? "FADM " : "Fleet Admiral"
-		if("O9") . = size ? "SMR " : "Sky Marshal"
+		if("O2") . = size ? "LTJG " : "Lieutenant Junior Grade"
+		if("O3") . = size ? "LT " : "Lieutenant"
+		if("O4") . = size ? "LCDR " : "Lieutenant Commander"
+		if("O5") . = size ? "CDR " : "Commander"
+		if("O6") . = size ? "CPT " : "Captain"
+		if("O7") . = size ? "COMM " : "Commodore"
+		if("O8") . = size ? "RADM " : "Rear Admiral"
+		if("O9") . = size ? "VADM " : "Vice Admiral"
+		if("10") . = size ? "ADM " : "Admiral"
+		if("11") . = size ? "FADM " : "Fleet Admiral"
 		if("WO") . = size ? "WO " : "Warrant Officer"
+		if("CWO") . = size ? "CWO " : "Chief Warrant Officer"
+		if("PO") . = size ? "PO " : "Petty Officer"
+		if("CPO") . = size ? "CPO " : "Chief Petty Officer"
+		if("MO4") . = size ? "MAJ " : "Major"
 		if("UPP1") . = size ? "UPVT " : "UPP Private"
 		if("UPP2") . = size ? "UPFC " : "UPP Private First Class"
 		if("UPP3") . = size ? "UCPL " : "UPP Corporal"
@@ -318,9 +324,9 @@ proc/get_all_job_icons()
 		if("MRC3") . = size ? "MERC " : "MERC Engineer"
 		else . = paygrade + " " //custom paygrade
 
-#define PAYGRADES_MARINE list("C","E1","E2","E3","E4","E5","E6","E6E","E7","E8","E8E","E9","E9E","O1","O2","O3","O4", "WO")
-#define PAYGRADES_OFFICER list("O1","O2","O3","O4", "WO")
-#define PAYGRADES_ENLISTED list("C","E1","E2","E3","E4","E5","E6","E7","E8","E9")
+#define PAYGRADES_MARINE list("C","E1","E2","E3","E4","E5","E6","E7","E8","E8E","E9","E9E","O1","O2","O3","O4","O5","O6","WO","CWO","PO","CPO","MAJ")
+#define PAYGRADES_OFFICER list("O1","O2","O3","O4","O5","O6","WO","CWO","CPO","MAJ")
+#define PAYGRADES_ENLISTED list("C","E1","E2","E3","E4","E5","E6","E7","E8","E9","PO")
 
 //Just marines
 #define ALL_MARINE_ACCESS list(ACCESS_IFF_MARINE, ACCESS_MARINE_COMMANDER, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_BRIG, ACCESS_MARINE_ARMORY, ACCESS_MARINE_WO, ACCESS_MARINE_CMO, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_ENGPREP,ACCESS_MARINE_SMARTPREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_SPECPREP, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PILOT, ACCESS_MARINE_TANK, ACCESS_CIVILIAN_ENGINEERING)
