@@ -1,0 +1,4 @@
+author: "Ghommie"
+delete-after: True
+changes: 
+  - bugfix: "melee weapons' rng k.o. shouldn't apply on already downed targets anymore."
