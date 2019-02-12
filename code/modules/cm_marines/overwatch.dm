@@ -1034,6 +1034,10 @@
 		H.visible_message("[H] deactivates [src]",
 		"You deactivate [src]")
 		H.put_in_active_hand(src)
+<<<<<<< HEAD
+=======
+
+>>>>>>> Marine cameras are now integrated with headsets instead of helmets
 
 
 //This is perhaps one of the weirdest places imaginable to put it, but it's a leadership skill, so
