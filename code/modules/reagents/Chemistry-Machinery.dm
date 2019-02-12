@@ -252,7 +252,7 @@
 	var/pillbottlesprite = "1"
 	var/bottlesprite = "1" //yes, strings
 	var/pillsprite = "1"
-	var/autoinjectorsprite = "1"
+	var/autoinjectorsprite = "11"
 	var/client/has_sprites = list()
 	var/max_pill_count = 20
 
@@ -415,7 +415,7 @@
 				return
 
 			if (href_list["createpill_multiple"])
-				count = CLAMP(input("Select the number of pills to make. (max: [max_pill_count])", 10, pillamount) as num|null,0,max_pill_count)
+				count = CLAMP(input("Select the number of pills to make. (max: [max_pill_count])", 16, pillamount) as num|null,0,max_pill_count)
 				if(!count)
 					return
 
@@ -423,7 +423,7 @@
 				return
 
 			var/amount_per_pill = reagents.total_volume/count
-			if (amount_per_pill > 60) amount_per_pill = 60
+			if (amount_per_pill > 15) amount_per_pill = 15
 
 			var/name = reject_bad_text(input(user,"Name:","Name your pill!","[reagents.get_master_reagent_name()] ([amount_per_pill] units)") as text|null)
 			if(!name)
@@ -472,11 +472,8 @@
 				P.pixel_x = rand(-7, 7) //random position
 				P.pixel_y = rand(-7, 7)
 				P.icon_state = "autoinjector-"+autoinjectorsprite
-				reagents.trans_to(P,60)
+				reagents.trans_to(P,30)
 				P.update_icon()
-			else
-				var/obj/item/reagent_container/hypospray/autoinjector/P = new/obj/item/reagent_container/hypospray/autoinjector(loc)
-				reagents.trans_to(P,50)
 
 		else if(href_list["change_pill_bottle"])
 			#define MAX_PILL_BOTTLE_SPRITE 12 //max icon state of the pill sprites
@@ -582,10 +579,10 @@
 			dat += "Empty<BR>"
 		if(!condi)
 			dat += "<HR><BR><A href='?src=\ref[src];createpillbottle=1'>Load pill bottle</A><a href=\"?src=\ref[src]&change_pill_bottle=1\"><img src=\"pill_canister[pillbottlesprite].png\" /></a><BR>"
-			dat += "<A href='?src=\ref[src];createpill=1'>Create pill (60 units max)</A><a href=\"?src=\ref[src]&change_pill=1\"><img src=\"pill[pillsprite].png\" /></a><BR>"
+			dat += "<A href='?src=\ref[src];createpill=1'>Create pill (15 units max)</A><a href=\"?src=\ref[src]&change_pill=1\"><img src=\"pill[pillsprite].png\" /></a><BR>"
 			dat += "<A href='?src=\ref[src];createpill_multiple=1'>Create multiple pills</A><BR>"
 			dat += "<A href='?src=\ref[src];createbottle=1'>Create bottle (60 units max)<a href=\"?src=\ref[src]&change_bottle=1\"><img src=\"bottle-[bottlesprite].png\" /></A><BR>"
-			dat += "<A href='?src=\ref[src];createautoinjector=1'>Create autoinjector (60 units max)<a href=\"?src=\ref[src]&change_autoinjector=1\"><img src=\"autoinjector-[autoinjectorsprite].png\" /></A>"
+			dat += "<A href='?src=\ref[src];createautoinjector=1'>Create autoinjector (30 units max)<a href=\"?src=\ref[src]&change_autoinjector=1\"><img src=\"autoinjector-[autoinjectorsprite].png\" /></A>"
 		else
 			dat += "<A href='?src=\ref[src];createbottle=1'>Create bottle (50 units max)</A>"
 	if(!condi)
