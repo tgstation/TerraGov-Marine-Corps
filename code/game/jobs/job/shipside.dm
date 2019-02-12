@@ -185,7 +185,7 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 	idtype = /obj/item/card/id/dogtag
 	equipment = TRUE
 
-/datum/job/command/tank_crew/generate_equipment(mob/living/carbon/human/H)
+/datum/job/command/tank_commander/generate_equipment(mob/living/carbon/human/H)
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/mcom(H), SLOT_EARS)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/tanker(H), SLOT_W_UNIFORM)
 	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), SLOT_GLOVES)
