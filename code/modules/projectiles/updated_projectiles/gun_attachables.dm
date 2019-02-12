@@ -371,6 +371,21 @@ Defined in conflicts.dm of the #defines folder.
 	accuracy_mod = CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
 	scatter_mod = -CONFIG_GET(number/combat_define/low_scatter_value)
 
+/obj/item/attachable/mosinbarrel
+	name = "mosin barrel"
+	icon_state = "mosinbarrel"
+	desc = "A heavy barrel. CANNOT BE REMOVED."
+	slot = "under" //only way for it to work with a bayonet is to make this take the underbarrel slot. no more bipods.
+
+	pixel_shift_x = 20
+	pixel_shift_y = 16
+	flags_attach_features = NOFLAGS
+
+/obj/item/attachable/mosinbarrel/Initialize()
+	. = ..()
+	accuracy_mod = CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
+	scatter_mod = -CONFIG_GET(number/combat_define/low_scatter_value)
+
 /obj/item/attachable/sniperbarrel
 	name = "sniper barrel"
 	icon_state = "sniperbarrel"
@@ -621,9 +636,26 @@ Defined in conflicts.dm of the #defines folder.
 	matter = null
 	flags_attach_features = NOFLAGS
 
+
 /obj/item/attachable/stock/slavic/Initialize()
 	. = ..()
 	accuracy_mod = CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
+	recoil_mod = -CONFIG_GET(number/combat_define/med_recoil_value)
+	scatter_mod = -CONFIG_GET(number/combat_define/med_scatter_value)
+	movement_acc_penalty_mod = CONFIG_GET(number/combat_define/min_movement_acc_penalty)
+
+/obj/item/attachable/stock/mosin
+	name = "wooden stock"
+	desc = "A standard heavy wooden stock for Slavic firearms."
+	icon_state = "mosinstock"
+	wield_delay_mod = WIELD_DELAY_NORMAL
+	pixel_shift_x = 32
+	pixel_shift_y = 13
+	matter = null
+	flags_attach_features = NOFLAGS
+
+/obj/item/attachable/stock/mosin/Initialize()
+	. = ..()
 	recoil_mod = -CONFIG_GET(number/combat_define/med_recoil_value)
 	scatter_mod = -CONFIG_GET(number/combat_define/med_scatter_value)
 	movement_acc_penalty_mod = CONFIG_GET(number/combat_define/min_movement_acc_penalty)
