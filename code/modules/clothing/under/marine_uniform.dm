@@ -21,8 +21,8 @@
 	..()
 
 /obj/item/clothing/under/marine/medic
-	name = "\improper TGMC medic fatigues"
-	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented combat medic fatigues. You suspect it's not as robust-proof as advertised."
+	name = "\improper TGMC corpsman fatigues"
+	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented combat corpsman fatigues. You suspect it's not as robust-proof as advertised."
 	icon_state = "marine_medic"
 
 /obj/item/clothing/under/marine/medic/New(loc,expected_type 		= type,
@@ -66,8 +66,8 @@
 */
 
 /obj/item/clothing/under/marine/mp
-	name = "military police jumpsuit"
-	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented military police uniform. You suspect it's not as robust-proof as advertised."
+	name = "master at arms jumpsuit"
+	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented master at arms uniform. You suspect it's not as robust-proof as advertised."
 	icon_state = "MP_jumpsuit"
 	rollable_sleeves = FALSE
 
@@ -79,8 +79,8 @@
 	rollable_sleeves = FALSE
 
 /obj/item/clothing/under/marine/officer/warrant
-	name = "chief MP uniform"
-	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented uniform worn by lawful-good warrant officers. You suspect it's not as robust-proof as advertised."
+	name = "command master at arms uniform"
+	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented uniform worn by lawful-good command master at arms. You suspect it's not as robust-proof as advertised."
 	icon_state = "WO_jumpsuit"
 	item_state = "WO_jumpsuit"
 
@@ -91,7 +91,7 @@
 
 /obj/item/clothing/under/marine/officer/logistics
 	name = "marine officer uniform"
-	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented uniform worn by commissioned officers of the TGMC. Do the corps proud."
+	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented uniform worn by logistics officers of the TGMC. Do the corps proud."
 	icon_state = "BO_jumpsuit"
 
 /obj/item/clothing/under/marine/officer/pilot
@@ -111,7 +111,7 @@
 
 /obj/item/clothing/under/marine/officer/bridge
 	name = "staff officer uniform"
-	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented staff officer uniform. Do the corps proud."
+	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented intelligence officer uniform. Do the navy proud."
 	icon_state = "BO_jumpsuit"
 
 /obj/item/clothing/under/marine/officer/bridge/New()
@@ -119,8 +119,8 @@
 	..()
 
 /obj/item/clothing/under/marine/officer/exec
-	name = "executive officer uniform"
-	desc = "A special-issue, kevlar-weaved, hazmat-tested, EMF-augmented worn by a first-liutenant executive-officer of the T-G-M-C. You suspect it's not as robust-proof as advertised."
+	name = "field commander uniform"
+	desc = "A special-issue, kevlar-weaved, hazmat-tested, EMF-augmented worn by a field-grade officer of the TGMC. You suspect it's not as robust-proof as advertised."
 	icon_state = "XO_jumpsuit"
 
 /obj/item/clothing/under/marine/officer/exec/New()
@@ -128,8 +128,8 @@
 	..()
 
 /obj/item/clothing/under/marine/officer/command
-	name = "commander uniform"
-	desc = "A special-issue, well-ironed, kevlar-weaved, hazmat-tested, EMF-augmented uniform worth of a TGMC commander. Even looking at it the wrong way could result in being court-martialed."
+	name = "captain's uniform"
+	desc = "A special-issue, well-ironed, kevlar-weaved, hazmat-tested, EMF-augmented uniform worth of a TerraGov Naval Captain. Even looking at it the wrong way could result in being court-martialed."
 	icon_state = "CO_jumpsuit"
 
 /obj/item/clothing/under/marine/officer/command/New()
@@ -143,13 +143,13 @@
 
 /obj/item/clothing/under/marine/officer/ce
 	name = "chief engineer uniform"
-	desc = "An engine-friendly, kevlar-weaved, hazmat-tested, EMF-augmented ship engineer uniform. You suspect it's not as robust-proof as advertised."
+	desc = "An engine-friendly, kevlar-weaved, hazmat-tested, EMF-augmented ship ship engineer uniform. You suspect it's not as robust-proof as advertised."
 	armor = list(melee = 5, bullet = 5, laser = 25, energy = 5, bomb = 5, bio = 5, rad = 25)
 	icon_state = "EC_jumpsuit"
 
 /obj/item/clothing/under/marine/officer/engi
 	name = "engineer uniform"
-	desc = "An engine-friendly, kevlar-weaved, hazmat-tested, EMF-augmented chief engineer uniform. You suspect it's not as robust-proof as advertised."
+	desc = "An engine-friendly, kevlar-weaved, hazmat-tested, EMF-augmented chief ship engineer uniform. You suspect it's not as robust-proof as advertised."
 	armor = list(melee = 5, bullet = 5, laser = 15, energy = 5, bomb = 5, bio = 5, rad = 10)
 	icon_state = "E_jumpsuit"
 
