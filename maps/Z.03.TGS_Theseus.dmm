@@ -5704,7 +5704,7 @@
 "cfJ" = (/obj/structure/bed/chair/office/dark{dir = 4},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/turf/open/floor/almayer{dir = 4; icon_state = "green"; tag = "icon-green"},/area/almayer/shipboard/brig_cells)
 "cfK" = (/obj/structure/table/almayer,/obj/item/paper_bin,/obj/item/tool/pen,/obj/item/tool/pen,/turf/open/floor/almayer{icon_regular_floor = "mono"; icon_state = "mono"},/area/almayer/shipboard/brig_cells)
 "cfL" = (/obj/structure/closet/secure_closet/freezer,/obj/item/reagent_container/food/snacks/sandwich,/obj/item/reagent_container/food/snacks/sandwich,/obj/item/reagent_container/food/snacks/sandwich,/obj/item/reagent_container/food/snacks/sandwich,/obj/item/reagent_container/food/snacks/sandwich,/obj/item/reagent_container/food/drinks/cans/beer,/obj/item/reagent_container/food/drinks/cans/beer,/obj/item/reagent_container/food/drinks/cans/beer,/obj/item/reagent_container/food/drinks/cans/beer,/obj/item/reagent_container/food/drinks/cans/beer,/obj/item/reagent_container/food/drinks/cans/beer,/turf/open/floor/almayer{icon_regular_floor = "mono"; icon_state = "mono"},/area/almayer/shipboard/brig_cells)
-"cfM" = (/obj/effect/landmark/start/marine/tankcrewman,/obj/structure/mirror{pixel_y = 30},/turf/open/floor/wood,/area/almayer/living/tankerbunks)
+"cfM" = (/obj/effect/landmark/start/marine/tankcommander,/turf/open/floor/wood,/area/almayer/living/tankerbunks)
 "cfN" = (/obj/structure/mirror{pixel_y = 30},/turf/open/floor/wood,/area/almayer/living/tankerbunks)
 "cfO" = (/obj/structure/mirror{pixel_y = 30},/turf/open/floor/wood,/area/almayer/living/pilotbunks)
 "cfP" = (/obj/machinery/vending/tool,/turf/open/floor/almayer{tag = "icon-test_floor4"; icon_state = "test_floor4"},/area/almayer/hallways/exoarmor)
