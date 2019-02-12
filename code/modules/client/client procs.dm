@@ -117,7 +117,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 ///////////////
 //  CONNECT  //
 ///////////////
-GLOBAL_VAR_INIT(external_rsc_url)
+GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 
 
 /client/New(TopicData)
