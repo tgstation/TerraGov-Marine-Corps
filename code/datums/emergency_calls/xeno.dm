@@ -25,8 +25,7 @@
 
 	var/mob/living/carbon/Xenomorph/new_xeno
 
-	if(original.client)
-		(original.client.change_view(world.view))
+	original.client?.change_view(world.view))
 
 	if(original)
 		qdel(original)
