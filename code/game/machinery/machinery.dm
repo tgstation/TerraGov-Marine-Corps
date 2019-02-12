@@ -322,7 +322,7 @@ Class Procs:
 
 /obj/machinery/proc/state(var/msg)
   for(var/mob/O in hearers(src, null))
-    O.show_message("[bicon(src)] <span class = 'notice'>[msg]</span>", 2)
+    O.show_message("[icon2html(src, O)] <span class = 'notice'>[msg]</span>", 2)
 
 /obj/machinery/proc/ping(text=null)
   if (!text)

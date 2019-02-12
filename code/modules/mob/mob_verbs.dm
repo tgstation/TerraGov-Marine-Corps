@@ -80,7 +80,7 @@
 	set name = "Respawn"
 	set category = "OOC"
 
-	if(!GLOB.respawn_allowed || !check_rights(R_ADMIN, FALSE))
+	if(!GLOB.respawn_allowed && !check_rights(R_ADMIN, FALSE))
 		to_chat(usr, "<span class='notice'>Respawn is disabled.</span>")
 		return
 	if(stat != DEAD)

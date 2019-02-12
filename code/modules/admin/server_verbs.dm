@@ -9,7 +9,7 @@
 	if(alert("Restart the game world?", "Restart", "Yes", "No") != "Yes")
 		return
 
-	to_chat(world, "<span class='danger'>Restarting world!</span><span class='notice'>Initiated by: [usr.key]</span>")
+	to_chat(world, "<span class='danger'>Restarting world!</span> <span class='notice'>Initiated by: [usr.key]</span>")
 
 	log_admin("[key_name(usr)] initiated a restart.")
 	message_admins("[ADMIN_TPMONTY(usr)] initiated a restart.")
@@ -35,6 +35,29 @@
 
 	log_admin("[key_name(usr)] [GLOB.ooc_allowed ? "enabled" : "disabled"] OOC.")
 	message_admins("[ADMIN_TPMONTY(usr)] [GLOB.ooc_allowed ? "enabled" : "disabled"] OOC.")
+
+
+/datum/admins/proc/toggle_looc()
+	set category = "Server"
+	set name = "Toggle LOOC"
+	set desc = "Toggles LOOC for non-admins."
+
+	if(!check_rights(R_SERVER))
+		return
+
+	if(!config)
+		return
+
+	if(CONFIG_GET(flag/looc_enabled))
+		CONFIG_SET(flag/looc_enabled, FALSE)
+		to_chat(world, "<span class='boldnotice'>LOOC channel has been enabled!</span>")
+	else
+		CONFIG_SET(flag/looc_enabled, TRUE)
+		to_chat(world, "<span class='boldnotice'>LOOC channel has been disabled!</span>")
+
+
+	log_admin("[key_name(usr)] has [CONFIG_GET(flag/looc_enabled) ? "enabled" : "disabled"] LOOC.")
+	message_admins("[ADMIN_TPMONTY(usr)] has [CONFIG_GET(flag/looc_enabled) ? "enabled" : "disabled"] LOOC.")
 
 
 /datum/admins/proc/toggle_deadchat()
@@ -184,7 +207,7 @@
 	if(ticker.current_state != GAME_STATE_PREGAME)
 		ticker.delay_end = !ticker.delay_end
 	else
-		to_chat(world, "<hr><span class='centerbold'>The game [!going ? "game will start soon" : "start has been delayed"].</span><hr>")
+		to_chat(world, "<hr><span class='centerbold'>The game [!going ? "will start soon" : "start has been delayed"].</span><hr>")
 
 	going = !going
 
