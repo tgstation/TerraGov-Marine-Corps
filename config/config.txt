@@ -23,13 +23,14 @@ BAN_LEGACY_SYSTEM
 
 LOCALHOST_RANK
 
-FORUMURL https://tgstation13.org/phpBB/viewforum.php?f=64
-WIKIURL https://tgstation13.org/wiki/TGMC
-RULESURL https://tgstation13.org/wiki/TGMC:Rules
-DISCORDURL https://discord.gg/2dFpfNE
-DONATIONURL https://www.patreon.com/tgstation
-GITHUBURL https://github.com/tgstation/TerraGov-Marine-Corps/
-BANAPPEALS https://tgstation13.org/phpBB/viewforum.php?f=70
+## Uncomment these and add your own URLs
+#FORUMURL https://tgstation13.org/phpBB/viewforum.php?f=64
+#WIKIURL https://tgstation13.org/wiki/TGMC
+#RULESURL https://tgstation13.org/wiki/TGMC:Rules
+#DISCORDURL https://discord.gg/2dFpfNE
+#DONATIONURL https://www.patreon.com/tgstation
+#GITHUBURL https://github.com/tgstation/TerraGov-Marine-Corps/
+#BANAPPEALS https://tgstation13.org/phpBB/viewforum.php?f=70
 
 SHIPURL https://goo.gl/utUdpq
 LV624URL https://goo.gl/6tuwfg
@@ -80,9 +81,9 @@ LOOC_ENABLED
 ## Game Options ##
 ##################
 
-XENO_COEFFICIENT 5
+XENO_COEFFICIENT 4.5
 SURVIVOR_COEFFICIENT 15
-LATEJOIN_LARVA_REQUIRED_NUM 6
+LATEJOIN_LARVA_REQUIRED_NUM 5
 
 ALLOW_AI
 
