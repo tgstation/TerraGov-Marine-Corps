@@ -73,6 +73,8 @@ USEALIENWHITELIST
 
 INVOKE_YOUTUBEDL youtube-dl
 
+LOOC_ENABLED
+
 
 ##################
 ## Game Options ##
