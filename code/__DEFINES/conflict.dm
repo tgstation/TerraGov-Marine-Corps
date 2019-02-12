@@ -20,20 +20,20 @@
 #define INTENT_NUMBER_HARM		3
 
 //Ammo defines for gun/projectile related things.
-#define AMMO_EXPLOSIVE 			1
-#define AMMO_XENO_ACID 			2
-#define AMMO_XENO_TOX			4
-#define AMMO_ENERGY 			8
-#define AMMO_ROCKET				16
-#define AMMO_SNIPER				32
-#define AMMO_INCENDIARY			64
-#define AMMO_SKIPS_HUMANS		128
-#define AMMO_SKIPS_ALIENS 		256
-#define AMMO_IS_SILENCED 		512 //Unused right now.
-#define AMMO_IGNORE_ARMOR		1024
-#define AMMO_IGNORE_RESIST		2048
-#define AMMO_BALLISTIC			4096
-#define AMMO_SHRAPNEL			8192
+#define AMMO_EXPLOSIVE 			(1 << 0)
+#define AMMO_XENO_ACID 			(1 << 1)
+#define AMMO_XENO_TOX			(1 << 2)
+#define AMMO_ENERGY 			(1 << 3)
+#define AMMO_ROCKET				(1 << 4)
+#define AMMO_SNIPER				(1 << 5)
+#define AMMO_INCENDIARY			(1 << 6)
+#define AMMO_SKIPS_HUMANS		(1 << 7)
+#define AMMO_SKIPS_ALIENS 		(1 << 8)
+#define AMMO_IS_SILENCED 		(1 << 9) //Unused right now.
+#define AMMO_IGNORE_ARMOR		(1 << 10)
+#define AMMO_IGNORE_RESIST		(1 << 11)
+#define AMMO_BALLISTIC			(1 << 12)
+#define AMMO_SHRAPNEL			(1 << 13)
 
 //Gun defines for gun related thing. More in the projectile folder.
 #define GUN_CAN_POINTBLANK		1
