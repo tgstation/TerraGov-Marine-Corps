@@ -224,7 +224,6 @@
 	var/mob/living/carbon/human/wearer = null
 	var/headset_hud_on = FALSE
 	var/sl_direction = FALSE
-	var/sl_indicator = FALSE
 	var/obj/machinery/camera/camera
 
 /obj/item/device/radio/headset/almayer/New()
@@ -243,7 +242,6 @@
 		squadhud = huds[MOB_HUD_SQUAD]
 		headset_hud_on = FALSE //So we always activate on equip.
 		sl_direction = FALSE
-		sl_indicator = FALSE
 		toggle_squadhud(wearer)
 	if(camera)
 		camera.c_tag = user.name
@@ -253,8 +251,6 @@
 	if(istype(user) && headset_hud_on)
 		if(user.wear_ear == src) //dropped() is called before the inventory reference is update.
 			squadhud.remove_hud_from(user)
-			user.hud_used.locate_leader.alpha = 0
-			user.hud_used.locate_leader.mouse_opacity = 0
 			user.hud_used.SL_locator.alpha = 0
 			wearer = null
 			squadhud = null
@@ -269,61 +265,32 @@
 			squadhud.remove_hud_from(wearer)
 			wearer.SL_directional = null
 			wearer.sl_headset_active = null
-			wearer.sl_indicator_active = null
 			wearer.sl_direction_active = null
 			wearer = null
 	squadhud = null
 	headset_hud_on = FALSE
 	sl_direction = null
-	sl_indicator = null
 	return ..()
 
 
 /obj/item/device/radio/headset/almayer/proc/toggle_squadhud(mob/living/carbon/human/user)
 	if(headset_hud_on)
 		squadhud.remove_hud_from(user)
-		if(user.hud_used?.locate_leader)
-			user.sl_headset_active = FALSE
-			if(sl_direction)
-				toggle_sl_direction(user)
-			if(sl_indicator)
-				toggle_sl_indicator(user)
-			to_chat(user, "<span class='notice'>You toggle the Squad HUD off.</span>")
-			playsound(src.loc, 'sound/machines/click.ogg', 15, 0, 1)
+		if(sl_direction)
+			toggle_sl_direction(user)
+		user.sl_headset_active = FALSE
+		to_chat(user, "<span class='notice'>You toggle the Squad HUD off.</span>")
+		playsound(src.loc, 'sound/machines/click.ogg', 15, 0, 1)
 		headset_hud_on = FALSE
 	else
 		squadhud.add_hud_to(user)
 		headset_hud_on = TRUE
-		if(user.mind && user.assigned_squad && user.hud_used?.locate_leader)
-			user.sl_headset_active = TRUE
+		if(user.mind && user.assigned_squad)
 			if(!sl_direction)
 				toggle_sl_direction(user)
-			if(!sl_indicator)
-				toggle_sl_indicator(user)
-			to_chat(user, "<span class='notice'>You toggle the Squad HUD on.</span>")
-			playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
-
-/obj/item/device/radio/headset/almayer/proc/toggle_sl_indicator(mob/living/carbon/human/user)
-	if(!headset_hud_on)
-		to_chat(user, "<span class='warning'>You need to turn the HUD on first!</span>")
-		return
-
-	if(sl_indicator)
-		if(user.mind && user.assigned_squad && user.hud_used?.locate_leader)
-			user.hud_used.locate_leader.alpha = 0
-			user.hud_used.locate_leader.mouse_opacity = 0
-			user.sl_indicator_active = FALSE
-			sl_indicator = FALSE
-			to_chat(user, "<span class='notice'>You toggle the SL indicator display off.</span>")
-			playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
-	else
-		if(user.mind && user.assigned_squad && user.hud_used?.locate_leader)
-			user.hud_used.locate_leader.alpha = 255
-			user.hud_used.locate_leader.mouse_opacity = 0
-			user.sl_indicator_active = TRUE
-			sl_indicator = TRUE
-			to_chat(user, "<span class='notice'>You toggle the SL indicator display on.</span>")
-			playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
+		user.sl_headset_active = TRUE
+		to_chat(user, "<span class='notice'>You toggle the Squad HUD on.</span>")
+		playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
 
 /obj/item/device/radio/headset/almayer/proc/toggle_sl_direction(mob/living/carbon/human/user)
 	if(!headset_hud_on)
@@ -331,20 +298,20 @@
 		return
 
 	if(sl_direction)
-		if(user.mind && user.assigned_squad && user.hud_used?.locate_leader)
+		if(user.mind && user.assigned_squad && user.hud_used?.SL_locator)
 			user.hud_used.SL_locator.alpha = 0
 			user.sl_direction_active = FALSE
-			sl_direction = FALSE
-			to_chat(user, "<span class='notice'>You toggle the SL directional display off.</span>")
-			playsound(src.loc, 'sound/machines/click.ogg', 15, 0, 1)
+		sl_direction = FALSE
+		to_chat(user, "<span class='notice'>You toggle the SL directional display off.</span>")
+		playsound(src.loc, 'sound/machines/click.ogg', 15, 0, 1)
 	else
-		if(user.mind && user.assigned_squad && user.hud_used?.locate_leader)
+		if(user.mind && user.assigned_squad && user.hud_used?.SL_locator)
 			user.hud_used.SL_locator.alpha = 128
 			user.sl_direction_active = TRUE
 			user.Process_SL_Locator()
-			sl_direction = TRUE
-			to_chat(user, "<span class='notice'>You toggle the SL directional display on.</span>")
-			playsound(src.loc, 'sound/machines/click.ogg', 15, 0, 1)
+		sl_direction = TRUE
+		to_chat(user, "<span class='notice'>You toggle the SL directional display on.</span>")
+		playsound(src.loc, 'sound/machines/click.ogg', 15, 0, 1)
 
 
 /obj/item/device/radio/headset/almayer/verb/configure_squadhud()
@@ -363,8 +330,6 @@
 	<b><A href='?src=\ref[src];headset_hud_on=1'>Turn Squad HUD: [headset_hud_on ? "Off" : "On"]</A></b><BR>
 	<BR>
 	<b><A href='?src=\ref[src];sl_direction=1'>Turn Squad Leader Directional Indicator: [sl_direction ? "Off" : "On"]</A></b><BR>
-	<BR>
-	<b><A href='?src=\ref[src];sl_indicator=1'>Turn Squad Leader HUD Indicator: [sl_indicator ? "Off" : "On"]</A></b><BR>
 	</TT>"}
 	user << browse(dat, "window=radio")
 	onclose(user, "radio")
@@ -381,9 +346,6 @@
 
 		else if(href_list["sl_direction"])
 			toggle_sl_direction(user)
-
-		else if(href_list["sl_indicator"])
-			toggle_sl_indicator(user)
 
 		if(!master)
 			if(ishuman(loc))
