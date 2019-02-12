@@ -39,19 +39,21 @@
 	set category = "Object"
 	set src in view(0)
 
-	if(CONFIG_GET(flag/ghost_interaction))
+	if(isobserver(usr) && CONFIG_GET(flag/ghost_interaction))
 		setDir(turn(dir, 90))
-		return FALSE
+		return TRUE
 	
 	var/mob/living/carbon/user = usr
 
-	if(!istype(user) || !isturf(user.loc) || user.stat || user.is_mob_restrained())
+	if(!istype(user) || !isturf(user.loc) || user.is_mob_incapacitated())
 		return FALSE
 
-	if (world.time <= user.next_move)
+	if(!CONFIG_GET(flag/unlimited_rotate_speed) && world.time <= user.next_move)
 		return FALSE
 
-	user.next_move = world.time + 3
+	if(!CONFIG_GET(flag/unlimited_rotate_speed))
+		user.next_move = world.time + 3
+
 	setDir(turn(dir, 90))
 
 //Chair types

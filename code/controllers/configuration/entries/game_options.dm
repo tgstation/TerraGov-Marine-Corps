@@ -143,6 +143,10 @@
 
 /datum/config_entry/flag/bones_can_break
 
+/datum/config_entry/flag/ghost_interaction
+
+/datum/config_entry/flag/unlimited_rotate_speed
+
 /datum/config_entry/flag/allow_random_events
 
 /datum/config_entry/flag/allow_synthetic_gun_use
