@@ -296,9 +296,10 @@
 	icon_state = "liaison_suspenders"
 
 /obj/item/clothing/under/liaison_suit/galaxy
-	name = "liaison's galaxy suit"
+	name = "\improper De Void of Soul"
 	desc = "A suit of stars and high-V gas. One that screams the cosmos and unfathomnable vastness. Earned by only the best of the best."
-	icon_state = "liaison_galaxy"
+	icon_state = "liaison_galaxy" // Thanks to Manezinho
+
 
 /obj/item/clothing/under/rank/chef/exec
 	name = "\improper Nanotrasen suit"
