@@ -12,9 +12,9 @@
 	walltype = "testwall"
 
 	damage = 0
-	damage_cap = 10000 //Wall will break down to girders if damage reaches this point
+	damage_cap = 3000 //Wall will break down to girders if damage reaches this point
 
-	max_temperature = 18000 //K, walls will take damage if they're next to a fire hotter than this
+	max_temperature = 28000 //K, walls will take damage if they're next to a fire hotter than this
 
 	opacity = 1
 	density = 1
@@ -115,7 +115,7 @@
 	icon_state = "sulaco0"
 	hull = 0 //Can't be deconstructed
 
-	damage_cap = 8000 //As tough as R_walls.
+	damage_cap = 3000
 	max_temperature = 28000 //K, walls will take damage if they're next to a fire hotter than this
 	walltype = "sulaco" //Changes all the sprites and icons.
 

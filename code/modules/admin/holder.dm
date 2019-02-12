@@ -409,7 +409,6 @@ GLOBAL_LIST_INIT(admin_verbs_sound, world.AVsound())
 /world/proc/AVsound()
 	return list(
 	/datum/admins/proc/sound_file,
-	/datum/admins/proc/sound_list,
 	/datum/admins/proc/sound_web,
 	/datum/admins/proc/sound_stop
 	)
