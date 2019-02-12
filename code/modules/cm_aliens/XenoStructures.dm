@@ -576,7 +576,7 @@
 	if(istype(W,/obj/item/clothing/mask/facehugger))
 		var/obj/item/clothing/mask/facehugger/F = W
 		if(F.stat != DEAD)
-			if(EGG_DESTROYED)
+			if(status == EGG_DESTROYED)
 				to_chat(user, "<span class='xenowarning'>This egg is no longer usable.</span>")
 			else if(!hugger)
 				visible_message("<span class='xenowarning'>[user] slides [F] back into [src].</span>","<span class='xenonotice'>You place the child back in to [src].</span>")

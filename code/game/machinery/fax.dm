@@ -83,7 +83,7 @@
 /obj/machinery/faxmachine/Topic(href, href_list)
 	if(href_list["send"])
 		if(message)
-			send_fax(usr, src, department, message.name, message, FALSE)
+			send_fax(usr, src, department, message.name, message.info, FALSE)
 			to_chat(usr, "Message transmitted successfully.")
 			spawn(sendcooldown)
 				sendcooldown = 0

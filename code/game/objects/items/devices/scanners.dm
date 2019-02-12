@@ -46,18 +46,18 @@ REAGENT SCANNER
 			if(O.level != 1)
 				continue
 
-			if(O.invisibility == 101)
+			if(O.invisibility == INVISIBILITY_MAXIMUM)
 				O.invisibility = 0
 				O.alpha = 128
 				spawn(10)
 					if(O && !O.gc_destroyed)
 						var/turf/U = O.loc
 						if(U.intact_tile)
-							O.invisibility = 101
+							O.invisibility = INVISIBILITY_MAXIMUM
 							O.alpha = 255
 
 		var/mob/living/M = locate() in T
-		if(M && M.invisibility == 2)
+		if(M && M.invisibility == INVISIBILITY_LEVEL_TWO)
 			M.invisibility = 0
 			spawn(2)
 				if(M)

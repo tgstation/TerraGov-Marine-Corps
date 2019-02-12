@@ -21,7 +21,7 @@
 
 /obj/item/reagent_container/spray/New()
 	..()
-	src.verbs -= /obj/item/reagent_container/verb/set_APTFT
+	src.verbs -= /obj/item/reagent_container/proc/set_APTFT
 
 /obj/item/reagent_container/spray/afterattack(atom/A as mob|obj, mob/user)
 	//this is what you get for using afterattack() TODO: make is so this is only called if attackby() returns 0 or something

@@ -287,14 +287,14 @@
 					to_chat(usr, "<span class='warning'>Arrays recycling.  Please stand by.</span>")
 					return FALSE
 
-				var/input = stripped_input(usr, "Please choose a message to transmit to the TGMC High Command.  Please be aware that this process is very expensive, and abuse will lead to termination.  Transmission does not guarantee a response. There is a small delay before you may send another message. Be clear and concise.", "To abort, send an empty message.", "")
-				if(!input || !(usr in view(1,src)) || authenticated != 2 || world.time < cooldown_central + COOLDOWN_COMM_CENTRAL)
+				var/msg = input(usr, "Please choose a message to transmit to the TGMC High Command.  Please be aware that this process is very expensive, and abuse will lead to termination.  Transmission does not guarantee a response. There is a small delay before you may send another message. Be clear and concise.", "To abort, send an empty message.", "")
+				if(!msg || !usr.Adjacent(src) || authenticated != 2 || world.time < cooldown_central + COOLDOWN_COMM_CENTRAL)
 					return FALSE
 
 
-				Centcomm_announce(input, usr)
+				tgmc_message(msg, usr)
 				to_chat(usr, "<span class='notice'>Message transmitted.</span>")
-				usr.log_talk(input, LOG_SAY, tag="TGMC announcement")
+				usr.log_talk(msg, LOG_SAY, tag = "TGMC announcement")
 				cooldown_central = world.time
 
 		if("securitylevel")

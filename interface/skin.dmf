@@ -233,6 +233,9 @@ macro "hotkeymode"
 		name = "O"
 		command = "ooc"
 	elem 
+		name = "L"
+		command = "looc"
+	elem 
 		name = "Q"
 		command = ".northwest"
 	elem 
@@ -767,39 +770,49 @@ window "rpane"
 		is-vert = false
 	elem "webmap"
 		type = BUTTON
-		pos = 720,0
-		size = 90x20
-		anchor1 = 92,0
-		anchor2 = 104,0
+		pos = 740,0
+		size = 80x20
+		anchor1 = 105,0
+		anchor2 = 117,0
 		saved-params = "is-checked"
 		text = "Webmap"
 		command = "webmap"
 		group = "rpanemode"
 	elem "submitbug"
 		type = BUTTON
-		pos = 540,0
-		size = 90x20
-		anchor1 = 67,0
-		anchor2 = 79,0
+		pos = 580,0
+		size = 80x20
+		anchor1 = 79,0
+		anchor2 = 92,0
 		saved-params = "is-checked"
 		text = "Submit Bug"
 		command = "submit-bug"
 		group = "rpanemode"
 	elem "patreon"
 		type = BUTTON
-		pos = 630,0
-		size = 90x20
-		anchor1 = 79,0
-		anchor2 = 92,0
+		pos = 660,0
+		size = 80x20
+		anchor1 = 92,0
+		anchor2 = 105,0
 		background-color = #ff8040
 		saved-params = "is-checked"
 		text = "Patreon"
 		command = "patreon"
 		group = "rpanemode"
+	elem "discord"
+		type = BUTTON
+		pos = 340,0
+		size = 80x20
+		anchor1 = 42,0
+		anchor2 = 55,0
+		saved-params = "is-checked"
+		text = "Discord"
+		command = "discord"
+		group = "rpanemode"
 	elem "rulesb"
 		type = BUTTON
-		pos = 270,0
-		size = 90x20
+		pos = 260,0
+		size = 80x20
 		anchor1 = 30,0
 		anchor2 = 42,0
 		saved-params = "is-checked"
@@ -809,7 +822,7 @@ window "rpane"
 	elem "changelog"
 		type = BUTTON
 		pos = 180,0
-		size = 90x20
+		size = 80x20
 		anchor1 = 18,0
 		anchor2 = 31,0
 		saved-params = "is-checked"
@@ -818,20 +831,20 @@ window "rpane"
 		group = "rpanemode"
 	elem "forumb"
 		type = BUTTON
-		pos = 450,0
-		size = 90x20
-		anchor1 = 55,0
-		anchor2 = 67,0
+		pos = 500,0
+		size = 80x20
+		anchor1 = 67,0
+		anchor2 = 80,0
 		saved-params = "is-checked"
 		text = "Forum"
 		command = "forum"
 		group = "rpanemode"
 	elem "wikib"
 		type = BUTTON
-		pos = 360,0
-		size = 90x20
-		anchor1 = 42,0
-		anchor2 = 55,0
+		pos = 420,0
+		size = 80x20
+		anchor1 = 55,0
+		anchor2 = 68,0
 		saved-params = "is-checked"
 		text = "Wiki"
 		command = "wiki"

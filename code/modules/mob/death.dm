@@ -35,7 +35,8 @@
 
 
 
-/mob/proc/death(gibbed, deathmessage="seizes up and falls limp...")
+/mob/proc/death(gibbed, deathmessage = "seizes up and falls limp...")
+	log_combat(src, src, "[deathmessage]")
 	if(stat == DEAD)
 		return FALSE
 

@@ -35,12 +35,12 @@ GLOBAL_LIST_EMPTY(faxes)
 				C << 'sound/effects/sos-morse-code.ogg'
 
 	for(var/obj/machinery/faxmachine/FM in GLOB.faxmachines)
-		if(FM == src)
-			return
-		if(!FM.department == department)
-			return
+		if(FM == sendmachine)
+			continue
+		if(FM.department != department)
+			continue
 		if(FM.stat & (BROKEN|NOPOWER))
-			return
+			continue
 
 		flick("faxreceive", F)
 

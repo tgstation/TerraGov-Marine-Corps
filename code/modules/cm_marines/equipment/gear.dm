@@ -19,12 +19,6 @@
 	w_class = 3.0
 	unfolded_path = /obj/structure/closet/bodybag/tarp
 
-/obj/item/bodybag/tarp/deploy_bodybag(mob/user, atom/location)
-	if(locate(/obj/structure/closet) in location)
-		to_chat(user, "<span class='warning'>\the [src] can't be deployed here.</span>")
-		return
-	return ..()
-
 /obj/item/bodybag/tarp/snow
 	icon = 'icons/obj/bodybag.dmi'
 	icon_state = "snowtarp_folded"
@@ -194,8 +188,8 @@
 	w_class = 2
 
 /obj/item/reagent_container/food/snacks/mre_pack/meal1
-	name = "\improper TGMC Prepared Meal (bread)"
-	desc = "A staple of the Clown Planet, every clown baby's first solid food is a slice of banana bread with cream pie spread."
+	name = "\improper TGMC Prepared Meal (banana bread)"
+	desc = "A slice of banana bread with cream pie spread. A slippery combination."
 	icon_state = "MREa"
 	filling_color = "#ED1169"
 	list_reagents = list("nutriment" = 9)
