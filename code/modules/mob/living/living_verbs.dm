@@ -1,5 +1,3 @@
-
-
 /mob/living/verb/resist()
 	set name = "Resist"
 	set category = "IC"
@@ -316,3 +314,22 @@
 		update_canmove()
 	else
 		to_chat(src, "<span class='notice'>You fail to get up.</span>")
+
+
+/mob/living/verb/ghost()
+	set category = "OOC"
+	set name = "Ghost"
+
+	if(stat == DEAD)
+		ghostize(TRUE)
+		return
+
+	if(alert(src, "Are you -sure- you want to ghost?\n(You are alive. If you ghost, you won't be able to return to your body. You can't change your mind so choose wisely!)", "Are you sure you want to ghost?", "Ghost", "Stay in body") != "Ghost")
+		return
+
+	resting = TRUE
+	log_game("[key_name(usr)] has ghosted.")
+	message_admins("[ADMIN_TPMONTY(usr)] has ghosted.")
+	var/mob/dead/observer/ghost = ghostize(FALSE)
+	if(ghost)
+		ghost.timeofdeath = world.time
