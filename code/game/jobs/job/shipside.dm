@@ -134,9 +134,9 @@ You are in charge of logistics and the overwatch system, and are next in line to
 
 //Pilot Officer
 /datum/job/command/pilot
-	title = "Pilot Officer"
-	comm_title = "PO"
-	paygrade = "WO" //Technically Second Lieutenant equivalent, but 2ndLT doesn't exist in Marine pay grade, so Ensign
+	title = "Pilot"
+	comm_title = "PIL"
+	paygrade = "WO"
 	flag = ROLE_PILOT_OFFICER
 	total_positions = 4
 	spawn_positions = 4
