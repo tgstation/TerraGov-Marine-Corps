@@ -22,9 +22,9 @@
 	target = A
 	if(!istype(target))
 		return FALSE
-	if(target.z != z || !target.z || !z || isnull(operator.loc) || isnull(loc))
+	if(isnull(operator.loc) || isnull(loc) || !z || !target?.z == z)
 		return FALSE
-	if(get_dist(target,src.loc) > 15)
+	if(get_dist(target, loc) > 15)
 		return TRUE
 
 	if(mods["ctrl"])
@@ -33,7 +33,7 @@
 
 	var/angle = get_dir(src,target)
 	//we can only fire in a 90 degree cone
-	if((dir & angle) && target.loc != src.loc && target.loc != operator.loc)
+	if((dir & angle) && target.loc != loc && target.loc != operator.loc)
 
 		if(!rounds)
 			to_chat(user, "<span class='warning'><b>*click*</b></span>")
@@ -98,7 +98,8 @@
 //And other checks to make sure you aren't breaking the law
 /obj/vehicle/multitile/root/cm_armored/tank/handle_click(mob/living/user, atom/A, list/mods)
 
-	if(!can_use_hp(user)) return
+	if(!can_use_hp(user))
+		return
 
 	if(!hardpoints.Find(active_hp))
 		to_chat(user, "<span class='warning'>Please select an active hardpoint first.</span>")
@@ -106,10 +107,7 @@
 
 	var/obj/item/hardpoint/HP = hardpoints[active_hp]
 
-	if(!HP)
-		return
-
-	if(!HP.is_ready())
+	if(!HP?.is_ready())
 		return
 
 	if(!HP.firing_arc(A))
