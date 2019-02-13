@@ -301,7 +301,7 @@
 	icon_state = "liaison_galaxy_blue" // Thanks to Manezinho
 
 /obj/item/clothing/under/liaison_suit/galaxy_red
-	name = "\improper De Pulsar gonne"
+	name = "\improper Pulsar gonne"
 	desc = "A suit of stars and high-V gas. One that screams stellar fusion and re-entry burn. Earned by only the best of the best."
 	icon_state = "liaison_galaxy_red" // Thanks to Manezinho
 
