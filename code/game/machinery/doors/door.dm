@@ -29,7 +29,7 @@
 	dir = EAST
 	var/width = 1
 
-	New()
+	Initialize()
 		. = ..()
 		if(density)
 			layer = closed_layer
