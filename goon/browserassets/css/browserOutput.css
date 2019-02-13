@@ -11,14 +11,19 @@ html, body {
 }
 body {
 	background: #fff;
-    font-family: Verdana, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: Verdana, sans-serif;
     font-size: 9pt;
     line-height: 1.2;
 	overflow-x: hidden;
 	overflow-y: scroll;
 	word-wrap: break-word;
 }
-h1, h2, h3, h4, h5, h6 {color: #00f; font-family: Georgia, Verdana, sans-serif;}
+
+em {
+	font-style: normal;
+	font-weight: bold;
+}
+
 img {
 	margin: 0;
 	padding: 0;
@@ -27,36 +32,34 @@ img {
 	image-rendering: pixelated;
 }
 img.icon {
-	width: 16px;
-	height: 16px;
 	height: 1em;
 	min-height: 16px;
 	width: auto;
 	vertical-align: bottom;
 }
 
-.repeat:before { /* "repeated" badge class for combined messages */
+
+.r:before { /* "repeated" badge class for combined messages */
 	content: 'x';
 }
-
-.repeat {
+.r {
 	display: inline-block;
-	min-width: 1em;
+	min-width: 0.5em;
 	font-size: 0.7em;
-	padding: 0.3em;
+	padding: 0.2em 0.3em;
 	line-height: 1;
 	color: white;
 	text-align: center;
 	white-space: nowrap;
 	vertical-align: middle;
 	background-color: crimson;
-	border-radius: 12px;
+	border-radius: 10px;
 }
 
 a {color: #0000ff;}
+a.visited {color: #ff00ff;}
 a:visited {color: #ff00ff;}
 a.popt {text-decoration: none;}
-
 
 /*****************************************
 *
@@ -98,7 +101,7 @@ a.popt {text-decoration: none;}
 #ping {
 	position: fixed;
 	top: 0;
-	right: 40px;
+	right: 80px;
 	width: 45px;
 	background: #ddd;
 	height: 30px;
@@ -111,12 +114,12 @@ a.popt {text-decoration: none;}
 	font-size: 8pt;
 	padding-top: 2px;
 }
-#options {
+#userBar {
 	position: fixed;
 	top: 0;
 	right: 0;
 }
-#options a {
+#userBar .subCell {
 	background: #ddd;
     height: 30px;
 	padding: 5px 0;
@@ -126,47 +129,23 @@ a.popt {text-decoration: none;}
     line-height: 28px;
     border-top: 1px solid #b4b4b4;
 }
-#musicVolumeText {
-	background: #ddd;
-    height: 30px;
-	padding: 5px 4px 5px 10px;
-	display: block;
-	color: #333;
-	text-decoration: none;
-    line-height: 28px;
-    font-size: 0.9em;
-    border-top: 1px solid #b4b4b4;
-}
-#musicVolume {
-	position: absolute;
-	right: 20px;
-}
-.icon-music {
-	display: block;
-	padding: 0;
-	font-size: 1.1em;
-	width: 22px;
-	text-align: center;
-	line-height: 30px;
-	float: right;
-}
-#options a:hover {background: #ccc;}
-#options .toggle {
+#userBar .subCell:hover {background: #ccc;}
+#userBar .toggle {
 	width: 40px;
     background: #ccc;
     border-top: 0;
     float: right;
     text-align: center;
 }
-#options .sub {clear: both; display: none; width: 160px;}
-#options .sub.scroll {overflow-y: scroll;}
-#options .sub a {padding: 5px 0 5px 8px; line-height: 30px; font-size: 0.9em; clear: both;}
-#options .sub span {
+#userBar .sub {clear: both; display: none; width: 160px;}
+#userBar .sub.scroll {overflow-y: scroll;}
+#userBar .sub.subCell {padding: 3px 0 3px 8px; line-height: 30px; font-size: 0.9em; clear: both;}
+#userBar .sub span {
 	display: block;
 	line-height: 30px;
 	float: left;
 }
-#options .sub i {
+#userBar .sub i {
 	display: block;
 	padding: 0 5px;
 	font-size: 1.1em;
@@ -175,7 +154,14 @@ a.popt {text-decoration: none;}
 	line-height: 30px;
 	float: right;
 }
-#options .decreaseFont {border-top: 0;}
+#userBar .sub input {
+	position: absolute;
+	padding: 7px 5px;
+	width: 121px;
+	line-height: 30px;
+	float: left;
+}
+#userBar .topCell {border-top: 0;}
 
 /* POPUPS */
 .popup {
@@ -221,6 +207,30 @@ a.popt {text-decoration: none;}
 .highlightPopup input[type=text] {display: block; width: 215px; text-align: left; margin-top: 5px;}
 .highlightPopup input.highlightColor {background-color: #FFFF00;}
 .highlightPopup input.highlightTermSubmit {margin-top: 5px;}
+
+/* ADMIN CONTEXT MENU */
+.contextMenu {
+	background-color: #ddd;
+	position: fixed;
+	margin: 2px;
+	width: 150px;
+}
+.contextMenu a {
+	display: block;
+	padding: 2px 5px;
+	text-decoration: none;
+	color: #333;
+}
+
+.contextMenu a:hover {
+	background-color: #ccc;
+}
+
+/* ADMIN FILTER MESSAGES MENU */
+.filterMessages {padding: 5px;}
+.filterMessages div {padding: 2px 0;}
+.filterMessages input {}
+.filterMessages label {}
 
 .icon-stack {height: 1em; line-height: 1em; width: 1em; vertical-align: middle; margin-top: -2px;}
 
@@ -365,4 +375,3 @@ h1.alert, h2.alert		{color: #000000;}
 /* HELPER CLASSES */
 .text-normal {font-weight: normal; font-style: normal;}
 .hidden {display: none; visibility: hidden;}
-
