@@ -79,7 +79,51 @@
 
 	return L.apply_effects(stun, knockdown, unconscious, irradiate, slur, stutter, eyeblur, drowsy, blocked, stamina, jitter, paralyze, immobilize)
 
+around 2 mins of the pewpew
+
+                                               Profile results (total time)
+Proc Name                                                                  Self CPU    Total CPU    Real Time        Calls
+----------------------------------------------------------------------    ---------    ---------    ---------    ---------
+/obj/item/projectile/process                                                  1.102        2.351        2.385       496150
+/obj/item/projectile/proc/pixel_move                                          0.327        1.259        1.261        29080
+/obj/item/projectile/Move                                                     0.047        0.764        0.763         1740
+/obj/item/projectile/proc/can_hit_target                                      0.027        0.250        0.250         1740
+/obj/item/projectile/proc/fire_at                                             0.003        0.146        0.146          670
+/obj/item/projectile/forceMove                                                0.004        0.065        0.065         1340
+/obj/item/projectile/proc/fire                                                0.005        0.060        0.060          670
+/obj/item/projectile/proc/preparePixelProjectile                              0.005        0.047        0.047          670
+/obj/item/projectile/Crossed                                                  0.038        0.039        0.045       138460
+/obj/item/projectile/proc/Range                                               0.008        0.034        0.034        29080
+/obj/item/projectile/proc/on_range                                            0.000        0.026        0.026          480
+/datum/point/vector/proc/increment                                            0.025        0.025        0.025        29080
+/datum/point/proc/return_py                                                   0.023        0.024        0.030        58160
+/datum/point/proc/return_turf                                                 0.021        0.021        0.022        29080
+/datum/ammo/bullet/New                                                        0.002        0.020        0.020          670
+/obj/item/projectile/Destroy                                                  0.005        0.020        0.020          480
+/obj/item/projectile/proc/generate_bullet                                     0.008        0.013        0.013          670
+/obj/item/projectile/proc/setAngle                                            0.007        0.012        0.012         2010
+
+
 */
+
+/obj/machinery/pewpew
+	name = "pewpew"
+	use_power = 0
+
+/obj/machinery/pewpew/Initialize()
+	. = ..()
+	//start_processing()
+
+/obj/machinery/pewpew/Destroy()
+	stop_processing()
+	. = ..()
+
+/obj/machinery/pewpew/process()
+	for(var/i in 1 to 10)
+		var/obj/item/projectile/P = new /obj/item/projectile(loc)
+		P.generate_bullet(new /datum/ammo/bullet, 0, 0)
+		P.name = "boolet"
+		P.fire_at(locate(x, y - 5, z), src, src, 30, 1)
 
 /obj/item/projectile
 	name = "projectile"
@@ -195,15 +239,8 @@
 
 	var/temporary_unstoppable_movement = FALSE
 
-///obj/item/projectile/CanPass(atom/movable/AM)
-//	return TRUE
-
-///obj/item/projectile/Cross(atom/movable/AM)
-//	return CanPass(AM, AM.loc)
-
 /obj/item/projectile/Initialize()
 	. = ..()
-	message_admins("init")
 	permutated = list()
 	decayedRange = range
 
@@ -263,6 +300,7 @@
 			range = decayedRange
 			if(hitscan)
 				store_hitscan_collision(pcache)
+			message_admins("oopsie")
 			return TRUE
 
 	var/distance = get_dist(T, starting) // Get the distance between the turf shot from and the mob we hit and use that for the calculations.
@@ -627,10 +665,6 @@
 	for(var/atom/i in (get_turf(newloc)).contents)
 		if(i.density && i.loc == loc)
 			Bump(i)
-	// go through all atoms on the turf, check if we can hit
-	//for(var/atom/movable/A in get_turf(newloc))
-	//	if(can_hit_target(A, permutated, TRUE))
-	//		Bump(A)
 
 /obj/item/projectile/Destroy()
 	if(hitscan)
@@ -870,9 +904,13 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 
 //Deal with xeno bullets.
 /mob/living/carbon/Xenomorph/bullet_act(obj/item/projectile/P)
-	if(!P || !istype(P)) return
+	message_admins("[name] taking [P.name] bullet.")
+	if(!P || !istype(P)) 
+		message_admins("this wont happen")
+		return
 	if(P.ammo.flags_ammo_behavior & (AMMO_XENO_ACID|AMMO_XENO_TOX) ) //Aliens won't be harming aliens.
 		bullet_ping(P)
+		message_admins("ppiiiing")
 		return
 
 	if(P.ammo.flags_ammo_behavior & AMMO_BALLISTIC)
@@ -881,6 +919,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 	flash_weak_pain()
 
 	var/damage = max(0, P.damage - round(P.distance_travelled * P.damage_falloff)) //Has to be at least zero, no negatives.
+	message_admins("[damage] boy [P.damage]")
 	#if DEBUG_XENO_DEFENSE
 	to_chat(world, "<span class='debuginfo'>Initial damage is: <b>[damage]</b></span>")
 	#endif
