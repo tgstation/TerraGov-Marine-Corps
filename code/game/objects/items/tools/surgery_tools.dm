@@ -25,7 +25,7 @@
 	name = "hemostat"
 	desc = "You think you have seen this before."
 	icon_state = "hemostat"
-	OOC_info = "used to clamp bleeding in an open surgery incision (not internal bleeding). is used to extract foreign objects such as Larva or Shrapnel. As Larva revmoval is important, the steps are 1. target chest, 2. Incision Management System, 3. Circular Saw, 4. Retractor, 5. Hemostat."
+	OOC_info = "Used to clamp bleeding in an open surgery incision (not internal bleeding). is used to extract foreign objects such as larvae or shrapnel. As larva removal surgery is important, the steps are 1. target chest, 2. Incision Management System, 3. Circular Saw, 4. Retractor, 5. Hemostat."
 	matter = list("metal" = 5000, "glass" = 2500)
 	flags_atom = CONDUCT
 	w_class = 2.0
