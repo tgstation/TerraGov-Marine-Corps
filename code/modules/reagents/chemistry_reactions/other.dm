@@ -43,19 +43,6 @@
 		empulse(location, round(created_volume / 24), round(created_volume / 14), 1)
 		holder.clear_reagents()
 
-
-/datum/chemical_reaction/hptoxin
-	name = "Toxin"
-	id = "hptoxin"
-	results = list("hptoxin" = 2)
-	required_reagents = list("hyperzine" = 1, "peridaxon" = 1)
-
-/datum/chemical_reaction/hptoxin
-	name = "Toxin"
-	id = "hptoxin"
-	results = list("hptoxin" = 2)
-	required_reagents = list("hyperzine" = 1, "dexalinplus" = 1)
-
 /datum/chemical_reaction/pttoxin
 	name = "Toxin"
 	id = "pttoxin"

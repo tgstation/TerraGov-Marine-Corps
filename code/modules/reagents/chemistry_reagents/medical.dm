@@ -689,6 +689,8 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/M, alien)
 	overdose_threshold = REAGENTS_OVERDOSE/5
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/5
 	scannable = TRUE
+	purge_list = list() //Does this purge any specific chems?
+	purge_rate = 15 //rate at which it purges specific chems
 
 /datum/reagent/medicine/hyperzine/on_mob_delete(mob/living/M)
 	var/amount = current_cycle * 4
@@ -696,16 +698,21 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/M, alien)
 	M.adjustHalLoss(amount)
 	if(M.stat == DEAD)
 		to_chat(M, "<span class='danger'>Your body is unable to bear the strain. The last thing you feel, aside from crippling exhaustion, is an explosive pain in your chest as you drop dead. It's a sad thing your adventures have ended here!</span>")
-	switch(amount)
-		if(1 to 20)
-			to_chat(M, "<span class='warning'>You feel a bit tired.</span>")
-		if(21 to 50)
-			M.KnockDown(amount * 0.05)
-			to_chat(M, "<span class='warning'>You collapse as a sudden wave of fatigue washes over you.</span>")
-		if(50 to INFINITY)
-			M.KnockOut(amount * 0.1)
-			to_chat(M, "<span class='danger'>Your world convulses as a wave of extreme fatigue washes over you!</span>") //when hyperzine is removed from the body, there's a backlash as it struggles to transition and operate without the drug
+	else
+		switch(amount)
+			if(1 to 20)
+				to_chat(M, "<span class='warning'>You feel a bit tired.</span>")
+			if(21 to 50)
+				M.KnockDown(amount * 0.05)
+				to_chat(M, "<span class='warning'>You collapse as a sudden wave of fatigue washes over you.</span>")
+			if(50 to INFINITY)
+				M.KnockOut(amount * 0.1)
+				to_chat(M, "<span class='danger'>Your world convulses as a wave of extreme fatigue washes over you!</span>") //when hyperzine is removed from the body, there's a backlash as it struggles to transition and operate without the drug
 
+	return ..()
+
+/datum/reagent/medicine/hyperzine/on_mob_add(mob/living/L)
+	purge_list.Add(/datum/reagent/medicine/dexalinplus, /datum/reagent/medicine/peridaxon) //Rapidly purges chems that would offset the downsides
 	return ..()
 
 /datum/reagent/medicine/hyperzine/on_mob_life(mob/living/M)
@@ -1048,7 +1055,9 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/M, alien)
 /datum/reagent/medicine/hypervene/on_mob_life(mob/living/M, alien)
 	for(var/datum/reagent/R in M.reagents.reagent_list)
 		if(R != src)
-			M.reagents.remove_reagent(R.id,8 * REM)
+			M.reagents.remove_reagent(R.id,HYPERVENE_REMOVAL_AMOUNT * REM)
+			if(R.id == "hyperzine")
+				R.current_cycle += HYPERVENE_REMOVAL_AMOUNT * REM * 1 / max(1,custom_metabolism) //Increment hyperzine's purge cycle in proportion to the amount removed.
 	M.reagent_shock_modifier -= PAIN_REDUCTION_HEAVY //Significant pain while metabolized.
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M

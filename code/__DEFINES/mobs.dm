@@ -584,3 +584,5 @@ var/list/global_mutations = list() // list of hidden mutation things
 //misc
 
 #define STANDARD_SLOWDOWN_REGEN 0.3
+
+#define HYPERVENE_REMOVAL_AMOUNT	8

@@ -424,10 +424,7 @@ REAGENT SCANNER
 				if(reagents_in_body["dexalin"] < 5)
 					dexalin = "dexalin"
 				if(reagents_in_body["dexalinplus"] < 1)
-					if(hyperzine_amount)
-						dexplus = "dexalin plus after hyperzine is purged or metabolizes."
-					else
-						dexplus = "dexalin plus"
+					dexplus = "dexalin plus"
 				advice += "<span class='scanner'><b>Oxygen Deprivation:</b> Administer one dose of: [dexalin] | [dexplus].</span>\n"
 			if(H.getFireLoss(1)  > 10)
 				var/kelotane = ""
@@ -473,8 +470,6 @@ REAGENT SCANNER
 			advice = ""
 			if(synaptizine_amount)
 				advice += "<span class='scanner'><b>Synaptizine Detected:</b> DO NOT administer dylovene until synaptizine is purged or metabolized.</span>\n"
-			if(hyperzine_amount)
-				advice += "<span class='scanner'><b>Hyperzine Detected:</b> DO NOT administer peridaxon or dexalin plus until hyperzine is purged or metabolized.</span>\n"
 			if(paracetamol_amount)
 				advice += "<span class='scanner'><b>Paracetamol Detected:</b> DO NOT administer tramadol until paracetamol is purged or metabolized.</span>\n"
 			if(neurotoxin_amount)
