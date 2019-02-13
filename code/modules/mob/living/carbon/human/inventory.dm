@@ -2,6 +2,9 @@
 	set name = "quick-equip"
 	set hidden = TRUE
 
+	if(is_mob_incapacitated() || lying || buckled)
+		return
+
 	var/obj/item/I = get_active_held_item()
 	if(!I)
 		if(next_move > world.time)
