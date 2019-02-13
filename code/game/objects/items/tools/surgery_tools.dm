@@ -165,7 +165,7 @@
 /obj/item/tool/surgery/bonesetter
 	name = "bone setter"
 	icon_state = "bone setter"
-	OOC_info = "Used to repair bones. fix a bone by 1. applying bone gel. 2. using the bone setter. A broken bone cannot be fixed if that body part has more than ~30 brute damage. Give your patient Bicaridine."
+	OOC_info = "Used to repair bones. fix a bone by 1. applying Bone Gel. 2. using the Bone Setter. A broken bone cannot be fixed if that body part has more than ~30 brute damage. Give your patient Bicaridine."
 	force = 8.0
 	throwforce = 9.0
 	throw_speed = 3
