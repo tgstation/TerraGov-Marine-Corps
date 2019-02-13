@@ -129,6 +129,7 @@
 					/obj/item/storage/box/nade_box/M15 = 1,																																																																										
 					/obj/item/weapon/gun/smg/ppsh = 4,
 					/obj/item/weapon/gun/shotgun/double = 2,
+					/obj/item/weapon/gun/shotgun/pump/bolt = 2,
 					/obj/item/weapon/gun/smg/m39/elite = 0,
 					/obj/item/weapon/gun/rifle/m41aMK1 = 0,
 					/obj/item/weapon/gun/rifle/m41a/elite = 0,
@@ -212,6 +213,7 @@
 	contraband = list(
 					/obj/item/ammo_magazine/smg/ppsh/ = 20,
 					/obj/item/ammo_magazine/smg/ppsh/extended = 4,
+					/obj/item/ammo_magazine/rifle/bolt = 10,
 					/obj/item/ammo_magazine/sniper = 0,
 					/obj/item/ammo_magazine/sniper/incendiary = 0,
 					/obj/item/ammo_magazine/sniper/flak = 0,
@@ -364,7 +366,6 @@
 					/obj/item/reagent_container/food/snacks/mre_pack/meal2 = 15,
 					/obj/item/reagent_container/food/snacks/mre_pack/meal3 = 15,
 					/obj/item/reagent_container/food/snacks/mre_pack/meal4 = 15,
-					/obj/item/reagent_container/food/snacks/mre_pack/meal5 = 15,
 					/obj/item/reagent_container/food/snacks/mre_pack/meal6 = 15,
 					/obj/item/storage/box/MRE = 10,
 					/obj/item/reagent_container/food/drinks/flask = 5)
@@ -373,7 +374,8 @@
 					/obj/item/reagent_container/food/snacks/mre_pack/xmas1 = 25,
 					/obj/item/reagent_container/food/snacks/mre_pack/xmas2 = 25,
 					/obj/item/reagent_container/food/snacks/mre_pack/xmas3 = 25)*/
-	contraband = list(/obj/item/reagent_container/food/drinks/flask/marine = 10)
+	contraband = list(/obj/item/reagent_container/food/drinks/flask/marine = 10,
+					/obj/item/reagent_container/food/snacks/mre_pack/meal5 = 15)
 	vend_delay = 15
 	//product_slogans = "Standard Issue Marine food!;It's good for you, and not the worst thing in the world.;Just fucking eat it.;"
 	product_ads = "Try the cornbread.;Try the pizza.;Try the pasta.;Try the tofu, wimp.;Try the pork."

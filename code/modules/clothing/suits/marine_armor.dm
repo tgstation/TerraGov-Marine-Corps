@@ -462,7 +462,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	if(dose_administered)
 		playsound(src,'sound/items/hypospray.ogg', 25, 0, 1)
 		details +=("Estimated [B18_CHEM_COOLDOWN/600] minute replenishment time for each dosage.")
-		to_chat(wearer, "<span class='notice'>[bicon(src)] beeps:</br> [details.Join(" ")]</span>")
+		to_chat(wearer, "<span class='notice'>[icon2html(src, wearer)] beeps:</br> [details.Join(" ")]</span>")
 
 /obj/item/clothing/suit/storage/marine/specialist/proc/handle_chem_cooldown(code = B18_BRUTE_CODE, silent = FALSE)
 	if(code)

@@ -68,7 +68,6 @@
 	for(var/mob/living/L in T)
 		smoke_mob(L)
 
-
 /obj/effect/particle_effect/smoke/proc/spread_smoke()
 	var/turf/t_loc = get_turf(src)
 	if(!t_loc)

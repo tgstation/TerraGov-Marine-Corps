@@ -297,31 +297,32 @@ proc/isInSight(var/atom/A, var/atom/B)
 	return candidates
 
 // Same as above but for alien candidates.
-/proc/get_alien_candidates()
-	var/list/candidates = list()
+/proc/get_alien_candidate()
+	var/mob/picked
 
 	for(var/mob/dead/observer/O in GLOB.dead_mob_list)
 		//Players without preferences or jobbaned players cannot be drafted.
-		if(!O.client?.prefs || !(O.client.prefs.be_special & BE_ALIEN) || jobban_isbanned(O, "Alien"))
+		if(!O.key || !O.client?.prefs || !(O.client.prefs.be_special & BE_ALIEN) || jobban_isbanned(O, "Alien"))
 			continue
 
 		//AFK players cannot be drafted
 		if(O.client.inactivity / 600 > ALIEN_SELECT_AFK_BUFFER + 5)
 			continue
 
-		//Admins get to skip the deathtime check, but only not while aghosted
-		if(check_other_rights(O.client, R_ADMIN, FALSE) && copytext(O.mind?.current?.key, 1, 1) != "@")
-			candidates += O.key
-			continue
-
-		//Recently dead non-admins cannot be drafted.
+		//Recently dead observers cannot be drafted.
 		var/deathtime = world.time - O.timeofdeath
 		if(deathtime < DEATHTIME_XENO_REQUIREMENT)
 			continue
 
-		candidates += O.key
+		if(!picked?.key)
+			picked = O
+			continue
 
-	return candidates
+		if(O.timeofdeath < picked.timeofdeath && O.key)
+			picked = O
+
+	return picked.key
+
 
 /proc/ScreenText(obj/O, maptext="", screen_loc="CENTER-7,CENTER-7", maptext_height=480, maptext_width=480)
 	if(!isobj(O))	O = new /obj/screen/text()

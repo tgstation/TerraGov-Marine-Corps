@@ -2,6 +2,10 @@
 For the main html chat area
 *********************************/
 
+//Precaching a bunch of shit
+GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of icons for the browser output
+
+
 /var/list/chatResources = list(
 	"code/modules/html_interface/jquery.min.js",
 	"goon/browserassets/js/json2.min.js",
@@ -215,60 +219,6 @@ For the main html chat area
 	set hidden = 1
 	chatOutput.ehjax_send(data = list("firebug" = 1))
 
-//Global chat procs
-
-/var/list/bicon_cache = list()
-
-//Converts an icon to base64. Operates by putting the icon in the iconCache savefile,
-// exporting it as text, and then parsing the base64 from that.
-// (This relies on byond automatically storing icons in savefiles as base64)
-/proc/icon2base64(var/icon/icon, var/iconKey = "misc")
-	if (!isicon(icon))
-		return 0
-
-	iconCache[iconKey] << icon
-	var/iconData = iconCache.ExportText(iconKey)
-	var/list/partial = splittext(iconData, "{")
-	return replacetext(copytext(partial[2], 3, -5), "\n", "")
-
-/proc/bicon(var/obj)
-	if (!obj)
-		return
-
-	if (isicon(obj))
-		//Icons get pooled constantly, references are no good here.
-		/*if (!bicon_cache["\ref[obj]"]) // Doesn't exist yet, make it.
-			bicon_cache["\ref[obj]"] = icon2base64(obj)
-		return "<img class='icon misc' src='data:image/png;base64,[bicon_cache["\ref[obj]"]]'>"*/
-		return "<img class='icon misc' src='data:image/png;base64,[icon2base64(obj)]'>"
-
-	// Either an atom or somebody fucked up and is gonna get a runtime, which I'm fine with.
-	var/atom/A = obj
-	var/key = ("[A.icon]" || "\ref[A.icon]")+":[A.icon_state]"
-	if (!bicon_cache[key]) // Doesn't exist, make it.
-		var/icon/I = icon(A.icon, A.icon_state, SOUTH, 1, 0)
-		if (!"[A.icon]") // Shitty workaround for a BYOND issue.
-			var/icon/temp = I
-			I = icon()
-			I.Insert(temp, dir = SOUTH)
-		bicon_cache[key] = icon2base64(I, key)
-
-	return "<img class='icon [A.icon_state]' src='data:image/png;base64,[bicon_cache[key]]'>"
-
-//Aliases for bicon
-/proc/bi(obj)
-	bicon(obj)
-
-//Costlier version of bicon() that uses getFlatIcon() to account for overlays, underlays, etc. Use with extreme moderation, ESPECIALLY on mobs.
-/proc/costly_bicon(var/obj)
-	if (!obj)
-		return
-
-	if (isicon(obj))
-		return bicon(obj)
-
-	var/icon/I = getFlatIcon(obj)
-	return bicon(I)
 
 /proc/to_chat(target, message)
 	//Ok so I did my best but I accept that some calls to this will be for shit like sound and images

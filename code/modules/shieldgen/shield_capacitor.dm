@@ -48,7 +48,7 @@
 
 	else if(iswrench(W))
 		src.anchored = !src.anchored
-		src.visible_message("<span class='notice'> [bicon(src)] [src] has been [anchored ? "bolted to the floor" : "unbolted from the floor"] by [user].</span>")
+		src.visible_message("<span class='notice'> [icon2html(src, viewers(src))] [src] has been [anchored ? "bolted to the floor" : "unbolted from the floor"] by [user].</span>")
 
 		if(anchored)
 			spawn(0)

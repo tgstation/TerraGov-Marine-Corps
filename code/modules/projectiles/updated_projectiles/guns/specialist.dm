@@ -396,7 +396,7 @@
 	return 1
 
 /obj/item/weapon/gun/smartgun/proc/toggle_restriction(mob/user)
-	to_chat(user, "[bicon(src)] You [restriction_toggled? "<B>disable</b>" : "<B>enable</b>"] the [src]'s fire restriction. You will [restriction_toggled ? "harm anyone in your way" : "target through IFF"].")
+	to_chat(user, "[icon2html(src, user)] You [restriction_toggled? "<B>disable</b>" : "<B>enable</b>"] the [src]'s fire restriction. You will [restriction_toggled ? "harm anyone in your way" : "target through IFF"].")
 	playsound(loc,'sound/machines/click.ogg', 25, 1)
 	var/A = ammo
 	ammo = ammo_secondary

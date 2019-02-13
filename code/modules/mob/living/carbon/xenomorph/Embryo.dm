@@ -145,9 +145,7 @@
 	if(affected_mob.client?.prefs && (affected_mob.client.prefs.be_special & BE_ALIEN) && !jobban_isbanned(affected_mob, "Alien"))
 		picked = affected_mob.key
 	else //Get a candidate from observers.
-		var/list/candidates = get_alien_candidates()
-		if(length(candidates))
-			picked = pick(candidates)
+		picked = get_alien_candidate()
 
 	//Spawn the larva.
 	var/mob/living/carbon/Xenomorph/Larva/new_xeno

@@ -195,10 +195,10 @@ Contains most of the procs that are called when a mob is attacked by something
 
 		switch(hit_area)
 			if("head")//Harder to score a stun but if you do it lasts a bit longer
-				if(prob(I.force))
+				if(prob(I.force) && stat == CONSCIOUS)
 					apply_effect(20, PARALYZE, armor)
 					visible_message("<span class='danger'>[src] has been knocked unconscious!</span>",
-					"<span class='danger'>You have been knocked unconscious!</span>", null, 5)
+									"<span class='danger'>You have been knocked unconscious!</span>", null, 5)
 
 				if(bloody)//Apply blood
 					if(wear_mask)
@@ -212,9 +212,10 @@ Contains most of the procs that are called when a mob is attacked by something
 						update_inv_glasses(0)
 
 			if("chest")//Easier to score a stun but lasts less time
-				if(prob((I.force + 10)))
+				if(prob((I.force + 10)) && !is_mob_incapacitated())
 					apply_effect(6, WEAKEN, armor)
-					visible_message("<span class='danger'>[src] has been knocked down!</span>", null, null, 5)
+					visible_message("<span class='danger'>[src] has been knocked down!</span>",
+									"<span class='danger'>You have been knocked down!</span>", null, 5)
 
 				if(bloody)
 					bloody_body(src)

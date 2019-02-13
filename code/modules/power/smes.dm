@@ -345,7 +345,7 @@
 	return TRUE
 
 /obj/machinery/power/smes/proc/ion_act()
-	if(src.z == 1)
+	if(z == PLANET_Z_LEVEL)
 		if(prob(1)) //explosion
 			for(var/mob/M in viewers(src))
 				M.show_message("<span class='warning'> The [src.name] is making strange noises!</span>", 3, "<span class='warning'> You hear sizzling electronics.</span>", 2)
@@ -371,23 +371,22 @@
 			smoke.attach(src)
 			smoke.start()
 
-
 /obj/machinery/power/smes/emp_act(severity)
 	outputting = FALSE
 	inputting = FALSE
 	output_level = 0
-	charge -= 1e6/severity
-	if (charge < 0)
-		charge = 0
-	spawn(100)
-		output_level = initial(output_level)
-		inputting = initial(inputting)
-		outputting = initial(outputting)
+	charge = max(charge - 1e6/severity, 0)
+	addtimer(CALLBACK(src, .proc/reset_power_level), 10 SECONDS)
 	..()
 
+/obj/machinery/power/smes/proc/reset_power_level()
+	output_level = initial(output_level)
+	inputting = initial(inputting)
+	outputting = initial(outputting)
+
 /obj/machinery/power/smes/preset
-	input_level = SMESMAXCHARGELEVEL
-	output_level = SMESMAXOUTPUT / 2
+	input_level = 180000
+	output_level = 100000
 
 /obj/machinery/power/smes/magical
 	name = "magical power storage unit"

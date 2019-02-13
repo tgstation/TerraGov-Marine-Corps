@@ -198,11 +198,11 @@
 	else
 		dat += "The safety's off!<br>"
 
-	if(rail) 	dat += "It has [bicon(rail)] [rail.name] mounted on the top.<br>"
-	if(muzzle) 	dat += "It has [bicon(muzzle)] [muzzle.name] mounted on the front.<br>"
-	if(stock) 	dat += "It has [bicon(stock)] [stock.name] for a stock.<br>"
+	if(rail) 	dat += "It has [icon2html(rail, user)] [rail.name] mounted on the top.<br>"
+	if(muzzle) 	dat += "It has [icon2html(muzzle, user)] [muzzle.name] mounted on the front.<br>"
+	if(stock) 	dat += "It has [icon2html(stock, user)] [stock.name] for a stock.<br>"
 	if(under)
-		dat += "It has [bicon(under)] [under.name]"
+		dat += "It has [icon2html(under, user)] [under.name]"
 		if(under.flags_attach_features & ATTACH_WEAPON)
 			dat += " ([under.current_rounds]/[under.max_rounds])"
 		dat += " mounted underneath.<br>"

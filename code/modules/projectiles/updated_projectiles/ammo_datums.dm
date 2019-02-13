@@ -1298,7 +1298,8 @@
 	var/mob/living/carbon/C = M
 	if(C.status_flags & XENO_HOST && istype(C.buckled, /obj/structure/bed/nest) || C.stat == DEAD)
 		return
-	staggerstun(C, P, CONFIG_GET(number/combat_define/close_shell_range), 0, 0, 1, 1) //Staggers and slows down briefly
+	staggerstun(C, P, CONFIG_GET(number/combat_define/close_shell_range), 0, 0, 1, 1, 0) //Staggers and slows down briefly
+
 	return ..()
 
 /datum/ammo/xeno/toxin/upgrade1
@@ -1518,10 +1519,10 @@
 	damage_var_high = CONFIG_GET(number/combat_define/max_proj_variance)
 	damage_type = BURN
 
-/datum/ammo/xeno/boiler_gas/on_shield_block(mob/M, obj/item/projectile/P)
+/datum/ammo/xeno/boiler_gas/corrosive/on_shield_block(mob/M, obj/item/projectile/P)
 	burst(M,P,damage_type)
 
-/datum/ammo/xeno/boiler_gas/set_xeno_smoke(obj/item/projectile/P)
+/datum/ammo/xeno/boiler_gas/corrosive/set_xeno_smoke(obj/item/projectile/P)
 	smoke_system = new /datum/effect_system/smoke_spread/xeno/acid()
 
 /*
