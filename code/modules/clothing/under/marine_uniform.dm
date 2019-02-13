@@ -295,11 +295,15 @@
 	desc = "A collared shirt, complimented by a pair of suspenders. Worn by Nanotrasen employees who ask the tough questions. Smells faintly of cigars and bad acting."
 	icon_state = "liaison_suspenders"
 
-/obj/item/clothing/under/liaison_suit/galaxy
+/obj/item/clothing/under/liaison_suit/galaxy_blue
 	name = "\improper De Void of Soul"
 	desc = "A suit of stars and high-V gas. One that screams the cosmos and unfathomnable vastness. Earned by only the best of the best."
-	icon_state = "liaison_galaxy" // Thanks to Manezinho
+	icon_state = "liaison_galaxy_blue" // Thanks to Manezinho
 
+/obj/item/clothing/under/liaison_suit/galaxy_red
+	name = "\improper De Pulsar gonne"
+	desc = "A suit of stars and high-V gas. One that screams stellar fusion and re-entry burn. Earned by only the best of the best."
+	icon_state = "liaison_galaxy_red" // Thanks to Manezinho
 
 /obj/item/clothing/under/rank/chef/exec
 	name = "\improper Nanotrasen suit"
