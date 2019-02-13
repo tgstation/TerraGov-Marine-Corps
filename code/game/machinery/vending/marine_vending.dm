@@ -7,7 +7,7 @@
 	icon_vend = "marinearmory-vend"
 	icon_deny = "marinearmory"
 	req_access = null
-	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_CARGO)
+	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_PREP, ACCESS_MARINE_CARGO)
 	wrenchable = FALSE
 	tokensupport = TOKEN_MARINE
 
@@ -253,7 +253,7 @@
 	icon_vend = "lascharger-vend"
 	icon_deny = "lascharger-denied"
 	req_access = null
-	req_one_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO)
+	req_one_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO)
 	wrenchable = TRUE
 	drag_delay = FALSE
 	anchored = FALSE
@@ -701,7 +701,7 @@
 	icon_vend = "marineuniform_vend"
 	icon_deny = "marineuniform"
 	req_access = null
-	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_CARGO)
+	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_PREP, ACCESS_MARINE_CARGO)
 	var/squad_tag = ""
 
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
@@ -752,7 +752,7 @@
 	icon_state = "marineuniform"
 	icon_vend = "marineuniform_vend"
 	icon_deny = "marineuniform"
-	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_CARGO)
+	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_PREP, ACCESS_MARINE_CARGO)
 	product_ads = "Hey! You! Stop looking like a turtle and start looking like a TRUE soldier!;Dress whites, fresh off the ironing board!;Why kill in armor when you can kill in style?;These uniforms are so sharp you'd cut yourself just looking at them!"
 	products = list(
 					/obj/item/clothing/under/whites = 50,
