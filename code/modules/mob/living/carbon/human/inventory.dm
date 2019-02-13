@@ -137,7 +137,7 @@
 			dropItemToGround(l_store)
 		if(belt)
 			dropItemToGround(belt)
-		if(wear_suit && (istype(wear_suit, /obj/item/clothing/suit/armor) || istype(wear_suit, /obj/item/clothing/suit/storage)))
+		if(wear_suit && istype(wear_suit, /obj/item/clothing/suit))
 			dropItemToGround(wear_suit)
 		w_uniform = null
 		update_suit_sensors()
