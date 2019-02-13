@@ -147,7 +147,7 @@
 /obj/item/tool/surgery/bonegel
 	name = "bone gel"
 	icon_state = "bone-gel"
-	OOC_info = "Use to repair bones. close a ribcage or skull by 1. retractor then 2. bone gel, fix a bone by 1. bone gel 2. bone setter. A broken bone cannot be fixed if that body part has more than ~30 brute damage. Give your patient Bicaridine."
+	OOC_info = "Use to repair bones or to close a ribcage or skull. Close the ribcage or skull by 1. Retractor then 2. Bone Gel, fix a bone in an open incision by 1. Bone Gel 2. Bone Setter. A broken bone cannot be fixed if that body part has more than ~30 brute damage. Give your patient Bicaridine."
 	force = 0
 	w_class = 2.0
 	throwforce = 1.0
