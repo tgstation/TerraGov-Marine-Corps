@@ -4,6 +4,8 @@
 	if((species?.flags & NO_BREATHE) && health > get_crit_threshold())
 		set_Losebreath(0, TRUE)
 		setOxyLoss(0, TRUE)
+		oxygen_alert = FALSE
+		failed_last_breath = FALSE
 		return FALSE
 	return ..()
 
@@ -48,7 +50,7 @@
 				if (O2_pp == 0)
 					O2_pp = 0.01
 				var/ratio = O2_pp/safe_pressure_min
-				adjustOxyLoss(min(5*ratio, CARBON_MAX_OXYLOSS)) //Don't fuck them up too fast (space only does CARBON_MAX_OXYLOSS after all!)
+				adjustOxyLoss(max(CARBON_MAX_OXYLOSS * (1 - ratio), 0)) //Don't fuck them up too fast (space only does CARBON_MAX_OXYLOSS after all!)
 				oxygen_alert = TRUE
 				failed_last_breath = TRUE
 
@@ -65,7 +67,7 @@
 				if (O2_pp == 0)
 					O2_pp = 0.01
 				var/ratio = O2_pp/safe_pressure_min
-				adjustOxyLoss(min(5*ratio, CARBON_MAX_OXYLOSS)) //Don't fuck them up too fast (space only does CARBON_MAX_OXYLOSS after all!)
+				adjustOxyLoss(max(CARBON_MAX_OXYLOSS * (1 - ratio), 0)) //Don't fuck them up too fast (space only does CARBON_MAX_OXYLOSS after all!)
 				oxygen_alert = TRUE
 				failed_last_breath = TRUE
 

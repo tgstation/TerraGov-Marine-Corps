@@ -123,7 +123,7 @@
 				if (O2_pp == 0)
 					O2_pp = 0.01
 				var/ratio = O2_pp/safe_pressure_min
-				adjustOxyLoss(min(5*ratio, CARBON_MAX_OXYLOSS))
+				adjustOxyLoss(max(CARBON_MAX_OXYLOSS * (1 - ratio), 0))
 				oxygen_alert = TRUE
 				failed_last_breath = TRUE
 
@@ -140,7 +140,7 @@
 				if (O2_pp == 0)
 					O2_pp = 0.01
 				var/ratio = O2_pp/safe_pressure_min
-				adjustOxyLoss(min(5*ratio, CARBON_MAX_OXYLOSS))
+				adjustOxyLoss(max(CARBON_MAX_OXYLOSS * (1 - ratio), 0))
 				oxygen_alert = TRUE
 				failed_last_breath = TRUE
 

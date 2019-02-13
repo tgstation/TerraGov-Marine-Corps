@@ -9,7 +9,8 @@
 	hud_possible = list(STATUS_HUD_XENO_INFECTION)
 
 	var/obj/item/card/id/wear_id = null // Fix for station bounced radios -- Skie
-	var/datum/species/greaterform = /datum/species/human                  // Used when humanizing a monkey.
+	var/datum/species/greaterform              // Used when humanizing a monkey.
+	var/greaterform_type = /datum/species/human
 	icon_state = "monkey1"
 	//var/uni_append = "12C4E2"                // Small appearance modifier for different species.
 	var/list/uni_append = list(0x12C,0x4E2)    // Same as above for DNA2.
@@ -36,7 +37,7 @@
 	voice_name = "farwa"
 	speak_emote = list("mews")
 	icon_state = "tajkey1"
-	greaterform = /datum/species/tajaran
+	greaterform_type = /datum/species/tajaran
 	uni_append = list(0x0A0,0xE00) // 0A0E00
 
 /mob/living/carbon/monkey/skrell
@@ -44,7 +45,7 @@
 	voice_name = "neaera"
 	speak_emote = list("squicks")
 	icon_state = "skrellkey1"
-	greaterform = /datum/species/skrell
+	greaterform_type = /datum/species/skrell
 	uni_append = list(0x01C,0xC92) // 01CC92
 
 /mob/living/carbon/monkey/unathi
@@ -52,7 +53,7 @@
 	voice_name = "stok"
 	speak_emote = list("hisses")
 	icon_state = "stokkey1"
-	greaterform = /datum/species/unathi
+	greaterform_type = /datum/species/unathi
 	uni_append = list(0x044,0xC5D) // 044C5D
 
 
@@ -71,7 +72,9 @@
 	verbs += /mob/living/proc/lay_down
 	create_reagents(1000)
 
-	if(greaterform)
+	if(greaterform_type)
+		greaterform = new greaterform_type()
+
 		add_language(greaterform.language)
 
 		cold_level_1 = null ? greaterform.cold_level_1 : cold_level_1
@@ -87,7 +90,7 @@
 		name = "[name] ([rand(1, 1000)])"
 		real_name = name
 
-	if (!(dna))
+	if (!dna)
 		if(gender == NEUTER)
 			gender = pick(MALE, FEMALE)
 		dna = new /datum/dna( null )

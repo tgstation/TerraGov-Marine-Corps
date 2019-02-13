@@ -7,7 +7,7 @@
 		handle_organs()
 
 		if((life_tick % CARBON_BREATH_DELAY == 0) || failed_last_breath) //First, resolve location and get a breath
-			breathe() //Only try to take a breath every 4 ticks, unless suffocating
+			breathe() //Only try to take a breath every 2 ticks, unless suffocating
 
 		else if(isobj(loc))//Still give containing object the chance to interact
 			var/obj/location_as_object = loc
