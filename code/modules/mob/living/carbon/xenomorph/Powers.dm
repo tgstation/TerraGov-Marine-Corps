@@ -1745,9 +1745,12 @@
 		if(frenzy_aura)
 			damage *= (1 + round(frenzy_aura * 0.1,0.01)) //+10% damage per level of frenzy
 		var/armor_block = M.run_armor_check("chest", "melee")
-		M.take_overall_damage(rand(damage * 0.75, damage * 1.25) * 0.5, armor_block) //Armour functions against this.
 		if(ishuman(M))
-			M.apply_damage(damage, HALLOSS) //...But decent armour ignoring Halloss
+			var/mob/living/carbon/human/H = M
+			H.take_overall_damage(rand(damage * 0.75,damage * 1.25), null, 0, 0, 0, armor_block) //Armour functions against this.
+		else
+			M.take_overall_damage(rand(damage * 0.75,damage * 1.25), 0, null, armor_block) //Armour functions against this.
+		M.apply_damage(damage, HALLOSS) //...But decent armour ignoring Halloss
 		shake_camera(M, 2, 2)
 		playsound(M,pick('sound/weapons/alien_claw_block.ogg','sound/weapons/alien_bite2.ogg'), 50, 1)
 		M.KnockDown(1, 1)
