@@ -4,7 +4,7 @@
 	desc = "A tube of paste containing swarms of repair nanites. Very effective in repairing robotic machinery."
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "tube"
-	OOC_info = "contains 10 uses of nanopaste to start with. Can fix robotic limbs or the Synthetic better than Welding or using wires. Repairs both types of damage at the same time."
+	OOC_info = "Contains 10 uses of nanopaste to start with. Can fix robotic limbs or the synthetic unit better than welding or using wires. Repairs both types of damage at the same time."
 	origin_tech = "materials=4;engineering=3"
 	amount = 10
 	max_amount = 10
