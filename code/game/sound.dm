@@ -188,6 +188,8 @@
 				S = pick('sound/voice/alien_talk.ogg','sound/voice/alien_talk2.ogg','sound/voice/alien_talk3.ogg')
 			if("alien_growl")
 				S = pick('sound/voice/alien_growl1.ogg','sound/voice/alien_growl2.ogg','sound/voice/alien_growl3.ogg','sound/voice/alien_growl4.ogg')
+			if("alien_charge_roar")
+				S = pick('sound/voice/alien_chargeroar_1.ogg','sound/voice/alien_chargeroar_2.ogg')
 			if("alien_hiss")
 				S = pick('sound/voice/alien_hiss1.ogg','sound/voice/alien_hiss2.ogg','sound/voice/alien_hiss3.ogg')
 			if("alien_tail_swipe")

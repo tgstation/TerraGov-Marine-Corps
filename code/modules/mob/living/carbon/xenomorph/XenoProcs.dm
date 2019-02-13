@@ -484,7 +484,7 @@
 		charge_speed += charge_speed_buildup //Speed increases each step taken. Caps out at 14 tiles
 		if(charge_speed == charge_speed_max) //Should only fire once due to above instruction
 			if(!charge_roar)
-				emote("roar")
+				playsound(loc, "alien_charge_roar", 50)
 				charge_roar = 1
 
 	noise_timer = noise_timer ? --noise_timer : 3
