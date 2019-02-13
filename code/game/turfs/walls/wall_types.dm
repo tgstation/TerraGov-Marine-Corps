@@ -12,9 +12,9 @@
 	walltype = "testwall"
 
 	damage = 0
-	damage_cap = 10000 //Wall will break down to girders if damage reaches this point
+	damage_cap = 3000 //Wall will break down to girders if damage reaches this point
 
-	max_temperature = 18000 //K, walls will take damage if they're next to a fire hotter than this
+	max_temperature = 28000 //K, walls will take damage if they're next to a fire hotter than this
 
 	opacity = 1
 	density = 1
@@ -115,7 +115,7 @@
 	icon_state = "sulaco0"
 	hull = 0 //Can't be deconstructed
 
-	damage_cap = 8000 //As tough as R_walls.
+	damage_cap = 3000
 	max_temperature = 28000 //K, walls will take damage if they're next to a fire hotter than this
 	walltype = "sulaco" //Changes all the sprites and icons.
 
@@ -157,11 +157,6 @@
 
 
 
-
-
-
-
-
 /turf/closed/wall/indestructible
 	name = "wall"
 	icon = 'icons/turf/walls.dmi'
@@ -181,7 +176,10 @@
 /turf/closed/wall/indestructible/can_be_dissolved()
 	return 0
 
-
+/turf/closed/wall/indestructible/mineral
+	name = "impenetrable rock"
+	icon = 'icons/turf/walls.dmi'
+	icon_state = "rock"
 
 /turf/closed/wall/indestructible/bulkhead
 	name = "bulkhead"
@@ -207,11 +205,6 @@
 
 /turf/closed/wall/indestructible/other
 	icon_state = "r_wall"
-
-
-
-
-
 
 // Mineral Walls
 

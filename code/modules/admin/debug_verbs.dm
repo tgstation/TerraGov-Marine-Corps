@@ -77,11 +77,13 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	var/list/proclist = splittext(procname, "/")
 	if(!length(proclist))
 		return
+
 	procname = proclist[length(proclist)]
 
 	var/proctype = "proc"
 	if("verb" in proclist)
 		proctype = "verb"
+
 
 	var/procpath
 	if(targetselected && !hascall(target, procname))
@@ -254,11 +256,9 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	if(!check_rights(R_DEBUG))
 		return
 
-	makepowernets()
-
-	log_admin("[key_name(src)] has remade the powernets.")
-	message_admins("[ADMIN_TPMONTY(usr)] has remade the powernets.")
-
+	SSmachines.makepowernets()
+	log_admin("[key_name(src)] has remade the powernet. makepowernets() called.")
+	message_admins("[key_name_admin(src)] has remade the powernets. makepowernets() called.")
 
 /datum/admins/proc/debug_mob_lists()
 	set category = "Debug"
@@ -465,7 +465,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	if(!check_rights(R_DEBUG))
 		return
 
-	var/choice = input("Check contents of", "Check Contents") as null|anything in list("Key", "Mob")
+	var/choice = input("Check contents of", "Check Contents") as null|anything in list("Key", "Cliented Mob", "Mob")
 	if(!choice)
 		return
 
@@ -476,8 +476,13 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 			if(!selection)
 				return
 			M = selection:mob
+		if("Cliented Mob")
+			var/selection = input("Please, select a cliented mob.", "Check Contents") as null|anything in sortList(GLOB.player_list)
+			if(!selection)
+				return
+			M = selection
 		if("Mob")
-			var/selection = input("Please, select a mob.", "Check Contents") as null|anything in sortmobs(GLOB.mob_list)
+			var/selection = input("Please, select a mob.", "Check Contents") as null|anything in sortList(GLOB.mob_list)
 			if(!selection)
 				return
 			M = selection

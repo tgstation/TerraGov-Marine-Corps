@@ -4,7 +4,7 @@
 	voice_name = "unknown"
 	icon = 'icons/mob/human.dmi'
 	icon_state = "body_m_s"
-	hud_possible = list(HEALTH_HUD,STATUS_HUD, STATUS_HUD_OOC, STATUS_HUD_XENO_INFECTION,ID_HUD,WANTED_HUD,IMPLOYAL_HUD,IMPCHEM_HUD,IMPTRACK_HUD, SPECIALROLE_HUD, SQUAD_HUD)
+	hud_possible = list(HEALTH_HUD,STATUS_HUD, STATUS_HUD_OOC, STATUS_HUD_XENO_INFECTION,ID_HUD,WANTED_HUD,IMPLOYAL_HUD,IMPCHEM_HUD,IMPTRACK_HUD, SPECIALROLE_HUD, SQUAD_HUD, STATUS_HUD_OBSERVER_INFECTION)
 	var/embedded_flag	  //To check if we've need to roll for damage on movement while an item is imbedded in us.
 	var/regenZ = 1 //Temp zombie thing until I write a better method ~Apop
 
@@ -919,16 +919,18 @@
 									R.fields[text("com_[counter]")] = text("Made by [U.name] ([U.modtype] [U.braintype]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [game_year]<BR>[t1]")
 
 	if (href_list["medholocard"])
-		if(species?.count_human)
+		if(!species?.count_human)
 			to_chat(usr, "<span class='warning'>Triage holocards only works on organic humanoid entities.</span>")
 			return
 		var/newcolor = input("Choose a triage holo card to add to the patient:", "Triage holo card", null, null) in list("black", "red", "orange", "none")
-		if(!newcolor) return
+		if(!newcolor)
+			return
 		if(get_dist(usr, src) > 7)
 			to_chat(usr, "<span class='warning'>[src] is too far away.</span>")
 			return
 		if(newcolor == "none")
-			if(!holo_card_color) return
+			if(!holo_card_color)
+				return
 			holo_card_color = null
 			to_chat(usr, "<span class='notice'>You remove the holo card on [src].</span>")
 		else if(newcolor != holo_card_color)

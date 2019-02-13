@@ -1,6 +1,5 @@
 #define EVENT_MAJOR_INTERVAL 	3000 // 5 minutes
 #define EVENT_MINOR_INTERVAL 	900 // 1.5 minutes
-#define FOG_DELAY_INTERVAL		6000 // 8 minutes
 #define BATTLEFIELD_END			36000 // 60 minutes
 #define MAX_BLOOD_ATTUNED		5
 #define BATTLEFIELD_DEBUG		0
@@ -1528,7 +1527,7 @@
 				stored_blood -= 0.1
 		if(0.1 to 0.9)
 			if(prob(5))
-				visible_message("<span class='warning'>[bicon(src)] [src]'s eyes glow ruby red for a moment!</span>")
+				visible_message("<span class='warning'>[icon2html(src, viewers(src))] [src]'s eyes glow ruby red for a moment!</span>")
 				stored_blood -= 0.1
 
 	//Check the shadow wights and auto-remove them if they get too far.

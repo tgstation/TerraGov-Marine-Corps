@@ -277,10 +277,11 @@
 
 /obj/item/clothing/tie/holster/proc/unholster(mob/user as mob)
 	if(!holstered)
-		return
+		return FALSE
 
 	if(user.get_active_held_item() && user.get_inactive_held_item())
 		to_chat(user, "<span class='warning'>You need an empty hand to draw the [holstered]!</span>")
+		return FALSE
 	else
 		if(user.a_intent == INTENT_HARM)
 			usr.visible_message("<span class='danger'>[user] draws the [holstered], ready to shoot!</span>", \
@@ -291,6 +292,7 @@
 		user.put_in_hands(holstered)
 		holstered.add_fingerprint(user)
 		holstered = null
+		return TRUE
 
 /obj/item/clothing/tie/holster/attack_hand(mob/user as mob)
 	if (has_suit)	//if we are part of a suit

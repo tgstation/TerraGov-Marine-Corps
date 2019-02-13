@@ -136,7 +136,7 @@
 
 		if(!holder)
 			for(var/mob/O in hearers(1, src.loc))
-				O.show_message("[bicon(src)] *beep* *beep*")
+				O.show_message("[icon2html(src, O)] *beep* *beep*")
 		return
 
 

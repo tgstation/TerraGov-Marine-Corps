@@ -258,7 +258,7 @@ var/global/list/uneatable = list(
 			for(var/obj/O in T.contents)
 				if(O.level != 1)
 					continue
-				if(O.invisibility == 101)
+				if(O.invisibility == INVISIBILITY_MAXIMUM)
 					src.consume(O)
 		T.ChangeTurf(/turf/open/space)
 		gain = 2

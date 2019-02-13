@@ -206,7 +206,7 @@
 				playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
 				user.visible_message("<span class='notice'> [user] screws the M56D into the mount.</span>","<span class='notice'> You finalize the M56D mounted smartgun system.</span>")
 				var/obj/machinery/m56d_hmg/G = new(src.loc) //Here comes our new turret.
-				G.visible_message("[bicon(G)] <B>[G] is now complete!</B>") //finished it for everyone to
+				G.visible_message("[icon2html(G, viewers(G))] <B>[G] is now complete!</B>") //finished it for everyone to
 				G.setDir(dir) //make sure we face the right direction
 				G.rounds = src.gun_rounds //Inherent the amount of ammo we had.
 				G.update_icon()
@@ -434,7 +434,7 @@
 			in_chamber = null
 			rounds--
 			if(!rounds)
-				visible_message("<span class='notice'> [bicon(src)] \The M56D beeps steadily and its ammo light blinks red.</span>")
+				visible_message("<span class='notice'> [icon2html(src, viewers(src))] \The M56D beeps steadily and its ammo light blinks red.</span>")
 				playsound(src.loc, 'sound/weapons/smg_empty_alarm.ogg', 25, 1)
 				update_icon() //final safeguard.
 	return
@@ -509,7 +509,7 @@
 	if((over_object == user && (in_range(src, user) || locate(src) in user))) //Make sure its on ourselves
 		if(user.interactee == src)
 			user.unset_interaction()
-			visible_message("[bicon(src)] <span class='notice'>[user] decided to let someone else have a go </span>")
+			visible_message("[icon2html(src, viewers(src))] <span class='notice'>[user] decided to let someone else have a go </span>")
 			to_chat(usr, "<span class='notice'>You decided to let someone else have a go on the MG </span>")
 			return
 		if(!Adjacent(user))
@@ -534,7 +534,7 @@
 			if(user.get_active_held_item() != null)
 				to_chat(user, "<span class='warning'>You need a free hand to man the [src].</span>")
 			else
-				visible_message("[bicon(src)] <span class='notice'>[user] mans the M56D!</span>")
+				visible_message("[icon2html(src, viewers(src))] <span class='notice'>[user] mans the M56D!</span>")
 				to_chat(user, "<span class='notice'>You man the gun!</span>")
 				user.set_interaction(src)
 

@@ -109,7 +109,7 @@
 
 	if(!usr.mind) //How? Give them a new one anyway.
 		usr.mind = new /datum/mind(usr.key)
-		usr.mind.active = 1
+		usr.mind.active = TRUE
 		usr.mind.current = usr
 
 	if(usr.mind.key != usr.key) //This can happen when admin-switching people into afking people, leading to runtime errors for a clientless key.
@@ -172,7 +172,7 @@
 					if(M.current?.stat != DEAD)
 						candidates -= M //Strip them from the list, they aren't dead anymore.
 						continue
-					if(name == "Xenomorphs" && !(M.current.client.prefs.be_special & BE_ALIEN))
+					if(name == "Xenomorphs" && !(M.current.client?.prefs?.be_special & BE_ALIEN))
 						candidates -= M
 						continue
 					picked_candidates += M
@@ -208,7 +208,7 @@
 			candidates = list() //Blank out the candidates list for next time.
 			
 			spawn(COOLDOWN_COMM_REQUEST)
-				ticker.mode.on_distress_cooldown = 0
+				ticker.mode.on_distress_cooldown = FALSE
 
 
 /datum/emergency_call/proc/add_candidate(var/mob/M)
