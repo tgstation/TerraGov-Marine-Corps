@@ -460,7 +460,7 @@
 	w_class = 1
 	icon_state = "farwaplush"
 	var/last_hug_time
-	OOC_info = "This is literally the only doll on the ship. guard it with your life."
+	OOC_info = "This is literally the only doll on the ship. Guard it with your life."
 
 /obj/item/toy/farwadoll/attack_self(mob/user)
 	if(world.time > last_hug_time)
