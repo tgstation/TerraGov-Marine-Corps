@@ -26,9 +26,9 @@
 	return titles
 
 var/command_positions[] = list(
-						"Commander",
-						"Executive Officer",
-						"Staff Officer",
+						"Captain",
+						"Field Commander",
+						"Intelligence Officer",
 						"Pilot Officer",
 						"Military Police",
 						"Corporate Liaison",
@@ -55,7 +55,7 @@ var/medical_positions[] = list(
 
 var/marine_squad_positions[] = list(
 							"Squad Leader",
-							"Squad Medic",
+							"Squad Corpsman",
 							"Squad Engineer",
 							"Squad Marine",
 							"Squad Specialist"

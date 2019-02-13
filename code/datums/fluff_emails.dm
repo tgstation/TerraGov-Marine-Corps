@@ -80,9 +80,9 @@
 /datum/fluff_email/almayer/themajor
 	title = "The Major?"
 	entry_text = {"<html>
-					I keep forgetting what the new Major's name is. I got quizzed by one of the jackass staff officers last week about the commander's name,
+					I keep forgetting what the new Major's name is. I got quizzed by one of the jackass staff officers last week about the captains's name,
 					and I absolutely spilled my marbles. PCF Mable was watching too, and she probably thinks I've got rocks in my head. I know it's been weeks
-					since the new commander took over, but for some reason the name keeps escaping me when it matters. Either the cryo-sleepers are juicing my
+					since the new captain took over, but for some reason the name keeps escaping me when it matters. Either the cryo-sleepers are juicing my
 					memory capacity or the CO keeps changing their name and not telling anybody. Maybe next jump I'll scrawl it on a sticky note and plaster it
 					to the inside of my sleeper pod. I can't be the only one having this problem.
 				</html>

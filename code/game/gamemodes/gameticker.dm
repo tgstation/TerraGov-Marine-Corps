@@ -189,7 +189,7 @@ var/global/datum/controller/gameticker/ticker
 	for(var/player in GLOB.player_list)
 		var/mob/living/carbon/human/H = player
 		if(istype(H) && H.mind?.assigned_role)
-			if(H.mind.assigned_role == "Commander")
+			if(H.mind.assigned_role == "Captain")
 				captainless = FALSE
 			if(H.mind.assigned_role != "MODE")
 				RoleAuthority.equip_role(player, RoleAuthority.roles_by_name[H.mind.assigned_role])
@@ -199,7 +199,7 @@ var/global/datum/controller/gameticker/ticker
 	if(captainless)
 		for(var/mob/M in GLOB.player_list)
 			if(!isnewplayer(M))
-				to_chat(M, "Marine commander position not forced on anyone.")
+				to_chat(M, "Captain position not forced on anyone.")
 
 
 /datum/controller/gameticker/process()
