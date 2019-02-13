@@ -398,6 +398,17 @@
 		A.update_hud(user)
 
 /obj/item/weapon/gun/energy/lasgun/load_into_chamber(mob/user)
+		//Let's check on the active attachable. It loads ammo on the go, so it never chambers anything
+	if(active_attachable)
+		if(active_attachable.current_rounds > 0) //If it's still got ammo and stuff.
+			active_attachable.current_rounds--
+			return create_bullet(active_attachable.ammo)
+		else
+			to_chat(user, "<span class='warning'>[active_attachable] is empty!</span>")
+			to_chat(user, "<span class='notice'>You disable [active_attachable].</span>")
+			playsound(user, active_attachable.activation_sound, 15, 1)
+			active_attachable.activate_attachment(src, null, TRUE)
+
 	if(!cell || cell.charge - charge_cost < 0)
 		return
 
