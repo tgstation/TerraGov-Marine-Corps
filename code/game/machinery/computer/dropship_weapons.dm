@@ -108,7 +108,7 @@
 	if(href_list["open_fire"])
 		var/targ_id = text2num(href_list["open_fire"])
 		var/mob/M = usr
-		if(M.mind.assigned_role != "Pilot Officer") //everyone can fire dropship weapons while fumbling.
+		if(M.mind.assigned_role != "Pilot") //everyone can fire dropship weapons while fumbling.
 			usr.visible_message("<span class='notice'>[usr] fumbles around figuring out how to use the automated targeting system.</span>",
 			"<span class='notice'>You fumble around figuring out how to use the automated targeting system.</span>")
 			var/fumbling_time = 100 - 20 * usr.mind.cm_skills.pilot

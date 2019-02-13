@@ -237,7 +237,7 @@ proc/get_all_job_icons()
 				"Captain",
 				"Field Commander",
 				"Intelligence Officer",
-				"Pilot Officer",
+				"Pilot",
 				"Tank Commander",
 				"Tank Crewman",
 				"Corporate Liaison",

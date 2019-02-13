@@ -95,7 +95,7 @@
 	icon_state = "BO_jumpsuit"
 
 /obj/item/clothing/under/marine/officer/pilot
-	name = "pilot officer bodysuit"
+	name = "pilot's bodysuit"
 	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented, survival-friendly pilot bodysuit. Fly the marines onwards to glory."
 	icon_state = "pilot_flightsuit"
 	flags_cold_protection = ICE_PLANET_min_cold_protection_temperature

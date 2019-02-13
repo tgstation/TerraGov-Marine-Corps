@@ -29,7 +29,7 @@ var/command_positions[] = list(
 						"Captain",
 						"Field Commander",
 						"Intelligence Officer",
-						"Pilot Officer",
+						"Pilot",
 						"Military Police",
 						"Corporate Liaison",
 						"Requisitions Officer",

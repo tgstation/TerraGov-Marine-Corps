@@ -322,7 +322,7 @@
 	new /obj/item/clothing/suit/officer_cloak(src)
 
 /obj/structure/closet/secure_closet/pilot_officer
-	name = "pilot officer's locker"
+	name = "pilot's locker"
 	req_access = list(ACCESS_MARINE_PILOT)
 	icon_state = "secure_locked_pilot"
 	icon_closed = "secure_unlocked_pilot"
