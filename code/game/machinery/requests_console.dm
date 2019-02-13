@@ -285,7 +285,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 								if(!Console.silent)
 									playsound(Console.loc, 'sound/machines/twobeep.ogg', 25, 1)
 									for (var/mob/O in hearers(5, Console.loc))
-										O.show_message(text("[bicon(Console)] *The Requests Console beeps: 'PRIORITY Alert in [department]'"))
+										O.show_message(text("[icon2html(Console, O)] *The Requests Console beeps: 'PRIORITY Alert in [department]'"))
 								Console.messages += "<B><FONT color='red'>High Priority message from <A href='?src=\ref[Console];write=[ckey(department)]'>[department]</A></FONT></B><BR>[sending]"
 
 		//					if("3")		//Not implemanted, but will be 		//Removed as it doesn't look like anybody intends on implimenting it ~Carn
@@ -305,7 +305,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 								if(!Console.silent)
 									playsound(Console.loc, 'sound/machines/twobeep.ogg', 25, 1)
 									for (var/mob/O in hearers(4, Console.loc))
-										O.show_message(text("[bicon(Console)] *The Requests Console beeps: 'Message from [department]'"))
+										O.show_message(text("[icon2html(Console, O)] *The Requests Console beeps: 'Message from [department]'"))
 								Console.messages += "<B>Message from <A href='?src=\ref[Console];write=[ckey(department)]'>[department]</A></FONT></B><BR>[message]"
 
 						screen = 6
@@ -313,7 +313,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 				messages += "<B>Message sent to [dpt]</B><BR>[message]"
 			else
 				for (var/mob/O in hearers(4, src.loc))
-					O.show_message(text("[bicon(src)] *The Requests Console beeps: 'NOTICE: No server detected!'"))
+					O.show_message(text("[icon2html(src, O)] *The Requests Console beeps: 'NOTICE: No server detected!'"))
 
 
 	//Handle screen switching

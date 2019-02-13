@@ -85,8 +85,8 @@
 				return
 
 	else if ((istype(W, /obj/item/device/analyzer)) && Adjacent(user))
-		visible_message("<span class='warning'> [user] has used [W] on [bicon(icon)]</span>")
-		to_chat(user, "<span class='notice'>Results of analysis of [bicon(icon)]</span>")
+		visible_message("<span class='warning'> [user] has used [W] on [icon2html(icon, viewers(src))]</span>")
+		to_chat(user, "<span class='notice'>Results of analysis of [icon2html(icon, user)]</span>")
 		if (pressure>0)
 			to_chat(user, "<span class='notice'>Pressure: [round(pressure,0.1)] kPa</span>")
 			to_chat(user, "<span class='notice'>[gas_type]: [100]%</span>")

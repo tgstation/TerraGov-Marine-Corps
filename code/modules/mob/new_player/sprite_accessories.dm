@@ -49,6 +49,7 @@
 				female += D.name
 	return L
 
+
 /datum/sprite_accessory
 	var/icon			// the icon file the accessory is located in
 	var/icon_state		// the icon_state of the accessory
@@ -58,7 +59,7 @@
 	var/locked = FALSE		//Is this part locked from roundstart selection? Used for parts that apply effects
 
 	var/list/species_allowed = list("Human","Human Hero", "Synthetic", "Early Synthetics") // Restrict some styles to specific species
-	var/do_colouration = 1	// Whether or not the accessory can be affected by colouration
+	var/do_colouration = TRUE	// Whether or not the accessory can be affected by colouration
 
 
 /*
@@ -71,7 +72,7 @@
 
 /datum/sprite_accessory/hair
 	species_allowed = list("Human","Unathi","Tajara","Skrell","Vox","Machine","Synthetic","Early Synthetic")
-	icon = 'icons/mob/Human_face.dmi'	  // default icon for all hairs
+	icon = 'icons/mob/Human_face.dmi'
 
 /datum/sprite_accessory/hair/crew
 	name = "Crewcut"
@@ -84,8 +85,8 @@
 	gender = MALE
 
 /datum/sprite_accessory/hair/short
-	name = "Short Hair"	  // try to capatilize the names please~
-	icon_state = "hair_a" // you do not need to define _s or _l sub-states, game automatically does this for you
+	name = "Short Hair"
+	icon_state = "hair_a"
 
 /datum/sprite_accessory/hair/cut
 	name = "Cut Hair"
@@ -359,7 +360,7 @@
 /datum/sprite_accessory/hair/balding
 	name = "Balding Hair"
 	icon_state = "hair_e"
-	gender = MALE // turnoff!
+	gender = MALE
 
 /datum/sprite_accessory/hair/familyman
 	name = "The Family Man"
@@ -630,7 +631,7 @@
 
 /datum/sprite_accessory/facial_hair
 	icon = 'icons/mob/Human_face.dmi'
-	gender = MALE // barf (unless you're a dorf, dorfs dig chix /w beards :P)
+	gender = MALE
 
 /datum/sprite_accessory/facial_hair/shaved
 	name = "Shaved"
@@ -644,7 +645,7 @@
 
 /datum/sprite_accessory/facial_hair/hogan
 	name = "Hulk Hogan Mustache"
-	icon_state = "facial_hogan" //-Neek
+	icon_state = "facial_hogan"
 
 /datum/sprite_accessory/facial_hair/vandyke
 	name = "Van Dyke Mustache"

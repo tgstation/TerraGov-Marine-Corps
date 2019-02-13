@@ -1,204 +1,141 @@
-datum/preferences
-	//The mob should have a gender you want before running this proc. Will run fine without H
-	proc/randomize_appearance_for(var/mob/living/carbon/human/H)
-		if(H)
-			if(H.gender == MALE)
-				gender = MALE
-			else
-				gender = FEMALE
-
-		ethnicity = random_ethnicity()
-		body_type = random_body_type()
-
-		h_style = random_hair_style(gender, species)
-		f_style = random_facial_hair_style(gender, species)
-		randomize_hair_color("hair")
-		randomize_hair_color("facial")
-		randomize_eyes_color()
-		randomize_skin_color()
-		randomize_species_specific()
-		underwear = rand(1,GLOB.underwear_m.len)
-		undershirt = rand(1,GLOB.undershirt_t.len)
-		backbag = 2
-		age = rand(AGE_MIN,AGE_MAX)
-		if(H)
-			copy_to(H,1)
-
-
-	proc/randomize_hair_color(var/target = "hair")
-		if(prob (75) && target == "facial") // Chance to inherit hair color
-			r_facial = r_hair
-			g_facial = g_hair
-			b_facial = b_hair
-			return
-
-		var/red
-		var/green
-		var/blue
-
-		var/col = pick ("blonde", "black", "chestnut", "copper", "brown", "wheat", "old", "punk")
-		switch(col)
-			if("blonde")
-				red = 255
-				green = 255
-				blue = 0
-			if("black")
-				red = 0
-				green = 0
-				blue = 0
-			if("chestnut")
-				red = 153
-				green = 102
-				blue = 51
-			if("copper")
-				red = 255
-				green = 153
-				blue = 0
-			if("brown")
-				red = 102
-				green = 51
-				blue = 0
-			if("wheat")
-				red = 255
-				green = 255
-				blue = 153
-			if("old")
-				red = rand (100, 255)
-				green = red
-				blue = red
-			if("punk")
-				red = rand (0, 255)
-				green = rand (0, 255)
-				blue = rand (0, 255)
-
-		red = max(min(red + rand (-25, 25), 255), 0)
-		green = max(min(green + rand (-25, 25), 255), 0)
-		blue = max(min(blue + rand (-25, 25), 255), 0)
-
-		switch(target)
-			if("hair")
-				r_hair = red
-				g_hair = green
-				b_hair = blue
-			if("facial")
-				r_facial = red
-				g_facial = green
-				b_facial = blue
-
-	proc/randomize_eyes_color()
-		var/red
-		var/green
-		var/blue
-
-		var/col = pick ("black", "grey", "brown", "chestnut", "blue", "lightblue", "green", "albino")
-		switch(col)
-			if("black")
-				red = 0
-				green = 0
-				blue = 0
-			if("grey")
-				red = rand (100, 200)
-				green = red
-				blue = red
-			if("brown")
-				red = 102
-				green = 51
-				blue = 0
-			if("chestnut")
-				red = 153
-				green = 102
-				blue = 0
-			if("blue")
-				red = 51
-				green = 102
-				blue = 204
-			if("lightblue")
-				red = 102
-				green = 204
-				blue = 255
-			if("green")
-				red = 0
-				green = 102
-				blue = 0
-			if("albino")
-				red = rand (200, 255)
-				green = rand (0, 150)
-				blue = rand (0, 150)
-
-		red = max(min(red + rand (-25, 25), 255), 0)
-		green = max(min(green + rand (-25, 25), 255), 0)
-		blue = max(min(blue + rand (-25, 25), 255), 0)
-
-		r_eyes = red
-		g_eyes = green
-		b_eyes = blue
-
-	proc/randomize_skin_color()
-		var/red
-		var/green
-		var/blue
-
-		var/col = pick ("black", "grey", "brown", "chestnut", "blue", "lightblue", "green", "albino")
-		switch(col)
-			if("black")
-				red = 0
-				green = 0
-				blue = 0
-			if("grey")
-				red = rand (100, 200)
-				green = red
-				blue = red
-			if("brown")
-				red = 102
-				green = 51
-				blue = 0
-			if("chestnut")
-				red = 153
-				green = 102
-				blue = 0
-			if("blue")
-				red = 51
-				green = 102
-				blue = 204
-			if("lightblue")
-				red = 102
-				green = 204
-				blue = 255
-			if("green")
-				red = 0
-				green = 102
-				blue = 0
-			if("albino")
-				red = rand (200, 255)
-				green = rand (0, 150)
-				blue = rand (0, 150)
-
-		red = max(min(red + rand (-25, 25), 255), 0)
-		green = max(min(green + rand (-25, 25), 255), 0)
-		blue = max(min(blue + rand (-25, 25), 255), 0)
-
-		r_skin = red
-		g_skin = green
-		b_skin = blue
-
-	proc/update_preview_icon()		//seriously. This is horrendous.
-		if(updating_icon)
-			return
-		updating_icon = 1
-		qdel(preview_icon_front)
-		qdel(preview_icon_side)
-		qdel(preview_icon)
-
-		var/g = "m"
-		if(gender == FEMALE)	g = "f"
-
-		var/icon/icobase
-		var/datum/species/current_species = GLOB.all_species[species]
-
-		if(current_species)
-			icobase = current_species.icobase
+/datum/preferences/proc/randomize_appearance_for(var/mob/living/carbon/human/H)
+	if(H)
+		if(H.gender == MALE)
+			gender = MALE
 		else
-			icobase = 'icons/mob/human_races/r_human.dmi'
+			gender = FEMALE
+
+	ethnicity = random_ethnicity()
+	body_type = random_body_type()
+
+	h_style = random_hair_style(gender, species)
+	f_style = random_facial_hair_style(gender, species)
+	randomize_hair_color("hair")
+	randomize_hair_color("facial")
+	randomize_eyes_color()
+	randomize_species_specific()
+	underwear = rand(1, GLOB.underwear_m.len)
+	undershirt = rand(1, GLOB.undershirt_t.len)
+	backbag = 2
+	age = rand(AGE_MIN,AGE_MAX)
+	if(H)
+		copy_to(H, TRUE)
+
+
+/datum/preferences/proc/randomize_hair_color(target = "hair")
+	if(prob (75) && target == "facial")
+		r_facial = r_hair
+		g_facial = g_hair
+		b_facial = b_hair
+		return
+
+	var/red
+	var/green
+	var/blue
+
+	switch(pick(15;"black", 15;"grey", 15;"brown", 15;"lightbrown", 5;"white", 15;"blonde", 10;"red"))
+		if("black")
+			red = 10
+			green = 10
+			blue = 10
+		if("grey")
+			red = 50
+			green = 50
+			blue = 50
+		if("brown")
+			red = 70
+			green = 35
+			blue = 0
+		if("lightbrown")
+			red = 100
+			green = 50
+			blue = 0
+		if("white")
+			red = 235
+			green = 235
+			blue = 235
+		if("blonde")
+			red = 240
+			green = 240
+			blue = 0
+		if("red")
+			red = 128
+			green = 0
+			blue = 0
+
+	red = CLAMP(red + rand(-25, 25), 0, 255)
+	green = CLAMP(green + rand(-25, 25), 0, 255)
+	blue = CLAMP(blue + rand(-25, 25), 0, 255)
+
+	switch(target)
+		if("hair")
+			r_hair = red
+			g_hair = green
+			b_hair = blue
+		if("facial")
+			r_facial = red
+			g_facial = green
+			b_facial = blue
+
+/datum/preferences/proc/randomize_eyes_color()
+	var/red
+	var/green
+	var/blue
+
+	switch(pick(15;"black", 15;"green", 15;"brown", 15;"blue", 15;"lightblue", 5;"red"))
+		if("black")
+			red = 10
+			green = 10
+			blue = 10
+		if("green")
+			red = 200
+			green = 0
+			blue = 0
+		if("brown")
+			red = 100
+			green = 50
+			blue = 0
+		if("blue")
+			red = 0
+			green = 0
+			blue = 200
+		if("lightblue")
+			red = 0
+			green = 150
+			blue = 255
+		if("red")
+			red = 220
+			green = 0
+			blue = 0
+
+	red = CLAMP(red + rand(-25, 25), 0, 255)
+	green = CLAMP(green + rand(-25, 25), 0, 255)
+	blue = CLAMP(blue + rand(-25, 25), 0, 255)
+
+	r_eyes = red
+	g_eyes = green
+	b_eyes = blue
+
+
+/datum/preferences/proc/update_preview_icon()
+	if(updating_icon)
+		return
+	updating_icon = TRUE
+	qdel(preview_icon_front)
+	qdel(preview_icon_side)
+	qdel(preview_icon)
+
+	var/g = "m"
+	if(gender == FEMALE)	
+		g = "f"
+
+	var/icon/icobase
+	var/datum/species/current_species = GLOB.all_species[species]
+
+	if(current_species)
+		icobase = current_species.icobase
+	else
+		icobase = 'icons/mob/human_races/r_human.dmi'
 
 		var/datum/ethnicity/E = GLOB.ethnicities_list[ethnicity]
 		var/datum/body_type/B = GLOB.body_types_list[body_type]

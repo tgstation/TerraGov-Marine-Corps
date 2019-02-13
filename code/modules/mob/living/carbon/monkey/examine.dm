@@ -1,17 +1,17 @@
 /mob/living/carbon/monkey/examine(mob/user)
 
-	var/msg = "<span class='info'>*---------*\nThis is [bicon(src)] \a <EM>[src]</EM>!\n"
+	var/msg = "<span class='info'>*---------*\nThis is [icon2html(src, user)] \a <EM>[src]</EM>!\n"
 
 	if (src.handcuffed)
-		msg += "It is [bicon(handcuffed)] handcuffed!\n"
+		msg += "It is [icon2html(handcuffed, user)] handcuffed!\n"
 	if (src.wear_mask)
-		msg += "It has [bicon(wear_mask)] \a [src.wear_mask] on its head.\n"
+		msg += "It has [icon2html(wear_mask, user)] \a [src.wear_mask] on its head.\n"
 	if (src.l_hand)
-		msg += "It has [bicon(l_hand)] \a [src.l_hand] in its left hand.\n"
+		msg += "It has [icon2html(l_hand, user)] \a [src.l_hand] in its left hand.\n"
 	if (src.r_hand)
-		msg += "It has [bicon(r_hand)] \a [src.r_hand] in its right hand.\n"
+		msg += "It has [icon2html(r_hand, user)] \a [src.r_hand] in its right hand.\n"
 	if (src.back)
-		msg += "It has [bicon(back)] \a [src.back] on its back.\n"
+		msg += "It has [icon2html(back, user)] \a [src.back] on its back.\n"
 	if (src.stat == DEAD)
 		msg += "<span class='deadsay'>It is limp and unresponsive, with no signs of life.</span>\n"
 	else
