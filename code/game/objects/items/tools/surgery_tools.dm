@@ -73,7 +73,7 @@
 	name = "scalpel"
 	desc = "Cut, cut, and once more cut."
 	icon_state = "scalpel"
-	OOC_info = "Used to begin a surgery or to perform necrosis removal. If you are using this instead of the incision management system to begin a surgery you must also include the retractor and hemostat as the next steps. You should use the Incision Management System instead. Can also be used for necrosis removal by 1. Scalpel, 2. Advanced Trauma Kit."
+	OOC_info = "Used to begin a surgery or to perform necrosis removal. If you are using this instead of the Incision Management System to begin a surgery you must also include the Retractor and Hemostat as the next steps. You should use the Incision Management System instead. Can also be used for necrosis removal by 1. Scalpel, 2. Advanced Trauma Kit."
 	flags_atom = CONDUCT
 	force = 10.0
 	sharp = IS_SHARP_ITEM_ACCURATE
@@ -119,7 +119,7 @@
 	name = "incision management system"
 	desc = "A true extension of the surgeon's body, this marvel instantly and completely prepares an incision allowing for the immediate commencement of therapeutic steps."
 	icon_state = "scalpel_manager_on"
-	OOC_info = "This is the first tool to use for any surgery. have the correct body part selected then click your patient with this tool to begin surgery on that body part. Can also be used for necrosis removal by 1. Incision Management System, 2. Advanced Trauma Kit."
+	OOC_info = "This is the first tool to use for any surgery. Have the correct body part selected and then click your patient with this tool to begin surgery on that location. Can also be used for necrosis removal by 1. Incision Management System, 2. Advanced Trauma Kit."
 	force = 7.5
 
 /*
