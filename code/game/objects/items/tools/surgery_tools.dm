@@ -39,7 +39,7 @@
 	name = "cautery"
 	desc = "This stops bleeding."
 	icon_state = "cautery"
-	OOC_info = "Used to finish a surgery. Apply at the end of a surgery chain that closes up the incision. Can also reduce infection (but not necrosis) by repeating these steps 1. Incision Management System, 2. Cautery."
+	OOC_info = "Used to finish a surgery. Apply at the end of a surgery chain that closes up the incision. Can also cauterize localized infections (but not necrosis) by repeating these steps 1. Incision Management System, 2. Cautery."
 	matter = list("metal" = 5000, "glass" = 2500)
 	flags_atom = CONDUCT
 	w_class = 1
