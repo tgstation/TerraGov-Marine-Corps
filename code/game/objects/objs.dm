@@ -19,7 +19,7 @@
 
 	var/igniting = FALSE	//Whether it ignites on impact
 	var/item_fire_stacks = 0	//How many fire stacks it applies
-	var/OOC_info = "There is no OOC Information about this object."		//OOC information about the object, accessible via the objects tab. If you've got something to add, please make a PR and add 'OOC_info = ' to the object with your information.
+	var/OOC_info = "There is no OOC Information about this object. Feel free to contribute with your own descriptions through the wiki."		//OOC information about the object, accessible via the objects tab. If you've got something to add, please make a PR and add 'OOC_info = ' to the object with your information.
 
 /obj/New()
 	..()
