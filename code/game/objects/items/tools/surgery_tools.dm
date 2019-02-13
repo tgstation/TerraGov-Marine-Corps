@@ -73,7 +73,7 @@
 	name = "scalpel"
 	desc = "Cut, cut, and once more cut."
 	icon_state = "scalpel"
-	OOC_info = "Used to begin a surgery or to perform necrosis removal. If you are using this instead of the incision management system to begin a surgery you must also include the retractor and hemostat as the next steps. You should use the Incision Management System instead. Can also be used for necrosis removal by 1. Scalpel, 2. Advanced Trauma Kit."
+	OOC_info = "Used to begin a surgery or to perform necrosis removal. If you are using this instead of the Incision Management System to begin a surgery you must also include the Retractor and Hemostat as the next steps. You should use the Incision Management System instead. Can also be used for necrosis removal by 1. Scalpel, 2. Advanced Trauma Kit."
 	flags_atom = CONDUCT
 	force = 10.0
 	sharp = IS_SHARP_ITEM_ACCURATE
