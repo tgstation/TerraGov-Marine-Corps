@@ -33,8 +33,8 @@
 	set name = "OOC object information"
 	set desc = "Reveals some Out of Character knowledge about an item. a mini-mentor really."
 	set category = "Object"
-	set src in range(1)
-	to_chat(usr, "[src.OOC_info]")
+	set src in view(1)
+	to_chat(usr, "[OOC_info]")
 	
 
 /obj/proc/add_initial_reagents()
