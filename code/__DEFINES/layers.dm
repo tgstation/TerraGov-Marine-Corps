@@ -14,6 +14,7 @@
 #define ANIMAL_HIDING_LAYER 2.2
 
 #define DISPOSAL_PIPE_LAYER 2.3
+#define GAS_PIPE_HIDDEN_LAYER 2.35
 
 #define BELOW_ATMOS_PIPE_LAYER 2.37
 #define ATMOS_PIPE_SCRUBBER_LAYER 2.38
@@ -24,7 +25,12 @@
 #define WIRE_LAYER 2.44
 #define WIRE_TERMINAL_LAYER 2.45
 
+#define GAS_SCRUBBER_LAYER 2.46
+#define GAS_PIPE_VISIBLE_LAYER 2.47
+#define GAS_FILTER_LAYER 2.48
+#define GAS_PUMP_LAYER 2.49
 
+#define LOW_OBJ_LAYER 2.5
 #define UNDERFLOOR_OBJ_LAYER 2.5 //bluespace beacon, navigation beacon, etc
 
 #define CATWALK_LAYER 2.51 //catwalk overlay of /turf/open/floor/plating/plating_catwalk
@@ -68,6 +74,7 @@
 
 
 #define WINDOW_LAYER 3.2 //above closed doors
+#define ABOVE_WINDOW_LAYER 3.3
 
 #define WALL_OBJ_LAYER 3.5 //posters on walls
 

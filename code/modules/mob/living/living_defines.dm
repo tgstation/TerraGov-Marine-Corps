@@ -85,3 +85,5 @@
 
 	var/entangle_delay = null
 	var/entangled_by = null
+
+	var/ventcrawl_layer = PIPING_LAYER_DEFAULT
