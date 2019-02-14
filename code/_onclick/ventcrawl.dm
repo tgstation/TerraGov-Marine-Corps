@@ -83,7 +83,7 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 		if(vent_found_parent && (vent_found_parent.members.len || vent_found_parent.other_atmosmch))
 			visible_message("<span class='notice'>[src] begins climbing into the ventilation system...</span>" ,"<span class='notice'>You begin climbing into the ventilation system...</span>")
 
-			if(!do_after(src, 25, target = vent_found))
+			if(!do_after(src, 45, FALSE, 5, BUSY_ICON_GENERIC))
 				return
 
 			if(!client)
@@ -91,7 +91,7 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 
 			if(iscarbon(src) && can_ventcrawl())//It must have atleast been 1 to get this far
 				var/failed = 0
-				var/list/items_list = get_equipped_items(include_pockets = TRUE)
+				var/list/items_list = get_equipped_items() //include_pockets = TRUE)
 				if(items_list.len)
 					failed = 1
 				if(failed)
