@@ -59,13 +59,13 @@
 		//playsound(src, 'sound/misc/compiler-failure.ogg', 50, 1)
 		return
 	..()
-/*
+
 /obj/machinery/portable_atmospherics/canister/nitrogen
 	name = "n2 canister"
 	desc = "Nitrogen gas. Reportedly useful for something."
 	icon_state = "red"
-	gas_type = /datum/gas/nitrogen
-*/
+	gas_type = GAS_TYPE_NITROGEN
+
 /obj/machinery/portable_atmospherics/canister/oxygen
 	name = "o2 canister"
 	desc = "Oxygen. Necessary for human life."
