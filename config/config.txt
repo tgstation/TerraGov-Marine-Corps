@@ -10,7 +10,7 @@ $include dbconfig.txt
 #HOSTEDBY yournamehere
 
 ## The title of the main window.
-#TITLE Something
+TITLE Change Me
 
 ## Password to make your server appear on the hub.
 HUBPASSWORD kMZy3U5jJHSiBQjr
