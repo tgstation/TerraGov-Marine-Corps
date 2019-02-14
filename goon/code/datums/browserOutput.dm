@@ -179,11 +179,12 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 		return
 
 	//Sorry but this will have to do for a while.
-	if(istype(message, /image) || istype(message, /sound) || istype(target, /savefile) || !(ismob(target) || islist(target) || istype(target, /client) || target == world))
-		target << message
-		if(!istype(target, /atom)) // Really easy to mix these up, and not having to make sure things are mobs makes the code cleaner.
-			CRASH("DEBUG: Boutput called with invalid message")
-			return
+	if(!istext(message))
+		if(istype(message, /image) || istype(message, /sound) || istype(target, /savefile) || !(ismob(target) || islist(target) || istype(target, /client) || target == world))
+			target << message
+			if(!istype(target, /atom)) // Really easy to mix these up, and not having to make sure things are mobs makes the code cleaner.
+				CRASH("DEBUG: Boutput called with invalid message")
+				return
 
 	if(target == world)
 		target = GLOB.clients
