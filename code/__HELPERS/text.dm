@@ -364,3 +364,7 @@ proc/TextPreview(var/string,var/len=40)
 	text = replacetext(text, "onforminput", "")
 	text = replacetext(text, "oninput", "")
 	return text
+
+
+/proc/sanitize_filename(t)
+	return sanitize_simple(t, list("\n"="", "\t"="", "/"="", "\\"="", "?"="", "%"="", "*"="", ":"="", "|"="", "\""="", "<"="", ">"=""))

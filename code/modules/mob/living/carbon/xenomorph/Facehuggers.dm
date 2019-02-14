@@ -19,7 +19,7 @@
 	flags_atom = NOFLAGS
 	flags_item = NOBLUDGEON
 	throw_range = 1
-	layer = MOB_LAYER
+	layer = FACEHUGGER_LAYER
 
 	var/stat = CONSCIOUS //UNCONSCIOUS is the idle state in this case
 	var/stasis = FALSE
@@ -496,7 +496,7 @@
 	update_icon()
 
 /obj/item/clothing/mask/facehugger/proc/melt_away()
-	visible_message("[bicon(src)] <span class='danger'>\The [src] decays into a mass of acid and chitin.</span>")
+	visible_message("[icon2html(src, viewers(src))] <span class='danger'>\The [src] decays into a mass of acid and chitin.</span>")
 	qdel(src)
 
 #undef FACEHUGGER_LIFECYCLE

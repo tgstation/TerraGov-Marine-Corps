@@ -5,7 +5,7 @@
 
 	if(!mind)
 		mind = new /datum/mind(key)
-		mind.active = 1
+		mind.active = TRUE
 		mind.current = src
 
 	if(length(GLOB.newplayer_start))
@@ -17,10 +17,9 @@
 	sight |= SEE_TURFS
 	GLOB.player_list |= src
 
-	new_player_panel()
+	new_player_panel_proc()
 
 	spawn(40)
 		if(client)
-			// handle_privacy_poll() //This is in poll.dm and could be used to run polls for all first-time logins. It won't reappear after they vote.
 			client.playtitlemusic()
 			version_check()

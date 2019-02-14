@@ -1,0 +1,10 @@
+author: "TobiNerd & Hughgent"
+delete-after: True
+changes: 
+  - tweak: "Cryotubes moved next to surgery"
+  - tweak: "Locker Room merged with storage, and can be accessed directly from the surgical hallway hallway"
+  - tweak: "Lounge moved to where locker room used to be."
+  - tweak: "Surgical hallway made wider for less bumping"
+  - tweak: "Moved around a few other items on tables and such to match the new layout better"
+  - bugfix: "Fixed CMO office being medical lower"
+  - rscdel: "Removed two blood dispensers and two medplus vendors in hallway as direct access to storage makes them obsolete."
