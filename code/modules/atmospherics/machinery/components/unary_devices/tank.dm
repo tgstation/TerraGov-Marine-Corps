@@ -27,7 +27,7 @@
 
 
 /obj/machinery/atmospherics/components/unary/tank/air
-	icon_state = "grey"
+	icon_state = "air"
 	name = "pressure tank (Air)"
 
 ///obj/machinery/atmospherics/components/unary/tank/air/New()
@@ -43,10 +43,10 @@
 /obj/machinery/atmospherics/components/unary/tank/toxins
 	icon_state = "orange"
 	gas_type = /datum/gas/plasma
-
+*/
 /obj/machinery/atmospherics/components/unary/tank/oxygen
-	icon_state = "blue"
-	gas_type = /datum/gas/oxygen
+	icon_state = "o2"
+/*	gas_type = /datum/gas/oxygen
 
 /obj/machinery/atmospherics/components/unary/tank/nitrogen
 	icon_state = "red"
