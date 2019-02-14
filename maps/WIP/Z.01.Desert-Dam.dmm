@@ -3686,7 +3686,7 @@
 "bsT" = (/turf/open/floor{tag = "icon-darkyellowcorners2 (WEST)"; icon_state = "darkyellowcorners2"; dir = 8},/area/desert_dam/interior/dam_interior/engine_east_wing)
 "bsU" = (/obj/machinery/atmospherics/unary/vent_pump{dir = 1; on = 1},/turf/open/floor{dir = 5; icon_state = "vault"},/area/desert_dam/interior/dam_interior/engine_east_wing)
 "bsV" = (/obj/machinery/door/airlock/almayer/maint{name = "\improper Atmospheric Storage"},/turf/open/floor{tag = "icon-dark2"; icon_state = "dark2"},/area/desert_dam/interior/dam_interior/atmos_storage)
-"bsW" = (/obj/machinery/portable_atmospherics/powered/scrubber,/turf/open/floor{tag = "icon-dark2"; icon_state = "dark2"},/area/desert_dam/interior/dam_interior/atmos_storage)
+"bsW" = (/obj/machinery/portable_atmospherics/scrubber,/turf/open/floor{tag = "icon-dark2"; icon_state = "dark2"},/area/desert_dam/interior/dam_interior/atmos_storage)
 "bsX" = (/obj/machinery/mining/drill,/turf/open/desertdam/desert{icon_state = "desert6"},/area/desert_dam/exterior/valley/valley_north_east)
 "bsY" = (/obj/machinery/mining/brace{dir = 8},/turf/open/desertdam/desert{icon_state = "desert6"},/area/desert_dam/exterior/valley/valley_north_east)
 "bsZ" = (/turf/closed/wall,/area/desert_dam/building/mining/break_room)
