@@ -140,7 +140,7 @@ sorts them out by their department.
 				if("yautjablooded","bloodedpredator","blooded") 	role |= WHITELIST_YAUTJA_BLOODED
 				if("yautjaelite","elitepredator","elite")			role |= WHITELIST_YAUTJA_ELITE
 				if("yautjaelder","elderpredator","elder")			role |= WHITELIST_YAUTJA_ELDER
-				if("captain","cpt") 								role |= WHITELIST_COMMANDER
+				if("commander","co") 								role |= WHITELIST_COMMANDER
 				if("synthetic","synth") 							role |= WHITELIST_SYNTHETIC
 				if("arcturian","snowflake") 						role |= WHITELIST_ARCTURIAN
 				if("all","everything") 								role |= WHITELIST_ALL
@@ -429,7 +429,7 @@ sorts them out by their department.
 
 			return FALSE
 
-		if("Squad Corpsman")
+		if("Squad Medic")
 			for(var/datum/squad/S in shuffle(squads))
 				if(S.num_medics >= S.max_medics)
 					continue

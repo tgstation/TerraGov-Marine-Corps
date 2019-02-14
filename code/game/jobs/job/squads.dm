@@ -99,7 +99,7 @@
 		if("Squad Engineer")
 			num_engineers++
 			C.claimedgear = 0
-		if("Squad Corpsman")
+		if("Squad Medic")
 			num_medics++
 			C.claimedgear = 0
 		if("Squad Specialist")
@@ -157,7 +157,7 @@
 	switch(H.mind.assigned_role)
 		if("Squad Engineer")
 			num_engineers--
-		if("Squad Corpsman")
+		if("Squad Medic")
 			num_medics--
 		if("Squad Specialist")
 			num_specialists--
@@ -188,7 +188,7 @@
 	if(old_lead.mind.assigned_role)
 		old_lead.reset_comm_title(old_lead.mind.assigned_role)
 		if(old_lead.mind.cm_skills)
-			if(old_lead.mind.assigned_role == ("Squad Specialist" || "Squad Engineer" || "Squad Corpsman" || "Squad Smartgunner"))
+			if(old_lead.mind.assigned_role == ("Squad Specialist" || "Squad Engineer" || "Squad Medic" || "Squad Smartgunner"))
 				old_lead.mind.cm_skills.leadership = SKILL_LEAD_BEGINNER
 
 			else if(old_lead.mind == "Squad Leader")

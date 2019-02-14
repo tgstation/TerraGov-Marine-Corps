@@ -451,7 +451,7 @@
 					to_chat(H, "Best to let the mercs do the killing and the dying, but <b>remind them who pays the bills.</b>")
 					to_chat(H, "________________________")
 			return
-		if("Captain")
+		if("Commander")
 			H.loc = pick(marine_spawns)
 			spawn(40)
 				if(H)

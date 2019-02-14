@@ -715,7 +715,7 @@
 		if("Squad Engineer")
 			if(new_squad.num_engineers >= new_squad.max_engineers)
 				no_place = TRUE
-		if("Squad Corpsman")
+		if("Squad Medic")
 			if(new_squad.num_medics >= new_squad.max_medics)
 				no_place = TRUE
 		if("Squad Smartgunner")
@@ -1212,7 +1212,7 @@
 			if("Squad Specialist")
 				spec_text += marine_infos
 				spec_count++
-			if("Squad Corpsman")
+			if("Squad Medic")
 				medic_text += marine_infos
 				medic_count++
 			if("Squad Engineer")
@@ -1242,7 +1242,7 @@
 				if("Squad Specialist")
 					spec_text += marine_infos
 					spec_count++
-				if("Squad Corpsman")
+				if("Squad Medic")
 					medic_text += marine_infos
 					medic_count++
 				if("Squad Engineer")

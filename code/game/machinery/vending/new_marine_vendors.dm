@@ -435,7 +435,7 @@
 
 /obj/machinery/marine_selector/clothes/medic
 	req_access = list(ACCESS_MARINE_MEDPREP)
-	vendor_role = "Squad Corpsman"
+	vendor_role = "Squad Medic"
 	gives_webbing = FALSE
 
 	listed_products = list(
@@ -741,7 +741,7 @@
 	name = "NEXUS Automated Medic Equipment Rack"
 	desc = "An automated medic equipment rack hooked up to a colossal storage unit."
 	icon_state = "medic"
-	vendor_role = "Squad Corpsman"
+	vendor_role = "Squad Medic"
 	req_access = list(ACCESS_MARINE_MEDPREP)
 
 	listed_products = list(

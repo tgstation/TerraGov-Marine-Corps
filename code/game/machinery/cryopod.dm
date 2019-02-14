@@ -335,7 +335,7 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 					switch(H.mind.assigned_role)
 						if("Squad Engineer")
 							S.num_engineers--
-						if("Squad Corpsman")
+						if("Squad Medic")
 							S.num_medics--
 						if("Squad Specialist")
 							S.num_specialists--

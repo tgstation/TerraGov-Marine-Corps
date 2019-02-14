@@ -146,7 +146,7 @@ You can serve a variety of roles, so choose carefully."}
 	flag = ROLE_MARINE_LEADER
 	total_positions = 4
 	spawn_positions = 4
-	supervisors = "the acting captain"
+	supervisors = "the acting commander"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP)
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADD_TO_MODE|ROLE_ADD_TO_SQUAD

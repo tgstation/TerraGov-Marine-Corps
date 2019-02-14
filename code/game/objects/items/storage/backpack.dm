@@ -723,7 +723,7 @@
 	max_storage_space = 30
 
 /obj/item/storage/backpack/mcommander
-	name = "marine captain backpack"
+	name = "marine commander backpack"
 	desc = "The contents of this backpack are top secret."
 	icon_state = "marinepack"
 	storage_slots = null
