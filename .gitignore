@@ -13,5 +13,3 @@ tools/Runtime Condenser/Input.txt
 tools/Runtime Condenser/Output.txt
 tools/MapDaemon/logs/*.txt
 *.json
-
-tmp/iconCache\.sav
