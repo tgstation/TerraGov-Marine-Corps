@@ -30,8 +30,8 @@
 
 /obj/item/reagent_container/hypospray/autoinjector/fillable
 	desc = "An autoinjector loaded with... something, consult the doctor who gave this to you."
-	amount_per_transfer_from_this = 60
-	volume = 60
+	amount_per_transfer_from_this = 30
+	volume = 30
 	list_reagents = list()
 
 /obj/item/reagent_container/hypospray/autoinjector/tricordrazine

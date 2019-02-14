@@ -472,7 +472,7 @@
 				P.pixel_x = rand(-7, 7) //random position
 				P.pixel_y = rand(-7, 7)
 				P.icon_state = "autoinjector-"+autoinjectorsprite
-				reagents.trans_to(P,60)
+				reagents.trans_to(P,30)
 				P.update_icon()
 
 		else if(href_list["change_pill_bottle"])
@@ -582,7 +582,7 @@
 			dat += "<A href='?src=\ref[src];createpill=1'>Create pill (15 units max)</A><a href=\"?src=\ref[src]&change_pill=1\"><img src=\"pill[pillsprite].png\" /></a><BR>"
 			dat += "<A href='?src=\ref[src];createpill_multiple=1'>Create multiple pills</A><BR>"
 			dat += "<A href='?src=\ref[src];createbottle=1'>Create bottle (60 units max)<a href=\"?src=\ref[src]&change_bottle=1\"><img src=\"bottle-[bottlesprite].png\" /></A><BR>"
-			dat += "<A href='?src=\ref[src];createautoinjector=1'>Create autoinjector (60 units max)<a href=\"?src=\ref[src]&change_autoinjector=1\"><img src=\"autoinjector-[autoinjectorsprite].png\" /></A>"
+			dat += "<A href='?src=\ref[src];createautoinjector=1'>Create autoinjector (30 units max)<a href=\"?src=\ref[src]&change_autoinjector=1\"><img src=\"autoinjector-[autoinjectorsprite].png\" /></A>"
 		else
 			dat += "<A href='?src=\ref[src];createbottle=1'>Create bottle (50 units max)</A>"
 	if(!condi)
