@@ -3786,7 +3786,7 @@
 "buP" = (/turf/open/floor{tag = "icon-darkyellow2 (EAST)"; icon_state = "darkyellow2"; dir = 4},/area/desert_dam/interior/dam_interior/engine_east_wing)
 "buQ" = (/obj/structure/rack,/obj/item/clothing/mask/gas,/turf/open/floor{dir = 10; icon_state = "darkpurple2"; tag = "icon-darkpurple2"},/area/desert_dam/interior/dam_interior/atmos_storage)
 "buR" = (/obj/structure/rack,/obj/item/clothing/mask/gas,/turf/open/floor{tag = "icon-darkpurple2"; icon_state = "darkpurple2"},/area/desert_dam/interior/dam_interior/atmos_storage)
-"buS" = (/obj/machinery/portable_atmospherics/powered/pump,/turf/open/floor{tag = "icon-darkpurple2"; icon_state = "darkpurple2"},/area/desert_dam/interior/dam_interior/atmos_storage)
+"buS" = (/obj/machinery/portable_atmospherics/pump,/turf/open/floor{tag = "icon-darkpurple2"; icon_state = "darkpurple2"},/area/desert_dam/interior/dam_interior/atmos_storage)
 "buT" = (/obj/machinery/power/port_gen/pacman,/turf/open/floor{tag = "icon-darkpurple2"; icon_state = "darkpurple2"},/area/desert_dam/interior/dam_interior/atmos_storage)
 "buU" = (/obj/machinery/power/port_gen/pacman,/turf/open/floor{dir = 6; icon_state = "darkpurple2"; tag = "icon-darkpurple2"},/area/desert_dam/interior/dam_interior/atmos_storage)
 "buV" = (/turf/closed/wall/r_wall,/area/desert_dam/interior/caves/central_caves/entrances/south_tunnel_entrance)

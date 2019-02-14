@@ -65,13 +65,13 @@
 	desc = "Nitrogen gas. Reportedly useful for something."
 	icon_state = "red"
 	gas_type = /datum/gas/nitrogen
-
+*/
 /obj/machinery/portable_atmospherics/canister/oxygen
 	name = "o2 canister"
 	desc = "Oxygen. Necessary for human life."
 	icon_state = "blue"
-	gas_type = /datum/gas/oxygen
-
+	gas_type = GAS_TYPE_OXYGEN
+/*
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide
 	name = "co2 canister"
 	desc = "Carbon dioxide. What the fuck is carbon dioxide?"
@@ -95,12 +95,15 @@
 	desc = "Nitrous oxide gas. Known to cause drowsiness."
 	icon_state = "redws"
 	gas_type = /datum/gas/nitrous_oxide
-
+*/
 /obj/machinery/portable_atmospherics/canister/air
 	name = "air canister"
 	desc = "Pre-mixed air."
 	icon_state = "grey"
+	gas_type = GAS_TYPE_AIR
 
+/obj/machinery/portable_atmospherics/canister/empty
+/*
 /obj/machinery/portable_atmospherics/canister/tritium
 	name = "tritium canister"
 	desc = "Tritium. Inhalation might cause irradiation."
