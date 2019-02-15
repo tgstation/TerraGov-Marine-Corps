@@ -813,7 +813,7 @@
 		l_color = "#FFFF0C" //Yeller
 		SetLuminosity(4)
 		spawn(3000)
-			if(SSticker && istype(SSticker.mode,/datum/game_mode/huntergames)) loop_firetick()
+			if(istype(SSticker?.mode,/datum/game_mode/huntergames)) loop_firetick()
 
 
 	proc/loop_firetick() //Crackly!
