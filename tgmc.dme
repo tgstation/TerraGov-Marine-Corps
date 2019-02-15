@@ -1192,7 +1192,6 @@
 #include "code\modules\mob\living\carbon\xenomorph\Castes\Sentinel.dm"
 #include "code\modules\mob\living\carbon\xenomorph\Castes\Spitter.dm"
 #include "code\modules\mob\living\carbon\xenomorph\Castes\Warrior.dm"
-#include "code\modules\mob\living\carbon\xenomorph\Castes\PsyAlien.dm"
 #include "code\modules\mob\living\carbon\xenomorph\Castes\Xenoborg.dm"
 #include "code\modules\mob\living\silicon\alarm.dm"
 #include "code\modules\mob\living\silicon\death.dm"

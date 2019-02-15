@@ -652,8 +652,6 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 			var/mob/living/carbon/Xenomorph/XEN = M
 			switch(CA.vehicle_class)
 				if(WEIGHT_LIGHT)
-					if(isXenoQueen(XEN) || isXenoCrusher(XEN))
-						return
 					switch(XEN.upgrade)
 						if(0)
 							M.KnockDown(5)
@@ -678,8 +676,6 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 							//M.visible_message("<span class='danger'>[M] pushes against the [src], holding it in place with ease!</span>", "<span class='xenodanger'>You stopped [src]! It's no match to you!</span>")
 							return
 				if(WEIGHT_MEDIUM)
-					if(isXenoQueen(XEN) || isXenoCrusher(XEN))
-						return
 					switch(XEN.upgrade)
 						if(0)
 							M.KnockDown(5)

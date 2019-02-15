@@ -1,7 +1,7 @@
 /mob/living/carbon/human/attack_hand(mob/living/carbon/human/M)
 	..()
 
-	if((M != src) && check_shields(0, M.name, M.dir))
+	if((M != src) && check_shields(0, M.name))
 		visible_message("<span class='danger'>[M] attempted to touch [src]!</span>", null, null, 5)
 		return 0
 
