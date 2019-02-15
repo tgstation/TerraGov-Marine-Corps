@@ -111,12 +111,29 @@
 	else
 		..()
 
+/obj/vehicle/walker/Bumped(var/atom/A)
+	..()
+
+	if(istype(A, /mob/living/carbon/Xenomorph/Crusher))
+
+		var/mob/living/carbon/Xenomorph/Crusher/C = A
+
+		if(C.charge_speed < C.charge_speed_max/(1.1)) //Arbitrary ratio here, might want to apply a linear transformation instead
+			return
+
+		health -= 50 * dmg_multipliers["blunt"]
+		healthcheck()
+		C.stop_momentum(C.charge_dir)
+
 /obj/vehicle/walker/verb/enter_walker()
 	set category = "Object"
 	set name = "Enter Into Walker"
 	set src in oview(1)
 
-	move_in(usr)
+	if(usr.mind && usr.mind.cm_skills && usr.mind.cm_skills.powerloader)
+		move_in(usr)
+	else
+		to_chat(usr, "How to operate it?")
 
 /obj/vehicle/walker/proc/move_in(mob/living/carbon/user)
 	if(!ishuman(user))
@@ -372,7 +389,9 @@
 			visible_message("[src] napalm exploded!", "You hear blast")
 			explosion(get_turf(src), 0, 0, 1, 3)
 			new /obj/flamer_fire(get_turf(src), 20, 20, fire_spread_amount = 2)
-		new /obj/structure/walker_wreckage(src)
+		new /obj/structure/walker_wreckage(src.loc)
+		pilot.loc = loc
+		pilot = null
 		qdel(src)
 
 /obj/vehicle/walker/bullet_act(var/obj/item/projectile/Proj)
