@@ -6,7 +6,7 @@ spawns for the various factions. It's also a bit more robust with some added par
 is 0, you don't need aliens at the start of the game. If aliens are required for win conditions, tick it to 1 or more.
 
 This is a basic outline of how things should function in code.
-You can see a working example in the TerraGov Marine Corps game mode.
+You can see a working example in the United States Colonial Marines game mode.
 
 	//Minds are not transferred/made at this point, so we have to check for them so we don't double dip.
 	can_start() //This should have the following in order:
@@ -55,8 +55,8 @@ Additional game mode variables.
 	var/merc_starting_num 	= 0 //PMC clamp.
 	var/marine_starting_num = 0 //number of players not in something special
 	var/pred_current_num 	= 0 //How many are there now?
-	var/pred_maximum_num 	= 4 //How many are possible per round? Does not count elders.
-	var/pred_round_chance 	= 0 //%
+	var/pred_maximum_num 	= 2 //How many are possible per round? Does not count elders.
+	var/pred_round_chance 	= 20 //%
 
 	//Some gameplay variables.
 	var/round_checkwin 		= 0
@@ -94,10 +94,6 @@ datum/game_mode/proc/initialize_special_clamps()
 	surv_starting_num = CLAMP((ready_players/25), 0, 8)
 	merc_starting_num = max((ready_players/3), 1)
 	marine_starting_num = ready_players - xeno_starting_num - surv_starting_num - merc_starting_num
-	for(var/datum/squad/sq in RoleAuthority.squads)
-		if(sq)
-			sq.max_engineers = engi_slot_formula(marine_starting_num)
-			sq.max_medics = medic_slot_formula(marine_starting_num)
 
 	for(var/datum/job/J in RoleAuthority.roles_by_name)
 		if(J.scaled)
@@ -178,7 +174,7 @@ datum/game_mode/proc/initialize_special_clamps()
 
 /datum/game_mode/proc/attempt_to_join_as_predator(mob/pred_candidate)
 	var/mob/living/carbon/human/new_predator = transform_predator(pred_candidate) //Initialized and ready.
-	if(!new_predator) 
+	if(!new_predator)
 		return FALSE
 
 	log_admin("[new_predator.key], became a new Yautja, [new_predator.real_name].")

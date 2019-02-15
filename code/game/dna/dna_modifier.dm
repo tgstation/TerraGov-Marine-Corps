@@ -37,7 +37,7 @@
 
 /////////////////////////// DNA MACHINES
 /obj/machinery/dna_scannernew
-	name = "\improper DNA modifier"
+	name = " DNA modifier"
 	desc = "It scans DNA structures."
 	icon = 'icons/obj/machines/cryogenics.dmi'
 	icon_state = "scanner_0"

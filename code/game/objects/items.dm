@@ -603,7 +603,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 /obj/item/proc/zoom(mob/living/user, tileoffset = 11, viewsize = 12) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
 	if(!user)
 		return
-	var/zoom_device = zoomdevicename ? "\improper [zoomdevicename] of [src]" : "\improper [src]"
+	var/zoom_device = zoomdevicename ? " [zoomdevicename] of [src]" : " [src]"
 	var/mob/living/carbon/human/H = user
 
 	for(var/obj/item/I in user.contents)
@@ -808,3 +808,9 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		user.inertia_dir = get_dir(target, user)
 		step(user, user.inertia_dir)
 	return
+
+/obj/item/proc/IsReflect(def_zone, hol_dir, hit_dir) //This proc determines if and at what% an object will reflect energy projectiles if it's in l_hand,r_hand or wear_suit
+	return FALSE
+
+/obj/item/proc/Get_shield_chance()
+	return 0

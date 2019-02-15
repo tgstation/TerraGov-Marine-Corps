@@ -78,7 +78,7 @@
 	return
 
 /obj/machinery/vending/marine/cargo_guns
-	name = "\improper ColMarTech automated armaments vendor"
+	name = " ColMarTech automated armaments vendor"
 	desc = "A automated rack hooked up to a small supply of various firearms and explosives."
 	wrenchable = FALSE
 	products = list(
@@ -165,7 +165,7 @@
 
 
 /obj/machinery/vending/marine/cargo_ammo
-	name = "\improper ColMarTech automated munition vendor"
+	name = " ColMarTech automated munition vendor"
 	desc = "A automated rack hooked up to a small supply of ammo magazines."
 	icon_state = "marinerequisitions"
 	icon_vend = "marinerequisitions-vend"
@@ -352,7 +352,7 @@
 
 
 /obj/machinery/vending/marineFood
-	name = "\improper Marine Food and Drinks Vendor"
+	name = " Marine Food and Drinks Vendor"
 	desc = "Standard Issue Food and Drinks Vendor, containing standard military food and drinks."
 	icon_state = "sustenance"
 	wrenchable = FALSE
@@ -378,8 +378,8 @@
 
 
 /obj/machinery/vending/MarineMed
-	name = "\improper MarineMed"
-	desc = "Marine Medical Drug Dispenser - Provided by Nanotrasen Pharmaceuticals Division(TM)"
+	name = " MarineMed"
+	desc = "Marine Medical Drug Dispenser - Provided by Weyland-Yutani Pharmaceuticals Division(TM)"
 	icon_state = "marinemed"
 	icon_deny = "marinemed-deny"
 	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;All natural chemicals!;This stuff saves lives.;Don't you want some?;Ping!"
@@ -418,7 +418,7 @@
 
 
 /obj/machinery/vending/MarineMed/Blood
-	name = "\improper MM Blood Dispenser"
+	name = " MM Blood Dispenser"
 	desc = "Marine Med brand Blood Pack Dispensery"
 	icon_state = "bloodvendor"
 	icon_deny = "bloodvendor-deny"
@@ -445,7 +445,7 @@
 			if(!temp_list.len) break
 
 /obj/machinery/vending/marine_medic
-	name = "\improper ColMarTech Medic Vendor"
+	name = " ColMarTech Medic Vendor"
 	desc = "A marine medic equipment vendor"
 	product_ads = "They were gonna die anyway.;Let's get space drugged!"
 	req_access = list(ACCESS_MARINE_MEDPREP)
@@ -475,7 +475,7 @@
 
 
 /obj/machinery/vending/marine_special
-	name = "\improper ColMarTech Specialist Vendor"
+	name = " ColMarTech Specialist Vendor"
 	desc = "A marine specialist equipment vendor"
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
 	req_access = list(ACCESS_MARINE_SPECPREP)
@@ -506,7 +506,7 @@
 
 
 /obj/machinery/vending/shared_vending/marine_special
-	name = "\improper ColMarTech Specialist Vendor"
+	name = " ColMarTech Specialist Vendor"
 	desc = "A marine specialist equipment vendor"
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
 	req_access = list(ACCESS_MARINE_SPECPREP)
@@ -539,7 +539,7 @@
 	..()
 
 /obj/machinery/vending/shared_vending/marine_engi
-	name = "\improper ColMarTech Engineer System Vendor"
+	name = " ColMarTech Engineer System Vendor"
 	desc = "A marine engineering system vendor"
 	product_ads = "If it breaks, wrench it!;If it wrenches, weld it!;If it snips, snip it!"
 	req_access = list(ACCESS_MARINE_ENGPREP)
@@ -549,7 +549,7 @@
 	tokensupport = TOKEN_ENGI
 
 	products = list(
-					/obj/item/coin/marine/engineer = 1,
+					/obj/item/coin/marine/engineer = 2,
 					)
 	contraband = list(/obj/item/cell/super = 1)
 
@@ -572,7 +572,7 @@
 	..()
 
 /obj/machinery/vending/marine_smartgun
-	name = "\improper ColMarTech Smartgun Vendor"
+	name = " ColMarTech Smartgun Vendor"
 	desc = "A marine smartgun equipment vendor"
 	hacking_safety = 1
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
@@ -593,7 +593,7 @@
 	prices = list()
 
 /obj/machinery/vending/marine_leader
-	name = "\improper ColMarTech Leader Vendor"
+	name = " ColMarTech Leader Vendor"
 	desc = "A marine leader equipment vendor"
 	hacking_safety = 1
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
@@ -641,7 +641,7 @@
 
 
 /obj/machinery/vending/attachments
-	name = "\improper Armat Systems Attachments Vendor"
+	name = " Armat Systems Attachments Vendor"
 	desc = "A subsidiary-owned vendor of weapon attachments. This can only be accessed by the Requisitions Officer and Cargo Techs."
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
 	req_access = list(ACCESS_MARINE_CARGO)
@@ -691,7 +691,7 @@
 
 
 /obj/machinery/vending/uniform_supply
-	name = "\improper ColMarTech surplus uniform vendor"
+	name = " ColMarTech surplus uniform vendor"
 	desc = "A automated weapon rack hooked up to a colossal storage of uniforms"
 	icon_state = "marineuniform"
 	icon_vend = "marineuniform_vend"
@@ -741,6 +741,21 @@
 					)
 
 	prices = list()
+
+/obj/machinery/vending/dress_supply
+	name = " ColMarTech dress uniform vendor"
+	desc = "A automated weapon rack hooked up to a colossal storage of dress uniforms"
+	icon_state = "marineuniform"
+	icon_vend = "marineuniform_vend"
+	icon_deny = "marineuniform"
+	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_CARGO)
+	product_ads = "Hey! You! Stop looking like a turtle and start looking like a TRUE soldier!;Dress whites, fresh off the ironing board!;Why kill in armor when you can kill in style?;These uniforms are so sharp you'd cut yourself just looking at them!"
+	products = list(
+					/obj/item/clothing/under/whites = 50,
+					/obj/item/clothing/head/white_dress = 50,
+					/obj/item/clothing/shoes/white = 50,
+					/obj/item/clothing/gloves/white = 50,
+					)
 
 /obj/machinery/vending/uniform_supply/New()
 	..()

@@ -16,7 +16,7 @@
 	var/busy = 0
 	var/progress = 0
 	var/error = 0
-	name = "\improper Mill"
+	name = " Mill"
 	desc = "It is a machine that grinds produce."
 	icon_state = "autolathe"
 	density = 1
@@ -90,7 +90,7 @@
 	var/busy = 0
 	var/progress = 0
 	var/error = 0
-	name = "\improper Fermenter"
+	name = " Fermenter"
 	desc = "It is a machine that ferments produce into alcoholic drinks."
 	icon_state = "autolathe"
 	density = 1
@@ -162,7 +162,7 @@
 	var/busy = 0
 	var/progress = 0
 	var/error = 0
-	name = "\improper Still"
+	name = " Still"
 	desc = "It is a machine that produces hard liquor from alcoholic drinks."
 	icon_state = "autolathe"
 	density = 1
@@ -230,7 +230,7 @@
 	var/busy = 0
 	var/progress = 0
 	var/error = 0
-	name = "\improper Squeezer"
+	name = " Squeezer"
 	desc = "It is a machine that squeezes extracts from produce."
 	icon_state = "autolathe"
 	density = 1
@@ -254,7 +254,7 @@
 	var/error = 0
 	var/enzymes = 0
 	var/water = 0
-	name = "\improper Centrifuge"
+	name = " Centrifuge"
 	desc = "It is a machine that spins produce."
 	icon_state = "autolathe"
 	density = 1

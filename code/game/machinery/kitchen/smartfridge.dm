@@ -1,7 +1,7 @@
 /* SmartFridge.  Much todo
 */
 /obj/machinery/smartfridge
-	name = "\improper SmartFridge"
+	name = " SmartFridge"
 	icon = 'icons/obj/machines/vending.dmi'
 	icon_state = "smartfridge"
 	layer = BELOW_OBJ_LAYER
@@ -170,7 +170,7 @@
 		var/K = item_quants[i]
 		var/count = item_quants[K]
 		if (count > 0)
-			items.Add(list(list("display_name" = html_encode(capitalize(K)), "vend" = i, "quantity" = count)))
+			items.Add(list(list("display_name" = lhtml_encode(capitalize(K)), "vend" = i, "quantity" = count)))
 
 	if (items.len > 0)
 		data["contents"] = items
@@ -350,7 +350,7 @@
 *********************/
 
 /obj/machinery/smartfridge/seeds
-	name = "\improper MegaSeed Servitor"
+	name = " MegaSeed Servitor"
 	desc = "When you need seeds fast!"
 	icon = 'icons/obj/machines/vending.dmi'
 	icon_state = "seeds"
@@ -364,7 +364,7 @@
 
 //the secure subtype does nothing, I'm only keeping it to avoid conflicts with maps.
 /obj/machinery/smartfridge/secure/medbay
-	name = "\improper Refrigerated Medicine Storage"
+	name = " Refrigerated Medicine Storage"
 	desc = "A refrigerated storage unit for storing medicine and chemicals."
 	icon_state = "smartfridge" //To fix the icon in the map editor.
 	icon_on = "smartfridge"
@@ -383,7 +383,7 @@
 
 
 /obj/machinery/smartfridge/secure/virology
-	name = "\improper Refrigerated Virus Storage"
+	name = " Refrigerated Virus Storage"
 	desc = "A refrigerated storage unit for storing viral material."
 	is_secure_fridge = TRUE
 	req_access_txt = "39"
@@ -398,7 +398,7 @@
 
 
 /obj/machinery/smartfridge/chemistry
-	name = "\improper Smart Chemical Storage"
+	name = " Smart Chemical Storage"
 	desc = "A refrigerated storage unit for medicine and chemical storage."
 	is_secure_fridge = TRUE
 	req_one_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_MEDPREP) //Medics can now access the fridge
@@ -410,12 +410,12 @@
 
 
 /obj/machinery/smartfridge/chemistry/virology
-	name = "\improper Smart Virus Storage"
+	name = " Smart Virus Storage"
 	desc = "A refrigerated storage unit for volatile sample storage."
 
 
 /obj/machinery/smartfridge/drinks
-	name = "\improper Drink Showcase"
+	name = " Drink Showcase"
 	desc = "A refrigerated storage unit for tasty tasty alcohol."
 
 /obj/machinery/smartfridge/drinks/accept_check(var/obj/item/O as obj)

@@ -51,30 +51,30 @@
 	usr << browse("[dat]", "window=map;size=[window_size]")
 
 /obj/item/map/lazarus_landing_map
-	name = "\improper Lazarus Landing Map"
+	name = " Lazarus Landing Map"
 	desc = "A satellite printout of the Lazarus Landing colony on LV-624."
 	html_link = "images/6/6f/LV624.png"
 
 /obj/item/map/ice_colony_map
-	name = "\improper Ice Colony map"
+	name = " Ice Colony map"
 	desc = "A satellite printout of the Ice Colony."
 	html_link = "images/1/18/Map_icecolony.png"
 	color = "cyan"
 
 /obj/item/map/whiskey_outpost_map
-	name = "\improper Whiskey Outpost map"
+	name = " Whiskey Outpost map"
 	desc = "A tactical printout of the Whiskey Outpost defensive positions and locations."
 	html_link = "images/7/78/Whiskey_outpost.png"
 	color = "grey"
 
 /obj/item/map/big_red_map
-	name = "\improper Solaris Ridge Map"
+	name = " Solaris Ridge Map"
 	desc = "A censored blueprint of the Solaris Ridge facility"
 	html_link = "images/c/c5/Big_Red.png"
 	color = "#e88a10"
 
 /obj/item/map/FOP_map
-	name = "\improper Fiorina Orbital Penitentiary Map"
+	name = " Fiorina Orbital Penitentiary Map"
 	desc = "A labelled interior scan of Fiorina Orbital Penitentiary"
 	html_link = "images/4/4c/Map_Prison.png"
 	color = "#e88a10"
@@ -91,22 +91,22 @@
 		return
 	switch(map_tag)
 		if(MAP_LV_624)
-			name = "\improper Lazarus Landing Map"
+			name = " Lazarus Landing Map"
 			desc = "A satellite printout of the Lazarus Landing colony on LV-624."
 			html_link = "images/6/6f/LV624.png"
 		if(MAP_ICE_COLONY)
-			name = "\improper Ice Colony map"
+			name = " Ice Colony map"
 			desc = "A satellite printout of the Ice Colony."
 			html_link = "images/1/18/Map_icecolony.png"
 			color = "cyan"
 		if(MAP_BIG_RED)
-			name = "\improper Solaris Ridge Map"
+			name = " Solaris Ridge Map"
 			desc = "A censored blueprint of the Solaris Ridge facility"
 			html_link = "images/c/c5/Big_Red.png"
 			color = "#e88a10"
 
 		if(MAP_PRISON_STATION)
-			name = "\improper Fiorina Orbital Penitentiary Map"
+			name = " Fiorina Orbital Penitentiary Map"
 			desc = "A labelled interior scan of Fiorina Orbital Penitentiary"
 			html_link = "images/4/4c/Map_Prison.png"
 			color = "#e88a10"

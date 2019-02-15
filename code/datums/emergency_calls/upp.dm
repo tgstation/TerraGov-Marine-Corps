@@ -9,7 +9,7 @@
 	to_chat(H, "<B>You grew up in relativly simple family in [pick(75;"Mars", 25;"a famished UPP colony")] with few belongings or luxuries.</B>")
 	to_chat(H, "<B>The family you grew up with were [pick(50;"getting by", 25;"impoverished", 25;"starving")] and you were one of [pick(10;"two", 20;"three", 20;"four", 30;"five", 20;"six")] children.</B>")
 	to_chat(H, "<B>You come from a long line of [pick(40;"crop-harvesters", 20;"soldiers", 20;"factory workers", 5;"scientists", 15;"engineers")], and quickly enlisted to improve your living conditions.</B>")
-	to_chat(H, "<B>Eliminate the TGMC force. Do not harm the civilians unless they attack you first.</B>")
+	to_chat(H, "<B>Eliminate the USCM force. Do not harm the civilians unless they attack you first.</B>")
 	to_chat(H, "<span class='notice'>Use say :3 <text> to speak in your native tongue.</span>")
 
 
@@ -21,7 +21,7 @@
 		return
 
 	var/mob/living/carbon/human/H = new /mob/living/carbon/human(spawn_loc)
-	
+
 	if(H.gender == MALE)
 		H.name = pick(first_names_male_russian) + " " + pick(last_names_russian)
 		H.real_name = H.name
@@ -30,7 +30,7 @@
 		H.name = pick(first_names_female_russian) + " " + pick(last_names_russian)
 		H.real_name = H.name
 		H.voice_name = H.name
-		
+
 	H.key = M.key
 
 	if(original)

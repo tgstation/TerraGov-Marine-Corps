@@ -1,6 +1,6 @@
 
 /obj/item/book/codebook
-	name = "Theseus Code Book"
+	name = "Almayer Code Book"
 	unique = 1
 	dat = ""
 

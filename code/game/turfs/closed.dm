@@ -228,7 +228,7 @@
 
 
 /turf/closed/shuttle/dropship1
-	name = "\improper Alamo"
+	name = " Alamo"
 	icon = 'icons/turf/dropship.dmi'
 	icon_state = "1"
 
@@ -236,7 +236,7 @@
 	opacity = 0
 
 /turf/closed/shuttle/dropship2
-	name = "\improper Normandy"
+	name = " Normandy"
 	icon = 'icons/turf/dropship2.dmi'
 	icon_state = "1"
 

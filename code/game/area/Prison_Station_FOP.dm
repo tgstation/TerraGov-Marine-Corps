@@ -5,416 +5,416 @@
 
 //SECURITY
 /area/prison/security
-	name = "\improper Security Department"
+	name = " Security Department"
 	icon_state = "security"
 
 /area/prison/security/briefing
-	name = "\improper Briefing"
+	name = " Briefing"
 	icon_state = "brig"
 
 /area/prison/security/head
-	name = "\improper Head of Security's office"
+	name = " Head of Security's office"
 	icon_state = "sec_hos"
 
 /area/prison/security/armory/riot
-	name = "\improper Riot Armory"
+	name = " Riot Armory"
 	icon_state = "armory"
 
 /area/prison/security/armory/lethal
-	name = "\improper Lethal Armory"
+	name = " Lethal Armory"
 	icon_state = "Tactical"
 
 /area/prison/security/armory/highsec_monitoring
-	name = "\improper High-Security Monitoring Armory"
+	name = " High-Security Monitoring Armory"
 	icon_state = "security_sub"
 
 /area/prison/security/monitoring
 	icon_state = "sec_prison"
 
 /area/prison/security/monitoring/lowsec/ne
-	name = "\improper Northeast Low-Security Monitoring"
+	name = " Northeast Low-Security Monitoring"
 
 /area/prison/security/monitoring/lowsec/sw
-	name = "\improper Southwest Low-Security Monitoring"
+	name = " Southwest Low-Security Monitoring"
 
 /area/prison/security/monitoring/medsec/south
-	name = "\improper Medium-Security Monitoring"
+	name = " Medium-Security Monitoring"
 	ceiling = CEILING_GLASS
 
 /area/prison/security/monitoring/medsec/central
-	name = "\improper Central Medium-Security Monitoring"
+	name = " Central Medium-Security Monitoring"
 
 /area/prison/security/monitoring/highsec
-	name = "\improper High-Security Monitoring"
+	name = " High-Security Monitoring"
 
 /area/prison/security/monitoring/maxsec
-	name = "\improper Maximum-Security Monitoring"
+	name = " Maximum-Security Monitoring"
 
 /area/prison/security/monitoring/maxsec/panopticon
-	name = "\improper Panopticon Monitoring"
+	name = " Panopticon Monitoring"
 	ceiling = CEILING_GLASS
 
 /area/prison/security/monitoring/protective
-	name = "\improper Protective Custody Monitoring"
+	name = " Protective Custody Monitoring"
 
 /area/prison/security/checkpoint
 	icon_state = "checkpoint1"
 
 /area/prison/security/checkpoint/medsec
-	name = "\improper Medium-Security Checkpoint"
+	name = " Medium-Security Checkpoint"
 
 /area/prison/security/checkpoint/highsec/n
-	name = "\improper North High-Security Checkpoint"
+	name = " North High-Security Checkpoint"
 
 /area/prison/security/checkpoint/highsec/s
-	name = "\improper South High-Security Checkpoint"
+	name = " South High-Security Checkpoint"
 
 /area/prison/security/checkpoint/vip
-	name = "\improper VIP Checkpoint"
+	name = " VIP Checkpoint"
 
 /area/prison/security/checkpoint/maxsec
-	name = "\improper Maximum-Security Checkpoint"
+	name = " Maximum-Security Checkpoint"
 
 /area/prison/security/checkpoint/highsec_medsec
-	name = "\improper High-to-Medium-Security Checkpoint"
+	name = " High-to-Medium-Security Checkpoint"
 
 /area/prison/security/checkpoint/maxsec_highsec
-	name = "\improper Maximum-to-High-Security Checkpoint"
+	name = " Maximum-to-High-Security Checkpoint"
 
 /area/prison/security/checkpoint/hangar
-	name = "\improper Main Hangar Traffic Control"
+	name = " Main Hangar Traffic Control"
 
 /area/prison/storage
 	icon_state = "engine_storage"
 
 /area/prison/storage/medsec
-	name = "\improper Medium-Security Storage"
+	name = " Medium-Security Storage"
 
 /area/prison/storage/highsec/n
-	name = "\improper North High-Security Storage"
+	name = " North High-Security Storage"
 
 /area/prison/storage/highsec/s
-	name = "\improper South High-Security Storage"
+	name = " South High-Security Storage"
 
 /area/prison/storage/vip
-	name = "\improper VIP Storage"
+	name = " VIP Storage"
 
 /area/prison/recreation
 	icon_state = "party"
 
 /area/prison/recreation/staff
-	name = "\improper Staff Recreation"
+	name = " Staff Recreation"
 
 /area/prison/recreation/medsec
-	name = "\improper Medium-Security Recreation"
+	name = " Medium-Security Recreation"
 
 /area/prison/recreation/highsec/n
-	name = "\improper North High-Security Recreation"
+	name = " North High-Security Recreation"
 
 /area/prison/recreation/highsec/s
-	name = "\improper South High-Security Recreation"
+	name = " South High-Security Recreation"
 
 /area/prison/execution
-	name = "\improper Execution"
+	name = " Execution"
 	icon_state = "dark"
 
 /area/prison/store
-	name = "\improper Prison Store"
+	name = " Prison Store"
 	icon_state = "bar"
 
 /area/prison/chapel
-	name = "\improper Chapel"
+	name = " Chapel"
 	icon_state = "chapel"
 
 /area/prison/holding/holding1
-	name = "\improper Holding Cell 1"
+	name = " Holding Cell 1"
 	icon_state = "blue-red2"
 
 /area/prison/holding/holding2
-	name = "\improper Holding Cell 2"
+	name = " Holding Cell 2"
 	icon_state = "blue-red-d"
 
 /area/prison/cleaning
-	name = "\improper Custodial Supplies"
+	name = " Custodial Supplies"
 	icon_state = "janitor"
 
 /area/prison/command/office
-	name = "\improper Warden's Office"
+	name = " Warden's Office"
 	icon_state = "Warden"
 	ceiling = CEILING_GLASS
 
 /area/prison/command/secretary_office
-	name = "\improper Warden's Secretary's Office"
+	name = " Warden's Secretary's Office"
 	icon_state = "blue"
 
 /area/prison/command/quarters
-	name = "\improper Warden's Quarters"
+	name = " Warden's Quarters"
 	icon_state = "party"
 
 /area/prison/toilet
 	icon_state = "restrooms"
 
 /area/prison/toilet/canteen
-	name = "\improper Canteen Restooms"
+	name = " Canteen Restooms"
 
 /area/prison/toilet/security
-	name = "\improper Security Restooms"
+	name = " Security Restooms"
 
 /area/prison/toilet/research
-	name = "\improper Research Restooms"
+	name = " Research Restooms"
 
 /area/prison/toilet/staff
-	name = "\improper Staff Restooms"
+	name = " Staff Restooms"
 
 /area/prison/maintenance
 	icon_state = "asmaint"
 
 /area/prison/maintenance/residential/nw
-	name = "\improper Northwest Civilian Residences Maintenance"
+	name = " Northwest Civilian Residences Maintenance"
 
 /area/prison/maintenance/residential/ne
-	name = "\improper Northeast Civilian Residences Maintenance"
+	name = " Northeast Civilian Residences Maintenance"
 
 /area/prison/maintenance/residential/sw
-	name = "\improper Southwest Civilian Residences Maintenance"
+	name = " Southwest Civilian Residences Maintenance"
 
 /area/prison/maintenance/residential/se
-	name = "\improper Southeast Civilian Residences Maintenance"
+	name = " Southeast Civilian Residences Maintenance"
 
 /area/prison/maintenance/residential/access/north
-	name = "\improper North Civilian Residences Access"
+	name = " North Civilian Residences Access"
 
 /area/prison/maintenance/residential/access/south
-	name = "\improper South Civilian Residences Access"
+	name = " South Civilian Residences Access"
 
 /area/prison/maintenance/staff_research
-	name = "\improper Staff-Research Maintenance"
+	name = " Staff-Research Maintenance"
 	icon_state = "maint_research_starboard"
 
 /area/prison/maintenance/research_medbay
-	name = "\improper Research-Infirmary Maintenance"
+	name = " Research-Infirmary Maintenance"
 	icon_state = "maint_research_port"
 
 /area/prison/maintenance/hangar_barracks
-	name = "\improper Hangar-Barracks Maintenance"
+	name = " Hangar-Barracks Maintenance"
 	icon_state = "maint_e_shuttle"
 
 
 /area/prison/canteen
-	name = "\improper Canteen"
+	name = " Canteen"
 	icon_state = "cafeteria"
 
 /area/prison/kitchen
-	name = "\improper Kitchen"
+	name = " Kitchen"
 	icon_state = "kitchen"
 
 /area/prison/laundry
-	name = "\improper Laundry"
+	name = " Laundry"
 	icon_state = "bluenew"
 
 /area/prison/library
-	name = "\improper Library"
+	name = " Library"
 	icon_state = "green"
 
 /area/prison/engineering
-	name = "\improper Engineering"
+	name = " Engineering"
 	icon_state = "engine"
 
 /area/prison/engineering/atmos
-	name = "\improper Atmospherics"
+	name = " Atmospherics"
 	icon_state = "atmos"
 
 /area/prison/intake
-	name = "\improper Intake Processing"
+	name = " Intake Processing"
 	icon_state = "green"
 
 /area/prison/parole/main
-	name = "\improper Parole"
+	name = " Parole"
 	icon_state = "blue2"
 
 /area/prison/parole/protective_custody
-	name = "\improper Protective Custody Parole"
+	name = " Protective Custody Parole"
 	icon_state = "red2"
 
 /area/prison/visitation
-	name = "\improper Visitation"
+	name = " Visitation"
 	icon_state = "yellow"
 
 /area/prison/yard
-	name = "\improper Yard"
+	name = " Yard"
 	icon_state = "thunder"
 	ceiling = CEILING_GLASS
 
 /area/prison/hallway/entrance
-	name = "\improper Entrance Hallway"
+	name = " Entrance Hallway"
 	icon_state = "entry"
 	ceiling = CEILING_GLASS
 
 /area/prison/hallway/central
-	name = "\improper Central Ring"
+	name = " Central Ring"
 	icon_state = "hallC1"
 	ceiling = CEILING_GLASS
 
 /area/prison/hallway/east
-	name = "\improper East Hallway"
+	name = " East Hallway"
 	icon_state = "east"
 
 /area/prison/hallway/staff
-	name = "\improper Staff Hallway"
+	name = " Staff Hallway"
 	icon_state = "hallS"
 
 /area/prison/hallway/engineering
-	name = "\improper Engineering Hallway"
+	name = " Engineering Hallway"
 	icon_state = "dk_yellow"
 
 /area/prison/quarters/staff
-	name = "\improper Staff Quarters"
+	name = " Staff Quarters"
 	icon_state = "crew_quarters"
 
 /area/prison/quarters/security
-	name = "\improper Security Barracks"
+	name = " Security Barracks"
 	icon_state = "sec_backroom"
 
 /area/prison/quarters/research
-	name = "\improper Research Dorms"
+	name = " Research Dorms"
 	icon_state = "purple"
 
 /area/prison/cellblock/
 
 /area/prison/cellblock/lowsec/nw
-	name = "\improper Northwest Low-Security Cellblock"
+	name = " Northwest Low-Security Cellblock"
 	icon_state = "cells_low_nw"
 
 /area/prison/cellblock/lowsec/ne
-	name = "\improper Northeast Low-Security Cellblock"
+	name = " Northeast Low-Security Cellblock"
 	icon_state = "cells_low_ne"
 
 /area/prison/cellblock/lowsec/sw
-	name = "\improper Southwest Low-Security Cellblock"
+	name = " Southwest Low-Security Cellblock"
 	icon_state = "cells_low_sw"
 
 /area/prison/cellblock/lowsec/se
-	name = "\improper Southeast Low-Security Cellblock"
+	name = " Southeast Low-Security Cellblock"
 	icon_state = "cells_low_se"
 
 /area/prison/cellblock/mediumsec
-	name = "\improper Medium-Security Cellblock"
+	name = " Medium-Security Cellblock"
 	icon_state = "cells_med"
 
 /area/prison/cellblock/mediumsec/north
-	name = "\improper Medium-Security Cellblock North"
+	name = " Medium-Security Cellblock North"
 	icon_state = "cells_med_n"
 
 /area/prison/cellblock/mediumsec/south
-	name = "\improper Medium-Security Cellblock South"
+	name = " Medium-Security Cellblock South"
 	icon_state = "cells_med_s"
 
 /area/prison/cellblock/mediumsec/east
-	name = "\improper Medium-Security Cellblock East"
+	name = " Medium-Security Cellblock East"
 	icon_state = "cells_med_e"
 
 /area/prison/cellblock/mediumsec/west
-	name = "\improper Medium-Security Cellblock West"
+	name = " Medium-Security Cellblock West"
 	icon_state = "cells_med_w"
 
 /area/prison/cellblock/highsec/north/north
-	name = "\improper North High-Security Cellblock North"
+	name = " North High-Security Cellblock North"
 	icon_state = "cells_high_nn"
 
 /area/prison/cellblock/highsec/north/south
-	name = "\improper North High-Security Cellblock South"
+	name = " North High-Security Cellblock South"
 	icon_state = "cells_high_ns"
 
 /area/prison/cellblock/highsec/south/north
-	name = "\improper South High-Security Cellblock North"
+	name = " South High-Security Cellblock North"
 	icon_state = "cells_high_sn"
 
 /area/prison/cellblock/highsec/south/south
-	name = "\improper South High-Security Cellblock South"
+	name = " South High-Security Cellblock South"
 	icon_state = "cells_high_ss"
 
 /area/prison/cellblock/maxsec/north
-	name = "\improper Maximum-Security Panopticon Cellblock"
+	name = " Maximum-Security Panopticon Cellblock"
 	icon_state = "cells_max_n"
 
 /area/prison/cellblock/maxsec/south
-	name = "\improper Maximum-Security Suspended Cellblock"
+	name = " Maximum-Security Suspended Cellblock"
 	icon_state = "cells_max_s"
 	ceiling = CEILING_GLASS
 
 /area/prison/cellblock/vip
-	name = "\improper VIP Cells"
+	name = " VIP Cells"
 	icon_state = "cells_vip"
 
 /area/prison/cellblock/protective
-	name = "\improper Protective Custody"
+	name = " Protective Custody"
 	icon_state = "cells_protective"
 
 /area/prison/disposal
-	name = "\improper Disposals"
+	name = " Disposals"
 	icon_state = "disposal"
 
 /area/prison/medbay
-	name = "\improper Infirmary"
+	name = " Infirmary"
 	icon_state = "medbay"
 
 /area/prison/medbay/foyer
-	name = "\improper Infirmary Foyer"
+	name = " Infirmary Foyer"
 	icon_state = "medbay2"
 
 /area/prison/medbay/surgery
-	name = "\improper Operating Theatre"
+	name = " Operating Theatre"
 	icon_state = "medbay3"
 
 /area/prison/medbay/morgue
-	name = "\improper Morgue"
+	name = " Morgue"
 	icon_state = "morgue"
 
 /area/prison/research/
-	name = "\improper Biological Research Department"
+	name = " Biological Research Department"
 	icon_state = "research"
 
 /area/prison/research/RD
-	name = "\improper Research Director's office"
+	name = " Research Director's office"
 	icon_state = "disposal"
 
 /area/prison/research/secret/
-	name = "\improper Classified Research"
+	name = " Classified Research"
 	icon_state = "toxlab"
 
 /area/prison/research/secret/dissection
-	name = "\improper Dissection"
+	name = " Dissection"
 	icon_state = "toxmix"
 
 /area/prison/research/secret/chemistry
-	name = "\improper Chemistry"
+	name = " Chemistry"
 	icon_state = "chem"
 
 /area/prison/research/secret/bioengineering
-	name = "\improper Bioengineering"
+	name = " Bioengineering"
 	icon_state = "toxmisc"
 
 /area/prison/research/secret/containment
-	name = "\improper Test Subject Containment"
+	name = " Test Subject Containment"
 	icon_state = "xeno_f_store"
 
 /area/prison/research/secret/testing
-	name = "\improper Biological Testing"
+	name = " Biological Testing"
 	icon_state = "toxtest"
 
 /area/prison/residential
 	ceiling = CEILING_GLASS
 
 /area/prison/residential/central
-	name = "\improper Civilian Residences Central"
+	name = " Civilian Residences Central"
 	icon_state = "blue-red2"
 
 /area/prison/residential/north
-	name = "\improper Civilian Residences North"
+	name = " Civilian Residences North"
 	icon_state = "blue2"
 
 /area/prison/residential/south
-	name = "\improper Civilian Residences South"
+	name = " Civilian Residences South"
 	icon_state = "red2"
 
 /area/prison/monorail
@@ -422,29 +422,29 @@
 	ceiling = CEILING_GLASS
 
 /area/prison/monorail/east
-	name = "\improper East Monorail Station"
+	name = " East Monorail Station"
 
 /area/prison/monorail/west
-	name = "\improper West Monorail Station"
+	name = " West Monorail Station"
 
 /area/prison/hangar/main
-	name = "\improper Main Hangar"
+	name = " Main Hangar"
 	icon_state = "hangar_alpha"
 
 /area/prison/hangar/civilian
-	name = "\improper Civilian Hangar"
+	name = " Civilian Hangar"
 	icon_state = "hangar_beta"
 
 /area/prison/hangar_storage/main
-	name = "\improper Main Hangar Storage"
+	name = " Main Hangar Storage"
 	icon_state = "quartstorage"
 
 /area/prison/hangar_storage/research
-	name = "\improper Research Hangar Storage"
+	name = " Research Hangar Storage"
 	icon_state = "toxstorage"
 
 /area/prison/telecomms
-	name = "\improper Telecommunications"
+	name = " Telecommunications"
 	icon_state = "tcomsatcham"
 
 /area/prison/pirate
@@ -452,5 +452,5 @@
 	icon_state = "syndie-ship"
 
 /area/prison/secret
-	name = "\improper Secret Room"
+	name = " Secret Room"
 	icon_state = "tcomsatcham"

@@ -2,7 +2,7 @@
 //Works like a contemporary crew weapon mortar
 
 /obj/structure/mortar
-	name = "\improper M402 mortar"
+	name = " M402 mortar"
 	desc = "A manual, crew-operated mortar system intended to rain down 80mm goodness on anything it's aimed at. Uses manual targetting dials. Insert round to fire."
 	icon = 'icons/Marine/mortar.dmi'
 	icon_state = "mortar_m402"
@@ -204,7 +204,7 @@
 
 //The portable mortar item
 /obj/item/mortar_kit
-	name = "\improper M402 mortar portable kit"
+	name = " M402 mortar portable kit"
 	desc = "A manual, crew-operated mortar system intended to rain down 80mm goodness on anything it's aimed at. Needs to be set down first"
 	icon = 'icons/Marine/mortar.dmi'
 	icon_state = "mortar_m402_carry"
@@ -241,7 +241,7 @@
 		qdel(src)
 
 /obj/item/mortal_shell
-	name = "\improper 80mm mortar shell"
+	name = " 80mm mortar shell"
 	desc = "An unlabeled 80mm mortar shell, probably a casing."
 	icon = 'icons/Marine/mortar.dmi'
 	icon_state = "mortar_ammo_cas"
@@ -253,7 +253,7 @@
 	forceMove(T)
 
 /obj/item/mortal_shell/he
-	name = "\improper 80mm high explosive mortar shell"
+	name = " 80mm high explosive mortar shell"
 	desc = "An 80mm mortar shell, loaded with a high explosive charge."
 	icon_state = "mortar_ammo_he"
 
@@ -262,7 +262,7 @@
 	explosion(T, 0, 3, 5, 7)
 
 /obj/item/mortal_shell/incendiary
-	name = "\improper 80mm incendiary mortar shell"
+	name = " 80mm incendiary mortar shell"
 	desc = "An 80mm mortar shell, loaded with a napalm charge."
 	icon_state = "mortar_ammo_inc"
 
@@ -273,7 +273,7 @@
 	playsound(T, 'sound/weapons/gun_flamethrower2.ogg', 35, 1, 4)
 
 /obj/item/mortal_shell/smoke
-	name = "\improper 80mm smoke mortar shell"
+	name = " 80mm smoke mortar shell"
 	desc = "An 80mm mortar shell, loaded with smoke dispersal agents."
 	icon_state = "mortar_ammo_smk"
 	var/datum/effect_system/smoke_spread/bad/smoke
@@ -294,7 +294,7 @@
 	qdel(src)
 
 /obj/item/mortal_shell/flash
-	name = "\improper 80mm flash mortar shell"
+	name = " 80mm flash mortar shell"
 	desc = "An 80mm mortar shell, loaded with a flash powder charge."
 	icon_state = "mortar_ammo_fsh"
 
@@ -306,7 +306,7 @@
 	flash.prime()
 
 /obj/item/mortal_shell/flare
-	name = "\improper 80mm flare mortar shell"
+	name = " 80mm flare mortar shell"
 	desc = "An 80mm mortar shell, loaded with an illumination flare."
 	icon_state = "mortar_ammo_flr"
 
@@ -343,7 +343,7 @@
 
 /obj/structure/closet/crate/mortar_ammo
 
-	name = "\improper M402 mortar ammo crate"
+	name = " M402 mortar ammo crate"
 	desc = "A crate containing live mortar shells with various payloads. DO NOT DROP. KEEP AWAY FROM FIRE SOURCES."
 	icon = 'icons/Marine/mortar.dmi'
 	icon_state = "closed_mortar_crate"
@@ -370,7 +370,7 @@
 	new /obj/item/mortal_shell/flash(src)
 
 /obj/structure/closet/crate/mortar_ammo/mortar_kit
-	name = "\improper M402 mortar kit"
+	name = " M402 mortar kit"
 	desc = "A crate containing a basic set of a mortar and some shells, to get an engineer started."
 
 /obj/structure/closet/crate/mortar_ammo/mortar_kit/New()

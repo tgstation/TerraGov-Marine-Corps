@@ -520,7 +520,7 @@
 
 
 /obj/item/storage/box/explosive_mines
-	name = "\improper M20 mine box"
+	name = " M20 mine box"
 	desc = "A secure box holding anti-personel proximity mines."
 	icon_state = "minebox"
 	w_class = 3
@@ -539,11 +539,11 @@
 		new I(src)
 
 /obj/item/storage/box/explosive_mines/pmc
-	name = "\improper M20P mine box"
+	name = " M20P mine box"
 
 /obj/item/storage/box/m94
-	name = "\improper M94 marking flare pack"
-	desc = "A packet of five M94 Marking Flares. Carried by TGMC soldiers to light dark areas that cannot be reached with the usual TNR Shoulder Lamp."
+	name = " M94 marking flare pack"
+	desc = "A packet of five M94 Marking Flares. Carried by USCM soldiers to light dark areas that cannot be reached with the usual TNR Shoulder Lamp."
 	icon_state = "m94"
 	w_class = 3
 	max_storage_space = 10
@@ -569,7 +569,7 @@
 
 
 /obj/item/storage/box/nade_box
-	name = "\improper M40 HEDP grenade box"
+	name = " M40 HEDP grenade box"
 	desc = "A secure box holding 25 M40 HEDP grenades. High explosive, don't store near the flamer fuel."
 	icon_state = "nade_placeholder"
 	w_class = 4
@@ -594,7 +594,7 @@
 
 
 /obj/item/storage/box/nade_box/training
-	name = "\improper M07 training grenade box"
+	name = " M07 training grenade box"
 	desc = "A secure box holding 25 M07 training grenades. Harmless and reusable."
 	icon_state = "train_nade_placeholder"
 	grenade_type = /obj/item/explosive/grenade/frag/training
@@ -604,7 +604,7 @@
 
 
 /obj/item/storage/box/nade_box/tear_gas
-	name = "\improper M66 tear gas grenade box"
+	name = " M66 tear gas grenade box"
 	desc = "A secure box holding 25 M66 tear gas grenades. Used for riot control."
 	icon_state = "teargas_nade_placeholder"
 	can_hold = list("/obj/item/explosive/grenade/chem_grenade/teargas")
@@ -647,7 +647,7 @@
 
 
 /obj/item/storage/box/MRE
-	name = "\improper TGMC MRE"
+	name = " USCM MRE"
 	desc = "Meal Ready-to-Eat, meant to be consumed in the field, and has an expiration that is two decades past a marine's average combat life expectancy."
 	icon_state = "mealpack"
 	w_class = 2

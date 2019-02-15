@@ -40,16 +40,16 @@
 	if(elder_restricted) //Not possible for non-elders.
 		switch(mask_number)
 			if(1341)
-				name = "\improper 'Mask of the Dragon'"
+				name = " 'Mask of the Dragon'"
 				icon_state = "pred_mask_elder_tr"
 			if(7128)
-				name = "\improper 'Mask of the Swamp Horror'"
+				name = " 'Mask of the Swamp Horror'"
 				icon_state = "pred_mask_elder_joshuu"
 			if(9867)
-				name = "\improper 'Mask of the Enforcer'"
+				name = " 'Mask of the Enforcer'"
 				icon_state = "pred_mask_elder_feweh"
 			if(4879)
-				name = "\improper 'Mask of the Ambivalent Collector'"
+				name = " 'Mask of the Ambivalent Collector'"
 				icon_state = "pred_mask_elder_n"
 
 /obj/item/clothing/mask/gas/yautja/verb/togglesight()
@@ -144,21 +144,21 @@
 	if(elder_restricted)
 		switch(armor_number)
 			if(1341)
-				name = "\improper 'Armor of the Dragon'"
+				name = " 'Armor of the Dragon'"
 				icon_state = "halfarmor_elder_tr"
 				armor = list(melee = 75, bullet = 85, laser = 60, energy = 70, bomb = 70, bio = 25, rad = 25)
 			if(7128)
-				name = "\improper 'Armor of the Swamp Horror'"
+				name = " 'Armor of the Swamp Horror'"
 				icon_state = "halfarmor_elder_joshuu"
 				flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS
 				armor = list(melee = 70, bullet = 80, laser = 60, energy = 70, bomb = 65, bio = 25, rad = 25)
 			if(9867)
-				name = "\improper 'Armor of the Enforcer'"
+				name = " 'Armor of the Enforcer'"
 				icon_state = "halfarmor_elder_feweh"
 				flags_armor_protection = UPPER_TORSO|ARMS
 				armor = list(melee = 75, bullet = 85, laser = 60, energy = 70, bomb = 65, bio = 25, rad = 25)
 			if(4879)
-				name = "\improper 'Armor of the Ambivalent Collector'"
+				name = " 'Armor of the Ambivalent Collector'"
 				icon_state = "halfarmor_elder_n"
 				flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS
 				armor = list(melee = 75, bullet = 85, laser = 60, energy = 70, bomb = 65, bio = 25, rad = 25)
@@ -217,16 +217,16 @@
 	..()
 	switch(cape_number)
 		if(1341)
-			name = "\improper 'Mantle of the Dragon'"
+			name = " 'Mantle of the Dragon'"
 			icon_state = "cape_elder_tr"
 		if(7128)
-			name = "\improper 'Mantle of the Swamp Horror'"
+			name = " 'Mantle of the Swamp Horror'"
 			icon_state = "cape_elder_joshuu"
 		if(9867)
-			name = "\improper 'Mantle of the Enforcer'"
+			name = " 'Mantle of the Enforcer'"
 			icon_state = "cape_elder_feweh"
 		if(4879)
-			name = "\improper 'Mantle of the Ambivalent Collector'"
+			name = " 'Mantle of the Ambivalent Collector'"
 			icon_state = "cape_elder_n"
 
 /obj/item/clothing/shoes/yautja
@@ -710,7 +710,7 @@
 		return
 
 /obj/item/device/encryptionkey/yautja
-	name = "\improper Yautja encryption key"
+	name = " Yautja encryption key"
 	desc = "A complicated encryption device."
 	icon_state = "cypherkey"
 	channels = list("Yautja" = 1)

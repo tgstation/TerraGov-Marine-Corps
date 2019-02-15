@@ -4,14 +4,14 @@
 "whispering","deep space","a medic","an FTL engine","alarm","an ally","darkness", \
 "dim light","a scientist","a great leader","a catastrophe","desertion","a mistake","ice","freezing","warning lights", \
 "a helmet","mandibles","an abandoned station","a colony","monsters","air","a morgue","a military bridge","blinking lights", \
-"a blue light","an abandoned colony","TGMC","blood","a bandage","fear","a stiff corpse","military fleet", \
+"a blue light","an abandoned colony","USCM","blood","a bandage","fear","a stiff corpse","military fleet", \
 "loyalty","space","a crash","loneliness","suffocation","a fall","heat","flames","ice","cigarettes","falling","a buzzer","a PDA", \
 "snow","searing heat","calamity","the dead","a rifle", \
 "a knife","a distress beacon","a pistol","a spider","empty space","claws", \
 "acid","jaws","a meeting","welding","the vents","being trapped","a survivor", \
 "a power loader","cyrostasis","a meeting room","an engineer","a severed head","a motion scanner","a dropship","a uniform", \
 "a ruined station","fire","a smokey room","a voice","the cold","dimness","an operating table","teeth","flowers","graves", \
-"a synthetic man","meat","a planet","the U.P.P.","Nanotrasen","tools" \
+"a synthetic man","meat","a planet","the U.P.P.","Weyland-Yutani","tools" \
 )
 
 mob/living/carbon/proc/dream()

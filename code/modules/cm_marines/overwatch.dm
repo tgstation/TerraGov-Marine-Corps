@@ -182,7 +182,7 @@
 				dat += "<BR><BR>----------------------<br>"
 				dat += "<A href='?src=\ref[src];operation=refresh'>{Refresh}</a><br>"
 				dat += "<A href='?src=\ref[src];operation=back'>{Back}</a></body>"
-	user << browse(dat, "window=squad_overwatch;size=550x550")
+	user << browse(sanitize_local(dat, SANITIZE_BROWSER), "window=overwatch;size=550x550")
 	onclose(user, "squad_overwatch")
 	return
 
@@ -301,13 +301,13 @@
 		if("set_primary")
 			var/input = stripped_input(usr, "What will be the squad's primary objective?", "Primary Objective")
 			if(input)
-				current_squad.primary_objective = input + " ([worldtime2text()])"
+				current_squad.primary_objective = fix_rus_stats(input) + " ([worldtime2text()])"
 				send_to_squad("Your primary objective has changed. See Status pane for details.")
 				state("<span class='boldnotice'>Primary objective of squad '[current_squad]' set.</span>")
 		if("set_secondary")
 			var/input = stripped_input(usr, "What will be the squad's secondary objective?", "Secondary Objective")
 			if(input)
-				current_squad.secondary_objective = input + " ([worldtime2text()])"
+				current_squad.secondary_objective = fix_rus_stats(input) + " ([worldtime2text()])"
 				send_to_squad("Your secondary objective has changed. See Status pane for details.")
 				state("<span class='boldnotice'>Secondary objective of squad '[current_squad]' set.</span>")
 		if("supply_x")
@@ -559,7 +559,7 @@
 	send_to_squads("Calibrating trajectory window...")
 	sleep(11)
 	for(var/mob/living/carbon/H in living_mob_list)
-		if(H.z == MAIN_SHIP_Z_LEVEL && !H.stat) //TGS Theseus decks.
+		if(H.z == MAIN_SHIP_Z_LEVEL && !H.stat) //USS Almayer decks.
 			to_chat(H, "<span class='warning'>The deck of the [MAIN_SHIP_NAME] shudders as the orbital cannons open fire on the colony.</span>")
 			if(H.client)
 				shake_camera(H, 10, 1)

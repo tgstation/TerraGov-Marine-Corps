@@ -86,15 +86,26 @@ Contains most of the procs that are called when a mob is attacked by something
 				return 1
 	return 0
 
-/mob/living/carbon/human/proc/check_shields(var/damage = 0, var/attack_text = "the attack", var/combistick=0)
+/mob/living/carbon/human/proc/check_reflect(def_zone, hol_dir, hit_dir) //Reflection checks for anything in your l_hand, r_hand, or wear_suit based on the reflection chance of the object
+	if(head && head.IsReflect(def_zone, hol_dir, hit_dir))
+		return TRUE
+	if(wear_suit && wear_suit.IsReflect(def_zone, hol_dir, hit_dir))
+		return TRUE
+	if(l_hand && l_hand.IsReflect(def_zone, hol_dir, hit_dir))
+		return TRUE
+	if(r_hand && r_hand.IsReflect(def_zone, hol_dir, hit_dir))
+		return TRUE
+	return FALSE
+
+/mob/living/carbon/human/check_shields(var/damage = 0, var/attack_text = "the attack", hit_dir = 0, var/combistick=0)
 	if(l_hand && istype(l_hand, /obj/item/weapon))//Current base is the prob(50-d/3)
 		if(combistick && istype(l_hand,/obj/item/weapon/combistick))
 			var/obj/item/weapon/combistick/C = l_hand
 			if(C.on)
 				return 1
 		var/obj/item/weapon/I = l_hand
-		if(I.IsShield() && (prob(50 - round(damage / 3))))
-			visible_message("<span class='danger'>[src] blocks [attack_text] with the [l_hand.name]!</span>", null, null, 5)
+		if( (!hit_dir || is_the_opposite_dir(dir, hit_dir)) && prob(I.Get_shield_chance()))
+			visible_message("<span class='userdanger'>[src] blocks [attack_text] with the [l_hand.name]!</span>")
 			return 1
 	if(r_hand && istype(r_hand, /obj/item/weapon))
 		if(combistick && istype(r_hand,/obj/item/weapon/combistick))
@@ -102,8 +113,24 @@ Contains most of the procs that are called when a mob is attacked by something
 			if(C.on)
 				return 1
 		var/obj/item/weapon/I = r_hand
-		if(I.IsShield() && (prob(50 - round(damage / 3))))
-			visible_message("<span class='danger'>[src] blocks [attack_text] with the [r_hand.name]!</span>", null, null, 5)
+		if( (!hit_dir || is_the_opposite_dir(dir, hit_dir)) && prob(I.Get_shield_chance()))
+			visible_message("<span class='userdanger'>[src] blocks [attack_text] with the [r_hand.name]!</span>")
+			return 1
+	if(wear_suit && istype(wear_suit, /obj/item/))
+		var/obj/item/I = wear_suit
+		if(prob(I.Get_shield_chance() - round(damage / 3) ))
+			visible_message("<span class='userdanger'>The reactive teleport system flings [src] clear of [attack_text]!</span>")
+			var/list/turfs = new/list()
+			for(var/turf/T in orange(6))
+				if(istype(T,/turf/open/space)) continue
+				if(T.density) continue
+				if(T.x>world.maxx-6 || T.x<6)	continue
+				if(T.y>world.maxy-6 || T.y<6)	continue
+				turfs += T
+			if(!turfs.len) turfs += pick(/turf in orange(6))
+			var/turf/picked = pick(turfs)
+			if(!isturf(picked)) return
+			src.loc = picked
 			return 1
 	return 0
 
@@ -257,7 +284,7 @@ Contains most of the procs that are called when a mob is attacked by something
 
 		O.throwing = 0		//it hit, so stop moving
 
-		if ((O.thrower != src) && check_shields(throw_damage, "[O]"))
+		if ((O.thrower != src) && check_shields(throw_damage, "[O]", O.dir))
 			return
 
 		var/datum/limb/affecting = get_limb(zone)

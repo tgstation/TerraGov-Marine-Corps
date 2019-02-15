@@ -34,7 +34,7 @@
 
 
 /obj/machinery/marine_selector
-	name = "\improper Theoretical Marine selector"
+	name = " Theoretical Marine selector"
 	desc = ""
 	icon = 'icons/obj/machines/vending.dmi'
 	density = TRUE
@@ -899,7 +899,7 @@
 
 
 //the global list of specialist sets that haven't been claimed yet.
-var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolitionist Set", "Heavy Grenadier Set", "Pyro Set")
+var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolitionist Set", "Heavy Grenadier Set", "Pyro Set","Stormtrooper Set")
 
 
 /obj/machinery/marine_selector/gear/spec
@@ -916,6 +916,7 @@ var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolition
 							list("Demolitionist Set", 0, /obj/item/storage/box/spec/demolitionist, MARINE_CAN_BUY_ESSENTIALS, "white"),
 							list("Heavy Grenadier Set", 0, /obj/item/storage/box/spec/heavy_grenadier, MARINE_CAN_BUY_ESSENTIALS, "white"),
 							list("Pyro Set", 0, /obj/item/storage/box/spec/pyro, MARINE_CAN_BUY_ESSENTIALS, "white"),
+							list("Stormtrooper Set", 0, /obj/item/storage/box/spec/st, MARINE_CAN_BUY_ESSENTIALS, "white"),
 
 							list("SPECIAL AMMUNITION", 0, null, null, null),
 							list("AP M4A3 magazine", 10, /obj/item/ammo_magazine/pistol/ap, null, "black"),
@@ -926,6 +927,7 @@ var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolition
 							list("Extended M41A magazine", 15, /obj/item/ammo_magazine/rifle/extended, null, "black"),
 							list("AP M39 magazine", 13, /obj/item/ammo_magazine/smg/m39/ap, null, "black"),
 							list("Extended M39 magazine", 13, /obj/item/ammo_magazine/smg/m39/extended, null, "black"),
+							list("VP70 magazine", 10, /obj/item/ammo_magazine/pistol/vp70, null, "black"),
 
 							list("GUN ATTACHMENTS (Choose 2)", 0, null, null, null),
 							list("MUZZLE ATTACHMENTS", 0, null, null, null),

@@ -1,7 +1,7 @@
 
 
 /obj/item/storage/box/m56_system
-	name = "\improper M56 smartgun system"
+	name = " M56 smartgun system"
 	desc = "A large case containing the full M56 Smartgun System. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "smartgun_case"
@@ -20,7 +20,7 @@
 		..()
 
 /obj/item/smartgun_powerpack
-	name = "\improper M56 powerpack"
+	name = " M56 powerpack"
 	desc = "A heavy reinforced backpack with support equipment, power cells, and spare rounds for the M56 Smartgun System.\nClick the icon in the top left to reload your M56."
 	icon = 'icons/obj/items/storage/storage.dmi'
 	icon_state = "powerpack"
@@ -166,7 +166,7 @@
 	icon_state = "powerpackp"
 
 /obj/item/storage/box/heavy_armor
-	name = "\improper B-Series defensive armor crate"
+	name = " B-Series defensive armor crate"
 	desc = "A large case containing an experiemental suit of B18 armor for the discerning specialist."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "armor_case"
@@ -183,7 +183,7 @@
 		..()
 
 /obj/item/storage/box/m42c_system
-	name = "\improper M42A scoped rifle system (recon set)"
+	name = " M42A scoped rifle system (recon set)"
 	desc = "A large case containing your very own long-range sniper rifle. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "sniper_case"
@@ -222,7 +222,7 @@
 
 
 /obj/item/storage/box/m42c_system_Jungle
-	name = "\improper M42A scoped rifle system (marksman set)"
+	name = " M42A scoped rifle system (marksman set)"
 	desc = "A large case containing your very own long-range sniper rifle. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "sniper_case"
@@ -258,7 +258,7 @@
 		..()
 
 /obj/item/storage/box/grenade_system
-	name = "\improper M92 grenade launcher case"
+	name = " M92 grenade launcher case"
 	desc = "A large case containing a heavy-duty multi-shot grenade launcher, the Armat Systems M92. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "grenade_case"
@@ -276,7 +276,7 @@
 
 
 /obj/item/storage/box/rocket_system
-	name = "\improper M5 RPG crate"
+	name = " M5 RPG crate"
 	desc = "A large case containing a heavy-caliber antitank missile launcher and missiles. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "rocket_case"
@@ -306,8 +306,32 @@
 /obj/item/storage/box/spec
 	var/spec_set
 
+/obj/item/storage/box/spec/st
+	name = "Stormtrooper equipment crate"
+	desc = "M40 helmet, M40 armor, Montage, "
+	icon = 'icons/Marine/marine-weapons.dmi'
+	icon_state = "rocket_case"
+	spec_set = "stormtrooper"
+	w_class = 5
+	storage_slots = 13
+	slowdown = 1
+	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
+	foldable = null
+
+	New()
+		..()
+		spawn(1)
+			new /obj/item/clothing/suit/storage/marine/M40(src)
+			new /obj/item/clothing/head/helmet/marine/M40(src)
+			new /obj/item/weapon/shield/montage(src)
+			new /obj/item/weapon/gun/pistol/vp70(src)
+			new /obj/item/ammo_magazine/pistol/vp70(src)
+			new /obj/item/ammo_magazine/pistol/vp70(src)
+			new /obj/item/ammo_magazine/pistol/vp70(src)
+			new /obj/item/ammo_magazine/pistol/vp70(src)
+
 /obj/item/storage/box/spec/demolitionist
-	name = "\improper Demolitionist equipment crate"
+	name = " Demolitionist equipment crate"
 	desc = "A large case containing light armor, a heavy-caliber antitank missile launcher, missiles, C4, detpacks, and claymore mines. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "rocket_case"
@@ -340,7 +364,7 @@
 
 
 /obj/item/storage/box/spec/sniper
-	name = "\improper Sniper equipment"
+	name = " Sniper equipment"
 	desc = "A large case containing your very own long-range sniper rifle. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "sniper_case"
@@ -382,7 +406,7 @@
 		..()
 
 /obj/item/storage/box/spec/scout
-	name = "\improper Scout equipment"
+	name = " Scout equipment"
 	desc = "A large case containing Scout equipment. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "sniper_case"
@@ -422,7 +446,7 @@
 
 
 /obj/item/storage/box/spec/pyro
-	name = "\improper Pyrotechnician equipment"
+	name = " Pyrotechnician equipment"
 	desc = "A large case containing Pyrotechnician equipment. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "armor_case"
@@ -449,7 +473,7 @@
 
 
 /obj/item/storage/box/spec/heavy_grenadier
-	name = "\improper Heavy Grenadier case"
+	name = " Heavy Grenadier case"
 	desc = "A large case containing M50 Heavy Armor and a heavy-duty multi-shot grenade launcher, the Armat Systems M92. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "grenade_case"

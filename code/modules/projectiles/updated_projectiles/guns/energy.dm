@@ -281,7 +281,7 @@
 //Lasguns
 
 /obj/item/weapon/gun/energy/lasgun
-	name = "\improper Lasgun"
+	name = " Lasgun"
 	desc = "A laser based firearm. Uses power cells."
 	origin_tech = "combat=5;materials=4"
 	reload_sound = 'sound/weapons/gun_rifle_reload.ogg'
@@ -311,7 +311,7 @@
 //M43 Sunfury Lasgun MK1
 
 /obj/item/weapon/gun/energy/lasgun/M43
-	name = "\improper M43 Sunfury Lasgun MK1"
+	name = " M43 Sunfury Lasgun MK1"
 	desc = "An accurate, recoilless laser based battle rifle with an integrated charge selector. Ideal for longer range engagements. Uses power cells."
 	force = 20 //Large and hefty! Includes stock bonus.
 	icon_state = "m43"

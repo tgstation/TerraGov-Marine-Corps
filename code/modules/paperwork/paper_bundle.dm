@@ -43,7 +43,7 @@
 			qdel(W)
 	else
 		if(istype(W, /obj/item/tool/pen) || istype(W, /obj/item/toy/crayon))
-			usr << browse("", "window=[name]") //Closes the dialog
+			usr << browse(sanitize_local("", SANITIZE_BROWSER), "window=[name]") //Closes the dialog
 		P = contents[page]
 		P.attackby(W, user)
 
@@ -105,7 +105,7 @@
 				dat+= "<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[stars(P.info)][P.stamps]</BODY></HTML>"
 			else
 				dat+= "<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[P.info][P.stamps]</BODY></HTML>"
-			human_user << browse(dat, "window=[name]")
+			human_user << browse(sanitize_local(dat, SANITIZE_BROWSER), "window=[name]")
 			P.add_fingerprint(usr)
 		else if(istype(src[page], /obj/item/photo))
 			var/obj/item/photo/P = src[page]

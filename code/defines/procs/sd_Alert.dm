@@ -77,13 +77,13 @@ proc/sd_Alert(client/who, message, title, buttons = list("Ok"),\
 
 	var/sd_alert/T = locate(tag)
 	if(T)
-		if(istype(T)) 
+		if(istype(T))
 			qdel(T)
 		else CRASH("sd_Alert: tag \"[tag]\" is already in use by datum '[T]' (type: [T.type])")
 	T = new(who, tag)
 	if(duration)
 		spawn(duration)
-			if(T) 
+			if(T)
 				qdel(T)
 			return
 	T.Display(message,title,buttons,default,unfocus,size,table,style,select,flags)
@@ -127,7 +127,7 @@ sd_alert
 				[(flags & SD_ALERT_SELECT_MULTI)?" MULTIPLE":""]>"}
 			for(var/b in buttons)
 				html += "<OPTION[(b == default)?" SELECTED":""]>\
-					[html_encode(b)]</OPTION>"
+					[lhtml_encode(b)]</OPTION>"
 			html += "</SELECT><BR><INPUT TYPE=SUBMIT VALUE=Submit></FORM>"
 		else if(flags & SD_ALERT_LINKS)		// text link style
 			for(var/b in buttons)
@@ -136,7 +136,7 @@ sd_alert
 				var/html_string=list2params(L)
 				var/focus
 				if(b == default) focus = " ID=fcs"
-				html += "<A[focus] href=# onClick=\"c('[html_string]')\">[html_encode(b)]</A>\
+				html += "<A[focus] href=# onClick=\"c('[html_string]')\">[lhtml_encode(b)]</A>\
 					<BR>"
 		else	// button style choices
 			for(var/b in buttons)
@@ -145,7 +145,7 @@ sd_alert
 				var/html_string=list2params(L)
 				var/focus
 				if(b == default) focus = " ID=fcs"
-				html += "<INPUT[focus] TYPE=button VALUE='[html_encode(b)]' \
+				html += "<INPUT[focus] TYPE=button VALUE='[lhtml_encode(b)]' \
 					onClick=\"c('[html_string]')\"> "
 
 		html += "</th></tr></table></body>"
@@ -166,6 +166,6 @@ sd_alert
 				else if(response in validation) validated = 1
 				else response=null
 			else validated = 1
-		spawn(2) 
+		spawn(2)
 			qdel(src)
 		return response

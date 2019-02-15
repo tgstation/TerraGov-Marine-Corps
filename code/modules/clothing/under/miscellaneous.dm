@@ -53,17 +53,24 @@
 
 /obj/item/clothing/under/rank/centcom_officer
 	desc = "It's a jumpsuit worn by CentCom Officers."
-	name = "\improper CentCom officer's jumpsuit"
+	name = " CentCom officer's jumpsuit"
 	icon_state = "officer"
 	item_state = "g_suit"
 	rollable_sleeves = FALSE
 
 /obj/item/clothing/under/rank/centcom_commander
 	desc = "It's a jumpsuit worn by CentCom's highest-tier Commanders."
-	name = "\improper CentCom officer's jumpsuit"
+	name = " CentCom officer's jumpsuit"
 	icon_state = "centcom"
 	item_state = "dg_suit"
 	rollable_sleeves = FALSE
+
+/obj/item/clothing/under/rank/centcom_commander/sa
+	desc = "It's a jumpsuit worn by Spatial Agents."
+	name = " spatial agent's jumpsuit"
+	has_sensor = 0
+	sensor_mode = 0
+	siemens_coefficient = 0
 
 /obj/item/clothing/under/ert
 	name = "ERT tactical uniform"
@@ -72,7 +79,7 @@
 	item_state = "bl_suit"
 
 /obj/item/clothing/under/space
-	name = "\improper NASA jumpsuit"
+	name = " NASA jumpsuit"
 	desc = "It has a NASA logo on it and is made of space-proofed materials."
 	icon_state = "black"
 	item_state = "bl_suit"

@@ -14,7 +14,7 @@
 
 
 /obj/item/storage/box/sentry
-	name = "\improper UA 571-C sentry crate"
+	name = " UA 571-C sentry crate"
 	desc = "A large case containing all you need to set up an automated sentry, minus the tools."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "sentry_case"
@@ -38,7 +38,7 @@
 
 
 /obj/item/device/turret_top
-	name = "\improper UA 571-C turret"
+	name = " UA 571-C turret"
 	desc = "The turret part of an automated sentry turret."
 	unacidable = TRUE
 	w_class = 5
@@ -47,7 +47,7 @@
 
 
 /obj/item/device/turret_tripod
-	name = "\improper UA 571-C turret tripod"
+	name = " UA 571-C turret tripod"
 	desc = "The tripod part of an automated sentry turret. You should deploy it first."
 	unacidable = TRUE
 	w_class = 5
@@ -81,7 +81,7 @@
 
 
 /obj/machinery/turret_tripod_deployed
-	name = "\improper UA 571-C turret tripod"
+	name = " UA 571-C turret tripod"
 	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an M30 Autocannon and a 500-round drum magazine."
 	icon = 'icons/Marine/new_sentry_alt.dmi'
 	icon_state = "sentry_tripod"
@@ -203,7 +203,7 @@
 
 
 /obj/machinery/marine_turret
-	name = "\improper UA 571-C sentry gun"
+	name = " UA 571-C sentry gun"
 	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an M30 Autocannon and a 500-round drum magazine."
 	icon = 'icons/Marine/new_sentry_alt.dmi'
 	icon_state = "sentry_base"
@@ -1143,8 +1143,8 @@
 	immobile = TRUE
 	on = TRUE
 	burst_fire = TRUE
-	rounds = 100000
-	rounds_max = 100000
+	rounds = 50000
+	rounds_max = 50000
 	icon_state = "sentry_base"
 
 /obj/machinery/marine_turret/premade/New()
@@ -1159,10 +1159,11 @@
 	spawn(2)
 		stat = 0
 	ammo = ammo_list[ammo]
+	rounds = 50000
 	update_icon()
 
 /obj/machinery/marine_turret/premade/dumb
-	name = "Modified UA-577 Gauss Turret"
+	name = "Modified UA-577 Gauss Sentry"
 	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an M30 Autocannon and a high-capacity drum magazine. This one's IFF system has been disabled, and it will open fire on any targets within range."
 	iff_signal = 0
 	ammo = /datum/ammo/bullet/turret/dumb
@@ -1201,15 +1202,28 @@
 		state("<span class='notice'>The [name] powers down and goes silent.</span>")
 		update_icon()
 
+/obj/item/ammo_magazine/sentry/premade/dumb
+	name = "UA-577 box magazine (12x40mm Gauss Slugs)"
+	desc = "A box of 500 12x40mm gauss slugs for the UA-577 Gauss Turret. Just feed it into the turret's ammo port when its ammo is depleted."
+	w_class = 4
+	icon = 'icons/Marine/new_sentry_alt.dmi'
+	icon_state = "ammo_can"
+	flags_magazine = NOFLAGS //can't be refilled or emptied by hand
+	caliber = "12x40mm"
+	max_rounds = 50000
+	default_ammo = /datum/ammo/bullet/turret/dumb
+	gun_type = null
+
+
 //the turret inside the sentry deployment system
 /obj/machinery/marine_turret/premade/dropship
 	density = FALSE
 	ammo = /datum/ammo/bullet/turret/gauss //This is a gauss cannon; it will be significantly deadlier
-	rounds = 1000000
 	safety_off = TRUE
 	burst_size = 10
 	burst_delay = 15
 	var/obj/structure/dropship_equipment/sentry_holder/deployment_system
+	magazine_type = /obj/item/ammo_magazine/sentry/premade/dropship
 
 /obj/machinery/marine_turret/premade/dropship/Destroy()
 	if(deployment_system)
@@ -1217,6 +1231,17 @@
 		deployment_system = null
 	. = ..()
 
+/obj/item/ammo_magazine/sentry/premade/dropship
+	name = "UA-577 box magazine (12x40mm Gauss Slugs)"
+	desc = "A box of 500 12x40mm gauss slugs for the UA-577 Gauss Turret. Just feed it into the turret's ammo port when its ammo is depleted."
+	w_class = 4
+	icon = 'icons/Marine/new_sentry_alt.dmi'
+	icon_state = "ammo_can"
+	flags_magazine = NOFLAGS //can't be refilled or emptied by hand
+	caliber = "12x40mm"
+	max_rounds = 50000
+	default_ammo = /datum/ammo/bullet/turret/gauss
+	gun_type = null
 
 /obj/machinery/marine_turret/proc/sentry_alert(alert_code, mob/M)
 	if(!alert_code)
@@ -1226,7 +1251,7 @@
 		if(SENTRY_ALERT_AMMO)
 			notice = "<b>ALERT! [src]'s ammo depleted at: [get_area(src)]. Coordinates: (X: [x], Y: [y]).</b>"
 		if(SENTRY_ALERT_HOSTILE)
-			notice = "<b>ALERT! Hostile/unknown: [M] Detected at: [get_area(M)]. Coordinates: (X: [M.x], Y: [M.y]).</b>"
+			notice = "<b>ALERT! [src] detected Hostile/Unknown: [M.name] at: [get_area(M)]. Coordinates: (X: [M.x], Y: [M.y]).</b>"
 		if(SENTRY_ALERT_FALLEN)
 			notice = "<b>ALERT! [src] has been knocked over at: [get_area(src)]. Coordinates: (X: [x], Y: [y]).</b>"
 		if(SENTRY_ALERT_DAMAGE)
@@ -1239,11 +1264,11 @@
 			notice = "<b>ALERT! [src]'s battery depleted at: [get_area(src)]. Coordinates: (X: [x], Y: [y]).</b>"
 	var/mob/living/silicon/ai/AI = new/mob/living/silicon/ai(src, null, null, 1)
 	AI.SetName("Sentry Alert System")
-	AI.aiRadio.talk_into(AI,"[notice]","Theseus","announces")
+	AI.aiRadio.talk_into(AI,"[notice]","Almayer","announces")
 	qdel(AI)
 
 /obj/machinery/marine_turret/mini
-	name = "\improper UA-580 Point Defense Sentry"
+	name = " UA-580 Point Defense Sentry"
 	desc = "A deployable, automated turret with AI targeting capabilities. This is a lightweight portable model meant for rapid deployment and point defense. Armed with an light, high velocity machine gun and a 500-round drum magazine."
 	icon = 'icons/Marine/miniturret.dmi'
 	icon_state = "minisentry_on"
@@ -1330,7 +1355,7 @@
 
 
 /obj/item/device/marine_turret/mini
-	name = "\improper UA-580 Point Defense Sentry (Folded)"
+	name = " UA-580 Point Defense Sentry (Folded)"
 	desc = "A deployable, automated turret with AI targeting capabilities. This is a lightweight portable model meant for rapid deployment and point defense. Armed with an light, high velocity machine gun and a 500-round drum magazine. It is currently folded up."
 	icon = 'icons/Marine/miniturret.dmi'
 	icon_state = "minisentry_packed"
@@ -1373,7 +1398,7 @@
 	gun_type = null
 
 /obj/item/storage/box/minisentry
-	name = "\improper UA-580 point defense sentry crate"
+	name = " UA-580 point defense sentry crate"
 	desc = "A large case containing all you need to set up an UA-580 point defense sentry."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "sentry_case"

@@ -20,9 +20,9 @@
 	var/no_random_spawn = 0 //Stop players from spawning into the squad
 	var/max_engineers = 3 //maximum # of engineers allowed in squad
 	var/max_medics = 4 //Ditto, squad medics
-	var/max_specialists = 1
+	var/max_specialists = 2
 	var/num_specialists = 0
-	var/max_smartgun = 1
+	var/max_smartgun = 2
 	var/num_smartgun = 0
 	var/max_leaders = 1
 	var/num_leaders = 0
@@ -51,22 +51,6 @@
 	access = list(ACCESS_MARINE_ALPHA)
 	usable = 1
 	radio_freq = ALPHA_FREQ
-
-/datum/squad/bravo
-	name = "Bravo"
-	id = BRAVO_SQUAD
-	color = 2
-	access = list(ACCESS_MARINE_BRAVO)
-	usable = 1
-	radio_freq = BRAVO_FREQ
-
-/datum/squad/charlie
-	name = "Charlie"
-	id = CHARLIE_SQUAD
-	color = 3
-	access = list(ACCESS_MARINE_CHARLIE)
-	usable = 1
-	radio_freq = CHARLIE_FREQ
 
 /datum/squad/delta
 	name = "Delta"

@@ -50,28 +50,24 @@ Vehicles are placed on the map by a spawner or admin verb
 	master.handle_player_entrance(usr)
 
 //Remnant of vehicle interiors
-/*
-/obj/effect/landmark/multitile_exit
+
+/obj/effect/landmark/multitile_interior_exit
 	name = "Landmark"
 	desc = "Marker for the exit of the interior"
 
 	invisibility = 101
-
 	var/obj/vehicle/multitile/root/master
-*/
 
-/*
-/obj/effect/landmark/multitile_exit/verb/exit_multitile(var/mob/M)
-	set category = "Object"
-	set name = "Exit Vehicle"
-	set src in master
+/obj/effect/landmark/multitile_interior_cabin_exit
+	name = "Landmark"
+	desc = "Marker for the exit from the vehicle into interior"
 
-	master.handle_player_exit(M)
-*/
+	invisibility = 101
+	var/obj/vehicle/multitile/root/master
 
 //Super super generic, doesn't really need to exist
 /obj/vehicle/multitile
-	name = "\improper Multitile Vehicle"
+	name = "Multitile Vehicle"
 	desc = "You shouldn't see this"
 
 /obj/vehicle/multitile/relaymove()
@@ -93,7 +89,8 @@ Vehicles are placed on the map by a spawner or admin verb
 	var/old_dir
 
 	var/obj/effect/multitile_entrance/entrance
-	//var/obj/effect/landmark/multitile_exit/exit
+	var/obj/effect/landmark/multitile_interior_exit
+	var/obj/effect/landmark/multitile_interior_cabin_exit
 
 	//Objects that move in accordance with this one
 	//Objects indexed by /datum/coords
@@ -103,25 +100,21 @@ Vehicles are placed on the map by a spawner or admin verb
 	//list of turfs that the vehicle was in before
 	var/list/old_locs = list()
 
-	//list of idle passengers in the vehicle
-	//used for any type of APC
-	var/list/idle_passengers = list()
-	var/max_idle_passengers = 0
-
-	//Another remnant of vehicle interiors
-	//var/list/interior_data = list()
-
 	var/base_icon_type = "" //e.g. "tank" or "apc", used to assign icons to the hitboxes
 
 	var/hitbox_type = /obj/vehicle/multitile/hitbox
 
 //How to get out, via verb
 /obj/vehicle/multitile/root/verb/exit_multitile()
-	set category = "Object"
+	set category = "Vehicle"	//changed verb category to new one, because Object category is bad.
 	set name = "Exit Vehicle"
-	set src in view(0)
+	set src = usr.loc
 
-	handle_player_exit(usr)
+	var/answer = alert(usr, "Are you sure you want to disembark?", , "Yes", "No")
+	if(answer == "Yes")
+		handle_player_exit(usr)
+	else
+		return
 
 /obj/vehicle/multitile/root/proc/handle_player_exit(var/mob/M)
 	return
@@ -134,17 +127,17 @@ Vehicles are placed on the map by a spawner or admin verb
 
 //Vebrs for rotations, set up a macro and get turnin
 /obj/vehicle/multitile/root/verb/clockwise_rotate_multitile()
-	set category = "Object"
+	set category = "Vehicle"	//changed verb category to new one, because Object category is bad.
 	set name = "Rotate Vehicle Clockwise"
-	set src in view(0)
+	set src = usr.loc
 
 	var/mob/M = usr
 	try_rotate(-90, M)
 
 /obj/vehicle/multitile/root/verb/counterclockwise_rotate_multitile()
-	set category = "Object"
+	set category = "Vehicle"	//changed verb category to new one, because Object category is bad.
 	set name = "Rotate Vehicle Counterclockwise"
-	set src in view(0)
+	set src = usr.loc
 
 	var/mob/M = usr
 	try_rotate(90, M)
@@ -192,6 +185,7 @@ Vehicles are placed on the map by a spawner or admin verb
 	C.y_pos = 0
 	C.y_pos = 0
 	linked_objs[C] = src
+
 
 /obj/vehicle/multitile/root/proc/load_hitboxes(var/datum/coords/dimensions, var/datum/coords/root_pos)
 	return

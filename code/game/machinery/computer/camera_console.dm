@@ -210,10 +210,10 @@
 
 
 /obj/machinery/computer/security/dropship/one
-	name = "\improper 'Alamo' camera controls"
+	name = " 'Alamo' camera controls"
 	network = list("dropship1")
 
 /obj/machinery/computer/security/dropship/two
-	name = "\improper 'Normandy' camera controls"
+	name = " 'Normandy' camera controls"
 	network = list("dropship2")
 

@@ -213,7 +213,7 @@
 
 
 /obj/structure/largecrate/guns
-	name = "\improper TGMC firearms crate (x3)"
+	name = " USCM firearms crate (x3)"
 	var/num_guns = 3
 	var/num_mags = 0
 	var/list/stuff = list(
@@ -242,7 +242,7 @@
 /obj/structure/largecrate/guns/russian
 	num_guns = 1
 	num_mags = 1
-	name = "\improper Nagant-Yamasaki firearm crate"
+	name = " Nagant-Yamasaki firearm crate"
 	stuff = list(	/obj/item/weapon/gun/revolver/upp = /obj/item/ammo_magazine/revolver/upp,
 					/obj/item/weapon/gun/pistol/c99 = /obj/item/ammo_magazine/pistol/c99,
 					/obj/item/weapon/gun/pistol/kt42 = /obj/item/ammo_magazine/pistol/automatic,
@@ -255,7 +255,7 @@
 /obj/structure/largecrate/guns/merc
 	num_guns = 1
 	num_mags = 1
-	name = "\improper Black market firearm crate"
+	name = " Black market firearm crate"
 	stuff = list(	/obj/item/weapon/gun/pistol/holdout = /obj/item/ammo_magazine/pistol/holdout,
 					/obj/item/weapon/gun/pistol/highpower = /obj/item/ammo_magazine/pistol/highpower,
 					/obj/item/weapon/gun/pistol/m1911 = /obj/item/ammo_magazine/pistol/m1911,

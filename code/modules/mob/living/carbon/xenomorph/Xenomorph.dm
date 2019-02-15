@@ -152,11 +152,11 @@
 	//Queens have weird, hardcoded naming conventions based on upgrade levels. They also never get nicknumbers
 	if(isXenoQueen(src))
 		switch(upgrade)
-			if(0) name = "\improper [name_prefix]Queen"			 //Young
-			if(1) name = "\improper [name_prefix]Elder Queen"	 //Mature
-			if(2) name = "\improper [name_prefix]Elder Empress"	 //Elder
-			if(3) name = "\improper [name_prefix]Ancient Empress" //Ancient
-	else name = "\improper [name_prefix][xeno_caste.upgrade_name] [xeno_caste.display_name] ([nicknumber])"
+			if(0) name = " [name_prefix]Queen"			 //Young
+			if(1) name = " [name_prefix]Elder Queen"	 //Mature
+			if(2) name = " [name_prefix]Elder Empress"	 //Elder
+			if(3) name = " [name_prefix]Ancient Empress" //Ancient
+	else name = " [name_prefix][xeno_caste.upgrade_name] [xeno_caste.display_name] ([nicknumber])"
 
 	//Update linked data so they show up properly
 	real_name = name

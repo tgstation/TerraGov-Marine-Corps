@@ -75,7 +75,7 @@
 	flags_armor_protection = 0
 
 /obj/item/clothing/head/helmet/swat
-	name = "\improper SWAT helmet"
+	name = " SWAT helmet"
 	desc = "They're often used by highly trained Swat Members."
 	icon_state = "swat"
 	item_state = "swat"
@@ -88,7 +88,7 @@
 	anti_hug = 1
 
 /obj/item/clothing/head/helmet/thunderdome
-	name = "\improper Thunderdome helmet"
+	name = " Thunderdome helmet"
 	desc = "<i>'Let the battle commence!'</i>"
 	icon_state = "thunderdome"
 	flags_inventory = COVEREYES|BLOCKSHARPOBJ
@@ -160,7 +160,7 @@
 
 
 /obj/item/clothing/head/helmet/marine
-	name = "\improper M10 pattern marine helmet"
+	name = " M10 pattern marine helmet"
 	desc = "A standard M10 Pattern Helmet. It reads on the label, 'The difference between an open-casket and closed-casket funeral. Wear on head for best results.'."
 	icon = 'icons/obj/clothing/cm_hats.dmi'
 	sprite_sheet_id = 1
@@ -192,7 +192,7 @@
 
 
 /obj/item/clothing/head/helmet/marine/New(loc,expected_type 		= /obj/item/clothing/head/helmet/marine,
-	new_name[] 			= list(MAP_ICE_COLONY =  "\improper M10 pattern marine snow helmet"),
+	new_name[] 			= list(MAP_ICE_COLONY =  " M10 pattern marine snow helmet"),
 	new_protection[]	= list(MAP_ICE_COLONY = ICE_PLANET_min_cold_protection_temperature))
 	select_gamemode_skin(expected_type,null,new_name,new_protection)
 	..()
@@ -258,48 +258,60 @@
 
 
 /obj/item/clothing/head/helmet/marine/tech
-	name = "\improper M10 technician helmet"
+	name = " M10 technician helmet"
 
 /obj/item/clothing/head/helmet/marine/tech/New(loc,expected_type 		= type,
-	new_name[] 			= list(MAP_ICE_COLONY = "\improper M10 technician snow helmet"),
+	new_name[] 			= list(MAP_ICE_COLONY = " M10 technician snow helmet"),
 	new_protection[]	= list(MAP_ICE_COLONY = ICE_PLANET_min_cold_protection_temperature))
 	..(loc,expected_type,new_name,new_protection)
 
 /obj/item/clothing/head/helmet/marine/medic
-	name = "\improper M10 medic helmet"
+	name = " M10 medic helmet"
 
 /obj/item/clothing/head/helmet/marine/medic/New(loc,expected_type 		= type,
-	new_name[] 			= list(MAP_ICE_COLONY = "\improper M10 medic snow helmet"),
+	new_name[] 			= list(MAP_ICE_COLONY = " M10 medic snow helmet"),
 	new_protection[]	= list(MAP_ICE_COLONY = ICE_PLANET_min_cold_protection_temperature))
 	..(loc,expected_type,new_name,new_protection)
 
 
 /obj/item/clothing/head/helmet/marine/leader
-	name = "\improper M11 pattern leader helmet"
+	name = " M11 pattern leader helmet"
 	desc = "A slightly fancier helmet for marine leaders. This one has cushioning to project your fragile brain."
 	armor = list(melee = 75, bullet = 45, laser = 40, energy = 40, bomb = 35, bio = 10, rad = 10)
 
 /obj/item/clothing/head/helmet/marine/leader/New(loc,expected_type 		= type,
-	new_name[] 			= list(MAP_ICE_COLONY = "\improper M11 pattern leader snow helmet"),
+	new_name[] 			= list(MAP_ICE_COLONY = " M11 pattern leader snow helmet"),
 	new_protection[]	= list(MAP_ICE_COLONY = ICE_PLANET_min_cold_protection_temperature))
 	..(loc,expected_type,new_name,new_protection)
 
 /obj/item/clothing/head/helmet/marine/specialist
-	name = "\improper B18 helmet"
+	name = " B18 helmet"
 	desc = "The B18 Helmet that goes along with the B18 Defensive Armor. It's heavy, reinforced, and protects more of the face."
 	armor = list(melee = 95, bullet = 105, laser = 75, energy = 65, bomb = 70, bio = 15, rad = 15)
 	unacidable = 1
 	anti_hug = 6
 
+/obj/item/clothing/head/helmet/marine/M40
+	name = "M40 helmet"
+	icon_state = "st_helmet"
+	desc = "A helmet designed for USCM storm trooper. Contains heavy insulation, covered in nomex weave."
+	armor = list(melee = 70, bullet = 40, laser = 30, energy = 25, bomb = 30, bio = 0, rad = 0)
+	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
+	max_heat_protection_temperature = FIRESUIT_max_heat_protection_temperature
+
+	New()
+		select_gamemode_skin(type)
+		..()
+
 /obj/item/clothing/head/helmet/marine/specialist/New(loc,expected_type 		= type,
-	new_name[] 			= list(MAP_ICE_COLONY = "\improper B18 snow helmet"),
+	new_name[] 			= list(MAP_ICE_COLONY = " B18 snow helmet"),
 	new_protection[]	= list(MAP_ICE_COLONY = ICE_PLANET_min_cold_protection_temperature))
 	..(loc,expected_type,new_name,new_protection)
 
 /obj/item/clothing/head/helmet/marine/scout
-	name = "\improper M3-S helmet"
+	name = " M3-S helmet"
 	icon_state = "scout_helmet"
-	desc = "A custom helmet designed for TGMC Scouts."
+	desc = "A custom helmet designed for USCM Scouts."
 	armor = list(melee = 75, bullet = 45, laser = 40, energy = 40, bomb = 35, bio = 10, rad = 10)
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
 
@@ -308,9 +320,9 @@
 		..()
 
 /obj/item/clothing/head/helmet/marine/pyro
-	name = "\improper M35 helmet"
+	name = " M35 helmet"
 	icon_state = "pyro_helmet"
-	desc = "A helmet designed for TGMC Pyrotechnicians. Contains heavy insulation, covered in nomex weave."
+	desc = "A helmet designed for USCM Pyrotechnicians. Contains heavy insulation, covered in nomex weave."
 	armor = list(melee = 85, bullet = 75, laser = 60, energy = 50, bomb = 50, bio = 10, rad = 10)
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
 	max_heat_protection_temperature = FIRESUIT_max_heat_protection_temperature
@@ -320,7 +332,7 @@
 		..()
 
 /obj/item/clothing/head/helmet/marine/pilot
-	name = "\improper M30 tactical helmet"
+	name = " M30 tactical helmet"
 	desc = "The M30 tactical helmet has an left eyepiece filter used to filter tactical data. It is required to fly the Alamo and Normandy dropships manually and in safety."
 	icon_state = "helmetp"
 	armor = list(melee = 65, bullet = 50, laser = 35, energy = 45, bomb = 30, bio = 15, rad = 15)
@@ -333,8 +345,8 @@
 		..()
 
 /obj/item/clothing/head/helmet/marine/tanker
-	name = "\improper M50 tanker helmet"
-	desc = "The lightweight M50 tanker helmet is designed for use by armored crewmen in the TGMC. It offers low weight protection, and allows agile movement inside the confines of an armored vehicle."
+	name = " M50 tanker helmet"
+	desc = "The lightweight M50 tanker helmet is designed for use by armored crewmen in the USCM. It offers low weight protection, and allows agile movement inside the confines of an armored vehicle."
 	icon_state = "tanker_helmet"
 	armor = list(melee = 40, bullet = 40, laser = 35, energy = 45, bomb = 30, bio = 15, rad = 15)
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
@@ -351,7 +363,7 @@
 /obj/item/clothing/head/helmet/marine/veteran
 
 /obj/item/clothing/head/helmet/marine/veteran/PMC
-	name = "\improper PMC tactical cap"
+	name = " PMC tactical cap"
 	desc = "A protective cap made from flexible kevlar. Standard issue for most security forms in the place of a helmet."
 	icon_state = "pmc_hat"
 	armor = list(melee = 38, bullet = 38, laser = 32, energy = 22, bomb = 12, bio = 5, rad = 5)
@@ -361,12 +373,12 @@
 	flags_marine_helmet = NOFLAGS
 
 /obj/item/clothing/head/helmet/marine/veteran/PMC/leader
-	name = "\improper PMC beret"
+	name = " PMC beret"
 	desc = "The pinacle of fashion for any aspiring mercenary leader. Designed to protect the head from light impacts."
 	icon_state = "officer_hat"
 
 /obj/item/clothing/head/helmet/marine/veteran/PMC/sniper
-	name = "\improper PMC sniper helmet"
+	name = " PMC sniper helmet"
 	desc = "A helmet worn by PMC Marksmen"
 	icon_state = "pmc_sniper_hat"
 	flags_armor_protection = HEAD|FACE|EYES
@@ -376,7 +388,7 @@
 	flags_marine_helmet = HELMET_DAMAGE_OVERLAY
 
 /obj/item/clothing/head/helmet/marine/veteran/PMC/gunner
-	name = "\improper PMC gunner helmet"
+	name = " PMC gunner helmet"
 	desc = "A modification of the standard Armat Systems M3 armor."
 	icon_state = "heavy_helmet"
 	flags_armor_protection = HEAD|FACE|EYES
@@ -386,8 +398,8 @@
 	flags_marine_helmet = HELMET_DAMAGE_OVERLAY
 
 /obj/item/clothing/head/helmet/marine/veteran/PMC/commando
-	name = "\improper PMC commando helmet"
-	desc = "A fully enclosed, armored helmet made for Nanotrasen elite commandos."
+	name = " PMC commando helmet"
+	desc = "A fully enclosed, armored helmet made for Weyland-Yutani elite commandos."
 	icon_state = "commando_helmet"
 	flags_armor_protection = HEAD|FACE|EYES
 	armor = list(melee = 90, bullet = 120, laser = 90, energy = 90, bomb = 90, bio = 100, rad = 100)
@@ -400,14 +412,14 @@
 //=======================================================================\\
 
 /obj/item/clothing/head/helmet/marine/veteran/dutch
-	name = "\improper Dutch's Dozen helmet"
+	name = " Dutch's Dozen helmet"
 	desc = "A protective helmet worn by some seriously experienced mercs."
 	icon_state = "dutch_helmet"
 	armor = list(melee = 70, bullet = 70, laser = 0,energy = 20, bomb = 0, bio = 0, rad = 0)
 	flags_marine_helmet = HELMET_GARB_OVERLAY|HELMET_DAMAGE_OVERLAY|HELMET_STORE_GARB
 
 /obj/item/clothing/head/helmet/marine/veteran/dutch/cap
-	name = "\improper Dutch's Dozen cap"
+	name = " Dutch's Dozen cap"
 	desc = "A protective cap worn by some seriously experienced mercs."
 	icon_state = "dutch_cap"
 	flags_inventory = BLOCKSHARPOBJ
@@ -415,7 +427,7 @@
 	flags_marine_helmet = NOFLAGS
 
 /obj/item/clothing/head/helmet/marine/veteran/dutch/band
-	name = "\improper Dutch's Dozen band"
+	name = " Dutch's Dozen band"
 	desc = "A protective band worn by some seriously experienced mercs."
 	icon_state = "dutch_band"
 	flags_inventory = BLOCKSHARPOBJ
@@ -423,7 +435,7 @@
 	flags_marine_helmet = NOFLAGS
 
 /obj/item/clothing/head/helmet/marine/veteran/bear
-	name = "\improper Iron Bear helmet"
+	name = " Iron Bear helmet"
 	desc = "Is good for winter, because it has hole to put vodka through."
 	icon_state = "dutch_helmet"
 	armor = list(melee = 90, bullet = 65, laser = 40, energy = 35, bomb = 35, bio = 5, rad = 5)
@@ -431,7 +443,7 @@
 	flags_marine_helmet = HELMET_GARB_OVERLAY|HELMET_DAMAGE_OVERLAY|HELMET_STORE_GARB
 
 /obj/item/clothing/head/helmet/UPP
-	name = "\improper UM4 helmet"
+	name = " UM4 helmet"
 	desc = "A skirted helmet designed for use with the UM/UH system."
 	icon = 'icons/obj/clothing/cm_hats.dmi'
 	sprite_sheet_id = 1
@@ -440,7 +452,7 @@
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
 
 /obj/item/clothing/head/helmet/UPP/heavy
-	name = "\improper UH7 helmet"
+	name = " UH7 helmet"
 	icon = 'icons/obj/clothing/cm_hats.dmi'
 	sprite_sheet_id = 1
 	icon_state = "upp_helmet_heavy"
@@ -477,12 +489,12 @@
 	flags_inv_hide = HIDEEARS|HIDETOPHAIR
 
 /obj/item/clothing/head/helmet/durag/jungle
-	name = "\improper M8 marksman cowl"
+	name = " M8 marksman cowl"
 	desc = "A cowl worn to conceal the face of a marksman in the jungle."
 	icon_state = "duragm"
 
 /obj/item/clothing/head/helmet/durag/jungle/New(loc,expected_type 	= type,
-	new_name[] 		= list(MAP_ICE_COLONY = "\improper M6 marksman hood"),
+	new_name[] 		= list(MAP_ICE_COLONY = " M6 marksman hood"),
 	new_protection[] 	= list(MAP_ICE_COLONY = ICE_PLANET_min_cold_protection_temperature))
 	select_gamemode_skin(expected_type,,new_name,new_protection)
 	..()
@@ -496,7 +508,7 @@
 //=====================================================================\\
 
 /obj/item/clothing/head/helmet/marine/veteran/mercenary
-	name = "\improper K12 ceramic helmet"
+	name = " K12 ceramic helmet"
 	desc = "A sturdy helmet worn by an unknown mercenary group."
 	icon_state = "mercenary_heavy_helmet"
 	flags_armor_protection = HEAD|FACE|EYES
@@ -506,7 +518,7 @@
 	flags_marine_helmet = HELMET_DAMAGE_OVERLAY
 
 /obj/item/clothing/head/helmet/marine/veteran/mercenary/miner
-	name = "\improper Y8 miner helmet"
+	name = " Y8 miner helmet"
 	desc = "A sturdy helmet worn by an unknown mercenary group."
 	icon_state = "mercenary_miner_helmet"
 	flags_armor_protection = HEAD|FACE|EYES
@@ -514,7 +526,7 @@
 
 
 /obj/item/clothing/head/helmet/marine/veteran/mercenary/engineer
-	name = "\improper Z7 engineer helmet"
+	name = " Z7 engineer helmet"
 	desc = "A sturdy helmet worn by an unknown mercenary group."
 	icon_state = "mercenary_engineer_helmet"
 	flags_armor_protection = HEAD|FACE|EYES

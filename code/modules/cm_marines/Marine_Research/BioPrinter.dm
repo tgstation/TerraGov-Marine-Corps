@@ -4,7 +4,7 @@ Basically a cheap knock-off of the Protolathe that I wrote in the middle of the 
 
 */
 /obj/machinery/r_n_d/bioprinter
-	name = "Nanotrasen Brand Bio-Organic Printer(TM)"
+	name = "Weyland-Yutani Brand Bio-Organic Printer(TM)"
 	icon_state = "protolathe"
 	container_type = REFILLABLE
 
@@ -88,10 +88,10 @@ Basically a cheap knock-off of the Protolathe that I wrote in the middle of the 
 	if (disabled)
 		return
 	if (!linked_console)
-		to_chat(user, "\The Nanotrasen Brand Bioprinter(TM) must be linked to an R&D console first!")
+		to_chat(user, "\The Weyland-Yutani Brand Bioprinter(TM) must be linked to an R&D console first!")
 		return 1
 	if (busy)
-		to_chat(user, "<span class='warning'> The Nanotrasen Brand Bioprinter(TM) is busy. Please wait for completion of previous operation.</span>")
+		to_chat(user, "<span class='warning'> The Weyland-Yutani Brand Bioprinter(TM) is busy. Please wait for completion of previous operation.</span>")
 		return 1
 	if (!istype(O, /obj/item/XenoBio))
 		to_chat(user, "<span class='warning'>You cannot insert this item into the protolathe!</span>")

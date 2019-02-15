@@ -1,7 +1,7 @@
 
 
 /area/nostromorig
-	name = "\improper Ocean"
+	name = " Ocean"
 	icon_state = "yellow"
 	requires_power = 1
 	always_unpowered = 1

@@ -27,17 +27,17 @@
 			if(RESEARCH_BREAKTHROUGH)
 				newMsg.body = "A major breakthough in the field of [pick("phoron research","super-compressed materials","nano-augmentation","bluespace research","volatile power manipulation")] \
 				was announced [pick("yesterday","a few days ago","last week","earlier this month")] by a private firm on [affected_dest.name]. \
-				NanoTrasen declined to comment as to whether this could impinge on profits."
+				Weyland-Yutani declined to comment as to whether this could impinge on profits."
 
 			if(ELECTION)
 				newMsg.body = "The pre-selection of an additional candidates was announced for the upcoming [pick("supervisors council","advisory board","governership","board of inquisitors")] \
 				election on [affected_dest.name] was announced earlier today, \
 				[pick("media mogul","web celebrity", "industry titan", "superstar", "famed chef", "popular gardener", "ex-army officer", "multi-billionaire")] \
 				[random_name()]. In a statement to the media they said '[pick("My only goal is to help the [pick("sick","poor","children")]",\
-				"I will maintain NanoTrasen's record profits","I believe in our future","We must return to our moral core","Just like... chill out dudes")]'."
+				"I will maintain Weyland-Yutani's record profits","I believe in our future","We must return to our moral core","Just like... chill out dudes")]'."
 
 			if(RESIGNATION)
-				newMsg.body = "NanoTrasen regretfully announces the resignation of [pick("Sector Admiral","Division Admiral","Ship Admiral","Vice Admiral")] [random_name()]."
+				newMsg.body = "Weyland-Yutani regretfully announces the resignation of [pick("Sector Admiral","Division Admiral","Ship Admiral","Vice Admiral")] [random_name()]."
 				if(prob(25))
 					var/locstring = pick("Segunda","Salusa","Cepheus","Andromeda","Gruis","Corona","Aquila","Asellus") + " " + pick("I","II","III","IV","V","VI","VII","VIII")
 					newMsg.body += " In a ceremony on [affected_dest.name] this afternoon, they will be awarded the \
@@ -166,7 +166,7 @@
 	"[pick("Unathi","Spacer")] gets tattoo of Nyx on chest '[pick("CentComm","star","starship","asteroid")] tickles most'.",\
 	"Skrell marries computer; wedding attended by 100 modems.",\
 	"Chef reports successfully using harmonica as cheese grater.",\
-	"NanoTrasen invents handkerchief that says 'Bless you' after sneeze.",\
+	"Weyland-Yutani invents handkerchief that says 'Bless you' after sneeze.",\
 	"Clone accused of posing for other clones�s school photo.",\
 	"Clone accused of stealing other clones�s employee of the month award.",\
 	"Woman robs station with hair dryer; crewmen love new style.",\

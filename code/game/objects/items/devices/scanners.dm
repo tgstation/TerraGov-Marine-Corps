@@ -9,7 +9,7 @@ MASS SPECTROMETER
 REAGENT SCANNER
 */
 /obj/item/device/t_scanner
-	name = "\improper T-ray scanner"
+	name = " T-ray scanner"
 	desc = "A terahertz-ray emitter and scanner used to detect underfloor objects such as cables and pipes."
 	icon_state = "t-ray0"
 	var/on = 0
@@ -65,7 +65,7 @@ REAGENT SCANNER
 
 
 /obj/item/device/healthanalyzer
-	name = "\improper HF2 health analyzer"
+	name = " HF2 health analyzer"
 	icon_state = "health"
 	item_state = "analyzer"
 	desc = "A hand-held body scanner able to distinguish vital signs of the subject. The front panel is able to provide the basic readout of the subject's status."
@@ -511,7 +511,7 @@ REAGENT SCANNER
 			to_chat(usr, "The scanner no longer shows results on the hud.")
 
 /obj/item/device/healthanalyzer/integrated
-	name = "\improper HF2 integrated health analyzer"
+	name = " HF2 integrated health analyzer"
 	desc = "A body scanner able to distinguish vital signs of the subject. This model has been integrated into another object, and is simpler to use."
 	skill_threshold = 0
 

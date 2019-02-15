@@ -198,7 +198,7 @@ x_pos = 0 1 2 3 4 5 6 7 8
 		/datum/coords {x_pos = 1; y_pos = 1}, /datum/coords {x_pos = 2; y_pos = 1}, /datum/coords {x_pos = 3; y_pos = 1}, /datum/coords {x_pos = 4; y_pos = 1}, /datum/coords {x_pos = 5; y_pos = 1}, /datum/coords {x_pos = 6; y_pos = 1}, /datum/coords {x_pos = 7; y_pos = 1},
 	)
 
-	//TGS Theseus Evac Pods
+	//USS Almayer Evac Pods
 /*
 x_pos = 0 1 2 3 4 5
 		| | | | | |
@@ -222,7 +222,7 @@ x_pos = 0 1 2 3 4 5
 		/datum/coords {x_pos = 1; y_pos = 1}, /datum/coords {x_pos = 2; y_pos = 1}, /datum/coords {x_pos = 3; y_pos = 1}, /datum/coords {x_pos = 4; y_pos = 1}
 	)
 
-	//Alternate TGS Theseus Evac Pods
+	//Alternate USS Almayer Evac Pods
 /*
 x_pos = 0 1 2 3 4 5 6
 		| | | | | | |
@@ -243,7 +243,7 @@ x_pos = 0 1 2 3 4 5 6
 		/datum/coords {x_pos = 1; y_pos = 1}, /datum/coords {x_pos = 2; y_pos = 1}, /datum/coords {x_pos = 3; y_pos = 1}, /datum/coords {x_pos = 4; y_pos = 1}, /datum/coords {x_pos = 5; y_pos = 1}
 	)
 
-	//TGS Theseus Dropship
+	//USS Almayer Dropship
 
 	s_info["[MAIN_SHIP_NAME] Dropship"] = newlist(
 

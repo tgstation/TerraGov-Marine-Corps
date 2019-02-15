@@ -146,7 +146,7 @@
 	set_frequency(frequency)
 	if (!master_is_operating())
 		elect_master()
-	
+
 	switch(dir)
 		if(NORTH) pixel_y = 25
 		if(SOUTH) pixel_y = -25
@@ -1098,7 +1098,7 @@ table tr:first-child th:first-child { border: none;}
 	target_temperature = 90
 
 
-//Theseus version
+//Almayer version
 /obj/machinery/alarm/almayer
 
 

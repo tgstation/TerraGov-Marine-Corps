@@ -63,6 +63,9 @@
 	name = "commander shoes"
 	desc = "Has special soles for better trampling those underneath."
 
+/obj/item/clothing/shoes/marinechief/sa
+	name = "spatial agent's shoes"
+	desc = "Shoes worn by a spatial agent."
 
 /obj/item/clothing/shoes/veteran
 
@@ -81,7 +84,7 @@
 	siemens_coefficient = 0.6
 
 /obj/item/clothing/shoes/veteran/PMC/commando
-	name = "\improper PMC commando boots"
+	name = " PMC commando boots"
 	desc = "A pair of heavily armored, acid-resistant boots."
 	icon_state = "commando_boots"
 	permeability_coefficient = 0.01

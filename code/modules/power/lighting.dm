@@ -742,10 +742,10 @@
 	SetLuminosity(0)
 
 /obj/machinery/landinglight/ds1
-	id = "TGS Theseus Dropship 1" // ID for landing zone
+	id = "USS Almayer Dropship 1" // ID for landing zone
 
 /obj/machinery/landinglight/ds2
-	id = "TGS Theseus Dropship 2" // ID for landing zone
+	id = "USS Almayer Dropship 2" // ID for landing zone
 
 /obj/machinery/landinglight/proc/turn_on()
 	icon_state = "landingstripe0"

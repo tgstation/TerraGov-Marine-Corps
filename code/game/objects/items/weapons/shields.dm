@@ -1,5 +1,6 @@
 /obj/item/weapon/shield
 	name = "shield"
+	var/block_chance = 0
 
 /obj/item/weapon/shield/riot
 	name = "riot shield"
@@ -43,3 +44,37 @@
 	origin_tech = "materials=4;magnets=3;syndicate=4"
 	attack_verb = list("shoved", "bashed")
 	var/active = 0
+
+/obj/item/weapon/shield/montage
+	name = "Montage"
+	desc = "A shield adept at blocking blunt objects from connecting with the torso of the shield wielder."
+	icon = 'icons/obj/items/weapons.dmi'
+	icon_state = "metal"
+	flags_equip_slot = SLOT_BACK
+	block_chance = 100
+	force = 5.0
+	throwforce = 5.0
+	throw_speed = 1
+	throw_range = 4
+	w_class = 4.0
+	origin_tech = "materials=2"
+	attack_verb = list("shoved", "bashed", "slash")
+	var/cooldown = 0 //shield bash cooldown. based on world.time
+
+	Get_shield_chance()
+		return block_chance
+
+	attackby(obj/item/W as obj, mob/user as mob)
+		if(istype(W, /obj/item/weapon/baton))
+			if(cooldown < world.time - 25)
+				user.visible_message("<span class='warning'>[user] bashes [src] with [W]!</span>")
+				playsound(user.loc, 'sound/effects/shieldbash.ogg', 25, 1)
+				cooldown = world.time
+		else
+			..()
+
+/obj/item/weapon/shield/montage/IsReflect(def_zone, hol_dir, hit_dir)
+	return is_the_opposite_dir(hol_dir, hit_dir)
+
+/obj/item/weapon/shield/montage/Get_shield_chance()
+	return block_chance

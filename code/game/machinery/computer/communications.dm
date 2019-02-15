@@ -57,14 +57,14 @@
 	usr.set_interaction(src)
 
 	switch(href_list["operation"])
-		if("main") 
+		if("main")
 			state = STATE_DEFAULT
 
 		if("login")
 			var/mob/living/carbon/human/C = usr
 			var/obj/item/card/id/I = C.get_active_hand()
 			if(istype(I))
-				if(check_access(I)) 
+				if(check_access(I))
 					authenticated = 1
 				if(ACCESS_MARINE_BRIDGE in I.access)
 					authenticated = 2
@@ -72,7 +72,7 @@
 			else
 				I = C.wear_id
 				if(istype(I))
-					if(check_access(I)) 
+					if(check_access(I))
 						authenticated = 1
 					if(ACCESS_MARINE_BRIDGE in I.access)
 						authenticated = 2
@@ -87,9 +87,9 @@
 			if(istype(I))
 				if(ACCESS_MARINE_COMMANDER in I.access || ACCESS_MARINE_BRIDGE in I.access) //Let heads change the alert level.
 					switch(tmp_alertlevel)
-						if(-INFINITY to SEC_LEVEL_GREEN) 
+						if(-INFINITY to SEC_LEVEL_GREEN)
 							tmp_alertlevel = SEC_LEVEL_GREEN //Cannot go below green.
-						if(SEC_LEVEL_BLUE to INFINITY) 
+						if(SEC_LEVEL_BLUE to INFINITY)
 							tmp_alertlevel = SEC_LEVEL_BLUE //Cannot go above blue.
 
 					var/old_level = security_level
@@ -99,9 +99,9 @@
 						log_game("[key_name(usr)] has changed the security level to [get_security_level()].")
 						message_admins("[key_name_admin(usr)] has changed the security level to [get_security_level()].")
 						switch(security_level)
-							if(SEC_LEVEL_GREEN) 
+							if(SEC_LEVEL_GREEN)
 								feedback_inc("alert_comms_green",1)
-							if(SEC_LEVEL_BLUE) 
+							if(SEC_LEVEL_BLUE)
 								feedback_inc("alert_comms_blue",1)
 				else
 					to_chat(usr, "<span class='warning'>You are not authorized to do this.</span>")
@@ -117,7 +117,7 @@
 					return FALSE
 
 				var/input = input(usr, "Please write a message to announce to the station crew.", "Priority Announcement", "") as message|null
-				if(!input || !(usr in view(1,src)) || authenticated != 2 || world.time < cooldown_message + COOLDOWN_COMM_MESSAGE) 
+				if(!input || !(usr in view(1,src)) || authenticated != 2 || world.time < cooldown_message + COOLDOWN_COMM_MESSAGE)
 					return FALSE
 
 				crew_announcement.Announce(input, to_xenos = 0)
@@ -134,7 +134,7 @@
 		if("evacuation_start")
 			if(state == STATE_EVACUATION)
 				if(world.time < EVACUATION_TIME_LOCK) //Cannot call it early in the round.
-					to_chat(usr, "<span class='warning'>TGMC protocol does not allow immediate evacuation. Please wait another [round((EVACUATION_TIME_LOCK-world.time)/600)] minutes before trying again.</span>")
+					to_chat(usr, "<span class='warning'>USCM protocol does not allow immediate evacuation. Please wait another [round((EVACUATION_TIME_LOCK-world.time)/600)] minutes before trying again.</span>")
 					return FALSE
 
 				if(!ticker?.mode)
@@ -146,7 +146,7 @@
 					return FALSE
 
 				if(EvacuationAuthority.flags_scuttle & FLAGS_EVACUATION_DENY)
-					to_chat(usr, "<span class='warning'>The TGMC has placed a lock on deploying the evacuation pods.</span>")
+					to_chat(usr, "<span class='warning'>The USCM has placed a lock on deploying the evacuation pods.</span>")
 					return FALSE
 
 				if(!EvacuationAuthority.initiate_evacuation())
@@ -188,7 +188,7 @@
 					to_chat(usr, "<span class='warning'>The distress beacon cannot be launched this early in the operation. Please wait another [round((DISTRESS_TIME_LOCK-world.time)/600)] minutes before trying again.</span>")
 					return FALSE
 
-				if(!ticker?.mode) 
+				if(!ticker?.mode)
 					return FALSE //Not a game mode?
 
 				if(just_called || ticker.mode.waiting_for_candidates)
@@ -233,9 +233,9 @@
 		if("viewmessage")
 			state = STATE_VIEWMESSAGE
 			if(!currmsg)
-				if(href_list["message-num"]) 	
+				if(href_list["message-num"])
 					currmsg = text2num(href_list["message-num"])
-				else 							
+				else
 					state = STATE_MESSAGELIST
 
 		if("delmessage")
@@ -248,11 +248,11 @@
 					var/text  = messagetext[currmsg]
 					messagetitle.Remove(title)
 					messagetext.Remove(text)
-					if(currmsg == aicurrmsg) 
+					if(currmsg == aicurrmsg)
 						aicurrmsg = 0
 					currmsg = 0
 				state = STATE_MESSAGELIST
-			else 
+			else
 				state = STATE_VIEWMESSAGE
 
 
@@ -277,25 +277,25 @@
 			stat_msg2 = reject_bad_text(trim(copytext(sanitize(input("Line 2", "Enter Message Text", stat_msg2) as text|null), 1, 40)), 40)
 			updateDialog()
 
-		if("messageTGMC")
+		if("messageUSCM")
 			if(authenticated == 2)
 				if(world.time < cooldown_central + COOLDOWN_COMM_CENTRAL)
 					to_chat(usr, "<span class='warning'>Arrays recycling.  Please stand by.</span>")
 					return FALSE
 
-				var/input = stripped_input(usr, "Please choose a message to transmit to the TGMC High Command.  Please be aware that this process is very expensive, and abuse will lead to termination.  Transmission does not guarantee a response. There is a small delay before you may send another message. Be clear and concise.", "To abort, send an empty message.", "")
-				if(!input || !(usr in view(1,src)) || authenticated != 2 || world.time < cooldown_central + COOLDOWN_COMM_CENTRAL) 
+				var/input = stripped_input(usr, "Please choose a message to transmit to the USCM High Command.  Please be aware that this process is very expensive, and abuse will lead to termination.  Transmission does not guarantee a response. There is a small delay before you may send another message. Be clear and concise.", "To abort, send an empty message.", "")
+				if(!input || !(usr in view(1,src)) || authenticated != 2 || world.time < cooldown_central + COOLDOWN_COMM_CENTRAL)
 					return FALSE
 
 
 				Centcomm_announce(input, usr)
 				to_chat(usr, "<span class='notice'>Message transmitted.</span>")
-				usr.log_talk(input, LOG_SAY, tag="TGMC announcement")
+				usr.log_talk(input, LOG_SAY, tag="USCM announcement")
 				cooldown_central = world.time
 
 		if("securitylevel")
 			tmp_alertlevel = text2num( href_list["newalertlevel"] )
-			if(!tmp_alertlevel) 
+			if(!tmp_alertlevel)
 				tmp_alertlevel = 0
 			state = STATE_CONFIRM_LEVEL
 
@@ -313,7 +313,7 @@
 	return attack_hand(user)
 
 /obj/machinery/computer/communications/attack_hand(var/mob/user as mob)
-	if(..()) 
+	if(..())
 		return FALSE
 
 	//Should be refactored later, if there's another ship that can appear during a mode with a comm console.
@@ -346,7 +346,7 @@
 
 				if(authenticated == 2)
 					dat += "<BR>\[ <A HREF='?src=\ref[src];operation=announce'>Make an announcement</A> \]"
-					dat += admins.len > 0 ? "<BR>\[ <A HREF='?src=\ref[src];operation=messageTGMC'>Send a message to TGMC</A> \]" : "<BR>\[ TGMC communication offline \]"
+					dat += admins.len > 0 ? "<BR>\[ <A HREF='?src=\ref[src];operation=messageUSCM'>Send a message to USCM</A> \]" : "<BR>\[ USCM communication offline \]"
 					dat += "<BR>\[ <A HREF='?src=\ref[src];operation=award'>Award a medal</A> \]"
 					dat += "<BR>\[ <A HREF='?src=\ref[src];operation=distress'>Send Distress Beacon</A> \]"
 					switch(EvacuationAuthority.evac_status)

@@ -32,7 +32,7 @@
 
 
 /obj/item/clothing/glasses/hud/health
-	name = "\improper HealthMate HUD"
+	name = " HealthMate HUD"
 	desc = "A heads-up display that scans the humans in view and provides accurate data about their health status."
 	icon_state = "healthhud"
 	flags_armor_protection = 0
@@ -41,7 +41,7 @@
 	actions_types = list(/datum/action/item_action/toggle)
 
 /obj/item/clothing/glasses/hud/security
-	name = "\improper PatrolMate HUD"
+	name = " PatrolMate HUD"
 	desc = "A heads-up display that scans the humans in view and provides accurate data about their ID status and security records."
 	icon_state = "securityhud"
 	toggleable = 1

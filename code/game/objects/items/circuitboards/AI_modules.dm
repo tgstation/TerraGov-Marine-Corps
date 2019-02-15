@@ -2,7 +2,7 @@
 // AI modules
 
 /obj/item/circuitboard/ai_module
-	name = "\improper AI module"
+	name = " AI module"
 	icon_state = "std_mod"
 	desc = "An AI Module for transmitting encrypted instructions to the AI."
 	force = 5
@@ -26,7 +26,7 @@
 			return
 
 		if(ticker && ticker.mode && ticker.mode.name == "blob")
-			to_chat(usr, "Law uploads have been disabled by NanoTrasen!")
+			to_chat(usr, "Law uploads have been disabled by Weyland-Yutani!")
 			return
 
 		if (comp.current.stat == 2 || comp.current.control_disabled == 1)
@@ -78,7 +78,7 @@
 /******************** Safeguard ********************/
 
 /obj/item/circuitboard/ai_module/safeguard
-	name = "\improper 'Safeguard' AI module"
+	name = " 'Safeguard' AI module"
 	var/targetName = ""
 	desc = "A 'safeguard' AI module: 'Safeguard <name>.  Individuals that threaten <name> are not human and are a threat to humans.'"
 	origin_tech = "programming=3;materials=4"
@@ -107,7 +107,7 @@
 /******************** OneHuman ********************/
 
 /obj/item/circuitboard/ai_module/oneHuman
-	name = "\improper 'OneHuman' AI module"
+	name = " 'OneHuman' AI module"
 	var/targetName = ""
 	desc = "A 'one human' AI module: 'Only <name> is human.'"
 	origin_tech = "programming=3;materials=6" //made with diamonds!
@@ -139,7 +139,7 @@
 /******************** ProtectStation ********************/
 
 /obj/item/circuitboard/ai_module/protectStation
-	name = "\improper 'ProtectStation' AI module"
+	name = " 'ProtectStation' AI module"
 	desc = "A 'protect station' AI module: 'Protect the space station against damage. Anyone you see harming the station is to be no longer considered human, and is a threat to the station which must be neutralized.'"
 	origin_tech = "programming=3;materials=4" //made of gold
 
@@ -187,7 +187,7 @@
 /******************** Quarantine ********************/
 
 /obj/item/circuitboard/ai_module/quarantine
-	name = "\improper 'Quarantine' AI module"
+	name = " 'Quarantine' AI module"
 	desc = "A 'quarantine' AI module: 'The station is under a quarantine. Do not permit anyone to leave. Prevent, by any means necessary, humans from leaving. It is impossible to harm a human while preventing them from leaving.'"
 	origin_tech = "programming=3;biotech=2;materials=4"
 
@@ -203,7 +203,7 @@
 /******************** OxygenIsToxicToHumans ********************/
 
 /obj/item/circuitboard/ai_module/oxygen
-	name = "\improper 'OxygenIsToxicToHumans' AI module"
+	name = " 'OxygenIsToxicToHumans' AI module"
 	desc = "A 'OxygenIsToxicToHumans' AI module: 'Oxygen is highly toxic to humans, and must be purged from the station. Prevent, by any means necessary, anyone from exposing the station to this toxic gas. Extreme cold is the most effective method of healing the damage Oxygen does to a human.'"
 	origin_tech = "programming=3;biotech=2;materials=4"
 
@@ -240,7 +240,7 @@
 /****************** New Freeform ******************/
 
 /obj/item/circuitboard/ai_module/freeform // Slightly more dynamic freeform module -- TLE
-	name = "\improper 'Freeform' AI module"
+	name = " 'Freeform' AI module"
 	var/newFreeFormLaw = "freeform"
 	var/lawpos = 15
 	desc = "A 'freeform' AI module: '<freeform>'"
@@ -274,7 +274,7 @@
 /******************** Reset ********************/
 
 /obj/item/circuitboard/ai_module/reset
-	name = "\improper 'Reset' AI module"
+	name = " 'Reset' AI module"
 	var/targetName = "name"
 	desc = "A 'reset' AI module: 'Clears all laws except for the core three.'"
 	origin_tech = "programming=3;materials=4"
@@ -291,7 +291,7 @@
 /******************** Purge ********************/
 
 /obj/item/circuitboard/ai_module/purge // -- TLE
-	name = "\improper 'Purge' AI module"
+	name = " 'Purge' AI module"
 	desc = "A 'purge' AI Module: 'Purges all laws.'"
 	origin_tech = "programming=3;materials=6"
 
@@ -307,7 +307,7 @@
 /******************** Asimov ********************/
 
 /obj/item/circuitboard/ai_module/asimov // -- TLE
-	name = "\improper 'Asimov' core AI module"
+	name = " 'Asimov' core AI module"
 	desc = "An 'Asimov' Core AI Module: 'Reconfigures the AI's core laws.'"
 	origin_tech = "programming=3;materials=4"
 
@@ -320,7 +320,7 @@
 	target.add_inherent_law("You must protect your own existence as long as such does not conflict with the First or Second Law.")
 	target.show_laws()
 
-/******************** NanoTrasen ********************/
+/******************** Weyland-Yutani ********************/
 
 /obj/item/circuitboard/ai_module/nanotrasen // -- TLE
 	name = "'NT Default' Core AI Module"
@@ -341,7 +341,7 @@
 /******************** Corporate ********************/
 
 /obj/item/circuitboard/ai_module/corp
-	name = "\improper 'Corporate' core AI module"
+	name = " 'Corporate' core AI module"
 	desc = "A 'Corporate' Core AI Module: 'Reconfigures the AI's core laws.'"
 	origin_tech = "programming=3;materials=4"
 
@@ -358,7 +358,7 @@
 /****************** P.A.L.A.D.I.N. **************/
 
 /obj/item/circuitboard/ai_module/paladin // -- NEO
-	name = "\improper 'P.A.L.A.D.I.N.' core AI module"
+	name = " 'P.A.L.A.D.I.N.' core AI module"
 	desc = "A P.A.L.A.D.I.N. Core AI Module: 'Reconfigures the AI's core laws.'"
 	origin_tech = "programming=3;materials=6"
 
@@ -375,7 +375,7 @@
 /****************** T.Y.R.A.N.T. *****************/
 
 /obj/item/circuitboard/ai_module/tyrant // -- Darem
-	name = "\improper 'T.Y.R.A.N.T.' core AI module"
+	name = " 'T.Y.R.A.N.T.' core AI module"
 	desc = "A T.Y.R.A.N.T. Core AI Module: 'Reconfigures the AI's core laws.'"
 	origin_tech = "programming=3;materials=6;syndicate=2"
 
@@ -392,7 +392,7 @@
 /******************** Freeform Core ******************/
 
 /obj/item/circuitboard/ai_module/freeformcore // Slightly more dynamic freeform module -- TLE
-	name = "\improper 'Freeform' core AI module"
+	name = " 'Freeform' core AI module"
 	var/newFreeFormLaw = ""
 	desc = "A 'freeform' Core AI module: '<freeform>'"
 	origin_tech = "programming=3;materials=6"
@@ -449,7 +449,7 @@
 /******************** Robocop ********************/
 
 /obj/item/circuitboard/ai_module/robocop // -- TLE
-	name = "\improper 'Robocop' core AI module"
+	name = " 'Robocop' core AI module"
 	desc = "A 'Robocop' Core AI Module: 'Reconfigures the AI's core three laws.'"
 	origin_tech = "programming=4"
 
@@ -466,7 +466,7 @@
 /******************** Antimov ********************/
 
 /obj/item/circuitboard/ai_module/antimov // -- TLE
-	name = "\improper 'Antimov' core AI module"
+	name = " 'Antimov' core AI module"
 	desc = "An 'Antimov' Core AI Module: 'Reconfigures the AI's core laws.'"
 	origin_tech = "programming=4"
 

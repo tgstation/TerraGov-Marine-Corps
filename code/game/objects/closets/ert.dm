@@ -1,5 +1,5 @@
 /obj/structure/closet/secure_closet/ert/commander
-	name = "\improper ERT commander locker"
+	name = " ERT commander locker"
 	req_access = list(ACCESS_MARINE_BRIG)
 	icon_state = "capsecure1"
 	icon_closed = "capsecure"
@@ -23,7 +23,7 @@
 		return
 
 /obj/structure/closet/secure_closet/ert/security
-	name = "\improper ERT security locker"
+	name = " ERT security locker"
 	req_access = list(ACCESS_MARINE_BRIG)
 	icon_state = "sec1"
 	icon_closed = "sec"
@@ -46,7 +46,7 @@
 
 
 /obj/structure/closet/secure_closet/ert/engineer
-	name = "\improper ERT engineer locker"
+	name = " ERT engineer locker"
 	req_access = list(ACCESS_ENGINE)
 	icon_state = "secureeng1"
 	icon_closed = "secureeng"
@@ -68,7 +68,7 @@
 		return
 
 /obj/structure/closet/secure_closet/ert/medical
-	name = "\improper ERT medical locker"
+	name = " ERT medical locker"
 	req_access = list(ACCESS_MEDICAL)
 	icon_state = "securemed1"
 	icon_closed = "securemed"

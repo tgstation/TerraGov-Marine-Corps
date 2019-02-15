@@ -37,7 +37,7 @@ datum/admins/proc/notes_gethtml(var/ckey)
 		if(!ckey)	return
 
 	if(!note)
-		note = html_encode(input(usr,"Enter your note:","Enter some text",null) as message|null)
+		note = lhtml_encode(input(usr,"Enter your note:","Enter some text",null) as message|null)
 		if(!note)	return
 
 	var/savefile/notesfile = new(NOTESFILE)
@@ -118,7 +118,7 @@ datum/admins/proc/notes_gethtml(var/ckey)
 		P.author = usr.key
 		P.rank = usr.client.holder.rank
 	else
-		P.author = "TGMC Adminbot"
+		P.author = "USCM Adminbot"
 		P.rank = "Silicon"
 	P.content = note
 	P.timestamp = "[hourminute_string] [copytext(full_date,1,day_loc)][day_string][copytext(full_date,day_loc+2)]"
@@ -136,9 +136,9 @@ datum/admins/proc/notes_gethtml(var/ckey)
 	var/savefile/note_list = new("data/player_notes.sav")
 	var/list/note_keys
 	note_list >> note_keys
-	if(!note_keys) 
+	if(!note_keys)
 		note_keys = list()
-	if(!note_keys.Find(key)) 
+	if(!note_keys.Find(key))
 		note_keys += key
 	to_chat(note_list, note_keys)
 	qdel(note_list)
@@ -149,7 +149,7 @@ datum/admins/proc/notes_gethtml(var/ckey)
 	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
 	var/list/infos
 	info >> infos
-	if(!infos || infos.len < index) 
+	if(!infos || infos.len < index)
 		return
 
 	var/datum/player_info/item = infos[index]
@@ -166,7 +166,7 @@ datum/admins/proc/notes_gethtml(var/ckey)
 	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
 	var/list/infos
 	info >> infos
-	if(!infos || infos.len < index) 
+	if(!infos || infos.len < index)
 		return
 
 	var/datum/player_info/item = infos[index]
@@ -184,7 +184,7 @@ datum/admins/proc/notes_gethtml(var/ckey)
 	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
 	var/list/infos
 	info >> infos
-	if(!infos || infos.len < index) 
+	if(!infos || infos.len < index)
 		return
 
 	var/datum/player_info/item = infos[index]
