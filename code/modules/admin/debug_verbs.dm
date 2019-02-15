@@ -199,7 +199,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		else
 			return
 
-	if(!X || !istype(X) || X.gc_destroyed || !SSticker || X.hivenumber != hivenumber_status)
+	if(!istype(X) || X.gc_destroyed || !SSticker || X.hivenumber != hivenumber_status)
 		return
 
 	X.set_hive_number(newhivenumber)
