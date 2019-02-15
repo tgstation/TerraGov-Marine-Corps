@@ -215,6 +215,8 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 	else
 		player_details = new
 		all_player_details[ckey] = player_details
+	
+	winset(src, null, "mainwindow.title=[CONFIG_GET(string/title)]")
 
 
 

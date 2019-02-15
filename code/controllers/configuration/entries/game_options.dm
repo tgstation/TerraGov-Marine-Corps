@@ -86,9 +86,11 @@
 		update_mob_config_movespeeds()
 
 /datum/config_entry/number/movedelay/run_delay
+	config_entry_value = 1
 	integer = FALSE
 
 /datum/config_entry/number/movedelay/walk_delay
+	config_entry_value = 1
 	integer = FALSE
 
 /datum/config_entry/number/outdated_movedelay
@@ -99,12 +101,19 @@
 	return "[movedelay_type] [value]"
 
 /datum/config_entry/number/outdated_movedelay/human_delay
+	config_entry_value = 0
 	movedelay_type = /mob/living/carbon/human
+
 /datum/config_entry/number/outdated_movedelay/robot_delay
+	config_entry_value = 0
 	movedelay_type = /mob/living/silicon/robot
+
 /datum/config_entry/number/outdated_movedelay/monkey_delay
+	config_entry_value = 0
 	movedelay_type = /mob/living/carbon/monkey
+
 /datum/config_entry/number/outdated_movedelay/animal_delay
+	config_entry_value = 0
 	movedelay_type = /mob/living/simple_animal
 
 /datum/config_entry/number/gateway_delay	//How long the gateway takes before it activates. Default is half an hour. Only matters if roundstart_away is enabled.
@@ -113,22 +122,26 @@
 	min_val = 0
 
 /datum/config_entry/number/organ_health_multiplier
+	config_entry_value = 1
 
 /datum/config_entry/number/organ_regeneration_multiplier
+	config_entry_value = 1
 
 /datum/config_entry/number/health_threshold_crit
+	config_entry_value = -50
 
 /datum/config_entry/number/health_threshold_dead
+	config_entry_value = -100
 
 /datum/config_entry/flag/limbs_can_break
 
 /datum/config_entry/number/revive_grace_period
+	config_entry_value = 3000
+	min_val = 0
 
 /datum/config_entry/flag/husking_on
 
 /datum/config_entry/flag/bones_can_break
-
-/datum/config_entry/flag/ghost_interaction
 
 /datum/config_entry/flag/allow_random_events
 
@@ -146,13 +159,14 @@
 
 /datum/config_entry/number/xeno_coefficient
 	integer = FALSE
-	config_entry_value = 1
+	config_entry_value = 4.25
 	min_val = 1
 
 /datum/config_entry/number/survivor_coefficient
 	integer = FALSE
-	config_entry_value = 1
+	config_entry_value = 15
 	min_val = 1
 
 /datum/config_entry/number/latejoin_larva_required_num
 	min_val = 0
+	config_entry_value = 4
