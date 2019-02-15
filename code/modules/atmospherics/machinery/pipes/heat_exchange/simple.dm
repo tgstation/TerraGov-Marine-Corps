@@ -1,5 +1,5 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple
-	icon = 'icons/atmos/heat.dmi'
+	icon = 'icons/obj/atmospherics/pipes/he-simple.dmi'
 	icon_state = "pipe11-2"
 
 	name = "pipe"

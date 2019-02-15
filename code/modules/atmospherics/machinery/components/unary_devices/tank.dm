@@ -1,6 +1,6 @@
 #define AIR_CONTENTS	((25*ONE_ATMOSPHERE)*(air_contents.volume)/(R_IDEAL_GAS_EQUATION*air_contents.temperature))
 /obj/machinery/atmospherics/components/unary/tank
-	icon = 'icons/atmos/tank.dmi'
+	icon = 'icons/obj/atmospherics/pipes/pressure_tank.dmi'
 	icon_state = "generic"
 
 	name = "pressure tank"

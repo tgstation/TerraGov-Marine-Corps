@@ -3752,7 +3752,7 @@
 "bui" = (/obj/machinery/atmospherics/components/unary/vent_pump/layer1,/turf/open/floor{icon_state = "white"},/area/ice_colony/underground/medical/treatment)
 "buj" = (/turf/open/floor/plating,/area/ice_colony/underground/engineering/substation)
 "buk" = (/obj/machinery/atmospherics/pipe/simple/general/visible{tag = "icon-intact (NORTHEAST)"; dir = 5},/turf/open/floor{icon_state = "white"},/area/ice_colony/underground/medical/treatment)
-"bul" = (/obj/machinery/atmospherics/unary/freezer{dir = 8; icon_state = "freezer_1"; idle_power_usage = 5; on = 0; set_temperature = 1},/turf/open/floor{tag = "icon-whitered (EAST)"; icon_state = "whitered"; dir = 4},/area/ice_colony/underground/medical/treatment)
+"bul" = (/obj/machinery/atmospherics/unary/freezer{dir = 8},/turf/open/floor{tag = "icon-whitered (EAST)"; icon_state = "whitered"; dir = 4},/area/ice_colony/underground/medical/treatment)
 "bum" = (/obj/structure/table,/obj/item/stack/nanopaste,/turf/open/floor{tag = "icon-whitered (WEST)"; icon_state = "whitered"; dir = 8},/area/ice_colony/underground/medical/or)
 "bun" = (/obj/effect/landmark/huntergames_primary_spawn,/turf/open/floor{tag = "icon-dark2"; icon_state = "dark2"},/area/ice_colony/underground/hangar)
 "buo" = (/turf/open/floor{icon_state = "white"},/area/ice_colony/underground/medical/or)

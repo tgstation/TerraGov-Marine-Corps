@@ -52,7 +52,7 @@
 "aZ" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "escapeshuttle_leave"; teleport_x = 25; teleport_x_offset = 245; teleport_y = 25; teleport_y_offset = 245; teleport_z = 1; teleport_z_offset = 1},/turf/open/space/transit/north/shuttlespace_ns9,/area/space)
 "ba" = (/turf/open/space,/area/shuttle/distress/transit)
 "bb" = (/obj/machinery/atmospherics/pipe/simple/general/visible{tag = "icon-intact (NORTHEAST)"; dir = 5},/turf/open/floor,/area/tdome)
-"bc" = (/obj/machinery/atmospherics/pipe/manifold/general/visible{dir = 1; icon_state = "map"; tag = "icon-manifold (NORTH)"},/turf/open/floor,/area/tdome)
+"bc" = (/obj/machinery/atmospherics/pipe/manifold/general/visible{dir = 1; tag = "icon-manifold (NORTH)"},/turf/open/floor,/area/tdome)
 "bd" = (/obj/machinery/atmospherics/pipe/simple/general/visible{tag = "icon-intact (NORTHWEST)"; dir = 9},/turf/open/floor,/area/tdome)
 "be" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "escapeshuttle_leave"; teleport_x = 25; teleport_x_offset = 245; teleport_y = 25; teleport_y_offset = 245; teleport_z = 1; teleport_z_offset = 1},/turf/open/space/transit/north/shuttlespace_ns3,/area/space)
 "bf" = (/obj/machinery/atmospherics/pipe/simple/general/visible,/turf/open/floor,/area/tdome)

@@ -5,7 +5,7 @@
 #define OUTPUT_MAX	4
 
 /obj/machinery/atmospherics/components/binary/dp_vent_pump
-	icon = 'icons/atmos/unary_devices.dmi' //We reuse the normal vent icons!
+	icon = 'icons/obj/atmospherics/components/unary_devices.dmi' //We reuse the normal vent icons!
 	icon_state = "dpvent_map-2"
 
 	//node2 is output port

@@ -1255,7 +1255,7 @@
 "ayg" = (/obj/machinery/atmospherics/pipe/simple/green/hidden{dir = 9},/obj/structure/cable{d1 = 1; d2 = 8; icon_state = "1-8"},/turf/open/floor{icon_state = "white"},/area/bigredv2/outside/medical)
 "ayh" = (/obj/machinery/vending/medical,/turf/open/floor{tag = "icon-whitegreen (NORTHWEST)"; icon_state = "whitegreen"; dir = 9},/area/bigredv2/outside/medical)
 "ayi" = (/obj/structure/sign/safety/autodoc{pixel_x = 32},/turf/open/floor{tag = "icon-whitegreen (NORTHEAST)"; icon_state = "whitegreen"; dir = 5},/area/bigredv2/outside/medical)
-"ayj" = (/obj/machinery/atmospherics/unary/freezer{dir = 2; icon_state = "freezer_1"; on = 1; set_temperature = 1},/turf/open/floor{icon_state = "white"},/area/bigredv2/outside/medical)
+"ayj" = (/obj/machinery/atmospherics/unary/freezer{dir = 2},/turf/open/floor{icon_state = "white"},/area/bigredv2/outside/medical)
 "ayk" = (/obj/machinery/atmospherics/components/unary/cryo_cell,/turf/open/floor{icon_state = "white"},/area/bigredv2/outside/medical)
 "ayl" = (/obj/machinery/atmospherics/components/unary/tank/oxygen,/turf/open/floor{icon_state = "white"},/area/bigredv2/outside/medical)
 "aym" = (/obj/structure/sign/safety/autodoc{pixel_x = -32},/turf/open/floor{tag = "icon-whitegreen (WEST)"; icon_state = "whitegreen"; dir = 8},/area/bigredv2/outside/medical)

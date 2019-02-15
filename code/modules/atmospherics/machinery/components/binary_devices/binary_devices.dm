@@ -1,5 +1,5 @@
 /obj/machinery/atmospherics/components/binary
-	icon = 'icons/atmos/binary_devices.dmi'
+	icon = 'icons/obj/atmospherics/components/binary_devices.dmi'
 	dir = SOUTH
 	initialize_directions = SOUTH|NORTH
 	use_power = IDLE_POWER_USE
