@@ -123,7 +123,6 @@
 
 		health -= 50 * dmg_multipliers["blunt"]
 		healthcheck()
-		C.stop_momentum(C.charge_dir)
 
 /obj/vehicle/walker/verb/enter_walker()
 	set category = "Object"
