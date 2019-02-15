@@ -1,7 +1,7 @@
 //4-Way Manifold
 
 /obj/machinery/atmospherics/pipe/manifold4w
-	icon = 'icons/atmos/manifold.dmi'
+	icon = 'icons/obj/atmospherics/pipes/manifold.dmi'
 	icon_state = "manifold4w-2"
 
 	name = "4-way pipe manifold"
