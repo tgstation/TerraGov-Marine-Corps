@@ -87,7 +87,7 @@
 	set waitfor = 0
 	sleep(30)
 	if(!loc) return FALSE
-	if(SSticker && SSticker.mode && SSticker.mode.predators.len)
+	if(length(SSticker?.mode?.predators))
 		var/datum/mind/M
 		for(var/i in SSticker.mode.predators)
 			M = i
