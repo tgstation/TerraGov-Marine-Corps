@@ -67,6 +67,12 @@
 	name = "chief officer gloves"
 	desc = "Blood crusts are attached to its metal studs, which are slightly dented."
 
+/obj/item/clothing/gloves/marine/officer/chief/sa
+	name = "spatial agent's gloves"
+	desc = "Gloves worn by a Spatial Agent."
+	siemens_coefficient = 0
+	permeability_coefficient = 0
+
 /obj/item/clothing/gloves/marine/techofficer
 	name = "tech officer gloves"
 	desc = "Sterile AND insulated! Why is not everyone issued with these?"
@@ -82,7 +88,7 @@
 	item_state = "egloves"
 
 /obj/item/clothing/gloves/marine/specialist
-	name = "\improper B18 defensive gauntlets"
+	name = " B18 defensive gauntlets"
 	desc = "A pair of heavily armored gloves."
 	icon_state = "black"
 	item_state = "bgloves"
@@ -98,7 +104,7 @@
 	armor = list(melee = 60, bullet = 60, laser = 35, energy = 20, bomb = 10, bio = 10, rad = 0)
 
 /obj/item/clothing/gloves/marine/veteran/PMC/commando
-	name = "\improper PMC commando gloves"
+	name = " PMC commando gloves"
 	desc = "A pair of heavily armored, insulated, acid-resistant gloves."
 	icon_state = "brown"
 	item_state = "browngloves"

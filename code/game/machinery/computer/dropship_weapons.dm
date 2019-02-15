@@ -145,7 +145,7 @@
 	ui_interact(usr)
 
 /obj/machinery/computer/dropship_weapons/dropship1
-	name = "\improper 'Alamo' weapons controls"
+	name = " 'Alamo' weapons controls"
 	req_access = list(ACCESS_MARINE_DROPSHIP)
 
 /obj/machinery/computer/dropship_weapons/dropship1/New()
@@ -153,7 +153,7 @@
 	shuttle_tag = "[MAIN_SHIP_NAME] Dropship 1"
 
 /obj/machinery/computer/dropship_weapons/dropship2
-	name = "\improper 'Normandy' weapons controls"
+	name = " 'Normandy' weapons controls"
 	req_access = list(ACCESS_MARINE_DROPSHIP)
 
 /obj/machinery/computer/dropship_weapons/dropship2/New()

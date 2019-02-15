@@ -3,7 +3,7 @@
 //Keyword rifles. They are subtype of rifles, but still contained here as a specialist weapon.
 
 /obj/item/ammo_magazine/sniper
-	name = "\improper M42A marksman magazine (10x28mm Caseless)"
+	name = " M42A marksman magazine (10x28mm Caseless)"
 	desc = "A magazine of sniper rifle ammo."
 	caliber = "10x28mm"
 	icon_state = "m42c" //PLACEHOLDER
@@ -17,12 +17,12 @@
 		reload_delay = config.low_fire_delay
 
 /obj/item/ammo_magazine/sniper/incendiary
-	name = "\improper M42A incendiary magazine (10x28mm)"
+	name = " M42A incendiary magazine (10x28mm)"
 	default_ammo = /datum/ammo/bullet/sniper/incendiary
 	icon_state = "m42c_inc"
 
 /obj/item/ammo_magazine/sniper/flak
-	name = "\improper M42A flak magazine (10x28mm)"
+	name = " M42A flak magazine (10x28mm)"
 	default_ammo = /datum/ammo/bullet/sniper/flak
 	icon_state = "m42c_flak"
 
@@ -30,7 +30,7 @@
 //M42C magazine
 
 /obj/item/ammo_magazine/sniper/elite
-	name = "\improper M42C marksman magazine (10x99mm)"
+	name = " M42C marksman magazine (10x99mm)"
 	default_ammo = /datum/ammo/bullet/sniper/elite
 	gun_type = /obj/item/weapon/gun/rifle/sniper/elite
 	caliber = "10x99mm"
@@ -41,7 +41,7 @@
 //SVD //Based on the actual Dragunov sniper rifle.
 
 /obj/item/ammo_magazine/sniper/svd
-	name = "\improper SVD magazine (7.62x54mmR)"
+	name = " SVD magazine (7.62x54mmR)"
 	desc = "A large caliber magazine for the SVD sniper rifle."
 	caliber = "7.62x54mmR"
 	icon_state = "svd003"
@@ -54,7 +54,7 @@
 //M4RA magazines
 
 /obj/item/ammo_magazine/rifle/m4ra
-	name = "\improper A19 high velocity magazine (10x24mm)"
+	name = " A19 high velocity magazine (10x24mm)"
 	desc = "A magazine of A19 high velocity rounds for use in the M4RA battle rifle. The M4RA battle rifle is the only gun that can chamber these rounds."
 	icon_state = "m4ra"
 	default_ammo = /datum/ammo/bullet/rifle/m4ra
@@ -62,7 +62,7 @@
 	gun_type = /obj/item/weapon/gun/rifle/m4ra
 
 /obj/item/ammo_magazine/rifle/m4ra/incendiary
-	name = "\improper A19 high velocity incendiary magazine (10x24mm)"
+	name = " A19 high velocity incendiary magazine (10x24mm)"
 	desc = "A magazine of A19 high velocity incendiary rounds for use in the M4RA battle rifle. The M4RA battle rifle is the only gun that can chamber these rounds."
 	icon_state = "m4ra_incendiary"
 	default_ammo = /datum/ammo/bullet/rifle/m4ra/incendiary
@@ -70,7 +70,7 @@
 	gun_type = /obj/item/weapon/gun/rifle/m4ra
 
 /obj/item/ammo_magazine/rifle/m4ra/impact
-	name = "\improper A19 high velocity impact magazine (10x24mm)"
+	name = " A19 high velocity impact magazine (10x24mm)"
 	desc = "A magazine of A19 high velocity impact rounds for use in the M4RA battle rifle. The M4RA battle rifle is the only gun that can chamber these rounds."
 	icon_state = "m4ra_impact"
 	default_ammo = /datum/ammo/bullet/rifle/m4ra/impact
@@ -98,7 +98,7 @@
 //M5 RPG
 
 /obj/item/ammo_magazine/rocket
-	name = "\improper 84mm high-explosive rocket"
+	name = " 84mm high-explosive rocket"
 	desc = "A rocket tube for an M5 RPG rocket."
 	caliber = "rocket"
 	icon_state = "rocket"
@@ -130,19 +130,19 @@
 			icon_state = type == /obj/item/ammo_magazine/rocket/m57a4? "quad_rocket_e" : "rocket_e"
 
 /obj/item/ammo_magazine/rocket/ap
-	name = "\improper 84mm anti-armor rocket"
+	name = " 84mm anti-armor rocket"
 	icon_state = "ap_rocket"
 	default_ammo = /datum/ammo/rocket/ap
 	desc = "A tube for an AP rocket, the warhead of which is extremely dense and turns molten on impact. When empty, use this frame to deconstruct it."
 
 /obj/item/ammo_magazine/rocket/wp
-	name = "\improper 84mm white-phosphorus rocket"
+	name = " 84mm white-phosphorus rocket"
 	icon_state = "wp_rocket"
 	default_ammo = /datum/ammo/rocket/wp
 	desc = "A highly destructive warhead that bursts into deadly flames on impact. Use this in hand to deconstruct it."
 
 /obj/item/ammo_magazine/internal/launcher/rocket
-	name = "\improper 84mm internal tube"
+	name = " 84mm internal tube"
 	desc = "The internal tube of a M5 RPG."
 	caliber = "rocket"
 	default_ammo = /datum/ammo/rocket
@@ -154,7 +154,7 @@
 //M5 RPG'S MEAN FUCKING COUSIN
 
 /obj/item/ammo_magazine/rocket/m57a4
-	name = "\improper 84mm thermobaric rocket array"
+	name = " 84mm thermobaric rocket array"
 	desc = "A thermobaric rocket tube for an M83AM quad launcher. Activate in hand to receive some metal when it's used up."
 	caliber = "rocket array"
 	icon_state = "quad_rocket"

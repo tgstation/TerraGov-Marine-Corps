@@ -1,8 +1,8 @@
 //CM HALLOWEEN GAME MODE
 
 /datum/game_mode/Halloween
-	// name = "TerraGov Marine Corps Halloween"
-	// config_tag = "TerraGov Marine Corps Halloween"
+	// name = "United States Colonial Marines Halloween"
+	// config_tag = "United States Colonial Marines Halloween"
 	required_players = 1
 	var/checkwin_counter = 0
 	var/finished = 0
@@ -60,7 +60,7 @@
 	return 1
 
 /datum/game_mode/Halloween/announce()
-	to_chat(world, "<B>The current game mode is - TerraGov Marine Corps Halloween! SpooOOOoooky!!!</B>")
+	to_chat(world, "<B>The current game mode is - Russian Colonial Marines Halloween! SpooOOOoooky!!!</B>")
 
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////

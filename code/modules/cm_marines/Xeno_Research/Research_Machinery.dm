@@ -1,8 +1,8 @@
 /obj/machinery/Research_Machinery
 	name = "Research Machinery"
 	icon = 'icons/Marine/Research/Research_Machinery.dmi'
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 
 	var/obj/machinery/computer/XenoRnD/linked_console = null
 
@@ -108,7 +108,6 @@
 /obj/machinery/Research_Machinery/marineprotolathe
 	name = "Armory Protolathe"
 	icon_state = "protolathe"
-	flags_atom = OPENCONTAINER
 
 	idle_power_usage = 30
 	active_power_usage = 5000
@@ -140,8 +139,6 @@
 	max_per_resource = list("metal" = round(max_stored/3), "glass" = round(max_stored/3), "biomass" = round(max_stored/3))
 
 /obj/machinery/Research_Machinery/marineprotolathe/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	if (O.is_open_container())
-		return TRUE
 	if (istype(O, /obj/item/tool/screwdriver))
 		if (!opened)
 			opened = TRUE

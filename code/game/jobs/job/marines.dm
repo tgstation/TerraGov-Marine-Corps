@@ -18,7 +18,7 @@
 
 /datum/job/marine/generate_entry_conditions(mob/living/carbon/human/H)
 	. = ..()
-	if(flags_startup_parameters & ROLE_ADD_TO_MODE) 
+	if(flags_startup_parameters & ROLE_ADD_TO_MODE)
 		H.nutrition = rand(60,250) //Start hungry for the default marine.
 
 
@@ -36,7 +36,7 @@
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADD_TO_MODE|ROLE_ADD_TO_SQUAD
 
 /datum/job/marine/standard/generate_entry_message()
-	. = ..() + {"\nYou are a rank-and-file soldier of the TGMC, and that is your strength.
+	. = ..() + {"\nYou are a rank-and-file soldier of the USCM, and that is your strength.
 What you lack alone, you gain standing shoulder to shoulder with the men and women of the corps. Ooh-rah!"}
 
 /datum/job/marine/standard/generate_equipment(mob/living/carbon/human/H)
@@ -47,8 +47,8 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 	title = "Squad Engineer"
 	comm_title = "Eng"
 	paygrade = "E4"
-	total_positions = 12
-	spawn_positions = 12
+	total_positions = 6
+	spawn_positions = 6
 	flag = ROLE_MARINE_ENGINEER
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_ENGPREP, ACCESS_CIVILIAN_ENGINEERING)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_ENGPREP, ACCESS_CIVILIAN_ENGINEERING)
@@ -59,14 +59,6 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 	. = ..() + {"\nYou have the equipment and skill to build fortifications, reroute power lines, and bunker down.
 Your squaddies will look to you when it comes to construction in the field of battle."}
 
-/datum/job/marine/engineer/get_total_positions(var/latejoin=0)
-	var/slots = engi_slot_formula(get_total_marines())
-	if(latejoin)
-		for(var/datum/squad/sq in RoleAuthority.squads)
-			if(sq)
-				sq.max_engineers = slots
-	return (slots*4)
-
 /datum/job/marine/engineer/generate_equipment(mob/living/carbon/human/H)
 	H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/tech(H), WEAR_BACK)
 
@@ -75,8 +67,8 @@ Your squaddies will look to you when it comes to construction in the field of ba
 	title = "Squad Medic"
 	comm_title = "Med"
 	paygrade = "E4"
-	total_positions = 16
-	spawn_positions = 16
+	total_positions = 8
+	spawn_positions = 8
 	flag = ROLE_MARINE_MEDIC
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_MEDBAY)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_MEDBAY)
@@ -86,14 +78,6 @@ Your squaddies will look to you when it comes to construction in the field of ba
 /datum/job/marine/medic/generate_entry_message()
 	. = ..() + {"\nYou must tend the wounds of your squad mates and make sure they are healthy and active.
 You may not be a fully-fledged doctor, but you stand between life and death when it matters."}
-
-/datum/job/marine/medic/get_total_positions(var/latejoin=0)
-	var/slots = medic_slot_formula(get_total_marines())
-	if(latejoin)
-		for(var/datum/squad/sq in RoleAuthority.squads)
-			if(sq)
-				sq.max_medics = slots
-	return (slots*4)
 
 /datum/job/marine/medic/generate_equipment(mob/living/carbon/human/H)
 	H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/medic(H), WEAR_BACK)
@@ -144,8 +128,8 @@ You can serve a variety of roles, so choose carefully."}
 	comm_title = "SL"
 	paygrade = "E6"
 	flag = ROLE_MARINE_LEADER
-	total_positions = 4
-	spawn_positions = 4
+	total_positions = 2
+	spawn_positions = 2
 	supervisors = "the acting commander"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP)

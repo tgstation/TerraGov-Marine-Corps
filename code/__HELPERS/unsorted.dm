@@ -1618,7 +1618,7 @@ var/list/WALLITEMS = list(
 	return 0
 
 /proc/format_text(text)
-	return oldreplacetext(oldreplacetext(text,"\proper ",""),"\improper ","")
+	return oldreplacetext(oldreplacetext(text,"\proper ","")," ","")
 
 /proc/topic_link(var/datum/D, var/arglist, var/content)
 	if(istype(arglist,/list))
@@ -1817,3 +1817,14 @@ var/list/WALLITEMS = list(
 	else
 		. = CB.Invoke()
 	usr = temp
+
+/proc/is_the_opposite_dir(hol_dir, hit_dir)
+	if(hol_dir == NORTH && (hit_dir in list(SOUTH, SOUTHEAST, SOUTHWEST, EAST, WEST)))
+		return TRUE
+	else if(hol_dir == SOUTH && (hit_dir in list(NORTH, EAST, WEST, NORTHEAST, NORTHWEST)))
+		return TRUE
+	else if(hol_dir == EAST && (hit_dir in list(WEST,NORTH, SOUTH, NORTHWEST, SOUTHWEST)))
+		return TRUE
+	else if(hol_dir == WEST && (hit_dir in list(EAST, NORTH, SOUTH, NORTHEAST, SOUTHEAST)))
+		return TRUE
+	return FALSE

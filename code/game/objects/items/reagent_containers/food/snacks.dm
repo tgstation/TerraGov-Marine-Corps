@@ -2607,7 +2607,7 @@
 
 /obj/item/reagent_container/food/snacks/packaged_burrito
 	name = "Packaged Burrito"
-	desc = "A hard microwavable burrito. There's no time given for how long to cook it. Packaged by the Nanotrasen Corporation."
+	desc = "A hard microwavable burrito. There's no time given for how long to cook it. Packaged by the Weyland-Yutani Corporation."
 	icon_state = "burrito"
 	bitesize = 2
 	package = TRUE
@@ -2623,7 +2623,7 @@
 
 /obj/item/reagent_container/food/snacks/packaged_burger
 	name = "Packaged Cheeseburger"
-	desc = "A soggy microwavable burger. There's no time given for how long to cook it. Packaged by the Nanotrasen Corporation."
+	desc = "A soggy microwavable burger. There's no time given for how long to cook it. Packaged by the Weyland-Yutani Corporation."
 	icon_state = "burger"
 	bitesize = 3
 	package = TRUE
@@ -2640,7 +2640,7 @@
 
 /obj/item/reagent_container/food/snacks/packaged_hdogs
 	name = "Packaged Hotdog"
-	desc = "A singular squishy, room temperature, hot dog. There's no time given for how long to cook it, so you assume its probably good to go. Packaged by the Nanotrasen Corporation."
+	desc = "A singular squishy, room temperature, hot dog. There's no time given for how long to cook it, so you assume its probably good to go. Packaged by the Weyland-Yutani Corporation."
 	icon_state = "hot_dogs"
 	bitesize = 2
 	package = TRUE
@@ -2655,7 +2655,7 @@
 		icon_state = "hotdog"
 
 /obj/item/reagent_container/food/snacks/upp
-	name = "\improper UPP ration"
+	name = " UPP ration"
 	desc = "A sealed, freeze-dried, compressed package containing a single item of food. Commonplace in the UPP military, especially those units stationed on far-flung colonies. This one is stamped for consumption by the UPP's 'Smoldering Sons' battalion and was packaged in 2179."
 	icon_state = "upp_ration"
 	bitesize = 2
@@ -2690,11 +2690,11 @@
 				icon_state = "upp_2"
 
 /obj/item/reagent_container/food/snacks/upp/fish
-	name = "\improper UPP ration (fish)"
+	name = " UPP ration (fish)"
 	variation = "fish"
 
 /obj/item/reagent_container/food/snacks/upp/rice
-	name = "\improper UPP ration (cereal)"
+	name = " UPP ration (cereal)"
 	variation = "rice"
 
 /obj/item/reagent_container/food/snacks/eat_bar
@@ -2764,7 +2764,7 @@
 //MREs
 
 /obj/item/reagent_container/food/snacks/packaged_meal
-	name = "\improper MRE component"
+	name = " MRE component"
 	package = TRUE
 	bitesize = 1
 	icon_state = "entree"
@@ -2780,13 +2780,13 @@
 	if (package)
 		to_chat(user, "<span class='notice'>You pull open the MRE package!</span>")
 		playsound(loc,'sound/effects/pageturn2.ogg', 15, 1)
-		name = "\improper" + flavor
+		name = "" + flavor
 		desc = "The contents of a standard issue MRE. This one is " + flavor + "."
 		icon_state = flavor
 		package = FALSE
 
 /obj/item/reagent_container/food/snacks/packaged_meal/proc/determinetype(newflavor)
-	name = "\improper MRE component" + " (" + newflavor + ")"
+	name = " MRE component" + " (" + newflavor + ")"
 	flavor = newflavor
 
 	switch(newflavor)

@@ -1,7 +1,7 @@
 /datum/job/pmc
 	special_role = "PMC"
 	comm_title = "NT"
-	faction = "Nanotrasen"
+	faction = "Weyland-Yutani"
 	idtype = /obj/item/card/id/centcom
 	skills_type = /datum/skills/pfc/pmc
 	access = ALL_ACCESS

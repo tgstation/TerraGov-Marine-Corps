@@ -178,3 +178,6 @@
 	IgniteMob()
 
 //Mobs on Fire end
+
+/mob/living/proc/check_shields(damage = 0, attack_text = "the attack", hit_dir = 0, var/combistick=0)
+	return FALSE

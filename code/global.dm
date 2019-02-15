@@ -1,6 +1,6 @@
 //#define TESTING
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
-#define MAIN_SHIP_NAME "TGS Theseus"
+#define MAIN_SHIP_NAME "USS Almayer"
 //=================================================
 //Please don't edit these values without speaking to Errorage first	~Carn
 //Admin Permissions
@@ -98,7 +98,7 @@ var/blobevent = 0
 
 var/diaryofmeanpeople = null
 var/station_name = "[MAIN_SHIP_NAME]"
-var/game_version = "TerraGov Marine Corps"
+var/game_version = "United States Colonial Marines"
 var/changelog_hash = ""
 var/game_year = 2186
 

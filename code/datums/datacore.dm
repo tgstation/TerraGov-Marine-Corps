@@ -82,7 +82,7 @@
 			even = !even
 	if(mar.len > 0)
 		dat += "<tr><th colspan=3>Marines</th></tr>"
-		for(var/j in list("Alpha","Bravo","Charlie", "Delta"))
+		for(var/j in list("Alpha","Delta"))
 			dat += "<tr><th colspan=3>[j]</th></tr>"
 			for(name in mar)
 				if(squads[name] == j)

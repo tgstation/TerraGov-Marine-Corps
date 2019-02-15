@@ -30,7 +30,7 @@ var/list/admin_verbs_admin = list(
 	/client/proc/jumptoturf,			/*allows us to jump to a specific turf*/
 	/client/proc/cmd_admin_direct_narrate,	/*send text directly to a player with no padding. Useful for narratives and fluff-text*/
 	/client/proc/cmd_admin_world_narrate,	/*sends text to all players with no padding*/
-	/client/proc/cmd_admin_create_centcom_report, //Messages from TGMC command.
+	/client/proc/cmd_admin_create_centcom_report, //Messages from USCM command.
 	/client/proc/cmd_admin_create_AI_report,  //Allows creation of IC reports by the ships AI
 	/client/proc/cmd_admin_xeno_report,  //Allows creation of IC reports by the Queen Mother
 	/client/proc/show_hive_status,
@@ -69,12 +69,12 @@ var/list/admin_verbs_admin = list(
 	// /client/proc/response_team, // Response Teams admin verb
 	/client/proc/allow_character_respawn,    /* Allows a ghost to respawn */
 	/datum/admins/proc/viewCLFaxes,
-	/datum/admins/proc/viewTGMCFaxes,
+	/datum/admins/proc/viewUSCMFaxes,
 	/datum/admins/proc/force_predator_round, //Force spawns a predator round.
 	/client/proc/check_round_statistics,
 	/client/proc/award_medal,
 	/client/proc/force_shuttle,
-	/client/proc/remove_players_from_vic,
+	/client/proc/remove_players_from_tank,
 	/client/proc/hide_verbs,			/*hides all our adminverbs*/
 	/client/proc/hide_most_verbs,		/*hides all our hideable adminverbs*/
 	/client/proc/debug_variables,		/*allows us to -see- the variables of any instance in the game. +VAREDIT needed to modify*/
@@ -126,7 +126,14 @@ var/list/admin_verbs_server = list(
 	/client/proc/cmd_debug_del_all,
 	/datum/admins/proc/adrev,
 	/datum/admins/proc/adspawn,
-	/datum/admins/proc/adjump
+	/datum/admins/proc/adjump,
+	/client/proc/forceNextMap,
+	/client/proc/cancelMapVote,
+	/client/proc/killMapDaemon,
+	/client/proc/editVotableMaps,
+	/client/proc/showVotableMaps,
+	/client/proc/forceMDMapVote,
+	/client/proc/reviveMapDaemon
 	)
 var/list/admin_verbs_debug = list(
 	/client/proc/cmd_admin_list_open_jobs,
@@ -148,6 +155,7 @@ var/list/admin_verbs_debug = list(
 	/client/proc/callatomproc,
 	/client/proc/toggledebuglogs,
 	/client/proc/cmd_admin_change_hivenumber,
+	/client/verb/spatialagent
 	)
 
 var/list/admin_verbs_paranoid_debug = list(
@@ -229,7 +237,7 @@ var/list/admin_verbs_hideable = list(
 	/client/proc/enable_debug_verbs,
 	/proc/possess,
 	/proc/release,
-	/client/proc/remove_players_from_vic
+	/client/proc/remove_players_from_tank,
 	)
 var/list/admin_verbs_mod = list(
 	/client/proc/cmd_admin_pm_context,	/*right-click adminPM interface*/
@@ -262,7 +270,7 @@ var/list/admin_verbs_mod = list(
 	/datum/admins/proc/viewUnheardMhelps,
 	/datum/admins/proc/viewUnheardAhelps, //Why even have it as a client proc anyway?
 	/datum/admins/proc/viewCLFaxes,
-	/datum/admins/proc/viewTGMCFaxes
+	/datum/admins/proc/viewUSCMFaxes
 )
 
 var/list/admin_verbs_mentor = list(

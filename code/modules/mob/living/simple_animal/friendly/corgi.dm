@@ -1,6 +1,6 @@
 //Corgi
 /mob/living/simple_animal/corgi
-	name = "\improper corgi"
+	name = " corgi"
 	real_name = "corgi"
 	desc = "It's a corgi."
 	icon_state = "corgi"
@@ -135,7 +135,7 @@
 
 
 /mob/living/simple_animal/corgi/puppy
-	name = "\improper corgi puppy"
+	name = " corgi puppy"
 	real_name = "corgi"
 	desc = "It's a corgi puppy."
 	icon_state = "puppy"

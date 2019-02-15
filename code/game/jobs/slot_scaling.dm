@@ -11,12 +11,6 @@
 /proc/job_slot_formula(var/marine_count,var/factor,var/c,var/min,var/max)
 	return round(CLAMP((marine_count/factor)+c, min, max))
 
-/proc/medic_slot_formula(var/playercount)
-	return job_slot_formula(playercount,40,1,3,5)
-
-/proc/engi_slot_formula(var/playercount)
-	return job_slot_formula(playercount,50,1,2,4)
-
 /proc/mp_slot_formula(var/playercount)
 	return job_slot_formula(playercount,25,2,4,8)
 

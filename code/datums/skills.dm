@@ -424,4 +424,26 @@
 	large_vehicle = SKILL_LARGE_VEHICLE_TRAINED
 	powerloader = SKILL_POWERLOADER_DABBLING
 	leadership = SKILL_LEAD_TRAINED
-	engineer = SKILL_ENGINEER_METAL
+	engineer = SKILL_ENGINEER_MT
+
+/datum/skills/spatial_agent
+	name = "Spatial Agent"
+	engineer = SKILL_ENGINEER_MT
+	construction = SKILL_CONSTRUCTION_MASTER
+	firearms = SKILL_FIREARMS_TRAINED
+	smartgun = SKILL_SMART_TRAINED
+	spec_weapons = SKILL_SPEC_TRAINED
+	medical = SKILL_MEDICAL_CMO
+	cqc = SKILL_CQC_MASTER
+	surgery = SKILL_SURGERY_EXPERT
+	melee_weapons = SKILL_MELEE_SUPER
+	leadership = SKILL_LEAD_MASTER
+	pilot = SKILL_PILOT_TRAINED
+	pistols = SKILL_PISTOLS_TRAINED
+	smgs = SKILL_SMGS_TRAINED
+	rifles = SKILL_RIFLES_TRAINED
+	shotguns = SKILL_SHOTGUNS_TRAINED
+	heavy_weapons = SKILL_HEAVY_WEAPONS_TRAINED
+	police = SKILL_POLICE_MP
+	powerloader = SKILL_POWERLOADER_MASTER
+	large_vehicle = SKILL_LARGE_VEHICLE_TRAINED

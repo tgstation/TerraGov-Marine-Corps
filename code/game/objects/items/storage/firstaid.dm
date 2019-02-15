@@ -288,7 +288,7 @@
 
 //RUSSIAN RED ANTI-RAD
 /obj/item/storage/pill_bottle/russianRed
-	name = "\improper Russian Red pill bottle"
+	name = " Russian Red pill bottle"
 	icon_state = "pill_canister"
 	pill_type_to_fill = /obj/item/reagent_container/pill/russianRed
 
@@ -310,13 +310,13 @@
 
 
 /obj/item/storage/pill_bottle/happy
-	name = "\improper Happy pill bottle"
+	name = " Happy pill bottle"
 	desc = "Contains highly illegal drugs. When you want to see the rainbow."
 	max_storage_space = 7
 	pill_type_to_fill = /obj/item/reagent_container/pill/happy
 
 /obj/item/storage/pill_bottle/zoom
-	name = "\improper Zoom pill bottle"
+	name = " Zoom pill bottle"
 	desc = "Containts highly illegal drugs. Trade brain for speed."
 	max_storage_space = 7
 	pill_type_to_fill = /obj/item/reagent_container/pill/zoom

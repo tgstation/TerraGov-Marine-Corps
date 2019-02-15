@@ -2,7 +2,7 @@
 
 
 /* --- Traffic Control Scripting Language --- */
-	// Nanotrasen TCS Language - Made by Doohl
+	// Weyland-Yutani TCS Language - Made by Doohl
 
 /n_Interpreter/TCS_Interpreter
 	var/datum/TCS_Compiler/Compiler
@@ -233,7 +233,7 @@ datum/signal
 		if((!message || message == "") && message != 0)
 			message = "*beep*"
 		if(!source)
-			source = "[html_encode(uppertext(S.id))]"
+			source = "[lhtml_encode(uppertext(S.id))]"
 			hradio = new // sets the hradio as a radio intercom
 		if(!freq)
 			freq = PUB_FREQ
@@ -248,7 +248,7 @@ datum/signal
 		if(source in S.stored_names)
 			newsign.data["name"] = source
 		else
-			newsign.data["name"] = "<i>[html_encode(uppertext(source))]<i>"
+			newsign.data["name"] = "<i>[lhtml_encode(uppertext(source))]<i>"
 		newsign.data["realname"] = newsign.data["name"]
 		newsign.data["job"] = job
 		newsign.data["compression"] = 0

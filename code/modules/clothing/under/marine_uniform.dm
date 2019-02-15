@@ -4,7 +4,7 @@
 
 
 /obj/item/clothing/under/marine
-	name = "\improper TGMC uniform"
+	name = " USCM uniform"
 	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented marine uniform. You suspect it's not as robust-proof as advertised."
 	siemens_coefficient = 0.9
 	icon_state = "marine_jumpsuit"
@@ -13,7 +13,7 @@
 	has_sensor = 2
 
 /obj/item/clothing/under/marine/New(loc,expected_type 		= /obj/item/clothing/under/marine,
-	new_name[] 			= list(MAP_ICE_COLONY = "\improper TGMC snow uniform"),
+	new_name[] 			= list(MAP_ICE_COLONY = " USCM snow uniform"),
 	new_protection[] 	= list(MAP_ICE_COLONY = ICE_PLANET_min_cold_protection_temperature),
 	override_icon_state[] 	= null
 	)
@@ -21,44 +21,44 @@
 	..()
 
 /obj/item/clothing/under/marine/medic
-	name = "\improper TGMC medic fatigues"
+	name = " USCM medic fatigues"
 	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented combat medic fatigues. You suspect it's not as robust-proof as advertised."
 	icon_state = "marine_medic"
 
 /obj/item/clothing/under/marine/medic/New(loc,expected_type 		= type,
-	new_name[] 			= list(MAP_ICE_COLONY = "\improper TGMC medic snow uniform"),
+	new_name[] 			= list(MAP_ICE_COLONY = " USCM medic snow uniform"),
 	new_protection[] 	= list(MAP_ICE_COLONY = ICE_PLANET_min_cold_protection_temperature))
 	..(loc,expected_type, new_name, new_protection)
 
 /obj/item/clothing/under/marine/engineer
-	name = "\improper TGMC engineer fatigues"
+	name = " USCM engineer fatigues"
 	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented combat engineer fatigues. You suspect it's not as robust-proof as advertised."
 	icon_state = "marine_engineer"
 
 /obj/item/clothing/under/marine/engineer/New(loc,expected_type 		= type,
-	new_name[] 			= list(MAP_ICE_COLONY = "\improper TGMC engineer snow uniform"),
+	new_name[] 			= list(MAP_ICE_COLONY = " USCM engineer snow uniform"),
 	new_protection[] 	= list(MAP_ICE_COLONY = ICE_PLANET_min_cold_protection_temperature))
 	..(loc,expected_type, new_name, new_protection)
 
 /obj/item/clothing/under/marine/sniper
-	name = "\improper TGMC sniper uniform"
+	name = " USCM sniper uniform"
 	rollable_sleeves = FALSE
 
 /obj/item/clothing/under/marine/sniper/New(loc,expected_type 		= type,
-	new_name[] 			= list(MAP_ICE_COLONY = "\improper TGMC sniper snow uniform"),
+	new_name[] 			= list(MAP_ICE_COLONY = " USCM sniper snow uniform"),
 	new_protection[] 	= list(MAP_ICE_COLONY = ICE_PLANET_min_cold_protection_temperature),
 	override_icon_state[]		= list(MAP_ICE_COLONY = "s_marine_sniper")
 	)
 	..(loc,expected_type, override_icon_state, new_name, new_protection)
 
 /obj/item/clothing/under/marine/tanker
-	name = "\improper TGMC tanker uniform"
+	name = " USCM tanker uniform"
 	icon_state = "marine_tanker"
 	rollable_sleeves = FALSE
 
 /*
 /obj/item/clothing/under/marine/tanker/New(loc,expected_type 		= type,
-	new_name[] 			= list(MAP_ICE_COLONY = "\improper TGMC tanker snow uniform"),
+	new_name[] 			= list(MAP_ICE_COLONY = " USCM tanker snow uniform"),
 	new_protection[] 	= list(MAP_ICE_COLONY = ICE_PLANET_min_cold_protection_temperature),
 	override_icon_state[]		= list(MAP_ICE_COLONY = "s_marine_tanker")
 	)
@@ -91,7 +91,7 @@
 
 /obj/item/clothing/under/marine/officer/logistics
 	name = "marine officer uniform"
-	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented uniform worn by commissioned officers of the TGMC. Do the corps proud."
+	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented uniform worn by commissioned officers of the USCM. Do the corps proud."
 	icon_state = "BO_jumpsuit"
 
 /obj/item/clothing/under/marine/officer/pilot
@@ -129,7 +129,7 @@
 
 /obj/item/clothing/under/marine/officer/command
 	name = "commander uniform"
-	desc = "A special-issue, well-ironed, kevlar-weaved, hazmat-tested, EMF-augmented uniform worth of a TGMC commander. Even looking at it the wrong way could result in being court-marshalled."
+	desc = "A special-issue, well-ironed, kevlar-weaved, hazmat-tested, EMF-augmented uniform worth of a USCM commander. Even looking at it the wrong way could result in being court-marshalled."
 	icon_state = "CO_jumpsuit"
 
 /obj/item/clothing/under/marine/officer/command/New()
@@ -159,6 +159,13 @@
 	armor = list(melee = 5, bullet = 5, laser = 5, energy = 10, bomb = 10, bio = 10, rad = 5)
 	icon_state = "research_jumpsuit"
 
+/obj/item/clothing/under/whites
+	name = " USCM dress uniform"
+	desc = "A standard-issue Marine dress uniform. The starch in the fabric chafes a small amount but it pales in comparison to the pride you feel when you first put it on during graduation from boot camp. doesn't seem to fit perfectly around the waist though."
+	siemens_coefficient = 0.9
+	icon_state = "marine_whites" //with thanks to Manezinho
+	rollable_sleeves = FALSE
+
 //=========================//RESPONDERS\\================================\\
 //=======================================================================\\
 
@@ -166,26 +173,26 @@
 	rollable_sleeves = FALSE
 
 /obj/item/clothing/under/marine/veteran/PMC
-	name = "\improper PMC fatigues"
-	desc = "A white set of fatigues, designed for private security operators. The symbol of the Nanotrasen corporation is emblazed on the suit."
+	name = " PMC fatigues"
+	desc = "A white set of fatigues, designed for private security operators. The symbol of the Weyland-Yutani corporation is emblazed on the suit."
 	icon_state = "pmc_jumpsuit"
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
 	armor = list(melee = 10, bullet = 10, laser = 5, energy = 5, bomb = 10, bio = 5, rad = 5)
 
 /obj/item/clothing/under/marine/veteran/PMC/leader
-	name = "\improper PMC command fatigues"
-	desc = "A white set of fatigues, designed for private security operators. The symbol of the Nanotrasen corporation is emblazed on the suit. This particular suit looks like it belongs to a high-ranking officer."
+	name = " PMC command fatigues"
+	desc = "A white set of fatigues, designed for private security operators. The symbol of the Weyland-Yutani corporation is emblazed on the suit. This particular suit looks like it belongs to a high-ranking officer."
 	icon_state = "officer_jumpsuit"
 
 /obj/item/clothing/under/marine/veteran/PMC/commando
-	name = "\improper PMC commando uniform"
-	desc = "An armored uniform worn by Nanotrasen elite commandos. It is well protected while remaining light and comfortable."
+	name = " PMC commando uniform"
+	desc = "An armored uniform worn by Weyland-Yutani elite commandos. It is well protected while remaining light and comfortable."
 	icon_state = "commando_jumpsuit"
 	armor = list(melee = 10, bullet = 10, laser = 10, energy = 20, bomb = 10, bio = 10, rad = 10)
 	has_sensor = 0
 
 /obj/item/clothing/under/marine/veteran/bear
-	name = "\improper Iron Bear uniform"
+	name = " Iron Bear uniform"
 	desc = "A uniform worn by Iron Bears mercenaries in the service of Mother Russia. Smells a little like an actual bear."
 	icon_state = "bear_jumpsuit"
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
@@ -193,14 +200,14 @@
 
 
 /obj/item/clothing/under/marine/veteran/UPP
-	name = "\improper UPP fatigues"
+	name = " UPP fatigues"
 	desc = "A set of UPP fatigues, mass-produced for the armed-forces of the Union of Progressive Peoples. The dark drab pattern of the UPP 17th battalion 'Smoldering Sons' emblazons it."
 	icon_state = "upp_uniform"
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
 	has_sensor = 0
 
 /obj/item/clothing/under/marine/veteran/UPP/medic
-	name = "\improper UPP medic fatigues"
+	name = " UPP medic fatigues"
 	icon_state = "upp_uniform_medic"
 
 /obj/item/clothing/under/marine/veteran/freelancer
@@ -211,7 +218,7 @@
 	has_sensor = 0
 
 /obj/item/clothing/under/marine/veteran/dutch
-	name = "\improper Dutch's Dozen uniform"
+	name = " Dutch's Dozen uniform"
 	desc = "A comfortable uniform worn by the Dutch's Dozen mercenaries. It's seen some definite wear and tear, but is still in good condition."
 	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS
 	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS
@@ -270,7 +277,7 @@
 
 /obj/item/clothing/under/liaison_suit
 	name = "liaison's tan suit"
-	desc = "A stiff, stylish tan suit commonly worn by businessmen from the Nanotrasen corporation. Expertly crafted to make you look like a prick."
+	desc = "A stiff, stylish tan suit commonly worn by businessmen from the Weyland-Yutani corporation. Expertly crafted to make you look like a prick."
 	icon_state = "liaison_regular"
 
 /obj/item/clothing/under/liaison_suit/outing
@@ -285,11 +292,11 @@
 
 /obj/item/clothing/under/liaison_suit/suspenders
 	name = "liaison's attire"
-	desc = "A collared shirt, complimented by a pair of suspenders. Worn by Nanotrasen employees who ask the tough questions. Smells faintly of cigars and bad acting."
+	desc = "A collared shirt, complimented by a pair of suspenders. Worn by Weyland-Yutani employees who ask the tough questions. Smells faintly of cigars and bad acting."
 	icon_state = "liaison_suspenders"
 
 /obj/item/clothing/under/rank/chef/exec
-	name = "\improper Nanotrasen suit"
+	name = " Weyland-Yutani suit"
 	desc = "A formal white undersuit."
 	rollable_sleeves = FALSE
 
@@ -300,7 +307,7 @@
 	rollable_sleeves = FALSE
 
 /obj/item/clothing/under/rank/synthetic
-	name = "\improper TGMC Support Uniform"
+	name = " USCM Support Uniform"
 	desc = "A simple uniform made for Synthetic crewmembers."
 	icon_state = "rdalt"
 	rollable_sleeves = FALSE

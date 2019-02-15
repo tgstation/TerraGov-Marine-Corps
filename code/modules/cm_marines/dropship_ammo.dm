@@ -71,7 +71,7 @@
 //30mm gun
 
 /obj/structure/ship_ammo/heavygun
-	name = "\improper 30mm ammo crate"
+	name = " 30mm ammo crate"
 	icon_state = "30mm_crate"
 	desc = "A crate full of 30mm bullets used on the dropship heavy guns."
 	equipment_type = /obj/structure/dropship_equipment/weapon/heavygun
@@ -216,7 +216,7 @@
 
 //this one is air-to-air only
 /obj/structure/ship_ammo/rocket/widowmaker
-	name = "\improper AIM-224 'Widowmaker'"
+	name = " AIM-224 'Widowmaker'"
 	desc = "The AIM-224 is the latest in air to air missile technology. Earning the nickname of 'Widowmaker' from various dropship pilots after improvements to its guidence warhead prevents it from being jammed leading to its high kill rate. Not well suited for ground bombardment, but its high velocity makes it reach its target quickly."
 	icon_state = "single"
 	travelling_time = 30 //not powerful, but reaches target fast
@@ -230,7 +230,7 @@
 			qdel(src)
 
 /obj/structure/ship_ammo/rocket/banshee
-	name = "\improper AGM-227 'Banshee'"
+	name = " AGM-227 'Banshee'"
 	desc = "The AGM-227 missile is a mainstay of the overhauled dropship fleet against any mobile or armored ground targets. It's earned the nickname of 'Banshee' from the sudden wail that it emitts right before hitting a target. Useful to clear out large areas."
 	icon_state = "banshee"
 	ammo_id = "b"
@@ -243,7 +243,7 @@
 			qdel(src)
 
 /obj/structure/ship_ammo/rocket/keeper
-	name = "\improper GBU-67 'Keeper II'"
+	name = " GBU-67 'Keeper II'"
 	desc = "The GBU-67 'Keeper II' is the latest in a generation of laser guided weaponry that spans all the way back to the 20th century. Earning its nickname from a shortening of 'Peacekeeper' which comes from the program that developed its guidance system and the various uses of it during peacekeeping conflicts. Its payload is designed to devastate armored targets."
 	icon_state = "paveway"
 	ammo_id = "k"
@@ -257,7 +257,7 @@
 
 
 /obj/structure/ship_ammo/rocket/fatty
-	name = "\improper SM-17 'Fatty'"
+	name = " SM-17 'Fatty'"
 	desc = "The SM-17 'Fatty' is a cluster-bomb type ordnance that only requires laser-guidance when first launched."
 	icon_state = "fatty"
 	ammo_id = "f"
@@ -283,7 +283,7 @@
 		qdel(src)
 
 /obj/structure/ship_ammo/rocket/napalm
-	name = "\improper XN-99 'Napalm'"
+	name = " XN-99 'Napalm'"
 	desc = "The XN-99 'Napalm' is an incendiary rocket used to turn specific targeted areas into giant balls of fire for a long time."
 	icon_state = "napalm"
 	ammo_id = "n"

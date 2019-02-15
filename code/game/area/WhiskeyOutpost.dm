@@ -1,27 +1,27 @@
 /area/whiskey_outpost
-	name = "\improper Whiskey Outpost"
+	name = " Whiskey Outpost"
 	icon_state = "green"
 	ceiling = CEILING_METAL
 
 /area/whiskey_outpost/outside/north
-	name = "\improper Whiskey Outpost North"
+	name = " Whiskey Outpost North"
 	icon_state = "north"
 
 /area/whiskey_outpost/outside/west
-	name = "\improper Whiskey Outpost West"
+	name = " Whiskey Outpost West"
 	icon_state = "west"
 
 /area/whiskey_outpost/outside/east
-	name = "\improper Whiskey Outpost East"
+	name = " Whiskey Outpost East"
 	icon_state = "east"
 
 /area/whiskey_outpost/outside/south
-	name = "\improper Whiskey Outpost South"
+	name = " Whiskey Outpost South"
 	icon_state = "south"
 
 
 /area/whiskey_outpost/outside
-	name = "\improper Unused"
+	name = " Unused"
 	icon_state = "green"
 	ceiling = CEILING_NONE
 

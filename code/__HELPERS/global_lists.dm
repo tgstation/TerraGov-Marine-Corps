@@ -5,7 +5,7 @@ var/list/unansweredAhelps = list()			//This feels inefficient, but I can't think
 var/list/unansweredMhelps = list()
 var/list/CLFaxes = list()								//List of all CL faxes sent this round
 var/list/fax_contents = list() 					//List of fax contents to maintain it even if source paper is deleted
-var/list/TGMCFaxes = list()							//List of all TGMC faxes sent this round
+var/list/USCMFaxes = list()							//List of all USCM faxes sent this round
 var/list/active_tracking_beacons = list()			//List of all active squad tracking beacons
 
 //Names of maps that can be compiled on
@@ -50,6 +50,7 @@ var/global/list/cargo_guns_vendors = list() //Used by our gamemode code
 var/global/list/active_diseases = list()
 var/global/list/events = list()
 var/global/list/processing_second = list()
+var/global/list/localisation = list()
 
 //used by binoculars for dropship bombardment
 var/global/list/active_laser_targets = list()
@@ -147,6 +148,11 @@ var/global/list/moth_wings_list = list()
 		var/datum/surgery_step/S = new T
 		surgery_steps += S
 	sort_surgeries()
+
+	// Local Letters
+	for(var/T in subtypesof(/datum/letter))
+		var/datum/letter/L = new T
+		localisation += L
 
 	// List of job. I can't believe this was calculated multiple times per tick!
 	for(var/T in subtypesof(/datum/job))

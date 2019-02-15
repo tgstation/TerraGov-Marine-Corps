@@ -1,5 +1,5 @@
 /obj/machinery/gear
-	name = "\improper gear"
+	name = " gear"
 	icon_state = "gear"
 	anchored = 1
 	density = 0
@@ -8,7 +8,7 @@
 	var/id
 
 /obj/machinery/elevator_strut
-	name = "\improper strut"
+	name = " strut"
 	icon = 'icons/obj/elevator_strut.dmi'
 	anchored = 1
 	unacidable = 1

@@ -1,7 +1,7 @@
 //sculpture
 //SCP-173, nothing more need be said
 /mob/living/simple_animal/sculpture
-	name = "\improper sculpture"
+	name = " sculpture"
 	desc = "It's some kind of hastily-painted human-size stone sculpture. Just looking at it makes you feel nervous."
 	icon_state = "sculpture"
 	icon_living = "sculpture"

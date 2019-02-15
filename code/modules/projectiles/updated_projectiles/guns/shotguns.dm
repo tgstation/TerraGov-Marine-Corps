@@ -54,7 +54,7 @@ can cause issues with ammo types getting mixed up during the burst.
 		update_icon()	//This is not needed for now. Maybe we'll have loaded sprites at some point, but I doubt it. Also doesn't play well with double barrel.
 		ready_in_chamber()
 		cock_gun(user)
-	if(user) 
+	if(user)
 		playsound(user, reload_sound, 25, 1)
 	return TRUE
 
@@ -97,7 +97,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 /obj/item/weapon/gun/shotgun
 	reload(mob/user, var/obj/item/ammo_magazine/magazine)
-		if(flags_gun_features & GUN_BURST_FIRING) 
+		if(flags_gun_features & GUN_BURST_FIRING)
 			return
 
 		if(!magazine || !istype(magazine,/obj/item/ammo_magazine/handful)) //Can only reload with handfuls.
@@ -116,7 +116,7 @@ can cause issues with ammo types getting mixed up during the burst.
 			add_to_tube(user,mag_caliber) //This will check the other conditions.
 
 	unload(mob/user)
-		if(flags_gun_features & GUN_BURST_FIRING) 
+		if(flags_gun_features & GUN_BURST_FIRING)
 			return
 		empty_chamber(user)
 
@@ -181,7 +181,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 /obj/item/weapon/gun/shotgun/merc/Initialize()
 	. = ..()
-	if(current_mag && current_mag.current_rounds > 0) 
+	if(current_mag && current_mag.current_rounds > 0)
 		load_into_chamber()
 
 /obj/item/weapon/gun/shotgun/merc/set_gun_config_values()
@@ -199,15 +199,15 @@ can cause issues with ammo types getting mixed up during the burst.
 
 /obj/item/weapon/gun/shotgun/merc/examine(mob/user)
 	. = ..()
-	if(in_chamber) 
+	if(in_chamber)
 		to_chat(user, "It has a chambered round.")
 
 //-------------------------------------------------------
 //TACTICAL SHOTGUN
 
 /obj/item/weapon/gun/shotgun/combat
-	name = "\improper MK221 tactical shotgun"
-	desc = "The Nanotrasen MK221 Shotgun, a semi-automatic shotgun with a quick fire rate."
+	name = " MK221 tactical shotgun"
+	desc = "The Weyland-Yutani MK221 Shotgun, a semi-automatic shotgun with a quick fire rate."
 	icon_state = "mk221"
 	item_state = "mk221"
 	origin_tech = "combat=5;materials=4"
@@ -232,7 +232,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	G.Attach(src)
 	update_attachable(G.slot)
 	G.icon_state = initial(G.icon_state)
-	if(current_mag && current_mag.current_rounds > 0) 
+	if(current_mag && current_mag.current_rounds > 0)
 		load_into_chamber()
 
 
@@ -249,7 +249,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 /obj/item/weapon/gun/shotgun/combat/examine(mob/user)
 	. = ..()
-	if(in_chamber) 
+	if(in_chamber)
 		to_chat(user, "It has a chambered round.")
 
 //-------------------------------------------------------
@@ -299,7 +299,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	icon_state = current_mag.chamber_closed ? copytext(icon_state,1,-2) : icon_state + "_o"
 
 /obj/item/weapon/gun/shotgun/double/check_chamber_position()
-	if(current_mag.chamber_closed) 
+	if(current_mag.chamber_closed)
 		return
 	return TRUE
 
@@ -346,7 +346,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 /obj/item/weapon/gun/shotgun/double/delete_bullet(obj/item/projectile/projectile_to_fire, refund = 0)
 	qdel(projectile_to_fire)
-	if(refund) 
+	if(refund)
 		current_mag.current_rounds++
 	return TRUE
 
@@ -367,7 +367,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	attachable_allowed = list()
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 11, "rail_y" = 22, "under_x" = 18, "under_y" = 16, "stock_x" = 18, "stock_y" = 16)
-	
+
 /obj/item/weapon/gun/shotgun/double/sawn/set_gun_config_values()
 	fire_delay = config.mlow_fire_delay
 	accuracy_mult = config.base_hit_accuracy_mult + config.low_hit_accuracy_mult - config.hmed_hit_accuracy_mult
@@ -384,7 +384,7 @@ can cause issues with ammo types getting mixed up during the burst.
 //Shotguns in this category will need to be pumped each shot.
 
 /obj/item/weapon/gun/shotgun/pump
-	name = "\improper M37A2 pump shotgun"
+	name = " M37A2 pump shotgun"
 	desc = "An Armat Battlefield Systems classic design, the M37A2 combines close-range firepower with long term reliability. Requires a pump, which is a Unique Action."
 	flags_equip_slot = SLOT_BACK
 	icon_state = "m37"
@@ -498,7 +498,7 @@ can cause issues with ammo types getting mixed up during the burst.
 //SHOTGUN FROM ISOLATION
 
 /obj/item/weapon/gun/shotgun/pump/cmb
-	name = "\improper HG 37-12 pump shotgun"
+	name = " HG 37-12 pump shotgun"
 	desc = "A nine-round pump action shotgun with internal tube magazine allowing for quick reloading and highly accurate fire. Used exclusively by Colonial Marshals."
 	icon_state = "hg3712"
 	item_state = "hg3712"

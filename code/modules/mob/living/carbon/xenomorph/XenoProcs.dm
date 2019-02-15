@@ -83,7 +83,7 @@
 
 		if(hivenumber != XENO_HIVE_CORRUPTED)
 			if(hive.hive_orders && hive.hive_orders != "")
-				stat(null,"Hive Orders: [hive.hive_orders]")
+				stat(null,"Hive Orders: [fix_rus_stats(hive.hive_orders)]")
 		else
 			stat(null,"Hive Orders: Follow the instructions of your masters")
 
@@ -258,13 +258,13 @@
 				if(1 to 2)
 					if(ishuman(M) && M.dir in reverse_nearby_direction(dir))
 						var/mob/living/carbon/human/H = M
-						if(H.check_shields(15, "the pounce")) //Human shield block.
+						if(H.check_shields(15, "the pounce", src.dir)) //Human shield block.
 							KnockDown(3)
 							throwing = FALSE //Reset throwing manually.
 							return FALSE
 
 						if(isYautja(H))
-							if(H.check_shields(0, "the pounce", 1))
+							if(H.check_shields(0, "the pounce", src.dir))
 								visible_message("<span class='danger'>[H] blocks the pounce of [src] with the combistick!</span>",
 												"<span class='xenodanger'>[H] blocks your pouncing form with the combistick!</span>", null, 5)
 								KnockDown(5)
@@ -570,7 +570,7 @@
 	else
 		generate_name()
 		update_living_queens()
-		
+
 
 //////////// XENO CASTE PROCS //////////////////
 

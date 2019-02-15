@@ -6,8 +6,8 @@
 
 
 /*
-/client/verb/TestTheseusEvac()
-	set name = "Test Theseus Evac"
+/client/verb/TestAlmayerEvac()
+	set name = "Test Almayer Evac"
 
 	for(var/datum/shuttle/ferry/marine/M in shuttle_controller.process_shuttles)
 		if(M.info_tag == "[MAIN_SHIP_NAME] Evac" || M.info_tag == "Alt [MAIN_SHIP_NAME] Evac")

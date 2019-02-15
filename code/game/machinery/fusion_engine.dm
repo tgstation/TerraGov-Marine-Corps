@@ -5,7 +5,7 @@
 #define FUSION_ENGINE_FAIL_CHECK_TICKS	100 //Check for failure every this many ticks
 
 /obj/machinery/power/fusion_engine
-	name = "\improper S-52 fusion reactor"
+	name = " S-52 fusion reactor"
 	icon = 'icons/Marine/fusion_eng.dmi'
 	icon_state = "off-0"
 	desc = "A Westingland S-52 Fusion Reactor.  Takes fuels cells and converts them to power for the ship.  Also produces a large amount of heat."
@@ -321,7 +321,7 @@
 
 //FUEL CELL
 /obj/item/fuelCell
-	name = "\improper WL-6 universal fuel cell"
+	name = " WL-6 universal fuel cell"
 	icon = 'icons/Marine/shuttle-parts.dmi'
 	icon_state = "cell-full"
 	desc = "A rechargable fuel cell designed to work as a power source for the Cheyenne-Class transport or for Westingland S-52 Reactors."

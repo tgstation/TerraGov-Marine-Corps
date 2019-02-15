@@ -1,5 +1,5 @@
 /obj/machinery/autolathe
-	name = "\improper autolathe"
+	name = " autolathe"
 	desc = "It produces items using metal and glass."
 	icon_state = "autolathe"
 	density = 1
@@ -399,6 +399,6 @@
 	..()
 
 /obj/machinery/autolathe/yautja
-	name = "\improper yautja autolathe"
+	name = " yautja autolathe"
 	desc = "It produces items using metal and glass."
 	icon = 'icons/obj/machines/predautolathe.dmi'

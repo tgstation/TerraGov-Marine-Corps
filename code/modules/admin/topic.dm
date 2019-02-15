@@ -244,7 +244,7 @@
 
 	else if(href_list["simplemake"])
 
-		if(!check_rights(R_SPAWN))	
+		if(!check_rights(R_SPAWN))
 			return
 
 		var/mob/M = locate(href_list["mob"])
@@ -259,16 +259,16 @@
 
 		var/delmob = FALSE
 		switch(alert("Delete old mob?","Message","Yes","No","Cancel"))
-			if("Cancel")	
+			if("Cancel")
 				return
-			if("Yes")		
+			if("Yes")
 				delmob = TRUE
 
 		var/turf/location
 		switch(alert("Teleport to your location?","Message","Yes","No","Cancel"))
-			if("Cancel")	
+			if("Cancel")
 				return
-			if("Yes")		
+			if("Yes")
 				location = get_turf(usr)
 
 		log_admin("[key_name(usr)] has used rudimentary transformation on [key_name(M)]. Transforming to [href_list["simplemake"]].[delmob ? " Deleting old mob." : ""][location ? " Teleporting to new location." : ""]")
@@ -1571,15 +1571,15 @@
 			to_chat(usr, "The person you are trying to contact is not wearing a headset")
 			return
 
-		var/input = input(src.owner, "Please enter a message to reply to [key_name(H)] via their headset.","Outgoing message from TGMC", "")
+		var/input = input(src.owner, "Please enter a message to reply to [key_name(H)] via their headset.","Outgoing message from USCM", "")
 		if(!input)	return
 
 		to_chat(src.owner, "You sent [input] to [H] via a secure channel.")
-		log_admin("[src.owner] replied to [key_name(H)]'s TGMC message with the message [input].")
+		log_admin("[src.owner] replied to [key_name(H)]'s USCM message with the message [input].")
 		for(var/client/X in admins)
 			if((R_ADMIN|R_MOD) & X.holder.rights)
-				to_chat(X, "<b>ADMINS/MODS: <span class='warning'> [src.owner] replied to [key_name(H)]'s TGMC message with: <span class='notice'> \"[input]\"</b></span>")
-		to_chat(H, "<span class='warning'> You hear something crackle in your headset before a voice speaks, \"Please stand by for a message from TGMC:\" <span class='notice'> <b>\"[input]\"</b></span>")
+				to_chat(X, "<b>ADMINS/MODS: <span class='warning'> [src.owner] replied to [key_name(H)]'s USCM message with: <span class='notice'> \"[input]\"</b></span>")
+		to_chat(H, "<span class='warning'> You hear something crackle in your headset before a voice speaks, \"Please stand by for a message from USCM:\" <span class='notice'> <b>\"[input]\"</b></span>")
 
 	else if(href_list["SyndicateReply"])
 		var/mob/living/carbon/human/H = locate(href_list["SyndicateReply"])
@@ -1602,44 +1602,44 @@
 
 		usr << browse("<HTML><HEAD><TITLE>Liaison Fax Message</TITLE></HEAD><BODY>[info]</BODY></HTML>", "window=Fax Message")
 
-	else if(href_list["TGMCFaxReply"])
-		var/mob/living/carbon/human/H = locate(href_list["TGMCFaxReply"])
+	else if(href_list["USCMFaxReply"])
+		var/mob/living/carbon/human/H = locate(href_list["USCMFaxReply"])
 		var/obj/machinery/faxmachine/fax = locate(href_list["originfax"])
 
-		var/template_choice = input("Use which template or roll your own?") in list("TGMC High Command", "TGMC Provost General", "Custom")
+		var/template_choice = input("Use which template or roll your own?") in list("USCM High Command", "USCM Provost General", "Custom")
 		var/fax_message = ""
 		switch(template_choice)
 			if("Custom")
-				var/input = input(src.owner, "Please enter a message to reply to [key_name(H)] via secure connection. NOTE: BBCode does not work, but HTML tags do! Use <br> for line breaks.", "Outgoing message from TGMC", "") as message|null
+				var/input = input(src.owner, "Please enter a message to reply to [key_name(H)] via secure connection. NOTE: BBCode does not work, but HTML tags do! Use <br> for line breaks.", "Outgoing message from USCM", "") as message|null
 				if(!input)	return
 				fax_message = "[input]"
-			if("TGMC High Command", "TGMC Provost General")
-				var/subject = input(src.owner, "Enter subject line", "Outgoing message from TGMC", "") as message|null
+			if("USCM High Command", "USCM Provost General")
+				var/subject = input(src.owner, "Enter subject line", "Outgoing message from USCM", "") as message|null
 				if(!subject) return
 				var/addressed_to = ""
 				var/address_option = input("Address it to the sender or custom?") in list("Sender", "Custom")
 				if(address_option == "Sender")
 					addressed_to = "[H.real_name]"
 				else if(address_option == "Custom")
-					addressed_to = input(src.owner, "Enter Addressee Line", "Outgoing message from TGMC", "") as message|null
+					addressed_to = input(src.owner, "Enter Addressee Line", "Outgoing message from USCM", "") as message|null
 					if(!addressed_to) return
 				else
 					return
-				var/message_body = input(src.owner, "Enter Message Body, use <p></p> for paragraphs", "Outgoing message from Nanotrasen TGMC", "") as message|null
+				var/message_body = input(src.owner, "Enter Message Body, use <p></p> for paragraphs", "Outgoing message from Weyland-Yutani USCM", "") as message|null
 				if(!message_body) return
-				var/sent_by = input(src.owner, "Enter the name and rank you are sending from.", "Outgoing message from TGMC", "") as message|null
+				var/sent_by = input(src.owner, "Enter the name and rank you are sending from.", "Outgoing message from USCM", "") as message|null
 				if(!sent_by) return
 				var/sent_title = "Office of the Provost General"
-				if(template_choice == "TGMC High Command")
-					sent_title = "TGMC High Command"
+				if(template_choice == "USCM High Command")
+					sent_title = "USCM High Command"
 
-				fax_message = generate_templated_fax(0,"TGMC CENTRAL COMMAND",subject,addressed_to,message_body,sent_by,sent_title,"TerraGov Marine Corps")
+				fax_message = generate_templated_fax(0,"USCM CENTRAL COMMAND",subject,addressed_to,message_body,sent_by,sent_title,"United States Colonial Marines")
 		usr << browse(fax_message, "window=uscmfaxpreview;size=600x600")
 		var/send_choice = input("Send this fax?") in list("Send", "Cancel")
 		if(send_choice == "Cancel") return
 		fax_contents += fax_message // save a copy
 
-		TGMCFaxes.Add("<a href='?_src_=holder;CentcommFaxView=\ref[fax_message]'>\[view reply at [world.timeofday]\]</a>")
+		USCMFaxes.Add("<a href='?_src_=holder;CentcommFaxView=\ref[fax_message]'>\[view reply at [world.timeofday]\]</a>")
 
 		var/customname = input(src.owner, "Pick a title for the report", "Title") as text|null
 
@@ -1653,7 +1653,7 @@
 					// give the sprite some time to flick
 					spawn(20)
 						var/obj/item/paper/P = new /obj/item/paper( F.loc )
-						P.name = "TGMC High Command - [customname]"
+						P.name = "USCM High Command - [customname]"
 						P.info = fax_message
 						P.update_icon()
 
@@ -1682,26 +1682,26 @@
 		var/fax_message = ""
 		switch(template_choice)
 			if("Custom")
-				var/input = input(src.owner, "Please enter a message to reply to [key_name(H)] via secure connection. NOTE: BBCode does not work, but HTML tags do! Use <br> for line breaks.", "Outgoing message from Nanotrasen", "") as message|null
+				var/input = input(src.owner, "Please enter a message to reply to [key_name(H)] via secure connection. NOTE: BBCode does not work, but HTML tags do! Use <br> for line breaks.", "Outgoing message from Weyland-Yutani", "") as message|null
 				if(!input)	return
 				fax_message = "[input]"
 			if("Template")
-				var/subject = input(src.owner, "Enter subject line", "Outgoing message from Nanotrasen", "") as message|null
+				var/subject = input(src.owner, "Enter subject line", "Outgoing message from Weyland-Yutani", "") as message|null
 				if(!subject) return
 				var/addressed_to = ""
 				var/address_option = input("Address it to the sender or custom?") in list("Sender", "Custom")
 				if(address_option == "Sender")
 					addressed_to = "[H.real_name]"
 				else if(address_option == "Custom")
-					addressed_to = input(src.owner, "Enter Addressee Line", "Outgoing message from Nanotrasen", "") as message|null
+					addressed_to = input(src.owner, "Enter Addressee Line", "Outgoing message from Weyland-Yutani", "") as message|null
 					if(!addressed_to) return
 				else
 					return
-				var/message_body = input(src.owner, "Enter Message Body, use <p></p> for paragraphs", "Outgoing message from Nanotrasen", "") as message|null
+				var/message_body = input(src.owner, "Enter Message Body, use <p></p> for paragraphs", "Outgoing message from Weyland-Yutani", "") as message|null
 				if(!message_body) return
-				var/sent_by = input(src.owner, "Enter JUST the name you are sending this from", "Outgoing message from Nanotrasen", "") as message|null
+				var/sent_by = input(src.owner, "Enter JUST the name you are sending this from", "Outgoing message from Weyland-Yutani", "") as message|null
 				if(!sent_by) return
-				fax_message = generate_templated_fax(1,"NANOTRASEN CORPORATE AFFAIRS - [MAIN_SHIP_NAME]",subject,addressed_to,message_body,sent_by,"Corporate Affairs Director","Nanotrasen")
+				fax_message = generate_templated_fax(1,"Weyland-Yutani CORPORATE AFFAIRS - [MAIN_SHIP_NAME]",subject,addressed_to,message_body,sent_by,"Corporate Affairs Director","Weyland-Yutani")
 		usr << browse(fax_message, "window=clfaxpreview;size=600x600")
 		var/send_choice = input("Send this fax?") in list("Send", "Cancel")
 		if(send_choice == "Cancel") return
@@ -1721,7 +1721,7 @@
 					// give the sprite some time to flick
 					spawn(20)
 						var/obj/item/paper/P = new /obj/item/paper( F.loc )
-						P.name = "Nanotrasen - [customname]"
+						P.name = "Weyland-Yutani - [customname]"
 						P.info = fax_message
 						P.update_icon()
 
@@ -1734,7 +1734,7 @@
 							P.stamped = new
 						P.stamped += /obj/item/tool/stamp
 						P.overlays += stampoverlay
-						P.stamps += "<HR><i>This paper has been stamped and encrypted by the Nanotrasen Quantum Relay (tm).</i>"
+						P.stamps += "<HR><i>This paper has been stamped and encrypted by the Weyland-Yutani Quantum Relay (tm).</i>"
 
 				to_chat(src.owner, "Message reply to transmitted successfully.")
 				log_admin("[key_name(src.owner)] replied to a fax message from [key_name(H)]: [fax_message]")
@@ -2580,15 +2580,15 @@
 			if("Fixed")
 				msgplayer = "<span class='boldnotice'>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. The issue is already fixed.</span>"
 			if("Thanks")
-				msgplayer = "<span class='boldnotice'>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>! Have a TGMC day!</b>"
+				msgplayer = "<span class='boldnotice'>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>! Have a USCM day!</b>"
 			if("Guilty")
 				msgplayer = "<span class='boldnotice'>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. You broke Space Law.</span>"
 			if("Find out IC-ly")
 				msgplayer = "<span class='boldnotice'>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. Whatever your question is, you will have to find out using in-character means. The staff won't reveal anything relevant.</span>"
 			if("L: Xeno Quickstart Guide")
-				msgplayer = "<span class='boldnotice'>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. Your answer can be found on the Xeno Quickstart Guide. <a href='https://tgstation13.org/wiki/TGMC:Xeno_Quickstart_Guide'>Check it out here.</a></b>"
+				msgplayer = "<span class='boldnotice'>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. Your answer can be found on the Xeno Quickstart Guide. <a href='https://tgstation13.org/wiki/USCM:Xeno_Quickstart_Guide'>Check it out here.</a></b>"
 			if("L: Marine quickstart guide")
-				msgplayer = "<span class='boldnotice'>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. Your answer can be found on the Marine Quickstart Guide. <a href='https://tgstation13.org/wiki/TGMC:Marine_Quickstart_Guide'>Check it out here.</a></b>"
+				msgplayer = "<span class='boldnotice'>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. Your answer can be found on the Marine Quickstart Guide. <a href='https://tgstation13.org/wiki/USCM:Marine_Quickstart_Guide'>Check it out here.</a></b>"
 			if("L: Current Map")
 				msgplayer = "<span class='boldnotice'>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. If you need a map for the current game, you can find it <a href='http://cm-ss13.com/wiki/Main_Page'>here.</a></span>"
 			if("A: No plasma regen")
@@ -2602,7 +2602,7 @@
 			if("R: Radios")
 				msgplayer = "<span class='boldnotice'>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. The prefix for all squad marines is now ; to access your squad radio that is global, :z for the general radio channel that is location-specific. Examine your radio headset to get a listing of the channels you have access to.</span>"
 			if("M: Macros")
-				msgplayer = "<span class='boldnotice'>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. To set a macro right click the title bar, select Client->Macros. Binding load-from-attachment will activate any attachments; Binding resist and give to seperate keys is also handy. More information on macros can be found <a href='https://tgstation13.org/wiki/TGMC:Macros'>here.</a></b>"
+				msgplayer = "<span class='boldnotice'>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. To set a macro right click the title bar, select Client->Macros. Binding load-from-attachment will activate any attachments; Binding resist and give to seperate keys is also handy. More information on macros can be found <a href='https://tgstation13.org/wiki/USCM:Macros'>here.</a></b>"
 			else return
 
 		message_staff("[usr.key] is autoresponding to [ref_person] with <font color='#009900'>'[choice]'</font>. They have been shown the following:\n[msgplayer]", 1)

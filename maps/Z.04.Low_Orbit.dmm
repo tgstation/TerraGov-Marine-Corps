@@ -1,87 +1,190 @@
-"a" = (/turf/open/space,/area/space)
-"b" = (/turf/closed/wall/indestructible,/area/space)
-"c" = (/obj/machinery/telecomms/relay/preset/station{explosion_resistance = 100; idle_power_usage = 0; listening_level = 1; unacidable = 1; use_power = 0},/turf/open/floor,/area/space)
-"d" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "tele_ground1"; teleport_x = 180; teleport_x_offset = 200; teleport_y = 50; teleport_y_offset = 80; teleport_z = 1; teleport_z_offset = 1},/turf/open/space/transit/north/shuttlespace_ns2,/area/space)
-"e" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "escapeshuttle_leave"; teleport_x = 25; teleport_x_offset = 245; teleport_y = 25; teleport_y_offset = 245; teleport_z = 1; teleport_z_offset = 1},/turf/open/space/transit/north/shuttlespace_ns2,/area/space)
-"f" = (/turf/open/space/transit/north/shuttlespace_ns4,/area/space)
-"g" = (/turf/open/space/transit/north/shuttlespace_ns2,/area/space)
-"h" = (/turf/open/space/transit/north/shuttlespace_ns1,/area/space)
-"i" = (/turf/open/space/transit/north/shuttlespace_ns14,/area/space)
-"j" = (/turf/open/space/transit/north/shuttlespace_ns11,/area/space)
-"k" = (/turf/open/space/transit/north/shuttlespace_ns7,/area/space)
-"l" = (/turf/open/space/transit/north/shuttlespace_ns9,/area/space)
-"m" = (/turf/open/space/transit/north/shuttlespace_ns3,/area/space)
-"n" = (/turf/open/space/transit/north/shuttlespace_ns13,/area/space)
-"o" = (/turf/open/space/transit/north/shuttlespace_ns15,/area/space)
-"p" = (/turf/open/space/transit/north/shuttlespace_ns10,/area/space)
-"q" = (/turf/open/space/transit/north/shuttlespace_ns12,/area/space)
-"r" = (/turf/open/space/transit/north/shuttlespace_ns8,/area/space)
-"s" = (/turf/open/space/transit/north/shuttlespace_ns5,/area/space)
-"t" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "escapeshuttle_leave"; teleport_x = 25; teleport_x_offset = 245; teleport_y = 25; teleport_y_offset = 245; teleport_z = 1; teleport_z_offset = 1},/turf/open/space/transit/north/shuttlespace_ns4,/area/space)
-"u" = (/turf/open/space/transit/north/shuttlespace_ns2,/area/shuttle/drop2/transit)
-"v" = (/turf/open/space/transit/north/shuttlespace_ns2,/area/shuttle/drop1/transit)
-"w" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "escapeshuttle_leave"; teleport_x = 25; teleport_x_offset = 245; teleport_y = 25; teleport_y_offset = 245; teleport_z = 1; teleport_z_offset = 1},/obj/effect/landmark/shuttle_loc/marine_int/dropship{name = "2"},/turf/open/space/transit/north/shuttlespace_ns4,/area/space)
-"x" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "escapeshuttle_leave"; teleport_x = 25; teleport_x_offset = 245; teleport_y = 25; teleport_y_offset = 245; teleport_z = 1; teleport_z_offset = 1},/obj/effect/landmark/shuttle_loc/marine_int/dropship{name = "1"},/turf/open/space/transit/north/shuttlespace_ns4,/area/space)
+"aa" = (/turf/open/space,/area/space)
+"ab" = (/turf/closed/wall/indestructible,/area/space)
+"ac" = (/obj/machinery/telecomms/relay/preset/station{explosion_resistance = 100; idle_power_usage = 0; listening_level = 1; unacidable = 1; use_power = 0},/turf/open/floor,/area/space)
+"ad" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "tele_ground1"; teleport_x = 180; teleport_x_offset = 200; teleport_y = 50; teleport_y_offset = 80; teleport_z = 1; teleport_z_offset = 1},/turf/open/space/transit/north/shuttlespace_ns2,/area/space)
+"ae" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "escapeshuttle_leave"; teleport_x = 25; teleport_x_offset = 245; teleport_y = 25; teleport_y_offset = 245; teleport_z = 1; teleport_z_offset = 1},/turf/open/space/transit/north/shuttlespace_ns2,/area/space)
+"af" = (/turf/open/space/transit/north/shuttlespace_ns4,/area/space)
+"ag" = (/turf/open/space/transit/north/shuttlespace_ns2,/area/space)
+"ah" = (/turf/open/space/transit/north/shuttlespace_ns1,/area/space)
+"ai" = (/turf/open/space/transit/north/shuttlespace_ns14,/area/space)
+"aj" = (/turf/open/space/transit/north/shuttlespace_ns11,/area/space)
+"ak" = (/turf/open/space/transit/north/shuttlespace_ns7,/area/space)
+"al" = (/turf/open/space/transit/north/shuttlespace_ns9,/area/space)
+"am" = (/turf/open/space/transit/north/shuttlespace_ns3,/area/space)
+"an" = (/turf/open/space/transit/north/shuttlespace_ns13,/area/space)
+"ao" = (/turf/open/space/transit/north/shuttlespace_ns15,/area/space)
+"ap" = (/turf/open/space/transit/north/shuttlespace_ns10,/area/space)
+"aq" = (/turf/open/space/transit/north/shuttlespace_ns12,/area/space)
+"ar" = (/turf/open/space/transit/north/shuttlespace_ns8,/area/space)
+"as" = (/turf/open/space/transit/north/shuttlespace_ns5,/area/space)
+"at" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "escapeshuttle_leave"; teleport_x = 25; teleport_x_offset = 245; teleport_y = 25; teleport_y_offset = 245; teleport_z = 1; teleport_z_offset = 1},/turf/open/space/transit/north/shuttlespace_ns4,/area/space)
+"au" = (/turf/open/space/transit/north/shuttlespace_ns2,/area/shuttle/drop2/transit)
+"av" = (/turf/open/space/transit/north/shuttlespace_ns2,/area/shuttle/drop1/transit)
+"aw" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "escapeshuttle_leave"; teleport_x = 25; teleport_x_offset = 245; teleport_y = 25; teleport_y_offset = 245; teleport_z = 1; teleport_z_offset = 1},/obj/effect/landmark/shuttle_loc/marine_int/dropship{name = "2"},/turf/open/space/transit/north/shuttlespace_ns4,/area/space)
+"ax" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "escapeshuttle_leave"; teleport_x = 25; teleport_x_offset = 245; teleport_y = 25; teleport_y_offset = 245; teleport_z = 1; teleport_z_offset = 1},/obj/effect/landmark/shuttle_loc/marine_int/dropship{name = "1"},/turf/open/space/transit/north/shuttlespace_ns4,/area/space)
+"ay" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "escapeshuttle_leave"; teleport_x = 25; teleport_x_offset = 245; teleport_y = 25; teleport_y_offset = 245; teleport_z = 1; teleport_z_offset = 1},/turf/open/space/transit/north/shuttlespace_ns5,/area/space)
+"az" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "escapeshuttle_leave"; teleport_x = 25; teleport_x_offset = 245; teleport_y = 25; teleport_y_offset = 245; teleport_z = 1; teleport_z_offset = 1},/turf/open/space/transit/north/shuttlespace_ns14,/area/space)
+"aA" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "escapeshuttle_leave"; teleport_x = 25; teleport_x_offset = 245; teleport_y = 25; teleport_y_offset = 245; teleport_z = 1; teleport_z_offset = 1},/turf/open/space/transit/north/shuttlespace_ns7,/area/space)
+"aB" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "escapeshuttle_leave"; teleport_x = 25; teleport_x_offset = 245; teleport_y = 25; teleport_y_offset = 245; teleport_z = 1; teleport_z_offset = 1},/turf/open/space/transit/north/shuttlespace_ns9,/area/space)
+"aC" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "escapeshuttle_leave"; teleport_x = 25; teleport_x_offset = 245; teleport_y = 25; teleport_y_offset = 245; teleport_z = 1; teleport_z_offset = 1},/turf/open/space/transit/north/shuttlespace_ns3,/area/space)
+"aD" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "escapeshuttle_leave"; teleport_x = 25; teleport_x_offset = 245; teleport_y = 25; teleport_y_offset = 245; teleport_z = 1; teleport_z_offset = 1},/turf/open/space/transit/north/shuttlespace_ns13,/area/space)
+"aE" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "escapeshuttle_leave"; teleport_x = 25; teleport_x_offset = 245; teleport_y = 25; teleport_y_offset = 245; teleport_z = 1; teleport_z_offset = 1},/turf/open/space/transit/north/shuttlespace_ns15,/area/space)
+"aF" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "escapeshuttle_leave"; teleport_x = 25; teleport_x_offset = 245; teleport_y = 25; teleport_y_offset = 245; teleport_z = 1; teleport_z_offset = 1},/turf/open/space/transit/north/shuttlespace_ns10,/area/space)
+"aG" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "escapeshuttle_leave"; teleport_x = 25; teleport_x_offset = 245; teleport_y = 25; teleport_y_offset = 245; teleport_z = 1; teleport_z_offset = 1},/turf/open/space/transit/north/shuttlespace_ns12,/area/space)
+"aH" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "escapeshuttle_leave"; teleport_x = 25; teleport_x_offset = 245; teleport_y = 25; teleport_y_offset = 245; teleport_z = 1; teleport_z_offset = 1},/turf/open/space/transit/north/shuttlespace_ns8,/area/space)
+"aI" = (/turf/closed/wall/indestructible/vehicle{icon_state = "hull8B"},/area/vehicle_interior/apc_1)
+"aJ" = (/turf/closed/wall/indestructible/vehicle{icon_state = "hull2"},/area/vehicle_interior/apc_1)
+"aK" = (/turf/closed/wall/indestructible/vehicle{icon_state = "hull7B"},/area/vehicle_interior/apc_1)
+"aL" = (/obj/item/device/radio/intercom,/turf/closed/wall/indestructible/vehicle{icon_state = "hull2"},/area/vehicle_interior/apc_1)
+"aM" = (/obj/machinery/computer/security/almayer_network{name = "Cameras Interface"; network = list("apc_1")},/turf/closed/wall/indestructible/vehicle{icon_state = "hull2"},/area/vehicle_interior/apc_1)
+"aN" = (/turf/closed/wall/indestructible/vehicle{icon_state = "hull10"},/area/vehicle_interior/apc_1)
+"aO" = (/obj/structure/table/reinforced,/obj/item/storage/box/bodybags,/obj/item/storage/firstaid/adv,/turf/open/shuttle/dropship,/area/vehicle_interior/apc_1)
+"aP" = (/obj/machinery/autodoc,/turf/open/shuttle/dropship,/area/vehicle_interior/apc_1)
+"aQ" = (/obj/machinery/autodoc_console,/turf/open/shuttle/dropship,/area/vehicle_interior/apc_1)
+"aR" = (/turf/closed/wall/indestructible/vehicle{icon_state = "hull9"},/area/vehicle_interior/apc_1)
+"aS" = (/turf/closed/wall/indestructible/vehicle{icon_state = "hull8B"},/area/vehicle_interior/apc_2)
+"aT" = (/turf/closed/wall/indestructible/vehicle{icon_state = "hull2"},/area/vehicle_interior/apc_2)
+"aU" = (/turf/closed/wall/indestructible/vehicle{icon_state = "hull7B"},/area/vehicle_interior/apc_2)
+"aV" = (/turf/closed/wall/indestructible/vehicle{icon_state = "hull8B"},/area/vehicle_interior/apc_3)
+"aW" = (/turf/closed/wall/indestructible/vehicle{icon_state = "hull2"},/area/vehicle_interior/apc_3)
+"aX" = (/turf/closed/wall/indestructible/vehicle{icon_state = "hull7B"},/area/vehicle_interior/apc_3)
+"aY" = (/obj/item/device/radio/intercom,/turf/closed/wall/indestructible/vehicle{icon_state = "hull2"},/area/vehicle_interior/apc_2)
+"aZ" = (/turf/closed/wall/indestructible/vehicle{icon_state = "hull3"},/area/vehicle_interior/apc_1)
+"ba" = (/obj/structure/bed/chair/dropship/passenger,/turf/open/shuttle/dropship,/area/vehicle_interior/apc_1)
+"bb" = (/turf/open/shuttle/dropship,/area/vehicle_interior/apc_1)
+"bc" = (/obj/machinery/vending/MarineMed,/turf/open/shuttle/dropship,/area/vehicle_interior/apc_1)
+"bd" = (/obj/machinery/vending/MarineMed/Blood,/turf/open/shuttle/dropship,/area/vehicle_interior/apc_1)
+"be" = (/turf/closed/wall/indestructible/vehicle{icon_state = "hull4"},/area/vehicle_interior/apc_1)
+"bf" = (/obj/machinery/computer/security/almayer_network{name = "Cameras Interface"; network = list("apc_2")},/turf/closed/wall/indestructible/vehicle{icon_state = "hull2"},/area/vehicle_interior/apc_2)
+"bg" = (/turf/closed/wall/indestructible/vehicle{icon_state = "hull10"},/area/vehicle_interior/apc_2)
+"bh" = (/turf/open/floor/almayer{icon_state = "cargo"},/area/vehicle_interior/apc_2)
+"bi" = (/obj/structure/vehicle_interior/supply_receiver,/turf/open/shuttle/dropship,/area/vehicle_interior/apc_2)
+"bj" = (/obj/machinery/vending/wallmed1,/turf/closed/wall/indestructible/vehicle{icon_state = "hull3"},/area/vehicle_interior/apc_1)
+"bk" = (/obj/effect/landmark/multitile_interior_cabin_exit,/turf/open/shuttle/dropship,/area/vehicle_interior/apc_1)
+"bl" = (/obj/structure/vehicle_interior/cabin_door{icon_state = "door_spark"; dir = 4},/turf/open/shuttle/dropship,/area/vehicle_interior/apc_1)
+"bm" = (/obj/structure/bed/chair/dropship/passenger{icon_state = "shuttle_chair_new_folding"; dir = 1},/turf/open/shuttle/dropship,/area/vehicle_interior/apc_1)
+"bn" = (/obj/machinery/bodyscanner,/turf/open/shuttle/dropship,/area/vehicle_interior/apc_1)
+"bo" = (/obj/machinery/body_scanconsole,/obj/machinery/camera/autoname/almayer{pixel_x = 20},/turf/open/shuttle/dropship,/area/vehicle_interior/apc_1)
+"bp" = (/turf/closed/wall/indestructible/vehicle{icon_state = "hull9"},/area/vehicle_interior/apc_2)
+"bq" = (/obj/item/device/radio/intercom,/turf/closed/wall/indestructible/vehicle{icon_state = "hull2"},/area/vehicle_interior/apc_3)
+"br" = (/obj/machinery/computer/security/almayer_network{name = "Cameras Interface"; network = list("apc_3")},/turf/closed/wall/indestructible/vehicle{icon_state = "hull2"},/area/vehicle_interior/apc_3)
+"bs" = (/turf/closed/wall/indestructible/vehicle{icon_state = "hull6"},/area/vehicle_interior/apc_1)
+"bt" = (/turf/closed/wall/indestructible/vehicle{icon_state = "hull1"},/area/vehicle_interior/apc_1)
+"bu" = (/obj/item/device/radio/intercom,/turf/closed/wall/indestructible/vehicle{icon_state = "hull1"},/area/vehicle_interior/apc_1)
+"bv" = (/obj/machinery/computer/security/almayer_network{name = "Cameras Interface"; network = list("apc_1")},/turf/closed/wall/indestructible/vehicle{icon_state = "hull1"},/area/vehicle_interior/apc_1)
+"bw" = (/turf/closed/wall/indestructible/vehicle{icon_state = "hull11"},/area/vehicle_interior/apc_1)
+"bx" = (/obj/structure/bed/roller,/turf/open/shuttle/dropship,/area/vehicle_interior/apc_1)
+"by" = (/obj/machinery/iv_drip,/turf/open/shuttle/dropship,/area/vehicle_interior/apc_1)
+"bz" = (/obj/effect/landmark/multitile_interior_exit,/turf/open/shuttle/dropship,/area/vehicle_interior/apc_1)
+"bA" = (/turf/closed/wall/indestructible/vehicle{icon_state = "hull12"},/area/vehicle_interior/apc_1)
+"bB" = (/turf/closed/wall/indestructible/vehicle{icon_state = "hull5"},/area/vehicle_interior/apc_1)
+"bC" = (/turf/closed/wall/indestructible/vehicle{icon_state = "hull10"},/area/vehicle_interior/apc_3)
+"bD" = (/obj/structure/prop/almayer/sensor_computer1,/turf/open/floor/almayer{icon_state = "cargo"},/area/vehicle_interior/apc_3)
+"bE" = (/obj/structure/vehicle_interior/side_door,/turf/open/shuttle/dropship,/area/vehicle_interior/apc_1)
+"bF" = (/obj/machinery/computer/overwatch/main,/turf/open/floor/almayer{icon_state = "cargo"},/area/vehicle_interior/apc_3)
+"bG" = (/obj/structure/prop/almayer/sensor_computer3,/turf/open/floor/almayer{icon_state = "cargo"},/area/vehicle_interior/apc_3)
+"bH" = (/turf/closed/wall/indestructible/vehicle{icon_state = "hull9"},/area/vehicle_interior/apc_3)
+"bI" = (/turf/closed/wall/indestructible/vehicle{icon_state = "hull3"},/area/vehicle_interior/apc_2)
+"bJ" = (/obj/structure/bed/chair/dropship/passenger,/turf/open/shuttle/dropship,/area/vehicle_interior/apc_2)
+"bK" = (/turf/open/shuttle/dropship,/area/vehicle_interior/apc_2)
+"bL" = (/obj/machinery/vending/marine/cargo_ammo,/turf/open/shuttle/dropship,/area/vehicle_interior/apc_2)
+"bM" = (/obj/machinery/vending/marine,/turf/open/shuttle/dropship,/area/vehicle_interior/apc_2)
+"bN" = (/turf/closed/wall/indestructible/vehicle{icon_state = "hull4"},/area/vehicle_interior/apc_2)
+"bO" = (/turf/closed/wall/indestructible/vehicle{icon_state = "hull3"},/area/vehicle_interior/apc_3)
+"bP" = (/obj/structure/bed/chair/dropship/passenger,/turf/open/shuttle/dropship,/area/vehicle_interior/apc_3)
+"bQ" = (/turf/open/shuttle/dropship,/area/vehicle_interior/apc_3)
+"bR" = (/obj/structure/vehicle_interior/tcomms_hub,/turf/open/shuttle/dropship,/area/vehicle_interior/apc_3)
+"bS" = (/obj/machinery/vehicle_interior/tcomms_receiver,/turf/open/shuttle/dropship,/area/vehicle_interior/apc_3)
+"bT" = (/turf/closed/wall/indestructible/vehicle{icon_state = "hull4"},/area/vehicle_interior/apc_3)
+"bU" = (/obj/machinery/vending/wallmed1,/turf/closed/wall/indestructible/vehicle{icon_state = "hull3"},/area/vehicle_interior/apc_2)
+"bV" = (/obj/effect/landmark/multitile_interior_cabin_exit,/turf/open/shuttle/dropship,/area/vehicle_interior/apc_2)
+"bW" = (/obj/structure/vehicle_interior/cabin_door{icon_state = "door_spark"; dir = 4},/turf/open/shuttle/dropship,/area/vehicle_interior/apc_2)
+"bX" = (/obj/machinery/vending/wallmed1,/turf/closed/wall/indestructible/vehicle{icon_state = "hull3"},/area/vehicle_interior/apc_3)
+"bY" = (/obj/effect/landmark/multitile_interior_cabin_exit,/turf/open/shuttle/dropship,/area/vehicle_interior/apc_3)
+"bZ" = (/obj/structure/vehicle_interior/cabin_door{icon_state = "door_spark"; dir = 4},/turf/open/shuttle/dropship,/area/vehicle_interior/apc_3)
+"ca" = (/obj/structure/bed/chair/dropship/passenger{icon_state = "shuttle_chair_new_folding"; dir = 1},/turf/open/shuttle/dropship,/area/vehicle_interior/apc_2)
+"cb" = (/obj/structure/rack,/obj/item/storage/box/m94,/obj/item/storage/box/m94,/obj/item/storage/box/sentry,/turf/open/shuttle/dropship,/area/vehicle_interior/apc_2)
+"cc" = (/obj/structure/rack,/obj/item/storage/box/m94,/obj/item/storage/box/explosive_mines,/obj/machinery/camera/autoname/almayer{pixel_x = 20},/turf/open/shuttle/dropship,/area/vehicle_interior/apc_2)
+"cd" = (/obj/structure/bed/chair/dropship/passenger{icon_state = "shuttle_chair_new_folding"; dir = 1},/turf/open/shuttle/dropship,/area/vehicle_interior/apc_3)
+"ce" = (/obj/structure/bed/chair/dropship/passenger{icon_state = "shuttle_chair_new_folding"; dir = 1},/obj/machinery/camera/autoname/almayer{pixel_x = 20},/turf/open/shuttle/dropship,/area/vehicle_interior/apc_3)
+"cf" = (/turf/closed/wall/indestructible/vehicle{icon_state = "hull6"},/area/vehicle_interior/apc_2)
+"cg" = (/turf/closed/wall/indestructible/vehicle{icon_state = "hull1"},/area/vehicle_interior/apc_2)
+"ch" = (/obj/item/device/radio/intercom,/turf/closed/wall/indestructible/vehicle{icon_state = "hull1"},/area/vehicle_interior/apc_2)
+"ci" = (/obj/machinery/computer/security/almayer_network{name = "Cameras Interface"; network = list("apc_2")},/turf/closed/wall/indestructible/vehicle{icon_state = "hull1"},/area/vehicle_interior/apc_2)
+"cj" = (/turf/closed/wall/indestructible/vehicle{icon_state = "hull11"},/area/vehicle_interior/apc_2)
+"ck" = (/obj/effect/landmark/multitile_interior_exit,/turf/open/shuttle/dropship,/area/vehicle_interior/apc_2)
+"cl" = (/turf/closed/wall/indestructible/vehicle{icon_state = "hull12"},/area/vehicle_interior/apc_2)
+"cm" = (/turf/closed/wall/indestructible/vehicle{icon_state = "hull5"},/area/vehicle_interior/apc_2)
+"cn" = (/turf/closed/wall/indestructible/vehicle{icon_state = "hull6"},/area/vehicle_interior/apc_3)
+"co" = (/turf/closed/wall/indestructible/vehicle{icon_state = "hull1"},/area/vehicle_interior/apc_3)
+"cp" = (/obj/item/device/radio/intercom,/turf/closed/wall/indestructible/vehicle{icon_state = "hull1"},/area/vehicle_interior/apc_3)
+"cq" = (/obj/machinery/computer/security/almayer_network{name = "Cameras Interface"; network = list("apc_3")},/turf/closed/wall/indestructible/vehicle{icon_state = "hull1"},/area/vehicle_interior/apc_3)
+"cr" = (/turf/closed/wall/indestructible/vehicle{icon_state = "hull11"},/area/vehicle_interior/apc_3)
+"cs" = (/obj/effect/landmark/multitile_interior_exit,/turf/open/shuttle/dropship,/area/vehicle_interior/apc_3)
+"ct" = (/turf/closed/wall/indestructible/vehicle{icon_state = "hull12"},/area/vehicle_interior/apc_3)
+"cu" = (/turf/closed/wall/indestructible/vehicle{icon_state = "hull5"},/area/vehicle_interior/apc_3)
+"cv" = (/obj/structure/vehicle_interior/side_door,/turf/open/shuttle/dropship,/area/vehicle_interior/apc_2)
+"cw" = (/obj/structure/vehicle_interior/side_door,/turf/open/shuttle/dropship,/area/vehicle_interior/apc_3)
 
 (1,1,1) = {"
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabcbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-dddddddddddddddddddddddddddddddddddddddddddaeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-dfghihjhihjhihjhihjhihjhihjhihjkilmkilmkigdaefgnopqnopqnopqnopqnopqnopqnopqropfropfropfropfge
-dfglnoplnoplnoplnoplnoplnoplnopogqiogqioggdaefghihjhihjhihjhihjhihjhihjhihjkilmkilmkilmkilmge
-dsoropfropfropfropfropfropfropfihjnihjnihgdaefglnoplnoplnoplnoplnoplnoplnopogqiogqiogqiogqige
-dsikilmkilmkilmkilmkilmkilmkilmnopqnopqnogdaesoropfropfropfropfropfropfropfihjnihjnihjnihjnge
-dgkogqiogqiogqiogqiogqiogqiogqihkgghkfggggdaesikilmkilmkilmkilmkilmkilmkilmnopqnopqnopqnopqre
-dngihjnihjnihjnihjnihjnihjnihjngrfgmgrfgggdaegkogqiogqiogqiogqiogqiogqiogqihkgghkfggghkfgghke
-dlhnopqnopqnopqnopqnopqnopqnopqhkfgghkfgggdaengihjnihjnihjnihjnihjnihjnihjngrfgmgrfggggfgggge
-dninopqnopqnopqfgggkfgkfgggkilmfggggfgggigdaelhnopqnopqnopqnopqnopqnopqnopqhkfgghkfggggfgggge
-domhihjhihjhihjfimngfngfimnogqifgimgfgigmgdaeninopqnopqnopqfgggkfgkfgggkilmfggggfgggimgfgimge
-dhglnoplnoplnopfmglhflhfmglihjnfgmgrfgmgggdaeomhihjhihjhihjfimngfngfimnogqifgimgfgigmgrfgmgre
-dshropfropfropffgonifnifgonnopqfgmgkfgghkidaehglnoplnoplnopfmglhflhfmglihjnfgmgrfgmgghkfgghke
-domkilmkilmkilmfhsomfomfhsohihjhihjhihjhimdaeshropfropfropffgonifnifgonnopqfgmgkfgghkfgggggge
-dggogqiogqiogqifgghgfhgfgghlnoplnoplnoplngdaeomkilmkilmkilmfhsomfomfhsohihjhihjhihjhihjhihjge
-dggihjnihjnihjnfghshfshfghsropfropfropfrogdaeggogqiogqiogqifgghgfhgfgghlnoplnoplnoplnoplnopge
-dfgnopqnopqnopqfglomfomfglokilmkilmkilmkigdaeggihjnihjnihjnfghshfshfghsropfropfropfropfropfge
-dfgnopqnopqnopqfgggmtttttttgmgiogqiogqioggdaefgnopqnopqnopqfglomfomfglokilmkilmkilmkilmkilmge
-dfgnopqnopqnopqfgffftuuuuutfffnihjnihjnihgdaefgnopqnopqnopqfggmgtttttttogqiogqiogqiogqiogqire
-dfghihjhihjhihjkfffftuuuuutfffqnopqnopqnogdaefghihjhihjhihjkfffftvvvvvtihjnihjnihjnihjnihjnke
-dfglnoplnoplnopofftttuuuuutttfjhihjhihjhigdaefglnoplnoplnopofffftvvvvvtnopqnopqnopqnopqnopqoe
-dfgropfropfropfifftuuuuuuuuutfplnoplnoplngdaefgropfropfropfifftttvvvvvtttfjhihjhihjhihjhihjie
-dfgkilmkilmkilmofttuuuuuuuuuttfropfropfrogdaefgkilmkilmkilmofftvvvvvvvvvtfplnoplnoplnoplnopke
-dfgogqiogqiogqihftuuuuuuuuuuutmkilmkilmkigdaefgogqiogqiogqihfttvvvvvvvvvttfropfropfropfropfge
-dfgihjnihjnihjngftuuuuuuuuuuutiogqiogqioggdaefgihjnihjnihjngftvvvvvvvvvvvtmkilmkilmkilmkilmhe
-dfinopqnopqnopqhftuuuuuuuuuuutnihjnihjnihidaefinopqnopqnopqhftvvvvvvvvvvvtiogqiogqiogqiogqiie
-dfmnopqnopqnopqffttuuuuuuuuuttqnopqnopqnomdaefmnopqnopqnopqfftvvvvvvvvvvvtnihjnihjnihjnihjnme
-dfghihjhihjhihjifftuuuuuuuuutfjhihjhihjhigdaefghihjhihjhihjifttvvvvvvvvvttqnopqnopqnopqnopqge
-dfhlnoplnoplnopgfftuuuuuuuuutfplnoplnoplnhdaefhlnoplnoplnopgfftvvvvvvvvvtfjhihjhihjhihjhihjhe
-dfgropfropfropfgfftuuuuuuuuutffropfropfrogdaefgropfropfropfgfftvvvvvvvvvtfplnoplnoplnoplnopme
-dggkilmkilmkilmffttuuuuuuuuuttmkilmkilmkigdaeggkilmkilmkilmffftvvvvvvvvvtffropfropfropfropfge
-dggogqiogqiogqifftuuuuuuuuuuutiogqiogqioggdaeggogqiogqiogqiffttvvvvvvvvvttmkilmkilmkilmkilmke
-dgfihjnihjnihjnfftuuuuuuuuuuutnihjnihjnihgdaegfihjnihjnihjnfftvvvvvvvvvvvtiogqiogqiogqiogqioe
-dgfnopqnopqnopqfftuuuuuuuuuuutqnopqnopqnoidaegfnopqnopqnopqfftvvvvvvvvvvvtnihjnihjnihjnihjnie
-dgfnopqnopqnopqfftuuuuuuuuuuutjhihjhihjhimdaegfnopqnopqnopqfftvvvvvvvvvvvtqnopqnopqnopqnopqke
-drfhihjhihjhihjfftuuuuuuuuuuutplnoplnoplngdaerfhihjhihjhihjfftvvvvvvvvvvvtjhihjhihjhihjhihjge
-dkflnoplnoplnopfftttuuuuuuutttfropfropfroodaekflnoplnoplnopfftvvvvvvvvvvvtplnoplnoplnoplnophe
-dofropfropfropfffftttutttutttfmkilmkilmkigdaeofropfropfropffftttvvvvvvvtttfropfropfropfropfie
-difkilmkilmkilmfffwuuutftuuutfiogqiogqioggdaeifkilmkilmkilmffftttvtttvtttfmkilmkilmkilmkilmme
-dkfogqiogqiogqiffftttttftttttfnihjnihjnihmdaekfogqiogqiogqifffxvvvtftvvvtfiogqiogqiogqiogqige
-dgfihjnihjnihjnffgggggggggggggggggjmglhfmgdaegfihjnihjnihjnffftttttftttttfnihjnihjnihjnihjnhe
-dhfnopqnopqnopqfffffffffffffffqnopqnopqngodaehfnopqnopqnopqfffffffffffffffqnopqnopqnopqnopqme
-dggnopqnopqnopqnopqnopqnopqnopqnopqnopqnggdaeggnopqnopqnopqnopqnopqnopqnopqnopqnopqnopqnopqge
-dgghihjhihjhihjhihjhihjhihjhihjhihjhihjhggdaegghihjhihjhihjhihjhihjhihjhihjhihjhihjhihjhihjge
-dfglnoplnoplnoplnoplnoplnoplnoplnoplnoplggdaefglnoplnoplnoplnoplnoplnoplnoplnoplnoplnoplnopge
-dfgropfropfropfropfropfropfropfropfropfrggdaefgropfropfropfropfropfropfropfropfropfropfropfge
-dfgkilmkilmkilmkilmkilmkilmkilmkilmkilmkmgdaefgkilmkilmkilmkilmkilmkilmkilmkilmkilmkilmkilmge
-dfgogqiogqiogqiogqiogqiogqiogqiogqiogqioggdaefgogqiogqiogqiogqiogqiogqiogqiogqiogqiogqiogqire
-dfgihjnihjnihjnihjnihjnihjnihjnihjnihjnihgdaefgihjnihjnihjnihjnihjnihjnihjnihjnihjnihjnihjnke
-dfgnopqnopqnopqnopqnopqnopqnopqnopqnopqnsgdaefgnopqnopqnopqnopqnopqnopqnopqnopqnopqnopqnopqoe
-dfggsiggsifggsiggsifggsifggsifggsiggsifgsgdaefggsiggsifggsiggsifggsifggsifggsiggsifggsifggsie
-dfgggkgggkfgggkgggkfgggkfgggkfgggkgggkfgggdaefgggkgggkfgggkgggkfgggkfgggkfgggkgggkfgggkfgggke
-dfimngimngfimngimngfimngfimngfimngimngfinidaefimngimngfimngimngfimngfimngfimngimngfimngfimnge
-dfmglhmglhfmglhmglhfmglhfmglhfmglhmglhfmlmdaefmglhmglhfmglhmglhfmglhfmglhfmglhmglhfmglhfmglhe
-dfgonigonifgonigonifgonifgonifgonigonifgngdaefgonigonifgonigonifgonifgonifgonigonifgonifgonie
-dfhsomhsomfhsomhsomfhsomfhsomfhsomhsomfhohdaefhsomhsomfhsomhsomfhsomfhsomfhsomhsomfhsomfhsome
-dfgghggghgfgghggghgfgghgfgghgfgghggghgfghgdaefgghggghgfgghggghgfgghgfgghgfgghggghgfgghgfgghge
-dddddddddddddddddddddddddddddddddddddddddddaeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabacabaaaaaaaaaaaIaJaJaJaKaaaaaaaaaaaaaaaSaTaTaTaUaaaaaaaaaaaaaaaVaWaWaWaXaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabababaaaIaJaLaMaNaOaPaQaRaJaKaaaSaTaYbfbgbhbibhbpaTaUaaaVaWbqbrbCbDbFbGbHaWaXaaaaaaaaaaaaaaaaaaaaaaaa
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadaaagagaZbababababbbbbbbcbdbeaabIbJbJbJbJbKbKbKbLbMbNagbObPbPbPbPbQbQbQbRbSbTagagagagagagagagagagagag
+adafagahaiahajahaiahajahaiahajahaiahajahaiahajahaiahajahaiahajakaialamakaialamakaiagadaaagafbjbbbbbbbbbbbbbbbbbkblapbUbKbKbKbKbKbKbKbKbVbWapbXbQbQbQbQbQbQbQbQbYbZapafaraoapafaraoapafagag
+adafagalanaoapalanaoapalanaoapalanaoapalanaoapalanaoapalanaoapaoagaqaiaoagaqaiaoagagadaaagafaZbmbmbmbmbbbbbbbnbobeahbIcacacacabKbKbKcbccbNahbOcdcdcdcdbQbQbQcdcebTalamakaialamakaialamagag
+adasaoaraoapafaraoapafaraoapafaraoapafaraoapafaraoapafaraoapafaiahajanaiahajanaiahagadaaagafbsbtbubvbwbxbybzbAbtbBaocfcgchcicjcacackclcgcmaocncocpcqcrcdcdcsctcocuaqaiaoagaqaiaoagaqaiagag
+adasaiakaialamakaialamakaialamakaialamakaialamakaialamakaialamanaoapaqanaoapaqanaoagadaaagasaoaraoapbsbtbvbEbBaraoapaoaraoapcfcgcicvcmaraoapaoaraoapcncocqcwcuaraoajanaiahajanaiahajanagag
+adagakaoagaqaiaoagaqaiaoagaqaiaoagaqaiaoagaqaiaoagaqaiaoagaqaiahakagagahakafagagagagadaaaeayazaAazaBaCaAazaBaCaAazaBaCaAazaBaCaAazaBaCaAazaBaCaAazaBaCaDaEaFaGaDaEaFaGaDaEaFaGaDaEaFaGaHae
+adanagaiahajanaiahajanaiahajanaiahajanaiahajanaiahajanaiahajanagarafagamagarafagagagadaaaeagakaoagaqaiaoagaqaiaoagaqaiaoagaqaiaoagaqaiaoagaqaiaoagaqaiahakagagahakafagagagahakafagagahakae
+adalahanaoapaqanaoapaqanaoapaqanaoapaqanaoapaqanaoapaqanaoapaqahakafagagahakafagagagadaaaeanagaiahajanaiahajanaiahajanaiahajanaiahajanaiahajanaiahajanagarafagamagarafagagagagafagagagagae
+adanaianaoapaqanaoapaqanaoapaqafagagagakafagakafagagagakaialamafagagagagafagagagaiagadaaaealahanaoapaqanaoapaqanaoapaqanaoapaqanaoapaqanaoapaqanaoapaqahakafagagahakafagagagagafagagagagae
+adaoamahaiahajahaiahajahaiahajafaiamanagafanagafaiamanaoagaqaiafagaiamagafagaiagamagadaaaeanaianaoapaqanaoapaqanaoapaqafagagagakafagakafagagagakaialamafagagagagafagagagaiamagafagaiamagae
+adahagalanaoapalanaoapalanaoapafamagalahafalahafamagalaiahajanafagamagarafagamagagagadaaaeaoamahaiahajahaiahajahaiahajafaiamanagafanagafaiamanaoagaqaiafagaiamagafagaiagamagarafagamagarae
+adasaharaoapafaraoapafaraoapafafagaoanaiafanaiafagaoananaoapaqafagamagakafagagahakaiadaaaeahagalanaoapalanaoapalanaoapafamagalahafalahafamagalaiahajanafagamagarafagamagagahakafagagahakae
+adaoamakaialamakaialamakaialamafahasaoamafaoamafahasaoahaiahajahaiahajahaiahajahaiamadaaaeasaharaoapafaraoapafaraoapafafagaoanaiafanaiafagaoananaoapaqafagamagakafagagahakafagagagagagagae
+adagagaoagaqaiaoagaqaiaoagaqaiafagagahagafahagafagagahalanaoapalanaoapalanaoapalanagadaaaeaoamakaialamakaialamakaialamafahasaoamafaoamafahasaoahaiahajahaiahajahaiahajahaiahajahaiahajagae
+adagagaiahajanaiahajanaiahajanafagahasahafasahafagahasaraoapafaraoapafaraoapafaraoagadaaaeagagaoagaqaiaoagaqaiaoagaqaiafagagahagafahagafagagahalanaoapalanaoapalanaoapalanaoapalanaoapagae
+adafaganaoapaqanaoapaqanaoapaqafagalaoamafaoamafagalaoakaialamakaialamakaialamakaiagadaaaeagagaiahajanaiahajanaiahajanafagahasahafasahafagahasaraoapafaraoapafaraoapafaraoapafaraoapafagae
+adafaganaoapaqanaoapaqanaoapaqafagagagamatatatatatatatagamagaiaoagaqaiaoagaqaiaoagagadaaaeafaganaoapaqanaoapaqanaoapaqafagalaoamafaoamafagalaoakaialamakaialamakaialamakaialamakaialamagae
+adafaganaoapaqanaoapaqanaoapaqafagafafafatauauauauauatafafafanaiahajanaiahajanaiahagadaaaeafaganaoapaqanaoapaqanaoapaqafagagamagatatatatatatataoagaqaiaoagaqaiaoagaqaiaoagaqaiaoagaqaiarae
+adafagahaiahajahaiahajahaiahajakafafafafatauauauauauatafafafaqanaoapaqanaoapaqanaoagadaaaeafagahaiahajahaiahajahaiahajakafafafafatavavavavavataiahajanaiahajanaiahajanaiahajanaiahajanakae
+adafagalanaoapalanaoapalanaoapaoafafatatatauauauauauatatatafajahaiahajahaiahajahaiagadaaaeafagalanaoapalanaoapalanaoapaoafafafafatavavavavavatanaoapaqanaoapaqanaoapaqanaoapaqanaoapaqaoae
+adafagaraoapafaraoapafaraoapafaiafafatauauauauauauauauauatafapalanaoapalanaoapalanagadaaaeafagaraoapafaraoapafaraoapafaiafafatatatavavavavavatatatafajahaiahajahaiahajahaiahajahaiahajaiae
+adafagakaialamakaialamakaialamaoafatatauauauauauauauauauatatafaraoapafaraoapafaraoagadaaaeafagakaialamakaialamakaialamaoafafatavavavavavavavavavatafapalanaoapalanaoapalanaoapalanaoapakae
+adafagaoagaqaiaoagaqaiaoagaqaiahafatauauauauauauauauauauauatamakaialamakaialamakaiagadaaaeafagaoagaqaiaoagaqaiaoagaqaiahafatatavavavavavavavavavatatafaraoapafaraoapafaraoapafaraoapafagae
+adafagaiahajanaiahajanaiahajanagafatauauauauauauauauauauauataiaoagaqaiaoagaqaiaoagagadaaaeafagaiahajanaiahajanaiahajanagafatavavavavavavavavavavavatamakaialamakaialamakaialamakaialamahae
+adafaianaoapaqanaoapaqanaoapaqahafatauauauauauauauauauauauatanaiahajanaiahajanaiahaiadaaaeafaianaoapaqanaoapaqanaoapaqahafatavavavavavavavavavavavataiaoagaqaiaoagaqaiaoagaqaiaoagaqaiaiae
+adafamanaoapaqanaoapaqanaoapaqafafatatauauauauauauauauauatataqanaoapaqanaoapaqanaoamadaaaeafamanaoapaqanaoapaqanaoapaqafafatavavavavavavavavavavavatanaiahajanaiahajanaiahajanaiahajanamae
+adafagahaiahajahaiahajahaiahajaiafafatauauauauauauauauauatafajahaiahajahaiahajahaiagadaaaeafagahaiahajahaiahajahaiahajaiafatatavavavavavavavavavatataqanaoapaqanaoapaqanaoapaqanaoapaqagae
+adafahalanaoapalanaoapalanaoapagafafatauauauauauauauauauatafapalanaoapalanaoapalanahadaaaeafahalanaoapalanaoapalanaoapagafafatavavavavavavavavavatafajahaiahajahaiahajahaiahajahaiahajahae
+adafagaraoapafaraoapafaraoapafagafafatauauauauauauauauauatafafaraoapafaraoapafaraoagadaaaeafagaraoapafaraoapafaraoapafagafafatavavavavavavavavavatafapalanaoapalanaoapalanaoapalanaoapamae
+adagagakaialamakaialamakaialamafafatatauauauauauauauauauatatamakaialamakaialamakaiagadaaaeagagakaialamakaialamakaialamafafafatavavavavavavavavavatafafaraoapafaraoapafaraoapafaraoapafagae
+adagagaoagaqaiaoagaqaiaoagaqaiafafatauauauauauauauauauauauataiaoagaqaiaoagaqaiaoagagadaaaeagagaoagaqaiaoagaqaiaoagaqaiafafatatavavavavavavavavavatatamakaialamakaialamakaialamakaialamakae
+adagafaiahajanaiahajanaiahajanafafatauauauauauauauauauauauatanaiahajanaiahajanaiahagadaaaeagafaiahajanaiahajanaiahajanafafatavavavavavavavavavavavataiaoagaqaiaoagaqaiaoagaqaiaoagaqaiaoae
+adagafanaoapaqanaoapaqanaoapaqafafatauauauauauauauauauauauataqanaoapaqanaoapaqanaoaiadaaaeagafanaoapaqanaoapaqanaoapaqafafatavavavavavavavavavavavatanaiahajanaiahajanaiahajanaiahajanaiae
+adagafanaoapaqanaoapaqanaoapaqafafatauauauauauauauauauauauatajahaiahajahaiahajahaiamadaaaeagafanaoapaqanaoapaqanaoapaqafafatavavavavavavavavavavavataqanaoapaqanaoapaqanaoapaqanaoapaqakae
+adarafahaiahajahaiahajahaiahajafafatauauauauauauauauauauauatapalanaoapalanaoapalanagadaaaearafahaiahajahaiahajahaiahajafafatavavavavavavavavavavavatajahaiahajahaiahajahaiahajahaiahajagae
+adakafalanaoapalanaoapalanaoapafafatatatauauauauauauauatatatafaraoapafaraoapafaraoaoadaaaeakafalanaoapalanaoapalanaoapafafatavavavavavavavavavavavatapalanaoapalanaoapalanaoapalanaoapahae
+adaoafaraoapafaraoapafaraoapafafafafatatatauatatatauatatatafamakaialamakaialamakaiagadaaaeaoafaraoapafaraoapafaraoapafafafatatatavavavavavavavatatatafaraoapafaraoapafaraoapafaraoapafaiae
+adaiafakaialamakaialamakaialamafafafawauauauatafatauauauatafaiaoagaqaiaoagaqaiaoagagadaaaeaiafakaialamakaialamakaialamafafafatatatavatatatavatatatafamakaialamakaialamakaialamakaialamamae
+adakafaoagaqaiaoagaqaiaoagaqaiafafafatatatatatafatatatatatafanaiahajanaiahajanaiahamadaaaeakafaoagaqaiaoagaqaiaoagaqaiafafafaxavavavatafatavavavatafaiaoagaqaiaoagaqaiaoagaqaiaoagaqaiagae
+adagafaiahajanaiahajanaiahajanafafagagagagagagagagagagagagagagagagagajamagalahafamagadaaaeagafaiahajanaiahajanaiahajanafafafatatatatatafatatatatatafanaiahajanaiahajanaiahajanaiahajanahae
+adahafanaoapaqanaoapaqanaoapaqafafafafafafafafafafafafafafafaqanaoapaqanaoapaqanagaoadaaaeahafanaoapaqanaoapaqanaoapaqafafafafafafafafafafafafafafafaqanaoapaqanaoapaqanaoapaqanaoapaqamae
+adagaganaoapaqanaoapaqanaoapaqanaoapaqanaoapaqanaoapaqanaoapaqanaoapaqanaoapaqanagagadaaaeagaganaoapaqanaoapaqanaoapaqanaoapaqanaoapaqanaoapaqanaoapaqanaoapaqanaoapaqanaoapaqanaoapaqagae
+adagagahaiahajahaiahajahaiahajahaiahajahaiahajahaiahajahaiahajahaiahajahaiahajahagagadaaaeagagahaiahajahaiahajahaiahajahaiahajahaiahajahaiahajahaiahajahaiahajahaiahajahaiahajahaiahajagae
+adafagalanaoapalanaoapalanaoapalanaoapalanaoapalanaoapalanaoapalanaoapalanaoapalagagadaaaeafagalanaoapalanaoapalanaoapalanaoapalanaoapalanaoapalanaoapalanaoapalanaoapalanaoapalanaoapagae
+adafagaraoapafaraoapafaraoapafaraoapafaraoapafaraoapafaraoapafaraoapafaraoapafaragagadaaaeafagaraoapafaraoapafaraoapafaraoapafaraoapafaraoapafaraoapafaraoapafaraoapafaraoapafaraoapafagae
+adafagakaialamakaialamakaialamakaialamakaialamakaialamakaialamakaialamakaialamakamagadaaaeafagakaialamakaialamakaialamakaialamakaialamakaialamakaialamakaialamakaialamakaialamakaialamagae
+adafagaoagaqaiaoagaqaiaoagaqaiaoagaqaiaoagaqaiaoagaqaiaoagaqaiaoagaqaiaoagaqaiaoagagadaaaeafagaoagaqaiaoagaqaiaoagaqaiaoagaqaiaoagaqaiaoagaqaiaoagaqaiaoagaqaiaoagaqaiaoagaqaiaoagaqaiarae
+adafagaiahajanaiahajanaiahajanaiahajanaiahajanaiahajanaiahajanaiahajanaiahajanaiahagadaaaeafagaiahajanaiahajanaiahajanaiahajanaiahajanaiahajanaiahajanaiahajanaiahajanaiahajanaiahajanakae
+adafaganaoapaqanaoapaqanaoapaqanaoapaqanaoapaqanaoapaqanaoapaqanaoapaqanaoapaqanasagadaaaeafaganaoapaqanaoapaqanaoapaqanaoapaqanaoapaqanaoapaqanaoapaqanaoapaqanaoapaqanaoapaqanaoapaqaoae
+adafagagasaiagagasaiafagagasaiagagasaiafagagasaiafagagasaiafagagasaiagagasaiafagasagadaaaeafagagasaiagagasaiafagagasaiagagasaiafagagasaiafagagasaiafagagasaiagagasaiafagagasaiafagagasaiae
+adafagagagakagagagakafagagagakagagagakafagagagakafagagagakafagagagakagagagakafagagagadaaaeafagagagakagagagakafagagagakagagagakafagagagakafagagagakafagagagakagagagakafagagagakafagagagakae
+adafaiamanagaiamanagafaiamanagaiamanagafaiamanagafaiamanagafaiamanagaiamanagafaianaiadaaaeafaiamanagaiamanagafaiamanagaiamanagafaiamanagafaiamanagafaiamanagaiamanagafaiamanagafaiamanagae
+adafamagalahamagalahafamagalahamagalahafamagalahafamagalahafamagalahamagalahafamalamadaaaeafamagalahamagalahafamagalahamagalahafamagalahafamagalahafamagalahamagalahafamagalahafamagalahae
+adafagaoanaiagaoanaiafagaoanaiagaoanaiafagaoanaiafagaoanaiafagaoanaiagaoanaiafaganagadaaaeafagaoanaiagaoanaiafagaoanaiagaoanaiafagaoanaiafagaoanaiafagaoanaiagaoanaiafagaoanaiafagaoanaiae
+adafahasaoamahasaoamafahasaoamahasaoamafahasaoamafahasaoamafahasaoamahasaoamafahaoahadaaaeafahasaoamahasaoamafahasaoamahasaoamafahasaoamafahasaoamafahasaoamahasaoamafahasaoamafahasaoamae
+adafagagahagagagahagafagagahagagagahagafagagahagafagagahagafagagahagagagahagafagahagadaaaeafagagahagagagahagafagagahagagagahagafagagahagafagagahagafagagahagagagahagafagagahagafagagahagae
+adadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadaaaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeae
 "}

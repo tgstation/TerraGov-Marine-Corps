@@ -52,18 +52,188 @@
 	return t
 
 //Runs byond's sanitization proc along-side sanitize_simple
-/proc/sanitize(var/t,var/list/repl_chars = null)
-	return html_encode(sanitize_simple(t,repl_chars))
+/proc/sanitize(var/input, var/max_length = MAX_MESSAGE_LEN, var/encode = 1, var/trim = 1, var/extra = 1, var/mode = SANITIZE_CHAT)
+	if(!input)
+		return
+
+	if(max_length)
+		input = copytext(input,1,max_length)
+
+	//code in modules/l10n/localisation.dm
+	input = sanitize_local(input, mode)
+
+	if(extra)
+		input = replace_characters(input, list("\n"=" ","\t"=" "))
+
+	if(encode)
+		// The below \ escapes have a space inserted to attempt to enable Travis auto-checking of span class usage. Please do not remove the space.
+		//In addition to processing html, llhtml_encode removes byond formatting codes like "\ red", "\ i" and other.
+		//It is important to avoid double-encode text, it can "break" quotes and some other characters.
+		//Also, keep in mind that escaped characters don't work in the interface (window titles, lower left corner of the main window, etc.)
+		input = lhtml_encode(input)
+	else
+		//If not need encode text, simply remove < and >
+		//note: we can also remove here byond formatting codes: 0xFF + next byte
+		input = replace_characters(input, list("<"=" ", ">"=" "))
+
+	if(trim)
+		//Maybe, we need trim text twice? Here and before copytext?
+		input = trim(input)
+
+	return input
+
+/proc/fix_rus_nanoui(var/input)
+	input = replacetext(input, "À", "&#1040;")
+	input = replacetext(input, "Á", "&#1041;")
+	input = replacetext(input, "Â", "&#1042;")
+	input = replacetext(input, "Ã", "&#1043;")
+	input = replacetext(input, "Ä", "&#1044;")
+	input = replacetext(input, "Å", "&#1045;")
+	input = replacetext(input, "Æ", "&#1046;")
+	input = replacetext(input, "Ç", "&#1047;")
+	input = replacetext(input, "È", "&#1048;")
+	input = replacetext(input, "É", "&#1049;")
+	input = replacetext(input, "Ê", "&#1050;")
+	input = replacetext(input, "Ë", "&#1051;")
+	input = replacetext(input, "Ì", "&#1052;")
+	input = replacetext(input, "Í", "&#1053;")
+	input = replacetext(input, "Î", "&#1054;")
+	input = replacetext(input, "Ï", "&#1055;")
+	input = replacetext(input, "Ð", "&#1056;")
+	input = replacetext(input, "Ñ", "&#1057;")
+	input = replacetext(input, "Ò", "&#1058;")
+	input = replacetext(input, "Ó", "&#1059;")
+	input = replacetext(input, "Ô", "&#1060;")
+	input = replacetext(input, "Õ", "&#1061;")
+	input = replacetext(input, "Ö", "&#1062;")
+	input = replacetext(input, "×", "&#1063;")
+	input = replacetext(input, "Ø", "&#1064;")
+	input = replacetext(input, "Ù", "&#1065;")
+	input = replacetext(input, "Ú", "&#1066;")
+	input = replacetext(input, "Û", "&#1067;")
+	input = replacetext(input, "Ü", "&#1068;")
+	input = replacetext(input, "Ý", "&#1069;")
+	input = replacetext(input, "Þ", "&#1070;")
+	input = replacetext(input, "ß", "&#1071;")
+	input = replacetext(input, "à", "&#1072;")
+	input = replacetext(input, "á", "&#1073;")
+	input = replacetext(input, "â", "&#1074;")
+	input = replacetext(input, "ã", "&#1075;")
+	input = replacetext(input, "ä", "&#1076;")
+	input = replacetext(input, "å", "&#1077;")
+	input = replacetext(input, "æ", "&#1078;")
+	input = replacetext(input, "ç", "&#1079;")
+	input = replacetext(input, "è", "&#1080;")
+	input = replacetext(input, "é", "&#1081;")
+	input = replacetext(input, "ê", "&#1082;")
+	input = replacetext(input, "ë", "&#1083;")
+	input = replacetext(input, "ì", "&#1084;")
+	input = replacetext(input, "í", "&#1085;")
+	input = replacetext(input, "î", "&#1086;")
+	input = replacetext(input, "ï", "&#1087;")
+	input = replacetext(input, "ð", "&#1088;")
+	input = replacetext(input, "ñ", "&#1089;")
+	input = replacetext(input, "ò", "&#1090;")
+	input = replacetext(input, "ó", "&#1091;")
+	input = replacetext(input, "ô", "&#1092;")
+	input = replacetext(input, "õ", "&#1093;")
+	input = replacetext(input, "ö", "&#1094;")
+	input = replacetext(input, "÷", "&#1095;")
+	input = replacetext(input, "ø", "&#1096;")
+	input = replacetext(input, "ù", "&#1097;")
+	input = replacetext(input, "ú", "&#1098;")
+	input = replacetext(input, "û", "&#1099;")
+	input = replacetext(input, "ü", "&#1100;")
+	input = replacetext(input, "ý", "&#1101;")
+	input = replacetext(input, "þ", "&#1102;")
+	input = replacetext(input, "ÿ", "&#1103;")
+	input = replacetext(input, "¸", "&#1105;")
+	input = replacetext(input, "¨", "&#1025;")
+	return input
+
+/proc/fix_rus_stats(var/text)
+	text = replacetext(text, "À", "&#192;") // Fuck BYOND
+	text = replacetext(text, "Á", "&#193;")
+	text = replacetext(text, "Â", "&#194;")
+	text = replacetext(text, "Ã", "&#195;")
+	text = replacetext(text, "Ä", "&#196;")
+	text = replacetext(text, "Å", "&#197;")
+	text = replacetext(text, "Æ", "&#198;")
+	text = replacetext(text, "Ç", "&#199;")
+	text = replacetext(text, "È", "&#200;")
+	text = replacetext(text, "É", "&#201;")
+	text = replacetext(text, "Ê", "&#202;")
+	text = replacetext(text, "Ë", "&#203;")
+	text = replacetext(text, "Ì", "&#204;")
+	text = replacetext(text, "Í", "&#205;")
+	text = replacetext(text, "Î", "&#206;")
+	text = replacetext(text, "Ï", "&#207;")
+	text = replacetext(text, "Ð", "&#208;")
+	text = replacetext(text, "Ñ", "&#209;")
+	text = replacetext(text, "Ò", "&#210;")
+	text = replacetext(text, "Ó", "&#211;")
+	text = replacetext(text, "Ô", "&#212;")
+	text = replacetext(text, "Õ", "&#213;")
+	text = replacetext(text, "Ö", "&#214;")
+	text = replacetext(text, "×", "&#215;")
+	text = replacetext(text, "Ø", "&#216;")
+	text = replacetext(text, "Ù", "&#217;")
+	text = replacetext(text, "Ú", "&#218;")
+	text = replacetext(text, "Û", "&#219;")
+	text = replacetext(text, "Ü", "&#220;")
+	text = replacetext(text, "Ý", "&#221;")
+	text = replacetext(text, "Þ", "&#222;")
+	text = replacetext(text, "ß", "&#223;")
+	text = replacetext(text, "à", "&#224;")
+	text = replacetext(text, "á", "&#225;")
+	text = replacetext(text, "â", "&#226;")
+	text = replacetext(text, "ã", "&#227;")
+	text = replacetext(text, "ä", "&#228;")
+	text = replacetext(text, "å", "&#229;")
+	text = replacetext(text, "æ", "&#230;")
+	text = replacetext(text, "ç", "&#231;")
+	text = replacetext(text, "è", "&#232;")
+	text = replacetext(text, "é", "&#233;")
+	text = replacetext(text, "ê", "&#234;")
+	text = replacetext(text, "ë", "&#235;")
+	text = replacetext(text, "ì", "&#236;")
+	text = replacetext(text, "í", "&#237;")
+	text = replacetext(text, "î", "&#238;")
+	text = replacetext(text, "ï", "&#239;")
+	text = replacetext(text, "ð", "&#240;")
+	text = replacetext(text, "ñ", "&#241;")
+	text = replacetext(text, "ò", "&#242;")
+	text = replacetext(text, "ó", "&#243;")
+	text = replacetext(text, "ô", "&#244;")
+	text = replacetext(text, "õ", "&#245;")
+	text = replacetext(text, "ö", "&#246;")
+	text = replacetext(text, "÷", "&#247;")
+	text = replacetext(text, "ø", "&#248;")
+	text = replacetext(text, "ù", "&#249;")
+	text = replacetext(text, "ú", "&#250;")
+	text = replacetext(text, "û", "&#251;")
+	text = replacetext(text, "ü", "&#251;")
+	text = replacetext(text, "ý", "&#253;")
+	text = replacetext(text, "þ", "&#254;")
+	text = replacetext(text, "ÿ", "&#255;")
+	text = replacetext(text, "¸", "&#184;")
+	text = replacetext(text, "¨", "&#168;")
+	return text
+
+/proc/replace_characters(var/t,var/list/repl_chars)
+	for(var/char in repl_chars)
+		t = replacetext(t, char, repl_chars[char])
+	return t
 
 //Runs sanitize and strip_html_simple
-//I believe strip_html_simple() is required to run first to prevent '<' from displaying as '&lt;' after sanitize() calls byond's html_encode()
+//I believe strip_html_simple() is required to run first to prevent '<' from displaying as '&lt;' after sanitize() calls byond's lhtml_encode()
 /proc/strip_html(var/t,var/limit=MAX_MESSAGE_LEN)
 	return copytext((sanitize(strip_html_simple(t))),1,limit)
 
 //Runs byond's sanitization proc along-side strip_html_simple
-//I believe strip_html_simple() is required to run first to prevent '<' from displaying as '&lt;' that html_encode() would cause
+//I believe strip_html_simple() is required to run first to prevent '<' from displaying as '&lt;' that lhtml_encode() would cause
 /proc/adminscrub(var/t,var/limit=MAX_MESSAGE_LEN)
-	return copytext((html_encode(strip_html_simple(t))),1,limit)
+	return copytext((lhtml_encode(strip_html_simple(t))),1,limit)
 
 
 //Returns null if there is any bad text in the string
@@ -82,12 +252,12 @@
 // Used to get a sanitized input.
 /proc/stripped_input(var/mob/user, var/message = "", var/title = "", var/default = "", var/max_length=MAX_MESSAGE_LEN)
 	var/name = input(user, message, title, default) as text|null
-	return html_encode(trim(name, max_length))
+	return lhtml_encode(trim(name, max_length))
 
 // Used to get a properly sanitized multiline input, of max_length
 /proc/stripped_multiline_input(var/mob/user, var/message = "", var/title = "", var/default = "", var/max_length=MAX_MESSAGE_LEN)
 	var/name = input(user, message, title, default) as message|null
-	return html_encode(trim(name, max_length))
+	return lhtml_encode(trim(name, max_length))
 
 //Filters out undesirable characters from names
 /proc/reject_bad_name(var/t_in, var/allow_numbers=0, var/max_length=MAX_NAME_LEN)

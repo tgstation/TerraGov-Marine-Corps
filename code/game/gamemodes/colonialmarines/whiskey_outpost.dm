@@ -110,7 +110,7 @@
 	sleep(10)
 	to_chat(world, "<span class='round_header'>The current game mode is - WHISKEY OUTPOST!</span>")
 	to_chat(world, "<span class='round_body'>It is the year 2181 on the planet LV-624, five years before the arrival of the [MAIN_SHIP_NAME] and the 7th 'Falling Falcons' Battalion in the sector</span>")
-	to_chat(world, "<span class='round_body'>The 3rd 'Dust Raiders' Battalion is charged with establishing a TGMC prescence in the Tychon's Rift sector</span>")
+	to_chat(world, "<span class='round_body'>The 3rd 'Dust Raiders' Battalion is charged with establishing a USCM prescence in the Tychon's Rift sector</span>")
 	to_chat(world, "<span class='round_body'>[map_tag], one of the Dust Raider bases being established in the sector, has come under attack from unrecognized alien forces</span>")
 	to_chat(world, "<span class='round_body'>With casualties mounting and supplies running thin, the Dust Raiders at [map_tag] must survive for an hour to alert the rest of their battalion in the sector</span>")
 	to_chat(world, "<span class='round_body'>Hold out for as long as you can.</span>")
@@ -1035,7 +1035,7 @@
 		feedback_set_details("round_end_result","Xenos won")
 		to_chat(world, "<span class='round_header'>The Xenos have succesfully defended their hive from colonization.</span>")
 		to_chat(world, "<span class='round_body'>Well done, you've secured LV-624 for the hive!</span>")
-		to_chat(world, "<span class='round_body'>It will be another five years before the TGMC returns to the Tychon's Rift sector, with the arrival of the 7th 'Falling Falcons' Battalion and the [MAIN_SHIP_NAME].</span>")
+		to_chat(world, "<span class='round_body'>It will be another five years before the USCM returns to the Tychon's Rift sector, with the arrival of the 7th 'Falling Falcons' Battalion and the [MAIN_SHIP_NAME].</span>")
 		to_chat(world, "<span class='round_body'>The xenomorph hive on LV-624 remains unthreatened until then..</span>")
 		world << sound('sound/misc/Game_Over_Man.ogg')
 

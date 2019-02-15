@@ -118,8 +118,8 @@
 		return
 	..()
 
-/obj/item/tool/soap/nanotrasen
-	desc = "A Nanotrasen brand bar of soap. Smells of phoron."
+/obj/item/tool/soap/weylandyutani
+	desc = "A Weyland-Yutani brand bar of soap. Smells of phoron."
 	icon_state = "soapnt"
 
 /obj/item/tool/soap/deluxe

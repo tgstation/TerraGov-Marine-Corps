@@ -167,25 +167,25 @@
 		..()
 
 /obj/item/storage/fancy/cigarettes/dromedaryco
-	name = "\improper Nanotrasen Gold packet"
-	desc = "Building better worlds, and rolling better cigarettes. These fancy cigarettes are Nanotrasen's entry into the market. Comes backed by a fierce legal team."
+	name = " Weyland-Yutani Gold packet"
+	desc = "Building better worlds, and rolling better cigarettes. These fancy cigarettes are Weyland-Yutani's entry into the market. Comes backed by a fierce legal team."
 	icon_state = "wypacket"
 	item_state = "wypacket"
 
 /obj/item/storage/fancy/cigarettes/lucky_strikes
-	name = "\improper Lucky Strikes Packet"
+	name = " Lucky Strikes Packet"
 	desc = "Lucky Strikes Means Fine Tobacco! 9/10 doctors agree on Lucky Strikes...as the leading cause of marine lung cancer."
 	icon_state = "lspacket"
 	item_state = "lspacket"
 
 /obj/item/storage/fancy/cigarettes/kpack
-	name = "\improper Koorlander Gold packet"
+	name = " Koorlander Gold packet"
 	desc = "Koorlander, Gold: 3% tobacco. 97% other. For when you want to look cool and the risk of a slow horrible death isn't really a factor."
 	icon_state = "kpacket"
 	item_state = "kpacket"
 
 /obj/item/storage/fancy/cigarettes/lady_finger
-	name = "\improper Arcturian Ace"
+	name = " Arcturian Ace"
 	desc = "An entry level brand of cigarettes with a bright blue packaging. You're guessing these aren't really good for you, but it doesn't matter when it's Arcturian baby!"
 	icon_state = "aapacket"
 	item_state = "aapacket"

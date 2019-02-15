@@ -14,7 +14,7 @@
 /obj/item/storage/donut_box
 	icon = 'icons/obj/items/food.dmi'
 	icon_state = "donutbox"
-	name = "\improper Yum! donuts"
+	name = " Yum! donuts"
 	desc = "A box of mouth watering \"<i>Yum!</i>\" brand donuts."
 	storage_slots = 6
 	var/startswith = 6
