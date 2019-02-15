@@ -82,25 +82,11 @@
 
 	. += CONFIG_GET(number/outdated_movedelay/human_delay)
 
-/*/mob/living/carbon/human/Move()
-	. = ..()
-	Process_SL_Locator()
-*/
-
 /mob/living/carbon/human/proc/clear_leader_tracking()
 	var/obj/screen/SL_dir = hud_used.SL_locator
 	SL_dir.icon_state = "SL_locator_off"
 
 /mob/living/carbon/human/proc/update_leader_tracking(var/mob/living/carbon/human/H)
-	/*if(!sl_headset_active)
-		return
-	if(world.time < sl_locator_next_update)
-		return
-	if(!assigned_squad)
-		return
-	if(!sl_direction_active)
-		return
-	var/mob/living/carbon/human/H = assigned_squad.squad_leader*/
 	var/obj/screen/SL_dir = hud_used.SL_locator
 
 	if(H.z != src.z || get_dist(src,H) < 1 || src == H)
@@ -109,10 +95,6 @@
 		SL_dir.icon_state = "SL_locator"
 		SL_dir.transform = 0 //Reset and 0 out
 		SL_dir.transform = turn(SL_dir.transform, Get_Angle(src,H))
-
-	//sl_locator_next_update = world.time + HUD_SL_LOCATOR_COOLDOWN
-
-
 
 /mob/living/carbon/human/proc/Process_Cloaking_Router(mob/living/carbon/human/user)
 	if(!user.cloaking)

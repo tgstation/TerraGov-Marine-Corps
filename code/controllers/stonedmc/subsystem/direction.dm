@@ -44,7 +44,7 @@ SUBSYSTEM_DEF(direction)
 	var/mobcount = 0
 	for(var/L in processing_mobs)
 		mobcount += length(processing_mobs[L])
-	..("P:[mobcount]")
+	return ..("P:[mobcount]")
 
 /datum/controller/subsystem/direction/fire(resumed = FALSE)
 	if(!resumed)
