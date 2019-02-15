@@ -516,7 +516,7 @@ var/datum/mob_hud/huds = list(
 		switch(_role)
 			if("Squad Engineer") marine_rk = "engi"
 			if("Squad Specialist") marine_rk = "spec"
-			if("Squad Medic") marine_rk = "med"
+			if("Squad Corpsman") marine_rk = "med"
 			if("Squad Smartgunner") marine_rk = "gun"
 		if(assigned_squad.squad_leader == src)
 			marine_rk = "leader"

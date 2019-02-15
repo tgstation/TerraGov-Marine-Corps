@@ -352,7 +352,7 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 				nanomanager.close_user_uis(usr, src, "main")
 
 		if("dest_cancel")
-			var/list/allowed_officers = list("Commander", "Executive Officer", "Staff Officer", "Chief MP","Chief Medical Officer","Chief Engineer")
+			var/list/allowed_officers = list("Captain", "Executive Officer", "Staff Officer", "Chief MP","Chief Medical Officer","Chief Engineer")
 			if(!usr.mind || !allowed_officers.Find(usr.mind.assigned_role))
 				to_chat(usr, "<span class='notice'>You don't have the necessary clearance to cancel the emergency destruct system.</span>")
 				return

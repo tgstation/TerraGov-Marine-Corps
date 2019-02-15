@@ -55,7 +55,7 @@ var/medical_positions[] = list(
 
 var/marine_squad_positions[] = list(
 							"Squad Leader",
-							"Squad Medic",
+							"Squad Corpsman",
 							"Squad Engineer",
 							"Squad Marine",
 							"Squad Specialist"

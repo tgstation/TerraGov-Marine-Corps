@@ -176,7 +176,7 @@
 	item_state = "officer_cloak" //with thanks to Baystation12
 
 /obj/item/clothing/suit/commander_cloak
-	name = "Commander's Cloak"
+	name = "Captains's Cloak"
 	desc = "An opulant cloak detailed with your many accomplishments."
 	icon_state = "commander_cloak" //with thanks to Baystation12
 	item_state = "commander_cloak" //with thanks to Baystation12
@@ -188,7 +188,7 @@
 	item_state = "officer_cloak_red" //with thanks to Baystation12
 
 /obj/item/clothing/suit/commander_cloak_red
-	name = "Commander's Cloak - Red"
+	name = "Captain's Cloak - Red"
 	desc = "An opulant cloak detailed with your many accomplishments. with fancy red trim."
 	icon_state = "commander_cloak_red" //with thanks to Baystation12
 	item_state = "commander_cloak_red" //with thanks to Baystation12
