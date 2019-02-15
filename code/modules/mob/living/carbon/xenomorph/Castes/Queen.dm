@@ -402,7 +402,7 @@
 	var/queensWord = "<br><h2 class='alert'>The words of the queen reverberate in your head...</h2>"
 	queensWord += "<br><span class='alert'>[input]</span><br>"
 
-	if(SSticker && SSticker.mode)
+	if(SSticker?.mode)
 		for(var/datum/mind/L in SSticker.mode.xenomorphs)
 			var/mob/living/carbon/Xenomorph/X = L.current
 			if(X && X.client && istype(X) && !X.stat && hivenumber == X.hivenumber)
