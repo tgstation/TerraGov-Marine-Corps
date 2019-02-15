@@ -246,7 +246,7 @@ its easier to just keep the beam vertical.
 
 /atom/proc/examine(mob/user)
 	if(!istype(src, /obj/item))
-		to_chat(user, "[bicon(src)] That's \a [src].")
+		to_chat(user, "[icon2html(src, user)] That's \a [src].")
 
 	else // No component signaling, dropping it here.
 		var/obj/item/I = src
@@ -262,7 +262,7 @@ its easier to just keep the beam vertical.
 				size = "bulky"
 			if(6 to INFINITY)
 				size = "huge"
-		to_chat(user, "This is a [blood_DNA ? blood_color != "#030303" ? "bloody " : "oil-stained " : ""][bicon(src)][src.name]. It is a [size] item.")
+		to_chat(user, "This is a [blood_DNA ? blood_color != "#030303" ? "bloody " : "oil-stained " : ""][icon2html(src, user)][src.name]. It is a [size] item.")
 
 
 	if(desc)
@@ -537,6 +537,8 @@ its easier to just keep the beam vertical.
 			log_ooc(log_text)
 		if(LOG_ADMIN)
 			log_admin(log_text)
+		if(LOG_LOOC)
+			log_looc(log_text)
 		if(LOG_ADMIN_PRIVATE)
 			log_admin_private(log_text)
 		if(LOG_ASAY)

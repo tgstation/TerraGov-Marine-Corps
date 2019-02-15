@@ -114,7 +114,7 @@
 		if((!secured)||(!on)||(cooldown > 0))	return 0
 		pulse(0)
 		if(!holder)
-			visible_message("[bicon(src)] *beep* *beep*")
+			visible_message("[icon2html(src, viewers(src))] *beep* *beep*")
 		cooldown = 2
 		spawn(10)
 			process_cooldown()

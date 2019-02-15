@@ -36,22 +36,23 @@
 #define AMMO_SHRAPNEL			(1 << 13)
 
 //Gun defines for gun related thing. More in the projectile folder.
-#define GUN_CAN_POINTBLANK		1
-#define GUN_TRIGGER_SAFETY		2
-#define GUN_UNUSUAL_DESIGN		4
-#define GUN_SILENCED			8
-#define GUN_AUTOMATIC			16
-#define GUN_INTERNAL_MAG		32
-#define GUN_AUTO_EJECTOR		64
-#define GUN_AMMO_COUNTER		128
-#define GUN_BURST_ON			256
-#define GUN_BURST_FIRING		512
-#define GUN_FLASHLIGHT_ON		1024
-#define GUN_WIELDED_FIRING_ONLY	2048
-#define GUN_HAS_FULL_AUTO		4096
-#define GUN_FULL_AUTO_ON		8192
-#define GUN_POLICE				16384
-#define GUN_ENERGY				32768
+#define GUN_CAN_POINTBLANK		(1 << 0)
+#define GUN_TRIGGER_SAFETY		(1 << 1)
+#define GUN_UNUSUAL_DESIGN		(1 << 2)
+#define GUN_SILENCED			(1 << 3)
+#define GUN_AUTOMATIC			(1 << 4)
+#define GUN_INTERNAL_MAG		(1 << 5)
+#define GUN_AUTO_EJECTOR		(1 << 6)
+#define GUN_AMMO_COUNTER		(1 << 7)
+#define GUN_BURST_ON			(1 << 8)
+#define GUN_BURST_FIRING		(1 << 9)
+#define GUN_FLASHLIGHT_ON		(1 << 10)
+#define GUN_WIELDED_FIRING_ONLY	(1 << 11)
+#define GUN_HAS_FULL_AUTO		(1 << 12)
+#define GUN_FULL_AUTO_ON		(1 << 13)
+#define GUN_POLICE				(1 << 14)
+#define GUN_ENERGY				(1 << 15)
+#define GUN_LOAD_INTO_CHAMBER	(1 << 16)
 
 //Gun attachable related flags.
 #define ATTACH_REMOVABLE	1

@@ -46,7 +46,8 @@ Additional game mode variables.
 				list(/obj/item/weapon/gun/shotgun/double/sawn, /obj/item/ammo_magazine/shotgun/flechette),\
 				list(/obj/item/weapon/gun/smg/uzi, /obj/item/ammo_magazine/smg/uzi),\
 				list(/obj/item/weapon/gun/smg/mp5, /obj/item/ammo_magazine/smg/mp5),\
-				list(/obj/item/weapon/gun/rifle/m16, /obj/item/ammo_magazine/rifle/m16))
+				list(/obj/item/weapon/gun/rifle/m16, /obj/item/ammo_magazine/rifle/m16),\
+				list(/obj/item/weapon/gun/shotgun/pump/bolt, /obj/item/ammo_magazine/rifle/bolt))
 
 /datum/game_mode
 	var/datum/mind/xenomorphs[] = list() //These are our basic lists to keep track of who is in the game.
@@ -754,6 +755,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 		CA.contraband = list(
 						/obj/item/ammo_magazine/smg/ppsh/ = round(scale * 20),
 						/obj/item/ammo_magazine/smg/ppsh/extended = round(scale * 4),
+						/obj/item/ammo_magazine/rifle/bolt = round(scale * 10),
 						/obj/item/ammo_magazine/sniper = 0,
 						/obj/item/ammo_magazine/sniper/incendiary = 0,
 						/obj/item/ammo_magazine/sniper/flak = 0,
@@ -828,6 +830,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 		CG.contraband = list(
 						/obj/item/weapon/gun/smg/ppsh = round(scale * 4),
 						/obj/item/weapon/gun/shotgun/double = round(scale * 2),
+						/obj/item/weapon/gun/shotgun/pump/bolt = round(scale * 2),
 						/obj/item/weapon/gun/smg/m39/elite = 0,
 						/obj/item/weapon/gun/rifle/m41aMK1 = 0,
 						/obj/item/weapon/gun/rifle/m41a/elite = 0,

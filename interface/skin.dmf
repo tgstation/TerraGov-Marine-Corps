@@ -233,6 +233,9 @@ macro "hotkeymode"
 		name = "O"
 		command = "ooc"
 	elem 
+		name = "L"
+		command = "looc"
+	elem 
 		name = "Q"
 		command = ".northwest"
 	elem 
@@ -649,7 +652,6 @@ window "mainwindow"
 		anchor2 = none
 		is-default = true
 		saved-params = "pos;size;is-minimized;is-maximized"
-		title = "TerraGov Marine Corps - TGS Theseus"
 		is-maximized = true
 		icon = 'icons\\ss13_64.png'
 		macro = "macro"
@@ -693,6 +695,14 @@ window "mainwindow"
 		text = "Chat"
 		command = ".winset \"saybutton.is-checked=true?input.command=\"!say \\\"\" macrobutton.is-checked=false:input.command=\""
 		button-type = pushbox
+	elem "asset_cache_browser"
+		type = BROWSER
+		pos = 0,0
+		size = 200x200
+		anchor1 = none
+		anchor2 = none
+		is-visible = false
+		saved-params = ""
 
 window "mapwindow"
 	elem "mapwindow"
