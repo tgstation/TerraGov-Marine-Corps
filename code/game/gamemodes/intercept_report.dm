@@ -218,7 +218,7 @@
 				changeling_job = correct_person:assigned_role
 	else
 		changeling_job = pick(joblist)
-	if(prob(prob_right_dude) && ticker.mode == "changeling")
+	if(prob(prob_right_dude) && SSticker.mode == "changeling")
 		if(correct_person:assigned_role=="MODE")
 			changeling_name = correct_person:current
 		else

@@ -1,4 +1,4 @@
-var/global/datum/controller/gameticker/ticker
+var/global/datum/controller/gameticker/SSticker
 
 #define GAME_STATE_PREGAME		1
 #define GAME_STATE_SETTING_UP	2
@@ -177,7 +177,7 @@ var/global/datum/controller/gameticker/ticker
 /datum/controller/gameticker/proc/collect_minds()
 	for(var/mob/living/player in GLOB.player_list)
 		if(player.mind)
-			ticker.minds += player.mind
+			SSticker.minds += player.mind
 
 
 /datum/controller/gameticker/proc/equip_characters()

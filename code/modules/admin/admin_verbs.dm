@@ -206,7 +206,7 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	if(!istype(H) || !ticker || !H.mind?.assigned_role)
+	if(!istype(H) || !SSticker || !H.mind?.assigned_role)
 		return
 
 	if(!(H.mind.assigned_role in ROLES_MARINES))

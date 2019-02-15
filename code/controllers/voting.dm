@@ -25,7 +25,7 @@ datum/controller/vote
 		if(mode)
 			// No more change mode votes after the game has started.
 			// 3 is GAME_STATE_PLAYING, but that #define is undefined for some reason
-			if(mode == "gamemode" && ticker.current_state >= 2)
+			if(mode == "gamemode" && SSticker.current_state >= 2)
 				to_chat(world, "<b>Voting aborted due to game start.</b>")
 				src.reset()
 				return
@@ -107,7 +107,7 @@ datum/controller/vote
 		var/text
 		if(winners.len > 0)
 			if(winners.len > 1)
-				if(mode != "gamemode" || ticker.hide_mode == 0) // Here we are making sure we don't announce potential game modes
+				if(mode != "gamemode" || SSticker.hide_mode == 0) // Here we are making sure we don't announce potential game modes
 					text = "<b>Vote Tied Between:</b>\n"
 					for(var/option in winners)
 						text += "\t[option]\n"
@@ -116,7 +116,7 @@ datum/controller/vote
 			for(var/key in current_votes)
 				if(choices[current_votes[key]] == .)
 					round_voters += key // Keep track of who voted for the winning round.
-			if((mode == "gamemode" && . == "extended") || ticker.hide_mode == 0) // Announce Extended gamemode, but not other gamemodes
+			if((mode == "gamemode" && . == "extended") || SSticker.hide_mode == 0) // Announce Extended gamemode, but not other gamemodes
 				text += "<b>Vote Result: [.]</b>"
 			else
 				if(mode != "gamemode")
@@ -141,7 +141,7 @@ datum/controller/vote
 				if("gamemode")
 					if(master_mode != .)
 						world.save_mode(.)
-						if(ticker && ticker.mode)
+						if(SSticker && SSticker.mode)
 							restart = 1
 						else
 							master_mode = .
@@ -186,7 +186,7 @@ datum/controller/vote
 				if("restart")
 					choices.Add("Restart Round","Continue Playing")
 				if("gamemode")
-					if(ticker.current_state >= 2)
+					if(SSticker.current_state >= 2)
 						return 0
 					choices.Add(config.votable_modes)
 					var/list/L = subtypesof(/datum/game_mode)

@@ -111,7 +111,7 @@ datum/mind
 		recipient << browse(output,"window=memory")
 
 	proc/edit_memory()
-		if(!ticker || !ticker.mode)
+		if(!SSticker || !SSticker.mode)
 			alert("Not before round-start!", "Alert")
 			return
 
@@ -139,14 +139,14 @@ datum/mind
 
 		/** TRAITOR ***/
 		text = "traitor"
-		if (ticker.mode.config_tag=="traitor")
+		if (SSticker.mode.config_tag=="traitor")
 			text = uppertext(text)
 		text = "<i><b>[text]</b></i>: "
 		if(ishuman(current))
 			if (H.is_loyalty_implanted(H))
 				text +="traitor|<b>LOYAL EMPLOYEE</b>"
 			else
-				if (src in ticker.mode.traitors)
+				if (src in SSticker.mode.traitors)
 					text += "<b>TRAITOR</b>|<a href='?src=\ref[src];traitor=clear'>Employee</a>"
 					if (objectives.len==0)
 						text += "<br>Objectives are empty! <a href='?src=\ref[src];traitor=autoobjectives'>Randomize</a>!"
@@ -223,7 +223,7 @@ datum/mind
 					var/objective_type = "[objective_type_capital][objective_type_text]"//Add them together into a text string.
 
 					var/list/possible_targets = list("Free objective")
-					for(var/datum/mind/possible_target in ticker.minds)
+					for(var/datum/mind/possible_target in SSticker.minds)
 						if ((possible_target != src) && ishuman(possible_target.current))
 							possible_targets += possible_target.current
 
@@ -309,8 +309,8 @@ datum/mind
 		else if (href_list["traitor"])
 			switch(href_list["traitor"])
 				if("clear")
-					if(src in ticker.mode.traitors)
-						ticker.mode.traitors -= src
+					if(src in SSticker.mode.traitors)
+						SSticker.mode.traitors -= src
 						special_role = null
 						current.hud_set_special_role()
 						to_chat(current, "<span class='warning'><FONT size = 3><B>You have been brainwashed! You are no longer a traitor!</B></FONT></span>")
@@ -321,8 +321,8 @@ datum/mind
 							A.show_laws()
 
 				if("traitor")
-					if(!(src in ticker.mode.traitors))
-						ticker.mode.traitors += src
+					if(!(src in SSticker.mode.traitors))
+						SSticker.mode.traitors += src
 						special_role = "traitor"
 						current.hud_set_special_role()
 						to_chat(current, "<span class='danger'> You are a traitor!</span>")
@@ -336,7 +336,7 @@ datum/mind
 
 				if("autoobjectives")
 					if(!CONFIG_GET(flag/objectives_disabled))
-						ticker.mode.forge_traitor_objectives(src)
+						SSticker.mode.forge_traitor_objectives(src)
 						to_chat(usr, "<span class='notice'>The objectives for traitor [key] have been generated. You can edit them and anounce manually.</span>")
 
 		else if (href_list["common"])
@@ -348,7 +348,7 @@ datum/mind
 					take_uplink()
 					memory = null//Remove any memory they may have had.
 				if("uplink")
-					if (!ticker.mode.equip_traitor(current, !(src in ticker.mode.traitors)))
+					if (!SSticker.mode.equip_traitor(current, !(src in SSticker.mode.traitors)))
 						to_chat(usr, "<span class='warning'>Equipping a syndicate failed!</span>")
 
 		else if (href_list["obj_announce"])
@@ -373,13 +373,13 @@ datum/mind
 			qdel(H)
 
 	proc/make_Traitor()
-		if(!(src in ticker.mode.traitors))
-			ticker.mode.traitors += src
+		if(!(src in SSticker.mode.traitors))
+			SSticker.mode.traitors += src
 			special_role = "traitor"
 			if(!CONFIG_GET(flag/objectives_disabled))
-				ticker.mode.forge_traitor_objectives(src)
-			ticker.mode.finalize_traitor(src)
-			ticker.mode.greet_traitor(src)
+				SSticker.mode.forge_traitor_objectives(src)
+			SSticker.mode.finalize_traitor(src)
+			SSticker.mode.greet_traitor(src)
 
 	// check whether this mind's mob has been brigged for the given duration
 	// have to call this periodically for the duration to work properly
@@ -473,8 +473,8 @@ datum/mind
 	else
 		mind = new /datum/mind(key)
 		mind.original = src
-		if(ticker) ticker.minds += mind
-		else log_world("## DEBUG: mind_initialize(): No ticker ready yet! Please inform Carn")
+		if(SSticker) SSticker.minds += mind
+		else log_world("## DEBUG: mind_initialize(): No SSticker ready yet! Please inform Carn")
 		. = 1 //successfully created a new mind
 	if(!mind.name)	mind.name = real_name
 	mind.current = src

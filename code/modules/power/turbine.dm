@@ -167,10 +167,6 @@
 		return
 	if (usr.is_mob_incapacitated(TRUE))
 		return
-	if (!(ishuman(usr) || ticker) && ticker.mode.name != "monkey")
-		if(!isAI(usr))
-			to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
-			return
 
 	if (( usr.interactee==src && ((get_dist(src, usr) <= 1) && isturf(loc))) || isAI(usr))
 

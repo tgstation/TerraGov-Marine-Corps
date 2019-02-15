@@ -136,8 +136,8 @@
 			hud_used.healths.icon_state = "health7"
 
 	if (syndicate && client)
-		if(ticker.mode.name == "traitor")
-			for(var/datum/mind/tra in ticker.mode.traitors)
+		if(SSticker.mode.name == "traitor")
+			for(var/datum/mind/tra in SSticker.mode.traitors)
 				if(tra.current)
 					var/I = image('icons/mob/mob.dmi', loc = tra.current, icon_state = "traitor")
 					client.images += I
@@ -147,7 +147,7 @@
 		if(mind)
 			if(!mind.special_role)
 				mind.special_role = "traitor"
-				ticker.mode.traitors += mind
+				SSticker.mode.traitors += mind
 
 	if (cells)
 		if (cell)
