@@ -169,6 +169,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	var/obj/item/hardpoint/HP = hardpoints[slot]
 	if(!HP)
 		to_chat(usr, "<span class='warning'>There's nothing installed on that hardpoint.</span>")
+		return
 
 	active_hp = slot
 	to_chat(usr, "<span class='notice'>You select the [slot] slot.</span>")
@@ -223,9 +224,10 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	var/list/slots = list()
 	for(var/slot in hardpoints)
 		var/obj/item/hardpoint/HP = hardpoints[slot]
-		if(!HP) continue
-		if(HP.health <= 0) continue
-		if(!HP.is_activatable) continue
+		if(!HP?.health > 0)
+			continue
+		if(!HP.is_activatable)
+			continue
 		slots += slot
 
 	return slots
@@ -264,10 +266,9 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 //Returns 1 or 0 if the slot in question has a broken installed hardpoint or not
 /obj/vehicle/multitile/root/cm_armored/proc/is_slot_damaged(var/slot)
 	var/obj/item/hardpoint/HP = hardpoints[slot]
-
-	if(!HP) return 0
-
-	if(HP.health <= 0) return 1
+	if(HP?.health <= 0)
+		return TRUE
+	return FALSE
 
 //Normal examine() but tells the player what is installed and if it's broken
 /obj/vehicle/multitile/root/cm_armored/examine(var/mob/user)
@@ -278,7 +279,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 			to_chat(user, "There is nothing installed on the [i] hardpoint slot.")
 		else
 			if((user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer >= SKILL_ENGINEER_METAL) || isobserver(user))
-				switch(round(HP.health / HP.maxhealth * 100))
+				switch(PERCENT(HP.health / HP.maxhealth))
 					if(0)
 						to_chat(user, "There is a broken [HP] installed on [i] hardpoint slot.")
 					if(1 to 33)
@@ -296,14 +297,16 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 /obj/vehicle/multitile/root/cm_armored/healthcheck()
 	health = maxhealth //The tank itself doesn't take damage
 	var/i
-	var/remove_person = 1 //Whether or not to call handle_all_modules_broken()
+	var/remove_person = TRUE //Whether or not to call handle_all_modules_broken()
 	for(i in hardpoints)
 		var/obj/item/hardpoint/H = hardpoints[i]
-		if(!H) continue
+		if(!H)
+			continue
 		if(H.health <= 0)
 			H.remove_buff()
-			if(H.slot != HDPT_TREADS) damaged_hps |= H.slot //Not treads since their broken module overlay is the same as the broken hardpoint overlay
-		else remove_person = 0 //if something exists but isnt broken
+			if(H.slot != HDPT_TREADS)
+				damaged_hps |= H.slot //Not treads since their broken module overlay is the same as the broken hardpoint overlay
+		else remove_person = FALSE //if something exists but isnt broken
 
 	if(remove_person)
 		handle_all_modules_broken()
@@ -552,7 +555,11 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	healthcheck() //Tanks/armoured vehicles don't really take damage from light explosions, such as frag grenades. Also makes using the LTB more viable due to crush/stun chaining being removed.
 
 //Honestly copies some code from the Xeno files, just handling some special cases
-/obj/vehicle/multitile/root/cm_armored/attack_alien(var/mob/living/carbon/Xenomorph/M, var/dam_bonus)
+/obj/vehicle/multitile/root/cm_armored/attack_alien(mob/living/carbon/Xenomorph/M, dam_bonus)
+
+	if(M.loc == entrance.loc && M.a_intent == INTENT_HELP)
+		handle_player_entrance(M) //will call the get out of tank proc on its own
+		return
 
 	var/damage = rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper) + dam_bonus
 
@@ -653,11 +660,12 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 /obj/vehicle/multitile/root/cm_armored/proc/handle_hardpoint_repair(var/obj/item/O, var/mob/user)
 
 	//Need to the what the hell you're doing
-	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_MT)
+	if(user.mind?.cm_skills?.engineer < SKILL_ENGINEER_MT)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [O] on the [src].</span>",
 		"<span class='notice'>You fumble around figuring out what to do with [O] on the [src].</span>")
-		var/fumbling_time = 50 * ( SKILL_ENGINEER_MT - user.mind.cm_skills.engineer )
-		if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
+		var/fumbling_time = 50 * (SKILL_ENGINEER_MT - user.mind.cm_skills.engineer)
+		if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+			return
 
 	if(!damaged_hps.len)
 		to_chat(user, "<span class='notice'>All of the hardpoints are in working order.</span>")
@@ -737,10 +745,9 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	//That would make it easier to differentiate between the two for skills
 	//Instead of using MT skills for these procs and TC skills for operation
 	//Oh but wait then the MTs would be able to drive fuck that
-	var/list/attached_hardpoints
-	for(var/i in hardpoints)
-		attached_hardpoints.Add(hardpoints[i])
-	var/obj/item/hardpoint/HP = input("Select a slot to try and refill") in attached_hardpoints
+	var/slot = input("Select a slot to try and refill") in hardpoints
+
+	var/obj/item/hardpoint/HP = hardpoints[slot]
 
 	if(!HP)
 		to_chat(user, "<span class='warning'>There is nothing installed on that slot.</span>")
@@ -750,9 +757,9 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 
 //Putting on hardpoints
 //Similar to repairing stuff, down to the time delay
-/obj/vehicle/multitile/root/cm_armored/proc/install_hardpoint(var/obj/item/hardpoint/HP, var/mob/user)
+/obj/vehicle/multitile/root/cm_armored/proc/install_hardpoint(obj/item/hardpoint/HP, mob/user)
 
-	if(!user.mind || !(!user.mind.cm_skills || user.mind.cm_skills.engineer >= SKILL_ENGINEER_MT))
+	if(user.mind?.cm_skills?.engineer < SKILL_ENGINEER_MT)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [HP] on the [src].</span>",
 		"<span class='notice'>You fumble around figuring out what to do with [HP] on the [src].</span>")
 		var/fumbling_time = 50 * ( SKILL_ENGINEER_MT - user.mind.cm_skills.engineer )
@@ -802,17 +809,16 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 //Again, similar to the above ones
 /obj/vehicle/multitile/root/cm_armored/proc/uninstall_hardpoint(obj/item/O, mob/user)
 
-	if(!user.mind || !(!user.mind.cm_skills || user.mind.cm_skills.engineer >= SKILL_ENGINEER_MT))
+	if(user.mind?.cm_skills?.engineer < SKILL_ENGINEER_MT)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [O] on the [src].</span>",
 		"<span class='notice'>You fumble around figuring out what to do with [O] on the [src].</span>")
 		var/fumbling_time = 50 * ( SKILL_ENGINEER_MT - user.mind.cm_skills.engineer )
 		if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
 			return
 
-	var/list/attached_hardpoints
-	for(var/i in hardpoints)
-		attached_hardpoints.Add(hardpoints[i])
-	var/obj/item/hardpoint/old = input("Select a slot to try and remove") in attached_hardpoints
+	var/slot = input("Select a slot to try and remove") in hardpoints
+
+	var/obj/item/hardpoint/old = hardpoints[slot]
 
 	if(!old)
 		to_chat(user, "<span class='warning'>There is nothing installed there.</span>")

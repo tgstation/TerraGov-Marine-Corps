@@ -55,6 +55,7 @@
 	for(var/slot in spawn_hardpoints)
 		hardpoint_path = spawn_hardpoints[slot]
 		R.add_hardpoint(new hardpoint_path)
+	R.healthcheck()
 
 	qdel(src)
 
@@ -143,6 +144,9 @@
 	return !M.is_mob_incapacitated()
 
 /obj/vehicle/multitile/root/cm_armored/tank/handle_harm_attack(mob/M, mob/occupant)
+	. = ..()
+	if(!.)
+		return
 	if(!occupant)
 		to_chat(M, "<span class='warning'>There is no one on that seat.</span>")
 		return
@@ -174,7 +178,7 @@
 		return
 
 	var/occupant = (slot == "Driver") ? driver : gunner
-	if(M.a_intent == INTENT_HARM && occupant)
+	if((M.a_intent == INTENT_HARM || isxeno(M)) && occupant)
 		handle_harm_attack(M, occupant)
 		return
 

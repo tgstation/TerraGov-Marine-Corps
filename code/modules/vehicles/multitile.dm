@@ -133,7 +133,9 @@ Vehicles are placed on the map by a spawner or admin verb
 	return TRUE
 
 /obj/vehicle/multitile/root/proc/handle_harm_attack(var/mob/M)
-	return
+	if(M.resting || M.buckled || M.is_mob_incapacitated())
+		return FALSE
+	return TRUE
 
 //Vebrs for rotations, set up a macro and get turnin
 /obj/vehicle/multitile/root/verb/clockwise_rotate_multitile()
