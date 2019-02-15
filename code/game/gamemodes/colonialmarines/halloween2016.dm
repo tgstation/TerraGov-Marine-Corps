@@ -345,7 +345,7 @@
 		destroy_array()
 
 /obj/item/device/omega_array/proc/destroy_array()
-	if(SSticker && SSticker.mode && SSticker.mode.type == /datum/game_mode/colonialmarines_halloween_2016)
+	if(SSticker?.mode && SSticker.mode.type == /datum/game_mode/colonialmarines_halloween_2016)
 		var/datum/game_mode/colonialmarines_halloween_2016/M = SSticker.mode
 		M.mcguffin = null
 	var/detonate_location = get_turf(src)
