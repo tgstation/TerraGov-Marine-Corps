@@ -189,13 +189,14 @@ proc/listclearnulls(list/list)
 
 //Specifically for record datums in a list.
 /proc/sortRecord(list/L, field = "name", order = 1)
-	cmp_field = field
-	return sortTim(L, order >= 0 ? /proc/cmp_records_asc : /proc/cmp_records_dsc)
+	return sortTim(L, order >= 0 ? /proc/cmp_records_asc : /proc/cmp_records_dsc, sortkey=field)
 
 //any value in a list
 /proc/sortList(list/L, cmp=/proc/cmp_text_asc)
 	return sortTim(L.Copy(), cmp)
 
+/proc/sortListUsingKey(list/L, cmp=/proc/cmp_list_asc, sortKey)
+	return sortTim(L.Copy(), cmp, sortkey=sortKey)
 
 //uses sortList() but uses the var's name specifically. This should probably be using mergeAtom() instead
 /proc/sortNames(list/L, order=1)

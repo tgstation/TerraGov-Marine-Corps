@@ -1,5 +1,3 @@
-var/sortkey = "name"
-
 /obj/machinery/computer/crew
 	name = "Crew monitoring computer"
 	desc = "Used to monitor active health sensors built into most of the crew's uniforms."
@@ -10,6 +8,7 @@ var/sortkey = "name"
 //	circuit = "/obj/item/circuitboard/computer/crew"
 	var/list/tracked = list()
 	var/list/crewmembers = list()
+	var/sortkey = "name"
 
 /obj/machinery/computer/crew/New()
 	tracked = list()
@@ -75,14 +74,14 @@ var/sortkey = "name"
 			if(ishuman(C.loc))
 
 				var/mob/living/carbon/human/H = C.loc
-				if(H.mind.special_role && H.loc.z == 1) continue // survivors
+				if(H.mind.special_role && H.loc.z == PLANET_Z_LEVEL) continue // survivors
 				if(H.w_uniform != C)
 					continue
 
 				var/list/crewmemberData = list()
 
 				crewmemberData["sensor_type"] = C.sensor_mode
-				crewmemberData["dead"] = H.stat > 1
+				crewmemberData["dead"] = (H.stat == DEAD)
 				crewmemberData["oxy"] = round(H.getOxyLoss(), 1)
 				crewmemberData["tox"] = round(H.getToxLoss(), 1)
 				crewmemberData["fire"] = round(H.getFireLoss(), 1)
@@ -106,7 +105,7 @@ var/sortkey = "name"
 
 				crewmembers += list(crewmemberData)
 
-	data["crewmembers"] = sortTim(crewmembers, /proc/sensor_compare)
+	data["crewmembers"] = sortListUsingKey(crewmembers, /proc/cmp_list_asc, sortkey)
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
@@ -134,5 +133,5 @@ var/sortkey = "name"
 			tracked |= C
 	return TRUE
 
-/proc/sensor_compare(list/a, list/b)
-	return sorttext(b[sortkey], a[sortkey])
+/*/proc/sensor_compare(list/a, list/b)
+	return sorttext(b[sortkey], a[sortkey])*/

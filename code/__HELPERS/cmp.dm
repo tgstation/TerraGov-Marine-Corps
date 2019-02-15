@@ -16,12 +16,17 @@
 /proc/cmp_name_dsc(atom/a, atom/b)
 	return sorttext(a.name, b.name)
 
-var/cmp_field = "name"
-/proc/cmp_records_asc(datum/data/record/a, datum/data/record/b)
-	return sorttext(b.fields[cmp_field], a.fields[cmp_field])
+/proc/cmp_list_asc(list/a, list/b, sortkey)
+	return sorttext(b[sortkey], a[sortkey])
 
-/proc/cmp_records_dsc(datum/data/record/a, datum/data/record/b)
-	return sorttext(a.fields[cmp_field], b.fields[cmp_field])
+/proc/cmp_list_dsc(list/a, list/b, sortkey)
+	return sorttext(a[sortkey], b[sortkey])
+
+/proc/cmp_records_asc(datum/data/record/a, datum/data/record/b, sortkey)
+	return sorttext(b.fields[sortkey], a.fields[sortkey])
+
+/proc/cmp_records_dsc(datum/data/record/a, datum/data/record/b, sortkey)
+	return sorttext(a.fields[sortkey], b.fields[sortkey])
 
 /proc/cmp_ckey_asc(client/a, client/b)
 	return sorttext(b.ckey, a.ckey)
