@@ -96,6 +96,11 @@
 		WRITE_LOG(GLOB.world_game_log, "OOC: [text]")
 
 
+/proc/log_looc(text)
+	if(CONFIG_GET(flag/log_looc))
+		WRITE_LOG(GLOB.world_game_log, "LOOC: [text]")
+
+
 /proc/log_hivemind(text)
 	if(CONFIG_GET(flag/log_hivemind))
 		WRITE_LOG(GLOB.world_game_log, "HIVEMIND: [text]")
