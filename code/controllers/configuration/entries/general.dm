@@ -122,6 +122,8 @@ Administrative related.
 
 /datum/config_entry/flag/autooocmute
 
+/datum/config_entry/flag/looc_enabled
+
 /*
 Voting
 */

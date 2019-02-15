@@ -145,9 +145,7 @@
 	if(affected_mob.client?.prefs && (affected_mob.client.prefs.be_special & BE_ALIEN) && !jobban_isbanned(affected_mob, "Alien"))
 		picked = affected_mob.key
 	else //Get a candidate from observers.
-		var/list/candidates = get_alien_candidates()
-		if(length(candidates))
-			picked = pick(candidates)
+		picked = get_alien_candidate()
 
 	//Spawn the larva.
 	var/mob/living/carbon/Xenomorph/Larva/new_xeno
@@ -222,6 +220,8 @@
 	victim.death() // Certain species were still surviving bursting (predators), DEFINITELY kill them this time.
 	victim.chestburst = 2
 	victim.update_burst()
+	log_combat(src, src, "chestbursted as a [src].")
+	log_game("[key_name(src)] chestbursted as a [src] at [AREACOORD(src)].")
 
 	var/datum/hive_status/hive = hive_datum[XENO_HIVE_NORMAL]
 	if((!key || !client) && loc.z == PLANET_Z_LEVEL && (locate(/obj/structure/bed/nest) in loc) && hivenumber == XENO_HIVE_NORMAL && hive.living_xeno_queen && hive.living_xeno_queen.z == loc.z)

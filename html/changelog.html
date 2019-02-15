@@ -73,6 +73,76 @@
 		
 		-->
 		<div class="commit sansserif">
+			<h2 class="date">14 February 2019</h2>
+			<h3 class="author">Ghommie updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Fixes the on-mob marine armor lamp overlay only having one direction.</li>
+			</ul>
+			<h3 class="author">TobiNerd & Hughgent updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="tweak">Cryotubes moved next to surgery</li>
+				<li class="tweak">Locker Room merged with storage, and can be accessed directly from the surgical hallway hallway</li>
+				<li class="tweak">Lounge moved to where locker room used to be.</li>
+				<li class="tweak">Surgical hallway made wider for less bumping</li>
+				<li class="tweak">Moved around a few other items on tables and such to match the new layout better</li>
+				<li class="bugfix">Fixed CMO office being medical lower</li>
+				<li class="rscdel">Removed two blood dispensers and two medplus vendors in hallway as direct access to storage makes them obsolete.</li>
+			</ul>
+
+			<h2 class="date">12 February 2019</h2>
+			<h3 class="author">Alterist updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="tweak">Several adjustments to LV, added some more paths, area around buildings cleared, buttons for the vault and science domes added to other areas, redid the pipes around the colony so xenos have more paths,  widened some areas so the tank have more venues of attack. Most important of all, Nexus now has a fancy logo on the floor</li>
+				<li class="rscdel">deleted the world's ugliest tree</li>
+				<li class="imageadd">NT is proud to become the official supplier of cigarettes of all TGMC vessels. Find our selection in a cig vendor near you!</li>
+			</ul>
+			<h3 class="author">Ghommie updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Ongoing facehugger fixes.</li>
+				<li class="bugfix">Xeno warrior's Punch ability shouldn't damage xenos of the same team anymore.</li>
+				<li class="bugfix">melee weapons' rng k.o. shouldn't apply on already downed targets anymore.</li>
+			</ul>
+			<h3 class="author">Hughgent updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Tally Ho mighty hunter! There is a new hunting rifle for those who desire the biggest game.</li>
+			</ul>
+			<h3 class="author">LaKiller8 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">LOOC has been re-added.</li>
+				<li class="rscadd">Discord button added.</li>
+				<li class="bugfix">Nuclear detonation screen now disappears properly.</li>
+				<li class="tweak">Alien candidates are now picked in order of times of death.</li>
+				<li class="bugfix">Hand labeler can now label backpacks without them having to be full first. Every item can only have one label now.</li>
+				<li class="code_imp">Asset cache has been ported from /tg/, goonchat should no longer lag.</li>
+			</ul>
+			<h3 class="author">Menshin updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="refactor">generators and floodlights code has been cleaned up wip: power behavior at startup has been changed (enough engines to power the ship are powered and fuelled, some others are in derelict state, fuel cells are empty).</li>
+				<li class="tweak">fusion engines are now generating more power and are less prone to fail.</li>
+			</ul>
+			<h3 class="author">Spyroshark updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">Snipers now get twice as much ammo in their kit.</li>
+			</ul>
+			<h3 class="author">by Surrealistik updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="tweak">Req supply pack for the ZX-76 Shotgun has been added.</li>
+			</ul>
+
+			<h2 class="date">11 February 2019</h2>
+			<h3 class="author">Ghommie updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Fuel tanks now properly explode as intended.</li>
+			</ul>
+			<h3 class="author">Hughgent updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">New MOD88 Stock and holster</li>
+			</ul>
+			<h3 class="author">by Surrealistik updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="tweak">Ship hulls no longer have absolutely insane amounts of health; instead they now have health comparable to reinforced walls.</li>
+			</ul>
+
 			<h2 class="date">10 February 2019</h2>
 			<h3 class="author">Alterist updated:</h3>
 			<ul class="changes bgimages16">
@@ -81,16 +151,26 @@
 			<h3 class="author">Ghommie updated:</h3>
 			<ul class="changes bgimages16">
 				<li class="bugfix">Fixes xenos inabilty at prying open the old, unbolted shuttle doors.</li>
+				<li class="bugfix">bodybags are now undeployable on turfs with dense objects, or while the user's location isn't one.</li>
+				<li class="bugfix">Fixes xenomorphs being able to tranfer plasma to themselves.</li>
 			</ul>
 			<h3 class="author">Hughgent updated:</h3>
 			<ul class="changes bgimages16">
 				<li class="tweak">Coffee vendors got a supply of creamer</li>
+				<li class="refactor">set-transfer-amount is no more, it has been changed to the attack_self() proc. Activate-held-object or clicking the container also works.</li>
+				<li class="bugfix">No more selecting transfer amounts for containers not in your active hand.</li>
 			</ul>
 			<h3 class="author">LaKiller8 updated:</h3>
 			<ul class="changes bgimages16">
 				<li class="balance">Pyro spec now takes damage when walking over fire, still can't get set on fire nor burn.</li>
 				<li class="bugfix">Larvas should now have proper icons in all stages, observers can now see embryo status properly.</li>
 				<li class="code_imp">Embryo code is a little better now.</li>
+			</ul>
+			<h3 class="author">by Surrealistik updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="tweak">Lunge knockdown duration reduced from 3 ticks to 2 ticks.</li>
+				<li class="tweak">Warrior stat progression smoothed out; starts with less plasma capacity but gains more at higher tiers, as well as higher plasma regeneration.</li>
+				<li class="tweak">Punch plasma cost increased to 30 from 20. Lunge plasma cost increased to 30 from 10.</li>
 			</ul>
 
 			<h2 class="date">09 February 2019</h2>

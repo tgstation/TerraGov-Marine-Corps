@@ -284,7 +284,7 @@
 	set category = "Admin"
 	set name = "Get Server Logs"
 
-	if(!check_rights(R_ADMIN))
+	if(!check_rights(R_ASAY))
 		return
 
 	usr.client.holder.browse_server_logs()
@@ -295,7 +295,7 @@
 	set name = "Get Current Logs"
 	set desc = "View/retrieve logfiles for the current round."
 
-	if(!check_rights(R_ADMIN))
+	if(!check_rights(R_ASAY))
 		return
 
 	usr.client.holder.browse_server_logs("[GLOB.log_directory]/")
@@ -306,7 +306,7 @@
 	set desc = "Please use responsibly."
 	set category = "Admin"
 
-	if(!check_rights(R_ADMIN))
+	if(!check_rights(R_ASAY))
 		return
 
 	var/choice = alert("Due to the way BYOND handles files, you WILL need a click macro. This function is also recurive and prone to fucking up, especially if you select the wrong folder. Are you absolutely sure you want to proceed?", "WARNING", "Yes", "No")
@@ -617,18 +617,15 @@
 		message_admins("[ADMIN_TPMONTY(usr)] jumped to [ADMIN_VERBOSEJMP(M)].")
 
 
-/datum/admins/proc/jump_turf()
+/datum/admins/proc/jump_turf(var/turf/T in GLOB.turfs)
 	set category = "Admin"
 	set name = "Jump to Turf"
 
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/selection = input("Please, select a turf.", "Jump to turf") as null|anything in GLOB.turfs
-	if(!selection)
+	if(!T)
 		return
-
-	var/turf/T = selection
 
 	var/mob/M = usr
 	M.on_mob_jump()
@@ -1231,12 +1228,14 @@
 		message_admins("[ADMIN_TPMONTY(usr)] forcibly removed all players from [CA].")
 
 
-/datum/admins/proc/not_looc(msg as text)
+/datum/admins/proc/local_message(msg as text)
 	set category = "Admin"
-	set name = "Not LOOC"
+	set name = "Local Message"
 
 	if(!check_rights(R_ADMIN))
 		return
+
+	msg = noscript(msg)
 
 	if(!msg)
 		return
@@ -1246,5 +1245,5 @@
 	usr.visible_message(message, message, message)
 
 
-	log_admin("[key_name(usr)] has used Not LOOC to say: [msg]")
-	message_admins("[ADMIN_TPMONTY(usr)] has used Not LOOC to say: [msg]")
+	log_admin("[key_name(usr)] has used local message to say: [msg]")
+	message_admins("[ADMIN_TPMONTY(usr)] has used local message to say: [msg]")

@@ -1,4 +1,0 @@
-author: "Ghommie"
-delete-after: True
-changes: 
-  - bugfix: "bodybags are now undeployable on turfs with dense objects, or while the user's location isn't one."
