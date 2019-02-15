@@ -299,7 +299,7 @@
 					welded = FALSE
 				update_icon()
 				pipe_vision_img = image(src, loc, layer = ABOVE_HUD_LAYER, dir = dir)	
-				//pipe_vision_img.plane = ABOVE_HUD_PLANE
+				pipe_vision_img.plane = ABOVE_HUD_PLANE
 				return TRUE
 			else
 				to_chat(user, "<span class='warning'>[WT] needs to be on to start this task.</span>")
@@ -328,7 +328,7 @@
 	welded = FALSE
 	update_icon()
 	pipe_vision_img = image(src, loc, layer = ABOVE_HUD_LAYER, dir = dir)
-	//pipe_vision_img.plane = ABOVE_HUD_PLANE
+	pipe_vision_img.plane = ABOVE_HUD_PLANE
 	playsound(loc, 'sound/weapons/bladeslice.ogg', 100, 1)
 
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on

@@ -12,17 +12,9 @@ SUBSYSTEM_DEF(air)
 	var/list/pipe_init_dirs_cache = list()
 
 /datum/controller/subsystem/air/Initialize(timeofday)
-	for (var/obj/machinery/atmospherics/machine in GLOB.machines)
-		machine.build_network()
-
-	for (var/obj/machinery/atmospherics/components/unary/U in GLOB.machines)
-		if (istype(U, /obj/machinery/atmospherics/components/unary/vent_pump))
-			var/obj/machinery/atmospherics/components/unary/vent_pump/T = U
-			T.broadcast_status()
-
-		else if (istype(U, /obj/machinery/atmospherics/components/unary/vent_scrubber))
-			var/obj/machinery/atmospherics/components/unary/vent_scrubber/T = U
-			T.broadcast_status()
+	//map_loading = FALSE
+	setup_atmos_machinery()
+	setup_pipenets()
 	return ..()
 
 /datum/controller/subsystem/air/proc/get_init_dirs(type, dir)
@@ -35,3 +27,13 @@ SUBSYSTEM_DEF(air)
 		qdel(temp)
 
 	return pipe_init_dirs_cache[type]["[dir]"]
+
+/datum/controller/subsystem/air/proc/setup_atmos_machinery()
+	for (var/obj/machinery/atmospherics/AM in atmos_machinery)
+		AM.atmosinit()
+		CHECK_TICK
+
+/datum/controller/subsystem/air/proc/setup_pipenets()
+	for (var/obj/machinery/atmospherics/AM in atmos_machinery)
+		AM.build_network()
+		CHECK_TICK

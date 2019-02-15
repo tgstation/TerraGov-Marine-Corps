@@ -184,7 +184,7 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 			if(in_view_range(client.mob, A))
 				if(!A.pipe_vision_img)
 					A.pipe_vision_img = image(A, A.loc, layer = ABOVE_HUD_LAYER, dir = A.dir)
-//					A.pipe_vision_img.plane = ABOVE_HUD_PLANE
+					A.pipe_vision_img.plane = ABOVE_HUD_PLANE
 				client.images += A.pipe_vision_img
 				pipes_shown += A.pipe_vision_img
 	//setMovetype(movement_type | VENTCRAWLING)

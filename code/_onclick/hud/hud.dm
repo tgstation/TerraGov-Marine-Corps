@@ -58,10 +58,17 @@
 	var/obj/screen/action_button/hide_toggle/hide_actions_toggle
 	var/action_buttons_hidden = 0
 
+	var/list/obj/screen/plane_master/plane_masters = list() // see "appearance_flags" in the ref, assoc list of "[plane]" = object
+
 
 /datum/hud/New(mob/owner)
 	mymob = owner
 	hide_actions_toggle = new
+
+	for(var/mytype in subtypesof(/obj/screen/plane_master))
+		var/obj/screen/plane_master/instance = new mytype()
+		plane_masters["[instance.plane]"] = instance
+		instance.backdrop(mymob)
 
 /datum/hud/Destroy()
 	if(mymob.hud_used == src)
@@ -120,6 +127,8 @@
 	gun_move_icon = null
 	gun_run_icon = null
 
+	QDEL_LIST_ASSOC_VAL(plane_masters)
+
 	ammo = null
 
 	. = ..()
@@ -128,6 +137,12 @@
 /mob/proc/create_hud()
 	return
 
+/datum/hud/proc/plane_masters_update()
+	// Plane masters are always shown to OUR mob, never to observers
+	for(var/thing in plane_masters)
+		var/obj/screen/plane_master/PM = plane_masters[thing]
+		PM.backdrop(mymob)
+		mymob.client.screen += PM
 
 //Version denotes which style should be displayed. blank or 0 means "next version"
 /datum/hud/proc/show_hud(version = 0)
