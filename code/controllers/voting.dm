@@ -141,7 +141,7 @@ datum/controller/vote
 				if("gamemode")
 					if(master_mode != .)
 						world.save_mode(.)
-						if(SSticker && SSticker.mode)
+						if(SSticker?.mode)
 							restart = 1
 						else
 							master_mode = .
