@@ -137,11 +137,16 @@
 	AutoUpdateAI(src)
 
 /obj/machinery/power/turbine/attack_hand(mob/user)
+	. = ..()
+
+	if(!ishuman(user))
+		return
 
 	if ( (get_dist(src, user) > 1 ) || (stat & (NOPOWER|BROKEN)) && !isAI(user) )
 		user.unset_interaction()
 		user << browse(null, "window=turbine")
 		return
+
 
 	user.set_interaction(src)
 
@@ -166,6 +171,9 @@
 	if(stat & BROKEN)
 		return
 	if (usr.is_mob_incapacitated(TRUE))
+		return
+
+	if(!ishuman(usr))
 		return
 
 	if (( usr.interactee==src && ((get_dist(src, usr) <= 1) && isturf(loc))) || isAI(usr))
