@@ -364,7 +364,7 @@
 
 /obj/effect/step_trigger/jason/Trigger(mob/living/M)
 	if(istype(M) && M.stat != DEAD && (!M.mind || !M.mind.special_role || M.mind.special_role == "PMC"))
-		if(SSticker && SSticker.mode && SSticker.mode.type == /datum/game_mode/colonialmarines_halloween_2016)
+		if(SSticker?.mode && SSticker.mode.type == /datum/game_mode/colonialmarines_halloween_2016)
 			var/datum/game_mode/colonialmarines_halloween_2016/T = SSticker.mode
 			if("Jason" in T.special_spawns) //We do not want to trigger multiple instances of this.
 				T.special_spawns -= "Jason" //First one blocks any further atempts.
