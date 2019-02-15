@@ -231,7 +231,7 @@
 		for(var/Z in actions)
 			var/datum/action/A = Z
 			A.update_button_icon()
-	playsound(loc, 'sound/voice/alien_queen_screech.ogg', 75, 0)
+	//playsound(loc, 'sound/voice/alien_queen_screech.ogg', 75, 0)
 	visible_message("<span class='xenohighdanger'>\The [src] emits an ear-splitting guttural roar!</span>")
 	round_statistics.queen_screech++
 	create_shriekwave() //Adds the visual effect. Wom wom wom
