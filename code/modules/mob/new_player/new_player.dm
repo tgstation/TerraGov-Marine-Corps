@@ -149,7 +149,7 @@
 
 
 		if("late_join_xeno")
-			if(!SSticker || SSticker.current_state != GAME_STATE_PLAYING || !SSticker.mode)
+			if(!SSticker?.mode || SSticker.current_state != GAME_STATE_PLAYING)
 				to_chat(src, "<span class='warning'>The round is either not ready, or has already finished.</span>")
 				return
 
