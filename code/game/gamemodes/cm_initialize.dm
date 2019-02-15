@@ -381,7 +381,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 /datum/game_mode/proc/spawn_larva(mob/xeno_candidate, var/mob/living/carbon/Xenomorph/Queen/mother)
 	if(!xeno_candidate)
 		return FALSE
-	if(!SSticker.mode.stored_larva || !mother || !istype(mother))
+	if(!SSticker.mode.stored_larva || !istype(mother))
 		to_chat(xeno_candidate, "<span class='warning'>Something went awry. Can't spawn at the moment.</span>")
 		log_admin("[xeno_candidate.key] has failed to join as a larva.")
 		return FALSE
