@@ -164,6 +164,7 @@
 	pixel_x = -16  //Needed for 2x2
 	old_x = -16
 	wound_type = "runner" //used to match appropriate wound overlays
+	hit_and_run = 1
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,

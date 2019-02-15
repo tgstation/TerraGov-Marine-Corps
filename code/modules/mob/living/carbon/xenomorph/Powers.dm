@@ -2419,6 +2419,21 @@
 	return damage
 
 /mob/living/carbon/Xenomorph/Runner/hit_and_run_bonus(damage)
-	var/bonus = 1 + max(0, (10 - (world.time - last_move_intent) ) ) * 0.075 //Runner can deal up to +75% damage if there is no delay between his last movement and his attack; not likely. Probably will cap at ~50% in most cases.
+	var/last_move = last_move_intent - 10
+	var/bonus
+	if(last_move && last_move < world.time - 5) //If we haven't moved in the last 500 ms, we lose our bonus
+		hit_and_run = 1
+	bonus = CLAMP(hit_and_run, 1, 2)//Runner deals +5% damage per tile moved in rapid succession to a maximum of +100%. Damage bonus is lost on attacking.
+	switch(bonus)
+		if(2 to INFINITY)
+			visible_message("<span class='danger'>\The [src] strikes with lethal speed!</span>", \
+			"<span class='danger'>You strike with lethal speed!</span>")
+		if(1.5 to 1.95)
+			visible_message("<span class='danger'>\The [src] strikes with deadly speed!</span>", \
+			"<span class='danger'>You strike with deadly speed!</span>")
+		if(1.25 to 1.45)
+			visible_message("<span class='danger'>\The [src] strikes with vicious speed!</span>", \
+			"<span class='danger'>You strike with vicious speed!</span>")
 	damage *= bonus
+	hit_and_run = 1 //reset the hit and run bonus
 	return damage
