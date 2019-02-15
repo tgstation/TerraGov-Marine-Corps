@@ -30,7 +30,7 @@
 	upgrade_threshold = 400
 
 	// *** Flags *** //
-	caste_flags = CASTE_IS_INTELLIGENT|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_FIRE_IMMUNE
+	caste_flags = CASTE_IS_INTELLIGENT|CASTE_CAN_HOLD_FACEHUGGERS
 
 	can_hold_eggs = CAN_HOLD_TWO_HANDS
 
@@ -82,7 +82,7 @@
 
 
 /datum/xeno_caste/psyalien/elder
-	caste_desc = "The biggest and baddest xeno. The Empress controls multiple hives and planets."
+	caste_desc = "The biggest and baddest xeno."
 
 	upgrade = 2
 
@@ -119,7 +119,7 @@
 
 /datum/xeno_caste/psyalien/ancient
 	caste_desc = "The most perfect Xeno form imaginable."
-	ancient_message = "You are the Alpha and the Omega. Fight to power."
+	ancient_message = "You are the Alpha and the Omega.Row! Row! Fight to power."
 	upgrade = 3
 
 	// *** Melee Attacks *** //
