@@ -669,7 +669,7 @@
 	set name = "Hunter Games Vote"
 	set desc = "If it's on Hunter Games gamemode, vote on who gets a supply drop!"
 
-	if(!SSticker || SSticker.current_state < GAME_STATE_PLAYING || !SSticker.mode)
+	if(!SSticker?.mode || SSticker.current_state < GAME_STATE_PLAYING)
 		to_chat(usr, "<span class='warning'>The game hasn't started yet!</span>")
 		return
 
