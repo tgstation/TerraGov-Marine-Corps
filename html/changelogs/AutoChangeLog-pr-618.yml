@@ -1,0 +1,4 @@
+author: "by Surrealistik"
+delete-after: True
+changes: 
+  - tweak: "Oxy loss pain multiplier reduced from 1 to 0.75, Tox loss increased to 0.7 to 0.75. Brute and Clone loss reduced from 1.5 to 1."
