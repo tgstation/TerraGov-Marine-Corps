@@ -109,7 +109,7 @@ datum/mind
 		recipient << browse(output,"window=memory")
 
 	proc/edit_memory()
-		if(!SSticker || !SSticker.mode)
+		if(!SSticker?.mode)
 			alert("Not before round-start!", "Alert")
 			return
 
