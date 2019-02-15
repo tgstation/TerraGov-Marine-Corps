@@ -408,7 +408,7 @@
 	Destroy()
 		. = ..()
 		SetLuminosity(0)
-		if(SSticker && SSticker.mode && SSticker.mode.type == /datum/game_mode/colonialmarines_halloween_2016)
+		if(SSticker?.mode && SSticker.mode.type == /datum/game_mode/colonialmarines_halloween_2016)
 			var/datum/game_mode/colonialmarines_halloween_2016/T = SSticker.mode
 			to_chat(world, "<span class='event_announcement'>A blood seal has broken! [--T.total_attuned ? T.total_attuned : "None"] remain!</span>")
 
