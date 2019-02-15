@@ -87,3 +87,5 @@
 	var/entangled_by = null
 
 	var/ventcrawl_layer = PIPING_LAYER_DEFAULT
+
+	var/ventcrawl_message_busy
