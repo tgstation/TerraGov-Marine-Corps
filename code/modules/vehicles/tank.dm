@@ -295,10 +295,6 @@
 		C.pixel_x = old_x*cos(deg) - old_y*sin(deg)
 		C.pixel_y = old_x*sin(deg) + old_y*cos(deg)
 
-
-/obj/vehicle/multitile/hitbox/cm_armored/tank/Bump(var/atom/A)
-	. = ..()
-	if(isliving(A))
-		var/mob/living/M = A
-		var/obj/vehicle/multitile/root/cm_armored/tank/T
-		log_attack("[T ? T.driver : "Someone"] drove over [M] with [root]")
+/obj/vehicle/multitile/hitbox/cm_armored/tank/get_driver()
+	var/obj/vehicle/multitile/root/cm_armored/tank/T = root
+	return T?.driver

@@ -369,6 +369,12 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	var/turf/temp = loc
 	var/turf/T = loc
 	A.tank_collision(src, facing, T, temp)
+	if(isliving(A))
+		log_attack("[get_driver()] drove over [A] with [root]")
+
+
+/obj/vehicle/multitile/hitbox/cm_armored/proc/get_driver()
+	return "Someone"
 
 /atom/proc/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
 	return
