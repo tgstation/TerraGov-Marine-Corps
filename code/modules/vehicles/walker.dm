@@ -6,15 +6,16 @@
 	name = "CW13 \"Megalodon\" Assault Walker"
 	desc = "Relatively new combat walker of \"Megalodon\"-series. Unlike its predecessor, \"Carharodon\"-series, slower, but relays on its tough armor and rapid-firing weapons."
 	icon = 'icons/obj/vehicles/Mecha.dmi'
-	icon_state = "mecha"
+	icon_state = "mecha-open"
 	layer = LYING_MOB_LAYER
 	opacity = TRUE
+	can_buckle = FALSE
 	move_delay = 4
 
 	var/lights = FALSE
 	var/lights_power = 8
 	var/zoom = FALSE
-	var/zoom_size = 8
+	var/zoom_size = 14
 
 	health = 400
 	maxhealth = 400
@@ -38,7 +39,7 @@
 
 /obj/vehicle/walker/update_icon()
 	if(!pilot)
-		icon_state = "mecha_open"
+		icon_state = "mecha-open"
 	else
 		icon_state = "mecha"
 
@@ -253,10 +254,13 @@
 
 /obj/vehicle/walker/proc/zoom_activate()
 	if(zoom)
-		pilot.client.change_view(zoom_size)
-		pilot << sound('sound/mecha/imag_enh.ogg',volume=50)
+		pilot.client.change_view(world.view)//world.view - default mob view size
+		zoom = FALSE
 	else
 		pilot.client.change_view(world.view)//world.view - default mob view size
+		pilot.client.change_view(zoom_size)
+		pilot << sound('sound/mecha/imag_enh.ogg',volume=50)
+		zoom = TRUE
 	to_chat(pilot, "Notification. Cameras zooming [zoom ? "activated" : "deactivated"].")
 
 /////////////////
