@@ -33,7 +33,7 @@
 	can_hold_eggs = CAN_HOLD_TWO_HANDS
 
 	// *** Defense *** //
-	armor_deflection = 55
+	armor_deflection = 45
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.5 SECONDS
@@ -76,7 +76,7 @@
 	upgrade_threshold = 1600
 
 	// *** Defense *** //
-	armor_deflection = 60
+	armor_deflection = 50
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.5 SECONDS
@@ -114,7 +114,7 @@
 	upgrade_threshold = 3200
 
 	// *** Defense *** //
-	armor_deflection = 65
+	armor_deflection = 55
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.5 SECONDS
@@ -152,7 +152,7 @@
 	upgrade_threshold = 3200
 
 	// *** Defense *** //
-	armor_deflection = 70
+	armor_deflection = 60
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.5 SECONDS
@@ -209,7 +209,6 @@
 	var/mob/living/carbon/Xenomorph/observed_xeno //the Xenomorph the queen is currently overwatching
 	var/egg_amount = 0 //amount of eggs inside the queen
 	var/last_larva_time = 0
-
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
@@ -217,6 +216,7 @@
 		/datum/action/xeno_action/choose_resin,
 		/datum/action/xeno_action/activable/secrete_resin,
 		/datum/action/xeno_action/grow_ovipositor,
+		/datum/action/xeno_action/activable/screech,
 		/datum/action/xeno_action/activable/corrosive_acid,
 		/datum/action/xeno_action/emit_pheromones,
 		/datum/action/xeno_action/activable/gut,
@@ -252,7 +252,6 @@
 				hive.living_xeno_queen = src
 			xeno_message("<span class='xenoannounce'>A new Queen has risen to lead the Hive! Rejoice!</span>",3,hivenumber)
 	playsound(loc, 'sound/voice/alien_queen_command.ogg', 75, 0)
-	//hive_controller.active_queen = src
 
 /mob/living/carbon/Xenomorph/Queen/Destroy()
 	. = ..()
@@ -594,6 +593,7 @@
 	var/list/immobile_abilities = list(\
 		/datum/action/xeno_action/regurgitate,\
 		/datum/action/xeno_action/remove_eggsac,\
+		/datum/action/xeno_action/activable/screech,\
 		/datum/action/xeno_action/emit_pheromones,\
 		/datum/action/xeno_action/psychic_whisper,\
 		/datum/action/xeno_action/watch_xeno,\
