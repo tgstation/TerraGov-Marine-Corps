@@ -97,7 +97,7 @@
 		to_chat(usr, "<span class='danger'>You are jobbanned from the emergency reponse team!</span>")
 		return
 
-	if(isnull(distress) || !istype(distress) || !SSticker.mode.waiting_for_candidates || distress.mob_max < 1)
+	if(!istype(distress) || !SSticker.mode.waiting_for_candidates || distress.mob_max < 1)
 		to_chat(usr, "<span class='warning'>No distress beacons that need candidates are active. You will be notified if that changes.</span>")
 		return
 
