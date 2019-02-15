@@ -1116,7 +1116,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 		hive.living_xeno_queen.set_queen_overwatch(new_xeno)
 
 	// this sets the right datum
-	new_xeno.upgrade_xeno(min(T.upgrade+1,3)) a young Crusher de-evolves into a MATURE Hunter
+	new_xeno.upgrade_xeno(min(T.upgrade+1,3)) //a young Crusher de-evolves into a MATURE Hunter
 
 	message_admins("[key_name_admin(X)] has deevolved [key_name_admin(T)]. Reason: [reason]")
 	log_admin("[key_name_admin(X)] has deevolved [key_name_admin(T)]. Reason: [reason]")
