@@ -277,10 +277,10 @@
 	if(!check_rights(R_SERVER))
 		return
 
-	if(!RoleAuthority)
+	if(!SSjob)
 		return
 
-	RoleAuthority.load_whitelist()
+	SSjob.load_whitelist()
 
 	log_admin("[key_name(usr)] manually reloaded the role whitelist.")
 	message_admins("[ADMIN_TPMONTY(usr)] manually reloaded the role whitelist.")

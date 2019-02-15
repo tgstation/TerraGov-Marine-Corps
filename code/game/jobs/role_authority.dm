@@ -11,7 +11,7 @@ When a round starts, the roles are assigned based on the round, from another lis
 by name can be kept for things like job bans, while the round may add or remove roles as needed.If you need to equip a mob for a job, always
 use roles_by_equipment or roles_by_equipment_paths as it is an accurate account of every specific role path (with specific equipment).
 */
-var/global/datum/authority/branch/role/RoleAuthority
+var/global/datum/authority/branch/role/SSjob
 
 
 #define GET_RANDOM_JOB 0

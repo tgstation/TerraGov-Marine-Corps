@@ -480,7 +480,7 @@
 		if(!M.ckey)
 			return
 
-		if(!RoleAuthority)
+		if(!SSjob)
 			return
 
 		var/list/joblist = list()
@@ -489,7 +489,7 @@
 				for(var/jobPos in ROLES_COMMAND)
 					if(!jobPos)
 						continue
-					var/datum/job/temp = RoleAuthority.roles_by_name[jobPos]
+					var/datum/job/temp = SSjob.roles_by_name[jobPos]
 					if(!temp)
 						continue
 					joblist += temp.title
@@ -497,7 +497,7 @@
 				for(var/jobPos in ROLES_POLICE)
 					if(!jobPos)
 						continue
-					var/datum/job/temp = RoleAuthority.roles_by_name[jobPos]
+					var/datum/job/temp = SSjob.roles_by_name[jobPos]
 					if(!temp)
 						continue
 					joblist += temp.title
@@ -505,7 +505,7 @@
 				for(var/jobPos in ROLES_ENGINEERING)
 					if(!jobPos)
 						continue
-					var/datum/job/temp = RoleAuthority.roles_by_name[jobPos]
+					var/datum/job/temp = SSjob.roles_by_name[jobPos]
 					if(!temp)
 						continue
 					joblist += temp.title
@@ -513,7 +513,7 @@
 				for(var/jobPos in ROLES_REQUISITION)
 					if(!jobPos)
 						continue
-					var/datum/job/temp = RoleAuthority.roles_by_name[jobPos]
+					var/datum/job/temp = SSjob.roles_by_name[jobPos]
 					if(!temp)
 						continue
 					joblist += temp.title
@@ -521,7 +521,7 @@
 				for(var/jobPos in ROLES_MEDICAL)
 					if(!jobPos)
 						continue
-					var/datum/job/temp = RoleAuthority.roles_by_name[jobPos]
+					var/datum/job/temp = SSjob.roles_by_name[jobPos]
 					if(!temp)
 						continue
 					joblist += temp.title
@@ -529,7 +529,7 @@
 				for(var/jobPos in ROLES_MARINES)
 					if(!jobPos)
 						continue
-					var/datum/job/temp = RoleAuthority.roles_by_name[jobPos]
+					var/datum/job/temp = SSjob.roles_by_name[jobPos]
 					if(!temp)
 						continue
 					joblist += temp.title

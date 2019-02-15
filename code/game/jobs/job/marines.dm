@@ -62,7 +62,7 @@ Your squaddies will look to you when it comes to construction in the field of ba
 /datum/job/marine/engineer/get_total_positions(var/latejoin=0)
 	var/slots = engi_slot_formula(get_total_marines())
 	if(latejoin)
-		for(var/datum/squad/sq in RoleAuthority.squads)
+		for(var/datum/squad/sq in SSjob.squads)
 			if(sq)
 				sq.max_engineers = slots
 	return (slots*4)
@@ -90,7 +90,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 /datum/job/marine/medic/get_total_positions(var/latejoin=0)
 	var/slots = medic_slot_formula(get_total_marines())
 	if(latejoin)
-		for(var/datum/squad/sq in RoleAuthority.squads)
+		for(var/datum/squad/sq in SSjob.squads)
 			if(sq)
 				sq.max_medics = slots
 	return (slots*4)

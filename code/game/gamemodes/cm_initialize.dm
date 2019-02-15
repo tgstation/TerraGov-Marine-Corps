@@ -102,12 +102,12 @@ datum/game_mode/proc/initialize_special_clamps()
 	surv_starting_num = CLAMP((round(ready_players / CONFIG_GET(number/survivor_coefficient))), 0, 8)
 	merc_starting_num = max((round(ready_players / MERC_STARTING_COEF)), 1)
 	marine_starting_num = ready_players - xeno_starting_num - surv_starting_num - merc_starting_num
-	for(var/datum/squad/sq in RoleAuthority.squads)
+	for(var/datum/squad/sq in SSjob.squads)
 		if(sq)
 			sq.max_engineers = engi_slot_formula(marine_starting_num)
 			sq.max_medics = medic_slot_formula(marine_starting_num)
 
-	for(var/datum/job/J in RoleAuthority.roles_by_name)
+	for(var/datum/job/J in SSjob.roles_by_name)
 		if(J.scaled)
 			J.set_spawn_positions(marine_starting_num)
 
@@ -120,7 +120,7 @@ datum/game_mode/proc/initialize_special_clamps()
 /datum/game_mode/proc/initialize_predator(mob/living/carbon/human/new_predator)
 	predators += new_predator.mind //Add them to the proper list.
 	pred_keys += new_predator.ckey //Add their key.
-	if(!(RoleAuthority.roles_whitelist[new_predator.ckey] & (WHITELIST_YAUTJA_ELITE|WHITELIST_YAUTJA_ELDER))) pred_current_num++ //If they are not an elder, tick up the max.
+	if(!(SSjob.roles_whitelist[new_predator.ckey] & (WHITELIST_YAUTJA_ELITE|WHITELIST_YAUTJA_ELDER))) pred_current_num++ //If they are not an elder, tick up the max.
 
 /datum/game_mode/proc/initialize_starting_predator_list()
 	if(prob(pred_round_chance)) //First we want to determine if it's actually a predator round.
@@ -134,7 +134,7 @@ datum/game_mode/proc/initialize_special_clamps()
 			L -= M
 			M.assigned_role = "MODE" //So they are not chosen later for another role.
 			predators += M
-			if(!(RoleAuthority.roles_whitelist[M.current.ckey] & (WHITELIST_YAUTJA_ELITE|WHITELIST_YAUTJA_ELDER))) i++
+			if(!(SSjob.roles_whitelist[M.current.ckey] & (WHITELIST_YAUTJA_ELITE|WHITELIST_YAUTJA_ELDER))) i++
 
 /datum/game_mode/proc/initialize_post_predator_list() //TO DO: Possibly clean this using tranfer_to.
 	var/temp_pred_list[] = predators //We don't want to use the actual predator list as it will be overriden.
@@ -158,7 +158,7 @@ datum/game_mode/proc/initialize_special_clamps()
 		else
 			if(!istype(player,/mob/dead)) continue //Otherwise we just want to grab the ghosts.
 
-		if(RoleAuthority.roles_whitelist[player.ckey] & WHITELIST_PREDATOR)  //Are they whitelisted?
+		if(SSjob.roles_whitelist[player.ckey] & WHITELIST_PREDATOR)  //Are they whitelisted?
 			if(!player.client.prefs)
 				player.client.prefs = new /datum/preferences(player.client) //Somehow they don't have one.
 
@@ -180,7 +180,7 @@ datum/game_mode/proc/initialize_special_clamps()
 
 /datum/game_mode/proc/check_predator_late_join(mob/pred_candidate, show_warning = 1)
 
-	if(!(RoleAuthority.roles_whitelist[pred_candidate.ckey] & WHITELIST_PREDATOR))
+	if(!(SSjob.roles_whitelist[pred_candidate.ckey] & WHITELIST_PREDATOR))
 		if(show_warning) to_chat(pred_candidate, "<span class='warning'>You are not whitelisted! You may apply on the forums to be whitelisted as a predator.</span>")
 		return FALSE
 
@@ -192,7 +192,7 @@ datum/game_mode/proc/initialize_special_clamps()
 		if(show_warning) to_chat(pred_candidate, "<span class='warning'>You already were a Yautja! Give someone else a chance.</span>")
 		return FALSE
 
-	if(!(RoleAuthority.roles_whitelist[pred_candidate.ckey] & WHITELIST_YAUTJA_ELDER))
+	if(!(SSjob.roles_whitelist[pred_candidate.ckey] & WHITELIST_YAUTJA_ELDER))
 		if(pred_current_num >= pred_maximum_num)
 			if(show_warning) to_chat(pred_candidate, "<span class='warning'>Only [pred_maximum_num] predators may spawn per round, but Elders are excluded.</span>")
 			return FALSE
@@ -206,7 +206,7 @@ datum/game_mode/proc/initialize_special_clamps()
 
 	var/mob/living/carbon/human/new_predator
 
-	new_predator = new(RoleAuthority.roles_whitelist[pred_candidate.ckey] & WHITELIST_YAUTJA_ELDER ? pick(GLOB.pred_elder_spawn) : pick(GLOB.pred_spawn))
+	new_predator = new(SSjob.roles_whitelist[pred_candidate.ckey] & WHITELIST_YAUTJA_ELDER ? pick(GLOB.pred_elder_spawn) : pick(GLOB.pred_spawn))
 	new_predator.set_species("Yautja")
 
 	new_predator.mind_initialize()
@@ -232,7 +232,7 @@ datum/game_mode/proc/initialize_special_clamps()
 	var/mask_number = new_predator.client.prefs.predator_mask_type
 
 	new_predator.equip_to_slot_or_del(new /obj/item/clothing/shoes/yautja(new_predator, boot_number), SLOT_SHOES)
-	if(RoleAuthority.roles_whitelist[new_predator.ckey] & WHITELIST_YAUTJA_ELDER)
+	if(SSjob.roles_whitelist[new_predator.ckey] & WHITELIST_YAUTJA_ELDER)
 		new_predator.real_name = "Elder [new_predator.real_name]"
 		new_predator.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/yautja(new_predator, armor_number, 1), SLOT_WEAR_SUIT)
 		new_predator.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/yautja(new_predator, mask_number, 1), SLOT_WEAR_MASK)
@@ -540,7 +540,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 
 	H.loc = pick(GLOB.surv_spawn)
 
-	var/datum/job/J = RoleAuthority.roles_by_equipment_paths[pick(subtypesof(/datum/job/other/survivor))]
+	var/datum/job/J = SSjob.roles_by_equipment_paths[pick(subtypesof(/datum/job/other/survivor))]
 	J.generate_equipment(H)
 	J.generate_entry_conditions(H)
 	J.equip_identification(H)

@@ -195,7 +195,7 @@
 	if(!GLOB.enter_allowed)
 		to_chat(usr, "<span class='warning'>Spawning currently disabled, please observe.<spawn>")
 		return
-	if(!RoleAuthority.assign_role(src, RoleAuthority.roles_for_mode[rank], TRUE))
+	if(!SSjob.assign_role(src, SSjob.roles_for_mode[rank], TRUE))
 		to_chat(src, alert("[rank] is not available. Please try another."))
 		return
 
@@ -213,7 +213,7 @@
 		T = pick(GLOB.latejoin)
 
 	var/mob/living/carbon/human/character = create_character()	//creates the human and transfers vars and mind
-	RoleAuthority.equip_role(character, RoleAuthority.roles_for_mode[rank], T)
+	SSjob.equip_role(character, SSjob.roles_for_mode[rank], T)
 	UpdateFactionList(character)
 	EquipCustomItems(character)
 
@@ -222,7 +222,7 @@
 	ticker.minds += character.mind//Cyborgs and AIs handle this in the transform proc.	//TODO!!!!! ~Carn
 	ticker.mode.latejoin_tally++
 
-	for(var/datum/squad/sq in RoleAuthority.squads)
+	for(var/datum/squad/sq in SSjob.squads)
 		if(sq)
 			sq.max_engineers = engi_slot_formula(GLOB.clients.len)
 			sq.max_medics = medic_slot_formula(GLOB.clients.len)
@@ -247,9 +247,9 @@
 
 	dat += "Choose from the following open positions:<br>"
 	var/datum/job/J
-	for(var/i in RoleAuthority.roles_for_mode)
-		J = RoleAuthority.roles_for_mode[i]
-		if(!RoleAuthority.check_role_entry(src, J, 1))
+	for(var/i in SSjob.roles_for_mode)
+		J = SSjob.roles_for_mode[i]
+		if(!SSjob.check_role_entry(src, J, 1))
 			continue
 		var/active = 0
 		//Only players with the job assigned and AFK for less than 10 minutes count as active
