@@ -252,7 +252,7 @@
 				hive.living_xeno_queen = src
 			xeno_message("<span class='xenoannounce'>A new Queen has risen to lead the Hive! Rejoice!</span>",3,hivenumber)
 	playsound(loc, 'sound/voice/alien_queen_command.ogg', 75, 0)
-	hive_controller.active_queen = src
+	//hive_controller.active_queen = src
 
 /mob/living/carbon/Xenomorph/Queen/Destroy()
 	. = ..()
