@@ -27,7 +27,7 @@
 
 
 /obj/machinery/atmospherics/components/unary/tank/air
-	icon_state = "air"
+	icon_state = "grey"
 	name = "pressure tank (Air)"
 
 ///obj/machinery/atmospherics/components/unary/tank/air/New()
@@ -36,19 +36,19 @@
 	//air_contents.assert_gases(/datum/gas/oxygen, /datum/gas/nitrogen)
 	//air_contents.gases[/datum/gas/oxygen][MOLES] = AIR_CONTENTS * 0.2
 	//air_contents.gases[/datum/gas/nitrogen][MOLES] = AIR_CONTENTS * 0.8
-/*
-/obj/machinery/atmospherics/components/unary/tank/carbon_dioxide
-	gas_type = /datum/gas/carbon_dioxide
 
+/obj/machinery/atmospherics/components/unary/tank/carbon_dioxide
+/*	gas_type = /datum/gas/carbon_dioxide
+*/
 /obj/machinery/atmospherics/components/unary/tank/toxins
 	icon_state = "orange"
-	gas_type = /datum/gas/plasma
+/*	gas_type = /datum/gas/plasma
 */
 /obj/machinery/atmospherics/components/unary/tank/oxygen
-	icon_state = "o2"
+	icon_state = "blue"
 /*	gas_type = /datum/gas/oxygen
-
+*/
 /obj/machinery/atmospherics/components/unary/tank/nitrogen
 	icon_state = "red"
-	gas_type = /datum/gas/nitrogen
+/*	gas_type = /datum/gas/nitrogen
 */
