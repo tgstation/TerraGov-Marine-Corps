@@ -2,7 +2,7 @@
 // The regular pipe you see everywhere, including bent ones.
 
 /obj/machinery/atmospherics/pipe/simple
-	icon = 'icons/atmos/pipes.dmi'
+	icon = 'icons/obj/atmospherics/pipes/simple.dmi'
 	icon_state = "pipe11-2"
 
 	name = "pipe"
