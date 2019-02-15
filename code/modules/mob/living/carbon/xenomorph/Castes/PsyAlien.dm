@@ -4,7 +4,7 @@
 	caste_type_path = /mob/living/carbon/Xenomorph/PsyAlien
 	caste_desc = "The biggest alien with psy power."
 
-	tier = 0
+	tier = 3
 	upgrade = 0
 
 	deevolves_to = /mob/living/carbon/Xenomorph/Drone
