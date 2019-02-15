@@ -172,7 +172,7 @@
 					if(M.current?.stat != DEAD)
 						candidates -= M //Strip them from the list, they aren't dead anymore.
 						continue
-					if(name == "Xenomorphs" && !(M.current.client.prefs.be_special & BE_ALIEN))
+					if(name == "Xenomorphs" && !(M.current.client?.prefs?.be_special & BE_ALIEN))
 						candidates -= M
 						continue
 					picked_candidates += M
