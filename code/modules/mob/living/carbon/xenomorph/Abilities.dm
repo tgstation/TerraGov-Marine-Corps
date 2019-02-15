@@ -1165,7 +1165,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 		"<span class='xenowarning'>You start to advance larval growth inside of [H].</span>")
 		if(!do_after(X, 50, TRUE, 20, BUSY_ICON_FRIENDLY) && X.check_plasma(300))
 			return
-		if(!X.check_state()) 
+		if(!X.check_state())
 			return
 		X.use_plasma(300)
 		X.visible_message("<span class='xenowarning'>\The [E] inside of [H] grows a little!</span>", \
@@ -1173,6 +1173,19 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 
 		E.stage++
 		X.larva_growth_used = world.time + 1 MINUTES
+/*
+/datum/action/xeno_action/evo_menu
+	name = "Evolution Menu"
+	action_icon_state = "evo_menu"
+	plasma_cost = 0
+
+/datum/action/xeno_action/evo_menu/action_activate()
+	var/mob/living/carbon/Xenomorph/X = owner
+	if(!X.check_state())
+		return
+	evolution_tree.show_tree(X)
+	return
+*/
 
 //Ravager Abilities
 
@@ -1211,6 +1224,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 /datum/action/xeno_action/second_wind/action_activate()
 	var/mob/living/carbon/Xenomorph/Ravager/X = owner
 	X.Second_Wind()
+
 
 
 //Ravenger
@@ -1318,6 +1332,45 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 	var/mob/living/carbon/Xenomorph/Sentinel/X = owner
 	if(world.time >= X.last_neurotoxin_sting + NEUROTOXIN_STING_COOLDOWN)
 		return TRUE
+
+// PsyAlien //
+/datum/action/xeno_action/toggle_range
+	name = "Toggle Long Range Sight (20)"
+	action_icon_state = "toggle_long_range"
+	plasma_cost = 20
+
+/datum/action/xeno_action/toggle_range/can_use_action()
+	var/mob/living/carbon/Xenomorph/PsyAlien/X = owner
+	if(X && !X.is_mob_incapacitated() && !X.lying && !X.buckled && (X.is_zoomed || X.plasma_stored >= plasma_cost) && !X.stagger)
+		return TRUE
+
+/datum/action/xeno_action/toggle_range/action_activate()
+	var/mob/living/carbon/Xenomorph/PsyAlien/X = owner
+	if(X.is_zoomed)
+		X.zoom_out()
+		X.visible_message("<span class='notice'>[X] stops looking off into the distance.</span>", \
+		"<span class='notice'>You stop looking off into the distance.</span>", null, 5)
+	else
+		X.visible_message("<span class='notice'>[X] starts looking off into the distance.</span>", \
+			"<span class='notice'>You start focusing your sight to look off into the distance.</span>", null, 5)
+		if(!do_after(X, 20, FALSE)) return
+		if(X.is_zoomed) return
+		X.zoom_in()
+		..()
+
+/datum/action/xeno_action/activable/screech_psy
+	name = "Screech (100)"
+	action_icon_state = "screech"
+	ability_name = "screech"
+
+/datum/action/xeno_action/activable/screech_psy/action_cooldown_check()
+	var/mob/living/carbon/Xenomorph/PsyAlien/X = owner
+	return !X.has_screeched
+
+/datum/action/xeno_action/activable/screech_psy/use_ability(atom/A)
+	var/mob/living/carbon/Xenomorph/PsyAlien/X = owner
+	X.screech()
+
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 

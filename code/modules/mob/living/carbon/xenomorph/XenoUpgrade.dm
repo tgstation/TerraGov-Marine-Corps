@@ -1,4 +1,5 @@
 
+
 /mob/living/carbon/Xenomorph/proc/upgrade_xeno(newlevel)
 	upgrade = newlevel
 	upgrade_stored = 0
@@ -19,14 +20,24 @@
 		//Final UPGRADE
 		if(3)
 			to_chat(src, "<span class='xenoannounce'>[xeno_caste.ancient_message]</span>")
-			
+
 	generate_name() //Give them a new name now
 
 	hud_set_queen_overwatch() //update the upgrade level insignia on our xeno hud.
 
 	update_spits() //Update spits to new/better ones
 
+
 //Tiered spawns.
+/mob/living/carbon/Xenomorph/PsyAlien/mature
+	upgrade = 1
+
+/mob/living/carbon/Xenomorph/PsyAlien/elder
+	upgrade = 2
+
+/mob/living/carbon/Xenomorph/PsyAlien/ancient
+	upgrade = 3
+
 /mob/living/carbon/Xenomorph/Runner/mature
 	upgrade = 1
 

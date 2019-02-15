@@ -1143,8 +1143,8 @@
 	immobile = TRUE
 	on = TRUE
 	burst_fire = TRUE
-	rounds = 100000
-	rounds_max = 100000
+	rounds = 50000
+	rounds_max = 50000
 	icon_state = "sentry_base"
 
 /obj/machinery/marine_turret/premade/New()
@@ -1159,10 +1159,11 @@
 	spawn(2)
 		stat = 0
 	ammo = ammo_list[ammo]
+	rounds = 50000
 	update_icon()
 
 /obj/machinery/marine_turret/premade/dumb
-	name = "Modified UA-577 Gauss Turret"
+	name = "Modified UA-577 Gauss Sentry"
 	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an M30 Autocannon and a high-capacity drum magazine. This one's IFF system has been disabled, and it will open fire on any targets within range."
 	iff_signal = 0
 	ammo = /datum/ammo/bullet/turret/dumb
@@ -1201,15 +1202,28 @@
 		state("<span class='notice'>The [name] powers down and goes silent.</span>")
 		update_icon()
 
+/obj/item/ammo_magazine/sentry/premade/dumb
+	name = "UA-577 box magazine (12x40mm Gauss Slugs)"
+	desc = "A box of 500 12x40mm gauss slugs for the UA-577 Gauss Turret. Just feed it into the turret's ammo port when its ammo is depleted."
+	w_class = 4
+	icon = 'icons/Marine/new_sentry_alt.dmi'
+	icon_state = "ammo_can"
+	flags_magazine = NOFLAGS //can't be refilled or emptied by hand
+	caliber = "12x40mm"
+	max_rounds = 50000
+	default_ammo = /datum/ammo/bullet/turret/dumb
+	gun_type = null
+
+
 //the turret inside the sentry deployment system
 /obj/machinery/marine_turret/premade/dropship
 	density = FALSE
 	ammo = /datum/ammo/bullet/turret/gauss //This is a gauss cannon; it will be significantly deadlier
-	rounds = 1000000
 	safety_off = TRUE
 	burst_size = 10
 	burst_delay = 15
 	var/obj/structure/dropship_equipment/sentry_holder/deployment_system
+	magazine_type = /obj/item/ammo_magazine/sentry/premade/dropship
 
 /obj/machinery/marine_turret/premade/dropship/Destroy()
 	if(deployment_system)
@@ -1217,6 +1231,17 @@
 		deployment_system = null
 	. = ..()
 
+/obj/item/ammo_magazine/sentry/premade/dropship
+	name = "UA-577 box magazine (12x40mm Gauss Slugs)"
+	desc = "A box of 500 12x40mm gauss slugs for the UA-577 Gauss Turret. Just feed it into the turret's ammo port when its ammo is depleted."
+	w_class = 4
+	icon = 'icons/Marine/new_sentry_alt.dmi'
+	icon_state = "ammo_can"
+	flags_magazine = NOFLAGS //can't be refilled or emptied by hand
+	caliber = "12x40mm"
+	max_rounds = 50000
+	default_ammo = /datum/ammo/bullet/turret/gauss
+	gun_type = null
 
 /obj/machinery/marine_turret/proc/sentry_alert(alert_code, mob/M)
 	if(!alert_code)

@@ -528,7 +528,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 
 	//Shields
 	if( !(P.ammo.flags_ammo_behavior & AMMO_ROCKET) ) //No, you can't block rockets.
-		if( P.dir == reverse_direction(dir) && check_shields(damage * 0.65, "[P]") && src != P.shot_from.sniper_target(src)) //Aimed sniper shots will ignore shields
+		if(check_shields(damage * 0.65, "[P]", P.dir) && src != P.shot_from.sniper_target(src)) //Aimed sniper shots will ignore shields
 			P.ammo.on_shield_block(src)
 			bullet_ping(P)
 			return
