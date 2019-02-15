@@ -1194,7 +1194,7 @@
 		if(!check_rights(R_SERVER))
 			return
 
-		if(SSticker && SSticker.mode)
+		if(SSticker?.mode)
 			return alert("The game has already started.")
 
 		var/dat = {"<B>What mode do you wish to play?</B><HR>"}
