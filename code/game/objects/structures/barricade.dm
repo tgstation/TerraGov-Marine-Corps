@@ -374,10 +374,13 @@
 
 /obj/structure/barricade/snow/bullet_act(var/obj/item/projectile/P)
 	bullet_ping(P)
-	health -= round(P.damage/2) //Not that durable.
-
-	if (istype(P.ammo, /datum/ammo/xeno/boiler_gas))
-		health -= 50
+	if(P.armor_type == "energy")
+		if(istype(P.ammo, /datum/ammo/xeno/boiler_gas))
+			health -= P.damage * P.structure_multiplier
+		else
+			health -= round(P.damage * 0.75) * P.structure_multiplier
+	else
+		health -= round(P.damage * 0.5) * P.structure_multiplier
 
 	update_health()
 	return TRUE
@@ -432,10 +435,14 @@
 
 /obj/structure/barricade/wooden/bullet_act(var/obj/item/projectile/P)
 	bullet_ping(P)
-	health -= round(P.damage/2) //Not that durable.
+	if(P.armor_type == "energy")
+		if(istype(P.ammo, /datum/ammo/xeno/boiler_gas))
+			health -= P.damage * P.structure_multiplier
+		else
+			health -= round(P.damage * 0.75) * P.structure_multiplier
+	else
+		health -= round(P.damage * 0.5) * P.structure_multiplier
 
-	if(istype(P.ammo, /datum/ammo/xeno/boiler_gas))
-		health -= 50
 
 	update_health()
 	return TRUE
@@ -619,10 +626,15 @@
 
 /obj/structure/barricade/metal/bullet_act(obj/item/projectile/P)
 	bullet_ping(P)
-	health -= round(P.damage/10)
+	if(P.armor_type == "energy")
+		if(istype(P.ammo, /datum/ammo/xeno/boiler_gas))
+			health -= P.damage * P.structure_multiplier
+		else
+			health -= round(P.damage * 0.2) * P.structure_multiplier
+	else
+		health -= round(P.damage * 0.1) * P.structure_multiplier
 
-	if(istype(P.ammo, /datum/ammo/xeno/boiler_gas))
-		health -= 50
+
 
 	update_health()
 	return TRUE
@@ -850,10 +862,13 @@
 
 /obj/structure/barricade/plasteel/bullet_act(obj/item/projectile/P)
 	bullet_ping(P)
-	health -= round(P.damage/10)
-
-	if(istype(P.ammo, /datum/ammo/xeno/boiler_gas))
-		health -= 50
+	if(P.armor_type == "energy")
+		if(istype(P.ammo, /datum/ammo/xeno/boiler_gas))
+			health -= P.damage * P.structure_multiplier
+		else
+			health -= round(P.damage * 0.2) * P.structure_multiplier
+	else
+		health -= round(P.damage * 0.1) * P.structure_multiplier
 
 	update_health()
 	return TRUE
@@ -921,10 +936,13 @@
 
 /obj/structure/barricade/sandbags/bullet_act(obj/item/projectile/P)
 	bullet_ping(P)
-	health -= round(P.damage/10)
-
-	if(istype(P.ammo, /datum/ammo/xeno/boiler_gas))
-		health -= 50
+	if(P.armor_type == "energy")
+		if(istype(P.ammo, /datum/ammo/xeno/boiler_gas))
+			health -= P.damage * P.structure_multiplier
+		else
+			health -= round(P.damage * 0.2) * P.structure_multiplier
+	else
+		health -= round(P.damage * 0.1) * P.structure_multiplier
 
 	update_health()
 

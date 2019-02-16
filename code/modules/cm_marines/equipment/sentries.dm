@@ -839,13 +839,14 @@
 	if(M.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
 		M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 
-/obj/machinery/marine_turret/bullet_act(var/obj/item/projectile/Proj) //Nope.
-	visible_message("[src] is hit by the [Proj.name]!")
+/obj/machinery/marine_turret/bullet_act(var/obj/item/projectile/P) //Nope.
+	visible_message("[src] is hit by the [P.name]!")
 
-	if(Proj.ammo.flags_ammo_behavior & AMMO_XENO_ACID) //Fix for xenomorph spit doing baby damage.
-		update_health(round(Proj.damage * 0.33))
-	else
-		update_health(round(Proj.damage * 0.1))
+	var/base_multiplier = 0.1
+	if(P.armor_type == "energy") //Fix for xenomorph spit doing baby damage.
+		base_multiplier = 0.33
+
+	update_health(round(P.damage * base_multiplier * P.structure_multiplier))
 	return TRUE
 
 /obj/machinery/marine_turret/process()

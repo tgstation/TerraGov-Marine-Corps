@@ -52,7 +52,8 @@
 	var/list/ammo_reagents			= null		// Type of reagent transmitted by the projectile on hit.
 	var/barricade_clear_distance	= 1			// How far the bullet can travel before incurring a chance of hitting barricades; normally 1.
 	var/armor_type					= "bullet"	// Does this have an override for the armor type the ammo should test? Bullet by default
-
+	var/vehicle_multiplier			= 1			// Multiply damage to vehicles by this amount
+	var/structure_multiplier		= 1			// Multiply damage to structures by this amount
 
 	New()
 		accuracy 			= CONFIG_GET(number/combat_define/min_hit_accuracy) 	// This is added to the bullet's base accuracy.
@@ -867,7 +868,7 @@
 	. = ..()
 	damage = CONFIG_GET(number/combat_define/med_hit_damage)
 	penetration= CONFIG_GET(number/combat_define/mhigh_armor_penetration)
-	accurate_range = CONFIG_GET(number/combat_define/close_shell_range)
+	accurate_range = CONFIG_GET(number/combat_define/near_shell_range)
 
 /datum/ammo/bullet/turret/mini
 	name = "UA-580 10x20mm armor piercing bullet"
@@ -1524,6 +1525,8 @@
 /datum/ammo/xeno/boiler_gas/corrosive/New()
 	..()
 	damage = CONFIG_GET(number/combat_define/med_hit_damage)
+	vehicle_multiplier = 3
+	structure_multiplier = 2
 	damage_var_high = CONFIG_GET(number/combat_define/max_proj_variance)
 	damage_type = BURN
 

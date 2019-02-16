@@ -338,13 +338,17 @@
 		health = health_max
 	update_icon()
 
-/obj/machinery/m56d_hmg/bullet_act(var/obj/item/projectile/Proj) //Nope.
+/obj/machinery/m56d_hmg/bullet_act(var/obj/item/projectile/P) //Nope.
 	if(prob(30)) // What the fuck is this from sentry gun code. Sorta keeping it because it does make sense that this is just a gun, unlike the sentry.
-		return 0
+		return FALSE
 
-	visible_message("\The [src] is hit by the [Proj.name]!")
-	update_health(round(Proj.damage / 10)) //Universal low damage to what amounts to a post with a gun.
-	return 1
+	visible_message("\The [src] is hit by the [P.name]!")
+	var/base_multiplier = 0.1
+	if(P.armor_type == "energy") //Fix for xenomorph spit doing baby damage.
+		base_multiplier = 0.33
+
+	update_health(round(P.damage * base_multiplier * P.structure_multiplier))
+	return TRUE
 
 /obj/machinery/m56d_hmg/attack_alien(mob/living/carbon/Xenomorph/M) // Those Ayy lmaos.
 	if(isxenolarva(M))

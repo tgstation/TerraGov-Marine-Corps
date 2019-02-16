@@ -52,6 +52,9 @@
 	var/projectile_speed = 0
 	var/armor_type = null
 
+	var/vehicle_multiplier = 1
+	var/structure_multiplier = 1
+
 /obj/item/projectile/New()
 	. = ..()
 	path = list()
@@ -94,6 +97,8 @@
 	damage_falloff = ammo.damage_falloff
 	list_reagents = ammo.ammo_reagents
 	armor_type = ammo.armor_type
+	vehicle_multiplier = ammo.vehicle_multiplier
+	structure_multiplier = ammo.structure_multiplier
 
 //Target, firer, shot from. Ie the gun
 /obj/item/projectile/proc/fire_at(atom/target,atom/F, atom/S, range = 30,speed = 1)
