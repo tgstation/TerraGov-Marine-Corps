@@ -76,6 +76,9 @@
 
 	return ..()
 
+/mob/dead/observer/Destroy()
+	unfollow()
+	. = ..()
 
 /mob/dead/observer/Topic(href, href_list)
 	if(href_list["reentercorpse"])
@@ -701,7 +704,6 @@
 	ticker.mode:supply_votes += target
 	voted_this_drop = TRUE
 	addtimer(CALLBACK(src, .proc/reset_vote), 3 MINUTES)
-		
 
 
 /mob/dead/observer/proc/reset_vote()

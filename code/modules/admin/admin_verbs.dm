@@ -263,7 +263,12 @@
 
 	var/replaced = FALSE
 	if(M.key)
-		if(alert("This mob is being controlled by [M.key], they will be made a ghost. Are you sure?",,"Yes","No") == "Yes")
+		if(usr.client.key == copytext(M.key,2))
+			var/mob/dead/observer/ghost = usr
+			ghost.can_reenter_corpse = TRUE
+			ghost.reenter_corpse()
+			return
+		else if(alert("This mob is being controlled by [M.key], they will be made a ghost. Are you sure?",,"Yes","No") == "Yes")
 			M.ghostize()
 			replaced = TRUE
 		else
