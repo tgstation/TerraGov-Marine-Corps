@@ -90,7 +90,7 @@
 		to_chat(usr, "Name = <b>[M.name]</b>; Real_name = [M.real_name]; Mind_name = [M.mind ? "[M.mind.name]" : ""]; Key = <b>[M.key]</b>;")
 		to_chat(usr, "Location = [location_description];")
 		to_chat(usr, "[special_role_description]")
-		to_chat(usr, ADMIN_FULLMONTY_NONAME(M))
+		to_chat(usr, ADMIN_FULLMONTY(M))
 
 
 	else if(href_list["playerpanel"])
@@ -174,7 +174,8 @@
 			if("blackout")
 				log_admin("[key_name(usr)] broke all lights.")
 				message_admins("[ADMIN_TPMONTY(usr)] broke all lights.")
-				lightsout(0, 0)
+				for(var/obj/machinery/power/apc/apc in GLOB.machines)
+					apc.overload_lighting()
 			if("whiteout")
 				log_admin("[key_name(usr)] fixed all lights.")
 				message_admins("[ADMIN_TPMONTY(usr)] fixed all lights.")
@@ -404,7 +405,7 @@
 			return
 
 		var/key = href_list["notes_hide"]
-		var/index = text2num(href_list["remove_index"])
+		var/index = text2num(href_list["hide_index"])
 
 		notes_hide(key, index)
 		player_notes_show(key)
@@ -415,10 +416,19 @@
 			return
 
 		var/key = href_list["notes_unhide"]
-		var/index = text2num(href_list["remove_index"])
+		var/index = text2num(href_list["unhide_index"])
 
 		notes_unhide(key, index)
 		player_notes_show(key)
+
+
+	else if(href_list["notes_edit"])
+		if(!check_rights(R_BAN))
+			return
+
+		var/key = href_list["notes_edit"]
+		var/index = text2num(href_list["edit_index"])
+		notes_edit(key, index)
 
 
 	else if(href_list["notes"])
@@ -471,7 +481,7 @@
 		if(!M.ckey)
 			return
 
-		if(!RoleAuthority)
+		if(!SSjob)
 			return
 
 		var/list/joblist = list()
@@ -480,7 +490,7 @@
 				for(var/jobPos in ROLES_COMMAND)
 					if(!jobPos)
 						continue
-					var/datum/job/temp = RoleAuthority.roles_by_name[jobPos]
+					var/datum/job/temp = SSjob.roles_by_name[jobPos]
 					if(!temp)
 						continue
 					joblist += temp.title
@@ -488,7 +498,7 @@
 				for(var/jobPos in ROLES_POLICE)
 					if(!jobPos)
 						continue
-					var/datum/job/temp = RoleAuthority.roles_by_name[jobPos]
+					var/datum/job/temp = SSjob.roles_by_name[jobPos]
 					if(!temp)
 						continue
 					joblist += temp.title
@@ -496,7 +506,7 @@
 				for(var/jobPos in ROLES_ENGINEERING)
 					if(!jobPos)
 						continue
-					var/datum/job/temp = RoleAuthority.roles_by_name[jobPos]
+					var/datum/job/temp = SSjob.roles_by_name[jobPos]
 					if(!temp)
 						continue
 					joblist += temp.title
@@ -504,7 +514,7 @@
 				for(var/jobPos in ROLES_REQUISITION)
 					if(!jobPos)
 						continue
-					var/datum/job/temp = RoleAuthority.roles_by_name[jobPos]
+					var/datum/job/temp = SSjob.roles_by_name[jobPos]
 					if(!temp)
 						continue
 					joblist += temp.title
@@ -512,7 +522,7 @@
 				for(var/jobPos in ROLES_MEDICAL)
 					if(!jobPos)
 						continue
-					var/datum/job/temp = RoleAuthority.roles_by_name[jobPos]
+					var/datum/job/temp = SSjob.roles_by_name[jobPos]
 					if(!temp)
 						continue
 					joblist += temp.title
@@ -520,7 +530,7 @@
 				for(var/jobPos in ROLES_MARINES)
 					if(!jobPos)
 						continue
-					var/datum/job/temp = RoleAuthority.roles_by_name[jobPos]
+					var/datum/job/temp = SSjob.roles_by_name[jobPos]
 					if(!temp)
 						continue
 					joblist += temp.title
@@ -591,7 +601,7 @@
 		if(!isnum(mute_type))
 			return
 
-		mute(M, mute_type)
+		usr.client.mute(M.client, mute_type)
 
 
 
@@ -745,7 +755,7 @@
 		else if(isxeno(M))
 			if(alert("Are you sure you want to tell the Xeno a Xeno tip?", "Confirmation", "Yes", "No") != "Yes")
 				return
-			to_chat(M, "<span class='tip'>[pick(xenotips)]</span>")
+			to_chat(M, "<span class='tip'>[pick(GLOB.xenotips)]</span>")
 
 		if(isxeno(M))
 			to_chat(M, "<span class='boldnotice'>Your prayers have been answered!! Hope the advice helped.</span>")
@@ -789,10 +799,10 @@
 		if(!istype(M))
 			return
 
-		if(!ticker?.mode || ticker.mode.waiting_for_candidates)
+		if(!SSticker?.mode || SSticker.mode.waiting_for_candidates)
 			return
 
-		ticker.mode.activate_distress()
+		SSticker.mode.activate_distress()
 
 		log_game("[key_name(usr)] has sent a randomized distress beacon early, requested by [key_name(M)]")
 		message_admins("[ADMIN_TPMONTY(usr)] has sent a randomized distress beacon early, requested by [ADMIN_TPMONTY(M)]")
@@ -902,6 +912,8 @@
 		if(C && alert("They have a client attached, are you sure?", "Cryosleep", "Yes", "No") != "Yes")
 			return
 
+		var/mob/target = M
+
 		var/turf/T = get_turf(M)
 		var/obj/machinery/cryopod/P = new(T)
 		P.density = FALSE
@@ -924,8 +936,8 @@
 			else
 				C.mob.ghostize()
 
-		log_admin("[key_name(usr)] has cryo'd [key_name(M)][lobby ? ", sending them to the lobby" : ""].")
-		message_admins("[ADMIN_TPMONTY(usr)] has cryo'd [key_name_admin(M)][lobby ? ", sending them to the lobby" : ""].")
+		log_admin("[key_name(usr)] has cryo'd [key_name(target)][lobby ? ", sending them to the lobby" : ""].")
+		message_admins("[ADMIN_TPMONTY(usr)] has cryo'd [key_name_admin(target)][lobby ? ", sending them to the lobby" : ""].")
 
 
 	else if(href_list["jumpto"])
@@ -966,7 +978,7 @@
 
 		var/atom/target
 
-		switch(input("Where do you want to send it to?", "Send Mob") as null|anything in list("Area", "Mob", "Key"))
+		switch(input("Where do you want to send it to?", "Send Mob") as null|anything in list("Area", "Mob", "Key", "Coords"))
 			if("Area")
 				var/area/A = input("Pick an area.", "Pick an area") as null|anything in return_sorted_areas()
 				if(!A || !M)
@@ -982,6 +994,13 @@
 				if(!C || !M)
 					return
 				target = C.mob.loc
+			if("Coords")
+				var/X = input("Select coordinate X", "Coordinate X") as null|num
+				var/Y = input("Select coordinate Y", "Coordinate Y") as null|num
+				var/Z = input("Select coordinate Z", "Coordinate Z") as null|num
+				if(isnull(X) || isnull(Y) || isnull(Z) || !M)
+					return
+				target = locate(X, Y, Z)
 
 		M.on_mob_jump()
 		M.forceMove(target)
@@ -1000,6 +1019,14 @@
 			return
 
 		var/mob/sender = F.sender
+
+		var/dep = input("Who do you want to message?", "Fax Message") as null|anything in list("Corporate Liaison", "Chief Military Police", "Warden")
+		if(!dep)
+			return
+
+		if(dep == "Warden" && GLOB.map_tag != MAP_PRISON_STATION)
+			if(alert("Are you sure? By default noone will receive this fax unless you spawned the proper fax machine.", "Warning", "Yes", "No") != "Yes")
+				return
 
 		var/department = input("Which department do you want to reply as?", "Fax Message") as null|anything in list("TGMC High Command", "TGMC Provost General", "Nanotrasen")
 		if(!department)
@@ -1040,7 +1067,7 @@
 				fax_message = generate_templated_fax(department, subject, addressed_to, message_body, sent_by, department)
 
 			if("Custom")
-				var/input = input("Please enter a message to send via secure connection.", "Fax Message", "") as text|null
+				var/input = input("Please enter a message to send via secure connection.", "Fax Message", "") as message|null
 				if(!input)
 					return
 				fax_message = "[input]"
@@ -1053,7 +1080,7 @@
 		if(alert("Send this fax?", "Confirmation", "Yes", "No") != "Yes")
 			return
 
-		send_fax(usr, null, F.department, subject, fax_message, TRUE)
+		send_fax(usr, null, dep, subject, fax_message, TRUE)
 
 		log_admin("[key_name(usr)] replied to a fax message from [key_name(sender)].")
 		message_admins("[ADMIN_TPMONTY(usr)] replied to a fax message from [ADMIN_TPMONTY(sender)].")
@@ -1121,7 +1148,7 @@
 				fax_message = generate_templated_fax(department, subject, addressed_to, message_body, sent_by, department)
 
 			if("Custom")
-				var/input = input("Please enter a message to send via secure connection.", "Fax Message", "") as text|null
+				var/input = input("Please enter a message to send via secure connection.", "Fax Message", "") as message|null
 				if(!input)
 					return
 				fax_message = "[input]"
@@ -1168,7 +1195,7 @@
 		if(!check_rights(R_SERVER))
 			return
 
-		if(ticker && ticker.mode)
+		if(SSticker?.mode)
 			return alert("The game has already started.")
 
 		var/dat = {"<B>What mode do you wish to play?</B><HR>"}
@@ -1182,7 +1209,7 @@
 		if(!check_rights(R_SERVER))
 			return
 
-		if(ticker?.mode)
+		if(SSticker?.mode)
 			return alert("The game has already started.")
 
 		master_mode = href_list["changemode"]
@@ -1239,11 +1266,7 @@
 					message_admins("[ADMIN_TPMONTY(usr)] canceled the self-destruct system.")
 
 			if("use_dest")
-				var/confirm = alert("Are you sure you want to self-destruct the Almayer?", "Self-Destruct", "Yes", "Cancel")
-				if(confirm != "Yes")
-					return
-
-				if(alert("Are you sure you want to destroy the Almayer right now?",, "Yes", "No") != "Yes")
+				if(alert("Are you sure you want to destroy the [MAIN_SHIP_NAME] right now?", "Self-Destruct", "Yes", "No") != "Yes")
 					return
 
 				if(!EvacuationAuthority.initiate_self_destruct(TRUE))

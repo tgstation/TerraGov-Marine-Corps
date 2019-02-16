@@ -39,18 +39,15 @@
 	set category = "Object"
 	set src in oview(1)
 
-	if(CONFIG_GET(flag/ghost_interaction))
-		setDir(turn(src.dir, 90))
-		return
-	else
-		if(istype(usr, /mob/living/simple_animal/mouse))
-			return
-		if(!usr || !isturf(usr.loc))
-			return
-		if(usr.stat || usr.is_mob_restrained())
-			return
 
-		setDir(turn(src.dir, 90))
+	if(istype(usr, /mob/living/simple_animal/mouse))
+		return
+	if(!usr || !isturf(usr.loc))
+		return
+	if(usr.stat || usr.is_mob_restrained())
+		return
+
+	setDir(turn(src.dir, 90))
 
 //Chair types
 /obj/structure/bed/chair/reinforced

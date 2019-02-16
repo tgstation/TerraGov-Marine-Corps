@@ -7,7 +7,7 @@ Basics, the most important.
 
 /datum/config_entry/string/server // If you set this location, it sends you there instead of trying to reconnect.
 
-/datum/config_entry/flag/hub	// Does the server appear on the hub?
+/datum/config_entry/string/title //The title of the main window
 
 /datum/config_entry/string/hostedby // Sets the hosted by name on unix platforms.
 
@@ -17,42 +17,30 @@ Basics, the most important.
 	config_entry_value = "kMZy3U5jJHSiBQjr"
 
 /datum/config_entry/string/wikiurl
-	config_entry_value = "https://tgstation13.org/wiki/TGMC"
 
 /datum/config_entry/string/forumurl
-	config_entry_value = "http://tgstation13.org/phpBB/index.php"
 
 /datum/config_entry/string/rulesurl
-	config_entry_value = "http://www.tgstation13.org/wiki/TGMC:Rules"
 
 /datum/config_entry/string/githuburl
-	config_entry_value = "https://github.com/tgstation/TerraGov-Marine-Corps"
 
 /datum/config_entry/string/discordurl
-	config_entry_value = "https://discord.gg/2dFpfNE"
 
 /datum/config_entry/string/banappeals
-	config_entry_value = "https://tgstation13.org/phpBB/viewforum.php?f=70"
 
 /datum/config_entry/string/donationurl
 
 /datum/config_entry/string/shipurl
-	config_entry_value = "https://affectedarc07.github.io/SS13WebMap/TGMC/Almayer/index.html"
 
 /datum/config_entry/string/lv624url
-	config_entry_value = "https://affectedarc07.github.io/SS13WebMap/TGMC/LV624/index.html"
 
 /datum/config_entry/string/icecolonyurl
-	config_entry_value = "https://affectedarc07.github.io/SS13WebMap/TGMC/IceColony/index.html"
 
 /datum/config_entry/string/bigredurl
-	config_entry_value = "https://affectedarc07.github.io/SS13WebMap/TGMC/BigRed/index.html"
 
 /datum/config_entry/string/prisonstationurl
-	config_entry_value = "https://affectedarc07.github.io/SS13WebMap/TGMC/PrisonStation/index.html"
 
 /datum/config_entry/string/whiskeyoutposturl
-	config_entry_value = "https://affectedarc07.github.io/SS13WebMap/TGMC/WhiskeyOutpost/index.html"
 
 /datum/config_entry/string/python_path
 
@@ -81,6 +69,8 @@ Administrative related.
 	protection = CONFIG_ENTRY_LOCKED
 
 /datum/config_entry/flag/log_ooc
+
+/datum/config_entry/flag/log_looc
 
 /datum/config_entry/flag/log_access
 
@@ -122,6 +112,8 @@ Administrative related.
 
 /datum/config_entry/flag/autooocmute
 
+/datum/config_entry/flag/looc_enabled
+
 /*
 Voting
 */
@@ -144,6 +136,7 @@ Voting
 /datum/config_entry/flag/vote_no_dead
 
 /datum/config_entry/number/vote_autogamemode_timeleft
+	config_entry_value = 999999999
 
 /datum/config_entry/flag/allow_metadata	// Metadata is supported.
 
@@ -189,6 +182,7 @@ Master controller and performance related.
 		sync_validate = FALSE
 
 /datum/config_entry/number/ticklag
+	config_entry_value = 0.5
 	integer = FALSE
 	var/sync_validate = FALSE
 

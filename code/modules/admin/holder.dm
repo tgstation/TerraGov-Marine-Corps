@@ -275,7 +275,7 @@ GLOBAL_LIST_INIT(admin_verbs_admin, world.AVadmin())
 	/datum/admins/proc/remove_from_tank,
 	/datum/admins/proc/game_panel,
 	/datum/admins/proc/gamemode_panel,
-	/datum/admins/proc/not_looc,
+	/datum/admins/proc/local_message,
 	/datum/admins/proc/view_faxes,
 	/client/proc/private_message_panel,
 	/client/proc/private_message_context
@@ -349,6 +349,7 @@ GLOBAL_LIST_INIT(admin_verbs_server, world.AVserver())
 	return list(
 	/datum/admins/proc/restart,
 	/datum/admins/proc/toggle_ooc,
+	/datum/admins/proc/toggle_looc,
 	/datum/admins/proc/toggle_deadchat,
 	/datum/admins/proc/toggle_deadooc,
 	/datum/admins/proc/start,
@@ -407,7 +408,6 @@ GLOBAL_LIST_INIT(admin_verbs_sound, world.AVsound())
 /world/proc/AVsound()
 	return list(
 	/datum/admins/proc/sound_file,
-	/datum/admins/proc/sound_list,
 	/datum/admins/proc/sound_web,
 	/datum/admins/proc/sound_stop
 	)
@@ -499,7 +499,7 @@ GLOBAL_LIST_INIT(admin_verbs_spawn, world.AVspawn())
 	for(var/client/C in GLOB.admins)
 		if(!check_other_rights(C, R_ADMIN, FALSE))
 			continue
-		if((C.prefs.toggles_chat & CHAT_ATTACKLOGS) || ((ticker.current_state == GAME_STATE_FINISHED) && (C.prefs.toggles_chat & CHAT_ENDROUNDLOGS)))
+		if((C.prefs.toggles_chat & CHAT_ATTACKLOGS) || ((SSticker.current_state == GAME_STATE_FINISHED) && (C.prefs.toggles_chat & CHAT_ENDROUNDLOGS)))
 			to_chat(C, msg)
 
 
@@ -508,7 +508,7 @@ GLOBAL_LIST_INIT(admin_verbs_spawn, world.AVspawn())
 	for(var/client/C in GLOB.admins)
 		if(!check_other_rights(C, R_ADMIN, FALSE))
 			continue
-		if((C.prefs.toggles_chat & CHAT_FFATTACKLOGS) || ((ticker.current_state == GAME_STATE_FINISHED) && (C.prefs.toggles_chat & CHAT_ENDROUNDLOGS)))
+		if((C.prefs.toggles_chat & CHAT_FFATTACKLOGS) || ((SSticker.current_state == GAME_STATE_FINISHED) && (C.prefs.toggles_chat & CHAT_ENDROUNDLOGS)))
 			to_chat(C, msg)
 
 

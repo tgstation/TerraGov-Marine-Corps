@@ -1,5 +1,3 @@
-
-
 /mob/living/verb/resist()
 	set name = "Resist"
 	set category = "IC"
@@ -298,14 +296,17 @@
 		resting = TRUE
 		to_chat(src, "<span class='notice'>You are now resting.</span>")
 		update_canmove()
-	else if(action_busy) // do_after is unoptimal
+	else if(action_busy)
+		to_chat(src, "<span class='warning'>You are still in the process of standing up.</span>")
 		return
 	else
+		action_busy = TRUE
 		overlays += get_busy_icon(BUSY_ICON_GENERIC)
 		addtimer(CALLBACK(src, .proc/get_up), 2 SECONDS)
 
 
 /mob/living/proc/get_up()
+	action_busy = FALSE
 	overlays -= get_busy_icon(BUSY_ICON_GENERIC)
 	if(!is_mob_incapacitated(TRUE))
 		to_chat(src, "<span class='notice'>You get up.</span>")
@@ -313,3 +314,22 @@
 		update_canmove()
 	else
 		to_chat(src, "<span class='notice'>You fail to get up.</span>")
+
+
+/mob/living/verb/ghost()
+	set category = "OOC"
+	set name = "Ghost"
+
+	if(stat == DEAD)
+		ghostize(TRUE)
+		return
+
+	if(alert(src, "Are you -sure- you want to ghost?\n(You are alive. If you ghost, you won't be able to return to your body. You can't change your mind so choose wisely!)", "Are you sure you want to ghost?", "Ghost", "Stay in body") != "Ghost")
+		return
+
+	resting = TRUE
+	log_game("[key_name(usr)] has ghosted.")
+	message_admins("[ADMIN_TPMONTY(usr)] has ghosted.")
+	var/mob/dead/observer/ghost = ghostize(FALSE)
+	if(ghost)
+		ghost.timeofdeath = world.time

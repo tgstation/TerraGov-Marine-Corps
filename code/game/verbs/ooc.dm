@@ -1,8 +1,7 @@
-
 var/global/normal_ooc_colour = "#002eb8"
 
 /client/verb/ooc(msg as text)
-	set name = "OOC" //Gave this shit a shorter name so you only have to time out "ooc" rather than "ooc message" to use it --NeoFite
+	set name = "OOC"
 	set category = "OOC"
 
 	if(!mob)
@@ -23,7 +22,7 @@ var/global/normal_ooc_colour = "#002eb8"
 		to_chat(src, "<span class='warning'>You have OOC muted.</span>")
 		return
 
-	if(!holder)
+	if(!check_rights(R_ADMIN, FALSE))
 		if(!GLOB.ooc_allowed)
 			to_chat(src, "<span class='warning'>OOC is globally muted</span>")
 			return
@@ -88,11 +87,59 @@ var/global/normal_ooc_colour = "#002eb8"
 			to_chat(C, "<font color='[display_colour]'><span class='ooc'><span class='prefix'>OOC: [display_name]</span>: <span class='message'>[msg]</span></span></font>")
 
 
-/client/proc/set_ooc_color_global(newColor as color)
-	set name = "OOC Text Color - Global"
-	set desc = "Set to yellow for eye burning goodness."
+/client/verb/looc(msg as text)
+	set name = "LOOC"
 	set category = "OOC"
-	normal_ooc_colour = newColor
+
+	if(!mob)
+		return
+
+	if(mob.stat == DEAD || !isliving(mob))
+		to_chat(src, "<span class='warning'>You must be alive to use LOOC.</span>")
+		return
+
+	if(IsGuestKey(key))
+		to_chat(src, "Guests may not use LOOC.")
+		return
+
+	if(!check_rights(R_ADMIN, FALSE))
+		msg = trim(copytext(sanitize(msg), 1, MAX_MESSAGE_LEN))
+	else
+		msg = noscript(msg)
+
+	if(!msg)
+		return
+
+	if(!(prefs.toggles_chat & CHAT_OOC))
+		to_chat(src, "<span class='warning'>You have LOOC muted.</span>")
+		return
+
+	if(!check_rights(R_ADMIN, FALSE))
+		if(!CONFIG_GET(flag/looc_enabled))
+			to_chat(src, "<span class='warning'>LOOC is globally muted</span>")
+			return
+		if(prefs.muted & MUTE_OOC)
+			to_chat(src, "<span class='warning'>You cannot use LOOC (muted).</span>")
+			return
+		if(handle_spam_prevention(msg, MUTE_OOC))
+			return
+		if(findtext(msg, "byond://"))
+			to_chat(src, "<B>Advertising other servers is not allowed.</B>")
+			log_admin("[key_name(usr)] has attempted to advertise in LOOC: [msg]")
+			message_admins("[ADMIN_TPMONTY(usr)] has attempted to advertise in LOOC: [msg]")
+			return
+
+	mob.log_talk("LOOC: [msg]", LOG_LOOC)
+
+	var/message = "<font color='#6699CC'><span class='ooc'><span class='prefix'>LOOC:</span> [mob.name]: <span class='message'>[msg]</span></span></font>"
+
+	mob.visible_message(message, message)
+
+	for(var/client/C in GLOB.admins)
+		if(!check_other_rights(C, R_ADMIN, FALSE))
+			continue
+		if(C.prefs.toggles_chat & CHAT_OOC)
+			to_chat(C, "<font color='#6699CC'><span class='ooc'><span class='prefix'>LOOC: [key_name(mob)]</span>: <span class='message'>[msg]</span></span></font>")
 
 
 /client/verb/setup_character()

@@ -199,6 +199,12 @@
 	name = "medal of exceptional heroism"
 	desc = "An extremely rare golden medal awarded only by the TGMC. To recieve such a medal is the highest honor and as such, very few exist."
 
+/obj/item/clothing/tie/medal/letter/commendation
+	name = "letter of commendation"
+	desc = "A letter printed on cardstock often filled with praise for the person it is intended for."
+	icon = 'icons/obj/items/paper.dmi'
+	icon_state = "commendation"
+
 //Armbands
 /obj/item/clothing/tie/armband
 	name = "red armband"
@@ -277,10 +283,11 @@
 
 /obj/item/clothing/tie/holster/proc/unholster(mob/user as mob)
 	if(!holstered)
-		return
+		return FALSE
 
 	if(user.get_active_held_item() && user.get_inactive_held_item())
 		to_chat(user, "<span class='warning'>You need an empty hand to draw the [holstered]!</span>")
+		return FALSE
 	else
 		if(user.a_intent == INTENT_HARM)
 			usr.visible_message("<span class='danger'>[user] draws the [holstered], ready to shoot!</span>", \
@@ -291,6 +298,7 @@
 		user.put_in_hands(holstered)
 		holstered.add_fingerprint(user)
 		holstered = null
+		return TRUE
 
 /obj/item/clothing/tie/holster/attack_hand(mob/user as mob)
 	if (has_suit)	//if we are part of a suit

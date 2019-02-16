@@ -72,9 +72,6 @@
 	if(!on)
 		return
 
-	if(active_uplink_check(user))
-		return
-
 	var/dat = "<html><head><title>[src]</title></head><body><TT>"
 
 	if(!istype(src, /obj/item/device/radio/headset)) //Headsets dont get a mic button
@@ -136,10 +133,6 @@
 		if (!freerange || (frequency < 1200 || frequency > 1600))
 			new_frequency = sanitize_frequency(new_frequency, maxf)
 		set_frequency(new_frequency)
-		if(hidden_uplink)
-			if(hidden_uplink.check_trigger(usr, frequency, traitor_frequency))
-				usr << browse(null, "window=radio")
-				return
 
 	else if (href_list["talk"])
 		broadcasting = text2num(href_list["talk"])

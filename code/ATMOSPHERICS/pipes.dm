@@ -185,7 +185,7 @@
 
 /obj/machinery/atmospherics/pipe/simple/hide(var/i)
 	if(level == 1 && istype(loc, /turf))
-		invisibility = i ? 101 : 0
+		invisibility = i ? INVISIBILITY_MAXIMUM : 0
 	update_icon()
 
 /obj/machinery/atmospherics/pipe/simple/process()
@@ -424,7 +424,7 @@
 
 /obj/machinery/atmospherics/pipe/manifold/hide(var/i)
 	if(level == 1 && istype(loc, /turf))
-		invisibility = i ? 101 : 0
+		invisibility = i ? INVISIBILITY_MAXIMUM : 0
 	update_icon()
 
 /obj/machinery/atmospherics/pipe/manifold/pipeline_expansion()
@@ -786,7 +786,7 @@
 
 /obj/machinery/atmospherics/pipe/manifold4w/hide(var/i)
 	if(level == 1 && istype(loc, /turf))
-		invisibility = i ? 101 : 0
+		invisibility = i ? INVISIBILITY_MAXIMUM : 0
 	update_icon()
 
 /obj/machinery/atmospherics/pipe/manifold4w/initialize()
@@ -925,7 +925,7 @@
 
 /obj/machinery/atmospherics/pipe/cap/hide(var/i)
 	if(level == 1 && istype(loc, /turf))
-		invisibility = i ? 101 : 0
+		invisibility = i ? INVISIBILITY_MAXIMUM : 0
 	update_icon()
 
 /obj/machinery/atmospherics/pipe/cap/pipeline_expansion()
@@ -1106,9 +1106,9 @@
 
 	if(istype(W, /obj/item/device/analyzer) && in_range(user, src))
 		for (var/mob/O in viewers(user, null))
-			to_chat(O, "<span class='warning'>[user] has used the analyzer on [bicon(icon)]</span>")
+			to_chat(O, "<span class='warning'>[user] has used the analyzer on [icon2html(icon, O)]</span>")
 
-		to_chat(user, "<span class='notice'>Results of analysis of [bicon(icon)]</span>")
+		to_chat(user, "<span class='notice'>Results of analysis of [icon2html(icon, user)]</span>")
 		if (pressure>0)
 			to_chat(user, "<span class='notice'>Pressure: [round(pressure,0.1)] kPa</span>")
 			to_chat(user, "<span class='notice'>[gas_type]: [100]%</span>")

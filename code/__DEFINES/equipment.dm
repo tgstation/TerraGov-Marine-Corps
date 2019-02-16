@@ -249,3 +249,54 @@
 
 #define ICE_PLANET_min_cold_protection_temperature 		200 //For the ice planet map protection from the elements.
 //=================================================
+
+//ITEM INVENTORY WEIGHT, FOR w_class
+#define WEIGHT_CLASS_TINY     1 //Usually items smaller then a human hand, ex: Playing Cards, Lighter, Scalpel, Coins/Money
+#define WEIGHT_CLASS_SMALL    2 //Pockets can hold small and tiny items, ex: Flashlight, Multitool, Grenades, GPS Device
+#define WEIGHT_CLASS_NORMAL   3 //Standard backpacks can carry tiny, small & normal items, ex: Fire extinguisher, Stunbaton, Gas Mask, Metal Sheets
+#define WEIGHT_CLASS_BULKY    4 //Items that can be weilded or equipped but not stored in an inventory, ex: Defibrillator, Backpack, Space Suits
+#define WEIGHT_CLASS_HUGE     5 //Usually represents objects that require two hands to operate, ex: Shotgun, Two Handed Melee Weapons
+#define WEIGHT_CLASS_GIGANTIC 6 //Essentially means it cannot be picked up or placed in an inventory, ex: Mech Parts, Safe
+
+#define SLOT_EQUIP_ORDER list(\
+	SLOT_IN_HOLSTER,\
+	SLOT_IN_S_HOLSTER,\
+	SLOT_IN_B_HOLSTER,\
+	SLOT_BACK,\
+	SLOT_WEAR_ID,\
+	SLOT_W_UNIFORM,\
+	SLOT_ACCESSORY,\
+	SLOT_WEAR_SUIT,\
+	SLOT_WEAR_MASK,\
+	SLOT_HEAD,\
+	SLOT_SHOES,\
+	SLOT_GLOVES,\
+	SLOT_EARS,\
+	SLOT_GLASSES,\
+	SLOT_BELT,\
+	SLOT_S_STORE,\
+	SLOT_L_STORE,\
+	SLOT_R_STORE,\
+	SLOT_IN_BOOT,\
+	SLOT_IN_STORAGE,\
+	SLOT_IN_L_POUCH,\
+	SLOT_IN_R_POUCH,\
+	SLOT_IN_ACCESSORY,\
+	SLOT_IN_SUIT,\
+	SLOT_IN_BACKPACK\
+	)
+
+#define SLOT_DRAW_ORDER list(\
+	SLOT_IN_HOLSTER,\
+	SLOT_IN_S_HOLSTER,\
+	SLOT_IN_B_HOLSTER,\
+	SLOT_BACK,\
+	SLOT_BELT,\
+	SLOT_S_STORE,\
+	SLOT_L_STORE,\
+	SLOT_R_STORE,\
+	SLOT_IN_BOOT,\
+	SLOT_WEAR_SUIT,\
+	SLOT_IN_ACCESSORY,\
+	SLOT_IN_STORAGE\
+	)

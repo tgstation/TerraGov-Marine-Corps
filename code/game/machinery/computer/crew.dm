@@ -54,7 +54,6 @@
 		sortkey = href_list["sortkey"]
 		return TRUE
 
-
 /obj/machinery/computer/crew/interact(mob/living/user)
 	ui_interact(user)
 
@@ -132,6 +131,3 @@
 		if(C.has_sensor && H.mind)
 			tracked |= C
 	return TRUE
-
-/*/proc/sensor_compare(list/a, list/b)
-	return sorttext(b[sortkey], a[sortkey])*/

@@ -8,12 +8,12 @@
 /obj/effect/landmark/Initialize()
 	. = ..()
 	tag = "landmark*[name]"
-	invisibility = 101
+	invisibility = INVISIBILITY_MAXIMUM
 	GLOB.landmarks_list += src
 
-// this proc is called by the gamemode when it starts to enable round type 
+// this proc is called by the gamemode when it starts to enable round type
 //   specific landmark behaviour to be defined at a landmark level instead of
-//   at the round level.  
+//   at the round level.
 // where possible replace this with a specific handler for that type
 /obj/effect/landmark/proc/on_round_start(flags_round_type=NOFLAGS,flags_landmarks=NOFLAGS)
 	return
@@ -127,19 +127,19 @@
 	if(!GLOB.distress_spawns_by_name["Distress_PMCItem"])
 		GLOB.distress_spawns_by_name["Distress_PMCItem"] = list()
 	GLOB.distress_spawns_by_name["Distress_PMCItem"] += loc
-	return INITIALIZE_HINT_QDEL 
+	return INITIALIZE_HINT_QDEL
 
 /obj/effect/landmark/distress_upp/Initialize()
 	if(!GLOB.distress_spawns_by_name["Distress_UPP"])
 		GLOB.distress_spawns_by_name["Distress_UPP"] = list()
 	GLOB.distress_spawns_by_name["Distress_UPP"] += loc
-	return INITIALIZE_HINT_QDEL 
+	return INITIALIZE_HINT_QDEL
 
 /obj/effect/landmark/distress_uppitem/Initialize()
 	if(!GLOB.distress_spawns_by_name["Distress_UPPItem"])
 		GLOB.distress_spawns_by_name["Distress_UPPItem"] = list()
 	GLOB.distress_spawns_by_name["Distress_UPPItem"] += loc
-	return INITIALIZE_HINT_QDEL 
+	return INITIALIZE_HINT_QDEL
 
 /obj/effect/landmark/prisonwarp/Initialize()
 	GLOB.prisonwarp += loc

@@ -1,0 +1,5 @@
+author: "Hughgent & Tobinerd"
+delete-after: True
+changes: 
+  - rscadd: "CMO can now give letters of commendation"
+  - rscadd: "New \"Letter of Commendation\" \"Medal\" for captains to award civilians with."

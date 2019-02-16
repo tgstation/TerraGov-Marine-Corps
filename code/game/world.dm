@@ -67,8 +67,8 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 	// due to this list not being instantiated.
 	populate_seed_list()
 
-	if(!RoleAuthority)
-		RoleAuthority = new /datum/authority/branch/role()
+	if(!SSjob)
+		SSjob = new /datum/authority/branch/role()
 		to_chat(world, "<span class='danger'>Job setup complete</span>")
 
 	if(!EvacuationAuthority)
@@ -230,7 +230,7 @@ var/world_topic_spam_protect_time = world.timeofday
 			s += "<a href=\"[CONFIG_GET(string/discordurl)]\"><b>[CONFIG_GET(string/server_name)] &#8212; [MAIN_SHIP_NAME]</a></b>"
 		else
 			s += "<b>[CONFIG_GET(string/server_name)] &#8212; [MAIN_SHIP_NAME]</b>"
-		if(ticker && master_mode)
+		if(Master?.current_runlevel && master_mode)
 			switch(GLOB.map_tag)
 				if("Ice Colony")
 					s += "<br>Map: <a href='[CONFIG_GET(string/icecolonyurl)]'><b>[GLOB.map_tag]</a></b>"
@@ -244,7 +244,7 @@ var/world_topic_spam_protect_time = world.timeofday
 					s += "<br>Map: <a href='[CONFIG_GET(string/whiskeyoutposturl)]'><b>[GLOB.map_tag]</a></b>"
 				else
 					s += "<br>Map: <b>[GLOB.map_tag]</b>"
-			s += "<br>Mode: <b>[ticker.mode.name]</b>"
+			s += "<br>Mode: <b>[(Master.current_runlevel & RUNLEVELS_DEFAULT) ? SSticker.mode.name : "Lobby"]</b>"
 			s += "<br>Round time: <b>[duration2text()]</b>"
 		else
 			s += "<br>Map: <b>[GLOB.map_tag]</b>"

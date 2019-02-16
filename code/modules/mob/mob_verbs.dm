@@ -79,14 +79,11 @@
 	set name = "Respawn"
 	set category = "OOC"
 
-	if(!GLOB.respawn_allowed || !check_rights(R_ADMIN, FALSE))
+	if(!GLOB.respawn_allowed && !check_rights(R_ADMIN, FALSE))
 		to_chat(usr, "<span class='notice'>Respawn is disabled.</span>")
 		return
 	if(stat != DEAD)
 		to_chat(usr, "<span class='boldnotice'>You must be dead to use this!</span>")
-		return
-	if(!ticker?.mode || ticker.mode.name == "meteor" || ticker.mode.name == "epidemic") //BS12 EDIT
-		to_chat(usr, "<span class='notice'>Respawn is disabled for this roundtype.</span>")
 		return
 	else
 		var/deathtime = world.time - src.timeofdeath

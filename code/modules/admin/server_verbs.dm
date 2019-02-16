@@ -9,7 +9,7 @@
 	if(alert("Restart the game world?", "Restart", "Yes", "No") != "Yes")
 		return
 
-	to_chat(world, "<span class='danger'>Restarting world!</span><span class='notice'>Initiated by: [usr.key]</span>")
+	to_chat(world, "<span class='danger'>Restarting world!</span> <span class='notice'>Initiated by: [usr.key]</span>")
 
 	log_admin("[key_name(usr)] initiated a restart.")
 	message_admins("[ADMIN_TPMONTY(usr)] initiated a restart.")
@@ -35,6 +35,29 @@
 
 	log_admin("[key_name(usr)] [GLOB.ooc_allowed ? "enabled" : "disabled"] OOC.")
 	message_admins("[ADMIN_TPMONTY(usr)] [GLOB.ooc_allowed ? "enabled" : "disabled"] OOC.")
+
+
+/datum/admins/proc/toggle_looc()
+	set category = "Server"
+	set name = "Toggle LOOC"
+	set desc = "Toggles LOOC for non-admins."
+
+	if(!check_rights(R_SERVER))
+		return
+
+	if(!config)
+		return
+
+	if(CONFIG_GET(flag/looc_enabled))
+		CONFIG_SET(flag/looc_enabled, FALSE)
+		to_chat(world, "<span class='boldnotice'>LOOC channel has been enabled!</span>")
+	else
+		CONFIG_SET(flag/looc_enabled, TRUE)
+		to_chat(world, "<span class='boldnotice'>LOOC channel has been disabled!</span>")
+
+
+	log_admin("[key_name(usr)] has [CONFIG_GET(flag/looc_enabled) ? "enabled" : "disabled"] LOOC.")
+	message_admins("[ADMIN_TPMONTY(usr)] has [CONFIG_GET(flag/looc_enabled) ? "enabled" : "disabled"] LOOC.")
 
 
 /datum/admins/proc/toggle_deadchat()
@@ -83,13 +106,13 @@
 	if(!check_rights(R_SERVER))
 		return
 
-	if(!ticker || ticker.current_state != GAME_STATE_PREGAME)
+	if(!SSticker || SSticker.current_state != GAME_STATE_PREGAME)
 		return
 
 	if(alert("Are you sure you want to start the round early?", "Confirmation","Yes","No") != "Yes")
 		return
 
-	ticker.current_state = GAME_STATE_SETTING_UP
+	SSticker.current_state = GAME_STATE_SETTING_UP
 
 	log_admin("[key_name(usr)] has started the game early.")
 	message_admins("[ADMIN_TPMONTY(usr)] has started the game early.")
@@ -158,13 +181,13 @@
 	if(!check_rights(R_SERVER))
 		return
 
-	if(!ticker?.mode)
+	if(!SSticker?.mode)
 		return
 
 	if(alert("Are you sure you want to end the round?", "Confirmation", "Yes","No") != "Yes")
 		return
 
-	ticker.mode.round_finished = MODE_INFESTATION_M_MINOR
+	SSticker.mode.round_finished = MODE_INFESTATION_M_MINOR
 
 	log_admin("[key_name(usr)] has made the round end early.")
 	message_admins("[ADMIN_TPMONTY(usr)] has made the round end early.")
@@ -178,13 +201,13 @@
 	if(!check_rights(R_SERVER))
 		return
 
-	if(!ticker)
+	if(!SSticker)
 		return
 
-	if(ticker.current_state != GAME_STATE_PREGAME)
-		ticker.delay_end = !ticker.delay_end
+	if(SSticker.current_state != GAME_STATE_PREGAME)
+		SSticker.delay_end = !SSticker.delay_end
 	else
-		to_chat(world, "<hr><span class='centerbold'>The game [!going ? "game will start soon" : "start has been delayed"].</span><hr>")
+		to_chat(world, "<hr><span class='centerbold'>The game [!going ? "will start soon" : "start has been delayed"].</span><hr>")
 
 	going = !going
 
@@ -254,10 +277,10 @@
 	if(!check_rights(R_SERVER))
 		return
 
-	if(!RoleAuthority)
+	if(!SSjob)
 		return
 
-	RoleAuthority.load_whitelist()
+	SSjob.load_whitelist()
 
 	log_admin("[key_name(usr)] manually reloaded the role whitelist.")
 	message_admins("[ADMIN_TPMONTY(usr)] manually reloaded the role whitelist.")

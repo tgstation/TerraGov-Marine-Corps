@@ -9,10 +9,9 @@
 /obj/machinery/power/smes/buildable
 	var/max_coils = 6 			//30M capacity, 1.5MW input/output when fully upgraded /w default coils
 	var/cur_coils = 1 			// Current amount of installed coils
-	var/safeties_enabled = 1 	// If 0 modifications can be done without discharging the SMES, at risk of critical failure.
-	var/failing = 0 			// If 1 critical failure has occured and SMES explosion is imminent.
-	should_be_mapped = 1
-	unacidable = 1
+	var/safeties_enabled = TRUE	// If 0 modifications can be done without discharging the SMES, at risk of critical failure.
+	var/failing = FALSE			// If 1 critical failure has occured and SMES explosion is imminent.
+	unacidable = TRUE
 
 /obj/machinery/power/smes/buildable/New()
 	component_parts = list()
@@ -168,7 +167,7 @@
 				A.set_broken()
 
 	// Failing SMES has special icon overlay.
-/obj/machinery/power/smes/buildable/updateicon()
+/obj/machinery/power/smes/buildable/update_icon()
 	if (failing)
 		overlays.Cut()
 		overlays += image('icons/obj/power.dmi', "smes_crit")
@@ -190,7 +189,7 @@
 			to_chat(user, "<span class='warning'>Safety circuit of [src] is preventing modifications while it's charged!</span>")
 			return
 
-		if (online || chargemode)
+		if (outputting || input_attempt)
 			to_chat(user, "<span class='warning'>Turn off the [src] first!</span>")
 			return
 
@@ -246,4 +245,4 @@
 		else if(ismultitool(W))
 			safeties_enabled = !safeties_enabled
 			to_chat(user, "<span class='warning'>You [safeties_enabled ? "connected" : "disconnected"] the safety circuit.</span>")
-			src.visible_message("[bicon(src)] <b>[src]</b> beeps: \"Caution. Safety circuit has been: [safeties_enabled ? "re-enabled" : "disabled. Please excercise caution."]\"")
+			src.visible_message("[icon2html(src, viewers(src))] <b>[src]</b> beeps: \"Caution. Safety circuit has been: [safeties_enabled ? "re-enabled" : "disabled. Please excercise caution."]\"")
