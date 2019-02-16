@@ -28,7 +28,7 @@ var/global/list/medal_awards = list()
 	if(!chosen_recipient || chosen_recipient == "Cancel") return
 	var/recipient_rank = listed_rcpt_ranks[chosen_recipient]
 	var/posthumous = 1
-	var/medal_type = input("What type of medal do you want to award?", "Medal Type", null) in list("distinguished conduct medal", "bronze heart medal","medal of valor", "medal of exceptional heroism")
+	var/medal_type = input("What type of medal do you want to award?", "Medal Type", null) in list("distinguished conduct medal", "bronze heart medal","medal of valor", "medal of exceptional heroism", "letter of commendation")
 	if(!medal_type) return
 	var/citation = copytext(sanitize(input("What should the medal citation read?","Medal Citation", null) as text|null), 1, MAX_MESSAGE_LEN)
 	if(!citation) return
@@ -47,10 +47,16 @@ var/global/list/medal_awards = list()
 	if(medal_location)
 		var/obj/item/clothing/tie/medal/MD
 		switch(medal_type)
-			if("distinguished conduct medal")	MD = new /obj/item/clothing/tie/medal/conduct(medal_location)
-			if("bronze heart medal") 			MD = new /obj/item/clothing/tie/medal/bronze_heart(medal_location)
-			if("medal of valor") 				MD = new /obj/item/clothing/tie/medal/silver/valor(medal_location)
-			if("medal of exceptional heroism")	MD = new /obj/item/clothing/tie/medal/gold/heroism(medal_location)
+			if("distinguished conduct medal")	
+				MD = new /obj/item/clothing/tie/medal/conduct(medal_location)
+			if("bronze heart medal") 			
+				MD = new /obj/item/clothing/tie/medal/bronze_heart(medal_location)
+			if("medal of valor") 				
+				MD = new /obj/item/clothing/tie/medal/silver/valor(medal_location)
+			if("medal of exceptional heroism")	
+				MD = new /obj/item/clothing/tie/medal/gold/heroism(medal_location)
+			if("letter of commendation")		
+				MD = new /obj/item/clothing/tie/medal/letter/commendation(medal_location)
 			else return
 		MD.recipient_name = chosen_recipient
 		MD.medal_citation = citation
