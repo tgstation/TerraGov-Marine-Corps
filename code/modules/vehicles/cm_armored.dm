@@ -533,6 +533,12 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		"<span class='danger'>You lunge at [src]!</span>")
 		return 0
 
+	else
+		playsound(loc, "alien_claw_metal", 25, 1)
+
+	if(M.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
+		M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
+
 	M.visible_message("<span class='danger'>\The [M] slashes [src]!</span>", \
 	"<span class='danger'>You slash [src]!</span>")
 

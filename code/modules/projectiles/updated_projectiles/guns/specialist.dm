@@ -33,19 +33,11 @@
                         )
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY
+	starting_attachment_types = list(/obj/item/attachable/scope/m42a, /obj/item/attachable/sniperbarrel)
 
 /obj/item/weapon/gun/rifle/sniper/M42A/Initialize()
 	select_gamemode_skin(type, list(MAP_ICE_COLONY = "s_m42a"))
 	. = ..()
-	var/obj/item/attachable/scope/m42a/S = new(src)
-	S.attach_icon = "" //Let's make it invisible. The sprite already has one.
-	S.icon_state = ""
-	S.flags_attach_features &= ~ATTACH_REMOVABLE
-	S.Attach(src)
-	var/obj/item/attachable/sniperbarrel/Q = new(src)
-	Q.Attach(src)
-	update_attachables()
-	S.icon_state = initial(S.icon_state)
 	LT = image("icon" = 'icons/obj/items/projectiles.dmi',"icon_state" = "sniper_laser", "layer" =-LASER_LAYER)
 
 /obj/item/weapon/gun/rifle/sniper/M42A/Fire(atom/target, mob/living/user, params, reflex = 0, dual_wield)
@@ -195,17 +187,7 @@
 	attachable_allowed = list()
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 15, "rail_y" = 19, "under_x" = 20, "under_y" = 15, "stock_x" = 20, "stock_y" = 15)
-
-/obj/item/weapon/gun/rifle/sniper/elite/Initialize()
-	. = ..()
-	var/obj/item/attachable/scope/S = new(src)
-	S.icon_state = "pmcscope"
-	S.attach_icon = "pmcscope"
-	S.flags_attach_features &= ~ATTACH_REMOVABLE
-	S.Attach(src)
-	var/obj/item/attachable/sniperbarrel/Q = new(src)
-	Q.Attach(src)
-	update_attachables()
+	starting_attachment_types = list(/obj/item/attachable/scope/pmc, /obj/item/attachable/sniperbarrel)
 
 /obj/item/weapon/gun/rifle/sniper/elite/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/high_fire_delay) * 5
@@ -246,18 +228,7 @@
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 13, "rail_y" = 19, "under_x" = 24, "under_y" = 13, "stock_x" = 20, "stock_y" = 14)
-
-/obj/item/weapon/gun/rifle/sniper/svd/Initialize()
-	. = ..()
-	var/obj/item/attachable/S = new /obj/item/attachable/scope/slavic(src)
-	S.Attach(src)
-	S = new /obj/item/attachable/slavicbarrel(src)
-	S.Attach(src)
-	S = new /obj/item/attachable/stock/slavic(src)
-	S.flags_attach_features &= ~ATTACH_REMOVABLE
-	S.Attach(src)
-	update_attachables()
-
+	starting_attachment_types = list(/obj/item/attachable/scope/slavic, /obj/item/attachable/slavicbarrel, /obj/item/attachable/stock/slavic)
 
 /obj/item/weapon/gun/rifle/sniper/svd/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/mhigh_fire_delay) * 2
@@ -290,18 +261,7 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY
 	gun_skill_category = GUN_SKILL_SPEC
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
-
-/obj/item/weapon/gun/rifle/m4ra/Initialize()
-	. = ..()
-	var/obj/item/attachable/scope/m4ra/S = new(src)
-	S.icon_state = null // the gun's sprite already shows a scope
-	S.attach_icon = null
-	S.flags_attach_features &= ~ATTACH_REMOVABLE //Don't want it coming off.
-	S.Attach(src)
-	var/obj/item/attachable/stock/rifle/marksman/Q = new(src) //Already cannot be removed.
-	Q.Attach(src)
-	update_attachables()
-
+	starting_attachment_types = list(/obj/item/attachable/scope/m4ra, /obj/item/attachable/stock/rifle/marksman)
 
 /obj/item/weapon/gun/rifle/m4ra/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/high_fire_delay)
@@ -409,9 +369,6 @@
 	if(power_pack && power_pack.loc)
 		power_pack.attack_self(smart_gunner, TRUE)
 
-/obj/item/weapon/gun/smartgun/has_ammo_counter()
-	return TRUE
-
 /obj/item/weapon/gun/smartgun/get_ammo_type()
 	if(!ammo)
 		return list("unknown", "unknown")
@@ -460,27 +417,21 @@
 	wield_delay = 8
 	fire_sound = 'sound/weapons/gun_m92_attachable.ogg'
 	cocked_sound = 'sound/weapons/gun_m92_cocked.ogg'
-	var/list/grenades = new/list()
+	var/list/grenades = list()
 	var/max_grenades = 6
 	aim_slowdown = SLOWDOWN_ADS_SPECIALIST
 	attachable_allowed = list(
 						/obj/item/attachable/magnetic_harness)
 
-	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY
+	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	gun_skill_category = GUN_SKILL_SPEC
 	var/datum/effect_system/smoke_spread/smoke
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 
 /obj/item/weapon/gun/launcher/m92/Initialize()
 	. = ..()
-	sleep(1)
-	grenades += new /obj/item/explosive/grenade/frag(src)
-	grenades += new /obj/item/explosive/grenade/frag(src)
-	grenades += new /obj/item/explosive/grenade/frag(src)
-	grenades += new /obj/item/explosive/grenade/frag(src)
-	grenades += new /obj/item/explosive/grenade/frag(src)
-	grenades += new /obj/item/explosive/grenade/frag(src)
-
+	for(var/i in 1 to 6)
+		grenades += new /obj/item/explosive/grenade/frag(src)
 
 /obj/item/weapon/gun/launcher/m92/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/tacshottie_fire_delay)
@@ -573,9 +524,6 @@
 		F.activate()
 		playsound(F.loc, fire_sound, 50, 1)
 
-/obj/item/weapon/gun/launcher/m92/has_ammo_counter()
-	return TRUE
-
 /obj/item/weapon/gun/launcher/m92/get_ammo_type()
 	if(length(grenades) == 0)
 		return list("empty", "empty")
@@ -610,14 +558,12 @@
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 
 /obj/item/weapon/gun/launcher/m81/Initialize(loc, spawn_empty)
-	set waitfor = 0
 	. = ..()
 	if(!spawn_empty)
 		if(riot_version)
 			grenade = new /obj/item/explosive/grenade/chem_grenade/teargas(src)
 		else
 			grenade = new /obj/item/explosive/grenade/frag(src)
-
 
 /obj/item/weapon/gun/launcher/m81/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/max_fire_delay) * 1.5
@@ -735,7 +681,7 @@
 						/obj/item/attachable/magnetic_harness,
 						/obj/item/attachable/scope/mini)
 
-	flags_gun_features = GUN_WIELDED_FIRING_ONLY
+	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	gun_skill_category = GUN_SKILL_SPEC
 	reload_sound = 'sound/weapons/gun_mortar_reload.ogg'
 	var/datum/effect_system/smoke_spread/smoke
@@ -849,9 +795,6 @@
 
 		. = ..()
 
-/obj/item/weapon/gun/launcher/rocket/has_ammo_counter()
-	return TRUE
-
 /obj/item/weapon/gun/launcher/rocket/get_ammo_type()
 	if(!ammo)
 		return list("unknown", "unknown")
@@ -917,16 +860,7 @@
 						/obj/item/attachable/attached_gun/shotgun,
 						/obj/item/attachable/attached_gun/grenade)
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 8, "rail_y" = 18, "under_x" = 24, "under_y" = 12, "stock_x" = 13, "stock_y" = 15)
-
-/obj/item/weapon/gun/shotgun/merc/scout/New()
-	. = ..()
-	var/obj/item/attachable/stock/scout/G = new(src)
-	G.flags_attach_features &= ~ATTACH_REMOVABLE
-	G.Attach(src)
-	update_attachable(G.slot)
-	G.icon_state = initial(G.icon_state)
-	if(current_mag && current_mag.current_rounds > 0)
-		load_into_chamber()
+	starting_attachment_types = list(/obj/item/attachable/stock/scout)
 
 /obj/item/weapon/gun/shotgun/merc/scout/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/scoutshottie_fire_delay)
@@ -958,18 +892,13 @@
 	wield_delay = 15
 	gun_skill_category = GUN_SKILL_SPEC
 	aim_slowdown = SLOWDOWN_ADS_RIFLE
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_BURST_ON|GUN_WIELDED_FIRING_ONLY
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_BURST_ON|GUN_WIELDED_FIRING_ONLY|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	attachable_allowed = list(
 						/obj/item/attachable/flashlight,
 						/obj/item/attachable/magnetic_harness,
 						/obj/item/attachable/gyro,
 						/obj/item/attachable/bipod)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 12)
-
-/obj/item/weapon/gun/minigun/Initialize(loc, spawn_empty)
-	. = ..()
-	if(current_mag && current_mag.current_rounds > 0)
-		load_into_chamber()
 
 /obj/item/weapon/gun/minigun/Fire(atom/target, mob/living/user, params, reflex = 0, dual_wield)
 	if(user.action_busy)
@@ -1001,9 +930,6 @@
 	else if(G != src) //sanity
 		return ..()
 	to_chat(usr, "<span class='warning'>This weapon can only fire in bursts!</span>")
-
-/obj/item/weapon/gun/minigun/has_ammo_counter()
-	return TRUE
 
 /obj/item/weapon/gun/minigun/get_ammo_type()
 	if(!ammo)

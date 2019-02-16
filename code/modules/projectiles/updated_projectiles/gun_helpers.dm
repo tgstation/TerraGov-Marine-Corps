@@ -775,10 +775,6 @@ should be alright.
 		return FALSE
 	return TRUE
 
-
-/obj/item/weapon/gun/proc/has_ammo_counter()
-	return FALSE
-
 /obj/item/weapon/gun/proc/get_ammo_type()
 	return FALSE
 

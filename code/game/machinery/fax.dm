@@ -15,13 +15,18 @@
 	var/obj/item/paper/message = null
 	var/sendcooldown = 0
 
-	var/department = "Corporate Liasion"
+	var/department = "Corporate Liaison"
 	var/selected = "Nanotrasen"
 
 
 /obj/machinery/faxmachine/Initialize()
 	. = ..()
 	GLOB.faxmachines += src
+
+
+/obj/machinery/faxmachine/Destroy()
+	GLOB.faxmachines -= src
+	return ..()
 
 
 /obj/machinery/faxmachine/process()
