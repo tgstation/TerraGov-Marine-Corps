@@ -898,3 +898,133 @@
 	scatter = config.med_scatter_value
 	damage_mult = config.base_hit_damage_mult
 	recoil = config.med_recoil_value
+
+//---------------------------------------------------------
+//M52 LAW single use AP rocket launcher avaialbe for marines
+
+/obj/item/weapon/gun/launcher/rocket/m52
+	name = "M52 LAW"
+	desc = "The M52 is the Light Anti-Armor Weapon (LAW) is a portable one-shot unguided anti-armor weapon of the USCM. Used to take out light-tanks and enemy structures. Every marine is trained to use it."
+	icon_state = "m52_0"
+	item_state = "m52_0"
+	origin_tech = "combat=6;materials=5"
+	current_mag = /obj/item/ammo_magazine/rocket/ap
+	flags_equip_slot = SLOT_BACK
+	wield_delay = 12
+	aim_slowdown = SLOWDOWN_ADS_SPECIALIST
+	attachable_allowed = null
+	var/state = 0	//0 - folded, 1 - unfolded, 2 - safeties off, iron sight and shoulder support set, ready to fire, same with icon_state
+
+	flags_gun_features = GUN_INTERNAL_MAG|GUN_WIELDED_FIRING_ONLY
+	gun_skill_category = GUN_SKILL_FIREARMS
+
+/obj/item/weapon/gun/launcher/rocket/m52/New()
+	..()
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 6, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
+	smoke = new()
+	smoke.attach(src)
+
+/obj/item/weapon/gun/launcher/rocket/set_gun_config_values()
+	fire_delay = config.high_fire_delay
+	accuracy_mult = config.base_hit_accuracy_mult
+	scatter = config.med_scatter_value
+	damage_mult = config.base_hit_damage_mult
+	recoil = config.med_recoil_value
+
+/obj/item/weapon/gun/launcher/rocket/m52/examine(mob/user)
+	..()
+	if(!ishuman(user))
+		return
+	if(!current_mag.current_rounds)
+		to_chat(user, "It's empty and useless now.")
+	else
+		switch(state)
+			if(0)
+				to_chat(user, "It's folded for transporting.")
+			if(1)
+				to_chat(user, "It's unfolded. Next step is to switch off safety and set up iron sights and shoulder support.")
+			if(2)
+				to_chat(user, "It's ready to fire. Make sure backblast area is clear.")
+
+/obj/item/weapon/gun/launcher/rocket/m52/able_to_fire(mob/living/user)
+	. = ..()
+	if (. && istype(user)) //Let's check all that other stuff first.
+		/*var/turf/current_turf = get_turf(user)
+		if (current_turf.z == 3 || current_turf.z == 4) //Can't fire on the Almayer, bub.
+			click_empty(user)
+			to_chat(user, "<span class='warning'>You can't fire that here!</span>")
+			return 0*/
+		if(!user.mind || !user.mind.cm_skills || user.mind.cm_skills.firearms < SKILL_FIREARMS_DEFAULT)
+			to_chat(user, "<span class='warning'>You don't seem to know how to use [src]...</span>")
+			return 0
+
+obj/item/weapon/gun/launcher/rocket/m52/clicked(var/mob/user, var/list/mods)
+	if (isobserver(user))
+		return
+
+	if (!ishuman(user))
+		return
+
+	if(mods["alt"])
+		switch(state)
+			if(0)
+				to_chat(user, "<span class='warning'>You need to unfold [src] tube first!</span>")
+				return
+			if(1)
+				to_chat(user, "<span class='notice'>You set iron sight and shoulder support up and then switch safeties off.</span>")
+				playsound(loc, 'sound/machines/switch.ogg',25,sound_range = 10)
+				icon_state = "m52_2"
+				item_state = "m52_2"
+				state = 2
+				return
+			if(2)
+				if(flags_item & WIELDED)
+					unwield(user)
+				to_chat(user, "<span class='notice'>You set iron sight and shoulder support down and then switch safeties on.</span>")
+				playsound(loc, 'sound/machines/switch.ogg',25,sound_range = 10)
+				icon_state = "m52_1"
+				item_state = "m52_1"
+				state = 1
+				return
+
+	return ..()
+
+obj/item/weapon/gun/launcher/rocket/m52/attack_self(mob/user)
+	if(!user.mind || !user.mind.cm_skills || user.mind.cm_skills.firearms < SKILL_FIREARMS_DEFAULT)
+		to_chat(user, "<span class='notice'>You have no idea how to manipulate this.</span>")
+		return
+	if(!(flags_item & WIELDED))
+		switch(state)
+			if(0)
+				to_chat(user, "<span class='notice'>You unfold [src] tube.</span>")
+				playsound(loc, 'sound/machines/hydraulics_1.ogg',25,sound_range = 10)
+				icon_state = "m52_1"
+				item_state = "m52_1"
+				state = 1
+				flags_equip_slot = NOFLAGS
+				sleep(3)
+				if(user.mind.cm_skills.spec_weapons >= SKILL_SPEC_TRAINED)
+					to_chat(user, "<span class='notice'>You set iron sight and shoulder support up and then switch safeties off in a one swift motion.</span>")
+					playsound(loc, 'sound/machines/switch.ogg',25,sound_range = 10)
+					icon_state = "m52_2"
+					item_state = "m52_2"
+					state = 2
+				return
+			if(1)
+				to_chat(user, "<span class='notice'>You fold [src] tube back.</span>")
+				playsound(loc, 'sound/machines/hydraulics_1.ogg',25,sound_range = 10)
+				icon_state = "m52_0"
+				item_state = "m52_0"
+				state = 0
+				flags_equip_slot = SLOT_BACK
+				return
+	..()
+
+obj/item/weapon/gun/launcher/rocket/m52/reload(mob/user, obj/item/ammo_magazine/rocket)
+	to_chat(user, "<span class='warning'>[src] is a single-use weapon, you can't reload it.</span>")
+	return
+
+obj/item/weapon/gun/launcher/rocket/m52/unload(mob/user)
+	if(user)
+		if(!current_mag.current_rounds) to_chat(user, "<span class='warning'>[src] is already empty!</span>")
+		else 							to_chat(user, "<span class='warning'>It is impossible to unload \the [src].</span>")
