@@ -1,4 +1,0 @@
-author: "by Surrealistik"
-delete-after: True
-changes: 
-  - rscadd: "Hit and Run involves building momentum. For every tile moved, the Runner's slash/tackle damage increases by +5% to a maximum of +100% damage or a 2x damage multiplier. All Hit and Run bonuses are lost if the Runner is stationary for more than 0.5 seconds, and upon hitting a target."
