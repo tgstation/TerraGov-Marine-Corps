@@ -38,10 +38,6 @@
 	set name = "Rotate Chair"
 	set category = "Object"
 	set src in view(0)
-
-	if(isobserver(usr) && CONFIG_GET(flag/ghost_interaction))
-		setDir(turn(dir, 90))
-		return TRUE
 	
 	var/mob/living/carbon/user = usr
 
