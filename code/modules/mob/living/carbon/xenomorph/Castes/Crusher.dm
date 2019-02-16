@@ -276,6 +276,21 @@
 			stop_momentum(charge_dir)
 			return FALSE
 
+	if(istype(target, /obj/vehicle/walker))
+		var/obj/vehicle/walker/H = target
+		if(charge_speed > charge_speed_buildup * charge_turfs_to_charge)
+			visible_message("<span class='danger'>[src] rams into [H] and skids to a halt!</span>",
+			"<span class='xenowarning'>You ram into [H] and skid to a halt!</span>")
+			to_chat(H.pilot, "<span class='danger'>ALERT! COLLISION DETECTED!</span>")
+			flags_pass = 0
+			update_icons()
+			H.Bumped(src)
+			stop_momentum(charge_dir)
+			return TRUE
+		else
+			stop_momentum(charge_dir)
+			return FALSE
+
 /atom/proc/charge_act(mob/living/carbon/Xenomorph/X)
 	return TRUE
 
