@@ -439,7 +439,7 @@
 	if(xeno_hivenumber(M) == hivenumber)
 		return M.attack_alien(src, force_intent = INTENT_HARM) //harmless nibbling.
 
-	if (!check_plasma(30))
+	if (!check_plasma(20))
 		return
 
 	if(M.stat == DEAD || ((M.status_flags & XENO_HOST) && istype(M.buckled, /obj/structure/bed/nest))) //Can't bully the dead/nested hosts.
@@ -454,7 +454,7 @@
 	var/armor_block = M.run_armor_check(target_zone)
 	var/damage = rand(xeno_caste.melee_damage_lower, xeno_caste.melee_damage_upper)
 	used_punch = TRUE
-	use_plasma(30)
+	use_plasma(20)
 	playsound(M, S, 50, 1)
 
 	if(!ishuman(M))
@@ -475,24 +475,12 @@
 			L.status &= ~LIMB_SPLINTED
 			to_chat(H, "<span class='danger'>The splint on your [L.display_name] comes apart!</span>")
 
-		if(isyautja(H))
-			L.take_damage(damage, 0, 0, 0, null, null, null, armor_block)
-		else if(L.status & LIMB_ROBOT)
-			L.take_damage(damage * 2, 0, 0, 0, null, null, null, armor_block)
-		else
-			var/fracture_chance = 100
-			switch(L.body_part)
-				if(HEAD)
-					fracture_chance = 50
-				if(CHEST)
-					fracture_chance = 50
-				if(GROIN)
-					fracture_chance = 50
-			fracture_chance *= max(0,round(1 - armor_block,0.01)) //Reduce the fracture chance by a % equal to the armor.
+		L.take_damage(damage, 0, 0, 0, null, null, null, armor_block)
+		if(iscarbon(L))
+			var/mob/living/carbon/C = L
+			C.adjust_stagger(3)
+			C.add_slowdown(3)
 
-			L.take_damage(damage, 0, 0, 0, null, null, null, armor_block)
-			if(prob(fracture_chance))
-				L.fracture()
 		H.apply_damage(damage, HALLOSS) //Armor penetrating halloss also applies.
 	shake_camera(M, 2, 1)
 	step_away(M, src, 2)
