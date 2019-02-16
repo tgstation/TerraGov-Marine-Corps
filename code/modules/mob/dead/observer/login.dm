@@ -1,6 +1,7 @@
 /mob/dead/observer/Login()
 	if(!client)
 		return
+
 	client.prefs.load_preferences()
 	ghost_medhud = client.prefs.ghost_medhud
 	ghost_sechud = client.prefs.ghost_sechud
@@ -9,7 +10,7 @@
 	var/datum/mob_hud/H
 	if(ghost_medhud)
 		H = huds[MOB_HUD_MEDICAL_OBSERVER]
-		H.add_hud_to(src)	
+		H.add_hud_to(src)
 	if(ghost_sechud)
 		H = huds[MOB_HUD_SECURITY_ADVANCED]
 		H.add_hud_to(src)
@@ -19,4 +20,5 @@
 	if(ghost_xenohud)
 		H = huds[MOB_HUD_XENO_STATUS]
 		H.add_hud_to(src)
+
 	return ..()

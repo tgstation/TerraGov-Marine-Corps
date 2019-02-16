@@ -28,12 +28,14 @@
 				I.rank = "N/A"
 				update_file = 1
 			dat += "<font color=#008800>[I.content]</font> <i>by [I.author] ([I.rank])</i> on <i><font color=blue>[I.timestamp]</i></font> "
-			if(I.author == usr.key || I.author == "Adminbot" || check_rights(R_EVERYTHING))
+			var/bot = CONFIG_GET(string/server_name) ? "[CONFIG_GET(string/server_name)] Bot" : "Adminbot"
+			if(I.author == usr.key || I.author == bot || check_rights(R_PERMISSIONS))
 				dat += "<A href='?src=[ref];notes_remove=[key];remove_index=[i]'>Remove</A> "
+				dat += "<A href='?src=[ref];notes_edit=[key];edit_index=[i]'>Edit</A> "
 			if(I.hidden)
-				dat += "<A href='?src=[ref];notes_unhide=[key];remove_index=[i]'>Unhide</A>"
+				dat += "<A href='?src=[ref];notes_unhide=[key];unhide_index=[i]'>Unhide</A>"
 			else
-				dat += "<A href='?src=[ref];notes_hide=[key];remove_index=[i]'>Hide</A>"
+				dat += "<A href='?src=[ref];notes_hide=[key];hide_index=[i]'>Hide</A>"
 			dat += "<br><br>"
 		if(update_file) to_chat(info, infos)
 
@@ -123,7 +125,7 @@
 		P.author = usr.key
 		P.rank = usr.client.holder.rank
 	else
-		P.author = "TGMC Adminbot"
+		P.author = CONFIG_GET(string/server_name) ? "[CONFIG_GET(string/server_name)] Bot" : "Adminbot"
 		P.rank = "Silicon"
 	P.content = note
 	P.timestamp = "[hourminute_string] [copytext(full_date, 1, day_loc)][day_string][copytext(full_date, day_loc + 2)]"
@@ -157,11 +159,12 @@
 	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
 	var/list/infos
 	info >> infos
-	if(!infos || infos.len < index)
+	if(!infos || length(infos) < index)
 		return
 
 	var/datum/player_info/item = infos[index]
 	infos.Remove(item)
+	
 	to_chat(info, infos)
 	qdel(info)
 
@@ -177,7 +180,7 @@
 	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
 	var/list/infos
 	info >> infos
-	if(!infos || infos.len < index)
+	if(!infos || length(infos) < index)
 		return
 
 	var/datum/player_info/item = infos[index]
@@ -198,7 +201,7 @@
 	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
 	var/list/infos
 	info >> infos
-	if(!infos || infos.len < index)
+	if(!infos || length(infos) < index)
 		return
 
 	var/datum/player_info/item = infos[index]
@@ -209,6 +212,32 @@
 
 	log_admin_private("[key_name(usr)] has made visible [key]'s note: [item.content]")
 	message_admins("[ADMIN_TPMONTY(usr)] has made visible [key]'s note: [item.content]")
+
+
+/proc/notes_edit(var/key, var/index)
+	if(!check_rights(R_BAN))
+		return
+
+	key = ckey(key)
+	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
+	var/list/infos
+	info >> infos
+	if(!infos || length(infos) < index)
+		return
+
+	var/datum/player_info/item = infos[index]
+
+	var/note = input(usr, "What do you want the note to say?", "Edit Note", item.content) as message|null
+	if(!note)
+		return
+
+	item.content = note
+
+	to_chat(info, infos)
+	qdel(info)
+
+	log_admin_private("[key_name(usr)] has edited [key]'s note: [note]")
+	message_admins("[ADMIN_TPMONTY(usr)] has edited [key]'s note: [note]")
 
 
 
@@ -238,7 +267,7 @@
 		note_keys = sortList(note_keys)
 
 		// Display the notes on the current page
-		var/number_pages = note_keys.len / PLAYER_NOTES_ENTRIES_PER_PAGE
+		var/number_pages = length(note_keys) / PLAYER_NOTES_ENTRIES_PER_PAGE
 		// Emulate ceil(why does BYOND not have ceil)
 		if(number_pages != round(number_pages))
 			number_pages = round(number_pages) + 1
@@ -248,7 +277,7 @@
 
 		var/lower_bound = page_index * PLAYER_NOTES_ENTRIES_PER_PAGE + 1
 		var/upper_bound = (page_index + 1) * PLAYER_NOTES_ENTRIES_PER_PAGE
-		upper_bound = min(upper_bound, note_keys.len)
+		upper_bound = min(upper_bound, length(note_keys))
 		for(var/index = lower_bound, index <= upper_bound, index++)
 			var/t = note_keys[index]
 			dat += "<tr><td><a href='?src=[ref];notes=show;ckey=[t]'>[t]</a></td></tr>"
@@ -273,7 +302,7 @@
 	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
 	var/list/infos
 	info >> infos
-	if(!infos || !infos.len)
+	if(!length(infos))
 		return FALSE
 	else
 		return TRUE

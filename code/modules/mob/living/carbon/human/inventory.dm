@@ -1,20 +1,33 @@
 /mob/living/carbon/human/verb/quick_equip()
 	set name = "quick-equip"
-	set hidden = 1
+	set hidden = TRUE
 
-	if(ishuman(src))
-		var/mob/living/carbon/human/H = src
-		var/obj/item/I = H.get_active_held_item()
-		if(!I)
-			to_chat(H, "<span class='notice'>You are not holding anything to equip.</span>")
+	if(is_mob_incapacitated() || lying || istype(usr.loc, /obj/mecha))
+		return
+
+	var/obj/item/I = get_active_held_item()
+	if(!I)
+		if(next_move > world.time)
 			return
-		if(H.equip_to_appropriate_slot(I, FALSE))
-			if(hand)
-				update_inv_l_hand(0)
-			else
-				update_inv_r_hand(0)
+		if(client?.prefs?.preferred_slot)
+			if(draw_from_slot_if_possible(client.prefs.preferred_slot))
+				next_move = world.time + 3
+				return
+		for(var/slot in SLOT_DRAW_ORDER)
+			if(draw_from_slot_if_possible(slot))
+				next_move = world.time + 3
+				return
+	else
+		if(client?.prefs?.preferred_slot)
+			if(equip_to_slot_if_possible(I, client.prefs.preferred_slot, FALSE, FALSE, FALSE))
+				return
+		if(!equip_to_appropriate_slot(I, FALSE))
+			return
+		if(hand)
+			update_inv_l_hand(FALSE)
 		else
-			to_chat(H, "<span class='warning'>You are unable to equip that.</span>")
+			update_inv_r_hand(FALSE)
+
 
 /mob/living/carbon/human/proc/equip_in_one_of_slots(obj/item/W, list/slots, del_on_fail = 1)
 	for (var/slot in slots)
@@ -127,7 +140,7 @@
 			dropItemToGround(l_store)
 		if(belt)
 			dropItemToGround(belt)
-		if(wear_suit && (istype(wear_suit, /obj/item/clothing/suit/armor) || istype(wear_suit, /obj/item/clothing/suit/storage)))
+		if(wear_suit && istype(wear_suit, /obj/item/clothing/suit))
 			dropItemToGround(wear_suit)
 		w_uniform = null
 		update_suit_sensors()
@@ -348,13 +361,15 @@
 			S.handle_item_insertion(W, TRUE, src)
 		if(SLOT_IN_SUIT)
 			var/obj/item/clothing/suit/storage/S = wear_suit
-			if(istype(S) && S.pockets.storage_slots)
-				W.loc = S.pockets//Has to have some slots available.
+			var/obj/item/storage/internal/T = S.pockets
+			T.handle_item_insertion(W, FALSE)
+			T.close(src)
 		if(SLOT_IN_ACCESSORY)
 			var/obj/item/clothing/under/U = w_uniform
-			if(U && U.hastie)
-				var/obj/item/clothing/tie/storage/T = U.hastie
-				if(istype(T) && T.hold.storage_slots) W.loc = T.hold
+			var/obj/item/clothing/tie/storage/T = U.hastie
+			var/obj/item/storage/internal/S = T.hold
+			S.handle_item_insertion(W, FALSE)
+			S.close(src)
 		if(SLOT_IN_HOLSTER)
 			var/obj/item/storage/S = belt
 			S.handle_item_insertion(W, FALSE, src)
@@ -419,9 +434,18 @@
 			return handcuffed
 		if(SLOT_LEGCUFFED)
 			return legcuffed
-
-
-
+		if(SLOT_IN_BOOT)
+			return shoes
+		if(SLOT_IN_B_HOLSTER)
+			return back
+		if(SLOT_IN_HOLSTER)
+			return belt
+		if(SLOT_IN_STORAGE)
+			return wear_suit
+		if(SLOT_IN_S_HOLSTER)
+			return s_store
+		if(SLOT_IN_ACCESSORY)
+			return w_uniform
 
 
 /mob/living/carbon/human/stripPanelUnequip(obj/item/I, mob/M, slot_to_process)

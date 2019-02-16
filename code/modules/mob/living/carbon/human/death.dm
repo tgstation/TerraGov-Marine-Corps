@@ -62,7 +62,7 @@
 	if(!gibbed && species.death_sound)
 		playsound(loc, species.death_sound, 50, 1)
 
-	if(ticker && ticker.current_state == 3) //game has started, to ignore the map placed corpses.
+	if(SSticker && SSticker.current_state == 3) //game has started, to ignore the map placed corpses.
 		round_statistics.total_human_deaths++
 
 	GLOB.dead_human_list += src

@@ -727,7 +727,7 @@ var/global/list/damage_icon_parts = list()
 				for(var/i in marine_armor.armor_overlays)
 					I = marine_armor.armor_overlays[i]
 					if(I)
-						I = image(I.icon,src,I.icon_state)
+						I = image('icons/mob/suit_1.dmi',src,I.icon_state)
 						standing.overlays += I
 
 		if(wear_suit.blood_DNA)

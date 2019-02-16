@@ -54,7 +54,7 @@
 	// called when turf state changes
 	// hide the object if turf is intact
 	hide(var/intact)
-		invisibility = intact ? 101 : 0
+		invisibility = intact ? INVISIBILITY_MAXIMUM : 0
 		updateicon()
 
 	// update the icon_state

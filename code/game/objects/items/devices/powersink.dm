@@ -80,14 +80,14 @@
 
 	process()
 		if(attached)
-			var/datum/powernet/PN = attached.get_powernet()
+			var/datum/powernet/PN = attached.powernet
 			if(PN)
 				SetLuminosity(12)
 
 				// found a powernet, so drain up to max power from it
 
 				var/drained = min ( drain_rate, PN.avail )
-				PN.newload += drained
+				attached.add_delayedload(drained)
 				power_drained += drained
 
 				// if tried to drain more than available on powernet

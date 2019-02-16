@@ -442,9 +442,6 @@
 
 		if("manual") //Alright so to clean this up, fuck that manual control pop up. Its a good idea but its not working out in practice.
 			if(!manual_override)
-				if(user.interactee != src) //Make sure if we're using a machine we can't use another one (ironically now impossible due to handle_click())
-					to_chat(user, "<span class='warning'>You can't multitask like this!</span>")
-					return
 				if(operator != user && operator) //Don't question this. If it has operator != user it wont fucken work. Like for some reason this does it proper.
 					to_chat(user, "<span class='warning'>Someone is already controlling [src].</span>")
 					return
@@ -839,6 +836,8 @@
 		if(!locate(/obj/effect/decal/cleanable/blood/oil) in loc)
 			new /obj/effect/decal/cleanable/blood/oil(loc)
 	update_health(rand(M.xeno_caste.melee_damage_lower,M.xeno_caste.melee_damage_upper))
+	if(M.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
+		M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 
 /obj/machinery/marine_turret/bullet_act(var/obj/item/projectile/Proj) //Nope.
 	visible_message("[src] is hit by the [Proj.name]!")
@@ -1059,62 +1058,6 @@
 
 	if(targets.len) . = pick(targets)
 
-//Direct replacement to new proc. Everything works.
-/obj/machinery/marine_turret/handle_click(mob/living/carbon/human/user, atom/A, params)
-	if(!operator || !istype(user) || operator != user)
-		return FALSE
-	if(istype(A, /obj/screen))
-		return FALSE
-	if(!manual_override)
-		return FALSE
-	if(operator.interactee != src)
-		return FALSE
-	if(is_bursting)
-		return
-	if(get_dist(user, src) > 1 || user.is_mob_incapacitated())
-		user.visible_message("<span class='notice'>[user] lets go of [src]</span>",
-		"<span class='notice'>You let go of [src]</span>")
-		state("<span class='notice'>The [name] buzzes: AI targeting re-initialized.</span>")
-		user.unset_interaction()
-		return FALSE
-	if(user.get_active_held_item() != null)
-		to_chat(usr, "<span class='warning'>You need a free hand to shoot [src].</span>")
-		return FALSE
-
-	target = A
-	if(!istype(target))
-		return FALSE
-
-	if(target.z != z || target.z == 0 || z == 0 || isnull(operator.loc) || isnull(loc))
-		return FALSE
-
-	if(get_dist(target, loc) > 10)
-		return FALSE
-
-	var/list/modifiers = params2list(params) //Only single clicks.
-	if(modifiers["middle"] || modifiers["shift"] || modifiers["alt"] || modifiers["ctrl"])
-		return FALSE
-
-	var/dx = target.x - x
-	var/dy = target.y - y //Calculate which way we are relative to them. Should be 90 degree cone..
-	var/direct
-
-	if(abs(dx) < abs(dy))
-		if(dy > 0)
-			direct = NORTH
-		else
-			direct = SOUTH
-	else
-		if(dx > 0)
-			direct = EAST
-		else
-			direct = WEST
-
-	if(direct == dir && target.loc != src.loc && target.loc != operator.loc)
-		process_shot()
-		return TRUE
-
-	return FALSE
 /*
 /obj/item/turret_laptop
 	name = "UA 571-C Turret Control Laptop"

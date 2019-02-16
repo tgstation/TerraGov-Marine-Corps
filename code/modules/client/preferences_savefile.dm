@@ -1,5 +1,5 @@
 #define SAVEFILE_VERSION_MIN	12
-#define SAVEFILE_VERSION_MAX	17
+#define SAVEFILE_VERSION_MAX	18
 
 //handles converting savefiles to new formats
 //MAKE SURE YOU KEEP THIS UP TO DATE!
@@ -29,6 +29,9 @@
 
 	if(savefile_version < 17)
 		S["xeno_name"] << "Undefined"
+
+	if(savefile_version < 18)
+		S["preferred_slot"] << SLOT_S_STORE
 
 	savefile_version = SAVEFILE_VERSION_MAX
 	return TRUE
@@ -85,6 +88,8 @@
 	S["ghost_sechud"] 		>> ghost_sechud
 	S["ghost_squadhud"] 	>> ghost_squadhud
 	S["ghost_xenohud"] 		>> ghost_xenohud
+
+	S["preferred_slot"] 	>> preferred_slot
 
 	//Sanitize
 	ooccolor		= sanitize_hexcolor(ooccolor, initial(ooccolor))
@@ -147,6 +152,8 @@
 	S["ghost_sechud"] 		<< ghost_sechud
 	S["ghost_squadhud"] 	<< ghost_squadhud
 	S["ghost_xenohud"] 		<< ghost_xenohud
+
+	S["preferred_slot"] 	<< preferred_slot
 
 	return TRUE
 

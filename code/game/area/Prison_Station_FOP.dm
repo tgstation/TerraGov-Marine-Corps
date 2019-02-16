@@ -1,7 +1,7 @@
 //Base Instance
 /area/prison
 	name = "Fiorina Orbital Penitentiary"
-	ceiling = CEILING_METAL
+	ceiling = CEILING_GLASS
 
 //SECURITY
 /area/prison/security
@@ -39,7 +39,6 @@
 
 /area/prison/security/monitoring/medsec/south
 	name = "\improper Medium-Security Monitoring"
-	ceiling = CEILING_GLASS
 
 /area/prison/security/monitoring/medsec/central
 	name = "\improper Central Medium-Security Monitoring"
@@ -52,7 +51,6 @@
 
 /area/prison/security/monitoring/maxsec/panopticon
 	name = "\improper Panopticon Monitoring"
-	ceiling = CEILING_GLASS
 
 /area/prison/security/monitoring/protective
 	name = "\improper Protective Custody Monitoring"
@@ -168,6 +166,7 @@
 
 /area/prison/maintenance
 	icon_state = "asmaint"
+	ceiling = CEILING_METAL
 
 /area/prison/maintenance/residential/nw
 	name = "\improper Northwest Civilian Residences Maintenance"
@@ -198,7 +197,6 @@
 /area/prison/maintenance/hangar_barracks
 	name = "\improper Hangar-Barracks Maintenance"
 	icon_state = "maint_e_shuttle"
-
 
 /area/prison/canteen
 	name = "\improper Canteen"
@@ -243,17 +241,16 @@
 /area/prison/yard
 	name = "\improper Yard"
 	icon_state = "thunder"
-	ceiling = CEILING_GLASS
+	ceiling = CEILING_NONE
 
 /area/prison/hallway/entrance
 	name = "\improper Entrance Hallway"
 	icon_state = "entry"
-	ceiling = CEILING_GLASS
+
 
 /area/prison/hallway/central
 	name = "\improper Central Ring"
 	icon_state = "hallC1"
-	ceiling = CEILING_GLASS
 
 /area/prison/hallway/east
 	name = "\improper East Hallway"
@@ -280,6 +277,7 @@
 	icon_state = "purple"
 
 /area/prison/cellblock/
+	ceiling = CEILING_METAL
 
 /area/prison/cellblock/lowsec/nw
 	name = "\improper Northwest Low-Security Cellblock"
@@ -340,7 +338,6 @@
 /area/prison/cellblock/maxsec/south
 	name = "\improper Maximum-Security Suspended Cellblock"
 	icon_state = "cells_max_s"
-	ceiling = CEILING_GLASS
 
 /area/prison/cellblock/vip
 	name = "\improper VIP Cells"
@@ -430,10 +427,12 @@
 /area/prison/hangar/main
 	name = "\improper Main Hangar"
 	icon_state = "hangar_alpha"
+	ceiling = CEILING_NONE
 
 /area/prison/hangar/civilian
 	name = "\improper Civilian Hangar"
 	icon_state = "hangar_beta"
+	ceiling = CEILING_NONE
 
 /area/prison/hangar_storage/main
 	name = "\improper Main Hangar Storage"

@@ -1,3 +1,3 @@
 /mob/living/carbon/Xenomorph/Login()
 	..()
-	if(ticker && ticker.mode) ticker.mode.xenomorphs |= mind
+	if(SSticker?.mode) SSticker.mode.xenomorphs |= mind

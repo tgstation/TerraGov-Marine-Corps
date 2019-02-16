@@ -53,7 +53,7 @@
 	M.entangle_delay = world.time + duration
 	M.visible_message("<span class='danger'>[M] gets entangled in the barbed wire!</span>",
 	"<span class='danger'>You get entangled in the barbed wire! Resist to untangle yourself after [(M.entangle_delay - world.time) * 0.1] seconds!</span>", null, 5)
-	M.frozen += 1
+	M.set_frozen(TRUE)
 	entangled_list += M //Add the entangled person to the trapped list.
 	M.entangled_by = src
 
@@ -66,7 +66,7 @@
 	entangled_list -= M
 	M.entangled_by = null
 	M.entangle_delay = null
-	M.frozen = FALSE
+	M.set_frozen(FALSE)
 	M.update_canmove()
 	M.apply_damage(rand(RAZORWIRE_BASE_DAMAGE * 0.8, RAZORWIRE_BASE_DAMAGE * 1.2), BRUTE, def_zone, armor_block, null, 1) //Apply damage as we tear free
 	M.next_move_slowdown += RAZORWIRE_SLOWDOWN //big slowdown
@@ -81,7 +81,7 @@
 /obj/structure/razorwire/Destroy()
 	. = ..()
 	for(var/mob/living/M in entangled_list)
-		M.frozen = FALSE
+		M.set_frozen(FALSE)
 		M.update_canmove()
 		if(M.entangled_by == src)
 			M.entangled_by = null
@@ -198,6 +198,8 @@
 	"<span class='danger'>The barbed wire slices into you!</span>", null, 5)
 	M.apply_damage(rand(RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MIN_DAMAGE_MULT_LOW, RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MAX_DAMAGE_MULT_LOW)) //About a third as damaging as actually entering
 	update_health(TRUE)
+	if(M.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
+		M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 
 /obj/structure/razorwire/ex_act(severity)
 	switch(severity)

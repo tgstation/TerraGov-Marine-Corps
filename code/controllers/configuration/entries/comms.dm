@@ -1,5 +1,3 @@
-/datum/config_entry/string/comms_password
-
 /datum/config_entry/string/comms_key
 	protection = CONFIG_ENTRY_HIDDEN
 
@@ -23,8 +21,3 @@
 	return key_value != "byond:\\address:port" && ..()
 
 /datum/config_entry/string/cross_comms_name
-
-/datum/config_entry/string/medal_hub_address
-
-/datum/config_entry/string/medal_hub_password
-	protection = CONFIG_ENTRY_HIDDEN

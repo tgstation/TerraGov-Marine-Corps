@@ -73,6 +73,7 @@
 /datum/reagent/proc/on_overdose_start(mob/living/M, alien)
 	if(prob(30)) //placeholder vague feedback
 		to_chat(M, "<span class='notice'>You feel a little nauseous...</span>")
+	log_combat(M, M, "has been overdosed on [name].")
 	return
 
 // Similar to the above, but for CRITICAL overdose effects.
@@ -80,6 +81,7 @@
 	return
 
 /datum/reagent/proc/on_overdose_crit_start(mob/living/M, alien)
+	log_combat(M, M, "has been critically overdosed on [name].")
 	to_chat(M, "<span class='danger'>You feel like you took too much of [name]!</span>")
 	return
 

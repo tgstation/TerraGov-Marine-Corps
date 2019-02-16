@@ -106,8 +106,8 @@
 
 	if((istype(H) && H.get_target_lock(iff_signal)) || iscyborg(H)) return
 
-	H.visible_message("<span class='danger'>[bicon(src)] The [name] clicks as [H] moves in front of it.</span>", \
-	"<span class='danger'>[bicon(src)] The [name] clicks as you move in front of it.</span>", \
+	H.visible_message("<span class='danger'>[icon2html(src, viewers(H))] The [name] clicks as [H] moves in front of it.</span>", \
+	"<span class='danger'>[icon2html(src, viewers(H))] The [name] clicks as you move in front of it.</span>", \
 	"<span class='danger'>You hear a click.</span>")
 
 	triggered = 1
@@ -152,7 +152,7 @@
 	name = "claymore tripwire"
 	anchored = 1
 	mouse_opacity = 0
-	invisibility = 101
+	invisibility = INVISIBILITY_MAXIMUM
 	unacidable = 1 //You never know
 	var/obj/item/explosive/mine/linked_claymore
 

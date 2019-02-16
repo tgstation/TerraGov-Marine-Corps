@@ -44,6 +44,7 @@
 	var/scatter					= 0				//How much the bullet scatters when fired.
 	var/burst_scatter_mult		= 3				//Multiplier. Increases or decreases how much bonus scatter is added when burst firing (wielded only).
 
+	var/accuracy_mod			= 0				//accuracy modifier, used by most attachments.
 	var/accuracy_mult_unwielded 		= 1		//same vars as above but for unwielded firing.
 	var/recoil_unwielded 				= 0
 	var/scatter_unwielded 				= 0
@@ -113,8 +114,10 @@
 			current_mag = null
 			update_icon()
 		else
-			current_mag = new current_mag(src, spawn_empty ? 1 : 0)
+			current_mag = new current_mag(src, spawn_empty ? TRUE : FALSE)
 			ammo = current_mag.default_ammo ? GLOB.ammo_list[current_mag.default_ammo] : GLOB.ammo_list[/datum/ammo/bullet] //Latter should never happen, adding as a precaution.
+		if(flags_gun_features & GUN_LOAD_INTO_CHAMBER && current_mag?.current_rounds > 0)
+			load_into_chamber()
 	else
 		ammo = GLOB.ammo_list[ammo] //If they don't have a mag, they fire off their own thing.
 	set_gun_config_values()
@@ -128,6 +131,7 @@
 //amounts to get specific values in each gun subtype's New().
 //This makes reading each gun's values MUCH easier.
 /obj/item/weapon/gun/proc/set_gun_config_values()
+	accuracy_mod = CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
 	fire_delay = CONFIG_GET(number/combat_define/mhigh_fire_delay)
 	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
 	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
@@ -196,11 +200,11 @@
 	else
 		dat += "The safety's off!<br>"
 
-	if(rail) 	dat += "It has [bicon(rail)] [rail.name] mounted on the top.<br>"
-	if(muzzle) 	dat += "It has [bicon(muzzle)] [muzzle.name] mounted on the front.<br>"
-	if(stock) 	dat += "It has [bicon(stock)] [stock.name] for a stock.<br>"
+	if(rail) 	dat += "It has [icon2html(rail, user)] [rail.name] mounted on the top.<br>"
+	if(muzzle) 	dat += "It has [icon2html(muzzle, user)] [muzzle.name] mounted on the front.<br>"
+	if(stock) 	dat += "It has [icon2html(stock, user)] [stock.name] for a stock.<br>"
 	if(under)
-		dat += "It has [bicon(under)] [under.name]"
+		dat += "It has [icon2html(under, user)] [under.name]"
 		if(under.flags_attach_features & ATTACH_WEAPON)
 			dat += " ([under.current_rounds]/[under.max_rounds])"
 		dat += " mounted underneath.<br>"
@@ -479,10 +483,10 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 			flags_gun_features &= ~GUN_BURST_FIRING
 		return
 
-	if(user && user.client && user.gun_mode && !(A in target))
-		PreFire(A,user,params) //They're using the new gun system, locate what they're aiming at.
-	else
-		Fire(A,user,params) //Otherwise, fire normally.
+	if(user?.client && user.gun_mode && !(A in target))
+		PreFire(A, user, params) //They're using the new gun system, locate what they're aiming at.
+	else if(!istype(A, /obj/screen))
+		Fire(A, user, params) //Otherwise, fire normally.
 
 /*
 load_into_chamber(), reload_into_chamber(), and clear_jam() do all of the heavy lifting.

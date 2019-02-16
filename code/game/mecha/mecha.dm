@@ -189,7 +189,7 @@
 	if(equipment && equipment.len)
 		to_chat(user, "It's equipped with:")
 		for(var/obj/item/mecha_parts/mecha_equipment/ME in equipment)
-			to_chat(user, "[bicon(ME)] [ME]")
+			to_chat(user, "[icon2html(ME, user)] [ME]")
 
 
 /obj/mecha/proc/drop_item()//Derpfix, but may be useful in future for engineering exosuits.
@@ -1151,7 +1151,7 @@
 						<script language='javascript' type='text/javascript'>
 						[js_byjax]
 						[js_dropdowns]
-						function ticker() {
+						function SSticker() {
 						    setInterval(function(){
 						        window.location='byond://?src=\ref[src]&update_content=1';
 						    }, 1000);
@@ -1159,7 +1159,7 @@
 
 						window.onload = function() {
 							dropdowns();
-							ticker();
+							SSticker();
 						}
 						</script>
 						</head>
@@ -1345,7 +1345,7 @@
 /obj/mecha/proc/occupant_message(message as text)
 	if(message)
 		if(occupant && occupant.client)
-			to_chat(occupant, "[bicon(src)] [message]")
+			to_chat(occupant, "[icon2html(src, occupant)] [message]")
 	return
 
 /obj/mecha/log_message(message as text, message_type=LOG_GAME, color=null)

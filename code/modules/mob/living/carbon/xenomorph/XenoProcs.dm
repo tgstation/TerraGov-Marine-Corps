@@ -7,8 +7,8 @@
 	if(!message)
 		return
 
-	if(ticker && ticker.mode && ticker.mode.xenomorphs.len) //Send to only xenos in our gamemode list. This is faster than scanning all mobs
-		for(var/datum/mind/L in ticker.mode.xenomorphs)
+	if(length(SSticker?.mode?.xenomorphs)) //Send to only xenos in our gamemode list. This is faster than scanning all mobs
+		for(var/datum/mind/L in SSticker.mode.xenomorphs)
 			var/mob/living/carbon/Xenomorph/M = L.current
 			if(M && istype(M) && !M.stat && M.client && hivenumber == M.hivenumber) //Only living and connected xenos
 				to_chat(M, "<span class='xenodanger'><font size=[size]> [message]</font></span>")
@@ -313,12 +313,17 @@
 	return ..() //Do the parent otherwise, for turfs.
 
 /mob/living/carbon/Xenomorph/proc/reset_movement()
-	frozen = FALSE
+	set_frozen(FALSE)
 	update_canmove()
 
 /mob/living/carbon/Xenomorph/proc/stop_movement()
-	frozen = TRUE
+	set_frozen(TRUE)
 	update_canmove()
+
+/mob/living/carbon/Xenomorph/set_frozen(freeze = TRUE)
+	if(fortify && !freeze)
+		return FALSE
+	return ..()
 
 //Bleuugh
 /mob/living/carbon/Xenomorph/proc/empty_gut()
@@ -525,7 +530,7 @@
 
 
 /mob/living/carbon/Xenomorph/proc/update_spits()
-	if(!ammo || !xeno_caste.spit_types.len) //Only update xenos with ammo and spit types.
+	if(!ammo || !xeno_caste.spit_types || !xeno_caste.spit_types.len) //Only update xenos with ammo and spit types.
 		return
 	for(var/i in 1 to xeno_caste.spit_types.len)
 		if(ammo.icon_state == GLOB.ammo_list[xeno_caste.spit_types[i]].icon_state)
@@ -589,6 +594,12 @@
 	else
 		generate_name()
 		update_living_queens()
+
+
+/mob/living/carbon/Xenomorph/Larva/death(gibbed, deathmessage)
+	log_admin("[key_name(src)] died as a Larva at [AREACOORD(src.loc)].")
+	message_admins("[ADMIN_TPMONTY(src)] died as a Larva.")
+	return ..()
 
 
 //////////// XENO CASTE PROCS //////////////////

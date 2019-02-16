@@ -18,7 +18,7 @@
 	attachable_allowed = list( //give it some flexibility.
 						/obj/item/attachable/flashlight,
 						/obj/item/attachable/magnetic_harness)
-	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY
+	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 	attachable_offset = list("rail_x" = 12, "rail_y" = 23)
 
@@ -266,7 +266,7 @@
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			if(istype(H.wear_suit, /obj/item/clothing/suit/fire) || (istype(H.wear_suit, /obj/item/clothing/suit/storage/marine/M35) && istype(H.head, /obj/item/clothing/head/helmet/marine/pyro)))
-				H.show_message(text("Your suit protects you from the flames."),1)
+				H.show_message(text("Your suit protects you from most of the flames."), 1)
 				armor_block = CLAMP(armor_block * 1.5, 0.75, 1) //Min 75% resist, max 100%
 		M.apply_damage(rand(burn,(burn*2))* fire_mod, BURN, null, armor_block) // Make it so its the amount of heat or twice it for the initial blast.
 
@@ -340,9 +340,6 @@
 
 		distance++
 
-/obj/item/weapon/gun/flamer/has_ammo_counter()
-	return TRUE
-
 /obj/item/weapon/gun/flamer/get_ammo_type()
 	if(!ammo)
 		return list("unknown", "unknown")
@@ -362,7 +359,7 @@
 	current_mag = /obj/item/ammo_magazine/flamer_tank/large
 	icon_state = "m240t"
 	item_state = "m240t"
-	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY
+	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	var/max_water = 200
 	var/last_use
 
@@ -517,7 +514,7 @@
 	. = ..()
 	if(attack_flag == "energy")
 		if(istype(wear_suit, /obj/item/clothing/suit/fire) || (istype(wear_suit, /obj/item/clothing/suit/storage/marine/M35) && istype(head, /obj/item/clothing/head/helmet/marine/pyro)))
-			show_message(text("Your suit protects you from the flames."),1)
+			show_message(text("Your suit protects you from most of the flames."), 1)
 			return CLAMP(. * 1.5, 0.75, 1) //Min 75% resist, max 100%
 
 // override this proc to give different walking-over-fire effects
@@ -535,6 +532,8 @@
 
 /mob/living/carbon/human/flamer_fire_crossed(burnlevel, firelevel, fire_mod = 1)
 	if(istype(wear_suit, /obj/item/clothing/suit/storage/marine/M35) && istype(shoes, /obj/item/clothing/shoes/marine/pyro) && istype(head, /obj/item/clothing/head/helmet/marine/pyro))
+		var/armor_block = run_armor_check(null, "energy")
+		apply_damage(round(burnlevel * 0.2) * fire_mod, BURN, null, armor_block)
 		return
 	. = ..()
 	if(isxeno(pulledby))
@@ -598,7 +597,7 @@
 
 /mob/living/carbon/human/flamer_fire_act(burnlevel, firelevel)
 	if(istype(wear_suit, /obj/item/clothing/suit/fire) || istype(wear_suit,/obj/item/clothing/suit/space/rig/atmos) || (istype(wear_suit, /obj/item/clothing/suit/storage/marine/M35) && istype(head, /obj/item/clothing/head/helmet/marine/pyro)))
-		to_chat(src, "<span class='warning'>Your suit protects you from the flames.</span>")
+		to_chat(src, "<span class='warning'>Your suit protects you from most of the flames.</span>")
 		adjustFireLoss(rand(0 ,burnlevel*0.25)) //Does small burn damage to a person wearing one of the suits.
 		return
 	return ..()

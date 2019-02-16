@@ -219,8 +219,11 @@
 	icon_state = "cargo_headset"
 	item_state = "headset"
 	frequency = PUB_FREQ
-	var/headset_hud_on = 1
 	var/obj/machinery/camera/camera
+	var/datum/mob_hud/squadhud = null
+	var/mob/living/carbon/human/wearer = null
+	var/headset_hud_on = FALSE
+	var/sl_direction = FALSE
 
 /obj/item/device/radio/headset/almayer/New()
 	. = ..()
@@ -229,13 +232,11 @@
 
 /obj/item/device/radio/headset/almayer/equipped(mob/living/carbon/human/user, slot)
 	if(slot == SLOT_EARS)
-		if(headset_hud_on)
-			var/datum/mob_hud/H = huds[MOB_HUD_SQUAD]
-			H.add_hud_to(user)
-			//squad leader locator is no longer invisible on our player HUD.
-			if(user.mind && user.assigned_squad && user.hud_used && user.hud_used.locate_leader)
-				user.hud_used.locate_leader.alpha = 255
-				user.hud_used.locate_leader.mouse_opacity = 1
+		wearer = user
+		squadhud = huds[MOB_HUD_SQUAD]
+		headset_hud_on = FALSE //So we always activate on equip.
+		sl_direction = FALSE
+		toggle_squadhud(wearer)
 	if(camera)
 		camera.c_tag = user.name
 	return ..()
@@ -243,43 +244,110 @@
 /obj/item/device/radio/headset/almayer/dropped(mob/living/carbon/human/user)
 	if(istype(user) && headset_hud_on)
 		if(user.wear_ear == src) //dropped() is called before the inventory reference is update.
-			var/datum/mob_hud/H = huds[MOB_HUD_SQUAD]
-			H.remove_hud_from(user)
-			//squad leader locator is invisible again
-			if(user.hud_used && user.hud_used.locate_leader)
-				user.hud_used.locate_leader.alpha = 0
-				user.hud_used.locate_leader.mouse_opacity = 0
+			squadhud.remove_hud_from(user)
+			user.hud_used.SL_locator.alpha = 0
+			wearer = null
+			squadhud = null
 	if(camera)
 		camera.c_tag = "Unknown"
 	return ..()
 
 
+/obj/item/device/radio/headset/almayer/Destroy()
+	if(wearer && headset_hud_on)
+		if(wearer.wear_ear == src)
+			squadhud.remove_hud_from(wearer)
+			wearer.SL_directional = null
+			if(wearer.assigned_squad)
+				STOP_TRACK_LEADER(wearer.assigned_squad.tracking_id, wearer)
+			wearer = null
+	squadhud = null
+	headset_hud_on = FALSE
+	sl_direction = null
+	return ..()
 
-/obj/item/device/radio/headset/almayer/verb/toggle_squadhud()
-	set name = "Toggle headset HUD"
+
+/obj/item/device/radio/headset/almayer/proc/toggle_squadhud(mob/living/carbon/human/user)
+	if(headset_hud_on)
+		squadhud.remove_hud_from(user)
+		if(sl_direction)
+			toggle_sl_direction(user)
+		to_chat(user, "<span class='notice'>You toggle the Squad HUD off.</span>")
+		playsound(src.loc, 'sound/machines/click.ogg', 15, 0, 1)
+		headset_hud_on = FALSE
+	else
+		squadhud.add_hud_to(user)
+		headset_hud_on = TRUE
+		if(user.mind && user.assigned_squad)
+			if(!sl_direction)
+				toggle_sl_direction(user)
+		to_chat(user, "<span class='notice'>You toggle the Squad HUD on.</span>")
+		playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
+
+/obj/item/device/radio/headset/almayer/proc/toggle_sl_direction(mob/living/carbon/human/user)
+	if(!headset_hud_on)
+		to_chat(user, "<span class='warning'>You need to turn the HUD on first!</span>")
+		return
+
+	if(sl_direction)
+		if(user.mind && user.assigned_squad && user.hud_used?.SL_locator)
+			user.hud_used.SL_locator.alpha = 0
+			STOP_TRACK_LEADER(user.assigned_squad.tracking_id, user)
+		sl_direction = FALSE
+		to_chat(user, "<span class='notice'>You toggle the SL directional display off.</span>")
+		playsound(src.loc, 'sound/machines/click.ogg', 15, 0, 1)
+	else
+		if(user.mind && user.assigned_squad && user.hud_used?.SL_locator)
+			user.hud_used.SL_locator.alpha = 128
+			to_chat(world,user.assigned_squad.tracking_id)
+			START_TRACK_LEADER(user.assigned_squad.tracking_id, user)
+		sl_direction = TRUE
+		to_chat(user, "<span class='notice'>You toggle the SL directional display on.</span>")
+		playsound(src.loc, 'sound/machines/click.ogg', 15, 0, 1)
+
+
+/obj/item/device/radio/headset/almayer/verb/configure_squadhud()
+	set name = "Configure Headset HUD"
 	set category = "Object"
 	set src in usr
 
-	if(usr.is_mob_incapacitated())
-		return 0
-	headset_hud_on = !headset_hud_on
-	if(ishuman(usr))
+	if(usr.is_mob_incapacitated() || usr != wearer || !ishuman(usr))
+		return FALSE
+
+	handle_interface(usr)
+
+/obj/item/device/radio/headset/almayer/proc/handle_interface(mob/living/carbon/human/user, flag1)
+	user.set_interaction(src)
+	var/dat = {"<TT>
+	<b><A href='?src=\ref[src];headset_hud_on=1'>Turn Squad HUD: [headset_hud_on ? "Off" : "On"]</A></b><BR>
+	<BR>
+	<b><A href='?src=\ref[src];sl_direction=1'>Turn Squad Leader Directional Indicator: [sl_direction ? "Off" : "On"]</A></b><BR>
+	<BR>
+	</TT>"}
+	user << browse(dat, "window=radio")
+	onclose(user, "radio")
+	return
+
+/obj/item/device/radio/headset/almayer/Topic(href, href_list)
+	if(usr.is_mob_incapacitated() || usr != wearer || !ishuman(usr))
+		return
+	if(usr.contents.Find(src) )
+		usr.set_interaction(src)
 		var/mob/living/carbon/human/user = usr
-		if(src == user.wear_ear) //worn
-			var/datum/mob_hud/H = huds[MOB_HUD_SQUAD]
-			if(headset_hud_on)
-				H.add_hud_to(usr)
-				if(user.mind && user.assigned_squad && user.hud_used && user.hud_used.locate_leader)
-					user.hud_used.locate_leader.alpha = 255
-					user.hud_used.locate_leader.mouse_opacity = 1
-					camera.status = TRUE //Allows us to turn the camera back on.
-			else
-				H.remove_hud_from(usr)
-				if(user.hud_used && user.hud_used.locate_leader)
-					user.hud_used.locate_leader.alpha = 0
-					user.hud_used.locate_leader.mouse_opacity = 0
-	to_chat(usr, "<span class='notice'>You toggle [src]'s headset HUD [headset_hud_on ? "on":"off"].</span>")
-	playsound(src,'sound/machines/click.ogg', 20, 1)
+		if(href_list["headset_hud_on"])
+			toggle_squadhud(user)
+
+		else if(href_list["sl_direction"])
+			toggle_sl_direction(user)
+
+		if(!master)
+			if(ishuman(loc))
+				handle_interface(loc)
+		else
+			if(ishuman(master.loc))
+				handle_interface(master.loc)
+	else
+		usr << browse(null, "window=radio")
 
 
 /obj/item/device/radio/headset/almayer/ce
@@ -336,92 +404,92 @@
 
 /obj/item/device/radio/headset/almayer/marine/alpha
 	name = "marine alpha radio headset"
-	desc = "This is used by alpha squad members. Channels are as follows: :z - general chat."
+	desc = "This is used by alpha squad members. Channels are as follows: ; - Alpha squad :z - general chat."
 	icon_state = "sec_headset"
 	frequency = ALPHA_FREQ //default frequency is alpha squad channel, not PUB_FREQ
 
 /obj/item/device/radio/headset/almayer/marine/alpha/lead
 	name = "marine alpha leader radio headset"
-	desc = "This is used by the marine alpha squad leader. Channels are as follows: :v - marine command, :z - general chat."
+	desc = "This is used by the marine alpha squad leader. Channels are as follows: ; - Alpha squad :v - marine command, :z - general chat."
 	keyslot2 = new /obj/item/device/encryptionkey/squadlead
 
 /obj/item/device/radio/headset/almayer/marine/alpha/engi
 	name = "marine alpha engineer radio headset"
-	desc = "This is used by the marine alpha combat engineers. Channels are as follows: :e - engineering, :z - general chat."
+	desc = "This is used by the marine alpha combat engineers. Channels are as follows: ; - Alpha squad :e - engineering, :z - general chat."
 	keyslot2 = new /obj/item/device/encryptionkey/engi
 
 /obj/item/device/radio/headset/almayer/marine/alpha/med
 	name = "marine alpha medic radio headset"
-	desc = "This is used by the marine alpha combat medics. Channels are as follows: :m - medical, :z - general chat."
+	desc = "This is used by the marine alpha combat medics. Channels are as follows: ; - Alpha Squad :m - medical, :z - general chat."
 	keyslot2 = new /obj/item/device/encryptionkey/med
 
 
 
 /obj/item/device/radio/headset/almayer/marine/bravo
 	name = "marine bravo radio headset"
-	desc = "This is used by bravo squad members. Channels are as follows: :z - general chat."
+	desc = "This is used by bravo squad members. Channels are as follows: ; - Bravo Squad :z - general chat."
 	icon_state = "eng_headset"
 	frequency = BRAVO_FREQ
 
 /obj/item/device/radio/headset/almayer/marine/bravo/lead
 	name = "marine bravo leader radio headset"
-	desc = "This is used by the marine bravo squad leader. Channels are as follows: :v - marine command, :z - general chat."
+	desc = "This is used by the marine bravo squad leader. Channels are as follows: ; - Bravo Squad :v - marine command, :z - general chat."
 	keyslot2 = new /obj/item/device/encryptionkey/squadlead
 
 /obj/item/device/radio/headset/almayer/marine/bravo/engi
 	name = "marine bravo engineer radio headset"
-	desc = "This is used by the marine bravo combat engineers. Channels are as follows: :e - engineering, :z - general chat."
+	desc = "This is used by the marine bravo combat engineers. Channels are as follows: ; - Bravo Squad :e - engineering, :z - general chat."
 	keyslot2 = new /obj/item/device/encryptionkey/engi
 
 /obj/item/device/radio/headset/almayer/marine/bravo/med
 	name = "marine bravo medic radio headset"
-	desc = "This is used by the marine bravo combat medics. Channels are as follows: :m - medical, :z - general chat."
+	desc = "This is used by the marine bravo combat medics. Channels are as follows: ; - Bravo Squad :m - medical, :z - general chat."
 	keyslot2 = new /obj/item/device/encryptionkey/med
 
 
 
 /obj/item/device/radio/headset/almayer/marine/charlie
 	name = "marine charlie radio headset"
-	desc = "This is used by charlie squad members. Channels are as follows: :z - general chat."
+	desc = "This is used by charlie squad members. Channels are as follows: ; - Charlie Squad :z - general chat."
 	icon_state = "charlie_headset"
 	frequency = CHARLIE_FREQ
 
 /obj/item/device/radio/headset/almayer/marine/charlie/lead
 	name = "marine charlie leader radio headset"
-	desc = "This is used by the marine charlie squad leader. Channels are as follows: :v - marine command, :z - general chat."
+	desc = "This is used by the marine charlie squad leader. Channels are as follows: ; - Charlie Squad :v - marine command, :z - general chat."
 	keyslot2 = new /obj/item/device/encryptionkey/squadlead
 
 /obj/item/device/radio/headset/almayer/marine/charlie/engi
 	name = "marine charlie engineer radio headset"
-	desc = "This is used by the marine charlie combat engineers. Channels are as follows: :e - engineering, :z - general chat."
+	desc = "This is used by the marine charlie combat engineers. Channels are as follows: ; - Charlie Squad :e - engineering, :z - general chat."
 	keyslot2 = new /obj/item/device/encryptionkey/engi
 
 /obj/item/device/radio/headset/almayer/marine/charlie/med
 	name = "marine charlie medic radio headset"
-	desc = "This is used by the marine charlie combat medics. Channels are as follows: :m - medical, :z - general chat."
+	desc = "This is used by the marine charlie combat medics. Channels are as follows: ; - Charlie Squad :m - medical, :z - general chat."
 	keyslot2 = new /obj/item/device/encryptionkey/med
 
 
 
 /obj/item/device/radio/headset/almayer/marine/delta
 	name = "marine delta radio headset"
-	desc = "This is used by delta squad members. Channels are as follows: :z - general chat."
+	desc = "This is used by delta squad members. Channels are as follows: ; - Delta Squad :z - general chat."
 	icon_state = "com_headset"
 	frequency = DELTA_FREQ
 
 /obj/item/device/radio/headset/almayer/marine/delta/lead
 	name = "marine delta leader radio headset"
-	desc = "This is used by the marine delta squad leader. Channels are as follows: :v - marine command, :z - general chat."
+	desc = "This is used by the marine delta squad leader. Channels are as follows: ; - Delta Squad :v - marine command, :z - general chat."
 	keyslot2 = new /obj/item/device/encryptionkey/squadlead
 
 /obj/item/device/radio/headset/almayer/marine/delta/engi
 	name = "marine delta engineer radio headset"
-	desc = "This is used by the marine delta combat engineers. Channels are as follows: :e - engineering, :z - general chat."
+	desc = "This is used by the marine delta combat engineers. Channels are as follows: ; - Delta Squad :e - engineering, :z - general chat."
 	keyslot2 = new /obj/item/device/encryptionkey/engi
 
 /obj/item/device/radio/headset/almayer/marine/delta/med
 	name = "marine delta medic radio headset"
-	desc = "This is used by the marine delta combat medics. Channels are as follows: :m - medical, :z - general chat."
+	desc = "This is used by the marine delta combat medics. Channels are as follows: ; - Delta Squad :m - medical, :z - general chat."
 	keyslot2 = new /obj/item/device/encryptionkey/med
 
 
