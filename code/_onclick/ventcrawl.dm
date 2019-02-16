@@ -100,7 +100,7 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 				return
 
 			visible_message("<span class='notice'>[src] scrambles into the ventilation ducts!</span>","<span class='notice'>You climb into the ventilation ducts.</span>")
-			if(!istype(src,/mob/living/carbon/Xenomorph/Hunter)) //Hunters silently enter/exit vents.
+			if(!isxenohunter(src)) //Hunters silently enter/exit vents.
 				pick(playsound(src, 'sound/effects/alien_ventpass1.ogg', 35, 1), playsound(src, 'sound/effects/alien_ventpass2.ogg', 35, 1))
 
 			forceMove(vent_found)
