@@ -137,6 +137,9 @@
 /obj/vehicle/walker/proc/move_in(mob/living/carbon/user)
 	if(!ishuman(user))
 		return
+	if(pilot)
+		to_chat(user, "There is someone occupying mecha right now.")
+		return
 	var/mob/living/carbon/human/H = user
 	for(var/ID in list(H.get_active_hand(), H.wear_id, H.belt))
 		if(operation_allowed(ID))
@@ -163,13 +166,16 @@
 
 /obj/vehicle/walker/proc/move_out()
 	if(!pilot)
-		return
+		return FALSE
+	if(health <= 0)
+		to_chat(pilot, "<span class='danger'>ALERT! Chassis integrity failing. Systems shutting down.</span>")
+	if(zoom)
+		zoom_activate()
 	pilot.client.mouse_pointer_icon = initial(pilot.client.mouse_pointer_icon)
 	pilot.loc = src.loc
 	pilot = null
 	update_icon()
-	if(zoom)
-		zoom = FALSE
+	return TRUE
 
 /obj/vehicle/walker/verb/lights()
 	set name = "Lights on/off"
@@ -185,6 +191,7 @@
 	else
 		lights = TRUE
 		SetLuminosity(initial(luminosity))
+	pilot << sound('sound/mecha/imag_enh.ogg',volume=50)
 
 /obj/vehicle/walker/verb/deploy_magazine()
 	set name = "Deploy Magazine"
@@ -365,11 +372,11 @@
 		playsound(loc, "alien_claw_metal", 25, 1)
 		M.flick_attack_overlay(src, "slash")
 		if(damage <= 5)
-			visible_message("[M] slashes [src], but only manages scratch its armor!", "You hear slash")
+			visible_message("<span class='danger'>[M] slashes [src], but only manages scratch its armor!</span>", "You hear slash")
 			to_chat(pilot, "<span class='danger'>ALERT! Hostile incursion detected. Deflected.</span>")
 			return
 		else
-			visible_message("[M] slashes [src]", "You hear slash")
+			visible_message("<span class='danger'>[M] slashes [src]</span>", "You hear slash")
 			to_chat(pilot, "<span class='danger'>ALERT! Hostile incursion detected. Chassis taking damage.</span>")
 			health -= damage
 			healthcheck()
@@ -381,16 +388,13 @@
 		health = maxhealth
 		return
 	if(health <= 0)
-		if(pilot)
-			to_chat(pilot, "<span class='danger'>ALERT! Chassis integrity failing. Systems shutting down.</span>")
-			move_out()
+		move_out()
 		if(istype(left, /obj/item/walker_gun/flamer) && left.ammo.current_rounds > 0 || istype(right, /obj/item/walker_gun/flamer) && right.ammo.current_rounds > 0)
 			visible_message("[src] napalm exploded!", "You hear blast")
 			explosion(get_turf(src), 0, 0, 1, 3)
 			new /obj/flamer_fire(get_turf(src), 20, 20, fire_spread_amount = 2)
 		new /obj/structure/walker_wreckage(src.loc)
-		pilot.loc = loc
-		pilot = null
+		playsound(loc, 'sound/effects/metal_crash.ogg', 75)
 		qdel(src)
 
 /obj/vehicle/walker/bullet_act(var/obj/item/projectile/Proj)
@@ -778,7 +782,7 @@
 			return
 		eject()
 		return
-	if(href_list["eject"])
+	if(href_list["lights"])
 		handle_lights()
 		return
 	if(href_list["zoom"])
@@ -789,8 +793,8 @@
 /obj/structure/walker_wreckage
 	name = "CW13 wreckage"
 	desc = "Remains of some unfortunate walker. Completely unrepairable."
-	icon = 'icons/mecha/mecha.dmi'
-	icon_state = "marauder-broken"
+	icon = 'icons/obj/vehicles/Mecha.dmi'
+	icon_state = "mecha-broken"
 	density = TRUE
 	anchored = TRUE
 	opacity = FALSE
