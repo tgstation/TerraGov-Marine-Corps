@@ -33,6 +33,7 @@
 	sparks.attach(src)
 	dcell = new/obj/item/cell(src)
 	update_icon()
+	. = ..()
 
 /obj/item/device/defibrillator/update_icon()
 	icon_state = "defib"
