@@ -9,12 +9,6 @@
 /mob/living/carbon/human
 	var/last_chew = 0
 
-/mob/living/carbon/human/click(var/atom/A, var/list/mods)
-	if(interactee)
-		return interactee.handle_click(src, A, mods)
-
-	return ..()
-
 /mob/living/carbon/human/RestrainedClickOn(var/atom/A) //chewing your handcuffs
 	if (A != src) return ..()
 	var/mob/living/carbon/human/H = A
@@ -88,9 +82,6 @@
 			if(16 to 128)
 				return
 		A.attack_tk(src)
-
-/atom/movable/proc/handle_click(mob/living/carbon/human/user, atom/A, params) //Heres our handle click relay proc thing.
-	return
 
 /atom/proc/attack_hand(mob/user)
 	return

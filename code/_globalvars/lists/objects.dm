@@ -18,7 +18,6 @@ GLOBAL_LIST_EMPTY(shuttle_caller_list)  		    //list of all communication consol
 GLOBAL_LIST_EMPTY(machines)					        //NOTE: this is a list of ALL machines now. The processing machines list is SSmachine.processing !
 GLOBAL_LIST_EMPTY(faxmachines)
 GLOBAL_LIST_EMPTY(navigation_computers)				//list of all /obj/machinery/computer/camera_advanced/shuttle_docker
-GLOBAL_LIST_EMPTY(syndicate_shuttle_boards)	        //important to keep track of for managing nukeops war declarations.
 GLOBAL_LIST_EMPTY(navbeacons)					    //list of all bot nagivation beacons, used for patrolling.
 GLOBAL_LIST_EMPTY(teleportbeacons)			        //list of all tracking beacons used by teleporters
 GLOBAL_LIST_EMPTY(deliverybeacons)			        //list of all MULEbot delivery beacons.
