@@ -56,9 +56,6 @@
 		return
 	icon_state = "paper"
 
-/obj/item/paper/commendation/update_icon() //it looks fancy and we want it to stay fancy.
-	return
-
 /obj/item/paper/examine(mob/user)
 //	..()	//We don't want them to see the dumb "this is a paper" thing every time.
 // I didn't like the idea that people can read tiny pieces of paper from across the room.
@@ -435,14 +432,13 @@
 	icon_state = "commendation"
 	fields = 5
 
+/obj/item/paper/commendation/update_icon() //it looks fancy and we want it to stay fancy.
+	return
 /*Let this be a lesson about pre-made forms.
 
 when building your paper, use the above parsed pen code in parsepencode(). no square bracket anything in the info field.
 Specifically for the field parts, use <span class=\"paper_field\"></span>.
 then, for every time you included a field, increment fields. */
-
-/obj/item/paper/commendation/Initialize()
-	. = ..()
 
 /obj/item/paper/Court
 	name = "Judgement"
