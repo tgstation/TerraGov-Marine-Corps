@@ -1,0 +1,6 @@
+author: "Ghommie"
+delete-after: True
+changes: 
+  - bugfix: "Fixes alt / shift / ctrl clicks (e.g. examinating something) not properly working with click relay equipment such as turrets."
+  - bugfix: "The burst-fire toogle verb for the M56D should now only show to the operator."
+  - tweak: "firearm verbs will now also check for the inactive hand, as opposed of simply failing if it's not present in the active one."

@@ -192,6 +192,8 @@
 		playsound(loc, "alien_resin_break", 25)
 		health -= (M.melee_damage_upper + 25) //Beef up the damage a bit
 		healthcheck()
+		if(M.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
+			M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 	else
 		attack_hand(M)
 

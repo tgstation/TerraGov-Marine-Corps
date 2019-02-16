@@ -102,7 +102,7 @@
 //Let's you switch into the other seat, doesn't work if it's occupied
 /obj/vehicle/multitile/root/cm_armored/tank/verb/switch_seats()
 	set name = "Swap Seats"
-	set category = "Object"
+	set category = "Vehicle"
 	set src in view(0)
 
 	if(usr.is_mob_incapacitated())
