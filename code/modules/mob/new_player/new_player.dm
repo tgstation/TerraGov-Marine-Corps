@@ -104,11 +104,19 @@
 
 				close_spawn_windows()
 
-				var/turf/T = pick(GLOB.latejoin)
-				if(T)
-					to_chat(src, "<span class='notice'>Now teleporting.</span>")
-					observer.loc = T
+				var/failed = FALSE
+
+				if(GLOB.latejoin.len)
+					var/turf/T = pick(GLOB.latejoin)
+					if(T)
+						to_chat(src, "<span class='notice'>Now teleporting.</span>")
+						observer.forceMove(T)
+					else
+						failed = TRUE
 				else
+					failed = TRUE
+
+				if(failed)
 					to_chat(src, "<span class='danger'>Could not locate an observer spawn point. Use the Teleport verb to jump.</span>")
 
 				observer.timeofdeath = world.time
