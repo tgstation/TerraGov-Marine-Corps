@@ -3,23 +3,23 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 	/obj/machinery/atmospherics/components/unary/vent_scrubber)))
 
 /mob/living/proc/can_ventcrawl()
-	return 0
+	return FALSE
 
 /mob/living/proc/ventcrawl_carry()
 	for(var/atom/A in src.contents)
 		if(!(is_type_in_list(A, canEnterVentWith)))
 			to_chat(src, "<span class='warning'>You can't be carrying items or have items equipped when vent crawling!</span>")
-			return 0
-	return 1
+			return FALSE
+	return TRUE
 
 
 /mob/living/click(var/atom/A, var/list/mods)
 	if (..())
-		return 1
+		return TRUE
 	if (mods["alt"])
 		if(can_ventcrawl() && is_type_in_list(A, GLOB.ventcrawl_machinery))
 			handle_ventcrawl(A)
-		return 1
+		return TRUE
 
 
 /mob/proc/start_ventcrawl()
@@ -39,13 +39,13 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 		return pipe
 
 /mob/living/carbon/monkey/can_ventcrawl()
-	return 1
+	return TRUE
 
 /mob/living/simple_animal/mouse/can_ventcrawl()
-	return 1
+	return TRUE
 
 /mob/living/simple_animal/spiderbot/can_ventcrawl()
-	return 1
+	return TRUE
 
 //VENTCRAWLING
 
@@ -88,10 +88,10 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 				return
 
 			if(iscarbon(src) && can_ventcrawl())//It must have atleast been 1 to get this far
-				var/failed = 0
+				var/failed = FALSE
 				var/list/items_list = get_equipped_items() //include_pockets = TRUE)
 				if(items_list.len)
-					failed = 1
+					failed = TRUE
 				if(failed)
 					to_chat(src, "<span class='warning'>You can't crawl around in the ventilation ducts with items!</span>")
 					return
@@ -135,7 +135,7 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 	cancel_stealth()
 
 /mob/living/proc/remove_ventcrawl()
-	is_ventcrawling = 0
+	is_ventcrawling = FALSE
 	if(client)
 		for(var/image/current_image in pipes_shown)
 			client.images -= current_image
