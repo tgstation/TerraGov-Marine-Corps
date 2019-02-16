@@ -551,7 +551,7 @@ var/global/list/activated_medevac_stretchers = list()
 	var/locked = FALSE
 	var/obj/item/roller/medevac/linked_bed = null
 	var/obj/structure/bed/medevac_stretcher/linked_bed_deployed = null
-	req_one_access = list(ACCESS_MARINE_MEDPREP, ACCESS_MARINE_LEADER)
+	req_one_access = list(ACCESS_MARINE_MEDPREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_MEDBAY)
 
 
 /obj/item/device/medevac_beacon/examine(mob/user)
