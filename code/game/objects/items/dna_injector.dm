@@ -99,9 +99,6 @@
 /obj/item/dnainjector/attack(mob/M as mob, mob/user as mob)
 	if (!istype(M, /mob))
 		return
-	if (!(ishuman(usr) || ticker) && ticker.mode.name != "monkey")
-		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
-		return
 
 	log_combat(user, M, "injected", src)
 	log_attack("[user.name] ([user.ckey]) used the [name] to inject [M.name] ([M.ckey])")

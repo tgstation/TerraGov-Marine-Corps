@@ -1,4 +1,0 @@
-author: "Shadow-Quill"
-delete-after: True
-changes: 
-  - rscadd: "Added an alarm to the Requisitions elevator when it prepares to descend."
