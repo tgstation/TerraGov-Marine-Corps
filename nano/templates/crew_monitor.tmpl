@@ -2,19 +2,39 @@
 Title: Crew Monitoring Console (Main content)
 Used In File(s): \code\game\machinery\computer\crew.dm
  -->
+
 <!--{{:helper.link('Show Tracker Map', 'pin-s', {'showMap' : 1})}}-->
-<table width="100%"><tbody>
-	Sort by: {{:helper.link('Name', 'person', {'sortkey' : 'name'})}}
-			 {{:helper.link('Rank', 'tag', {'sortkey' : 'rank'})}}
-			 {{:helper.link('Area', 'pin-s', {'sortkey' : 'area'})}}
-			 {{:helper.link('Status', 'heart', {'sortkey' : 'dead'})}}
-	{{for data.crewmembers}}
-		{{if value.sensor_type == 1}}
-			<tr><td>{{:value.name}}</td><td>{{:value.dead ? "<span class='bad'>Deceased</span>" : "<span class='good'>Living</span>"}}</td><td><span class="neutral">Not Available</span></td></tr>
-		{{else value.sensor_type == 2}}
-			<tr><td>{{:value.name}}</td><td>{{:value.dead ? "<span class='bad'>Deceased</span>" : "<span class='good'>Living</span>"}} (<span class="oxyloss">{{:value.oxy}}</span>/<span class="toxin">{{:value.tox}}</span>/<span class="burn">{{:value.fire}}</span>/<span class="brute">{{:value.brute}}</span>)</td><td><span class="neutral">Not Available</td></td></tr>
-		{{else value.sensor_type == 3}}
-			<tr><td>{{:value.name}}</td><td>{{:value.dead ? "<span class='bad'>Deceased</span>" : "<span class='good'>Living</span>"}} (<span class="oxyloss">{{:value.oxy}}</span>/<span class="toxin">{{:value.tox}}</span>/<span class="burn">{{:value.fire}}</span>/<span class="brute">{{:value.brute}}</span>)</td><td>{{:value.area}} ({{:value.x}}, {{:value.y}})</td></tr>
-		{{/if}}
-	{{/for}}
-</tbody></table>
+<h3>Location to scan</h3>
+<div>
+	{{:helper.link('Ship', '', {'zlevel' : '0'})}}
+	{{:helper.link('Planet', '', {'zlevel' : '1'})}}
+	{{:helper.link('Low Orbit', '', {'zlevel' : '2'})}}
+</div>
+<h3>Found signals</h3>
+<div>
+	<table width="100%"><tbody>
+		<tr><th>{{:helper.link('Name', 'person', {'sortkey' : 'name'})}} {{:helper.link('Rank', 'tag', {'sortkey' : 'rank'})}}</th>
+				 <th>{{:helper.link('Status', 'heart', {'sortkey' : 'status'})}}</th>
+				 <th>{{:helper.link('Area', 'pin-s', {'sortkey' : 'area'})}}</th>
+				 </tr>
+		{{for data.crewmembers}}
+			<tr><td>{{:value.name}}</td>
+
+			{{if value.status == 0}}
+				<td><span class='good'>Living</span> 
+			{{else value.status == 1}}
+				<td><span class='average'>Unconscious</span> 
+			{{else value.status == 2}}
+				<td><span class='bad'>Deceased</span> 
+			{{/if}}
+			
+			{{if value.sensor_type == 1}}
+				</td><td><span class="neutral">Not Available</span></td></tr>
+			{{else value.sensor_type == 2}}
+				(<span class="oxyloss">{{:value.oxy}}</span>/<span class="toxin">{{:value.tox}}</span>/<span class="burn">{{:value.fire}}</span>/<span class="brute">{{:value.brute}}</span>)</td><td><span class="neutral">Not Available</td></td></tr>
+			{{else value.sensor_type == 3}}
+				(<span class="oxyloss">{{:value.oxy}}</span>/<span class="toxin">{{:value.tox}}</span>/<span class="burn">{{:value.fire}}</span>/<span class="brute">{{:value.brute}}</span>)</td><td>{{:value.area}} ({{:value.x}}, {{:value.y}})</td></tr>
+			{{/if}}
+		{{/for}}
+	</tbody></table>
+</div>
