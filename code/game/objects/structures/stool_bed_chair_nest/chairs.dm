@@ -48,10 +48,9 @@
 	if(!istype(user) || !isturf(user.loc) || user.is_mob_incapacitated())
 		return FALSE
 
-	if(!CONFIG_GET(flag/unlimited_rotate_speed) && world.time <= user.next_move)
-		return FALSE
-
 	if(!CONFIG_GET(flag/unlimited_rotate_speed))
+		if(world.time <= user.next_move)
+			return FALSE
 		user.next_move = world.time + 3
 
 	setDir(turn(dir, 90))
