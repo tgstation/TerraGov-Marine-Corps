@@ -235,15 +235,6 @@ WEAPONS
 	containername = "\improper Sniper Specialist crate"
 	group = "Weapons"
 
-/datum/supply_packs/specminigun
-	name = "MIC-A7 Vindicator Minigun crate (MIC-A7 x1)"
-	contains = list(
-					/obj/item/weapon/gun/minigun
-					)
-	cost = RO_PRICE_VERY_PRICY
-	containertype = /obj/structure/closet/crate/weapon
-	containername = "\improper MIC A7 Vindicator Minigun crate"
-	group = "Weapons"
 
 /datum/supply_packs/specshotgun
 	name = "ZX-76 Assault Shotgun crate (ZX-76 x1)"
