@@ -2425,10 +2425,10 @@
 		hit_and_run = 1
 	bonus = CLAMP(hit_and_run, 1, 2)//Runner deals +5% damage per tile moved in rapid succession to a maximum of +100%. Damage bonus is lost on attacking.
 	switch(bonus)
-		if(2 to INFINITY)
+		if(2)
 			visible_message("<span class='danger'>\The [src] strikes with lethal speed!</span>", \
 			"<span class='danger'>You strike with lethal speed!</span>")
-		if(1.5 to 1.95)
+		if(1.5 to 1.99)
 			visible_message("<span class='danger'>\The [src] strikes with deadly speed!</span>", \
 			"<span class='danger'>You strike with deadly speed!</span>")
 		if(1.25 to 1.45)
