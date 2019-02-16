@@ -59,7 +59,7 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 
 	var/dat
 
-	if(!(ticker))
+	if(!(SSticker))
 		return
 
 	dat += "<hr/><br/><b>Cryogenic Oversight Control for [cryotype]</b><br/>"
@@ -308,26 +308,6 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 					dept_console += A
 					A.loc = null
 
-
-			//Update any existing objectives involving this mob.
-			for(var/datum/objective/O in all_objectives)
-				//We don't want revs to get objectives that aren't for heads of staff. Letting
-				//them win or lose based on cryo is silly so we remove the objective.
-				if(istype(O, /datum/objective/mutiny) && O.target == occupant.mind)
-					qdel(O)
-				else if(O.target && istype(O.target,/datum/mind))
-					if(O.target == occupant.mind)
-						if(O.owner && O.owner.current)
-							to_chat(O.owner.current, "<span class='danger'>You get the feeling your target is no longer within your reach. Time for Plan [pick(list("A","B","C","D","X","Y","Z"))].</span>")
-						O.target = null
-						spawn(1) //This should ideally fire after the occupant is deleted.
-							if(!O) return
-							O.find_target()
-							if(!(O.target))
-								all_objectives -= O
-								O.owner.objectives -= O
-								qdel(O)
-
 			if(ishuman(occupant))
 				var/mob/living/carbon/human/H = occupant
 				if(H.mind && H.assigned_squad)
@@ -349,16 +329,11 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 					S.count--
 				H.assigned_squad?.clean_marine_from_squad(H,TRUE) //Remove from squad recods, if any.
 
-			ticker.mode.latejoin_tally-- //Cryoing someone out removes someone from the Marines, blocking further larva spawns until accounted for
+			SSticker.mode.latejoin_tally-- //Cryoing someone out removes someone from the Marines, blocking further larva spawns until accounted for
 
 			//Handle job slot/tater cleanup.
 			if(occupant.mind)
-				RoleAuthority.free_role(RoleAuthority.roles_for_mode[occupant.mind.assigned_role])
-
-				if(occupant.mind.objectives.len)
-					qdel(occupant.mind.objectives)
-					occupant.mind.objectives = null
-					occupant.mind.special_role = null
+				SSjob.free_role(SSjob.roles_for_mode[occupant.mind.assigned_role])
 
 			//Delete them from datacore.
 			if(PDA_Manifest.len)

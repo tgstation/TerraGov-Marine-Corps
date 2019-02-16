@@ -92,9 +92,6 @@ REAGENT SCANNER
 		user.show_message("<span class='notice'>Key: Suffocation/Toxin/Burns/Brute</span>", 1)
 		user.show_message("<span class='notice'>Body Temperature: ???</span>", 1)
 		return
-	if(!(ishuman(user) || ticker) && ticker.mode.name != "monkey")
-		to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
-		return
 	if(!check_skill_level(skill_threshold, OBJ_SKILL_MEDICAL, user) )
 		to_chat(user, "<span class='warning'>You start fumbling around with [src]...</span>")
 		var/fduration = skill_delay(SKILL_TASK_AVERAGE, SKILL_MEDICAL_MEDIC, OBJ_SKILL_MEDICAL, user)
@@ -535,9 +532,6 @@ REAGENT SCANNER
 
 	if (user.stat)
 		return
-	if (!(ishuman(usr) || ticker) && ticker.mode.name != "monkey")
-		to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
-		return
 
 	var/turf/location = user.loc
 	if (!( istype(location, /turf) ))
@@ -596,9 +590,6 @@ REAGENT SCANNER
 	if (crit_fail)
 		to_chat(user, "<span class='warning'>This device has critically failed and is no longer functional!</span>")
 		return
-	if (!(ishuman(user) || ticker) && ticker.mode.name != "monkey")
-		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
-		return
 	if(reagents.total_volume)
 		var/list/blood_traces = list()
 		for(var/datum/reagent/R in reagents.reagent_list)
@@ -656,9 +647,6 @@ REAGENT SCANNER
 	if(!proximity)
 		return
 	if (user.stat)
-		return
-	if (!(ishuman(user) || ticker) && ticker.mode.name != "monkey")
-		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return
 	if(!istype(O))
 		return

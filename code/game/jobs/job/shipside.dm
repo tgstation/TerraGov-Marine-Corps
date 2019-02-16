@@ -618,7 +618,7 @@ While the Corporate Liaison is not your boss, it would be wise to consult them o
 	equipment = TRUE
 
 /datum/job/civilian/liaison/generate_entry_conditions(mob/living/carbon/human/H)
-		if(ticker && H.mind) ticker.liaison = H.mind //TODO Look into CL tracking in game mode.
+		if(SSticker && H.mind) SSticker.liaison = H.mind //TODO Look into CL tracking in game mode.
 
 /datum/job/civilian/liaison/generate_equipment(mob/living/carbon/human/H)
 		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/mcom(H), SLOT_EARS)

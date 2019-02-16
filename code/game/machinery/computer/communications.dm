@@ -137,7 +137,7 @@
 					to_chat(usr, "<span class='warning'>TGMC protocol does not allow immediate evacuation. Please wait another [round((EVACUATION_TIME_LOCK-world.time)/600)] minutes before trying again.</span>")
 					return FALSE
 
-				if(!ticker?.mode)
+				if(!SSticker?.mode)
 					to_chat(usr, "<span class='warning'>The [MAIN_SHIP_NAME]'s distress beacon must be activated prior to evacuation taking place.</span>")
 					return FALSE
 
@@ -187,21 +187,21 @@
 					to_chat(usr, "<span class='warning'>The distress beacon cannot be launched this early in the operation. Please wait another [round((DISTRESS_TIME_LOCK-world.time)/600)] minutes before trying again.</span>")
 					return FALSE
 
-				if(!ticker?.mode)
+				if(!SSticker?.mode)
 					return FALSE //Not a game mode?
 
-				if(just_called || ticker.mode.waiting_for_candidates)
+				if(just_called || SSticker.mode.waiting_for_candidates)
 					to_chat(usr, "<span class='warning'>The distress beacon has been just launched.</span>")
 					return FALSE
 
-				if(ticker.mode.on_distress_cooldown)
+				if(SSticker.mode.on_distress_cooldown)
 					to_chat(usr, "<span class='warning'>The distress beacon is currently recalibrating.</span>")
 					return FALSE
 
-				var/Ship[] = ticker.mode.count_humans_and_xenos()
+				var/Ship[] = SSticker.mode.count_humans_and_xenos()
 				var/ShipMarines[] = Ship[1]
 				var/ShipXenos[] = Ship[2]
-				var/Planet[] = ticker.mode.count_humans_and_xenos(list(MAIN_SHIP_Z_LEVEL))
+				var/Planet[] = SSticker.mode.count_humans_and_xenos(list(MAIN_SHIP_Z_LEVEL))
 				var/PlanetMarines[] = Planet[1]
 				var/PlanetXenos[] = Planet[2]
 				if((PlanetXenos < round(PlanetMarines * 0.8)) && (ShipXenos < round(ShipMarines * 0.5))) //If there's less humans (weighted) than xenos, humans get home-turf advantage
@@ -220,10 +220,10 @@
 				spawn(1 MINUTES)
 					just_called = FALSE
 					cooldown_request = world.time
-					if(distress_cancel || ticker.mode.on_distress_cooldown || ticker.mode.waiting_for_candidates)
+					if(distress_cancel || SSticker.mode.on_distress_cooldown || SSticker.mode.waiting_for_candidates)
 						return FALSE
 					else
-						ticker.mode.activate_distress()
+						SSticker.mode.activate_distress()
 						log_game("A distress beacon requested by [key_name_admin(usr)] was automatically sent due to not receiving an answer within 60 seconds.")
 						message_admins("A distress beacon requested by [ADMIN_TPMONTY(usr)] was automatically sent due to not receiving an answer within 60 seconds.")
 						return TRUE

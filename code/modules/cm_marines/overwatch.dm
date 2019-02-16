@@ -69,7 +69,7 @@
 		to_chat(user, "<span class='warning'>You don't have access.</span>")
 		return
 	if(!squads.len)
-		for(var/datum/squad/S in RoleAuthority.squads)
+		for(var/datum/squad/S in SSjob.squads)
 			squads += S
 	if(!current_squad && !(current_squad = get_squad_by_id(squad_console)))
 		to_chat(user, "<span class='warning'>Error: Unable to link to a proper squad.</span>")
@@ -266,7 +266,7 @@
 					to_chat(usr, "<span class='warning'>[icon2html(src, usr)] You are already selecting a squad.</span>")
 				else
 					var/list/squad_choices = list()
-					for(var/datum/squad/S in RoleAuthority.squads)
+					for(var/datum/squad/S in SSjob.squads)
 						if(!S.overwatch_officer)
 							squad_choices += S.name
 
@@ -276,7 +276,7 @@
 					if(current_squad)
 						to_chat(usr, "<span class='warning'>[icon2html(src, usr)] You are already selecting a squad.</span>")
 						return
-					var/datum/squad/selected = RoleAuthority.squads[RoleAuthority.squads_names.Find(squad_name)]
+					var/datum/squad/selected = SSjob.squads[SSjob.squads_names.Find(squad_name)]
 					if(selected)
 						selected.overwatch_officer = usr //Link everything together, squad, console, and officer
 						current_squad = selected
@@ -403,7 +403,7 @@
 		to_chat(user, "<span class='warning'>You don't have access.</span>")
 		return
 	if(!squads.len)
-		for(var/datum/squad/S in RoleAuthority.squads)
+		for(var/datum/squad/S in SSjob.squads)
 			squads += S
 	user.set_interaction(src)
 	var/dat = "<head><title>Main Overwatch Console</title></head><body>"
@@ -616,6 +616,7 @@
 	to_chat(H, "[icon2html(src, H)] <font size='3' color='blue'><B>\[Overwatch\]: You've been promoted to \'[H.mind.assigned_role == "Squad Leader" ? "SQUAD LEADER" : "ACTING SQUAD LEADER"]\' for [current_squad.name]. Your headset has access to the command channel (:v).</B></font>")
 	to_chat(usr, "[icon2html(src, usr)] [H.real_name] is [current_squad]'s new leader!")
 	current_squad.squad_leader = H
+	SET_TRACK_LEADER(current_squad.tracking_id, H)
 	if(H.mind.assigned_role == "Squad Leader")//a real SL
 		H.mind.role_comm_title = "SL"
 	else //an acting SL
@@ -686,7 +687,7 @@
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>Transfer aborted. [transfer_marine] isn't wearing an ID.</span>")
 		return
 
-	var/datum/squad/new_squad = input(usr, "Choose the marine's new squad") as null|anything in RoleAuthority.squads
+	var/datum/squad/new_squad = input(usr, "Choose the marine's new squad") as null|anything in SSjob.squads
 	if(!new_squad) return
 	if(S != current_squad) return
 
@@ -851,7 +852,7 @@
 	force_link()
 
 /obj/structure/supply_drop/proc/force_link() //Somehow, it didn't get set properly on the new proc. Force it again,
-	var/datum/squad/S = RoleAuthority.squads[RoleAuthority.squads_names.Find(squad_name)]
+	var/datum/squad/S = SSjob.squads[SSjob.squads_names.Find(squad_name)]
 	if(S)
 		S.drop_pad = src
 	else
@@ -1034,6 +1035,7 @@
 		H.visible_message("[H] deactivates [src]",
 		"You deactivate [src]")
 		H.put_in_active_hand(src)
+
 
 
 //This is perhaps one of the weirdest places imaginable to put it, but it's a leadership skill, so

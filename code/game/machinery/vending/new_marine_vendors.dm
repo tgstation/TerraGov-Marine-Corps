@@ -235,7 +235,7 @@
 			if(bitf == MARINE_CAN_BUY_UNIFORM)
 				new headset_type(loc)
 				new gloves_type(loc)
-				//if(istype(ticker.mode, /datum/game_mode/ice_colony))//drop a coif with the uniform on ice colony
+				//if(istype(SSticker.mode, /datum/game_mode/ice_colony))//drop a coif with the uniform on ice colony
 				if(GLOB.map_tag == MAP_ICE_COLONY)
 					new /obj/item/clothing/mask/rebreather/scarf(loc)
 

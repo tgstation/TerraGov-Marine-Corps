@@ -203,7 +203,7 @@
 
 	if(checkwin_counter >= 5) //Only check win conditions every 5 ticks.
 		if(!finished)
-			ticker.mode.check_win()
+			SSticker.mode.check_win()
 		checkwin_counter = 0
 	return 0
 

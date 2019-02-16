@@ -1,4 +1,4 @@
-var/global/datum/controller/gameticker/ticker
+var/global/datum/controller/gameticker/SSticker
 
 #define GAME_STATE_PREGAME		1
 #define GAME_STATE_SETTING_UP	2
@@ -21,10 +21,6 @@ var/global/datum/controller/gameticker/ticker
 	var/list/datum/mind/minds = list()//The people in the game. Used for objective tracking.
 
 	var/random_players = 0 	// if set to nonzero, ALL players who latejoin or declare-ready join will have random appearances/genders
-
-	var/list/syndicate_coalition = list() // list of traitor-compatible factions
-	var/list/factions = list()			  // list of all factions
-	var/list/availablefactions = list()	  // list of factions with openings
 
 	var/pregame_timeleft = 0
 
@@ -85,7 +81,7 @@ var/global/datum/controller/gameticker/ticker
 			var/datum/game_mode/M = config.pick_mode(secret_force_mode)
 			if(M.can_start())
 				mode = config.pick_mode(secret_force_mode)
-		RoleAuthority.reset_roles()
+		SSjob.reset_roles()
 
 		if(!mode)
 			mode = pickweight(runnable_modes)
@@ -103,7 +99,7 @@ var/global/datum/controller/gameticker/ticker
 		mode = null
 		current_state = GAME_STATE_PREGAME
 		Master.SetRunLevel(RUNLEVEL_LOBBY)
-		RoleAuthority.reset_roles()
+		SSjob.reset_roles()
 		return FALSE
 
 	var/can_continue = src.mode.pre_setup()//Setup special modes
@@ -113,7 +109,7 @@ var/global/datum/controller/gameticker/ticker
 		current_state = GAME_STATE_PREGAME
 		Master.SetRunLevel(RUNLEVEL_LOBBY)
 		to_chat(world, "<B>Error setting up [master_mode].</B> Reverting to pre-game lobby.")
-		RoleAuthority.reset_roles()
+		SSjob.reset_roles()
 		return 0
 
 	if(hide_mode)
@@ -127,7 +123,7 @@ var/global/datum/controller/gameticker/ticker
 		mode.announce()
 
 	//Configure mode and assign player to special mode stuff
-	RoleAuthority.setup_candidates_and_roles() //Distribute jobs
+	SSjob.setup_candidates_and_roles() //Distribute jobs
 
 	create_characters() //Create player characters and transfer them
 	collect_minds()
@@ -177,7 +173,7 @@ var/global/datum/controller/gameticker/ticker
 /datum/controller/gameticker/proc/collect_minds()
 	for(var/mob/living/player in GLOB.player_list)
 		if(player.mind)
-			ticker.minds += player.mind
+			SSticker.minds += player.mind
 
 
 /datum/controller/gameticker/proc/equip_characters()
@@ -192,7 +188,7 @@ var/global/datum/controller/gameticker/ticker
 			if(H.mind.assigned_role == "Captain")
 				captainless = FALSE
 			if(H.mind.assigned_role != "MODE")
-				RoleAuthority.equip_role(player, RoleAuthority.roles_by_name[H.mind.assigned_role])
+				SSjob.equip_role(player, SSjob.roles_by_name[H.mind.assigned_role])
 				UpdateFactionList(H)
 				EquipCustomItems(H)
 

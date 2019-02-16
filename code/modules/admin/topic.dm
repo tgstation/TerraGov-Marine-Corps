@@ -174,7 +174,8 @@
 			if("blackout")
 				log_admin("[key_name(usr)] broke all lights.")
 				message_admins("[ADMIN_TPMONTY(usr)] broke all lights.")
-				lightsout(0, 0)
+				for(var/obj/machinery/power/apc/apc in GLOB.machines)
+					apc.overload_lighting()
 			if("whiteout")
 				log_admin("[key_name(usr)] fixed all lights.")
 				message_admins("[ADMIN_TPMONTY(usr)] fixed all lights.")
@@ -480,7 +481,7 @@
 		if(!M.ckey)
 			return
 
-		if(!RoleAuthority)
+		if(!SSjob)
 			return
 
 		var/list/joblist = list()
@@ -489,7 +490,7 @@
 				for(var/jobPos in ROLES_COMMAND)
 					if(!jobPos)
 						continue
-					var/datum/job/temp = RoleAuthority.roles_by_name[jobPos]
+					var/datum/job/temp = SSjob.roles_by_name[jobPos]
 					if(!temp)
 						continue
 					joblist += temp.title
@@ -497,7 +498,7 @@
 				for(var/jobPos in ROLES_POLICE)
 					if(!jobPos)
 						continue
-					var/datum/job/temp = RoleAuthority.roles_by_name[jobPos]
+					var/datum/job/temp = SSjob.roles_by_name[jobPos]
 					if(!temp)
 						continue
 					joblist += temp.title
@@ -505,7 +506,7 @@
 				for(var/jobPos in ROLES_ENGINEERING)
 					if(!jobPos)
 						continue
-					var/datum/job/temp = RoleAuthority.roles_by_name[jobPos]
+					var/datum/job/temp = SSjob.roles_by_name[jobPos]
 					if(!temp)
 						continue
 					joblist += temp.title
@@ -513,7 +514,7 @@
 				for(var/jobPos in ROLES_REQUISITION)
 					if(!jobPos)
 						continue
-					var/datum/job/temp = RoleAuthority.roles_by_name[jobPos]
+					var/datum/job/temp = SSjob.roles_by_name[jobPos]
 					if(!temp)
 						continue
 					joblist += temp.title
@@ -521,7 +522,7 @@
 				for(var/jobPos in ROLES_MEDICAL)
 					if(!jobPos)
 						continue
-					var/datum/job/temp = RoleAuthority.roles_by_name[jobPos]
+					var/datum/job/temp = SSjob.roles_by_name[jobPos]
 					if(!temp)
 						continue
 					joblist += temp.title
@@ -529,7 +530,7 @@
 				for(var/jobPos in ROLES_MARINES)
 					if(!jobPos)
 						continue
-					var/datum/job/temp = RoleAuthority.roles_by_name[jobPos]
+					var/datum/job/temp = SSjob.roles_by_name[jobPos]
 					if(!temp)
 						continue
 					joblist += temp.title
@@ -798,10 +799,10 @@
 		if(!istype(M))
 			return
 
-		if(!ticker?.mode || ticker.mode.waiting_for_candidates)
+		if(!SSticker?.mode || SSticker.mode.waiting_for_candidates)
 			return
 
-		ticker.mode.activate_distress()
+		SSticker.mode.activate_distress()
 
 		log_game("[key_name(usr)] has sent a randomized distress beacon early, requested by [key_name(M)]")
 		message_admins("[ADMIN_TPMONTY(usr)] has sent a randomized distress beacon early, requested by [ADMIN_TPMONTY(M)]")
@@ -1194,7 +1195,7 @@
 		if(!check_rights(R_SERVER))
 			return
 
-		if(ticker && ticker.mode)
+		if(SSticker?.mode)
 			return alert("The game has already started.")
 
 		var/dat = {"<B>What mode do you wish to play?</B><HR>"}
@@ -1208,7 +1209,7 @@
 		if(!check_rights(R_SERVER))
 			return
 
-		if(ticker?.mode)
+		if(SSticker?.mode)
 			return alert("The game has already started.")
 
 		master_mode = href_list["changemode"]
