@@ -37,3 +37,14 @@ SUBSYSTEM_DEF(air)
 	for (var/obj/machinery/atmospherics/AM in atmos_machinery)
 		AM.build_network()
 		CHECK_TICK
+
+/datum/controller/subsystem/air/proc/setup_template_machinery(list/atmos_machines)
+	for(var/A in atmos_machines)
+		var/obj/machinery/atmospherics/AM = A
+		AM.atmosinit()
+		CHECK_TICK
+
+	for(var/A in atmos_machines)
+		var/obj/machinery/atmospherics/AM = A
+		AM.build_network()
+		CHECK_TICK
