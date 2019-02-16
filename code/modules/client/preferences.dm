@@ -185,7 +185,7 @@ datum/preferences
 	else
 		dat += "Please create an account to save your preferences."
 
-	if(RoleAuthority.roles_whitelist[user.ckey] & WHITELIST_PREDATOR)
+	if(SSjob.roles_whitelist[user.ckey] & WHITELIST_PREDATOR)
 		dat += "<br><b>Yautja name:</b> <a href='?_src_=prefs;preference=pred_name;task=input'>[predator_name]</a><br>"
 		dat += "<b>Yautja gender:</b> <a href='?_src_=prefs;preference=pred_gender;task=input'>[predator_gender == MALE ? "Male" : "Female"]</a><br>"
 		dat += "<b>Yautja age:</b> <a href='?_src_=prefs;preference=pred_age;task=input'>[predator_age]</a><br>"
@@ -343,7 +343,7 @@ datum/preferences
 
 
 /datum/preferences/proc/SetChoices(mob/user, limit = 22, list/splitJobs = list(), width = 450, height = 650)
-	if(!RoleAuthority)
+	if(!SSjob)
 		return
 
 	//limit 	 - The amount of jobs allowed per column. Defaults to 17 to make it look nice.
@@ -363,8 +363,8 @@ datum/preferences
 	var/datum/job/lastJob
 	var/datum/job/job
 	var/i
-	for(i in RoleAuthority.roles_for_mode)
-		job = RoleAuthority.roles_for_mode[i]
+	for(i in SSjob.roles_for_mode)
+		job = SSjob.roles_for_mode[i]
 		index += 1
 		if((index >= limit) || (job.title in splitJobs))
 			if((index < limit) && (lastJob != null))
@@ -384,7 +384,7 @@ datum/preferences
 			var/available_in_days = job.available_in_days(user.client)
 			HTML += "<del>[job.disp_title]</del></td><td> \[IN [(available_in_days)] DAYS]</td></tr>"
 			continue
-		else if(job.flags_startup_parameters & ROLE_WHITELISTED && !(RoleAuthority.roles_whitelist[user.ckey] & job.flags_whitelist))
+		else if(job.flags_startup_parameters & ROLE_WHITELISTED && !(SSjob.roles_whitelist[user.ckey] & job.flags_whitelist))
 			HTML += "<del>[job.disp_title]</del></td><td> \[WHITELISTED]</td></tr>"
 			continue
 		else HTML += (job.title in ROLES_COMMAND) || job.title == "AI" ? "<b>[job.disp_title]</b>" : "[job.disp_title]"
@@ -504,7 +504,7 @@ datum/preferences
 
 
 /datum/preferences/proc/SetJob(mob/user, role)
-	var/datum/job/job = RoleAuthority.roles_for_mode[role]
+	var/datum/job/job = SSjob.roles_for_mode[role]
 	if(!job)
 		user << browse(null, "window=mob_occupation")
 		ShowChoices(user)

@@ -728,7 +728,7 @@
 
 	switch(alert("Modify the rank or give them a new one?", "Select Rank", "New Rank", "Modify", "Cancel"))
 		if("New Rank")
-			var/newrank = input("Select new rank for [H]", "Change the mob's rank and skills") as null|anything in sortList(RoleAuthority.roles_by_name)
+			var/newrank = input("Select new rank for [H]", "Change the mob's rank and skills") as null|anything in sortList(SSjob.roles_by_name)
 			if(!newrank)
 				return
 
@@ -773,10 +773,10 @@
 					I.registered_name = regname
 					I.name = "[regname]'s ID Card ([I.assignment])"
 				if("Skills")
-					var/newskillset = input("Select a skillset", "Skill Set") as null|anything in RoleAuthority.roles_by_name
+					var/newskillset = input("Select a skillset", "Skill Set") as null|anything in SSjob.roles_by_name
 					if(!newskillset || !H?.mind)
 						return
-					var/datum/job/J = RoleAuthority.roles_by_name[newskillset]
+					var/datum/job/J = SSjob.roles_by_name[newskillset]
 					H.mind.set_cm_skills(J.skills_type)
 				else
 					return
@@ -792,7 +792,7 @@
 	if(!ishuman(M))
 		return
 
-	var/list/dresspacks = sortList(RoleAuthority.roles_by_equipment)
+	var/list/dresspacks = sortList(SSjob.roles_by_equipment)
 
 	var/dresscode = input("Choose equipment for [M]", "Select Equipment") as null|anything in dresspacks
 	if(!dresscode)

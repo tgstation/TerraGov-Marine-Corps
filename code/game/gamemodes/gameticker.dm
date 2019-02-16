@@ -85,7 +85,7 @@ var/global/datum/controller/gameticker/SSticker
 			var/datum/game_mode/M = config.pick_mode(secret_force_mode)
 			if(M.can_start())
 				mode = config.pick_mode(secret_force_mode)
-		RoleAuthority.reset_roles()
+		SSjob.reset_roles()
 
 		if(!mode)
 			mode = pickweight(runnable_modes)
@@ -103,7 +103,7 @@ var/global/datum/controller/gameticker/SSticker
 		mode = null
 		current_state = GAME_STATE_PREGAME
 		Master.SetRunLevel(RUNLEVEL_LOBBY)
-		RoleAuthority.reset_roles()
+		SSjob.reset_roles()
 		return FALSE
 
 	var/can_continue = src.mode.pre_setup()//Setup special modes
@@ -113,7 +113,7 @@ var/global/datum/controller/gameticker/SSticker
 		current_state = GAME_STATE_PREGAME
 		Master.SetRunLevel(RUNLEVEL_LOBBY)
 		to_chat(world, "<B>Error setting up [master_mode].</B> Reverting to pre-game lobby.")
-		RoleAuthority.reset_roles()
+		SSjob.reset_roles()
 		return 0
 
 	if(hide_mode)
@@ -127,7 +127,7 @@ var/global/datum/controller/gameticker/SSticker
 		mode.announce()
 
 	//Configure mode and assign player to special mode stuff
-	RoleAuthority.setup_candidates_and_roles() //Distribute jobs
+	SSjob.setup_candidates_and_roles() //Distribute jobs
 
 	create_characters() //Create player characters and transfer them
 	collect_minds()
@@ -192,7 +192,7 @@ var/global/datum/controller/gameticker/SSticker
 			if(H.mind.assigned_role == "Commander")
 				captainless = FALSE
 			if(H.mind.assigned_role != "MODE")
-				RoleAuthority.equip_role(player, RoleAuthority.roles_by_name[H.mind.assigned_role])
+				SSjob.equip_role(player, SSjob.roles_by_name[H.mind.assigned_role])
 				UpdateFactionList(H)
 				EquipCustomItems(H)
 

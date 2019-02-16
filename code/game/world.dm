@@ -67,8 +67,8 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 	// due to this list not being instantiated.
 	populate_seed_list()
 
-	if(!RoleAuthority)
-		RoleAuthority = new /datum/authority/branch/role()
+	if(!SSjob)
+		SSjob = new /datum/authority/branch/role()
 		to_chat(world, "<span class='danger'>Job setup complete</span>")
 
 	if(!EvacuationAuthority)
