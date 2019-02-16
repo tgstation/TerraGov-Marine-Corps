@@ -24,7 +24,7 @@
 	var/scare_sound = list('sound/scp/scare1.ogg','sound/scp/scare2.ogg','sound/scp/scare3.ogg','sound/scp/scare4.ogg')	//Boo
 	var/hibernate = 0 //Disables SCP until toggled back to 0
 	var/scare_played = 0 //Did we rape everyone's ears yet ?
-	var/obj/machinery/atmospherics/unary/vent_pump/entry_vent //Graciously stolen from spider code
+	var/obj/machinery/atmospherics/components/unary/vent_pump/entry_vent //Graciously stolen from spider code
 
 	var/list/shitlist = list() //list of folks this guy is about to murder
 	var/list/examine_urge_list = list() //tracks urge to examine
@@ -420,14 +420,14 @@
 		visible_message("<span class='danger'>\The [src] starts trying to slide itself into the vent!</span>")
 		sleep(50) //Let's stop for five seconds to do our parking job
 		..()
-		if(entry_vent.network && entry_vent.network.normal_members.len)
+		if(entry_vent.parents?.members?.len)
 			var/list/vents = list()
-			for(var/obj/machinery/atmospherics/unary/vent_pump/temp_vent in entry_vent.network.normal_members)
+			for(var/obj/machinery/atmospherics/components/unary/vent_pump/temp_vent in entry_vent.parents.members)
 				vents.Add(temp_vent)
 			if(!vents.len)
 				entry_vent = null
 				return
-			var/obj/machinery/atmospherics/unary/vent_pump/exit_vent = pick(vents)
+			var/obj/machinery/atmospherics/components/unary/vent_pump/exit_vent = pick(vents)
 			spawn()
 				visible_message("<span class='danger'>\The [src] suddenly disappears into the vent!</span>")
 				loc = exit_vent

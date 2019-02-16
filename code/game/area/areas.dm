@@ -12,18 +12,13 @@
 	var/gas_type = GAS_TYPE_AIR
 	var/temperature = T20C
 	var/pressure = ONE_ATMOSPHERE
-
-	/// If false, loading multiple maps with this area type will create multiple instances.
 	var/unique = TRUE
-
+	
 /area/New()
 	// This interacts with the map loader, so it needs to be set immediately
 	// rather than waiting for atoms to initialize.
 	if (unique)
 		GLOB.areas_by_type[type] = src
-	return ..()
-
-/area/Initialize()
 	. = ..()
 
 	icon_state = "" //Used to reset the icon overlay, I assume.

@@ -7,14 +7,14 @@
 		to_chat(src, "You're already dead!")
 		return
 
-	if (!ticker)
+	if (!SSticker)
 		to_chat(src, "You can't commit suicide before the game starts!")
 		return
 
 
 	var/permitted = FALSE
 	var/list/allowed = list("Syndicate","traitor","Wizard","Head Revolutionary","Cultist","Changeling")
-	if((mind.special_role in allowed) || ticker.current_state == GAME_STATE_FINISHED)
+	if((mind.special_role in allowed) || SSticker.current_state == GAME_STATE_FINISHED)
 		permitted = TRUE
 
 	if(!permitted)
@@ -92,7 +92,7 @@
 		to_chat(src, "You're already dead!")
 		return
 
-	if (!ticker)
+	if (!SSticker)
 		to_chat(src, "You can't commit suicide before the game starts!")
 		return
 
@@ -116,7 +116,7 @@
 		to_chat(src, "You're already dead!")
 		return
 
-	if (!ticker)
+	if (!SSticker)
 		to_chat(src, "You can't commit suicide before the game starts!")
 		return
 

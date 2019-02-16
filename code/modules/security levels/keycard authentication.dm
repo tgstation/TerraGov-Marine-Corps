@@ -158,7 +158,7 @@
 			feedback_inc("alert_keycard_auth_ert",1)
 
 /obj/machinery/keycard_auth/proc/is_ert_blocked()
-	return ticker.mode && ticker.mode.ert_disabled
+	return SSticker.mode && SSticker.mode.ert_disabled
 
 var/global/maint_all_access = 0
 

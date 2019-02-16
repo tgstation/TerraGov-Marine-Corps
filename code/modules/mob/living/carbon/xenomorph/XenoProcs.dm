@@ -7,8 +7,8 @@
 	if(!message)
 		return
 
-	if(ticker && ticker.mode && ticker.mode.xenomorphs.len) //Send to only xenos in our gamemode list. This is faster than scanning all mobs
-		for(var/datum/mind/L in ticker.mode.xenomorphs)
+	if(length(SSticker?.mode?.xenomorphs)) //Send to only xenos in our gamemode list. This is faster than scanning all mobs
+		for(var/datum/mind/L in SSticker.mode.xenomorphs)
 			var/mob/living/carbon/Xenomorph/M = L.current
 			if(M && istype(M) && !M.stat && M.client && hivenumber == M.hivenumber) //Only living and connected xenos
 				to_chat(M, "<span class='xenodanger'><font size=[size]> [message]</font></span>")

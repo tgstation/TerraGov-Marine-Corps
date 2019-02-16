@@ -45,7 +45,7 @@
 /obj/machinery/door/poddoor/railing/open()
 	if (src.operating == 1) //doors can still open when emag-disabled
 		return 0
-	if (!ticker)
+	if (!SSticker)
 		return 0
 	if(!src.operating) //in case of emag
 		src.operating = 1

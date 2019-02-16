@@ -1,4 +1,11 @@
 
+//Filters
+#define AMBIENT_OCCLUSION filter(type="drop_shadow", x=0, y=-2, size=4, border=4, color="#04080FAA")
+#define GAUSSIAN_BLUR(filter_size) filter(type="blur", size=filter_size)
+
+//https://secure.byond.com/docs/ref/info.html#/atom/var/mouse_opacity
+#define MOUSE_OPACITY_TRANSPARENT 0
+
 //defines for atom layers
 
 //the hardcoded ones are AREA_LAYER = 1, TURF_LAYER = 2, OBJ_LAYER = 3, MOB_LAYER = 4, FLY_LAYER = 5
@@ -7,13 +14,20 @@
 
 //#define TURF_LAYER 2
 
+#define PLANE_SPACE -95
+#define PLANE_SPACE_PARALLAX -90
+
+#define FLOOR_PLANE -2
+#define GAME_PLANE -1
+
 #define ABOVE_TURF_LAYER 2.01
 
 #define LATTICE_LAYER 2.15
 
 #define ANIMAL_HIDING_LAYER 2.2
 
-#define DISPOSAL_PIPE_LAYER 2.3
+#define DISPOSAL_PIPE_LAYER 2.25
+#define GAS_PIPE_HIDDEN_LAYER 2.35
 
 #define BELOW_ATMOS_PIPE_LAYER 2.37
 #define ATMOS_PIPE_SCRUBBER_LAYER 2.38
@@ -24,7 +38,12 @@
 #define WIRE_LAYER 2.44
 #define WIRE_TERMINAL_LAYER 2.45
 
+#define GAS_SCRUBBER_LAYER 2.46
+#define GAS_PIPE_VISIBLE_LAYER 2.47
+#define GAS_FILTER_LAYER 2.48
+#define GAS_PUMP_LAYER 2.49
 
+#define LOW_OBJ_LAYER 2.5
 #define UNDERFLOOR_OBJ_LAYER 2.5 //bluespace beacon, navigation beacon, etc
 
 #define CATWALK_LAYER 2.51 //catwalk overlay of /turf/open/floor/plating/plating_catwalk
@@ -70,6 +89,7 @@
 
 
 #define WINDOW_LAYER 3.2 //above closed doors
+#define ABOVE_WINDOW_LAYER 3.3
 
 #define WALL_OBJ_LAYER 3.5 //posters on walls
 
@@ -82,6 +102,8 @@
 
 //#define MOB_LAYER 4
 
+#define FACEHUGGER_LAYER 4.05
+
 #define ABOVE_MOB_LAYER 4.1
 
 //#define FLY_LAYER 5
@@ -91,22 +113,31 @@
 #define AREAS_LAYER 10 //for areas, so they appear above everything else on map file.
 
 #define POINT_LAYER 12
+
+#define LIGHTING_PLANE 15
+
 #define ABOVE_LIGHTING_PLANE 16
 #define ABOVE_LIGHTING_LAYER 16
 
-#define BELOW_FULLSCREEN_LAYER 16.9 //blip from motion detector
-#define FULLSCREEN_LAYER 17
-#define FULLSCREEN_IMPAIRED_LAYER 17.02 //visual impairment from wearing welding helmet, etc
-#define FULLSCREEN_DRUGGY_LAYER 17.03
-#define FULLSCREEN_BLURRY_LAYER 17.04
-#define FULLSCREEN_FLASH_LAYER 17.05 //flashed
-#define FULLSCREEN_DAMAGE_LAYER 17.1 //red circles when hurt
-#define FULLSCREEN_BLIND_LAYER 17.15 //unconscious
-#define FULLSCREEN_PAIN_LAYER	17.2 //pain flashes
-#define FULLSCREEN_CRIT_LAYER 17.25 //in critical
+#define FLOOR_OPENSPACE_PLANE 17
+
+#define BELOW_FULLSCREEN_LAYER 17.9 //blip from motion detector
+
+#define CAMERA_STATIC_PLANE 18
+
+#define FULLSCREEN_LAYER 18
+#define FULLSCREEN_IMPAIRED_LAYER 18.02 //visual impairment from wearing welding helmet, etc
+#define FULLSCREEN_DRUGGY_LAYER 18.03
+#define FULLSCREEN_BLURRY_LAYER 18.04
+#define FULLSCREEN_FLASH_LAYER 18.05 //flashed
+#define FULLSCREEN_DAMAGE_LAYER 18.1 //red circles when hurt
+#define FULLSCREEN_BLIND_LAYER 18.15 //unconscious
+#define FULLSCREEN_PAIN_LAYER	18.2 //pain flashes
+#define FULLSCREEN_CRIT_LAYER 18.25 //in critical
 
 #define HUD_LAYER 19
 #define ABOVE_HUD_LAYER 20
+#define ABOVE_HUD_PLANE 20
 
 #define CINEMATIC_LAYER 21
 

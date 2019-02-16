@@ -9,7 +9,7 @@
 	set name = "Debug Major Event"
 	set category = "Battlefield Debug"
 
-	var/datum/game_mode/colonialmarines_halloween_2016/CM = ticker.mode
+	var/datum/game_mode/colonialmarines_halloween_2016/CM = SSticker.mode
 	var/shuffle1 = input("Select which role to spawn.","1-20") as num
 	var/shuffle2 = input("Select which sub-role to spawn.","1-2") as num
 	CM.handle_event_major_spooky(shuffle1,shuffle2)
@@ -19,7 +19,7 @@
 	set name = "Debug Minor Event"
 	set category = "Battlefield Debug"
 
-	var/datum/game_mode/colonialmarines_halloween_2016/CM = ticker.mode
+	var/datum/game_mode/colonialmarines_halloween_2016/CM = SSticker.mode
 	var/shuffle1 = input("Select which event to play.","1-20") as num
 	var/shuffle2 = input("Select which sub event to play.","1-20") as num
 	CM.handle_event_minor_spooky(shuffle1,shuffle2)
@@ -29,7 +29,7 @@
 	set name = "Debug Character Spawn"
 	set category = "Battlefield Debug"
 
-	var/datum/game_mode/colonialmarines_halloween_2016/CM = ticker.mode
+	var/datum/game_mode/colonialmarines_halloween_2016/CM = SSticker.mode
 
 	var/role = input("Select which role to spawn.","Roles") in list("Corporate Liaison","Commander","Squad Leader","Squad Specialist","Squad Smartgunner","Squad Engineer","Squad Medic","Squad Marine")
 	if(!role) return
@@ -345,8 +345,8 @@
 		destroy_array()
 
 /obj/item/device/omega_array/proc/destroy_array()
-	if(ticker && ticker.mode && ticker.mode.type == /datum/game_mode/colonialmarines_halloween_2016)
-		var/datum/game_mode/colonialmarines_halloween_2016/M = ticker.mode
+	if(SSticker?.mode && SSticker.mode.type == /datum/game_mode/colonialmarines_halloween_2016)
+		var/datum/game_mode/colonialmarines_halloween_2016/M = SSticker.mode
 		M.mcguffin = null
 	var/detonate_location = get_turf(src)
 	qdel(src)
@@ -364,8 +364,8 @@
 
 /obj/effect/step_trigger/jason/Trigger(mob/living/M)
 	if(istype(M) && M.stat != DEAD && (!M.mind || !M.mind.special_role || M.mind.special_role == "PMC"))
-		if(ticker && ticker.mode && ticker.mode.type == /datum/game_mode/colonialmarines_halloween_2016)
-			var/datum/game_mode/colonialmarines_halloween_2016/T = ticker.mode
+		if(SSticker?.mode && SSticker.mode.type == /datum/game_mode/colonialmarines_halloween_2016)
+			var/datum/game_mode/colonialmarines_halloween_2016/T = SSticker.mode
 			if("Jason" in T.special_spawns) //We do not want to trigger multiple instances of this.
 				T.special_spawns -= "Jason" //First one blocks any further atempts.
 				var/obj/effect/step_trigger/jason/J
@@ -408,8 +408,8 @@
 	Destroy()
 		. = ..()
 		SetLuminosity(0)
-		if(ticker && ticker.mode && ticker.mode.type == /datum/game_mode/colonialmarines_halloween_2016)
-			var/datum/game_mode/colonialmarines_halloween_2016/T = ticker.mode
+		if(SSticker?.mode && SSticker.mode.type == /datum/game_mode/colonialmarines_halloween_2016)
+			var/datum/game_mode/colonialmarines_halloween_2016/T = SSticker.mode
 			to_chat(world, "<span class='event_announcement'>A blood seal has broken! [--T.total_attuned ? T.total_attuned : "None"] remain!</span>")
 
 /obj/effect/rune/attunement/attack_hand(mob/living/user) //Special snowflake rune, do not steal 2016.
@@ -1527,7 +1527,7 @@
 				stored_blood -= 0.1
 		if(0.1 to 0.9)
 			if(prob(5))
-				visible_message("<span class='warning'>[bicon(src)] [src]'s eyes glow ruby red for a moment!</span>")
+				visible_message("<span class='warning'>[icon2html(src, viewers(src))] [src]'s eyes glow ruby red for a moment!</span>")
 				stored_blood -= 0.1
 
 	//Check the shadow wights and auto-remove them if they get too far.

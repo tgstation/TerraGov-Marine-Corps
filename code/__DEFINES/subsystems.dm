@@ -91,6 +91,7 @@
 #define FIRE_PRIORITY_RESEARCH		10
 #define FIRE_PRIORITY_VIS			10
 #define FIRE_PRIORITY_GARBAGE		15
+#define FIRE_PRIORITY_DIRECTION		19
 #define FIRE_PRIORITY_WET_FLOORS	20
 #define FIRE_PRIORITY_AIR			20
 #define FIRE_PRIORITY_NPC			20
@@ -143,5 +144,5 @@
 		if(LAZYLEN(po)){\
 			A.overlays |= po;\
 		}\
-		A.flags_1 &= ~OVERLAY_QUEUED_1;\
+		A.flags_atom &= ~OVERLAY_QUEUED;\
 	}

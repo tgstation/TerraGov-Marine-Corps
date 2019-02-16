@@ -1,0 +1,4 @@
+author: "by Surrealistik"
+delete-after: True
+changes: 
+  - tweak: "Hunter punch now costs 20 plasma down from 30 but applies 3 stacks of stagger and slowdown instead of having a chance to fracture."

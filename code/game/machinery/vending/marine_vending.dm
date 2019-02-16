@@ -129,6 +129,7 @@
 					/obj/item/storage/box/nade_box/M15 = 1,																																																																										
 					/obj/item/weapon/gun/smg/ppsh = 4,
 					/obj/item/weapon/gun/shotgun/double = 2,
+					/obj/item/weapon/gun/shotgun/pump/bolt = 2,
 					/obj/item/weapon/gun/smg/m39/elite = 0,
 					/obj/item/weapon/gun/rifle/m41aMK1 = 0,
 					/obj/item/weapon/gun/rifle/m41a/elite = 0,
@@ -212,6 +213,7 @@
 	contraband = list(
 					/obj/item/ammo_magazine/smg/ppsh/ = 20,
 					/obj/item/ammo_magazine/smg/ppsh/extended = 4,
+					/obj/item/ammo_magazine/rifle/bolt = 10,
 					/obj/item/ammo_magazine/sniper = 0,
 					/obj/item/ammo_magazine/sniper/incendiary = 0,
 					/obj/item/ammo_magazine/sniper/flak = 0,

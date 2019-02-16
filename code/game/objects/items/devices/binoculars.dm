@@ -68,12 +68,6 @@
 	else
 		overlays += "binoculars_laser"
 
-/obj/item/device/binoculars/tactical/handle_click(var/mob/living/user, var/atom/A, var/list/mods)
-	if (mods["ctrl"])
-		acquire_target(A, user)
-		return 1
-	return 0
-
 /obj/item/device/binoculars/tactical/verb/toggle_mode()
 	set category = "Object"
 	set name = "Toggle Laser Mode"

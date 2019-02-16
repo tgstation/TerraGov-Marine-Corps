@@ -26,9 +26,6 @@
 		user.show_message("<span class='notice'> Key: Suffocation/Toxin/Burns/Brute</span>", 1)
 		user.show_message("<span class='notice'> Body Temperature: ???</span>", 1)
 		return
-	if(!(ishuman(user) || ticker) && ticker.mode.name != "monkey")
-		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
-		return
 	if(!iscyborg(M) && !(ishuman(M) && (M:species.flags & IS_SYNTHETIC)))
 		to_chat(user, "<span class='warning'>You can't analyze non-robotic things!</span>")
 		return

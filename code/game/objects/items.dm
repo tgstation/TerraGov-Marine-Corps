@@ -632,9 +632,9 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 	if(is_blind(user))
 		to_chat(user, "<span class='warning'>You are too blind to see anything.</span>")
-	else if(user.stat || !ishuman(user))
-		to_chat(user, "<span class='warning'>You are unable to focus through \the [zoom_device].</span>")
-	else if(!zoom && user.client && H.tinttotal >= 3)
+	else if(!user.IsAdvancedToolUser())
+		to_chat(user, "<span class='warning'>You do not have the dexterity to use \the [zoom_device].</span>")
+	else if(!zoom && user.client && H.tinttotal >= 2)
 		to_chat(user, "<span class='warning'>Your welding equipment gets in the way of you looking through \the [zoom_device].</span>")
 	else if(!zoom && user.get_active_held_item() != src)
 		to_chat(user, "<span class='warning'>You need to hold \the [zoom_device] to look through it.</span>")
