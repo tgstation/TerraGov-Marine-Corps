@@ -544,6 +544,8 @@ its easier to just keep the beam vertical.
 			log_ooc(log_text)
 		if(LOG_ADMIN)
 			log_admin(log_text)
+		if(LOG_LOOC)
+			log_looc(log_text)
 		if(LOG_ADMIN_PRIVATE)
 			log_admin_private(log_text)
 		if(LOG_ASAY)

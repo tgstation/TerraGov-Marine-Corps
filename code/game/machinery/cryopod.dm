@@ -59,7 +59,7 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 
 	var/dat
 
-	if(!(ticker))
+	if(!(SSticker))
 		return
 
 	dat += "<hr/><br/><b>Cryogenic Oversight Control for [cryotype]</b><br/>"
@@ -349,11 +349,11 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 					S.count--
 				H.assigned_squad?.clean_marine_from_squad(H,TRUE) //Remove from squad recods, if any.
 
-			ticker.mode.latejoin_tally-- //Cryoing someone out removes someone from the Marines, blocking further larva spawns until accounted for
+			SSticker.mode.latejoin_tally-- //Cryoing someone out removes someone from the Marines, blocking further larva spawns until accounted for
 
 			//Handle job slot/tater cleanup.
 			if(occupant.mind)
-				RoleAuthority.free_role(RoleAuthority.roles_for_mode[occupant.mind.assigned_role])
+				SSjob.free_role(SSjob.roles_for_mode[occupant.mind.assigned_role])
 
 				if(occupant.mind.objectives.len)
 					qdel(occupant.mind.objectives)

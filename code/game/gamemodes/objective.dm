@@ -22,7 +22,7 @@ datum/objective
 
 	proc/find_target()
 		var/list/possible_targets = list()
-		for(var/datum/mind/possible_target in ticker.minds)
+		for(var/datum/mind/possible_target in SSticker.minds)
 			if(possible_target != owner && ishuman(possible_target.current) && (possible_target.current.stat != 2))
 				possible_targets += possible_target
 		if(possible_targets.len > 0)
@@ -30,7 +30,7 @@ datum/objective
 
 
 	proc/find_target_by_role(role, role_type=0)//Option sets either to check assigned role or special role. Default to assigned.
-		for(var/datum/mind/possible_target in ticker.minds)
+		for(var/datum/mind/possible_target in SSticker.minds)
 			if((possible_target != owner) && ishuman(possible_target.current) && ((role_type ? possible_target.special_role : possible_target.assigned_role) == role) )
 				target = possible_target
 				break

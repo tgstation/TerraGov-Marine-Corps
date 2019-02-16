@@ -90,6 +90,9 @@
 		spark_system.attach(src)
 		spark_system.start(src)
 		playsound(loc, 'sound/items/Welder2.ogg', 25, 1, 6)
+		if(iscarbon(user))
+			var/mob/living/carbon/C = user
+			C.throw_mode_on()
 		overlays += new/obj/effect/overlay/danger
 		spawn(rand(10,50))
 			spark_system.start(src)
@@ -168,6 +171,7 @@
  * 15000-cell	explosion(T, -1, 2, 4, 4)
  * */
 	if (charge==0)
+		explosion(T, 0, 0, 0, 0) //No charge? Shitsplosion
 		return
 	var/devastation_range = -1 //round(charge/11000)
 	var/heavy_impact_range = max(2,round(sqrt(charge)/100))

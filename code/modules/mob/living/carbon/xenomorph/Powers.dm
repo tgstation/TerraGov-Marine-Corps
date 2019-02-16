@@ -1459,7 +1459,7 @@
 
 
 /proc/check_hive_status(mob/living/carbon/Xenomorph/user, var/anchored = FALSE)
-	if(!ticker)
+	if(!SSticker)
 		return
 	var/dat = "<html><head><title>Hive Status</title></head><body>"
 
@@ -1497,7 +1497,7 @@
 	var/defiler_count = 0
 	var/larva_list = ""
 	var/larva_count = 0
-	var/stored_larva_count = ticker.mode.stored_larva
+	var/stored_larva_count = SSticker.mode.stored_larva
 	var/leader_list = ""
 
 	for(var/mob/living/carbon/Xenomorph/X in GLOB.alive_xeno_list)
@@ -1745,9 +1745,12 @@
 		if(frenzy_aura)
 			damage *= (1 + round(frenzy_aura * 0.1,0.01)) //+10% damage per level of frenzy
 		var/armor_block = M.run_armor_check("chest", "melee")
-		M.take_overall_damage(rand(damage * 0.75, damage * 1.25) * 0.5, armor_block) //Armour functions against this.
 		if(ishuman(M))
-			M.apply_damage(damage, HALLOSS) //...But decent armour ignoring Halloss
+			var/mob/living/carbon/human/H = M
+			H.take_overall_damage(rand(damage * 0.75,damage * 1.25), null, 0, 0, 0, armor_block) //Armour functions against this.
+		else
+			M.take_overall_damage(rand(damage * 0.75,damage * 1.25), 0, null, armor_block) //Armour functions against this.
+		M.apply_damage(damage, HALLOSS) //...But decent armour ignoring Halloss
 		shake_camera(M, 2, 2)
 		playsound(M,pick('sound/weapons/alien_claw_block.ogg','sound/weapons/alien_bite2.ogg'), 50, 1)
 		M.KnockDown(1, 1)
