@@ -418,7 +418,7 @@
 		else
 			left_behind += xeno
 	if(with_queen.len > left_behind.len) // to stop solo-suiciding by queens
-		ticker.mode.stored_larva = 0
+		SSticker.mode.stored_larva = 0
 		for(var/mob/living/carbon/Xenomorph/about_to_die in left_behind)
 			to_chat(about_to_die, "<span class='xenoannounce'>The Queen has left without you, you quickly find a hiding place to enter hibernation as you lose touch with the hive mind.</span>")
 			qdel(about_to_die) // just delete them

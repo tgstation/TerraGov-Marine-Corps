@@ -1459,7 +1459,7 @@
 
 
 /proc/check_hive_status(mob/living/carbon/Xenomorph/user, var/anchored = FALSE)
-	if(!ticker)
+	if(!SSticker)
 		return
 	var/dat = "<html><head><title>Hive Status</title></head><body>"
 
@@ -1497,7 +1497,7 @@
 	var/defiler_count = 0
 	var/larva_list = ""
 	var/larva_count = 0
-	var/stored_larva_count = ticker.mode.stored_larva
+	var/stored_larva_count = SSticker.mode.stored_larva
 	var/leader_list = ""
 
 	for(var/mob/living/carbon/Xenomorph/X in GLOB.alive_xeno_list)

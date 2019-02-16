@@ -199,7 +199,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		else
 			return
 
-	if(!X || !istype(X) || X.gc_destroyed || !ticker || X.hivenumber != hivenumber_status)
+	if(!istype(X) || X.gc_destroyed || !SSticker || X.hivenumber != hivenumber_status)
 		return
 
 	X.set_hive_number(newhivenumber)
@@ -436,7 +436,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		if("Master")
 			usr.client.debug_variables(Master)
 		if("Ticker")
-			usr.client.debug_variables(ticker)
+			usr.client.debug_variables(SSticker)
 		if("Lighting")
 			usr.client.debug_variables(lighting_controller)
 		if("Jobs")

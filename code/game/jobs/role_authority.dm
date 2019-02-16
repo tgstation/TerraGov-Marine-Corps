@@ -155,7 +155,7 @@ sorts them out by their department.
 		return
 
 	var/datum/job/J
-	var/datum/game_mode/G = ticker.mode
+	var/datum/game_mode/G = SSticker.mode
 
 	//Each gamemode can define what to do with their roles if anything special is necessary.
 	switch(G.role_instruction)

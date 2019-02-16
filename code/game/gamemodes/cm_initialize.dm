@@ -346,7 +346,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 	return TRUE
 
 /datum/game_mode/proc/attempt_to_join_as_larva(mob/xeno_candidate)
-	if(!ticker.mode.stored_larva)
+	if(!SSticker.mode.stored_larva)
 		to_chat(xeno_candidate, "<span class='warning'>There are no burrowed larvas.</span>")
 		return FALSE
 	var/available_queens[] = list()
@@ -362,7 +362,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 	var/mob/living/carbon/Xenomorph/Queen/mother = input("Available Mothers") as null|anything in available_queens
 	if (!istype(mother) || !xeno_candidate || !xeno_candidate.client)
 		return FALSE
-	if(!ticker.mode.stored_larva)
+	if(!SSticker.mode.stored_larva)
 		to_chat(xeno_candidate, "<span class='warning'>There are no longer burrowed larvas available.</span>")
 		return FALSE
 	if(!mother.ovipositor || mother.is_mob_incapacitated(TRUE))
@@ -381,7 +381,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 /datum/game_mode/proc/spawn_larva(mob/xeno_candidate, var/mob/living/carbon/Xenomorph/Queen/mother)
 	if(!xeno_candidate)
 		return FALSE
-	if(!ticker.mode.stored_larva || !mother || !istype(mother))
+	if(!SSticker.mode.stored_larva || !istype(mother))
 		to_chat(xeno_candidate, "<span class='warning'>Something went awry. Can't spawn at the moment.</span>")
 		log_admin("[xeno_candidate.key] has failed to join as a larva.")
 		return FALSE
@@ -394,7 +394,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 		new_xeno.client.change_view(world.view)
 	to_chat(new_xeno, "<span class='xenoannounce'>You are a xenomorph larva awakened from slumber!</span>")
 	new_xeno << sound('sound/effects/xeno_newlarva.ogg')
-	ticker.mode.stored_larva--
+	SSticker.mode.stored_larva--
 	log_admin("[new_xeno.key] has joined as [new_xeno].")
 
 /datum/game_mode/proc/attempt_to_join_as_xeno(mob/xeno_candidate, instant_join = 0)

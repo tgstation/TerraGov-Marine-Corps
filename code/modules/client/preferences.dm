@@ -1239,7 +1239,7 @@ datum/preferences
 				if("lobby_music")
 					toggles_sound ^= SOUND_LOBBY
 					if(toggles_sound & SOUND_LOBBY)
-						user << sound(ticker.login_music, repeat = 0, wait = 0, volume = 85, channel = 1)
+						user << sound(SSticker.login_music, repeat = 0, wait = 0, volume = 85, channel = 1)
 					else
 						user << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1)
 

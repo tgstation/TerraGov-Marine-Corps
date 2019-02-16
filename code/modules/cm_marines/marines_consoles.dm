@@ -55,7 +55,7 @@
 
 	user.set_interaction(src)
 	var/dat
-	if (!( ticker ))
+	if (!( SSticker ))
 		return
 	if (mode) // accessing crew manifest
 

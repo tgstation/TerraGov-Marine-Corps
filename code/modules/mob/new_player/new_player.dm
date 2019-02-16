@@ -36,7 +36,7 @@
 	output +="<hr>"
 	output += "<p><a href='byond://?src=\ref[src];lobby_choice=show_preferences'>Setup Character</A></p>"
 
-	if(!ticker?.mode || ticker.current_state <= GAME_STATE_PREGAME)
+	if(!SSticker?.mode || SSticker.current_state <= GAME_STATE_PREGAME)
 		output += "<p>\[ [ready? "<b>Ready</b>":"<a href='byond://?src=\ref[src];lobby_choice=ready'>Ready</a>"] | [ready? "<a href='byond://?src=\ref[src];lobby_choice=ready'>Not Ready</a>":"<b>Not Ready</b>"] \]</p>"
 
 	else
@@ -54,17 +54,17 @@
 /mob/new_player/Stat()
 	. = ..()
 
-	if(!ticker)
+	if(!SSticker)
 		return
 
 	if(statpanel("Stats"))
-		if(ticker.hide_mode)
+		if(SSticker.hide_mode)
 			stat("Game Mode:", "TerraGov Marine Corps")
 		else
 			stat("Game Mode:", "[master_mode]")
 
-		if(ticker.current_state == GAME_STATE_PREGAME)
-			stat("Time To Start:", "[ticker.pregame_timeleft][going ? "" : " (DELAYED)"]")
+		if(SSticker.current_state == GAME_STATE_PREGAME)
+			stat("Time To Start:", "[SSticker.pregame_timeleft][going ? "" : " (DELAYED)"]")
 			stat("Players: [GLOB.total_players]", "Players Ready: [GLOB.ready_players]")
 			for(var/mob/new_player/player in GLOB.player_list)
 				stat("[player.key]", player.ready ? "Playing" : "")
@@ -79,7 +79,7 @@
 
 
 		if("ready")
-			if(!ticker || ticker.current_state <= GAME_STATE_PREGAME)
+			if(!SSticker || SSticker.current_state <= GAME_STATE_PREGAME)
 				ready = !ready
 				if(ready)
 					GLOB.ready_players++
@@ -132,12 +132,12 @@
 
 
 		if("late_join")
-			if(!ticker?.mode || ticker.current_state != GAME_STATE_PLAYING)
+			if(!SSticker?.mode || SSticker.current_state != GAME_STATE_PLAYING)
 				to_chat(src, "<span class='warning'>The round is either not ready, or has already finished.</span>")
 				return
 
-			if(ticker.mode.flags_round_type	& MODE_NO_LATEJOIN)
-				to_chat(src, "<span class='warning'>Sorry, you cannot late join during [ticker.mode.name]. You have to start at the beginning of the round. You may observe or try to join as an alien, if possible.</span>")
+			if(SSticker.mode.flags_round_type	& MODE_NO_LATEJOIN)
+				to_chat(src, "<span class='warning'>Sorry, you cannot late join during [SSticker.mode.name]. You have to start at the beginning of the round. You may observe or try to join as an alien, if possible.</span>")
 				return
 
 			if(client.prefs.species != "Human")
@@ -149,24 +149,24 @@
 
 
 		if("late_join_xeno")
-			if(!ticker || ticker.current_state != GAME_STATE_PLAYING || !ticker.mode)
+			if(!SSticker?.mode || SSticker.current_state != GAME_STATE_PLAYING)
 				to_chat(src, "<span class='warning'>The round is either not ready, or has already finished.</span>")
 				return
 
 			switch(alert("Would you like to try joining as a burrowed larva or as a living xenomorph?", "Select", "Burrowed Larva", "Living Xenomorph", "Cancel"))
 				if("Burrowed Larva")
-					if(ticker.mode.check_xeno_late_join(src))
+					if(SSticker.mode.check_xeno_late_join(src))
 						var/mob/living/carbon/Xenomorph/Queen/mother
-						mother = ticker.mode.attempt_to_join_as_larva(src)
+						mother = SSticker.mode.attempt_to_join_as_larva(src)
 						if(mother)
 							close_spawn_windows()
-							ticker.mode.spawn_larva(src, mother)
+							SSticker.mode.spawn_larva(src, mother)
 				if("Living Xenomorph")
-					if(ticker.mode.check_xeno_late_join(src))
-						var/mob/new_xeno = ticker.mode.attempt_to_join_as_xeno(src, 0)
+					if(SSticker.mode.check_xeno_late_join(src))
+						var/mob/new_xeno = SSticker.mode.attempt_to_join_as_xeno(src, 0)
 						if(new_xeno)
 							close_spawn_windows(new_xeno)
-							ticker.mode.transfer_xeno(src, new_xeno)
+							SSticker.mode.transfer_xeno(src, new_xeno)
 
 
 		if("manifest")
@@ -189,7 +189,7 @@
 /mob/new_player/proc/AttemptLateSpawn(rank, spawning_at)
 	if(src != usr)
 		return
-	if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
+	if(!SSticker || SSticker.current_state != GAME_STATE_PLAYING)
 		to_chat(usr, "<span class='warning'>The round is either not ready, or has already finished!<spawn>")
 		return
 	if(!GLOB.enter_allowed)
@@ -217,19 +217,19 @@
 	UpdateFactionList(character)
 	EquipCustomItems(character)
 
-	ticker.mode.latespawn(character)
+	SSticker.mode.latespawn(character)
 	data_core.manifest_inject(character)
-	ticker.minds += character.mind//Cyborgs and AIs handle this in the transform proc.	//TODO!!!!! ~Carn
-	ticker.mode.latejoin_tally++
+	SSticker.minds += character.mind//Cyborgs and AIs handle this in the transform proc.	//TODO!!!!! ~Carn
+	SSticker.mode.latejoin_tally++
 
 	for(var/datum/squad/sq in RoleAuthority.squads)
 		if(sq)
 			sq.max_engineers = engi_slot_formula(GLOB.clients.len)
 			sq.max_medics = medic_slot_formula(GLOB.clients.len)
 
-	if(ticker.mode.latejoin_larva_drop && ticker.mode.latejoin_tally >= ticker.mode.latejoin_larva_drop)
-		ticker.mode.latejoin_tally -= ticker.mode.latejoin_larva_drop
-		ticker.mode.stored_larva++
+	if(SSticker.mode.latejoin_larva_drop && SSticker.mode.latejoin_tally >= SSticker.mode.latejoin_larva_drop)
+		SSticker.mode.latejoin_tally -= SSticker.mode.latejoin_larva_drop
+		SSticker.mode.stored_larva++
 
 	qdel(src)
 
@@ -288,7 +288,7 @@
 		if(is_alien_whitelisted(client.prefs.language) || !CONFIG_GET(flag/usealienwhitelist) || !(chosen_language.flags & WHITELISTED) || (new_character.species && (chosen_language.name in new_character.species.secondary_langs)))
 			new_character.add_language("[client.prefs.language]")
 
-	if(ticker.random_players)
+	if(SSticker.random_players)
 		new_character.gender = pick(MALE, FEMALE)
 		client.prefs.real_name = chosen_species.random_name(new_character.gender)
 		client.prefs.randomize_appearance_for(new_character)
