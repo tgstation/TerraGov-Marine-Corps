@@ -112,7 +112,7 @@
 			to_chat(src, "<span class='warning'>There already is a living Queen.</span>")
 			return
 
-		if(hivenumber == XENO_HIVE_NORMAL && ticker && ticker.mode && hive.xeno_queen_timer)
+		if(hivenumber == XENO_HIVE_NORMAL && SSticker?.mode && hive.xeno_queen_timer)
 			to_chat(src, "<span class='warning'>You must wait about [round(hive.xeno_queen_timer / 60)] minutes for the hive to recover from the previous Queen's death.<span>")
 			return
 

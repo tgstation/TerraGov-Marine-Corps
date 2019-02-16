@@ -13,7 +13,7 @@
 	var/temperature = T20C
 	var/pressure = ONE_ATMOSPHERE
 
-/area/Initialize()
+/area/New()
 	. = ..()
 
 	icon_state = "" //Used to reset the icon overlay, I assume.
