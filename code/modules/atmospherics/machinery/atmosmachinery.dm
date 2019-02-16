@@ -305,6 +305,22 @@
 
 #define VENT_SOUND_DELAY 30
 
+/obj/machinery/atmospherics/proc/climb_out(mob/living/user, turf/T)
+	//message_admins("exiting vent")
+	if(user.ventcrawl_message_busy > world.time)
+		return FALSE
+	user.ventcrawl_message_busy = world.time + 20
+	if(!isxenohunter(user) ) //Hunters silently enter/exit/move through vents.
+		visible_message("<span class='warning'>You hear something squeezing through the ducts.</span>")
+	to_chat(user, "<span class='notice'>You begin to climb out of [src]</span>")
+	if(do_after(user, 20, FALSE))
+		user.remove_ventcrawl()
+		user.forceMove(T)
+		user.visible_message("<span class='warning'>[user] climbs out of [src].</span>", \
+		"<span class='notice'>You climb out of [src].</span>")
+		if(!isxenohunter(user) )
+			pick(playsound(user, 'sound/effects/alien_ventpass1.ogg', 35, 1), playsound(user, 'sound/effects/alien_ventpass2.ogg', 35, 1))
+
 /obj/machinery/atmospherics/relaymove(mob/living/user, direction)
 	direction &= initialize_directions
 	if(!direction || !(direction in GLOB.cardinals)) //cant go this way.
@@ -316,8 +332,9 @@
 	if(target_move)
 		if(target_move.can_crawl_through())
 			if(is_type_in_typecache(target_move, GLOB.ventcrawl_machinery))
-				user.forceMove(target_move.loc) //handle entering and so on.
-				user.visible_message("<span class='notice'>You hear something squeezing through the ducts...</span>", "<span class='notice'>You climb out the ventilation system.")
+				climb_out(user, target_move.loc)
+				//user.forceMove(target_move.loc) //handle entering and so on.
+				//user.visible_message("<span class='notice'>You hear something squeezing through the ducts...</span>", "<span class='notice'>You climb out the ventilation system.")
 			else
 				//var/list/pipenetdiff = returnPipenets() ^ target_move.returnPipenets()
 				//if(pipenetdiff.len)
@@ -328,19 +345,7 @@
 					user.last_played_vent = world.time
 					playsound(src, pick('sound/effects/alien_ventcrawl1.ogg','sound/effects/alien_ventcrawl2.ogg'), 50, 1, -3)
 	else if(is_type_in_typecache(src, GLOB.ventcrawl_machinery) && can_crawl_through()) //if we move in a way the pipe can connect, but doesn't - or we're in a vent
-		if(user.ventcrawl_message_busy > world.time)
-			return
-		user.ventcrawl_message_busy = world.time + 20
-		if(!isxenohunter(user) ) //Hunters silently enter/exit/move through vents.
-			visible_message("<span class='warning'>You hear something squeezing through the ducts.</span>")
-		to_chat(user, "<span class='notice'>You begin to climb out of [src]</span>")
-		if(do_after(user, 20, FALSE))
-			user.remove_ventcrawl()
-			user.forceMove(src.loc)
-			user.visible_message("<span class='warning'>[user] climbs out of [src].</span>", \
-			"<span class='notice'>You climb out of [src].</span>")
-			if(!isxenohunter(user) )
-				pick(playsound(user, 'sound/effects/alien_ventpass1.ogg', 35, 1), playsound(user, 'sound/effects/alien_ventpass2.ogg', 35, 1))
+		climb_out(user, src.loc)
 
 	//PLACEHOLDER COMMENT FOR ME TO READD THE 1 (?) DS DELAY THAT WAS IMPLEMENTED WITH A... TIMER?
 /*
