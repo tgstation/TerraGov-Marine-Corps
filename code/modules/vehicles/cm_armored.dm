@@ -121,30 +121,6 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 /obj/vehicle/multitile/root/cm_armored/proc/can_use_hp(var/mob/M)
 	return 1
 
-//No one but the gunner can gun
-//And other checks to make sure you aren't breaking the law
-/obj/vehicle/multitile/root/cm_armored/tank/handle_click(var/mob/living/user, var/atom/A, var/list/mods)
-
-	if(!can_use_hp(user)) return
-
-	if(!hardpoints.Find(active_hp))
-		to_chat(user, "<span class='warning'>Please select an active hardpoint first.</span>")
-		return
-
-	var/obj/item/hardpoint/HP = hardpoints[active_hp]
-
-	if(!HP)
-		return
-
-	if(!HP.is_ready())
-		return
-
-	if(!HP.firing_arc(A))
-		to_chat(user, "<span class='warning'>The target is not within your firing arc.</span>")
-		return
-
-	HP.active_effect(get_turf(A))
-
 //Used by the gunner to swap which module they are using
 //e.g. from the minigun to the smoke launcher
 //Only the active hardpoint module can be used
@@ -532,6 +508,12 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		M.visible_message("<span class='danger'>\The [M] lunges at [src]!</span>", \
 		"<span class='danger'>You lunge at [src]!</span>")
 		return 0
+
+	else
+		playsound(loc, "alien_claw_metal", 25, 1)
+
+	if(M.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
+		M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 
 	M.visible_message("<span class='danger'>\The [M] slashes [src]!</span>", \
 	"<span class='danger'>You slash [src]!</span>")

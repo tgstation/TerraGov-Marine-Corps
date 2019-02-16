@@ -120,7 +120,7 @@
 	checkwin_counter++
 	if(checkwin_counter >= 3)
 		if(!finished)
-			ticker.mode.check_win()
+			SSticker.mode.check_win()
 		checkwin_counter = 0
 	return 0
 
@@ -224,7 +224,7 @@ datum/game_mode/infestation/proc/check_alien_victory()
 
 // Display antags at round-end
 /datum/game_mode/proc/auto_declare_completion_infestation()
-	if( aliens.len || (ticker && istype(ticker.mode,/datum/game_mode/infestation)) )
+	if( length(aliens) || istype(SSticker?.mode,/datum/game_mode/infestation) )
 		var/text = "<FONT size = 2><B>The aliens were:</B></FONT>"
 		for(var/mob/living/L in GLOB.mob_living_list)
 			if(L.mind && L.mind.assigned_role)
