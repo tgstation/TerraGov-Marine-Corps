@@ -2405,3 +2405,26 @@
 
 /mob/living/carbon/human/species/synthetic/can_sting()
 	return FALSE
+
+/mob/living/carbon/Xenomorph/proc/hit_and_run_bonus(damage)
+	return damage
+
+/mob/living/carbon/Xenomorph/Runner/hit_and_run_bonus(damage)
+	var/last_move = last_move_intent - 10
+	var/bonus
+	if(last_move && last_move < world.time - 5) //If we haven't moved in the last 500 ms, we lose our bonus
+		hit_and_run = 1
+	bonus = CLAMP(hit_and_run, 1, 2)//Runner deals +5% damage per tile moved in rapid succession to a maximum of +100%. Damage bonus is lost on attacking.
+	switch(bonus)
+		if(2)
+			visible_message("<span class='danger'>\The [src] strikes with lethal speed!</span>", \
+			"<span class='danger'>You strike with lethal speed!</span>")
+		if(1.5 to 1.99)
+			visible_message("<span class='danger'>\The [src] strikes with deadly speed!</span>", \
+			"<span class='danger'>You strike with deadly speed!</span>")
+		if(1.25 to 1.45)
+			visible_message("<span class='danger'>\The [src] strikes with vicious speed!</span>", \
+			"<span class='danger'>You strike with vicious speed!</span>")
+	damage *= bonus
+	hit_and_run = 1 //reset the hit and run bonus
+	return damage
