@@ -516,6 +516,7 @@
 #include "code\game\objects\items\misc.dm"
 #include "code\game\objects\items\paint.dm"
 #include "code\game\objects\items\power_cells.dm"
+#include "code\game\objects\items\RPD.dm"
 #include "code\game\objects\items\scrolls.dm"
 #include "code\game\objects\items\shards.dm"
 #include "code\game\objects\items\shooting_range.dm"
