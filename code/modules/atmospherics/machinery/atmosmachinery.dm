@@ -306,20 +306,22 @@
 #define VENT_SOUND_DELAY 30
 
 /obj/machinery/atmospherics/proc/climb_out(mob/living/user, turf/T)
-	//message_admins("exiting vent")
 	if(user.ventcrawl_message_busy > world.time)
 		return FALSE
 	user.ventcrawl_message_busy = world.time + 20
 	if(!isxenohunter(user) ) //Hunters silently enter/exit/move through vents.
 		visible_message("<span class='warning'>You hear something squeezing through the ducts.</span>")
 	to_chat(user, "<span class='notice'>You begin to climb out of [src]</span>")
-	if(do_after(user, 20, FALSE))
-		user.remove_ventcrawl()
-		user.forceMove(T)
-		user.visible_message("<span class='warning'>[user] climbs out of [src].</span>", \
-		"<span class='notice'>You climb out of [src].</span>")
-		if(!isxenohunter(user) )
-			pick(playsound(user, 'sound/effects/alien_ventpass1.ogg', 35, 1), playsound(user, 'sound/effects/alien_ventpass2.ogg', 35, 1))
+	if(!do_after(user, 20, FALSE))
+		return FALSE
+	user.remove_ventcrawl()
+	user.forceMove(T)
+	user.visible_message("<span class='warning'>[user] climbs out of [src].</span>", \
+	"<span class='notice'>You climb out of [src].</span>")
+	if(!isxenohunter(user) )
+		pick(playsound(user, 'sound/effects/alien_ventpass1.ogg', 35, 1), playsound(user, 'sound/effects/alien_ventpass2.ogg', 35, 1))
+	if(user.client)
+		user.client.next_movement += 1
 
 /obj/machinery/atmospherics/relaymove(mob/living/user, direction)
 	direction &= initialize_directions
@@ -338,13 +340,13 @@
 			else
 				//var/list/pipenetdiff = returnPipenets() ^ target_move.returnPipenets()
 				//if(pipenetdiff.len)
-				user.update_pipe_vision(target_move)
+				//user.update_pipe_vision(target_move)
 				user.forceMove(target_move)
 				user.client.eye = target_move  //Byond only updates the eye every tick, This smooths out the movement
 				if(world.time - user.last_played_vent > VENT_SOUND_DELAY)
 					user.last_played_vent = world.time
 					playsound(src, pick('sound/effects/alien_ventcrawl1.ogg','sound/effects/alien_ventcrawl2.ogg'), 50, 1, -3)
-	else if(is_type_in_typecache(src, GLOB.ventcrawl_machinery) && can_crawl_through()) //if we move in a way the pipe can connect, but doesn't - or we're in a vent
+	else if((direction & initialize_directions) || is_type_in_typecache(src, GLOB.ventcrawl_machinery) && can_crawl_through()) //if we move in a way the pipe can connect, but doesn't - or we're in a vent
 		climb_out(user, src.loc)
 
 	//PLACEHOLDER COMMENT FOR ME TO READD THE 1 (?) DS DELAY THAT WAS IMPLEMENTED WITH A... TIMER?
