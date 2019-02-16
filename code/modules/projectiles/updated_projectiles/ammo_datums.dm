@@ -867,7 +867,7 @@
 	. = ..()
 	damage = CONFIG_GET(number/combat_define/med_hit_damage)
 	penetration= CONFIG_GET(number/combat_define/mhigh_armor_penetration)
-	accurate_range = CONFIG_GET(number/combat_define/near_shell_range)
+	accurate_range = CONFIG_GET(number/combat_define/min_shell_range)
 
 /datum/ammo/bullet/turret/mini
 	name = "UA-580 10x20mm armor piercing bullet"
