@@ -36,7 +36,7 @@
 	if(panel_open)
 		to_chat(user, "<span class='notice'>The maintenance hatch is open.</span>")
 
-/obj/machinery/power/smes/New()
+/obj/machinery/power/smes/Initialize()
 	. = ..()
 	if(!powernet)
 		connect_to_network()
