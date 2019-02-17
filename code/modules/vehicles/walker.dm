@@ -7,9 +7,10 @@
 	desc = "Relatively new combat walker of \"Megalodon\"-series. Unlike its predecessor, \"Carharodon\"-series, slower, but relays on its tough armor and rapid-firing weapons."
 	icon = 'icons/obj/vehicles/Mecha.dmi'
 	icon_state = "mecha-open"
-	layer = LYING_MOB_LAYER
+	layer = ABOVE_LYING_MOB_LAYER
 	opacity = TRUE
 	can_buckle = FALSE
+	unacidable = TRUE
 	move_delay = 6
 
 	var/lights = FALSE
