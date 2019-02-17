@@ -393,6 +393,7 @@
 		M.animation_attack_on(src)
 		playsound(loc, "alien_claw_metal", 25, 1)
 		M.flick_attack_overlay(src, "slash")
+		M.visible_message("<span class='danger'>[M] slashes [src].</span>","<span class='danger'>You slash [src].</span>", null, 5)
 		take_damage(rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper), "slash")
 	else
 		attack_hand(M)
