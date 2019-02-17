@@ -538,6 +538,17 @@ WEAPONS
 	containername = " detpack explosives crate (WARNING)"
 	group = "Weapons"
 
+/datum/supply_packs/rocket_law
+	name = "M52 LAW Rocket Launcher crate (x2)"
+	contains = list(
+					/obj/item/weapon/gun/launcher/rocket/m52,
+					/obj/item/weapon/gun/launcher/rocket/m52
+					)
+	cost = RO_PRICE_NORMAL
+	containertype = /obj/structure/closet/crate/weapon
+	containername = "M52 LAW Rocket Launcher crate"
+	group = "Weapons"
+
 /*******************************************************************************
 HARDPOINT MODULES (and their ammo)
 *******************************************************************************/
@@ -830,7 +841,7 @@ APC Hardpoint Modules (and their ammo)
 	group = "APC Hardpoint Modules"
 
 /datum/supply_packs/dual_cannon_ammo
-	name = "M78 Dual Ñannon Magazines (x6)"
+	name = "M78 Dual Ã‘annon Magazines (x6)"
 	contains = list(
 					/obj/item/ammo_magazine/apc/dual_cannon,
 					/obj/item/ammo_magazine/apc/dual_cannon,
