@@ -68,7 +68,6 @@
 						a.cancelAlarm("Power", src, source)
 					else
 						a.triggerAlarm("Power", src, cameras, source)
-	return
 
 /area/proc/atmosalert(danger_level)
 //	if(type==/area) //No atmos alarms in space
@@ -112,8 +111,8 @@
 			for (var/obj/machinery/alarm/AA in RA)
 				AA.update_icon()
 
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /area/proc/air_doors_close()
 	if(!src.master.air_doors_activated)
@@ -238,9 +237,9 @@
 /area/proc/powered(var/chan)		// return true if the area has power to given channel
 
 	if(!master.requires_power)
-		return 1
+		return TRUE
 	if(master.always_unpowered)
-		return 0
+		return FALSE
 	switch(chan)
 		if(EQUIP)
 			return master.power_equip
@@ -248,8 +247,7 @@
 			return master.power_light
 		if(ENVIRON)
 			return master.power_environ
-
-	return 0
+	return FALSE
 
 // called when power status changes
 
@@ -281,7 +279,6 @@
 	master.used_environ = 0
 
 /area/proc/use_power(var/amount, var/chan)
-
 	switch(chan)
 		if(EQUIP)
 			master.used_equip += amount
@@ -290,6 +287,7 @@
 		if(ENVIRON)
 			master.used_environ += amount
 
+	master.powerupdate = TRUE
 
 /area/Entered(A,atom/OldLoc)
 	var/musVolume = 20

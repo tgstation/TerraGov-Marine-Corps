@@ -2,6 +2,11 @@
 #define CAT_HIDDEN 1
 #define CAT_COIN   2
 
+#define WIRE_EXTEND 1
+#define WIRE_SCANID 2
+#define	WIRE_SHOCK 3
+#define	WIRE_SHOOTINV 4
+
 /datum/data/vending_product
 	var/product_name = "generic"
 	var/product_path = null
@@ -15,17 +20,17 @@
 	desc = "A generic vending machine."
 	icon = 'icons/obj/machines/vending.dmi'
 	icon_state = "generic"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	layer = BELOW_OBJ_LAYER
 
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 10
 	var/vend_power_usage = 150 //actuators and stuff
 
-	var/active = 1 //No sales pitches if off!
+	var/active = TRUE //No sales pitches if off!
 	var/delay_product_spawn // If set, uses sleep() in product spawn proc (mostly for seeds to retrieve correct names).
-	var/vend_ready = 1 //Are we ready to vend?? Is it time??
+	var/vend_ready = TRUE //Are we ready to vend?? Is it time??
 	var/vend_delay = 10 //How long does it take to vend?
 	var/datum/data/vending_product/currently_vending = null // A /datum/data/vending_product instance of what we're paying for right now.
 
@@ -50,21 +55,17 @@
 	var/icon_deny //Icon_state when vending!
 	//var/emagged = 0 //Ignores if somebody doesn't have card access to that machine.
 	var/seconds_electrified = 0 //Shock customers like an airlock.
-	var/shoot_inventory = 0 //Fire items at customers! We're broken!
-	var/shut_up = 0 //Stop spouting those godawful pitches!
-	var/extended_inventory = 0 //can we access the hidden inventory?
+	var/shoot_inventory = FALSE //Fire items at customers! We're broken!
+	var/shut_up = FALSE //Stop spouting those godawful pitches!
+	var/extended_inventory = FALSE //can we access the hidden inventory?
 	var/wires = 15
 	var/obj/item/coin/coin
 	var/tokensupport = TOKEN_GENERAL
-	var/const/WIRE_EXTEND = 1
-	var/const/WIRE_SCANID = 2
-	var/const/WIRE_SHOCK = 3
-	var/const/WIRE_SHOOTINV = 4
 
 	var/check_accounts = 0		// 1 = requires PIN and checks accounts.  0 = You slide an ID, it vends, SPACE COMMUNISM!
 	var/obj/item/spacecash/ewallet/ewallet
 	var/tipped_level = 0
-	var/hacking_safety = 0 //1 = Will never shoot inventory or allow all access
+	var/hacking_safety = FALSE //1 = Will never shoot inventory or allow all access
 	var/wrenchable = TRUE
 	var/isshared = FALSE
 
@@ -561,7 +562,6 @@
 			src.speak(src.vend_reply)
 			src.last_reply = world.time
 
-
 	release_item(R, vend_delay)
 	vend_ready = 1
 	updateUsrDialog()
@@ -667,8 +667,6 @@
 	if(src.shoot_inventory && prob(2) && !hacking_safety)
 		src.throw_item()
 
-	return
-
 /obj/machinery/vending/proc/speak(var/message)
 	if(stat & NOPOWER)
 		return
@@ -678,18 +676,16 @@
 
 	for(var/mob/O in hearers(src, null))
 		O.show_message("<span class='game say'><span class='name'>[src]</span> beeps, \"[message]\"",2)
-	return
 
 /obj/machinery/vending/power_change()
 	..()
 	if(stat & BROKEN)
 		icon_state = "[initial(icon_state)]-broken"
+	else if( !(stat & NOPOWER) )
+		icon_state = initial(icon_state)
 	else
-		if( !(stat & NOPOWER) )
-			icon_state = initial(icon_state)
-		else
-			spawn(rand(0, 15))
-				icon_state = "[initial(icon_state)]-off"
+		spawn(rand(0, 15))
+			icon_state = "[initial(icon_state)]-off"
 
 //Oh no we're malfunctioning!  Dump out some product and break.
 /obj/machinery/vending/proc/malfunction()
@@ -707,14 +703,13 @@
 
 	stat |= BROKEN
 	src.icon_state = "[initial(icon_state)]-broken"
-	return
 
 //Somebody cut an important wire and now we're following a new definition of "pitch."
 /obj/machinery/vending/proc/throw_item()
 	var/obj/throw_item = null
 	var/mob/living/target = locate() in view(7,src)
 	if(!target)
-		return 0
+		return FALSE
 
 	for(var/datum/data/vending_product/R in product_records)
 		if (R.amount <= 0) //Try to use a record that actually has something to dump.
@@ -727,11 +722,11 @@
 		throw_item = release_item(R, 0)
 		break
 	if (!throw_item)
-		return 0
+		return FALSE
 	spawn(0)
 		throw_item.throw_at(target, 16, 3, src)
 	src.visible_message("<span class='warning'>[src] launches [throw_item.name] at [target]!</span>")
-	return 1
+	. = TRUE
 
 /obj/machinery/vending/proc/isWireColorCut(var/wireColor)
 	var/wireFlag = APCWireColorToFlag[wireColor]
