@@ -84,6 +84,13 @@
 			armor_block = H.run_armor_check("chest", "energy")
 			H.take_overall_damage(null, rand(12, 14), null, null, null, armor_block) //This is ticking damage!
 			to_chat(H, "<span class='danger'>You are scalded by the burning acid!</span>")
+		return
+	if(istype(AM, /obj/vehicle/walker))
+		var/obj/vehicle/walker/walker = AM
+		if(walker.acid_process_cooldown > world.time - 10) //one second reprieve
+			return
+		walker.acid_process_cooldown = world.time
+		walker.take_damage(rand(14, 18), "acid")
 
 /obj/effect/xenomorph/spray/process()
 	var/turf/T = loc
