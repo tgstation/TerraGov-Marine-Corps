@@ -327,17 +327,3 @@
 	tX = CLAMP(origin.x + text2num(tX) - round(actual_view[1] / 2) - 1, 1, world.maxx)
 	tY = CLAMP(origin.y + text2num(tY) - round(actual_view[2] / 2) - 1, 1, world.maxy)
 	return locate(tX, tY, tZ)
-
-
-/proc/getviewsize(view)
-	var/viewX
-	var/viewY
-	if(isnum(view))
-		var/totalviewrange = 1 + 2 * view
-		viewX = totalviewrange
-		viewY = totalviewrange
-	else
-		var/list/viewrangelist = splittext(view,"x")
-		viewX = text2num(viewrangelist[1])
-		viewY = text2num(viewrangelist[2])
-	return list(viewX, viewY)

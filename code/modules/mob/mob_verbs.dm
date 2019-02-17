@@ -3,7 +3,8 @@
 	set category = "Object"
 	set src = usr
 
-	if(istype(loc,/obj/mecha)) return
+	if(istype(loc,/obj/mecha) || istype(loc, /obj/vehicle/multitile/root/cm_armored))
+		return
 
 	if(hand)
 		var/obj/item/W = l_hand

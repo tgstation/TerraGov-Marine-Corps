@@ -587,7 +587,7 @@ should be alright.
 		return
 
 	var/final_delay = A.detach_delay
-	if (usr.mind.cm_skills.firearms)
+	if(usr.mind?.cm_skills?.firearms)
 		usr.visible_message("<span class='notice'>[usr] begins stripping [A] from [src].</span>",
 		"<span class='notice'>You begin stripping [A] from [src].</span>", null, 4)
 		if(usr.mind.cm_skills.firearms > SKILL_FIREARMS_DEFAULT) //See if the attacher is super skilled/panzerelite born to defeat never retreat etc
