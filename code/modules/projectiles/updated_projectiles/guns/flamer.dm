@@ -28,8 +28,7 @@
 /obj/item/weapon/gun/flamer/unique_action(mob/user)
 	toggle_flame(user)
 
-/obj/item/weapon/gun/flamer/examine(mob/user)
-	. = ..()
+/obj/item/weapon/gun/flamer/examine_ammo_count(mob/user)
 	to_chat(user, "It's turned [lit? "on" : "off"].")
 	if(current_mag)
 		to_chat(user, "The fuel gauge shows the current tank is [round(current_mag.get_ammo_percent())]% full!")
