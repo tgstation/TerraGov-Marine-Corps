@@ -393,9 +393,6 @@ var/global/list/activated_medevac_stretchers = list()
 		to_chat(user, "<span class='warning'>[src]'s bluespace engine is still recharging; it will be ready in [round(last_teleport - world.time) * 0.1] seconds.</span>")
 		return
 
-	if(!buckled_mob && !buckled_bodybag)
-		to_chat(user, "<span class='warning'>You need to attach something to [src] before you can activate the bluespace engine.</span>")
-
 	if(user == buckled_mob)
 		to_chat(user, "<span class='warning'>You can't reach the teleportation activation button while buckled to [src].</span>")
 		return
@@ -421,7 +418,7 @@ var/global/list/activated_medevac_stretchers = list()
 	spawn(MEDEVAC_TELE_DELAY) //Activate after 5 second delay.
 		if(!linked_beacon || !linked_beacon.check_power() || !linked_beacon.planted) //Beacon has to be planted in a powered area.
 			playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
-			visible_message("<span class='warning'>[src]'s safties kick in before displacement as it fails to detect a powered, linked and planted medvac beacon.</span>")
+			visible_message("<span class='warning'>[src]'s safeties kick in before displacement as it fails to detect a powered, linked, and planted medvac beacon.</span>")
 			return
 		var/mob/living/M
 		if(!buckled_mob && !buckled_bodybag)
