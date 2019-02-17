@@ -1904,7 +1904,7 @@
 		step_away(H, src, sweep_range, 2)
 		shake_camera(H, 2, 1)
 		H.KnockDown(1, 1)
-	for(var/obj/vehicle/walker/W)
+	for(var/obj/vehicle/walker/W in L)
 		if(victims >= 3)
 			break
 		target_facing = get_dir(src, W)
