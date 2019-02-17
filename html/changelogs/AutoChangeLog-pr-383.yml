@@ -1,0 +1,13 @@
+author: "Ghommie"
+delete-after: True
+changes: 
+  - bugfix: "Dead users can't man up the tank and its arsenal anymore."
+  - bugfix: "Added other sanity checks for tank verbs."
+  - balance: "mobs will get knocked down rather than slept when treaded over."
+  - bugfix: "larvas will end up out of the tank's entrance should they burst whilst inside. On a note: if you still end up stuck under the middle of a tank in any way, you can use the \"Exit Vehicle\" verb to get out. (provided you aren't still incapacitated)"
+  - bugfix: "Lying mobs are now properly targetted by tank hardpoints weapons."
+  - bugfix: "It's no longer possible to interact with oneself inventory while manning a tank (similarly to mechs) to prevent some nasty bugs."
+  - tweak: "It's now required to have hands free in order to climb in the tank."
+  - tweak: "The tank/multitile verbs are now listed under a new \"Vehicle\" category."
+  - bugfix: "Pre-equipped tanks now properly handle damage down to hardpoints."
+  - refactor: "More tank related irrelevant things."
