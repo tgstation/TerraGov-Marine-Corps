@@ -1025,7 +1025,7 @@
 	damage = CONFIG_GET(number/combat_define/super_hit_damage)
 	max_range = CONFIG_GET(number/combat_define/norm_shell_range)
 
-/datum/ammo/rocket/wp/drop_flame(radius = 3, turf/T) //~Art updated fire.
+/datum/ammo/rocket/wp/drop_flame(turf/T, radius = 3) //~Art updated fire.
 	if(!T || !isturf(T))
 		return
 	smoke.set_up(1, T)
@@ -1588,12 +1588,10 @@
 /datum/ammo/flamethrower/do_at_max_range(obj/item/projectile/P)
 	drop_flame(get_turf(P))
 
-/datum/ammo/flamethrower/tank_flamer/drop_flame(var/turf/T)
+/datum/ammo/flamethrower/tank_flamer/drop_flame(turf/T)
 	if(!istype(T))
 		return
-	if(locate(/obj/flamer_fire) in T)
-		return
-	new /obj/flamer_fire(T, 20, 20, fire_spread_amount = 2)
+	flame_radius(2, T)
 
 /datum/ammo/flamethrower/green
 	name = "green flame"
