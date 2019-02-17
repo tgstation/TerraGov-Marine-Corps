@@ -291,6 +291,8 @@
 		var/obj/vehicle/multitile/root/cm_armored/R = H.root
 		if(!R) continue
 		R.take_damage_type(30, "acid")
+	for(var/obj/vehicle/walker/W in T)
+		W.take_damage(30, "acid")
 
 //No effect when merely entering the smoke turf, for balance reasons
 /obj/effect/particle_effect/smoke/xeno_burn/Crossed(mob/living/carbon/M as mob)
