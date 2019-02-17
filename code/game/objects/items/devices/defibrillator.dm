@@ -28,11 +28,12 @@
 		return TRUE
 	return FALSE
 
-/obj/item/device/defibrillator/New()
+/obj/item/device/defibrillator/Initialize()
 	sparks.set_up(5, 0, src)
 	sparks.attach(src)
 	dcell = new/obj/item/cell(src)
 	update_icon()
+	. = ..()
 
 /obj/item/device/defibrillator/update_icon()
 	icon_state = "defib"

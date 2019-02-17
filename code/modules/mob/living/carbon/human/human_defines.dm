@@ -119,3 +119,5 @@
 	var/datum/squad/assigned_squad //the squad this human is assigned to
 
 	var/cloaking = FALSE
+
+	var/image/SL_directional = null

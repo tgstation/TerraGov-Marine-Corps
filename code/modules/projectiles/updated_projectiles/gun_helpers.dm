@@ -490,17 +490,20 @@ should be alright.
 
 
 /obj/item/weapon/gun/proc/get_active_firearm(mob/user)
-	if(!ishuman(usr))
+	if(!user.IsAdvancedToolUser())
+		to_chat(user, "<span class='warning'>You don't have the dexterity to do this.</span>")
 		return
 
-	if(!user.canmove || user.stat || user.is_mob_restrained() || !user.loc || !isturf(usr.loc))
-		to_chat(user, "<span class='warning'>Not right now.</span>")
+	if( user.is_mob_incapacitated() || !isturf(user.loc))
+		to_chat(user, "<span class='warning'>You can't do this right now.</span>")
 		return
 
-	var/obj/item/weapon/gun/G = user.get_held_item()
+	var/obj/item/weapon/gun/G = user.get_active_held_item()
+	if(!istype(G))
+		G = user.get_inactive_held_item()
 
 	if(!istype(G))
-		to_chat(user, "<span class='warning'>You need a gun in your active hand to do that!</span>")
+		to_chat(user, "<span class='warning'>You need a gun in your hands to do that!</span>")
 		return
 
 	if(G.flags_gun_features & GUN_BURST_FIRING)
@@ -578,7 +581,7 @@ should be alright.
 		return
 
 	var/final_delay = A.detach_delay
-	if (usr.mind.cm_skills.firearms)
+	if(usr.mind?.cm_skills?.firearms)
 		usr.visible_message("<span class='notice'>[usr] begins stripping [A] from [src].</span>",
 		"<span class='notice'>You begin stripping [A] from [src].</span>", null, 4)
 		if(usr.mind.cm_skills.firearms > SKILL_FIREARMS_DEFAULT) //See if the attacher is super skilled/panzerelite born to defeat never retreat etc
@@ -679,26 +682,13 @@ should be alright.
 	set src = usr.contents //We want to make sure one is picked at random, hence it's not in a list.
 
 	var/obj/item/weapon/gun/G = get_active_firearm(usr)
-
 	if(!G)
 		return
-
 	src = G
-
-	if(flags_gun_features & GUN_BURST_FIRING)
-		return
-
-	if(!ishuman(usr))
-		return
-
-	if(usr.is_mob_incapacitated() || !usr.loc || !isturf(usr.loc))
-		to_chat(usr, "Not right now.")
-		return
 
 	to_chat(usr, "<span class='notice'>You toggle the safety [flags_gun_features & GUN_TRIGGER_SAFETY ? "<b>off</b>" : "<b>on</b>"].</span>")
 	playsound(usr, 'sound/machines/click.ogg', 15, 1)
 	flags_gun_features ^= GUN_TRIGGER_SAFETY
-
 
 
 /obj/item/weapon/gun/verb/activate_attachment_verb()
@@ -726,7 +716,7 @@ should be alright.
 		usable_attachments += muzzle
 
 	if(!usable_attachments.len) //No usable attachments.
-		to_chat(usr, "<span class='warning'>[src] does not have any usable attachments!</span>")
+		to_chat(usr, "<span class='warning'>[src] does not have any usable attachment!</span>")
 		return
 
 	if(usable_attachments.len == 1) //Activates the only attachment if there is only one.
@@ -743,25 +733,29 @@ should be alright.
 	set category = "Weapons"
 	set name = "Toggle Rail Attachment"
 	set desc = "Uses the rail attachement currently attached to the gun."
+	set src = usr.contents
 
-	if(!usr)
+	var/obj/item/weapon/gun/G = get_active_firearm(usr)
+	if(!G)
 		return
 
-	var/obj/item/weapon/gun/W = usr.get_active_held_item()
-
-	if(!istype(W))
+	if(!G.rail)
+		to_chat(usr, "<span class='warning'>[src] does not have any usable rail attachment!</span>")
 		return
 
-	W.rail?.activate_attachment(W, usr)
+	G.rail.activate_attachment(G, usr)
 
 
 /obj/item/weapon/gun/verb/toggle_ammo_hud()
 	set category = "Weapons"
 	set name = "Toggle Ammo HUD"
 	set desc = "Toggles the Ammo HUD for this weapon."
+	set src = usr.contents
 
-	if(!usr)
+	var/obj/item/weapon/gun/G = get_active_firearm(usr)
+	if(!G)
 		return
+	src = G
 
 	hud_enabled = !hud_enabled
 	var/obj/screen/ammo/A = usr.hud_used.ammo

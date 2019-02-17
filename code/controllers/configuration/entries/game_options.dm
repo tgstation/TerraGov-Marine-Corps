@@ -21,15 +21,6 @@
 /datum/config_entry/keyed_list/min_pop/ValidateListEntry(key_name, key_value)
 	return key_name in config.modes
 
-/datum/config_entry/flag/objectives_disabled
-
-/datum/config_entry/flag/traitor_scaling
-
-/datum/config_entry/number/traitor_scaling_coeff	//how much does the amount of players get divided by to determine traitors
-	config_entry_value = 6
-	integer = FALSE
-	min_val = 1
-
 /datum/config_entry/flag/protect_roles_from_antagonist	//If security and such can be traitor/cult/other
 
 /datum/config_entry/string/alert_green

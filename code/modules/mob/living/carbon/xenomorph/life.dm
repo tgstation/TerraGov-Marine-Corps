@@ -44,6 +44,13 @@
 		attack_delay = initial(attack_delay) - round(rage * 0.05,0.01) //-0.05 attack delay to a maximum reduction of -2.5
 	return ..()
 
+/mob/living/carbon/Xenomorph/Runner/handle_status_effects()
+	if(hit_and_run)
+		var/last_move = last_move_intent - 10
+		if(last_move && last_move < world.time - 5) //If we haven't moved in the last 500 ms, we lose our bonus
+			hit_and_run = 1
+	return ..()
+
 /mob/living/carbon/Xenomorph/update_stat()
 
 	update_cloak()
