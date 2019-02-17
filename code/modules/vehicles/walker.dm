@@ -7,10 +7,11 @@
 	desc = "Relatively new combat walker of \"Megalodon\"-series. Unlike its predecessor, \"Carharodon\"-series, slower, but relays on its tough armor and rapid-firing weapons."
 	icon = 'icons/obj/vehicles/Mecha.dmi'
 	icon_state = "mecha-open"
-	layer = LYING_MOB_LAYER
+	layer = ABOVE_LYING_MOB_LAYER
 	opacity = TRUE
 	can_buckle = FALSE
-	move_delay = 4
+	unacidable = TRUE
+	move_delay = 6
 
 	var/lights = FALSE
 	var/lights_power = 8
@@ -22,9 +23,10 @@
 
 	var/mob/pilot = null
 
+	var/acid_process_cooldown = null
 	var/list/dmg_multipliers = list(
 		"all" = 1.0, //for when you want to make it invincible
-		"acid" = 1.0,
+		"acid" = 1.5,
 		"slash" = 0.9,
 		"bullet" = 0.4,
 		"explosive" = 5.0,
@@ -343,6 +345,27 @@
 			to_chat(user, "All hardpoints already taken.")
 			return
 
+	if(iswrench(W))
+		if(!left && !right)
+			return
+		var/choice = input("Proceeding will destroy loaded item.") in list("Left", "Right", "Cancel")
+		switch(choice)
+			if("Cancel")
+				return
+			if("Left")
+				to_chat(user, "You start dismounting [left.name] from walker.")
+				if(do_after(user, 100, needhand = FALSE, show_busy_icon = TRUE))
+					left.loc = loc
+					left = null
+					return
+			if("Right")
+				to_chat(user, "You start dismounting [right.name] from walker.")
+				if(do_after(user, 100, needhand = FALSE, show_busy_icon = TRUE))
+					right.loc = loc
+					right = null
+					return
+		to_chat(user, "Dismounting has been interrupted.")
+
 	if(iswelder(W))
 		var/obj/item/tool/weldingtool/weld = W
 		if(!weld.isOn())
@@ -367,19 +390,11 @@
 
 /obj/vehicle/walker/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(M.a_intent == "hurt")
-		var/damage = round(rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper) * dmg_multipliers["slash"])
 		M.animation_attack_on(src)
 		playsound(loc, "alien_claw_metal", 25, 1)
 		M.flick_attack_overlay(src, "slash")
-		if(damage <= 5)
-			visible_message("<span class='danger'>[M] slashes [src], but only manages scratch its armor!</span>", "You hear slash")
-			to_chat(pilot, "<span class='danger'>ALERT! Hostile incursion detected. Deflected.</span>")
-			return
-		else
-			visible_message("<span class='danger'>[M] slashes [src]</span>", "You hear slash")
-			to_chat(pilot, "<span class='danger'>ALERT! Hostile incursion detected. Chassis taking damage.</span>")
-			health -= damage
-			healthcheck()
+		M.visible_message("<span class='danger'>[M] slashes [src].</span>","<span class='danger'>You slash [src].</span>", null, 5)
+		take_damage(rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper), "slash")
 	else
 		attack_hand(M)
 
@@ -401,27 +416,32 @@
 	if(!Proj)
 		return
 
-	var/damage = Proj.damage
 	switch(Proj.ammo.damage_type)
 		if(BRUTE)
 			if(Proj.ammo.flags_ammo_behavior & AMMO_ROCKET)
-				damage *= dmg_multipliers["exposive"]
+				take_damage(Proj.damage, "explosive")
 			else
-				damage *= dmg_multipliers["bullet"]
+				take_damage(Proj.damage, "bullet")
 		if(BURN)
 			if(Proj.ammo.flags_ammo_behavior & AMMO_XENO_ACID)
-				damage *= dmg_multipliers["acid"]
+				take_damage(Proj.damage, "acid")
 			else
-				damage *= dmg_multipliers["energy"]
+				take_damage(Proj.damage, "energy")
 		if(TOX, OXY, CLONE)
 			return
 
-	if(damage > 15)
-		to_chat(pilot, "<span class='danger'>ALERT! Hostile incursion detected. Chassis taking damage.</span>")
-		health -=damage
-		healthcheck()
-	else
+/obj/vehicle/walker/proc/take_damage(damage, damtype = "blunt")
+	if(!damage || damage <= 0)
+		return
+	if(!(damtype in list("explosive", "acid", "energy", "blunt", "slash", "bullet", "all", "abstract")))
+		return
+	if(damage <= 10)
 		to_chat(pilot, "<span class='danger'>ALERT! Hostile incursion detected. Deflected.</span>")
+		return
+
+	health -= damage * dmg_multipliers[damtype]
+	to_chat(pilot, "<span class='danger'>ALERT! Hostile incursion detected. Chassis taking damage.</span>")
+	healthcheck()
 
 /////////////////
 // WEAPONS

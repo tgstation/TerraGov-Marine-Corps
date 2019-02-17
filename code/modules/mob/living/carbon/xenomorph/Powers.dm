@@ -1904,6 +1904,16 @@
 		step_away(H, src, sweep_range, 2)
 		shake_camera(H, 2, 1)
 		H.KnockDown(1, 1)
+	for(var/obj/vehicle/walker/W in L)
+		if(victims >= 3)
+			break
+		target_facing = get_dir(src, W)
+		if(target_facing != dir && target_facing != turn(dir,45) && target_facing != turn(dir,-45) ) //Have to be actually facing the target
+			continue
+		var/extra_dam = rand(xeno_caste.melee_damage_lower, xeno_caste.melee_damage_upper) * (1 + round(rage * 0.01) ) //+1% bonus damage per point of Rage.relative to base melee damage.
+		W.take_damage(extra_dam, "slash")
+		victims++
+		round_statistics.ravager_ravage_victims++
 
 	victims = CLAMP(victims,0,3) //Just to be sure
 	rage = (0 + 10 * victims) //rage resets to 0, though we regain 10 rage per victim.
@@ -2020,6 +2030,8 @@
 		if(!isYautja(M))
 			M.emote("scream")
 			M.KnockDown(1)
+	for(var/obj/vehicle/walker/W in target)
+		W.take_damage(rand(30, 40), "acid")
 
 /mob/living/carbon/Xenomorph/proc/acid_spray(atom/T, plasmacost = 250, acid_d = xeno_caste.acid_delay)
 	if(!T)
