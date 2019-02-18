@@ -38,20 +38,17 @@
 	if(!leader)
 		leader = H
 		var/datum/job/J = new /datum/job/freelancer/leader
-		H.set_everything(H, "Freelancer Leader")
-		J.generate_equipment(H)
+		J.equip(H)
 		to_chat(H, "<span class='notice'>You are the Freelancer leader!</notice>")
 		return
 
 	if(medics < max_medics)
 		var/datum/job/J = new /datum/job/freelancer/medic
-		H.set_everything(H, "Freelancer Medic")
-		J.generate_equipment(H)
+		J.equip(H)
 		medics++
 		to_chat(H, "<span class='notice'>You are a Freelancer medic!</notice>")
 		return
 
 	var/datum/job/J = new /datum/job/freelancer/standard
-	H.set_everything(H, "Freelancer Standard")
-	J.generate_equipment(H)
+	J.equip(H)
 	to_chat(H, "<span class='notice'>You are a Freelancer mercenary!</notice>")

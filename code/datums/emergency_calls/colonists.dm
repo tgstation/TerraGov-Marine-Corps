@@ -26,5 +26,4 @@
 	print_backstory(H)
 
 	var/datum/job/J = new /datum/job/other/colonist
-	H.set_everything(H, "Colonist")
-	J.generate_equipment(H)
+	J.equip(H)

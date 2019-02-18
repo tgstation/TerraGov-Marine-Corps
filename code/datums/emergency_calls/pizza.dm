@@ -27,5 +27,4 @@
 	print_backstory(H)
 
 	var/datum/job/J = new /datum/job/other/pizza
-	H.set_everything(H, "Pizza Deliverer")
-	J.generate_equipment(H)
+	J.equip(H)

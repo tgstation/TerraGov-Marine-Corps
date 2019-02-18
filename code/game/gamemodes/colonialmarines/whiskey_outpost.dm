@@ -4,20 +4,6 @@
 	required_players 		= 0
 	recommended_enemies 	= 0 //Leaving this relic code incase we want to do some extra things with it in the future.
 	xeno_bypass_timer 		= 1
-	role_instruction		= ROLE_MODE_REPLACE
-	roles_for_mode = list(/datum/job/marine/standard,
-					/datum/job/marine/medic,
-					/datum/job/marine/engineer,
-					/datum/job/marine/specialist,
-					/datum/job/marine/smartgunner,
-					/datum/job/marine/leader,
-					/datum/job/medical/doctor,
-					/datum/job/command/commander,
-					/datum/job/logistics/tech/maint,
-					/datum/job/command/police,
-					/datum/job/civilian/synthetic
-					)
-
 	flags_round_type	= MODE_NO_LATEJOIN
 
 	//var/mob/living/carbon/human/Commander //If there is no Commander, marines wont get any supplies

@@ -43,31 +43,23 @@
 	if(!leader)
 		leader = H
 		var/datum/job/J = new /datum/job/upp/leader
-		H.set_everything(H, "UPP Leader")
-		J.generate_equipment(H)
-		J.generate_entry_conditions(H)
+		J.equip(H)
 		to_chat(H, "<span class='notice'>You are the leader of the UPP squad.</span>")
 		return
 
 	if(medics < max_medics)
 		var/datum/job/J = new /datum/job/upp/medic
-		H.set_everything(H, "UPP Medic")
-		J.generate_equipment(H)
-		J.generate_entry_conditions(H)
+		J.equip(H)
 		to_chat(H, "<span class='notice'>You are a medic of the UPP army.</span>")
 		medics++
 		return
 
 	if(prob(20))
 		var/datum/job/J = new /datum/job/upp/heavy
-		H.set_everything(H, "UPP Heavy")
-		J.generate_equipment(H)
-		J.generate_entry_conditions(H)
+		J.equip(H)
 		to_chat(H, "<span class='notice'>You are a specialist of the UPP army.</span>")
 		return
 
 	var/datum/job/J = new /datum/job/upp/standard
-	H.set_everything(H, "UPP Standard")
-	J.generate_equipment(H)
-	J.generate_entry_conditions(H)
+	J.equip(H)
 	to_chat(H, "<span class='notice'>You are a member of the UPP army.</span>")

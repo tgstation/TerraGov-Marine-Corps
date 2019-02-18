@@ -116,7 +116,6 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 		for(var/datum/mind/X in xenomorphs)
 			if(istype(X))
 				M = X.current
-				if(!M || !M.loc) M = X.original
 				if(M && M.loc && istype(M,/mob/living/carbon/Xenomorph/Queen)) dat += "<br>[X.key] was [M] <span class='boldnotice'>([M.stat == DEAD? "DIED":"SURVIVED"])</span>"
 
 		to_chat(world, dat)
@@ -130,7 +129,6 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 		for(var/datum/mind/S in survivors)
 			if(istype(S))
 				M = S.current
-				if(!M || !M.loc) M = S.original
 				if(M && M.loc) 	dat += "<br>[S.key] was [M.real_name] <span class='boldnotice'>([M.stat == DEAD? "DIED":"SURVIVED"])</span>"
 				else 			dat += "<br>[S.key]'s body was destroyed... <span class='boldnotice'>(DIED)</span>"
 
@@ -145,7 +143,6 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 		for(var/datum/mind/P in predators)
 			if(istype(P))
 				M = P.current
-				if(!M || !M.loc) M = P.original
 				if(M && M.loc) 	dat += "<br>[P.key] was [M.real_name] <span class='boldnotice'>([M.stat == DEAD? "DIED":"SURVIVED"])</span>"
 				else 			dat += "<br>[P.key]'s body was destroyed... <span class='boldnotice'>(DIED)</span>"
 
@@ -265,7 +262,7 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 				if(!H.w_uniform)
 					var/job = pick(/datum/job/clf/leader, /datum/job/upp/commando/leader, /datum/job/freelancer/leader)
 					var/datum/job/J = new job
-					J.generate_equipment(H)
+					J.equip(H)
 					H.regenerate_icons()
 
 			to_chat(M, "<br><br><h1><span class='danger'>Fight for your life!</span></h1><br><br>")

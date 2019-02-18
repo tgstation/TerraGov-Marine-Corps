@@ -90,6 +90,10 @@
 			return has_limb(CHEST)
 		if(SLOT_IN_SUIT)
 			return has_limb(CHEST)
+		if(SLOT_IN_BELT)
+			return has_limb(CHEST)
+		if(SLOT_IN_HEAD)
+			return has_limb(HEAD)
 		if(SLOT_IN_ACCESSORY)
 			return has_limb(CHEST)
 		if(SLOT_IN_HOLSTER)
@@ -364,6 +368,14 @@
 			var/obj/item/storage/internal/T = S.pockets
 			T.handle_item_insertion(W, FALSE)
 			T.close(src)
+		if(SLOT_IN_BELT)
+			var/obj/item/storage/belt/S = belt
+			S.handle_item_insertion(W, FALSE, src)
+		if(SLOT_IN_HEAD)
+			var/obj/item/clothing/head/helmet/marine/S = head
+			var/obj/item/storage/internal/T = S.pockets
+			T.handle_item_insertion(W, FALSE)
+			T.close(src)
 		if(SLOT_IN_ACCESSORY)
 			var/obj/item/clothing/under/U = w_uniform
 			var/obj/item/clothing/tie/storage/T = U.hastie
@@ -487,3 +499,23 @@
 	if(M)
 		if(interactee == M && Adjacent(M))
 			M.show_inv(src)
+
+
+/mob/living/carbon/human/proc/equipOutfit(outfit, visualsOnly = FALSE)
+	var/datum/outfit/O = null
+
+	if(ispath(outfit))
+		O = new outfit
+	else
+		O = outfit
+		if(!istype(O))
+			return 0
+	if(!O)
+		return 0
+
+	return O.equip(src, visualsOnly)
+
+
+/mob/living/carbon/human/proc/delete_equipment()
+	for(var/i in contents)
+		qdel(i)

@@ -11,6 +11,8 @@
 	canmove = FALSE
 	anchored = TRUE
 
+	var/mob/living/new_character	//for instant transfer once the round is set up
+
 
 /mob/new_player/New()
 	GLOB.mob_list += src
@@ -31,7 +33,7 @@
 		del(client)
 
 
-/mob/new_player/proc/new_player_panel_proc()
+/mob/new_player/proc/new_player_panel()
 	var/output = "<div align='center'><B>New Player Options</B>"
 	output +="<hr>"
 	output += "<p><a href='byond://?src=\ref[src];lobby_choice=show_preferences'>Setup Character</A></p>"
@@ -61,10 +63,10 @@
 		if(SSticker.hide_mode)
 			stat("Game Mode:", "TerraGov Marine Corps")
 		else
-			stat("Game Mode:", "[master_mode]")
+			stat("Game Mode:", "[GLOB.master_mode]")
 
 		if(SSticker.current_state == GAME_STATE_PREGAME)
-			stat("Time To Start:", "[SSticker.pregame_timeleft][going ? "" : " (DELAYED)"]")
+			stat("Time To Start:", "[going ? SSticker.GetTimeLeft() : "(DELAYED)"]")
 			stat("Players: [GLOB.total_players]", "Players Ready: [GLOB.ready_players]")
 			for(var/mob/new_player/player in GLOB.player_list)
 				stat("[player.key]", player.ready ? "Playing" : "")
@@ -85,12 +87,12 @@
 					GLOB.ready_players++
 				else
 					GLOB.ready_players--
-			new_player_panel_proc()
+			new_player_panel()
 
 
 		if("refresh")
 			src << browse(null, "window=playersetup")
-			new_player_panel_proc()
+			new_player_panel()
 
 
 		if("observe")
@@ -191,49 +193,47 @@
 					to_chat(src, alert("You are currently not whitelisted to play [client.prefs.species]."))
 					return FALSE
 
-			AttemptLateSpawn(href_list["job_selected"],client.prefs.spawnpoint)
+			AttemptLateSpawn(href_list["job_selected"])
 
 
-/mob/new_player/proc/AttemptLateSpawn(rank, spawning_at)
+/mob/new_player/proc/AttemptLateSpawn(rank)
 	if(src != usr)
 		return
+	if(!IsJobAvailable(rank))
+		to_chat(usr, "<span class='warning'>Selected job is not available.<spawn>")
+		return FALSE
 	if(!SSticker || SSticker.current_state != GAME_STATE_PLAYING)
 		to_chat(usr, "<span class='warning'>The round is either not ready, or has already finished!<spawn>")
 		return
 	if(!GLOB.enter_allowed)
 		to_chat(usr, "<span class='warning'>Spawning currently disabled, please observe.<spawn>")
 		return
-	if(!SSjob.assign_role(src, SSjob.roles_for_mode[rank], TRUE))
-		to_chat(src, alert("[rank] is not available. Please try another."))
-		return
 
-	spawning = TRUE
 	close_spawn_windows()
+	spawning = TRUE
 
-	var/datum/spawnpoint/S //We need to find a spawn location for them.
-	var/turf/T
-	if(spawning_at)
-		S = spawntypes[spawning_at]
+	if(!SSjob.AssignRole(src, rank, TRUE))
+		to_chat(usr, "<span class='warning'>Failed to assign selected role.<spawn>")
 
-	if(istype(S))
-		T = pick(S.turfs)
-	else
-		T = pick(GLOB.latejoin)
+	var/mob/living/character = create_character(TRUE)	//creates the human and transfers vars and mind
+	var/equip = SSjob.EquipRank(character, rank, TRUE)
+	if(isliving(equip))	//Borgs get borged in the equip, so we need to make sure we handle the new mob.
+		character = equip
 
-	var/mob/living/carbon/human/character = create_character()	//creates the human and transfers vars and mind
-	SSjob.equip_role(character, SSjob.roles_for_mode[rank], T)
-	UpdateFactionList(character)
+	var/datum/job/job = SSjob.GetJob(rank)
+
+	if(job && !job.override_latejoin_spawn(character))
+		SSjob.SendToLateJoin(character)
+
 	EquipCustomItems(character)
 
-	SSticker.mode.latespawn(character)
 	data_core.manifest_inject(character)
-	SSticker.minds += character.mind//Cyborgs and AIs handle this in the transform proc.	//TODO!!!!! ~Carn
-	SSticker.mode.latejoin_tally++
+	SSticker.minds += character.mind
+	SSticker.mode.latejoin_tally += 1
 
 	for(var/datum/squad/sq in SSjob.squads)
-		if(sq)
-			sq.max_engineers = engi_slot_formula(GLOB.clients.len)
-			sq.max_medics = medic_slot_formula(GLOB.clients.len)
+		sq.max_engineers = engi_slot_formula(length(GLOB.clients))
+		sq.max_medics = medic_slot_formula(length(GLOB.clients))
 
 	if(SSticker.mode.latejoin_larva_drop && SSticker.mode.latejoin_tally >= SSticker.mode.latejoin_larva_drop)
 		SSticker.mode.latejoin_tally -= SSticker.mode.latejoin_larva_drop
@@ -255,73 +255,21 @@
 
 	dat += "Choose from the following open positions:<br>"
 	var/datum/job/J
-	for(var/i in SSjob.roles_for_mode)
-		J = SSjob.roles_for_mode[i]
-		if(!SSjob.check_role_entry(src, J, 1))
+	for(var/i in sortList(SSjob.occupations, /proc/cmp_job_display_asc))
+		J = i
+		if(!(J.title in JOBS_REGULAR_ALL))
+			continue
+		if((J.current_positions >= J.spawn_positions) && J.spawn_positions != -1)
 			continue
 		var/active = 0
 		//Only players with the job assigned and AFK for less than 10 minutes count as active
 		for(var/mob/M in GLOB.player_list)
-			if(M.mind && M.client && M.mind.assigned_role == J.title && M.client.inactivity <= 10 * 60 * 10)
+			if(M.mind && M.client && M.mind.assigned_role == J.title && M.client.inactivity <= 10 MINUTES)
 				active++
-		dat += "<a href='byond://?src=\ref[src];lobby_choice=SelectedJob;job_selected=[J.title]'>[J.disp_title] ([J.current_positions]) (Active: [active])</a><br>"
+		dat += "<a href='byond://?src=\ref[src];lobby_choice=SelectedJob;job_selected=[J.title]'>[J.title] ([J.current_positions]) (Active: [active])</a><br>"
 
 	dat += "</center>"
 	src << browse(dat, "window=latechoices;size=300x640;can_close=1")
-
-
-/mob/new_player/proc/create_character()
-	spawning = TRUE
-	close_spawn_windows()
-
-	var/mob/living/carbon/human/new_character
-
-	var/datum/species/chosen_species
-	if(client.prefs.species)
-		chosen_species = GLOB.all_species[client.prefs.species]
-	if(chosen_species)
-		// Have to recheck admin due to no usr at roundstart. Latejoins are fine though.
-		if(is_alien_whitelisted(client.prefs.species))
-			new_character = new(loc, client.prefs.species)
-
-	if(!new_character)
-		new_character = new(loc)
-
-	new_character.lastarea = get_area(loc)
-
-	var/datum/language/chosen_language
-	if(client.prefs.language)
-		chosen_language = GLOB.all_languages["[client.prefs.language]"]
-	if(chosen_language)
-		if(is_alien_whitelisted(client.prefs.language) || !CONFIG_GET(flag/usealienwhitelist) || !(chosen_language.flags & WHITELISTED) || (new_character.species && (chosen_language.name in new_character.species.secondary_langs)))
-			new_character.add_language("[client.prefs.language]")
-
-	if(SSticker.random_players)
-		new_character.gender = pick(MALE, FEMALE)
-		client.prefs.real_name = chosen_species.random_name(new_character.gender)
-		client.prefs.randomize_appearance_for(new_character)
-	else
-		client.prefs.copy_to(new_character)
-
-	if(mind)
-		mind.active = FALSE
-		mind.original = new_character
-		mind.transfer_to(new_character)
-
-	new_character.name = real_name
-	new_character.dna.ready_dna(new_character)
-
-	if(client.prefs.disabilities)
-		new_character.dna.SetSEState(GLASSESBLOCK, 1, 0)
-		new_character.disabilities |= NEARSIGHTED
-
-	new_character.regenerate_icons()
-
-	new_character.key = key
-	if(new_character.client)
-		new_character.client.change_view(world.view)
-
-	return new_character
 
 
 /mob/new_player/proc/ViewManifest()
@@ -369,5 +317,51 @@
 	return
 
 
-/mob/new_player/hear_radio(message, verb="says", datum/language/language = null, part_a, part_b, mob/speaker = null, hard_to_hear = FALSE)
+/mob/new_player/hear_radio(message, verb = "says", datum/language/language = null, part_a, part_b, mob/speaker = null, hard_to_hear = FALSE)
 	return
+
+
+/mob/new_player/proc/create_character(transfer_after)
+	spawning = TRUE
+	close_spawn_windows()
+
+	var/mob/living/carbon/human/H = new(loc)
+
+	client.prefs.copy_to(H)
+	if(mind)
+		if(transfer_after)
+			mind.late_joiner = TRUE
+		mind.active = FALSE					//we wish to transfer the key manually
+		mind.transfer_to(H)					//won't transfer key since the mind is not active
+
+	. = H
+	new_character = .
+	if(transfer_after)
+		transfer_character()
+
+
+/mob/new_player/proc/transfer_character()
+	. = new_character
+	if(.)
+		new_character.key = key		//Manually transfer the key to log them in
+		new_character = null
+		qdel(src)
+
+
+/mob/new_player/proc/IsJobAvailable(rank, latejoin = FALSE)
+	var/datum/job/job = SSjob.GetJob(rank)
+	if(!job)
+		return FALSE
+	if((job.current_positions >= job.total_positions) && job.total_positions != -1)
+		for(var/datum/job/J in SSjob.occupations)
+			if(J && J.current_positions < J.total_positions && J.title != job.title)
+				return FALSE
+	if(jobban_isbanned(src, rank))
+		return FALSE
+	if(QDELETED(src))
+		return FALSE
+	if(!job.player_old_enough(client))
+		return FALSE
+	if(latejoin && !job.special_check_latejoin(client))
+		return FALSE
+	return TRUE

@@ -159,5 +159,6 @@
 	min_val = 1
 
 /datum/config_entry/number/latejoin_larva_required_num
+	integer = FALSE
 	min_val = 0
 	config_entry_value = 4

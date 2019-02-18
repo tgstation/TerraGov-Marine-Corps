@@ -904,12 +904,14 @@
 		equip_slots |= SLOT_L_HAND
 		equip_slots |= SLOT_R_HAND
 		equip_slots |= SLOT_HANDCUFFED
-
+	if(SLOT_HEAD in equip_slots)
+		equip_slots |= SLOT_IN_HEAD
 	if(SLOT_BACK in equip_slots)
 		equip_slots |= SLOT_IN_BACKPACK
 		equip_slots |= SLOT_IN_B_HOLSTER
 	if(SLOT_BELT in equip_slots)
 		equip_slots |= SLOT_IN_HOLSTER
+		equip_slots |= SLOT_IN_BELT
 	if(SLOT_WEAR_SUIT in equip_slots)
 		equip_slots |= SLOT_IN_S_HOLSTER
 		equip_slots |= SLOT_IN_SUIT

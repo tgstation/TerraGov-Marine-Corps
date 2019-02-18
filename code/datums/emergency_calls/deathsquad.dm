@@ -35,13 +35,11 @@
 
 	if(!leader)
 		leader = H
-		var/datum/job/J = new /datum/job/pmc/deathsquad/leader
-		H.set_everything(H, "PMC Deathsquad Leader")
-		J.generate_equipment(H)
+		var/datum/job/J = new /datum/job/deathsquad/leader
+		J.equip(H)
 		to_chat(H, "<span class='notice'>You are the leader of the elite Death Squad commando!</span>")
 		return
 
-	var/datum/job/J = new /datum/job/pmc/deathsquad/standard
-	H.set_everything(H, "PMC Deathsquad Standard")
-	J.generate_equipment(H)
+	var/datum/job/J = new /datum/job/deathsquad/standard
+	J.equip(H)
 	to_chat(H, "<span class='notice'>You are a member of the elite Death Squad commando!</span>")

@@ -1,145 +1,151 @@
 /datum/job/clf
-	special_role = "CLF"
-	comm_title = "CLF"
-	faction = "Colonial Liberation Force"
-	idtype = /obj/item/card/id
-	skills_type = /datum/skills/pfc/crafty
+	department_flag = J_FLAG_CLF
 	access = ALL_ANTAGONIST_ACCESS
 	minimal_access = ALL_ANTAGONIST_ACCESS
-	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
+	skills_type = /datum/skills/pfc/crafty
+	faction = "Colonial Liberation Force"
 
 
 //CLF Standard
 /datum/job/clf/standard
 	title = "CLF Standard"
 	paygrade = "CLF1"
-	equipment = TRUE
-
-/datum/job/clf/standard/generate_equipment(mob/living/carbon/human/H)
-	var/obj/item/storage/pouch/general/RS = new /obj/item/storage/pouch/general(H)
-	RS.contents += new /obj/item/reagent_container/hypospray/autoinjector/tramadol
-
-	var/obj/item/clothing/suit/storage/militia/J = new /obj/item/clothing/suit/storage/militia(H)
-	J.pockets.contents += new /obj/item/explosive/grenade/frag/stick
-	J.pockets.contents += new /obj/item/explosive/grenade/frag/stick
-
-	var/obj/item/storage/backpack/lightpack/B = new /obj/item/storage/backpack/lightpack(H)
-	B.contents += new /obj/item/storage/box/MRE
-	B.contents += new /obj/item/storage/box/MRE
-	B.contents += new /obj/item/device/radio
-	B.contents += new /obj/item/tool/crowbar/red
-	B.contents += new /obj/item/storage/box/m94
-	B.contents += new /obj/item/storage/box/m94
-	B.contents += new /obj/item/explosive/grenade/incendiary/molotov
-	B.contents += new /obj/item/explosive/grenade/incendiary/molotov
-	B.contents += new /obj/item/ammo_magazine/smg/uzi/extended
-	B.contents += new /obj/item/ammo_magazine/smg/uzi/extended
-	B.contents += new /obj/item/ammo_magazine/smg/uzi/extended
-	B.contents += new /obj/item/ammo_magazine/smg/uzi/extended
+	flag = CLF_STANDARD
+	outfit = /datum/outfit/job/clf/standard
 
 
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/dutch(H), SLOT_EARS)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(H), SLOT_W_UNIFORM)
-	H.equip_to_slot_or_del(J, SLOT_WEAR_SUIT)
-	H.equip_to_slot_or_del(B, SLOT_BACK)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_SHOES)
-	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(H), SLOT_GLOVES)
-	H.equip_to_slot_or_del(new /obj/item/storage/belt/knifepouch(H), SLOT_BELT)
-	H.equip_to_slot_or_del(pick(new /obj/item/storage/pill_bottle/happy(H), new /obj/item/storage/pill_bottle/zoom(H)), SLOT_L_STORE)
-	H.equip_to_slot_or_del(RS, SLOT_R_STORE)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/uzi(H), SLOT_S_STORE)
-	H.equip_to_slot_or_del(new /obj/item/weapon/katana(H), SLOT_L_HAND)
+/datum/outfit/job/clf/standard
+	name = "CLF Standard"
+	jobtype = /datum/job/clf/standard
+
+	id = /obj/item/card/id/silver
+	belt = /obj/item/storage/belt/knifepouch
+	ears = /obj/item/device/radio/headset/distress/dutch
+	w_uniform = /obj/item/clothing/under/colonist
+	shoes = /obj/item/clothing/shoes/black
+	wear_suit = /obj/item/clothing/suit/storage/militia
+	gloves = /obj/item/clothing/gloves/black
+	suit_store = /obj/item/weapon/gun/smg/uzi
+	r_store = /obj/item/storage/pouch/general
+	l_store = /obj/item/storage/pill_bottle/zoom
+	back = /obj/item/storage/backpack/lightpack
+
+
+/datum/outfit/job/clf/standard/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/stick, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/stick, SLOT_IN_SUIT)
+
+	H.equip_to_slot_or_del(new /obj/item/device/radio, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary/molotov, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary/molotov, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/uzi/extended, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/uzi/extended, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/uzi/extended, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/uzi/extended, SLOT_IN_BACKPACK)
+
+	H.equip_to_slot_or_del(new /obj/item/reagent_container/hypospray/autoinjector/tramadol, SLOT_IN_R_POUCH)
 
 
 //CLF Medic
 /datum/job/clf/medic
 	title = "CLF Medic"
 	paygrade = "CLF2"
+	flag = CLF_MEDIC
 	skills_type = /datum/skills/combat_medic/crafty
-	equipment = TRUE
+	outfit = /datum/outfit/job/clf/medic
 
-/datum/job/clf/medic/generate_equipment(mob/living/carbon/human/H)
-	var/obj/item/storage/pouch/medkit/RS = new /obj/item/storage/pouch/medkit(H)
-	RS.contents += new /obj/item/storage/firstaid/adv
 
-	var/obj/item/clothing/suit/storage/militia/J = new /obj/item/clothing/suit/storage/militia(H)
-	J.pockets.contents += new /obj/item/explosive/grenade/frag/stick
-	J.pockets.contents += new /obj/item/explosive/grenade/frag/stick
+/datum/outfit/job/clf/medic
+	name = "CLF Medic"
+	jobtype = /datum/job/clf/medic
 
-	var/obj/item/storage/backpack/lightpack/B = new /obj/item/storage/backpack/lightpack(H)
-	B.contents += new /obj/item/device/defibrillator
-	B.contents += new /obj/item/device/healthanalyzer
-	B.contents += new /obj/item/roller
-	B.contents += new /obj/item/storage/box/MRE
-	B.contents += new /obj/item/storage/box/MRE
-	B.contents += new /obj/item/storage/box/MRE
-	B.contents += new /obj/item/device/radio
-	B.contents += new /obj/item/tool/crowbar/red
-	B.contents += new /obj/item/storage/box/m94
-	B.contents += new /obj/item/explosive/grenade/incendiary/molotov
-	B.contents += new /obj/item/ammo_magazine/smg/skorpion
-	B.contents += new /obj/item/ammo_magazine/smg/skorpion
-	B.contents += new /obj/item/ammo_magazine/smg/skorpion
-	B.contents += new /obj/item/ammo_magazine/smg/skorpion
+	id = /obj/item/card/id/silver
+	belt = /obj/item/storage/belt/combatLifesaver/upp
+	ears = /obj/item/device/radio/headset/distress/dutch
+	w_uniform = /obj/item/clothing/under/colonist
+	shoes = /obj/item/clothing/shoes/black
+	wear_suit = /obj/item/clothing/suit/storage/militia
+	gloves = /obj/item/clothing/gloves/black
+	glasses = /obj/item/clothing/glasses/hud/health
+	suit_store = /obj/item/weapon/gun/smg/skorpion/upp
+	r_store = /obj/item/storage/firstaid/adv
+	l_store = /obj/item/storage/pouch/medical/full
+	back = /obj/item/storage/backpack/lightpack
 
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/dutch(H), SLOT_EARS)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(H), SLOT_W_UNIFORM)
-	H.equip_to_slot_or_del(J, SLOT_WEAR_SUIT)
-	H.equip_to_slot_or_del(B, SLOT_BACK)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_SHOES)
-	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(H), SLOT_GLOVES)
-	H.equip_to_slot_or_del(new /obj/item/storage/belt/combatLifesaver/upp(H), SLOT_BELT)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/skorpion/upp(H), SLOT_S_STORE)
-	H.equip_to_slot_or_del(new /obj/item/storage/pouch/medical/full(H), SLOT_L_STORE)
-	H.equip_to_slot_or_del(RS, SLOT_R_STORE)
-	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/hud/health(H), SLOT_GLASSES)
+
+/datum/outfit/job/clf/medic/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/stick, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/stick, SLOT_IN_SUIT)
+
+	H.equip_to_slot_or_del(new /obj/item/device/defibrillator, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/device/healthanalyzer, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/roller, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/device/radio, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary/molotov, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/skorpion, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/skorpion, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/skorpion, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/skorpion, SLOT_IN_BACKPACK)
+
+	H.equip_to_slot_or_del(new /obj/item/storage/firstaid/adv, SLOT_IN_R_POUCH)
 
 
 //CLF Leader
 /datum/job/clf/leader
 	title = "CLF Leader"
 	paygrade = "CLF3"
-	equipment = TRUE
-
-/datum/job/clf/leader/generate_equipment(mob/living/carbon/human/H)
-	var/obj/item/storage/belt/marine/W = new /obj/item/storage/belt/marine(H)
-	W.contents += new /obj/item/ammo_magazine/rifle/m16
-	W.contents += new /obj/item/ammo_magazine/rifle/m16
-	W.contents += new /obj/item/ammo_magazine/rifle/m16
-	W.contents += new /obj/item/ammo_magazine/rifle/m16
-	W.contents += new /obj/item/ammo_magazine/rifle/m16
-
-	var/obj/item/storage/pouch/general/medium/RS = new /obj/item/storage/pouch/general/medium(H)
-	RS.contents += new /obj/item/device/binoculars
-	RS.contents += new /obj/item/explosive/plastique
-
-	var/obj/item/clothing/suit/storage/militia/J = new /obj/item/clothing/suit/storage/militia(H)
-	J.pockets.contents += new /obj/item/explosive/grenade/frag/stick
-	J.pockets.contents += new /obj/item/explosive/grenade/frag/stick
-
-	var/obj/item/storage/backpack/lightpack/B = new /obj/item/storage/backpack/lightpack(H)
-	B.contents += new /obj/item/stack/sheet/metal/small_stack
-	B.contents += new /obj/item/storage/box/MRE
-	B.contents += new /obj/item/storage/box/MRE
-	B.contents += new /obj/item/device/radio
-	B.contents += new /obj/item/tool/crowbar/red
-	B.contents += new /obj/item/storage/box/m94
-	B.contents += new /obj/item/storage/box/m94
-	B.contents += new /obj/item/explosive/grenade/incendiary/molotov
-	B.contents += new /obj/item/explosive/grenade/incendiary/molotov
-	B.contents += new /obj/item/weapon/gun/pistol/highpower
-	B.contents += new /obj/item/ammo_magazine/pistol/highpower
-	B.contents += new /obj/item/ammo_magazine/pistol/highpower
+	flag = CLF_LEADER
+	outfit = /datum/outfit/job/clf/leader
 
 
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/dutch(H), SLOT_EARS)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(H), SLOT_W_UNIFORM)
-	H.equip_to_slot_or_del(J, SLOT_WEAR_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/militia(H), SLOT_HEAD)
-	H.equip_to_slot_or_del(B, SLOT_BACK)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_SHOES)
-	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(H), SLOT_GLOVES)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m16(H), SLOT_S_STORE)
-	H.equip_to_slot_or_del(W, SLOT_BELT)
-	H.equip_to_slot_or_del(new /obj/item/storage/pouch/firstaid/full(H), SLOT_L_STORE)
-	H.equip_to_slot_or_del(RS, SLOT_R_STORE)
+/datum/outfit/job/clf/leader
+	name = "CLF Leader"
+	jobtype = /datum/job/clf/leader
+
+	id = /obj/item/card/id/silver
+	belt = /obj/item/storage/belt/marine
+	ears = /obj/item/device/radio/headset/distress/dutch
+	w_uniform = /obj/item/clothing/under/colonist
+	shoes = /obj/item/clothing/shoes/black
+	wear_suit = /obj/item/clothing/suit/storage/militia
+	gloves = /obj/item/clothing/gloves/black
+	head = /obj/item/clothing/head/militia
+	glasses = /obj/item/clothing/glasses/hud/health
+	suit_store = /obj/item/weapon/gun/rifle/m16
+	r_store = /obj/item/storage/pouch/general/medium
+	l_store = /obj/item/storage/pouch/firstaid/full
+	back = /obj/item/storage/backpack/lightpack
+
+
+/datum/outfit/job/clf/leader/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/stick, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/stick, SLOT_IN_SUIT)
+
+	H.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/small_stack, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/device/radio, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary/molotov, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary/molotov, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/highpower, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/highpower, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/highpower, SLOT_IN_BACKPACK)
+
+	H.equip_to_slot_or_del(new /obj/item/device/binoculars, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_R_POUCH)

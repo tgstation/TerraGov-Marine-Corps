@@ -58,6 +58,7 @@ LOG_EMOTE
 LOG_ATTACK
 LOG_HREFS
 LOG_RUNTIME
+LOG_MANIFEST
 
 
 ## Only enable this if you have youtube-dl installed!
