@@ -90,7 +90,7 @@
 				var/mob/living/carbon/human/H = C.loc
 
 				if(H.mind.special_role && is_ground_level(H.loc.z))
-          continue // survivors
+					continue // survivors
 
 				if(H.w_uniform != C)
 					continue
@@ -120,13 +120,12 @@
 				crewmemberData["x"] = pos.x
 				crewmemberData["y"] = pos.y
 
-				switch(pos.z)
-					if(PLANET_Z_LEVEL)
-						crewmembers_planetside += list(crewmemberData)
-					if(MAIN_SHIP_Z_LEVEL)
-						crewmembers_on_ship += list(crewmemberData)
-					if(LOW_ORBIT_Z_LEVEL)
-						crewmembers_in_transit += list(crewmemberData)
+				if(is_ground_level(pos.z))
+					crewmembers_planetside += list(crewmemberData)
+				else if(is_mainship_level(pos.z))
+					crewmembers_on_ship += list(crewmemberData)
+				else if(is_low_orbit_level(pos.z))
+					crewmembers_in_transit += list(crewmemberData)
 
 	switch(displayed_z_level)
 		if(DISPLAY_ON_SHIP)
