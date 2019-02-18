@@ -170,18 +170,10 @@
  * 10000-cell	explosion(T, -1, 1, 3, 3)
  * 15000-cell	explosion(T, -1, 2, 4, 4)
  * */
-	if (charge==0)
-		explosion(T, 0, 0, 0, 0) //No charge? Shitsplosion
-		return
 	var/devastation_range = -1 //round(charge/11000)
 	var/heavy_impact_range = max(2,round(sqrt(charge)/100))
 	var/light_impact_range = max(3,round(sqrt(charge)/30))
-	var/flash_range = light_impact_range
-	if (light_impact_range==0)
-		rigged = 0
-		corrupt()
-		return
-	//explosion(T, 0, 1, 2, 2)
+	var/flash_range = max(1,light_impact_range)
 
 	explosion(T, devastation_range, heavy_impact_range, light_impact_range, flash_range)
 
