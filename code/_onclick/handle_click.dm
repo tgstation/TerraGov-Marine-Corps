@@ -98,20 +98,24 @@
 //And other checks to make sure you aren't breaking the law
 /obj/vehicle/multitile/root/cm_armored/tank/handle_click(mob/living/user, atom/A, list/mods)
 
+	if(istype(A,/obj/screen) || A == src || mods["middle"] || mods["shift"] || mods["alt"])
+		return FALSE
+
 	if(!can_use_hp(user))
-		return
+		return TRUE
 
 	if(!hardpoints.Find(active_hp))
 		to_chat(user, "<span class='warning'>Please select an active hardpoint first.</span>")
-		return
+		return TRUE
 
 	var/obj/item/hardpoint/HP = hardpoints[active_hp]
 
 	if(!HP?.is_ready())
-		return
+		return TRUE
 
 	if(!HP.firing_arc(A))
 		to_chat(user, "<span class='warning'>The target is not within your firing arc.</span>")
-		return
+		return TRUE
 
-	HP.active_effect(get_turf(A))
+	HP.active_effect(A)
+	return TRUE
