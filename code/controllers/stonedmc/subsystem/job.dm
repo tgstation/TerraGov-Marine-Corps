@@ -135,8 +135,9 @@ SUBSYSTEM_DEF(job)
 /datum/controller/subsystem/job/proc/ResetOccupations()
 	JobDebug("Occupations reset.")
 	for(var/mob/new_player/player in GLOB.player_list)
-		if(player?.mind)
+		if((player) && (player.mind))
 			player.mind.assigned_role = null
+			player.mind.special_role = null
 	SetupOccupations()
 	unassigned = list()
 	return
@@ -323,8 +324,8 @@ SUBSYSTEM_DEF(job)
 
 
 /datum/controller/subsystem/job/proc/RejectPlayer(mob/new_player/player)
-	if(player.mind?.assigned_role)
-		JobDebug("Player already assigned a role :[player]")
+	if(player.mind?.special_role)
+		JobDebug("Player already assigned a special role :[player]")
 		unassigned -= player
 		player.ready = FALSE
 		return
