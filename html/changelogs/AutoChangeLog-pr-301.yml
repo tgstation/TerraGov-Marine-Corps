@@ -1,4 +1,0 @@
-author: "spookydonut"
-delete-after: True
-changes: 
-  - rscadd: "Ported a stripped down version of TG's maploader"
