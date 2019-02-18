@@ -542,12 +542,11 @@
 /mob/living/carbon/human/proc/take_pulse(mob/user)
 	if(!user || !src || !Adjacent(user) || user.is_mob_incapacitated())
 		return
-	var/t_He = p_they(TRUE)
 	var/pulse_taken = get_pulse(GETPULSE_HAND)
 	if(pulse_taken == PULSE_NONE)
-		to_chat(user, "<span class='deadsay'>[t_He] has no pulse[src.client ? "" : " and [p_their()] soul has departed"]...</span>")
+		to_chat(user, "<span class='deadsay'>[p_they(TRUE)] has no pulse[client ? "" : " and [p_their()] soul has departed"]...</span>")
 	else
-		to_chat(user, "<span class='deadsay'>[t_He]'s pulse is [pulse_taken].</span>")
+		to_chat(user, "<span class='deadsay'>[p_their(TRUE)] pulse is [pulse_taken].</span>")
 
 //Helper procedure. Called by /mob/living/carbon/human/examine() and /mob/living/carbon/human/Topic() to determine HUD access to security and medical records.
 /proc/hasHUD(mob/M, hudtype)
