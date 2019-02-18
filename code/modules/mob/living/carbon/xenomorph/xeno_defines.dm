@@ -214,6 +214,9 @@
 	//Praetorian vars
 	var/used_acid_spray = 0
 
+	//Runner vars
+	var/hit_and_run = 0 //If we have a value here, we get bonus damage in proportion to movement.
+
 	//Leader vars
 	var/leader_aura_strength = 0 //Pheromone strength inherited from Queen
 	var/leader_current_aura = "" //Pheromone type inherited from Queen

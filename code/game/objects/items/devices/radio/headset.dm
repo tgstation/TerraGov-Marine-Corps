@@ -299,7 +299,6 @@
 	else
 		if(user.mind && user.assigned_squad && user.hud_used?.SL_locator)
 			user.hud_used.SL_locator.alpha = 128
-			to_chat(world,user.assigned_squad.tracking_id)
 			START_TRACK_LEADER(user.assigned_squad.tracking_id, user)
 		sl_direction = TRUE
 		to_chat(user, "<span class='notice'>You toggle the SL directional display on.</span>")

@@ -1087,7 +1087,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 		if(5)
 
-			if(istype(A, /obj/item/tank) || istype(A, /obj/machinery/portable_atmospherics) || istype(A, /obj/machinery/atmospherics/pipe/tank))
+			if(istype(A, /obj/item/tank) || istype(A, /obj/machinery/portable_atmospherics) || istype(A, /obj/machinery/atmospherics/components/unary/tank))
 				var/obj/icon = A
 				for (var/mob/O in viewers(user, null))
 					to_chat(O, "<span class='warning'>[user] has used [src] on [icon2html(icon, O)] [A]</span>")
