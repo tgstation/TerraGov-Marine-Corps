@@ -357,7 +357,7 @@ var/global/list/activated_medevac_stretchers = list()
 		update_icon()
 
 	else
-		if(z != 1)
+		if(!is_ground_level(z))
 			to_chat(user, "<span class='warning'>You can't activate [src]'s beacon here.</span>")
 			return
 
@@ -413,6 +413,11 @@ var/global/list/activated_medevac_stretchers = list()
 	if(!linked_beacon.check_power())
 		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
 		to_chat(user, "<span class='warning'>[src]'s bluespace engine linked medvac beacon is unpowered.</span>")
+		return
+	
+	if(is_centcom_level(linked_beacon.z)) // No. No using teleportation to teleport to the adminzone.
+		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
+		to_chat(user, "<span class='warning'>[src]'s beacon is out of range!</span>")
 		return
 
 	user.visible_message("<span class='warning'>[user] activates [src]'s bluespace engine, causing it to rev to life.</span>",
@@ -551,7 +556,7 @@ var/global/list/activated_medevac_stretchers = list()
 	var/locked = FALSE
 	var/obj/item/roller/medevac/linked_bed = null
 	var/obj/structure/bed/medevac_stretcher/linked_bed_deployed = null
-	req_one_access = list(ACCESS_MARINE_MEDPREP, ACCESS_MARINE_LEADER)
+	req_one_access = list(ACCESS_MARINE_MEDPREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_MEDBAY)
 
 
 /obj/item/device/medevac_beacon/examine(mob/user)

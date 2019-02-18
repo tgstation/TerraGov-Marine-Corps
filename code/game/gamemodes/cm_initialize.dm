@@ -351,7 +351,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 		return FALSE
 	var/available_queens[] = list()
 	for(var/mob/A in GLOB.alive_xeno_list)
-		if(!isxenoqueen(A) || A.z == ADMIN_Z_LEVEL)
+		if(!isxenoqueen(A) || is_centcom_level(A.z))
 			continue
 		var/mob/living/carbon/Xenomorph/Queen/Q = A
 		if(Q.ovipositor && !Q.is_mob_incapacitated(TRUE))
@@ -402,7 +402,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 	var/available_xenos_non_ssd[] = list()
 
 	for(var/mob/A in GLOB.alive_xeno_list)
-		if(A.z == ADMIN_Z_LEVEL)
+		if(is_centcom_level(A.z))
 			continue //xenos on admin z level don't count
 		if(isxeno(A) && !A.client)
 			if(A.away_timer >= 300) available_xenos_non_ssd += A
@@ -961,12 +961,24 @@ datum/game_mode/proc/initialize_post_queen_list()
 		GLOB.fog_blocker_locations.len--
 		new /obj/effect/forcefield/fog(T)
 
+/obj/effect/forcefield
+	anchored = TRUE
+	opacity = FALSE
+	density = TRUE
+	var/timeleft = 300 //Set to 0 for permanent forcefields (ugh)
+
+/obj/effect/forcefield/Initialize()
+	. = ..()
+	if(timeleft)
+		QDEL_IN(src, timeleft)
+
 /obj/effect/forcefield/fog
 	name = "dense fog"
 	desc = "It looks way too dangerous to traverse. Best wait until it has cleared up."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "smoke"
-	opacity = 1
+	opacity = TRUE
+	timeleft = 0
 
 /obj/effect/forcefield/fog/Initialize()
 	. = ..()

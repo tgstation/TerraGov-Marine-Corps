@@ -35,6 +35,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	var/circuitboard = null // string pointing to a circuitboard type
 	var/hide = 0				// Is it a hidden machine?
 	var/listening_level = 0	// 0 = auto set in New() - this is the z level that the machine is listening to.
+	var/listen_same_level = FALSE
 	unacidable = 1
 
 //Never allow tecommunications machinery being blown up
@@ -146,10 +147,13 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	telecomms_list += src
 	..()
 
+	var/turf/position = get_turf(src)
+	if(listen_same_level)
+		listening_level = position.z
+
 	//Set the listening_level if there's none.
-	if(!listening_level)
+	else if(!listening_level)
 		//Defaults to our Z level!
-		var/turf/position = get_turf(src)
 		listening_level = position.z
 
 	start_processing()

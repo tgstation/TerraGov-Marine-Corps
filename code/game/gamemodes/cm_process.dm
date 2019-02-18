@@ -314,32 +314,31 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 	var/numLarvaPlanet  = 0
 	var/numLarvaShip    = 0
 
+	// todo: replace this with moblists per z level
 	for(var/mob/M in GLOB.player_list) //Scan through and detect Xenos and Hosts, but only those with clients.
 		if(M.stat != DEAD)
 			var/area/A = get_area(M)
 			if(isxeno(M))
-				switch(A?.z)
-					if(PLANET_Z_LEVEL || LOW_ORBIT_Z_LEVEL)
-						if(isxenolarva(M))
-							numLarvaPlanet++
-						numXenosPlanet++
-						xenoLocationsP += A
-					if(MAIN_SHIP_Z_LEVEL)
-						if(isxenolarva(M))
-							numLarvaShip++
-						numXenosShip++
-						xenoLocationsS += A
+				if(is_ground_level(A?.z) || is_low_orbit_level(A?.z))
+					if(isxenolarva(M))
+						numLarvaPlanet++
+					numXenosPlanet++
+					xenoLocationsP += A
+				else if(is_mainship_level(A?.z))
+					if(isxenolarva(M))
+						numLarvaShip++
+					numXenosShip++
+					xenoLocationsS += A
 
 				activeXenos += M
 
 			if(ishuman(M) && !isyautja(M))
-				switch(A?.z)
-					if(PLANET_Z_LEVEL || LOW_ORBIT_Z_LEVEL)
-						numHostsPlanet++
-						hostLocationsP += A
-					if(MAIN_SHIP_Z_LEVEL)
-						numHostsShip++
-						hostLocationsS += A
+				if(is_ground_level(A?.z) || is_low_orbit_level(A?.z))
+					numHostsPlanet++
+					hostLocationsP += A
+				else if(is_mainship_level(A?.z))
+					numHostsShip++
+					hostLocationsS += A
 
 
 
@@ -398,7 +397,10 @@ Count up surviving humans and aliens.
 Can't be in a locker, in space, in the thunderdome, or distress.
 Only checks living mobs with a client attached.
 */
-/datum/game_mode/proc/count_humans_and_xenos(list/z_levels = GAME_PLAY_Z_LEVELS)
+/datum/game_mode/proc/count_humans_and_xenos(list/z_levels)
+	if(!z_levels)
+		z_levels = SSmapping.levels_by_any_trait(list(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_LOW_ORBIT, ZTRAIT_GROUND))
+
 	var/num_humans = 0
 	var/num_xenos = 0
 
@@ -416,7 +418,10 @@ Only checks living mobs with a client attached.
 
 	return list(num_humans,num_xenos)
 
-/datum/game_mode/proc/count_marines_and_pmcs(list/z_levels = GAME_PLAY_Z_LEVELS)
+/datum/game_mode/proc/count_marines_and_pmcs(list/z_levels)
+	if(!z_levels)
+		z_levels = SSmapping.levels_by_any_trait(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_LOW_ORBIT, ZTRAIT_GROUND)
+
 	var/num_marines = 0
 	var/num_pmcs = 0
 

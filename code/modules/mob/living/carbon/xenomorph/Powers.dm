@@ -439,7 +439,7 @@
 	if(xeno_hivenumber(M) == hivenumber)
 		return M.attack_alien(src, force_intent = INTENT_HARM) //harmless nibbling.
 
-	if (!check_plasma(30))
+	if (!check_plasma(20))
 		return
 
 	if(M.stat == DEAD || ((M.status_flags & XENO_HOST) && istype(M.buckled, /obj/structure/bed/nest))) //Can't bully the dead/nested hosts.
@@ -454,7 +454,7 @@
 	var/armor_block = M.run_armor_check(target_zone)
 	var/damage = rand(xeno_caste.melee_damage_lower, xeno_caste.melee_damage_upper)
 	used_punch = TRUE
-	use_plasma(30)
+	use_plasma(20)
 	playsound(M, S, 50, 1)
 
 	if(!ishuman(M))
@@ -475,24 +475,12 @@
 			L.status &= ~LIMB_SPLINTED
 			to_chat(H, "<span class='danger'>The splint on your [L.display_name] comes apart!</span>")
 
-		if(isyautja(H))
-			L.take_damage(damage, 0, 0, 0, null, null, null, armor_block)
-		else if(L.status & LIMB_ROBOT)
-			L.take_damage(damage * 2, 0, 0, 0, null, null, null, armor_block)
-		else
-			var/fracture_chance = 100
-			switch(L.body_part)
-				if(HEAD)
-					fracture_chance = 50
-				if(CHEST)
-					fracture_chance = 50
-				if(GROIN)
-					fracture_chance = 50
-			fracture_chance *= max(0,round(1 - armor_block,0.01)) //Reduce the fracture chance by a % equal to the armor.
+		L.take_damage(damage, 0, 0, 0, null, null, null, armor_block)
+		if(iscarbon(L))
+			var/mob/living/carbon/C = L
+			C.adjust_stagger(3)
+			C.add_slowdown(3)
 
-			L.take_damage(damage, 0, 0, 0, null, null, null, armor_block)
-			if(prob(fracture_chance))
-				L.fracture()
 		H.apply_damage(damage, HALLOSS) //Armor penetrating halloss also applies.
 	shake_camera(M, 2, 1)
 	step_away(M, src, 2)
@@ -1501,7 +1489,7 @@
 	var/leader_list = ""
 
 	for(var/mob/living/carbon/Xenomorph/X in GLOB.alive_xeno_list)
-		if(X.z == ADMIN_Z_LEVEL)
+		if(is_centcom_level(X.z))
 			continue //don't show xenos in the thunderdome when admins test stuff.
 		if(istype(user)) // cover calling it without parameters
 			if(X.hivenumber != user.hivenumber)
@@ -2417,3 +2405,26 @@
 
 /mob/living/carbon/human/species/synthetic/can_sting()
 	return FALSE
+
+/mob/living/carbon/Xenomorph/proc/hit_and_run_bonus(damage)
+	return damage
+
+/mob/living/carbon/Xenomorph/Runner/hit_and_run_bonus(damage)
+	var/last_move = last_move_intent - 10
+	var/bonus
+	if(last_move && last_move < world.time - 5) //If we haven't moved in the last 500 ms, we lose our bonus
+		hit_and_run = 1
+	bonus = CLAMP(hit_and_run, 1, 2)//Runner deals +5% damage per tile moved in rapid succession to a maximum of +100%. Damage bonus is lost on attacking.
+	switch(bonus)
+		if(2)
+			visible_message("<span class='danger'>\The [src] strikes with lethal speed!</span>", \
+			"<span class='danger'>You strike with lethal speed!</span>")
+		if(1.5 to 1.99)
+			visible_message("<span class='danger'>\The [src] strikes with deadly speed!</span>", \
+			"<span class='danger'>You strike with deadly speed!</span>")
+		if(1.25 to 1.45)
+			visible_message("<span class='danger'>\The [src] strikes with vicious speed!</span>", \
+			"<span class='danger'>You strike with vicious speed!</span>")
+	damage *= bonus
+	hit_and_run = 1 //reset the hit and run bonus
+	return damage

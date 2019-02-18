@@ -46,7 +46,7 @@
 		if(usr.lying)
 			return
 
-		if(istype(usr.loc, /obj/mecha)) // stops inventory actions in a mech
+		if(istype(usr.loc, /obj/mecha) || istype(usr.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech/tank
 			return
 
 		if(over_object == usr && Adjacent(usr)) // this must come before the screen objects only block
@@ -253,7 +253,7 @@
 /obj/screen/storage/clicked(var/mob/user, var/list/mods)
 	if(user.is_mob_incapacitated(TRUE))
 		return 1
-	if (istype(user.loc,/obj/mecha)) // stops inventory actions in a mech
+	if (istype(user.loc,/obj/mecha) || istype(user.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech/tank
 		return 1
 
 	// Placing something in the storage screen

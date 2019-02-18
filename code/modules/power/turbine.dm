@@ -338,3 +338,14 @@
 /obj/machinery/computer/turbine_computer/process()
 	src.updateDialog()
 	return
+
+/obj/machinery/power/turbinemotor
+	name = "motor"
+	desc = "Electrogenerator. Converts rotation into power."
+	icon = 'icons/obj/pipeturbine.dmi'
+	icon_state = "motor"
+	anchored = 0
+	density = 1
+
+	var/kin_to_el_ratio = 0.1	//How much kinetic energy will be taken from turbine and converted into electricity
+	var/obj/machinery/atmospherics/pipeturbine/turbine
