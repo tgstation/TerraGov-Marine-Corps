@@ -47,7 +47,7 @@
 		chassis.visible_message("[chassis] starts putting [target] into the [src].")
 		var/C = chassis.loc
 		var/T = target.loc
-		if(do_after_cooldown(target))
+		if(equipment_cooldown(target))
 			if(chassis.loc!=C || target.loc!=T)
 				return
 			if(occupant)
@@ -468,7 +468,7 @@
 				S.update_icon()
 				break
 			sleep(1)
-	do_after_cooldown()
+	equipment_cooldown()
 	return TRUE
 
 
@@ -606,7 +606,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/tool/syringe_gun/proc/add_known_reagent(r_id,r_name)
 	set_ready_state(0)
-	do_after_cooldown()
+	equipment_cooldown()
 	if(!(r_id in known_reagents))
 		known_reagents += r_id
 		known_reagents[r_id] = r_name

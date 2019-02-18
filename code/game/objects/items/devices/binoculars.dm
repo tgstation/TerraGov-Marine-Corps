@@ -132,7 +132,7 @@
 		return
 	playsound(src, 'sound/effects/nightvision.ogg', 35)
 	to_chat(user, "<span class='notice'>INITIATING LASER TARGETING. Stand still.</span>")
-	if(!do_after(user, acquisition_time, TRUE, 5, BUSY_ICON_GENERIC) || world.time < laser_cooldown || laser)
+	if(!do_after(user, acquisition_time, TRUE) || world.time < laser_cooldown || laser)
 		return
 	if(mode)
 		var/obj/effect/overlay/temp/laser_coordinate/LT = new (TU, laz_name, S)
@@ -140,10 +140,8 @@
 		to_chat(user, "<span class='notice'>SIMPLIFIED COORDINATES OF TARGET. LONGITUDE [coord.x]. LATITUDE [coord.y].</span>")
 		playsound(src, 'sound/effects/binoctarget.ogg', 35)
 		while(coord)
-			if(!do_after(user, 50, TRUE, 5, BUSY_ICON_GENERIC))
-				if(coord)
-					qdel(coord)
-					coord = null
+			if(!do_after(user, 50, TRUE))
+				QDEL_NULL(coord)
 				break
 	else
 		to_chat(user, "<span class='notice'>TARGET ACQUIRED. LASER TARGETING IS ONLINE. DON'T MOVE.</span>")
@@ -151,10 +149,8 @@
 		laser = LT
 		playsound(src, 'sound/effects/binoctarget.ogg', 35)
 		while(laser)
-			if(!do_after(user, 50, TRUE, 5, BUSY_ICON_GENERIC))
-				if(laser)
-					qdel(laser)
-					laser = null
+			if(!do_after(user, 50, TRUE))
+				QDEL_NULL(laser)
 				break
 
 

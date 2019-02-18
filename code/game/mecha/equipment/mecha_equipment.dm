@@ -20,12 +20,12 @@
 	var/required_type = /obj/mecha //may be either a type or a list of allowed types
 
 
-/obj/item/mecha_parts/mecha_equipment/proc/do_after_cooldown(target=1)
+/obj/item/mecha_parts/mecha_equipment/proc/equipment_cooldown(target = TRUE)
 	sleep(equip_cooldown)
-	set_ready_state(1)
+	set_ready_state(TRUE)
 	if(target && chassis)
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 
 /obj/item/mecha_parts/mecha_equipment/New()

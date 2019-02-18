@@ -59,7 +59,7 @@
 				"<span class='notice'> [user] starts to fix part of the microwave.</span>", \
 				"<span class='notice'> You start to fix part of the microwave.</span>" \
 			)
-			if (do_after(user,20, TRUE, 5, BUSY_ICON_BUILD))
+			if (do_after(user,20, TRUE, src))
 				user.visible_message( \
 					"<span class='notice'> [user] fixes part of the microwave.</span>", \
 					"<span class='notice'> You have fixed part of the microwave.</span>" \
@@ -70,7 +70,7 @@
 				"<span class='notice'> [user] starts to fix part of the microwave.</span>", \
 				"<span class='notice'> You start to fix part of the microwave.</span>" \
 			)
-			if (do_after(user,20, TRUE, 5, BUSY_ICON_BUILD))
+			if (do_after(user,20, TRUE, src))
 				user.visible_message( \
 					"<span class='notice'> [user] fixes the microwave.</span>", \
 					"<span class='notice'> You have fixed the microwave.</span>" \
@@ -88,7 +88,7 @@
 				"<span class='notice'> [user] starts to clean the microwave.</span>", \
 				"<span class='notice'> You start to clean the microwave.</span>" \
 			)
-			if (do_after(user,20, TRUE, 5, BUSY_ICON_FRIENDLY))
+			if (do_after(user,20, TRUE, src))
 				user.visible_message( \
 					"<span class='notice'> [user]  has cleaned  the microwave.</span>", \
 					"<span class='notice'> You have cleaned the microwave.</span>" \

@@ -64,14 +64,14 @@
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use the [src].</span>",
 			"<span class='notice'>You fumble around figuring out how to use [src].</span>")
 			var/fumbling_time = 30
-			if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+			if(!do_after(user, fumbling_time, TRUE, src))
 				return
 			if(prob((SKILL_ENGINEER_METAL - user.mind.cm_skills.engineer) * 20))
 				to_chat(user, "<font color='danger'>After several seconds of your clumsy meddling the [src] buzzes angrily as if offended. You have a <b>very</b> bad feeling about this.</font>")
 				timer = 0 //Oops. Now you fucked up. Immediate detonation.
 		user.visible_message("<span class='notice'>[user] begins disarming [src] with [W].</span>",
 		"<span class='notice'>You begin disarming [src] with [W].</span>")
-		if(do_after(user, 30, TRUE, 5, BUSY_ICON_BUILD))
+		if(do_after(user, 30, TRUE, src))
 			user.visible_message("<span class='notice'>[user] disarms [src].</span>",
 			"<span class='notice'>You disarm [src].</span>")
 			armed = FALSE
@@ -84,7 +84,7 @@
 	if(plant_target)
 		user.visible_message("<span class='notice'>[user] begins unsecuring [src] from [plant_target].</span>",
 		"<span class='notice'>You begin unsecuring [src] from [plant_target].</span>")
-		if(!do_after(user, 30, TRUE, 5, BUSY_ICON_BUILD))
+		if(!do_after(user, 30, TRUE, src))
 			return
 		user.visible_message("<span class='notice'>[user] unsecures [src] from [plant_target].</span>",
 		"<span class='notice'>You unsecure [src] from [plant_target].</span>")
@@ -183,7 +183,7 @@
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to use [src].</span>")
 		var/fumbling_time = 20
-		if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+		if(!do_after(user, fumbling_time, TRUE, src))
 			return
 	user.set_interaction(src)
 	var/dat = {"<TT>
@@ -244,7 +244,7 @@
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to use [src].</span>")
 		var/fumbling_time = 50
-		if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+		if(!do_after(user, fumbling_time, TRUE, target))
 			return
 
 	user.visible_message("<span class='warning'>[user] is trying to plant [name] on [target]!</span>",

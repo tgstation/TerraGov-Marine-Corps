@@ -324,7 +324,7 @@
 		if(M.current_rounds)
 			if(contents.len < storage_slots)
 				to_chat(user, "<span class='notice'>You start refilling [src] with [M].</span>")
-				if(!do_after(user, 15, TRUE, 5, BUSY_ICON_GENERIC))
+				if(!do_after(user, 15, TRUE, src))
 					return
 				for(var/x = 1 to (storage_slots - contents.len))
 					var/cont = handle_item_insertion(M.create_handful(), 1, user)
@@ -498,13 +498,13 @@
 		return
 	if(istype(W,/obj/item/weapon/gun)) //Is it a gun?
 		if(holds_guns_now == holds_guns_max) //Are we at our gun capacity?
-			if(warning) 
+			if(warning)
 				to_chat(usr, "<span class='warning'>[src] already holds a gun.</span>")
 			return FALSE
 	else //Must be ammo.
 	//We have slots open for the gun, so in total we should have storage_slots - guns_max in slots, plus whatever is already in the belt.
 		if(((storage_slots - holds_guns_max) + holds_guns_now) <= length(contents)) // We're over capacity, and the space is reserved for a gun.
-			if(warning) 
+			if(warning)
 				to_chat(usr, "<span class='warning'>[src] can't hold any more magazines.</span>")
 			return FALSE
 	return TRUE

@@ -28,7 +28,8 @@
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how [src] works.</span>",
 			"<span class='notice'>You fumble around figuring out how [src] works.</span>")
 			var/fumbling_time = 50 * ( SKILL_ENGINEER_MT - user.mind.cm_skills.engineer )
-			if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
+			if(!do_after(user, fumbling_time, TRUE, src))
+				return
 
 	// REPAIRING: Use Nanopaste to repair 10-20 integrity points.
 	if(istype(P, /obj/item/stack/nanopaste))
@@ -81,7 +82,7 @@
 			if(iscrowbar(P))
 				to_chat(user, "You begin prying out the circuit board other components...")
 				playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
-				if(do_after(user,60, TRUE, 5, BUSY_ICON_BUILD))
+				if(do_after(user,60, TRUE, src))
 					to_chat(user, "You finish prying out the components.")
 
 					// Drop all the component stuff
@@ -123,7 +124,8 @@
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how [src] works.</span>",
 			"<span class='notice'>You fumble around figuring out how [src] works.</span>")
 			var/fumbling_time = 50 * ( SKILL_ENGINEER_MT - user.mind.cm_skills.engineer )
-			if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
+			if(!do_after(user, fumbling_time, TRUE, src))
+				return
 		// istype returns false if the value is null
 		if(!ismultitool(user.get_active_held_item()))
 			return

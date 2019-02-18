@@ -711,63 +711,6 @@ var/global/image/busy_indicator_hostile
 	user.action_busy = FALSE
 
 
-/proc/do_after(mob/user, delay, needhand = TRUE, numticks = 5, show_busy_icon, selected_zone_check, busy_check = FALSE) //hacky, will suffice for now.
-	if(!istype(user) || delay <= 0)
-		return FALSE
-
-	if(busy_check && user.action_busy)
-		to_chat(user, "<span class='warning'>You're already busy doing something!</span>")
-		return FALSE
-
-	var/mob/living/L
-	if(isliving(user))
-		L = user //No more doing things while you're in crit
-
-	var/image/busy_icon
-	if(show_busy_icon)
-		busy_icon = get_busy_icon(show_busy_icon)
-		if(busy_icon)
-			user.overlays += busy_icon
-
-	user.action_busy = TRUE
-
-	var/cur_zone_sel
-	if(selected_zone_check)
-		cur_zone_sel = user.zone_selected
-
-	var/original_loc = user.loc
-	var/original_turf = get_turf(user)
-	var/obj/holding = user.get_active_held_item()
-
-	. = TRUE
-	var/endtime = world.time + delay
-	while(world.time < endtime)
-		stoplag(1)
-		if(!user || user.loc != original_loc || get_turf(user) != original_turf || user.stat || user.knocked_down || user.stunned)
-			. = FALSE
-			break
-		if(L?.health && L.health < CONFIG_GET(number/health_threshold_crit))
-			. = FALSE //catching mobs below crit level but haven't had their stat var updated
-			break
-		if(needhand)
-			if(holding)
-				if(!holding.loc || user.get_active_held_item() != holding) //no longer holding the required item
-					. = FALSE
-					break
-			else if(user.get_active_held_item()) //something in active hand when we need it to stay empty
-				. = FALSE
-				break
-
-		if(selected_zone_check && cur_zone_sel != user.zone_selected) //changed the selected zone
-			. = FALSE
-			break
-
-	if(user && busy_icon)
-		user.overlays -= busy_icon
-
-	user.action_busy = FALSE
-
-
 //Takes: Anything that could possibly have variables and a varname to check.
 //Returns: 1 if found, 0 if not.
 /proc/hasvar(var/datum/A, var/varname)

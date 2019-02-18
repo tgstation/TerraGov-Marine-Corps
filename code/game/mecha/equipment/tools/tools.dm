@@ -30,7 +30,7 @@
 					chassis.use_power(energy_drain)
 					O.anchored = 1
 					var/T = chassis.loc
-					if(do_after_cooldown(target))
+					if(equipment_cooldown(target))
 						if(T == chassis.loc && src == chassis.selected)
 							cargo_holder.cargo += O
 							O.loc = chassis
@@ -62,7 +62,7 @@
 				chassis.visible_message("[chassis] pushes [target] out of the way.")
 			set_ready_state(0)
 			chassis.use_power(energy_drain)
-			do_after_cooldown()
+			equipment_cooldown()
 		return 1
 
 /obj/item/mecha_parts/mecha_equipment/tool/drill
@@ -86,7 +86,7 @@
 		playsound(chassis.loc, 'sound/effects/drill.ogg', 50, 0)
 		var/T = chassis.loc
 		var/C = target.loc	//why are these backwards? we may never know -Pete
-		if(do_after_cooldown(target))
+		if(equipment_cooldown(target))
 			if(T == chassis.loc && src == chassis.selected)
 				if(isrwallturf(target) || isfloorturf(target))
 					occupant_message("<font color='red'>[target] is too durable to drill through.</font>")
@@ -115,10 +115,10 @@
 		occupant_message("<font color='red'><b>You start to drill [target]</b></font>")
 		var/T = chassis.loc
 		var/C = target.loc	//why are these backwards? we may never know -Pete
-		if(do_after_cooldown(target))
+		if(equipment_cooldown(target))
 			if(T == chassis.loc && src == chassis.selected)
 				if(isrwallturf(target))
-					if(do_after_cooldown(target))//To slow down how fast mechs can drill through the station
+					if(equipment_cooldown(target))//To slow down how fast mechs can drill through the station
 						log_message("Drilled through [target]")
 						target.ex_act(3)
 				else if(target.loc == C)
@@ -146,7 +146,7 @@
 		if(!action_checks(target) || get_dist(chassis, target)>3) return
 		if(get_dist(chassis, target)>2) return
 		set_ready_state(0)
-		if(do_after_cooldown(target))
+		if(equipment_cooldown(target))
 			if( istype(target, /obj/structure/reagent_dispensers/watertank) && get_dist(chassis,target) <= 1)
 				var/obj/o = target
 				o.reagents.trans_to(src, 200)
@@ -228,7 +228,7 @@
 				if (iswallturf(target))
 					occupant_message("Deconstructing [target]...")
 					set_ready_state(0)
-					if(do_after_cooldown(target))
+					if(equipment_cooldown(target))
 						if(disabled) return
 						chassis.spark_system.start()
 						target:ChangeTurf(/turf/open/floor/plating)
@@ -237,7 +237,7 @@
 				else if (isfloorturf(target))
 					occupant_message("Deconstructing [target]...")
 					set_ready_state(0)
-					if(do_after_cooldown(target))
+					if(equipment_cooldown(target))
 						if(disabled) return
 						chassis.spark_system.start()
 						target:ChangeTurf(/turf/open/space)
@@ -246,7 +246,7 @@
 				else if (istype(target, /obj/machinery/door/airlock))
 					occupant_message("Deconstructing [target]...")
 					set_ready_state(0)
-					if(do_after_cooldown(target))
+					if(equipment_cooldown(target))
 						if(disabled) return
 						chassis.spark_system.start()
 						playsound(target, 'sound/items/Deconstruct.ogg', 25, 1)
@@ -256,7 +256,7 @@
 				if(isspaceturf(target))
 					occupant_message("Building Floor...")
 					set_ready_state(0)
-					if(do_after_cooldown(target))
+					if(equipment_cooldown(target))
 						if(disabled) return
 						target:ChangeTurf(/turf/open/floor/plating)
 						playsound(target, 'sound/items/Deconstruct.ogg', 25, 1)
@@ -265,7 +265,7 @@
 				else if(isfloorturf(target))
 					occupant_message("Building Wall...")
 					set_ready_state(0)
-					if(do_after_cooldown(target))
+					if(equipment_cooldown(target))
 						if(disabled) return
 						target:ChangeTurf(/turf/closed/wall)
 						playsound(target, 'sound/items/Deconstruct.ogg', 25, 1)
@@ -275,7 +275,7 @@
 				if(isfloorturf(target))
 					occupant_message("Building Airlock...")
 					set_ready_state(0)
-					if(do_after_cooldown(target))
+					if(equipment_cooldown(target))
 						if(disabled) return
 						chassis.spark_system.start()
 						var/obj/machinery/door/airlock/T = new /obj/machinery/door/airlock(target)
@@ -321,7 +321,7 @@
 			set_ready_state(0)
 			chassis.use_power(energy_drain)
 			do_teleport(chassis, T, 4)
-			do_after_cooldown()
+			equipment_cooldown()
 		return
 
 
@@ -369,7 +369,7 @@
 		P.failchance = 0
 		P.icon_state = "anom"
 		P.name = "wormhole"
-		do_after_cooldown()
+		equipment_cooldown()
 		src = null
 		spawn(rand(150,300))
 			qdel(P)
@@ -416,7 +416,7 @@
 						send_byjax(chassis.occupant,"exosuit.browser","\ref[src]",src.get_equip_info())
 						set_ready_state(0)
 						chassis.use_power(energy_drain)
-						do_after_cooldown()
+						equipment_cooldown()
 					else
 						locked = null
 						occupant_message("Lock on [locked] disengaged.")
@@ -437,7 +437,7 @@
 							sleep(2)
 				set_ready_state(0)
 				chassis.use_power(energy_drain)
-				do_after_cooldown()
+				equipment_cooldown()
 		return
 
 	get_equip_info()
@@ -497,7 +497,7 @@
 			chassis.check_for_internal_damage(list(MECHA_INT_CONTROL_LOST))
 		set_ready_state(0)
 		chassis.use_power(energy_drain)
-		do_after_cooldown()
+		equipment_cooldown()
 		return
 
 
@@ -547,7 +547,7 @@
 			chassis.check_for_internal_damage(list(MECHA_INT_CONTROL_LOST))
 		set_ready_state(0)
 		chassis.use_power(energy_drain)
-		do_after_cooldown()
+		equipment_cooldown()
 		return
 
 	proc/dynhitby(atom/movable/A)
@@ -567,7 +567,7 @@
 				chassis.check_for_internal_damage(list(MECHA_INT_CONTROL_LOST))
 		set_ready_state(0)
 		chassis.use_power(energy_drain)
-		do_after_cooldown()
+		equipment_cooldown()
 		return
 
 
@@ -963,7 +963,7 @@
 					chassis.use_power(energy_drain)
 					O.anchored = 1
 					var/T = chassis.loc
-					if(do_after_cooldown(target))
+					if(equipment_cooldown(target))
 						if(T == chassis.loc && src == chassis.selected)
 							cargo_holder.cargo += O
 							O.loc = chassis
@@ -993,7 +993,7 @@
 				chassis.visible_message("[chassis] tosses [target] like a piece of paper.")
 			set_ready_state(0)
 			chassis.use_power(energy_drain)
-			do_after_cooldown()
+			equipment_cooldown()
 		return 1
 
 /obj/item/mecha_parts/mecha_equipment/tool/passenger
@@ -1022,17 +1022,16 @@
 	return 0
 
 /obj/item/mecha_parts/mecha_equipment/tool/passenger/proc/move_inside(var/mob/user)
-	if (chassis)
-		chassis.visible_message("<span class='notice'> [user] starts to climb into [chassis].</span>")
+	chassis?.visible_message("<span class='notice'> [user] starts to climb into [chassis].</span>")
 
-	if(do_after(user, 40, FALSE, 5, BUSY_ICON_GENERIC))
-		if(!src.occupant)
+	if(do_after(user, 40, FALSE, src))
+		if(!occupant)
 			user.forceMove(src)
 			occupant = user
 			log_message("[user] boarded.")
 			occupant_message("[user] boarded.")
-		else if(src.occupant != user)
-			to_chat(user, "<span class='warning'>[src.occupant] was faster. Try better next time, loser.</span>")
+		else if(occupant != user)
+			to_chat(user, "<span class='warning'>[occupant] was faster. Try better next time, loser.</span>")
 	else
 		to_chat(user, "You stop entering the exosuit.")
 

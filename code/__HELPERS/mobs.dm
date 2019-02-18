@@ -85,3 +85,95 @@ proc/age2agedescription(age)
 		if(60 to 70)		return "aging"
 		if(70 to INFINITY)	return "elderly"
 		else				return "unknown"
+
+//some additional checks as a callback for for do_afters that want to break on losing health or on the mob taking action
+/mob/proc/break_do_after_checks(list/checked_health, check_clicks, selected_zone_check)
+	if(check_clicks && next_move > world.time)
+		return FALSE
+	if(selected_zone_check && zone_selected != selected_zone_check)
+		return FALSE
+	return TRUE
+
+//pass a list in the format list("health" = mob's health var) to check health during this
+/mob/living/break_do_after_checks(list/checked_health, check_clicks, selected_zone_check)
+	if(islist(checked_health))
+		if(health < checked_health["health"])
+			return FALSE
+		checked_health["health"] = health
+	return ..()
+
+/proc/dsfasfbdf(mob/user, delay, needhand = TRUE, numticks = 5, show_busy_icon, selected_zone_check, busy_check = FALSE)
+
+/proc/do_after(mob/user, delay, needhand = TRUE, atom/target = null, progress = TRUE, show_busy_icon = FALSE, busy_check = FALSE, datum/callback/extra_checks = null)
+	if(!user)
+		return FALSE
+
+	if(busy_check && user.action_busy)
+		to_chat(user, "<span class='warning'>You're already busy doing something!</span>")
+		return FALSE
+
+	var/atom/Tloc = null
+	if(target && !isturf(target))
+		Tloc = target.loc
+
+	var/atom/Uloc = user.loc
+
+	var/holding = user.get_active_held_item()
+
+	var/holdingnull = TRUE //User's hand started out empty, check for an empty hand
+	if(holding)
+		holdingnull = FALSE //Users hand started holding something, check to see if it's still holding that
+
+	delay *= user.do_after_coefficent()
+
+	var/image/busy_icon
+	if(show_busy_icon)
+		busy_icon = get_busy_icon(show_busy_icon)
+		if(busy_icon)
+			user.overlays += busy_icon
+
+	var/datum/progressbar/progbar
+	if (progress)
+		progbar = new(user, delay, target)
+
+	user.action_busy = TRUE
+	var/endtime = world.time + delay
+	var/starttime = world.time
+	. = TRUE
+	while (world.time < endtime)
+		stoplag(1)
+		if (progress)
+			progbar.update(world.time - starttime)
+
+		if(QDELETED(user) || user.stat || user.loc != Uloc || (extra_checks && !extra_checks.Invoke()))
+			. = FALSE
+			break
+
+		if(user.is_mob_incapacitated())
+			. = FALSE
+			break
+
+		if(!QDELETED(Tloc) && (QDELETED(target) || Tloc != target.loc))
+			if(Uloc != Tloc || Tloc != user)
+				. = FALSE
+				break
+
+		if(needhand)
+			//This might seem like an odd check, but you can still need a hand even when it's empty
+			//i.e the hand is used to pull some item/tool out of the construction
+			if(!holdingnull)
+				if(!holding)
+					. = FALSE
+					break
+			if(user.get_active_held_item() != holding)
+				. = FALSE
+				break
+	if (progress)
+		qdel(progbar)
+	if(show_busy_icon)
+		user.overlays -= busy_icon
+		qdel(busy_icon)
+	user.action_busy = FALSE
+
+/mob/proc/do_after_coefficent() // This gets added to the delay on a do_after, default 1
+	. = 1

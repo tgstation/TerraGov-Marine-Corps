@@ -626,12 +626,12 @@ Status: []<BR>"},
 					return
 
 				playsound(src.loc, pick('sound/items/Welder.ogg', 'sound/items/Welder2.ogg'), 50, 1)
-				if(do_after(user, 20))
-					if(!src || !WT.remove_fuel(5, user)) return
-					build_step = 1
-					to_chat(user, "You remove the turret's interior metal armor.")
-					new /obj/item/stack/sheet/metal( loc, 2)
-					return
+				if(!do_after(user, 20, TRUE, src, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)) || !WT.remove_fuel(5, user))
+					return FALSE
+				build_step = 1
+				to_chat(user, "You remove the turret's interior metal armor.")
+				new /obj/item/stack/sheet/metal( loc, 2)
+				return
 
 
 		if(3)
@@ -693,10 +693,10 @@ Status: []<BR>"},
 					to_chat(user, "<span class='warning'>You need more fuel to complete this task.</span>")
 
 				playsound(src.loc, pick('sound/items/Welder.ogg', 'sound/items/Welder2.ogg'), 50, 1)
-				if(do_after(user, 30))
-					if(!src || !WT.remove_fuel(5, user)) return
-					build_step = 8
-					to_chat(user, "<span class='notice'>You weld the turret's armor down.</span>")
+				if(!do_after(user, 30, TRUE, src, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)) || !WT.remove_fuel(5, user))
+					return FALSE
+				build_step = 8
+				to_chat(user, "<span class='notice'>You weld the turret's armor down.</span>")
 
 					// The final step: create a full turret
 					var/obj/machinery/porta_turret/Turret = new/obj/machinery/porta_turret(locate(x,y,z))

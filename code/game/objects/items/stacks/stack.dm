@@ -147,10 +147,11 @@
 					usr.visible_message("<span class='notice'>[usr] fumbles around figuring out how to build with [src].</span>",
 					"<span class='notice'>You fumble around figuring out how to build with [src].</span>")
 					var/fumbling_time = R.time * ( R.skill_req - usr.mind.cm_skills.construction )
-					if(!do_after(usr, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
+					if(!do_after(usr, fumbling_time, TRUE))
+						return
 			usr.visible_message("<span class='notice'>[usr] starts assembling \a [R.title].</span>",
 			"<span class='notice'>You start assembling \a [R.title].</span>")
-			if(!do_after(usr, R.time, TRUE, 5, BUSY_ICON_BUILD))
+			if(!do_after(usr, R.time, TRUE))
 				return
 		//We want to check this again for girder stacking
 		if(R.one_per_turf == 1 && (locate(R.result_type) in usr.loc))

@@ -137,7 +137,7 @@
 		user.visible_message("<span class='danger'>[user] jams [user.p_their()] [name] into [O] and strains to rip it open.</span>",
 		"<span class='danger'>You jam your [name] into [O] and strain to rip it open.</span>")
 		playsound(user, 'sound/weapons/wristblades_hit.ogg', 15, 1)
-		if(do_after(user, 30, TRUE, 5, BUSY_ICON_HOSTILE))
+		if(do_after(user, 30, TRUE, src))
 			user.visible_message("<span class='danger'>[user] forces [O] open with [user.p_their()] [name].</span>",
 			"<span class='danger'>You force [O] open with your [name].</span>")
 			D.open(1)

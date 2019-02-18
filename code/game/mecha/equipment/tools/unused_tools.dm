@@ -76,7 +76,7 @@
 				chassis.pr_inertial_movement.start(list(chassis,direction))
 			else
 				chassis.pr_inertial_movement.set_process_args(list(chassis,direction))
-			do_after_cooldown()
+			equipment_cooldown()
 			return 1
 		return 0
 
@@ -101,7 +101,7 @@
 		if(href_list["toggle"])
 			toggle()
 
-	do_after_cooldown()
+	equipment_cooldown()
 		sleep(equip_cooldown)
 		wait = 0
 		return 1

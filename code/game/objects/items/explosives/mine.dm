@@ -59,7 +59,7 @@
 	if(!armed)
 		user.visible_message("<span class='notice'>[user] starts deploying [src].</span>", \
 		"<span class='notice'>You start deploying [src].</span>")
-		if(!do_after(user, 40, TRUE, 5, BUSY_ICON_HOSTILE))
+		if(!do_after(user, 40, TRUE))
 			user.visible_message("<span class='notice'>[user] stops deploying [src].</span>", \
 		"<span class='notice'>You stop deploying \the [src].</span>")
 			return
@@ -81,7 +81,7 @@
 		if(anchored)
 			user.visible_message("<span class='notice'>[user] starts disarming [src].</span>", \
 			"<span class='notice'>You start disarming [src].</span>")
-			if(!do_after(user, 80, TRUE, 5, BUSY_ICON_FRIENDLY))
+			if(!do_after(user, 80, TRUE, src))
 				user.visible_message("<span class='warning'>[user] stops disarming [src].", \
 				"<span class='warning'>You stop disarming [src].")
 				return

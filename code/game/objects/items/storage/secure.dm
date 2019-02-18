@@ -47,25 +47,24 @@
 				return
 
 			if (isscrewdriver(W))
-				if (do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
-					src.open =! src.open
-					user.show_message(text("<span class='notice'> You [] the service panel.</span>", (src.open ? "open" : "close")))
+				if (do_after(user, 20, TRUE, src))
+					open = !open
+					to_chat(user, "<span class='notice'> You [open ? "open" : "close"] the service panel.</span>")
 				return
-			if (ismultitool(W) && (src.open == 1)&& (!src.l_hacking))
-				user.show_message(text("<span class='warning'> Now attempting to reset internal memory, please hold.</span>"), 1)
-				src.l_hacking = 1
-				if (do_after(usr, 100, TRUE, 5, BUSY_ICON_BUILD))
+			if (ismultitool(W) && open && !l_hacking)
+				to_chat(user, "<span class='warning'>Now attempting to reset internal memory, please hold.</span>")
+				l_hacking = TRUE
+				if (do_after(usr, 100, TRUE, src))
 					if (prob(40))
-						src.l_setshort = 1
-						src.l_set = 0
-						user.show_message(text("<span class='warning'> Internal memory reset.  Please give it a few seconds to reinitialize.</span>"), 1)
-						sleep(80)
-						src.l_setshort = 0
-						src.l_hacking = 0
+						l_setshort = TRUE
+						l_set = FALSE
+						to_chat(user, "<span class='warning'>Internal memory reset.  Please give it a few seconds to reinitialize.</span>")
+						addtimer(CALLBACK(src, .proc/hacking_cooldown), 80)
 					else
-						user.show_message(text("<span class='warning'> Unable to reset internal memory.</span>"), 1)
-						src.l_hacking = 0
-				else	src.l_hacking = 0
+						to_chat(user, "<span class='warning'>Unable to reset internal memory.</span>")
+						l_hacking = FALSE
+				else
+					l_hacking = FALSE
 				return
 			//At this point you have exhausted all the special things to do when locked
 			// ... but it's still locked.
@@ -130,6 +129,10 @@
 					src.attack_self(M)
 				return
 		return
+
+/obj/item/storage/secure/proc/hacking_cooldown()
+	l_setshort = FALSE
+	l_hacking = FALSE
 
 // -----------------------------
 //        Secure Briefcase

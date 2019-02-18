@@ -141,17 +141,16 @@
 	M.visible_message("<span class='warning'>\The [M] digs into \the [src] and begins to pry it open.</span>", \
 	"<span class='warning'>You dig into \the [src] and begin to pry it open.</span>", null, 5)
 
-	if(do_after(M, 30, FALSE, 5, BUSY_ICON_HOSTILE))
-		if(M.loc != cur_loc)
-			return FALSE //Make sure we're still there
-		if(blocked)
-			to_chat(M, "<span class='warning'>\The [src] is welded shut.</span>")
-			return FALSE
-		if(density) //Make sure it's still closed
-			spawn(0)
-				open(1)
-				M.visible_message("<span class='danger'>\The [M] pries \the [src] open.</span>", \
-				"<span class='danger'>You pry \the [src] open.</span>", null, 5)
+	if(!do_after(M, 30, FALSE, src))
+		return FALSE
+	if(blocked)
+		to_chat(M, "<span class='warning'>\The [src] is welded shut.</span>")
+		return FALSE
+	if(density) //Make sure it's still closed
+		spawn(0)
+			open(1)
+			M.visible_message("<span class='danger'>\The [M] pries \the [src] open.</span>", \
+			"<span class='danger'>You pry \the [src] open.</span>", null, 5)
 
 /obj/machinery/door/firedoor/attack_hand(mob/user as mob)
 	add_fingerprint(user)
@@ -236,7 +235,7 @@
 				"<span class='notice'>You start forcing \the [src] [density ? "open" : "closed"] with \the [C]!</span>",\
 				"You hear metal strain.")
 		var/old_density = density
-		if(do_after(user,30, TRUE, 5, BUSY_ICON_HOSTILE))
+		if(do_after(user,30, TRUE, src))
 			if(blocked || density != old_density)
 				return
 			user.visible_message("<span class='danger'>\The [user] forces \the [blocked ? "welded " : "" ][name] [density ? "open" : "closed"] with \a [C]!</span>",\
@@ -258,7 +257,7 @@
 		user.visible_message("<span class='danger'>\The zombie starts to force \the [src] [density ? "open" : "closed"] with it's claws!!!</span>",\
 				"You start forcing \the [src] [density ? "open" : "closed"] with your claws!",\
 				"You hear metal strain.")
-		if(do_after(user,150, TRUE, 5, BUSY_ICON_HOSTILE))
+		if(do_after(user,150, TRUE, src))
 			user.visible_message("<span class='danger'>\The [user] forces \the [ blocked ? "welded" : "" ] [src] [density ? "open" : "closed"] with \a [C]!</span>",\
 			"You force \the [ blocked ? "welded" : "" ] [src] [density ? "open" : "closed"] with \the [C]!",\
 			"You hear metal strain and groan, and a door [density ? "opening" : "closing"].")
@@ -268,7 +267,7 @@
 			else
 				spawn(0)
 					close()
-			return
+		return TRUE
 
 /obj/machinery/door/firedoor/try_to_activate_door(mob/user)
 	return

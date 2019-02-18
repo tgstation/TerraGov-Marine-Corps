@@ -174,18 +174,15 @@
 
 		else if(istype(M,/mob/living/silicon/robot/drone) && !M.client)
 
-			var/mob/living/silicon/robot/drone/D = src.loc
+			var/mob/living/silicon/robot/drone/D = loc
 
 			if(!istype(D))
 				return
 
 			to_chat(D, "<span class='warning'>You begin decompiling the other drone.</span>")
 
-			if(!do_after(D, 50, FALSE, 5, BUSY_ICON_GENERIC))
-				to_chat(D, "<span class='warning'>You need to remain still while decompiling such a large object.</span>")
+			if(!do_after(D, 50, FALSE, M))
 				return
-
-			if(!M || !D) return
 
 			to_chat(D, "<span class='warning'>You carefully and thoroughly decompile your downed fellow, storing as much of its resources as you can within yourself.</span>")
 

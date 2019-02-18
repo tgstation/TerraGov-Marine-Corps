@@ -1036,7 +1036,7 @@ table tr:first-child th:first-child { border: none;}
 				user.visible_message("<span class='notice'>[user] starts prying out [src]'s circuits.</span>",
 				"<span class='notice'>You start prying out [src]'s circuits.</span>")
 				playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
-				if(do_after(user,20, TRUE, 5, BUSY_ICON_BUILD))
+				if(do_after(user, 20, TRUE, src))
 					user.visible_message("<span class='notice'>[user] pries out [src]'s circuits.</span>",
 					"<span class='notice'>You pry out [src]'s circuits.</span>")
 					var/obj/item/circuitboard/airalarm/circuit
