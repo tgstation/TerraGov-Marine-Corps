@@ -67,7 +67,6 @@
 	starting = null
 	permutated = null
 	path = null
-	list_reagents = null
 	return TA_REVIVE_ME
 
 /obj/item/projectile/Bumped(atom/A as mob|obj|turf|area)
@@ -92,7 +91,6 @@
 	accuracy   *= rand(CONFIG_GET(number/combat_define/proj_variance_low)-ammo.accuracy_var_low, CONFIG_GET(number/combat_define/proj_variance_high)+ammo.accuracy_var_high) * CONFIG_GET(number/combat_define/proj_base_accuracy_mult)//Rand only works with integers.
 	damage     *= rand(CONFIG_GET(number/combat_define/proj_variance_low)-ammo.damage_var_low, CONFIG_GET(number/combat_define/proj_variance_high)+ammo.damage_var_high) * CONFIG_GET(number/combat_define/proj_base_damage_mult)
 	damage_falloff = ammo.damage_falloff
-	list_reagents = ammo.ammo_reagents
 	armor_type = ammo.armor_type
 
 //Target, firer, shot from. Ie the gun
@@ -481,9 +479,6 @@
 	if(P.ammo.debilitate && stat != DEAD && ( damage || (P.ammo.flags_ammo_behavior & AMMO_IGNORE_RESIST) ) )
 		apply_effects(arglist(P.ammo.debilitate))
 
-	if(P.list_reagents && stat != DEAD && (ishuman(src) || ismonkey(src)))
-		reagents.add_reagent_list(P.list_reagents)
-
 	if(damage)
 		bullet_message(P)
 		apply_damage(damage, P.ammo.damage_type, P.def_zone, 0, 0, 0, P)
@@ -587,9 +582,6 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 			apply_effects(arglist(P.ammo.debilitate))
 
 	bullet_message(P) //We still want this, regardless of whether or not the bullet did damage. For griefers and such.
-
-	if(P.list_reagents && stat != DEAD)
-		reagents.add_reagent_list(P.list_reagents)
 
 	if(damage)
 		apply_damage(damage, P.ammo.damage_type, P.def_zone)
