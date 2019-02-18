@@ -147,6 +147,26 @@ Class Procs:
 		A.area_machines -= src
 	. = ..()
 
+/obj/machinery/proc/dropContents(list/subset = null)
+	var/turf/T = get_turf(src)
+	for(var/atom/movable/A in contents)
+		if(subset && !(A in subset))
+			continue
+		A.forceMove(T)
+//		if(isliving(A))
+//			var/mob/living/L = A
+//			L.update_mobility()
+
+/obj/machinery/proc/is_operational()
+	return !(stat & (NOPOWER|BROKEN|MAINT))
+
+/obj/machinery/proc/deconstruct()
+	return
+
+//called on machinery construction (i.e from frame to machinery) but not on initialization
+/obj/machinery/proc/on_construction()
+	return
+
 /obj/machinery/proc/start_processing()
 	if(!machine_processing)
 		machine_processing = 1

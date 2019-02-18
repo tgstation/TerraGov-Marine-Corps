@@ -86,8 +86,8 @@
 
 	var/list/roles = list()
 	var/datum/job/J
-	for(var/r in RoleAuthority.roles_for_mode) //All the roles in the game.
-		J = RoleAuthority.roles_for_mode[r]
+	for(var/r in SSjob.roles_for_mode) //All the roles in the game.
+		J = SSjob.roles_for_mode[r]
 		if(J.total_positions != -1 && J.get_total_positions(TRUE) <= J.current_positions)
 			roles += r
 
@@ -96,7 +96,7 @@
 		return
 
 	var/role = input("Please select role slot to free", "Free role slot") as null|anything in roles
-	RoleAuthority.free_role(RoleAuthority.roles_for_mode[role])
+	SSjob.free_role(SSjob.roles_for_mode[role])
 
 	log_admin("[key_name(usr)] has made a [role] slot free.")
 	message_admins("[ADMIN_TPMONTY(usr)] has made a [role] slot free.")
@@ -110,13 +110,13 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	if(!RoleAuthority)
+	if(!SSjob)
 		return
 
 	var/datum/job/J
 	var/i
-	for(i in RoleAuthority.roles_by_name)
-		J = RoleAuthority.roles_by_name[i]
+	for(i in SSjob.roles_by_name)
+		J = SSjob.roles_by_name[i]
 		if(J.flags_startup_parameters & ROLE_ADD_TO_MODE)
 			to_chat(src, "[J.title]: [J.get_total_positions(1)] / [J.current_positions]")
 
@@ -206,13 +206,13 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	if(!istype(H) || !ticker || !H.mind?.assigned_role)
+	if(!istype(H) || !SSticker || !H.mind?.assigned_role)
 		return
 
 	if(!(H.mind.assigned_role in ROLES_MARINES))
 		return
 
-	var/datum/squad/S = input("Choose the marine's new squad") as null|anything in RoleAuthority.squads
+	var/datum/squad/S = input("Choose the marine's new squad") as null|anything in SSjob.squads
 
 	if(!S)
 		return
@@ -263,7 +263,12 @@
 
 	var/replaced = FALSE
 	if(M.key)
-		if(alert("This mob is being controlled by [M.key], they will be made a ghost. Are you sure?",,"Yes","No") == "Yes")
+		if(usr.client.key == copytext(M.key,2))
+			var/mob/dead/observer/ghost = usr
+			ghost.can_reenter_corpse = TRUE
+			ghost.reenter_corpse()
+			return
+		else if(alert("This mob is being controlled by [M.key], they will be made a ghost. Are you sure?",,"Yes","No") == "Yes")
 			M.ghostize()
 			replaced = TRUE
 		else

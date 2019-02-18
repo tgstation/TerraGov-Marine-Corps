@@ -5,7 +5,7 @@
 	item_state = "flight"
 	var/list/modes
 	var/mode
-
+/*
 /obj/item/device/pipe_painter/New()
 	..()
 	modes = new()
@@ -33,4 +33,4 @@
 
 /obj/item/device/pipe_painter/examine(mob/user)
 	..()
-	to_chat(user, "It is in [mode] mode.")
+	to_chat(user, "It is in [mode] mode.")*/

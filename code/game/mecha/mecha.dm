@@ -43,7 +43,7 @@
 	var/internal_tank_valve = ONE_ATMOSPHERE
 	var/obj/machinery/portable_atmospherics/canister/internal_tank
 
-	var/obj/machinery/atmospherics/portables_connector/connected_port = null
+	var/obj/machinery/atmospherics/components/unary/portables_connector/connected_port = null
 
 	var/obj/item/device/radio/radio = null
 
@@ -122,7 +122,7 @@
 	verbs += verb_path
 
 /obj/mecha/proc/add_airtank()
-	internal_tank = new /obj/machinery/portable_atmospherics/canister/air(src)
+	internal_tank = new /obj/machinery/portable_atmospherics/canister(src)
 	return internal_tank
 
 /obj/mecha/proc/add_cell(var/obj/item/cell/C=null)
@@ -770,7 +770,7 @@
 			. = T.return_temperature()
 
 
-/obj/mecha/proc/connect(obj/machinery/atmospherics/portables_connector/new_port)
+/obj/mecha/proc/connect(obj/machinery/atmospherics/components/unary/portables_connector/new_port)
 	//Make sure not already connected to something else
 	if(connected_port || !new_port || new_port.connected_device)
 		return 0
@@ -809,7 +809,7 @@
 	if(!src.occupant) return
 	if(usr!=src.occupant)
 		return
-	var/obj/machinery/atmospherics/portables_connector/possible_port = locate(/obj/machinery/atmospherics/portables_connector/) in loc
+	var/obj/machinery/atmospherics/components/unary/portables_connector/possible_port = locate(/obj/machinery/atmospherics/components/unary/portables_connector/) in loc
 	if(possible_port)
 		if(connect(possible_port))
 			src.occupant_message("<span class='notice'> [name] connects to the port.</span>")
@@ -1151,7 +1151,7 @@
 						<script language='javascript' type='text/javascript'>
 						[js_byjax]
 						[js_dropdowns]
-						function ticker() {
+						function SSticker() {
 						    setInterval(function(){
 						        window.location='byond://?src=\ref[src]&update_content=1';
 						    }, 1000);
@@ -1159,7 +1159,7 @@
 
 						window.onload = function() {
 							dropdowns();
-							ticker();
+							SSticker();
 						}
 						</script>
 						</head>

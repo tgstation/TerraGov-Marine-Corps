@@ -114,8 +114,10 @@
 			current_mag = null
 			update_icon()
 		else
-			current_mag = new current_mag(src, spawn_empty ? 1 : 0)
+			current_mag = new current_mag(src, spawn_empty ? TRUE : FALSE)
 			ammo = current_mag.default_ammo ? GLOB.ammo_list[current_mag.default_ammo] : GLOB.ammo_list[/datum/ammo/bullet] //Latter should never happen, adding as a precaution.
+		if(flags_gun_features & GUN_LOAD_INTO_CHAMBER && current_mag?.current_rounds > 0)
+			load_into_chamber()
 	else
 		ammo = GLOB.ammo_list[ammo] //If they don't have a mag, they fire off their own thing.
 	set_gun_config_values()
@@ -481,10 +483,10 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 			flags_gun_features &= ~GUN_BURST_FIRING
 		return
 
-	if(user && user.client && user.gun_mode && !(A in target))
-		PreFire(A,user,params) //They're using the new gun system, locate what they're aiming at.
-	else
-		Fire(A,user,params) //Otherwise, fire normally.
+	if(user?.client && user.gun_mode && !(A in target))
+		PreFire(A, user, params) //They're using the new gun system, locate what they're aiming at.
+	else if(!istype(A, /obj/screen))
+		Fire(A, user, params) //Otherwise, fire normally.
 
 /*
 load_into_chamber(), reload_into_chamber(), and clear_jam() do all of the heavy lifting.

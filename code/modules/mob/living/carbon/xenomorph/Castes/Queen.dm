@@ -285,7 +285,7 @@
 						newegg.hivenumber = hivenumber
 
 			if(hivenumber == XENO_HIVE_NORMAL && loc.z == 1)
-				if(ticker.mode.stored_larva)
+				if(SSticker.mode.stored_larva)
 					if((last_larva_time + 600) < world.time) // every minute
 						last_larva_time = world.time
 						var/picked = get_alien_candidate()
@@ -302,7 +302,7 @@
 							to_chat(new_xeno, "<span class='xenoannounce'>You are a xenomorph larva awakened from slumber!</span>")
 							new_xeno << sound('sound/effects/xeno_newlarva.ogg')
 
-							ticker.mode.stored_larva--
+							SSticker.mode.stored_larva--
 
 				var/searchx
 				var/searchy
@@ -313,7 +313,7 @@
 						for(var/mob/living/carbon/Xenomorph/Larva/L in searchspot)
 							if(!L.ckey || !L.client) // no one home
 								visible_message("<span class='xenodanger'>[L] quickly burrows into the ground.</span>")
-								ticker.mode.stored_larva++
+								SSticker.mode.stored_larva++
 								round_statistics.total_xenos_created-- // keep stats sane
 								qdel(L)
 
@@ -402,8 +402,8 @@
 	var/queensWord = "<br><h2 class='alert'>The words of the queen reverberate in your head...</h2>"
 	queensWord += "<br><span class='alert'>[input]</span><br>"
 
-	if(ticker && ticker.mode)
-		for(var/datum/mind/L in ticker.mode.xenomorphs)
+	if(SSticker?.mode)
+		for(var/datum/mind/L in SSticker.mode.xenomorphs)
 			var/mob/living/carbon/Xenomorph/X = L.current
 			if(X && X.client && istype(X) && !X.stat && hivenumber == X.hivenumber)
 				X << sound(get_sfx("queen"),wait = 0,volume = 50)

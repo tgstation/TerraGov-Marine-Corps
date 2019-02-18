@@ -129,11 +129,11 @@ var/global/normal_ooc_colour = "#002eb8"
 			message_admins("[ADMIN_TPMONTY(usr)] has attempted to advertise in LOOC: [msg]")
 			return
 
-	mob.log_talk("LOOC: [msg]", LOG_OOC)
+	mob.log_talk("LOOC: [msg]", LOG_LOOC)
 
 	var/message = "<font color='#6699CC'><span class='ooc'><span class='prefix'>LOOC:</span> [mob.name]: <span class='message'>[msg]</span></span></font>"
 
-	mob.show_message(message, 2, message, 1)
+	mob.visible_message(message, message)
 
 	for(var/client/C in GLOB.admins)
 		if(!check_other_rights(C, R_ADMIN, FALSE))
