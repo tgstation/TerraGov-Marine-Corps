@@ -200,8 +200,11 @@
 		victim.emote("roar")
 	else
 		victim.emote("scream")
-
-	forceMove(get_turf(victim)) //Moved to the turf directly so we don't get stuck inside a cryopod or another mob container.
+	if(istype(victim.loc, /obj/vehicle/multitile/root))
+		var/obj/vehicle/multitile/root/V = victim.loc
+		V.handle_player_exit(src)
+	else
+		forceMove(get_turf(victim)) //moved to the turf directly so we don't get stuck inside a cryopod or another mob container.
 	playsound(src, pick('sound/voice/alien_chestburst.ogg','sound/voice/alien_chestburst2.ogg'), 25)
 	round_statistics.total_larva_burst++
 	var/obj/item/alien_embryo/AE = locate() in victim
@@ -227,5 +230,5 @@
 	if((!key || !client) && loc.z == PLANET_Z_LEVEL && (locate(/obj/structure/bed/nest) in loc) && hivenumber == XENO_HIVE_NORMAL && hive.living_xeno_queen && hive.living_xeno_queen.z == loc.z)
 		visible_message("<span class='xenodanger'>[src] quickly burrows into the ground.</span>")
 		round_statistics.total_xenos_created-- // keep stats sane
-		ticker.mode.stored_larva++
+		SSticker.mode.stored_larva++
 		qdel(src)

@@ -215,8 +215,8 @@
 
 	else
 		//squad leader locator
-		locate_leader = new /obj/screen/squad_leader_locator()
-		infodisplay += locate_leader
+		SL_locator = new /obj/screen/SL_locator
+		infodisplay += SL_locator
 
 	use_attachment = new /obj/screen()
 	use_attachment.icon = ui_style

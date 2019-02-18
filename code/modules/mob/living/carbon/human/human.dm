@@ -4,7 +4,7 @@
 	voice_name = "unknown"
 	icon = 'icons/mob/human.dmi'
 	icon_state = "body_m_s"
-	hud_possible = list(HEALTH_HUD,STATUS_HUD, STATUS_HUD_OOC, STATUS_HUD_XENO_INFECTION,ID_HUD,WANTED_HUD,IMPLOYAL_HUD,IMPCHEM_HUD,IMPTRACK_HUD, SPECIALROLE_HUD, SQUAD_HUD)
+	hud_possible = list(HEALTH_HUD,STATUS_HUD, STATUS_HUD_OOC, STATUS_HUD_XENO_INFECTION,ID_HUD,WANTED_HUD,IMPLOYAL_HUD,IMPCHEM_HUD,IMPTRACK_HUD, SPECIALROLE_HUD, SQUAD_HUD, STATUS_HUD_OBSERVER_INFECTION)
 	var/embedded_flag	  //To check if we've need to roll for damage on movement while an item is imbedded in us.
 	var/regenZ = 1 //Temp zombie thing until I write a better method ~Apop
 
@@ -1481,80 +1481,6 @@
 	if(shoes && !override_noslip) // && (shoes.flags_inventory & NOSLIPPING)) // no more slipping if you have shoes on. -spookydonut
 		return FALSE
 	. = ..()
-
-/mob/living/carbon/human/disable_lights(armor = TRUE, guns = TRUE, flares = TRUE, misc = TRUE, sparks = FALSE, silent = FALSE)
-	if(luminosity <= 0)
-		return FALSE
-
-	if(sparks)
-		var/datum/effect_system/spark_spread/spark_system = new
-		spark_system.set_up(5, 0, src)
-		spark_system.attach(src)
-		spark_system.start(src)
-
-	var/light_off = 0
-	var/goes_out = 0
-	if(armor)
-		if(istype(wear_suit, /obj/item/clothing/suit/storage/marine))
-			var/obj/item/clothing/suit/storage/marine/S = wear_suit
-			if(S.turn_off_light(src))
-				light_off++
-	if(guns)
-		for(var/obj/item/weapon/gun/G in contents)
-			if(G.turn_off_light(src))
-				light_off++
-	if(flares)
-		for(var/obj/item/device/flashlight/flare/F in contents)
-			if(F.on) goes_out++
-			F.turn_off(src)
-	if(misc)
-		for(var/obj/item/device/flashlight/L in contents)
-			if(istype(L, /obj/item/device/flashlight/flare))
-				continue
-			if(L.turn_off_light(src))
-				light_off++
-		for(var/obj/item/tool/weldingtool/W in contents)
-			if(W.isOn())
-				W.toggle()
-				goes_out++
-		for(var/obj/item/tool/pickaxe/plasmacutter/W in contents)
-			if(W.powered)
-				W.toggle()
-				goes_out++
-		for(var/obj/item/tool/match/M in contents)
-			M.burn_out(src)
-		for(var/obj/item/tool/lighter/Z in contents)
-			if(Z.turn_off(src))
-				goes_out++
-	if(!silent)
-		if(goes_out && light_off)
-			to_chat(src, "<span class='notice'>Your sources of light short and fizzle out.</span>")
-		else if(goes_out)
-			if(goes_out > 1)
-				to_chat(src, "<span class='notice'>Your sources of light fizzle out.</span>")
-			else
-				to_chat(src, "<span class='notice'>Your source of light fizzles out.</span>")
-		else if(light_off)
-			if(light_off > 1)
-				to_chat(src, "<span class='notice'>Your sources of light short out.</span>")
-			else
-				to_chat(src, "<span class='notice'>Your source of light shorts out.</span>")
-		return TRUE
-
-//very similar to xeno's queen_locator() but this is for locating squad leader.
-/mob/living/carbon/human/proc/locate_squad_leader()
-	if(!assigned_squad) return
-	var/mob/living/carbon/human/H = assigned_squad.squad_leader
-	if(!H)
-		hud_used.locate_leader.icon_state = "trackoff"
-		return
-
-	if(H.z != src.z || get_dist(src,H) < 1 || src == H)
-		hud_used.locate_leader.icon_state = "trackondirect"
-	else
-		hud_used.locate_leader.setDir(get_dir(src,H))
-		hud_used.locate_leader.icon_state = "trackon"
-
 
 /mob/living/carbon/get_standard_pixel_y_offset()
 	if(lying)

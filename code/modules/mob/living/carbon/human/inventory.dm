@@ -2,6 +2,9 @@
 	set name = "quick-equip"
 	set hidden = TRUE
 
+	if(is_mob_incapacitated() || lying || istype(usr.loc, /obj/mecha) || istype(usr.loc, /obj/vehicle/multitile/root/cm_armored))
+		return
+
 	var/obj/item/I = get_active_held_item()
 	if(!I)
 		if(next_move > world.time)
@@ -137,7 +140,7 @@
 			dropItemToGround(l_store)
 		if(belt)
 			dropItemToGround(belt)
-		if(wear_suit && (istype(wear_suit, /obj/item/clothing/suit/armor) || istype(wear_suit, /obj/item/clothing/suit/storage)))
+		if(wear_suit && istype(wear_suit, /obj/item/clothing/suit))
 			dropItemToGround(wear_suit)
 		w_uniform = null
 		update_suit_sensors()

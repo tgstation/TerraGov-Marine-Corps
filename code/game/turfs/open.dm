@@ -1,6 +1,7 @@
 
 //turfs with density = FALSE
 /turf/open
+	plane = FLOOR_PLANE
 	var/is_groundmap_turf = FALSE //whether this a turf used as main turf type for the 'outside' of a map.
 	var/allow_construction = TRUE //whether you can build things like barricades on this turf.
 	var/slayer = 0 //snow layer

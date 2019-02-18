@@ -65,7 +65,7 @@
     return chosen_call
 
 /datum/emergency_call/proc/show_join_message()
-	if(!mob_max || !ticker?.mode) //Not a joinable distress call.
+	if(!mob_max || !SSticker?.mode) //Not a joinable distress call.
 		return
 
 	for(var/mob/dead/observer/M in GLOB.player_list)
@@ -80,7 +80,7 @@
 	if(!picked_call) //Something went horribly wrong
 		return FALSE
 
-	if(ticker?.mode?.waiting_for_candidates) //It's already been activated
+	if(SSticker?.mode?.waiting_for_candidates) //It's already been activated
 		return FALSE
 
 	picked_call.activate()
@@ -91,13 +91,13 @@
 	set category = "Ghost"
 	set desc = "Join an ongoing distress call response. You must be ghosted to do this."
 
-	var/datum/emergency_call/distress = ticker?.mode?.picked_call //Just to simplify things a bit
+	var/datum/emergency_call/distress = SSticker?.mode?.picked_call //Just to simplify things a bit
 
 	if(jobban_isbanned(usr, "Syndicate") || jobban_isbanned(usr, "Emergency Response Team"))
 		to_chat(usr, "<span class='danger'>You are jobbanned from the emergency reponse team!</span>")
 		return
 
-	if(isnull(distress) || !istype(distress) || !ticker.mode.waiting_for_candidates || distress.mob_max < 1)
+	if(!istype(distress) || !SSticker.mode.waiting_for_candidates || distress.mob_max < 1)
 		to_chat(usr, "<span class='warning'>No distress beacons that need candidates are active. You will be notified if that changes.</span>")
 		return
 
@@ -126,14 +126,14 @@
 
 
 /datum/emergency_call/proc/activate(announce = TRUE)
-	if(!ticker?.mode) //Something horribly wrong with the gamemode ticker
+	if(!SSticker?.mode) //Something horribly wrong with the gamemode SSticker
 		return
 
-	if(ticker.mode.on_distress_cooldown) //It's already been called.
+	if(SSticker.mode.on_distress_cooldown) //It's already been called.
 		return
 
 	if(mob_max > 0)
-		ticker.mode.waiting_for_candidates = TRUE
+		SSticker.mode.waiting_for_candidates = TRUE
 
 	show_join_message() //Show our potential candidates the message to let them join.
 	message_admins("Distress beacon: '[name]' activated. Looking for candidates.")
@@ -141,25 +141,25 @@
 	if(announce)
 		command_announcement.Announce("A distress beacon has been launched from the [MAIN_SHIP_NAME].", "Priority Alert", new_sound='sound/AI/distressbeacon.ogg')
 
-	ticker.mode.on_distress_cooldown = TRUE
+	SSticker.mode.on_distress_cooldown = TRUE
 
 	spawn(1 MINUTES)
 		if(length(candidates) < mob_min)
 			message_admins("Aborting distress beacon [name], not enough candidates. Found [length(candidates)].")
-			ticker.mode.waiting_for_candidates = FALSE
+			SSticker.mode.waiting_for_candidates = FALSE
 			members = list() //Empty the members list.
 			candidates = list()
 
 			if(announce)
 				command_announcement.Announce("The distress signal has not received a response, the launch tubes are now recalibrating.", "Distress Beacon")
 
-			ticker.mode.picked_call = null
-			ticker.mode.on_distress_cooldown = TRUE
+			SSticker.mode.picked_call = null
+			SSticker.mode.on_distress_cooldown = TRUE
 
 			spawn(COOLDOWN_COMM_REQUEST)
-				ticker.mode.on_distress_cooldown = FALSE
+				SSticker.mode.on_distress_cooldown = FALSE
 		else
-			ticker.mode.waiting_for_candidates = FALSE
+			SSticker.mode.waiting_for_candidates = FALSE
 			var/datum/mind/picked_candidates = list()
 			if(mob_max > 0)
 				for(var/i = 1 to mob_max)
@@ -172,7 +172,7 @@
 					if(M.current?.stat != DEAD)
 						candidates -= M //Strip them from the list, they aren't dead anymore.
 						continue
-					if(name == "Xenomorphs" && !(M.current.client.prefs.be_special & BE_ALIEN))
+					if(name == "Xenomorphs" && !(M.current.client?.prefs?.be_special & BE_ALIEN))
 						candidates -= M
 						continue
 					picked_candidates += M
@@ -208,7 +208,7 @@
 			candidates = list() //Blank out the candidates list for next time.
 			
 			spawn(COOLDOWN_COMM_REQUEST)
-				ticker.mode.on_distress_cooldown = FALSE
+				SSticker.mode.on_distress_cooldown = FALSE
 
 
 /datum/emergency_call/proc/add_candidate(var/mob/M)

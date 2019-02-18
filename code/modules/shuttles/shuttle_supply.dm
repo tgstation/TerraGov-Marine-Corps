@@ -47,7 +47,9 @@
 	if(!origin)
 		origin = get_location_area(location)
 
-	//it would be cool to play a sound here
+	if(at_station()) // Sound the alarm! The elevator is descending!
+		playsound(locate(SupplyElevator_x,SupplyElevator_y,SupplyElevator_z), 'sound/machines/warning-buzzer.ogg', 50, 0)
+
 	moving_status = SHUTTLE_WARMUP
 	spawn(warmup_time*10)
 		if (moving_status == SHUTTLE_IDLE)

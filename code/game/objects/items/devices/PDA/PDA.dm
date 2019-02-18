@@ -471,9 +471,6 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 	user.set_interaction(src)
 
-	if(active_uplink_check(user))
-		return
-
 	ui_interact(user) //NanoUI requires this proc
 	return
 
@@ -632,12 +629,8 @@ var/global/list/obj/item/device/pda/PDAs = list()
 			var/t = input(U, "Please enter new ringtone", name, ttone) as text
 			if (in_range(src, U) && loc == U)
 				if (t)
-					if(src.hidden_uplink && hidden_uplink.check_trigger(U, lowertext(t), lowertext(lock_code)))
-						to_chat(U, "The PDA softly beeps.")
-						ui.close()
-					else
-						t = copytext(sanitize(t), 1, 20)
-						ttone = t
+					t = copytext(sanitize(t), 1, 20)
+					ttone = t
 			else
 				ui.close()
 				return 0
@@ -710,7 +703,6 @@ var/global/list/obj/item/device/pda/PDAs = list()
 							difficulty += P.cartridge.access_engine
 							difficulty += P.cartridge.access_clown
 							difficulty += P.cartridge.access_janitor
-							difficulty += 3 * P.hidden_uplink
 
 						if(prob(difficulty))
 							U.show_message("<span class='warning'> An error flashes on your [src].</span>", 1)
@@ -1095,7 +1087,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 		if(5)
 
-			if(istype(A, /obj/item/tank) || istype(A, /obj/machinery/portable_atmospherics) || istype(A, /obj/machinery/atmospherics/pipe/tank))
+			if(istype(A, /obj/item/tank) || istype(A, /obj/machinery/portable_atmospherics) || istype(A, /obj/machinery/atmospherics/components/unary/tank))
 				var/obj/icon = A
 				for (var/mob/O in viewers(user, null))
 					to_chat(O, "<span class='warning'>[user] has used [src] on [icon2html(icon, O)] [A]</span>")

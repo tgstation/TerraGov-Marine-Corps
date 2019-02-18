@@ -100,9 +100,9 @@
 	to_chat(src, S)
 
 /client/proc/playtitlemusic()
-	if(!ticker || !ticker.login_music)	return FALSE
+	if(!SSticker?.login_music)	return FALSE
 	if(prefs.toggles_sound & SOUND_LOBBY)
-		src << sound(ticker.login_music, repeat = 0, wait = 0, volume = 85, channel = 1) // MAD JAMS
+		src << sound(SSticker.login_music, repeat = 0, wait = 0, volume = 85, channel = 1) // MAD JAMS
 
 
 /proc/playsound_z(atom/z, soundin, volume) // Play sound for all online mobs on a given Z-level. Good for ambient sounds.

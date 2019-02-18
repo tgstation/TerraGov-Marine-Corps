@@ -300,10 +300,6 @@
 
 	if (usr.stat || usr.is_mob_restrained() )
 		return
-	if (!(ishuman(usr) || ticker) && ticker.mode.name != "monkey")
-		if(!isAI(usr))
-			to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
-			return
 
 //to_chat(world, "[href] ; [href_list[href]]")
 
