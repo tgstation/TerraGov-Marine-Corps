@@ -1293,7 +1293,7 @@
 	damage_var_high = CONFIG_GET(number/combat_define/mlow_proj_variance)
 
 /datum/ammo/xeno/toxin/on_hit_mob(mob/living/carbon/M, obj/item/projectile/P)
-	if(!istype(M) || xeno_hivenumber(M) == xeno_hivenumber(P.firer))
+	if(!istype(M) || xeno_hivenumber(M) && xeno_hivenumber(M) == xeno_hivenumber(P.firer))
 		return ..()
 	var/mob/living/carbon/C = M
 	if(C.status_flags & XENO_HOST && istype(C.buckled, /obj/structure/bed/nest) || C.stat == DEAD)
@@ -1410,7 +1410,7 @@
 	burst(M,P,damage_type)
 
 /datum/ammo/xeno/acid/on_hit_mob(mob/M, obj/item/projectile/P)
-	if(!iscarbon(M) || xeno_hivenumber(M) == xeno_hivenumber(P.firer))
+	if(!iscarbon(M) || xeno_hivenumber(M) && xeno_hivenumber(M) == xeno_hivenumber(P.firer))
 		return ..()
 	var/mob/living/carbon/C = M
 	if(C.status_flags & XENO_HOST && istype(C.buckled, /obj/structure/bed/nest) || C.stat == DEAD)
