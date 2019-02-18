@@ -1,0 +1,4 @@
+author: "Shadow-Quill"
+delete-after: True
+changes: 
+  - tweak: "Anyone with medbay access can now lock/unlock televac beacons."

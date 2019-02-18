@@ -144,5 +144,5 @@
 		if(LAZYLEN(po)){\
 			A.overlays |= po;\
 		}\
-		A.flags_1 &= ~OVERLAY_QUEUED_1;\
+		A.flags_atom &= ~OVERLAY_QUEUED;\
 	}

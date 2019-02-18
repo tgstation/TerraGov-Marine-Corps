@@ -88,3 +88,6 @@
 
 	var/shrapnel_counter = 0 //Number of instances a mob has been hit by shrapnel within a time interval
 	var/last_shrapnel = null //Time since a living mob was last hit by shrapnel
+	var/ventcrawl_layer = PIPING_LAYER_DEFAULT
+
+	var/ventcrawl_message_busy

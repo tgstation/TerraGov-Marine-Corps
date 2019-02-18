@@ -120,6 +120,11 @@
 	marines_list += H
 	H.assigned_squad = src //Add them to the squad
 
+	if(istype(H.wear_ear, /obj/item/device/radio/headset/almayer)) // they've been transferred
+		var/obj/item/device/radio/headset/almayer/headset = H.wear_ear
+		if(headset.sl_direction)
+			START_TRACK_LEADER(src, H)
+
 	var/c_oldass = C.assignment
 	C.access += access //Add their squad access to their ID
 	C.assignment = "[name] [c_oldass]"
@@ -145,6 +150,8 @@
 
 	count--
 	marines_list -= H
+
+	STOP_TRACK_LEADER(src, H) // covers squad transfers
 
 	if(H.assigned_squad.squad_leader == H)
 		if(H.mind.assigned_role != "Squad Leader") //a field promoted SL, not a real one
