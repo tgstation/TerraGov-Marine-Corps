@@ -10,15 +10,19 @@
 	flags_gun_features = GUN_AMMO_COUNTER
 
 /obj/item/weapon/gun/energy/examine(mob/user)
+	. = ..()
 	var/list/dat = list()
 	if(flags_gun_features & GUN_TRIGGER_SAFETY)
 		dat += "The safety's on!<br>"
 	else
 		dat += "The safety's off!<br>"
 
-	if(rail) 	dat += "It has [icon2html(rail, user)] [rail.name] mounted on the top.<br>"
-	if(muzzle) 	dat += "It has [icon2html(muzzle, user)] [muzzle.name] mounted on the front.<br>"
-	if(stock) 	dat += "It has [icon2html(stock, user)] [stock.name] for a stock.<br>"
+	if(rail)
+		dat += "It has [icon2html(rail, user)] [rail.name] mounted on the top.<br>"
+	if(muzzle)
+		dat += "It has [icon2html(muzzle, user)] [muzzle.name] mounted on the front.<br>"
+	if(stock)
+		dat += "It has [icon2html(stock, user)] [stock.name] for a stock.<br>"
 	if(under)
 		dat += "It has [icon2html(under, user)] [under.name]"
 		if(under.flags_attach_features & ATTACH_WEAPON)
