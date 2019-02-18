@@ -357,7 +357,7 @@ var/global/list/activated_medevac_stretchers = list()
 		update_icon()
 
 	else
-		if(z != 1)
+		if(!is_ground_level(z))
 			to_chat(user, "<span class='warning'>You can't activate [src]'s beacon here.</span>")
 			return
 
@@ -415,7 +415,7 @@ var/global/list/activated_medevac_stretchers = list()
 		to_chat(user, "<span class='warning'>[src]'s bluespace engine linked medvac beacon is unpowered.</span>")
 		return
 	
-	if(linked_beacon.z == ADMIN_Z_LEVEL) // No. No using teleportation to teleport to the adminzone.
+	if(is_centcom_level(linked_beacon.z)) // No. No using teleportation to teleport to the adminzone.
 		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
 		to_chat(user, "<span class='warning'>[src]'s beacon is out of range!</span>")
 		return

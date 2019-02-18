@@ -71,9 +71,6 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 		SSjob = new /datum/authority/branch/role()
 		to_chat(world, "<span class='danger'>Job setup complete</span>")
 
-	if(!EvacuationAuthority)
-		EvacuationAuthority = new
-
 	world.tick_lag = CONFIG_GET(number/ticklag)
 
 	spawn(3000)
@@ -289,6 +286,11 @@ var/failed_old_db_connections = 0
 		return TRUE
 
 
+#undef FAILED_DB_CONNECTION_CUTOFF
+
+/world/proc/incrementMaxZ()
+	maxz++
+	SSmobs.MaxZChanged()
 /world/proc/SetupExternalRSC()
 	if(!CONFIG_GET(string/resource_url))
 		return
