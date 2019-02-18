@@ -27,6 +27,7 @@
 	var/targetlaser_primed = FALSE
 	var/mob/living/carbon/laser_target = null
 	var/image/LT = null
+	var/obj/item/device/binoculars/tactical/integrated_laze = null
 	attachable_allowed = list(
                         /obj/item/attachable/bipod,
                         /obj/item/attachable/lasersight,
@@ -39,6 +40,8 @@
 	select_gamemode_skin(type, list(MAP_ICE_COLONY = "s_m42a"))
 	. = ..()
 	LT = image("icon" = 'icons/obj/items/projectiles.dmi',"icon_state" = "sniper_laser", "layer" =-LASER_LAYER)
+	integrated_laze = new
+	integrated_laze.loc = src
 
 /obj/item/weapon/gun/rifle/sniper/M42A/Fire(atom/target, mob/living/user, params, reflex = 0, dual_wield)
 	if(!able_to_fire(user))
@@ -96,6 +99,8 @@
 
 /obj/item/weapon/gun/rifle/sniper/M42A/Destroy()
 	laser_off()
+	qdel(integrated_laze)
+	integrated_laze = null
 	. = ..()
 
 /obj/item/weapon/gun/rifle/sniper/M42A/dropped()
