@@ -1,4 +1,0 @@
-author: "Shadow-Quill"
-delete-after: True
-changes: 
-  - rscdel: "Medevac stretchers will no longer yell at you for not having something buckled in when you start the teleport process."
