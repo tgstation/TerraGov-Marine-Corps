@@ -401,6 +401,9 @@
 /turf/open/floor/tile/brown
 	icon_state = "brown"
 
+/turf/open/floor/tile/barber
+	icon_state = "barber"
+
 /turf/open/floor/carpet
 	name = "Carpet"
 	icon_state = "carpet"

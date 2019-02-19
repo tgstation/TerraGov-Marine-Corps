@@ -9519,25 +9519,16 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "barber"
-	},
+/turf/open/floor/tile/barber,
 /area/lv624/lazarus/fitness)
 "aGK" = (
-/turf/open/floor{
-	dir = 8;
-	icon_state = "barber"
-	},
+/turf/open/floor/tile/barber,
 /area/lv624/lazarus/fitness)
 "aGL" = (
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "barber"
-	},
+/turf/open/floor/tile/barber,
 /area/lv624/lazarus/fitness)
 "aGM" = (
 /obj/structure/closet/crate/secure/hydrosec,
@@ -15449,10 +15440,7 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "aYa" = (
-/turf/open/floor{
-	dir = 8;
-	icon_state = "barber"
-	},
+/turf/open/floor/tile/barber,
 /area/lv624/lazarus/main_hall)
 "aYb" = (
 /obj/effect/decal/cleanable/vomit,
@@ -15683,10 +15671,7 @@
 /area/lv624/lazarus/main_hall)
 "aYJ" = (
 /obj/item/trash/chips,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "barber"
-	},
+/turf/open/floor/tile/barber,
 /area/lv624/lazarus/main_hall)
 "aYK" = (
 /obj/effect/decal/cleanable/blood/splatter/animated,
@@ -15975,20 +15960,14 @@
 	dir = 8
 	},
 /obj/item/ammo_casing,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "barber"
-	},
+/turf/open/floor/tile/barber,
 /area/lv624/lazarus/main_hall)
 "aZD" = (
 /obj/effect/decal/cleanable/blood/splatter/animated,
 /obj/effect/decal/cleanable/blood/splatter/animated,
 /obj/item/ammo_casing,
 /obj/item/ammo_magazine/revolver/cmb,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "barber"
-	},
+/turf/open/floor/tile/barber,
 /area/lv624/lazarus/main_hall)
 "aZE" = (
 /obj/effect/decal/cleanable/blood/splatter/animated,
@@ -16278,10 +16257,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "barber"
-	},
+/turf/open/floor/tile/barber,
 /area/lv624/lazarus/main_hall)
 "bao" = (
 /obj/effect/decal/cleanable/blood/gibs,
@@ -16341,10 +16317,7 @@
 	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "barber"
-	},
+/turf/open/floor/tile/barber,
 /area/lv624/lazarus/main_hall)
 "bar" = (
 /obj/effect/decal/cleanable/blood/splatter/animated,
@@ -16392,10 +16365,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "barber"
-	},
+/turf/open/floor/tile/barber,
 /area/lv624/lazarus/main_hall)
 "bau" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -16664,10 +16634,7 @@
 /area/lv624/lazarus/main_hall)
 "bbd" = (
 /obj/effect/decal/cleanable/blood/splatter/animated,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "barber"
-	},
+/turf/open/floor/tile/barber,
 /area/lv624/lazarus/main_hall)
 "bbe" = (
 /obj/item/tool/crowbar,
@@ -16706,20 +16673,14 @@
 "bbh" = (
 /obj/effect/decal/cleanable/blood/gibs,
 /obj/item/ammo_casing,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "barber"
-	},
+/turf/open/floor/tile/barber,
 /area/lv624/lazarus/main_hall)
 "bbi" = (
 /obj/structure/table/reinforced/flipped{
 	dir = 4
 	},
 /obj/item/ammo_casing,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "barber"
-	},
+/turf/open/floor/tile/barber,
 /area/lv624/lazarus/main_hall)
 "bbj" = (
 /obj/structure/cable/yellow{
@@ -18063,10 +18024,7 @@
 /obj/machinery/chem_dispenser/soda{
 	pixel_y = 22
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "barber"
-	},
+/turf/open/floor/tile/barber,
 /area/lv624/lazarus/kitchen)
 "beI" = (
 /obj/structure/sink/kitchen{
@@ -18082,28 +18040,19 @@
 	pixel_y = -4
 	},
 /obj/item/reagent_container/food/snacks/donkpocket,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "barber"
-	},
+/turf/open/floor/tile/barber,
 /area/lv624/lazarus/kitchen)
 "beJ" = (
 /obj/structure/table,
 /obj/item/reagent_container/food/snacks/grown/tomato,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "barber"
-	},
+/turf/open/floor/tile/barber,
 /area/lv624/lazarus/kitchen)
 "beK" = (
 /obj/structure/table,
 /obj/item/trash/snack_bowl{
 	pixel_y = 9
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "barber"
-	},
+/turf/open/floor/tile/barber,
 /area/lv624/lazarus/kitchen)
 "beL" = (
 /obj/structure/cable/yellow{
@@ -18112,17 +18061,11 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "barber"
-	},
+/turf/open/floor/tile/barber,
 /area/lv624/lazarus/kitchen)
 "beM" = (
 /obj/structure/table,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "barber"
-	},
+/turf/open/floor/tile/barber,
 /area/lv624/lazarus/kitchen)
 "beN" = (
 /obj/structure/bed/stool,
@@ -18370,16 +18313,10 @@
 	req_access_txt = "0";
 	req_one_access_txt = "0"
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "barber"
-	},
+/turf/open/floor/tile/barber,
 /area/lv624/lazarus/kitchen)
 "bfy" = (
-/turf/open/floor{
-	dir = 8;
-	icon_state = "barber"
-	},
+/turf/open/floor/tile/barber,
 /area/lv624/lazarus/kitchen)
 "bfz" = (
 /obj/structure/bed/chair{
@@ -18600,26 +18537,17 @@
 /area/lv624/lazarus/main_hall)
 "bgp" = (
 /obj/machinery/vending/dinnerware,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "barber"
-	},
+/turf/open/floor/tile/barber,
 /area/lv624/lazarus/kitchen)
 "bgq" = (
 /obj/machinery/chem_master/condimaster,
 /obj/structure/table,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "barber"
-	},
+/turf/open/floor/tile/barber,
 /area/lv624/lazarus/kitchen)
 "bgr" = (
 /obj/structure/table,
 /obj/machinery/microwave,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "barber"
-	},
+/turf/open/floor/tile/barber,
 /area/lv624/lazarus/kitchen)
 "bgs" = (
 /obj/structure/table,
@@ -18791,17 +18719,11 @@
 "bgV" = (
 /obj/structure/table,
 /obj/machinery/processor,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "barber"
-	},
+/turf/open/floor/tile/barber,
 /area/lv624/lazarus/kitchen)
 "bgW" = (
 /obj/machinery/smartfridge,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "barber"
-	},
+/turf/open/floor/tile/barber,
 /area/lv624/lazarus/kitchen)
 "bgX" = (
 /obj/structure/cable/yellow{
@@ -18812,10 +18734,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "barber"
-	},
+/turf/open/floor/tile/barber,
 /area/lv624/lazarus/kitchen)
 "bgY" = (
 /obj/structure/cable/yellow{
@@ -18827,20 +18746,14 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "barber"
-	},
+/turf/open/floor/tile/barber,
 /area/lv624/lazarus/kitchen)
 "bgZ" = (
 /obj/machinery/light/small{
 	dir = 4
 	},
 /obj/machinery/vending/coffee,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "barber"
-	},
+/turf/open/floor/tile/barber,
 /area/lv624/lazarus/kitchen)
 "bha" = (
 /obj/structure/bed/chair{
@@ -19021,17 +18934,11 @@
 /area/lv624/lazarus/main_hall)
 "bhG" = (
 /obj/item/reagent_container/food/snacks/grown/banana,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "barber"
-	},
+/turf/open/floor/tile/barber,
 /area/lv624/lazarus/kitchen)
 "bhH" = (
 /obj/machinery/vending/boozeomat,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "barber"
-	},
+/turf/open/floor/tile/barber,
 /area/lv624/lazarus/kitchen)
 "bhI" = (
 /obj/machinery/power/apc{
