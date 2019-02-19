@@ -187,14 +187,17 @@
 	name = "dirt"
 	icon_state = "desert"
 
-/turf/open/gm/dirt/New()
-	..()
+/turf/open/gm/dirt/Initialize()
+	. = ..()
 	if(rand(0,15) == 0)
 		icon_state = "desert[pick("0","1","2","3")]"
 
 /turf/open/gm/grass
 	name = "grass"
 	icon_state = "grass1"
+
+/turf/open/gm/grass/grass2
+	icon_state = "grass2"
 
 /turf/open/gm/dirt2
 	name = "dirt"

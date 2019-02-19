@@ -3816,9 +3816,7 @@
 "anm" = (
 /obj/structure/flora/grass/both,
 /obj/structure/jungle/vines,
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/lazarus/atmos)
 "ann" = (
 /obj/structure/jungle/vines,
@@ -3827,9 +3825,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/lazarus/atmos)
 "ano" = (
 /turf/open/gm/grass{
@@ -4489,9 +4485,7 @@
 	},
 /area/lv624/ground/jungle8)
 "apv" = (
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/ground/jungle8)
 "apw" = (
 /obj/structure/jungle/vines/heavy,
@@ -5181,9 +5175,7 @@
 /area/lv624/ground/jungle7)
 "arX" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/ground/jungle7)
 "arY" = (
 /obj/structure/flora/ausbushes/fullgrass,
@@ -5289,15 +5281,11 @@
 /turf/open/gm/river,
 /area/lv624/ground/river2)
 "asu" = (
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/ground/jungle7)
 "asv" = (
 /obj/structure/flora/tree/jungle/small,
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/ground/jungle7)
 "asw" = (
 /obj/structure/jungle/planttop1,
@@ -5940,9 +5928,7 @@
 /area/lv624/ground/jungle6)
 "auK" = (
 /obj/structure/flora/ausbushes/ppflowers,
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/ground/jungle7)
 "auL" = (
 /obj/structure/jungle/vines,
@@ -6040,9 +6026,7 @@
 /area/lv624/ground/jungle6)
 "ave" = (
 /obj/structure/jungle/vines,
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/ground/jungle6)
 "avf" = (
 /turf/open/jungle,
@@ -6680,9 +6664,7 @@
 	},
 /area/lv624/ground/river1)
 "axa" = (
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/ground/jungle6)
 "axb" = (
 /obj/structure/flora/ausbushes/fullgrass,
@@ -7100,9 +7082,7 @@
 "aya" = (
 /obj/structure/flora/ausbushes/brflowers,
 /obj/structure/jungle/vines,
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/ground/jungle9)
 "ayb" = (
 /obj/machinery/power/apc{
@@ -7607,9 +7587,7 @@
 "azg" = (
 /obj/structure/flora/ausbushes/ppflowers,
 /obj/structure/jungle/vines,
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/ground/jungle9)
 "azh" = (
 /obj/machinery/door_control{
@@ -8940,15 +8918,11 @@
 /turf/open/gm/grass,
 /area/lv624/ground/jungle5)
 "aDR" = (
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/ground/jungle5)
 "aDS" = (
 /obj/effect/landmark/huntergames_primary_spawn,
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/ground/jungle5)
 "aDT" = (
 /obj/structure/jungle/vines/heavy,
@@ -9008,9 +8982,7 @@
 /area/lv624/lazarus/quartstorage)
 "aEp" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/ground/jungle6)
 "aEr" = (
 /obj/structure/jungle/vines,
@@ -9179,9 +9151,7 @@
 "aFm" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/structure/jungle/vines/heavy,
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/ground/jungle6)
 "aFn" = (
 /obj/structure/jungle/planttop1,
@@ -9729,9 +9699,7 @@
 /area/lv624/ground/jungle5)
 "aHc" = (
 /obj/structure/jungle/vines/heavy,
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/ground/jungle6)
 "aHd" = (
 /obj/machinery/colony_floodlight,
@@ -10610,9 +10578,7 @@
 /area/lv624/ground/jungle5)
 "aJN" = (
 /obj/structure/flora/tree/jungle,
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/ground/jungle6)
 "aJO" = (
 /obj/structure/flora/ausbushes/ywflowers,
@@ -13362,9 +13328,7 @@
 	},
 /area/lv624/ground/jungle4)
 "aRr" = (
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/ground/jungle4)
 "aRs" = (
 /obj/structure/barricade/wooden{
@@ -14314,9 +14278,7 @@
 /area/lv624/ground/jungle4)
 "aTX" = (
 /obj/effect/landmark/start/surv_spawn,
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/ground/jungle4)
 "aTY" = (
 /obj/machinery/landinglight/ds2/delayone{
@@ -15440,9 +15402,7 @@
 /area/lv624/ground/jungle4)
 "aXb" = (
 /obj/structure/flora/ausbushes/fernybush,
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/ground/jungle4)
 "aXc" = (
 /obj/machinery/landinglight/ds2/delaytwo{
@@ -15468,9 +15428,7 @@
 /area/lv624/ground/jungle9)
 "aXg" = (
 /obj/structure/jungle/vines,
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/ground/jungle9)
 "aXh" = (
 /turf/open/gm/dirtgrassborder{
@@ -15944,9 +15902,7 @@
 /turf/open/gm/grass,
 /area/lv624/ground/jungle9)
 "aYw" = (
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/ground/jungle9)
 "aYx" = (
 /obj/structure/jungle/vines,
@@ -16348,9 +16304,7 @@
 "aZx" = (
 /obj/structure/fence,
 /obj/structure/jungle/vines,
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/lazarus/atmos/outside)
 "aZy" = (
 /obj/structure/window/framed/colony/reinforced,
@@ -16584,9 +16538,7 @@
 "baa" = (
 /obj/structure/jungle/planttop1,
 /obj/structure/jungle/vines/heavy,
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/lazarus/atmos)
 "bab" = (
 /obj/structure/cable/yellow{
@@ -16594,15 +16546,11 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/lazarus/atmos)
 "bac" = (
 /obj/structure/jungle/vines/heavy,
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/lazarus/atmos)
 "bad" = (
 /obj/structure/jungle/vines/heavy,
@@ -17035,31 +16983,23 @@
 /area/lv624/ground/compound)
 "baM" = (
 /obj/effect/landmark/xeno_tunnel,
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/lazarus/atmos)
 "baN" = (
 /obj/effect/landmark/random_item/good,
 /obj/structure/jungle/vines/heavy,
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/lazarus/atmos)
 "baO" = (
 /obj/structure/jungle/vines/heavy,
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/lazarus/atmos)
 "baP" = (
 /obj/structure/sign/atmosplaque{
 	pixel_y = 30
 	},
 /obj/structure/jungle/vines/heavy,
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/lazarus/atmos)
 "baR" = (
 /obj/structure/cable/yellow{
@@ -17067,9 +17007,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/lazarus/atmos)
 "baT" = (
 /obj/structure/cable/yellow{
@@ -17077,9 +17015,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/lazarus/atmos)
 "baU" = (
 /obj/structure/jungle/vines/heavy,
@@ -17088,9 +17024,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/lazarus/atmos)
 "baV" = (
 /obj/structure/flora/ausbushes/ppflowers,
@@ -17101,9 +17035,7 @@
 	icon_state = "2-8";
 	layer = 2.44
 	},
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/lazarus/atmos)
 "baW" = (
 /obj/structure/jungle/vines,
@@ -17115,9 +17047,7 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/lazarus/atmos)
 "baX" = (
 /obj/structure/window_frame/colony,
@@ -17231,9 +17161,7 @@
 /area/lv624/lazarus/main_hall)
 "bbk" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/ground/jungle4)
 "bbl" = (
 /obj/structure/flora/ausbushes/sunnybush,
@@ -17273,9 +17201,7 @@
 /area/lv624/ground/jungle9)
 "bbq" = (
 /obj/structure/jungle/vines,
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/lazarus/atmos)
 "bbv" = (
 /obj/structure/jungle/vines,
@@ -17446,9 +17372,7 @@
 "bbM" = (
 /obj/structure/flora/ausbushes/brflowers,
 /obj/structure/jungle/vines,
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/lazarus/atmos)
 "bbN" = (
 /turf/open/gm/grass{
@@ -17583,9 +17507,7 @@
 /turf/open/gm/grass,
 /area/lv624/ground/jungle3)
 "bci" = (
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/ground/jungle3)
 "bcj" = (
 /obj/effect/landmark/monkey_spawn,
@@ -17800,9 +17722,7 @@
 /area/lv624/lazarus/atmos)
 "bcJ" = (
 /obj/structure/fence,
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/ground/compound/c)
 "bcK" = (
 /obj/structure/jungle/vines,
@@ -18036,9 +17956,7 @@
 /area/lv624/ground/jungle3)
 "bdn" = (
 /obj/structure/jungle/vines,
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/ground/jungle3)
 "bdo" = (
 /obj/structure/jungle/vines,
@@ -18218,9 +18136,7 @@
 "bdH" = (
 /obj/structure/jungle/plantbot1,
 /obj/structure/jungle/vines,
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/lazarus/atmos)
 "bdJ" = (
 /obj/structure/flora/ausbushes/brflowers,
@@ -18503,9 +18419,7 @@
 /turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/atmos)
 "beq" = (
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/lazarus/atmos)
 "ber" = (
 /obj/structure/cable/yellow{
@@ -18522,9 +18436,7 @@
 /area/lv624/lazarus/atmos)
 "bet" = (
 /obj/structure/jungle/vines/heavy,
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/ground/jungle9)
 "beu" = (
 /obj/machinery/deployable/barrier,
@@ -18895,9 +18807,7 @@
 "bfn" = (
 /obj/effect/landmark/huntergames_primary_spawn,
 /obj/structure/jungle/vines,
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/ground/jungle9)
 "bfo" = (
 /obj/item/storage/toolbox/syndicate,
@@ -19066,9 +18976,7 @@
 /area/lv624/ground/jungle3)
 "bfK" = (
 /obj/structure/jungle/vines/heavy,
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/ground/jungle3)
 "bfL" = (
 /turf/open/gm/dirtgrassborder/corner,
@@ -19178,15 +19086,11 @@
 "bgc" = (
 /obj/structure/flora/ausbushes/fernybush,
 /obj/structure/jungle/vines,
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/ground/jungle9)
 "bgd" = (
 /obj/structure/jungle/vines,
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/ground/jungle9)
 "bge" = (
 /obj/structure/jungle/vines,
@@ -19394,9 +19298,7 @@
 /area/lv624/lazarus/comms)
 "bgL" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/lazarus/atmos/outside)
 "bgM" = (
 /obj/structure/table/reinforced,
@@ -19411,21 +19313,15 @@
 "bgN" = (
 /obj/structure/flora/grass/brown,
 /obj/structure/jungle/vines/heavy,
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/lazarus/atmos)
 "bgQ" = (
 /obj/structure/jungle/vines/heavy,
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/ground/jungle9)
 "bgR" = (
 /obj/structure/jungle/vines/heavy,
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/ground/jungle9)
 "bgS" = (
 /obj/machinery/light/small{
@@ -19572,9 +19468,7 @@
 /area/lv624/lazarus/comms)
 "bhk" = (
 /obj/structure/jungle/vines/heavy,
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/lazarus/atmos)
 "bhl" = (
 /turf/open/gm/grass{
@@ -19602,16 +19496,12 @@
 	icon_state = "1-8";
 	layer = 2.44
 	},
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/lazarus/atmos)
 "bhq" = (
 /obj/effect/landmark/monkey_spawn,
 /obj/structure/jungle/vines/heavy,
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/ground/jungle9)
 "bhr" = (
 /obj/machinery/colony_floodlight,
@@ -19869,9 +19759,7 @@
 	},
 /area/lv624/lazarus/comms)
 "bid" = (
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/lazarus/atmos/outside)
 "bie" = (
 /obj/structure/jungle/vines/heavy,
@@ -19880,21 +19768,15 @@
 "bif" = (
 /obj/structure/flora/ausbushes/brflowers,
 /obj/structure/jungle/vines/heavy,
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/lazarus/atmos)
 "big" = (
 /obj/structure/jungle/vines/heavy,
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/lazarus/atmos)
 "bih" = (
 /obj/structure/jungle/vines/heavy,
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/lazarus/atmos)
 "bii" = (
 /obj/structure/jungle/vines/heavy,
@@ -19903,9 +19785,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/lazarus/atmos)
 "bij" = (
 /obj/structure/jungle/vines/heavy,
@@ -19914,9 +19794,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/lazarus/atmos)
 "bik" = (
 /obj/structure/flora/grass/green,
@@ -19927,9 +19805,7 @@
 	icon_state = "1-8";
 	layer = 2.44
 	},
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/lazarus/atmos)
 "bil" = (
 /obj/structure/jungle/vines,
@@ -20224,15 +20100,11 @@
 "biV" = (
 /obj/structure/foamedmetal,
 /obj/structure/jungle/vines/heavy,
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/lazarus/atmos)
 "biW" = (
 /obj/structure/foamedmetal,
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/lazarus/atmos)
 "biX" = (
 /obj/structure/foamedmetal,
@@ -20242,9 +20114,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/lazarus/atmos)
 "biZ" = (
 /obj/structure/foamedmetal,
@@ -20252,9 +20122,7 @@
 /area/lv624/ground/jungle9)
 "bja" = (
 /obj/structure/foamedmetal,
-/turf/open/gm/grass{
-	icon_state = "grass2"
-	},
+/turf/open/gm/grass/grass2,
 /area/lv624/ground/jungle9)
 "bjb" = (
 /obj/item/weapon/claymore/mercsword/machete,
