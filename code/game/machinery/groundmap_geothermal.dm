@@ -234,13 +234,6 @@
 	else
 		icon_state = "paneloff"
 
-/obj/machinery/colony_floodlight_switch/process()
-	active_power_usage = 0
-	for(var/obj/machinery/colony_floodlight/C in floodlist)
-		if(!C.is_lit)
-			continue
-		active_power_usage += C.power_tick
-
 /obj/machinery/colony_floodlight_switch/power_change()
 	..()
 	if(stat & NOPOWER)
@@ -286,6 +279,7 @@
 #define FLOODLIGHT_REPAIR_WELD 		2
 #define FLOODLIGHT_REPAIR_CABLE 	3
 #define FLOODLIGHT_REPAIR_SCREW 	4
+#define FLOODLIGHT_TICK_CONSUMPTION 800
 
 /obj/machinery/colony_floodlight
 	name = "Colony Floodlight"
@@ -296,7 +290,6 @@
 	var/damaged = FALSE //Can be smashed by xenos
 	var/is_lit = FALSE //whether the floodlight is switched to on or off. Does not necessarily mean it emits light.
 	unacidable = TRUE
-	var/power_tick = 800 // power each floodlight takes up per process
 	use_power = NO_POWER_USE //It's the switch that uses the actual power, not the lights
 	var/obj/machinery/colony_floodlight_switch/fswitch = null //Reverse lookup for power grabbing in area
 	var/lum_value = 7
@@ -304,7 +297,8 @@
 	var/health = 120
 
 /obj/machinery/colony_floodlight/Destroy()
-	SetLuminosity(0)
+	if(is_lit)
+		toggle_light(TRUE)
 	if(fswitch)
 		fswitch.floodlist -= src
 		fswitch = null
@@ -321,6 +315,13 @@
 /obj/machinery/colony_floodlight/attack_larva(mob/living/carbon/Xenomorph/Larva/M)
 	M.visible_message("[M] starts biting [src]!","In a rage, you start biting [src], but with no effect!", null, 5)
 
+/obj/machinery/colony_floodlight/proc/breakdown()
+	playsound(src, "shatter", 70, 1)
+	damaged = TRUE
+	repair_state = FLOODLIGHT_REPAIR_UNSCREW
+	if(is_lit)
+		toggle_light(TRUE)
+
 /obj/machinery/colony_floodlight/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(!is_lit)
 		to_chat(M, "Why bother? It's just some weird metal thing.")
@@ -333,11 +334,7 @@
 		M.visible_message("[M] slashes away at [src]!","You slash and claw at the bright light!", null, null, 5)
 		health  = max(health - rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper), 0)
 		if(!health)
-			playsound(src, "shatter", 70, 1)
-			damaged = TRUE
-			if(is_lit)
-				SetLuminosity(0)
-			update_icon()
+			breakdown()
 		else
 			playsound(loc, 'sound/effects/Glasshit.ogg', 25, 1)
 
@@ -360,6 +357,8 @@
 						return
 					playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
 					repair_state = FLOODLIGHT_REPAIR_CROWBAR
+					if(is_lit)
+						toggle_light()
 					user.visible_message("<span class='notice'>[user] unscrews [src]'s maintenance hatch.</span>", \
 					"<span class='notice'>You unscrew [src]'s maintenance hatch.</span>")
 
@@ -371,13 +370,13 @@
 					if(gc_destroyed || repair_state != FLOODLIGHT_REPAIR_SCREW)
 						return
 					playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
-					damaged = 0
+					damaged = FALSE
 					repair_state = FLOODLIGHT_REPAIR_UNSCREW
 					health = initial(health)
 					user.visible_message("<span class='notice'>[user] screws [src]'s maintenance hatch closed.</span>", \
 					"<span class='notice'>You screw [src]'s maintenance hatch closed.</span>")
-					if(is_lit)
-						SetLuminosity(lum_value)
+					if(fswitch && fswitch.turned_on)
+						toggle_light()
 					update_icon()
 			return TRUE
 
@@ -481,17 +480,22 @@
 		else if(!is_lit)
 			to_chat(user, "<span class='info'>It doesn't seem powered.</span>")
 
-/obj/machinery/colony_floodlight/proc/toggle_light()
-	is_lit = !is_lit
-	if(!damaged)
+/obj/machinery/colony_floodlight/proc/toggle_light(var/force_toggled = FALSE)
+	if(!damaged || force_toggled)
+		is_lit = !is_lit
 		if(is_lit)
 			SetLuminosity(lum_value)
-		else //Shut it down
+			if(fswitch)
+				fswitch.active_power_usage += FLOODLIGHT_TICK_CONSUMPTION
+		else
 			SetLuminosity(0)
-	update_icon()
+			if(fswitch)
+				fswitch.active_power_usage -= FLOODLIGHT_TICK_CONSUMPTION
+		update_icon()
 
 #undef FLOODLIGHT_REPAIR_UNSCREW
 #undef FLOODLIGHT_REPAIR_CROWBAR
 #undef FLOODLIGHT_REPAIR_WELD
 #undef FLOODLIGHT_REPAIR_CABLE
 #undef FLOODLIGHT_REPAIR_SCREW
+#undef FLOODLIGHT_TICK_CONSUMPTION
