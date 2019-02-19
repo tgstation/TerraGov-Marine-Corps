@@ -331,7 +331,7 @@ SUBSYSTEM_DEF(job)
 		return
 	if(player.mind?.assigned_role)
 		JobDebug("Player already assigned a role :[player]")
-		player.mind.special_role = assigned_role
+		player.mind.special_role = player.mind.assigned_role
 		unassigned -= player
 		player.ready = FALSE
 		return
