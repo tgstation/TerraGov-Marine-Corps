@@ -52,7 +52,7 @@
 
 
 /obj/item/ammo_magazine/revolver/cmb
-	name = "\improper Spearhead speed loader (.357)"
+	name = "\improper CMB revolver speed loader (.357)"
 	default_ammo = /datum/ammo/bullet/revolver/small
 	caliber = ".357"
 	icon_state = "spearhead"
