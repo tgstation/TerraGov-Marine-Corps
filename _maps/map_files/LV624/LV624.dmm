@@ -1603,22 +1603,14 @@
 /turf/closed/wall/mineral/sandstone,
 /area/lv624/ground/sand6)
 "afB" = (
-/obj/structure/showcase{
-	desc = "An ancient, dusty tomb with strange alien writing. It's best not to touch it.";
-	icon_state = "yaut";
-	name = "alien sarcophagus"
-	},
+/obj/structure/showcase/yaut,
 /turf/open/floor{
 	dir = 4;
 	icon_state = "whiteyellowfull"
 	},
 /area/lv624/ground/sand6)
 "afC" = (
-/obj/structure/showcase{
-	desc = "An ancient, dusty tomb with strange alien writing. It's best not to touch it.";
-	icon_state = "yaut";
-	name = "alien sarcophagus"
-	},
+/obj/structure/showcase/yaut,
 /obj/item/weapon/twohanded/glaive/damaged,
 /turf/open/floor{
 	dir = 4;
