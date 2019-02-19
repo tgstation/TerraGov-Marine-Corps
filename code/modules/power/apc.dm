@@ -1022,7 +1022,7 @@
 		if(!can_use(usr, 1))
 			return 0
 	add_fingerprint(usr)
-	if(ishuman(usr) && usr.mind && usr.mind.cm_skills && usr.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+	if(!href_list["close2"] && ishuman(usr) && usr.mind && usr.mind.cm_skills && usr.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
 		usr.visible_message("<span class='notice'>[usr] fumbles around figuring out how to use [src]'s interface.</span>",
 		"<span class='notice'>You fumble around figuring out how to use [src]'s interface.</span>")
 		var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - usr.mind.cm_skills.engineer )
