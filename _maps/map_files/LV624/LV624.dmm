@@ -413,9 +413,8 @@
 /turf/closed/wall/resin/ondirt,
 /area/lv624/ground/caves/central1)
 "abR" = (
-/obj/structure/table/reinforced{
-	dir = 1;
-	flipped = 1
+/obj/structure/table/reinforced/flipped{
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/lv624/ground/sand2)
@@ -513,9 +512,8 @@
 /turf/open/gm/dirt,
 /area/lv624/ground/caves/west1)
 "acd" = (
-/obj/structure/table/reinforced{
-	dir = 8;
-	flipped = 1
+/obj/structure/table/reinforced/flipped{
+	dir = 8
 	},
 /obj/item/weapon/gun/smg/mp5,
 /turf/open/floor/plating,
@@ -567,9 +565,8 @@
 /turf/open/gm/dirt,
 /area/lv624/ground/caves/west1)
 "ack" = (
-/obj/structure/table/reinforced{
-	dir = 2;
-	flipped = 1
+/obj/structure/table/reinforced/flipped{
+	dir = 2
 	},
 /obj/item/ammo_casing,
 /turf/open/floor/plating,
@@ -1991,18 +1988,16 @@
 	},
 /area/lv624/ground/sand2)
 "ahk" = (
-/obj/structure/table/reinforced{
-	dir = 1;
-	flipped = 1
+/obj/structure/table/reinforced/flipped{
+	dir = 1
 	},
 /turf/open/floor/plating/warning{
 	dir = 1
 	},
 /area/lv624/ground/sand2)
 "ahl" = (
-/obj/structure/table/reinforced{
-	dir = 1;
-	flipped = 1
+/obj/structure/table/reinforced/flipped{
+	dir = 1
 	},
 /obj/item/ammo_casing,
 /turf/open/floor/plating/warning{
@@ -2057,9 +2052,8 @@
 /turf/open/gm/dirt,
 /area/lv624/ground/sand2)
 "ahx" = (
-/obj/structure/table/reinforced{
-	dir = 8;
-	flipped = 1
+/obj/structure/table/reinforced/flipped{
+	dir = 8
 	},
 /turf/open/floor/plating/warning{
 	dir = 8
@@ -2098,9 +2092,8 @@
 /turf/open/floor/plating,
 /area/lv624/ground/sand2)
 "ahE" = (
-/obj/structure/table/reinforced{
-	dir = 4;
-	flipped = 1
+/obj/structure/table/reinforced/flipped{
+	dir = 4
 	},
 /turf/open/floor/plating/warning{
 	dir = 4
@@ -2130,9 +2123,8 @@
 /turf/closed/wall/cult,
 /area/lv624/ground/sand2)
 "ahL" = (
-/obj/structure/table/reinforced{
-	dir = 8;
-	flipped = 1
+/obj/structure/table/reinforced/flipped{
+	dir = 8
 	},
 /obj/effect/decal/remains/human,
 /turf/open/floor/plating/warning{
@@ -2195,9 +2187,8 @@
 /turf/open/floor/plating,
 /area/lv624/ground/sand2)
 "aia" = (
-/obj/structure/table/reinforced{
-	dir = 1;
-	flipped = 1
+/obj/structure/table/reinforced/flipped{
+	dir = 1
 	},
 /obj/item/device/healthanalyzer,
 /turf/open/floor/plating,
@@ -2213,9 +2204,8 @@
 /area/lv624/ground/sand8)
 "aic" = (
 /obj/effect/decal/remains/human,
-/obj/structure/table/reinforced{
-	dir = 1;
-	flipped = 1
+/obj/structure/table/reinforced/flipped{
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/lv624/ground/sand2)
@@ -2278,9 +2268,8 @@
 /turf/open/gm/dirt,
 /area/lv624/ground/sand4)
 "aip" = (
-/obj/structure/table/reinforced{
-	dir = 8;
-	flipped = 1
+/obj/structure/table/reinforced/flipped{
+	dir = 8
 	},
 /obj/item/explosive/grenade/incendiary,
 /turf/open/floor/plating,
@@ -2300,9 +2289,8 @@
 /turf/open/floor/plating,
 /area/lv624/ground/sand2)
 "ait" = (
-/obj/structure/table/reinforced{
-	dir = 4;
-	flipped = 1
+/obj/structure/table/reinforced/flipped{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/lv624/ground/sand2)
@@ -2342,9 +2330,8 @@
 	},
 /area/lv624/ground/sand2)
 "aiC" = (
-/obj/structure/table/reinforced{
-	dir = 8;
-	flipped = 1
+/obj/structure/table/reinforced/flipped{
+	dir = 8
 	},
 /obj/item/explosive/grenade/frag,
 /obj/item/ammo_magazine/smg/mp5,
@@ -2366,9 +2353,8 @@
 /turf/open/floor/plating,
 /area/lv624/ground/sand2)
 "aiG" = (
-/obj/structure/table/reinforced{
-	dir = 4;
-	flipped = 1
+/obj/structure/table/reinforced/flipped{
+	dir = 4
 	},
 /obj/item/ammo_magazine/smg/mp5,
 /turf/open/floor/plating,
@@ -2479,9 +2465,8 @@
 /turf/open/floor/plating,
 /area/lv624/ground/sand2)
 "ajb" = (
-/obj/structure/table/reinforced{
-	dir = 4;
-	flipped = 1
+/obj/structure/table/reinforced/flipped{
+	dir = 4
 	},
 /obj/item/explosive/grenade/incendiary,
 /turf/open/floor/plating,
@@ -2554,9 +2539,8 @@
 	},
 /area/lv624/ground/sand2)
 "ajp" = (
-/obj/structure/table/reinforced{
-	dir = 8;
-	flipped = 1
+/obj/structure/table/reinforced/flipped{
+	dir = 8
 	},
 /obj/item/ammo_magazine/pistol,
 /obj/item/ammo_casing,
@@ -2685,9 +2669,8 @@
 /turf/open/gm/dirt,
 /area/lv624/ground/sand8)
 "ajN" = (
-/obj/structure/table/reinforced{
-	dir = 8;
-	flipped = 1
+/obj/structure/table/reinforced/flipped{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/lv624/ground/sand2)
@@ -2702,9 +2685,8 @@
 /turf/open/floor/plating,
 /area/lv624/ground/sand2)
 "ajQ" = (
-/obj/structure/table/reinforced{
-	dir = 4;
-	flipped = 1
+/obj/structure/table/reinforced/flipped{
+	dir = 4
 	},
 /obj/item/attachable/suppressor,
 /turf/open/floor/plating,
@@ -2752,18 +2734,16 @@
 /turf/open/floor/plating/catwalk,
 /area/lv624/ground/sand8)
 "akb" = (
-/obj/structure/table/reinforced{
-	dir = 2;
-	flipped = 1
+/obj/structure/table/reinforced/flipped{
+	dir = 2
 	},
 /obj/effect/decal/remains/human,
 /obj/item/ammo_casing,
 /turf/open/floor/plating,
 /area/lv624/ground/sand2)
 "akc" = (
-/obj/structure/table/reinforced{
-	dir = 2;
-	flipped = 1
+/obj/structure/table/reinforced/flipped{
+	dir = 2
 	},
 /obj/item/explosive/grenade/incendiary,
 /turf/open/floor/plating,
@@ -2820,9 +2800,8 @@
 /turf/open/floor/plating/catwalk,
 /area/lv624/ground/river2)
 "ako" = (
-/obj/structure/table/reinforced{
-	dir = 4;
-	flipped = 1
+/obj/structure/table/reinforced/flipped{
+	dir = 4
 	},
 /obj/item/ammo_magazine/smg/uzi/extended,
 /turf/open/floor/plating/warning{
@@ -3047,9 +3026,8 @@
 	},
 /area/lv624/ground/sand2)
 "alf" = (
-/obj/structure/table/reinforced{
-	dir = 2;
-	flipped = 1
+/obj/structure/table/reinforced/flipped{
+	dir = 2
 	},
 /obj/effect/decal/remains/human,
 /obj/effect/decal/cleanable/blood,
@@ -3058,18 +3036,16 @@
 	},
 /area/lv624/ground/sand2)
 "alg" = (
-/obj/structure/table/reinforced{
-	dir = 2;
-	flipped = 1
+/obj/structure/table/reinforced/flipped{
+	dir = 2
 	},
 /turf/open/floor/plating/warning{
 	dir = 2
 	},
 /area/lv624/ground/sand2)
 "alh" = (
-/obj/structure/table/reinforced{
-	dir = 2;
-	flipped = 1
+/obj/structure/table/reinforced/flipped{
+	dir = 2
 	},
 /obj/item/ammo_magazine/smg/uzi/extended,
 /turf/open/floor/plating/warning{
@@ -5841,9 +5817,8 @@
 /turf/open/gm/grass,
 /area/lv624/ground/jungle7)
 "aux" = (
-/obj/structure/table/reinforced{
-	dir = 4;
-	flipped = 1
+/obj/structure/table/reinforced/flipped{
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
@@ -14998,9 +14973,8 @@
 	},
 /area/lv624/lazarus/chapel)
 "aWf" = (
-/obj/structure/table/reinforced{
-	dir = 1;
-	flipped = 1
+/obj/structure/table/reinforced/flipped{
+	dir = 1
 	},
 /turf/open/floor{
 	dir = 2;
@@ -15008,9 +14982,8 @@
 	},
 /area/lv624/lazarus/main_hall)
 "aWg" = (
-/obj/structure/table/reinforced{
-	dir = 1;
-	flipped = 1
+/obj/structure/table/reinforced/flipped{
+	dir = 1
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -15021,9 +14994,8 @@
 /turf/open/floor/grass,
 /area/lv624/lazarus/main_hall)
 "aWh" = (
-/obj/structure/table/reinforced{
-	dir = 1;
-	flipped = 1
+/obj/structure/table/reinforced/flipped{
+	dir = 1
 	},
 /turf/open/floor{
 	dir = 8;
@@ -15557,9 +15529,8 @@
 /obj/machinery/computer/shuttle_control/dropship1{
 	onboard = 0
 	},
-/obj/structure/table/reinforced{
-	dir = 1;
-	flipped = 1
+/obj/structure/table/reinforced/flipped{
+	dir = 1
 	},
 /turf/open/floor/marking/warning{
 	dir = 1
@@ -15963,9 +15934,8 @@
 	},
 /area/lv624/lazarus/main_hall)
 "aYI" = (
-/obj/structure/table/reinforced{
-	dir = 8;
-	flipped = 1
+/obj/structure/table/reinforced/flipped{
+	dir = 8
 	},
 /obj/item/ammo_casing,
 /turf/open/floor{
@@ -16286,9 +16256,8 @@
 /area/lv624/lazarus/main_hall)
 "aZC" = (
 /obj/effect/decal/cleanable/blood/splatter/animated,
-/obj/structure/table/reinforced{
-	dir = 8;
-	flipped = 1
+/obj/structure/table/reinforced/flipped{
+	dir = 8
 	},
 /obj/item/ammo_casing,
 /turf/open/floor{
@@ -16332,9 +16301,8 @@
 /area/lv624/lazarus/main_hall)
 "aZG" = (
 /obj/effect/decal/cleanable/blood/splatter/animated,
-/obj/structure/table/reinforced{
-	dir = 4;
-	flipped = 1
+/obj/structure/table/reinforced/flipped{
+	dir = 4
 	},
 /obj/item/ammo_casing,
 /turf/open/floor{
@@ -16344,9 +16312,8 @@
 	},
 /area/lv624/lazarus/main_hall)
 "aZH" = (
-/obj/structure/table/reinforced{
-	dir = 4;
-	flipped = 1
+/obj/structure/table/reinforced/flipped{
+	dir = 4
 	},
 /obj/item/ammo_casing,
 /turf/open/floor{
@@ -16695,9 +16662,8 @@
 /area/lv624/lazarus/main_hall)
 "bas" = (
 /obj/effect/decal/cleanable/blood/splatter/animated,
-/obj/structure/table/reinforced{
-	dir = 4;
-	flipped = 1
+/obj/structure/table/reinforced/flipped{
+	dir = 4
 	},
 /obj/item/ammo_casing,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -16756,9 +16722,8 @@
 	},
 /area/lv624/lazarus/main_hall)
 "baw" = (
-/obj/structure/table/reinforced{
-	dir = 4;
-	flipped = 1
+/obj/structure/table/reinforced/flipped{
+	dir = 4
 	},
 /obj/item/ammo_casing,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -17024,9 +16989,8 @@
 "bbe" = (
 /obj/item/tool/crowbar,
 /obj/effect/decal/cleanable/blood/splatter/animated,
-/obj/structure/table/reinforced{
-	dir = 8;
-	flipped = 1
+/obj/structure/table/reinforced/flipped{
+	dir = 8
 	},
 /obj/item/ammo_casing,
 /turf/open/floor{
@@ -17067,9 +17031,8 @@
 	},
 /area/lv624/lazarus/main_hall)
 "bbi" = (
-/obj/structure/table/reinforced{
-	dir = 4;
-	flipped = 1
+/obj/structure/table/reinforced/flipped{
+	dir = 4
 	},
 /obj/item/ammo_casing,
 /turf/open/floor{
@@ -17183,9 +17146,8 @@
 /area/lv624/lazarus/main_hall)
 "bbA" = (
 /obj/effect/decal/cleanable/blood/splatter/animated,
-/obj/structure/table/reinforced{
-	dir = 2;
-	flipped = 1
+/obj/structure/table/reinforced/flipped{
+	dir = 2
 	},
 /obj/item/ammo_casing,
 /turf/open/floor{
@@ -17194,9 +17156,8 @@
 /area/lv624/lazarus/main_hall)
 "bbB" = (
 /obj/effect/decal/cleanable/blood/splatter/animated,
-/obj/structure/table/reinforced{
-	dir = 2;
-	flipped = 1
+/obj/structure/table/reinforced/flipped{
+	dir = 2
 	},
 /obj/item/ammo_casing,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -17211,9 +17172,8 @@
 /area/lv624/lazarus/main_hall)
 "bbC" = (
 /obj/effect/decal/cleanable/blood/splatter/animated,
-/obj/structure/table/reinforced{
-	dir = 2;
-	flipped = 1
+/obj/structure/table/reinforced/flipped{
+	dir = 2
 	},
 /obj/item/ammo_casing,
 /obj/item/ammo_magazine/smg/uzi/extended,
@@ -18428,9 +18388,8 @@
 /turf/open/floor,
 /area/lv624/lazarus/security)
 "beD" = (
-/obj/structure/table/reinforced{
-	dir = 2;
-	flipped = 1
+/obj/structure/table/reinforced/flipped{
+	dir = 2
 	},
 /obj/item/ammo_casing,
 /obj/structure/cable/yellow{
@@ -18444,9 +18403,8 @@
 	},
 /area/lv624/lazarus/main_hall)
 "beE" = (
-/obj/structure/table/reinforced{
-	dir = 2;
-	flipped = 1
+/obj/structure/table/reinforced/flipped{
+	dir = 2
 	},
 /obj/item/ammo_casing,
 /obj/item/ammo_magazine/smg/uzi/extended,
@@ -18465,9 +18423,8 @@
 /turf/open/floor/grass,
 /area/lv624/lazarus/main_hall)
 "beF" = (
-/obj/structure/table/reinforced{
-	dir = 2;
-	flipped = 1
+/obj/structure/table/reinforced/flipped{
+	dir = 2
 	},
 /obj/item/ammo_casing,
 /obj/item/weapon/gun/smg/uzi,
@@ -18777,9 +18734,8 @@
 /area/lv624/lazarus/security)
 "bfu" = (
 /obj/effect/landmark/random_item/crap,
-/obj/structure/table/reinforced{
-	dir = 2;
-	flipped = 1
+/obj/structure/table/reinforced/flipped{
+	dir = 2
 	},
 /turf/open/floor{
 	icon_state = "white"
@@ -18796,9 +18752,8 @@
 /turf/open/floor/grass,
 /area/lv624/lazarus/main_hall)
 "bfw" = (
-/obj/structure/table/reinforced{
-	dir = 2;
-	flipped = 1
+/obj/structure/table/reinforced/flipped{
+	dir = 2
 	},
 /turf/open/floor{
 	icon_state = "white"

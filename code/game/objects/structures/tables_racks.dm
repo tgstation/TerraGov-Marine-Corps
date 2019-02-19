@@ -488,6 +488,9 @@
 	table_prefix = "reinf"
 	parts = /obj/item/frame/table/reinforced
 
+/obj/structure/table/reinforced/flipped
+	flipped = TRUE
+
 /obj/structure/table/reinforced/flip(var/direction)
 	return FALSE //No, just no. It's a full desk, you can't flip that
 

@@ -30673,9 +30673,8 @@
 	},
 /area/prison/yard)
 "bib" = (
-/obj/structure/table/reinforced{
-	dir = 1;
-	flipped = 1
+/obj/structure/table/reinforced/flipped{
+	dir = 1
 	},
 /turf/open/floor/prison{
 	tag = "icon-bright_clean (SOUTHWEST)";
@@ -30686,9 +30685,8 @@
 "bic" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/structure/table/reinforced{
-	dir = 1;
-	flipped = 1
+/obj/structure/table/reinforced/flipped{
+	dir = 1
 	},
 /turf/open/floor/prison{
 	tag = "icon-bright_clean (SOUTHWEST)";
@@ -31446,9 +31444,8 @@
 	},
 /area/prison/yard)
 "bjg" = (
-/obj/structure/table/reinforced{
-	dir = 8;
-	flipped = 1
+/obj/structure/table/reinforced/flipped{
+	dir = 8
 	},
 /turf/open/floor/prison{
 	tag = "icon-bright_clean (SOUTHWEST)";
@@ -31512,9 +31509,8 @@
 	},
 /area/prison/yard)
 "bjn" = (
-/obj/structure/table/reinforced{
-	dir = 4;
-	flipped = 1
+/obj/structure/table/reinforced/flipped{
+	dir = 4
 	},
 /turf/open/floor/prison{
 	tag = "icon-bright_clean (SOUTHWEST)";
@@ -31695,9 +31691,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/structure/table/reinforced{
-	dir = 8;
-	flipped = 1
+/obj/structure/table/reinforced/flipped{
+	dir = 8
 	},
 /turf/open/floor/prison{
 	tag = "icon-bright_clean (SOUTHWEST)";
@@ -35250,9 +35245,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/structure/table/reinforced{
-	dir = 4;
-	flipped = 1
+/obj/structure/table/reinforced/flipped{
+	dir = 4
 	},
 /turf/open/floor/prison{
 	tag = "icon-bright_clean (SOUTHWEST)";
@@ -36673,9 +36667,8 @@
 	},
 /area/prison/cellblock/lowsec/sw)
 "bsH" = (
-/obj/structure/table/reinforced{
-	dir = 2;
-	flipped = 1
+/obj/structure/table/reinforced/flipped{
+	dir = 2
 	},
 /turf/open/floor/prison{
 	tag = "icon-bright_clean (SOUTHWEST)";
@@ -36686,9 +36679,8 @@
 "bsI" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/structure/table/reinforced{
-	dir = 2;
-	flipped = 1
+/obj/structure/table/reinforced/flipped{
+	dir = 2
 	},
 /turf/open/floor/prison{
 	tag = "icon-bright_clean (SOUTHWEST)";
@@ -36698,9 +36690,8 @@
 /area/prison/yard)
 "bsJ" = (
 /obj/effect/landmark/random_item/crap,
-/obj/structure/table/reinforced{
-	dir = 2;
-	flipped = 1
+/obj/structure/table/reinforced/flipped{
+	dir = 2
 	},
 /turf/open/floor/prison{
 	tag = "icon-bright_clean (SOUTHWEST)";
@@ -60750,9 +60741,8 @@
 /area/prison/cellblock/highsec/south/south)
 "cnG" = (
 /obj/item/ammo_casing,
-/obj/structure/table/reinforced{
-	dir = 1;
-	flipped = 1
+/obj/structure/table/reinforced/flipped{
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/prison/pirate)
@@ -60763,9 +60753,8 @@
 /turf/open/floor/plating,
 /area/prison/pirate)
 "cnI" = (
-/obj/structure/table/reinforced{
-	dir = 1;
-	flipped = 1
+/obj/structure/table/reinforced/flipped{
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/prison/pirate)
@@ -61432,9 +61421,8 @@
 /turf/open/floor/plating,
 /area/prison/pirate)
 "cpa" = (
-/obj/structure/table/reinforced{
-	dir = 1;
-	flipped = 1
+/obj/structure/table/reinforced/flipped{
+	dir = 1
 	},
 /turf/open/floor/plating/platebot,
 /area/prison/pirate)
@@ -65034,9 +65022,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5;
 	},
-/obj/structure/table/reinforced{
-	dir = 4;
-	flipped = 1
+/obj/structure/table/reinforced/flipped{
+	dir = 4
 	},
 /turf/open/shuttle{
 	icon_state = "floor7"
