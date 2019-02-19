@@ -12402,10 +12402,7 @@
 	},
 /area/lv624/lazarus/sleep_female)
 "aOK" = (
-/obj/structure/bed{
-	desc = "For prime comfort.";
-	name = "fancy bed"
-	},
+/obj/structure/bed/fancy,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -17061,10 +17058,7 @@
 "baD" = (
 /obj/item/bedsheet/rd,
 /obj/item/toy/bikehorn/rubberducky,
-/obj/structure/bed{
-	desc = "For prime comfort.";
-	name = "fancy bed"
-	},
+/obj/structure/bed/fancy,
 /turf/open/floor{
 	icon_state = "wood"
 	},
@@ -17102,10 +17096,7 @@
 "baI" = (
 /obj/item/clothing/glasses/regular/hipster,
 /obj/item/bedsheet/captain,
-/obj/structure/bed{
-	desc = "For prime comfort.";
-	name = "fancy bed"
-	},
+/obj/structure/bed/fancy,
 /turf/open/floor{
 	icon_state = "wood"
 	},
@@ -21667,10 +21658,7 @@
 "blZ" = (
 /obj/item/bedsheet/rd,
 /obj/item/cane,
-/obj/structure/bed{
-	desc = "For prime comfort.";
-	name = "fancy bed"
-	},
+/obj/structure/bed/fancy,
 /obj/effect/decal/cleanable/blood/splatter/animated,
 /turf/open/floor{
 	icon_state = "grimy"

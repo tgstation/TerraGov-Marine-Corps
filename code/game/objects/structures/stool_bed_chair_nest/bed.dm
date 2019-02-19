@@ -191,6 +191,11 @@ obj/structure/bed/Destroy()
 /obj/structure/bed/alien
 	icon_state = "abed"
 
+/obj/structure/bed/fancy
+	name = "fancy bed"
+	desc = "For prime comfort."
+
+
 /*
  * Roller beds
  */

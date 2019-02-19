@@ -7488,10 +7488,7 @@
 	},
 /area/almayer/shipboard/chief_mp_office)
 "api" = (
-/obj/structure/bed{
-	desc = "For prime comfort.";
-	name = "fancy bed"
-	},
+/obj/structure/bed/fancy,
 /obj/item/bedsheet/hos,
 /obj/effect/landmark/start/marine/chiefmp,
 /turf/open/floor/carpet,
