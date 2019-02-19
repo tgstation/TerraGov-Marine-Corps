@@ -269,7 +269,6 @@
 	var/mob/user
 	if(ismob(loc))
 		user = loc
-	if(loc && loc == user)
 		user.SetLuminosity(-LIGHTER_LUMINOSITY)
 	SetLuminosity(0)
 	return ..()

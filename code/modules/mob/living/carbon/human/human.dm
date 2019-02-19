@@ -1508,7 +1508,8 @@
 			if(F.on) goes_out++
 			F.turn_off(src)
 		for(var/obj/item/explosive/grenade/flare/FL in contents)
-			if(FL.active) goes_out++
+			if(FL.active)
+				goes_out++
 			FL.turn_off(src)
 	if(misc)
 		for(var/obj/item/clothing/head/hardhat/H in contents)
