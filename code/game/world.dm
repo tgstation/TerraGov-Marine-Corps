@@ -67,8 +67,6 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 	// due to this list not being instantiated.
 	populate_seed_list()
 
-	if(!EvacuationAuthority)
-		EvacuationAuthority = new
 
 	world.tick_lag = CONFIG_GET(number/ticklag)
 
