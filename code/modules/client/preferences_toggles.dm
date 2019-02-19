@@ -195,12 +195,16 @@
 			prefs.preferred_slot = SLOT_BACK
 		if("Boot")
 			prefs.preferred_slot = SLOT_IN_BOOT
+		if("Helmet")
+			prefs.preferred_slot = SLOT_IN_HEAD
 		if("Left Pocket")
 			prefs.preferred_slot = SLOT_L_STORE
 		if("Right Pocket")
 			prefs.preferred_slot = SLOT_R_STORE
 		if("Webbing")
 			prefs.preferred_slot = SLOT_IN_ACCESSORY
+		if("Belt")
+			prefs.preferred_slot = SLOT_IN_BELT
 		if("Belt Holster")
 			prefs.preferred_slot = SLOT_IN_HOLSTER
 		if("Suit Storage Holster")
