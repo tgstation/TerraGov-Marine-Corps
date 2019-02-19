@@ -1443,8 +1443,7 @@
 /turf/open/floor/freezer,
 /area/bigredv2/outside/marshal_office)
 "adF" = (
-/obj/structure/mirror{
-	icon_state = "mirror_broke";
+/obj/structure/mirror/broken{
 	pixel_x = 30
 	},
 /obj/item/tool/soap/deluxe,
@@ -3948,8 +3947,7 @@
 	icon_state = "sink";
 	pixel_x = 11;
 	},
-/obj/structure/mirror{
-	icon_state = "mirror_broke";
+/obj/structure/mirror/broken{
 	pixel_x = 30
 	},
 /obj/effect/landmark/corpsespawner/scientist,
