@@ -13,7 +13,6 @@
 /obj/structure/mirror{
 	dir = 4;
 	pixel_x = -32;
-	pixel_y = 0
 	},
 /obj/item/storage/fancy/cigarettes/lady_finger,
 /turf/open/floor/wood,
@@ -82,7 +81,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor/plating{
 	dir = 1;
@@ -98,7 +96,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor,
 /area/whiskey_outpost)
@@ -107,7 +104,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor,
 /area/whiskey_outpost)
@@ -121,7 +117,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	dir = 4;
@@ -268,7 +263,6 @@
 /obj/structure/cable{
 	d2 = 2;
 	icon_state = "0-2";
-	pixel_y = 0
 	},
 /turf/open/floor{
 	dir = 8;
@@ -315,7 +309,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/closed/wall/r_wall,
 /area/whiskey_outpost)
@@ -566,7 +559,6 @@
 /obj/machinery/light{
 	dir = 8;
 	icon_state = "tube1";
-	pixel_y = 0
 	},
 /turf/open/floor/plating{
 	dir = 1;
@@ -1556,7 +1548,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/light{
 	dir = 1
@@ -1572,7 +1563,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/structure/bed/roller,
 /turf/open/floor/plating{
@@ -2494,7 +2484,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	dir = 4;
@@ -2506,7 +2495,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -2520,7 +2508,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	dir = 8;
@@ -3546,14 +3533,12 @@
 "in" = (
 /obj/machinery/marine_turret/premade{
 	dir = 4;
-	pixel_y = 0
 	},
 /turf/open/floor/plating/platebot,
 /area/whiskey_outpost/outside/east)
 "io" = (
 /obj/machinery/marine_turret/premade{
 	dir = 8;
-	pixel_y = 0
 	},
 /turf/open/floor/plating/platebot,
 /area/whiskey_outpost/outside/east)
@@ -3665,14 +3650,12 @@
 "iH" = (
 /obj/machinery/marine_turret/premade{
 	dir = 4;
-	pixel_y = 0
 	},
 /turf/open/floor/plating/platebot,
 /area/whiskey_outpost/outside/west)
 "iI" = (
 /obj/machinery/marine_turret/premade{
 	dir = 8;
-	pixel_y = 0
 	},
 /turf/open/floor/plating/platebot,
 /area/whiskey_outpost/outside/west)
@@ -4043,7 +4026,6 @@
 /obj/machinery/vending/wallmed1{
 	name = "Emergency NanoMed";
 	pixel_x = 30;
-	pixel_y = 0;
 	req_access_txt = "0"
 	},
 /obj/item/storage/firstaid/regular,
@@ -4109,7 +4091,6 @@
 /obj/machinery/vending/wallmed1{
 	name = "Emergency NanoMed";
 	pixel_x = 30;
-	pixel_y = 0;
 	req_access_txt = "0"
 	},
 /obj/item/roller,
@@ -4186,7 +4167,6 @@
 /obj/machinery/vending/wallmed1{
 	name = "Emergency NanoMed";
 	pixel_x = 30;
-	pixel_y = 0;
 	req_access_txt = "0"
 	},
 /obj/item/storage/box/sentry,

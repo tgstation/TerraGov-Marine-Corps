@@ -24470,9 +24470,7 @@
 	},
 /area/almayer/squads/alpha)
 "aXX" = (
-/obj/machinery/door/airlock/almayer/marine/alpha/smart{
-	pixel_x = 0
-	},
+/obj/machinery/door/airlock/almayer/marine/alpha/smart,
 /turf/open/floor/almayer/mono,
 /area/almayer/squads/alpha)
 "aXY" = (
@@ -32028,9 +32026,7 @@
 	},
 /area/shuttle/drop1/sulaco)
 "bow" = (
-/obj/machinery/computer/security/dropship/one{
-	pixel_x = 0
-	},
+/obj/machinery/computer/security/dropship/one,
 /turf/open/shuttle/dropship{
 	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
@@ -37755,12 +37751,8 @@
 	pixel_x = 3;
 	pixel_y = 3
 	},
-/obj/item/storage/firstaid/fire{
-	pixel_x = 0
-	},
-/obj/item/storage/firstaid/fire{
-	pixel_x = 0
-	},
+/obj/item/storage/firstaid/fire,
+/obj/item/storage/firstaid/fire,
 /obj/item/storage/firstaid/fire,
 /turf/open/floor/almayer{
 	tag = "icon-sterile_green_corner (NORTH)";

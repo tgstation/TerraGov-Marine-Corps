@@ -922,7 +922,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/closed/wall/r_wall/dense,
 /area/yautja)
@@ -4383,7 +4382,6 @@
 /obj/machinery/light{
 	dir = 8;
 	icon_state = "tube1";
-	pixel_y = 0
 	},
 /obj/structure/rack,
 /turf/open/floor/almayer{
@@ -4635,7 +4633,6 @@
 /obj/machinery/light{
 	dir = 8;
 	icon_state = "tube1";
-	pixel_y = 0
 	},
 /turf/open/floor{
 	tag = "icon-carpet5-1 (WEST)";
@@ -4676,7 +4673,6 @@
 	anyai = 1;
 	freerange = 1;
 	name = "General Listening Channel";
-	pixel_x = 0;
 	pixel_y = 28
 	},
 /obj/machinery/light{
@@ -4759,7 +4755,6 @@
 /obj/machinery/light{
 	dir = 8;
 	icon_state = "tube1";
-	pixel_y = 0
 	},
 /obj/structure/table/almayer,
 /obj/machinery/computer/security,
@@ -5287,7 +5282,6 @@
 /obj/machinery/light{
 	dir = 8;
 	icon_state = "tube1";
-	pixel_y = 0
 	},
 /obj/structure/table/almayer,
 /obj/machinery/computer/med_data/laptop,
@@ -5332,7 +5326,6 @@
 /obj/machinery/light{
 	dir = 8;
 	icon_state = "tube1";
-	pixel_y = 0
 	},
 /obj/structure/table/almayer,
 /obj/item/ammo_magazine/pistol/vp70{
@@ -5484,7 +5477,6 @@
 /obj/machinery/light{
 	dir = 8;
 	icon_state = "tube1";
-	pixel_y = 0
 	},
 /turf/open/floor/almayer{
 	icon_state = "plate";
@@ -5518,7 +5510,6 @@
 	dir = 4;
 	icon_state = "sink";
 	pixel_x = 11;
-	pixel_y = 0
 	},
 /turf/open/floor{
 	icon_state = "freezerfloor"
@@ -5580,7 +5571,6 @@
 /obj/machinery/light{
 	dir = 8;
 	icon_state = "tube1";
-	pixel_y = 0
 	},
 /obj/structure/largecrate/random/case/double,
 /turf/open/floor/almayer{
@@ -6793,7 +6783,6 @@
 /obj/machinery/light{
 	dir = 8;
 	icon_state = "tube1";
-	pixel_y = 0
 	},
 /turf/open/floor,
 /area/deathmatch)
@@ -6906,7 +6895,6 @@
 /obj/machinery/light{
 	dir = 8;
 	icon_state = "tube1";
-	pixel_y = 0
 	},
 /obj/structure/table,
 /turf/open/floor,

@@ -290,7 +290,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
@@ -299,7 +298,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-dark";
@@ -1115,7 +1113,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -1132,7 +1129,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -1593,7 +1589,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	icon_state = "dark"
@@ -1921,7 +1916,6 @@
 /obj/structure/cable{
 	d2 = 2;
 	icon_state = "0-2";
-	pixel_y = 0
 	},
 /turf/open/floor/plating,
 /area/bigredv2/caves/lambda_lab)
@@ -2110,7 +2104,6 @@
 	dir = 8;
 	name = "Chemistry APC";
 	pixel_x = -30;
-	pixel_y = 0;
 	start_charge = 0
 	},
 /obj/structure/cable{
@@ -2133,7 +2126,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-whiteyellowfull";
@@ -2200,7 +2192,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	icon_state = "dark"
@@ -2364,7 +2355,6 @@
 /obj/structure/cable{
 	d2 = 2;
 	icon_state = "0-2";
-	pixel_y = 0
 	},
 /obj/machinery/light{
 	dir = 4
@@ -2743,7 +2733,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -2760,7 +2749,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -2773,7 +2761,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -2790,7 +2777,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/structure/cable{
 	d1 = 2;
@@ -2811,7 +2797,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -3022,7 +3007,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-dark";
@@ -3035,7 +3019,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-darkpurple2 (NORTH)";
@@ -3048,7 +3031,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -3076,7 +3058,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/light{
 	dir = 1
@@ -3097,7 +3078,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-darkpurple2 (NORTH)";
@@ -3110,7 +3090,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-darkyellow2 (NORTH)";
@@ -3124,7 +3103,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-darkyellow2 (NORTH)";
@@ -3138,7 +3116,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -3157,7 +3134,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-darkpurple2 (NORTH)";
@@ -3779,7 +3755,6 @@
 	dir = 4;
 	icon_state = "sink";
 	pixel_x = 11;
-	pixel_y = 0
 	},
 /obj/structure/mirror{
 	pixel_x = 30
@@ -4117,7 +4092,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor/plating,
 /area/bigredv2/caves/lambda_lab)
@@ -4127,7 +4101,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor/plating,
 /area/bigredv2/caves/lambda_lab)
@@ -4222,7 +4195,6 @@
 	dir = 4;
 	icon_state = "sink";
 	pixel_x = 11;
-	pixel_y = 0
 	},
 /obj/structure/mirror{
 	icon_state = "mirror_broke";
@@ -4474,7 +4446,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -4491,7 +4462,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
@@ -4512,7 +4482,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-asteroidfloor (NORTH)";
@@ -4526,7 +4495,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-asteroidfloor (NORTH)";
@@ -4608,7 +4576,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/structure/cable{
 	d1 = 2;
@@ -4624,7 +4591,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/structure/rack,
 /obj/item/clothing/suit/armor/riot,
@@ -5165,7 +5131,6 @@
 	frequency = 1469;
 	name = "General Listening Channel";
 	pixel_x = 30;
-	pixel_y = 0
 	},
 /turf/open/floor{
 	icon_state = "red";
@@ -5419,7 +5384,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -5435,7 +5399,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -5454,7 +5417,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -5470,7 +5432,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -5487,7 +5448,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -5501,7 +5461,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
 /obj/effect/landmark/random_item/crap,
@@ -5512,7 +5471,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -5525,7 +5483,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -5540,7 +5497,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -5563,7 +5519,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
@@ -5577,7 +5532,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
@@ -5588,7 +5542,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
@@ -5867,7 +5820,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-asteroidwarning";
@@ -5879,7 +5831,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-asteroidwarning";
@@ -5891,7 +5842,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-asteroidwarning (WEST)";
@@ -5967,7 +5917,6 @@
 /obj/machinery/vending/wallmed1{
 	name = "Emergency NanoMed";
 	pixel_x = 30;
-	pixel_y = 0;
 	req_access_txt = "0"
 	},
 /turf/open/floor{
@@ -6044,7 +5993,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/door/airlock/almayer/maint{
 	dir = 4;
@@ -6326,7 +6274,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-whitepurplefull";
@@ -6339,7 +6286,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/effect/landmark/monkey_spawn,
 /obj/effect/alien/weeds/node,
@@ -6355,7 +6301,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-whitepurplefull";
@@ -6368,7 +6313,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-whitepurple (EAST)";
@@ -6381,7 +6325,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/door/airlock/almayer/research/glass{
 	name = "\improper Lambda Lab Xenobiology";
@@ -6416,7 +6359,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 1
@@ -6435,7 +6377,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/door/airlock/almayer/research/glass{
 	name = "\improper Lambda Lab Hydroponics";
@@ -6448,7 +6389,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-whitegreen (WEST)";
@@ -6461,7 +6401,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-whitegreenfull";
@@ -6474,7 +6413,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/effect/landmark/random_item/crap,
 /obj/effect/alien/weeds/node,
@@ -6490,7 +6428,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-whitegreenfull";
@@ -6581,7 +6518,6 @@
 /obj/machinery/light{
 	dir = 8;
 	icon_state = "tube1";
-	pixel_y = 0
 	},
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
@@ -6704,7 +6640,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor/plating,
 /area/bigredv2/caves/lambda_lab)
@@ -6714,7 +6649,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor/plating,
 /area/bigredv2/caves/lambda_lab)
@@ -6825,7 +6759,6 @@
 "aoQ" = (
 /obj/effect/decal/cleanable/blood{
 	layer = 3;
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-asteroidwarning (NORTH)";
@@ -6952,7 +6885,6 @@
 /obj/machinery/light{
 	dir = 8;
 	icon_state = "tube1";
-	pixel_y = 0
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/general_offices)
@@ -6967,7 +6899,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -7074,7 +7005,6 @@
 	dir = 8;
 	name = "Xenbiology Lab APC";
 	pixel_x = -30;
-	pixel_y = 0;
 	start_charge = 0
 	},
 /obj/structure/cable,
@@ -7596,7 +7526,6 @@
 /obj/machinery/door_control{
 	id = "Medical";
 	name = "Storm Shutters";
-	pixel_x = 0;
 	pixel_y = 32
 	},
 /turf/open/floor{
@@ -7672,7 +7601,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -7688,7 +7616,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -7705,7 +7632,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -7786,7 +7712,6 @@
 	frequency = 1469;
 	name = "General Listening Channel";
 	pixel_x = 30;
-	pixel_y = 0
 	},
 /turf/open/floor{
 	tag = "icon-freezerfloor";
@@ -8211,7 +8136,6 @@
 /obj/structure/table,
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -27;
-	pixel_y = 0
 	},
 /obj/item/storage/box/beakers,
 /turf/open/floor{
@@ -8275,7 +8199,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	icon_state = "white"
@@ -8805,7 +8728,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/item/device/radio/intercom{
 	dir = 1;
@@ -9063,7 +8985,6 @@
 /obj/machinery/light{
 	dir = 8;
 	icon_state = "tube1";
-	pixel_y = 0
 	},
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
@@ -9130,7 +9051,6 @@
 	layer = 4;
 	name = "Door Bolt Control";
 	normaldoorcontrol = 1;
-	pixel_x = 0;
 	pixel_y = -5;
 	req_access_txt = "7";
 	specialfunctions = 4
@@ -9324,7 +9244,6 @@
 	frequency = 1469;
 	name = "General Listening Channel";
 	pixel_x = 30;
-	pixel_y = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable{
@@ -9433,7 +9352,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/structure/sign/safety/maintenance{
 	pixel_y = 32
@@ -9452,7 +9370,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/effect/landmark/random_item/crap,
 /obj/effect/alien/weeds/node,
@@ -9467,10 +9384,8 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/structure/sign/poster{
-	pixel_x = 0;
 	pixel_y = 32
 	},
 /turf/open/floor{
@@ -9484,7 +9399,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor{
@@ -9498,7 +9412,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-darkish";
@@ -9511,7 +9424,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-darkpurple2 (EAST)";
@@ -9524,7 +9436,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/structure/window/reinforced{
 	dir = 4
@@ -10137,7 +10048,6 @@
 /obj/structure/cable{
 	d2 = 2;
 	icon_state = "0-2";
-	pixel_y = 0
 	},
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
@@ -10305,7 +10215,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-whitegreen (NORTH)";
@@ -10325,7 +10234,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-whitegreen (NORTH)";
@@ -10342,7 +10250,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-whitegreen (NORTH)";
@@ -10359,7 +10266,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-whitegreencorner (NORTH)";
@@ -10375,7 +10281,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	icon_state = "white"
@@ -10393,7 +10298,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	icon_state = "white"
@@ -10409,7 +10313,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	icon_state = "white"
@@ -10421,7 +10324,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	icon_state = "white"
@@ -10437,7 +10339,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	icon_state = "white"
@@ -10454,7 +10355,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	icon_state = "white"
@@ -10748,7 +10648,6 @@
 /obj/machinery/door_control{
 	id = "Medical";
 	name = "Storm Shutters";
-	pixel_x = 0;
 	pixel_y = -32
 	},
 /turf/open/floor{
@@ -11176,7 +11075,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -11197,7 +11095,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-asteroidfloor (NORTH)";
@@ -11210,7 +11107,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -11225,7 +11121,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -11239,7 +11134,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -11252,7 +11146,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /obj/structure/cable{
@@ -11271,7 +11164,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
@@ -11284,7 +11176,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/door/airlock/multi_tile/almayer/medidoor{
 	dir = 1;
@@ -11305,7 +11196,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	icon_state = "white"
@@ -11320,7 +11210,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-whitegreen (WEST)";
@@ -11402,7 +11291,6 @@
 	frequency = 1469;
 	name = "General Listening Channel";
 	pixel_x = 30;
-	pixel_y = 0
 	},
 /turf/open/floor{
 	tag = "icon-whitegreen (EAST)";
@@ -11468,7 +11356,6 @@
 	frequency = 1469;
 	name = "General Listening Channel";
 	pixel_x = 30;
-	pixel_y = 0
 	},
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
@@ -11691,7 +11578,6 @@
 /obj/structure/cable{
 	d2 = 2;
 	icon_state = "0-2";
-	pixel_y = 0
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/medical)
@@ -11738,7 +11624,6 @@
 /obj/machinery/light{
 	dir = 8;
 	icon_state = "tube1";
-	pixel_y = 0
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -11835,7 +11720,6 @@
 /obj/machinery/light{
 	dir = 8;
 	icon_state = "tube1";
-	pixel_y = 0
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
@@ -11983,7 +11867,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -12000,7 +11883,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -12016,7 +11898,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -12031,7 +11912,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
@@ -12050,7 +11930,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	icon_state = "white"
@@ -12061,7 +11940,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/door/airlock/almayer/maint{
 	name = "\improper Medical Clinic Power Station";
@@ -12076,7 +11954,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/medical)
@@ -12132,7 +12009,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
@@ -12145,7 +12021,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/structure/cable{
 	d1 = 2;
@@ -12159,7 +12034,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -12176,7 +12050,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -12190,7 +12063,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -12204,7 +12076,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -12218,7 +12089,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor,
@@ -12232,7 +12102,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -12245,7 +12114,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -12254,7 +12122,6 @@
 /obj/machinery/door_control{
 	id = "Dormitories";
 	name = "Storm Shutters";
-	pixel_x = 0;
 	pixel_y = -32
 	},
 /obj/machinery/camera/autoname{
@@ -12273,7 +12140,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
@@ -12285,7 +12151,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -12304,7 +12169,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor,
@@ -12315,7 +12179,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -12328,7 +12191,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -12345,7 +12207,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -12528,7 +12389,6 @@
 /obj/machinery/alarm{
 	dir = 8;
 	pixel_x = 32;
-	pixel_y = 0
 	},
 /turf/open/floor{
 	tag = "icon-whitegreen (EAST)";
@@ -12605,7 +12465,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/bar)
@@ -12614,7 +12473,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -12631,7 +12489,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -12649,7 +12506,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -12859,7 +12715,6 @@
 /obj/machinery/door_control{
 	id = "Medical";
 	name = "Storm Shutters";
-	pixel_x = 0;
 	pixel_y = -32
 	},
 /obj/machinery/iv_drip,
@@ -13055,7 +12910,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-whitepurplefull";
@@ -13069,7 +12923,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-whitepurplefull";
@@ -13083,7 +12936,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-whitepurplefull";
@@ -13096,7 +12948,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor/marking/delivery,
 /area/bigredv2/caves/lambda_lab)
@@ -13370,7 +13221,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/gm/river,
 /turf/open/floor/plating/catwalk,
@@ -13746,7 +13596,6 @@
 	id = "Greenhouse";
 	name = "Storm Shutters";
 	pixel_x = 32;
-	pixel_y = 0
 	},
 /turf/open/floor,
 /area/bigredv2/outside/hydroponics)
@@ -13784,7 +13633,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -13802,7 +13650,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -14005,7 +13852,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-asteroidwarning (NORTH)";
@@ -14023,7 +13869,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-asteroidwarning (NORTH)";
@@ -14195,7 +14040,6 @@
 	id = "Dormitories";
 	name = "Storm Shutters";
 	pixel_x = -32;
-	pixel_y = 0
 	},
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
@@ -14269,7 +14113,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	icon_state = "wood"
@@ -14280,7 +14123,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -14295,7 +14137,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -14317,7 +14158,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
@@ -14460,7 +14300,6 @@
 	},
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -30;
-	pixel_y = 0
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
@@ -14619,7 +14458,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-whitegreenfull";
@@ -14643,7 +14481,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	icon_state = "white"
@@ -14658,7 +14495,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-whitegreenfull";
@@ -14696,7 +14532,6 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood{
 	layer = 3;
-	pixel_x = 0
 	},
 /turf/open/floor{
 	icon_state = "freezerfloor"
@@ -14762,7 +14597,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor,
 /area/bigredv2/outside/hydroponics)
@@ -14776,7 +14610,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor,
 /area/bigredv2/outside/hydroponics)
@@ -14789,7 +14622,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor,
 /area/bigredv2/outside/hydroponics)
@@ -14804,7 +14636,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor,
 /area/bigredv2/outside/hydroponics)
@@ -14813,7 +14644,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -14827,7 +14657,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -14952,7 +14781,6 @@
 /obj/machinery/alarm{
 	dir = 8;
 	pixel_x = 32;
-	pixel_y = 0
 	},
 /obj/structure/mineral_door/resin,
 /turf/open/floor{
@@ -15120,7 +14948,6 @@
 	dir = 4;
 	icon_state = "sink";
 	pixel_x = 11;
-	pixel_y = 0
 	},
 /turf/open/floor{
 	tag = "icon-whitegreencorner";
@@ -15254,7 +15081,6 @@
 /obj/machinery/door_control{
 	id = "Dormitories";
 	name = "Storm Shutters";
-	pixel_x = 0;
 	pixel_y = -32
 	},
 /turf/open/floor{
@@ -15341,7 +15167,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/door/airlock/almayer/medical/glass{
 	dir = 4;
@@ -15360,7 +15185,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	icon_state = "wood"
@@ -15384,7 +15208,6 @@
 	id = "Library";
 	name = "Storm Shutters";
 	pixel_x = 32;
-	pixel_y = 0
 	},
 /turf/open/floor{
 	icon_state = "wood"
@@ -15432,7 +15255,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-purplecorner (WEST)";
@@ -15595,7 +15417,6 @@
 /obj/machinery/light{
 	dir = 8;
 	icon_state = "tube1";
-	pixel_y = 0
 	},
 /obj/item/storage/firstaid/adv,
 /turf/open/floor{
@@ -15975,7 +15796,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-asteroidfloor (NORTH)";
@@ -16408,7 +16228,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-asteroidfloor (NORTH)";
@@ -16421,7 +16240,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -16438,7 +16256,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -16458,7 +16275,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-asteroidwarning";
@@ -16470,7 +16286,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -16488,7 +16303,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -16508,7 +16322,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -17085,7 +16898,6 @@
 	frequency = 1469;
 	name = "General Listening Channel";
 	pixel_x = 30;
-	pixel_y = 0
 	},
 /turf/open/floor{
 	icon_state = "wood"
@@ -17169,7 +16981,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-freezerfloor";
@@ -17185,7 +16996,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-freezerfloor";
@@ -17201,7 +17011,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/door/airlock/almayer/generic{
 	dir = 4;
@@ -17267,7 +17076,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/effect/alien/weeds/node,
 /turf/open/floor{
@@ -17281,7 +17089,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-darkpurple2";
@@ -17294,7 +17101,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/structure/mineral_door/resin,
 /turf/open/floor{
@@ -17319,7 +17125,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-darkpurple2";
@@ -17332,7 +17137,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/light/built,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -17352,7 +17156,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -17371,7 +17174,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -17391,7 +17193,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -17409,7 +17210,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/structure/extinguisher_cabinet{
 	pixel_y = -30
@@ -17429,7 +17229,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/light,
 /obj/structure/sign/safety/rad_hazard{
@@ -17452,7 +17251,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -17481,7 +17279,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -17498,7 +17295,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/access_button/airlock_exterior{
 	master_tag = "viro_controller";
@@ -17527,7 +17323,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -17557,7 +17352,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor/marking/delivery,
 /area/bigredv2/caves/lambda_lab)
@@ -17566,7 +17360,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -17585,7 +17378,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -17605,7 +17397,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -17644,7 +17435,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -17667,7 +17457,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -17936,7 +17725,6 @@
 	id = "Kitchen Greenhouse";
 	name = "Storm Shutters";
 	pixel_x = 32;
-	pixel_y = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
@@ -18244,7 +18032,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	icon_state = "white"
@@ -18255,7 +18042,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/door/airlock/almayer/medical/glass{
 	name = "\improper Medical Command Complex"
@@ -18269,7 +18055,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-asteroidwarning (EAST)";
@@ -18282,7 +18067,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/mars_cave{
 	tag = "icon-mars_dirt_4";
@@ -18294,7 +18078,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/mars{
 	tag = "icon-mars_dirt_9";
@@ -18306,7 +18089,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/mars,
 /area/bigredv2/outside/c)
@@ -18316,7 +18098,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/mars,
 /area/bigredv2/outside/c)
@@ -18325,7 +18106,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/mars{
 	tag = "icon-mars_dirt_13";
@@ -18885,7 +18665,6 @@
 	name = "Qurantine Lockdown";
 	normaldoorcontrol = 1;
 	pixel_x = -25;
-	pixel_y = 0;
 	req_access_txt = "7";
 	specialfunctions = 4
 	},
@@ -19025,7 +18804,6 @@
 	id = "Bar Complex";
 	name = "Storm Shutters";
 	pixel_x = 32;
-	pixel_y = 0
 	},
 /obj/machinery/camera/autoname{
 	dir = 8
@@ -19427,7 +19205,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-dark";
@@ -19745,7 +19522,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/decal/cleanable/blood{
 	layer = 3;
-	pixel_x = 0
 	},
 /turf/open/floor{
 	icon_state = "white"
@@ -20065,7 +19841,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-yellowfull";
@@ -20082,7 +19857,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor,
 /area/bigredv2/outside/hydroponics)
@@ -20097,7 +19871,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-yellowfull";
@@ -20116,7 +19889,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor,
 /area/bigredv2/outside/hydroponics)
@@ -20129,7 +19901,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-yellowfull";
@@ -20494,7 +20265,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	icon_state = "dark"
@@ -20805,7 +20575,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	icon_state = "white"
@@ -21028,7 +20797,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	icon_state = "white"
@@ -21043,7 +20811,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	icon_state = "white"
@@ -21055,7 +20822,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	icon_state = "white"
@@ -21071,7 +20837,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	icon_state = "white"
@@ -21084,7 +20849,6 @@
 	frequency = 1469;
 	name = "General Listening Channel";
 	pixel_x = 30;
-	pixel_y = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
@@ -21136,7 +20900,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-darkred2";
@@ -21147,14 +20910,12 @@
 /obj/machinery/door_control{
 	id = "Operations";
 	name = "Storm Shutters";
-	pixel_x = 0;
 	pixel_y = -32
 	},
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-darkred2";
@@ -21216,7 +20977,6 @@
 "aRn" = (
 /obj/effect/decal/cleanable/blood{
 	layer = 3;
-	pixel_x = 0
 	},
 /turf/open/floor{
 	icon_state = "wood"
@@ -21265,7 +21025,6 @@
 	id = "Kitchen";
 	name = "Storm Shutters";
 	pixel_x = 32;
-	pixel_y = 0
 	},
 /turf/open/floor{
 	tag = "icon-yellowfull";
@@ -21757,7 +21516,6 @@
 "aSw" = (
 /obj/effect/decal/cleanable/blood{
 	layer = 3;
-	pixel_x = 0
 	},
 /turf/open/floor{
 	icon_state = "white"
@@ -22105,7 +21863,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -22126,7 +21883,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-asteroidwarning";
@@ -22143,7 +21899,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
@@ -22163,7 +21918,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-asteroidwarning";
@@ -22179,7 +21933,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-asteroidwarning";
@@ -22196,7 +21949,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-asteroidwarning";
@@ -22218,7 +21970,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-asteroidwarning";
@@ -22230,7 +21981,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -22412,7 +22162,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-darkish";
@@ -22425,7 +22174,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-darkgreencorners2 (EAST)";
@@ -22439,7 +22187,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-darkgreen2 (NORTHEAST)";
@@ -22717,7 +22464,6 @@
 "aUm" = (
 /obj/effect/decal/cleanable/blood{
 	layer = 3;
-	pixel_x = 0
 	},
 /turf/open/mars_cave{
 	tag = "icon-mars_dirt_4";
@@ -22751,7 +22497,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -22768,7 +22513,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
@@ -22782,7 +22526,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -22799,7 +22542,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -22820,7 +22562,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -22838,7 +22579,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -22859,7 +22599,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -22881,7 +22620,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/door/poddoor/two_tile_ver{
 	name = "\improper Lambda Lab Lockdown"
@@ -22901,7 +22639,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-asteroidwarning";
@@ -22917,7 +22654,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-asteroidwarning";
@@ -22934,7 +22670,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-asteroidwarning";
@@ -22950,7 +22685,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/structure/mineral_door/resin,
 /turf/open/floor{
@@ -23712,7 +23446,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-asteroidwarning";
@@ -23724,7 +23457,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-asteroidwarning (WEST)";
@@ -23737,7 +23469,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/door/airlock/almayer/medical/glass{
 	dir = 4;
@@ -23752,7 +23483,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/structure/barricade/wooden{
 	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it...";
@@ -23771,7 +23501,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor,
 /area/bigredv2/outside/general_store)
@@ -23780,7 +23509,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-whitebluefull (NORTHEAST)";
@@ -23890,7 +23618,6 @@
 	frequency = 1469;
 	name = "General Listening Channel";
 	pixel_x = 30;
-	pixel_y = 0
 	},
 /obj/structure/bed,
 /turf/open/floor{
@@ -24060,7 +23787,6 @@
 	dir = 4;
 	icon_state = "sink";
 	pixel_x = 11;
-	pixel_y = 0
 	},
 /turf/open/floor{
 	icon_state = "freezerfloor"
@@ -24127,7 +23853,6 @@
 /obj/structure/cable{
 	d2 = 2;
 	icon_state = "0-2";
-	pixel_y = 0
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/general_store)
@@ -24184,7 +23909,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-darkred2 (NORTH)";
@@ -24233,7 +23957,6 @@
 	frequency = 1469;
 	name = "General Listening Channel";
 	pixel_x = 30;
-	pixel_y = 0
 	},
 /turf/open/floor{
 	tag = "icon-darkblue2 (EAST)";
@@ -24530,7 +24253,6 @@
 	frequency = 1469;
 	name = "General Listening Channel";
 	pixel_x = 30;
-	pixel_y = 0
 	},
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
@@ -24580,7 +24302,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/cargo)
@@ -24590,7 +24311,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/cargo)
@@ -24620,7 +24340,6 @@
 /obj/machinery/light{
 	dir = 8;
 	icon_state = "tube1";
-	pixel_y = 0
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -24761,7 +24480,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -24778,7 +24496,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -24861,7 +24578,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -24877,7 +24593,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -24890,7 +24605,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
@@ -25274,7 +24988,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -25377,7 +25090,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-dark";
@@ -25394,7 +25106,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-darkredcorners2";
@@ -25410,7 +25121,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-darkred2";
@@ -25425,7 +25135,6 @@
 /obj/machinery/door_control{
 	id = "Operations";
 	name = "Storm Shutters";
-	pixel_x = 0;
 	pixel_y = -32
 	},
 /obj/effect/landmark/random_item/good,
@@ -25433,7 +25142,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-darkred2";
@@ -26492,7 +26200,6 @@
 	freerange = 1;
 	frequency = 1469;
 	name = "General Listening Channel";
-	pixel_x = 0;
 	pixel_y = -30
 	},
 /turf/open/floor,
@@ -26649,7 +26356,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -26663,7 +26369,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -26676,7 +26381,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -26718,7 +26422,6 @@
 /obj/structure/cable{
 	d2 = 2;
 	icon_state = "0-2";
-	pixel_y = 0
 	},
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
@@ -26841,7 +26544,6 @@
 	frequency = 1469;
 	name = "General Listening Channel";
 	pixel_x = 30;
-	pixel_y = 0
 	},
 /turf/open/floor{
 	tag = "icon-darkred2 (EAST)";
@@ -27075,7 +26777,6 @@
 	id = "Office Complex 1";
 	name = "Storm Shutters";
 	pixel_x = -32;
-	pixel_y = 0
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -27340,7 +27041,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -27356,7 +27056,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -27376,7 +27075,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/structure/barricade/wooden,
 /turf/open/floor{
@@ -27638,7 +27336,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
@@ -27648,7 +27345,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	dir = 2;
@@ -27664,7 +27360,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	dir = 2;
@@ -27682,7 +27377,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	dir = 2;
@@ -27702,7 +27396,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	dir = 2;
@@ -27719,7 +27412,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	dir = 2;
@@ -27736,7 +27428,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
@@ -28081,7 +27772,6 @@
 	frequency = 1469;
 	name = "General Listening Channel";
 	pixel_x = 30;
-	pixel_y = 0
 	},
 /turf/open/floor{
 	dir = 2;
@@ -28279,7 +27969,6 @@
 	frequency = 1469;
 	name = "General Listening Channel";
 	pixel_x = 30;
-	pixel_y = 0
 	},
 /turf/open/floor{
 	dir = 2;
@@ -28317,7 +28006,6 @@
 	id = "Office Complex 1";
 	name = "Storm Shutters";
 	pixel_x = -32;
-	pixel_y = 0
 	},
 /turf/open/floor{
 	dir = 8;
@@ -28361,7 +28049,6 @@
 	frequency = 1469;
 	name = "General Listening Channel";
 	pixel_x = 30;
-	pixel_y = 0
 	},
 /turf/open/floor{
 	dir = 4;
@@ -28398,7 +28085,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-asteroidwarning (NORTH)";
@@ -28453,7 +28139,6 @@
 /obj/structure/cable{
 	d2 = 2;
 	icon_state = "0-2";
-	pixel_y = 0
 	},
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
@@ -28471,7 +28156,6 @@
 /obj/structure/cable{
 	d2 = 2;
 	icon_state = "0-2";
-	pixel_y = 0
 	},
 /turf/open/floor,
 /area/bigredv2/outside/storage)
@@ -28681,7 +28365,6 @@
 /obj/machinery/light{
 	dir = 8;
 	icon_state = "tube1";
-	pixel_y = 0
 	},
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
@@ -28714,7 +28397,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor,
 /area/bigredv2/outside/storage)
@@ -28723,7 +28405,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
@@ -28739,7 +28420,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor,
 /area/bigredv2/outside/storage)
@@ -28752,7 +28432,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/door/airlock/almayer/secure{
 	icon_state = "door_locked";
@@ -28770,7 +28449,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/structure/cable{
 	d1 = 2;
@@ -28792,7 +28470,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-asteroidwarning (NORTH)";
@@ -28806,7 +28483,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-asteroidfloor (NORTH)";
@@ -28828,7 +28504,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-asteroidfloor (NORTH)";
@@ -28979,7 +28654,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
@@ -28988,7 +28662,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-floor4";
@@ -29008,7 +28681,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
@@ -29021,7 +28693,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-floor4";
@@ -29037,7 +28708,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
@@ -29049,7 +28719,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
@@ -29059,7 +28728,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
@@ -29075,7 +28743,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
@@ -29132,7 +28799,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -29145,7 +28811,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -29158,7 +28823,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -29176,7 +28840,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -29375,7 +29038,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -29392,7 +29054,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -29704,7 +29365,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-asteroidwarning";
@@ -29720,7 +29380,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-asteroidfloor (NORTH)";
@@ -29741,7 +29400,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-asteroidfloor (NORTH)";
@@ -29890,7 +29548,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/structure/cable{
 	d1 = 2;
@@ -29915,7 +29572,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
@@ -29929,7 +29585,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
@@ -30670,7 +30325,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/engineering)
@@ -30679,7 +30333,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/door/airlock/multi_tile/almayer/generic{
 	dir = 4;
@@ -31046,7 +30699,6 @@
 /obj/structure/cable{
 	d2 = 2;
 	icon_state = "0-2";
-	pixel_y = 0
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
@@ -31097,7 +30749,6 @@
 	id = "Filtration Plant";
 	name = "Storm Shutters";
 	pixel_x = -32;
-	pixel_y = 0
 	},
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
@@ -31167,7 +30818,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -31185,7 +30835,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -31216,7 +30865,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -31345,7 +30993,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
@@ -31496,7 +31143,6 @@
 	frequency = 1469;
 	name = "General Listening Channel";
 	pixel_x = 30;
-	pixel_y = 0
 	},
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
@@ -31585,7 +31231,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
@@ -31595,7 +31240,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
@@ -31604,7 +31248,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/door/airlock/almayer/secure{
 	name = "\improper Engineering Secure Storage";
@@ -31734,7 +31377,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/door/airlock/multi_tile/almayer/generic{
 	dir = 1;
@@ -31747,7 +31389,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
@@ -31820,7 +31461,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
@@ -31948,7 +31588,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
@@ -32424,7 +32063,6 @@
 /obj/machinery/door_control{
 	id = "Engineering";
 	name = "Storm Shutters";
-	pixel_x = 0;
 	pixel_y = -32
 	},
 /turf/open/floor,
@@ -32462,7 +32100,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
@@ -32488,7 +32125,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
@@ -32497,7 +32133,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/door/airlock/almayer/engineering{
 	dir = 4;
@@ -32516,7 +32151,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
@@ -32528,7 +32162,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
@@ -32541,7 +32174,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
@@ -32571,7 +32203,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-asteroidwarning";
@@ -32583,7 +32214,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-asteroidwarning (WEST)";
@@ -32596,7 +32226,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/structure/fence,
 /turf/open/floor{
@@ -32610,7 +32239,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-asteroidfloor (NORTH)";
@@ -32660,7 +32288,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-asteroidwarning (NORTH)";
@@ -32721,7 +32348,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/door/airlock/almayer/engineering{
 	dir = 4;
@@ -32740,7 +32366,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
@@ -32822,7 +32447,6 @@
 	id = "Filtration Plant";
 	name = "Storm Shutters";
 	pixel_x = -32;
-	pixel_y = 0
 	},
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
@@ -33038,7 +32662,6 @@
 	frequency = 1469;
 	name = "General Listening Channel";
 	pixel_x = 30;
-	pixel_y = 0
 	},
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
@@ -33151,7 +32774,6 @@
 	frequency = 1469;
 	name = "General Listening Channel";
 	pixel_x = 30;
-	pixel_y = 0
 	},
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
@@ -33286,7 +32908,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/structure/bed/chair,
 /turf/open/floor,
@@ -33301,7 +32922,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/door/airlock/almayer/engineering{
 	dir = 4;
@@ -33387,7 +33007,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/item/stack/sheet/glass,
 /turf/open/floor,
@@ -33416,7 +33035,6 @@
 	id = "rad_door";
 	name = "Reactor Radiation Shielding control";
 	pixel_x = 30;
-	pixel_y = 0;
 	req_access_txt = "7"
 	},
 /turf/open/floor,
@@ -33540,7 +33158,6 @@
 /obj/machinery/door_control{
 	id = "Engineering";
 	name = "Storm Shutters";
-	pixel_x = 0;
 	pixel_y = -32
 	},
 /turf/open/floor,
@@ -33591,7 +33208,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -33604,7 +33220,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -33622,7 +33237,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -33635,7 +33249,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/item/stack/sheet/metal,
@@ -33646,7 +33259,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/door/airlock/almayer/engineering{
 	dir = 4;
@@ -33775,7 +33387,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-asteroidwarning";
@@ -33788,7 +33399,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-asteroidwarning";
@@ -34224,7 +33834,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-asteroidwarning (SOUTHEAST)";
@@ -34237,7 +33846,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/mars{
 	tag = "icon-mars_dirt_12";
@@ -34249,7 +33857,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/mars,
 /area/bigredv2/outside/s)
@@ -34331,7 +33938,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
@@ -34532,7 +34138,6 @@
 /obj/machinery/light{
 	dir = 8;
 	icon_state = "tube1";
-	pixel_y = 0
 	},
 /obj/machinery/camera/autoname{
 	dir = 4
@@ -34551,7 +34156,6 @@
 /obj/machinery/light{
 	dir = 8;
 	icon_state = "tube1";
-	pixel_y = 0
 	},
 /turf/open/gm/river,
 /area/bigredv2/outside/engineering)
@@ -34941,7 +34545,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-asteroidfloor (NORTH)";
@@ -37179,7 +36782,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/effect/alien/weeds/node,
 /turf/open/floor/plating,
@@ -37189,7 +36791,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -37198,7 +36799,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /obj/machinery/door/airlock/almayer/maint{
 	name = "\improper Eta Lab Maintenance Storage";
@@ -37215,7 +36815,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
 	},
 /turf/open/floor{
 	tag = "icon-dark";
@@ -38083,7 +37682,6 @@
 /obj/machinery/light{
 	dir = 8;
 	icon_state = "tube1";
-	pixel_y = 0
 	},
 /obj/effect/alien/weeds/node,
 /turf/open/floor{
