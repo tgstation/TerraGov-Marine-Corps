@@ -842,9 +842,8 @@
 	icon_state = "barricade2";
 	tag = "icon-barricade (WEST)"
 	},
-/turf/open/floor/plating{
-	dir = 8;
-	icon_state = "asteroidwarning"
+/turf/open/floor/plating/asteroidwarning{
+	dir = 8
 	},
 /area/whiskey_outpost)
 "bY" = (
@@ -997,9 +996,8 @@
 /area/whiskey_outpost)
 "cm" = (
 /obj/structure/barricade/metal,
-/turf/open/floor/plating{
-	dir = 2;
-	icon_state = "asteroidwarning"
+/turf/open/floor/plating/asteroidwarning{
+	dir = 2
 	},
 /area/whiskey_outpost)
 "cn" = (
@@ -1065,9 +1063,8 @@
 	icon_state = "barricade2";
 	tag = "icon-barricade (EAST)"
 	},
-/turf/open/floor/plating{
-	dir = 4;
-	icon_state = "asteroidwarning"
+/turf/open/floor/plating/asteroidwarning{
+	dir = 4
 	},
 /area/whiskey_outpost)
 "cv" = (
@@ -1128,9 +1125,8 @@
 	},
 /area/whiskey_outpost)
 "cA" = (
-/turf/open/floor/plating{
-	dir = 8;
-	icon_state = "asteroidwarning"
+/turf/open/floor/plating/asteroidwarning{
+	dir = 8
 	},
 /area/whiskey_outpost)
 "cB" = (
@@ -1232,9 +1228,8 @@
 	icon_state = "towergun";
 	tag = ""
 	},
-/turf/open/floor/plating{
-	dir = 8;
-	icon_state = "asteroidwarning"
+/turf/open/floor/plating/asteroidwarning{
+	dir = 8
 	},
 /area/whiskey_outpost/outside/north)
 "cM" = (
@@ -1255,15 +1250,13 @@
 	icon_state = "x3";
 	name = "whiskey_outpost_marine"
 	},
-/turf/open/floor/plating{
-	dir = 1;
-	icon_state = "asteroidwarning"
+/turf/open/floor/plating/asteroidwarning{
+	dir = 1
 	},
 /area/whiskey_outpost)
 "cO" = (
-/turf/open/floor/plating{
-	dir = 1;
-	icon_state = "asteroidwarning"
+/turf/open/floor/plating/asteroidwarning{
+	dir = 1
 	},
 /area/whiskey_outpost)
 "cP" = (
@@ -1382,9 +1375,8 @@
 	icon_state = "x3";
 	name = "whiskey_outpost_marine"
 	},
-/turf/open/floor/plating{
-	dir = 8;
-	icon_state = "asteroidwarning"
+/turf/open/floor/plating/asteroidwarning{
+	dir = 8
 	},
 /area/whiskey_outpost)
 "db" = (
@@ -1404,9 +1396,8 @@
 	icon_state = "x3";
 	name = "whiskey_outpost_marine"
 	},
-/turf/open/floor/plating{
-	dir = 4;
-	icon_state = "asteroidwarning"
+/turf/open/floor/plating/asteroidwarning{
+	dir = 4
 	},
 /area/whiskey_outpost)
 "dd" = (
@@ -1499,15 +1490,13 @@
 	icon_state = "x3";
 	name = "whiskey_outpost_marine"
 	},
-/turf/open/floor/plating{
-	dir = 2;
-	icon_state = "asteroidwarning"
+/turf/open/floor/plating/asteroidwarning{
+	dir = 2
 	},
 /area/whiskey_outpost)
 "dr" = (
-/turf/open/floor/plating{
-	dir = 2;
-	icon_state = "asteroidwarning"
+/turf/open/floor/plating/asteroidwarning{
+	dir = 2
 	},
 /area/whiskey_outpost)
 "ds" = (
@@ -1693,9 +1682,8 @@
 	},
 /area/whiskey_outpost)
 "dH" = (
-/turf/open/floor/plating{
-	dir = 4;
-	icon_state = "asteroidwarning"
+/turf/open/floor/plating/asteroidwarning{
+	dir = 4
 	},
 /area/whiskey_outpost)
 "dI" = (
@@ -1768,9 +1756,8 @@
 	icon_state = "towergun";
 	tag = ""
 	},
-/turf/open/floor/plating{
-	dir = 4;
-	icon_state = "asteroidwarning"
+/turf/open/floor/plating/asteroidwarning{
+	dir = 4
 	},
 /area/whiskey_outpost)
 "dO" = (
@@ -2045,9 +2032,8 @@
 	icon_state = "towergun";
 	tag = ""
 	},
-/turf/open/floor/plating{
-	dir = 8;
-	icon_state = "asteroidwarning"
+/turf/open/floor/plating/asteroidwarning{
+	dir = 8
 	},
 /area/whiskey_outpost)
 "ez" = (
@@ -2424,9 +2410,8 @@
 	icon_state = "sandbag";
 	dir = 1
 	},
-/turf/open/floor/plating{
-	dir = 1;
-	icon_state = "asteroidwarning"
+/turf/open/floor/plating/asteroidwarning{
+	dir = 1
 	},
 /area/whiskey_outpost/outside/north)
 "fi" = (
@@ -2599,9 +2584,8 @@
 /area/whiskey_outpost/outside/north)
 "fF" = (
 /obj/structure/barricade/sandbags,
-/turf/open/floor/plating{
-	dir = 2;
-	icon_state = "asteroidwarning"
+/turf/open/floor/plating/asteroidwarning{
+	dir = 2
 	},
 /area/whiskey_outpost/outside/north)
 "fG" = (
@@ -2741,9 +2725,8 @@
 /area/whiskey_outpost)
 "fZ" = (
 /obj/machinery/m56d_hmg/mg_turret,
-/turf/open/floor/plating{
-	dir = 2;
-	icon_state = "asteroidwarning"
+/turf/open/floor/plating/asteroidwarning{
+	dir = 2
 	},
 /area/whiskey_outpost)
 "ga" = (
@@ -2915,15 +2898,13 @@
 	},
 /area/whiskey_outpost/outside/north)
 "gu" = (
-/turf/open/floor/plating{
-	dir = 8;
-	icon_state = "asteroidwarning"
+/turf/open/floor/plating/asteroidwarning{
+	dir = 8
 	},
 /area/whiskey_outpost/outside/north)
 "gv" = (
-/turf/open/floor/plating{
-	dir = 4;
-	icon_state = "asteroidwarning"
+/turf/open/floor/plating/asteroidwarning{
+	dir = 4
 	},
 /area/whiskey_outpost/outside/north)
 "gw" = (
@@ -3161,9 +3142,8 @@
 /turf/open/gm/river,
 /area/whiskey_outpost/outside/east)
 "gY" = (
-/turf/open/floor/plating{
-	dir = 8;
-	icon_state = "asteroidwarning"
+/turf/open/floor/plating/asteroidwarning{
+	dir = 8
 	},
 /area/whiskey_outpost/outside/east)
 "gZ" = (
@@ -3173,9 +3153,8 @@
 	},
 /area/whiskey_outpost/outside/east)
 "ha" = (
-/turf/open/floor/plating{
-	dir = 4;
-	icon_state = "asteroidwarning"
+/turf/open/floor/plating/asteroidwarning{
+	dir = 4
 	},
 /area/whiskey_outpost/outside/east)
 "hb" = (
@@ -3414,9 +3393,8 @@
 /turf/open/gm/dirt,
 /area/whiskey_outpost/outside/west)
 "hW" = (
-/turf/open/floor/plating{
-	dir = 8;
-	icon_state = "asteroidwarning"
+/turf/open/floor/plating/asteroidwarning{
+	dir = 8
 	},
 /area/whiskey_outpost/outside/west)
 "hX" = (
@@ -3426,9 +3404,8 @@
 	},
 /area/whiskey_outpost/outside/west)
 "hY" = (
-/turf/open/floor/plating{
-	dir = 4;
-	icon_state = "asteroidwarning"
+/turf/open/floor/plating/asteroidwarning{
+	dir = 4
 	},
 /area/whiskey_outpost/outside/west)
 "hZ" = (

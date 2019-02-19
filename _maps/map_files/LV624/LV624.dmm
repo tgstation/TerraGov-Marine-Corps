@@ -12010,9 +12010,8 @@
 /obj/structure/barricade/wooden{
 	dir = 1
 	},
-/turf/open/floor/plating{
-	dir = 2;
-	icon_state = "asteroidwarning"
+/turf/open/floor/plating/asteroidwarning{
+	dir = 2
 	},
 /area/shuttle/drop2/lz2)
 "aNR" = (
@@ -12023,9 +12022,8 @@
 	tag = "icon-landingstripe";
 	icon_state = "landingstripe"
 	},
-/turf/open/floor/plating{
-	dir = 2;
-	icon_state = "asteroidwarning"
+/turf/open/floor/plating/asteroidwarning{
+	dir = 2
 	},
 /area/shuttle/drop2/lz2)
 "aNS" = (
@@ -12036,9 +12034,8 @@
 	tag = "icon-landingstripe";
 	icon_state = "landingstripe"
 	},
-/turf/open/floor/plating{
-	dir = 2;
-	icon_state = "asteroidwarning"
+/turf/open/floor/plating/asteroidwarning{
+	dir = 2
 	},
 /area/shuttle/drop2/lz2)
 "aNT" = (
@@ -12049,9 +12046,8 @@
 	tag = "icon-landingstripe";
 	icon_state = "landingstripe"
 	},
-/turf/open/floor/plating{
-	dir = 2;
-	icon_state = "asteroidwarning"
+/turf/open/floor/plating/asteroidwarning{
+	dir = 2
 	},
 /area/shuttle/drop2/lz2)
 "aNU" = (
@@ -12062,9 +12058,8 @@
 	tag = "icon-landingstripe";
 	icon_state = "landingstripe"
 	},
-/turf/open/floor/plating{
-	dir = 2;
-	icon_state = "asteroidwarning"
+/turf/open/floor/plating/asteroidwarning{
+	dir = 2
 	},
 /area/shuttle/drop2/lz2)
 "aNV" = (
@@ -12075,9 +12070,8 @@
 /obj/structure/barricade/wooden{
 	dir = 1
 	},
-/turf/open/floor/plating{
-	dir = 2;
-	icon_state = "asteroidwarning"
+/turf/open/floor/plating/asteroidwarning{
+	dir = 2
 	},
 /area/shuttle/drop2/lz2)
 "aNW" = (
@@ -12394,9 +12388,8 @@
 	icon_state = "landingstripe";
 	dir = 4
 	},
-/turf/open/floor/plating{
-	dir = 4;
-	icon_state = "asteroidwarning"
+/turf/open/floor/plating/asteroidwarning{
+	dir = 4
 	},
 /area/shuttle/drop2/lz2)
 "aOW" = (
@@ -12411,9 +12404,8 @@
 	icon_state = "landingstripe";
 	dir = 8
 	},
-/turf/open/floor/plating{
-	dir = 8;
-	icon_state = "asteroidwarning"
+/turf/open/floor/plating/asteroidwarning{
+	dir = 8
 	},
 /area/shuttle/drop2/lz2)
 "aOY" = (
@@ -12978,9 +12970,8 @@
 	icon_state = "landingstripe";
 	dir = 4
 	},
-/turf/open/floor/plating{
-	dir = 4;
-	icon_state = "asteroidwarning"
+/turf/open/floor/plating/asteroidwarning{
+	dir = 4
 	},
 /area/shuttle/drop2/lz2)
 "aQM" = (
@@ -12992,9 +12983,8 @@
 	icon_state = "landingstripe";
 	dir = 8
 	},
-/turf/open/floor/plating{
-	dir = 8;
-	icon_state = "asteroidwarning"
+/turf/open/floor/plating/asteroidwarning{
+	dir = 8
 	},
 /area/shuttle/drop2/lz2)
 "aQN" = (
@@ -13317,9 +13307,8 @@
 	icon_state = "landingstripe";
 	dir = 4
 	},
-/turf/open/floor/plating{
-	dir = 4;
-	icon_state = "asteroidwarning"
+/turf/open/floor/plating/asteroidwarning{
+	dir = 4
 	},
 /area/shuttle/drop2/lz2)
 "aRt" = (
@@ -13335,9 +13324,8 @@
 	icon_state = "landingstripe";
 	dir = 8
 	},
-/turf/open/floor/plating{
-	dir = 8;
-	icon_state = "asteroidwarning"
+/turf/open/floor/plating/asteroidwarning{
+	dir = 8
 	},
 /area/shuttle/drop2/lz2)
 "aRv" = (
@@ -13509,9 +13497,8 @@
 	icon_state = "landingstripe";
 	dir = 4
 	},
-/turf/open/floor/plating{
-	dir = 4;
-	icon_state = "asteroidwarning"
+/turf/open/floor/plating/asteroidwarning{
+	dir = 4
 	},
 /area/shuttle/drop2/lz2)
 "aRX" = (
@@ -13523,9 +13510,8 @@
 	icon_state = "landingstripe";
 	dir = 8
 	},
-/turf/open/floor/plating{
-	dir = 8;
-	icon_state = "asteroidwarning"
+/turf/open/floor/plating/asteroidwarning{
+	dir = 8
 	},
 /area/shuttle/drop2/lz2)
 "aRY" = (
@@ -13801,9 +13787,8 @@
 	icon_state = "landingstripe";
 	dir = 4
 	},
-/turf/open/floor/plating{
-	dir = 4;
-	icon_state = "asteroidwarning"
+/turf/open/floor/plating/asteroidwarning{
+	dir = 4
 	},
 /area/shuttle/drop2/lz2)
 "aSM" = (
@@ -14118,9 +14103,8 @@
 	icon_state = "landingstripe";
 	dir = 8
 	},
-/turf/open/floor/plating{
-	dir = 8;
-	icon_state = "asteroidwarning"
+/turf/open/floor/plating/asteroidwarning{
+	dir = 8
 	},
 /area/shuttle/drop2/lz2)
 "aTB" = (
@@ -14258,9 +14242,8 @@
 	icon_state = "landingstripe";
 	dir = 4
 	},
-/turf/open/floor/plating{
-	dir = 4;
-	icon_state = "asteroidwarning"
+/turf/open/floor/plating/asteroidwarning{
+	dir = 4
 	},
 /area/shuttle/drop2/lz2)
 "aTZ" = (
@@ -14275,9 +14258,8 @@
 	icon_state = "landingstripe";
 	dir = 8
 	},
-/turf/open/floor/plating{
-	dir = 8;
-	icon_state = "asteroidwarning"
+/turf/open/floor/plating/asteroidwarning{
+	dir = 8
 	},
 /area/shuttle/drop2/lz2)
 "aUb" = (
@@ -14510,9 +14492,8 @@
 	icon_state = "landingstripe";
 	dir = 4
 	},
-/turf/open/floor/plating{
-	dir = 4;
-	icon_state = "asteroidwarning"
+/turf/open/floor/plating/asteroidwarning{
+	dir = 4
 	},
 /area/shuttle/drop2/lz2)
 "aUI" = (
@@ -14522,9 +14503,8 @@
 	icon_state = "landingstripe";
 	dir = 8
 	},
-/turf/open/floor/plating{
-	dir = 8;
-	icon_state = "asteroidwarning"
+/turf/open/floor/plating/asteroidwarning{
+	dir = 8
 	},
 /area/shuttle/drop2/lz2)
 "aUJ" = (
@@ -14785,9 +14765,8 @@
 	icon_state = "landingstripe";
 	dir = 8
 	},
-/turf/open/floor/plating{
-	dir = 8;
-	icon_state = "asteroidwarning"
+/turf/open/floor/plating/asteroidwarning{
+	dir = 8
 	},
 /area/shuttle/drop2/lz2)
 "aVr" = (
@@ -15382,9 +15361,8 @@
 	icon_state = "landingstripe";
 	dir = 8
 	},
-/turf/open/floor/plating{
-	dir = 8;
-	icon_state = "asteroidwarning"
+/turf/open/floor/plating/asteroidwarning{
+	dir = 8
 	},
 /area/shuttle/drop2/lz2)
 "aXd" = (
@@ -16143,9 +16121,8 @@
 /obj/structure/barricade/wooden/lv_snowflake{
 	dir = 8;
 	},
-/turf/open/floor/plating{
-	dir = 4;
-	icon_state = "asteroidwarning"
+/turf/open/floor/plating/asteroidwarning{
+	dir = 4
 	},
 /area/shuttle/drop2/lz2)
 "aZa" = (
@@ -16420,9 +16397,8 @@
 /obj/structure/barricade/wooden/lv_snowflake{
 	dir = 8;
 	},
-/turf/open/floor/plating{
-	dir = 4;
-	icon_state = "asteroidwarning"
+/turf/open/floor/plating/asteroidwarning{
+	dir = 4
 	},
 /area/shuttle/drop2/lz2)
 "aZN" = (
@@ -17502,9 +17478,8 @@
 	icon_state = "landingstripe";
 	dir = 4
 	},
-/turf/open/floor/plating{
-	dir = 4;
-	icon_state = "asteroidwarning"
+/turf/open/floor/plating/asteroidwarning{
+	dir = 4
 	},
 /area/shuttle/drop2/lz2)
 "bcp" = (
@@ -17933,9 +17908,8 @@
 	icon_state = "landingstripe";
 	dir = 1
 	},
-/turf/open/floor/plating{
-	dir = 1;
-	icon_state = "asteroidwarning"
+/turf/open/floor/plating/asteroidwarning{
+	dir = 1
 	},
 /area/shuttle/drop2/lz2)
 "bdq" = (
@@ -17945,9 +17919,8 @@
 	icon_state = "landingstripe";
 	dir = 1
 	},
-/turf/open/floor/plating{
-	dir = 1;
-	icon_state = "asteroidwarning"
+/turf/open/floor/plating/asteroidwarning{
+	dir = 1
 	},
 /area/shuttle/drop2/lz2)
 "bdr" = (
@@ -17957,9 +17930,8 @@
 	icon_state = "landingstripe";
 	dir = 1
 	},
-/turf/open/floor/plating{
-	dir = 1;
-	icon_state = "asteroidwarning"
+/turf/open/floor/plating/asteroidwarning{
+	dir = 1
 	},
 /area/shuttle/drop2/lz2)
 "bds" = (
@@ -17969,9 +17941,8 @@
 	dir = 1
 	},
 /obj/structure/barricade/wooden,
-/turf/open/floor/plating{
-	dir = 1;
-	icon_state = "asteroidwarning"
+/turf/open/floor/plating/asteroidwarning{
+	dir = 1
 	},
 /area/shuttle/drop2/lz2)
 "bdt" = (
@@ -17981,9 +17952,8 @@
 	dir = 1
 	},
 /obj/structure/barricade/wooden,
-/turf/open/floor/plating{
-	dir = 1;
-	icon_state = "asteroidwarning"
+/turf/open/floor/plating/asteroidwarning{
+	dir = 1
 	},
 /area/shuttle/drop2/lz2)
 "bdu" = (
@@ -17993,9 +17963,8 @@
 	dir = 1
 	},
 /obj/structure/barricade/wooden,
-/turf/open/floor/plating{
-	dir = 1;
-	icon_state = "asteroidwarning"
+/turf/open/floor/plating/asteroidwarning{
+	dir = 1
 	},
 /area/shuttle/drop2/lz2)
 "bdv" = (
@@ -18005,9 +17974,8 @@
 	dir = 1
 	},
 /obj/structure/barricade/wooden,
-/turf/open/floor/plating{
-	dir = 1;
-	icon_state = "asteroidwarning"
+/turf/open/floor/plating/asteroidwarning{
+	dir = 1
 	},
 /area/shuttle/drop2/lz2)
 "bdw" = (

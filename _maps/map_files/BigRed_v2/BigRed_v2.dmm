@@ -45,40 +45,28 @@
 	tag = "icon-landingstripe";
 	icon_state = "landingstripe"
 	},
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/space_port)
 "aaj" = (
 /obj/machinery/landinglight/ds1/delayone{
 	tag = "icon-landingstripe";
 	icon_state = "landingstripe"
 	},
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/space_port)
 "aak" = (
 /obj/machinery/landinglight/ds1{
 	tag = "icon-landingstripe";
 	icon_state = "landingstripe"
 	},
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/space_port)
 "aal" = (
 /obj/machinery/landinglight/ds1/delaythree{
 	tag = "icon-landingstripe";
 	icon_state = "landingstripe"
 	},
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/space_port)
 "aam" = (
 /turf/open/floor{
@@ -3503,10 +3491,7 @@
 	},
 /area/bigredv2/outside/nw)
 "ahR" = (
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/nw)
 "ahS" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -3515,10 +3500,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/nw)
 "ahT" = (
 /turf/open/floor{
@@ -3529,10 +3511,7 @@
 /area/bigredv2/outside/nw)
 "ahU" = (
 /obj/structure/solaris_sign,
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/nw)
 "ahV" = (
 /turf/open/mars{
@@ -4792,10 +4771,7 @@
 /area/bigredv2/caves/lambda_lab)
 "akK" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/nw)
 "akL" = (
 /obj/effect/decal/cleanable/dirt,
@@ -5025,10 +5001,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "all" = (
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/telecomm)
 "alm" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -5801,10 +5774,7 @@
 	icon_state = "1-4";
 	tag = "90Curve"
 	},
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/nw)
 "amW" = (
 /obj/effect/decal/cleanable/dirt,
@@ -5813,10 +5783,7 @@
 	d2 = 8;
 	icon_state = "4-8";
 	},
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/nw)
 "amX" = (
 /obj/structure/cable{
@@ -5824,10 +5791,7 @@
 	d2 = 8;
 	icon_state = "4-8";
 	},
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/nw)
 "amY" = (
 /obj/structure/cable{
@@ -7582,10 +7546,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
 	},
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/n)
 "aqH" = (
 /obj/structure/cable{
@@ -7597,10 +7558,7 @@
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/n)
 "aqI" = (
 /obj/structure/cable{
@@ -12817,10 +12775,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/dorms)
 "aBu" = (
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/ne)
 "aBv" = (
 /turf/closed/wall,
@@ -14315,10 +14270,7 @@
 /area/bigredv2/caves)
 "aEv" = (
 /obj/effect/landmark/random_item/crap,
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/nw)
 "aEw" = (
 /obj/structure/table,
@@ -15921,10 +15873,7 @@
 	},
 /area/bigredv2/outside/c)
 "aHD" = (
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/c)
 "aHE" = (
 /obj/structure/cable{
@@ -15932,10 +15881,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/c)
 "aHF" = (
 /turf/open/floor{
@@ -16229,10 +16175,7 @@
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/virology)
 "aIe" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -16244,10 +16187,7 @@
 	d2 = 8;
 	icon_state = "4-8";
 	},
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/virology)
 "aIf" = (
 /obj/structure/cable{
@@ -16805,10 +16745,7 @@
 	},
 /area/bigredv2/outside/virology)
 "aJk" = (
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/medical)
 "aJl" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -18841,10 +18778,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aMT" = (
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/caves/lambda_lab)
 "aMU" = (
 /obj/structure/cable{
@@ -18852,10 +18786,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/caves/lambda_lab)
 "aMV" = (
 /turf/open/floor{
@@ -21772,10 +21703,7 @@
 /area/bigredv2/outside/admin_building)
 "aTc" = (
 /obj/effect/decal/cleanable/blood/gibs/body,
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/c)
 "aTd" = (
 /obj/effect/decal/cleanable/blood{
@@ -21783,10 +21711,7 @@
 	icon_state = "gib6";
 	tag = "icon-gib6"
 	},
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/c)
 "aTe" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno/limb,
@@ -21806,10 +21731,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
 	},
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/c)
 "aTg" = (
 /obj/structure/sign/double/barsign{
@@ -21840,10 +21762,7 @@
 	d2 = 8;
 	icon_state = "4-8";
 	},
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/c)
 "aTi" = (
 /obj/structure/cable{
@@ -21859,10 +21778,7 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/c)
 "aTj" = (
 /obj/effect/decal/cleanable/blood,
@@ -21875,10 +21791,7 @@
 	d2 = 8;
 	icon_state = "4-8";
 	},
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/c)
 "aTk" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -21890,10 +21803,7 @@
 	d2 = 8;
 	icon_state = "4-8";
 	},
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/e)
 "aTl" = (
 /obj/effect/decal/cleanable/blood/xeno,
@@ -21906,10 +21816,7 @@
 	d2 = 8;
 	icon_state = "4-8";
 	},
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/e)
 "aTm" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -21927,10 +21834,7 @@
 	d2 = 8;
 	icon_state = "4-8";
 	},
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/e)
 "aTn" = (
 /obj/structure/cable{
@@ -21942,10 +21846,7 @@
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/e)
 "aTo" = (
 /obj/effect/decal/cleanable/dirt,
@@ -22457,10 +22358,7 @@
 	layer = 2.4
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/e)
 "aUq" = (
 /obj/structure/cable{
@@ -22470,10 +22368,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/e)
 "aUr" = (
 /obj/structure/cable{
@@ -22486,10 +22381,7 @@
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/e)
 "aUs" = (
 /obj/structure/cable{
@@ -22506,10 +22398,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/e)
 "aUt" = (
 /obj/structure/cable{
@@ -22578,10 +22467,7 @@
 /obj/machinery/door/poddoor/two_tile_ver{
 	name = "\improper Lambda Lab Lockdown"
 	},
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/caves/lambda_lab)
 "aUx" = (
 /obj/effect/decal/cleanable/dirt,
@@ -22594,10 +22480,7 @@
 	d2 = 8;
 	icon_state = "4-8";
 	},
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/caves/lambda_lab)
 "aUy" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -22609,10 +22492,7 @@
 	d2 = 8;
 	icon_state = "4-8";
 	},
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/caves/lambda_lab)
 "aUz" = (
 /obj/machinery/light,
@@ -22625,10 +22505,7 @@
 	d2 = 8;
 	icon_state = "4-8";
 	},
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/caves/lambda_lab)
 "aUA" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -22641,10 +22518,7 @@
 	icon_state = "4-8";
 	},
 /obj/structure/mineral_door/resin,
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/caves/lambda_lab)
 "aUB" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -23399,10 +23273,7 @@
 	d2 = 8;
 	icon_state = "4-8";
 	},
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/w)
 "aWn" = (
 /obj/structure/cable{
@@ -26984,10 +26855,7 @@
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/c)
 "beE" = (
 /obj/structure/cable{
@@ -27003,10 +26871,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
 	},
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/c)
 "beF" = (
 /obj/structure/cable{
@@ -27015,10 +26880,7 @@
 	icon_state = "4-8";
 	},
 /obj/structure/barricade/wooden,
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/c)
 "beG" = (
 /obj/structure/barricade/wooden,
@@ -27098,16 +26960,10 @@
 /area/bigredv2/outside/office_complex)
 "beP" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/w)
 "beQ" = (
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/w)
 "beR" = (
 /turf/open/floor{
@@ -27121,10 +26977,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/cargo)
 "beT" = (
 /obj/machinery/light{
@@ -28193,40 +28046,28 @@
 	tag = "icon-landingstripe";
 	icon_state = "landingstripe"
 	},
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/cargo)
 "bhv" = (
 /obj/machinery/landinglight/ds2/delayone{
 	tag = "icon-landingstripe";
 	icon_state = "landingstripe"
 	},
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/cargo)
 "bhw" = (
 /obj/machinery/landinglight/ds2{
 	tag = "icon-landingstripe";
 	icon_state = "landingstripe"
 	},
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/cargo)
 "bhx" = (
 /obj/machinery/landinglight/ds2/delaythree{
 	tag = "icon-landingstripe";
 	icon_state = "landingstripe"
 	},
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/cargo)
 "bhy" = (
 /obj/effect/decal/cleanable/dirt,
@@ -28234,10 +28075,7 @@
 	tag = "icon-landingstripe";
 	icon_state = "landingstripe"
 	},
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/cargo)
 "bhz" = (
 /obj/effect/decal/cleanable/dirt,
@@ -28245,10 +28083,7 @@
 	tag = "icon-landingstripe";
 	icon_state = "landingstripe"
 	},
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/cargo)
 "bhA" = (
 /obj/effect/decal/cleanable/dirt,
@@ -28256,10 +28091,7 @@
 	tag = "icon-landingstripe";
 	icon_state = "landingstripe"
 	},
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/cargo)
 "bhB" = (
 /obj/machinery/floodlight/landing,
@@ -28467,17 +28299,11 @@
 	tag = "icon-gib6";
 	icon_state = "gib6"
 	},
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/c)
 "bhU" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/c)
 "bhV" = (
 /obj/effect/decal/cleanable/dirt,
@@ -28978,10 +28804,7 @@
 	layer = 2.4
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/c)
 "biU" = (
 /obj/structure/cable{
@@ -28994,10 +28817,7 @@
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/c)
 "biV" = (
 /obj/structure/cable{
@@ -29058,17 +28878,11 @@
 	},
 /area/bigredv2/outside/c)
 "bja" = (
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/se)
 "bjb" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/se)
 "bjc" = (
 /turf/open/floor{
@@ -29297,10 +29111,7 @@
 	d2 = 8;
 	icon_state = "4-8";
 	},
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/s)
 "bjE" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -29535,10 +29346,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "bjY" = (
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/s)
 "bjZ" = (
 /turf/open/floor{
@@ -32133,10 +31941,7 @@
 	d2 = 8;
 	icon_state = "4-8";
 	},
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/se)
 "bqA" = (
 /obj/structure/cable{
@@ -32430,10 +32235,7 @@
 	},
 /area/bigredv2/outside/sw)
 "brd" = (
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/sw)
 "bre" = (
 /obj/structure/bed/chair,
@@ -33315,10 +33117,7 @@
 	d2 = 8;
 	icon_state = "4-8";
 	},
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/s)
 "btn" = (
 /obj/effect/decal/cleanable/dirt,
@@ -33327,10 +33126,7 @@
 	d2 = 8;
 	icon_state = "4-8";
 	},
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/s)
 "bto" = (
 /obj/item/tool/warning_cone,
@@ -34227,10 +34023,7 @@
 /area/bigredv2/outside/s)
 "bvC" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/s)
 "bvD" = (
 /obj/structure/cable{
@@ -34238,10 +34031,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	tag = "icon-asteroidwarning";
-	icon_state = "asteroidwarning"
-	},
+/turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/s)
 "bvE" = (
 /turf/open/mars_cave{

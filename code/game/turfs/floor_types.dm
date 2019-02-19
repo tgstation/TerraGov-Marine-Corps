@@ -110,6 +110,9 @@
 /turf/open/floor/plating/platebotc
 	icon_state = "platebotc"
 
+/turf/open/floor/plating/asteroidwarning // used around lv's lz2
+	icon_state = "asteroidwarning"
+
 /turf/open/floor/marking/loadingarea
 	icon_state = "loadingarea"
 
@@ -121,6 +124,9 @@
 
 /turf/open/floor/marking/warning
 	icon_state = "warning"
+
+/turf/open/floor/marking/asteroidwarning
+	icon_state = "asteroidwarning"
 
 /turf/open/floor/grimy
 	icon_state = "grimy"
