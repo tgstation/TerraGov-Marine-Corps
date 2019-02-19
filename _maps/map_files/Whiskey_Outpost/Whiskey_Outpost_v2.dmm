@@ -138,62 +138,44 @@
 /area/whiskey_outpost)
 "at" = (
 /obj/machinery/computer/overwatch,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/whiskey_outpost)
 "au" = (
 /obj/structure/bed/chair/office/light{
 	dir = 8
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/whiskey_outpost)
 "av" = (
 /obj/structure/filingcabinet,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/whiskey_outpost)
 "aw" = (
 /obj/machinery/blackbox_recorder,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/whiskey_outpost)
 "ax" = (
 /obj/machinery/vending/snack,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/whiskey_outpost)
 "ay" = (
 /obj/structure/table,
 /obj/item/device/binoculars,
 /obj/item/device/binoculars,
 /obj/item/device/binoculars,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/whiskey_outpost)
 "az" = (
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/whiskey_outpost)
 "aA" = (
 /obj/structure/table,
 /obj/item/folder/blue,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/whiskey_outpost)
 "aB" = (
 /obj/structure/table,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/whiskey_outpost)
 "aC" = (
 /obj/machinery/telecomms/relay/preset/ice_colony{
@@ -264,9 +246,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/whiskey_outpost)
 "aK" = (
 /obj/machinery/light{
@@ -304,9 +284,7 @@
 "aP" = (
 /obj/structure/table,
 /obj/item/device/flashlight,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/whiskey_outpost)
 "aQ" = (
 /obj/machinery/light,
@@ -379,36 +357,26 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/whiskey_outpost)
 "aZ" = (
 /obj/machinery/computer/communications,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/whiskey_outpost)
 "ba" = (
 /obj/structure/table,
 /obj/item/storage/box/wy_mre,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/whiskey_outpost)
 "bb" = (
 /obj/structure/table,
 /obj/item/paper_bin,
 /obj/item/tool/pen,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/whiskey_outpost)
 "bc" = (
 /obj/machinery/computer/marine_card,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/whiskey_outpost)
 "bd" = (
 /turf/closed/wall,
@@ -471,9 +439,7 @@
 /obj/machinery/door/airlock/glass_command{
 	name = "Command"
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/whiskey_outpost)
 "bm" = (
 /obj/machinery/light{

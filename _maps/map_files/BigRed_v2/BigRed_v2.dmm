@@ -1052,9 +1052,7 @@
 	req_one_access_txt = "0"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "acS" = (
 /obj/structure/cable{
@@ -1103,9 +1101,7 @@
 "acY" = (
 /obj/structure/table,
 /obj/item/folder/black,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "acZ" = (
 /turf/open/floor/greengrid,
@@ -1120,15 +1116,11 @@
 "adb" = (
 /obj/structure/table,
 /obj/item/tool/hand_labeler,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "adc" = (
 /obj/structure/table,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "add" = (
 /obj/structure/cable{
@@ -1137,21 +1129,15 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "ade" = (
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "adf" = (
 /obj/structure/table,
 /obj/item/folder/black_random,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "adg" = (
 /obj/structure/cable{
@@ -1226,30 +1212,22 @@
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "adr" = (
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "ads" = (
 /obj/structure/table,
 /obj/item/folder/yellow,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "adt" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "adu" = (
 /obj/effect/decal/cleanable/dirt,
@@ -1260,9 +1238,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "adv" = (
 /obj/structure/table,
@@ -1271,9 +1247,7 @@
 	icon_state = "tube1";
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "adw" = (
 /obj/structure/cable{
@@ -1369,16 +1343,12 @@
 	d2 = 8;
 	icon_state = "4-8";
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "adI" = (
 /obj/structure/table,
 /obj/item/tool/extinguisher,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "adJ" = (
 /obj/structure/cable{
@@ -1477,30 +1447,22 @@
 /obj/machinery/computer/telecomms/monitor{
 	req_one_access_txt = "19;200"
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "aeb" = (
 /obj/item/device/radio/headset,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "aec" = (
 /obj/machinery/door/airlock/maintenance,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "aed" = (
 /obj/effect/decal/warning_stripes{
 	tag = "icon-W-corner";
 	icon_state = "W-corner"
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "aee" = (
 /obj/effect/decal/cleanable/dirt,
@@ -1514,16 +1476,12 @@
 	dir = 1;
 	on = 1
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "aef" = (
 /obj/structure/table,
 /obj/item/device/radio/headset,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "aeg" = (
 /obj/structure/cable{
@@ -1678,26 +1636,20 @@
 	req_access = null;
 	req_one_access_txt = "19;200"
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "aeC" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "aeD" = (
 /obj/machinery/alarm{
 	dir = 4;
 	pixel_x = -30
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "aeE" = (
 /obj/structure/cable{
@@ -1705,9 +1657,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "aeF" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -1863,15 +1813,11 @@
 	req_access = null;
 	req_one_access_txt = "19;200"
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "afc" = (
 /obj/item/folder/yellow,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "afd" = (
 /obj/structure/cable{
@@ -1879,9 +1825,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "afe" = (
 /obj/structure/cable{
@@ -1889,9 +1833,7 @@
 	d2 = 8;
 	icon_state = "4-8";
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "aff" = (
 /obj/structure/cable{
@@ -1899,9 +1841,7 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "afg" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -2125,15 +2065,11 @@
 	name = "Storm Shutters";
 	pixel_x = -32
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "afJ" = (
 /obj/structure/bed/chair/office/dark,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "afK" = (
 /obj/machinery/power/apc/drained,
@@ -2206,15 +2142,11 @@
 	},
 /area/bigredv2/outside/marshal_office)
 "afS" = (
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "afT" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "afU" = (
 /obj/structure/closet/bombclosetsecurity,
@@ -2550,40 +2482,30 @@
 /obj/item/clothing/tie/storage/black_vest,
 /obj/item/clothing/tie/storage/black_vest,
 /obj/item/clothing/tie/storage/black_vest,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "agE" = (
 /obj/structure/rack,
 /obj/item/weapon/gun/shotgun/pump/cmb,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "agF" = (
 /obj/structure/rack,
 /obj/item/weapon/gun/shotgun/pump/cmb,
 /obj/item/ammo_magazine/shotgun,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "agG" = (
 /obj/structure/rack,
 /obj/item/weapon/gun/shotgun/pump/cmb,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "agH" = (
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "agI" = (
 /obj/structure/table/reinforced,
@@ -2926,9 +2848,7 @@
 	icon_state = "0-4";
 	d2 = 4
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "ahq" = (
 /obj/machinery/light,
@@ -2937,15 +2857,11 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "ahr" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "ahs" = (
 /obj/structure/reagent_dispensers/water_cooler,
@@ -3256,9 +3172,7 @@
 	name = "\improper Marshal Office Armory";
 	req_access_txt = "0"
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "aii" = (
 /obj/machinery/door/airlock/almayer/security/glass{
@@ -3428,23 +3342,17 @@
 /area/bigredv2/outside/marshal_office)
 "aiE" = (
 /obj/structure/closet/secure_closet/marshal,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "aiF" = (
 /obj/structure/table,
 /obj/item/ammo_magazine/shotgun,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "aiG" = (
 /obj/structure/table,
 /obj/item/handcuffs,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "aiH" = (
 /obj/structure/table,
@@ -3453,17 +3361,13 @@
 	},
 /obj/item/ammo_magazine/shotgun,
 /obj/item/ammo_magazine/shotgun/buckshot,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "aiI" = (
 /obj/structure/table,
 /obj/item/ammo_magazine/shotgun/buckshot,
 /obj/item/clothing/head/beret/sec/warden,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "aiJ" = (
 /obj/machinery/light{
@@ -3474,16 +3378,12 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "aiK" = (
 /obj/machinery/computer/secure_data,
 /obj/structure/table,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "aiL" = (
 /obj/structure/table,
@@ -3628,9 +3528,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "aje" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
@@ -3864,9 +3762,7 @@
 "ajG" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/random_item/crap,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "ajH" = (
 /obj/effect/decal/cleanable/dirt,
@@ -3876,26 +3772,20 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "ajI" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "ajJ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "ajK" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -3909,9 +3799,7 @@
 	name = "\improper Marshal Office Armory";
 	req_access_txt = "0"
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "ajL" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -4122,9 +4010,7 @@
 /obj/structure/table,
 /obj/item/clothing/mask/gas,
 /obj/item/clothing/mask/gas,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "akj" = (
 /obj/structure/cable{
@@ -4137,9 +4023,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "akk" = (
 /obj/structure/cable{
@@ -4150,9 +4034,7 @@
 /obj/structure/rack,
 /obj/item/clothing/suit/armor/riot,
 /obj/item/clothing/suit/armor/riot,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "akl" = (
 /obj/structure/cable{
@@ -4160,23 +4042,17 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "akm" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "akn" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/computer/prisoner,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "ako" = (
 /obj/item/device/detective_scanner,
@@ -4366,9 +4242,7 @@
 /area/bigredv2/outside/nw)
 "akM" = (
 /obj/machinery/light,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "akN" = (
 /obj/structure/bed/chair{
@@ -4604,9 +4478,7 @@
 	name = "\improper Marshal Office Evidence Room";
 	req_access_txt = "0"
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "alq" = (
 /obj/machinery/light{
@@ -4691,15 +4563,11 @@
 /obj/structure/bed/chair{
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "alA" = (
 /obj/structure/table,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "alB" = (
 /turf/open/floor/grimy,
@@ -5152,9 +5020,7 @@
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "amx" = (
 /obj/structure/table,
@@ -5162,9 +5028,7 @@
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "amy" = (
 /obj/structure/table/woodentable,
@@ -5608,9 +5472,7 @@
 	name = "\improper Marshal Office Holding Cell";
 	req_access_txt = "0"
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "any" = (
 /obj/machinery/door/airlock/almayer/security/glass{
@@ -5645,9 +5507,7 @@
 	name = "Cell";
 	req_access_txt = "101"
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "anB" = (
 /obj/machinery/light{
@@ -6253,15 +6113,11 @@
 /area/bigredv2/outside/nw)
 "aoS" = (
 /obj/structure/closet/secure_closet/brig,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "aoT" = (
 /obj/structure/bed,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "aoU" = (
 /obj/machinery/light{
@@ -6979,14 +6835,10 @@
 /obj/structure/table,
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /obj/item/device/autopsy_scanner,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/medical)
 "aqD" = (
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/medical)
 "aqE" = (
 /obj/structure/morgue{
@@ -6994,15 +6846,11 @@
 	icon_state = "morgue1";
 	dir = 8
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/medical)
 "aqF" = (
 /obj/structure/morgue,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/medical)
 "aqG" = (
 /obj/structure/cable{
@@ -7308,9 +7156,7 @@
 "aro" = (
 /obj/machinery/optable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/medical)
 "arp" = (
 /turf/open/mars{
@@ -7619,9 +7465,7 @@
 /area/bigredv2/outside/medical)
 "arY" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/medical)
 "arZ" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno/down,
@@ -7912,9 +7756,7 @@
 /obj/item/bodybag,
 /obj/item/bodybag,
 /obj/item/bodybag,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/medical)
 "asH" = (
 /turf/closed/wall,
@@ -8240,32 +8082,24 @@
 /obj/item/bodybag,
 /obj/item/bodybag,
 /obj/item/bodybag,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/medical)
 "att" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/medical)
 "atu" = (
 /obj/machinery/light,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/medical)
 "atv" = (
 /obj/machinery/camera/autoname{
 	dir = 2;
 	network = list("interrogation")
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/medical)
 "atw" = (
 /obj/structure/window/framed/colony,
@@ -8521,9 +8355,7 @@
 	name = "\improper Medical Clinic Morgue";
 	req_one_access_txt = "0"
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/medical)
 "atX" = (
 /obj/structure/bed/stool{
@@ -18259,9 +18091,7 @@
 	},
 /area/bigredv2/outside/admin_building)
 "aOM" = (
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
 "aON" = (
 /obj/machinery/door/airlock/almayer/generic{
@@ -18815,9 +18645,7 @@
 	d2 = 8;
 	icon_state = "4-8";
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
 "aPT" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -19382,9 +19210,7 @@
 	name = "\improper Operations";
 	req_access_txt = "0"
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
 "aRf" = (
 /obj/structure/cable{
@@ -19397,9 +19223,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
 "aRg" = (
 /obj/structure/cable{
@@ -20171,9 +19995,7 @@
 	name = "\improper Operations";
 	req_access_txt = "0"
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
 "aSR" = (
 /obj/machinery/atmospherics/components/unary/vent_pump,
@@ -20702,15 +20524,11 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
 "aTX" = (
 /obj/machinery/computer3/server,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
 "aTY" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -21292,9 +21110,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
 "aVk" = (
 /obj/structure/rack,
@@ -22156,9 +21972,7 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
 "aXk" = (
 /obj/machinery/light{
@@ -22174,9 +21988,7 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
 "aXm" = (
 /obj/structure/table,
@@ -22605,9 +22417,7 @@
 	name = "\improper Operations Office";
 	req_access_txt = "0"
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
 "aYn" = (
 /obj/structure/cable{
@@ -23337,9 +23147,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
 "baa" = (
 /obj/effect/decal/cleanable/blood,
@@ -24625,9 +24433,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
 "bdp" = (
 /obj/item/device/radio/intercom{
@@ -25274,23 +25080,17 @@
 /obj/machinery/camera/autoname{
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/office_complex)
 "bfe" = (
 /obj/structure/table,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/office_complex)
 "bff" = (
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/office_complex)
 "bfg" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
@@ -25298,17 +25098,13 @@
 	on = 1
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/office_complex)
 "bfh" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/office_complex)
 "bfi" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -25571,17 +25367,13 @@
 /area/bigredv2/outside/c)
 "bfJ" = (
 /obj/item/trash/raisins,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/office_complex)
 "bfK" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/office_complex)
 "bfL" = (
 /obj/effect/decal/cleanable/dirt,
@@ -25589,17 +25381,13 @@
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/office_complex)
 "bfM" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/office_complex)
 "bfN" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -25712,22 +25500,16 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "bgc" = (
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/office_complex)
 "bgd" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/office_complex)
 "bge" = (
 /obj/effect/decal/cleanable/blood/gibs/down,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/office_complex)
 "bgf" = (
 /obj/effect/decal/cleanable/dirt,
@@ -25820,17 +25602,13 @@
 /area/bigredv2/outside/cargo)
 "bgs" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/office_complex)
 "bgt" = (
 /obj/structure/table,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/trash/syndi_cakes,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/office_complex)
 "bgu" = (
 /turf/open/floor/grimy,
@@ -25929,9 +25707,7 @@
 	dir = 4;
 	on = 1
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/office_complex)
 "bgJ" = (
 /obj/structure/table,
@@ -25940,23 +25716,17 @@
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/office_complex)
 "bgK" = (
 /obj/structure/table,
 /obj/item/device/multitool,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/office_complex)
 "bgL" = (
 /obj/structure/table,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/office_complex)
 "bgM" = (
 /obj/item/device/radio/intercom{
@@ -28071,9 +27841,7 @@
 	dir = 4;
 	name = "\improper Engineering Complex"
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/engineering)
 "blL" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -28082,9 +27850,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/engineering)
 "blM" = (
 /obj/structure/cable{
@@ -30194,9 +29960,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/se)
 "brb" = (
 /obj/machinery/landinglight/ds2{
@@ -30391,9 +30155,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "brD" = (
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/se)
 "brE" = (
 /turf/open/floor/greengrid,
@@ -30827,9 +30589,7 @@
 /area/bigredv2/outside/filtration_plant)
 "bsH" = (
 /obj/effect/landmark/huntergames_primary_spawn,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/se)
 "bsI" = (
 /turf/open/mars{

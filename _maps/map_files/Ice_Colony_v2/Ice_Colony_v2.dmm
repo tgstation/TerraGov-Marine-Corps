@@ -17508,9 +17508,7 @@
 /turf/closed/ice/thin/single,
 /area/ice_colony/exterior/surface/clearing/south)
 "aKt" = (
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/ice_colony/surface/hangar/checkpoint)
 "aKu" = (
 /turf/open/snow/layer0,
@@ -17636,9 +17634,7 @@
 /area/ice_colony/surface/hydroponics/north)
 "aKN" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/ice_colony/surface/hangar/checkpoint)
 "aKO" = (
 /obj/structure/bed/chair,
@@ -17744,9 +17740,7 @@
 /obj/item/clothing/tie/storage/black_vest,
 /obj/item/clothing/tie/storage/black_vest,
 /obj/item/clothing/tie/storage/black_vest,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/ice_colony/surface/hangar/checkpoint)
 "aKY" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -17956,18 +17950,14 @@
 "aLp" = (
 /obj/structure/rack,
 /obj/item/weapon/gun/shotgun/pump/cmb,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/ice_colony/surface/hangar/checkpoint)
 "aLq" = (
 /obj/structure/rack,
 /obj/item/weapon/gun/shotgun/pump/cmb,
 /obj/item/ammo_magazine/shotgun,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/ice_colony/surface/hangar/checkpoint)
 "aLr" = (
 /obj/structure/disposalpipe/segment{
@@ -18041,9 +18031,7 @@
 /obj/structure/rack,
 /obj/item/weapon/gun/shotgun/pump/cmb,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/ice_colony/surface/hangar/checkpoint)
 "aLD" = (
 /obj/effect/landmark/huntergames_primary_spawn,
@@ -18528,9 +18516,7 @@
 "aML" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/ice_colony/surface/hangar/checkpoint)
 "aMM" = (
 /obj/machinery/power/port_gen/pacman,
@@ -18861,9 +18847,7 @@
 	icon_state = "0-4";
 	d2 = 4
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/ice_colony/surface/hangar/checkpoint)
 "aNt" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -19556,9 +19540,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/ice_colony/surface/hangar/checkpoint)
 "aOZ" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -19734,9 +19716,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/ice_colony/surface/hangar/checkpoint)
 "aPs" = (
 /obj/structure/cable{
@@ -24699,9 +24679,7 @@
 /area/ice_colony/exterior/surface/container_yard)
 "aZD" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/ice_colony/underground/hangar{
 	name = "\improper West Road Tunnel"
 	})
@@ -24881,9 +24859,7 @@
 	name = "\improper Tunnel Shutters";
 	opacity = 0
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/ice_colony/underground/hangar{
 	name = "\improper West Road Tunnel"
 	})
@@ -26178,9 +26154,7 @@
 	req_access_txt = "100";
 	req_one_access_txt = "0"
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/ice_colony/underground/hangar{
 	name = "\improper West Road Tunnel"
 	})
@@ -26192,9 +26166,7 @@
 /obj/machinery/power/apc/drained{
 	dir = 1
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/ice_colony/underground/hangar{
 	name = "\improper West Road Tunnel"
 	})
@@ -26215,9 +26187,7 @@
 /turf/open/floor/wood,
 /area/ice_colony/surface/command/crisis)
 "bcU" = (
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/ice_colony/underground/hangar{
 	name = "\improper West Road Tunnel"
 	})
@@ -26227,9 +26197,7 @@
 	req_access_txt = "100";
 	req_one_access_txt = "0"
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/ice_colony/underground/hangar{
 	name = "\improper West Road Tunnel"
 	})
@@ -26412,9 +26380,7 @@
 	})
 "bdq" = (
 /obj/machinery/light/small,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/ice_colony/underground/hangar{
 	name = "\improper West Road Tunnel"
 	})
@@ -26868,9 +26834,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/ice_colony/underground/hangar{
 	name = "\improper West Road Tunnel"
 	})
@@ -33032,9 +32996,7 @@
 	pixel_y = 28
 	},
 /obj/item/storage/box/lightstick/red,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/ice_colony/surface/excavation{
 	name = "\improper Excavation Barracks"
 	})
@@ -34396,9 +34358,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/ice_colony/underground/hangar{
 	name = "\improper West Road Tunnel"
 	})
@@ -39099,9 +39059,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/ice_colony/surface/excavation{
 	name = "\improper Excavation Barracks"
 	})
@@ -40659,9 +40617,7 @@
 	dir = 4;
 	on = 1
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/ice_colony/underground/security/hallway)
 "bHb" = (
 /obj/structure/disposalpipe/segment,
@@ -45475,9 +45431,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/ice_colony/surface/excavation{
 	name = "\improper Excavation Barracks"
 	})
@@ -46497,9 +46451,7 @@
 /area/space)
 "bSx" = (
 /obj/machinery/door/airlock/multi_tile/almayer/generic,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/ice_colony/surface/excavation{
 	name = "\improper Excavation Barracks"
 	})
@@ -47253,9 +47205,7 @@
 /area/ice_colony/exterior/surface/valley/south)
 "bUl" = (
 /obj/structure/window/framed/colony,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/ice_colony/surface/excavation{
 	name = "\improper Excavation Barracks"
 	})
@@ -47354,9 +47304,7 @@
 	},
 /area/ice_colony/underground/hallway/south_east)
 "bUz" = (
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/ice_colony/surface/excavation{
 	name = "\improper Excavation Barracks"
 	})
@@ -47641,9 +47589,7 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/ice_colony/surface/hangar/checkpoint)
 "bVa" = (
 /obj/structure/cable/yellow{
@@ -47964,33 +47910,25 @@
 /area/ice_colony/underground/hangar)
 "bVF" = (
 /obj/structure/table/reinforced,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/ice_colony/surface/excavation{
 	name = "\improper Excavation Barracks"
 	})
 "bVG" = (
 /obj/effect/decal/cleanable/flour,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/ice_colony/surface/excavation{
 	name = "\improper Excavation Barracks"
 	})
 "bVH" = (
 /obj/effect/decal/cleanable/egg_smudge,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/ice_colony/surface/excavation{
 	name = "\improper Excavation Barracks"
 	})
 "bVI" = (
 /obj/structure/bed/chair/wood/wings,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/ice_colony/surface/excavation{
 	name = "\improper Excavation Barracks"
 	})
@@ -48097,9 +48035,7 @@
 	icon_state = "1-2"
 	},
 /obj/structure/disposalpipe/segment,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/ice_colony/surface/excavation{
 	name = "\improper Excavation Barracks"
 	})
@@ -48223,18 +48159,14 @@
 /obj/item/tool/kitchen/utensil/knife{
 	pixel_x = 7
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/ice_colony/surface/excavation{
 	name = "\improper Excavation Barracks"
 	})
 "bWc" = (
 /obj/structure/table/woodentable,
 /obj/item/reagent_container/food/snacks/boiledspagetti,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/ice_colony/surface/excavation{
 	name = "\improper Excavation Barracks"
 	})
@@ -48244,9 +48176,7 @@
 	pixel_x = 9;
 	pixel_y = 7
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/ice_colony/surface/excavation{
 	name = "\improper Excavation Barracks"
 	})
@@ -48311,9 +48241,7 @@
 	icon_state = "1-4"
 	},
 /obj/structure/disposalpipe/segment,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/ice_colony/surface/excavation{
 	name = "\improper Excavation Barracks"
 	})
@@ -48337,9 +48265,7 @@
 	pixel_y = 5
 	},
 /obj/structure/disposalpipe/segment,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/ice_colony/surface/excavation{
 	name = "\improper Excavation Barracks"
 	})
@@ -48369,9 +48295,7 @@
 	dir = 4;
 	on = 1
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/ice_colony/surface/excavation{
 	name = "\improper Excavation Barracks"
 	})
@@ -48497,9 +48421,7 @@
 	pixel_y = 24
 	},
 /obj/structure/disposalpipe/segment,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/ice_colony/surface/excavation{
 	name = "\improper Excavation Barracks"
 	})
@@ -48515,9 +48437,7 @@
 /obj/machinery/door/airlock/almayer/generic{
 	dir = 2
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/ice_colony/surface/excavation{
 	name = "\improper Excavation Barracks"
 	})
@@ -48613,9 +48533,7 @@
 	pixel_y = 14
 	},
 /obj/structure/disposalpipe/segment,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/ice_colony/surface/excavation{
 	name = "\improper Excavation Barracks"
 	})
@@ -48750,9 +48668,7 @@
 	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/ice_colony/surface/excavation{
 	name = "\improper Excavation Barracks"
 	})
@@ -48828,9 +48744,7 @@
 	id = "mining_garage";
 	name = "\improper Garage Shutters"
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/ice_colony/surface/excavation{
 	name = "\improper Excavation Barracks"
 	})
@@ -48860,9 +48774,7 @@
 /obj/item/storage/toolbox/electrical{
 	pixel_y = 1
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/ice_colony/surface/excavation{
 	name = "\improper Excavation Barracks"
 	})
@@ -48882,9 +48794,7 @@
 /obj/item/storage/bag/ore,
 /obj/item/storage/bag/ore,
 /obj/item/storage/box/lightstick/red,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/ice_colony/surface/excavation{
 	name = "\improper Excavation Barracks"
 	})
@@ -48892,9 +48802,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/disposalpipe/segment,
 /obj/structure/disposalpipe/segment,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/ice_colony/surface/excavation{
 	name = "\improper Excavation Barracks"
 	})
@@ -48993,9 +48901,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/ice_colony/surface/excavation{
 	name = "\improper Excavation Barracks"
 	})
@@ -49022,9 +48928,7 @@
 "bXx" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/disposalpipe/segment,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/ice_colony/surface/excavation{
 	name = "\improper Excavation Barracks"
 	})
@@ -49033,9 +48937,7 @@
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/ice_colony/surface/excavation{
 	name = "\improper Excavation Barracks"
 	})
@@ -49045,9 +48947,7 @@
 	layer = 2.4
 	},
 /obj/machinery/door/airlock/almayer/generic,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/ice_colony/surface/excavation{
 	name = "\improper Excavation Barracks"
 	})
@@ -49094,9 +48994,7 @@
 	icon_state = "3"
 	},
 /obj/structure/disposalpipe/segment,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/ice_colony/surface/excavation{
 	name = "\improper Excavation Barracks"
 	})
@@ -49111,9 +49009,7 @@
 /obj/item/stack/sheet/metal{
 	amount = 10
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/ice_colony/surface/excavation{
 	name = "\improper Excavation Barracks"
 	})
@@ -49159,9 +49055,7 @@
 "bXJ" = (
 /obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
 /obj/structure/disposalpipe/segment,
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/ice_colony/surface/excavation{
 	name = "\improper Excavation Barracks"
 	})
@@ -49303,9 +49197,7 @@
 	icon_state = "xtracks";
 	tag = "icon-xtracks"
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/ice_colony/surface/excavation{
 	name = "\improper Excavation Barracks"
 	})
@@ -49338,9 +49230,7 @@
 	dir = 1;
 	icon_state = "pipe-c"
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/ice_colony/surface/excavation{
 	name = "\improper Excavation Barracks"
 	})
@@ -49352,9 +49242,7 @@
 	icon_state = "pipe-t";
 	dir = 8
 	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
+/turf/open/floor/tile/dark,
 /area/ice_colony/surface/excavation{
 	name = "\improper Excavation Barracks"
 	})
