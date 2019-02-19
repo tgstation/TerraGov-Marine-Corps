@@ -2225,7 +2225,7 @@
 	to_chat(src, "<span class='xenodanger'>You feel your toxin glands refill, another young one ready for implantation. You can use Defile again.</span>")
 	update_action_button_icons()
 
-/mob/living/carbon/Xenomorph/proc/recurring_injection(mob/living/H, toxin1 = "xeno_toxin", toxin2 = null, larva = FALSE, count = 2)
+/mob/living/carbon/Xenomorph/proc/recurring_injection(mob/living/H, toxin1 = "xeno_toxin", toxin2 = null, larva = FALSE, virus1 = "necrovirus", count = 2)
 	//set waitfor = FALSE
 	while(count)
 		face_atom(H)
@@ -2241,6 +2241,8 @@
 		if(toxin2)
 			H.reagents.add_reagent(toxin2, DEFILER_STING_AMOUNT_RECURRING, null, 300, FALSE, FALSE, TRUE) //Caps the amount injected by the overdose limit
 			overdose_check(H, toxin2)
+		if(virus1)
+			H.reagents.add_reagent(virus1, DEFILER_STING_AMOUNT_RECURRING) //10 units transferred.
 
 		if(count < 2 && larva)
 			//It's infection time!
@@ -2436,16 +2438,16 @@
 	if(!check_state())
 		return
 
-	if(world.time < last_defiler_sting + DEFILER_STING_COOLDOWN) //Sure, let's use this.
-		to_chat(src, "<span class='xenodanger'>You are not ready to Defile again. It will be ready in [(last_defiler_sting + DEFILER_STING_COOLDOWN - world.time) * 0.1] seconds.</span>")
+	if(world.time < last_hivelord_sting + HIVELORD_STING_COOLDOWN) //Sure, let's use this.
+		to_chat(src, "<span class='xenodanger'>You are not ready to Sting again. It will be ready in [(last_hivelord_sting + HIVELORD_STING_COOLDOWN - world.time) * 0.1] seconds.</span>")
 		return
 
 	if(stagger)
 		to_chat(src, "<span class='xenowarning'>You try to sting but are too disoriented!</span>")
 		return
 
-	if(!H.can_sting() )
-		to_chat(src, "<span class='xenowarning'>Your sting won't affect this target!</span>")
+	if(!H.can_zombie() )
+		to_chat(src, "<span class='xenowarning'>Your sting won't affect this target, let the corpse decay a bit!</span>")
 		return
 
 	if(!Adjacent(H))
@@ -2454,69 +2456,33 @@
 			recent_notice = world.time //anti-notice spam
 		return
 
-	if ((H.status_flags & XENO_HOST) && istype(H.buckled, /obj/structure/bed/nest))
-		to_chat(src, "<span class='xenowarning'>Ashamed, you reconsider bullying the poor, nested host with your stinger.</span>")
-		return
-
 	if(!check_plasma(150))
 		return
-	last_defiler_sting = world.time
+	last_hivelord_sting = world.time
 	use_plasma(150)
 
-	round_statistics.defiler_defiler_stings++
+	addtimer(CALLBACK(src, .hivelord_sting_cooldown), HIVELORRD_STING_COOLDOWN)
 
-	face_atom(H)
-	animation_attack_on(H)
-	H.reagents.add_reagent("xeno_toxin", DEFILER_STING_AMOUNT_INITIAL) //15 units transferred initially.
-	to_chat(src, "<span class='xenowarning'>Your stinger injects your victim with neurotoxin!</span>")
-	var/datum/reagent/xeno_growthtoxin/growth_toxin = chemical_reagents_list["xeno_growthtoxin"]
-	if(H.reagents.get_reagent_amount("xeno_growthtoxin") >= growth_toxin.overdose_threshold)
-		to_chat(src, "<span class='xenowarning'>You defer from injecting larval growth serum as you sense your host is already saturated with it.</span>")
-	else
-		H.reagents.add_reagent("xeno_growthtoxin", DEFILER_STING_AMOUNT_INITIAL, null, 300, FALSE, FALSE, TRUE) //Caps the amount injected by the overdose limit
-		to_chat(src, "<span class='xenowarning'>Your stinger injects your victim with larval growth serum!</span>")
-	to_chat(H, "<span class='danger'>You feel a tiny prick.</span>")
-	playsound(H, 'sound/effects/spray3.ogg', 15, 1)
-	playsound(H, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
-	overdose_check(H)
+	recurring_injection(H, "virus1")
 
-	addtimer(CALLBACK(src, .defiler_sting_cooldown), DEFILER_STING_COOLDOWN)
-
-	recurring_injection(H, "xeno_toxin", "xeno_growthtoxin", TRUE)
-
-/mob/living/carbon/Xenomorph/Defiler/proc/defiler_sting_cooldown()
+/mob/living/carbon/Xenomorph/Hivelord/proc/hivelord_sting_cooldown()
 	playsound(loc, 'sound/voice/alien_drool1.ogg', 50, 1)
-	to_chat(src, "<span class='xenodanger'>You feel your toxin glands refill, another young one ready for implantation. You can use Defile again.</span>")
+	to_chat(src, "<span class='xenodanger'>You feel your virus glands refil, another body can be prepared for reanimation.</span>")
 	update_action_button_icons()
 
-/mob/living/carbon/Xenomorph/proc/recurring_injection(mob/living/H, toxin1 = "xeno_toxin", toxin2 = null, larva = FALSE, count = 2)
-	//set waitfor = FALSE
-	while(count)
-		face_atom(H)
-		if(!do_after(src, DEFILER_STING_CHANNEL_TIME, TRUE, 5, BUSY_ICON_HOSTILE))
-			return
-		if(!Adjacent(H) || stagger)
-			return FALSE
-		animation_attack_on(H)
-		playsound(H, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
-		if(toxin1)
-			H.reagents.add_reagent(toxin1, DEFILER_STING_AMOUNT_RECURRING) //10 units transferred.
-			overdose_check(H, toxin1)
-		if(toxin2)
-			H.reagents.add_reagent(toxin2, DEFILER_STING_AMOUNT_RECURRING, null, 300, FALSE, FALSE, TRUE) //Caps the amount injected by the overdose limit
-			overdose_check(H, toxin2)
+/mob/proc/can_zombie()
+	return FALSE
 
-		if(count < 2 && larva)
-			//It's infection time!
-			if(!H.can_sting())
-				return
-			var/embryos = 0
-			for(var/obj/item/alien_embryo/embryo in H) // already got one, stops doubling up
-				embryos++
-			if(!embryos)
-				var/obj/item/alien_embryo/embryo = new /obj/item/alien_embryo(H)
-				embryo.hivenumber = hivenumber
-				round_statistics.now_pregnant++
-				to_chat(src, "<span class='xenodanger'>Your stinger successfully implants a larva into the host.</span>")
-		count--
-	return
+/mob/living/carbon/monkey/can_zombie()
+	return FALSE
+
+/mob/living/carbon/human/can_zombie()
+	if(stat == DEAD && !H.is_revivable())
+		return TRUE
+	return FALSE
+
+/mob/living/carbon/human/species/machine/can_zombie()
+	return FALSE
+
+/mob/living/carbon/human/species/synthetic/can_zombie()
+	return FALSE
