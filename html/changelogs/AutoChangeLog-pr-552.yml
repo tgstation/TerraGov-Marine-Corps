@@ -1,0 +1,7 @@
+author: "Ghommie"
+delete-after: True
+changes: 
+  - refactor: "Refactored human and monkey breath code, bringing half of it down to carbon."
+  - tweak: "Human mobs with no breath need will now slowly succumb to critical conditions instead of being in limbo."
+  - code_imp: "Made critical/death health checks into a proc, given the disparity of thresholds between mobs."
+  - code_imp: "Fixes ISINRANGE_EX using the wrong relational operator."
