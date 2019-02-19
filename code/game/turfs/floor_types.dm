@@ -8,8 +8,9 @@
 	icon = 'icons/turf/almayer.dmi'
 	icon_state = "default"
 
-
-
+/turf/open/floor/almayer/mono
+	icon_state = "mono"
+	icon_regular_floor = "mono"
 
 /turf/open/floor/plating
 	name = "plating"

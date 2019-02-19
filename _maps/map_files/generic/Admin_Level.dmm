@@ -2880,10 +2880,7 @@
 	},
 /area/centcom/suppy)
 "gq" = (
-/turf/open/floor/almayer{
-	icon_regular_floor = "mono";
-	icon_state = "mono"
-	},
+/turf/open/floor/almayer/mono,
 /area/centcom/suppy)
 "gr" = (
 /obj/structure/bed/chair/wood/wings{
@@ -6000,10 +5997,7 @@
 /area/centcom)
 "nZ" = (
 /obj/machinery/hologram/holopad,
-/turf/open/floor/almayer{
-	icon_regular_floor = "mono";
-	icon_state = "mono"
-	},
+/turf/open/floor/almayer/mono,
 /area/centcom)
 "oa" = (
 /turf/open/floor/almayer{
