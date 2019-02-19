@@ -1619,8 +1619,7 @@
 /obj/structure/table,
 /obj/item/stack/cable_coil,
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkyellow2 (NORTHEAST)";
@@ -1803,8 +1802,7 @@
 /area/ice_colony/surface/engineering)
 "aeJ" = (
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkgreen2 (EAST)";
@@ -3272,8 +3270,7 @@
 /obj/structure/table,
 /obj/machinery/cell_charger,
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /obj/structure/cable,
 /turf/open/floor{
@@ -3750,8 +3747,7 @@
 /obj/structure/table/reinforced,
 /obj/item/cell/high,
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1"
+	dir = 8
 	},
 /obj/item/storage/toolbox/emergency,
 /obj/structure/cable/yellow{
@@ -3767,8 +3763,7 @@
 /area/ice_colony/surface/substation/smes)
 "aiv" = (
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /turf/open/gm/grass,
 /area/ice_colony/surface/hydroponics/north)
@@ -3842,8 +3837,7 @@
 /obj/structure/rack,
 /obj/item/cell/high/empty,
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1"
+	dir = 8
 	},
 /turf/open/floor{
 	dir = 8;
@@ -4850,8 +4844,7 @@
 	pixel_y = 4
 	},
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /obj/item/clothing/suit/storage/snow_suit/engineer,
 /turf/open/floor{
@@ -6286,8 +6279,7 @@
 "any" = (
 /obj/machinery/vending/tool,
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /obj/machinery/alarm{
 	dir = 8;
@@ -8790,8 +8782,7 @@
 "asa" = (
 /obj/machinery/iv_drip,
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-whitered (EAST)";
@@ -9188,8 +9179,7 @@
 "asU" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkgreen2 (EAST)";
@@ -9553,8 +9543,7 @@
 /area/ice_colony/surface/clinic/lobby)
 "atF" = (
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /obj/structure/filingcabinet,
 /turf/open/floor{
@@ -10113,8 +10102,7 @@
 "auK" = (
 /obj/structure/flora/pottedplant,
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkgreen2 (NORTHEAST)";
@@ -10584,8 +10572,7 @@
 /area/ice_colony/surface/hydroponics/lobby)
 "avI" = (
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /turf/open/gm/grass,
 /area/ice_colony/surface/hydroponics/lobby)
@@ -10963,8 +10950,7 @@
 "awr" = (
 /obj/structure/flora/pottedplant,
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkgreen2 (SOUTHEAST)";
@@ -11634,8 +11620,7 @@
 /area/ice_colony/surface/dorms/lavatory)
 "axP" = (
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkgreen2 (EAST)";
@@ -12839,8 +12824,7 @@
 /area/ice_colony/surface/hydroponics/south)
 "aAu" = (
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkgreen2 (EAST)";
@@ -12912,8 +12896,7 @@
 /area/ice_colony/surface/disposals)
 "aAB" = (
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /turf/open/gm/grass,
 /area/ice_colony/surface/hydroponics/south)
@@ -13998,8 +13981,7 @@
 /area/ice_colony/surface/command/control/office)
 "aCF" = (
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /obj/structure/table,
 /obj/effect/landmark/random_item/crap,
@@ -14803,8 +14785,7 @@
 /area/ice_colony/surface/garage/one)
 "aDX" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1"
+	dir = 8
 	},
 /obj/structure/filingcabinet,
 /turf/open/floor{
@@ -15923,8 +15904,7 @@
 "aGh" = (
 /obj/machinery/vending/tool,
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /obj/machinery/alarm{
 	dir = 8;
@@ -16393,8 +16373,7 @@
 /area/ice_colony/surface/command/control)
 "aGU" = (
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /obj/machinery/vending/coffee,
 /turf/open/floor{
@@ -16968,8 +16947,7 @@
 /area/ice_colony/surface/command/crisis)
 "aIb" = (
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /obj/machinery/vending/coffee,
 /turf/open/floor/wood,
@@ -18741,8 +18719,7 @@
 /area/ice_colony/surface/hangar/checkpoint)
 "aMs" = (
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /obj/machinery/vending/coffee,
 /turf/open/floor{
@@ -19148,8 +19125,7 @@
 /area/ice_colony/exterior/surface/valley/southeast)
 "aNm" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1"
+	dir = 8
 	},
 /obj/structure/filingcabinet/chestdrawer,
 /turf/open/floor{
@@ -20318,8 +20294,7 @@
 "aPJ" = (
 /obj/structure/closet/radiation,
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1"
+	dir = 8
 	},
 /turf/open/floor{
 	dir = 8;
@@ -21593,8 +21568,7 @@
 /area/ice_colony/surface/research)
 "aRW" = (
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkbrown2 (EAST)";
@@ -23109,8 +23083,7 @@
 /obj/structure/table,
 /obj/item/storage/belt/utility,
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1"
+	dir = 8
 	},
 /turf/open/floor{
 	tag = "icon-darkbrown2 (WEST)";
@@ -23498,8 +23471,7 @@
 "aVM" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkbrown2 (EAST)";
@@ -25977,8 +25949,7 @@
 /area/ice_colony/exterior/surface/valley/south)
 "baU" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1"
+	dir = 8
 	},
 /turf/open/floor/plating/icefloor{
 	tag = "icon-warnplate (EAST)";
@@ -27137,8 +27108,7 @@
 	})
 "bdr" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1"
+	dir = 8
 	},
 /obj/structure/table/reinforced,
 /turf/open/floor{
@@ -27410,8 +27380,7 @@
 /area/ice_colony/underground/requesition)
 "bdR" = (
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /turf/open/floor{
 	dir = 5;
@@ -28298,8 +28267,7 @@
 /obj/structure/table,
 /obj/item/device/flashlight,
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1"
+	dir = 8
 	},
 /turf/open/floor{
 	dir = 8;
@@ -28390,8 +28358,7 @@
 /area/ice_colony/surface/bar/bar)
 "bfQ" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1"
+	dir = 8
 	},
 /obj/structure/closet/secure_closet/req_officer,
 /turf/open/floor{
@@ -28665,8 +28632,7 @@
 /area/ice_colony/underground/requesition/lobby)
 "bgz" = (
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /obj/structure/table/reinforced,
 /obj/item/packageWrap,
@@ -29059,8 +29025,7 @@
 	layer = 2.44
 	},
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkbrown2 (EAST)";
@@ -30261,8 +30226,7 @@
 /area/ice_colony/underground/requesition/lobby)
 "bjE" = (
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /obj/machinery/vending/coffee,
 /turf/open/floor{
@@ -31927,8 +31891,7 @@
 /area/ice_colony/underground/maintenance/east)
 "bnt" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1"
+	dir = 8
 	},
 /turf/open/floor{
 	tag = "icon-darkbrown2 (WEST)";
@@ -32121,8 +32084,7 @@
 /area/ice_colony/exterior/surface/clearing/south)
 "bnN" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1"
+	dir = 8
 	},
 /turf/open/floor{
 	tag = "icon-darkgreen2 (WEST)";
@@ -34694,8 +34656,7 @@
 /area/ice_colony/underground/hallway/south_east)
 "btb" = (
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkgreen2 (EAST)";
@@ -35985,8 +35946,7 @@
 /area/ice_colony/underground/crew/bball)
 "bvD" = (
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /obj/structure/filingcabinet/security,
 /turf/open/floor{
@@ -37111,8 +37071,7 @@
 "bxM" = (
 /obj/structure/filingcabinet,
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-whitered (SOUTHEAST)";
@@ -37379,8 +37338,7 @@
 /area/ice_colony/exterior/underground/caves)
 "byn" = (
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /obj/machinery/r_n_d/protolathe,
 /turf/open/floor{
@@ -38004,8 +37962,7 @@
 /area/ice_colony/underground/medical/storage)
 "bzC" = (
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-whitered (EAST)";
@@ -38074,8 +38031,7 @@
 /area/ice_colony/underground/command/center)
 "bzL" = (
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkred2 (EAST)";
@@ -38838,8 +38794,7 @@
 	tag = "icon-officechair_white (EAST)"
 	},
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /turf/open/floor{
 	dir = 4;
@@ -39198,8 +39153,7 @@
 	dir = 4
 	},
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1"
+	dir = 8
 	},
 /turf/open/floor{
 	dir = 8;
@@ -40220,8 +40174,7 @@
 /area/ice_colony/underground/requesition)
 "bDQ" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1"
+	dir = 8
 	},
 /turf/open/floor{
 	dir = 8;
@@ -40561,8 +40514,7 @@
 "bEA" = (
 /obj/structure/closet/secure_closet/engineering_electrical,
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /turf/open/floor{
 	dir = 4;
@@ -40667,8 +40619,7 @@
 /area/ice_colony/underground/command/center)
 "bEN" = (
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /turf/open/floor{
 	dir = 4;
@@ -41678,8 +41629,7 @@
 /area/ice_colony/underground/crew/dorm_r)
 "bGR" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1"
+	dir = 8
 	},
 /turf/open/floor{
 	tag = "icon-darkgreen2 (WEST)";
@@ -41815,8 +41765,7 @@
 /area/ice_colony/underground/security/hallway)
 "bHf" = (
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /obj/structure/filingcabinet/security,
 /turf/open/floor{
@@ -42492,8 +42441,7 @@
 	dir = 8
 	},
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /turf/open/floor{
 	dir = 4;
@@ -44760,8 +44708,7 @@
 /area/ice_colony/underground/hangar)
 "bMp" = (
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkredcorners2 (EAST)";
@@ -45025,8 +44972,7 @@
 "bMR" = (
 /obj/structure/closet/crate/trashcart,
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1"
+	dir = 8
 	},
 /turf/open/floor{
 	tag = "icon-darkbrown2 (WEST)";
@@ -45909,8 +45855,7 @@
 /area/ice_colony/underground/crew/disposals)
 "bOJ" = (
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkbrown2 (EAST)";
@@ -47983,8 +47928,7 @@
 /area/ice_colony/underground/engineering/substation)
 "bTd" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1"
+	dir = 8
 	},
 /turf/open/floor{
 	icon_state = "white"
@@ -50383,8 +50327,7 @@
 "bXG" = (
 /obj/structure/closet/secure_closet/miner,
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1"
+	dir = 8
 	},
 /turf/open/floor{
 	tag = "icon-darkyellow2 (SOUTHWEST)";

@@ -4491,8 +4491,7 @@
 /area/shuttle/distress/start_big)
 "kI" = (
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /obj/structure/bed,
 /obj/item/bedsheet/brown,
@@ -4526,8 +4525,7 @@
 /obj/item/tank/anesthetic,
 /obj/item/clothing/mask/breath/medical,
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	icon_state = "plate";
@@ -4729,8 +4727,7 @@
 	pixel_y = 28
 	},
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	icon_state = "plate";
@@ -5329,8 +5326,7 @@
 "mi" = (
 /obj/structure/reagent_dispensers/fueltank,
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	icon_state = "plate";
@@ -5590,8 +5586,7 @@
 /obj/item/tool/extinguisher,
 /obj/item/tool/extinguisher,
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	icon_state = "plate";
@@ -7064,8 +7059,7 @@
 /area/deathmatch)
 "qW" = (
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /turf/open/floor,
 /area/deathmatch)

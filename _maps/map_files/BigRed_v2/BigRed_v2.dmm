@@ -1464,8 +1464,7 @@
 /area/bigredv2/outside/telecomm)
 "adr" = (
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /turf/open/floor{
 	icon_state = "dark"
@@ -8595,8 +8594,7 @@
 /area/bigredv2/caves/lambda_lab)
 "ass" = (
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/bigredv2/caves/lambda_lab)
@@ -29598,8 +29596,7 @@
 /area/bigredv2/outside/c)
 "biC" = (
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /turf/open/floor{
 	dir = 2;
@@ -31171,8 +31168,7 @@
 /area/bigredv2/outside/engineering)
 "bmj" = (
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /obj/effect/decal/cleanable/liquid_fuel,
 /turf/open/floor,
@@ -31483,8 +31479,7 @@
 /area/bigredv2/outside/filtration_plant)
 "bnd" = (
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /obj/machinery/computer3/server/rack,
 /turf/open/floor,
@@ -31492,8 +31487,7 @@
 "bne" = (
 /obj/structure/cryofeed,
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /turf/open/floor/bluegrid{
 	tag = "icon-bcircuitoff";
@@ -31650,8 +31644,7 @@
 /area/bigredv2/outside/engineering)
 "bnu" = (
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
@@ -31895,8 +31888,7 @@
 /area/bigredv2/outside/engineering)
 "boc" = (
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/landmark/random_item/crap,
@@ -33187,8 +33179,7 @@
 /area/bigredv2/outside/filtration_plant)
 "bqV" = (
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /obj/structure/table,
 /obj/item/paper,
@@ -33508,8 +33499,7 @@
 /area/bigredv2/outside/engineering)
 "brO" = (
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
@@ -34094,8 +34084,7 @@
 /area/bigredv2/outside/engineering)
 "bte" = (
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /obj/structure/sign/safety/high_radiation{
 	pixel_x = 32
@@ -34491,8 +34480,7 @@
 /area/bigredv2/outside/engineering)
 "btZ" = (
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
@@ -34914,8 +34902,7 @@
 /area/bigredv2/outside/engineering)
 "bvg" = (
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /turf/open/gm/river,
 /area/bigredv2/outside/engineering)
@@ -38305,8 +38292,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bCW" = (
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor{
@@ -38706,8 +38692,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bDS" = (
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/alien/weeds/node,

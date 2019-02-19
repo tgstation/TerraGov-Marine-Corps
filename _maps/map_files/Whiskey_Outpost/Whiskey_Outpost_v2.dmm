@@ -516,8 +516,7 @@
 /area/whiskey_outpost)
 "bm" = (
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /turf/open/floor/plating{
 	dir = 1;
@@ -1978,8 +1977,7 @@
 	name = "whiskey_outpost_marine"
 	},
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /turf/open/floor/plating{
 	dir = 1;
@@ -2010,8 +2008,7 @@
 /area/whiskey_outpost)
 "eo" = (
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /obj/machinery/floodlight{
 	anchored = 0;
@@ -2518,8 +2515,7 @@
 /area/whiskey_outpost)
 "fm" = (
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /obj/machinery/wo_recycler,
 /turf/open/floor/plating{

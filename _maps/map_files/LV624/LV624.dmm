@@ -931,8 +931,7 @@
 	},
 /obj/item/stack/sheet/mineral/platinum,
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1"
+	dir = 8
 	},
 /turf/open/floor{
 	icon_state = "vault";
@@ -7363,8 +7362,7 @@
 /area/lv624/lazarus/medbay)
 "axf" = (
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /turf/open/floor{
 	dir = 2;
@@ -7402,8 +7400,7 @@
 /area/lv624/lazarus/medbay)
 "axj" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1"
+	dir = 8
 	},
 /obj/item/storage/surgical_tray,
 /turf/open/floor{
@@ -10293,8 +10290,7 @@
 /area/lv624/lazarus/research)
 "aGa" = (
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /obj/item/clothing/mask/facehugger{
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
@@ -11743,8 +11739,7 @@
 "aKe" = (
 /obj/effect/decal/remains/human,
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /turf/open/floor{
 	icon_state = "white"
@@ -12292,8 +12287,7 @@
 	},
 /obj/effect/landmark/monkey_spawn,
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /turf/open/floor{
 	icon_state = "freezerfloor"
@@ -13460,8 +13454,7 @@
 /obj/item/clothing/head/beret/jan,
 /obj/item/stack/medical/splint,
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /turf/open/floor{
 	dir = 2;
@@ -13470,8 +13463,7 @@
 /area/lv624/lazarus/sleep_male)
 "aOG" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1"
+	dir = 8
 	},
 /obj/structure/barricade/wooden{
 	dir = 1
@@ -13496,8 +13488,7 @@
 /obj/item/clothing/shoes/laceup,
 /obj/item/stack/medical/advanced/ointment,
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1"
+	dir = 8
 	},
 /turf/open/floor{
 	dir = 9;
@@ -16410,8 +16401,7 @@
 /area/lv624/lazarus/main_hall)
 "aWi" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1"
+	dir = 8
 	},
 /obj/effect/landmark/random_item/good,
 /turf/open/floor{
@@ -18370,8 +18360,7 @@
 /area/lv624/lazarus/internal_affairs)
 "baG" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1"
+	dir = 8
 	},
 /turf/open/floor{
 	tag = "icon-whiteblue (EAST)";
@@ -23537,8 +23526,7 @@
 /area/lv624/lazarus/hop)
 "bmS" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1"
+	dir = 8
 	},
 /turf/open/floor{
 	icon_state = "white"
@@ -24554,8 +24542,7 @@
 /obj/item/weapon/gun/smg/mp5,
 /obj/item/weapon/gun/smg/mp5,
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1"
+	dir = 8
 	},
 /turf/open/floor{
 	tag = "icon-platebot";
