@@ -286,6 +286,9 @@
 	name = "coastline"
 	icon_state = "beach"
 
+/turf/open/gm/coast/corner
+	icon_state = "beachcorner"
+
 /turf/open/gm/riverdeep
 	name = "river"
 	icon_state = "seadeep"

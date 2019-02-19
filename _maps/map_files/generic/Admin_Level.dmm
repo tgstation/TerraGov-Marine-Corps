@@ -6852,9 +6852,7 @@
 /turf/open/floor,
 /area/deathmatch)
 "qh" = (
-/turf/open/gm/coast{
-	icon_state = "beachcorner"
-	},
+/turf/open/gm/coast/corner,
 /area/deathmatch)
 "qi" = (
 /turf/open/gm/coast,
@@ -6912,9 +6910,8 @@
 	},
 /area/deathmatch)
 "qs" = (
-/turf/open/gm/coast{
-	dir = 4;
-	icon_state = "beachcorner"
+/turf/open/gm/coast/corner{
+	dir = 4
 	},
 /area/deathmatch)
 "qt" = (
