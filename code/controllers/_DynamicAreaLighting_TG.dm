@@ -211,11 +211,15 @@ atom/proc/AddLuminosity(delta_luminosity)
 mob/SetLuminosity(new_luminosity, trueLum)
 	//message_admins("MOB SET LUM DEBUG 1: luminosity_total: [luminosity_total] new_luminosity: [new_luminosity] length: [length(light_sources)]")
 	switch(new_luminosity)
-		if(1 to INFINITY)  //If positive add a light source to the light source list.
+		if(1 to 100)  //If positive add a light source to the light source list.
 			light_sources.Add(new_luminosity)
 			if( luminosity_total < new_luminosity ) //Check to see if the new light source is more powerful than the current one; if not, check for light loss
 				luminosity_total = new_luminosity //we use the more powerful light source
-		if(-1 to INFINITY) //If negative, subtract the light source from the list instead.
+
+		if(0) //We're not losing a light source; abort.
+			return
+
+		if(-100 to -1) //If negative, subtract the light source from the list instead.
 			light_sources.Remove(new_luminosity * -1)
 			if(luminosity_total <= (new_luminosity * -1) ) //We're losing a light source of magnitude equal to or greater than our current one; recalc luminosity from the list of remaining sources
 				//message_admins("MOB SET LUM DEBUG 2: luminosity_total: [luminosity_total] new_luminosity: [new_luminosity] length: [length(light_sources)]")
@@ -225,8 +229,7 @@ mob/SetLuminosity(new_luminosity, trueLum)
 						if(luminosity_total > L) //get the most powerful remaining light source
 							continue
 						luminosity_total = L
-		if(0) //We're not losing a light source; abort.
-			return
+
 
 	//message_admins("MOB SET LUM DEBUG 4: luminosity_total: [luminosity_total] new_luminosity: [new_luminosity] length: [length(light_sources)]")
 	if(!luminosity_total)
