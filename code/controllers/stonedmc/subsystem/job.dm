@@ -329,6 +329,12 @@ SUBSYSTEM_DEF(job)
 		unassigned -= player
 		player.ready = FALSE
 		return
+	if(player.mind?.assigned_role)
+		JobDebug("Player already assigned a role :[player]")
+		player.mind.special_role = assigned_role
+		unassigned -= player
+		player.ready = FALSE
+		return
 	JobDebug("Player rejected :[player]")
 	to_chat(player, "<b>You have failed to qualify for any job you desired.</b>")
 	unassigned -= player
