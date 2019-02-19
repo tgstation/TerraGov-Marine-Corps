@@ -6672,7 +6672,6 @@
 /area/deathmatch)
 "py" = (
 /turf/open/gm/coast{
-	icon_state = "beach";
 	dir = 4
 	},
 /area/deathmatch)
@@ -6681,7 +6680,6 @@
 /area/deathmatch)
 "pA" = (
 /turf/open/gm/coast{
-	icon_state = "beach";
 	dir = 8
 	},
 /area/deathmatch)
@@ -6898,13 +6896,11 @@
 /area/deathmatch)
 "qq" = (
 /turf/open/gm/coast{
-	icon_state = "beach";
 	dir = 9
 	},
 /area/deathmatch)
 "qr" = (
 /turf/open/gm/coast{
-	icon_state = "beach";
 	dir = 1
 	},
 /area/deathmatch)

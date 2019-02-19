@@ -280,7 +280,6 @@
 "abs" = (
 /obj/machinery/colony_floodlight,
 /turf/open/gm/coast{
-	icon_state = "beach";
 	dir = 8
 	},
 /turf/open/floor/plating/catwalk,
@@ -3248,7 +3247,6 @@
 	icon_state = "pipe-c"
 	},
 /turf/open/gm/coast{
-	icon_state = "beach";
 	dir = 4
 	},
 /turf/open/floor/plating/catwalk,
@@ -3452,7 +3450,6 @@
 	icon_state = "Light2"
 	},
 /turf/open/gm/coast{
-	icon_state = "beach";
 	dir = 1
 	},
 /area/lv624/ground/river3)
@@ -4323,13 +4320,11 @@
 /area/lv624/ground/river3)
 "anC" = (
 /turf/open/gm/coast{
-	icon_state = "beach";
 	dir = 9
 	},
 /area/lv624/lazarus/atmos)
 "anD" = (
 /turf/open/gm/coast{
-	icon_state = "beach";
 	dir = 1
 	},
 /area/lv624/lazarus/atmos)
@@ -5134,7 +5129,6 @@
 /area/lv624/ground/jungle8)
 "aqe" = (
 /turf/open/gm/coast{
-	icon_state = "beach";
 	dir = 9
 	},
 /area/lv624/ground/river3)
@@ -5238,7 +5232,6 @@
 /area/lv624/ground/jungle8)
 "aqw" = (
 /turf/open/gm/coast{
-	icon_state = "beach";
 	dir = 8
 	},
 /area/lv624/ground/river3)
@@ -5312,13 +5305,11 @@
 /area/lv624/ground/river2)
 "aqK" = (
 /turf/open/gm/coast{
-	icon_state = "beach";
 	dir = 1
 	},
 /area/lv624/ground/river2)
 "aqL" = (
 /turf/open/gm/coast{
-	icon_state = "beach";
 	dir = 9
 	},
 /area/lv624/ground/river2)
@@ -5359,7 +5350,6 @@
 "aqQ" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/gm/coast{
-	icon_state = "beach";
 	dir = 9
 	},
 /area/lv624/ground/river3)
@@ -5494,14 +5484,12 @@
 /area/lv624/ground/river3)
 "art" = (
 /turf/open/gm/coast{
-	icon_state = "beach";
 	dir = 1
 	},
 /area/lv624/ground/river3)
 "aru" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/gm/coast{
-	icon_state = "beach";
 	dir = 1
 	},
 /area/lv624/ground/river3)
@@ -5651,7 +5639,6 @@
 "arR" = (
 /obj/structure/flora/ausbushes/reedbush,
 /turf/open/gm/coast{
-	icon_state = "beach";
 	dir = 1
 	},
 /area/lv624/ground/river2)
@@ -5790,7 +5777,6 @@
 /area/lv624/ground/jungle7)
 "asr" = (
 /turf/open/gm/coast{
-	icon_state = "beach";
 	dir = 1
 	},
 /turf/open/floor/plating/catwalk,
@@ -7340,7 +7326,6 @@
 /area/lv624/ground/sand7)
 "awY" = (
 /turf/open/gm/coast{
-	icon_state = "beach";
 	dir = 9
 	},
 /area/lv624/ground/river1)
@@ -25250,7 +25235,6 @@
 /area/lv624/ground/jungle1)
 "brc" = (
 /turf/open/gm/coast{
-	icon_state = "beach";
 	dir = 4
 	},
 /area/lv624/ground/jungle1)
@@ -25452,7 +25436,6 @@
 /area/lv624/ground/jungle1)
 "brI" = (
 /turf/open/gm/coast{
-	icon_state = "beach";
 	dir = 1
 	},
 /area/lv624/ground/jungle1)
