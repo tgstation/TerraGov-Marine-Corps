@@ -1,3 +1,15 @@
+//SSticker.current_state values
+#define GAME_STATE_STARTUP		0
+#define GAME_STATE_PREGAME		1
+#define GAME_STATE_SETTING_UP	2
+#define GAME_STATE_PLAYING		3
+#define GAME_STATE_FINISHED		4
+
+
+#define GET_RANDOM_JOB 0
+#define BE_MARINE 1
+#define RETURN_TO_LOBBY 2
+
 //=================================================
 //Self destruct, nuke, and evacuation.
 #define EVACUATION_TIME_LOCK 60 MINUTES
@@ -94,67 +106,6 @@ var/list/be_special_flags = list(
 //Number of marine players against which the Marine's gear scales
 #define MARINE_GEAR_SCALING_NORMAL 30
 #define MAX_GEAR_COST 5 //Used in chargen for loadout limit.
-//=================================================
-
-//Various roles and their suggested bitflags or defines.
-
-#define ROLEGROUP_MARINE_COMMAND		1
-
-#define ROLE_COMMANDING_OFFICER			1
-#define ROLE_EXECUTIVE_OFFICER			2
-#define ROLE_BRIDGE_OFFICER				4
-#define ROLE_MILITARY_POLICE			8
-#define ROLE_CORPORATE_LIAISON			16
-#define ROLE_REQUISITION_OFFICER		32
-#define ROLE_PILOT_OFFICER				64
-#define ROLE_CHIEF_MP					128
-#define ROLE_SYNTHETIC					256
-#define ROLE_TANK_OFFICER				512
-//=================================================
-
-#define ROLEGROUP_MARINE_ENGINEERING 	2
-
-#define ROLE_CHIEF_ENGINEER				1
-#define ROLE_MAINTENANCE_TECH			2
-#define ROLE_REQUISITION_TECH			4
-//=================================================
-
-#define ROLEGROUP_MARINE_MED_SCIENCE 	4
-
-#define ROLE_CHIEF_MEDICAL_OFFICER		1
-#define ROLE_CIVILIAN_DOCTOR			2
-#define ROLE_CIVILIAN_RESEARCHER		4
-//=================================================
-
-#define ROLEGROUP_MARINE_SQUAD_MARINES 	8
-
-#define ROLE_MARINE_LEADER			1
-#define ROLE_MARINE_MEDIC			2
-#define ROLE_MARINE_ENGINEER		4
-#define ROLE_MARINE_STANDARD		8
-#define ROLE_MARINE_SPECIALIST		16
-#define ROLE_MARINE_SMARTGUN		32
-//=================================================
-
-#define ROLE_ADMIN_NOTIFY			1
-#define ROLE_ADD_TO_SQUAD			2
-#define ROLE_ADD_TO_DEFAULT			4
-#define ROLE_ADD_TO_MODE			8
-#define ROLE_WHITELISTED			16
-//=================================================
-
-//Role defines, specifically lists of roles for job bans and the like.
-#define ROLES_COMMAND 		list("Commander", "Executive Officer", "Staff Officer", "Pilot Officer", "Tank Crewman", "Corporate Liaison", "Requisitions Officer", "Chief Engineer", "Chief Medical Officer", "Synthetic")
-#define ROLES_POLICE		list("Chief MP", "Military Police")
-#define ROLES_OFFICERS		list("Commander", "Executive Officer", "Staff Officer", "Pilot Officer", "Tank Crewman", "Corporate Liaison", "Synthetic")
-#define ROLES_ENGINEERING 	list("Chief Engineer", "Maintenance Tech")
-#define ROLES_REQUISITION 	list("Requisitions Officer", "Cargo Technician")
-#define ROLES_MEDICAL 		list("Chief Medical Officer", "Doctor","Researcher")
-#define ROLES_MARINES		list("Squad Leader", "Squad Specialist", "Squad Smartgunner", "Squad Medic", "Squad Engineer", "Squad Marine")
-#define ROLES_SQUAD_ALL		list("Alpha", "Bravo", "Charlie" ,"Delta")
-#define ROLES_REGULAR_ALL	ROLES_OFFICERS + ROLES_POLICE + ROLES_ENGINEERING + ROLES_REQUISITION + ROLES_MEDICAL + ROLES_MARINES
-#define ROLES_UNASSIGNED	list("Squad Marine")
-//=================================================
 
 //=================================================
 #define WHITELIST_YAUTJA_UNBLOODED	1

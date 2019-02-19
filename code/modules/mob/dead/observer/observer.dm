@@ -251,7 +251,6 @@
 	loc = pick(get_area_turfs(A))
 
 
-
 /mob/dead/observer/verb/follow_ghost()
 	set category = "Ghost"
 	set name = "Follow Ghost"

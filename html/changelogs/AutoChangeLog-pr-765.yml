@@ -1,0 +1,5 @@
+author: "Ghommie"
+delete-after: True
+changes: 
+  - bugfix: "objects dropped while inside the autodoc won't remain trapped inside it anymore."
+  - spellcheck: "Fixed a typo on heartbeats per minute count message.."

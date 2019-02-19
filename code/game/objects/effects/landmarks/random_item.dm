@@ -75,7 +75,7 @@
 /obj/effect/landmark/random_item/proc/spawn_item()
 	return
 
-/obj/effect/landmark/random_item/on_round_start(flags_round_type=NOFLAGS,flags_landmarks=NOFLAGS)
+/obj/effect/landmark/random_item/after_round_start(flags_round_type=NOFLAGS,flags_landmarks=NOFLAGS)
 	if(flags_landmarks & MODE_LANDMARK_RANDOM_ITEMS)
 		spawn_item()
 	qdel(src)

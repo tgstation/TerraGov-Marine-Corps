@@ -36,7 +36,7 @@
 	if(panel_open)
 		to_chat(user, "<span class='notice'>The maintenance hatch is open.</span>")
 
-/obj/machinery/power/smes/New()
+/obj/machinery/power/smes/Initialize()
 	. = ..()
 	if(!powernet)
 		connect_to_network()
@@ -341,7 +341,7 @@
 	return TRUE
 
 /obj/machinery/power/smes/proc/ion_act()
-	if(z == PLANET_Z_LEVEL)
+	if(is_ground_level(z))
 		if(prob(1)) //explosion
 			for(var/mob/M in viewers(src))
 				M.show_message("<span class='warning'> The [src.name] is making strange noises!</span>", 3, "<span class='warning'> You hear sizzling electronics.</span>", 2)

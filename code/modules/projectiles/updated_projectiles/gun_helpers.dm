@@ -212,7 +212,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 		if(!user || user.stat || user.knocked_down || user.stunned)
 			. = FALSE
 			break
-		if(L && L.health < CONFIG_GET(number/health_threshold_crit))
+		if(L?.health < L.get_crit_threshold())
 			. = FALSE
 			break
 		if(holding)

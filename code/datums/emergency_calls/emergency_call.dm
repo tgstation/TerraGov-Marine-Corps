@@ -204,6 +204,9 @@
 				for(var/datum/mind/M in picked_candidates)
 					members += M
 					create_member(M)
+			else
+				message_admins("ERROR: No picked candidates, aborting.")
+				return
 
 			candidates = list() //Blank out the candidates list for next time.
 			

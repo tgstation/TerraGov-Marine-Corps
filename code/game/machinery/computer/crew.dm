@@ -1,3 +1,7 @@
+#define DISPLAY_ON_SHIP    0
+#define DISPLAY_PLANETSIDE 1
+#define DISPLAY_IN_TRANSIT 2
+
 /obj/machinery/computer/crew
 	name = "Crew monitoring computer"
 	desc = "Used to monitor active health sensors built into most of the crew's uniforms."
@@ -7,8 +11,12 @@
 	active_power_usage = 500
 //	circuit = "/obj/item/circuitboard/computer/crew"
 	var/list/tracked = list()
-	var/list/crewmembers = list()
-
+	var/list/crewmembers_planetside = list()
+	var/list/crewmembers_on_ship = list()
+	var/list/crewmembers_in_transit = list()
+	var/displayed_z_level = DISPLAY_ON_SHIP
+	var/cmp_proc = /proc/cmp_list_asc
+	var/sortkey = "name"
 
 /obj/machinery/computer/crew/New()
 	tracked = list()
@@ -27,20 +35,18 @@
 
 
 /obj/machinery/computer/crew/update_icon()
-
 	if(stat & BROKEN)
 		icon_state = "crewb"
+	else if(stat & NOPOWER)
+		icon_state = "crew0"
+		stat |= NOPOWER
 	else
-		if(stat & NOPOWER)
-			icon_state = "crew0"
-			stat |= NOPOWER
-		else
-			icon_state = initial(icon_state)
-			stat &= ~NOPOWER
-
+		icon_state = initial(icon_state)
+		stat &= ~NOPOWER
 
 /obj/machinery/computer/crew/Topic(href, href_list)
-	if(..()) return
+	if(..())
+		return
 	if( href_list["close"] )
 		var/mob/user = usr
 		var/datum/nanoui/ui = nanomanager.get_open_ui(user, src, "main")
@@ -49,6 +55,16 @@
 		return FALSE
 	if(href_list["update"])
 		updateDialog()
+		return TRUE
+	if(href_list["sortkey"])
+		if(sortkey == href_list["sortkey"])
+			cmp_proc = (cmp_proc == /proc/cmp_list_asc) ? /proc/cmp_list_dsc : /proc/cmp_list_asc
+		else
+			sortkey = href_list["sortkey"]
+			cmp_proc = /proc/cmp_list_asc
+		return TRUE
+	if(href_list["zlevel"])
+		displayed_z_level = text2num(href_list["zlevel"])
 		return TRUE
 
 /obj/machinery/computer/crew/interact(mob/living/user)
@@ -61,7 +77,9 @@
 	scan()
 
 	var/list/data = list()
-	crewmembers.Cut()
+	crewmembers_on_ship.Cut()
+	crewmembers_planetside.Cut()
+	crewmembers_in_transit.Cut()
 
 	for(var/obj/item/clothing/under/C in tracked)
 		var/turf/pos = get_turf(C)
@@ -70,14 +88,17 @@
 			if(ishuman(C.loc))
 
 				var/mob/living/carbon/human/H = C.loc
-				if(H.mind.special_role && H.loc.z == 1) continue // survivors
+
+				if(H.mind.special_role && is_ground_level(H.loc.z))
+					continue // survivors
+
 				if(H.w_uniform != C)
 					continue
 
 				var/list/crewmemberData = list()
 
 				crewmemberData["sensor_type"] = C.sensor_mode
-				crewmemberData["dead"] = H.stat > 1
+				crewmemberData["status"] = "[H.stat]"
 				crewmemberData["oxy"] = round(H.getOxyLoss(), 1)
 				crewmemberData["tox"] = round(H.getToxLoss(), 1)
 				crewmemberData["fire"] = round(H.getFireLoss(), 1)
@@ -96,12 +117,23 @@
 
 				var/area/A = get_area(H)
 				crewmemberData["area"] = sanitize(A.name)
-//				crewmemberData["x"] = pos.x
-//				crewmemberData["y"] = pos.y
+				crewmemberData["x"] = pos.x
+				crewmemberData["y"] = pos.y
 
-				crewmembers += list(crewmemberData)
+				if(is_ground_level(pos.z))
+					crewmembers_planetside += list(crewmemberData)
+				else if(is_mainship_level(pos.z))
+					crewmembers_on_ship += list(crewmemberData)
+				else if(is_low_orbit_level(pos.z))
+					crewmembers_in_transit += list(crewmemberData)
 
-	data["crewmembers"] = sortTim(crewmembers, /proc/sensor_compare)
+	switch(displayed_z_level)
+		if(DISPLAY_ON_SHIP)
+			data["crewmembers"] = sortListUsingKey(crewmembers_on_ship, cmp_proc, sortkey)
+		if(DISPLAY_PLANETSIDE)
+			data["crewmembers"] = sortListUsingKey(crewmembers_planetside, cmp_proc, sortkey)
+		if(DISPLAY_IN_TRANSIT)
+			data["crewmembers"] = sortListUsingKey(crewmembers_in_transit, cmp_proc, sortkey)
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
@@ -129,5 +161,6 @@
 			tracked |= C
 	return TRUE
 
-/proc/sensor_compare(list/a, list/b, key="name")
-	return sorttext(b[key], a[key])
+#undef DISPLAY_ON_SHIP
+#undef DISPLAY_PLANETSIDE
+#undef DISPLAY_IN_TRANSIT

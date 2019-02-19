@@ -815,9 +815,9 @@
 /datum/reagent/xeno_neurotoxin/overdose_process(mob/living/M)
 	M.adjustOxyLoss(min(2,volume * 0.1 * REM)) //Overdose starts applying more oxy damage
 
-/datum/reagent/xeno_neurotoxin/overdose_crit_process(mob/living/M)
+/datum/reagent/xeno_neurotoxin/overdose_crit_process(mob/living/carbon/M)
 	M.adjustOxyLoss(min(4,volume * 0.2 * REM)) //Overdose starts applying more oxy damage
-	M.losebreath = max(10, M.losebreath-10) //Can't breathe; for punishing the bullies
+	M.Losebreath(10) //Can't breathe; for punishing the bullies
 	M.Jitter(6) //Lets Xenos know they're ODing and should probably stop.
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M

@@ -10,3 +10,8 @@
 	if(handcuffed)
 		return TRUE
 	return FALSE
+
+/mob/living/carbon/proc/need_breathe()
+	if(reagents.has_reagent("lexorin") || in_stasis)
+		return FALSE
+	return TRUE

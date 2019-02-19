@@ -746,7 +746,7 @@ var/global/image/busy_indicator_hostile
 		if(!user || user.loc != original_loc || get_turf(user) != original_turf || user.stat || user.knocked_down || user.stunned)
 			. = FALSE
 			break
-		if(L?.health && L.health < CONFIG_GET(number/health_threshold_crit))
+		if(L?.health && L.health < L.get_crit_threshold())
 			. = FALSE //catching mobs below crit level but haven't had their stat var updated
 			break
 		if(needhand)
@@ -1546,3 +1546,12 @@ proc/pick_closest_path(value, list/matches = get_fancy_list_of_atom_types())
 	if(istype(D))
 		return !QDELETED(D)
 	return FALSE
+
+//Repopulates sortedAreas list
+/proc/repopulate_sorted_areas()
+	GLOB.sortedAreas = list()
+
+	for(var/area/A in world)
+		GLOB.sortedAreas.Add(A)
+
+	sortTim(GLOB.sortedAreas, /proc/cmp_name_asc)

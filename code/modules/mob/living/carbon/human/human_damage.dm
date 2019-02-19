@@ -11,13 +11,13 @@
 		total_brute	+= O.brute_dam
 		total_burn	+= O.burn_dam
 
-	var/oxy_l = ((species.flags & NO_BREATHE) ? 0 : getOxyLoss())
+	var/oxy_l = getOxyLoss()
 	var/tox_l = ((species.flags & NO_POISON) ? 0 : getToxLoss())
 	var/clone_l = getCloneLoss()
 
 	health = species.total_health - oxy_l - tox_l - clone_l - total_burn - total_brute
 
-	if(CONFIG_GET(flag/husking_on) && ((species.total_health - total_burn) < CONFIG_GET(number/health_threshold_dead) * 4))
+	if(CONFIG_GET(flag/husking_on) && ((species.total_health - total_burn) < get_death_threshold() * 4))
 		ChangeToHusk()
 
 
@@ -187,23 +187,15 @@
 				to_chat(src, "<span class = 'notice'>Your [O.display_name] is shaped normally again.</span>")
 
 
-// Defined here solely to take species flags into account without having to recast at mob/living level.
-/mob/living/carbon/human/getOxyLoss()
-	if(species.flags & NO_BREATHE)
-		oxyloss = 0
+/mob/living/carbon/human/adjustOxyLoss(amount, forced = FALSE)
+	if(species.flags & NO_BREATHE && !forced)
+		return
 	return ..()
 
-/mob/living/carbon/human/adjustOxyLoss(var/amount)
-	if(species.flags & NO_BREATHE)
-		oxyloss = 0
-	else
-		..()
-
-/mob/living/carbon/human/setOxyLoss(var/amount)
-	if(species.flags & NO_BREATHE)
-		oxyloss = 0
-	else
-		..()
+/mob/living/carbon/human/setOxyLoss(amount, forced = FALSE)
+	if(species.flags & NO_BREATHE && !forced)
+		return
+	return ..()
 
 /mob/living/carbon/human/getToxLoss()
 	if(species.flags & NO_POISON)
