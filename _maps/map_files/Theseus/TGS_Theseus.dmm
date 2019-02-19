@@ -3036,7 +3036,6 @@
 "aic" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 6;
-	tag = "icon-intact (NORTHEAST)"
 	},
 /obj/machinery/meter,
 /turf/open/floor/almayer{
@@ -21035,7 +21034,6 @@
 "aPs" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 10;
-	tag = "icon-intact (NORTHWEST)"
 	},
 /turf/open/floor/almayer{
 	dir = 5;
@@ -21496,7 +21494,6 @@
 "aQw" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 6;
-	tag = "icon-intact (NORTHEAST)"
 	},
 /obj/machinery/meter,
 /turf/open/floor/almayer{
@@ -21551,7 +21548,6 @@
 "aQB" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 10;
-	tag = "icon-intact (NORTHWEST)"
 	},
 /obj/machinery/meter,
 /turf/open/floor/almayer{
@@ -45993,7 +45989,6 @@
 "bQR" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 10;
-	tag = "icon-intact (NORTHWEST)"
 	},
 /obj/machinery/meter,
 /turf/open/floor/almayer/mono,
@@ -46216,7 +46211,6 @@
 "bRs" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 6;
-	tag = "icon-intact (NORTHEAST)"
 	},
 /obj/machinery/meter,
 /turf/open/floor/almayer{
@@ -46265,7 +46259,6 @@
 "bRw" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 10;
-	tag = "icon-intact (NORTHWEST)"
 	},
 /obj/machinery/meter,
 /turf/open/floor/almayer{

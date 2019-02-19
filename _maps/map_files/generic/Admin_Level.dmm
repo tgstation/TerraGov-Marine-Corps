@@ -378,7 +378,6 @@
 "bc" = (
 /obj/machinery/atmospherics/pipe/manifold/general/visible{
 	dir = 1;
-	tag = "icon-manifold (NORTH)"
 	},
 /turf/open/floor,
 /area/tdome)
@@ -1654,7 +1653,6 @@
 "dJ" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 10;
-	tag = "icon-intact (NORTHWEST)"
 	},
 /obj/machinery/light/small{
 	tag = "icon-bulb1 (EAST)";

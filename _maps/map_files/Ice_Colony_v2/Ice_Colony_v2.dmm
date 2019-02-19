@@ -35031,7 +35031,6 @@
 /obj/item/tool/wrench,
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 6;
-	tag = "icon-intact (NORTHEAST)"
 	},
 /turf/open/floor{
 	tag = "icon-whitered (WEST)";
