@@ -6459,9 +6459,7 @@
 	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Jan Horris"
 	},
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/lv624/lazarus/research)
 "awJ" = (
 /turf/closed/wall,
@@ -11091,14 +11089,10 @@
 /area/lv624/ground/compound/c)
 "aLv" = (
 /obj/structure/table,
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/lv624/lazarus/research)
 "aLw" = (
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/lv624/lazarus/research)
 "aLx" = (
 /obj/machinery/shower{
@@ -11108,9 +11102,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/lv624/lazarus/research)
 "aLy" = (
 /obj/machinery/vending/phoronresearch,
@@ -11440,15 +11432,11 @@
 /area/lv624/ground/jungle6)
 "aMp" = (
 /obj/item/bananapeel,
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/lv624/lazarus/research)
 "aMq" = (
 /obj/effect/decal/remains/human,
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/lv624/lazarus/research)
 "aMr" = (
 /obj/machinery/door/airlock/almayer/research{
@@ -14238,9 +14226,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
 "aUh" = (
 /obj/structure/window/reinforced/tinted,
@@ -14249,27 +14235,21 @@
 	on = 1
 	},
 /obj/effect/landmark/random_item/crap,
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
 "aUi" = (
 /obj/machinery/shower{
 	dir = 4
 	},
 /obj/effect/glowshroom,
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
 "aUj" = (
 /obj/machinery/shower{
 	dir = 8
 	},
 /obj/effect/decal/cleanable/blood/splatter,
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
 "aUk" = (
 /obj/structure/closet/coffin{
@@ -14476,14 +14456,10 @@
 /obj/structure/toilet{
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
 "aUM" = (
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
 "aUN" = (
 /obj/structure/window/reinforced/tinted,
@@ -14493,25 +14469,19 @@
 /obj/structure/toilet{
 	dir = 8
 	},
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
 "aUO" = (
 /obj/machinery/shower{
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
 "aUP" = (
 /obj/machinery/shower{
 	dir = 8
 	},
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
 "aUQ" = (
 /obj/structure/table/woodentable,
@@ -14751,9 +14721,7 @@
 	dir = 8
 	},
 /obj/effect/glowshroom,
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
 "aVv" = (
 /obj/structure/table/woodentable,
@@ -14906,9 +14874,7 @@
 /area/lv624/ground/jungle9)
 "aWa" = (
 /obj/effect/glowshroom,
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
 "aWb" = (
 /obj/structure/cable/yellow{
@@ -14916,9 +14882,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
 "aWc" = (
 /obj/machinery/power/apc{
@@ -14930,9 +14894,7 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
 "aWd" = (
 /obj/structure/cable/yellow{
@@ -15133,17 +15095,13 @@
 	dir = 4;
 	on = 1
 	},
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
 "aWI" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
 "aWJ" = (
 /obj/structure/sink{
@@ -15157,9 +15115,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
 	},
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
 "aWK" = (
 /obj/structure/cable/yellow{
@@ -15168,9 +15124,7 @@
 	icon_state = "1-8";
 	layer = 2.44
 	},
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
 "aWL" = (
 /obj/structure/table,
@@ -15178,9 +15132,7 @@
 	icon_state = "mirror_broke";
 	pixel_x = 30
 	},
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
 "aWM" = (
 /obj/structure/table/woodentable,
@@ -15332,15 +15284,11 @@
 /obj/structure/mirror{
 	pixel_y = -30
 	},
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
 "aXk" = (
 /obj/machinery/washing_machine,
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
 "aXl" = (
 /obj/structure/cable/yellow{
@@ -15349,15 +15297,11 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
 "aXm" = (
 /obj/effect/landmark/random_item/crap,
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
 "aXn" = (
 /obj/structure/table,
@@ -15366,9 +15310,7 @@
 	},
 /obj/item/explosive/grenade/chem_grenade/cleaner,
 /obj/item/reagent_container/spray/cleaner,
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
 "aXo" = (
 /obj/structure/closet/coffin,
@@ -15628,9 +15570,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
 "aXX" = (
 /obj/machinery/door/airlock/multi_tile/almayer/generic{
@@ -19726,20 +19666,14 @@
 	dir = 8
 	},
 /obj/item/tool/kitchen/rollingpin,
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/lv624/lazarus/kitchen)
 "biy" = (
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/lv624/lazarus/kitchen)
 "biz" = (
 /obj/effect/landmark/random_item/crap,
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/lv624/lazarus/kitchen)
 "biA" = (
 /obj/machinery/light/small{
@@ -19751,9 +19685,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/lv624/lazarus/kitchen)
 "biB" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -20000,17 +19932,13 @@
 "bjo" = (
 /obj/structure/table,
 /obj/item/clothing/suit/chef/classic,
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/lv624/lazarus/kitchen)
 "bjp" = (
 /obj/structure/bed/chair{
 	dir = 8
 	},
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/lv624/lazarus/kitchen)
 "bjq" = (
 /obj/machinery/requests_console{
@@ -20022,9 +19950,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/lv624/lazarus/kitchen)
 "bjr" = (
 /obj/effect/landmark/random_item/crap,
@@ -20233,21 +20159,15 @@
 "bjT" = (
 /obj/structure/table,
 /obj/item/reagent_container/food/snacks/grilledcheese,
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/lv624/lazarus/kitchen)
 "bjU" = (
 /obj/structure/closet/secure_closet/freezer/kitchen,
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/lv624/lazarus/kitchen)
 "bjV" = (
 /obj/structure/closet/secure_closet/freezer/meat,
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/lv624/lazarus/kitchen)
 "bjW" = (
 /obj/structure/cable/yellow{
@@ -20256,9 +20176,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/lv624/lazarus/kitchen)
 "bjX" = (
 /turf/open/floor/plating,
@@ -20810,9 +20728,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/lv624/lazarus/kitchen)
 "blw" = (
 /obj/machinery/power/apc{
@@ -20823,9 +20739,7 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/lv624/lazarus/kitchen)
 "blx" = (
 /obj/item/tool/kitchen/knife/butcher,
@@ -20833,9 +20747,7 @@
 /obj/structure/extinguisher_cabinet{
 	pixel_y = 30
 	},
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/lv624/lazarus/kitchen)
 "bly" = (
 /obj/structure/bed/chair{
@@ -21173,9 +21085,7 @@
 /area/lv624/lazarus/main_hall)
 "bmg" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/lv624/lazarus/kitchen)
 "bmh" = (
 /obj/structure/cable/yellow{
@@ -21183,9 +21093,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/lv624/lazarus/kitchen)
 "bmi" = (
 /obj/effect/landmark/random_item/crap,
@@ -21194,9 +21102,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/lv624/lazarus/kitchen)
 "bmj" = (
 /obj/structure/cable/yellow{
@@ -21209,9 +21115,7 @@
 	dir = 1;
 	on = 1
 	},
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/lv624/lazarus/kitchen)
 "bmk" = (
 /obj/item/shard,
@@ -21455,22 +21359,16 @@
 /area/lv624/lazarus/main_hall)
 "bmT" = (
 /mob/living/simple_animal/mouse,
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/lv624/lazarus/kitchen)
 "bmU" = (
 /obj/structure/reagent_dispensers/watertank,
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/lv624/lazarus/kitchen)
 "bmV" = (
 /obj/machinery/gibber,
 /obj/effect/landmark/random_item/good,
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/lv624/lazarus/kitchen)
 "bmW" = (
 /turf/closed/wall/r_wall,
@@ -21692,15 +21590,11 @@
 	pixel_x = -8
 	},
 /obj/structure/rack,
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/lv624/lazarus/kitchen)
 "bnB" = (
 /obj/structure/closet/secure_closet/bar,
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/lv624/lazarus/kitchen)
 "bnC" = (
 /turf/closed/wall/mineral/sandstone,

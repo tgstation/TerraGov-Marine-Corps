@@ -5511,9 +5511,7 @@
 	icon_state = "sink";
 	pixel_x = 11;
 	},
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/shuttle/distress/start_big)
 "mL" = (
 /obj/structure/table/almayer,
@@ -5591,9 +5589,7 @@
 	icon_state = "toilet00";
 	dir = 1
 	},
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/shuttle/distress/start_big)
 "mR" = (
 /turf/open/floor/carpet{

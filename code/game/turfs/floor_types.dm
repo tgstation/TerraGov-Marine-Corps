@@ -278,6 +278,8 @@
 		..()
 		name = "floor"
 
+/turf/open/floor/freezer
+	icon_state = "freezerfloor"
 
 /turf/open/floor/light
 	name = "Light floor"

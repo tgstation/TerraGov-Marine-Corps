@@ -5040,20 +5040,14 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_w)
 "akR" = (
 /obj/machinery/shower{
 	icon_state = "shower";
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_w)
 "akS" = (
 /obj/machinery/shower{
@@ -5062,17 +5056,11 @@
 	pixel_x = 5;
 	pixel_y = -8
 	},
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_e)
 "akT" = (
 /obj/structure/curtain/open/shower,
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_e)
 "akU" = (
 /obj/machinery/shower{
@@ -5081,29 +5069,17 @@
 	pixel_x = 5;
 	pixel_y = -8
 	},
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_w)
 "akV" = (
 /obj/structure/curtain/open/shower,
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_w)
 "akW" = (
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_w)
 "akX" = (
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_e)
 "akY" = (
 /obj/structure/cable{
@@ -5115,10 +5091,7 @@
 	pixel_y = 24;
 	start_charge = 0
 	},
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_w)
 "akZ" = (
 /obj/structure/cable{
@@ -5130,37 +5103,25 @@
 	pixel_y = 24;
 	start_charge = 0
 	},
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_e)
 "ala" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_e)
 "alb" = (
 /obj/structure/curtain/shower,
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_e)
 "alc" = (
 /obj/machinery/shower{
 	dir = 8
 	},
 /obj/item/tool/soap,
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_e)
 "ald" = (
 /obj/structure/cable{
@@ -5207,10 +5168,7 @@
 /area/ice_colony/underground/hangar)
 "alh" = (
 /obj/item/tool/soap,
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_w)
 "ali" = (
 /turf/open/ice,
@@ -5228,10 +5186,7 @@
 /area/ice_colony/surface/dorms/restroom_w)
 "all" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_w)
 "alm" = (
 /turf/closed/wall,
@@ -5242,10 +5197,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_w)
 "alo" = (
 /obj/structure/cable{
@@ -5253,17 +5205,11 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_e)
 "alp" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_e)
 "alq" = (
 /obj/structure/rack,
@@ -5499,17 +5445,11 @@
 	},
 /obj/effect/landmark/start/surv_spawn,
 /obj/item/storage/toolbox/emergency,
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_w)
 "alU" = (
 /obj/structure/curtain/shower,
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_w)
 "alV" = (
 /obj/machinery/shower{
@@ -5517,10 +5457,7 @@
 	},
 /obj/effect/landmark/corpsespawner/bridgeofficer,
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_e)
 "alW" = (
 /obj/structure/rack,
@@ -5726,10 +5663,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
 	},
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_w)
 "amu" = (
 /obj/structure/cable{
@@ -5740,10 +5674,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_w)
 "amv" = (
 /turf/open/floor{
@@ -5771,20 +5702,14 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
 	},
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_e)
 "amy" = (
 /obj/item/tool/soap,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
 	},
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_e)
 "amz" = (
 /turf/open/ice,
@@ -5942,10 +5867,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/item/tool/soap,
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_w)
 "amT" = (
 /obj/structure/cable{
@@ -5954,19 +5876,13 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_e)
 "amU" = (
 /obj/machinery/shower{
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_e)
 "amV" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -6302,10 +6218,7 @@
 /obj/structure/window/reinforced/tinted{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_w)
 "anC" = (
 /obj/structure/cable{
@@ -6314,10 +6227,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_w)
 "anD" = (
 /obj/structure/cable{
@@ -6343,10 +6253,7 @@
 /obj/structure/window/reinforced/tinted{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_e)
 "anG" = (
 /obj/structure/cable{
@@ -6505,10 +6412,7 @@
 	req_access_txt = "100";
 	req_one_access_txt = "0"
 	},
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_w)
 "anZ" = (
 /obj/structure/sink{
@@ -6519,10 +6423,7 @@
 /obj/structure/mirror{
 	pixel_x = 24
 	},
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_w)
 "aoa" = (
 /obj/structure/cable{
@@ -6622,10 +6523,7 @@
 /obj/structure/mirror{
 	pixel_x = -24
 	},
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_e)
 "aom" = (
 /obj/machinery/door/airlock/almayer/generic{
@@ -6634,10 +6532,7 @@
 	req_access_txt = "100";
 	req_one_access_txt = "0"
 	},
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_e)
 "aon" = (
 /obj/structure/cable{
@@ -7169,10 +7064,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_w)
 "apn" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -7276,10 +7168,7 @@
 /area/ice_colony/surface/mining)
 "apv" = (
 /obj/effect/landmark/huntergames_secondary_spawn,
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_e)
 "apw" = (
 /turf/open/floor{
@@ -7677,10 +7566,7 @@
 "aql" = (
 /obj/machinery/space_heater,
 /obj/machinery/light,
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_w)
 "aqm" = (
 /obj/structure/cable{
@@ -7693,20 +7579,14 @@
 	dir = 4;
 	icon_state = "pipe-c"
 	},
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_w)
 "aqn" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_w)
 "aqo" = (
 /obj/structure/cable{
@@ -7735,10 +7615,7 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_e)
 "aqq" = (
 /obj/structure/cable{
@@ -7751,18 +7628,12 @@
 	dir = 2;
 	icon_state = "pipe-c"
 	},
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_e)
 "aqr" = (
 /obj/machinery/space_heater,
 /obj/machinery/light,
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_e)
 "aqs" = (
 /turf/open/ice,
@@ -8020,10 +7891,7 @@
 	req_access_txt = "100";
 	req_one_access_txt = "0"
 	},
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_w)
 "aqO" = (
 /obj/structure/cable{
@@ -8051,10 +7919,7 @@
 	req_access_txt = "100";
 	req_one_access_txt = "0"
 	},
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_e)
 "aqQ" = (
 /obj/structure/bed,
@@ -8198,10 +8063,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_e)
 "arb" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -12637,10 +12499,7 @@
 	dir = 4
 	},
 /obj/effect/landmark/start/surv_spawn,
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_e)
 "aAa" = (
 /obj/machinery/disposal,
@@ -19463,10 +19322,7 @@
 	},
 /area/ice_colony/surface/research/field_gear)
 "aNZ" = (
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aOa" = (
 /obj/machinery/smartfridge,
@@ -19648,27 +19504,18 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aOz" = (
 /obj/structure/table/reinforced,
 /obj/effect/landmark/random_item/crap,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/item/tool/kitchen/utensil/knife,
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aOA" = (
 /obj/structure/table/reinforced,
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aOB" = (
 /obj/structure/table/reinforced,
@@ -19681,19 +19528,13 @@
 	dir = 1
 	},
 /obj/item/reagent_container/food/snacks/cheeseburger,
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aOC" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_container/food/snacks/fortunecookie,
 /obj/item/tool/kitchen/utensil/fork,
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aOD" = (
 /obj/structure/table/reinforced,
@@ -19704,18 +19545,12 @@
 	pixel_x = -1;
 	pixel_y = 2
 	},
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aOE" = (
 /obj/effect/landmark/random_item/crap,
 /obj/item/stack/sheet/metal,
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aOF" = (
 /obj/structure/table/reinforced,
@@ -19723,19 +19558,13 @@
 	dir = 1
 	},
 /obj/item/reagent_container/food/snacks/hotchili,
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aOG" = (
 /obj/machinery/door/window/northright{
 	name = "Canteen"
 	},
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aOH" = (
 /obj/structure/table/woodentable,
@@ -20141,17 +19970,11 @@
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -32
 	},
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aPx" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aPy" = (
 /obj/structure/cable{
@@ -20159,10 +19982,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aPz" = (
 /obj/item/ammo_magazine/shotgun,
@@ -20414,19 +20234,13 @@
 	pixel_x = -24
 	},
 /obj/structure/closet/secure_closet/freezer/kitchen,
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aQd" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aQe" = (
 /obj/structure/cable{
@@ -20438,10 +20252,7 @@
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aQf" = (
 /turf/open/floor{
@@ -20455,20 +20266,14 @@
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aQh" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
 	on = 1
 	},
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aQi" = (
 /obj/effect/decal/cleanable/blood{
@@ -20947,10 +20752,7 @@
 	},
 /obj/machinery/vending/dinnerware,
 /obj/machinery/light,
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aQZ" = (
 /obj/structure/cable,
@@ -20959,10 +20761,7 @@
 	pixel_y = -24;
 	start_charge = 0
 	},
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aRa" = (
 /obj/structure/sink{
@@ -20975,10 +20774,7 @@
 	pixel_x = 6;
 	pixel_y = -2
 	},
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aRb" = (
 /obj/machinery/alarm{
@@ -21052,10 +20848,7 @@
 "aRg" = (
 /obj/structure/table,
 /obj/machinery/microwave,
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aRh" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -21081,10 +20874,7 @@
 /obj/structure/table,
 /obj/item/reagent_container/food/snacks/flour,
 /obj/item/tool/kitchen/rollingpin,
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aRk" = (
 /obj/structure/table,
@@ -21102,10 +20892,7 @@
 	pixel_y = 3
 	},
 /obj/machinery/light,
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aRl" = (
 /obj/machinery/vending/boozeomat,
@@ -21145,10 +20932,7 @@
 /area/ice_colony/surface/bar/bar)
 "aRp" = (
 /obj/structure/largecrate/random,
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aRq" = (
 /obj/effect/decal/cleanable/blood{
@@ -21536,10 +21320,7 @@
 	req_access_txt = "100";
 	req_one_access_txt = "0"
 	},
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aRZ" = (
 /turf/closed/ice,
@@ -21912,10 +21693,7 @@
 "aSQ" = (
 /obj/structure/plasticflaps,
 /obj/structure/reagent_dispensers/beerkeg,
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aSR" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -22031,40 +21809,25 @@
 /area/ice_colony/surface/research/temporary)
 "aTe" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aTf" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_container/food/snacks/bigbiteburger,
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aTg" = (
 /obj/item/tool/kitchen/knife/butcher,
 /obj/structure/table/reinforced,
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aTh" = (
 /obj/structure/kitchenspike,
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aTi" = (
 /obj/machinery/gibber,
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aTj" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -22078,10 +21841,7 @@
 /area/ice_colony/surface/research)
 "aTk" = (
 /obj/structure/reagent_dispensers/beerkeg,
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/bar/bar)
 "aTl" = (
 /turf/open/floor{
@@ -22109,10 +21869,7 @@
 /area/ice_colony/surface/research)
 "aTo" = (
 /obj/item/storage/toolbox/emergency,
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/bar/bar)
 "aTp" = (
 /obj/structure/bed/chair/wood/normal,
@@ -22124,10 +21881,7 @@
 /area/ice_colony/surface/command/crisis)
 "aTq" = (
 /obj/structure/largecrate/random,
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/bar/bar)
 "aTr" = (
 /obj/machinery/space_heater,
@@ -22445,17 +22199,11 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/bar/bar)
 "aTQ" = (
 /obj/effect/landmark/start/surv_spawn,
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/bar/bar)
 "aTR" = (
 /turf/open/floor{
@@ -22465,10 +22213,7 @@
 	},
 /area/ice_colony/surface/research)
 "aTS" = (
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/bar/bar)
 "aTT" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -22750,20 +22495,14 @@
 	dir = 4;
 	pixel_x = -24
 	},
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aUz" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 1;
 	on = 1
 	},
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aUA" = (
 /turf/open/floor{
@@ -22777,10 +22516,7 @@
 "aUB" = (
 /obj/structure/janitorialcart,
 /obj/item/tool/mop,
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/bar/bar)
 "aUC" = (
 /obj/structure/table,
@@ -22945,31 +22681,19 @@
 "aUS" = (
 /obj/structure/table/reinforced,
 /obj/machinery/reagentgrinder,
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aUT" = (
 /obj/machinery/chem_master/condimaster,
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aUU" = (
 /obj/machinery/light/small,
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aUV" = (
 /obj/structure/closet/bodybag,
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aUW" = (
 /turf/closed/wall,
@@ -22980,20 +22704,14 @@
 /area/ice_colony/surface/research/tech_storage)
 "aUY" = (
 /obj/structure/closet/crate/freezer/rations,
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aUZ" = (
 /turf/closed/wall/r_wall,
 /area/ice_colony/surface/research/tech_storage)
 "aVa" = (
 /obj/structure/kitchenspike,
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/bar/bar)
 "aVb" = (
 /obj/structure/table,
@@ -25588,10 +25306,7 @@
 	dir = 8
 	},
 /obj/structure/closet/secure_closet/freezer/meat,
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "bay" = (
 /turf/open/floor/plating/icefloor{
@@ -26008,10 +25723,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "bbk" = (
 /turf/open/floor/plating/icefloor{
@@ -26308,10 +26020,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/bar/bar)
 "bbV" = (
 /obj/structure/cable{
@@ -26413,20 +26122,14 @@
 /obj/machinery/firealarm{
 	pixel_y = 24
 	},
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/underground/requesition/storage)
 "bch" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
 /obj/machinery/alarm{
 	pixel_y = 24
 	},
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/underground/requesition/storage)
 "bci" = (
 /turf/closed/wall,
@@ -26465,10 +26168,7 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/underground/requesition/storage)
 "bcm" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -26479,10 +26179,7 @@
 /area/ice_colony/surface/hydroponics/south)
 "bcn" = (
 /obj/structure/closet/crate/freezer/rations,
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/underground/requesition/storage)
 "bco" = (
 /turf/closed/ice_rock/corners{
@@ -26621,10 +26318,7 @@
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad)
 "bcH" = (
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/underground/requesition/storage)
 "bcI" = (
 /obj/structure/cable/yellow{
@@ -26633,10 +26327,7 @@
 	icon_state = "1-2";
 	layer = 2.44
 	},
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/underground/requesition/storage)
 "bcJ" = (
 /turf/open/floor{
@@ -26647,10 +26338,7 @@
 /area/ice_colony/surface/excavation)
 "bcK" = (
 /obj/structure/closet/crate/freezer,
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/underground/requesition/storage)
 "bcL" = (
 /turf/open/floor{
@@ -26912,10 +26600,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/underground/requesition/storage)
 "bdn" = (
 /turf/closed/ice_rock/eastWall,
@@ -26988,10 +26673,7 @@
 /area/ice_colony/exterior/surface/landing_pad)
 "bdt" = (
 /obj/structure/reagent_dispensers/beerkeg,
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/underground/requesition/storage)
 "bdu" = (
 /turf/open/floor{
@@ -27062,10 +26744,7 @@
 	dir = 4;
 	on = 1
 	},
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/underground/requesition/storage)
 "bdE" = (
 /obj/structure/cable/yellow{
@@ -27077,10 +26756,7 @@
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/underground/requesition/storage)
 "bdF" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -27273,10 +26949,7 @@
 /area/ice_colony/exterior/surface/landing_pad_external)
 "bdU" = (
 /obj/structure/bigDelivery,
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/underground/requesition/storage)
 "bdV" = (
 /obj/structure/closet/radiation,
@@ -28641,10 +28314,7 @@
 	req_access_txt = "100";
 	req_one_access_txt = "0"
 	},
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/bar/bar)
 "bgQ" = (
 /obj/structure/barricade/wooden{
@@ -28666,10 +28336,7 @@
 	tag = "icon-gib6"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/bar/bar)
 "bgT" = (
 /obj/machinery/landinglight/ds2/delaythree{
@@ -31471,10 +31138,7 @@
 /area/ice_colony/exterior/underground/caves)
 "bmR" = (
 /obj/effect/landmark/monkey_spawn,
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "bmS" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -32719,10 +32383,7 @@
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/underground/requesition/storage)
 "bpG" = (
 /obj/structure/cable/yellow{
@@ -32740,10 +32401,7 @@
 	req_access_txt = "100";
 	req_one_access_txt = "0"
 	},
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/underground/requesition/storage)
 "bpH" = (
 /obj/structure/cable/yellow{
@@ -43547,10 +43205,7 @@
 /area/ice_colony/underground/security/brig)
 "bKP" = (
 /obj/effect/landmark/monkey_spawn,
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/underground/requesition/storage)
 "bKQ" = (
 /obj/structure/cable/yellow{
@@ -43675,10 +43330,7 @@
 	corpseradio = /obj/item/device/radio/headset;
 	corpsesuit = /obj/item/clothing/suit/storage/snow_suit
 	},
-/turf/open/floor{
-	tag = "icon-freezerfloor";
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/bar/bar)
 "bLc" = (
 /obj/machinery/light{
@@ -49440,9 +49092,7 @@
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/excavation{
 	name = "\improper Excavation Barracks"
 	})
@@ -49457,9 +49107,7 @@
 	dir = 8;
 	on = 1
 	},
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/ice_colony/surface/excavation{
 	name = "\improper Excavation Barracks"
 	})
