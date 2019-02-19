@@ -2461,7 +2461,7 @@
 	last_hivelord_sting = world.time
 	use_plasma(150)
 
-	addtimer(CALLBACK(src, .hivelord_sting_cooldown), HIVELORRD_STING_COOLDOWN)
+	addtimer(CALLBACK(src, .hivelord_sting_cooldown), HIVELORD_STING_COOLDOWN)
 
 	recurring_injection(H, "virus1")
 
