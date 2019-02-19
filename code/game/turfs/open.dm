@@ -199,10 +199,15 @@
 /turf/open/gm/grass/grass2
 	icon_state = "grass2"
 
+/turf/open/gm/grass/beach
+	icon_state = "grassbeach"
+
+/turf/open/gm/grass/beach/corner
+	icon_state = "gbcorner"
+
 /turf/open/gm/dirt2
 	name = "dirt"
 	icon_state = "dirt"
-
 
 /turf/open/gm/dirtgrassborder
 	name = "grass"

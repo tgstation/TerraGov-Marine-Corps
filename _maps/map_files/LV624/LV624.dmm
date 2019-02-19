@@ -3828,15 +3828,13 @@
 /turf/open/gm/grass/grass2,
 /area/lv624/lazarus/atmos)
 "ano" = (
-/turf/open/gm/grass{
-	dir = 2;
-	icon_state = "gbcorner"
+/turf/open/gm/grass/beach/corner{
+	dir = 2
 	},
 /area/lv624/lazarus/atmos)
 "anp" = (
-/turf/open/gm/grass{
-	dir = 2;
-	icon_state = "grassbeach"
+/turf/open/gm/grass/beach{
+	dir = 2
 	},
 /area/lv624/lazarus/atmos)
 "anq" = (
@@ -3851,9 +3849,8 @@
 /turf/closed/gm/dense,
 /area/lv624/ground/jungle8)
 "ant" = (
-/turf/open/gm/grass{
-	dir = 8;
-	icon_state = "gbcorner"
+/turf/open/gm/grass/beach/corner{
+	dir = 8
 	},
 /area/lv624/lazarus/atmos)
 "anu" = (
@@ -17375,15 +17372,13 @@
 /turf/open/gm/grass/grass2,
 /area/lv624/lazarus/atmos)
 "bbN" = (
-/turf/open/gm/grass{
-	dir = 4;
-	icon_state = "grassbeach"
+/turf/open/gm/grass/beach{
+	dir = 4
 	},
 /area/lv624/lazarus/atmos)
 "bbP" = (
-/turf/open/gm/grass{
-	dir = 8;
-	icon_state = "grassbeach"
+/turf/open/gm/grass/beach{
+	dir = 8
 	},
 /area/lv624/lazarus/atmos)
 "bbQ" = (
@@ -19471,21 +19466,18 @@
 /turf/open/gm/grass/grass2,
 /area/lv624/lazarus/atmos)
 "bhl" = (
-/turf/open/gm/grass{
-	dir = 4;
-	icon_state = "gbcorner"
+/turf/open/gm/grass/beach/corner{
+	dir = 4
 	},
 /area/lv624/lazarus/atmos)
 "bhm" = (
-/turf/open/gm/grass{
-	dir = 1;
-	icon_state = "grassbeach"
+/turf/open/gm/grass/beach{
+	dir = 1
 	},
 /area/lv624/lazarus/atmos)
 "bhn" = (
-/turf/open/gm/grass{
-	dir = 1;
-	icon_state = "gbcorner"
+/turf/open/gm/grass/beach/corner{
+	dir = 1
 	},
 /area/lv624/lazarus/atmos)
 "bho" = (

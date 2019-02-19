@@ -3334,15 +3334,13 @@
 /turf/open/space,
 /area/space)
 "hJ" = (
-/turf/open/gm/grass{
-	dir = 2;
-	icon_state = "grassbeach"
+/turf/open/gm/grass/beach{
+	dir = 2
 	},
 /area/whiskey_outpost/outside/west)
 "hK" = (
-/turf/open/gm/grass{
-	dir = 8;
-	icon_state = "gbcorner"
+/turf/open/gm/grass/beach/corner{
+	dir = 8
 	},
 /area/whiskey_outpost/outside/west)
 "hL" = (
@@ -3380,9 +3378,8 @@
 	},
 /area/whiskey_outpost/outside/east)
 "hR" = (
-/turf/open/gm/grass{
-	dir = 8;
-	icon_state = "grassbeach"
+/turf/open/gm/grass/beach{
+	dir = 8
 	},
 /area/whiskey_outpost/outside/west)
 "hS" = (
@@ -3481,9 +3478,8 @@
 /turf/open/gm/dirt,
 /area/whiskey_outpost/outside/east)
 "if" = (
-/turf/open/gm/grass{
-	dir = 2;
-	icon_state = "gbcorner"
+/turf/open/gm/grass/beach/corner{
+	dir = 2
 	},
 /area/whiskey_outpost/outside/west)
 "ig" = (
@@ -3515,9 +3511,8 @@
 /turf/open/floor/plating/platebot,
 /area/whiskey_outpost/outside/east)
 "ik" = (
-/turf/open/gm/grass{
-	dir = 4;
-	icon_state = "grassbeach"
+/turf/open/gm/grass/beach{
+	dir = 4
 	},
 /area/whiskey_outpost/outside/west)
 "il" = (
@@ -3575,15 +3570,13 @@
 	},
 /area/whiskey_outpost/outside/east)
 "iw" = (
-/turf/open/gm/grass{
-	dir = 4;
-	icon_state = "gbcorner"
+/turf/open/gm/grass/beach/corner{
+	dir = 4
 	},
 /area/whiskey_outpost/outside/west)
 "ix" = (
-/turf/open/gm/grass{
-	dir = 1;
-	icon_state = "grassbeach"
+/turf/open/gm/grass/beach{
+	dir = 1
 	},
 /area/whiskey_outpost/outside/west)
 "iy" = (
@@ -3764,9 +3757,8 @@
 /area/whiskey_outpost/outside/east)
 "iW" = (
 /obj/structure/flora/ausbushes/stalkybush,
-/turf/open/gm/grass{
-	dir = 2;
-	icon_state = "grassbeach"
+/turf/open/gm/grass/beach{
+	dir = 2
 	},
 /area/whiskey_outpost/outside/west)
 "iX" = (
@@ -3954,9 +3946,8 @@
 	},
 /area/whiskey_outpost/outside/east)
 "ju" = (
-/turf/open/gm/grass{
-	dir = 8;
-	icon_state = "grassbeach"
+/turf/open/gm/grass/beach{
+	dir = 8
 	},
 /area/whiskey_outpost/outside/east)
 "jv" = (
@@ -4514,24 +4505,21 @@
 /turf/open/gm/dirt,
 /area/whiskey_outpost/outside/south)
 "ld" = (
-/turf/open/gm/grass{
-	dir = 2;
-	icon_state = "grassbeach"
+/turf/open/gm/grass/beach{
+	dir = 2
 	},
 /area/whiskey_outpost/outside/south)
 "le" = (
-/turf/open/gm/grass{
-	dir = 8;
-	icon_state = "gbcorner"
+/turf/open/gm/grass/beach/corner{
+	dir = 8
 	},
 /area/whiskey_outpost/outside/south)
 "lf" = (
 /turf/open/jungle,
 /area/whiskey_outpost/outside/south)
 "lg" = (
-/turf/open/gm/grass{
-	dir = 4;
-	icon_state = "gbcorner"
+/turf/open/gm/grass/beach/corner{
+	dir = 4
 	},
 /area/whiskey_outpost/outside/south)
 "lh" = (
@@ -4554,9 +4542,8 @@
 /turf/open/gm/dirt,
 /area/whiskey_outpost/outside/south)
 "lj" = (
-/turf/open/gm/grass{
-	dir = 8;
-	icon_state = "grassbeach"
+/turf/open/gm/grass/beach{
+	dir = 8
 	},
 /area/whiskey_outpost/outside/south)
 "lk" = (
@@ -4582,9 +4569,8 @@
 /turf/open/gm/dirt,
 /area/whiskey_outpost/outside/south)
 "lp" = (
-/turf/open/gm/grass{
-	dir = 4;
-	icon_state = "grassbeach"
+/turf/open/gm/grass/beach{
+	dir = 4
 	},
 /area/whiskey_outpost/outside/south)
 "lq" = (
@@ -4711,9 +4697,8 @@
 	},
 /area/whiskey_outpost/outside/south)
 "lM" = (
-/turf/open/gm/grass{
-	dir = 1;
-	icon_state = "grassbeach"
+/turf/open/gm/grass/beach{
+	dir = 1
 	},
 /area/whiskey_outpost/outside/south)
 "lN" = (
