@@ -119,10 +119,16 @@
 	config_entry_value = 1
 
 /datum/config_entry/number/health_threshold_crit
-	config_entry_value = -50
+	config_entry_value = 0
 
 /datum/config_entry/number/health_threshold_dead
 	config_entry_value = -100
+
+/datum/config_entry/number/human_health_threshold_crit
+	config_entry_value = -50
+
+/datum/config_entry/number/maintdrone_health_threshold_dead
+	config_entry_value = 0
 
 /datum/config_entry/flag/limbs_can_break
 

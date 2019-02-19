@@ -186,7 +186,7 @@
 				owner.drip(10)
 			if(prob(4))
 				spawn owner.emote("me", 1, "gasps for air!")
-				owner.losebreath += 15
+				owner.Losebreath(15)
 
 /datum/internal_organ/lungs/prosthetic
 	robotic = ORGAN_ROBOT

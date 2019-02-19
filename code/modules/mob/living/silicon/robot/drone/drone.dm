@@ -31,6 +31,9 @@
 
 	holder_type = /obj/item/holder/drone
 
+/mob/living/silicon/robot/drone/get_death_threshold()
+	return CONFIG_GET(number/maintdrone_health_threshold_dead)
+
 /mob/living/silicon/robot/drone/Initialize()
 
 	nicknumber = rand(100,999)

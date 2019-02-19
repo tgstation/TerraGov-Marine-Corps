@@ -43,7 +43,7 @@
 	user.visible_message("<span class='warning'>[user]'s hand slips, slicing [target]'s throat wth \the [tool]!</span>" , \
 	"<span class='warning'>Your hand slips, slicing [target]'s throat wth \the [tool]!</span>" )
 	affected.createwound(CUT, 60)
-	target.losebreath += 10
+	target.Losebreath(10)
 	target.updatehealth()
 	affected.update_wounds()
 
@@ -72,7 +72,7 @@
 /datum/surgery_step/face/mend_vocal/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/head/affected)
 	user.visible_message("<span class='warning'>[user]'s hand slips, clamping [target]'s trachea shut for a moment with \the [tool]!</span>", \
 	"<span class='warning'>Your hand slips, clamping [user]'s trachea shut for a moment with \the [tool]!</span>")
-	target.losebreath += 10
+	target.Losebreath(10)
 	target.updatehealth()
 
 
