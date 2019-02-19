@@ -1,0 +1,4 @@
+author: "Ghommie"
+delete-after: True
+changes: 
+  - bugfix: "Fixes M56 powerpacks possibly breaking codewise upon cell swapping."
