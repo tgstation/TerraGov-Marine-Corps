@@ -6924,9 +6924,8 @@
 /turf/open/floor,
 /area/deathmatch)
 "qu" = (
-/turf/open/gm/dirtgrassborder{
-	dir = 1;
-	icon_state = "grassdirt_corner2"
+/turf/open/gm/dirtgrassborder2/corner{
+	dir = 1
 	},
 /area/deathmatch)
 "qv" = (

@@ -212,6 +212,8 @@
 	name = "grass"
 	icon_state = "grassdirt2_edge"
 
+/turf/open/gm/dirtgrassborder2/corner
+	icon_state = "grassdirt_corner2"
 
 /turf/open/gm/river
 	name = "river"

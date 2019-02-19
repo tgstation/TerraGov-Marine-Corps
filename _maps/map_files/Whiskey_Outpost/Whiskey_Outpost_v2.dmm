@@ -2784,15 +2784,13 @@
 	},
 /area/whiskey_outpost)
 "fS" = (
-/turf/open/gm/dirtgrassborder{
-	dir = 1;
-	icon_state = "grassdirt_corner2"
+/turf/open/gm/dirtgrassborder2/corner{
+	dir = 1
 	},
 /area/whiskey_outpost/outside/north)
 "fT" = (
-/turf/open/gm/dirtgrassborder{
-	dir = 8;
-	icon_state = "grassdirt_corner2"
+/turf/open/gm/dirtgrassborder2/corner{
+	dir = 8
 	},
 /area/whiskey_outpost/outside/north)
 "fU" = (
@@ -2859,9 +2857,8 @@
 	},
 /area/whiskey_outpost)
 "gc" = (
-/turf/open/gm/dirtgrassborder{
-	dir = 4;
-	icon_state = "grassdirt_corner2"
+/turf/open/gm/dirtgrassborder2/corner{
+	dir = 4
 	},
 /area/whiskey_outpost/outside/north)
 "gd" = (
@@ -3245,9 +3242,8 @@
 	icon_state = "x3";
 	name = "whiskey_outpost_marine"
 	},
-/turf/open/gm/dirtgrassborder{
-	dir = 4;
-	icon_state = "grassdirt_corner2"
+/turf/open/gm/dirtgrassborder2/corner{
+	dir = 4
 	},
 /area/whiskey_outpost/outside/north)
 "gT" = (
@@ -3419,9 +3415,8 @@
 	},
 /area/whiskey_outpost/outside/west)
 "hz" = (
-/turf/open/gm/dirtgrassborder{
-	dir = 8;
-	icon_state = "grassdirt_corner2"
+/turf/open/gm/dirtgrassborder2/corner{
+	dir = 8
 	},
 /area/whiskey_outpost/outside/west)
 "hA" = (
@@ -3451,9 +3446,8 @@
 	},
 /area/whiskey_outpost/outside/east)
 "hG" = (
-/turf/open/gm/dirtgrassborder{
-	dir = 1;
-	icon_state = "grassdirt_corner2"
+/turf/open/gm/dirtgrassborder2/corner{
+	dir = 1
 	},
 /area/whiskey_outpost/outside/west)
 "hH" = (
@@ -3665,9 +3659,8 @@
 	},
 /area/whiskey_outpost/outside/east)
 "im" = (
-/turf/open/gm/dirtgrassborder{
-	dir = 8;
-	icon_state = "grassdirt_corner2"
+/turf/open/gm/dirtgrassborder2/corner{
+	dir = 8
 	},
 /area/whiskey_outpost/outside/east)
 "in" = (
@@ -4757,9 +4750,8 @@
 	},
 /area/whiskey_outpost/outside/south)
 "lm" = (
-/turf/open/gm/dirtgrassborder{
-	dir = 8;
-	icon_state = "grassdirt_corner2"
+/turf/open/gm/dirtgrassborder2/corner{
+	dir = 8
 	},
 /area/whiskey_outpost/outside/south)
 "ln" = (
