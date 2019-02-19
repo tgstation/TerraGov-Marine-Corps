@@ -66,9 +66,7 @@
 /turf/open/gm/dirt,
 /area/lv624/ground/caves/east2)
 "aat" = (
-/turf/open/gm/dirtgrassborder{
-	icon_state = "grassdirt_corner2"
-	},
+/turf/open/gm/dirtgrassborder2/corner,
 /area/lv624/ground/caves/central2)
 "aau" = (
 /obj/effect/alien/weeds/node,
@@ -4482,9 +4480,7 @@
 /turf/closed/wall/wood,
 /area/lv624/ground/jungle8)
 "anO" = (
-/turf/open/gm/dirtgrassborder{
-	icon_state = "grassdirt_corner2"
-	},
+/turf/open/gm/dirtgrassborder2/corner,
 /area/lv624/ground/jungle8)
 "anP" = (
 /turf/open/floor/wood{
@@ -5291,9 +5287,7 @@
 /obj/structure/jungle/vines/heavy{
 	icon_state = "Hvy2"
 	},
-/turf/open/gm/dirtgrassborder{
-	icon_state = "grassdirt_corner2"
-	},
+/turf/open/gm/dirtgrassborder2/corner,
 /area/lv624/ground/jungle8)
 "aqr" = (
 /obj/structure/disposalpipe/trunk{
@@ -6556,9 +6550,7 @@
 /turf/open/gm/dirtgrassborder/corner,
 /area/lv624/ground/jungle7)
 "aur" = (
-/turf/open/gm/dirtgrassborder{
-	icon_state = "grassdirt_corner2"
-	},
+/turf/open/gm/dirtgrassborder2/corner,
 /area/lv624/ground/jungle7)
 "aus" = (
 /turf/open/gm/dirtgrassborder2/corner{
@@ -8003,9 +7995,7 @@
 /turf/open/gm/dirtgrassborder/corner,
 /area/lv624/ground/jungle5)
 "ayi" = (
-/turf/open/gm/dirtgrassborder{
-	icon_state = "grassdirt_corner2"
-	},
+/turf/open/gm/dirtgrassborder2/corner,
 /area/lv624/ground/jungle5)
 "ayj" = (
 /obj/structure/jungle/vines{
@@ -8435,9 +8425,7 @@
 /area/lv624/ground/jungle6)
 "aza" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/turf/open/gm/dirtgrassborder{
-	icon_state = "grassdirt_corner2"
-	},
+/turf/open/gm/dirtgrassborder2/corner,
 /area/lv624/ground/jungle6)
 "azb" = (
 /obj/item/shard,
@@ -8637,9 +8625,7 @@
 /area/lv624/ground/jungle6)
 "azz" = (
 /obj/structure/fence,
-/turf/open/gm/dirtgrassborder{
-	icon_state = "grassdirt_corner2"
-	},
+/turf/open/gm/dirtgrassborder2/corner,
 /area/lv624/ground/jungle9)
 "azA" = (
 /obj/structure/fence,
@@ -8730,9 +8716,7 @@
 /area/lv624/lazarus/quartstorage/outdoors)
 "azL" = (
 /obj/structure/fence,
-/turf/open/gm/dirtgrassborder{
-	icon_state = "grassdirt_corner2"
-	},
+/turf/open/gm/dirtgrassborder2/corner,
 /area/lv624/lazarus/quartstorage/outdoors)
 "azM" = (
 /obj/structure/fence,
@@ -9543,9 +9527,7 @@
 /turf/open/gm/dirtgrassborder/corner,
 /area/lv624/ground/jungle6)
 "aCp" = (
-/turf/open/gm/dirtgrassborder{
-	icon_state = "grassdirt_corner2"
-	},
+/turf/open/gm/dirtgrassborder2/corner,
 /area/lv624/ground/jungle6)
 "aCq" = (
 /obj/item/weapon/claymore/mercsword/machete,
@@ -9595,9 +9577,7 @@
 	},
 /area/lv624/lazarus/medbay)
 "aCy" = (
-/turf/open/gm/dirtgrassborder{
-	icon_state = "grassdirt_corner2"
-	},
+/turf/open/gm/dirtgrassborder2/corner,
 /area/lv624/ground/compound/n)
 "aCz" = (
 /obj/effect/landmark/monkey_spawn,
@@ -13818,9 +13798,7 @@
 /area/lv624/ground/jungle5)
 "aOU" = (
 /obj/structure/flora/ausbushes/reedbush,
-/turf/open/gm/dirtgrassborder{
-	icon_state = "grassdirt_corner2"
-	},
+/turf/open/gm/dirtgrassborder2/corner,
 /area/lv624/ground/jungle6)
 "aOV" = (
 /obj/structure/barricade/wooden{
@@ -13868,9 +13846,7 @@
 /turf/open/gm/dirtgrassborder,
 /area/lv624/ground/compound/c)
 "aPb" = (
-/turf/open/gm/dirtgrassborder{
-	icon_state = "grassdirt_corner2"
-	},
+/turf/open/gm/dirtgrassborder2/corner,
 /area/lv624/ground/compound/c)
 "aPe" = (
 /obj/structure/jungle/vines/heavy{
@@ -14050,9 +14026,7 @@
 /turf/open/gm/dirtgrassborder/corner,
 /area/lv624/ground/jungle4)
 "aPE" = (
-/turf/open/gm/dirtgrassborder{
-	icon_state = "grassdirt_corner2"
-	},
+/turf/open/gm/dirtgrassborder2/corner,
 /area/lv624/ground/jungle4)
 "aPF" = (
 /turf/open/gm/coast{
@@ -15321,9 +15295,7 @@
 /area/lv624/ground/jungle4)
 "aSK" = (
 /obj/structure/fence,
-/turf/open/gm/dirtgrassborder{
-	icon_state = "grassdirt_corner2"
-	},
+/turf/open/gm/dirtgrassborder2/corner,
 /area/shuttle/drop2/lz2)
 "aSL" = (
 /obj/structure/barricade/wooden{
@@ -15838,9 +15810,7 @@
 /turf/open/gm/dirtgrassborder,
 /area/shuttle/drop2/lz2)
 "aUd" = (
-/turf/open/gm/dirtgrassborder{
-	icon_state = "grassdirt_corner2"
-	},
+/turf/open/gm/dirtgrassborder2/corner,
 /area/shuttle/drop2/lz2)
 "aUe" = (
 /obj/effect/landmark/random_item/crap,
@@ -16951,9 +16921,7 @@
 /turf/open/gm/dirtgrassborder,
 /area/shuttle/drop1/lz1)
 "aWX" = (
-/turf/open/gm/dirtgrassborder{
-	icon_state = "grassdirt_corner2"
-	},
+/turf/open/gm/dirtgrassborder2/corner,
 /area/shuttle/drop1/lz1)
 "aWY" = (
 /obj/effect/landmark/random_item/crap,
@@ -24390,9 +24358,7 @@
 /turf/open/gm/grass,
 /area/lv624/ground/jungle3)
 "boo" = (
-/turf/open/gm/dirtgrassborder{
-	icon_state = "grassdirt_corner2"
-	},
+/turf/open/gm/dirtgrassborder2/corner,
 /area/lv624/ground/jungle3)
 "bop" = (
 /obj/structure/rack,
@@ -24756,9 +24722,7 @@
 /turf/open/gm/dirtgrassborder,
 /area/lv624/ground/jungle1)
 "bpb" = (
-/turf/open/gm/dirtgrassborder{
-	icon_state = "grassdirt_corner2"
-	},
+/turf/open/gm/dirtgrassborder2/corner,
 /area/lv624/ground/jungle1)
 "bpc" = (
 /obj/effect/landmark/huntergames_primary_spawn,

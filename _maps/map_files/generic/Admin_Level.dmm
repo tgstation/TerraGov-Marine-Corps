@@ -6781,9 +6781,7 @@
 	},
 /area/deathmatch)
 "pU" = (
-/turf/open/gm/dirtgrassborder{
-	icon_state = "grassdirt_corner2"
-	},
+/turf/open/gm/dirtgrassborder2/corner,
 /area/deathmatch)
 "pV" = (
 /obj/structure/closet/hydrant{

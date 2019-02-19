@@ -2862,9 +2862,7 @@
 	},
 /area/whiskey_outpost/outside/north)
 "gd" = (
-/turf/open/gm/dirtgrassborder{
-	icon_state = "grassdirt_corner2"
-	},
+/turf/open/gm/dirtgrassborder2/corner,
 /area/whiskey_outpost/outside/north)
 "ge" = (
 /obj/structure/barricade/sandbags,
@@ -3252,9 +3250,7 @@
 	icon_state = "x3";
 	name = "whiskey_outpost_marine"
 	},
-/turf/open/gm/dirtgrassborder{
-	icon_state = "grassdirt_corner2"
-	},
+/turf/open/gm/dirtgrassborder2/corner,
 /area/whiskey_outpost/outside/north)
 "gU" = (
 /turf/open/gm/river,
