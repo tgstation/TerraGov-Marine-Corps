@@ -391,10 +391,8 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "abe" = (
-/obj/machinery/power/apc{
-	dir = 8;
-	pixel_x = -32;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 8
 	},
 /obj/structure/cable,
 /turf/open/floor{
@@ -1801,11 +1799,8 @@
 /turf/open/floor/plating,
 /area/bigredv2/caves/lambda_lab)
 "aeW" = (
-/obj/machinery/power/apc{
-	dir = 8;
-	name = "Chemistry APC";
-	pixel_x = -30;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 8
 	},
 /obj/structure/cable{
 	icon_state = "0-4";
@@ -2035,10 +2030,8 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "afx" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 28;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable{
 	d2 = 2;
@@ -2143,9 +2136,7 @@
 	},
 /area/bigredv2/outside/telecomm)
 "afK" = (
-/obj/machinery/power/apc{
-	start_charge = 0
-	},
+/obj/machinery/power/apc/drained,
 /obj/structure/cable,
 /obj/machinery/light{
 	dir = 8
@@ -4567,11 +4558,8 @@
 /area/bigredv2/caves/lambda_lab)
 "alk" = (
 /obj/machinery/portable_atmospherics/hydroponics,
-/obj/machinery/power/apc{
-	dir = 4;
-	name = "Xenoflora APC";
-	pixel_x = 28;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 4
 	},
 /obj/structure/cable{
 	d2 = 8;
@@ -6464,11 +6452,8 @@
 /turf/open/floor/plating,
 /area/bigredv2/caves/lambda_lab)
 "apv" = (
-/obj/machinery/power/apc{
-	dir = 8;
-	name = "Xenbiology Lab APC";
-	pixel_x = -30;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 8
 	},
 /obj/structure/cable,
 /turf/open/floor{
@@ -7202,10 +7187,8 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "arb" = (
-/obj/machinery/power/apc{
-	dir = 8;
-	pixel_x = -30;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 8
 	},
 /obj/structure/cable{
 	icon_state = "0-4";
@@ -9365,8 +9348,7 @@
 /area/bigredv2/outside/dorms)
 "avF" = (
 /obj/machinery/power/apc{
-	dir = 1;
-	name = "Fitness APC"
+	dir = 1
 	},
 /obj/structure/cable{
 	d2 = 2;
@@ -10098,10 +10080,8 @@
 /obj/structure/extinguisher_cabinet{
 	pixel_y = -30
 	},
-/obj/machinery/power/apc{
-	dir = 8;
-	pixel_x = -30;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 8
 	},
 /obj/structure/cable{
 	icon_state = "0-4";
@@ -13231,8 +13211,7 @@
 /area/bigredv2/outside/bar)
 "aEb" = (
 /obj/machinery/power/apc{
-	dir = 1;
-	name = "Bar APC"
+	dir = 1
 	},
 /obj/structure/cable{
 	d2 = 8;
@@ -13308,10 +13287,8 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "aEm" = (
-/obj/machinery/power/apc{
-	dir = 8;
-	pixel_x = -30;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 8
 	},
 /obj/structure/cable,
 /turf/open/floor{
@@ -14213,10 +14190,8 @@
 "aGh" = (
 /obj/structure/table,
 /obj/effect/spawner/random/toolbox,
-/obj/machinery/power/apc{
-	dir = 8;
-	pixel_x = -30;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 8
 	},
 /obj/structure/cable{
 	icon_state = "0-4";
@@ -14606,10 +14581,8 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 6
 	},
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 28;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable{
 	icon_state = "0-4";
@@ -17020,10 +16993,8 @@
 	icon_state = "0-4";
 	d2 = 4
 	},
-/obj/machinery/power/apc{
-	dir = 8;
-	pixel_x = -30;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 8
 	},
 /turf/open/floor/bluegrid{
 	tag = "icon-bcircuitoff";
@@ -19140,8 +19111,7 @@
 /area/bigredv2/outside/virology)
 "aQC" = (
 /obj/machinery/power/apc{
-	dir = 1;
-	name = "Virology APC"
+	dir = 1
 	},
 /obj/structure/cable{
 	d2 = 8;
@@ -20276,9 +20246,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/admin_building)
 "aSZ" = (
-/obj/machinery/power/apc{
-	name = "Control Center APC"
-	},
+/obj/machinery/power/apc,
 /obj/structure/cable{
 	d2 = 8;
 	icon_state = "0-8"
@@ -20603,10 +20571,8 @@
 "aTJ" = (
 /obj/structure/bed,
 /obj/item/bedsheet/medical,
-/obj/machinery/power/apc{
-	dir = 4;
-	pixel_x = 28;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 4
 	},
 /obj/structure/cable{
 	d2 = 8;
@@ -21655,10 +21621,8 @@
 "aWa" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/box/donkpockets,
-/obj/machinery/power/apc{
-	dir = 4;
-	pixel_x = 28;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-whitegreen";
@@ -22114,9 +22078,8 @@
 	},
 /area/bigredv2/outside/general_store)
 "aXb" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable{
 	d2 = 2;
@@ -24550,8 +24513,7 @@
 "bcZ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/power/apc{
-	dir = 1;
-	name = "Interview Room APC"
+	dir = 1
 	},
 /obj/structure/cable{
 	d2 = 2;
@@ -29576,9 +29538,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "bpB" = (
-/obj/machinery/power/apc{
-	start_charge = 0
-	},
+/obj/machinery/power/apc/drained,
 /obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)

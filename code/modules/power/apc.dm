@@ -123,6 +123,13 @@
 	var/global/list/status_overlays_environ
 	var/obj/item/circuitboard/apc/electronics = null
 
+// mapping helpers
+/obj/machinery/power/apc/drained
+	start_charge = 0
+
+/obj/machinery/power/apc/supercharged
+	start_charge = 200
+
 /proc/RandomAPCWires()
 	//To make this not randomize the wires, just set index to 1 and increment it in the flag for loop (after doing everything else).
 	var/list/apcwires = list(0, 0, 0, 0)

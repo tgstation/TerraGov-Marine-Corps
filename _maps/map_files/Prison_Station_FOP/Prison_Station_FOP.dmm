@@ -2481,10 +2481,8 @@
 	icon_state = "0-4";
 	d2 = 4
 	},
-/obj/machinery/power/apc{
-	dir = 2;
-	pixel_y = -24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 2
 	},
 /turf/open/floor/prison{
 	dir = 2;
@@ -3050,10 +3048,8 @@
 	},
 /area/prison/research/secret/containment)
 "ahu" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable{
 	d2 = 2;
@@ -3649,10 +3645,8 @@
 	icon_state = "0-4";
 	d2 = 4
 	},
-/obj/machinery/power/apc{
-	dir = 2;
-	pixel_y = -24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 2
 	},
 /turf/open/floor/prison{
 	dir = 2;
@@ -4120,10 +4114,8 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /turf/open/floor/prison{
 	dir = 1;
@@ -4209,10 +4201,8 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/effect/landmark/random_item/good,
 /turf/open/floor/prison{
@@ -4314,10 +4304,8 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /turf/open/floor/prison{
 	tag = "icon-darkredfull2 (SOUTHWEST)";
@@ -5174,10 +5162,8 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /turf/open/floor/prison,
 /area/prison/research/secret/dissection)
@@ -6342,10 +6328,8 @@
 /turf/open/floor/plating,
 /area/prison/maintenance/research_medbay)
 "anQ" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable{
 	d2 = 2;
@@ -7044,10 +7028,8 @@
 "apa" = (
 /obj/structure/table/reinforced,
 /obj/structure/cable,
-/obj/machinery/power/apc{
-	dir = 2;
-	pixel_y = -24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 2
 	},
 /turf/open/floor/prison{
 	tag = "icon-darkpurplefull2 (NORTHWEST)";
@@ -7101,10 +7083,8 @@
 /turf/open/floor/plating,
 /area/prison/hangar/civilian)
 "apg" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable{
 	icon_state = "0-4";
@@ -7735,10 +7715,8 @@
 	},
 /area/prison/medbay/surgery)
 "aqB" = (
-/obj/machinery/power/apc{
-	dir = 4;
-	pixel_x = 28;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 4
 	},
 /obj/structure/cable{
 	d2 = 2;
@@ -7868,10 +7846,8 @@
 	},
 /area/prison/medbay/surgery)
 "aqQ" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable{
 	d2 = 2;
@@ -9541,10 +9517,8 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /turf/open/floor/prison,
 /area/prison/medbay/morgue)
@@ -9656,10 +9630,8 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc{
-	dir = 4;
-	pixel_x = 28;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 4
 	},
 /turf/open/floor/prison{
 	tag = "icon-floor (WEST)";
@@ -9951,10 +9923,8 @@
 	},
 /area/prison/cellblock/highsec/north/north)
 "auv" = (
-/obj/machinery/power/apc{
-	dir = 8;
-	pixel_x = -24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 8
 	},
 /obj/structure/cable{
 	icon_state = "0-4";
@@ -11445,10 +11415,8 @@
 	},
 /area/prison/security/checkpoint/maxsec)
 "axp" = (
-/obj/machinery/power/apc{
-	dir = 2;
-	pixel_y = -24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 2
 	},
 /obj/structure/cable,
 /turf/open/floor/prison{
@@ -11782,10 +11750,8 @@
 	},
 /area/prison/chapel)
 "axY" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable{
 	d2 = 8;
@@ -12366,10 +12332,8 @@
 /area/prison/medbay)
 "azf" = (
 /obj/structure/rack,
-/obj/machinery/power/apc{
-	dir = 8;
-	pixel_x = -24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 8
 	},
 /obj/structure/cable,
 /turf/open/floor/prison{
@@ -12632,10 +12596,8 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc{
-	dir = 4;
-	pixel_x = 28;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 4
 	},
 /turf/open/floor/prison{
 	dir = 4;
@@ -12857,10 +12819,8 @@
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/access/north)
 "aAc" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable{
 	d2 = 2;
@@ -14260,10 +14220,8 @@
 	icon_state = "0-4";
 	d2 = 4
 	},
-/obj/machinery/power/apc{
-	dir = 2;
-	pixel_y = -24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -14592,10 +14550,8 @@
 	icon_state = "0-4";
 	d2 = 4
 	},
-/obj/machinery/power/apc{
-	dir = 8;
-	pixel_x = -24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 8
 	},
 /turf/open/floor/prison{
 	dir = 10;
@@ -15688,10 +15644,8 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc{
-	dir = 8;
-	pixel_x = -24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 8
 	},
 /turf/open/floor/prison{
 	tag = "icon-bright_clean2 (SOUTHWEST)";
@@ -16556,10 +16510,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5;
 	},
-/obj/machinery/power/apc{
-	dir = 2;
-	pixel_y = -24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 2
 	},
 /obj/structure/cable{
 	icon_state = "0-4";
@@ -16676,10 +16628,8 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /turf/open/floor/prison{
 	dir = 5;
@@ -17352,10 +17302,8 @@
 	},
 /area/prison/recreation/highsec/n)
 "aIH" = (
-/obj/machinery/power/apc{
-	dir = 2;
-	pixel_y = -24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 2
 	},
 /obj/structure/cable,
 /obj/effect/decal/cleanable/blood,
@@ -17493,10 +17441,8 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /turf/open/floor/prison{
 	tag = "icon-bright_clean2 (SOUTHWEST)";
@@ -18243,10 +18189,8 @@
 /area/prison/quarters/research)
 "aKg" = (
 /obj/structure/cable,
-/obj/machinery/power/apc{
-	dir = 2;
-	pixel_y = -24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 2
 	},
 /turf/open/floor/prison{
 	dir = 2;
@@ -18464,10 +18408,8 @@
 /turf/open/floor/prison,
 /area/prison/storage/highsec/n)
 "aKC" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable{
 	d2 = 2;
@@ -18637,10 +18579,8 @@
 	icon_state = "0-4";
 	d2 = 4
 	},
-/obj/machinery/power/apc{
-	dir = 8;
-	pixel_x = -24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/prison/maintenance/staff_research)
@@ -20327,10 +20267,8 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /turf/open/floor/prison{
 	tag = "icon-bright_clean (SOUTHWEST)";
@@ -20435,10 +20373,8 @@
 	icon_state = "0-4";
 	d2 = 4
 	},
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -21657,10 +21593,8 @@
 /area/prison/command/secretary_office)
 "aQu" = (
 /obj/structure/bed/chair/comfy,
-/obj/machinery/power/apc{
-	dir = 8;
-	pixel_x = -24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 8
 	},
 /obj/structure/cable{
 	d2 = 2;
@@ -21762,10 +21696,8 @@
 	},
 /area/prison/cellblock/highsec/north/south)
 "aQG" = (
-/obj/machinery/power/apc{
-	dir = 2;
-	pixel_y = -24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 2
 	},
 /obj/structure/cable,
 /turf/open/floor/prison{
@@ -22572,10 +22504,8 @@
 	icon_state = "0-4";
 	d2 = 4
 	},
-/obj/machinery/power/apc{
-	dir = 8;
-	pixel_x = -24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 8
 	},
 /turf/open/floor/prison{
 	dir = 8;
@@ -22892,10 +22822,8 @@
 	},
 /area/prison/cellblock/lowsec/nw)
 "aTm" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable{
 	d2 = 2;
@@ -23209,10 +23137,8 @@
 	},
 /area/prison/residential/north)
 "aTV" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable{
 	d2 = 2;
@@ -23982,10 +23908,8 @@
 	},
 /area/prison/cellblock/lowsec/ne)
 "aUT" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable{
 	d2 = 8;
@@ -24141,10 +24065,8 @@
 /turf/open/floor/wood,
 /area/prison/recreation/staff)
 "aVm" = (
-/obj/machinery/power/apc{
-	dir = 8;
-	pixel_x = -24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 8
 	},
 /obj/structure/cable{
 	d2 = 2;
@@ -25114,10 +25036,8 @@
 /area/prison/toilet/staff)
 "aXh" = (
 /obj/structure/cable,
-/obj/machinery/power/apc{
-	dir = 4;
-	pixel_x = 28;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 4
 	},
 /turf/open/floor/prison{
 	tag = "icon-sterile_white";
@@ -25344,10 +25264,8 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/ne)
@@ -25550,10 +25468,8 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/obj/machinery/power/apc{
-	dir = 4;
-	pixel_x = 28;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 4
 	},
 /obj/structure/cable,
 /turf/open/floor/prison{
@@ -25873,10 +25789,8 @@
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "aYH" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable{
 	d2 = 8;
@@ -26715,10 +26629,8 @@
 /turf/open/floor/wood,
 /area/prison/recreation/staff)
 "bat" = (
-/obj/machinery/power/apc{
-	dir = 4;
-	pixel_x = 28;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 4
 	},
 /obj/structure/cable{
 	d2 = 8;
@@ -27974,10 +27886,8 @@
 	},
 /area/prison/cellblock/lowsec/ne)
 "bdh" = (
-/obj/machinery/power/apc{
-	dir = 4;
-	pixel_x = 28;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 4
 	},
 /obj/structure/cable{
 	d2 = 8;
@@ -29287,10 +29197,8 @@
 /area/prison/canteen)
 "bfF" = (
 /obj/structure/rack,
-/obj/machinery/power/apc{
-	dir = 4;
-	pixel_x = 28;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 2;
@@ -29457,10 +29365,8 @@
 	},
 /area/prison/kitchen)
 "bfQ" = (
-/obj/machinery/power/apc{
-	dir = 4;
-	pixel_x = 28;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 4
 	},
 /obj/structure/cable{
 	d2 = 8;
@@ -29854,10 +29760,8 @@
 	icon_state = "0-4";
 	d2 = 4
 	},
-/obj/machinery/power/apc{
-	dir = 8;
-	pixel_x = -24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 8
 	},
 /turf/open/floor/prison{
 	dir = 8;
@@ -32902,10 +32806,8 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /turf/open/floor/prison{
 	dir = 1;
@@ -33205,10 +33107,8 @@
 	},
 /area/prison/storage/vip)
 "bmw" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable{
 	d2 = 2;
@@ -34922,10 +34822,8 @@
 	},
 /area/prison/cellblock/vip)
 "bpt" = (
-/obj/machinery/power/apc{
-	dir = 2;
-	pixel_y = -24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 2
 	},
 /obj/structure/cable,
 /turf/open/floor/prison{
@@ -35211,10 +35109,8 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10
@@ -35229,10 +35125,8 @@
 	},
 /area/prison/toilet/canteen)
 "bpW" = (
-/obj/machinery/power/apc{
-	dir = 8;
-	pixel_x = -24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 8
 	},
 /obj/structure/cable{
 	icon_state = "0-4";
@@ -36075,10 +35969,8 @@
 	icon_state = "0-4";
 	d2 = 4
 	},
-/obj/machinery/power/apc{
-	dir = 8;
-	pixel_x = -24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 8
 	},
 /turf/open/floor/prison{
 	dir = 8;
@@ -37425,10 +37317,8 @@
 	},
 /area/prison/visitation)
 "bun" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable{
 	d2 = 2;
@@ -37606,10 +37496,8 @@
 	},
 /area/prison/residential/central)
 "buC" = (
-/obj/machinery/power/apc{
-	dir = 8;
-	pixel_x = -24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 8
 	},
 /obj/structure/cable{
 	d2 = 2;
@@ -38281,10 +38169,8 @@
 	},
 /area/prison/security/checkpoint/medsec)
 "bvR" = (
-/obj/machinery/power/apc{
-	dir = 8;
-	pixel_x = -24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 8
 	},
 /obj/structure/cable{
 	icon_state = "0-4";
@@ -39410,10 +39296,8 @@
 /turf/open/floor/prison,
 /area/prison/hangar/main)
 "byj" = (
-/obj/machinery/power/apc{
-	dir = 2;
-	pixel_y = -24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 2
 	},
 /obj/structure/cable{
 	d2 = 8;
@@ -39765,10 +39649,8 @@
 	},
 /area/prison/yard)
 "byN" = (
-/obj/machinery/power/apc{
-	dir = 4;
-	pixel_x = 28;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 4
 	},
 /obj/structure/cable{
 	d2 = 8;
@@ -39854,10 +39736,8 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc{
-	dir = 4;
-	pixel_x = 28;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -40311,10 +40191,8 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /turf/open/floor/prison{
 	icon_state = "redfull"
@@ -40482,10 +40360,8 @@
 	icon_state = "0-4";
 	d2 = 4
 	},
-/obj/machinery/power/apc{
-	dir = 8;
-	pixel_x = -24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 8
 	},
 /turf/open/floor/prison{
 	tag = "icon-bright_clean2 (SOUTHWEST)";
@@ -40809,10 +40685,8 @@
 	},
 /area/prison/security/checkpoint/hangar)
 "bAM" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable{
 	d2 = 2;
@@ -40894,10 +40768,8 @@
 /area/prison/residential/central)
 "bAV" = (
 /obj/structure/cable,
-/obj/machinery/power/apc{
-	dir = 8;
-	pixel_x = -24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 8
 	},
 /turf/open/floor/prison{
 	dir = 9;
@@ -41620,10 +41492,8 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable{
 	d2 = 2;
@@ -42098,10 +41968,8 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc{
-	dir = 4;
-	pixel_x = 28;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 4
 	},
 /turf/open/floor/prison{
 	tag = "icon-darkredfull2 (SOUTHWEST)";
@@ -42135,10 +42003,8 @@
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/se)
 "bDr" = (
-/obj/machinery/power/apc{
-	dir = 4;
-	pixel_x = 28;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 4
 	},
 /obj/structure/cable{
 	d2 = 8;
@@ -42147,10 +42013,8 @@
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/se)
 "bDs" = (
-/obj/machinery/power/apc{
-	dir = 8;
-	pixel_x = -24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 8
 	},
 /obj/structure/cable{
 	icon_state = "0-4";
@@ -43497,10 +43361,8 @@
 	},
 /area/prison/cellblock/lowsec/se)
 "bFz" = (
-/obj/machinery/power/apc{
-	dir = 2;
-	pixel_y = -24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 2
 	},
 /obj/structure/cable,
 /turf/open/floor/prison{
@@ -44233,10 +44095,8 @@
 	},
 /area/prison/maintenance/hangar_barracks)
 "bGP" = (
-/obj/machinery/power/apc{
-	dir = 8;
-	pixel_x = -24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 8
 	},
 /obj/structure/cable,
 /turf/open/floor/prison{
@@ -44452,10 +44312,8 @@
 	},
 /area/prison/cellblock/highsec/south/north)
 "bHo" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable{
 	d2 = 2;
@@ -44627,10 +44485,8 @@
 	},
 /area/prison/cellblock/lowsec/se)
 "bHI" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable{
 	icon_state = "0-4";
@@ -45557,10 +45413,8 @@
 	icon_state = "0-4";
 	d2 = 4
 	},
-/obj/machinery/power/apc{
-	dir = 8;
-	pixel_x = -24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 8
 	},
 /turf/open/floor/prison,
 /area/prison/quarters/security)
@@ -45852,10 +45706,8 @@
 /area/prison/holding/holding2)
 "bJU" = (
 /obj/structure/cable,
-/obj/machinery/power/apc{
-	dir = 4;
-	pixel_x = 28;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -46213,10 +46065,8 @@
 	icon_state = "0-4";
 	d2 = 4
 	},
-/obj/machinery/power/apc{
-	dir = 8;
-	pixel_x = -24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 8
 	},
 /turf/open/floor/prison{
 	dir = 8;
@@ -46850,10 +46700,8 @@
 	},
 /area/prison/storage/highsec/s)
 "bLV" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable{
 	d2 = 8;
@@ -48291,10 +48139,8 @@
 /area/prison/parole/main)
 "bOM" = (
 /obj/structure/cable,
-/obj/machinery/power/apc{
-	dir = 4;
-	pixel_x = 28;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/prison/parole/main)
@@ -48531,10 +48377,8 @@
 	},
 /area/prison/recreation/highsec/s)
 "bPj" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable{
 	d2 = 2;
@@ -49459,10 +49303,8 @@
 	},
 /area/prison/storage/medsec)
 "bRq" = (
-/obj/machinery/power/apc{
-	dir = 8;
-	pixel_x = -24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 8
 	},
 /obj/structure/cable{
 	icon_state = "0-4";
@@ -49516,10 +49358,8 @@
 	icon_state = "0-4";
 	d2 = 4
 	},
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /turf/open/floor/wood,
 /area/prison/library)
@@ -49732,10 +49572,8 @@
 /area/prison/security)
 "bSa" = (
 /obj/structure/cable,
-/obj/machinery/power/apc{
-	dir = 8;
-	pixel_x = -24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 8
 	},
 /turf/open/floor/prison{
 	tag = "icon-bright_clean2 (SOUTHWEST)";
@@ -50098,10 +49936,8 @@
 	},
 /area/prison/laundry)
 "bSH" = (
-/obj/machinery/power/apc{
-	dir = 4;
-	pixel_x = 28;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 4
 	},
 /obj/structure/cable,
 /turf/open/floor/prison{
@@ -50601,10 +50437,8 @@
 /turf/open/beach/sand,
 /area/prison/residential/south)
 "bTH" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable{
 	d2 = 2;
@@ -52130,10 +51964,8 @@
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/access/south)
 "bWO" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable{
 	d2 = 2;
@@ -52613,10 +52445,8 @@
 	icon_state = "0-4";
 	d2 = 4
 	},
-/obj/machinery/power/apc{
-	dir = 8;
-	pixel_x = -24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 8
 	},
 /turf/open/floor/prison{
 	dir = 10;
@@ -53184,10 +53014,8 @@
 /turf/open/floor/plating,
 /area/prison/engineering)
 "bYV" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable{
 	icon_state = "0-4";
@@ -53256,10 +53084,8 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc{
-	dir = 2;
-	pixel_y = -24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 2
 	},
 /turf/open/floor/plating,
 /area/prison/engineering/atmos)
@@ -54321,10 +54147,8 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/security)
 "cbt" = (
-/obj/machinery/power/apc{
-	dir = 4;
-	pixel_x = 28;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 4
 	},
 /obj/structure/cable{
 	d2 = 8;
@@ -54539,10 +54363,8 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /turf/open/floor/prison{
 	dir = 1;
@@ -55196,10 +55018,8 @@
 	},
 /area/prison/cellblock/mediumsec/south)
 "ccY" = (
-/obj/machinery/power/apc{
-	dir = 8;
-	pixel_x = -24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 8
 	},
 /obj/structure/cable{
 	icon_state = "0-4";
@@ -55839,10 +55659,8 @@
 	icon_state = "0-4";
 	d2 = 4
 	},
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /turf/open/floor/prison,
 /area/prison/recreation/medsec)
@@ -56220,10 +56038,8 @@
 /turf/open/floor/prison,
 /area/prison/security/head)
 "ceG" = (
-/obj/machinery/power/apc{
-	dir = 4;
-	pixel_x = 28;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 4
 	},
 /obj/structure/cable{
 	d2 = 8;
@@ -56868,10 +56684,8 @@
 	},
 /area/prison/security)
 "cfL" = (
-/obj/machinery/power/apc{
-	dir = 2;
-	pixel_y = -24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 2
 	},
 /obj/structure/cable,
 /turf/open/floor/prison{
@@ -57853,10 +57667,8 @@
 	icon_state = "0-4";
 	d2 = 4
 	},
-/obj/machinery/power/apc{
-	dir = 8;
-	pixel_x = -24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 8
 	},
 /turf/open/floor/prison{
 	dir = 1;
@@ -58235,10 +58047,8 @@
 	},
 /area/prison/cellblock/protective)
 "ciL" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable{
 	d2 = 2;
@@ -58336,10 +58146,8 @@
 	icon_state = "0-4";
 	d2 = 4
 	},
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /turf/open/floor/wood,
 /area/prison/parole/protective_custody)
@@ -58394,10 +58202,8 @@
 /turf/open/floor/plating,
 /area/prison/disposal)
 "cjc" = (
-/obj/machinery/power/apc{
-	dir = 4;
-	pixel_x = 28;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 4
 	},
 /obj/structure/cable{
 	d2 = 8;
@@ -58852,10 +58658,8 @@
 /turf/open/floor/prison,
 /area/prison/execution)
 "cjX" = (
-/obj/machinery/power/apc{
-	dir = 4;
-	pixel_x = 28;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 4
 	},
 /obj/structure/cable{
 	d2 = 8;
@@ -58881,10 +58685,8 @@
 /area/prison/security/armory/riot)
 "ckc" = (
 /obj/structure/cable,
-/obj/machinery/power/apc{
-	dir = 4;
-	pixel_x = 28;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -58904,10 +58706,8 @@
 /area/prison/security)
 "cke" = (
 /obj/structure/cable,
-/obj/machinery/power/apc{
-	dir = 8;
-	pixel_x = -24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -58966,10 +58766,8 @@
 /turf/open/floor/plating/platebot,
 /area/prison/pirate)
 "cko" = (
-/obj/machinery/power/apc{
-	dir = 8;
-	pixel_x = -24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 8
 	},
 /obj/structure/cable{
 	icon_state = "0-4";
@@ -60406,10 +60204,8 @@
 	},
 /area/prison/cellblock/mediumsec/north)
 "cnd" = (
-/obj/machinery/power/apc{
-	dir = 8;
-	pixel_x = -24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 8
 	},
 /obj/structure/cable{
 	d2 = 2;
@@ -61361,10 +61157,8 @@
 /turf/open/floor/plating,
 /area/prison/security/checkpoint/highsec_medsec)
 "cpe" = (
-/obj/machinery/power/apc{
-	dir = 2;
-	pixel_y = -24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 2
 	},
 /obj/structure/cable{
 	icon_state = "0-4";
@@ -63560,10 +63354,8 @@
 	},
 /area/prison/cellblock/mediumsec/west)
 "ctO" = (
-/obj/machinery/power/apc{
-	dir = 2;
-	pixel_y = -24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 2
 	},
 /obj/structure/cable,
 /turf/open/floor/prison{
@@ -63676,10 +63468,8 @@
 	},
 /area/prison/cellblock/mediumsec/east)
 "cud" = (
-/obj/machinery/power/apc{
-	dir = 2;
-	pixel_y = -24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 2
 	},
 /obj/structure/cable,
 /turf/open/floor/prison{
@@ -64361,8 +64151,6 @@
 "cvq" = (
 /obj/machinery/power/apc{
 	dir = 1;
-	pixel_y = 24;
-	start_charge = 90
 	},
 /obj/structure/cable{
 	icon_state = "0-4";
@@ -66201,10 +65989,8 @@
 /turf/open/floor/plating,
 /area/prison/cellblock/mediumsec/south)
 "cza" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable{
 	d2 = 2;
@@ -66654,10 +66440,8 @@
 /obj/structure/bed/chair/comfy{
 	dir = 4
 	},
-/obj/machinery/power/apc{
-	dir = 8;
-	pixel_x = -24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 8
 	},
 /obj/structure/cable,
 /turf/open/floor/prison{

@@ -745,10 +745,8 @@
 "acl" = (
 /obj/structure/table,
 /obj/item/storage/box/lightstick,
-/obj/machinery/power/apc{
-	dir = 4;
-	pixel_x = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 4
 	},
 /obj/structure/cable{
 	d2 = 8;
@@ -1004,10 +1002,7 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc{
-	pixel_y = -24;
-	start_charge = 0
-	},
+/obj/machinery/power/apc/drained,
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/surface/requesitions)
 "acW" = (
@@ -1087,10 +1082,8 @@
 /obj/item/tool/taperoll/engineering,
 /obj/effect/spawner/random/toolbox,
 /obj/effect/spawner/random/tool,
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable{
 	d2 = 2;
@@ -2115,10 +2108,8 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -2465,10 +2456,8 @@
 /area/ice_colony/surface/engineering)
 "agb" = (
 /obj/structure/table,
-/obj/machinery/power/apc{
-	dir = 4;
-	pixel_x = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 4
 	},
 /obj/structure/cable{
 	d2 = 8;
@@ -4512,10 +4501,8 @@
 	},
 /area/ice_colony/surface/substation/smes)
 "ajO" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable{
 	d2 = 2;
@@ -5056,10 +5043,8 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_w)
@@ -5068,10 +5053,8 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_e)
@@ -5255,10 +5238,8 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /turf/open/floor{
 	tag = "icon-darkyellow2 (NORTH)";
@@ -5364,10 +5345,8 @@
 	icon_state = "0-2"
 	},
 /obj/item/storage/bag/plants,
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /turf/open/floor{
 	tag = "icon-darkgreen2 (NORTHEAST)";
@@ -5537,10 +5516,8 @@
 /turf/open/floor/plating,
 /area/ice_colony/surface/mining)
 "amj" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable{
 	d2 = 2;
@@ -7360,10 +7337,8 @@
 	},
 /area/ice_colony/surface/clinic/treatment)
 "apV" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable{
 	d2 = 2;
@@ -7474,10 +7449,8 @@
 	pixel_x = 5;
 	pixel_y = 3
 	},
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable{
 	d2 = 2;
@@ -7545,10 +7518,8 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/table,
 /obj/machinery/alarm{
@@ -9531,10 +9502,7 @@
 /area/ice_colony/surface/clinic/lobby)
 "aug" = (
 /obj/structure/cable,
-/obj/machinery/power/apc{
-	pixel_y = -24;
-	start_charge = 0
-	},
+/obj/machinery/power/apc/drained,
 /turf/open/floor{
 	tag = "icon-whitered";
 	icon_state = "whitered";
@@ -11018,10 +10986,8 @@
 /obj/structure/bed/chair{
 	dir = 4
 	},
-/obj/machinery/power/apc{
-	dir = 8;
-	pixel_x = -24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 8
 	},
 /obj/structure/cable{
 	icon_state = "0-4";
@@ -11669,10 +11635,8 @@
 	},
 /area/ice_colony/surface/dorms/lavatory)
 "ayA" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable{
 	d2 = 2;
@@ -11716,10 +11680,8 @@
 	},
 /area/ice_colony/surface/dorms/canteen)
 "ayF" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable{
 	d2 = 2;
@@ -12361,10 +12323,8 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /turf/open/floor{
 	tag = "icon-darkbrown2 (NORTH)";
@@ -12717,10 +12677,8 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /turf/open/floor{
 	tag = "icon-darkbrown2 (NORTH)";
@@ -12789,10 +12747,7 @@
 /area/ice_colony/surface/garage/one)
 "aAV" = (
 /obj/structure/cable,
-/obj/machinery/power/apc{
-	pixel_y = -24;
-	start_charge = 0
-	},
+/obj/machinery/power/apc/drained,
 /turf/open/floor{
 	tag = "icon-darkbrown2";
 	icon_state = "darkbrown2"
@@ -13498,10 +13453,8 @@
 	},
 /obj/structure/table,
 /obj/effect/spawner/random/tool,
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable{
 	d2 = 2;
@@ -13716,10 +13669,8 @@
 /area/ice_colony/surface/command/control/office)
 "aCG" = (
 /obj/structure/closet/secure_closet/security,
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable{
 	d2 = 2;
@@ -13939,10 +13890,8 @@
 	},
 /area/ice_colony/surface/command/control/office)
 "aDd" = (
-/obj/machinery/power/apc{
-	dir = 4;
-	pixel_x = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 4
 	},
 /obj/structure/cable{
 	d2 = 2;
@@ -14150,10 +14099,8 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /turf/open/floor{
 	tag = "icon-darkgreen2 (NORTHEAST)";
@@ -14799,10 +14746,8 @@
 	},
 /area/ice_colony/exterior/surface/valley/southeast)
 "aEB" = (
-/obj/machinery/power/apc{
-	dir = 8;
-	pixel_x = -24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 8
 	},
 /obj/structure/cable{
 	icon_state = "0-4";
@@ -16276,10 +16221,8 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable{
 	d2 = 8;
@@ -16357,10 +16300,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/power/apc{
-	pixel_y = -24;
-	start_charge = 0
-	},
+/obj/machinery/power/apc/drained,
 /turf/open/floor{
 	tag = "icon-darkblue2";
 	icon_state = "darkblue2";
@@ -16431,10 +16371,8 @@
 /area/ice_colony/exterior/surface/clearing/pass)
 "aHB" = (
 /obj/structure/largecrate/random,
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable{
 	icon_state = "0-4";
@@ -17250,10 +17188,7 @@
 /turf/open/floor/wood,
 /area/ice_colony/surface/command/control/pv1)
 "aJE" = (
-/obj/machinery/power/apc{
-	pixel_y = -24;
-	start_charge = 0
-	},
+/obj/machinery/power/apc/drained,
 /obj/structure/cable{
 	icon_state = "0-4";
 	d2 = 4
@@ -17346,10 +17281,7 @@
 /obj/structure/bed/chair/comfy/brown{
 	dir = 1
 	},
-/obj/machinery/power/apc{
-	pixel_y = -24;
-	start_charge = 0
-	},
+/obj/machinery/power/apc/drained,
 /turf/open/floor/wood,
 /area/ice_colony/surface/command/control/pv2)
 "aJQ" = (
@@ -18269,10 +18201,8 @@
 /area/ice_colony/surface/hangar/checkpoint)
 "aLX" = (
 /obj/structure/closet/secure_closet/security,
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable{
 	d2 = 2;
@@ -19335,10 +19265,7 @@
 	icon_state = "0-4";
 	d2 = 4
 	},
-/obj/machinery/power/apc{
-	pixel_y = -24;
-	start_charge = 0
-	},
+/obj/machinery/power/apc/drained,
 /turf/open/floor{
 	icon_state = "vault";
 	dir = 8
@@ -19548,10 +19475,8 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/machinery/firealarm{
 	dir = 4;
@@ -19569,10 +19494,8 @@
 	icon_state = "0-4";
 	d2 = 4
 	},
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /turf/open/floor{
 	icon_state = "vault";
@@ -20463,10 +20386,8 @@
 	},
 /area/ice_colony/surface/hangar/alpha)
 "aQI" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable{
 	d2 = 2;
@@ -20653,10 +20574,7 @@
 "aQZ" = (
 /obj/structure/cable,
 /obj/machinery/processor,
-/obj/machinery/power/apc{
-	pixel_y = -24;
-	start_charge = 0
-	},
+/obj/machinery/power/apc/drained,
 /turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aRa" = (
@@ -20813,10 +20731,7 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc{
-	pixel_y = -24;
-	start_charge = 0
-	},
+/obj/machinery/power/apc/drained,
 /turf/open/floor/wood,
 /area/ice_colony/surface/bar/bar)
 "aRo" = (
@@ -20948,10 +20863,8 @@
 /turf/open/shuttle/plating,
 /area/ice_colony/surface/hangar/beta)
 "aRG" = (
-/obj/machinery/power/apc{
-	dir = 8;
-	pixel_x = -24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4;
@@ -22261,10 +22174,8 @@
 	},
 /area/ice_colony/surface/hangar/alpha)
 "aUl" = (
-/obj/machinery/power/apc{
-	dir = 8;
-	pixel_x = -24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 8
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -22659,10 +22570,8 @@
 	},
 /area/ice_colony/exterior/surface/valley/southeast)
 "aVh" = (
-/obj/machinery/power/apc{
-	dir = 8;
-	pixel_x = -24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 8
 	},
 /obj/structure/cable{
 	icon_state = "0-4";
@@ -23320,10 +23229,8 @@
 	icon_state = "2-4"
 	},
 /obj/structure/disposalpipe/segment,
-/obj/machinery/power/apc{
-	dir = 8;
-	pixel_x = -24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 8
 	},
 /obj/structure/cable{
 	d2 = 2;
@@ -24438,10 +24345,7 @@
 /turf/open/snow/layer3,
 /area/ice_colony/exterior/surface/valley/southwest)
 "aYN" = (
-/obj/machinery/power/apc{
-	pixel_y = -24;
-	start_charge = 0
-	},
+/obj/machinery/power/apc/drained,
 /obj/structure/cable,
 /turf/open/floor{
 	tag = "icon-darkyellow2";
@@ -26031,10 +25935,8 @@
 	},
 /area/ice_colony/surface/excavation)
 "bcl" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable/yellow{
 	d2 = 2;
@@ -26138,10 +26040,8 @@
 	},
 /area/ice_colony/underground/requesition)
 "bcA" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable/yellow{
 	d2 = 2;
@@ -26289,10 +26189,8 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /turf/open/floor{
 	icon_state = "dark"
@@ -26768,10 +26666,8 @@
 /turf/open/snow/layer2,
 /area/ice_colony/exterior/surface/valley/southwest)
 "bdQ" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable/yellow{
 	d2 = 2;
@@ -27085,10 +26981,8 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/north)
 "bew" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable/yellow{
 	d2 = 8;
@@ -27648,10 +27542,8 @@
 /area/ice_colony/surface/excavation/storage)
 "bfI" = (
 /obj/structure/reagent_dispensers/fueltank,
-/obj/machinery/power/apc{
-	dir = 4;
-	pixel_x = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 4
 	},
 /obj/structure/cable{
 	d2 = 8;
@@ -27772,10 +27664,8 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/requesition/lobby)
 "bfT" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable/yellow{
 	d2 = 4;
@@ -28524,10 +28414,7 @@
 /area/ice_colony/surface/excavation)
 "bhB" = (
 /obj/structure/cable,
-/obj/machinery/power/apc{
-	pixel_y = -24;
-	start_charge = 0
-	},
+/obj/machinery/power/apc/drained,
 /turf/open/floor{
 	tag = "icon-darkpurple2";
 	icon_state = "darkpurple2"
@@ -28624,10 +28511,8 @@
 	name = "\improper Colony Response Team Hangar"
 	})
 "bhM" = (
-/obj/machinery/power/apc{
-	dir = 4;
-	pixel_x = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkbrown2 (EAST)";
@@ -30088,10 +29973,7 @@
 	},
 /area/ice_colony/surface/storage_unit/power)
 "bkQ" = (
-/obj/machinery/power/apc{
-	pixel_y = -24;
-	start_charge = 0
-	},
+/obj/machinery/power/apc/drained,
 /obj/structure/cable/yellow,
 /turf/open/floor{
 	tag = "icon-darkbrown2";
@@ -30185,10 +30067,8 @@
 /turf/open/snow/layer3,
 /area/ice_colony/exterior/surface/valley/southeast)
 "bld" = (
-/obj/machinery/power/apc{
-	dir = 8;
-	pixel_x = -24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 8
 	},
 /obj/structure/cable/yellow{
 	d2 = 2;
@@ -30846,10 +30726,8 @@
 	},
 /area/ice_colony/underground/crew/chapel)
 "bmy" = (
-/obj/machinery/power/apc{
-	dir = 4;
-	pixel_x = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d2 = 8;
@@ -30882,10 +30760,8 @@
 /turf/open/floor/carpet,
 /area/ice_colony/underground/crew/chapel)
 "bmD" = (
-/obj/machinery/power/apc{
-	dir = 4;
-	pixel_x = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d2 = 8;
@@ -30943,10 +30819,8 @@
 	},
 /area/ice_colony/surface/hangar/alpha)
 "bmK" = (
-/obj/machinery/power/apc{
-	dir = 4;
-	pixel_x = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d2 = 8;
@@ -32528,10 +32402,8 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc{
-	dir = 4;
-	pixel_x = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkred2 (EAST)";
@@ -32704,10 +32576,8 @@
 	},
 /area/ice_colony/surface/hangar/alpha)
 "bqw" = (
-/obj/machinery/power/apc{
-	dir = 8;
-	pixel_x = -24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 8
 	},
 /obj/structure/cable/yellow,
 /turf/open/floor{
@@ -32748,10 +32618,8 @@
 	},
 /area/ice_colony/underground/hallway/north_west)
 "bqA" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable/yellow{
 	d2 = 8;
@@ -34234,10 +34102,8 @@
 	},
 /area/ice_colony/underground/reception/checkpoint_north)
 "btN" = (
-/obj/machinery/power/apc{
-	dir = 8;
-	pixel_x = -24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 8
 	},
 /obj/structure/cable/yellow{
 	d2 = 4;
@@ -34544,10 +34410,8 @@
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/hallway/north_west)
 "bur" = (
-/obj/machinery/power/apc{
-	dir = 4;
-	pixel_x = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d2 = 8;
@@ -34608,10 +34472,8 @@
 	},
 /area/ice_colony/underground/medical/lobby)
 "bux" = (
-/obj/machinery/power/apc{
-	dir = 4;
-	pixel_x = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 4
 	},
 /obj/structure/cable/yellow,
 /turf/open/floor{
@@ -36121,10 +35983,7 @@
 /area/ice_colony/underground/crew/morgue)
 "bxC" = (
 /obj/structure/cable/yellow,
-/obj/machinery/power/apc{
-	pixel_y = -24;
-	start_charge = 0
-	},
+/obj/machinery/power/apc/drained,
 /turf/open/floor{
 	tag = "icon-darkgreen2";
 	icon_state = "darkgreen2"
@@ -36164,10 +36023,8 @@
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/library)
 "bxG" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable/yellow{
 	d2 = 8;
@@ -36366,10 +36223,7 @@
 /area/ice_colony/underground/medical/treatment)
 "byb" = (
 /obj/structure/cable/yellow,
-/obj/machinery/power/apc{
-	pixel_y = -24;
-	start_charge = 0
-	},
+/obj/machinery/power/apc/drained,
 /turf/open/floor{
 	tag = "icon-whitered";
 	icon_state = "whitered";
@@ -36590,10 +36444,7 @@
 /area/ice_colony/underground/engineering)
 "byy" = (
 /obj/structure/cable/yellow,
-/obj/machinery/power/apc{
-	pixel_y = -24;
-	start_charge = 0
-	},
+/obj/machinery/power/apc/drained,
 /turf/open/floor{
 	tag = "icon-whitered";
 	icon_state = "whitered";
@@ -36667,10 +36518,8 @@
 	},
 /area/ice_colony/underground/engineering)
 "byD" = (
-/obj/machinery/power/apc{
-	dir = 8;
-	pixel_x = -24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 8
 	},
 /obj/structure/cable/yellow{
 	d2 = 4;
@@ -36762,10 +36611,8 @@
 	d2 = 4;
 	icon_state = "0-4"
 	},
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /turf/open/floor/wood,
 /area/ice_colony/underground/security/detective)
@@ -36842,10 +36689,8 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /turf/open/floor/wood,
 /area/ice_colony/underground/security/marshal)
@@ -37644,10 +37489,7 @@
 /area/ice_colony/underground/medical/storage)
 "bAS" = (
 /obj/structure/cable/yellow,
-/obj/machinery/power/apc{
-	pixel_y = -24;
-	start_charge = 0
-	},
+/obj/machinery/power/apc/drained,
 /turf/open/floor{
 	tag = "icon-whitered";
 	icon_state = "whitered";
@@ -38611,10 +38453,8 @@
 	},
 /area/ice_colony/underground/hallway/north_west)
 "bCz" = (
-/obj/machinery/power/apc{
-	dir = 4;
-	pixel_x = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d2 = 8;
@@ -38857,10 +38697,8 @@
 	},
 /area/ice_colony/underground/security/interrogation)
 "bCW" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable/yellow{
 	d2 = 2;
@@ -39011,10 +38849,8 @@
 	},
 /area/ice_colony/underground/storage/highsec)
 "bDm" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable/yellow{
 	d2 = 8;
@@ -39369,10 +39205,7 @@
 /area/ice_colony/underground/crew/canteen)
 "bDZ" = (
 /obj/structure/cable/yellow,
-/obj/machinery/power/apc{
-	pixel_y = -24;
-	start_charge = 0
-	},
+/obj/machinery/power/apc/drained,
 /turf/open/floor{
 	tag = "icon-darkgreen2";
 	icon_state = "darkgreen2"
@@ -39761,10 +39594,8 @@
 	d2 = 4;
 	icon_state = "0-4"
 	},
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /turf/open/floor/wood,
 /area/ice_colony/underground/command/pv1)
@@ -39795,10 +39626,8 @@
 	d2 = 4;
 	icon_state = "0-4"
 	},
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /turf/open/floor/wood,
 /area/ice_colony/underground/command/pv2)
@@ -39834,10 +39663,8 @@
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/dorm_r)
 "bEY" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable/yellow{
 	d2 = 8;
@@ -40033,10 +39860,8 @@
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/dorm_l)
 "bFv" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable/yellow{
 	d2 = 8;
@@ -40358,10 +40183,8 @@
 /obj/structure/bed/chair{
 	dir = 1
 	},
-/obj/machinery/power/apc{
-	dir = 4;
-	pixel_x = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d2 = 8;
@@ -40461,10 +40284,8 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc{
-	dir = 4;
-	pixel_x = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkred2 (EAST)";
@@ -40563,10 +40384,8 @@
 	},
 /area/ice_colony/underground/storage)
 "bGs" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable/yellow{
 	d2 = 8;
@@ -40605,10 +40424,8 @@
 /turf/closed/ice_rock/corners,
 /area/ice_colony/exterior/underground/caves)
 "bGx" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/closet/secure_closet/security,
 /obj/structure/cable/yellow{
@@ -41631,10 +41448,8 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /turf/open/floor{
 	tag = "icon-darkred2 (NORTH)";
@@ -42968,10 +42783,8 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /turf/open/floor{
 	tag = "icon-darkred2 (NORTH)";
@@ -43484,10 +43297,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable/yellow{
 	d2 = 4;
@@ -43815,10 +43626,8 @@
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southwest)
 "bMr" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable/yellow{
 	d2 = 8;
@@ -43994,10 +43803,8 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/south)
 "bMJ" = (
-/obj/machinery/power/apc{
-	dir = 8;
-	pixel_x = -24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 8
 	},
 /obj/structure/cable/yellow{
 	d2 = 4;
@@ -45264,10 +45071,8 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc{
-	dir = 1;
-	pixel_y = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /turf/open/floor{
 	tag = "icon-darkred2 (NORTH)";
@@ -45420,10 +45225,7 @@
 /area/ice_colony/underground/crew/lavatory)
 "bPQ" = (
 /obj/structure/cable/yellow,
-/obj/machinery/power/apc{
-	pixel_y = -24;
-	start_charge = 0
-	},
+/obj/machinery/power/apc/drained,
 /turf/open/floor{
 	tag = "icon-darkbrown2";
 	icon_state = "darkbrown2"
@@ -47253,10 +47055,8 @@
 /area/ice_colony/exterior/underground/caves/open)
 "bTI" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/power/apc{
-	dir = 4;
-	pixel_x = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 4
 	},
 /obj/structure/cable/yellow,
 /turf/open/floor/plating,
@@ -48126,10 +47926,8 @@
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/south)
 "bVB" = (
-/obj/machinery/power/apc{
-	dir = 4;
-	pixel_x = 24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 4
 	},
 /obj/structure/cable{
 	d2 = 8;
@@ -48790,10 +48588,8 @@
 	name = "\improper Excavation Barracks"
 	})
 "bWL" = (
-/obj/machinery/power/apc{
-	dir = 8;
-	pixel_x = -24;
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 8
 	},
 /obj/structure/cable/yellow{
 	d2 = 2;
@@ -50024,10 +49820,7 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/obj/machinery/power/apc{
-	pixel_y = -24;
-	start_charge = 0
-	},
+/obj/machinery/power/apc/drained,
 /obj/structure/cable,
 /turf/open/floor{
 	tag = "icon-bcircuit";

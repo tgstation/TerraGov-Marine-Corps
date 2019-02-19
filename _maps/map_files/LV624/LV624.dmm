@@ -3649,10 +3649,8 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/machinery/power/apc{
+/obj/machinery/power/apc/supercharged{
 	dir = 1;
-	name = "Secure Vault APC";
-	start_charge = 200
 	},
 /turf/open/floor{
 	icon_state = "dark"
@@ -7018,10 +7016,8 @@
 /turf/open/gm/grass/grass2,
 /area/lv624/ground/jungle9)
 "ayb" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	name = "Hydroponics APC";
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable/yellow{
 	d2 = 2;
@@ -7229,10 +7225,8 @@
 	},
 /area/lv624/lazarus/medbay)
 "ayA" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	name = "Medbay APC";
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable/yellow{
 	d2 = 4;
@@ -7532,8 +7526,7 @@
 /area/lv624/lazarus/captain)
 "azi" = (
 /obj/machinery/power/apc{
-	dir = 1;
-	name = "Corporate Lobby APC"
+	dir = 1
 	},
 /obj/structure/cable/yellow{
 	d2 = 2;
@@ -7918,10 +7911,8 @@
 /turf/open/gm/dirt,
 /area/shuttle/drop1/lz1)
 "aAv" = (
-/obj/machinery/power/apc{
-	dir = 2;
-	name = "Storage Pods APC";
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 2
 	},
 /obj/structure/cable/yellow{
 	d2 = 8;
@@ -10036,10 +10027,8 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/research)
 "aIx" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	name = "Research APC";
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable/yellow{
 	d2 = 2;
@@ -10378,10 +10367,8 @@
 	},
 /area/lv624/lazarus/fitness)
 "aJy" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	name = "Fitness APC";
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable/yellow{
 	d2 = 2;
@@ -10932,10 +10919,8 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "aLe" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	name = "Central Hallway APC";
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable/yellow{
 	d2 = 2;
@@ -11310,10 +11295,8 @@
 	},
 /area/lv624/lazarus/robotics)
 "aMi" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	name = "Robotics Lab APC";
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable/yellow{
 	d2 = 2;
@@ -12294,10 +12277,8 @@
 	},
 /area/lv624/lazarus/sleep_male)
 "aPk" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	name = "Men's Dorms APC";
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/table,
 /obj/item/toy/deck,
@@ -13085,10 +13066,8 @@
 	},
 /area/lv624/lazarus/sleep_female)
 "aRk" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	name = "Women's Dorms APC";
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable/yellow{
 	d2 = 8;
@@ -14169,10 +14148,8 @@
 /turf/open/floor,
 /area/lv624/lazarus/chapel)
 "aUo" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	name = "Chapel APC";
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable/yellow{
 	d2 = 2;
@@ -14235,10 +14212,8 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc{
-	dir = 1;
-	name = "Quartermaster APC";
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /turf/open/floor{
 	dir = 4;
@@ -14758,10 +14733,8 @@
 /turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
 "aWc" = (
-/obj/machinery/power/apc{
-	dir = 4;
-	name = "Unisex Bathrooms APC";
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d2 = 8;
@@ -16590,8 +16563,7 @@
 "baW" = (
 /obj/structure/jungle/vines,
 /obj/machinery/power/apc{
-	dir = 1;
-	name = "Atmospherics Processing APC"
+	dir = 1
 	},
 /obj/structure/cable/yellow{
 	d2 = 2;
@@ -16855,8 +16827,6 @@
 "bbJ" = (
 /obj/machinery/power/apc{
 	dir = 1;
-	name = "Corporate Office APC";
-	start_charge = 100
 	},
 /obj/structure/cable/yellow{
 	d2 = 2;
@@ -17945,8 +17915,7 @@
 /area/lv624/lazarus/security)
 "beA" = (
 /obj/machinery/power/apc{
-	dir = 1;
-	name = "Security Office APC"
+	dir = 1
 	},
 /obj/structure/cable/yellow{
 	d2 = 4;
@@ -18941,10 +18910,8 @@
 /turf/open/floor/tile/barber,
 /area/lv624/lazarus/kitchen)
 "bhI" = (
-/obj/machinery/power/apc{
-	dir = 8;
-	name = "Cafeteria APC";
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 8
 	},
 /obj/structure/cable/yellow,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -19418,10 +19385,8 @@
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/captain)
 "bjd" = (
-/obj/machinery/power/apc{
-	dir = 8;
-	name = "Commandant's Quarters APC";
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 8
 	},
 /obj/structure/cable/yellow{
 	d2 = 4;
@@ -20118,10 +20083,8 @@
 	},
 /area/lv624/lazarus/comms)
 "blf" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	name = "Telecomms APC";
-	start_charge = 15
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable/yellow{
 	d2 = 2;
@@ -20279,8 +20242,7 @@
 /area/lv624/lazarus/kitchen)
 "blw" = (
 /obj/machinery/power/apc{
-	dir = 1;
-	name = "Kitchen APC"
+	dir = 1
 	},
 /obj/structure/cable/yellow{
 	d2 = 2;
@@ -21043,10 +21005,8 @@
 	},
 /area/lv624/lazarus/engineering)
 "bnp" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	name = "Geothermal APC";
-	start_charge = 0
+/obj/machinery/power/apc/drained{
+	dir = 1
 	},
 /obj/structure/cable{
 	d2 = 2;

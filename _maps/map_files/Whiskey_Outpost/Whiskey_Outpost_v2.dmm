@@ -220,9 +220,7 @@
 /area/whiskey_outpost)
 "aE" = (
 /obj/machinery/power/apc{
-	dir = 8;
-	name = "Outpost APC";
-	pixel_x = -30
+	dir = 8
 	},
 /obj/structure/cable{
 	icon_state = "0-4";
