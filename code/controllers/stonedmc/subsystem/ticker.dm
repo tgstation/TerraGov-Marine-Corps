@@ -148,11 +148,6 @@ SUBSYSTEM_DEF(ticker)
 			return FALSE
 
 	CHECK_TICK
-
-	if(!EvacuationAuthority)
-		EvacuationAuthority = new
-
-	CHECK_TICK
 	//Configure mode and assign player to special mode stuff
 	var/can_continue = 0
 	can_continue = src.mode.pre_setup()		//Choose antagonists
