@@ -590,7 +590,7 @@ var/list/global_mutations = list() // list of hidden mutation things
 
 //Hivelord defines
 #define HIVELORD_STING_COOLDOWN			10 SECONDS
-#define DEFILER_STING_CHANNEL_TIME		10 SECONDS
+#define HIVELORD_STING_CHANNEL_TIME		10 SECONDS
 
 //misc
 
