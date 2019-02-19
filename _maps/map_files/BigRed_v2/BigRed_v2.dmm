@@ -1874,8 +1874,7 @@
 /area/bigredv2/outside/marshal_office)
 "afl" = (
 /obj/machinery/flasher/portable,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/bigredv2/outside/marshal_office)
@@ -1886,31 +1885,27 @@
 	icon_state = "tube1";
 	dir = 1
 	},
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/bigredv2/outside/marshal_office)
 "afn" = (
 /obj/structure/closet/l3closet/security,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/bigredv2/outside/marshal_office)
 "afo" = (
 /obj/structure/rack,
 /obj/item/weapon/gun/revolver/cmb,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/bigredv2/outside/marshal_office)
 "afp" = (
 /obj/structure/rack,
 /obj/item/ammo_magazine/revolver/cmb,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/bigredv2/outside/marshal_office)
@@ -1922,8 +1917,7 @@
 	dir = 1
 	},
 /obj/item/ammo_magazine/revolver/cmb,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/bigredv2/outside/marshal_office)
@@ -2136,8 +2130,7 @@
 /area/bigredv2/outside/marshal_office)
 "afR" = (
 /obj/machinery/deployable/barrier,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/bigredv2/outside/marshal_office)
@@ -2511,8 +2504,7 @@
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/brigdoor/eastleft,
 /obj/item/weapon/shield/riot,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/bigredv2/outside/marshal_office)
@@ -3754,8 +3746,7 @@
 "ajF" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/brigdoor/westright,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/bigredv2/outside/marshal_office)
@@ -4284,8 +4275,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/window/brigdoor/southright,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/bigredv2/outside/marshal_office)
@@ -7835,8 +7825,7 @@
 "asU" = (
 /obj/structure/closet/l3closet,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/bigredv2/outside/general_offices)
@@ -7852,8 +7841,7 @@
 /area/bigredv2/outside/general_offices)
 "asW" = (
 /obj/structure/closet/l3closet,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/bigredv2/outside/general_offices)

@@ -838,8 +838,7 @@
 "acY" = (
 /obj/structure/rack,
 /obj/item/tool/shovel,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/lv624/ground/caves/central1)
@@ -851,8 +850,7 @@
 /obj/item/stack/sheet/mineral/platinum{
 	pixel_x = -6
 	},
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/lv624/ground/caves/central1)
@@ -861,8 +859,7 @@
 /obj/item/stack/sheet/mineral/diamond{
 	amount = 2
 	},
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/lv624/ground/caves/central1)
@@ -876,8 +873,7 @@
 /obj/item/stack/sheet/metal{
 	amount = 30
 	},
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/lv624/ground/caves/central1)
@@ -916,8 +912,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/lv624/ground/caves/central1)
@@ -969,8 +964,7 @@
 /area/lv624/ground/sand2)
 "adr" = (
 /obj/structure/rack,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/lv624/ground/caves/central1)
@@ -979,8 +973,7 @@
 /obj/item/stack/sheet/mineral/tritium{
 	pixel_x = -4
 	},
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/lv624/ground/caves/central1)
@@ -989,16 +982,14 @@
 /obj/item/stack/sheet/mineral/silver{
 	amount = 20
 	},
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/lv624/ground/caves/central1)
 "adu" = (
 /obj/structure/rack,
 /obj/item/tool/pickaxe,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/lv624/ground/caves/central1)
@@ -3181,8 +3172,7 @@
 /area/lv624/ground/sand8)
 "alH" = (
 /obj/structure/window/framed/colony,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/lv624/ground/sand8)
@@ -3672,8 +3662,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/lv624/ground/sand8)
@@ -3847,8 +3836,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/lv624/ground/sand8)
@@ -4042,8 +4030,7 @@
 /area/lv624/ground/river2)
 "aof" = (
 /obj/structure/window/framed/colony,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/lv624/ground/river2)
@@ -10131,13 +10118,10 @@
 /turf/open/floor/plating/platebot,
 /area/lv624/lazarus/robotics)
 "aJd" = (
-/turf/open/floor{
-	icon_state = "vault"
-	},
+/turf/open/floor/tile/vault,
 /area/lv624/lazarus/robotics)
 "aJe" = (
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/lv624/lazarus/robotics)
@@ -10447,16 +10431,13 @@
 	req_access_txt = "0";
 	req_one_access_txt = "0"
 	},
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/lv624/lazarus/robotics)
 "aJY" = (
 /obj/effect/decal/cleanable/blood/oil,
-/turf/open/floor{
-	icon_state = "vault"
-	},
+/turf/open/floor/tile/vault,
 /area/lv624/lazarus/robotics)
 "aJZ" = (
 /obj/effect/decal/remains/human,
@@ -10757,9 +10738,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/open/floor{
-	icon_state = "vault"
-	},
+/turf/open/floor/tile/vault,
 /area/lv624/lazarus/robotics)
 "aKP" = (
 /obj/structure/dispenser/oxygen,
@@ -10914,9 +10893,7 @@
 /area/lv624/lazarus/robotics)
 "aLr" = (
 /obj/effect/decal/remains/human,
-/turf/open/floor{
-	icon_state = "vault"
-	},
+/turf/open/floor/tile/vault,
 /area/lv624/lazarus/robotics)
 "aLs" = (
 /obj/structure/fence,
@@ -11176,9 +11153,7 @@
 /obj/item/weapon/gun/pistol/highpower,
 /obj/item/ammo_magazine/pistol/highpower,
 /obj/item/ammo_magazine/pistol/highpower,
-/turf/open/floor{
-	icon_state = "vault"
-	},
+/turf/open/floor/tile/vault,
 /area/lv624/lazarus/robotics)
 "aMe" = (
 /obj/item/device/multitool,
@@ -11186,29 +11161,22 @@
 	pixel_y = 30
 	},
 /obj/structure/rack,
-/turf/open/floor{
-	icon_state = "vault"
-	},
+/turf/open/floor/tile/vault,
 /area/lv624/lazarus/robotics)
 "aMf" = (
 /obj/item/clothing/mask/gas,
 /obj/structure/rack,
-/turf/open/floor{
-	icon_state = "vault"
-	},
+/turf/open/floor/tile/vault,
 /area/lv624/lazarus/robotics)
 "aMg" = (
 /obj/effect/landmark/random_item/good,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/lv624/lazarus/robotics)
 "aMh" = (
 /obj/item/mecha_parts/part/gygax_torso,
-/turf/open/floor{
-	icon_state = "vault"
-	},
+/turf/open/floor/tile/vault,
 /area/lv624/lazarus/robotics)
 "aMi" = (
 /obj/machinery/power/apc/drained{
@@ -11218,24 +11186,18 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/turf/open/floor{
-	icon_state = "vault"
-	},
+/turf/open/floor/tile/vault,
 /area/lv624/lazarus/robotics)
 "aMj" = (
 /obj/machinery/light/small{
 	dir = 1
 	},
 /obj/machinery/vending/engineering,
-/turf/open/floor{
-	icon_state = "vault"
-	},
+/turf/open/floor/tile/vault,
 /area/lv624/lazarus/robotics)
 "aMk" = (
 /obj/structure/largecrate/random,
-/turf/open/floor{
-	icon_state = "vault"
-	},
+/turf/open/floor/tile/vault,
 /area/lv624/lazarus/robotics)
 "aMl" = (
 /obj/structure/largecrate/random,
@@ -11483,8 +11445,7 @@
 /area/lv624/lazarus/robotics)
 "aNc" = (
 /obj/effect/landmark/start/surv_spawn,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/lv624/lazarus/robotics)
@@ -11493,8 +11454,7 @@
 	dir = 4;
 	on = 1
 	},
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/lv624/lazarus/robotics)
@@ -11502,8 +11462,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/lv624/lazarus/robotics)
@@ -11511,8 +11470,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
 	},
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/lv624/lazarus/robotics)
@@ -11525,8 +11483,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/lv624/lazarus/robotics)
@@ -11539,8 +11496,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/lv624/lazarus/robotics)
@@ -11839,53 +11795,38 @@
 /area/lv624/lazarus/robotics)
 "aNY" = (
 /obj/machinery/autolathe,
-/turf/open/floor{
-	icon_state = "vault"
-	},
+/turf/open/floor/tile/vault,
 /area/lv624/lazarus/robotics)
 "aNZ" = (
 /obj/machinery/light/small,
-/turf/open/floor{
-	icon_state = "vault"
-	},
+/turf/open/floor/tile/vault,
 /area/lv624/lazarus/robotics)
 "aOa" = (
 /obj/machinery/vending/tool,
-/turf/open/floor{
-	icon_state = "vault"
-	},
+/turf/open/floor/tile/vault,
 /area/lv624/lazarus/robotics)
 "aOb" = (
 /obj/item/mecha_parts/chassis/gygax,
-/turf/open/floor{
-	icon_state = "vault"
-	},
+/turf/open/floor/tile/vault,
 /area/lv624/lazarus/robotics)
 "aOc" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/lv624/lazarus/robotics)
 "aOd" = (
 /obj/item/storage/belt/utility/full,
-/turf/open/floor{
-	icon_state = "vault"
-	},
+/turf/open/floor/tile/vault,
 /area/lv624/lazarus/robotics)
 "aOe" = (
 /obj/machinery/constructable_frame/state_2,
-/turf/open/floor{
-	icon_state = "vault"
-	},
+/turf/open/floor/tile/vault,
 /area/lv624/lazarus/robotics)
 "aOf" = (
 /obj/structure/table,
 /obj/item/mecha_parts/mecha_equipment/tool/drill,
-/turf/open/floor{
-	icon_state = "vault"
-	},
+/turf/open/floor/tile/vault,
 /area/lv624/lazarus/robotics)
 "aOg" = (
 /turf/open/floor/plating/warning{
@@ -12408,9 +12349,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "vault"
-	},
+/turf/open/floor/tile/vault,
 /area/lv624/lazarus/robotics)
 "aPU" = (
 /obj/structure/computerframe,
@@ -12723,8 +12662,7 @@
 	req_access_txt = "0";
 	req_one_access_txt = "0"
 	},
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/lv624/lazarus/robotics)
@@ -13055,9 +12993,7 @@
 /area/lv624/lazarus/robotics)
 "aRx" = (
 /obj/machinery/vending/coffee,
-/turf/open/floor{
-	icon_state = "vault"
-	},
+/turf/open/floor/tile/vault,
 /area/lv624/lazarus/robotics)
 "aRy" = (
 /obj/structure/ore_box,
@@ -20528,8 +20464,7 @@
 	},
 /obj/item/attachable/suppressor,
 /obj/item/attachable/suppressor,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/lv624/lazarus/secure_storage)
@@ -20562,8 +20497,7 @@
 /obj/item/explosive/plastique{
 	pixel_y = 4
 	},
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/lv624/lazarus/secure_storage)
@@ -20713,8 +20647,7 @@
 /obj/structure/rack,
 /obj/item/attachable/attached_gun/grenade,
 /obj/item/attachable/attached_gun/grenade,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/lv624/lazarus/secure_storage)
@@ -20724,8 +20657,7 @@
 /obj/item/attachable/flashlight,
 /obj/item/attachable/flashlight,
 /obj/item/attachable/flashlight,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/lv624/lazarus/secure_storage)
@@ -20781,8 +20713,7 @@
 /obj/item/explosive/grenade/incendiary,
 /obj/item/explosive/grenade/incendiary,
 /obj/item/explosive/grenade/incendiary,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/lv624/lazarus/secure_storage)
@@ -20791,8 +20722,7 @@
 /obj/item/explosive/grenade/frag,
 /obj/item/explosive/grenade/frag,
 /obj/item/explosive/grenade/frag,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/lv624/lazarus/secure_storage)
@@ -22152,8 +22082,7 @@
 /obj/structure/rack,
 /obj/item/storage/belt/utility/full,
 /obj/item/storage/belt/utility/full,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/lv624/lazarus/secure_storage)
@@ -22161,8 +22090,7 @@
 /obj/structure/rack,
 /obj/item/storage/pouch/flare/full,
 /obj/item/storage/pouch/flare/full,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/lv624/lazarus/secure_storage)
@@ -22195,8 +22123,7 @@
 "brr" = (
 /obj/structure/rack,
 /obj/item/clothing/suit/armor/bulletproof,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/lv624/lazarus/secure_storage)
@@ -22282,8 +22209,7 @@
 /obj/item/device/radio,
 /obj/machinery/light,
 /obj/item/device/radio,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/lv624/lazarus/secure_storage)
@@ -22309,8 +22235,7 @@
 /obj/structure/rack,
 /obj/item/clothing/suit/armor/bulletproof,
 /obj/machinery/light,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/lv624/lazarus/secure_storage)

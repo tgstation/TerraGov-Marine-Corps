@@ -16148,8 +16148,7 @@
 /obj/item/stack/sheet/mineral/phoron{
 	amount = 15
 	},
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/surface/storage_unit/power)
@@ -16163,8 +16162,7 @@
 "aHg" = (
 /obj/structure/largecrate/random,
 /obj/effect/landmark/random_item/good,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/surface/storage_unit/power)
@@ -16378,8 +16376,7 @@
 	icon_state = "0-4";
 	d2 = 4
 	},
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/surface/storage_unit/power)
@@ -16389,22 +16386,19 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/surface/storage_unit/power)
 "aHD" = (
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/surface/storage_unit/power)
 "aHE" = (
 /obj/structure/closet/crate,
 /obj/item/tool/shovel/snow,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/surface/storage_unit/power)
@@ -16529,8 +16523,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/surface/storage_unit/power)
@@ -16543,8 +16536,7 @@
 	req_access_txt = "100";
 	specialfunctions = 4
 	},
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/surface/storage_unit/power)
@@ -16689,8 +16681,7 @@
 /area/ice_colony/surface/command/control/pv2)
 "aIn" = (
 /obj/machinery/floodlight,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/surface/storage_unit/power)
@@ -16700,8 +16691,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/surface/storage_unit/power)
@@ -16835,15 +16825,13 @@
 /area/ice_colony/exterior/surface/clearing/pass)
 "aIF" = (
 /obj/item/storage/toolbox/emergency,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/surface/storage_unit/power)
 "aIG" = (
 /obj/effect/landmark/random_item/crap,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/surface/storage_unit/power)
@@ -17060,8 +17048,7 @@
 /area/ice_colony/surface/command/control/pv2)
 "aJk" = (
 /obj/structure/largecrate/random,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/surface/storage_unit/power)
@@ -17078,8 +17065,7 @@
 /area/ice_colony/surface/dorms)
 "aJm" = (
 /obj/machinery/space_heater,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/surface/storage_unit/power)
@@ -17344,8 +17330,7 @@
 /area/ice_colony/exterior/surface/clearing/pass)
 "aJY" = (
 /obj/structure/closet/l3closet/security,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/surface/hangar/checkpoint)
@@ -17378,16 +17363,14 @@
 "aKa" = (
 /obj/structure/rack,
 /obj/item/weapon/gun/revolver/cmb,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/surface/hangar/checkpoint)
 "aKb" = (
 /obj/structure/rack,
 /obj/item/ammo_magazine/revolver/cmb,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/surface/hangar/checkpoint)
@@ -18039,8 +18022,7 @@
 /area/ice_colony/exterior/surface/valley/west)
 "aLE" = (
 /obj/machinery/floodlight,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/surface/storage_unit/research)
@@ -18102,15 +18084,13 @@
 "aLO" = (
 /obj/structure/rack,
 /obj/item/tool/crowbar/red,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/surface/storage_unit/research)
 "aLP" = (
 /obj/structure/largecrate/random,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/surface/storage_unit/research)
@@ -18212,21 +18192,18 @@
 /area/ice_colony/surface/hangar/checkpoint)
 "aLZ" = (
 /obj/machinery/space_heater,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/surface/storage_unit/research)
 "aMa" = (
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/surface/storage_unit/research)
 "aMb" = (
 /obj/effect/landmark/random_item/crap,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/surface/storage_unit/research)
@@ -18294,8 +18271,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/surface/storage_unit/power)
@@ -18520,8 +18496,7 @@
 /area/ice_colony/surface/hangar/checkpoint)
 "aMM" = (
 /obj/machinery/power/port_gen/pacman,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/surface/storage_unit/research)
@@ -18817,8 +18792,7 @@
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/surface/hangar/checkpoint)
@@ -18928,8 +18902,7 @@
 	name = "Disposals Storage Unit";
 	req_access_txt = "100"
 	},
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/surface/storage_unit/telecomms)
@@ -19085,8 +19058,7 @@
 	},
 /area/ice_colony/surface/hangar/checkpoint)
 "aNT" = (
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/surface/hangar/checkpoint)
@@ -19153,8 +19125,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/surface/hangar/checkpoint)
@@ -19172,8 +19143,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/surface/storage_unit/telecomms)
@@ -19186,8 +19156,7 @@
 	req_access_txt = "100";
 	specialfunctions = 4
 	},
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/surface/storage_unit/telecomms)
@@ -19250,8 +19219,7 @@
 	d2 = 4
 	},
 /obj/machinery/power/apc/drained,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/surface/storage_unit/research)
@@ -19269,8 +19237,7 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/surface/storage_unit/research)
@@ -19283,8 +19250,7 @@
 	req_access_txt = "103";
 	specialfunctions = 4
 	},
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/surface/storage_unit/research)
@@ -19292,8 +19258,7 @@
 /obj/item/stack/sheet/mineral/phoron{
 	amount = 15
 	},
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/surface/storage_unit/research)
@@ -19481,8 +19446,7 @@
 /obj/machinery/power/apc/drained{
 	dir = 1
 	},
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/surface/storage_unit/telecomms)
@@ -19619,8 +19583,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/surface/storage_unit/telecomms)
@@ -19644,8 +19607,7 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/surface/storage_unit/telecomms)
@@ -19693,8 +19655,7 @@
 	dir = 1
 	},
 /obj/item/ammo_magazine/revolver/cmb,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/surface/hangar/checkpoint)
@@ -19760,8 +19721,7 @@
 	name = "Research Storage Unit";
 	req_access_txt = "100"
 	},
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/surface/storage_unit/research)
@@ -21970,8 +21930,7 @@
 	dir = 8
 	},
 /obj/item/tool/shovel/snow,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/surface/storage_unit/research)
@@ -22851,8 +22810,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/surface/storage_unit/research)
@@ -26261,8 +26219,7 @@
 	layer = 2.44
 	},
 /obj/structure/largecrate/random,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/underground/requesition)
@@ -26273,8 +26230,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/surface/storage_unit/telecomms)
@@ -26438,8 +26394,7 @@
 	icon_state = "1-2";
 	layer = 2.44
 	},
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/underground/requesition)
@@ -26854,8 +26809,7 @@
 /obj/item/ammo_rcd,
 /obj/item/ammo_rcd,
 /obj/item/explosive/plastique,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/surface/storage_unit/research)
@@ -26979,8 +26933,7 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/underground/requesition)
@@ -27312,21 +27265,18 @@
 /area/ice_colony/exterior/surface/valley/west)
 "bfm" = (
 /obj/structure/closet/crate,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/underground/requesition)
 "bfn" = (
 /obj/structure/largecrate/random,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/underground/requesition)
 "bfo" = (
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/underground/requesition)
@@ -27360,8 +27310,7 @@
 	layer = 2.4
 	},
 /obj/structure/closet/crate,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/underground/requesition)
@@ -27371,8 +27320,7 @@
 	layer = 2.4
 	},
 /obj/structure/largecrate/random,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/underground/requesition)
@@ -27672,8 +27620,7 @@
 /area/ice_colony/underground/hangar)
 "bfX" = (
 /obj/structure/largecrate/random,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/surface/storage_unit/telecomms)
@@ -27740,8 +27687,7 @@
 	layer = 2.44
 	},
 /obj/structure/closet/crate/trashcart,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/underground/requesition)
@@ -28091,8 +28037,7 @@
 /area/ice_colony/underground/requesition)
 "bgY" = (
 /obj/structure/closet/crate/trashcart,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/underground/requesition)
@@ -29217,14 +29162,12 @@
 /area/ice_colony/underground/requesition/sec_storage)
 "bji" = (
 /obj/structure/closet/crate/secure,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/underground/requesition/sec_storage)
 "bjj" = (
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/underground/requesition/sec_storage)
@@ -29407,8 +29350,7 @@
 /area/ice_colony/underground/requesition/sec_storage)
 "bjz" = (
 /obj/structure/largecrate/random,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/underground/requesition/sec_storage)
@@ -29931,8 +29873,7 @@
 	dir = 4;
 	on = 1
 	},
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/surface/storage_unit/power)
@@ -30019,8 +29960,7 @@
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/surface/storage_unit/power)
@@ -30087,8 +30027,7 @@
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/surface/storage_unit/power)
@@ -30185,8 +30124,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/surface/storage_unit/research)
@@ -31338,8 +31276,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/underground/requesition)
@@ -31664,8 +31601,7 @@
 	icon_state = "4-8"
 	},
 /obj/structure/closet/crate,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/underground/requesition)
@@ -42664,8 +42600,7 @@
 "bKI" = (
 /obj/effect/spawner/random/toolbox,
 /obj/effect/landmark/random_item/crap,
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/surface/storage_unit/telecomms)
@@ -49169,8 +49104,7 @@
 /obj/structure/ore_box{
 	anchored = 0
 	},
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/surface/excavation{
@@ -49183,8 +49117,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "vault";
+/turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/surface/excavation{
