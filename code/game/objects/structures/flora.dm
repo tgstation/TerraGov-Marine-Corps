@@ -451,6 +451,10 @@
 	desc = "Some kind of bizarre alien tree. It oozes with a sickly yellow sap."
 	icon_state = "plantbot1"
 
+/obj/structure/jungle/plantbot1/alien
+	icon_state = "alienplant1"
+	luminosity = 2
+
 /obj/structure/jungle/planttop1
 	name = "strange tree"
 	desc = "Some kind of bizarre alien tree. It oozes with a sickly yellow sap."

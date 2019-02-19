@@ -289,6 +289,9 @@
 /turf/open/gm/coast/corner
 	icon_state = "beachcorner"
 
+/turf/open/gm/coast/corner2
+	icon_state = "beachcorner2"
+
 /turf/open/gm/riverdeep
 	name = "river"
 	icon_state = "seadeep"

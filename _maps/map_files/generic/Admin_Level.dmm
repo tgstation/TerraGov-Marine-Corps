@@ -6858,9 +6858,8 @@
 /turf/open/gm/coast,
 /area/deathmatch)
 "qj" = (
-/turf/open/gm/coast{
-	dir = 2;
-	icon_state = "beachcorner2"
+/turf/open/gm/coast/corner2{
+	dir = 2
 	},
 /area/deathmatch)
 "qk" = (

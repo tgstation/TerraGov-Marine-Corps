@@ -1480,16 +1480,11 @@
 /area/whiskey_outpost/outside/north)
 "dk" = (
 /turf/open/gm/coast{
-	tag = "icon-beach (SOUTHEAST)";
-	icon_state = "beach";
 	dir = 6
 	},
 /area/whiskey_outpost/outside/north)
 "dl" = (
-/obj/structure/jungle/plantbot1{
-	icon_state = "alienplant1";
-	luminosity = 2
-	},
+/obj/structure/jungle/plantbot1/alien,
 /turf/open/gm/river,
 /area/whiskey_outpost/outside/north)
 "dm" = (
@@ -1894,8 +1889,6 @@
 /area/whiskey_outpost)
 "dZ" = (
 /turf/open/gm/coast{
-	tag = "icon-beach (NORTHWEST)";
-	icon_state = "beach";
 	dir = 9
 	},
 /area/whiskey_outpost/outside/north)
@@ -2350,8 +2343,6 @@
 /area/whiskey_outpost/outside/north)
 "eZ" = (
 /turf/open/gm/coast{
-	tag = "icon-beach (NORTHEAST)";
-	icon_state = "beach";
 	dir = 5
 	},
 /area/whiskey_outpost/outside/north)
@@ -2864,9 +2855,8 @@
 /turf/open/gm/dirt,
 /area/whiskey_outpost/outside/north)
 "gf" = (
-/turf/open/gm/coast{
-	dir = 1;
-	icon_state = "beachcorner2"
+/turf/open/gm/coast/corner2{
+	dir = 1
 	},
 /area/whiskey_outpost/outside/north)
 "gg" = (
@@ -2956,9 +2946,8 @@
 /turf/open/gm/dirt,
 /area/whiskey_outpost/outside/north)
 "go" = (
-/turf/open/gm/coast{
-	dir = 4;
-	icon_state = "beachcorner2"
+/turf/open/gm/coast/corner2{
+	dir = 4
 	},
 /area/whiskey_outpost/outside/north)
 "gp" = (
@@ -3257,8 +3246,6 @@
 /area/whiskey_outpost/outside/north)
 "gW" = (
 /turf/open/gm/coast{
-	tag = "icon-beach (NORTHEAST)";
-	icon_state = "beach";
 	dir = 5
 	},
 /area/whiskey_outpost/outside/east)
@@ -3285,10 +3272,7 @@
 	},
 /area/whiskey_outpost/outside/east)
 "hb" = (
-/obj/structure/jungle/plantbot1{
-	icon_state = "alienplant1";
-	luminosity = 2
-	},
+/obj/structure/jungle/plantbot1/alien,
 /turf/open/gm/river,
 /area/whiskey_outpost/outside/east)
 "hc" = (
@@ -3303,8 +3287,6 @@
 /area/whiskey_outpost/outside/north)
 "he" = (
 /turf/open/gm/coast{
-	tag = "icon-beach (NORTHWEST)";
-	icon_state = "beach";
 	dir = 9
 	},
 /area/whiskey_outpost/outside/east)
@@ -3353,8 +3335,6 @@
 /area/whiskey_outpost/outside/west)
 "hp" = (
 /turf/open/gm/coast{
-	tag = "icon-beach (NORTHEAST)";
-	icon_state = "beach";
 	dir = 5
 	},
 /area/whiskey_outpost/outside/west)
@@ -3366,10 +3346,7 @@
 /turf/open/gm/river,
 /area/whiskey_outpost/outside/west)
 "hs" = (
-/obj/structure/jungle/plantbot1{
-	icon_state = "alienplant1";
-	luminosity = 2
-	},
+/obj/structure/jungle/plantbot1/alien,
 /turf/open/gm/river,
 /area/whiskey_outpost/outside/west)
 "ht" = (
@@ -3420,18 +3397,16 @@
 /turf/open/gm/river,
 /area/whiskey_outpost/outside/west)
 "hD" = (
-/turf/open/gm/coast{
-	dir = 1;
-	icon_state = "beachcorner2"
+/turf/open/gm/coast/corner2{
+	dir = 1
 	},
 /area/whiskey_outpost/outside/east)
 "hE" = (
 /turf/open/gm/coast,
 /area/whiskey_outpost/outside/east)
 "hF" = (
-/turf/open/gm/coast{
-	dir = 2;
-	icon_state = "beachcorner2"
+/turf/open/gm/coast/corner2{
+	dir = 2
 	},
 /area/whiskey_outpost/outside/east)
 "hG" = (
@@ -3493,9 +3468,8 @@
 	},
 /area/whiskey_outpost/outside/east)
 "hQ" = (
-/turf/open/gm/coast{
-	dir = 4;
-	icon_state = "beachcorner2"
+/turf/open/gm/coast/corner2{
+	dir = 4
 	},
 /area/whiskey_outpost/outside/east)
 "hR" = (
@@ -3728,8 +3702,6 @@
 /area/whiskey_outpost/outside/east)
 "iA" = (
 /turf/open/gm/coast{
-	tag = "icon-beach (SOUTHEAST)";
-	icon_state = "beach";
 	dir = 6
 	},
 /area/whiskey_outpost/outside/east)
@@ -3853,9 +3825,8 @@
 	},
 /area/whiskey_outpost/outside/west)
 "iO" = (
-/turf/open/gm/coast{
-	dir = 8;
-	icon_state = "beachcorner2"
+/turf/open/gm/coast/corner2{
+	dir = 8
 	},
 /area/whiskey_outpost/outside/east)
 "iP" = (
@@ -4724,10 +4695,7 @@
 	},
 /area/whiskey_outpost/outside/south)
 "lk" = (
-/obj/structure/jungle/plantbot1{
-	icon_state = "alienplant1";
-	luminosity = 2
-	},
+/obj/structure/jungle/plantbot1/alien,
 /turf/open/gm/river,
 /area/whiskey_outpost/outside/south)
 "ll" = (
