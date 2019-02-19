@@ -167,6 +167,7 @@
 		/datum/action/xeno_action/toggle_speed,
 		/datum/action/xeno_action/toggle_pheromones
 		)
+	var/last_hivelord_sting = null
 
 
 
