@@ -97,7 +97,8 @@
 	desc = "Cats really don't like these things."
 	layer = 2.4
 
-
+/turf/open/floor/plating/warning
+	icon_state = "warnplate"
 
 
 

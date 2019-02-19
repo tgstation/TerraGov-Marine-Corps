@@ -318,8 +318,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 10
 	},
 /turf/open/floor/plating/catwalk,
@@ -1184,15 +1183,13 @@
 /turf/open/floor/plating,
 /area/lv624/ground/caves/central1)
 "adW" = (
-/turf/open/floor/plating{
-	dir = 9;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 9
 	},
 /area/lv624/ground/caves/central1)
 "adX" = (
-/turf/open/floor/plating{
-	dir = 1;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 1
 	},
 /area/lv624/ground/caves/central1)
 "adY" = (
@@ -1252,9 +1249,8 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/plating{
-	dir = 2;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 2
 	},
 /turf/open/floor/plating/catwalk,
 /area/lv624/ground/sand8)
@@ -1269,8 +1265,7 @@
 /turf/open/floor/plating,
 /area/lv624/ground/caves/central1)
 "ael" = (
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 8
 	},
 /area/lv624/ground/caves/central1)
@@ -1359,15 +1354,13 @@
 /turf/closed/wall/resin/membrane/ondirt,
 /area/lv624/ground/caves/west1)
 "aeC" = (
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 10
 	},
 /area/lv624/ground/caves/central1)
 "aeD" = (
-/turf/open/floor/plating{
-	dir = 2;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 2
 	},
 /area/lv624/ground/caves/central1)
 "aeE" = (
@@ -2139,9 +2132,8 @@
 "ahj" = (
 /obj/machinery/floodlight,
 /obj/item/ammo_casing,
-/turf/open/floor/plating{
-	dir = 9;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 9
 	},
 /area/lv624/ground/sand2)
 "ahk" = (
@@ -2149,9 +2141,8 @@
 	dir = 1;
 	flipped = 1
 	},
-/turf/open/floor/plating{
-	dir = 1;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 1
 	},
 /area/lv624/ground/sand2)
 "ahl" = (
@@ -2160,21 +2151,18 @@
 	flipped = 1
 	},
 /obj/item/ammo_casing,
-/turf/open/floor/plating{
-	dir = 1;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 1
 	},
 /area/lv624/ground/sand2)
 "ahm" = (
-/turf/open/floor/plating{
-	dir = 1;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 1
 	},
 /area/lv624/ground/sand2)
 "ahn" = (
 /obj/machinery/floodlight,
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 5
 	},
 /area/lv624/ground/sand2)
@@ -2226,8 +2214,7 @@
 	dir = 8;
 	flipped = 1
 	},
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 8
 	},
 /area/lv624/ground/sand2)
@@ -2240,9 +2227,8 @@
 	dir = 8;
 	icon_state = "pipe-j2"
 	},
-/turf/open/floor/plating{
-	dir = 2;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 2
 	},
 /turf/open/floor/plating/catwalk,
 /area/lv624/ground/sand8)
@@ -2269,15 +2255,13 @@
 	dir = 4;
 	flipped = 1
 	},
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 4
 	},
 /area/lv624/ground/sand2)
 "ahF" = (
 /obj/structure/fence,
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 1
 	},
 /area/lv624/ground/sand8)
@@ -2304,8 +2288,7 @@
 	flipped = 1
 	},
 /obj/effect/decal/remains/human,
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 8
 	},
 /area/lv624/ground/sand2)
@@ -2387,8 +2370,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 6
 	},
 /turf/open/floor/plating/catwalk,
@@ -2406,9 +2388,8 @@
 	icon_state = "pipe-j1";
 	dir = 4
 	},
-/turf/open/floor/plating{
-	dir = 2;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 2
 	},
 /turf/open/floor/plating/catwalk,
 /area/lv624/ground/sand8)
@@ -2541,8 +2522,7 @@
 /turf/closed/gm/dense,
 /area/lv624/ground/river3)
 "aiB" = (
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 8
 	},
 /area/lv624/ground/sand2)
@@ -2583,8 +2563,7 @@
 /turf/open/floor/plating,
 /area/lv624/ground/sand2)
 "aiI" = (
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 4
 	},
 /area/lv624/ground/sand2)
@@ -2680,9 +2659,8 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/plating{
-	dir = 2;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 2
 	},
 /turf/open/floor/plating/catwalk,
 /area/lv624/ground/sand8)
@@ -2731,8 +2709,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 6
 	},
 /turf/open/floor/plating/catwalk,
@@ -2782,8 +2759,7 @@
 /area/lv624/ground/river3)
 "ajo" = (
 /obj/item/ammo_casing,
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 8
 	},
 /area/lv624/ground/sand2)
@@ -2832,8 +2808,7 @@
 /area/lv624/ground/sand9)
 "aju" = (
 /obj/item/ammo_casing,
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 4
 	},
 /area/lv624/ground/sand2)
@@ -2916,9 +2891,8 @@
 /area/lv624/ground/river2)
 "ajL" = (
 /obj/structure/fence,
-/turf/open/floor/plating{
-	dir = 2;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 2
 	},
 /turf/open/floor/plating/catwalk,
 /area/lv624/ground/sand8)
@@ -3091,8 +3065,7 @@
 	flipped = 1
 	},
 /obj/item/ammo_magazine/smg/uzi/extended,
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 4
 	},
 /area/lv624/ground/sand2)
@@ -3219,17 +3192,15 @@
 "akN" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/grille,
-/turf/open/floor/plating{
-	dir = 9;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 9
 	},
 /turf/open/floor/plating/catwalk,
 /area/lv624/ground/sand9)
 "akO" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/grille,
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 5
 	},
 /turf/open/floor/plating/catwalk,
@@ -3336,8 +3307,7 @@
 /area/lv624/ground/river2)
 "ale" = (
 /obj/machinery/floodlight,
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 10
 	},
 /area/lv624/ground/sand2)
@@ -3348,9 +3318,8 @@
 	},
 /obj/effect/decal/remains/human,
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor/plating{
-	dir = 2;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 2
 	},
 /area/lv624/ground/sand2)
 "alg" = (
@@ -3358,9 +3327,8 @@
 	dir = 2;
 	flipped = 1
 	},
-/turf/open/floor/plating{
-	dir = 2;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 2
 	},
 /area/lv624/ground/sand2)
 "alh" = (
@@ -3369,15 +3337,13 @@
 	flipped = 1
 	},
 /obj/item/ammo_magazine/smg/uzi/extended,
-/turf/open/floor/plating{
-	dir = 2;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 2
 	},
 /area/lv624/ground/sand2)
 "ali" = (
 /obj/machinery/floodlight,
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 6
 	},
 /area/lv624/ground/sand2)
@@ -3466,8 +3432,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 8
 	},
 /turf/open/floor/plating/catwalk,
@@ -3660,8 +3625,7 @@
 /area/lv624/ground/sand8)
 "ama" = (
 /obj/effect/spawner/random/tech_supply,
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 1
 	},
 /area/lv624/ground/sand8)
@@ -3670,21 +3634,18 @@
 	pixel_y = 30
 	},
 /obj/effect/spawner/random/tech_supply,
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 1
 	},
 /area/lv624/ground/sand8)
 "amc" = (
 /obj/item/tool/crowbar/red,
-/turf/open/floor/plating{
-	dir = 1;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 1
 	},
 /area/lv624/ground/sand8)
 "amd" = (
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 1
 	},
 /area/lv624/ground/sand8)
@@ -3692,22 +3653,19 @@
 /obj/item/ashtray/plastic,
 /obj/item/stack/flag/red,
 /obj/item/weapon/gun/pistol/holdout,
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 1
 	},
 /area/lv624/ground/sand8)
 "amf" = (
 /obj/item/device/flashlight/lamp,
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 1
 	},
 /area/lv624/ground/sand8)
 "amg" = (
 /obj/machinery/computer3,
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 1
 	},
 /area/lv624/ground/sand8)
@@ -3715,8 +3673,7 @@
 /obj/machinery/constructable_frame{
 	icon_state = "box_1"
 	},
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 1
 	},
 /area/lv624/ground/sand8)
@@ -3726,8 +3683,7 @@
 	amount = 40
 	},
 /obj/effect/spawner/random/tech_supply,
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 1
 	},
 /area/lv624/ground/sand8)
@@ -3735,8 +3691,7 @@
 /obj/structure/table,
 /obj/item/stack/cable_coil/random,
 /obj/effect/spawner/random/tech_supply,
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 5
 	},
 /area/lv624/ground/sand8)
@@ -3759,16 +3714,14 @@
 /area/lv624/ground/river2)
 "amn" = (
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 8
 	},
 /turf/open/floor/plating/catwalk,
 /area/lv624/ground/river3)
 "amo" = (
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 4
 	},
 /turf/open/floor/plating/catwalk,
@@ -3791,8 +3744,7 @@
 /area/lv624/ground/river2)
 "ams" = (
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 4
 	},
 /turf/open/floor/plating/catwalk,
@@ -3914,8 +3866,7 @@
 /obj/structure/table,
 /obj/item/stack/medical/ointment,
 /obj/effect/spawner/random/toolbox,
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 4
 	},
 /area/lv624/ground/sand8)
@@ -4099,8 +4050,7 @@
 	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 10
 	},
 /area/lv624/ground/sand8)
@@ -4109,9 +4059,8 @@
 	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
-/turf/open/floor/plating{
-	dir = 2;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 2
 	},
 /area/lv624/ground/sand8)
 "and" = (
@@ -4119,15 +4068,13 @@
 	dir = 8;
 	on = 1
 	},
-/turf/open/floor/plating{
-	dir = 2;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 2
 	},
 /area/lv624/ground/sand8)
 "ane" = (
-/turf/open/floor/plating{
-	dir = 2;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 2
 	},
 /area/lv624/ground/sand8)
 "anf" = (
@@ -4460,9 +4407,8 @@
 /area/lv624/ground/jungle8)
 "anZ" = (
 /obj/structure/fence,
-/turf/open/floor/plating{
-	dir = 2;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 2
 	},
 /area/lv624/ground/sand8)
 "aoa" = (
@@ -4475,16 +4421,14 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/plating{
-	dir = 2;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 2
 	},
 /area/lv624/ground/sand8)
 "aoc" = (
 /obj/structure/fence,
-/turf/open/floor/plating{
-	dir = 2;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 2
 	},
 /area/lv624/ground/river2)
 "aod" = (
@@ -4493,8 +4437,7 @@
 /area/lv624/ground/river2)
 "aoe" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 10
 	},
 /area/lv624/ground/river2)
@@ -4508,9 +4451,8 @@
 "aog" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/window/framed/colony,
-/turf/open/floor/plating{
-	dir = 2;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 2
 	},
 /area/lv624/ground/river2)
 "aoh" = (
@@ -4518,15 +4460,13 @@
 /turf/closed/wall,
 /area/lv624/ground/river2)
 "aoi" = (
-/turf/open/floor/plating{
-	dir = 2;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 2
 	},
 /area/lv624/ground/river3)
 "aoj" = (
-/turf/open/floor/plating{
-	dir = 2;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 2
 	},
 /area/lv624/ground/sand9)
 "aok" = (
@@ -4694,8 +4634,7 @@
 /area/lv624/ground/river2)
 "aoJ" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 10
 	},
 /area/lv624/ground/jungle7)
@@ -4704,8 +4643,7 @@
 /turf/open/floor/plating,
 /area/lv624/ground/jungle7)
 "aoL" = (
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 4
 	},
 /area/lv624/ground/river2)
@@ -4831,14 +4769,12 @@
 /turf/open/floor,
 /area/lv624/ground/river2)
 "api" = (
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 10
 	},
 /area/lv624/ground/river2)
 "apj" = (
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 6
 	},
 /area/lv624/ground/river2)
@@ -4936,9 +4872,8 @@
 "apz" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/grille,
-/turf/open/floor/plating{
-	dir = 9;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 9
 	},
 /area/lv624/ground/river2)
 "apA" = (
@@ -6031,8 +5966,7 @@
 /area/lv624/ground/compound/sw)
 "atk" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 6
 	},
 /area/lv624/ground/jungle7)
@@ -11070,14 +11004,12 @@
 /obj/structure/barricade/wooden{
 	dir = 1
 	},
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 1
 	},
 /area/lv624/lazarus/robotics)
 "aIq" = (
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 1
 	},
 /area/lv624/lazarus/robotics)
@@ -12538,8 +12470,7 @@
 	amount = 30
 	},
 /obj/structure/rack,
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 8
 	},
 /area/lv624/lazarus/robotics)
@@ -12613,8 +12544,7 @@
 /area/lv624/lazarus/robotics)
 "aMl" = (
 /obj/structure/largecrate/random,
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 4
 	},
 /area/lv624/lazarus/robotics)
@@ -12879,8 +12809,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/robotics)
 "aNb" = (
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 8
 	},
 /area/lv624/lazarus/robotics)
@@ -12961,8 +12890,7 @@
 	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 4
 	},
 /area/lv624/lazarus/robotics)
@@ -13279,8 +13207,7 @@
 	pixel_y = 4
 	},
 /obj/structure/rack,
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 8
 	},
 /area/lv624/lazarus/robotics)
@@ -13337,8 +13264,7 @@
 	},
 /area/lv624/lazarus/robotics)
 "aOg" = (
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 4
 	},
 /area/lv624/lazarus/robotics)
@@ -14810,22 +14736,19 @@
 /area/lv624/ground/jungle9)
 "aRZ" = (
 /obj/effect/decal/cleanable/blood/oil,
-/turf/open/floor/plating{
-	dir = 2;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 2
 	},
 /area/lv624/lazarus/robotics)
 "aSa" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/plating{
-	dir = 2;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 2
 	},
 /area/lv624/lazarus/robotics)
 "aSb" = (
-/turf/open/floor/plating{
-	dir = 2;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 2
 	},
 /area/lv624/lazarus/robotics)
 "aSc" = (
@@ -22678,9 +22601,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor/plating{
-	dir = 2;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 2
 	},
 /area/lv624/lazarus/engineering)
 "bli" = (
@@ -22694,9 +22616,8 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/open/floor/plating{
-	dir = 2;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 2
 	},
 /area/lv624/lazarus/engineering)
 "blj" = (
@@ -23048,8 +22969,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 4
 	},
 /area/lv624/lazarus/engineering)
@@ -23062,9 +22982,8 @@
 	icon_state = "0-4";
 	d2 = 4
 	},
-/turf/open/floor/plating{
-	dir = 9;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 9
 	},
 /area/lv624/lazarus/engineering)
 "blQ" = (
@@ -23089,14 +23008,12 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 5
 	},
 /area/lv624/lazarus/engineering)
 "blS" = (
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 8
 	},
 /area/lv624/lazarus/engineering)
@@ -23430,8 +23347,7 @@
 	icon_state = "0-4";
 	d2 = 4
 	},
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 8
 	},
 /area/lv624/lazarus/engineering)
@@ -23462,8 +23378,7 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 4
 	},
 /area/lv624/lazarus/engineering)
@@ -23676,8 +23591,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 4
 	},
 /area/lv624/lazarus/engineering)
@@ -23888,8 +23802,7 @@
 	icon_state = "0-4";
 	d2 = 4
 	},
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 10
 	},
 /area/lv624/lazarus/engineering)
@@ -24286,9 +24199,8 @@
 	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
-/turf/open/floor/plating{
-	dir = 1;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 1
 	},
 /area/lv624/lazarus/engineering)
 "boF" = (
@@ -24306,9 +24218,8 @@
 	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
-/turf/open/floor/plating{
-	dir = 1;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 1
 	},
 /area/lv624/lazarus/engineering)
 "boG" = (
@@ -24327,9 +24238,8 @@
 	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
-/turf/open/floor/plating{
-	dir = 1;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 1
 	},
 /area/lv624/lazarus/engineering)
 "boH" = (
@@ -24759,9 +24669,8 @@
 /area/lv624/lazarus/engineering)
 "bpJ" = (
 /obj/item/ammo_magazine/pistol,
-/turf/open/floor/plating{
-	dir = 2;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 2
 	},
 /area/lv624/lazarus/engineering)
 "bpK" = (
@@ -24770,9 +24679,8 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/turf/open/floor/plating{
-	dir = 2;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 2
 	},
 /area/lv624/lazarus/engineering)
 "bpL" = (
@@ -24782,9 +24690,8 @@
 	icon_state = "1-8";
 	tag = ""
 	},
-/turf/open/floor/plating{
-	dir = 2;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 2
 	},
 /area/lv624/lazarus/engineering)
 "bpM" = (

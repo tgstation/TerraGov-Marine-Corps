@@ -914,9 +914,8 @@
 	tag = "icon-green 0,0";
 	icon_state = "green 0,0"
 	},
-/turf/open/floor/plating{
-	dir = 2;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 2
 	},
 /area/bigredv2/outside/space_port)
 "acf" = (
@@ -924,9 +923,8 @@
 	tag = "icon-green 1,0";
 	icon_state = "green 1,0"
 	},
-/turf/open/floor/plating{
-	dir = 2;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 2
 	},
 /area/bigredv2/outside/space_port)
 "acg" = (
@@ -934,15 +932,13 @@
 	tag = "icon-green 2,0";
 	icon_state = "green 2,0"
 	},
-/turf/open/floor/plating{
-	dir = 2;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 2
 	},
 /area/bigredv2/outside/space_port)
 "ach" = (
-/turf/open/floor/plating{
-	dir = 2;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 2
 	},
 /area/bigredv2/outside/space_port)
 "aci" = (
@@ -951,18 +947,16 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor/plating{
-	dir = 2;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 2
 	},
 /area/bigredv2/outside/space_port)
 "acj" = (
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor/plating{
-	dir = 2;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 2
 	},
 /area/bigredv2/outside/space_port)
 "ack" = (
@@ -5316,30 +5310,26 @@
 /turf/open/floor/plating,
 /area/bigredv2/caves/lambda_lab)
 "alL" = (
-/turf/open/floor/plating{
-	dir = 9;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 9
 	},
 /area/bigredv2/caves/lambda_lab)
 "alM" = (
 /obj/effect/landmark/monkey_spawn,
 /obj/effect/alien/weeds/node,
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 1
 	},
 /area/bigredv2/caves/lambda_lab)
 "alN" = (
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 1
 	},
 /area/bigredv2/caves/lambda_lab)
 "alO" = (
 /obj/effect/alien/weeds/node,
 /obj/structure/mineral_door/resin,
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 5
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -5822,30 +5812,26 @@
 /turf/open/floor/plating,
 /area/bigredv2/caves/lambda_lab)
 "amJ" = (
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 10
 	},
 /area/bigredv2/caves/lambda_lab)
 "amK" = (
 /obj/effect/landmark/monkey_spawn,
-/turf/open/floor/plating{
-	dir = 2;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 2
 	},
 /area/bigredv2/caves/lambda_lab)
 "amL" = (
-/turf/open/floor/plating{
-	dir = 2;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 2
 	},
 /area/bigredv2/caves/lambda_lab)
 "amM" = (
 /obj/machinery/door/poddoor/almayer{
 	dir = 4
 	},
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 6
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -6359,9 +6345,8 @@
 /area/bigredv2/caves/lambda_lab)
 "anO" = (
 /obj/effect/landmark/monkey_spawn,
-/turf/open/floor/plating{
-	dir = 9;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 9
 	},
 /area/bigredv2/caves/lambda_lab)
 "anP" = (
@@ -6370,15 +6355,13 @@
 	},
 /obj/effect/landmark/monkey_spawn,
 /obj/effect/alien/weeds/node,
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 1
 	},
 /area/bigredv2/caves/lambda_lab)
 "anQ" = (
 /obj/effect/landmark/monkey_spawn,
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 1
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -6386,8 +6369,7 @@
 /obj/machinery/door/poddoor/almayer{
 	dir = 4
 	},
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 5
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -6820,8 +6802,7 @@
 /area/bigredv2/caves/lambda_lab)
 "aoG" = (
 /obj/effect/landmark/monkey_spawn,
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 10
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -10167,9 +10148,8 @@
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/nw)
 "avs" = (
-/turf/open/floor/plating{
-	dir = 1;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 1
 	},
 /area/bigredv2/outside/nw)
 "avt" = (
@@ -10179,9 +10159,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor/plating{
-	dir = 1;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 1
 	},
 /area/bigredv2/outside/nw)
 "avu" = (
@@ -11127,8 +11106,7 @@
 	},
 /area/bigredv2/outside/nw)
 "axv" = (
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 8
 	},
 /area/bigredv2/outside/nw)
@@ -11375,8 +11353,7 @@
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 8
 	},
 /area/bigredv2/outside/nw)
@@ -12242,8 +12219,7 @@
 	name = "\improper Medical Clinic Power Station";
 	req_one_access_txt = "0"
 	},
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 8
 	},
 /area/bigredv2/outside/medical)

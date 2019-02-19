@@ -4667,16 +4667,14 @@
 "ajZ" = (
 /obj/machinery/power/port_gen/pacman,
 /obj/structure/cable/yellow,
-/turf/open/floor/plating{
-	dir = 9;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 9
 	},
 /area/ice_colony/surface/engineering)
 "aka" = (
 /obj/machinery/power/port_gen/pacman,
 /obj/structure/cable/yellow,
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 1
 	},
 /area/ice_colony/surface/engineering)
@@ -11653,9 +11651,8 @@
 /area/ice_colony/exterior/surface/cliff)
 "axT" = (
 /obj/item/trash/candy,
-/turf/open/floor/plating{
-	dir = 2;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 2
 	},
 /area/ice_colony/surface/disposals)
 "axU" = (
@@ -11678,9 +11675,8 @@
 /area/ice_colony/exterior/surface/clearing/north)
 "axW" = (
 /obj/effect/landmark/random_item/crap,
-/turf/open/floor/plating{
-	dir = 2;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 2
 	},
 /area/ice_colony/surface/disposals)
 "axX" = (
@@ -11817,9 +11813,8 @@
 /area/ice_colony/exterior/surface/clearing/north)
 "ayj" = (
 /obj/item/trash/liquidfood,
-/turf/open/floor/plating{
-	dir = 2;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 2
 	},
 /area/ice_colony/surface/disposals)
 "ayk" = (
@@ -15461,9 +15456,8 @@
 	pixel_x = 28;
 	pixel_y = 7
 	},
-/turf/open/floor/plating{
-	dir = 2;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 2
 	},
 /area/ice_colony/surface/disposals)
 "aFn" = (
@@ -16595,9 +16589,8 @@
 	pixel_x = 4;
 	pixel_y = 14
 	},
-/turf/open/floor/plating{
-	dir = 2;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 2
 	},
 /area/ice_colony/surface/disposals)
 "aHr" = (
@@ -20627,9 +20620,8 @@
 /area/ice_colony/exterior/surface/valley/southwest)
 "aQq" = (
 /obj/item/trash/raisins,
-/turf/open/floor/plating{
-	dir = 2;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 2
 	},
 /area/ice_colony/surface/disposals)
 "aQr" = (
@@ -24973,9 +24965,8 @@
 	icon_state = "landingstripe";
 	dir = 8
 	},
-/turf/open/floor/plating{
-	dir = 9;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 9
 	},
 /area/ice_colony/exterior/surface/landing_pad)
 "aYR" = (
@@ -25816,8 +25807,7 @@
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 10
 	},
 /area/ice_colony/underground/maintenance/east)
@@ -25834,9 +25824,8 @@
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor/plating{
-	dir = 2;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 2
 	},
 /area/ice_colony/underground/maintenance/east)
 "baN" = (
@@ -27023,8 +27012,7 @@
 	icon_state = "landingstripe";
 	dir = 8
 	},
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 10
 	},
 /area/ice_colony/exterior/surface/landing_pad)
@@ -31636,8 +31624,7 @@
 	})
 "bmM" = (
 /obj/structure/cable,
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 5
 	},
 /area/ice_colony/surface/storage_unit/telecomms)
@@ -45829,8 +45816,7 @@
 	icon_state = "outlet";
 	dir = 4
 	},
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 1
 	},
 /area/ice_colony/underground/crew/disposals)
@@ -45839,8 +45825,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 1
 	},
 /area/ice_colony/underground/crew/disposals)
@@ -45870,8 +45855,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 1
 	},
 /area/ice_colony/underground/crew/disposals)
@@ -45893,8 +45877,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 1
 	},
 /area/ice_colony/underground/crew/disposals)
@@ -45902,8 +45885,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 1
 	},
 /area/ice_colony/underground/crew/disposals)
@@ -45912,8 +45894,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 1
 	},
 /area/ice_colony/underground/crew/disposals)
@@ -45941,8 +45922,7 @@
 /obj/machinery/door/window/northright{
 	name = "Disposals Chute"
 	},
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 1
 	},
 /area/ice_colony/underground/crew/disposals)
@@ -45963,8 +45943,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 5
 	},
 /area/ice_colony/underground/crew/disposals)
@@ -46285,9 +46264,8 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/open/floor/plating{
-	dir = 4;
-	icon_state = "warnplate"
+/turf/open/floor/plating/warning{
+	dir = 4
 	},
 /area/ice_colony/underground/crew/disposals)
 "bPJ" = (
@@ -47793,8 +47771,7 @@
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor/plating{
-	icon_state = "warnplate";
+/turf/open/floor/plating/warning{
 	dir = 8
 	},
 /area/ice_colony/underground/maintenance/east)
