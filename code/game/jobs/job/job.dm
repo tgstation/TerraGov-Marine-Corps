@@ -165,7 +165,6 @@
 			C.associated_account_number = H.mind.initial_account.account_number
 
 	H.name = H.get_visible_name()
-	H.hud_set_squad()
 
 
 /proc/guest_jobbans(var/job)
