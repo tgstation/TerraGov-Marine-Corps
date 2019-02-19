@@ -1,0 +1,4 @@
+author: "Menshin"
+delete-after: True
+changes: 
+  - bugfix: "The machines using discrete power use won't forget to update the area power usage anymore (a.k.a \"You won't need to microwave to reset the power depleting coffee vending machines anymore\")."
