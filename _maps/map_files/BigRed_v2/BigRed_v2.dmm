@@ -11980,8 +11980,7 @@
 /area/bigredv2/outside/nw)
 "azo" = (
 /obj/structure/cargo_container/horizontal{
-	tag = "icon-0,2";
-	icon_state = "0,2"
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
@@ -12599,8 +12598,7 @@
 /area/bigredv2/outside/nw)
 "aAq" = (
 /obj/structure/cargo_container/horizontal{
-	tag = "icon-0,1";
-	icon_state = "0,1"
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
@@ -12946,8 +12944,7 @@
 /area/bigredv2/caves/lambda_lab)
 "aAZ" = (
 /obj/structure/cargo_container/horizontal{
-	tag = "icon-0,0";
-	icon_state = "0,0"
+	dir = 2
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)

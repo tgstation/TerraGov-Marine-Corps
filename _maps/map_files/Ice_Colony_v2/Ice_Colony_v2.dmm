@@ -23892,8 +23892,7 @@
 /area/ice_colony/surface/research/temporary)
 "aWH" = (
 /obj/structure/cargo_container/horizontal{
-	tag = "icon-0,2";
-	icon_state = "0,2"
+	dir = 1
 	},
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/container_yard)
@@ -24141,8 +24140,7 @@
 /area/ice_colony/surface/research/tech_storage)
 "aXh" = (
 /obj/structure/cargo_container/horizontal{
-	tag = "icon-0,1";
-	icon_state = "0,1"
+	dir = 4
 	},
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/container_yard)
@@ -24440,8 +24438,7 @@
 /area/ice_colony/surface/hangar/alpha)
 "aXK" = (
 /obj/structure/cargo_container/horizontal{
-	tag = "icon-0,0";
-	icon_state = "0,0"
+	dir = 2
 	},
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/container_yard)
@@ -24613,9 +24610,8 @@
 	},
 /area/ice_colony/exterior/surface/landing_pad_external)
 "aYb" = (
-/obj/structure/cargo_container{
-	tag = "icon-WY 0,0";
-	icon_state = "WY 0,0"
+/obj/structure/cargo_container/nt{
+	dir = 8
 	},
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/container_yard)
@@ -24623,16 +24619,14 @@
 /turf/closed/ice,
 /area/ice_colony/exterior/surface/landing_pad_external)
 "aYd" = (
-/obj/structure/cargo_container{
-	tag = "icon-WY 1,0";
-	icon_state = "WY 1,0"
+/obj/structure/cargo_container/nt{
+	dir = 1
 	},
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/container_yard)
 "aYe" = (
-/obj/structure/cargo_container{
-	tag = "icon-WY 2,0";
-	icon_state = "WY 2,0"
+/obj/structure/cargo_container/nt{
+	dir = 4
 	},
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/container_yard)
@@ -26014,9 +26008,8 @@
 	},
 /area/ice_colony/exterior/surface/landing_pad)
 "bbh" = (
-/obj/structure/cargo_container{
-	tag = "icon-WY 1,0";
-	icon_state = "WY 1,0"
+/obj/structure/cargo_container/nt{
+	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -26025,9 +26018,8 @@
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/container_yard)
 "bbi" = (
-/obj/structure/cargo_container{
-	tag = "icon-WY 2,0";
-	icon_state = "WY 2,0"
+/obj/structure/cargo_container/nt{
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -49459,9 +49451,8 @@
 	},
 /area/ice_colony/underground/hangar)
 "bWw" = (
-/obj/structure/cargo_container{
-	tag = "icon-WY 0,0";
-	icon_state = "WY 0,0"
+/obj/structure/cargo_container/nt{
+	dir = 8
 	},
 /turf/open/floor/plating/icefloor{
 	tag = "icon-warnplate";
@@ -49469,9 +49460,8 @@
 	},
 /area/ice_colony/underground/hangar)
 "bWx" = (
-/obj/structure/cargo_container{
-	tag = "icon-WY 1,0";
-	icon_state = "WY 1,0"
+/obj/structure/cargo_container/nt{
+	dir = 1
 	},
 /turf/open/floor/plating/icefloor{
 	tag = "icon-warnplate";
@@ -49479,9 +49469,8 @@
 	},
 /area/ice_colony/underground/hangar)
 "bWy" = (
-/obj/structure/cargo_container{
-	tag = "icon-WY 2,0";
-	icon_state = "WY 2,0"
+/obj/structure/cargo_container/nt{
+	dir = 4
 	},
 /turf/open/floor/plating/icefloor{
 	tag = "icon-warnplate (SOUTHEAST)";

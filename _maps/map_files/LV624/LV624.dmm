@@ -1496,8 +1496,7 @@
 /area/lv624/ground/sand5)
 "afi" = (
 /obj/structure/cargo_container/horizontal{
-	tag = "icon-0,2";
-	icon_state = "0,2"
+	dir = 1
 	},
 /turf/open/gm/dirt,
 /area/lv624/ground/sand5)
@@ -1530,8 +1529,7 @@
 /area/lv624/ground/sand5)
 "afp" = (
 /obj/structure/cargo_container/horizontal{
-	tag = "icon-0,1";
-	icon_state = "0,1"
+	dir = 4
 	},
 /turf/open/gm/dirt,
 /area/lv624/ground/sand5)
@@ -1569,8 +1567,7 @@
 /area/lv624/ground/sand5)
 "afv" = (
 /obj/structure/cargo_container/horizontal{
-	tag = "icon-0,0";
-	icon_state = "0,0"
+	dir = 2
 	},
 /turf/open/gm/dirt,
 /area/lv624/ground/sand5)
@@ -1580,17 +1577,15 @@
 	},
 /area/lv624/ground/sand6)
 "afx" = (
-/obj/structure/cargo_container{
-	tag = "icon-WY 0,0";
-	icon_state = "gorg 0,0"
+/obj/structure/cargo_container/gorg{
+	dir = 8
 	},
 /turf/open/gm/dirt,
 /area/lv624/ground/sand6)
 "afy" = (
 /obj/effect/alien/weeds/node,
-/obj/structure/cargo_container{
-	tag = "icon-WY 0,0";
-	icon_state = "gorg 2,0"
+/obj/structure/cargo_container/gorg{
+	dir = 4
 	},
 /turf/open/gm/dirt,
 /area/lv624/ground/sand6)
@@ -1695,8 +1690,7 @@
 /area/lv624/ground/sand5)
 "afS" = (
 /obj/structure/cargo_container/horizontal{
-	tag = "icon-0,2";
-	icon_state = "0,2"
+	dir = 1
 	},
 /turf/open/floor{
 	icon_state = "bot";
@@ -1735,8 +1729,7 @@
 /area/lv624/ground/sand6)
 "afX" = (
 /obj/structure/cargo_container/horizontal{
-	tag = "icon-0,1";
-	icon_state = "0,1"
+	dir = 4
 	},
 /turf/open/floor{
 	icon_state = "bot";
@@ -1782,8 +1775,7 @@
 /area/lv624/ground/sand6)
 "age" = (
 /obj/structure/cargo_container/horizontal{
-	tag = "icon-0,0";
-	icon_state = "0,0"
+	dir = 2
 	},
 /turf/open/floor{
 	icon_state = "bot";
@@ -1791,23 +1783,20 @@
 	},
 /area/lv624/ground/sand5)
 "agf" = (
-/obj/structure/cargo_container{
-	tag = "icon-WY 0,0";
-	icon_state = "WY 0,0"
+/obj/structure/cargo_container/nt{
+	dir = 8
 	},
 /turf/open/floor,
 /area/lv624/ground/sand5)
 "agg" = (
-/obj/structure/cargo_container{
-	tag = "icon-WY 1,0";
-	icon_state = "WY 1,0"
+/obj/structure/cargo_container/nt{
+	dir = 1
 	},
 /turf/open/floor,
 /area/lv624/ground/sand5)
 "agh" = (
-/obj/structure/cargo_container{
-	tag = "icon-WY 2,0";
-	icon_state = "WY 2,0"
+/obj/structure/cargo_container/nt{
+	dir = 4
 	},
 /turf/open/floor,
 /area/lv624/ground/sand5)
@@ -1898,8 +1887,7 @@
 /area/lv624/ground/sand2)
 "agB" = (
 /obj/structure/cargo_container/horizontal{
-	tag = "icon-0,2";
-	icon_state = "0,2"
+	dir = 1
 	},
 /turf/open/floor,
 /area/lv624/ground/sand2)
@@ -1973,8 +1961,7 @@
 /area/lv624/ground/sand2)
 "agO" = (
 /obj/structure/cargo_container/horizontal{
-	tag = "icon-0,1";
-	icon_state = "0,1"
+	dir = 4
 	},
 /turf/open/floor,
 /area/lv624/ground/sand2)
@@ -2039,8 +2026,7 @@
 /area/lv624/ground/sand8)
 "aha" = (
 /obj/structure/cargo_container/horizontal{
-	tag = "icon-0,0";
-	icon_state = "0,0"
+	dir = 2
 	},
 /turf/open/floor,
 /area/lv624/ground/sand2)
@@ -10393,27 +10379,24 @@
 	},
 /area/lv624/lazarus/quartstorage/outdoors)
 "aGR" = (
-/obj/structure/cargo_container{
-	tag = "icon-WY 0,0";
-	icon_state = "WY 0,0"
+/obj/structure/cargo_container/nt{
+	dir = 8
 	},
 /turf/open/floor/plating{
 	icon_state = "platebotc"
 	},
 /area/lv624/lazarus/quartstorage/outdoors)
 "aGS" = (
-/obj/structure/cargo_container{
-	tag = "icon-WY 1,0";
-	icon_state = "WY 1,0"
+/obj/structure/cargo_container/nt{
+	dir = 1
 	},
 /turf/open/floor/plating{
 	icon_state = "platebotc"
 	},
 /area/lv624/lazarus/quartstorage/outdoors)
 "aGT" = (
-/obj/structure/cargo_container{
-	tag = "icon-WY 2,0";
-	icon_state = "WY 2,0"
+/obj/structure/cargo_container/nt{
+	dir = 4
 	},
 /turf/open/floor/plating{
 	icon_state = "platebotc"
@@ -15831,8 +15814,7 @@
 /area/shuttle/drop1/lz1)
 "aVk" = (
 /obj/structure/cargo_container/horizontal{
-	tag = "icon-0,2";
-	icon_state = "0,2"
+	dir = 1
 	},
 /turf/open/gm/dirtgrassborder2/corner{
 	dir = 8
@@ -16033,8 +16015,7 @@
 /area/shuttle/drop1/lz1)
 "aVP" = (
 /obj/structure/cargo_container/horizontal{
-	tag = "icon-0,1";
-	icon_state = "0,1"
+	dir = 4
 	},
 /turf/open/gm/dirtgrassborder{
 	dir = 4
@@ -16247,8 +16228,7 @@
 /area/shuttle/drop1/lz1)
 "aWt" = (
 /obj/structure/cargo_container/horizontal{
-	tag = "icon-0,0";
-	icon_state = "0,0"
+	dir = 2
 	},
 /turf/open/gm/dirtgrassborder{
 	dir = 4
@@ -20272,23 +20252,20 @@
 	},
 /area/shuttle/drop1/lz1)
 "bfF" = (
-/obj/structure/cargo_container{
-	tag = "icon-WY 0,0";
-	icon_state = "WY 0,0"
+/obj/structure/cargo_container/nt{
+	dir = 8
 	},
 /turf/open/floor,
 /area/shuttle/drop1/lz1)
 "bfG" = (
-/obj/structure/cargo_container{
-	tag = "icon-WY 1,0";
-	icon_state = "WY 1,0"
+/obj/structure/cargo_container/nt{
+	dir = 1
 	},
 /turf/open/floor,
 /area/shuttle/drop1/lz1)
 "bfH" = (
-/obj/structure/cargo_container{
-	tag = "icon-WY 2,0";
-	icon_state = "WY 2,0"
+/obj/structure/cargo_container/nt{
+	dir = 4
 	},
 /turf/open/floor,
 /area/shuttle/drop1/lz1)

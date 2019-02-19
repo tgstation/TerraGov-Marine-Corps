@@ -30340,9 +30340,8 @@
 	},
 /area/almayer/hallways/exoarmor)
 "bfV" = (
-/obj/structure/cargo_container{
-	tag = "icon-WY 0,0";
-	icon_state = "gorg 0,0"
+/obj/structure/cargo_container/gorg{
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -30350,9 +30349,8 @@
 	},
 /area/almayer/hallways/exoarmor)
 "bfW" = (
-/obj/structure/cargo_container{
-	tag = "icon-WY 0,0";
-	icon_state = "gorg 2,0"
+/obj/structure/cargo_container/gorg{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	tag = "icon-test_floor4";
@@ -45704,17 +45702,15 @@
 /turf/open/floor/almayer,
 /area/almayer/shipboard/port_missiles)
 "bJf" = (
-/obj/structure/cargo_container{
-	tag = "icon-WY 0,0";
-	icon_state = "WY 0,0"
+/obj/structure/cargo_container/nt{
+	dir = 8
 	},
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/almayer,
 /area/almayer/hallways/hangar)
 "bJg" = (
-/obj/structure/cargo_container{
-	tag = "icon-WY 1,0";
-	icon_state = "WY 1,0"
+/obj/structure/cargo_container/nt{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -45722,9 +45718,8 @@
 	},
 /area/almayer/hallways/hangar)
 "bJh" = (
-/obj/structure/cargo_container{
-	tag = "icon-WY 2,0";
-	icon_state = "WY 2,0"
+/obj/structure/cargo_container/nt{
+	dir = 4
 	},
 /turf/open/floor/almayer,
 /area/almayer/hallways/hangar)
