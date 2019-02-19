@@ -136,7 +136,7 @@
 		if(!ai_system.Announce(input))
 			return
 	else
-		command_announcement.Announce(input, MAIN_AI_SYSTEM, new_sound = 'sound/misc/notice2.ogg')
+		command_announcement.Announce(input, MAIN_AI_SYSTEM, new_sound = 'sound/misc/interference.ogg')
 
 	if(alert(usr, "Do you want to print out a paper at the communications consoles?",, "Yes", "No") == "Yes")
 		for(var/obj/machinery/computer/communications/C in GLOB.machines)
