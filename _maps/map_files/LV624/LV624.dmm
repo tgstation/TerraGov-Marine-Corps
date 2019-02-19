@@ -4146,10 +4146,8 @@
 	},
 /area/lv624/ground/jungle8)
 "aoo" = (
-/obj/structure/barricade/wooden{
-	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it...";
+/obj/structure/barricade/wooden/lv_snowflake{
 	dir = 8;
-	health = 25000
 	},
 /turf/open/floor/wood,
 /area/lv624/ground/jungle8)
@@ -11904,10 +11902,8 @@
 	},
 /area/lv624/lazarus/main_hall)
 "aNB" = (
-/obj/structure/barricade/wooden{
-	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it...";
+/obj/structure/barricade/wooden/lv_snowflake{
 	dir = 8;
-	health = 25000
 	},
 /turf/open/floor{
 	icon_state = "white"
@@ -12974,10 +12970,8 @@
 /turf/open/gm/grass,
 /area/lv624/ground/jungle4)
 "aQL" = (
-/obj/structure/barricade/wooden{
-	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it...";
+/obj/structure/barricade/wooden/lv_snowflake{
 	dir = 8;
-	health = 25000
 	},
 /obj/machinery/landinglight/ds2{
 	tag = "icon-landingstripe (EAST)";
@@ -13086,10 +13080,8 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/sleep_male)
 "aQV" = (
-/obj/structure/barricade/wooden{
-	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it...";
+/obj/structure/barricade/wooden/lv_snowflake{
 	dir = 8;
-	health = 25000
 	},
 /obj/structure/barricade/wooden{
 	dir = 1
@@ -13317,10 +13309,8 @@
 /turf/open/gm/grass/grass2,
 /area/lv624/ground/jungle4)
 "aRs" = (
-/obj/structure/barricade/wooden{
-	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it...";
-	dir = 8;
-	health = 25000
+/obj/structure/barricade/wooden/lv_snowflake{
+	dir = 8
 	},
 /obj/machinery/landinglight/ds2/delayone{
 	tag = "icon-landingstripe (EAST)";
@@ -13511,10 +13501,8 @@
 /turf/open/gm/grass,
 /area/lv624/ground/jungle4)
 "aRW" = (
-/obj/structure/barricade/wooden{
-	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it...";
+/obj/structure/barricade/wooden/lv_snowflake{
 	dir = 8;
-	health = 25000
 	},
 /obj/machinery/landinglight/ds2/delaytwo{
 	tag = "icon-landingstripe (EAST)";
@@ -13805,10 +13793,8 @@
 /turf/open/gm/dirtgrassborder2/corner,
 /area/shuttle/drop2/lz2)
 "aSL" = (
-/obj/structure/barricade/wooden{
-	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it...";
+/obj/structure/barricade/wooden/lv_snowflake{
 	dir = 8;
-	health = 25000
 	},
 /obj/machinery/landinglight/ds2/delaythree{
 	tag = "icon-landingstripe (EAST)";
@@ -16154,10 +16140,8 @@
 	icon_state = "landingstripe";
 	dir = 4
 	},
-/obj/structure/barricade/wooden{
-	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it...";
+/obj/structure/barricade/wooden/lv_snowflake{
 	dir = 8;
-	health = 25000
 	},
 /turf/open/floor/plating{
 	dir = 4;
@@ -16433,10 +16417,8 @@
 	icon_state = "landingstripe";
 	dir = 4
 	},
-/obj/structure/barricade/wooden{
-	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it...";
+/obj/structure/barricade/wooden/lv_snowflake{
 	dir = 8;
-	health = 25000
 	},
 /turf/open/floor/plating{
 	dir = 4;

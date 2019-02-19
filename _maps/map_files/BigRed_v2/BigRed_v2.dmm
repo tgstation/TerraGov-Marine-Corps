@@ -841,10 +841,8 @@
 	},
 /area/bigredv2/caves)
 "abY" = (
-/obj/structure/barricade/wooden{
-	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it...";
-	dir = 4;
-	health = 25000
+/obj/structure/barricade/wooden/lv_snowflake{
+	dir = 4
 	},
 /turf/open/mars_cave{
 	tag = "icon-mars_cave_7";
@@ -870,10 +868,8 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "acb" = (
-/obj/structure/barricade/wooden{
-	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it...";
-	dir = 4;
-	health = 25000
+/obj/structure/barricade/wooden/lv_snowflake{
+	dir = 4
 	},
 /turf/open/mars_cave{
 	tag = "icon-mars_cave_2";
@@ -881,10 +877,8 @@
 	},
 /area/bigredv2/caves)
 "acc" = (
-/obj/structure/barricade/wooden{
-	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it...";
-	dir = 4;
-	health = 25000
+/obj/structure/barricade/wooden/lv_snowflake{
+	dir = 4
 	},
 /turf/open/mars_cave{
 	tag = "icon-mars_cave_18";
@@ -996,10 +990,8 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/marshal_office)
 "act" = (
-/obj/structure/barricade/wooden{
-	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it...";
-	dir = 4;
-	health = 25000
+/obj/structure/barricade/wooden/lv_snowflake{
+	dir = 4
 	},
 /turf/open/mars_cave{
 	tag = "icon-mars_cave_5";
@@ -7668,10 +7660,8 @@
 	},
 /area/bigredv2/outside/n)
 "aqN" = (
-/obj/structure/barricade/wooden{
-	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it...";
-	dir = 8;
-	health = 25000
+/obj/structure/barricade/wooden/lv_snowflake{
+	dir = 8
 	},
 /obj/structure/barricade/wooden,
 /turf/open/mars,
@@ -8308,23 +8298,17 @@
 	},
 /area/bigredv2/outside/n)
 "asg" = (
-/obj/structure/barricade/wooden{
-	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it...";
-	dir = 1;
-	health = 25000
+/obj/structure/barricade/wooden/lv_snowflake{
+	dir = 1
 	},
-/obj/structure/barricade/wooden{
-	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it...";
-	dir = 8;
-	health = 25000
+/obj/structure/barricade/wooden/lv_snowflake{
+	dir = 8
 	},
 /turf/open/mars,
 /area/bigredv2/outside/n)
 "ash" = (
-/obj/structure/barricade/wooden{
-	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it...";
-	dir = 1;
-	health = 25000
+/obj/structure/barricade/wooden/lv_snowflake{
+	dir = 1
 	},
 /turf/open/mars,
 /area/bigredv2/outside/n)
@@ -10062,10 +10046,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/structure/barricade/wooden{
-	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it...";
-	dir = 8;
-	health = 25000
+/obj/structure/barricade/wooden/lv_snowflake{
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor,
@@ -10078,10 +10060,8 @@
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
 "avJ" = (
-/obj/structure/barricade/wooden{
-	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it...";
-	dir = 8;
-	health = 25000
+/obj/structure/barricade/wooden/lv_snowflake{
+	dir = 8
 	},
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
@@ -10437,10 +10417,8 @@
 	dir = 4;
 	layer = 2.4
 	},
-/obj/structure/barricade/wooden{
-	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it...";
-	dir = 8;
-	health = 25000
+/obj/structure/barricade/wooden/lv_snowflake{
+	dir = 8
 	},
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
@@ -10461,10 +10439,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/structure/barricade/wooden{
-	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it...";
-	dir = 8;
-	health = 25000
+/obj/structure/barricade/wooden/lv_snowflake{
+	dir = 8
 	},
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
@@ -18982,10 +18958,8 @@
 	},
 /area/bigredv2/outside/virology)
 "aNk" = (
-/obj/structure/barricade/wooden{
-	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it...";
-	dir = 1;
-	health = 25000
+/obj/structure/barricade/wooden/lv_snowflake{
+	dir = 1
 	},
 /turf/open/floor{
 	tag = "icon-whitebluefull (NORTHEAST)";
@@ -19031,10 +19005,8 @@
 /turf/open/floor,
 /area/bigredv2/outside/general_store)
 "aNq" = (
-/obj/structure/barricade/wooden{
-	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it...";
-	dir = 1;
-	health = 25000
+/obj/structure/barricade/wooden/lv_snowflake{
+	dir = 1
 	},
 /turf/open/floor,
 /area/bigredv2/outside/general_store)
@@ -19105,20 +19077,16 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/structure/barricade/wooden{
-	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it...";
-	dir = 1;
-	health = 25000
+/obj/structure/barricade/wooden/lv_snowflake{
+	dir = 1
 	},
 /turf/open/floor{
 	icon_state = "white"
 	},
 /area/bigredv2/outside/admin_building)
 "aNA" = (
-/obj/structure/barricade/wooden{
-	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it...";
-	dir = 1;
-	health = 25000
+/obj/structure/barricade/wooden/lv_snowflake{
+	dir = 1
 	},
 /turf/open/floor{
 	icon_state = "white"
@@ -19542,10 +19510,8 @@
 	},
 /area/bigredv2/outside/virology)
 "aOv" = (
-/obj/structure/barricade/wooden{
-	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it...";
-	dir = 8;
-	health = 25000
+/obj/structure/barricade/wooden/lv_snowflake{
+	dir = 8
 	},
 /turf/open/floor{
 	tag = "icon-whitebluefull (NORTHEAST)";
@@ -22203,10 +22169,8 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aTK" = (
-/obj/structure/barricade/wooden{
-	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it...";
-	dir = 8;
-	health = 25000
+/obj/structure/barricade/wooden/lv_snowflake{
+	dir = 8
 	},
 /turf/open/floor{
 	icon_state = "white"
@@ -23472,10 +23436,8 @@
 	d2 = 8;
 	icon_state = "4-8";
 	},
-/obj/structure/barricade/wooden{
-	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it...";
-	dir = 8;
-	health = 25000
+/obj/structure/barricade/wooden/lv_snowflake{
+	dir = 8
 	},
 /turf/open/floor{
 	tag = "icon-whitebluefull (NORTHEAST)";
@@ -23736,10 +23698,8 @@
 	dir = 4;
 	layer = 2.4
 	},
-/obj/structure/barricade/wooden{
-	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it...";
-	dir = 8;
-	health = 25000
+/obj/structure/barricade/wooden/lv_snowflake{
+	dir = 8
 	},
 /turf/open/floor{
 	icon_state = "white"
@@ -25346,10 +25306,8 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
 	},
-/obj/structure/barricade/wooden{
-	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it...";
-	dir = 1;
-	health = 25000
+/obj/structure/barricade/wooden/lv_snowflake{
+	dir = 1
 	},
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
@@ -25596,10 +25554,8 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "bbi" = (
-/obj/structure/barricade/wooden{
-	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it...";
-	dir = 4;
-	health = 25000
+/obj/structure/barricade/wooden/lv_snowflake{
+	dir = 4
 	},
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
@@ -26132,18 +26088,14 @@
 	},
 /area/bigredv2/outside/cargo)
 "bct" = (
-/obj/structure/barricade/wooden{
-	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it...";
-	dir = 8;
-	health = 25000
+/obj/structure/barricade/wooden/lv_snowflake{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/cargo)
 "bcu" = (
-/obj/structure/barricade/wooden{
-	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it...";
-	dir = 8;
-	health = 25000
+/obj/structure/barricade/wooden/lv_snowflake{
+	dir = 8
 	},
 /turf/open/floor/marking/delivery,
 /area/bigredv2/outside/cargo)
@@ -26825,10 +26777,8 @@
 "beb" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/barricade/wooden{
-	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it...";
-	dir = 8;
-	health = 25000
+/obj/structure/barricade/wooden/lv_snowflake{
+	dir = 8
 	},
 /turf/open/floor{
 	tag = "icon-asteroidfloor (NORTH)";
@@ -27888,10 +27838,8 @@
 /turf/open/floor/marking/bot,
 /area/bigredv2/outside/cargo)
 "bgF" = (
-/obj/structure/barricade/wooden{
-	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it...";
-	dir = 4;
-	health = 25000
+/obj/structure/barricade/wooden/lv_snowflake{
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-asteroidwarning (EAST)";
@@ -28816,10 +28764,8 @@
 	dir = 4;
 	layer = 2.4
 	},
-/obj/structure/barricade/wooden{
-	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it...";
-	dir = 4;
-	health = 25000
+/obj/structure/barricade/wooden/lv_snowflake{
+	dir = 4
 	},
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
