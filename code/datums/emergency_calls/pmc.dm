@@ -32,12 +32,10 @@
 		H.real_name = H.name
 		H.voice_name = H.name
 
-	H.key = M.key
+	M.transfer_to(H)
 
 	if(original)
 		qdel(original)
-
-	H.client?.change_view(world.view)
 
 	print_backstory(H)
 

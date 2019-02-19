@@ -62,6 +62,9 @@
 		var/datum/skills/L = new skills_type
 		H.mind.cm_skills = L
 
+	H.job = title
+	H.faction = faction
+
 	if(outfit_override || outfit)
 		H.equipOutfit(outfit_override ? outfit_override : outfit, visualsOnly)
 

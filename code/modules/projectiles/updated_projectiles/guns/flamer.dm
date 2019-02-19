@@ -252,7 +252,7 @@
 
 			if(user)
 				var/area/A = get_area(user)
-				if(user.mind && !user.mind.special_role && H.mind && !H.mind.special_role)
+				if(user.mind?.special_role != H.mind?.special_role || user.faction != H.faction)
 					log_combat(user, H, "shot", src)
 					msg_admin_ff("[ADMIN_TPMONTY(usr)] shot [ADMIN_TPMONTY(H)] with \a [name] in [ADMIN_VERBOSEJMP(A)].")
 				else

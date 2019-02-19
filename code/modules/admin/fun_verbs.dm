@@ -743,6 +743,8 @@
 			if(H.wear_id)
 				qdel(H.wear_id)
 
+			H.job = newrank
+
 			H.equip_to_slot_or_del(I, SLOT_WEAR_ID)
 
 			SSjob.AssignRole(H, newrank)

@@ -2,6 +2,7 @@
 	department_flag = J_FLAG_SHIP
 	selection_color = "#ddddff"
 	supervisors = "the acting commander"
+	faction = "Marine"
 	spawn_positions = 1
 	total_positions = 1
 

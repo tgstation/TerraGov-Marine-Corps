@@ -17,12 +17,10 @@
 
 	var/mob/living/carbon/human/H = new /mob/living/carbon/human(spawn_loc)
 
-	H.key = M.key
+	M.transfer_to(H)
 
 	if(original)
 		qdel(original)
-
-	H.client?.change_view(world.view)
 
 	print_backstory(H)
 
