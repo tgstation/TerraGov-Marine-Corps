@@ -223,6 +223,9 @@
 	icon_state = "wall1"
 	icon = 'icons/turf/shuttle.dmi'
 
+/turf/closed/shuttle/wall3
+	icon_state = "wall3"
+
 /turf/closed/shuttle/dropship
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "rasputin1"

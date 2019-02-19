@@ -1374,15 +1374,11 @@
 /area/lv624/ground/sand6)
 "aeI" = (
 /obj/structure/girder/displaced,
-/turf/closed/shuttle{
-	icon_state = "wall3"
-	},
+/turf/closed/shuttle/wall3,
 /area/lv624/ground/sand6)
 "aeJ" = (
 /obj/structure/girder,
-/turf/closed/shuttle{
-	icon_state = "wall3"
-	},
+/turf/closed/shuttle/wall3,
 /area/lv624/ground/sand6)
 "aeK" = (
 /turf/closed/wall/resin/ondirt,
