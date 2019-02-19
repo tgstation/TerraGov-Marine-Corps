@@ -4120,9 +4120,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
 	},
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/shipboard/brig)
 "ajL" = (
 /obj/structure/table/almayer,
@@ -4133,9 +4131,7 @@
 /obj/item/storage/box/handcuffs,
 /obj/item/storage/toolbox/mechanical,
 /obj/item/storage/toolbox/mechanical,
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/shipboard/brig)
 "ajM" = (
 /obj/structure/table/almayer,
@@ -4146,9 +4142,7 @@
 	pixel_y = 10
 	},
 /obj/item/storage/box/flashbangs,
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/shipboard/brig)
 "ajN" = (
 /obj/structure/table/almayer,
@@ -4156,9 +4150,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
 	},
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/shipboard/brig)
 "ajO" = (
 /obj/structure/bed/chair,
@@ -4198,9 +4190,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/shipboard/brig)
 "ajS" = (
 /obj/structure/cable{
@@ -4922,17 +4912,13 @@
 	},
 /area/almayer/hull/upper_hull)
 "akS" = (
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/shipboard/brig)
 "akT" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
 	},
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/shipboard/brig)
 "akU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -5044,9 +5030,7 @@
 "ale" = (
 /obj/structure/table/almayer,
 /obj/machinery/computer/secure_data,
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/shipboard/brig)
 "alf" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -6252,9 +6236,7 @@
 /obj/item/handcuffs,
 /obj/item/device/camera,
 /obj/item/device/taperecorder,
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/shipboard/brig)
 "amF" = (
 /obj/structure/bed,
@@ -6783,9 +6765,7 @@
 /area/almayer/shipboard/brig)
 "anL" = (
 /obj/structure/closet/secure_closet/guncabinet/riot_control,
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/shipboard/brig)
 "anM" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -6809,9 +6789,7 @@
 /area/almayer/shipboard/brig)
 "anO" = (
 /obj/structure/closet/secure_closet/guncabinet/mp_armory,
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/shipboard/brig)
 "anP" = (
 /turf/closed/wall/almayer/outer,
@@ -7447,9 +7425,7 @@
 	icon_state = "door_open";
 	dir = 2
 	},
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/shipboard/brig)
 "apd" = (
 /obj/structure/window/framed/almayer/hull,
@@ -7518,9 +7494,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/command/cic)
 "apl" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -7529,9 +7503,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 10
 	},
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/command/cic)
 "apm" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -7546,9 +7518,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 6
 	},
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/command/cic)
 "apn" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -7560,9 +7530,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/command/cic)
 "apo" = (
 /turf/open/floor/almayer{
@@ -8508,17 +8476,13 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/command/cic)
 "arh" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/command/cic)
 "ari" = (
 /obj/structure/table/almayer,
@@ -9044,17 +9008,13 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/engineering/upper_engineering)
 "ask" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/engineering/upper_engineering)
 "asl" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -9063,9 +9023,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/engineering/upper_engineering)
 "asm" = (
 /obj/structure/table/almayer,
@@ -9701,9 +9659,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/medical/upper_medical)
 "atv" = (
 /obj/structure/table/almayer,
@@ -9950,17 +9906,13 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 6
 	},
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/engineering/upper_engineering)
 "atU" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
 	},
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/engineering/upper_engineering)
 "atV" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -9969,9 +9921,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 10
 	},
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/engineering/upper_engineering)
 "atW" = (
 /obj/structure/table/almayer,
@@ -10739,9 +10689,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/medical/upper_medical)
 "avm" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -10750,17 +10698,13 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/medical/upper_medical)
 "avn" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/medical/upper_medical)
 "avo" = (
 /obj/machinery/door/poddoor/shutters/almayer{
@@ -10774,9 +10718,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/medical/upper_medical)
 "avp" = (
 /turf/open/floor/almayer{
@@ -11184,9 +11126,7 @@
 "awe" = (
 /obj/structure/closet/secure_closet/guncabinet/riot_control,
 /obj/machinery/camera/autoname/almayer,
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/shipboard/brig)
 "awf" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -11283,9 +11223,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/command/cic)
 "awn" = (
 /obj/machinery/door/poddoor/shutters/almayer{
@@ -11296,9 +11234,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/command/cic)
 "awo" = (
 /obj/structure/cable{
@@ -11396,9 +11332,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
 	},
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/medical/upper_medical)
 "awy" = (
 /obj/machinery/door_control{
@@ -16270,9 +16204,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/command/cic)
 "aEB" = (
 /obj/structure/closet/secure_closet/staff_officer,
@@ -16992,9 +16924,7 @@
 	dir = 8
 	},
 /obj/machinery/camera/autoname/almayer,
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/shipboard/brig)
 "aFK" = (
 /obj/machinery/door_timer/cell_1,
@@ -17562,9 +17492,7 @@
 	id = "tcomms";
 	name = "\improper Podlock"
 	},
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/command/telecomms)
 "aGO" = (
 /obj/machinery/door/firedoor/border_only/almayer{
@@ -17615,41 +17543,29 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/engineering/upper_engineering)
 "aGT" = (
 /obj/machinery/power/port_gen/pacman/mrs,
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/engineering/upper_engineering)
 "aGU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/engineering/upper_engineering)
 "aGV" = (
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/engineering/upper_engineering)
 "aGW" = (
 /obj/machinery/portable_atmospherics/scrubber,
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/engineering/upper_engineering)
 "aGX" = (
 /obj/machinery/portable_atmospherics/canister/air,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/engineering/upper_engineering)
 "aGY" = (
 /obj/machinery/portable_atmospherics/canister/air,
@@ -18292,9 +18208,7 @@
 	icon_state = "door_open";
 	dir = 8
 	},
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/command/telecomms)
 "aIg" = (
 /obj/machinery/alarm/almayer{
@@ -18327,18 +18241,14 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
 	},
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/engineering/upper_engineering)
 "aIk" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
 	},
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/engineering/upper_engineering)
 "aIl" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -18347,9 +18257,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
 	},
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/engineering/upper_engineering)
 "aIm" = (
 /obj/structure/table/almayer,
@@ -18560,9 +18468,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
 	},
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/command/cic)
 "aII" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -18571,9 +18477,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
 	},
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/command/cic)
 "aIJ" = (
 /obj/structure/disposalpipe/segment{
@@ -19214,9 +19118,7 @@
 	name = "Permabrig Flash"
 	},
 /obj/structure/table/reinforced,
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/shipboard/brig_cells)
 "aJX" = (
 /obj/structure/bed/chair{
@@ -22897,9 +22799,7 @@
 	icon_state = "door_open";
 	dir = 2
 	},
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/command/cic)
 "aPX" = (
 /obj/structure/disposalpipe/segment{
@@ -25419,9 +25319,7 @@
 	},
 /area/almayer/shipboard/starboard_point_defense)
 "aVK" = (
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/shuttle/distress/arrive_1)
 "aVL" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -33094,17 +32992,13 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/shipboard/weapon_room)
 "bkH" = (
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/shipboard/starboard_missiles)
 "bkI" = (
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/shipboard/starboard_missiles)
 "bkJ" = (
 /obj/structure/window/framed/almayer,
@@ -33886,9 +33780,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
 	},
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/shipboard/starboard_missiles)
 "bmr" = (
 /turf/open/floor/almayer,
@@ -37548,9 +37440,7 @@
 	},
 /area/almayer/hull/lower_hull)
 "btF" = (
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/shuttle/distress/arrive_3)
 "btG" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -38799,9 +38689,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/squads/req)
 "bwj" = (
 /obj/machinery/power/apc/almayer{
@@ -38811,38 +38699,28 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/squads/req)
 "bwk" = (
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/squads/req)
 "bwl" = (
 /obj/machinery/status_display/supply_display{
 	pixel_y = 32
 	},
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/squads/req)
 "bwm" = (
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/squads/req)
 "bwn" = (
 /obj/machinery/firealarm{
 	pixel_y = 28
 	},
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/squads/req)
 "bwo" = (
 /obj/machinery/alarm/almayer{
@@ -40545,9 +40423,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1
 	},
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/squads/req)
 "bzq" = (
 /obj/machinery/door/poddoor/railing{
@@ -41864,9 +41740,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/squads/req)
 "bBW" = (
 /obj/machinery/door/poddoor/railing{
@@ -44712,9 +44586,7 @@
 /area/almayer/squads/req)
 "bHw" = (
 /obj/machinery/light,
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/squads/req)
 "bHx" = (
 /obj/machinery/firealarm{
@@ -45969,9 +45841,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/squads/req)
 "bJR" = (
 /obj/structure/rack,
@@ -47726,9 +47596,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/shipboard/port_missiles)
 "bNf" = (
 /turf/open/floor/almayer{
@@ -48306,9 +48174,7 @@
 /turf/open/floor/almayer,
 /area/almayer/shipboard/weapon_room)
 "bOh" = (
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/shipboard/port_missiles)
 "bOi" = (
 /obj/structure/window/framed/almayer,
@@ -48669,18 +48535,14 @@
 /obj/structure/prop/almayer/missile_tube{
 	icon_state = "missiletubesouth"
 	},
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/shipboard/port_missiles)
 "bPf" = (
 /obj/structure/prop/almayer/missile_tube{
 	icon_state = "missiletubesouth"
 	},
 /obj/machinery/light,
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/shipboard/port_missiles)
 "bPg" = (
 /obj/structure/table/almayer,
@@ -55762,9 +55624,7 @@
 	},
 /area/almayer/shipboard/port_point_defense)
 "ccy" = (
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/shuttle/distress/arrive_2)
 "ccz" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -58093,9 +57953,7 @@
 /obj/item/clothing/mask/muzzle,
 /obj/item/clothing/mask/muzzle,
 /obj/structure/closet/secure_closet/brig,
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/shipboard/brig_cells)
 "chb" = (
 /obj/machinery/camera/autoname/almayer,
@@ -58371,9 +58229,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/shipboard/brig_cells)
 "chA" = (
 /obj/structure/bed,
@@ -58381,16 +58237,12 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/shipboard/brig_cells)
 "chB" = (
 /obj/structure/bed,
 /obj/item/bedsheet/green,
-/turf/open/floor/almayer{
-	icon_state = "plating"
-	},
+/turf/open/floor/plating/almayer,
 /area/almayer/shipboard/brig_cells)
 "chC" = (
 /obj/structure/toilet{
