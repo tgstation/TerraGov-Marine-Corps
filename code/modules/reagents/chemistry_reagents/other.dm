@@ -793,6 +793,7 @@
 	custom_metabolism = 1.25 // Fast meta rate.
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL * 1.2 //make this a little more forgiving in light of the lethality
+	scannable = TRUE
 
 /datum/reagent/xeno_neurotoxin/on_mob_life(mob/living/M)
 	. = ..()
@@ -833,6 +834,7 @@
 	custom_metabolism = GROWTH_TOXIN_METARATE // 0.2, slow meta rate.
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
+	scannable = TRUE
 
 /datum/reagent/xeno_growthtoxin/overdose_process(mob/living/M)
 	M.adjustOxyLoss(1) //Overdose starts applying more oxy damage
