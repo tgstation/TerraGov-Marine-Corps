@@ -715,8 +715,40 @@
 	has_resist = 1
 	has_internals = 0
 	gear = list()
+	
+/datum/species/zombie/necromorph
+	name = "Necromorph"
+	name_plural = "Necromorphs"
+	slowdown = -0.6
+	brute_mod = 0.75
+	burn_mod = 1.5
 
+/datum/species/zombie/necromorph/handle_death(var/mob/living/carbon/human/H, gibbed)
+	if(H && H.loc && H.stat == DEAD)
+		gib()
 
+/datum/species/zombie/necromorph/handle_post_spawn(var/mob/living/carbon/human/H)
+	if(H.hud_used)
+		qdel(H.hud_used)
+		H.hud_used = null
+//		H.create_mob_hud()
+		if(H.hud_used)
+			H.hud_used.show_hud(H.hud_used.hud_version)
+	if(H.l_hand) H.dropItemToGround(H.l_hand, FALSE, TRUE)
+	if(H.r_hand) H.dropItemToGround(H.r_hand, FALSE, TRUE)
+	if(H.wear_id) qdel(H.wear_id)
+	if(H.gloves) qdel(H.gloves)
+	if(H.head) qdel(H.head)
+	if(H.glasses) qdel(H.glasses)
+	if(H.wear_mask) qdel(H.wear_mask)
+	var/obj/item/weapon/necromorph_claws/ZC = new()
+	ZC.icon_state = "claw_r"
+	H.equip_to_slot_or_del(ZC, SLOT_R_HAND, TRUE)
+	H.equip_to_slot_or_del(new /obj/item/weapon/necromorph_claws, SLOT_L_HAND, TRUE)
+	H.equip_to_slot(new /obj/item/clothing/glasses/zombie_eyes, SLOT_GLASSES, TRUE)
+	H.equip_to_slot(new /obj/item/clothing/mask/rebreather/scarf/zombie, SLOT_WEAR_MASK, TRUE)
+	return ..()
+	
 /datum/species/synthetic/handle_post_spawn(mob/living/carbon/human/H)
 	H.universal_understand = 1
 	return ..()
