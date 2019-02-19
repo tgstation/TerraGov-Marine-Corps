@@ -201,7 +201,7 @@
 		return
 	if(!IsJobAvailable(rank))
 		to_chat(usr, "<span class='warning'>Selected job is not available.<spawn>")
-		return FALSE
+		return
 	if(!SSticker || SSticker.current_state != GAME_STATE_PLAYING)
 		to_chat(usr, "<span class='warning'>The round is either not ready, or has already finished!<spawn>")
 		return
@@ -214,6 +214,7 @@
 
 	if(!SSjob.AssignRole(src, rank, TRUE))
 		to_chat(usr, "<span class='warning'>Failed to assign selected role.<spawn>")
+		return
 
 	var/mob/living/character = create_character(TRUE)	//creates the human and transfers vars and mind
 	var/equip = SSjob.EquipRank(character, rank, TRUE)
