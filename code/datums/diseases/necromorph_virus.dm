@@ -32,7 +32,7 @@
 				H.nutrition = 450 //never hungry
 				if(goo_message_cooldown < world.time)
 					goo_message_cooldown = world.time + 100
-					to_chat(affected_mob, "<span class='green'> Spread... Consume... Infect...</span>")
+					to_chat(affected_mob, "<span class='red'> Kill... Die... Glory...</span>")
 
 
 /datum/disease/black_goo/necromorph_virus/proc/zombie_transform(mob/living/carbon/human/H)
