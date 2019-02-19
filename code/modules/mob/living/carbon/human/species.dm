@@ -721,7 +721,7 @@
 	name_plural = "Necromorphs"
 	slowdown = -0.6
 	brute_mod = 0.75
-	burn_mod = 1.5
+	burn_mod = 1.1 //don't murderize me lasers
 
 /datum/species/zombie/necromorph/handle_death(var/mob/living/carbon/human/H, gibbed)
 	if(H && H.loc && H.stat == DEAD)
