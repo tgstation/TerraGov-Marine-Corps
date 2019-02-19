@@ -182,7 +182,7 @@
 
 /obj/item/weapon/gun/pistol/heavy
 	name = "\improper vintage Desert Eagle"
-	desc = "A pistol chambered in.50aethat comes with a serious kick, This one is engraved, 'Peace through superior firepower.'"
+	desc = "A pistol chambered in.50ae that comes with a serious kick. This one is engraved, <i>'Peace through superior firepower.'</i>"
 	icon_state = "deagle"
 	item_state = "deagle"
 	fire_sound = 'sound/weapons/gun_44mag.ogg'
