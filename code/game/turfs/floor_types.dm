@@ -20,6 +20,9 @@
 /turf/open/floor/plating/almayer
 	icon = 'icons/turf/almayer.dmi'
 
+/turf/open/floor/plating/almayer/striped
+	icon_state = "plating_striped"
+
 /turf/open/floor/plating/airless
 	icon_state = "plating"
 	name = "airless plating"
@@ -471,4 +474,3 @@
 
 /turf/open/floor/mech_bay_recharge_floor/asteroid
 	icon_state = "recharge_floor_asteroid"
-	

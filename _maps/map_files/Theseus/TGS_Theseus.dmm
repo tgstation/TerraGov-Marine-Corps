@@ -26003,9 +26003,7 @@
 /obj/structure/target_stake,
 /obj/item/target,
 /obj/item/clothing/suit/replica,
-/turf/open/floor/almayer{
-	tag = "icon-plating_striped (WEST)";
-	icon_state = "plating_striped";
+/turf/open/floor/plating/almayer/striped{
 	dir = 8
 	},
 /area/almayer/shipboard/firing_range)
@@ -26013,9 +26011,7 @@
 /turf/open/floor/plating/almayer,
 /area/almayer/shipboard/firing_range)
 "aXq" = (
-/turf/open/floor/almayer{
-	tag = "icon-plating_striped (EAST)";
-	icon_state = "plating_striped";
+/turf/open/floor/plating/almayer/striped{
 	dir = 4
 	},
 /area/almayer/shipboard/firing_range)
@@ -26398,9 +26394,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/shipboard/firing_range)
 "aYh" = (
-/turf/open/floor/almayer{
-	tag = "icon-plating_striped (WEST)";
-	icon_state = "plating_striped";
+/turf/open/floor/plating/almayer/striped{
 	dir = 8
 	},
 /area/almayer/shipboard/firing_range)
@@ -27485,9 +27479,7 @@
 /obj/structure/target_stake,
 /obj/item/target,
 /obj/item/clothing/suit/replica,
-/turf/open/floor/almayer{
-	tag = "icon-plating_striped (EAST)";
-	icon_state = "plating_striped";
+/turf/open/floor/plating/almayer/striped{
 	dir = 4
 	},
 /area/almayer/shipboard/firing_range)
@@ -37851,9 +37843,7 @@
 /area/almayer/medical/lower_medical)
 "buy" = (
 /obj/machinery/vending/security,
-/turf/open/floor/almayer{
-	tag = "icon-plating_striped (WEST)";
-	icon_state = "plating_striped";
+/turf/open/floor/plating/almayer/striped{
 	dir = 8
 	},
 /area/almayer/hull/lower_hull)
@@ -38985,9 +38975,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/turf/open/floor/almayer{
-	tag = "icon-plating_striped (EAST)";
-	icon_state = "plating_striped";
+/turf/open/floor/plating/almayer/striped{
 	dir = 4
 	},
 /area/almayer/engineering/engine_core)
@@ -39042,9 +39030,7 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/turf/open/floor/almayer{
-	tag = "icon-plating_striped (EAST)";
-	icon_state = "plating_striped";
+/turf/open/floor/plating/almayer/striped{
 	dir = 4
 	},
 /area/almayer/engineering/engine_core)
@@ -39059,9 +39045,7 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/turf/open/floor/almayer{
-	tag = "icon-plating_striped (WEST)";
-	icon_state = "plating_striped";
+/turf/open/floor/plating/almayer/striped{
 	dir = 8
 	},
 /area/almayer/engineering/engine_core)
@@ -39071,9 +39055,7 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/turf/open/floor/almayer{
-	tag = "icon-plating_striped (WEST)";
-	icon_state = "plating_striped";
+/turf/open/floor/plating/almayer/striped{
 	dir = 8
 	},
 /area/almayer/engineering/engine_core)
@@ -39719,9 +39701,7 @@
 	},
 /area/almayer/squads/req)
 "byb" = (
-/turf/open/floor/almayer{
-	tag = "icon-plating_striped (EAST)";
-	icon_state = "plating_striped";
+/turf/open/floor/plating/almayer/striped{
 	dir = 4
 	},
 /area/almayer/squads/req)
@@ -39739,9 +39719,7 @@
 	},
 /area/almayer/squads/req)
 "bye" = (
-/turf/open/floor/almayer{
-	tag = "icon-plating_striped (WEST)";
-	icon_state = "plating_striped";
+/turf/open/floor/plating/almayer/striped{
 	dir = 8
 	},
 /area/almayer/squads/req)
@@ -39923,9 +39901,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor/almayer{
-	tag = "icon-plating_striped (EAST)";
-	icon_state = "plating_striped";
+/turf/open/floor/plating/almayer/striped{
 	dir = 4
 	},
 /area/almayer/engineering/engine_core)
@@ -39945,9 +39921,7 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/turf/open/floor/almayer{
-	tag = "icon-plating_striped (EAST)";
-	icon_state = "plating_striped";
+/turf/open/floor/plating/almayer/striped{
 	dir = 4
 	},
 /area/almayer/engineering/engine_core)
@@ -39967,9 +39941,7 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/turf/open/floor/almayer{
-	tag = "icon-plating_striped (WEST)";
-	icon_state = "plating_striped";
+/turf/open/floor/plating/almayer/striped{
 	dir = 8
 	},
 /area/almayer/engineering/engine_core)
@@ -39984,9 +39956,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor/almayer{
-	tag = "icon-plating_striped (WEST)";
-	icon_state = "plating_striped";
+/turf/open/floor/plating/almayer/striped{
 	dir = 8
 	},
 /area/almayer/engineering/engine_core)
@@ -41167,9 +41137,7 @@
 /area/almayer/squads/req)
 "bAL" = (
 /obj/structure/closet/crate/alpha,
-/turf/open/floor/almayer{
-	tag = "icon-plating_striped (EAST)";
-	icon_state = "plating_striped";
+/turf/open/floor/plating/almayer/striped{
 	dir = 4
 	},
 /area/almayer/squads/req)
@@ -41183,9 +41151,7 @@
 /area/almayer/squads/req)
 "bAO" = (
 /obj/structure/closet/crate/bravo,
-/turf/open/floor/almayer{
-	tag = "icon-plating_striped (WEST)";
-	icon_state = "plating_striped";
+/turf/open/floor/plating/almayer/striped{
 	dir = 8
 	},
 /area/almayer/squads/req)
@@ -42604,9 +42570,7 @@
 /area/almayer/squads/req)
 "bDE" = (
 /obj/structure/closet/crate/charlie,
-/turf/open/floor/almayer{
-	tag = "icon-plating_striped (EAST)";
-	icon_state = "plating_striped";
+/turf/open/floor/plating/almayer/striped{
 	dir = 4
 	},
 /area/almayer/squads/req)
@@ -42626,9 +42590,7 @@
 	pixel_y = 28
 	},
 /obj/structure/closet/crate/delta,
-/turf/open/floor/almayer{
-	tag = "icon-plating_striped (WEST)";
-	icon_state = "plating_striped";
+/turf/open/floor/plating/almayer/striped{
 	dir = 8
 	},
 /area/almayer/squads/req)
@@ -43306,9 +43268,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor/almayer{
-	tag = "icon-plating_striped (EAST)";
-	icon_state = "plating_striped";
+/turf/open/floor/plating/almayer/striped{
 	dir = 4
 	},
 /area/almayer/engineering/engine_core)
@@ -43328,9 +43288,7 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/open/floor/almayer{
-	tag = "icon-plating_striped (EAST)";
-	icon_state = "plating_striped";
+/turf/open/floor/plating/almayer/striped{
 	dir = 4
 	},
 /area/almayer/engineering/engine_core)
@@ -43350,9 +43308,7 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/open/floor/almayer{
-	tag = "icon-plating_striped (WEST)";
-	icon_state = "plating_striped";
+/turf/open/floor/plating/almayer/striped{
 	dir = 8
 	},
 /area/almayer/engineering/engine_core)
@@ -43367,9 +43323,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor/almayer{
-	tag = "icon-plating_striped (WEST)";
-	icon_state = "plating_striped";
+/turf/open/floor/plating/almayer/striped{
 	dir = 8
 	},
 /area/almayer/engineering/engine_core)
@@ -44850,9 +44804,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/open/floor/almayer{
-	tag = "icon-plating_striped (EAST)";
-	icon_state = "plating_striped";
+/turf/open/floor/plating/almayer/striped{
 	dir = 4
 	},
 /area/almayer/engineering/engine_core)
@@ -44867,9 +44819,7 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/open/floor/almayer{
-	tag = "icon-plating_striped (EAST)";
-	icon_state = "plating_striped";
+/turf/open/floor/plating/almayer/striped{
 	dir = 4
 	},
 /area/almayer/engineering/engine_core)
@@ -44884,9 +44834,7 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/open/floor/almayer{
-	tag = "icon-plating_striped (WEST)";
-	icon_state = "plating_striped";
+/turf/open/floor/plating/almayer/striped{
 	dir = 8
 	},
 /area/almayer/engineering/engine_core)
@@ -44896,9 +44844,7 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/open/floor/almayer{
-	tag = "icon-plating_striped (WEST)";
-	icon_state = "plating_striped";
+/turf/open/floor/plating/almayer/striped{
 	dir = 8
 	},
 /area/almayer/engineering/engine_core)
@@ -56611,9 +56557,7 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 4
 	},
-/turf/open/floor/almayer{
-	tag = "icon-plating_striped (EAST)";
-	icon_state = "plating_striped";
+/turf/open/floor/plating/almayer/striped{
 	dir = 4
 	},
 /area/almayer/hull/lower_hull)
@@ -56714,9 +56658,7 @@
 /obj/machinery/conveyor{
 	id = "lower_garbage"
 	},
-/turf/open/floor/almayer{
-	tag = "icon-plating_striped (EAST)";
-	icon_state = "plating_striped";
+/turf/open/floor/plating/almayer/striped{
 	dir = 4
 	},
 /area/almayer/hull/lower_hull)
@@ -56838,9 +56780,7 @@
 	id = "lower_garbage"
 	},
 /obj/structure/plasticflaps,
-/turf/open/floor/almayer{
-	tag = "icon-plating_striped (EAST)";
-	icon_state = "plating_striped";
+/turf/open/floor/plating/almayer/striped{
 	dir = 4
 	},
 /area/almayer/hull/lower_hull)
@@ -56865,9 +56805,7 @@
 	id = "lower_garbage"
 	},
 /obj/machinery/recycler,
-/turf/open/floor/almayer{
-	tag = "icon-plating_striped (EAST)";
-	icon_state = "plating_striped";
+/turf/open/floor/plating/almayer/striped{
 	dir = 4
 	},
 /area/almayer/hull/lower_hull)
