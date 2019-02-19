@@ -788,7 +788,7 @@
 	name = "Strange filth"
 	id = "necrovirus"
 	description = "A strange writhing mass of unknown origin and effect."
-	tast_description = "rotten flesh"
+	taste_description = "rotten flesh"
 
 /datum/reagent/blackgoo/necromorph_virus/reaction_mob(mob/M, method=TOUCH, reac_volume)
 	if(ishuman(M))
