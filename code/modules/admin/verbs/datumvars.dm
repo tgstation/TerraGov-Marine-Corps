@@ -1185,3 +1185,14 @@
 
 			log_admin("[key_name(usr)] has sent atom [A] to [AREACOORD(target)].")
 			message_admins("[ADMIN_TPMONTY(usr)] has sent atom [A] to [ADMIN_VERBOSEJMP(target)].")
+
+
+		else if(href_list["copyoutfit"])
+			if(!check_rights(R_SPAWN))
+				return
+			var/mob/living/carbon/human/H = locate(href_list["copyoutfit"])
+			if(istype(H))
+				H.copy_outfit()
+
+			log_admin("[key_name(usr)] copied the outfit of [key_name(H)].")
+			message_admins("[ADMIN_TPMONTY(usr)] copied the outfit of [ADMIN_TPMONTY(H)].")

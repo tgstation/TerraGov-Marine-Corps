@@ -101,10 +101,10 @@
 	data["all_centcom_access"] = null
 	data["regions"] = null
 
-	data["command_jobs"] = format_jobs(ROLES_COMMAND)
-	data["engineering_jobs"] = format_jobs(ROLES_ENGINEERING)
-	data["medical_jobs"] = format_jobs(ROLES_MEDICAL)
-	data["marine_jobs"] = format_jobs(ROLES_UNASSIGNED)
+	data["command_jobs"] = format_jobs(JOBS_COMMAND)
+	data["engineering_jobs"] = format_jobs(JOBS_ENGINEERING)
+	data["medical_jobs"] = format_jobs(JOBS_MEDICAL)
+	data["marine_jobs"] = format_jobs(JOBS_UNASSIGNED)
 	data["civilian_jobs"] = format_jobs(list("Colonist","Passenger"))
 //	data["squad_jobs"] = format_jobs(all_squad_positions)
 	data["centcom_jobs"] = format_jobs(get_all_centcom_jobs())
@@ -286,7 +286,7 @@
 				modify.access = list()
 				log_admin("[key_name(usr)] terminated the ID of [modify.registered_name].")
 				message_admins("[ADMIN_TPMONTY(usr)] terminated the ID of [modify.registered_name].")
-				
+
 				callHook("terminate_employee", list(modify))
 
 	if (modify)

@@ -110,6 +110,10 @@
 
 #define ABOVE_FLY_LAYER 6
 
+#define LOW_LANDMARK_LAYER 9
+#define MID_LANDMARK_LAYER 9.1
+#define HIGH_LANDMARK_LAYER 9.2
+
 #define AREAS_LAYER 10 //for areas, so they appear above everything else on map file.
 
 #define POINT_LAYER 12

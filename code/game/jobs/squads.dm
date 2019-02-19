@@ -1,43 +1,43 @@
-//This datum keeps track of individual squads. New squads can be added without any problem but to give them
-//access you must add them individually to access.dm with the other squads. Just look for "access_alpha" and add the new one
-
-//Note: some important procs are held by the job controller, in job_controller.dm.
-//In particular, get_lowest_squad() and randomize_squad()
-
 /datum/squad
-	var/name = "Empty Squad"  //Name of the squad
-	var/id = NO_SQUAD //Just a little number identifier
+	var/name = ""
+	var/id = NO_SQUAD
 	var/tracking_id = null // for use with SSdirection
-	var/max_positions = -1 //Maximum number allowed in a squad. Defaults to infinite
 	var/color = 0 //Color for helmets, etc.
 	var/list/access = list() //Which special access do we grant them
-	var/usable = 0	 //Is it a valid squad?
-	var/no_random_spawn = 0 //Stop players from spawning into the squad
-	var/max_engineers = 3 //maximum # of engineers allowed in squad
-	var/max_medics = 4 //Ditto, squad medics
-	var/max_specialists = 1
-	var/num_specialists = 0
+	var/usable = FALSE	 //Is it a valid squad?
+
+	var/max_positions = -1 //Maximum number allowed in a squad. Defaults to infinite
+
+	var/max_engineers = 3
+	var/max_medics = 4
 	var/max_smartgun = 1
-	var/num_smartgun = 0
+	var/max_specialists = 1
 	var/max_leaders = 1
-	var/num_leaders = 0
-	var/radio_freq = 1461 //Squad radio headset frequency.
-	//vvv Do not set these in squad defines
-	var/mob/living/carbon/human/squad_leader = null //Who currently leads it.
+
 	var/num_engineers = 0
 	var/num_medics = 0
-	var/count = 0 //Current # in the squad
-	var/mob/living/carbon/human/list/marines_list = list() // list of humans in that squad.
-	var/gibbed_marines_list[0] // List of the names of the gibbed humans associated with roles.
+	var/num_specialists = 0
+	var/num_smartgun = 0
+	var/num_leaders = 0
 
-	var/mob/living/carbon/human/overwatch_officer = null //Who's overwatching this squad?
+	var/count = 0 //Current # in the squad
+	var/list/marines_list = list() // list of humans in that squad.
+	var/list/gibbed_marines_list = list() // List of the names of the gibbed humans associated with roles.
+
+	var/radio_freq = 1461
+	var/mob/living/carbon/human/squad_leader
+	var/mob/living/carbon/human/overwatch_officer
+
 	var/supply_cooldown = 0 //Cooldown for supply drops
 	var/primary_objective = null //Text strings
 	var/secondary_objective = null
+
 	var/obj/item/device/squad_beacon/sbeacon = null
 	var/obj/structure/supply_drop/drop_pad = null
+
 	var/list/squad_orbital_beacons = list()
 	var/list/squad_laser_targets = list()
+
 
 /datum/squad/alpha
 	name = "Alpha"
@@ -45,8 +45,9 @@
 	tracking_id = TRACK_ALPHA_SQUAD
 	color = 1
 	access = list(ACCESS_MARINE_ALPHA)
-	usable = 1
+	usable = TRUE
 	radio_freq = ALPHA_FREQ
+
 
 /datum/squad/bravo
 	name = "Bravo"
@@ -57,13 +58,14 @@
 	usable = 1
 	radio_freq = BRAVO_FREQ
 
+
 /datum/squad/charlie
 	name = "Charlie"
 	id = CHARLIE_SQUAD
 	tracking_id = TRACK_CHARLIE_SQUAD
 	color = 3
 	access = list(ACCESS_MARINE_CHARLIE)
-	usable = 1
+	usable = TRUE
 	radio_freq = CHARLIE_FREQ
 
 /datum/squad/delta
@@ -72,7 +74,7 @@
 	tracking_id = TRACK_DELTA_SQUAD
 	color = 4
 	access = list(ACCESS_MARINE_DELTA)
-	usable = 1
+	usable = TRUE
 	radio_freq = DELTA_FREQ
 
 
@@ -174,6 +176,7 @@
 		if("Squad Leader")
 			num_leaders--
 
+
 //proc used by human dispose to clean the mob from squad lists
 /datum/squad/proc/clean_marine_from_squad(mob/living/carbon/human/H, wipe = FALSE)
 	if(!H.assigned_squad || !(H in marines_list))
@@ -196,7 +199,6 @@
 	squad_leader = null
 	CLEAR_TRACK_LEADER(tracking_id)
 	if(old_lead.mind.assigned_role)
-		old_lead.reset_comm_title(old_lead.mind.assigned_role)
 		if(old_lead.mind.cm_skills)
 			if(old_lead.mind.assigned_role == ("Squad Specialist" || "Squad Engineer" || "Squad Medic" || "Squad Smartgunner"))
 				old_lead.mind.cm_skills.leadership = SKILL_LEAD_BEGINNER
@@ -229,3 +231,162 @@
 	old_lead.update_inv_head() //updating marine helmet leader overlays
 	old_lead.update_inv_wear_suit()
 	to_chat(old_lead, "<font size='3' color='blue'>You're no longer the Squad Leader for [src]!</font>")
+
+
+/datum/squad/proc/check_entry(rank)
+	switch(rank)
+		if("Squad Marine")
+			return TRUE
+		if("Squad Engineer")
+			if(num_engineers >= max_engineers)
+				return FALSE
+			return TRUE
+		if("Squad Medic")
+			if(num_medics >= max_medics)
+				return FALSE
+			return TRUE
+		if("Squad Smartgunner")
+			if(num_smartgun >= max_smartgun)
+				return FALSE
+			return TRUE
+		if("Squad Specialist")
+			if(num_specialists >= max_specialists)
+				return FALSE
+			return TRUE
+		if("Squad Leader")
+			if(num_leaders >= max_leaders)
+				return FALSE
+			return TRUE
+		else
+			return FALSE
+
+
+/datum/squad/proc/assign(mob/M, rank)
+	if(!rank || !M?.mind)
+		return FALSE
+	switch(rank)
+		if("Squad Marine")
+			M.mind.assigned_squad = src
+			return TRUE
+		if("Squad Engineer")
+			M.mind.assigned_squad = src
+			num_engineers++
+			return TRUE
+		if("Squad Medic")
+			M.mind.assigned_squad = src
+			num_medics++
+			return TRUE
+		if("Squad Smartgunner")
+			M.mind.assigned_squad = src
+			num_smartgun++
+			return TRUE
+		if("Squad Specialist")
+			M.mind.assigned_squad = src
+			num_specialists++
+			return TRUE
+		if("Squad Leader")
+			M.mind.assigned_squad = src
+			num_leaders++
+			return TRUE
+		else
+			return FALSE
+
+
+/proc/handle_squad(mob/M, rank, latejoin = FALSE)
+	var/strict = FALSE
+	var/datum/squad/P = SSjob.squads[M.client.prefs.preferred_squad]
+	var/datum/squad/R = SSjob.squads[pick(SSjob.squads)]
+	if(M.client?.prefs?.be_special && (M.client.prefs.be_special & BE_SQUAD_STRICT))
+		strict = TRUE
+	switch(rank)
+		if("Squad Marine")
+			if(P && P.assign(M, rank))
+				return TRUE
+			else if(R.assign(M, rank))
+				return TRUE
+		if("Squad Engineer")
+			for(var/i in shuffle(SSjob.squads))
+				var/datum/squad/S = SSjob.squads[i]
+				if(!S.check_entry(rank))
+					continue
+				if(P && P == S && S.assign(M, rank))
+					return TRUE
+			if(strict && !latejoin)
+				return FALSE
+			for(var/i in shuffle(SSjob.squads))
+				var/datum/squad/S = SSjob.squads[i]
+				if(!S.check_entry(rank))
+					continue
+				else if(S.assign(M, rank))
+					return TRUE
+		if("Squad Medic")
+			for(var/i in shuffle(SSjob.squads))
+				var/datum/squad/S = SSjob.squads[i]
+				if(!S.check_entry(rank))
+					continue
+				if(P && P == S && S.assign(M, rank))
+					return TRUE
+			if(strict && !latejoin)
+				return FALSE
+			for(var/i in shuffle(SSjob.squads))
+				var/datum/squad/S = SSjob.squads[i]
+				if(!S.check_entry(rank))
+					continue
+				else if(S.assign(M, rank))
+					return TRUE
+		if("Squad Smartgunner")
+			for(var/i in shuffle(SSjob.squads))
+				var/datum/squad/S = SSjob.squads[i]
+				if(!S.check_entry(rank))
+					continue
+				if(P && P == S && S.assign(M, rank))
+					return TRUE
+			if(strict && !latejoin)
+				return FALSE
+			for(var/i in shuffle(SSjob.squads))
+				var/datum/squad/S = SSjob.squads[i]
+				if(!S.check_entry(rank))
+					continue
+				else if(S.assign(M, rank))
+					return TRUE
+		if("Squad Specialist")
+			for(var/i in shuffle(SSjob.squads))
+				var/datum/squad/S = SSjob.squads[i]
+				if(!S.check_entry(rank))
+					continue
+				if(P && P == S && S.assign(M, rank))
+					return TRUE
+			if(strict && !latejoin)
+				return FALSE
+			for(var/i in shuffle(SSjob.squads))
+				var/datum/squad/S = SSjob.squads[i]
+				if(!S.check_entry(rank))
+					continue
+				else if(S.assign(M, rank))
+					return TRUE
+		if("Squad Leader")
+			for(var/i in shuffle(SSjob.squads))
+				var/datum/squad/S = SSjob.squads[i]
+				if(!S.check_entry(rank))
+					continue
+				if(P && P == S && S.assign(M, rank))
+					return TRUE
+			if(strict && !latejoin)
+				return FALSE
+			for(var/i in shuffle(SSjob.squads))
+				var/datum/squad/S = SSjob.squads[i]
+				if(!S.check_entry(rank))
+					continue
+				else if(S.assign(M, rank))
+					return TRUE
+	return FALSE
+
+
+/proc/reset_squads()
+	for(var/i in SSjob.squads)
+		var/datum/squad/S = SSjob.squads[i]
+		S.num_engineers = 0
+		S.num_medics = 0
+		S.num_smartgun = 0
+		S.num_specialists = 0
+		S.num_leaders = 0

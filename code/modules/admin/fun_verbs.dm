@@ -534,7 +534,8 @@
 	if(alert(usr, "Would you like to announce the distress beacon to the server population? This will reveal the distress beacon to all players.", "Announce distress beacon?", "Yes", "No") != "Yes")
 		is_announcing = FALSE
 
-	SSticker.mode.picked_call.activate(is_announcing)
+	if(!SSticker.mode.picked_call.activate(is_announcing))
+		return
 
 	log_admin("[key_name(usr)] called a [choice == "Randomize" ? "randomized ":""]distress beacon: [SSticker.mode.picked_call.name]. Min: [min], Max: [max].")
 	message_admins("[ADMIN_TPMONTY(usr)] called a [choice == "Randomize" ? "randomized ":""]distress beacon: [SSticker.mode.picked_call.name] Min: [min], Max: [max].")
@@ -728,26 +729,39 @@
 
 	switch(alert("Modify the rank or give them a new one?", "Select Rank", "New Rank", "Modify", "Cancel"))
 		if("New Rank")
-			var/newrank = input("Select new rank for [H]", "Change the mob's rank and skills") as null|anything in sortList(SSjob.roles_by_name)
+			var/newrank = input("Select new rank for [H]", "Change the mob's rank and skills") as null|anything in sortList(SSjob.name_occupations)
 			if(!newrank)
 				return
 
 			if(!H?.mind)
 				return
 
-			H.set_everything(H, newrank)
+			var/datum/job/J = SSjob.name_occupations[newrank]
+			var/datum/outfit/job/O = new J.outfit
+			var/id = O.id ? O.id : /obj/item/card/id
+			var/obj/item/card/id/I = new id
+			var/datum/skills/L = new J.skills_type
+			H.mind.cm_skills = L
+
+			if(H.wear_id)
+				qdel(H.wear_id)
+
+			H.job = newrank
+			H.faction = J.faction
+
+			H.equip_to_slot_or_del(I, SLOT_WEAR_ID)
+
+			SSjob.AssignRole(H, newrank)
+			O.post_equip(H)
+
 			log_admin("[key_name(usr)] has set the rank of [key_name(H)] to [newrank].")
 			message_admins("[ADMIN_TPMONTY(usr)] has set the rank of [ADMIN_TPMONTY(H)] to [newrank].")
+
 		if("Modify")
 			var/obj/item/card/id/I = H.wear_id
 			if(!istype(I))
 				H.wear_id = new /obj/item/card/id(H)
 			switch(input("What do you want to edit?") as null|anything in list("Comms Title - \[Engineering (Title)]", "Chat Title - Title John Doe screams!", "ID title - Jane Doe's ID Card (Title)", "Registered Name - Jane Doe's ID Card", "Skills"))
-				if("Comms Title - \[Engineering (Title)]")
-					var/commtitle = input("Write the custom title appearing on the comms themselves, for example: \[Command (Title)]", "Comms title") as null|text
-					if(!commtitle || !H?.mind)
-						return
-					H.mind.role_comm_title = commtitle
 				if("Chat Title - Title John Doe screams!")
 					var/chattitle = input("Write the custom title appearing in all chats: Title Jane Doe screams!", "Chat title") as null|text
 					if(chattitle || !H)
@@ -755,15 +769,15 @@
 					if(!istype(I) || I != H.wear_id)
 						H.wear_id = new /obj/item/card/id(H)
 					I.paygrade = chattitle
+					I.update_label()
 				if("ID title - Jane Doe's ID Card (Title)")
 					var/idtitle = input("Write the custom title appearing on the ID itself: Jane Doe's ID Card (Title)", "ID title") as null|text
 					if(!H || I != H.wear_id)
 						return
 					if(!istype(I) || I != H.wear_id)
 						H.wear_id = new /obj/item/card/id(H)
-					I.rank = idtitle
 					I.assignment = idtitle
-					I.name = "[I.registered_name]'s ID Card[idtitle ? " ([I.assignment])" : ""]"
+					I.update_label()
 				if("Registered Name - Jane Doe's ID Card")
 					var/regname = input("Write the name appearing on the ID itself: Jane Doe's ID Card", "Registered Name") as null|text
 					if(!H || I != H.wear_id)
@@ -771,13 +785,14 @@
 					if(!istype(I) || I != H.wear_id)
 						H.wear_id = new /obj/item/card/id(H)
 					I.registered_name = regname
-					I.name = "[regname]'s ID Card ([I.assignment])"
+					I.update_label()
 				if("Skills")
-					var/newskillset = input("Select a skillset", "Skill Set") as null|anything in SSjob.roles_by_name
+					var/newskillset = input("Select a skillset", "Skill Set") as null|anything in sortList(SSjob.name_occupations)
 					if(!newskillset || !H?.mind)
 						return
-					var/datum/job/J = SSjob.roles_by_name[newskillset]
-					H.mind.set_cm_skills(J.skills_type)
+					var/datum/job/J = SSjob.name_occupations[newskillset]
+					var/datum/skills/S = new J.skills_type()
+					H.mind.cm_skills = S
 				else
 					return
 
@@ -785,30 +800,189 @@
 			message_admins("[ADMIN_TPMONTY(usr)] has made a custom rank/skill change for [ADMIN_TPMONTY(H)].")
 
 
-/datum/admins/proc/select_equipment(var/mob/living/carbon/human/M in GLOB.human_mob_list)
+/datum/admins/proc/select_equipment(var/mob/living/carbon/human/H in GLOB.human_mob_list)
 	set category = "Fun"
 	set name = "Select Equipment"
 
-	if(!ishuman(M))
+	if(!check_rights(R_FUN))
 		return
 
-	var/list/dresspacks = sortList(SSjob.roles_by_equipment)
+	var/list/outfits = list("Naked", "Custom", "As Job...")
+	var/list/paths = subtypesof(/datum/outfit) - typesof(/datum/outfit/job)
+	for(var/path in paths)
+		var/datum/outfit/O = path
+		if(initial(O.can_be_admin_equipped))
+			outfits[initial(O.name)] = path
 
-	var/dresscode = input("Choose equipment for [M]", "Select Equipment") as null|anything in dresspacks
+	var/dresscode = input("Please select an outfit.", "Select Equipment") as null|anything in list("-- Naked", "-- Job", "-- Custom")
+	if(isnull(dresscode))
+		return
+
+	if(outfits[dresscode])
+		dresscode = outfits[dresscode]
+
+	if(dresscode == "-- Job")
+		var/list/job_paths = subtypesof(/datum/outfit/job)
+		var/list/job_outfits = list()
+		for(var/path in job_paths)
+			var/datum/outfit/O = path
+			if(initial(O.can_be_admin_equipped))
+				job_outfits[initial(O.name)] = path
+
+		dresscode = input("Select job equipment", "Select Equipment") as null|anything in sortList(job_outfits)
+		dresscode = job_outfits[dresscode]
+		if(isnull(dresscode))
+			return
+
+	if(dresscode == "-- Custom")
+		var/list/custom_names = list()
+		for(var/datum/outfit/D in GLOB.custom_outfits)
+			custom_names[D.name] = D
+		var/selected_name = input("Select outfit", "Select Equipment") as null|anything in sortList(custom_names)
+		dresscode = custom_names[selected_name]
+		if(isnull(dresscode))
+			return
+
 	if(!dresscode)
 		return
 
-	for(var/obj/item/I in M)
-		if(istype(I, /obj/item/implant) || istype(I, /obj/item/card/id))
-			continue
-		qdel(I)
+	var/datum/outfit/O
+	H.delete_equipment(TRUE)
+	if(dresscode != "-- Naked")
+		O = dresscode
+		H.equipOutfit(dresscode)
 
-	var/datum/job/J = dresspacks[dresscode]
-	J.generate_equipment(M)
-	M.regenerate_icons()
+	H.regenerate_icons()
 
-	log_admin("[key_name(usr)] changed the equipment of [key_name(M)] to [dresscode].")
-	message_admins("[ADMIN_TPMONTY(usr)] changed the equipment of [ADMIN_TPMONTY(M)] to [dresscode].")
+	log_admin("[key_name(usr)] changed the equipment of [key_name(H)] to [istype(O) ?  O.name : dresscode].")
+	message_admins("[ADMIN_TPMONTY(usr)] changed the equipment of [ADMIN_TPMONTY(H)] to [istype(O) ? O.name : dresscode].")
+
+
+GLOBAL_LIST_EMPTY(custom_outfits)
+
+/datum/admins/proc/create_outfit()
+	set category = "Fun"
+	set name = "Create Custom Outfit"
+
+	if(!check_rights(R_FUN))
+		return
+
+	var/dat = {"
+	<html><head><title>Create Outfit</title></head><body>
+	<div>Input typepaths and watch the magic happen.</div>
+	<form name="outfit" action="byond://?src=[REF(usr.client.holder)];[HrefToken()]" method="get">
+	<input type="hidden" name="src" value="[REF(usr.client.holder)];[HrefToken()]">
+	[HrefTokenFormField()]
+	<table>
+		<tr>
+			<th>Name:</th>
+			<td>
+				<input type="text" name="outfit_name" value="Custom Outfit">
+			</td>
+		</tr>
+		<tr>
+			<th>Uniform:</th>
+			<td>
+			   <input type="text" name="outfit_uniform" value="">
+			</td>
+		</tr>
+		<tr>
+			<th>Suit:</th>
+			<td>
+				<input type="text" name="outfit_suit" value="">
+			</td>
+		</tr>
+		<tr>
+			<th>Back:</th>
+			<td>
+				<input type="text" name="outfit_back" value="">
+			</td>
+		</tr>
+		<tr>
+			<th>Belt:</th>
+			<td>
+				<input type="text" name="outfit_belt" value="">
+			</td>
+		</tr>
+		<tr>
+			<th>Gloves:</th>
+			<td>
+				<input type="text" name="outfit_gloves" value="">
+			</td>
+		</tr>
+		<tr>
+			<th>Shoes:</th>
+			<td>
+				<input type="text" name="outfit_shoes" value="">
+			</td>
+		</tr>
+		<tr>
+			<th>Head:</th>
+			<td>
+				<input type="text" name="outfit_head" value="">
+			</td>
+		</tr>
+		<tr>
+			<th>Mask:</th>
+			<td>
+				<input type="text" name="outfit_mask" value="">
+			</td>
+		</tr>
+		<tr>
+			<th>Ears:</th>
+			<td>
+				<input type="text" name="outfit_ears" value="">
+			</td>
+		</tr>
+		<tr>
+			<th>Glasses:</th>
+			<td>
+				<input type="text" name="outfit_glasses" value="">
+			</td>
+		</tr>
+		<tr>
+			<th>ID:</th>
+			<td>
+				<input type="text" name="outfit_id" value="">
+			</td>
+		</tr>
+		<tr>
+			<th>Left Pocket:</th>
+			<td>
+				<input type="text" name="outfit_l_pocket" value="">
+			</td>
+		</tr>
+		<tr>
+			<th>Right Pocket:</th>
+			<td>
+				<input type="text" name="outfit_r_pocket" value="">
+			</td>
+		</tr>
+		<tr>
+			<th>Suit Store:</th>
+			<td>
+				<input type="text" name="outfit_s_store" value="">
+			</td>
+		</tr>
+		<tr>
+			<th>Right Hand:</th>
+			<td>
+				<input type="text" name="outfit_r_hand" value="">
+			</td>
+		</tr>
+		<tr>
+			<th>Left Hand:</th>
+			<td>
+				<input type="text" name="outfit_l_hand" value="">
+			</td>
+		</tr>
+	</table>
+	<br>
+	<input type="submit" value="Save">
+	</form></body></html>
+	"}
+
+	usr << browse(dat, "window=dressup;size=550x600")
 
 
 /datum/admins/proc/possess(obj/O as obj in GLOB.object_list)

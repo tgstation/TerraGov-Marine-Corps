@@ -46,15 +46,6 @@
 	config_tag = "Nightmare on LV-624"
 	required_players 		= 2 //Need at least one player, but really we need 2.
 	flags_round_type		= MODE_PREDATOR|MODE_NO_LATEJOIN
-	role_instruction		= ROLE_MODE_REPLACE
-	roles_for_mode = list(/datum/job/marine/standard,
-							/datum/job/marine/medic,
-							/datum/job/marine/engineer,
-							/datum/job/marine/specialist,
-							/datum/job/marine/leader,
-							/datum/job/civilian/liaison/nightmare,
-							/datum/job/command/commander/nightmare
-							)
 	var/lobby_time 			= 0
 	var/event_time_major	= FOG_DELAY_INTERVAL
 	var/event_time_minor	= EVENT_MINOR_INTERVAL
