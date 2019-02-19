@@ -61,23 +61,23 @@
 			//to_chat(world, "[name]: [rank]")
 			//cael - to prevent multiple appearances of a player/job combination, add a continue after each line
 		var/department = 0
-		if(real_rank in ROLES_COMMAND)
+		if(real_rank in JOBS_COMMAND)
 			heads[name] = rank
 			department = 1
-		if(real_rank in ROLES_POLICE)
+		if(real_rank in JOBS_POLICE)
 			police[name] = rank
 			department = 1
-		if(real_rank in ROLES_ENGINEERING)
+		if(real_rank in JOBS_ENGINEERING)
 			eng[name] = rank
 			department = 1
-		if(real_rank in ROLES_MEDICAL)
+		if(real_rank in JOBS_MEDICAL)
 			med[name] = rank
 			department = 1
-		if(real_rank in ROLES_MARINES)
+		if(real_rank in JOBS_MARINES)
 			squads[name] = squad_name
 			mar[name] = rank
 			department = 1
-		if(!department && !(name in heads) && (real_rank in ROLES_REGULAR_ALL))
+		if(!department && !(name in heads) && (real_rank in JOBS_REGULAR_ALL))
 			misc[name] = rank
 	if(heads.len > 0)
 		dat += "<tr><th colspan=3>Command Staff</th></tr>"
@@ -147,27 +147,27 @@ var/global/list/PDA_Manifest = list()
 		var/isactive = t.fields["p_stat"]
 		var/department = 0
 		var/depthead = 0 			// Department Heads will be placed at the top of their lists.
-		if(real_rank in ROLES_COMMAND)
+		if(real_rank in JOBS_COMMAND)
 			heads[++heads.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
 			depthead = 1
 			if(rank=="Commander" && heads.len != 1)
 				heads.Swap(1,heads.len)
 
-		if(real_rank in ROLES_ENGINEERING)
+		if(real_rank in JOBS_ENGINEERING)
 			eng[++eng.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
 			if(depthead && eng.len != 1)
 				eng.Swap(1,eng.len)
 
-		if(real_rank in ROLES_MEDICAL)
+		if(real_rank in JOBS_MEDICAL)
 			med[++med.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
 			if(depthead && med.len != 1)
 				med.Swap(1,med.len)
 
 
-		if(real_rank in ROLES_MARINES)
+		if(real_rank in JOBS_MARINES)
 			mar[++mar.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
 			if(depthead && mar.len != 1)
@@ -181,7 +181,7 @@ var/global/list/PDA_Manifest = list()
 		"heads" = heads,
 		"eng" = eng,
 		"med" = med,
-		"marine_squad_positions" = ROLES_COMMAND,
+		"marine_squad_positions" = JOBS_COMMAND,
 		"misc" = misc
 		)
 	return PDA_Manifest
@@ -222,9 +222,7 @@ var/global/list/PDA_Manifest = list()
 
 	if(H.mind && (H.mind.assigned_role != "MODE"))
 		var/assignment
-		if(H.mind.role_alt_title)
-			assignment = H.mind.role_alt_title
-		else if(H.mind.assigned_role)
+		if(H.mind.assigned_role)
 			assignment = H.mind.assigned_role
 		else if(H.job)
 			assignment = H.job

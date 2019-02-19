@@ -43,7 +43,7 @@
 					ExtinguishMob()
 				return 1
 
-			if(health >= CONFIG_GET(number/health_threshold_crit))
+			if(health >= get_crit_threshold())
 				help_shake_act(M)
 				return 1
 //			if(M.health < -75)	return 0
@@ -61,7 +61,7 @@
 			M.visible_message("<span class='danger'>[M] is trying perform CPR on [src]!</span>", null, null, 4)
 
 			if(do_mob(M, src, HUMAN_STRIP_DELAY, BUSY_ICON_GENERIC, BUSY_ICON_MEDICAL))
-				if(health > CONFIG_GET(number/health_threshold_dead) && health < CONFIG_GET(number/health_threshold_crit))
+				if(health > get_death_threshold() && health < get_crit_threshold())
 					var/suff = min(getOxyLoss(), 5) //Pre-merge level, less healing, more prevention of dieing.
 					adjustOxyLoss(-suff)
 					updatehealth()
@@ -131,7 +131,7 @@
 			var/datum/limb/affecting = get_limb(ran_zone(M.zone_selected))
 
 			//Accidental gun discharge
-			if(!M.mind || !M.mind.cm_skills || M.mind.cm_skills.cqc < SKILL_CQC_MP)
+			if(!M.mind?.cm_skills || M.mind.cm_skills.cqc < SKILL_CQC_MP)
 				if (istype(r_hand,/obj/item/weapon/gun) || istype(l_hand,/obj/item/weapon/gun))
 					var/obj/item/weapon/gun/W = null
 					var/chance = 0
@@ -144,8 +144,9 @@
 						W = r_hand
 						chance = !hand ? 40 : 20
 
-					if (prob(chance))
-						visible_message("<span class='danger'>[src]'s [W.name] goes off during struggle!", null, null, 5)
+					if(prob(chance))
+						log_combat(M, src, "disarmed, making their [W] go off")
+						visible_message("<span class='danger'>[src]'s [W] goes off during struggle!", null, null, 5)
 						var/list/turfs = list()
 						for(var/turf/T in view())
 							turfs += T
@@ -189,7 +190,7 @@
 
 
 /mob/living/carbon/human/help_shake_act(mob/living/carbon/M)
-	if (health >= CONFIG_GET(number/health_threshold_crit))
+	if (health >= get_crit_threshold())
 		if(src == M)
 			if(holo_card_color) //if we have a triage holocard printed on us, we remove it.
 				holo_card_color = null

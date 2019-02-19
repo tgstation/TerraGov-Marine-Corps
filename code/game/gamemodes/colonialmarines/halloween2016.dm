@@ -1,6 +1,5 @@
 #define EVENT_MAJOR_INTERVAL 	3000 // 5 minutes
 #define EVENT_MINOR_INTERVAL 	900 // 1.5 minutes
-#define FOG_DELAY_INTERVAL		6000 // 8 minutes
 #define BATTLEFIELD_END			36000 // 60 minutes
 #define MAX_BLOOD_ATTUNED		5
 #define BATTLEFIELD_DEBUG		0
@@ -10,7 +9,7 @@
 	set name = "Debug Major Event"
 	set category = "Battlefield Debug"
 
-	var/datum/game_mode/colonialmarines_halloween_2016/CM = ticker.mode
+	var/datum/game_mode/colonialmarines_halloween_2016/CM = SSticker.mode
 	var/shuffle1 = input("Select which role to spawn.","1-20") as num
 	var/shuffle2 = input("Select which sub-role to spawn.","1-2") as num
 	CM.handle_event_major_spooky(shuffle1,shuffle2)
@@ -20,7 +19,7 @@
 	set name = "Debug Minor Event"
 	set category = "Battlefield Debug"
 
-	var/datum/game_mode/colonialmarines_halloween_2016/CM = ticker.mode
+	var/datum/game_mode/colonialmarines_halloween_2016/CM = SSticker.mode
 	var/shuffle1 = input("Select which event to play.","1-20") as num
 	var/shuffle2 = input("Select which sub event to play.","1-20") as num
 	CM.handle_event_minor_spooky(shuffle1,shuffle2)
@@ -30,7 +29,7 @@
 	set name = "Debug Character Spawn"
 	set category = "Battlefield Debug"
 
-	var/datum/game_mode/colonialmarines_halloween_2016/CM = ticker.mode
+	var/datum/game_mode/colonialmarines_halloween_2016/CM = SSticker.mode
 
 	var/role = input("Select which role to spawn.","Roles") in list("Corporate Liaison","Commander","Squad Leader","Squad Specialist","Squad Smartgunner","Squad Engineer","Squad Medic","Squad Marine")
 	if(!role) return
@@ -47,21 +46,12 @@
 	config_tag = "Nightmare on LV-624"
 	required_players 		= 2 //Need at least one player, but really we need 2.
 	flags_round_type		= MODE_PREDATOR|MODE_NO_LATEJOIN
-	role_instruction		= ROLE_MODE_REPLACE
-	roles_for_mode = list(/datum/job/marine/standard,
-							/datum/job/marine/medic,
-							/datum/job/marine/engineer,
-							/datum/job/marine/specialist,
-							/datum/job/marine/leader,
-							/datum/job/civilian/liaison/nightmare,
-							/datum/job/command/commander/nightmare
-							)
 	var/lobby_time 			= 0
 	var/event_time_major	= FOG_DELAY_INTERVAL
 	var/event_time_minor	= EVENT_MINOR_INTERVAL
 	var/total_attuned		= MAX_BLOOD_ATTUNED
 	var/obj/item/device/omega_array/mcguffin
-	var/obj/effect/blocker/fog/fog_blockers[]
+	var/obj/effect/forcefield/fog/fog_blockers[]
 	var/turf/marine_spawns[]
 	var/turf/pmc_spawns[]
 	var/turf/horror_spawns[]
@@ -100,7 +90,7 @@
 	var/obj/effect/landmark/L
 	var/obj/effect/step_trigger/attunement/R
 	var/obj/effect/step_trigger/jason/J
-	var/obj/effect/blocker/fog/F
+	var/obj/effect/forcefield/fog/F
 	fog_blockers 		= new
 	horror_spawns		= new
 	pmc_spawns	 		= new
@@ -346,8 +336,8 @@
 		destroy_array()
 
 /obj/item/device/omega_array/proc/destroy_array()
-	if(ticker && ticker.mode && ticker.mode.type == /datum/game_mode/colonialmarines_halloween_2016)
-		var/datum/game_mode/colonialmarines_halloween_2016/M = ticker.mode
+	if(SSticker?.mode && SSticker.mode.type == /datum/game_mode/colonialmarines_halloween_2016)
+		var/datum/game_mode/colonialmarines_halloween_2016/M = SSticker.mode
 		M.mcguffin = null
 	var/detonate_location = get_turf(src)
 	qdel(src)
@@ -363,36 +353,10 @@
 /obj/item/device/omega_array/array
 	icon_state = "omega_array_l"
 
-/obj/effect/blocker/fog
-	name = "dense fog"
-	desc = "It looks way too dangerous to traverse. Best wait until it has cleared up."
-	icon = 'icons/effects/effects.dmi'
-	icon_state = "smoke"
-	anchored = 1
-	density = 1
-	opacity = 1
-	unacidable = 1
-
-/obj/effect/blocker/fog/Initialize()
-	. = ..()
-	dir  = pick(CARDINAL_DIRS)
-	GLOB.fog_blockers += src
-
-/obj/effect/blocker/fog/Destroy()
-	GLOB.fog_blockers -= src
-	return ..()
-
-/obj/effect/blocker/fog/attack_hand(mob/M)
-	to_chat(M, "<span class='notice'>You peer through the fog, but it's impossible to tell what's on the other side...</span>")
-
-/obj/effect/blocker/fog/attack_alien(M)
-	return attack_hand(M)
-
-
 /obj/effect/step_trigger/jason/Trigger(mob/living/M)
 	if(istype(M) && M.stat != DEAD && (!M.mind || !M.mind.special_role || M.mind.special_role == "PMC"))
-		if(ticker && ticker.mode && ticker.mode.type == /datum/game_mode/colonialmarines_halloween_2016)
-			var/datum/game_mode/colonialmarines_halloween_2016/T = ticker.mode
+		if(SSticker?.mode && SSticker.mode.type == /datum/game_mode/colonialmarines_halloween_2016)
+			var/datum/game_mode/colonialmarines_halloween_2016/T = SSticker.mode
 			if("Jason" in T.special_spawns) //We do not want to trigger multiple instances of this.
 				T.special_spawns -= "Jason" //First one blocks any further atempts.
 				var/obj/effect/step_trigger/jason/J
@@ -435,8 +399,8 @@
 	Destroy()
 		. = ..()
 		SetLuminosity(0)
-		if(ticker && ticker.mode && ticker.mode.type == /datum/game_mode/colonialmarines_halloween_2016)
-			var/datum/game_mode/colonialmarines_halloween_2016/T = ticker.mode
+		if(SSticker?.mode && SSticker.mode.type == /datum/game_mode/colonialmarines_halloween_2016)
+			var/datum/game_mode/colonialmarines_halloween_2016/T = SSticker.mode
 			to_chat(world, "<span class='event_announcement'>A blood seal has broken! [--T.total_attuned ? T.total_attuned : "None"] remain!</span>")
 
 /obj/effect/rune/attunement/attack_hand(mob/living/user) //Special snowflake rune, do not steal 2016.
@@ -976,7 +940,7 @@
 			//sleep(300)
 		else
 			for(var/area/A in all_areas)
-				if(A.z == 1 && A.requires_power)
+				if(is_ground_level(A.z) && A.requires_power)
 					for(var/obj/machinery/light/L in A)
 						if(prob(75)) L.flicker(10)
 						else if(prob(5)) L.broken()
@@ -1554,7 +1518,7 @@
 				stored_blood -= 0.1
 		if(0.1 to 0.9)
 			if(prob(5))
-				visible_message("<span class='warning'>[bicon(src)] [src]'s eyes glow ruby red for a moment!</span>")
+				visible_message("<span class='warning'>[icon2html(src, viewers(src))] [src]'s eyes glow ruby red for a moment!</span>")
 				stored_blood -= 0.1
 
 	//Check the shadow wights and auto-remove them if they get too far.

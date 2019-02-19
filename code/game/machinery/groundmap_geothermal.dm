@@ -1,17 +1,20 @@
+#define GEOTHERMAL_NO_DAMAGE     0
+#define GEOTHERMAL_LIGHT_DAMAGE  1
+#define GEOTHERMAL_MEDIUM_DAMAGE 2
+#define GEOTHERMAL_HEAVY_DAMAGE  3
+
 /obj/machinery/power/geothermal
 	name = "\improper G-11 geothermal generator"
 	icon = 'icons/turf/geothermal.dmi'
 	icon_state = "weld"
 	desc = "A thermoelectric generator sitting atop a plasma-filled borehole. This one is heavily damaged. Use a blowtorch, then wirecutters, and then a wrench to repair it."
-	anchored = 1
-	density = 1
-	directwired = 0     //Requires a cable directly underneath
-	unacidable = 1      //NOPE.jpg
+	anchored = TRUE
+	density = TRUE
+	unacidable = TRUE
 	var/power_gen_percent = 0 //100,000W at full capacity
 	var/power_generation_max = 100000 //Full capacity
-	var/powernet_connection_failed = 0 //Logic checking for powernets
-	var/buildstate = 1 //What state of building it are we on, 0-3, 1 is "broken", the default
-	var/is_on = 0  //Is this damn thing on or what?
+	var/buildstate = GEOTHERMAL_HEAVY_DAMAGE //What state of building it are we on, 0-3, 1 is "broken", the default
+	var/is_on = FALSE  //Is this damn thing on or what?
 	var/fail_rate = 10 //% chance of failure each fail_tick check
 	var/fail_check_ticks = 100 //Check for failure every this many ticks
 	var/cur_tick = 0 //Tick updater
@@ -22,130 +25,127 @@
 	if(!buildstate && is_on)
 		desc = "A thermoelectric generator sitting atop a borehole dug deep in the planet's surface. It generates energy by boiling the plasma steam that rises from the well.\nIt is old technology and has a large failure rate, and must be repaired frequently.\nIt is currently on, and beeping randomly amid faint hisses of steam."
 		switch(power_gen_percent)
-			if(25) icon_state = "on[power_gen_percent]"
-			if(50) icon_state = "on[power_gen_percent]"
-			if(75) icon_state = "on[power_gen_percent]"
-			if(100) icon_state = "on[power_gen_percent]"
-
+			if(25)
+				icon_state = "on[power_gen_percent]"
+			if(50)
+				icon_state = "on[power_gen_percent]"
+			if(75)
+				icon_state = "on[power_gen_percent]"
+			if(100)
+				icon_state = "on[power_gen_percent]"
 
 	else if (!buildstate && !is_on)
 		icon_state = "off"
 		desc = "A thermoelectric generator sitting atop a borehole dug deep in the planet's surface. It generates energy by boiling the plasma steam that rises from the well.\nIt is old technology and has a large failure rate, and must be repaired frequently.\nIt is currently turned off and silent."
 	else
-		if(buildstate == 1)
+		if(buildstate == GEOTHERMAL_HEAVY_DAMAGE)
 			icon_state = "weld"
 			desc = "A thermoelectric generator sitting atop a plasma-filled borehole. This one is heavily damaged. Use a blowtorch, wirecutters, and then a wrench to repair it."
-		else if(buildstate == 2)
+		else if(buildstate == GEOTHERMAL_MEDIUM_DAMAGE)
 			icon_state = "wire"
 			desc = "A thermoelectric generator sitting atop a plasma-filled borehole. This one is damaged. Use wirecutters and then a wrench to repair it."
 		else
 			icon_state = "wrench"
 			desc = "A thermoelectric generator sitting atop a plasma-filled borehole. This one is lightly damaged. Use a wrench to repair it."
 
-/obj/machinery/power/geothermal/New()
-	..()
-	if(!connect_to_network()) //Should start with a cable piece underneath, if it doesn't, something's messed up in mapping
-		powernet_connection_failed = 1
-
 /obj/machinery/power/geothermal/power_change()
 	return
 
 /obj/machinery/power/geothermal/process()
-	if(!is_on || buildstate || !anchored) //Default logic checking
-		return 0
+	if(!is_on || buildstate || !anchored || !powernet) //Default logic checking
+		return FALSE
 
-	if(!powernet && !powernet_connection_failed) //Powernet checking, make sure there's valid cables & powernets
-		if(!connect_to_network())
-			powernet_connection_failed = 1 //God damn it, where'd our network go
-			is_on = 0
-			stop_processing()
-			spawn(150) // Error! Check again in 15 seconds. Someone could have blown/acided or snipped a cable
-				powernet_connection_failed = 0
-	else if(powernet) //All good! Let's fire it up!
-		if(!check_failure()) //Wait! Check to see if it breaks during processing
+	if(!check_failure()) //Wait! Check to see if it breaks during processing
+		if(power_gen_percent < 100)
+			power_gen_percent++
 			update_icon()
-			if(power_gen_percent < 100) power_gen_percent++
 			switch(power_gen_percent)
-				if(10) visible_message("[bicon(src)] <span class='notice'><b>[src]</b> begins to whirr as it powers up.</span>")
-				if(50) visible_message("[bicon(src)] <span class='notice'><b>[src]</b> begins to hum loudly as it reaches half capacity.</span>")
-				if(99) visible_message("[bicon(src)] <span class='notice'><b>[src]</b> rumbles loudly as the combustion and thermal chambers reach full strength.</span>")
-			add_avail(power_generation_max * (power_gen_percent / 100) ) //Nope, all good, just add the power
+				if(10)
+					visible_message("[icon2html(src, viewers(src))] <span class='notice'><b>[src]</b> begins to whirr as it powers up.</span>")
+				if(50)
+					visible_message("[icon2html(src, viewers(src))] <span class='notice'><b>[src]</b> begins to hum loudly as it reaches half capacity.</span>")
+				if(100)
+					visible_message("[icon2html(src, viewers(src))] <span class='notice'><b>[src]</b> rumbles loudly as the combustion and thermal chambers reach full strength.</span>")
+		add_avail(power_generation_max * (power_gen_percent / 100) ) //Nope, all good, just add the power
 
 /obj/machinery/power/geothermal/proc/check_failure()
 	cur_tick++
 	if(cur_tick < fail_check_ticks) //Nope, not time for it yet
-		return 0
+		return FALSE
 	else if(cur_tick > fail_check_ticks) //Went past with no fail, reset the timer
 		cur_tick = 0
-		return 0
+		return FALSE
 	if(rand(1,100) < fail_rate) //Oh snap, we failed! Shut it down!
 		if(rand(0,3) == 0)
-			visible_message("[bicon(src)] <span class='notice'><b>[src]</b> beeps wildly and a fuse blows! Use wirecutters, then a wrench to repair it.")
-			buildstate = 2
+			visible_message("[icon2html(src, viewers(src))] <span class='notice'><b>[src]</b> beeps wildly and a fuse blows! Use wirecutters, then a wrench to repair it.")
+			buildstate = GEOTHERMAL_MEDIUM_DAMAGE
 			icon_state = "wire"
 		else
-			visible_message("[bicon(src)] <span class='notice'><b>[src]</b> beeps wildly and sprays random pieces everywhere! Use a wrench to repair it.")
-			buildstate = 3
+			visible_message("[icon2html(src, viewers(src))] <span class='notice'><b>[src]</b> beeps wildly and sprays random pieces everywhere! Use a wrench to repair it.")
+			buildstate = GEOTHERMAL_LIGHT_DAMAGE
 			icon_state = "wrench"
-		is_on = 0
+		is_on = FALSE
 		power_gen_percent = 0
 		update_icon()
 		cur_tick = 0
 		stop_processing()
-		return 1
-	return 0 //Nope, all fine
+		return TRUE
+	return FALSE //Nope, all fine
 
 /obj/machinery/power/geothermal/attack_hand(mob/user as mob)
-	if(!anchored) return 0 //Shouldn't actually be possible
-	if(user.is_mob_incapacitated()) return 0
+	if(!anchored) //Shouldn't actually be possible
+		return FALSE
+	if(user.is_mob_incapacitated())
+		return FALSE
 	if(!ishuman(user))
 		to_chat(user, "<span class='warning'>You have no idea how to use that.</span>")
-		return 0
+		return FALSE
 
 	add_fingerprint(user)
 
-	if(buildstate == 1)
+	if(buildstate == GEOTHERMAL_HEAVY_DAMAGE)
 		to_chat(usr, "<span class='info'>Use a blowtorch, then wirecutters, then a wrench to repair it.")
-		return 0
-	else if (buildstate == 2)
+		return FALSE
+	else if (buildstate == GEOTHERMAL_MEDIUM_DAMAGE)
 		to_chat(usr, "<span class='info'>Use a wirecutters, then wrench to repair it.")
-		return 0
-	else if (buildstate == 3)
+		return FALSE
+	else if (buildstate == GEOTHERMAL_LIGHT_DAMAGE)
 		to_chat(usr, "<span class='info'>Use a wrench to repair it.")
-		return 0
+		return FALSE
 	if(is_on)
-		visible_message("[bicon(src)] <span class='warning'><b>[src]</b> beeps softly and the humming stops as [usr] shuts off the turbines.")
-		is_on = 0
+		visible_message("[icon2html(src, viewers(src))] <span class='warning'><b>[src]</b> beeps softly and the humming stops as [usr] shuts off the turbines.")
+		is_on = FALSE
 		power_gen_percent = 0
 		cur_tick = 0
 		icon_state = "off"
 		stop_processing()
-		return 1
-	visible_message("[bicon(src)] <span class='warning'><b>[src]</b> beeps loudly as [usr] turns on the turbines and the generator begins spinning up.")
+		return TRUE
+	visible_message("[icon2html(src, viewers(src))] <span class='warning'><b>[src]</b> beeps loudly as [usr] turns on the turbines and the generator begins spinning up.")
 	icon_state = "on10"
-	is_on = 1
+	is_on = TRUE
 	cur_tick = 0
 	start_processing()
-	return 1
+	return TRUE
 
 /obj/machinery/power/geothermal/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(iswelder(O))
-		if(buildstate == 1 && !is_on)
+		if(buildstate == GEOTHERMAL_HEAVY_DAMAGE && !is_on)
 			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
 				user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s internals.</span>",
 				"<span class='notice'>You fumble around figuring out [src]'s internals.</span>")
 				var/fumbling_time = 100 - 20 * user.mind.cm_skills.engineer
-				if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
+				if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+					return
 			var/obj/item/tool/weldingtool/WT = O
 			if(WT.remove_fuel(1, user))
-
 				playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
 				user.visible_message("<span class='notice'>[user] starts welding [src]'s internal damage.</span>",
 				"<span class='notice'>You start welding [src]'s internal damage.</span>")
 				if(do_after(user, 200, TRUE, 5, BUSY_ICON_BUILD))
-					if(buildstate != 1 || is_on || !WT.isOn()) return FALSE
+					if(buildstate != GEOTHERMAL_HEAVY_DAMAGE || is_on || !WT.isOn())
+						return FALSE
 					playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
-					buildstate = 2
+					buildstate = GEOTHERMAL_MEDIUM_DAMAGE
 					user.visible_message("<span class='notice'>[user] welds [src]'s internal damage.</span>",
 					"<span class='notice'>You weld [src]'s internal damage.</span>")
 					update_icon()
@@ -154,43 +154,52 @@
 				to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
 				return
 	else if(iswirecutter(O))
-		if(buildstate == 2 && !is_on)
+		if(buildstate == GEOTHERMAL_MEDIUM_DAMAGE && !is_on)
 			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
 				user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s wiring.</span>",
 				"<span class='notice'>You fumble around figuring out [src]'s wiring.</span>")
 				var/fumbling_time = 100 - 20 * user.mind.cm_skills.engineer
-				if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
+				if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+					return
 			playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
 			user.visible_message("<span class='notice'>[user] starts securing [src]'s wiring.</span>",
 			"<span class='notice'>You start securing [src]'s wiring.</span>")
 			if(do_after(user, 120, TRUE, 12, BUSY_ICON_BUILD))
-				if(buildstate != 2 || is_on) return FALSE
+				if(buildstate != GEOTHERMAL_MEDIUM_DAMAGE || is_on)
+					return FALSE
 				playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
-				buildstate = 3
+				buildstate = GEOTHERMAL_LIGHT_DAMAGE
 				user.visible_message("<span class='notice'>[user] secures [src]'s wiring.</span>",
 				"<span class='notice'>You secure [src]'s wiring.</span>")
 				update_icon()
 				return TRUE
 	else if(iswrench(O))
-		if(buildstate == 3 && !is_on)
+		if(buildstate == GEOTHERMAL_LIGHT_DAMAGE && !is_on)
 			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
 				user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s tubing and plating.</span>",
 				"<span class='notice'>You fumble around figuring out [src]'s tubing and plating.</span>")
 				var/fumbling_time = 100 - 20 * user.mind.cm_skills.engineer
-				if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
+				if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+					return
 			playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 			user.visible_message("<span class='notice'>[user] starts repairing [src]'s tubing and plating.</span>",
 			"<span class='notice'>You start repairing [src]'s tubing and plating.</span>")
 			if(do_after(user, 150, TRUE, 15, BUSY_ICON_BUILD))
-				if(buildstate != 3 || is_on) return FALSE
+				if(buildstate != GEOTHERMAL_LIGHT_DAMAGE || is_on)
+					return FALSE
 				playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
-				buildstate = 0
+				buildstate = GEOTHERMAL_NO_DAMAGE
 				user.visible_message("<span class='notice'>[user] repairs [src]'s tubing and plating.</span>",
 				"<span class='notice'>You repair [src]'s tubing and plating.</span>")
 				update_icon()
 				return TRUE
 	else
-		return ..() //Deal with everything else, like hitting with stuff
+		. = ..() //Deal with everything else, like hitting with stuff
+
+#undef GEOTHERMAL_NO_DAMAGE
+#undef GEOTHERMAL_LIGHT_DAMAGE
+#undef GEOTHERMAL_MEDIUM_DAMAGE
+#undef GEOTHERMAL_HEAVY_DAMAGE
 
 //Putting these here since it's power-related
 /obj/machinery/colony_floodlight_switch
@@ -198,24 +207,27 @@
 	icon = 'icons/obj/machines/floodlight.dmi'
 	icon_state = "panelnopower"
 	desc = "This switch controls the floodlights surrounding the archaeology complex. It only functions when there is power."
-	density = 0
-	anchored = 1
-	var/ispowered = 0
-	var/turned_on = 0 //has to be toggled in engineering
-	use_power = 1
-	unacidable = 1
+	density = FALSE
+	anchored = TRUE
+	var/turned_on = FALSE //has to be toggled in engineering
+	use_power = IDLE_POWER_USE
+	idle_power_usage = 5
+	active_power_usage = 0
+	unacidable = TRUE
 	var/list/floodlist = list() // This will save our list of floodlights on the map
 
-/obj/machinery/colony_floodlight_switch/New() //Populate our list of floodlights so we don't need to scan for them ever again
-	sleep(5) //let's make sure it exists first..
+/obj/machinery/colony_floodlight_switch/Initialize()
+	..()
+	. = INITIALIZE_HINT_LATELOAD
+
+/obj/machinery/colony_floodlight_switch/LateInitialize() //Populate our list of floodlights so we don't need to scan for them ever again
+	. = ..()
 	for(var/obj/machinery/colony_floodlight/F in GLOB.machines)
 		floodlist += F
 		F.fswitch = src
-	..()
-	start_processing()
 
 /obj/machinery/colony_floodlight_switch/update_icon()
-	if(!ispowered)
+	if(stat & NOPOWER)
 		icon_state = "panelnopower"
 	else if(turned_on)
 		icon_state = "panelon"
@@ -223,36 +235,35 @@
 		icon_state = "paneloff"
 
 /obj/machinery/colony_floodlight_switch/process()
-	var/lightpower = 0
+	active_power_usage = 0
 	for(var/obj/machinery/colony_floodlight/C in floodlist)
 		if(!C.is_lit)
 			continue
-		lightpower += C.power_tick
-	use_power(lightpower)
+		active_power_usage += C.power_tick
 
 /obj/machinery/colony_floodlight_switch/power_change()
 	..()
-	if((stat & NOPOWER))
-		if(ispowered && turned_on)
+	if(stat & NOPOWER)
+		if(turned_on)
 			toggle_lights()
-		ispowered = 0
-		turned_on = 0
-		update_icon()
+		turned_on = FALSE
+		update_use_power(NO_POWER_USE)
+		stop_processing()
+	update_icon()
+
+/obj/machinery/colony_floodlight_switch/proc/toggle_power()
+	turned_on = !turned_on
+
+	if(turned_on)
+		update_use_power(ACTIVE_POWER_USE)
+		start_processing()
 	else
-		ispowered = 1
-		update_icon()
+		update_use_power(IDLE_POWER_USE)
+		stop_processing()
 
 /obj/machinery/colony_floodlight_switch/proc/toggle_lights()
 	for(var/obj/machinery/colony_floodlight/F in floodlist)
-		spawn(rand(0,50))
-			F.is_lit = !F.is_lit
-			if(!F.damaged)
-				if(F.is_lit) //Shut it down
-					F.SetLuminosity(F.lum_value)
-				else
-					F.SetLuminosity(0)
-			F.update_icon()
-	return 0
+		addtimer(CALLBACK(F, /obj/machinery/colony_floodlight/proc/toggle_light), rand(0,50))
 
 /obj/machinery/colony_floodlight_switch/attack_paw(mob/user as mob)
 	return src.attack_hand(user)
@@ -260,17 +271,15 @@
 /obj/machinery/colony_floodlight_switch/attack_hand(mob/user as mob)
 	if(!ishuman(user))
 		to_chat(user, "Nice try.")
-		return 0
-	if(!ispowered)
+		return FALSE
+	if(stat & NOPOWER)
 		to_chat(user, "Nothing happens.")
-		return 0
+		return FALSE
 	playsound(src,'sound/machines/click.ogg', 15, 1)
-	use_power(5)
 	toggle_lights()
-	turned_on = !(src.turned_on)
+	toggle_power()
 	update_icon()
-	return 1
-
+	return TRUE
 
 #define FLOODLIGHT_REPAIR_UNSCREW 	0
 #define FLOODLIGHT_REPAIR_CROWBAR 	1
@@ -282,16 +291,16 @@
 	name = "Colony Floodlight"
 	icon = 'icons/obj/machines/floodlight.dmi'
 	icon_state = "floodoff"
-	density = 1
-	anchored = 1
-	var/damaged = 0 //Can be smashed by xenos
-	var/is_lit = 0 //whether the floodlight is switched to on or off. Does not necessarily mean it emits light.
-	unacidable = 1
+	density = TRUE
+	anchored = TRUE
+	var/damaged = FALSE //Can be smashed by xenos
+	var/is_lit = FALSE //whether the floodlight is switched to on or off. Does not necessarily mean it emits light.
+	unacidable = TRUE
 	var/power_tick = 800 // power each floodlight takes up per process
-	use_power = 0 //It's the switch that uses the actual power, not the lights
+	use_power = NO_POWER_USE //It's the switch that uses the actual power, not the lights
 	var/obj/machinery/colony_floodlight_switch/fswitch = null //Reverse lookup for power grabbing in area
 	var/lum_value = 7
-	var/repair_state = 0
+	var/repair_state = FLOODLIGHT_REPAIR_UNSCREW
 	var/health = 120
 
 /obj/machinery/colony_floodlight/Destroy()
@@ -339,7 +348,8 @@
 				user.visible_message("<span class='notice'>[user] fumbles around figuring out [src] maintenance hatch's screws.</span>",
 				"<span class='notice'>You fumble around figuring out [src] maintenance hatch's screws.</span>")
 				var/fumbling_time = 60 - 20 * user.mind.cm_skills.engineer
-				if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
+				if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+					return
 
 			if(repair_state == FLOODLIGHT_REPAIR_UNSCREW)
 				playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
@@ -376,7 +386,8 @@
 				user.visible_message("<span class='notice'>[user] fumbles around figuring out an opening for [src]'s maintenance hatch.</span>",
 				"<span class='notice'>You fumble around figuring out an opening for [src]'s maintenance hatch.</span>")
 				var/fumbling_time = 60 - 20 * user.mind.cm_skills.engineer
-				if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
+				if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+					return
 
 			if(repair_state == FLOODLIGHT_REPAIR_CROWBAR)
 				playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
@@ -398,7 +409,8 @@
 				user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s internals.</span>",
 				"<span class='notice'>You fumble around figuring out [src]'s internals.</span>")
 				var/fumbling_time = 60 - 20 * user.mind.cm_skills.engineer
-				if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
+				if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+					return
 
 			if(repair_state == FLOODLIGHT_REPAIR_WELD)
 				if(WT.remove_fuel(1, user))
@@ -412,7 +424,7 @@
 						repair_state = FLOODLIGHT_REPAIR_CABLE
 						user.visible_message("<span class='notice'>[user] welds [src]'s damage.</span>",
 						"<span class='notice'>You weld [src]'s damage.</span>")
-						return 1
+						return TRUE
 				else
 					to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
 			return TRUE
@@ -423,7 +435,8 @@
 				user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s wiring.</span>",
 				"<span class='notice'>You fumble around figuring out [src]'s wiring.</span>")
 				var/fumbling_time = 60 - 20 * user.mind.cm_skills.engineer
-				if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
+				if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+					return
 
 			if(repair_state == FLOODLIGHT_REPAIR_CABLE)
 				if(C.get_amount() < 2)
@@ -442,9 +455,7 @@
 						"<span class='notice'>You replace [src]'s damaged cables.</span>")
 			return TRUE
 
-
-	..()
-	return 0
+	. = ..()
 
 /obj/machinery/colony_floodlight/attack_hand(mob/user)
 	if(ishuman(user))
@@ -452,7 +463,7 @@
 			to_chat(user, "<span class='warning'>[src] is damaged.</span>")
 		else if(!is_lit)
 			to_chat(user, "<span class='warning'>Nothing happens. Looks like it's powered elsewhere.</span>")
-		return 0
+		return FALSE
 	..()
 
 /obj/machinery/colony_floodlight/examine(mob/user)
@@ -469,6 +480,15 @@
 					if(FLOODLIGHT_REPAIR_SCREW) to_chat(user, "<span class='info'>You must screw its maintenance hatch closed.</span>")
 		else if(!is_lit)
 			to_chat(user, "<span class='info'>It doesn't seem powered.</span>")
+
+/obj/machinery/colony_floodlight/proc/toggle_light()
+	is_lit = !is_lit
+	if(!damaged)
+		if(is_lit)
+			SetLuminosity(lum_value)
+		else //Shut it down
+			SetLuminosity(0)
+	update_icon()
 
 #undef FLOODLIGHT_REPAIR_UNSCREW
 #undef FLOODLIGHT_REPAIR_CROWBAR

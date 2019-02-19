@@ -373,7 +373,7 @@
 // Warrior Fling
 /mob/living/carbon/Xenomorph/proc/fling(atom/A)
 
-	if (!A || !ishuman(A) || !check_state() || agility || !check_plasma(10) || !Adjacent(A))
+	if (!A || !ishuman(A) || !check_state() || agility || !check_plasma(30) || !Adjacent(A))
 		return
 
 	if (used_fling)
@@ -393,7 +393,7 @@
 	"<span class='xenowarning'>You effortlessly fling [H] to the side!</span>")
 	playsound(H,'sound/weapons/alien_claw_block.ogg', 75, 1)
 	used_fling = TRUE
-	use_plasma(10)
+	use_plasma(30)
 	H.apply_effects(1,2) 	// Stun
 	shake_camera(H, 2, 1)
 
@@ -419,17 +419,10 @@
 
 /mob/living/carbon/Xenomorph/proc/punch(var/mob/living/M)
 
-	if (!M)
+	if (!M || M == src || !isliving(M))
 		return
 
 	if (!check_state() || agility)
-		return
-
-	if (used_punch)
-		to_chat(src, "<span class='xenowarning'>You must gather your strength before punching.</span>")
-		return
-
-	if (!check_plasma(20))
 		return
 
 	if (!Adjacent(M))
@@ -437,6 +430,16 @@
 
 	if(stagger)
 		to_chat(src, "<span class='xenowarning'>Your limbs fail to respond as you try to shake off the shock!</span>")
+		return
+
+	if (used_punch)
+		to_chat(src, "<span class='xenowarning'>You must gather your strength before punching.</span>")
+		return
+
+	if(xeno_hivenumber(M) == hivenumber)
+		return M.attack_alien(src, force_intent = INTENT_HARM) //harmless nibbling.
+
+	if (!check_plasma(20))
 		return
 
 	if(M.stat == DEAD || ((M.status_flags & XENO_HOST) && istype(M.buckled, /obj/structure/bed/nest))) //Can't bully the dead/nested hosts.
@@ -472,24 +475,12 @@
 			L.status &= ~LIMB_SPLINTED
 			to_chat(H, "<span class='danger'>The splint on your [L.display_name] comes apart!</span>")
 
-		if(isyautja(H))
-			L.take_damage(damage, 0, 0, 0, null, null, null, armor_block)
-		else if(L.status & LIMB_ROBOT)
-			L.take_damage(damage * 2, 0, 0, 0, null, null, null, armor_block)
-		else
-			var/fracture_chance = 100
-			switch(L.body_part)
-				if(HEAD)
-					fracture_chance = 50
-				if(CHEST)
-					fracture_chance = 50
-				if(GROIN)
-					fracture_chance = 50
-			fracture_chance *= max(0,round(1 - armor_block,0.01)) //Reduce the fracture chance by a % equal to the armor.
+		L.take_damage(damage, 0, 0, 0, null, null, null, armor_block)
+		if(iscarbon(L))
+			var/mob/living/carbon/C = L
+			C.adjust_stagger(3)
+			C.add_slowdown(3)
 
-			L.take_damage(damage, 0, 0, 0, null, null, null, armor_block)
-			if(prob(fracture_chance))
-				L.fracture()
 		H.apply_damage(damage, HALLOSS) //Armor penetrating halloss also applies.
 	shake_camera(M, 2, 1)
 	step_away(M, src, 2)
@@ -869,7 +860,7 @@
 			to_chat(src, "<span class='xenowarning'>You tuck yourself into a defensive stance.</span>")
 		armor_bonus += xeno_caste.fortify_armor
 		xeno_explosion_resistance = 3
-		frozen = TRUE
+		set_frozen(TRUE)
 		anchored = TRUE
 		update_canmove()
 		update_icons()
@@ -884,8 +875,8 @@
 	to_chat(src, "<span class='xenowarning'>You resume your normal stance.</span>")
 	armor_bonus -= xeno_caste.fortify_armor
 	xeno_explosion_resistance = 0
-	frozen = FALSE
 	fortify = FALSE
+	set_frozen(FALSE)
 	anchored = FALSE
 	playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 30, 1)
 	update_canmove()
@@ -910,10 +901,10 @@
 	if (burrow)
 		// TODO Make immune to all damage here.
 		to_chat(src, "<span class='xenowarning'>You burrow yourself into the ground.</span>")
-		frozen = 1
-		invisibility = 101
-		anchored = 1
-		density = 0
+		set_frozen(TRUE)
+		invisibility = INVISIBILITY_MAXIMUM
+		anchored = TRUE
+		density = FALSE
 		update_canmove()
 		update_icons()
 		do_burrow_cooldown()
@@ -936,7 +927,7 @@
 /mob/living/carbon/Xenomorph/proc/burrow_off()
 
 	to_chat(src, "<span class='notice'>You resurface.</span>")
-	frozen = 0
+	set_frozen(FALSE)
 	invisibility = 0
 	anchored = 0
 	density = 1
@@ -1008,7 +999,7 @@
 
 
 /mob/living/carbon/Xenomorph/proc/xeno_transfer_plasma(atom/A, amount = 50, transfer_delay = 20, max_range = 2)
-	if(!isxeno(A) || !check_state())
+	if(!isxeno(A) || !check_state() || A == src)
 		return
 
 	var/mob/living/carbon/Xenomorph/target = A
@@ -1054,7 +1045,7 @@
 	playsound(src, "alien_drool", 25)
 
 /mob/living/carbon/Xenomorph/proc/xeno_salvage_plasma(atom/A, amount, salvage_delay, max_range)
-	if(!isxeno(A) || !check_state())
+	if(!isxeno(A) || !check_state() || A == src)
 		return
 
 	var/mob/living/carbon/Xenomorph/target = A
@@ -1456,7 +1447,7 @@
 
 
 /proc/check_hive_status(mob/living/carbon/Xenomorph/user, var/anchored = FALSE)
-	if(!ticker)
+	if(!SSticker)
 		return
 	var/dat = "<html><head><title>Hive Status</title></head><body>"
 
@@ -1494,11 +1485,11 @@
 	var/defiler_count = 0
 	var/larva_list = ""
 	var/larva_count = 0
-	var/stored_larva_count = ticker.mode.stored_larva
+	var/stored_larva_count = SSticker.mode.stored_larva
 	var/leader_list = ""
 
 	for(var/mob/living/carbon/Xenomorph/X in GLOB.alive_xeno_list)
-		if(X.z == ADMIN_Z_LEVEL)
+		if(is_centcom_level(X.z))
 			continue //don't show xenos in the thunderdome when admins test stuff.
 		if(istype(user)) // cover calling it without parameters
 			if(X.hivenumber != user.hivenumber)
@@ -1699,7 +1690,7 @@
 	var/turf/T = loc
 	var/turf/temp = loc
 	if(a_intent == INTENT_HARM) //If we use the ability on hurt intent, we throw them in front; otherwise we throw them behind.
-		for (var/x = 0, x < toss_distance, x++)
+		for (var/x in 1 to toss_distance)
 			temp = get_step(T, facing)
 			if (!temp)
 				break
@@ -1735,17 +1726,18 @@
 
 	M.throw_at(T, toss_distance, 1, src)
 
+	var/mob/living/carbon/Xenomorph/X = M
 	//Handle the damage
-	if(!isxeno(M)) //Friendly xenos don't take damage.
+	if(!istype(X) || hivenumber != X.hivenumber) //Friendly xenos don't take damage.
 		var/damage = toss_distance * 5
 		if(frenzy_aura)
 			damage *= (1 + round(frenzy_aura * 0.1,0.01)) //+10% damage per level of frenzy
 		var/armor_block = M.run_armor_check("chest", "melee")
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
-			H.take_overall_damage(rand(damage * 0.75,damage * 1.25) * 0.5, armor_block) //Armour functions against this.
+			H.take_overall_damage(rand(damage * 0.75,damage * 1.25), null, 0, 0, 0, armor_block) //Armour functions against this.
 		else
-			M.take_overall_damage(rand(damage * 0.75,damage * 1.25) * 0.5, armor_block) //Armour functions against this.
+			M.take_overall_damage(rand(damage * 0.75,damage * 1.25), 0, null, armor_block) //Armour functions against this.
 		M.apply_damage(damage, HALLOSS) //...But decent armour ignoring Halloss
 		shake_camera(M, 2, 2)
 		playsound(M,pick('sound/weapons/alien_claw_block.ogg','sound/weapons/alien_bite2.ogg'), 50, 1)
@@ -1916,14 +1908,14 @@
 	update_action_button_icons()
 
 /mob/living/carbon/Xenomorph/Ravager/proc/Second_Wind()
-	if (!check_state())
+	if(!check_state())
 		return
 
 	if(stagger)
 		to_chat(src, "<span class='xenowarning'>Your limbs fail to respond as you try to shake off the shock!</span>")
 		return
 
-	if (second_wind_used)
+	if(second_wind_used)
 		to_chat(src, "<span class='xenowarning'>You must gather your strength before using Second Wind. Second Wind can be used in [(second_wind_delay - world.time) * 0.1] seconds.</span>")
 		return
 
@@ -1964,42 +1956,58 @@
 
 	if(isnull(turflist))
 		return
+
 	var/turf/prev_turf
 	var/distance = 0
 
-	turf_loop:
-		for(var/turf/T in turflist)
-			distance++
+	for(var/X in turflist)
+		var/turf/T = X
 
-			if(!prev_turf && turflist.len > 1)
-				prev_turf = get_turf(src)
-				continue //So we don't burn the tile we be standin on
+		if(!prev_turf && turflist.len > 1)
+			prev_turf = get_turf(src)
+			continue //So we don't burn the tile we be standin on
 
-			if(T.density || isspaceturf(T))
-				break
-			if(distance > 7)
-				break
-
-			if(locate(/obj/structure/girder, T))
-				break //Nope.avi
-
-			var/obj/machinery/M = locate() in T
-			if(M?.density)
-				break
-
-			if(prev_turf && LinkBlocked(prev_turf, T))
-				break
-
-			for(var/obj/structure/barricade/B in T)
+		for(var/obj/structure/barricade/B in prev_turf)
+			if(get_dir(prev_turf, T) & B.dir)
 				B.health -= rand(45, 60) + 8 * upgrade
 				B.update_health(TRUE)
-				if(prev_turf)
-					if(get_dir(B, prev_turf) & B.dir)
-						break turf_loop
 
-			prev_turf = T
-			splat_turf(T)
-			sleep(2)
+		if(T.density || isspaceturf(T))
+			break
+
+		var/blocked = FALSE
+		for(var/obj/O in T)
+			if(O.density && !O.throwpass && !(O.flags_atom & ON_BORDER))
+				blocked = TRUE
+				break
+
+		var/turf/TF
+		if(!prev_turf.Adjacent(T) && (T.x != prev_turf.x || T.y != prev_turf.y)) //diagonally blocked, it will seek for a cardinal turf by the former target.
+			blocked = TRUE
+			var/turf/Ty = locate(prev_turf.x, T.y, prev_turf.z)
+			var/turf/Tx = locate(T.x, prev_turf.y, prev_turf.z)
+			for(var/turf/TB in shuffle(list(Ty, Tx)))
+				if(prev_turf.Adjacent(TB) && !TB.density && !isspaceturf(TB))
+					TF = TB
+					break
+			if(!TF)
+				break
+		else
+			TF = T
+
+		for(var/obj/structure/barricade/B in TF)
+			if(get_dir(TF, prev_turf) & B.dir)
+				B.health -= rand(45, 60) + 8 * upgrade
+				B.update_health(TRUE)
+
+		splat_turf(TF)
+
+		distance++
+		if(distance > 7 || blocked)
+			break
+
+		prev_turf = T
+		sleep(2)
 
 
 /mob/living/carbon/Xenomorph/proc/splat_turf(var/turf/target)
@@ -2101,15 +2109,23 @@
 	"<span class='xenodanger'>Your dorsal vents widen, preparing to emit neurogas. Keep still!</span>")
 
 	emitting_gas = TRUE //We gain bump movement immunity while we're emitting gas.
+	use_plasma(200)
+	icon_state = "Defiler Power Up"
+
 	if(!do_after(src, DEFILER_GAS_CHANNEL_TIME, TRUE, 5, BUSY_ICON_HOSTILE))
+		smoke_system = new /datum/effect_system/smoke_spread/xeno_weaken()
+		smoke_system.amount = 1
+		smoke_system.set_up(1, 0, get_turf(src))
+		to_chat(src, "<span class='xenodanger'>You abort emitting neurogas, your expended plasma resulting in only a feeble wisp.</span>")
 		emitting_gas = FALSE
+		icon_state = "Defiler Running"
 		return
 	emitting_gas = FALSE
+	icon_state = "Defiler Running"
 
 	addtimer(CALLBACK(src, .defiler_gas_cooldown), DEFILER_GAS_COOLDOWN)
 
 	last_emit_neurogas = world.time
-	use_plasma(200)
 
 	if(stagger) //If we got staggered, return
 		to_chat(src, "<span class='xenowarning'>You try to emit neurogas but are staggered!</span>")
@@ -2389,3 +2405,26 @@
 
 /mob/living/carbon/human/species/synthetic/can_sting()
 	return FALSE
+
+/mob/living/carbon/Xenomorph/proc/hit_and_run_bonus(damage)
+	return damage
+
+/mob/living/carbon/Xenomorph/Runner/hit_and_run_bonus(damage)
+	var/last_move = last_move_intent - 10
+	var/bonus
+	if(last_move && last_move < world.time - 5) //If we haven't moved in the last 500 ms, we lose our bonus
+		hit_and_run = 1
+	bonus = CLAMP(hit_and_run, 1, 2)//Runner deals +5% damage per tile moved in rapid succession to a maximum of +100%. Damage bonus is lost on attacking.
+	switch(bonus)
+		if(2)
+			visible_message("<span class='danger'>\The [src] strikes with lethal speed!</span>", \
+			"<span class='danger'>You strike with lethal speed!</span>")
+		if(1.5 to 1.99)
+			visible_message("<span class='danger'>\The [src] strikes with deadly speed!</span>", \
+			"<span class='danger'>You strike with deadly speed!</span>")
+		if(1.25 to 1.45)
+			visible_message("<span class='danger'>\The [src] strikes with vicious speed!</span>", \
+			"<span class='danger'>You strike with vicious speed!</span>")
+	damage *= bonus
+	hit_and_run = 1 //reset the hit and run bonus
+	return damage

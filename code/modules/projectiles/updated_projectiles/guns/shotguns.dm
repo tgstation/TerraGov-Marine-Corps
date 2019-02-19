@@ -17,7 +17,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	var/opened_sound = 'sound/weapons/gun_shotgun_open2.ogg'
 	type_of_casings = "shell"
 	accuracy_mult = 1.15
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER
 	aim_slowdown = SLOWDOWN_ADS_SHOTGUN
 	wield_delay = WIELD_DELAY_NORMAL //Shotguns are really easy to put up to fire, since they are designed for CQC (at least compared to a rifle)
 	gun_skill_category = GUN_SKILL_SHOTGUNS
@@ -92,6 +92,11 @@ can cause issues with ammo types getting mixed up during the burst.
 	new_handful.generate_handful(selection, "12g", 5, 1, /obj/item/weapon/gun/shotgun)
 	return new_handful
 
+/obj/item/weapon/gun/shotgun/pump/bolt/retrieve_shell(selection)
+	var/obj/item/ammo_magazine/handful/new_handful = new /obj/item/ammo_magazine/handful()
+	new_handful.generate_handful(selection, "7.62x54mmR", 5, 1, /obj/item/weapon/gun/shotgun)
+	return new_handful
+
 /obj/item/weapon/gun/shotgun/proc/check_chamber_position()
 	return 1
 
@@ -147,9 +152,6 @@ can cause issues with ammo types getting mixed up during the burst.
 
 	return TRUE
 
-/obj/item/weapon/gun/shotgun/has_ammo_counter()
-	return TRUE
-
 /obj/item/weapon/gun/shotgun/get_ammo_type()
 	if(!ammo)
 		return list("unknown", "unknown")
@@ -176,13 +178,8 @@ can cause issues with ammo types getting mixed up during the burst.
 	attachable_allowed = list(
 						/obj/item/attachable/compensator)
 
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 17, "under_y" = 14, "stock_x" = 17, "stock_y" = 14)
-
-/obj/item/weapon/gun/shotgun/merc/Initialize()
-	. = ..()
-	if(current_mag && current_mag.current_rounds > 0)
-		load_into_chamber()
 
 /obj/item/weapon/gun/shotgun/merc/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/high_fire_delay) * 2
@@ -197,8 +194,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	recoil_unwielded = CONFIG_GET(number/combat_define/high_recoil_value)
 
 
-/obj/item/weapon/gun/shotgun/merc/examine(mob/user)
-	. = ..()
+/obj/item/weapon/gun/shotgun/merc/examine_ammo_count(mob/user)
 	if(in_chamber)
 		to_chat(user, "It has a chambered round.")
 
@@ -212,6 +208,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	item_state = "mk221"
 	origin_tech = "combat=5;materials=4"
 	fire_sound = 'sound/weapons/gun_shotgun_automatic.ogg'
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/combat
 	attachable_allowed = list(
 						/obj/item/attachable/bayonet,
@@ -222,19 +219,7 @@ can cause issues with ammo types getting mixed up during the burst.
 						/obj/item/attachable/magnetic_harness,
 						/obj/item/attachable/stock/tactical)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 14, "under_y" = 16, "stock_x" = 14, "stock_y" = 16)
-
-/obj/item/weapon/gun/shotgun/combat/Initialize()
-	. = ..()
-	var/obj/item/attachable/attached_gun/grenade/G = new(src)
-	G.flags_attach_features &= ~ATTACH_REMOVABLE
-	G.attach_icon = "" //gun already has a better one
-	G.icon_state = ""
-	G.Attach(src)
-	update_attachable(G.slot)
-	G.icon_state = initial(G.icon_state)
-	if(current_mag && current_mag.current_rounds > 0)
-		load_into_chamber()
-
+	starting_attachment_types = list(/obj/item/attachable/attached_gun/grenade/unremovable/invisible)
 
 /obj/item/weapon/gun/shotgun/combat/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/tacshottie_fire_delay) //one shot every 1.5 seconds.
@@ -247,8 +232,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	recoil_unwielded = CONFIG_GET(number/combat_define/high_recoil_value)
 
 
-/obj/item/weapon/gun/shotgun/combat/examine(mob/user)
-	. = ..()
+/obj/item/weapon/gun/shotgun/combat/examine_ammo_count(mob/user)
 	if(in_chamber)
 		to_chat(user, "It has a chambered round.")
 
@@ -271,7 +255,7 @@ can cause issues with ammo types getting mixed up during the burst.
 						/obj/item/attachable/flashlight,
 						/obj/item/attachable/magnetic_harness)
 
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 21,"rail_x" = 15, "rail_y" = 22, "under_x" = 21, "under_y" = 16, "stock_x" = 21, "stock_y" = 16)
 
 /obj/item/weapon/gun/shotgun/double/set_gun_config_values()
@@ -284,8 +268,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	recoil = CONFIG_GET(number/combat_define/low_recoil_value)
 	recoil_unwielded = CONFIG_GET(number/combat_define/high_recoil_value)
 
-/obj/item/weapon/gun/shotgun/double/examine(mob/user)
-	. = ..()
+/obj/item/weapon/gun/shotgun/double/examine_ammo_count(mob/user)
 	if(current_mag.chamber_closed)
 		to_chat(user, "It's closed.")
 	else
@@ -365,7 +348,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	item_state = "sshotgun"
 	flags_equip_slot = ITEM_SLOT_BELT
 	attachable_allowed = list()
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 11, "rail_y" = 22, "under_x" = 18, "under_y" = 16, "stock_x" = 18, "stock_y" = 16)
 
 /obj/item/weapon/gun/shotgun/double/sawn/set_gun_config_values()
@@ -526,3 +509,88 @@ can cause issues with ammo types getting mixed up during the burst.
 	recoil_unwielded = CONFIG_GET(number/combat_define/high_recoil_value)
 	pump_delay = CONFIG_GET(number/combat_define/mhigh_fire_delay) * 2
 
+//------------------------------------------------------
+//A hacky bolt action rifle. in here for the "pump" or bolt working action.
+
+/obj/item/weapon/gun/shotgun/pump/bolt
+	name = "\improper mosin nagant rifle"
+	desc = "A mosin nagant rifle, even just looking at it you can feel the cosmoline already."
+	icon_state = "mosin"
+	item_state = "mosin" //thank you Alterist
+	fire_sound = 'sound/weapons/gun_sniper.ogg'
+	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump/bolt
+	gun_skill_category = GUN_SKILL_RIFLES
+	type_of_casings = "cartridge"
+	pump_sound = 'sound/weapons/working_the_bolt.ogg'
+	attachable_allowed = list(
+						/obj/item/attachable/reddot,
+						/obj/item/attachable/scope/mini,
+						/obj/item/attachable/scope,
+						/obj/item/attachable/bayonet)
+	attachable_offset = list("muzzle_x" = 50, "muzzle_y" = 21,"rail_x" = 8, "rail_y" = 21, "under_x" = 37, "under_y" = 16, "stock_x" = 20, "stock_y" = 14)
+	starting_attachment_types = list(/obj/item/attachable/scope,
+									/obj/item/attachable/mosinbarrel,
+									/obj/item/attachable/stock/mosin)
+
+/obj/item/weapon/gun/shotgun/pump/bolt/set_gun_config_values()
+	fire_delay = CONFIG_GET(number/combat_define/med_fire_delay) * 6
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/hmed_hit_accuracy_mult)
+	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/hmed_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/low_scatter_value)
+	scatter_unwielded = CONFIG_GET(number/combat_define/max_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
+	recoil = CONFIG_GET(number/combat_define/low_recoil_value)
+	recoil_unwielded = CONFIG_GET(number/combat_define/high_recoil_value)
+	pump_delay = CONFIG_GET(number/combat_define/mhigh_fire_delay) * 2
+
+/obj/item/weapon/gun/shotgun/pump/bolt/unique_action(mob/user)
+	work_the_bolt(user)
+
+
+/obj/item/weapon/gun/shotgun/pump/proc/work_the_bolt(mob/user)	//We can't fire bursts with pumps.
+	if(world.time < (recent_pump + pump_delay) ) //Don't spam it.
+		return
+	if(pump_lock)
+		if(world.time > recent_notice + CONFIG_GET(number/combat_define/max_fire_delay))
+			playsound(user,'sound/weapons/throwtap.ogg', 25, 1)
+			to_chat(user,"<span class='warning'><b>[src]'s bolt has already been worked, locking the action; fire or unload a cartridge to unlock it.</b></span>")
+			recent_notice = world.time
+		return
+
+	if(in_chamber) //eject the chambered round
+		in_chamber = null
+		var/obj/item/ammo_magazine/handful/new_handful = retrieve_shell(ammo.type)
+		new_handful.forceMove(get_turf(src))
+
+	ready_shotgun_tube()
+
+
+	if(current_mag.used_casings)
+		current_mag.used_casings--
+		make_casing(type_of_casings)
+
+	to_chat(user, "<span class='notice'><b>You work [src]'s action.</b></span>")
+	playsound(user, pump_sound, 25, 1)
+	recent_pump = world.time
+	if(in_chamber) //Lock only if we have ammo loaded.
+		pump_lock = TRUE
+
+
+/obj/item/weapon/gun/shotgun/pump/reload_into_chamber(mob/user)
+	if(active_attachable)
+		make_casing(active_attachable.type_of_casings)
+	else
+		pump_lock = FALSE //fired successfully; unlock the pump
+		current_mag.used_casings++ //The shell was fired successfully. Add it to used.
+		in_chamber = null
+		//Time to move the tube position.
+		if(!current_mag.current_rounds && !in_chamber)
+			update_icon()//No rounds, nothing chambered.
+
+	return TRUE
+
+/obj/item/weapon/gun/shotgun/pump/unload(mob/user)
+	if(pump_lock)
+		to_chat(user, "<span class='notice'><b>You disengage [src]'s bolt lock with the bolt handle.</b></span>")
+		pump_lock = FALSE //we're operating the slide release to unload, thus unlocking the pump
+	return ..()

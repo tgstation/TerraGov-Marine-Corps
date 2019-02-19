@@ -777,12 +777,12 @@
 		user.visible_message("<span class='info'>[user] starts becoming shimmery and indistinct...</span>")
 		if(do_after(user,100, TRUE, 5, BUSY_ICON_GENERIC))
 			// Teleport self.
-			user.visible_message("<span class='warning'>[bicon(user)][user] disappears!</span>")
+			user.visible_message("<span class='warning'>[icon2html(user, viewers(user))][user] disappears!</span>")
 			var/tele_time = animation_teleport_quick_out(user)
 			// Also teleport whoever you're pulling.
 			var/mob/living/M = user.pulling
 			if(istype(M))
-				M.visible_message("<span class='warning'>[bicon(M)][M] disappears!</span>")
+				M.visible_message("<span class='warning'>[icon2html(M, viewers(M))][M] disappears!</span>")
 				animation_teleport_quick_out(M)
 			sleep(tele_time)
 
@@ -813,11 +813,11 @@
 		l_color = "#FFFF0C" //Yeller
 		SetLuminosity(4)
 		spawn(3000)
-			if(ticker && istype(ticker.mode,/datum/game_mode/huntergames)) loop_firetick()
+			if(istype(SSticker?.mode,/datum/game_mode/huntergames)) loop_firetick()
 
 
 	proc/loop_firetick() //Crackly!
-		while(src && ticker)
+		while(src && SSticker)
 			SetLuminosity(0)
 			SetLuminosity(rand(3,4))
 			sleep(rand(15,30))

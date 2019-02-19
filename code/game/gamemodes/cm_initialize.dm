@@ -46,7 +46,8 @@ Additional game mode variables.
 				list(/obj/item/weapon/gun/shotgun/double/sawn, /obj/item/ammo_magazine/shotgun/flechette),\
 				list(/obj/item/weapon/gun/smg/uzi, /obj/item/ammo_magazine/smg/uzi),\
 				list(/obj/item/weapon/gun/smg/mp5, /obj/item/ammo_magazine/smg/mp5),\
-				list(/obj/item/weapon/gun/rifle/m16, /obj/item/ammo_magazine/rifle/m16))
+				list(/obj/item/weapon/gun/rifle/m16, /obj/item/ammo_magazine/rifle/m16),\
+				list(/obj/item/weapon/gun/shotgun/pump/bolt, /obj/item/ammo_magazine/rifle/bolt))
 
 /datum/game_mode
 	var/datum/mind/xenomorphs[] = list() //These are our basic lists to keep track of who is in the game.
@@ -78,10 +79,6 @@ Additional game mode variables.
 
 	var/stored_larva = 0
 
-	//Role Authority set up.
-	var/role_instruction 	= ROLE_MODE_DEFAULT
-	var/roles_for_mode[] //Won't have a list if the instruction is set to 0.
-
 	//Bioscan related.
 	var/bioscan_current_interval = 45 MINUTES
 	var/bioscan_ongoing_interval = 20 MINUTES
@@ -101,162 +98,10 @@ datum/game_mode/proc/initialize_special_clamps()
 	surv_starting_num = CLAMP((round(ready_players / CONFIG_GET(number/survivor_coefficient))), 0, 8)
 	merc_starting_num = max((round(ready_players / MERC_STARTING_COEF)), 1)
 	marine_starting_num = ready_players - xeno_starting_num - surv_starting_num - merc_starting_num
-	for(var/datum/squad/sq in RoleAuthority.squads)
+	for(var/datum/squad/sq in SSjob.squads)
 		if(sq)
 			sq.max_engineers = engi_slot_formula(marine_starting_num)
 			sq.max_medics = medic_slot_formula(marine_starting_num)
-
-	for(var/datum/job/J in RoleAuthority.roles_by_name)
-		if(J.scaled)
-			J.set_spawn_positions(marine_starting_num)
-
-//===================================================\\
-
-				//PREDATOR INITIATLIZE\\
-
-//===================================================\\
-
-/datum/game_mode/proc/initialize_predator(mob/living/carbon/human/new_predator)
-	predators += new_predator.mind //Add them to the proper list.
-	pred_keys += new_predator.ckey //Add their key.
-	if(!(RoleAuthority.roles_whitelist[new_predator.ckey] & (WHITELIST_YAUTJA_ELITE|WHITELIST_YAUTJA_ELDER))) pred_current_num++ //If they are not an elder, tick up the max.
-
-/datum/game_mode/proc/initialize_starting_predator_list()
-	if(prob(pred_round_chance)) //First we want to determine if it's actually a predator round.
-		flags_round_type |= MODE_PREDATOR //It is now a predator round.
-		var/L[] = get_whitelisted_predators() //Grabs whitelisted preds who are ready at game start.
-		var/datum/mind/M
-		var/i //Our iterator for the maximum amount of pred spots available. The actual number is changed later on.
-		while(L.len && i < pred_maximum_num)
-			M = pick(L)
-			if(!istype(M)) continue
-			L -= M
-			M.assigned_role = "MODE" //So they are not chosen later for another role.
-			predators += M
-			if(!(RoleAuthority.roles_whitelist[M.current.ckey] & (WHITELIST_YAUTJA_ELITE|WHITELIST_YAUTJA_ELDER))) i++
-
-/datum/game_mode/proc/initialize_post_predator_list() //TO DO: Possibly clean this using tranfer_to.
-	var/temp_pred_list[] = predators //We don't want to use the actual predator list as it will be overriden.
-	predators = list() //Empty it. The temporary minds we used aren't going to be used much longer.
-	for(var/datum/mind/new_pred in temp_pred_list)
-		if(!istype(new_pred)) continue
-		attempt_to_join_as_predator(new_pred.current)
-
-/datum/game_mode/proc/get_whitelisted_predators(readied = 1)
-	// Assemble a list of active players who are whitelisted.
-	var/players[] = new
-
-	var/mob/new_player/new_pred
-	for(var/mob/player in GLOB.player_list)
-		if(!player.client) continue //No client. DCed.
-		if(isyautja(player)) continue //Already a predator. Might be dead, who knows.
-		if(readied) //Ready check for new players.
-			new_pred = player
-			if(!istype(new_pred)) continue //Have to be a new player here.
-			if(!new_pred.ready) continue //Have to be ready.
-		else
-			if(!istype(player,/mob/dead)) continue //Otherwise we just want to grab the ghosts.
-
-		if(RoleAuthority.roles_whitelist[player.ckey] & WHITELIST_PREDATOR)  //Are they whitelisted?
-			if(!player.client.prefs)
-				player.client.prefs = new /datum/preferences(player.client) //Somehow they don't have one.
-
-			if(player.client.prefs.be_special & BE_PREDATOR) //Are their prefs turned on?
-				if(!player.mind) //They have to have a key if they have a client.
-					player.mind_initialize() //Will work on ghosts too, but won't add them to active minds.
-				players += player.mind
-	return players
-
-/datum/game_mode/proc/attempt_to_join_as_predator(mob/pred_candidate)
-	var/mob/living/carbon/human/new_predator = transform_predator(pred_candidate) //Initialized and ready.
-	if(!new_predator)
-		return FALSE
-
-	log_admin("[key_name(new_predator)] joined as Yautja.")
-	message_admins("[ADMIN_TPMONTY(new_predator)] joined as Yautja.")
-
-	if(pred_candidate) pred_candidate.loc = null //Nullspace it for garbage collection later.
-
-/datum/game_mode/proc/check_predator_late_join(mob/pred_candidate, show_warning = 1)
-
-	if(!(RoleAuthority.roles_whitelist[pred_candidate.ckey] & WHITELIST_PREDATOR))
-		if(show_warning) to_chat(pred_candidate, "<span class='warning'>You are not whitelisted! You may apply on the forums to be whitelisted as a predator.</span>")
-		return FALSE
-
-	if(!(flags_round_type & MODE_PREDATOR))
-		if(show_warning) to_chat(pred_candidate, "<span class='warning'>There is no Hunt this round! Maybe the next one.</span>")
-		return FALSE
-
-	if(pred_candidate.ckey in pred_keys)
-		if(show_warning) to_chat(pred_candidate, "<span class='warning'>You already were a Yautja! Give someone else a chance.</span>")
-		return FALSE
-
-	if(!(RoleAuthority.roles_whitelist[pred_candidate.ckey] & WHITELIST_YAUTJA_ELDER))
-		if(pred_current_num >= pred_maximum_num)
-			if(show_warning) to_chat(pred_candidate, "<span class='warning'>Only [pred_maximum_num] predators may spawn per round, but Elders are excluded.</span>")
-			return FALSE
-
-	return TRUE
-
-/datum/game_mode/proc/transform_predator(mob/pred_candidate)
-	if(!pred_candidate.client) //Something went wrong.
-		log_runtime("Null client in transform_predator.")
-		return FALSE
-
-	var/mob/living/carbon/human/new_predator
-
-	new_predator = new(RoleAuthority.roles_whitelist[pred_candidate.ckey] & WHITELIST_YAUTJA_ELDER ? pick(GLOB.pred_elder_spawn) : pick(GLOB.pred_spawn))
-	new_predator.set_species("Yautja")
-
-	new_predator.mind_initialize()
-	new_predator.mind.assigned_role = "MODE"
-	new_predator.mind.special_role = "Predator"
-	new_predator.key = pred_candidate.key
-	new_predator.mind.key = new_predator.key
-	if(new_predator.client) new_predator.client.change_view(world.view)
-
-	if(!new_predator.client.prefs) new_predator.client.prefs = new /datum/preferences(new_predator.client) //Let's give them one.
-	//They should have these set, but it's possible they don't have them.
-	new_predator.real_name = new_predator.client.prefs.predator_name
-	new_predator.gender = new_predator.client.prefs.predator_gender
-	new_predator.age = new_predator.client.prefs.predator_age
-
-	if(!new_predator.real_name || new_predator.real_name == "Undefined") //In case they don't have a name set or no prefs, there's a name.
-		new_predator.real_name = "Le'pro"
-		spawn(9)
-			to_chat(new_predator, "<span class='warning'>You forgot to set your name in your preferences. Please do so next time.</span>")
-
-	var/armor_number = new_predator.client.prefs.predator_armor_type
-	var/boot_number = new_predator.client.prefs.predator_boot_type
-	var/mask_number = new_predator.client.prefs.predator_mask_type
-
-	new_predator.equip_to_slot_or_del(new /obj/item/clothing/shoes/yautja(new_predator, boot_number), SLOT_SHOES)
-	if(RoleAuthority.roles_whitelist[new_predator.ckey] & WHITELIST_YAUTJA_ELDER)
-		new_predator.real_name = "Elder [new_predator.real_name]"
-		new_predator.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/yautja(new_predator, armor_number, 1), SLOT_WEAR_SUIT)
-		new_predator.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/yautja(new_predator, mask_number, 1), SLOT_WEAR_MASK)
-		new_predator.equip_to_slot_or_del(new /obj/item/clothing/cape/eldercape(new_predator, armor_number), SLOT_BACK)
-
-		spawn(10)
-			to_chat(new_predator, "<span class='notice'><B> Welcome Elder!</B></span>")
-			to_chat(new_predator, "<span class='notice'>You are responsible for the well-being of your pupils. Hunting is secondary in priority.</span>")
-			to_chat(new_predator, "<span class='notice'>That does not mean you can't go out and show the youngsters how it's done.</span>")
-			to_chat(new_predator, "<span class='notice'>You come equipped as an Elder should, with a bonus glaive and heavy armor.</span>")
-	else
-		new_predator.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/yautja(new_predator, armor_number), SLOT_WEAR_SUIT)
-		new_predator.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/yautja(new_predator, mask_number), SLOT_WEAR_MASK)
-
-		spawn(12)
-			to_chat(new_predator, "<span class='notice'>You are <B>Yautja</b>, a great and noble predator!</span>")
-			to_chat(new_predator, "<span class='notice'>Your job is to first study your opponents. A hunt cannot commence unless intelligence is gathered.</span>")
-			to_chat(new_predator, "<span class='notice'>Hunt at your discretion, yet be observant rather than violent.</span>")
-			to_chat(new_predator, "<span class='notice'>And above all, listen to your Elders!</span>")
-
-	new_predator.update_icons()
-	initialize_predator(new_predator)
-	return new_predator
-
-#undef DEBUG_PREDATOR_INITIALIZE
 
 //===================================================\\
 
@@ -269,7 +114,6 @@ datum/game_mode/proc/initialize_special_clamps()
 /datum/game_mode/proc/initialize_starting_xenomorph_list()
 	var/list/datum/mind/possible_xenomorphs = get_players_for_role(BE_ALIEN)
 	if(possible_xenomorphs.len < xeno_required_num) //We don't have enough aliens.
-		to_chat(world, "<h2 style=\"color:red\">Not enough players have chosen to be a xenomorph in their character setup. <b>Aborting</b>.</h2>")
 		return FALSE
 
 	//Minds are not transferred at this point, so we have to clean out those who may be already picked to play.
@@ -299,7 +143,6 @@ datum/game_mode/proc/initialize_special_clamps()
 	So they may have been removed from the list, oh well.
 	*/
 	if(xenomorphs.len < xeno_required_num)
-		to_chat(world, "<h2 style=\"color:red\">Could not find any candidates after initial alien list pass. <b>Aborting</b>.</h2>")
 		return FALSE
 
 	return TRUE
@@ -347,12 +190,12 @@ datum/game_mode/proc/initialize_post_queen_list()
 	return TRUE
 
 /datum/game_mode/proc/attempt_to_join_as_larva(mob/xeno_candidate)
-	if(!ticker.mode.stored_larva)
+	if(!SSticker.mode.stored_larva)
 		to_chat(xeno_candidate, "<span class='warning'>There are no burrowed larvas.</span>")
 		return FALSE
 	var/available_queens[] = list()
 	for(var/mob/A in GLOB.alive_xeno_list)
-		if(!isxenoqueen(A) || A.z == ADMIN_Z_LEVEL)
+		if(!isxenoqueen(A) || is_centcom_level(A.z))
 			continue
 		var/mob/living/carbon/Xenomorph/Queen/Q = A
 		if(Q.ovipositor && !Q.is_mob_incapacitated(TRUE))
@@ -363,7 +206,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 	var/mob/living/carbon/Xenomorph/Queen/mother = input("Available Mothers") as null|anything in available_queens
 	if (!istype(mother) || !xeno_candidate || !xeno_candidate.client)
 		return FALSE
-	if(!ticker.mode.stored_larva)
+	if(!SSticker.mode.stored_larva)
 		to_chat(xeno_candidate, "<span class='warning'>There are no longer burrowed larvas available.</span>")
 		return FALSE
 	if(!mother.ovipositor || mother.is_mob_incapacitated(TRUE))
@@ -382,7 +225,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 /datum/game_mode/proc/spawn_larva(mob/xeno_candidate, var/mob/living/carbon/Xenomorph/Queen/mother)
 	if(!xeno_candidate)
 		return FALSE
-	if(!ticker.mode.stored_larva || !mother || !istype(mother))
+	if(!SSticker.mode.stored_larva || !istype(mother))
 		to_chat(xeno_candidate, "<span class='warning'>Something went awry. Can't spawn at the moment.</span>")
 		log_admin("[xeno_candidate.key] has failed to join as a larva.")
 		return FALSE
@@ -395,7 +238,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 		new_xeno.client.change_view(world.view)
 	to_chat(new_xeno, "<span class='xenoannounce'>You are a xenomorph larva awakened from slumber!</span>")
 	new_xeno << sound('sound/effects/xeno_newlarva.ogg')
-	ticker.mode.stored_larva--
+	SSticker.mode.stored_larva--
 	log_admin("[new_xeno.key] has joined as [new_xeno].")
 
 /datum/game_mode/proc/attempt_to_join_as_xeno(mob/xeno_candidate, instant_join = 0)
@@ -403,7 +246,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 	var/available_xenos_non_ssd[] = list()
 
 	for(var/mob/A in GLOB.alive_xeno_list)
-		if(A.z == ADMIN_Z_LEVEL)
+		if(is_centcom_level(A.z))
 			continue //xenos on admin z level don't count
 		if(isxeno(A) && !A.client)
 			if(A.away_timer >= 300) available_xenos_non_ssd += A
@@ -541,10 +384,9 @@ datum/game_mode/proc/initialize_post_queen_list()
 
 	H.loc = pick(GLOB.surv_spawn)
 
-	var/datum/job/J = RoleAuthority.roles_by_equipment_paths[pick(subtypesof(/datum/job/other/survivor))]
-	J.generate_equipment(H)
-	J.generate_entry_conditions(H)
-	J.equip_identification(H)
+	var/survivor_job = pick(subtypesof(/datum/job/survivor))
+	var/datum/job/J = new survivor_job
+	J.equip(H)
 
 	if(GLOB.map_tag == MAP_ICE_COLONY)
 		H.equip_to_slot_or_del(new /obj/item/clothing/head/ushanka(H), SLOT_HEAD)
@@ -702,7 +544,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 					/obj/item/attachable/stock/rifle = round(scale * 4) ,
 					/obj/item/attachable/stock/revolver = round(scale * 4),
 					/obj/item/attachable/stock/smg = round(scale * 4) ,
-					/obj/item/attachable/stock/tactical = (scale * 3),
+					/obj/item/attachable/stock/tactical = round(scale * 3),
 
 					/obj/item/attachable/attached_gun/grenade = round(scale * 10),
 					/obj/item/attachable/attached_gun/shotgun = round(scale * 4),
@@ -756,6 +598,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 		CA.contraband = list(
 						/obj/item/ammo_magazine/smg/ppsh/ = round(scale * 20),
 						/obj/item/ammo_magazine/smg/ppsh/extended = round(scale * 4),
+						/obj/item/ammo_magazine/rifle/bolt = round(scale * 10),
 						/obj/item/ammo_magazine/sniper = 0,
 						/obj/item/ammo_magazine/sniper/incendiary = 0,
 						/obj/item/ammo_magazine/sniper/flak = 0,
@@ -830,6 +673,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 		CG.contraband = list(
 						/obj/item/weapon/gun/smg/ppsh = round(scale * 4),
 						/obj/item/weapon/gun/shotgun/double = round(scale * 2),
+						/obj/item/weapon/gun/shotgun/pump/bolt = round(scale * 2),
 						/obj/item/weapon/gun/smg/m39/elite = 0,
 						/obj/item/weapon/gun/rifle/m41aMK1 = 0,
 						/obj/item/weapon/gun/rifle/m41a/elite = 0,
@@ -929,33 +773,73 @@ datum/game_mode/proc/initialize_post_queen_list()
 /datum/game_mode/proc/spawn_map_items()
 	var/turf/T
 	switch(GLOB.map_tag) // doing the switch first makes this a tiny bit quicker which for round setup is more important than pretty code
-		if(MAP_LV_624) 
+		if(MAP_LV_624)
 			while(GLOB.map_items.len)
 				T = GLOB.map_items[GLOB.map_items.len]
-				GLOB.map_items--
+				GLOB.map_items.len--
 				new /obj/item/map/lazarus_landing_map(T)
 
-		if(MAP_ICE_COLONY) 
+		if(MAP_ICE_COLONY)
 			while(GLOB.map_items.len)
 				T = GLOB.map_items[GLOB.map_items.len]
-				GLOB.map_items--
+				GLOB.map_items.len--
 				new /obj/item/map/ice_colony_map(T)
 
-		if(MAP_BIG_RED) 
+		if(MAP_BIG_RED)
 			while(GLOB.map_items.len)
 				T = GLOB.map_items[GLOB.map_items.len]
-				GLOB.map_items--
+				GLOB.map_items.len--
 				new /obj/item/map/big_red_map(T)
 
-		if(MAP_PRISON_STATION) 
+		if(MAP_PRISON_STATION)
 			while(GLOB.map_items.len)
 				T = GLOB.map_items[GLOB.map_items.len]
-				GLOB.map_items--
+				GLOB.map_items.len--
 				new /obj/item/map/FOP_map(T)
 
 /datum/game_mode/proc/spawn_fog_blockers()
 	var/turf/T
 	while(GLOB.fog_blocker_locations.len)
 		T = GLOB.fog_blocker_locations[GLOB.fog_blocker_locations.len]
-		GLOB.fog_blocker_locations--
-		new /obj/effect/blocker/fog(T)
+		GLOB.fog_blocker_locations.len--
+		new /obj/effect/forcefield/fog(T)
+
+/obj/effect/forcefield
+	anchored = TRUE
+	opacity = FALSE
+	density = TRUE
+	var/timeleft = 300 //Set to 0 for permanent forcefields (ugh)
+
+/obj/effect/forcefield/Initialize()
+	. = ..()
+	if(timeleft)
+		QDEL_IN(src, timeleft)
+
+/obj/effect/forcefield/fog
+	name = "dense fog"
+	desc = "It looks way too dangerous to traverse. Best wait until it has cleared up."
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "smoke"
+	opacity = TRUE
+	timeleft = 0
+
+/obj/effect/forcefield/fog/Initialize()
+	. = ..()
+	dir  = pick(CARDINAL_DIRS)
+	GLOB.fog_blockers += src
+
+/obj/effect/forcefield/fog/Destroy()
+	GLOB.fog_blockers -= src
+	return ..()
+
+/obj/effect/forcefield/fog/attack_hand(mob/M)
+	to_chat(M, "<span class='notice'>You peer through the fog, but it's impossible to tell what's on the other side...</span>")
+
+/obj/effect/forcefield/fog/attack_alien(M)
+	return attack_hand(M)
+
+/obj/effect/forcefield/fog/attack_paw(M)
+	return attack_hand(M)
+
+/obj/effect/forcefield/fog/attack_animal(M)
+	return attack_hand(M)

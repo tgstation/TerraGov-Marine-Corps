@@ -3,7 +3,8 @@
 	set category = "Object"
 	set src = usr
 
-	if(istype(loc,/obj/mecha)) return
+	if(istype(loc,/obj/mecha) || istype(loc, /obj/vehicle/multitile/root/cm_armored))
+		return
 
 	if(hand)
 		var/obj/item/W = l_hand
@@ -23,7 +24,7 @@
 	set name = "Point To"
 	set category = "Object"
 
-	if(!isturf(loc)) 
+	if(!isturf(loc))
 		return FALSE
 
 	if(!(A in view(client.view + client.get_offset(), loc))) //Target is no longer visible to us.
@@ -79,14 +80,11 @@
 	set name = "Respawn"
 	set category = "OOC"
 
-	if(!respawn_allowed || !check_rights(R_ADMIN, FALSE))
+	if(!GLOB.respawn_allowed && !check_rights(R_ADMIN, FALSE))
 		to_chat(usr, "<span class='notice'>Respawn is disabled.</span>")
 		return
 	if(stat != DEAD)
 		to_chat(usr, "<span class='boldnotice'>You must be dead to use this!</span>")
-		return
-	if(!ticker?.mode || ticker.mode.name == "meteor" || ticker.mode.name == "epidemic") //BS12 EDIT
-		to_chat(usr, "<span class='notice'>Respawn is disabled for this roundtype.</span>")
 		return
 	else
 		var/deathtime = world.time - src.timeofdeath

@@ -2,7 +2,7 @@
 	name = "Xenomorphs"
 	probability = 10
 	auto_shuttle_launch = TRUE
-	
+
 
 /datum/emergency_call/xenomorphs/print_backstory(mob/living/carbon/Xenomorph/X)
 	to_chat(X, "<B>You are Xenomorph from a distant hive.</b>")
@@ -20,7 +20,7 @@
 	var/turf/spawn_loc = get_spawn_point()
 	var/mob/original = M.current
 
-	if(!istype(spawn_loc)) 
+	if(!istype(spawn_loc))
 		return
 
 	var/mob/living/carbon/Xenomorph/new_xeno
@@ -28,27 +28,26 @@
 	if(original)
 		qdel(original)
 
-
 	if(!leader)
 		new_xeno = new /mob/living/carbon/Xenomorph/Ravager(spawn_loc)
 		leader = new_xeno
-		new_xeno.key = M.key
+		M.transfer_to(new_xeno, TRUE)
 		print_backstory(new_xeno)
 		return
 
 	if(prob(35))
 		new_xeno = new /mob/living/carbon/Xenomorph/Drone/elder(spawn_loc)
-		new_xeno.key = M.key
+		M.transfer_to(new_xeno, TRUE)
 		print_backstory(new_xeno)
 		return
 
 
 	if(prob(35))
 		new_xeno = new /mob/living/carbon/Xenomorph/Spitter/mature(spawn_loc)
-		new_xeno.key = M.key
+		M.transfer_to(new_xeno, TRUE)
 		print_backstory(new_xeno)
 		return
 
 	new_xeno = new /mob/living/carbon/Xenomorph/Hunter/mature(spawn_loc)
-	new_xeno.key = M.key
+	M.transfer_to(new_xeno, TRUE)
 	print_backstory(new_xeno)

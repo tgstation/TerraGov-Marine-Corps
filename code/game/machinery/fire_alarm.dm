@@ -59,7 +59,7 @@ FIRE ALARM
 		return
 
 	if(!(stat & NOPOWER))
-		var/alert = (z in MAIN_SHIP_AND_DROPSHIPS_Z_LEVELS) ? get_security_level() : "green"
+		var/alert = (is_mainship_level(z)) ? get_security_level() : "green"
 		overlays += image(icon, "fire_o[alert]")
 		var/area/A = get_area(src)
 		if(A?.flags_alarm_state & ALARM_WARNING_FIRE)

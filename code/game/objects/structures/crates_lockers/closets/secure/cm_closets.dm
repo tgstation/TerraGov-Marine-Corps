@@ -333,6 +333,7 @@
 
 /obj/structure/closet/secure_closet/pilot_officer/Initialize()
 	. = ..()
+	new /obj/item/attachable/stock/vp70(src)
 	new /obj/item/clothing/head/helmet/marine/pilot(src)
 	new /obj/item/device/radio/headset/almayer/mcom(src)
 	new /obj/item/clothing/under/marine/officer/pilot(src)
@@ -455,7 +456,7 @@
 /obj/structure/closet/secure_closet/medical_doctor/Initialize()
 	. = ..()
 	new /obj/item/storage/backpack/marine/satchel(src)
-	if(z != 1) new /obj/item/device/radio/headset/almayer/doc(src)
+	if(!is_ground_level(z)) new /obj/item/device/radio/headset/almayer/doc(src)
 	new /obj/item/clothing/shoes/white(src)
 	new /obj/item/clothing/shoes/white(src)
 	new /obj/item/storage/belt/medical(src)

@@ -35,7 +35,6 @@
 		return 1
 
 	next_move = world.time + 8
-	// You are responsible for checking config.ghost_interaction when you override this function
 	// Not all of them require checking, see below
 	if(!mods["shift"])
 		A.attack_ghost(src)
@@ -59,18 +58,6 @@
 /obj/effect/portal/attack_ghost(mob/user as mob)
 	if(target)
 		user.loc = get_turf(target)
-
-/obj/machinery/gateway/centerstation/attack_ghost(mob/user as mob)
-	if(awaygate)
-		user.loc = awaygate.loc
-	else
-		to_chat(user, "[src] has no destination.")
-
-/obj/machinery/gateway/centeraway/attack_ghost(mob/user as mob)
-	if(stationgate)
-		user.loc = stationgate.loc
-	else
-		to_chat(user, "[src] has no destination.")
 
 /obj/structure/ladder/attack_ghost(mob/user as mob)
 	if(up && down)

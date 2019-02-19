@@ -127,7 +127,7 @@
 			else
 				for(var/n = ++i; n <= optioncount; n++)
 					dat += "<dd><font color='blue'>&#09;[n]. ---------------</font><br></dd>"
-			if((isAI(user) || iscyborg(user)) && (user.mind.special_role && user.mind.original == user))
+			if((isAI(user) || iscyborg(user)) && user.mind.special_role)
 				//Malf/Traitor AIs can bruteforce into the system to gain the Key.
 				dat += "<dd><A href='?src=\ref[src];hack=1'><i><font color='Red'>*&@#. Bruteforce Key</font></i></font></a><br></dd>"
 			else
@@ -366,7 +366,7 @@
 
 		//Hack the Console to get the password
 		if (href_list["hack"])
-			if((isAI(usr) || iscyborg(usr)) && (usr.mind.special_role && usr.mind.original == usr))
+			if((isAI(usr) || iscyborg(usr)) && usr.mind.special_role)
 				src.hacking = 1
 				src.screen = 2
 				src.icon_state = hack_icon
@@ -460,10 +460,10 @@
 							if (!customrecepient.silent)
 								playsound(customrecepient.loc, 'sound/machines/twobeep.ogg', 25, 1)
 								for (var/mob/O in hearers(3, customrecepient.loc))
-									O.show_message(text("[bicon(customrecepient)] *[customrecepient.ttone]*"))
+									O.show_message(text("[icon2html(customrecepient, O)] *[customrecepient.ttone]*"))
 								if( customrecepient.loc && ishuman(customrecepient.loc) )
 									var/mob/living/carbon/human/H = customrecepient.loc
-									to_chat(H, "[bicon(customrecepient)] <b>Message from [customsender] ([customjob]), </b>\"[custommessage]\" (<a href='byond://?src=\ref[src];choice=Message;skiprefresh=1;target=\ref[src]'>Reply</a>)")
+									to_chat(H, "[icon2html(customrecepient, H)] <b>Message from [customsender] ([customjob]), </b>\"[custommessage]\" (<a href='byond://?src=\ref[src];choice=Message;skiprefresh=1;target=\ref[src]'>Reply</a>)")
 								usr.log_message("(PDA: [customsender]) sent \"[custommessage]\" to [customrecepient.owner]", LOG_PDA)
 								customrecepient.overlays.Cut()
 								customrecepient.overlays += image('icons/obj/items/pda.dmi', "pda-r")
@@ -479,10 +479,10 @@
 							if (!customrecepient.silent)
 								playsound(customrecepient.loc, 'sound/machines/twobeep.ogg', 25, 1)
 								for (var/mob/O in hearers(3, customrecepient.loc))
-									O.show_message(text("[bicon(customrecepient)] *[customrecepient.ttone]*"))
+									O.show_message(text("[icon2html(customrecepient, O)] *[customrecepient.ttone]*"))
 								if( customrecepient.loc && ishuman(customrecepient.loc) )
 									var/mob/living/carbon/human/H = customrecepient.loc
-									to_chat(H, "[bicon(customrecepient)] <b>Message from [PDARec.owner] ([customjob]), </b>\"[custommessage]\" (<a href='byond://?src=\ref[customrecepient];choice=Message;skiprefresh=1;target=\ref[PDARec]'>Reply</a>)")
+									to_chat(H, "[icon2html(customrecepient, H)] <b>Message from [PDARec.owner] ([customjob]), </b>\"[custommessage]\" (<a href='byond://?src=\ref[customrecepient];choice=Message;skiprefresh=1;target=\ref[PDARec]'>Reply</a>)")
 								usr.log_message("(PDA: [PDARec.owner]) sent \"[custommessage]\" to [customrecepient.owner]", LOG_PDA)
 								customrecepient.overlays.Cut()
 								customrecepient.overlays += image('icons/obj/items/pda.dmi', "pda-r")

@@ -245,7 +245,7 @@
 
 /mob/living/carbon/Xenomorph/Queen/Initialize()
 	. = ..()
-	if(z != ADMIN_Z_LEVEL)//so admins can safely spawn Queens in Thunderdome for tests.
+	if(!is_centcom_level(z))//so admins can safely spawn Queens in Thunderdome for tests.
 		if(hivenumber && hivenumber <= hive_datum.len)
 			var/datum/hive_status/hive = hive_datum[hivenumber]
 			if(!hive.living_xeno_queen)
@@ -284,17 +284,17 @@
 						var/obj/item/xeno_egg/newegg = new /obj/item/xeno_egg(loc)
 						newegg.hivenumber = hivenumber
 
-			if(hivenumber == XENO_HIVE_NORMAL && loc.z == 1)
-				if(ticker.mode.stored_larva)
+			if(hivenumber == XENO_HIVE_NORMAL && is_ground_level(loc.z))
+				if(SSticker.mode.stored_larva)
 					if((last_larva_time + 600) < world.time) // every minute
 						last_larva_time = world.time
-						var/list/players_with_xeno_pref = get_alien_candidates()
-						if(players_with_xeno_pref.len)
+						var/picked = get_alien_candidate()
+						if(picked)
 							var/mob/living/carbon/Xenomorph/Larva/new_xeno = new /mob/living/carbon/Xenomorph/Larva(loc)
 							new_xeno.visible_message("<span class='xenodanger'>A larva suddenly burrows out of the ground!</span>",
 							"<span class='xenodanger'>You burrow out of the ground and awaken from your slumber. For the Hive!</span>")
 							new_xeno << sound('sound/effects/xeno_newlarva.ogg')
-							new_xeno.key = pick(players_with_xeno_pref)
+							new_xeno.key = picked
 
 							if(new_xeno.client)
 								new_xeno.client.change_view(world.view)
@@ -302,7 +302,7 @@
 							to_chat(new_xeno, "<span class='xenoannounce'>You are a xenomorph larva awakened from slumber!</span>")
 							new_xeno << sound('sound/effects/xeno_newlarva.ogg')
 
-							ticker.mode.stored_larva--
+							SSticker.mode.stored_larva--
 
 				var/searchx
 				var/searchy
@@ -313,7 +313,7 @@
 						for(var/mob/living/carbon/Xenomorph/Larva/L in searchspot)
 							if(!L.ckey || !L.client) // no one home
 								visible_message("<span class='xenodanger'>[L] quickly burrows into the ground.</span>")
-								ticker.mode.stored_larva++
+								SSticker.mode.stored_larva++
 								round_statistics.total_xenos_created-- // keep stats sane
 								qdel(L)
 
@@ -402,8 +402,8 @@
 	var/queensWord = "<br><h2 class='alert'>The words of the queen reverberate in your head...</h2>"
 	queensWord += "<br><span class='alert'>[input]</span><br>"
 
-	if(ticker && ticker.mode)
-		for(var/datum/mind/L in ticker.mode.xenomorphs)
+	if(SSticker?.mode)
+		for(var/datum/mind/L in SSticker.mode.xenomorphs)
 			var/mob/living/carbon/Xenomorph/X = L.current
 			if(X && X.client && istype(X) && !X.stat && hivenumber == X.hivenumber)
 				X << sound(get_sfx("queen"),wait = 0,volume = 50)
@@ -740,7 +740,7 @@
 		var/mob/living/carbon/Xenomorph/target = locate(href_list["queentrack"]) in GLOB.alive_xeno_list
 		if(!istype(target))
 			return
-		if(target.stat == DEAD || target.z == ADMIN_Z_LEVEL)
+		if(target.stat == DEAD || is_centcom_level(target.z))
 			return
 		if(target == observed_xeno)
 			set_queen_overwatch(target, TRUE)
@@ -752,7 +752,7 @@
 			return
 		var/xeno_num = text2num(href_list["watch_xeno_number"])
 		for(var/mob/living/carbon/Xenomorph/X in GLOB.alive_xeno_list)
-			if(X.z != ADMIN_Z_LEVEL && X.nicknumber == xeno_num)
+			if(!is_centcom_level(X.z) && X.nicknumber == xeno_num)
 				if(observed_xeno == X)
 					set_queen_overwatch(X, TRUE)
 				else

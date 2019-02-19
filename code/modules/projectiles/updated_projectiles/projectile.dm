@@ -1,8 +1,8 @@
 
 //Some debug variables. Toggle them to 1 in order to see the related debug messages. Helpful when testing out formulas.
-#define DEBUG_HIT_CHANCE	FALSE
-#define DEBUG_HUMAN_DEFENSE	FALSE
-#define DEBUG_XENO_DEFENSE	FALSE
+#define DEBUG_HIT_CHANCE	0
+#define DEBUG_HUMAN_DEFENSE	0
+#define DEBUG_XENO_DEFENSE	0
 #define DEBUG_CREST_DEFENSE	0
 
 //The actual bullet objects.
@@ -384,8 +384,8 @@
 		return 0
 
 	if(P.ammo.flags_ammo_behavior & (AMMO_XENO_ACID|AMMO_XENO_TOX))
-		if((status_flags & XENO_HOST) && istype(buckled, /obj/structure/bed/nest))
-			return 0
+		if(((status_flags & XENO_HOST) && istype(buckled, /obj/structure/bed/nest)) || stat == DEAD)
+			return FALSE
 
 	. = P.accuracy //We want a temporary variable so accuracy doesn't change every time the bullet misses.
 	#if DEBUG_HIT_CHANCE
@@ -614,8 +614,9 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 
 //Deal with xeno bullets.
 /mob/living/carbon/Xenomorph/bullet_act(obj/item/projectile/P)
-	if(!P || !istype(P)) return
-	if(P.ammo.flags_ammo_behavior & (AMMO_XENO_ACID|AMMO_XENO_TOX) ) //Aliens won't be harming aliens.
+	if(!P || !istype(P))
+		return
+	if(xeno_hivenumber(src) && xeno_hivenumber(src) == xeno_hivenumber(P.firer)) //Aliens won't be harming allied aliens.
 		bullet_ping(P)
 		return
 
@@ -814,14 +815,15 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 
 	if(ismob(P.firer))
 		var/mob/firingMob = P.firer
-		var/area/A = get_area(firingMob)
-		if(ishuman(firingMob) && ishuman(src) && firingMob.mind && !firingMob.mind.special_role && mind && !mind.special_role) //One human shot another, be worried about it but do everything basically the same //special_role should be null or an empty string if done correctly
+		var/turf/T = get_turf(firingMob)
+		if(ishuman(firingMob) && ishuman(src) && (faction != firingMob.faction) || (mind?.special_role != firingMob.mind.special_role)) //One human shot another, be worried about it but do everything basically the same //special_role should be null or an empty string if done correctly
 			log_combat(firingMob, src, "shot", P)
-			msg_admin_ff("[ADMIN_TPMONTY(firingMob)] shot [ADMIN_TPMONTY(src)] with \a [P] in [ADMIN_VERBOSEJMP(A)].")
+			log_ffattack("[key_name(firingMob)] shot [key_name(src)] with [P] in [AREACOORD(T)].")
+			msg_admin_ff("[ADMIN_TPMONTY(firingMob)] shot [ADMIN_TPMONTY(src)] with [P] in [ADMIN_VERBOSEJMP(T)].")
 			round_statistics.total_bullet_hits_on_marines++
 		else
 			log_combat(firingMob, src, "shot", P)
-			msg_admin_attack("[ADMIN_TPMONTY(firingMob)] shot [ADMIN_TPMONTY(src)] with \a [P] in [ADMIN_VERBOSEJMP(A)].")
+			msg_admin_attack("[ADMIN_TPMONTY(firingMob)] shot [ADMIN_TPMONTY(src)] with [P] in [ADMIN_VERBOSEJMP(T)].")
 		return
 
 	if(P.firer)

@@ -16,11 +16,12 @@
 	flags_gun_features = GUN_UNUSUAL_DESIGN
 	gun_skill_category = GUN_SKILL_PISTOLS
 
-/obj/item/weapon/gun/flare/examine(mob/user)
-	. = ..()
+/obj/item/weapon/gun/flare/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/low_fire_delay) * 3
+
+/obj/item/weapon/gun/flare/examine_ammo_count(mob/user)
 	if(num_flares)
-		to_chat(user, "<span class='warning'>It has a flare loaded!</span>")
+		to_chat(user, "<span class='warning'>It has [num2text(num_flares)] flare[num_flares > 1 ? "s" : ""] loaded!</span>")
 
 /obj/item/weapon/gun/flare/update_icon()
 	if(num_flares)
@@ -73,57 +74,6 @@
 		update_icon()
 	else
 		to_chat(user, "<span class='warning'>It's empty!</span>")
-
-//-------------------------------------------------------
-//This gun is very powerful, but also has a kick.
-
-/obj/item/weapon/gun/minigun
-	name = "\improper Ol' Painless"
-	desc = "An enormous multi-barreled rotating gatling gun. This thing will no doubt pack a punch."
-	icon_state = "painless"
-	item_state = "painless"
-	origin_tech = "combat=7;materials=5"
-	fire_sound = 'sound/weapons/gun_minigun.ogg'
-	cocked_sound = 'sound/weapons/gun_minigun_cocked.ogg'
-	current_mag = /obj/item/ammo_magazine/minigun
-	type_of_casings = "cartridge"
-	w_class = 5
-	force = 20
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_BURST_ON|GUN_WIELDED_FIRING_ONLY
-
-/obj/item/weapon/gun/minigun/Initialize(loc, spawn_empty)
-	. = ..()
-	if(current_mag && current_mag.current_rounds > 0)
-		load_into_chamber()
-
-/obj/item/weapon/gun/minigun/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/low_fire_delay)
-	burst_amount = CONFIG_GET(number/combat_define/max_burst_value)
-	burst_delay = CONFIG_GET(number/combat_define/min_fire_delay)
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/med_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/combat_define/med_scatter_value)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
-	recoil = CONFIG_GET(number/combat_define/med_recoil_value)
-
-/obj/item/weapon/gun/minigun/toggle_burst()
-	to_chat(usr, "<span class='warning'>This weapon can only fire in bursts!</span>")
-
-/obj/item/weapon/gun/minigun/has_ammo_counter()
-	return TRUE
-
-/obj/item/weapon/gun/minigun/get_ammo_type()
-	if(!ammo)
-		return list("unknown", "unknown")
-	else
-		return list(ammo.hud_state, ammo.hud_state_empty)
-
-/obj/item/weapon/gun/minigun/get_ammo_count()
-	if(!current_mag)
-		return in_chamber ? 1 : 0
-	else
-		return in_chamber ? (current_mag.current_rounds + 1) : current_mag.current_rounds
 
 //-------------------------------------------------------
 //Toy rocket launcher.
@@ -186,10 +136,12 @@
 
 /obj/item/weapon/gun/launcher/spike/examine(mob/user)
 	if(isyautja(user))
-		..()
-		to_chat(user, "It currently has [spikes] / [max_spikes] spikes.")
+		return ..()
 	else
 		to_chat(user, "Looks like some kind of...mechanical donut.")
+
+/obj/item/weapon/gun/launcher/spike/examine_ammo_count(mob/user)
+	to_chat(user, "It currently has [spikes] / [max_spikes] spikes.")
 
 /obj/item/weapon/gun/launcher/spike/update_icon()
 	var/new_icon_state = spikes <=1 ? null : icon_state + "[round(spikes/4, 1)]"
@@ -234,10 +186,9 @@
 	var/max_syringes = 1
 	matter = list("metal" = 2000)
 
-/obj/item/weapon/gun/syringe/examine(mob/user)
-	..()
-	if(user != loc) return
-	to_chat(user, "<span class='notice'>[syringes.len] / [max_syringes] syringes.</span>")
+/obj/item/weapon/gun/syringe/examine_ammo_count(mob/user)
+	if(user == loc)
+		to_chat(user, "<span class='notice'>[syringes.len] / [max_syringes] syringes.</span>")
 
 /obj/item/weapon/gun/syringe/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/reagent_container/syringe))

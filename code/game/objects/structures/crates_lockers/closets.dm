@@ -187,6 +187,8 @@
 		else
 			M.visible_message("<span class='danger'>\The [M] smashes \the [src]!</span>", \
 			"<span class='danger'>You smash \the [src]!</span>", null, 5)
+		if(M.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
+			M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 	else
 		return attack_paw(M)
 

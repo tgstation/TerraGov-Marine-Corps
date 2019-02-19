@@ -27,7 +27,7 @@
 					command_announcement.Announce("Attention: Security level lowered to GREEN - all clear.", "Priority Alert", no_sound ? null : 'sound/AI/code_green.ogg')
 				security_level = SEC_LEVEL_GREEN
 				for(var/obj/machinery/status_display/SD in GLOB.machines)
-					if(SD.z == MAIN_SHIP_Z_LEVEL)
+					if(is_mainship_level(SD.z))
 						SD.set_picture("default")
 			if(SEC_LEVEL_BLUE)
 				if(security_level < SEC_LEVEL_BLUE)
@@ -38,7 +38,7 @@
 						command_announcement.Announce("Attention: Security level lowered to BLUE - potentially hostile activity on board.", "Priority Alert", no_sound ? null : 'sound/AI/code_blue_lowered.ogg')
 				security_level = SEC_LEVEL_BLUE
 				for(var/obj/machinery/status_display/SD in GLOB.machines)
-					if(SD.z == MAIN_SHIP_Z_LEVEL)
+					if(is_mainship_level(SD.z))
 						SD.set_picture("default")
 			if(SEC_LEVEL_RED)
 				if(security_level < SEC_LEVEL_RED)
@@ -50,7 +50,7 @@
 					/*
 					var/area/A
 					for(var/obj/machinery/power/apc/O in machines)
-						if(O.z == MAIN_SHIP_Z_LEVEL)
+						if(is_mainship_level(O.z))
 							A = O.loc.loc
 							A.toggle_evacuation()
 					*/
@@ -58,7 +58,7 @@
 				security_level = SEC_LEVEL_RED
 
 				for(var/obj/machinery/status_display/SD in GLOB.machines)
-					if(SD.z == MAIN_SHIP_Z_LEVEL)
+					if(is_mainship_level(SD.z))
 						SD.set_picture("redalert")
 			if(SEC_LEVEL_DELTA)
 				if(announce)
@@ -69,11 +69,11 @@
 						if(D.id == "sd_lockdown")
 							D.open()
 				for(var/obj/machinery/status_display/SD in GLOB.machines)
-					if(SD.z == MAIN_SHIP_Z_LEVEL)
+					if(is_mainship_level(SD.z))
 						SD.set_picture("redalert")
 
 		for(var/obj/machinery/firealarm/FA in GLOB.machines)
-			if(FA.z in MAIN_SHIP_AND_DROPSHIPS_Z_LEVELS)
+			if(is_mainship_level(FA.z))
 				FA.update_icon()
 	else
 		return

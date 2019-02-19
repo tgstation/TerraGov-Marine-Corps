@@ -44,18 +44,20 @@
 	desc = "Cats really don't like these things."
 	var/covered = 1 //1 for theres the cover, 0 if there isn't.
 
-	New()
-		..()
+	Initialize()
+		. = ..()
 		icon_state = base_state
 		update_turf_overlay()
 
 /turf/open/floor/plating/plating_catwalk/proc/update_turf_overlay()
 	var/image/I = image(icon, src, "catwalk", CATWALK_LAYER)
+	I.plane = GAME_PLANE
 	switch(covered)
 		if(0)
 			overlays -= I
 			qdel(I)
-		if(1) overlays += I
+		if(1) 
+			overlays += I
 
 /turf/open/floor/plating/plating_catwalk/attackby(obj/item/W as obj, mob/user as mob)
 	..()
@@ -93,6 +95,7 @@
 	icon_state = "catwalk0"
 	name = "catwalk"
 	desc = "Cats really don't like these things."
+	layer = 2.4
 
 
 

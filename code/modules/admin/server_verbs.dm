@@ -9,7 +9,7 @@
 	if(alert("Restart the game world?", "Restart", "Yes", "No") != "Yes")
 		return
 
-	to_chat(world, "<span class='danger'>Restarting world!</span><br><span class='notice'>Initiated by: [usr.key]</span>")
+	to_chat(world, "<span class='danger'>Restarting world!</span> <span class='notice'>Initiated by: [usr.key]</span>")
 
 	log_admin("[key_name(usr)] initiated a restart.")
 	message_admins("[ADMIN_TPMONTY(usr)] initiated a restart.")
@@ -26,15 +26,38 @@
 	if(!check_rights(R_SERVER))
 		return
 
-	ooc_allowed = !(ooc_allowed)
+	GLOB.ooc_allowed = !(GLOB.ooc_allowed)
 
-	if(ooc_allowed)
+	if(GLOB.ooc_allowed)
 		to_chat(world, "<span class='boldnotice'>The OOC channel has been globally enabled!</span>")
 	else
 		to_chat(world, "<span class='boldnotice'>The OOC channel has been globally disabled!</span>")
 
-	log_admin("[key_name(usr)] [ooc_allowed ? "enabled" : "disabled"] OOC.")
-	message_admins("[ADMIN_TPMONTY(usr)] [ooc_allowed ? "enabled" : "disabled"] OOC.")
+	log_admin("[key_name(usr)] [GLOB.ooc_allowed ? "enabled" : "disabled"] OOC.")
+	message_admins("[ADMIN_TPMONTY(usr)] [GLOB.ooc_allowed ? "enabled" : "disabled"] OOC.")
+
+
+/datum/admins/proc/toggle_looc()
+	set category = "Server"
+	set name = "Toggle LOOC"
+	set desc = "Toggles LOOC for non-admins."
+
+	if(!check_rights(R_SERVER))
+		return
+
+	if(!config)
+		return
+
+	if(CONFIG_GET(flag/looc_enabled))
+		CONFIG_SET(flag/looc_enabled, FALSE)
+		to_chat(world, "<span class='boldnotice'>LOOC channel has been enabled!</span>")
+	else
+		CONFIG_SET(flag/looc_enabled, TRUE)
+		to_chat(world, "<span class='boldnotice'>LOOC channel has been disabled!</span>")
+
+
+	log_admin("[key_name(usr)] has [CONFIG_GET(flag/looc_enabled) ? "enabled" : "disabled"] LOOC.")
+	message_admins("[ADMIN_TPMONTY(usr)] has [CONFIG_GET(flag/looc_enabled) ? "enabled" : "disabled"] LOOC.")
 
 
 /datum/admins/proc/toggle_deadchat()
@@ -45,15 +68,15 @@
 	if(!check_rights(R_SERVER))
 		return
 
-	dsay_allowed = !dsay_allowed
+	GLOB.dsay_allowed = !GLOB.dsay_allowed
 
-	if(dsay_allowed)
+	if(GLOB.dsay_allowed)
 		to_chat(world, "<span class='boldnotice'>Deadchat has been globally enabled!</span>")
 	else
 		to_chat(world, "<span class='boldnotice'>Deadchat has been globally disabled!</span>")
 
-	log_admin("[key_name(usr)] [dsay_allowed ? "enabled" : "disabled"] deadchat.")
-	message_admins("[ADMIN_TPMONTY(usr)] [dsay_allowed ? "enabled" : "disabled"] deadchat.")
+	log_admin("[key_name(usr)] [GLOB.dsay_allowed ? "enabled" : "disabled"] deadchat.")
+	message_admins("[ADMIN_TPMONTY(usr)] [GLOB.dsay_allowed ? "enabled" : "disabled"] deadchat.")
 
 
 /datum/admins/proc/toggle_deadooc()
@@ -64,15 +87,15 @@
 	if(!check_rights(R_SERVER))
 		return
 
-	dooc_allowed = !dooc_allowed
+	GLOB.dooc_allowed = !GLOB.dooc_allowed
 
-	if(dsay_allowed)
+	if(GLOB.dooc_allowed)
 		to_chat(world, "<span class='boldnotice'>Dead player OOC has been globally enabled!</span>")
 	else
 		to_chat(world, "<span class='boldnotice'>Dead player OOC has been globally disabled!</span>")
 
-	log_admin("[key_name(usr)] [dooc_allowed ? "enabled" : "disabled"] dead player OOC.")
-	message_admins("[ADMIN_TPMONTY(usr)] [dooc_allowed ? "enabled" : "disabled"] dead player OOC.")
+	log_admin("[key_name(usr)] [GLOB.dooc_allowed ? "enabled" : "disabled"] dead player OOC.")
+	message_admins("[ADMIN_TPMONTY(usr)] [GLOB.dooc_allowed ? "enabled" : "disabled"] dead player OOC.")
 
 
 /datum/admins/proc/start()
@@ -83,13 +106,13 @@
 	if(!check_rights(R_SERVER))
 		return
 
-	if(!ticker || ticker.current_state != GAME_STATE_PREGAME)
+	if(!SSticker || SSticker.current_state != GAME_STATE_PREGAME)
 		return
 
 	if(alert("Are you sure you want to start the round early?", "Confirmation","Yes","No") != "Yes")
 		return
 
-	ticker.current_state = GAME_STATE_SETTING_UP
+	SSticker.current_state = GAME_STATE_SETTING_UP
 
 	log_admin("[key_name(usr)] has started the game early.")
 	message_admins("[ADMIN_TPMONTY(usr)] has started the game early.")
@@ -122,15 +145,15 @@
 	if(!check_rights(R_SERVER))
 		return
 
-	respawn_allowed = !respawn_allowed
+	GLOB.respawn_allowed = !GLOB.respawn_allowed
 
-	if(respawn_allowed)
+	if(GLOB.respawn_allowed)
 		to_chat(world, "<span class='boldnotice'>You may now respawn.</span>")
 	else
 		to_chat(world, "<span class='boldnotice'>You may no longer respawn.</span>")
 
-	log_admin("[key_name(usr)] [respawn_allowed ? "enabled" : "disabled"] respawning.")
-	message_admins("[ADMIN_TPMONTY(usr)] [respawn_allowed ? "enabled" : "disabled"] respawning.")
+	log_admin("[key_name(usr)] [GLOB.respawn_allowed ? "enabled" : "disabled"] respawning.")
+	message_admins("[ADMIN_TPMONTY(usr)] [GLOB.respawn_allowed ? "enabled" : "disabled"] respawning.")
 
 
 /datum/admins/proc/set_respawn_time(time as num)
@@ -158,38 +181,59 @@
 	if(!check_rights(R_SERVER))
 		return
 
-	if(!ticker?.mode)
+	if(!SSticker?.mode)
 		return
 
 	if(alert("Are you sure you want to end the round?", "Confirmation", "Yes","No") != "Yes")
 		return
 
-	ticker.mode.round_finished = MODE_INFESTATION_M_MINOR
+	SSticker.mode.round_finished = MODE_INFESTATION_M_MINOR
 
 	log_admin("[key_name(usr)] has made the round end early.")
 	message_admins("[ADMIN_TPMONTY(usr)] has made the round end early.")
 
 
-/datum/admins/proc/delay()
+/datum/admins/proc/delay_start()
 	set category = "Server"
-	set name = "Delay"
-	set desc = "Delay the game start or end."
+	set name = "Delay Round-Start"
+	set desc = "Delay the game start."
 
 	if(!check_rights(R_SERVER))
 		return
 
-	if(!ticker)
+	if(!SSticker)
 		return
 
-	if(ticker.current_state != GAME_STATE_PREGAME)
-		ticker.delay_end = !ticker.delay_end
+	var/newtime = input("Set a new time in seconds. Set -1 for indefinite delay.", "Set Delay", round(SSticker.GetTimeLeft())) as num|null
+	if(SSticker.current_state > GAME_STATE_PREGAME)
+		return
+	if(isnull(newtime))
+		return
+
+	newtime = newtime*10
+	SSticker.SetTimeLeft(newtime)
+	if(newtime < 0)
+		going = FALSE
+		to_chat(world, "<span class='boldnotice'>The game start has been delayed.</span>")
+		log_admin("[key_name(usr)] delayed the round start.")
+		message_admins("[ADMIN_TPMONTY(usr)] delayed the round start.")
 	else
-		to_chat(world, "<hr><span class='centerbold'>The game [!going ? "game will start soon" : "start has been delayed"].</span><hr>")
+		going = TRUE
+		to_chat(world, "<span class='boldnotice'>The game will start in [DisplayTimeText(newtime)].</span>")
+		log_admin("[key_name(usr)] set the pre-game delay to [DisplayTimeText(newtime)].")
+		message_admins("[ADMIN_TPMONTY(usr)] set the pre-game delay to [DisplayTimeText(newtime)].")
 
-	going = !going
 
-	log_admin("[key_name(usr)] [!going ? "delayed the round start/end" : "made the round start/end normally"].")
-	message_admins("[ADMIN_TPMONTY(usr)] [!going ? "delayed the round start/end" : "made the round start/end normally"].")
+/datum/admins/proc/delay_end()
+	set category = "Server"
+	set name = "Delay Round-End"
+	set desc = "Delay the game end."
+
+
+	SSticker.delay_end = !SSticker.delay_end
+
+	log_admin("[key_name(usr)] [SSticker.delay_end ? "delayed the round-end" : "made the round end normally"].")
+	message_admins("[ADMIN_TPMONTY(usr)] [SSticker.delay_end ? "delayed the round-end" : "made the round end normally"].")
 
 
 /datum/admins/proc/toggle_gun_restrictions()
@@ -244,20 +288,3 @@
 
 	log_admin("[key_name(src)] manually reloaded admins.")
 	message_admins("[ADMIN_TPMONTY(usr)] manually reloaded admins.")
-
-
-/datum/admins/proc/reload_whitelist()
-	set category = "Server"
-	set name = "Reload Whitelist"
-	set desc = "Manually load the whitelisted players from the .txt"
-
-	if(!check_rights(R_SERVER))
-		return
-
-	if(!RoleAuthority)
-		return
-
-	RoleAuthority.load_whitelist()
-
-	log_admin("[key_name(usr)] manually reloaded the role whitelist.")
-	message_admins("[ADMIN_TPMONTY(usr)] manually reloaded the role whitelist.")

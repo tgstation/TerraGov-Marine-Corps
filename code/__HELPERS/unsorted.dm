@@ -184,67 +184,6 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 	return destination
 
-
-//among other things, used by flamethrower and boiler spray to calculate if flame/spray can pass through.
-/proc/PostBlocksFire(turf/loc) //Will be affected by fire but not allow it to spread further.
-	if(loc.density)
-		return TRUE
-	for(var/obj/structure/window/D in loc)
-		if(!D.density)
-			continue
-		if(D.is_full_window())
-			return TRUE
-	for(var/obj/machinery/door/D in loc)
-		if(!D.density)
-			continue
-		if(!istype(D, /obj/machinery/door/window))
-			return TRUE	// it's a real, air blocking door
-	for(var/obj/structure/mineral_door/D in loc)
-		if(D.density)
-			return TRUE
-	return FALSE
-
-/proc/LinkPreBlocksFire(turf/A, turf/B) //Will cut fire, protecting the tile.
-	if(A == null || B == null)
-		return TRUE
-	var/abdir = get_dir(A,B)
-	if(abdir & (abdir-1))//is diagonal direction
-		var/turf/Y = get_step(A,abdir&(NORTH|SOUTH))
-		if(!DirPreBlockedFire(A,Y) && !DirPreBlockedFire(Y,B))
-			return FALSE // can go through the Y axis
-		var/turf/X = get_step(A,abdir&(EAST|WEST))
-		if(!DirPreBlockedFire(A,X) && !DirPreBlockedFire(X,B))
-			return FALSE // can go through the X axis
-		return TRUE // both directions blocked
-	if(DirPreBlockedFire(A,B))
-		return TRUE
-	return FALSE
-
-/proc/DirPreBlockedFire(turf/A,turf/B)
-	var/abdir = get_dir(A,B)
-	var/badir = get_dir(B,A)
-	for(var/obj/structure/window/D in A)
-		if(!D.density)
-			continue
-		if(D.dir == abdir)
-			return TRUE
-	for(var/obj/machinery/door/D in A)
-		if(!D.density)
-			continue
-		if(D.dir == abdir)
-			return TRUE
-	for(var/obj/structure/window/D in B)
-		if(!D.density)
-			continue
-		if(D.dir == badir)
-			return TRUE
-	for(var/obj/machinery/door/D in B)
-		if(!D.density)
-			continue
-		if(D.dir == badir)
-			return TRUE
-	return FALSE
-
 /proc/LinkBlocked(turf/A, turf/B)
 	if(A == null || B == null)
 		return TRUE
@@ -459,163 +398,6 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		if(user)	. = input(usr,"AI signals detected:", "AI selection") in ais
 		else		. = pick(ais)
 	return .
-
-/proc/get_sorted_mobs()
-	var/list/old_list = getmobs()
-	var/list/AI_list = list()
-	var/list/Dead_list = list()
-	var/list/keyclient_list = list()
-	var/list/key_list = list()
-	var/list/logged_list = list()
-	for(var/named in old_list)
-		var/mob/M = old_list[named]
-		if(issilicon(M))
-			AI_list |= M
-		else if(isobserver(M) || M.stat == 2)
-			Dead_list |= M
-		else if(M.key && M.client)
-			keyclient_list |= M
-		else if(M.key)
-			key_list |= M
-		else
-			logged_list |= M
-		old_list.Remove(named)
-	var/list/new_list = list()
-	new_list += AI_list
-	new_list += keyclient_list
-	new_list += key_list
-	new_list += logged_list
-	new_list += Dead_list
-	return new_list
-
-//Returns a list of all mobs with their name
-/proc/getmobs()
-	var/list/mobs = sortmobs()
-	var/list/names = list()
-	var/list/creatures = list()
-	var/list/namecounts = list()
-	for(var/mob/M in mobs)
-		var/name = M.name
-		if (name in names)
-			namecounts[name]++
-			name = "[name] ([namecounts[name]])"
-		else
-			names.Add(name)
-			namecounts[name] = 1
-		if (M.real_name && M.real_name != M.name)
-			name += " \[[M.real_name]\]"
-		if (M.stat == 2)
-			if(istype(M, /mob/dead/observer/))
-				name += " \[ghost\]"
-			else
-				name += " \[dead\]"
-		creatures[name] = M
-
-	return creatures
-
-/proc/getxenos()
-	var/list/mobs = sortxenos()
-	var/list/names = list()
-	var/list/creatures = list()
-	var/list/namecounts = list()
-	for(var/mob/M in mobs)
-		var/name = M.name
-		if(name in names)
-			namecounts[name]++
-			name = "[name] ([namecounts[name]])"
-		else
-			names.Add(name)
-			namecounts[name] = 1
-		if(M.real_name && M.real_name != M.name)
-			name += " \[[M.real_name]\]"
-		if(M.client.prefs.xeno_name && M.client.prefs.xeno_name != "Undefined")
-			name += " - [M.client.prefs.xeno_name]"
-		if(M.stat == DEAD)
-			if(istype(M, /mob/dead/observer/))
-				name += " \[ghost\]"
-			else
-				name += " \[dead\]"
-		creatures[name] = M
-
-	return creatures
-
-/proc/getpreds()
-	var/list/mobs = sortpreds()
-	var/list/names = list()
-	var/list/creatures = list()
-	var/list/namecounts = list()
-	for(var/mob/M in mobs)
-		if(!isyautja(M)) continue
-		var/name = M.name
-		if (name in names)
-			namecounts[name]++
-			name = "[name] ([namecounts[name]])"
-		else
-			names.Add(name)
-			namecounts[name] = 1
-		if (M.real_name && M.real_name != M.name)
-			name += " \[[M.real_name]\]"
-		if (M.stat == 2)
-			if(istype(M, /mob/dead/observer/))
-				name += " \[ghost\]"
-			else
-				name += " \[dead\]"
-		creatures[name] = M
-
-	return creatures
-
-/proc/gethumans()
-	var/list/mobs = sorthumans()
-	var/list/names = list()
-	var/list/creatures = list()
-	var/list/namecounts = list()
-	for(var/mob/M in mobs)
-		if(isyautja(M)) continue
-		if(iszombie(M))	continue
-		var/name = M.name
-		if (name in names)
-			namecounts[name]++
-			name = "[name] ([namecounts[name]])"
-		else
-			names.Add(name)
-			namecounts[name] = 1
-		if (M.real_name && M.real_name != M.name)
-			name += " \[[M.real_name]\]"
-		if (M.stat == 2)
-			if(istype(M, /mob/dead/observer/))
-				name += " \[ghost\]"
-			else
-				name += " \[dead\]"
-		creatures[name] = M
-
-	return creatures
-
-/proc/getlivinghumans()
-	var/list/mobs = sorthumans()
-	var/list/names = list()
-	var/list/creatures = list()
-	var/list/namecounts = list()
-	for(var/mob/M in mobs)
-		if(isyautja(M))
-			continue
-		if(iszombie(M))
-			continue
-		if (M.stat == 2)
-			continue
-		if(!M.ckey || !M.client)
-			continue
-		var/name = M.name
-		if (name in names)
-			namecounts[name]++
-			name = "[name] ([namecounts[name]])"
-		else
-			names.Add(name)
-			namecounts[name] = 1
-		if (M.real_name && M.real_name != M.name)
-			name += " \[[M.real_name]\]"
-		creatures[name] = M
-
-	return creatures
 
 //Orders mobs by type then by name
 /proc/sortmobs()
@@ -964,7 +746,7 @@ var/global/image/busy_indicator_hostile
 		if(!user || user.loc != original_loc || get_turf(user) != original_turf || user.stat || user.knocked_down || user.stunned)
 			. = FALSE
 			break
-		if(L?.health && L.health < CONFIG_GET(number/health_threshold_crit))
+		if(L?.health && L.health < L.get_crit_threshold())
 			. = FALSE //catching mobs below crit level but haven't had their stat var updated
 			break
 		if(needhand)
@@ -1765,5 +1547,11 @@ proc/pick_closest_path(value, list/matches = get_fancy_list_of_atom_types())
 		return !QDELETED(D)
 	return FALSE
 
+//Repopulates sortedAreas list
+/proc/repopulate_sorted_areas()
+	GLOB.sortedAreas = list()
 
-#define isitem(A) (istype(A, /obj/item))
+	for(var/area/A in world)
+		GLOB.sortedAreas.Add(A)
+
+	sortTim(GLOB.sortedAreas, /proc/cmp_name_asc)

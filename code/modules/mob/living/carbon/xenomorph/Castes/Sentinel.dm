@@ -170,6 +170,9 @@
 
 /mob/living/carbon/Xenomorph/Sentinel/proc/neurotoxin_sting(var/mob/living/H)
 
+	if(!H || !isliving(H))
+		return
+
 	if(!check_state())
 		return
 

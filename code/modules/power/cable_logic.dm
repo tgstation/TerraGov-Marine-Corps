@@ -128,17 +128,9 @@
 		return
 
 	if( !(pn_input.avail >= LOGIC_HIGH))
-		pn_output.newavail = max(pn_output.avail, LOGIC_HIGH)	//Set the output avilable power to 5 or whatever it was before.
+		pn_output.newavail = max(pn_output.avail, LOGIC_HIGH)
 	else
-		pn_output.draw_power(LOGIC_HIGH)		//Otherwise increase the load to 5
-
-
-
-
-
-
-
-
+		pn_output.delayedload += LOGIC_HIGH
 
 //TWO INPUT logic elements have two inputs and one output
 /obj/machinery/logic/twoinput
@@ -200,9 +192,9 @@
 		return
 
 	if( (pn_input1.avail >= LOGIC_HIGH) && (pn_input2.avail >= LOGIC_HIGH) )
-		pn_output.newavail = max(pn_output.avail, LOGIC_HIGH)	//Set the output avilable power to 5 or whatever it was before.
+		pn_output.newavail = max(pn_output.avail, LOGIC_HIGH)	//Set the output available power to 5 or whatever it was before.
 	else
-		pn_output.draw_power(LOGIC_HIGH)		//Otherwise increase the load to 5
+		pn_output.delayedload += LOGIC_HIGH		//Otherwise increase the load to 5
 
 //OR GATE
 /obj/machinery/logic/twoinput/or/process()
@@ -220,9 +212,9 @@
 		return
 
 	if( (pn_input1.avail >= LOGIC_HIGH) || (pn_input2.avail >= LOGIC_HIGH) )
-		pn_output.newavail = max(pn_output.avail, LOGIC_HIGH)	//Set the output avilable power to 5 or whatever it was before.
+		pn_output.newavail = max(pn_output.avail, LOGIC_HIGH)	//Set the output available power to 5 or whatever it was before.
 	else
-		pn_output.draw_power(LOGIC_HIGH)		//Otherwise increase the load to 5
+		pn_output.delayedload += LOGIC_HIGH		//Otherwise increase the load to 5
 
 //XOR GATE
 /obj/machinery/logic/twoinput/xor/process()
@@ -240,9 +232,9 @@
 		return
 
 	if( (pn_input1.avail >= LOGIC_HIGH) != (pn_input2.avail >= LOGIC_HIGH) )
-		pn_output.newavail = max(pn_output.avail, LOGIC_HIGH)	//Set the output avilable power to 5 or whatever it was before.
+		pn_output.newavail = max(pn_output.avail, LOGIC_HIGH)	//Set the output available power to 5 or whatever it was before.
 	else
-		pn_output.draw_power(LOGIC_HIGH)		//Otherwise increase the load to 5
+		pn_output.delayedload += LOGIC_HIGH		//Otherwise increase the load to 5
 
 //XNOR GATE (EQUIVALENCE)
 /obj/machinery/logic/twoinput/xnor/process()
@@ -260,9 +252,9 @@
 		return
 
 	if( (pn_input1.avail >= LOGIC_HIGH) == (pn_input2.avail >= LOGIC_HIGH) )
-		pn_output.newavail = max(pn_output.avail, LOGIC_HIGH)	//Set the output avilable power to 5 or whatever it was before.
+		pn_output.newavail = max(pn_output.avail, LOGIC_HIGH)	//Set the output available power to 5 or whatever it was before.
 	else
-		pn_output.draw_power(LOGIC_HIGH)		//Otherwise increase the load to 5
+		pn_output.delayedload += LOGIC_HIGH		//Otherwise increase the load to 5
 
 #define RELAY_POWER_TRANSFER 2000	//How much power a relay transfers through.
 
@@ -284,7 +276,7 @@
 			return
 
 		if(pn_input2.avail >= RELAY_POWER_TRANSFER)
-			pn_input2.draw_power(RELAY_POWER_TRANSFER)
+			input2.add_delayedload(RELAY_POWER_TRANSFER)
 			pn_output.newavail += RELAY_POWER_TRANSFER
 
 

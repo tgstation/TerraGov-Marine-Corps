@@ -165,7 +165,7 @@
 
 //punched by a hu-man
 /mob/living/carbon/hellhound/attack_hand(mob/living/carbon/human/M as mob)
-	if (!ticker)
+	if (!SSticker)
 		to_chat(M, "You cannot attack people before the game has started.")
 		return
 
@@ -243,7 +243,7 @@
 				KnockOut(5)
 
 
-/mob/living/carbon/hellhound/IsAdvancedToolUser()
+/mob/living/carbon/hellhound/need_breathe()
 	return FALSE
 
 /mob/living/carbon/hellhound/vomit()

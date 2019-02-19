@@ -410,7 +410,7 @@
 			M.monkeyizing = 1
 			M.canmove = 0
 			M.icon = null
-			M.invisibility = 101
+			M.invisibility = INVISIBILITY_MAXIMUM
 			var/atom/movable/overlay/animation = new( M.loc )
 			animation.icon_state = "blank"
 			animation.icon = 'icons/mob/mob.dmi'
@@ -483,7 +483,7 @@
 			M.monkeyizing = 1
 			M.canmove = 0
 			M.icon = null
-			M.invisibility = 101
+			M.invisibility = INVISIBILITY_MAXIMUM
 			var/atom/movable/overlay/animation = new( M.loc )
 			animation.icon_state = "blank"
 			animation.icon = 'icons/mob/mob.dmi'
@@ -494,7 +494,7 @@
 
 		var/mob/living/carbon/human/O = new( src )
 		if(Mo.greaterform)
-			O.set_species(Mo.greaterform)
+			O.set_species(Mo.greaterform.name)
 
 		if (isblockon(getblock(M.dna.uni_identity, 11,3),11))
 			O.gender = FEMALE

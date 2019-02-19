@@ -95,9 +95,9 @@
 		user.visible_message("<span class='notice'>[user] begins to cut down [src] with [W].</span>","<span class='notice'>You begin to cut down [src] with [W].</span>", "You hear the sound of sawing.")
 		var/cut_force = min(1, W.force)
 		var/cutting_time = CLAMP(10, 20, 100/cut_force) SECONDS
-		if(!do_after(usr, cutting_time , TRUE, 5, BUSY_ICON_BUILD))
+		if(do_after(usr, cutting_time , TRUE, 5, BUSY_ICON_BUILD))
 			user.visible_message("<span class='notice'>[user] fells [src] with the [W].</span>","<span class='notice'>You fell [src] with the [W].</span>", "You hear the sound of a tree falling.")
-			playsound(get_turf(src), 'sound/effects/meteorimpact.ogg', 100 , 0, 0)
+			playsound(get_turf(src), 'sound/effects/meteorimpact.ogg', 60 , 0, 0)
 			for(var/i=1 to log_amount)
 				new /obj/item/grown/log(get_turf(src))
 
@@ -455,28 +455,6 @@
 	name = "strange tree"
 	desc = "Some kind of bizarre alien tree. It oozes with a sickly yellow sap."
 	icon_state = "planttop1"
-
-/obj/structure/jungle/tree
-	icon = 'icons/obj/flora/ground_map64.dmi'
-	desc = "What an enormous tree!"
-	layer = ABOVE_FLY_LAYER
-
-/obj/structure/jungle/tree/bigtreeTR
-	name = "huge tree"
-	icon_state = "bigtreeTR"
-
-/obj/structure/jungle/tree/bigtreeTL
-	name = "huge tree"
-	icon_state = "bigtreeTL"
-
-/obj/structure/jungle/tree/bigtreeBOT
-	name = "huge tree"
-	icon_state = "bigtreeBOT"
-
-/obj/structure/jungle/treeblocker
-	name = "huge tree"
-	icon_state = ""	//will this break it?? - Nope
-	density = 1
 
 /obj/structure/jungle/vines
 	name = "vines"

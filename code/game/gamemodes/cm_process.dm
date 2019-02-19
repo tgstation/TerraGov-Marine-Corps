@@ -116,7 +116,6 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 		for(var/datum/mind/X in xenomorphs)
 			if(istype(X))
 				M = X.current
-				if(!M || !M.loc) M = X.original
 				if(M && M.loc && istype(M,/mob/living/carbon/Xenomorph/Queen)) dat += "<br>[X.key] was [M] <span class='boldnotice'>([M.stat == DEAD? "DIED":"SURVIVED"])</span>"
 
 		to_chat(world, dat)
@@ -130,7 +129,6 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 		for(var/datum/mind/S in survivors)
 			if(istype(S))
 				M = S.current
-				if(!M || !M.loc) M = S.original
 				if(M && M.loc) 	dat += "<br>[S.key] was [M.real_name] <span class='boldnotice'>([M.stat == DEAD? "DIED":"SURVIVED"])</span>"
 				else 			dat += "<br>[S.key]'s body was destroyed... <span class='boldnotice'>(DIED)</span>"
 
@@ -145,7 +143,6 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 		for(var/datum/mind/P in predators)
 			if(istype(P))
 				M = P.current
-				if(!M || !M.loc) M = P.original
 				if(M && M.loc) 	dat += "<br>[P.key] was [M.real_name] <span class='boldnotice'>([M.stat == DEAD? "DIED":"SURVIVED"])</span>"
 				else 			dat += "<br>[P.key]'s body was destroyed... <span class='boldnotice'>(DIED)</span>"
 
@@ -209,6 +206,7 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 		if(player?.client?.prefs?.toggles_chat & CHAT_STATISTICS)
 			to_chat(player, output)
 
+
 /datum/game_mode/proc/end_of_round_deathmatch()
 	var/list/spawns = GLOB.deathmatch.Copy()
 
@@ -253,6 +251,20 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 				M.mind.special_role = "Deathmatch"
 			M.forceMove(picked)
 			M.revive()
+			if(isbrain(M))
+				M.change_mob_type(/mob/living/carbon/human, M.loc, null, TRUE)
+			M = C.mob
+			if(isxeno(M))
+				var/mob/living/carbon/Xenomorph/X = M
+				X.set_hive_number(pick(XENO_HIVE_NORMAL, XENO_HIVE_CORRUPTED, XENO_HIVE_ALPHA, XENO_HIVE_BETA, XENO_HIVE_ZETA))
+			if(ishuman(M))
+				var/mob/living/carbon/human/H = M
+				if(!H.w_uniform)
+					var/job = pick(/datum/job/clf/leader, /datum/job/upp/commando/leader, /datum/job/freelancer/leader)
+					var/datum/job/J = new job
+					J.equip(H)
+					H.regenerate_icons()
+
 			to_chat(M, "<br><br><h1><span class='danger'>Fight for your life!</span></h1><br><br>")
 		else
 			to_chat(M, "<br><br><h1><span class='danger'>Failed to find a valid location for End of Round Deathmatch. Please do not grief.</span></h1><br><br>")
@@ -299,32 +311,31 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 	var/numLarvaPlanet  = 0
 	var/numLarvaShip    = 0
 
+	// todo: replace this with moblists per z level
 	for(var/mob/M in GLOB.player_list) //Scan through and detect Xenos and Hosts, but only those with clients.
 		if(M.stat != DEAD)
 			var/area/A = get_area(M)
 			if(isxeno(M))
-				switch(A?.z)
-					if(PLANET_Z_LEVEL || LOW_ORBIT_Z_LEVEL)
-						if(isxenolarva(M))
-							numLarvaPlanet++
-						numXenosPlanet++
-						xenoLocationsP += A
-					if(MAIN_SHIP_Z_LEVEL)
-						if(isxenolarva(M))
-							numLarvaShip++
-						numXenosShip++
-						xenoLocationsS += A
+				if(is_ground_level(A?.z) || is_low_orbit_level(A?.z))
+					if(isxenolarva(M))
+						numLarvaPlanet++
+					numXenosPlanet++
+					xenoLocationsP += A
+				else if(is_mainship_level(A?.z))
+					if(isxenolarva(M))
+						numLarvaShip++
+					numXenosShip++
+					xenoLocationsS += A
 
 				activeXenos += M
 
 			if(ishuman(M) && !isyautja(M))
-				switch(A?.z)
-					if(PLANET_Z_LEVEL || LOW_ORBIT_Z_LEVEL)
-						numHostsPlanet++
-						hostLocationsP += A
-					if(MAIN_SHIP_Z_LEVEL)
-						numHostsShip++
-						hostLocationsS += A
+				if(is_ground_level(A?.z) || is_low_orbit_level(A?.z))
+					numHostsPlanet++
+					hostLocationsP += A
+				else if(is_mainship_level(A?.z))
+					numHostsShip++
+					hostLocationsS += A
 
 
 
@@ -383,7 +394,10 @@ Count up surviving humans and aliens.
 Can't be in a locker, in space, in the thunderdome, or distress.
 Only checks living mobs with a client attached.
 */
-/datum/game_mode/proc/count_humans_and_xenos(list/z_levels = GAME_PLAY_Z_LEVELS)
+/datum/game_mode/proc/count_humans_and_xenos(list/z_levels)
+	if(!z_levels)
+		z_levels = SSmapping.levels_by_any_trait(list(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_LOW_ORBIT, ZTRAIT_GROUND))
+
 	var/num_humans = 0
 	var/num_xenos = 0
 
@@ -401,7 +415,10 @@ Only checks living mobs with a client attached.
 
 	return list(num_humans,num_xenos)
 
-/datum/game_mode/proc/count_marines_and_pmcs(list/z_levels = GAME_PLAY_Z_LEVELS)
+/datum/game_mode/proc/count_marines_and_pmcs(list/z_levels)
+	if(!z_levels)
+		z_levels = SSmapping.levels_by_any_trait(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_LOW_ORBIT, ZTRAIT_GROUND)
+
 	var/num_marines = 0
 	var/num_pmcs = 0
 

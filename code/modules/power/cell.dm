@@ -81,15 +81,18 @@
 		if(issynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
 			to_chat(user, "<span class='warning'>Your programming restricts using rigged power cells.</span>")
 			return
+		log_explosion("[key_name(user)] primed a rigged [src] at [AREACOORD(user.loc)].")
 		log_combat(user, src, "primed a rigged")
 		user.visible_message("<span class='danger'>[user] destabilizes [src]; it will detonate shortly!</span>",
 		"<span class='danger'>You destabilize [src]; it will detonate shortly!</span>")
-		msg_admin_attack("[key_name(user)] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[user.y];Z=[user.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) (<A HREF='?_src_=holder;adminmoreinfo=\ref[user]'>?</A>) primed \a [src].")
 		var/datum/effect_system/spark_spread/spark_system = new /datum/effect_system/spark_spread()
 		spark_system.set_up(5, 0, src)
 		spark_system.attach(src)
 		spark_system.start(src)
 		playsound(loc, 'sound/items/Welder2.ogg', 25, 1, 6)
+		if(iscarbon(user))
+			var/mob/living/carbon/C = user
+			C.throw_mode_on()
 		overlays += new/obj/effect/overlay/danger
 		spawn(rand(10,50))
 			spark_system.start(src)
@@ -108,12 +111,7 @@
 		to_chat(user, "You inject the solution into the power cell.")
 
 		if(S.reagents.has_reagent("phoron", 5))
-
-			rigged = 1
-
-			log_admin("[key_name(usr)] injected a power cell with phoron, rigging it to explode.")
-			message_admins("[ADMIN_TPMONTY(usr)] injected a power cell with phoron, rigging it to explode.")
-
+			rigged = TRUE
 		S.reagents.clear_reagents()
 	else if(ismultitool(W))
 		if(issynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
@@ -173,6 +171,7 @@
  * 15000-cell	explosion(T, -1, 2, 4, 4)
  * */
 	if (charge==0)
+		explosion(T, 0, 0, 0, 0) //No charge? Shitsplosion
 		return
 	var/devastation_range = -1 //round(charge/11000)
 	var/heavy_impact_range = max(2,round(sqrt(charge)/100))

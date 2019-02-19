@@ -24,7 +24,7 @@
 		hive = hive_datum[hivenumber]
 	else return
 
-	if(z != ADMIN_Z_LEVEL) //so xeno players don't get death messages from admin tests
+	if(!is_centcom_level(z)) //so xeno players don't get death messages from admin tests
 		if(isxenoqueen(src))
 			var/mob/living/carbon/Xenomorph/Queen/XQ = src
 			playsound(loc, 'sound/voice/alien_queen_died.ogg', 75, 0)
@@ -34,13 +34,13 @@
 				XQ.dismount_ovipositor(TRUE)
 
 			if(hivenumber == XENO_HIVE_NORMAL)
-				if(ticker.mode.stored_larva)
-					ticker.mode.stored_larva = round(ticker.mode.stored_larva * ((upgrade+1)/6.0)) // 83/66/50/33 for ancient/elder emp/elder queen/queen
+				if(SSticker.mode.stored_larva)
+					SSticker.mode.stored_larva = round(SSticker.mode.stored_larva * ((upgrade+1)/6.0)) // 83/66/50/33 for ancient/elder emp/elder queen/queen
 					var/turf/larva_spawn
-					while(ticker.mode.stored_larva > 0) // stil some left
+					while(SSticker.mode.stored_larva > 0) // stil some left
 						larva_spawn = pick(GLOB.xeno_spawn)
 						new /mob/living/carbon/Xenomorph/Larva(larva_spawn)
-						ticker.mode.stored_larva--
+						SSticker.mode.stored_larva--
 
 			if(hive.living_xeno_queen == src)
 				xeno_message("<span class='xenoannounce'>A sudden tremor ripples through the hive... the Queen has been slain! Vengeance!</span>",3, hivenumber)
@@ -54,17 +54,17 @@
 						break
 				for(var/mob/living/carbon/Xenomorph/L in hive.xeno_leader_list)
 					L.handle_xeno_leader_pheromones(XQ)
-				if(ticker?.mode)
+				if(SSticker?.mode)
 					var/i = 0
 					for(var/X in GLOB.alive_xeno_list)
 						if(isxenolarva(X) || isxenodrone(X))
 							i++
 					if(i > 0)
-						ticker.mode.queen_death_countdown = world.time + QUEEN_DEATH_COUNTDOWN
-						addtimer(CALLBACK(ticker.mode, /datum/game_mode.proc/check_queen_status, hive.queen_time), QUEEN_DEATH_COUNTDOWN)
+						SSticker.mode.queen_death_countdown = world.time + QUEEN_DEATH_COUNTDOWN
+						addtimer(CALLBACK(SSticker.mode, /datum/game_mode.proc/check_queen_status, hive.queen_time), QUEEN_DEATH_COUNTDOWN)
 					else
-						ticker.mode.queen_death_countdown = world.time + QUEEN_DEATH_NOLARVA
-						addtimer(CALLBACK(ticker.mode, /datum/game_mode.proc/check_queen_status, hive.queen_time), QUEEN_DEATH_NOLARVA)
+						SSticker.mode.queen_death_countdown = world.time + QUEEN_DEATH_NOLARVA
+						addtimer(CALLBACK(SSticker.mode, /datum/game_mode.proc/check_queen_status, hive.queen_time), QUEEN_DEATH_NOLARVA)
 		else
 			if(hive.living_xeno_queen && hive.living_xeno_queen.observed_xeno == src)
 				hive.living_xeno_queen.set_queen_overwatch(src, TRUE)

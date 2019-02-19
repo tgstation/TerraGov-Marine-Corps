@@ -25,47 +25,6 @@
 	var/recommended_enemies = 0
 	var/newscaster_announcements = null
 	var/ert_disabled = FALSE
-	var/uplink_welcome = "Syndicate Uplink Console:"
-	var/uplink_uses = 10
-	var/list/datum/uplink_item/uplink_items = list(
-		"Highly Visible and Dangerous Weapons" = list(
-			 new/datum/uplink_item(/obj/item/weapon/energy/sword, 4, "Energy Sword", "ES"),
-			 new/datum/uplink_item(/obj/item/storage/box/syndicate, 10, "Syndicate Bundle", "BU"),
-			 new/datum/uplink_item(/obj/item/storage/box/emps, 3, "5 EMP Grenades", "EM")
-			),
-		"Stealthy and Inconspicuous Weapons" = list(
-			new/datum/uplink_item(/obj/item/tool/pen/paralysis, 3, "Paralysis Pen", "PP"),
-			new/datum/uplink_item(/obj/item/tool/soap/syndie, 1, "Syndicate Soap", "SP"),
-			new/datum/uplink_item(/obj/item/cartridge/syndicate, 3, "Detomatix PDA Cartridge", "DC")
-			),
-		"Stealth and Camouflage Items" = list(
-			new/datum/uplink_item(/obj/item/storage/box/syndie_kit/chameleon, 3, "Chameleon Kit", "CB"),
-			new/datum/uplink_item(/obj/item/clothing/shoes/syndigaloshes, 2, "No-Slip Syndicate Shoes", "SH"),
-			new/datum/uplink_item(/obj/item/card/id/syndicate, 2, "Agent ID card", "AC"),
-			new/datum/uplink_item(/obj/item/clothing/mask/gas/voice, 4, "Voice Changer", "VC"),
-			new/datum/uplink_item(/obj/item/device/chameleon, 4, "Chameleon-Projector", "CP")
-			),
-		"Devices and Tools" = list(
-			new/datum/uplink_item(/obj/item/card/emag, 3, "Cryptographic Sequencer", "EC"),
-			new/datum/uplink_item(/obj/item/storage/toolbox/syndicate, 1, "Fully Loaded Toolbox", "ST"),
-			new/datum/uplink_item(/obj/item/storage/box/syndie_kit/space, 3, "Space Suit", "SS"),
-			new/datum/uplink_item(/obj/item/clothing/glasses/thermal/syndi, 3, "Thermal Imaging Glasses", "TM"),
-			new/datum/uplink_item(/obj/item/device/encryptionkey/binary, 3, "Binary Translator Key", "BT"),
-			new/datum/uplink_item(/obj/item/circuitboard/ai_module/syndicate, 7, "Hacked AI Upload Module", "AI"),
-			new/datum/uplink_item(/obj/item/explosive/plastique, 2, "C-4 (Destroys walls)", "C4"),
-			new/datum/uplink_item(/obj/item/device/powersink, 5, "Powersink (DANGER!)", "PS",),
-			new/datum/uplink_item(/obj/item/circuitboard/computer/teleporter, 20, "Teleporter Circuit Board", "TP")
-			),
-		"Implants" = list(
-			new/datum/uplink_item(/obj/item/storage/box/syndie_kit/imp_freedom, 3, "Freedom Implant", "FI"),
-			new/datum/uplink_item(/obj/item/storage/box/syndie_kit/imp_uplink, 10, "Uplink Implant (Contains 5 Telecrystals)", "UI"),
-			new/datum/uplink_item(/obj/item/storage/box/syndie_kit/imp_explosive, 6, "Explosive Implant (DANGER!)", "EI"),
-			new/datum/uplink_item(/obj/item/storage/box/syndie_kit/imp_compress, 4, "Compressed Matter Implant", "CI")
-			),
-		"(Pointless) Badassery" = list(
-			new/datum/uplink_item(/obj/item/toy/syndicateballoon, 10, "For showing that You Are The BOSS (Useless Balloon)", "BS")
-			)
-		)
 
 
 /datum/game_mode/proc/announce()
@@ -75,7 +34,7 @@
 /datum/game_mode/proc/can_start()
 	var/players = ready_players()
 
-	if(master_mode == "secret" && players >= required_players_secret)
+	if(GLOB.master_mode == "secret" && players >= required_players_secret)
 		return TRUE
 	else if(players >= required_players)
 		return TRUE
@@ -97,7 +56,7 @@
 	while(GLOB.landmarks_round_start.len)
 		L = GLOB.landmarks_round_start[GLOB.landmarks_round_start.len]
 		GLOB.landmarks_round_start.len--
-		L.on_round_start(flags_round_type, flags_landmarks)
+		L.after_round_start()
 	return FALSE
 
 
@@ -295,29 +254,10 @@
 	return num
 
 
-/datum/game_mode/proc/get_living_heads()
-	var/list/heads = list()
-	for(var/mob/living/carbon/human/player in GLOB.human_mob_list)
-		if(player.stat != DEAD && player.mind && (player.mind.assigned_role in ROLES_COMMAND))
-			heads += player.mind
-	return heads
-
-
-/datum/game_mode/proc/get_all_heads()
-	var/list/heads = list()
-	for(var/mob/player in GLOB.mob_list)
-		if(player.mind && (player.mind.assigned_role in ROLES_COMMAND ))
-			heads += player.mind
-	return heads
-
-
-/datum/game_mode/proc/check_antagonists_topic(href, href_list[])
-	return FALSE
-
-
 /datum/game_mode/New()
 	if(!GLOB.map_tag)
 		to_chat(world, "MT001: No mapping tag set, tell a coder. [GLOB.map_tag]")
+	initialize_emergency_calls()
 
 
 /datum/game_mode/proc/display_roundstart_logout_report()
@@ -351,7 +291,7 @@
 
 			continue //Happy connected client
 		for(var/mob/dead/observer/D in GLOB.dead_mob_list)
-			if(D.mind && (D.mind.original == L || D.mind.current == L))
+			if(D.mind && D.mind.current == L)
 				if(L.stat == DEAD)
 					if(L.suiciding)	//Suicider
 						msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), the [L.job] (<font color='red'><b>Suicide</b></font>)\n"
@@ -368,50 +308,10 @@
 
 
 
-	for(var/mob/M in GLOB.mob_list)
-		if(M.client && M.client.holder)
-			to_chat(M, msg)
+	for(var/client/C in GLOB.clients)
+		if(check_other_rights(C, R_ADMIN, FALSE))
+			to_chat(C, msg)
 
-
-/datum/game_mode/proc/get_nt_opposed()
-	var/list/dudes = list()
-	for(var/mob/living/carbon/human/man in GLOB.player_list)
-		if(man.client)
-			if(man.client.prefs.nanotrasen_relation == "Opposed")
-				dudes += man
-			else if(man.client.prefs.nanotrasen_relation == "Skeptical" && prob(50))
-				dudes += man
-	if(dudes.len == 0)
-		return null
-	else
-		return pick(dudes)
-
-
-/proc/show_generic_antag_text(var/datum/mind/player)
-	if(!player?.current)
-		return
-
-	to_chat(player.current, {"You are an antagonist! <font color=blue>Within the rules,</font>
-	try to act as an opposing force to the crew. Further RP and try to make sure
-	other players have <i>fun</i>! If you are confused or at a loss, always adminhelp,
-	and before taking extreme actions, please try to also contact the administration!
-	Think through your actions and make the roleplay immersive! <b>Please remember all
-	rules aside from those without explicit exceptions apply to antagonists.</b>"})
-
-
-/proc/show_objectives(var/datum/mind/player)
-	if(!player?.current)
-		return
-
-	if(CONFIG_GET(flag/objectives_disabled))
-		show_generic_antag_text(player)
-		return
-
-	var/obj_count = 1
-	to_chat(player.current, "<span class='notice'><b>Your current objectives:</b></span>")
-	for(var/datum/objective/objective in player.objectives)
-		to_chat(player.current, "<B>Objective #[obj_count]</B>: [objective.explanation_text]")
-		obj_count++
 
 
 /datum/game_mode/proc/printplayer(var/datum/mind/player)

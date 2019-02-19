@@ -37,8 +37,7 @@
 	should_patrol = 1
 
 	src.botcard = new /obj/item/card/id(src)
-	var/datum/job/J = RoleAuthority ? RoleAuthority.roles_by_path[/datum/job/logistics/tech/maint] : new /datum/job/logistics/tech/maint
-	botcard.access = J.get_access()
+	botcard.access = ALL_MARINE_ACCESS
 
 	src.locked = 0 // Start unlocked so roboticist can set them to patrol.
 

@@ -43,6 +43,10 @@
 #define APC_CHARGING      1
 #define APC_FULLY_CHARGED 2
 
+#define APC_EXTERNAL_POWER_NONE 0
+#define APC_EXTERNAL_POWER_LOW  1
+#define APC_EXTERNAL_POWER_GOOD 2
+
 //The Area Power Controller (APC), formerly Power Distribution Unit (PDU)
 //One per area, needs wire conection to power network
 
@@ -64,7 +68,7 @@
 	var/areastring = null
 	var/obj/item/cell/cell
 	var/start_charge = 90 //Initial cell charge %
-	var/cell_type = /obj/item/cell/apc //0 = no cell, 1 = regular, 2 = high-cap (x5) <- old, now it's just 0 = no cell, otherwise dictate cellcapacity by changing this value. 1 used to be 1000, 2 was 2500
+	var/cell_type = /obj/item/cell/apc
 	var/opened = APC_COVER_CLOSED
 	var/shorted = FALSE
 	var/lighting = 3
@@ -82,11 +86,9 @@
 	var/lastused_equip = 0
 	var/lastused_environ = 0
 	var/lastused_total = 0
-	var/main_status = 0
+	var/main_status = APC_EXTERNAL_POWER_NONE
 	var/apcwires = 15
-	powernet = 0 //Set so that APCs aren't found as powernet nodes //Hackish, Horrible, was like this before I changed it :(
 	var/debug = 0
-	var/autoflag = 0 // 0 = off, 1 = eqp and lights off, 2 = eqp off, 3 = all on.
 	var/has_electronics = APC_ELECTRONICS_MISSING
 	var/overload = 1 //Used for the Blackout malf module
 	var/beenhit = 0 //Used for counting how many times it has been hit, used for Aliens at the moment
@@ -144,6 +146,22 @@
 	. = ..()
 	GLOB.apcs_list += src
 
+/obj/machinery/power/apc/Destroy()
+	GLOB.apcs_list -= src
+
+	area.power_light = 0
+	area.power_equip = 0
+	area.power_environ = 0
+	area.power_change()
+
+	if(cell)
+		qdel(cell)
+	if(terminal)
+		disconnect_terminal()
+
+	. = ..()
+
+/obj/machinery/power/apc/Initialize(mapload, var/ndir, var/building=FALSE)
 	// offset 24 pixels in direction of dir
 	// this allows the APC to be embedded in a wall, yet still inside an area
 	if (building)
@@ -171,7 +189,6 @@
 
 	start_processing()
 
-/obj/machinery/power/apc/Initialize(mapload)
 	. = ..()
 
 	if(mapload)
@@ -198,13 +215,8 @@
 		update() //areas should be lit on startup
 
 		//Break few ACPs on the colony
-		if(!start_charge && z == 1 && prob(10))
+		if(!start_charge && is_ground_level(z) && prob(10))
 			addtimer(CALLBACK(src, .proc/set_broken), 5)
-
-
-// the very fact that i have to override this screams to me that apcs shouldnt be under machinery - spookydonut
-/obj/machinery/power/apc/power_change()
-	return
 
 /obj/machinery/power/apc/proc/make_terminal()
 	//Create a terminal object at the same position as original turf loc
@@ -362,7 +374,6 @@
 
 //Attack with an item - open/close cover, insert cell, or (un)lock interface
 /obj/machinery/power/apc/attackby(obj/item/W, mob/user)
-
 	if(issilicon(user) && get_dist(src, user) > 1)
 		return attack_hand(user)
 	add_fingerprint(user)
@@ -505,7 +516,8 @@
 			"<span class='notice'>You fumble around figuring out what to do with [src].</span>")
 			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
 			if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
-		if(loc:intact_tile)
+		var/turf/T = get_turf(src)
+		if(T.intact_tile)
 			to_chat(user, "<span class='warning'>You must remove the floor plating in front of the APC first.</span>")
 			return
 		var/obj/item/stack/cable_coil/C = W
@@ -516,7 +528,6 @@
 		"<span class='notice'>You start wiring [src]'s frame.</span>")
 		playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
 		if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD) && !terminal && opened && has_electronics != APC_ELECTRONICS_SECURED)
-			var/turf/T = get_turf(src)
 			var/obj/structure/cable/N = T.get_cable_node()
 			if(prob(50) && electrocute_mob(usr, N, N))
 				var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
@@ -533,24 +544,9 @@
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [W].</span>",
 			"<span class='notice'>You fumble around figuring out what to do with [W].</span>")
 			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
-			if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
-		if(loc:intact_tile)
-			to_chat(user, "<span class='warning'>You must remove the floor plating in front of the APC first.</span>")
-			return
-		user.visible_message("<span class='notice'>[user] starts removing [src]'s wiring and terminal.</span>",
-		"<span class='notice'>You start removing [src]'s wiring and terminal.</span>")
-		playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
-		if(do_after(user, 50, TRUE, 5, BUSY_ICON_BUILD))
-			if (prob(50) && electrocute_mob(user, terminal.powernet, terminal))
-				var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
-				s.set_up(5, 1, src)
-				s.start()
+			if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
 				return
-			new /obj/item/stack/cable_coil(loc,10)
-			user.visible_message("<span class='notice'>[user] removes [src]'s wiring and terminal.</span>",
-			"<span class='notice'>You remove [src]'s wiring and terminal.</span>")
-			qdel(terminal)
-			terminal = null
+		terminal.dismantle(user)
 	else if(istype(W, /obj/item/circuitboard/apc) && opened && has_electronics == APC_ELECTRONICS_MISSING && !(stat & BROKEN))
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [W].</span>",
@@ -932,7 +928,6 @@
 	if(user.lying)
 		to_chat(user, "<span class='warning'>You can't reach [src]!</span>")
 		return 0
-	autoflag = 5
 	if(issilicon(user))
 		if(aidisabled)
 			if(!loud)
@@ -1060,19 +1055,13 @@
 	else
 		return 0
 
-/obj/machinery/power/apc/proc/last_surplus()
-	if(terminal && terminal.powernet)
-		return terminal.powernet.last_surplus()
-	else
-		return 0
-
 //Returns 1 if the APC should attempt to charge
 /obj/machinery/power/apc/proc/attempt_charging()
 	return (chargemode && charging == APC_CHARGING && operating)
 
 /obj/machinery/power/apc/add_load(var/amount)
 	if(terminal && terminal.powernet)
-		return terminal.powernet.draw_power(amount)
+		return terminal.add_load(amount)
 	return 0
 
 /obj/machinery/power/apc/avail()
@@ -1101,11 +1090,13 @@
 	var/last_ch = charging
 
 	var/excess = surplus()
-	var/power_excess = 0
 
-	var/perapc = 0
-	if(terminal && terminal.powernet)
-		perapc = terminal.powernet.perapc
+	if(!avail())
+		main_status = APC_EXTERNAL_POWER_NONE
+	else if(excess < 0)
+		main_status = APC_EXTERNAL_POWER_LOW
+	else
+		main_status = APC_EXTERNAL_POWER_GOOD
 
 	if(debug)
 		log_runtime( "Status: [main_status] - Excess: [excess] - Last Equip: [lastused_equip] - Last Light: [lastused_light]")
@@ -1114,45 +1105,25 @@
 			log_runtime("power update in [area.name] / [name]")
 
 	if(cell && !shorted)
-		var/cell_maxcharge = cell.maxcharge
+		var/cellused = min(cell.charge, GLOB.CELLRATE * lastused_total)	// clamp deduction to a max, amount left in cell
+		cell.use(cellused)
 
-		//Calculate how much power the APC will try to get from the grid.
-		var/target_draw = lastused_total
-		if(attempt_charging())
-			target_draw += min((cell_maxcharge - cell.charge), (cell_maxcharge * CHARGELEVEL))/CELLRATE
-		target_draw = min(target_draw, perapc) //Limit power draw by perapc
+		if(excess > lastused_total)
+			cell.give(cellused)
+			add_load(cellused/GLOB.CELLRATE)
+		else		// not enough excess, and not enough per-apc
+			if((cell.charge/GLOB.CELLRATE + excess) >= lastused_total)		// can we draw enough from cell+grid to cover last usage?
+				cell.charge = min(cell.maxcharge, cell.charge + GLOB.CELLRATE * excess)	//recharge with what we can
+				add_load(excess)		// so draw what we can from the grid
+				charging = APC_NOT_CHARGING
 
-		//Try to draw power from the grid
-		var/power_drawn = 0
-		if(avail())
-			power_drawn = add_load(target_draw) //Get some power from the powernet
-
-		//Figure out how much power is left over after meeting demand
-		power_excess = power_drawn - lastused_total
-
-		if(power_excess < 0) //Couldn't get enough power from the grid, we will need to take from the power cell.
-
-			charging = APC_NOT_CHARGING
-
-			var/required_power = -power_excess
-			if(cell.charge >= required_power * CELLRATE) //Can we draw enough from cell to cover what's left over?
-				cell.use(required_power * CELLRATE)
-
-			else if (autoflag != 0)	//Not enough power available to run the last tick!
+			else	// not enough power available to run the last tick!
+				charging = APC_NOT_CHARGING
 				chargecount = 0
 				//This turns everything off in the case that there is still a charge left on the battery, just not enough to run the room.
 				equipment = autoset(equipment, 0)
 				lighting = autoset(lighting, 0)
 				environ = autoset(environ, 0)
-				autoflag = 0
-
-		//Set external power status
-		if(!power_drawn)
-			main_status = 0
-		else if(power_excess < 0)
-			main_status = 1
-		else
-			main_status = 2
 
 		//Set channels depending on how much charge we have left
 		// Allow the APC to operate as normal if the cell can charge
@@ -1161,61 +1132,54 @@
 		else if(longtermpower > -10)
 			longtermpower -= 2
 
-
-		if(cell.charge >= 1250 || longtermpower > 0) //Put most likely at the top so we don't check it last, effeciency 101
-			if(autoflag != 3)
-				equipment = autoset(equipment, 1)
-				lighting = autoset(lighting, 1)
-				environ = autoset(environ, 1)
-				autoflag = 3
+		if(cell.charge <= 0)					// zero charge, turn all off
+			equipment = autoset(equipment, 0)
+			lighting = autoset(lighting, 0)
+			environ = autoset(environ, 0)
+			area.poweralert(0, src)
+		else if(cell.percent() < 15 && longtermpower < 0)	// <15%, turn off lighting & equipment
+			equipment = autoset(equipment, 2)
+			lighting = autoset(lighting, 2)
+			environ = autoset(environ, 1)
+			area.poweralert(0, src)
+		else if(cell.percent() < 30 && longtermpower < 0)			// <30%, turn off equipment
+			equipment = autoset(equipment, 2)
+			lighting = autoset(lighting, 1)
+			environ = autoset(environ, 1)
+			area.poweralert(0, src)
+		else									// otherwise all can be on
+			equipment = autoset(equipment, 1)
+			lighting = autoset(lighting, 1)
+			environ = autoset(environ, 1)
+			area.poweralert(1, src)
+			if(cell.percent() > 75)
 				area.poweralert(1, src)
-				if(cell.charge >= 4000)
-					area.poweralert(1, src)
-		else if(cell.charge < 1250 && cell.charge > 750 && longtermpower < 0) //<30%, turn off equipment
-			if(autoflag != 2)
-				equipment = autoset(equipment, 2)
-				lighting = autoset(lighting, 1)
-				environ = autoset(environ, 1)
-				area.poweralert(0, src)
-				autoflag = 2
-		else if(cell.charge < 750 && cell.charge > 10) //<15%, turn off lighting & equipment
-			if((autoflag > 1 && longtermpower < 0) || (autoflag > 1 && longtermpower >= 0))
-				equipment = autoset(equipment, 2)
-				lighting = autoset(lighting, 2)
-				environ = autoset(environ, 1)
-				area.poweralert(0, src)
-				autoflag = 1
-		else if(cell.charge <= 0) //Zero charge, turn all off
-			if(autoflag != 0)
-				equipment = autoset(equipment, 0)
-				lighting = autoset(lighting, 0)
-				environ = autoset(environ, 0)
-				area.poweralert(0, src)
-				autoflag = 0
 
 		//Now trickle-charge the cell
 		if(attempt_charging())
-			if(power_excess > 0) //Check to make sure we have enough to charge
-				cell.give(power_excess * CELLRATE) //Actually recharge the cell
+			if(excess  > 0) //Check to make sure we have enough to charge
+				var/ch = min(excess*GLOB.CELLRATE, cell.maxcharge*GLOB.CHARGELEVEL)
+				add_load(ch/GLOB.CELLRATE) // Removes the power we're taking from the grid
+				cell.give(ch) // actually recharge the cell
 			else
 				charging = APC_NOT_CHARGING //Stop charging
 				chargecount = 0
 
 		//Show cell as fully charged if so
-		if(cell.charge >= cell_maxcharge)
+		if(cell.charge >= cell.maxcharge)
+			cell.charge = cell.maxcharge
 			charging = APC_FULLY_CHARGED
 
 		//If we have excess power for long enough, think about re-enable charging.
 		if(chargemode)
 			if(!charging)
-				//last_surplus() overestimates the amount of power available for charging, but it's equivalent to what APCs were doing before.
-				if(last_surplus() * CELLRATE >= cell_maxcharge * CHARGELEVEL)
+				if(excess > cell.maxcharge*GLOB.CHARGELEVEL)
 					chargecount++
 				else
 					chargecount = 0
 					charging = APC_NOT_CHARGING
 
-				if(chargecount >= 10)
+				if(chargecount == 10)
 					chargecount = 0
 					charging = APC_CHARGING
 
@@ -1230,7 +1194,6 @@
 		lighting = autoset(lighting, 0)
 		environ = autoset(environ, 0)
 		area.poweralert(0, src)
-		autoflag = 0
 
 	//Update icon & area power if anything changed
 
@@ -1239,7 +1202,6 @@
 		update()
 	else if (last_ch != charging)
 		queue_icon_update()
-	updateDialog()
 
 //val 0 = off, 1 = off(auto) 2 = on, 3 = on(auto)
 //on 0 = off, 1 = auto-on, 2 = auto-off
@@ -1268,6 +1230,8 @@
 	lighting = 0
 	equipment = 0
 	environ = 0
+	update_icon()
+	update()
 	addtimer(CALLBACK(src, .proc/reset, APC_RESET_EMP), 60 SECONDS)
 	..()
 
@@ -1318,25 +1282,13 @@
 		L.on = FALSE
 		stoplag()
 
-/obj/machinery/power/apc/Destroy()
-	GLOB.apcs_list -= src
-
-	area.power_light = 0
-	area.power_equip = 0
-	area.power_environ = 0
-	area.power_change()
-
-	if(cell)
-		qdel(cell)
-	if(terminal)
-		disconnect_terminal()
-
-	. = ..()
-
-/obj/machinery/power/apc/proc/disconnect_terminal()
+/obj/machinery/power/apc/disconnect_terminal()
 	if(terminal)
 		terminal.master = null
 		terminal = null
+
+/obj/machinery/power/apc/can_terminal_dismantle()
+	. = opened ? TRUE : FALSE
 
 //------Various APCs ------//
 
@@ -1505,3 +1457,7 @@
 #undef APC_NOT_CHARGING
 #undef APC_CHARGING
 #undef APC_FULLY_CHARGED
+
+#undef APC_EXTERNAL_POWER_NONE
+#undef APC_EXTERNAL_POWER_LOW
+#undef APC_EXTERNAL_POWER_GOOD

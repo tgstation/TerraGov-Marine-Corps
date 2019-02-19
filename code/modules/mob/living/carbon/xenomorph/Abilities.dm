@@ -93,6 +93,7 @@
 			if(M.loc != X)
 				continue
 			M.forceMove(X.loc)
+			M.KnockDown(1)
 
 		X.visible_message("<span class='xenowarning'>\The [X] hurls out the contents of their stomach!</span>", \
 		"<span class='xenowarning'>You hurl out the contents of your stomach!</span>", null, 5)
@@ -820,11 +821,11 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 		return
 	var/list/possible_xenos = list()
 	for(var/mob/living/carbon/Xenomorph/T in GLOB.alive_xeno_list)
-		if(T.z != ADMIN_Z_LEVEL && !isxenoqueen(T) && X.hivenumber == T.hivenumber)
+		if(!is_centcom_level(T.z) && !isxenoqueen(T) && X.hivenumber == T.hivenumber)
 			possible_xenos += T
 
 	var/mob/living/carbon/Xenomorph/selected_xeno = input(X, "Target", "Watch which xenomorph?") as null|anything in possible_xenos
-	if(!selected_xeno || selected_xeno.gc_destroyed || selected_xeno == X.observed_xeno || selected_xeno.stat == DEAD || selected_xeno.z == ADMIN_Z_LEVEL || !X.check_state())
+	if(!selected_xeno || selected_xeno.gc_destroyed || selected_xeno == X.observed_xeno || selected_xeno.stat == DEAD || is_centcom_level(selected_xeno.z) || !X.check_state())
 		if(X.observed_xeno)
 			X.set_queen_overwatch(X.observed_xeno, TRUE)
 	else
@@ -1179,17 +1180,22 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 	return !X.ravage_used
 
 
-/datum/action/xeno_action/second_wind
+/datum/action/xeno_action/activable/second_wind
 	name = "Second Wind"
 	action_icon_state = "second_wind"
 
-/datum/action/xeno_action/second_wind/action_activate()
+
+/datum/action/xeno_action/activable/second_wind/action_activate(atom/A)
 	var/mob/living/carbon/Xenomorph/Ravager/X = owner
 	X.Second_Wind()
 
 
-//Ravenger
+/datum/action/xeno_action/activable/second_wind/action_cooldown_check()
+	var/mob/living/carbon/Xenomorph/Ravager/X = owner
+	return !X.second_wind_used
 
+
+//Ravenger
 /datum/action/xeno_action/activable/breathe_fire
 	name = "Breathe Fire"
 	action_icon_state = "breathe_fire"

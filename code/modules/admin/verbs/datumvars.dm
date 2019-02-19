@@ -2,8 +2,6 @@
 #define VV_MSG_EDITED "<br><font size='1' color='red'><b>Var Edited</b></font>"
 #define VV_MSG_DELETED "<br><font size='1' color='red'><b>Deleted</b></font>"
 
-#define isatom(A) (isloc(A))
-
 /datum/proc/CanProcCall(procname)
 	return TRUE
 
@@ -1121,6 +1119,80 @@
 				H.dropItemToGround(H.head)
 				H.head = new /obj/item/clothing/head/kitty(H)
 				H.regenerate_icons()
-				H.head.update_icon()
+				H.head.update_icon(H)
 				log_admin("[key_name(usr)] has purrbated [key_name(H)].")
 				message_admins("[ADMIN_TPMONTY(usr)] has purrbated [ADMIN_TPMONTY(H)].")
+
+
+		else if(href_list["getatom"])
+			if(!check_rights(R_DEBUG))
+				return
+
+			var/atom/movable/A = locate(href_list["getatom"])
+			if(!istype(A))
+				to_chat(usr, "This can only be done to instances of type /atom")
+				return
+
+			var/turf/T = get_turf(usr)
+			if(!istype(T))
+				return
+
+			A.forceMove(T)
+
+			log_admin("[key_name(usr)] has sent atom [A] to themselves.")
+			message_admins("[ADMIN_TPMONTY(usr)] has sent atom [A] to themselves.")
+
+
+		else if(href_list["sendatom"])
+			if(!check_rights(R_DEBUG))
+				return
+
+			var/atom/movable/A = locate(href_list["sendatom"])
+			if(!istype(A))
+				to_chat(usr, "This can only be done to instances of type /atom")
+				return
+
+			var/atom/target
+
+			switch(input("Where do you want to send it to?", "Send Mob") as null|anything in list("Area", "Mob", "Key", "Coords"))
+				if("Area")
+					var/area/AR = input("Pick an area.", "Pick an area") as null|anything in return_sorted_areas()
+					if(!AR || !A)
+						return
+					target = pick(get_area_turfs(AR))
+				if("Mob")
+					var/mob/N = input("Pick a mob.", "Pick a mob") as null|anything in sortmobs(GLOB.mob_list)
+					if(!N || !A)
+						return
+					target = get_turf(N)
+				if("Key")
+					var/client/C = input("Pick a key.", "Pick a key") as null|anything in sortKey(GLOB.clients)
+					if(!C || !A)
+						return
+					target = get_turf(C.mob)
+				if("Coords")
+					var/X = input("Select coordinate X", "Coordinate X") as null|num
+					var/Y = input("Select coordinate Y", "Coordinate Y") as null|num
+					var/Z = input("Select coordinate Z", "Coordinate Z") as null|num
+					if(isnull(X) || isnull(Y) || isnull(Z) || !A)
+						return
+					target = locate(X, Y, Z)
+
+			if(!target)
+				return
+
+			A.forceMove(target)
+
+			log_admin("[key_name(usr)] has sent atom [A] to [AREACOORD(target)].")
+			message_admins("[ADMIN_TPMONTY(usr)] has sent atom [A] to [ADMIN_VERBOSEJMP(target)].")
+
+
+		else if(href_list["copyoutfit"])
+			if(!check_rights(R_SPAWN))
+				return
+			var/mob/living/carbon/human/H = locate(href_list["copyoutfit"])
+			if(istype(H))
+				H.copy_outfit()
+
+			log_admin("[key_name(usr)] copied the outfit of [key_name(H)].")
+			message_admins("[ADMIN_TPMONTY(usr)] copied the outfit of [ADMIN_TPMONTY(H)].")
