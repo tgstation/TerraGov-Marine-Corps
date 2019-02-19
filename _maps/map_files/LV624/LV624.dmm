@@ -272,8 +272,7 @@
 /turf/closed/wall/resin/ondirt,
 /area/lv624/ground/caves/east1)
 "abr" = (
-/turf/open/floor{
-	icon_state = "cult";
+/turf/open/floor/engine/cult{
 	dir = 2
 	},
 /area/lv624/ground/caves/east1)
@@ -286,8 +285,7 @@
 /area/lv624/ground/sand8)
 "abt" = (
 /obj/effect/decal/remains/xeno,
-/turf/open/floor{
-	icon_state = "cult";
+/turf/open/floor/engine/cult{
 	dir = 2
 	},
 /area/lv624/ground/caves/east1)
@@ -299,8 +297,7 @@
 /area/lv624/ground/caves/central1)
 "abw" = (
 /obj/effect/alien/weeds/node,
-/turf/open/floor{
-	icon_state = "cult";
+/turf/open/floor/engine/cult{
 	dir = 2
 	},
 /area/lv624/ground/caves/east1)
@@ -984,8 +981,7 @@
 /turf/open/floor/vault,
 /area/lv624/ground/sand6)
 "adp" = (
-/turf/open/floor{
-	icon_state = "cult";
+/turf/open/floor/engine/cult{
 	dir = 2
 	},
 /area/lv624/ground/caves/west1)
@@ -1055,8 +1051,7 @@
 /area/lv624/ground/sand6)
 "adz" = (
 /obj/effect/decal/remains/xeno,
-/turf/open/floor{
-	icon_state = "cult";
+/turf/open/floor/engine/cult{
 	dir = 2
 	},
 /area/lv624/ground/caves/west1)
@@ -1117,8 +1112,7 @@
 /area/lv624/ground/sand6)
 "adI" = (
 /obj/effect/alien/weeds/node,
-/turf/open/floor{
-	icon_state = "cult";
+/turf/open/floor/engine/cult{
 	dir = 2
 	},
 /area/lv624/ground/caves/west1)

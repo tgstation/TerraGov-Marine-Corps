@@ -5756,8 +5756,7 @@
 	dir = 8;
 	on = 1
 	},
-/turf/open/floor{
-	icon_state = "cult";
+/turf/open/floor/engine/cult{
 	dir = 2
 	},
 /area/bigredv2/outside/marshal_office)
@@ -6059,8 +6058,7 @@
 "ang" = (
 /obj/structure/table/woodentable,
 /obj/item/paper/Court,
-/turf/open/floor{
-	icon_state = "cult";
+/turf/open/floor/engine/cult{
 	dir = 2
 	},
 /area/bigredv2/outside/marshal_office)
@@ -6071,8 +6069,7 @@
 /obj/machinery/camera/autoname{
 	dir = 8
 	},
-/turf/open/floor{
-	icon_state = "cult";
+/turf/open/floor/engine/cult{
 	dir = 2
 	},
 /area/bigredv2/outside/marshal_office)
@@ -6300,8 +6297,7 @@
 /area/bigredv2/outside/marshal_office)
 "anE" = (
 /obj/structure/table/woodentable,
-/turf/open/floor{
-	icon_state = "cult";
+/turf/open/floor/engine/cult{
 	dir = 2
 	},
 /area/bigredv2/outside/marshal_office)
@@ -6311,8 +6307,7 @@
 	icon_state = "tube1";
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "cult";
+/turf/open/floor/engine/cult{
 	dir = 2
 	},
 /area/bigredv2/outside/marshal_office)
@@ -6643,8 +6638,7 @@
 "aok" = (
 /obj/structure/table/woodentable,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "cult";
+/turf/open/floor/engine/cult{
 	dir = 2
 	},
 /area/bigredv2/outside/marshal_office)
@@ -25546,8 +25540,7 @@
 /area/bigredv2/outside/office_complex)
 "aZH" = (
 /obj/structure/closet/wardrobe/chaplain_black,
-/turf/open/floor{
-	icon_state = "cult";
+/turf/open/floor/engine/cult{
 	dir = 2
 	},
 /area/bigredv2/outside/chapel)
@@ -25834,8 +25827,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/chapel)
 "bal" = (
-/turf/open/floor{
-	icon_state = "cult";
+/turf/open/floor/engine/cult{
 	dir = 2
 	},
 /area/bigredv2/outside/chapel)
@@ -25849,8 +25841,7 @@
 "ban" = (
 /obj/structure/table/woodentable,
 /obj/item/device/radio/headset,
-/turf/open/floor{
-	icon_state = "cult";
+/turf/open/floor/engine/cult{
 	dir = 2
 	},
 /area/bigredv2/outside/chapel)
@@ -26073,8 +26064,7 @@
 /area/bigredv2/outside/office_complex)
 "baR" = (
 /obj/structure/table/woodentable,
-/turf/open/floor{
-	icon_state = "cult";
+/turf/open/floor/engine/cult{
 	dir = 2
 	},
 /area/bigredv2/outside/chapel)
@@ -26392,8 +26382,7 @@
 	dir = 4;
 	on = 1
 	},
-/turf/open/floor{
-	icon_state = "cult";
+/turf/open/floor/engine/cult{
 	dir = 2
 	},
 /area/bigredv2/outside/chapel)
@@ -26404,8 +26393,7 @@
 	},
 /obj/structure/table/woodentable,
 /obj/item/storage/bible,
-/turf/open/floor{
-	icon_state = "cult";
+/turf/open/floor/engine/cult{
 	dir = 2
 	},
 /area/bigredv2/outside/chapel)
@@ -27274,8 +27262,7 @@
 	name = "Storm Shutters";
 	pixel_x = -32
 	},
-/turf/open/floor{
-	icon_state = "cult";
+/turf/open/floor/engine/cult{
 	dir = 2
 	},
 /area/bigredv2/outside/chapel)
