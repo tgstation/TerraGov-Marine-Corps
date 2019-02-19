@@ -1132,10 +1132,7 @@
 /turf/open/floor/plating,
 /area/lv624/ground/caves/central1)
 "adN" = (
-/turf/open/floor{
-	icon_state = "bot";
-	dir = 1
-	},
+/turf/open/floor/marking/bot,
 /area/lv624/ground/caves/central1)
 "adO" = (
 /obj/structure/window/reinforced{
@@ -1206,24 +1203,15 @@
 /area/lv624/ground/sand5)
 "aec" = (
 /obj/structure/ore_box,
-/turf/open/floor{
-	icon_state = "bot";
-	dir = 1
-	},
+/turf/open/floor/marking/bot,
 /area/lv624/ground/sand5)
 "aed" = (
 /obj/effect/alien/weeds/node,
 /obj/item/stack/sheet/wood,
-/turf/open/floor{
-	icon_state = "bot";
-	dir = 1
-	},
+/turf/open/floor/marking/bot,
 /area/lv624/ground/sand5)
 "aee" = (
-/turf/open/floor{
-	icon_state = "bot";
-	dir = 1
-	},
+/turf/open/floor/marking/bot,
 /area/lv624/ground/sand5)
 "aef" = (
 /obj/effect/decal/remains/human,
@@ -1390,7 +1378,7 @@
 	},
 /area/lv624/ground/caves/central1)
 "aeM" = (
-/turf/open/floor/loadingarea{
+/turf/open/floor/marking/loadingarea{
 	dir = 8
 	},
 /area/lv624/ground/caves/central1)
@@ -1690,23 +1678,14 @@
 /obj/structure/cargo_container/horizontal{
 	dir = 1
 	},
-/turf/open/floor{
-	icon_state = "bot";
-	dir = 1
-	},
+/turf/open/floor/marking/bot,
 /area/lv624/ground/sand5)
 "afT" = (
 /obj/structure/girder,
-/turf/open/floor{
-	icon_state = "bot";
-	dir = 1
-	},
+/turf/open/floor/marking/bot,
 /area/lv624/ground/sand6)
 "afU" = (
-/turf/open/floor{
-	icon_state = "bot";
-	dir = 1
-	},
+/turf/open/floor/marking/bot,
 /area/lv624/ground/sand6)
 "afV" = (
 /obj/effect/decal/remains/xeno,
@@ -1729,10 +1708,7 @@
 /obj/structure/cargo_container/horizontal{
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "bot";
-	dir = 1
-	},
+/turf/open/floor/marking/bot,
 /area/lv624/ground/sand5)
 "afY" = (
 /obj/structure/cargo_container/red{
@@ -1775,10 +1751,7 @@
 /obj/structure/cargo_container/horizontal{
 	dir = 2
 	},
-/turf/open/floor{
-	icon_state = "bot";
-	dir = 1
-	},
+/turf/open/floor/marking/bot,
 /area/lv624/ground/sand5)
 "agf" = (
 /obj/structure/cargo_container/nt{
@@ -1832,12 +1805,12 @@
 /turf/open/floor,
 /area/lv624/ground/sand5)
 "agp" = (
-/turf/open/floor/loadingarea{
+/turf/open/floor/marking/loadingarea{
 	dir = 8
 	},
 /area/lv624/ground/sand5)
 "agq" = (
-/turf/open/floor/loadingarea{
+/turf/open/floor/marking/loadingarea{
 	dir = 4
 	},
 /area/lv624/ground/sand5)
@@ -1871,10 +1844,7 @@
 /turf/open/floor,
 /area/lv624/ground/sand2)
 "agz" = (
-/turf/open/floor{
-	icon_state = "bot";
-	dir = 1
-	},
+/turf/open/floor/marking/bot,
 /area/lv624/ground/sand2)
 "agA" = (
 /obj/structure/largecrate/random,
@@ -1930,10 +1900,7 @@
 /obj/structure/cargo_container{
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "bot";
-	dir = 1
-	},
+/turf/open/floor/marking/bot,
 /area/lv624/ground/sand2)
 "agL" = (
 /obj/structure/cargo_container{
@@ -1948,7 +1915,7 @@
 /turf/open/floor,
 /area/lv624/ground/sand2)
 "agN" = (
-/turf/open/floor/loadingarea{
+/turf/open/floor/marking/loadingarea{
 	dir = 8
 	},
 /area/lv624/ground/sand2)
@@ -1959,7 +1926,7 @@
 /turf/open/floor,
 /area/lv624/ground/sand2)
 "agP" = (
-/turf/open/floor/loadingarea{
+/turf/open/floor/marking/loadingarea{
 	dir = 4
 	},
 /area/lv624/ground/sand2)
@@ -1994,10 +1961,7 @@
 /obj/structure/cargo_container/green{
 	dir = 8
 	},
-/turf/open/floor{
-	icon_state = "bot";
-	dir = 1
-	},
+/turf/open/floor/marking/bot,
 /area/lv624/ground/sand2)
 "agX" = (
 /obj/structure/cargo_container/green{
@@ -2105,23 +2069,17 @@
 	},
 /area/lv624/ground/sand2)
 "aho" = (
-/turf/open/floor/loadingarea{
+/turf/open/floor/marking/loadingarea{
 	dir = 1
 	},
 /area/lv624/ground/sand2)
 "ahp" = (
 /obj/vehicle/train/cargo/trolley,
-/turf/open/floor{
-	icon_state = "bot";
-	dir = 1
-	},
+/turf/open/floor/marking/bot,
 /area/lv624/ground/sand2)
 "ahq" = (
 /obj/vehicle/train/cargo/engine,
-/turf/open/floor{
-	icon_state = "bot";
-	dir = 1
-	},
+/turf/open/floor/marking/bot,
 /area/lv624/ground/sand2)
 "ahr" = (
 /obj/structure/mineral_door/resin,
@@ -2517,7 +2475,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 10
 	},
-/turf/open/floor/loadingarea{
+/turf/open/floor/marking/loadingarea{
 	dir = 1
 	},
 /area/lv624/ground/sand2)
@@ -2525,7 +2483,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 6
 	},
-/turf/open/floor/loadingarea{
+/turf/open/floor/marking/loadingarea{
 	dir = 1
 	},
 /area/lv624/ground/sand2)
@@ -15493,7 +15451,7 @@
 /area/lv624/lazarus/quart)
 "aUw" = (
 /obj/structure/largecrate/random,
-/turf/open/floor/loadingarea{
+/turf/open/floor/marking/loadingarea{
 	dir = 4
 	},
 /area/lv624/lazarus/quartstorage)
@@ -15502,10 +15460,7 @@
 /area/lv624/lazarus/quartstorage)
 "aUy" = (
 /obj/effect/landmark/random_item/crap,
-/turf/open/floor{
-	icon_state = "bot";
-	dir = 1
-	},
+/turf/open/floor/marking/bot,
 /area/lv624/lazarus/quartstorage)
 "aUz" = (
 /obj/structure/cable/yellow{
@@ -15514,10 +15469,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor{
-	icon_state = "bot";
-	dir = 1
-	},
+/turf/open/floor/marking/bot,
 /area/lv624/lazarus/quartstorage)
 "aUA" = (
 /turf/open/floor/plating,
@@ -15769,10 +15721,7 @@
 	},
 /area/lv624/lazarus/quart)
 "aVf" = (
-/turf/open/floor{
-	icon_state = "bot";
-	dir = 1
-	},
+/turf/open/floor/marking/bot,
 /area/lv624/lazarus/quartstorage)
 "aVg" = (
 /obj/effect/decal/cleanable/blood/oil,
@@ -15969,16 +15918,13 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/quart)
 "aVJ" = (
-/turf/open/floor/loadingarea{
+/turf/open/floor/marking/loadingarea{
 	dir = 4
 	},
 /area/lv624/lazarus/quartstorage)
 "aVK" = (
 /obj/effect/decal/cleanable/blood/oil,
-/turf/open/floor{
-	icon_state = "bot";
-	dir = 1
-	},
+/turf/open/floor/marking/bot,
 /area/lv624/lazarus/quartstorage)
 "aVL" = (
 /obj/item/shard,
@@ -16181,7 +16127,7 @@
 	},
 /area/lv624/lazarus/quart)
 "aWo" = (
-/turf/open/floor/loadingarea{
+/turf/open/floor/marking/loadingarea{
 	dir = 1
 	},
 /area/lv624/lazarus/quartstorage)
@@ -16192,7 +16138,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/loadingarea{
+/turf/open/floor/marking/loadingarea{
 	dir = 1
 	},
 /area/lv624/lazarus/quartstorage)
@@ -16895,10 +16841,7 @@
 	},
 /area/lv624/lazarus/main_hall)
 "aYi" = (
-/turf/open/floor{
-	icon_state = "bot";
-	dir = 1
-	},
+/turf/open/floor/marking/bot,
 /area/shuttle/drop1/lz1)
 "aYj" = (
 /obj/machinery/colony_floodlight{
@@ -17202,7 +17145,7 @@
 	},
 /area/lv624/lazarus/main_hall)
 "aYT" = (
-/turf/open/floor/loadingarea{
+/turf/open/floor/marking/loadingarea{
 	dir = 8
 	},
 /area/shuttle/drop1/lz1)
@@ -17528,7 +17471,7 @@
 /area/lv624/lazarus/main_hall)
 "aZK" = (
 /obj/effect/landmark/random_item/crap,
-/turf/open/floor/loadingarea{
+/turf/open/floor/marking/loadingarea{
 	dir = 8
 	},
 /area/shuttle/drop1/lz1)

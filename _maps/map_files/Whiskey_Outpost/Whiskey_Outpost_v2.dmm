@@ -2147,11 +2147,7 @@
 /obj/item/storage/box/lightstick,
 /obj/item/storage/box/lightstick,
 /obj/item/storage/box/lightstick,
-/turf/open/floor{
-	tag = "icon-bot";
-	icon_state = "bot";
-	dir = 2
-	},
+/turf/open/floor/marking/bot,
 /area/whiskey_outpost)
 "eI" = (
 /turf/open/floor{
@@ -2173,11 +2169,7 @@
 /obj/item/stack/sheet/wood{
 	amount = 50
 	},
-/turf/open/floor{
-	tag = "icon-bot";
-	icon_state = "bot";
-	dir = 2
-	},
+/turf/open/floor/marking/bot,
 /area/whiskey_outpost)
 "eL" = (
 /obj/structure/barricade/metal{
@@ -2278,11 +2270,7 @@
 /obj/item/storage/box/lights/tubes,
 /obj/item/storage/box/lights/tubes,
 /obj/item/storage/box/lights/tubes,
-/turf/open/floor{
-	tag = "icon-bot";
-	icon_state = "bot";
-	dir = 2
-	},
+/turf/open/floor/marking/bot,
 /area/whiskey_outpost)
 "eV" = (
 /obj/structure/cable{
@@ -2314,11 +2302,7 @@
 /obj/item/stack/sheet/glass{
 	amount = 30
 	},
-/turf/open/floor{
-	tag = "icon-bot";
-	icon_state = "bot";
-	dir = 2
-	},
+/turf/open/floor/marking/bot,
 /area/whiskey_outpost)
 "eY" = (
 /turf/open/gm/coast/corner{
@@ -2391,11 +2375,7 @@
 /obj/item/stack/sheet/plasteel{
 	amount = 50
 	},
-/turf/open/floor{
-	tag = "icon-bot";
-	icon_state = "bot";
-	dir = 2
-	},
+/turf/open/floor/marking/bot,
 /area/whiskey_outpost)
 "ff" = (
 /obj/structure/table,
@@ -2451,11 +2431,7 @@
 /obj/item/stack/sheet/metal{
 	amount = 30
 	},
-/turf/open/floor{
-	tag = "icon-bot";
-	icon_state = "bot";
-	dir = 2
-	},
+/turf/open/floor/marking/bot,
 /area/whiskey_outpost)
 "fh" = (
 /obj/structure/barricade/sandbags{

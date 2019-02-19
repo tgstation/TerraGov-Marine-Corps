@@ -102,9 +102,11 @@
 
 
 
-/turf/open/floor/loadingarea
+/turf/open/floor/marking/loadingarea
 	icon_state = "loadingarea"
 
+/turf/open/floor/marking/bot
+	icon_state = "bot"
 
 //Cargo elevator
 /turf/open/floor/almayer/empty

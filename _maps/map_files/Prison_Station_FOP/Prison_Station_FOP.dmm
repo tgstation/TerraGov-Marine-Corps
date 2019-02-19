@@ -9429,10 +9429,7 @@
 "ato" = (
 /obj/structure/displaycase/destroyed,
 /obj/item/shard,
-/turf/open/floor{
-	icon_state = "bot";
-	dir = 1
-	},
+/turf/open/floor/marking/bot,
 /area/prison/research/RD)
 "atp" = (
 /obj/effect/alien/weeds/node,

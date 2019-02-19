@@ -25918,10 +25918,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "baF" = (
-/turf/open/floor{
-	icon_state = "bot";
-	dir = 1
-	},
+/turf/open/floor/marking/bot,
 /area/bigredv2/outside/cargo)
 "baG" = (
 /obj/structure/bed/chair/office/dark{
@@ -27745,7 +27742,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "beU" = (
-/turf/open/floor/loadingarea{
+/turf/open/floor/marking/loadingarea{
 	dir = 2
 	},
 /area/bigredv2/outside/cargo)
@@ -28050,10 +28047,7 @@
 /area/bigredv2/outside/se)
 "bfy" = (
 /obj/structure/largecrate/random,
-/turf/open/floor{
-	icon_state = "bot";
-	dir = 1
-	},
+/turf/open/floor/marking/bot,
 /area/bigredv2/outside/cargo)
 "bfz" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -28067,10 +28061,7 @@
 	layer = 2.4
 	},
 /obj/structure/closet/emcloset/legacy,
-/turf/open/floor{
-	icon_state = "bot";
-	dir = 1
-	},
+/turf/open/floor/marking/bot,
 /area/bigredv2/outside/cargo)
 "bfB" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -28084,10 +28075,7 @@
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor{
-	icon_state = "bot";
-	dir = 1
-	},
+/turf/open/floor/marking/bot,
 /area/bigredv2/outside/cargo)
 "bfD" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -28095,10 +28083,7 @@
 	layer = 2.4
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "bot";
-	dir = 1
-	},
+/turf/open/floor/marking/bot,
 /area/bigredv2/outside/cargo)
 "bfE" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -28108,10 +28093,7 @@
 /area/bigredv2/outside/cargo)
 "bfF" = (
 /obj/structure/largecrate,
-/turf/open/floor{
-	icon_state = "bot";
-	dir = 1
-	},
+/turf/open/floor/marking/bot,
 /area/bigredv2/outside/cargo)
 "bfG" = (
 /obj/structure/bed/chair/office/dark{
@@ -28235,33 +28217,21 @@
 "bfV" = (
 /obj/structure/largecrate/random,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "bot";
-	dir = 1
-	},
+/turf/open/floor/marking/bot,
 /area/bigredv2/outside/cargo)
 "bfW" = (
 /obj/structure/largecrate,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "bot";
-	dir = 1
-	},
+/turf/open/floor/marking/bot,
 /area/bigredv2/outside/cargo)
 "bfX" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/crate/trashcart,
-/turf/open/floor{
-	icon_state = "bot";
-	dir = 1
-	},
+/turf/open/floor/marking/bot,
 /area/bigredv2/outside/cargo)
 "bfY" = (
 /obj/structure/largecrate/cow,
-/turf/open/floor{
-	icon_state = "bot";
-	dir = 1
-	},
+/turf/open/floor/marking/bot,
 /area/bigredv2/outside/cargo)
 "bfZ" = (
 /obj/effect/decal/cleanable/dirt,
@@ -28402,10 +28372,7 @@
 /area/bigredv2/outside/office_complex)
 "bgq" = (
 /obj/structure/closet/emcloset,
-/turf/open/floor{
-	icon_state = "bot";
-	dir = 1
-	},
+/turf/open/floor/marking/bot,
 /area/bigredv2/outside/cargo)
 "bgr" = (
 /obj/structure/closet/secure_closet/security,
@@ -28498,10 +28465,7 @@
 /area/bigredv2/outside/cargo)
 "bgE" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "bot";
-	dir = 1
-	},
+/turf/open/floor/marking/bot,
 /area/bigredv2/outside/cargo)
 "bgF" = (
 /obj/structure/barricade/wooden{
@@ -28743,10 +28707,7 @@
 /area/bigredv2/outside/cargo)
 "bhe" = (
 /obj/machinery/light,
-/turf/open/floor{
-	icon_state = "bot";
-	dir = 1
-	},
+/turf/open/floor/marking/bot,
 /area/bigredv2/outside/cargo)
 "bhf" = (
 /obj/machinery/power/apc{
@@ -35325,12 +35286,12 @@
 	name = "\improper Eta Lab Storage Bay";
 	req_one_access_txt = "0"
 	},
-/turf/open/floor/loadingarea{
+/turf/open/floor/marking/loadingarea{
 	dir = 2
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bwH" = (
-/turf/open/floor/loadingarea{
+/turf/open/floor/marking/loadingarea{
 	dir = 2
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -35707,15 +35668,11 @@
 "bxB" = (
 /obj/structure/largecrate/guns,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "bot"
-	},
+/turf/open/floor/marking/bot,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bxC" = (
 /obj/structure/largecrate/guns,
-/turf/open/floor{
-	icon_state = "bot"
-	},
+/turf/open/floor/marking/bot,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bxD" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -35863,9 +35820,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bxV" = (
 /obj/structure/largecrate/cow,
-/turf/open/floor{
-	icon_state = "bot"
-	},
+/turf/open/floor/marking/bot,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bxW" = (
 /obj/effect/spawner/random/toolbox,
@@ -36082,9 +36037,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "byw" = (
 /obj/structure/largecrate/mule,
-/turf/open/floor{
-	icon_state = "bot"
-	},
+/turf/open/floor/marking/bot,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "byx" = (
 /obj/structure/largecrate/mule,
@@ -36094,9 +36047,7 @@
 "byy" = (
 /obj/structure/largecrate/lisa,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "bot"
-	},
+/turf/open/floor/marking/bot,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "byz" = (
 /turf/open/floor{
