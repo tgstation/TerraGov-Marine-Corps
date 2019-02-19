@@ -37682,9 +37682,8 @@
 	},
 /area/almayer/medical/upper_medical)
 "btL" = (
-/obj/structure/cargo_container{
-	tag = "icon-green 0,0";
-	icon_state = "green 0,0"
+/obj/structure/cargo_container/green{
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -37692,9 +37691,8 @@
 	},
 /area/almayer/hallways/hangar)
 "btM" = (
-/obj/structure/cargo_container{
-	tag = "icon-green 1,0";
-	icon_state = "green 1,0"
+/obj/structure/cargo_container/green{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -37702,9 +37700,8 @@
 	},
 /area/almayer/hallways/hangar)
 "btN" = (
-/obj/structure/cargo_container{
-	tag = "icon-green 2,0";
-	icon_state = "green 2,0"
+/obj/structure/cargo_container/green{
+	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/hallways/hangar)

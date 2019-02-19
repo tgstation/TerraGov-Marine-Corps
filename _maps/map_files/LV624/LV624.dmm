@@ -2012,9 +2012,8 @@
 /turf/open/gm/dirt,
 /area/lv624/ground/sand2)
 "agW" = (
-/obj/structure/cargo_container{
-	tag = "icon-green 0,0";
-	icon_state = "green 0,0"
+/obj/structure/cargo_container/green{
+	dir = 8
 	},
 /turf/open/floor{
 	icon_state = "bot";
@@ -2022,16 +2021,14 @@
 	},
 /area/lv624/ground/sand2)
 "agX" = (
-/obj/structure/cargo_container{
-	tag = "icon-green 1,0";
-	icon_state = "green 1,0"
+/obj/structure/cargo_container/green{
+	dir = 1
 	},
 /turf/open/floor,
 /area/lv624/ground/sand2)
 "agY" = (
-/obj/structure/cargo_container{
-	tag = "icon-green 2,0";
-	icon_state = "green 2,0"
+/obj/structure/cargo_container/green{
+	dir = 4
 	},
 /turf/open/floor,
 /area/lv624/ground/sand2)
@@ -2059,9 +2056,8 @@
 /turf/open/floor/plating/catwalk,
 /area/lv624/ground/sand8)
 "ahd" = (
-/obj/structure/cargo_container{
-	tag = "icon-green 0,0";
-	icon_state = "green 0,0"
+/obj/structure/cargo_container/green{
+	dir = 8
 	},
 /turf/open/floor,
 /area/lv624/ground/sand2)
@@ -10373,27 +10369,24 @@
 /turf/open/gm/grass,
 /area/lv624/ground/jungle9)
 "aGO" = (
-/obj/structure/cargo_container{
-	tag = "icon-green 0,0";
-	icon_state = "green 0,0"
+/obj/structure/cargo_container/green{
+	dir = 8
 	},
 /turf/open/floor/plating{
 	icon_state = "platebotc"
 	},
 /area/lv624/lazarus/quartstorage/outdoors)
 "aGP" = (
-/obj/structure/cargo_container{
-	tag = "icon-green 1,0";
-	icon_state = "green 1,0"
+/obj/structure/cargo_container/green{
+	dir = 1
 	},
 /turf/open/floor/plating{
 	icon_state = "platebotc"
 	},
 /area/lv624/lazarus/quartstorage/outdoors)
 "aGQ" = (
-/obj/structure/cargo_container{
-	tag = "icon-green 2,0";
-	icon_state = "green 2,0"
+/obj/structure/cargo_container/green{
+	dir = 4
 	},
 /turf/open/floor/plating{
 	icon_state = "platebotc"
@@ -21030,23 +21023,20 @@
 	},
 /area/shuttle/drop1/lz1)
 "bhL" = (
-/obj/structure/cargo_container{
-	tag = "icon-green 0,0";
-	icon_state = "green 0,0"
+/obj/structure/cargo_container/green{
+	dir = 8
 	},
 /turf/open/floor,
 /area/shuttle/drop1/lz1)
 "bhM" = (
-/obj/structure/cargo_container{
-	tag = "icon-green 1,0";
-	icon_state = "green 1,0"
+/obj/structure/cargo_container/green{
+	dir = 1
 	},
 /turf/open/floor,
 /area/shuttle/drop1/lz1)
 "bhN" = (
-/obj/structure/cargo_container{
-	tag = "icon-green 2,0";
-	icon_state = "green 2,0"
+/obj/structure/cargo_container/green{
+	dir = 4
 	},
 /turf/open/floor,
 /area/shuttle/drop1/lz1)

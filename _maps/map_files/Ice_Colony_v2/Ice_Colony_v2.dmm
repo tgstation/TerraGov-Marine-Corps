@@ -24110,16 +24110,14 @@
 	},
 /area/ice_colony/surface/research/tech_storage)
 "aXd" = (
-/obj/structure/cargo_container{
-	tag = "icon-green 1,0";
-	icon_state = "green 1,0"
+/obj/structure/cargo_container/green{
+	dir = 1
 	},
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/container_yard)
 "aXe" = (
-/obj/structure/cargo_container{
-	tag = "icon-green 2,0";
-	icon_state = "green 2,0"
+/obj/structure/cargo_container/green{
+	dir = 4
 	},
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/container_yard)
@@ -24949,9 +24947,8 @@
 	name = "\improper West Road Tunnel"
 	})
 "aYX" = (
-/obj/structure/cargo_container{
-	tag = "icon-green 0,0";
-	icon_state = "green 0,0"
+/obj/structure/cargo_container/green{
+	dir = 8
 	},
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/container_yard)
@@ -46952,9 +46949,8 @@
 /turf/closed/wall/r_wall,
 /area/ice_colony/underground/reception)
 "bRv" = (
-/obj/structure/cargo_container{
-	tag = "icon-green 0,0";
-	icon_state = "green 0,0"
+/obj/structure/cargo_container/green{
+	dir = 8
 	},
 /turf/open/floor/plating/icefloor{
 	tag = "icon-warnplate (SOUTHWEST)";
@@ -46980,9 +46976,8 @@
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad)
 "bRy" = (
-/obj/structure/cargo_container{
-	tag = "icon-green 1,0";
-	icon_state = "green 1,0"
+/obj/structure/cargo_container/green{
+	dir = 1
 	},
 /turf/open/floor/plating/icefloor{
 	tag = "icon-warnplate";
@@ -47018,9 +47013,8 @@
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad)
 "bRD" = (
-/obj/structure/cargo_container{
-	tag = "icon-green 2,0";
-	icon_state = "green 2,0"
+/obj/structure/cargo_container/green{
+	dir = 4
 	},
 /turf/open/floor/plating/icefloor{
 	tag = "icon-warnplate";

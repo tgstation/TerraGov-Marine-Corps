@@ -29,7 +29,10 @@
 						 "You hear twisting metal.")
 
 /obj/structure/cargo_container/red
-	icon_state = red
+	icon_state = "red"
+
+/obj/structure/cargo_container/green
+	icon_state = "green"
 
 /obj/structure/cargo_container/horizontal
 	name = "Cargo Container"

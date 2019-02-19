@@ -2686,23 +2686,20 @@
 /turf/open/gm/dirt,
 /area/whiskey_outpost/outside/north)
 "fL" = (
-/obj/structure/cargo_container{
-	tag = "icon-green 0,0";
-	icon_state = "green 0,0"
+/obj/structure/cargo_container/green{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/whiskey_outpost/outside/north)
 "fM" = (
-/obj/structure/cargo_container{
-	tag = "icon-green 1,0";
-	icon_state = "green 1,0"
+/obj/structure/cargo_container/green{
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/whiskey_outpost/outside/north)
 "fN" = (
-/obj/structure/cargo_container{
-	tag = "icon-green 2,0";
-	icon_state = "green 2,0"
+/obj/structure/cargo_container/green{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/whiskey_outpost/outside/north)

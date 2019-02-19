@@ -531,23 +531,20 @@
 	},
 /area/bigredv2/outside/space_port)
 "abk" = (
-/obj/structure/cargo_container{
-	tag = "icon-green 0,0";
-	icon_state = "green 0,0"
+/obj/structure/cargo_container/green{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "abl" = (
-/obj/structure/cargo_container{
-	tag = "icon-green 1,0";
-	icon_state = "green 1,0"
+/obj/structure/cargo_container/green{
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "abm" = (
-/obj/structure/cargo_container{
-	tag = "icon-green 2,0";
-	icon_state = "green 2,0"
+/obj/structure/cargo_container/green{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
@@ -904,27 +901,24 @@
 /turf/open/floor/plating,
 /area/shuttle/drop1/BigRed)
 "ace" = (
-/obj/structure/cargo_container{
-	tag = "icon-green 0,0";
-	icon_state = "green 0,0"
+/obj/structure/cargo_container/green{
+	dir = 8
 	},
 /turf/open/floor/plating/warning{
 	dir = 2
 	},
 /area/bigredv2/outside/space_port)
 "acf" = (
-/obj/structure/cargo_container{
-	tag = "icon-green 1,0";
-	icon_state = "green 1,0"
+/obj/structure/cargo_container/green{
+	dir = 1
 	},
 /turf/open/floor/plating/warning{
 	dir = 2
 	},
 /area/bigredv2/outside/space_port)
 "acg" = (
-/obj/structure/cargo_container{
-	tag = "icon-green 2,0";
-	icon_state = "green 2,0"
+/obj/structure/cargo_container/green{
+	dir = 4
 	},
 /turf/open/floor/plating/warning{
 	dir = 2
