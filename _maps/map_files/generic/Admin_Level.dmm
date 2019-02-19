@@ -2587,9 +2587,8 @@
 /turf/open/floor/plating/almayer,
 /area/centcom/ferry)
 "fD" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E-corner"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/plating/almayer,
 /area/centcom/ferry)
@@ -2808,9 +2807,8 @@
 	},
 /area/centcom)
 "gd" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/plating/almayer,
 /area/centcom/ferry)
@@ -4078,9 +4076,8 @@
 	},
 /area/shuttle/distress/start_upp)
 "jv" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
@@ -4372,9 +4369,8 @@
 	},
 /area/shuttle/distress/start_upp)
 "kt" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
@@ -4542,24 +4538,20 @@
 	},
 /area/shuttle/distress/start_big)
 "kO" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
 "kP" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
@@ -4742,13 +4734,11 @@
 	},
 /area/shuttle/distress/start_big)
 "lj" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
@@ -4845,98 +4835,80 @@
 	},
 /area/shuttle/distress/start_big)
 "lv" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
 "lw" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
 "lx" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
 "ly" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
 "lz" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
 "lA" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
 "lB" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
 "lC" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	tag = "icon-blue (NORTHEAST)";
@@ -4945,13 +4917,11 @@
 	},
 /area/shuttle/distress/start_big)
 "lD" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
@@ -4963,9 +4933,8 @@
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
 "lF" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	icon_plating = "tcomms";
@@ -4976,20 +4945,17 @@
 /obj/structure/bed/chair/office/light{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
 "lH" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	icon_plating = "tcomms";
@@ -5005,13 +4971,11 @@
 	},
 /area/shuttle/distress/start_big)
 "lJ" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /obj/machinery/power/apc/almayer{
 	cell_type = /obj/item/cell/hyper;
@@ -5027,13 +4991,11 @@
 	},
 /area/shuttle/distress/start_big)
 "lK" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /obj/structure/cable{
 	d2 = 8;
@@ -5051,13 +5013,11 @@
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
 "lN" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
@@ -5069,55 +5029,45 @@
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
 "lP" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/machinery/light/small,
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
 "lQ" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
 "lR" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
 "lS" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/machinery/light/small{
 	dir = 1
@@ -5136,13 +5086,11 @@
 	icon_state = "officechair_white";
 	tag = ""
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
@@ -5150,13 +5098,11 @@
 /obj/machinery/computer/shuttle_control/ert{
 	shuttle_tag = "Distress_Big"
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	icon_plating = "tcomms";
@@ -5201,65 +5147,53 @@
 	},
 /area/shuttle/distress/start_big)
 "lX" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
 "lY" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
 "lZ" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
 "ma" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
 "mb" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
@@ -5271,9 +5205,8 @@
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
 "md" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	icon_plating = "tcomms";
@@ -5282,20 +5215,17 @@
 /area/shuttle/distress/start_big)
 "me" = (
 /obj/structure/bed/chair/office/light,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
 "mf" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	icon_plating = "tcomms";
@@ -5373,13 +5303,11 @@
 	},
 /area/shuttle/distress/start_big)
 "mn" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
@@ -5461,32 +5389,26 @@
 	},
 /area/shuttle/distress/start_big)
 "mv" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
 "mw" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
@@ -5558,24 +5480,20 @@
 	},
 /area/shuttle/distress/start_big)
 "mD" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
 "mE" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
@@ -5613,17 +5531,14 @@
 	},
 /area/shuttle/distress/start_big)
 "mI" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
@@ -6128,16 +6043,14 @@
 	},
 /area/centcom)
 "ob" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/plating/almayer,
 /area/centcom/ferry)
 "oc" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/plating/almayer,
 /area/centcom/ferry)
@@ -6446,9 +6359,8 @@
 /turf/open/floor/grass,
 /area/centcom)
 "oR" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /turf/open/floor/plating/almayer,
 /area/centcom/ferry)
@@ -6478,13 +6390,11 @@
 	},
 /area/shuttle/distress/start_big)
 "oV" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/plating/almayer,
 /area/centcom/ferry)

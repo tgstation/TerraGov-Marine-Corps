@@ -7,3 +7,6 @@
 
 	loc.overlays += src
 	return INITIALIZE_HINT_QDEL
+
+/obj/effect/decal/warning_stripes/thin
+	icon_state = "thin"

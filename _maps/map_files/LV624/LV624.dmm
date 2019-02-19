@@ -819,13 +819,11 @@
 /turf/closed/wall/r_wall,
 /area/lv624/ground/caves/central1)
 "acT" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor,
 /area/lv624/ground/caves/central1)
@@ -903,9 +901,8 @@
 /turf/open/floor,
 /area/lv624/ground/caves/central1)
 "ade" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor,
 /area/lv624/ground/caves/central1)
@@ -984,9 +981,8 @@
 	},
 /area/lv624/ground/caves/west1)
 "adq" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor,
 /area/lv624/ground/sand2)
@@ -1027,9 +1023,8 @@
 /area/lv624/ground/caves/central1)
 "adv" = (
 /obj/effect/alien/weeds/node,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor,
 /area/lv624/ground/caves/central1)
@@ -1335,17 +1330,15 @@
 /turf/open/gm/dirt,
 /area/lv624/ground/sand6)
 "aez" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /obj/machinery/door/poddoor/shutters/almayer,
 /turf/open/floor/plating,
 /area/lv624/ground/sand6)
 "aeA" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/plating,
 /area/lv624/ground/sand6)
@@ -1368,9 +1361,8 @@
 /turf/open/gm/dirt,
 /area/lv624/ground/sand5)
 "aeF" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor,
 /area/lv624/ground/sand5)
@@ -1409,16 +1401,14 @@
 	},
 /area/lv624/ground/caves/central1)
 "aeN" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor,
 /area/lv624/ground/sand5)
 "aeO" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor,
 /area/lv624/ground/sand5)
@@ -1445,9 +1435,8 @@
 /turf/open/gm/dirt,
 /area/lv624/ground/sand6)
 "aeV" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor,
@@ -1472,29 +1461,25 @@
 /area/lv624/ground/sand5)
 "afb" = (
 /obj/effect/alien/weeds/node,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor,
 /area/lv624/ground/sand5)
 "afc" = (
 /obj/structure/mineral_door/resin,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor,
 /area/lv624/ground/sand5)
 "afd" = (
 /obj/effect/alien/weeds/node,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor,
 /area/lv624/ground/sand5)
@@ -2571,16 +2556,14 @@
 /turf/open/gm/dirt,
 /area/lv624/ground/river2)
 "aiK" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor,
 /area/lv624/ground/sand2)
 "aiL" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
 /turf/open/floor{
 	dir = 1;
@@ -2588,9 +2571,8 @@
 	},
 /area/lv624/ground/sand2)
 "aiM" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /turf/open/floor{
 	dir = 1;
@@ -2722,9 +2704,8 @@
 /turf/open/floor/plating/catwalk,
 /area/lv624/ground/sand9)
 "aji" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor,
 /area/lv624/ground/river2)
@@ -2732,9 +2713,8 @@
 /turf/open/floor,
 /area/lv624/ground/river2)
 "ajk" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor,
 /area/lv624/ground/sand2)
@@ -3166,9 +3146,8 @@
 /turf/open/gm/river,
 /area/lv624/ground/river2)
 "akH" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor,
 /area/lv624/ground/sand8)
@@ -3364,27 +3343,23 @@
 /turf/open/floor,
 /area/lv624/ground/sand8)
 "aln" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /turf/open/floor,
 /area/lv624/ground/sand8)
 "alo" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor,
 /area/lv624/ground/sand8)
 "alp" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor,
 /area/lv624/ground/sand8)
@@ -3466,9 +3441,8 @@
 /turf/open/floor/plating/catwalk,
 /area/lv624/ground/sand8)
 "alB" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor,
 /area/lv624/ground/sand8)
@@ -3477,9 +3451,8 @@
 /turf/open/floor,
 /area/lv624/ground/sand8)
 "alD" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E-corner"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor,
 /area/lv624/ground/sand8)
@@ -3495,9 +3468,8 @@
 /turf/open/floor/plating/catwalk,
 /area/lv624/ground/river2)
 "alG" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor,
 /area/lv624/ground/sand8)
@@ -3561,13 +3533,11 @@
 /turf/open/floor/plating/catwalk,
 /area/lv624/ground/river2)
 "alR" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor,
 /area/lv624/ground/sand8)
@@ -3585,9 +3555,8 @@
 /area/lv624/ground/sand8)
 "alV" = (
 /obj/item/ammo_casing,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor,
 /area/lv624/ground/sand8)
@@ -3761,20 +3730,17 @@
 	},
 /area/lv624/ground/sand4)
 "amu" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor,
 /area/lv624/ground/sand8)
 "amv" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /turf/open/floor,
 /area/lv624/ground/sand8)
@@ -3790,9 +3756,8 @@
 /area/lv624/ground/jungle7)
 "amy" = (
 /obj/effect/decal/remains/xeno,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor,
 /area/lv624/ground/sand8)
@@ -3871,20 +3836,17 @@
 	},
 /area/lv624/ground/sand8)
 "amK" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor,
 /area/lv624/ground/sand9)
 "amL" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E-corner"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor,
 /area/lv624/ground/sand9)
@@ -3985,13 +3947,11 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/machinery/power/apc{
 	dir = 1;
@@ -4020,9 +3980,8 @@
 	},
 /area/lv624/lazarus/armory)
 "amZ" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	tag = "icon-intact-supply (EAST)";
@@ -4089,23 +4048,20 @@
 	},
 /area/lv624/ground/sand8)
 "ang" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor,
 /area/lv624/ground/sand8)
 "anh" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor,
 /area/lv624/ground/sand9)
 "ani" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
 /turf/open/floor,
 /area/lv624/ground/sand9)
@@ -4113,20 +4069,17 @@
 /turf/open/floor,
 /area/lv624/ground/sand9)
 "ank" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /turf/open/floor,
 /area/lv624/ground/sand9)
 "anl" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E-corner"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor,
 /area/lv624/ground/sand9)
@@ -4190,9 +4143,8 @@
 /turf/open/gm/dirt,
 /area/lv624/ground/sand4)
 "anv" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
 /turf/open/floor,
 /area/lv624/ground/sand8)
@@ -4201,9 +4153,8 @@
 /turf/open/floor,
 /area/lv624/ground/sand8)
 "anx" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /obj/effect/decal/remains/xeno,
 /turf/open/floor,
@@ -4227,17 +4178,15 @@
 /turf/open/floor/grass,
 /area/lv624/lazarus/main_hall)
 "anz" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4;
 	icon_state = "pipe-c"
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor,
 /area/lv624/ground/sand8)
@@ -4354,9 +4303,8 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/machinery/colony_floodlight,
 /turf/open/floor,
@@ -4376,9 +4324,8 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/machinery/colony_floodlight,
 /turf/open/floor,
@@ -4571,13 +4518,11 @@
 /turf/open/gm/river,
 /area/lv624/ground/river2)
 "aoB" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor,
 /area/lv624/ground/river2)
@@ -4585,16 +4530,14 @@
 /turf/open/floor,
 /area/lv624/ground/compound/n)
 "aoD" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
 /turf/open/floor,
 /area/lv624/ground/river2)
 "aoE" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -4615,9 +4558,8 @@
 /turf/open/floor,
 /area/lv624/ground/river2)
 "aoH" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -4664,9 +4606,8 @@
 /turf/open/gm/river,
 /area/lv624/ground/river3)
 "aoP" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /turf/open/floor,
 /area/lv624/ground/river2)
@@ -4762,9 +4703,8 @@
 /turf/open/floor/plating,
 /area/lv624/ground/river2)
 "aph" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor,
 /area/lv624/ground/river2)
@@ -4813,13 +4753,11 @@
 /turf/open/floor,
 /area/lv624/ground/compound/n)
 "apr" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/machinery/colony_floodlight,
 /turf/open/floor,
@@ -4877,9 +4815,8 @@
 	},
 /area/lv624/ground/river2)
 "apA" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
 /turf/open/floor,
 /area/lv624/ground/jungle7)
@@ -4902,21 +4839,18 @@
 /turf/open/gm/river,
 /area/lv624/ground/river2)
 "apF" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/machinery/colony_floodlight,
 /turf/open/floor,
 /area/lv624/ground/jungle7)
 "apG" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -4926,9 +4860,8 @@
 /turf/open/floor,
 /area/lv624/ground/compound/n)
 "apH" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/structure/cable/yellow{
 	d1 = 2;
@@ -4949,16 +4882,14 @@
 	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor,
 /area/lv624/ground/compound/n)
 "apJ" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor,
 /area/lv624/ground/jungle7)
@@ -5252,17 +5183,14 @@
 	},
 /area/lv624/ground/river3)
 "aqO" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /obj/structure/bed,
 /turf/open/floor{
@@ -5347,9 +5275,8 @@
 /turf/open/gm/grass,
 /area/lv624/ground/jungle8)
 "arg" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor,
@@ -5467,9 +5394,8 @@
 /turf/open/gm/grass,
 /area/lv624/ground/jungle5)
 "arD" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -5511,17 +5437,14 @@
 /turf/closed/gm/dense,
 /area/lv624/ground/river1)
 "arL" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/structure/bed,
 /turf/open/floor{
@@ -5856,9 +5779,8 @@
 	},
 /area/lv624/ground/jungle7)
 "asN" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor,
 /area/lv624/ground/jungle7)
@@ -5870,9 +5792,8 @@
 /turf/open/floor,
 /area/lv624/ground/jungle7)
 "asQ" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor,
 /area/lv624/ground/jungle7)
@@ -5984,39 +5905,33 @@
 	},
 /area/lv624/ground/jungle7)
 "ato" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor,
 /area/lv624/ground/jungle7)
 "atp" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor,
 /area/lv624/ground/jungle7)
 "atq" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /turf/open/floor,
 /area/lv624/ground/jungle7)
 "atr" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor,
 /area/lv624/ground/jungle7)
@@ -6101,13 +6016,11 @@
 /turf/open/gm/dirtgrassborder,
 /area/lv624/ground/compound/sw)
 "atG" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor,
 /area/lv624/ground/jungle6)
@@ -6134,25 +6047,21 @@
 /turf/open/gm/grass,
 /area/lv624/ground/jungle6)
 "atL" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor,
 /area/lv624/ground/jungle7)
 "atM" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor,
 /area/lv624/ground/jungle7)
@@ -6271,13 +6180,11 @@
 /turf/open/gm/grass,
 /area/lv624/ground/jungle9)
 "aui" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor,
 /area/lv624/ground/jungle6)
@@ -8038,13 +7945,11 @@
 	},
 /area/lv624/lazarus/hydroponics)
 "ayJ" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	tag = "icon-intact-supply (SOUTHEAST)";
@@ -8460,9 +8365,8 @@
 	pixel_x = 25;
 	req_access_txt = "0"
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor{
 	icon_state = "dark"
@@ -9934,27 +9838,24 @@
 /turf/open/gm/dirtgrassborder,
 /area/lv624/ground/compound/ne)
 "aFb" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /turf/open/floor{
 	icon_state = "dark"
 	},
 /area/lv624/lazarus/quartstorage)
 "aFc" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor{
 	icon_state = "dark"
 	},
 /area/lv624/lazarus/quartstorage)
 "aFd" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
 /turf/open/floor{
 	icon_state = "dark"
@@ -10093,9 +9994,8 @@
 	},
 /area/lv624/ground/jungle9)
 "aFH" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor{
 	icon_state = "dark"
@@ -10111,9 +10011,8 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage)
 "aFK" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor{
 	icon_state = "dark"
@@ -10338,9 +10237,8 @@
 /area/lv624/lazarus/quartstorage)
 "aGr" = (
 /obj/effect/landmark/random_item/crap,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor{
 	icon_state = "dark"
@@ -10730,39 +10628,33 @@
 	},
 /area/lv624/lazarus/quartstorage)
 "aHy" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /turf/open/floor{
 	icon_state = "dark"
 	},
 /area/lv624/lazarus/quartstorage)
 "aHz" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor{
 	icon_state = "dark"
 	},
 /area/lv624/lazarus/quartstorage)
 "aHA" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /turf/open/floor{
 	icon_state = "dark"
@@ -11159,9 +11051,8 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor{
 	icon_state = "dark"
@@ -11195,9 +11086,8 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor{
 	icon_state = "dark"
@@ -11878,18 +11768,16 @@
 /turf/open/gm/grass,
 /area/lv624/lazarus/quartstorage/outdoors)
 "aKA" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /turf/open/floor{
 	icon_state = "dark"
 	},
 /area/lv624/lazarus/quartstorage)
 "aKB" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor{
 	icon_state = "dark"
@@ -11897,18 +11785,16 @@
 /area/lv624/lazarus/quartstorage)
 "aKC" = (
 /obj/effect/landmark/random_item/crap,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /turf/open/floor{
 	icon_state = "dark"
 	},
 /area/lv624/lazarus/quartstorage)
 "aKD" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /turf/open/floor{
 	icon_state = "dark"
@@ -12414,9 +12300,8 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
 /turf/open/floor{
 	icon_state = "dark"
@@ -13052,30 +12937,25 @@
 /obj/item/stack/sheet/wood{
 	amount = 50
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /turf/open/floor{
 	icon_state = "dark"
 	},
 /area/lv624/lazarus/quartstorage)
 "aNJ" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
 /turf/open/floor{
 	icon_state = "dark"
@@ -13467,13 +13347,11 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage)
 "aON" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor{
 	icon_state = "dark"
@@ -14024,38 +13902,31 @@
 	},
 /area/lv624/lazarus/quartstorage)
 "aQv" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /turf/open/floor{
 	icon_state = "dark"
 	},
 /area/lv624/lazarus/quartstorage)
 "aQw" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /turf/open/floor{
 	icon_state = "dark"
@@ -14918,9 +14789,8 @@
 	},
 /area/lv624/lazarus/sleep_female)
 "aSx" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	tag = "icon-intact-supply (EAST)";
@@ -14931,9 +14801,8 @@
 	},
 /area/lv624/lazarus/quartstorage)
 "aSy" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
@@ -20193,9 +20062,8 @@
 /area/lv624/ground/jungle3)
 "bfc" = (
 /obj/machinery/colony_floodlight,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/gm/dirtgrassborder{
 	dir = 4
@@ -20209,9 +20077,8 @@
 /area/lv624/ground/jungle3)
 "bfe" = (
 /obj/machinery/colony_floodlight,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/gm/dirtgrassborder{
 	dir = 8
@@ -20490,27 +20357,24 @@
 /turf/open/gm/grass,
 /area/lv624/ground/jungle3)
 "bfP" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /turf/open/gm/dirtgrassborder/corner{
 	dir = 8
 	},
 /area/lv624/ground/jungle3)
 "bfQ" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/gm/dirtgrassborder{
 	dir = 1
 	},
 /area/lv624/ground/jungle3)
 "bfR" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /turf/open/gm/dirtgrassborder/corner{
 	dir = 4
@@ -22214,9 +22078,8 @@
 	},
 /area/shuttle/drop1/lz1)
 "bkf" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/structure/barricade/wooden,
 /turf/open/gm/dirtgrassborder2/corner{
@@ -22228,9 +22091,8 @@
 /turf/open/floor,
 /area/shuttle/drop1/lz1)
 "bkh" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/structure/barricade/wooden,
 /turf/open/gm/dirtgrassborder2/corner{
@@ -22508,9 +22370,8 @@
 /turf/open/gm/dirt,
 /area/lv624/ground/jungle1)
 "bkV" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/gm/dirtgrassborder{
 	dir = 4
@@ -22520,9 +22381,8 @@
 /turf/open/floor,
 /area/lv624/ground/jungle1)
 "bkX" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/gm/dirtgrassborder{
 	dir = 8
@@ -23223,18 +23083,16 @@
 /turf/open/gm/grass,
 /area/lv624/ground/jungle1)
 "bmq" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /turf/open/gm/dirtgrassborder/corner{
 	dir = 8
 	},
 /area/lv624/ground/jungle1)
 "bmr" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/gm/dirtgrassborder{
 	dir = 1
@@ -23244,9 +23102,8 @@
 /obj/structure/jungle/vines{
 	icon_state = "Light3"
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /turf/open/gm/dirtgrassborder/corner{
 	dir = 4
@@ -23268,22 +23125,19 @@
 	},
 /area/lv624/lazarus/secure_storage)
 "bmw" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor{
 	icon_state = "dark"
 	},
 /area/lv624/lazarus/secure_storage)
 "bmx" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /turf/open/floor{
 	icon_state = "dark"
@@ -23490,9 +23344,8 @@
 	},
 /area/lv624/lazarus/secure_storage)
 "bmZ" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -23543,9 +23396,8 @@
 	},
 /area/lv624/lazarus/secure_storage)
 "bnd" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor{
 	icon_state = "dark"
@@ -23596,9 +23448,8 @@
 	},
 /area/lv624/lazarus/engineering)
 "bnn" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/structure/cable{
 	d2 = 2;
@@ -23731,22 +23582,19 @@
 /turf/open/gm/grass,
 /area/lv624/ground/jungle3)
 "bnH" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor{
 	icon_state = "dark"
 	},
 /area/lv624/lazarus/secure_storage)
 "bnI" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -23763,9 +23611,8 @@
 	},
 /area/lv624/lazarus/secure_storage)
 "bnK" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /turf/open/floor{
 	icon_state = "dark"
@@ -23807,9 +23654,8 @@
 	},
 /area/lv624/lazarus/engineering)
 "bnQ" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -24063,9 +23909,8 @@
 	},
 /area/lv624/lazarus/secure_storage)
 "boq" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor{
 	icon_state = "dark"
@@ -24256,9 +24101,8 @@
 /area/lv624/lazarus/engineering)
 "boI" = (
 /obj/machinery/light,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -24972,40 +24816,35 @@
 	},
 /area/lv624/ground/jungle3)
 "bqG" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor{
 	icon_state = "dark"
 	},
 /area/lv624/lazarus/secure_storage)
 "bqH" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor{
 	icon_state = "dark"
 	},
 /area/lv624/lazarus/secure_storage)
 "bqI" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
 /turf/open/floor{
 	icon_state = "dark"
 	},
 /area/lv624/lazarus/secure_storage)
 "bqJ" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /turf/open/floor{
 	icon_state = "dark"
@@ -25338,26 +25177,22 @@
 	},
 /area/lv624/lazarus/secure_storage)
 "brK" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /turf/open/floor{
 	icon_state = "dark"
 	},
 /area/lv624/lazarus/secure_storage)
 "brL" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
 /turf/open/floor{
 	icon_state = "dark"

@@ -15624,9 +15624,8 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aGk" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /obj/machinery/light{
 	dir = 1
@@ -15641,9 +15640,8 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aGl" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /obj/effect/alien/weeds/node,
 /turf/open/floor{
@@ -15653,9 +15651,8 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aGm" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor{
 	tag = "icon-whitegreencorner (EAST)";
@@ -15664,9 +15661,8 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aGn" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
 /obj/machinery/light{
 	dir = 1
@@ -16001,9 +15997,8 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aGZ" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /obj/machinery/power/apc{
 	dir = 1;
@@ -16085,9 +16080,8 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aHe" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
 /turf/open/floor{
 	tag = "icon-whitegreen (NORTHEAST)";
@@ -16463,9 +16457,8 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aHS" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /obj/machinery/light{
 	icon_state = "tube1";
@@ -16552,9 +16545,8 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aHY" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
 /obj/machinery/light/built{
 	tag = "icon-tube1 (EAST)";
@@ -17043,9 +17035,8 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aIV" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/structure/sign/biohazard{
 	pixel_y = 32
@@ -17092,9 +17083,8 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aIZ" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-whitegreen (WEST)";
@@ -17165,9 +17155,8 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aJf" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/effect/decal/cleanable/mucus,
 /turf/open/floor{
@@ -17730,9 +17719,8 @@
 /obj/structure/sign/biohazard{
 	pixel_y = -32
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -17861,13 +17849,11 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aJY" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -17985,9 +17971,8 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aKf" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/effect/alien/weeds/node,
 /turf/open/floor{
@@ -18324,9 +18309,8 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aKU" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NE-out";
-	icon_state = "NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /obj/machinery/light{
 	icon_state = "tube1";
@@ -18427,9 +18411,8 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aLb" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /obj/machinery/light/built{
 	tag = "icon-tube1 (EAST)";
@@ -18811,9 +18794,8 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aLO" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NE-out";
-	icon_state = "NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /obj/effect/decal/cleanable/mucus,
 /turf/open/floor{
@@ -18876,9 +18858,8 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aLS" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /turf/open/floor{
 	tag = "icon-whitegreen (SOUTHEAST)";
@@ -19111,9 +19092,8 @@
 /turf/open/floor/greengrid,
 /area/bigredv2/caves/lambda_lab)
 "aMv" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NE-out";
-	icon_state = "NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /obj/structure/sign/biohazard{
 	pixel_y = -32
@@ -19141,9 +19121,8 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aMw" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/structure/cable{
 	d1 = 2;
@@ -19158,9 +19137,8 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aMx" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/effect/alien/weeds/node,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -19171,9 +19149,8 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aMy" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /obj/structure/sign/biohazard{
 	pixel_y = -32
@@ -32639,9 +32616,8 @@
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "bpV" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
@@ -32869,9 +32845,8 @@
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "bqv" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -33176,9 +33151,8 @@
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "bqX" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)

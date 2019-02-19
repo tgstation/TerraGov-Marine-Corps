@@ -132,9 +132,8 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/hallways/aft_hallway)
 "aat" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E-corner"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	dir = 8;
@@ -220,9 +219,8 @@
 	},
 /area/almayer/hull/upper_hull)
 "aaC" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /turf/open/floor/almayer{
 	dir = 8;
@@ -340,9 +338,8 @@
 	},
 /area/almayer/evacuation/pod7)
 "aaS" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	dir = 5;
@@ -351,9 +348,8 @@
 	},
 /area/almayer/hallways/aft_hallway)
 "aaT" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	dir = 9;
@@ -427,9 +423,8 @@
 	},
 /area/almayer/evacuation/pod7)
 "abf" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	dir = 6;
@@ -441,9 +436,8 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	dir = 10;
@@ -488,9 +482,8 @@
 	},
 /area/almayer/evacuation/pod7)
 "abn" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	dir = 4;
@@ -499,9 +492,8 @@
 	},
 /area/almayer/hallways/aft_hallway)
 "abo" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	dir = 8;
@@ -544,9 +536,8 @@
 	network = list("almayer");
 	tag = "icon-camera (WEST)"
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	dir = 4;
@@ -900,9 +891,8 @@
 	icon_state = "door_open";
 	dir = 2
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
 /turf/open/floor/almayer{
 	tag = "icon-test_floor4";
@@ -1352,9 +1342,8 @@
 /turf/open/floor/plating/almayer,
 /area/almayer/hallways/aft_hallway)
 "adA" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	tag = "icon-greencorner";
@@ -1363,9 +1352,8 @@
 	},
 /area/almayer/hallways/aft_hallway)
 "adB" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E-corner"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/machinery/light{
 	dir = 1
@@ -1417,9 +1405,8 @@
 	icon_state = "tube1";
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	dir = 6;
@@ -1428,9 +1415,8 @@
 	},
 /area/almayer/hallways/aft_hallway)
 "adI" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	dir = 10;
@@ -1568,9 +1554,8 @@
 /turf/open/floor/plating/almayer,
 /area/almayer/hallways/aft_hallway)
 "aea" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	dir = 4;
@@ -1579,9 +1564,8 @@
 	},
 /area/almayer/hallways/aft_hallway)
 "aeb" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E-corner"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	dir = 8;
@@ -1838,9 +1822,8 @@
 /turf/closed/wall/almayer,
 /area/almayer/living/officer_study)
 "aeJ" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /turf/open/floor/almayer{
 	dir = 4;
@@ -3219,9 +3202,8 @@
 	icon_state = "door_open";
 	dir = 2
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /turf/open/floor/almayer{
 	tag = "icon-test_floor4";
@@ -4144,9 +4126,8 @@
 /obj/structure/table/almayer,
 /obj/item/storage/briefcase/inflatable,
 /obj/item/storage/briefcase/inflatable,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	icon_state = "plating"
@@ -4154,9 +4135,8 @@
 /area/almayer/shipboard/brig)
 "ajL" = (
 /obj/structure/table/almayer,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
 /obj/item/storage/box/handcuffs,
 /obj/item/storage/box/handcuffs,
@@ -4168,9 +4148,8 @@
 /area/almayer/shipboard/brig)
 "ajM" = (
 /obj/structure/table/almayer,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /obj/item/storage/box/flashbangs{
 	pixel_y = 10
@@ -4183,9 +4162,8 @@
 "ajN" = (
 /obj/structure/table/almayer,
 /obj/machinery/recharger,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	icon_state = "plating"
@@ -4226,9 +4204,8 @@
 /obj/structure/bed/chair{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	icon_state = "plating"
@@ -5030,9 +5007,8 @@
 	},
 /area/almayer/shipboard/brig)
 "akZ" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	dir = 9;
@@ -5041,9 +5017,8 @@
 	},
 /area/almayer/shipboard/brig)
 "ala" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	dir = 5;
@@ -5118,9 +5093,8 @@
 	},
 /area/almayer/shipboard/brig)
 "ali" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	dir = 9;
@@ -5142,9 +5116,8 @@
 	},
 /area/almayer/command/cic)
 "all" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	dir = 1;
@@ -5195,9 +5168,8 @@
 /turf/open/floor/wood,
 /area/almayer/command/corporateliaison)
 "alq" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	dir = 5;
@@ -6220,13 +6192,11 @@
 	},
 /area/almayer/hallways/stern_hallway)
 "amz" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /obj/machinery/light{
 	dir = 8
@@ -6237,13 +6207,11 @@
 	},
 /area/almayer/shipboard/brig)
 "amA" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /turf/open/floor/almayer{
 	dir = 8;
@@ -6252,13 +6220,11 @@
 	},
 /area/almayer/shipboard/brig)
 "amB" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /turf/open/floor/almayer{
 	dir = 4;
@@ -6267,13 +6233,11 @@
 	},
 /area/almayer/shipboard/brig)
 "amC" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /obj/machinery/light{
 	dir = 4
@@ -6833,9 +6797,8 @@
 	},
 /area/almayer/shipboard/brig)
 "anM" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	dir = 8;
@@ -6844,9 +6807,8 @@
 	},
 /area/almayer/shipboard/brig)
 "anN" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	dir = 4;
@@ -7559,13 +7521,11 @@
 	},
 /area/almayer/shipboard/brig)
 "apk" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /obj/machinery/light{
 	icon_state = "tube1";
@@ -7576,47 +7536,39 @@
 	},
 /area/almayer/command/cic)
 "apl" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
 /turf/open/floor/almayer{
 	icon_state = "plating"
 	},
 /area/almayer/command/cic)
 "apm" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /turf/open/floor/almayer{
 	icon_state = "plating"
 	},
 /area/almayer/command/cic)
 "apn" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /obj/machinery/light{
 	dir = 4
@@ -7863,9 +7815,8 @@
 	},
 /area/almayer/medical/medical_science)
 "apN" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -8248,9 +8199,8 @@
 	},
 /area/almayer/hallways/stern_hallway)
 "aqB" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	dir = 4;
@@ -8369,17 +8319,15 @@
 /turf/open/floor/plating,
 /area/almayer/shipboard/brig)
 "aqN" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /obj/machinery/door/poddoor/shutters/almayer{
 	id = "Brig Armoury";
 	name = "\improper Brig Armoury"
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	tag = "icon-redcorner (NORTH)";
@@ -8570,18 +8518,16 @@
 	},
 /area/almayer/command/cic)
 "arg" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	icon_state = "plating"
 	},
 /area/almayer/command/cic)
 "arh" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	icon_state = "plating"
@@ -9109,35 +9055,30 @@
 	},
 /area/almayer/engineering/upper_engineering)
 "asj" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	icon_state = "plating"
 	},
 /area/almayer/engineering/upper_engineering)
 "ask" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	icon_state = "plating"
 	},
 /area/almayer/engineering/upper_engineering)
 "asl" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	icon_state = "plating"
@@ -9260,9 +9201,8 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	icon_plating = "tcomms";
@@ -9270,9 +9210,8 @@
 	},
 /area/almayer/command/self_destruct)
 "asx" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	icon_plating = "tcomms";
@@ -9283,9 +9222,8 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
 /turf/open/floor/almayer{
 	icon_plating = "tcomms";
@@ -9773,17 +9711,14 @@
 	},
 /area/almayer/medical/upper_medical)
 "atu" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	icon_state = "plating"
@@ -10028,35 +9963,30 @@
 	},
 /area/almayer/engineering/upper_engineering)
 "atT" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /turf/open/floor/almayer{
 	icon_state = "plating"
 	},
 /area/almayer/engineering/upper_engineering)
 "atU" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	icon_state = "plating"
 	},
 /area/almayer/engineering/upper_engineering)
 "atV" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
 /turf/open/floor/almayer{
 	icon_state = "plating"
@@ -10240,9 +10170,8 @@
 /turf/open/floor/almayer,
 /area/almayer/command/self_destruct)
 "aup" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	icon_plating = "tcomms";
@@ -10415,17 +10344,15 @@
 /turf/open/floor/almayer,
 /area/almayer/command/corporateliaison)
 "auC" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /obj/machinery/door/poddoor/shutters/almayer{
 	id = "Brig Armoury";
 	name = "\improper Brig Armoury"
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	tag = "icon-redcorner (EAST)";
@@ -10499,9 +10426,8 @@
 	},
 /area/almayer/shipboard/brig)
 "auJ" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /turf/open/floor/almayer{
 	tag = "icon-redcorner (NORTH)";
@@ -10832,31 +10758,27 @@
 	icon_state = "tube1";
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	icon_state = "plating"
 	},
 /area/almayer/medical/upper_medical)
 "avm" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /turf/open/floor/almayer{
 	icon_state = "plating"
 	},
 /area/almayer/medical/upper_medical)
 "avn" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	icon_state = "plating"
@@ -10868,13 +10790,11 @@
 	id = "Research Armory";
 	name = "\improper Armory Shutters"
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	icon_state = "plating"
@@ -11036,9 +10956,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /turf/open/floor/almayer{
 	tag = "icon-silvercorner";
@@ -11172,9 +11091,8 @@
 	id = "bot_armory";
 	name = "\improper Armory Shutters"
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -11263,9 +11181,8 @@
 	},
 /area/almayer/command/self_destruct)
 "awb" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	icon_plating = "tcomms";
@@ -11311,9 +11228,8 @@
 	},
 /area/almayer/shipboard/brig)
 "awg" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	tag = "icon-sterile";
@@ -11387,9 +11303,8 @@
 	id = "bot_armory";
 	name = "\improper Armory Shutters"
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	icon_state = "plating"
@@ -11401,9 +11316,8 @@
 	id = "bot_armory";
 	name = "\improper Armory Shutters"
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E-corner"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	icon_state = "plating"
@@ -11488,9 +11402,8 @@
 	},
 /area/almayer/living/numbertwobunks)
 "aww" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -11503,9 +11416,8 @@
 	},
 /area/almayer/command/cic)
 "awx" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	icon_state = "plating"
@@ -11605,9 +11517,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	dir = 4;
@@ -11845,9 +11756,8 @@
 /area/almayer/engineering/upper_engineering)
 "axj" = (
 /obj/structure/cable,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /obj/machinery/power/smes/preset,
 /turf/open/floor/almayer{
@@ -11857,9 +11767,8 @@
 /area/almayer/engineering/upper_engineering)
 "axk" = (
 /obj/structure/rack,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -11867,9 +11776,8 @@
 	},
 /area/almayer/engineering/upper_engineering)
 "axl" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	tag = "icon-redcorner (EAST)";
@@ -12142,16 +12050,14 @@
 	},
 /area/almayer/command/cic)
 "axL" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/almayer,
 /area/almayer/command/cic)
 "axM" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /turf/open/floor/almayer{
 	tag = "icon-redcorner (EAST)";
@@ -12299,9 +12205,8 @@
 	},
 /area/almayer/shipboard/brig)
 "aya" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	tag = "icon-test_floor4";
@@ -12316,9 +12221,8 @@
 	},
 /area/almayer/hallways/aft_hallway)
 "ayc" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -12547,9 +12451,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/machinery/door_control{
 	id = "areslockdownexterior";
@@ -12774,9 +12677,8 @@
 	},
 /area/almayer/engineering/upper_engineering)
 "ayT" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /turf/open/floor/almayer{
 	dir = 1;
@@ -12785,9 +12687,8 @@
 	},
 /area/almayer/engineering/upper_engineering)
 "ayU" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	dir = 1;
@@ -12797,9 +12698,8 @@
 /area/almayer/engineering/upper_engineering)
 "ayV" = (
 /obj/structure/disposalpipe/segment,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
 /turf/open/floor/almayer{
 	dir = 1;
@@ -12988,9 +12888,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/almayer,
 /area/almayer/command/self_destruct)
@@ -13000,9 +12899,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/machinery/alarm/almayer{
 	dir = 1
@@ -13025,9 +12923,8 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	icon_plating = "tcomms";
@@ -13379,9 +13276,8 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/command/cic)
 "azO" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /obj/machinery/status_display{
 	pixel_x = 32
@@ -13692,9 +13588,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -14056,9 +13951,8 @@
 /turf/open/floor/plating,
 /area/almayer/engineering/upper_engineering)
 "aAL" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E-corner"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer,
 /area/almayer/engineering/upper_engineering)
@@ -14071,9 +13965,8 @@
 /area/almayer/engineering/upper_engineering)
 "aAN" = (
 /obj/structure/disposalpipe/segment,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer,
 /area/almayer/engineering/upper_engineering)
@@ -14174,9 +14067,8 @@
 	},
 /area/almayer/hallways/stern_hallway)
 "aAW" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer,
 /area/almayer/hallways/stern_hallway)
@@ -14234,9 +14126,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	icon_plating = "tcomms";
@@ -14285,9 +14176,8 @@
 /area/almayer/shipboard/chief_mp_office)
 "aBh" = (
 /obj/structure/disposalpipe/segment,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	dir = 8;
@@ -14298,9 +14188,8 @@
 "aBi" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	dir = 4;
@@ -14438,9 +14327,8 @@
 	},
 /area/almayer/shipboard/brig)
 "aBq" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/almayer,
 /area/almayer/command/cic)
@@ -14562,9 +14450,8 @@
 /turf/open/floor/almayer,
 /area/almayer/command/cic)
 "aBE" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	tag = "icon-test_floor4";
@@ -14840,9 +14727,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	dir = 8;
@@ -15165,9 +15051,8 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	tag = "icon-intact-supply (EAST)";
@@ -15187,9 +15072,8 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	tag = "icon-intact-supply (EAST)";
@@ -15209,9 +15093,8 @@
 /obj/structure/disposalpipe/junction{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	tag = "icon-intact-supply (SOUTHWEST)";
@@ -15303,9 +15186,8 @@
 	},
 /area/almayer/hallways/stern_hallway)
 "aCN" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/almayer,
 /area/almayer/command/self_destruct)
@@ -15325,9 +15207,8 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	icon_plating = "tcomms";
@@ -16057,9 +15938,8 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/engineering/upper_engineering)
 "aEd" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	tag = "icon-redcorner";
@@ -16090,9 +15970,8 @@
 	},
 /area/almayer/shipboard/brig)
 "aEh" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -16311,9 +16190,8 @@
 	tag = "icon-intact-scrubbers (SOUTHEAST)";
 	dir = 6
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	tag = "icon-redcorner (NORTH)";
@@ -16330,9 +16208,8 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/machinery/flasher{
 	id = "Brig Hallway Flash";
@@ -16422,9 +16299,8 @@
 	},
 /area/almayer/command/cic)
 "aEA" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E-corner"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	icon_state = "plating"
@@ -16503,9 +16379,8 @@
 /area/almayer/command/cic)
 "aEG" = (
 /obj/structure/flora/pottedplant,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	dir = 1;
@@ -16687,9 +16562,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /turf/open/floor/almayer{
 	tag = "icon-silvercorner (EAST)";
@@ -16841,13 +16715,11 @@
 	name = "\improper Engineering Storage"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -16859,13 +16731,11 @@
 	dir = 2;
 	name = "\improper Engineering Storage"
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -16887,9 +16757,8 @@
 /obj/machinery/power/monitor{
 	name = "Main Power Grid Monitoring"
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/structure/cable,
 /turf/open/floor/almayer{
@@ -16901,9 +16770,8 @@
 /obj/machinery/power/monitor{
 	name = "Core Power Monitoring"
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/structure/cable/yellow,
 /turf/open/floor/almayer{
@@ -16957,9 +16825,8 @@
 	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	dir = 1;
@@ -17155,9 +17022,8 @@
 /obj/structure/bed/chair{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/machinery/camera/autoname/almayer,
 /turf/open/floor/almayer{
@@ -17200,9 +17066,8 @@
 	},
 /area/almayer/shipboard/brig_cells)
 "aFN" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /turf/open/floor/almayer{
 	tag = "icon-blue (NORTH)";
@@ -17264,9 +17129,8 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /turf/open/floor/almayer{
 	dir = 1;
@@ -17359,9 +17223,8 @@
 /turf/open/floor/plating/almayer,
 /area/almayer/hallways/aft_hallway)
 "aGe" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	tag = "icon-redcorner";
@@ -17786,9 +17649,8 @@
 /obj/machinery/vending/wallmed1{
 	pixel_y = 25
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	icon_state = "plating"
@@ -17819,9 +17681,8 @@
 /area/almayer/engineering/upper_engineering)
 "aGX" = (
 /obj/machinery/portable_atmospherics/canister/air,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	icon_state = "plating"
@@ -18499,13 +18360,11 @@
 	},
 /area/almayer/engineering/upper_engineering)
 "aIj" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	icon_state = "plating"
@@ -18513,22 +18372,19 @@
 /area/almayer/engineering/upper_engineering)
 "aIk" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	icon_state = "plating"
 	},
 /area/almayer/engineering/upper_engineering)
 "aIl" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	icon_state = "plating"
@@ -18598,9 +18454,8 @@
 	},
 /area/almayer/command/self_destruct)
 "aIu" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	icon_plating = "tcomms";
@@ -18608,9 +18463,8 @@
 	},
 /area/almayer/command/self_destruct)
 "aIv" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /turf/open/floor/almayer{
 	icon_plating = "tcomms";
@@ -18682,9 +18536,8 @@
 	},
 /area/almayer/shipboard/brig_cells)
 "aIC" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -18740,26 +18593,22 @@
 	},
 /area/almayer/shipboard/brig_cells)
 "aIH" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	icon_state = "plating"
 	},
 /area/almayer/command/cic)
 "aII" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	icon_state = "plating"
@@ -19043,9 +18892,8 @@
 	},
 /area/almayer/medical/medical_science)
 "aJk" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -19373,9 +19221,8 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	tag = "icon-test_floor4";
@@ -19547,9 +19394,8 @@
 	},
 /area/almayer/command/cic)
 "aKl" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /turf/open/floor/almayer{
 	tag = "icon-red";
@@ -19558,9 +19404,8 @@
 /area/almayer/command/cic)
 "aKm" = (
 /obj/machinery/light,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
 /turf/open/floor/almayer{
 	tag = "icon-red";
@@ -19737,9 +19582,8 @@
 	},
 /area/almayer/medical/upper_medical)
 "aKE" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /turf/open/floor/almayer{
 	tag = "icon-sterile_green_side (SOUTHEAST)";
@@ -19748,9 +19592,8 @@
 	},
 /area/almayer/medical/upper_medical)
 "aKF" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	dir = 2;
@@ -19759,9 +19602,8 @@
 	},
 /area/almayer/medical/upper_medical)
 "aKG" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
 /turf/open/floor/almayer{
 	tag = "icon-sterile_green_side (SOUTHWEST)";
@@ -20201,9 +20043,8 @@
 	name = "Permabrig Flash";
 	range = 3
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /turf/open/floor/almayer{
 	tag = "icon-green";
@@ -20243,9 +20084,8 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/machinery/flasher{
 	id = "Brig Hallway Flash";
@@ -20286,9 +20126,8 @@
 "aLr" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/shipboard/brig_cells)
@@ -20381,9 +20220,8 @@
 	},
 /area/almayer/medical/lower_medical)
 "aLC" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	tag = "icon-sterile_green_corner (EAST)";
@@ -20406,9 +20244,8 @@
 /turf/open/floor/plating/almayer,
 /area/almayer/medical/upper_medical)
 "aLF" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	dir = 8;
@@ -21091,9 +20928,8 @@
 	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	tag = "icon-greencorner (WEST)";
@@ -21740,9 +21576,8 @@
 /area/almayer/shipboard/brig_cells)
 "aNz" = (
 /obj/machinery/light,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	tag = "icon-red";
@@ -22568,9 +22403,8 @@
 	},
 /area/almayer/hallways/aft_hallway)
 "aOW" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
 /obj/structure/bed/chair{
 	dir = 8
@@ -22899,9 +22733,8 @@
 	},
 /area/almayer/shipboard/brig_cells)
 "aPF" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	tag = "icon-greencorner (EAST)";
@@ -22910,9 +22743,8 @@
 	},
 /area/almayer/shipboard/brig_cells)
 "aPG" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	tag = "icon-intact-supply (SOUTHEAST)";
@@ -23009,9 +22841,8 @@
 	},
 /area/almayer/shipboard/brig_cells)
 "aPP" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -23239,9 +23070,8 @@
 	name = "\improper Old Mess"
 	})
 "aQl" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
 /turf/open/floor/almayer{
 	dir = 4;
@@ -23609,9 +23439,8 @@
 	},
 /area/almayer/shipboard/starboard_point_defense)
 "aQY" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -23619,9 +23448,8 @@
 	},
 /area/almayer/shipboard/starboard_point_defense)
 "aQZ" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -23738,9 +23566,8 @@
 	},
 /area/almayer/shipboard/brig_cells)
 "aRn" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E-corner"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -24055,9 +23882,8 @@
 	network = list("almayer");
 	tag = "icon-camera (EAST)"
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /turf/open/floor/almayer{
 	dir = 8;
@@ -24390,9 +24216,8 @@
 	name = "\improper Experimental Weaponry Range"
 	})
 "aSN" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/plating/almayer,
 /area/almayer/living/bridgebunks{
@@ -24401,9 +24226,8 @@
 "aSO" = (
 /obj/structure/target_stake,
 /obj/item/target/syndicate,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/plating/almayer,
 /area/almayer/living/bridgebunks{
@@ -24440,9 +24264,8 @@
 	name = "\improper Experimental Weaponry Range"
 	})
 "aSS" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -24807,9 +24630,8 @@
 	name = "\improper Experimental Weaponry Range"
 	})
 "aTI" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/flasher{
@@ -24942,9 +24764,8 @@
 	name = "Permabrig Flash";
 	range = 3
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E-corner"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -25078,9 +24899,8 @@
 	icon_state = "door_open";
 	dir = 2
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	tag = "icon-test_floor4";
@@ -25103,9 +24923,8 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/hull/upper_hull)
 "aUo" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -25357,9 +25176,8 @@
 	icon_state = "door_open";
 	dir = 2
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	tag = "icon-test_floor4";
@@ -25377,9 +25195,8 @@
 	icon_state = "tube1";
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /turf/open/floor/almayer{
 	dir = 4;
@@ -25532,9 +25349,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /obj/machinery/light/small{
 	dir = 1
@@ -25550,9 +25366,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -25565,9 +25380,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
 /obj/machinery/light/small{
 	dir = 1
@@ -25629,9 +25443,8 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/shipboard/starboard_point_defense)
 "aVI" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -25639,13 +25452,11 @@
 	},
 /area/almayer/shipboard/starboard_point_defense)
 "aVJ" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E-corner"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -25658,13 +25469,11 @@
 	},
 /area/shuttle/distress/arrive_1)
 "aVL" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -25849,9 +25658,8 @@
 /turf/open/floor/almayer,
 /area/almayer/hallways/starboard_hallway)
 "aWn" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E-corner"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/machinery/light{
 	dir = 1
@@ -25899,9 +25707,8 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/hallways/starboard_hallway)
 "aWs" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E-corner"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	dir = 4;
@@ -25985,9 +25792,8 @@
 	req_one_access_txt = "2;3;12;19";
 	throw_range = 15
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /turf/open/floor/almayer{
 	tag = "icon-greencorner (EAST)";
@@ -26013,9 +25819,8 @@
 	},
 /area/almayer/shipboard/starboard_point_defense)
 "aWC" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -26048,9 +25853,8 @@
 	},
 /area/almayer/hull/lower_hull)
 "aWE" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E-corner"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -26446,31 +26250,26 @@
 	},
 /area/almayer/living/basketball)
 "aXz" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/wood,
 /area/almayer/living/basketball)
 "aXA" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/wood,
 /area/almayer/living/basketball)
 "aXB" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/machinery/light{
 	dir = 1
@@ -26478,16 +26277,14 @@
 /turf/open/floor/wood,
 /area/almayer/living/basketball)
 "aXC" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/wood,
 /area/almayer/living/basketball)
 "aXD" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/machinery/vending/wallmed1{
 	pixel_y = 25
@@ -26499,9 +26296,8 @@
 	icon_state = "NS-center";
 	tag = "icon-W"
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/machinery/scoreboard{
 	id = "basketball";
@@ -26516,24 +26312,20 @@
 /turf/open/floor/wood,
 /area/almayer/living/basketball)
 "aXG" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E-corner"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/almayer/living/basketball)
 "aXH" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E-corner"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/wood,
 /area/almayer/living/basketball)
@@ -26740,9 +26532,8 @@
 	},
 /area/almayer/hallways/starboard_hallway)
 "aYf" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	tag = "icon-intact-supply (EAST)";
@@ -26846,9 +26637,8 @@
 	},
 /area/almayer/living/basketball)
 "aYq" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/wood,
 /area/almayer/living/basketball)
@@ -26863,9 +26653,8 @@
 /turf/open/floor/wood,
 /area/almayer/living/basketball)
 "aYt" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E-corner"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/almayer/living/basketball)
@@ -27129,9 +26918,8 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/hallways/starboard_hallway)
 "aYS" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -27189,9 +26977,8 @@
 /turf/open/floor/almayer,
 /area/almayer/hallways/starboard_hallway)
 "aZa" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/effect/decal/warning_stripes,
 /obj/structure/holohoop{
@@ -27221,9 +27008,8 @@
 /turf/open/floor/wood,
 /area/almayer/living/basketball)
 "aZd" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E-corner"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/effect/decal/warning_stripes,
 /obj/structure/holohoop{
@@ -27716,9 +27502,8 @@
 	},
 /area/almayer/shipboard/starboard_point_defense)
 "aZV" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/machinery/light/small,
 /turf/open/floor/almayer{
@@ -27731,9 +27516,8 @@
 	dir = 8;
 	on = 1
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -27741,9 +27525,8 @@
 	},
 /area/almayer/shipboard/starboard_point_defense)
 "aZX" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -27940,46 +27723,38 @@
 	},
 /area/almayer/living/basketball)
 "baq" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/wood,
 /area/almayer/living/basketball)
 "bar" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/wood,
 /area/almayer/living/basketball)
 "bas" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/wood,
 /area/almayer/living/basketball)
 "bat" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/wood,
 /area/almayer/living/basketball)
@@ -27988,39 +27763,32 @@
 	icon_state = "NS-center";
 	tag = "icon-W"
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/wood,
 /area/almayer/living/basketball)
 "bav" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E-corner"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/almayer/living/basketball)
 "baw" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E-corner"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/wood,
 /area/almayer/living/basketball)
@@ -28106,20 +27874,17 @@
 	},
 /area/almayer/shipboard/firing_range)
 "baF" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/plating/almayer,
 /area/almayer/shipboard/firing_range)
 "baG" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/plating/almayer,
 /area/almayer/shipboard/firing_range)
@@ -28467,9 +28232,8 @@
 	},
 /area/almayer/hallways/starboard_umbilical)
 "bby" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	tag = "icon-orangecorner (WEST)";
@@ -28478,9 +28242,8 @@
 	},
 /area/almayer/hallways/starboard_umbilical)
 "bbz" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/almayer,
 /area/almayer/hallways/starboard_umbilical)
@@ -28490,9 +28253,8 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -28650,9 +28412,8 @@
 /area/almayer/hallways/hangar)
 "bbS" = (
 /obj/structure/ship_ammo/heavygun,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -28681,9 +28442,8 @@
 /area/almayer/hallways/hangar)
 "bbW" = (
 /obj/structure/ship_ammo/heavygun,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -28732,9 +28492,8 @@
 	},
 /area/almayer/shipboard/firing_range)
 "bcc" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/plating/almayer,
 /area/almayer/shipboard/firing_range)
@@ -29191,27 +28950,23 @@
 	},
 /area/almayer/shipboard/firing_range)
 "bcV" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /turf/open/floor/plating/almayer,
 /area/almayer/shipboard/firing_range)
 "bcW" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/plating/almayer,
 /area/almayer/shipboard/firing_range)
 "bcX" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
 /turf/open/floor/plating/almayer,
 /area/almayer/shipboard/firing_range)
@@ -29674,9 +29429,8 @@
 	},
 /area/almayer/hallways/exoarmor)
 "bdW" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -29701,9 +29455,8 @@
 	},
 /area/almayer/hallways/hangar)
 "bea" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -29716,13 +29469,11 @@
 	},
 /area/almayer/shipboard/firing_range)
 "bec" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer,
 /area/almayer/shipboard/firing_range)
@@ -30132,9 +29883,8 @@
 	},
 /area/almayer/hallways/hangar)
 "beW" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	tag = "icon-redcorner (WEST)";
@@ -30143,20 +29893,17 @@
 	},
 /area/almayer/shipboard/firing_range)
 "beX" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/almayer,
 /area/almayer/shipboard/firing_range)
 "beY" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /turf/open/floor/almayer,
 /area/almayer/shipboard/firing_range)
@@ -30213,9 +29960,8 @@
 /turf/open/floor/plating/almayer,
 /area/almayer/hallways/starboard_hallway)
 "bfe" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/almayer{
@@ -30225,9 +29971,8 @@
 	},
 /area/almayer/hallways/starboard_hallway)
 "bff" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E-corner"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -30551,9 +30296,8 @@
 	},
 /area/almayer/hallways/starboard_umbilical)
 "bfQ" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	tag = "icon-orangecorner (NORTH)";
@@ -30562,9 +30306,8 @@
 	},
 /area/almayer/hallways/starboard_umbilical)
 "bfR" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/almayer,
 /area/almayer/hallways/starboard_umbilical)
@@ -30574,9 +30317,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	tag = "icon-orangecorner (EAST)";
@@ -30652,9 +30394,8 @@
 /turf/closed/wall/almayer,
 /area/almayer/hallways/hangar)
 "bgc" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	tag = "icon-test_floor4";
@@ -30669,9 +30410,8 @@
 	req_one_access_txt = "2;3;7;12;19;22";
 	throw_range = 15
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	tag = "icon-test_floor4";
@@ -31142,9 +30882,8 @@
 "bhc" = (
 /obj/structure/ship_ammo/minirocket,
 /obj/machinery/light,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -31153,9 +30892,8 @@
 /area/almayer/hallways/hangar)
 "bhd" = (
 /obj/structure/ship_ammo/minirocket,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -31262,9 +31000,8 @@
 /turf/open/floor/plating/almayer,
 /area/almayer/hallways/starboard_hallway)
 "bho" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/almayer{
@@ -31274,9 +31011,8 @@
 	},
 /area/almayer/hallways/starboard_hallway)
 "bhp" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E-corner"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -32028,9 +31764,8 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/hallways/hangar)
 "biJ" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -32038,9 +31773,8 @@
 	},
 /area/almayer/hallways/hangar)
 "biK" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -32048,9 +31782,8 @@
 	},
 /area/almayer/hallways/hangar)
 "biL" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -32058,9 +31791,8 @@
 	},
 /area/almayer/hallways/hangar)
 "biM" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -32152,9 +31884,8 @@
 	},
 /area/almayer/hallways/hangar)
 "biV" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/machinery/door_control{
 	id = "hangarentrancenorth";
@@ -32181,9 +31912,8 @@
 	},
 /area/almayer/hallways/starboard_hallway)
 "biX" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E-corner"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/machinery/door_control{
 	id = "hangarentrancenorth";
@@ -32198,16 +31928,14 @@
 	},
 /area/almayer/hallways/starboard_hallway)
 "biY" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /turf/open/floor/almayer,
 /area/almayer/hallways/starboard_hallway)
 "biZ" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -32218,17 +31946,15 @@
 /area/almayer/hallways/starboard_hallway)
 "bja" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/almayer,
 /area/almayer/hallways/starboard_hallway)
 "bjb" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /turf/open/floor/almayer,
 /area/almayer/hallways/starboard_hallway)
@@ -32608,9 +32334,8 @@
 	},
 /area/almayer/hallways/hangar)
 "bjJ" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	tag = "icon-intact-scrubbers (EAST)";
@@ -32656,9 +32381,8 @@
 	},
 /area/almayer/hallways/starboard_hallway)
 "bjL" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E-corner"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	tag = "icon-intact-scrubbers (EAST)";
@@ -33484,13 +33208,11 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/hallways/hangar)
 "bkO" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -33498,13 +33220,11 @@
 	},
 /area/almayer/hallways/hangar)
 "bkP" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E-corner"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -33552,13 +33272,11 @@
 	},
 /area/almayer/hallways/hangar)
 "bkU" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/almayer{
@@ -33567,13 +33285,11 @@
 	},
 /area/almayer/hallways/hangar)
 "bkV" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -33581,13 +33297,11 @@
 	},
 /area/almayer/hallways/hangar)
 "bkW" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -33635,9 +33349,8 @@
 	},
 /area/almayer/hallways/hangar)
 "blb" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -33657,9 +33370,8 @@
 	},
 /area/almayer/hallways/starboard_hallway)
 "bld" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E-corner"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -33814,9 +33526,8 @@
 	},
 /area/almayer/hallways/hangar)
 "bly" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E-corner"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -33865,9 +33576,8 @@
 /area/almayer/hallways/hangar)
 "blF" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -34141,9 +33851,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/engineering/lower_engineering)
@@ -34159,9 +33868,8 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -34174,9 +33882,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/engineering/lower_engineering)
@@ -34220,9 +33927,8 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/hull/lower_hull)
 "bmo" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -34230,9 +33936,8 @@
 	},
 /area/almayer/shipboard/weapon_room)
 "bmp" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -34241,9 +33946,8 @@
 /area/almayer/shipboard/weapon_room)
 "bmq" = (
 /obj/structure/prop/almayer/missile_tube,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	icon_state = "plating"
@@ -34260,13 +33964,11 @@
 	},
 /area/almayer/hallways/hangar)
 "bmt" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /obj/structure/prop/almayer/hangar_stencil{
 	icon_state = "dropship2"
@@ -34277,9 +33979,8 @@
 	},
 /area/almayer/hallways/hangar)
 "bmu" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -34287,13 +33988,11 @@
 	},
 /area/almayer/hallways/hangar)
 "bmv" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E-corner"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -34333,13 +34032,11 @@
 	},
 /area/almayer/shipboard/starboard_missiles)
 "bmC" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -34347,13 +34044,11 @@
 	},
 /area/almayer/hallways/hangar)
 "bmD" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /obj/structure/prop/almayer/hangar_stencil,
 /turf/open/floor/almayer{
@@ -34396,9 +34091,8 @@
 	},
 /area/shuttle/drop1/sulaco)
 "bmK" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /obj/structure/prop/almayer/hangar_stencil,
 /obj/machinery/landinglight/ds1/delaytwo{
@@ -34415,13 +34109,11 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -34682,9 +34374,8 @@
 /area/almayer/medical/lower_medical)
 "bnl" = (
 /obj/structure/window/framed/almayer/white,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/machinery/door/firedoor/border_only/almayer,
 /turf/open/floor/plating,
@@ -34936,9 +34627,8 @@
 	},
 /area/almayer/living/cryo_cells)
 "bnM" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	tag = "icon-orangefull";
@@ -34979,9 +34669,8 @@
 /area/almayer/living/cryo_cells)
 "bnQ" = (
 /obj/effect/landmark/start/marine/squadmarine,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	tag = "icon-redfull";
@@ -35076,9 +34765,8 @@
 /turf/open/floor/plating/almayer,
 /area/almayer/shipboard/weapon_room)
 "bnZ" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -35086,39 +34774,33 @@
 	},
 /area/almayer/shipboard/weapon_room)
 "boa" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /obj/structure/prop/almayer/hangar_stencil{
 	icon_state = "dropship2"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer,
 /area/almayer/hallways/hangar)
 "bob" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/almayer,
 /area/almayer/hallways/hangar)
 "boc" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /obj/structure/prop/almayer/hangar_stencil,
 /turf/open/floor/almayer,
@@ -35137,13 +34819,11 @@
 	},
 /area/almayer/shipboard/starboard_missiles)
 "bof" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer,
 /area/almayer/hallways/hangar)
@@ -35553,9 +35233,8 @@
 	req_one_access_txt = "2;3;12;19";
 	throw_range = 15
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /turf/open/floor/almayer{
 	dir = 8;
@@ -35564,9 +35243,8 @@
 	},
 /area/almayer/hull/lower_hull)
 "boW" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -35577,9 +35255,8 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -35587,9 +35264,8 @@
 	},
 /area/almayer/hull/lower_hull)
 "boY" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -35895,9 +35571,8 @@
 /area/almayer/living/cryo_cells)
 "bpI" = (
 /obj/effect/landmark/start/latejoin_gateway,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /turf/open/floor/almayer{
 	dir = 5;
@@ -35940,9 +35615,8 @@
 /area/almayer/living/cryo_cells)
 "bpM" = (
 /obj/effect/landmark/start/latejoin_cryo,
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /turf/open/floor/almayer{
 	dir = 9;
@@ -35964,9 +35638,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	tag = "icon-orangecorner (EAST)";
@@ -36573,9 +36246,8 @@
 	network = list("almayer");
 	pixel_x = -17
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E-corner"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	dir = 8;
@@ -36599,9 +36271,8 @@
 /turf/open/floor/plating/almayer,
 /area/almayer/hull/lower_hull)
 "bqT" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -36916,9 +36587,8 @@
 	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -37121,9 +36791,8 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/hull/lower_hull)
 "brS" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -37145,9 +36814,8 @@
 	},
 /area/almayer/shipboard/starboard_missiles)
 "brU" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -37157,24 +36825,21 @@
 /turf/open/floor/almayer,
 /area/almayer/shipboard/starboard_missiles)
 "brV" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/almayer,
 /area/almayer/shipboard/starboard_missiles)
 "brW" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/almayer,
 /area/almayer/shipboard/starboard_missiles)
 "brX" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/almayer,
@@ -37187,9 +36852,8 @@
 	},
 /area/almayer/shipboard/starboard_missiles)
 "brZ" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/machinery/light{
 	icon_state = "tube1";
@@ -37709,9 +37373,8 @@
 /area/almayer/living/cryo_cells)
 "bte" = (
 /obj/effect/landmark/start/marine/squadsmartgunner,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
 /turf/open/floor/almayer{
 	dir = 4;
@@ -37733,9 +37396,8 @@
 /area/almayer/living/cryo_cells)
 "bth" = (
 /obj/effect/landmark/start/latejoin_cryo,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /turf/open/floor/almayer{
 	dir = 8;
@@ -37752,9 +37414,8 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	tag = "icon-orangecorner";
@@ -37822,9 +37483,8 @@
 	},
 /area/almayer/engineering/lower_engineering)
 "btt" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /obj/machinery/power/terminal{
 	icon_state = "term";
@@ -37840,9 +37500,8 @@
 	},
 /area/almayer/engineering/lower_engine_monitoring)
 "btu" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor/almayer{
@@ -37948,13 +37607,11 @@
 	},
 /area/almayer/shipboard/brig)
 "btE" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E-corner"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -37967,13 +37624,11 @@
 	},
 /area/shuttle/distress/arrive_3)
 "btG" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -38482,9 +38137,8 @@
 /area/almayer/squads/req)
 "buJ" = (
 /obj/effect/landmark/start/latejoin_gateway,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	dir = 4;
@@ -38494,9 +38148,8 @@
 /area/almayer/living/cryo_cells)
 "buK" = (
 /obj/effect/landmark/start/marine/squadmarine,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	dir = 8;
@@ -38577,9 +38230,8 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/engineering/lower_engineering)
 "buT" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	tag = "icon-orangecorner (EAST)";
@@ -38760,9 +38412,8 @@
 	},
 /area/almayer/command/corporateliaison)
 "bvj" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -38772,24 +38423,21 @@
 /turf/open/floor/almayer,
 /area/almayer/hallways/hangar)
 "bvk" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/almayer,
 /area/almayer/hallways/hangar)
 "bvl" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/almayer,
 /area/almayer/hallways/hangar)
 "bvm" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/almayer,
@@ -39173,9 +38821,8 @@
 	},
 /area/almayer/squads/req)
 "bwe" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	dir = 1;
@@ -39197,9 +38844,8 @@
 	network = list("almayer");
 	tag = "icon-camera (NORTH)"
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/machinery/alarm/almayer{
 	dir = 1
@@ -39300,9 +38946,8 @@
 /area/almayer/living/cryo_cells)
 "bwr" = (
 /obj/effect/landmark/start/marine/squadleader,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /turf/open/floor/almayer{
 	dir = 4;
@@ -39312,9 +38957,8 @@
 /area/almayer/living/cryo_cells)
 "bws" = (
 /obj/effect/landmark/start/latejoin_cryo,
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /turf/open/floor/almayer{
 	dir = 8;
@@ -39441,9 +39085,8 @@
 	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	tag = "icon-intact-supply (EAST)";
@@ -40231,9 +39874,8 @@
 	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -40255,9 +39897,8 @@
 	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -40304,9 +39945,8 @@
 	},
 /area/almayer/squads/req)
 "byf" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /obj/machinery/gear{
 	id = "supply_elevator_gear"
@@ -40335,9 +39975,8 @@
 	},
 /area/almayer/squads/req)
 "byi" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
 /obj/machinery/gear{
 	id = "supply_elevator_gear"
@@ -40353,9 +39992,8 @@
 /area/almayer/living/cryo_cells)
 "byk" = (
 /obj/effect/landmark/start/marine/squadmedic,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
 /turf/open/floor/almayer{
 	dir = 4;
@@ -40679,9 +40317,8 @@
 	},
 /area/shuttle/drop1/sulaco)
 "byQ" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /turf/open/floor/almayer,
 /area/almayer/hallways/hangar)
@@ -41025,9 +40662,8 @@
 /area/almayer/living/cryo_cells)
 "bzv" = (
 /obj/effect/landmark/start/marine/squadleader,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	dir = 4;
@@ -41385,9 +41021,8 @@
 	},
 /area/almayer/hallways/hangar)
 "bAg" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer,
 /area/almayer/hallways/hangar)
@@ -41429,9 +41064,8 @@
 	},
 /area/almayer/medical/lower_medical)
 "bAj" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	icon_state = "dark_sterile";
@@ -41762,9 +41396,8 @@
 /area/almayer/squads/req)
 "bAP" = (
 /obj/effect/landmark/start/marine/squadleader,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /turf/open/floor/almayer{
 	tag = "icon-orangecorner (EAST)";
@@ -41789,9 +41422,8 @@
 "bAS" = (
 /obj/effect/landmark/start/latejoin_cryo,
 /obj/effect/landmark/start/marine/squadsmartgunner,
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /turf/open/floor/almayer{
 	tag = "icon-redcorner (NORTH)";
@@ -41829,24 +41461,21 @@
 "bAW" = (
 /obj/item/circuitboard/airlock,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/engineering/engineering_workshop)
 "bAX" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/engineering/engineering_workshop)
 "bAY" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/engineering/engineering_workshop)
@@ -42108,9 +41737,8 @@
 	},
 /area/shuttle/drop1/sulaco)
 "bBB" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/machinery/light{
 	icon_state = "tube1";
@@ -42232,9 +41860,8 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/living/briefing)
 "bBM" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/plating/almayer,
 /area/almayer/living/bridgebunks{
@@ -42432,9 +42059,8 @@
 /area/almayer/hallways/port_hallway)
 "bCj" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -42450,9 +42076,8 @@
 /area/almayer/engineering/engineering_workshop)
 "bCl" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -42678,9 +42303,8 @@
 	},
 /area/almayer/engineering/engine_core)
 "bCE" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -43221,9 +42845,8 @@
 /area/almayer/squads/req)
 "bDI" = (
 /obj/effect/landmark/start/marine/squadleader,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
 /turf/open/floor/almayer{
 	tag = "icon-emeraldcorner";
@@ -43247,9 +42870,8 @@
 "bDL" = (
 /obj/effect/landmark/start/latejoin_cryo,
 /obj/effect/landmark/start/marine/squadsmartgunner,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /turf/open/floor/almayer{
 	dir = 8;
@@ -43280,25 +42902,22 @@
 /area/almayer/engineering/engineering_workshop)
 "bDP" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/engineering/engineering_workshop)
 "bDQ" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/engineering/engineering_workshop)
 "bDR" = (
 /obj/effect/decal/cleanable/blood/oil,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/engineering/engineering_workshop)
@@ -43460,16 +43079,14 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/hallways/hangar)
 "bEi" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/hallways/hangar)
 "bEj" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -43601,9 +43218,8 @@
 	},
 /area/shuttle/drop1/sulaco)
 "bEy" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /turf/open/floor/almayer,
 /area/almayer/hallways/hangar)
@@ -43796,9 +43412,8 @@
 /area/almayer/squads/req)
 "bER" = (
 /obj/effect/landmark/start/marine/squadmedic,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	dir = 4;
@@ -43822,9 +43437,8 @@
 /area/almayer/living/cryo_cells)
 "bEU" = (
 /obj/effect/landmark/start/marine/squadmarine,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	dir = 8;
@@ -43972,17 +43586,15 @@
 	},
 /area/almayer/engineering/engine_core)
 "bFg" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /turf/open/floor/almayer,
 /area/almayer/hallways/hangar)
 "bFh" = (
 /obj/structure/ship_rail_gun,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /turf/open/floor/plating/almayer,
 /area/almayer/shipboard/weapon_room)
@@ -44197,9 +43809,8 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	dir = 8;
@@ -44593,9 +44204,8 @@
 	},
 /area/almayer/squads/req)
 "bGj" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /obj/machinery/gear{
 	id = "supply_elevator_gear"
@@ -44623,9 +44233,8 @@
 	},
 /area/almayer/squads/req)
 "bGm" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /obj/machinery/gear{
 	id = "supply_elevator_gear"
@@ -44647,9 +44256,8 @@
 /area/almayer/squads/req)
 "bGo" = (
 /obj/effect/landmark/start/marine/squadmedic,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /turf/open/floor/almayer{
 	dir = 4;
@@ -44659,9 +44267,8 @@
 /area/almayer/living/cryo_cells)
 "bGp" = (
 /obj/effect/landmark/start/latejoin_cryo,
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /turf/open/floor/almayer{
 	dir = 8;
@@ -44776,24 +44383,21 @@
 	},
 /area/almayer/engineering/lower_engine_monitoring)
 "bGC" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/plating/almayer,
 /area/almayer/shipboard/weapon_room)
 "bGD" = (
 /obj/machinery/light,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
 /turf/open/floor/plating/almayer,
 /area/almayer/shipboard/weapon_room)
 "bGE" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -44803,24 +44407,21 @@
 /turf/open/floor/almayer,
 /area/almayer/hallways/hangar)
 "bGF" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/almayer,
 /area/almayer/hallways/hangar)
 "bGG" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/almayer,
 /area/almayer/hallways/hangar)
 "bGH" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/almayer,
@@ -45178,9 +44779,8 @@
 "bHu" = (
 /obj/structure/target_stake,
 /obj/item/target/syndicate,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/plating/almayer,
 /area/almayer/living/bridgebunks{
@@ -45220,9 +44820,8 @@
 /area/almayer/living/cryo_cells)
 "bHy" = (
 /obj/effect/landmark/start/latejoin_cryo,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
 /turf/open/floor/almayer{
 	dir = 4;
@@ -45232,9 +44831,8 @@
 /area/almayer/living/cryo_cells)
 "bHz" = (
 /obj/effect/landmark/start/latejoin_cryo,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /turf/open/floor/almayer{
 	dir = 8;
@@ -45379,9 +44977,8 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/engineering/lower_engineering)
 "bHL" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	tag = "icon-intact-supply (EAST)";
@@ -45723,9 +45320,8 @@
 	},
 /area/almayer/medical/surgery_hallway)
 "bIt" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /turf/open/floor/almayer{
 	tag = "icon-sterile_green_side (SOUTHEAST)";
@@ -45889,9 +45485,8 @@
 /area/almayer/squads/req)
 "bII" = (
 /obj/effect/landmark/start/marine/squadmarine,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	dir = 4;
@@ -45969,9 +45564,8 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/engineering/lower_engineering)
 "bIP" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -46073,9 +45667,8 @@
 	},
 /area/almayer/hallways/hangar)
 "bIZ" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /turf/open/floor/almayer{
 	tag = "icon-red";
@@ -46083,9 +45676,8 @@
 	},
 /area/almayer/shipboard/starboard_missiles)
 "bJa" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -46095,24 +45687,21 @@
 /turf/open/floor/almayer,
 /area/almayer/shipboard/port_missiles)
 "bJb" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/almayer,
 /area/almayer/shipboard/port_missiles)
 "bJc" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/almayer,
 /area/almayer/shipboard/port_missiles)
 "bJd" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/almayer,
@@ -46320,9 +45909,8 @@
 	},
 /area/almayer/medical/lower_medical)
 "bJB" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E-corner"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/machinery/light,
 /obj/structure/flora/pottedplant{
@@ -46470,9 +46058,8 @@
 	},
 /area/almayer/squads/req)
 "bJQ" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	icon_state = "plating"
@@ -46488,9 +46075,8 @@
 /area/almayer/squads/req)
 "bJS" = (
 /obj/effect/landmark/start/latejoin_gateway,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /turf/open/floor/almayer{
 	dir = 4;
@@ -46501,9 +46087,8 @@
 "bJT" = (
 /obj/effect/landmark/start/latejoin_cryo,
 /obj/effect/landmark/start/marine/squadsmartgunner,
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /turf/open/floor/almayer{
 	dir = 8;
@@ -46517,9 +46102,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/machinery/light{
 	dir = 4
@@ -46669,9 +46253,8 @@
 /turf/open/floor/almayer,
 /area/almayer/shipboard/port_missiles)
 "bKn" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
 /turf/open/floor/almayer{
 	tag = "icon-red";
@@ -46974,13 +46557,11 @@
 	id = "bot_armory";
 	name = "\improper Armory Shutters"
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -47087,9 +46668,8 @@
 	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -47350,9 +46930,8 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/hallways/hangar)
 "bLu" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/machinery/light/small,
 /turf/open/floor/almayer{
@@ -47361,9 +46940,8 @@
 	},
 /area/almayer/hull/lower_hull)
 "bLv" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -47371,9 +46949,8 @@
 	},
 /area/almayer/hull/lower_hull)
 "bLw" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -47433,13 +47010,11 @@
 	name = "Solid Fuel Storage";
 	pixel_x = -25
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /turf/open/floor/almayer,
 /area/almayer/shipboard/weapon_room)
@@ -47512,9 +47087,8 @@
 	},
 /area/shuttle/drop2/sulaco)
 "bLO" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/hallways/hangar)
@@ -47608,9 +47182,8 @@
 	},
 /area/almayer/medical/surgery_hallway)
 "bMa" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	dir = 2;
@@ -47619,9 +47192,8 @@
 	},
 /area/almayer/medical/lower_medical)
 "bMb" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
 /turf/open/floor/almayer{
 	tag = "icon-sterile_green_side (SOUTHWEST)";
@@ -47845,9 +47417,8 @@
 	req_one_access_txt = "2;3;12;19";
 	throw_range = 15
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /turf/open/floor/almayer{
 	dir = 8;
@@ -47857,9 +47428,8 @@
 /area/almayer/hull/lower_hull)
 "bMp" = (
 /obj/structure/bed/chair/office/dark,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -48070,9 +47640,8 @@
 /area/almayer/squads/req)
 "bML" = (
 /obj/effect/landmark/start/latejoin_gateway,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
 /turf/open/floor/almayer{
 	dir = 6;
@@ -48115,9 +47684,8 @@
 /area/almayer/living/cryo_cells)
 "bMP" = (
 /obj/effect/landmark/start/latejoin_cryo,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /turf/open/floor/almayer{
 	dir = 10;
@@ -48137,9 +47705,8 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/hallways/port_hallway)
 "bMR" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	tag = "icon-orangecorner";
@@ -48216,9 +47783,8 @@
 	},
 /area/almayer/shipboard/weapon_room)
 "bNa" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -48241,9 +47807,8 @@
 	},
 /area/almayer/shipboard/weapon_room)
 "bNd" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -48251,9 +47816,8 @@
 	},
 /area/almayer/shipboard/weapon_room)
 "bNe" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	icon_state = "plating"
@@ -48281,13 +47845,11 @@
 	},
 /area/almayer/hull/lower_hull)
 "bNi" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E-corner"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -48305,13 +47867,11 @@
 	},
 /area/shuttle/drop2/sulaco)
 "bNl" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -48327,13 +47887,11 @@
 /turf/open/floor/almayer,
 /area/almayer/hallways/hangar)
 "bNo" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E-corner"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/almayer{
@@ -48356,9 +47914,8 @@
 	},
 /area/shuttle/drop1/sulaco)
 "bNr" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/machinery/landinglight/ds1{
 	tag = "icon-landingstripe (WEST)";
@@ -48374,13 +47931,11 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -48417,9 +47972,8 @@
 /turf/open/floor/plating/almayer,
 /area/almayer/medical/lower_medical)
 "bNx" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/structure/flora/pottedplant{
 	tag = "icon-plant-10";
@@ -48762,9 +48316,8 @@
 	},
 /area/almayer/living/cryo_cells)
 "bNY" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	tag = "icon-emeraldfull";
@@ -48787,9 +48340,8 @@
 /area/almayer/living/cryo_cells)
 "bOb" = (
 /obj/effect/landmark/start/marine/squadmarine,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	tag = "icon-bluefull";
@@ -48913,9 +48465,8 @@
 	},
 /area/shuttle/drop2/sulaco)
 "bOt" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E-corner"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/almayer{
@@ -49134,9 +48685,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/engineering/lower_engineering)
@@ -49152,9 +48702,8 @@
 	icon_state = "1-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -49235,13 +48784,11 @@
 	},
 /area/almayer/shipboard/port_missiles)
 "bPh" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E-corner"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -49293,13 +48840,11 @@
 	},
 /area/almayer/hallways/hangar)
 "bPm" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/structure/prop/almayer/hangar_stencil,
 /turf/open/floor/almayer{
@@ -49309,9 +48854,8 @@
 /area/almayer/hallways/hangar)
 "bPn" = (
 /obj/item/tool/warning_cone,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -49319,13 +48863,11 @@
 	},
 /area/almayer/hallways/hangar)
 "bPo" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E-corner"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/almayer{
@@ -49378,9 +48920,8 @@
 	},
 /area/almayer/hallways/hangar)
 "bPt" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/machinery/door_control{
 	id = "hangarentrancesouth";
@@ -49407,9 +48948,8 @@
 	},
 /area/almayer/hallways/port_hallway)
 "bPv" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E-corner"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/machinery/door_control{
 	id = "hangarentrancesouth";
@@ -49476,9 +49016,8 @@
 /obj/structure/ob_ammo/ob_fuel,
 /obj/structure/ob_ammo/ob_fuel,
 /obj/structure/ob_ammo/ob_fuel,
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /turf/open/floor/almayer{
 	dir = 1;
@@ -49742,9 +49281,8 @@
 	},
 /area/almayer/hallways/hangar)
 "bPZ" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	tag = "icon-intact-supply (EAST)";
@@ -49790,9 +49328,8 @@
 	},
 /area/almayer/hallways/port_hallway)
 "bQb" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E-corner"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	tag = "icon-intact-supply (EAST)";
@@ -50555,9 +50092,8 @@
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -50584,9 +50120,8 @@
 	},
 /area/almayer/hallways/hangar)
 "bQX" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -50611,9 +50146,8 @@
 	},
 /area/almayer/hallways/port_hallway)
 "bQZ" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E-corner"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -50887,9 +50421,8 @@
 	},
 /area/almayer/hallways/port_umbilical)
 "bRC" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -50900,9 +50433,8 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -51024,13 +50556,11 @@
 /turf/open/floor/almayer,
 /area/almayer/hallways/port_hallway)
 "bRP" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -51257,9 +50787,8 @@
 /area/almayer/hallways/repair_bay)
 "bSm" = (
 /obj/machinery/vending/tool,
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E-corner"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	dir = 1;
@@ -51283,9 +50812,8 @@
 /area/almayer/hallways/repair_bay)
 "bSp" = (
 /obj/structure/closet/toolcloset,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	dir = 1;
@@ -51323,9 +50851,8 @@
 /turf/open/floor/plating/almayer,
 /area/almayer/hallways/port_hallway)
 "bSt" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -51341,9 +50868,8 @@
 	},
 /area/almayer/hallways/port_hallway)
 "bSu" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E-corner"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	tag = "icon-greencorner";
@@ -51755,9 +51281,8 @@
 	},
 /area/almayer/hallways/port_umbilical)
 "bTn" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	tag = "icon-orangecorner (WEST)";
@@ -51766,16 +51291,14 @@
 	},
 /area/almayer/hallways/port_umbilical)
 "bTo" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/almayer,
 /area/almayer/hallways/port_umbilical)
 "bTp" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -51968,9 +51491,8 @@
 	},
 /area/almayer/living/pilotbunks)
 "bTI" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /obj/structure/closet/crate,
 /obj/item/stack/sheet/mineral/phoron{
@@ -51991,13 +51513,11 @@
 	},
 /area/almayer/hallways/repair_bay)
 "bTJ" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /obj/machinery/power/port_gen/pacman,
 /turf/open/floor/almayer{
@@ -52006,20 +51526,17 @@
 	},
 /area/almayer/hallways/repair_bay)
 "bTK" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/almayer,
 /area/almayer/hallways/repair_bay)
 "bTL" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /turf/open/floor/almayer{
 	dir = 1;
@@ -52090,9 +51607,8 @@
 	},
 /area/almayer/hallways/repair_bay)
 "bTS" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E-corner"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer,
 /area/almayer/hallways/repair_bay)
@@ -52103,16 +51619,14 @@
 	},
 /area/almayer/hallways/repair_bay)
 "bTU" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer,
 /area/almayer/hallways/repair_bay)
 "bTV" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /turf/open/floor/almayer,
 /area/almayer/hallways/repair_bay)
@@ -52701,13 +52215,11 @@
 /turf/open/floor/almayer,
 /area/almayer/living/pilotbunks)
 "bVk" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E-corner"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/machinery/power/port_gen/pacman,
 /turf/open/floor/almayer{
@@ -52797,9 +52309,8 @@
 	},
 /area/almayer/hallways/repair_bay)
 "bVs" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /turf/open/floor/almayer,
 /area/almayer/hallways/repair_bay)
@@ -52825,9 +52336,8 @@
 /turf/open/floor/plating/almayer,
 /area/almayer/hallways/port_hallway)
 "bVv" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -52843,9 +52353,8 @@
 	},
 /area/almayer/hallways/port_hallway)
 "bVw" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E-corner"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	tag = "icon-greencorner (EAST)";
@@ -53325,9 +52834,8 @@
 	},
 /area/almayer/living/pilotbunks)
 "bWt" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	dir = 8;
@@ -53351,9 +52859,8 @@
 /turf/open/floor/almayer,
 /area/almayer/hallways/repair_bay)
 "bWw" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/machinery/door_control{
 	id = "pilotentrance";
@@ -53380,9 +52887,8 @@
 	},
 /area/almayer/hallways/repair_bay)
 "bWy" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E-corner"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/machinery/door_control{
 	id = "pilotentrance";
@@ -53758,9 +53264,8 @@
 	},
 /area/almayer/living/pilotbunks)
 "bXt" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -53780,9 +53285,8 @@
 	},
 /area/almayer/hallways/repair_bay)
 "bXv" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E-corner"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -53825,9 +53329,8 @@
 	},
 /area/almayer/hallways/repair_bay)
 "bXB" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	dir = 6;
@@ -54156,9 +53659,8 @@
 	},
 /area/almayer/living/cafeteria_port)
 "bYm" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	tag = "icon-orangecorner (NORTH)";
@@ -54167,16 +53669,14 @@
 	},
 /area/almayer/hallways/port_umbilical)
 "bYn" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/almayer,
 /area/almayer/hallways/port_umbilical)
 "bYo" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -54328,9 +53828,8 @@
 /area/almayer/living/pilotbunks)
 "bYD" = (
 /obj/structure/dropship_equipment/weapon/minirocket_pod,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -54339,9 +53838,8 @@
 /area/almayer/hallways/repair_bay)
 "bYE" = (
 /obj/structure/dropship_equipment/weapon/heavygun,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -54350,9 +53848,8 @@
 /area/almayer/hallways/repair_bay)
 "bYF" = (
 /obj/structure/dropship_equipment/weapon/rocket_pod,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -54361,9 +53858,8 @@
 /area/almayer/hallways/repair_bay)
 "bYG" = (
 /obj/structure/dropship_equipment/sentry_holder,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -54372,9 +53868,8 @@
 /area/almayer/hallways/repair_bay)
 "bYH" = (
 /obj/structure/dropship_equipment/electronics/spotlights,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -54383,9 +53878,8 @@
 /area/almayer/hallways/repair_bay)
 "bYI" = (
 /obj/structure/dropship_equipment/fuel/fuel_enhancer,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -54395,9 +53889,8 @@
 "bYJ" = (
 /obj/machinery/light,
 /obj/structure/dropship_equipment/fuel/cooling_system,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -54406,9 +53899,8 @@
 /area/almayer/hallways/repair_bay)
 "bYK" = (
 /obj/structure/dropship_equipment/mg_holder,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -54417,17 +53909,15 @@
 /area/almayer/hallways/repair_bay)
 "bYL" = (
 /obj/structure/dropship_equipment/medevac_system,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/almayer,
 /area/almayer/hallways/repair_bay)
 "bYM" = (
 /obj/structure/dropship_equipment/electronics/targeting_system,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/almayer,
 /area/almayer/hallways/repair_bay)
@@ -55356,9 +54846,8 @@
 	},
 /area/almayer/hallways/port_hallway)
 "cav" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /turf/open/floor/almayer{
 	dir = 8;
@@ -55594,9 +55083,8 @@
 	},
 /area/almayer/hallways/port_hallway)
 "caZ" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	dir = 9;
@@ -55834,9 +55322,8 @@
 	},
 /area/almayer/medical/operating_room_four)
 "cbC" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -55844,9 +55331,8 @@
 	},
 /area/almayer/shipboard/port_point_defense)
 "cbD" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /obj/machinery/light/small{
 	dir = 1
@@ -56348,9 +55834,8 @@
 	},
 /area/almayer/shipboard/port_point_defense)
 "ccv" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/machinery/light/small{
 	dir = 4
@@ -56365,9 +55850,8 @@
 	dir = 8;
 	on = 1
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -56375,13 +55859,11 @@
 	},
 /area/almayer/shipboard/port_point_defense)
 "ccx" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E-corner"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -56394,13 +55876,11 @@
 	},
 /area/shuttle/distress/arrive_2)
 "ccz" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -56413,9 +55893,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -56466,9 +55945,8 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	dir = 10;
@@ -56643,9 +56121,8 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/hallways/port_hallway)
 "cdb" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -56658,9 +56135,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -56733,9 +56209,8 @@
 	},
 /area/almayer/hallways/port_hallway)
 "cdm" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /turf/open/floor/almayer{
 	tag = "icon-redcorner (NORTH)";
@@ -57045,9 +56520,8 @@
 	},
 /area/almayer/hallways/port_hallway)
 "cdV" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	tag = "icon-intact-supply (EAST)";
@@ -57071,9 +56545,8 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/hull/lower_hull)
 "cdX" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -57112,9 +56585,8 @@
 	},
 /area/almayer/hull/lower_hull)
 "cdZ" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E-corner"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -57285,9 +56757,8 @@
 	req_one_access_txt = "2;3;12;19";
 	throw_range = 15
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /turf/open/floor/almayer{
 	tag = "icon-greencorner";
@@ -57363,9 +56834,8 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/hallways/port_hallway)
 "cex" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E-corner"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/structure/disposalpipe/up/almayer{
 	dir = 8;
@@ -57474,9 +56944,8 @@
 	},
 /area/almayer/hallways/port_hallway)
 "ceH" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E-corner"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/machinery/light,
 /turf/open/floor/almayer{
@@ -57503,9 +56972,8 @@
 	},
 /area/almayer/hull/lower_hull)
 "ceK" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -57518,13 +56986,11 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -57708,9 +57174,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -57723,9 +57188,8 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -58283,9 +57747,8 @@
 	},
 /area/almayer/shipboard/brig_cells)
 "cgq" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	tag = "icon-test_floor4";
@@ -58293,9 +57756,8 @@
 	},
 /area/almayer/shipboard/brig)
 "cgr" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	tag = "icon-test_floor4";
@@ -58363,9 +57825,8 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	tag = "icon-test_floor4";
@@ -58471,9 +57932,8 @@
 	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E-corner"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -58948,9 +58408,8 @@
 	},
 /area/almayer/shipboard/brig_cells)
 "cht" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 1;
@@ -59020,9 +58479,8 @@
 "chz" = (
 /obj/structure/bed,
 /obj/item/bedsheet/green,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	icon_state = "plating"
@@ -59031,9 +58489,8 @@
 "chA" = (
 /obj/structure/bed,
 /obj/item/bedsheet/green,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /turf/open/floor/almayer{
 	icon_state = "plating"
@@ -59137,9 +58594,8 @@
 /turf/open/floor/wood,
 /area/almayer/living/bridgebunks)
 "chL" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -59445,9 +58901,8 @@
 	},
 /area/almayer/hull/upper_hull)
 "ciu" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/machinery/light,
 /turf/open/floor/almayer{
@@ -59457,9 +58912,8 @@
 	},
 /area/almayer/hallways/aft_hallway)
 "civ" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E-corner"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	tag = "icon-greencorner (NORTH)";
@@ -59787,9 +59241,8 @@
 	},
 /area/almayer/shipboard/port_point_defense)
 "ciY" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -59802,9 +59255,8 @@
 	},
 /area/almayer/shipboard/port_point_defense)
 "ciZ" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
 /obj/machinery/light/small{
 	dir = 1
@@ -59820,9 +59272,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/machinery/light/small,
 /turf/open/floor/almayer{
@@ -59884,9 +59335,8 @@
 	},
 /area/almayer/hull/lower_hull)
 "cjh" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer,
 /area/almayer/hallways/hangar)
@@ -59912,9 +59362,8 @@
 	tag = "icon-intact-supply (SOUTHEAST)";
 	dir = 6
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -59926,9 +59375,8 @@
 	dir = 1;
 	on = 1
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -59988,9 +59436,8 @@
 /obj/structure/ob_ammo/ob_fuel,
 /obj/structure/ob_ammo/ob_fuel,
 /obj/structure/ob_ammo/ob_fuel,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /turf/open/floor/almayer{
 	tag = "icon-red";
@@ -59998,13 +59445,11 @@
 	},
 /area/almayer/shipboard/weapon_room)
 "cjr" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -60017,13 +59462,11 @@
 	name = "Solid Fuel Storage";
 	pixel_x = -25
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -60031,23 +59474,20 @@
 	},
 /area/almayer/shipboard/weapon_room)
 "cjt" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
 /turf/open/floor/almayer,
 /area/almayer/hallways/hangar)
 "cju" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /turf/open/floor/plating/almayer,
 /area/almayer/shipboard/weapon_room)
 "cjv" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/plating/almayer,
 /area/almayer/shipboard/weapon_room)
@@ -60055,9 +59495,8 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /turf/open/floor/plating/almayer,
 /area/almayer/shipboard/weapon_room)
@@ -60068,9 +59507,8 @@
 	},
 /area/almayer/shipboard/weapon_room)
 "cjy" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /turf/open/floor/almayer{
 	dir = 1;
@@ -60104,9 +59542,8 @@
 	},
 /area/almayer/shipboard/port_missiles)
 "cjC" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /turf/open/floor/almayer{
 	dir = 1;
@@ -60128,16 +59565,14 @@
 	},
 /area/almayer/shipboard/port_missiles)
 "cjF" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/plating/almayer,
 /area/almayer/shipboard/weapon_room)
 "cjG" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/plating/almayer,
 /area/almayer/shipboard/weapon_room)
@@ -60206,9 +59641,8 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -60237,9 +59671,8 @@
 	},
 /area/almayer/hallways/hangar)
 "cjS" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /obj/structure/bed/chair{
 	dir = 8
@@ -60289,16 +59722,14 @@
 	},
 /area/almayer/hallways/hangar)
 "cjV" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/almayer/hallways/hangar)
 "cjW" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/almayer/hallways/hangar)
@@ -60327,9 +59758,8 @@
 	},
 /area/almayer/hallways/hangar)
 "cjZ" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E-corner"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/almayer/hallways/hangar)
@@ -60404,17 +59834,15 @@
 /area/almayer/hallways/hangar)
 "ckg" = (
 /obj/structure/disposalpipe/segment,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer,
 /area/almayer/hallways/hangar)
 "ckh" = (
 /obj/structure/disposalpipe/segment,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -60422,9 +59850,8 @@
 	},
 /area/almayer/hallways/hangar)
 "cki" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /turf/open/floor/almayer{
 	tag = "icon-red";
@@ -60432,9 +59859,8 @@
 	},
 /area/almayer/hallways/hangar)
 "ckj" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
 /turf/open/floor/almayer{
 	tag = "icon-red";
@@ -60443,9 +59869,8 @@
 /area/almayer/hallways/hangar)
 "ckk" = (
 /obj/machinery/light,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -60454,13 +59879,11 @@
 /area/almayer/hallways/hangar)
 "ckl" = (
 /obj/structure/disposalpipe/segment,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -60475,9 +59898,8 @@
 	icon_state = "0-4";
 	d2 = 4
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /turf/open/floor/almayer{
 	dir = 1;
@@ -60486,9 +59908,8 @@
 	},
 /area/almayer/shipboard/port_missiles)
 "ckn" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /turf/open/floor/almayer{
 	dir = 1;
@@ -60497,9 +59918,8 @@
 	},
 /area/almayer/shipboard/port_missiles)
 "cko" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/plating,
 /area/almayer/hallways/hangar)
@@ -60930,24 +60350,20 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/plating/almayer,
 /area/almayer/living/tankerbunks)
 "cla" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/plating/almayer,
 /area/almayer/living/tankerbunks)

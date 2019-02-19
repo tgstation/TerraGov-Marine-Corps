@@ -13287,9 +13287,8 @@
 /area/ice_colony/surface/dorms)
 "aBr" = (
 /obj/vehicle/train/cargo/engine,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -13314,9 +13313,8 @@
 	},
 /area/ice_colony/surface/dorms)
 "aBt" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /obj/structure/disposalpipe/segment,
 /turf/open/floor{
@@ -13602,9 +13600,8 @@
 	},
 /area/ice_colony/surface/garage/one)
 "aBT" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor{
 	tag = "icon-darkbrown2 (NORTH)";
@@ -14368,9 +14365,8 @@
 	},
 /area/ice_colony/surface/command/control/office)
 "aDr" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4;
@@ -18121,9 +18117,8 @@
 	},
 /area/ice_colony/surface/hydroponics/north)
 "aLb" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor{
 	tag = "icon-darkred2";
@@ -19793,9 +19788,8 @@
 	dir = 4;
 	layer = 2.4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor{
 	tag = "icon-darkbrown2";
@@ -19818,9 +19812,8 @@
 	dir = 4;
 	layer = 2.4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor{
 	tag = "icon-darkbrown2";
@@ -19948,9 +19941,8 @@
 	},
 /area/ice_colony/surface/hangar/checkpoint)
 "aOZ" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -20035,9 +20027,8 @@
 	dir = 4;
 	layer = 2.4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor{
 	tag = "icon-darkpurplecorners2 (EAST)";
@@ -20248,9 +20239,8 @@
 	},
 /area/ice_colony/surface/hangar/checkpoint)
 "aPF" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkbrown2 (EAST)";
@@ -20259,9 +20249,8 @@
 	},
 /area/ice_colony/surface/hangar/alpha)
 "aPG" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -20306,9 +20295,8 @@
 	},
 /area/ice_colony/surface/hangar/alpha)
 "aPL" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NE-out";
-	icon_state = "NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -20316,9 +20304,8 @@
 	},
 /area/ice_colony/surface/hangar/alpha)
 "aPM" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor{
 	tag = "icon-darkbrown2 (WEST)";
@@ -20408,9 +20395,8 @@
 	},
 /area/ice_colony/surface/hangar/beta)
 "aPX" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NE-out";
-	icon_state = "NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -20418,9 +20404,8 @@
 	},
 /area/ice_colony/surface/hangar/beta)
 "aPY" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor{
 	tag = "icon-darkbrown2 (WEST)";
@@ -20678,9 +20663,8 @@
 	dir = 4;
 	layer = 2.4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor{
 	tag = "icon-darkbrown2";
@@ -20702,9 +20686,8 @@
 	dir = 4;
 	layer = 2.4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor{
 	tag = "icon-darkbrown2";
@@ -20743,9 +20726,8 @@
 	},
 /area/ice_colony/surface/hangar/alpha)
 "aQE" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor{
@@ -20858,9 +20840,8 @@
 	dir = 4;
 	layer = 2.4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor{
 	tag = "icon-darkbrown2";
@@ -20898,9 +20879,8 @@
 	dir = 4;
 	layer = 2.4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor{
 	tag = "icon-darkbrown2";
@@ -21047,9 +21027,8 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -21271,9 +21250,8 @@
 	},
 /area/ice_colony/surface/hangar/alpha)
 "aRA" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkbrown2 (EAST)";
@@ -21291,9 +21269,8 @@
 /turf/open/snow/layer3,
 /area/ice_colony/exterior/surface/valley/southeast)
 "aRC" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -21470,9 +21447,8 @@
 	icon_state = "pipe-s";
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -21491,9 +21467,8 @@
 	icon_state = "pipe-s";
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -21645,9 +21620,8 @@
 /area/ice_colony/surface/hangar/alpha)
 "aSh" = (
 /obj/effect/spawner/random/tool,
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkbrown2 (EAST)";
@@ -21867,9 +21841,8 @@
 	},
 /area/ice_colony/surface/research)
 "aSI" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor{
 	tag = "icon-darkpurplecorners2 (EAST)";
@@ -21878,13 +21851,11 @@
 	},
 /area/ice_colony/surface/research)
 "aSJ" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor{
 	dir = 8;
@@ -21893,9 +21864,8 @@
 	},
 /area/ice_colony/surface/research)
 "aSK" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor{
 	dir = 10;
@@ -21904,9 +21874,8 @@
 	},
 /area/ice_colony/surface/research)
 "aSL" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor{
 	tag = "icon-darkbrown2";
@@ -21914,9 +21883,8 @@
 	},
 /area/ice_colony/surface/research)
 "aSM" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /obj/machinery/door_control{
 	id = "researchoutside";
@@ -21933,9 +21901,8 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -21952,9 +21919,8 @@
 	dir = 4;
 	layer = 2.4
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkpurplecorners2 (NORTH)";
@@ -22131,9 +22097,8 @@
 	},
 /area/ice_colony/surface/bar/canteen)
 "aTj" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /turf/open/floor{
 	tag = "icon-darkpurplecorners2 (EAST)";
@@ -22334,9 +22299,8 @@
 	},
 /area/ice_colony/surface/research)
 "aTD" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
 	tag = "icon-pipe-s (WEST)";
@@ -22387,9 +22351,8 @@
 	icon_state = "pipe-s";
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NE-out";
-	icon_state = "NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -22764,13 +22727,11 @@
 	},
 /area/ice_colony/surface/research)
 "aUu" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor{
 	tag = "icon-darkpurple2 (EAST)";
@@ -22779,9 +22740,8 @@
 	},
 /area/ice_colony/surface/research)
 "aUv" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor{
 	tag = "icon-darkpurplecorners2 (NORTH)";
@@ -22923,9 +22883,8 @@
 	},
 /area/ice_colony/surface/research)
 "aUJ" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor{
 	tag = "icon-darkpurple2 (EAST)";
@@ -22934,9 +22893,8 @@
 	},
 /area/ice_colony/surface/research)
 "aUK" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NE-out";
-	icon_state = "NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /turf/open/floor{
 	tag = "icon-darkpurplecorners2 (NORTH)";
@@ -22945,9 +22903,8 @@
 	},
 /area/ice_colony/surface/research)
 "aUL" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor{
 	tag = "icon-darkpurplecorners2 (EAST)";
@@ -22956,9 +22913,8 @@
 	},
 /area/ice_colony/surface/research)
 "aUM" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable{
@@ -23373,9 +23329,8 @@
 /area/ice_colony/surface/hangar/beta)
 "aVE" = (
 /obj/structure/largecrate/random,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor{
 	tag = "icon-darkbrown2 (WEST)";
@@ -23434,9 +23389,8 @@
 	},
 /area/ice_colony/surface/storage_unit/research)
 "aVK" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 2;
@@ -23529,13 +23483,11 @@
 	},
 /area/ice_colony/surface/hangar/beta)
 "aVT" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/machinery/light,
 /obj/structure/disposalpipe/segment{
@@ -23568,9 +23520,8 @@
 	},
 /area/ice_colony/exterior/surface/container_yard)
 "aVY" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /obj/structure/disposalpipe/segment{
 	tag = "icon-pipe-s (WEST)";
@@ -23584,9 +23535,8 @@
 	},
 /area/ice_colony/surface/research)
 "aVZ" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/disposalpipe/segment{
@@ -23625,9 +23575,8 @@
 	},
 /area/ice_colony/surface/hangar/alpha)
 "aWc" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor{
 	dir = 1;
@@ -23665,9 +23614,8 @@
 	},
 /area/ice_colony/surface/hangar/alpha)
 "aWg" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /obj/machinery/light,
 /turf/open/floor{
@@ -23907,9 +23855,8 @@
 /area/ice_colony/surface/hangar/beta)
 "aWD" = (
 /obj/effect/decal/cleanable/blood/oil,
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkbrown2 (EAST)";
@@ -24726,9 +24673,8 @@
 /area/ice_colony/exterior/surface/container_yard)
 "aYj" = (
 /obj/machinery/space_heater,
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkbrown2 (EAST)";
@@ -25190,9 +25136,8 @@
 	},
 /area/ice_colony/exterior/surface/landing_pad_external)
 "aZs" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkred2 (EAST)";
@@ -25366,9 +25311,8 @@
 	},
 /area/ice_colony/exterior/surface/landing_pad_external)
 "aZN" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor{
 	dir = 6;
@@ -25451,9 +25395,8 @@
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south)
 "aZW" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor{
 	dir = 10;
@@ -25606,9 +25549,8 @@
 	},
 /area/ice_colony/exterior/surface/landing_pad_external)
 "ban" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor{
 	dir = 6;
@@ -25684,9 +25626,8 @@
 /turf/open/snow/layer2,
 /area/ice_colony/exterior/surface/valley/south)
 "baw" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor{
 	dir = 10;
@@ -25839,17 +25780,15 @@
 /turf/open/snow/layer3,
 /area/ice_colony/exterior/surface/clearing/south)
 "baO" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /obj/machinery/door/poddoor/shutters/almayer{
 	id = "hangar_ice_1";
 	name = "\improper Hangar Shutters"
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkbrown2 (NORTH)";
@@ -25858,9 +25797,8 @@
 	},
 /area/ice_colony/surface/hangar/alpha)
 "baP" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /obj/machinery/door/poddoor/shutters/almayer{
 	id = "hangar_ice_1";
@@ -25873,13 +25811,11 @@
 	},
 /area/ice_colony/surface/hangar/alpha)
 "baQ" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/machinery/door/poddoor/shutters/almayer{
 	id = "hangar_ice_1";
@@ -25949,17 +25885,15 @@
 	name = "\improper West Road Tunnel"
 	})
 "baV" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /obj/machinery/door/poddoor/shutters/almayer{
 	id = "hangar_ice_2";
 	name = "\improper Hangar Shutters"
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkbrown2 (NORTH)";
@@ -25980,9 +25914,8 @@
 	},
 /area/ice_colony/exterior/surface/cliff)
 "baX" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /obj/machinery/door/poddoor/shutters/almayer{
 	id = "hangar_ice_2";
@@ -26017,13 +25950,11 @@
 	},
 /area/ice_colony/exterior/surface/cliff)
 "bba" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/machinery/door/poddoor/shutters/almayer{
 	id = "hangar_ice_2";
@@ -26495,13 +26426,11 @@
 	},
 /area/ice_colony/exterior/surface/cliff)
 "bcc" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor{
 	tag = "icon-darkred2 (WEST)";
@@ -27801,9 +27730,8 @@
 /area/ice_colony/surface/research)
 "beL" = (
 /obj/structure/inflatable,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /turf/open/floor/plating/icefloor{
 	tag = "icon-warnplate (WEST)";
@@ -28373,9 +28301,8 @@
 	d2 = 4;
 	icon_state = "0-4"
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor{
 	tag = "icon-darkbrown2 (NORTH)";
@@ -28598,9 +28525,8 @@
 	},
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bgx" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -28647,9 +28573,8 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/requesition)
 "bgC" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -28905,9 +28830,8 @@
 	name = "\improper Colony Response Team Hangar"
 	})
 "bhe" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -28927,9 +28851,8 @@
 	name = "\improper Colony Response Team Hangar"
 	})
 "bhf" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -29038,9 +28961,8 @@
 /area/ice_colony/underground/hangar)
 "bhq" = (
 /obj/structure/inflatable,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
 /turf/open/floor/plating/icefloor{
 	tag = "icon-warnplate (WEST)";
@@ -29216,9 +29138,8 @@
 	},
 /area/ice_colony/surface/research)
 "bhL" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor{
 	tag = "icon-darkred2 (WEST)";
@@ -29297,9 +29218,8 @@
 	},
 /area/ice_colony/underground/requesition)
 "bhV" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -29307,9 +29227,8 @@
 	},
 /area/ice_colony/underground/requesition)
 "bhW" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -29390,9 +29309,8 @@
 /area/ice_colony/underground/requesition)
 "bib" = (
 /obj/machinery/conveyor_switch,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor{
 	tag = "icon-darkbrown2";
@@ -29735,9 +29653,8 @@
 	},
 /area/ice_colony/underground/requesition/sec_storage)
 "biJ" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -29745,9 +29662,8 @@
 	},
 /area/ice_colony/underground/requesition/sec_storage)
 "biK" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -29849,9 +29765,8 @@
 	},
 /area/ice_colony/underground/requesition/lobby)
 "biT" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor{
 	tag = "icon-darkbrown2 (NORTH)";
@@ -30068,9 +29983,8 @@
 	},
 /area/ice_colony/underground/requesition/lobby)
 "bjq" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -30083,9 +29997,8 @@
 	},
 /area/ice_colony/underground/requesition/lobby)
 "bjr" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -33167,9 +33080,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -33876,9 +33788,8 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/engineering)
 "brw" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /obj/structure/cable/yellow{
 	d1 = 2;
@@ -34788,9 +34699,8 @@
 	},
 /area/ice_colony/underground/medical/treatment)
 "btv" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/structure/window/reinforced{
 	dir = 1
@@ -34810,9 +34720,8 @@
 	},
 /area/ice_colony/underground/medical/treatment)
 "btx" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/effect/decal/warning_stripes{
 	icon_state = "E-corner";
@@ -34828,9 +34737,8 @@
 	tag = "icon-E-corner";
 	icon_state = "E-corner"
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/structure/window/reinforced{
 	dir = 4
@@ -35151,13 +35059,11 @@
 	},
 /area/ice_colony/underground/medical/hallway)
 "bud" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/bball)
@@ -35367,13 +35273,11 @@
 	},
 /area/ice_colony/underground/crew/bball)
 "buz" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/structure/window/reinforced{
 	dir = 8
@@ -35384,13 +35288,11 @@
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/bball)
 "buA" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/structure/window/reinforced{
 	dir = 1
@@ -35402,9 +35304,8 @@
 	icon_state = "NS-center";
 	tag = "icon-W"
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/structure/window/reinforced{
 	dir = 1
@@ -35746,9 +35647,8 @@
 	},
 /area/ice_colony/underground/reception/checkpoint_north)
 "bvm" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/machinery/door/window/westright{
 	name = "Basketball Court"
@@ -35756,9 +35656,8 @@
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/bball)
 "bvn" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/bball)
@@ -35767,9 +35666,8 @@
 	icon_state = "E-corner";
 	tag = "icon-E-corner"
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/bball)
@@ -35915,9 +35813,8 @@
 	},
 /area/ice_colony/underground/crew/chapel)
 "bvB" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/bball)
@@ -36056,9 +35953,8 @@
 	},
 /area/ice_colony/underground/medical/lobby)
 "bvQ" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/effect/decal/warning_stripes,
 /obj/structure/holohoop{
@@ -36149,9 +36045,8 @@
 	},
 /area/ice_colony/underground/medical/lobby)
 "bvZ" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /obj/structure/window/reinforced,
 /turf/open/floor/wood,
@@ -36165,13 +36060,11 @@
 	},
 /area/ice_colony/underground/medical/lobby)
 "bwb" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/effect/decal/warning_stripes{
 	icon_state = "E-corner";
@@ -36185,9 +36078,8 @@
 	tag = "icon-E-corner";
 	icon_state = "E-corner"
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /obj/structure/window/reinforced{
 	dir = 4
@@ -36398,9 +36290,8 @@
 	},
 /area/ice_colony/underground/maintenance/east)
 "bwz" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/machinery/door/window/westleft{
 	name = "Basketball Court"
@@ -36560,13 +36451,11 @@
 	},
 /area/ice_colony/underground/crew/chapel)
 "bwQ" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /obj/structure/window/reinforced{
 	dir = 8
@@ -36608,29 +36497,24 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/medical/treatment)
 "bwU" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/structure/window/reinforced,
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/bball)
 "bwV" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/structure/window/reinforced,
 /turf/open/floor/wood,
@@ -36640,9 +36524,8 @@
 	icon_state = "NS-center";
 	tag = "icon-W"
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /obj/structure/window/reinforced,
 /turf/open/floor/wood,

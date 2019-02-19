@@ -105,16 +105,14 @@
 	},
 /area/space)
 "aau" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /turf/open/nostromowater,
 /area/space)
 "aav" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
 /turf/open/nostromowater,
 /area/space)
@@ -299,9 +297,8 @@
 /turf/open/nostromowater,
 /area/space)
 "aba" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/nostromowater,
 /area/space)
@@ -466,9 +463,8 @@
 	},
 /area/space)
 "abC" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/nostromowater,
 /area/space)
@@ -477,9 +473,8 @@
 /turf/open/nostromowater,
 /area/space)
 "abE" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/nostromowater,
 /area/space)
@@ -644,9 +639,8 @@
 /turf/open/nostromowater,
 /area/space)
 "ach" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/nostromowater,
 /area/space)
@@ -766,16 +760,14 @@
 	},
 /area/space)
 "acB" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /turf/open/nostromowater,
 /area/space)
 "acC" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /turf/open/nostromowater,
 /area/space)
@@ -912,9 +904,8 @@
 /turf/open/floor/plating,
 /area/prison/research/secret/testing)
 "acV" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/item/shard,
 /obj/item/circuitboard/airlock,
@@ -932,9 +923,8 @@
 /turf/open/floor/plating,
 /area/prison/research/secret/testing)
 "acW" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/machinery/door/window/northright,
 /obj/machinery/door/poddoor/shutters/almayer{
@@ -956,9 +946,8 @@
 /turf/open/floor/plating,
 /area/prison/research/secret/testing)
 "acY" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/machinery/door/poddoor/shutters/almayer{
 	density = 0;
@@ -970,9 +959,8 @@
 /turf/open/floor/plating,
 /area/prison/research/secret/testing)
 "acZ" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/machinery/door/poddoor/shutters/almayer{
 	density = 0;
@@ -1031,13 +1019,11 @@
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/access/north)
 "adg" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/machinery/light{
 	dir = 8
@@ -1049,9 +1035,8 @@
 	},
 /area/prison/research/secret/testing)
 "adh" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/prison{
 	tag = "icon-floor_plate (SOUTHWEST)";
@@ -1065,9 +1050,8 @@
 	dir = 4;
 	health = 80
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/prison{
 	tag = "icon-floor_plate (SOUTHWEST)";
@@ -1076,9 +1060,8 @@
 	},
 /area/prison/research/secret/testing)
 "adj" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /obj/item/shard,
 /obj/item/circuitboard/airlock,
@@ -1095,9 +1078,8 @@
 /area/prison/research/secret/testing)
 "adk" = (
 /obj/machinery/door/window/southright,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/prison{
 	tag = "icon-cell_stripe (NORTH)";
@@ -1114,9 +1096,8 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/prison{
@@ -1127,9 +1108,8 @@
 /area/prison/research/secret/testing)
 "adm" = (
 /obj/structure/reagent_dispensers/watertank,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/prison{
 	tag = "icon-floor_plate (SOUTHWEST)";
@@ -1149,13 +1129,11 @@
 	},
 /area/prison/research/secret/testing)
 "ado" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/prison{
 	tag = "icon-floor_plate (SOUTHWEST)";
@@ -1164,9 +1142,8 @@
 	},
 /area/prison/research/secret/testing)
 "adp" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /obj/machinery/door/window/southleft,
 /turf/open/floor/prison{
@@ -1180,9 +1157,8 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /obj/machinery/door_control{
 	id = "biological_testing_2";
@@ -1195,13 +1171,11 @@
 	},
 /area/prison/research/secret/testing)
 "adr" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/machinery/light{
 	dir = 4
@@ -2180,9 +2154,8 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/prison/research/secret/bioengineering)
@@ -2415,9 +2388,8 @@
 	},
 /area/prison/research/secret/bioengineering)
 "afR" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 8
@@ -2571,9 +2543,8 @@
 	},
 /area/prison/research/secret/bioengineering)
 "agi" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
@@ -2731,9 +2702,8 @@
 	},
 /area/prison/research/secret/bioengineering)
 "agA" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/prison/research/secret/bioengineering)
@@ -2758,9 +2728,8 @@
 /turf/open/floor/plating,
 /area/prison/security/monitoring/maxsec/panopticon)
 "agG" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /obj/machinery/door/airlock/almayer/maint{
 	req_one_access_txt = "0"
@@ -2768,9 +2737,8 @@
 /turf/open/floor/plating,
 /area/prison/research/secret/containment)
 "agH" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /obj/machinery/light/small{
 	dir = 1
@@ -2804,9 +2772,8 @@
 /turf/open/floor/prison,
 /area/prison/research/secret/containment)
 "agN" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/machinery/shower{
 	dir = 4;
@@ -2835,9 +2802,8 @@
 	},
 /area/prison/research/secret/testing)
 "agP" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/machinery/shower{
 	icon_state = "shower";
@@ -2904,9 +2870,8 @@
 	},
 /area/prison/research/secret/containment)
 "agZ" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/machinery/shower{
 	dir = 4;
@@ -2991,9 +2956,8 @@
 /turf/open/floor/prison,
 /area/prison/cellblock/maxsec/north)
 "ahi" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/machinery/door/airlock/almayer/maint{
 	dir = 2;
@@ -3237,9 +3201,8 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
 /turf/open/floor/prison{
 	dir = 8;
@@ -3285,9 +3248,8 @@
 /area/prison/research/secret/bioengineering)
 "ahL" = (
 /obj/item/shard,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/item/stack/rods,
 /turf/open/floor/plating,
@@ -3486,9 +3448,8 @@
 	},
 /area/prison/research/secret/containment)
 "aib" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -3577,9 +3538,8 @@
 	},
 /area/prison/research/secret/bioengineering)
 "aih" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
@@ -3633,9 +3593,8 @@
 	},
 /area/prison/research/secret/containment)
 "ain" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /turf/open/floor/prison{
 	dir = 8;
@@ -3689,9 +3648,8 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /turf/open/floor/prison{
 	dir = 2;
@@ -3699,9 +3657,8 @@
 	},
 /area/prison/research/secret/bioengineering)
 "aiu" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/prison{
 	dir = 2;
@@ -3709,9 +3666,8 @@
 	},
 /area/prison/research/secret/bioengineering)
 "aiv" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
 /obj/machinery/light,
 /turf/open/floor/prison{
@@ -3797,9 +3753,8 @@
 	},
 /area/prison/research/secret/bioengineering)
 "aiF" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/prison{
 	dir = 6;
@@ -4236,9 +4191,8 @@
 	},
 /area/prison/research/secret/containment)
 "ajz" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /obj/machinery/shower{
 	pixel_y = 15
@@ -4253,9 +4207,8 @@
 /obj/machinery/shower{
 	pixel_y = 15
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	on = 1
@@ -4263,9 +4216,8 @@
 /turf/open/floor/plating,
 /area/prison/research/secret)
 "ajB" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /obj/machinery/shower{
 	pixel_y = 15
@@ -4273,9 +4225,8 @@
 /turf/open/floor/plating,
 /area/prison/research/secret)
 "ajC" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/machinery/light{
 	dir = 1
@@ -4792,9 +4743,8 @@
 	},
 /area/prison/research/secret)
 "akB" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -4939,16 +4889,14 @@
 	dir = 4;
 	icon_state = "shower"
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "N";
-	tag = "icon-N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/prison/research/secret)
 "akP" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/prison{
 	dir = 10;
@@ -5369,9 +5317,8 @@
 	dir = 4;
 	icon_state = "shower"
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "N";
-	tag = "icon-N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 1
@@ -6499,9 +6446,8 @@
 /turf/open/floor/plating,
 /area/prison/maintenance/research_medbay)
 "anS" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/prison/maintenance/research_medbay)
@@ -6515,9 +6461,8 @@
 /turf/open/floor/plating,
 /area/prison/maintenance/research_medbay)
 "anU" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/prison/maintenance/research_medbay)
@@ -6928,9 +6873,8 @@
 /turf/open/floor/plating,
 /area/prison/maintenance/research_medbay)
 "aoK" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -6963,9 +6907,8 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/prison/maintenance/research_medbay)
@@ -7646,9 +7589,8 @@
 /turf/open/floor/prison,
 /area/prison/research/secret/dissection)
 "apZ" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/prison{
 	tag = "icon-bright_clean_marked";
@@ -7657,9 +7599,8 @@
 	},
 /area/prison/research/secret)
 "aqa" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -7675,9 +7616,8 @@
 	},
 /area/prison/research/secret)
 "aqb" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/prison{
 	tag = "icon-darkpurple2";
@@ -7685,9 +7625,8 @@
 	},
 /area/prison/research/secret)
 "aqc" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/prison{
 	dir = 6;
@@ -8194,9 +8133,8 @@
 	},
 /area/prison/research)
 "arh" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /turf/open/floor/prison{
 	tag = "icon-bright_clean_marked";
@@ -8205,9 +8143,8 @@
 	},
 /area/prison/research)
 "ari" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "N";
-	tag = "icon-N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/prison{
 	tag = "icon-bright_clean_marked";
@@ -8216,9 +8153,8 @@
 	},
 /area/prison/research)
 "arj" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -8233,9 +8169,8 @@
 	},
 /area/prison/research)
 "ark" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/prison{
 	tag = "icon-sterile_white (SOUTHWEST)";
@@ -8244,9 +8179,8 @@
 	},
 /area/prison/research)
 "arl" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/prison{
 	dir = 4;
@@ -9030,9 +8964,8 @@
 	},
 /area/prison/research/RD)
 "asH" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/effect/landmark/random_item/good,
 /turf/open/floor/prison{
@@ -9483,9 +9416,8 @@
 	},
 /area/prison/research/RD)
 "atn" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison{
@@ -9852,9 +9784,8 @@
 	},
 /area/prison/research/RD)
 "atS" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /obj/structure/cable{
 	d2 = 8;
@@ -13082,9 +13013,8 @@
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/access/north)
 "azY" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/access/north)
@@ -13093,9 +13023,8 @@
 /turf/open/floor/prison,
 /area/prison/security/checkpoint/maxsec)
 "aAa" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/access/north)
@@ -13321,13 +13250,11 @@
 	},
 /area/prison/research)
 "aAA" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/machinery/landinglight/ds2/delaythree{
 	tag = "icon-landingstripe (EAST)";
@@ -13337,13 +13264,11 @@
 /turf/open/floor/plating,
 /area/prison/hangar/civilian)
 "aAB" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/machinery/landinglight/ds2/delaythree{
 	tag = "icon-landingstripe (WEST)";
@@ -13359,9 +13284,8 @@
 /turf/open/floor/prison,
 /area/prison/hangar/civilian)
 "aAD" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/machinery/landinglight/ds2{
 	tag = "icon-landingstripe (EAST)";
@@ -13371,9 +13295,8 @@
 /turf/open/floor/plating,
 /area/prison/hangar/civilian)
 "aAE" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/machinery/landinglight/ds2/delaytwo{
 	tag = "icon-landingstripe (WEST)";
@@ -13513,9 +13436,8 @@
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/access/north)
 "aAV" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	tag = "icon-intact-supply (EAST)";
@@ -13547,9 +13469,8 @@
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/access/north)
 "aAX" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	tag = "icon-intact-supply (EAST)";
@@ -15162,9 +15083,8 @@
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/access/north)
 "aDN" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/access/north)
@@ -23503,9 +23423,8 @@
 	},
 /area/prison/security/monitoring/lowsec/ne)
 "aTC" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/machinery/landinglight/ds2/delayone{
 	tag = "icon-landingstripe (EAST)";
@@ -26435,9 +26354,8 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/prison/hangar/main)
@@ -27008,9 +26926,8 @@
 	},
 /area/prison/command/quarters)
 "aZO" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/prison/hangar/main)
@@ -27059,17 +26976,15 @@
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/ne)
 "aZV" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/ne)
 "aZW" = (
 /obj/machinery/vending/cola,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
 /turf/open/floor/wood,
 /area/prison/security/monitoring/highsec)
@@ -27330,16 +27245,14 @@
 	},
 /area/prison/command/quarters)
 "baE" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "baF" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /obj/machinery/landinglight/ds1/delaytwo{
 	tag = "icon-landingstripe";
@@ -27348,9 +27261,8 @@
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "baG" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /obj/machinery/landinglight/ds1/delayone{
 	tag = "icon-landingstripe";
@@ -27359,9 +27271,8 @@
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "baH" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /obj/machinery/landinglight/ds1{
 	tag = "icon-landingstripe";
@@ -27370,9 +27281,8 @@
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "baI" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /obj/machinery/landinglight/ds1/delaythree{
 	tag = "icon-landingstripe";
@@ -27381,9 +27291,8 @@
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "baJ" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
 /turf/open/floor/plating,
 /area/prison/hangar/main)
@@ -27462,9 +27371,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/ne)
@@ -27481,9 +27389,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/wood,
 /area/prison/security/monitoring/highsec)
@@ -27507,9 +27414,8 @@
 	},
 /area/prison/hallway/central)
 "baV" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/machinery/landinglight/ds2/delayone{
 	tag = "icon-landingstripe (WEST)";
@@ -27802,13 +27708,11 @@
 /turf/open/floor/plating,
 /area/prison/hallway/entrance)
 "bbD" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/machinery/landinglight/ds1/delaythree{
 	tag = "icon-landingstripe (EAST)";
@@ -27818,13 +27722,11 @@
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "bbE" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/machinery/landinglight/ds1/delaythree{
 	tag = "icon-landingstripe (WEST)";
@@ -27862,9 +27764,8 @@
 /turf/open/floor/wood,
 /area/prison/residential/central)
 "bbL" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/machinery/landinglight/ds2/delaytwo{
 	tag = "icon-landingstripe (EAST)";
@@ -27925,9 +27826,8 @@
 	dir = 4;
 	on = 1
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /turf/open/floor/wood,
 /area/prison/security/monitoring/highsec)
@@ -28019,9 +27919,8 @@
 /turf/open/floor/prison,
 /area/prison/security/checkpoint/highsec/n)
 "bcd" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/machinery/landinglight/ds2{
 	tag = "icon-landingstripe (WEST)";
@@ -28261,9 +28160,8 @@
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "bcE" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/machinery/landinglight/ds1{
 	tag = "icon-landingstripe (EAST)";
@@ -28276,9 +28174,8 @@
 /turf/open/floor/plating,
 /area/shuttle/drop1/prison)
 "bcG" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/machinery/landinglight/ds1/delaytwo{
 	tag = "icon-landingstripe (WEST)";
@@ -28308,9 +28205,8 @@
 	},
 /area/prison/cellblock/highsec/north/south)
 "bcJ" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/machinery/landinglight/ds2/delaythree{
 	tag = "icon-landingstripe (EAST)";
@@ -28345,9 +28241,8 @@
 	},
 /area/prison/yard)
 "bcM" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/machinery/landinglight/ds2/delaythree{
 	tag = "icon-landingstripe (WEST)";
@@ -28622,9 +28517,8 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/hallway/entrance)
 "bdq" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/machinery/landinglight/ds1/delayone{
 	tag = "icon-landingstripe (EAST)";
@@ -28634,9 +28528,8 @@
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "bdr" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/machinery/landinglight/ds1/delayone{
 	tag = "icon-landingstripe (WEST)";
@@ -29267,9 +29160,8 @@
 	},
 /area/prison/residential/central)
 "bew" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/machinery/landinglight/ds1/delaytwo{
 	tag = "icon-landingstripe (EAST)";
@@ -29279,9 +29171,8 @@
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "bex" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/machinery/landinglight/ds1{
 	tag = "icon-landingstripe (WEST)";
@@ -29487,9 +29378,8 @@
 	pixel_x = 9;
 	pixel_y = 8
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /turf/open/floor/prison{
 	icon_state = "bluefull"
@@ -29499,9 +29389,8 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
 /turf/open/floor/wood,
 /area/prison/security/monitoring/highsec)
@@ -30032,9 +29921,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/wood,
 /area/prison/security/monitoring/highsec)
@@ -30077,9 +29965,8 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /turf/open/floor/prison{
 	tag = "icon-kitchen";
@@ -30087,9 +29974,8 @@
 	},
 /area/prison/kitchen)
 "bfR" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
 /turf/open/floor/prison{
 	tag = "icon-floor_plate (SOUTHWEST)";
@@ -30102,9 +29988,8 @@
 /turf/closed/wall/r_wall/prison_unmeltable,
 /area/prison/hangar/main)
 "bfT" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/machinery/landinglight/ds1/delaythree{
 	tag = "icon-landingstripe (EAST)";
@@ -30124,9 +30009,8 @@
 	},
 /area/prison/hangar/main)
 "bfV" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/machinery/landinglight/ds1/delaythree{
 	tag = "icon-landingstripe (WEST)";
@@ -30316,9 +30200,8 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/prison,
 /area/prison/residential/central)
@@ -30851,9 +30734,8 @@
 	},
 /area/prison/kitchen)
 "bhq" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-E";
-	icon_state = "E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/prison{
 	tag = "icon-kitchen";
@@ -30876,9 +30758,8 @@
 	},
 /area/prison/hallway/central)
 "bhs" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/prison{
 	tag = "icon-floor_plate (SOUTHWEST)";
@@ -31008,17 +30889,15 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /turf/open/floor/prison,
 /area/prison/residential/central)
 "bhH" = (
 /obj/structure/table/reinforced,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /turf/open/floor/wood,
 /area/prison/security/monitoring/highsec)
@@ -31758,9 +31637,8 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/prison{
 	tag = "icon-floor_plate (SOUTHWEST)";
@@ -32936,9 +32814,8 @@
 	},
 /area/prison/hangar/main)
 "bkK" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/machinery/landinglight/ds1/delaythree{
 	tag = "icon-landingstripe (EAST)";
@@ -33034,9 +32911,8 @@
 	},
 /area/prison/residential/central)
 "bkS" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
 /turf/open/floor/prison{
 	dir = 8;
@@ -33479,9 +33355,8 @@
 	},
 /area/prison/hangar/main)
 "blH" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/machinery/landinglight/ds1{
 	tag = "icon-landingstripe (EAST)";
@@ -33612,9 +33487,8 @@
 	},
 /area/prison/residential/central)
 "blT" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -33648,9 +33522,8 @@
 	},
 /area/prison/residential/central)
 "blV" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/prison{
 	dir = 8;
@@ -34064,9 +33937,8 @@
 /turf/open/floor/prison,
 /area/prison/security/monitoring/highsec)
 "bmP" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -34223,9 +34095,8 @@
 	},
 /area/prison/residential/central)
 "bne" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -34739,9 +34610,8 @@
 	},
 /area/prison/residential/central)
 "bod" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
@@ -35560,9 +35430,8 @@
 	},
 /area/prison/residential/central)
 "bpi" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/prison{
 	dir = 6;
@@ -36049,9 +35918,8 @@
 	},
 /area/prison/monorail/west)
 "bqe" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /turf/open/floor/prison{
 	dir = 8;
@@ -36789,9 +36657,8 @@
 /turf/open/floor/prison,
 /area/prison/hangar/main)
 "brx" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /turf/open/floor/prison{
 	tag = "icon-kitchen";
@@ -37529,9 +37396,8 @@
 /turf/open/floor/prison,
 /area/prison/security/monitoring/highsec)
 "bsX" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /obj/structure/bed/chair/comfy{
 	dir = 4
@@ -38801,9 +38667,8 @@
 	},
 /area/prison/visitation)
 "bvp" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /turf/open/floor/plating,
 /area/prison/hangar/civilian)
@@ -39331,16 +39196,14 @@
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "bwo" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "bwp" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/machinery/landinglight/ds1{
 	tag = "icon-landingstripe (NORTH)";
@@ -39350,9 +39213,8 @@
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "bwq" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/machinery/landinglight/ds1/delayone{
 	tag = "icon-landingstripe (NORTH)";
@@ -39362,9 +39224,8 @@
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "bwr" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/machinery/landinglight/ds1/delaytwo{
 	tag = "icon-landingstripe (NORTH)";
@@ -39374,9 +39235,8 @@
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "bws" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/machinery/landinglight/ds1/delaythree{
 	tag = "icon-landingstripe (NORTH)";
@@ -39386,9 +39246,8 @@
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "bwt" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /turf/open/floor/plating,
 /area/prison/hangar/main)
@@ -39683,9 +39542,8 @@
 	},
 /area/prison/hallway/entrance)
 "bxe" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/prison,
 /area/prison/hangar/main)
@@ -40270,9 +40128,8 @@
 	},
 /area/prison/hangar/main)
 "byn" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/structure/sign/vacuum{
 	pixel_y = -30
@@ -41858,9 +41715,8 @@
 /turf/closed/wall/prison,
 /area/prison/security/monitoring/lowsec/sw)
 "bBi" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
 /turf/open/floor/prison{
 	dir = 8;
@@ -50639,9 +50495,8 @@
 /obj/machinery/atmospherics/pipe/manifold/green/visible{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/machinery/meter,
 /turf/open/floor/plating,
@@ -51503,9 +51358,8 @@
 /obj/machinery/atmospherics/pipe/manifold/green/visible{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/prison/engineering/atmos)
@@ -51872,9 +51726,8 @@
 	},
 /area/prison/residential/south)
 "bUj" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	tag = "icon-intact-supply (EAST)";
@@ -52002,9 +51855,8 @@
 	},
 /area/prison/security/checkpoint/medsec)
 "bUs" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	tag = "icon-intact-supply (EAST)";
@@ -52177,17 +52029,15 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
 	dir = 6
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/prison/engineering/atmos)
 "bUL" = (
 /obj/machinery/atmospherics/pipe/manifold4w/cyan/visible,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/prison/engineering/atmos)
@@ -52195,9 +52045,8 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/prison/engineering/atmos)
@@ -52205,9 +52054,8 @@
 /obj/machinery/atmospherics/pipe/manifold/cyan/visible{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/prison/engineering/atmos)
@@ -52216,9 +52064,8 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/prison/engineering/atmos)
@@ -52226,9 +52073,8 @@
 /obj/machinery/atmospherics/components/trinary/mixer/flipped{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/prison/engineering/atmos)
@@ -52237,9 +52083,8 @@
 	tag = "icon-intact (EAST)";
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/prison/engineering/atmos)
@@ -52251,9 +52096,8 @@
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/prison/engineering/atmos)
@@ -52263,9 +52107,8 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/binary/pump,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/prison/engineering/atmos)
@@ -52274,9 +52117,8 @@
 	tag = "icon-intact (EAST)";
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /obj/machinery/light{
 	dir = 1
@@ -52304,9 +52146,8 @@
 	dir = 5;
 	tag = "icon-intact (EAST)"
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/prison/engineering/atmos)
@@ -52720,9 +52561,8 @@
 /turf/open/floor/plating,
 /area/prison/security/checkpoint/medsec)
 "bVL" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/machinery/door/airlock/multi_tile/almayer/generic{
 	name = "Medium-Security Cellblock"
@@ -52730,9 +52570,8 @@
 /turf/open/floor/prison,
 /area/prison/security/checkpoint/medsec)
 "bVM" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -52815,24 +52654,21 @@
 /turf/open/floor/wood,
 /area/prison/library)
 "bVV" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/machinery/power/port_gen/pacman/super,
 /turf/open/floor/plating,
 /area/prison/engineering)
 "bVW" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/prison/engineering)
 "bVX" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -52844,9 +52680,8 @@
 "bVY" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/tool,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/prison/engineering)
@@ -52955,9 +52790,8 @@
 	tag = "icon-intact (SOUTHEAST)";
 	dir = 6
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/prison/engineering/atmos)
@@ -53121,16 +52955,14 @@
 	},
 /area/prison/cellblock/highsec/south/south)
 "bWJ" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	on = 1
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /turf/open/floor/prison{
 	tag = "icon-bright_clean (SOUTHWEST)";
@@ -53139,9 +52971,8 @@
 	},
 /area/prison/maintenance/residential/access/south)
 "bWK" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/prison{
 	tag = "icon-bright_clean (SOUTHWEST)";
@@ -53151,9 +52982,8 @@
 /area/prison/maintenance/residential/access/south)
 "bWL" = (
 /obj/structure/monorail,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/prison{
 	tag = "icon-bright_clean (SOUTHWEST)";
@@ -53162,16 +52992,14 @@
 	},
 /area/prison/maintenance/residential/access/south)
 "bWM" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	on = 1
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /turf/open/floor/prison{
 	tag = "icon-bright_clean (SOUTHWEST)";
@@ -53180,9 +53008,8 @@
 	},
 /area/prison/maintenance/residential/access/south)
 "bWN" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/access/south)
@@ -53435,9 +53262,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/disposalpipe/segment,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/prison,
 /area/prison/hallway/east)
@@ -53622,9 +53448,8 @@
 	icon_state = "map";
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/prison/engineering/atmos)
@@ -53850,9 +53675,8 @@
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/access/south)
 "bYl" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/prison,
 /area/prison/hallway/east)
@@ -53936,9 +53760,8 @@
 /turf/open/beach/water,
 /area/prison/residential/south)
 "bYt" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
@@ -54436,9 +54259,8 @@
 /area/prison/engineering/atmos)
 "bZl" = (
 /obj/machinery/atmospherics/pipe/manifold/yellow/visible,
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/machinery/meter,
 /turf/open/floor/plating,
@@ -54561,23 +54383,20 @@
 /turf/open/floor/plating,
 /area/prison/security/head)
 "bZB" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/access/south)
 "bZC" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /turf/open/floor/prison{
 	tag = "icon-bright_clean (SOUTHWEST)";
@@ -54586,9 +54405,8 @@
 	},
 /area/prison/maintenance/residential/access/south)
 "bZD" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/prison{
 	tag = "icon-bright_clean (SOUTHWEST)";
@@ -54598,9 +54416,8 @@
 /area/prison/maintenance/residential/access/south)
 "bZE" = (
 /obj/structure/monorail,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/prison{
 	tag = "icon-bright_clean (SOUTHWEST)";
@@ -54609,16 +54426,14 @@
 	},
 /area/prison/maintenance/residential/access/south)
 "bZF" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
 /turf/open/floor/prison{
 	tag = "icon-bright_clean (SOUTHWEST)";
@@ -58465,9 +58280,8 @@
 /turf/open/floor/plating,
 /area/prison/disposal)
 "cgL" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -58484,9 +58298,8 @@
 /turf/open/floor/prison,
 /area/prison/execution)
 "cgM" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/machinery/door/airlock/almayer/secure{
 	dir = 2;
@@ -58712,17 +58525,15 @@
 /turf/open/floor/plating,
 /area/prison/pirate)
 "chj" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating,
 /area/prison/pirate)
 "chk" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /obj/effect/landmark/corpsespawner/prison_security,
 /obj/effect/decal/cleanable/blood,
@@ -58730,9 +58541,8 @@
 /turf/open/floor/plating,
 /area/prison/pirate)
 "chl" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/plating,
 /area/prison/pirate)
@@ -58742,9 +58552,8 @@
 /turf/open/floor/plating,
 /area/prison/pirate)
 "chn" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /obj/effect/landmark/corpsespawner/prison_security,
 /obj/effect/decal/cleanable/blood,
@@ -59729,9 +59538,8 @@
 	},
 /area/prison/cellblock/highsec/south/south)
 "cjt" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /obj/machinery/light/small{
 	dir = 1
@@ -59739,16 +59547,14 @@
 /turf/open/floor/plating,
 /area/prison/pirate)
 "cju" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/prison/pirate)
 "cjv" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/effect/landmark/corpsespawner/prison_security,
 /obj/effect/decal/cleanable/blood,
@@ -59759,17 +59565,15 @@
 /turf/open/floor/plating,
 /area/prison/pirate)
 "cjx" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/item/ammo_casing,
 /turf/open/floor/plating,
 /area/prison/pirate)
 "cjy" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /obj/structure/largecrate/random,
 /obj/machinery/light/small{
@@ -62919,31 +62723,26 @@
 	},
 /area/prison/execution)
 "cpC" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/prison,
 /area/prison/execution)
 "cpD" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/prison,
 /area/prison/execution)
 "cpE" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/prison,
 /area/prison/execution)
@@ -63229,27 +63028,23 @@
 /turf/open/floor/plating,
 /area/prison/disposal)
 "cqj" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/prison,
 /area/prison/disposal)
 "cqk" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/prison,
 /area/prison/disposal)
 "cql" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/effect/landmark/random_item/crap,
 /turf/open/floor/prison,
@@ -63274,9 +63069,8 @@
 	},
 /area/prison/execution)
 "cqq" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/prison,
 /area/prison/execution)
@@ -63289,9 +63083,8 @@
 /turf/open/floor/prison,
 /area/prison/execution)
 "cqs" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/prison,
 /area/prison/execution)
@@ -63517,9 +63310,8 @@
 	},
 /area/prison/cellblock/mediumsec/east)
 "cqU" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/prison,
 /area/prison/disposal)
@@ -63586,33 +63378,28 @@
 	},
 /area/prison/execution)
 "crc" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /obj/item/tool/wrench,
 /obj/item/tool/screwdriver,
 /turf/open/floor/prison,
 /area/prison/execution)
 "crd" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/prison,
 /area/prison/execution)
 "cre" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/prison,
 /area/prison/execution)
@@ -64653,9 +64440,8 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/cellblock/mediumsec/south)
 "ctn" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/machinery/landinglight/ds2{
 	tag = "icon-landingstripe (NORTH)";
@@ -64665,9 +64451,8 @@
 /turf/open/floor/plating,
 /area/prison/hangar/civilian)
 "cto" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/machinery/landinglight/ds2/delayone{
 	tag = "icon-landingstripe (NORTH)";
@@ -64700,9 +64485,8 @@
 	},
 /area/prison/cellblock/mediumsec/south)
 "ctq" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/machinery/landinglight/ds2/delaytwo{
 	tag = "icon-landingstripe (NORTH)";
@@ -64712,9 +64496,8 @@
 /turf/open/floor/plating,
 /area/prison/hangar/civilian)
 "ctr" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/machinery/landinglight/ds2/delaythree{
 	tag = "icon-landingstripe (NORTH)";
@@ -64724,9 +64507,8 @@
 /turf/open/floor/plating,
 /area/prison/hangar/civilian)
 "cts" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /turf/open/floor/plating,
 /area/prison/hangar/civilian)
@@ -65801,9 +65583,8 @@
 	},
 /area/prison/cellblock/mediumsec/west)
 "cvz" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
