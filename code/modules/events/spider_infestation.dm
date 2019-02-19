@@ -19,7 +19,7 @@
 /datum/event/spider_infestation/start()
 	var/list/vents = list()
 	for(var/obj/machinery/atmospherics/components/unary/vent_pump/temp_vent in GLOB.machines)
-		if((temp_vent.loc.z == 3 || temp_vent.loc.z == 4)  && !temp_vent.welded && temp_vent.parents)
+		if(is_mainship_or_low_orbit_level(temp_vent.loc.z) && !temp_vent.welded && temp_vent.parents)
 			if(temp_vent.parents.members.len > 50)
 				vents += temp_vent
 

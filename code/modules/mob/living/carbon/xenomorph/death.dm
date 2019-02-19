@@ -24,7 +24,7 @@
 		hive = hive_datum[hivenumber]
 	else return
 
-	if(z != ADMIN_Z_LEVEL) //so xeno players don't get death messages from admin tests
+	if(!is_centcom_level(z)) //so xeno players don't get death messages from admin tests
 		if(isxenoqueen(src))
 			var/mob/living/carbon/Xenomorph/Queen/XQ = src
 			playsound(loc, 'sound/voice/alien_queen_died.ogg', 75, 0)

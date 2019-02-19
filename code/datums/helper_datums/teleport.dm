@@ -177,7 +177,7 @@
 				teleatom.visible_message("<span class='danger'>The [teleatom] bounces off of the portal!</span>")
 			return 0
 
-		if(destination.z == 2) //centcomm z-level
+		if(is_centcom_level(destination.z)) //centcomm z-level
 			if(istype(teleatom, /obj/mecha))
 				var/obj/mecha/MM = teleatom
 				to_chat(MM.occupant, "<span class='danger'>The mech would not survive the jump to a location so far away!</span>")

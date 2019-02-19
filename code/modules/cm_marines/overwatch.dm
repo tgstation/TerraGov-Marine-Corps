@@ -4,6 +4,10 @@
 
 #define MAX_SUPPLY_DROPS 4
 
+#define HIDE_NONE 0
+#define HIDE_ON_GROUND 1
+#define HIDE_ON_SHIP 2
+
 /obj/machinery/computer/overwatch
 	name = "Overwatch Console"
 	desc = "State of the art machinery for giving orders to a squad."
@@ -339,15 +343,15 @@
 			else
 				to_chat(usr, "[icon2html(src, usr)] <span class='notice'>Dead marines are now shown again.</span>")
 		if("choose_z")
-			switch(z_hidden)
-				if(0)
-					z_hidden = MAIN_SHIP_Z_LEVEL
+			switch(z_hidden) 
+				if(HIDE_NONE)
+					z_hidden = HIDE_ON_SHIP
 					to_chat(usr, "[icon2html(src, usr)] <span class='notice'>Marines on the [MAIN_SHIP_NAME] are now hidden.</span>")
-				if(MAIN_SHIP_Z_LEVEL)
-					z_hidden = 1
+				if(HIDE_ON_SHIP)
+					z_hidden = HIDE_ON_GROUND
 					to_chat(usr, "[icon2html(src, usr)] <span class='notice'>Marines on the ground are now hidden.</span>")
-				else
-					z_hidden = 0
+				if(HIDE_ON_GROUND)
+					z_hidden = HIDE_NONE
 					to_chat(usr, "[icon2html(src, usr)] <span class='notice'>No location is ignored anymore.</span>")
 
 		if("change_lead")
@@ -578,7 +582,7 @@
 
 /obj/machinery/computer/overwatch/proc/do_shake_camera()
 	for(var/mob/living/carbon/H in GLOB.alive_mob_list)
-		if(H.z == MAIN_SHIP_Z_LEVEL && !H.stat) //TGS Theseus decks.
+		if(is_mainship_level(H.z) && !H.stat) //TGS Theseus decks.
 			to_chat(H, "<span class='warning'>The deck of the [MAIN_SHIP_NAME] shudders as the orbital cannons open fire on the colony.</span>")
 			if(H.client)
 				shake_camera(H, 10, 1)
@@ -971,7 +975,7 @@
 		return ..()
 
 /obj/item/device/squad_beacon/bomb/proc/activate(mob/living/carbon/human/H)
-	if(H.z != 1)
+	if(!is_ground_level(H.z))
 		to_chat(H, "<span class='warning'>You have to be on the planet to use this or it won't transmit.</span>")
 		return
 	var/area/A = get_area(H)
@@ -1172,8 +1176,14 @@
 		var/turf/M_turf = get_turf(H)
 		if(A)
 			area_name = sanitize(A.name)
-		if(z_hidden && z_hidden == M_turf?.z)
-			continue
+		switch(z_hidden)
+			if(HIDE_ON_GROUND)
+				if(is_ground_level(M_turf?.z))
+					continue
+			if(HIDE_ON_SHIP)
+				if(is_mainship_or_low_orbit_level(M_turf?.z))
+					continue
+
 		if(H.mind?.assigned_role)
 			role = H.mind.assigned_role
 		else

@@ -136,7 +136,7 @@
 	if(!affected_mob)
 		return
 
-	if(affected_mob.z == ADMIN_Z_LEVEL && !admin)
+	if(is_centcom_level(affected_mob.z) && !admin)
 		return
 
 	var/picked
@@ -227,7 +227,7 @@
 	log_game("[key_name(src)] chestbursted as a [src] at [AREACOORD(src)].")
 
 	var/datum/hive_status/hive = hive_datum[XENO_HIVE_NORMAL]
-	if((!key || !client) && loc.z == PLANET_Z_LEVEL && (locate(/obj/structure/bed/nest) in loc) && hivenumber == XENO_HIVE_NORMAL && hive.living_xeno_queen && hive.living_xeno_queen.z == loc.z)
+	if((!key || !client) && is_ground_level(loc.z) && (locate(/obj/structure/bed/nest) in loc) && hivenumber == XENO_HIVE_NORMAL && hive.living_xeno_queen && hive.living_xeno_queen.z == loc.z)
 		visible_message("<span class='xenodanger'>[src] quickly burrows into the ground.</span>")
 		round_statistics.total_xenos_created-- // keep stats sane
 		SSticker.mode.stored_larva++

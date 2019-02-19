@@ -81,7 +81,7 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 
 /datum/authority/branch/evacuation/proc/get_affected_zlevels() //This proc returns the ship's z level list (or whatever specified), when an evac/self destruct happens.
 	if(dest_status < NUKE_EXPLOSION_IN_PROGRESS && evac_status == EVACUATION_STATUS_COMPLETE) //Nuke is not in progress and evacuation finished, end the round on ship and low orbit (dropships in transit) only.
-		. = MAIN_SHIP_AND_DROPSHIPS_Z_LEVELS
+		. = SSmapping.levels_by_any_trait(list(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_LOW_ORBIT))
 
 #undef SELF_DESTRUCT_ROD_STARTUP_TIME
 //=========================================================================================
@@ -210,7 +210,7 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 		trigger_self_destruct(,,override)
 		return TRUE
 
-/datum/authority/branch/evacuation/proc/trigger_self_destruct(list/z_levels = list(MAIN_SHIP_Z_LEVEL), origin = dest_master, override)
+/datum/authority/branch/evacuation/proc/trigger_self_destruct(list/z_levels = list(SSmapping.levels_by_trait(ZTRAIT_MARINE_MAIN_SHIP)), origin = dest_master, override)
 	set waitfor = FALSE
 	if(dest_status < NUKE_EXPLOSION_IN_PROGRESS) //One more check for good measure, in case it's triggered through a bomb instead of the destruct mechanism/admin panel.
 		GLOB.enter_allowed = FALSE //Do not want baldies spawning in as everything is exploding.
@@ -219,10 +219,9 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 		world << pick('sound/theme/nuclear_detonation1.ogg','sound/theme/nuclear_detonation2.ogg')
 
 		var/ship_status = 1
-		for(var/i in z_levels)
-			if(i == MAIN_SHIP_Z_LEVEL)
-				ship_status = 0
-			break
+		var/f = SSmapping.levels_by_trait(ZTRAIT_MARINE_MAIN_SHIP)
+		if(f in z_levels)
+			ship_status = 0 //Destroyed.
 
 		for(var/x in GLOB.player_list)
 			var/mob/M = x
