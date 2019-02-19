@@ -1576,36 +1576,26 @@
 /area/bigredv2/outside/marshal_office)
 "adU" = (
 /obj/structure/filingcabinet,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/marshal_office)
 "adV" = (
 /obj/structure/filingcabinet/security,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/marshal_office)
 "adW" = (
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/marshal_office)
 "adX" = (
 /obj/structure/bookcase/manuals/engineering,
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/marshal_office)
 "adY" = (
 /obj/structure/closet/secure_closet/detective,
 /obj/item/weapon/gun/smg/p90,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/marshal_office)
 "adZ" = (
 /turf/closed/wall/r_wall,
@@ -1771,22 +1761,16 @@
 "aes" = (
 /obj/structure/table/woodentable,
 /obj/machinery/computer/security/wooden_tv,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/marshal_office)
 "aet" = (
 /obj/structure/bed/chair/comfy,
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/marshal_office)
 "aeu" = (
 /obj/item/clothing/tie/holster/armpit,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/marshal_office)
 "aev" = (
 /obj/structure/cable{
@@ -1925,30 +1909,22 @@
 "aeO" = (
 /obj/structure/table/woodentable,
 /obj/machinery/recharger,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/marshal_office)
 "aeP" = (
 /obj/structure/table/woodentable,
 /obj/item/reagent_container/food/drinks/flask/detflask,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/marshal_office)
 "aeQ" = (
 /obj/structure/table/woodentable,
 /obj/item/ashtray/bronze,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/marshal_office)
 "aeR" = (
 /obj/structure/table/woodentable,
 /obj/item/clothing/head/det_hat,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/marshal_office)
 "aeS" = (
 /obj/structure/closet/crate/freezer,
@@ -2185,9 +2161,7 @@
 /obj/structure/bed/chair{
 	dir = 1
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/marshal_office)
 "aft" = (
 /obj/structure/table/reinforced,
@@ -2436,9 +2410,7 @@
 	name = "Storm Shutters";
 	pixel_x = -32
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/marshal_office)
 "afX" = (
 /obj/structure/mineral_door/resin,
@@ -2807,9 +2779,7 @@
 	name = "\improper Marshall Head Office";
 	req_access_txt = "0"
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/marshal_office)
 "agK" = (
 /obj/machinery/optable,
@@ -4657,15 +4627,11 @@
 /area/bigredv2/outside/marshal_office)
 "akS" = (
 /obj/structure/bed/chair,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/marshal_office)
 "akT" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/marshal_office)
 "akU" = (
 /obj/structure/window/framed/colony,
@@ -4953,9 +4919,7 @@
 /area/bigredv2/outside/marshal_office)
 "alE" = (
 /obj/structure/table/woodentable,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/marshal_office)
 "alF" = (
 /turf/open/floor/marking/asteroidwarning{
@@ -5428,9 +5392,7 @@
 /obj/structure/bed/chair{
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/marshal_office)
 "amB" = (
 /obj/effect/landmark/start/surv_spawn,
@@ -5706,9 +5668,7 @@
 	name = "Storm Shutters";
 	pixel_x = -32
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/marshal_office)
 "anj" = (
 /obj/effect/alien/weeds/node,
@@ -5928,9 +5888,7 @@
 "anG" = (
 /obj/structure/table/woodentable,
 /obj/item/clothing/suit/storage/lawyer/bluejacket,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/marshal_office)
 "anH" = (
 /obj/structure/bed/chair,
@@ -6243,9 +6201,7 @@
 "aom" = (
 /obj/structure/table/woodentable,
 /obj/item/device/camera,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/marshal_office)
 "aon" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
@@ -6547,41 +6503,31 @@
 "aoX" = (
 /obj/structure/table/woodentable,
 /obj/item/device/camera_film,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/marshal_office)
 "aoY" = (
 /obj/machinery/light,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/marshal_office)
 "aoZ" = (
 /obj/machinery/camera/autoname{
 	dir = 2;
 	network = list("interrogation")
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/marshal_office)
 "apa" = (
 /obj/structure/bed/chair/office/light{
 	dir = 1
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/marshal_office)
 "apb" = (
 /obj/structure/table/woodentable,
 /obj/item/paper/courtroom{
 	name = "A Crash Course in Legal SOP"
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/marshal_office)
 "apc" = (
 /turf/open/floor,
@@ -8632,9 +8578,7 @@
 /area/bigredv2/outside/dorms)
 "atx" = (
 /obj/structure/table,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/dorms)
 "aty" = (
 /obj/machinery/light{
@@ -8643,15 +8587,11 @@
 	dir = 1
 	},
 /obj/structure/bed,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/dorms)
 "atz" = (
 /obj/structure/bed,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/dorms)
 "atA" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -8668,9 +8608,7 @@
 	icon_state = "tube1";
 	dir = 1
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/dorms)
 "atC" = (
 /obj/structure/table,
@@ -8895,22 +8833,16 @@
 /obj/structure/bed/stool{
 	pixel_y = 8
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/dorms)
 "atY" = (
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/dorms)
 "atZ" = (
 /obj/machinery/door/airlock/almayer/generic{
 	name = "\improper Dormitories Bedroom"
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/dorms)
 "aua" = (
 /obj/effect/decal/cleanable/dirt,
@@ -9377,9 +9309,7 @@
 	dir = 1;
 	name = "\improper Dormitories Bedroom"
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/dorms)
 "auV" = (
 /obj/machinery/door/airlock/multi_tile/almayer/generic{
@@ -10710,9 +10640,7 @@
 	dir = 1;
 	name = "\improper Dormitories Bedroom"
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/general_offices)
 "axS" = (
 /obj/structure/cable{
@@ -11030,15 +10958,11 @@
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
 "ayw" = (
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/general_offices)
 "ayx" = (
 /obj/structure/table,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/general_offices)
 "ayy" = (
 /obj/structure/cable{
@@ -11272,15 +11196,11 @@
 	icon_state = "tube1";
 	dir = 8
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/general_offices)
 "azd" = (
 /obj/structure/bed,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/general_offices)
 "aze" = (
 /obj/machinery/light{
@@ -11634,16 +11554,12 @@
 "azM" = (
 /obj/structure/table,
 /obj/item/clothing/head/det_hat,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/dorms)
 "azN" = (
 /obj/structure/bed,
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/dorms)
 "azO" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -12055,9 +11971,7 @@
 /area/bigredv2/outside/n)
 "aAB" = (
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/dorms)
 "aAC" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -12084,9 +11998,7 @@
 	dir = 1;
 	name = "\improper Recreation"
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/dorms)
 "aAF" = (
 /turf/open/floor/plating,
@@ -12467,15 +12379,11 @@
 "aBr" = (
 /obj/structure/table/woodentable,
 /obj/item/toy/beach_ball,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/dorms)
 "aBs" = (
 /obj/structure/table/woodentable,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/dorms)
 "aBt" = (
 /obj/structure/cable{
@@ -12778,15 +12686,11 @@
 /area/bigredv2/outside/dorms)
 "aBZ" = (
 /obj/structure/bed/stool,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/dorms)
 "aCa" = (
 /obj/machinery/computer/arcade,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/dorms)
 "aCb" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -13159,15 +13063,11 @@
 /area/bigredv2/outside/dorms)
 "aCS" = (
 /obj/structure/closet/boxinggloves,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/dorms)
 "aCT" = (
 /obj/effect/landmark/random_item/crap,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/dorms)
 "aCU" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -13236,17 +13136,13 @@
 /obj/structure/bookcase{
 	density = 0
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "aDd" = (
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "aDe" = (
 /obj/structure/cable{
@@ -13257,9 +13153,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "aDf" = (
 /obj/structure/cable{
@@ -13274,9 +13168,7 @@
 /obj/machinery/door/airlock/almayer/generic{
 	name = "\improper Library Backroom"
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "aDg" = (
 /obj/structure/cable{
@@ -13288,9 +13180,7 @@
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "aDh" = (
 /obj/machinery/light{
@@ -13308,9 +13198,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "aDi" = (
 /obj/machinery/light/small,
@@ -13693,17 +13581,13 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/dorms)
 "aDV" = (
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aDW" = (
 /obj/structure/cable{
@@ -13720,9 +13604,7 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aDX" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -13734,9 +13616,7 @@
 	d2 = 8;
 	icon_state = "4-8";
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aDY" = (
 /obj/structure/cable{
@@ -13748,9 +13628,7 @@
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aDZ" = (
 /obj/structure/cable{
@@ -13766,9 +13644,7 @@
 	dir = 4;
 	name = "\improper Bar Backroom"
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aEa" = (
 /obj/machinery/camera/autoname{
@@ -13782,9 +13658,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aEb" = (
 /obj/machinery/power/apc{
@@ -13795,15 +13669,11 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aEc" = (
 /obj/structure/reagent_dispensers/beerkeg,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aEd" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -13843,9 +13713,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/hydroponics)
 "aEi" = (
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "aEj" = (
 /obj/structure/cable{
@@ -13854,9 +13722,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "aEk" = (
 /obj/structure/table/woodentable,
@@ -13864,17 +13730,13 @@
 	dir = 4;
 	on = 1
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "aEl" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "aEm" = (
 /obj/machinery/power/apc{
@@ -14163,9 +14025,7 @@
 	},
 /area/bigredv2/outside/dorms)
 "aEO" = (
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aEP" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -14175,21 +14035,15 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aEQ" = (
 /obj/structure/bed/chair/wood/normal,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aER" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aES" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -14315,9 +14169,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "aFd" = (
 /obj/structure/cable{
@@ -14328,15 +14180,11 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "aFe" = (
 /obj/structure/table/woodentable,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "aFf" = (
 /obj/structure/closet/secure_closet/scientist,
@@ -14683,9 +14531,7 @@
 "aFT" = (
 /obj/structure/table/woodentable,
 /obj/item/device/radio,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/dorms)
 "aFU" = (
 /obj/machinery/camera/autoname{
@@ -14697,9 +14543,7 @@
 	name = "Storm Shutters";
 	pixel_y = -32
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/dorms)
 "aFV" = (
 /obj/structure/cable{
@@ -14708,24 +14552,18 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aFW" = (
 /obj/structure/table/woodentable,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aFX" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1;
 	on = 1
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aFY" = (
 /obj/structure/reagent_dispensers/beerkeg,
@@ -14734,9 +14572,7 @@
 	icon_state = "tube1";
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aFZ" = (
 /obj/machinery/portable_atmospherics/hydroponics,
@@ -14786,9 +14622,7 @@
 	dir = 4;
 	name = "\improper Greenhouse Storage"
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "aGd" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -14800,9 +14634,7 @@
 	d2 = 8;
 	icon_state = "4-8";
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "aGe" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -14813,9 +14645,7 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "aGf" = (
 /obj/machinery/door_control{
@@ -14823,9 +14653,7 @@
 	name = "Storm Shutters";
 	pixel_x = 32;
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "aGg" = (
 /obj/machinery/light/built{
@@ -15106,15 +14934,11 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aGH" = (
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aGI" = (
 /obj/structure/bed/chair/wood/normal{
@@ -15122,9 +14946,7 @@
 	icon_state = "wooden_chair";
 	tag = ""
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aGK" = (
 /obj/machinery/light,
@@ -15162,17 +14984,13 @@
 /obj/machinery/camera/autoname{
 	dir = 1
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "aGQ" = (
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "aGR" = (
 /obj/structure/mineral_door/resin,
@@ -15585,15 +15403,11 @@
 "aHJ" = (
 /obj/machinery/reagentgrinder,
 /obj/structure/table/woodentable,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aHK" = (
 /obj/structure/closet/secure_closet/bar,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aHL" = (
 /obj/structure/cable{
@@ -15626,9 +15440,7 @@
 /area/bigredv2/outside/library)
 "aHO" = (
 /obj/structure/bed/chair/wood/normal,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "aHP" = (
 /obj/structure/cable{
@@ -16000,21 +15812,15 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aIu" = (
 /obj/structure/reagent_dispensers/fueltank,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aIv" = (
 /obj/structure/bed,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aIw" = (
 /obj/structure/table,
@@ -16106,9 +15912,7 @@
 "aIH" = (
 /obj/structure/table/woodentable,
 /obj/item/paper,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "aII" = (
 /obj/structure/window/framed/colony,
@@ -16444,18 +16248,14 @@
 	name = "General Listening Channel";
 	pixel_x = 30;
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aJr" = (
 /obj/machinery/door/airlock/almayer/generic{
 	dir = 1;
 	name = "\improper Bar Backroom"
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aJs" = (
 /obj/effect/decal/cleanable/flour,
@@ -16592,16 +16392,12 @@
 	dir = 4;
 	pixel_x = -30
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "aJD" = (
 /obj/structure/table/woodentable,
 /obj/item/toy/dice/d20,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "aJE" = (
 /obj/structure/cable{
@@ -17194,34 +16990,24 @@
 "aKv" = (
 /obj/structure/bed/chair/wood/normal,
 /obj/item/weapon/gun/shotgun/double,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aKw" = (
 /obj/item/clothing/head/welding,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aKx" = (
 /obj/structure/bed/stool,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aKy" = (
 /obj/structure/table/woodentable,
 /obj/item/ashtray/glass,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aKz" = (
 /obj/machinery/vending/boozeomat,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aKA" = (
 /turf/open/mars{
@@ -17331,9 +17117,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "aKM" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -17359,9 +17143,7 @@
 /obj/structure/bed/chair/wood/normal{
 	dir = 1
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "aKP" = (
 /turf/open/mars,
@@ -17662,17 +17444,13 @@
 	icon_state = "wooden_chair";
 	tag = ""
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aLq" = (
 /obj/structure/table/woodentable,
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /obj/item/trash/cheesie,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aLr" = (
 /obj/structure/bed/chair/wood/normal{
@@ -17680,9 +17458,7 @@
 	icon_state = "wooden_chair";
 	tag = ""
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aLs" = (
 /obj/structure/bed/chair/wood/normal{
@@ -17691,25 +17467,19 @@
 	tag = ""
 	},
 /obj/item/tool/extinguisher,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aLt" = (
 /obj/structure/table/woodentable{
 	flipped = 1
 	},
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aLu" = (
 /obj/structure/table/woodentable,
 /obj/effect/landmark/monkey_spawn,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aLv" = (
 /obj/machinery/vending/boozeomat,
@@ -17718,9 +17488,7 @@
 	icon_state = "tube1";
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aLw" = (
 /obj/structure/table/reinforced,
@@ -18046,22 +17814,16 @@
 	tag = ""
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aMi" = (
 /obj/structure/table/woodentable,
 /obj/effect/spawner/random/tool,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aMj" = (
 /obj/effect/landmark/start/surv_spawn,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aMk" = (
 /turf/open/floor/marking/asteroidwarning{
@@ -18286,16 +18048,12 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aMI" = (
 /obj/structure/table/woodentable,
 /obj/item/trash/sosjerky,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aMJ" = (
 /obj/machinery/chem_dispenser/soda{
@@ -18309,9 +18067,7 @@
 /obj/machinery/camera/autoname{
 	dir = 8
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aMK" = (
 /obj/machinery/alarm{
@@ -18750,41 +18506,31 @@
 /area/bigredv2/outside/admin_building)
 "aNO" = (
 /obj/structure/closet/secure_closet/personal/cabinet,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/admin_building)
 "aNP" = (
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/admin_building)
 "aNQ" = (
 /obj/structure/bed,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/admin_building)
 "aNR" = (
 /obj/structure/bed/chair/wood/normal,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aNS" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aNT" = (
 /obj/structure/bed/chair/wood/normal,
@@ -18792,9 +18538,7 @@
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aNU" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
@@ -18803,9 +18547,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aNV" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -18816,9 +18558,7 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aNW" = (
 /obj/structure/bed/stool,
@@ -18826,9 +18566,7 @@
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aNX" = (
 /obj/structure/table/woodentable,
@@ -18836,16 +18574,12 @@
 	dir = 8;
 	on = 1
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aNY" = (
 /obj/structure/table/woodentable,
 /obj/item/trash/raisins,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aNZ" = (
 /obj/effect/decal/cleanable/dirt,
@@ -19169,21 +18903,15 @@
 /obj/machinery/door/airlock/almayer/generic{
 	name = "\improper Operations Bedroom"
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/admin_building)
 "aOO" = (
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/admin_building)
 "aOP" = (
 /obj/structure/table/woodentable,
 /obj/item/device/binoculars,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/admin_building)
 "aOQ" = (
 /obj/structure/window/framed/colony/reinforced,
@@ -19204,9 +18932,7 @@
 /obj/structure/table/woodentable,
 /obj/item/trash/cheesie,
 /obj/item/trash/pistachios,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aOT" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -19216,9 +18942,7 @@
 	icon_state = "1-2"
 	},
 /obj/effect/landmark/random_item/crap,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aOU" = (
 /obj/machinery/door/airlock/almayer/medical/glass{
@@ -19781,25 +19505,19 @@
 /area/bigredv2/outside/admin_building)
 "aPW" = (
 /obj/structure/coatrack,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/admin_building)
 "aPX" = (
 /obj/structure/table/woodentable,
 /obj/item/tool/lighter/zippo,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/admin_building)
 "aPY" = (
 /obj/effect/decal/cleanable/blood{
 	tag = "icon-gib6";
 	icon_state = "gib6"
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aPZ" = (
 /obj/structure/cable{
@@ -19810,9 +19528,7 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aQa" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -19965,21 +19681,15 @@
 /obj/machinery/camera/autoname{
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "aQs" = (
 /obj/machinery/light,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "aQt" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "aQu" = (
 /turf/open/mars_cave{
@@ -20407,15 +20117,11 @@
 /area/bigredv2/outside/admin_building)
 "aRj" = (
 /obj/structure/barricade/wooden,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aRk" = (
 /obj/machinery/light,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aRl" = (
 /obj/structure/barricade/wooden,
@@ -20427,9 +20133,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aRm" = (
 /obj/structure/barricade/wooden,
@@ -20441,26 +20145,20 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aRn" = (
 /obj/effect/decal/cleanable/blood{
 	layer = 3;
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aRo" = (
 /obj/machinery/door/airlock/multi_tile/almayer/generic{
 	dir = 1;
 	name = "\improper Bar"
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aRp" = (
 /obj/machinery/door/airlock/multi_tile/almayer/generic{
@@ -20516,9 +20214,7 @@
 	dir = 4;
 	name = "\improper Library"
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "aRv" = (
 /turf/open/mars_cave{
@@ -20826,9 +20522,7 @@
 	dir = 4;
 	name = "\improper Bar"
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aSd" = (
 /obj/structure/window/framed/colony,
@@ -21271,9 +20965,7 @@
 /area/bigredv2/outside/admin_building)
 "aTb" = (
 /obj/structure/table/woodentable,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/admin_building)
 "aTc" = (
 /obj/effect/decal/cleanable/blood/gibs/body,
@@ -21801,9 +21493,7 @@
 "aUg" = (
 /obj/structure/table/woodentable,
 /obj/item/device/camera,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/admin_building)
 "aUh" = (
 /obj/effect/decal/cleanable/blood{
@@ -22981,9 +22671,7 @@
 "aWH" = (
 /obj/structure/table/woodentable,
 /obj/item/device/pinpointer,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/admin_building)
 "aWI" = (
 /turf/open/floor/marking/asteroidwarning{
@@ -23266,9 +22954,7 @@
 "aXn" = (
 /obj/structure/table/woodentable,
 /obj/item/reagent_container/spray/cleaner,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/admin_building)
 "aXo" = (
 /obj/effect/decal/cleanable/blood{
@@ -24933,9 +24619,7 @@
 /area/bigredv2/outside/admin_building)
 "bbn" = (
 /obj/structure/safe,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/admin_building)
 "bbo" = (
 /obj/structure/bed/chair,
@@ -25226,9 +24910,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/admin_building)
 "bbW" = (
 /obj/structure/bed/chair{
@@ -25259,16 +24941,12 @@
 /area/bigredv2/outside/admin_building)
 "bbY" = (
 /obj/structure/bed/chair/office/dark,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/admin_building)
 "bbZ" = (
 /obj/structure/table,
 /obj/machinery/computer/security/wooden_tv,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/admin_building)
 "bca" = (
 /obj/machinery/camera/autoname{
@@ -25555,17 +25233,13 @@
 	name = "\improper Operations Office";
 	req_access_txt = "0"
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/admin_building)
 "bcL" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/admin_building)
 "bcM" = (
 /turf/open/floor{
@@ -25584,9 +25258,7 @@
 "bcO" = (
 /obj/structure/table,
 /obj/item/clothing/mask/cigarette/cigar,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/admin_building)
 "bcP" = (
 /obj/structure/table,
@@ -25594,9 +25266,7 @@
 	density = 0;
 	req_one_access_txt = "200"
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/admin_building)
 "bcQ" = (
 /obj/machinery/vending/cola,
@@ -25813,9 +25483,7 @@
 "bdq" = (
 /obj/structure/table,
 /obj/item/trash/snack_bowl,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/admin_building)
 "bdr" = (
 /obj/machinery/vending/snack,
@@ -25995,24 +25663,18 @@
 /area/bigredv2/outside/admin_building)
 "bdP" = (
 /obj/machinery/photocopier,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/admin_building)
 "bdQ" = (
 /obj/structure/filingcabinet/medical,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/admin_building)
 "bdR" = (
 /obj/machinery/light{
 	dir = 1
 	},
 /obj/structure/filingcabinet/medical,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/admin_building)
 "bdS" = (
 /obj/structure/cable{
@@ -26920,14 +26582,10 @@
 /area/bigredv2/outside/office_complex)
 "bgf" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/office_complex)
 "bgg" = (
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/office_complex)
 "bgh" = (
 /obj/structure/bed/chair{
@@ -27168,16 +26826,12 @@
 /obj/machinery/camera/autoname{
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/office_complex)
 "bgO" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/random_item/crap,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/office_complex)
 "bgP" = (
 /obj/structure/table,
@@ -27699,15 +27353,11 @@
 	tag = "icon-plant-10";
 	icon_state = "plant-10"
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/office_complex)
 "bhY" = (
 /obj/structure/flora/pottedplant,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/office_complex)
 "bhZ" = (
 /obj/structure/table,
@@ -33921,21 +33571,15 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bxR" = (
 /obj/structure/bed,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bxS" = (
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bxT" = (
 /obj/structure/bed,
 /obj/machinery/atmospherics/components/unary/vent_pump,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bxU" = (
 /obj/structure/largecrate/cow,
@@ -34000,15 +33644,11 @@
 "byc" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/alien/weeds/node,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "byd" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bye" = (
 /turf/open/mars_cave{
@@ -34136,26 +33776,20 @@
 "byt" = (
 /obj/structure/bed,
 /obj/effect/landmark/corpsespawner/PMC,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "byu" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "byv" = (
 /obj/machinery/light,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "byw" = (
 /obj/structure/largecrate/mule,
@@ -34233,9 +33867,7 @@
 	dir = 1;
 	name = "\improper Eta Lab Dormitories"
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "byG" = (
 /obj/structure/mineral_door/resin,
@@ -36442,9 +36074,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bDo" = (
 /obj/structure/bookcase/manuals/research_and_development,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bDp" = (
 /obj/machinery/light{
@@ -36458,9 +36088,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	on = 1
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bDq" = (
 /obj/machinery/light{
@@ -36473,9 +36101,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	on = 1
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bDr" = (
 /obj/machinery/light{
@@ -36513,15 +36139,11 @@
 "bDu" = (
 /obj/structure/table,
 /obj/item/book/manual/nuclear,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bDv" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bDx" = (
 /obj/machinery/light{
@@ -36549,33 +36171,25 @@
 /obj/machinery/computer/pod/old{
 	name = "Personal Computer"
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bDB" = (
 /obj/structure/bed/chair/office/light{
 	dir = 8
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bDC" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/landmark/random_item/crap,
 /obj/effect/alien/weeds/node,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bDD" = (
 /obj/structure/bed/chair/office/light{
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bDE" = (
 /obj/item/trash/kepler,
@@ -36606,9 +36220,7 @@
 "bDI" = (
 /obj/structure/table,
 /obj/item/computer3_part/storage/hdd/big,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bDJ" = (
 /obj/structure/showcase,
@@ -36632,9 +36244,7 @@
 "bDL" = (
 /obj/structure/table,
 /obj/effect/spawner/random/tool,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bDM" = (
 /obj/structure/table,
@@ -36655,9 +36265,7 @@
 	name = "\improper Eta Lab Research Office";
 	req_access_txt = "0"
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bDP" = (
 /obj/machinery/door/airlock/almayer/research/glass{
@@ -36890,9 +36498,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bEn" = (
 /obj/structure/bookcase/manuals/medical,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bEo" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -36934,22 +36540,16 @@
 /obj/structure/table,
 /obj/item/tool/pen,
 /obj/item/paper_bundle,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bEt" = (
 /obj/effect/landmark/random_item/crap,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bEu" = (
 /obj/structure/table,
 /obj/item/stock_parts/smes_coil,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bEv" = (
 /obj/machinery/light{
@@ -36979,9 +36579,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bEy" = (
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bEz" = (
 /obj/structure/bed/chair/comfy/brown,
@@ -36997,9 +36595,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bEB" = (
 /obj/structure/table,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bEC" = (
 /obj/machinery/light,
@@ -37008,24 +36604,18 @@
 	dir = 1;
 	on = 1
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bED" = (
 /obj/structure/bed,
 /obj/effect/landmark/corpsespawner/scientist,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bEE" = (
 /obj/structure/table,
 /obj/item/spacecash/c1000,
 /obj/item/spacecash/c1000,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bEF" = (
 /obj/structure/table,

@@ -651,11 +651,7 @@
 /turf/open/gm/dirt,
 /area/lv624/ground/caves/west1)
 "acv" = (
-/obj/item/clothing/head/helmet/augment{
-	desc = "Part of a strange alien mask. It loosely fits on a human, but just barely.";
-	name = "alien mask";
-	unacidable = 1
-	},
+/obj/item/clothing/head/helmet/augment/alien,
 /turf/open/gm/dirt,
 /area/lv624/ground/caves/west1)
 "acw" = (
@@ -6595,16 +6591,12 @@
 	name = "Science Wing Lockdown";
 	pixel_x = -25
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
 "awW" = (
 /obj/item/shard,
 /obj/structure/displaycase/destroyed,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
 "awX" = (
 /obj/effect/alien/weeds/node,
@@ -6771,16 +6763,12 @@
 	pixel_x = -25;
 	req_access_txt = "0"
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
 "axt" = (
 /obj/item/book/manual/security_space_law,
 /obj/item/book/manual/ripley_build_and_repair,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
 "axu" = (
 /turf/closed/wall,
@@ -14542,14 +14530,10 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	on = 1
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/lv624/lazarus/chapel)
 "aUT" = (
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/lv624/lazarus/chapel)
 "aUU" = (
 /obj/structure/cable/yellow{
@@ -14787,9 +14771,7 @@
 	icon_state = "2-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/lv624/lazarus/chapel)
 "aVx" = (
 /obj/structure/cable/yellow{
@@ -14797,9 +14779,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/lv624/lazarus/chapel)
 "aVy" = (
 /obj/structure/cable/yellow{
@@ -14962,9 +14942,7 @@
 	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/lv624/lazarus/chapel)
 "aWe" = (
 /turf/open/floor{
@@ -16095,15 +16073,11 @@
 /area/lv624/lazarus/internal_affairs)
 "aZb" = (
 /obj/structure/closet/cabinet,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
 "aZc" = (
 /obj/structure/bookcase,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
 "aZd" = (
 /turf/closed/wall,
@@ -16138,15 +16112,11 @@
 "aZi" = (
 /obj/structure/table/woodentable,
 /obj/item/device/megaphone,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
 "aZj" = (
 /obj/structure/table/woodentable,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
 "aZk" = (
 /turf/closed/wall,
@@ -16365,14 +16335,10 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
 "aZP" = (
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
 "aZQ" = (
 /obj/machinery/door/airlock/almayer/generic/corporate{
@@ -16382,9 +16348,7 @@
 	name = "Corporate Dome";
 	opacity = 0
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
 "aZR" = (
 /turf/open/floor{
@@ -16820,23 +16784,17 @@
 /obj/item/bedsheet/rd,
 /obj/item/toy/bikehorn/rubberducky,
 /obj/structure/bed/fancy,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
 "baE" = (
 /obj/effect/landmark/start/surv_spawn,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
 "baF" = (
 /obj/structure/safe{
 	spawnkey = 0
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
 "baG" = (
 /obj/machinery/light{
@@ -16850,17 +16808,13 @@
 /area/lv624/lazarus/internal_affairs)
 "baH" = (
 /obj/structure/closet/gmcloset,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
 "baI" = (
 /obj/item/clothing/glasses/regular/hipster,
 /obj/item/bedsheet/captain,
 /obj/structure/bed/fancy,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
 "baJ" = (
 /obj/effect/landmark/random_item/crap,
@@ -17069,18 +17023,14 @@
 	name = "Corporate Dome";
 	opacity = 0
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
 "bbn" = (
 /obj/machinery/door/airlock/almayer/generic/corporate{
 	dir = 1;
 	name = "Corporate Dome"
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
 "bbo" = (
 /obj/structure/fence,
@@ -18617,17 +18567,13 @@
 /obj/structure/bookcase,
 /obj/item/book/manual/chef_recipes,
 /obj/item/book/manual/nuclear,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
 "bfg" = (
 /obj/structure/computerframe{
 	anchored = 1
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
 "bfh" = (
 /obj/item/weapon/gun/smg/mp5,
@@ -18665,9 +18611,7 @@
 "bfl" = (
 /obj/structure/table/woodentable,
 /obj/item/device/pinpointer,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
 "bfm" = (
 /obj/structure/grille/broken,
@@ -18891,9 +18835,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
 "bfT" = (
 /obj/machinery/door/airlock/almayer/generic/corporate{
@@ -18921,16 +18863,12 @@
 /area/lv624/lazarus/internal_affairs)
 "bfW" = (
 /obj/item/clothing/glasses/regular,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
 "bfX" = (
 /obj/structure/table/woodentable,
 /obj/item/device/flashlight/lamp,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
 "bfY" = (
 /turf/open/gm/dirtgrassborder2/corner{
@@ -19095,25 +19033,19 @@
 /obj/item/clothing/glasses/sunglasses/big{
 	pixel_y = 5
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
 "bgD" = (
 /obj/structure/table/woodentable,
 /obj/machinery/computer/crew,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
 "bgE" = (
 /obj/structure/table/woodentable,
 /obj/item/ashtray/glass,
 /obj/item/toy/deck,
 /obj/item/mecha_parts/part/gygax_head,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
 "bgF" = (
 /obj/machinery/light/small{
@@ -19135,9 +19067,7 @@
 /area/lv624/lazarus/internal_affairs)
 "bgH" = (
 /obj/machinery/light/small,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
 "bgI" = (
 /turf/closed/wall/r_wall,
@@ -19408,18 +19338,14 @@
 /area/lv624/lazarus/captain)
 "bhy" = (
 /obj/structure/bookcase,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/lv624/lazarus/hop)
 "bhz" = (
 /obj/structure/bookcase,
 /obj/item/bananapeel,
 /obj/item/book/manual/research_and_development,
 /obj/item/book/manual/security_space_law,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/lv624/lazarus/hop)
 "bhA" = (
 /obj/structure/showcase{
@@ -19432,26 +19358,20 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/lv624/lazarus/hop)
 "bhB" = (
 /obj/structure/noticeboard{
 	pixel_y = 30
 	},
 /obj/item/trash/cheesie,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/lv624/lazarus/hop)
 "bhC" = (
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/lv624/lazarus/hop)
 "bhE" = (
 /turf/closed/wall/r_wall,
@@ -19736,9 +19656,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/lv624/lazarus/hop)
 "bis" = (
 /obj/structure/cable/yellow{
@@ -19763,9 +19681,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/lv624/lazarus/hop)
 "biu" = (
 /obj/structure/cable/yellow{
@@ -19782,9 +19698,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/lv624/lazarus/hop)
 "biv" = (
 /obj/structure/flora/bush,
@@ -20039,24 +19953,18 @@
 /area/lv624/lazarus/hop)
 "bjh" = (
 /obj/item/trash/popcorn,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/lv624/lazarus/hop)
 "bji" = (
 /obj/effect/landmark/random_item/crap,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/lv624/lazarus/hop)
 "bjj" = (
 /obj/structure/bed/chair/wood/wings{
 	icon_state = "wooden_chair_wings";
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/lv624/lazarus/hop)
 "bjk" = (
 /obj/structure/table/woodentable,
@@ -20064,9 +19972,7 @@
 /obj/machinery/cell_charger,
 /obj/item/storage/fancy/cigarettes/dromedaryco,
 /obj/item/clothing/glasses/sunglasses,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/lv624/lazarus/hop)
 "bjl" = (
 /obj/structure/cable/yellow{
@@ -20075,9 +19981,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/lv624/lazarus/hop)
 "bjm" = (
 /obj/structure/window/framed/colony/reinforced,
@@ -20267,16 +20171,12 @@
 	pixel_y = 12
 	},
 /obj/item/tool/wrench,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/lv624/lazarus/hop)
 "bjO" = (
 /obj/structure/table/woodentable,
 /obj/item/trash/chips,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/lv624/lazarus/hop)
 "bjP" = (
 /obj/structure/cable/yellow{
@@ -20287,9 +20187,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/lv624/lazarus/hop)
 "bjQ" = (
 /obj/machinery/door/airlock/almayer/command{
@@ -20618,15 +20516,11 @@
 /area/lv624/lazarus/hop)
 "bkL" = (
 /obj/effect/landmark/random_item/good,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/lv624/lazarus/hop)
 "bkM" = (
 /obj/machinery/light/small,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/lv624/lazarus/hop)
 "bkN" = (
 /obj/item/trash/cheesie,

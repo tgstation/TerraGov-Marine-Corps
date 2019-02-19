@@ -30568,9 +30568,7 @@
 	},
 /area/ice_colony/underground/requesition/sec_storage)
 "bkR" = (
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/ice_colony/underground/crew/chapel)
 "bkS" = (
 /obj/machinery/door/airlock/multi_tile/almayer/generic{
@@ -30625,9 +30623,7 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/north)
 "bkZ" = (
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/ice_colony/underground/crew/library)
 "bla" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -30779,9 +30775,7 @@
 /area/ice_colony/underground/crew/chapel)
 "bln" = (
 /obj/structure/flora/pottedplant,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/ice_colony/underground/crew/chapel)
 "blo" = (
 /obj/structure/morgue,
@@ -30802,21 +30796,15 @@
 /area/ice_colony/underground/crew/morgue)
 "blq" = (
 /obj/structure/bed/chair/wood/normal,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/ice_colony/underground/crew/library)
 "blr" = (
 /obj/structure/bookcase,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/ice_colony/underground/crew/library)
 "bls" = (
 /obj/structure/bookcase/manuals/medical,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/ice_colony/underground/crew/library)
 "blt" = (
 /obj/machinery/light/small{
@@ -30927,26 +30915,20 @@
 "blI" = (
 /obj/structure/table/woodentable,
 /obj/item/device/flashlight/lamp,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/ice_colony/underground/crew/library)
 "blJ" = (
 /obj/structure/bed/chair/wood/normal{
 	dir = 8
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/ice_colony/underground/crew/library)
 "blK" = (
 /obj/machinery/alarm{
 	dir = 8;
 	pixel_x = 24
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/ice_colony/underground/crew/library)
 "blL" = (
 /turf/open/floor{
@@ -30984,9 +30966,7 @@
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/ice_colony/underground/crew/chapel)
 "blP" = (
 /obj/structure/cable/yellow{
@@ -31056,9 +31036,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/ice_colony/underground/crew/library)
 "blW" = (
 /obj/structure/cable/yellow{
@@ -31157,9 +31135,7 @@
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/ice_colony/underground/crew/library)
 "bme" = (
 /obj/structure/bed/chair/wood/normal{
@@ -31169,18 +31145,14 @@
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/ice_colony/underground/crew/library)
 "bmf" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
 	on = 1
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/ice_colony/underground/crew/library)
 "bmg" = (
 /obj/machinery/landinglight/ds2/delayone{
@@ -31334,9 +31306,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/ice_colony/underground/crew/chapel)
 "bmx" = (
 /turf/open/floor{
@@ -31404,24 +31374,18 @@
 /area/ice_colony/underground/crew/morgue)
 "bmF" = (
 /obj/structure/bookcase/manuals/research_and_development,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/ice_colony/underground/crew/library)
 "bmG" = (
 /obj/structure/bed/chair/wood/normal{
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/ice_colony/underground/crew/library)
 "bmH" = (
 /obj/structure/table/woodentable,
 /obj/item/book/manual/engineering_hacking,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/ice_colony/underground/crew/library)
 "bmI" = (
 /obj/machinery/light{
@@ -31457,9 +31421,7 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/ice_colony/underground/crew/library)
 "bmL" = (
 /obj/structure/bed/chair/dropship/passenger{
@@ -31617,9 +31579,7 @@
 /area/ice_colony/underground/crew/chapel)
 "bnf" = (
 /obj/structure/table/woodentable,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/ice_colony/underground/crew/library)
 "bng" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -31662,18 +31622,14 @@
 	dir = 4;
 	on = 1
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/ice_colony/underground/crew/library)
 "bnm" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/ice_colony/underground/crew/library)
 "bnn" = (
 /turf/closed/ice/end,
@@ -31682,9 +31638,7 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/ice_colony/underground/crew/library)
 "bnp" = (
 /obj/structure/bed/chair/wood/normal{
@@ -31694,9 +31648,7 @@
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/ice_colony/underground/crew/library)
 "bnq" = (
 /obj/structure/table/woodentable,
@@ -31705,9 +31657,7 @@
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/ice_colony/underground/crew/library)
 "bnr" = (
 /obj/machinery/light{
@@ -31810,9 +31760,7 @@
 /obj/structure/bed/chair/wood/normal{
 	dir = 1
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/ice_colony/underground/crew/library)
 "bnC" = (
 /obj/structure/bed/chair{
@@ -32006,9 +31954,7 @@
 /area/ice_colony/underground/hallway/south_east)
 "bnX" = (
 /obj/structure/bookcase/manuals/engineering,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/ice_colony/underground/crew/library)
 "bnY" = (
 /obj/structure/cable/yellow{
@@ -32018,9 +31964,7 @@
 	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/ice_colony/underground/crew/library)
 "bnZ" = (
 /obj/structure/cable/yellow{
@@ -32084,9 +32028,7 @@
 	dir = 8;
 	pixel_x = -24
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/ice_colony/underground/crew/chapel)
 "bof" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -32228,9 +32170,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/ice_colony/underground/crew/library)
 "bou" = (
 /obj/structure/rack,
@@ -32669,9 +32609,7 @@
 /area/ice_colony/underground/hallway/north_west)
 "bps" = (
 /obj/structure/closet/wardrobe/chaplain_black,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/ice_colony/underground/crew/chapel)
 "bpt" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
@@ -32901,15 +32839,11 @@
 	dir = 1;
 	pixel_y = -24
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/ice_colony/underground/crew/library)
 "bpR" = (
 /obj/machinery/light,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/ice_colony/underground/crew/library)
 "bpS" = (
 /obj/structure/barricade/wooden{
@@ -33238,9 +33172,7 @@
 	req_access_txt = "100";
 	req_one_access_txt = "0"
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/ice_colony/underground/crew/library)
 "bqv" = (
 /obj/effect/landmark/monkey_spawn,
@@ -35698,9 +35630,7 @@
 	name = "\improper Underground Chapel";
 	req_access_txt = "100"
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/ice_colony/underground/crew/chapel)
 "bvy" = (
 /obj/structure/cable/yellow{
@@ -35708,9 +35638,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/ice_colony/underground/crew/chapel)
 "bvz" = (
 /obj/structure/cable/yellow{
@@ -36777,9 +36705,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/ice_colony/underground/crew/library)
 "bxE" = (
 /obj/structure/table/reinforced,
@@ -36801,9 +36727,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/ice_colony/underground/crew/library)
 "bxG" = (
 /obj/machinery/power/apc{
@@ -36901,9 +36825,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/ice_colony/underground/crew/library)
 "bxS" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -43762,9 +43684,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/ice_colony/underground/crew/library)
 "bLd" = (
 /obj/machinery/landinglight/ds2/delaythree{
@@ -48129,9 +48049,7 @@
 /area/ice_colony/exterior/underground/caves)
 "bUe" = (
 /obj/effect/landmark/monkey_spawn,
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/ice_colony/underground/crew/chapel)
 "bUf" = (
 /obj/effect/landmark/monkey_spawn,
