@@ -1527,13 +1527,13 @@
 	damage_var_high = CONFIG_GET(number/combat_define/max_proj_variance)
 	damage_type = BURN
 
-/datum/ammo/xeno/boiler_gas/on_shield_block(mob/M, obj/item/projectile/P)
+/datum/ammo/xeno/boiler_gas/corrosive/on_shield_block(mob/M, obj/item/projectile/P)
 	burst(M,P,damage_type)
 
-/datum/ammo/xeno/boiler_gas/set_xeno_smoke(obj/item/projectile/P)
+/datum/ammo/xeno/boiler_gas/corrosive/set_xeno_smoke(obj/item/projectile/P)
 	smoke_system = new /datum/effect_system/smoke_spread/xeno_acid()
 
-/datum/ammo/xeno/boiler_gas/drop_nade(turf/T)
+/datum/ammo/xeno/boiler_gas/corrosive/drop_nade(turf/T)
 	smoke_system.set_up(3, 0, T)
 	smoke_system.start()
 	T.visible_message("<span class='danger'>A glob of acid lands with a splat and explodes into corrosive bile!</span>")
