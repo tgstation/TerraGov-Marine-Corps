@@ -27745,9 +27745,8 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "beU" = (
-/turf/open/floor{
-	dir = 2;
-	icon_state = "loadingarea"
+/turf/open/floor/loadingarea{
+	dir = 2
 	},
 /area/bigredv2/outside/cargo)
 "beV" = (
@@ -35326,15 +35325,13 @@
 	name = "\improper Eta Lab Storage Bay";
 	req_one_access_txt = "0"
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "loadingarea"
+/turf/open/floor/loadingarea{
+	dir = 2
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bwH" = (
-/turf/open/floor{
-	dir = 2;
-	icon_state = "loadingarea"
+/turf/open/floor/loadingarea{
+	dir = 2
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bwI" = (

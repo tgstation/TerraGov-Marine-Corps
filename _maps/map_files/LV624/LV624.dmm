@@ -1390,10 +1390,8 @@
 	},
 /area/lv624/ground/caves/central1)
 "aeM" = (
-/turf/open/floor{
-	dir = 8;
-	icon_state = "loadingarea";
-	tag = "loading"
+/turf/open/floor/loadingarea{
+	dir = 8
 	},
 /area/lv624/ground/caves/central1)
 "aeN" = (
@@ -1834,16 +1832,13 @@
 /turf/open/floor,
 /area/lv624/ground/sand5)
 "agp" = (
-/turf/open/floor{
-	dir = 8;
-	icon_state = "loadingarea";
-	tag = "loading"
+/turf/open/floor/loadingarea{
+	dir = 8
 	},
 /area/lv624/ground/sand5)
 "agq" = (
-/turf/open/floor{
-	dir = 4;
-	icon_state = "loadingarea"
+/turf/open/floor/loadingarea{
+	dir = 4
 	},
 /area/lv624/ground/sand5)
 "agr" = (
@@ -1953,10 +1948,8 @@
 /turf/open/floor,
 /area/lv624/ground/sand2)
 "agN" = (
-/turf/open/floor{
-	dir = 8;
-	icon_state = "loadingarea";
-	tag = "loading"
+/turf/open/floor/loadingarea{
+	dir = 8
 	},
 /area/lv624/ground/sand2)
 "agO" = (
@@ -1966,9 +1959,8 @@
 /turf/open/floor,
 /area/lv624/ground/sand2)
 "agP" = (
-/turf/open/floor{
-	dir = 4;
-	icon_state = "loadingarea"
+/turf/open/floor/loadingarea{
+	dir = 4
 	},
 /area/lv624/ground/sand2)
 "agQ" = (
@@ -2113,9 +2105,8 @@
 	},
 /area/lv624/ground/sand2)
 "aho" = (
-/turf/open/floor{
-	dir = 1;
-	icon_state = "loadingarea"
+/turf/open/floor/loadingarea{
+	dir = 1
 	},
 /area/lv624/ground/sand2)
 "ahp" = (
@@ -2526,18 +2517,16 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 10
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "loadingarea"
+/turf/open/floor/loadingarea{
+	dir = 1
 	},
 /area/lv624/ground/sand2)
 "aiM" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 6
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "loadingarea"
+/turf/open/floor/loadingarea{
+	dir = 1
 	},
 /area/lv624/ground/sand2)
 "aiN" = (
@@ -15504,9 +15493,8 @@
 /area/lv624/lazarus/quart)
 "aUw" = (
 /obj/structure/largecrate/random,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "loadingarea"
+/turf/open/floor/loadingarea{
+	dir = 4
 	},
 /area/lv624/lazarus/quartstorage)
 "aUx" = (
@@ -15981,9 +15969,8 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/quart)
 "aVJ" = (
-/turf/open/floor{
-	dir = 4;
-	icon_state = "loadingarea"
+/turf/open/floor/loadingarea{
+	dir = 4
 	},
 /area/lv624/lazarus/quartstorage)
 "aVK" = (
@@ -16194,9 +16181,8 @@
 	},
 /area/lv624/lazarus/quart)
 "aWo" = (
-/turf/open/floor{
-	dir = 1;
-	icon_state = "loadingarea"
+/turf/open/floor/loadingarea{
+	dir = 1
 	},
 /area/lv624/lazarus/quartstorage)
 "aWp" = (
@@ -16206,9 +16192,8 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "loadingarea"
+/turf/open/floor/loadingarea{
+	dir = 1
 	},
 /area/lv624/lazarus/quartstorage)
 "aWq" = (
@@ -17217,10 +17202,8 @@
 	},
 /area/lv624/lazarus/main_hall)
 "aYT" = (
-/turf/open/floor{
-	dir = 8;
-	icon_state = "loadingarea";
-	tag = "loading"
+/turf/open/floor/loadingarea{
+	dir = 8
 	},
 /area/shuttle/drop1/lz1)
 "aYU" = (
@@ -17545,10 +17528,8 @@
 /area/lv624/lazarus/main_hall)
 "aZK" = (
 /obj/effect/landmark/random_item/crap,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "loadingarea";
-	tag = "loading"
+/turf/open/floor/loadingarea{
+	dir = 8
 	},
 /area/shuttle/drop1/lz1)
 "aZL" = (

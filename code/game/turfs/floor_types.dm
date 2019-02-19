@@ -102,8 +102,8 @@
 
 
 
-
-
+/turf/open/floor/loadingarea
+	icon_state = "loadingarea"
 
 
 //Cargo elevator
