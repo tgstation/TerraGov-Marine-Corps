@@ -18735,9 +18735,8 @@
 	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor{
-	dir = 9;
-	icon_state = "brown"
+/turf/open/floor/tile/brown{
+	dir = 9
 	},
 /area/lv624/lazarus/comms)
 "bgL" = (
@@ -18885,9 +18884,8 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/comms)
 "bhi" = (
-/turf/open/floor{
-	dir = 9;
-	icon_state = "brown"
+/turf/open/floor/tile/brown{
+	dir = 9
 	},
 /area/lv624/lazarus/comms)
 "bhj" = (
@@ -18897,9 +18895,8 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor{
-	dir = 9;
-	icon_state = "brown"
+/turf/open/floor/tile/brown{
+	dir = 9
 	},
 /area/lv624/lazarus/comms)
 "bhk" = (
@@ -19103,25 +19100,22 @@
 /area/lv624/ground/jungle3)
 "bhV" = (
 /obj/machinery/vending/engineering,
-/turf/open/floor{
-	dir = 9;
-	icon_state = "brown"
+/turf/open/floor/tile/brown{
+	dir = 9
 	},
 /area/lv624/lazarus/comms)
 "bhW" = (
 /obj/structure/table,
 /obj/item/device/mmi/radio_enabled,
-/turf/open/floor{
-	dir = 9;
-	icon_state = "brown"
+/turf/open/floor/tile/brown{
+	dir = 9
 	},
 /area/lv624/lazarus/comms)
 "bhX" = (
 /obj/structure/table,
 /obj/item/device/flashlight,
-/turf/open/floor{
-	dir = 9;
-	icon_state = "brown"
+/turf/open/floor/tile/brown{
+	dir = 9
 	},
 /area/lv624/lazarus/comms)
 "bhY" = (
@@ -19137,9 +19131,8 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	dir = 9;
-	icon_state = "brown"
+/turf/open/floor/tile/brown{
+	dir = 9
 	},
 /area/lv624/lazarus/comms)
 "bhZ" = (
@@ -19150,33 +19143,29 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	dir = 9;
-	icon_state = "brown"
+/turf/open/floor/tile/brown{
+	dir = 9
 	},
 /area/lv624/lazarus/comms)
 "bia" = (
 /obj/structure/table,
 /obj/item/device/multitool,
-/turf/open/floor{
-	dir = 9;
-	icon_state = "brown"
+/turf/open/floor/tile/brown{
+	dir = 9
 	},
 /area/lv624/lazarus/comms)
 "bib" = (
 /obj/structure/table,
 /obj/item/ashtray/glass,
 /obj/item/tool/crowbar,
-/turf/open/floor{
-	dir = 9;
-	icon_state = "brown"
+/turf/open/floor/tile/brown{
+	dir = 9
 	},
 /area/lv624/lazarus/comms)
 "bic" = (
 /obj/structure/largecrate/random,
-/turf/open/floor{
-	dir = 9;
-	icon_state = "brown"
+/turf/open/floor/tile/brown{
+	dir = 9
 	},
 /area/lv624/lazarus/comms)
 "bid" = (
@@ -19474,18 +19463,16 @@
 /obj/structure/bed/chair/office/light{
 	dir = 1
 	},
-/turf/open/floor{
-	dir = 9;
-	icon_state = "brown"
+/turf/open/floor/tile/brown{
+	dir = 9
 	},
 /area/lv624/lazarus/comms)
 "biU" = (
 /obj/structure/bed/chair/office/light{
 	dir = 8
 	},
-/turf/open/floor{
-	dir = 9;
-	icon_state = "brown"
+/turf/open/floor/tile/brown{
+	dir = 9
 	},
 /area/lv624/lazarus/comms)
 "biV" = (
@@ -19698,9 +19685,8 @@
 /area/lv624/ground/jungle3)
 "bjE" = (
 /obj/machinery/computer/telecomms/server,
-/turf/open/floor{
-	dir = 9;
-	icon_state = "brown"
+/turf/open/floor/tile/brown{
+	dir = 9
 	},
 /area/lv624/lazarus/comms)
 "bjF" = (
@@ -19708,9 +19694,8 @@
 /area/lv624/lazarus/comms)
 "bjG" = (
 /obj/machinery/computer/telecomms/traffic,
-/turf/open/floor{
-	dir = 9;
-	icon_state = "brown"
+/turf/open/floor/tile/brown{
+	dir = 9
 	},
 /area/lv624/lazarus/comms)
 "bjH" = (
@@ -19951,9 +19936,8 @@
 "bkr" = (
 /obj/item/device/multitool,
 /obj/structure/rack,
-/turf/open/floor{
-	dir = 9;
-	icon_state = "brown"
+/turf/open/floor/tile/brown{
+	dir = 9
 	},
 /area/lv624/lazarus/comms)
 "bks" = (
@@ -19962,24 +19946,21 @@
 /area/lv624/lazarus/comms)
 "bkt" = (
 /obj/structure/reagent_dispensers/watertank,
-/turf/open/floor{
-	dir = 9;
-	icon_state = "brown"
+/turf/open/floor/tile/brown{
+	dir = 9
 	},
 /area/lv624/lazarus/comms)
 "bku" = (
 /obj/structure/reagent_dispensers/fueltank,
-/turf/open/floor{
-	dir = 9;
-	icon_state = "brown"
+/turf/open/floor/tile/brown{
+	dir = 9
 	},
 /area/lv624/lazarus/comms)
 "bkv" = (
 /obj/structure/rack,
 /obj/item/clothing/mask/gas,
-/turf/open/floor{
-	dir = 9;
-	icon_state = "brown"
+/turf/open/floor/tile/brown{
+	dir = 9
 	},
 /area/lv624/lazarus/comms)
 "bkw" = (
@@ -20211,25 +20192,22 @@
 /obj/structure/extinguisher_cabinet{
 	pixel_y = 30
 	},
-/turf/open/floor{
-	dir = 9;
-	icon_state = "brown"
+/turf/open/floor/tile/brown{
+	dir = 9
 	},
 /area/lv624/lazarus/comms)
 "bld" = (
 /obj/effect/landmark/random_item/good,
-/turf/open/floor{
-	dir = 9;
-	icon_state = "brown"
+/turf/open/floor/tile/brown{
+	dir = 9
 	},
 /area/lv624/lazarus/comms)
 "ble" = (
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	dir = 9;
-	icon_state = "brown"
+/turf/open/floor/tile/brown{
+	dir = 9
 	},
 /area/lv624/lazarus/comms)
 "blf" = (
@@ -20242,9 +20220,8 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/turf/open/floor{
-	dir = 9;
-	icon_state = "brown"
+/turf/open/floor/tile/brown{
+	dir = 9
 	},
 /area/lv624/lazarus/comms)
 "blg" = (
@@ -20519,9 +20496,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 9;
-	icon_state = "brown"
+/turf/open/floor/tile/brown{
+	dir = 9
 	},
 /area/lv624/lazarus/comms)
 "blK" = (
@@ -20533,9 +20509,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 9;
-	icon_state = "brown"
+/turf/open/floor/tile/brown{
+	dir = 9
 	},
 /area/lv624/lazarus/comms)
 "blL" = (
@@ -20550,9 +20525,8 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
-/turf/open/floor{
-	dir = 9;
-	icon_state = "brown"
+/turf/open/floor/tile/brown{
+	dir = 9
 	},
 /area/lv624/lazarus/comms)
 "blM" = (
@@ -20569,9 +20543,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 9;
-	icon_state = "brown"
+/turf/open/floor/tile/brown{
+	dir = 9
 	},
 /area/lv624/lazarus/comms)
 "blN" = (
@@ -20899,9 +20872,8 @@
 /area/lv624/ground/jungle3)
 "bmE" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor{
-	dir = 9;
-	icon_state = "brown"
+/turf/open/floor/tile/brown{
+	dir = 9
 	},
 /area/lv624/lazarus/comms)
 "bmF" = (
@@ -21127,9 +21099,8 @@
 	dir = 1;
 	on = 1
 	},
-/turf/open/floor{
-	dir = 9;
-	icon_state = "brown"
+/turf/open/floor/tile/brown{
+	dir = 9
 	},
 /area/lv624/lazarus/comms)
 "bnm" = (
@@ -21308,16 +21279,14 @@
 /area/lv624/lazarus/secure_storage)
 "bnN" = (
 /obj/machinery/blackbox_recorder,
-/turf/open/floor{
-	dir = 9;
-	icon_state = "brown"
+/turf/open/floor/tile/brown{
+	dir = 9
 	},
 /area/lv624/lazarus/comms)
 "bnO" = (
 /obj/machinery/computer/telecomms/monitor,
-/turf/open/floor{
-	dir = 9;
-	icon_state = "brown"
+/turf/open/floor/tile/brown{
+	dir = 9
 	},
 /area/lv624/lazarus/comms)
 "bnP" = (
@@ -21625,16 +21594,14 @@
 	dir = 1
 	},
 /obj/effect/landmark/start/surv_spawn,
-/turf/open/floor{
-	dir = 9;
-	icon_state = "brown"
+/turf/open/floor/tile/brown{
+	dir = 9
 	},
 /area/lv624/lazarus/comms)
 "boz" = (
 /obj/structure/bed/chair/office/light,
-/turf/open/floor{
-	dir = 9;
-	icon_state = "brown"
+/turf/open/floor/tile/brown{
+	dir = 9
 	},
 /area/lv624/lazarus/comms)
 "boA" = (
@@ -22065,9 +22032,8 @@
 /obj/structure/table,
 /obj/item/tool/weldingtool,
 /obj/item/tool/wrench,
-/turf/open/floor{
-	dir = 9;
-	icon_state = "brown"
+/turf/open/floor/tile/brown{
+	dir = 9
 	},
 /area/lv624/lazarus/comms)
 "bpB" = (
@@ -22075,18 +22041,16 @@
 /obj/item/device/radio/off{
 	frequency = 1469
 	},
-/turf/open/floor{
-	dir = 9;
-	icon_state = "brown"
+/turf/open/floor/tile/brown{
+	dir = 9
 	},
 /area/lv624/lazarus/comms)
 "bpC" = (
 /obj/structure/table,
 /obj/item/clothing/head/soft/blue,
 /obj/machinery/light,
-/turf/open/floor{
-	dir = 9;
-	icon_state = "brown"
+/turf/open/floor/tile/brown{
+	dir = 9
 	},
 /area/lv624/lazarus/comms)
 "bpD" = (
@@ -22096,24 +22060,21 @@
 	},
 /obj/item/tool/crowbar,
 /obj/machinery/light,
-/turf/open/floor{
-	dir = 9;
-	icon_state = "brown"
+/turf/open/floor/tile/brown{
+	dir = 9
 	},
 /area/lv624/lazarus/comms)
 "bpE" = (
 /obj/structure/table,
 /obj/item/weapon/twohanded/fireaxe,
-/turf/open/floor{
-	dir = 9;
-	icon_state = "brown"
+/turf/open/floor/tile/brown{
+	dir = 9
 	},
 /area/lv624/lazarus/comms)
 "bpF" = (
 /obj/structure/table,
-/turf/open/floor{
-	dir = 9;
-	icon_state = "brown"
+/turf/open/floor/tile/brown{
+	dir = 9
 	},
 /area/lv624/lazarus/comms)
 "bpG" = (
@@ -22464,9 +22425,8 @@
 	req_access_txt = "0";
 	req_one_access_txt = "0"
 	},
-/turf/open/floor{
-	dir = 9;
-	icon_state = "brown"
+/turf/open/floor/tile/brown{
+	dir = 9
 	},
 /area/lv624/lazarus/comms)
 "bqQ" = (

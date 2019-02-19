@@ -398,6 +398,9 @@
 /turf/open/floor/tile/bar
 	icon_state = "bar"
 
+/turf/open/floor/tile/brown
+	icon_state = "brown"
+
 /turf/open/floor/carpet
 	name = "Carpet"
 	icon_state = "carpet"
