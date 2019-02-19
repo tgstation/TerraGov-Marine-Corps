@@ -331,7 +331,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	..()
 
 //Tramplin' time, but other than that identical
-/obj/vehicle/multitile/hitbox/cm_armored/Bump(var/atom/A)
+/obj/vehicle/multitile/hitbox/cm_armored/Bump(atom/A)
 	. = ..()
 	var/facing = get_dir(src, A)
 	var/turf/temp = loc
@@ -413,7 +413,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	var/obj/vehicle/multitile/root/cm_armored/CA = C.root
 	CA.take_damage_type(2, "blunt", src)
 	if(world.time > C.lastsound + 1 SECONDS)
-		visible_message("<span class='danger'>[C.root] rams into \the [src]!</span>")
+		visible_message("<span class='danger'>[CA] rams into \the [src]!</span>")
 		playsound(src, 'sound/effects/metal_crash.ogg', 35)
 		C.lastsound = world.time
 
@@ -422,10 +422,9 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	var/obj/vehicle/multitile/root/cm_armored/CA = C.root
 	CA.take_damage_type(2, "blunt", src)
 	if(world.time > C.lastsound + 1 SECONDS)
-		visible_message("<span class='danger'>[C.root] crushes \the [src]!</span>")
+		visible_message("<span class='danger'>[CA] crushes \the [src]!</span>")
 		playsound(src, 'sound/effects/metal_crash.ogg', 35)
 		C.lastsound = world.time
-
 
 /obj/vehicle/multitile/hitbox/cm_armored/Move(atom/A, direction)
 
