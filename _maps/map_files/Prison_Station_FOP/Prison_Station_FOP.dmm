@@ -59928,10 +59928,7 @@
 /area/prison/pirate)
 "ckj" = (
 /obj/structure/largecrate/random,
-/turf/open/floor/plating{
-	icon_plating = "platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/prison/pirate)
 "ckk" = (
 /obj/item/ammo_casing,
@@ -59946,10 +59943,7 @@
 /turf/open/floor/plating,
 /area/prison/pirate)
 "ckn" = (
-/turf/open/floor/plating{
-	icon_plating = "platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/prison/pirate)
 "cko" = (
 /obj/machinery/power/apc{
@@ -60939,26 +60933,17 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/open/floor/plating{
-	icon_plating = "platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/prison/pirate)
 "cmf" = (
 /obj/effect/landmark/random_item/good,
-/turf/open/floor/plating{
-	icon_plating = "platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/prison/pirate)
 "cmg" = (
 /obj/machinery/light/small{
 	dir = 4
 	},
-/turf/open/floor/plating{
-	icon_plating = "platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/prison/pirate)
 "cmh" = (
 /obj/item/shard,
@@ -61334,17 +61319,11 @@
 /area/prison/cellblock/highsec/south/south)
 "cmS" = (
 /obj/item/ammo_casing,
-/turf/open/floor/plating{
-	icon_plating = "platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/prison/pirate)
 "cmT" = (
 /obj/item/weapon/gun/rifle/mar40,
-/turf/open/floor/plating{
-	icon_plating = "platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/prison/pirate)
 "cmU" = (
 /obj/structure/cable{
@@ -62089,17 +62068,11 @@
 /obj/item/ammo_magazine/rifle/mar40,
 /obj/item/weapon/gun/rifle/mar40,
 /obj/item/weapon/gun/rifle/mar40,
-/turf/open/floor/plating{
-	icon_plating = "platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/prison/pirate)
 "cor" = (
 /obj/item/ammo_magazine/rifle/mar40,
-/turf/open/floor/plating{
-	icon_plating = "platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/prison/pirate)
 "cos" = (
 /obj/structure/cable{
@@ -62399,19 +62372,13 @@
 	dir = 1;
 	flipped = 1
 	},
-/turf/open/floor/plating{
-	icon_plating = "platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/prison/pirate)
 "cpb" = (
 /obj/machinery/marine_turret/premade/dumb{
 	dir = 1
 	},
-/turf/open/floor/plating{
-	icon_plating = "platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/prison/pirate)
 "cpc" = (
 /obj/item/ammo_magazine/rifle/mar40,
@@ -66279,10 +66246,7 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/power/smes/buildable,
-/turf/open/floor/plating{
-	icon_plating = "platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/prison/pirate)
 "cwM" = (
 /obj/structure/cable{
@@ -66304,10 +66268,7 @@
 	icon_state = "0-4"
 	},
 /obj/machinery/power/smes/buildable,
-/turf/open/floor/plating{
-	icon_plating = "platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/prison/pirate)
 "cwO" = (
 /obj/machinery/light/small{
@@ -66319,10 +66280,7 @@
 /obj/machinery/atmospherics/components/unary/tank/air{
 	dir = 4
 	},
-/turf/open/floor/plating{
-	icon_plating = "platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/prison/pirate)
 "cwQ" = (
 /obj/machinery/atmospherics/pipe/manifold/cyan/visible{
@@ -66379,10 +66337,7 @@
 /obj/machinery/atmospherics/components/unary/tank/carbon_dioxide{
 	dir = 8
 	},
-/turf/open/floor/plating{
-	icon_plating = "platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/prison/pirate)
 "cwX" = (
 /obj/machinery/vending/security,
@@ -67035,10 +66990,7 @@
 /obj/machinery/atmospherics/components/unary/tank/toxins{
 	dir = 1
 	},
-/turf/open/floor/plating{
-	icon_plating = "platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/prison/pirate)
 "cyk" = (
 /obj/structure/cable/green{
@@ -67057,10 +67009,7 @@
 	tag = "icon-o2_map (WEST)";
 	unacidable = 1
 	},
-/turf/open/floor/plating{
-	icon_plating = "platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/prison/pirate)
 "cyn" = (
 /obj/structure/cable{

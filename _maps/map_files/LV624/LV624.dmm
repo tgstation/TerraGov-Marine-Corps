@@ -1059,18 +1059,12 @@
 	dir = 8
 	},
 /obj/machinery/mining/brace,
-/turf/open/floor{
-	tag = "icon-platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/ground/caves/central1)
 "adC" = (
 /obj/machinery/mining/drill,
 /obj/item/shard,
-/turf/open/floor{
-	tag = "icon-platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/ground/caves/central1)
 "adD" = (
 /obj/structure/window/reinforced{
@@ -1083,10 +1077,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/ground/caves/central1)
 "adF" = (
 /obj/item/shard,
@@ -1110,9 +1101,7 @@
 	},
 /area/lv624/ground/caves/west1)
 "adJ" = (
-/turf/open/floor/plating{
-	icon_state = "platebotc"
-	},
+/turf/open/floor/plating/platebotc,
 /area/lv624/ground/caves/central1)
 "adK" = (
 /obj/machinery/mineral/stacking_machine,
@@ -1140,10 +1129,7 @@
 	},
 /obj/machinery/mining/brace,
 /obj/item/shard,
-/turf/open/floor{
-	tag = "icon-platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/ground/caves/central1)
 "adP" = (
 /obj/structure/ore_box,
@@ -1254,26 +1240,17 @@
 /area/lv624/ground/caves/central1)
 "aem" = (
 /obj/item/shard,
-/turf/open/floor{
-	tag = "icon-platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/ground/caves/central1)
 "aen" = (
 /turf/open/gm/dirt,
 /area/lv624/ground/sand5)
 "aeo" = (
 /obj/structure/ore_box,
-/turf/open/floor{
-	tag = "icon-platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/ground/sand5)
 "aep" = (
-/turf/open/floor{
-	tag = "icon-platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/ground/sand5)
 "aeq" = (
 /obj/structure/girder,
@@ -1309,10 +1286,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/ground/sand5)
 "aey" = (
 /turf/open/gm/dirt,
@@ -1373,9 +1347,7 @@
 /area/lv624/ground/caves/central3)
 "aeL" = (
 /obj/machinery/mineral/unloading_machine,
-/turf/open/floor/plating{
-	icon_state = "platebotc"
-	},
+/turf/open/floor/plating/platebotc,
 /area/lv624/ground/caves/central1)
 "aeM" = (
 /turf/open/floor/marking/loadingarea{
@@ -3479,26 +3451,17 @@
 /area/lv624/ground/river2)
 "alX" = (
 /obj/structure/reagent_dispensers/watertank,
-/turf/open/floor{
-	tag = "icon-platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/ground/sand8)
 "alY" = (
-/turf/open/floor{
-	tag = "icon-platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/ground/sand8)
 "alZ" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_y = 30
 	},
 /obj/machinery/door/window/eastleft,
-/turf/open/floor{
-	tag = "icon-platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/ground/sand8)
 "ama" = (
 /obj/effect/spawner/random/tech_supply,
@@ -3702,25 +3665,16 @@
 "amD" = (
 /obj/structure/reagent_dispensers/watertank,
 /obj/structure/window/reinforced,
-/turf/open/floor{
-	tag = "icon-platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/ground/sand8)
 "amE" = (
 /obj/structure/window/reinforced,
-/turf/open/floor{
-	tag = "icon-platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/ground/sand8)
 "amF" = (
 /obj/machinery/door/window/eastright,
 /obj/structure/window/reinforced,
-/turf/open/floor{
-	tag = "icon-platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/ground/sand8)
 "amG" = (
 /obj/structure/bed/stool,
@@ -3950,10 +3904,7 @@
 	name = "Water Filtration Plant";
 	req_access_txt = "0"
 	},
-/turf/open/floor{
-	tag = "icon-platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/ground/sand8)
 "ang" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -9062,9 +9013,7 @@
 /area/lv624/lazarus/quartstorage/outdoors)
 "aCd" = (
 /obj/structure/window_frame/colony,
-/turf/open/floor/plating{
-	icon_state = "platebotc"
-	},
+/turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/quartstorage/outdoors)
 "aCe" = (
 /turf/open/gm/dirtgrassborder2/corner{
@@ -9182,15 +9131,11 @@
 	},
 /area/lv624/lazarus/quartstorage/outdoors)
 "aCG" = (
-/turf/open/floor/plating{
-	icon_state = "platebotc"
-	},
+/turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/quartstorage/outdoors)
 "aCH" = (
 /obj/structure/girder,
-/turf/open/floor/plating{
-	icon_state = "platebotc"
-	},
+/turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/quartstorage/outdoors)
 "aCI" = (
 /obj/effect/landmark/huntergames_secondary_spawn,
@@ -9325,22 +9270,16 @@
 /obj/structure/rack,
 /obj/item/tool/screwdriver,
 /obj/item/tool/wrench,
-/turf/open/floor/plating{
-	icon_state = "platebotc"
-	},
+/turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/quartstorage/outdoors)
 "aDi" = (
 /obj/structure/rack,
-/turf/open/floor/plating{
-	icon_state = "platebotc"
-	},
+/turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/quartstorage/outdoors)
 "aDj" = (
 /obj/structure/rack,
 /obj/item/storage/belt/utility/full,
-/turf/open/floor/plating{
-	icon_state = "platebotc"
-	},
+/turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/quartstorage/outdoors)
 "aDk" = (
 /obj/machinery/colony_floodlight{
@@ -9492,9 +9431,7 @@
 /area/lv624/ground/compound/ne)
 "aDK" = (
 /obj/item/tool/warning_cone,
-/turf/open/floor/plating{
-	icon_state = "platebotc"
-	},
+/turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/quartstorage/outdoors)
 "aDL" = (
 /turf/closed/wall,
@@ -9596,9 +9533,7 @@
 /area/lv624/ground/jungle7)
 "aEi" = (
 /obj/structure/largecrate/random,
-/turf/open/floor/plating{
-	icon_state = "platebotc"
-	},
+/turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/quartstorage/outdoors)
 "aEj" = (
 /obj/structure/window/framed/colony,
@@ -10305,55 +10240,41 @@
 /obj/structure/cargo_container/green{
 	dir = 8
 	},
-/turf/open/floor/plating{
-	icon_state = "platebotc"
-	},
+/turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/quartstorage/outdoors)
 "aGP" = (
 /obj/structure/cargo_container/green{
 	dir = 1
 	},
-/turf/open/floor/plating{
-	icon_state = "platebotc"
-	},
+/turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/quartstorage/outdoors)
 "aGQ" = (
 /obj/structure/cargo_container/green{
 	dir = 4
 	},
-/turf/open/floor/plating{
-	icon_state = "platebotc"
-	},
+/turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/quartstorage/outdoors)
 "aGR" = (
 /obj/structure/cargo_container/nt{
 	dir = 8
 	},
-/turf/open/floor/plating{
-	icon_state = "platebotc"
-	},
+/turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/quartstorage/outdoors)
 "aGS" = (
 /obj/structure/cargo_container/nt{
 	dir = 1
 	},
-/turf/open/floor/plating{
-	icon_state = "platebotc"
-	},
+/turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/quartstorage/outdoors)
 "aGT" = (
 /obj/structure/cargo_container/nt{
 	dir = 4
 	},
-/turf/open/floor/plating{
-	icon_state = "platebotc"
-	},
+/turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/quartstorage/outdoors)
 "aGU" = (
 /obj/structure/window/framed/colony,
-/turf/open/floor/plating{
-	icon_state = "platebotc"
-	},
+/turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/quartstorage)
 "aGV" = (
 /obj/structure/rack,
@@ -10512,9 +10433,7 @@
 /area/lv624/lazarus/quartstorage/outdoors)
 "aHw" = (
 /obj/effect/landmark/huntergames_secondary_spawn,
-/turf/open/floor/plating{
-	icon_state = "platebotc"
-	},
+/turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/quartstorage/outdoors)
 "aHx" = (
 /obj/machinery/door/airlock/almayer/engineering{
@@ -11020,21 +10939,15 @@
 	},
 /area/lv624/ground/jungle6)
 "aJa" = (
-/turf/open/floor/plating{
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/lazarus/robotics)
 "aJb" = (
 /obj/machinery/recharge_station,
-/turf/open/floor/plating{
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/lazarus/robotics)
 "aJc" = (
 /obj/machinery/vending/robotics,
-/turf/open/floor/plating{
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/lazarus/robotics)
 "aJd" = (
 /turf/open/floor{
@@ -11050,21 +10963,15 @@
 "aJf" = (
 /obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster,
 /obj/effect/decal/cleanable/cobweb,
-/turf/open/floor/plating{
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/lazarus/robotics)
 "aJg" = (
 /obj/machinery/mecha_part_fabricator,
-/turf/open/floor/plating{
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/lazarus/robotics)
 "aJh" = (
 /obj/structure/girder,
-/turf/open/floor/plating{
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/lazarus/robotics)
 "aJj" = (
 /obj/machinery/door/poddoor/almayer{
@@ -11405,15 +11312,11 @@
 "aJV" = (
 /obj/structure/table,
 /obj/item/weapon/gun/pistol/holdout,
-/turf/open/floor/plating{
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/lazarus/robotics)
 "aJW" = (
 /obj/item/stool,
-/turf/open/floor/plating{
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/lazarus/robotics)
 "aJX" = (
 /obj/machinery/door/airlock/almayer/engineering{
@@ -11763,18 +11666,14 @@
 /area/lv624/ground/jungle6)
 "aKM" = (
 /obj/structure/computerframe,
-/turf/open/floor/plating{
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/lazarus/robotics)
 "aKN" = (
 /obj/machinery/optable,
 /obj/machinery/light/small{
 	dir = 4
 	},
-/turf/open/floor/plating{
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/lazarus/robotics)
 "aKO" = (
 /obj/machinery/light/small{
@@ -11789,18 +11688,14 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/open/floor/plating{
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/lazarus/robotics)
 "aKQ" = (
 /obj/structure/table,
 /obj/item/stack/sheet/plasteel{
 	amount = 10
 	},
-/turf/open/floor/plating{
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/lazarus/robotics)
 "aKR" = (
 /obj/structure/flora/ausbushes/fullgrass,
@@ -11967,9 +11862,7 @@
 	req_access_txt = "0";
 	req_one_access_txt = "0"
 	},
-/turf/open/floor/plating{
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/lazarus/robotics)
 "aLr" = (
 /obj/effect/decal/remains/human,
@@ -12515,9 +12408,7 @@
 	name = "\improper Nexus Blast Door";
 	opacity = 0
 	},
-/turf/open/floor/plating{
-	icon_state = "platebotc"
-	},
+/turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/sleep_female)
 "aMK" = (
 /obj/structure/rack,
@@ -13230,9 +13121,7 @@
 /obj/structure/jungle/vines{
 	icon_state = "Light3"
 	},
-/turf/open/floor/plating{
-	icon_state = "platebotc"
-	},
+/turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/sleep_female)
 "aOM" = (
 /obj/structure/rack,
@@ -13585,9 +13474,7 @@
 	layer = 2.5
 	},
 /obj/structure/largecrate/random,
-/turf/open/floor/plating{
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/lazarus/robotics)
 "aPS" = (
 /obj/structure/largecrate,
@@ -13598,9 +13485,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/turf/open/floor/plating{
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/lazarus/robotics)
 "aPT" = (
 /obj/machinery/light/small{
@@ -13615,9 +13500,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/open/floor/plating{
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/lazarus/robotics)
 "aPV" = (
 /obj/machinery/light/small{
@@ -13625,9 +13508,7 @@
 	},
 /obj/structure/table,
 /obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp,
-/turf/open/floor/plating{
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/lazarus/robotics)
 "aPW" = (
 /obj/structure/fence,
@@ -13943,9 +13824,7 @@
 /obj/item/mecha_parts/part/gygax_armour{
 	layer = 1
 	},
-/turf/open/floor/plating{
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/lazarus/robotics)
 "aQO" = (
 /obj/machinery/door/airlock/almayer/engineering{
@@ -14303,15 +14182,11 @@
 /area/shuttle/drop2/lz2)
 "aRv" = (
 /obj/structure/largecrate/random,
-/turf/open/floor/plating{
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/lazarus/robotics)
 "aRw" = (
 /obj/structure/largecrate,
-/turf/open/floor/plating{
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/lazarus/robotics)
 "aRx" = (
 /obj/machinery/vending/coffee,
@@ -14321,9 +14196,7 @@
 /area/lv624/lazarus/robotics)
 "aRy" = (
 /obj/structure/ore_box,
-/turf/open/floor/plating{
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/lazarus/robotics)
 "aRz" = (
 /obj/structure/jungle/vines/heavy{
@@ -15626,9 +15499,7 @@
 /area/lv624/lazarus/chapel)
 "aUV" = (
 /obj/structure/window_frame/colony,
-/turf/open/floor/plating{
-	icon_state = "platebotc"
-	},
+/turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/chapel)
 "aUW" = (
 /obj/machinery/door/airlock/almayer/engineering{
@@ -17322,9 +17193,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor/plating{
-	icon_state = "platebotc"
-	},
+/turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/atmos)
 "aZv" = (
 /obj/structure/jungle/vines/heavy{
@@ -19616,9 +19485,7 @@
 /obj/structure/jungle/vines{
 	icon_state = "Light2"
 	},
-/turf/open/floor/plating{
-	icon_state = "platebotc"
-	},
+/turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/atmos)
 "beq" = (
 /turf/open/gm/grass{
@@ -19869,9 +19736,7 @@
 	name = "\improper Nexus Blast Door";
 	opacity = 0
 	},
-/turf/open/floor/plating{
-	icon_state = "platebotc"
-	},
+/turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/canteen)
 "beR" = (
 /obj/structure/largecrate/random/barrel/yellow,
@@ -21743,9 +21608,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor/plating{
-	icon_state = "platebotc"
-	},
+/turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/engineering)
 "bjJ" = (
 /obj/structure/jungle/vines{
@@ -22099,9 +21962,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor/plating{
-	icon_state = "platebotc"
-	},
+/turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/engineering)
 "bkE" = (
 /obj/machinery/power/smes/buildable{
@@ -22113,9 +21974,7 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/turf/open/floor/plating{
-	icon_state = "platebotc"
-	},
+/turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/engineering)
 "bkF" = (
 /obj/structure/window_frame/colony/reinforced,
@@ -22405,10 +22264,7 @@
 	icon_state = "term";
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/lazarus/engineering)
 "blo" = (
 /obj/structure/window/framed/colony/reinforced,
@@ -22556,10 +22412,7 @@
 /obj/item/weapon/gun/pistol/m4a3,
 /obj/item/weapon/gun/pistol/m4a3,
 /obj/item/weapon/gun/pistol/m4a3,
-/turf/open/floor{
-	tag = "icon-platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/lazarus/secure_storage)
 "blG" = (
 /obj/structure/rack,
@@ -22572,10 +22425,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/lazarus/secure_storage)
 "blH" = (
 /obj/structure/rack,
@@ -22588,10 +22438,7 @@
 /obj/item/weapon/gun/pistol/highpower,
 /obj/item/weapon/gun/pistol/highpower,
 /obj/item/weapon/gun/pistol/highpower,
-/turf/open/floor{
-	tag = "icon-platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/lazarus/secure_storage)
 "blI" = (
 /obj/structure/cable/yellow{
@@ -23231,10 +23078,7 @@
 /obj/item/ammo_magazine/pistol,
 /obj/item/ammo_magazine/pistol,
 /obj/item/ammo_magazine/pistol,
-/turf/open/floor{
-	tag = "icon-platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/lazarus/secure_storage)
 "bnb" = (
 /obj/structure/rack,
@@ -23244,10 +23088,7 @@
 /obj/item/ammo_magazine/pistol/b92fs,
 /obj/item/ammo_magazine/pistol/b92fs,
 /obj/item/ammo_magazine/pistol/b92fs,
-/turf/open/floor{
-	tag = "icon-platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/lazarus/secure_storage)
 "bnc" = (
 /obj/structure/rack,
@@ -23257,10 +23098,7 @@
 /obj/item/ammo_magazine/pistol/highpower,
 /obj/item/ammo_magazine/pistol/highpower,
 /obj/item/ammo_magazine/pistol/highpower,
-/turf/open/floor{
-	tag = "icon-platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/lazarus/secure_storage)
 "bnd" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -23770,10 +23608,7 @@
 	},
 /obj/item/weapon/gun/rifle/mar40/carbine,
 /obj/item/weapon/gun/rifle/mar40/carbine,
-/turf/open/floor{
-	tag = "icon-platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/lazarus/secure_storage)
 "boq" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -23789,10 +23624,7 @@
 /obj/item/ammo_magazine/rifle/mar40,
 /obj/item/ammo_magazine/rifle/mar40,
 /obj/item/ammo_magazine/rifle/mar40,
-/turf/open/floor{
-	tag = "icon-platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/lazarus/secure_storage)
 "bos" = (
 /obj/structure/cable/yellow{
@@ -24165,10 +23997,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/lazarus/secure_storage)
 "bpk" = (
 /obj/structure/rack,
@@ -24178,10 +24007,7 @@
 /obj/item/ammo_magazine/smg/mp5,
 /obj/item/ammo_magazine/smg/mp5,
 /obj/item/ammo_magazine/smg/mp5,
-/turf/open/floor{
-	tag = "icon-platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/lazarus/secure_storage)
 "bpl" = (
 /obj/structure/cable/yellow{
@@ -24496,19 +24322,13 @@
 /obj/structure/rack,
 /obj/item/weapon/gun/shotgun/pump/cmb,
 /obj/item/weapon/gun/shotgun/pump/cmb,
-/turf/open/floor{
-	tag = "icon-platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/lazarus/secure_storage)
 "bqc" = (
 /obj/structure/rack,
 /obj/item/ammo_magazine/shotgun,
 /obj/item/ammo_magazine/shotgun/buckshot,
-/turf/open/floor{
-	tag = "icon-platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/lazarus/secure_storage)
 "bqd" = (
 /obj/effect/landmark/random_item/good,
@@ -24571,10 +24391,7 @@
 /area/lv624/lazarus/engineering)
 "bqm" = (
 /obj/structure/closet/secure_closet/engineering_welding,
-/turf/open/floor{
-	tag = "icon-platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/lazarus/engineering)
 "bqn" = (
 /obj/structure/extinguisher_cabinet{
@@ -24606,10 +24423,7 @@
 /area/lv624/lazarus/engineering)
 "bqr" = (
 /obj/structure/closet/secure_closet/engineering_electrical,
-/turf/open/floor{
-	tag = "icon-platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/lazarus/engineering)
 "bqs" = (
 /obj/structure/flora/ausbushes/fullgrass,
@@ -24771,10 +24585,7 @@
 	icon_state = "tube1";
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/lazarus/engineering)
 "bqT" = (
 /obj/effect/landmark/start/surv_spawn,
@@ -24802,10 +24613,7 @@
 /area/lv624/lazarus/engineering)
 "bqX" = (
 /obj/structure/closet/secure_closet/engineering_personal,
-/turf/open/floor{
-	tag = "icon-platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/lazarus/engineering)
 "bqY" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -24905,10 +24713,7 @@
 	pixel_x = 4;
 	pixel_y = 4
 	},
-/turf/open/floor{
-	tag = "icon-platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/lazarus/secure_storage)
 "brp" = (
 /obj/structure/rack,
@@ -24918,20 +24723,14 @@
 /obj/item/stack/sheet/wood{
 	amount = 50
 	},
-/turf/open/floor{
-	tag = "icon-platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/lazarus/secure_storage)
 "brq" = (
 /obj/structure/rack,
 /obj/item/stack/sheet/glass{
 	amount = 30
 	},
-/turf/open/floor{
-	tag = "icon-platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/lazarus/secure_storage)
 "brr" = (
 /obj/structure/rack,
@@ -24976,10 +24775,7 @@
 "brA" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/tool,
-/turf/open/floor{
-	tag = "icon-platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/lazarus/engineering)
 "brB" = (
 /obj/structure/table/reinforced,
@@ -25003,10 +24799,7 @@
 	icon_state = "brokengrille"
 	},
 /obj/structure/foamedmetal,
-/turf/open/floor{
-	tag = "icon-platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/lazarus/engineering)
 "brE" = (
 /obj/structure/window_frame/colony/reinforced,
@@ -25198,19 +24991,13 @@
 	},
 /obj/structure/window/reinforced,
 /obj/structure/largecrate/supply/supplies/mre,
-/turf/open/floor{
-	tag = "icon-platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/lazarus/secure_storage)
 "bse" = (
 /obj/structure/window/reinforced,
 /obj/structure/largecrate/supply/supplies/flares,
 /obj/machinery/light,
-/turf/open/floor{
-	tag = "icon-platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/lazarus/secure_storage)
 "bsf" = (
 /obj/structure/window/reinforced,
@@ -25218,10 +25005,7 @@
 	dir = 4
 	},
 /obj/structure/largecrate/supply/supplies/water,
-/turf/open/floor{
-	tag = "icon-platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/lv624/lazarus/secure_storage)
 "bsg" = (
 /obj/structure/foamedmetal,

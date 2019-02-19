@@ -3530,9 +3530,7 @@
 /area/whiskey_outpost/outside/east)
 "ij" = (
 /obj/machinery/marine_turret/premade,
-/turf/open/floor/plating{
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/whiskey_outpost/outside/east)
 "ik" = (
 /turf/open/gm/grass{
@@ -3555,18 +3553,14 @@
 	dir = 4;
 	pixel_y = 0
 	},
-/turf/open/floor/plating{
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/whiskey_outpost/outside/east)
 "io" = (
 /obj/machinery/marine_turret/premade{
 	dir = 8;
 	pixel_y = 0
 	},
-/turf/open/floor/plating{
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/whiskey_outpost/outside/east)
 "ip" = (
 /turf/open/jungle/path,
@@ -3614,9 +3608,7 @@
 /area/whiskey_outpost/outside/west)
 "iy" = (
 /obj/machinery/marine_turret/premade,
-/turf/open/floor/plating{
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/whiskey_outpost/outside/west)
 "iz" = (
 /obj/structure/flora/ausbushes/leafybush,
@@ -3680,18 +3672,14 @@
 	dir = 4;
 	pixel_y = 0
 	},
-/turf/open/floor/plating{
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/whiskey_outpost/outside/west)
 "iI" = (
 /obj/machinery/marine_turret/premade{
 	dir = 8;
 	pixel_y = 0
 	},
-/turf/open/floor/plating{
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/whiskey_outpost/outside/west)
 "iJ" = (
 /obj/structure/flora/ausbushes/leafybush,
@@ -4156,21 +4144,15 @@
 /area/whiskey_outpost/outside/east)
 "jS" = (
 /obj/item/storage/box/sentry,
-/turf/open/floor/plating{
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/whiskey_outpost/outside/west)
 "jT" = (
-/turf/open/floor/plating{
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/whiskey_outpost/outside/west)
 "jU" = (
 /obj/item/storage/box/sentry,
 /obj/item/storage/box/m94,
-/turf/open/floor/plating{
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/whiskey_outpost/outside/west)
 "jV" = (
 /obj/structure/table,
@@ -4262,15 +4244,11 @@
 /area/whiskey_outpost/outside/west)
 "kf" = (
 /obj/item/storage/box/explosive_mines,
-/turf/open/floor/plating{
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/whiskey_outpost/outside/west)
 "kg" = (
 /obj/item/stack/medical/bruise_pack,
-/turf/open/floor/plating{
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/whiskey_outpost/outside/west)
 "kh" = (
 /turf/open/floor/plating/warning{
@@ -4364,9 +4342,7 @@
 /area/whiskey_outpost/outside/east)
 "kx" = (
 /obj/structure/largecrate/guns,
-/turf/open/floor/plating{
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/whiskey_outpost/outside/west)
 "ky" = (
 /obj/structure/sign/greencross{

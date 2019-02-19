@@ -100,7 +100,11 @@
 /turf/open/floor/plating/warning
 	icon_state = "warnplate"
 
+/turf/open/floor/plating/platebot
+	icon_state = "platebot"
 
+/turf/open/floor/plating/platebotc
+	icon_state = "platebotc"
 
 /turf/open/floor/marking/loadingarea
 	icon_state = "loadingarea"

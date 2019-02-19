@@ -1286,10 +1286,7 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/turf/open/floor{
-	tag = "icon-platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/ice_colony/surface/engineering/generator)
 "adD" = (
 /obj/structure/table,
@@ -2019,10 +2016,7 @@
 	d2 = 4;
 	icon_state = "0-4"
 	},
-/turf/open/floor{
-	tag = "icon-platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/ice_colony/surface/engineering/generator)
 "afk" = (
 /obj/structure/cable/yellow{
@@ -2053,10 +2047,7 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/turf/open/floor{
-	tag = "icon-platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/ice_colony/surface/engineering/generator)
 "afm" = (
 /obj/structure/table,
@@ -2391,10 +2382,7 @@
 	d2 = 4;
 	icon_state = "0-4"
 	},
-/turf/open/floor{
-	tag = "icon-platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/ice_colony/surface/engineering/generator)
 "afU" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -2433,10 +2421,7 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/turf/open/floor{
-	tag = "icon-platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/ice_colony/surface/engineering/generator)
 "afW" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -3558,10 +3543,7 @@
 "aia" = (
 /obj/machinery/power/geothermal,
 /obj/structure/cable/yellow,
-/turf/open/floor{
-	tag = "icon-platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/ice_colony/surface/engineering/generator)
 "aib" = (
 /obj/structure/cable/yellow{
@@ -23249,10 +23231,7 @@
 /area/ice_colony/surface/research/tech_storage)
 "aVt" = (
 /obj/structure/reagent_dispensers/fueltank,
-/turf/open/floor{
-	tag = "icon-platebot";
-	icon_state = "platebot"
-	},
+/turf/open/floor/plating/platebot,
 /area/ice_colony/surface/research/tech_storage)
 "aVu" = (
 /obj/vehicle/train/cargo/trolley,
