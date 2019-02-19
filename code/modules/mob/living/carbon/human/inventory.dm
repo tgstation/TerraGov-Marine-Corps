@@ -516,6 +516,8 @@
 	return O.equip(src, visualsOnly)
 
 
-/mob/living/carbon/human/proc/delete_equipment()
+/mob/living/carbon/human/proc/delete_equipment(save_id = FALSE)
 	for(var/i in contents)
+		if(save_id && istype(i, /obj/item/card/id))
+			continue
 		qdel(i)

@@ -740,6 +740,8 @@
 			var/datum/outfit/job/O = new J.outfit
 			var/id = O.id ? O.id : /obj/item/card/id
 			var/obj/item/card/id/I = new id
+			var/datum/skills/L = new J.skills_type
+			H.mind.cm_skills = L
 
 			if(H.wear_id)
 				qdel(H.wear_id)
@@ -845,7 +847,7 @@
 		return
 
 	var/datum/outfit/O
-	H.delete_equipment()
+	H.delete_equipment(TRUE)
 	if(dresscode != "-- Naked")
 		O = dresscode
 		H.equipOutfit(dresscode)
