@@ -3387,9 +3387,7 @@
 	},
 /area/lv624/ground/sand8)
 "amh" = (
-/obj/machinery/constructable_frame{
-	icon_state = "box_1"
-	},
+/obj/machinery/constructable_frame/state_2,
 /turf/open/floor/plating/warning{
 	dir = 1
 	},
@@ -12142,9 +12140,7 @@
 	},
 /area/lv624/lazarus/robotics)
 "aOe" = (
-/obj/machinery/constructable_frame{
-	icon_state = "box_1"
-	},
+/obj/machinery/constructable_frame/state_2,
 /turf/open/floor{
 	icon_state = "vault"
 	},

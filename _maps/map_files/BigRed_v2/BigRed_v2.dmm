@@ -23240,9 +23240,7 @@
 	},
 /area/bigredv2/outside/general_store)
 "aVQ" = (
-/obj/machinery/constructable_frame{
-	icon_state = "box_1"
-	},
+/obj/machinery/constructable_frame/state_2,
 /turf/open/floor{
 	tag = "icon-podhatchfloor";
 	icon_state = "podhatchfloor";
@@ -29268,10 +29266,7 @@
 /area/bigredv2/outside/cargo)
 "bjt" = (
 /obj/effect/decal/warning_stripes,
-/obj/machinery/constructable_frame/machine_frame{
-	density = 1;
-	icon_state = "box_1"
-	},
+/obj/machinery/constructable_frame/state_2,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "bju" = (
@@ -29986,9 +29981,7 @@
 /area/bigredv2/outside/cargo)
 "blc" = (
 /obj/effect/decal/warning_stripes,
-/obj/machinery/constructable_frame{
-	icon_state = "box_1"
-	},
+/obj/machinery/constructable_frame/state_2,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "bld" = (
@@ -33284,9 +33277,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "bta" = (
-/obj/machinery/constructable_frame{
-	icon_state = "box_1"
-	},
+/obj/machinery/constructable_frame/state_2,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "btb" = (

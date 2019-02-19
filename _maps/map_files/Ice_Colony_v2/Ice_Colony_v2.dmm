@@ -29151,9 +29151,7 @@
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bhU" = (
-/obj/machinery/constructable_frame{
-	icon_state = "box_1"
-	},
+/obj/machinery/constructable_frame/state_2,
 /turf/open/floor{
 	dir = 10;
 	icon_state = "darkbrown2";
