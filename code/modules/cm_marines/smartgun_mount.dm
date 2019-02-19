@@ -457,9 +457,11 @@
 		flick_overlay_view(I, src, 3)
 
 /obj/machinery/m56d_hmg/MouseDrop(over_object, src_location, over_location) //Drag the MG to us to man it.
-	if(!ishuman(usr) || usr.is_mob_incapacitated())
+	if(!ishuman(usr))
 		return
 	var/mob/living/carbon/human/user = usr //this is us
+	if(user.is_mob_incapacitated())
+		return
 	src.add_fingerprint(usr)
 	if((over_object == user && (in_range(src, user) || locate(src) in user))) //Make sure its on ourselves
 		if(user.interactee == src)
