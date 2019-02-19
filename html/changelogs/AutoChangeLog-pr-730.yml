@@ -1,4 +1,0 @@
-author: "MJP"
-delete-after: True
-changes: 
-  - bugfix: "M44 and mateba belts can now only hold things of proper size"
