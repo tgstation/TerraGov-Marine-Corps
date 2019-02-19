@@ -2021,9 +2021,7 @@
 /turf/open/mars,
 /area/bigredv2/outside/nw)
 "aeJ" = (
-/turf/open/floor{
-	icon_state = "delivery"
-	},
+/turf/open/floor/marking/delivery,
 /area/bigredv2/outside/marshal_office)
 "aeK" = (
 /obj/structure/table,
@@ -2507,9 +2505,7 @@
 /area/bigredv2/outside/space_port)
 "afO" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "delivery"
-	},
+/turf/open/floor/marking/delivery,
 /area/bigredv2/outside/marshal_office)
 "afP" = (
 /obj/machinery/door/airlock/almayer/security/glass{
@@ -3855,15 +3851,11 @@
 	dir = 4;
 	name = "\improper Marshal Office Brig"
 	},
-/turf/open/floor{
-	icon_state = "delivery"
-	},
+/turf/open/floor/marking/delivery,
 /area/bigredv2/outside/marshal_office)
 "aiD" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	icon_state = "delivery"
-	},
+/turf/open/floor/marking/delivery,
 /area/bigredv2/outside/marshal_office)
 "aiE" = (
 /obj/structure/closet/secure_closet/marshal,
@@ -4462,9 +4454,7 @@
 	name = "\improper Lambda Lab Break Room";
 	req_one_access_txt = "0"
 	},
-/turf/open/floor{
-	icon_state = "delivery"
-	},
+/turf/open/floor/marking/delivery,
 /area/bigredv2/caves/lambda_lab)
 "ajW" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -4475,9 +4465,7 @@
 	tag = "icon-intact-supply (NORTH)";
 	dir = 1
 	},
-/turf/open/floor{
-	icon_state = "delivery"
-	},
+/turf/open/floor/marking/delivery,
 /area/bigredv2/caves/lambda_lab)
 "ajX" = (
 /obj/structure/cable{
@@ -5843,9 +5831,7 @@
 	name = "\improper Lambda Lab Xenobiology";
 	req_access_txt = "0"
 	},
-/turf/open/floor{
-	icon_state = "delivery"
-	},
+/turf/open/floor/marking/delivery,
 /area/bigredv2/caves/lambda_lab)
 "amQ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -5867,9 +5853,7 @@
 	name = "\improper Lambda Lab Hydroponics";
 	req_access_txt = "0"
 	},
-/turf/open/floor{
-	icon_state = "delivery"
-	},
+/turf/open/floor/marking/delivery,
 /area/bigredv2/caves/lambda_lab)
 "amS" = (
 /obj/item/grown/log,
@@ -6440,9 +6424,7 @@
 	name = "\improper Lambda Lab Xenobiology";
 	req_access_txt = "0"
 	},
-/turf/open/floor{
-	icon_state = "delivery"
-	},
+/turf/open/floor/marking/delivery,
 /area/bigredv2/caves/lambda_lab)
 "anY" = (
 /obj/structure/cable{
@@ -6498,9 +6480,7 @@
 	name = "\improper Lambda Lab Hydroponics";
 	req_access_txt = "0"
 	},
-/turf/open/floor{
-	icon_state = "delivery"
-	},
+/turf/open/floor/marking/delivery,
 /area/bigredv2/caves/lambda_lab)
 "aob" = (
 /obj/structure/cable{
@@ -8245,9 +8225,7 @@
 	name = "\improper Lambda Lab Biology Wing";
 	req_one_access_txt = "0"
 	},
-/turf/open/floor{
-	icon_state = "delivery"
-	},
+/turf/open/floor/marking/delivery,
 /area/bigredv2/caves/lambda_lab)
 "arK" = (
 /obj/structure/cable{
@@ -8263,9 +8241,7 @@
 	tag = "icon-intact-supply (NORTH)";
 	dir = 1
 	},
-/turf/open/floor{
-	icon_state = "delivery"
-	},
+/turf/open/floor/marking/delivery,
 /area/bigredv2/caves/lambda_lab)
 "arL" = (
 /obj/effect/glowshroom,
@@ -9669,9 +9645,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "auy" = (
-/turf/open/floor{
-	icon_state = "delivery"
-	},
+/turf/open/floor/marking/delivery,
 /area/bigredv2/caves/lambda_lab)
 "auz" = (
 /obj/machinery/door_control{
@@ -10085,9 +10059,7 @@
 	name = "\improper Lambda Lab Break Room";
 	req_one_access_txt = "0"
 	},
-/turf/open/floor{
-	icon_state = "delivery"
-	},
+/turf/open/floor/marking/delivery,
 /area/bigredv2/caves/lambda_lab)
 "avm" = (
 /obj/structure/sign/securearea{
@@ -13241,9 +13213,7 @@
 	icon_state = "4-8";
 	pixel_x = 0
 	},
-/turf/open/floor{
-	icon_state = "delivery"
-	},
+/turf/open/floor/marking/delivery,
 /area/bigredv2/caves/lambda_lab)
 "aBF" = (
 /obj/effect/decal/cleanable/vomit,
@@ -13595,9 +13565,7 @@
 	name = "\improper Lambda Lab Technical Lab";
 	req_one_access_txt = "0"
 	},
-/turf/open/floor{
-	icon_state = "delivery"
-	},
+/turf/open/floor/marking/delivery,
 /area/bigredv2/caves/lambda_lab)
 "aCw" = (
 /obj/structure/cable{
@@ -16437,9 +16405,7 @@
 	name = "\improper Lambda Lab Anomaly Lab";
 	req_one_access_txt = "0"
 	},
-/turf/open/floor{
-	icon_state = "delivery"
-	},
+/turf/open/floor/marking/delivery,
 /area/bigredv2/caves/lambda_lab)
 "aHS" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -17747,9 +17713,7 @@
 	icon_state = "4-8";
 	pixel_x = 0
 	},
-/turf/open/floor{
-	icon_state = "delivery"
-	},
+/turf/open/floor/marking/delivery,
 /area/bigredv2/caves/lambda_lab)
 "aJU" = (
 /obj/structure/cable{
@@ -17829,9 +17793,7 @@
 	name = "\improper Lambda Lab Virology Wing";
 	req_one_access_txt = "0"
 	},
-/turf/open/floor{
-	icon_state = "delivery"
-	},
+/turf/open/floor/marking/delivery,
 /area/bigredv2/caves/lambda_lab)
 "aJY" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -19346,15 +19308,11 @@
 	name = "\improper Lambda Lab Virology Quarantine";
 	req_one_access_txt = "0"
 	},
-/turf/open/floor{
-	icon_state = "delivery"
-	},
+/turf/open/floor/marking/delivery,
 /area/bigredv2/caves/lambda_lab)
 "aMY" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor{
-	icon_state = "delivery"
-	},
+/turf/open/floor/marking/delivery,
 /area/bigredv2/caves/lambda_lab)
 "aMZ" = (
 /obj/structure/closet/firecloset/full,
@@ -20437,9 +20395,7 @@
 	name = "\improper Lambda Lab Anomaly Chamber";
 	req_access_txt = "0"
 	},
-/turf/open/floor{
-	icon_state = "delivery"
-	},
+/turf/open/floor/marking/delivery,
 /area/bigredv2/caves/lambda_lab)
 "aPr" = (
 /obj/structure/cable{
@@ -20990,9 +20946,7 @@
 	name = "\improper Lambda Lab Virology Quarantine";
 	req_one_access_txt = "0"
 	},
-/turf/open/floor{
-	icon_state = "delivery"
-	},
+/turf/open/floor/marking/delivery,
 /area/bigredv2/caves/lambda_lab)
 "aQy" = (
 /obj/structure/filingcabinet/medical,
@@ -26680,9 +26634,7 @@
 	dir = 8;
 	health = 25000
 	},
-/turf/open/floor{
-	icon_state = "delivery"
-	},
+/turf/open/floor/marking/delivery,
 /area/bigredv2/outside/cargo)
 "bcv" = (
 /obj/effect/decal/cleanable/blood,
@@ -27012,9 +26964,7 @@
 	},
 /area/bigredv2/outside/cargo)
 "bdg" = (
-/turf/open/floor{
-	icon_state = "delivery"
-	},
+/turf/open/floor/marking/delivery,
 /area/bigredv2/outside/cargo)
 "bdh" = (
 /obj/effect/spawner/random/tool,
@@ -35323,18 +35273,14 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
 	},
-/turf/open/floor{
-	icon_state = "delivery"
-	},
+/turf/open/floor/marking/delivery,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bwM" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor{
-	icon_state = "delivery"
-	},
+/turf/open/floor/marking/delivery,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bwN" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{

@@ -46789,10 +46789,7 @@
 /area/prison/security/checkpoint/highsec/s)
 "bKj" = (
 /obj/machinery/door/airlock/glass,
-/turf/open/floor{
-	icon_regular_floor = "delivery";
-	icon_state = "delivery"
-	},
+/turf/open/floor/marking/delivery,
 /area/prison/monorail/east)
 "bKk" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -57795,14 +57792,10 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor{
-	icon_state = "delivery"
-	},
+/turf/open/floor/marking/delivery,
 /area/prison/execution)
 "cfF" = (
-/turf/open/floor{
-	icon_state = "delivery"
-	},
+/turf/open/floor/marking/delivery,
 /area/prison/execution)
 "cfG" = (
 /turf/open/floor/prison{
@@ -59045,16 +59038,12 @@
 	opacity = 0;
 	unacidable = 0
 	},
-/turf/open/floor{
-	icon_state = "delivery"
-	},
+/turf/open/floor/marking/delivery,
 /area/prison/pirate)
 "ciq" = (
 /obj/item/ammo_casing,
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor{
-	icon_state = "delivery"
-	},
+/turf/open/floor/marking/delivery,
 /area/prison/pirate)
 "cir" = (
 /obj/machinery/door/poddoor/two_tile_hor{
@@ -59068,20 +59057,14 @@
 /obj/effect/landmark/corpsespawner/prison_security,
 /obj/effect/decal/cleanable/blood,
 /obj/item/weapon/gun/rifle/m16,
-/turf/open/floor{
-	icon_state = "delivery"
-	},
+/turf/open/floor/marking/delivery,
 /area/prison/pirate)
 "cis" = (
 /obj/item/ammo_casing,
-/turf/open/floor{
-	icon_state = "delivery"
-	},
+/turf/open/floor/marking/delivery,
 /area/prison/pirate)
 "cit" = (
-/turf/open/floor{
-	icon_state = "delivery"
-	},
+/turf/open/floor/marking/delivery,
 /area/prison/pirate)
 "ciu" = (
 /turf/open/floor/plating,

@@ -108,6 +108,9 @@
 /turf/open/floor/marking/bot
 	icon_state = "bot"
 
+/turf/open/floor/marking/delivery
+	icon_state = "delivery"
+
 //Cargo elevator
 /turf/open/floor/almayer/empty
 	name = "empty space"
