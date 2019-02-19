@@ -2552,7 +2552,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
 	dir = 4;
 	id_tag = "waste_upper_out";
-	tag = "icon-map_vent_in (EAST)"
 	},
 /turf/open/floor/engine,
 /area/almayer/engineering/starboard_atmos)
@@ -3046,7 +3045,6 @@
 /area/almayer/engineering/starboard_atmos)
 "aid" = (
 /obj/machinery/atmospherics/components/binary/pump/on{
-	tag = "icon-map_on (EAST)";
 	icon_state = "map_on";
 	dir = 4
 	},
@@ -3674,7 +3672,6 @@
 /area/almayer/engineering/starboard_atmos)
 "ajv" = (
 /obj/machinery/atmospherics/pipe/simple/general/hidden{
-	tag = "icon-map_universal (EAST)";
 	icon_state = "map_universal";
 	dir = 4
 	},
@@ -6076,7 +6073,6 @@
 /area/almayer/hallways/stern_hallway)
 "anv" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (WEST)";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -6284,11 +6280,9 @@
 /area/almayer/shipboard/brig)
 "anR" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (WEST)";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	tag = "icon-map-scrubbers (WEST)";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -6575,7 +6569,6 @@
 	icon_state = "pipe-c"
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (WEST)";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -8541,7 +8534,6 @@
 /area/almayer/shipboard/brig)
 "asE" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (WEST)";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -8627,7 +8619,6 @@
 /area/almayer/shipboard/brig)
 "asM" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -9490,11 +9481,9 @@
 /area/almayer/shipboard/brig)
 "aux" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	tag = "icon-map-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -9833,7 +9822,6 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (NORTH)";
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -9974,7 +9962,6 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (WEST)";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -10218,7 +10205,6 @@
 /area/almayer/engineering/upper_engineering)
 "avO" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment,
@@ -12390,11 +12376,9 @@
 	icon_state = "pipe-c"
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	tag = "icon-map-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -12756,7 +12740,6 @@
 "aAy" = (
 /obj/structure/disposalpipe/junction,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -12818,7 +12801,6 @@
 	icon_state = "2-4"
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (NORTH)";
 	dir = 1
 	},
 /turf/open/floor/almayer{
@@ -13877,7 +13859,6 @@
 	icon_state = "1-4"
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (WEST)";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -14283,7 +14264,6 @@
 /area/almayer/command/cic)
 "aDa" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	tag = "icon-map-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -15017,7 +14997,6 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (WEST)";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
@@ -15987,7 +15966,6 @@
 	icon_state = "pipe-c"
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (WEST)";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -16730,7 +16708,6 @@
 	dir = 6
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (WEST)";
 	dir = 8
 	},
 /obj/structure/cable{
@@ -17486,7 +17463,6 @@
 /area/almayer/medical/medical_science)
 "aJf" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (WEST)";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -18217,7 +18193,6 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (WEST)";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -18664,7 +18639,6 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (NORTH)";
 	dir = 1
 	},
 /obj/structure/cable{
@@ -19193,7 +19167,6 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (NORTH)";
 	dir = 1
 	},
 /obj/structure/cable{
@@ -19225,7 +19198,6 @@
 	pixel_y = 25
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (NORTH)";
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -19576,11 +19548,9 @@
 /area/almayer/command/corporateliaison)
 "aMG" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (NORTH)";
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	tag = "icon-map-scrubbers (NORTH)";
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
@@ -19965,7 +19935,6 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (NORTH)";
 	dir = 1
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -20756,7 +20725,6 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	tag = "icon-map-scrubbers (NORTH)";
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
@@ -21021,7 +20989,6 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/general/hidden{
-	tag = "icon-map_universal (EAST)";
 	icon_state = "map_universal";
 	dir = 4
 	},
@@ -21330,7 +21297,6 @@
 	icon_state = "pipe-j2"
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -21527,7 +21493,6 @@
 	dir = 4;
 	name = "Gas mixer N2/O2";
 	on = 1;
-	tag = "icon-map (EAST)"
 	},
 /turf/open/floor/almayer{
 	tag = "icon-orange";
@@ -21536,7 +21501,6 @@
 /area/almayer/engineering/port_atmos)
 "aQA" = (
 /obj/machinery/atmospherics/components/binary/pump/on{
-	tag = "icon-map_on (EAST)";
 	icon_state = "map_on";
 	dir = 4
 	},
@@ -21568,7 +21532,6 @@
 /area/almayer/engineering/port_atmos)
 "aQD" = (
 /obj/machinery/atmospherics/components/binary/pump/on{
-	tag = "icon-map_on (WEST)";
 	icon_state = "map_on";
 	dir = 8
 	},
@@ -22167,7 +22130,6 @@
 	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	tag = "icon-map-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -25368,7 +25330,6 @@
 "aZS" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (WEST)";
 	dir = 8
 	},
 /obj/structure/cable{
@@ -26581,7 +26542,6 @@
 "bcH" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	tag = "icon-map-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -26922,7 +26882,6 @@
 /area/almayer/hallways/starboard_hallway)
 "bdy" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -27068,7 +27027,6 @@
 "bdR" = (
 /obj/structure/table/almayer,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (NORTH)";
 	dir = 1
 	},
 /obj/structure/cable{
@@ -29516,7 +29474,6 @@
 "bju" = (
 /obj/machinery/atmospherics/components/binary/pump/on{
 	dir = 1;
-	tag = "icon-map_on (EAST)"
 	},
 /turf/open/floor/almayer{
 	dir = 1;
@@ -29644,7 +29601,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	tag = "icon-map-scrubbers (NORTH)";
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -29855,7 +29811,6 @@
 /area/almayer/hull/upper_hull)
 "bjS" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	tag = "icon-map-scrubbers (NORTH)";
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
@@ -30105,11 +30060,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (NORTH)";
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	tag = "icon-map-scrubbers (NORTH)";
 	dir = 1
 	},
 /obj/structure/cable{
@@ -30330,7 +30283,6 @@
 /area/almayer/engineering/lower_engineering)
 "bkw" = (
 /obj/machinery/atmospherics/components/binary/valve/digital/on{
-	tag = "icon-map_valve1 (EAST)";
 	icon_state = "map_valve1";
 	dir = 4
 	},
@@ -31943,7 +31895,6 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	tag = "icon-map-scrubbers (WEST)";
 	dir = 8
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -33068,7 +33019,6 @@
 /area/almayer/medical/lower_medical)
 "bqI" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (NORTH)";
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -33104,7 +33054,6 @@
 	icon_state = "2-4"
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (WEST)";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -33473,7 +33422,6 @@
 /area/almayer/living/cryo_cells)
 "brw" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -33599,7 +33547,6 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	tag = "icon-map-scrubbers (NORTH)";
 	dir = 1
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -33976,7 +33923,6 @@
 	icon_state = "2-4"
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (NORTH)";
 	dir = 1
 	},
 /obj/structure/disposalpipe/junction{
@@ -35599,7 +35545,6 @@
 /area/almayer/living/briefing)
 "bvZ" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	tag = "icon-map-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer,
@@ -35844,11 +35789,9 @@
 /area/almayer/engineering/lower_engineering)
 "bwC" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	tag = "icon-map-scrubbers (WEST)";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (WEST)";
 	dir = 8
 	},
 /obj/structure/cable{
@@ -36350,7 +36293,6 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	tag = "icon-map-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -37129,7 +37071,6 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (WEST)";
 	dir = 8
 	},
 /obj/structure/disposalpipe/junction{
@@ -37283,7 +37224,6 @@
 /area/almayer/squads/req)
 "bzo" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer/mono,
@@ -37505,7 +37445,6 @@
 	id = "hangar_upper_railing"
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	tag = "icon-map-scrubbers (WEST)";
 	dir = 8
 	},
 /obj/structure/cable{
@@ -37591,7 +37530,6 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	tag = "icon-map-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -38489,7 +38427,6 @@
 /area/almayer/living/briefing)
 "bBQ" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer,
@@ -38656,11 +38593,9 @@
 /area/almayer/engineering/lower_engineering)
 "bCo" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	tag = "icon-map-scrubbers (WEST)";
 	dir = 8
 	},
 /obj/structure/cable{
@@ -38917,7 +38852,6 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (NORTH)";
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -40146,7 +40080,6 @@
 	id = "hangar_upper_railing"
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (NORTH)";
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -40365,7 +40298,6 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -40473,7 +40405,6 @@
 	icon_state = "pipe-j2"
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (WEST)";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -40628,7 +40559,6 @@
 /area/almayer/living/briefing)
 "bGg" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (WEST)";
 	dir = 8
 	},
 /turf/open/floor/almayer/mono,
@@ -41348,11 +41278,9 @@
 /area/almayer/engineering/lower_engineering)
 "bHK" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (WEST)";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	tag = "icon-map-scrubbers (WEST)";
 	dir = 8
 	},
 /obj/structure/cable{
@@ -42824,7 +42752,6 @@
 "bKT" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (WEST)";
 	dir = 8
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -42913,7 +42840,6 @@
 	icon_state = "pipe-j2"
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (NORTH)";
 	dir = 1
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -43062,7 +42988,6 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (NORTH)";
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -43444,11 +43369,9 @@
 	icon_state = "pipe-j2"
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (WEST)";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	tag = "icon-map-scrubbers (WEST)";
 	dir = 8
 	},
 /obj/structure/cable{
@@ -43509,7 +43432,6 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	tag = "icon-map-scrubbers (NORTH)";
 	dir = 1
 	},
 /turf/open/floor/almayer{
@@ -45220,7 +45142,6 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (NORTH)";
 	dir = 1
 	},
 /obj/structure/cable{
@@ -45446,7 +45367,6 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (NORTH)";
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -45482,7 +45402,6 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	tag = "icon-map-scrubbers (NORTH)";
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -45586,7 +45505,6 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (NORTH)";
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -45649,7 +45567,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (NORTH)";
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -45781,11 +45698,9 @@
 /area/almayer/hallways/port_hallway)
 "bQC" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	tag = "icon-map-scrubbers (NORTH)";
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (NORTH)";
 	dir = 1
 	},
 /obj/structure/cable{
@@ -45851,7 +45766,6 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	tag = "icon-map-scrubbers (NORTH)";
 	dir = 1
 	},
 /obj/structure/cable{
@@ -45956,7 +45870,6 @@
 	sensors = list("oxy_sensor" = "Tank")
 	},
 /obj/machinery/atmospherics/pipe/simple/general/hidden{
-	tag = "icon-map_universal (EAST)";
 	icon_state = "map_universal";
 	dir = 4
 	},
@@ -46224,7 +46137,6 @@
 	dir = 4;
 	name = "Gas mixer N2/O2";
 	on = 1;
-	tag = "icon-map (EAST)"
 	},
 /turf/open/floor/almayer{
 	tag = "icon-orange";
@@ -46233,7 +46145,6 @@
 /area/almayer/engineering/lower_engineering)
 "bRv" = (
 /obj/machinery/atmospherics/components/binary/pump/on{
-	tag = "icon-map_on (EAST)";
 	icon_state = "map_on";
 	dir = 4
 	},
@@ -46260,7 +46171,6 @@
 /area/almayer/engineering/lower_engineering)
 "bRx" = (
 /obj/machinery/atmospherics/components/binary/pump/on{
-	tag = "icon-map_on (NORTH)";
 	icon_state = "map_on";
 	dir = 1
 	},
@@ -47781,7 +47691,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (NORTH)";
 	dir = 1
 	},
 /turf/open/floor/almayer,
@@ -49087,7 +48996,6 @@
 /area/almayer/hallways/port_hallway)
 "bYa" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	tag = "icon-map-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -49705,7 +49613,6 @@
 "bZs" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -51007,7 +50914,6 @@
 /area/almayer/hallways/port_hallway)
 "ccs" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (WEST)";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -52609,7 +52515,6 @@
 /area/almayer/living/briefing)
 "cgf" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (NORTH)";
 	dir = 1
 	},
 /obj/structure/cable/yellow{
@@ -52869,7 +52774,6 @@
 /area/almayer/shipboard/brig_cells)
 "cgG" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (NORTH)";
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -53011,7 +52915,6 @@
 	icon_state = "pipe-c"
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (NORTH)";
 	dir = 1
 	},
 /obj/structure/cable/yellow{
@@ -54176,7 +54079,6 @@
 /area/almayer/living/briefing)
 "cjn" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (WEST)";
 	dir = 8
 	},
 /turf/open/floor/almayer,
@@ -55112,7 +55014,6 @@
 "clb" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (WEST)";
 	dir = 8
 	},
 /turf/open/floor/almayer/mono,

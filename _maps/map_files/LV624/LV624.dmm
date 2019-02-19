@@ -3701,7 +3701,6 @@
 /area/lv624/lazarus/secure_storage)
 "amX" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (NORTH)";
 	dir = 1
 	},
 /turf/open/floor,
@@ -3887,7 +3886,6 @@
 	icon_state = "2-4"
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (WEST)";
 	dir = 8
 	},
 /turf/open/floor/grass,
@@ -8859,7 +8857,6 @@
 	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (NORTH)";
 	dir = 1
 	},
 /turf/open/gm/dirt,
@@ -11756,7 +11753,6 @@
 /area/lv624/lazarus/robotics)
 "aNf" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (NORTH)";
 	dir = 1
 	},
 /turf/open/floor{
@@ -12826,7 +12822,6 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor{
@@ -13056,7 +13051,6 @@
 	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (NORTH)";
 	dir = 1
 	},
 /turf/open/gm/dirt,
@@ -13170,7 +13164,6 @@
 	icon_state = "2-4"
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (WEST)";
 	dir = 8
 	},
 /turf/open/floor{
@@ -16621,7 +16614,6 @@
 "bak" = (
 /obj/structure/flora/ausbushes/grassybush,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (WEST)";
 	dir = 8
 	},
 /obj/structure/cable/yellow{
@@ -16867,7 +16859,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (NORTH)";
 	dir = 1
 	},
 /turf/open/floor/grass,
@@ -20454,7 +20445,6 @@
 	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/grass,
@@ -21161,7 +21151,6 @@
 	icon_state = "2-4"
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (WEST)";
 	dir = 8
 	},
 /turf/open/gm/dirt,
@@ -21393,7 +21382,6 @@
 /area/lv624/lazarus/hop)
 "bme" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor{

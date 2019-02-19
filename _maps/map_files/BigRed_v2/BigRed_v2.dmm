@@ -7394,7 +7394,6 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	tag = "icon-map-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -7820,7 +7819,6 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor{
@@ -9866,11 +9864,9 @@
 	icon_state = "broadcaster_send"
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	tag = "icon-map-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor{
@@ -10552,11 +10548,9 @@
 /area/bigredv2/caves/lambda_lab)
 "awI" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	tag = "icon-map-scrubbers (WEST)";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor{
@@ -13745,7 +13739,6 @@
 /area/bigredv2/caves/lambda_lab)
 "aDo" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	tag = "icon-map-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -14316,7 +14309,6 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor{
@@ -17495,7 +17487,6 @@
 /area/bigredv2/caves/lambda_lab)
 "aKb" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	tag = "icon-map-scrubbers (NORTH)";
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -17935,7 +17926,6 @@
 /area/bigredv2/caves/lambda_lab)
 "aKY" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	tag = "icon-map-supply (NORTH)";
 	dir = 1
 	},
 /turf/open/floor{

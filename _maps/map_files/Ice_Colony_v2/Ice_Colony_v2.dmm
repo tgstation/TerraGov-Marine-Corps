@@ -34640,7 +34640,6 @@
 /area/ice_colony/underground/crew/bball)
 "btw" = (
 /obj/machinery/atmospherics/pipe/manifold/general/visible{
-	tag = "icon-map (NORTH)";
 	icon_state = "map";
 	dir = 1
 	},

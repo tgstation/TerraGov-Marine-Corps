@@ -51342,7 +51342,6 @@
 /area/prison/engineering/atmos)
 "bUV" = (
 /obj/machinery/atmospherics/pipe/manifold/green/visible{
-	tag = "icon-map (EAST)";
 	icon_state = "map";
 	dir = 4
 	},
@@ -52567,7 +52566,6 @@
 /area/prison/engineering/atmos)
 "bXD" = (
 /obj/machinery/atmospherics/pipe/manifold/yellow/visible{
-	tag = "icon-map (WEST)";
 	icon_state = "map";
 	dir = 8
 	},
@@ -52620,7 +52618,6 @@
 /area/prison/engineering/atmos)
 "bXJ" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
-	tag = "icon-map_universal (EAST)";
 	icon_state = "map_universal";
 	dir = 4
 	},
@@ -52641,7 +52638,6 @@
 /area/prison/engineering/atmos)
 "bXM" = (
 /obj/machinery/atmospherics/pipe/manifold/yellow/visible{
-	tag = "icon-map (WEST)";
 	icon_state = "map";
 	dir = 8
 	},
@@ -57903,7 +57899,6 @@
 /area/prison/disposal)
 "chM" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
-	tag = "icon-map_universal (EAST)";
 	icon_state = "map_universal";
 	dir = 4
 	},
@@ -65306,7 +65301,6 @@
 /area/prison/pirate)
 "cwR" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
-	tag = "icon-map_universal (EAST)";
 	icon_state = "map_universal";
 	dir = 4
 	},
@@ -65371,7 +65365,6 @@
 /area/prison/security/monitoring/medsec/central)
 "cwZ" = (
 /obj/machinery/atmospherics/components/unary/portables_connector{
-	tag = "icon-map_connector (EAST)";
 	icon_state = "map_connector";
 	dir = 4
 	},
@@ -65483,7 +65476,6 @@
 /area/prison/pirate)
 "cxi" = (
 /obj/machinery/atmospherics/components/unary/portables_connector{
-	tag = "icon-map_connector (WEST)";
 	icon_state = "map_connector";
 	dir = 8
 	},
@@ -65541,7 +65533,6 @@
 /area/prison/cellblock/mediumsec/east)
 "cxn" = (
 /obj/machinery/atmospherics/components/unary/portables_connector{
-	tag = "icon-map_connector (EAST)";
 	icon_state = "map_connector";
 	dir = 4
 	},
@@ -65615,7 +65606,6 @@
 /area/prison/pirate)
 "cxv" = (
 /obj/machinery/atmospherics/components/unary/portables_connector{
-	tag = "icon-map_connector (WEST)";
 	icon_state = "map_connector";
 	dir = 8
 	},
@@ -65845,7 +65835,6 @@
 /area/prison/pirate)
 "cxY" = (
 /obj/machinery/atmospherics/components/binary/pump{
-	tag = "icon-map_off (EAST)";
 	icon_state = "map_off";
 	dir = 4
 	},
@@ -65866,7 +65855,6 @@
 /area/prison/pirate)
 "cyb" = (
 /obj/machinery/atmospherics/components/binary/pump{
-	tag = "icon-map_off (WEST)";
 	icon_state = "map_off";
 	dir = 8
 	},
