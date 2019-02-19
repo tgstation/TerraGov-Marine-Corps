@@ -113,6 +113,9 @@
 /turf/open/floor/plating/asteroidwarning // used around lv's lz2
 	icon_state = "asteroidwarning"
 
+/turf/open/floor/plating/asteroidfloor
+	icon_state = "asteroidfloor"
+
 /turf/open/floor/marking/loadingarea
 	icon_state = "loadingarea"
 
@@ -130,6 +133,9 @@
 
 /turf/open/floor/grimy
 	icon_state = "grimy"
+
+/turf/open/floor/asteroidfloor
+	icon_state = "asteroidfloor"
 
 //Cargo elevator
 /turf/open/floor/almayer/empty

@@ -2179,10 +2179,7 @@
 /turf/open/floor/mech_bay_recharge_floor/asteroid,
 /area/lv624/ground/sand2)
 "ahW" = (
-/turf/open/floor/airless{
-	dir = 5;
-	icon_state = "asteroidfloor"
-	},
+/turf/open/floor/plating/asteroidfloor,
 /area/lv624/ground/sand2)
 "ahX" = (
 /turf/open/gm/river,
@@ -2639,20 +2636,14 @@
 /turf/open/gm/river,
 /area/lv624/ground/river3)
 "ajC" = (
-/turf/open/floor/airless{
-	dir = 5;
-	icon_state = "asteroidfloor"
-	},
+/turf/open/floor/plating/asteroidfloor,
 /area/lv624/ground/caves/west1)
 "ajD" = (
 /obj/structure/girder,
 /turf/open/gm/dirt,
 /area/lv624/ground/caves/west1)
 "ajE" = (
-/turf/open/floor/airless{
-	dir = 5;
-	icon_state = "asteroidfloor"
-	},
+/turf/open/floor/plating/asteroidfloor,
 /area/lv624/ground/sand4)
 "ajF" = (
 /obj/structure/girder,
@@ -11997,10 +11988,7 @@
 /area/shuttle/drop2/lz2)
 "aNP" = (
 /obj/machinery/floodlight/landing,
-/turf/open/floor/plating{
-	dir = 1;
-	icon_state = "asteroidfloor"
-	},
+/turf/open/floor/plating/asteroidfloor,
 /area/shuttle/drop2/lz2)
 "aNQ" = (
 /obj/machinery/landinglight/ds2/delaytwo{
@@ -18300,10 +18288,7 @@
 /area/lv624/ground/jungle3)
 "bek" = (
 /obj/structure/barricade/wooden,
-/turf/open/floor/plating{
-	dir = 1;
-	icon_state = "asteroidfloor"
-	},
+/turf/open/floor/plating/asteroidfloor,
 /area/shuttle/drop2/lz2)
 "bel" = (
 /obj/structure/jungle/vines,
@@ -18660,10 +18645,7 @@
 	},
 /area/lv624/ground/jungle3)
 "bfd" = (
-/turf/open/floor/plating{
-	dir = 1;
-	icon_state = "asteroidfloor"
-	},
+/turf/open/floor/plating/asteroidfloor,
 /area/lv624/ground/jungle3)
 "bfe" = (
 /obj/machinery/colony_floodlight,
