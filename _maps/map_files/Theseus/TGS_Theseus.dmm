@@ -9510,10 +9510,7 @@
 /obj/item/reagent_container/glass/bucket,
 /obj/structure/table/almayer,
 /obj/structure/sink{
-	icon_state = "sink";
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	dir = 8
 	},
 /obj/item/tool/soap,
 /turf/open/floor/almayer/mono,
@@ -9877,8 +9874,7 @@
 /area/almayer/command/corporateliaison)
 "avh" = (
 /obj/structure/sink{
-	dir = 1;
-	pixel_y = -10
+	dir = 1
 	},
 /obj/structure/mirror{
 	pixel_y = -28
@@ -12492,10 +12488,7 @@
 /area/almayer/medical/medical_science)
 "aAf" = (
 /obj/structure/sink{
-	icon_state = "sink";
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	dir = 8;
@@ -20004,10 +19997,7 @@
 "aNw" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/surgical_tray,
-/obj/item/reagent_container/spray/cleaner{
-	desc = "Someone has crossed out the Space from Space Cleaner and written in Surgery. 'Do not remove under punishment of death!!!' is scrawled on the back.";
-	name = "Surgery Cleaner"
-	},
+/obj/item/reagent_container/spray/surgery,
 /obj/item/device/autopsy_scanner,
 /turf/open/floor/almayer{
 	tag = "icon-sterile_green_corner (EAST)";
@@ -21927,10 +21917,7 @@
 	})
 "aRC" = (
 /obj/structure/sink{
-	icon_state = "sink";
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	dir = 8
 	},
 /turf/open/floor/almayer,
 /area/almayer/living/numbertwobunks{
@@ -32819,8 +32806,7 @@
 /obj/item/storage/bag/trash,
 /obj/item/storage/box/lights,
 /obj/structure/sink{
-	dir = 8;
-	pixel_x = -11
+	dir = 8
 	},
 /obj/item/reagent_container/glass/bucket,
 /obj/item/tool/mop,
@@ -33142,9 +33128,7 @@
 	},
 /obj/structure/table/reinforced,
 /obj/item/storage/firstaid/adv,
-/obj/item/reagent_container/spray/cleaner{
-	name = "Surgery Cleaner";
-	desc = "Someone has crossed out the Space from Space Cleaner and written in Surgery. 'Do not remove under punishment of death!!!' is scrawled on the back.";
+/obj/item/reagent_container/spray/surgery{
 	pixel_x = 12;
 	pixel_y = 2
 	},
@@ -47753,9 +47737,7 @@
 	},
 /obj/structure/table/reinforced,
 /obj/item/storage/firstaid/adv,
-/obj/item/reagent_container/spray/cleaner{
-	name = "Surgery Cleaner";
-	desc = "Someone has crossed out the Space from Space Cleaner and written in Surgery. 'Do not remove under punishment of death!!!' is scrawled on the back.";
+/obj/item/reagent_container/spray/surgery{
 	pixel_x = 12;
 	pixel_y = 2
 	},
@@ -50476,9 +50458,7 @@
 	},
 /obj/structure/table/reinforced,
 /obj/item/storage/firstaid/adv,
-/obj/item/reagent_container/spray/cleaner{
-	name = "Surgery Cleaner";
-	desc = "Someone has crossed out the Space from Space Cleaner and written in Surgery. 'Do not remove under punishment of death!!!' is scrawled on the back.";
+/obj/item/reagent_container/spray/surgery{
 	pixel_x = 12;
 	pixel_y = 2
 	},
@@ -52718,10 +52698,7 @@
 /area/almayer/shipboard/brig)
 "cgD" = (
 /obj/structure/sink{
-	icon_state = "sink";
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	dir = 8
 	},
 /obj/structure/mirror{
 	dir = 4;
@@ -52899,10 +52876,7 @@
 "cgS" = (
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/structure/sink{
-	icon_state = "sink";
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	dir = 8
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/shipboard/brig_cells)
@@ -53411,10 +53385,7 @@
 /area/almayer/living/bridgebunks)
 "chR" = (
 /obj/structure/sink{
-	icon_state = "sink";
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	dir = 8
 	},
 /obj/structure/mirror{
 	dir = 4;
@@ -53471,8 +53442,7 @@
 /area/almayer/hull/upper_hull)
 "cia" = (
 /obj/structure/sink{
-	dir = 1;
-	pixel_y = -10
+	dir = 1
 	},
 /obj/structure/mirror{
 	pixel_y = -28
@@ -53644,8 +53614,7 @@
 "ciy" = (
 /obj/structure/table/almayer,
 /obj/structure/sink{
-	dir = 1;
-	pixel_y = -10
+	dir = 1
 	},
 /obj/item/tool/soap,
 /turf/open/floor/almayer/mono,

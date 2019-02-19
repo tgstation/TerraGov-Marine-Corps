@@ -1307,9 +1307,7 @@
 	},
 /area/bigredv2/outside/marshal_office)
 "adE" = (
-/obj/structure/sink{
-	pixel_y = 32
-	},
+/obj/structure/sink,
 /turf/open/floor/freezer,
 /area/bigredv2/outside/marshal_office)
 "adF" = (
@@ -3270,9 +3268,7 @@
 /area/bigredv2/caves/lambda_lab)
 "aiu" = (
 /obj/structure/sink{
-	dir = 4;
-	icon_state = "sink";
-	pixel_x = 11;
+	dir = 4
 	},
 /obj/structure/mirror{
 	pixel_x = 30
@@ -3678,9 +3674,7 @@
 /area/bigredv2/caves/lambda_lab)
 "ajw" = (
 /obj/structure/sink{
-	dir = 4;
-	icon_state = "sink";
-	pixel_x = 11;
+	dir = 4
 	},
 /obj/structure/mirror/broken{
 	pixel_x = 30
@@ -11659,10 +11653,7 @@
 /area/bigredv2/outside/dorms)
 "aBj" = (
 /obj/structure/sink{
-	icon_state = "sink";
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	dir = 8
 	},
 /obj/structure/mirror{
 	pixel_x = -28
@@ -11986,16 +11977,10 @@
 /area/bigredv2/outside/dorms)
 "aBV" = (
 /obj/structure/sink{
-	icon_state = "sink";
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	dir = 8
 	},
 /obj/structure/sink{
-	icon_state = "sink";
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	dir = 8
 	},
 /turf/open/floor/freezer,
 /area/bigredv2/outside/dorms)
@@ -12860,10 +12845,7 @@
 /area/bigredv2/outside/dorms)
 "aDR" = (
 /obj/structure/sink{
-	icon_state = "sink";
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	dir = 8
 	},
 /turf/open/floor/freezer,
 /area/bigredv2/outside/dorms)
@@ -13673,9 +13655,7 @@
 /area/bigredv2/outside/medical)
 "aFF" = (
 /obj/structure/sink{
-	dir = 4;
-	icon_state = "sink";
-	pixel_x = 11;
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-whitegreencorner";
@@ -14054,10 +14034,7 @@
 	},
 /area/bigredv2/outside/virology)
 "aGt" = (
-/obj/item/reagent_container/spray/cleaner{
-	name = "Surgery Cleaner";
-	desc = "Someone has crossed out the Space from Space Cleaner and written in Surgery. 'Do not remove under punishment of death!!!' is scrawled on the back."
-	},
+/obj/item/reagent_container/spray/surgery,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "aGu" = (
@@ -21375,10 +21352,7 @@
 /area/bigredv2/caves/lambda_lab)
 "aWd" = (
 /obj/structure/sink{
-	icon_state = "sink";
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	dir = 8
 	},
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/virology)
@@ -21746,9 +21720,7 @@
 /area/bigredv2/outside/virology)
 "aWU" = (
 /obj/structure/sink{
-	dir = 4;
-	icon_state = "sink";
-	pixel_x = 11;
+	dir = 4
 	},
 /turf/open/floor/freezer,
 /area/bigredv2/outside/virology)
@@ -32282,10 +32254,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bxI" = (
 /obj/structure/sink{
-	icon_state = "sink";
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	dir = 8
 	},
 /turf/open/floor{
 	tag = "icon-darkyellow2 (WEST)";
@@ -35198,10 +35167,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bEe" = (
 /obj/structure/sink{
-	icon_state = "sink";
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	dir = 8
 	},
 /obj/effect/alien/weeds/node,
 /turf/open/floor/freezer,
@@ -35292,10 +35258,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bEp" = (
 /obj/structure/sink{
-	icon_state = "sink";
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	dir = 8
 	},
 /turf/open/floor/freezer,
 /area/bigredv2/outside/nanotrasen_lab/inside)

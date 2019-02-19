@@ -6363,9 +6363,7 @@
 /area/ice_colony/surface/dorms/restroom_w)
 "anZ" = (
 /obj/structure/sink{
-	dir = 4;
-	icon_state = "sink";
-	pixel_x = 11
+	dir = 4
 	},
 /obj/structure/mirror{
 	pixel_x = 24
@@ -6464,8 +6462,7 @@
 /area/ice_colony/exterior/surface/valley/west)
 "aol" = (
 /obj/structure/sink{
-	dir = 8;
-	pixel_x = -11
+	dir = 8
 	},
 /obj/structure/mirror{
 	pixel_x = -24
@@ -7081,9 +7078,7 @@
 /area/ice_colony/surface/clinic/treatment)
 "apt" = (
 /obj/structure/sink{
-	dir = 4;
-	icon_state = "sink";
-	pixel_x = 11
+	dir = 4
 	},
 /obj/item/reagent_container/blood/empty,
 /turf/open/floor{
@@ -7136,9 +7131,7 @@
 /obj/structure/table/reinforced,
 /obj/item/device/defibrillator,
 /obj/item/reagent_container/spray/cleaner,
-/obj/item/reagent_container/spray/cleaner{
-	name = "Surgery Cleaner";
-	desc = "Someone has crossed out the Space from Space Cleaner and written in Surgery. 'Do not remove under punishment of death!!!' is scrawled on the back.";
+/obj/item/reagent_container/spray/surgery{
 	pixel_x = 12;
 	pixel_y = 2
 	},
@@ -20519,8 +20512,7 @@
 /area/ice_colony/surface/bar/canteen)
 "aRa" = (
 /obj/structure/sink{
-	dir = 1;
-	pixel_y = -10
+	dir = 1
 	},
 /obj/structure/table,
 /obj/item/tool/soap,
@@ -33917,9 +33909,7 @@
 	},
 /area/ice_colony/underground/medical/or)
 "btD" = (
-/obj/structure/sink{
-	pixel_y = 15
-	},
+/obj/structure/sink,
 /turf/open/floor{
 	tag = "icon-whitered (NORTH)";
 	icon_state = "whitered";
@@ -36938,8 +36928,7 @@
 "bzQ" = (
 /obj/structure/table/reinforced,
 /obj/structure/sink{
-	dir = 8;
-	pixel_x = -11
+	dir = 8
 	},
 /turf/open/floor{
 	dir = 8;
@@ -38127,8 +38116,7 @@
 "bCh" = (
 /obj/structure/table/reinforced,
 /obj/structure/sink{
-	dir = 8;
-	pixel_x = -11
+	dir = 8
 	},
 /turf/open/floor{
 	tag = "icon-darkgreen2 (WEST)";
@@ -45551,9 +45539,7 @@
 	pixel_x = -32
 	},
 /obj/structure/sink{
-	dir = 8;
-	icon_state = "sink";
-	pixel_x = -11
+	dir = 8
 	},
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/security/brig)
@@ -46410,9 +46396,7 @@
 	},
 /area/ice_colony/underground/command/checkpoint)
 "bSz" = (
-/obj/structure/sink{
-	pixel_y = 15
-	},
+/obj/structure/sink,
 /obj/structure/mirror{
 	pixel_y = 28
 	},
@@ -46668,8 +46652,7 @@
 /area/ice_colony/underground/hallway/north_west)
 "bTe" = (
 /obj/structure/sink{
-	dir = 1;
-	pixel_y = -10
+	dir = 1
 	},
 /obj/structure/mirror{
 	pixel_y = -28
@@ -47752,9 +47735,7 @@
 	name = "\improper Excavation Barracks"
 	})
 "bVw" = (
-/obj/structure/sink{
-	pixel_y = 21
-	},
+/obj/structure/sink,
 /obj/structure/table/reinforced,
 /turf/open/floor{
 	tag = "icon-darkyellow2 (NORTH)";
@@ -47929,10 +47910,7 @@
 /obj/structure/mirror{
 	pixel_y = 25
 	},
-/obj/structure/sink{
-	pixel_x = 1;
-	pixel_y = 15
-	},
+/obj/structure/sink,
 /turf/open/floor/tile/white,
 /area/ice_colony/surface/excavation{
 	name = "\improper Excavation Barracks"
@@ -48260,9 +48238,7 @@
 	pixel_x = 24
 	},
 /obj/structure/sink{
-	dir = 4;
-	icon_state = "sink";
-	pixel_x = 11
+	dir = 4
 	},
 /turf/open/floor/tile/white,
 /area/ice_colony/surface/excavation{

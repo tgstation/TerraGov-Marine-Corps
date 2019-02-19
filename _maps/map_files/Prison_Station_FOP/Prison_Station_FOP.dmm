@@ -1631,10 +1631,7 @@
 /area/prison/cellblock/maxsec/north)
 "aeq" = (
 /obj/structure/sink{
-	icon_state = "sink";
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	dir = 8
 	},
 /turf/open/floor/prison{
 	tag = "icon-floor_plate (SOUTHWEST)";
@@ -1967,10 +1964,7 @@
 /area/prison/cellblock/maxsec/north)
 "afd" = (
 /obj/structure/sink{
-	icon_state = "sink";
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	dir = 8
 	},
 /obj/machinery/light/small{
 	dir = 1
@@ -3957,10 +3951,7 @@
 /area/prison/security/monitoring/maxsec/panopticon)
 "ajk" = (
 /obj/structure/sink{
-	icon_state = "sink";
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	dir = 8
 	},
 /turf/open/floor/prison,
 /area/prison/cellblock/maxsec/north)
@@ -5213,10 +5204,7 @@
 /area/prison/cellblock/maxsec/south)
 "alL" = (
 /obj/structure/sink{
-	icon_state = "sink";
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	dir = 8
 	},
 /turf/open/floor/prison,
 /area/prison/research/secret/containment)
@@ -5593,10 +5581,7 @@
 /area/prison/cellblock/maxsec/south)
 "amF" = (
 /obj/structure/sink{
-	icon_state = "sink";
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	dir = 8
 	},
 /turf/open/floor/prison,
 /area/prison/cellblock/maxsec/south)
@@ -5927,10 +5912,7 @@
 /area/prison/research/secret/containment)
 "ann" = (
 /obj/structure/sink{
-	icon_state = "sink";
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	dir = 8
 	},
 /turf/open/floor/prison,
 /area/prison/research/secret/dissection)
@@ -6115,10 +6097,7 @@
 /area/prison/cellblock/maxsec/south)
 "anD" = (
 /obj/structure/sink{
-	icon_state = "sink";
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	dir = 8
 	},
 /turf/open/floor/prison{
 	tag = "icon-floor_plate (SOUTHWEST)";
@@ -6498,10 +6477,7 @@
 /area/prison/cellblock/highsec/north/north)
 "aos" = (
 /obj/structure/sink{
-	icon_state = "sink";
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	dir = 8
 	},
 /turf/open/floor/prison{
 	tag = "icon-floor_plate (SOUTHWEST)";
@@ -6999,8 +6975,7 @@
 "apd" = (
 /obj/structure/table/reinforced,
 /obj/structure/sink{
-	dir = 8;
-	pixel_x = -11
+	dir = 8
 	},
 /turf/open/floor/prison{
 	tag = "icon-darkpurplefull2 (NORTHWEST)";
@@ -7213,10 +7188,7 @@
 /area/prison/hangar/civilian)
 "apC" = (
 /obj/structure/sink{
-	icon_state = "sink";
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	dir = 8
 	},
 /turf/open/floor/prison{
 	tag = "icon-cell_stripe (WEST)";
@@ -7261,8 +7233,7 @@
 /area/prison/cellblock/maxsec/south)
 "apH" = (
 /obj/structure/sink{
-	dir = 8;
-	pixel_x = -11
+	dir = 8
 	},
 /turf/open/floor/prison{
 	tag = "icon-sterile_white (SOUTHWEST)";
@@ -11553,10 +11524,7 @@
 /area/prison/maintenance/residential/access/north)
 "axK" = (
 /obj/structure/sink{
-	icon_state = "sink";
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	dir = 8
 	},
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison{
@@ -12760,10 +12728,7 @@
 /area/prison/cellblock/highsec/north/north)
 "aAf" = (
 /obj/structure/sink{
-	icon_state = "sink";
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	dir = 8
 	},
 /turf/open/floor/prison{
 	dir = 8;
@@ -15307,10 +15272,7 @@
 /area/prison/recreation/highsec/n)
 "aFe" = (
 /obj/structure/sink{
-	icon_state = "sink";
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	dir = 8
 	},
 /turf/open/floor/prison{
 	tag = "icon-floor_plate (SOUTHWEST)";
@@ -15613,8 +15575,7 @@
 /area/prison/research)
 "aFN" = (
 /obj/structure/sink{
-	dir = 8;
-	pixel_x = -11
+	dir = 8
 	},
 /obj/structure/mirror{
 	pixel_x = -26
@@ -16618,10 +16579,7 @@
 /area/prison/cellblock/highsec/north/south)
 "aHw" = (
 /obj/structure/sink{
-	icon_state = "sink";
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	dir = 8
 	},
 /turf/open/floor/prison{
 	tag = "icon-cell_stripe (WEST)";
@@ -17035,8 +16993,7 @@
 /area/prison/hangar_storage/main)
 "aIr" = (
 /obj/structure/sink{
-	dir = 8;
-	pixel_x = -11
+	dir = 8
 	},
 /obj/structure/mirror{
 	pixel_x = -26
@@ -19222,8 +19179,7 @@
 /area/prison/hallway/central)
 "aMl" = (
 /obj/structure/sink{
-	dir = 8;
-	pixel_x = -11
+	dir = 8
 	},
 /obj/structure/mirror{
 	pixel_x = -26
@@ -19971,10 +19927,7 @@
 /area/prison/cellblock/lowsec/nw)
 "aNZ" = (
 /obj/structure/sink{
-	icon_state = "sink";
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	dir = 8
 	},
 /turf/open/floor/prison{
 	tag = "icon-floor_plate (SOUTHWEST)";
@@ -20500,8 +20453,7 @@
 	dir = 1
 	},
 /obj/structure/sink{
-	dir = 8;
-	pixel_x = -11
+	dir = 8
 	},
 /obj/structure/mirror{
 	pixel_x = -26
@@ -23872,8 +23824,7 @@
 /area/prison/canteen)
 "aVe" = (
 /obj/structure/sink{
-	dir = 8;
-	pixel_x = -11
+	dir = 8
 	},
 /obj/structure/mirror{
 	pixel_x = -26
@@ -24781,10 +24732,7 @@
 /area/prison/residential/central)
 "aWU" = (
 /obj/structure/sink{
-	icon_state = "sink";
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	dir = 8
 	},
 /turf/open/floor/prison{
 	tag = "icon-cell_stripe (NORTH)";
@@ -25866,10 +25814,7 @@
 /area/prison/security/checkpoint/highsec/n)
 "aZh" = (
 /obj/structure/sink{
-	icon_state = "sink";
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	dir = 8
 	},
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison{
@@ -26208,10 +26153,7 @@
 /area/prison/command/quarters)
 "aZI" = (
 /obj/structure/sink{
-	icon_state = "sink";
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	dir = 8
 	},
 /turf/open/floor/prison{
 	tag = "icon-floor_plate (SOUTHWEST)";
@@ -29325,8 +29267,7 @@
 /area/prison/maintenance/residential/sw)
 "bfZ" = (
 /obj/structure/sink{
-	dir = 1;
-	pixel_y = -10
+	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
@@ -30883,8 +30824,7 @@
 /area/prison/hallway/entrance)
 "biF" = (
 /obj/structure/sink{
-	dir = 1;
-	pixel_y = -10
+	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -31334,8 +31274,7 @@
 /area/prison/yard)
 "bjv" = (
 /obj/structure/sink{
-	dir = 1;
-	pixel_y = -10
+	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
@@ -32657,10 +32596,7 @@
 /area/prison/residential/central)
 "blQ" = (
 /obj/structure/sink{
-	icon_state = "sink";
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	dir = 8
 	},
 /turf/open/floor/prison{
 	tag = "icon-floor_plate (SOUTHWEST)";
@@ -36462,10 +36398,7 @@
 /area/prison/canteen)
 "bsR" = (
 /obj/structure/sink{
-	icon_state = "sink";
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	dir = 8
 	},
 /turf/open/floor/prison{
 	tag = "icon-floor_plate (SOUTHWEST)";
@@ -37062,8 +36995,7 @@
 	dir = 8
 	},
 /obj/structure/sink{
-	dir = 1;
-	pixel_y = -10
+	dir = 1
 	},
 /turf/open/floor/prison{
 	tag = "icon-sterile_white (SOUTHWEST)";
@@ -37104,10 +37036,7 @@
 /area/prison/security/monitoring/highsec)
 "bud" = (
 /obj/structure/sink{
-	icon_state = "sink";
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	dir = 8
 	},
 /turf/open/floor/prison{
 	tag = "icon-cell_stripe (WEST)";
@@ -37279,10 +37208,7 @@
 /area/prison/hangar/main)
 "buv" = (
 /obj/structure/sink{
-	icon_state = "sink";
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	dir = 8
 	},
 /turf/open/floor/prison{
 	tag = "icon-floor_plate (SOUTHWEST)";
@@ -37342,8 +37268,7 @@
 	dir = 1
 	},
 /obj/structure/sink{
-	dir = 8;
-	pixel_x = -11
+	dir = 8
 	},
 /obj/structure/mirror{
 	pixel_x = -26
@@ -40831,10 +40756,7 @@
 /area/prison/cellblock/lowsec/sw)
 "bBp" = (
 /obj/structure/sink{
-	icon_state = "sink";
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	dir = 8
 	},
 /turf/open/floor/prison{
 	tag = "icon-cell_stripe";
@@ -47969,10 +47891,7 @@
 /area/prison/holding/holding2)
 "bOI" = (
 /obj/structure/sink{
-	icon_state = "sink";
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	dir = 8
 	},
 /turf/open/floor/prison{
 	tag = "icon-floor_plate (SOUTHWEST)";
@@ -48087,8 +48006,7 @@
 /area/prison/monorail/east)
 "bOV" = (
 /obj/structure/sink{
-	dir = 8;
-	pixel_x = -11
+	dir = 8
 	},
 /obj/structure/mirror{
 	pixel_x = -26
@@ -49747,10 +49665,7 @@
 /area/prison/laundry)
 "bSB" = (
 /obj/structure/sink{
-	icon_state = "sink";
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/prison/cellblock/highsec/south/south)
@@ -51114,10 +51029,7 @@
 /area/prison/security)
 "bVk" = (
 /obj/structure/sink{
-	icon_state = "sink";
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	dir = 8
 	},
 /obj/item/ammo_magazine/rifle/mar40,
 /turf/open/floor/prison{
@@ -52037,10 +51949,7 @@
 /area/prison/cellblock/highsec/south/south)
 "bXm" = (
 /obj/structure/sink{
-	icon_state = "sink";
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	dir = 8
 	},
 /turf/open/floor/prison{
 	tag = "icon-cell_stripe (WEST)";
@@ -52050,10 +51959,7 @@
 /area/prison/cellblock/highsec/south/south)
 "bXn" = (
 /obj/structure/sink{
-	icon_state = "sink";
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	dir = 8
 	},
 /turf/open/floor/prison{
 	tag = "icon-floor_plate";
@@ -53541,10 +53447,7 @@
 /area/prison/engineering)
 "cav" = (
 /obj/structure/sink{
-	icon_state = "sink";
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	dir = 8
 	},
 /turf/open/floor/prison{
 	tag = "icon-floor_plate";
@@ -54670,10 +54573,7 @@
 /area/prison/cellblock/mediumsec/south)
 "ccB" = (
 /obj/structure/sink{
-	icon_state = "sink";
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	dir = 8
 	},
 /turf/open/floor/prison{
 	tag = "icon-floor_plate";
@@ -54737,10 +54637,7 @@
 /area/prison/cellblock/highsec/south/south)
 "ccJ" = (
 /obj/structure/sink{
-	icon_state = "sink";
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	dir = 8
 	},
 /turf/open/floor/prison{
 	tag = "icon-floor_plate";
@@ -54872,10 +54769,7 @@
 /area/prison/cellblock/mediumsec/north)
 "ccX" = (
 /obj/structure/sink{
-	icon_state = "sink";
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	dir = 8
 	},
 /obj/effect/landmark/corpsespawner/prisoner,
 /turf/open/floor/prison{
@@ -55428,10 +55322,7 @@
 /area/prison/residential/south)
 "cdI" = (
 /obj/structure/sink{
-	icon_state = "sink";
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	dir = 8
 	},
 /turf/open/floor/prison{
 	tag = "icon-floor_plate";
@@ -55759,10 +55650,7 @@
 /area/prison/pirate)
 "cet" = (
 /obj/structure/sink{
-	icon_state = "sink";
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	dir = 8
 	},
 /turf/open/floor/prison{
 	tag = "icon-cell_stripe (WEST)";
@@ -56631,8 +56519,7 @@
 	dir = 1
 	},
 /obj/structure/sink{
-	dir = 8;
-	pixel_x = -11
+	dir = 8
 	},
 /obj/structure/mirror{
 	pixel_x = -26
@@ -59549,10 +59436,7 @@
 /area/prison/security/armory/lethal)
 "clZ" = (
 /obj/structure/sink{
-	icon_state = "sink";
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	dir = 8
 	},
 /obj/structure/mirror{
 	pixel_x = -28

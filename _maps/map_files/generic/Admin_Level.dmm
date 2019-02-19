@@ -4390,9 +4390,7 @@
 	},
 /area/shuttle/distress/start_big)
 "kD" = (
-/obj/structure/sink{
-	pixel_y = 28
-	},
+/obj/structure/sink,
 /turf/open/floor/almayer{
 	icon_state = "plate";
 	tag = "icon-sterile"
@@ -4536,10 +4534,7 @@
 /obj/item/storage/pouch/medical,
 /obj/item/storage/belt/combatLifesaver,
 /obj/item/storage/belt/combatLifesaver,
-/obj/item/reagent_container/spray/cleaner{
-	desc = "Someone has crossed out the Space from Space Cleaner and written in Surgery. 'Do not remove under punishment of death!!!' is scrawled on the back.";
-	name = "Surgery Cleaner"
-	},
+/obj/item/reagent_container/spray/surgery,
 /turf/open/floor/almayer{
 	icon_state = "plate";
 	tag = "icon-sterile"
@@ -5491,9 +5486,7 @@
 	pixel_x = 28
 	},
 /obj/structure/sink{
-	dir = 4;
-	icon_state = "sink";
-	pixel_x = 11;
+	dir = 4
 	},
 /turf/open/floor/freezer,
 /area/shuttle/distress/start_big)
