@@ -4099,34 +4099,26 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-whitepurple (NORTHWEST)";
-	icon_state = "whitepurple";
+/turf/open/floor/tile/purple/whitepurple{
 	dir = 9
 	},
 /area/bigredv2/caves/lambda_lab)
 "akz" = (
 /obj/structure/bookcase/manuals/research_and_development,
-/turf/open/floor{
-	tag = "icon-whitepurple (NORTH)";
-	icon_state = "whitepurple";
+/turf/open/floor/tile/purple/whitepurple{
 	dir = 1
 	},
 /area/bigredv2/caves/lambda_lab)
 "akA" = (
 /obj/structure/table/reinforced,
-/turf/open/floor{
-	tag = "icon-whitepurple (NORTH)";
-	icon_state = "whitepurple";
+/turf/open/floor/tile/purple/whitepurple{
 	dir = 1
 	},
 /area/bigredv2/caves/lambda_lab)
 "akB" = (
 /obj/structure/table/reinforced,
 /obj/structure/xenoautopsy,
-/turf/open/floor{
-	tag = "icon-whitepurple (NORTH)";
-	icon_state = "whitepurple";
+/turf/open/floor/tile/purple/whitepurple{
 	dir = 1
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -4135,9 +4127,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-whitepurple (NORTHEAST)";
-	icon_state = "whitepurple";
+/turf/open/floor/tile/purple/whitepurple{
 	dir = 5
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -4333,9 +4323,7 @@
 	},
 /area/bigredv2/caves)
 "ala" = (
-/turf/open/floor{
-	tag = "icon-whitepurple (NORTHWEST)";
-	icon_state = "whitepurple";
+/turf/open/floor/tile/purple/whitepurple{
 	dir = 9
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -4357,9 +4345,7 @@
 "ald" = (
 /obj/structure/table/reinforced,
 /obj/item/book/manual/research_and_development,
-/turf/open/floor{
-	tag = "icon-whitepurple (EAST)";
-	icon_state = "whitepurple";
+/turf/open/floor/tile/purple/whitepurple{
 	dir = 4
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -4672,9 +4658,7 @@
 /area/bigredv2/caves/lambda_lab)
 "alT" = (
 /obj/structure/table/reinforced,
-/turf/open/floor{
-	tag = "icon-whitepurple (EAST)";
-	icon_state = "whitepurple";
+/turf/open/floor/tile/purple/whitepurple{
 	dir = 4
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -5119,9 +5103,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "amO" = (
-/turf/open/floor{
-	tag = "icon-whitepurple (EAST)";
-	icon_state = "whitepurple";
+/turf/open/floor/tile/purple/whitepurple{
 	dir = 4
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -5375,9 +5357,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-whitepurple (WEST)";
-	icon_state = "whitepurple";
+/turf/open/floor/tile/purple/whitepurple{
 	dir = 8
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -5395,9 +5375,7 @@
 "ans" = (
 /obj/structure/table/reinforced,
 /obj/item/device/mass_spectrometer/adv,
-/turf/open/floor{
-	tag = "icon-whitepurple (EAST)";
-	icon_state = "whitepurple";
+/turf/open/floor/tile/purple/whitepurple{
 	dir = 4
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -5661,9 +5639,7 @@
 	d2 = 8;
 	icon_state = "4-8";
 	},
-/turf/open/floor{
-	tag = "icon-whitepurple (EAST)";
-	icon_state = "whitepurple";
+/turf/open/floor/tile/purple/whitepurple{
 	dir = 4
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -6029,9 +6005,7 @@
 "aoJ" = (
 /obj/structure/table/reinforced,
 /obj/item/XenoBio/Resin,
-/turf/open/floor{
-	tag = "icon-whitepurple (EAST)";
-	icon_state = "whitepurple";
+/turf/open/floor/tile/purple/whitepurple{
 	dir = 4
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -6302,9 +6276,7 @@
 	dir = 8
 	},
 /obj/structure/cable,
-/turf/open/floor{
-	tag = "icon-whitepurple (SOUTHWEST)";
-	icon_state = "whitepurple";
+/turf/open/floor/tile/purple/whitepurple{
 	dir = 10
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -6594,9 +6566,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-whitepurple (SOUTHWEST)";
-	icon_state = "whitepurple";
+/turf/open/floor/tile/purple/whitepurple{
 	dir = 10
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -6606,9 +6576,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-whitepurple";
-	icon_state = "whitepurple";
+/turf/open/floor/tile/purple/whitepurple{
 	dir = 2
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -6617,9 +6585,7 @@
 /obj/structure/xenoautopsy/tank/broken,
 /obj/effect/decal/cleanable/blood/gibs/xeno/body,
 /obj/effect/decal/warning_stripes,
-/turf/open/floor{
-	tag = "icon-whitepurple";
-	icon_state = "whitepurple";
+/turf/open/floor/tile/purple/whitepurple{
 	dir = 2
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -6629,9 +6595,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-whitepurple";
-	icon_state = "whitepurple";
+/turf/open/floor/tile/purple/whitepurple{
 	dir = 2
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -6643,9 +6607,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-whitepurple (SOUTHEAST)";
-	icon_state = "whitepurple";
+/turf/open/floor/tile/purple/whitepurple{
 	dir = 6
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -10685,26 +10647,20 @@
 	dir = 1
 	},
 /obj/item/cell/hyper,
-/turf/open/floor{
-	tag = "icon-whitepurple (NORTHWEST)";
-	icon_state = "whitepurple";
+/turf/open/floor/tile/purple/whitepurple{
 	dir = 9
 	},
 /area/bigredv2/caves/lambda_lab)
 "azh" = (
 /obj/structure/table,
 /obj/item/device/laptop,
-/turf/open/floor{
-	tag = "icon-whitepurple (NORTH)";
-	icon_state = "whitepurple";
+/turf/open/floor/tile/purple/whitepurple{
 	dir = 1
 	},
 /area/bigredv2/caves/lambda_lab)
 "azi" = (
 /obj/machinery/r_n_d/protolathe,
-/turf/open/floor{
-	tag = "icon-whitepurple (NORTH)";
-	icon_state = "whitepurple";
+/turf/open/floor/tile/purple/whitepurple{
 	dir = 1
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -10715,9 +10671,7 @@
 	icon_state = "tube1";
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-whitepurple (NORTHEAST)";
-	icon_state = "whitepurple";
+/turf/open/floor/tile/purple/whitepurple{
 	dir = 5
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -11248,9 +11202,7 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/general_offices)
 "aAi" = (
-/turf/open/floor{
-	tag = "icon-whitepurple (WEST)";
-	icon_state = "whitepurple";
+/turf/open/floor/tile/purple/whitepurple{
 	dir = 8
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -11280,9 +11232,7 @@
 /obj/structure/closet/hydrant{
 	pixel_x = 32
 	},
-/turf/open/floor{
-	tag = "icon-whitepurple (NORTHEAST)";
-	icon_state = "whitepurple";
+/turf/open/floor/tile/purple/whitepurple{
 	dir = 5
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -11528,16 +11478,12 @@
 	tag = "icon-W-corner";
 	icon_state = "W-corner"
 	},
-/turf/open/floor{
-	tag = "icon-whitepurple (WEST)";
-	icon_state = "whitepurple";
+/turf/open/floor/tile/purple/whitepurple{
 	dir = 8
 	},
 /area/bigredv2/caves/lambda_lab)
 "aAQ" = (
-/turf/open/floor{
-	tag = "icon-whitepurple (NORTH)";
-	icon_state = "whitepurple";
+/turf/open/floor/tile/purple/whitepurple{
 	dir = 1
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -11548,9 +11494,7 @@
 	dir = 4
 	},
 /obj/machinery/vending/assist,
-/turf/open/floor{
-	tag = "icon-whitepurple (NORTHEAST)";
-	icon_state = "whitepurple";
+/turf/open/floor/tile/purple/whitepurple{
 	dir = 5
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -11846,9 +11790,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/turf/open/floor{
-	tag = "icon-whitepurple (WEST)";
-	icon_state = "whitepurple";
+/turf/open/floor/tile/purple/whitepurple{
 	dir = 8
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -12197,9 +12139,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	tag = "icon-whitepurple (WEST)";
-	icon_state = "whitepurple";
+/turf/open/floor/tile/purple/whitepurple{
 	dir = 8
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -12218,9 +12158,7 @@
 	dir = 4
 	},
 /obj/structure/ore_box,
-/turf/open/floor{
-	tag = "icon-whitepurple (EAST)";
-	icon_state = "whitepurple";
+/turf/open/floor/tile/purple/whitepurple{
 	dir = 4
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -12591,9 +12529,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	tag = "icon-whitepurple (WEST)";
-	icon_state = "whitepurple";
+/turf/open/floor/tile/purple/whitepurple{
 	dir = 8
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -12608,9 +12544,7 @@
 /area/bigredv2/caves/lambda_lab)
 "aDl" = (
 /obj/structure/ore_box,
-/turf/open/floor{
-	tag = "icon-whitepurple";
-	icon_state = "whitepurple";
+/turf/open/floor/tile/purple/whitepurple{
 	dir = 2
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -12620,9 +12554,7 @@
 	icon_state = "barricade";
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-whitepurple (SOUTHEAST)";
-	icon_state = "whitepurple";
+/turf/open/floor/tile/purple/whitepurple{
 	dir = 6
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -13111,9 +13043,7 @@
 	dir = 8
 	},
 /obj/structure/cable,
-/turf/open/floor{
-	tag = "icon-whitepurple (WEST)";
-	icon_state = "whitepurple";
+/turf/open/floor/tile/purple/whitepurple{
 	dir = 8
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -13134,9 +13064,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aEp" = (
-/turf/open/floor{
-	tag = "icon-whitepurple (SOUTHEAST)";
-	icon_state = "whitepurple";
+/turf/open/floor/tile/purple/whitepurple{
 	dir = 6
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -13541,36 +13469,28 @@
 "aFf" = (
 /obj/structure/closet/secure_closet/scientist,
 /obj/machinery/light,
-/turf/open/floor{
-	tag = "icon-whitepurple (SOUTHWEST)";
-	icon_state = "whitepurple";
+/turf/open/floor/tile/purple/whitepurple{
 	dir = 10
 	},
 /area/bigredv2/caves/lambda_lab)
 "aFg" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/toolbox,
-/turf/open/floor{
-	tag = "icon-whitepurple";
-	icon_state = "whitepurple";
+/turf/open/floor/tile/purple/whitepurple{
 	dir = 2
 	},
 /area/bigredv2/caves/lambda_lab)
 "aFh" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/technology_scanner,
-/turf/open/floor{
-	tag = "icon-whitepurple";
-	icon_state = "whitepurple";
+/turf/open/floor/tile/purple/whitepurple{
 	dir = 2
 	},
 /area/bigredv2/caves/lambda_lab)
 "aFi" = (
 /obj/structure/closet/secure_closet/scientist,
 /obj/machinery/light/built,
-/turf/open/floor{
-	tag = "icon-whitepurple (SOUTHEAST)";
-	icon_state = "whitepurple";
+/turf/open/floor/tile/purple/whitepurple{
 	dir = 6
 	},
 /area/bigredv2/caves/lambda_lab)

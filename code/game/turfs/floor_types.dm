@@ -410,6 +410,9 @@
 /turf/open/floor/tile/vault
 	icon_state = "vault"
 
+/turf/open/floor/tile/purple/whitepurple
+	icon_state = "whitepurple"
+
 /turf/open/floor/carpet
 	name = "Carpet"
 	icon_state = "carpet"
