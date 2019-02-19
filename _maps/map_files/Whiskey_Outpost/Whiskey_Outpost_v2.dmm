@@ -3190,9 +3190,8 @@
 	},
 /area/whiskey_outpost)
 "gM" = (
-/turf/open/gm/dirtgrassborder{
-	dir = 1;
-	icon_state = "grassdirt_corner"
+/turf/open/gm/dirtgrassborder/corner{
+	dir = 1
 	},
 /area/whiskey_outpost/outside/north)
 "gN" = (
@@ -3265,9 +3264,8 @@
 /turf/open/gm/river,
 /area/whiskey_outpost/outside/east)
 "gV" = (
-/turf/open/gm/dirtgrassborder{
-	dir = 8;
-	icon_state = "grassdirt_corner"
+/turf/open/gm/dirtgrassborder/corner{
+	dir = 8
 	},
 /area/whiskey_outpost/outside/north)
 "gW" = (
@@ -3411,9 +3409,8 @@
 /turf/open/jungle,
 /area/whiskey_outpost/outside/west)
 "hx" = (
-/turf/open/gm/dirtgrassborder{
-	dir = 8;
-	icon_state = "grassdirt_corner"
+/turf/open/gm/dirtgrassborder/corner{
+	dir = 8
 	},
 /area/whiskey_outpost/outside/west)
 "hy" = (
@@ -3484,9 +3481,8 @@
 	},
 /area/whiskey_outpost/outside/west)
 "hL" = (
-/turf/open/gm/dirtgrassborder{
-	dir = 4;
-	icon_state = "grassdirt_corner"
+/turf/open/gm/dirtgrassborder/corner{
+	dir = 4
 	},
 /area/whiskey_outpost/outside/west)
 "hM" = (
@@ -3702,9 +3698,8 @@
 /turf/open/jungle/path,
 /area/whiskey_outpost/outside/east)
 "is" = (
-/turf/open/gm/dirtgrassborder{
-	dir = 8;
-	icon_state = "grassdirt_corner"
+/turf/open/gm/dirtgrassborder/corner{
+	dir = 8
 	},
 /area/whiskey_outpost/outside/east)
 "it" = (
@@ -4803,9 +4798,8 @@
 /turf/open/jungle,
 /area/whiskey_outpost/outside/south)
 "lv" = (
-/turf/open/gm/dirtgrassborder{
-	dir = 8;
-	icon_state = "grassdirt_corner"
+/turf/open/gm/dirtgrassborder/corner{
+	dir = 8
 	},
 /area/whiskey_outpost/outside/south)
 "lw" = (
