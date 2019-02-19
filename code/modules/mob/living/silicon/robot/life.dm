@@ -22,8 +22,7 @@
 	if(status_flags & GODMODE)
 		return
 	if(stat != DEAD)
-		var/dead_threshold = ismaintdrone(src) ? 0 : CONFIG_GET(number/health_threshold_dead)
-		if(health <= dead_threshold)
+		if(health <= get_death_threshold())
 			death()
 			return
 		if(knocked_out || stunned || knocked_down || !has_power) //Stunned etc.

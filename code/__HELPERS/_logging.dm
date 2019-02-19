@@ -81,9 +81,9 @@
 		WRITE_LOG(GLOB.world_game_log, "EXPLOSION: [text]")
 
 
-/proc/log_manifest(ckey, datum/mind/mind, mob/body, latejoin = FALSE)
+/proc/log_manifest(text)
 	if(CONFIG_GET(flag/log_manifest))
-		WRITE_LOG(GLOB.world_manifest_log, "MANIFEST: [ckey] | [body.real_name] | [mind.assigned_role] | [mind.special_role ? mind.special_role : "NONE"] | [latejoin ? "LATEJOIN" : "ROUNDSTART"]")
+		WRITE_LOG(GLOB.world_manifest_log, "MANIFEST: [text]")
 
 
 /proc/log_say(text)

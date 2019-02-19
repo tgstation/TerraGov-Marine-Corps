@@ -17,8 +17,8 @@
         round_statistics.weeds_destroyed++
         qdel(src)
 
-/obj/effect/alien/weeds/New(pos, obj/effect/alien/weeds/node/node)
-	..()
+/obj/effect/alien/weeds/Initialize(pos, obj/effect/alien/weeds/node/node)
+	. = ..()
 
 	update_sprite()
 	update_neighbours()
@@ -226,14 +226,14 @@
 	overlays.Cut()
 	overlays += "weednode"
 
-/obj/effect/alien/weeds/node/New(loc, obj/effect/alien/weeds/node/node, mob/living/carbon/Xenomorph/X)
+/obj/effect/alien/weeds/node/Initialize(loc, obj/effect/alien/weeds/node/node, mob/living/carbon/Xenomorph/X)
 	for(var/obj/effect/alien/weeds/W in loc)
 		if(W != src)
 			qdel(W) //replaces the previous weed
 			break
 
 	overlays += "weednode"
-	..(loc, src)
+	. = ..(loc, src)
 	if(X)
 		add_hiddenprint(X)
 

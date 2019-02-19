@@ -792,6 +792,7 @@
 	custom_metabolism = 1.25 // Fast meta rate.
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL * 1.2 //make this a little more forgiving in light of the lethality
+	scannable = TRUE
 
 /datum/reagent/xeno_neurotoxin/on_mob_life(mob/living/M)
 	. = ..()
@@ -814,9 +815,9 @@
 /datum/reagent/xeno_neurotoxin/overdose_process(mob/living/M)
 	M.adjustOxyLoss(min(2,volume * 0.1 * REM)) //Overdose starts applying more oxy damage
 
-/datum/reagent/xeno_neurotoxin/overdose_crit_process(mob/living/M)
+/datum/reagent/xeno_neurotoxin/overdose_crit_process(mob/living/carbon/M)
 	M.adjustOxyLoss(min(4,volume * 0.2 * REM)) //Overdose starts applying more oxy damage
-	M.losebreath = max(10, M.losebreath-10) //Can't breathe; for punishing the bullies
+	M.Losebreath(10) //Can't breathe; for punishing the bullies
 	M.Jitter(6) //Lets Xenos know they're ODing and should probably stop.
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
@@ -832,6 +833,7 @@
 	custom_metabolism = GROWTH_TOXIN_METARATE // 0.2, slow meta rate.
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
+	scannable = TRUE
 
 /datum/reagent/xeno_growthtoxin/overdose_process(mob/living/M)
 	M.adjustOxyLoss(1) //Overdose starts applying more oxy damage

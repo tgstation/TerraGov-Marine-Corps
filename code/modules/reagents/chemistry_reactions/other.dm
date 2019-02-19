@@ -43,13 +43,6 @@
 		empulse(location, round(created_volume / 24), round(created_volume / 14), 1)
 		holder.clear_reagents()
 
-
-/datum/chemical_reaction/hptoxin
-	name = "Toxin"
-	id = "hptoxin"
-	results = list("hptoxin" = 2)
-	required_reagents = list("hyperzine" = 1, "peridaxon" = 1)
-
 /datum/chemical_reaction/pttoxin
 	name = "Toxin"
 	id = "pttoxin"
@@ -58,10 +51,9 @@
 
 /datum/chemical_reaction/sdtoxin
 	name = "Toxin"
-	id = "sdtoxin"
+	id = "sdtoxin2"
 	results = list("sdtoxin" = 2)
 	required_reagents = list("synaptizine" = 1, "dylovene" = 1)
-
 
 /datum/chemical_reaction/sleeptoxin
 	name = "Soporific"

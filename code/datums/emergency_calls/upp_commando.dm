@@ -30,35 +30,27 @@
 		H.real_name = H.name
 		H.voice_name = H.name
 
-	H.key = M.key
+	M.transfer_to(H, TRUE)
 
 	if(original)
 		qdel(original)
-
-	H.client?.change_view(world.view)
 
 	print_backstory(H)
 
 	if(!leader)
 		leader = H
 		var/datum/job/J = new /datum/job/upp/commando/leader
-		H.set_everything(H, "UPP Commando Leader")
-		J.generate_equipment(H)
-		J.generate_entry_conditions(H)
+		J.equip(H)
 		to_chat(H, "<span class='notice'>You are the leader of the elite UPP commando.</span>")
 		return
 
 	if(medics < max_medics)
 		var/datum/job/J = new /datum/job/upp/commando/medic
-		H.set_everything(H, "UPP Commando Medic")
-		J.generate_equipment(H)
-		J.generate_entry_conditions(H)
+		J.equip(H)
 		to_chat(H, "<span class='notice'>You are the elite UPP commando medic.</span>")
 		medics++
 		return
 
 	var/datum/job/J = new /datum/job/upp/commando/leader
-	H.set_everything(H, "UPP Commando Standard")
-	J.generate_equipment(H)
-	J.generate_entry_conditions(H)
+	J.equip(H)
 	to_chat(H, "<span class='notice'>You are a member of the elite UPP commando.</span>")

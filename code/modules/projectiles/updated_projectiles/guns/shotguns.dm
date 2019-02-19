@@ -194,8 +194,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	recoil_unwielded = CONFIG_GET(number/combat_define/high_recoil_value)
 
 
-/obj/item/weapon/gun/shotgun/merc/examine(mob/user)
-	. = ..()
+/obj/item/weapon/gun/shotgun/merc/examine_ammo_count(mob/user)
 	if(in_chamber)
 		to_chat(user, "It has a chambered round.")
 
@@ -233,8 +232,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	recoil_unwielded = CONFIG_GET(number/combat_define/high_recoil_value)
 
 
-/obj/item/weapon/gun/shotgun/combat/examine(mob/user)
-	. = ..()
+/obj/item/weapon/gun/shotgun/combat/examine_ammo_count(mob/user)
 	if(in_chamber)
 		to_chat(user, "It has a chambered round.")
 
@@ -270,8 +268,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	recoil = CONFIG_GET(number/combat_define/low_recoil_value)
 	recoil_unwielded = CONFIG_GET(number/combat_define/high_recoil_value)
 
-/obj/item/weapon/gun/shotgun/double/examine(mob/user)
-	. = ..()
+/obj/item/weapon/gun/shotgun/double/examine_ammo_count(mob/user)
 	if(current_mag.chamber_closed)
 		to_chat(user, "It's closed.")
 	else

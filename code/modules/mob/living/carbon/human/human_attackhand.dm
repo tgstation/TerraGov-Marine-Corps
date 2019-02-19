@@ -43,7 +43,7 @@
 					ExtinguishMob()
 				return 1
 
-			if(health >= CONFIG_GET(number/health_threshold_crit))
+			if(health >= get_crit_threshold())
 				help_shake_act(M)
 				return 1
 
@@ -70,7 +70,7 @@
 				to_chat(M, "<span class='warning'>You fail to perform CPR on [src]!</span>")
 				return FALSE
 
-			if(health > CONFIG_GET(number/health_threshold_dead) && health < CONFIG_GET(number/health_threshold_crit))
+			if(health > get_death_threshold() && health < get_crit_threshold())
 				M.visible_message("[M] performs CPR on [name]!", "<span class='notice'>You perform CPR on [name].</span>")
 
 				var/they_breathe = !(species?.flags & NO_BREATHE)
@@ -205,7 +205,7 @@
 
 
 /mob/living/carbon/human/help_shake_act(mob/living/carbon/M)
-	if (health >= CONFIG_GET(number/health_threshold_crit))
+	if (health >= get_crit_threshold())
 		if(src == M)
 			if(holo_card_color) //if we have a triage holocard printed on us, we remove it.
 				holo_card_color = null

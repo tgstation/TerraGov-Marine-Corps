@@ -21,15 +21,9 @@
 		handle_organs()
 		return
 	//No need to update all of these procs if the guy is dead.
+
 	if(!in_stasis)
 		if(stat != DEAD)
-			if(life_tick % 2 == 0 || failed_last_breath || (health < CONFIG_GET(number/health_threshold_crit))) //First, resolve location and get a breath
-				breathe() //Only try to take a breath every 4 ticks, unless suffocating
-
-			else //Still give containing object the chance to interact
-				if(istype(loc, /obj/))
-					var/obj/location_as_object = loc
-					location_as_object.handle_internal_lifeform(src)
 
 			// Moved this from /mob/living/carbon/Life()
 			// Increase germ_level regularly

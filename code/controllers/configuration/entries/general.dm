@@ -114,6 +114,12 @@ Administrative related.
 
 /datum/config_entry/flag/looc_enabled
 
+/datum/config_entry/number/lobby_countdown
+	config_entry_value = 180
+
+/datum/config_entry/number/round_end_countdown
+	config_entry_value = 180
+
 /*
 Voting
 */

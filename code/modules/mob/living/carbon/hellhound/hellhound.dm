@@ -243,7 +243,7 @@
 				KnockOut(5)
 
 
-/mob/living/carbon/hellhound/IsAdvancedToolUser()
+/mob/living/carbon/hellhound/need_breathe()
 	return FALSE
 
 /mob/living/carbon/hellhound/vomit()

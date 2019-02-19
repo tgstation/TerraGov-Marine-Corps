@@ -9,8 +9,8 @@
 
 /obj/machinery/telecomms/relay/preset/station
 	id = "Station Relay"
-	listening_level = 1
 	autolinkers = list("s_relay")
+	listen_same_level = TRUE
 
 /obj/machinery/telecomms/relay/preset/station/prison
 	unacidable = 1
@@ -19,7 +19,7 @@
 	icon = 'icons/obj/machines/comm_tower.dmi'
 	icon_state = "comm_tower"
 	id = "Station Relay"
-	listening_level = 1
+	listen_same_level = TRUE
 	autolinkers = list("s_relay")
 	unacidable = 1
 

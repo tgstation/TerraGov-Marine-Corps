@@ -1,0 +1,8 @@
+author: "Hughgent"
+delete-after: True
+changes: 
+  - balance: "Pills now hold a max of 15u."
+  - rscadd: "The pill machine can now create 30u volume autoinjectors."
+  - rscadd: "The pill machine can now create pill bottles in many exciting colors."
+  - refactor: "redid the autoinjector icon code."
+  - balance: "first-aid pouches can now hold all types of autoinjectors."

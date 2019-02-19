@@ -71,7 +71,7 @@ var/waiting_for_drop_votes = 0
 	GLOB.landmarks_round_start -= src
 	return ..()
 
-/obj/effect/landmark/hell_hound_blocker/on_round_start(flags_round_type=NOFLAGS,flags_landmarks=NOFLAGS)
+/obj/effect/landmark/hell_hound_blocker/after_round_start(flags_round_type=NOFLAGS,flags_landmarks=NOFLAGS)
 	if(flags_landmarks & MODE_LANDMARK_HELLHOUND_BLOCKER)
 		new /obj/effect/step_trigger/hell_hound_blocker(loc)
 	qdel(src)

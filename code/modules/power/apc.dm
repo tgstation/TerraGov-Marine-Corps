@@ -158,6 +158,22 @@
 	. = ..()
 	GLOB.apcs_list += src
 
+/obj/machinery/power/apc/Destroy()
+	GLOB.apcs_list -= src
+
+	area.power_light = 0
+	area.power_equip = 0
+	area.power_environ = 0
+	area.power_change()
+
+	if(cell)
+		qdel(cell)
+	if(terminal)
+		disconnect_terminal()
+
+	. = ..()
+
+/obj/machinery/power/apc/Initialize(mapload, var/ndir, var/building=FALSE)
 	// offset 24 pixels in direction of dir
 	// this allows the APC to be embedded in a wall, yet still inside an area
 	if (building)
@@ -187,22 +203,6 @@
 
 	start_processing()
 
-/obj/machinery/power/apc/Destroy()
-	GLOB.apcs_list -= src
-
-	area.power_light = 0
-	area.power_equip = 0
-	area.power_environ = 0
-	area.power_change()
-
-	if(cell)
-		qdel(cell)
-	if(terminal)
-		disconnect_terminal()
-
-	. = ..()
-
-/obj/machinery/power/apc/Initialize(mapload)
 	. = ..()
 
 	if(mapload)
@@ -229,7 +229,7 @@
 		update() //areas should be lit on startup
 
 		//Break few ACPs on the colony
-		if(!start_charge && z == 1 && prob(10))
+		if(!start_charge && is_ground_level(z) && prob(10))
 			addtimer(CALLBACK(src, .proc/set_broken), 5)
 
 /obj/machinery/power/apc/proc/make_terminal()

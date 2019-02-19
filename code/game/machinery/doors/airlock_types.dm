@@ -521,9 +521,9 @@
 		..()
 
 /obj/machinery/door/airlock/dropship_hatch/unlock()
-	if(z == 4) // in flight
-	 return
-	..()
+	if(is_low_orbit_level(z)) // in flight
+		return
+	return ..(TRUE)
 
 /obj/machinery/door/airlock/dropship_hatch/two
 	icon = 'icons/obj/doors/almayer/dropship2_side.dmi' //Tiles with is here FOR SAFETY PURPOSES
