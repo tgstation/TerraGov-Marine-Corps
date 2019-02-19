@@ -43,10 +43,10 @@
 //M41A PULSE RIFLE
 
 /obj/item/weapon/gun/rifle/m41a
-	name = "\improper M41A pulse rifle MK2"
+	name = "\improper M41A1 pulse rifle"
 	desc = "The standard issue rifle of the TerraGov Marine Corps. Commonly carried by most combat personnel. Uses 10x24mm caseless ammunition."
-	icon_state = "m41a"
-	item_state = "m41a"
+	icon_state = "m41a1"
+	item_state = "m41a1"
 	fire_sound = "gun_pulse"
 	current_mag = /obj/item/ammo_magazine/rifle
 	attachable_allowed = list(
@@ -96,8 +96,8 @@
 //M41A PMC VARIANT
 
 /obj/item/weapon/gun/rifle/m41a/elite
-	name = "\improper M41A/2 battle rifle"
-	desc = "A reinforced and remachined version of the tried and tested M41A Pulse Rifle MK2. Given only to elite units."
+	name = "\improper M41A2 battle rifle"
+	desc = "A refined and remachined version of the tried and tested M41A1 Pulse Rifle. Given only to elite units."
 	icon_state = "m41a2"
 	item_state = "m41a2"
 	origin_tech = "combat=7;materials=5"
@@ -123,8 +123,8 @@
 /obj/item/weapon/gun/rifle/m41aMK1
 	name = "\improper M41A pulse rifle"
 	desc = "An older design of the Pulse Rifle commonly used by the TerraGov Marine Corps. Uses 10x24mm caseless ammunition."
-	icon_state = "m41amk1" //Placeholder.
-	item_state = "m41amk1" //Placeholder.
+	icon_state = "m41a"
+	item_state = "m41a"
 	fire_sound = "gun_pulse"
 	current_mag = /obj/item/ammo_magazine/rifle/m41aMK1
 	attachable_allowed = list(
@@ -151,12 +151,11 @@
 
 
 //-------------------------------------------------------
-//MAR-40 AK CLONE //AK47 and FN FAL together as one.
-
+//MAR-40 AK/FN FAL clone
 
 /obj/item/weapon/gun/rifle/mar40
 	name = "\improper MAR-40 battle rifle"
-	desc = "A cheap, reliable assault rifle chambered in 7.62x39mm. Commonly found in the hands of criminals or mercenaries, or in the hands of the UPP or Iron Bears."
+	desc = "A cheap, reliable assault rifle chambered in 7.62x39mm. Commonly found in the hands of criminals or mercenaries."
 	icon_state = "mar40"
 	item_state = "mar40"
 	origin_tech = "combat=4;materials=2;syndicate=4"
@@ -262,7 +261,7 @@
 
 /obj/item/weapon/gun/rifle/lmg
 	name = "\improper M41AE2 heavy pulse rifle"
-	desc = "A large weapon capable of laying down supressing fire. Currently undergoing field testing among TGMC scout platoons and in mercenary companies. Like it's smaller brother, the M41A MK2, the M41AE2 is chambered in 10mm."
+	desc = "A large weapon capable of laying down supressing fire. Currently undergoing field testing. Like it's smaller brother, the M41A1, the M41AE2 is chambered in 10mm."
 	icon_state = "m41ae2"
 	item_state = "m41ae2"
 	wield_delay = WIELD_DELAY_NORMAL + WIELD_DELAY_VERY_FAST
@@ -300,7 +299,6 @@
 	recoil_unwielded = CONFIG_GET(number/combat_define/max_recoil_value)
 
 
-
 //-------------------------------------------------------
 
 
@@ -309,14 +307,13 @@
 
 /obj/item/weapon/gun/rifle/type71
 	name = "\improper Type 71 pulse rifle"
-	desc = "The primary service rifle of the UPP forces, the Type 71 is a reliable pulse rifle chambered in 7.62x39mm. Firing in two round bursts to conserve ammunition, the Type 71 was originally designed as an ergonomic, lightweight rifle to be used in outer-space operations. The Type 71 suffers from some reliability issues, and is prone to jamming in terrestrial climates, but makes up for this with a high number of variants and ease of production."
+	desc = "The primary service rifle of the UPP forces, the Type 71 is a reliable rifle chambered in 7.62x39mm, firing in two round bursts to conserve ammunition."
 	icon_state = "type71"
 	item_state = "type71"
 	origin_tech = "combat=4;materials=2;syndicate=4"
 	fire_sound = list('sound/weapons/gun_type71.ogg')
 	current_mag = /obj/item/ammo_magazine/rifle/type71
 	wield_delay = 4
-	//type_of_casings = "cartridge"
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_BURST_ON|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 

@@ -1,6 +1,6 @@
+//Generic parent object.
 //---------------------------------------------------
 
-//Generic parent object.
 /obj/item/weapon/gun/revolver
 	flags_equip_slot = ITEM_SLOT_BELT
 	w_class = 3
@@ -24,7 +24,7 @@
 	movement_acc_penalty_mult = 3
 
 /obj/item/weapon/gun/revolver/Initialize()
-	. = ..() //Do all that other stuff.
+	. = ..()
 	replace_cylinder(current_mag.current_rounds)
 
 /obj/item/weapon/gun/revolver/set_gun_config_values()
@@ -319,9 +319,11 @@
 	fire_sound = 'sound/weapons/gun_pistol_medium.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/revolver/upp
 	force = 8
-	attachable_allowed = list(/obj/item/attachable/compensator)
-
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER
+	attachable_allowed = list(
+						/obj/item/attachable/suppressor,
+						/obj/item/attachable/flashlight,
+						/obj/item/attachable/compensator,
+						/obj/item/attachable/extended_barrel)
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 21,"rail_x" = 14, "rail_y" = 23, "under_x" = 24, "under_y" = 19, "stock_x" = 24, "stock_y" = 19)
 
 /obj/item/weapon/gun/revolver/upp/set_gun_config_values()
@@ -342,11 +344,18 @@
 	name = "\improper S&W .357 revolver"
 	desc = "A lean .357 made by Smith & Wesson. A timeless classic, from antiquity to the future."
 	icon_state = "sw357"
-	item_state = "ny762" //PLACEHOLDER
+	item_state = "sw357"
 	fire_sound = 'sound/weapons/gun_pistol_medium.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/revolver/small
 	force = 6
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER
+	attachable_allowed = list(
+						/obj/item/attachable/reddot,
+						/obj/item/attachable/flashlight,
+						/obj/item/attachable/extended_barrel,
+						/obj/item/attachable/compensator,
+						/obj/item/attachable/scope,
+						/obj/item/attachable/lasersight,
+						/obj/item/attachable/scope/mini)
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 12, "rail_y" = 21, "under_x" = 20, "under_y" = 15, "stock_x" = 20, "stock_y" = 15)
 
 /obj/item/weapon/gun/revolver/small/set_gun_config_values()
@@ -380,8 +389,6 @@
 						/obj/item/attachable/heavy_barrel,
 						/obj/item/attachable/quickfire,
 						/obj/item/attachable/compensator)
-
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 21, "under_x" = 22, "under_y" = 15, "stock_x" = 22, "stock_y" = 15)
 
 /obj/item/weapon/gun/revolver/mateba/set_gun_config_values()
@@ -406,7 +413,7 @@
 
 /obj/item/weapon/gun/revolver/mateba/cmateba
 	name = "\improper Mateba autorevolver special"
-	desc = "The Mateba is a powerful, fast-firing revolver that uses its own recoil to rotate the cylinders. It uses heavy .454 rounds. This version is a limited edition produced for the TGMC, and issued in extremely small amounts. Was a mail-order item back in 2172, and is highly sought after by officers across many different battalions. This one is stamped 'Major Ike Saker, 7th 'Falling Falcons' Battalion.'"
+	desc = "The Mateba is a powerful, fast-firing revolver that uses its own recoil to rotate the cylinders. It uses heavy .454 rounds. This version is a limited edition produced for the TGMC, and issued in extremely small amounts."
 	icon_state = "cmateba"
 	item_state = "cmateba"
 
@@ -415,10 +422,10 @@
 	select_gamemode_skin(/obj/item/weapon/gun/revolver/mateba/cmateba)
 
 //-------------------------------------------------------
-//MARSHALS REVOLVER //Spearhead exists in Alien cannon.
+//MARSHALS REVOLVER
 
 /obj/item/weapon/gun/revolver/cmb
-	name = "\improper CMB Spearhead autorevolver"
+	name = "\improper CMB autorevolver"
 	desc = "An automatic revolver chambered in .357. Commonly issued to Colonial Marshals. It has a burst mode."
 	icon_state = "spearhead"
 	item_state = "spearhead"

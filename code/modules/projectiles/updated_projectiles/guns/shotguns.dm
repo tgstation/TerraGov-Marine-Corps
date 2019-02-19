@@ -243,7 +243,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 /obj/item/weapon/gun/shotgun/double
 	name = "double barrel shotgun"
-	desc = "A double barreled shotgun of archaic, but sturdy design. Uses 12 Gauge Special slugs, but can only hold 2 at a time."
+	desc = "A double barreled shotgun of archaic, but sturdy design. Uses 12 Gauge slugs, but can only hold 2 at a time."
 	icon_state = "dshotgun"
 	item_state = "dshotgun"
 	origin_tech = "combat=4;materials=2"
@@ -394,7 +394,7 @@ can cause issues with ammo types getting mixed up during the burst.
 						/obj/item/attachable/compensator,
 						/obj/item/attachable/magnetic_harness,
 						/obj/item/attachable/attached_gun/flamer,
-						/obj/item/attachable/attached_gun/shotgun, //if it can mount a flamer, why can't it mount a shotgun
+						/obj/item/attachable/attached_gun/shotgun,
 						/obj/item/attachable/stock/shotgun)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 10, "rail_y" = 21, "under_x" = 20, "under_y" = 14, "stock_x" = 20, "stock_y" = 14)
 
@@ -481,13 +481,12 @@ can cause issues with ammo types getting mixed up during the burst.
 	return ..()
 
 //-------------------------------------------------------
-//SHOTGUN FROM ISOLATION
-
+//Based off of the Benelli M3
 /obj/item/weapon/gun/shotgun/pump/cmb
-	name = "\improper HG 37-12 pump shotgun"
-	desc = "A nine-round pump action shotgun with internal tube magazine allowing for quick reloading and highly accurate fire. Used exclusively by Colonial Marshals."
-	icon_state = "hg3712"
-	item_state = "hg3712"
+	name = "\improper Paladin-12 pump shotgun"
+	desc = "A nine-round pump action shotgun. A sporterized version of a classic shotgun used for hunting, home defence and police work, modified and used by Colonial Marshals"
+	icon_state = "pal12"
+	item_state = "pal12"
 	fire_sound = 'sound/weapons/gun_shotgun_small.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump/CMB
 	attachable_allowed = list(
@@ -496,9 +495,7 @@ can cause issues with ammo types getting mixed up during the burst.
 						/obj/item/attachable/flashlight,
 						/obj/item/attachable/compensator,
 						/obj/item/attachable/scope/mini,
-						/obj/item/attachable/magnetic_harness,
-						/obj/item/attachable/attached_gun/flamer,
-						/obj/item/attachable/attached_gun/shotgun)
+						/obj/item/attachable/magnetic_harness)
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 23, "under_x" = 19, "under_y" = 17, "stock_x" = 19, "stock_y" = 17)
 
 /obj/item/weapon/gun/shotgun/pump/cmb/set_gun_config_values()
@@ -512,11 +509,43 @@ can cause issues with ammo types getting mixed up during the burst.
 	recoil_unwielded = CONFIG_GET(number/combat_define/high_recoil_value)
 	pump_delay = CONFIG_GET(number/combat_define/mhigh_fire_delay) * 2
 
+//-------------------------------------------------------
+//Based off of the KSG
+/obj/item/weapon/gun/shotgun/pump/ksg
+	name = "\improper Kronos pump shotgun"
+	desc = "A peculiarly designed pump shotgun, featuring a massive magazine well, a compact bullpup design and military attachment compatablity"
+	item_state = "ksg"
+	fire_sound = 'sound/weapons/gun_shotgun_small.ogg'
+	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump/CMB
+	attachable_allowed = list(
+						/obj/item/attachable/reddot,
+						/obj/item/attachable/verticalgrip,
+						/obj/item/attachable/angledgrip,
+						/obj/item/attachable/gyro,
+						/obj/item/attachable/flashlight,
+						/obj/item/attachable/extended_barrel,
+						/obj/item/attachable/compensator,
+						/obj/item/attachable/magnetic_harness,
+						/obj/item/attachable/attached_gun/flamer,
+						/obj/item/attachable/attached_gun/shotgun)
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 23, "under_x" = 19, "under_y" = 17, "stock_x" = 19, "stock_y" = 17)
+
+/obj/item/weapon/gun/shotgun/pump/ksg/set_gun_config_values()
+	fire_delay = CONFIG_GET(number/combat_define/med_fire_delay) * 6
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/hmed_hit_accuracy_mult)
+	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/low_scatter_value)
+	scatter_unwielded = CONFIG_GET(number/combat_define/max_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
+	recoil = CONFIG_GET(number/combat_define/low_recoil_value)
+	recoil_unwielded = CONFIG_GET(number/combat_define/high_recoil_value)
+	pump_delay = CONFIG_GET(number/combat_define/mhigh_fire_delay) * 2
+
 //------------------------------------------------------
 //A hacky bolt action rifle. in here for the "pump" or bolt working action.
 
 /obj/item/weapon/gun/shotgun/pump/bolt
-	name = "\improper mosin nagant rifle"
+	name = "\improper Mosin Nagant rifle"
 	desc = "A mosin nagant rifle, even just looking at it you can feel the cosmoline already."
 	icon_state = "mosin"
 	item_state = "mosin" //thank you Alterist

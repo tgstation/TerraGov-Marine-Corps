@@ -41,7 +41,7 @@
 	name = "\improper M4A3 magazine (.45)"
 	default_ammo = /datum/ammo/bullet/pistol/heavy
 	caliber = ".45"
-	icon_state = "m4a345"
+	icon_state = "45"
 	max_rounds = 7
 	gun_type = /obj/item/weapon/gun/pistol/m1911
 
@@ -52,27 +52,36 @@
 /obj/item/ammo_magazine/pistol/b92fs
 	name = "\improper Beretta 92FS magazine (9mm)"
 	caliber = "9mm"
-	icon_state = "m4a3"
+	icon_state = "beretta"
 	max_rounds = 15
 	default_ammo = /datum/ammo/bullet/pistol
 	gun_type = /obj/item/weapon/gun/pistol/b92fs
 
+/obj/item/ammo_magazine/pistol/b93r
+	name = "\improper Beretta 93R magazine (9mm)"
+	caliber = "9mm"
+	icon_state = "beretta"
+	max_rounds = 20
+	default_ammo = /datum/ammo/bullet/pistol/
+	gun_type = /obj/item/weapon/gun/pistol/b92fs/raffica
+
 /obj/item/ammo_magazine/pistol/b92fstranq
 	name = "\improper M9 tranq magazine (9mm)"
 	caliber = "9mm"
-	icon_state = "m4a3"
+	icon_state = "beretta"
 	max_rounds = 12
 	default_ammo = /datum/ammo/bullet/pistol/tranq
 	gun_type = /obj/item/weapon/gun/pistol/b92fs/M9
 
+
 //-------------------------------------------------------
-//DEAGLE //This one is obvious.
+//DEAGLE //DEAGLE BRAND DEAGLE
 
 /obj/item/ammo_magazine/pistol/heavy
 	name = "\improper Desert Eagle magazine (.50)"
 	default_ammo = /datum/ammo/bullet/pistol/heavy
 	caliber = ".50"
-	icon_state = "m4a345" //PLACEHOLDER
+	icon_state = "50ae"
 	max_rounds = 7
 	gun_type = /obj/item/weapon/gun/pistol/heavy
 

@@ -170,7 +170,7 @@
 
 /obj/item/weapon/gun/rifle/sniper/M42A/jungle //These really should just be skins.
 	name = "\improper M42A marksman rifle"
-	icon_state = "m_m42a" //NO BACK STATE
+	icon_state = "m_m42a"
 	item_state = "m_m42a"
 
 
@@ -178,7 +178,7 @@
 	name = "\improper M42C anti-tank sniper rifle"
 	desc = "A high end mag-rail heavy sniper rifle from Nanotrasen chambered in the heaviest ammo available, 10x99mm Caseless."
 	icon_state = "m42c"
-	item_state = "m42c" //NEEDS A TWOHANDED STATE
+	item_state = "m42c"
 	origin_tech = "combat=7;materials=5"
 	fire_sound = 'sound/weapons/sniper_heavy.ogg'
 	current_mag = /obj/item/ammo_magazine/sniper/elite
@@ -211,8 +211,8 @@
 /obj/item/weapon/gun/rifle/sniper/svd
 	name = "\improper SVD Dragunov-033 sniper rifle"
 	desc = "A sniper variant of the MAR-40 rifle, with a new stock, barrel, and scope. It doesn't have the punch of modern sniper rifles, but it's finely crafted in 2133 by someone probably illiterate. Fires 7.62x54mmR rounds."
-	icon_state = "svd003"
-	item_state = "svd003" //NEEDS A ONE HANDED STATE
+	icon_state = "svd"
+	item_state = "svd" //NEEDS A ONE HANDED STATE
 	origin_tech = "combat=5;materials=3;syndicate=5"
 	fire_sound = 'sound/weapons/gun_kt42.ogg'
 	current_mag = /obj/item/ammo_magazine/sniper/svd
@@ -245,8 +245,8 @@
 /obj/item/weapon/gun/rifle/m4ra
 	name = "\improper M4RA battle rifle"
 	desc = "The M4RA battle rifle is a designated marksman rifle in service with the TGMC. Only fielded in small numbers, and sporting a bullpup configuration, the M4RA battle rifle is perfect for reconnaissance and fire support teams.\nIt is equipped with rail scope and takes 10x24mm A19 high velocity magazines."
-	icon_state = "m41b"
-	item_state = "m4ra" //PLACEHOLDER
+	icon_state = " m4ra"
+	item_state = "m4ra"
 	origin_tech = "combat=5;materials=4"
 	fire_sound = list('sound/weapons/gun_m4ra.ogg')
 	current_mag = /obj/item/ammo_magazine/rifle/m4ra
@@ -658,9 +658,6 @@
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_POLICE|GUN_WIELDED_FIRING_ONLY
 	req_access = list(ACCESS_MARINE_BRIG)
 
-
-
-
 //-------------------------------------------------------
 //M5 RPG
 
@@ -832,8 +829,6 @@
 	recoil = CONFIG_GET(number/combat_define/med_recoil_value)
 
 //-------------------------------------------------------
-
-//-------------------------------------------------------
 //SCOUT SHOTGUN
 
 /obj/item/weapon/gun/shotgun/merc/scout
@@ -880,8 +875,8 @@
 /obj/item/weapon/gun/minigun
 	name = "\improper MIC-A7 Vindicator Minigun"
 	desc = "It's a damn minigun! The ultimate in man-portable firepower, spraying countless high velocity armor piercing rounds with a rotary action, this thing will no doubt pack a punch."
-	icon_state = "painless"
-	item_state = "painless"
+	icon_state = "minigun"
+	item_state = "minigun"
 	origin_tech = "combat=7;materials=5"
 	fire_sound = 'sound/weapons/gun_minigun.ogg'
 	cocked_sound = 'sound/weapons/gun_minigun_cocked.ogg'
