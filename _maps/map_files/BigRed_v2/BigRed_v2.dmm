@@ -72,8 +72,6 @@
 "aan" = (
 /obj/effect/landmark/random_item/crap,
 /obj/machinery/landinglight/ds1/delaythree{
-	tag = "icon-landingstripe (EAST)";
-	icon_state = "landingstripe";
 	dir = 4
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -85,8 +83,6 @@
 /area/shuttle/drop1/lz1)
 "aap" = (
 /obj/machinery/landinglight/ds1/delaythree{
-	tag = "icon-landingstripe (WEST)";
-	icon_state = "landingstripe";
 	dir = 8
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -108,8 +104,6 @@
 /area/bigredv2/outside/telecomm)
 "aat" = (
 /obj/machinery/landinglight/ds1{
-	tag = "icon-landingstripe (EAST)";
-	icon_state = "landingstripe";
 	dir = 4
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -121,8 +115,6 @@
 /area/shuttle/drop1/BigRed)
 "aav" = (
 /obj/machinery/landinglight/ds1/delaytwo{
-	tag = "icon-landingstripe (WEST)";
-	icon_state = "landingstripe";
 	dir = 8
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -199,8 +191,6 @@
 /area/bigredv2/outside/telecomm)
 "aaE" = (
 /obj/machinery/landinglight/ds1/delayone{
-	tag = "icon-landingstripe (EAST)";
-	icon_state = "landingstripe";
 	dir = 4
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -213,8 +203,6 @@
 /area/shuttle/drop1/lz1)
 "aaG" = (
 /obj/machinery/landinglight/ds1/delayone{
-	tag = "icon-landingstripe (WEST)";
-	icon_state = "landingstripe";
 	dir = 8
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -311,8 +299,6 @@
 /area/bigredv2/outside/telecomm)
 "aaS" = (
 /obj/machinery/landinglight/ds1/delaytwo{
-	tag = "icon-landingstripe (EAST)";
-	icon_state = "landingstripe";
 	dir = 4
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -321,8 +307,6 @@
 /area/bigredv2/outside/space_port)
 "aaT" = (
 /obj/machinery/landinglight/ds1{
-	tag = "icon-landingstripe (WEST)";
-	icon_state = "landingstripe";
 	dir = 8
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -384,8 +368,6 @@
 /area/bigredv2/outside/telecomm)
 "aba" = (
 /obj/machinery/landinglight/ds1/delaythree{
-	tag = "icon-landingstripe (EAST)";
-	icon_state = "landingstripe";
 	dir = 4
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -461,8 +443,6 @@
 "abj" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/landinglight/ds1/delaytwo{
-	tag = "icon-landingstripe (WEST)";
-	icon_state = "landingstripe";
 	dir = 8
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -538,8 +518,6 @@
 "abt" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/landinglight/ds1/delayone{
-	tag = "icon-landingstripe (WEST)";
-	icon_state = "landingstripe";
 	dir = 8
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -1040,8 +1018,6 @@
 /area/bigredv2/outside/space_port)
 "acK" = (
 /obj/machinery/landinglight/ds1/delaythree{
-	tag = "icon-landingstripe (EAST)";
-	icon_state = "landingstripe";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -1125,8 +1101,6 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/landinglight/ds1{
-	tag = "icon-landingstripe (EAST)";
-	icon_state = "landingstripe";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -1244,8 +1218,6 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/landinglight/ds1/delayone{
-	tag = "icon-landingstripe (EAST)";
-	icon_state = "landingstripe";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -1380,8 +1352,6 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/landinglight/ds1/delaytwo{
-	tag = "icon-landingstripe (EAST)";
-	icon_state = "landingstripe";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -1491,8 +1461,6 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/landinglight/ds1/delaythree{
-	tag = "icon-landingstripe (EAST)";
-	icon_state = "landingstripe";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -1650,8 +1618,6 @@
 /area/bigredv2/outside/space_port)
 "aeh" = (
 /obj/machinery/landinglight/ds1{
-	tag = "icon-landingstripe (NORTH)";
-	icon_state = "landingstripe";
 	dir = 1
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -1660,8 +1626,6 @@
 /area/bigredv2/outside/space_port)
 "aei" = (
 /obj/machinery/landinglight/ds1/delayone{
-	tag = "icon-landingstripe (NORTH)";
-	icon_state = "landingstripe";
 	dir = 1
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -1670,8 +1634,6 @@
 /area/bigredv2/outside/space_port)
 "aej" = (
 /obj/machinery/landinglight/ds1/delaytwo{
-	tag = "icon-landingstripe (NORTH)";
-	icon_state = "landingstripe";
 	dir = 1
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -1680,8 +1642,6 @@
 /area/bigredv2/outside/space_port)
 "aek" = (
 /obj/machinery/landinglight/ds1/delaythree{
-	tag = "icon-landingstripe (NORTH)";
-	icon_state = "landingstripe";
 	dir = 1
 	},
 /turf/open/floor/marking/asteroidwarning{

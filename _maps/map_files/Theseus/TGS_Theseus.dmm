@@ -30727,8 +30727,6 @@
 /area/almayer/hallways/hangar)
 "blG" = (
 /obj/machinery/landinglight/ds1{
-	tag = "icon-landingstripe (EAST)";
-	icon_state = "landingstripe";
 	dir = 4
 	},
 /turf/open/floor/almayer/mono,
@@ -30756,8 +30754,6 @@
 /area/shuttle/drop1/sulaco)
 "blL" = (
 /obj/machinery/landinglight/ds1/delaythree{
-	tag = "icon-landingstripe (WEST)";
-	icon_state = "landingstripe";
 	dir = 8
 	},
 /turf/open/floor/almayer/mono,
@@ -31176,8 +31172,6 @@
 	},
 /obj/structure/prop/almayer/hangar_stencil,
 /obj/machinery/landinglight/ds1/delaytwo{
-	tag = "icon-landingstripe (WEST)";
-	icon_state = "landingstripe";
 	dir = 8
 	},
 /turf/open/floor/almayer/mono,
@@ -31964,8 +31958,6 @@
 /area/almayer/hallways/hangar)
 "bou" = (
 /obj/machinery/landinglight/ds1/delayone{
-	tag = "icon-landingstripe (EAST)";
-	icon_state = "landingstripe";
 	dir = 4
 	},
 /turf/open/floor/almayer/mono,
@@ -32005,8 +31997,6 @@
 /area/shuttle/drop1/sulaco)
 "boA" = (
 /obj/machinery/landinglight/ds1/delayone{
-	tag = "icon-landingstripe (WEST)";
-	icon_state = "landingstripe";
 	dir = 8
 	},
 /turf/open/floor/almayer/mono,
@@ -32819,8 +32809,6 @@
 /area/almayer/hallways/hangar)
 "bqq" = (
 /obj/machinery/landinglight/ds1/delaytwo{
-	tag = "icon-landingstripe (EAST)";
-	icon_state = "landingstripe";
 	dir = 4
 	},
 /turf/open/floor/almayer/mono,
@@ -32932,8 +32920,6 @@
 /area/almayer/command/cic)
 "bqA" = (
 /obj/machinery/landinglight/ds1{
-	tag = "icon-landingstripe (WEST)";
-	icon_state = "landingstripe";
 	dir = 8
 	},
 /turf/open/floor/almayer/mono,
@@ -33806,8 +33792,6 @@
 /area/shuttle/drop2/sulaco)
 "bsm" = (
 /obj/machinery/landinglight/ds1/delaythree{
-	tag = "icon-landingstripe (EAST)";
-	icon_state = "landingstripe";
 	dir = 4
 	},
 /turf/open/floor/almayer/mono,
@@ -34704,8 +34688,6 @@
 /area/shuttle/drop1/sulaco)
 "buj" = (
 /obj/machinery/landinglight/ds1/delaytwo{
-	tag = "icon-landingstripe (WEST)";
-	icon_state = "landingstripe";
 	dir = 8
 	},
 /turf/open/floor/almayer/mono,
@@ -44000,8 +43982,6 @@
 	dir = 1
 	},
 /obj/machinery/landinglight/ds1{
-	tag = "icon-landingstripe (WEST)";
-	icon_state = "landingstripe";
 	dir = 8
 	},
 /turf/open/floor/almayer/mono,
@@ -44884,32 +44864,24 @@
 /area/almayer/hallways/hangar)
 "bPp" = (
 /obj/machinery/landinglight/ds1{
-	tag = "icon-landingstripe (NORTH)";
-	icon_state = "landingstripe";
 	dir = 1
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/hangar)
 "bPq" = (
 /obj/machinery/landinglight/ds1/delayone{
-	tag = "icon-landingstripe (NORTH)";
-	icon_state = "landingstripe";
 	dir = 1
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/hangar)
 "bPr" = (
 /obj/machinery/landinglight/ds1/delaytwo{
-	tag = "icon-landingstripe (NORTH)";
-	icon_state = "landingstripe";
 	dir = 1
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/hangar)
 "bPs" = (
 /obj/machinery/landinglight/ds1/delaythree{
-	tag = "icon-landingstripe (NORTH)";
-	icon_state = "landingstripe";
 	dir = 1
 	},
 /turf/open/floor/almayer/mono,
@@ -54414,8 +54386,6 @@
 /area/almayer/hallways/hangar)
 "cjY" = (
 /obj/machinery/landinglight/ds1/delaythree{
-	tag = "icon-landingstripe (EAST)";
-	icon_state = "landingstripe";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -54432,8 +54402,6 @@
 /area/almayer/hallways/hangar)
 "cka" = (
 /obj/machinery/landinglight/ds1/delaythree{
-	tag = "icon-landingstripe (WEST)";
-	icon_state = "landingstripe";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -54476,8 +54444,6 @@
 /area/almayer/hallways/hangar)
 "cke" = (
 /obj/machinery/landinglight/ds1{
-	tag = "icon-landingstripe (EAST)";
-	icon_state = "landingstripe";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -54488,8 +54454,6 @@
 /area/almayer/hallways/hangar)
 "ckf" = (
 /obj/machinery/landinglight/ds1/delaytwo{
-	tag = "icon-landingstripe (WEST)";
-	icon_state = "landingstripe";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -54606,8 +54570,6 @@
 /area/almayer/hallways/hangar)
 "ckr" = (
 /obj/machinery/landinglight/ds1{
-	tag = "icon-landingstripe (NORTH)";
-	icon_state = "landingstripe";
 	dir = 1
 	},
 /turf/open/floor/almayer{
@@ -54618,8 +54580,6 @@
 /area/almayer/hallways/hangar)
 "cks" = (
 /obj/machinery/landinglight/ds1/delaytwo{
-	tag = "icon-landingstripe (NORTH)";
-	icon_state = "landingstripe";
 	dir = 1
 	},
 /turf/open/floor/almayer{

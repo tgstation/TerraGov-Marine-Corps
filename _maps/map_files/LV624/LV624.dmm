@@ -14136,8 +14136,6 @@
 /area/lv624/lazarus/quartstorage)
 "aTQ" = (
 /obj/machinery/landinglight/ds1/delaythree{
-	tag = "icon-landingstripe (EAST)";
-	icon_state = "landingstripe";
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -14147,8 +14145,6 @@
 /area/shuttle/drop1/lz1)
 "aTS" = (
 /obj/machinery/landinglight/ds1/delayone{
-	tag = "icon-landingstripe (WEST)";
-	icon_state = "landingstripe";
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -14650,8 +14646,6 @@
 /area/shuttle/drop1/lz1)
 "aVl" = (
 /obj/machinery/landinglight/ds1{
-	tag = "icon-landingstripe (EAST)";
-	icon_state = "landingstripe";
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -14662,8 +14656,6 @@
 /area/shuttle/drop1/lz1)
 "aVn" = (
 /obj/machinery/landinglight/ds1{
-	tag = "icon-landingstripe (WEST)";
-	icon_state = "landingstripe";
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -14836,16 +14828,12 @@
 /area/shuttle/drop1/lz1)
 "aVQ" = (
 /obj/machinery/landinglight/ds1/delayone{
-	tag = "icon-landingstripe (EAST)";
-	icon_state = "landingstripe";
 	dir = 4
 	},
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "aVR" = (
 /obj/machinery/landinglight/ds1/delaythree{
-	tag = "icon-landingstripe (WEST)";
-	icon_state = "landingstripe";
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -15031,8 +15019,6 @@
 /area/shuttle/drop1/lz1)
 "aWu" = (
 /obj/machinery/landinglight/ds1/delaytwo{
-	tag = "icon-landingstripe (EAST)";
-	icon_state = "landingstripe";
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -15045,8 +15031,6 @@
 	})
 "aWw" = (
 /obj/machinery/landinglight/ds1/delaytwo{
-	tag = "icon-landingstripe (WEST)";
-	icon_state = "landingstripe";
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -18109,8 +18093,6 @@
 "bee" = (
 /obj/effect/landmark/huntergames_secondary_spawn,
 /obj/machinery/landinglight/ds1/delayone{
-	tag = "icon-landingstripe (EAST)";
-	icon_state = "landingstripe";
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -19725,32 +19707,24 @@
 /area/shuttle/drop1/lz1)
 "biH" = (
 /obj/machinery/landinglight/ds1/delaythree{
-	tag = "icon-landingstripe (NORTH)";
-	icon_state = "landingstripe";
 	dir = 1
 	},
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "biI" = (
 /obj/machinery/landinglight/ds1{
-	tag = "icon-landingstripe (NORTH)";
-	icon_state = "landingstripe";
 	dir = 1
 	},
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "biJ" = (
 /obj/machinery/landinglight/ds1/delayone{
-	tag = "icon-landingstripe (NORTH)";
-	icon_state = "landingstripe";
 	dir = 1
 	},
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "biK" = (
 /obj/machinery/landinglight/ds1/delaytwo{
-	tag = "icon-landingstripe (NORTH)";
-	icon_state = "landingstripe";
 	dir = 1
 	},
 /turf/open/floor/plating,

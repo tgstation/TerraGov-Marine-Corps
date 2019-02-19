@@ -27270,8 +27270,6 @@
 	dir = 4
 	},
 /obj/machinery/landinglight/ds1/delaythree{
-	tag = "icon-landingstripe (EAST)";
-	icon_state = "landingstripe";
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -27284,8 +27282,6 @@
 	dir = 8
 	},
 /obj/machinery/landinglight/ds1/delaythree{
-	tag = "icon-landingstripe (WEST)";
-	icon_state = "landingstripe";
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -27717,8 +27713,6 @@
 	dir = 4
 	},
 /obj/machinery/landinglight/ds1{
-	tag = "icon-landingstripe (EAST)";
-	icon_state = "landingstripe";
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -27731,8 +27725,6 @@
 	dir = 8
 	},
 /obj/machinery/landinglight/ds1/delaytwo{
-	tag = "icon-landingstripe (WEST)";
-	icon_state = "landingstripe";
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -28071,8 +28063,6 @@
 	dir = 4
 	},
 /obj/machinery/landinglight/ds1/delayone{
-	tag = "icon-landingstripe (EAST)";
-	icon_state = "landingstripe";
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -28082,8 +28072,6 @@
 	dir = 8
 	},
 /obj/machinery/landinglight/ds1/delayone{
-	tag = "icon-landingstripe (WEST)";
-	icon_state = "landingstripe";
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -28697,8 +28685,6 @@
 	dir = 4
 	},
 /obj/machinery/landinglight/ds1/delaytwo{
-	tag = "icon-landingstripe (EAST)";
-	icon_state = "landingstripe";
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -28708,8 +28694,6 @@
 	dir = 8
 	},
 /obj/machinery/landinglight/ds1{
-	tag = "icon-landingstripe (WEST)";
-	icon_state = "landingstripe";
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -29511,8 +29495,6 @@
 	dir = 4
 	},
 /obj/machinery/landinglight/ds1/delaythree{
-	tag = "icon-landingstripe (EAST)";
-	icon_state = "landingstripe";
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -29532,8 +29514,6 @@
 	dir = 8
 	},
 /obj/machinery/landinglight/ds1/delaythree{
-	tag = "icon-landingstripe (WEST)";
-	icon_state = "landingstripe";
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -32286,8 +32266,6 @@
 	dir = 4
 	},
 /obj/machinery/landinglight/ds1/delaythree{
-	tag = "icon-landingstripe (EAST)";
-	icon_state = "landingstripe";
 	dir = 4
 	},
 /turf/open/floor/prison{
@@ -32822,8 +32800,6 @@
 	dir = 4
 	},
 /obj/machinery/landinglight/ds1{
-	tag = "icon-landingstripe (EAST)";
-	icon_state = "landingstripe";
 	dir = 4
 	},
 /turf/open/floor/prison{
@@ -38579,8 +38555,6 @@
 	dir = 1
 	},
 /obj/machinery/landinglight/ds1{
-	tag = "icon-landingstripe (NORTH)";
-	icon_state = "landingstripe";
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -38590,8 +38564,6 @@
 	dir = 1
 	},
 /obj/machinery/landinglight/ds1/delayone{
-	tag = "icon-landingstripe (NORTH)";
-	icon_state = "landingstripe";
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -38601,8 +38573,6 @@
 	dir = 1
 	},
 /obj/machinery/landinglight/ds1/delaytwo{
-	tag = "icon-landingstripe (NORTH)";
-	icon_state = "landingstripe";
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -38612,8 +38582,6 @@
 	dir = 1
 	},
 /obj/machinery/landinglight/ds1/delaythree{
-	tag = "icon-landingstripe (NORTH)";
-	icon_state = "landingstripe";
 	dir = 1
 	},
 /turf/open/floor/plating,
