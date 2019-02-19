@@ -215,7 +215,7 @@
 	if(istype(W, /obj/item/tool/pickaxe/plasmacutter) && !user.action_busy && deconstructable)
 		var/obj/item/tool/pickaxe/plasmacutter/P = W
 		if(P.start_cut(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD))
-			if(do_after(user, P.calc_delay(user) * PLASMACUTTER_VLOW_MOD, TRUE, 5, BUSY_ICON_HOSTILE) && P)
+			if(do_after(user, P.calc_delay(user) * PLASMACUTTER_VLOW_MOD, TRUE, src))
 				P.cut_apart(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD)
 				health = 0
 				healthcheck(0, 0, 1)

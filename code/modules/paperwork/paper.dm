@@ -127,7 +127,7 @@
 			else
 				user.visible_message("<span class='warning'>[user] begins to wipe [H]'s lipstick off with \the [src].</span>", \
 								 	 "<span class='notice'>You begin to wipe off [H]'s lipstick.</span>")
-				if(do_after(user, 10, TRUE, 5, BUSY_ICON_FRIENDLY) && do_after(H, 10, FALSE, 5, BUSY_ICON_GENERIC))	//user needs to keep their active hand, H does not.
+				if(do_after(user, 10, TRUE, H))
 					user.visible_message("<span class='notice'>[user] wipes [H]'s lipstick off with \the [src].</span>", \
 										 "<span class='notice'>You wipe off [H]'s lipstick.</span>")
 					H.lip_style = null

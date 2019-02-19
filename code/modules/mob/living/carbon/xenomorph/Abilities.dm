@@ -492,8 +492,8 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 	else
 		X.visible_message("<span class='notice'>[X] starts looking off into the distance.</span>", \
 			"<span class='notice'>You start focusing your sight to look off into the distance.</span>", null, 5)
-		if(!do_after(X, 20, FALSE)) return
-		if(X.is_zoomed) return
+		if(!do_after(X, 20, FALSE) || X.is_zoomed)
+			return
 		X.zoom_in()
 		..()
 
@@ -542,9 +542,8 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 
 	X.visible_message("<span class='notice'>\The [X] begins digging their claws into the ground.</span>", \
 	"<span class='notice'>You begin digging yourself into place.</span>", null, 5)
-	if(do_after(X, 30, FALSE, 5, BUSY_ICON_GENERIC))
-		if(X.is_bombarding) return
-		X.is_bombarding = 1
+	if(do_after(X, 30, FALSE) && !X.is_bombarding)
+		X.is_bombarding = TRUE
 		X.visible_message("<span class='notice'>\The [X] digs itself into the ground!</span>", \
 		"<span class='notice'>You dig yourself into place! If you move, you must wait again to fire.</span>", null, 5)
 		X.bomb_turf = get_turf(X)
@@ -724,9 +723,10 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 	if(X.check_plasma(plasma_cost))
 		X.visible_message("<span class='xenowarning'>\The [X] starts to grow an ovipositor.</span>", \
 		"<span class='xenowarning'>You start to grow an ovipositor...(takes 20 seconds, hold still)</span>")
-		if(!do_after(X, 200, TRUE, 20, BUSY_ICON_FRIENDLY) && X.check_plasma(plasma_cost))
+		if(!do_after(X, 200, TRUE, extra_checks = CALLBACK(X, /mob/living/carbon/Xenomorph/proc/check_plasma, plasma_cost)))
 			return
-		if(!X.check_state()) return
+		if(!X.check_state())
+			return
 		if(!locate(/obj/effect/alien/weeds) in current_turf)
 			return
 
@@ -755,8 +755,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 		return
 	X.visible_message("<span class='xenowarning'>\The [X] starts detaching itself from its ovipositor!</span>", \
 		"<span class='xenowarning'>You start detaching yourself from your ovipositor.</span>")
-	if(!do_after(X, 50, FALSE, 10, BUSY_ICON_HOSTILE)) return
-	if(!X.check_state())
+	if(!do_after(X, 50, FALSE, extra_checks = CALLBACK(X, /mob/living/carbon/Xenomorph/proc/check_state)))
 		return
 	if(!X.ovipositor)
 		return
@@ -1139,7 +1138,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 	if(X.check_plasma(300))
 		X.visible_message("<span class='xenowarning'>\The [X] starts to advance larval growth inside of [H].</span>", \
 		"<span class='xenowarning'>You start to advance larval growth inside of [H].</span>")
-		if(!do_after(X, 50, TRUE, 20, BUSY_ICON_FRIENDLY) && X.check_plasma(300))
+		if(!do_after(X, 50, TRUE, extra_checks = CALLBACK(X, /mob/living/carbon/Xenomorph/proc/check_plasma, 300)))
 			return
 		if(!X.check_state())
 			return

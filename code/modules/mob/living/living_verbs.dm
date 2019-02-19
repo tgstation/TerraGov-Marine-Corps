@@ -61,9 +61,7 @@
 				C.last_special = world.time + 100
 				C.visible_message("<span class='danger'>[C] attempts to unbuckle themself!</span>",\
 				"<span class='warning'> You attempt to unbuckle yourself. (This will take around 2 minutes and you need to stand still)</span>")
-				if(do_after(C, 1200, FALSE, 5, BUSY_ICON_HOSTILE))
-					if(!C.buckled)
-						return
+				if(do_after(C, 1200, FALSE, C.buckled))
 					C.visible_message("<span class='danger'>[C] manages to unbuckle themself!</span>",\
 								"<span class='notice'> You successfully unbuckle yourself.</span>")
 					C.buckled.manual_unbuckle(C)
@@ -98,9 +96,7 @@
 
 
 		spawn(0)
-			if(do_after(usr,(breakout_time*60*10), FALSE)) //minutes * 60seconds * 10deciseconds
-				if(!C || !L || L.stat != CONSCIOUS || L.loc != C || C.opened) //closet/user destroyed OR user dead/unconcious OR user no longer in closet OR closet opened
-					return
+			if(do_after(usr, breakout_time * 60 SECONDS, FALSE, C))
 
 				//Perform the same set of checks as above for weld and lock status to determine if there is even still a point in 'resisting'...
 				if(istype(L.loc, /obj/structure/closet/secure_closet))
@@ -180,9 +176,7 @@
 				CM.visible_message("<span class='danger'>[CM] is attempting to break out of [HC]...</span>", \
 				"<span class='notice'>You use your superior zombie strength to start breaking [HC]...</span>")
 				spawn(0)
-					if(do_after(CM, 100, FALSE, 5, BUSY_ICON_HOSTILE))
-						if(!CM.handcuffed || CM.buckled)
-							return
+					if(do_after(CM, 100, FALSE, HC) && !CM.buckled)
 						CM.visible_message("<span class='danger'>[CM] tears [HC] in half!</span>", \
 							"<span class='notice'>You tear [HC] in half!</span>")
 						qdel(CM.handcuffed)
@@ -200,9 +194,7 @@
 				for(var/mob/O in viewers(CM))
 					O.show_message(text("<span class='danger'>[] is trying to break [HC]!</span>", CM), 1)
 				spawn(0)
-					if(do_after(CM, 50, FALSE, 5, BUSY_ICON_HOSTILE))
-						if(!CM.handcuffed || CM.buckled)
-							return
+					if(do_after(CM, 50, FALSE, HC) && !CM.buckled)
 						for(var/mob/O in viewers(CM))
 							O.show_message(text("<span class='danger'>[] manages to break [HC]!</span>", CM), 1)
 						to_chat(CM, "<span class='warning'>You successfully break [HC].</span>")
@@ -230,9 +222,7 @@
 				for(var/mob/O in viewers(CM))
 					O.show_message( "<span class='danger'>[usr] attempts to remove [HC]!</span>", 1)
 				spawn(0)
-					if(do_after(CM, HC.breakouttime, FALSE, 5, BUSY_ICON_HOSTILE))
-						if(!CM.handcuffed || CM.buckled)
-							return // time leniency for lag which also might make this whole thing pointless but the server
+					if(do_after(CM, HC.breakouttime, FALSE, HC) && !CM.buckled)
 						for(var/mob/O in viewers(CM))//                                         lags so hard that 40s isn't lenient enough - Quarxink
 							O.show_message("<span class='danger'>[CM] manages to remove [HC]!</span>", 1)
 						to_chat(CM, "<span class='notice'>You successfully remove [HC].</span>")
@@ -256,9 +246,7 @@
 				for(var/mob/O in viewers(CM))
 					O.show_message(text("<span class='danger'>[] is trying to break [LC]!</span>", CM), 1)
 				spawn(0)
-					if(do_after(CM, 50, FALSE, 5, BUSY_ICON_HOSTILE))
-						if(!CM.legcuffed || CM.buckled)
-							return
+					if(do_after(CM, 50, FALSE, LC) && !CM.buckled)
 						for(var/mob/O in viewers(CM))
 							O.show_message(text("<span class='danger'>[] manages to break [LC]!</span>", CM), 1)
 						to_chat(CM, "<span class='warning'>You successfully break your legcuffs.</span>")
@@ -276,9 +264,7 @@
 				for(var/mob/O in viewers(CM))
 					O.show_message( "<span class='danger'>[usr] attempts to remove [LC]!</span>", 1)
 				spawn(0)
-					if(do_after(CM, breakouttime, FALSE, 5, BUSY_ICON_HOSTILE))
-						if(!CM.legcuffed || CM.buckled)
-							return // time leniency for lag which also might make this whole thing pointless but the server
+					if(do_after(CM, breakouttime, FALSE, LC) && !CM.buckled)
 						for(var/mob/O in viewers(CM))//                                         lags so hard that 40s isn't lenient enough - Quarxink
 							O.show_message("<span class='danger'>[CM] manages to remove the legcuffs!</span>", 1)
 						to_chat(CM, "<span class='notice'>You successfully remove \the [CM.legcuffed].</span>")

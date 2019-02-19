@@ -76,7 +76,7 @@
 
 
 	if(T.butchery_progress == 1)
-		if(do_after(src,70, FALSE, 5, BUSY_ICON_HOSTILE) && Adjacent(T))
+		if(do_after(src,70, FALSE, T))
 			visible_message("[src] makes careful slices and tears out the viscera in \the [T]'s abdominal cavity.","You carefully vivisect \the [T], ripping out the guts and useless organs. What a stench!")
 			T.butchery_progress = 2
 			playsound(loc, 'sound/weapons/slash.ogg', 25)
@@ -84,7 +84,7 @@
 			to_chat(src, "You pause your butchering for later.")
 
 	if(T.butchery_progress == 2)
-		if(do_after(src,65, FALSE, 5, BUSY_ICON_HOSTILE) && Adjacent(T))
+		if(do_after(src, 65, FALSE, T))
 			visible_message("[src] hacks away at \the [T]'s limbs and slices off strips of dripping meat.","You slice off a few of \the [T]'s limbs, making sure to get the finest cuts.")
 			if(istype(T,/mob/living/carbon/Xenomorph) && isturf(T.loc))
 				new /obj/item/reagent_container/food/snacks/xenomeat(T.loc)
@@ -97,7 +97,7 @@
 			to_chat(src, "You pause your butchering for later.")
 
 	if(T.butchery_progress == 3)
-		if(do_after(src,70, FALSE, 5, BUSY_ICON_HOSTILE) && Adjacent(T))
+		if(do_after(src,70, FALSE, T))
 			visible_message("[src] tears apart \the [T]'s ribcage and begins chopping off bit and pieces.","You rip open \the [T]'s ribcage and start tearing the tastiest bits out.")
 			if(istype(T,/mob/living/carbon/Xenomorph) && isturf(T.loc))
 				new /obj/item/reagent_container/food/snacks/xenomeat(T.loc)
@@ -110,12 +110,12 @@
 			to_chat(src, "You pause your butchering for later.")
 
 	if(T.butchery_progress == 4)
-		if(do_after(src,90, FALSE, 5, BUSY_ICON_HOSTILE) && Adjacent(T))
-			if(istype(T,/mob/living/carbon/Xenomorph) && isturf(T.loc))
+		if(do_after(src,90, FALSE, T))
+			if(istype(T,/mob/living/carbon/Xenomorph))
 				visible_message("<b>[src] flenses the last of [T]'s exoskeleton, revealing only bones!</b>.","<b>You flense the last of [T]'s exoskeleton clean off!</b>")
 				new /obj/effect/decal/remains/xeno(T.loc)
 				new /obj/item/stack/sheet/animalhide/xeno(T.loc)
-			else if(istype(T,/mob/living/carbon/human) && isturf(T.loc))
+			else if(istype(T,/mob/living/carbon/human))
 				visible_message("<b>[src] reaches down and rips out \the [T]'s spinal cord and skull!</b>.","<b>You firmly grip the revealed spinal column and rip [T]'s head off!</b>")
 				var/mob/living/carbon/human/H = T
 				if(H.get_limb("head"))

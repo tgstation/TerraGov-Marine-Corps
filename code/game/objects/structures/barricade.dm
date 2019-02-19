@@ -490,7 +490,7 @@
 			to_chat(user, "<span class='warning'>[src] has sustained too much structural damage to be repaired.</span>")
 			return
 
-		if(health == maxhealth)
+		if(health >= maxhealth)
 			to_chat(user, "<span class='warning'>[src] doesn't need repairs.</span>")
 			return
 
@@ -689,7 +689,7 @@
 			to_chat(user, "<span class='warning'>[src] has sustained too much structural damage to be repaired.</span>")
 			return
 
-		if(health == maxhealth)
+		if(health >= maxhealth)
 			to_chat(user, "<span class='warning'>[src] doesn't need repairs.</span>")
 			return
 

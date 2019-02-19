@@ -14,7 +14,7 @@
 	melee_damage_upper = 25
 
 	// *** Tackle *** //
-	tackle_damage = 25 
+	tackle_damage = 25
 
 	// *** Speed *** //
 	speed = 0.7
@@ -35,7 +35,7 @@
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA
 
 	// *** Defense *** //
-	armor_deflection = 30 
+	armor_deflection = 30
 
 	// *** Ranged Attack *** //
 	spit_delay = 4 SECONDS
@@ -55,7 +55,7 @@
 	melee_damage_upper = 30
 
 	// *** Tackle *** //
-	tackle_damage = 25 
+	tackle_damage = 25
 
 	// *** Speed *** //
 	speed = 0.6
@@ -77,7 +77,7 @@
 	spit_delay = 3 SECONDS
 
 	// *** Boiler Abilities *** //
-	bomb_strength = 1.5 
+	bomb_strength = 1.5
 	acid_delay = 9 SECONDS //9 seconds delay on acid. Reduced by -1 per upgrade down to 5 seconds
 	bomb_delay = 20 SECONDS //20 seconds per glob at Young, -2.5 per upgrade down to 10 seconds
 
@@ -113,7 +113,7 @@
 	spit_delay = 2 SECONDS
 
 	// *** Boiler Abilities *** //
-	bomb_strength = 2 
+	bomb_strength = 2
 	acid_delay = 9 SECONDS //9 seconds delay on acid. Reduced by -1 per upgrade down to 5 seconds
 	bomb_delay = 20 SECONDS //20 seconds per glob at Young, -2.5 per upgrade down to 10 seconds
 
@@ -244,7 +244,7 @@
 	var/turf/target = locate(T.x + offset_x, T.y + offset_y, T.z)
 
 	if(!istype(target))
-		return
+		target = T
 
 	to_chat(src, "<span class='xenonotice'>You begin building up acid.</span>")
 	if(client)
@@ -253,7 +253,7 @@
 	is_bombarding = FALSE
 	use_plasma(200)
 
-	if(!do_after(src, 50, FALSE, 5, BUSY_ICON_HOSTILE))
+	if(!do_after(src, 50, FALSE, target))
 		bomb_cooldown = FALSE
 		to_chat(src, "<span class='warning'>You decide not to launch any acid.</span>")
 		return

@@ -931,8 +931,7 @@
 
 	user.visible_message("<span class='notice'>[user] starts setting up [src] on the ground.</span>",
 	"<span class='notice'>You start setting up [src] on the ground and inputting all the data it needs.</span>")
-	if(do_after(user, delay, TRUE, 5, BUSY_ICON_FRIENDLY))
-
+	if(do_after(user, delay, TRUE, src))
 		squad.sbeacon = src
 		user.transferItemToLoc(src, user.loc)
 		activated = 1
@@ -983,7 +982,7 @@
 		delay = max(15, delay - 20*H.mind.cm_skills.leadership)
 	H.visible_message("<span class='notice'>[H] starts setting up [src] on the ground.</span>",
 	"<span class='notice'>You start setting up [src] on the ground and inputting all the data it needs.</span>")
-	if(do_after(H, delay, TRUE, 5, BUSY_ICON_HOSTILE))
+	if(do_after(H, delay, TRUE, src))
 		message_admins("[ADMIN_TPMONTY(usr)] set up an orbital strike beacon.")
 		name = "transmitting orbital beacon"
 		active_orbital_beacons += src
@@ -1015,7 +1014,7 @@
 		delay = max(10, delay - 20 * H.mind.cm_skills.leadership)
 	H.visible_message("<span class='notice'>[H] starts removing [src] from the ground.</span>",
 	"<span class='notice'>You start removing [src] from the ground, deactivating it.</span>")
-	if(do_after(H, delay, TRUE, 5, BUSY_ICON_HOSTILE))
+	if(do_after(H, delay, TRUE, src))
 		message_admins("[ADMIN_TPMONTY(usr)] removed an orbital strike beacon.")
 		if(squad)
 			squad.squad_orbital_beacons -= src

@@ -305,7 +305,7 @@
 		user.visible_message("<span class='notice'>[user] starts disassembling [src].</span>",
 		"<span class='notice'>You start disassembling [src].</span>")
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
-		if(do_after(user,50, TRUE, 5, BUSY_ICON_BUILD))
+		if(do_after(user,50, TRUE, src))
 			user.visible_message("<span class='notice'>[user] disassembles [src].</span>",
 			"<span class='notice'>You disassemble [src].</span>")
 			destroy_structure(1)
@@ -499,19 +499,15 @@
 				user.visible_message("<span class='notice'>[user] starts weakening [src].</span>",
 				"<span class='notice'>You start weakening [src]</span>")
 				playsound(src.loc, 'sound/items/Welder.ogg', 25, 1)
-				if (do_after(user, 50, TRUE, 5, BUSY_ICON_BUILD))
-					if(!src || !WT.isOn())
-						return
+				if (do_after(user, 50, TRUE, src, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
 					user.visible_message("<span class='notice'>[user] weakens [src].</span>",
 					"<span class='notice'>You weaken [src]</span>")
-					src.status = 1
+					status = 1
 			else
 				user.visible_message("<span class='notice'>[user] starts welding [src] back together.</span>",
 				"<span class='notice'>You start welding [src] back together.</span>")
 				playsound(src.loc, 'sound/items/Welder.ogg', 25, 1)
-				if(do_after(user, 50, TRUE, 5, BUSY_ICON_BUILD))
-					if(!src || !WT.isOn())
-						return
+				if(do_after(user, 50, TRUE, src, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
 					user.visible_message("<span class='notice'>[user] welds [src] back together.</span>",
 					"<span class='notice'>You weld [src] back together.</span>")
 					status = 2

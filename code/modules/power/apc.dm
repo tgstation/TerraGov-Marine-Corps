@@ -450,7 +450,8 @@
 				user.visible_message("<span class='notice'>[user] fumbles around figuring out how to deconstruct [src].</span>",
 				"<span class='notice'>You fumble around figuring out how to deconstruct [src].</span>")
 				var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
-				if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
+				if(!do_after(user, fumbling_time, TRUE, src))
+					return
 			if(terminal)
 				to_chat(user, "<span class='warning'>Disconnect the terminal first.</span>")
 				return

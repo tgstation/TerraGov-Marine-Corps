@@ -94,7 +94,7 @@
 /obj/structure/reagent_dispensers/fueltank/attack_hand()
 	if (rig)
 		usr.visible_message("[usr] begins to detach [rig] from \the [src].", "You begin to detach [rig] from \the [src]...")
-		if(do_after(usr, 20, TRUE, 5, BUSY_ICON_BUILD))
+		if(do_after(usr, 20, TRUE, src))
 			usr.visible_message("<span class='notice'>[usr] detaches [rig] from \the [src].</span>", "<span class='notice'>You detach [rig] from \the [src].</span>")
 			rig.loc = get_turf(usr)
 			rig = null
@@ -116,7 +116,7 @@
 			to_chat(user, "<span class='warning'>There is another device in the way.</span>")
 			return
 		user.visible_message("[user] begins rigging [I] to \the [src].", "You begin rigging [I] to \the [src]")
-		if(do_after(user, 20, TRUE, 5, BUSY_ICON_HOSTILE) && !rig)
+		if(do_after(user, 20, TRUE, src) && !rig)
 			user.visible_message("<span class='notice'>[user] rigs [I] to \the [src].</span>", "<span class='notice'>You rig [I] to \the [src].</span>")
 			var/obj/item/device/assembly_holder/H = I
 			if (istype(H.a_left,/obj/item/device/assembly/igniter) || istype(H.a_right,/obj/item/device/assembly/igniter))

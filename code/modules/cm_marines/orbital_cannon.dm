@@ -452,7 +452,8 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use the console.</span>",
 		"<span class='notice'>You fumble around figuring out how to use the console.</span>")
 		var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
-		if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
+		if(!do_after(user, fumbling_time, TRUE, src))
+			return
 
 	user.set_interaction(src)
 

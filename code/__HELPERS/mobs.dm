@@ -149,7 +149,7 @@ proc/age2agedescription(age)
 			. = FALSE
 			break
 
-		if(user.is_mob_incapacitated())
+		if(user.is_mob_incapacitated(TRUE))
 			. = FALSE
 			break
 

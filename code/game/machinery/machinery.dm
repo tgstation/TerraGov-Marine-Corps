@@ -127,7 +127,7 @@ Class Procs:
 		var/obj/item/tool/pickaxe/plasmacutter/P = C
 		if(!P.start_cut(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_LOW_MOD))
 			return
-		if(do_after(user, P.calc_delay(user) * PLASMACUTTER_LOW_MOD, TRUE, src, check_busy = TRUE))
+		if(do_after(user, P.calc_delay(user) * PLASMACUTTER_LOW_MOD, TRUE, src))
 			P.cut_apart(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_LOW_MOD)
 			qdel()
 		return

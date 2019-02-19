@@ -56,7 +56,7 @@
 		if(0)
 			overlays -= I
 			qdel(I)
-		if(1) 
+		if(1)
 			overlays += I
 
 /turf/open/floor/plating/plating_catwalk/attackby(obj/item/W as obj, mob/user as mob)
@@ -296,7 +296,7 @@
 		user.visible_message("<span class='notice'>[user] starts removing [src]'s protective cover.</span>",
 		"<span class='notice'>You start removing [src]'s protective cover.</span>")
 		playsound(src, 'sound/items/Ratchet.ogg', 25, 1)
-		if(do_after(user, 30, TRUE, 5, BUSY_ICON_BUILD))
+		if(do_after(user, 30, TRUE, src))
 			new /obj/item/stack/rods(src, 2)
 			ChangeTurf(/turf/open/floor)
 			var/turf/open/floor/F = src

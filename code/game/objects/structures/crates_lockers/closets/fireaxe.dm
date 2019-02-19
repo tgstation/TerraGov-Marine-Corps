@@ -25,9 +25,9 @@
 			if(ismultitool(O))
 				to_chat(user, "<span class='warning'>Resetting circuitry...</span>")
 				playsound(user, 'sound/machines/lockreset.ogg', 25, 1)
-				if(do_after(user, 20, TRUE, 5, BUSY_ICON_HOSTILE))
-					src.locked = 0
-					to_chat(user, "<span class = 'caution'> You disable the locking modules.</span>")
+				if(do_after(user, 20, TRUE, src))
+					locked = FALSE
+					to_chat(user, "<span class = 'caution'>You disable the locking modules.</span>")
 					update_icon()
 				return
 			else if(!(O.flags_item & NOBLUDGEON) && O.force)
@@ -87,8 +87,8 @@
 					src.locked = 1
 					to_chat(user, "<span class='notice'>You re-enable the locking modules.</span>")
 					playsound(user, 'sound/machines/lockenable.ogg', 25, 1)
-					if(do_after(user,20, TRUE, 5, BUSY_ICON_FRIENDLY))
-						src.locked = 1
+					if(do_after(user,20, TRUE, src))
+						locked = TRUE
 						to_chat(user, "<span class = 'caution'> You re-enable the locking modules.</span>")
 					return
 			else

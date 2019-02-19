@@ -178,12 +178,10 @@
 	"<span class='xenonotice'>You begin to twist and contort.</span>")
 	do_jitter_animation(1000)
 
-	if(!do_after(src, 25, FALSE, 5, BUSY_ICON_HOSTILE))
+	if(!do_after(src, 25, FALSE))
 		to_chat(src, "<span class='warning'>You quiver, but nothing happens. Hold still while evolving.</span>")
 		return
 
-	if(!isturf(loc)) //cdel'd or moved into something
-		return
 	if(new_caste_type == /mob/living/carbon/Xenomorph/Queen && hive.living_xeno_queen) //Do another check after the tick.
 		to_chat(src, "<span class='warning'>There already is a Queen.</span>")
 		return

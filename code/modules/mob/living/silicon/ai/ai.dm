@@ -603,23 +603,16 @@ var/list/ai_verbs_default = list(
 
 
 /mob/living/silicon/ai/attackby(obj/item/W as obj, mob/user as mob)
-	if(iswrench(W))
-		if(anchored)
-			user.visible_message("<span class='notice'> \The [user] starts to unbolt \the [src] from the plating...</span>")
-			if(!do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
-				user.visible_message("<span class='notice'> \The [user] decides not to unbolt \the [src].</span>")
+	if(iswrench(W) && user.a_intent != INTENT_HARM)
+		if(!user.action_busy)
+			var/un = anchored ? "un" : ""
+			user.visible_message("<span class='notice'> \The [user] starts to [un]bolt \the [src] [anchored ? "from" : "to"] the plating...</span>")
+			if(!do_after(user, 40, TRUE, src))
+				user.visible_message("<span class='notice'> \The [user] decides not to [un]bolt \the [src].</span>")
 				return
-			user.visible_message("<span class='notice'> \The [user] finishes unfastening \the [src]!</span>")
-			anchored = 0
-			return
-		else
-			user.visible_message("<span class='notice'> \The [user] starts to bolt \the [src] to the plating...</span>")
-			if(!do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
-				user.visible_message("<span class='notice'> \The [user] decides not to bolt \the [src].</span>")
-				return
-			user.visible_message("<span class='notice'> \The [user] finishes fastening down \the [src]!</span>")
-			anchored = 1
-			return
+			user.visible_message("<span class='notice'> \The [user] finishes [un]fastening \the [src]!</span>")
+			anchored = !anchored
+		return
 	else
 		return ..()
 

@@ -134,7 +134,7 @@
 			return
 		if(!P.start_cut(user, src.name, src))
 			return
-		if(do_after(user, PLASMACUTTER_CUT_DELAY, TRUE, 5, BUSY_ICON_FRIENDLY) && P)
+		if(do_after(user, PLASMACUTTER_CUT_DELAY, TRUE, src))
 			P.cut_apart(user, src.name, src)
 			if(ismineralturf(src) || istype(src, /turf/closed/desertdamrockwall))
 				ChangeTurf(/turf/open/desertdam/cave/inner_cave_floor)

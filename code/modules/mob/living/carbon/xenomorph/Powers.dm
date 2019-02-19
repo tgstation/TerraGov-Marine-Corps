@@ -140,7 +140,7 @@
 	if (used_acid_spray || !check_plasma(200))
 		return
 
-	if(!do_after(src, 5, TRUE, 5, BUSY_ICON_HOSTILE))
+	if(!do_after(src, 5, FALSE))
 		return
 
 	if(stagger)
@@ -565,7 +565,7 @@
 	visible_message("<span class='xenowarning'>\The [src] begins pulling on [M]'s [L.display_name] with incredible strength!</span>", \
 	"<span class='xenowarning'>You begin to pull on [M]'s [L.display_name] with incredible strength!</span>")
 
-	if(!do_after(src, limb_time, TRUE, 5, BUSY_ICON_HOSTILE, 1) || M.stat == DEAD)
+	if(!do_after(src, limb_time, TRUE, L, extra_checks = CALLBACK(src, .break_do_after_checks, null, null, zone_selected)) || M.stat == DEAD)
 		to_chat(src, "<span class='notice'>You stop ripping off the limb.</span>")
 		return FALSE
 
@@ -583,7 +583,7 @@
 		L.fracture()
 	log_message(src, M, "ripped the [L.display_name] off", addition="1/2 progress")
 
-	if(!do_after(src, limb_time, TRUE, 5, BUSY_ICON_HOSTILE)  || M.stat == DEAD)
+	if(!do_after(src, limb_time, TRUE, M, extra_checks = CALLBACK(src, .break_do_after_checks, null, null, zone_selected)) || M.stat == DEAD)
 		to_chat(src, "<span class='notice'>You stop ripping off the limb.</span>")
 		return FALSE
 
@@ -1018,14 +1018,7 @@
 		return
 
 	to_chat(src, "<span class='notice'>You start focusing your [energy] towards [target].</span>")
-	if(!do_after(src, transfer_delay, TRUE, 5, BUSY_ICON_FRIENDLY))
-		return
-
-	if(!check_state())
-		return
-
-	if(!isturf(loc))
-		to_chat(src, "<span class='warning'>You can't transfer [energy] from here!</span>")
+	if(!do_after(src, transfer_delay, TRUE, extra_checks = CALLBACK(src, .proc/check_state)) || QDELETED(target))
 		return
 
 	if(get_dist(src, target) > max_range)
@@ -1078,11 +1071,7 @@
 	to_chat(src, "<span class='notice'>You start salvaging [energy] from [target].</span>")
 
 	while(target.plasma_stored && plasma_stored >= xeno_caste.plasma_max)
-		if(!do_after(src, salvage_delay, TRUE, 5, BUSY_ICON_HOSTILE) || !check_state())
-			break
-
-		if(!isturf(loc))
-			to_chat(src, "<span class='warning'>You can't absorb [energy] from here!</span>")
+		if(!do_after(src, salvage_delay, TRUE, extra_checks = CALLBACK(src, .proc/check_state)) || QDELETED(target))
 			break
 
 		if(get_dist(src, target) > max_range)
@@ -1248,7 +1237,7 @@
 
 	var/wait_time = 10 + 30 - max(0,(30*health/maxHealth)) //Between 1 and 4 seconds, depending on health.
 
-	if(!do_after(src, wait_time, TRUE, 5, BUSY_ICON_BUILD))
+	if(!do_after(src, wait_time, TRUE, current_turf, extra_checks = CALLBACK(src, .proc/check_alien_construction, current_turf)))
 		return
 
 	blocker = locate() in current_turf
@@ -1263,15 +1252,8 @@
 	if(!istype(current_turf) || !current_turf.is_weedable())
 		return
 
-	AR = get_area(current_turf)
-	if(istype(AR,/area/shuttle/drop1/lz1 || istype(AR,/area/shuttle/drop2/lz2)) || istype(AR,/area/sulaco/hangar)) //Bandaid for atmospherics bug when Xenos build around the shuttles
-		return
-
 	alien_weeds = locate() in current_turf
 	if(!alien_weeds)
-		return
-
-	if(!check_alien_construction(current_turf))
 		return
 
 	if(selected_resin == "resin door")
@@ -1381,13 +1363,7 @@
 		to_chat(src, "<span class='warning'>You cannot dissolve \the [O].</span>")
 		return
 
-	if(!do_after(src, wait_time, TRUE, 5, BUSY_ICON_HOSTILE))
-		return
-
-	if(!check_state())
-		return
-
-	if(!O || !get_turf(O)) //Some logic.
+	if(!do_after(src, wait_time, TRUE, O, extra_checks = CALLBACK(src, .proc/check_state)))
 		return
 
 	if(!check_plasma(plasma_cost))
@@ -1922,7 +1898,7 @@
 	to_chat(src, "<span class='xenodanger'>Your coursing adrenaline stimulates tissues into a spat of rapid regeneration...</span>")
 	var/current_rage = CLAMP(rage,0,RAVAGER_MAX_RAGE) //lock in the value at the time we use it; min 0, max 50.
 	do_jitter_animation(1000)
-	if(!do_after(src, 50, TRUE, 5, BUSY_ICON_FRIENDLY))
+	if(!do_after(src, 50, TRUE))
 		return
 	do_jitter_animation(1000)
 	playsound(src, "sound/effects/alien_drool2.ogg", 50, 0)
@@ -2034,7 +2010,7 @@
 		to_chat(src, "<span class='warning'>You see nothing to spit at!</span>")
 		return
 
-	if(!check_state())
+	if(!check_state() || action_busy)
 		return
 
 	if(!isturf(loc) || isspaceturf(loc))
@@ -2052,7 +2028,7 @@
 		to_chat(src, "<span class='xenowarning'>You're not yet ready to spray again! You can do so in [( (last_spray_used + acid_d) - world.time) * 0.1] seconds.</span>")
 		return
 
-	if(!do_after(src, 5, TRUE, 5, BUSY_ICON_HOSTILE, TRUE, TRUE))
+	if(!do_after(src, 5, TRUE) || QDELETED(T))
 		return
 
 	var/turf/target
@@ -2061,9 +2037,6 @@
 		target = T
 	else
 		target = get_turf(T)
-
-	if(!target || !istype(target)) //Something went horribly wrong. Clicked off edge of map probably
-		return
 
 	if(target == loc)
 		to_chat(src, "<span class='warning'>That's far too close!</span>")
@@ -2112,7 +2085,7 @@
 	use_plasma(200)
 	icon_state = "Defiler Power Up"
 
-	if(!do_after(src, DEFILER_GAS_CHANNEL_TIME, TRUE, 5, BUSY_ICON_HOSTILE))
+	if(!do_after(src, DEFILER_GAS_CHANNEL_TIME, TRUE))
 		smoke_system = new /datum/effect_system/smoke_spread/xeno_weaken()
 		smoke_system.amount = 1
 		smoke_system.set_up(1, 0, get_turf(src))
@@ -2229,7 +2202,7 @@
 	//set waitfor = FALSE
 	while(count)
 		face_atom(H)
-		if(!do_after(src, DEFILER_STING_CHANNEL_TIME, TRUE, 5, BUSY_ICON_HOSTILE))
+		if(!do_after(src, DEFILER_STING_CHANNEL_TIME, TRUE, H, extra_checks = CALLBACK(src, .proc/check_state)))
 			return
 		if(!Adjacent(H) || stagger)
 			return FALSE
@@ -2299,10 +2272,8 @@
 
 	visible_message("<span class='xenonotice'>[src] begins digging out a tunnel entrance.</span>", \
 	"<span class='xenonotice'>You begin digging out a tunnel entrance.</span>", null, 5)
-	if(!do_after(src, 100, TRUE, 5, BUSY_ICON_BUILD))
+	if(!do_after(src, 100, TRUE, T, extra_checks = CALLBACK(src, .proc/check_plasma, 200)))
 		to_chat(src, "<span class='warning'>Your tunnel caves in as you stop digging it.</span>")
-		return
-	if(!check_plasma(200))
 		return
 	if(!start_dig) //Let's start a new one.
 		visible_message("<span class='xenonotice'>\The [src] digs out a tunnel entrance.</span>", \

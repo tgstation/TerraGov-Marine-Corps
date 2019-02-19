@@ -125,9 +125,7 @@
 
 	user.visible_message("<span class='warning'>[user] pins [M] into [src], preparing the securing resin.</span>",
 	"<span class='warning'>[user] pins [M] into [src], preparing the securing resin.</span>")
-	var/M_loc = M.loc
-	if(do_after(user, 15, TRUE, 5, BUSY_ICON_HOSTILE))
-		if(M.loc != M_loc) return
+	if(do_after(user, 15, TRUE, M) && user.Adjacent(src))
 		if(buckled_mob) //Just in case
 			to_chat(user, "<span class='warning'>There's already someone in [src].</span>")
 			return
