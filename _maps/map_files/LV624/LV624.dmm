@@ -1770,10 +1770,7 @@
 /area/lv624/ground/sand6)
 "agc" = (
 /obj/structure/table,
-/obj/item/legcuffs/yautja{
-	desc = "A bizarre alien device used for trapping and killing prey.";
-	name = "Alien Mine"
-	},
+/obj/item/legcuffs/yautja/ancient,
 /turf/open/floor{
 	dir = 4;
 	icon_state = "whiteyellowfull"
