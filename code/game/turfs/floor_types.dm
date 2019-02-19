@@ -440,7 +440,8 @@
 /turf/open/floor/prison/trim/red
 	icon_state = "darkred2"
 
-
+/turf/open/floor/prison/purple/whitepurple
+	icon_state = "whitepurple"
 
 
 

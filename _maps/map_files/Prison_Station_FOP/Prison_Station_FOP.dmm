@@ -1214,15 +1214,13 @@
 /area/prison/cellblock/maxsec/north)
 "adw" = (
 /obj/machinery/smartfridge/secure,
-/turf/open/floor/prison{
-	dir = 9;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 9
 	},
 /area/prison/research/secret/testing)
 "adx" = (
-/turf/open/floor/prison{
-	dir = 1;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 1
 	},
 /area/prison/research/secret/testing)
 "ady" = (
@@ -1239,9 +1237,8 @@
 	},
 /area/prison/research/secret/testing)
 "adA" = (
-/turf/open/floor/prison{
-	dir = 5;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 5
 	},
 /area/prison/research/secret/testing)
 "adB" = (
@@ -1285,9 +1282,8 @@
 	},
 /area/prison/cellblock/maxsec/north)
 "adF" = (
-/turf/open/floor/prison{
-	dir = 8;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 8
 	},
 /area/prison/research/secret/testing)
 "adG" = (
@@ -1308,16 +1304,14 @@
 /obj/effect/landmark/corpsespawner/scientist,
 /obj/effect/decal/cleanable/blood/splatter,
 /obj/effect/decal/cleanable/blood/splatter,
-/turf/open/floor/prison{
-	dir = 1;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 1
 	},
 /area/prison/research/secret/testing)
 "adJ" = (
 /obj/effect/decal/cleanable/blood/splatter,
-/turf/open/floor/prison{
-	dir = 1;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 1
 	},
 /area/prison/research/secret/testing)
 "adK" = (
@@ -1337,9 +1331,8 @@
 	dir = 4;
 	icon_state = "pipe-c"
 	},
-/turf/open/floor/prison{
-	dir = 4;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 4
 	},
 /area/prison/research/secret/testing)
 "adN" = (
@@ -1472,9 +1465,8 @@
 	},
 /area/prison/cellblock/maxsec/north)
 "aea" = (
-/turf/open/floor/prison{
-	dir = 10;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 10
 	},
 /area/prison/research/secret/testing)
 "aeb" = (
@@ -1574,9 +1566,8 @@
 /obj/structure/sign/deathsposal{
 	pixel_x = 30
 	},
-/turf/open/floor/prison{
-	dir = 4;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 4
 	},
 /area/prison/research/secret/testing)
 "ael" = (
@@ -1838,9 +1829,8 @@
 	},
 /area/prison/research/secret/testing)
 "aeI" = (
-/turf/open/floor/prison{
-	dir = 4;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 4
 	},
 /area/prison/research/secret/testing)
 "aeJ" = (
@@ -1916,9 +1906,8 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 8
 	},
-/turf/open/floor/prison{
-	dir = 8;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 8
 	},
 /area/prison/research/secret/testing)
 "aeU" = (
@@ -1947,15 +1936,13 @@
 	},
 /area/prison/research/secret/testing)
 "aeX" = (
-/turf/open/floor/prison{
-	dir = 2;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 2
 	},
 /area/prison/research/secret/testing)
 "aeY" = (
-/turf/open/floor/prison{
-	dir = 6;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 6
 	},
 /area/prison/research/secret/testing)
 "aeZ" = (
@@ -2300,22 +2287,19 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 8
 	},
-/turf/open/floor/prison{
-	dir = 9;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 9
 	},
 /area/prison/research/secret/bioengineering)
 "afJ" = (
-/turf/open/floor/prison{
-	dir = 1;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 1
 	},
 /area/prison/research/secret/bioengineering)
 "afK" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/prison{
-	dir = 5;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 5
 	},
 /area/prison/research/secret/bioengineering)
 "afL" = (
@@ -2330,18 +2314,16 @@
 /area/prison/research/secret/bioengineering)
 "afN" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/prison{
-	dir = 9;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 9
 	},
 /area/prison/research/secret/bioengineering)
 "afO" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6
 	},
-/turf/open/floor/prison{
-	dir = 1;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 1
 	},
 /area/prison/research/secret/bioengineering)
 "afP" = (
@@ -2364,9 +2346,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	dir = 1;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 1
 	},
 /area/prison/research/secret/bioengineering)
 "afR" = (
@@ -2471,9 +2452,8 @@
 /area/prison/research/secret/testing)
 "agd" = (
 /obj/machinery/light,
-/turf/open/floor/prison{
-	dir = 2;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 2
 	},
 /area/prison/research/secret/testing)
 "age" = (
@@ -2484,9 +2464,8 @@
 /obj/machinery/power/apc/drained{
 	dir = 2
 	},
-/turf/open/floor/prison{
-	dir = 2;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 2
 	},
 /area/prison/research/secret/testing)
 "agf" = (
@@ -2495,9 +2474,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor/prison{
-	dir = 2;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 2
 	},
 /area/prison/research/secret/testing)
 "agg" = (
@@ -2508,9 +2486,8 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/prison{
-	dir = 2;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 2
 	},
 /area/prison/research/secret/testing)
 "agh" = (
@@ -2542,9 +2519,8 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	dir = 8;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 8
 	},
 /area/prison/research/secret/bioengineering)
 "agk" = (
@@ -2562,9 +2538,8 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	dir = 4;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 4
 	},
 /area/prison/research/secret/bioengineering)
 "agm" = (
@@ -2617,9 +2592,8 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	dir = 4;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 4
 	},
 /area/prison/research/secret/bioengineering)
 "ags" = (
@@ -2647,16 +2621,14 @@
 	},
 /area/prison/research/secret/testing)
 "agv" = (
-/turf/open/floor/prison{
-	dir = 8;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 8
 	},
 /area/prison/research/secret/bioengineering)
 "agw" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/prison{
-	dir = 4;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 4
 	},
 /area/prison/research/secret/bioengineering)
 "agx" = (
@@ -2669,16 +2641,14 @@
 /area/prison/research/secret/bioengineering)
 "agy" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/prison{
-	dir = 8;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 8
 	},
 /area/prison/research/secret/bioengineering)
 "agz" = (
 /obj/machinery/door/window/eastleft,
-/turf/open/floor/prison{
-	dir = 4;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 4
 	},
 /area/prison/research/secret/bioengineering)
 "agA" = (
@@ -2966,9 +2936,8 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	dir = 5;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 5
 	},
 /area/prison/research/secret/bioengineering)
 "ahm" = (
@@ -3019,9 +2988,8 @@
 /area/prison/research/secret/bioengineering)
 "ahq" = (
 /obj/machinery/door/window/eastright,
-/turf/open/floor/prison{
-	dir = 4;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 4
 	},
 /area/prison/research/secret/bioengineering)
 "ahr" = (
@@ -3179,9 +3147,8 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 10
 	},
-/turf/open/floor/prison{
-	dir = 8;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 8
 	},
 /area/prison/research/secret/bioengineering)
 "ahH" = (
@@ -3216,9 +3183,8 @@
 "ahK" = (
 /obj/item/shard,
 /obj/item/stack/rods,
-/turf/open/floor/prison{
-	dir = 4;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 4
 	},
 /area/prison/research/secret/bioengineering)
 "ahL" = (
@@ -3432,9 +3398,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	dir = 8;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 8
 	},
 /area/prison/research/secret/bioengineering)
 "aic" = (
@@ -3497,9 +3462,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	dir = 4;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 4
 	},
 /area/prison/research/secret/bioengineering)
 "aih" = (
@@ -3561,9 +3525,8 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
-/turf/open/floor/prison{
-	dir = 8;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 8
 	},
 /area/prison/research/secret/bioengineering)
 "aio" = (
@@ -3590,9 +3553,8 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	dir = 6;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 6
 	},
 /area/prison/research/secret/bioengineering)
 "air" = (
@@ -3625,9 +3587,8 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
 	},
-/turf/open/floor/prison{
-	dir = 2;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 2
 	},
 /area/prison/research/secret/bioengineering)
 "aiv" = (
@@ -3635,9 +3596,8 @@
 	dir = 10
 	},
 /obj/machinery/light,
-/turf/open/floor/prison{
-	dir = 2;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 2
 	},
 /area/prison/research/secret/bioengineering)
 "aiw" = (
@@ -3648,9 +3608,8 @@
 /obj/machinery/power/apc/drained{
 	dir = 2
 	},
-/turf/open/floor/prison{
-	dir = 2;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 2
 	},
 /area/prison/research/secret/bioengineering)
 "aix" = (
@@ -3666,21 +3625,18 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/prison{
-	dir = 2;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 2
 	},
 /area/prison/research/secret/bioengineering)
 "aiy" = (
-/turf/open/floor/prison{
-	dir = 2;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 2
 	},
 /area/prison/research/secret/bioengineering)
 "aiz" = (
-/turf/open/floor/prison{
-	dir = 6;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 6
 	},
 /area/prison/research/secret/bioengineering)
 "aiA" = (
@@ -3710,18 +3666,16 @@
 /area/prison/research/secret/testing)
 "aiE" = (
 /obj/machinery/smartfridge/secure/virology,
-/turf/open/floor/prison{
-	dir = 10;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 10
 	},
 /area/prison/research/secret/bioengineering)
 "aiF" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	dir = 6;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 6
 	},
 /area/prison/research/secret/bioengineering)
 "aiG" = (
@@ -5074,9 +5028,8 @@
 /obj/machinery/alarm/almayer{
 	dir = 1
 	},
-/turf/open/floor/prison{
-	dir = 1;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 1
 	},
 /area/prison/research/secret/chemistry)
 "aln" = (
@@ -5490,23 +5443,20 @@
 	dir = 1
 	},
 /obj/machinery/disposal,
-/turf/open/floor/prison{
-	dir = 9;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 9
 	},
 /area/prison/research/secret/chemistry)
 "amo" = (
 /obj/machinery/chem_dispenser,
-/turf/open/floor/prison{
-	dir = 1;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 1
 	},
 /area/prison/research/secret/chemistry)
 "amp" = (
 /obj/machinery/chem_master,
-/turf/open/floor/prison{
-	dir = 1;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 1
 	},
 /area/prison/research/secret/chemistry)
 "amq" = (
@@ -5515,9 +5465,8 @@
 /area/prison/research/RD)
 "amr" = (
 /obj/structure/closet/secure_closet/chemical,
-/turf/open/floor/prison{
-	dir = 5;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 5
 	},
 /area/prison/research/secret/chemistry)
 "ams" = (
@@ -5666,9 +5615,8 @@
 /turf/open/floor/prison,
 /area/prison/research/secret)
 "amJ" = (
-/turf/open/floor/prison{
-	dir = 8;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 8
 	},
 /area/prison/research/secret/chemistry)
 "amK" = (
@@ -5689,9 +5637,8 @@
 	},
 /area/prison/research/secret/chemistry)
 "amM" = (
-/turf/open/floor/prison{
-	dir = 4;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 4
 	},
 /area/prison/research/secret/chemistry)
 "amN" = (
@@ -5708,9 +5655,8 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/prison{
-	dir = 9;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 9
 	},
 /area/prison/research)
 "amP" = (
@@ -6113,9 +6059,8 @@
 	},
 /area/prison/research/secret/chemistry)
 "anx" = (
-/turf/open/floor/prison{
-	dir = 6;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 6
 	},
 /area/prison/research/secret/chemistry)
 "any" = (
@@ -6431,9 +6376,8 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 1
 	},
-/turf/open/floor/prison{
-	dir = 10;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 10
 	},
 /area/prison/research/secret/chemistry)
 "aoe" = (
@@ -6443,15 +6387,13 @@
 	icon_state = "1-2"
 	},
 /obj/effect/landmark/corpsespawner/scientist,
-/turf/open/floor/prison{
-	dir = 2;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 2
 	},
 /area/prison/research/secret/chemistry)
 "aof" = (
-/turf/open/floor/prison{
-	dir = 2;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 2
 	},
 /area/prison/research/secret/chemistry)
 "aog" = (
@@ -6459,9 +6401,8 @@
 	dir = 1;
 	on = 1
 	},
-/turf/open/floor/prison{
-	dir = 6;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 6
 	},
 /area/prison/research/secret/chemistry)
 "aoh" = (
@@ -7999,9 +7940,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	dir = 9;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 9
 	},
 /area/prison/research)
 "arh" = (
@@ -8035,9 +7975,8 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/prison{
-	dir = 8;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 8
 	},
 /area/prison/research)
 "ark" = (
@@ -8054,9 +7993,8 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/turf/open/floor/prison{
-	dir = 4;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 4
 	},
 /area/prison/research)
 "arm" = (
@@ -8270,9 +8208,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	dir = 1;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 1
 	},
 /area/prison/research)
 "arK" = (
@@ -8288,9 +8225,8 @@
 	dir = 4
 	},
 /obj/effect/landmark/random_item/good,
-/turf/open/floor/prison{
-	dir = 1;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 1
 	},
 /area/prison/research)
 "arL" = (
@@ -8381,9 +8317,8 @@
 	},
 /area/prison/research)
 "arR" = (
-/turf/open/floor/prison{
-	dir = 4;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 4
 	},
 /area/prison/research)
 "arS" = (
@@ -8738,22 +8673,19 @@
 	},
 /area/prison/medbay/surgery)
 "asx" = (
-/turf/open/floor/prison{
-	dir = 10;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 10
 	},
 /area/prison/research)
 "asy" = (
-/turf/open/floor/prison{
-	dir = 2;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 2
 	},
 /area/prison/research)
 "asz" = (
 /obj/machinery/light,
-/turf/open/floor/prison{
-	dir = 2;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 2
 	},
 /area/prison/research)
 "asA" = (
@@ -8778,9 +8710,8 @@
 /area/prison/research)
 "asC" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
-/turf/open/floor/prison{
-	dir = 4;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 4
 	},
 /area/prison/research)
 "asD" = (
@@ -8924,9 +8855,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor/prison{
-	dir = 4;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 4
 	},
 /area/prison/research)
 "asO" = (
@@ -9161,9 +9091,8 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	dir = 8;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 8
 	},
 /area/prison/research)
 "ath" = (
@@ -9455,9 +9384,8 @@
 /obj/machinery/alarm/almayer{
 	dir = 1
 	},
-/turf/open/floor/prison{
-	dir = 1;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 1
 	},
 /area/prison/research)
 "atE" = (
@@ -9543,9 +9471,8 @@
 	},
 /area/prison/research/secret)
 "atL" = (
-/turf/open/floor/prison{
-	dir = 8;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 8
 	},
 /area/prison/research)
 "atM" = (
@@ -9564,9 +9491,8 @@
 /area/prison/research)
 "atN" = (
 /obj/effect/landmark/random_item/good,
-/turf/open/floor/prison{
-	dir = 4;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 4
 	},
 /area/prison/research)
 "atO" = (
@@ -9830,9 +9756,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	dir = 8;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 8
 	},
 /area/prison/research)
 "aum" = (
@@ -9993,9 +9918,8 @@
 /obj/structure/sign/vacuum{
 	pixel_y = 30
 	},
-/turf/open/floor/prison{
-	dir = 5;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 5
 	},
 /area/prison/research)
 "auF" = (
@@ -10036,9 +9960,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	dir = 4;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 4
 	},
 /area/prison/research)
 "auI" = (
@@ -10240,9 +10163,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10;
 	},
-/turf/open/floor/prison{
-	dir = 8;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 8
 	},
 /area/prison/research)
 "ava" = (
@@ -10284,9 +10206,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10
 	},
-/turf/open/floor/prison{
-	dir = 4;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 4
 	},
 /area/prison/research)
 "avd" = (
@@ -10478,9 +10399,8 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/prison{
-	dir = 10;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 10
 	},
 /area/prison/research)
 "avy" = (
@@ -10495,18 +10415,16 @@
 	dir = 4;
 	icon_state = "pipe-c"
 	},
-/turf/open/floor/prison{
-	dir = 2;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 2
 	},
 /area/prison/research)
 "avz" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	dir = 2;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 2
 	},
 /area/prison/research)
 "avA" = (
@@ -10514,9 +10432,8 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 8
 	},
-/turf/open/floor/prison{
-	dir = 6;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 6
 	},
 /area/prison/research)
 "avB" = (
@@ -10527,9 +10444,8 @@
 	dir = 1;
 	on = 1
 	},
-/turf/open/floor/prison{
-	dir = 10;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 10
 	},
 /area/prison/research)
 "avD" = (
@@ -10549,9 +10465,8 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 1
 	},
-/turf/open/floor/prison{
-	dir = 6;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 6
 	},
 /area/prison/research)
 "avG" = (
@@ -11156,9 +11071,8 @@
 /area/prison/medbay)
 "awQ" = (
 /obj/structure/filingcabinet,
-/turf/open/floor/prison{
-	dir = 9;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 9
 	},
 /area/prison/research)
 "awR" = (
@@ -11170,15 +11084,13 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/prison{
-	dir = 1;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 1
 	},
 /area/prison/research)
 "awS" = (
-/turf/open/floor/prison{
-	dir = 1;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 1
 	},
 /area/prison/research)
 "awT" = (
@@ -11189,9 +11101,8 @@
 /area/prison/maintenance/residential/access/north)
 "awU" = (
 /obj/machinery/photocopier,
-/turf/open/floor/prison{
-	dir = 5;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 5
 	},
 /area/prison/research)
 "awV" = (
@@ -11512,9 +11423,8 @@
 /area/prison/medbay)
 "axw" = (
 /obj/structure/filingcabinet,
-/turf/open/floor/prison{
-	dir = 8;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 8
 	},
 /area/prison/research)
 "axx" = (
@@ -12750,9 +12660,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	dir = 4;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 4
 	},
 /area/prison/research)
 "azT" = (
@@ -12989,9 +12898,8 @@
 	dir = 4;
 	on = 1
 	},
-/turf/open/floor/prison{
-	dir = 8;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 8
 	},
 /area/prison/research)
 "aAx" = (
@@ -13613,9 +13521,8 @@
 	dir = 1;
 	icon_state = "pipe-c"
 	},
-/turf/open/floor/prison{
-	dir = 2;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 2
 	},
 /area/prison/research)
 "aBD" = (
@@ -13650,9 +13557,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	dir = 8;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 8
 	},
 /area/prison/research)
 "aBG" = (
@@ -14553,9 +14459,8 @@
 /obj/machinery/power/apc/drained{
 	dir = 8
 	},
-/turf/open/floor/prison{
-	dir = 10;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 10
 	},
 /area/prison/research)
 "aDs" = (
@@ -14584,9 +14489,8 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	dir = 2;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 2
 	},
 /area/prison/research)
 "aDu" = (
@@ -14605,9 +14509,8 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	dir = 2;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 2
 	},
 /area/prison/research)
 "aDv" = (
@@ -15118,9 +15021,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/prison{
-	dir = 8;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 8
 	},
 /area/prison/research)
 "aEt" = (
@@ -15673,9 +15575,8 @@
 /obj/structure/sink{
 	pixel_y = 15
 	},
-/turf/open/floor/prison{
-	dir = 9;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 9
 	},
 /area/prison/research)
 "aFJ" = (
@@ -15683,18 +15584,16 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber,
-/turf/open/floor/prison{
-	dir = 1;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 1
 	},
 /area/prison/research)
 "aFK" = (
 /obj/structure/sink{
 	pixel_y = 15
 	},
-/turf/open/floor/prison{
-	dir = 5;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 5
 	},
 /area/prison/research)
 "aFL" = (
@@ -16467,9 +16366,8 @@
 	dir = 8;
 	icon_state = "pipe-c"
 	},
-/turf/open/floor/prison{
-	dir = 8;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 8
 	},
 /area/prison/research)
 "aGV" = (
@@ -16494,9 +16392,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10
 	},
-/turf/open/floor/prison{
-	dir = 4;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 4
 	},
 /area/prison/research)
 "aGX" = (
@@ -17045,18 +16942,16 @@
 /area/prison/research)
 "aIg" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/prison{
-	dir = 8;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 8
 	},
 /area/prison/research)
 "aIh" = (
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	dir = 4;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 4
 	},
 /area/prison/research)
 "aIi" = (
@@ -17219,9 +17114,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	dir = 6;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 6
 	},
 /area/prison/research)
 "aIy" = (
@@ -17286,9 +17180,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
 	},
-/turf/open/floor/prison{
-	dir = 2;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 2
 	},
 /area/prison/research)
 "aIG" = (
@@ -17560,32 +17453,28 @@
 /area/prison/research)
 "aJg" = (
 /obj/structure/closet/firecloset,
-/turf/open/floor/prison{
-	dir = 10;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 10
 	},
 /area/prison/research)
 "aJh" = (
 /obj/structure/closet/firecloset,
-/turf/open/floor/prison{
-	dir = 2;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 2
 	},
 /area/prison/research)
 "aJi" = (
 /obj/structure/closet/emcloset,
-/turf/open/floor/prison{
-	dir = 6;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 6
 	},
 /area/prison/research)
 "aJj" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 1
 	},
-/turf/open/floor/prison{
-	dir = 10;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 10
 	},
 /area/prison/research)
 "aJk" = (
@@ -17593,9 +17482,8 @@
 	dir = 4;
 	on = 1
 	},
-/turf/open/floor/prison{
-	dir = 2;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 2
 	},
 /area/prison/research)
 "aJl" = (
@@ -17642,9 +17530,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	dir = 9;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 9
 	},
 /area/prison/quarters/research)
 "aJo" = (
@@ -17664,9 +17551,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	dir = 1;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 1
 	},
 /area/prison/quarters/research)
 "aJp" = (
@@ -17681,9 +17567,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	dir = 1;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 1
 	},
 /area/prison/quarters/research)
 "aJq" = (
@@ -17699,9 +17584,8 @@
 	dir = 4
 	},
 /obj/effect/landmark/monkey_spawn,
-/turf/open/floor/prison{
-	dir = 1;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 1
 	},
 /area/prison/quarters/research)
 "aJr" = (
@@ -17717,9 +17601,8 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/open/floor/prison{
-	dir = 1;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 1
 	},
 /area/prison/quarters/research)
 "aJs" = (
@@ -17734,9 +17617,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	dir = 1;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 1
 	},
 /area/prison/quarters/research)
 "aJt" = (
@@ -17770,9 +17652,8 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
 	},
-/turf/open/floor/prison{
-	dir = 1;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 1
 	},
 /area/prison/quarters/research)
 "aJw" = (
@@ -17783,9 +17664,8 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
-/turf/open/floor/prison{
-	dir = 1;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 1
 	},
 /area/prison/quarters/research)
 "aJx" = (
@@ -17796,9 +17676,8 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
-/turf/open/floor/prison{
-	dir = 1;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 1
 	},
 /area/prison/quarters/research)
 "aJy" = (
@@ -17816,9 +17695,8 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
 	},
-/turf/open/floor/prison{
-	dir = 1;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 1
 	},
 /area/prison/quarters/research)
 "aJz" = (
@@ -17829,9 +17707,8 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
-/turf/open/floor/prison{
-	dir = 1;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 1
 	},
 /area/prison/quarters/research)
 "aJA" = (
@@ -17846,9 +17723,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10;
 	},
-/turf/open/floor/prison{
-	dir = 5;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 5
 	},
 /area/prison/quarters/research)
 "aJB" = (
@@ -18000,9 +17876,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5;
 	},
-/turf/open/floor/prison{
-	dir = 6;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 6
 	},
 /area/prison/quarters/research)
 "aJP" = (
@@ -18182,9 +18057,8 @@
 /area/prison/cellblock/lowsec/sw)
 "aKf" = (
 /obj/structure/flora/pottedplant,
-/turf/open/floor/prison{
-	dir = 10;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 10
 	},
 /area/prison/quarters/research)
 "aKg" = (
@@ -18192,30 +18066,26 @@
 /obj/machinery/power/apc/drained{
 	dir = 2
 	},
-/turf/open/floor/prison{
-	dir = 2;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 2
 	},
 /area/prison/quarters/research)
 "aKh" = (
-/turf/open/floor/prison{
-	dir = 2;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 2
 	},
 /area/prison/quarters/research)
 "aKi" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/prison{
-	dir = 2;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 2
 	},
 /area/prison/quarters/research)
 "aKj" = (
 /obj/machinery/light,
-/turf/open/floor/prison{
-	dir = 2;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 2
 	},
 /area/prison/quarters/research)
 "aKk" = (
@@ -18223,18 +18093,16 @@
 	dir = 1;
 	on = 1
 	},
-/turf/open/floor/prison{
-	dir = 2;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 2
 	},
 /area/prison/quarters/research)
 "aKl" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 1
 	},
-/turf/open/floor/prison{
-	dir = 2;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 2
 	},
 /area/prison/quarters/research)
 "aKm" = (
@@ -18432,9 +18300,8 @@
 /obj/machinery/alarm/almayer{
 	dir = 1
 	},
-/turf/open/floor/prison{
-	dir = 1;
-	icon_state = "whitepurple"
+/turf/open/floor/prison/purple/whitepurple{
+	dir = 1
 	},
 /area/prison/quarters/research)
 "aKE" = (
