@@ -474,16 +474,16 @@
 	else
 		. = ..()
 
-/obj/structure/jungle/vines/New()
-	..()
+/obj/structure/jungle/vines/Initialize()
+	. = ..()
 	icon_state = pick("Light1","Light2","Light3")
 
 /obj/structure/jungle/vines/heavy
 	desc = "A thick, coiled mass of twisted vines."
 	opacity = 1
 
-/obj/structure/jungle/vines/heavy/New()
-	..()
+/obj/structure/jungle/vines/heavy/Initialize()
+	. = ..()
 	icon_state = pick("Hvy1","Hvy2","Hvy3","Med1","Med2","Med3")
 
 /obj/structure/jungle/tree/grasscarpet
