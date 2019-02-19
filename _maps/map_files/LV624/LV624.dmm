@@ -7632,9 +7632,7 @@
 	name = "Dome Lockdown";
 	pixel_y = 25
 	},
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/lv624/lazarus/captain)
 "azi" = (
 /obj/machinery/power/apc{
@@ -19724,39 +19722,29 @@
 	pixel_y = 26
 	},
 /obj/item/reagent_container/hypospray/autoinjector/dexalinplus,
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/lv624/lazarus/captain)
 "bhu" = (
 /obj/structure/bed/chair/office/light{
 	dir = 8
 	},
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/lv624/lazarus/captain)
 "bhv" = (
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/lv624/lazarus/captain)
 "bhw" = (
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/lv624/lazarus/captain)
 "bhx" = (
 /obj/structure/closet/cabinet,
 /obj/item/reagent_container/food/snacks/syndicake{
 	layer = 2.6
 	},
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/lv624/lazarus/captain)
 "bhy" = (
 /obj/structure/bookcase,
@@ -20051,27 +20039,21 @@
 	},
 /obj/effect/landmark/random_item/good,
 /mob/living/simple_animal/corgi/Lisa,
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/lv624/lazarus/captain)
 "bin" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4;
 	on = 1
 	},
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/lv624/lazarus/captain)
 "bio" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/lv624/lazarus/captain)
 "bip" = (
 /obj/structure/cable/yellow{
@@ -20083,9 +20065,7 @@
 	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/lv624/lazarus/captain)
 "biq" = (
 /obj/machinery/door/airlock/almayer/command{
@@ -20399,9 +20379,7 @@
 	d2 = 4;
 	icon_state = "0-4"
 	},
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/lv624/lazarus/captain)
 "bje" = (
 /obj/structure/cable/yellow{
@@ -20409,9 +20387,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/lv624/lazarus/captain)
 "bjf" = (
 /obj/structure/coatrack,
@@ -20421,9 +20397,7 @@
 	icon_state = "1-8";
 	layer = 2.44
 	},
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/lv624/lazarus/captain)
 "bjg" = (
 /obj/structure/filingcabinet,
@@ -20645,9 +20619,7 @@
 	desc = "It's a corgi puppy. MISTER WIGGLES!! HE IS THE GREATEST!";
 	name = "\improper Mister Wiggles"
 	},
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/lv624/lazarus/captain)
 "bjM" = (
 /obj/structure/safe/floor{
@@ -20655,9 +20627,7 @@
 	pixel_x = 30;
 	spawnkey = 0
 	},
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/lv624/lazarus/captain)
 "bjN" = (
 /obj/structure/table/woodentable,
@@ -21001,16 +20971,12 @@
 "bkH" = (
 /obj/structure/table/woodentable,
 /obj/item/device/megaphone,
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/lv624/lazarus/captain)
 "bkI" = (
 /obj/structure/table/woodentable,
 /obj/machinery/light/small,
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/lv624/lazarus/captain)
 "bkJ" = (
 /obj/structure/table/woodentable,
@@ -21018,16 +20984,12 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/lv624/lazarus/hop)
 "bkK" = (
 /obj/structure/table/woodentable,
 /obj/machinery/computer/rdconsole,
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/lv624/lazarus/hop)
 "bkL" = (
 /obj/effect/landmark/random_item/good,
@@ -21293,18 +21255,14 @@
 "blq" = (
 /obj/item/clothing/glasses/regular,
 /obj/effect/decal/cleanable/blood/splatter/animated,
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/lv624/lazarus/hop)
 "blr" = (
 /obj/structure/bed/chair/office/light{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/blood/splatter/animated,
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/lv624/lazarus/hop)
 "bls" = (
 /obj/machinery/door/airlock/almayer/command{
@@ -21660,33 +21618,25 @@
 /obj/item/cane,
 /obj/structure/bed/fancy,
 /obj/effect/decal/cleanable/blood/splatter/animated,
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/lv624/lazarus/hop)
 "bma" = (
 /obj/effect/decal/cleanable/blood/splatter/animated,
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/lv624/lazarus/hop)
 "bmb" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4;
 	on = 1
 	},
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/lv624/lazarus/hop)
 "bmc" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/lv624/lazarus/hop)
 "bmd" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -21968,29 +21918,21 @@
 /area/lv624/ground/compound/se)
 "bmO" = (
 /obj/structure/filingcabinet,
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/lv624/lazarus/hop)
 "bmP" = (
 /obj/structure/filingcabinet/chestdrawer,
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/lv624/lazarus/hop)
 "bmQ" = (
 /obj/structure/bed/chair/office/light,
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/lv624/lazarus/hop)
 "bmR" = (
 /obj/machinery/light/small{
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/lv624/lazarus/hop)
 "bmS" = (
 /obj/machinery/light{
@@ -22206,16 +22148,12 @@
 /area/lv624/ground/compound/se)
 "bnv" = (
 /obj/structure/table/woodentable,
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/lv624/lazarus/hop)
 "bnw" = (
 /obj/structure/table/woodentable,
 /obj/item/device/taperecorder,
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/lv624/lazarus/hop)
 "bnx" = (
 /obj/effect/landmark/random_item/crap,

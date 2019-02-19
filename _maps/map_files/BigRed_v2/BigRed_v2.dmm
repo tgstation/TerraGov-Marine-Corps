@@ -5209,21 +5209,15 @@
 	},
 /area/bigredv2/outside/marshal_office)
 "alB" = (
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/bigredv2/outside/marshal_office)
 "alC" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/bigredv2/outside/marshal_office)
 "alD" = (
 /obj/structure/table/woodentable,
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/bigredv2/outside/marshal_office)
 "alE" = (
 /obj/structure/table/woodentable,
@@ -5731,17 +5725,13 @@
 "amB" = (
 /obj/effect/landmark/start/surv_spawn,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/bigredv2/outside/marshal_office)
 "amC" = (
 /obj/structure/bed/chair/office/light{
 	dir = 1
 	},
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/bigredv2/outside/marshal_office)
 "amD" = (
 /obj/effect/landmark/random_item/crap,
@@ -6262,9 +6252,7 @@
 /area/bigredv2/outside/marshal_office)
 "anH" = (
 /obj/structure/bed/chair,
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/bigredv2/outside/marshal_office)
 "anI" = (
 /turf/closed/wall,
@@ -6595,9 +6583,7 @@
 	dir = 1;
 	on = 1
 	},
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/bigredv2/outside/marshal_office)
 "aoo" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
@@ -10581,17 +10567,13 @@
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
 "awq" = (
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/bigredv2/outside/dorms)
 "awr" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
 	},
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/bigredv2/outside/dorms)
 "aws" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -10900,22 +10882,16 @@
 "axe" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/random_item/good,
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/bigredv2/outside/dorms)
 "axf" = (
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /obj/effect/decal/cleanable/blood/gibs/limb,
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/bigredv2/outside/dorms)
 "axg" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/bigredv2/outside/dorms)
 "axh" = (
 /obj/machinery/door/airlock/multi_tile/almayer/generic{
@@ -11176,23 +11152,17 @@
 /area/bigredv2/outside/dorms)
 "axM" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/bigredv2/outside/dorms)
 "axN" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/bigredv2/outside/dorms)
 "axO" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/bigredv2/outside/dorms)
 "axP" = (
 /obj/structure/bed/chair{
@@ -11521,9 +11491,7 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
 	},
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/bigredv2/outside/dorms)
 "ayt" = (
 /obj/effect/decal/cleanable/dirt,
@@ -11532,18 +11500,14 @@
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/bigredv2/outside/dorms)
 "ayu" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
 	},
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/bigredv2/outside/dorms)
 "ayv" = (
 /obj/item/device/radio/intercom{
@@ -11801,9 +11765,7 @@
 /area/bigredv2/outside/dorms)
 "aza" = (
 /obj/effect/landmark/start/surv_spawn,
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/bigredv2/outside/dorms)
 "azb" = (
 /turf/closed/wall,
@@ -26450,14 +26412,10 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/bigredv2/outside/admin_building)
 "bcc" = (
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/bigredv2/outside/admin_building)
 "bcd" = (
 /obj/effect/landmark/start/surv_spawn,
@@ -26794,9 +26752,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
 	},
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/bigredv2/outside/admin_building)
 "bcS" = (
 /obj/structure/cable{
@@ -26809,9 +26765,7 @@
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/bigredv2/outside/admin_building)
 "bcT" = (
 /obj/effect/landmark/random_item/crap,
@@ -26825,9 +26779,7 @@
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/bigredv2/outside/admin_building)
 "bcU" = (
 /obj/structure/cable{
@@ -27020,9 +26972,7 @@
 /area/bigredv2/outside/admin_building)
 "bds" = (
 /obj/effect/spawner/random/toolbox,
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/bigredv2/outside/admin_building)
 "bdt" = (
 /obj/structure/cable{
@@ -28207,16 +28157,12 @@
 /obj/structure/bed/chair{
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/bigredv2/outside/office_complex)
 "bgi" = (
 /obj/structure/table,
 /obj/machinery/computer3/laptop/secure_data,
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/bigredv2/outside/office_complex)
 "bgj" = (
 /obj/structure/table,
@@ -28225,9 +28171,7 @@
 	pixel_y = 10;
 	tag = "icon-plant-15"
 	},
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/bigredv2/outside/office_complex)
 "bgk" = (
 /obj/machinery/alarm{
@@ -28307,24 +28251,18 @@
 	},
 /area/bigredv2/outside/office_complex)
 "bgu" = (
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/bigredv2/outside/office_complex)
 "bgv" = (
 /obj/structure/table,
 /obj/item/tool/pen/blue,
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/bigredv2/outside/office_complex)
 "bgw" = (
 /obj/structure/bed/chair/office/light{
 	dir = 8
 	},
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/bigredv2/outside/office_complex)
 "bgx" = (
 /turf/open/floor{
@@ -28476,17 +28414,13 @@
 "bgP" = (
 /obj/structure/table,
 /obj/item/paper,
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/bigredv2/outside/office_complex)
 "bgQ" = (
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "grimy"
-	},
+/turf/open/floor/grimy,
 /area/bigredv2/outside/office_complex)
 "bgR" = (
 /obj/machinery/door_control{
