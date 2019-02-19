@@ -3528,10 +3528,8 @@
 /area/lv624/ground/sand9)
 "amM" = (
 /obj/effect/landmark/start/surv_spawn,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "amN" = (
@@ -3562,10 +3560,8 @@
 /obj/item/tool/pen{
 	pixel_y = 7
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "amQ" = (
@@ -5028,10 +5024,8 @@
 	icon_state = "sink";
 	pixel_x = 12
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "arN" = (
@@ -5264,10 +5258,8 @@
 	icon_state = "sink";
 	pixel_x = -12
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "asI" = (
@@ -6241,17 +6233,13 @@
 /area/lv624/ground/jungle7)
 "awm" = (
 /obj/structure/closet/secure_closet/medical3,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "awn" = (
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "awo" = (
@@ -6379,10 +6367,8 @@
 /area/lv624/ground/river1)
 "awG" = (
 /obj/machinery/bioprinter,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "awH" = (
@@ -6392,10 +6378,8 @@
 	desc = "Someone has crossed out the Space from Space Cleaner and written in Surgery. 'Do not remove under punishment of death!!!' is scrawled on the back.";
 	name = "Surgery Cleaner"
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "awI" = (
@@ -6419,10 +6403,8 @@
 /area/lv624/lazarus/medbay)
 "awK" = (
 /obj/machinery/vending/medical,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "awL" = (
@@ -6443,10 +6425,8 @@
 	amount = 40
 	},
 /obj/item/device/autopsy_scanner,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "awM" = (
@@ -6466,10 +6446,8 @@
 "awN" = (
 /obj/structure/table,
 /obj/item/tank/anesthetic,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "awO" = (
@@ -6582,20 +6560,16 @@
 /area/lv624/ground/jungle6)
 "axe" = (
 /obj/machinery/vending/MarineMed/Blood,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "axf" = (
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "axg" = (
@@ -6611,10 +6585,8 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "axi" = (
@@ -6628,18 +6600,14 @@
 	dir = 8
 	},
 /obj/item/storage/surgical_tray,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "axk" = (
 /obj/item/tool/surgery/retractor,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "axl" = (
@@ -6735,20 +6703,16 @@
 /area/lv624/ground/jungle6)
 "axy" = (
 /obj/machinery/iv_drip,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "axz" = (
 /obj/machinery/optable,
 /obj/effect/landmark/start/surv_spawn,
 /obj/item/tank/anesthetic,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "axA" = (
@@ -6757,10 +6721,8 @@
 	name = "OR1 Shutters";
 	pixel_x = 30
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "axB" = (
@@ -6789,19 +6751,15 @@
 	name = "OR2 Shutters";
 	pixel_x = -30
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "axE" = (
 /obj/machinery/optable,
 /obj/effect/decal/cleanable/blood/gibs,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "axF" = (
@@ -6898,10 +6856,8 @@
 /obj/machinery/door/poddoor/shutters/almayer{
 	id = "OR1"
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "axU" = (
@@ -6915,10 +6871,8 @@
 	req_access_txt = "0";
 	req_one_access_txt = "0"
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "axW" = (
@@ -6936,10 +6890,8 @@
 	name = "\improper Shutters";
 	opacity = 0
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "axX" = (
@@ -7079,10 +7031,8 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "ays" = (
@@ -7090,19 +7040,15 @@
 /obj/item/stack/medical/bruise_pack,
 /obj/item/stack/medical/ointment,
 /obj/item/storage/box/masks,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "ayt" = (
 /obj/item/storage/firstaid/toxin,
 /obj/structure/table,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "ayu" = (
@@ -7114,20 +7060,16 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "ayv" = (
 /obj/structure/table,
 /obj/item/storage/box/masks,
 /obj/item/storage/box/gloves,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "ayw" = (
@@ -7143,18 +7085,14 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "ayx" = (
 /obj/item/stack/medical/bruise_pack,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "ayy" = (
@@ -7162,10 +7100,8 @@
 /obj/item/clothing/glasses/hud/health,
 /obj/item/storage/firstaid,
 /obj/item/storage/firstaid,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "ayz" = (
@@ -7177,10 +7113,8 @@
 /obj/structure/extinguisher_cabinet{
 	pixel_y = 30
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "ayA" = (
@@ -7195,10 +7129,8 @@
 	d2 = 4;
 	icon_state = "0-4"
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "ayB" = (
@@ -7207,10 +7139,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "ayC" = (
@@ -7423,10 +7353,8 @@
 /area/lv624/lazarus/medbay)
 "azc" = (
 /obj/effect/landmark/random_item/crap,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "azd" = (
@@ -7434,20 +7362,16 @@
 	dir = 4;
 	on = 1
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "aze" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "azf" = (
@@ -7460,10 +7384,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "azg" = (
@@ -7601,54 +7523,42 @@
 /area/lv624/ground/compound/ne)
 "azB" = (
 /obj/machinery/bodyscanner,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "azC" = (
 /obj/machinery/body_scanconsole,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "azD" = (
 /obj/structure/closet/crate/medical,
 /obj/item/storage/firstaid/adv,
 /obj/item/storage/box/bodybags,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "azE" = (
 /obj/item/clothing/suit/surgical,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "azF" = (
 /obj/machinery/sleeper,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "azG" = (
 /obj/machinery/sleep_console{
 	density = 0
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "azH" = (
@@ -7975,26 +7885,20 @@
 /obj/structure/table,
 /obj/item/reagent_container/hypospray,
 /obj/item/tool/surgery/FixOVein,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "aAL" = (
 /obj/structure/bed/chair,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "aAM" = (
 /obj/structure/table,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "aAN" = (
@@ -8118,52 +8022,40 @@
 /obj/item/bodybag,
 /obj/structure/table,
 /obj/item/tank/anesthetic,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "aBm" = (
 /obj/machinery/light,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "aBn" = (
 /obj/machinery/door/window/southright,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "aBp" = (
 /obj/machinery/door/window/southleft,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "aBq" = (
 /obj/structure/bed/chair/wheelchair,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "aBr" = (
 /obj/structure/table,
 /obj/item/clothing/glasses/sunglasses/blindfold,
 /obj/item/clothing/mask/muzzle,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "aBs" = (
@@ -8286,58 +8178,46 @@
 /obj/structure/table,
 /obj/item/reagent_container/hypospray/autoinjector/quickclot,
 /obj/item/tool/surgery/bonegel,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "aBR" = (
 /obj/structure/table,
 /obj/item/tool/surgery/bonesetter,
 /obj/item/tool/surgery/cautery,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "aBS" = (
 /obj/item/reagent_container/spray,
 /obj/item/device/healthanalyzer,
 /obj/structure/table,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "aBT" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	on = 1
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "aBU" = (
 /obj/structure/table,
 /obj/item/folder/blue,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "aBV" = (
 /obj/structure/table,
 /obj/item/clothing/glasses/eyepatch,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "aBW" = (
@@ -8428,18 +8308,14 @@
 /area/lv624/ground/jungle6)
 "aCw" = (
 /obj/structure/bed/roller,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "aCx" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "aCy" = (
@@ -8560,10 +8436,8 @@
 	req_one_access_txt = "0"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitebluecorner";
-	tag = "icon-whitebluecorner"
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "aCZ" = (
