@@ -1293,12 +1293,9 @@
 	damage_var_high = CONFIG_GET(number/combat_define/mlow_proj_variance)
 
 /datum/ammo/xeno/toxin/on_hit_mob(mob/living/carbon/M, obj/item/projectile/P)
-	if(!istype(M) || xeno_hivenumber(M) && xeno_hivenumber(M) == xeno_hivenumber(P.firer))
-		return ..()
-	var/mob/living/carbon/C = M
-	if(C.status_flags & XENO_HOST && istype(C.buckled, /obj/structure/bed/nest) || C.stat == DEAD)
+	if(!istype(M) || (xeno_hivenumber(M) && xeno_hivenumber(M) == xeno_hivenumber(P.firer)))
 		return
-	staggerstun(C, P, CONFIG_GET(number/combat_define/close_shell_range), 0, 0, 1, 1, 0) //Staggers and slows down briefly
+	staggerstun(M, P, CONFIG_GET(number/combat_define/close_shell_range), 0, 0, 1, 1, 0) //Staggers and slows down briefly
 
 	return ..()
 
@@ -1408,14 +1405,6 @@
 
 /datum/ammo/xeno/acid/on_shield_block(mob/M, obj/item/projectile/P)
 	burst(M,P,damage_type)
-
-/datum/ammo/xeno/acid/on_hit_mob(mob/M, obj/item/projectile/P)
-	if(!iscarbon(M) || xeno_hivenumber(M) && xeno_hivenumber(M) == xeno_hivenumber(P.firer))
-		return ..()
-	var/mob/living/carbon/C = M
-	if(C.status_flags & XENO_HOST && istype(C.buckled, /obj/structure/bed/nest) || C.stat == DEAD)
-		return
-	return ..()
 
 /datum/ammo/xeno/acid/medium
 	name = "acid spatter"
