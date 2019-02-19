@@ -744,6 +744,7 @@
 				qdel(H.wear_id)
 
 			H.job = newrank
+			H.faction = J.faction
 
 			H.equip_to_slot_or_del(I, SLOT_WEAR_ID)
 
