@@ -34607,7 +34607,6 @@
 /area/ice_colony/underground/medical/hallway)
 "bts" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
-	tag = "icon-intact (NORTHEAST)";
 	dir = 5
 	},
 /turf/open/floor{
@@ -35051,7 +35050,6 @@
 /area/ice_colony/underground/engineering/substation)
 "buk" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
-	tag = "icon-intact (NORTHEAST)";
 	dir = 5
 	},
 /turf/open/floor{

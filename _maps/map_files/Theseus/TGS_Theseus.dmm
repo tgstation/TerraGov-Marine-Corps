@@ -2417,14 +2417,12 @@
 	},
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHEAST)";
 	dir = 6
 	},
 /turf/open/floor/almayer,
 /area/almayer/living/officer_rnr)
 "agA" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHWEST)";
 	dir = 9
 	},
 /turf/open/floor/almayer,
@@ -3219,11 +3217,9 @@
 /area/almayer/living/commandbunks)
 "aiv" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -3581,11 +3577,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -3675,7 +3669,6 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (SOUTHEAST)";
 	dir = 6
 	},
 /turf/open/floor/almayer,
@@ -3694,7 +3687,6 @@
 "ajw" = (
 /obj/machinery/light,
 /obj/machinery/atmospherics/pipe/simple/general/visible{
-	tag = "icon-intact (NORTHWEST)";
 	dir = 9
 	},
 /turf/open/floor/almayer{
@@ -3994,14 +3986,12 @@
 /area/almayer/hallways/aft_hallway)
 "akh" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable/yellow{
@@ -4013,14 +4003,12 @@
 /area/almayer/hallways/aft_hallway)
 "aki" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable/yellow{
@@ -4035,11 +4023,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/camera/autoname/almayer{
@@ -4061,11 +4047,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable/yellow{
@@ -4077,14 +4061,12 @@
 /area/almayer/hallways/aft_hallway)
 "akl" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable/yellow{
@@ -4096,28 +4078,24 @@
 /area/almayer/hallways/aft_hallway)
 "akm" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/hallways/aft_hallway)
 "akn" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer,
@@ -4139,11 +4117,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -4163,11 +4139,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -4185,11 +4159,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -4208,11 +4180,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -4227,14 +4197,12 @@
 /area/almayer/hallways/aft_hallway)
 "akt" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -4250,11 +4218,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -4271,14 +4237,12 @@
 /area/almayer/hallways/aft_hallway)
 "akv" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -4298,14 +4262,12 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -4317,7 +4279,6 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -4334,14 +4295,12 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -4357,11 +4316,9 @@
 	icon_state = "2-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHWEST)";
 	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (SOUTHWEST)";
 	dir = 10
 	},
 /obj/structure/disposalpipe/segment{
@@ -4568,11 +4525,9 @@
 /area/almayer/shipboard/brig)
 "akU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/security/glass{
@@ -4671,7 +4626,6 @@
 /area/almayer/shipboard/brig)
 "alf" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -4691,11 +4645,9 @@
 /area/almayer/shipboard/brig)
 "alh" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHWEST)";
 	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (SOUTHWEST)";
 	dir = 10
 	},
 /turf/open/floor/almayer{
@@ -4817,7 +4769,6 @@
 /area/almayer/command/corporateliaison)
 "alv" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHEAST)";
 	dir = 6
 	},
 /obj/structure/disposalpipe/segment{
@@ -4825,7 +4776,6 @@
 	icon_state = "pipe-c"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (SOUTHEAST)";
 	dir = 6
 	},
 /obj/structure/cable/yellow{
@@ -4887,11 +4837,9 @@
 	icon_state = "1-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHEAST)";
 	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (NORTHEAST)";
 	dir = 5
 	},
 /obj/structure/disposalpipe/segment{
@@ -4907,11 +4855,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -4936,11 +4882,9 @@
 	pixel_y = 25
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -4966,7 +4910,6 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -4985,11 +4928,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -5008,11 +4949,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -5030,11 +4969,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -5053,11 +4990,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -5079,11 +5014,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -5099,11 +5032,9 @@
 	icon_state = "pipe-c"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHEAST)";
 	dir = 6
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (SOUTHEAST)";
 	dir = 6
 	},
 /turf/open/floor/almayer,
@@ -5118,11 +5049,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer,
@@ -5140,11 +5069,9 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -5164,11 +5091,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -5186,11 +5111,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -5209,11 +5132,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -5225,7 +5146,6 @@
 /area/almayer/hallways/aft_hallway)
 "alQ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -5237,7 +5157,6 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -5258,18 +5177,15 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/hallways/aft_hallway)
 "alS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -5281,7 +5197,6 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -5301,7 +5216,6 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -5325,11 +5239,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -5351,18 +5263,15 @@
 	pixel_y = 25
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/hallways/aft_hallway)
 "alW" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -5374,14 +5283,12 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/hallways/aft_hallway)
 "alX" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -5393,14 +5300,12 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer,
 /area/almayer/hallways/aft_hallway)
 "alY" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -5412,7 +5317,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer,
@@ -5432,7 +5336,6 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
@@ -5451,11 +5354,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer,
@@ -5473,18 +5374,15 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/hallways/stern_hallway)
 "amc" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -5496,7 +5394,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -5511,11 +5408,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -5530,11 +5425,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer,
@@ -5549,11 +5442,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -5573,11 +5464,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -5595,11 +5484,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -5615,11 +5502,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -5635,7 +5520,6 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -5645,11 +5529,9 @@
 /area/almayer/hallways/stern_hallway)
 "amk" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -5669,11 +5551,9 @@
 /area/almayer/hallways/stern_hallway)
 "aml" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHWEST)";
 	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (SOUTHWEST)";
 	dir = 10
 	},
 /obj/structure/disposalpipe/segment{
@@ -5907,11 +5787,9 @@
 /area/almayer/command/cic)
 "amJ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/security{
@@ -6214,7 +6092,6 @@
 /area/almayer/hallways/stern_hallway)
 "anw" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -6232,7 +6109,6 @@
 	},
 /obj/machinery/door/firedoor/border_only/almayer,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -6245,7 +6121,6 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -6256,7 +6131,6 @@
 /area/almayer/hallways/stern_hallway)
 "anz" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHWEST)";
 	dir = 10
 	},
 /obj/structure/disposalpipe/segment{
@@ -6295,14 +6169,12 @@
 /area/almayer/command/self_destruct)
 "anE" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHEAST)";
 	dir = 6
 	},
 /obj/machinery/light{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (SOUTHEAST)";
 	dir = 6
 	},
 /turf/open/floor/almayer{
@@ -6313,7 +6185,6 @@
 /area/almayer/shipboard/brig)
 "anF" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -6349,7 +6220,6 @@
 /area/almayer/command/cic)
 "anI" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -6430,11 +6300,9 @@
 /area/almayer/shipboard/brig)
 "anS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -6721,7 +6589,6 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -6741,7 +6608,6 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -6755,7 +6621,6 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -6766,7 +6631,6 @@
 /area/almayer/medical/medical_science)
 "aox" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -6969,11 +6833,9 @@
 /area/almayer/command/self_destruct)
 "aoZ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHWEST)";
 	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (NORTHWEST)";
 	dir = 9
 	},
 /turf/open/floor/almayer{
@@ -7054,11 +6916,9 @@
 /area/almayer/shipboard/chief_mp_office)
 "apj" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -8666,7 +8526,6 @@
 /area/almayer/shipboard/brig)
 "asC" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/security{
@@ -8694,7 +8553,6 @@
 /area/almayer/shipboard/brig)
 "asF" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -8704,7 +8562,6 @@
 /area/almayer/shipboard/brig)
 "asG" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/light,
@@ -8746,7 +8603,6 @@
 /area/almayer/shipboard/brig)
 "asJ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -8762,7 +8618,6 @@
 /area/almayer/shipboard/brig)
 "asL" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -9578,11 +9433,9 @@
 	icon_state = "pipe-c"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHEAST)";
 	dir = 6
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (SOUTHEAST)";
 	dir = 6
 	},
 /obj/structure/cable{
@@ -9600,11 +9453,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -9623,11 +9474,9 @@
 	icon_state = "pipe-c"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -9989,7 +9838,6 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -10142,7 +9990,6 @@
 /area/almayer/medical/upper_medical)
 "avr" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -10167,7 +10014,6 @@
 	id = "eorsign"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/research{
@@ -10180,7 +10026,6 @@
 /area/almayer/medical/medical_science)
 "avt" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -10368,7 +10213,6 @@
 /area/almayer/engineering/upper_engineering)
 "avN" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -11086,7 +10930,6 @@
 /area/almayer/command/self_destruct)
 "axt" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/light/small,
@@ -11143,7 +10986,6 @@
 /area/almayer/shipboard/brig)
 "axz" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (NORTHEAST)";
 	dir = 5
 	},
 /obj/structure/bed/chair/office/dark{
@@ -11156,7 +10998,6 @@
 /area/almayer/shipboard/chief_mp_office)
 "axA" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment,
@@ -11168,7 +11009,6 @@
 /area/almayer/shipboard/chief_mp_office)
 "axB" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/power/apc/almayer{
@@ -11187,7 +11027,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (NORTHWEST)";
 	dir = 9
 	},
 /obj/structure/cable{
@@ -11247,11 +11086,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -12257,11 +12094,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -12300,11 +12135,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -12324,11 +12157,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer,
@@ -12341,11 +12172,9 @@
 	},
 /obj/structure/disposalpipe/junction,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHWEST)";
 	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (SOUTHWEST)";
 	dir = 10
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -12403,7 +12232,6 @@
 /area/almayer/command/cic)
 "azH" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (SOUTHEAST)";
 	dir = 6
 	},
 /obj/structure/cable{
@@ -12416,7 +12244,6 @@
 /area/almayer/command/cic)
 "azI" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer,
@@ -12500,11 +12327,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -12529,11 +12354,9 @@
 	icon_state = "1-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -12551,11 +12374,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -12672,7 +12493,6 @@
 /area/almayer/medical/medical_science)
 "aAe" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/door/firedoor/border_only/almayer,
@@ -12874,7 +12694,6 @@
 	icon_state = "pipe-c"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer/mono,
@@ -12889,7 +12708,6 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer/mono,
@@ -12913,7 +12731,6 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer/mono,
@@ -12933,7 +12750,6 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer/mono,
@@ -12988,7 +12804,6 @@
 /area/almayer/engineering/upper_engineering)
 "aAD" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHEAST)";
 	dir = 5
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -13031,7 +12846,6 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer/mono,
@@ -13064,7 +12878,6 @@
 	icon_state = "1-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -13079,7 +12892,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -13095,7 +12907,6 @@
 	icon_state = "2-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHWEST)";
 	dir = 10
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -13295,7 +13106,6 @@
 /area/almayer/command/self_destruct)
 "aBf" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -13308,7 +13118,6 @@
 /area/almayer/shipboard/chief_mp_office)
 "aBg" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHWEST)";
 	dir = 9
 	},
 /obj/structure/disposalpipe/segment{
@@ -13457,7 +13266,6 @@
 /area/almayer/shipboard/brig)
 "aBp" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -13718,7 +13526,6 @@
 /area/almayer/medical/medical_science)
 "aBS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHEAST)";
 	dir = 6
 	},
 /turf/open/floor/almayer{
@@ -13733,7 +13540,6 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -13743,7 +13549,6 @@
 /area/almayer/medical/medical_science)
 "aBU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -13754,7 +13559,6 @@
 /area/almayer/medical/medical_science)
 "aBV" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/door/firedoor/border_only/almayer,
@@ -13771,7 +13575,6 @@
 /area/almayer/medical/medical_science)
 "aBW" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -13782,7 +13585,6 @@
 /area/almayer/medical/medical_science)
 "aBX" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -13792,7 +13594,6 @@
 /area/almayer/medical/medical_science)
 "aBY" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/bed/chair/office/dark,
@@ -13803,7 +13604,6 @@
 /area/almayer/medical/medical_science)
 "aBZ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/door/poddoor/shutters/almayer{
@@ -13822,7 +13622,6 @@
 /area/almayer/medical/medical_science)
 "aCa" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHWEST)";
 	dir = 9
 	},
 /obj/machinery/light,
@@ -14098,7 +13897,6 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -14116,7 +13914,6 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -14139,7 +13936,6 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/engineering{
@@ -14162,7 +13958,6 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -14183,7 +13978,6 @@
 	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -14204,7 +13998,6 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -14225,7 +14018,6 @@
 	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHWEST)";
 	dir = 10
 	},
 /turf/open/floor/almayer{
@@ -14337,7 +14129,6 @@
 	on = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -14435,11 +14226,9 @@
 	icon_state = "2-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (NORTHEAST)";
 	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHEAST)";
 	dir = 5
 	},
 /turf/open/floor/almayer,
@@ -14454,11 +14243,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -14473,7 +14260,6 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
@@ -14489,11 +14275,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer/mono,
@@ -14504,7 +14288,6 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHWEST)";
 	dir = 10
 	},
 /obj/structure/disposalpipe/junction,
@@ -14738,11 +14521,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/door/poddoor/almayer{
@@ -15033,11 +14814,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -15063,11 +14842,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -15108,11 +14885,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/command{
@@ -15190,7 +14965,6 @@
 /area/almayer/shipboard/brig)
 "aEr" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -15228,7 +15002,6 @@
 	icon_state = "pipe-c"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (SOUTHEAST)";
 	dir = 6
 	},
 /obj/effect/decal/warning_stripes/thin{
@@ -15268,11 +15041,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -15286,11 +15057,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -15308,11 +15077,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/flasher{
@@ -15354,11 +15121,9 @@
 /area/almayer/command/cic)
 "aEC" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -15400,11 +15165,9 @@
 /area/almayer/command/cic)
 "aEF" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (SOUTHWEST)";
 	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHWEST)";
 	dir = 10
 	},
 /obj/structure/disposalpipe/segment{
@@ -15659,7 +15422,6 @@
 	icon_state = "2-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHEAST)";
 	dir = 5
 	},
 /turf/open/floor/almayer{
@@ -15679,7 +15441,6 @@
 	},
 /obj/structure/bed/chair,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -15699,7 +15460,6 @@
 	},
 /obj/structure/bed/chair,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -15719,7 +15479,6 @@
 	icon_state = "1-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHWEST)";
 	dir = 9
 	},
 /turf/open/floor/almayer{
@@ -15825,11 +15584,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/effect/decal/warning_stripes/thin{
@@ -15858,11 +15615,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -15876,7 +15631,6 @@
 	icon_state = "pipe-c"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHWEST)";
 	dir = 9
 	},
 /turf/open/floor/almayer{
@@ -15945,11 +15699,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/door/firedoor/border_only/almayer,
@@ -16240,7 +15992,6 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (SOUTHEAST)";
 	dir = 6
 	},
 /obj/structure/cable{
@@ -16851,11 +16602,9 @@
 "aHt" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHWEST)";
 	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (SOUTHWEST)";
 	dir = 10
 	},
 /obj/structure/cable{
@@ -16931,11 +16680,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer,
@@ -16954,11 +16701,9 @@
 	opacity = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -16983,7 +16728,6 @@
 	icon_state = "pipe-c"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (SOUTHEAST)";
 	dir = 6
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -17409,11 +17153,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/cable/yellow{
@@ -17461,11 +17203,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -17533,11 +17273,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/door/poddoor/almayer{
@@ -17760,7 +17498,6 @@
 /area/almayer/medical/medical_science)
 "aJg" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -17771,7 +17508,6 @@
 /area/almayer/medical/medical_science)
 "aJh" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -17782,7 +17518,6 @@
 /area/almayer/medical/medical_science)
 "aJi" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -18074,11 +17809,9 @@
 /area/almayer/shipboard/brig_cells)
 "aJU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -18094,11 +17827,9 @@
 /area/almayer/hallways/aft_hallway)
 "aJV" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -18198,11 +17929,9 @@
 /area/almayer/command/cic)
 "aKh" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -18514,7 +18243,6 @@
 /area/almayer/medical/upper_medical)
 "aKK" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -18533,7 +18261,6 @@
 /area/almayer/medical/upper_medical)
 "aKL" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -18563,7 +18290,6 @@
 /area/almayer/medical/medical_science)
 "aKM" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -18582,7 +18308,6 @@
 /area/almayer/medical/medical_science)
 "aKN" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -18601,7 +18326,6 @@
 /area/almayer/medical/medical_science)
 "aKO" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -18625,7 +18349,6 @@
 /area/almayer/medical/medical_science)
 "aKP" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHWEST)";
 	dir = 9
 	},
 /obj/structure/cable{
@@ -18858,11 +18581,9 @@
 /area/almayer/shipboard/brig_cells)
 "aLl" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHEAST)";
 	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (NORTHEAST)";
 	dir = 5
 	},
 /turf/open/floor/almayer{
@@ -18873,11 +18594,9 @@
 /area/almayer/shipboard/brig_cells)
 "aLm" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/flasher{
@@ -18940,7 +18659,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -19356,11 +19074,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -19414,14 +19130,12 @@
 /area/almayer/hallways/aft_hallway)
 "aMe" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -19443,11 +19157,9 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer,
@@ -19462,11 +19174,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -19481,7 +19191,6 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -19521,7 +19230,6 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer,
@@ -19543,11 +19251,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer,
@@ -19565,11 +19271,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer,
@@ -19587,11 +19291,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -19609,11 +19311,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -19632,11 +19332,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHWEST)";
 	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (SOUTHWEST)";
 	dir = 10
 	},
 /turf/open/floor/almayer{
@@ -19756,11 +19454,9 @@
 /area/space)
 "aMw" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/effect/decal/warning_stripes/thin{
@@ -19774,11 +19470,9 @@
 /area/almayer/shipboard/brig_cells)
 "aMx" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/security/glass{
@@ -19793,11 +19487,9 @@
 /area/almayer/shipboard/brig_cells)
 "aMy" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -19808,11 +19500,9 @@
 /area/almayer/shipboard/brig_cells)
 "aMz" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -19823,11 +19513,9 @@
 /area/almayer/shipboard/brig_cells)
 "aMA" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHWEST)";
 	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (SOUTHWEST)";
 	dir = 10
 	},
 /turf/open/floor/almayer{
@@ -19842,11 +19530,9 @@
 	icon_state = "pipe-c"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHEAST)";
 	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (NORTHEAST)";
 	dir = 5
 	},
 /turf/open/floor/almayer{
@@ -20085,11 +19771,9 @@
 /area/almayer/hallways/aft_hallway)
 "aMW" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHEAST)";
 	dir = 6
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (SOUTHEAST)";
 	dir = 6
 	},
 /obj/structure/disposalpipe/segment{
@@ -20100,11 +19784,9 @@
 /area/almayer/hallways/aft_hallway)
 "aMX" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -20124,14 +19806,12 @@
 /area/almayer/command/cic)
 "aMZ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -20141,14 +19821,12 @@
 /area/almayer/hallways/aft_hallway)
 "aNa" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -20162,11 +19840,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -20188,14 +19864,12 @@
 /area/almayer/hallways/aft_hallway)
 "aNe" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -20210,11 +19884,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -20240,11 +19912,9 @@
 "aNh" = (
 /obj/structure/disposalpipe/junction,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHWEST)";
 	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (NORTHWEST)";
 	dir = 9
 	},
 /turf/open/floor/almayer,
@@ -20271,11 +19941,9 @@
 /area/almayer/hallways/stern_hallway)
 "aNl" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHEAST)";
 	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (NORTHEAST)";
 	dir = 5
 	},
 /turf/open/floor/almayer{
@@ -20286,18 +19954,15 @@
 /area/almayer/hallways/stern_hallway)
 "aNm" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/hallways/stern_hallway)
 "aNn" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -20308,11 +19973,9 @@
 /area/almayer/hallways/stern_hallway)
 "aNo" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHWEST)";
 	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (NORTHWEST)";
 	dir = 9
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -20943,11 +20606,9 @@
 /area/almayer/hull/upper_hull)
 "aOH" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHEAST)";
 	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (NORTHEAST)";
 	dir = 5
 	},
 /turf/open/floor/almayer{
@@ -20958,11 +20619,9 @@
 /area/almayer/hallways/aft_hallway)
 "aOI" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -20974,11 +20633,9 @@
 "aOJ" = (
 /obj/machinery/light,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -20989,22 +20646,18 @@
 /area/almayer/hallways/aft_hallway)
 "aOK" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/hallways/aft_hallway)
 "aOL" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -21028,11 +20681,9 @@
 /area/almayer/hallways/aft_hallway)
 "aON" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -21047,11 +20698,9 @@
 "aOO" = (
 /obj/machinery/door/firedoor/border_only/almayer,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -21064,11 +20713,9 @@
 /area/almayer/hallways/aft_hallway)
 "aOP" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -21092,11 +20739,9 @@
 /area/almayer/command/cic)
 "aOR" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -21109,7 +20754,6 @@
 /area/almayer/hallways/aft_hallway)
 "aOS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
@@ -21132,11 +20776,9 @@
 /area/almayer/hallways/aft_hallway)
 "aOT" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -21150,11 +20792,9 @@
 /area/almayer/hallways/aft_hallway)
 "aOU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -21167,11 +20807,9 @@
 /area/almayer/hallways/aft_hallway)
 "aOV" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHWEST)";
 	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (NORTHWEST)";
 	dir = 9
 	},
 /obj/structure/disposalpipe/segment{
@@ -21280,7 +20918,6 @@
 	icon_state = "1-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHEAST)";
 	dir = 5
 	},
 /turf/open/floor/almayer,
@@ -21294,7 +20931,6 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -21308,7 +20944,6 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -21322,7 +20957,6 @@
 	pixel_y = 28
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -21336,7 +20970,6 @@
 	pixel_y = 30
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -21347,7 +20980,6 @@
 /area/almayer/engineering/port_atmos)
 "aPo" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -21361,7 +20993,6 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -21378,7 +21009,6 @@
 	pixel_y = 28
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -21501,7 +21131,6 @@
 	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHEAST)";
 	dir = 6
 	},
 /obj/machinery/firealarm{
@@ -21523,11 +21152,9 @@
 /area/almayer/shipboard/brig_cells)
 "aPI" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -21544,11 +21171,9 @@
 /area/almayer/hull/upper_hull)
 "aPK" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/vending/wallmed1{
@@ -21607,11 +21232,9 @@
 	icon_state = "pipe-c"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHEAST)";
 	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (NORTHEAST)";
 	dir = 5
 	},
 /obj/structure/closet/firecloset,
@@ -21624,11 +21247,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -21678,11 +21299,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer/mono,
@@ -21692,18 +21311,15 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/command/cic)
 "aPZ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (NORTHWEST)";
 	dir = 9
 	},
 /obj/structure/cable{
@@ -21811,7 +21427,6 @@
 	})
 "aQn" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer/mono,
@@ -21820,7 +21435,6 @@
 	})
 "aQo" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHWEST)";
 	dir = 9
 	},
 /turf/open/floor/wood,
@@ -21948,7 +21562,6 @@
 /area/almayer/engineering/port_atmos)
 "aQC" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
-	tag = "icon-intact (NORTHEAST)";
 	dir = 5
 	},
 /turf/open/floor/almayer{
@@ -22403,7 +22016,6 @@
 /area/almayer/engineering/port_atmos)
 "aRJ" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
-	tag = "icon-intact (NORTHEAST)";
 	dir = 5
 	},
 /turf/open/floor/almayer{
@@ -22556,7 +22168,6 @@
 /area/almayer/engineering/port_atmos)
 "aRZ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHWEST)";
 	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
@@ -23048,11 +22659,9 @@
 /area/almayer/shipboard/brig_cells)
 "aTn" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (SOUTHEAST)";
 	dir = 6
 	},
 /obj/item/device/radio/intercom{
@@ -23265,7 +22874,6 @@
 /area/almayer/living/bridgebunks)
 "aTL" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (NORTHWEST)";
 	dir = 9
 	},
 /obj/structure/cable{
@@ -24310,7 +23918,6 @@
 /area/almayer/shipboard/starboard_point_defense)
 "aWB" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer/mono,
@@ -24918,7 +24525,6 @@
 	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer/mono,
@@ -25069,7 +24675,6 @@
 	icon_state = "1-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -25085,7 +24690,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -25101,7 +24705,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -25121,7 +24724,6 @@
 	},
 /obj/machinery/door/firedoor/border_only/almayer,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer/mono,
@@ -25133,14 +24735,12 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer,
 /area/almayer/hallways/starboard_hallway)
 "aYD" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHWEST)";
 	dir = 10
 	},
 /obj/structure/cable{
@@ -25221,14 +24821,12 @@
 /area/almayer/squads/alpha)
 "aYM" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/squads/alpha)
 "aYN" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/status_display{
@@ -25242,7 +24840,6 @@
 /area/almayer/squads/alpha)
 "aYO" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -25255,7 +24852,6 @@
 /obj/machinery/door/airlock/almayer/marine/alpha,
 /obj/machinery/door/firedoor/border_only/almayer,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -25266,7 +24862,6 @@
 /area/almayer/squads/alpha)
 "aYQ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -25277,7 +24872,6 @@
 /area/almayer/hallways/starboard_hallway)
 "aYR" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (SOUTHWEST)";
 	dir = 10
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -25499,7 +25093,6 @@
 /area/almayer/squads/alpha)
 "aZq" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -25517,7 +25110,6 @@
 /area/almayer/squads/alpha)
 "aZr" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -25537,7 +25129,6 @@
 /obj/machinery/door/airlock/almayer/marine/alpha,
 /obj/machinery/door/firedoor/border_only/almayer,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -25560,7 +25151,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -25574,7 +25164,6 @@
 /area/almayer/hallways/starboard_hallway)
 "aZu" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHWEST)";
 	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -25798,7 +25387,6 @@
 /area/almayer/hallways/starboard_hallway)
 "aZT" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -25809,7 +25397,6 @@
 /area/almayer/hallways/starboard_hallway)
 "aZU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/maint{
@@ -26925,7 +26512,6 @@
 /area/almayer/squads/bravo)
 "bcD" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -26944,7 +26530,6 @@
 /area/almayer/squads/bravo)
 "bcE" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -26970,7 +26555,6 @@
 /obj/machinery/door/airlock/almayer/marine/bravo,
 /obj/machinery/door/firedoor/border_only/almayer,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -26984,7 +26568,6 @@
 /area/almayer/squads/bravo)
 "bcG" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -27090,7 +26673,6 @@
 	name = "\improper Tank Garage Shutters"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -27300,14 +26882,12 @@
 /area/almayer/squads/bravo)
 "bdt" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/squads/bravo)
 "bdu" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -27317,7 +26897,6 @@
 /area/almayer/squads/bravo)
 "bdv" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/light,
@@ -27330,7 +26909,6 @@
 /obj/machinery/door/airlock/almayer/marine/bravo,
 /obj/machinery/door/firedoor/border_only/almayer,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -27340,7 +26918,6 @@
 /area/almayer/squads/bravo)
 "bdx" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -27430,14 +27007,12 @@
 /area/almayer/hallways/starboard_umbilical)
 "bdJ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHEAST)";
 	dir = 6
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/exoarmor)
 "bdK" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -27446,7 +27021,6 @@
 /area/almayer/hallways/exoarmor)
 "bdL" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer/mono,
@@ -27454,14 +27028,12 @@
 "bdM" = (
 /obj/effect/decal/cleanable/blood/oil,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/exoarmor)
 "bdN" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -27476,7 +27048,6 @@
 	name = "\improper Tank Garage Shutters"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -27489,7 +27060,6 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer/mono,
@@ -27497,7 +27067,6 @@
 "bdQ" = (
 /obj/structure/table/almayer,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer/mono,
@@ -27520,14 +27089,12 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/exoarmor)
 "bdT" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/door/poddoor/shutters/almayer{
@@ -27542,7 +27109,6 @@
 /area/almayer/hallways/exoarmor)
 "bdU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHWEST)";
 	dir = 10
 	},
 /turf/open/floor/almayer/mono,
@@ -28171,7 +27737,6 @@
 /area/almayer/living/starboard_emb)
 "bfw" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -28185,7 +27750,6 @@
 	icon_state = "pipe-c"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -28203,14 +27767,12 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/living/starboard_emb)
 "bfz" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (SOUTHWEST)";
 	dir = 10
 	},
 /obj/structure/disposalpipe/segment{
@@ -28537,7 +28099,6 @@
 "bgp" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHEAST)";
 	dir = 6
 	},
 /turf/open/floor/almayer{
@@ -28548,7 +28109,6 @@
 /area/almayer/living/basketball)
 "bgq" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/door/window/westleft,
@@ -28556,7 +28116,6 @@
 /area/almayer/living/basketball)
 "bgr" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -28567,7 +28126,6 @@
 /area/almayer/living/basketball)
 "bgs" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -28578,7 +28136,6 @@
 /area/almayer/living/basketball)
 "bgt" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/window/reinforced{
@@ -28600,7 +28157,6 @@
 /area/almayer/living/basketball)
 "bgv" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -28612,7 +28168,6 @@
 /area/almayer/living/basketball)
 "bgw" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -28632,7 +28187,6 @@
 	name = "\improper Chapel"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -28653,7 +28207,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer/mono,
@@ -28665,7 +28218,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer,
@@ -28828,11 +28380,9 @@
 /area/almayer/hallways/exoarmor)
 "bhb" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/generic{
@@ -30045,7 +29595,6 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (SOUTHEAST)";
 	dir = 6
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -30057,7 +29606,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -30069,7 +29617,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -30078,7 +29625,6 @@
 	icon_state = "1-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHEAST)";
 	dir = 5
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -30090,11 +29636,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -30110,18 +29654,15 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/hallways/hangar)
 "bjG" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -30155,11 +29696,9 @@
 	opacity = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -30177,11 +29716,9 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -30199,11 +29736,9 @@
 	name = "\improper North Hangar Shutters"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -30221,11 +29756,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -30237,11 +29770,9 @@
 /area/almayer/hallways/starboard_hallway)
 "bjM" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -30253,11 +29784,9 @@
 /area/almayer/hallways/starboard_hallway)
 "bjN" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -30274,7 +29803,6 @@
 /area/almayer/hallways/starboard_hallway)
 "bjO" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -30291,11 +29819,9 @@
 /area/almayer/hallways/starboard_hallway)
 "bjP" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -30310,11 +29836,9 @@
 /area/almayer/hallways/starboard_hallway)
 "bjQ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -30371,11 +29895,9 @@
 /area/almayer/hallways/starboard_hallway)
 "bjU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -30393,11 +29915,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -30412,11 +29932,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -30428,11 +29946,9 @@
 /area/almayer/hallways/starboard_hallway)
 "bjX" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -30456,11 +29972,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -30478,11 +29992,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/door/poddoor/shutters/almayer{
@@ -30508,11 +30020,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -30529,7 +30039,6 @@
 /area/almayer/hallways/starboard_hallway)
 "bkb" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden,
@@ -30547,7 +30056,6 @@
 "bkc" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -30572,7 +30080,6 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -30584,11 +30091,9 @@
 /area/almayer/hallways/starboard_hallway)
 "bke" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -30631,11 +30136,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -30650,11 +30153,9 @@
 /area/almayer/hallways/starboard_hallway)
 "bkh" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -30691,11 +30192,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -30710,11 +30209,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -30729,7 +30226,6 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
@@ -30747,7 +30243,6 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -30772,7 +30267,6 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -30781,18 +30275,15 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/hallways/starboard_hallway)
 "bko" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (SOUTHWEST)";
 	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHWEST)";
 	dir = 10
 	},
 /obj/structure/cable{
@@ -30838,7 +30329,6 @@
 /area/almayer/engineering/lower_engineering)
 "bkv" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
-	tag = "icon-intact (NORTHEAST)";
 	dir = 5
 	},
 /obj/machinery/meter,
@@ -31331,11 +30821,9 @@
 /area/almayer/hallways/hangar)
 "blN" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/junction{
@@ -32468,7 +31956,6 @@
 /area/almayer/hallways/hangar)
 "bok" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer/mono,
@@ -32622,7 +32109,6 @@
 /area/almayer/medical/surgery_hallway)
 "boF" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -32647,11 +32133,9 @@
 /area/almayer/medical/lower_medical)
 "boI" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -32673,11 +32157,9 @@
 /area/almayer/medical/lower_medical)
 "boK" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -32706,11 +32188,9 @@
 /area/almayer/medical/lower_medical)
 "boN" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -32728,11 +32208,9 @@
 /area/almayer/medical/surgery_hallway)
 "boO" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -32755,7 +32233,6 @@
 /area/almayer/medical/surgery_hallway)
 "boP" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHWEST)";
 	dir = 10
 	},
 /obj/structure/disposalpipe/segment{
@@ -32768,7 +32245,6 @@
 	icon_state = "2-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (SOUTHWEST)";
 	dir = 10
 	},
 /turf/open/floor/almayer{
@@ -33127,7 +32603,6 @@
 /area/almayer/living/cryo_cells)
 "bpJ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHEAST)";
 	dir = 5
 	},
 /turf/open/floor/almayer{
@@ -33138,18 +32613,15 @@
 /area/almayer/living/cryo_cells)
 "bpK" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (SOUTHEAST)";
 	dir = 6
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHWEST)";
 	dir = 10
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/living/cryo_cells)
 "bpL" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (NORTHWEST)";
 	dir = 9
 	},
 /turf/open/floor/almayer{
@@ -33503,7 +32975,6 @@
 /area/almayer/hull/upper_hull)
 "bqz" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHEAST)";
 	dir = 5
 	},
 /obj/structure/cable{
@@ -33526,7 +32997,6 @@
 /area/almayer/hallways/hangar)
 "bqB" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -33543,7 +33013,6 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -33569,7 +33038,6 @@
 /area/almayer/medical/lower_medical)
 "bqF" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -33612,7 +33080,6 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (SOUTHEAST)";
 	dir = 6
 	},
 /obj/structure/cable{
@@ -33663,7 +33130,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -33674,7 +33140,6 @@
 /area/almayer/medical/surgery_hallway)
 "bqL" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -33699,7 +33164,6 @@
 /area/almayer/medical/operating_room_one)
 "bqM" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -33822,14 +33286,12 @@
 /area/almayer/living/briefing)
 "bqX" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer,
 /area/almayer/living/briefing)
 "bqY" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHWEST)";
 	dir = 10
 	},
 /turf/open/floor/almayer,
@@ -33898,7 +33360,6 @@
 /area/almayer/squads/req)
 "bri" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (SOUTHEAST)";
 	dir = 6
 	},
 /obj/structure/cable{
@@ -33907,7 +33368,6 @@
 	icon_state = "2-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHEAST)";
 	dir = 6
 	},
 /obj/structure/table/almayer,
@@ -33918,11 +33378,9 @@
 /area/almayer/squads/req)
 "brj" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -33934,7 +33392,6 @@
 /area/almayer/squads/req)
 "brk" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (NORTHWEST)";
 	dir = 9
 	},
 /obj/structure/cable{
@@ -33947,14 +33404,12 @@
 /area/almayer/squads/req)
 "brl" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/squads/req)
 "brm" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/marine/requisitions{
@@ -34000,14 +33455,12 @@
 /area/almayer/living/cryo_cells)
 "brt" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer,
 /area/almayer/living/cryo_cells)
 "bru" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -34018,7 +33471,6 @@
 /area/almayer/living/cryo_cells)
 "brv" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -34067,7 +33519,6 @@
 "brC" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHEAST)";
 	dir = 5
 	},
 /obj/structure/cable{
@@ -34085,11 +33536,9 @@
 	icon_state = "1-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/effect/decal/warning_stripes/thin{
@@ -34113,11 +33562,9 @@
 	},
 /obj/machinery/door/firedoor/border_only/almayer,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer/mono,
@@ -34129,11 +33576,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer,
@@ -34145,11 +33590,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -34161,7 +33604,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
@@ -34172,11 +33614,9 @@
 /area/almayer/engineering/lower_engineering)
 "brI" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -34193,11 +33633,9 @@
 /area/almayer/engineering/lower_engineering)
 "brJ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -34210,7 +33648,6 @@
 "brK" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -34227,11 +33664,9 @@
 /area/almayer/engineering/lower_engineering)
 "brL" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHWEST)";
 	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (SOUTHWEST)";
 	dir = 10
 	},
 /obj/structure/cable{
@@ -34491,11 +33926,9 @@
 /area/shuttle/drop1/sulaco)
 "bsv" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -34538,7 +33971,6 @@
 /area/almayer/medical/lower_medical)
 "bsz" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -34606,11 +34038,9 @@
 /area/almayer/medical/lower_medical)
 "bsE" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -35113,7 +34543,6 @@
 /area/almayer/shipboard/starboard_missiles)
 "btJ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/cable/yellow{
@@ -35446,11 +34875,9 @@
 /area/almayer/medical/lower_medical)
 "bux" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -35685,7 +35112,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHEAST)";
 	dir = 6
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -35707,7 +35133,6 @@
 	icon_state = "2-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -35734,7 +35159,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer/mono,
@@ -35747,7 +35171,6 @@
 	},
 /obj/machinery/light,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -35762,7 +35185,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -35772,7 +35194,6 @@
 /area/almayer/engineering/lower_engine_monitoring)
 "bvc" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHWEST)";
 	dir = 10
 	},
 /obj/structure/cable/yellow{
@@ -36173,7 +35594,6 @@
 /area/almayer/living/briefing)
 "bvX" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer,
@@ -36181,7 +35601,6 @@
 "bvY" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer,
@@ -36449,14 +35868,12 @@
 /area/almayer/engineering/lower_engineering)
 "bwD" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -36468,22 +35885,18 @@
 /obj/machinery/door/airlock/almayer/engineering,
 /obj/machinery/door/firedoor/border_only/almayer,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/engineering/lower_engine_monitoring)
 "bwF" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -36493,11 +35906,9 @@
 /area/almayer/engineering/lower_engine_monitoring)
 "bwG" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHWEST)";
 	dir = 9
 	},
 /turf/open/floor/almayer{
@@ -36750,7 +36161,6 @@
 	id = "hangar_upper_railing"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (NORTHEAST)";
 	dir = 5
 	},
 /obj/structure/cable{
@@ -36766,7 +36176,6 @@
 	id = "hangar_upper_railing"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -36782,7 +36191,6 @@
 	id = "hangar_upper_railing"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -36802,7 +36210,6 @@
 	id = "hangarelevatorgear"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (SOUTHWEST)";
 	dir = 10
 	},
 /obj/structure/cable{
@@ -36936,7 +36343,6 @@
 /area/almayer/medical/lower_medical)
 "bxu" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -36985,7 +36391,6 @@
 /area/almayer/medical/chemistry)
 "bxz" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHEAST)";
 	dir = 5
 	},
 /turf/open/floor/almayer{
@@ -37193,14 +36598,12 @@
 /area/almayer/squads/req)
 "bxW" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHEAST)";
 	dir = 6
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/squads/req)
 "bxX" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/effect/decal/warning_stripes/thin{
@@ -37210,7 +36613,6 @@
 /area/almayer/squads/req)
 "bxY" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -37220,7 +36622,6 @@
 /area/almayer/squads/req)
 "bxZ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/effect/decal/warning_stripes/thin{
@@ -37232,7 +36633,6 @@
 /obj/item/tool/wirecutters,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHWEST)";
 	dir = 9
 	},
 /turf/open/floor/almayer/mono,
@@ -37751,7 +37151,6 @@
 /area/almayer/medical/surgery_hallway)
 "bzd" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -37769,7 +37168,6 @@
 /area/almayer/medical/surgery_hallway)
 "bze" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -37794,7 +37192,6 @@
 /area/almayer/medical/operating_room_two)
 "bzf" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -38073,28 +37470,24 @@
 /area/almayer/shipboard/starboard_missiles)
 "bzM" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/shipboard/weapon_room)
 "bzN" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer,
 /area/almayer/shipboard/weapon_room)
 "bzO" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/hallways/hangar)
 "bzP" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer,
@@ -38105,7 +37498,6 @@
 	id = "hangar_upper_railing"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHWEST)";
 	dir = 10
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -38143,7 +37535,6 @@
 /area/almayer/hallways/hangar)
 "bzT" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -38158,7 +37549,6 @@
 /area/almayer/hallways/hangar)
 "bzU" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -38173,7 +37563,6 @@
 /area/almayer/hallways/hangar)
 "bzV" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -38194,7 +37583,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer/mono,
@@ -39213,14 +38601,12 @@
 /area/almayer/engineering/engine_core)
 "bCe" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/living/cryo_cells)
 "bCf" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer/mono,
@@ -39323,7 +38709,6 @@
 /area/almayer/engineering/lower_engine_monitoring)
 "bCr" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHEAST)";
 	dir = 6
 	},
 /obj/structure/cable{
@@ -39343,14 +38728,12 @@
 	id = "almayerlink"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/engineering/lower_engine_monitoring)
 "bCt" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer,
@@ -39494,7 +38877,6 @@
 	id = "hangar_upper_railing"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHEAST)";
 	dir = 6
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -39511,7 +38893,6 @@
 /area/almayer/hallways/hangar)
 "bCH" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -39521,7 +38902,6 @@
 /area/almayer/hallways/hangar)
 "bCI" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -39531,7 +38911,6 @@
 /area/almayer/hallways/hangar)
 "bCJ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/junction,
@@ -39539,7 +38918,6 @@
 /area/almayer/hallways/hangar)
 "bCK" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer/mono,
@@ -39559,7 +38937,6 @@
 /area/almayer/hallways/hangar)
 "bCM" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHWEST)";
 	dir = 9
 	},
 /turf/open/floor/almayer/mono,
@@ -40720,14 +40097,12 @@
 /area/almayer/shipboard/weapon_room)
 "bFj" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer,
 /area/almayer/shipboard/weapon_room)
 "bFk" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer,
@@ -40737,11 +40112,9 @@
 	id = "hangarelevatorgear"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHEAST)";
 	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer/mono,
@@ -40751,11 +40124,9 @@
 	id = "hangar_upper_railing"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -40770,11 +40141,9 @@
 	id = "hangar_upper_railing"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -40793,7 +40162,6 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -40811,11 +40179,9 @@
 	id = "hangar_upper_railing"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -40834,11 +40200,9 @@
 	id = "hangarelevatorgear"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHWEST)";
 	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (NORTHWEST)";
 	dir = 9
 	},
 /obj/structure/disposalpipe/segment{
@@ -41032,7 +40396,6 @@
 /area/almayer/medical/lower_medical)
 "bFO" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHEAST)";
 	dir = 6
 	},
 /turf/open/floor/almayer{
@@ -41042,7 +40405,6 @@
 /area/almayer/medical/lower_medical)
 "bFP" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHWEST)";
 	dir = 9
 	},
 /turf/open/floor/almayer{
@@ -41136,7 +40498,6 @@
 	name = "Operating Theatre 3"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -41158,7 +40519,6 @@
 /area/almayer/medical/operating_room_three)
 "bFX" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -41287,14 +40647,12 @@
 /area/almayer/squads/req)
 "bGh" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/squads/req)
 "bGi" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHWEST)";
 	dir = 10
 	},
 /turf/open/floor/almayer/mono,
@@ -41723,7 +41081,6 @@
 /area/almayer/medical/cryo_tubes)
 "bHh" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -41815,7 +41172,6 @@
 /area/almayer/living/briefing)
 "bHq" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (NORTHWEST)";
 	dir = 9
 	},
 /turf/open/floor/almayer,
@@ -42028,11 +41384,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer,
@@ -42041,23 +41395,19 @@
 /obj/machinery/door/airlock/almayer/engineering,
 /obj/machinery/door/firedoor/border_only/almayer,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/engineering/lower_engine_monitoring)
 "bHN" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -42068,11 +41418,9 @@
 /area/almayer/engineering/lower_engine_monitoring)
 "bHO" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHWEST)";
 	dir = 9
 	},
 /obj/structure/cable{
@@ -42314,7 +41662,6 @@
 /area/almayer/living/bridgebunks)
 "bIq" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -42326,7 +41673,6 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -42372,11 +41718,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -42470,14 +41814,12 @@
 	icon_state = "pipe-c"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHEAST)";
 	dir = 5
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/squads/req)
 "bIF" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -42491,7 +41833,6 @@
 	icon_state = "pipe-c"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHWEST)";
 	dir = 10
 	},
 /turf/open/floor/almayer/mono,
@@ -42825,11 +42166,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -42864,11 +42203,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -43302,11 +42639,9 @@
 /area/shuttle/drop1/sulaco)
 "bKz" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHEAST)";
 	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (NORTHEAST)";
 	dir = 5
 	},
 /obj/structure/cable{
@@ -43321,11 +42656,9 @@
 /area/almayer/medical/lower_medical)
 "bKA" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -43362,11 +42695,9 @@
 	icon_state = "pipe-c"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (SOUTHWEST)";
 	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHWEST)";
 	dir = 10
 	},
 /obj/structure/cable{
@@ -43466,7 +42797,6 @@
 /area/almayer/hallways/aft_hallway)
 "bKN" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHWEST)";
 	dir = 9
 	},
 /turf/open/floor/almayer,
@@ -43513,7 +42843,6 @@
 /area/almayer/squads/req)
 "bKU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/marine/requisitions{
@@ -43549,7 +42878,6 @@
 /area/almayer/squads/req)
 "bKX" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -43560,7 +42888,6 @@
 /area/almayer/living/cryo_cells)
 "bKY" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -43586,7 +42913,6 @@
 /area/almayer/hallways/port_hallway)
 "bLb" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (SOUTHEAST)";
 	dir = 6
 	},
 /obj/structure/cable{
@@ -43606,11 +42932,9 @@
 /area/almayer/hallways/port_hallway)
 "bLc" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -43628,11 +42952,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/effect/decal/warning_stripes/thin{
@@ -43664,11 +42986,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer/mono,
@@ -43680,11 +43000,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -43699,11 +43017,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -43718,11 +43034,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/junction{
@@ -43737,7 +43051,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -43765,7 +43078,6 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -43780,11 +43092,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -43795,11 +43105,9 @@
 	icon_state = "pipe-c"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -43811,11 +43119,9 @@
 /area/almayer/engineering/lower_engineering)
 "bLm" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHWEST)";
 	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (NORTHWEST)";
 	dir = 9
 	},
 /obj/structure/cable{
@@ -44192,11 +43498,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -44214,7 +43518,6 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
@@ -44233,7 +43536,6 @@
 	icon_state = "1-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (NORTHWEST)";
 	dir = 9
 	},
 /obj/structure/disposalpipe/junction{
@@ -44255,7 +43557,6 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -44273,7 +43574,6 @@
 	name = "Operating Theatre 4"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -44295,7 +43595,6 @@
 /area/almayer/medical/operating_room_four)
 "bMk" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -44557,7 +43856,6 @@
 /area/almayer/living/cryo_cells)
 "bMM" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHEAST)";
 	dir = 6
 	},
 /turf/open/floor/almayer{
@@ -44568,18 +43866,15 @@
 /area/almayer/living/cryo_cells)
 "bMN" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHWEST)";
 	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (NORTHEAST)";
 	dir = 5
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/living/cryo_cells)
 "bMO" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (SOUTHWEST)";
 	dir = 10
 	},
 /turf/open/floor/almayer{
@@ -44993,11 +44288,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/junction{
@@ -45008,7 +44301,6 @@
 /area/almayer/hallways/port_hallway)
 "bNJ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -45017,7 +44309,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -45040,11 +44331,9 @@
 	d2 = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -45898,11 +45187,9 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHEAST)";
 	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (NORTHEAST)";
 	dir = 5
 	},
 /obj/structure/cable{
@@ -45914,11 +45201,9 @@
 /area/almayer/hallways/hangar)
 "bPR" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -45930,11 +45215,9 @@
 /area/almayer/hallways/hangar)
 "bPS" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -45946,7 +45229,6 @@
 /area/almayer/hallways/hangar)
 "bPT" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -45967,11 +45249,9 @@
 /area/almayer/hallways/hangar)
 "bPU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -45988,11 +45268,9 @@
 /area/almayer/hallways/hangar)
 "bPV" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/item/tool/warning_cone,
@@ -46006,7 +45284,6 @@
 "bPW" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -46034,11 +45311,9 @@
 	opacity = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -46056,11 +45331,9 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -46078,11 +45351,9 @@
 	name = "\improper South Hangar Shutters"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -46100,11 +45371,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -46116,11 +45385,9 @@
 /area/almayer/hallways/port_hallway)
 "bQd" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -46140,11 +45407,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -46159,11 +45424,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -46178,11 +45441,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -46201,7 +45462,6 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -46216,11 +45476,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -46240,7 +45498,6 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -46255,11 +45512,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -46279,11 +45534,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -46301,11 +45554,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/door/poddoor/shutters/almayer{
@@ -46332,7 +45583,6 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -46352,7 +45602,6 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -46378,11 +45627,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer/mono,
@@ -46397,11 +45644,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer/mono,
@@ -46420,7 +45665,6 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer/mono,
@@ -46435,11 +45679,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -46454,11 +45696,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -46473,11 +45713,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer/mono,
@@ -46494,7 +45732,6 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -46510,11 +45747,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -46529,11 +45764,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -46548,11 +45781,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -46587,11 +45818,9 @@
 /area/almayer/hallways/port_hallway)
 "bQD" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -46603,11 +45832,9 @@
 /area/almayer/hallways/port_hallway)
 "bQE" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -46619,11 +45846,9 @@
 /area/almayer/hallways/port_hallway)
 "bQF" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -46635,7 +45860,6 @@
 /area/almayer/hallways/port_hallway)
 "bQG" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
@@ -46651,7 +45875,6 @@
 /area/almayer/hallways/port_hallway)
 "bQH" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
@@ -46664,7 +45887,6 @@
 /area/almayer/hallways/port_hallway)
 "bQI" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
@@ -46677,11 +45899,9 @@
 /area/almayer/hallways/port_hallway)
 "bQJ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -46698,11 +45918,9 @@
 /area/almayer/hallways/port_hallway)
 "bQK" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHWEST)";
 	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (NORTHWEST)";
 	dir = 9
 	},
 /obj/structure/cable{
@@ -46729,14 +45947,12 @@
 /area/almayer/engineering/lower_engineering)
 "bQN" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHEAST)";
 	dir = 5
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/engineering/lower_engineering)
 "bQO" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer/mono,
@@ -48491,21 +47707,18 @@
 /area/almayer/living/tankerbunks)
 "bUV" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHEAST)";
 	dir = 6
 	},
 /turf/open/floor/almayer,
 /area/almayer/living/tankerbunks)
 "bUW" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer,
 /area/almayer/living/tankerbunks)
 "bUX" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -48517,7 +47730,6 @@
 /area/almayer/living/tankerbunks)
 "bUY" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -48548,14 +47760,12 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer,
 /area/almayer/hallways/hangar)
 "bVb" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -48599,7 +47809,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer,
@@ -48612,7 +47821,6 @@
 	req_one_access_txt = "22"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -48629,14 +47837,12 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer,
 /area/almayer/living/pilotbunks)
 "bVh" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -48870,7 +48076,6 @@
 "bVE" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (NORTHEAST)";
 	dir = 5
 	},
 /turf/open/floor/wood,
@@ -48882,7 +48087,6 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/wood,
@@ -48892,7 +48096,6 @@
 /obj/item/storage/fancy/cigarettes,
 /obj/item/tool/lighter,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/wood,
@@ -48901,7 +48104,6 @@
 /obj/structure/table/almayer,
 /obj/item/toy/deck,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/wood,
@@ -48913,21 +48115,18 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/wood,
 /area/almayer/living/grunt_rnr)
 "bVJ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/wood,
 /area/almayer/living/grunt_rnr)
 "bVK" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (SOUTHWEST)";
 	dir = 10
 	},
 /turf/open/floor/wood,
@@ -48962,7 +48161,6 @@
 	icon_state = "1-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -48978,7 +48176,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -48998,7 +48195,6 @@
 	icon_state = "pipe-c"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -49021,7 +48217,6 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer/mono,
@@ -49032,7 +48227,6 @@
 	icon_state = "pipe-c"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHWEST)";
 	dir = 9
 	},
 /obj/structure/cable{
@@ -49145,7 +48339,6 @@
 /area/almayer/living/cafeteria_port)
 "bWg" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHEAST)";
 	dir = 5
 	},
 /turf/open/floor/almayer{
@@ -49156,7 +48349,6 @@
 /area/almayer/living/cafeteria_port)
 "bWh" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -49862,14 +49054,12 @@
 /area/almayer/squads/charlie)
 "bXV" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/squads/charlie)
 "bXW" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -49880,7 +49070,6 @@
 /area/almayer/squads/charlie)
 "bXX" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -49893,7 +49082,6 @@
 /obj/machinery/door/airlock/almayer/marine/charlie,
 /obj/machinery/door/firedoor/border_only/almayer,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -49904,7 +49092,6 @@
 /area/almayer/squads/charlie)
 "bXZ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -50067,7 +49254,6 @@
 	})
 "bYv" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/cable/yellow{
@@ -50445,7 +49631,6 @@
 /area/almayer/squads/charlie)
 "bZn" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -50463,7 +49648,6 @@
 /area/almayer/squads/charlie)
 "bZo" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -50481,7 +49665,6 @@
 /area/almayer/squads/charlie)
 "bZp" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -50501,7 +49684,6 @@
 /obj/machinery/door/airlock/almayer/marine/charlie,
 /obj/machinery/door/firedoor/border_only/almayer,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -50519,7 +49701,6 @@
 /area/almayer/squads/charlie)
 "bZr" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -50976,21 +50157,18 @@
 /area/almayer/living/pilotbunks)
 "caq" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHEAST)";
 	dir = 6
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/living/pilotbunks)
 "car" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/living/pilotbunks)
 "cas" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -51007,7 +50185,6 @@
 	req_one_access_txt = "22"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -51021,7 +50198,6 @@
 	icon_state = "pipe-j2"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHWEST)";
 	dir = 9
 	},
 /turf/open/floor/almayer{
@@ -51777,7 +50953,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -51796,7 +50971,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -51817,7 +50991,6 @@
 /obj/machinery/door/airlock/almayer/marine/delta,
 /obj/machinery/door/firedoor/border_only/almayer,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -51836,7 +51009,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -51854,7 +51026,6 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (NORTHWEST)";
 	dir = 9
 	},
 /obj/structure/cable{
@@ -51875,7 +51046,6 @@
 /area/almayer/hallways/port_hallway)
 "cct" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -51898,7 +51068,6 @@
 	req_one_access_txt = "0"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -52110,7 +51279,6 @@
 /area/almayer/squads/delta)
 "ccV" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -52120,7 +51288,6 @@
 /area/almayer/squads/delta)
 "ccW" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/light,
@@ -52131,7 +51298,6 @@
 /area/almayer/squads/delta)
 "ccX" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -52140,7 +51306,6 @@
 /obj/machinery/door/airlock/almayer/marine/delta,
 /obj/machinery/door/firedoor/border_only/almayer,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -52150,7 +51315,6 @@
 /area/almayer/squads/delta)
 "ccZ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -52161,7 +51325,6 @@
 /area/almayer/hallways/port_hallway)
 "cda" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHWEST)";
 	dir = 9
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -52383,7 +51546,6 @@
 /area/almayer/shipboard/port_point_defense)
 "cdI" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -52502,7 +51664,6 @@
 	dir = 6
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer/mono,
@@ -53216,7 +52377,6 @@
 	})
 "cfF" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/cable/yellow{
@@ -53358,7 +52518,6 @@
 /area/almayer/shipboard/brig_cells)
 "cfT" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (NORTHEAST)";
 	dir = 5
 	},
 /turf/open/floor/almayer{
@@ -53603,7 +52762,6 @@
 /area/almayer/shipboard/brig_cells)
 "cgu" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/cable/yellow{
@@ -53635,11 +52793,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -53732,18 +52888,15 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/shipboard/brig_cells)
 "cgH" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/effect/decal/warning_stripes/thin{
@@ -53762,7 +52915,6 @@
 	pixel_y = 25
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/cable/yellow{
@@ -53841,7 +52993,6 @@
 /area/almayer/shipboard/brig)
 "cgO" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -53903,7 +53054,6 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/cable/yellow{
@@ -53933,7 +53083,6 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/cable/yellow{
@@ -54282,7 +53431,6 @@
 /area/almayer/shipboard/brig)
 "chE" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHWEST)";
 	dir = 9
 	},
 /turf/open/floor/almayer,
@@ -54493,7 +53641,6 @@
 /area/almayer/living/bridgebunks)
 "cif" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHEAST)";
 	dir = 5
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -54539,7 +53686,6 @@
 /area/almayer/living/starboard_emb)
 "cil" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer/mono,
@@ -54547,14 +53693,12 @@
 "cim" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/living/bridgebunks)
 "cin" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer,
@@ -54562,7 +53706,6 @@
 "cio" = (
 /obj/machinery/door/airlock/almayer/generic,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/almayer,
@@ -54570,7 +53713,6 @@
 "cip" = (
 /obj/machinery/light,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHWEST)";
 	dir = 9
 	},
 /turf/open/floor/almayer,
@@ -54602,7 +53744,6 @@
 /area/almayer/hull/upper_hull)
 "cit" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHEAST)";
 	dir = 5
 	},
 /turf/open/floor/almayer/mono,
@@ -55020,7 +54161,6 @@
 /area/almayer/hallways/port_hallway)
 "cjk" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHEAST)";
 	dir = 6
 	},
 /obj/effect/decal/warning_stripes/thin{
@@ -55685,7 +54825,6 @@
 /area/almayer/living/captain_mess)
 "ckC" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/cable/yellow{
@@ -55707,7 +54846,6 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHEAST)";
 	dir = 6
 	},
 /obj/machinery/firealarm{
@@ -55819,7 +54957,6 @@
 /area/almayer/shipboard/weapon_room)
 "ckM" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	tag = "icon-intact-scrubbers (EAST)";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -55843,7 +54980,6 @@
 /area/almayer/hallways/hangar)
 "ckN" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{

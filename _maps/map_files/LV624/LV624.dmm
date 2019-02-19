@@ -3669,14 +3669,12 @@
 /area/lv624/ground/sand8)
 "amU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor,
 /area/lv624/ground/sand8)
 "amV" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -3723,7 +3721,6 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor,
@@ -3735,7 +3732,6 @@
 	req_access_txt = "0"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor{
@@ -3745,7 +3741,6 @@
 /area/lv624/ground/sand8)
 "anb" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/plating/warning{
@@ -3754,7 +3749,6 @@
 /area/lv624/ground/sand8)
 "anc" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/plating/warning{
@@ -4581,7 +4575,6 @@
 /area/lv624/ground/compound/n)
 "apI" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/effect/decal/warning_stripes/thin{
@@ -5883,7 +5876,6 @@
 	flipped = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHEAST)";
 	dir = 5
 	},
 /turf/open/floor/plating,
@@ -6057,14 +6049,12 @@
 /area/lv624/ground/jungle7)
 "avg" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHEAST)";
 	dir = 6
 	},
 /turf/open/gm/dirt,
 /area/lv624/ground/jungle7)
 "avh" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHWEST)";
 	dir = 9
 	},
 /turf/open/gm/dirt,
@@ -6578,7 +6568,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor{
@@ -7189,7 +7178,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor{
@@ -7439,7 +7427,6 @@
 	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHEAST)";
 	dir = 6
 	},
 /turf/open/floor{
@@ -7593,7 +7580,6 @@
 /area/lv624/lazarus/medbay)
 "aze" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor{
@@ -7610,7 +7596,6 @@
 	req_one_access_txt = "0"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor{
@@ -7652,7 +7637,6 @@
 	req_access_txt = "0"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor{
@@ -7662,7 +7646,6 @@
 /area/lv624/lazarus/hydroponics)
 "azk" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor{
@@ -7872,7 +7855,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/gm/dirt,
@@ -8045,7 +8027,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor{
@@ -8066,7 +8047,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor{
@@ -8085,7 +8065,6 @@
 	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor{
@@ -8863,14 +8842,12 @@
 /area/lv624/ground/jungle6)
 "aDB" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHEAST)";
 	dir = 6
 	},
 /turf/open/gm/dirt,
 /area/lv624/ground/compound/n)
 "aDC" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/gm/dirt,
@@ -8895,7 +8872,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/gm/dirt,
@@ -8915,14 +8891,12 @@
 /area/lv624/ground/compound/n)
 "aDI" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/gm/dirt,
 /area/lv624/ground/compound/ne)
 "aDJ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHWEST)";
 	dir = 10
 	},
 /turf/open/gm/dirt,
@@ -10452,7 +10426,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor{
@@ -10470,7 +10443,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor{
@@ -10485,7 +10457,6 @@
 	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor{
@@ -10494,7 +10465,6 @@
 /area/lv624/lazarus/research)
 "aJt" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor{
@@ -10518,7 +10488,6 @@
 	req_access_txt = "0"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor{
@@ -10530,14 +10499,12 @@
 /obj/effect/decal/remains/human,
 /obj/item/frame/table,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor,
 /area/lv624/lazarus/research)
 "aJw" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHWEST)";
 	dir = 10
 	},
 /turf/open/floor,
@@ -10790,7 +10757,6 @@
 	req_access_txt = "0"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor{
@@ -10805,7 +10771,6 @@
 	icon_state = "1-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor{
@@ -10820,7 +10785,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor{
@@ -10848,7 +10812,6 @@
 /area/lv624/lazarus/fitness)
 "aKn" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor{
@@ -11661,7 +11624,6 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHEAST)";
 	dir = 5
 	},
 /turf/open/floor{
@@ -11673,7 +11635,6 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor{
@@ -11683,7 +11644,6 @@
 "aMF" = (
 /obj/item/stack/sheet/wood,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHWEST)";
 	dir = 10
 	},
 /turf/open/floor{
@@ -11824,7 +11784,6 @@
 /area/lv624/lazarus/robotics)
 "aNe" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor{
@@ -11849,7 +11808,6 @@
 	icon_state = "1-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor{
@@ -11864,7 +11822,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor{
@@ -11879,7 +11836,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/plating/warning{
@@ -11900,7 +11856,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -11912,7 +11867,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/gm/dirt,
@@ -11925,7 +11879,6 @@
 	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHWEST)";
 	dir = 10
 	},
 /turf/open/gm/dirt,
@@ -12881,7 +12834,6 @@
 /area/lv624/lazarus/sleep_male)
 "aQl" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor{
@@ -12891,7 +12843,6 @@
 /area/lv624/lazarus/sleep_male)
 "aQm" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor{
@@ -12901,7 +12852,6 @@
 "aQn" = (
 /obj/effect/decal/cleanable/vomit,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor{
@@ -13126,7 +13076,6 @@
 	icon_state = "1-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHEAST)";
 	dir = 5
 	},
 /turf/open/gm/dirt,
@@ -13157,7 +13106,6 @@
 	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHWEST)";
 	dir = 9
 	},
 /turf/open/gm/dirt,
@@ -13274,7 +13222,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor{
@@ -13293,7 +13240,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor{
@@ -13311,7 +13257,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor{
@@ -13326,7 +13271,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor{
@@ -13838,7 +13782,6 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor{
@@ -14652,14 +14595,12 @@
 /area/shuttle/drop2/lz2)
 "aUJ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHEAST)";
 	dir = 5
 	},
 /turf/open/gm/dirt,
 /area/shuttle/drop2/lz2)
 "aUK" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHWEST)";
 	dir = 10
 	},
 /turf/open/gm/dirt,
@@ -14926,7 +14867,6 @@
 	icon_state = "2-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHEAST)";
 	dir = 6
 	},
 /turf/open/gm/dirt,
@@ -15348,7 +15288,6 @@
 /area/lv624/lazarus/toilet)
 "aWI" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor{
@@ -15365,7 +15304,6 @@
 	icon_state = "2-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHWEST)";
 	dir = 10
 	},
 /turf/open/floor{
@@ -16040,7 +15978,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor{
@@ -16059,7 +15996,6 @@
 	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHWEST)";
 	dir = 10
 	},
 /turf/open/floor{
@@ -16701,7 +16637,6 @@
 	icon_state = "1-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHEAST)";
 	dir = 5
 	},
 /turf/open/floor{
@@ -16734,7 +16669,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/grass,
@@ -16751,7 +16685,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/grass,
@@ -16764,7 +16697,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/grass,
@@ -16795,7 +16727,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor{
@@ -16812,7 +16743,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor{
@@ -16829,7 +16759,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor{
@@ -16872,7 +16801,6 @@
 /obj/effect/decal/cleanable/blood/splatter/animated,
 /obj/item/ammo_casing,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/cable/yellow{
@@ -16894,7 +16822,6 @@
 	},
 /obj/item/ammo_casing,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/cable/yellow{
@@ -16910,7 +16837,6 @@
 /area/lv624/lazarus/main_hall)
 "bat" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/cable/yellow{
@@ -16925,7 +16851,6 @@
 /area/lv624/lazarus/main_hall)
 "bau" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/cable/yellow{
@@ -16940,7 +16865,6 @@
 "bav" = (
 /obj/item/ammo_casing,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/cable/yellow{
@@ -16959,7 +16883,6 @@
 	},
 /obj/item/ammo_casing,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/cable/yellow{
@@ -16978,7 +16901,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor{
@@ -17012,7 +16934,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor{
@@ -17031,7 +16952,6 @@
 	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHWEST)";
 	dir = 9
 	},
 /turf/open/floor{
@@ -17792,7 +17712,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor{
@@ -17817,7 +17736,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -17829,7 +17747,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/gm/dirt,
@@ -17856,7 +17773,6 @@
 	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHWEST)";
 	dir = 10
 	},
 /turf/open/gm/dirt,
@@ -17969,7 +17885,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /obj/structure/cable/yellow{
@@ -18439,7 +18354,6 @@
 	icon_state = "2-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHEAST)";
 	dir = 6
 	},
 /turf/open/floor{
@@ -18470,7 +18384,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor{
@@ -18485,7 +18398,6 @@
 	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHWEST)";
 	dir = 10
 	},
 /turf/open/floor{
@@ -19569,7 +19481,6 @@
 	icon_state = "2-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHEAST)";
 	dir = 6
 	},
 /turf/open/floor{
@@ -19585,7 +19496,6 @@
 	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHWEST)";
 	dir = 9
 	},
 /turf/open/floor{
@@ -20050,7 +19960,6 @@
 /area/lv624/lazarus/captain)
 "bio" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/grimy,
@@ -20062,7 +19971,6 @@
 	icon_state = "2-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/grimy,
@@ -20079,7 +19987,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -20091,7 +19998,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor{
@@ -20105,7 +20011,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/wood{
@@ -20120,7 +20025,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor{
@@ -20140,7 +20044,6 @@
 	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHWEST)";
 	dir = 10
 	},
 /turf/open/floor{
@@ -20204,7 +20107,6 @@
 /area/lv624/lazarus/kitchen)
 "biB" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHEAST)";
 	dir = 5
 	},
 /turf/open/floor{
@@ -20213,7 +20115,6 @@
 /area/lv624/lazarus/canteen)
 "biC" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor{
@@ -20656,7 +20557,6 @@
 	icon_state = "1-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHEAST)";
 	dir = 5
 	},
 /turf/open/floor{
@@ -20674,7 +20574,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -20686,7 +20585,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor{
@@ -21426,7 +21324,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor{
@@ -21441,7 +21338,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor{
@@ -21478,7 +21374,6 @@
 	icon_state = "1-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor{
@@ -21494,7 +21389,6 @@
 	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHWEST)";
 	dir = 10
 	},
 /turf/open/gm/dirt,
@@ -21633,14 +21527,12 @@
 /area/lv624/lazarus/hop)
 "bmc" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/grimy,
 /area/lv624/lazarus/hop)
 "bmd" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -22312,7 +22204,6 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHEAST)";
 	dir = 6
 	},
 /turf/open/floor{
@@ -22326,7 +22217,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor{
@@ -22342,7 +22232,6 @@
 	tag = ""
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor{
@@ -22352,7 +22241,6 @@
 "bnV" = (
 /obj/structure/foamedmetal,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor{
@@ -22366,7 +22254,6 @@
 	req_one_access_txt = "0"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor{
@@ -22375,14 +22262,12 @@
 /area/lv624/lazarus/engineering)
 "bnX" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/gm/dirt,
 /area/lv624/ground/compound/se)
 "bnY" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHWEST)";
 	dir = 10
 	},
 /turf/open/gm/dirt,
@@ -22418,7 +22303,6 @@
 "bod" = (
 /obj/item/stack/sheet/wood,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (SOUTHEAST)";
 	dir = 6
 	},
 /turf/open/floor{
@@ -22428,7 +22312,6 @@
 "boe" = (
 /obj/structure/barricade/wooden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor{
@@ -22438,7 +22321,6 @@
 "bof" = (
 /obj/item/stack/sheet/wood,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHWEST)";
 	dir = 9
 	},
 /turf/open/floor{
@@ -22608,7 +22490,6 @@
 	icon_state = "1-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHEAST)";
 	dir = 5
 	},
 /turf/open/gm/dirt,
@@ -22625,7 +22506,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor{
@@ -22640,14 +22520,12 @@
 	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
 "boE" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/plating/warning{
@@ -22666,7 +22544,6 @@
 	icon_state = "1-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/plating/warning{
@@ -22686,7 +22563,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/plating/warning{
@@ -22700,7 +22576,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -22722,7 +22597,6 @@
 	tag = ""
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor{
@@ -22748,7 +22622,6 @@
 	tag = ""
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHWEST)";
 	dir = 9
 	},
 /turf/open/floor{
@@ -23012,7 +22885,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (EAST)";
 	dir = 4
 	},
 /turf/open/floor{
@@ -23027,7 +22899,6 @@
 	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHWEST)";
 	dir = 9
 	},
 /turf/open/gm/dirt,
@@ -23499,14 +23370,12 @@
 /area/lv624/lazarus/engineering)
 "bqY" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHEAST)";
 	dir = 5
 	},
 /turf/open/gm/dirt,
 /area/lv624/ground/compound/se)
 "bqZ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	tag = "icon-intact-supply (NORTHWEST)";
 	dir = 9
 	},
 /turf/open/gm/dirt,

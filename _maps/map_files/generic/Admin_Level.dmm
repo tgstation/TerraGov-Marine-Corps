@@ -371,7 +371,6 @@
 /area/shuttle/distress/transit)
 "bb" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
-	tag = "icon-intact (NORTHEAST)";
 	dir = 5
 	},
 /turf/open/floor,
@@ -385,7 +384,6 @@
 /area/tdome)
 "bd" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
-	tag = "icon-intact (NORTHWEST)";
 	dir = 9
 	},
 /turf/open/floor,
@@ -1477,7 +1475,6 @@
 /area/yautja)
 "dv" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
-	tag = "icon-intact (NORTHEAST)";
 	dir = 5
 	},
 /turf/open/floor/holofloor{
@@ -1501,7 +1498,6 @@
 /area/yautja)
 "dy" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
-	tag = "icon-intact (NORTHWEST)";
 	dir = 9
 	},
 /obj/machinery/light/small{
