@@ -31,23 +31,23 @@
 	if(!leader)
 		new_xeno = new /mob/living/carbon/Xenomorph/Ravager(spawn_loc)
 		leader = new_xeno
-		M.transfer_to(new_xeno)
+		M.transfer_to(new_xeno, TRUE)
 		print_backstory(new_xeno)
 		return
 
 	if(prob(35))
 		new_xeno = new /mob/living/carbon/Xenomorph/Drone/elder(spawn_loc)
-		M.transfer_to(new_xeno)
+		M.transfer_to(new_xeno, TRUE)
 		print_backstory(new_xeno)
 		return
 
 
 	if(prob(35))
 		new_xeno = new /mob/living/carbon/Xenomorph/Spitter/mature(spawn_loc)
-		M.transfer_to(new_xeno)
+		M.transfer_to(new_xeno, TRUE)
 		print_backstory(new_xeno)
 		return
 
 	new_xeno = new /mob/living/carbon/Xenomorph/Hunter/mature(spawn_loc)
-	M.transfer_to(new_xeno)
+	M.transfer_to(new_xeno, TRUE)
 	print_backstory(new_xeno)

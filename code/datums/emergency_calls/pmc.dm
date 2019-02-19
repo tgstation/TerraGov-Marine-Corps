@@ -32,7 +32,7 @@
 		H.real_name = H.name
 		H.voice_name = H.name
 
-	M.transfer_to(H)
+	M.transfer_to(H, TRUE)
 
 	if(original)
 		qdel(original)

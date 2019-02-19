@@ -16,7 +16,7 @@
 
 	var/mob/living/carbon/human/H = new /mob/living/carbon/human(spawn_loc)
 
-	M.transfer_to(H)
+	M.transfer_to(H, TRUE)
 
 	if(original)
 		qdel(original)
