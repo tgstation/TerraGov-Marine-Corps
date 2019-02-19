@@ -2176,9 +2176,7 @@
 /turf/closed/mineral,
 /area/lv624/ground/sand4)
 "ahV" = (
-/turf/open/floor/mech_bay_recharge_floor{
-	icon_state = "recharge_floor_asteroid"
-	},
+/turf/open/floor/mech_bay_recharge_floor/asteroid,
 /area/lv624/ground/sand2)
 "ahW" = (
 /turf/open/floor/airless{
@@ -2746,9 +2744,7 @@
 /turf/open/gm/river,
 /area/lv624/ground/river3)
 "ajX" = (
-/turf/open/floor/mech_bay_recharge_floor{
-	icon_state = "recharge_floor_asteroid"
-	},
+/turf/open/floor/mech_bay_recharge_floor/asteroid,
 /area/lv624/ground/caves/west1)
 "ajY" = (
 /turf/open/gm/coast/corner{
@@ -14211,10 +14207,7 @@
 "aTo" = (
 /obj/machinery/floodlight/landing,
 /obj/effect/decal/warning_stripes,
-/turf/open/floor/mech_bay_recharge_floor{
-	luminosity = 0;
-	name = "Shuttle Landing Lights"
-	},
+/turf/open/floor/mech_bay_recharge_floor,
 /area/shuttle/drop1/lz1)
 "aTp" = (
 /obj/machinery/landinglight/ds1/delaytwo{

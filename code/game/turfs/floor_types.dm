@@ -468,3 +468,7 @@
 	if(broken) return
 	ChangeTurf(/turf/open/floor/plating)
 	broken = TRUE
+
+/turf/open/floor/mech_bay_recharge_floor/asteroid
+	icon_state = "recharge_floor_asteroid"
+	
