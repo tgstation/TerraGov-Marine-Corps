@@ -157,7 +157,6 @@
 		H.sec_hud_set_ID()
 
 	H.name = H.get_visible_name()
-	H.hud_set_squad()
 
 
 /proc/guest_jobbans(var/job)

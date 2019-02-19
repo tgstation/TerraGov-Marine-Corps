@@ -8,6 +8,8 @@
 
 /datum/job/marine/after_spawn(mob/living/L, mob/M, latejoin = FALSE)
 	. = ..()
+	L.hud_set_squad()
+	L.nutrition = rand(60,250)
 	if(!L.mind?.assigned_squad)
 		return
 	var/datum/squad/S = L.mind.assigned_squad
