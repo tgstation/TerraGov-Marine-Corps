@@ -45,15 +45,14 @@
 	icon = 'icons/turf/ground_map.dmi'
 	icon_state = "wall2"
 
-/turf/closed/gm/dense/New()
-	..()
-	spawn(1)
-		if(rand(0,15) == 0)
-			icon_state = "wall1"
-		else if (rand(0,20) == 0)
-			icon_state = "wall3"
-		else
-			icon_state = "wall2"
+/turf/closed/gm/dense/Initialize()
+	. = ..()
+	if(rand(0,15) == 0)
+		icon_state = "wall1"
+	else if (rand(0,20) == 0)
+		icon_state = "wall3"
+	else
+		icon_state = "wall2"
 
 
 

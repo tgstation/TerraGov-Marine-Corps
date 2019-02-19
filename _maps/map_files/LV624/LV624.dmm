@@ -29,9 +29,7 @@
 /turf/open/gm/grass,
 /area/lv624/ground/caves/central2)
 "aaj" = (
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/caves/central2)
 "aak" = (
 /turf/open/gm/dirtgrassborder{
@@ -2508,17 +2506,13 @@
 /obj/structure/jungle/vines{
 	icon_state = "Light2"
 	},
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/sand3)
 "ain" = (
 /obj/structure/jungle/vines{
 	icon_state = "Light3"
 	},
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/sand3)
 "aio" = (
 /obj/structure/mineral_door/resin,
@@ -2585,9 +2579,7 @@
 /obj/structure/jungle/vines/heavy{
 	icon_state = "Med1"
 	},
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/river3)
 "aiA" = (
 /obj/structure/jungle/vines{
@@ -2596,9 +2588,7 @@
 /obj/structure/jungle/vines{
 	icon_state = "Light2"
 	},
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/river3)
 "aiB" = (
 /turf/open/floor/plating{
@@ -2682,25 +2672,19 @@
 /obj/structure/jungle/vines/heavy{
 	icon_state = "Hvy2"
 	},
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/river3)
 "aiO" = (
 /obj/structure/jungle/vines/heavy{
 	icon_state = "Med2"
 	},
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/river3)
 "aiP" = (
 /obj/structure/jungle/vines/heavy{
 	icon_state = "Hvy3"
 	},
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/river3)
 "aiQ" = (
 /obj/structure/jungle/vines/heavy{
@@ -2709,9 +2693,7 @@
 /obj/structure/jungle/vines{
 	icon_state = "Light2"
 	},
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/river3)
 "aiR" = (
 /obj/structure/jungle/vines{
@@ -3114,24 +3096,18 @@
 	icon_state = "Hvy3"
 	},
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/river3)
 "akf" = (
 /obj/structure/jungle/vines/heavy{
 	icon_state = "Med1"
 	},
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/river3)
 "akg" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/river3)
 "akh" = (
 /obj/structure/flora/grass/brown,
@@ -3239,9 +3215,7 @@
 /obj/structure/jungle/vines/heavy{
 	icon_state = "Med1"
 	},
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/river3)
 "aky" = (
 /obj/structure/inflatable,
@@ -3363,9 +3337,7 @@
 	icon_state = "Hvy2"
 	},
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/river3)
 "akT" = (
 /obj/structure/jungle/vines{
@@ -4341,22 +4313,16 @@
 /obj/structure/jungle/vines/heavy{
 	icon_state = "Med1"
 	},
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/jungle8)
 "anr" = (
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/jungle8)
 "ans" = (
 /obj/structure/jungle/vines/heavy{
 	icon_state = "Hvy3"
 	},
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/jungle8)
 "ant" = (
 /turf/open/gm/grass{
@@ -5072,9 +5038,7 @@
 /obj/structure/jungle/vines{
 	icon_state = "Light2"
 	},
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/jungle8)
 "apy" = (
 /obj/item/device/analyzer,
@@ -5241,9 +5205,7 @@
 /obj/structure/jungle/vines{
 	icon_state = "Light3"
 	},
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/jungle8)
 "apX" = (
 /turf/open/gm/coast{
@@ -5717,9 +5679,7 @@
 /area/lv624/ground/jungle5)
 "arB" = (
 /obj/structure/flora/ausbushes/reedbush,
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/jungle5)
 "arC" = (
 /obj/structure/jungle/plantbot1{
@@ -5775,9 +5735,7 @@
 /obj/structure/jungle/vines/heavy{
 	icon_state = "Med2"
 	},
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/river1)
 "arL" = (
 /obj/effect/decal/warning_stripes{
@@ -5814,9 +5772,7 @@
 /area/lv624/lazarus/medbay)
 "arN" = (
 /obj/structure/flora/ausbushes/stalkybush,
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/jungle5)
 "arO" = (
 /obj/structure/disposalpipe/trunk{
@@ -5897,15 +5853,11 @@
 /obj/structure/jungle/vines{
 	icon_state = "Light2"
 	},
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/jungle5)
 "asb" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/river1)
 "asc" = (
 /obj/structure/jungle/vines/heavy{
@@ -5980,9 +5932,7 @@
 	icon_state = "alienplant1";
 	luminosity = 2
 	},
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/jungle5)
 "aso" = (
 /obj/effect/landmark/lv624/fog_blocker,
@@ -6039,9 +5989,7 @@
 	icon_state = "Hvy3"
 	},
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/river1)
 "asy" = (
 /obj/structure/jungle/vines{
@@ -6079,9 +6027,7 @@
 /obj/structure/jungle/vines{
 	icon_state = "Light3"
 	},
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/river3)
 "asD" = (
 /obj/structure/jungle/vines{
@@ -6094,9 +6040,7 @@
 	icon_state = "Light2";
 	pixel_y = 1
 	},
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/jungle8)
 "asF" = (
 /obj/structure/tunnel{
@@ -6213,9 +6157,7 @@
 /obj/structure/jungle/vines/heavy{
 	icon_state = "Med1"
 	},
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/jungle7)
 "asW" = (
 /obj/structure/flora/tree/jungle/small,
@@ -6246,9 +6188,7 @@
 	},
 /area/lv624/ground/jungle6)
 "atb" = (
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/river3)
 "atc" = (
 /obj/structure/flora/ausbushes/reedbush,
@@ -6294,9 +6234,7 @@
 	},
 /area/lv624/ground/jungle7)
 "atl" = (
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/jungle7)
 "atm" = (
 /obj/machinery/colony_floodlight,
@@ -6368,9 +6306,7 @@
 /obj/structure/jungle/vines{
 	icon_state = "Light2"
 	},
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/jungle7)
 "atv" = (
 /obj/structure/flora/ausbushes/fullgrass,
@@ -6645,9 +6581,7 @@
 /obj/structure/jungle/vines{
 	icon_state = "Light3"
 	},
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/jungle7)
 "aum" = (
 /obj/structure/jungle/vines{
@@ -6758,9 +6692,7 @@
 /obj/structure/jungle/vines{
 	icon_state = "Light2"
 	},
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/river3)
 "auB" = (
 /turf/open/gm/dirtgrassborder{
@@ -6860,9 +6792,7 @@
 /obj/structure/jungle/vines{
 	icon_state = "Light2"
 	},
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/jungle7)
 "auR" = (
 /obj/structure/flora/tree/jungle,
@@ -7996,14 +7926,10 @@
 /obj/structure/jungle/vines{
 	icon_state = "Light2"
 	},
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/jungle6)
 "axQ" = (
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/jungle6)
 "axR" = (
 /turf/open/gm/dirt,
@@ -8786,14 +8712,10 @@
 /obj/structure/jungle/vines{
 	icon_state = "Light2"
 	},
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/jungle5)
 "azv" = (
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/sand7)
 "azw" = (
 /obj/structure/fence,
@@ -9262,9 +9184,7 @@
 /obj/structure/jungle/vines/heavy{
 	icon_state = "Med2"
 	},
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/jungle6)
 "aAK" = (
 /obj/structure/table,
@@ -9340,9 +9260,7 @@
 	},
 /area/lv624/ground/jungle5)
 "aAV" = (
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/jungle5)
 "aAW" = (
 /obj/structure/fence,
@@ -10048,9 +9966,7 @@
 /obj/structure/jungle/vines/heavy{
 	icon_state = "Hvy3"
 	},
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/river1)
 "aDt" = (
 /turf/open/gm/coast{
@@ -10220,17 +10136,13 @@
 /turf/open/gm/grass,
 /area/lv624/ground/jungle5)
 "aDU" = (
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/river1)
 "aDV" = (
 /obj/structure/jungle/vines/heavy{
 	icon_state = "Hvy2"
 	},
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/river1)
 "aDZ" = (
 /obj/structure/flora/ausbushes/reedbush,
@@ -10294,9 +10206,7 @@
 /obj/structure/jungle/vines{
 	icon_state = "Light3"
 	},
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/jungle6)
 "aEx" = (
 /turf/open/gm/dirt,
@@ -10556,17 +10466,13 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/fitness)
 "aFB" = (
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/jungle9)
 "aFC" = (
 /obj/structure/jungle/vines{
 	icon_state = "Light2"
 	},
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/jungle9)
 "aFD" = (
 /obj/structure/flora/ausbushes/fullgrass,
@@ -11418,9 +11324,7 @@
 /obj/machinery/colony_floodlight{
 	dir = 8
 	},
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/compound/ne)
 "aHY" = (
 /obj/structure/flora/ausbushes/fullgrass,
@@ -11449,9 +11353,7 @@
 /obj/structure/jungle/vines{
 	icon_state = "Light2"
 	},
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/compound/ne)
 "aId" = (
 /obj/structure/rack,
@@ -11659,20 +11561,14 @@
 /obj/structure/jungle/vines{
 	icon_state = "Light2"
 	},
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/compound/ne)
 "aIM" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/compound/ne)
 "aIN" = (
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/compound/ne)
 "aIO" = (
 /obj/structure/jungle/plantbot1,
@@ -12038,9 +11934,7 @@
 /obj/structure/jungle/vines{
 	icon_state = "Light2"
 	},
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/lazarus/quartstorage/outdoors)
 "aJH" = (
 /obj/structure/jungle/vines{
@@ -12113,17 +12007,13 @@
 /obj/structure/jungle/vines/heavy{
 	icon_state = "Med1"
 	},
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/jungle6)
 "aJS" = (
 /obj/structure/jungle/vines/heavy{
 	icon_state = "Hvy2"
 	},
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/jungle6)
 "aJT" = (
 /obj/structure/jungle/vines/heavy{
@@ -13345,9 +13235,7 @@
 /obj/structure/jungle/vines/heavy{
 	icon_state = "Hvy3"
 	},
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/jungle6)
 "aMV" = (
 /obj/structure/flora/grass/green,
@@ -14302,9 +14190,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage)
 "aPA" = (
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/jungle4)
 "aPB" = (
 /obj/structure/jungle/vines/heavy{
@@ -14667,9 +14553,7 @@
 /area/lv624/ground/jungle5)
 "aQA" = (
 /obj/structure/jungle/vines/heavy,
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/jungle4)
 "aQB" = (
 /obj/structure/jungle/vines/heavy{
@@ -15576,17 +15460,13 @@
 /obj/structure/jungle/vines{
 	icon_state = "Light3"
 	},
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/jungle5)
 "aSF" = (
 /obj/structure/jungle/vines/heavy{
 	icon_state = "Hvy3"
 	},
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/jungle4)
 "aSG" = (
 /obj/structure/jungle/planttop1,
@@ -15645,9 +15525,7 @@
 /area/lv624/lazarus/robotics)
 "aSO" = (
 /obj/structure/jungle/planttop1,
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/jungle9)
 "aSP" = (
 /obj/machinery/colony_floodlight{
@@ -15672,9 +15550,7 @@
 	},
 /area/lv624/ground/jungle9)
 "aSS" = (
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/lazarus/sleep_male)
 "aST" = (
 /obj/effect/decal/cleanable/blood,
@@ -15975,9 +15851,7 @@
 /area/shuttle/drop2/lz2)
 "aTE" = (
 /obj/structure/jungle/plantbot1,
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/jungle9)
 "aTF" = (
 /obj/machinery/colony_floodlight{
@@ -16650,9 +16524,7 @@
 /obj/structure/jungle/vines{
 	icon_state = "Light2"
 	},
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/jungle4)
 "aVq" = (
 /obj/machinery/landinglight/ds2/delayone{
@@ -17097,9 +16969,7 @@
 /obj/structure/jungle/vines{
 	icon_state = "Light3"
 	},
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/jungle9)
 "aWF" = (
 /obj/structure/flora/tree/jungle,
@@ -18080,9 +17950,7 @@
 /obj/structure/jungle/vines/heavy{
 	icon_state = "Med1"
 	},
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/jungle4)
 "aYZ" = (
 /obj/machinery/landinglight/ds2/delayone{
@@ -18182,9 +18050,7 @@
 /area/lv624/ground/compound/sw)
 "aZn" = (
 /obj/effect/landmark/random_item/crap,
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/jungle9)
 "aZo" = (
 /obj/structure/jungle/vines{
@@ -19551,9 +19417,7 @@
 	},
 /area/lv624/lazarus/canteen)
 "bcg" = (
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/jungle3)
 "bch" = (
 /turf/open/gm/grass,
@@ -19587,9 +19451,7 @@
 /obj/structure/jungle/vines{
 	icon_state = "Light3"
 	},
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/jungle3)
 "bco" = (
 /obj/structure/barricade/wooden{
@@ -20020,14 +19882,10 @@
 /obj/structure/jungle/vines{
 	icon_state = "Light2"
 	},
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/jungle1)
 "bdk" = (
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/jungle1)
 "bdl" = (
 /obj/effect/landmark/xeno_tunnel,
@@ -20049,9 +19907,7 @@
 /obj/structure/jungle/vines{
 	icon_state = "Light2"
 	},
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/jungle3)
 "bdp" = (
 /obj/structure/barricade/wooden,
@@ -20470,9 +20326,7 @@
 /obj/structure/jungle/vines/heavy{
 	icon_state = "Med1"
 	},
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/jungle3)
 "bej" = (
 /obj/structure/jungle/vines/heavy{
@@ -21125,15 +20979,11 @@
 /obj/structure/jungle/vines/heavy{
 	icon_state = "Hvy2"
 	},
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/jungle3)
 "bfJ" = (
 /obj/structure/jungle/vines/heavy,
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/jungle3)
 "bfK" = (
 /obj/structure/jungle/vines/heavy{
@@ -21645,9 +21495,7 @@
 /area/lv624/ground/jungle1)
 "bhf" = (
 /obj/structure/jungle/planttop1,
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/jungle3)
 "bhg" = (
 /obj/machinery/vending/snack,
@@ -23229,9 +23077,7 @@
 /obj/structure/jungle/vines/heavy{
 	icon_state = "Med2"
 	},
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/jungle1)
 "bla" = (
 /turf/closed/wall/r_wall,
@@ -23493,9 +23339,7 @@
 /obj/structure/jungle/vines{
 	icon_state = "Light3"
 	},
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/jungle1)
 "blC" = (
 /obj/structure/jungle/vines{
@@ -25092,9 +24936,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/main_hall)
 "boU" = (
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/jungle2)
 "boV" = (
 /obj/structure/jungle/vines{
@@ -25493,9 +25335,7 @@
 /obj/structure/jungle/vines{
 	icon_state = "Light3"
 	},
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/jungle1)
 "bpX" = (
 /obj/item/weapon/claymore/mercsword/machete,
@@ -25992,9 +25832,7 @@
 /obj/structure/jungle/vines{
 	icon_state = "Light2"
 	},
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/jungle2)
 "brw" = (
 /obj/effect/landmark/huntergames_primary_spawn,
@@ -26200,18 +26038,14 @@
 	icon_state = "Hvy3";
 	pixel_y = 24
 	},
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/jungle3)
 "brY" = (
 /obj/structure/jungle/vines/heavy{
 	icon_state = "Med2";
 	pixel_y = 26
 	},
-/turf/closed/gm/dense{
-	icon_state = "wall2"
-	},
+/turf/closed/gm/dense,
 /area/lv624/ground/jungle3)
 "brZ" = (
 /obj/structure/jungle/vines/heavy{
