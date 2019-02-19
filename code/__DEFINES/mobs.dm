@@ -588,6 +588,10 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define CASTE_IS_ROBOTIC			(1<<8)
 #define CASTE_DECAY_PROOF			(1<<9)
 
+//Hivelord defines
+#define HIVELORD_STING_COOLDOWN			10 SECONDS
+#define DEFILER_STING_CHANNEL_TIME		10 SECONDS
+
 //misc
 
 #define STANDARD_SLOWDOWN_REGEN 0.3
