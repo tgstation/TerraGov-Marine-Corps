@@ -115,6 +115,9 @@
 /turf/open/floor/marking/delivery
 	icon_state = "delivery"
 
+/turf/open/floor/marking/warning
+	icon_state = "warning"
+
 //Cargo elevator
 /turf/open/floor/almayer/empty
 	name = "empty space"

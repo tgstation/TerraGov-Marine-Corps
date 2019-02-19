@@ -187,10 +187,7 @@
 	},
 /area/space)
 "az" = (
-/turf/open/floor{
-	icon_state = "plating";
-	name = "plating"
-	},
+/turf/open/floor/plating,
 /area/tdome)
 "aA" = (
 /obj/structure/window/reinforced{
@@ -249,20 +246,14 @@
 /area/space)
 "aI" = (
 /obj/effect/landmark/thunderdome/two,
-/turf/open/floor{
-	icon_state = "plating";
-	name = "plating"
-	},
+/turf/open/floor/plating,
 /area/tdome/tdome2)
 "aJ" = (
 /obj/machinery/door/poddoor{
 	id = "thunderdome";
 	name = "Thunderdome Blast Door"
 	},
-/turf/open/floor{
-	icon_state = "plating";
-	name = "plating"
-	},
+/turf/open/floor/plating,
 /area/tdome)
 "aK" = (
 /turf/open/floor{
@@ -278,10 +269,7 @@
 /area/tdome)
 "aM" = (
 /obj/effect/landmark/thunderdome/one,
-/turf/open/floor{
-	icon_state = "plating";
-	name = "plating"
-	},
+/turf/open/floor/plating,
 /area/tdome/tdome1)
 "aN" = (
 /turf/open/space/transit/north/shuttlespace_ns11,
@@ -3411,10 +3399,7 @@
 /area/centcom/solitary)
 "hF" = (
 /obj/structure/bed,
-/turf/open/floor{
-	icon_state = "plating";
-	name = "plating"
-	},
+/turf/open/floor/plating,
 /area/centcom/solitary)
 "hG" = (
 /turf/open/floor{
@@ -3431,17 +3416,11 @@
 	},
 /area/centcom/solitary)
 "hJ" = (
-/turf/open/floor{
-	icon_state = "plating";
-	name = "plating"
-	},
+/turf/open/floor/plating,
 /area/centcom/solitary)
 "hK" = (
 /obj/effect/decal/cleanable/cobweb2,
-/turf/open/floor{
-	icon_state = "plating";
-	name = "plating"
-	},
+/turf/open/floor/plating,
 /area/centcom/solitary)
 "hL" = (
 /obj/structure/bed,
@@ -3451,10 +3430,7 @@
 /area/centcom/solitary)
 "hM" = (
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor{
-	icon_state = "plating";
-	name = "plating"
-	},
+/turf/open/floor/plating,
 /area/centcom/solitary)
 "hN" = (
 /turf/closed/shuttle/ert,
@@ -3631,10 +3607,7 @@
 /area/yautja)
 "il" = (
 /obj/effect/landmark/prisonwarp,
-/turf/open/floor{
-	icon_state = "plating";
-	name = "plating"
-	},
+/turf/open/floor/plating,
 /area/centcom/solitary)
 "im" = (
 /turf/open/floor{
@@ -3870,10 +3843,7 @@
 "iR" = (
 /obj/structure/bed,
 /obj/effect/decal/cleanable/cobweb,
-/turf/open/floor{
-	icon_state = "plating";
-	name = "plating"
-	},
+/turf/open/floor/plating,
 /area/centcom/solitary)
 "iS" = (
 /turf/closed/shuttle/ert{
@@ -6550,10 +6520,7 @@
 	icon_state = "brokengrille"
 	},
 /obj/item/shard,
-/turf/open/floor{
-	icon_state = "plating";
-	name = "plating"
-	},
+/turf/open/floor/plating,
 /area/deathmatch)
 "pt" = (
 /turf/open/gm/grass,
@@ -6635,10 +6602,7 @@
 "pK" = (
 /obj/structure/window/shuttle,
 /obj/structure/grille,
-/turf/open/floor{
-	icon_state = "plating";
-	name = "plating"
-	},
+/turf/open/floor/plating,
 /area/deathmatch)
 "pL" = (
 /obj/structure/fence,
@@ -6833,10 +6797,7 @@
 /turf/open/floor,
 /area/deathmatch)
 "qx" = (
-/turf/open/floor{
-	icon_state = "plating";
-	name = "plating"
-	},
+/turf/open/floor/plating,
 /area/deathmatch)
 "qy" = (
 /obj/machinery/floodlight{

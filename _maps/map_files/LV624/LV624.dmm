@@ -1575,32 +1575,24 @@
 /area/lv624/ground/sand5)
 "afE" = (
 /obj/structure/fence,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "warning"
+/turf/open/floor/marking/warning{
+	dir = 1
 	},
 /area/lv624/ground/sand5)
 "afF" = (
-/turf/open/floor{
-	dir = 1;
-	icon_state = "warning"
+/turf/open/floor/marking/warning{
+	dir = 1
 	},
 /area/lv624/ground/sand5)
 "afG" = (
-/turf/open/floor{
-	icon_state = "plating";
-	name = "plating"
-	},
+/turf/open/floor/plating,
 /area/lv624/ground/sand5)
 "afH" = (
 /obj/item/stack/sheet/metal,
 /turf/open/gm/dirt,
 /area/lv624/ground/sand6)
 "afI" = (
-/turf/open/floor{
-	icon_state = "plating";
-	name = "plating"
-	},
+/turf/open/floor/plating,
 /area/lv624/ground/sand6)
 "afJ" = (
 /obj/structure/table,
@@ -1611,9 +1603,8 @@
 /area/lv624/ground/sand8)
 "afL" = (
 /obj/structure/fence,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "warning"
+/turf/open/floor/marking/warning{
+	dir = 8
 	},
 /area/lv624/ground/sand5)
 "afM" = (
@@ -1622,10 +1613,7 @@
 /area/lv624/ground/sand5)
 "afN" = (
 /obj/structure/girder,
-/turf/open/floor{
-	icon_state = "plating";
-	name = "plating"
-	},
+/turf/open/floor/plating,
 /area/lv624/ground/sand6)
 "afO" = (
 /obj/item/stack/sheet/wood,
@@ -1745,10 +1733,7 @@
 /area/lv624/ground/sand5)
 "agi" = (
 /obj/item/stack/sheet/metal,
-/turf/open/floor{
-	icon_state = "plating";
-	name = "plating"
-	},
+/turf/open/floor/plating,
 /area/lv624/ground/sand6)
 "agj" = (
 /obj/structure/shuttle/engine/propulsion,
@@ -1863,9 +1848,8 @@
 /area/lv624/ground/sand2)
 "agJ" = (
 /obj/structure/fence,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "warning"
+/turf/open/floor/marking/warning{
+	dir = 8
 	},
 /area/lv624/ground/sand2)
 "agK" = (
@@ -1903,9 +1887,8 @@
 	},
 /area/lv624/ground/sand2)
 "agQ" = (
-/turf/open/floor{
-	dir = 4;
-	icon_state = "warning"
+/turf/open/floor/marking/warning{
+	dir = 4
 	},
 /area/lv624/ground/sand2)
 "agR" = (
@@ -1976,10 +1959,7 @@
 /turf/open/floor,
 /area/lv624/ground/sand2)
 "ahe" = (
-/turf/open/floor{
-	icon_state = "plating";
-	name = "plating"
-	},
+/turf/open/floor/plating,
 /area/lv624/ground/sand2)
 "ahf" = (
 /turf/closed/mineral,
@@ -2170,14 +2150,10 @@
 /area/lv624/ground/sand2)
 "ahO" = (
 /obj/structure/fence,
-/turf/open/floor{
-	icon_state = "warning"
-	},
+/turf/open/floor/marking/warning,
 /area/lv624/ground/sand2)
 "ahP" = (
-/turf/open/floor{
-	icon_state = "warning"
-	},
+/turf/open/floor/marking/warning,
 /area/lv624/ground/sand2)
 "ahQ" = (
 /turf/open/gm/coast,
@@ -2268,9 +2244,8 @@
 /area/lv624/ground/sand2)
 "aig" = (
 /obj/structure/fence,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "warning"
+/turf/open/floor/marking/warning{
+	dir = 4
 	},
 /area/lv624/ground/sand2)
 "aih" = (
@@ -13925,28 +13900,24 @@
 	},
 /area/lv624/lazarus/quartstorage)
 "aSz" = (
-/turf/open/floor{
-	dir = 9;
-	icon_state = "warning"
+/turf/open/floor/marking/warning{
+	dir = 9
 	},
 /area/shuttle/drop1/lz1)
 "aSA" = (
 /obj/structure/barricade/wooden,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "warning"
+/turf/open/floor/marking/warning{
+	dir = 1
 	},
 /area/shuttle/drop1/lz1)
 "aSB" = (
-/turf/open/floor{
-	dir = 1;
-	icon_state = "warning"
+/turf/open/floor/marking/warning{
+	dir = 1
 	},
 /area/shuttle/drop1/lz1)
 "aSC" = (
-/turf/open/floor{
-	dir = 5;
-	icon_state = "warning"
+/turf/open/floor/marking/warning{
+	dir = 5
 	},
 /area/shuttle/drop1/lz1)
 "aSD" = (
@@ -14233,9 +14204,8 @@
 	},
 /area/lv624/lazarus/quartstorage)
 "aTn" = (
-/turf/open/floor{
-	dir = 8;
-	icon_state = "warning"
+/turf/open/floor/marking/warning{
+	dir = 8
 	},
 /area/shuttle/drop1/lz1)
 "aTo" = (
@@ -14275,9 +14245,8 @@
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "aTt" = (
-/turf/open/floor{
-	dir = 4;
-	icon_state = "warning"
+/turf/open/floor/marking/warning{
+	dir = 4
 	},
 /area/shuttle/drop1/lz1)
 "aTu" = (
@@ -15127,9 +15096,8 @@
 /area/lv624/lazarus/quartstorage)
 "aVM" = (
 /obj/effect/decal/cleanable/blood/oil,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "warning"
+/turf/open/floor/marking/warning{
+	dir = 1
 	},
 /area/shuttle/drop1/lz1)
 "aVN" = (
@@ -15333,9 +15301,8 @@
 	},
 /area/lv624/lazarus/quartstorage)
 "aWq" = (
-/turf/open/floor{
-	dir = 10;
-	icon_state = "warning"
+/turf/open/floor/marking/warning{
+	dir = 10
 	},
 /area/shuttle/drop1/lz1)
 "aWr" = (
@@ -15806,9 +15773,8 @@
 	dir = 1;
 	flipped = 1
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "warning"
+/turf/open/floor/marking/warning{
+	dir = 1
 	},
 /area/lv624/lazarus/console)
 "aXF" = (
@@ -15821,9 +15787,8 @@
 /obj/structure/barricade/wooden{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "warning"
+/turf/open/floor/marking/warning{
+	dir = 4
 	},
 /area/shuttle/drop1/lz1)
 "aXH" = (
@@ -17126,9 +17091,8 @@
 /obj/effect/decal/cleanable/blood/tracks/footprints{
 	dir = 8
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "warning"
+/turf/open/floor/marking/warning{
+	dir = 8
 	},
 /area/shuttle/drop1/lz1)
 "baC" = (
@@ -18596,9 +18560,8 @@
 /area/lv624/lazarus/canteen)
 "bed" = (
 /obj/structure/largecrate/random/barrel/red,
-/turf/open/floor{
-	dir = 9;
-	icon_state = "warning"
+/turf/open/floor/marking/warning{
+	dir = 9
 	},
 /area/shuttle/drop1/lz1)
 "bee" = (
@@ -18931,9 +18894,8 @@
 /area/lv624/lazarus/canteen)
 "beR" = (
 /obj/structure/largecrate/random/barrel/yellow,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "warning"
+/turf/open/floor/marking/warning{
+	dir = 8
 	},
 /area/shuttle/drop1/lz1)
 "beS" = (
@@ -19218,9 +19180,8 @@
 /area/lv624/lazarus/canteen)
 "bfE" = (
 /obj/structure/largecrate/random/barrel/red,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "warning"
+/turf/open/floor/marking/warning{
+	dir = 8
 	},
 /area/shuttle/drop1/lz1)
 "bfF" = (
@@ -19479,9 +19440,8 @@
 /area/shuttle/drop1/lz1)
 "bgx" = (
 /obj/structure/largecrate/random,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "warning"
+/turf/open/floor/marking/warning{
+	dir = 8
 	},
 /area/shuttle/drop1/lz1)
 "bgy" = (
@@ -20635,14 +20595,11 @@
 	},
 /area/shuttle/drop1/lz1)
 "bjv" = (
-/turf/open/floor{
-	icon_state = "warning"
-	},
+/turf/open/floor/marking/warning,
 /area/shuttle/drop1/lz1)
 "bjw" = (
-/turf/open/floor{
-	dir = 6;
-	icon_state = "warning"
+/turf/open/floor/marking/warning{
+	dir = 6
 	},
 /area/shuttle/drop1/lz1)
 "bjx" = (
