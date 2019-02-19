@@ -4668,10 +4668,7 @@
 	},
 /area/whiskey_outpost/outside/south)
 "lG" = (
-/obj/structure/grille{
-	density = 0;
-	icon_state = "brokengrille"
-	},
+/obj/structure/grille/broken,
 /obj/effect/decal/cleanable/blood/writing,
 /obj/item/shard,
 /obj/item/weapon/gun/pistol/m4a3,
@@ -4755,27 +4752,18 @@
 /turf/open/jungle/path,
 /area/whiskey_outpost/outside/south)
 "lT" = (
-/obj/structure/grille{
-	density = 0;
-	icon_state = "brokengrille"
-	},
+/obj/structure/grille/broken,
 /turf/open/jungle,
 /area/whiskey_outpost/outside/south)
 "lU" = (
-/obj/structure/grille{
-	density = 0;
-	icon_state = "brokengrille"
-	},
+/obj/structure/grille/broken,
 /turf/open/jungle{
 	bushes_spawn = 0;
 	icon_state = "grass_impenetrable"
 	},
 /area/whiskey_outpost/outside/south)
 "lV" = (
-/obj/structure/grille{
-	density = 0;
-	icon_state = "brokengrille"
-	},
+/obj/structure/grille/broken,
 /obj/effect/decal/cleanable/blood/writing{
 	tag = "icon-tracks (NORTH)";
 	icon_state = "tracks";

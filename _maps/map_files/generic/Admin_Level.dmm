@@ -6492,10 +6492,7 @@
 	},
 /area/deathmatch)
 "ps" = (
-/obj/structure/grille{
-	density = 0;
-	icon_state = "brokengrille"
-	},
+/obj/structure/grille/broken,
 /obj/item/shard,
 /turf/open/floor/plating,
 /area/deathmatch)
@@ -7015,10 +7012,7 @@
 /turf/open/shuttle/brig,
 /area/deathmatch)
 "rr" = (
-/obj/structure/grille{
-	density = 0;
-	icon_state = "brokengrille"
-	},
+/obj/structure/grille/broken,
 /turf/open/shuttle/brig,
 /area/deathmatch)
 "rs" = (

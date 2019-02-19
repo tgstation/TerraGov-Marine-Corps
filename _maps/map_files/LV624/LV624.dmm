@@ -18210,10 +18210,7 @@
 /turf/open/gm/dirt,
 /area/lv624/lazarus/atmos/outside)
 "bdG" = (
-/obj/structure/grille{
-	density = 0;
-	icon_state = "brokengrille"
-	},
+/obj/structure/grille/broken,
 /obj/structure/jungle/vines/heavy,
 /obj/structure/window_frame/colony,
 /turf/open/floor/plating,
@@ -18890,10 +18887,7 @@
 	},
 /area/lv624/lazarus/internal_affairs)
 "bfm" = (
-/obj/structure/grille{
-	density = 0;
-	icon_state = "brokengrille"
-	},
+/obj/structure/grille/broken,
 /obj/structure/jungle/vines/heavy,
 /obj/structure/window_frame/colony,
 /turf/open/floor/plating,
@@ -22677,10 +22671,7 @@
 	},
 /area/lv624/ground/jungle9)
 "boT" = (
-/obj/structure/grille{
-	density = 0;
-	icon_state = "brokengrille"
-	},
+/obj/structure/grille/broken,
 /obj/item/shard,
 /obj/structure/window_frame/colony/reinforced,
 /obj/machinery/door/poddoor/almayer{
@@ -23542,10 +23533,7 @@
 	},
 /area/lv624/lazarus/engineering)
 "brD" = (
-/obj/structure/grille{
-	density = 0;
-	icon_state = "brokengrille"
-	},
+/obj/structure/grille/broken,
 /obj/structure/foamedmetal,
 /turf/open/floor/plating/platebot,
 /area/lv624/lazarus/engineering)
