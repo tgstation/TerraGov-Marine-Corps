@@ -6554,7 +6554,6 @@
 "aoe" = (
 /obj/machinery/power/geothermal,
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /obj/structure/cable/yellow{
@@ -6581,7 +6580,6 @@
 /area/ice_colony/exterior/surface/valley/northwest)
 "aoh" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /obj/structure/closet/crate,
@@ -8244,7 +8242,6 @@
 "are" = (
 /obj/structure/closet/secure_closet/medical3/colony,
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor{
@@ -9147,7 +9144,6 @@
 /area/ice_colony/surface/clinic/lobby)
 "asT" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor{
@@ -10002,7 +9998,6 @@
 "auC" = (
 /obj/structure/flora/pottedplant,
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor{
@@ -10436,7 +10431,6 @@
 /area/ice_colony/surface/dorms)
 "avv" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /obj/structure/closet/crate,
@@ -11171,7 +11165,6 @@
 "awR" = (
 /obj/structure/flora/pottedplant,
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor{
@@ -12383,7 +12376,6 @@
 /obj/structure/bed,
 /obj/item/bedsheet/medical,
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor{
@@ -14336,7 +14328,6 @@
 /area/ice_colony/underground/hallway/south_east)
 "aDq" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /obj/structure/reagent_dispensers/water_cooler,
@@ -19276,7 +19267,6 @@
 "aNC" = (
 /obj/structure/closet/secure_closet/guncabinet,
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /obj/item/weapon/gun/pistol/highpower,
@@ -22162,7 +22152,6 @@
 	},
 /obj/structure/disposalpipe/segment,
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor{
@@ -22319,7 +22308,6 @@
 /area/ice_colony/surface/hangar/beta)
 "aTG" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor{
@@ -23411,7 +23399,6 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor{
@@ -25382,7 +25369,6 @@
 	pixel_x = -24
 	},
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/snow/layer0,
@@ -26816,7 +26802,6 @@
 	pixel_x = -24
 	},
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/snow/layer0,
@@ -26927,7 +26912,6 @@
 "bdm" = (
 /obj/structure/reagent_dispensers/beerkeg,
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor{
@@ -30065,7 +30049,6 @@
 	dir = 4
 	},
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor{
@@ -31354,7 +31337,6 @@
 /area/ice_colony/underground/hallway/north_west)
 "bmw" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor{
@@ -31448,7 +31430,6 @@
 /area/ice_colony/underground/crew/library)
 "bmI" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /obj/structure/bed/chair{
@@ -31551,7 +31532,6 @@
 /area/ice_colony/exterior/underground/caves/open)
 "bmV" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor{
@@ -31736,7 +31716,6 @@
 /area/ice_colony/underground/crew/library)
 "bnr" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /obj/structure/bed/chair{
@@ -32954,7 +32933,6 @@
 /area/ice_colony/underground/hallway/south_east)
 "bpU" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /obj/structure/table/reinforced,
@@ -34308,7 +34286,6 @@
 /area/ice_colony/underground/crew/bball)
 "bsJ" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /obj/structure/table,
@@ -34414,7 +34391,6 @@
 /area/ice_colony/underground/reception/checkpoint_north)
 "bsT" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /obj/machinery/alarm{
@@ -34448,7 +34424,6 @@
 /area/ice_colony/underground/crew/bball)
 "bsW" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor{
@@ -34925,7 +34900,6 @@
 	})
 "btU" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -35375,7 +35349,6 @@
 /area/ice_colony/underground/medical/hallway)
 "buO" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /obj/machinery/disposal,
@@ -36050,7 +36023,6 @@
 /area/ice_colony/underground/crew/bball)
 "bwd" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor{
@@ -36286,7 +36258,6 @@
 	dir = 4
 	},
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor{
@@ -36553,7 +36524,6 @@
 /area/ice_colony/underground/maintenance/east)
 "bxd" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor{
@@ -36669,7 +36639,6 @@
 /area/ice_colony/underground/maintenance/central/construction)
 "bxo" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor{
@@ -36679,7 +36648,6 @@
 /area/ice_colony/underground/crew/bball)
 "bxp" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor{
@@ -37652,7 +37620,6 @@
 /area/ice_colony/underground/maintenance/central)
 "bzk" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/wood,
@@ -37720,7 +37687,6 @@
 /area/ice_colony/underground/crew/canteen)
 "bzt" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/wood,
@@ -38136,7 +38102,6 @@
 /area/ice_colony/underground/hallway/south_east)
 "bAt" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor{
@@ -38196,7 +38161,6 @@
 /area/ice_colony/underground/command/center)
 "bAA" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/plating/icefloor,
@@ -40211,7 +40175,6 @@
 /area/ice_colony/exterior/underground/caves)
 "bEm" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /obj/structure/table/reinforced,
@@ -41535,7 +41498,6 @@
 /obj/structure/rack,
 /obj/item/tool/pickaxe,
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor{
@@ -41607,7 +41569,6 @@
 /area/ice_colony/underground/security/hallway)
 "bHg" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor{
@@ -45366,7 +45327,6 @@
 "bOc" = (
 /obj/structure/rack,
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /obj/item/ammo_magazine/revolver/cmb,
@@ -45415,7 +45375,6 @@
 /area/ice_colony/underground/maintenance/central)
 "bOg" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor{
@@ -46888,7 +46847,6 @@
 "bRq" = (
 /obj/structure/rack,
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor{
@@ -48811,7 +48769,6 @@
 /area/ice_colony/exterior/surface/cliff)
 "bVs" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/plating/icefloor{
@@ -50534,7 +50491,6 @@
 /area/ice_colony/exterior/surface/valley/southeast)
 "bYs" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor{
@@ -50807,7 +50763,6 @@
 	d2 = 4
 	},
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -50825,7 +50780,6 @@
 /area/ice_colony/underground/engineering/substation)
 "bYQ" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor{
@@ -51522,7 +51476,6 @@
 "cac" = (
 /obj/structure/closet/firecloset/full,
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /obj/machinery/alarm{
@@ -51541,7 +51494,6 @@
 	pixel_x = -24
 	},
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor{
@@ -51997,7 +51949,6 @@
 /area/ice_colony/underground/command/checkpoint)
 "ccL" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /obj/effect/decal/cleanable/blood/drip{

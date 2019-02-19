@@ -172,7 +172,6 @@
 /area/almayer/hull/upper_hull)
 "aax" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -1255,7 +1254,6 @@
 /area/almayer/living/numbertwobunks)
 "ado" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/wood,
@@ -1402,7 +1400,6 @@
 /area/almayer/evacuation/pod5)
 "adH" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /obj/effect/decal/warning_stripes/thin{
@@ -1587,7 +1584,6 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /obj/structure/bed/chair{
@@ -1720,7 +1716,6 @@
 /area/almayer/living/commandbunks)
 "aev" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/carpet,
@@ -2042,7 +2037,6 @@
 "afl" = (
 /obj/structure/flora/ausbushes/ppflowers,
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/grass,
@@ -2083,7 +2077,6 @@
 /area/almayer/living/offices)
 "afq" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /obj/machinery/disposal,
@@ -2488,7 +2481,6 @@
 /area/almayer/hull/upper_hull)
 "ago" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -2627,7 +2619,6 @@
 /area/almayer/living/officer_rnr)
 "agC" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /obj/structure/table/almayer,
@@ -7528,7 +7519,6 @@
 	dir = 2
 	},
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -8854,7 +8844,6 @@
 "arM" = (
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -8864,7 +8853,6 @@
 /area/almayer/medical/medical_science)
 "arN" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /obj/structure/ladder{
@@ -8998,7 +8986,6 @@
 /obj/structure/table/almayer,
 /obj/item/circuitboard/airlock,
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -9046,7 +9033,6 @@
 	req_access_txt = "3"
 	},
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -9111,7 +9097,6 @@
 	icon_state = "1-4"
 	},
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -9667,7 +9652,6 @@
 /area/almayer/command/corporateliaison)
 "atr" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment,
@@ -10143,7 +10127,6 @@
 /area/almayer/command/self_destruct)
 "aum" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /obj/structure/cable{
@@ -10739,7 +10722,6 @@
 "avj" = (
 /obj/structure/morgue,
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -10755,7 +10737,6 @@
 /area/almayer/medical/upper_medical)
 "avl" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /obj/effect/decal/warning_stripes/thin{
@@ -11129,7 +11110,6 @@
 /area/almayer/engineering/upper_engineering)
 "avU" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -11531,7 +11511,6 @@
 /area/almayer/command/airoom)
 "awL" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -11556,7 +11535,6 @@
 	icon_state = "plant-22"
 	},
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -11787,7 +11765,6 @@
 /area/almayer/hallways/stern_hallway)
 "axm" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -12347,7 +12324,6 @@
 /area/almayer/medical/upper_medical)
 "ayn" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -12589,7 +12565,6 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -13072,7 +13047,6 @@
 /area/almayer/command/cic)
 "azy" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /obj/machinery/vending/cigarette,
@@ -13545,7 +13519,6 @@
 /area/almayer/medical/medical_science)
 "aAi" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /obj/machinery/camera/autoname/almayer{
@@ -14074,7 +14047,6 @@
 /area/almayer/hallways/stern_hallway)
 "aAX" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer,
@@ -14754,7 +14726,6 @@
 	pixel_x = -32
 	},
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -16462,7 +16433,6 @@
 /area/almayer/living/captain_mess)
 "aEP" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -16506,7 +16476,6 @@
 /area/almayer/medical/upper_medical)
 "aET" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/wood,
@@ -17495,7 +17464,6 @@
 	},
 /obj/machinery/reagentgrinder,
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -17588,7 +17556,6 @@
 /area/almayer/medical/medical_science)
 "aGM" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer,
@@ -17621,7 +17588,6 @@
 	dir = 4
 	},
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -17805,7 +17771,6 @@
 /area/almayer/command/self_destruct)
 "aHl" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /obj/structure/cable{
@@ -18273,7 +18238,6 @@
 /area/almayer/medical/medical_science)
 "aIa" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /obj/structure/ladder{
@@ -19544,7 +19508,6 @@
 /area/almayer/hallways/aft_hallway)
 "aKB" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -20404,7 +20367,6 @@
 	icon_state = "2-4"
 	},
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -22860,7 +22822,6 @@
 /area/almayer/shipboard/brig_cells)
 "aPR" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /obj/machinery/vending/marineFood,
@@ -23117,7 +23078,6 @@
 	pixel_y = 29
 	},
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer,
@@ -23458,7 +23418,6 @@
 /area/almayer/shipboard/starboard_point_defense)
 "aRa" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/wood,
@@ -25192,7 +25151,6 @@
 /area/almayer/hallways/aft_hallway)
 "aVc" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /obj/effect/decal/warning_stripes/thin{
@@ -26014,7 +25972,6 @@
 /area/almayer/hull/lower_hull)
 "aWY" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer,
@@ -26079,7 +26036,6 @@
 /area/almayer/squads/alpha)
 "aXf" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -26443,7 +26399,6 @@
 /area/almayer/hallways/starboard_hallway)
 "aXU" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -26963,7 +26918,6 @@
 /area/almayer/hull/lower_hull)
 "aYY" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -27296,7 +27250,6 @@
 /area/almayer/hallways/starboard_umbilical)
 "aZA" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -27333,7 +27286,6 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -28837,7 +28789,6 @@
 "bcI" = (
 /obj/machinery/vending/marineFood,
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -29254,7 +29205,6 @@
 "bdH" = (
 /obj/structure/table/almayer,
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /obj/effect/spawner/random/toolbox,
@@ -29563,7 +29513,6 @@
 /area/almayer/living/basketball)
 "bek" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -29634,7 +29583,6 @@
 /area/almayer/living/basketball)
 "ber" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -29675,7 +29623,6 @@
 /area/almayer/living/starboard_emb)
 "bew" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -30212,7 +30159,6 @@
 /area/almayer/squads/bravo)
 "bfF" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -30418,7 +30364,6 @@
 /area/almayer/hallways/hangar)
 "bge" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -30468,7 +30413,6 @@
 	id = "l2"
 	},
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/plating/almayer,
@@ -30487,7 +30431,6 @@
 "bgm" = (
 /obj/machinery/computer/arcade,
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -33180,7 +33123,6 @@
 /area/almayer/shipboard/starboard_missiles)
 "bkL" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /obj/structure/largecrate/random/secure,
@@ -35047,7 +34989,6 @@
 "boH" = (
 /obj/machinery/vending/snack,
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/wood,
@@ -35284,7 +35225,6 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -36469,7 +36409,6 @@
 /area/almayer/squads/req)
 "brp" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -36854,7 +36793,6 @@
 	dir = 8
 	},
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -37357,7 +37295,6 @@
 "btc" = (
 /obj/effect/landmark/start/marine/squadengineer,
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -38656,7 +38593,6 @@
 /area/almayer/medical/chemistry)
 "bvN" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -38735,7 +38671,6 @@
 /area/almayer/medical/operating_room_two)
 "bvU" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -38969,7 +38904,6 @@
 	pixel_y = 28
 	},
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -40563,7 +40497,6 @@
 /area/almayer/living/briefing)
 "bzk" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -40645,7 +40578,6 @@
 "bzu" = (
 /obj/machinery/cryopod,
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -40951,7 +40883,6 @@
 /area/almayer/hallways/hangar)
 "bzY" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer,
@@ -41004,7 +40935,6 @@
 /area/almayer/hull/upper_hull)
 "bAf" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -41733,7 +41663,6 @@
 	dir = 8
 	},
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -41838,7 +41767,6 @@
 /area/almayer/medical/surgery_hallway)
 "bBK" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /obj/structure/table/almayer,
@@ -41937,7 +41865,6 @@
 /area/almayer/squads/req)
 "bBV" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -42133,7 +42060,6 @@
 /obj/structure/table/almayer,
 /obj/item/storage/firstaid/rad,
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -43125,7 +43051,6 @@
 "bEq" = (
 /obj/structure/table/almayer,
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /obj/item/device/radio/intercom{
@@ -44706,7 +44631,6 @@
 /area/almayer/command/cic)
 "bHm" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -44852,7 +44776,6 @@
 /obj/item/light_bulb/tube,
 /obj/item/reagent_container/spray/cleaner,
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -45391,7 +45314,6 @@
 /area/almayer/living/briefing)
 "bIB" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /obj/machinery/door/firedoor/border_only/almayer{
@@ -47023,7 +46945,6 @@
 /area/almayer/hallways/hangar)
 "bLH" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -49099,7 +49020,6 @@
 /area/almayer/shipboard/port_missiles)
 "bPP" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment,
@@ -50077,7 +49997,6 @@
 /area/almayer/hallways/hangar)
 "bQU" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment,
@@ -50889,7 +50808,6 @@
 	pixel_y = 5
 	},
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -51637,7 +51555,6 @@
 	id = "l8"
 	},
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/plating/almayer,
@@ -51902,7 +51819,6 @@
 /area/almayer/squads/charlie)
 "bUF" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -51954,7 +51870,6 @@
 "bUN" = (
 /obj/structure/table/almayer,
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /obj/item/clothing/mask/breath,
@@ -52288,7 +52203,6 @@
 /area/almayer/medical/operating_room_three)
 "bVr" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -52650,7 +52564,6 @@
 /area/almayer/squads/charlie)
 "bVY" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -53049,7 +52962,6 @@
 /area/almayer/living/port_emb)
 "bWR" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -53335,7 +53247,6 @@
 /area/almayer/hallways/repair_bay)
 "bXD" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment,
@@ -53392,7 +53303,6 @@
 /area/almayer/living/grunt_rnr)
 "bXI" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -54083,7 +53993,6 @@
 /area/almayer/living/port_emb)
 "bZf" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer,
@@ -54291,7 +54200,6 @@
 "bZt" = (
 /obj/machinery/vending/marineFood,
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -54488,7 +54396,6 @@
 /area/almayer/hull/lower_hull)
 "bZM" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer,
@@ -54990,7 +54897,6 @@
 /obj/item/paper,
 /obj/item/device/taperecorder,
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -55487,7 +55393,6 @@
 "cbV" = (
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -56294,7 +56199,6 @@
 /area/almayer/living/port_emb)
 "cdx" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -56467,7 +56371,6 @@
 /area/almayer/squads/delta)
 "cdQ" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -59290,7 +59193,6 @@
 /area/almayer/hallways/repair_bay)
 "cjd" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -59766,7 +59668,6 @@
 /area/almayer/hallways/hangar)
 "ckb" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/almayer{

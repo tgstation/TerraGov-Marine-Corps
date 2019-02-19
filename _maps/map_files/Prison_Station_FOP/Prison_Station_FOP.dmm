@@ -2305,7 +2305,6 @@
 	},
 /obj/structure/table/reinforced,
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/prison{
@@ -4198,7 +4197,6 @@
 	pixel_y = 15
 	},
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -10864,7 +10862,6 @@
 /area/prison/cellblock/highsec/north/north)
 "avV" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/prison{
@@ -17120,7 +17117,6 @@
 /area/prison/chapel)
 "aHF" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -20188,7 +20184,6 @@
 /area/prison/security/checkpoint/highsec/n)
 "aNl" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/prison{
@@ -21541,7 +21536,6 @@
 /area/prison/cellblock/lowsec/ne)
 "aPG" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/prison{
@@ -22173,7 +22167,6 @@
 /area/prison/security/checkpoint/highsec/n)
 "aQL" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/prison{
@@ -22219,7 +22212,6 @@
 /area/prison/hangar/civilian)
 "aQQ" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/prison{
@@ -23068,7 +23060,6 @@
 /area/prison/maintenance/residential/nw)
 "aSQ" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/prison{
@@ -23138,7 +23129,6 @@
 	pixel_y = 15
 	},
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/prison{
@@ -25338,7 +25328,6 @@
 "aWL" = (
 /obj/structure/table/reinforced,
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/prison{
@@ -26155,7 +26144,6 @@
 /area/prison/cellblock/lowsec/ne)
 "aYt" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/prison{
@@ -28359,7 +28347,6 @@
 /area/prison/cellblock/highsec/north/south)
 "bdc" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/prison{
@@ -28409,7 +28396,6 @@
 /area/prison/cellblock/lowsec/nw)
 "bdg" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /obj/structure/cable{
@@ -32035,7 +32021,6 @@
 /area/prison/cellblock/lowsec/ne)
 "bjq" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/prison{
@@ -32254,7 +32239,6 @@
 /area/prison/hangar/main)
 "bjK" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/prison{
@@ -33169,7 +33153,6 @@
 /area/prison/yard)
 "blp" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
@@ -36064,7 +36047,6 @@
 /area/prison/cellblock/lowsec/se)
 "bqt" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -37423,7 +37405,6 @@
 	dir = 4
 	},
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/prison{
@@ -38843,7 +38824,6 @@
 /area/prison/cellblock/highsec/south/north)
 "bvI" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/prison{
@@ -38973,7 +38953,6 @@
 /area/prison/yard)
 "bvU" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /obj/structure/cable{
@@ -39414,7 +39393,6 @@
 /area/prison/security/checkpoint/highsec/s)
 "bwO" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/prison{
@@ -43968,7 +43946,6 @@
 /area/prison/maintenance/residential/sw)
 "bEW" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/prison{
@@ -44014,7 +43991,6 @@
 	dir = 1
 	},
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/prison{
@@ -44278,7 +44254,6 @@
 /area/prison/cellblock/lowsec/se)
 "bFD" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /obj/effect/decal/cleanable/blood,
@@ -45270,7 +45245,6 @@
 /area/prison/security/checkpoint/highsec/s)
 "bHt" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/prison{
@@ -46921,7 +46895,6 @@
 /area/prison/security/checkpoint/highsec/s)
 "bKy" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/prison{
@@ -51599,7 +51572,6 @@
 /area/prison/cellblock/highsec/south/north)
 "bTX" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/prison{

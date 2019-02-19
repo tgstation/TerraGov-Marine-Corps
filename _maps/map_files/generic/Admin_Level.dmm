@@ -6445,7 +6445,6 @@
 	dir = 8
 	},
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 4
 	},
 /obj/effect/landmark/deathmatch,
@@ -6690,7 +6689,6 @@
 	dir = 8
 	},
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 4
 	},
 /turf/open/shuttle/brig,
@@ -6701,7 +6699,6 @@
 	dir = 4
 	},
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/shuttle/brig,
@@ -6731,7 +6728,6 @@
 /area/deathmatch)
 "qk" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 1
 	},
 /turf/open/shuttle/brig,
@@ -6841,7 +6837,6 @@
 /area/deathmatch)
 "qG" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 4
 	},
 /turf/open/floor,

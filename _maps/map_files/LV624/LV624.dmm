@@ -6525,12 +6525,7 @@
 	pixel_x = 12
 	},
 /obj/effect/decal/cleanable/blood/splatter/animated,
-/obj/item/clothing/mask/facehugger{
-	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
-	icon_state = "facehugger_impregnated";
-	name = "????";
-	stat = 2
-	},
+/obj/item/clothing/mask/facehugger/dead,
 /obj/effect/landmark/corpsespawner/scientist{
 	corpseshoes = /obj/item/clothing/shoes/black;
 	corpsesuit = /obj/item/clothing/suit/storage/labcoat;
@@ -6736,7 +6731,6 @@
 /area/lv624/lazarus/medbay)
 "axg" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /obj/structure/closet/crate/medical,
@@ -9440,12 +9434,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/item/clothing/mask/facehugger{
-	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
-	icon_state = "facehugger_impregnated";
-	name = "????";
-	stat = 2
-	},
+/obj/item/clothing/mask/facehugger/dead,
 /turf/open/floor{
 	dir = 5;
 	icon_state = "whitepurple"
@@ -9561,12 +9550,7 @@
 /turf/open/gm/grass,
 /area/lv624/ground/jungle6)
 "aGx" = (
-/obj/item/clothing/mask/facehugger{
-	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
-	icon_state = "facehugger_impregnated";
-	name = "????";
-	stat = 2
-	},
+/obj/item/clothing/mask/facehugger/dead,
 /turf/open/floor{
 	dir = 5;
 	icon_state = "whitepurple"
@@ -10183,7 +10167,6 @@
 /area/lv624/lazarus/research)
 "aIv" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /obj/structure/table,
@@ -10426,12 +10409,7 @@
 	},
 /area/lv624/lazarus/research)
 "aJm" = (
-/obj/item/clothing/mask/facehugger{
-	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
-	icon_state = "facehugger_impregnated";
-	name = "????";
-	stat = 2
-	},
+/obj/item/clothing/mask/facehugger/dead,
 /obj/effect/decal/cleanable/blood/splatter/animated,
 /turf/open/floor{
 	icon_state = "white"
@@ -10782,12 +10760,7 @@
 	},
 /area/lv624/lazarus/research)
 "aKg" = (
-/obj/item/clothing/mask/facehugger{
-	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
-	icon_state = "facehugger_impregnated";
-	name = "????";
-	stat = 2
-	},
+/obj/item/clothing/mask/facehugger/dead,
 /obj/machinery/door/poddoor/almayer{
 	density = 0;
 	dir = 4;
@@ -11297,7 +11270,6 @@
 /area/lv624/lazarus/research)
 "aLB" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor{
@@ -12316,12 +12288,7 @@
 	},
 /area/lv624/ground/compound/c)
 "aOo" = (
-/obj/item/clothing/mask/facehugger{
-	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?";
-	icon_state = "facehugger_impregnated";
-	name = "????";
-	stat = 2
-	},
+/obj/item/clothing/mask/facehugger/dead,
 /obj/effect/decal/cleanable/blood/splatter/animated,
 /turf/open/floor{
 	dir = 5;
@@ -14314,7 +14281,6 @@
 /area/lv624/lazarus/toilet)
 "aTJ" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /obj/structure/table,
@@ -23573,7 +23539,6 @@
 "bqS" = (
 /obj/structure/closet/toolcloset,
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/plating/platebot,

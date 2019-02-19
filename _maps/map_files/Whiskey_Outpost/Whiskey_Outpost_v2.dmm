@@ -289,7 +289,6 @@
 /area/whiskey_outpost)
 "aK" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/plating{
@@ -917,7 +916,6 @@
 "ce" = (
 /obj/structure/bed,
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /obj/effect/landmark{
@@ -931,7 +929,6 @@
 /area/whiskey_outpost)
 "cf" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /obj/effect/landmark{
@@ -946,7 +943,6 @@
 "cg" = (
 /obj/machinery/vending/MarineMed,
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor{
@@ -1328,7 +1324,6 @@
 	name = "whiskey_outpost_marine"
 	},
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/floor/plating{
