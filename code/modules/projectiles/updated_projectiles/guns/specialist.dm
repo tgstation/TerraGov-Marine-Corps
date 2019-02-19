@@ -40,8 +40,7 @@
 	select_gamemode_skin(type, list(MAP_ICE_COLONY = "s_m42a"))
 	. = ..()
 	LT = image("icon" = 'icons/obj/items/projectiles.dmi',"icon_state" = "sniper_laser", "layer" =-LASER_LAYER)
-	integrated_laze = new
-	integrated_laze.loc = src
+	integrated_laze = new(src)
 
 /obj/item/weapon/gun/rifle/sniper/M42A/Fire(atom/target, mob/living/user, params, reflex = 0, dual_wield)
 	if(!able_to_fire(user))
@@ -106,8 +105,7 @@
 
 /obj/item/weapon/gun/rifle/sniper/M42A/Destroy()
 	laser_off()
-	qdel(integrated_laze)
-	integrated_laze = null
+	QDEL_NULL(integrated_laze)
 	. = ..()
 
 /obj/item/weapon/gun/rifle/sniper/M42A/dropped()
