@@ -7,20 +7,14 @@
 /area/tdome)
 "ac" = (
 /obj/structure/closet/secure_closet/bar,
-/turf/open/floor{
-	icon_state = "white"
-	},
+/turf/open/floor/tile/white,
 /area/tdome)
 "ad" = (
-/turf/open/floor{
-	icon_state = "white"
-	},
+/turf/open/floor/tile/white,
 /area/tdome)
 "ae" = (
 /obj/machinery/gibber,
-/turf/open/floor{
-	icon_state = "white"
-	},
+/turf/open/floor/tile/white,
 /area/tdome)
 "af" = (
 /obj/machinery/vending/cigarette,
@@ -82,15 +76,11 @@
 /area/tdome/tdomeobserve)
 "am" = (
 /obj/structure/closet/secure_closet/freezer/meat,
-/turf/open/floor{
-	icon_state = "white"
-	},
+/turf/open/floor/tile/white,
 /area/tdome)
 "an" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
-/turf/open/floor{
-	icon_state = "white"
-	},
+/turf/open/floor/tile/white,
 /area/tdome)
 "ao" = (
 /obj/structure/bed/chair,
@@ -133,22 +123,16 @@
 	pixel_y = 3
 	},
 /obj/structure/table,
-/turf/open/floor{
-	icon_state = "white"
-	},
+/turf/open/floor/tile/white,
 /area/tdome)
 "as" = (
 /obj/structure/table,
 /obj/machinery/microwave,
-/turf/open/floor{
-	icon_state = "white"
-	},
+/turf/open/floor/tile/white,
 /area/tdome)
 "at" = (
 /obj/structure/table/reinforced,
-/turf/open/floor{
-	icon_state = "white"
-	},
+/turf/open/floor/tile/white,
 /area/tdome)
 "au" = (
 /obj/machinery/computer/security/telescreen,

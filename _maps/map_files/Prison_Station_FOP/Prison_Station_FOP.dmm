@@ -5753,9 +5753,7 @@
 	name = "Chemistry";
 	req_one_access_txt = "0"
 	},
-/turf/open/floor{
-	icon_state = "white"
-	},
+/turf/open/floor/tile/white,
 /area/prison/research/secret/chemistry)
 "amS" = (
 /obj/structure/sign/vacuum,

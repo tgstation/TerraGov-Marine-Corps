@@ -392,6 +392,12 @@
 						var/turf/open/floor/FF = get_step(src,direction)
 						FF.update_icon() //so siding get updated properly
 
+/turf/open/floor/tile/white
+	icon_state = "white"
+
+/turf/open/floor/tile/bar
+	icon_state = "bar"
+
 /turf/open/floor/carpet
 	name = "Carpet"
 	icon_state = "carpet"
