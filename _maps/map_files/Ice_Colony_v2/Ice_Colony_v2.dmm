@@ -24590,22 +24590,19 @@
 /area/ice_colony/exterior/surface/clearing/south)
 "aXX" = (
 /obj/structure/cargo_container{
-	tag = "icon-blue 0,0";
-	icon_state = "blue 0,0"
+	dir = 4
 	},
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/container_yard)
 "aXY" = (
 /obj/structure/cargo_container{
-	tag = "icon-blue 1,0";
-	icon_state = "blue 1,0"
+	dir = 1
 	},
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/container_yard)
 "aXZ" = (
 /obj/structure/cargo_container{
-	tag = "icon-blue 2,0";
-	icon_state = "blue 2,0"
+	dir = 8
 	},
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/container_yard)
@@ -25240,9 +25237,8 @@
 /turf/open/snow/layer3,
 /area/ice_colony/exterior/surface/clearing/south)
 "aZC" = (
-/obj/structure/cargo_container{
-	tag = "icon-red 0,0";
-	icon_state = "red 0,0"
+/obj/structure/cargo_container/red{
+	dir = 8
 	},
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/container_yard)
@@ -25266,9 +25262,8 @@
 /turf/closed/ice,
 /area/ice_colony/exterior/underground/caves)
 "aZG" = (
-/obj/structure/cargo_container{
-	tag = "icon-red 1,0";
-	icon_state = "red 1,0"
+/obj/structure/cargo_container/red{
+	dir = 1
 	},
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/container_yard)
@@ -25278,9 +25273,8 @@
 	name = "\improper Colony Response Team Hangar"
 	})
 "aZI" = (
-/obj/structure/cargo_container{
-	tag = "icon-red 2,0";
-	icon_state = "red 2,0"
+/obj/structure/cargo_container/red{
+	dir = 4
 	},
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/container_yard)
@@ -30145,9 +30139,8 @@
 /turf/open/ice,
 /area/ice_colony/exterior/underground/caves/open)
 "bjH" = (
-/obj/structure/cargo_container{
-	tag = "icon-red 2,0";
-	icon_state = "red 2,0"
+/obj/structure/cargo_container/red{
+	dir = 4
 	},
 /turf/open/floor/plating/icefloor{
 	tag = "icon-warnplate (SOUTHEAST)";
@@ -43110,15 +43103,13 @@
 /area/ice_colony/underground/crew/dorm_r)
 "bJN" = (
 /obj/structure/cargo_container{
-	tag = "icon-blue 0,0";
-	icon_state = "blue 0,0"
+	dir = 4
 	},
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/underground/hangar)
 "bJO" = (
 /obj/structure/cargo_container{
-	tag = "icon-blue 1,0";
-	icon_state = "blue 1,0"
+	dir = 1
 	},
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/underground/hangar)
@@ -44010,8 +44001,7 @@
 	})
 "bLs" = (
 /obj/structure/cargo_container{
-	tag = "icon-blue 2,0";
-	icon_state = "blue 2,0"
+	dir = 8
 	},
 /turf/open/floor/plating/icefloor{
 	tag = "icon-warnplate (EAST)";
@@ -47273,9 +47263,8 @@
 /turf/open/ice,
 /area/ice_colony/underground/maintenance/central)
 "bSc" = (
-/obj/structure/cargo_container{
-	tag = "icon-red 0,0";
-	icon_state = "red 0,0"
+/obj/structure/cargo_container/red{
+	dir = 8
 	},
 /turf/open/floor/plating/icefloor{
 	tag = "icon-warnplate";
@@ -47283,9 +47272,8 @@
 	},
 /area/ice_colony/underground/hangar)
 "bSd" = (
-/obj/structure/cargo_container{
-	tag = "icon-red 1,0";
-	icon_state = "red 1,0"
+/obj/structure/cargo_container/red{
+	dir = 1
 	},
 /turf/open/floor/plating/icefloor{
 	tag = "icon-warnplate";

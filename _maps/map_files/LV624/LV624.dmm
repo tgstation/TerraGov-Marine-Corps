@@ -1744,23 +1744,20 @@
 	},
 /area/lv624/ground/sand5)
 "afY" = (
-/obj/structure/cargo_container{
-	tag = "icon-red 0,0";
-	icon_state = "red 0,0"
+/obj/structure/cargo_container/red{
+	dir = 8
 	},
 /turf/open/floor,
 /area/lv624/ground/sand5)
 "afZ" = (
-/obj/structure/cargo_container{
-	tag = "icon-red 1,0";
-	icon_state = "red 1,0"
+/obj/structure/cargo_container/red{
+	dir = 1
 	},
 /turf/open/floor,
 /area/lv624/ground/sand5)
 "aga" = (
-/obj/structure/cargo_container{
-	tag = "icon-red 2,0";
-	icon_state = "red 2,0"
+/obj/structure/cargo_container/red{
+	dir = 4
 	},
 /turf/open/floor,
 /area/lv624/ground/sand5)
@@ -1948,8 +1945,7 @@
 /area/lv624/ground/sand2)
 "agK" = (
 /obj/structure/cargo_container{
-	tag = "icon-blue 0,0";
-	icon_state = "blue 0,0"
+	dir = 4
 	},
 /turf/open/floor{
 	icon_state = "bot";
@@ -1958,15 +1954,13 @@
 /area/lv624/ground/sand2)
 "agL" = (
 /obj/structure/cargo_container{
-	tag = "icon-blue 1,0";
-	icon_state = "blue 1,0"
+	dir = 1
 	},
 /turf/open/floor,
 /area/lv624/ground/sand2)
 "agM" = (
 /obj/structure/cargo_container{
-	tag = "icon-blue 2,0";
-	icon_state = "blue 2,0"
+	dir = 8
 	},
 /turf/open/floor,
 /area/lv624/ground/sand2)
@@ -19991,22 +19985,19 @@
 /area/shuttle/drop1/lz1)
 "beS" = (
 /obj/structure/cargo_container{
-	tag = "icon-blue 0,0";
-	icon_state = "blue 0,0"
+	dir = 4
 	},
 /turf/open/floor,
 /area/shuttle/drop1/lz1)
 "beT" = (
 /obj/structure/cargo_container{
-	tag = "icon-blue 1,0";
-	icon_state = "blue 1,0"
+	dir = 1
 	},
 /turf/open/floor,
 /area/shuttle/drop1/lz1)
 "beU" = (
 /obj/structure/cargo_container{
-	tag = "icon-blue 2,0";
-	icon_state = "blue 2,0"
+	dir = 8
 	},
 /turf/open/floor,
 /area/shuttle/drop1/lz1)

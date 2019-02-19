@@ -28,6 +28,9 @@
 						 "<span class='warning'>[user] beats against the [src].</span>", \
 						 "You hear twisting metal.")
 
+/obj/structure/cargo_container/red
+	icon_state = red
+
 /obj/structure/cargo_container/horizontal
 	name = "Cargo Container"
 	desc = "A huge industrial shipping container,"

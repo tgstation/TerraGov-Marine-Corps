@@ -261,23 +261,20 @@
 	},
 /area/bigredv2/outside/space_port)
 "aaH" = (
-/obj/structure/cargo_container{
-	tag = "icon-red 0,0";
-	icon_state = "red 0,0"
+/obj/structure/cargo_container/red{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "aaI" = (
-/obj/structure/cargo_container{
-	tag = "icon-red 1,0";
-	icon_state = "red 1,0"
+/obj/structure/cargo_container/red{
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "aaJ" = (
-/obj/structure/cargo_container{
-	tag = "icon-red 2,0";
-	icon_state = "red 2,0"
+/obj/structure/cargo_container/red{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
@@ -618,22 +615,19 @@
 /area/bigredv2/outside/space_port)
 "abu" = (
 /obj/structure/cargo_container{
-	tag = "icon-blue 0,0";
-	icon_state = "blue 0,0"
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "abv" = (
 /obj/structure/cargo_container{
-	tag = "icon-blue 1,0";
-	icon_state = "blue 1,0"
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "abw" = (
 /obj/structure/cargo_container{
-	tag = "icon-blue 2,0";
-	icon_state = "blue 2,0"
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)

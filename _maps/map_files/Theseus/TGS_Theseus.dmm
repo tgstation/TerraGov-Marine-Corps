@@ -36867,8 +36867,7 @@
 /area/almayer/hallways/aft_hallway)
 "bsa" = (
 /obj/structure/cargo_container{
-	tag = "icon-blue 1,0";
-	icon_state = "blue 1,0"
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
@@ -36877,8 +36876,7 @@
 /area/almayer/hallways/hangar)
 "bsb" = (
 /obj/structure/cargo_container{
-	tag = "icon-blue 2,0";
-	icon_state = "blue 2,0"
+	dir = 8
 	},
 /turf/open/floor/almayer,
 /area/almayer/hallways/hangar)
@@ -37226,8 +37224,7 @@
 /area/almayer/hallways/starboard_hallway)
 "bsO" = (
 /obj/structure/cargo_container{
-	tag = "icon-blue 0,0";
-	icon_state = "blue 0,0"
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	icon_regular_floor = "mono";
