@@ -348,6 +348,7 @@ GLOBAL_LIST_INIT(admin_verbs_server, world.AVserver())
 /world/proc/AVserver()
 	return list(
 	/datum/admins/proc/restart,
+	/datum/admins/proc/shutdown_server,
 	/datum/admins/proc/toggle_ooc,
 	/datum/admins/proc/toggle_looc,
 	/datum/admins/proc/toggle_deadchat,

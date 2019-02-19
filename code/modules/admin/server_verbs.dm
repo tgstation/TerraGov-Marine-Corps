@@ -17,6 +17,87 @@
 	spawn(50)
 		world.Reboot()
 
+/datum/admins/proc/shutdown_server()
+	set category = "Server"
+	set name = "Shutdown Server"
+	set desc = "Shuts the server down."
+
+	var/static/shuttingdown = null
+	var/static/timeouts = list()
+	if (!CONFIG_GET(flag/allow_shutdown))
+		to_chat(usr, "<span class='danger'>This has not been enabled by the server operator.</span>")
+		return
+
+	if (!check_rights(R_SERVER))
+		return
+
+	if (shuttingdown)
+		if (alert("Are you use you want to cancel the shutdown initiated by [shuttingdown]?", "Cancel the shutdown?", "No", "Yes, Cancel the shutdown", "No.") != "Yes, Cancel the shutdown")
+			return
+		message_admins("[ADMIN_TPMONTY(usr)] Cancelled the server shutdown that [shuttingdown] started.")
+		timeouts[shuttingdown] = world.time
+		shuttingdown = FALSE
+		return
+
+	if (timeouts[usr.ckey] && timeouts[usr.ckey] + 2 MINUTES > world.time)
+		to_chat(usr, "<span class='danger'>You must wait 2 minutes after your shutdown attempt is aborted before you can try again.</span>")
+		return
+
+	if (alert("Are you sure you want to shutdown the server? Only somebody with remote access to the server can turn it back on.", "Shutdown Server?", "Cancel", "Shutdown Server", "Cancel.") != "Shutdown Server")
+		return
+
+	if (!SSticker)
+		if (alert("The game ticker does not exist, normal checks will be bypassed.", "Continue Shutting Down Server?", "Cancel", "Continue Shutting Down Server", "Cancel.") != "Continue Shutting Down Server")
+			return
+	else
+		var/required_state_message = "The server must be in either pre-game or post-game and the start/end must be delayed to shutdown the server."
+		if (SSticker.current_state != GAME_STATE_PREGAME && SSticker.current_state != GAME_STATE_FINISHED)
+			to_chat(usr, "<span class='danger'>[required_state_message] The round is not in the lobby or endgame state.</span>")
+			return
+		if ((SSticker.current_state == GAME_STATE_PREGAME && going) || (SSticker.current_state == GAME_STATE_FINISHED && !SSticker.delay_end))
+			to_chat(usr, "<span class='danger'>[required_state_message] The round start/end is not delayed.</span>")
+			return
+
+	to_chat(usr, "<span class='danger'>Alert: Delayed confirmation required. You will be asked to confirm again in 30 seconds.</span>")
+	message_admins("[ADMIN_TPMONTY(usr)] Is considering shutting down the server. Admins with +server may abort this by pressing the shutdown server button again.")
+	shuttingdown = usr.ckey
+
+	sleep(30 SECONDS)
+
+	if (!shuttingdown || shuttingdown != usr.ckey)
+		return
+
+	if (!usr?.client)
+		message_admins("[ADMIN_TPMONTY(usr)] left the server before they could finish confirming they wanted to shutdown the server.")
+		shuttingdown = null
+		return
+
+	if (alert("ARE YOU SURE YOU WANT TO SHUTDOWN THE SERVER? ONLY SOMEBODY WITH REMOTE ACCESS TO THE SERVER CAN TURN IT BACK ON.", "Shutdown Server?", "Cancel", "Yes! Shutdown The Server!", "Cancel.") != "Yes! Shutdown The Server!")
+		message_admins("[ADMIN_TPMONTY(usr)] decided against shutting down the server.")
+		shuttingdown = null
+		return
+
+	to_chat(world, "<span class='danger'>Server shutting down in 30 seconds!</span> <span class='notice'>Initiated by: [usr.key]</span>")
+	message_admins("[ADMIN_TPMONTY(usr)] Is shutting down the server. Admins with +server may abort this by pressing the shutdown server button again within 30 seconds.")
+
+	sleep(31 SECONDS) //to give the admins that final second to hit the confirm button on the cancel prompt.
+
+	if (!shuttingdown)
+		to_chat(world, "<span class='notice'>Server shutdown was aborted</span>")
+		return
+
+	if (shuttingdown != usr.ckey) //somebody cancelled but then somebody started again.
+		return
+
+	to_chat(world, "<span class='danger'>Server shutting down.</span> <span class='notice'>Initiated by: [shuttingdown]</span>")
+
+	if (GLOB.tgs)
+		var/datum/tgs_api/TA = GLOB.tgs
+		TA.EndProcess()
+
+	sleep(world.tick_lag)
+	qdel(world) //there are a few ways to shutdown the server, but this is by far my favorite
+
 
 /datum/admins/proc/toggle_ooc()
 	set category = "Server"
