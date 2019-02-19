@@ -3929,9 +3929,7 @@
 /turf/open/gm/dirtgrassborder2/corner,
 /area/lv624/ground/jungle8)
 "anP" = (
-/turf/open/floor/wood{
-	icon_state = "wood-broken"
-	},
+/turf/open/floor/wood/broken,
 /area/lv624/ground/jungle8)
 "anQ" = (
 /obj/structure/disposalpipe/segment{
@@ -4063,9 +4061,7 @@
 /area/lv624/ground/sand9)
 "aon" = (
 /obj/structure/window_frame/wood,
-/turf/open/floor/wood{
-	icon_state = "wood-broken"
-	},
+/turf/open/floor/wood/broken,
 /area/lv624/ground/jungle8)
 "aoo" = (
 /obj/structure/barricade/wooden/lv_snowflake{
@@ -4090,9 +4086,7 @@
 /obj/structure/barricade/wooden{
 	dir = 4
 	},
-/turf/open/floor/wood{
-	icon_state = "wood-broken"
-	},
+/turf/open/floor/wood/broken,
 /area/lv624/ground/jungle8)
 "aos" = (
 /turf/open/gm/dirtgrassborder2/corner{

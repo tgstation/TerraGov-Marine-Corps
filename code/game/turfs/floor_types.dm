@@ -302,6 +302,10 @@
 	icon_state = "wood"
 	floor_tile = new/obj/item/stack/tile/wood
 
+/turf/open/floor/wood/broken
+	icon_state = "wood-broken"
+	burnt = TRUE
+
 /turf/open/floor/vault
 	icon_state = "rockvault"
 
