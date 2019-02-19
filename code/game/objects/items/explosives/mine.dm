@@ -52,7 +52,7 @@
 		to_chat(user, "<span class='warning'>You can't plant a mine here.</span>")
 		return
 
-	/*if(user.z == MAIN_SHIP_Z_LEVEL || user.z == LOW_ORBIT_Z_LEVEL) // Theseus or dropship transit level
+	/*if(is_mainship_or_low_orbit_level(user.z)) // Theseus or dropship transit level
 		to_chat(user, "<span class='warning'>You can't plant a mine on a spaceship!</span>")
 		return*/
 
@@ -106,8 +106,8 @@
 
 	if((istype(H) && H.get_target_lock(iff_signal)) || iscyborg(H)) return
 
-	H.visible_message("<span class='danger'>[bicon(src)] The [name] clicks as [H] moves in front of it.</span>", \
-	"<span class='danger'>[bicon(src)] The [name] clicks as you move in front of it.</span>", \
+	H.visible_message("<span class='danger'>[icon2html(src, viewers(H))] The [name] clicks as [H] moves in front of it.</span>", \
+	"<span class='danger'>[icon2html(src, viewers(H))] The [name] clicks as you move in front of it.</span>", \
 	"<span class='danger'>You hear a click.</span>")
 
 	triggered = 1

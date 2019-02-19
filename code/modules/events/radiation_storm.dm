@@ -22,7 +22,7 @@
 				var/turf/T = get_turf(H)
 				if(!T)
 					continue
-				if(T.z != 3 || T.z != 4)
+				if(!is_mainship_or_low_orbit_level(T.z))
 					continue
 				if(istype(T.loc, /area/sulaco/maintenance))
 					continue
@@ -43,7 +43,7 @@
 				var/turf/T = get_turf(M)
 				if(!T)
 					continue
-				if(T.z != 3 || T.z != 4)
+				if(!is_mainship_or_low_orbit_level(T.z))
 					continue
 				M.apply_effect((rand(5,25)),IRRADIATE,0)
 			sleep(100)

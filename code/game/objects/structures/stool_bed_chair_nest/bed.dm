@@ -161,6 +161,8 @@ obj/structure/bed/Destroy()
 		"<span class='danger'>You slice [src] apart!</span>", null, 5)
 		unbuckle()
 		destroy_structure()
+		if(M.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
+			M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 	else attack_hand(M)
 
 /obj/structure/bed/attackby(obj/item/W, mob/user)
@@ -355,7 +357,7 @@ var/global/list/activated_medevac_stretchers = list()
 		update_icon()
 
 	else
-		if(z != 1)
+		if(!is_ground_level(z))
 			to_chat(user, "<span class='warning'>You can't activate [src]'s beacon here.</span>")
 			return
 
@@ -411,6 +413,11 @@ var/global/list/activated_medevac_stretchers = list()
 	if(!linked_beacon.check_power())
 		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
 		to_chat(user, "<span class='warning'>[src]'s bluespace engine linked medvac beacon is unpowered.</span>")
+		return
+	
+	if(is_centcom_level(linked_beacon.z)) // No. No using teleportation to teleport to the adminzone.
+		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
+		to_chat(user, "<span class='warning'>[src]'s beacon is out of range!</span>")
 		return
 
 	user.visible_message("<span class='warning'>[user] activates [src]'s bluespace engine, causing it to rev to life.</span>",
@@ -549,7 +556,7 @@ var/global/list/activated_medevac_stretchers = list()
 	var/locked = FALSE
 	var/obj/item/roller/medevac/linked_bed = null
 	var/obj/structure/bed/medevac_stretcher/linked_bed_deployed = null
-	req_one_access = list(ACCESS_MARINE_MEDPREP, ACCESS_MARINE_LEADER)
+	req_one_access = list(ACCESS_MARINE_MEDPREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_MEDBAY)
 
 
 /obj/item/device/medevac_beacon/examine(mob/user)
@@ -583,7 +590,7 @@ var/global/list/activated_medevac_stretchers = list()
 
 /obj/item/device/medevac_beacon/attack_self(mob/user)
 	if(locked)
-		to_chat(user, "<span class='warning'>[src]'s interface is locked! Only a Squad Leader or Medic can unlock it now.</span>")
+		to_chat(user, "<span class='warning'>[src]'s interface is locked! Only a Squad Leader, Medic, or Doctor can unlock it now.</span>")
 		return
 	user.drop_held_item()
 	anchored = TRUE
@@ -594,7 +601,7 @@ var/global/list/activated_medevac_stretchers = list()
 
 /obj/item/device/medevac_beacon/attack_hand(mob/user)
 	if(locked)
-		to_chat(user, "<span class='warning'>[src]'s interface is locked! Only a Squad Leader or Medic can unlock it now.</span>")
+		to_chat(user, "<span class='warning'>[src]'s interface is locked! Only a Squad Leader, Medic, or Doctor can unlock it now.</span>")
 		return
 	if(planted)
 		anchored = FALSE

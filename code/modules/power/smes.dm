@@ -36,7 +36,7 @@
 	if(panel_open)
 		to_chat(user, "<span class='notice'>The maintenance hatch is open.</span>")
 
-/obj/machinery/power/smes/New()
+/obj/machinery/power/smes/Initialize()
 	. = ..()
 	if(!powernet)
 		connect_to_network()
@@ -300,10 +300,6 @@
 
 	if (usr.stat || usr.is_mob_restrained() )
 		return
-	if (!(ishuman(usr) || ticker) && ticker.mode.name != "monkey")
-		if(!isAI(usr))
-			to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
-			return
 
 //to_chat(world, "[href] ; [href_list[href]]")
 
@@ -345,13 +341,13 @@
 	return TRUE
 
 /obj/machinery/power/smes/proc/ion_act()
-	if(src.z == 1)
+	if(is_ground_level(z))
 		if(prob(1)) //explosion
 			for(var/mob/M in viewers(src))
 				M.show_message("<span class='warning'> The [src.name] is making strange noises!</span>", 3, "<span class='warning'> You hear sizzling electronics.</span>", 2)
 			sleep(10*pick(4,5,6,7,10,14))
 			var/datum/effect_system/smoke_spread/smoke = new /datum/effect_system/smoke_spread()
-			smoke.set_up(1, 0, src.loc)
+			smoke.set_up(1, 0, loc)
 			smoke.attach(src)
 			smoke.start()
 			explosion(src.loc, -1, 0, 1, 3, 1, 0)
@@ -367,27 +363,26 @@
 				emp_act(2)
 		if(prob(5)) //smoke only
 			var/datum/effect_system/smoke_spread/smoke = new /datum/effect_system/smoke_spread()
-			smoke.set_up(1, 0, src.loc)
+			smoke.set_up(1, 0, loc)
 			smoke.attach(src)
 			smoke.start()
-
 
 /obj/machinery/power/smes/emp_act(severity)
 	outputting = FALSE
 	inputting = FALSE
 	output_level = 0
-	charge -= 1e6/severity
-	if (charge < 0)
-		charge = 0
-	spawn(100)
-		output_level = initial(output_level)
-		inputting = initial(inputting)
-		outputting = initial(outputting)
+	charge = max(charge - 1e6/severity, 0)
+	addtimer(CALLBACK(src, .proc/reset_power_level), 10 SECONDS)
 	..()
 
+/obj/machinery/power/smes/proc/reset_power_level()
+	output_level = initial(output_level)
+	inputting = initial(inputting)
+	outputting = initial(outputting)
+
 /obj/machinery/power/smes/preset
-	input_level = SMESMAXCHARGELEVEL
-	output_level = SMESMAXOUTPUT / 2
+	input_level = 180000
+	output_level = 100000
 
 /obj/machinery/power/smes/magical
 	name = "magical power storage unit"

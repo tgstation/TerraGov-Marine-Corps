@@ -456,7 +456,7 @@
 /obj/structure/closet/secure_closet/medical_doctor/Initialize()
 	. = ..()
 	new /obj/item/storage/backpack/marine/satchel(src)
-	if(z != 1) new /obj/item/device/radio/headset/almayer/doc(src)
+	if(!is_ground_level(z)) new /obj/item/device/radio/headset/almayer/doc(src)
 	new /obj/item/clothing/shoes/white(src)
 	new /obj/item/clothing/shoes/white(src)
 	new /obj/item/storage/belt/medical(src)

@@ -4,7 +4,7 @@
 
 	for(var/obj/machinery/power/smes/S in GLOB.machines)
 		var/area/current_area = get_area(S)
-		if(current_area.type in skipped_areas || S.z != 3) // Ship only
+		if(current_area.type in skipped_areas || !is_mainship_level(S.z)) // Ship only
 			continue
 		S.charge = 0
 		S.output_level = 0
@@ -13,7 +13,7 @@
 		S.power_change()
 
 	for(var/obj/machinery/power/apc/C in GLOB.machines)
-		if(C.cell && C.z == 3)
+		if(C.cell && is_mainship_level(C.z))
 			C.cell.charge = 0
 
 	playsound_z(3, 'sound/effects/powerloss.ogg')
@@ -27,7 +27,7 @@
 
 	for(var/obj/machinery/power/smes/S in GLOB.machines)
 		var/area/current_area = get_area(S)
-		if(current_area.type in skipped_areas || S.z != 3)
+		if(current_area.type in skipped_areas || !is_mainship_level(S.z))
 			continue
 		S.charge = S.capacity
 		S.output_level = S.output_level_max
@@ -36,7 +36,7 @@
 		S.power_change()
 
 	for(var/obj/machinery/power/apc/C in GLOB.machines)
-		if(C.cell && C.z == 3)
+		if(C.cell && is_mainship_level(C.z))
 			C.cell.charge = C.cell.maxcharge
 
 	sleep(100)
@@ -46,7 +46,7 @@
 /proc/power_restore_quick(var/announce = 1)
 
 	for(var/obj/machinery/power/smes/S in GLOB.machines)
-		if(S.z != 3) // Ship only
+		if(!is_mainship_level(S.z)) // Ship only
 			continue
 		S.charge = S.capacity
 		S.output_level = S.output_level_max

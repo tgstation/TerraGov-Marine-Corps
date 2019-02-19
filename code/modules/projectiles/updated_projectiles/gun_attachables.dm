@@ -257,6 +257,13 @@ Defined in conflicts.dm of the #defines folder.
 	pixel_shift_y = 16
 	attach_icon = "suppressor_a"
 
+/obj/item/attachable/suppressor/unremovable
+	flags_attach_features = NOFLAGS
+
+/obj/item/attachable/suppressor/unremovable/invisible
+	attach_icon = ""
+	icon_state = ""
+
 /obj/item/attachable/suppressor/Initialize()
 	. = ..()
 	accuracy_mod = CONFIG_GET(number/combat_define/low_hit_accuracy_mult)
@@ -530,6 +537,8 @@ Defined in conflicts.dm of the #defines folder.
 	var/zoom_viewsize = 12
 	var/zoom_accuracy = SCOPE_RAIL
 
+/obj/item/attachable/scope/unremovable
+	flags_attach_features = ATTACH_ACTIVATION
 
 /obj/item/attachable/scope/Initialize()
 	. = ..()
@@ -569,19 +578,30 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/scope/m4ra
 	name = "m4ra rail scope"
-	icon_state = "sniperscope"
-	attach_icon = "sniperscope_a"
+	//icon_state = "sniperscope"
+	//attach_icon = "sniperscope_a"
 	desc = "A rail mounted zoom sight scope specialized for the M4RA Battle Rifle . Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
+	flags_attach_features = ATTACH_ACTIVATION
+	attach_icon = ""
+	icon_state = ""
 
 /obj/item/attachable/scope/m42a
 	name = "m42a rail scope"
-	icon_state = "sniperscope"
-	attach_icon = "sniperscope_a"
+	//icon_state = "sniperscope"
+	//attach_icon = "sniperscope_a"
 	desc = "A rail mounted zoom sight scope specialized for the M42A Sniper Rifle . Allows zoom by activating the attachment. Can activate its targeting laser while zoomed to take aim for increased damage and penetration. Use F12 if your HUD doesn't come back."
 	zoom_accuracy = SCOPE_RAIL_SNIPER
+	flags_attach_features = ATTACH_ACTIVATION
+	attach_icon = ""
+	icon_state = ""
 
 /obj/item/attachable/scope/slavic
 	icon_state = "slavicscope"
+
+/obj/item/attachable/scope/pmc
+	icon_state = "pmcscope"
+	attach_icon = "pmcscope"
+	flags_attach_features = ATTACH_ACTIVATION
 
 //////////// Stock attachments ////////////////////////////
 
@@ -631,8 +651,9 @@ Defined in conflicts.dm of the #defines folder.
 	desc = "A standard polymer stock for the ZX-76 assault shotgun. Designed for maximum ease of use in close quarters."
 	icon_state = "zx_stock"
 	wield_delay_mod = 0
+	flags_attach_features = NOFLAGS
 
-/obj/item/attachable/stock/scout/New()
+/obj/item/attachable/stock/scout/Initialize()
 	. = ..()
 	accuracy_mod = CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
 	recoil_mod = -CONFIG_GET(number/combat_define/min_recoil_value)
@@ -801,7 +822,7 @@ Defined in conflicts.dm of the #defines folder.
 	attach_icon = "laserstock"
 	pixel_shift_x = 41
 	pixel_shift_y = 10
-
+	flags_attach_features = NOFLAGS
 
 ////////////// Underbarrel Attachments ////////////////////////////////////
 
@@ -861,6 +882,13 @@ Defined in conflicts.dm of the #defines folder.
 	fire_sound = 'sound/weapons/gun_m92_attachable.ogg'
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_RELOADABLE|ATTACH_WEAPON
 	var/list/loaded_grenades //list of grenade types loaded in the UGL
+
+/obj/item/attachable/attached_gun/grenade/unremovable
+	flags_attach_features = ATTACH_ACTIVATION|ATTACH_RELOADABLE|ATTACH_WEAPON
+
+/obj/item/attachable/attached_gun/grenade/unremovable/invisible
+	icon_state = ""
+	attach_icon = ""
 
 /obj/item/attachable/attached_gun/grenade/Initialize()
 	. = ..()
@@ -934,6 +962,9 @@ Defined in conflicts.dm of the #defines folder.
 	slot = "under"
 	fire_sound = 'sound/weapons/gun_flamethrower3.ogg'
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_RELOADABLE|ATTACH_WEAPON
+
+/obj/item/attachable/attached_gun/flamer/unremovable
+	flags_attach_features = ATTACH_ACTIVATION|ATTACH_RELOADABLE|ATTACH_WEAPON
 
 /obj/item/attachable/attached_gun/flamer/Initialize()
 	. = ..()

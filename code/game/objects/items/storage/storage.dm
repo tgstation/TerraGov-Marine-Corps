@@ -46,7 +46,7 @@
 		if(usr.lying)
 			return
 
-		if(istype(usr.loc, /obj/mecha)) // stops inventory actions in a mech
+		if(istype(usr.loc, /obj/mecha) || istype(usr.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech/tank
 			return
 
 		if(over_object == usr && Adjacent(usr)) // this must come before the screen objects only block
@@ -253,7 +253,7 @@
 /obj/screen/storage/clicked(var/mob/user, var/list/mods)
 	if(user.is_mob_incapacitated(TRUE))
 		return 1
-	if (istype(user.loc,/obj/mecha)) // stops inventory actions in a mech
+	if (istype(user.loc,/obj/mecha) || istype(user.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech/tank
 		return 1
 
 	// Placing something in the storage screen
@@ -347,12 +347,7 @@
 				ok = TRUE
 				break
 		if(!ok)
-			if(istype(W, /obj/item/tool/hand_labeler))
-				var/obj/item/tool/hand_labeler/L = W
-				if(!L.mode)
-					return TRUE
-				to_chat(usr, "<span class='warning'>You must turn off the [L] first.</span>")
-			else if(warning)
+			if(warning)
 				to_chat(usr, "<span class='notice'>[src] cannot hold [W].</span>")
 			return FALSE
 
@@ -388,6 +383,13 @@
 			if(warning)
 				to_chat(usr, "<span class='notice'>[src] cannot hold [W] as it's a storage item of the same size.</span>")
 			return FALSE //To prevent the stacking of same sized storage items.
+
+	if(istype(W, /obj/item/tool/hand_labeler))
+		var/obj/item/tool/hand_labeler/L = W
+		if(L.on)
+			return FALSE
+		else
+			return TRUE
 
 	return TRUE
 

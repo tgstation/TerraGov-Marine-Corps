@@ -12,7 +12,7 @@
 	var/turf/spawn_loc = get_spawn_point()
 	var/mob/original = M.current
 
-	if(!istype(spawn_loc)) 
+	if(!istype(spawn_loc))
 		return
 
 	var/mob/living/carbon/human/H = new /mob/living/carbon/human(spawn_loc)
@@ -21,6 +21,8 @@
 
 	if(original)
 		qdel(original)
+
+	H.client?.change_view(world.view)
 
 	print_backstory(H)
 

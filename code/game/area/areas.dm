@@ -12,8 +12,13 @@
 	var/gas_type = GAS_TYPE_AIR
 	var/temperature = T20C
 	var/pressure = ONE_ATMOSPHERE
-
-/area/Initialize()
+	var/unique = TRUE
+	
+/area/New()
+	// This interacts with the map loader, so it needs to be set immediately
+	// rather than waiting for atoms to initialize.
+	if (unique)
+		GLOB.areas_by_type[type] = src
 	. = ..()
 
 	icon_state = "" //Used to reset the icon overlay, I assume.
@@ -25,6 +30,40 @@
 	all_areas += src
 
 	initialize_power_and_lighting()
+
+	reg_in_areas_in_z()
+
+	return INITIALIZE_HINT_LATELOAD
+
+/area/LateInitialize()
+	power_change()		// all machines set to current power level, also updates icon
+
+/area/proc/reg_in_areas_in_z()
+	if(contents.len)
+		var/list/areas_in_z = SSmapping.areas_in_z
+		var/z
+		for(var/i in 1 to contents.len)
+			var/atom/thing = contents[i]
+			if(!thing)
+				continue
+			z = thing.z
+			break
+		if(!z)
+			WARNING("No z found for [src]")
+			return
+		if(!areas_in_z["[z]"])
+			areas_in_z["[z]"] = list()
+		areas_in_z["[z]"] += src
+
+/area/Destroy()
+	if(GLOB.areas_by_type[type] == src)
+		GLOB.areas_by_type[type] = null
+	STOP_PROCESSING(SSobj, src)
+	return ..()
+
+// A hook so areas can modify the incoming args
+/area/proc/PlaceOnTopReact(list/new_baseturfs, turf/fake_turf_type, flags)
+	return flags
 
 /area/proc/initialize_power_and_lighting(override_power)
 	if(requires_power)
@@ -68,7 +107,6 @@
 						a.cancelAlarm("Power", src, source)
 					else
 						a.triggerAlarm("Power", src, cameras, source)
-	return
 
 /area/proc/atmosalert(danger_level)
 //	if(type==/area) //No atmos alarms in space
@@ -112,8 +150,8 @@
 			for (var/obj/machinery/alarm/AA in RA)
 				AA.update_icon()
 
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /area/proc/air_doors_close()
 	if(!src.master.air_doors_activated)
@@ -238,9 +276,9 @@
 /area/proc/powered(var/chan)		// return true if the area has power to given channel
 
 	if(!master.requires_power)
-		return 1
+		return TRUE
 	if(master.always_unpowered)
-		return 0
+		return FALSE
 	switch(chan)
 		if(EQUIP)
 			return master.power_equip
@@ -248,8 +286,7 @@
 			return master.power_light
 		if(ENVIRON)
 			return master.power_environ
-
-	return 0
+	return FALSE
 
 // called when power status changes
 
@@ -281,7 +318,6 @@
 	master.used_environ = 0
 
 /area/proc/use_power(var/amount, var/chan)
-
 	switch(chan)
 		if(EQUIP)
 			master.used_equip += amount
@@ -290,6 +326,7 @@
 		if(ENVIRON)
 			master.used_environ += amount
 
+	master.powerupdate = TRUE
 
 /area/Entered(A,atom/OldLoc)
 	var/musVolume = 20

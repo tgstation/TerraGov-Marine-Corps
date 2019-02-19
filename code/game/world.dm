@@ -67,12 +67,9 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 	// due to this list not being instantiated.
 	populate_seed_list()
 
-	if(!RoleAuthority)
-		RoleAuthority = new /datum/authority/branch/role()
+	if(!SSjob)
+		SSjob = new /datum/authority/branch/role()
 		to_chat(world, "<span class='danger'>Job setup complete</span>")
-
-	if(!EvacuationAuthority)
-		EvacuationAuthority = new
 
 	world.tick_lag = CONFIG_GET(number/ticklag)
 
@@ -244,7 +241,7 @@ var/world_topic_spam_protect_time = world.timeofday
 					s += "<br>Map: <a href='[CONFIG_GET(string/whiskeyoutposturl)]'><b>[GLOB.map_tag]</a></b>"
 				else
 					s += "<br>Map: <b>[GLOB.map_tag]</b>"
-			s += "<br>Mode: <b>[(Master.current_runlevel & RUNLEVELS_DEFAULT) ? ticker.mode.name : "Lobby"]</b>"
+			s += "<br>Mode: <b>[(Master.current_runlevel & RUNLEVELS_DEFAULT) ? SSticker.mode.name : "Lobby"]</b>"
 			s += "<br>Round time: <b>[duration2text()]</b>"
 		else
 			s += "<br>Map: <b>[GLOB.map_tag]</b>"
@@ -289,6 +286,11 @@ var/failed_old_db_connections = 0
 		return TRUE
 
 
+#undef FAILED_DB_CONNECTION_CUTOFF
+
+/world/proc/incrementMaxZ()
+	maxz++
+	SSmobs.MaxZChanged()
 /world/proc/SetupExternalRSC()
 	if(!CONFIG_GET(string/resource_url))
 		return

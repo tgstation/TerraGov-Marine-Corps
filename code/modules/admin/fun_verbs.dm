@@ -112,7 +112,7 @@
 	if(!check_rights(R_FUN))
 		return
 
-	if(!ticker)
+	if(!SSticker)
 		return
 
 	check_hive_status()
@@ -482,22 +482,22 @@
 	if(!check_rights(R_FUN))
 		return
 
-	if(!ticker?.mode)
+	if(!SSticker?.mode)
 		to_chat(src, "<span class='warning'>Please wait for the round to begin first.</span>")
 
-	if(ticker.mode.waiting_for_candidates)
+	if(SSticker.mode.waiting_for_candidates)
 		to_chat(src, "<span class='warning'>Please wait for the current beacon to be finalized.</span>")
 		return
 
-	if(ticker.mode.picked_call)
-		ticker.mode.picked_call.members = list()
-		ticker.mode.picked_call.candidates = list()
-		ticker.mode.waiting_for_candidates = FALSE
-		ticker.mode.on_distress_cooldown = FALSE
-		ticker.mode.picked_call = null
+	if(SSticker.mode.picked_call)
+		SSticker.mode.picked_call.members = list()
+		SSticker.mode.picked_call.candidates = list()
+		SSticker.mode.waiting_for_candidates = FALSE
+		SSticker.mode.on_distress_cooldown = FALSE
+		SSticker.mode.picked_call = null
 
 	var/list/list_of_calls = list()
-	for(var/datum/emergency_call/L in ticker.mode.all_calls)
+	for(var/datum/emergency_call/L in SSticker.mode.all_calls)
 		if(L.name)
 			list_of_calls += L.name
 
@@ -508,36 +508,36 @@
 		return
 
 	if(choice == "Randomize")
-		ticker.mode.picked_call	= ticker.mode.get_random_call()
+		SSticker.mode.picked_call	= SSticker.mode.get_random_call()
 	else
-		for(var/datum/emergency_call/C in ticker.mode.all_calls)
+		for(var/datum/emergency_call/C in SSticker.mode.all_calls)
 			if(C.name == choice)
-				ticker.mode.picked_call = C
+				SSticker.mode.picked_call = C
 				break
 
-	if(!istype(ticker.mode.picked_call))
+	if(!istype(SSticker.mode.picked_call))
 		return
 
 	var/max = input("What should the maximum amount of mobs be?", "Max Mobs", 20) as null|num
 	if(!max || max < 1)
 		return
 
-	ticker.mode.picked_call.mob_max = max
+	SSticker.mode.picked_call.mob_max = max
 
 	var/min = input("What should the minimum amount of mobs be?", "Min Mobs", 1) as null|num
 	if(!min || min < 1)
 		return
 
-	ticker.mode.picked_call.mob_min = min
+	SSticker.mode.picked_call.mob_min = min
 
 	var/is_announcing = TRUE
 	if(alert(usr, "Would you like to announce the distress beacon to the server population? This will reveal the distress beacon to all players.", "Announce distress beacon?", "Yes", "No") != "Yes")
 		is_announcing = FALSE
 
-	ticker.mode.picked_call.activate(is_announcing)
+	SSticker.mode.picked_call.activate(is_announcing)
 
-	log_admin("[key_name(usr)] called a [choice == "Randomize" ? "randomized ":""]distress beacon: [ticker.mode.picked_call.name]. Min: [min], Max: [max].")
-	message_admins("[ADMIN_TPMONTY(usr)] called a [choice == "Randomize" ? "randomized ":""]distress beacon: [ticker.mode.picked_call.name] Min: [min], Max: [max].")
+	log_admin("[key_name(usr)] called a [choice == "Randomize" ? "randomized ":""]distress beacon: [SSticker.mode.picked_call.name]. Min: [min], Max: [max].")
+	message_admins("[ADMIN_TPMONTY(usr)] called a [choice == "Randomize" ? "randomized ":""]distress beacon: [SSticker.mode.picked_call.name] Min: [min], Max: [max].")
 
 
 /datum/admins/proc/force_dropship()
@@ -586,7 +586,7 @@
 	if(!check_rights(R_FUN))
 		return
 
-	if(!ticker?.mode)
+	if(!SSticker?.mode)
 		return
 
 	var/tag = input("Which ERT shuttle should be force launched?", "Select an ERT Shuttle:") as null|anything in list("Distress", "Distress_PMC", "Distress_UPP", "Distress_Big")
@@ -728,7 +728,7 @@
 
 	switch(alert("Modify the rank or give them a new one?", "Select Rank", "New Rank", "Modify", "Cancel"))
 		if("New Rank")
-			var/newrank = input("Select new rank for [H]", "Change the mob's rank and skills") as null|anything in sortList(RoleAuthority.roles_by_name)
+			var/newrank = input("Select new rank for [H]", "Change the mob's rank and skills") as null|anything in sortList(SSjob.roles_by_name)
 			if(!newrank)
 				return
 
@@ -773,10 +773,10 @@
 					I.registered_name = regname
 					I.name = "[regname]'s ID Card ([I.assignment])"
 				if("Skills")
-					var/newskillset = input("Select a skillset", "Skill Set") as null|anything in RoleAuthority.roles_by_name
+					var/newskillset = input("Select a skillset", "Skill Set") as null|anything in SSjob.roles_by_name
 					if(!newskillset || !H?.mind)
 						return
-					var/datum/job/J = RoleAuthority.roles_by_name[newskillset]
+					var/datum/job/J = SSjob.roles_by_name[newskillset]
 					H.mind.set_cm_skills(J.skills_type)
 				else
 					return
@@ -792,7 +792,7 @@
 	if(!ishuman(M))
 		return
 
-	var/list/dresspacks = sortList(RoleAuthority.roles_by_equipment)
+	var/list/dresspacks = sortList(SSjob.roles_by_equipment)
 
 	var/dresscode = input("Choose equipment for [M]", "Select Equipment") as null|anything in dresspacks
 	if(!dresscode)

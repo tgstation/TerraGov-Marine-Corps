@@ -124,7 +124,7 @@
 		if(busy)
 			to_chat(user, "<span class='warning'>Someone else is currently using [src].</span>")
 			return
-		if(z != 1)
+		if(!is_ground_level(z))
 			to_chat(user, "<span class='warning'>You cannot fire [src] here.</span>")
 			return
 		if(targ_x == 0 && targ_y == 0) //Mortar wasn't set
@@ -146,7 +146,7 @@
 		if(do_after(user, 15, TRUE, 5, BUSY_ICON_HOSTILE))
 			user.visible_message("<span class='notice'>[user] loads \a [mortar_shell.name] into [src].</span>",
 			"<span class='notice'>You load \a [mortar_shell.name] into [src].</span>")
-			visible_message("[bicon(src)] <span class='danger'>The [name] fires!</span>")
+			visible_message("[icon2html(src, viewers(src))] <span class='danger'>The [name] fires!</span>")
 			user.transferItemToLoc(mortar_shell, src)
 			playsound(loc, 'sound/weapons/gun_mortar_fire.ogg', 50, 1)
 			busy = 0
@@ -222,7 +222,7 @@
 		"<span class='notice'>You fumble around figuring out how to deploy [src].</span>")
 		var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
 		if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
-	if(user.z != 1)
+	if(!is_ground_level(user.z))
 		to_chat(user, "<span class='warning'>You cannot deploy [src] here.</span>")
 		return
 	var/area/A = get_area(src)

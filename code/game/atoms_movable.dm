@@ -16,6 +16,8 @@
 	var/moving_diagonally = 0 //to know whether we're in the middle of a diagonal move,
 								// and if yes, are we doing the first or second move.
 
+	var/list/mob/dead/observer/followers = list()
+
 //===========================================================================
 /atom/movable/Destroy()
 	for(var/atom/movable/I in contents)
@@ -104,7 +106,9 @@
 		else
 			if(light)
 				light.changed()
-	return
+	for(var/_F in followers)
+		var/mob/dead/observer/F = _F
+		F.loc = loc
 
 /atom/movable/proc/forceMove(atom/destination)
 	if(destination)

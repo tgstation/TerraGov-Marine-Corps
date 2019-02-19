@@ -199,6 +199,12 @@
 	name = "medal of exceptional heroism"
 	desc = "An extremely rare golden medal awarded only by the TGMC. To recieve such a medal is the highest honor and as such, very few exist."
 
+/obj/item/clothing/tie/medal/letter/commendation
+	name = "letter of commendation"
+	desc = "A letter printed on cardstock often filled with praise for the person it is intended for."
+	icon = 'icons/obj/items/paper.dmi'
+	icon_state = "commendation"
+
 //Armbands
 /obj/item/clothing/tie/armband
 	name = "red armband"

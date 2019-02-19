@@ -183,6 +183,7 @@
 
 			M.neuroclaw_router(src) //if we have neuroclaws...
 
+			damage = M.hit_and_run_bonus(damage) //Apply Runner hit and run bonus damage if applicable
 			apply_damage(damage, BRUTE, affecting, armor_block, sharp = 1, edge = 1) //This should slicey dicey
 			updatehealth()
 
@@ -228,6 +229,9 @@
 			M.neuroclaw_router(src) //if we have neuroclaws...
 			if(dam_bonus)
 				tackle_pain += dam_bonus
+
+			tackle_pain = M.hit_and_run_bonus(tackle_pain) //Apply Runner hit and run bonus damage if applicable
+
 			apply_damage(tackle_pain, HALLOSS, "chest", armor_block * 0.4) //Only half armour applies vs tackle
 			updatehealth()
 			updateshock()
@@ -272,6 +276,8 @@
 
 			if(Adjacent(M)) //Logic!
 				M.start_pulling(src)
+			if(M.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
+				M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 
 		if(INTENT_HARM)
 			if(isxeno(src) && xeno_hivenumber(src) == M.hivenumber)
@@ -317,6 +323,14 @@
 			//Frenzy auras stack in a way, then the raw value is multipled by two to get the additive modifier
 			if(M.frenzy_aura > 0)
 				damage += (M.frenzy_aura * 2)
+
+			if(M.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
+				if(M.stealth_router(HANDLE_SNEAK_ATTACK_CHECK)) //Pouncing prevents us from making a sneak attack for 4 seconds
+					damage *= 3.5 //Massive damage on the sneak attack... hope you have armour.
+					KnockOut(2) //...And we knock them out
+					M.visible_message("<span class='danger'>\The [M] strikes [src] with vicious precision!</span>", \
+					"<span class='danger'>You strike [src] with vicious precision!</span>")
+				M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 
 			//Somehow we will deal no damage on this attack
 			if(!damage)
