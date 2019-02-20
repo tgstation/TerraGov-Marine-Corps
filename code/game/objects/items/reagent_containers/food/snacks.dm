@@ -1136,7 +1136,7 @@
 /obj/item/reagent_container/food/snacks/meatsteak
 	name = "Meat steak"
 	desc = "A piece of hot spicy meat."
-	icon_state = "meatstake"
+	icon_state = "meatsteak"
 	trash = /obj/item/trash/plate
 	filling_color = "#7A3D11"
 	list_reagents = list("nutriment" = 4, "sodiumchloride" = 1, "blackpepper" = 1)
@@ -2159,7 +2159,7 @@
 /obj/item/reagent_container/food/snacks/sliceable/pizza/margherita
 	name = "Margherita"
 	desc = "The golden standard of pizzas."
-	icon_state = "pizzamargherita"
+	icon_state = "margheritapizza"
 	slice_path = /obj/item/reagent_container/food/snacks/margheritaslice
 	list_reagents = list("nutriment" = 40, "tomatojuice" = 6)
 	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1)
@@ -2167,7 +2167,7 @@
 /obj/item/reagent_container/food/snacks/margheritaslice
 	name = "Margherita slice"
 	desc = "A slice of the classic pizza."
-	icon_state = "pizzamargheritaslice"
+	icon_state = "margheritapizzaslice"
 	filling_color = "#BAA14C"
 	bitesize = 2
 	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1)
