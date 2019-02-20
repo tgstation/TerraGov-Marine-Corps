@@ -224,11 +224,10 @@ mob/SetLuminosity(new_luminosity, trueLum)
 			if(luminosity_total <= (new_luminosity * -1) ) //We're losing a light source of magnitude equal to or greater than our current one; recalc luminosity from the list of remaining sources
 				//message_admins("MOB SET LUM DEBUG 2: luminosity_total: [luminosity_total] new_luminosity: [new_luminosity] length: [length(light_sources)]")
 				luminosity_total = 0
-				if(length(light_sources)) //only check if we have any remaining light sources
-					for(var/L in light_sources)
-						if(luminosity_total > L) //get the most powerful remaining light source
-							continue
-						luminosity_total = L
+				for(var/L in light_sources)
+					if(luminosity_total > L) //get the most powerful remaining light source
+						continue
+					luminosity_total = L
 
 
 	//message_admins("MOB SET LUM DEBUG 4: luminosity_total: [luminosity_total] new_luminosity: [new_luminosity] length: [length(light_sources)]")

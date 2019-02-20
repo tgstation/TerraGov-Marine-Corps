@@ -1551,21 +1551,6 @@
 				to_chat(src, "<span class='notice'>Your source of light shorts out.</span>")
 		return TRUE
 
-//very similar to xeno's queen_locator() but this is for locating squad leader.
-/mob/living/carbon/human/proc/locate_squad_leader()
-	if(!assigned_squad) return
-	var/mob/living/carbon/human/H = assigned_squad.squad_leader
-	if(!H)
-		hud_used.locate_leader.icon_state = "trackoff"
-		return
-
-	if(H.z != src.z || get_dist(src,H) < 1 || src == H)
-		hud_used.locate_leader.icon_state = "trackondirect"
-	else
-		hud_used.locate_leader.setDir(get_dir(src,H))
-		hud_used.locate_leader.icon_state = "trackon"
-
-
 /mob/living/carbon/get_standard_pixel_y_offset()
 	if(lying)
 		return -6
