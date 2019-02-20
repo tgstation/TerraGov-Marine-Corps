@@ -52,7 +52,7 @@
 
 	R.camera = new /obj/machinery/camera(R)
 	R.camera.network = list("almayer")	//changed network from military to almayer,because Cams computers on Almayer have this network
-	R.camera.c_tag = "Armored Vehicle ¹[rand(1,10)]" //ARMORED VEHICLE to be at the start of cams list, numbers in case of events with multiple tanks and for APC
+	R.camera.c_tag = "Armored Vehicle #[rand(1,10)]" //ARMORED VEHICLE to be at the start of cams list, numbers in case of events with multiple tanks and for APC
 
 	del(src)
 
@@ -89,7 +89,7 @@
 
 	R.camera = new /obj/machinery/camera(R)
 	R.camera.network = list("almayer")	//changed network from military to almayer,because Cams computers on Almayer have this network
-	R.camera.c_tag = "Armored Vehicle ¹[rand(1,10)]" //ARMORED VEHICLE to be at the start of cams list, numbers in case of events with multiple tanks and for APC
+	R.camera.c_tag = "Armored Vehicle #[rand(1,10)]" //ARMORED VEHICLE to be at the start of cams list, numbers in case of events with multiple tanks and for APC
 
 	del(src)
 
@@ -124,7 +124,7 @@
 
 	R.camera = new /obj/machinery/camera(R)
 	R.camera.network = list("almayer")	//changed network from military to almayer,because Cams computers on Almayer have this network
-	R.camera.c_tag = "Armored Vehicle ¹[rand(1,10)]" //ARMORED VEHICLE to be at the start of cams list, numbers in case of events with multiple tanks and for APC
+	R.camera.c_tag = "Armored Vehicle #[rand(1,10)]" //ARMORED VEHICLE to be at the start of cams list, numbers in case of events with multiple tanks and for APC
 
 	del(src)
 
