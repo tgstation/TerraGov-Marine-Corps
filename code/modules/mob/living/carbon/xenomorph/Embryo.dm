@@ -50,6 +50,9 @@
 		affected_mob = null
 		return FALSE
 
+	if(affected_mob.in_stasis)
+		return FALSE //If they are in cryo, bag or cell, the embryo won't grow.
+
 	if(affected_mob.stat == DEAD)
 		if(ishuman(affected_mob))
 			var/mob/living/carbon/human/H = affected_mob
@@ -66,29 +69,17 @@
 			STOP_PROCESSING(SSobj, src)
 			return FALSE
 
-	if(affected_mob.in_stasis == STASIS_IN_CRYO_CELL)
-		return FALSE //If they are in cryo, the embryo won't grow.
-
 	process_growth()
 
 
-/obj/item/alien_embryo/proc/process_growth() //Low temperature seriously hampers larva growth (as in, way below livable), so does stasis
-	var/stasis = FALSE
-	if(affected_mob.in_stasis || affected_mob.bodytemperature < 170)
-		stasis = TRUE
-		if(stage <= 4)
-			counter += 0.33
-		else if(stage == 4)
-			counter += 0.11
-	else if(istype(affected_mob.buckled, /obj/structure/bed/nest)) //Hosts who are nested in resin nests provide an ideal setting, larva grows faster.
+/obj/item/alien_embryo/proc/process_growth()
+	if(istype(affected_mob.buckled, /obj/structure/bed/nest)) //Hosts who are nested in resin nests provide an ideal setting, larva grows faster.
 		counter += 1 + max(0, (0.03 * affected_mob.health)) //Up to +300% faster, depending on the health of the host.
 	else if(stage <= 4)
 		counter++
 
-	if(isliving(affected_mob) && !stasis) //Cold temperatures and stasis prevent the growth toxin from having an effect.
-		var/mob/living/L = affected_mob
-		if(L.reagents.get_reagent_amount("xeno_growthtoxin"))
-			counter += 4 //Dramatically accelerates larval growth. You don't want this stuff in your body. Larva hits Stage 5 in just over 3 minutes, assuming the victim has growth toxin for the full duration.
+	if(affected_mob.reagents.get_reagent_amount("xeno_growthtoxin"))
+		counter += 4 //Dramatically accelerates larval growth. You don't want this stuff in your body. Larva hits Stage 5 in just over 3 minutes, assuming the victim has growth toxin for the full duration.
 
 	if(stage < 5 && counter >= 120)
 		counter = 0
