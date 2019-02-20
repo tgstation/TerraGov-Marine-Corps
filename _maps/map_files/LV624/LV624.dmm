@@ -6616,9 +6616,8 @@
 	icon_state = "2-4";
 	layer = 2.1
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "redcorner"
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 8
 	},
 /area/lv624/lazarus/security)
 "axs" = (
@@ -6738,10 +6737,7 @@
 	icon_state = "2-4";
 	layer = 2.1
 	},
-/turf/open/floor{
-	icon_state = "redfull";
-	dir = 9
-	},
+/turf/open/floor/tile/red/full,
 /area/lv624/lazarus/security)
 "axK" = (
 /obj/structure/cable/yellow{
@@ -6749,10 +6745,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor{
-	icon_state = "redfull";
-	dir = 9
-	},
+/turf/open/floor/tile/red/full,
 /area/lv624/lazarus/security)
 "axL" = (
 /obj/structure/fence,
@@ -16784,9 +16777,8 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "redcorner"
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/security)
 "bcQ" = (
@@ -16819,9 +16811,8 @@
 /obj/item/device/flashlight/lamp{
 	on = 0
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "redcorner"
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 8
 	},
 /area/lv624/lazarus/security)
 "bcT" = (
@@ -17179,19 +17170,13 @@
 	},
 /area/lv624/lazarus/security)
 "bdR" = (
-/turf/open/floor{
-	icon_state = "redfull";
-	dir = 9
-	},
+/turf/open/floor/tile/red/full,
 /area/lv624/lazarus/security)
 "bdS" = (
 /obj/structure/bed/chair/office/light{
 	dir = 1
 	},
-/turf/open/floor{
-	icon_state = "redfull";
-	dir = 9
-	},
+/turf/open/floor/tile/red/full,
 /area/lv624/lazarus/security)
 "bdT" = (
 /obj/structure/table/reinforced,
@@ -17414,10 +17399,7 @@
 /area/lv624/lazarus/security)
 "bey" = (
 /obj/item/folder/red,
-/turf/open/floor{
-	icon_state = "redfull";
-	dir = 9
-	},
+/turf/open/floor/tile/red/full,
 /area/lv624/lazarus/security)
 "bez" = (
 /turf/open/floor{
@@ -17985,10 +17967,7 @@
 /obj/structure/bed/chair/office/light{
 	dir = 8
 	},
-/turf/open/floor{
-	icon_state = "redfull";
-	dir = 9
-	},
+/turf/open/floor/tile/red/full,
 /area/lv624/lazarus/security)
 "bgn" = (
 /obj/structure/table/reinforced,

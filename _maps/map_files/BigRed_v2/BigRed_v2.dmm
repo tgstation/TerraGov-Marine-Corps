@@ -2790,9 +2790,8 @@
 /area/bigredv2/outside/nw)
 "ahj" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "redcorner"
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 2
 	},
 /area/bigredv2/outside/marshal_office)
 "ahk" = (
@@ -3101,22 +3100,19 @@
 	name = "Storm Shutters";
 	pixel_x = -32
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "redcorner"
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 2
 	},
 /area/bigredv2/outside/marshal_office)
 "aib" = (
 /obj/machinery/light,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "redcorner"
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 2
 	},
 /area/bigredv2/outside/marshal_office)
 "aic" = (
-/turf/open/floor{
-	dir = 2;
-	icon_state = "redcorner"
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 2
 	},
 /area/bigredv2/outside/marshal_office)
 "aid" = (
@@ -3124,25 +3120,22 @@
 	dir = 2
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "redcorner"
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 2
 	},
 /area/bigredv2/outside/marshal_office)
 "aie" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/random_item/good,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "redcorner"
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 2
 	},
 /area/bigredv2/outside/marshal_office)
 "aif" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "redcorner"
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 2
 	},
 /area/bigredv2/outside/marshal_office)
 "aig" = (
@@ -3497,16 +3490,14 @@
 	},
 /area/bigredv2/outside/marshal_office)
 "ajb" = (
-/turf/open/floor{
-	dir = 8;
-	icon_state = "redcorner"
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 8
 	},
 /area/bigredv2/outside/marshal_office)
 "ajc" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "redcorner"
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 2
 	},
 /area/bigredv2/outside/marshal_office)
 "ajd" = (
@@ -3732,9 +3723,8 @@
 /area/bigredv2/outside/marshal_office)
 "ajE" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "redcorner"
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 8
 	},
 /area/bigredv2/outside/marshal_office)
 "ajF" = (
@@ -4246,9 +4236,8 @@
 	pixel_x = -32
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "redcorner"
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 8
 	},
 /area/bigredv2/outside/marshal_office)
 "akQ" = (
@@ -4454,9 +4443,8 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "redcorner"
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 8
 	},
 /area/bigredv2/outside/marshal_office)
 "alr" = (
@@ -5217,9 +5205,8 @@
 	dir = 1;
 	on = 1
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "redcorner"
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 2
 	},
 /area/bigredv2/outside/marshal_office)
 "anc" = (
@@ -5229,9 +5216,8 @@
 	pixel_y = -30;
 	tag = "icon-alarm0 (NORTH)"
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "redcorner"
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 2
 	},
 /area/bigredv2/outside/marshal_office)
 "and" = (
@@ -5243,9 +5229,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "redcorner"
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 2
 	},
 /area/bigredv2/outside/marshal_office)
 "ane" = (
@@ -5442,10 +5427,7 @@
 	name = "\improper Marshal Office Checkpoint";
 	req_access_txt = "0"
 	},
-/turf/open/floor{
-	icon_state = "redfull";
-	dir = 9
-	},
+/turf/open/floor/tile/red/full,
 /area/bigredv2/outside/marshal_office)
 "anz" = (
 /obj/effect/decal/cleanable/dirt,
@@ -5777,17 +5759,11 @@
 	name = "Storm Shutters";
 	pixel_x = -32
 	},
-/turf/open/floor{
-	icon_state = "redfull";
-	dir = 9
-	},
+/turf/open/floor/tile/red/full,
 /area/bigredv2/outside/marshal_office)
 "aoi" = (
 /obj/structure/table,
-/turf/open/floor{
-	icon_state = "redfull";
-	dir = 9
-	},
+/turf/open/floor/tile/red/full,
 /area/bigredv2/outside/marshal_office)
 "aoj" = (
 /obj/effect/decal/cleanable/dirt,
@@ -6081,19 +6057,13 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor{
-	icon_state = "redfull";
-	dir = 9
-	},
+/turf/open/floor/tile/red/full,
 /area/bigredv2/outside/marshal_office)
 "aoV" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "redfull";
-	dir = 9
-	},
+/turf/open/floor/tile/red/full,
 /area/bigredv2/outside/marshal_office)
 "aoW" = (
 /obj/effect/decal/cleanable/dirt,
@@ -19874,17 +19844,15 @@
 /area/bigredv2/outside/admin_building)
 "aSR" = (
 /obj/machinery/atmospherics/components/unary/vent_pump,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "redcorner"
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 8
 	},
 /area/bigredv2/outside/admin_building)
 "aSS" = (
 /obj/structure/rack,
 /obj/item/weapon/gun/smg/mp7,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "redcorner"
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 8
 	},
 /area/bigredv2/outside/admin_building)
 "aST" = (
@@ -20407,9 +20375,8 @@
 /area/bigredv2/outside/admin_building)
 "aTY" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "redcorner"
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 8
 	},
 /area/bigredv2/outside/admin_building)
 "aTZ" = (
@@ -20418,9 +20385,8 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "redcorner"
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 8
 	},
 /area/bigredv2/outside/admin_building)
 "aUa" = (
@@ -20990,9 +20956,8 @@
 "aVk" = (
 /obj/structure/rack,
 /obj/item/weapon/gun/pistol/vp70,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "redcorner"
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 8
 	},
 /area/bigredv2/outside/admin_building)
 "aVl" = (
@@ -22797,9 +22762,8 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "redcorner"
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 8
 	},
 /area/bigredv2/outside/office_complex)
 "aZG" = (
@@ -22807,9 +22771,8 @@
 	pixel_x = 32
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "redcorner"
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 2
 	},
 /area/bigredv2/outside/office_complex)
 "aZH" = (
@@ -23060,9 +23023,8 @@
 /area/bigredv2/outside/office_complex)
 "bai" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "redcorner"
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 2
 	},
 /area/bigredv2/outside/office_complex)
 "baj" = (
@@ -23579,15 +23541,13 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "redcorner"
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 8
 	},
 /area/bigredv2/outside/office_complex)
 "bbB" = (
-/turf/open/floor{
-	dir = 2;
-	icon_state = "redcorner"
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 2
 	},
 /area/bigredv2/outside/office_complex)
 "bbC" = (
@@ -23846,9 +23806,8 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "redcorner"
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 2
 	},
 /area/bigredv2/outside/office_complex)
 "bck" = (
@@ -24524,9 +24483,8 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "redcorner"
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 8
 	},
 /area/bigredv2/outside/office_complex)
 "bdV" = (
@@ -24783,9 +24741,8 @@
 /area/bigredv2/outside/c)
 "beH" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "redcorner"
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 8
 	},
 /area/bigredv2/outside/office_complex)
 "beI" = (
@@ -24988,9 +24945,8 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "redcorner"
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 8
 	},
 /area/bigredv2/outside/office_complex)
 "bfk" = (
@@ -25012,9 +24968,8 @@
 	d2 = 8;
 	icon_state = "4-8";
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "redcorner"
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 2
 	},
 /area/bigredv2/outside/office_complex)
 "bfm" = (
@@ -25027,9 +24982,8 @@
 	d2 = 8;
 	icon_state = "4-8";
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "redcorner"
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 2
 	},
 /area/bigredv2/outside/office_complex)
 "bfn" = (
@@ -25044,9 +24998,8 @@
 	d2 = 8;
 	icon_state = "4-8";
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "redcorner"
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 2
 	},
 /area/bigredv2/outside/office_complex)
 "bfo" = (
@@ -25063,9 +25016,8 @@
 	d2 = 8;
 	icon_state = "4-8";
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "redcorner"
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 2
 	},
 /area/bigredv2/outside/office_complex)
 "bfp" = (
@@ -25079,9 +25031,8 @@
 	d2 = 8;
 	icon_state = "4-8";
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "redcorner"
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 2
 	},
 /area/bigredv2/outside/office_complex)
 "bfq" = (
@@ -25115,9 +25066,8 @@
 	layer = 2.4
 	},
 /obj/item/trash/cheesie,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "redcorner"
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 2
 	},
 /area/bigredv2/outside/office_complex)
 "bft" = (
@@ -25125,18 +25075,16 @@
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "redcorner"
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 2
 	},
 /area/bigredv2/outside/office_complex)
 "bfu" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "redcorner"
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 2
 	},
 /area/bigredv2/outside/office_complex)
 "bfv" = (
@@ -25258,9 +25206,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "redcorner"
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 8
 	},
 /area/bigredv2/outside/office_complex)
 "bfO" = (
@@ -25268,17 +25215,15 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "redcorner"
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 8
 	},
 /area/bigredv2/outside/office_complex)
 "bfP" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "redcorner"
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 2
 	},
 /area/bigredv2/outside/office_complex)
 "bfQ" = (
@@ -25405,9 +25350,8 @@
 	dir = 4;
 	pixel_x = -30
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "redcorner"
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 8
 	},
 /area/bigredv2/outside/office_complex)
 "bgl" = (
@@ -25419,9 +25363,8 @@
 	name = "General Listening Channel";
 	pixel_x = 30;
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "redcorner"
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 2
 	},
 /area/bigredv2/outside/office_complex)
 "bgm" = (
@@ -25487,9 +25430,8 @@
 /turf/open/floor/grimy,
 /area/bigredv2/outside/office_complex)
 "bgx" = (
-/turf/open/floor{
-	dir = 8;
-	icon_state = "redcorner"
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 8
 	},
 /area/bigredv2/outside/office_complex)
 "bgy" = (
@@ -25598,9 +25540,8 @@
 	name = "General Listening Channel";
 	pixel_x = 30;
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "redcorner"
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 2
 	},
 /area/bigredv2/outside/office_complex)
 "bgN" = (
@@ -25631,9 +25572,8 @@
 	name = "Storm Shutters";
 	pixel_x = -32;
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "redcorner"
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 8
 	},
 /area/bigredv2/outside/office_complex)
 "bgS" = (
@@ -25790,9 +25730,8 @@
 /area/bigredv2/outside/office_complex)
 "bhk" = (
 /obj/effect/landmark/start/surv_spawn,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "redcorner"
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 8
 	},
 /area/bigredv2/outside/office_complex)
 "bhl" = (
@@ -25800,9 +25739,8 @@
 	dir = 1;
 	on = 1
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "redcorner"
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 2
 	},
 /area/bigredv2/outside/office_complex)
 "bhm" = (
@@ -26124,9 +26062,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "redcorner"
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 8
 	},
 /area/bigredv2/outside/office_complex)
 "bhX" = (
@@ -26439,9 +26376,8 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "redcorner"
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 2
 	},
 /area/bigredv2/outside/office_complex)
 "biD" = (
@@ -26703,9 +26639,8 @@
 /area/bigredv2/outside/cargo)
 "bjk" = (
 /obj/effect/landmark/random_item/crap,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "redcorner"
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 2
 	},
 /area/bigredv2/outside/office_complex)
 "bjl" = (
@@ -27135,9 +27070,8 @@
 /area/bigredv2/outside/c)
 "bkg" = (
 /obj/machinery/light,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "redcorner"
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 8
 	},
 /area/bigredv2/outside/office_complex)
 "bkh" = (
@@ -33153,10 +33087,7 @@
 "bzJ" = (
 /obj/structure/closet/secure_closet/guncabinet,
 /obj/item/weapon/gun/smg/m39/elite,
-/turf/open/floor{
-	icon_state = "redfull";
-	dir = 9
-	},
+/turf/open/floor/tile/red/full,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bzK" = (
 /obj/effect/decal/cleanable/dirt,
@@ -33177,17 +33108,11 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
-/turf/open/floor{
-	icon_state = "redfull";
-	dir = 9
-	},
+/turf/open/floor/tile/red/full,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bzM" = (
 /obj/structure/closet,
-/turf/open/floor{
-	icon_state = "redfull";
-	dir = 9
-	},
+/turf/open/floor/tile/red/full,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bzN" = (
 /obj/machinery/computer/security,
@@ -33299,10 +33224,7 @@
 "bzY" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "redfull";
-	dir = 9
-	},
+/turf/open/floor/tile/red/full,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bzZ" = (
 /obj/machinery/vending/snack,
@@ -33464,10 +33386,7 @@
 "bAr" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/alien/weeds/node,
-/turf/open/floor{
-	icon_state = "redfull";
-	dir = 9
-	},
+/turf/open/floor/tile/red/full,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bAs" = (
 /obj/machinery/vending/cola,
@@ -33630,10 +33549,7 @@
 	on = 1
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "redfull";
-	dir = 9
-	},
+/turf/open/floor/tile/red/full,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bAJ" = (
 /obj/machinery/vending/coffee,
@@ -33723,10 +33639,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bAU" = (
 /obj/machinery/light,
-/turf/open/floor{
-	icon_state = "redfull";
-	dir = 9
-	},
+/turf/open/floor/tile/red/full,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bAV" = (
 /obj/machinery/vending/cigarette/colony,
