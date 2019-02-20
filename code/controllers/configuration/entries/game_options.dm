@@ -119,10 +119,16 @@
 	config_entry_value = 1
 
 /datum/config_entry/number/health_threshold_crit
-	config_entry_value = -50
+	config_entry_value = 0
 
 /datum/config_entry/number/health_threshold_dead
 	config_entry_value = -100
+
+/datum/config_entry/number/human_health_threshold_crit
+	config_entry_value = -50
+
+/datum/config_entry/number/maintdrone_health_threshold_dead
+	config_entry_value = 0
 
 /datum/config_entry/flag/limbs_can_break
 
@@ -133,6 +139,8 @@
 /datum/config_entry/flag/husking_on
 
 /datum/config_entry/flag/bones_can_break
+
+/datum/config_entry/flag/unlimited_rotate_speed
 
 /datum/config_entry/flag/allow_random_events
 
@@ -159,5 +167,6 @@
 	min_val = 1
 
 /datum/config_entry/number/latejoin_larva_required_num
+	integer = FALSE
 	min_val = 0
 	config_entry_value = 4
