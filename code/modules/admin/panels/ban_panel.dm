@@ -54,7 +54,7 @@
 	if(!CONFIG_GET(flag/ban_legacy_system))
 		return
 
-	var/key = input("Please, input a key.", "Ban") as null|text
+	var/key = input("Please input a key:", "Ban") as null|text
 	if(!key)
 		return
 
@@ -282,9 +282,9 @@
 	usr << browse(dat, "window=jobban;size=800x490")
 
 
-/datum/admins/proc/jobban_panel()
+/datum/admins/proc/jobban_offline()
 	set category = "Admin"
-	set name = "Jobban Panel"
+	set name = "Jobban Offline"
 
 	if(!check_rights(R_BAN))
 		return
@@ -295,7 +295,7 @@
 	if(!CONFIG_GET(flag/ban_legacy_system))
 		return
 
-	var/key = input("Please input a key:", "Ban") as null|text
+	var/key = input("Please input a key:", "Jobban") as null|text
 	if(!key)
 		return
 
