@@ -486,3 +486,18 @@ mob/proc/get_standard_bodytemperature()
 					usr.client.screen[screen_num].selecting = "l_leg"
 
 	usr.client.screen[screen_num].update_icon()
+
+
+/mob/proc/engineering_skillcheck(atom/thing)
+	if(!ishuman(src))
+		return FALSE
+	var/mob/living/carbon/human/H = src
+	if(!H.mind)
+		return FALSE
+	if(H.mind.cm_skills && H.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+		H.visible_message("<span class='notice'>[H] fumbles around figuring out how to operate \the [thing].</span>",
+		"<span class='notice'>You fumble around figuring out how to operate \the [thing].</span>")
+		var/fumbling_time = 50 * (SKILL_ENGINEER_ENGI - H.mind.cm_skills.engineer)
+		if(!do_after(H, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+			return FALSE
+	return TRUE
