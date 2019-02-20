@@ -594,12 +594,14 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/M, alien)
 	scannable = TRUE
 
 /datum/reagent/medicine/peridaxon/on_mob_life(mob/living/M)
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		for(var/datum/internal_organ/I in H.internal_organs)
-			if(I.damage && I.damage <= 5 && M.bodytemperature <= 169)
-				I.heal_damage(1)
-	return ..()
+    if(ishuman(M))
+        var/mob/living/carbon/human/H = M
+        for(var/datum/internal_organ/I in H.internal_organs)
+            if(I.damage)
+                if(M.bodytemperature > 169 && I.damage > 5)
+                    continue
+                I.heal_damage(1)                
+    return ..()
 
 /datum/reagent/medicine/peridaxon/overdose_process(mob/living/M, alien)
 	M.apply_damage(2, BRUTE)
