@@ -488,10 +488,7 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
 "abD" = (
-/obj/effect/decal/cleanable/blood{
-	tag = "icon-gib6";
-	icon_state = "gib6"
-	},
+/obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "abE" = (
@@ -584,10 +581,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "abS" = (
-/obj/effect/decal/cleanable/blood{
-	tag = "icon-gib6";
-	icon_state = "gib6"
-	},
+/obj/effect/decal/cleanable/blood/gibs,
 /obj/structure/window_frame/colony,
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
@@ -749,10 +743,7 @@
 /area/bigredv2/outside/marshal_office)
 "acs" = (
 /obj/item/shard,
-/obj/effect/decal/cleanable/blood{
-	tag = "icon-gib6";
-	icon_state = "gib6"
-	},
+/obj/effect/decal/cleanable/blood/gibs,
 /obj/structure/window_frame/colony/reinforced,
 /turf/open/floor/plating,
 /area/bigredv2/outside/marshal_office)
@@ -1161,10 +1152,7 @@
 /area/bigredv2/outside/marshal_office)
 "adG" = (
 /obj/item/shard,
-/obj/effect/decal/cleanable/blood{
-	tag = "icon-gib6";
-	icon_state = "gib6"
-	},
+/obj/effect/decal/cleanable/blood/gibs,
 /obj/effect/landmark/corpsespawner/security{
 	corpsebelt = /obj/item/weapon/gun/revolver/cmb;
 	corpsesuit = /obj/item/clothing/suit/storage/CMB;
@@ -1469,8 +1457,7 @@
 /area/bigredv2/outside/telecomm)
 "aeD" = (
 /obj/machinery/alarm{
-	dir = 4;
-	pixel_x = -30
+	dir = 4
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
@@ -3161,8 +3148,7 @@
 	on = 1
 	},
 /obj/machinery/alarm{
-	dir = 4;
-	pixel_x = -30
+	dir = 4
 	},
 /turf/open/floor/tile/dark/purple2/corner{
 	dir = 8
@@ -4585,10 +4571,7 @@
 /area/bigredv2/outside/marshal_office)
 "anc" = (
 /obj/machinery/alarm{
-	dir = 1;
-	icon_state = "alarm0";
-	pixel_y = -30;
-	tag = "icon-alarm0 (NORTH)"
+	dir = 1
 	},
 /turf/open/floor/tile/red/redtaupecorner{
 	dir = 2
@@ -5128,8 +5111,7 @@
 	on = 1
 	},
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
+	dir = 8
 	},
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
@@ -5400,8 +5382,7 @@
 /area/bigredv2/outside/general_offices)
 "aph" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/general_offices)
@@ -5558,10 +5539,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/medical)
 "apE" = (
-/obj/effect/decal/cleanable/blood{
-	tag = "icon-gib6";
-	icon_state = "gib6"
-	},
+/obj/effect/decal/cleanable/blood/gibs,
 /obj/machinery/door/airlock/multi_tile/almayer/medidoor{
 	name = "\improper Medical Clinic";
 	req_one_access_txt = "0"
@@ -5607,10 +5585,7 @@
 /area/bigredv2/outside/marshal_office)
 "apJ" = (
 /obj/item/shard,
-/obj/effect/decal/cleanable/blood{
-	tag = "icon-gib6";
-	icon_state = "gib6"
-	},
+/obj/effect/decal/cleanable/blood/gibs,
 /obj/structure/window_frame/colony,
 /turf/open/floor/plating,
 /area/bigredv2/outside/marshal_office)
@@ -5683,8 +5658,7 @@
 "apT" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/alarm{
-	dir = 4;
-	pixel_x = -30
+	dir = 4
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/general_offices)
@@ -6623,8 +6597,7 @@
 	dir = 1
 	},
 /obj/machinery/alarm{
-	dir = 4;
-	pixel_x = -30
+	dir = 4
 	},
 /turf/open/floor/tile/darkish,
 /area/bigredv2/caves/lambda_lab)
@@ -7070,8 +7043,7 @@
 "atC" = (
 /obj/structure/table,
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
+	dir = 8
 	},
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
@@ -7686,10 +7658,7 @@
 /area/bigredv2/caves/lambda_lab)
 "auZ" = (
 /obj/machinery/alarm{
-	dir = 1;
-	icon_state = "alarm0";
-	pixel_y = -30;
-	tag = "icon-alarm0 (NORTH)"
+	dir = 1
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/lambda_lab)
@@ -9282,8 +9251,7 @@
 /area/bigredv2/outside/general_offices)
 "aze" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
+	dir = 8
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -9362,8 +9330,7 @@
 /area/bigredv2/caves/lambda_lab)
 "azn" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
@@ -9741,10 +9708,7 @@
 	dir = 4
 	},
 /obj/machinery/alarm{
-	dir = 1;
-	icon_state = "alarm0";
-	pixel_y = -30;
-	tag = "icon-alarm0 (NORTH)"
+	dir = 1
 	},
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
@@ -9928,8 +9892,7 @@
 	dir = 8
 	},
 /obj/machinery/alarm{
-	dir = 8;
-	pixel_x = 32;
+	dir = 8
 	},
 /turf/open/floor/tile/green/whitegreen{
 	dir = 4
@@ -10838,10 +10801,7 @@
 /turf/open/floor/freezer,
 /area/bigredv2/outside/dorms)
 "aCR" = (
-/obj/effect/decal/cleanable/blood{
-	tag = "icon-gib6";
-	icon_state = "gib6"
-	},
+/obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/freezer,
 /area/bigredv2/outside/dorms)
 "aCS" = (
@@ -11860,8 +11820,7 @@
 	dir = 1
 	},
 /obj/machinery/alarm{
-	dir = 8;
-	pixel_x = 32;
+	dir = 8
 	},
 /obj/structure/mineral_door/resin,
 /turf/open/floor/tile/dark/purple2{
@@ -12365,8 +12324,7 @@
 "aGz" = (
 /obj/structure/table,
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
+	dir = 8
 	},
 /obj/item/storage/firstaid/adv,
 /turf/open/floor/tile/green/whitegreencorner{
@@ -13162,8 +13120,7 @@
 /area/bigredv2/outside/c)
 "aIq" = (
 /obj/machinery/alarm{
-	dir = 4;
-	pixel_x = -30
+	dir = 4
 	},
 /obj/structure/device/piano,
 /turf/open/floor{
@@ -13233,8 +13190,7 @@
 	pixel_y = 32
 	},
 /obj/machinery/alarm{
-	dir = 4;
-	pixel_x = -30
+	dir = 4
 	},
 /turf/open/floor/freezer,
 /area/bigredv2/outside/hydroponics)
@@ -13665,8 +13621,7 @@
 /area/bigredv2/outside/hydroponics)
 "aJC" = (
 /obj/machinery/alarm{
-	dir = 4;
-	pixel_x = -30
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
@@ -14386,10 +14341,7 @@
 	dir = 8
 	},
 /obj/machinery/alarm{
-	dir = 1;
-	icon_state = "alarm0";
-	pixel_y = -30;
-	tag = "icon-alarm0 (NORTH)"
+	dir = 1
 	},
 /obj/effect/alien/weeds/node,
 /turf/open/floor/tile/green/whitegreen{
@@ -14866,10 +14818,7 @@
 	},
 /area/bigredv2/outside/virology)
 "aLZ" = (
-/obj/effect/decal/cleanable/blood{
-	tag = "icon-gib6";
-	icon_state = "gib6"
-	},
+/obj/effect/decal/cleanable/blood/gibs,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 1
@@ -15149,8 +15098,7 @@
 /area/bigredv2/outside/bar)
 "aMK" = (
 /obj/machinery/alarm{
-	dir = 4;
-	pixel_x = -30
+	dir = 4
 	},
 /turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
@@ -16332,10 +16280,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/admin_building)
 "aPY" = (
-/obj/effect/decal/cleanable/blood{
-	tag = "icon-gib6";
-	icon_state = "gib6"
-	},
+/obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aPZ" = (
@@ -16885,10 +16830,7 @@
 /area/bigredv2/outside/hydroponics)
 "aRr" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/blood{
-	tag = "icon-gib6";
-	icon_state = "gib6"
-	},
+/obj/effect/decal/cleanable/blood/gibs,
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
@@ -17964,10 +17906,7 @@
 /area/bigredv2/outside/admin_building)
 "aUd" = (
 /obj/machinery/alarm{
-	dir = 1;
-	icon_state = "alarm0";
-	pixel_y = -30;
-	tag = "icon-alarm0 (NORTH)"
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/admin_building)
@@ -18525,10 +18464,7 @@
 "aVx" = (
 /obj/structure/curtain/medical,
 /obj/machinery/alarm{
-	dir = 1;
-	icon_state = "alarm0";
-	pixel_y = -30;
-	tag = "icon-alarm0 (NORTH)"
+	dir = 1
 	},
 /turf/open/floor/tile/green/whitegreen{
 	dir = 10
@@ -18603,10 +18539,7 @@
 /turf/open/floor/tile/bar,
 /area/bigredv2/outside/general_store)
 "aVK" = (
-/obj/effect/decal/cleanable/blood{
-	tag = "icon-gib6";
-	icon_state = "gib6"
-	},
+/obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor,
 /area/bigredv2/outside/general_store)
 "aVL" = (
@@ -18881,10 +18814,7 @@
 /area/bigredv2/outside/general_store)
 "aWv" = (
 /obj/machinery/alarm{
-	dir = 1;
-	icon_state = "alarm0";
-	pixel_y = -30;
-	tag = "icon-alarm0 (NORTH)"
+	dir = 1
 	},
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
@@ -19221,10 +19151,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/admin_building)
 "aXo" = (
-/obj/effect/decal/cleanable/blood{
-	tag = "icon-gib6";
-	icon_state = "gib6"
-	},
+/obj/effect/decal/cleanable/blood/gibs,
 /turf/open/mars_dirt/random,
 /area/bigredv2/outside/c)
 "aXp" = (
@@ -19549,8 +19476,7 @@
 "aYh" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
+	dir = 8
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -21604,10 +21530,7 @@
 /area/bigredv2/outside/chapel)
 "bdI" = (
 /obj/machinery/alarm{
-	dir = 1;
-	icon_state = "alarm0";
-	pixel_y = -30;
-	tag = "icon-alarm0 (NORTH)"
+	dir = 1
 	},
 /turf/open/floor/tile/darkish,
 /area/bigredv2/outside/chapel)
@@ -22503,8 +22426,7 @@
 /area/bigredv2/outside/office_complex)
 "bgk" = (
 /obj/machinery/alarm{
-	dir = 4;
-	pixel_x = -30
+	dir = 4
 	},
 /turf/open/floor/tile/red/redtaupecorner{
 	dir = 8
@@ -22963,8 +22885,7 @@
 /area/bigredv2/outside/cargo)
 "bhF" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
+	dir = 8
 	},
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
@@ -23107,10 +23028,7 @@
 	},
 /area/bigredv2/outside/c)
 "bhT" = (
-/obj/effect/decal/cleanable/blood{
-	tag = "icon-gib6";
-	icon_state = "gib6"
-	},
+/obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/c)
 "bhU" = (
@@ -24574,8 +24492,7 @@
 	dir = 4
 	},
 /obj/machinery/alarm{
-	dir = 4;
-	pixel_x = -30
+	dir = 4
 	},
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
@@ -26323,10 +26240,7 @@
 "bqk" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/alarm{
-	dir = 1;
-	icon_state = "alarm0";
-	pixel_y = -30;
-	tag = "icon-alarm0 (NORTH)"
+	dir = 1
 	},
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
@@ -28266,8 +28180,7 @@
 /area/bigredv2/outside/engineering)
 "bvh" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
+	dir = 8
 	},
 /obj/machinery/camera/autoname{
 	dir = 4
@@ -28284,8 +28197,7 @@
 /area/bigredv2/outside/engineering)
 "bvj" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
+	dir = 8
 	},
 /turf/open/gm/river,
 /area/bigredv2/outside/engineering)
@@ -31186,8 +31098,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bDr" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
+	dir = 8
 	},
 /obj/effect/alien/weeds/node,
 /turf/open/floor{
@@ -31198,8 +31109,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bDs" = (
 /obj/machinery/alarm{
-	dir = 4;
-	pixel_x = -30
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkyellowcorners2 (WEST)";

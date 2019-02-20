@@ -5730,8 +5730,7 @@
 	dir = 4
 	},
 /obj/machinery/alarm{
-	dir = 8;
-	pixel_x = 24
+	dir = 8
 	},
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 4
@@ -6800,8 +6799,7 @@
 /area/ice_colony/surface/dorms)
 "apL" = (
 /obj/machinery/alarm{
-	dir = 8;
-	pixel_x = 24
+	dir = 8
 	},
 /turf/open/floor{
 	tag = "icon-whitered (EAST)";
@@ -7073,8 +7071,7 @@
 	},
 /obj/structure/table,
 /obj/machinery/alarm{
-	dir = 4;
-	pixel_x = -24
+	dir = 4
 	},
 /obj/effect/landmark/random_item/crap,
 /turf/open/floor/tile/darkgreen/darkgreen2{
@@ -7278,8 +7275,7 @@
 	pixel_y = 3
 	},
 /obj/machinery/alarm{
-	dir = 8;
-	pixel_x = 24
+	dir = 8
 	},
 /turf/open/floor{
 	tag = "icon-whitered (EAST)";
@@ -8482,8 +8478,7 @@
 /obj/structure/table,
 /obj/item/book/manual/medical_diagnostics_manual,
 /obj/machinery/alarm{
-	dir = 8;
-	pixel_x = 24
+	dir = 8
 	},
 /turf/open/floor{
 	tag = "icon-whitered (EAST)";
@@ -9052,8 +9047,7 @@
 	dir = 4
 	},
 /obj/machinery/alarm{
-	dir = 4;
-	pixel_x = -24
+	dir = 4
 	},
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 8
@@ -10722,14 +10716,8 @@
 /area/ice_colony/surface/disposals)
 "axX" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/decal/cleanable/blood{
-	tag = "icon-gibarm_flesh";
-	icon_state = "gibarm_flesh"
-	},
-/obj/effect/decal/cleanable/blood{
-	tag = "icon-gibarm_flesh";
-	icon_state = "gibarm_flesh"
-	},
+/obj/effect/decal/cleanable/blood/gibs,
+/obj/effect/decal/cleanable/blood/gibs,
 /obj/effect/decal/cleanable/blood{
 	tag = "icon-gibarm_flesh";
 	icon_state = "gibarm_flesh";
@@ -11254,8 +11242,7 @@
 "azg" = (
 /obj/machinery/vending/coffee,
 /obj/machinery/alarm{
-	dir = 4;
-	pixel_x = -24
+	dir = 4
 	},
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 8
@@ -13574,8 +13561,7 @@
 "aDQ" = (
 /obj/structure/table,
 /obj/machinery/alarm{
-	dir = 4;
-	pixel_x = -24
+	dir = 4
 	},
 /obj/effect/landmark/random_item/crap,
 /turf/open/floor{
@@ -13936,10 +13922,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/blood{
-	tag = "icon-gibarm_flesh";
-	icon_state = "gibarm_flesh"
-	},
+/obj/effect/decal/cleanable/blood/gibs,
 /obj/effect/decal/cleanable/blood{
 	basecolor = "#b70602";
 	icon_state = "gib6";
@@ -14769,8 +14752,7 @@
 	dir = 4
 	},
 /obj/machinery/alarm{
-	dir = 8;
-	pixel_x = 24
+	dir = 8
 	},
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 4
@@ -14778,8 +14760,7 @@
 /area/ice_colony/surface/hydroponics/south)
 "aGi" = (
 /obj/machinery/alarm{
-	dir = 4;
-	pixel_x = -24
+	dir = 4
 	},
 /turf/open/floor{
 	dir = 8;
@@ -15728,8 +15709,7 @@
 /area/ice_colony/surface/storage_unit/power)
 "aHW" = (
 /obj/machinery/alarm{
-	dir = 4;
-	pixel_x = -24
+	dir = 4
 	},
 /obj/structure/safe,
 /obj/item/spacecash/c1000{
@@ -15872,10 +15852,7 @@
 /area/ice_colony/surface/storage_unit/power)
 "aIp" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/decal/cleanable/blood{
-	tag = "icon-gibarm_flesh";
-	icon_state = "gibarm_flesh"
-	},
+/obj/effect/decal/cleanable/blood/gibs,
 /obj/effect/decal/cleanable/blood{
 	tag = "icon-gibarm_flesh";
 	icon_state = "gibarm_flesh";
@@ -15947,8 +15924,7 @@
 /area/ice_colony/surface/command/crisis)
 "aIy" = (
 /obj/machinery/alarm{
-	dir = 4;
-	pixel_x = -24
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/ice_colony/surface/command/control/pv1)
@@ -15969,8 +15945,7 @@
 /area/ice_colony/surface/command/control/pv1)
 "aIB" = (
 /obj/machinery/alarm{
-	dir = 4;
-	pixel_x = -24
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/ice_colony/surface/command/control/pv2)
@@ -18214,8 +18189,7 @@
 /obj/structure/rack,
 /obj/effect/landmark/random_item/crap,
 /obj/machinery/alarm{
-	dir = 4;
-	pixel_x = -24
+	dir = 4
 	},
 /turf/open/floor/tile/dark/yellow2{
 	dir = 9
@@ -19103,8 +19077,7 @@
 /area/ice_colony/exterior/surface/cliff)
 "aQc" = (
 /obj/machinery/alarm{
-	dir = 4;
-	pixel_x = -24
+	dir = 4
 	},
 /obj/structure/closet/secure_closet/freezer/kitchen,
 /turf/open/floor/freezer,
@@ -19147,10 +19120,7 @@
 /turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aQi" = (
-/obj/effect/decal/cleanable/blood{
-	tag = "icon-gibarm_flesh";
-	icon_state = "gibarm_flesh"
-	},
+/obj/effect/decal/cleanable/blood/gibs,
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
@@ -19632,8 +19602,7 @@
 /area/ice_colony/surface/bar/canteen)
 "aRb" = (
 /obj/machinery/alarm{
-	dir = 4;
-	pixel_x = -24
+	dir = 4
 	},
 /obj/effect/decal/cleanable/blood{
 	basecolor = "#B70602";
@@ -19751,8 +19720,7 @@
 /obj/structure/table/woodentable,
 /obj/machinery/chem_dispenser/beer,
 /obj/machinery/alarm{
-	dir = 1;
-	pixel_y = -24
+	dir = 1
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -21129,8 +21097,7 @@
 /area/ice_colony/surface/hangar/alpha)
 "aUk" = (
 /obj/machinery/alarm{
-	dir = 8;
-	pixel_x = 24
+	dir = 8
 	},
 /turf/open/floor{
 	tag = "icon-darkbrown2 (EAST)";
@@ -21258,8 +21225,7 @@
 /area/ice_colony/exterior/surface/clearing/south)
 "aUy" = (
 /obj/machinery/alarm{
-	dir = 4;
-	pixel_x = -24
+	dir = 4
 	},
 /turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
@@ -21317,8 +21283,7 @@
 /area/ice_colony/surface/bar/bar)
 "aUG" = (
 /obj/machinery/alarm{
-	dir = 4;
-	pixel_x = -24
+	dir = 4
 	},
 /turf/open/floor{
 	dir = 8;
@@ -22407,8 +22372,7 @@
 /area/ice_colony/surface/hangar/hallway)
 "aWU" = (
 /obj/machinery/alarm{
-	dir = 4;
-	pixel_x = -24
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkbrown2 (WEST)";
@@ -22881,8 +22845,7 @@
 	icon_state = "pipe-c"
 	},
 /obj/machinery/alarm{
-	dir = 4;
-	pixel_x = -24
+	dir = 4
 	},
 /turf/open/floor{
 	dir = 8;
@@ -23395,8 +23358,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/alarm{
-	dir = 4;
-	pixel_x = -24
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkbrown2 (WEST)";
@@ -24746,7 +24708,7 @@
 "bch" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
 /obj/machinery/alarm{
-	pixel_y = 24
+	dir = 1
 	},
 /turf/open/floor/freezer,
 /area/ice_colony/underground/requesition/storage)
@@ -24874,7 +24836,7 @@
 /area/ice_colony/underground/requesition)
 "bcz" = (
 /obj/machinery/alarm{
-	pixel_y = 24
+	dir = 1
 	},
 /turf/open/floor{
 	tag = "icon-darkbrown2 (NORTH)";
@@ -27041,8 +27003,7 @@
 /obj/item/tool/stamp,
 /obj/item/paper_bin,
 /obj/machinery/alarm{
-	dir = 8;
-	pixel_x = 24
+	dir = 8
 	},
 /turf/open/floor{
 	tag = "icon-darkbrown2 (EAST)";
@@ -27809,8 +27770,7 @@
 /area/ice_colony/underground/requesition/sec_storage)
 "biM" = (
 /obj/machinery/alarm{
-	dir = 8;
-	pixel_x = 24
+	dir = 8
 	},
 /obj/machinery/firealarm{
 	pixel_y = 24
@@ -27892,8 +27852,7 @@
 /area/ice_colony/underground/requesition/lobby)
 "biU" = (
 /obj/machinery/alarm{
-	dir = 8;
-	pixel_x = 24
+	dir = 8
 	},
 /turf/open/floor{
 	dir = 5;
@@ -29015,8 +28974,7 @@
 /area/ice_colony/underground/engineering)
 "blC" = (
 /obj/machinery/alarm{
-	dir = 8;
-	pixel_x = 24
+	dir = 8
 	},
 /turf/open/floor/carpet,
 /area/ice_colony/underground/crew/chapel)
@@ -29025,8 +28983,7 @@
 /area/ice_colony/underground/maintenance/research)
 "blE" = (
 /obj/machinery/alarm{
-	dir = 8;
-	pixel_x = 24
+	dir = 8
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -29063,8 +29020,7 @@
 /area/ice_colony/underground/crew/library)
 "blK" = (
 /obj/machinery/alarm{
-	dir = 8;
-	pixel_x = 24
+	dir = 8
 	},
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/library)
@@ -29353,7 +29309,7 @@
 /area/ice_colony/underground/engineering)
 "bmp" = (
 /obj/machinery/alarm{
-	pixel_y = 24
+	dir = 1
 	},
 /obj/machinery/power/port_gen/pacman,
 /turf/open/floor/tile/dark/yellow2{
@@ -30157,7 +30113,7 @@
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk,
 /obj/machinery/alarm{
-	pixel_y = 24
+	dir = 1
 	},
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 1
@@ -30519,7 +30475,7 @@
 	},
 /obj/item/tool/stamp,
 /obj/machinery/alarm{
-	pixel_y = 24
+	dir = 1
 	},
 /turf/open/floor{
 	tag = "icon-darkred2 (NORTHEAST)";
@@ -30993,10 +30949,7 @@
 "bqb" = (
 /obj/structure/closet/secure_closet/miner,
 /obj/machinery/alarm{
-	dir = 4;
-	pixel_x = 1;
-	pixel_y = 1;
-	pixel_x = -24
+	dir = 4
 	},
 /turf/open/floor/tile/dark/yellow2{
 	dir = 8
@@ -32263,7 +32216,7 @@
 	dir = 8
 	},
 /obj/machinery/alarm{
-	pixel_y = 24
+	dir = 1
 	},
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 9
@@ -33340,8 +33293,7 @@
 "bvk" = (
 /obj/structure/filingcabinet/security,
 /obj/machinery/alarm{
-	dir = 1;
-	pixel_y = -24
+	dir = 1
 	},
 /turf/open/floor{
 	tag = "icon-darkred2";
@@ -34423,8 +34375,7 @@
 /area/ice_colony/underground/medical/lobby)
 "bxz" = (
 /obj/machinery/alarm{
-	dir = 1;
-	pixel_y = -24
+	dir = 1
 	},
 /turf/open/floor{
 	tag = "icon-darkgreen2";
@@ -35135,7 +35086,7 @@
 /area/ice_colony/underground/maintenance/central)
 "byW" = (
 /obj/machinery/alarm{
-	pixel_y = 24
+	dir = 1
 	},
 /turf/open/floor/wood,
 /area/ice_colony/underground/security/marshal)
@@ -35427,7 +35378,7 @@
 /area/ice_colony/underground/command/center)
 "bzH" = (
 /obj/machinery/alarm{
-	pixel_y = 24
+	dir = 1
 	},
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 1
@@ -35733,7 +35684,7 @@
 /area/ice_colony/underground/medical/storage)
 "bAu" = (
 /obj/machinery/alarm{
-	pixel_y = 24
+	dir = 1
 	},
 /turf/open/floor/wood,
 /area/ice_colony/underground/security/detective)
@@ -36130,7 +36081,7 @@
 "bBo" = (
 /obj/structure/bed/chair,
 /obj/machinery/alarm{
-	pixel_y = 24
+	dir = 1
 	},
 /turf/open/floor{
 	tag = "icon-darkred2 (NORTH)";
@@ -37279,8 +37230,7 @@
 /area/ice_colony/underground/security/hallway)
 "bDp" = (
 /obj/machinery/alarm{
-	dir = 4;
-	pixel_x = -24
+	dir = 4
 	},
 /obj/structure/table,
 /obj/item/device/taperecorder,
@@ -37530,8 +37480,7 @@
 /area/ice_colony/underground/hallway/north_west)
 "bDR" = (
 /obj/machinery/alarm{
-	dir = 4;
-	pixel_x = -24
+	dir = 4
 	},
 /turf/open/floor{
 	dir = 8;
@@ -38394,7 +38343,7 @@
 	},
 /obj/item/tool/stamp,
 /obj/machinery/alarm{
-	pixel_y = 24
+	dir = 1
 	},
 /turf/open/floor{
 	tag = "icon-darkred2 (NORTHEAST)";
@@ -38442,8 +38391,7 @@
 	})
 "bFR" = (
 /obj/machinery/alarm{
-	dir = 4;
-	pixel_x = -24
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/ice_colony/underground/command/pv1)
@@ -38459,8 +38407,7 @@
 /area/ice_colony/underground/command/pv1)
 "bFT" = (
 /obj/machinery/alarm{
-	dir = 4;
-	pixel_x = -24
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/ice_colony/underground/command/pv2)
@@ -38670,8 +38617,7 @@
 /obj/effect/spawner/random/technology_scanner,
 /obj/effect/spawner/random/tool,
 /obj/machinery/alarm{
-	dir = 4;
-	pixel_x = -24
+	dir = 4
 	},
 /turf/open/floor/tile/dark/yellow2{
 	dir = 9
@@ -40101,8 +40047,7 @@
 /area/ice_colony/underground/crew/dorm_l)
 "bJf" = (
 /obj/machinery/alarm{
-	dir = 1;
-	pixel_y = -24
+	dir = 1
 	},
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/dorm_l)
@@ -40119,8 +40064,7 @@
 /area/ice_colony/underground/crew/dorm_r)
 "bJi" = (
 /obj/machinery/alarm{
-	dir = 1;
-	pixel_y = -24
+	dir = 1
 	},
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/dorm_r)
@@ -41076,7 +41020,7 @@
 /area/ice_colony/underground/security/brig)
 "bKS" = (
 /obj/machinery/alarm{
-	pixel_y = 24
+	dir = 1
 	},
 /obj/machinery/firealarm{
 	dir = 4;
@@ -41539,7 +41483,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/alarm{
-	pixel_y = 24
+	dir = 1
 	},
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 1
@@ -41577,8 +41521,7 @@
 "bLN" = (
 /obj/machinery/vending/security,
 /obj/machinery/alarm{
-	dir = 4;
-	pixel_x = -24
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkred2 (SOUTHWEST)";
@@ -41889,7 +41832,7 @@
 /area/ice_colony/underground/security)
 "bMt" = (
 /obj/machinery/alarm{
-	pixel_y = 24
+	dir = 1
 	},
 /turf/open/floor{
 	tag = "icon-darkbrown2 (NORTH)";
@@ -42296,8 +42239,7 @@
 "bNk" = (
 /obj/structure/bed/chair/wood/normal,
 /obj/machinery/alarm{
-	dir = 4;
-	pixel_x = -24
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/leisure)
@@ -42375,8 +42317,7 @@
 /obj/item/storage/box/donkpockets,
 /obj/structure/table/reinforced,
 /obj/machinery/alarm{
-	dir = 8;
-	pixel_x = 24
+	dir = 8
 	},
 /turf/open/floor{
 	tag = "icon-darkred2 (EAST)";
@@ -43432,8 +43373,7 @@
 /area/ice_colony/underground/crew/lavatory)
 "bPR" = (
 /obj/machinery/alarm{
-	dir = 1;
-	pixel_y = -24
+	dir = 1
 	},
 /turf/open/floor{
 	tag = "icon-darkbrown2";
@@ -44111,8 +44051,7 @@
 /area/ice_colony/underground/hallway/north_west)
 "bRp" = (
 /obj/machinery/alarm{
-	dir = 8;
-	pixel_x = 24
+	dir = 8
 	},
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/underground/hangar)
@@ -46012,7 +45951,7 @@
 /area/ice_colony/exterior/surface/landing_pad)
 "bVz" = (
 /obj/machinery/alarm{
-	pixel_y = 19
+	dir = 1
 	},
 /turf/open/floor/tile/dark/yellow2{
 	dir = 1
@@ -46455,7 +46394,7 @@
 	dir = 1
 	},
 /obj/machinery/alarm{
-	pixel_y = 21
+	dir = 1
 	},
 /turf/open/floor/tile/white,
 /area/ice_colony/surface/excavation{
@@ -47383,10 +47322,7 @@
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bYf" = (
-/obj/effect/decal/cleanable/blood{
-	tag = "icon-gibarm_flesh";
-	icon_state = "gibarm_flesh"
-	},
+/obj/effect/decal/cleanable/blood/gibs,
 /obj/effect/decal/cleanable/blood/drip{
 	tag = "icon-3";
 	icon_state = "3"
@@ -48429,8 +48365,7 @@
 	dir = 8
 	},
 /obj/machinery/alarm{
-	dir = 4;
-	pixel_x = -24
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkred2 (WEST)";
@@ -48440,8 +48375,7 @@
 /area/ice_colony/underground/security/hallway)
 "cad" = (
 /obj/machinery/alarm{
-	dir = 4;
-	pixel_x = -24
+	dir = 4
 	},
 /obj/machinery/light{
 	dir = 8
@@ -48939,10 +48873,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/effect/decal/cleanable/blood{
-	tag = "icon-gib6";
-	icon_state = "gib6"
-	},
+/obj/effect/decal/cleanable/blood/gibs,
 /obj/effect/decal/cleanable/blood{
 	basecolor = "#B70602";
 	icon_state = "xtracks";

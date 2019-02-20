@@ -488,8 +488,7 @@
 /area/whiskey_outpost)
 "br" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
+	dir = 8
 	},
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
