@@ -2115,7 +2115,7 @@
 	if(!do_after(src, DEFILER_GAS_CHANNEL_TIME, TRUE, 5, BUSY_ICON_HOSTILE))
 		smoke_system = new /datum/effect_system/smoke_spread/xeno/neuro()
 		smoke_system.strength = xeno_caste.bomb_strength - 0.5
-		smoke_system.set_up(1, 0, get_turf(src))
+		smoke_system.set_up(1, get_turf(src))
 		to_chat(src, "<span class='xenodanger'>You abort emitting neurogas, your expended plasma resulting in only a feeble wisp.</span>")
 		emitting_gas = FALSE
 		icon_state = "Defiler Running"
@@ -2156,9 +2156,9 @@
 		smoke_system = new /datum/effect_system/smoke_spread/xeno/neuro()
 		smoke_system.strength = xeno_caste.bomb_strength
 		if(count > 1)
-			smoke_system.set_up(2, 0, T)
+			smoke_system.set_up(2, T)
 		else //last emission is larger
-			smoke_system.set_up(3, 0, T)
+			smoke_system.set_up(3, T)
 		smoke_system.start()
 		T.visible_message("<span class='danger'>Noxious smoke billows from the hulking xenomorph!</span>")
 		count = max(0,count - 1)
