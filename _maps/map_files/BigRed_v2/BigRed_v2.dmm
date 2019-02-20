@@ -884,16 +884,12 @@
 /area/bigredv2/outside/space_port)
 "acy" = (
 /obj/machinery/botany,
-/turf/open/floor{
-	tag = "icon-whitegreen (NORTH)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 1
 	},
 /area/bigredv2/outside/marshal_office)
 "acz" = (
-/turf/open/floor{
-	tag = "icon-whitegreen (NORTH)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 1
 	},
 /area/bigredv2/outside/marshal_office)
@@ -1160,9 +1156,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-whitegreen (EAST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 4
 	},
 /area/bigredv2/outside/marshal_office)
@@ -1253,9 +1247,7 @@
 /area/bigredv2/outside/marshal_office)
 "adD" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	tag = "icon-whitegreen (EAST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 4
 	},
 /area/bigredv2/outside/marshal_office)
@@ -1363,10 +1355,7 @@
 "adT" = (
 /obj/structure/closet/secure_closet/marshal,
 /obj/item/clothing/suit/storage/CMB,
-/turf/open/floor{
-	tag = "icon-floor4";
-	icon_state = "floor4"
-	},
+/turf/open/floor/tile/lightred/full,
 /area/bigredv2/outside/marshal_office)
 "adU" = (
 /obj/structure/filingcabinet,
@@ -2082,10 +2071,7 @@
 	dir = 4
 	},
 /obj/item/clothing/suit/storage/CMB,
-/turf/open/floor{
-	tag = "icon-floor4";
-	icon_state = "floor4"
-	},
+/turf/open/floor/tile/lightred/full,
 /area/bigredv2/outside/marshal_office)
 "afW" = (
 /obj/machinery/door_control{
@@ -4033,9 +4019,7 @@
 /area/bigredv2/caves/lambda_lab)
 "akG" = (
 /obj/machinery/botany/extractor,
-/turf/open/floor{
-	tag = "icon-whitegreen (NORTH)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 1
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -4051,9 +4035,7 @@
 	},
 /area/bigredv2/outside/space_port)
 "akI" = (
-/turf/open/floor{
-	tag = "icon-whitegreen (NORTH)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 1
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -4213,9 +4195,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "alf" = (
-/turf/open/floor{
-	tag = "icon-whitegreen (WEST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 8
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -4525,9 +4505,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-whitegreen (EAST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 4
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -4954,9 +4932,7 @@
 /area/bigredv2/caves/lambda_lab)
 "amU" = (
 /obj/machinery/portable_atmospherics/hydroponics,
-/turf/open/floor{
-	tag = "icon-whitegreen (EAST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 4
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -5212,9 +5188,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-whitegreen (WEST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 8
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -5501,9 +5475,7 @@
 	d2 = 8;
 	icon_state = "4-8";
 	},
-/turf/open/floor{
-	tag = "icon-whitegreen (WEST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 8
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -6083,9 +6055,7 @@
 /area/bigredv2/caves/lambda_lab)
 "apB" = (
 /obj/machinery/portable_atmospherics/hydroponics,
-/turf/open/floor{
-	tag = "icon-whitegreen (SOUTHEAST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 6
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -6396,42 +6366,32 @@
 "aqk" = (
 /obj/machinery/vending/hydroseeds,
 /obj/machinery/light,
-/turf/open/floor{
-	tag = "icon-whitegreen (SOUTHWEST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 10
 	},
 /area/bigredv2/caves/lambda_lab)
 "aql" = (
 /obj/machinery/seed_extractor,
-/turf/open/floor{
-	tag = "icon-whitegreen";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 2
 	},
 /area/bigredv2/caves/lambda_lab)
 "aqm" = (
 /obj/machinery/biogenerator,
-/turf/open/floor{
-	tag = "icon-whitegreen";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 2
 	},
 /area/bigredv2/caves/lambda_lab)
 "aqn" = (
 /obj/machinery/portable_atmospherics/hydroponics,
-/turf/open/floor{
-	tag = "icon-whitegreen";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 2
 	},
 /area/bigredv2/caves/lambda_lab)
 "aqo" = (
 /obj/machinery/vending/hydronutrients,
 /obj/machinery/light,
-/turf/open/floor{
-	tag = "icon-whitegreen (SOUTHEAST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 6
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -8342,32 +8302,24 @@
 	},
 /area/bigredv2/outside/medical)
 "auJ" = (
-/turf/open/floor{
-	tag = "icon-whitegreen (NORTHWEST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 9
 	},
 /area/bigredv2/outside/medical)
 "auK" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	tag = "icon-whitegreen (NORTH)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 1
 	},
 /area/bigredv2/outside/medical)
 "auL" = (
-/turf/open/floor{
-	tag = "icon-whitegreen (NORTH)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 1
 	},
 /area/bigredv2/outside/medical)
 "auM" = (
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor{
-	tag = "icon-whitegreen (NORTH)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 1
 	},
 /area/bigredv2/outside/medical)
@@ -8375,16 +8327,12 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-whitegreen (NORTH)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 1
 	},
 /area/bigredv2/outside/medical)
 "auO" = (
-/turf/open/floor{
-	tag = "icon-whitegreen (NORTHEAST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 5
 	},
 /area/bigredv2/outside/medical)
@@ -8702,9 +8650,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "avw" = (
-/turf/open/floor{
-	tag = "icon-whitegreen (WEST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 8
 	},
 /area/bigredv2/outside/medical)
@@ -8713,9 +8659,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "avy" = (
-/turf/open/floor{
-	tag = "icon-whitegreen (EAST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 4
 	},
 /area/bigredv2/outside/medical)
@@ -8895,9 +8839,7 @@
 "avW" = (
 /obj/structure/table,
 /obj/item/trash/burger,
-/turf/open/floor{
-	tag = "icon-whitegreen (NORTHWEST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 9
 	},
 /area/bigredv2/outside/medical)
@@ -8910,9 +8852,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/turf/open/floor{
-	tag = "icon-whitegreen (NORTH)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 1
 	},
 /area/bigredv2/outside/medical)
@@ -8924,9 +8864,7 @@
 	d2 = 8;
 	icon_state = "4-8";
 	},
-/turf/open/floor{
-	tag = "icon-whitegreen (NORTH)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 1
 	},
 /area/bigredv2/outside/medical)
@@ -8943,9 +8881,7 @@
 	d2 = 8;
 	icon_state = "4-8";
 	},
-/turf/open/floor{
-	tag = "icon-whitegreen (NORTH)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 1
 	},
 /area/bigredv2/outside/medical)
@@ -8959,9 +8895,7 @@
 	d2 = 8;
 	icon_state = "4-8";
 	},
-/turf/open/floor{
-	tag = "icon-whitegreen (NORTH)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 1
 	},
 /area/bigredv2/outside/medical)
@@ -9253,9 +9187,7 @@
 "awL" = (
 /obj/structure/table,
 /obj/item/storage/pill_bottle/tramadol,
-/turf/open/floor{
-	tag = "icon-whitegreen (WEST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 8
 	},
 /area/bigredv2/outside/medical)
@@ -9275,17 +9207,13 @@
 	},
 /area/bigredv2/outside/medical)
 "awO" = (
-/turf/open/floor{
-	tag = "icon-whitegreen";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 2
 	},
 /area/bigredv2/outside/medical)
 "awP" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	tag = "icon-whitegreen";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 2
 	},
 /area/bigredv2/outside/medical)
@@ -9296,9 +9224,7 @@
 /area/bigredv2/outside/medical)
 "awR" = (
 /obj/machinery/iv_drip,
-/turf/open/floor{
-	tag = "icon-whitegreen";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 2
 	},
 /area/bigredv2/outside/medical)
@@ -9308,9 +9234,7 @@
 	name = "Storm Shutters";
 	pixel_y = -32
 	},
-/turf/open/floor{
-	tag = "icon-whitegreen";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 2
 	},
 /area/bigredv2/outside/medical)
@@ -9523,9 +9447,7 @@
 /area/bigredv2/outside/medical)
 "axx" = (
 /obj/machinery/vending/medical,
-/turf/open/floor{
-	tag = "icon-whitegreen (EAST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 4
 	},
 /area/bigredv2/outside/medical)
@@ -9539,9 +9461,7 @@
 /area/bigredv2/outside/medical)
 "axz" = (
 /obj/machinery/iv_drip,
-/turf/open/floor{
-	tag = "icon-whitegreen (WEST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 8
 	},
 /area/bigredv2/outside/medical)
@@ -9552,9 +9472,7 @@
 /area/bigredv2/outside/medical)
 "axB" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	tag = "icon-whitegreen (EAST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 4
 	},
 /area/bigredv2/outside/medical)
@@ -9819,9 +9737,7 @@
 	d2 = 8;
 	icon_state = "4-8";
 	},
-/turf/open/floor{
-	tag = "icon-whitegreen (WEST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 8
 	},
 /area/bigredv2/outside/medical)
@@ -9838,9 +9754,7 @@
 /area/bigredv2/outside/medical)
 "ayh" = (
 /obj/machinery/vending/medical,
-/turf/open/floor{
-	tag = "icon-whitegreen (NORTHWEST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 9
 	},
 /area/bigredv2/outside/medical)
@@ -9848,9 +9762,7 @@
 /obj/structure/sign/safety/autodoc{
 	pixel_x = 32
 	},
-/turf/open/floor{
-	tag = "icon-whitegreen (NORTHEAST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 5
 	},
 /area/bigredv2/outside/medical)
@@ -9872,9 +9784,7 @@
 /obj/structure/sign/safety/autodoc{
 	pixel_x = -32
 	},
-/turf/open/floor{
-	tag = "icon-whitegreen (WEST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 8
 	},
 /area/bigredv2/outside/medical)
@@ -9890,9 +9800,7 @@
 	name = "General Listening Channel";
 	pixel_x = 30;
 	},
-/turf/open/floor{
-	tag = "icon-whitegreen (EAST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 4
 	},
 /area/bigredv2/outside/medical)
@@ -10023,9 +9931,7 @@
 /area/bigredv2/caves)
 "ayG" = (
 /obj/structure/bed/roller,
-/turf/open/floor{
-	tag = "icon-whitegreen (WEST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 8
 	},
 /area/bigredv2/outside/medical)
@@ -10033,9 +9939,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-whitegreen (WEST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 8
 	},
 /area/bigredv2/outside/medical)
@@ -10089,9 +9993,7 @@
 /area/bigredv2/outside/medical)
 "ayR" = (
 /obj/machinery/vending/medical,
-/turf/open/floor{
-	tag = "icon-whitegreen (NORTH)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 1
 	},
 /area/bigredv2/outside/medical)
@@ -10099,9 +10001,7 @@
 /obj/structure/table,
 /obj/item/bodybag/cryobag,
 /obj/item/bodybag/cryobag,
-/turf/open/floor{
-	tag = "icon-whitegreen (NORTH)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 1
 	},
 /area/bigredv2/outside/medical)
@@ -10109,9 +10009,7 @@
 /obj/structure/table,
 /obj/structure/table,
 /obj/item/bodybag/cryobag,
-/turf/open/floor{
-	tag = "icon-whitegreen (NORTH)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 1
 	},
 /area/bigredv2/outside/medical)
@@ -10123,9 +10021,7 @@
 /obj/item/bodybag/cryobag,
 /obj/item/storage/box/gloves,
 /obj/item/reagent_container/spray/cleaner,
-/turf/open/floor{
-	tag = "icon-whitegreen (NORTHEAST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 5
 	},
 /area/bigredv2/outside/medical)
@@ -10274,9 +10170,7 @@
 "azp" = (
 /obj/structure/bed/roller,
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor{
-	tag = "icon-whitegreen (SOUTHWEST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 10
 	},
 /area/bigredv2/outside/medical)
@@ -10285,25 +10179,19 @@
 	dir = 2;
 	network = list("interrogation")
 	},
-/turf/open/floor{
-	tag = "icon-whitegreen";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 2
 	},
 /area/bigredv2/outside/medical)
 "azr" = (
 /obj/structure/bed/roller,
-/turf/open/floor{
-	tag = "icon-whitegreen";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 2
 	},
 /area/bigredv2/outside/medical)
 "azs" = (
 /obj/structure/bed/roller,
-/turf/open/floor{
-	tag = "icon-whitegreen (SOUTHEAST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 6
 	},
 /area/bigredv2/outside/medical)
@@ -10823,9 +10711,7 @@
 /turf/open/floor/tile/darkish,
 /area/bigredv2/outside/medical)
 "aAs" = (
-/turf/open/floor{
-	tag = "icon-whitegreen (SOUTHWEST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 10
 	},
 /area/bigredv2/outside/medical)
@@ -10835,9 +10721,7 @@
 /area/bigredv2/outside/medical)
 "aAu" = (
 /obj/machinery/body_scanconsole,
-/turf/open/floor{
-	tag = "icon-whitegreen (SOUTHEAST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 6
 	},
 /area/bigredv2/outside/medical)
@@ -10872,9 +10756,7 @@
 	dir = 8;
 	pixel_x = 32;
 	},
-/turf/open/floor{
-	tag = "icon-whitegreen (EAST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 4
 	},
 /area/bigredv2/outside/medical)
@@ -11160,9 +11042,7 @@
 	pixel_y = -32
 	},
 /obj/machinery/iv_drip,
-/turf/open/floor{
-	tag = "icon-whitegreen";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 2
 	},
 /area/bigredv2/outside/medical)
@@ -11170,9 +11050,7 @@
 /obj/structure/sign/safety/breakroom{
 	pixel_x = 32
 	},
-/turf/open/floor{
-	tag = "icon-whitegreen (SOUTHEAST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 6
 	},
 /area/bigredv2/outside/medical)
@@ -11412,9 +11290,7 @@
 /area/bigredv2/outside/medical)
 "aBJ" = (
 /obj/machinery/vending/MarineMed/Blood,
-/turf/open/floor{
-	tag = "icon-whitegreen (NORTHEAST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 5
 	},
 /area/bigredv2/outside/medical)
@@ -11738,9 +11614,7 @@
 	layer = 2.4
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	tag = "icon-whitegreen (EAST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 4
 	},
 /area/bigredv2/outside/medical)
@@ -12215,9 +12089,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/item/clothing/head/surgery/blue,
-/turf/open/floor{
-	tag = "icon-whitegreen (EAST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 4
 	},
 /area/bigredv2/outside/medical)
@@ -12245,9 +12117,7 @@
 /area/bigredv2/outside/medical)
 "aDK" = (
 /obj/structure/curtain/medical,
-/turf/open/floor{
-	tag = "icon-whitegreen (WEST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 8
 	},
 /area/bigredv2/outside/medical)
@@ -12257,9 +12127,7 @@
 /area/bigredv2/outside/medical)
 "aDM" = (
 /obj/structure/curtain/medical,
-/turf/open/floor{
-	tag = "icon-whitegreen (EAST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 4
 	},
 /area/bigredv2/outside/medical)
@@ -12578,9 +12446,7 @@
 /obj/machinery/camera/autoname{
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-whitegreen (EAST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 4
 	},
 /area/bigredv2/outside/medical)
@@ -12600,17 +12466,13 @@
 "aED" = (
 /obj/structure/bed,
 /obj/item/clothing/glasses/regular/hipster,
-/turf/open/floor{
-	tag = "icon-whitegreen (WEST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 8
 	},
 /area/bigredv2/outside/medical)
 "aEE" = (
 /obj/structure/bed,
-/turf/open/floor{
-	tag = "icon-whitegreen (EAST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 4
 	},
 /area/bigredv2/outside/medical)
@@ -12965,17 +12827,13 @@
 /area/bigredv2/caves/lambda_lab)
 "aFq" = (
 /obj/machinery/smartfridge/secure/virology,
-/turf/open/floor{
-	tag = "icon-whitegreen (NORTHWEST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 9
 	},
 /area/bigredv2/caves/lambda_lab)
 "aFr" = (
 /obj/machinery/smartfridge/secure/virology,
-/turf/open/floor{
-	tag = "icon-whitegreen (NORTHEAST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 5
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -13034,9 +12892,7 @@
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor{
-	tag = "icon-whitegreen (WEST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 8
 	},
 /area/bigredv2/outside/medical)
@@ -13067,9 +12923,7 @@
 /area/bigredv2/outside/medical)
 "aFG" = (
 /obj/structure/bed,
-/turf/open/floor{
-	tag = "icon-whitegreen (WEST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 8
 	},
 /area/bigredv2/outside/medical)
@@ -13342,9 +13196,7 @@
 /obj/structure/reagent_dispensers/virusfood{
 	pixel_y = 32
 	},
-/turf/open/floor{
-	tag = "icon-whitegreen (NORTHWEST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 9
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -13372,9 +13224,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-whitegreen (NORTHEAST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 5
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -13425,9 +13275,7 @@
 /area/bigredv2/outside/medical)
 "aGw" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	tag = "icon-whitegreen (WEST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 8
 	},
 /area/bigredv2/outside/medical)
@@ -13443,9 +13291,7 @@
 	dir = 8;
 	on = 1
 	},
-/turf/open/floor{
-	tag = "icon-whitegreen (EAST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 4
 	},
 /area/bigredv2/outside/medical)
@@ -13472,9 +13318,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-whitegreen (EAST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 4
 	},
 /area/bigredv2/outside/medical)
@@ -13659,9 +13503,7 @@
 	icon_state = "0-4";
 	d2 = 4
 	},
-/turf/open/floor{
-	tag = "icon-whitegreen (NORTHWEST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 9
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -13725,9 +13567,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 10
 	},
-/turf/open/floor{
-	tag = "icon-whitegreen (NORTHEAST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 5
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -13817,26 +13657,20 @@
 "aHr" = (
 /obj/machinery/bodyscanner,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	tag = "icon-whitegreen (SOUTHWEST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 10
 	},
 /area/bigredv2/outside/medical)
 "aHs" = (
 /obj/machinery/body_scanconsole,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	tag = "icon-whitegreen";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 2
 	},
 /area/bigredv2/outside/medical)
 "aHt" = (
 /obj/machinery/light,
-/turf/open/floor{
-	tag = "icon-whitegreen (SOUTHEAST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 6
 	},
 /area/bigredv2/outside/medical)
@@ -13877,18 +13711,14 @@
 /area/bigredv2/outside/medical)
 "aHz" = (
 /obj/structure/bed,
-/turf/open/floor{
-	tag = "icon-whitegreen (SOUTHWEST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 10
 	},
 /area/bigredv2/outside/medical)
 "aHA" = (
 /obj/structure/bed,
 /obj/effect/landmark/monkey_spawn,
-/turf/open/floor{
-	tag = "icon-whitegreen (SOUTHEAST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 6
 	},
 /area/bigredv2/outside/medical)
@@ -14034,9 +13864,7 @@
 	master_tag = "viro_controller";
 	pixel_y = 28
 	},
-/turf/open/floor{
-	tag = "icon-whitegreen (NORTHWEST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 9
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -14109,9 +13937,7 @@
 /obj/machinery/light/built{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-whitegreen (NORTHEAST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 5
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -14510,9 +14336,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aIW" = (
-/turf/open/floor{
-	tag = "icon-whitegreen (NORTHWEST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 9
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -14525,9 +14349,7 @@
 	icon_state = "bulb1";
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-whitegreen (NORTH)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 1
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -14538,9 +14360,7 @@
 	tag_exterior_door = "viro_ext";
 	tag_interior_door = "viro_int"
 	},
-/turf/open/floor{
-	tag = "icon-whitegreen (NORTHEAST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 5
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -14548,9 +14368,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-whitegreen (WEST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 8
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -14613,9 +14431,7 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/mucus,
-/turf/open/floor{
-	tag = "icon-whitegreen (EAST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 4
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -15136,9 +14952,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-whitegreen (WEST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 8
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -15169,9 +14983,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-whitegreen (EAST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 4
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -15207,9 +15019,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-whitegreen (WEST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 8
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -15294,9 +15104,7 @@
 	dir = 8
 	},
 /obj/effect/alien/weeds/node,
-/turf/open/floor{
-	tag = "icon-whitegreen (EAST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 4
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -15550,16 +15358,12 @@
 	icon_state = "bulb1";
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-whitegreen (SOUTHWEST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 10
 	},
 /area/bigredv2/caves/lambda_lab)
 "aKS" = (
-/turf/open/floor{
-	tag = "icon-whitegreen";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 2
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -15569,9 +15373,7 @@
 	icon_state = "bulb1";
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-whitegreen (SOUTHEAST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 6
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -15589,9 +15391,7 @@
 	tag = "icon-alarm0 (NORTH)"
 	},
 /obj/effect/alien/weeds/node,
-/turf/open/floor{
-	tag = "icon-whitegreen (SOUTHWEST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 10
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -15673,9 +15473,7 @@
 /obj/machinery/light/built{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-whitegreen (SOUTHEAST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 6
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -15977,9 +15775,7 @@
 	dir = 5
 	},
 /obj/effect/decal/cleanable/mucus,
-/turf/open/floor{
-	tag = "icon-whitegreen (SOUTHWEST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 10
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -16034,9 +15830,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
-/turf/open/floor{
-	tag = "icon-whitegreen (SOUTHEAST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 6
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -16233,9 +16027,7 @@
 	req_access_txt = "7";
 	specialfunctions = 4
 	},
-/turf/open/floor{
-	tag = "icon-whitegreen (SOUTHWEST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 10
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -16249,9 +16041,7 @@
 	icon_state = "2-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor{
-	tag = "icon-whitegreen";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 2
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -16261,9 +16051,7 @@
 	},
 /obj/effect/alien/weeds/node,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor{
-	tag = "icon-whitegreen";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 2
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -16275,9 +16063,7 @@
 	dir = 2
 	},
 /obj/machinery/light/built,
-/turf/open/floor{
-	tag = "icon-whitegreen (SOUTHEAST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 6
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -18243,9 +18029,7 @@
 /obj/effect/landmark/corpsespawner/doctor,
 /obj/effect/decal/cleanable/blood,
 /obj/effect/alien/weeds/node,
-/turf/open/floor{
-	tag = "icon-whitegreen (NORTHWEST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 9
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -18256,17 +18040,13 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor{
-	tag = "icon-whitegreen (NORTH)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 1
 	},
 /area/bigredv2/caves/lambda_lab)
 "aRB" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor{
-	tag = "icon-whitegreen (NORTH)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 1
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -18281,9 +18061,7 @@
 /obj/machinery/light/built{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-whitegreen (NORTHEAST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 5
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -18532,9 +18310,7 @@
 /area/bigredv2/caves)
 "aSo" = (
 /obj/structure/curtain/medical,
-/turf/open/floor{
-	tag = "icon-whitegreen (NORTHWEST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 9
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -18573,9 +18349,7 @@
 /area/bigredv2/caves/lambda_lab)
 "aSt" = (
 /obj/structure/curtain/medical,
-/turf/open/floor{
-	tag = "icon-whitegreen (NORTHEAST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 5
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -19065,9 +18839,7 @@
 "aTC" = (
 /obj/structure/bed,
 /obj/item/bedsheet/medical,
-/turf/open/floor{
-	tag = "icon-whitegreen (NORTHWEST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 9
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -19135,9 +18907,7 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/turf/open/floor{
-	tag = "icon-whitegreen (NORTHEAST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 5
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -19546,9 +19316,7 @@
 "aUD" = (
 /obj/structure/bed,
 /obj/item/bedsheet/medical,
-/turf/open/floor{
-	tag = "icon-whitegreen (SOUTHWEST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 10
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -19586,9 +19354,7 @@
 "aUJ" = (
 /obj/structure/bed,
 /obj/item/bedsheet/medical,
-/turf/open/floor{
-	tag = "icon-whitegreen (SOUTHEAST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 6
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -19855,9 +19621,7 @@
 	pixel_y = -30;
 	tag = "icon-alarm0 (NORTH)"
 	},
-/turf/open/floor{
-	tag = "icon-whitegreen (SOUTHWEST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 10
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -19880,9 +19644,7 @@
 /area/bigredv2/caves/lambda_lab)
 "aVB" = (
 /obj/structure/curtain/medical,
-/turf/open/floor{
-	tag = "icon-whitegreen (SOUTHEAST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 6
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -20045,9 +19807,7 @@
 /obj/structure/table/reinforced,
 /obj/machinery/microwave,
 /obj/machinery/light,
-/turf/open/floor{
-	tag = "icon-whitegreen (SOUTHWEST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 10
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -20057,18 +19817,14 @@
 /obj/machinery/power/apc/drained{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-whitegreen";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 2
 	},
 /area/bigredv2/caves/lambda_lab)
 "aWb" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/box/wy_mre,
-/turf/open/floor{
-	tag = "icon-whitegreen";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 2
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -20076,9 +19832,7 @@
 /obj/structure/table/reinforced,
 /obj/machinery/microwave,
 /obj/machinery/light,
-/turf/open/floor{
-	tag = "icon-whitegreen (SOUTHEAST)";
-	icon_state = "whitegreen";
+/turf/open/floor/tile/green/whitegreen{
 	dir = 6
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -24205,28 +23959,19 @@
 	},
 /area/bigredv2/outside/cargo)
 "bhb" = (
-/turf/open/floor{
-	tag = "icon-floor4";
-	icon_state = "floor4"
-	},
+/turf/open/floor/tile/lightred/full,
 /area/bigredv2/outside/cargo)
 "bhc" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	on = 1
 	},
-/turf/open/floor{
-	tag = "icon-floor4";
-	icon_state = "floor4"
-	},
+/turf/open/floor/tile/lightred/full,
 /area/bigredv2/outside/cargo)
 "bhd" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	tag = "icon-floor4";
-	icon_state = "floor4"
-	},
+/turf/open/floor/tile/lightred/full,
 /area/bigredv2/outside/cargo)
 "bhe" = (
 /obj/machinery/light,
@@ -24387,10 +24132,7 @@
 /area/bigredv2/outside/cargo)
 "bhD" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	tag = "icon-floor4";
-	icon_state = "floor4"
-	},
+/turf/open/floor/tile/lightred/full,
 /area/bigredv2/outside/cargo)
 "bhE" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -24653,10 +24395,7 @@
 	d2 = 8;
 	icon_state = "4-8";
 	},
-/turf/open/floor{
-	tag = "icon-floor4";
-	icon_state = "floor4"
-	},
+/turf/open/floor/tile/lightred/full,
 /area/bigredv2/outside/cargo)
 "bij" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -24684,10 +24423,7 @@
 	d2 = 8;
 	icon_state = "4-8";
 	},
-/turf/open/floor{
-	tag = "icon-floor4";
-	icon_state = "floor4"
-	},
+/turf/open/floor/tile/lightred/full,
 /area/bigredv2/outside/cargo)
 "bil" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -25181,10 +24917,7 @@
 	icon_state = "4-8";
 	d2 = 8
 	},
-/turf/open/floor{
-	tag = "icon-floor4";
-	icon_state = "floor4"
-	},
+/turf/open/floor/tile/lightred/full,
 /area/bigredv2/outside/cargo)
 "bjs" = (
 /obj/structure/cable{

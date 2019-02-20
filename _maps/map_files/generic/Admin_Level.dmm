@@ -777,10 +777,7 @@
 	icon_state = "heater";
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-floor4";
-	icon_state = "floor4"
-	},
+/turf/open/floor/tile/lightred/full,
 /area/yautja)
 "cm" = (
 /obj/structure/shuttle/engine/heater{
@@ -791,25 +788,16 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-floor4";
-	icon_state = "floor4"
-	},
+/turf/open/floor/tile/lightred/full,
 /area/yautja)
 "cn" = (
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-floor4";
-	icon_state = "floor4"
-	},
+/turf/open/floor/tile/lightred/full,
 /area/yautja)
 "co" = (
-/turf/open/floor{
-	tag = "icon-floor4";
-	icon_state = "floor4"
-	},
+/turf/open/floor/tile/lightred/full,
 /area/yautja)
 "cp" = (
 /obj/machinery/light/small{
@@ -817,17 +805,11 @@
 	icon_state = "bulb1";
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-floor4";
-	icon_state = "floor4"
-	},
+/turf/open/floor/tile/lightred/full,
 /area/yautja)
 "cq" = (
 /obj/machinery/light/small,
-/turf/open/floor{
-	tag = "icon-floor4";
-	icon_state = "floor4"
-	},
+/turf/open/floor/tile/lightred/full,
 /area/yautja)
 "cr" = (
 /obj/structure/cable{
@@ -862,10 +844,7 @@
 /obj/machinery/door/airlock/secure{
 	name = "Storage Chamber"
 	},
-/turf/open/floor{
-	tag = "icon-floor4";
-	icon_state = "floor4"
-	},
+/turf/open/floor/tile/lightred/full,
 /area/yautja)
 "cv" = (
 /obj/machinery/power/smes/magical{
@@ -875,10 +854,7 @@
 	name = "plasma power generator"
 	},
 /obj/structure/cable,
-/turf/open/floor{
-	tag = "icon-floor4";
-	icon_state = "floor4"
-	},
+/turf/open/floor/tile/lightred/full,
 /area/yautja)
 "cw" = (
 /obj/machinery/power/apc/almayer{
@@ -892,10 +868,7 @@
 	icon_state = "0-2"
 	},
 /obj/structure/cable,
-/turf/open/floor{
-	tag = "icon-floor4";
-	icon_state = "floor4"
-	},
+/turf/open/floor/tile/lightred/full,
 /area/yautja)
 "cx" = (
 /obj/structure/table/reinforced{
@@ -906,19 +879,13 @@
 	icon_state = "bulb1";
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-floor4";
-	icon_state = "floor4"
-	},
+/turf/open/floor/tile/lightred/full,
 /area/yautja)
 "cy" = (
 /obj/structure/table/reinforced{
 	layer = 2.69
 	},
-/turf/open/floor{
-	tag = "icon-floor4";
-	icon_state = "floor4"
-	},
+/turf/open/floor/tile/lightred/full,
 /area/yautja)
 "cz" = (
 /obj/effect/step_trigger/teleporter/random{
@@ -993,10 +960,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-floor4";
-	icon_state = "floor4"
-	},
+/turf/open/floor/tile/lightred/full,
 /area/yautja)
 "cE" = (
 /obj/machinery/power/terminal{
@@ -1004,10 +968,7 @@
 	icon_state = "term";
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-floor4";
-	icon_state = "floor4"
-	},
+/turf/open/floor/tile/lightred/full,
 /area/yautja)
 "cF" = (
 /obj/structure/shuttle/engine/heater{
@@ -1020,33 +981,21 @@
 	icon_state = "bulb1";
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-floor4";
-	icon_state = "floor4"
-	},
+/turf/open/floor/tile/lightred/full,
 /area/yautja)
 "cG" = (
 /obj/structure/ore_box,
-/turf/open/floor{
-	tag = "icon-floor4";
-	icon_state = "floor4"
-	},
+/turf/open/floor/tile/lightred/full,
 /area/yautja)
 "cH" = (
 /obj/structure/rack,
 /obj/item/device/flashlight/lantern,
-/turf/open/floor{
-	tag = "icon-floor4";
-	icon_state = "floor4"
-	},
+/turf/open/floor/tile/lightred/full,
 /area/yautja)
 "cI" = (
 /obj/structure/rack,
 /obj/item/weapon/twohanded/spear,
-/turf/open/floor{
-	tag = "icon-floor4";
-	icon_state = "floor4"
-	},
+/turf/open/floor/tile/lightred/full,
 /area/yautja)
 "cJ" = (
 /obj/structure/rack,
@@ -1379,10 +1328,7 @@
 "dt" = (
 /obj/structure/rack,
 /obj/item/reagent_container/food/snacks/meat,
-/turf/open/floor{
-	tag = "icon-floor4";
-	icon_state = "floor4"
-	},
+/turf/open/floor/tile/lightred/full,
 /area/yautja)
 "du" = (
 /obj/structure/rack,
@@ -1391,10 +1337,7 @@
 	pixel_x = -6;
 	pixel_y = -5
 	},
-/turf/open/floor{
-	tag = "icon-floor4";
-	icon_state = "floor4"
-	},
+/turf/open/floor/tile/lightred/full,
 /area/yautja)
 "dv" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
