@@ -4496,8 +4496,7 @@
 	name = "General Listening Channel";
 	pixel_x = 30;
 	},
-/turf/open/floor{
-	icon_state = "red";
+/turf/open/floor/tile/red/redtaupe{
 	dir = 5
 	},
 /area/bigredv2/outside/marshal_office)
@@ -4735,8 +4734,7 @@
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor{
-	icon_state = "red";
+/turf/open/floor/tile/red/redtaupe{
 	dir = 8
 	},
 /area/bigredv2/outside/marshal_office)
@@ -4927,8 +4925,7 @@
 	layer = 2.4
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "red";
+/turf/open/floor/tile/red/redtaupe{
 	dir = 4
 	},
 /area/bigredv2/outside/marshal_office)
@@ -5195,8 +5192,7 @@
 	dir = 1;
 	name = "\improper Marshal Office"
 	},
-/turf/open/floor{
-	icon_state = "red";
+/turf/open/floor/tile/red/redtaupe{
 	dir = 8
 	},
 /area/bigredv2/outside/marshal_office)
@@ -5239,8 +5235,7 @@
 	pixel_x = 30;
 	req_access_txt = "0"
 	},
-/turf/open/floor{
-	icon_state = "red";
+/turf/open/floor/tile/red/redtaupe{
 	dir = 6
 	},
 /area/bigredv2/outside/marshal_office)
@@ -25232,16 +25227,10 @@
 	dir = 4;
 	name = "\improper Office Complex Janitor Room"
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/bigredv2/outside/office_complex)
 "bfR" = (
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/bigredv2/outside/office_complex)
 "bfS" = (
 /turf/closed/wall/r_wall/unmeltable,
@@ -25370,32 +25359,20 @@
 "bgm" = (
 /obj/structure/janitorialcart,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/bigredv2/outside/office_complex)
 "bgn" = (
 /obj/structure/janitorialcart,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/bigredv2/outside/office_complex)
 "bgo" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/bigredv2/outside/office_complex)
 "bgp" = (
 /obj/structure/mopbucket,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/bigredv2/outside/office_complex)
 "bgq" = (
 /obj/structure/closet/emcloset,
@@ -25438,37 +25415,25 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/bigredv2/outside/office_complex)
 "bgz" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/bigredv2/outside/office_complex)
 "bgA" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/bigredv2/outside/office_complex)
 "bgB" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/bigredv2/outside/office_complex)
 "bgC" = (
 /obj/effect/landmark/huntergames_secondary_spawn,
@@ -25586,25 +25551,16 @@
 	dir = 1;
 	on = 1
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/bigredv2/outside/office_complex)
 "bgT" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/random_item/crap,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/bigredv2/outside/office_complex)
 "bgU" = (
 /obj/item/clothing/shoes/galoshes,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/bigredv2/outside/office_complex)
 "bgV" = (
 /obj/item/device/radio/intercom{
@@ -25614,10 +25570,7 @@
 	name = "General Listening Channel";
 	pixel_x = 30;
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/bigredv2/outside/office_complex)
 "bgW" = (
 /turf/open/mars{
@@ -25746,26 +25699,17 @@
 "bhm" = (
 /obj/structure/table,
 /obj/item/trash/kepler,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/bigredv2/outside/office_complex)
 "bhn" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/tool/lighter/random,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/bigredv2/outside/office_complex)
 "bho" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/paper,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/bigredv2/outside/office_complex)
 "bhp" = (
 /obj/structure/closet/jcloset,
@@ -25776,10 +25720,7 @@
 /obj/item/clothing/head/beret/jan,
 /obj/item/clothing/head/beret/jan,
 /obj/item/clothing/head/beret/jan,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/bigredv2/outside/office_complex)
 "bhq" = (
 /turf/open/mars{
@@ -26081,10 +26022,7 @@
 /obj/structure/table,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/paper/janitor,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/bigredv2/outside/office_complex)
 "bia" = (
 /obj/structure/noticeboard{
@@ -26092,20 +26030,14 @@
 	pixel_y = -27
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/bigredv2/outside/office_complex)
 "bib" = (
 /obj/structure/closet/jcloset,
 /obj/machinery/camera/autoname{
 	dir = 8
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/bigredv2/outside/office_complex)
 "bic" = (
 /obj/effect/landmark/pred_teleport_destination,

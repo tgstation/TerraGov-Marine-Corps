@@ -240,8 +240,7 @@
 /turf/open/floor/plating,
 /area/tdome)
 "aK" = (
-/turf/open/floor{
-	icon_state = "red";
+/turf/open/floor/tile/red/redtaupe{
 	dir = 8
 	},
 /area/tdome)

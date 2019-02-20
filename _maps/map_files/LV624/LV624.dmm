@@ -1447,10 +1447,7 @@
 /area/lv624/ground/caves/east1)
 "afn" = (
 /obj/structure/table,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/caves/east1)
 "afo" = (
 /turf/closed/wall/resin/ondirt,
@@ -1466,10 +1463,7 @@
 /turf/open/floor/plating,
 /area/lv624/ground/sand6)
 "afr" = (
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/caves/east1)
 "afs" = (
 /obj/machinery/door/airlock/sandstone{
@@ -1478,16 +1472,10 @@
 	locked = 1;
 	name = "Strange Temple"
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/caves/east1)
 "aft" = (
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/sand6)
 "afu" = (
 /obj/structure/girder/displaced,
@@ -1527,18 +1515,12 @@
 /area/lv624/ground/sand6)
 "afB" = (
 /obj/structure/showcase/yaut,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/sand6)
 "afC" = (
 /obj/structure/showcase/yaut,
 /obj/item/weapon/twohanded/glaive/damaged,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/sand6)
 "afD" = (
 /turf/closed/wall,
@@ -1595,10 +1577,7 @@
 /area/lv624/ground/sand6)
 "afQ" = (
 /obj/machinery/door/airlock/sandstone,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/sand6)
 "afR" = (
 /obj/effect/decal/remains/xeno,
@@ -1619,20 +1598,14 @@
 /area/lv624/ground/sand6)
 "afV" = (
 /obj/effect/decal/remains/xeno,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/sand6)
 "afW" = (
 /obj/structure/table,
 /obj/item/weapon/harpoon/yautja{
 	name = "Alien Harpoon"
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/sand6)
 "afX" = (
 /obj/structure/cargo_container/horizontal{
@@ -1665,17 +1638,11 @@
 "agc" = (
 /obj/structure/table,
 /obj/item/legcuffs/yautja/ancient,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/sand6)
 "agd" = (
 /obj/structure/table,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/sand6)
 "age" = (
 /obj/structure/cargo_container/horizontal{
@@ -1807,10 +1774,7 @@
 /obj/item/stack/sheet/mineral/sandstone{
 	amount = 50
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/sand6)
 "agI" = (
 /obj/effect/alien/weeds/node,
@@ -1948,10 +1912,7 @@
 	locked = 1;
 	name = "Strange Temple"
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/sand6)
 "ahj" = (
 /obj/machinery/floodlight,
@@ -3446,10 +3407,7 @@
 /area/lv624/ground/sand8)
 "amz" = (
 /obj/effect/landmark/huntergames_primary_spawn,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/jungle3)
 "amA" = (
 /obj/structure/flora/ausbushes/fullgrass,
@@ -6850,8 +6808,7 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/open/floor{
-	icon_state = "red";
+/turf/open/floor/tile/red/redtaupe{
 	dir = 8
 	},
 /area/lv624/lazarus/security)
@@ -6936,10 +6893,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "aym" = (
 /obj/effect/landmark/monkey_spawn,
@@ -7098,8 +7052,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor{
-	icon_state = "red";
+/turf/open/floor/tile/red/redtaupe{
 	dir = 5
 	},
 /area/lv624/lazarus/security)
@@ -7109,8 +7062,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor{
-	icon_state = "red";
+/turf/open/floor/tile/red/redtaupe{
 	dir = 9
 	},
 /area/lv624/lazarus/security)
@@ -7243,8 +7195,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor{
-	icon_state = "red";
+/turf/open/floor/tile/red/redtaupe{
 	dir = 1
 	},
 /area/lv624/lazarus/security)
@@ -7254,8 +7205,7 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/open/floor{
-	icon_state = "red";
+/turf/open/floor/tile/red/redtaupe{
 	dir = 1
 	},
 /area/lv624/lazarus/security)
@@ -7713,10 +7663,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "aAx" = (
 /obj/structure/table,
@@ -7733,10 +7680,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "aAy" = (
 /obj/structure/bed/chair{
@@ -7751,10 +7695,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "aAz" = (
 /turf/closed/wall/r_wall,
@@ -13712,27 +13653,18 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "aUt" = (
 /obj/structure/largecrate/random,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "aUu" = (
 /obj/structure/table,
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "aUv" = (
 /obj/structure/cable/yellow{
@@ -13742,10 +13674,7 @@
 /obj/machinery/power/apc/drained{
 	dir = 1
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "aUw" = (
 /obj/structure/largecrate/random,
@@ -13914,17 +13843,11 @@
 	req_access_txt = "0";
 	req_one_access_txt = "0"
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "aUX" = (
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "aUY" = (
 /obj/machinery/bot/mulebot{
@@ -13934,10 +13857,7 @@
 	on = 0
 	},
 /obj/effect/decal/cleanable/blood/oil,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "aUZ" = (
 /obj/structure/window/reinforced{
@@ -13946,10 +13866,7 @@
 /obj/structure/computerframe{
 	anchored = 1
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "aVa" = (
 /obj/structure/cable/yellow{
@@ -13958,43 +13875,28 @@
 	icon_state = "1-2";
 	layer = 2.44
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "aVb" = (
 /obj/structure/rack,
 /obj/effect/landmark/costume/butler,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "aVc" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/tech_supply,
 /obj/effect/spawner/random/tech_supply,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "aVd" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/technology_scanner,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "aVe" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/tech_supply,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "aVf" = (
 /turf/open/floor/marking/bot,
@@ -14155,16 +14057,10 @@
 	dir = 8;
 	on = 1
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "aVH" = (
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "aVI" = (
 /obj/machinery/door/airlock/almayer/engineering{
@@ -14318,49 +14214,31 @@
 	dir = 8
 	},
 /obj/effect/landmark/random_item/good,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "aWj" = (
 /obj/machinery/status_display{
 	pixel_y = -32
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "aWk" = (
 /obj/machinery/door/window/westleft,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "aWl" = (
 /obj/structure/rack,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "aWm" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/bomb_supply,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "aWn" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/toolbox,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "aWo" = (
 /turf/open/floor/marking/loadingarea{
@@ -14536,10 +14414,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "aWS" = (
 /obj/machinery/door/airlock/almayer/engineering{
@@ -14731,26 +14606,17 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "aXx" = (
 /obj/structure/rack,
 /obj/machinery/light,
 /obj/effect/spawner/random/technology_scanner,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "aXy" = (
 /obj/machinery/autolathe,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "aXz" = (
 /obj/machinery/vending/coffee,
@@ -16752,8 +16618,7 @@
 /obj/structure/target_stake{
 	layer = 2
 	},
-/turf/open/floor{
-	icon_state = "red";
+/turf/open/floor/tile/red/redtaupe{
 	dir = 5
 	},
 /area/lv624/lazarus/security)
@@ -16762,8 +16627,7 @@
 /obj/structure/target_stake{
 	layer = 2
 	},
-/turf/open/floor{
-	icon_state = "red";
+/turf/open/floor/tile/red/redtaupe{
 	dir = 9
 	},
 /area/lv624/lazarus/security)
@@ -17147,14 +17011,12 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/open/floor{
-	icon_state = "red";
+/turf/open/floor/tile/red/redtaupe{
 	dir = 5
 	},
 /area/lv624/lazarus/security)
 "bdP" = (
-/turf/open/floor{
-	icon_state = "red";
+/turf/open/floor/tile/red/redtaupe{
 	dir = 9
 	},
 /area/lv624/lazarus/security)
@@ -17164,8 +17026,7 @@
 	id = "nexus_blast";
 	name = "Nexus Lockdown"
 	},
-/turf/open/floor{
-	icon_state = "red";
+/turf/open/floor/tile/red/redtaupe{
 	dir = 4
 	},
 /area/lv624/lazarus/security)
@@ -17182,8 +17043,7 @@
 /obj/structure/table/reinforced,
 /obj/item/ashtray/bronze,
 /obj/item/storage/donut_box,
-/turf/open/floor{
-	icon_state = "red";
+/turf/open/floor/tile/red/redtaupe{
 	dir = 8
 	},
 /area/lv624/lazarus/security)
@@ -17385,15 +17245,13 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/armory)
 "bew" = (
-/turf/open/floor{
-	icon_state = "red";
+/turf/open/floor/tile/red/redtaupe{
 	dir = 5
 	},
 /area/lv624/lazarus/security)
 "bex" = (
 /obj/machinery/vending/security,
-/turf/open/floor{
-	icon_state = "red";
+/turf/open/floor/tile/red/redtaupe{
 	dir = 4
 	},
 /area/lv624/lazarus/security)
@@ -17402,8 +17260,7 @@
 /turf/open/floor/tile/red/full,
 /area/lv624/lazarus/security)
 "bez" = (
-/turf/open/floor{
-	icon_state = "red";
+/turf/open/floor/tile/red/redtaupe{
 	dir = 10
 	},
 /area/lv624/lazarus/security)
@@ -17709,8 +17566,7 @@
 /obj/item/ammo_magazine/revolver/cmb,
 /obj/item/ammo_magazine/revolver/cmb,
 /obj/item/ammo_magazine/revolver/cmb,
-/turf/open/floor{
-	icon_state = "red";
+/turf/open/floor/tile/red/redtaupe{
 	dir = 5
 	},
 /area/lv624/lazarus/security)
@@ -17724,15 +17580,13 @@
 /obj/item/weapon/gun/revolver/cmb,
 /obj/item/ammo_magazine/revolver/cmb,
 /obj/item/ammo_magazine/revolver/cmb,
-/turf/open/floor{
-	icon_state = "red";
+/turf/open/floor/tile/red/redtaupe{
 	dir = 9
 	},
 /area/lv624/lazarus/security)
 "bfr" = (
 /obj/structure/closet/secure_closet/security,
-/turf/open/floor{
-	icon_state = "red";
+/turf/open/floor/tile/red/redtaupe{
 	dir = 4
 	},
 /area/lv624/lazarus/security)
@@ -17958,8 +17812,7 @@
 /area/lv624/lazarus/armory)
 "bgl" = (
 /obj/structure/closet/lawcloset,
-/turf/open/floor{
-	icon_state = "red";
+/turf/open/floor/tile/red/redtaupe{
 	dir = 1
 	},
 /area/lv624/lazarus/security)
@@ -18130,8 +17983,7 @@
 /obj/item/clothing/under/CM_uniform,
 /obj/item/clothing/suit/armor/det_suit,
 /obj/item/device/binoculars,
-/turf/open/floor{
-	icon_state = "red";
+/turf/open/floor/tile/red/redtaupe{
 	dir = 1
 	},
 /area/lv624/lazarus/security)
@@ -20741,29 +20593,20 @@
 /area/lv624/ground/jungle3)
 "boj" = (
 /obj/structure/jungle/vines,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/jungle3)
 "bok" = (
 /obj/structure/jungle/vines/heavy{
 	pixel_y = 26
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/jungle3)
 "bol" = (
 /obj/structure/jungle/vines/heavy{
 	pixel_y = 26
 	},
 /obj/structure/jungle/vines,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/jungle3)
 "bom" = (
 /obj/structure/jungle/vines/heavy{
@@ -21097,10 +20940,7 @@
 /turf/open/gm/grass,
 /area/lv624/ground/jungle1)
 "bpe" = (
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/jungle3)
 "bpf" = (
 /obj/effect/landmark/monkey_spawn,
@@ -21400,10 +21240,7 @@
 /area/lv624/ground/jungle1)
 "bpX" = (
 /obj/item/weapon/claymore/mercsword/machete,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/jungle3)
 "bpY" = (
 /obj/structure/jungle/vines/heavy{
@@ -21578,10 +21415,7 @@
 /area/lv624/ground/jungle3)
 "bqF" = (
 /obj/structure/flora/ausbushes/ywflowers,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/jungle3)
 "bqG" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -21734,17 +21568,11 @@
 /area/lv624/ground/jungle1)
 "brj" = (
 /obj/structure/flora/ausbushes/reedbush,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/jungle3)
 "brk" = (
 /obj/structure/jungle/vines/heavy,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
+/turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/jungle3)
 "brl" = (
 /obj/structure/jungle/vines/heavy{

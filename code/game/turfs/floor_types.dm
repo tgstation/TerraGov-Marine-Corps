@@ -414,8 +414,14 @@
 /turf/open/floor/tile/vault
 	icon_state = "vault"
 
+/turf/open/floor/tile/whiteyellow/full
+	icon_state = "whiteyellowfull"
+
 /turf/open/floor/tile/red/redtaupecorner
 	icon_state = "redcorner"
+
+/turf/open/floor/tile/red/redtaupe
+	icon_state = "red"
 
 /turf/open/floor/tile/red/full
 	icon_state = "redfull"
