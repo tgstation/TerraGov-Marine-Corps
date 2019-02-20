@@ -724,8 +724,7 @@
 	burn_mod = 1.1 //don't murderize me lasers
 
 /datum/species/zombie/necromorph/handle_death(var/mob/living/carbon/human/H, gibbed)
-	if(H && H.loc && H.stat == DEAD)
-		/mob/proc/gib()
+//	if(H && H.loc && H.stat == DEAD)
 
 /datum/species/zombie/necromorph/handle_post_spawn(var/mob/living/carbon/human/H)
 	if(H.hud_used)
