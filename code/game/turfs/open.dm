@@ -567,13 +567,15 @@
 		qdel(B)
 
 /turf/open/jungle/impenetrable
-	bushes_spawn = 0
+	bushes_spawn = TRUE
 	icon_state = "grass_impenetrable"
 	icon_spawn_state = "grass1"
-	New()
-		..()
+
+/turf/open/jungle/impenetrable/Initialize()
+	. = ..()
+	if(bushes_spawn)
 		var/obj/structure/bush/B = new(src)
-		B.indestructable = 1
+		B.indestructable = TRUE
 
 
 /turf/open/jungle/water

@@ -513,6 +513,15 @@
 /turf/open/floor/tile/dark/yellow2
 	icon_state = "darkyellow2"
 
+/turf/open/floor/tile/dark/yellow2/corner
+	icon_state = "darkyellowcorners2"
+
+/turf/open/floor/tile/dark/red2
+	icon_state = "darkred2"
+
+/turf/open/floor/tile/dark/red2/corner
+	icon_state = "darkredcorners2"
+
 /turf/open/floor/tile/whitegreenv
 	icon_state = "whitegreen_v"
 

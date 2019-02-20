@@ -15297,30 +15297,22 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/turf/open/floor{
-	tag = "icon-darkred2 (NORTHWEST)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 9
 	},
 /area/bigredv2/outside/admin_building)
 "aNJ" = (
-/turf/open/floor{
-	tag = "icon-darkred2 (NORTHEAST)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 5
 	},
 /area/bigredv2/outside/admin_building)
 "aNK" = (
-/turf/open/floor{
-	tag = "icon-darkred2 (NORTHWEST)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 9
 	},
 /area/bigredv2/outside/admin_building)
 "aNL" = (
-/turf/open/floor{
-	tag = "icon-darkred2 (NORTH)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
 /area/bigredv2/outside/admin_building)
@@ -15329,17 +15321,13 @@
 	dir = 1
 	},
 /obj/machinery/vending/cola,
-/turf/open/floor{
-	tag = "icon-darkred2 (NORTH)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
 /area/bigredv2/outside/admin_building)
 "aNN" = (
 /obj/machinery/vending/coffee,
-/turf/open/floor{
-	tag = "icon-darkred2 (NORTH)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
 /area/bigredv2/outside/admin_building)
@@ -15662,23 +15650,17 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	tag = "icon-darkred2 (WEST)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 8
 	},
 /area/bigredv2/outside/admin_building)
 "aOK" = (
-/turf/open/floor{
-	tag = "icon-darkred2 (EAST)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 4
 	},
 /area/bigredv2/outside/admin_building)
 "aOL" = (
-/turf/open/floor{
-	tag = "icon-darkred2 (WEST)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 8
 	},
 /area/bigredv2/outside/admin_building)
@@ -16132,9 +16114,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/open/floor{
-	tag = "icon-darkred2 (WEST)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 8
 	},
 /area/bigredv2/outside/admin_building)
@@ -16608,9 +16588,7 @@
 /area/bigredv2/outside/admin_building)
 "aRd" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	tag = "icon-darkred2 (WEST)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 8
 	},
 /area/bigredv2/outside/admin_building)
@@ -16668,9 +16646,7 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/turf/open/floor{
-	tag = "icon-darkredcorners2 (WEST)";
-	icon_state = "darkredcorners2";
+/turf/open/floor/tile/dark/red2/corner{
 	dir = 8
 	},
 /area/bigredv2/outside/admin_building)
@@ -16969,9 +16945,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	tag = "icon-darkred2 (WEST)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 8
 	},
 /area/bigredv2/outside/admin_building)
@@ -16994,9 +16968,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	tag = "icon-darkred2 (WEST)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 8
 	},
 /area/bigredv2/outside/admin_building)
@@ -17310,9 +17282,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
 	},
-/turf/open/floor{
-	tag = "icon-darkred2 (NORTHWEST)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 9
 	},
 /area/bigredv2/outside/admin_building)
@@ -17321,9 +17291,7 @@
 	dir = 4
 	},
 /obj/effect/landmark/random_item/good,
-/turf/open/floor{
-	tag = "icon-darkred2 (NORTH)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
 /area/bigredv2/outside/admin_building)
@@ -17331,9 +17299,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-darkred2 (NORTH)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
 /area/bigredv2/outside/admin_building)
@@ -17341,10 +17307,8 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "darkredcorners2";
-	tag = "icon-darkredcorners2"
+/turf/open/floor/tile/dark/red2/corner{
+	dir = 1
 	},
 /area/bigredv2/outside/admin_building)
 "aSX" = (
@@ -17801,9 +17765,7 @@
 	},
 /area/bigredv2/outside/admin_building)
 "aUc" = (
-/turf/open/floor{
-	tag = "icon-darkred2 (SOUTHEAST)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 6
 	},
 /area/bigredv2/outside/admin_building)
@@ -17826,9 +17788,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	tag = "icon-darkred2 (WEST)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 8
 	},
 /area/bigredv2/outside/admin_building)
@@ -18272,9 +18232,7 @@
 "aVl" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/landmark/random_item/crap,
-/turf/open/floor{
-	tag = "icon-darkred2 (WEST)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 8
 	},
 /area/bigredv2/outside/admin_building)
@@ -18287,9 +18245,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	tag = "icon-darkred2 (WEST)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 8
 	},
 /area/bigredv2/outside/admin_building)
@@ -18963,9 +18919,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-darkred2 (NORTH)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
 /area/bigredv2/outside/admin_building)
@@ -18974,9 +18928,7 @@
 	pixel_y = 32
 	},
 /obj/effect/landmark/random_item/good,
-/turf/open/floor{
-	tag = "icon-darkred2 (NORTH)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
 /area/bigredv2/outside/admin_building)
@@ -18986,9 +18938,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/open/floor{
-	tag = "icon-darkred2 (NORTH)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
 /area/bigredv2/outside/admin_building)
@@ -18998,9 +18948,7 @@
 	d2 = 8;
 	icon_state = "4-8";
 	},
-/turf/open/floor{
-	tag = "icon-darkred2 (NORTH)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
 /area/bigredv2/outside/admin_building)
@@ -19019,9 +18967,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-darkred2 (EAST)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 4
 	},
 /area/bigredv2/outside/admin_building)
@@ -19201,9 +19147,7 @@
 /turf/closed/wall,
 /area/bigredv2/outside/cargo)
 "aXL" = (
-/turf/open/floor{
-	tag = "icon-darkred2 (SOUTHWEST)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 10
 	},
 /area/bigredv2/outside/admin_building)
@@ -19214,9 +19158,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	tag = "icon-darkredcorners2 (WEST)";
-	icon_state = "darkredcorners2";
+/turf/open/floor/tile/dark/red2/corner{
 	dir = 8
 	},
 /area/bigredv2/outside/admin_building)
@@ -19262,10 +19204,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "darkredcorners2";
-	tag = "icon-darkredcorners2"
+/turf/open/floor/tile/dark/red2/corner{
+	dir = 1
 	},
 /area/bigredv2/outside/admin_building)
 "aXS" = (
@@ -19386,9 +19326,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	tag = "icon-darkred2 (WEST)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 8
 	},
 /area/bigredv2/outside/admin_building)
@@ -19406,9 +19344,7 @@
 /area/bigredv2/outside/admin_building)
 "aYl" = (
 /obj/item/cell/hyper/empty,
-/turf/open/floor{
-	tag = "icon-darkred2 (EAST)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 4
 	},
 /area/bigredv2/outside/admin_building)
@@ -19640,10 +19576,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
 "aYQ" = (
-/turf/open/jungle{
-	bushes_spawn = 0;
-	icon_state = "grass_impenetrable"
-	},
+/turf/open/jungle/impenetrable,
 /area/bigredv2/outside/admin_building)
 "aYR" = (
 /obj/structure/window/reinforced{
@@ -19652,9 +19585,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
 "aYS" = (
-/turf/open/floor{
-	tag = "icon-darkredcorners2 (EAST)";
-	icon_state = "darkredcorners2";
+/turf/open/floor/tile/dark/red2/corner{
 	dir = 4
 	},
 /area/bigredv2/outside/admin_building)
@@ -19663,9 +19594,7 @@
 	name = "Weyland Yutani Automatic Teller Machine";
 	pixel_y = 30
 	},
-/turf/open/floor{
-	tag = "icon-darkred2 (NORTH)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
 /area/bigredv2/outside/admin_building)
@@ -19673,25 +19602,19 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-darkred2 (NORTH)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
 /area/bigredv2/outside/admin_building)
 "aYV" = (
 /obj/effect/landmark/random_item/crap,
-/turf/open/floor{
-	tag = "icon-darkred2 (NORTH)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
 /area/bigredv2/outside/admin_building)
 "aYW" = (
-/turf/open/floor{
-	dir = 1;
-	icon_state = "darkredcorners2";
-	tag = "icon-darkredcorners2"
+/turf/open/floor/tile/dark/red2/corner{
+	dir = 1
 	},
 /area/bigredv2/outside/admin_building)
 "aYX" = (
@@ -20508,9 +20431,7 @@
 	dir = 4
 	},
 /obj/effect/spawner/random/toolbox,
-/turf/open/floor{
-	tag = "icon-darkred2 (EAST)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 4
 	},
 /area/bigredv2/outside/admin_building)
@@ -21060,9 +20981,7 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-darkred2 (WEST)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 8
 	},
 /area/bigredv2/outside/admin_building)
@@ -21070,9 +20989,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-darkred2 (EAST)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 4
 	},
 /area/bigredv2/outside/admin_building)
@@ -21309,9 +21226,7 @@
 	name = "General Listening Channel";
 	pixel_x = 30;
 	},
-/turf/open/floor{
-	tag = "icon-darkred2 (EAST)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 4
 	},
 /area/bigredv2/outside/admin_building)
@@ -30087,32 +30002,24 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-darkred2 (NORTHWEST)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 9
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bBc" = (
-/turf/open/floor{
-	tag = "icon-darkred2 (NORTH)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bBd" = (
 /obj/item/target,
-/turf/open/floor{
-	tag = "icon-darkred2 (NORTH)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bBe" = (
 /obj/effect/landmark/monkey_spawn,
-/turf/open/floor{
-	tag = "icon-darkred2 (NORTH)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -30120,9 +30027,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-darkred2 (NORTHEAST)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 5
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -30132,17 +30037,13 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bBh" = (
 /obj/structure/filingcabinet,
-/turf/open/floor{
-	tag = "icon-darkred2 (NORTHWEST)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 9
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bBi" = (
 /obj/structure/filingcabinet,
-/turf/open/floor{
-	tag = "icon-darkred2 (NORTH)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -30151,33 +30052,25 @@
 	dir = 1
 	},
 /obj/structure/filingcabinet,
-/turf/open/floor{
-	tag = "icon-darkred2 (NORTH)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bBk" = (
 /obj/structure/filingcabinet/medical,
-/turf/open/floor{
-	tag = "icon-darkred2 (NORTH)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bBl" = (
 /obj/machinery/photocopier,
-/turf/open/floor{
-	tag = "icon-darkred2 (NORTH)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bBm" = (
 /obj/structure/table,
-/turf/open/floor{
-	tag = "icon-darkred2 (NORTH)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -30186,30 +30079,21 @@
 	dir = 1
 	},
 /obj/machinery/biogenerator,
-/turf/open/floor{
-	tag = "icon-darkred2 (NORTH)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bBo" = (
 /obj/machinery/seed_extractor,
-/turf/open/floor{
-	tag = "icon-darkred2 (NORTHEAST)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 5
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bBp" = (
-/turf/open/jungle{
-	bushes_spawn = 0;
-	icon_state = "grass_impenetrable"
-	},
+/turf/open/jungle/impenetrable,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bBq" = (
-/turf/open/floor{
-	tag = "icon-darkred2 (WEST)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 8
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -30222,9 +30106,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bBt" = (
-/turf/open/floor{
-	tag = "icon-darkred2 (EAST)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 4
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -30298,10 +30180,7 @@
 "bBC" = (
 /obj/effect/landmark/monkey_spawn,
 /obj/effect/alien/weeds/node,
-/turf/open/jungle{
-	bushes_spawn = 0;
-	icon_state = "grass_impenetrable"
-	},
+/turf/open/jungle/impenetrable,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bBD" = (
 /obj/structure/cable{
@@ -30349,15 +30228,10 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/jungle{
-	bushes_spawn = 0;
-	icon_state = "grass_impenetrable"
-	},
+/turf/open/jungle/impenetrable,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bBJ" = (
-/turf/open/floor{
-	tag = "icon-darkred2 (SOUTHWEST)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 10
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -30368,9 +30242,7 @@
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bBL" = (
-/turf/open/floor{
-	tag = "icon-darkred2 (SOUTHEAST)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 6
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -30401,9 +30273,7 @@
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bBR" = (
-/turf/open/floor{
-	tag = "icon-darkredcorners2 (WEST)";
-	icon_state = "darkredcorners2";
+/turf/open/floor/tile/dark/red2/corner{
 	dir = 8
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -30446,9 +30316,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-darkred2 (EAST)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 4
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -30456,9 +30324,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-darkred2 (WEST)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 8
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -30469,52 +30335,40 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bCa" = (
 /obj/structure/xenoautopsy/tank,
-/turf/open/floor{
-	tag = "icon-darkredcorners2 (WEST)";
-	icon_state = "darkredcorners2";
+/turf/open/floor/tile/dark/red2/corner{
 	dir = 8
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bCb" = (
 /obj/effect/decal/cleanable/blood/xeno,
-/turf/open/floor{
-	tag = "icon-darkredcorners2 (EAST)";
-	icon_state = "darkredcorners2";
+/turf/open/floor/tile/dark/red2/corner{
 	dir = 4
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bCc" = (
 /obj/machinery/computer/security,
-/turf/open/floor{
-	tag = "icon-darkredcorners2 (EAST)";
-	icon_state = "darkredcorners2";
+/turf/open/floor/tile/dark/red2/corner{
 	dir = 4
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bCd" = (
 /obj/structure/table,
 /obj/effect/spawner/random/technology_scanner,
-/turf/open/floor{
-	tag = "icon-darkredcorners2 (EAST)";
-	icon_state = "darkredcorners2";
+/turf/open/floor/tile/dark/red2/corner{
 	dir = 4
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bCe" = (
 /obj/structure/table,
 /obj/item/alienjar,
-/turf/open/floor{
-	tag = "icon-darkredcorners2 (EAST)";
-	icon_state = "darkredcorners2";
+/turf/open/floor/tile/dark/red2/corner{
 	dir = 4
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bCf" = (
 /obj/structure/table,
 /obj/structure/xenoautopsy,
-/turf/open/floor{
-	tag = "icon-darkredcorners2 (EAST)";
-	icon_state = "darkredcorners2";
+/turf/open/floor/tile/dark/red2/corner{
 	dir = 4
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -30523,9 +30377,7 @@
 /obj/item/XenoBio/Blood,
 /obj/item/XenoBio/Blood,
 /obj/item/tool/pen,
-/turf/open/floor{
-	tag = "icon-darkredcorners2 (EAST)";
-	icon_state = "darkredcorners2";
+/turf/open/floor/tile/dark/red2/corner{
 	dir = 4
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -30570,25 +30422,19 @@
 "bCm" = (
 /obj/structure/table,
 /obj/machinery/faxmachine,
-/turf/open/floor{
-	tag = "icon-darkred2 (EAST)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 4
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bCn" = (
 /obj/machinery/chem_dispenser,
-/turf/open/floor{
-	tag = "icon-darkred2 (WEST)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 8
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bCo" = (
 /obj/structure/xenoautopsy/tank/broken,
-/turf/open/floor{
-	tag = "icon-darkredcorners2 (WEST)";
-	icon_state = "darkredcorners2";
+/turf/open/floor/tile/dark/red2/corner{
 	dir = 8
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -30614,9 +30460,7 @@
 "bCt" = (
 /obj/structure/table,
 /obj/effect/spawner/random/tool,
-/turf/open/floor{
-	tag = "icon-darkred2 (WEST)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 8
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -30629,25 +30473,19 @@
 "bCv" = (
 /obj/structure/table,
 /obj/machinery/reagentgrinder,
-/turf/open/floor{
-	tag = "icon-darkred2 (EAST)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 4
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bCw" = (
 /obj/machinery/chem_master,
-/turf/open/floor{
-	tag = "icon-darkred2 (WEST)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 8
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bCx" = (
 /obj/structure/xenoautopsy/tank/hugger,
-/turf/open/floor{
-	tag = "icon-darkredcorners2 (WEST)";
-	icon_state = "darkredcorners2";
+/turf/open/floor/tile/dark/red2/corner{
 	dir = 8
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -30689,18 +30527,14 @@
 	dir = 8;
 	on = 1
 	},
-/turf/open/floor{
-	tag = "icon-darkred2 (EAST)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 4
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bCD" = (
 /obj/structure/table,
 /obj/item/device/mass_spectrometer/adv,
-/turf/open/floor{
-	tag = "icon-darkred2 (WEST)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 8
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -30722,18 +30556,14 @@
 "bCH" = (
 /obj/structure/table,
 /obj/effect/spawner/random/technology_scanner,
-/turf/open/floor{
-	tag = "icon-darkred2 (EAST)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 4
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bCI" = (
 /obj/structure/table,
 /obj/effect/spawner/random/technology_scanner,
-/turf/open/floor{
-	tag = "icon-darkred2 (WEST)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 8
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -30750,9 +30580,7 @@
 "bCL" = (
 /obj/structure/table,
 /obj/effect/spawner/random/technology_scanner,
-/turf/open/floor{
-	tag = "icon-darkredcorners2 (WEST)";
-	icon_state = "darkredcorners2";
+/turf/open/floor/tile/dark/red2/corner{
 	dir = 8
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -30765,9 +30593,7 @@
 	dir = 1;
 	on = 1
 	},
-/turf/open/floor{
-	tag = "icon-darkredcorners2 (WEST)";
-	icon_state = "darkredcorners2";
+/turf/open/floor/tile/dark/red2/corner{
 	dir = 8
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -30804,27 +30630,21 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bCS" = (
 /obj/machinery/autolathe,
-/turf/open/floor{
-	tag = "icon-darkred2 (WEST)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 8
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bCT" = (
 /obj/structure/table,
 /obj/effect/spawner/random/tool,
-/turf/open/floor{
-	tag = "icon-darkred2 (EAST)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 4
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bCU" = (
 /obj/structure/table,
 /obj/item/tool/pickaxe/plasmacutter,
-/turf/open/floor{
-	tag = "icon-darkred2 (WEST)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 8
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -30843,9 +30663,7 @@
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bCX" = (
-/turf/open/floor{
-	tag = "icon-darkyellowcorners2 (WEST)";
-	icon_state = "darkyellowcorners2";
+/turf/open/floor/tile/dark/yellow2/corner{
 	dir = 8
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -30855,10 +30673,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bCZ" = (
-/turf/open/floor{
-	tag = "icon-darkyellowcorners2";
-	icon_state = "darkyellowcorners2"
-	},
+/turf/open/floor/tile/dark/yellow2/corner,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bDa" = (
 /obj/effect/alien/weeds/node,
@@ -30871,9 +30686,7 @@
 /obj/structure/bed/chair{
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-darkred2 (WEST)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 8
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -30888,33 +30701,23 @@
 /obj/structure/bed/chair{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-darkred2 (EAST)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 4
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bDe" = (
 /obj/effect/landmark/monkey_spawn,
-/turf/open/jungle{
-	bushes_spawn = 0;
-	icon_state = "grass_impenetrable"
-	},
+/turf/open/jungle/impenetrable,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bDf" = (
 /obj/effect/decal/cleanable/blood/drip,
-/turf/open/floor{
-	tag = "icon-darkyellowcorners2";
-	icon_state = "darkyellowcorners2"
-	},
+/turf/open/floor/tile/dark/yellow2/corner,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bDg" = (
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-darkred2 (SOUTHEAST)";
-	icon_state = "darkred2";
+/turf/open/floor/tile/dark/red2{
 	dir = 6
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -30945,18 +30748,13 @@
 	},
 /obj/effect/landmark/monkey_spawn,
 /obj/effect/alien/weeds/node,
-/turf/open/jungle{
-	bushes_spawn = 0;
-	icon_state = "grass_impenetrable"
-	},
+/turf/open/jungle/impenetrable,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bDm" = (
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-darkyellowcorners2 (WEST)";
-	icon_state = "darkyellowcorners2";
+/turf/open/floor/tile/dark/yellow2/corner{
 	dir = 8
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -30998,9 +30796,7 @@
 	dir = 8
 	},
 /obj/effect/alien/weeds/node,
-/turf/open/floor{
-	tag = "icon-darkredcorners2 (WEST)";
-	icon_state = "darkredcorners2";
+/turf/open/floor/tile/dark/red2/corner{
 	dir = 8
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -31008,9 +30804,7 @@
 /obj/machinery/alarm{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-darkyellowcorners2 (WEST)";
-	icon_state = "darkyellowcorners2";
+/turf/open/floor/tile/dark/yellow2/corner{
 	dir = 8
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -31043,10 +30837,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-darkyellowcorners2";
-	icon_state = "darkyellowcorners2"
-	},
+/turf/open/floor/tile/dark/yellow2/corner,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bDA" = (
 /obj/structure/table,
@@ -31090,10 +30881,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bDH" = (
 /obj/effect/landmark/random_item/crap,
-/turf/open/floor{
-	tag = "icon-darkyellowcorners2";
-	icon_state = "darkyellowcorners2"
-	},
+/turf/open/floor/tile/dark/yellow2/corner,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bDI" = (
 /obj/structure/table,
@@ -31131,10 +30919,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bDN" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	tag = "icon-darkyellowcorners2";
-	icon_state = "darkyellowcorners2"
-	},
+/turf/open/floor/tile/dark/yellow2/corner,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bDO" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -31178,32 +30963,24 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	tag = "icon-darkyellowcorners2 (WEST)";
-	icon_state = "darkyellowcorners2";
+/turf/open/floor/tile/dark/yellow2/corner{
 	dir = 8
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bDU" = (
-/turf/open/floor{
-	tag = "icon-darkyellowcorners2 (NORTH)";
-	icon_state = "darkyellowcorners2";
+/turf/open/floor/tile/dark/yellow2/corner{
 	dir = 1
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bDV" = (
 /obj/effect/alien/weeds/node,
-/turf/open/floor{
-	tag = "icon-darkyellowcorners2 (NORTH)";
-	icon_state = "darkyellowcorners2";
+/turf/open/floor/tile/dark/yellow2/corner{
 	dir = 1
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bDW" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	tag = "icon-darkyellowcorners2 (WEST)";
-	icon_state = "darkyellowcorners2";
+/turf/open/floor/tile/dark/yellow2/corner{
 	dir = 8
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -31212,29 +30989,20 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/blood/drip,
-/turf/open/floor{
-	tag = "icon-darkyellowcorners2";
-	icon_state = "darkyellowcorners2"
-	},
+/turf/open/floor/tile/dark/yellow2/corner,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bDY" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-darkyellowcorners2";
-	icon_state = "darkyellowcorners2"
-	},
+/turf/open/floor/tile/dark/yellow2/corner,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bDZ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	tag = "icon-darkyellowcorners2";
-	icon_state = "darkyellowcorners2"
-	},
+/turf/open/floor/tile/dark/yellow2/corner,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bEa" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -31242,10 +31010,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/alien/weeds/node,
-/turf/open/floor{
-	tag = "icon-darkyellowcorners2";
-	icon_state = "darkyellowcorners2"
-	},
+/turf/open/floor/tile/dark/yellow2/corner,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bEb" = (
 /obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
@@ -31258,10 +31023,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	tag = "icon-darkyellowcorners2";
-	icon_state = "darkyellowcorners2"
-	},
+/turf/open/floor/tile/dark/yellow2/corner,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bEd" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -31296,17 +31058,12 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bEh" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	tag = "icon-darkyellowcorners2";
-	icon_state = "darkyellowcorners2"
-	},
+/turf/open/floor/tile/dark/yellow2/corner,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bEi" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/alien/weeds/node,
-/turf/open/floor{
-	tag = "icon-darkyellowcorners2 (WEST)";
-	icon_state = "darkyellowcorners2";
+/turf/open/floor/tile/dark/yellow2/corner{
 	dir = 8
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -31351,9 +31108,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bEo" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	tag = "icon-darkyellowcorners2 (WEST)";
-	icon_state = "darkyellowcorners2";
+/turf/open/floor/tile/dark/yellow2/corner{
 	dir = 8
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -31396,26 +31151,17 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	tag = "icon-darkyellowcorners2";
-	icon_state = "darkyellowcorners2"
-	},
+/turf/open/floor/tile/dark/yellow2/corner,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bEw" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/alien/weeds/node,
-/turf/open/floor{
-	tag = "icon-darkyellowcorners2";
-	icon_state = "darkyellowcorners2"
-	},
+/turf/open/floor/tile/dark/yellow2/corner,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bEx" = (
 /obj/effect/alien/weeds/node,
-/turf/open/jungle{
-	bushes_spawn = 0;
-	icon_state = "grass_impenetrable"
-	},
+/turf/open/jungle/impenetrable,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bEy" = (
 /obj/effect/decal/cleanable/blood,
@@ -31428,10 +31174,7 @@
 "bEA" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	tag = "icon-darkyellowcorners2";
-	icon_state = "darkyellowcorners2"
-	},
+/turf/open/floor/tile/dark/yellow2/corner,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bEB" = (
 /obj/structure/table,
@@ -31467,9 +31210,7 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-darkyellowcorners2 (WEST)";
-	icon_state = "darkyellowcorners2";
+/turf/open/floor/tile/dark/yellow2/corner{
 	dir = 8
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -31506,9 +31247,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	tag = "icon-darkyellowcorners2 (NORTH)";
-	icon_state = "darkyellowcorners2";
+/turf/open/floor/tile/dark/yellow2/corner{
 	dir = 1
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -31518,9 +31257,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/alien/weeds/node,
-/turf/open/floor{
-	tag = "icon-darkyellowcorners2 (NORTH)";
-	icon_state = "darkyellowcorners2";
+/turf/open/floor/tile/dark/yellow2/corner{
 	dir = 1
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -31528,9 +31265,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-darkyellowcorners2 (NORTH)";
-	icon_state = "darkyellowcorners2";
+/turf/open/floor/tile/dark/yellow2/corner{
 	dir = 1
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -31540,33 +31275,21 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bEO" = (
 /obj/effect/alien/weeds/node,
-/turf/open/floor{
-	tag = "icon-darkyellowcorners2";
-	icon_state = "darkyellowcorners2"
-	},
+/turf/open/floor/tile/dark/yellow2/corner,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bEP" = (
 /obj/machinery/light,
-/turf/open/floor{
-	tag = "icon-darkyellowcorners2";
-	icon_state = "darkyellowcorners2"
-	},
+/turf/open/floor/tile/dark/yellow2/corner,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bEQ" = (
 /obj/machinery/light,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	tag = "icon-darkyellowcorners2";
-	icon_state = "darkyellowcorners2"
-	},
+/turf/open/floor/tile/dark/yellow2/corner,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bER" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/alien/weeds/node,
-/turf/open/floor{
-	tag = "icon-darkyellowcorners2";
-	icon_state = "darkyellowcorners2"
-	},
+/turf/open/floor/tile/dark/yellow2/corner,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bES" = (
 /obj/machinery/light,
