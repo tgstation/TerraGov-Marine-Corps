@@ -35,13 +35,13 @@
 
 
 /proc/log_admin_private_asay(text)
-	GLOB.admin_log.Add("\[[stationTimestamp()]\] <span color='adminsay'>ASAY: [text]</span>")
+	GLOB.admin_log.Add("\[[stationTimestamp()]\] <span class='adminsay'>ASAY: [text]</span>")
 	if(CONFIG_GET(flag/log_adminchat))
 		WRITE_LOG(GLOB.world_game_log, "ADMINPRIVATE: ASAY: [text]")
 
 
 /proc/log_admin_private_msay(text)
-	GLOB.admin_log.Add("\[[stationTimestamp()]\] <span color='mod'>MSAY: [text]</span>")
+	GLOB.admin_log.Add("\[[stationTimestamp()]\] <span class='mod'>MSAY: [text]</span>")
 	if(CONFIG_GET(flag/log_adminchat))
 		WRITE_LOG(GLOB.world_game_log, "ADMINPRIVATE: MSAY: [text]")
 
