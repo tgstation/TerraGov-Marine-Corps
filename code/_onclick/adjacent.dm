@@ -80,13 +80,6 @@
 	return FALSE
 
 
-/obj/Adjacent(atom/neighbor)
-	if(neighbor == loc)
-		return TRUE
-	var/turf/T = get_turf(loc)
-	return(T?.Adjacent(neighbor,src))
-
-
 //Multitile special cases.
 /obj/structure/Adjacent(atom/neighbor)
 	for(var/X in locs)
