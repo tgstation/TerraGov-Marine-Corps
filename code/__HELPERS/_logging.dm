@@ -29,25 +29,25 @@
 
 
 /proc/log_admin_private(text)
-	GLOB.admin_log.Add("\[[stationTimestamp()]\] ADMINPRIVATE: [text]")
+	GLOB.admin_log.Add("\[[stationTimestamp()]\] PRIVATE: [text]")
 	if(CONFIG_GET(flag/log_admin))
 		WRITE_LOG(GLOB.world_game_log, "ADMINPRIVATE: [text]")
 
 
 /proc/log_admin_private_asay(text)
-	GLOB.admin_log.Add("\[[stationTimestamp()]\] ADMINPRIVATE: ASAY: [text]")
+	GLOB.admin_log.Add("\[[stationTimestamp()]\] <span color='adminsay'>ASAY: [text]</span>")
 	if(CONFIG_GET(flag/log_adminchat))
 		WRITE_LOG(GLOB.world_game_log, "ADMINPRIVATE: ASAY: [text]")
 
 
 /proc/log_admin_private_msay(text)
-	GLOB.admin_log.Add("\[[stationTimestamp()]\] ADMINPRIVATE: MSAY: [text]")
+	GLOB.admin_log.Add("\[[stationTimestamp()]\] <span color='mod'>MSAY: [text]</span>")
 	if(CONFIG_GET(flag/log_adminchat))
 		WRITE_LOG(GLOB.world_game_log, "ADMINPRIVATE: MSAY: [text]")
 
 
 /proc/log_dsay(text)
-	GLOB.admin_log.Add("\[[stationTimestamp()]\] ADMIN: DSAY: [text]")
+	GLOB.admin_log.Add("\[[stationTimestamp()]\] DSAY: [text]")
 	if(CONFIG_GET(flag/log_adminchat))
 		WRITE_LOG(GLOB.world_game_log, "ADMIN: DSAY: [text]")
 

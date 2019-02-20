@@ -232,9 +232,9 @@
 						M_job = "Monkey"
 					else if(isxeno(M))
 						if(M.client?.prefs?.xeno_name && M.client.prefs.xeno_name != "Undefined")
-							M_job = "alien - [M.client.prefs.xeno_name]"
+							M_job = "Xenomorph - [M.client.prefs.xeno_name]"
 						else
-							M_job = "alien"
+							M_job = "Xenomorph"
 					else
 						M_job = "Carbon-based"
 
@@ -405,7 +405,12 @@
 		<a href='?src=[ref];individuallog=[REF(M)]'>LOGS</a> \]</b><br>
 		<b>Mob Type:</b> [M.type]<br>
 		<b>Mob Location:</b> [AREACOORD(M.loc)]<br>
-		<a href='?src=[ref];kick=[REF(M)]'>Kick</a> |
+		<b>Mob Faction:</b> [M.faction]<br>"}
+		
+	if(M.mind?.assigned_role)
+		body += "<b>Mob Role:</b> [M.mind.assigned_role]<br>"
+
+	body +={"<a href='?src=[ref];kick=[REF(M)]'>Kick</a> |
 		<a href='?src=[ref];ban=[REF(M)]'>Ban</a> |
 		<a href='?src=[ref];jobbanpanel=[REF(M)]'>Jobban</a> |
 		<a href='?src=[ref];notes=show;mob=[REF(M)]'>Notes</a> |

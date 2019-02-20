@@ -472,13 +472,12 @@ its easier to just keep the beam vertical.
 	if(!istype(fingerprintshidden, /list))
 		fingerprintshidden = list()
 
-	//skytodo
-	//A.fingerprints |= fingerprints            //detective
-	//A.fingerprintshidden |= fingerprintshidden    //admin
 	if(A.fingerprints && fingerprints)
-		A.fingerprints |= fingerprints.Copy()            //detective
+		A.fingerprints |= fingerprints.Copy()
 	if(A.fingerprintshidden && fingerprintshidden)
-		A.fingerprintshidden |= fingerprintshidden.Copy()    //admin	A.fingerprintslast = fingerprintslast
+		A.fingerprintshidden |= fingerprintshidden.Copy()
+	if(fingerprintslast)
+		A.fingerprintslast = fingerprintslast
 
 
 

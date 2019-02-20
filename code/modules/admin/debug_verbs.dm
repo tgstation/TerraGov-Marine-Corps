@@ -424,7 +424,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	message_admins("[ADMIN_TPMONTY(usr)] has restarted the [controller] controller.")
 
 
-/datum/admins/proc/debug_controller(controller in list("Master","Ticker","Lighting","Jobs","Sun","Radio","Supply","Shuttles","Configuration","Cameras", "Transfer Controller", "Gas Data"))
+/datum/admins/proc/debug_controller(controller in list("Master", "Lighting", "Sun", "Radio", "Supply", "Shuttles", "Configuration", "Cameras", "Global Vars"))
 	set category = "Debug"
 	set name = "Debug Controllers"
 	set desc = "Debug the various periodic loop controllers for the game."
@@ -435,12 +435,8 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	switch(controller)
 		if("Master")
 			usr.client.debug_variables(Master)
-		if("Ticker")
-			usr.client.debug_variables(SSticker)
 		if("Lighting")
 			usr.client.debug_variables(lighting_controller)
-		if("Jobs")
-			usr.client.debug_variables(SSjob)
 		if("Sun")
 			usr.client.debug_variables(sun)
 		if("Radio")
@@ -453,6 +449,8 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 			usr.client.debug_variables(config)
 		if("Cameras")
 			usr.client.debug_variables(cameranet)
+		if("Global Vars")
+			usr.client.debug_variables(GLOB)
 
 	log_admin("[key_name(usr)] is debugging the [controller] controller.")
 	message_admins("[ADMIN_TPMONTY(usr)] is debugging the [controller] controller.")
