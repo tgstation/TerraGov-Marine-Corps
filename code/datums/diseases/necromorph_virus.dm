@@ -1,3 +1,6 @@
+#define DISEASE_STAGE_ONE 1
+#define DISEASE_STAGE_TWO 2
+
 /datum/disease/black_goo/necromorph_virus
 	name = "Marker's influence"
 	agent = "Unknown Biological Organism X-66"
@@ -13,14 +16,14 @@
 	else stage_prob = initial(stage_prob)
 	if(H.stat == DEAD) stage_minimum_age = 75 //the virus progress faster when the host is dead.
 	switch(stage)
-		if(1)
+		if(DISEASE_STAGE_ONE)
 			H.next_move_slowdown = max(H.next_move_slowdown, 2)
 			if(prob(5) || age >= stage_minimum_age-1)
 			if(!zombie_transforming)
 					zombie_transform(H)
 			else if(prob(5))
 				H.vomit()
-		if(2)
+		if(DISEASE_STAGE_TWO)
 			if(!zombie_transforming && prob(10))
 			if(H.stat != DEAD)
 				var/healamt = H.stat ? 5 : 1
