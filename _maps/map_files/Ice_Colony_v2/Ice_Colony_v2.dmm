@@ -2987,10 +2987,7 @@
 	},
 /area/ice_colony/exterior/surface/valley/north)
 "ahc" = (
-/obj/machinery/power/smes/buildable{
-	charge = 0;
-	name = "colony distribution SMES"
-	},
+/obj/machinery/power/smes/buildable/empty/dist,
 /obj/structure/cable,
 /turf/open/floor{
 	tag = "icon-darkyellow2 (NORTHWEST)";
@@ -3262,10 +3259,7 @@
 	},
 /area/ice_colony/surface/substation/smes)
 "ahz" = (
-/obj/machinery/power/smes/buildable{
-	charge = 0;
-	name = "colony distribution SMES"
-	},
+/obj/machinery/power/smes/buildable/empty/dist,
 /obj/structure/cable{
 	icon_state = "0-4";
 	d2 = 4
@@ -3526,10 +3520,7 @@
 	},
 /area/ice_colony/surface/substation/smes)
 "aid" = (
-/obj/machinery/power/smes/buildable{
-	charge = 0;
-	name = "colony distribution SMES"
-	},
+/obj/machinery/power/smes/buildable/empty/dist,
 /obj/structure/cable,
 /turf/open/floor{
 	tag = "icon-darkyellow2 (NORTHEAST)";
@@ -3963,10 +3954,7 @@
 /turf/closed/wall/r_wall,
 /area/ice_colony/surface/engineering)
 "aiV" = (
-/obj/machinery/power/smes/buildable{
-	charge = 0;
-	name = "backup power SMES"
-	},
+/obj/machinery/power/smes/buildable/empty/backup,
 /obj/structure/cable{
 	d2 = 8;
 	icon_state = "0-8"
@@ -4067,10 +4055,7 @@
 	},
 /area/ice_colony/surface/substation/smes)
 "aje" = (
-/obj/machinery/power/smes/buildable{
-	charge = 0;
-	name = "colony distribution SMES"
-	},
+/obj/machinery/power/smes/buildable/empty/dist,
 /obj/structure/cable{
 	icon_state = "0-4";
 	d2 = 4
@@ -4124,10 +4109,7 @@
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/surface/requesitions)
 "ajj" = (
-/obj/machinery/power/smes/buildable{
-	charge = 0;
-	name = "colony distribution SMES"
-	},
+/obj/machinery/power/smes/buildable/empty/dist,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/ice_colony/surface/tcomms)
@@ -4248,10 +4230,7 @@
 /turf/closed/wall/r_wall,
 /area/ice_colony/surface/engineering)
 "ajv" = (
-/obj/machinery/power/smes/buildable{
-	charge = 0;
-	name = "backup power SMES"
-	},
+/obj/machinery/power/smes/buildable/empty/backup,
 /obj/structure/cable{
 	d2 = 8;
 	icon_state = "0-8"
@@ -19684,7 +19663,7 @@
 /area/ice_colony/surface/storage_unit/research)
 "aPw" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_x = -32
+	dir = 8
 	},
 /turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
@@ -20632,7 +20611,7 @@
 /area/ice_colony/surface/bar/bar)
 "aRo" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_y = -32
+	dir = 2
 	},
 /obj/machinery/light,
 /turf/open/floor/wood,
@@ -28688,10 +28667,7 @@
 /turf/closed/wall/r_wall,
 /area/ice_colony/underground/hangar)
 "biv" = (
-/obj/machinery/power/smes/buildable{
-	charge = 0;
-	name = "colony distribution SMES"
-	},
+/obj/machinery/power/smes/buildable/empty/dist,
 /obj/structure/cable/yellow{
 	d2 = 8;
 	icon_state = "0-8"
@@ -34013,10 +33989,7 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/smes/buildable{
-	charge = 0;
-	name = "colony distribution SMES"
-	},
+/obj/machinery/power/smes/buildable/empty/dist,
 /turf/open/floor/plating,
 /area/ice_colony/underground/engineering/substation)
 "btW" = (
@@ -50319,10 +50292,7 @@
 /turf/open/snow/layer2,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "caD" = (
-/obj/machinery/power/smes/buildable{
-	charge = 0;
-	name = "colony distribution SMES"
-	},
+/obj/machinery/power/smes/buildable/empty/dist,
 /obj/structure/cable/yellow{
 	d2 = 4;
 	icon_state = "0-4"

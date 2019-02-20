@@ -155,7 +155,7 @@
 /area/bigredv2/outside/space_port)
 "aaA" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_y = 32
+	dir = 1
 	},
 /obj/machinery/recharge_station,
 /turf/open/floor{
@@ -2959,7 +2959,7 @@
 /area/bigredv2/caves/lambda_lab)
 "ahG" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_y = -30
+	dir = 2
 	},
 /turf/open/floor{
 	tag = "icon-darkpurple2";
@@ -7261,7 +7261,7 @@
 "arN" = (
 /obj/structure/table,
 /obj/structure/extinguisher_cabinet{
-	pixel_x = -27;
+	dir = 2
 	},
 /obj/item/storage/box/beakers,
 /turf/open/floor{
@@ -9806,7 +9806,7 @@
 "axq" = (
 /obj/machinery/light/built,
 /obj/structure/extinguisher_cabinet{
-	pixel_y = -30
+	dir = 2
 	},
 /obj/machinery/power/apc/drained{
 	dir = 8
@@ -13004,7 +13004,7 @@
 	icon_state = "1-2"
 	},
 /obj/structure/extinguisher_cabinet{
-	pixel_x = -30;
+	dir = 2
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
@@ -15666,7 +15666,7 @@
 	icon_state = "4-8";
 	},
 /obj/structure/extinguisher_cabinet{
-	pixel_y = -30
+	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -27711,10 +27711,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "bmn" = (
-/obj/machinery/power/smes/buildable{
-	charge = 0;
-	name = "colony distribution SMES"
-	},
+/obj/machinery/power/smes/buildable/empty/dist,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)

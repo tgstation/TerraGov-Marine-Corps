@@ -3235,7 +3235,7 @@
 /area/lv624/ground/sand8)
 "alZ" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_y = 30
+	dir = 1
 	},
 /obj/machinery/door/window/eastleft,
 /turf/open/floor/plating/platebot,
@@ -6204,7 +6204,7 @@
 "aws" = (
 /obj/machinery/smartfridge/seeds,
 /obj/structure/extinguisher_cabinet{
-	pixel_y = 30
+	dir = 1
 	},
 /turf/open/floor/tile/green/greentaupe{
 	dir = 5
@@ -6998,7 +6998,7 @@
 	pixel_x = 4
 	},
 /obj/structure/extinguisher_cabinet{
-	pixel_y = 30
+	dir = 1
 	},
 /turf/open/floor/tile/blue/whitebluecorner{
 	dir = 2
@@ -10793,7 +10793,7 @@
 "aMe" = (
 /obj/item/device/multitool,
 /obj/structure/extinguisher_cabinet{
-	pixel_y = 30
+	dir = 1
 	},
 /obj/structure/rack,
 /turf/open/floor/tile/vault,
@@ -14464,7 +14464,7 @@
 /area/lv624/lazarus/main_hall)
 "aXA" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_y = 30
+	dir = 1
 	},
 /obj/machinery/vending/cigarette/colony,
 /turf/open/floor/tile/white,
@@ -14822,7 +14822,7 @@
 /area/lv624/lazarus/main_hall)
 "aYD" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_y = 30
+	dir = 1
 	},
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
@@ -16026,7 +16026,7 @@
 /area/lv624/lazarus/internal_affairs)
 "bbH" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_y = 30
+	dir = 1
 	},
 /obj/effect/landmark/random_item/good,
 /turf/open/floor{
@@ -18763,11 +18763,7 @@
 /turf/open/floor/grimy,
 /area/lv624/lazarus/captain)
 "bjM" = (
-/obj/structure/safe/floor{
-	name = "safe";
-	pixel_x = 30;
-	spawnkey = 0
-	},
+/obj/structure/safe/floor/lvcolony,
 /turf/open/floor/grimy,
 /area/lv624/lazarus/captain)
 "bjN" = (
@@ -18993,7 +18989,7 @@
 "bkx" = (
 /obj/structure/foamedmetal,
 /obj/structure/extinguisher_cabinet{
-	pixel_y = 30
+	dir = 1
 	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
@@ -19032,9 +19028,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "bkD" = (
-/obj/machinery/power/smes/buildable{
-	capacity = 1e+006;
-	charge = 0;
+/obj/machinery/power/smes/buildable/empty{
 	dir = 1
 	},
 /obj/structure/cable/yellow{
@@ -19049,9 +19043,7 @@
 /turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/engineering)
 "bkE" = (
-/obj/machinery/power/smes/buildable{
-	capacity = 1e+006;
-	charge = 0;
+/obj/machinery/power/smes/buildable/empty{
 	dir = 1
 	},
 /obj/structure/cable/yellow{
@@ -19199,7 +19191,7 @@
 /area/lv624/ground/compound/sw)
 "blc" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_y = 30
+	dir = 1
 	},
 /turf/open/floor/tile/brown{
 	dir = 9
@@ -19385,7 +19377,7 @@
 /obj/item/tool/kitchen/knife/butcher,
 /obj/structure/rack,
 /obj/structure/extinguisher_cabinet{
-	pixel_y = 30
+	dir = 1
 	},
 /turf/open/floor/freezer,
 /area/lv624/lazarus/kitchen)
@@ -21146,7 +21138,7 @@
 /area/lv624/lazarus/engineering)
 "bqn" = (
 /obj/structure/extinguisher_cabinet{
-	pixel_y = 30
+	dir = 1
 	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
