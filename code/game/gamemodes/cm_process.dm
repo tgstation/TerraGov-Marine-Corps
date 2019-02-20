@@ -248,7 +248,7 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 
 		if(picked)
 			if(M.mind)
-				M.mind.special_role = "Deathmatch"
+				M.mind.bypass_ff = TRUE
 			M.forceMove(picked)
 			M.revive()
 			if(isbrain(M))
@@ -425,8 +425,11 @@ Only checks living mobs with a client attached.
 	for(var/mob/M in GLOB.player_list)
 		if(M.z && (M.z in z_levels) && M.stat != DEAD && !isspaceturf(M.loc))
 			if(ishuman(M) && !isyautja(M))
-				if(M.mind && M.mind.special_role == "PMC") 	num_pmcs++
-				else if(M.mind && !M.mind.special_role)		num_marines++
+				var/mob/living/carbon/human/H = M
+				if(ispmc(H))
+					num_pmcs++
+				else if(ismarine(H))
+					num_marines++
 
 	return list(num_marines,num_pmcs)
 

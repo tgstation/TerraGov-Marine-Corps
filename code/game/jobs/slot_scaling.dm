@@ -3,7 +3,11 @@
 	var/count = 0
 	var/mob/M
 	for(M in GLOB.player_list)
-		if(ishuman(M) && M.mind && !M.mind.special_role) count++
+		if(!ishuman(M))
+			continue
+		var/mob/living/carbon/human/H = M
+		if(ismarine(H))
+			count++
 	return count
 
 // https://docs.google.com/spreadsheets/d/1PlnIwKhq-bVWWFPoBrzWYh1mWK04pyBSQUtUMEw3qSw/edit#gid=1290768907
