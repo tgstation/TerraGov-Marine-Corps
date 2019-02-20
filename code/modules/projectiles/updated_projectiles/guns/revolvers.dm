@@ -17,6 +17,7 @@
 	var/recent_trick //So they're not spamming tricks.
 	var/russian_roulette = 0 //God help you if you do this.
 	var/catchworking = TRUE
+	load_method = SINGLE_CASING|SPEEDLOADER //codex
 	type_of_casings = "bullet"
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER
 	wield_delay = WIELD_DELAY_VERY_FAST //If you modify your revolver to be two-handed, it will still be fast to aim
@@ -290,6 +291,8 @@
 	desc = "A bulky revolver, occasionally carried by assault troops and officers in the Marine Corps, as well civilian law enforcement. Uses .44 Magnum rounds."
 	icon_state = "m44"
 	item_state = "m44"
+	caliber = ".44 Magnum" //codex
+	max_shells = 7 //codex
 	current_mag = /obj/item/ammo_magazine/internal/revolver/m44
 	force = 8
 	attachable_allowed = list(
@@ -314,6 +317,8 @@
 	desc = "The Nagant-Yamasaki 7.62 is an effective killing machine designed by a consortion of shady Not-Americans. It is frequently found in the hands of criminals or mercenaries."
 	icon_state = "ny762"
 	item_state = "ny762"
+	caliber = "7.62x38mm Rimmed" //codex
+	max_shells = 7 //codex
 	origin_tech = "combat=3;materials=1;syndicate=3"
 	fire_sound = 'sound/weapons/gun_pistol_medium.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/revolver/upp
@@ -342,6 +347,8 @@
 	desc = "A lean .357 made by Smith & Wesson. A timeless classic, from antiquity to the future."
 	icon_state = "sw357"
 	item_state = "ny762" //PLACEHOLDER
+	caliber = ".357 Magnum" //codex
+	max_shells = 6 //codex
 	fire_sound = 'sound/weapons/gun_pistol_medium.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/revolver/small
 	force = 6
@@ -369,6 +376,8 @@
 	desc = "The Mateba is a powerful, fast-firing revolver that uses its own recoil to rotate the cylinders. It uses heavy .454 rounds."
 	icon_state = "mateba"
 	item_state = "mateba"
+	caliber = ".454 Casull" //codex
+	max_shells = 6 //codex
 	origin_tech = "combat=4;materials=3"
 	fire_sound = 'sound/weapons/gun_mateba.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/revolver/mateba
@@ -421,6 +430,8 @@
 	desc = "An automatic revolver chambered in .357. Commonly issued to Colonial Marshals. It has a burst mode."
 	icon_state = "spearhead"
 	item_state = "spearhead"
+	caliber = ".357 Magnum" //codex
+	max_shells = 6 //codex
 	fire_sound = 'sound/weapons/gun_44mag2.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/revolver/cmb
 	force = 12

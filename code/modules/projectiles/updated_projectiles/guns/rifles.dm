@@ -8,6 +8,7 @@
 	w_class = 4
 	force = 15
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
+	load_method = MAGAZINE //codex
 	aim_slowdown = SLOWDOWN_ADS_RIFLE
 	wield_delay = WIELD_DELAY_NORMAL
 	gun_skill_category = GUN_SKILL_RIFLES
@@ -48,6 +49,8 @@
 	icon_state = "m41a"
 	item_state = "m41a"
 	fire_sound = "gun_pulse"
+	caliber = "10x24mm caseless" //codex
+	max_shells = 40 //codex
 	current_mag = /obj/item/ammo_magazine/rifle
 	attachable_allowed = list(
 						/obj/item/attachable/quickfire,
@@ -126,6 +129,7 @@
 	icon_state = "m41amk1" //Placeholder.
 	item_state = "m41amk1" //Placeholder.
 	fire_sound = "gun_pulse"
+	max_shells = 95 //codex
 	current_mag = /obj/item/ammo_magazine/rifle/m41aMK1
 	attachable_allowed = list(
 						/obj/item/attachable/bayonet,
@@ -159,6 +163,8 @@
 	desc = "A cheap, reliable assault rifle chambered in 7.62x39mm. Commonly found in the hands of criminals or mercenaries, or in the hands of the UPP or Iron Bears."
 	icon_state = "mar40"
 	item_state = "mar40"
+	caliber = "7.62x93mm" //codex
+	max_shells = 40 //codex
 	origin_tech = "combat=4;materials=2;syndicate=4"
 	fire_sound = 'sound/weapons/gun_mar40.ogg'
 	current_mag = /obj/item/ammo_magazine/rifle/mar40
@@ -222,6 +228,8 @@
 	desc = "An old, reliable design first adopted by the U.S. military in the 1960s. Something like this belongs in a museum of war history. It is chambered in 5.56x45mm."
 	icon_state = "m16"
 	item_state = "m16"
+	caliber = "5.56x45mm" //codex
+	max_shells = 20 //codex
 	origin_tech = "combat=4;materials=3"
 	fire_sound = 'sound/weapons/gun_mar40.ogg'
 	current_mag = /obj/item/ammo_magazine/rifle/m16
@@ -265,6 +273,8 @@
 	desc = "A large weapon capable of laying down supressing fire. Currently undergoing field testing among TGMC scout platoons and in mercenary companies. Like it's smaller brother, the M41A MK2, the M41AE2 is chambered in 10mm."
 	icon_state = "m41ae2"
 	item_state = "m41ae2"
+	caliber = "10x24mm caseless" //codex
+	max_shells = 300 //codex
 	wield_delay = WIELD_DELAY_NORMAL + WIELD_DELAY_VERY_FAST
 	origin_tech = "combat=5;materials=4"
 	fire_sound = 'sound/weapons/gun_rifle.ogg' //Change
@@ -312,6 +322,8 @@
 	desc = "The primary service rifle of the UPP forces, the Type 71 is a reliable pulse rifle chambered in 7.62x39mm. Firing in two round bursts to conserve ammunition, the Type 71 was originally designed as an ergonomic, lightweight rifle to be used in outer-space operations. The Type 71 suffers from some reliability issues, and is prone to jamming in terrestrial climates, but makes up for this with a high number of variants and ease of production."
 	icon_state = "type71"
 	item_state = "type71"
+	caliber = "7.62x39mm" //codex
+	max_shells = 40 //codex
 	origin_tech = "combat=4;materials=2;syndicate=4"
 	fire_sound = list('sound/weapons/gun_type71.ogg')
 	current_mag = /obj/item/ammo_magazine/rifle/type71

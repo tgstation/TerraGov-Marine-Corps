@@ -16,6 +16,8 @@
 	desc = "A heavy sniper rifle manufactured by Armat Systems. It has a scope system and fires armor penetrating rounds out of a 15-round magazine.\nIt has an integrated Target Marker and a Laser Targeting system.\n'Peace Through Superior Firepower'"
 	icon_state = "m42a"
 	item_state = "m42a"
+	max_shells = 15 //codex
+	caliber = "10x28mm Caseless" //codex
 	origin_tech = "combat=6;materials=5"
 	fire_sound = 'sound/weapons/gun_sniper.ogg'
 	current_mag = /obj/item/ammo_magazine/sniper
@@ -185,6 +187,8 @@
 	desc = "A high end mag-rail heavy sniper rifle from Nanotrasen chambered in the heaviest ammo available, 10x99mm Caseless."
 	icon_state = "m42c"
 	item_state = "m42c" //NEEDS A TWOHANDED STATE
+	max_shells = 6 //codex
+	caliber = "10x99mm Caseless" //codex
 	origin_tech = "combat=7;materials=5"
 	fire_sound = 'sound/weapons/sniper_heavy.ogg'
 	current_mag = /obj/item/ammo_magazine/sniper/elite
@@ -219,6 +223,8 @@
 	desc = "A sniper variant of the MAR-40 rifle, with a new stock, barrel, and scope. It doesn't have the punch of modern sniper rifles, but it's finely crafted in 2133 by someone probably illiterate. Fires 7.62x54mmR rounds."
 	icon_state = "svd003"
 	item_state = "svd003" //NEEDS A ONE HANDED STATE
+	max_shells = 10 //codex
+	caliber = "7.62x54mm Rimmed" //codex
 	origin_tech = "combat=5;materials=3;syndicate=5"
 	fire_sound = 'sound/weapons/gun_kt42.ogg'
 	current_mag = /obj/item/ammo_magazine/sniper/svd
@@ -253,6 +259,8 @@
 	desc = "The M4RA battle rifle is a designated marksman rifle in service with the TGMC. Only fielded in small numbers, and sporting a bullpup configuration, the M4RA battle rifle is perfect for reconnaissance and fire support teams.\nIt is equipped with rail scope and takes 10x24mm A19 high velocity magazines."
 	icon_state = "m41b"
 	item_state = "m4ra" //PLACEHOLDER
+	max_shells = 15 //codex
+	caliber = "10x24mm Caseless" //codex
 	origin_tech = "combat=5;materials=4"
 	fire_sound = list('sound/weapons/gun_m4ra.ogg')
 	current_mag = /obj/item/ammo_magazine/rifle/m4ra
@@ -287,8 +295,11 @@
 	desc = "The actual firearm in the 4-piece M56B Smartgun System. Essentially a heavy, mobile machinegun.\nReloading is a cumbersome process requiring a powerpack. Click the powerpack icon in the top left to reload.\nYou may toggle firing restrictions by using a special action."
 	icon_state = "m56"
 	item_state = "m56"
+	max_shells = 100 //codex
+	caliber = "10x28mm Caseless" //codex
 	origin_tech = "combat=6;materials=5"
 	fire_sound = "gun_smartgun"
+	load_method = POWERPACK //codex
 	current_mag = /obj/item/ammo_magazine/internal/smartgun
 	flags_equip_slot = NOFLAGS
 	w_class = 5
@@ -413,6 +424,9 @@
 	desc = "A heavy, 6-shot grenade launcher used by the TerraGov Marine Corps for area denial and big explosions."
 	icon_state = "m92"
 	item_state = "m92" //NEED TWO HANDED SPRITE
+	max_shells = 6 //codex
+	caliber = "40mm grenades" //codex
+	load_method = SINGLE_CASING //codex
 	origin_tech = "combat=5;materials=5"
 	matter = list("metal" = 6000)
 	w_class = 4.0
@@ -542,6 +556,9 @@
 	desc = "A lightweight, single-shot grenade launcher used by the TerraGov Marine Corps for area denial and big explosions."
 	icon_state = "m81"
 	item_state = "m81"
+	max_shells = 1 //codex
+	caliber = "40mm grenades" //codex
+	load_method = SINGLE_CASING //codex
 	origin_tech = "combat=5;materials=5"
 	matter = list("metal" = 7000)
 	w_class = 4.0
@@ -670,6 +687,9 @@
 	desc = "The M5 RPG is the primary anti-armor weapon of the TGMC. Used to take out light-tanks and enemy structures, the M5 RPG is a dangerous weapon with a variety of combat uses."
 	icon_state = "m5"
 	item_state = "m5"
+	max_shells = 1 //codex
+	caliber = "84mm rockets" //codex
+	load_method = SINGLE_CASING //codex
 	origin_tech = "combat=6;materials=5"
 	matter = list("metal" = 10000)
 	current_mag = /obj/item/ammo_magazine/rocket
@@ -815,6 +835,9 @@
 	desc = "The M57-A4 'Lightning Bolt' is posssibly the most destructive man-portable weapon ever made. It is a 4-barreled missile launcher capable of burst-firing 4 thermobaric missiles. Enough said."
 	icon_state = "m57a4"
 	item_state = "m57a4"
+	max_shells = 4 //codex
+	caliber = "84mm rockets" //codex
+	load_method = MAGAZINE //codex
 	origin_tech = "combat=7;materials=5"
 	current_mag = /obj/item/ammo_magazine/rocket/m57a4
 	aim_slowdown = SLOWDOWN_ADS_SUPERWEAPON
@@ -841,6 +864,9 @@
 	desc = "The MIC ZX-76 Assault Shotgun, a dobule barreled semi-automatic combat shotgun with a twin shot mode. Has a 9 round internal magazine."
 	icon_state = "zx-76"
 	item_state = "zx-76"
+	max_shells = 10 //codex
+	caliber = "12 guage shotgun shells" //codex
+	load_method = SINGLE_CASING //codex
 	origin_tech = "combat=5;materials=4"
 	fire_sound = 'sound/weapons/gun_shotgun_automatic.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/scout
@@ -882,6 +908,9 @@
 	desc = "It's a damn minigun! The ultimate in man-portable firepower, spraying countless high velocity armor piercing rounds with a rotary action, this thing will no doubt pack a punch."
 	icon_state = "painless"
 	item_state = "painless"
+	max_shells = 500 //codex
+	caliber = "7.62x51mm" //codex
+	load_method = MAGAZINE //codex
 	origin_tech = "combat=7;materials=5"
 	fire_sound = 'sound/weapons/gun_minigun.ogg'
 	cocked_sound = 'sound/weapons/gun_minigun_cocked.ogg'
