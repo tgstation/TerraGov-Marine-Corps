@@ -16,23 +16,23 @@
 		if(1)
 			H.next_move_slowdown = max(H.next_move_slowdown, 2)
 			if(prob(5) || age >= stage_minimum_age-1)
-				if(!zombie_transforming)
+			if(!zombie_transforming)
 					zombie_transform(H)
 			else if(prob(5))
 				H.vomit()
 		if(2)
 			if(!zombie_transforming && prob(10))
-				if(H.stat != DEAD)
-					var/healamt = H.stat ? 5 : 1
-					if(H.health < H.maxHealth)
-						H.adjustFireLoss(-healamt)
-						H.adjustBruteLoss(-healamt)
-						H.adjustToxLoss(-healamt)
-						H.adjustOxyLoss(-healamt)
+			if(H.stat != DEAD)
+				var/healamt = H.stat ? 5 : 1
+			if(H.health < H.maxHealth)
+				H.adjustFireLoss(-healamt)
+				H.adjustBruteLoss(-healamt)
+				H.adjustToxLoss(-healamt)
+				H.adjustOxyLoss(-healamt)
 				H.nutrition = 450 //never hungry
-				if(goo_message_cooldown < world.time)
-					goo_message_cooldown = world.time + 100
-					to_chat(affected_mob, "<span class='red'> Kill... Die... Glory...</span>")
+			if(goo_message_cooldown < world.time)
+				goo_message_cooldown = world.time + 100
+				to_chat(affected_mob, "<span class='red'> Kill... Die... Glory...</span>")
 
 
 /datum/disease/black_goo/necromorph_virus/proc/necro_transform(mob/living/carbon/human/H)
@@ -45,7 +45,8 @@
 	H.Jitter(500)
 	sleep(30)
 	if(H && H.loc)
-		if(H.stat == DEAD) H.revive(TRUE)
+		if(H.stat == DEAD)
+		H.revive(TRUE)
 		playsound(H.loc, 'sound/hallucinations/wail.ogg', 25, 1)
 		H.jitteriness = 0
 		H.set_species("Necromorph")
