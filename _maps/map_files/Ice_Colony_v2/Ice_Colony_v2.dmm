@@ -23120,10 +23120,7 @@
 /turf/open/floor/plating,
 /area/shuttle/drop1/ice_colony)
 "aWr" = (
-/obj/machinery/landinglight/ds2/delaytwo{
-	tag = "icon-landingstripe";
-	icon_state = "landingstripe"
-	},
+/obj/machinery/landinglight/ds2/delaytwo,
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad_external)
 "aWs" = (
@@ -23389,10 +23386,7 @@
 	},
 /area/ice_colony/surface/research/tech_storage)
 "aWQ" = (
-/obj/machinery/landinglight/ds2/delayone{
-	tag = "icon-landingstripe";
-	icon_state = "landingstripe"
-	},
+/obj/machinery/landinglight/ds2/delayone,
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad_external)
 "aWR" = (
@@ -25336,10 +25330,7 @@
 	},
 /area/ice_colony/surface/hangar/beta)
 "bbb" = (
-/obj/machinery/landinglight/ds2{
-	tag = "icon-landingstripe";
-	icon_state = "landingstripe"
-	},
+/obj/machinery/landinglight/ds2,
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad_external)
 "bbc" = (
@@ -26601,10 +26592,7 @@
 	},
 /area/ice_colony/underground/requesition)
 "bdS" = (
-/obj/machinery/landinglight/ds2{
-	tag = "icon-landingstripe";
-	icon_state = "landingstripe"
-	},
+/obj/machinery/landinglight/ds2,
 /turf/open/floor/plating/icefloor{
 	tag = "icon-warnplate (EAST)";
 	icon_state = "warnplate";
@@ -26612,10 +26600,7 @@
 	},
 /area/ice_colony/exterior/surface/landing_pad_external)
 "bdT" = (
-/obj/machinery/landinglight/ds2/delaythree{
-	tag = "icon-landingstripe";
-	icon_state = "landingstripe"
-	},
+/obj/machinery/landinglight/ds2/delaythree,
 /turf/open/floor/plating/icefloor{
 	tag = "icon-warnplate (WEST)";
 	icon_state = "warnplate";
@@ -27993,10 +27978,7 @@
 /turf/open/floor/freezer,
 /area/ice_colony/surface/bar/bar)
 "bgT" = (
-/obj/machinery/landinglight/ds2/delaythree{
-	tag = "icon-landingstripe";
-	icon_state = "landingstripe"
-	},
+/obj/machinery/landinglight/ds2/delaythree,
 /turf/open/floor/plating/icefloor{
 	tag = "icon-warnplate (EAST)";
 	icon_state = "warnplate";
@@ -28731,10 +28713,7 @@
 	},
 /area/ice_colony/underground/requesition/lobby)
 "bir" = (
-/obj/machinery/landinglight/ds2/delaytwo{
-	tag = "icon-landingstripe";
-	icon_state = "landingstripe"
-	},
+/obj/machinery/landinglight/ds2/delaytwo,
 /turf/open/floor/plating/icefloor{
 	tag = "icon-warnplate (WEST)";
 	icon_state = "warnplate";

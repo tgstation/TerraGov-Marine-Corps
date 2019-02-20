@@ -30420,31 +30420,19 @@
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/hangar)
 "bkQ" = (
-/obj/machinery/landinglight/ds2/delaytwo{
-	tag = "icon-landingstripe";
-	icon_state = "landingstripe"
-	},
+/obj/machinery/landinglight/ds2/delaytwo,
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/hangar)
 "bkR" = (
-/obj/machinery/landinglight/ds2/delayone{
-	tag = "icon-landingstripe";
-	icon_state = "landingstripe"
-	},
+/obj/machinery/landinglight/ds2/delayone,
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/hangar)
 "bkS" = (
-/obj/machinery/landinglight/ds2{
-	tag = "icon-landingstripe";
-	icon_state = "landingstripe"
-	},
+/obj/machinery/landinglight/ds2,
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/hangar)
 "bkT" = (
-/obj/machinery/landinglight/ds2/delaythree{
-	tag = "icon-landingstripe";
-	icon_state = "landingstripe"
-	},
+/obj/machinery/landinglight/ds2/delaythree,
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/hangar)
 "bkU" = (

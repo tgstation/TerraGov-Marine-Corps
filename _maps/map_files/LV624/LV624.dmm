@@ -11331,10 +11331,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/shuttle/drop2/lz2)
 "aNQ" = (
-/obj/machinery/landinglight/ds2/delaytwo{
-	tag = "icon-landingstripe";
-	icon_state = "landingstripe"
-	},
+/obj/machinery/landinglight/ds2/delaytwo,
 /obj/structure/barricade/wooden{
 	dir = 1
 	},
@@ -11346,10 +11343,7 @@
 /obj/structure/barricade/wooden{
 	dir = 1
 	},
-/obj/machinery/landinglight/ds2/delayone{
-	tag = "icon-landingstripe";
-	icon_state = "landingstripe"
-	},
+/obj/machinery/landinglight/ds2/delayone,
 /turf/open/floor/plating/asteroidwarning{
 	dir = 2
 	},
@@ -11358,10 +11352,7 @@
 /obj/structure/barricade/wooden{
 	dir = 1
 	},
-/obj/machinery/landinglight/ds2{
-	tag = "icon-landingstripe";
-	icon_state = "landingstripe"
-	},
+/obj/machinery/landinglight/ds2,
 /turf/open/floor/plating/asteroidwarning{
 	dir = 2
 	},
@@ -11370,10 +11361,7 @@
 /obj/structure/barricade/wooden{
 	dir = 1
 	},
-/obj/machinery/landinglight/ds2/delaythree{
-	tag = "icon-landingstripe";
-	icon_state = "landingstripe"
-	},
+/obj/machinery/landinglight/ds2/delaythree,
 /turf/open/floor/plating/asteroidwarning{
 	dir = 2
 	},
@@ -11382,19 +11370,13 @@
 /obj/structure/barricade/wooden{
 	dir = 1
 	},
-/obj/machinery/landinglight/ds2/delaytwo{
-	tag = "icon-landingstripe";
-	icon_state = "landingstripe"
-	},
+/obj/machinery/landinglight/ds2/delaytwo,
 /turf/open/floor/plating/asteroidwarning{
 	dir = 2
 	},
 /area/shuttle/drop2/lz2)
 "aNV" = (
-/obj/machinery/landinglight/ds2{
-	tag = "icon-landingstripe";
-	icon_state = "landingstripe"
-	},
+/obj/machinery/landinglight/ds2,
 /obj/structure/barricade/wooden{
 	dir = 1
 	},

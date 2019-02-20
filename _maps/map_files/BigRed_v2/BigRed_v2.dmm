@@ -25727,55 +25727,34 @@
 	},
 /area/bigredv2/outside/w)
 "bhu" = (
-/obj/machinery/landinglight/ds2/delaytwo{
-	tag = "icon-landingstripe";
-	icon_state = "landingstripe"
-	},
+/obj/machinery/landinglight/ds2/delaytwo,
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/cargo)
 "bhv" = (
-/obj/machinery/landinglight/ds2/delayone{
-	tag = "icon-landingstripe";
-	icon_state = "landingstripe"
-	},
+/obj/machinery/landinglight/ds2/delayone,
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/cargo)
 "bhw" = (
-/obj/machinery/landinglight/ds2{
-	tag = "icon-landingstripe";
-	icon_state = "landingstripe"
-	},
+/obj/machinery/landinglight/ds2,
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/cargo)
 "bhx" = (
-/obj/machinery/landinglight/ds2/delaythree{
-	tag = "icon-landingstripe";
-	icon_state = "landingstripe"
-	},
+/obj/machinery/landinglight/ds2/delaythree,
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/cargo)
 "bhy" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/landinglight/ds2/delayone{
-	tag = "icon-landingstripe";
-	icon_state = "landingstripe"
-	},
+/obj/machinery/landinglight/ds2/delayone,
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/cargo)
 "bhz" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/landinglight/ds2/delaythree{
-	tag = "icon-landingstripe";
-	icon_state = "landingstripe"
-	},
+/obj/machinery/landinglight/ds2/delaythree,
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/cargo)
 "bhA" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/landinglight/ds2/delaytwo{
-	tag = "icon-landingstripe";
-	icon_state = "landingstripe"
-	},
+/obj/machinery/landinglight/ds2/delaytwo,
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/cargo)
 "bhB" = (
