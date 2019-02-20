@@ -591,6 +591,8 @@ var/list/global_mutations = list() // list of hidden mutation things
 //misc
 
 #define STANDARD_SLOWDOWN_REGEN 0.3
+
+#define HYPERVENE_REMOVAL_AMOUNT	8
 // Squad ID defines moved from game\jobs\job\squad.dm
 #define NO_SQUAD 0
 #define ALPHA_SQUAD 1

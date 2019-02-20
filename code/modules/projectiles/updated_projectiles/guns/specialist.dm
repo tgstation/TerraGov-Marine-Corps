@@ -318,8 +318,7 @@
 	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
 	damage_falloff_mult = CONFIG_GET(number/combat_define/med_damage_falloff_mult)
 
-/obj/item/weapon/gun/smartgun/examine(mob/user)
-	. = ..()
+/obj/item/weapon/gun/smartgun/examine_ammo_count(mob/user)
 	to_chat(user, "[current_mag.current_rounds ? "Ammo counter shows [current_mag.current_rounds] round\s remaining." : "It's dry."]")
 	to_chat(user, "The restriction system is [restriction_toggled ? "<B>on</b>" : "<B>off</b>"].")
 
@@ -442,12 +441,10 @@
 	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
 
 
-/obj/item/weapon/gun/launcher/m92/examine(mob/user)
-	. = ..()
-	if(grenades.len)
-		if(get_dist(user, src) > 2 && user != loc)
-			return
-		to_chat(user, "<span class='notice'> It is loaded with <b>[grenades.len] / [max_grenades]</b> grenades.</span>")
+/obj/item/weapon/gun/launcher/m92/examine_ammo_count(mob/user)
+	if(!length(grenades) || (get_dist(user, src) > 2 && user != loc))
+		return
+	to_chat(user, "<span class='notice'> It is loaded with <b>[grenades.len] / [max_grenades]</b> grenades.</span>")
 
 
 /obj/item/weapon/gun/launcher/m92/attackby(obj/item/I, mob/user)
@@ -572,12 +569,10 @@
 	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
 
 
-/obj/item/weapon/gun/launcher/m81/examine(mob/user)
-	. = ..()
-	if(grenade)
-		if(get_dist(user, src) > 2 && user != loc)
-			return
-		to_chat(user, "<span class='notice'> It is loaded with a grenade.</span>")
+/obj/item/weapon/gun/launcher/m81/examine_ammo_count(mob/user)
+	if(!grenade || (get_dist(user, src) > 2 && user != loc))
+		return
+	to_chat(user, "<span class='notice'> It is loaded with a grenade.</span>")
 
 
 /obj/item/weapon/gun/launcher/m81/attackby(obj/item/I, mob/user)
@@ -733,8 +728,7 @@
 	recoil = CONFIG_GET(number/combat_define/med_recoil_value)
 
 
-/obj/item/weapon/gun/launcher/rocket/examine(mob/user)
-	. = ..()
+/obj/item/weapon/gun/launcher/rocket/examine_ammo_count(mob/user)
 	if(current_mag.current_rounds)
 		to_chat(user, "It's ready to rocket.")
 	else
@@ -890,9 +884,7 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_BURST_ON|GUN_WIELDED_FIRING_ONLY|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	attachable_allowed = list(
 						/obj/item/attachable/flashlight,
-						/obj/item/attachable/magnetic_harness,
-						/obj/item/attachable/gyro,
-						/obj/item/attachable/bipod)
+						/obj/item/attachable/magnetic_harness)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 12)
 
 /obj/item/weapon/gun/minigun/Fire(atom/target, mob/living/user, params, reflex = 0, dual_wield)

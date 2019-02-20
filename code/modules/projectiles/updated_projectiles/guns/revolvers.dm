@@ -38,8 +38,7 @@
 	recoil_unwielded = CONFIG_GET(number/combat_define/med_recoil_value)
 
 
-/obj/item/weapon/gun/revolver/examine(mob/user)
-	. = ..()
+/obj/item/weapon/gun/revolver/examine_ammo_count(mob/user)
 	to_chat(user, "[current_mag.chamber_closed? "It's closed.": "It's open with [current_mag.current_rounds] round\s loaded."]")
 
 /obj/item/weapon/gun/revolver/update_icon() //Special snowflake update icon.
