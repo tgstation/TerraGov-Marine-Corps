@@ -740,9 +740,9 @@
 	if(H.head) qdel(H.head)
 	if(H.glasses) qdel(H.glasses)
 	if(H.wear_mask) qdel(H.wear_mask)
-	var/obj/item/weapon/necromorph_claws/ZC = new()
-	ZC.icon_state = "claw_r"
-	H.equip_to_slot_or_del(ZC, SLOT_R_HAND, TRUE)
+	var/obj/item/weapon/necromorph_claws/NC = new()
+	NC.icon_state = "claw_r"
+	H.equip_to_slot_or_del(NC, SLOT_R_HAND, TRUE)
 	H.equip_to_slot_or_del(new /obj/item/weapon/necromorph_claws, SLOT_L_HAND, TRUE)
 	H.equip_to_slot(new /obj/item/clothing/glasses/zombie_eyes, SLOT_GLASSES, TRUE)
 	H.equip_to_slot(new /obj/item/clothing/mask/rebreather/scarf/zombie, SLOT_WEAR_MASK, TRUE)
