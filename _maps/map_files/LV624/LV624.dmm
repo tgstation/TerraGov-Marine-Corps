@@ -11223,11 +11223,7 @@
 	},
 /area/lv624/lazarus/sleep_male)
 "aNx" = (
-/obj/structure/closet{
-	density = 0;
-	icon_state = "open";
-	opened = 1
-	},
+/obj/structure/closet/open,
 /turf/open/floor/tile/blue/taupebluecorner{
 	dir = 2
 	},
@@ -11757,11 +11753,7 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "aPp" = (
-/obj/structure/closet{
-	density = 0;
-	icon_state = "open";
-	opened = 1
-	},
+/obj/structure/closet/open,
 /obj/structure/window/reinforced/tinted,
 /obj/item/clothing/under/colonist,
 /turf/open/floor/tile/purple/taupepurple{
@@ -13044,11 +13036,7 @@
 	},
 /area/lv624/lazarus/sleep_male)
 "aSX" = (
-/obj/structure/closet{
-	density = 0;
-	icon_state = "open";
-	opened = 1
-	},
+/obj/structure/closet/open,
 /obj/item/clothing/under/colonist,
 /obj/structure/window/reinforced{
 	dir = 4
@@ -13109,11 +13097,7 @@
 	},
 /area/lv624/lazarus/sleep_female)
 "aTe" = (
-/obj/structure/closet{
-	density = 0;
-	icon_state = "open";
-	opened = 1
-	},
+/obj/structure/closet/open,
 /obj/item/device/flashlight,
 /obj/item/clothing/under/colonist,
 /obj/structure/window/reinforced{
