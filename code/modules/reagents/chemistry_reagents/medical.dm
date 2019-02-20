@@ -597,9 +597,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/M, alien)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		for(var/datum/internal_organ/I in H.internal_organs)
-			if(I.damage)
-				if(M.bodytemperature > 169 && I.damage > 5) //can only fix very minor organ damage outside of cryo
-					return ..()
+			if(I.damage && I.damage <= 5 && M.bodytemperature <= 169)
 				I.heal_damage(1)
 	return ..()
 
