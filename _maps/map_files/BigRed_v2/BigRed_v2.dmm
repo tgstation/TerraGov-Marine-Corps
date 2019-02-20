@@ -26003,8 +26003,6 @@
 /area/bigredv2/outside/se)
 "bid" = (
 /obj/machinery/landinglight/ds2/delaythree{
-	tag = "icon-landingstripe (EAST)";
-	icon_state = "landingstripe";
 	dir = 4
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -26016,8 +26014,6 @@
 /area/shuttle/drop2/lz2)
 "bif" = (
 /obj/machinery/landinglight/ds2/delaythree{
-	tag = "icon-landingstripe (WEST)";
-	icon_state = "landingstripe";
 	dir = 8
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -26293,8 +26289,6 @@
 /area/bigredv2/outside/w)
 "biH" = (
 /obj/machinery/landinglight/ds2{
-	tag = "icon-landingstripe (EAST)";
-	icon_state = "landingstripe";
 	dir = 4
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -26306,8 +26300,6 @@
 /area/shuttle/drop2/BigRed)
 "biJ" = (
 /obj/machinery/landinglight/ds2/delaytwo{
-	tag = "icon-landingstripe (WEST)";
-	icon_state = "landingstripe";
 	dir = 8
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -26480,8 +26472,6 @@
 /area/bigredv2/outside/se)
 "bjd" = (
 /obj/machinery/landinglight/ds2/delayone{
-	tag = "icon-landingstripe (EAST)";
-	icon_state = "landingstripe";
 	dir = 4
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -26494,8 +26484,6 @@
 /area/shuttle/drop2/lz2)
 "bjf" = (
 /obj/machinery/landinglight/ds2/delayone{
-	tag = "icon-landingstripe (WEST)";
-	icon_state = "landingstripe";
 	dir = 8
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -26547,8 +26535,6 @@
 /area/bigredv2/outside/se)
 "bjn" = (
 /obj/machinery/landinglight/ds2/delaytwo{
-	tag = "icon-landingstripe (EAST)";
-	icon_state = "landingstripe";
 	dir = 4
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -26562,8 +26548,6 @@
 "bjp" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/landinglight/ds2{
-	tag = "icon-landingstripe (WEST)";
-	icon_state = "landingstripe";
 	dir = 8
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -26787,8 +26771,6 @@
 "bjO" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/landinglight/ds2/delaythree{
-	tag = "icon-landingstripe (WEST)";
-	icon_state = "landingstripe";
 	dir = 8
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -27243,8 +27225,6 @@
 /area/bigredv2/outside/se)
 "bkY" = (
 /obj/machinery/landinglight/ds2{
-	tag = "icon-landingstripe (WEST)";
-	icon_state = "landingstripe";
 	dir = 8
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -28931,8 +28911,6 @@
 /area/bigredv2/caves)
 "bpu" = (
 /obj/machinery/landinglight/ds2/delaythree{
-	tag = "icon-landingstripe (WEST)";
-	icon_state = "landingstripe";
 	dir = 8
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -29188,8 +29166,6 @@
 /area/bigredv2/caves)
 "bqd" = (
 /obj/machinery/landinglight/ds2/delaytwo{
-	tag = "icon-landingstripe (WEST)";
-	icon_state = "landingstripe";
 	dir = 8
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -29436,8 +29412,6 @@
 /area/bigredv2/outside/se)
 "bqE" = (
 /obj/machinery/landinglight/ds2/delayone{
-	tag = "icon-landingstripe (WEST)";
-	icon_state = "landingstripe";
 	dir = 8
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -29647,8 +29621,6 @@
 /area/bigredv2/outside/se)
 "brb" = (
 /obj/machinery/landinglight/ds2{
-	tag = "icon-landingstripe (WEST)";
-	icon_state = "landingstripe";
 	dir = 8
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -30000,8 +29972,6 @@
 /area/bigredv2/outside/sw)
 "bsb" = (
 /obj/machinery/landinglight/ds2{
-	tag = "icon-landingstripe (NORTH)";
-	icon_state = "landingstripe";
 	dir = 1
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -30010,8 +29980,6 @@
 /area/bigredv2/outside/sw)
 "bsc" = (
 /obj/machinery/landinglight/ds2/delayone{
-	tag = "icon-landingstripe (NORTH)";
-	icon_state = "landingstripe";
 	dir = 1
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -30020,8 +29988,6 @@
 /area/bigredv2/outside/sw)
 "bsd" = (
 /obj/machinery/landinglight/ds2/delaytwo{
-	tag = "icon-landingstripe (NORTH)";
-	icon_state = "landingstripe";
 	dir = 1
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -30030,8 +29996,6 @@
 /area/bigredv2/outside/sw)
 "bse" = (
 /obj/machinery/landinglight/ds2/delaythree{
-	tag = "icon-landingstripe (NORTH)";
-	icon_state = "landingstripe";
 	dir = 1
 	},
 /turf/open/floor/marking/asteroidwarning{

@@ -26385,8 +26385,6 @@
 /area/ice_colony/exterior/surface/cliff)
 "bdz" = (
 /obj/machinery/landinglight/ds2/delaythree{
-	tag = "icon-landingstripe (EAST)";
-	icon_state = "landingstripe";
 	dir = 4
 	},
 /turf/open/floor/plating/icefloor,
@@ -30438,8 +30436,6 @@
 /area/ice_colony/underground/crew/library)
 "bmg" = (
 /obj/machinery/landinglight/ds2/delayone{
-	tag = "icon-landingstripe (WEST)";
-	icon_state = "landingstripe";
 	dir = 8
 	},
 /turf/open/floor/plating/icefloor,
@@ -31557,8 +31553,6 @@
 /area/ice_colony/underground/hallway/south_east)
 "boK" = (
 /obj/machinery/landinglight/ds2{
-	tag = "icon-landingstripe (EAST)";
-	icon_state = "landingstripe";
 	dir = 4
 	},
 /turf/open/floor/plating/icefloor,
@@ -33932,8 +33926,6 @@
 /area/ice_colony/underground/medical/hallway)
 "btJ" = (
 /obj/machinery/landinglight/ds2{
-	tag = "icon-landingstripe (WEST)";
-	icon_state = "landingstripe";
 	dir = 8
 	},
 /turf/open/floor/plating/icefloor,
@@ -38879,8 +38871,6 @@
 /area/ice_colony/underground/crew/canteen)
 "bDD" = (
 /obj/machinery/landinglight/ds2/delayone{
-	tag = "icon-landingstripe (EAST)";
-	icon_state = "landingstripe";
 	dir = 4
 	},
 /turf/open/floor/plating/icefloor{
@@ -40466,8 +40456,6 @@
 /area/ice_colony/underground/security/interrogation)
 "bGW" = (
 /obj/machinery/landinglight/ds2/delaythree{
-	tag = "icon-landingstripe (WEST)";
-	icon_state = "landingstripe";
 	dir = 8
 	},
 /turf/open/floor/plating/icefloor{
@@ -41672,8 +41660,6 @@
 /area/ice_colony/exterior/underground/caves/open)
 "bJl" = (
 /obj/machinery/landinglight/ds2/delaytwo{
-	tag = "icon-landingstripe (EAST)";
-	icon_state = "landingstripe";
 	dir = 4
 	},
 /turf/open/floor/plating/icefloor{
@@ -42544,8 +42530,6 @@
 /area/ice_colony/underground/hallway/south_east)
 "bKG" = (
 /obj/machinery/landinglight/ds2/delaytwo{
-	tag = "icon-landingstripe (WEST)";
-	icon_state = "landingstripe";
 	dir = 8
 	},
 /turf/open/floor/plating/icefloor{
@@ -42753,8 +42737,6 @@
 /area/ice_colony/underground/crew/library)
 "bLd" = (
 /obj/machinery/landinglight/ds2/delaythree{
-	tag = "icon-landingstripe (EAST)";
-	icon_state = "landingstripe";
 	dir = 4
 	},
 /turf/open/floor/plating/icefloor,
@@ -45834,8 +45816,6 @@
 	})
 "bRx" = (
 /obj/machinery/landinglight/ds2/delayone{
-	tag = "icon-landingstripe (WEST)";
-	icon_state = "landingstripe";
 	dir = 8
 	},
 /turf/open/floor/plating/icefloor,
@@ -45855,24 +45835,18 @@
 /area/ice_colony/underground/hangar)
 "bRA" = (
 /obj/machinery/landinglight/ds2{
-	tag = "icon-landingstripe (EAST)";
-	icon_state = "landingstripe";
 	dir = 4
 	},
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad)
 "bRB" = (
 /obj/machinery/landinglight/ds2{
-	tag = "icon-landingstripe (WEST)";
-	icon_state = "landingstripe";
 	dir = 8
 	},
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad)
 "bRC" = (
 /obj/machinery/landinglight/ds2/delayone{
-	tag = "icon-landingstripe (EAST)";
-	icon_state = "landingstripe";
 	dir = 4
 	},
 /turf/open/floor/plating/icefloor,
@@ -45952,16 +45926,12 @@
 /area/ice_colony/underground/hallway/south_east)
 "bRJ" = (
 /obj/machinery/landinglight/ds2/delaythree{
-	tag = "icon-landingstripe (WEST)";
-	icon_state = "landingstripe";
 	dir = 8
 	},
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad)
 "bRK" = (
 /obj/machinery/landinglight/ds2/delaytwo{
-	tag = "icon-landingstripe (EAST)";
-	icon_state = "landingstripe";
 	dir = 4
 	},
 /turf/open/floor/plating/icefloor,
@@ -45997,8 +45967,6 @@
 /area/ice_colony/underground/security/interrogation)
 "bRO" = (
 /obj/machinery/landinglight/ds2/delaytwo{
-	tag = "icon-landingstripe (WEST)";
-	icon_state = "landingstripe";
 	dir = 8
 	},
 /turf/open/floor/plating/icefloor,
@@ -46006,16 +45974,12 @@
 "bRP" = (
 /obj/effect/landmark/huntergames_secondary_spawn,
 /obj/machinery/landinglight/ds2/delaythree{
-	tag = "icon-landingstripe (EAST)";
-	icon_state = "landingstripe";
 	dir = 4
 	},
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad)
 "bRQ" = (
 /obj/machinery/landinglight/ds2{
-	tag = "icon-landingstripe (EAST)";
-	icon_state = "landingstripe";
 	dir = 4
 	},
 /turf/open/floor/plating/icefloor{
@@ -47037,8 +47001,6 @@
 /area/ice_colony/underground/maintenance/east)
 "bUc" = (
 /obj/machinery/landinglight/ds2{
-	tag = "icon-landingstripe (WEST)";
-	icon_state = "landingstripe";
 	dir = 8
 	},
 /turf/open/floor/plating/icefloor{
@@ -47205,8 +47167,6 @@
 	})
 "bUA" = (
 /obj/machinery/landinglight/ds2/delayone{
-	tag = "icon-landingstripe (EAST)";
-	icon_state = "landingstripe";
 	dir = 4
 	},
 /turf/open/floor/plating/icefloor{
@@ -48495,8 +48455,6 @@
 /area/ice_colony/underground/maintenance/east)
 "bWU" = (
 /obj/machinery/landinglight/ds2/delaythree{
-	tag = "icon-landingstripe (WEST)";
-	icon_state = "landingstripe";
 	dir = 8
 	},
 /turf/open/floor/plating/icefloor{
@@ -48511,8 +48469,6 @@
 	icon_state = "armorblood"
 	},
 /obj/machinery/landinglight/ds2/delaythree{
-	tag = "icon-landingstripe (EAST)";
-	icon_state = "landingstripe";
 	dir = 4
 	},
 /turf/open/floor/plating/icefloor{
@@ -48985,8 +48941,6 @@
 	})
 "bXM" = (
 /obj/machinery/landinglight/ds2/delayone{
-	tag = "icon-landingstripe (WEST)";
-	icon_state = "landingstripe";
 	dir = 8
 	},
 /turf/open/floor/plating/icefloor{
@@ -49943,8 +49897,6 @@
 /area/ice_colony/underground/engineering)
 "bZw" = (
 /obj/machinery/landinglight/ds2{
-	tag = "icon-landingstripe (EAST)";
-	icon_state = "landingstripe";
 	dir = 4
 	},
 /turf/open/floor/plating/icefloor{
@@ -49975,8 +49927,6 @@
 /area/ice_colony/underground/maintenance/engineering)
 "bZA" = (
 /obj/machinery/landinglight/ds2{
-	tag = "icon-landingstripe (WEST)";
-	icon_state = "landingstripe";
 	dir = 8
 	},
 /turf/open/floor/plating/icefloor{
@@ -50084,16 +50034,12 @@
 /area/ice_colony/underground/maintenance/engineering)
 "bZK" = (
 /obj/machinery/landinglight/ds2/delayone{
-	tag = "icon-landingstripe (EAST)";
-	icon_state = "landingstripe";
 	dir = 4
 	},
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad_external)
 "bZL" = (
 /obj/machinery/landinglight/ds2/delaythree{
-	tag = "icon-landingstripe (WEST)";
-	icon_state = "landingstripe";
 	dir = 8
 	},
 /turf/open/floor/plating/icefloor,
@@ -50120,8 +50066,6 @@
 	})
 "bZO" = (
 /obj/machinery/landinglight/ds2/delaytwo{
-	tag = "icon-landingstripe (EAST)";
-	icon_state = "landingstripe";
 	dir = 4
 	},
 /turf/open/floor/plating/icefloor,
@@ -50146,32 +50090,24 @@
 	})
 "bZR" = (
 /obj/machinery/landinglight/ds2/delaytwo{
-	tag = "icon-landingstripe (WEST)";
-	icon_state = "landingstripe";
 	dir = 8
 	},
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad_external)
 "bZS" = (
 /obj/machinery/landinglight/ds2/delaythree{
-	tag = "icon-landingstripe (NORTH)";
-	icon_state = "landingstripe";
 	dir = 1
 	},
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad)
 "bZT" = (
 /obj/machinery/landinglight/ds2{
-	tag = "icon-landingstripe (NORTH)";
-	icon_state = "landingstripe";
 	dir = 1
 	},
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad)
 "bZU" = (
 /obj/machinery/landinglight/ds2/delayone{
-	tag = "icon-landingstripe (NORTH)";
-	icon_state = "landingstripe";
 	dir = 1
 	},
 /turf/open/floor/plating/icefloor{
@@ -50182,8 +50118,6 @@
 /area/ice_colony/exterior/surface/landing_pad)
 "bZV" = (
 /obj/machinery/landinglight/ds2/delaytwo{
-	tag = "icon-landingstripe (NORTH)";
-	icon_state = "landingstripe";
 	dir = 1
 	},
 /turf/open/floor/plating/icefloor{
@@ -50194,16 +50128,12 @@
 /area/ice_colony/exterior/surface/landing_pad)
 "bZW" = (
 /obj/machinery/landinglight/ds2/delayone{
-	tag = "icon-landingstripe (NORTH)";
-	icon_state = "landingstripe";
 	dir = 1
 	},
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad)
 "bZX" = (
 /obj/machinery/landinglight/ds2/delaytwo{
-	tag = "icon-landingstripe (NORTH)";
-	icon_state = "landingstripe";
 	dir = 1
 	},
 /turf/open/floor/plating/icefloor{
@@ -50214,8 +50144,6 @@
 /area/ice_colony/exterior/surface/landing_pad)
 "bZY" = (
 /obj/machinery/landinglight/ds2/delaythree{
-	tag = "icon-landingstripe (NORTH)";
-	icon_state = "landingstripe";
 	dir = 1
 	},
 /turf/open/floor/plating/icefloor{

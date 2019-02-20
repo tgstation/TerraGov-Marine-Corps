@@ -30661,8 +30661,6 @@
 /area/almayer/hallways/hangar)
 "blz" = (
 /obj/machinery/landinglight/ds2{
-	tag = "icon-landingstripe (EAST)";
-	icon_state = "landingstripe";
 	dir = 4
 	},
 /turf/open/floor/almayer/mono,
@@ -30687,8 +30685,6 @@
 /area/shuttle/drop2/sulaco)
 "blE" = (
 /obj/machinery/landinglight/ds2/delaythree{
-	tag = "icon-landingstripe (WEST)";
-	icon_state = "landingstripe";
 	dir = 8
 	},
 /turf/open/floor/almayer/mono,
@@ -31882,8 +31878,6 @@
 /area/almayer/hallways/hangar)
 "bom" = (
 /obj/machinery/landinglight/ds2/delayone{
-	tag = "icon-landingstripe (EAST)";
-	icon_state = "landingstripe";
 	dir = 4
 	},
 /turf/open/floor/almayer/mono,
@@ -31921,8 +31915,6 @@
 /area/shuttle/drop2/sulaco)
 "bos" = (
 /obj/machinery/landinglight/ds2/delayone{
-	tag = "icon-landingstripe (WEST)";
-	icon_state = "landingstripe";
 	dir = 8
 	},
 /turf/open/floor/almayer/mono,
@@ -32685,8 +32677,6 @@
 /area/almayer/shipboard/starboard_missiles)
 "bqf" = (
 /obj/machinery/landinglight/ds2/delaytwo{
-	tag = "icon-landingstripe (EAST)";
-	icon_state = "landingstripe";
 	dir = 4
 	},
 /turf/open/floor/almayer/mono,
@@ -32776,8 +32766,6 @@
 /area/shuttle/drop2/sulaco)
 "bqp" = (
 /obj/machinery/landinglight/ds2{
-	tag = "icon-landingstripe (WEST)";
-	icon_state = "landingstripe";
 	dir = 8
 	},
 /turf/open/floor/almayer/mono,
@@ -33709,8 +33697,6 @@
 /area/almayer/hallways/hangar)
 "bsc" = (
 /obj/machinery/landinglight/ds2/delaythree{
-	tag = "icon-landingstripe (EAST)";
-	icon_state = "landingstripe";
 	dir = 4
 	},
 /turf/open/floor/almayer/mono,
@@ -34565,8 +34551,6 @@
 /area/shuttle/drop2/sulaco)
 "btY" = (
 /obj/machinery/landinglight/ds2/delaytwo{
-	tag = "icon-landingstripe (WEST)";
-	icon_state = "landingstripe";
 	dir = 8
 	},
 /turf/open/floor/almayer/mono,
@@ -44777,32 +44761,24 @@
 /area/almayer/hallways/hangar)
 "bPi" = (
 /obj/machinery/landinglight/ds2{
-	tag = "icon-landingstripe (NORTH)";
-	icon_state = "landingstripe";
 	dir = 1
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/hangar)
 "bPj" = (
 /obj/machinery/landinglight/ds2/delayone{
-	tag = "icon-landingstripe (NORTH)";
-	icon_state = "landingstripe";
 	dir = 1
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/hangar)
 "bPk" = (
 /obj/machinery/landinglight/ds2/delaytwo{
-	tag = "icon-landingstripe (NORTH)";
-	icon_state = "landingstripe";
 	dir = 1
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/hangar)
 "bPl" = (
 /obj/machinery/landinglight/ds2/delaythree{
-	tag = "icon-landingstripe (NORTH)";
-	icon_state = "landingstripe";
 	dir = 1
 	},
 /turf/open/floor/almayer/mono,
@@ -54307,8 +54283,6 @@
 /area/almayer/medical/operating_room_two)
 "cjU" = (
 /obj/machinery/landinglight/ds2/delaythree{
-	tag = "icon-landingstripe (EAST)";
-	icon_state = "landingstripe";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -54331,8 +54305,6 @@
 /area/almayer/hallways/hangar)
 "cjX" = (
 /obj/machinery/landinglight/ds2/delaythree{
-	tag = "icon-landingstripe (WEST)";
-	icon_state = "landingstripe";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -54377,8 +54349,6 @@
 /area/almayer/hallways/hangar)
 "ckc" = (
 /obj/machinery/landinglight/ds2{
-	tag = "icon-landingstripe (EAST)";
-	icon_state = "landingstripe";
 	dir = 4
 	},
 /turf/open/floor/almayer{
@@ -54389,8 +54359,6 @@
 /area/almayer/hallways/hangar)
 "ckd" = (
 /obj/machinery/landinglight/ds2/delaytwo{
-	tag = "icon-landingstripe (WEST)";
-	icon_state = "landingstripe";
 	dir = 8
 	},
 /turf/open/floor/almayer{
@@ -54503,8 +54471,6 @@
 /area/almayer/hallways/hangar)
 "ckp" = (
 /obj/machinery/landinglight/ds2{
-	tag = "icon-landingstripe (NORTH)";
-	icon_state = "landingstripe";
 	dir = 1
 	},
 /turf/open/floor/almayer{
@@ -54515,8 +54481,6 @@
 /area/almayer/hallways/hangar)
 "ckq" = (
 /obj/machinery/landinglight/ds2/delaytwo{
-	tag = "icon-landingstripe (NORTH)";
-	icon_state = "landingstripe";
 	dir = 1
 	},
 /turf/open/floor/almayer{
@@ -54558,8 +54522,6 @@
 /area/almayer/command/cic)
 "cku" = (
 /obj/machinery/landinglight/ds2/delayone{
-	tag = "icon-landingstripe (WEST)";
-	icon_state = "landingstripe";
 	dir = 8
 	},
 /obj/effect/landmark/shuttle_loc/marine_crs/dropship,
