@@ -44,6 +44,30 @@
 	usr << browse(dat_header, "window=unbanp;size=875x400")
 
 
+/datum/admins/proc/ban_offline()
+	set category = "Admin"
+	set name = "Ban Offline"
+
+	if(!check_rights(R_BAN))
+		return
+
+	if(!CONFIG_GET(flag/ban_legacy_system))
+		return
+
+	var/key = input("Please, input a key.", "Ban") as null|text
+	if(!key)
+		return
+
+	key = ckey(key)
+	var/datum/admins/A = usr.client.holder
+
+	if(key in GLOB.directory)
+		to_chat(usr, "<span class='warning'>This player is currently present, please ban them through the player panel.")
+		return
+
+	A.Topic("bankey", list("bankey" = key, "admin_token" = RawHrefToken(), "_src_" = A))
+
+
 /datum/admins/proc/jobban_panel(var/mob/M)
 	if(!check_rights(R_BAN))
 		return

@@ -376,6 +376,49 @@
 		message_admins("[ADMIN_TPMONTY(usr)] has banned [ADMIN_TPMONTY(M)] | Duration: [mins] minutes| Reason: [sanitize(reason)]")
 
 
+	else if(href_list["bankey"])
+		if(!check_rights(R_BAN))
+			return
+
+		var/key = href_list["bankey"]
+		if(!key)
+			return
+
+		var/mins
+		var/reason
+
+		switch(alert(usr, "Permanent or temporary?", "Ban Type", "Permanent", "Temporary", "Cancel"))
+			if("Permanent")
+				reason = input("Please enter the ban reason.", "Ban Reason") as message|null
+				reason = sanitize(reason)
+				if(!reason)
+					return
+				if(alert("Are you sure you want to permanently ban [key] for [reason]?", "Confirmation", "Yes", "No") != "Yes")
+					return
+				notes_add(key, "Banned by [usr.client.holder.fakekey ? "an Administrator" : usr.client.ckey] | Duration: Permanent | Reason: [reason]", usr)
+				AddBan(key, null, reason, usr.ckey, FALSE, 525599, null)
+
+				log_admin_private("[key_name(usr)] has banned [key] | Duration: Permanent | Reason: [reason]")
+				message_admins("[ADMIN_TPMONTY(usr)] has banned [key] | Duration: Permanent | Reason: [reason]")
+			if("Temporary")
+				mins = input("How long (in minutes)? \n 1440 = 1 day \n 4320 = 3 days \n 10080 = 7 days", "Ban time", 1440) as num|null
+				if(isnull(mins) || mins < 0)
+					return
+				if(mins >= 525600) 
+					mins = 525599
+				reason = input("Please enter the ban reason.", "Ban Reason") as message|null
+				reason = sanitize(reason)
+				if(!reason)
+					return
+				if(alert("Are you sure you want to ban [key] for [reason] for [mins] minutes?", "Confirmation", "Yes", "No") != "Yes")
+					return
+				notes_add(key, "Banned by [usr.client.holder.fakekey ? "an Administrator" : usr.client.ckey] | Duration: [mins] minutes | Reason: [reason]", usr)
+				AddBan(key, null, reason, usr.ckey, TRUE, mins, null)
+
+				log_admin_private("[key_name(usr)] has banned [key] | Duration: [mins] minutes | Reason: [reason]")
+				message_admins("[ADMIN_TPMONTY(usr)] has banned [key] | Duration: [mins] minutes | Reason: [reason]")
+
+
 	else if(href_list["notes_add"])
 		if(!check_rights(R_BAN))
 			return

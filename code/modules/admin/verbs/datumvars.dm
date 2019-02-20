@@ -17,7 +17,7 @@
 
 /datum/proc/vv_get_var(var_name)
 	switch(var_name)
-		if ("vars")
+		if("vars")
 			return debug_variable(var_name, list(), 0, src)
 	return debug_variable(var_name, vars[var_name], 0, src)
 
@@ -25,72 +25,72 @@
 /proc/get_all_of_type(var/T, subtypes = TRUE)
 	var/list/typecache = list()
 	typecache[T] = 1
-	if (subtypes)
+	if(subtypes)
 		typecache = typecacheof(typecache)
 	. = list()
-	if (ispath(T, /mob))
+	if(ispath(T, /mob))
 		for(var/mob/thing in GLOB.mob_list)
-			if (typecache[thing.type])
+			if(typecache[thing.type])
 				. += thing
 			CHECK_TICK
 
-	else if (ispath(T, /obj/machinery/door))
+	else if(ispath(T, /obj/machinery/door))
 		for(var/obj/machinery/door/thing in GLOB.machines)
-			if (typecache[thing.type])
+			if(typecache[thing.type])
 				. += thing
 			CHECK_TICK
 
-	else if (ispath(T, /obj/machinery))
+	else if(ispath(T, /obj/machinery))
 		for(var/obj/machinery/thing in GLOB.machines)
-			if (typecache[thing.type])
+			if(typecache[thing.type])
 				. += thing
 			CHECK_TICK
 
-	else if (ispath(T, /obj))
+	else if(ispath(T, /obj))
 		for(var/obj/thing in world)
-			if (typecache[thing.type])
+			if(typecache[thing.type])
 				. += thing
 			CHECK_TICK
 
-	else if (ispath(T, /atom/movable))
+	else if(ispath(T, /atom/movable))
 		for(var/atom/movable/thing in world)
-			if (typecache[thing.type])
+			if(typecache[thing.type])
 				. += thing
 			CHECK_TICK
 
-	else if (ispath(T, /turf))
+	else if(ispath(T, /turf))
 		for(var/turf/thing in world)
-			if (typecache[thing.type])
+			if(typecache[thing.type])
 				. += thing
 			CHECK_TICK
 
-	else if (ispath(T, /atom))
+	else if(ispath(T, /atom))
 		for(var/atom/thing in world)
-			if (typecache[thing.type])
+			if(typecache[thing.type])
 				. += thing
 			CHECK_TICK
 
-	else if (ispath(T, /client))
+	else if(ispath(T, /client))
 		for(var/client/thing in GLOB.clients)
-			if (typecache[thing.type])
+			if(typecache[thing.type])
 				. += thing
 			CHECK_TICK
 
-	else if (ispath(T, /datum))
+	else if(ispath(T, /datum))
 		for(var/datum/thing)
-			if (typecache[thing.type])
+			if(typecache[thing.type])
 				. += thing
 			CHECK_TICK
 
 	else
 		for(var/datum/thing in world)
-			if (typecache[thing.type])
+			if(typecache[thing.type])
 				. += thing
 			CHECK_TICK
 
 
 /proc/make_types_fancy(var/list/types)
-	if (ispath(types))
+	if(ispath(types))
 		types = list(types)
 	. = list()
 	for(var/type in types)
@@ -128,7 +128,7 @@
 
 /proc/get_fancy_list_of_datum_types()
 	var/static/list/pre_generated_list
-	if (!pre_generated_list) //init
+	if(!pre_generated_list) //init
 		pre_generated_list = make_types_fancy(sortList(typesof(/datum) - typesof(/atom)))
 	return pre_generated_list
 
@@ -299,7 +299,7 @@
 				filter_text.focus();
 				filter_text.select();
 				var lastsearch = getCookie("[refid][cookieoffset]search");
-				if (lastsearch) {
+				if(lastsearch) {
 					filter_text.value = lastsearch;
 					updateSearch();
 				}
@@ -310,7 +310,7 @@
 				for(var i=0; i<ca.length; i++) {
 					var c = ca\[i];
 					while (c.charAt(0)==' ') c = c.substring(1,c.length);
-					if (c.indexOf(name)==0) return c.substring(name.length,c.length);
+					if(c.indexOf(name)==0) return c.substring(name.length,c.length);
 				}
 				return "";
 			}
@@ -321,16 +321,16 @@
 				var filter = document.getElementById('filter').value.toLowerCase();
 				var vars_ol = document.getElementById("vars");
 
-				if (filter === last_filter) {
+				if(filter === last_filter) {
 					// An event triggered an update but nothing has changed.
 					return;
-				} else if (filter.indexOf(last_filter) === 0) {
+				} else if(filter.indexOf(last_filter) === 0) {
 					// The new filter starts with the old filter, fast path by removing only.
 					var children = vars_ol.childNodes;
 					for (var i = children.length - 1; i >= 0; --i) {
 						try {
 							var li = children\[i];
-							if (li.innerText.toLowerCase().indexOf(filter) == -1) {
+							if(li.innerText.toLowerCase().indexOf(filter) == -1) {
 								vars_ol.removeChild(li);
 							}
 						} catch(err) {}
@@ -344,7 +344,7 @@
 					for (var i = 0; i < complete_list.length; ++i) {
 						try {
 							var li = complete_list\[i];
-							if (!filter || li.innerText.toLowerCase().indexOf(filter) != -1) {
+							if(!filter || li.innerText.toLowerCase().indexOf(filter) != -1) {
 								vars_ol.appendChild(li);
 							}
 						} catch(err) {}
@@ -372,13 +372,13 @@
 
 			// onkeyup
 			function handle_keyup() {
-				if (event.keyCode == 13) {  //Enter / return
+				if(event.keyCode == 13) {  //Enter / return
 					var vars_ol = document.getElementById('vars');
 					var lis = vars_ol.getElementsByTagName("li");
 					for (var i = 0; i < lis.length; ++i) {
 						try {
 							var li = lis\[i];
-							if (li.style.backgroundColor == "#ffee88") {
+							if(li.style.backgroundColor == "#ffee88") {
 								alist = lis\[i].getElementsByTagName("a");
 								if(alist.length > 0) {
 									location.href=alist\[0].href;
@@ -392,8 +392,8 @@
 					for (var i = 0; i < lis.length; ++i) {
 						try {
 							var li = lis\[i];
-							if (li.style.backgroundColor == "#ffee88") {
-								if (i > 0) {
+							if(li.style.backgroundColor == "#ffee88") {
+								if(i > 0) {
 									var li_new = lis\[i-1];
 									li.style.backgroundColor = "white";
 									li_new.style.backgroundColor = "#ffee88";
@@ -408,8 +408,8 @@
 					for (var i = 0; i < lis.length; ++i) {
 						try {
 							var li = lis\[i];
-							if (li.style.backgroundColor == "#ffee88") {
-								if ((i+1) < lis.length) {
+							if(li.style.backgroundColor == "#ffee88") {
+								if((i+1) < lis.length) {
 									var li_new = lis\[i+1];
 									li.style.backgroundColor = "white";
 									li_new.style.backgroundColor = "#ffee88";
@@ -426,7 +426,7 @@
 			// onchange
 			function handle_dropdown(list) {
 				var value = list.options\[list.selectedIndex].value;
-				if (value !== "") {
+				if(value !== "") {
 					location.href = value;
 				}
 				list.selectedIndex = 0;
@@ -547,12 +547,12 @@
 
 	else if(istype(value, /datum))
 		var/datum/D = value
-		if ("[D]" != "[D.type]") //if the thing as a name var, lets use it.
+		if("[D]" != "[D.type]") //if the thing as a name var, lets use it.
 			item = "<a href='?_src_=vars;[HrefToken()];vars=[REF(value)]'>[VV_HTML_ENCODE(name)] [REF(value)]</a> = [D] [D.type]"
 		else
 			item = "<a href='?_src_=vars;[HrefToken()];vars=[REF(value)]'>[VV_HTML_ENCODE(name)] [REF(value)]</a> = [D.type]"
 
-	else if (islist(value))
+	else if(islist(value))
 		var/list/L = value
 		var/list/items = list()
 
@@ -848,7 +848,7 @@
 
 		else if(href_list["listshuffle"])
 			var/list/L = locate(href_list["listshuffle"])
-			if (!istype(L))
+			if(!istype(L))
 				to_chat(usr, "This can only be used on instances of type /list")
 				return
 

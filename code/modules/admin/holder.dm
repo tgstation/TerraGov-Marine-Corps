@@ -296,6 +296,7 @@ GLOBAL_PROTECT(admin_verbs_ban)
 GLOBAL_LIST_INIT(admin_verbs_ban, world.AVban())
 /world/proc/AVban()
 	return list(
+	/datum/admins/proc/ban_offline,
 	/datum/admins/proc/unban_panel,
 	/datum/admins/proc/player_notes_show,
 	/datum/admins/proc/player_notes_list
@@ -362,8 +363,8 @@ GLOBAL_LIST_INIT(admin_verbs_server, world.AVserver())
 	/datum/admins/proc/toggle_gun_restrictions,
 	/datum/admins/proc/toggle_synthetic_restrictions,
 	/datum/admins/proc/reload_admins,
-	/client/proc/forcerandomrotate,
-	/client/proc/adminchangemap,
+	/datum/admins/proc/map_random,
+	/datum/admins/proc/map_change
 	)
 
 GLOBAL_PROTECT(admin_verbs_debug)
