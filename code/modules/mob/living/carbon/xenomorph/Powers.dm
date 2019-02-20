@@ -2463,7 +2463,7 @@
 
 	addtimer(CALLBACK(src, .hivelord_sting_cooldown), HIVELORD_STING_COOLDOWN)
 
-	recurring_injection(H, "virus1")
+	recurring_injection(H, "necrovirus")
 
 /mob/living/carbon/Xenomorph/Hivelord/proc/hivelord_sting_cooldown()
 	playsound(loc, 'sound/voice/alien_drool1.ogg', 50, 1)
