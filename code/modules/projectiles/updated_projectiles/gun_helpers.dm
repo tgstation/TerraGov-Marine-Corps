@@ -321,11 +321,10 @@ should be alright.
 			if(current_mag)
 				unload(user,0,1)
 				to_chat(user, "<span class='notice'>You start a tactical reload.</span>")
-			var/old_mag_loc = AM.loc
 			var/tac_reload_time = 15
 			if(user.mind && user.mind.cm_skills)
 				tac_reload_time = max(15 - 5*user.mind.cm_skills.firearms, 5)
-			if(do_after(user,tac_reload_time, TRUE, 5, BUSY_ICON_FRIENDLY) && AM.loc == old_mag_loc && !current_mag)
+			if(do_after(user,tac_reload_time, TRUE, AM) && loc == user)
 				if(istype(AM.loc, /obj/item/storage))
 					var/obj/item/storage/S = AM.loc
 					S.remove_from_storage(AM)
@@ -414,14 +413,13 @@ should be alright.
 		user.visible_message("<span class='notice'>[user] begins fumbling about, trying to attach [attachment] to [src].</span>",
 		"<span class='notice'>You begin fumbling about, trying to attach [attachment] to [src].</span>", null, 4)
 	//user.visible_message("","<span class='notice'>Attach Delay = [final_delay]. Attachment = [attachment]. Firearm Skill = [user.mind.cm_skills.firearms].</span>", null, 4) //DEBUG
-	if(do_after(user,final_delay, TRUE, 5, BUSY_ICON_FRIENDLY))
-		if(attachment && attachment.loc)
-			user.visible_message("<span class='notice'>[user] attaches [attachment] to [src].</span>",
-			"<span class='notice'>You attach [attachment] to [src].</span>", null, 4)
-			user.temporarilyRemoveItemFromInventory(attachment)
-			attachment.Attach(src)
-			update_attachable(attachment.slot)
-			playsound(user, 'sound/machines/click.ogg', 15, 1, 4)
+	if(do_after(user,final_delay, TRUE, src))
+		user.visible_message("<span class='notice'>[user] attaches [attachment] to [src].</span>",
+		"<span class='notice'>You attach [attachment] to [src].</span>", null, 4)
+		user.temporarilyRemoveItemFromInventory(attachment)
+		attachment.Attach(src)
+		update_attachable(attachment.slot)
+		playsound(user, 'sound/machines/click.ogg', 15, 1, 4)
 
 
 /obj/item/weapon/gun/proc/update_attachables() //Updates everything. You generally don't need to use this.
@@ -591,7 +589,7 @@ should be alright.
 		usr.visible_message("<span class='notice'>[usr] begins fumbling about, trying to strip [A] from [src].</span>",
 		"<span class='notice'>You begin fumbling about, trying to strip [A] from [src].</span>", null, 4)
 	//usr.visible_message("","<span class='notice'>Detach Delay = [detach_delay]. Attachment = [A]. Firearm Skill = [usr.mind.cm_skills.firearms].</span>", null, 4) //DEBUG
-	if(!do_after(usr,final_delay, TRUE, 5, BUSY_ICON_FRIENDLY))
+	if(!do_after(usr,final_delay, TRUE, src))
 		return
 
 	if(A != rail && A != muzzle && A != under && A != stock)

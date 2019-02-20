@@ -71,7 +71,7 @@ Currently only has the tank hardpoints
 
 	to_chat(user, "<span class='notice'>Installing \the [A] in \the [owner].</span>")
 
-	if(!do_after(user, 10))
+	if(!do_after(user, 10, TRUE, owner))
 		to_chat(user, "<span class='warning'>Something interrupted you while reloading [owner].</span>")
 		return FALSE
 
@@ -180,7 +180,7 @@ Currently only has the tank hardpoints
 
 	next_use = world.time + owner.cooldowns["primary"] * owner.misc_ratios["prim_cool"]
 
-	if(!do_after(usr, 5, FALSE, 5, BUSY_ICON_HOSTILE))
+	if(!do_after(usr, 5, FALSE, src) || QDELETED(owner))
 		return
 	if(!prob(owner.accuracies["primary"] * 100 * owner.misc_ratios["prim_acc"]))
 		T = get_step(T, pick(cardinal))

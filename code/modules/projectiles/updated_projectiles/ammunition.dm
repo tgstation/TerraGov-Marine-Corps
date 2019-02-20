@@ -317,7 +317,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 			if(AM.current_rounds == AM.max_rounds)
 				to_chat(user, "<span class='warning'>[AM] is already full.</span>")
 				return
-			if(!do_after(user,15, TRUE, 5, BUSY_ICON_FRIENDLY))
+			if(!do_after(user, 15, TRUE, src))
 				return
 			playsound(loc, 'sound/weapons/gun_revolver_load3.ogg', 25, 1)
 			var/S = min(bullet_amount, AM.max_rounds - AM.current_rounds)

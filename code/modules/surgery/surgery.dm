@@ -90,7 +90,7 @@ proc/spread_germs_to_organ(datum/limb/E, mob/living/carbon/human/user)
 			E.germ_level += user.wear_mask.germ_level * 0.1
 		else
 			E.germ_level += user.wear_mask.germ_level * 0.2
-	else 
+	else
 		E.germ_level += user.germ_level * 0.33
 
 	//Suits
@@ -99,7 +99,7 @@ proc/spread_germs_to_organ(datum/limb/E, mob/living/carbon/human/user)
 			E.germ_level += user.germ_level * 0.1
 		else
 			E.germ_level += user.germ_level * 0.2
-	else 
+	else
 		E.germ_level += user.germ_level * 0.33
 
 	if(locate(/obj/structure/bed/roller, E.owner.loc))
@@ -119,7 +119,8 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to operate [M].</span>",
 		"<span class='notice'>You fumble around figuring out how to operate [M].</span>")
 		var/fumbling_time = SKILL_TASK_FORMIDABLE - ( SKILL_TASK_AVERAGE * user.mind.cm_skills.surgery ) // 20 secs non-trained, 15 amateur, 10 semi-prof
-		if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
+		if(!do_after(user, fumbling_time, TRUE, M))
+			return
 	var/datum/limb/affected = M.get_limb(user.zone_selected)
 	if(!affected)
 		return 0

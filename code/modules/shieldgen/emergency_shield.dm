@@ -281,13 +281,12 @@
 	else if(iscablecoil(W) && malfunction && is_open)
 		var/obj/item/stack/cable_coil/coil = W
 		to_chat(user, "<span class='notice'>You begin to replace the wires.</span>")
-		//if(do_after(user, min(60, round( ((maxhealth/health)*10)+(malfunction*10) ))) //Take longer to repair heavier damage
-		if(do_after(user, 30, TRUE, 5, BUSY_ICON_FRIENDLY))
-			if (coil.use(1))
-				health = max_health
-				malfunction = 0
-				to_chat(user, "<span class='notice'>You repair the [src]!</span>")
-				update_icon()
+		//if(do_after(user, min(60, round(((maxhealth/health)*10)+(malfunction*10), TRUE, src ))) //Take longer to repair heavier damage
+		if(do_after(user, 30, TRUE, src) && coil.use(1))
+			health = max_health
+			malfunction = 0
+			to_chat(user, "<span class='notice'>You repair the [src]!</span>")
+			update_icon()
 
 	else if(iswrench(W))
 		if(locked)

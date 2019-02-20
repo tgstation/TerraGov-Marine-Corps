@@ -752,7 +752,7 @@ Defined in conflicts.dm of the #defines folder.
 	pockets.max_w_class = 1
 	pockets.bypass_w_limit = list("/obj/item/weapon/gun/pistol/vp70")
 	pockets.max_storage_space = 3
-	
+
 /obj/item/attachable/stock/vp70/attack_hand(mob/user)
 	if(loc == user && length(pockets.contents))
 		var/obj/item/I = pockets.contents[length(pockets.contents)]
@@ -1236,7 +1236,7 @@ Defined in conflicts.dm of the #defines folder.
 		G.aim_slowdown -= SLOWDOWN_ADS_SCOPE
 		G.wield_delay -= WIELD_DELAY_FAST
 		bipod_deployed = !bipod_deployed
-	else if(do_after(user, 10, TRUE, 5, BUSY_ICON_BUILD))
+	else if(do_after(user, 10, TRUE, src))
 		if(bipod_deployed)
 			return
 		bipod_deployed = !bipod_deployed

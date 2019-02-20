@@ -644,7 +644,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [O] on the [src].</span>",
 		"<span class='notice'>You fumble around figuring out what to do with [O] on the [src].</span>")
 		var/fumbling_time = 50 * (SKILL_ENGINEER_MT - user.mind.cm_skills.engineer)
-		if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+		if(!do_after(user, fumbling_time, TRUE, src))
 			return
 
 	if(!damaged_hps.len)
@@ -672,7 +672,6 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 			if(!WT.isOn())
 				to_chat(user, "<span class='warning'>You need to light your [WT] first.</span>")
 				return
-			WT.remove_fuel(num_delays, user)
 
 		if(HDPT_SECDGUN)
 			num_delays = 3
@@ -695,20 +694,18 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 			if(!WT.isOn())
 				to_chat(user, "<span class='warning'>You need to light your [WT] first.</span>")
 				return
-			WT.remove_fuel(num_delays, user)
 
 	user.visible_message("<span class='notice'>[user] starts repairing the [slot] slot on [src].</span>",
 		"<span class='notice'>You start repairing the [slot] slot on the [src].</span>")
 
-	if(!do_after(user, 30*num_delays, TRUE, num_delays, BUSY_ICON_FRIENDLY))
+	if(!do_after(user, 30 * num_delays, TRUE, src, extra_checks = iswelder(O) ? CALLBACK(O, /obj/item/tool/weldingtool/proc/isOn) : null))
 		user.visible_message("<span class='notice'>[user] stops repairing the [slot] slot on [src].</span>",
 			"<span class='notice'>You stop repairing the [slot] slot on the [src].</span>")
 		return
 
-	if(!Adjacent(user))
-		user.visible_message("<span class='notice'>[user] stops repairing the [slot] slot on [src].</span>",
-			"<span class='notice'>You stop repairing the [slot] slot on the [src].</span>")
-		return
+	if(iswelder(O))
+		var/obj/item/tool/weldingtool/WT = O
+		WT.remove_fuel(num_delays, user)
 
 	user.visible_message("<span class='notice'>[user] repairs the [slot] slot on the [src].</span>",
 		"<span class='notice'>You repair the [slot] slot on [src].</span>")
@@ -743,7 +740,8 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [HP] on the [src].</span>",
 		"<span class='notice'>You fumble around figuring out what to do with [HP] on the [src].</span>")
 		var/fumbling_time = 50 * ( SKILL_ENGINEER_MT - user.mind.cm_skills.engineer )
-		if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
+		if(!do_after(user, fumbling_time, TRUE, src))
+			return
 
 	if(damaged_hps.Find(HP.slot))
 		to_chat(user, "<span class='warning'>You need to fix the hardpoint first.</span>")
@@ -772,7 +770,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		if(HDPT_TREADS)
 			num_delays = 7
 
-	if(!do_after(user, 30*num_delays, TRUE, num_delays, BUSY_ICON_FRIENDLY))
+	if(!do_after(user, 30*num_delays, TRUE, src))
 		user.visible_message("<span class='warning'>[user] stops installing \the [HP] on [src].</span>", "<span class='warning'>You stop installing \the [HP] on [src].</span>")
 		return
 
@@ -793,7 +791,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [O] on the [src].</span>",
 		"<span class='notice'>You fumble around figuring out what to do with [O] on the [src].</span>")
 		var/fumbling_time = 50 * ( SKILL_ENGINEER_MT - user.mind.cm_skills.engineer )
-		if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+		if(!do_after(user, fumbling_time, TRUE, src))
 			return
 
 	var/slot = input("Select a slot to try and remove") in hardpoints
@@ -821,10 +819,10 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		if(HDPT_TREADS)
 			num_delays = 7
 
-	if(!do_after(user, 30*num_delays, TRUE, num_delays, BUSY_ICON_FRIENDLY))
+	if(!do_after(user, 30*num_delays, TRUE, src))
 		user.visible_message("<span class='warning'>[user] stops removing \the [old] on [src].</span>", "<span class='warning'>You stop removing \the [old] on [src].</span>")
 		return
-	if(!old)
+	if(!old?.loc == src)
 		return
 
 	user.visible_message("<span class='notice'>[user] removes \the [old] on [src].</span>", "<span class='notice'>You remove \the [old] on [src].</span>")

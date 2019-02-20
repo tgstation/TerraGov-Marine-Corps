@@ -360,7 +360,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	if(user)
 		if(magazine.reload_delay > 1)
 			to_chat(user, "<span class='notice'>You begin reloading [src]. Hold still...</span>")
-			if(do_after(user,magazine.reload_delay, TRUE, 5, BUSY_ICON_FRIENDLY))
+			if(do_after(user,magazine.reload_delay, TRUE, src))
 				replace_magazine(user, magazine)
 			else
 				to_chat(user, "<span class='warning'>Your reload was interrupted!</span>")
@@ -725,7 +725,7 @@ and you're good to go.
 				log_game("[key_name(user)] is trying to commit suicide.")
 				var/u = "[key_name(user)] is trying to commit suicide."
 				user.log_message(u, LOG_ATTACK, "red")
-				if(do_after(user, 40, TRUE, 5, BUSY_ICON_HOSTILE))
+				if(do_after(user, 40, TRUE, src))
 					if(active_attachable && !(active_attachable.flags_attach_features & ATTACH_PROJECTILE))
 						active_attachable.activate_attachment(src, null, TRUE)//We're not firing off a nade into our mouth.
 					var/obj/item/projectile/projectile_to_fire = load_into_chamber(user)
