@@ -2441,29 +2441,25 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/marshal_office)
 "agz" = (
-/turf/open/floor{
-	icon_state = "redcorner";
+/turf/open/floor/tile/red/redtaupecorner{
 	dir = 4
 	},
 /area/bigredv2/outside/marshal_office)
 "agA" = (
 /obj/effect/landmark/huntergames_secondary_spawn,
-/turf/open/floor{
-	icon_state = "redcorner";
+/turf/open/floor/tile/red/redtaupecorner{
 	dir = 4
 	},
 /area/bigredv2/outside/marshal_office)
 "agB" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "redcorner";
+/turf/open/floor/tile/red/redtaupecorner{
 	dir = 4
 	},
 /area/bigredv2/outside/marshal_office)
 "agC" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	icon_state = "redcorner";
+/turf/open/floor/tile/red/redtaupecorner{
 	dir = 4
 	},
 /area/bigredv2/outside/marshal_office)
@@ -4455,15 +4451,13 @@
 /obj/structure/closet/hydrant{
 	pixel_y = 32
 	},
-/turf/open/floor{
-	icon_state = "redcorner";
+/turf/open/floor/tile/red/redtaupecorner{
 	dir = 4
 	},
 /area/bigredv2/outside/marshal_office)
 "alt" = (
 /obj/effect/landmark/start/surv_spawn,
-/turf/open/floor{
-	icon_state = "redcorner";
+/turf/open/floor/tile/red/redtaupecorner{
 	dir = 4
 	},
 /area/bigredv2/outside/marshal_office)
@@ -4474,8 +4468,7 @@
 	icon_state = "1-2"
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "redcorner";
+/turf/open/floor/tile/red/redtaupecorner{
 	dir = 4
 	},
 /area/bigredv2/outside/marshal_office)
@@ -4483,8 +4476,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	icon_state = "redcorner";
+/turf/open/floor/tile/red/redtaupecorner{
 	dir = 4
 	},
 /area/bigredv2/outside/marshal_office)
@@ -4748,8 +4740,7 @@
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor{
-	icon_state = "redcorner";
+/turf/open/floor/tile/red/redtaupecorner{
 	dir = 4
 	},
 /area/bigredv2/outside/marshal_office)
@@ -4766,8 +4757,7 @@
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor{
-	icon_state = "redcorner";
+/turf/open/floor/tile/red/redtaupecorner{
 	dir = 4
 	},
 /area/bigredv2/outside/marshal_office)
@@ -4782,8 +4772,7 @@
 	layer = 2.4
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "redcorner";
+/turf/open/floor/tile/red/redtaupecorner{
 	dir = 4
 	},
 /area/bigredv2/outside/marshal_office)
@@ -24741,15 +24730,13 @@
 	},
 /area/bigredv2/outside/office_complex)
 "beI" = (
-/turf/open/floor{
-	icon_state = "redcorner";
+/turf/open/floor/tile/red/redtaupecorner{
 	dir = 4
 	},
 /area/bigredv2/outside/office_complex)
 "beJ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	icon_state = "redcorner";
+/turf/open/floor/tile/red/redtaupecorner{
 	dir = 4
 	},
 /area/bigredv2/outside/office_complex)
@@ -24758,8 +24745,7 @@
 /obj/machinery/camera/autoname{
 	dir = 1
 	},
-/turf/open/floor{
-	icon_state = "redcorner";
+/turf/open/floor/tile/red/redtaupecorner{
 	dir = 4
 	},
 /area/bigredv2/outside/office_complex)
@@ -24785,8 +24771,7 @@
 /obj/structure/sign/prop3{
 	pixel_y = 32
 	},
-/turf/open/floor{
-	icon_state = "redcorner";
+/turf/open/floor/tile/red/redtaupecorner{
 	dir = 4
 	},
 /area/bigredv2/outside/office_complex)
@@ -24796,8 +24781,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	icon_state = "redcorner";
+/turf/open/floor/tile/red/redtaupecorner{
 	dir = 4
 	},
 /area/bigredv2/outside/office_complex)
@@ -26780,8 +26764,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	icon_state = "redcorner";
+/turf/open/floor/tile/red/redtaupecorner{
 	dir = 4
 	},
 /area/bigredv2/outside/office_complex)
@@ -26794,8 +26777,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
 	},
-/turf/open/floor{
-	icon_state = "redcorner";
+/turf/open/floor/tile/red/redtaupecorner{
 	dir = 4
 	},
 /area/bigredv2/outside/office_complex)
@@ -26809,8 +26791,7 @@
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor{
-	icon_state = "redcorner";
+/turf/open/floor/tile/red/redtaupecorner{
 	dir = 4
 	},
 /area/bigredv2/outside/office_complex)

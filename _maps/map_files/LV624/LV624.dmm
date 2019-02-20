@@ -7183,8 +7183,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor{
-	icon_state = "redcorner";
+/turf/open/floor/tile/red/redtaupecorner{
 	dir = 4
 	},
 /area/lv624/lazarus/security)
@@ -17827,8 +17826,7 @@
 /obj/item/handcuffs,
 /obj/item/storage/firstaid/adv,
 /obj/machinery/light/small,
-/turf/open/floor{
-	icon_state = "redcorner";
+/turf/open/floor/tile/red/redtaupecorner{
 	dir = 1
 	},
 /area/lv624/lazarus/security)
