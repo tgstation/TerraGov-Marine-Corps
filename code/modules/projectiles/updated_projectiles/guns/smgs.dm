@@ -6,7 +6,7 @@
 	type_of_casings = "bullet"
 	force = 8
 	w_class = 4
-	movement_acc_penalty_mult = 4
+	movement_acc_penalty_mult = 3
 	wield_delay = WIELD_DELAY_FAST
 	attachable_allowed = list(
 						/obj/item/attachable/suppressor,
