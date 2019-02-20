@@ -201,7 +201,8 @@
 #undef GEOTHERMAL_MEDIUM_DAMAGE
 #undef GEOTHERMAL_HEAVY_DAMAGE
 
-//Putting these here since it's power-related
+#define SWITCH_OFF 0
+#define SWITCH_ON  1
 /obj/machinery/colony_floodlight_switch
 	name = "Colony Floodlight Switch"
 	icon = 'icons/obj/machines/floodlight.dmi'
@@ -238,10 +239,9 @@
 	..()
 	if(stat & NOPOWER)
 		if(turned_on)
-			toggle_lights()
-		turned_on = FALSE
+			toggle_lights(SWITCH_OFF)
+			turned_on = FALSE
 		update_use_power(NO_POWER_USE)
-		stop_processing()
 	update_icon()
 
 /obj/machinery/colony_floodlight_switch/proc/toggle_power()
@@ -249,14 +249,12 @@
 
 	if(turned_on)
 		update_use_power(ACTIVE_POWER_USE)
-		start_processing()
 	else
 		update_use_power(IDLE_POWER_USE)
-		stop_processing()
 
-/obj/machinery/colony_floodlight_switch/proc/toggle_lights()
+/obj/machinery/colony_floodlight_switch/proc/toggle_lights(var/switch_on)
 	for(var/obj/machinery/colony_floodlight/F in floodlist)
-		addtimer(CALLBACK(F, /obj/machinery/colony_floodlight/proc/toggle_light), rand(0,50))
+		addtimer(CALLBACK(F, /obj/machinery/colony_floodlight/proc/toggle_light, switch_on), rand(0,50))
 
 /obj/machinery/colony_floodlight_switch/attack_paw(mob/user as mob)
 	return src.attack_hand(user)
@@ -269,18 +267,15 @@
 		to_chat(user, "Nothing happens.")
 		return FALSE
 	playsound(src,'sound/machines/click.ogg', 15, 1)
-	toggle_lights()
+	toggle_lights(turned_on ? SWITCH_OFF : SWITCH_ON)
 	toggle_power()
 	update_icon()
 	return TRUE
 
-#define FLOODLIGHT_REPAIR_UNSCREW 	0
-#define FLOODLIGHT_REPAIR_CROWBAR 	1
-#define FLOODLIGHT_REPAIR_WELD 		2
-#define FLOODLIGHT_REPAIR_CABLE 	3
-#define FLOODLIGHT_REPAIR_SCREW 	4
+#define FLOODLIGHT_REPAIR_FINE 		 0
+#define FLOODLIGHT_REPAIR_WIRECUTTER 1
+#define FLOODLIGHT_REPAIR_WELD		 2
 #define FLOODLIGHT_TICK_CONSUMPTION 800
-
 /obj/machinery/colony_floodlight
 	name = "Colony Floodlight"
 	icon = 'icons/obj/machines/floodlight.dmi'
@@ -293,12 +288,11 @@
 	use_power = NO_POWER_USE //It's the switch that uses the actual power, not the lights
 	var/obj/machinery/colony_floodlight_switch/fswitch = null //Reverse lookup for power grabbing in area
 	var/lum_value = 7
-	var/repair_state = FLOODLIGHT_REPAIR_UNSCREW
+	var/repair_state = FLOODLIGHT_REPAIR_FINE
 	var/health = 120
 
 /obj/machinery/colony_floodlight/Destroy()
-	if(is_lit)
-		toggle_light(TRUE)
+	toggle_light(SWITCH_OFF)
 	if(fswitch)
 		fswitch.floodlist -= src
 		fswitch = null
@@ -311,6 +305,8 @@
 		icon_state = "floodon"
 	else
 		icon_state = "floodoff"
+	if(panel_open)
+		icon_state = "[icon_state]_o"
 
 /obj/machinery/colony_floodlight/attack_larva(mob/living/carbon/Xenomorph/Larva/M)
 	M.visible_message("[M] starts biting [src]!","In a rage, you start biting [src], but with no effect!", null, 5)
@@ -318,9 +314,8 @@
 /obj/machinery/colony_floodlight/proc/breakdown()
 	playsound(src, "shatter", 70, 1)
 	damaged = TRUE
-	repair_state = FLOODLIGHT_REPAIR_UNSCREW
-	if(is_lit)
-		toggle_light(TRUE)
+	repair_state = FLOODLIGHT_REPAIR_WELD
+	toggle_light(SWITCH_OFF)
 
 /obj/machinery/colony_floodlight/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(!is_lit)
@@ -329,79 +324,37 @@
 	else if(damaged)
 		to_chat(M, "It's already damaged.")
 		return FALSE
+	else if(panel_open)
+		breakdown()
 	else
 		M.animation_attack_on(src)
 		M.visible_message("[M] slashes away at [src]!","You slash and claw at the bright light!", null, null, 5)
 		health  = max(health - rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper), 0)
 		if(!health)
-			breakdown()
+			panel_open = TRUE
+			playsound(loc, 'sound/items/trayhit2.ogg', 25, 1)
+			update_icon()
 		else
-			playsound(loc, 'sound/effects/Glasshit.ogg', 25, 1)
+			playsound(loc, "alien_claw_metal", 25, 1)
 
 /obj/machinery/colony_floodlight/attackby(obj/item/I, mob/user)
-	if(damaged)
-		if(isscrewdriver(I))
-			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-				user.visible_message("<span class='notice'>[user] fumbles around figuring out [src] maintenance hatch's screws.</span>",
-				"<span class='notice'>You fumble around figuring out [src] maintenance hatch's screws.</span>")
-				var/fumbling_time = 60 - 20 * user.mind.cm_skills.engineer
-				if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
-					return
-
-			if(repair_state == FLOODLIGHT_REPAIR_UNSCREW)
-				playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
-				user.visible_message("<span class='notice'>[user] starts unscrewing [src]'s maintenance hatch.</span>", \
-				"<span class='notice'>You start unscrewing [src]'s maintenance hatch.</span>")
-				if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
-					if(gc_destroyed || repair_state != FLOODLIGHT_REPAIR_UNSCREW)
-						return
-					playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
-					repair_state = FLOODLIGHT_REPAIR_CROWBAR
-					if(is_lit)
-						toggle_light()
-					user.visible_message("<span class='notice'>[user] unscrews [src]'s maintenance hatch.</span>", \
-					"<span class='notice'>You unscrew [src]'s maintenance hatch.</span>")
-
-			else if(repair_state == FLOODLIGHT_REPAIR_SCREW)
-				playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
-				user.visible_message("<span class='notice'>[user] starts screwing [src]'s maintenance hatch closed.</span>", \
-				"<span class='notice'>You start screwing [src]'s maintenance hatch closed.</span>")
-				if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
-					if(gc_destroyed || repair_state != FLOODLIGHT_REPAIR_SCREW)
-						return
-					playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
-					damaged = FALSE
-					repair_state = FLOODLIGHT_REPAIR_UNSCREW
-					health = initial(health)
-					user.visible_message("<span class='notice'>[user] screws [src]'s maintenance hatch closed.</span>", \
-					"<span class='notice'>You screw [src]'s maintenance hatch closed.</span>")
-					if(fswitch && fswitch.turned_on)
-						toggle_light()
-					update_icon()
-			return TRUE
-
-		else if(iscrowbar(I))
-			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-				user.visible_message("<span class='notice'>[user] fumbles around figuring out an opening for [src]'s maintenance hatch.</span>",
-				"<span class='notice'>You fumble around figuring out an opening for [src]'s maintenance hatch.</span>")
-				var/fumbling_time = 60 - 20 * user.mind.cm_skills.engineer
-				if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
-					return
-
-			if(repair_state == FLOODLIGHT_REPAIR_CROWBAR)
-				playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
-				user.visible_message("<span class='notice'>[user] starts prying [src]'s maintenance hatch open.</span>",\
-				"<span class='notice'>You start prying [src]'s maintenance hatch open.</span>")
-				if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
-					if(gc_destroyed || repair_state != FLOODLIGHT_REPAIR_CROWBAR)
-						return
-					playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
-					repair_state = FLOODLIGHT_REPAIR_WELD
-					user.visible_message("<span class='notice'>[user] pries [src]'s maintenance hatch open.</span>",\
-					"<span class='notice'>You pry [src]'s maintenance hatch open.</span>")
-			return TRUE
-
-		else if(iswelder(I))
+	if(isscrewdriver(I))
+		if(!panel_open)
+			panel_open = TRUE
+			to_chat(user, "<span class='notice'>You open the maintenance hatch of [src].</span>")
+		else
+			panel_open = FALSE
+			to_chat(user, "<span class='notice'>You close the maintenance hatch of [src].</span>")
+		update_icon()
+		return FALSE
+	/*else if(iswrench(I))
+		if(panel_open)
+			toggle_light(anchored ? SWITCH_OFF : SWITCH_ON)
+			anchored = !anchored
+			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
+			return FALSE*/
+	else if(damaged)
+		if(iswelder(I))
 			var/obj/item/tool/weldingtool/WT = I
 
 			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
@@ -409,7 +362,7 @@
 				"<span class='notice'>You fumble around figuring out [src]'s internals.</span>")
 				var/fumbling_time = 60 - 20 * user.mind.cm_skills.engineer
 				if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
-					return
+					return FALSE
 
 			if(repair_state == FLOODLIGHT_REPAIR_WELD)
 				if(WT.remove_fuel(1, user))
@@ -418,9 +371,9 @@
 					"<span class='notice'>You start welding [src]'s damage.</span>")
 					if(do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
 						if(gc_destroyed || !WT.isOn() || repair_state != FLOODLIGHT_REPAIR_WELD)
-							return
+							return FALSE
 						playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
-						repair_state = FLOODLIGHT_REPAIR_CABLE
+						repair_state = FLOODLIGHT_REPAIR_WIRECUTTER
 						user.visible_message("<span class='notice'>[user] welds [src]'s damage.</span>",
 						"<span class='notice'>You weld [src]'s damage.</span>")
 						return TRUE
@@ -428,30 +381,28 @@
 					to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
 			return TRUE
 
-		else if(iscablecoil(I))
-			var/obj/item/stack/cable_coil/C = I
+		else if(iswirecutter(I))
 			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
 				user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s wiring.</span>",
 				"<span class='notice'>You fumble around figuring out [src]'s wiring.</span>")
 				var/fumbling_time = 60 - 20 * user.mind.cm_skills.engineer
 				if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
-					return
+					return FALSE
 
-			if(repair_state == FLOODLIGHT_REPAIR_CABLE)
-				if(C.get_amount() < 2)
-					to_chat(user, "<span class='warning'>You need two coils of wire to replace the damaged cables.</span>")
-					return
-				playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
-				user.visible_message("<span class='notice'>[user] starts replacing [src]'s damaged cables.</span>",\
-				"<span class='notice'>You start replacing [src]'s damaged cables.</span>")
+			if(repair_state == FLOODLIGHT_REPAIR_WIRECUTTER)
+				playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
+				user.visible_message("<span class='notice'>[user] starts mending [src]'s damaged cables.</span>",\
+				"<span class='notice'>You start mending [src]'s damaged cables.</span>")
 				if(do_after(user, 20, TRUE, 5, BUSY_ICON_GENERIC))
-					if(gc_destroyed || repair_state != FLOODLIGHT_REPAIR_CABLE)
-						return
-					if(C.use(2))
-						playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
-						repair_state = FLOODLIGHT_REPAIR_SCREW
-						user.visible_message("<span class='notice'>[user] starts replaces [src]'s damaged cables.</span>",\
-						"<span class='notice'>You replace [src]'s damaged cables.</span>")
+					if(gc_destroyed || repair_state != FLOODLIGHT_REPAIR_WIRECUTTER)
+						return FALSE
+					playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
+					repair_state = FLOODLIGHT_REPAIR_FINE
+					damaged = FALSE
+					health = initial(health)
+					toggle_light(SWITCH_ON)
+					user.visible_message("<span class='notice'>[user] mend [src]'s damaged cables.</span>",\
+					"<span class='notice'>You mend [src]'s damaged cables.</span>")
 			return TRUE
 
 	. = ..()
@@ -471,31 +422,41 @@
 		if(damaged)
 			to_chat(user, "<span class='warning'>It is damaged.</span>")
 			if(!user.mind || !user.mind.cm_skills || user.mind.cm_skills.engineer >= SKILL_ENGINEER_ENGI)
-				switch(repair_state)
-					if(FLOODLIGHT_REPAIR_UNSCREW) to_chat(user, "<span class='info'>You must first unscrew its maintenance hatch.</span>")
-					if(FLOODLIGHT_REPAIR_CROWBAR) to_chat(user, "<span class='info'>You must crowbar its maintenance hatch open.</span>")
-					if(FLOODLIGHT_REPAIR_WELD) to_chat(user, "<span class='info'>You must weld the damage to it.</span>")
-					if(FLOODLIGHT_REPAIR_CABLE) to_chat(user, "<span class='info'>You must replace its damaged cables.</span>")
-					if(FLOODLIGHT_REPAIR_SCREW) to_chat(user, "<span class='info'>You must screw its maintenance hatch closed.</span>")
+				if(!panel_open)
+					to_chat(user, "<span class='info'>You must first open its maintenance hatch.</span>")
+				else
+					switch(repair_state)
+						if(FLOODLIGHT_REPAIR_WELD)
+							to_chat(user, "<span class='info'>You must weld the damage to it.</span>")
+						if(FLOODLIGHT_REPAIR_WIRECUTTER)
+							to_chat(user, "<span class='info'>You must mend its damaged cables.</span>")
+						else
+							to_chat(user, "<span class='info'>You must screw its maintenance hatch closed.</span>")
 		else if(!is_lit)
 			to_chat(user, "<span class='info'>It doesn't seem powered.</span>")
+		if(panel_open)
+			to_chat(user, "<span class='notice'>The maintenance hatch is open.</span>")
 
-/obj/machinery/colony_floodlight/proc/toggle_light(var/force_toggled = FALSE)
-	if(!damaged || force_toggled)
-		is_lit = !is_lit
-		if(is_lit)
-			SetLuminosity(lum_value)
-			if(fswitch)
-				fswitch.active_power_usage += FLOODLIGHT_TICK_CONSUMPTION
-		else
-			SetLuminosity(0)
-			if(fswitch)
-				fswitch.active_power_usage -= FLOODLIGHT_TICK_CONSUMPTION
+/obj/machinery/colony_floodlight/proc/toggle_light(var/switch_on)
+	if(!fswitch) //no master, should never happen
+		return
+
+	if(switch_on && !is_lit)
+		if(damaged || !anchored || !fswitch.turned_on)
+			return
+		SetLuminosity(lum_value)
+		fswitch.active_power_usage += FLOODLIGHT_TICK_CONSUMPTION
+		is_lit = TRUE
+		update_icon()
+	else if(!switch_on && is_lit)
+		SetLuminosity(0)
+		fswitch.active_power_usage -= FLOODLIGHT_TICK_CONSUMPTION
+		is_lit = FALSE
 		update_icon()
 
-#undef FLOODLIGHT_REPAIR_UNSCREW
-#undef FLOODLIGHT_REPAIR_CROWBAR
+#undef FLOODLIGHT_REPAIR_FINE
 #undef FLOODLIGHT_REPAIR_WELD
-#undef FLOODLIGHT_REPAIR_CABLE
-#undef FLOODLIGHT_REPAIR_SCREW
+#undef FLOODLIGHT_REPAIR_WIRECUTTER
 #undef FLOODLIGHT_TICK_CONSUMPTION
+#undef SWITCH_OFF
+#undef SWITCH_ON
