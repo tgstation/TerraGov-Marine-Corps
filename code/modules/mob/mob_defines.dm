@@ -169,6 +169,7 @@
 	var/action_busy //whether the mob is currently doing an action that takes time (do_after or do_mob procs)
 
 	var/list/progressbars = null	//for stacking do_after bars
+	var/list/busy_icons = null
 
 	var/accuracy_modifier = 0 //Applies a penalty or bonus to projectile accuracy in projectile.dm
 	var/scatter_modifier = 0 //Applies a penalty or bonus to scatter probability in gun_system.dm

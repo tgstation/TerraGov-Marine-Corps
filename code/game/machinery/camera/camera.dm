@@ -271,9 +271,7 @@
 
 /obj/machinery/camera/proc/weld(var/obj/item/tool/weldingtool/WT, var/mob/user)
 
-	if(user.action_busy)
-		return FALSE
-	if(!WT.isOn())
+	if(user.action_busy || !WT.isOn())
 		return FALSE
 
 	//Do after stuff here

@@ -86,6 +86,42 @@ proc/age2agedescription(age)
 		if(70 to INFINITY)	return "elderly"
 		else				return "unknown"
 
+/proc/do_afsaaasgrob(mob/user , mob/target, time = 30, show_busy_icon, show_target_icon, selected_zone_check)
+
+/proc/do_mob(mob/user , mob/target, time = 30, uninterruptible = FALSE, progress = TRUE, icon_display, datum/callback/extra_checks = null)
+	if(!user || !target)
+		return FALSE
+	var/user_loc = user.loc
+
+	var/target_loc = target.loc
+
+	var/holding = user.get_active_held_item()
+	var/datum/progressbar/progbar
+	if (progress)
+		progbar = new(user, time, target, progress, icon_display)
+
+	user.action_busy++
+	var/endtime = world.time+time
+	var/starttime = world.time
+	. = TRUE
+	while (world.time < endtime)
+		stoplag(1)
+		if (progress)
+			progbar.update(world.time - starttime)
+		if(QDELETED(user) || QDELETED(target))
+			. = FALSE
+			break
+		if(uninterruptible)
+			continue
+
+		if(user.loc != user_loc || target.loc != target_loc || user.get_active_held_item() != holding || user.is_mob_incapacitated() || (extra_checks && !extra_checks.Invoke()))
+			. = FALSE
+			break
+	if (progress)
+		qdel(progbar)
+	user.action_busy--
+
+
 //some additional checks as a callback for for do_afters that want to break on losing health or on the mob taking action
 /mob/proc/break_do_after_checks(list/checked_health, check_clicks, selected_zone_check)
 	if(check_clicks && next_move > world.time)
@@ -104,12 +140,8 @@ proc/age2agedescription(age)
 
 /proc/dsfasfbdf(mob/user, delay, needhand = TRUE, numticks = 5, show_busy_icon, selected_zone_check, busy_check = FALSE)
 
-/proc/do_after(mob/user, delay, needhand = TRUE, atom/target = null, progress = TRUE, show_busy_icon = FALSE, busy_check = FALSE, datum/callback/extra_checks = null)
+/proc/do_after(mob/user, delay, needhand = TRUE, atom/target = null, progress = TRUE, icon_display, datum/callback/extra_checks = null)
 	if(!user)
-		return FALSE
-
-	if(busy_check && user.action_busy)
-		to_chat(user, "<span class='warning'>You're already busy doing something!</span>")
 		return FALSE
 
 	var/atom/Tloc = null
@@ -126,17 +158,11 @@ proc/age2agedescription(age)
 
 	delay *= user.do_after_coefficent()
 
-	var/image/busy_icon
-	if(show_busy_icon)
-		busy_icon = get_busy_icon(show_busy_icon)
-		if(busy_icon)
-			user.overlays += busy_icon
-
 	var/datum/progressbar/progbar
-	if (progress)
-		progbar = new(user, delay, target)
+	if(progress)
+		progbar = new(user, delay, target, progress, icon_display)
 
-	user.action_busy = TRUE
+	user.action_busy++
 	var/endtime = world.time + delay
 	var/starttime = world.time
 	. = TRUE
@@ -170,10 +196,7 @@ proc/age2agedescription(age)
 				break
 	if (progress)
 		qdel(progbar)
-	if(show_busy_icon)
-		user.overlays -= busy_icon
-		qdel(busy_icon)
-	user.action_busy = FALSE
+	user.action_busy--
 
 /mob/proc/do_after_coefficent() // This gets added to the delay on a do_after, default 1
 	. = 1

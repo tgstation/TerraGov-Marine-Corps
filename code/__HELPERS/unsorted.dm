@@ -656,61 +656,6 @@ var/global/image/busy_indicator_hostile
 			busy_indicator_hostile.layer = FLY_LAYER
 		return busy_indicator_hostile
 
-
-
-/proc/do_mob(mob/user , mob/target, time = 30, show_busy_icon, show_target_icon, selected_zone_check)
-	if(!user || !target) return 0
-
-	var/image/busy_icon
-	if(show_busy_icon)
-		busy_icon = get_busy_icon(show_busy_icon)
-		if(busy_icon)
-			user.overlays += busy_icon
-
-	var/image/target_icon
-	if(show_target_icon) //putting a busy overlay on top of the target
-		target_icon = get_busy_icon(show_target_icon)
-		if(target_icon)
-			target.overlays += target_icon
-
-	user.action_busy = TRUE
-
-	var/cur_zone_sel
-	if(selected_zone_check)
-		cur_zone_sel = user.zone_selected
-
-	var/user_loc = user.loc
-	var/target_loc = target.loc
-	var/delayfraction = round(time/5)
-	var/holding = user.get_active_held_item()
-
-	. = TRUE
-	for(var/i = 0 to 5)
-		sleep(delayfraction)
-		if(!user || !target)
-			. = FALSE
-			break
-		if(user.loc != user_loc || target.loc != target_loc)
-			. = FALSE
-			break
-		if(user.get_active_held_item() != holding)
-			. = FALSE
-			break
-		if(user.is_mob_incapacitated(TRUE) || user.lying)
-			. = FALSE
-			break
-		if(selected_zone_check && cur_zone_sel != user.zone_selected)
-			. = FALSE
-			break
-
-	if(user && busy_icon)
-		user.overlays -= busy_icon
-	if(target && target_icon)
-		target.overlays -= target_icon
-
-	user.action_busy = FALSE
-
-
 //Takes: Anything that could possibly have variables and a varname to check.
 //Returns: 1 if found, 0 if not.
 /proc/hasvar(var/datum/A, var/varname)
