@@ -85,41 +85,36 @@
 	icon = 'icons/turf/bigred.dmi'
 	icon_state = "mars_cave_1"
 
+/turf/open/mars_cave/random
+	icon_state = "mars_cave_2"
 
-/turf/open/mars_cave/New()
-	..()
+/turf/open/mars_cave/random/Initialize()
+	. = ..()
 
-	spawn(10)
-		var/r = rand(0, 2)
-
-		if (r == 0 && icon_state == "mars_cave_2")
-			icon_state = "mars_cave_3"
+	if (prob(33))
+		icon_state = "mars_cave_3"
 
 /turf/open/mars_dirt
 	name = "dirt"
 	icon = 'icons/turf/bigred.dmi'
 	icon_state = "mars_dirt_1"
 
+/turf/open/mars_dirt/random
+	icon_state = "mars_dirt_4"
 
-/turf/open/mars_dirt/New()
-	..()
-	spawn(10)
-		var/r = rand(0, 32)
+/turf/open/mars_dirt/random/Initialize()
+	. = ..()
 
-		if (r == 0 && icon_state == "mars_dirt_4")
-			icon_state = "mars_dirt_1"
-			return
+	if (prob(3))
+		icon_state = "mars_dirt_1"
+		return
 
-		r = rand(0, 32)
+	if (prob(3))
+		icon_state = "mars_dirt_2"
+		return
 
-		if (r == 0 && icon_state == "mars_dirt_4")
-			icon_state = "mars_dirt_2"
-			return
-
-		r = rand(0, 6)
-
-		if (r == 0 && icon_state == "mars_dirt_4")
-			icon_state = "mars_dirt_7"
+	if (prob(16))
+		icon_state = "mars_dirt_7"
 
 
 

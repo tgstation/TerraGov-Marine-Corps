@@ -14,10 +14,7 @@
 	},
 /area/bigredv2/caves)
 "aad" = (
-/turf/open/mars_cave{
-	tag = "icon-mars_cave_2";
-	icon_state = "mars_cave_2"
-	},
+/turf/open/mars_cave/random,
 /area/bigredv2/caves)
 "aae" = (
 /turf/closed/wall/r_wall,
@@ -677,10 +674,7 @@
 /area/bigredv2/caves)
 "abN" = (
 /obj/effect/landmark/huntergames_primary_spawn,
-/turf/open/mars_cave{
-	tag = "icon-mars_cave_2";
-	icon_state = "mars_cave_2"
-	},
+/turf/open/mars_cave/random,
 /area/bigredv2/caves)
 "abO" = (
 /turf/open/mars_cave,
@@ -732,17 +726,11 @@
 /area/bigredv2/caves)
 "abW" = (
 /obj/effect/landmark/huntergames_secondary_spawn,
-/turf/open/mars_cave{
-	tag = "icon-mars_cave_2";
-	icon_state = "mars_cave_2"
-	},
+/turf/open/mars_cave/random,
 /area/bigredv2/caves)
 "abX" = (
 /obj/effect/landmark/random_item/crap,
-/turf/open/mars_cave{
-	tag = "icon-mars_cave_2";
-	icon_state = "mars_cave_2"
-	},
+/turf/open/mars_cave/random,
 /area/bigredv2/caves)
 "abY" = (
 /obj/structure/barricade/wooden/lv_snowflake{
@@ -771,10 +759,7 @@
 /obj/structure/barricade/wooden/lv_snowflake{
 	dir = 4
 	},
-/turf/open/mars_cave{
-	tag = "icon-mars_cave_2";
-	icon_state = "mars_cave_2"
-	},
+/turf/open/mars_cave/random,
 /area/bigredv2/caves)
 "acc" = (
 /obj/structure/barricade/wooden/lv_snowflake{
@@ -2166,10 +2151,7 @@
 /area/bigredv2/outside/marshal_office)
 "afX" = (
 /obj/structure/mineral_door/resin,
-/turf/open/mars_cave{
-	tag = "icon-mars_cave_2";
-	icon_state = "mars_cave_2"
-	},
+/turf/open/mars_cave/random,
 /area/bigredv2/caves)
 "afY" = (
 /obj/structure/mineral_door/resin,
@@ -2862,25 +2844,16 @@
 /area/bigredv2/outside/marshal_office)
 "ahv" = (
 /obj/effect/landmark/start/xeno_spawn,
-/turf/open/mars_cave{
-	tag = "icon-mars_cave_2";
-	icon_state = "mars_cave_2"
-	},
+/turf/open/mars_cave/random,
 /area/bigredv2/caves)
 "ahw" = (
 /obj/effect/alien/weeds/node,
-/turf/open/mars_cave{
-	tag = "icon-mars_cave_2";
-	icon_state = "mars_cave_2"
-	},
+/turf/open/mars_cave/random,
 /area/bigredv2/caves)
 "ahx" = (
 /obj/effect/landmark/random_item/crap,
 /obj/effect/alien/weeds/node,
-/turf/open/mars_cave{
-	tag = "icon-mars_cave_2";
-	icon_state = "mars_cave_2"
-	},
+/turf/open/mars_cave/random,
 /area/bigredv2/caves)
 "ahy" = (
 /obj/structure/mineral_door/resin,
@@ -3032,10 +3005,7 @@
 	},
 /area/bigredv2/outside/nw)
 "ahP" = (
-/turf/open/mars_cave{
-	tag = "icon-mars_dirt_4";
-	icon_state = "mars_dirt_4"
-	},
+/turf/open/mars_dirt/random,
 /area/bigredv2/outside/nw)
 "ahQ" = (
 /turf/open/floor/marking/asteroidwarning{
@@ -3164,10 +3134,7 @@
 "aij" = (
 /obj/effect/landmark/huntergames_secondary_spawn,
 /obj/effect/alien/weeds/node,
-/turf/open/mars_cave{
-	tag = "icon-mars_cave_2";
-	icon_state = "mars_cave_2"
-	},
+/turf/open/mars_cave/random,
 /area/bigredv2/caves)
 "aik" = (
 /obj/structure/table/reinforced,
@@ -4284,10 +4251,7 @@
 	},
 /area/bigredv2/caves)
 "akX" = (
-/turf/open/mars_cave{
-	tag = "icon-mars_dirt_4";
-	icon_state = "mars_dirt_4"
-	},
+/turf/open/mars_dirt/random,
 /area/bigredv2/caves)
 "akY" = (
 /turf/open/mars_cave{
@@ -6798,10 +6762,7 @@
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/mars_cave{
-	tag = "icon-mars_dirt_4";
-	icon_state = "mars_dirt_4"
-	},
+/turf/open/mars_dirt/random,
 /area/bigredv2/outside/n)
 "aqK" = (
 /obj/structure/cable{
@@ -6812,16 +6773,10 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
-/turf/open/mars_cave{
-	tag = "icon-mars_dirt_4";
-	icon_state = "mars_dirt_4"
-	},
+/turf/open/mars_dirt/random,
 /area/bigredv2/outside/n)
 "aqL" = (
-/turf/open/mars_cave{
-	tag = "icon-mars_dirt_4";
-	icon_state = "mars_dirt_4"
-	},
+/turf/open/mars_dirt/random,
 /area/bigredv2/outside/n)
 "aqM" = (
 /turf/open/mars{
@@ -6978,10 +6933,7 @@
 /area/bigredv2/caves/lambda_lab)
 "ard" = (
 /obj/effect/landmark/random_item/crap,
-/turf/open/mars_cave{
-	tag = "icon-mars_dirt_4";
-	icon_state = "mars_dirt_4"
-	},
+/turf/open/mars_dirt/random,
 /area/bigredv2/outside/nw)
 "are" = (
 /obj/structure/table,
@@ -7069,10 +7021,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/mars_cave{
-	tag = "icon-mars_dirt_4";
-	icon_state = "mars_dirt_4"
-	},
+/turf/open/mars_dirt/random,
 /area/bigredv2/outside/n)
 "arr" = (
 /turf/open/mars{
@@ -10043,17 +9992,11 @@
 /area/bigredv2/caves/lambda_lab)
 "axU" = (
 /obj/item/tool/pickaxe/drill,
-/turf/open/mars_cave{
-	tag = "icon-mars_cave_2";
-	icon_state = "mars_cave_2"
-	},
+/turf/open/mars_cave/random,
 /area/bigredv2/caves)
 "axV" = (
 /obj/effect/glowshroom,
-/turf/open/mars_cave{
-	tag = "icon-mars_cave_2";
-	icon_state = "mars_cave_2"
-	},
+/turf/open/mars_cave/random,
 /area/bigredv2/caves)
 "axW" = (
 /obj/structure/cable{
@@ -10429,21 +10372,13 @@
 /area/bigredv2/outside/medical)
 "ayL" = (
 /obj/machinery/atmospherics/pipe/manifold/general/visible,
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/medical)
 "ayM" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 9
 	},
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/medical)
 "ayN" = (
 /turf/open/floor/tile/white/warningstripe{
@@ -10730,11 +10665,7 @@
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/medical)
 "azy" = (
 /obj/effect/decal/cleanable/blood,
@@ -10742,11 +10673,7 @@
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/medical)
 "azz" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -11967,10 +11894,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/bar)
 "aCc" = (
-/turf/open/mars_cave{
-	tag = "icon-mars_dirt_4";
-	icon_state = "mars_dirt_4"
-	},
+/turf/open/mars_dirt/random,
 /area/bigredv2/outside/ne)
 "aCd" = (
 /turf/open/mars{
@@ -12642,50 +12566,30 @@
 /area/bigredv2/outside/nw)
 "aDB" = (
 /obj/structure/table,
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/medical)
 "aDC" = (
 /obj/structure/table,
 /obj/item/tool/surgery/bonesetter,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/medical)
 "aDD" = (
 /obj/structure/table,
 /obj/item/storage/box/masks,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/medical)
 "aDE" = (
 /obj/structure/table,
 /obj/item/tool/surgery/FixOVein,
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/medical)
 "aDF" = (
 /obj/structure/table,
 /obj/item/tool/surgery/cautery,
 /obj/item/reagent_container/spray/cleaner,
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/medical)
 "aDG" = (
 /obj/structure/sign/safety/medical_supplies{
@@ -13056,11 +12960,7 @@
 "aEw" = (
 /obj/structure/table,
 /obj/item/tool/surgery/scalpel/manager,
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/medical)
 "aEx" = (
 /obj/item/alien_embryo,
@@ -13073,11 +12973,7 @@
 	},
 /obj/item/device/healthanalyzer,
 /obj/machinery/atmospherics/components/unary/vent_pump,
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/medical)
 "aEz" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -13516,10 +13412,7 @@
 	},
 /area/bigredv2/outside/virology)
 "aFt" = (
-/turf/open/mars_cave{
-	tag = "icon-mars_dirt_4";
-	icon_state = "mars_dirt_4"
-	},
+/turf/open/mars_dirt/random,
 /area/bigredv2/outside/virology)
 "aFu" = (
 /turf/open/mars{
@@ -13537,11 +13430,7 @@
 	},
 /area/bigredv2/outside/virology)
 "aFx" = (
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/medical)
 "aFy" = (
 /obj/machinery/optable,
@@ -13553,11 +13442,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
 	},
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/medical)
 "aFA" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -13990,11 +13875,7 @@
 /area/bigredv2/outside/medical)
 "aGv" = (
 /obj/effect/decal/cleanable/vomit,
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/medical)
 "aGw" = (
 /obj/effect/decal/cleanable/dirt,
@@ -14403,29 +14284,17 @@
 /area/bigredv2/outside/nw)
 "aHo" = (
 /obj/structure/closet/secure_closet/medical2,
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/medical)
 "aHp" = (
 /obj/machinery/light,
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/medical)
 "aHq" = (
 /obj/machinery/bioprinter{
 	stored_metal = 1000
 	},
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/medical)
 "aHr" = (
 /obj/machinery/bodyscanner,
@@ -14910,10 +14779,7 @@
 	},
 /area/bigredv2/outside/c)
 "aIn" = (
-/turf/open/mars_cave{
-	tag = "icon-mars_dirt_4";
-	icon_state = "mars_dirt_4"
-	},
+/turf/open/mars_dirt/random,
 /area/bigredv2/outside/c)
 "aIo" = (
 /obj/structure/cable{
@@ -14921,10 +14787,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/mars_cave{
-	tag = "icon-mars_dirt_4";
-	icon_state = "mars_dirt_4"
-	},
+/turf/open/mars_dirt/random,
 /area/bigredv2/outside/c)
 "aIp" = (
 /turf/open/mars{
@@ -15309,10 +15172,7 @@
 /area/bigredv2/outside/virology)
 "aJi" = (
 /obj/item/trash/popcorn,
-/turf/open/mars_cave{
-	tag = "icon-mars_dirt_4";
-	icon_state = "mars_dirt_4"
-	},
+/turf/open/mars_dirt/random,
 /area/bigredv2/outside/virology)
 "aJj" = (
 /obj/machinery/light{
@@ -16459,10 +16319,7 @@
 	d2 = 8;
 	icon_state = "4-8";
 	},
-/turf/open/mars_cave{
-	tag = "icon-mars_dirt_4";
-	icon_state = "mars_dirt_4"
-	},
+/turf/open/mars_dirt/random,
 /area/bigredv2/outside/c)
 "aLk" = (
 /obj/structure/cable{
@@ -16509,10 +16366,7 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/open/mars_cave{
-	tag = "icon-mars_dirt_4";
-	icon_state = "mars_dirt_4"
-	},
+/turf/open/mars_dirt/random,
 /area/bigredv2/outside/c)
 "aLp" = (
 /obj/structure/bed/chair/wood/normal{
@@ -17292,38 +17146,22 @@
 /obj/structure/barricade/wooden/lv_snowflake{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aNl" = (
 /obj/item/stack/sheet/wood{
 	amount = 2
 	},
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aNm" = (
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aNn" = (
 /obj/machinery/camera/autoname{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aNo" = (
 /turf/open/floor,
@@ -17794,11 +17632,7 @@
 /obj/structure/barricade/wooden/lv_snowflake{
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aOw" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -18263,11 +18097,7 @@
 /area/bigredv2/outside/virology)
 "aPv" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aPw" = (
 /obj/structure/table,
@@ -18277,64 +18107,40 @@
 	dir = 1;
 	on = 1
 	},
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aPx" = (
 /obj/structure/table,
 /obj/item/reagent_container/food/snacks/chips,
 /obj/item/reagent_container/food/snacks/cookie,
 /obj/item/reagent_container/food/snacks/donut,
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aPy" = (
 /obj/structure/table,
 /obj/item/reagent_container/food/snacks/candy,
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aPz" = (
 /obj/structure/table,
 /obj/item/reagent_container/food/drinks/cans/waterbottle,
 /obj/item/reagent_container/food/drinks/cans/cola,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aPA" = (
 /obj/structure/table,
 /obj/item/reagent_container/food/drinks/cans/waterbottle,
 /obj/item/reagent_container/food/drinks/cans/cola,
 /obj/item/reagent_container/food/drinks/cans/beer,
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aPB" = (
 /obj/structure/table,
 /obj/item/reagent_container/food/drinks/flask,
 /obj/item/reagent_container/food/drinks/cans/waterbottle,
 /obj/item/reagent_container/food/drinks/cans/beer,
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aPC" = (
 /obj/effect/landmark/huntergames_primary_spawn,
@@ -18343,31 +18149,19 @@
 "aPD" = (
 /obj/structure/table,
 /obj/item/storage/briefcase,
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aPE" = (
 /obj/structure/table,
 /obj/machinery/camera/autoname{
 	dir = 2
 	},
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aPF" = (
 /obj/structure/table,
 /obj/item/storage/box/snappops,
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aPG" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -18699,10 +18493,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "aQu" = (
-/turf/open/mars_cave{
-	tag = "icon-mars_dirt_4";
-	icon_state = "mars_dirt_4"
-	},
+/turf/open/mars_dirt/random,
 /area/bigredv2/outside/e)
 "aQv" = (
 /turf/open/floor{
@@ -18800,11 +18591,7 @@
 /obj/item/reagent_container/food/snacks/chips,
 /obj/item/reagent_container/food/snacks/cookie,
 /obj/item/reagent_container/food/snacks/donkpocket,
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aQI" = (
 /obj/structure/table,
@@ -18814,11 +18601,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aQJ" = (
 /obj/structure/table,
@@ -18827,30 +18610,18 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aQK" = (
 /obj/structure/table,
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aQL" = (
 /obj/structure/table,
 /obj/machinery/camera/autoname{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aQM" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -18862,11 +18633,7 @@
 	icon_state = "gib6";
 	tag = "icon-gib6"
 	},
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aQO" = (
 /obj/structure/table,
@@ -19322,11 +19089,7 @@
 /obj/item/reagent_container/food/snacks/cheesewedge,
 /obj/item/reagent_container/food/snacks/chips,
 /obj/item/reagent_container/food/snacks/cookie,
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aRL" = (
 /obj/structure/table,
@@ -19336,11 +19099,7 @@
 /obj/item/reagent_container/food/snacks/candy,
 /obj/item/reagent_container/food/snacks/candy,
 /obj/item/reagent_container/food/snacks/donkpocket,
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aRM" = (
 /obj/effect/landmark/random_item/crap,
@@ -19351,20 +19110,12 @@
 /obj/item/reagent_container/food/drinks/cans/thirteenloko,
 /obj/item/reagent_container/food/drinks/cans/cola,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aRO" = (
 /obj/structure/table,
 /obj/item/reagent_container/food/drinks/flask,
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aRP" = (
 /obj/effect/decal/cleanable/dirt,
@@ -19647,21 +19398,14 @@
 /turf/open/floor/freezer,
 /area/bigredv2/outside/virology)
 "aSB" = (
-/turf/open/mars_cave{
-	tag = "icon-mars_dirt_4";
-	icon_state = "mars_dirt_4"
-	},
+/turf/open/mars_dirt/random,
 /area/bigredv2/outside/w)
 "aSC" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/camera/autoname{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aSD" = (
 /obj/structure/table,
@@ -19669,11 +19413,7 @@
 /obj/item/reagent_container/food/snacks/chips,
 /obj/item/reagent_container/food/snacks/donkpocket,
 /obj/item/reagent_container/food/snacks/donut,
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aSE" = (
 /obj/structure/table,
@@ -19681,11 +19421,7 @@
 /obj/item/reagent_container/food/snacks/candy,
 /obj/item/reagent_container/food/snacks/candy,
 /obj/item/reagent_container/food/snacks/chips,
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aSF" = (
 /obj/structure/table,
@@ -19693,21 +19429,13 @@
 /obj/item/reagent_container/food/drinks/cans/waterbottle,
 /obj/item/reagent_container/food/drinks/cans/aspen,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aSG" = (
 /obj/structure/table,
 /obj/item/reagent_container/food/drinks/flask/vacuumflask,
 /obj/item/reagent_container/food/drinks/flask,
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aSH" = (
 /obj/structure/table,
@@ -19716,11 +19444,7 @@
 	dir = 4;
 	on = 1
 	},
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aSI" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
@@ -19732,11 +19456,7 @@
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aSK" = (
 /obj/structure/table,
@@ -20245,11 +19965,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aTN" = (
 /obj/structure/table,
@@ -20259,31 +19975,19 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aTO" = (
 /obj/structure/table,
 /obj/item/reagent_container/food/drinks/cans/waterbottle,
 /obj/item/reagent_container/food/drinks/cans/aspen,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aTP" = (
 /obj/structure/table,
 /obj/item/reagent_container/food/drinks/flask/vacuumflask,
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aTQ" = (
 /obj/structure/reagent_dispensers/watertank,
@@ -20295,11 +19999,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aTS" = (
 /obj/structure/table,
@@ -20307,11 +20007,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aTT" = (
 /obj/structure/table,
@@ -20426,17 +20122,11 @@
 	tag = "icon-xgib4";
 	icon_state = "xgib4"
 	},
-/turf/open/mars_cave{
-	tag = "icon-mars_dirt_4";
-	icon_state = "mars_dirt_4"
-	},
+/turf/open/mars_dirt/random,
 /area/bigredv2/outside/c)
 "aUi" = (
 /obj/effect/decal/cleanable/blood/xeno,
-/turf/open/mars_cave{
-	tag = "icon-mars_dirt_4";
-	icon_state = "mars_dirt_4"
-	},
+/turf/open/mars_dirt/random,
 /area/bigredv2/outside/c)
 "aUj" = (
 /obj/structure/cable{
@@ -20457,26 +20147,17 @@
 /area/bigredv2/outside/e)
 "aUl" = (
 /obj/effect/decal/cleanable/blood,
-/turf/open/mars_cave{
-	tag = "icon-mars_dirt_4";
-	icon_state = "mars_dirt_4"
-	},
+/turf/open/mars_dirt/random,
 /area/bigredv2/outside/e)
 "aUm" = (
 /obj/effect/decal/cleanable/blood{
 	layer = 3;
 	},
-/turf/open/mars_cave{
-	tag = "icon-mars_dirt_4";
-	icon_state = "mars_dirt_4"
-	},
+/turf/open/mars_dirt/random,
 /area/bigredv2/outside/e)
 "aUn" = (
 /obj/effect/decal/cleanable/blood/gibs/limb,
-/turf/open/mars_cave{
-	tag = "icon-mars_dirt_4";
-	icon_state = "mars_dirt_4"
-	},
+/turf/open/mars_dirt/random,
 /area/bigredv2/outside/e)
 "aUo" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -20732,10 +20413,7 @@
 /area/bigredv2/caves/lambda_lab)
 "aUK" = (
 /obj/structure/mineral_door/resin,
-/turf/open/mars_cave{
-	tag = "icon-mars_cave_2";
-	icon_state = "mars_cave_2"
-	},
+/turf/open/mars_cave/random,
 /area/bigredv2/caves/lambda_lab)
 "aUL" = (
 /obj/structure/table,
@@ -20782,11 +20460,7 @@
 /obj/item/reagent_container/food/snacks/bun,
 /obj/item/reagent_container/food/snacks/cheesewedge,
 /obj/item/reagent_container/food/snacks/donut,
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aUT" = (
 /obj/structure/table,
@@ -20796,21 +20470,13 @@
 /obj/machinery/camera/autoname{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aUU" = (
 /obj/structure/table,
 /obj/item/reagent_container/food/snacks/candy,
 /obj/item/reagent_container/food/snacks/bun,
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aUV" = (
 /obj/effect/decal/cleanable/dirt,
@@ -20826,49 +20492,29 @@
 /obj/structure/table,
 /obj/item/reagent_container/food/drinks/coffee,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aUY" = (
 /obj/structure/table,
 /obj/item/reagent_container/food/drinks/coffee,
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aUZ" = (
 /obj/structure/table,
 /obj/item/reagent_container/food/drinks/flask/vacuumflask,
 /obj/item/reagent_container/food/drinks/cans/aspen,
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aVa" = (
 /obj/structure/table,
 /obj/item/device/flashlight,
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aVb" = (
 /obj/structure/table,
 /obj/item/storage/box/snappops,
 /obj/item/storage/box/snappops,
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aVc" = (
 /obj/effect/decal/cleanable/dirt,
@@ -21376,11 +21022,7 @@
 /obj/structure/barricade/wooden/lv_snowflake{
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aWq" = (
 /obj/effect/decal/cleanable/dirt,
@@ -21397,11 +21039,7 @@
 	d2 = 8;
 	icon_state = "4-8";
 	},
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aWs" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -21412,11 +21050,7 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aWt" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -21424,21 +21058,13 @@
 	layer = 2.4
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aWu" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
 	},
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aWv" = (
 /obj/machinery/alarm{
@@ -21447,56 +21073,32 @@
 	pixel_y = -30;
 	tag = "icon-alarm0 (NORTH)"
 	},
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aWw" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/camera/autoname{
 	dir = 2
 	},
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aWx" = (
 /obj/machinery/light,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aWy" = (
 /obj/structure/bed,
 /obj/item/toy/farwadoll,
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aWz" = (
 /obj/item/weapon/gun/pistol/holdout,
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aWA" = (
 /obj/structure/closet/toolcloset,
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aWB" = (
 /obj/item/device/radio/intercom{
@@ -21507,11 +21109,7 @@
 	pixel_x = 30;
 	},
 /obj/structure/bed,
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aWC" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -21597,10 +21195,7 @@
 "aWN" = (
 /obj/effect/alien/weeds/node,
 /obj/structure/mineral_door/resin,
-/turf/open/mars_cave{
-	tag = "icon-mars_cave_2";
-	icon_state = "mars_cave_2"
-	},
+/turf/open/mars_cave/random,
 /area/bigredv2/caves)
 "aWO" = (
 /obj/structure/reagent_dispensers/virusfood{
@@ -21676,11 +21271,7 @@
 /obj/structure/table,
 /obj/item/toy/prize/ripley,
 /obj/item/toy/prize/odysseus,
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aWY" = (
 /obj/effect/decal/cleanable/dirt,
@@ -21699,11 +21290,7 @@
 "aXa" = (
 /obj/structure/table,
 /obj/item/toy/sword,
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aXb" = (
 /obj/machinery/power/apc/drained{
@@ -21829,10 +21416,7 @@
 	tag = "icon-gib6";
 	icon_state = "gib6"
 	},
-/turf/open/mars_cave{
-	tag = "icon-mars_dirt_4";
-	icon_state = "mars_dirt_4"
-	},
+/turf/open/mars_dirt/random,
 /area/bigredv2/outside/c)
 "aXp" = (
 /turf/closed/wall,
@@ -21916,31 +21500,19 @@
 /obj/structure/table,
 /obj/item/toy/prize/mauler,
 /obj/item/toy/prize/odysseus,
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aXC" = (
 /obj/structure/table,
 /obj/machinery/light,
 /obj/item/toy/prize/ripley,
 /obj/item/toy/prize/odysseus,
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aXD" = (
 /obj/structure/table,
 /obj/item/toy/prize/mauler,
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aXE" = (
 /obj/structure/table,
@@ -21949,11 +21521,7 @@
 /obj/machinery/camera/autoname{
 	dir = 2
 	},
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aXF" = (
 /obj/structure/cable{
@@ -21969,11 +21537,7 @@
 /obj/structure/table,
 /obj/item/toy/sword,
 /obj/item/toy/gun,
-/turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
-	icon_state = "whitebluefull";
-	dir = 5
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aXH" = (
 /turf/open/floor/plating,
@@ -24200,10 +23764,7 @@
 /area/bigredv2/outside/cargo)
 "bdk" = (
 /obj/effect/landmark/random_item/crap,
-/turf/open/mars_cave{
-	tag = "icon-mars_dirt_4";
-	icon_state = "mars_dirt_4"
-	},
+/turf/open/mars_dirt/random,
 /area/bigredv2/outside/c)
 "bdl" = (
 /turf/open/floor{
@@ -24599,10 +24160,7 @@
 	},
 /area/bigredv2/outside/se)
 "beq" = (
-/turf/open/mars_cave{
-	tag = "icon-mars_dirt_4";
-	icon_state = "mars_dirt_4"
-	},
+/turf/open/mars_dirt/random,
 /area/bigredv2/outside/se)
 "ber" = (
 /turf/open/mars{
@@ -24616,10 +24174,7 @@
 "bet" = (
 /obj/effect/landmark/start/xeno_spawn,
 /obj/effect/alien/weeds/node,
-/turf/open/mars_cave{
-	tag = "icon-mars_cave_2";
-	icon_state = "mars_cave_2"
-	},
+/turf/open/mars_cave/random,
 /area/bigredv2/caves)
 "beu" = (
 /obj/effect/landmark/huntergames_primary_spawn,
@@ -24830,10 +24385,7 @@
 /area/bigredv2/outside/cargo)
 "beY" = (
 /obj/effect/decal/cleanable/blood,
-/turf/open/mars_cave{
-	tag = "icon-mars_dirt_4";
-	icon_state = "mars_dirt_4"
-	},
+/turf/open/mars_dirt/random,
 /area/bigredv2/outside/c)
 "beZ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -24855,10 +24407,7 @@
 /area/bigredv2/outside/c)
 "bfb" = (
 /obj/structure/barricade/wooden,
-/turf/open/mars_cave{
-	tag = "icon-mars_dirt_4";
-	icon_state = "mars_dirt_4"
-	},
+/turf/open/mars_dirt/random,
 /area/bigredv2/outside/c)
 "bfc" = (
 /obj/structure/barricade/wooden,
@@ -25216,17 +24765,11 @@
 /area/bigredv2/outside/w)
 "bfT" = (
 /obj/effect/landmark/random_item/crap,
-/turf/open/mars_cave{
-	tag = "icon-mars_dirt_4";
-	icon_state = "mars_dirt_4"
-	},
+/turf/open/mars_dirt/random,
 /area/bigredv2/outside/w)
 "bfU" = (
 /obj/effect/landmark/huntergames_secondary_spawn,
-/turf/open/mars_cave{
-	tag = "icon-mars_dirt_4";
-	icon_state = "mars_dirt_4"
-	},
+/turf/open/mars_dirt/random,
 /area/bigredv2/outside/w)
 "bfV" = (
 /obj/structure/largecrate/random,
@@ -26622,10 +26165,7 @@
 	},
 /area/bigredv2/outside/s)
 "bjy" = (
-/turf/open/mars_cave{
-	tag = "icon-mars_dirt_4";
-	icon_state = "mars_dirt_4"
-	},
+/turf/open/mars_dirt/random,
 /area/bigredv2/outside/s)
 "bjz" = (
 /turf/open/mars{
@@ -27483,10 +27023,7 @@
 /area/bigredv2/outside/filtration_plant)
 "blH" = (
 /obj/structure/fence,
-/turf/open/mars_cave{
-	tag = "icon-mars_cave_2";
-	icon_state = "mars_cave_2"
-	},
+/turf/open/mars_cave/random,
 /area/bigredv2/caves)
 "blI" = (
 /obj/structure/window/framed/colony,
@@ -27772,10 +27309,7 @@
 /area/bigredv2/outside/s)
 "bmB" = (
 /obj/structure/barricade/wooden,
-/turf/open/mars_cave{
-	tag = "icon-mars_dirt_4";
-	icon_state = "mars_dirt_4"
-	},
+/turf/open/mars_dirt/random,
 /area/bigredv2/outside/s)
 "bmC" = (
 /obj/structure/table,
@@ -28928,10 +28462,7 @@
 	},
 /area/bigredv2/outside/sw)
 "bpx" = (
-/turf/open/mars_cave{
-	tag = "icon-mars_dirt_4";
-	icon_state = "mars_dirt_4"
-	},
+/turf/open/mars_dirt/random,
 /area/bigredv2/outside/sw)
 "bpy" = (
 /turf/open/mars{
@@ -30949,10 +30480,7 @@
 	},
 /area/bigredv2/outside/s)
 "buv" = (
-/turf/open/mars_cave{
-	tag = "icon-mars_cave_2";
-	icon_state = "mars_cave_2"
-	},
+/turf/open/mars_cave/random,
 /area/bigredv2/outside/s)
 "buw" = (
 /turf/open/mars_cave{
@@ -30961,10 +30489,7 @@
 	},
 /area/bigredv2/outside/s)
 "bux" = (
-/turf/open/mars_cave{
-	tag = "icon-mars_cave_2";
-	icon_state = "mars_cave_2"
-	},
+/turf/open/mars_cave/random,
 /area/bigredv2/outside/se)
 "buy" = (
 /turf/open/mars_cave,
@@ -30982,10 +30507,7 @@
 	},
 /area/bigredv2/outside/sw)
 "buB" = (
-/turf/open/mars_cave{
-	tag = "icon-mars_cave_2";
-	icon_state = "mars_cave_2"
-	},
+/turf/open/mars_cave/random,
 /area/bigredv2/outside/sw)
 "buC" = (
 /turf/open/mars_cave{
@@ -31053,10 +30575,7 @@
 /area/bigredv2/outside/s)
 "buL" = (
 /obj/item/tool/warning_cone,
-/turf/open/mars_cave{
-	tag = "icon-mars_cave_2";
-	icon_state = "mars_cave_2"
-	},
+/turf/open/mars_cave/random,
 /area/bigredv2/outside/s)
 "buM" = (
 /turf/open/mars_cave{
@@ -31285,10 +30804,7 @@
 /area/bigredv2/outside/s)
 "bvu" = (
 /obj/effect/landmark/random_item/crap,
-/turf/open/mars_cave{
-	tag = "icon-mars_cave_2";
-	icon_state = "mars_cave_2"
-	},
+/turf/open/mars_cave/random,
 /area/bigredv2/outside/se)
 "bvv" = (
 /obj/machinery/light{
@@ -31300,10 +30816,7 @@
 /area/bigredv2/outside/engineering)
 "bvw" = (
 /obj/effect/landmark/pred_teleport_destination,
-/turf/open/mars_cave{
-	tag = "icon-mars_cave_2";
-	icon_state = "mars_cave_2"
-	},
+/turf/open/mars_cave/random,
 /area/bigredv2/outside/sw)
 "bvx" = (
 /turf/open/gm/river,
@@ -31367,10 +30880,7 @@
 /area/bigredv2/outside/engineering)
 "bvH" = (
 /obj/effect/landmark/random_item/crap,
-/turf/open/mars_cave{
-	tag = "icon-mars_dirt_4";
-	icon_state = "mars_dirt_4"
-	},
+/turf/open/mars_dirt/random,
 /area/bigredv2/outside/s)
 "bvI" = (
 /turf/open/mars_cave{
@@ -31399,10 +30909,7 @@
 /area/bigredv2/outside/engineering)
 "bvL" = (
 /obj/effect/landmark/huntergames_primary_spawn,
-/turf/open/mars_cave{
-	tag = "icon-mars_cave_2";
-	icon_state = "mars_cave_2"
-	},
+/turf/open/mars_cave/random,
 /area/bigredv2/outside/sw)
 "bvM" = (
 /obj/machinery/compressor{
@@ -31537,10 +31044,7 @@
 /area/bigredv2/outside/se)
 "bwf" = (
 /obj/effect/landmark/random_item/crap,
-/turf/open/mars_cave{
-	tag = "icon-mars_cave_2";
-	icon_state = "mars_cave_2"
-	},
+/turf/open/mars_cave/random,
 /area/bigredv2/outside/sw)
 "bwg" = (
 /obj/structure/cable{

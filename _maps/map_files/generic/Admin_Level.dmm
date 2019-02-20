@@ -443,27 +443,18 @@
 /turf/open/space/transit/north/shuttlespace_ns7,
 /area/space)
 "bn" = (
-/turf/open/floor{
-	icon_state = "redyellowfull";
-	dir = 5
-	},
+/turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
 "bo" = (
 /obj/structure/bed/chair{
 	dir = 1
 	},
 /obj/effect/landmark/thunderdome/admin,
-/turf/open/floor{
-	icon_state = "redyellowfull";
-	dir = 5
-	},
+/turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
 "bp" = (
 /obj/item/tool/extinguisher,
-/turf/open/floor{
-	icon_state = "redyellowfull";
-	dir = 5
-	},
+/turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
 "br" = (
 /obj/structure/bed/chair{
@@ -471,47 +462,32 @@
 	},
 /obj/structure/disposalpipe/segment,
 /obj/effect/landmark/thunderdome/admin,
-/turf/open/floor{
-	icon_state = "redyellowfull";
-	dir = 5
-	},
+/turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
 "bs" = (
 /turf/open/space/transit/north/shuttlespace_ns6,
 /area/space)
 "bt" = (
 /obj/machinery/computer/security/telescreen,
-/turf/open/floor{
-	icon_state = "redyellowfull";
-	dir = 5
-	},
+/turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
 "bv" = (
 /obj/item/tool/wrench,
-/turf/open/floor{
-	icon_state = "redyellowfull";
-	dir = 5
-	},
+/turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
 "bw" = (
 /obj/structure/disposalpipe/trunk{
 	dir = 1
 	},
 /obj/machinery/disposal,
-/turf/open/floor{
-	icon_state = "redyellowfull";
-	dir = 5
-	},
+/turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
 "bx" = (
 /turf/open/space/transit/north/shuttlespace_ns5,
 /area/space)
 "by" = (
 /obj/structure/bed/chair,
-/turf/open/floor{
-	icon_state = "redyellowfull";
-	dir = 5
-	},
+/turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
 "bz" = (
 /turf/open/space/transit/north/shuttlespace_ns4,
@@ -531,10 +507,7 @@
 /area/space)
 "bB" = (
 /obj/structure/table,
-/turf/open/floor{
-	icon_state = "redyellowfull";
-	dir = 5
-	},
+/turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
 "bC" = (
 /obj/item/explosive/grenade/chem_grenade/cleaner,
@@ -548,50 +521,35 @@
 /obj/item/explosive/grenade/chem_grenade/cleaner,
 /obj/item/explosive/grenade/chem_grenade/cleaner,
 /obj/structure/table,
-/turf/open/floor{
-	icon_state = "redyellowfull";
-	dir = 5
-	},
+/turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
 "bD" = (
 /obj/machinery/computer/pod{
 	id = "thunderdomeaxe";
 	name = "Thunderdome Axe Supply"
 	},
-/turf/open/floor{
-	icon_state = "redyellowfull";
-	dir = 5
-	},
+/turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
 "bE" = (
 /obj/machinery/computer/pod{
 	id = "thunderdomegen";
 	name = "Thunderdome General Supply"
 	},
-/turf/open/floor{
-	icon_state = "redyellowfull";
-	dir = 5
-	},
+/turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
 "bF" = (
 /obj/machinery/computer/pod{
 	id = "thunderdomehea";
 	name = "Thunderdome Heavy Supply"
 	},
-/turf/open/floor{
-	icon_state = "redyellowfull";
-	dir = 5
-	},
+/turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
 "bG" = (
 /obj/machinery/computer/pod{
 	id = "thunderdome";
 	name = "Thunderdome Blast Door Control"
 	},
-/turf/open/floor{
-	icon_state = "redyellowfull";
-	dir = 5
-	},
+/turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
 "bH" = (
 /obj/item/stack/medical/ointment,
@@ -601,44 +559,29 @@
 	icon_state = "tabledir";
 	dir = 9
 	},
-/turf/open/floor{
-	icon_state = "redyellowfull";
-	dir = 5
-	},
+/turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
 "bI" = (
 /obj/structure/table,
 /obj/item/stack/medical/bruise_pack,
 /obj/item/stack/medical/bruise_pack,
 /obj/item/stack/medical/bruise_pack,
-/turf/open/floor{
-	icon_state = "redyellowfull";
-	dir = 5
-	},
+/turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
 "bJ" = (
 /obj/structure/table,
 /obj/item/storage/box/handcuffs,
-/turf/open/floor{
-	icon_state = "redyellowfull";
-	dir = 5
-	},
+/turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
 "bK" = (
 /obj/structure/table,
 /obj/item/storage/toolbox/electrical,
-/turf/open/floor{
-	icon_state = "redyellowfull";
-	dir = 5
-	},
+/turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
 "bL" = (
 /obj/structure/table,
 /obj/item/storage/toolbox/mechanical,
-/turf/open/floor{
-	icon_state = "redyellowfull";
-	dir = 5
-	},
+/turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
 "bM" = (
 /turf/open/space/transit/north/shuttlespace_ns3,

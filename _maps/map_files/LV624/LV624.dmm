@@ -2786,15 +2786,11 @@
 /area/lv624/ground/sand4)
 "akz" = (
 /obj/structure/inflatable,
-/turf/open/floor{
-	icon_state = "redyellowfull"
-	},
+/turf/open/floor/tile/red/yellowfull,
 /area/lv624/ground/sand4)
 "akA" = (
 /obj/structure/inflatable/door,
-/turf/open/floor{
-	icon_state = "redyellowfull"
-	},
+/turf/open/floor/tile/red/yellowfull,
 /area/lv624/ground/sand4)
 "akB" = (
 /turf/open/gm/coast/corner{
@@ -2918,20 +2914,14 @@
 /area/lv624/ground/river2)
 "akX" = (
 /obj/structure/girder,
-/turf/open/floor{
-	icon_state = "redyellowfull"
-	},
+/turf/open/floor/tile/red/yellowfull,
 /area/lv624/ground/sand4)
 "akY" = (
 /obj/item/device/analyzer,
-/turf/open/floor{
-	icon_state = "redyellowfull"
-	},
+/turf/open/floor/tile/red/yellowfull,
 /area/lv624/ground/sand4)
 "akZ" = (
-/turf/open/floor{
-	icon_state = "redyellowfull"
-	},
+/turf/open/floor/tile/red/yellowfull,
 /area/lv624/ground/sand4)
 "ala" = (
 /turf/open/gm/coast/corner{
@@ -3072,9 +3062,7 @@
 /area/lv624/ground/river2)
 "alw" = (
 /obj/item/tool/shovel,
-/turf/open/floor{
-	icon_state = "redyellowfull"
-	},
+/turf/open/floor/tile/red/yellowfull,
 /area/lv624/ground/sand4)
 "alx" = (
 /obj/structure/disposalpipe/segment{
@@ -3177,9 +3165,7 @@
 /area/lv624/ground/river3)
 "alP" = (
 /obj/effect/alien/weeds/node,
-/turf/open/floor{
-	icon_state = "redyellowfull"
-	},
+/turf/open/floor/tile/red/yellowfull,
 /area/lv624/ground/sand4)
 "alQ" = (
 /obj/structure/disposalpipe/junction{
@@ -3369,9 +3355,7 @@
 	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Roester Kalin"
 	},
-/turf/open/floor{
-	icon_state = "redyellowfull"
-	},
+/turf/open/floor/tile/red/yellowfull,
 /area/lv624/ground/sand4)
 "amu" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -16231,17 +16215,11 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/internal_affairs)
 "bcs" = (
-/turf/open/floor{
-	tag = "icon-whitebluefull";
-	icon_state = "whitebluefull"
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/lv624/lazarus/internal_affairs)
 "bct" = (
 /obj/item/folder/blue,
-/turf/open/floor{
-	tag = "icon-whitebluefull";
-	icon_state = "whitebluefull"
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/lv624/lazarus/internal_affairs)
 "bcu" = (
 /obj/effect/landmark/random_item/good,
@@ -16264,10 +16242,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/open/floor{
-	tag = "icon-whitebluefull";
-	icon_state = "whitebluefull"
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/lv624/lazarus/internal_affairs)
 "bcw" = (
 /obj/structure/cable/yellow{
@@ -16275,10 +16250,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor{
-	tag = "icon-whitebluefull";
-	icon_state = "whitebluefull"
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/lv624/lazarus/internal_affairs)
 "bcx" = (
 /obj/structure/cable/yellow{
@@ -16290,10 +16262,7 @@
 	dir = 4;
 	on = 1
 	},
-/turf/open/floor{
-	tag = "icon-whitebluefull";
-	icon_state = "whitebluefull"
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/lv624/lazarus/internal_affairs)
 "bcy" = (
 /obj/structure/cable/yellow{
@@ -16304,10 +16273,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-whitebluefull";
-	icon_state = "whitebluefull"
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/lv624/lazarus/internal_affairs)
 "bcz" = (
 /obj/machinery/door/poddoor/almayer{

@@ -426,6 +426,9 @@
 /turf/open/floor/tile/red/full
 	icon_state = "redfull"
 
+/turf/open/floor/tile/red/yellowfull
+	icon_state = "redyellowfull"
+
 /turf/open/floor/tile/purple/taupepurple
 	icon_state = "purple"
 
@@ -440,6 +443,9 @@
 
 /turf/open/floor/tile/blue/taupebluecorner
 	icon_state = "bluecorner"
+
+/turf/open/floor/tile/blue/whitebluefull
+	icon_state = "whitebluefull"
 
 /turf/open/floor/tile/green/greentaupe
 	icon_state = "green"
