@@ -420,6 +420,12 @@
 /turf/open/floor/tile/blue/whitebluecorner
 	icon_state = "whitebluecorner"
 
+/turf/open/floor/tile/green/greentaupe
+	icon_state = "green"
+
+/turf/open/floor/tile/white/warningstripe
+	icon_state = "warnwhite"
+
 /turf/open/floor/carpet
 	name = "Carpet"
 	icon_state = "carpet"

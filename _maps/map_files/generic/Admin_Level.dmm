@@ -246,8 +246,7 @@
 	},
 /area/tdome)
 "aL" = (
-/turf/open/floor{
-	icon_state = "green";
+/turf/open/floor/tile/green/greentaupe{
 	dir = 4
 	},
 /area/tdome)

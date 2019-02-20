@@ -7135,9 +7135,7 @@
 	pixel_x = 12;
 	pixel_y = 2
 	},
-/obj/item/reagent_container/spray/cleaner{
-	name = "Surgery Cleaner";
-	desc = "Someone has crossed out the Space from Space Cleaner and written in Surgery. 'Do not remove under punishment of death!!!' is scrawled on the back.";
+/obj/item/reagent_container/spray/surgery{
 	pixel_x = 12;
 	pixel_y = 2
 	},

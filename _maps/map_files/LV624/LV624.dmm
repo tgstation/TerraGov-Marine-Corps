@@ -5255,9 +5255,8 @@
 /obj/structure/sink{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "green"
+/turf/open/floor/tile/green/greentaupe{
+	dir = 1
 	},
 /area/lv624/lazarus/hydroponics)
 "asJ" = (
@@ -5705,9 +5704,8 @@
 /obj/structure/sink{
 	dir = 8
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "green"
+/turf/open/floor/tile/green/greentaupe{
+	dir = 1
 	},
 /area/lv624/lazarus/hydroponics)
 "auq" = (
@@ -5994,9 +5992,8 @@
 	},
 /area/lv624/lazarus/fitness)
 "avu" = (
-/turf/open/floor{
-	dir = 10;
-	icon_state = "warnwhite"
+/turf/open/floor/tile/white/warningstripe{
+	dir = 10
 	},
 /area/lv624/lazarus/fitness)
 "avv" = (
@@ -6051,9 +6048,8 @@
 	req_access_txt = "0";
 	req_one_access_txt = "0"
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "green"
+/turf/open/floor/tile/green/greentaupe{
+	dir = 1
 	},
 /area/lv624/lazarus/hydroponics)
 "avG" = (
@@ -6080,9 +6076,8 @@
 	dir = 1
 	},
 /obj/machinery/light,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "warnwhite"
+/turf/open/floor/tile/white/warningstripe{
+	dir = 2
 	},
 /area/lv624/lazarus/fitness)
 "avL" = (
@@ -6151,16 +6146,14 @@
 /turf/closed/wall,
 /area/lv624/lazarus/hydroponics)
 "awa" = (
-/turf/open/floor{
-	dir = 1;
-	icon_state = "green"
+/turf/open/floor/tile/green/greentaupe{
+	dir = 1
 	},
 /area/lv624/lazarus/hydroponics)
 "awb" = (
 /obj/item/tool/shovel,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "green"
+/turf/open/floor/tile/green/greentaupe{
+	dir = 1
 	},
 /area/lv624/lazarus/hydroponics)
 "awc" = (
@@ -6234,17 +6227,15 @@
 /obj/structure/table,
 /obj/item/clothing/suit/apron/overalls,
 /obj/item/clothing/under/colonist,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "green"
+/turf/open/floor/tile/green/greentaupe{
+	dir = 5
 	},
 /area/lv624/lazarus/hydroponics)
 "awq" = (
 /obj/structure/table,
 /obj/item/clothing/gloves/botanic_leather,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "green"
+/turf/open/floor/tile/green/greentaupe{
+	dir = 5
 	},
 /area/lv624/lazarus/hydroponics)
 "awr" = (
@@ -6252,9 +6243,8 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "green"
+/turf/open/floor/tile/green/greentaupe{
+	dir = 5
 	},
 /area/lv624/lazarus/hydroponics)
 "aws" = (
@@ -6262,16 +6252,14 @@
 /obj/structure/extinguisher_cabinet{
 	pixel_y = 30
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "green"
+/turf/open/floor/tile/green/greentaupe{
+	dir = 5
 	},
 /area/lv624/lazarus/hydroponics)
 "awt" = (
 /obj/machinery/biogenerator,
-/turf/open/floor{
-	dir = 9;
-	icon_state = "green"
+/turf/open/floor/tile/green/greentaupe{
+	dir = 9
 	},
 /area/lv624/lazarus/hydroponics)
 "awu" = (
@@ -6279,16 +6267,14 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	dir = 9;
-	icon_state = "green"
+/turf/open/floor/tile/green/greentaupe{
+	dir = 9
 	},
 /area/lv624/lazarus/hydroponics)
 "awv" = (
 /obj/machinery/smartfridge,
-/turf/open/floor{
-	dir = 9;
-	icon_state = "green"
+/turf/open/floor/tile/green/greentaupe{
+	dir = 9
 	},
 /area/lv624/lazarus/hydroponics)
 "aww" = (
@@ -6298,9 +6284,8 @@
 	pixel_y = 1
 	},
 /obj/item/device/analyzer/plant_analyzer,
-/turf/open/floor{
-	dir = 9;
-	icon_state = "green"
+/turf/open/floor/tile/green/greentaupe{
+	dir = 9
 	},
 /area/lv624/lazarus/hydroponics)
 "awx" = (
@@ -6432,43 +6417,37 @@
 "awO" = (
 /obj/structure/table,
 /obj/item/weapon/claymore/mercsword/machete,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "green"
+/turf/open/floor/tile/green/greentaupe{
+	dir = 5
 	},
 /area/lv624/lazarus/hydroponics)
 "awP" = (
-/turf/open/floor{
-	dir = 5;
-	icon_state = "green"
+/turf/open/floor/tile/green/greentaupe{
+	dir = 5
 	},
 /area/lv624/lazarus/hydroponics)
 "awQ" = (
 /obj/effect/landmark/start/surv_spawn,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "green"
+/turf/open/floor/tile/green/greentaupe{
+	dir = 5
 	},
 /area/lv624/lazarus/hydroponics)
 "awR" = (
-/turf/open/floor{
-	dir = 9;
-	icon_state = "green"
+/turf/open/floor/tile/green/greentaupe{
+	dir = 9
 	},
 /area/lv624/lazarus/hydroponics)
 "awS" = (
 /obj/item/tool/minihoe,
-/turf/open/floor{
-	dir = 9;
-	icon_state = "green"
+/turf/open/floor/tile/green/greentaupe{
+	dir = 9
 	},
 /area/lv624/lazarus/hydroponics)
 "awT" = (
 /obj/structure/table,
 /obj/item/clothing/gloves/botanic_leather,
-/turf/open/floor{
-	dir = 9;
-	icon_state = "green"
+/turf/open/floor/tile/green/greentaupe{
+	dir = 9
 	},
 /area/lv624/lazarus/hydroponics)
 "awU" = (
@@ -6596,31 +6575,27 @@
 	pixel_y = 6
 	},
 /obj/item/reagent_container/glass/bucket,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "green"
+/turf/open/floor/tile/green/greentaupe{
+	dir = 5
 	},
 /area/lv624/lazarus/hydroponics)
 "axm" = (
 /obj/machinery/portable_atmospherics/hydroponics,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "green"
+/turf/open/floor/tile/green/greentaupe{
+	dir = 5
 	},
 /area/lv624/lazarus/hydroponics)
 "axn" = (
 /obj/machinery/portable_atmospherics/hydroponics,
-/turf/open/floor{
-	dir = 9;
-	icon_state = "green"
+/turf/open/floor/tile/green/greentaupe{
+	dir = 9
 	},
 /area/lv624/lazarus/hydroponics)
 "axo" = (
 /obj/structure/table,
 /obj/item/storage/box/donkpockets,
-/turf/open/floor{
-	dir = 9;
-	icon_state = "green"
+/turf/open/floor/tile/green/greentaupe{
+	dir = 9
 	},
 /area/lv624/lazarus/hydroponics)
 "axp" = (
@@ -6745,16 +6720,14 @@
 /area/lv624/lazarus/medbay)
 "axG" = (
 /obj/item/tool/wrench,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "green"
+/turf/open/floor/tile/green/greentaupe{
+	dir = 1
 	},
 /area/lv624/lazarus/hydroponics)
 "axH" = (
 /obj/effect/landmark/random_item/crap,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "green"
+/turf/open/floor/tile/green/greentaupe{
+	dir = 1
 	},
 /area/lv624/lazarus/hydroponics)
 "axI" = (
@@ -6910,16 +6883,14 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "green"
+/turf/open/floor/tile/green/greentaupe{
+	dir = 1
 	},
 /area/lv624/lazarus/hydroponics)
 "ayc" = (
 /obj/machinery/portable_atmospherics/hydroponics,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "green"
+/turf/open/floor/tile/green/greentaupe{
+	dir = 1
 	},
 /area/lv624/lazarus/hydroponics)
 "ayd" = (
@@ -7160,9 +7131,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "green"
+/turf/open/floor/tile/green/greentaupe{
+	dir = 1
 	},
 /area/lv624/lazarus/hydroponics)
 "ayG" = (
@@ -7172,23 +7142,20 @@
 	icon_state = "1-8";
 	layer = 2.44
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "green"
+/turf/open/floor/tile/green/greentaupe{
+	dir = 1
 	},
 /area/lv624/lazarus/hydroponics)
 "ayH" = (
 /obj/effect/decal/remains/human,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "green"
+/turf/open/floor/tile/green/greentaupe{
+	dir = 1
 	},
 /area/lv624/lazarus/hydroponics)
 "ayI" = (
 /obj/effect/landmark/random_item/good,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "green"
+/turf/open/floor/tile/green/greentaupe{
+	dir = 1
 	},
 /area/lv624/lazarus/hydroponics)
 "ayJ" = (
@@ -7219,9 +7186,8 @@
 	req_access_txt = "0";
 	req_one_access_txt = "0"
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "green"
+/turf/open/floor/tile/green/greentaupe{
+	dir = 1
 	},
 /area/lv624/lazarus/hydroponics)
 "ayM" = (
@@ -7396,18 +7362,16 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "green"
+/turf/open/floor/tile/green/greentaupe{
+	dir = 1
 	},
 /area/lv624/lazarus/hydroponics)
 "azk" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "green"
+/turf/open/floor/tile/green/greentaupe{
+	dir = 1
 	},
 /area/lv624/lazarus/hydroponics)
 "azl" = (
@@ -7415,24 +7379,21 @@
 	dir = 8;
 	on = 1
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "green"
+/turf/open/floor/tile/green/greentaupe{
+	dir = 1
 	},
 /area/lv624/lazarus/hydroponics)
 "azm" = (
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/structure/sink,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "green"
+/turf/open/floor/tile/green/greentaupe{
+	dir = 1
 	},
 /area/lv624/lazarus/hydroponics)
 "azn" = (
 /obj/structure/largecrate/cow,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "green"
+/turf/open/floor/tile/green/greentaupe{
+	dir = 1
 	},
 /area/lv624/lazarus/hydroponics)
 "azo" = (
@@ -7661,16 +7622,14 @@
 /area/lv624/ground/compound/n)
 "aAe" = (
 /obj/structure/closet/crate/hydroponics/prespawned,
-/turf/open/floor{
-	dir = 9;
-	icon_state = "green"
+/turf/open/floor/tile/green/greentaupe{
+	dir = 9
 	},
 /area/lv624/lazarus/hydroponics)
 "aAf" = (
 /obj/effect/landmark/random_item/crap,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "green"
+/turf/open/floor/tile/green/greentaupe{
+	dir = 5
 	},
 /area/lv624/lazarus/hydroponics)
 "aAg" = (
@@ -7679,9 +7638,8 @@
 	pixel_x = 12
 	},
 /obj/item/reagent_container/spray/plantbgone,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "green"
+/turf/open/floor/tile/green/greentaupe{
+	dir = 5
 	},
 /area/lv624/lazarus/hydroponics)
 "aAh" = (
@@ -7893,17 +7851,15 @@
 /area/lv624/ground/compound/n)
 "aAQ" = (
 /obj/structure/largecrate/random,
-/turf/open/floor{
-	dir = 9;
-	icon_state = "green"
+/turf/open/floor/tile/green/greentaupe{
+	dir = 9
 	},
 /area/lv624/lazarus/hydroponics)
 "aAR" = (
 /obj/structure/table,
 /obj/item/clothing/suit/apron,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "green"
+/turf/open/floor/tile/green/greentaupe{
+	dir = 5
 	},
 /area/lv624/lazarus/hydroponics)
 "aAS" = (
@@ -8049,67 +8005,59 @@
 	pixel_x = 6;
 	pixel_y = 4
 	},
-/turf/open/floor{
-	dir = 9;
-	icon_state = "green"
+/turf/open/floor/tile/green/greentaupe{
+	dir = 9
 	},
 /area/lv624/lazarus/hydroponics)
 "aBv" = (
 /obj/structure/table,
 /obj/item/clothing/shoes/sandal,
-/turf/open/floor{
-	dir = 9;
-	icon_state = "green"
+/turf/open/floor/tile/green/greentaupe{
+	dir = 9
 	},
 /area/lv624/lazarus/hydroponics)
 "aBw" = (
 /obj/structure/table,
 /obj/item/reagent_container/food/drinks/flask/vacuumflask,
 /obj/machinery/light,
-/turf/open/floor{
-	dir = 9;
-	icon_state = "green"
+/turf/open/floor/tile/green/greentaupe{
+	dir = 9
 	},
 /area/lv624/lazarus/hydroponics)
 "aBx" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	on = 1
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "green"
+/turf/open/floor/tile/green/greentaupe{
+	dir = 1
 	},
 /area/lv624/lazarus/hydroponics)
 "aBy" = (
 /obj/structure/table,
 /obj/item/tool/crowbar,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "green"
+/turf/open/floor/tile/green/greentaupe{
+	dir = 5
 	},
 /area/lv624/lazarus/hydroponics)
 "aBz" = (
 /obj/structure/table,
 /obj/machinery/light,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "green"
+/turf/open/floor/tile/green/greentaupe{
+	dir = 5
 	},
 /area/lv624/lazarus/hydroponics)
 "aBA" = (
 /obj/structure/table,
 /obj/item/tool/shovel/spade,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "green"
+/turf/open/floor/tile/green/greentaupe{
+	dir = 5
 	},
 /area/lv624/lazarus/hydroponics)
 "aBB" = (
 /obj/structure/table,
 /obj/item/tool/extinguisher,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "green"
+/turf/open/floor/tile/green/greentaupe{
+	dir = 5
 	},
 /area/lv624/lazarus/hydroponics)
 "aBC" = (
@@ -8200,9 +8148,8 @@
 /area/lv624/ground/compound/n)
 "aBX" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "green"
+/turf/open/floor/tile/green/greentaupe{
+	dir = 1
 	},
 /area/lv624/lazarus/hydroponics)
 "aBY" = (
@@ -8310,9 +8257,8 @@
 	req_one_access_txt = "0"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "green"
+/turf/open/floor/tile/green/greentaupe{
+	dir = 1
 	},
 /area/lv624/lazarus/hydroponics)
 "aCC" = (
@@ -10584,9 +10530,8 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/research)
 "aKV" = (
-/turf/open/floor{
-	dir = 9;
-	icon_state = "warnwhite"
+/turf/open/floor/tile/white/warningstripe{
+	dir = 9
 	},
 /area/lv624/lazarus/fitness)
 "aKW" = (
@@ -10778,9 +10723,8 @@
 	},
 /area/lv624/lazarus/fitness)
 "aLE" = (
-/turf/open/floor{
-	dir = 8;
-	icon_state = "warnwhite"
+/turf/open/floor/tile/white/warningstripe{
+	dir = 8
 	},
 /area/lv624/lazarus/fitness)
 "aLF" = (
@@ -10788,9 +10732,8 @@
 /area/lv624/lazarus/fitness)
 "aLG" = (
 /obj/effect/landmark/random_item/crap,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "warnwhite"
+/turf/open/floor/tile/white/warningstripe{
+	dir = 4
 	},
 /area/lv624/lazarus/fitness)
 "aLH" = (
@@ -11047,9 +10990,8 @@
 	},
 /area/lv624/lazarus/research)
 "aMu" = (
-/turf/open/floor{
-	dir = 4;
-	icon_state = "warnwhite"
+/turf/open/floor/tile/white/warningstripe{
+	dir = 4
 	},
 /area/lv624/lazarus/fitness)
 "aMv" = (
@@ -11683,9 +11625,8 @@
 /turf/open/floor/plating,
 /area/lv624/ground/jungle9)
 "aOw" = (
-/turf/open/floor{
-	dir = 6;
-	icon_state = "warnwhite"
+/turf/open/floor/tile/white/warningstripe{
+	dir = 6
 	},
 /area/lv624/lazarus/fitness)
 "aOx" = (

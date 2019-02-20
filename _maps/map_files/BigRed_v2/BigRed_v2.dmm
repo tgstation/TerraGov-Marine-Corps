@@ -10465,9 +10465,8 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "ayJ" = (
-/turf/open/floor{
-	dir = 8;
-	icon_state = "warnwhite"
+/turf/open/floor/tile/white/warningstripe{
+	dir = 8
 	},
 /area/bigredv2/outside/medical)
 "ayK" = (
@@ -10495,9 +10494,8 @@
 	},
 /area/bigredv2/outside/medical)
 "ayN" = (
-/turf/open/floor{
-	dir = 4;
-	icon_state = "warnwhite"
+/turf/open/floor/tile/white/warningstripe{
+	dir = 4
 	},
 /area/bigredv2/outside/medical)
 "ayO" = (
@@ -10771,9 +10769,8 @@
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "warnwhite"
+/turf/open/floor/tile/white/warningstripe{
+	dir = 8
 	},
 /area/bigredv2/outside/medical)
 "azx" = (
@@ -10809,9 +10806,8 @@
 	name = "\improper Medical Clinic Treatment";
 	req_one_access_txt = "0"
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "warnwhite"
+/turf/open/floor/tile/white/warningstripe{
+	dir = 4
 	},
 /area/bigredv2/outside/medical)
 "azA" = (
@@ -17315,9 +17311,8 @@
 	dir = 8
 	},
 /obj/structure/window/reinforced,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "warnwhite"
+/turf/open/floor/tile/white/warningstripe{
+	dir = 8
 	},
 /area/bigredv2/outside/virology)
 "aNe" = (
@@ -17493,9 +17488,8 @@
 	dir = 4;
 	health = 80
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "warnwhite"
+/turf/open/floor/tile/white/warningstripe{
+	dir = 4
 	},
 /area/bigredv2/outside/admin_building)
 "aNF" = (
@@ -17831,9 +17825,8 @@
 /obj/machinery/shower{
 	dir = 8
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "warnwhite"
+/turf/open/floor/tile/white/warningstripe{
+	dir = 8
 	},
 /area/bigredv2/outside/virology)
 "aOt" = (
@@ -17930,9 +17923,8 @@
 	dir = 4;
 	health = 80
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "warnwhite"
+/turf/open/floor/tile/white/warningstripe{
+	dir = 4
 	},
 /area/bigredv2/outside/admin_building)
 "aOI" = (
@@ -18309,9 +18301,8 @@
 	name = "\improper Virology Lab Decontamination";
 	req_access_txt = "0"
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "warnwhite"
+/turf/open/floor/tile/white/warningstripe{
+	dir = 2
 	},
 /area/bigredv2/outside/virology)
 "aPu" = (
@@ -18480,9 +18471,8 @@
 	health = 80
 	},
 /obj/item/phone,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "warnwhite"
+/turf/open/floor/tile/white/warningstripe{
+	dir = 4
 	},
 /area/bigredv2/outside/admin_building)
 "aPP" = (
@@ -21376,9 +21366,8 @@
 /area/bigredv2/outside/virology)
 "aWh" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	dir = 9;
-	icon_state = "warnwhite"
+/turf/open/floor/tile/white/warningstripe{
+	dir = 9
 	},
 /area/bigredv2/outside/virology)
 "aWi" = (
@@ -21701,9 +21690,8 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "warnwhite"
+/turf/open/floor/tile/white/warningstripe{
+	dir = 8
 	},
 /area/bigredv2/outside/virology)
 "aWS" = (
@@ -21945,9 +21933,8 @@
 /area/bigredv2/outside/virology)
 "aXw" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "warnwhite"
+/turf/open/floor/tile/white/warningstripe{
+	dir = 8
 	},
 /area/bigredv2/outside/virology)
 "aXx" = (
@@ -22684,9 +22671,8 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "warnwhite"
+/turf/open/floor/tile/white/warningstripe{
+	dir = 8
 	},
 /area/bigredv2/outside/virology)
 "aZm" = (
@@ -22800,9 +22786,8 @@
 	},
 /area/bigredv2/outside/admin_building)
 "aZE" = (
-/turf/open/floor{
-	dir = 2;
-	icon_state = "warnwhite"
+/turf/open/floor/tile/white/warningstripe{
+	dir = 2
 	},
 /area/bigredv2/outside/office_complex)
 "aZF" = (
@@ -23840,24 +23825,21 @@
 /area/bigredv2/outside/office_complex)
 "bcg" = (
 /obj/structure/table,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "warnwhite"
+/turf/open/floor/tile/white/warningstripe{
+	dir = 2
 	},
 /area/bigredv2/outside/office_complex)
 "bch" = (
 /obj/structure/table,
 /obj/item/clipboard,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "warnwhite"
+/turf/open/floor/tile/white/warningstripe{
+	dir = 2
 	},
 /area/bigredv2/outside/office_complex)
 "bci" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "warnwhite"
+/turf/open/floor/tile/white/warningstripe{
+	dir = 2
 	},
 /area/bigredv2/outside/office_complex)
 "bcj" = (

@@ -617,9 +617,8 @@
 /obj/item/clothing/glasses/hud/health,
 /obj/item/clothing/glasses/hud/health,
 /obj/item/clothing/glasses/hud/health,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "warnwhite"
+/turf/open/floor/tile/white/warningstripe{
+	dir = 8
 	},
 /area/whiskey_outpost)
 "bF" = (
@@ -697,9 +696,8 @@
 	},
 /area/whiskey_outpost)
 "bO" = (
-/turf/open/floor{
-	dir = 8;
-	icon_state = "warnwhite"
+/turf/open/floor/tile/white/warningstripe{
+	dir = 8
 	},
 /area/whiskey_outpost)
 "bP" = (
@@ -1194,18 +1192,16 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "warnwhite"
+/turf/open/floor/tile/white/warningstripe{
+	dir = 2
 	},
 /area/whiskey_outpost)
 "cS" = (
 /obj/machinery/door/airlock/glass_medical{
 	name = "Medbay"
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "warnwhite"
+/turf/open/floor/tile/white/warningstripe{
+	dir = 2
 	},
 /area/whiskey_outpost)
 "cT" = (
