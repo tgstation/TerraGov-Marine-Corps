@@ -380,7 +380,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "abd" = (
-/obj/machinery/light\{
+/obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -746,7 +746,7 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
 "aca" = (
-/obj/machinery/light\{
+/obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -1221,7 +1221,7 @@
 /area/bigredv2/outside/telecomm)
 "adv" = (
 /obj/structure/table,
-/obj/machinery/light\{
+/obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
@@ -1845,7 +1845,7 @@
 /area/bigredv2/outside/marshal_office)
 "afm" = (
 /obj/structure/closet/l3closet/security,
-/obj/machinery/light\{
+/obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/tile/vault{
@@ -1874,7 +1874,7 @@
 /area/bigredv2/outside/marshal_office)
 "afq" = (
 /obj/structure/rack,
-/obj/machinery/light\{
+/obj/machinery/light{
 	dir = 1
 	},
 /obj/item/ammo_magazine/revolver/cmb,
@@ -2100,7 +2100,7 @@
 /area/bigredv2/outside/marshal_office)
 "afV" = (
 /obj/structure/closet/secure_closet/marshal,
-/obj/machinery/light\{
+/obj/machinery/light{
 	dir = 4
 	},
 /obj/item/clothing/suit/storage/CMB,
@@ -2693,7 +2693,7 @@
 /area/bigredv2/caves/lambda_lab)
 "ahc" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/light\{
+/obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/asteroidfloor,
@@ -3465,7 +3465,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "ajj" = (
-/obj/machinery/light\{
+/obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor,
@@ -5351,7 +5351,7 @@
 	},
 /area/bigredv2/outside/marshal_office)
 "anF" = (
-/obj/machinery/light\{
+/obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/engine/cult{
@@ -7180,7 +7180,7 @@
 /area/bigredv2/outside/medical)
 "arX" = (
 /obj/structure/table,
-/obj/machinery/light\{
+/obj/machinery/light{
 	dir = 4
 	},
 /obj/item/device/defibrillator,
@@ -7396,7 +7396,7 @@
 /area/bigredv2/caves)
 "asy" = (
 /obj/structure/table,
-/obj/machinery/light\{
+/obj/machinery/light{
 	dir = 8
 	},
 /obj/item/tool/surgery/circular_saw,
@@ -7768,7 +7768,7 @@
 /area/bigredv2/outside/medical)
 "atp" = (
 /obj/machinery/vending/medical,
-/obj/machinery/light\{
+/obj/machinery/light{
 	dir = 8
 	},
 /turf/open/floor/tile/white,
@@ -7822,7 +7822,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/dorms)
 "aty" = (
-/obj/machinery/light\{
+/obj/machinery/light{
 	dir = 1
 	},
 /obj/structure/bed,
@@ -7842,7 +7842,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
 "atB" = (
-/obj/machinery/light\{
+/obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/wood,
@@ -8867,7 +8867,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
 "avD" = (
-/obj/machinery/light\{
+/obj/machinery/light{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -8890,7 +8890,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
 "avG" = (
-/obj/machinery/light\{
+/obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor,
@@ -9000,7 +9000,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "avU" = (
-/obj/machinery/light\{
+/obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -10034,7 +10034,7 @@
 /area/bigredv2/outside/medical)
 "ayn" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/light\{
+/obj/machinery/light{
 	dir = 4
 	},
 /obj/item/device/radio/intercom{
@@ -10184,7 +10184,7 @@
 	},
 /area/bigredv2/outside/medical)
 "ayH" = (
-/obj/machinery/light\{
+/obj/machinery/light{
 	dir = 8
 	},
 /turf/open/floor{
@@ -10323,7 +10323,7 @@
 /turf/closed/wall,
 /area/bigredv2/outside/bar)
 "azc" = (
-/obj/machinery/light\{
+/obj/machinery/light{
 	dir = 8
 	},
 /turf/open/floor/wood,
@@ -10356,7 +10356,7 @@
 "azg" = (
 /obj/structure/table,
 /obj/machinery/cell_charger,
-/obj/machinery/light\{
+/obj/machinery/light{
 	dir = 1
 	},
 /obj/item/cell/hyper,
@@ -10379,7 +10379,7 @@
 /area/bigredv2/caves/lambda_lab)
 "azj" = (
 /obj/machinery/autolathe,
-/obj/machinery/light\{
+/obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/tile/purple/whitepurple{
@@ -10888,7 +10888,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/dorms)
 "aAf" = (
-/obj/machinery/light\{
+/obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -11347,7 +11347,7 @@
 	},
 /area/bigredv2/outside/medical)
 "aBi" = (
-/obj/machinery/light\{
+/obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor,
@@ -11384,7 +11384,7 @@
 /turf/open/floor/freezer,
 /area/bigredv2/outside/dorms)
 "aBn" = (
-/obj/machinery/light\{
+/obj/machinery/light{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -11848,7 +11848,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aCx" = (
-/obj/machinery/light\{
+/obj/machinery/light{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -12148,7 +12148,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "aDh" = (
-/obj/machinery/light\{
+/obj/machinery/light{
 	dir = 4
 	},
 /obj/machinery/power/apc{
@@ -12760,7 +12760,7 @@
 /area/bigredv2/outside/medical)
 "aEB" = (
 /obj/structure/closet/secure_closet/medical1,
-/obj/machinery/light\{
+/obj/machinery/light{
 	dir = 8
 	},
 /turf/open/floor/tile/green/whitegreencorner{
@@ -13008,7 +13008,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/hydroponics)
 "aFb" = (
-/obj/machinery/light\{
+/obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor,
@@ -13314,7 +13314,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
 "aFQ" = (
-/obj/machinery/light\{
+/obj/machinery/light{
 	dir = 8
 	},
 /turf/open/floor/freezer,
@@ -13367,7 +13367,7 @@
 /area/bigredv2/outside/bar)
 "aFY" = (
 /obj/structure/reagent_dispensers/beerkeg,
-/obj/machinery/light\{
+/obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/wood,
@@ -13578,7 +13578,7 @@
 	},
 /area/bigredv2/outside/virology)
 "aGs" = (
-/obj/machinery/light\{
+/obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -13643,7 +13643,7 @@
 /area/bigredv2/outside/medical)
 "aGB" = (
 /obj/structure/bed,
-/obj/machinery/light\{
+/obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor{
@@ -14846,7 +14846,7 @@
 /turf/open/mars_dirt/random,
 /area/bigredv2/outside/virology)
 "aJj" = (
-/obj/machinery/light\{
+/obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -16059,7 +16059,7 @@
 /area/bigredv2/outside/bar)
 "aLv" = (
 /obj/machinery/vending/boozeomat,
-/obj/machinery/light\{
+/obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/wood,
@@ -16370,7 +16370,7 @@
 	},
 /area/bigredv2/outside/ne)
 "aMl" = (
-/obj/machinery/light\{
+/obj/machinery/light{
 	dir = 8
 	},
 /turf/open/floor,
@@ -20727,7 +20727,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/general_store)
 "aXf" = (
-/obj/machinery/light\{
+/obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor{
@@ -23134,7 +23134,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "bdi" = (
-/obj/machinery/light\{
+/obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor,
@@ -24710,7 +24710,7 @@
 /area/bigredv2/outside/cargo)
 "bhE" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/light\{
+/obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor,
@@ -25283,7 +25283,7 @@
 /obj/effect/spawner/random/bomb_supply,
 /obj/effect/spawner/random/tool,
 /obj/effect/spawner/random/tool,
-/obj/machinery/light\{
+/obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor,
@@ -25524,7 +25524,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "bjv" = (
-/obj/machinery/light\{
+/obj/machinery/light{
 	dir = 4
 	},
 /obj/structure/rack,
@@ -26002,7 +26002,7 @@
 /area/bigredv2/outside/cargo)
 "bkB" = (
 /obj/machinery/computer/arcade,
-/obj/machinery/light\{
+/obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor,
@@ -26258,7 +26258,7 @@
 /area/bigredv2/outside/cargo)
 "blo" = (
 /obj/structure/reagent_dispensers/fueltank,
-/obj/machinery/light\{
+/obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor,
@@ -27987,7 +27987,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "bpQ" = (
-/obj/machinery/light\{
+/obj/machinery/light{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -29622,7 +29622,7 @@
 	dir = 9
 	},
 /obj/structure/reagent_dispensers/fueltank,
-/obj/machinery/light\{
+/obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor,
@@ -30178,7 +30178,7 @@
 /turf/open/mars_cave/random,
 /area/bigredv2/outside/se)
 "bvv" = (
-/obj/machinery/light\{
+/obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor,
@@ -32480,7 +32480,7 @@
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bBj" = (
-/obj/machinery/light\{
+/obj/machinery/light{
 	dir = 1
 	},
 /obj/structure/filingcabinet,
@@ -32515,7 +32515,7 @@
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bBn" = (
-/obj/machinery/light\{
+/obj/machinery/light{
 	dir = 1
 	},
 /obj/machinery/biogenerator,
@@ -33447,7 +33447,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bDp" = (
-/obj/machinery/light\{
+/obj/machinery/light{
 	dir = 1
 	},
 /obj/structure/closet/cabinet,
@@ -33459,7 +33459,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bDq" = (
-/obj/machinery/light\{
+/obj/machinery/light{
 	dir = 1
 	},
 /obj/structure/closet/cabinet,
@@ -33512,7 +33512,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bDx" = (
-/obj/machinery/light\{
+/obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor,
