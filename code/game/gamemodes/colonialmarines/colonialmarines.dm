@@ -9,7 +9,6 @@
 
 /datum/game_mode/colonialmarines/can_start()
 	initialize_special_clamps()
-	initialize_starting_predator_list()
 	var/found_queen = initialize_starting_queen_list()
 	var/found_xenos = initialize_starting_xenomorph_list()
 	if(!found_queen && !found_xenos)
@@ -64,7 +63,6 @@
 
 
 /datum/game_mode/colonialmarines/post_setup()
-	initialize_post_predator_list()
 	initialize_post_queen_list()
 	initialize_post_xenomorph_list()
 	initialize_post_survivor_list()

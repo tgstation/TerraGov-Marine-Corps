@@ -17,7 +17,7 @@
 	sight |= SEE_TURFS
 	GLOB.player_list |= src
 
-	new_player_panel_proc()
+	new_player_panel()
 
 	spawn(40)
 		if(client)

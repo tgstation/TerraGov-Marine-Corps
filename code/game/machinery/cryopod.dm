@@ -212,7 +212,7 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 				switch(H.job)
 					if("Military Police","Chief MP")
 						dept_console = frozen_items["MP"]
-					if("Doctor","Researcher","Chief Medical Officer")
+					if("Doctor","Medical Researcher","Chief Medical Officer")
 						dept_console = frozen_items["Med"]
 					if("Maintenance Tech","Chief Engineer")
 						dept_console = frozen_items["Eng"]
@@ -332,8 +332,9 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 			SSticker.mode.latejoin_tally-- //Cryoing someone out removes someone from the Marines, blocking further larva spawns until accounted for
 
 			//Handle job slot/tater cleanup.
-			if(occupant.mind)
-				SSjob.free_role(SSjob.roles_for_mode[occupant.mind.assigned_role])
+			if(occupant.mind?.assigned_role)
+				var/datum/job/J = SSjob.name_occupations[occupant.mind.assigned_role]
+				J.current_positions--
 
 			//Delete them from datacore.
 			if(PDA_Manifest.len)
