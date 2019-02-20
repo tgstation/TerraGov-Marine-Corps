@@ -11257,17 +11257,15 @@
 /area/lv624/lazarus/sleep_female)
 "aNE" = (
 /obj/structure/closet,
-/turf/open/floor{
-	dir = 9;
-	icon_state = "purple"
+/turf/open/floor/tile/purple/taupepurple{
+	dir = 9
 	},
 /area/lv624/lazarus/sleep_female)
 "aNF" = (
 /obj/structure/bed,
 /obj/item/bedsheet/yellow,
-/turf/open/floor{
-	dir = 9;
-	icon_state = "purple"
+/turf/open/floor/tile/purple/taupepurple{
+	dir = 9
 	},
 /area/lv624/lazarus/sleep_female)
 "aNG" = (
@@ -11586,17 +11584,15 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor{
-	dir = 9;
-	icon_state = "purple"
+/turf/open/floor/tile/purple/taupepurple{
+	dir = 9
 	},
 /area/lv624/lazarus/sleep_female)
 "aOJ" = (
 /obj/structure/bed,
 /obj/item/bedsheet/purple,
-/turf/open/floor{
-	dir = 9;
-	icon_state = "purple"
+/turf/open/floor/tile/purple/taupepurple{
+	dir = 9
 	},
 /area/lv624/lazarus/sleep_female)
 "aOK" = (
@@ -11604,9 +11600,8 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	dir = 9;
-	icon_state = "purple"
+/turf/open/floor/tile/purple/taupepurple{
+	dir = 9
 	},
 /area/lv624/lazarus/sleep_female)
 "aOL" = (
@@ -11791,47 +11786,41 @@
 	},
 /obj/structure/window/reinforced/tinted,
 /obj/item/clothing/under/colonist,
-/turf/open/floor{
-	dir = 9;
-	icon_state = "purple"
+/turf/open/floor/tile/purple/taupepurple{
+	dir = 9
 	},
 /area/lv624/lazarus/sleep_female)
 "aPq" = (
 /obj/structure/bed,
-/turf/open/floor{
-	dir = 9;
-	icon_state = "purple"
+/turf/open/floor/tile/purple/taupepurple{
+	dir = 9
 	},
 /area/lv624/lazarus/sleep_female)
 "aPr" = (
-/turf/open/floor{
-	dir = 9;
-	icon_state = "purple"
+/turf/open/floor/tile/purple/taupepurple{
+	dir = 9
 	},
 /area/lv624/lazarus/sleep_female)
 "aPs" = (
 /obj/item/reagent_container/food/snacks/donkpocket,
 /obj/structure/flora/pottedplant,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
-/turf/open/floor{
-	dir = 9;
-	icon_state = "purple"
+/turf/open/floor/tile/purple/taupepurple{
+	dir = 9
 	},
 /area/lv624/lazarus/sleep_female)
 "aPt" = (
 /obj/structure/barricade/wooden{
 	dir = 1
 	},
-/turf/open/floor{
-	dir = 9;
-	icon_state = "purple"
+/turf/open/floor/tile/purple/taupepurple{
+	dir = 9
 	},
 /area/lv624/lazarus/sleep_female)
 "aPu" = (
 /obj/item/stack/sheet/metal,
-/turf/open/floor{
-	dir = 9;
-	icon_state = "purple"
+/turf/open/floor/tile/purple/taupepurple{
+	dir = 9
 	},
 /area/lv624/lazarus/sleep_female)
 "aPv" = (
@@ -12093,30 +12082,26 @@
 /obj/structure/barricade/wooden{
 	dir = 8
 	},
-/turf/open/floor{
-	dir = 9;
-	icon_state = "purple"
+/turf/open/floor/tile/purple/taupepurple{
+	dir = 9
 	},
 /area/lv624/lazarus/sleep_female)
 "aQq" = (
 /obj/item/stack/sheet/wood,
-/turf/open/floor{
-	dir = 9;
-	icon_state = "purple"
+/turf/open/floor/tile/purple/taupepurple{
+	dir = 9
 	},
 /area/lv624/lazarus/sleep_female)
 "aQr" = (
 /obj/effect/landmark/random_item/crap,
-/turf/open/floor{
-	dir = 9;
-	icon_state = "purple"
+/turf/open/floor/tile/purple/taupepurple{
+	dir = 9
 	},
 /area/lv624/lazarus/sleep_female)
 "aQs" = (
 /obj/structure/bed/chair/wood/wings,
-/turf/open/floor{
-	dir = 9;
-	icon_state = "purple"
+/turf/open/floor/tile/purple/taupepurple{
+	dir = 9
 	},
 /area/lv624/lazarus/sleep_female)
 "aQt" = (
@@ -12124,9 +12109,8 @@
 	dir = 1
 	},
 /obj/effect/landmark/start/surv_spawn,
-/turf/open/floor{
-	dir = 9;
-	icon_state = "purple"
+/turf/open/floor/tile/purple/taupepurple{
+	dir = 9
 	},
 /area/lv624/lazarus/sleep_female)
 "aQu" = (
@@ -12437,9 +12421,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 9;
-	icon_state = "purple"
+/turf/open/floor/tile/purple/taupepurple{
+	dir = 9
 	},
 /area/lv624/lazarus/sleep_female)
 "aRf" = (
@@ -12454,9 +12437,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 9;
-	icon_state = "purple"
+/turf/open/floor/tile/purple/taupepurple{
+	dir = 9
 	},
 /area/lv624/lazarus/sleep_female)
 "aRg" = (
@@ -12468,9 +12450,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 9;
-	icon_state = "purple"
+/turf/open/floor/tile/purple/taupepurple{
+	dir = 9
 	},
 /area/lv624/lazarus/sleep_female)
 "aRh" = (
@@ -12483,9 +12464,8 @@
 	dir = 8;
 	on = 1
 	},
-/turf/open/floor{
-	dir = 9;
-	icon_state = "purple"
+/turf/open/floor/tile/purple/taupepurple{
+	dir = 9
 	},
 /area/lv624/lazarus/sleep_female)
 "aRi" = (
@@ -12495,9 +12475,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor{
-	dir = 9;
-	icon_state = "purple"
+/turf/open/floor/tile/purple/taupepurple{
+	dir = 9
 	},
 /area/lv624/lazarus/sleep_female)
 "aRj" = (
@@ -12506,9 +12485,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor{
-	dir = 9;
-	icon_state = "purple"
+/turf/open/floor/tile/purple/taupepurple{
+	dir = 9
 	},
 /area/lv624/lazarus/sleep_female)
 "aRk" = (
@@ -12519,9 +12497,8 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/turf/open/floor{
-	dir = 9;
-	icon_state = "purple"
+/turf/open/floor/tile/purple/taupepurple{
+	dir = 9
 	},
 /area/lv624/lazarus/sleep_female)
 "aRl" = (
@@ -12671,18 +12648,16 @@
 /area/lv624/lazarus/main_hall)
 "aRJ" = (
 /obj/item/reagent_container/food/drinks/flask/barflask,
-/turf/open/floor{
-	dir = 9;
-	icon_state = "purple"
+/turf/open/floor/tile/purple/taupepurple{
+	dir = 9
 	},
 /area/lv624/lazarus/sleep_female)
 "aRK" = (
 /obj/machinery/light/small{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 9;
-	icon_state = "purple"
+/turf/open/floor/tile/purple/taupepurple{
+	dir = 9
 	},
 /area/lv624/lazarus/sleep_female)
 "aRL" = (
@@ -12899,9 +12874,8 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 9;
-	icon_state = "purple"
+/turf/open/floor/tile/purple/taupepurple{
+	dir = 9
 	},
 /area/lv624/lazarus/sleep_female)
 "aSr" = (
@@ -12910,9 +12884,8 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 9;
-	icon_state = "purple"
+/turf/open/floor/tile/purple/taupepurple{
+	dir = 9
 	},
 /area/lv624/lazarus/sleep_female)
 "aSs" = (
@@ -12921,9 +12894,8 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 9;
-	icon_state = "purple"
+/turf/open/floor/tile/purple/taupepurple{
+	dir = 9
 	},
 /area/lv624/lazarus/sleep_female)
 "aSt" = (
@@ -12932,16 +12904,14 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 9;
-	icon_state = "purple"
+/turf/open/floor/tile/purple/taupepurple{
+	dir = 9
 	},
 /area/lv624/lazarus/sleep_female)
 "aSu" = (
 /obj/structure/bed/chair/comfy/black,
-/turf/open/floor{
-	dir = 9;
-	icon_state = "purple"
+/turf/open/floor/tile/purple/taupepurple{
+	dir = 9
 	},
 /area/lv624/lazarus/sleep_female)
 "aSx" = (
@@ -13170,9 +13140,8 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 9;
-	icon_state = "purple"
+/turf/open/floor/tile/purple/taupepurple{
+	dir = 9
 	},
 /area/lv624/lazarus/sleep_female)
 "aTe" = (
@@ -13186,9 +13155,8 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 9;
-	icon_state = "purple"
+/turf/open/floor/tile/purple/taupepurple{
+	dir = 9
 	},
 /area/lv624/lazarus/sleep_female)
 "aTf" = (
@@ -13198,9 +13166,8 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 9;
-	icon_state = "purple"
+/turf/open/floor/tile/purple/taupepurple{
+	dir = 9
 	},
 /area/lv624/lazarus/sleep_female)
 "aTg" = (
@@ -13208,9 +13175,8 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 9;
-	icon_state = "purple"
+/turf/open/floor/tile/purple/taupepurple{
+	dir = 9
 	},
 /area/lv624/lazarus/sleep_female)
 "aTh" = (
@@ -13219,33 +13185,29 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 9;
-	icon_state = "purple"
+/turf/open/floor/tile/purple/taupepurple{
+	dir = 9
 	},
 /area/lv624/lazarus/sleep_female)
 "aTi" = (
 /obj/structure/table,
-/turf/open/floor{
-	dir = 9;
-	icon_state = "purple"
+/turf/open/floor/tile/purple/taupepurple{
+	dir = 9
 	},
 /area/lv624/lazarus/sleep_female)
 "aTj" = (
 /obj/structure/table,
 /obj/item/clothing/glasses/sunglasses/big,
 /obj/machinery/light,
-/turf/open/floor{
-	dir = 9;
-	icon_state = "purple"
+/turf/open/floor/tile/purple/taupepurple{
+	dir = 9
 	},
 /area/lv624/lazarus/sleep_female)
 "aTk" = (
 /obj/structure/table,
 /obj/item/device/megaphone,
-/turf/open/floor{
-	dir = 9;
-	icon_state = "purple"
+/turf/open/floor/tile/purple/taupepurple{
+	dir = 9
 	},
 /area/lv624/lazarus/sleep_female)
 "aTm" = (
