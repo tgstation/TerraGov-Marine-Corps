@@ -465,6 +465,9 @@
 /turf/open/floor/tile/green/whitegreenfull
 	icon_state = "whitegreenfull"
 
+/turf/open/floor/tile/darkgreen/darkgreen2
+	icon_state = "darkgreen2"
+
 /turf/open/floor/tile/white/warningstripe
 	icon_state = "warnwhite"
 

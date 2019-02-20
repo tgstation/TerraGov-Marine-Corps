@@ -597,9 +597,7 @@
 "abE" = (
 /obj/structure/table,
 /obj/effect/spawner/random/tool,
-/turf/open/floor{
-	tag = "icon-darkgreen2 (SOUTHWEST)";
-	icon_state = "darkgreen2";
+/turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 10
 	},
 /area/bigredv2/outside/space_port)
@@ -608,9 +606,7 @@
 /obj/effect/spawner/random/bomb_supply,
 /obj/effect/spawner/random/technology_scanner,
 /obj/effect/spawner/random/tool,
-/turf/open/floor{
-	tag = "icon-darkgreen2";
-	icon_state = "darkgreen2";
+/turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 2
 	},
 /area/bigredv2/outside/space_port)
@@ -618,42 +614,32 @@
 /obj/structure/table,
 /obj/effect/spawner/random/technology_scanner,
 /obj/effect/spawner/random/tool,
-/turf/open/floor{
-	tag = "icon-darkgreen2";
-	icon_state = "darkgreen2";
+/turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 2
 	},
 /area/bigredv2/outside/space_port)
 "abH" = (
 /obj/machinery/computer/security,
-/turf/open/floor{
-	tag = "icon-darkgreen2";
-	icon_state = "darkgreen2";
+/turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 2
 	},
 /area/bigredv2/outside/space_port)
 "abI" = (
 /obj/item/shard,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	tag = "icon-darkgreen2";
-	icon_state = "darkgreen2";
+/turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 2
 	},
 /area/bigredv2/outside/space_port)
 "abJ" = (
-/turf/open/floor{
-	tag = "icon-darkgreen2";
-	icon_state = "darkgreen2";
+/turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 2
 	},
 /area/bigredv2/outside/space_port)
 "abK" = (
 /obj/structure/table,
 /obj/effect/spawner/random/tool,
-/turf/open/floor{
-	tag = "icon-darkgreen2 (SOUTHEAST)";
-	icon_state = "darkgreen2";
+/turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 6
 	},
 /area/bigredv2/outside/space_port)
@@ -4991,9 +4977,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-darkgreen2 (EAST)";
-	icon_state = "darkgreen2";
+/turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 4
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -5539,9 +5523,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-darkgreen2 (EAST)";
-	icon_state = "darkgreen2";
+/turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 4
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -13869,9 +13851,7 @@
 	dir = 8
 	},
 /obj/structure/table/reinforced,
-/turf/open/floor{
-	tag = "icon-darkgreen2 (NORTHWEST)";
-	icon_state = "darkgreen2";
+/turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 9
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -13888,9 +13868,7 @@
 	},
 /obj/structure/table/reinforced,
 /obj/machinery/computer/med_data/laptop,
-/turf/open/floor{
-	tag = "icon-darkgreen2 (NORTHEAST)";
-	icon_state = "darkgreen2";
+/turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 5
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -14255,9 +14233,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	tag = "icon-darkgreen2 (NORTHWEST)";
-	icon_state = "darkgreen2";
+/turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 9
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -14290,9 +14266,7 @@
 	dir = 1
 	},
 /obj/machinery/disease2/diseaseanalyser,
-/turf/open/floor{
-	tag = "icon-darkgreen2 (NORTHEAST)";
-	icon_state = "darkgreen2";
+/turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 5
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -14763,9 +14737,7 @@
 	},
 /obj/effect/landmark/random_item/crap,
 /obj/effect/alien/weeds/node,
-/turf/open/floor{
-	tag = "icon-darkgreen2 (NORTHWEST)";
-	icon_state = "darkgreen2";
+/turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 9
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -14808,9 +14780,7 @@
 /obj/machinery/door/window{
 	layer = 4
 	},
-/turf/open/floor{
-	tag = "icon-darkgreen2 (NORTHEAST)";
-	icon_state = "darkgreen2";
+/turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 5
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -15435,9 +15405,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-darkgreen2 (SOUTHWEST)";
-	icon_state = "darkgreen2";
+/turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 10
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -15501,9 +15469,7 @@
 /obj/machinery/door/window{
 	layer = 4
 	},
-/turf/open/floor{
-	tag = "icon-darkgreen2 (SOUTHEAST)";
-	icon_state = "darkgreen2";
+/turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 6
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -15834,9 +15800,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	tag = "icon-darkgreen2 (SOUTHWEST)";
-	icon_state = "darkgreen2";
+/turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 10
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -15873,9 +15837,7 @@
 	dir = 8;
 	on = 1
 	},
-/turf/open/floor{
-	tag = "icon-darkgreen2 (SOUTHEAST)";
-	icon_state = "darkgreen2";
+/turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 6
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -16231,9 +16193,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor{
-	tag = "icon-darkgreen2 (SOUTHWEST)";
-	icon_state = "darkgreen2";
+/turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 10
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -16250,9 +16210,7 @@
 	},
 /obj/machinery/computer/pandemic,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor{
-	tag = "icon-darkgreen2 (SOUTHEAST)";
-	icon_state = "darkgreen2";
+/turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 6
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -18765,9 +18723,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aSp" = (
-/turf/open/floor{
-	tag = "icon-darkgreen2 (NORTHWEST)";
-	icon_state = "darkgreen2";
+/turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 9
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -18781,9 +18737,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-darkgreen2 (NORTH)";
-	icon_state = "darkgreen2";
+/turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 1
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -18792,16 +18746,12 @@
 	dir = 1;
 	on = 1
 	},
-/turf/open/floor{
-	tag = "icon-darkgreen2 (NORTH)";
-	icon_state = "darkgreen2";
+/turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 1
 	},
 /area/bigredv2/caves/lambda_lab)
 "aSs" = (
-/turf/open/floor{
-	tag = "icon-darkgreen2 (NORTHEAST)";
-	icon_state = "darkgreen2";
+/turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 5
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -19307,9 +19257,7 @@
 /area/bigredv2/caves/lambda_lab)
 "aTD" = (
 /obj/structure/curtain/medical,
-/turf/open/floor{
-	tag = "icon-darkgreen2 (NORTHWEST)";
-	icon_state = "darkgreen2";
+/turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 9
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -19365,9 +19313,7 @@
 	d2 = 8;
 	icon_state = "4-8";
 	},
-/turf/open/floor{
-	tag = "icon-darkgreen2 (NORTHEAST)";
-	icon_state = "darkgreen2";
+/turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 5
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -19800,9 +19746,7 @@
 /area/bigredv2/caves/lambda_lab)
 "aUE" = (
 /obj/structure/curtain/medical,
-/turf/open/floor{
-	tag = "icon-darkgreen2 (SOUTHWEST)";
-	icon_state = "darkgreen2";
+/turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 10
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -19831,9 +19775,7 @@
 /area/bigredv2/caves/lambda_lab)
 "aUI" = (
 /obj/structure/curtain/medical,
-/turf/open/floor{
-	tag = "icon-darkgreen2 (SOUTHEAST)";
-	icon_state = "darkgreen2";
+/turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 6
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -20116,25 +20058,19 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aVy" = (
-/turf/open/floor{
-	tag = "icon-darkgreen2 (SOUTHWEST)";
-	icon_state = "darkgreen2";
+/turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 10
 	},
 /area/bigredv2/caves/lambda_lab)
 "aVz" = (
-/turf/open/floor{
-	tag = "icon-darkgreen2";
-	icon_state = "darkgreen2";
+/turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 2
 	},
 /area/bigredv2/caves/lambda_lab)
 "aVA" = (
 /obj/effect/landmark/corpsespawner/scientist,
 /obj/effect/alien/weeds/node,
-/turf/open/floor{
-	tag = "icon-darkgreen2 (SOUTHEAST)";
-	icon_state = "darkgreen2";
+/turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 6
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -32940,25 +32876,19 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bCi" = (
 /obj/structure/closet/l3closet/scientist,
-/turf/open/floor{
-	tag = "icon-darkgreen2 (NORTHWEST)";
-	icon_state = "darkgreen2";
+/turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 9
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bCj" = (
 /obj/structure/closet/l3closet/scientist,
-/turf/open/floor{
-	tag = "icon-darkgreen2 (NORTH)";
-	icon_state = "darkgreen2";
+/turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 1
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bCk" = (
 /obj/structure/closet/l3closet/scientist,
-/turf/open/floor{
-	tag = "icon-darkgreen2 (NORTHEAST)";
-	icon_state = "darkgreen2";
+/turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 5
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -33006,16 +32936,12 @@
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bCq" = (
-/turf/open/floor{
-	tag = "icon-darkgreen2 (WEST)";
-	icon_state = "darkgreen2";
+/turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 8
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bCr" = (
-/turf/open/floor{
-	tag = "icon-darkgreen2 (EAST)";
-	icon_state = "darkgreen2";
+/turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 4
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -33221,24 +33147,18 @@
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bCO" = (
-/turf/open/floor{
-	tag = "icon-darkgreen2 (SOUTHWEST)";
-	icon_state = "darkgreen2";
+/turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 10
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bCP" = (
 /obj/machinery/light,
-/turf/open/floor{
-	tag = "icon-darkgreen2";
-	icon_state = "darkgreen2";
+/turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 2
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bCQ" = (
-/turf/open/floor{
-	tag = "icon-darkgreen2 (SOUTHEAST)";
-	icon_state = "darkgreen2";
+/turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 6
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
