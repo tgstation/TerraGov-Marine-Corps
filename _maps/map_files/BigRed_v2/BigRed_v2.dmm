@@ -6307,8 +6307,7 @@
 	name = "\improper Medical Clinic";
 	req_one_access_txt = "0"
 	},
-/turf/open/floor{
-	icon_state = "warnwhite";
+/turf/open/floor/tile/white/warningstripe{
 	dir = 1
 	},
 /area/bigredv2/outside/medical)
@@ -6319,8 +6318,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	icon_state = "warnwhite";
+/turf/open/floor/tile/white/warningstripe{
 	dir = 1
 	},
 /area/bigredv2/outside/medical)
@@ -11896,8 +11894,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	icon_state = "warnwhite";
+/turf/open/floor/tile/white/warningstripe{
 	dir = 1
 	},
 /area/bigredv2/outside/medical)
@@ -17069,8 +17066,7 @@
 	name = "\improper Virology Lab Decontamination";
 	req_access_txt = "0"
 	},
-/turf/open/floor{
-	icon_state = "warnwhite";
+/turf/open/floor/tile/white/warningstripe{
 	dir = 1
 	},
 /area/bigredv2/outside/virology)
@@ -21320,8 +21316,7 @@
 	},
 /area/bigredv2/outside/virology)
 "aWi" = (
-/turf/open/floor{
-	icon_state = "warnwhite";
+/turf/open/floor/tile/white/warningstripe{
 	dir = 1
 	},
 /area/bigredv2/outside/virology)

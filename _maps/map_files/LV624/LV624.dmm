@@ -10432,14 +10432,12 @@
 /area/lv624/lazarus/fitness)
 "aKW" = (
 /obj/structure/holohoop,
-/turf/open/floor{
-	icon_state = "warnwhite";
+/turf/open/floor/tile/white/warningstripe{
 	dir = 1
 	},
 /area/lv624/lazarus/fitness)
 "aKX" = (
-/turf/open/floor{
-	icon_state = "warnwhite";
+/turf/open/floor/tile/white/warningstripe{
 	dir = 5
 	},
 /area/lv624/lazarus/fitness)
@@ -11220,9 +11218,8 @@
 "aNw" = (
 /obj/structure/bed,
 /obj/item/bedsheet/brown,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "bluecorner"
+/turf/open/floor/tile/blue/taupebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/sleep_male)
 "aNx" = (
@@ -11231,9 +11228,8 @@
 	icon_state = "open";
 	opened = 1
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "bluecorner"
+/turf/open/floor/tile/blue/taupebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/sleep_male)
 "aNy" = (
@@ -11542,17 +11538,15 @@
 	dir = 1
 	},
 /obj/effect/landmark/random_item/good,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "bluecorner"
+/turf/open/floor/tile/blue/taupebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/sleep_male)
 "aOE" = (
 /obj/structure/bed,
 /obj/item/bedsheet/blue,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "bluecorner"
+/turf/open/floor/tile/blue/taupebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/sleep_male)
 "aOF" = (
@@ -11563,9 +11557,8 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "bluecorner"
+/turf/open/floor/tile/blue/taupebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/sleep_male)
 "aOG" = (
@@ -11740,9 +11733,8 @@
 /obj/structure/barricade/wooden{
 	dir = 1
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "bluecorner"
+/turf/open/floor/tile/blue/taupebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/sleep_male)
 "aPj" = (
@@ -11751,9 +11743,8 @@
 /obj/structure/barricade/wooden{
 	dir = 1
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "bluecorner"
+/turf/open/floor/tile/blue/taupebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/sleep_male)
 "aPk" = (
@@ -11763,22 +11754,19 @@
 /obj/structure/table,
 /obj/item/toy/deck,
 /obj/item/storage/fancy/cigarettes,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "bluecorner"
+/turf/open/floor/tile/blue/taupebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/sleep_male)
 "aPl" = (
-/turf/open/floor{
-	dir = 2;
-	icon_state = "bluecorner"
+/turf/open/floor/tile/blue/taupebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/sleep_male)
 "aPm" = (
 /obj/structure/bed,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "bluecorner"
+/turf/open/floor/tile/blue/taupebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/sleep_male)
 "aPn" = (
@@ -11786,9 +11774,8 @@
 /obj/item/clothing/under/rank/scientist,
 /obj/structure/window/reinforced/tinted,
 /obj/item/stack/medical/advanced/bruise_pack,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "bluecorner"
+/turf/open/floor/tile/blue/taupebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/sleep_male)
 "aPo" = (
@@ -12045,25 +12032,22 @@
 "aQh" = (
 /obj/structure/flora/pottedplant,
 /obj/item/trash/cheesie,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "bluecorner"
+/turf/open/floor/tile/blue/taupebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/sleep_male)
 "aQi" = (
 /obj/structure/bed/chair/office/light{
 	dir = 1
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "bluecorner"
+/turf/open/floor/tile/blue/taupebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/sleep_male)
 "aQj" = (
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "bluecorner"
+/turf/open/floor/tile/blue/taupebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/sleep_male)
 "aQk" = (
@@ -12071,18 +12055,16 @@
 	dir = 4;
 	on = 1
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "bluecorner"
+/turf/open/floor/tile/blue/taupebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/sleep_male)
 "aQl" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "bluecorner"
+/turf/open/floor/tile/blue/taupebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/sleep_male)
 "aQm" = (
@@ -12364,9 +12346,8 @@
 /obj/structure/barricade/wooden{
 	dir = 1
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "bluecorner"
+/turf/open/floor/tile/blue/taupebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/sleep_male)
 "aQW" = (
@@ -12374,16 +12355,14 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "bluecorner"
+/turf/open/floor/tile/blue/taupebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/sleep_male)
 "aQX" = (
 /obj/item/stack/medical/advanced/bruise_pack,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "bluecorner"
+/turf/open/floor/tile/blue/taupebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/sleep_male)
 "aQY" = (
@@ -12391,24 +12370,21 @@
 	icon_state = "wooden_chair_wings";
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "bluecorner"
+/turf/open/floor/tile/blue/taupebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/sleep_male)
 "aQZ" = (
 /obj/structure/table,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "bluecorner"
+/turf/open/floor/tile/blue/taupebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/sleep_male)
 "aRa" = (
 /obj/effect/landmark/random_item/crap,
 /obj/structure/table,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "bluecorner"
+/turf/open/floor/tile/blue/taupebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/sleep_male)
 "aRb" = (
@@ -12417,9 +12393,8 @@
 	name = "\improper Nexus Dome Male Dormitories";
 	req_access_txt = "0"
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "bluecorner"
+/turf/open/floor/tile/blue/taupebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/sleep_male)
 "aRc" = (
@@ -12644,17 +12619,15 @@
 "aRC" = (
 /obj/effect/decal/cleanable/blood,
 /obj/item/stack/sheet/wood,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "bluecorner"
+/turf/open/floor/tile/blue/taupebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/sleep_male)
 "aRD" = (
 /obj/structure/table,
 /obj/item/trash/cheesie,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "bluecorner"
+/turf/open/floor/tile/blue/taupebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/sleep_male)
 "aRE" = (
@@ -12662,9 +12635,8 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "bluecorner"
+/turf/open/floor/tile/blue/taupebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/sleep_male)
 "aRF" = (
@@ -12673,9 +12645,8 @@
 	icon_state = "wooden_chair_wings";
 	dir = 1
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "bluecorner"
+/turf/open/floor/tile/blue/taupebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/sleep_male)
 "aRG" = (
@@ -12848,17 +12819,15 @@
 	dir = 4
 	},
 /obj/effect/landmark/start/surv_spawn,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "bluecorner"
+/turf/open/floor/tile/blue/taupebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/sleep_male)
 "aSi" = (
 /obj/structure/table,
 /obj/item/ammo_magazine/smg/uzi/extended,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "bluecorner"
+/turf/open/floor/tile/blue/taupebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/sleep_male)
 "aSj" = (
@@ -12866,9 +12835,8 @@
 /obj/item/tool/pen{
 	layer = 3.1
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "bluecorner"
+/turf/open/floor/tile/blue/taupebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/sleep_male)
 "aSk" = (
@@ -12876,9 +12844,8 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "bluecorner"
+/turf/open/floor/tile/blue/taupebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/sleep_male)
 "aSl" = (
@@ -12886,9 +12853,8 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "bluecorner"
+/turf/open/floor/tile/blue/taupebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/sleep_male)
 "aSm" = (
@@ -12896,9 +12862,8 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "bluecorner"
+/turf/open/floor/tile/blue/taupebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/sleep_male)
 "aSn" = (
@@ -12907,18 +12872,16 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "bluecorner"
+/turf/open/floor/tile/blue/taupebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/sleep_male)
 "aSo" = (
 /obj/structure/bed,
 /obj/item/bedsheet/blue,
 /obj/machinery/light,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "bluecorner"
+/turf/open/floor/tile/blue/taupebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/sleep_male)
 "aSp" = (
@@ -13113,18 +13076,16 @@
 /obj/effect/decal/cleanable/blood,
 /obj/item/device/flashlight/lamp,
 /obj/structure/table,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "bluecorner"
+/turf/open/floor/tile/blue/taupebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/sleep_male)
 "aSU" = (
 /obj/structure/bed/chair/comfy/brown{
 	dir = 1
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "bluecorner"
+/turf/open/floor/tile/blue/taupebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/sleep_male)
 "aSV" = (
@@ -13132,9 +13093,8 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "bluecorner"
+/turf/open/floor/tile/blue/taupebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/sleep_male)
 "aSW" = (
@@ -13145,9 +13105,8 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "bluecorner"
+/turf/open/floor/tile/blue/taupebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/sleep_male)
 "aSX" = (
@@ -13160,9 +13119,8 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "bluecorner"
+/turf/open/floor/tile/blue/taupebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/sleep_male)
 "aSY" = (
@@ -13170,9 +13128,8 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "bluecorner"
+/turf/open/floor/tile/blue/taupebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/sleep_male)
 "aSZ" = (
@@ -13181,17 +13138,15 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "bluecorner"
+/turf/open/floor/tile/blue/taupebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/sleep_male)
 "aTa" = (
 /obj/structure/closet,
 /obj/item/storage/fancy/cigarettes/dromedaryco,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "bluecorner"
+/turf/open/floor/tile/blue/taupebluecorner{
+	dir = 2
 	},
 /area/lv624/lazarus/sleep_male)
 "aTb" = (

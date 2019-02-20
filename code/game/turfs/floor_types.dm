@@ -435,6 +435,9 @@
 /turf/open/floor/tile/blue/whitebluecorner
 	icon_state = "whitebluecorner"
 
+/turf/open/floor/tile/blue/taupebluecorner
+	icon_state = "bluecorner"
+
 /turf/open/floor/tile/green/greentaupe
 	icon_state = "green"
 
