@@ -1,0 +1,4 @@
+author: "LaKiller8"
+delete-after: True
+changes: 
+  - bugfix: "Xeno leaders are now persistent through evolutions."
