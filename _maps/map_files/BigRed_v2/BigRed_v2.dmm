@@ -124,7 +124,7 @@
 "aax" = (
 /obj/structure/filingcabinet,
 /obj/structure/sign/safety/vent{
-	pixel_x = -32
+	dir = 8
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
@@ -2561,7 +2561,7 @@
 /area/bigredv2/caves/lambda_lab)
 "ahD" = (
 /obj/structure/sign/safety/medical_supplies{
-	pixel_y = -32
+	dir = 2
 	},
 /turf/open/floor/tile/dark/purple2{
 	dir = 2
@@ -3352,7 +3352,7 @@
 "ajU" = (
 /obj/machinery/light/small,
 /obj/structure/sign/safety/maintenance{
-	pixel_y = -32
+	dir = 2
 	},
 /turf/open/floor/plating,
 /area/bigredv2/caves/lambda_lab)
@@ -5299,7 +5299,7 @@
 "aoR" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/sign/safety/medical{
-	pixel_y = -32
+	dir = 2
 	},
 /turf/open/floor/marking/asteroidwarning{
 	dir = 1
@@ -6092,7 +6092,7 @@
 	icon_state = "2-8"
 	},
 /obj/structure/sign/safety/medical_supplies{
-	pixel_x = 32
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 1
@@ -6737,7 +6737,7 @@
 /area/bigredv2/outside/general_offices)
 "asV" = (
 /obj/structure/sign/safety/EVA{
-	pixel_y = 32
+	dir = 1
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/general_offices)
@@ -7296,7 +7296,7 @@
 	icon_state = "4-8";
 	},
 /obj/structure/sign/safety/maintenance{
-	pixel_y = 32
+	dir = 1
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/lambda_lab)
@@ -8839,7 +8839,7 @@
 /area/bigredv2/outside/medical)
 "ayi" = (
 /obj/structure/sign/safety/autodoc{
-	pixel_x = 32
+	dir = 4
 	},
 /turf/open/floor/tile/green/whitegreen{
 	dir = 5
@@ -8861,7 +8861,7 @@
 /area/bigredv2/outside/medical)
 "aym" = (
 /obj/structure/sign/safety/autodoc{
-	pixel_x = -32
+	dir = 8
 	},
 /turf/open/floor/tile/green/whitegreen{
 	dir = 8
@@ -10077,7 +10077,7 @@
 /area/bigredv2/outside/medical)
 "aBh" = (
 /obj/structure/sign/safety/breakroom{
-	pixel_x = 32
+	dir = 4
 	},
 /turf/open/floor/tile/green/whitegreen{
 	dir = 6
@@ -10928,7 +10928,7 @@
 	dir = 1
 	},
 /obj/structure/sign/safety/laser{
-	pixel_y = 32
+	dir = 1
 	},
 /turf/open/floor{
 	tag = "icon-purple (NORTH)";
@@ -11056,7 +11056,7 @@
 /area/bigredv2/outside/medical)
 "aDG" = (
 /obj/structure/sign/safety/medical_supplies{
-	pixel_x = 32
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/item/clothing/head/surgery/blue,
@@ -13090,7 +13090,7 @@
 /area/bigredv2/outside/hydroponics)
 "aIA" = (
 /obj/structure/sign/safety/hydro{
-	pixel_y = 32
+	dir = 1
 	},
 /obj/machinery/alarm{
 	dir = 4
@@ -13689,7 +13689,7 @@
 	},
 /obj/machinery/light,
 /obj/structure/sign/safety/rad_hazard{
-	pixel_y = -32
+	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -14003,7 +14003,7 @@
 /area/bigredv2/outside/c)
 "aKm" = (
 /obj/structure/sign/safety/medical{
-	pixel_x = 32
+	dir = 4
 	},
 /turf/open/floor/marking/asteroidwarning{
 	dir = 8
@@ -14029,7 +14029,7 @@
 /area/bigredv2/outside/admin_building)
 "aKq" = (
 /obj/structure/sign/safety/medical{
-	pixel_x = -32
+	dir = 8
 	},
 /turf/open/floor/marking/asteroidwarning{
 	dir = 4
@@ -16924,7 +16924,7 @@
 /area/bigredv2/outside/admin_building)
 "aRV" = (
 /obj/structure/sign/safety/computer{
-	pixel_y = -32
+	dir = 2
 	},
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/admin_building)
@@ -17370,7 +17370,7 @@
 /area/bigredv2/outside/c)
 "aTg" = (
 /obj/structure/sign/double/barsign{
-	pixel_y = 32
+	dir = 1
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -18909,7 +18909,7 @@
 /area/bigredv2/outside/admin_building)
 "aXg" = (
 /obj/structure/sign/safety/computer{
-	pixel_y = 32
+	dir = 1
 	},
 /obj/effect/landmark/random_item/good,
 /turf/open/floor/tile/dark/red2{
@@ -19802,7 +19802,7 @@
 /area/bigredv2/outside/office_complex)
 "aZG" = (
 /obj/structure/sign/safety/breakroom{
-	pixel_x = 32
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/red/redtaupecorner{
@@ -23773,7 +23773,7 @@
 /area/bigredv2/outside/c)
 "bkf" = (
 /obj/structure/sign/safety/atmospherics{
-	pixel_y = -32
+	dir = 2
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/barricade/wooden,
@@ -24491,7 +24491,7 @@
 /obj/structure/table,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/sign/safety/atmospherics{
-	pixel_x = 32
+	dir = 4
 	},
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
@@ -25173,7 +25173,7 @@
 /area/bigredv2/outside/engineering)
 "bnV" = (
 /obj/structure/sign/safety/electronics{
-	pixel_y = 32
+	dir = 1
 	},
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
@@ -26637,7 +26637,7 @@
 /area/bigredv2/outside/engineering)
 "brI" = (
 /obj/structure/sign/safety/breakroom{
-	pixel_x = -32
+	dir = 8
 	},
 /obj/item/stack/sheet/metal{
 	amount = 30
@@ -26897,7 +26897,7 @@
 /area/bigredv2/outside/engineering)
 "bso" = (
 /obj/structure/sign/safety/hazard{
-	pixel_y = -32
+	dir = 2
 	},
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
@@ -26975,7 +26975,7 @@
 /area/bigredv2/outside/engineering)
 "bsx" = (
 /obj/structure/sign/safety/hazard{
-	pixel_y = -32
+	dir = 2
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
@@ -27225,7 +27225,7 @@
 	dir = 4
 	},
 /obj/structure/sign/safety/high_radiation{
-	pixel_x = 32
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -27247,7 +27247,7 @@
 	dir = 8
 	},
 /obj/structure/sign/safety/high_radiation{
-	pixel_x = -32
+	dir = 8
 	},
 /obj/structure/cable{
 	d1 = 1;

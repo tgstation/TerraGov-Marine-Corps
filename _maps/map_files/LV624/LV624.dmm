@@ -19766,7 +19766,7 @@
 /area/lv624/lazarus/engineering)
 "bmL" = (
 /obj/structure/sign/directions/engineering{
-	pixel_x = -28
+	dir = 8
 	},
 /obj/structure/fence,
 /turf/open/gm/dirtgrassborder,

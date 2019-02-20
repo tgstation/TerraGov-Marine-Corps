@@ -22,7 +22,7 @@
 /area/whiskey_outpost)
 "af" = (
 /obj/structure/sign/prop2{
-	pixel_y = 32
+	dir = 1
 	},
 /turf/open/floor/wood,
 /area/whiskey_outpost)
@@ -462,7 +462,7 @@
 /area/whiskey_outpost)
 "bo" = (
 /obj/structure/sign/prop2{
-	pixel_y = 32
+	dir = 1
 	},
 /turf/open/floor/tile/red/redtaupe{
 	dir = 4
@@ -1211,7 +1211,7 @@
 /area/whiskey_outpost)
 "cV" = (
 /obj/structure/sign/double/barsign{
-	pixel_y = 32
+	dir = 1
 	},
 /turf/open/floor/tile/red/redtaupe{
 	dir = 4

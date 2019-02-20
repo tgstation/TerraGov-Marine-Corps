@@ -2246,7 +2246,7 @@
 /area/centcom/control)
 "fg" = (
 /obj/structure/sign/safety/computer{
-	pixel_x = -32
+	dir = 8
 	},
 /turf/open/floor/almayer,
 /area/centcom)
