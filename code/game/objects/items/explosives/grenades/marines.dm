@@ -289,7 +289,7 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 		var/mob/U = loc
 		update_brightness(U)
 	else
-		update_brightness(null)
+		update_brightness()
 	STOP_PROCESSING(SSobj, src)
 	. = ..()
 
