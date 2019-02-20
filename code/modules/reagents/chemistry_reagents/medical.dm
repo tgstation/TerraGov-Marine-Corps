@@ -661,7 +661,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/M, alien)
 
 /datum/reagent/medicine/quickclot/on_mob_life(mob/living/M)
 	if(M.bodytemperature > 169) //only heals IB at cryogenic temperatures.
-		return
+		return ..()
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		for(var/datum/limb/X in H.limbs)
