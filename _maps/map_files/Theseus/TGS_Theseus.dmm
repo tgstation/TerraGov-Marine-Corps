@@ -15168,8 +15168,6 @@
 /area/almayer/shipboard/brig)
 "aEI" = (
 /obj/structure/bed/chair/office/dark{
-	tag = "icon-officechair_dark (NORTH)";
-	icon_state = "officechair_dark";
 	dir = 1
 	},
 /turf/open/floor/almayer{

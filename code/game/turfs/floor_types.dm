@@ -116,6 +116,9 @@
 /turf/open/floor/plating/asteroidfloor
 	icon_state = "asteroidfloor"
 
+/turf/open/floor/plating/dmg2
+	icon_state = "platingdmg2"
+
 /turf/open/floor/marking/loadingarea
 	icon_state = "loadingarea"
 
@@ -417,8 +420,14 @@
 /turf/open/floor/tile/yellow/full
 	icon_state = "yellowfull"
 
+/turf/open/floor/tile/whiteyellow
+	icon_state = "whiteyellow"
+
 /turf/open/floor/tile/whiteyellow/full
 	icon_state = "whiteyellowfull"
+
+/turf/open/floor/tile/whiteyellow/corner
+	icon_state = "whiteyellowcorner"
 
 /turf/open/floor/tile/red/redtaupecorner
 	icon_state = "redcorner"
@@ -479,6 +488,9 @@
 
 /turf/open/floor/tile/darkish
 	icon_state = "darkish"
+
+/turf/open/floor/tile/dark
+	icon_state = "dark"
 
 /turf/open/floor/carpet
 	name = "Carpet"
