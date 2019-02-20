@@ -12,6 +12,12 @@
 	icon_state = "mirror_broke"
 	shattered = TRUE
 
+/obj/structure/mirror/broken/Initialize()
+	. = ..()
+	switch(dir)
+		if(EAST)
+			pixel_x = 30
+
 /obj/structure/mirror/attack_hand(mob/user as mob)
 
 	if(shattered)

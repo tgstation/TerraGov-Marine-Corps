@@ -484,8 +484,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/valley/northwest)
@@ -499,8 +498,7 @@
 /area/ice_colony/exterior/surface/valley/northwest)
 "abF" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/surface/requesitions)
@@ -616,8 +614,7 @@
 /area/ice_colony/surface/engineering/electric)
 "abY" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -996,8 +993,7 @@
 /area/ice_colony/surface/engineering/generator)
 "adb" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/dark,
 /area/ice_colony/exterior/surface/landing_pad2)
@@ -1077,8 +1073,7 @@
 /area/ice_colony/exterior/surface/landing_pad2)
 "adn" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/secure{
 	dir = 4;
@@ -1436,11 +1431,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/open/floor{
-	tag = "icon-bcircuit";
-	icon_state = "bcircuit";
-	dir = 2
-	},
+/turf/open/floor/animated/bcircuit,
 /area/ice_colony/surface/engineering/generator)
 "aek" = (
 /obj/structure/cable/yellow{
@@ -1454,11 +1445,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	tag = "icon-bcircuit";
-	icon_state = "bcircuit";
-	dir = 2
-	},
+/turf/open/floor/animated/bcircuit,
 /area/ice_colony/surface/engineering/generator)
 "ael" = (
 /obj/effect/landmark/shuttle_loc/marine_trg/landing{
@@ -1880,11 +1867,7 @@
 	icon_state = "2-8";
 	layer = 2.1
 	},
-/turf/open/floor{
-	tag = "icon-bcircuit";
-	icon_state = "bcircuit";
-	dir = 2
-	},
+/turf/open/floor/animated/bcircuit,
 /area/ice_colony/surface/engineering/generator)
 "afl" = (
 /obj/machinery/power/geothermal,
@@ -1957,8 +1940,7 @@
 /area/ice_colony/surface/engineering)
 "aft" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/engineering{
 	dir = 4;
@@ -1972,8 +1954,7 @@
 /area/ice_colony/surface/engineering)
 "afu" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/light{
 	dir = 1
@@ -1992,8 +1973,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/dark/yellow2{
 	dir = 1
@@ -2165,8 +2145,7 @@
 "afP" = (
 /obj/structure/window/framed/colony,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/ice_colony/surface/engineering/generator)
@@ -2179,8 +2158,7 @@
 /area/ice_colony/exterior/surface/cliff)
 "afR" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	dir = 8;
@@ -2190,8 +2168,7 @@
 /area/ice_colony/surface/engineering/generator)
 "afS" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/dark/yellow2{
 	dir = 4
@@ -2200,8 +2177,7 @@
 "afT" = (
 /obj/machinery/power/geothermal,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d2 = 4;
@@ -2211,8 +2187,7 @@
 /area/ice_colony/surface/engineering/generator)
 "afU" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -2230,17 +2205,12 @@
 	icon_state = "2-8";
 	layer = 2.1
 	},
-/turf/open/floor{
-	tag = "icon-bcircuit";
-	icon_state = "bcircuit";
-	dir = 2
-	},
+/turf/open/floor/animated/bcircuit,
 /area/ice_colony/surface/engineering/generator)
 "afV" = (
 /obj/machinery/power/geothermal,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d2 = 8;
@@ -2438,8 +2408,7 @@
 /area/ice_colony/surface/engineering)
 "ago" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/dark/yellow2{
 	dir = 4
@@ -2557,8 +2526,7 @@
 /area/ice_colony/exterior/surface/valley/northwest)
 "agB" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	icon_state = "4-8";
@@ -2747,8 +2715,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/snow/layer1,
 /area/ice_colony/exterior/surface/valley/northwest)
@@ -2829,8 +2796,7 @@
 /area/ice_colony/surface/substation/smes)
 "ahd" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	icon_state = "4-8";
@@ -2916,8 +2882,7 @@
 /area/ice_colony/surface/engineering)
 "ahj" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	icon_state = "4-8";
@@ -2943,8 +2908,7 @@
 /area/ice_colony/exterior/surface/valley/north)
 "ahm" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/engineering{
 	dir = 4;
@@ -3012,11 +2976,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor{
-	tag = "icon-bcircuit";
-	icon_state = "bcircuit";
-	dir = 2
-	},
+/turf/open/floor/animated/bcircuit,
 /area/ice_colony/surface/engineering/generator)
 "ahs" = (
 /obj/structure/cable/yellow{
@@ -3030,11 +2990,7 @@
 	icon_state = "2-8";
 	layer = 2.1
 	},
-/turf/open/floor{
-	tag = "icon-bcircuit";
-	icon_state = "bcircuit";
-	dir = 2
-	},
+/turf/open/floor/animated/bcircuit,
 /area/ice_colony/surface/engineering/generator)
 "aht" = (
 /obj/structure/table,
@@ -3174,8 +3130,7 @@
 /area/ice_colony/surface/hydroponics/north)
 "ahL" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -3202,8 +3157,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -3648,8 +3602,7 @@
 /area/ice_colony/surface/substation/smes)
 "aiL" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -3954,8 +3907,7 @@
 	req_access_txt = "100"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/surface/requesitions)
@@ -4422,8 +4374,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -4440,8 +4391,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -4480,8 +4430,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/snow/layer2,
 /area/ice_colony/exterior/surface/valley/northwest)
@@ -4608,8 +4557,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/north)
@@ -5440,8 +5388,7 @@
 	icon_state = "pipe-c"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
@@ -5450,8 +5397,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
@@ -5460,8 +5406,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/north)
@@ -5512,8 +5457,7 @@
 	icon_state = "pipe-c"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/north)
@@ -5528,15 +5472,13 @@
 	icon_state = "pipe-j2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "amY" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -5545,8 +5487,7 @@
 /area/ice_colony/exterior/surface/clearing/north)
 "amZ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -5628,8 +5569,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/medical/glass{
 	dir = 4;
@@ -5691,8 +5631,7 @@
 /area/ice_colony/surface/dorms/restroom_w)
 "ano" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -5742,8 +5681,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -6307,8 +6245,7 @@
 /area/ice_colony/surface/clinic/treatment)
 "aoF" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -6322,8 +6259,7 @@
 /area/ice_colony/exterior/surface/clearing/north)
 "aoG" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -6355,8 +6291,7 @@
 /area/ice_colony/exterior/surface/clearing/north)
 "aoI" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -6367,8 +6302,7 @@
 /area/ice_colony/exterior/surface/clearing/north)
 "aoJ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -6379,8 +6313,7 @@
 /area/ice_colony/exterior/surface/clearing/north)
 "aoK" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -6423,8 +6356,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -6446,8 +6378,7 @@
 /area/ice_colony/exterior/surface/clearing/north)
 "aoR" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -6456,8 +6387,7 @@
 /area/ice_colony/exterior/surface/clearing/north)
 "aoS" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -6475,8 +6405,7 @@
 /area/ice_colony/exterior/surface/clearing/north)
 "aoU" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -6498,8 +6427,7 @@
 /area/ice_colony/surface/clinic/treatment)
 "aoW" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -6510,8 +6438,7 @@
 /area/ice_colony/surface/mining)
 "aoX" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -6546,8 +6473,7 @@
 /area/ice_colony/surface/mining)
 "apb" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/medical/glass{
 	dir = 4;
@@ -6648,15 +6574,13 @@
 /area/ice_colony/surface/dorms/restroom_w)
 "apn" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/white,
 /area/ice_colony/surface/clinic/treatment)
 "apo" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/medical/glass{
 	dir = 4;
@@ -6846,8 +6770,7 @@
 /area/ice_colony/surface/clinic/treatment)
 "apJ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	icon_state = "4-8";
@@ -7321,8 +7244,7 @@
 /area/ice_colony/exterior/surface/valley/southeast)
 "aqF" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -7333,8 +7255,7 @@
 /area/ice_colony/surface/clinic/treatment)
 "aqG" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -7401,8 +7322,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -7466,8 +7386,7 @@
 /area/ice_colony/surface/clinic/treatment)
 "aqR" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	icon_state = "4-8";
@@ -7478,8 +7397,7 @@
 /area/ice_colony/exterior/surface/valley/northwest)
 "aqS" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -7495,8 +7413,7 @@
 /area/ice_colony/surface/dorms)
 "aqU" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4;
@@ -7509,8 +7426,7 @@
 /area/ice_colony/surface/dorms)
 "aqV" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/disposalpipe/junction{
 	dir = 8;
@@ -7523,8 +7439,7 @@
 /area/ice_colony/surface/dorms)
 "aqW" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 8;
@@ -7538,8 +7453,7 @@
 /area/ice_colony/surface/dorms)
 "aqX" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4;
@@ -7551,8 +7465,7 @@
 /area/ice_colony/surface/dorms)
 "aqY" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -7593,8 +7506,7 @@
 /area/ice_colony/surface/dorms/restroom_e)
 "arb" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -7688,8 +7600,7 @@
 /area/ice_colony/surface/dorms)
 "ark" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/light{
 	dir = 1
@@ -7700,8 +7611,7 @@
 /area/ice_colony/surface/dorms)
 "arl" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 1
@@ -7728,8 +7638,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkgreencorners2 (NORTH)";
@@ -8041,11 +7950,7 @@
 	icon_state = "2-8";
 	layer = 2.1
 	},
-/turf/open/floor{
-	tag = "icon-bcircuit";
-	icon_state = "bcircuit";
-	dir = 2
-	},
+/turf/open/floor/animated/bcircuit,
 /area/ice_colony/surface/tcomms)
 "arT" = (
 /turf/open/floor/plating,
@@ -8104,8 +8009,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/white,
 /area/ice_colony/surface/clinic/treatment)
@@ -8696,8 +8600,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
@@ -8712,8 +8615,7 @@
 /area/ice_colony/exterior/surface/clearing/north)
 "att" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	icon_state = "pipe-c";
@@ -8814,8 +8716,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/white,
 /area/ice_colony/surface/clinic/lobby)
@@ -9005,8 +8906,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/red/whiteredfull,
 /area/ice_colony/surface/clinic/lobby)
@@ -9017,8 +8917,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-whiteredcorner (NORTH)";
@@ -9058,8 +8957,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-whitered (SOUTHWEST)";
@@ -9101,8 +8999,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	dir = 4;
@@ -9119,8 +9016,7 @@
 /obj/item/stack/sheet/metal,
 /obj/item/shard,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-whitered (NORTH)";
@@ -9138,8 +9034,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/blood/drip,
 /obj/effect/decal/cleanable/blood/drip{
@@ -9755,8 +9650,7 @@
 /area/ice_colony/surface/hydroponics/lobby)
 "avE" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkgreen2";
@@ -9766,8 +9660,7 @@
 "avF" = (
 /obj/machinery/light,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkgreen2";
@@ -9834,11 +9727,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/open/floor{
-	tag = "icon-bcircuit";
-	icon_state = "bcircuit";
-	dir = 2
-	},
+/turf/open/floor/animated/bcircuit,
 /area/ice_colony/surface/tcomms)
 "avN" = (
 /obj/structure/cable/yellow{
@@ -9855,8 +9744,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkgreen2";
@@ -9883,8 +9771,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -9898,8 +9785,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 4
@@ -9912,8 +9798,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/multi_tile/almayer/generic{
 	dir = 1;
@@ -9931,8 +9816,7 @@
 /area/ice_colony/exterior/surface/landing_pad)
 "avU" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
@@ -9950,8 +9834,7 @@
 /area/ice_colony/surface/clinic/lobby)
 "avW" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkgreen2";
@@ -9960,8 +9843,7 @@
 /area/ice_colony/surface/dorms)
 "avX" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkgreencorners2 (WEST)";
@@ -9990,8 +9872,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -10004,8 +9885,7 @@
 	icon_state = "pipe-c"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkgreencorners2";
@@ -10014,8 +9894,7 @@
 /area/ice_colony/surface/dorms)
 "awb" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/multi_tile/almayer/generic{
 	dir = 1;
@@ -10170,8 +10049,7 @@
 /area/ice_colony/surface/dorms)
 "awt" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/multi_tile/almayer/generic{
 	dir = 1;
@@ -10230,8 +10108,7 @@
 /area/ice_colony/exterior/surface/valley/southeast)
 "awA" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkgreencorners2 (WEST)";
@@ -10241,8 +10118,7 @@
 /area/ice_colony/surface/hydroponics/lobby)
 "awB" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -10259,8 +10135,7 @@
 /area/ice_colony/surface/hydroponics/lobby)
 "awD" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 9
@@ -10292,8 +10167,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkgreencorners2 (NORTH)";
@@ -10311,8 +10185,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 5
@@ -10329,8 +10202,7 @@
 /area/ice_colony/exterior/surface/clearing/north)
 "awJ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/multi_tile/almayer/generic{
 	dir = 1;
@@ -10775,11 +10647,7 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/open/floor{
-	tag = "icon-bcircuit";
-	icon_state = "bcircuit";
-	dir = 2
-	},
+/turf/open/floor/animated/bcircuit,
 /area/ice_colony/surface/tcomms)
 "axN" = (
 /turf/open/floor{
@@ -10938,8 +10806,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/snow/layer3,
 /area/ice_colony/exterior/surface/clearing/north)
@@ -10948,8 +10815,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/snow/layer3,
 /area/ice_colony/exterior/surface/clearing/north)
@@ -10958,8 +10824,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/north)
@@ -10973,8 +10838,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/north)
@@ -11245,8 +11109,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/snow/layer2,
 /area/ice_colony/exterior/surface/valley/southeast)
@@ -11264,8 +11127,7 @@
 	req_access_txt = "100"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -11297,8 +11159,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/fence,
 /turf/open/snow/layer3,
@@ -11323,8 +11184,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/snow/layer3,
 /area/ice_colony/exterior/surface/valley/southeast)
@@ -11452,8 +11312,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/snow/layer2,
 /area/ice_colony/exterior/surface/valley/southeast)
@@ -11462,8 +11321,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/snow/layer1,
 /area/ice_colony/exterior/surface/valley/southeast)
@@ -11473,15 +11331,13 @@
 	icon_state = "pipe-c"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/snow/layer1,
 /area/ice_colony/exterior/surface/valley/southeast)
 "azp" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/snow/layer2,
 /area/ice_colony/exterior/surface/valley/southeast)
@@ -11565,8 +11421,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/engineering{
 	name = "\improper Colony Disposals";
@@ -11584,8 +11439,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -11599,8 +11453,7 @@
 	icon_state = "2-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -11609,8 +11462,7 @@
 /area/ice_colony/surface/disposals)
 "azC" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -11965,8 +11817,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -12283,8 +12134,7 @@
 	icon_state = "1-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkblue2";
@@ -12300,8 +12150,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkblue2";
@@ -12316,8 +12165,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkblue2";
@@ -12347,8 +12195,7 @@
 /area/ice_colony/surface/garage/one)
 "aBo" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -12368,8 +12215,7 @@
 /area/ice_colony/surface/dorms)
 "aBp" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -12384,8 +12230,7 @@
 /area/ice_colony/surface/dorms)
 "aBq" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -12415,8 +12260,7 @@
 /area/ice_colony/surface/garage/one)
 "aBs" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/light,
 /obj/structure/cable{
@@ -12449,8 +12293,7 @@
 /area/ice_colony/surface/garage/two)
 "aBv" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -12505,8 +12348,7 @@
 /area/ice_colony/surface/command/control/office)
 "aBz" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -12523,8 +12365,7 @@
 /area/ice_colony/surface/dorms)
 "aBA" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -12542,8 +12383,7 @@
 /area/ice_colony/surface/dorms)
 "aBB" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -12566,8 +12406,7 @@
 /area/ice_colony/surface/dorms)
 "aBC" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -12586,8 +12425,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -13170,8 +13008,7 @@
 /area/ice_colony/surface/garage/repair)
 "aCO" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -13611,8 +13448,7 @@
 /area/ice_colony/surface/garage/repair)
 "aDH" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -13622,8 +13458,7 @@
 "aDI" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -13637,8 +13472,7 @@
 /area/ice_colony/surface/garage/repair)
 "aDJ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -13667,8 +13501,7 @@
 "aDL" = (
 /obj/vehicle/train/cargo/trolley,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -13722,8 +13555,7 @@
 /area/ice_colony/surface/garage/two)
 "aDP" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -13777,8 +13609,7 @@
 /area/ice_colony/surface/command/control/office)
 "aDT" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -13797,8 +13628,7 @@
 /area/ice_colony/surface/garage/one)
 "aDU" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -13816,8 +13646,7 @@
 /area/ice_colony/surface/garage/one)
 "aDV" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -13835,8 +13664,7 @@
 /area/ice_colony/surface/garage/one)
 "aDW" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -13883,8 +13711,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkred2 (EAST)";
@@ -13896,12 +13723,10 @@
 /obj/item/clipboard,
 /obj/item/tool/pen/blue,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/item/stack/sheet/metal,
 /obj/item/shard,
@@ -13960,8 +13785,7 @@
 /area/ice_colony/surface/hydroponics/south)
 "aEh" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -14430,8 +14254,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -14454,8 +14277,7 @@
 	req_one_access_txt = "0"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -14483,8 +14305,7 @@
 /area/ice_colony/surface/garage/one)
 "aFl" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -14525,8 +14346,7 @@
 /area/ice_colony/surface/tcomms)
 "aFo" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -14723,8 +14543,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -15081,8 +14900,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/pass)
@@ -15093,8 +14911,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/disposalpipe/junction{
 	dir = 8;
@@ -15113,8 +14930,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4;
@@ -15192,8 +15008,7 @@
 /area/ice_colony/surface/command/control)
 "aGH" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -15219,8 +15034,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -15243,8 +15057,7 @@
 	icon_state = "pipe-c"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -15270,8 +15083,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -15283,8 +15095,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -15311,8 +15122,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -16118,8 +15928,7 @@
 /area/ice_colony/surface/command/crisis)
 "aIv" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/pass)
@@ -16378,8 +16187,7 @@
 	req_access_txt = "100"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	dir = 10;
@@ -16419,8 +16227,7 @@
 /area/ice_colony/surface/storage_unit/power)
 "aJl" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkblue2";
@@ -16701,8 +16508,7 @@
 /area/ice_colony/surface/hangar/checkpoint)
 "aJZ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -16831,8 +16637,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -17162,8 +16967,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -17177,8 +16981,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -17245,8 +17048,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/pass)
@@ -17260,8 +17062,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/pass)
@@ -17483,8 +17284,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/ice_colony/surface/bar/canteen)
@@ -17505,8 +17305,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/multi_tile/almayer/generic{
 	dir = 1;
@@ -17981,8 +17780,7 @@
 	icon_state = "2-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/ice_colony/surface/bar/canteen)
@@ -17994,8 +17792,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/ice_colony/surface/bar/canteen)
@@ -18006,8 +17803,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/ice_colony/surface/bar/bar)
@@ -18027,8 +17823,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/ice_colony/surface/bar/bar)
@@ -18053,15 +17848,13 @@
 	icon_state = "xgib2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/ice_colony/surface/bar/bar)
 "aNj" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/ice_colony/surface/bar/bar)
@@ -18069,8 +17862,7 @@
 /obj/structure/table/gamblingtable,
 /obj/effect/landmark/random_item/crap,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/ice_colony/surface/bar/bar)
@@ -18081,8 +17873,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/snow/layer2,
 /area/ice_colony/exterior/surface/valley/southeast)
@@ -18112,8 +17903,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkred2 (EAST)";
@@ -18132,8 +17922,7 @@
 /obj/item/clipboard,
 /obj/item/tool/pen/blue,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkred2 (WEST)";
@@ -18143,8 +17932,7 @@
 /area/ice_colony/surface/hangar/checkpoint)
 "aNq" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/vault{
 	dir = 8
@@ -18158,8 +17946,7 @@
 	},
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -18179,8 +17966,7 @@
 /area/ice_colony/surface/hangar/checkpoint)
 "aNt" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -18702,8 +18488,7 @@
 /area/ice_colony/surface/bar/bar)
 "aOK" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
@@ -18726,8 +18511,7 @@
 "aON" = (
 /obj/structure/reagent_dispensers/fueltank,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
@@ -18742,8 +18526,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkbrowncorners2 (WEST)";
@@ -18853,8 +18636,7 @@
 	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkbrown2";
@@ -18867,8 +18649,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkbrowncorners2 (WEST)";
@@ -18931,15 +18712,12 @@
 /area/ice_colony/surface/storage_unit/telecomms)
 "aPh" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-darkpurplecorners2 (EAST)";
-	icon_state = "darkpurplecorners2";
+/turf/open/floor/tile/dark/purple2/corner{
 	dir = 4
 	},
 /area/ice_colony/surface/research)
@@ -19344,8 +19122,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
@@ -19358,8 +19135,7 @@
 /area/ice_colony/surface/research)
 "aQg" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
@@ -19413,8 +19189,7 @@
 /area/ice_colony/surface/research)
 "aQl" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -19439,8 +19214,7 @@
 	req_access_txt = "100"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -19521,8 +19295,7 @@
 /area/ice_colony/surface/hangar/alpha)
 "aQx" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkbrowncorners2";
@@ -19532,8 +19305,7 @@
 "aQy" = (
 /obj/effect/spawner/random/toolbox,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
@@ -19555,8 +19327,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
@@ -19631,8 +19402,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -19649,8 +19419,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/engineering{
 	name = "\improper Aerodrome Hangar Alpha";
@@ -19696,8 +19465,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkbrowncorners2";
@@ -19707,8 +19475,7 @@
 "aQL" = (
 /obj/structure/reagent_dispensers/fueltank,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
@@ -19746,8 +19513,7 @@
 /area/ice_colony/surface/hangar/beta)
 "aQP" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
@@ -19783,8 +19549,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/pass)
@@ -19888,8 +19653,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	dir = 8;
@@ -19899,8 +19663,7 @@
 /area/ice_colony/surface/research)
 "aRd" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	dir = 9;
@@ -19910,8 +19673,7 @@
 /area/ice_colony/surface/research)
 "aRe" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkbrowncorners2 (NORTH)";
@@ -19941,8 +19703,7 @@
 /area/ice_colony/surface/bar/canteen)
 "aRh" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -19954,8 +19715,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southwest)
@@ -20234,23 +19994,18 @@
 /turf/open/snow/layer1,
 /area/ice_colony/exterior/surface/valley/southeast)
 "aRN" = (
-/turf/open/floor{
-	tag = "icon-darkpurplecorners2 (EAST)";
-	icon_state = "darkpurplecorners2";
+/turf/open/floor/tile/dark/purple2/corner{
 	dir = 4
 	},
 /area/ice_colony/surface/research)
 "aRO" = (
-/turf/open/floor{
-	tag = "icon-darkpurplecorners2 (NORTH)";
-	icon_state = "darkpurplecorners2";
+/turf/open/floor/tile/dark/purple2/corner{
 	dir = 1
 	},
 /area/ice_colony/surface/research)
 "aRP" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -20290,9 +20045,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor{
-	tag = "icon-darkpurplecorners2 (EAST)";
-	icon_state = "darkpurplecorners2";
+/turf/open/floor/tile/dark/purple2/corner{
 	dir = 4
 	},
 /area/ice_colony/surface/research)
@@ -20570,8 +20323,7 @@
 	},
 /obj/structure/disposalpipe/junction,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -20668,9 +20420,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
 	},
-/turf/open/floor{
-	tag = "icon-darkpurplecorners2 (EAST)";
-	icon_state = "darkpurplecorners2";
+/turf/open/floor/tile/dark/purple2/corner{
 	dir = 4
 	},
 /area/ice_colony/surface/research)
@@ -20729,8 +20479,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/dark/purple2{
 	dir = 4
@@ -20738,26 +20487,20 @@
 /area/ice_colony/surface/research)
 "aSO" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-darkpurplecorners2 (NORTH)";
-	icon_state = "darkpurplecorners2";
+/turf/open/floor/tile/dark/purple2/corner{
 	dir = 1
 	},
 /area/ice_colony/surface/research)
 "aSP" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-darkpurplecorners2 (EAST)";
-	icon_state = "darkpurplecorners2";
+/turf/open/floor/tile/dark/purple2/corner{
 	dir = 4
 	},
 /area/ice_colony/surface/research)
@@ -20768,12 +20511,9 @@
 /area/ice_colony/surface/bar/canteen)
 "aSR" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-darkpurplecorners2 (NORTH)";
-	icon_state = "darkpurplecorners2";
+/turf/open/floor/tile/dark/purple2/corner{
 	dir = 1
 	},
 /area/ice_colony/surface/research)
@@ -20781,9 +20521,7 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-darkpurplecorners2 (NORTH)";
-	icon_state = "darkpurplecorners2";
+/turf/open/floor/tile/dark/purple2/corner{
 	dir = 1
 	},
 /area/ice_colony/surface/research)
@@ -20796,8 +20534,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/south)
@@ -20904,9 +20641,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
-/turf/open/floor{
-	tag = "icon-darkpurplecorners2 (EAST)";
-	icon_state = "darkpurplecorners2";
+/turf/open/floor/tile/dark/purple2/corner{
 	dir = 4
 	},
 /area/ice_colony/surface/research)
@@ -21146,9 +20881,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor{
-	tag = "icon-darkpurplecorners2 (NORTH)";
-	icon_state = "darkpurplecorners2";
+/turf/open/floor/tile/dark/purple2/corner{
 	dir = 1
 	},
 /area/ice_colony/surface/research)
@@ -21167,9 +20900,7 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/open/floor{
-	tag = "icon-darkpurplecorners2 (EAST)";
-	icon_state = "darkpurplecorners2";
+/turf/open/floor/tile/dark/purple2/corner{
 	dir = 4
 	},
 /area/ice_colony/surface/research)
@@ -21183,9 +20914,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor{
-	tag = "icon-darkpurplecorners2 (EAST)";
-	icon_state = "darkpurplecorners2";
+/turf/open/floor/tile/dark/purple2/corner{
 	dir = 4
 	},
 /area/ice_colony/surface/research)
@@ -21199,9 +20928,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor{
-	tag = "icon-darkpurplecorners2 (NORTH)";
-	icon_state = "darkpurplecorners2";
+/turf/open/floor/tile/dark/purple2/corner{
 	dir = 1
 	},
 /area/ice_colony/surface/research)
@@ -21221,9 +20948,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/turf/open/floor{
-	tag = "icon-darkpurplecorners2 (NORTH)";
-	icon_state = "darkpurplecorners2";
+/turf/open/floor/tile/dark/purple2/corner{
 	dir = 1
 	},
 /area/ice_colony/surface/research)
@@ -21275,8 +21000,7 @@
 /area/ice_colony/surface/bar/bar)
 "aTT" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/bed/chair/wood/normal{
 	dir = 4
@@ -21502,9 +21226,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
 	},
-/turf/open/floor{
-	tag = "icon-darkpurplecorners2 (NORTH)";
-	icon_state = "darkpurplecorners2";
+/turf/open/floor/tile/dark/purple2/corner{
 	dir = 1
 	},
 /area/ice_colony/surface/research)
@@ -21515,9 +21237,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	tag = "icon-darkpurplecorners2 (NORTH)";
-	icon_state = "darkpurplecorners2";
+/turf/open/floor/tile/dark/purple2/corner{
 	dir = 1
 	},
 /area/ice_colony/surface/research)
@@ -21576,8 +21296,7 @@
 /area/ice_colony/surface/hangar/alpha)
 "aUD" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/bed/chair/wood/normal{
 	dir = 8
@@ -21586,8 +21305,7 @@
 /area/ice_colony/surface/bar/bar)
 "aUE" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/snow/layer3,
 /area/ice_colony/exterior/surface/clearing/south)
@@ -21642,9 +21360,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 5
 	},
-/turf/open/floor{
-	tag = "icon-darkpurplecorners2 (NORTH)";
-	icon_state = "darkpurplecorners2";
+/turf/open/floor/tile/dark/purple2/corner{
 	dir = 1
 	},
 /area/ice_colony/surface/research)
@@ -21652,9 +21368,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-darkpurplecorners2 (EAST)";
-	icon_state = "darkpurplecorners2";
+/turf/open/floor/tile/dark/purple2/corner{
 	dir = 4
 	},
 /area/ice_colony/surface/research)
@@ -21668,9 +21382,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	tag = "icon-darkpurplecorners2 (NORTH)";
-	icon_state = "darkpurplecorners2";
+/turf/open/floor/tile/dark/purple2/corner{
 	dir = 1
 	},
 /area/ice_colony/surface/research)
@@ -21839,8 +21551,7 @@
 	icon_state = "pipe-c"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -21858,8 +21569,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -21877,8 +21587,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -21896,8 +21605,7 @@
 /area/ice_colony/surface/research/temporary)
 "aVm" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	icon_state = "pipe-s";
@@ -22008,8 +21716,7 @@
 /area/ice_colony/surface/hangar/alpha)
 "aVA" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -22197,9 +21904,7 @@
 	dir = 1;
 	icon_state = "pipe-c"
 	},
-/turf/open/floor{
-	tag = "icon-darkpurplecorners2 (EAST)";
-	icon_state = "darkpurplecorners2";
+/turf/open/floor/tile/dark/purple2/corner{
 	dir = 4
 	},
 /area/ice_colony/surface/research)
@@ -22351,8 +22056,7 @@
 /area/ice_colony/surface/hangar/beta)
 "aWk" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -22395,8 +22099,7 @@
 /area/ice_colony/surface/hangar/beta)
 "aWo" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/south)
@@ -22412,8 +22115,7 @@
 /area/ice_colony/exterior/surface/landing_pad_external)
 "aWs" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/south)
@@ -22505,8 +22207,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/engineering{
 	name = "\improper Aerodrome Hangar Beta";
@@ -22527,8 +22228,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -23049,8 +22749,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -23612,8 +23311,7 @@
 /area/ice_colony/surface/hangar/alpha)
 "aZb" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -23638,8 +23336,7 @@
 /area/ice_colony/surface/hangar/alpha)
 "aZd" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -23832,8 +23529,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -24025,8 +23721,7 @@
 /area/ice_colony/surface/hangar/alpha)
 "aZX" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south)
@@ -24354,8 +24049,7 @@
 /area/ice_colony/underground/hangar)
 "baK" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/plating/warning{
 	dir = 10
@@ -24369,8 +24063,7 @@
 /area/ice_colony/surface/research/tech_storage)
 "baM" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/plating/warning{
 	dir = 2
@@ -24454,8 +24147,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -24469,8 +24161,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -24627,8 +24318,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/container_yard)
@@ -24637,8 +24327,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/container_yard)
@@ -24673,8 +24362,7 @@
 	})
 "bbl" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -24693,8 +24381,7 @@
 	luminosity = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -24715,8 +24402,7 @@
 	})
 "bbo" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -24735,8 +24421,7 @@
 "bbp" = (
 /obj/effect/decal/cleanable/blood/oil,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -25460,8 +25145,7 @@
 /area/ice_colony/surface/storage_unit/telecomms)
 "bdi" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -25546,8 +25230,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -25660,8 +25343,7 @@
 	icon_state = "1-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/freezer,
 /area/ice_colony/underground/requesition/storage)
@@ -25718,8 +25400,7 @@
 	req_access_txt = "100"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -25748,8 +25429,7 @@
 	},
 /obj/vehicle/train/cargo/trolley,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -25759,8 +25439,7 @@
 "bdK" = (
 /obj/vehicle/train/cargo/trolley,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -25782,8 +25461,7 @@
 /area/ice_colony/underground/requesition)
 "bdN" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -25801,8 +25479,7 @@
 	})
 "bdP" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/snow/layer2,
 /area/ice_colony/exterior/surface/valley/southwest)
@@ -25901,8 +25578,7 @@
 /area/ice_colony/underground/requesition)
 "beb" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -25914,8 +25590,7 @@
 /area/ice_colony/surface/excavation)
 "bec" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/snow/layer3,
 /area/ice_colony/exterior/surface/valley/southwest)
@@ -25951,8 +25626,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -26518,8 +26192,7 @@
 /area/ice_colony/underground/requesition)
 "bfs" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/closet/crate,
 /turf/open/floor/tile/vault{
@@ -26528,8 +26201,7 @@
 /area/ice_colony/underground/requesition)
 "bft" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/largecrate/random,
 /turf/open/floor/tile/vault{
@@ -26699,8 +26371,7 @@
 /area/ice_colony/surface/excavation)
 "bfL" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	icon_state = "pipe-c";
@@ -26717,8 +26388,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -26747,8 +26417,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -27158,8 +26827,7 @@
 /area/ice_colony/underground/requesition)
 "bgO" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -27248,8 +26916,7 @@
 /area/ice_colony/underground/requesition)
 "bgZ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -27284,8 +26951,7 @@
 	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkbrowncorners2";
@@ -27312,8 +26978,7 @@
 	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -27333,8 +26998,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -27702,8 +27366,7 @@
 	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -27835,17 +27498,12 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/turf/open/floor{
-	tag = "icon-bcircuit";
-	icon_state = "bcircuit";
-	dir = 2
-	},
+/turf/open/floor/animated/bcircuit,
 /area/ice_colony/underground/hangar)
 "bii" = (
 /obj/vehicle/train/cargo/engine,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -27961,12 +27619,10 @@
 /area/ice_colony/underground/maintenance/north)
 "bit" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -28013,8 +27669,7 @@
 	req_access_txt = "100"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -28065,11 +27720,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor{
-	tag = "icon-bcircuit";
-	icon_state = "bcircuit";
-	dir = 2
-	},
+/turf/open/floor/animated/bcircuit,
 /area/ice_colony/underground/hangar)
 "biD" = (
 /obj/structure/closet/secure_closet/engineering_electrical,
@@ -28293,11 +27944,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/open/floor{
-	tag = "icon-bcircuit";
-	icon_state = "bcircuit";
-	dir = 2
-	},
+/turf/open/floor/animated/bcircuit,
 /area/ice_colony/underground/hangar)
 "bja" = (
 /obj/structure/closet/toolcloset,
@@ -28657,8 +28304,7 @@
 /area/ice_colony/underground/requesition/lobby)
 "bjN" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -28673,8 +28319,7 @@
 /area/ice_colony/underground/requesition/lobby)
 "bjO" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -28908,8 +28553,7 @@
 /area/ice_colony/underground/hallway/north_west)
 "bks" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/pass)
@@ -28956,8 +28600,7 @@
 	luminosity = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/pass)
@@ -29134,8 +28777,7 @@
 /area/ice_colony/underground/crew/library)
 "bla" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/pass)
@@ -29146,8 +28788,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/vault{
 	dir = 8
@@ -29213,8 +28854,7 @@
 	req_access_txt = "100"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/vault{
 	dir = 8
@@ -29317,8 +28957,7 @@
 /area/ice_colony/surface/storage_unit/research)
 "blu" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -29335,8 +28974,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/snow/layer3,
 /area/ice_colony/exterior/surface/valley/southeast)
@@ -29463,8 +29101,7 @@
 /area/ice_colony/underground/hallway/north_west)
 "blO" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/chapel)
@@ -29516,8 +29153,7 @@
 	icon_state = "1-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/snow/layer2,
 /area/ice_colony/exterior/surface/valley/southeast)
@@ -29570,8 +29206,7 @@
 /area/ice_colony/surface/research)
 "blZ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -29630,8 +29265,7 @@
 "bmd" = (
 /obj/structure/table/woodentable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/library)
@@ -29640,8 +29274,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/library)
@@ -29746,15 +29379,13 @@
 /area/ice_colony/underground/maintenance/research)
 "bms" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/research)
 "bmt" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/maint{
 	name = "\improper Underground Maintenance";
@@ -30009,8 +29640,7 @@
 	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -30019,8 +29649,7 @@
 /area/ice_colony/underground/hallway/north_west)
 "bnb" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	dir = 1;
@@ -30032,8 +29661,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	dir = 4;
@@ -30105,8 +29733,7 @@
 /area/ice_colony/underground/crew/library)
 "bnm" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/library)
@@ -30124,8 +29751,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/library)
@@ -30133,8 +29759,7 @@
 /obj/structure/table/woodentable,
 /obj/item/book/manual/marine_law,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/library)
@@ -30681,8 +30306,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	icon_state = "chapel"
@@ -30694,8 +30318,7 @@
 /area/ice_colony/exterior/underground/caves/open)
 "boE" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	dir = 8;
@@ -30715,8 +30338,7 @@
 /area/ice_colony/underground/crew/library)
 "boI" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	icon_state = "chapel"
@@ -30744,8 +30366,7 @@
 /area/ice_colony/underground/requesition)
 "boM" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/secure{
 	dir = 4;
@@ -30759,8 +30380,7 @@
 /area/ice_colony/underground/crew/morgue)
 "boN" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -30912,8 +30532,7 @@
 "bpe" = (
 /obj/structure/rack,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/item/tool/shovel/snow{
 	pixel_x = 10;
@@ -31118,8 +30737,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -31141,8 +30759,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/freezer,
 /area/ice_colony/underground/requesition/storage)
@@ -31153,8 +30770,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/generic{
 	dir = 4;
@@ -31171,8 +30787,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -31307,8 +30922,7 @@
 	icon_state = "E-corner"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkbrown2";
@@ -31355,8 +30969,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/ice_colony/underground/requesition)
@@ -31370,8 +30983,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkbrown2";
@@ -31440,15 +31052,13 @@
 /area/ice_colony/exterior/surface/valley/southeast)
 "bqg" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/snow/layer1,
 /area/ice_colony/exterior/surface/valley/southeast)
 "bqh" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -31682,12 +31292,10 @@
 /area/ice_colony/underground/hallway/south_east)
 "bqF" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/snow/layer1,
 /area/ice_colony/exterior/surface/valley/southeast)
@@ -31794,12 +31402,10 @@
 "bqT" = (
 /obj/structure/fence,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/snow/layer3,
 /area/ice_colony/exterior/surface/valley/southeast)
@@ -31962,8 +31568,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -31981,8 +31586,7 @@
 /area/ice_colony/underground/engineering)
 "brr" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -31991,8 +31595,7 @@
 /area/ice_colony/underground/engineering)
 "brs" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/maint{
 	name = "\improper Underground Maintenance";
@@ -32003,16 +31606,14 @@
 /area/ice_colony/underground/engineering)
 "brt" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/engineering)
 "bru" = (
 /obj/structure/rack,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/item/tool/shovel/snow,
 /obj/item/tool/shovel/snow{
@@ -32091,8 +31692,7 @@
 /area/ice_colony/underground/medical/lobby)
 "brC" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -32109,8 +31709,7 @@
 /area/ice_colony/underground/medical/lobby)
 "brE" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/snow/layer3,
 /area/ice_colony/exterior/surface/valley/southeast)
@@ -32121,8 +31720,7 @@
 "brG" = (
 /obj/effect/landmark/huntergames_primary_spawn,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/ice,
 /area/ice_colony/exterior/surface/valley/southeast)
@@ -32264,15 +31862,13 @@
 /area/ice_colony/underground/maintenance/engineering)
 "bsa" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/ice,
 /area/ice_colony/exterior/surface/valley/southeast)
 "bsb" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/plating/icefloor{
 	tag = "icon-warnplate (NORTHWEST)";
@@ -32305,8 +31901,7 @@
 	opacity = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkred2 (NORTH)";
@@ -32453,11 +32048,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	tag = "icon-bcircuit";
-	icon_state = "bcircuit";
-	dir = 2
-	},
+/turf/open/floor/animated/bcircuit,
 /area/ice_colony/underground/engineering/substation)
 "bsx" = (
 /obj/structure/cable/yellow{
@@ -32709,8 +32300,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -32732,8 +32322,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/multi_tile/almayer/medidoor{
 	dir = 1;
@@ -32779,15 +32368,13 @@
 /area/ice_colony/underground/medical/treatment)
 "bte" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/ice_colony/underground/engineering/substation)
 "btf" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkred2 (NORTH)";
@@ -33061,8 +32648,7 @@
 /area/ice_colony/underground/crew/bball)
 "btO" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -33110,11 +32696,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/open/floor{
-	tag = "icon-bcircuit";
-	icon_state = "bcircuit";
-	dir = 2
-	},
+/turf/open/floor/animated/bcircuit,
 /area/ice_colony/underground/engineering/substation)
 "btS" = (
 /obj/structure/cable{
@@ -33127,16 +32709,11 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor{
-	tag = "icon-bcircuit";
-	icon_state = "bcircuit";
-	dir = 2
-	},
+/turf/open/floor/animated/bcircuit,
 /area/ice_colony/underground/engineering/substation)
 "btT" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkredcorners2 (NORTH)";
@@ -33172,8 +32749,7 @@
 /area/ice_colony/underground/engineering/substation)
 "btW" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -33203,8 +32779,7 @@
 	icon_state = "pipe-c"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -33229,8 +32804,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/medical/hallway)
@@ -33547,8 +33121,7 @@
 /area/ice_colony/underground/medical/lobby)
 "buL" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/central)
@@ -33594,8 +33167,7 @@
 /area/ice_colony/underground/crew/bball)
 "buR" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/bball)
@@ -33606,8 +33178,7 @@
 	},
 /obj/effect/decal/warning_stripes,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/bball)
@@ -33626,15 +33197,13 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/bball)
 "buU" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -33643,8 +33212,7 @@
 /area/ice_colony/underground/crew/bball)
 "buV" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/medical/glass{
 	dir = 4;
@@ -33659,8 +33227,7 @@
 /area/ice_colony/underground/crew/bball)
 "buW" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -33975,8 +33542,7 @@
 	})
 "bvE" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d1 = 2;
@@ -34041,15 +33607,13 @@
 /area/ice_colony/exterior/surface/valley/southwest)
 "bvM" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/medical/or)
 "bvN" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/maint{
 	name = "\improper Underground Maintenance";
@@ -34286,15 +33850,13 @@
 /area/ice_colony/underground/medical/or)
 "bwm" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/medical/lobby)
 "bwn" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/medical/glass{
 	dir = 4;
@@ -34560,15 +34122,13 @@
 /area/ice_colony/underground/medical/treatment)
 "bwS" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/medical/treatment)
 "bwT" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/maint{
 	name = "\improper Underground Maintenance";
@@ -34640,8 +34200,7 @@
 /area/ice_colony/underground/medical/lobby)
 "bxa" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/medical/hallway)
@@ -34945,8 +34504,7 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/engineering)
@@ -35041,8 +34599,7 @@
 "bxT" = (
 /obj/machinery/light/small,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/central)
@@ -35101,8 +34658,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -35178,8 +34734,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/central)
@@ -35197,8 +34752,7 @@
 /area/ice_colony/underground/maintenance/central)
 "byi" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -35321,8 +34875,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -35365,8 +34918,7 @@
 /area/ice_colony/underground/medical/hallway)
 "byz" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -35388,8 +34940,7 @@
 /area/ice_colony/underground/engineering)
 "byA" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -35449,8 +35000,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -35567,8 +35117,7 @@
 /area/ice_colony/underground/maintenance/central)
 "byT" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/light/small,
 /turf/open/floor/plating,
@@ -35682,8 +35231,7 @@
 	icon_state = "pipe-j2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -35820,8 +35368,7 @@
 /area/ice_colony/underground/security/marshal)
 "bzz" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/medical/storage)
@@ -36265,8 +35812,7 @@
 /area/ice_colony/underground/crew/canteen)
 "bAF" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/barricade/wooden{
 	dir = 1
@@ -36515,8 +36061,7 @@
 /area/ice_colony/underground/hallway/south_east)
 "bBh" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkred2 (EAST)";
@@ -36530,8 +36075,7 @@
 	req_access_txt = "100"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkred2 (NORTHWEST)";
@@ -36660,8 +36204,7 @@
 /area/ice_colony/underground/command/center)
 "bBu" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/maint{
 	name = "\improper Underground Maintenance";
@@ -36689,8 +36232,7 @@
 /area/ice_colony/underground/crew/canteen)
 "bBx" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -36702,8 +36244,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -36712,8 +36253,7 @@
 /area/ice_colony/underground/crew/canteen)
 "bBz" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 4
@@ -36722,15 +36262,13 @@
 "bBA" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/ice_colony/underground/crew/canteen)
 "bBB" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 8
@@ -36742,8 +36280,7 @@
 	icon_state = "pipe-c"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -36831,8 +36368,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -36854,8 +36390,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/multi_tile/almayer/generic{
 	dir = 1;
@@ -36874,8 +36409,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/disposalpipe/junction{
 	icon_state = "pipe-j1";
@@ -36915,8 +36449,7 @@
 /area/ice_colony/underground/security/hallway)
 "bBN" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkred2 (EAST)";
@@ -36926,8 +36459,7 @@
 /area/ice_colony/underground/security/hallway)
 "bBO" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/maint{
 	name = "\improper Underground Maintenance";
@@ -36964,8 +36496,7 @@
 /area/ice_colony/underground/hallway/north_west)
 "bBS" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/maint{
 	name = "\improper Underground Maintenance";
@@ -37063,8 +36594,7 @@
 /area/ice_colony/surface/research)
 "bCc" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -37316,8 +36846,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -37362,8 +36891,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -37388,8 +36916,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d1 = 2;
@@ -37470,8 +36997,7 @@
 /area/ice_colony/underground/security/hallway)
 "bCO" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating,
@@ -38114,8 +37640,7 @@
 /area/ice_colony/underground/hallway/south_east)
 "bEe" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/east)
@@ -38304,8 +37829,7 @@
 /area/ice_colony/underground/maintenance/east)
 "bEy" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -38388,8 +37912,7 @@
 /area/ice_colony/underground/command/pv2)
 "bEI" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -38417,8 +37940,7 @@
 "bEM" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -38966,9 +38488,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	tag = "icon-darkpurplecorners2 (EAST)";
-	icon_state = "darkpurplecorners2";
+/turf/open/floor/tile/dark/purple2/corner{
 	dir = 4
 	},
 /area/ice_colony/surface/research)
@@ -38979,9 +38499,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
-/turf/open/floor{
-	tag = "icon-darkpurplecorners2 (EAST)";
-	icon_state = "darkpurplecorners2";
+/turf/open/floor/tile/dark/purple2/corner{
 	dir = 4
 	},
 /area/ice_colony/surface/research)
@@ -39410,8 +38928,7 @@
 /area/ice_colony/underground/hallway/south_east)
 "bGS" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/maint{
 	name = "\improper Underground Maintenance";
@@ -39801,9 +39318,7 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/east)
 "bHH" = (
-/turf/open/floor{
-	tag = "icon-darkpurplecorners2 (NORTH)";
-	icon_state = "darkpurplecorners2";
+/turf/open/floor/tile/dark/purple2/corner{
 	dir = 1
 	},
 /area/ice_colony/underground/hallway/north_west)
@@ -39825,8 +39340,7 @@
 /area/ice_colony/underground/crew/dorm_l)
 "bHK" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -39870,8 +39384,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -39928,8 +39441,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -40017,8 +39529,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -40037,8 +39548,7 @@
 	icon_state = "pipe-j2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -40053,8 +39563,7 @@
 	icon_state = "pipe-c"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -40674,8 +40183,7 @@
 	icon_state = "1-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -40701,8 +40209,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -40733,8 +40240,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/engineering)
@@ -40745,15 +40251,12 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/ice,
 /area/ice_colony/underground/maintenance/engineering)
 "bJv" = (
-/turf/open/floor{
-	tag = "icon-darkpurplecorners2 (WEST)";
-	icon_state = "darkpurplecorners2";
+/turf/open/floor/tile/dark/purple2/corner{
 	dir = 8
 	},
 /area/ice_colony/underground/hallway/north_west)
@@ -40764,8 +40267,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating,
@@ -40777,8 +40279,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/plating,
@@ -40796,8 +40297,7 @@
 /area/ice_colony/underground/medical/treatment)
 "bJz" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -40808,8 +40308,7 @@
 /area/ice_colony/underground/medical/treatment)
 "bJA" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -40823,8 +40322,7 @@
 /area/ice_colony/underground/medical/treatment)
 "bJB" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -40835,8 +40333,7 @@
 /area/ice_colony/underground/maintenance/central)
 "bJC" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -40852,8 +40349,7 @@
 /area/ice_colony/underground/hallway/north_west)
 "bJD" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -40991,8 +40487,7 @@
 	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-whitered (NORTH)";
@@ -41007,8 +40502,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-whitered (NORTH)";
@@ -41039,8 +40533,7 @@
 /area/ice_colony/underground/medical/hallway)
 "bJS" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -41055,8 +40548,7 @@
 /area/ice_colony/underground/medical/hallway)
 "bJT" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -41104,8 +40596,7 @@
 /area/ice_colony/underground/security)
 "bJW" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -41380,8 +40871,7 @@
 /area/ice_colony/underground/hallway/south_east)
 "bKx" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/disposalpipe/junction,
 /turf/open/floor{
@@ -41710,8 +41200,7 @@
 	id = "brg"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/dark/yellow2{
 	dir = 8
@@ -41719,8 +41208,7 @@
 /area/ice_colony/underground/security/brig)
 "bLg" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -42199,8 +41687,7 @@
 /area/ice_colony/underground/crew/disposals)
 "bMb" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -42212,8 +41699,7 @@
 /area/ice_colony/underground/hallway/north_west)
 "bMc" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -42273,8 +41759,7 @@
 /area/ice_colony/underground/hallway/south_east)
 "bMh" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/disposalpipe/junction{
 	dir = 8;
@@ -42728,8 +42213,7 @@
 /area/ice_colony/underground/crew/disposals)
 "bNb" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -42841,8 +42325,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -42857,8 +42340,7 @@
 /area/ice_colony/underground/medical/hallway)
 "bNp" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -43084,8 +42566,7 @@
 "bNS" = (
 /obj/structure/table/gamblingtable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/carpet,
 /area/ice_colony/underground/crew/leisure)
@@ -43121,8 +42602,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -43696,8 +43176,7 @@
 /area/ice_colony/underground/security/armory)
 "bPl" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/carpet,
 /area/ice_colony/underground/crew/leisure)
@@ -43707,8 +43186,7 @@
 	icon_state = "pipe-c"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/leisure)
@@ -43717,8 +43195,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/leisure)
@@ -44000,8 +43477,7 @@
 /area/ice_colony/underground/security/armory)
 "bPW" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -44076,8 +43552,7 @@
 /area/ice_colony/underground/maintenance/south)
 "bQg" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/security{
 	name = "\improper Underground Security Showers";
@@ -44090,8 +43565,7 @@
 /area/ice_colony/underground/security/brig)
 "bQh" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/security/brig)
@@ -44121,22 +43595,19 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/south)
 "bQn" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/south)
 "bQo" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/ice,
 /area/ice_colony/underground/maintenance/south)
@@ -44291,8 +43762,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -44751,8 +44221,7 @@
 	icon_state = "2-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4;
@@ -44767,8 +44236,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -45019,8 +44487,7 @@
 	},
 /obj/item/tool/stamp,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -45076,8 +44543,7 @@
 /area/ice_colony/exterior/surface/valley/south)
 "bSk" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -45134,8 +44600,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/disposalpipe/junction{
 	dir = 8;
@@ -45155,8 +44620,7 @@
 /area/ice_colony/exterior/underground/caves)
 "bSs" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -45201,8 +44665,7 @@
 	})
 "bSy" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -45332,8 +44795,7 @@
 /area/ice_colony/exterior/underground/caves)
 "bSS" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/plating/warning{
 	dir = 8
@@ -45366,11 +44828,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/turf/open/floor{
-	tag = "icon-bcircuit";
-	icon_state = "bcircuit";
-	dir = 2
-	},
+/turf/open/floor/animated/bcircuit,
 /area/ice_colony/underground/engineering/substation)
 "bSW" = (
 /turf/closed/ice_rock/corners{
@@ -45403,11 +44861,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/turf/open/floor{
-	tag = "icon-bcircuit";
-	icon_state = "bcircuit";
-	dir = 2
-	},
+/turf/open/floor/animated/bcircuit,
 /area/ice_colony/underground/engineering/substation)
 "bSZ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -45581,8 +45035,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -45658,8 +45111,7 @@
 /area/ice_colony/exterior/underground/caves)
 "bTy" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -45677,8 +45129,7 @@
 /area/ice_colony/underground/command/checkpoint)
 "bTz" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -45838,8 +45289,7 @@
 /area/ice_colony/underground/maintenance/east)
 "bTW" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/light/small,
 /turf/open/floor/plating,
@@ -46087,8 +45537,7 @@
 /area/ice_colony/exterior/surface/cliff)
 "bUG" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -46101,8 +45550,7 @@
 /area/ice_colony/underground/hallway/north_west)
 "bUH" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4;
@@ -46131,8 +45579,7 @@
 /area/ice_colony/surface/tcomms)
 "bUK" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -46153,8 +45600,7 @@
 /area/ice_colony/surface/tcomms)
 "bUM" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -46207,8 +45653,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -46226,8 +45671,7 @@
 	icon_state = "pipe-j2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -46759,8 +46203,7 @@
 /area/ice_colony/underground/hallway/north_west)
 "bVT" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	icon_state = "4-8";
@@ -46796,8 +46239,7 @@
 	})
 "bVV" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	icon_state = "4-8";
@@ -46808,8 +46250,7 @@
 /area/ice_colony/underground/hangar)
 "bVW" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	icon_state = "4-8";
@@ -47103,8 +46544,7 @@
 	d2 = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -47181,8 +46621,7 @@
 	})
 "bWI" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/white,
 /area/ice_colony/surface/excavation{
@@ -47191,8 +46630,7 @@
 "bWJ" = (
 /obj/machinery/door/airlock/almayer/generic,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/freezer,
 /area/ice_colony/surface/excavation{
@@ -47561,8 +46999,7 @@
 /area/ice_colony/underground/hangar)
 "bXs" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/light,
 /turf/open/snow/layer0,
@@ -47607,8 +47044,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -47624,8 +47060,7 @@
 	})
 "bXy" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/dark,
 /area/ice_colony/surface/excavation{
@@ -47633,8 +47068,7 @@
 	})
 "bXz" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/generic,
 /turf/open/floor/tile/dark,
@@ -47643,8 +47077,7 @@
 	})
 "bXA" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -48019,15 +47452,13 @@
 /area/ice_colony/underground/engineering)
 "bYk" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bYl" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/snow/layer1,
 /area/ice_colony/exterior/surface/valley/south/excavation)
@@ -48044,16 +47475,14 @@
 /area/ice_colony/underground/security/interrogation)
 "bYn" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/light,
 /turf/open/snow/layer2,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bYo" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/snow/layer2,
 /area/ice_colony/exterior/surface/valley/south/excavation)
@@ -48109,8 +47538,7 @@
 /area/ice_colony/underground/medical/or)
 "bYv" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -48203,8 +47631,7 @@
 /area/ice_colony/underground/medical/or)
 "bYC" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -48224,8 +47651,7 @@
 /area/ice_colony/underground/hallway/south_east)
 "bYE" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/blood{
 	tag = "icon-xgib2";
@@ -48243,8 +47669,7 @@
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bYF" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/item/tool/pickaxe{
 	pixel_x = 5;
@@ -48289,8 +47714,7 @@
 /area/ice_colony/underground/engineering/substation)
 "bYJ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -48387,11 +47811,7 @@
 	},
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
-/turf/open/floor{
-	tag = "icon-bcircuit";
-	icon_state = "bcircuit";
-	dir = 2
-	},
+/turf/open/floor/animated/bcircuit,
 /area/ice_colony/underground/engineering/substation)
 "bYT" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
@@ -48496,8 +47916,7 @@
 /area/ice_colony/exterior/underground/caves/open)
 "bZd" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -48515,8 +47934,7 @@
 /area/ice_colony/underground/security/backroom)
 "bZe" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -48530,8 +47948,7 @@
 /area/ice_colony/underground/security)
 "bZf" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -48549,8 +47966,7 @@
 /area/ice_colony/underground/engineering)
 "bZg" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -48565,8 +47981,7 @@
 /area/ice_colony/underground/engineering)
 "bZh" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -48579,8 +47994,7 @@
 /area/ice_colony/underground/engineering)
 "bZi" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -49111,8 +48525,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/east)
@@ -49299,8 +48712,7 @@
 /area/ice_colony/underground/maintenance/central)
 "cbU" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/blood/drip{
 	tag = "icon-3";
@@ -49313,8 +48725,7 @@
 /area/ice_colony/underground/hallway/north_west)
 "cbV" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/plating,
@@ -49330,8 +48741,7 @@
 /area/ice_colony/underground/maintenance/central)
 "ccj" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/light/small{
 	dir = 1
@@ -49344,8 +48754,7 @@
 /area/ice_colony/underground/maintenance/central)
 "cck" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/blood/drip{
 	tag = "icon-3";

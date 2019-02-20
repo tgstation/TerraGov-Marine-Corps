@@ -14167,7 +14167,7 @@
 "aWL" = (
 /obj/structure/table,
 /obj/structure/mirror/broken{
-	pixel_x = 30
+	dir = 4
 	},
 /turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)

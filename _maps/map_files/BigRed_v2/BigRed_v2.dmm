@@ -840,8 +840,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/telecomm)
@@ -852,8 +851,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
@@ -1064,8 +1062,7 @@
 /obj/structure/table,
 /obj/effect/spawner/random/technology_scanner,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
@@ -1157,7 +1154,7 @@
 /area/bigredv2/outside/marshal_office)
 "adF" = (
 /obj/structure/mirror/broken{
-	pixel_x = 30
+	dir = 4
 	},
 /obj/item/tool/soap/deluxe,
 /turf/open/floor/freezer,
@@ -1493,8 +1490,7 @@
 /area/bigredv2/outside/space_port)
 "aeG" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
@@ -2059,8 +2055,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/marking/asteroidwarning{
 	dir = 6
@@ -2073,8 +2068,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
@@ -2085,8 +2079,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/marking/asteroidwarning{
 	dir = 9
@@ -2117,8 +2110,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/marking/asteroidwarning{
 	dir = 5
@@ -2126,8 +2118,7 @@
 /area/bigredv2/outside/space_port)
 "agt" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -2474,16 +2465,14 @@
 /area/bigredv2/outside/marshal_office)
 "ahm" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "ahn" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -2644,9 +2633,7 @@
 /turf/open/floor/tile/darkish,
 /area/bigredv2/caves/lambda_lab)
 "ahL" = (
-/turf/open/floor{
-	tag = "icon-darkpurplecorners2 (EAST)";
-	icon_state = "darkpurplecorners2";
+/turf/open/floor/tile/dark/purple2/corner{
 	dir = 4
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -2836,9 +2823,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/open/floor{
-	tag = "icon-darkpurplecorners2 (WEST)";
-	icon_state = "darkpurplecorners2";
+/turf/open/floor/tile/dark/purple2/corner{
 	dir = 8
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -3017,9 +3002,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-darkpurplecorners2 (WEST)";
-	icon_state = "darkpurplecorners2";
+/turf/open/floor/tile/dark/purple2/corner{
 	dir = 8
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -3035,9 +3018,7 @@
 /area/bigredv2/caves/lambda_lab)
 "aiT" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
-/turf/open/floor{
-	tag = "icon-darkpurplecorners2 (EAST)";
-	icon_state = "darkpurplecorners2";
+/turf/open/floor/tile/dark/purple2/corner{
 	dir = 4
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -3059,37 +3040,21 @@
 /area/bigredv2/outside/telecomm)
 "aiX" = (
 /obj/machinery/computer/forensic_scanning,
-/turf/open/floor{
-	tag = "icon-bcircuit";
-	icon_state = "bcircuit";
-	dir = 2
-	},
+/turf/open/floor/animated/bcircuit,
 /area/bigredv2/outside/marshal_office)
 "aiY" = (
-/turf/open/floor{
-	tag = "icon-bcircuit";
-	icon_state = "bcircuit";
-	dir = 2
-	},
+/turf/open/floor/animated/bcircuit,
 /area/bigredv2/outside/marshal_office)
 "aiZ" = (
 /obj/machinery/computer/security,
 /obj/structure/table,
-/turf/open/floor{
-	tag = "icon-bcircuit";
-	icon_state = "bcircuit";
-	dir = 2
-	},
+/turf/open/floor/animated/bcircuit,
 /area/bigredv2/outside/marshal_office)
 "aja" = (
 /obj/structure/table,
 /obj/item/ore/diamond,
 /obj/item/ore/uranium,
-/turf/open/floor{
-	tag = "icon-bcircuit";
-	icon_state = "bcircuit";
-	dir = 2
-	},
+/turf/open/floor/animated/bcircuit,
 /area/bigredv2/outside/marshal_office)
 "ajb" = (
 /turf/open/floor/tile/red/redtaupecorner{
@@ -3199,9 +3164,7 @@
 	dir = 4;
 	pixel_x = -30
 	},
-/turf/open/floor{
-	tag = "icon-darkpurplecorners2 (WEST)";
-	icon_state = "darkpurplecorners2";
+/turf/open/floor/tile/dark/purple2/corner{
 	dir = 8
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -3212,9 +3175,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
 	},
-/turf/open/floor{
-	tag = "icon-darkpurplecorners2";
-	icon_state = "darkpurplecorners2";
+/turf/open/floor/tile/dark/purple2/corner{
 	dir = 2
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -3248,7 +3209,7 @@
 	dir = 4
 	},
 /obj/structure/mirror/broken{
-	pixel_x = 30
+	dir = 4
 	},
 /obj/effect/landmark/corpsespawner/scientist,
 /obj/effect/alien/weeds/node,
@@ -3278,20 +3239,12 @@
 /obj/machinery/camera/autoname{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-bcircuit";
-	icon_state = "bcircuit";
-	dir = 2
-	},
+/turf/open/floor/animated/bcircuit,
 /area/bigredv2/outside/marshal_office)
 "ajC" = (
 /obj/structure/table,
 /obj/item/device/radio,
-/turf/open/floor{
-	tag = "icon-bcircuit";
-	icon_state = "bcircuit";
-	dir = 2
-	},
+/turf/open/floor/animated/bcircuit,
 /area/bigredv2/outside/marshal_office)
 "ajD" = (
 /obj/structure/table,
@@ -3333,15 +3286,13 @@
 /area/bigredv2/outside/marshal_office)
 "ajJ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "ajK" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/security/glass{
 	dir = 4;
@@ -3354,8 +3305,7 @@
 /area/bigredv2/outside/marshal_office)
 "ajL" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
@@ -3367,16 +3317,14 @@
 /obj/structure/table,
 /obj/item/reagent_container/spray/cleaner,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "ajO" = (
 /obj/structure/table,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
@@ -3384,8 +3332,7 @@
 /obj/structure/table,
 /obj/item/trash/kepler,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
@@ -3393,16 +3340,14 @@
 /obj/structure/table,
 /obj/machinery/recharger,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "ajR" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
@@ -3464,8 +3409,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/nw)
@@ -3520,11 +3464,7 @@
 "ake" = (
 /obj/structure/table,
 /obj/item/ore/uranium,
-/turf/open/floor{
-	tag = "icon-bcircuit";
-	icon_state = "bcircuit";
-	dir = 2
-	},
+/turf/open/floor/animated/bcircuit,
 /area/bigredv2/outside/marshal_office)
 "akf" = (
 /obj/machinery/light{
@@ -4234,8 +4174,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/red/redtaupe{
 	dir = 8
@@ -4248,8 +4187,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/red/redtaupecorner{
 	dir = 4
@@ -4265,8 +4203,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/red/redtaupecorner{
 	dir = 4
@@ -4279,8 +4216,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/red/redtaupecorner{
@@ -4294,8 +4230,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
@@ -4317,8 +4252,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
@@ -4329,8 +4263,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -4343,8 +4276,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -4356,8 +4288,7 @@
 /area/bigredv2/outside/marshal_office)
 "amm" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -4368,8 +4299,7 @@
 /area/bigredv2/outside/marshal_office)
 "amn" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
@@ -4403,8 +4333,7 @@
 /area/bigredv2/outside/marshal_office)
 "amq" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/item/clothing/shoes/black,
@@ -4413,16 +4342,14 @@
 "amr" = (
 /obj/effect/decal/cleanable/blood,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "ams" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/red/redtaupe{
@@ -4431,8 +4358,7 @@
 /area/bigredv2/outside/marshal_office)
 "amt" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/security/glass{
 	name = "\improper Marshal Office Courtroom";
@@ -4445,8 +4371,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/landmark/start/surv_spawn,
 /turf/open/floor,
@@ -4460,8 +4385,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
@@ -4470,16 +4394,14 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "amx" = (
 /obj/structure/table,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
@@ -5265,8 +5187,7 @@
 /area/bigredv2/outside/general_offices)
 "aop" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
@@ -5555,8 +5476,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/maint{
 	name = "\improper Dormitories EVA Maintenance";
@@ -5566,8 +5486,7 @@
 /area/bigredv2/outside/general_offices)
 "apk" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/general_offices)
@@ -5579,8 +5498,7 @@
 /area/bigredv2/outside/general_offices)
 "apm" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/engineering{
 	dir = 4;
@@ -5772,8 +5690,7 @@
 /area/bigredv2/outside/general_offices)
 "apM" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/medical/glass{
 	dir = 4;
@@ -5783,8 +5700,7 @@
 /area/bigredv2/outside/general_offices)
 "apN" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/freezer,
 /area/bigredv2/outside/general_offices)
@@ -5796,22 +5712,19 @@
 /obj/structure/table,
 /obj/structure/bedsheetbin,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/freezer,
 /area/bigredv2/outside/general_offices)
 "apQ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/closed/wall,
 /area/bigredv2/outside/general_offices)
 "apR" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 2;
@@ -6122,8 +6035,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/n)
@@ -6134,8 +6046,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/marking/asteroidwarning{
 	dir = 6
@@ -6148,8 +6059,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/mars_dirt/random,
 /area/bigredv2/outside/n)
@@ -6612,8 +6522,7 @@
 /area/bigredv2/outside/medical)
 "arT" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -7293,8 +7202,7 @@
 "atG" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
@@ -7711,25 +7619,19 @@
 	name = "Observation Shutters";
 	pixel_y = 28
 	},
-/turf/open/floor{
-	tag = "icon-darkpurplecorners2";
-	icon_state = "darkpurplecorners2";
+/turf/open/floor/tile/dark/purple2/corner{
 	dir = 2
 	},
 /area/bigredv2/caves/lambda_lab)
 "auA" = (
 /obj/structure/inflatable/door,
-/turf/open/floor{
-	tag = "icon-darkpurplecorners2";
-	icon_state = "darkpurplecorners2";
+/turf/open/floor/tile/dark/purple2/corner{
 	dir = 2
 	},
 /area/bigredv2/caves/lambda_lab)
 "auB" = (
 /obj/structure/barricade/wooden,
-/turf/open/floor{
-	tag = "icon-darkpurplecorners2";
-	icon_state = "darkpurplecorners2";
+/turf/open/floor/tile/dark/purple2/corner{
 	dir = 2
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -7737,9 +7639,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-darkpurplecorners2";
-	icon_state = "darkpurplecorners2";
+/turf/open/floor/tile/dark/purple2/corner{
 	dir = 2
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -7750,9 +7650,7 @@
 	name = "Observation Shutters";
 	pixel_y = 28
 	},
-/turf/open/floor{
-	tag = "icon-darkpurplecorners2";
-	icon_state = "darkpurplecorners2";
+/turf/open/floor/tile/dark/purple2/corner{
 	dir = 2
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -8046,41 +7944,31 @@
 	dir = 8
 	},
 /obj/effect/alien/weeds/node,
-/turf/open/floor{
-	tag = "icon-darkpurplecorners2 (EAST)";
-	icon_state = "darkpurplecorners2";
+/turf/open/floor/tile/dark/purple2/corner{
 	dir = 4
 	},
 /area/bigredv2/caves/lambda_lab)
 "avn" = (
 /obj/structure/inflatable/door,
-/turf/open/floor{
-	tag = "icon-darkpurplecorners2 (EAST)";
-	icon_state = "darkpurplecorners2";
+/turf/open/floor/tile/dark/purple2/corner{
 	dir = 4
 	},
 /area/bigredv2/caves/lambda_lab)
 "avo" = (
 /obj/effect/decal/cleanable/vomit,
-/turf/open/floor{
-	tag = "icon-darkpurplecorners2 (EAST)";
-	icon_state = "darkpurplecorners2";
+/turf/open/floor/tile/dark/purple2/corner{
 	dir = 4
 	},
 /area/bigredv2/caves/lambda_lab)
 "avp" = (
 /obj/machinery/light,
-/turf/open/floor{
-	tag = "icon-darkpurplecorners2 (EAST)";
-	icon_state = "darkpurplecorners2";
+/turf/open/floor/tile/dark/purple2/corner{
 	dir = 4
 	},
 /area/bigredv2/caves/lambda_lab)
 "avq" = (
 /obj/item/device/violin,
-/turf/open/floor{
-	tag = "icon-darkpurplecorners2 (EAST)";
-	icon_state = "darkpurplecorners2";
+/turf/open/floor/tile/dark/purple2/corner{
 	dir = 4
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -8333,8 +8221,7 @@
 /area/bigredv2/outside/medical)
 "avZ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/light{
 	dir = 1
@@ -8350,8 +8237,7 @@
 /area/bigredv2/outside/medical)
 "awa" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -8364,8 +8250,7 @@
 /area/bigredv2/outside/medical)
 "awb" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -8404,8 +8289,7 @@
 /area/bigredv2/outside/medical)
 "awe" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
@@ -8427,8 +8311,7 @@
 "awg" = (
 /obj/effect/decal/cleanable/blood,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -8439,8 +8322,7 @@
 /area/bigredv2/outside/medical)
 "awh" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -8514,15 +8396,13 @@
 /area/bigredv2/outside/dorms)
 "aws" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
 "awt" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/barricade/wooden/lv_snowflake{
 	dir = 8
@@ -8531,8 +8411,7 @@
 /area/bigredv2/outside/general_offices)
 "awu" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/landmark/random_item/crap,
 /turf/open/floor,
@@ -9068,8 +8947,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/marking/asteroidwarning{
 	dir = 8
@@ -9077,8 +8955,7 @@
 /area/bigredv2/outside/nw)
 "axX" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -9094,8 +8971,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/plating/warning{
 	dir = 8
@@ -9108,8 +8984,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
@@ -9121,8 +8996,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
@@ -9142,8 +9016,7 @@
 /area/bigredv2/outside/nw)
 "ayc" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -9154,8 +9027,7 @@
 /area/bigredv2/outside/nw)
 "ayd" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -9171,8 +9043,7 @@
 /area/bigredv2/outside/medical)
 "aye" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/light,
 /obj/structure/cable{
@@ -9184,8 +9055,7 @@
 /area/bigredv2/outside/medical)
 "ayf" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -9298,8 +9168,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/grimy,
 /area/bigredv2/outside/dorms)
@@ -9658,8 +9527,7 @@
 /area/bigredv2/outside/medical)
 "azu" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/dirt,
@@ -9667,15 +9535,13 @@
 /area/bigredv2/outside/medical)
 "azv" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "azw" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/white/warningstripe{
 	dir = 8
@@ -9683,23 +9549,20 @@
 /area/bigredv2/outside/medical)
 "azx" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/medical)
 "azy" = (
 /obj/effect/decal/cleanable/blood,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/medical)
 "azz" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/multi_tile/almayer/medidoor{
 	dir = 1;
@@ -9712,8 +9575,7 @@
 /area/bigredv2/outside/medical)
 "azA" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/white,
@@ -9734,8 +9596,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/white,
@@ -9748,8 +9609,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/white,
@@ -9761,8 +9621,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
@@ -9852,8 +9711,7 @@
 /area/bigredv2/outside/dorms)
 "azP" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
@@ -9887,8 +9745,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
@@ -9903,8 +9760,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
@@ -9916,8 +9772,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
@@ -9929,8 +9784,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
@@ -9955,8 +9809,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
@@ -9967,8 +9820,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door_control{
 	id = "Dormitories";
@@ -10004,8 +9856,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/alarm{
 	dir = 1;
@@ -10032,8 +9883,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
@@ -10044,8 +9894,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/maint{
 	name = "\improper Bar Maintenance";
@@ -10060,8 +9909,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/dorms)
@@ -10267,8 +10115,7 @@
 /area/bigredv2/outside/dorms)
 "aAH" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -10284,8 +10131,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/maint{
 	name = "\improper Bar Maintenance";
@@ -10300,8 +10146,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/asteroidfloor,
@@ -10313,8 +10158,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/ne)
@@ -10529,8 +10373,7 @@
 	pixel_y = 32
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/freezer,
 /area/bigredv2/outside/dorms)
@@ -10539,15 +10382,13 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/freezer,
 /area/bigredv2/outside/dorms)
 "aBo" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/freezer,
 /area/bigredv2/outside/dorms)
@@ -11027,8 +10868,7 @@
 /area/bigredv2/caves/lambda_lab)
 "aCB" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/green/whitegreen{
@@ -11037,8 +10877,7 @@
 /area/bigredv2/outside/medical)
 "aCC" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/medical/glass{
 	name = "\improper Medical Clinic Storage";
@@ -11048,8 +10887,7 @@
 /area/bigredv2/outside/medical)
 "aCD" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/green/whitegreencorner{
 	dir = 2
@@ -11058,8 +10896,7 @@
 "aCE" = (
 /obj/item/clothing/glasses/meson,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/green/whitegreencorner{
@@ -11244,8 +11081,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/generic{
 	name = "\improper Library Backroom"
@@ -11259,8 +11095,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
@@ -11429,8 +11264,7 @@
 /area/bigredv2/outside/nw)
 "aDy" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -11444,8 +11278,7 @@
 "aDz" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -11623,8 +11456,7 @@
 /area/bigredv2/outside/bar)
 "aDX" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -11640,8 +11472,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/bigredv2/outside/bar)
@@ -11652,8 +11483,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/generic{
 	dir = 4;
@@ -11898,8 +11728,7 @@
 /area/bigredv2/outside/medical)
 "aEG" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
@@ -11911,8 +11740,7 @@
 /area/bigredv2/outside/medical)
 "aEH" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/landmark/corpsespawner/doctor{
 	corpseback = null;
@@ -11930,8 +11758,7 @@
 /area/bigredv2/outside/medical)
 "aEI" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -12012,8 +11839,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/item/tool/shovel/spade,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -12025,8 +11851,7 @@
 "aEU" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -12037,8 +11862,7 @@
 /area/bigredv2/outside/hydroponics)
 "aEV" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -12051,8 +11875,7 @@
 /obj/item/tool/hatchet,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -12069,8 +11892,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor,
 /area/bigredv2/outside/hydroponics)
@@ -12081,8 +11903,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor,
 /area/bigredv2/outside/hydroponics)
@@ -12279,8 +12100,7 @@
 /area/bigredv2/outside/medical)
 "aFA" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/medical/glass{
 	name = "\improper Medical Clinic Operating Theatre";
@@ -12290,8 +12110,7 @@
 /area/bigredv2/outside/medical)
 "aFB" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/green/whitegreen{
 	dir = 8
@@ -12374,8 +12193,7 @@
 /area/bigredv2/outside/dorms)
 "aFO" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/generic{
 	name = "\improper Dormitories Storage"
@@ -12485,8 +12303,7 @@
 /area/bigredv2/outside/hydroponics)
 "aGc" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -12501,8 +12318,7 @@
 /area/bigredv2/outside/library)
 "aGd" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -13005,8 +12821,7 @@
 "aHl" = (
 /obj/effect/decal/cleanable/blood/gibs/body,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -13355,8 +13170,7 @@
 /area/bigredv2/outside/virology)
 "aIb" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -13372,8 +13186,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/virology)
@@ -13384,15 +13197,13 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/virology)
 "aIe" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -13408,8 +13219,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/marking/asteroidwarning{
 	dir = 8
@@ -13423,8 +13233,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/poddoor/two_tile_ver{
 	name = "\improper Virology Lockdown"
@@ -13438,8 +13247,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/poddoor/two_tile_ver{
 	name = "\improper Virology Lockdown"
@@ -13641,9 +13449,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aIN" = (
-/turf/open/floor{
-	tag = "icon-darkpurplecorners2 (NORTH)";
-	icon_state = "darkpurplecorners2";
+/turf/open/floor/tile/dark/purple2/corner{
 	dir = 1
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -13915,8 +13721,7 @@
 /area/bigredv2/outside/hydroponics)
 "aJu" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/generic{
 	dir = 4;
@@ -13926,8 +13731,7 @@
 /area/bigredv2/outside/hydroponics)
 "aJv" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/freezer,
 /area/bigredv2/outside/hydroponics)
@@ -13950,8 +13754,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/flour,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -13962,8 +13765,7 @@
 /area/bigredv2/outside/hydroponics)
 "aJy" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -13974,8 +13776,7 @@
 /area/bigredv2/outside/hydroponics)
 "aJz" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -14024,9 +13825,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/turf/open/floor{
-	tag = "icon-darkpurplecorners2";
-	icon_state = "darkpurplecorners2";
+/turf/open/floor/tile/dark/purple2/corner{
 	dir = 2
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -14595,8 +14394,7 @@
 /area/bigredv2/outside/hydroponics)
 "aKD" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/freezer,
@@ -15780,8 +15578,7 @@
 	req_access_txt = "0"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -15868,16 +15665,14 @@
 /area/bigredv2/outside/bar)
 "aNS" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aNT" = (
 /obj/structure/bed/chair/wood/normal,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/bigredv2/outside/bar)
@@ -15904,8 +15699,7 @@
 "aNW" = (
 /obj/structure/bed/stool,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/bigredv2/outside/bar)
@@ -16088,16 +15882,14 @@
 /area/bigredv2/outside/general_store)
 "aOx" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/bigredv2/outside/general_store)
 "aOy" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor,
 /area/bigredv2/outside/general_store)
@@ -16261,8 +16053,7 @@
 "aOX" = (
 /obj/structure/table,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/item/trash/tray,
 /turf/open/floor/tile/yellow/full,
@@ -16281,16 +16072,14 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
 "aPa" = (
 /obj/structure/table,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor,
 /area/bigredv2/outside/hydroponics)
@@ -16299,8 +16088,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 2;
@@ -16326,8 +16114,7 @@
 "aPd" = (
 /obj/structure/table,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -16339,8 +16126,7 @@
 "aPe" = (
 /obj/structure/table,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/item/trash/plate,
 /obj/structure/cable{
@@ -16355,8 +16141,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -16367,8 +16152,7 @@
 /area/bigredv2/outside/hydroponics)
 "aPg" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -16659,8 +16443,7 @@
 /area/bigredv2/outside/admin_building)
 "aPS" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -16671,8 +16454,7 @@
 /area/bigredv2/outside/admin_building)
 "aPT" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 2;
@@ -16683,8 +16465,7 @@
 /area/bigredv2/outside/admin_building)
 "aPU" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
@@ -16724,8 +16505,7 @@
 /area/bigredv2/outside/bar)
 "aQa" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor,
 /area/bigredv2/outside/hydroponics)
@@ -16734,15 +16514,13 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor,
 /area/bigredv2/outside/hydroponics)
 "aQc" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
@@ -16751,8 +16529,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor,
 /area/bigredv2/outside/hydroponics)
@@ -16760,8 +16537,7 @@
 /obj/structure/table,
 /obj/item/trash/plate,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
@@ -16770,8 +16546,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/item/tool/kitchen/utensil/fork,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor,
 /area/bigredv2/outside/hydroponics)
@@ -17072,8 +16847,7 @@
 /area/bigredv2/outside/admin_building)
 "aQY" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/landmark/random_item/crap,
 /obj/structure/cable{
@@ -17090,8 +16864,7 @@
 /area/bigredv2/outside/admin_building)
 "aQZ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -17112,8 +16885,7 @@
 "aRb" = (
 /obj/machinery/light,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -17401,8 +17173,7 @@
 /area/bigredv2/outside/virology)
 "aRH" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/virology)
@@ -17465,8 +17236,7 @@
 /area/bigredv2/outside/general_store)
 "aRR" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/general_store)
@@ -17766,16 +17536,14 @@
 /area/bigredv2/outside/general_store)
 "aSJ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aSK" = (
 /obj/structure/table,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/item/tool/surgery/surgicaldrill,
 /turf/open/floor/tile/yellow/full,
@@ -17783,8 +17551,7 @@
 "aSL" = (
 /obj/structure/table,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/item/device/healthanalyzer,
 /turf/open/floor/tile/yellow/full,
@@ -17792,8 +17559,7 @@
 "aSM" = (
 /obj/structure/table,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/item/device/multitool,
 /turf/open/floor/tile/yellow/full,
@@ -17804,8 +17570,7 @@
 	name = "Register"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/general_store)
@@ -17862,8 +17627,7 @@
 /area/bigredv2/outside/admin_building)
 "aSU" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/landmark/random_item/good,
 /turf/open/floor{
@@ -17874,8 +17638,7 @@
 /area/bigredv2/outside/admin_building)
 "aSV" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkred2 (NORTH)";
@@ -17960,8 +17723,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/marking/asteroidwarning{
 	dir = 6
@@ -17969,8 +17731,7 @@
 /area/bigredv2/outside/c)
 "aTh" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -17998,8 +17759,7 @@
 "aTj" = (
 /obj/effect/decal/cleanable/blood,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -18010,8 +17770,7 @@
 /area/bigredv2/outside/c)
 "aTk" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -18023,8 +17782,7 @@
 "aTl" = (
 /obj/effect/decal/cleanable/blood/xeno,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -18035,8 +17793,7 @@
 /area/bigredv2/outside/e)
 "aTm" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -18058,8 +17815,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/e)
@@ -18455,8 +18211,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/marking/asteroidwarning,
@@ -18479,8 +18234,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/e)
@@ -18508,8 +18262,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/marking/asteroidwarning{
@@ -18523,8 +18276,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/poddoor/two_tile_ver{
 	name = "\improper Lambda Lab Lockdown"
@@ -18539,16 +18291,14 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/caves/lambda_lab)
 "aUw" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -18563,8 +18313,7 @@
 "aUx" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -18575,8 +18324,7 @@
 /area/bigredv2/caves/lambda_lab)
 "aUy" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -18588,8 +18336,7 @@
 "aUz" = (
 /obj/machinery/light,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -18600,8 +18347,7 @@
 /area/bigredv2/caves/lambda_lab)
 "aUA" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -19276,8 +19022,7 @@
 /area/bigredv2/outside/general_store)
 "aWt" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/blue/whitebluefull,
@@ -19427,8 +19172,7 @@
 /area/bigredv2/outside/virology)
 "aWP" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/research/glass{
 	dir = 4;
@@ -19439,8 +19183,7 @@
 /area/bigredv2/outside/virology)
 "aWQ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/barricade/wooden/lv_snowflake{
 	dir = 8
@@ -20072,8 +19815,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/marking/asteroidwarning{
 	dir = 1
@@ -20086,8 +19828,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/marking/asteroidwarning{
 	dir = 1
@@ -20158,8 +19899,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/cargo)
@@ -20173,8 +19913,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/cargo)
@@ -20345,16 +20084,14 @@
 /area/bigredv2/outside/chapel)
 "aZj" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/alien/weeds/node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/virology)
 "aZk" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/research{
 	name = "\improper Virology Lab Decontamination";
@@ -20524,8 +20261,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/darkish,
 /area/bigredv2/outside/chapel)
@@ -20609,8 +20345,7 @@
 /area/bigredv2/outside/admin_building)
 "aZV" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -20621,8 +20356,7 @@
 /area/bigredv2/outside/admin_building)
 "aZW" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -20636,8 +20370,7 @@
 /area/bigredv2/outside/admin_building)
 "aZX" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -20651,8 +20384,7 @@
 /area/bigredv2/outside/admin_building)
 "aZY" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door_control{
 	id = "Operations";
@@ -20858,8 +20590,7 @@
 /area/bigredv2/outside/cargo)
 "baz" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
@@ -21170,16 +20901,14 @@
 /area/bigredv2/outside/office_complex)
 "bbt" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "bbu" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
@@ -21187,8 +20916,7 @@
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/landmark/random_item/crap,
 /turf/open/floor/tile/white,
@@ -21197,8 +20925,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/item/clothing/head/welding,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
@@ -21206,8 +20933,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
@@ -21258,8 +20984,7 @@
 /area/bigredv2/outside/chapel)
 "bbE" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/table/woodentable,
 /obj/item/storage/bible,
@@ -21269,8 +20994,7 @@
 /area/bigredv2/outside/chapel)
 "bbF" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/darkish,
 /area/bigredv2/outside/chapel)
@@ -21285,8 +21009,7 @@
 /area/bigredv2/outside/chapel)
 "bbH" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/landmark/random_item/crap,
 /turf/open/floor/tile/darkish,
@@ -21333,16 +21056,14 @@
 /area/bigredv2/outside/cargo)
 "bbO" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "bbP" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/item/device/flashlight,
 /turf/open/floor,
@@ -21350,8 +21071,7 @@
 "bbQ" = (
 /obj/structure/window/framed/colony,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/cargo)
@@ -21362,8 +21082,7 @@
 "bbS" = (
 /obj/structure/table,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
@@ -21395,8 +21114,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-carpet7-3 (WEST)";
@@ -21641,8 +21359,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-carpet15-15 (WEST)";
@@ -21652,8 +21369,7 @@
 /area/bigredv2/outside/admin_building)
 "bcG" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-carpet11-12 (WEST)";
@@ -21679,8 +21395,7 @@
 /area/bigredv2/outside/admin_building)
 "bcJ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkred2 (EAST)";
@@ -21690,8 +21405,7 @@
 /area/bigredv2/outside/admin_building)
 "bcK" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/command{
 	name = "\improper Operations Office";
@@ -21755,8 +21469,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/grimy,
 /area/bigredv2/outside/admin_building)
@@ -21768,8 +21481,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/grimy,
 /area/bigredv2/outside/admin_building)
@@ -21780,8 +21492,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/admin_building)
@@ -21905,8 +21616,7 @@
 /area/bigredv2/outside/admin_building)
 "bdn" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/command{
 	name = "\improper Operations Meeting Room";
@@ -22328,8 +22038,7 @@
 "beC" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 2;
@@ -22345,8 +22054,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/c)
@@ -22558,8 +22266,7 @@
 /area/bigredv2/outside/office_complex)
 "bfi" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/generic{
 	name = "\improper Office Complex Storage"
@@ -22582,8 +22289,7 @@
 /area/bigredv2/outside/office_complex)
 "bfk" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -22605,8 +22311,7 @@
 /area/bigredv2/outside/office_complex)
 "bfm" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -22620,8 +22325,7 @@
 "bfn" = (
 /obj/machinery/light,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
@@ -22653,8 +22357,7 @@
 /area/bigredv2/outside/office_complex)
 "bfp" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
@@ -22668,8 +22371,7 @@
 /area/bigredv2/outside/office_complex)
 "bfq" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
@@ -22693,8 +22395,7 @@
 /area/bigredv2/outside/office_complex)
 "bfs" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/item/trash/cheesie,
 /turf/open/floor/tile/red/redtaupecorner{
@@ -22703,8 +22404,7 @@
 /area/bigredv2/outside/office_complex)
 "bft" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/red/redtaupecorner{
 	dir = 2
@@ -22748,8 +22448,7 @@
 /area/bigredv2/outside/cargo)
 "bfA" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/closet/emcloset/legacy,
 /turf/open/floor/marking/bot,
@@ -22763,15 +22462,13 @@
 "bfC" = (
 /obj/structure/largecrate,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/marking/bot,
 /area/bigredv2/outside/cargo)
 "bfD" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/marking/bot,
@@ -22819,8 +22516,7 @@
 "bfL" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/office_complex)
@@ -22907,8 +22603,7 @@
 /area/bigredv2/outside/cargo)
 "bga" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/security/glass{
 	name = "\improper Cargo Bay Security";
@@ -23049,8 +22744,7 @@
 /area/bigredv2/outside/office_complex)
 "bgz" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/whiteyellow/full,
 /area/bigredv2/outside/office_complex)
@@ -23112,8 +22806,7 @@
 /obj/structure/table,
 /obj/item/clothing/mask/cigarette,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/office_complex)
@@ -23478,8 +23171,7 @@
 /area/bigredv2/outside/storage)
 "bhM" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -23490,8 +23182,7 @@
 /area/bigredv2/outside/storage)
 "bhN" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -23524,8 +23215,7 @@
 /area/bigredv2/outside/c)
 "bhP" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -23547,8 +23237,7 @@
 /area/bigredv2/outside/c)
 "bhR" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -23700,8 +23389,7 @@
 /area/bigredv2/outside/cargo)
 "bik" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -23712,8 +23400,7 @@
 /area/bigredv2/outside/cargo)
 "bil" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -23744,8 +23431,7 @@
 /area/bigredv2/outside/cargo)
 "bio" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/light{
 	dir = 1
@@ -23771,8 +23457,7 @@
 "biq" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
@@ -23812,8 +23497,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
@@ -23824,8 +23508,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
@@ -23836,8 +23519,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/barricade/wooden/lv_snowflake{
 	dir = 4
@@ -23851,8 +23533,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
@@ -24018,8 +23699,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/marking/asteroidwarning,
@@ -24032,8 +23712,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/c)
@@ -24278,8 +23957,7 @@
 /area/bigredv2/outside/s)
 "bjD" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -24290,8 +23968,7 @@
 /area/bigredv2/outside/s)
 "bjE" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -24367,8 +24044,7 @@
 	d2 = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/red/redtaupecorner{
 	dir = 4
@@ -24458,8 +24134,7 @@
 /area/bigredv2/outside/cargo)
 "bjU" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
@@ -24477,8 +24152,7 @@
 /area/bigredv2/outside/cargo)
 "bjV" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
@@ -25399,8 +25073,7 @@
 /area/bigredv2/outside/filtration_plant)
 "bmD" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -25646,8 +25319,7 @@
 	d2 = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
@@ -25658,8 +25330,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/engineering{
 	dir = 4;
@@ -25675,8 +25346,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
@@ -25693,8 +25363,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
@@ -25824,8 +25493,7 @@
 /area/bigredv2/outside/filtration_plant)
 "bnC" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -26116,8 +25784,7 @@
 /area/bigredv2/outside/engineering)
 "bor" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
@@ -26402,8 +26069,7 @@
 /area/bigredv2/outside/engineering)
 "bpg" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -26482,8 +26148,7 @@
 /area/bigredv2/outside/filtration_plant)
 "bpo" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
@@ -26615,16 +26280,14 @@
 /area/bigredv2/outside/engineering)
 "bpH" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "bpI" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/item/device/lightreplacer,
@@ -26632,8 +26295,7 @@
 /area/bigredv2/outside/engineering)
 "bpJ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/item/stack/sheet/metal,
 /turf/open/floor,
@@ -26643,15 +26305,13 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "bpL" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/landmark/huntergames_secondary_spawn,
 /turf/open/floor,
@@ -26662,8 +26322,7 @@
 /area/bigredv2/outside/engineering)
 "bpN" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/liquid_fuel,
 /turf/open/floor,
@@ -26694,8 +26353,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
@@ -26707,16 +26365,14 @@
 /area/bigredv2/outside/filtration_plant)
 "bpS" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/landmark/random_item/good,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "bpT" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/engineering{
 	dir = 4;
@@ -27086,8 +26742,7 @@
 /area/bigredv2/outside/engineering)
 "bqL" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -27104,8 +26759,7 @@
 "bqM" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -27334,8 +26988,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
@@ -27375,8 +27028,7 @@
 /area/bigredv2/outside/filtration_plant)
 "brz" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
@@ -27668,8 +27320,7 @@
 	d2 = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
@@ -27920,8 +27571,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
@@ -27932,8 +27582,7 @@
 	icon_state = "4-8";
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/engineering{
 	dir = 4;
@@ -28240,8 +27889,7 @@
 	d2 = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/multi_tile/almayer/generic{
 	dir = 1;
@@ -28251,8 +27899,7 @@
 /area/bigredv2/outside/engineering)
 "btI" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	tag = "icon-4-8";
@@ -28263,8 +27910,7 @@
 /area/bigredv2/outside/engineering)
 "btJ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	tag = "icon-4-8";
@@ -28287,8 +27933,7 @@
 /area/bigredv2/outside/engineering)
 "btL" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	tag = "icon-4-8";
@@ -28304,8 +27949,7 @@
 /area/bigredv2/outside/engineering)
 "btM" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/structure/cable{
 	tag = "icon-4-8";
@@ -29221,15 +28865,13 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bwM" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/marking/delivery,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bwN" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor,
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -29401,8 +29043,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bxr" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/research/glass{
 	dir = 4;
@@ -29707,8 +29348,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "byp" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkyellow2";
@@ -29857,23 +29497,20 @@
 "byK" = (
 /obj/structure/closet/l3closet/scientist,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "byL" = (
 /obj/machinery/vending/engineering,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "byM" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -29904,16 +29541,14 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "byQ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "byR" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkgreencorners2 (NORTH)";
@@ -30017,8 +29652,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bzd" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/alien/weeds/node,
 /turf/open/floor{
@@ -30037,8 +29671,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bzf" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkgreencorners2 (WEST)";
@@ -30048,8 +29681,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bzg" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/blood/xeno,
 /turf/open/floor{
@@ -30064,8 +29696,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bzi" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor{
@@ -30076,8 +29707,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bzj" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	dir = 8;
@@ -30087,8 +29717,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bzk" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/alien/weeds/node,
@@ -30096,8 +29725,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bzl" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark,
@@ -30209,8 +29837,7 @@
 "bzA" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/alien/weeds/node,
 /turf/open/floor{
@@ -30230,8 +29857,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bzC" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkgreencorners2";
@@ -30626,8 +30252,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bAD" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/research/glass{
 	dir = 4;
@@ -30735,8 +30360,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bAS" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkblue2";
@@ -31044,8 +30668,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bBF" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/research/glass{
 	dir = 4;
@@ -31058,8 +30681,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/huntergames_primary_spawn,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/alien/weeds/node,
 /turf/open/floor/tile/dark,
@@ -31387,8 +31009,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bCz" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/research/glass{
 	dir = 4;
@@ -31939,8 +31560,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bDX" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor{
@@ -31950,8 +31570,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bDY" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkyellowcorners2";
@@ -31960,8 +31579,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bDZ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor{
@@ -31971,8 +31589,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bEa" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/alien/weeds/node,
@@ -31989,8 +31606,7 @@
 "bEc" = (
 /obj/machinery/light,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor{
@@ -32210,8 +31826,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bEH" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/research/glass{
 	dir = 4;
@@ -32239,8 +31854,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bEK" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor{
@@ -32251,8 +31865,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bEL" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/alien/weeds/node,
@@ -32264,8 +31877,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bEM" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-darkyellowcorners2 (NORTH)";

@@ -45793,8 +45793,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2.4
+	dir = 4
 	},
 /obj/machinery/computer/general_air_control/large_tank_control{
 	frequency = 1443;
