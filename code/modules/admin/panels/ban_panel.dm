@@ -315,7 +315,7 @@
 
 //Command (Blue)
 	jobs += "<table cellpadding='1' cellspacing='0' width='100%'>"
-	jobs += "<tr align='center' bgcolor='ccccff'><th colspan='[length(JOBS_COMMAND)]'><a href='?src=[ref];jobbankey=commanddept;key=key'>Command Positions</a></th></tr><tr align='center'>"
+	jobs += "<tr align='center' bgcolor='ccccff'><th colspan='[length(JOBS_COMMAND)]'><a href='?src=[ref];jobbankey=commanddept;key=[key]'>Command Positions</a></th></tr><tr align='center'>"
 	for(var/jobPos in JOBS_COMMAND)
 		if(!jobPos)
 			continue
@@ -324,10 +324,10 @@
 			continue
 
 		if(jobban_key_isbanned(key, job.title))
-			jobs += "<td width='20%'><a href='?src=[ref];jobbankey=[job.title];key=key'><font color=red>[oldreplacetext(job.title, " ", "&nbsp")]</font></a></td>"
+			jobs += "<td width='20%'><a href='?src=[ref];jobbankey=[job.title];key=[key]'><font color=red>[oldreplacetext(job.title, " ", "&nbsp")]</font></a></td>"
 			counter++
 		else
-			jobs += "<td width='20%'><a href='?src=[ref];jobbankey=[job.title];key=key'>[oldreplacetext(job.title, " ", "&nbsp")]</a></td>"
+			jobs += "<td width='20%'><a href='?src=[ref];jobbankey=[job.title];key=[key]'>[oldreplacetext(job.title, " ", "&nbsp")]</a></td>"
 			counter++
 
 		if(counter >= 6)
