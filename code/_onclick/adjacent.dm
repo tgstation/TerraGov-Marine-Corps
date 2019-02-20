@@ -108,13 +108,19 @@
 /obj/item/Adjacent(atom/neighbor)
 	if(neighbor == loc) //Item is in the neighbor.
 		return TRUE
-	if(isitem(loc))
+
+	if(isitem(loc)) //Special case handling.
 		if(neighbor == loc.loc) //Item is inside an item held by the neighbor.
 			return TRUE
-		if(isitem(loc.loc)) //Item is inside an item inside an item. Can't access.
+		if(!isturf(loc.loc)) //Item is inside an item neither held by neighbor nor in a turf. Can't access.
 			return FALSE
-	var/turf/T = get_turf(loc) //Default behavior.
-		return(T?.Adjacent(neighbor,src))
+		return loc.loc.Adjacent(neighbor,src)
+		
+	if(!isturf(loc)) //Default behavior.
+		return FALSE
+	if(loc.Adjacent(neighbor, target = neighbor, mover = src))
+		return TRUE
+	return FALSE
 
 
 /*
