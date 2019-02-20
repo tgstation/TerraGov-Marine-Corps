@@ -50,9 +50,11 @@
 	razorwire_tangle(M)
 
 /obj/structure/razorwire/proc/razorwire_tangle(mob/living/M, duration = RAZORWIRE_ENTANGLE_DELAY)
+	if(!src || health <= 0) //Sanity check so that you can't get entangled if the razorwire is destroyed; this happens apparently.
+		return
 	M.entangle_delay = world.time + duration
 	M.visible_message("<span class='danger'>[M] gets entangled in the barbed wire!</span>",
-	"<span class='danger'>You get entangled in the barbed wire! Resist to untangle yourself after [(M.entangle_delay - world.time) * 0.1] seconds!</span>", null, 5)
+	"<span class='danger'>You got entangled in the barbed wire! Resist to untangle yourself after [(M.entangle_delay - world.time) * 0.1] seconds!</span>", null, 5)
 	M.set_frozen(TRUE)
 	entangled_list += M //Add the entangled person to the trapped list.
 	M.entangled_by = src
