@@ -459,6 +459,9 @@
 /turf/open/floor/tile/purple/whitepurple
 	icon_state = "whitepurple"
 
+/turf/open/floor/tile/purple/whitepurplefull
+	icon_state = "whitepurplefull"
+
 /turf/open/floor/tile/purple/whitepurplecorner
 	icon_state = "whitepurplecorner"
 
@@ -507,8 +510,14 @@
 /turf/open/floor/tile/dark/yellow2
 	icon_state = "darkyellow2"
 
+/turf/open/floor/tile/whitegreenv
+	icon_state = "whitegreen_v"
+
 /turf/open/floor/animated/bcircuit
 	icon_state = "bcircuit"
+
+/turf/open/floor/stairs/rampbottom
+	icon_state = "rampbottom"
 
 /turf/open/floor/carpet
 	name = "Carpet"

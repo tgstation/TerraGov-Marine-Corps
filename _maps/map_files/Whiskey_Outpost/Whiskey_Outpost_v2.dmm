@@ -1109,9 +1109,7 @@
 	},
 /area/whiskey_outpost)
 "cI" = (
-/turf/open/floor{
-	tag = "icon-rampbottom (EAST)";
-	icon_state = "rampbottom";
+/turf/open/floor/stairs/rampbottom{
 	dir = 4
 	},
 /area/whiskey_outpost)
@@ -1457,9 +1455,7 @@
 /turf/open/gm/dirt,
 /area/whiskey_outpost/outside/north)
 "dC" = (
-/turf/open/floor{
-	tag = "icon-rampbottom (WEST)";
-	icon_state = "rampbottom";
+/turf/open/floor/stairs/rampbottom{
 	dir = 8
 	},
 /area/whiskey_outpost)
@@ -1568,9 +1564,7 @@
 	},
 /area/whiskey_outpost)
 "dL" = (
-/turf/open/floor{
-	tag = "icon-rampbottom";
-	icon_state = "rampbottom";
+/turf/open/floor/stairs/rampbottom{
 	dir = 2
 	},
 /area/whiskey_outpost)
@@ -2627,9 +2621,7 @@
 /turf/open/floor/plating,
 /area/whiskey_outpost/outside/north)
 "gr" = (
-/turf/open/floor{
-	tag = "icon-rampbottom (EAST)";
-	icon_state = "rampbottom";
+/turf/open/floor/stairs/rampbottom{
 	dir = 4
 	},
 /area/whiskey_outpost/outside/north)
@@ -2706,9 +2698,7 @@
 	},
 /area/whiskey_outpost)
 "gA" = (
-/turf/open/floor{
-	tag = "icon-rampbottom (NORTH)";
-	icon_state = "rampbottom";
+/turf/open/floor/stairs/rampbottom{
 	dir = 1
 	},
 /area/whiskey_outpost)

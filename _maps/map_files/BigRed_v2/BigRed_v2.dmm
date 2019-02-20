@@ -3648,9 +3648,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-whitegreen_v (NORTHWEST)";
-	icon_state = "whitegreen_v";
+/turf/open/floor/tile/whitegreenv{
 	dir = 9
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -3678,9 +3676,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-whitegreen_v (NORTHEAST)";
-	icon_state = "whitegreen_v";
+/turf/open/floor/tile/whitegreenv{
 	dir = 5
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -3793,18 +3789,12 @@
 /area/bigredv2/caves/lambda_lab)
 "alb" = (
 /obj/effect/landmark/random_item/crap,
-/turf/open/floor{
-	tag = "icon-whitepurplecorner (NORTH)";
-	icon_state = "whitepurplecorner";
+/turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 1
 	},
 /area/bigredv2/caves/lambda_lab)
 "alc" = (
-/turf/open/floor{
-	tag = "icon-whitepurplefull";
-	icon_state = "whitepurplefull";
-	dir = 2
-	},
+/turf/open/floor/tile/purple/whitepurplefull,
 /area/bigredv2/caves/lambda_lab)
 "ald" = (
 /obj/structure/table/reinforced,
@@ -3861,9 +3851,7 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/turf/open/floor{
-	tag = "icon-whitegreen_v (NORTHEAST)";
-	icon_state = "whitegreen_v";
+/turf/open/floor/tile/whitegreenv{
 	dir = 5
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -4065,36 +4053,22 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "alP" = (
-/turf/open/floor{
-	tag = "icon-warnwhite (WEST)";
-	icon_state = "warnwhite";
+/turf/open/floor/tile/white/warningstripe{
 	dir = 8
 	},
 /area/bigredv2/caves/lambda_lab)
 "alQ" = (
 /obj/effect/landmark/monkey_spawn,
 /obj/effect/alien/weeds/node,
-/turf/open/floor{
-	tag = "icon-whitepurplefull";
-	icon_state = "whitepurplefull";
-	dir = 2
-	},
+/turf/open/floor/tile/purple/whitepurplefull,
 /area/bigredv2/caves/lambda_lab)
 "alR" = (
 /obj/effect/landmark/monkey_spawn,
-/turf/open/floor{
-	tag = "icon-whitepurplefull";
-	icon_state = "whitepurplefull";
-	dir = 2
-	},
+/turf/open/floor/tile/purple/whitepurplefull,
 /area/bigredv2/caves/lambda_lab)
 "alS" = (
 /obj/effect/decal/cleanable/vomit,
-/turf/open/floor{
-	tag = "icon-whitepurplefull";
-	icon_state = "whitepurplefull";
-	dir = 2
-	},
+/turf/open/floor/tile/purple/whitepurplefull,
 /area/bigredv2/caves/lambda_lab)
 "alT" = (
 /obj/structure/table/reinforced,
@@ -4416,10 +4390,8 @@
 	},
 /area/bigredv2/outside/marshal_office)
 "amz" = (
-/turf/open/floor{
-	dir = 1;
-	icon_state = "rampbottom";
-	tag = "icon-rampbottom"
+/turf/open/floor/stairs/rampbottom{
+	dir = 1
 	},
 /area/bigredv2/outside/marshal_office)
 "amA" = (
@@ -4497,11 +4469,7 @@
 /area/bigredv2/caves/lambda_lab)
 "amN" = (
 /obj/item/stool,
-/turf/open/floor{
-	tag = "icon-whitepurplefull";
-	icon_state = "whitepurplefull";
-	dir = 2
-	},
+/turf/open/floor/tile/purple/whitepurplefull,
 /area/bigredv2/caves/lambda_lab)
 "amO" = (
 /turf/open/floor/tile/purple/whitepurple{
@@ -4750,11 +4718,7 @@
 /obj/structure/table,
 /obj/item/device/mass_spectrometer/adv,
 /obj/effect/landmark/monkey_spawn,
-/turf/open/floor{
-	tag = "icon-whitepurplefull";
-	icon_state = "whitepurplefull";
-	dir = 2
-	},
+/turf/open/floor/tile/purple/whitepurplefull,
 /area/bigredv2/caves/lambda_lab)
 "ans" = (
 /obj/structure/table/reinforced,
@@ -4959,9 +4923,7 @@
 	icon_state = "2-4"
 	},
 /obj/item/tool/warning_cone,
-/turf/open/floor{
-	tag = "icon-warnwhite (WEST)";
-	icon_state = "warnwhite";
+/turf/open/floor/tile/white/warningstripe{
 	dir = 8
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -4971,11 +4933,7 @@
 	d2 = 8;
 	icon_state = "4-8";
 	},
-/turf/open/floor{
-	tag = "icon-whitepurplefull";
-	icon_state = "whitepurplefull";
-	dir = 2
-	},
+/turf/open/floor/tile/purple/whitepurplefull,
 /area/bigredv2/caves/lambda_lab)
 "anU" = (
 /obj/structure/cable{
@@ -4985,11 +4943,7 @@
 	},
 /obj/effect/landmark/monkey_spawn,
 /obj/effect/alien/weeds/node,
-/turf/open/floor{
-	tag = "icon-whitepurplefull";
-	icon_state = "whitepurplefull";
-	dir = 2
-	},
+/turf/open/floor/tile/purple/whitepurplefull,
 /area/bigredv2/caves/lambda_lab)
 "anV" = (
 /obj/item/reagent_container/spray/pepper,
@@ -4998,11 +4952,7 @@
 	d2 = 8;
 	icon_state = "4-8";
 	},
-/turf/open/floor{
-	tag = "icon-whitepurplefull";
-	icon_state = "whitepurplefull";
-	dir = 2
-	},
+/turf/open/floor/tile/purple/whitepurplefull,
 /area/bigredv2/caves/lambda_lab)
 "anW" = (
 /obj/structure/cable{
@@ -5156,9 +5106,7 @@
 	},
 /area/bigredv2/outside/marshal_office)
 "aol" = (
-/turf/open/floor{
-	tag = "icon-rampbottom";
-	icon_state = "rampbottom";
+/turf/open/floor/stairs/rampbottom{
 	dir = 2
 	},
 /area/bigredv2/outside/marshal_office)
@@ -5300,9 +5248,7 @@
 	icon_state = "1-2"
 	},
 /obj/item/tool/warning_cone,
-/turf/open/floor{
-	tag = "icon-warnwhite (WEST)";
-	icon_state = "warnwhite";
+/turf/open/floor/tile/white/warningstripe{
 	dir = 8
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -5310,11 +5256,7 @@
 /obj/item/tool/surgery/scalpel/laser3,
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/blood/gibs/limb,
-/turf/open/floor{
-	tag = "icon-whitepurplefull";
-	icon_state = "whitepurplefull";
-	dir = 2
-	},
+/turf/open/floor/tile/purple/whitepurplefull,
 /area/bigredv2/caves/lambda_lab)
 "aoJ" = (
 /obj/structure/table/reinforced,
@@ -5562,9 +5504,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "apw" = (
-/turf/open/floor{
-	tag = "icon-whitepurplecorner (WEST)";
-	icon_state = "whitepurplecorner";
+/turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 8
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -5572,11 +5512,7 @@
 /obj/effect/decal/cleanable/blood/gibs/xeno/core,
 /obj/item/shard,
 /obj/effect/landmark/monkey_spawn,
-/turf/open/floor{
-	tag = "icon-whitepurplefull";
-	icon_state = "whitepurplefull";
-	dir = 2
-	},
+/turf/open/floor/tile/purple/whitepurplefull,
 /area/bigredv2/caves/lambda_lab)
 "apy" = (
 /obj/effect/decal/cleanable/mucus,
@@ -5917,41 +5853,29 @@
 /area/bigredv2/outside/nw)
 "aqq" = (
 /obj/structure/closet/secure_closet/chemical,
-/turf/open/floor{
-	tag = "icon-whitepurplecorner (NORTH)";
-	icon_state = "whitepurplecorner";
+/turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 1
 	},
 /area/bigredv2/outside/medical)
 "aqr" = (
-/turf/open/floor{
-	tag = "icon-whitepurplecorner (NORTH)";
-	icon_state = "whitepurplecorner";
+/turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 1
 	},
 /area/bigredv2/outside/medical)
 "aqs" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	tag = "icon-whitepurplefull";
-	icon_state = "whitepurplefull";
-	dir = 2
-	},
+/turf/open/floor/tile/purple/whitepurplefull,
 /area/bigredv2/outside/medical)
 "aqt" = (
 /obj/machinery/chem_master,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	tag = "icon-whitepurplecorner (EAST)";
-	icon_state = "whitepurplecorner";
+/turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
 /area/bigredv2/outside/medical)
 "aqu" = (
 /obj/machinery/chem_dispenser,
-/turf/open/floor{
-	tag = "icon-whitepurplecorner (EAST)";
-	icon_state = "whitepurplecorner";
+/turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
 /area/bigredv2/outside/medical)
@@ -6229,17 +6153,13 @@
 "are" = (
 /obj/structure/table,
 /obj/effect/spawner/random/bomb_supply,
-/turf/open/floor{
-	tag = "icon-whitepurplecorner (NORTH)";
-	icon_state = "whitepurplecorner";
+/turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 1
 	},
 /area/bigredv2/outside/medical)
 "arf" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	tag = "icon-whitepurplecorner (EAST)";
-	icon_state = "whitepurplecorner";
+/turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
 /area/bigredv2/outside/medical)
@@ -6247,9 +6167,7 @@
 /obj/structure/bed/chair/office/light{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-whitepurplecorner (EAST)";
-	icon_state = "whitepurplecorner";
+/turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
 /area/bigredv2/outside/medical)
@@ -6472,36 +6390,26 @@
 	dir = 2
 	},
 /obj/item/storage/box/beakers,
-/turf/open/floor{
-	tag = "icon-whitepurplecorner (NORTH)";
-	icon_state = "whitepurplecorner";
+/turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 1
 	},
 /area/bigredv2/outside/medical)
 "arO" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/explosive/grenade/chem_grenade/large,
-/turf/open/floor{
-	tag = "icon-whitepurplefull";
-	icon_state = "whitepurplefull";
-	dir = 2
-	},
+/turf/open/floor/tile/purple/whitepurplefull,
 /area/bigredv2/outside/medical)
 "arP" = (
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	tag = "icon-whitepurplecorner (EAST)";
-	icon_state = "whitepurplecorner";
+/turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
 /area/bigredv2/outside/medical)
 "arQ" = (
 /obj/structure/table,
 /obj/machinery/reagentgrinder,
-/turf/open/floor{
-	tag = "icon-whitepurplecorner (EAST)";
-	icon_state = "whitepurplecorner";
+/turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
 /area/bigredv2/outside/medical)
@@ -6756,35 +6664,25 @@
 	dir = 8
 	},
 /obj/item/tool/surgery/circular_saw,
-/turf/open/floor{
-	tag = "icon-whitepurplecorner (NORTH)";
-	icon_state = "whitepurplecorner";
+/turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 1
 	},
 /area/bigredv2/outside/medical)
 "asz" = (
 /obj/item/device/reagent_scanner,
-/turf/open/floor{
-	tag = "icon-whitepurplecorner (NORTH)";
-	icon_state = "whitepurplecorner";
+/turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 1
 	},
 /area/bigredv2/outside/medical)
 "asA" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/random_item/crap,
-/turf/open/floor{
-	tag = "icon-whitepurplefull";
-	icon_state = "whitepurplefull";
-	dir = 2
-	},
+/turf/open/floor/tile/purple/whitepurplefull,
 /area/bigredv2/outside/medical)
 "asB" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	tag = "icon-whitepurplecorner (EAST)";
-	icon_state = "whitepurplecorner";
+/turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
 /area/bigredv2/outside/medical)
@@ -7076,9 +6974,7 @@
 /obj/structure/table,
 /obj/effect/spawner/random/bomb_supply,
 /obj/effect/spawner/random/bomb_supply,
-/turf/open/floor{
-	tag = "icon-whitepurplecorner (NORTH)";
-	icon_state = "whitepurplecorner";
+/turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 1
 	},
 /area/bigredv2/outside/medical)
@@ -7086,9 +6982,7 @@
 /obj/machinery/chem_master,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	tag = "icon-whitepurplecorner (EAST)";
-	icon_state = "whitepurplecorner";
+/turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
 /area/bigredv2/outside/medical)
@@ -7314,17 +7208,13 @@
 /area/bigredv2/outside/nw)
 "atR" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	tag = "icon-whitepurplecorner (NORTH)";
-	icon_state = "whitepurplecorner";
+/turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 1
 	},
 /area/bigredv2/outside/medical)
 "atS" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	tag = "icon-whitepurplecorner (EAST)";
-	icon_state = "whitepurplecorner";
+/turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
 /area/bigredv2/outside/medical)
@@ -7335,9 +7225,7 @@
 	dir = 4
 	},
 /obj/item/tool/hand_labeler,
-/turf/open/floor{
-	tag = "icon-whitepurplecorner (EAST)";
-	icon_state = "whitepurplecorner";
+/turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
 /area/bigredv2/outside/medical)
@@ -7672,27 +7560,21 @@
 /area/bigredv2/outside/nw)
 "auG" = (
 /obj/effect/spawner/random/bomb_supply,
-/turf/open/floor{
-	tag = "icon-whitepurplecorner (NORTH)";
-	icon_state = "whitepurplecorner";
+/turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 1
 	},
 /area/bigredv2/outside/medical)
 "auH" = (
 /obj/structure/bed/chair,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	tag = "icon-whitepurplecorner (EAST)";
-	icon_state = "whitepurplecorner";
+/turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
 /area/bigredv2/outside/medical)
 "auI" = (
 /obj/structure/table,
 /obj/item/storage/box/bodybags,
-/turf/open/floor{
-	tag = "icon-whitepurplecorner (EAST)";
-	icon_state = "whitepurplecorner";
+/turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
 /area/bigredv2/outside/medical)
@@ -9944,19 +9826,13 @@
 /area/bigredv2/caves/lambda_lab)
 "aAj" = (
 /obj/item/tool/extinguisher/mini,
-/turf/open/floor{
-	tag = "icon-whitepurplefull";
-	icon_state = "whitepurplefull";
-	dir = 2
-	},
+/turf/open/floor/tile/purple/whitepurplefull,
 /area/bigredv2/caves/lambda_lab)
 "aAk" = (
 /turf/open/floor/plating/dmg2,
 /area/bigredv2/caves/lambda_lab)
 "aAl" = (
-/turf/open/floor{
-	tag = "icon-whitepurplecorner (EAST)";
-	icon_state = "whitepurplecorner";
+/turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -10483,11 +10359,7 @@
 	d2 = 8;
 	icon_state = "4-8";
 	},
-/turf/open/floor{
-	tag = "icon-whitepurplefull";
-	icon_state = "whitepurplefull";
-	dir = 2
-	},
+/turf/open/floor/tile/purple/whitepurplefull,
 /area/bigredv2/caves/lambda_lab)
 "aBC" = (
 /obj/item/clothing/suit/storage/labcoat/science,
@@ -10496,11 +10368,7 @@
 	d2 = 8;
 	icon_state = "4-8";
 	},
-/turf/open/floor{
-	tag = "icon-whitepurplefull";
-	icon_state = "whitepurplefull";
-	dir = 2
-	},
+/turf/open/floor/tile/purple/whitepurplefull,
 /area/bigredv2/caves/lambda_lab)
 "aBD" = (
 /obj/item/tool/weldingtool/experimental,
@@ -10509,11 +10377,7 @@
 	d2 = 8;
 	icon_state = "4-8";
 	},
-/turf/open/floor{
-	tag = "icon-whitepurplefull";
-	icon_state = "whitepurplefull";
-	dir = 2
-	},
+/turf/open/floor/tile/purple/whitepurplefull,
 /area/bigredv2/caves/lambda_lab)
 "aBE" = (
 /obj/structure/cable{
@@ -11136,9 +11000,7 @@
 "aDk" = (
 /obj/effect/landmark/monkey_spawn,
 /obj/effect/alien/weeds/node,
-/turf/open/floor{
-	tag = "icon-whitepurplecorner";
-	icon_state = "whitepurplecorner";
+/turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 2
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -11586,16 +11448,10 @@
 "aEn" = (
 /obj/effect/landmark/random_item/crap,
 /obj/effect/alien/weeds/node,
-/turf/open/floor{
-	tag = "icon-whitepurplefull";
-	icon_state = "whitepurplefull";
-	dir = 2
-	},
+/turf/open/floor/tile/purple/whitepurplefull,
 /area/bigredv2/caves/lambda_lab)
 "aEo" = (
-/turf/open/floor{
-	tag = "icon-whitepurplecorner";
-	icon_state = "whitepurplecorner";
+/turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 2
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -14876,9 +14732,7 @@
 /area/bigredv2/caves/lambda_lab)
 "aLL" = (
 /obj/structure/closet/l3closet/virology,
-/turf/open/floor{
-	tag = "icon-warnwhite (SOUTHWEST)";
-	icon_state = "warnwhite";
+/turf/open/floor/tile/white/warningstripe{
 	dir = 10
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -14901,17 +14755,13 @@
 	opacity = 1;
 	tag = "icon-left (NORTH)"
 	},
-/turf/open/floor{
-	tag = "icon-warnwhite";
-	icon_state = "warnwhite";
+/turf/open/floor/tile/white/warningstripe{
 	dir = 2
 	},
 /area/bigredv2/caves/lambda_lab)
 "aLN" = (
 /obj/structure/closet/l3closet/virology,
-/turf/open/floor{
-	tag = "icon-warnwhite (SOUTHEAST)";
-	icon_state = "warnwhite";
+/turf/open/floor/tile/white/warningstripe{
 	dir = 6
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -16407,10 +16257,8 @@
 	},
 /area/bigredv2/outside/admin_building)
 "aPP" = (
-/turf/open/floor{
-	dir = 1;
-	icon_state = "rampbottom";
-	tag = "icon-rampbottom"
+/turf/open/floor/stairs/rampbottom{
+	dir = 1
 	},
 /area/bigredv2/outside/admin_building)
 "aPQ" = (
@@ -16420,10 +16268,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "rampbottom";
-	tag = "icon-rampbottom"
+/turf/open/floor/stairs/rampbottom{
+	dir = 1
 	},
 /area/bigredv2/outside/admin_building)
 "aPR" = (
@@ -20487,10 +20333,8 @@
 	},
 /area/bigredv2/outside/chapel)
 "bam" = (
-/turf/open/floor{
-	dir = 1;
-	icon_state = "rampbottom";
-	tag = "icon-rampbottom"
+/turf/open/floor/stairs/rampbottom{
+	dir = 1
 	},
 /area/bigredv2/outside/chapel)
 "ban" = (
@@ -21552,9 +21396,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "bdd" = (
-/turf/open/floor{
-	tag = "icon-rampbottom";
-	icon_state = "rampbottom";
+/turf/open/floor/stairs/rampbottom{
 	dir = 2
 	},
 /area/bigredv2/outside/chapel)
