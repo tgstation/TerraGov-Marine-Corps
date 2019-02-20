@@ -417,11 +417,17 @@
 /turf/open/floor/tile/purple/whitepurple
 	icon_state = "whitepurple"
 
+/turf/open/floor/tile/purple/whitepurplecroner
+	icon_state = "whitepurplecorner"
+
 /turf/open/floor/tile/blue/whitebluecorner
 	icon_state = "whitebluecorner"
 
 /turf/open/floor/tile/green/greentaupe
 	icon_state = "green"
+
+/turf/open/floor/tile/green/whitegreencorner
+	icon_state = "whitegreencorner"
 
 /turf/open/floor/tile/white/warningstripe
 	icon_state = "warnwhite"
