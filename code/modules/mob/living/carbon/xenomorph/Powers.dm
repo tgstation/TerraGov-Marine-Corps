@@ -1431,11 +1431,11 @@
 
 	if(istype(O, /obj/structure) || istype(O, /obj/machinery)) //Always appears above machinery
 		A.layer = O.layer + 0.1
-		acid_progress_transfer(A, null, O)
+		acid_progress_transfer(A, O)
 		I.current_acid = A
 
 	else //If not, appear on the floor or on an item
-		acid_progress_transfer(A, null, O)
+		acid_progress_transfer(A, O)
 		A.layer = LOWER_ITEM_LAYER //below any item, above BELOW_OBJ_LAYER (smartfridge)
 		I.current_acid = A
 
@@ -1451,6 +1451,9 @@
 
 
 /mob/living/carbon/Xenomorph/proc/acid_check(obj/effect/xenomorph/acid/new_acid, obj/effect/xenomorph/acid/current_acid)
+	if(!new_acid || !current_acid)
+		return
+
 	if(new_acid.acid_strength < current_acid.acid_strength)
 		to_chat(src, "<span class='warning'>This object is already subject to a more powerful acid.</span>")
 		return FALSE
@@ -1458,7 +1461,7 @@
 
 
 
-/mob/living/carbon/Xenomorph/proc/acid_progress_transfer(acid_type, obj/O = null, turf/T = null)
+/mob/living/carbon/Xenomorph/proc/acid_progress_transfer(acid_type, obj/O, turf/T)
 	if(!O && !T)
 		return
 
