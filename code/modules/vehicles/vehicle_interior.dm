@@ -289,7 +289,7 @@
 		src.visible_message("<span class='boldnotice'>Request is being processed, standby.</span>")
 		return
 	busy = TRUE
-	if(!free_modules.Find("Supply Modification") && destination.master.special_module_working || !destination || !master)
+	if(!free_modules.Find("Supply Modification") && destination.master.special_module_working  && destination && master)
 		var/obj/structure/closet/crate/C = locate(/obj/structure/closet/crate) in range(0, master)
 		if(C && !C.opened)
 			var/area/AR = get_area(destination.master)
@@ -297,10 +297,11 @@
 				if(next_use < world.time)
 					var/apc_location = destination.master.loc
 					src.visible_message("<span class='notice'>Supply Drop Receiver is found. Connection established. Calculating trajectiry... Complete.</span>")
+					spawn(10)
 					src.visible_message("<span class='boldnotice'>Supply drop is now loading into the launch tube! Stand by!</span>")
 					playsound(master, pick('sound/machines/hydraulics_1.ogg', 'sound/machines/hydraulics_2.ogg'), 40, 1)
-					spawn(100)
-					if(destination.master.loc != apc_location)
+					spawn(50)
+					if(destination.master.loc == apc_location)
 						playsound(destination.master.loc,'sound/effects/bamf.ogg', 50, 1)
 						destination.master.visible_message("\icon[src] <span class='boldnotice'>You notice [C.name] deploing on top of [destination.master] and gets loaded inside.</span>")
 						C.forceMove(get_turf(destination))
@@ -363,6 +364,7 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "broadcast receiver_off"
 	req_one_access_txt = "2;7;11"
+	density = 1
 	anchored = 1
 	unacidable = 1
 	var/online = 0
@@ -493,6 +495,7 @@
 	icon_state = "hub_off"
 	anchored = 1
 	unacidable = 1
+	density = 1
 
 
 // interior walls
