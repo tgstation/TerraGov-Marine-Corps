@@ -102,6 +102,7 @@
 		var/turf/T = X
 		if(T.Adjacent(neighbor, target = neighbor, mover = src))
 			return TRUE
+	return FALSE
 
 
 // This is necessary for storage items not on your person.
