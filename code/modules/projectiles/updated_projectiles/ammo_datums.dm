@@ -1527,7 +1527,7 @@
 	burst(M,P,damage_type)
 
 /datum/ammo/xeno/boiler_gas/corrosive/set_xeno_smoke(obj/item/projectile/P)
-	smoke_system = new /datum/effect_system/smoke_spread/xeno_acid()
+	smoke_system = new /datum/effect_system/smoke_spread/xeno/acid()
 
 /*
 //================================================
