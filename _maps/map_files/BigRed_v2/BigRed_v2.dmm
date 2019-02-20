@@ -2305,10 +2305,8 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "agT" = (
-/obj/structure/sign/chemistry{
-	icon_state = "chemistry2";
-	pixel_y = 32;
-	tag = "icon-chemistry2"
+/obj/structure/sign/chemistry2{
+	dir = 1
 	},
 /obj/structure/cable{
 	d1 = 4;
