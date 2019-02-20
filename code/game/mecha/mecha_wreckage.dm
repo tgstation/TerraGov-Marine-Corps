@@ -136,6 +136,10 @@
 				parts -= part
 		return
 
+/obj/effect/decal/mecha_wreckage/ripley/lv624
+	name = "MkIV Powerloader Wreckage"
+	anchored = TRUE
+
 /obj/effect/decal/mecha_wreckage/ripley/firefighter
 	name = "Firefighter wreckage"
 	icon_state = "firefighter-broken"

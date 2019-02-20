@@ -4242,10 +4242,7 @@
 /turf/open/gm/grass,
 /area/lv624/ground/jungle8)
 "apc" = (
-/obj/effect/decal/mecha_wreckage/ripley{
-	anchored = 1;
-	name = "MkIV Powerloader Wreckage"
-	},
+/obj/effect/decal/mecha_wreckage/ripley/lv624,
 /turf/open/gm/dirt,
 /area/lv624/ground/sand4)
 "apd" = (
@@ -4301,7 +4298,7 @@
 /area/lv624/ground/river3)
 "apn" = (
 /obj/structure/sign/securearea{
-	pixel_x = -30
+	dir = 8
 	},
 /obj/structure/fence,
 /turf/open/gm/dirtgrassborder{
@@ -20551,11 +20548,8 @@
 	},
 /area/lv624/lazarus/engineering)
 "boG" = (
-/obj/structure/sign/securearea{
-	desc = "A warning sign which reads 'HIGH VOLTAGE'";
-	icon_state = "shock";
-	name = "HIGH VOLTAGE";
-	pixel_y = -32
+/obj/structure/sign/electricshock{
+	dir = 8
 	},
 /obj/structure/cable{
 	d1 = 4;

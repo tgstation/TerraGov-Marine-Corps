@@ -8939,7 +8939,7 @@
 /area/bigredv2/caves/lambda_lab)
 "avm" = (
 /obj/structure/sign/securearea{
-	pixel_y = -32
+	dir = 8
 	},
 /obj/effect/alien/weeds/node,
 /turf/open/floor{

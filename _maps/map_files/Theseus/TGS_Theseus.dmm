@@ -24007,10 +24007,7 @@
 /turf/closed/wall/almayer,
 /area/almayer/shipboard/starboard_point_defense)
 "aWW" = (
-/obj/structure/sign/securearea{
-	desc = "A warning sign which reads 'LIVE AMMUNITION RANGE'.";
-	name = "\improper FIRING RANGE"
-	},
+/obj/structure/sign/securearea/firingrange,
 /turf/closed/wall/almayer,
 /area/almayer/hull/lower_hull)
 "aWX" = (
