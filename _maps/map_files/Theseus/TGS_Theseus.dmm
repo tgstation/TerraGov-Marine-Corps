@@ -36072,7 +36072,6 @@
 	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-c (NORTH)";
 	icon_state = "pipe-c";
 	dir = 1
 	},
@@ -37391,7 +37390,6 @@
 	icon_state = "1-4"
 	},
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-c (NORTH)";
 	icon_state = "pipe-c";
 	dir = 1
 	},
@@ -53379,7 +53377,6 @@
 /area/almayer/living/bridgebunks)
 "chW" = (
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-c (NORTH)";
 	icon_state = "pipe-c";
 	dir = 1
 	},

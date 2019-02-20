@@ -14040,7 +14040,6 @@
 "aCK" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
-	tag = "icon-pipe-t (EAST)";
 	icon_state = "pipe-t";
 	dir = 4
 	},
@@ -26441,7 +26440,6 @@
 "bau" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
-	tag = "icon-pipe-t (EAST)";
 	icon_state = "pipe-t";
 	dir = 4
 	},

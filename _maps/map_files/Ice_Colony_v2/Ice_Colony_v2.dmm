@@ -2497,7 +2497,6 @@
 "agg" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
-	tag = "icon-pipe-t (EAST)";
 	icon_state = "pipe-t";
 	dir = 4
 	},
@@ -2509,7 +2508,6 @@
 /area/ice_colony/surface/engineering)
 "agh" = (
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-s (WEST)";
 	icon_state = "pipe-s";
 	dir = 8
 	},
@@ -2531,7 +2529,6 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-s (WEST)";
 	icon_state = "pipe-s";
 	dir = 8
 	},
@@ -4836,7 +4833,6 @@
 /area/ice_colony/surface/substation/smes)
 "aku" = (
 /obj/structure/disposalpipe/trunk{
-	tag = "icon-pipe-t (WEST)";
 	icon_state = "pipe-t";
 	dir = 8
 	},
@@ -6924,7 +6920,6 @@
 "ape" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
-	tag = "icon-pipe-t (NORTH)";
 	icon_state = "pipe-t";
 	dir = 1
 	},
@@ -8190,7 +8185,6 @@
 	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-c (NORTH)";
 	icon_state = "pipe-c";
 	dir = 1
 	},
@@ -9121,7 +9115,6 @@
 	layer = 2.4
 	},
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-c (NORTH)";
 	icon_state = "pipe-c";
 	dir = 1
 	},
@@ -9855,7 +9848,6 @@
 /area/ice_colony/surface/dorms)
 "auP" = (
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-c (NORTH)";
 	icon_state = "pipe-c";
 	dir = 1
 	},
@@ -9975,7 +9967,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-c (NORTH)";
 	icon_state = "pipe-c";
 	dir = 1
 	},
@@ -10419,7 +10410,6 @@
 "avV" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
-	tag = "icon-pipe-t (NORTH)";
 	icon_state = "pipe-t";
 	dir = 1
 	},
@@ -10452,7 +10442,6 @@
 /area/ice_colony/surface/dorms)
 "avY" = (
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-c (NORTH)";
 	icon_state = "pipe-c";
 	dir = 1
 	},
@@ -10953,7 +10942,6 @@
 /area/ice_colony/surface/hydroponics/lobby)
 "awZ" = (
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-s (WEST)";
 	icon_state = "pipe-s";
 	dir = 8
 	},
@@ -11201,7 +11189,6 @@
 /area/ice_colony/exterior/surface/valley/southeast)
 "axB" = (
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-s (WEST)";
 	icon_state = "pipe-s";
 	dir = 8
 	},
@@ -11209,7 +11196,6 @@
 /area/ice_colony/exterior/surface/valley/southeast)
 "axC" = (
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-s (WEST)";
 	icon_state = "pipe-s";
 	dir = 8
 	},
@@ -11224,7 +11210,6 @@
 /area/ice_colony/exterior/surface/valley/west)
 "axE" = (
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-s (WEST)";
 	icon_state = "pipe-s";
 	dir = 8
 	},
@@ -11237,7 +11222,6 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/trunk{
-	tag = "icon-pipe-t (WEST)";
 	icon_state = "pipe-t";
 	dir = 8
 	},
@@ -11401,7 +11385,6 @@
 /area/ice_colony/surface/dorms)
 "axY" = (
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-s (WEST)";
 	icon_state = "pipe-s";
 	dir = 8
 	},
@@ -11409,7 +11392,6 @@
 /area/ice_colony/exterior/surface/clearing/north)
 "axZ" = (
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-s (WEST)";
 	icon_state = "pipe-s";
 	dir = 8
 	},
@@ -11417,7 +11399,6 @@
 /area/ice_colony/exterior/surface/clearing/north)
 "aya" = (
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-s (WEST)";
 	icon_state = "pipe-s";
 	dir = 8
 	},
@@ -11425,7 +11406,6 @@
 /area/ice_colony/exterior/surface/clearing/north)
 "ayb" = (
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-s (WEST)";
 	icon_state = "pipe-s";
 	dir = 8
 	},
@@ -11440,7 +11420,6 @@
 /area/ice_colony/exterior/surface/clearing/north)
 "ayd" = (
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-c (NORTH)";
 	icon_state = "pipe-c";
 	dir = 1
 	},
@@ -11458,7 +11437,6 @@
 /area/ice_colony/exterior/surface/clearing/north)
 "ayf" = (
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-s (WEST)";
 	icon_state = "pipe-s";
 	dir = 8
 	},
@@ -13427,7 +13405,6 @@
 "aCi" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
-	tag = "icon-pipe-t (EAST)";
 	icon_state = "pipe-t";
 	dir = 4
 	},
@@ -14074,7 +14051,6 @@
 "aDw" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
-	tag = "icon-pipe-u";
 	icon_state = "pipe-u";
 	dir = 2
 	},
@@ -14312,7 +14288,6 @@
 	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-s (WEST)";
 	icon_state = "pipe-s";
 	dir = 8
 	},
@@ -14426,7 +14401,6 @@
 	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-s (WEST)";
 	icon_state = "pipe-s";
 	dir = 8
 	},
@@ -14881,7 +14855,6 @@
 /area/ice_colony/surface/command/control)
 "aES" = (
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-c (NORTH)";
 	icon_state = "pipe-c";
 	dir = 1
 	},
@@ -15097,7 +15070,6 @@
 	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-s (WEST)";
 	icon_state = "pipe-s";
 	dir = 8
 	},
@@ -15135,7 +15107,6 @@
 	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-s (WEST)";
 	icon_state = "pipe-s";
 	dir = 8
 	},
@@ -15225,7 +15196,6 @@
 	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-s (WEST)";
 	icon_state = "pipe-s";
 	dir = 8
 	},
@@ -15255,7 +15225,6 @@
 	icon_state = "1-8"
 	},
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-s (WEST)";
 	icon_state = "pipe-s";
 	dir = 8
 	},
@@ -15266,7 +15235,6 @@
 /area/ice_colony/surface/garage/two)
 "aFC" = (
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-s (WEST)";
 	icon_state = "pipe-s";
 	dir = 8
 	},
@@ -16344,7 +16312,6 @@
 /area/ice_colony/surface/command/control)
 "aHA" = (
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-c (NORTH)";
 	icon_state = "pipe-c";
 	dir = 1
 	},
@@ -17336,7 +17303,6 @@
 	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-s (WEST)";
 	icon_state = "pipe-s";
 	dir = 8
 	},
@@ -20829,7 +20795,6 @@
 /area/ice_colony/surface/hangar/beta)
 "aRJ" = (
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-s (WEST)";
 	icon_state = "pipe-s";
 	dir = 8
 	},
@@ -20852,7 +20817,6 @@
 	req_access_txt = "100"
 	},
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-s (WEST)";
 	icon_state = "pipe-s";
 	dir = 8
 	},
@@ -20936,7 +20900,6 @@
 /area/ice_colony/exterior/surface/valley/southwest)
 "aRR" = (
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-s (WEST)";
 	icon_state = "pipe-s";
 	dir = 8
 	},
@@ -20956,7 +20919,6 @@
 /area/ice_colony/surface/research)
 "aRS" = (
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-s (WEST)";
 	icon_state = "pipe-s";
 	dir = 8
 	},
@@ -20976,7 +20938,6 @@
 /area/ice_colony/surface/research)
 "aRT" = (
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-s (WEST)";
 	icon_state = "pipe-s";
 	dir = 8
 	},
@@ -20993,7 +20954,6 @@
 /area/ice_colony/surface/research)
 "aRU" = (
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-s (WEST)";
 	icon_state = "pipe-s";
 	dir = 8
 	},
@@ -21276,7 +21236,6 @@
 "aSC" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
-	tag = "icon-pipe-t (NORTH)";
 	icon_state = "pipe-t";
 	dir = 1
 	},
@@ -21683,7 +21642,6 @@
 /area/ice_colony/surface/hangar/beta)
 "aTx" = (
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-c (NORTH)";
 	icon_state = "pipe-c";
 	dir = 1
 	},
@@ -21744,7 +21702,6 @@
 /area/ice_colony/surface/hangar/alpha)
 "aTC" = (
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-s (WEST)";
 	icon_state = "pipe-s";
 	dir = 8
 	},
@@ -21765,7 +21722,6 @@
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-s (WEST)";
 	icon_state = "pipe-s";
 	dir = 8
 	},
@@ -21808,7 +21764,6 @@
 /area/ice_colony/surface/hangar/checkpoint)
 "aTH" = (
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-s (WEST)";
 	icon_state = "pipe-s";
 	dir = 8
 	},
@@ -21828,7 +21783,6 @@
 /area/ice_colony/surface/research)
 "aTI" = (
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-s (WEST)";
 	icon_state = "pipe-s";
 	dir = 8
 	},
@@ -21850,7 +21804,6 @@
 /area/ice_colony/surface/research)
 "aTJ" = (
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-s (WEST)";
 	icon_state = "pipe-s";
 	dir = 8
 	},
@@ -21867,7 +21820,6 @@
 /area/ice_colony/surface/research)
 "aTK" = (
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-s (WEST)";
 	icon_state = "pipe-s";
 	dir = 8
 	},
@@ -21884,7 +21836,6 @@
 /area/ice_colony/surface/research)
 "aTL" = (
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-s (WEST)";
 	icon_state = "pipe-s";
 	dir = 8
 	},
@@ -22548,7 +22499,6 @@
 /area/ice_colony/surface/research/temporary)
 "aVk" = (
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-s (WEST)";
 	icon_state = "pipe-s";
 	dir = 8
 	},
@@ -22568,7 +22518,6 @@
 /area/ice_colony/surface/research/temporary)
 "aVl" = (
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-s (WEST)";
 	icon_state = "pipe-s";
 	dir = 8
 	},
@@ -22598,7 +22547,6 @@
 	layer = 2.4
 	},
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-s (WEST)";
 	icon_state = "pipe-s";
 	dir = 8
 	},
@@ -22785,7 +22733,6 @@
 /area/ice_colony/surface/research)
 "aVI" = (
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-s (WEST)";
 	icon_state = "pipe-s";
 	dir = 8
 	},
@@ -22939,7 +22886,6 @@
 	dir = 2
 	},
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-s (WEST)";
 	icon_state = "pipe-s";
 	dir = 8
 	},
@@ -23406,7 +23352,6 @@
 	icon_state = "1-2"
 	},
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-c (NORTH)";
 	icon_state = "pipe-c";
 	dir = 1
 	},
@@ -23463,7 +23408,6 @@
 /area/ice_colony/surface/research/temporary)
 "aWY" = (
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-s (WEST)";
 	icon_state = "pipe-s";
 	dir = 8
 	},
@@ -23474,7 +23418,6 @@
 /area/ice_colony/surface/research/temporary)
 "aWZ" = (
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-s (WEST)";
 	icon_state = "pipe-s";
 	dir = 8
 	},
@@ -23486,7 +23429,6 @@
 /area/ice_colony/surface/research/temporary)
 "aXa" = (
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-s (WEST)";
 	icon_state = "pipe-s";
 	dir = 8
 	},
@@ -23801,7 +23743,6 @@
 "aXF" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
-	tag = "icon-pipe-t (NORTH)";
 	icon_state = "pipe-t";
 	dir = 1
 	},
@@ -23935,7 +23876,6 @@
 /area/ice_colony/surface/research/tech_storage)
 "aXT" = (
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-s (WEST)";
 	icon_state = "pipe-s";
 	dir = 8
 	},
@@ -24120,7 +24060,6 @@
 "aYq" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
-	tag = "icon-pipe-t (NORTH)";
 	icon_state = "pipe-t";
 	dir = 1
 	},
@@ -25685,7 +25624,6 @@
 /area/ice_colony/exterior/surface/landing_pad)
 "bbR" = (
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-c (NORTH)";
 	icon_state = "pipe-c";
 	dir = 1
 	},
@@ -27464,7 +27402,6 @@
 	layer = 2.4
 	},
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-c (NORTH)";
 	icon_state = "pipe-c";
 	dir = 1
 	},
@@ -27600,7 +27537,6 @@
 "bfY" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
-	tag = "icon-pipe-t (WEST)";
 	icon_state = "pipe-t";
 	dir = 8
 	},
@@ -29564,7 +29500,6 @@
 /area/ice_colony/exterior/surface/clearing/pass)
 "bkd" = (
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-c (NORTH)";
 	icon_state = "pipe-c";
 	dir = 1
 	},
@@ -29585,7 +29520,6 @@
 "bkf" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
-	tag = "icon-pipe-t (WEST)";
 	icon_state = "pipe-t";
 	dir = 8
 	},
@@ -32602,7 +32536,6 @@
 "bqM" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-c (NORTH)";
 	icon_state = "pipe-c";
 	dir = 1
 	},
@@ -34810,7 +34743,6 @@
 /area/ice_colony/underground/medical/lobby)
 "bvw" = (
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-c (NORTH)";
 	icon_state = "pipe-c";
 	dir = 1
 	},
@@ -35144,7 +35076,6 @@
 /area/ice_colony/surface/hangar/beta)
 "bwe" = (
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-c (NORTH)";
 	icon_state = "pipe-c";
 	dir = 1
 	},
@@ -35614,7 +35545,6 @@
 /area/ice_colony/exterior/underground/caves/open)
 "bxf" = (
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-c (NORTH)";
 	icon_state = "pipe-c";
 	dir = 1
 	},
@@ -37845,7 +37775,6 @@
 	layer = 2.4
 	},
 /obj/structure/disposalpipe/junction{
-	tag = "icon-pipe-j1 (WEST)";
 	icon_state = "pipe-j1";
 	dir = 8
 	},
@@ -38118,7 +38047,6 @@
 /area/ice_colony/underground/hallway/south_east)
 "bCk" = (
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-s (WEST)";
 	icon_state = "pipe-s";
 	dir = 8
 	},
@@ -38130,7 +38058,6 @@
 /area/ice_colony/underground/hallway/south_east)
 "bCl" = (
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-s (WEST)";
 	icon_state = "pipe-s";
 	dir = 8
 	},
@@ -38146,7 +38073,6 @@
 /area/ice_colony/underground/security/hallway)
 "bCm" = (
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-s (WEST)";
 	icon_state = "pipe-s";
 	dir = 8
 	},
@@ -38157,7 +38083,6 @@
 /area/ice_colony/underground/security/hallway)
 "bCn" = (
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-s (WEST)";
 	icon_state = "pipe-s";
 	dir = 8
 	},
@@ -38169,7 +38094,6 @@
 /area/ice_colony/underground/security/hallway)
 "bCo" = (
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-s (WEST)";
 	icon_state = "pipe-s";
 	dir = 8
 	},
@@ -39756,7 +39680,6 @@
 /area/ice_colony/underground/command/center)
 "bFA" = (
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-c (NORTH)";
 	icon_state = "pipe-c";
 	dir = 1
 	},
@@ -41590,7 +41513,6 @@
 /area/ice_colony/underground/command/checkpoint)
 "bJb" = (
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-c (NORTH)";
 	icon_state = "pipe-c";
 	dir = 1
 	},
@@ -42403,7 +42325,6 @@
 	dir = 5
 	},
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-c (NORTH)";
 	icon_state = "pipe-c";
 	dir = 1
 	},
@@ -43526,7 +43447,6 @@
 "bMy" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-c (NORTH)";
 	icon_state = "pipe-c";
 	dir = 1
 	},
@@ -43575,7 +43495,6 @@
 /area/ice_colony/underground/hallway/south_east)
 "bMC" = (
 /obj/structure/disposalpipe/trunk{
-	tag = "icon-pipe-t (WEST)";
 	icon_state = "pipe-t";
 	dir = 8
 	},
@@ -49078,7 +48997,6 @@
 /obj/machinery/disposal,
 /obj/effect/decal/warning_stripes,
 /obj/structure/disposalpipe/trunk{
-	tag = "icon-pipe-t (WEST)";
 	icon_state = "pipe-t";
 	dir = 8
 	},
@@ -50839,7 +50757,6 @@
 /area/ice_colony/underground/command/checkpoint)
 "cde" = (
 /obj/structure/disposalpipe/segment{
-	tag = "icon-pipe-c (NORTH)";
 	icon_state = "pipe-c";
 	dir = 1
 	},

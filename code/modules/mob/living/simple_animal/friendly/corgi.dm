@@ -149,6 +149,9 @@
 		return
 	..()
 
+/mob/living/simple_animal/corgi/puppy/mrwiggles
+	name = "\improper Mister Wiggles"
+	desc = "It's a corgi puppy. MISTER WIGGLES!! HE IS THE GREATEST!"
 
 //LISA! SQUEEEEEEEEE~
 /mob/living/simple_animal/corgi/Lisa

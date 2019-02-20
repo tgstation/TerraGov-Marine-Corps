@@ -4571,7 +4571,6 @@
 /area/lv624/ground/jungle8)
 "aqm" = (
 /obj/structure/disposalpipe/trunk{
-	tag = "icon-pipe-t (EAST)";
 	icon_state = "pipe-t";
 	dir = 4
 	},
@@ -4598,7 +4597,6 @@
 /area/lv624/ground/jungle8)
 "aqr" = (
 /obj/structure/disposalpipe/trunk{
-	tag = "icon-pipe-t (WEST)";
 	icon_state = "pipe-t";
 	dir = 8
 	},
@@ -4982,7 +4980,6 @@
 /area/lv624/ground/jungle5)
 "arO" = (
 /obj/structure/disposalpipe/trunk{
-	tag = "icon-pipe-t (WEST)";
 	icon_state = "pipe-t";
 	dir = 8
 	},
@@ -18762,10 +18759,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/captain)
 "bjL" = (
-/mob/living/simple_animal/corgi/puppy{
-	desc = "It's a corgi puppy. MISTER WIGGLES!! HE IS THE GREATEST!";
-	name = "\improper Mister Wiggles"
-	},
+/mob/living/simple_animal/corgi/puppy/mrwiggles,
 /turf/open/floor/grimy,
 /area/lv624/lazarus/captain)
 "bjM" = (
