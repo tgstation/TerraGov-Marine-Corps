@@ -5986,7 +5986,7 @@
 	pixel_x = 12;
 	pixel_y = 3
 	},
-/turf/open/floor/tile/purple/whitepurplecroner{
+/turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
 /area/lv624/lazarus/fitness)
@@ -6304,13 +6304,13 @@
 "awA" = (
 /obj/structure/rack,
 /obj/machinery/light,
-/turf/open/floor/tile/purple/whitepurplecroner{
+/turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
 /area/lv624/lazarus/fitness)
 "awB" = (
 /obj/machinery/vending/cola,
-/turf/open/floor/tile/purple/whitepurplecroner{
+/turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
 /area/lv624/lazarus/fitness)
@@ -9032,7 +9032,7 @@
 /turf/open/gm/grass,
 /area/lv624/ground/compound/n)
 "aGh" = (
-/turf/open/floor/tile/purple/whitepurplecroner{
+/turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
 /area/lv624/lazarus/fitness)
@@ -9043,7 +9043,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/tile/purple/whitepurplecroner{
+/turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
 /area/lv624/lazarus/fitness)
@@ -9160,13 +9160,13 @@
 /area/lv624/ground/compound/n)
 "aGF" = (
 /obj/structure/rack,
-/turf/open/floor/tile/purple/whitepurplecroner{
+/turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
 /area/lv624/lazarus/fitness)
 "aGG" = (
 /obj/machinery/vending/snack,
-/turf/open/floor/tile/purple/whitepurplecroner{
+/turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
 /area/lv624/lazarus/fitness)
@@ -9175,7 +9175,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/tile/purple/whitepurplecroner{
+/turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
 /area/lv624/lazarus/fitness)
@@ -9186,7 +9186,7 @@
 	name = "Weyland Yutani Automatic Teller Machine";
 	pixel_y = 30
 	},
-/turf/open/floor/tile/purple/whitepurplecroner{
+/turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
 /area/lv624/lazarus/fitness)
@@ -9210,7 +9210,7 @@
 /area/lv624/lazarus/fitness)
 "aGM" = (
 /obj/structure/closet/crate/secure/hydrosec,
-/turf/open/floor/tile/purple/whitepurplecroner{
+/turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
 /area/lv624/lazarus/fitness)
@@ -9345,7 +9345,7 @@
 "aHm" = (
 /obj/item/clothing/under/shorts/red,
 /obj/structure/rack,
-/turf/open/floor/tile/purple/whitepurplecroner{
+/turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
 /area/lv624/lazarus/fitness)
@@ -9359,7 +9359,7 @@
 /area/lv624/lazarus/fitness)
 "aHp" = (
 /obj/structure/closet/secure_closet/hydroponics,
-/turf/open/floor/tile/purple/whitepurplecroner{
+/turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
 /area/lv624/lazarus/fitness)
@@ -9518,7 +9518,7 @@
 /area/lv624/lazarus/research)
 "aHP" = (
 /obj/structure/closet/lasertag/red,
-/turf/open/floor/tile/purple/whitepurplecroner{
+/turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
 /area/lv624/lazarus/fitness)
@@ -9528,7 +9528,7 @@
 /area/lv624/lazarus/fitness)
 "aHR" = (
 /obj/structure/closet/cabinet,
-/turf/open/floor/tile/purple/whitepurplecroner{
+/turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
 /area/lv624/lazarus/fitness)
@@ -9726,19 +9726,19 @@
 /area/lv624/lazarus/fitness)
 "aID" = (
 /obj/structure/closet/lasertag/blue,
-/turf/open/floor/tile/purple/whitepurplecroner{
+/turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
 /area/lv624/lazarus/fitness)
 "aIE" = (
 /obj/effect/landmark/random_item/crap,
-/turf/open/floor/tile/purple/whitepurplecroner{
+/turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
 /area/lv624/lazarus/fitness)
 "aIF" = (
 /obj/item/tool/soap,
-/turf/open/floor/tile/purple/whitepurplecroner{
+/turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
 /area/lv624/lazarus/fitness)
@@ -10023,19 +10023,19 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/turf/open/floor/tile/purple/whitepurplecroner{
+/turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
 /area/lv624/lazarus/fitness)
 "aJz" = (
 /obj/effect/decal/cleanable/blood/splatter/animated,
-/turf/open/floor/tile/purple/whitepurplecroner{
+/turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
 /area/lv624/lazarus/fitness)
 "aJA" = (
 /obj/effect/decal/remains/human,
-/turf/open/floor/tile/purple/whitepurplecroner{
+/turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
 /area/lv624/lazarus/fitness)
@@ -10252,7 +10252,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/tile/purple/whitepurplecroner{
+/turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
 /area/lv624/lazarus/fitness)
@@ -10265,7 +10265,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/tile/purple/whitepurplecroner{
+/turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
 /area/lv624/lazarus/fitness)
@@ -10282,7 +10282,7 @@
 	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
-/turf/open/floor/tile/purple/whitepurplecroner{
+/turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
 /area/lv624/lazarus/fitness)
@@ -10290,7 +10290,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/tile/purple/whitepurplecroner{
+/turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
 /area/lv624/lazarus/fitness)
@@ -10299,13 +10299,13 @@
 	dir = 8;
 	on = 1
 	},
-/turf/open/floor/tile/purple/whitepurplecroner{
+/turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
 /area/lv624/lazarus/fitness)
 "aKp" = (
 /obj/item/clothing/under/shorts/blue,
-/turf/open/floor/tile/purple/whitepurplecroner{
+/turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
 /area/lv624/lazarus/fitness)
@@ -10683,7 +10683,7 @@
 "aLD" = (
 /obj/item/storage/firstaid/regular,
 /obj/structure/rack,
-/turf/open/floor/tile/purple/whitepurplecroner{
+/turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
 /area/lv624/lazarus/fitness)
@@ -10706,7 +10706,7 @@
 	pixel_x = 29
 	},
 /obj/structure/reagent_dispensers/watertank,
-/turf/open/floor/tile/purple/whitepurplecroner{
+/turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
 /area/lv624/lazarus/fitness)
@@ -10963,14 +10963,14 @@
 	pixel_x = 2;
 	pixel_y = 2
 	},
-/turf/open/floor/tile/purple/whitepurplecroner{
+/turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
 /area/lv624/lazarus/fitness)
 "aMw" = (
 /obj/item/tool/mop,
 /obj/structure/rack,
-/turf/open/floor/tile/purple/whitepurplecroner{
+/turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
 /area/lv624/lazarus/fitness)
@@ -11275,7 +11275,7 @@
 	pixel_x = 5
 	},
 /obj/structure/rack,
-/turf/open/floor/tile/purple/whitepurplecroner{
+/turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
 /area/lv624/lazarus/fitness)
@@ -11592,7 +11592,7 @@
 /area/lv624/lazarus/fitness)
 "aOx" = (
 /obj/structure/closet/boxinggloves,
-/turf/open/floor/tile/purple/whitepurplecroner{
+/turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
 /area/lv624/lazarus/fitness)

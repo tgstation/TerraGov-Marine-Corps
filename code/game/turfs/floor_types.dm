@@ -423,7 +423,7 @@
 /turf/open/floor/tile/purple/whitepurple
 	icon_state = "whitepurple"
 
-/turf/open/floor/tile/purple/whitepurplecroner
+/turf/open/floor/tile/purple/whitepurplecorner
 	icon_state = "whitepurplecorner"
 
 /turf/open/floor/tile/blue/whitebluecorner
