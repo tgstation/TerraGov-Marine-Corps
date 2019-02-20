@@ -2477,7 +2477,7 @@
 	return FALSE
 
 /mob/living/carbon/human/can_zombie()
-	if(stat == DEAD && !H.is_revivable())
+	if(stat == DEAD && world.time >= timeofdeath + CONFIG_GET(number/revive_grace_period))
 		return TRUE
 	return FALSE
 
