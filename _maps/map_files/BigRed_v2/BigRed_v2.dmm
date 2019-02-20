@@ -2347,9 +2347,7 @@
 	d2 = 8;
 	icon_state = "4-8";
 	},
-/turf/open/floor{
-	tag = "icon-darkyellow2 (NORTH)";
-	icon_state = "darkyellow2";
+/turf/open/floor/tile/dark/yellow2{
 	dir = 1
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -2360,9 +2358,7 @@
 	d2 = 8;
 	icon_state = "4-8";
 	},
-/turf/open/floor{
-	tag = "icon-darkyellow2 (NORTH)";
-	icon_state = "darkyellow2";
+/turf/open/floor/tile/dark/yellow2{
 	dir = 1
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -29286,9 +29282,7 @@
 "bwX" = (
 /obj/structure/table,
 /obj/effect/spawner/random/tech_supply,
-/turf/open/floor{
-	tag = "icon-darkyellow2 (NORTHWEST)";
-	icon_state = "darkyellow2";
+/turf/open/floor/tile/dark/yellow2{
 	dir = 9
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -29296,33 +29290,25 @@
 /obj/structure/table,
 /obj/effect/spawner/random/tech_supply,
 /obj/machinery/atmospherics/components/unary/vent_pump,
-/turf/open/floor{
-	tag = "icon-darkyellow2 (NORTH)";
-	icon_state = "darkyellow2";
+/turf/open/floor/tile/dark/yellow2{
 	dir = 1
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bwZ" = (
 /obj/machinery/vending/medical,
-/turf/open/floor{
-	tag = "icon-darkyellow2 (NORTH)";
-	icon_state = "darkyellow2";
+/turf/open/floor/tile/dark/yellow2{
 	dir = 1
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bxa" = (
 /obj/structure/rack,
-/turf/open/floor{
-	tag = "icon-darkyellow2 (NORTH)";
-	icon_state = "darkyellow2";
+/turf/open/floor/tile/dark/yellow2{
 	dir = 1
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bxb" = (
 /obj/structure/rack,
-/turf/open/floor{
-	tag = "icon-darkyellow2 (NORTHEAST)";
-	icon_state = "darkyellow2";
+/turf/open/floor/tile/dark/yellow2{
 	dir = 5
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -29389,9 +29375,7 @@
 	},
 /obj/structure/table,
 /obj/item/tool/surgery/retractor,
-/turf/open/floor{
-	tag = "icon-darkyellow2 (WEST)";
-	icon_state = "darkyellow2";
+/turf/open/floor/tile/dark/yellow2{
 	dir = 8
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -29404,9 +29388,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bxp" = (
-/turf/open/floor{
-	tag = "icon-darkyellow2 (EAST)";
-	icon_state = "darkyellow2";
+/turf/open/floor/tile/dark/yellow2{
 	dir = 4
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -29471,9 +29453,7 @@
 /turf/open/floor/freezer,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bxy" = (
-/turf/open/floor{
-	tag = "icon-darkyellow2 (WEST)";
-	icon_state = "darkyellow2";
+/turf/open/floor/tile/dark/yellow2{
 	dir = 8
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -29533,17 +29513,13 @@
 /obj/structure/sink{
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-darkyellow2 (WEST)";
-	icon_state = "darkyellow2";
+/turf/open/floor/tile/dark/yellow2{
 	dir = 8
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bxJ" = (
 /obj/machinery/r_n_d/organic_analyzer,
-/turf/open/floor{
-	tag = "icon-darkyellow2 (EAST)";
-	icon_state = "darkyellow2";
+/turf/open/floor/tile/dark/yellow2{
 	dir = 4
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -29571,9 +29547,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bxO" = (
 /obj/machinery/r_n_d/protolathe,
-/turf/open/floor{
-	tag = "icon-darkyellow2 (WEST)";
-	icon_state = "darkyellow2";
+/turf/open/floor/tile/dark/yellow2{
 	dir = 8
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -29588,9 +29562,7 @@
 	dir = 4
 	},
 /obj/machinery/r_n_d/destructive_analyzer,
-/turf/open/floor{
-	tag = "icon-darkyellow2 (EAST)";
-	icon_state = "darkyellow2";
+/turf/open/floor/tile/dark/yellow2{
 	dir = 4
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -29720,9 +29692,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "byn" = (
 /obj/machinery/r_n_d/bioprinter,
-/turf/open/floor{
-	tag = "icon-darkyellow2 (SOUTHWEST)";
-	icon_state = "darkyellow2";
+/turf/open/floor/tile/dark/yellow2{
 	dir = 10
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -29764,9 +29734,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bys" = (
 /obj/machinery/r_n_d/circuit_imprinter,
-/turf/open/floor{
-	tag = "icon-darkyellow2 (SOUTHEAST)";
-	icon_state = "darkyellow2";
+/turf/open/floor/tile/dark/yellow2{
 	dir = 6
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -29992,16 +29960,12 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-darkyellow2 (NORTHWEST)";
-	icon_state = "darkyellow2";
+/turf/open/floor/tile/dark/yellow2{
 	dir = 9
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "byX" = (
-/turf/open/floor{
-	tag = "icon-darkyellow2 (NORTH)";
-	icon_state = "darkyellow2";
+/turf/open/floor/tile/dark/yellow2{
 	dir = 1
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -30796,9 +30760,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bAV" = (
 /obj/machinery/vending/cigarette/colony,
-/turf/open/floor{
-	tag = "icon-darkyellow2 (SOUTHWEST)";
-	icon_state = "darkyellow2";
+/turf/open/floor/tile/dark/yellow2{
 	dir = 10
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)

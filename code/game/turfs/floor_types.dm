@@ -501,6 +501,9 @@
 /turf/open/floor/tile/dark/purple2
 	icon_state = "darkpurple2"
 
+/turf/open/floor/tile/dark/yellow2
+	icon_state = "darkyellow2"
+
 /turf/open/floor/carpet
 	name = "Carpet"
 	icon_state = "carpet"
