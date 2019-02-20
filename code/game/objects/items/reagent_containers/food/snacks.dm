@@ -2791,15 +2791,15 @@
 	flavor = newflavor
 
 	switch(newflavor)
-		if("boneless pork ribs", "grilled chicken", "pizza square", "spaghetti", "chicken tenders", "red crayon")
+		if("boneless pork ribs", "grilled chicken", "pizza square", "spaghetti", "chicken tenders")
 			icon_state = "entree"
 			list_reagents = list("nutriment" = 5, "sodiumchloride" = 1)
-		if("meatballs", "cheese spread", "beef turnover", "mashed potatoes", "yellow crayon" )
+		if("meatballs", "cheese spread", "beef turnover", "mashed potatoes")
 			icon_state = "side"
 			list_reagents = list("nutriment" = 3, "sodiumchloride" = 1)
-		if("biscuit", "pretzels", "peanuts", "cracker", "purple crayon")
+		if("biscuit", "pretzels", "peanuts", "cracker")
 			icon_state = "snack"
 			list_reagents = list("nutriment" = 2, "sodiumchloride" = 1)
-		if("spiced apples", "chocolate brownie", "sugar cookie", "choco bar", "blue crayon")
+		if("spiced apples", "chocolate brownie", "sugar cookie", "choco bar", "crayom")
 			icon_state = "dessert"
 			list_reagents = list("nutriment" = 2, "sugar" = 1)
