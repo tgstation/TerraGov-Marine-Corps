@@ -327,24 +327,29 @@
 		message_admins("[ADMIN_TPMONTY(usr)] has [muteunmute] [ADMIN_TPMONTY(C.mob)] from [mute_string].")
 
 
-/world/IsBanned(key,address,computer_id)
-	//Guest Checking
+/world/IsBanned(key, address, computer_id)
+	//Guest Checking.
 	if(!guests_allowed && IsGuestKey(key))
 		log_access("Failed Login: [key] - Guests not allowed.")
 		message_admins("Failed Login: [key] - Guests not allowed.")
-		return list("reason"="guest", "desc"="Reason: Guests not allowed. Please sign in with a byond account.")
+		return list("reason" = "guest", "desc" = "Reason: Guests not allowed. Please sign in with a byond account.")
 
+	//Checking is done elsewhere.
 	if(!CONFIG_GET(flag/ban_legacy_system))
-		return
+		return FALSE
 
-	//Ban Checking
+	//Cannot ban other admins (failsafe).
+	if(check_rights(R_ADMIN, FALSE))
+		return FALSE
+
+	//Legacy system ban checking.
 	. = CheckBan(ckey(key), computer_id, address)
 	if(.)
-		log_access("Failed Login: [key] CID:[computer_id] IP:[address] - Banned [.["reason"]]")
-		message_admins("Failed Login: [key] CID:[computer_id] IP:[address] - Banned [.["reason"]]</span>")
+		log_access("Failed Login: [key] CID:[computer_id] IP:[address] - Banned [.["desc"]]")
+		message_admins("Failed Login: [key] CID:[computer_id] IP:[address] - Banned [.["desc"]]</span>")
 		return .
 
-	return ..()	//default pager ban stuff
+	return ..()	//Default pager ban stuff.
 
 
 var/savefile/Banlist
