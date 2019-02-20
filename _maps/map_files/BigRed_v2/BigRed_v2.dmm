@@ -6045,40 +6045,24 @@
 /obj/structure/closet/crate/freezer/rations,
 /obj/item/storage/toolbox/mechanical,
 /obj/item/device/multitool,
-/turf/open/floor{
-	tag = "icon-elevatorshaft (NORTH)";
-	icon_state = "elevatorshaft";
-	dir = 1
-	},
+/turf/open/floor/elevatorshaft,
 /area/bigredv2/caves/lambda_lab)
 "aqY" = (
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-elevatorshaft (NORTH)";
-	icon_state = "elevatorshaft";
-	dir = 1
-	},
+/turf/open/floor/elevatorshaft,
 /area/bigredv2/caves/lambda_lab)
 "aqZ" = (
 /obj/structure/closet/fireaxecabinet{
 	pixel_y = 32
 	},
-/turf/open/floor{
-	tag = "icon-elevatorshaft (NORTH)";
-	icon_state = "elevatorshaft";
-	dir = 1
-	},
+/turf/open/floor/elevatorshaft,
 /area/bigredv2/caves/lambda_lab)
 "ara" = (
 /obj/structure/table/holotable/wood,
 /obj/item/device/flashlight/lamp,
-/turf/open/floor{
-	tag = "icon-elevatorshaft (NORTH)";
-	icon_state = "elevatorshaft";
-	dir = 1
-	},
+/turf/open/floor/elevatorshaft,
 /area/bigredv2/caves/lambda_lab)
 "arb" = (
 /obj/machinery/power/apc/drained{
@@ -6289,27 +6273,15 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-elevatorshaft (NORTH)";
-	icon_state = "elevatorshaft";
-	dir = 1
-	},
+/turf/open/floor/elevatorshaft,
 /area/bigredv2/caves/lambda_lab)
 "arF" = (
-/turf/open/floor{
-	tag = "icon-elevatorshaft (NORTH)";
-	icon_state = "elevatorshaft";
-	dir = 1
-	},
+/turf/open/floor/elevatorshaft,
 /area/bigredv2/caves/lambda_lab)
 "arG" = (
 /obj/structure/bed,
 /obj/item/bedsheet/captain,
-/turf/open/floor{
-	tag = "icon-elevatorshaft (NORTH)";
-	icon_state = "elevatorshaft";
-	dir = 1
-	},
+/turf/open/floor/elevatorshaft,
 /area/bigredv2/caves/lambda_lab)
 "arH" = (
 /obj/structure/table/holotable/wood,
@@ -6317,10 +6289,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/caves/lambda_lab)
 "arI" = (
-/obj/structure/flora/pottedplant{
-	tag = "icon-plant-10";
-	icon_state = "plant-10"
-	},
+/obj/structure/flora/pottedplant/ten,
 /turf/open/floor/wood,
 /area/bigredv2/caves/lambda_lab)
 "arJ" = (
@@ -6550,22 +6519,11 @@
 /obj/structure/rack,
 /obj/structure/window/reinforced,
 /obj/item/clothing/suit/armor/vest,
-/turf/open/floor{
-	tag = "icon-elevatorshaft (NORTH)";
-	icon_state = "elevatorshaft";
-	dir = 1
-	},
+/turf/open/floor/elevatorshaft,
 /area/bigredv2/caves/lambda_lab)
 "aso" = (
-/mob/living/simple_animal/corgi/puppy{
-	desc = "It's a corgi puppy. MISTER WIGGLES!! HE IS THE GREATEST!";
-	name = "\improper Mister Wiggles"
-	},
-/turf/open/floor{
-	tag = "icon-elevatorshaft (NORTH)";
-	icon_state = "elevatorshaft";
-	dir = 1
-	},
+/mob/living/simple_animal/corgi/puppy/mrwiggles,
+/turf/open/floor/elevatorshaft,
 /area/bigredv2/caves/lambda_lab)
 "asp" = (
 /obj/structure/bed/chair/office/light{
@@ -6827,11 +6785,7 @@
 	icon_state = "0-4";
 	d2 = 4
 	},
-/turf/open/floor{
-	tag = "icon-elevatorshaft (NORTH)";
-	icon_state = "elevatorshaft";
-	dir = 1
-	},
+/turf/open/floor/elevatorshaft,
 /area/bigredv2/caves/lambda_lab)
 "atc" = (
 /obj/structure/cable{
@@ -6845,11 +6799,7 @@
 	name = "Safe-Room intercom";
 	pixel_y = -30
 	},
-/turf/open/floor{
-	tag = "icon-elevatorshaft (NORTH)";
-	icon_state = "elevatorshaft";
-	dir = 1
-	},
+/turf/open/floor/elevatorshaft,
 /area/bigredv2/caves/lambda_lab)
 "atd" = (
 /obj/structure/cable{
@@ -6857,11 +6807,7 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/turf/open/floor{
-	tag = "icon-elevatorshaft (NORTH)";
-	icon_state = "elevatorshaft";
-	dir = 1
-	},
+/turf/open/floor/elevatorshaft,
 /area/bigredv2/caves/lambda_lab)
 "ate" = (
 /obj/machinery/door_control{
@@ -6869,11 +6815,7 @@
 	name = "Blast-Door";
 	pixel_y = -25
 	},
-/turf/open/floor{
-	tag = "icon-elevatorshaft (NORTH)";
-	icon_state = "elevatorshaft";
-	dir = 1
-	},
+/turf/open/floor/elevatorshaft,
 /area/bigredv2/caves/lambda_lab)
 "atf" = (
 /obj/structure/closet/crate/medical,
@@ -6882,11 +6824,7 @@
 /obj/item/storage/firstaid/toxin,
 /obj/item/storage/firstaid/rad,
 /obj/item/device/radio/marine,
-/turf/open/floor{
-	tag = "icon-elevatorshaft (NORTH)";
-	icon_state = "elevatorshaft";
-	dir = 1
-	},
+/turf/open/floor/elevatorshaft,
 /area/bigredv2/caves/lambda_lab)
 "atg" = (
 /obj/machinery/vending/snack{
@@ -7097,11 +7035,7 @@
 	name = "\improper Lambda Lab Secure Storage";
 	req_access_txt = "0"
 	},
-/turf/open/floor{
-	tag = "icon-elevatorshaft (NORTH)";
-	icon_state = "elevatorshaft";
-	dir = 1
-	},
+/turf/open/floor/elevatorshaft,
 /area/bigredv2/caves/lambda_lab)
 "atJ" = (
 /obj/machinery/door_control{
@@ -7586,25 +7520,19 @@
 	},
 /area/bigredv2/outside/medical)
 "auP" = (
-/turf/open/floor{
-	tag = "icon-whiteblue (NORTHWEST)";
-	icon_state = "whiteblue";
+/turf/open/floor/tile/blue/whiteblue{
 	dir = 9
 	},
 /area/bigredv2/outside/medical)
 "auQ" = (
 /obj/machinery/sleeper,
-/turf/open/floor{
-	tag = "icon-whiteblue (NORTH)";
-	icon_state = "whiteblue";
+/turf/open/floor/tile/blue/whiteblue{
 	dir = 1
 	},
 /area/bigredv2/outside/medical)
 "auR" = (
 /obj/machinery/sleep_console,
-/turf/open/floor{
-	tag = "icon-whiteblue (NORTH)";
-	icon_state = "whiteblue";
+/turf/open/floor/tile/blue/whiteblue{
 	dir = 1
 	},
 /area/bigredv2/outside/medical)
@@ -7612,17 +7540,13 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-whiteblue (NORTH)";
-	icon_state = "whiteblue";
+/turf/open/floor/tile/blue/whiteblue{
 	dir = 1
 	},
 /area/bigredv2/outside/medical)
 "auT" = (
 /obj/machinery/sleep_console,
-/turf/open/floor{
-	tag = "icon-whiteblue (NORTHEAST)";
-	icon_state = "whiteblue";
+/turf/open/floor/tile/blue/whiteblue{
 	dir = 5
 	},
 /area/bigredv2/outside/medical)
@@ -7870,26 +7794,19 @@
 	},
 /area/bigredv2/outside/medical)
 "avz" = (
-/turf/open/floor{
-	tag = "icon-whiteblue (SOUTHWEST)";
-	icon_state = "whiteblue";
+/turf/open/floor/tile/blue/whiteblue{
 	dir = 10
 	},
 /area/bigredv2/outside/medical)
 "avA" = (
-/turf/open/floor{
-	tag = "icon-whiteblue";
-	icon_state = "whiteblue"
-	},
+/turf/open/floor/tile/blue/whiteblue,
 /area/bigredv2/outside/medical)
 "avB" = (
 /obj/machinery/camera/autoname{
 	dir = 8
 	},
-/turf/open/floor{
-	dir = 6;
-	icon_state = "whiteblue";
-	tag = "icon-whitehall (WEST)"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 6
 	},
 /area/bigredv2/outside/medical)
 "avC" = (
@@ -8212,9 +8129,7 @@
 /area/bigredv2/outside/medical)
 "awm" = (
 /obj/machinery/sleep_console,
-/turf/open/floor{
-	tag = "icon-whiteblue (EAST)";
-	icon_state = "whiteblue";
+/turf/open/floor/tile/blue/whiteblue{
 	dir = 4
 	},
 /area/bigredv2/outside/medical)
@@ -8444,16 +8359,12 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "awW" = (
-/turf/open/floor{
-	tag = "icon-whiteblue (NORTH)";
-	icon_state = "whiteblue";
+/turf/open/floor/tile/blue/whiteblue{
 	dir = 1
 	},
 /area/bigredv2/outside/medical)
 "awX" = (
-/turf/open/floor{
-	tag = "icon-whiteblue (NORTHEAST)";
-	icon_state = "whiteblue";
+/turf/open/floor/tile/blue/whiteblue{
 	dir = 5
 	},
 /area/bigredv2/outside/medical)
@@ -8663,24 +8574,16 @@
 /area/bigredv2/outside/medical)
 "axC" = (
 /obj/machinery/sleeper,
-/turf/open/floor{
-	tag = "icon-whiteblue";
-	icon_state = "whiteblue"
-	},
+/turf/open/floor/tile/blue/whiteblue,
 /area/bigredv2/outside/medical)
 "axD" = (
 /obj/machinery/sleep_console,
-/turf/open/floor{
-	tag = "icon-whiteblue";
-	icon_state = "whiteblue"
-	},
+/turf/open/floor/tile/blue/whiteblue,
 /area/bigredv2/outside/medical)
 "axE" = (
 /obj/machinery/sleep_console,
-/turf/open/floor{
-	dir = 6;
-	icon_state = "whiteblue";
-	tag = "icon-whitehall (WEST)"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 6
 	},
 /area/bigredv2/outside/medical)
 "axF" = (
@@ -23052,10 +22955,7 @@
 	},
 /area/bigredv2/outside/office_complex)
 "bhX" = (
-/obj/structure/flora/pottedplant{
-	tag = "icon-plant-10";
-	icon_state = "plant-10"
-	},
+/obj/structure/flora/pottedplant/ten,
 /turf/open/floor/wood,
 /area/bigredv2/outside/office_complex)
 "bhY" = (
@@ -29359,10 +29259,7 @@
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "byY" = (
-/obj/structure/flora/pottedplant{
-	tag = "icon-plant-10";
-	icon_state = "plant-10"
-	},
+/obj/structure/flora/pottedplant/ten,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "byZ" = (

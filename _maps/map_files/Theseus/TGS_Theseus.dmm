@@ -1178,10 +1178,7 @@
 /turf/open/floor/wood,
 /area/almayer/living/commandbunks)
 "adp" = (
-/obj/structure/flora/pottedplant{
-	tag = "icon-plant-10";
-	icon_state = "plant-10"
-	},
+/obj/structure/flora/pottedplant/ten,
 /turf/open/floor/wood,
 /area/almayer/living/commandbunks)
 "adq" = (
@@ -3908,10 +3905,7 @@
 /turf/open/floor/almayer,
 /area/almayer/command/corporateliaison)
 "ajZ" = (
-/obj/structure/flora/pottedplant{
-	tag = "icon-plant-10";
-	icon_state = "plant-10"
-	},
+/obj/structure/flora/pottedplant/ten,
 /turf/open/floor/almayer/mono,
 /area/almayer/command/corporateliaison)
 "aka" = (
@@ -10922,10 +10916,7 @@
 	},
 /area/almayer/shipboard/brig)
 "axu" = (
-/obj/structure/flora/pottedplant{
-	tag = "icon-plant-10";
-	icon_state = "plant-10"
-	},
+/obj/structure/flora/pottedplant/ten,
 /turf/open/floor/almayer{
 	tag = "icon-redfull";
 	icon_state = "redfull"
@@ -14117,10 +14108,7 @@
 	},
 /area/almayer/shipboard/brig)
 "aCR" = (
-/obj/structure/flora/pottedplant{
-	tag = "icon-plant-10";
-	icon_state = "plant-10"
-	},
+/obj/structure/flora/pottedplant/ten,
 /turf/open/floor/almayer/mono,
 /area/almayer/command/cic)
 "aCS" = (

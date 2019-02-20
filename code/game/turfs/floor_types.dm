@@ -471,6 +471,9 @@
 /turf/open/floor/tile/blue/taupebluecorner
 	icon_state = "bluecorner"
 
+/turf/open/floor/tile/blue/whiteblue
+	icon_state = "whiteblue"
+
 /turf/open/floor/tile/blue/whitebluefull
 	icon_state = "whitebluefull"
 
@@ -518,6 +521,9 @@
 
 /turf/open/floor/stairs/rampbottom
 	icon_state = "rampbottom"
+
+/turf/open/floor/elevatorshaft
+	icon_state = "elevatorshaft"
 
 /turf/open/floor/carpet
 	name = "Carpet"

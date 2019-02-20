@@ -261,6 +261,9 @@
 	icon = 'icons/obj/flora/plants.dmi'
 	icon_state = "plant-26"
 
+/obj/structure/flora/pottedplant/ten
+	icon_state = "plant-10"
+	
 //newbushes
 
 /obj/structure/flora/ausbushes

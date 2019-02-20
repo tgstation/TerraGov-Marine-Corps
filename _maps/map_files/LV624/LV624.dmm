@@ -14347,9 +14347,7 @@
 /area/lv624/lazarus/chapel)
 "aXp" = (
 /obj/machinery/vending/cigarette/colony,
-/turf/open/floor{
-	tag = "icon-whiteblue (NORTHWEST)";
-	icon_state = "whiteblue";
+/turf/open/floor/tile/blue/whiteblue{
 	dir = 9
 	},
 /area/lv624/lazarus/main_hall)
@@ -14388,9 +14386,7 @@
 /area/lv624/lazarus/main_hall)
 "aXv" = (
 /obj/machinery/vending/snack,
-/turf/open/floor{
-	tag = "icon-whiteblue (NORTHEAST)";
-	icon_state = "whiteblue";
+/turf/open/floor/tile/blue/whiteblue{
 	dir = 5
 	},
 /area/lv624/lazarus/main_hall)
@@ -14597,9 +14593,7 @@
 /area/lv624/lazarus/main_hall)
 "aYb" = (
 /obj/effect/decal/cleanable/vomit,
-/turf/open/floor{
-	tag = "icon-whiteblue (SOUTHWEST)";
-	icon_state = "whiteblue";
+/turf/open/floor/tile/blue/whiteblue{
 	dir = 10
 	},
 /area/lv624/lazarus/main_hall)
@@ -14617,9 +14611,7 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "aYe" = (
-/turf/open/floor{
-	tag = "icon-whiteblue (EAST)";
-	icon_state = "whiteblue";
+/turf/open/floor/tile/blue/whiteblue{
 	dir = 4
 	},
 /area/lv624/lazarus/main_hall)
@@ -14678,17 +14670,13 @@
 /area/lv624/ground/jungle4)
 "aYr" = (
 /obj/structure/largecrate/random,
-/turf/open/floor{
-	tag = "icon-whiteblue (EAST)";
-	icon_state = "whiteblue";
+/turf/open/floor/tile/blue/whiteblue{
 	dir = 4
 	},
 /area/lv624/lazarus/internal_affairs)
 "aYs" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor{
-	tag = "icon-whiteblue (NORTH)";
-	icon_state = "whiteblue";
+/turf/open/floor/tile/blue/whiteblue{
 	dir = 1
 	},
 /area/lv624/lazarus/internal_affairs)
@@ -14828,9 +14816,7 @@
 /area/lv624/lazarus/main_hall)
 "aYK" = (
 /obj/effect/decal/cleanable/blood/splatter/animated,
-/turf/open/floor{
-	tag = "icon-whiteblue (SOUTHWEST)";
-	icon_state = "whiteblue";
+/turf/open/floor/tile/blue/whiteblue{
 	dir = 10
 	},
 /area/lv624/lazarus/main_hall)
@@ -14964,9 +14950,7 @@
 /turf/closed/wall,
 /area/lv624/lazarus/internal_affairs)
 "aZe" = (
-/turf/open/floor{
-	tag = "icon-whiteblue (EAST)";
-	icon_state = "whiteblue";
+/turf/open/floor/tile/blue/whiteblue{
 	dir = 4
 	},
 /area/lv624/lazarus/internal_affairs)
@@ -14975,9 +14959,7 @@
 	dir = 1;
 	on = 1
 	},
-/turf/open/floor{
-	tag = "icon-whiteblue (NORTH)";
-	icon_state = "whiteblue";
+/turf/open/floor/tile/blue/whiteblue{
 	dir = 1
 	},
 /area/lv624/lazarus/internal_affairs)
@@ -15130,9 +15112,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor{
-	tag = "icon-whiteblue (SOUTHWEST)";
-	icon_state = "whiteblue";
+/turf/open/floor/tile/blue/whiteblue{
 	dir = 10
 	},
 /area/lv624/lazarus/main_hall)
@@ -15148,9 +15128,7 @@
 	dir = 4
 	},
 /obj/item/ammo_casing,
-/turf/open/floor{
-	tag = "icon-whiteblue (EAST)";
-	icon_state = "whiteblue";
+/turf/open/floor/tile/blue/whiteblue{
 	dir = 4
 	},
 /area/lv624/lazarus/main_hall)
@@ -15220,9 +15198,7 @@
 /turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
 "aZR" = (
-/turf/open/floor{
-	tag = "icon-whiteblue (NORTH)";
-	icon_state = "whiteblue";
+/turf/open/floor/tile/blue/whiteblue{
 	dir = 1
 	},
 /area/lv624/lazarus/internal_affairs)
@@ -15435,9 +15411,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-whiteblue (NORTHEAST)";
-	icon_state = "whiteblue";
+/turf/open/floor/tile/blue/whiteblue{
 	dir = 5
 	},
 /area/lv624/lazarus/main_hall)
@@ -15479,9 +15453,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor{
-	tag = "icon-whiteblue (SOUTHWEST)";
-	icon_state = "whiteblue";
+/turf/open/floor/tile/blue/whiteblue{
 	dir = 10
 	},
 /area/lv624/lazarus/main_hall)
@@ -15499,9 +15471,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor{
-	tag = "icon-whiteblue (EAST)";
-	icon_state = "whiteblue";
+/turf/open/floor/tile/blue/whiteblue{
 	dir = 4
 	},
 /area/lv624/lazarus/main_hall)
@@ -15650,9 +15620,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-whiteblue (EAST)";
-	icon_state = "whiteblue";
+/turf/open/floor/tile/blue/whiteblue{
 	dir = 4
 	},
 /area/lv624/lazarus/internal_affairs)
@@ -15812,9 +15780,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	tag = "icon-whiteblue (NORTHEAST)";
-	icon_state = "whiteblue";
+/turf/open/floor/tile/blue/whiteblue{
 	dir = 5
 	},
 /area/lv624/lazarus/main_hall)
@@ -15953,9 +15919,7 @@
 	},
 /obj/item/ammo_casing,
 /obj/item/ammo_magazine/smg/uzi/extended,
-/turf/open/floor{
-	tag = "icon-whiteblue (NORTHEAST)";
-	icon_state = "whiteblue";
+/turf/open/floor/tile/blue/whiteblue{
 	dir = 5
 	},
 /area/lv624/lazarus/main_hall)
@@ -15969,36 +15933,24 @@
 /area/shuttle/drop2/lz2)
 "bbF" = (
 /obj/machinery/vending/cola,
-/turf/open/floor{
-	tag = "icon-whiteblue";
-	icon_state = "whiteblue"
-	},
+/turf/open/floor/tile/blue/whiteblue,
 /area/lv624/lazarus/internal_affairs)
 "bbG" = (
-/turf/open/floor{
-	tag = "icon-whiteblue";
-	icon_state = "whiteblue"
-	},
+/turf/open/floor/tile/blue/whiteblue,
 /area/lv624/lazarus/internal_affairs)
 "bbH" = (
 /obj/structure/extinguisher_cabinet{
 	dir = 1
 	},
 /obj/effect/landmark/random_item/good,
-/turf/open/floor{
-	tag = "icon-whiteblue";
-	icon_state = "whiteblue"
-	},
+/turf/open/floor/tile/blue/whiteblue,
 /area/lv624/lazarus/internal_affairs)
 "bbI" = (
 /obj/machinery/firealarm{
 	pixel_y = 28
 	},
 /obj/machinery/vending/cigarette/colony,
-/turf/open/floor{
-	tag = "icon-whiteblue";
-	icon_state = "whiteblue"
-	},
+/turf/open/floor/tile/blue/whiteblue,
 /area/lv624/lazarus/internal_affairs)
 "bbJ" = (
 /obj/machinery/power/apc{
@@ -16008,10 +15960,7 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/turf/open/floor{
-	tag = "icon-whiteblue";
-	icon_state = "whiteblue"
-	},
+/turf/open/floor/tile/blue/whiteblue,
 /area/lv624/lazarus/internal_affairs)
 "bbK" = (
 /obj/machinery/status_display{
@@ -16021,10 +15970,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-whiteblue";
-	icon_state = "whiteblue"
-	},
+/turf/open/floor/tile/blue/whiteblue,
 /area/lv624/lazarus/internal_affairs)
 "bbL" = (
 /turf/open/gm/dirtgrassborder/corner{
@@ -16117,9 +16063,7 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "bca" = (
-/turf/open/floor{
-	tag = "icon-whiteblue (NORTHEAST)";
-	icon_state = "whiteblue";
+/turf/open/floor/tile/blue/whiteblue{
 	dir = 5
 	},
 /area/lv624/lazarus/main_hall)
@@ -16450,9 +16394,7 @@
 /area/lv624/lazarus/security)
 "bcT" = (
 /obj/machinery/vending/cola,
-/turf/open/floor{
-	tag = "icon-whiteblue (SOUTHWEST)";
-	icon_state = "whiteblue";
+/turf/open/floor/tile/blue/whiteblue{
 	dir = 10
 	},
 /area/lv624/lazarus/main_hall)
@@ -16483,10 +16425,8 @@
 /area/lv624/lazarus/main_hall)
 "bcY" = (
 /obj/structure/reagent_dispensers/watertank,
-/turf/open/floor{
-	dir = 6;
-	icon_state = "whiteblue";
-	tag = "icon-whitehall (WEST)"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 6
 	},
 /area/lv624/lazarus/main_hall)
 "bcZ" = (
@@ -16628,9 +16568,7 @@
 /area/shuttle/drop2/lz2)
 "bdw" = (
 /obj/machinery/light/small,
-/turf/open/floor{
-	tag = "icon-whiteblue (NORTH)";
-	icon_state = "whiteblue";
+/turf/open/floor/tile/blue/whiteblue{
 	dir = 1
 	},
 /area/lv624/lazarus/internal_affairs)
@@ -16640,17 +16578,13 @@
 	name = "Dome Lockdown";
 	pixel_y = -25
 	},
-/turf/open/floor{
-	tag = "icon-whiteblue (NORTH)";
-	icon_state = "whiteblue";
+/turf/open/floor/tile/blue/whiteblue{
 	dir = 1
 	},
 /area/lv624/lazarus/internal_affairs)
 "bdy" = (
 /obj/item/storage/toolbox/mechanical,
-/turf/open/floor{
-	tag = "icon-whiteblue (EAST)";
-	icon_state = "whiteblue";
+/turf/open/floor/tile/blue/whiteblue{
 	dir = 4
 	},
 /area/lv624/lazarus/internal_affairs)
@@ -16660,9 +16594,7 @@
 	pixel_y = 3
 	},
 /obj/item/ammo_casing,
-/turf/open/floor{
-	tag = "icon-whiteblue (NORTH)";
-	icon_state = "whiteblue";
+/turf/open/floor/tile/blue/whiteblue{
 	dir = 1
 	},
 /area/lv624/lazarus/internal_affairs)
@@ -16678,25 +16610,19 @@
 /obj/machinery/newscaster{
 	pixel_y = -28
 	},
-/turf/open/floor{
-	tag = "icon-whiteblue (NORTH)";
-	icon_state = "whiteblue";
+/turf/open/floor/tile/blue/whiteblue{
 	dir = 1
 	},
 /area/lv624/lazarus/internal_affairs)
 "bdC" = (
 /obj/effect/landmark/start/surv_spawn,
-/turf/open/floor{
-	tag = "icon-whiteblue (NORTH)";
-	icon_state = "whiteblue";
+/turf/open/floor/tile/blue/whiteblue{
 	dir = 1
 	},
 /area/lv624/lazarus/internal_affairs)
 "bdD" = (
 /obj/machinery/vending/coffee,
-/turf/open/floor{
-	tag = "icon-whiteblue (NORTH)";
-	icon_state = "whiteblue";
+/turf/open/floor/tile/blue/whiteblue{
 	dir = 1
 	},
 /area/lv624/lazarus/internal_affairs)
@@ -16927,9 +16853,7 @@
 	pixel_x = 5;
 	pixel_y = -2
 	},
-/turf/open/floor{
-	tag = "icon-whiteblue (EAST)";
-	icon_state = "whiteblue";
+/turf/open/floor/tile/blue/whiteblue{
 	dir = 4
 	},
 /area/lv624/lazarus/internal_affairs)
@@ -16947,9 +16871,7 @@
 /obj/effect/decal/cleanable/blood{
 	layer = 3
 	},
-/turf/open/floor{
-	tag = "icon-whiteblue (NORTH)";
-	icon_state = "whiteblue";
+/turf/open/floor/tile/blue/whiteblue{
 	dir = 1
 	},
 /area/lv624/lazarus/internal_affairs)
@@ -17258,9 +17180,7 @@
 /area/lv624/lazarus/internal_affairs)
 "bfh" = (
 /obj/item/weapon/gun/smg/mp5,
-/turf/open/floor{
-	tag = "icon-whiteblue (EAST)";
-	icon_state = "whiteblue";
+/turf/open/floor/tile/blue/whiteblue{
 	dir = 4
 	},
 /area/lv624/lazarus/internal_affairs)
@@ -17270,9 +17190,7 @@
 	pixel_x = 3;
 	pixel_y = -3
 	},
-/turf/open/floor{
-	tag = "icon-whiteblue (NORTH)";
-	icon_state = "whiteblue";
+/turf/open/floor/tile/blue/whiteblue{
 	dir = 1
 	},
 /area/lv624/lazarus/internal_affairs)
@@ -17504,9 +17422,7 @@
 /area/lv624/lazarus/internal_affairs)
 "bfU" = (
 /obj/item/spacecash/c100,
-/turf/open/floor{
-	tag = "icon-whiteblue (NORTH)";
-	icon_state = "whiteblue";
+/turf/open/floor/tile/blue/whiteblue{
 	dir = 1
 	},
 /area/lv624/lazarus/internal_affairs)
@@ -17685,17 +17601,13 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-whiteblue (EAST)";
-	icon_state = "whiteblue";
+/turf/open/floor/tile/blue/whiteblue{
 	dir = 4
 	},
 /area/lv624/lazarus/internal_affairs)
 "bgG" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
-/turf/open/floor{
-	tag = "icon-whiteblue (NORTH)";
-	icon_state = "whiteblue";
+/turf/open/floor/tile/blue/whiteblue{
 	dir = 1
 	},
 /area/lv624/lazarus/internal_affairs)
@@ -17846,9 +17758,7 @@
 /area/lv624/ground/jungle3)
 "bhg" = (
 /obj/machinery/vending/snack,
-/turf/open/floor{
-	tag = "icon-whiteblue (EAST)";
-	icon_state = "whiteblue";
+/turf/open/floor/tile/blue/whiteblue{
 	dir = 4
 	},
 /area/lv624/lazarus/internal_affairs)

@@ -13670,10 +13670,7 @@
 	},
 /area/prison/residential/north)
 "aBT" = (
-/obj/structure/flora/pottedplant{
-	tag = "icon-plant-10";
-	icon_state = "plant-10"
-	},
+/obj/structure/flora/pottedplant/ten,
 /turf/open/floor/prison{
 	tag = "icon-bright_clean2 (SOUTHWEST)";
 	icon_state = "bright_clean2";
@@ -51601,10 +51598,7 @@
 /turf/open/beach/sand,
 /area/prison/residential/south)
 "bWE" = (
-/obj/structure/flora/pottedplant{
-	tag = "icon-plant-10";
-	icon_state = "plant-10"
-	},
+/obj/structure/flora/pottedplant/ten,
 /turf/open/floor/prison{
 	tag = "icon-bright_clean2 (SOUTHWEST)";
 	icon_state = "bright_clean2";
