@@ -247,3 +247,7 @@ Legacy - work on reworking/removing these.
 
 /datum/config_entry/flag/allow_shutdown
 	protection = CONFIG_ENTRY_LOCKED
+
+/datum/config_entry/string/tgs3_commandline_path
+	protection = CONFIG_ENTRY_LOCKED | CONFIG_ENTRY_HIDDEN
+	config_entry_value = "C:\\Program Files (x86)\\TG Station Server\\TGCommandLine.exe"
