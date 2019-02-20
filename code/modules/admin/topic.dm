@@ -507,7 +507,7 @@
 		if(!ismob(M))
 			return
 
-		jobban_panel(M)
+		mob_jobban_panel(M)
 
 
 	else if(href_list["jobban"])
@@ -621,6 +621,111 @@
 			if(msg)
 				message_admins("[ADMIN_TPMONTY(usr)] un-jobbanned [ADMIN_TPMONTY(M)] from [msg].")
 				to_chat(M, "<span class='danger'>You have been un-jobbanned by [usr.client.ckey] from [msg].</span>")
+			jobban_savebanfile()
+
+
+	else if(href_list["jobbankey"])
+		if(!check_rights(R_BAN))
+			return
+
+		var/key = href_list["key"]
+		if(!key)
+			return
+
+		if(!SSjob)
+			return
+
+		var/list/joblist = list()
+		switch(href_list["jobbankey"])
+			if("commanddept")
+				for(var/jobPos in JOBS_COMMAND)
+					if(!jobPos)
+						continue
+					var/datum/job/temp = SSjob.name_occupations[jobPos]
+					if(!temp)
+						continue
+					joblist += temp.title
+			if("policedept")
+				for(var/jobPos in JOBS_POLICE)
+					if(!jobPos)
+						continue
+					var/datum/job/temp = SSjob.name_occupations[jobPos]
+					if(!temp)
+						continue
+					joblist += temp.title
+			if("engineeringdept")
+				for(var/jobPos in JOBS_ENGINEERING)
+					if(!jobPos)
+						continue
+					var/datum/job/temp = SSjob.name_occupations[jobPos]
+					if(!temp)
+						continue
+					joblist += temp.title
+			if("cargodept")
+				for(var/jobPos in JOBS_REQUISITIONS)
+					if(!jobPos)
+						continue
+					var/datum/job/temp = SSjob.name_occupations[jobPos]
+					if(!temp)
+						continue
+					joblist += temp.title
+			if("medicaldept")
+				for(var/jobPos in JOBS_MEDICAL)
+					if(!jobPos)
+						continue
+					var/datum/job/temp = SSjob.name_occupations[jobPos]
+					if(!temp)
+						continue
+					joblist += temp.title
+			if("marinedept")
+				for(var/jobPos in JOBS_MARINES)
+					if(!jobPos)
+						continue
+					var/datum/job/temp = SSjob.name_occupations[jobPos]
+					if(!temp)
+						continue
+					joblist += temp.title
+			else
+				joblist += href_list["jobban"]
+
+		//Create a list of unbanned jobs within joblist
+		var/list/notbannedlist = list()
+		for(var/job in joblist)
+			if(!jobban_key_isbanned(key, job))
+				notbannedlist += job
+
+		if(length(notbannedlist))
+			var/reason = input("Please state the reason for the jobban.", "Reason", "") as text|null
+			if(reason)
+				var/msg
+				for(var/job in notbannedlist)
+					log_admin_private("[key_name(usr)] jobbanned [key] from [job].")
+					jobban_key_fullban(key, job, "[reason]; By [usr.client.ckey] on [time2text(world.realtime)]")
+					if(!msg)
+						msg = job
+					else
+						msg += ", [job]"
+				notes_add(key, "Banned  from [msg] - [reason]", usr)
+				message_admins("[ADMIN_TPMONTY(usr)] banned [key] from [msg].")
+				jobban_savebanfile()
+			return
+
+		if(length(joblist))
+			var/msg
+			for(var/job in joblist)
+				var/reason = jobban_key_isbanned(key, job)
+				if(!reason)
+					continue
+				if(alert("Job: '[job]' Reason: '[reason]' Un-jobban?","Please Confirm","Yes","No") != "Yes")
+					continue
+				log_admin_private("[key_name(usr)] un-jobbanned [key] from [job].")
+				jobban_key_unban(key, job)
+				if(!msg)
+					msg = job
+				else
+					msg += ", [job]"
+			if(msg)
+				message_admins("[ADMIN_TPMONTY(usr)] un-jobbanned [key] from [msg].")
 			jobban_savebanfile()
 
 

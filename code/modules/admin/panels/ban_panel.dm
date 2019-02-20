@@ -68,7 +68,7 @@
 	A.Topic("bankey", list("bankey" = key, "admin_token" = RawHrefToken(), "_src_" = A))
 
 
-/datum/admins/proc/jobban_panel(var/mob/M)
+/datum/admins/proc/mob_jobban_panel(var/mob/M)
 	if(!check_rights(R_BAN))
 		return
 
@@ -273,6 +273,227 @@
 		jobs += "<td width='20%'><a href='?src=[ref];jobban=Predator;mob=[REF(M)]'><font color=red>Predator</font></a></td>"
 	else
 		jobs += "<td width='20%'><a href='?src=[ref];jobban=Predator;mob=[REF(M)]'>Predator</a></td>"
+
+
+	jobs += "</tr></table>"
+
+	body = "<body>[jobs]</body>"
+	dat = "<tt>[header][body]</tt>"
+	usr << browse(dat, "window=jobban;size=800x490")
+
+
+/datum/admins/proc/jobban_panel()
+	set category = "Admin"
+	set name = "Jobban Panel"
+
+	if(!check_rights(R_BAN))
+		return
+
+	if(!SSjob)
+		return
+
+	if(!CONFIG_GET(flag/ban_legacy_system))
+		return
+
+	var/key = input("Please input a key:", "Ban") as null|text
+	if(!key)
+		return
+
+	key = ckey(key)
+
+	if(key in GLOB.directory)
+		to_chat(usr, "<span class='warning'>This player is currently present, please jobban them through the player panel.")
+		return
+
+	var/ref = "[REF(usr.client.holder)];[HrefToken()]"
+	var/dat = ""
+	var/header = "<head><title>Job-Ban Panel: [key]</title></head>"
+	var/body
+	var/jobs = ""
+
+	var/counter = 0
+
+//Command (Blue)
+	jobs += "<table cellpadding='1' cellspacing='0' width='100%'>"
+	jobs += "<tr align='center' bgcolor='ccccff'><th colspan='[length(JOBS_COMMAND)]'><a href='?src=[ref];jobbankey=commanddept;key=key'>Command Positions</a></th></tr><tr align='center'>"
+	for(var/jobPos in JOBS_COMMAND)
+		if(!jobPos)
+			continue
+		var/datum/job/job = SSjob.name_occupations[jobPos]
+		if(!job)
+			continue
+
+		if(jobban_key_isbanned(key, job.title))
+			jobs += "<td width='20%'><a href='?src=[ref];jobbankey=[job.title];key=key'><font color=red>[oldreplacetext(job.title, " ", "&nbsp")]</font></a></td>"
+			counter++
+		else
+			jobs += "<td width='20%'><a href='?src=[ref];jobbankey=[job.title];key=key'>[oldreplacetext(job.title, " ", "&nbsp")]</a></td>"
+			counter++
+
+		if(counter >= 6)
+			jobs += "</tr><tr>"
+			counter = 0
+	jobs += "</tr></table>"
+
+
+//Police (Red)
+	jobs += "<table cellpadding='1' cellspacing='0' width='100%'>"
+	jobs += "<tr align='center' bgcolor='ffbab7'><th colspan='[length(JOBS_POLICE)]'><a href='?src=[ref];jobbankey=policedept;key=[key]'>Police Positions</a></th></tr><tr align='center'>"
+	for(var/jobPos in JOBS_POLICE)
+		if(!jobPos)
+			continue
+		var/datum/job/job = SSjob.name_occupations[jobPos]
+		if(!job)
+			continue
+
+		if(jobban_key_isbanned(key, job.title))
+			jobs += "<td width='20%'><a href='?src=[ref];jobbankey=[job.title];key=[key]'><font color=red>[oldreplacetext(job.title, " ", "&nbsp")]</font></a></td>"
+			counter++
+		else
+			jobs += "<td width='20%'><a href='?src=[ref];jobbankey=[job.title];key=[key]'>[oldreplacetext(job.title, " ", "&nbsp")]</a></td>"
+			counter++
+
+		if(counter >= 6)
+			jobs += "</tr><tr>"
+			counter = 0
+	jobs += "</tr></table>"
+
+
+//Engineering (Yellow)
+	counter = 0
+	jobs += "<table cellpadding='1' cellspacing='0' width='100%'>"
+	jobs += "<tr bgcolor='fff5cc'><th colspan='[length(JOBS_ENGINEERING)]'><a href='?src=[ref];jobbankey=engineeringdept;key=[key]'>Engineering Positions</a></th></tr><tr align='center'>"
+	for(var/jobPos in JOBS_ENGINEERING)
+		if(!jobPos)
+			continue
+		var/datum/job/job = SSjob.name_occupations[jobPos]
+
+		if(!job)
+			continue
+
+		if(jobban_key_isbanned(key, job.title))
+			jobs += "<td width='20%'><a href='?src=[ref];jobbankey=[job.title];key=[key]'><font color=red>[oldreplacetext(job.title, " ", "&nbsp")]</font></a></td>"
+			counter++
+		else
+			jobs += "<td width='20%'><a href='?src=[ref];jobbankey=[job.title];key=[key]'>[oldreplacetext(job.title, " ", "&nbsp")]</a></td>"
+			counter++
+
+		if(counter >= 6)
+			jobs += "</tr><tr align='center'>"
+			counter = 0
+	jobs += "</tr></table>"
+
+//Cargo (Yellow)
+	counter = 0
+	jobs += "<table cellpadding='1' cellspacing='0' width='100%'>"
+	jobs += "<tr bgcolor='fff5cc'><th colspan='[length(JOBS_REQUISITIONS)]'><a href='?src=[ref];jobbankey=cargodept;key=[key]'>Requisition Positions</a></th></tr><tr align='center'>"
+	for(var/jobPos in JOBS_REQUISITIONS)
+		if(!jobPos)
+			continue
+		var/datum/job/job = SSjob.name_occupations[jobPos]
+		if(!job)
+			continue
+
+		if(jobban_key_isbanned(key, job.title))
+			jobs += "<td width='20%'><a href='?src=[ref];jobbankey=[job.title];key=[key]'><font color=red>[oldreplacetext(job.title, " ", "&nbsp")]</font></a></td>"
+			counter++
+		else
+			jobs += "<td width='20%'><a href='?src=[ref];jobbankey=[job.title];key=[key]'>[oldreplacetext(job.title, " ", "&nbsp")]</a></td>"
+			counter++
+
+		if(counter >= 6)
+			jobs += "</tr><tr align='center'>"
+			counter = 0
+	jobs += "</tr></table>"
+
+//Medical (White)
+	counter = 0
+	jobs += "<table cellpadding='1' cellspacing='0' width='100%'>"
+	jobs += "<tr bgcolor='ffeef0'><th colspan='[length(JOBS_MEDICAL)]'><a href='?src=[ref];jobbankey=medicaldept;key=[key]'>Medical Positions</a></th></tr><tr align='center'>"
+	for(var/jobPos in JOBS_MEDICAL)
+		if(!jobPos)
+			continue
+		var/datum/job/job = SSjob.name_occupations[jobPos]
+		if(!job)
+			continue
+
+		if(jobban_key_isbanned(key, job.title))
+			jobs += "<td width='20%'><a href='?src=[ref];jobbankey=[job.title];key=[key]'><font color=red>[oldreplacetext(job.title, " ", "&nbsp")]</font></a></td>"
+			counter++
+		else
+			jobs += "<td width='20%'><a href='?src=[ref];jobbankey=[job.title];key=[key]'>[oldreplacetext(job.title, " ", "&nbsp")]</a></td>"
+			counter++
+
+		if(counter >= 6)
+			jobs += "</tr><tr align='center'>"
+			counter = 0
+	jobs += "</tr></table>"
+
+//Marines
+	counter = 0
+	jobs += "<table cellpadding='1' cellspacing='0' width='100%'>"
+	jobs += "<tr bgcolor='fff5cc'><th colspan='[length(JOBS_MARINES)]'><a href='?src=[ref];jobbankey=marinedept;key=[key]'>Marine Positions</a></th></tr><tr align='center'>"
+	for(var/jobPos in JOBS_MARINES)
+		if(!jobPos)
+			continue
+		var/datum/job/job = SSjob.name_occupations[jobPos]
+		if(!job)
+			continue
+
+		if(jobban_key_isbanned(key, job.title))
+			jobs += "<td width='20%'><a href='?src=[ref];jobbankey=[job.title];key=[key]'><font color=red>[oldreplacetext(job.title, " ", "&nbsp")]</font></a></td>"
+			counter++
+		else
+			jobs += "<td width='20%'><a href='?src=[ref];jobbankey=[job.title];key=[key]'>[oldreplacetext(job.title, " ", "&nbsp")]</a></td>"
+			counter++
+
+		if(counter >= 6)
+			jobs += "</tr><tr align='center'>"
+			counter = 0
+	jobs += "</tr></table>"
+
+//Antagonist (Orange)
+	var/isbanned_dept = jobban_key_isbanned(key, "Syndicate")
+	jobs += "<table cellpadding='1' cellspacing='0' width='100%'>"
+	jobs += "<tr bgcolor='ffeeaa'><th colspan='10'><a href='?src=[ref];jobbankey=Syndicate;key=[key]'>Misc Positions</a></th></tr><tr align='center'>"
+
+	//ERT
+	if(jobban_key_isbanned(key, "Emergency Response Team") || isbanned_dept)
+		jobs += "<td width='20%'><a href='?src=[ref];jobbankey=Emergency Response Team;key=[key]'><font color=red>Emergency Response Team</font></a></td>"
+	else
+		jobs += "<td width='20%'><a href='?src=[ref];jobbankey=Emergency Response Team;key=[key]'>Emergency Response Team</a></td>"
+
+	//Xenos
+	if(jobban_key_isbanned(key, "Alien") || isbanned_dept)
+		jobs += "<td width='20%'><a href='?src=[ref];jobbankey=Alien;key=[key]'><font color=red>Alien</font></a></td>"
+	else
+		jobs += "<td width='20%'><a href='?src=[ref];jobbankey=Alien;key=[key]'>Alien</a></td>"
+
+	//Queen
+	if(jobban_key_isbanned(key, "Queen") || isbanned_dept)
+		jobs += "<td width='20%'><a href='?src=[ref];jobbankey=Queen;key=[key]'><font color=red>Queen</font></a></td>"
+	else
+		jobs += "<td width='20%'><a href='?src=[ref];jobbankey=Queen;key=[key]'>Queen</a></td>"
+
+	jobs += "</tr><tr align='center'>"
+
+	//Survivor
+	if(jobban_key_isbanned(key, "Survivor") || isbanned_dept)
+		jobs += "<td width='20%'><a href='?src=[ref];jobbankey=Survivor;key=[key]'><font color=red>Survivor</font></a></td>"
+	else
+		jobs += "<td width='20%'><a href='?src=[ref];jobbankey=Survivor;key=[key]'>Survivor</a></td>"
+
+	//Synthetic
+	if(jobban_key_isbanned(key, "Synthetic") || isbanned_dept)
+		jobs += "<td width='20%'><a href='?src=[ref];jobbankey=Synthetic;key=[key]'><font color=red>Synthetic</font></a></td>"
+	else
+		jobs += "<td width='20%'><a href='?src=[ref];jobbankey=Synthetic;key=[key]'>Synthetic</a></td>"
+
+	//Predator
+	if(jobban_key_isbanned(key, "Predator") || isbanned_dept)
+		jobs += "<td width='20%'><a href='?src=[ref];jobbankey=Predator;key=[key]'><font color=red>Predator</font></a></td>"
+	else
+		jobs += "<td width='20%'><a href='?src=[ref];jobbankey=Predator;key=[key]'>Predator</a></td>"
 
 
 	jobs += "</tr></table>"
@@ -526,6 +747,13 @@ var/jobban_keylist[0]		//to store the keys & ranks
 	jobban_keylist[rank][M.ckey] = reason
 
 
+/proc/jobban_key_fullban(key, rank, reason)
+	if(!key)
+		return
+	rank = check_jobban_path(rank)
+	jobban_keylist[rank][key] = reason
+
+
 /proc/jobban_client_fullban(ckey, rank)
 	if(!ckey || !rank)
 		return
@@ -543,6 +771,15 @@ var/jobban_keylist[0]		//to store the keys & ranks
 			if(CONFIG_GET(flag/usewhitelist) && !check_whitelist(M))
 				return "Whitelisted Job"
 		return jobban_keylist[rank][M.ckey]
+
+
+/proc/jobban_key_isbanned(key, rank)
+	if(key && rank)
+		rank = check_jobban_path(rank)
+		if(guest_jobbans(rank))
+			if(CONFIG_GET(flag/guest_jobban) && IsGuestKey(key))
+				return "Guest Job-ban"
+		return jobban_keylist[rank][key]
 
 
 /hook/startup/proc/loadJobBans()
@@ -570,6 +807,10 @@ var/jobban_keylist[0]		//to store the keys & ranks
 
 /proc/jobban_unban(mob/M, rank)
 	jobban_remove("[M.ckey] - [ckey(rank)]")
+
+
+/proc/jobban_key_unban(key, rank)
+	jobban_remove("[key] - [ckey(rank)]")
 
 
 /proc/jobban_remove(X)

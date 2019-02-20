@@ -298,6 +298,7 @@ GLOBAL_LIST_INIT(admin_verbs_ban, world.AVban())
 	return list(
 	/datum/admins/proc/ban_offline,
 	/datum/admins/proc/unban_panel,
+	/datum/admins/proc/jobban_panel,
 	/datum/admins/proc/player_notes_show,
 	/datum/admins/proc/player_notes_list
 	)
