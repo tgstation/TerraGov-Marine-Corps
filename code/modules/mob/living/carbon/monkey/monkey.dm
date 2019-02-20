@@ -341,6 +341,11 @@
 	if(wear_id) wear_id.emp_act(severity)
 	..()
 
+/mob/living/carbon/monkey/has_smoke_protection()
+	if(wear_mask?.flags_inventory & BLOCKGASEFFECT)
+		return TRUE
+	return ..()
+
 /mob/living/carbon/monkey/ex_act(severity)
 	flash_eyes()
 

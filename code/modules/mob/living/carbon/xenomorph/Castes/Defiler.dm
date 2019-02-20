@@ -36,6 +36,7 @@
 	armor_deflection = 30
 
 	// *** Defiler Abilities *** //
+	bomb_strength = 1 //Used by the dispense neurogas power.
 	var/neuro_claws_amount = DEFILER_CLAW_AMOUNT
 
 /datum/xeno_caste/defiler/mature
@@ -68,6 +69,7 @@
 	armor_deflection = 35
 
 	// *** Defiler Abilities *** //
+	bomb_strength = 1.5
 	neuro_claws_amount = 7
 
 /datum/xeno_caste/defiler/elder
@@ -100,6 +102,7 @@
 	armor_deflection = 38
 
 	// *** Defiler Abilities *** //
+	bomb_strength = 1.5
 	neuro_claws_amount = 7.7
 
 /datum/xeno_caste/defiler/ancient
@@ -132,6 +135,7 @@
 	armor_deflection = 40
 
 	// *** Defiler Abilities *** //
+	bomb_strength = 2
 	neuro_claws_amount = 8
 
 /mob/living/carbon/Xenomorph/Defiler
@@ -149,7 +153,7 @@
 	wound_type = "defiler" //used to match appropriate wound overlays
 	tier = 3
 	upgrade = 0
-	var/datum/effect_system/smoke_spread/smoke_system = null
+	var/datum/effect_system/smoke_spread/xeno/smoke_system = null
 	var/last_defiler_sting = null
 	var/last_emit_neurogas = null
 	var/last_use_neuroclaws = null

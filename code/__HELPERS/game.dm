@@ -22,6 +22,17 @@
 		return null
 	return format_text ? format_text(A.name) : A.name
 
+/proc/get_open_turf_in_dir(atom/center, dir)
+	var/turf/open/T = get_ranged_target_turf(center, dir, 1)
+	if(istype(T))
+		return T
+
+/proc/get_adjacent_open_turfs(atom/center)
+	. = list(get_open_turf_in_dir(center, NORTH),
+			get_open_turf_in_dir(center, SOUTH),
+			get_open_turf_in_dir(center, EAST),
+			get_open_turf_in_dir(center, WEST))
+	listclearnulls(.)
 
 // Like view but bypasses luminosity check
 
@@ -402,7 +413,33 @@ datum/projectile_data
 	var/b = mixOneColor(weights, blues)
 	return rgb(r,g,b)
 
+/proc/mixOneColor(var/list/weight, var/list/color)
+	if (!weight || !color || length(weight)!=length(color))
+		return 0
 
+	var/contents = length(weight)
+	var/i
+
+	//normalize weights
+	var/listsum = 0
+	for(i in 1 to contents)
+		listsum += weight[i]
+	for(i in 1 to contents)
+		weight[i] /= listsum
+
+	//mix them
+	var/mixedcolor = 0
+	for(i in 1 to contents)
+		mixedcolor += weight[i]*color[i]
+	mixedcolor = round(mixedcolor)
+
+	//until someone writes a formal proof for this algorithm, let's keep this in
+//	if(mixedcolor<0x00 || mixedcolor>0xFF)
+//		return 0
+	//that's not the kind of operation we are running here, nerd
+	mixedcolor=min(max(mixedcolor,0),255)
+
+	return mixedcolor
 
 /proc/convert_k2c(var/temp)
 	return ((temp - T0C))

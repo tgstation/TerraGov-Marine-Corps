@@ -19,6 +19,8 @@
 /mob/living/carbon/Xenomorph/is_mob_restrained()
 	return FALSE
 
+/mob/living/carbon/Xenomorph/has_smoke_protection()
+	return TRUE
 
 /mob/living/carbon/Xenomorph/a_select_zone(input as text, screen_num as null|num)
 	screen_num = 9

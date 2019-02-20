@@ -761,14 +761,14 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		empulse(P.loc, 3, 6, 1)
 		message += "Your [P] emits a wave of electromagnetic energy!"
 	if(i>=25 && i<=40) //Smoke
-		var/datum/effect_system/smoke_spread/chem/S = new /datum/effect_system/smoke_spread/chem
+		var/datum/effect_system/smoke_spread/S = new
 		S.attach(P.loc)
 		S.set_up(P, 10, 0, P.loc)
 		playsound(P.loc, 'sound/effects/smoke.ogg', 25, 1, 4)
 		S.start()
 		message += "Large clouds of smoke billow forth from your [P]!"
 	if(i>=40 && i<=45) //Bad smoke
-		var/datum/effect_system/smoke_spread/bad/B = new /datum/effect_system/smoke_spread/bad
+		var/datum/effect_system/smoke_spread/bad/B = new
 		B.attach(P.loc)
 		B.set_up(3, 0, P.loc)
 		playsound(P.loc, 'sound/effects/smoke.ogg', 25, 1, 4)

@@ -11,16 +11,3 @@
 		var/turf/currentTurf = loc
 		if(!currentTurf.lighting_lumcount)
 			playsound_local(src, pick(scarySounds), 50, 1, -1)
-
-	//Not the best place to put this, but eh
-	//Smoke/boiler glob processing!
-	if(isturf(loc) && stat != DEAD)
-		for(var/obj/effect/particle_effect/smoke/xeno_weak/X in get_turf(src))
-			if(X)
-				X.affect(src)
-				break
-		for(var/obj/effect/particle_effect/smoke/xeno_burn/Z in get_turf(src))
-			if(Z)
-				Z.affect(src)
-				break
-

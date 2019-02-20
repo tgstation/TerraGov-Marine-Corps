@@ -18,7 +18,7 @@
 	current_cycle++
 	M.nutrition += nutriment_factor * REM
 	if(adj_temp)
-		M.adjust_bodytemperature(adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT, (adj_temp < 0 ? targ_temp : 0), (adj_temp > 0 ? targ_temp : INFINITY))
+		M.adjust_bodytemperature(adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT, (adj_temp < 0 ? targ_temp : INFINITY), (adj_temp > 0 ? 0 : targ_temp))
 	holder.remove_reagent(src.id, custom_metabolism)
 	return TRUE
 

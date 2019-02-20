@@ -15,3 +15,6 @@
 	if(reagents.has_reagent("lexorin") || in_stasis)
 		return FALSE
 	return TRUE
+
+/mob/living/carbon/proc/has_smoke_protection()
+	return FALSE

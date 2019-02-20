@@ -1463,58 +1463,48 @@
 	ping = "ping_x"
 	debilitate = list(19,21,0,0,11,12,0,0)
 	flags_ammo_behavior = AMMO_XENO_TOX|AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE|AMMO_IGNORE_RESIST
-	var/datum/effect_system/smoke_spread/smoke_system
+	var/datum/effect_system/smoke_spread/xeno/smoke_system
+	var/danger_message = "<span class='danger'>A glob of acid lands with a splat and explodes into noxious fumes!</span>"
 	armor_type = "bio"
 
 /datum/ammo/xeno/boiler_gas/New()
-	..()
+	. = ..()
 	set_xeno_smoke()
 	accuracy_var_high = CONFIG_GET(number/combat_define/max_proj_variance)
 	max_range = CONFIG_GET(number/combat_define/long_shell_range)
 
 /datum/ammo/xeno/boiler_gas/Destroy()
-	qdel(smoke_system)
-	smoke_system = null
-	. = ..()
+	QDEL_NULL(smoke_system)
+	return ..()
 
 /datum/ammo/xeno/boiler_gas/on_hit_mob(mob/M, obj/item/projectile/P)
 	if(iscarbon(M))
 		var/mob/living/carbon/C = M
 		if(C.status_flags & XENO_HOST && istype(C.buckled, /obj/structure/bed/nest) || C.stat == DEAD)
 			return
-	if(isxenoboiler(P.firer))
-		var/mob/living/carbon/Xenomorph/Boiler/B = P.firer
-		smoke_system.amount = B.upgrade
-	drop_nade(get_turf(P))
+	drop_nade(get_turf(P), P.firer)
 
 /datum/ammo/xeno/boiler_gas/on_hit_obj(obj/O, obj/item/projectile/P)
-	if(isxenoboiler(P.firer))
-		var/mob/living/carbon/Xenomorph/Boiler/B = P.firer
-		smoke_system.amount = B.upgrade
-	drop_nade(get_turf(P))
+	drop_nade(get_turf(P), P.firer)
 
 /datum/ammo/xeno/boiler_gas/on_hit_turf(turf/T, obj/item/projectile/P)
-	if(isxenoboiler(P.firer))
-		var/mob/living/carbon/Xenomorph/Boiler/B = P.firer
-		smoke_system.amount = B.upgrade
-	if(T.density && isturf(P.loc))
-		drop_nade(P.loc) //we don't want the gas globs to land on dense turfs, they block smoke expansion.
-	else
-		drop_nade(T)
+	var/target = (T.density && isturf(P.loc)) ? P.loc : T
+	drop_nade(target, P.firer) //we don't want the gas globs to land on dense turfs, they block smoke expansion.
 
 /datum/ammo/xeno/boiler_gas/do_at_max_range(obj/item/projectile/P)
-	if(isxenoboiler(P.firer))
-		var/mob/living/carbon/Xenomorph/Boiler/B = P.firer
-		smoke_system.amount = B.upgrade
-	drop_nade(get_turf(P))
+	drop_nade(get_turf(P), P.firer)
 
 /datum/ammo/xeno/boiler_gas/proc/set_xeno_smoke(obj/item/projectile/P)
-		smoke_system = new /datum/effect_system/smoke_spread/xeno_weaken()
+	smoke_system = new /datum/effect_system/smoke_spread/xeno/neuro()
 
-/datum/ammo/xeno/boiler_gas/proc/drop_nade(turf/T)
-	smoke_system.set_up(4, 0, T)
+/datum/ammo/xeno/boiler_gas/proc/drop_nade(turf/T, atom/firer, range = 1)
+	if(isxeno(firer))
+		var/mob/living/carbon/Xenomorph/X = firer
+		smoke_system.strength = X.xeno_caste.bomb_strength
+		range += X.upgrade
+	smoke_system.set_up(range, T)
 	smoke_system.start()
-	T.visible_message("<span class='danger'>A glob of acid lands with a splat and explodes into noxious fumes!</span>")
+	T.visible_message(danger_message)
 
 /datum/ammo/xeno/boiler_gas/corrosive
 	name = "glob of acid"
@@ -1524,9 +1514,10 @@
 	debilitate = list(1,1,0,0,1,1,0,0)
 	flags_ammo_behavior = AMMO_XENO_ACID|AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE|AMMO_IGNORE_ARMOR
 	armor_type = "energy"
+	danger_message = "<span class='danger'>A glob of acid lands with a splat and explodes into corrosive bile!</span>"
 
 /datum/ammo/xeno/boiler_gas/corrosive/New()
-	..()
+	. = ..()
 	damage = CONFIG_GET(number/combat_define/med_hit_damage)
 	damage_var_high = CONFIG_GET(number/combat_define/max_proj_variance)
 	damage_type = BURN
@@ -1535,12 +1526,7 @@
 	burst(M,P,damage_type)
 
 /datum/ammo/xeno/boiler_gas/set_xeno_smoke(obj/item/projectile/P)
-	smoke_system = new /datum/effect_system/smoke_spread/xeno_acid()
-
-/datum/ammo/xeno/boiler_gas/drop_nade(turf/T)
-	smoke_system.set_up(3, 0, T)
-	smoke_system.start()
-	T.visible_message("<span class='danger'>A glob of acid lands with a splat and explodes into corrosive bile!</span>")
+	smoke_system = new /datum/effect_system/smoke_spread/xeno/acid()
 
 /*
 //================================================

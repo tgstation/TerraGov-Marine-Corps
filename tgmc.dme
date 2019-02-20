@@ -495,7 +495,6 @@
 #include "code\game\objects\effects\decals\Cleanable\robots.dm"
 #include "code\game\objects\effects\decals\Cleanable\tracks.dm"
 #include "code\game\objects\effects\decals\posters\bs12.dm"
-#include "code\game\objects\effects\effect_system\chemsmoke.dm"
 #include "code\game\objects\effects\effect_system\effect_system.dm"
 #include "code\game\objects\effects\effect_system\explosions.dm"
 #include "code\game\objects\effects\effect_system\foam.dm"
