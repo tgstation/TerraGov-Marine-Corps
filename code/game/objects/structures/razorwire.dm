@@ -50,7 +50,7 @@
 	razorwire_tangle(M)
 
 /obj/structure/razorwire/proc/razorwire_tangle(mob/living/M, duration = RAZORWIRE_ENTANGLE_DELAY)
-	if(!src || health <= 0) //Sanity check so that you can't get entangled if the razorwire is destroyed; this happens apparently.
+	if(QDELETED(src) || health <= 0) //Sanity check so that you can't get entangled if the razorwire is destroyed; this happens apparently.
 		return
 	M.entangle_delay = world.time + duration
 	M.visible_message("<span class='danger'>[M] gets entangled in the barbed wire!</span>",
