@@ -686,7 +686,7 @@
 						continue
 					joblist += temp.title
 			else
-				joblist += href_list["jobban"]
+				joblist += href_list["jobbankey"]
 
 		//Create a list of unbanned jobs within joblist
 		var/list/notbannedlist = list()
