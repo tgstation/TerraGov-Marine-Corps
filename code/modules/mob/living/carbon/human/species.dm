@@ -725,7 +725,7 @@
 
 /datum/species/zombie/necromorph/handle_death(var/mob/living/carbon/human/H, gibbed)
 	if(H && H.loc && H.stat == DEAD)
-		gib()
+		/mob/proc/gib()
 
 /datum/species/zombie/necromorph/handle_post_spawn(var/mob/living/carbon/human/H)
 	if(H.hud_used)
