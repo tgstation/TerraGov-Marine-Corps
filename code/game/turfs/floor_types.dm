@@ -414,11 +414,17 @@
 /turf/open/floor/tile/vault
 	icon_state = "vault"
 
+/turf/open/floor/tile/yellow/full
+	icon_state = "yellowfull"
+
 /turf/open/floor/tile/whiteyellow/full
 	icon_state = "whiteyellowfull"
 
 /turf/open/floor/tile/red/redtaupecorner
 	icon_state = "redcorner"
+
+/turf/open/floor/tile/red/whiteredfull
+	icon_state = "whiteredfull"
 
 /turf/open/floor/tile/red/redtaupe
 	icon_state = "red"
@@ -447,11 +453,17 @@
 /turf/open/floor/tile/blue/whitebluefull
 	icon_state = "whitebluefull"
 
+/turf/open/floor/tile/green/full
+	icon_state = "greenfull"
+
 /turf/open/floor/tile/green/greentaupe
 	icon_state = "green"
 
 /turf/open/floor/tile/green/whitegreencorner
 	icon_state = "whitegreencorner"
+
+/turf/open/floor/tile/green/whitegreenfull
+	icon_state = "whitegreenfull"
 
 /turf/open/floor/tile/white/warningstripe
 	icon_state = "warnwhite"

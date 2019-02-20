@@ -1519,11 +1519,7 @@
 	name = "\improper Marshal Office Prison";
 	req_one_access_txt = "0"
 	},
-/turf/open/floor{
-	tag = "icon-whitegreenfull (NORTHEAST)";
-	icon_state = "whitegreenfull";
-	dir = 5
-	},
+/turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/marshal_office)
 "aen" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -1532,11 +1528,7 @@
 	name = "\improper Marshal Office Prison";
 	req_one_access_txt = "0"
 	},
-/turf/open/floor{
-	tag = "icon-whitegreenfull (NORTHEAST)";
-	icon_state = "whitegreenfull";
-	dir = 5
-	},
+/turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/marshal_office)
 "aeo" = (
 /obj/machinery/door/airlock/almayer/generic{
@@ -2090,11 +2082,7 @@
 	name = "\improper Marshal Office Prison";
 	req_access_txt = "0"
 	},
-/turf/open/floor{
-	tag = "icon-whitegreenfull (NORTHEAST)";
-	icon_state = "whitegreenfull";
-	dir = 5
-	},
+/turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/marshal_office)
 "afQ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -2105,11 +2093,7 @@
 	name = "\improper Marshal Office Prison";
 	req_access_txt = "0"
 	},
-/turf/open/floor{
-	tag = "icon-whitegreenfull (NORTHEAST)";
-	icon_state = "whitegreenfull";
-	dir = 5
-	},
+/turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/marshal_office)
 "afR" = (
 /obj/machinery/deployable/barrier,
@@ -4314,28 +4298,16 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "alg" = (
-/turf/open/floor{
-	tag = "icon-whitegreenfull";
-	icon_state = "whitegreenfull";
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/caves/lambda_lab)
 "alh" = (
 /obj/item/tool/hatchet,
 /obj/effect/alien/weeds/node,
-/turf/open/floor{
-	tag = "icon-whitegreenfull";
-	icon_state = "whitegreenfull";
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/caves/lambda_lab)
 "ali" = (
 /obj/item/reagent_container/spray/plantbgone,
-/turf/open/floor{
-	tag = "icon-whitegreenfull";
-	icon_state = "whitegreenfull";
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/caves/lambda_lab)
 "alj" = (
 /obj/structure/cable{
@@ -4614,19 +4586,11 @@
 "alV" = (
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/item/grown/log,
-/turf/open/floor{
-	tag = "icon-whitegreenfull";
-	icon_state = "whitegreenfull";
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/caves/lambda_lab)
 "alW" = (
 /obj/machinery/portable_atmospherics/hydroponics,
-/turf/open/floor{
-	tag = "icon-whitegreenfull";
-	icon_state = "whitegreenfull";
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/caves/lambda_lab)
 "alX" = (
 /obj/structure/cable{
@@ -4634,11 +4598,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	tag = "icon-whitegreenfull";
-	icon_state = "whitegreenfull";
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/caves/lambda_lab)
 "alY" = (
 /obj/machinery/portable_atmospherics/hydroponics,
@@ -5068,19 +5028,11 @@
 /area/bigredv2/caves/lambda_lab)
 "amS" = (
 /obj/item/grown/log,
-/turf/open/floor{
-	tag = "icon-whitegreenfull";
-	icon_state = "whitegreenfull";
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/caves/lambda_lab)
 "amT" = (
 /obj/effect/glowshroom,
-/turf/open/floor{
-	tag = "icon-whitegreenfull";
-	icon_state = "whitegreenfull";
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/caves/lambda_lab)
 "amU" = (
 /obj/machinery/portable_atmospherics/hydroponics,
@@ -5649,11 +5601,7 @@
 	d2 = 8;
 	icon_state = "4-8";
 	},
-/turf/open/floor{
-	tag = "icon-whitegreenfull";
-	icon_state = "whitegreenfull";
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/caves/lambda_lab)
 "aod" = (
 /obj/structure/cable{
@@ -5663,11 +5611,7 @@
 	},
 /obj/effect/landmark/random_item/crap,
 /obj/effect/alien/weeds/node,
-/turf/open/floor{
-	tag = "icon-whitegreenfull";
-	icon_state = "whitegreenfull";
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/caves/lambda_lab)
 "aoe" = (
 /obj/item/explosive/grenade/chem_grenade/antiweed,
@@ -5676,11 +5620,7 @@
 	d2 = 8;
 	icon_state = "4-8";
 	},
-/turf/open/floor{
-	tag = "icon-whitegreenfull";
-	icon_state = "whitegreenfull";
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/caves/lambda_lab)
 "aof" = (
 /obj/effect/glowshroom,
@@ -5689,11 +5629,7 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/open/floor{
-	tag = "icon-whitegreenfull";
-	icon_state = "whitegreenfull";
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/caves/lambda_lab)
 "aog" = (
 /turf/open/mars{
@@ -5955,11 +5891,7 @@
 /area/bigredv2/caves/lambda_lab)
 "aoM" = (
 /obj/item/tool/weedkiller,
-/turf/open/floor{
-	tag = "icon-whitegreenfull";
-	icon_state = "whitegreenfull";
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/caves/lambda_lab)
 "aoN" = (
 /obj/effect/decal/cleanable/dirt,
@@ -6230,11 +6162,7 @@
 /area/bigredv2/caves/lambda_lab)
 "apz" = (
 /obj/item/grown/sunflower,
-/turf/open/floor{
-	tag = "icon-whitegreenfull";
-	icon_state = "whitegreenfull";
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/caves/lambda_lab)
 "apA" = (
 /turf/open/floor{
@@ -6679,19 +6607,11 @@
 /area/bigredv2/outside/medical)
 "aqA" = (
 /obj/structure/closet/secure_closet/CMO,
-/turf/open/floor{
-	tag = "icon-whitegreenfull";
-	icon_state = "whitegreenfull";
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/medical)
 "aqB" = (
 /obj/machinery/computer/crew,
-/turf/open/floor{
-	tag = "icon-whitegreenfull";
-	icon_state = "whitegreenfull";
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/medical)
 "aqC" = (
 /obj/structure/table,
@@ -6985,11 +6905,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "arl" = (
-/turf/open/floor{
-	tag = "icon-whitegreenfull";
-	icon_state = "whitegreenfull";
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/medical)
 "arm" = (
 /obj/structure/bed/chair/office/light,
@@ -6997,11 +6913,7 @@
 /area/bigredv2/outside/medical)
 "arn" = (
 /obj/machinery/computer/med_data,
-/turf/open/floor{
-	tag = "icon-whitegreenfull";
-	icon_state = "whitegreenfull";
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/medical)
 "aro" = (
 /obj/machinery/optable,
@@ -7304,11 +7216,7 @@
 	dir = 4
 	},
 /obj/item/device/defibrillator,
-/turf/open/floor{
-	tag = "icon-whitegreenfull";
-	icon_state = "whitegreenfull";
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/medical)
 "arY" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -7590,11 +7498,7 @@
 /obj/structure/bed/chair{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-whitegreenfull";
-	icon_state = "whitegreenfull";
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/medical)
 "asG" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -11913,11 +11817,7 @@
 /area/bigredv2/outside/hydroponics)
 "aCf" = (
 /obj/machinery/portable_atmospherics/hydroponics,
-/turf/open/floor{
-	tag = "icon-whitegreenfull";
-	icon_state = "whitegreenfull";
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/hydroponics)
 "aCg" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -11926,11 +11826,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	tag = "icon-whitegreenfull";
-	icon_state = "whitegreenfull";
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/hydroponics)
 "aCh" = (
 /obj/structure/window/framed/colony,
@@ -12167,11 +12063,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	tag = "icon-whitegreenfull";
-	icon_state = "whitegreenfull";
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/medical)
 "aCI" = (
 /obj/structure/bed/chair,
@@ -12179,11 +12071,7 @@
 /area/bigredv2/outside/medical)
 "aCJ" = (
 /obj/structure/bed/chair,
-/turf/open/floor{
-	tag = "icon-whitegreenfull";
-	icon_state = "whitegreenfull";
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/medical)
 "aCK" = (
 /obj/structure/bed/chair,
@@ -12653,19 +12541,11 @@
 /area/bigredv2/outside/medical)
 "aDN" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	tag = "icon-whitegreenfull";
-	icon_state = "whitegreenfull";
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/medical)
 "aDO" = (
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor{
-	tag = "icon-whitegreenfull";
-	icon_state = "whitegreenfull";
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/medical)
 "aDP" = (
 /obj/effect/decal/cleanable/blood{
@@ -12679,11 +12559,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	tag = "icon-whitegreenfull";
-	icon_state = "whitegreenfull";
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/medical)
 "aDQ" = (
 /obj/effect/decal/cleanable/dirt,
@@ -12820,21 +12696,13 @@
 "aEe" = (
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	tag = "icon-whitegreenfull";
-	icon_state = "whitegreenfull";
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/hydroponics)
 "aEf" = (
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/random_item/crap,
-/turf/open/floor{
-	tag = "icon-whitegreenfull";
-	icon_state = "whitegreenfull";
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/hydroponics)
 "aEg" = (
 /obj/effect/decal/cleanable/dirt,
@@ -13048,11 +12916,7 @@
 	d2 = 8;
 	icon_state = "4-8";
 	},
-/turf/open/floor{
-	tag = "icon-whitegreenfull";
-	icon_state = "whitegreenfull";
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/medical)
 "aEH" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -13083,22 +12947,14 @@
 	d2 = 8;
 	icon_state = "4-8";
 	},
-/turf/open/floor{
-	tag = "icon-whitegreenfull";
-	icon_state = "whitegreenfull";
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/medical)
 "aEJ" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8;
 	on = 1
 	},
-/turf/open/floor{
-	tag = "icon-whitegreenfull";
-	icon_state = "whitegreenfull";
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/medical)
 "aEK" = (
 /obj/structure/closet/secure_closet/personal/cabinet,
@@ -13511,20 +13367,12 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	tag = "icon-whitegreenfull";
-	icon_state = "whitegreenfull";
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/medical)
 "aFI" = (
 /obj/structure/table/reinforced,
 /obj/item/trash/buritto,
-/turf/open/floor{
-	tag = "icon-whitegreenfull";
-	icon_state = "whitegreenfull";
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/medical)
 "aFJ" = (
 /obj/structure/table/reinforced,
@@ -13644,11 +13492,7 @@
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	tag = "icon-whitegreenfull";
-	icon_state = "whitegreenfull";
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/hydroponics)
 "aGa" = (
 /obj/machinery/door/airlock/multi_tile/almayer/generic{
@@ -13943,11 +13787,7 @@
 	dir = 4
 	},
 /obj/item/trash/kepler,
-/turf/open/floor{
-	tag = "icon-whitegreenfull";
-	icon_state = "whitegreenfull";
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/medical)
 "aGD" = (
 /obj/structure/table/reinforced,
@@ -13958,11 +13798,7 @@
 /obj/structure/bed/chair/office/light{
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-whitegreenfull";
-	icon_state = "whitegreenfull";
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/medical)
 "aGF" = (
 /obj/structure/cable{
@@ -14750,27 +14586,15 @@
 /obj/structure/bed/chair{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-whitegreenfull";
-	icon_state = "whitegreenfull";
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/medical)
 "aIk" = (
 /obj/machinery/light,
-/turf/open/floor{
-	tag = "icon-whitegreenfull";
-	icon_state = "whitegreenfull";
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/medical)
 "aIl" = (
 /obj/item/reagent_container/glass/rag,
-/turf/open/floor{
-	tag = "icon-whitegreenfull";
-	icon_state = "whitegreenfull";
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/medical)
 "aIm" = (
 /turf/open/mars{
@@ -14892,10 +14716,7 @@
 /turf/open/floor/freezer,
 /area/bigredv2/outside/hydroponics)
 "aIE" = (
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
 "aIF" = (
 /obj/machinery/vending/snack,
@@ -15334,10 +15155,7 @@
 	dir = 4;
 	name = "\improper Kitchen Storage"
 	},
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
 "aJA" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -15355,10 +15173,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
 "aJC" = (
 /obj/machinery/alarm{
@@ -16045,10 +15860,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
 "aKK" = (
 /obj/machinery/vending/coffee,
@@ -16423,73 +16235,46 @@
 "aLw" = (
 /obj/structure/table/reinforced,
 /obj/item/trash/waffles,
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
 "aLx" = (
 /obj/structure/table/reinforced,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
 "aLy" = (
 /obj/structure/table/reinforced,
 /obj/item/tool/kitchen/knife,
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
 "aLz" = (
 /obj/structure/table/reinforced,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/trash/waffles,
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
 "aLA" = (
 /obj/structure/table/reinforced,
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
 "aLB" = (
 /obj/structure/table/reinforced,
 /obj/item/trash/plate,
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
 "aLC" = (
 /obj/structure/table/reinforced,
 /obj/item/tool/kitchen/rollingpin,
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
 "aLD" = (
 /obj/structure/table/reinforced,
 /obj/item/tool/kitchen/knife/butcher,
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
 "aLE" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
 "aLF" = (
 /turf/open/floor{
@@ -16768,10 +16553,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
 "aMn" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -16782,10 +16564,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
 "aMo" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -16796,10 +16575,7 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
 "aMp" = (
 /obj/effect/decal/cleanable/dirt,
@@ -16997,10 +16773,7 @@
 	dir = 4;
 	pixel_x = -30
 	},
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
 "aML" = (
 /obj/structure/bed/chair,
@@ -17008,18 +16781,12 @@
 /area/bigredv2/outside/hydroponics)
 "aMM" = (
 /obj/structure/bed/chair,
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
 "aMN" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
 "aMO" = (
 /obj/structure/bed/chair,
@@ -17031,10 +16798,7 @@
 /obj/structure/bed/chair,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
 "aMQ" = (
 /obj/effect/decal/cleanable/dirt,
@@ -17182,40 +16946,25 @@
 "aNr" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/general_store)
 "aNs" = (
 /obj/machinery/computer/arcade,
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/general_store)
 "aNt" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/computer/arcade,
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/general_store)
 "aNu" = (
 /obj/structure/barricade/wooden,
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/general_store)
 "aNv" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/vending/snack,
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/general_store)
 "aNw" = (
 /obj/effect/decal/cleanable/dirt,
@@ -17457,10 +17206,7 @@
 "aNZ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/random_item/crap,
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
 "aOa" = (
 /obj/structure/bed/chair{
@@ -17473,10 +17219,7 @@
 /obj/structure/table,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/trash/plate,
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
 "aOc" = (
 /obj/structure/table,
@@ -17487,10 +17230,7 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
 "aOe" = (
 /obj/structure/bed/chair{
@@ -17504,10 +17244,7 @@
 /obj/structure/table,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
 "aOg" = (
 /obj/structure/table,
@@ -17523,10 +17260,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
 "aOi" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -17583,19 +17317,11 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor{
-	tag = "icon-whitegreenfull";
-	icon_state = "whitegreenfull";
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/caves/lambda_lab)
 "aOq" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor{
-	tag = "icon-whitegreenfull";
-	icon_state = "whitegreenfull";
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/caves/lambda_lab)
 "aOr" = (
 /obj/structure/cable{
@@ -17679,10 +17405,7 @@
 "aOD" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/vending/cola,
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/general_store)
 "aOE" = (
 /obj/effect/decal/cleanable/blood/gibs/up,
@@ -17810,10 +17533,7 @@
 /obj/structure/bed/chair{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
 "aOW" = (
 /obj/structure/table,
@@ -17830,10 +17550,7 @@
 	layer = 2.4
 	},
 /obj/item/trash/tray,
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
 "aOY" = (
 /obj/structure/bed/chair{
@@ -17852,10 +17569,7 @@
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
 "aPa" = (
 /obj/structure/table,
@@ -17892,10 +17606,7 @@
 	d2 = 8;
 	icon_state = "4-8";
 	},
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
 "aPd" = (
 /obj/structure/table,
@@ -17922,10 +17633,7 @@
 	d2 = 8;
 	icon_state = "4-8";
 	},
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
 "aPf" = (
 /obj/structure/bed/chair{
@@ -17952,10 +17660,7 @@
 	d2 = 8;
 	icon_state = "4-8";
 	},
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
 "aPh" = (
 /obj/structure/bed/chair{
@@ -17983,10 +17688,7 @@
 /obj/structure/bed/chair{
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
 "aPk" = (
 /turf/open/floor{
@@ -18052,11 +17754,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor{
-	tag = "icon-whitegreenfull";
-	icon_state = "whitegreenfull";
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/caves/lambda_lab)
 "aPs" = (
 /obj/machinery/light/small/built{
@@ -18067,11 +17765,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/landmark/start/xeno_spawn,
 /obj/effect/alien/weeds/node,
-/turf/open/floor{
-	tag = "icon-whitegreenfull";
-	icon_state = "whitegreenfull";
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/caves/lambda_lab)
 "aPt" = (
 /obj/structure/cable{
@@ -18176,19 +17870,13 @@
 /obj/machinery/camera/autoname{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/general_store)
 "aPJ" = (
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/general_store)
 "aPK" = (
 /obj/machinery/computer/communications,
@@ -18353,10 +18041,7 @@
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
 "aQd" = (
 /obj/structure/bed/chair{
@@ -18375,10 +18060,7 @@
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
 "aQf" = (
 /obj/structure/table,
@@ -18399,20 +18081,14 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
 	},
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
 "aQh" = (
 /obj/structure/bed/chair{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
 "aQi" = (
 /obj/structure/bed/chair{
@@ -18429,10 +18105,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
 "aQk" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
@@ -18445,10 +18118,7 @@
 /obj/structure/bed/chair{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
 "aQm" = (
 /obj/structure/bed/chair{
@@ -18467,10 +18137,7 @@
 /area/bigredv2/outside/hydroponics)
 "aQp" = (
 /obj/structure/table,
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
 "aQq" = (
 /obj/structure/bed/chair{
@@ -18642,29 +18309,20 @@
 	},
 /obj/effect/decal/cleanable/blood,
 /obj/item/alien_embryo,
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/general_store)
 "aQP" = (
 /obj/structure/table,
 /obj/effect/decal/cleanable/blood,
 /obj/item/tool/kitchen/knife,
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/general_store)
 "aQQ" = (
 /obj/structure/table,
 /obj/item/tool/lighter/random,
 /obj/item/tool/lighter/random,
 /obj/item/storage/toolbox/mechanical,
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/general_store)
 "aQR" = (
 /obj/structure/table,
@@ -18674,16 +18332,10 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/general_store)
 "aQS" = (
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/general_store)
 "aQT" = (
 /obj/effect/decal/cleanable/dirt,
@@ -18692,10 +18344,7 @@
 /area/bigredv2/outside/general_store)
 "aQU" = (
 /obj/item/device/flashlight,
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/general_store)
 "aQV" = (
 /obj/structure/table,
@@ -18906,10 +18555,7 @@
 	dir = 1;
 	name = "\improper Kitchen"
 	},
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
 "aRq" = (
 /obj/effect/decal/cleanable/dirt,
@@ -18936,10 +18582,7 @@
 	name = "Storm Shutters";
 	pixel_x = 32;
 	},
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
 "aRt" = (
 /obj/structure/window/framed/colony,
@@ -19127,30 +18770,21 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
 	},
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/general_store)
 "aRR" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/general_store)
 "aRS" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/general_store)
 "aRT" = (
 /obj/machinery/photocopier,
@@ -19465,10 +19099,7 @@
 	layer = 2.4
 	},
 /obj/item/tool/surgery/surgicaldrill,
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/general_store)
 "aSL" = (
 /obj/structure/table,
@@ -19477,10 +19108,7 @@
 	layer = 2.4
 	},
 /obj/item/device/healthanalyzer,
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/general_store)
 "aSM" = (
 /obj/structure/table,
@@ -19489,10 +19117,7 @@
 	layer = 2.4
 	},
 /obj/item/device/multitool,
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/general_store)
 "aSN" = (
 /obj/structure/table,
@@ -19503,19 +19128,13 @@
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/general_store)
 "aSO" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
 	},
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/general_store)
 "aSP" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -19524,10 +19143,7 @@
 	name = "\improper General Store Security";
 	req_access_txt = "0"
 	},
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/general_store)
 "aSQ" = (
 /obj/structure/cable{
@@ -20017,10 +19633,7 @@
 	on = 1
 	},
 /obj/item/weapon/gun/pistol/holdout,
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/general_store)
 "aTU" = (
 /obj/machinery/message_server,
@@ -20524,36 +20137,24 @@
 "aVd" = (
 /obj/structure/table,
 /obj/item/toy/dice,
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/general_store)
 "aVe" = (
 /obj/structure/table,
 /obj/item/weapon/gun/pistol/holdout,
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/general_store)
 "aVf" = (
 /obj/structure/table,
 /obj/item/tool/kitchen/knife,
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/general_store)
 "aVg" = (
 /obj/structure/table,
 /obj/machinery/computer/pod/old{
 	name = "Register"
 	},
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/general_store)
 "aVh" = (
 /obj/structure/bed/chair/office/dark{
@@ -20568,10 +20169,7 @@
 	name = "Storm Shutters";
 	pixel_x = 32
 	},
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/general_store)
 "aVj" = (
 /obj/machinery/light{
@@ -20792,27 +20390,18 @@
 /area/bigredv2/outside/general_store)
 "aVN" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/general_store)
 "aVO" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/general_store)
 "aVP" = (
 /obj/machinery/camera/autoname{
 	dir = 2
 	},
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
+/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/general_store)
 "aVQ" = (
 /obj/machinery/constructable_frame/state_2,

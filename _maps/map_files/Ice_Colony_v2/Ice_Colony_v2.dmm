@@ -9394,11 +9394,7 @@
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whiteredfull";
-	tag = "icon-whiteredfull"
-	},
+/turf/open/floor/tile/red/whiteredfull,
 /area/ice_colony/surface/clinic/lobby)
 "aub" = (
 /obj/structure/cable{
@@ -9657,11 +9653,7 @@
 	name = "\improper Aurora Medical Clinic";
 	req_access_txt = "100"
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whiteredfull";
-	tag = "icon-whiteredfull"
-	},
+/turf/open/floor/tile/red/whiteredfull,
 /area/ice_colony/surface/clinic/lobby)
 "auz" = (
 /obj/structure/disposalpipe/segment{
