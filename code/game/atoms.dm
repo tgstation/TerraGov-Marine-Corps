@@ -707,8 +707,6 @@ Proc for attack log creation, because really why not
 /atom/vv_get_dropdown()
 	. = ..()
 	. += "---"
-	var/turf/curturf = get_turf(src)
-	if(curturf)
-		.["Jump to"] = "?_src_=holder;[HrefToken()];observecoordjump=1;X=[curturf.x];Y=[curturf.y];Z=[curturf.z]"
+	.["Jump to"] = "[ADMIN_JMP(src)]"
 	.["Modify Transform"] = "?_src_=vars;[HrefToken()];modtransform=[REF(src)]"
 	.["Add reagent"] = "?_src_=vars;[HrefToken()];addreagent=[REF(src)]"

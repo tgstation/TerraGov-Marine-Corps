@@ -206,16 +206,16 @@
 	if(!check_rights(R_SERVER))
 		return
 
-	if(!SSticker || SSticker.current_state != GAME_STATE_PREGAME)
+	if(!SSticker.current_state == GAME_STATE_PREGAME && !SSticker.current_state == GAME_STATE_STARTUP)
 		return
 
 	if(alert("Are you sure you want to start the round early?", "Confirmation","Yes","No") != "Yes")
 		return
 
-	SSticker.current_state = GAME_STATE_SETTING_UP
+	SSticker.start_immediately = TRUE
 
-	log_admin("[key_name(usr)] has started the game early.")
-	message_admins("[ADMIN_TPMONTY(usr)] has started the game early.")
+	log_admin("[key_name(usr)] has started the game early[SSticker.current_state == GAME_STATE_STARTUP ? ". The game is still setting up, but the round will be started as soon as possible" : ""].")
+	message_admins("[ADMIN_TPMONTY(usr)] has started the game early[SSticker.current_state == GAME_STATE_STARTUP ? ". The game is still setting up, but the round will be started as soon as possible" : ""].")
 
 
 /datum/admins/proc/toggle_join()

@@ -136,6 +136,9 @@
 	else if(href_list["observefollow"])
 		var/atom/movable/AM = locate(href_list["observefollow"])
 
+		if(QDELETED(AM) || !ismovableatom(AM))
+			return
+
 		if(istype(usr, /mob/new_player) || istype(AM, /mob/new_player))
 			return
 
@@ -612,65 +615,68 @@
 			return
 
 		var/delmob = FALSE
-		switch(alert("Delete old mob?","Message","Yes","No","Cancel"))
+		switch(alert("Delete old mob?", "Message", "Yes", "No", "Cancel"))
 			if("Cancel")
 				return
 			if("Yes")
 				delmob = TRUE
 
 		var/turf/location
-		switch(alert("Teleport to your location?","Message","Yes","No","Cancel"))
+		switch(alert("Teleport to your location?", "Message", "Yes", "No", "Cancel"))
 			if("Cancel")
 				return
 			if("Yes")
 				location = get_turf(usr)
 
+		var/mob/oldusr = usr
+		var/mob/newmob
+
 		switch(href_list["transform"])
 			if("observer")
-				M.change_mob_type(/mob/dead/observer, location, null, delmob)
+				newmob = M.change_mob_type(/mob/dead/observer, location, null, delmob)
 			if("larva")
-				M.change_mob_type(/mob/living/carbon/Xenomorph/Larva, location, null, delmob)
+				newmob = M.change_mob_type(/mob/living/carbon/Xenomorph/Larva, location, null, delmob)
 			if("defender")
-				M.change_mob_type(/mob/living/carbon/Xenomorph/Defender, location, null, delmob)
+				newmob = M.change_mob_type(/mob/living/carbon/Xenomorph/Defender, location, null, delmob)
 			if("warrior")
-				M.change_mob_type(/mob/living/carbon/Xenomorph/Warrior, location, null, delmob)
+				newmob = M.change_mob_type(/mob/living/carbon/Xenomorph/Warrior, location, null, delmob)
 			if("runner")
-				M.change_mob_type(/mob/living/carbon/Xenomorph/Runner, location, null, delmob)
+				newmob = M.change_mob_type(/mob/living/carbon/Xenomorph/Runner, location, null, delmob)
 			if("drone")
-				M.change_mob_type(/mob/living/carbon/Xenomorph/Drone, location, null, delmob)
+				newmob = M.change_mob_type(/mob/living/carbon/Xenomorph/Drone, location, null, delmob)
 			if("sentinel")
-				M.change_mob_type(/mob/living/carbon/Xenomorph/Sentinel, location, null, delmob)
+				newmob = M.change_mob_type(/mob/living/carbon/Xenomorph/Sentinel, location, null, delmob)
 			if("hunter")
-				M.change_mob_type(/mob/living/carbon/Xenomorph/Hunter, location, null, delmob)
+				newmob = M.change_mob_type(/mob/living/carbon/Xenomorph/Hunter, location, null, delmob)
 			if("carrier")
-				M.change_mob_type(/mob/living/carbon/Xenomorph/Carrier, location, null, delmob)
+				newmob = M.change_mob_type(/mob/living/carbon/Xenomorph/Carrier, location, null, delmob)
 			if("hivelord")
-				M.change_mob_type(/mob/living/carbon/Xenomorph/Hivelord, location, null, delmob)
+				newmob = M.change_mob_type(/mob/living/carbon/Xenomorph/Hivelord, location, null, delmob)
 			if("praetorian")
-				M.change_mob_type(/mob/living/carbon/Xenomorph/Praetorian, location, null, delmob)
+				newmob = M.change_mob_type(/mob/living/carbon/Xenomorph/Praetorian, location, null, delmob)
 			if("ravager")
-				M.change_mob_type(/mob/living/carbon/Xenomorph/Ravager, location, null, delmob)
+				newmob = M.change_mob_type(/mob/living/carbon/Xenomorph/Ravager, location, null, delmob)
 			if("spitter")
-				M.change_mob_type(/mob/living/carbon/Xenomorph/Spitter, location, null, delmob)
+				newmob = M.change_mob_type(/mob/living/carbon/Xenomorph/Spitter, location, null, delmob)
 			if("boiler")
-				M.change_mob_type(/mob/living/carbon/Xenomorph/Boiler, location, null, delmob)
+				newmob = M.change_mob_type(/mob/living/carbon/Xenomorph/Boiler, location, null, delmob)
 			if("crusher")
-				M.change_mob_type(/mob/living/carbon/Xenomorph/Crusher, location, null, delmob)
+				newmob = M.change_mob_type(/mob/living/carbon/Xenomorph/Crusher, location, null, delmob)
 			if("defiler")
-				M.change_mob_type(/mob/living/carbon/Xenomorph/Defiler, location, null, delmob)
+				newmob = M.change_mob_type(/mob/living/carbon/Xenomorph/Defiler, location, null, delmob)
 			if("queen")
-				M.change_mob_type(/mob/living/carbon/Xenomorph/Queen, location, null, delmob)
+				newmob = M.change_mob_type(/mob/living/carbon/Xenomorph/Queen, location, null, delmob)
 			if("human")
-				M.change_mob_type(/mob/living/carbon/human, location, null, delmob)
+				newmob = M.change_mob_type(/mob/living/carbon/human, location, null, delmob)
 			if("monkey")
-				M.change_mob_type(/mob/living/carbon/monkey, location, null, delmob)
+				newmob = M.change_mob_type(/mob/living/carbon/monkey, location, null, delmob)
 			if("moth")
-				M.change_mob_type(/mob/living/carbon/human, location, null, delmob, "Moth")
+				newmob = M.change_mob_type(/mob/living/carbon/human, location, null, delmob, "Moth")
 			if("yautja")
-				M.change_mob_type(/mob/living/carbon/human, location, null, delmob, "Yautja")
+				newmob = M.change_mob_type(/mob/living/carbon/human, location, null, delmob, "Yautja")
 
-		log_admin("[key_name(usr)] has transformed [key_name(M)] into [href_list["transform"]].[delmob ? " Old mob deleted." : ""][location ? " Teleported to [AREACOORD(location)]" : ""]")
-		message_admins("[ADMIN_TPMONTY(usr)] has transformed [ADMIN_TPMONTY(M)] into [href_list["transform"]].[delmob ? " Old mob deleted." : ""][location ? " Teleported to new location." : ""]")
+		log_admin("[key_name(oldusr)] has transformed [key_name(newmob)] into [href_list["transform"]].[delmob ? " Old mob deleted." : ""][location ? " Teleported to [AREACOORD(location)]" : ""]")
+		message_admins("[ADMIN_TPMONTY(oldusr)] has transformed [ADMIN_TPMONTY(newmob)] into [href_list["transform"]].[delmob ? " Old mob deleted." : ""][location ? " Teleported to new location." : ""]")
 
 
 	else if(href_list["revive"])
@@ -909,9 +915,8 @@
 		if(C && alert("They have a client attached, are you sure?", "Cryosleep", "Yes", "No") != "Yes")
 			return
 
-		var/mob/target = M
-
 		var/turf/T = get_turf(M)
+		var/name = M.real_name
 		var/obj/machinery/cryopod/P = new(T)
 		P.density = FALSE
 		P.alpha = 0
@@ -922,19 +927,17 @@
 		qdel(P)
 
 		var/lobby
-		if(C && alert("Do you also want to send them to the lobby?", "Cryosleep", "Yes", "No") == "Yes")
+		if(C?.mob?.mind && alert("Do you also want to send them to the lobby?", "Cryosleep", "Yes", "No") == "Yes")
 			lobby = TRUE
 			var/mob/new_player/NP = new()
-			NP.key = C.key
-			if(NP.client)
-				NP.client.change_view(world.view)
-			if(isobserver(C.mob))
-				qdel(C.mob)
-			else
-				C.mob.ghostize()
+			var/mob/N = C.mob
+			C.screen.Cut()
+			C.mob.mind.transfer_to(NP, TRUE)
+			if(isobserver(N))
+				qdel(N)
 
-		log_admin("[key_name(usr)] has cryo'd [key_name(target)][lobby ? ", sending them to the lobby" : ""].")
-		message_admins("[ADMIN_TPMONTY(usr)] has cryo'd [key_name_admin(target)][lobby ? ", sending them to the lobby" : ""].")
+		log_admin("[key_name(usr)] has cryo'd [C ? key_name(C) : name][lobby ? " sending them to the lobby" : ""].")
+		message_admins("[ADMIN_TPMONTY(usr)] has cryo'd [C ? key_name_admin(C) : name] [lobby ? " sending them to the lobby" : ""].")
 
 
 	else if(href_list["jumpto"])
@@ -1002,9 +1005,8 @@
 		M.on_mob_jump()
 		M.forceMove(target)
 
-		log_admin("[key_name(usr)] has sent [key_name(M)]'s mob to [target].")
-		message_admins("[ADMIN_TPMONTY(usr)] has sent [ADMIN_TPMONTY(M)]'s mob to [target].")
-
+		log_admin("[key_name(usr)] has sent [key_name(M)]'s mob to [AREACOORD(target)].")
+		message_admins("[ADMIN_TPMONTY(usr)] has sent [ADMIN_TPMONTY(M)]'s mob to [ADMIN_VERBOSEJMP(target)].")
 
 
 	else if(href_list["faxreply"])
