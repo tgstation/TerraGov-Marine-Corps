@@ -1028,7 +1028,7 @@
 		if(!iswirecutter(usr.get_active_held_item()))
 			to_chat(usr, "<span class='warning'>You need wirecutters!</span>")
 			return FALSE
-		if(!usr.engineering_skillcheck(src))
+		if(!skillcheck(usr))
 			return FALSE
 		if(isWireColorCut(t1))
 			mend(t1)
@@ -1043,7 +1043,7 @@
 		if(isWireColorCut(t1))
 			to_chat(usr, "<span class='warning'>You can't pulse a cut wire.</span>")
 			return FALSE
-		else  if(!usr.engineering_skillcheck(src))
+		else  if(!skillcheck(usr))
 			return FALSE
 			pulse(t1)
 
@@ -1356,6 +1356,21 @@
 
 /obj/machinery/power/apc/can_terminal_dismantle()
 	. = opened ? TRUE : FALSE
+
+
+/obj/machinery/power/apc/proc/skillcheck(mob/user)
+	if(!ishuman(user))
+		return FALSE
+	var/mob/living/carbon/human/H = user
+	if(!H.mind)
+		return FALSE
+	if(H.mind.cm_skills && H.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+		H.visible_message("<span class='notice'>[H] fumbles around figuring out how to operate [src]'s interface.</span>",
+		"<span class='notice'>You fumble around figuring out how to operate [src]'s interface.</span>")
+		var/fumbling_time = 50 * (SKILL_ENGINEER_ENGI - H.mind.cm_skills.engineer)
+		if(!do_after(H, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+			return FALSE
+	return TRUE
 
 //------Theseus APCs ------//
 
