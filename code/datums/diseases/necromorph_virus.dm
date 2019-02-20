@@ -4,7 +4,7 @@
 	survive_mob_death = TRUE //switch to true to make dead infected humans still transform
 	max_stages = 2 // Zombies are designed to slowly build up over an extended round. We don't want the payoff for necromorphs to be too slow.
 
-/datum/disease/black_goo/necromorph/stage_act()
+/datum/disease/black_goo/necromorph_virus/stage_act()
 	..()
 	if(!ishuman(affected_mob)) return
 	var/mob/living/carbon/human/H = affected_mob
@@ -35,7 +35,7 @@
 					to_chat(affected_mob, "<span class='red'> Kill... Die... Glory...</span>")
 
 
-/datum/disease/black_goo/necromorph_virus/proc/zombie_transform(mob/living/carbon/human/H)
+/datum/disease/black_goo/necromorph_virus/proc/necro_transform(mob/living/carbon/human/H)
 	set waitfor = 0
 	zombie_transforming = TRUE
 	H.vomit()
