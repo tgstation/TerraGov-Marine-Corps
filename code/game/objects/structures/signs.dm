@@ -9,6 +9,12 @@
 	. = ..()
 
 	switch(dir)
+		if(NORTH)
+			pixel_y = 32
+		if(SOUTH)
+			pixel_y = -32
+		if(EAST)
+			pixel_x = 30
 		if(WEST)
 			pixel_x = -30
 

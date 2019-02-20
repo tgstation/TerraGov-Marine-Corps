@@ -8870,7 +8870,7 @@
 "aFY" = (
 /obj/structure/lamarr/destroyed,
 /obj/structure/sign/kiddieplaque{
-	pixel_x = 32
+	dir = 4
 	},
 /obj/item/shard,
 /turf/open/floor/tile/purple/whitepurple{
@@ -11147,7 +11147,7 @@
 /obj/item/storage/box/beakers,
 /obj/structure/table,
 /obj/structure/sign/biohazard{
-	pixel_x = -30
+	dir = 8
 	},
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 5
@@ -11909,7 +11909,7 @@
 /area/lv624/ground/compound/c)
 "aPY" = (
 /obj/structure/sign/science{
-	pixel_y = 30
+	dir = 1
 	},
 /obj/effect/landmark/random_item/crap,
 /turf/open/gm/dirt,
@@ -11920,7 +11920,7 @@
 /area/lv624/ground/compound/c)
 "aQa" = (
 /obj/structure/sign/science{
-	pixel_y = 30
+	dir = 1
 	},
 /obj/structure/fence,
 /turf/open/gm/dirtgrassborder{
@@ -15698,7 +15698,7 @@
 /area/lv624/lazarus/atmos)
 "baP" = (
 /obj/structure/sign/atmosplaque{
-	pixel_y = 30
+	dir = 1
 	},
 /obj/structure/jungle/vines/heavy,
 /turf/open/gm/grass/grass2,
@@ -21627,7 +21627,7 @@
 /area/lv624/ground/jungle3)
 "bsn" = (
 /obj/structure/sign/electricshock{
-	pixel_y = 30
+	dir = 1
 	},
 /turf/open/gm/grass,
 /area/lv624/ground/jungle2)

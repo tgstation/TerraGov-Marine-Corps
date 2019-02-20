@@ -7121,7 +7121,7 @@
 /area/almayer/medical/upper_medical)
 "apF" = (
 /obj/structure/sign/nosmoking_2{
-	pixel_x = -32
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	dir = 8;
@@ -13659,7 +13659,7 @@
 /area/almayer/command/airoom)
 "aCf" = (
 /obj/structure/sign/kiddieplaque{
-	pixel_x = -32
+	dir = 8
 	},
 /obj/machinery/light{
 	dir = 8

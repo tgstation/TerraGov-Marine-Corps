@@ -14048,8 +14048,6 @@
 /area/ice_colony/surface/hydroponics/south)
 "aDy" = (
 /obj/structure/bed/chair/office/light{
-	tag = "icon-officechair_white (EAST)";
-	icon_state = "officechair_white";
 	dir = 4
 	},
 /turf/open/floor{
@@ -14408,8 +14406,6 @@
 /area/ice_colony/surface/command/checkpoint)
 "aDZ" = (
 /obj/structure/bed/chair/office/light{
-	tag = "icon-officechair_white (EAST)";
-	icon_state = "officechair_white";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -18681,8 +18677,6 @@
 /area/ice_colony/surface/hangar/checkpoint)
 "aNo" = (
 /obj/structure/bed/chair/office/light{
-	tag = "icon-officechair_white (EAST)";
-	icon_state = "officechair_white";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -34816,8 +34810,6 @@
 /area/ice_colony/underground/medical/treatment)
 "bvG" = (
 /obj/structure/bed/chair/office/light{
-	tag = "icon-officechair_white (EAST)";
-	icon_state = "officechair_white";
 	dir = 4
 	},
 /turf/open/floor/tile/white,
@@ -37010,8 +37002,6 @@
 /area/ice_colony/underground/security/detective)
 "bAr" = (
 /obj/structure/bed/chair/office/light{
-	tag = "icon-officechair_white (EAST)";
-	icon_state = "officechair_white";
 	dir = 4
 	},
 /turf/open/floor{
@@ -37861,8 +37851,6 @@
 /area/ice_colony/underground/maintenance/central)
 "bBW" = (
 /obj/structure/bed/chair/office/light{
-	tag = "icon-officechair_white (EAST)";
-	icon_state = "officechair_white";
 	dir = 4
 	},
 /obj/machinery/light{
@@ -37942,8 +37930,6 @@
 /area/ice_colony/surface/research)
 "bCd" = (
 /obj/structure/bed/chair/office/light{
-	tag = "icon-officechair_white (EAST)";
-	icon_state = "officechair_white";
 	dir = 4
 	},
 /turf/open/floor{
@@ -40924,8 +40910,6 @@
 /area/ice_colony/underground/command/checkpoint)
 "bIa" = (
 /obj/structure/bed/chair/office/light{
-	tag = "icon-officechair_white (EAST)";
-	icon_state = "officechair_white";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -41135,7 +41119,7 @@
 /area/ice_colony/underground/crew/dorm_l)
 "bIt" = (
 /obj/structure/sign/goldenplaque{
-	pixel_y = 32
+	dir = 1
 	},
 /turf/open/floor{
 	tag = "icon-darkred2 (NORTH)";
