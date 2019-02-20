@@ -1119,11 +1119,7 @@
 	},
 /area/bigredv2/outside/space_port)
 "adh" = (
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/outside/marshal_office)
 "adi" = (
 /obj/item/shard,
@@ -1232,11 +1228,7 @@
 /area/shuttle/drop1/lz1)
 "ady" = (
 /obj/structure/bed/chair,
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/outside/marshal_office)
 "adz" = (
 /obj/structure/window/framed/colony/reinforced/tinted,
@@ -2922,11 +2914,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/caves/lambda_lab)
 "ahL" = (
 /turf/open/floor{
@@ -3141,11 +3129,7 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/caves/lambda_lab)
 "aiq" = (
 /obj/structure/largecrate/random,
@@ -3336,11 +3320,7 @@
 	},
 /obj/effect/landmark/corpsespawner/scientist,
 /obj/effect/alien/weeds/node,
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/caves/lambda_lab)
 "aiT" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
@@ -3628,11 +3608,7 @@
 /area/bigredv2/outside/marshal_office)
 "ajD" = (
 /obj/structure/table,
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/outside/marshal_office)
 "ajE" = (
 /obj/effect/decal/cleanable/dirt,
@@ -3867,20 +3843,12 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/outside/marshal_office)
 "akg" = (
 /obj/structure/table,
 /obj/item/device/taperecorder,
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/outside/marshal_office)
 "akh" = (
 /obj/machinery/door/airlock/almayer/security/glass{
@@ -3888,11 +3856,7 @@
 	name = "\improper Marshal Office Interrogation";
 	req_access_txt = "0"
 	},
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/outside/marshal_office)
 "aki" = (
 /obj/structure/table,
@@ -4126,21 +4090,13 @@
 /obj/structure/bed/chair{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/outside/marshal_office)
 "akO" = (
 /obj/machinery/camera/autoname{
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/outside/marshal_office)
 "akP" = (
 /obj/machinery/door_control{
@@ -7328,18 +7284,10 @@
 	dir = 4;
 	pixel_x = -30
 	},
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/caves/lambda_lab)
 "asu" = (
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/caves/lambda_lab)
 "asv" = (
 /obj/structure/cable{
@@ -7353,11 +7301,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/caves/lambda_lab)
 "asw" = (
 /obj/structure/sign/nosmoking_1{
@@ -7366,11 +7310,7 @@
 /obj/machinery/light/built{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/caves/lambda_lab)
 "asx" = (
 /obj/effect/glowshroom,
@@ -7664,11 +7604,7 @@
 	icon_state = "snack-broken";
 	stat = 1
 	},
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/caves/lambda_lab)
 "ath" = (
 /obj/effect/decal/cleanable/vomit,
@@ -7703,11 +7639,7 @@
 	icon_state = "coffee-broken";
 	stat = 1
 	},
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/caves/lambda_lab)
 "atk" = (
 /obj/effect/glowshroom,
@@ -7921,11 +7853,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/caves/lambda_lab)
 "atM" = (
 /obj/structure/cable{
@@ -7963,11 +7891,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/caves/lambda_lab)
 "atP" = (
 /obj/structure/window/framed/colony/reinforced,
@@ -8250,11 +8174,7 @@
 	d2 = 8;
 	icon_state = "4-8";
 	},
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/caves/lambda_lab)
 "aut" = (
 /obj/structure/cable{
@@ -8298,11 +8218,7 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/caves/lambda_lab)
 "auw" = (
 /obj/structure/showcase{
@@ -8315,11 +8231,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/caves/lambda_lab)
 "aux" = (
 /obj/effect/landmark/start/xeno_spawn,
@@ -8635,11 +8547,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/caves/lambda_lab)
 "avg" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -8685,11 +8593,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/caves/lambda_lab)
 "avj" = (
 /obj/structure/showcase{
@@ -8702,11 +8606,7 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/caves/lambda_lab)
 "avk" = (
 /obj/structure/window/reinforced{
@@ -8937,11 +8837,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/caves/lambda_lab)
 "avQ" = (
 /obj/structure/cable{
@@ -9296,29 +9192,17 @@
 /area/bigredv2/caves/lambda_lab)
 "awE" = (
 /obj/machinery/vending/cigarette/colony,
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/caves/lambda_lab)
 "awF" = (
 /obj/structure/bed/chair{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/caves/lambda_lab)
 "awG" = (
 /obj/machinery/vending/cola,
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/caves/lambda_lab)
 "awH" = (
 /obj/structure/cable{
@@ -9364,11 +9248,7 @@
 	icon_state = "sovietsoda-broken";
 	stat = 1
 	},
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/caves/lambda_lab)
 "awL" = (
 /obj/structure/table,
@@ -9592,11 +9472,7 @@
 	icon_state = "0-4";
 	d2 = 4
 	},
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/caves/lambda_lab)
 "axr" = (
 /obj/structure/cable{
@@ -9609,11 +9485,7 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/caves/lambda_lab)
 "axs" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -9622,19 +9494,11 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/caves/lambda_lab)
 "axt" = (
 /obj/machinery/light,
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/caves/lambda_lab)
 "axu" = (
 /obj/effect/landmark/random_item/crap,
@@ -10956,11 +10820,7 @@
 /area/bigredv2/outside/nw)
 "aAr" = (
 /obj/machinery/door/airlock/medical,
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/outside/medical)
 "aAs" = (
 /turf/open/floor{
@@ -11265,29 +11125,17 @@
 /area/bigredv2/outside/nw)
 "aBb" = (
 /obj/structure/bed/chair,
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/outside/medical)
 "aBc" = (
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/outside/medical)
 "aBd" = (
 /obj/structure/bed/chair,
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/outside/medical)
 "aBe" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -11560,11 +11408,7 @@
 /obj/structure/sign/nosmoking_2{
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/outside/medical)
 "aBJ" = (
 /obj/machinery/vending/MarineMed/Blood,
@@ -13763,11 +13607,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/caves/lambda_lab)
 "aGV" = (
 /obj/structure/table,
@@ -14155,11 +13995,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
 	},
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/caves/lambda_lab)
 "aHQ" = (
 /obj/structure/cable{
@@ -14173,11 +14009,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
 	},
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/caves/lambda_lab)
 "aHR" = (
 /obj/structure/cable{
@@ -14607,11 +14439,7 @@
 "aIO" = (
 /obj/effect/landmark/random_item/crap,
 /obj/effect/alien/weeds/node,
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/caves/lambda_lab)
 "aIP" = (
 /obj/machinery/light{
@@ -14756,11 +14584,7 @@
 "aJc" = (
 /obj/effect/landmark/monkey_spawn,
 /obj/effect/alien/weeds/node,
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/caves/lambda_lab)
 "aJd" = (
 /obj/effect/landmark/monkey_spawn,
@@ -15439,11 +15263,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
 	},
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/caves/lambda_lab)
 "aKc" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
@@ -15451,11 +15271,7 @@
 	},
 /obj/effect/landmark/monkey_spawn,
 /obj/effect/alien/weeds/node,
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/caves/lambda_lab)
 "aKd" = (
 /turf/open/floor{
@@ -19275,11 +19091,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/caves/lambda_lab)
 "aTG" = (
 /obj/effect/decal/cleanable/mucus,
@@ -19288,11 +19100,7 @@
 	d2 = 8;
 	icon_state = "4-8";
 	},
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/caves/lambda_lab)
 "aTH" = (
 /obj/structure/cable{
@@ -19759,11 +19567,7 @@
 /area/bigredv2/caves/lambda_lab)
 "aUG" = (
 /obj/effect/spawner/random/toolbox,
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/caves/lambda_lab)
 "aUH" = (
 /obj/effect/decal/cleanable/mucus,
@@ -21487,18 +21291,10 @@
 	dir = 4;
 	name = "\improper Chapel"
 	},
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/outside/chapel)
 "aZi" = (
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/outside/chapel)
 "aZj" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -21676,11 +21472,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
 	},
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/outside/chapel)
 "aZJ" = (
 /obj/structure/cable{
@@ -21692,11 +21484,7 @@
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/outside/chapel)
 "aZK" = (
 /obj/structure/cable{
@@ -21707,11 +21495,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
 	},
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/outside/chapel)
 "aZL" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -22002,11 +21786,7 @@
 /area/bigredv2/outside/chapel)
 "bau" = (
 /obj/structure/table/woodentable,
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/outside/chapel)
 "bav" = (
 /turf/open/floor/plating{
@@ -22453,11 +22233,7 @@
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/outside/chapel)
 "bbG" = (
 /obj/structure/cable{
@@ -22466,11 +22242,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/outside/chapel)
 "bbH" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -22478,22 +22250,14 @@
 	layer = 2.4
 	},
 /obj/effect/landmark/random_item/crap,
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/outside/chapel)
 "bbI" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8;
 	on = 1
 	},
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/outside/chapel)
 "bbJ" = (
 /turf/open/mars{
@@ -23229,11 +22993,7 @@
 /area/bigredv2/outside/chapel)
 "bdF" = (
 /obj/machinery/light,
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/outside/chapel)
 "bdG" = (
 /obj/machinery/power/apc,
@@ -23241,11 +23001,7 @@
 	icon_state = "0-4";
 	d2 = 4
 	},
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/outside/chapel)
 "bdH" = (
 /obj/structure/cable{
@@ -23253,11 +23009,7 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/outside/chapel)
 "bdI" = (
 /obj/machinery/alarm{
@@ -23266,11 +23018,7 @@
 	pixel_y = -30;
 	tag = "icon-alarm0 (NORTH)"
 	},
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/outside/chapel)
 "bdJ" = (
 /obj/structure/cable{
@@ -31797,11 +31545,7 @@
 	name = "\improper Eta Lab Server";
 	req_access_txt = "0"
 	},
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bzR" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -31938,11 +31682,7 @@
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bAh" = (
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bAi" = (
 /obj/machinery/computer/security,
@@ -32065,11 +31805,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bAw" = (
 /obj/machinery/door/airlock/almayer/research/glass{
@@ -32077,30 +31813,18 @@
 	name = "\improper Eta Lab Server";
 	req_access_txt = "0"
 	},
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bAx" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/alien/weeds/node,
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bAy" = (
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bAz" = (
 /obj/machinery/light{
@@ -32238,19 +31962,11 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bAO" = (
 /obj/structure/closet/secure_closet/engineering_personal,
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bAP" = (
 /obj/structure/closet/secure_closet/engineering_electrical,
-/turf/open/floor{
-	tag = "icon-darkish";
-	icon_state = "darkish";
-	dir = 2
-	},
+/turf/open/floor/tile/darkish,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bAQ" = (
 /obj/structure/closet/secure_closet/security/science,

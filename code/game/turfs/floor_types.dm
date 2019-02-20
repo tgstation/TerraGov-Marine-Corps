@@ -471,6 +471,9 @@
 /turf/open/floor/tile/white/warningstripe
 	icon_state = "warnwhite"
 
+/turf/open/floor/tile/darkish
+	icon_state = "darkish"
+
 /turf/open/floor/carpet
 	name = "Carpet"
 	icon_state = "carpet"
