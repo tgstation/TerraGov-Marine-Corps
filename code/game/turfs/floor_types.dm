@@ -116,8 +116,14 @@
 /turf/open/floor/plating/asteroidfloor
 	icon_state = "asteroidfloor"
 
+/turf/open/floor/plating/dmg1
+	icon_state = "platingdmg1"
+
 /turf/open/floor/plating/dmg2
 	icon_state = "platingdmg2"
+
+/turf/open/floor/plating/dmg3
+	icon_state = "platingdmg3"
 
 /turf/open/floor/marking/loadingarea
 	icon_state = "loadingarea"
@@ -491,6 +497,9 @@
 
 /turf/open/floor/tile/dark
 	icon_state = "dark"
+
+/turf/open/floor/tile/dark/purple2
+	icon_state = "darkpurple2"
 
 /turf/open/floor/carpet
 	name = "Carpet"

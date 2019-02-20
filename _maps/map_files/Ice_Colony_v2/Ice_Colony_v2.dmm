@@ -21006,9 +21006,7 @@
 	dir = 4;
 	layer = 2.4
 	},
-/turf/open/floor{
-	tag = "icon-darkpurple2 (EAST)";
-	icon_state = "darkpurple2";
+/turf/open/floor/tile/dark/purple2{
 	dir = 4
 	},
 /area/ice_colony/surface/research)
@@ -21379,9 +21377,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor{
-	tag = "icon-darkpurple2 (EAST)";
-	icon_state = "darkpurple2";
+/turf/open/floor/tile/dark/purple2{
 	dir = 4
 	},
 /area/ice_colony/surface/research)
@@ -21544,9 +21540,7 @@
 /turf/open/floor/freezer,
 /area/ice_colony/surface/bar/bar)
 "aTR" = (
-/turf/open/floor{
-	tag = "icon-darkpurple2 (EAST)";
-	icon_state = "darkpurple2";
+/turf/open/floor/tile/dark/purple2{
 	dir = 4
 	},
 /area/ice_colony/surface/research)
@@ -21782,9 +21776,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
 	},
-/turf/open/floor{
-	tag = "icon-darkpurple2 (EAST)";
-	icon_state = "darkpurple2";
+/turf/open/floor/tile/dark/purple2{
 	dir = 4
 	},
 /area/ice_colony/surface/research)
@@ -21926,9 +21918,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-darkpurple2 (EAST)";
-	icon_state = "darkpurple2";
+/turf/open/floor/tile/dark/purple2{
 	dir = 4
 	},
 /area/ice_colony/surface/research)
@@ -22408,9 +22398,7 @@
 	dir = 2;
 	icon_state = "pipe-c"
 	},
-/turf/open/floor{
-	tag = "icon-darkpurple2 (EAST)";
-	icon_state = "darkpurple2";
+/turf/open/floor/tile/dark/purple2{
 	dir = 4
 	},
 /area/ice_colony/surface/research)
@@ -25870,9 +25858,7 @@
 	dir = 4
 	},
 /obj/structure/largecrate/random,
-/turf/open/floor{
-	tag = "icon-darkpurple2 (EAST)";
-	icon_state = "darkpurple2";
+/turf/open/floor/tile/dark/purple2{
 	dir = 4
 	},
 /area/ice_colony/surface/excavation)
@@ -26615,9 +26601,7 @@
 /obj/machinery/door/window/eastright{
 	name = "Technical Storage"
 	},
-/turf/open/floor{
-	tag = "icon-darkpurple2 (EAST)";
-	icon_state = "darkpurple2";
+/turf/open/floor/tile/dark/purple2{
 	dir = 4
 	},
 /area/ice_colony/surface/excavation)
@@ -27485,9 +27469,7 @@
 	icon_state = "rwindow";
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-darkpurple2 (EAST)";
-	icon_state = "darkpurple2";
+/turf/open/floor/tile/dark/purple2{
 	dir = 4
 	},
 /area/ice_colony/surface/excavation)
@@ -30922,9 +30904,7 @@
 /area/ice_colony/exterior/surface/valley/southwest)
 "bom" = (
 /obj/machinery/autolathe,
-/turf/open/floor{
-	tag = "icon-darkpurple2 (EAST)";
-	icon_state = "darkpurple2";
+/turf/open/floor/tile/dark/purple2{
 	dir = 4
 	},
 /area/ice_colony/surface/research)
@@ -35656,9 +35636,7 @@
 	dir = 4
 	},
 /obj/machinery/r_n_d/protolathe,
-/turf/open/floor{
-	tag = "icon-darkpurple2 (EAST)";
-	icon_state = "darkpurple2";
+/turf/open/floor/tile/dark/purple2{
 	dir = 4
 	},
 /area/ice_colony/surface/research)
@@ -36748,9 +36726,7 @@
 /area/ice_colony/underground/security/marshal)
 "bAN" = (
 /obj/machinery/r_n_d/destructive_analyzer,
-/turf/open/floor{
-	tag = "icon-darkpurple2 (EAST)";
-	icon_state = "darkpurple2";
+/turf/open/floor/tile/dark/purple2{
 	dir = 4
 	},
 /area/ice_colony/surface/research)
@@ -38309,9 +38285,7 @@
 /area/ice_colony/underground/storage/highsec)
 "bDF" = (
 /obj/machinery/r_n_d/circuit_imprinter,
-/turf/open/floor{
-	tag = "icon-darkpurple2 (EAST)";
-	icon_state = "darkpurple2";
+/turf/open/floor/tile/dark/purple2{
 	dir = 4
 	},
 /area/ice_colony/surface/research)
@@ -47651,9 +47625,7 @@
 	})
 "bWC" = (
 /obj/machinery/door/window/eastleft,
-/turf/open/floor{
-	tag = "icon-darkpurple2 (EAST)";
-	icon_state = "darkpurple2";
+/turf/open/floor/tile/dark/purple2{
 	dir = 4
 	},
 /area/ice_colony/surface/excavation)

@@ -5917,10 +5917,7 @@
 /area/lv624/lazarus/research)
 "avt" = (
 /obj/structure/rack,
-/obj/item/shard{
-	pixel_x = 12;
-	pixel_y = 3
-	},
+/obj/item/shard,
 /turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
