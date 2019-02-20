@@ -407,10 +407,6 @@ var/global/list/holodeck_programs = list(
 /obj/item/toy/beach_ball/holoball/attack_alien(mob/living/carbon/Xenomorph/user)
 		attack_hand(user)
 
-/obj/item/toy/beach_ball/holoball/attack_hand(mob/user)
-	return ..()
-
-
 /obj/structure/holohoop
 	name = "basketball hoop"
 	desc = "Boom, Shakalaka!"
