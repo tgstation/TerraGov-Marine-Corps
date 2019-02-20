@@ -20,7 +20,7 @@
 			H.next_move_slowdown = max(H.next_move_slowdown, 2)
 			if(prob(5) || age >= stage_minimum_age-1)
 			if(!zombie_transforming)
-					zombie_transform(H)
+				zombie_transform(H)
 			else if(prob(5))
 				H.vomit()
 		if(DISEASE_STAGE_TWO)
