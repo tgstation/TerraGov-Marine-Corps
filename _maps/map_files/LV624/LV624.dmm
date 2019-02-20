@@ -8905,24 +8905,14 @@
 	},
 /area/lv624/lazarus/research)
 "aFX" = (
-/obj/structure/lamarr{
-	density = 0;
-	destroyed = 1;
-	icon_state = "labcageb0";
-	occupied = 0
-	},
+/obj/structure/lamarr/destroyed,
 /obj/item/shard,
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 5
 	},
 /area/lv624/lazarus/research)
 "aFY" = (
-/obj/structure/lamarr{
-	density = 0;
-	destroyed = 1;
-	icon_state = "labcageb0";
-	occupied = 0
-	},
+/obj/structure/lamarr/destroyed,
 /obj/structure/sign/kiddieplaque{
 	pixel_x = 32
 	},
