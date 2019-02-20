@@ -5,8 +5,7 @@
 	GLOB.alive_mob_list -= src
 	ghostize()
 	clear_fullscreens()
-	. = ..()
-	return TA_PURGE_ME_NOW
+	return ..()
 
 /mob/Initialize()
 	GLOB.mob_list += src

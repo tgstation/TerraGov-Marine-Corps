@@ -1073,7 +1073,7 @@ Defined in conflicts.dm of the #defines folder.
 			var/mob/living/carbon/human/H = M
 
 			if(user)
-				if(user.mind?.special_role && H.mind?.special_role && user.mind.special_role != H.mind.special_role)
+				if(user.mind?.special_role != H.mind?.special_role || user.faction != H.faction)
 					log_combat(user, H, "shot", src)
 					log_ffattack("[key_name(usr)] shot [key_name(H)] with [name] in [AREACOORD(T)].")
 					msg_admin_ff("[ADMIN_TPMONTY(usr)] shot [ADMIN_TPMONTY(H)] with [name] in [ADMIN_VERBOSEJMP(T)].")

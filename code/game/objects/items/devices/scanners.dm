@@ -334,6 +334,8 @@ REAGENT SCANNER
 			var/synaptizine_amount = reagents_in_body["synaptizine"]
 			var/hyperzine_amount = reagents_in_body["hyperzine"]
 			var/paracetamol_amount = reagents_in_body["paracetamol"]
+			var/neurotoxin_amount = reagents_in_body["xeno_toxin"]
+			var/growthtoxin_amount = reagents_in_body["xeno_growthtoxin"]
 			//Recurring chems:
 			var/peridaxon = ""
 			var/tricordrazine = ""
@@ -465,10 +467,12 @@ REAGENT SCANNER
 			advice = ""
 			if(synaptizine_amount)
 				advice += "<span class='scanner'><b>Synaptizine Detected:</b> DO NOT administer dylovene until synaptizine is purged or metabolized.</span>\n"
-			if(hyperzine_amount)
-				advice += "<span class='scanner'><b>Hyperzine Detected:</b> DO NOT administer peridaxon until hyperzine is purged or metabolized.</span>\n"
 			if(paracetamol_amount)
 				advice += "<span class='scanner'><b>Paracetamol Detected:</b> DO NOT administer tramadol until paracetamol is purged or metabolized.</span>\n"
+			if(neurotoxin_amount)
+				advice += "<span class='scanner'><b>Xenomorph Neurotoxin Detected:</b> Administer hypervene to purge.</span>\n"
+			if(growthtoxin_amount)
+				advice += "<span class='scanner'><b>Xenomorph Growth Toxin Detected:</b> Administer hypervene to purge.</span>\n"
 			if(advice != "")
 				dat += "\t<span class='scanner'> <b>Contraindications:</b></span>\n"
 				dat += advice

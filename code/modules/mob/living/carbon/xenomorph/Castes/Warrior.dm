@@ -215,7 +215,7 @@
 			round_statistics.warrior_grabs++
 			grab_level = GRAB_NECK
 			L.drop_all_held_items()
-			L.KnockDown(2)
+			L.KnockDown(1)
 			visible_message("<span class='xenowarning'>\The [src] grabs [L] by the throat!</span>", \
 			"<span class='xenowarning'>You grab [L] by the throat!</span>")
 

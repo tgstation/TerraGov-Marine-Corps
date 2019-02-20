@@ -7,8 +7,8 @@
 
 */
 
-#define STATION_Z 1
-#define TELECOMM_Z 3
+//#define STATION_Z 1
+//#define TELECOMM_Z 3
 
 /obj/machinery/telecomms
 	var/temp = "" // output message
@@ -197,7 +197,7 @@
 
 
 /obj/machinery/telecomms/relay/proc/toggle_level()
-
+/*
 	var/turf/position = get_turf(src)
 
 	// Toggle on/off getting signals from the station or the current Z level
@@ -207,7 +207,7 @@
 	else if(position.z == TELECOMM_Z)
 		src.listening_level = STATION_Z
 		return 1
-	return 0
+	return 0*/
 
 // Returns a multitool from a user depending on their mobtype.
 
@@ -252,13 +252,13 @@
 
 // RELAY
 
-/obj/machinery/telecomms/relay/Options_Menu()
+/obj/machinery/telecomms/relay/Options_Menu()/*
 	var/dat = ""
 	if(src.z == TELECOMM_Z)
 		dat += "<br>Signal Locked to Station: <A href='?src=\ref[src];change_listening=1'>[listening_level == STATION_Z ? "TRUE" : "FALSE"]</a>"
 	dat += "<br>Broadcasting: <A href='?src=\ref[src];broadcast=1'>[broadcasting ? "YES" : "NO"]</a>"
 	dat += "<br>Receiving:    <A href='?src=\ref[src];receive=1'>[receiving ? "YES" : "NO"]</a>"
-	return dat
+	return dat*/
 
 /obj/machinery/telecomms/relay/Options_Topic(href, href_list)
 

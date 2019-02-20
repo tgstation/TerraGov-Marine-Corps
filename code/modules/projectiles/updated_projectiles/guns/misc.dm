@@ -16,11 +16,12 @@
 	flags_gun_features = GUN_UNUSUAL_DESIGN
 	gun_skill_category = GUN_SKILL_PISTOLS
 
-/obj/item/weapon/gun/flare/examine(mob/user)
-	. = ..()
+/obj/item/weapon/gun/flare/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/low_fire_delay) * 3
+
+/obj/item/weapon/gun/flare/examine_ammo_count(mob/user)
 	if(num_flares)
-		to_chat(user, "<span class='warning'>It has a flare loaded!</span>")
+		to_chat(user, "<span class='warning'>It has [num2text(num_flares)] flare[num_flares > 1 ? "s" : ""] loaded!</span>")
 
 /obj/item/weapon/gun/flare/update_icon()
 	if(num_flares)
@@ -135,10 +136,12 @@
 
 /obj/item/weapon/gun/launcher/spike/examine(mob/user)
 	if(isyautja(user))
-		..()
-		to_chat(user, "It currently has [spikes] / [max_spikes] spikes.")
+		return ..()
 	else
 		to_chat(user, "Looks like some kind of...mechanical donut.")
+
+/obj/item/weapon/gun/launcher/spike/examine_ammo_count(mob/user)
+	to_chat(user, "It currently has [spikes] / [max_spikes] spikes.")
 
 /obj/item/weapon/gun/launcher/spike/update_icon()
 	var/new_icon_state = spikes <=1 ? null : icon_state + "[round(spikes/4, 1)]"
@@ -183,10 +186,9 @@
 	var/max_syringes = 1
 	matter = list("metal" = 2000)
 
-/obj/item/weapon/gun/syringe/examine(mob/user)
-	..()
-	if(user != loc) return
-	to_chat(user, "<span class='notice'>[syringes.len] / [max_syringes] syringes.</span>")
+/obj/item/weapon/gun/syringe/examine_ammo_count(mob/user)
+	if(user == loc)
+		to_chat(user, "<span class='notice'>[syringes.len] / [max_syringes] syringes.</span>")
 
 /obj/item/weapon/gun/syringe/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/reagent_container/syringe))

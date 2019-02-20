@@ -703,11 +703,9 @@
 	add_fingerprint(usr)
 
 /obj/machinery/autodoc/proc/go_out(notice_code = FALSE)
-	if(!occupant)
-		return
-	if(occupant in contents)
-		occupant.forceMove(loc)
-	if(connected.release_notice) //If auto-release notices are on as they should be, let the doctors know what's up
+	for(var/atom/movable/A in contents)
+		A.forceMove(loc)
+	if(connected.release_notice && occupant) //If auto-release notices are on as they should be, let the doctors know what's up
 		var/reason = "Reason for discharge: Procedural completion."
 		switch(notice_code)
 			if(AUTODOC_NOTICE_SUCCESS)

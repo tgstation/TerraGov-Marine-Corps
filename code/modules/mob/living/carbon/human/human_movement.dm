@@ -31,8 +31,6 @@
 	if(wear_suit)
 		reducible_tally += wear_suit.slowdown
 
-	reducible_tally += reagent_move_delay_modifier //hyperzine and ultrazine
-
 	if(shock_stage >= 10 && !isyautja(src))
 		reducible_tally += 3
 
@@ -82,6 +80,7 @@
 
 	. += CONFIG_GET(number/outdated_movedelay/human_delay)
 
+	. = max(-2.5, . + reagent_move_delay_modifier) //hyperzine and ultrazine
 /mob/living/carbon/human/proc/clear_leader_tracking()
 	var/obj/screen/SL_dir = hud_used.SL_locator
 	SL_dir.icon_state = "SL_locator_off"

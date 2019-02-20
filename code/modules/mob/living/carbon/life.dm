@@ -6,6 +6,13 @@
 	if(stat != DEAD) //Chemicals in body and some other stuff.
 		handle_organs()
 
+		if((life_tick % CARBON_BREATH_DELAY == 0) || failed_last_breath) //First, resolve location and get a breath
+			breathe() //Only try to take a breath every 2 ticks, unless suffocating
+
+		else if(isobj(loc))//Still give containing object the chance to interact
+			var/obj/location_as_object = loc
+			location_as_object.handle_internal_lifeform(src)
+
 	. = ..()
 
 	handle_fire() //Check if we're on fire
@@ -45,12 +52,11 @@
 	if(stat == DEAD)
 		return
 
-	if(health <= CONFIG_GET(number/health_threshold_dead))
+	if(health <= get_death_threshold())
 		death()
 		return
 
-	var/crit_threshold = ishuman(src) ? CONFIG_GET(number/health_threshold_crit) : 0
-	if(knocked_out || sleeping || getOxyLoss() > 50 || health < crit_threshold)
+	if(knocked_out || sleeping || getOxyLoss() > CARBON_KO_OXYLOSS || health < get_crit_threshold())
 		if(stat != UNCONSCIOUS)
 			blind_eyes(1)
 		stat = UNCONSCIOUS
@@ -201,3 +207,63 @@
 /mob/living/carbon/proc/add_slowdown(amount)
 	slowdown = adjust_slowdown(amount*STANDARD_SLOWDOWN_REGEN)
 	return slowdown
+
+/mob/living/carbon/proc/breathe()
+	if(!need_breathe())
+		return
+
+	if(health < get_crit_threshold() && !reagents.has_reagent("inaprovaline"))
+		Losebreath(1, TRUE)
+	else
+		adjust_Losebreath(-1, TRUE)
+
+	if(!losebreath)
+		. = get_breath_from_internal()
+		if(!.)
+			. = get_breath_from_environment()
+
+	handle_breath(.)
+
+/mob/living/carbon/proc/get_breath_from_internal()
+	if(!internal)
+		return FALSE
+	if(istype(buckled,/obj/machinery/optable))
+		var/obj/machinery/optable/O = buckled
+		if(O.anes_tank)
+			return O.anes_tank.return_air()
+	if(!contents.Find(internal))
+		internal = null
+	if(!wear_mask || !(wear_mask.flags_inventory & ALLOWINTERNALS))
+		internal = null
+	if(internal)
+		hud_used.internals.icon_state = "internal1"
+		return internal.return_air()
+	else if(hud_used?.internals)
+		hud_used.internals.icon_state = "internal0"
+	return FALSE
+
+/mob/living/carbon/proc/get_breath_from_environment()
+	if(isturf(loc))
+		var/turf/T = loc
+		. = T.return_air()
+
+	else if(istype(loc, /atom/movable))
+		var/atom/movable/container = loc
+		. = container.handle_internal_lifeform(src)
+
+	if(istype(wear_mask) && .)
+		. = wear_mask.filter_air(.)
+
+/mob/living/carbon/proc/handle_breath(list/air_info)
+	if(!air_info || suiciding)
+		if(suiciding)
+			adjustOxyLoss(2, TRUE)
+		else if(health > get_crit_threshold())
+			adjustOxyLoss(CARBON_MAX_OXYLOSS, TRUE)
+		else
+			adjustOxyLoss(CARBON_CRIT_MAX_OXYLOSS, TRUE)
+
+		failed_last_breath = TRUE
+		oxygen_alert = TRUE
+		return FALSE
+	return TRUE

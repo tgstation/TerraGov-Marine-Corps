@@ -195,7 +195,7 @@ By design, d1 is the smallest direction and d2 is the highest
 	stored.update_icon()
 
 /obj/structure/cable/ex_act(severity)
-	if(z == PLANET_Z_LEVEL && layer < 2) //ground map - no blowie. They are buried underground.
+	if(is_ground_level(z) && layer < 2) //ground map - no blowie. They are buried underground.
 		return
 
 	if(d1 == UP_OR_DOWN || d2 == UP_OR_DOWN)

@@ -266,6 +266,7 @@
 //			if(!disassembled)
 //				stored.obj_integrity = stored.max_integrity * 0.5
 			transfer_fingerprints_to(stored)
+			qdel(src)
 	..()
 
 /obj/machinery/atmospherics/proc/getpipeimage(iconset, iconstate, direction, col=rgb(255,255,255), piping_layer=2)

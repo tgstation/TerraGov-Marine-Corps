@@ -1434,3 +1434,12 @@ proc/pick_closest_path(value, list/matches = get_fancy_list_of_atom_types())
 	if(istype(D))
 		return !QDELETED(D)
 	return FALSE
+
+//Repopulates sortedAreas list
+/proc/repopulate_sorted_areas()
+	GLOB.sortedAreas = list()
+
+	for(var/area/A in world)
+		GLOB.sortedAreas.Add(A)
+
+	sortTim(GLOB.sortedAreas, /proc/cmp_name_asc)

@@ -281,7 +281,7 @@
 		to_chat(user, "<span class='warning'>[src] is busy.</span>")
 		return //prevents spamming deployment/undeployment
 	if(deployed_turret.loc == src) //not deployed
-		if(z == LOW_ORBIT_Z_LEVEL)
+		if(is_low_orbit_level(z))
 			to_chat(user, "<span class='warning'>[src] can't deploy mid-flight.</span>")
 		else
 			to_chat(user, "<span class='notice'>You deploy [src].</span>")
@@ -841,7 +841,7 @@
 	if(!selected_stretcher.stretcher_activated)//stretcher beacon was deactivated midway
 		return
 
-	if(selected_stretcher.z != 1) //in case the stretcher was on a groundside dropship that flew away during our input()
+	if(!is_ground_level(selected_stretcher.z)) //in case the stretcher was on a groundside dropship that flew away during our input()
 		return
 
 	if(!selected_stretcher.buckled_mob && !selected_stretcher.buckled_bodybag)
@@ -929,7 +929,7 @@
 		to_chat(user, "<span class='warning'>There seems to be no medevac stretcher connected to [src].</span>")
 		return
 
-	if(linked_stretcher.z != 1)
+	if(!is_ground_level(linked_stretcher.z))
 		linked_stretcher.linked_medevac = null
 		linked_stretcher = null
 		to_chat(user, "<span class='warning'> There seems to be no medevac stretcher connected to [src].</span>")
@@ -954,7 +954,7 @@
 
 	busy_winch = FALSE
 	var/fail
-	if(!linked_stretcher || linked_stretcher != old_stretcher || linked_stretcher.z != 1)
+	if(!linked_stretcher || linked_stretcher != old_stretcher || !is_ground_level(linked_stretcher.z))
 		fail = TRUE
 
 	else if(!ship_base) //uninstalled midway

@@ -29,5 +29,5 @@ Bonus
 	if(prob(SYMPTOM_ACTIVATION_PROB))
 		var/mob/living/carbon/M = A.affected_mob
 		to_chat(M, "<span class='notice'>[pick("You feel cold.", "You start shaking from the cold.")]</span>")
-		M.adjust_bodytemperature(-10 * A.stage * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_COLD_DAMAGE_LIMIT + 1)
+		M.adjust_bodytemperature(-10 * A.stage * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_COLD_DAMAGE_LIMIT_ONE + 1)
 	return

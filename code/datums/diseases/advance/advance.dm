@@ -402,7 +402,7 @@ var/list/advance_cures = 	list(
 			AD.Refresh()
 
 		for(var/mob/living/carbon/human/H in shuffle(GLOB.alive_human_list))
-			if(H.z != 1)
+			if(!is_ground_level(H.z))
 				continue
 			if(!H.has_disease(D))
 				H.contract_disease(D, 1)

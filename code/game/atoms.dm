@@ -606,6 +606,9 @@ Proc for attack log creation, because really why not
 		target.log_message(reverse_message, LOG_ATTACK, color="orange", log_globally=FALSE)
 
 /atom/New(loc, ...)
+	if(GLOB.use_preloader && (src.type == GLOB._preloader.target_path))//in case the instanciated atom is creating other atoms in New()
+		GLOB._preloader.load(src)
+
 	var/do_initialize = SSatoms.initialized
 	if(do_initialize != INITIALIZATION_INSSATOMS)
 		args[1] = do_initialize == INITIALIZATION_INNEW_MAPLOAD
@@ -691,6 +694,12 @@ Proc for attack log creation, because really why not
 //called if Initialize returns INITIALIZE_HINT_LATELOAD
 /atom/proc/LateInitialize()
 	return
+
+//called when the turf the atom resides on is ChangeTurfed
+/atom/proc/HandleTurfChange(turf/T)
+	for(var/a in src)
+		var/atom/A = a
+		A.HandleTurfChange(T)
 
 //Hook for running code when a dir change occurs
 /atom/proc/setDir(newdir)

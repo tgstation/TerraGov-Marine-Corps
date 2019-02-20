@@ -37,17 +37,19 @@
 /obj/structure/bed/chair/verb/rotate()
 	set name = "Rotate Chair"
 	set category = "Object"
-	set src in oview(1)
+	set src in view(0)
+	
+	var/mob/living/carbon/user = usr
 
+	if(!istype(user) || !isturf(user.loc) || user.is_mob_incapacitated())
+		return FALSE
 
-	if(istype(usr, /mob/living/simple_animal/mouse))
-		return
-	if(!usr || !isturf(usr.loc))
-		return
-	if(usr.stat || usr.is_mob_restrained())
-		return
+	if(!CONFIG_GET(flag/unlimited_rotate_speed))
+		if(world.time <= user.next_move)
+			return FALSE
+		user.next_move = world.time + 3
 
-	setDir(turn(src.dir, 90))
+	setDir(turn(dir, 90))
 
 //Chair types
 /obj/structure/bed/chair/reinforced

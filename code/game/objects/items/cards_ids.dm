@@ -162,6 +162,14 @@
 	return src
 
 
+/obj/item/card/id/proc/update_label(newname, newjob)
+	if(newname || newjob)
+		name = "[(!newname)	? "identification card"	: "[newname]'s ID Card"][(!newjob) ? "" : " ([newjob])"]"
+		return
+
+	name = "[(!registered_name)	? "identification card"	: "[registered_name]'s ID Card"][(!assignment) ? "" : " ([assignment])"]"
+
+
 /obj/item/card/id/verb/read()
 	set name = "Read ID Card"
 	set category = "Object"

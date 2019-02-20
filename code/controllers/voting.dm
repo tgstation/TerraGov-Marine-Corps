@@ -88,10 +88,10 @@ datum/controller/vote
 					if(choices["Continue Playing"] >= greatest_votes)
 						greatest_votes = choices["Continue Playing"]
 				else if(mode == "gamemode")
-					if(master_mode in choices)
-						choices[master_mode] += non_voters
-						if(choices[master_mode] >= greatest_votes)
-							greatest_votes = choices[master_mode]
+					if(GLOB.master_mode in choices)
+						choices[GLOB.master_mode] += non_voters
+						if(choices[GLOB.master_mode] >= greatest_votes)
+							greatest_votes = choices[GLOB.master_mode]
 
 
 		//get all options with that many votes and return them in a list
@@ -139,12 +139,12 @@ datum/controller/vote
 					if(. == "Restart Round")
 						restart = 1
 				if("gamemode")
-					if(master_mode != .)
+					if(GLOB.master_mode != .)
 						world.save_mode(.)
 						if(SSticker?.mode)
 							restart = 1
 						else
-							master_mode = .
+							GLOB.master_mode = .
 
 		if(mode == "gamemode") //fire this even if the vote fails.
 			if(!going)

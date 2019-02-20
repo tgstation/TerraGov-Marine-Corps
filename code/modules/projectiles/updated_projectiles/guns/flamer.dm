@@ -28,8 +28,7 @@
 /obj/item/weapon/gun/flamer/unique_action(mob/user)
 	toggle_flame(user)
 
-/obj/item/weapon/gun/flamer/examine(mob/user)
-	. = ..()
+/obj/item/weapon/gun/flamer/examine_ammo_count(mob/user)
 	to_chat(user, "It's turned [lit? "on" : "off"].")
 	if(current_mag)
 		to_chat(user, "The fuel gauge shows the current tank is [round(current_mag.get_ammo_percent())]% full!")
@@ -252,7 +251,7 @@
 
 			if(user)
 				var/area/A = get_area(user)
-				if(user.mind && !user.mind.special_role && H.mind && !H.mind.special_role)
+				if(user.mind?.special_role != H.mind?.special_role || user.faction != H.faction)
 					log_combat(user, H, "shot", src)
 					msg_admin_ff("[ADMIN_TPMONTY(usr)] shot [ADMIN_TPMONTY(H)] with \a [name] in [ADMIN_VERBOSEJMP(A)].")
 				else
