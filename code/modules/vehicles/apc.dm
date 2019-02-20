@@ -70,7 +70,7 @@ var/list/free_modules = list("Medical Modification", "Supply Modification", "Com
 
 	R.camera = new /obj/machinery/camera(R)
 	R.camera.network = list("almayer")	//changed network from military to almayer,because Cams computers on Almayer have this network
-	R.camera.c_tag = "Armored Personnel Carrier �[rand(1,10)]" //ARMORED to be at the start of cams list, numbers in case of events with multiple vehicles
+	R.camera.c_tag = "Armored Personnel Carrier #[rand(1,10)]" //ARMORED to be at the start of cams list, numbers in case of events with multiple vehicles
 
 	del(src)
 
@@ -106,7 +106,7 @@ var/list/free_modules = list("Medical Modification", "Supply Modification", "Com
 
 	R.camera = new /obj/machinery/camera(R)
 	R.camera.network = list("almayer")	//changed network from military to almayer, because Cams computers on Almayer have this network
-	R.camera.c_tag = "Armored Personnel Carrier �[rand(1,10)]" //ARMORED to be at the start of cams list, numbers in case of events with multiple vehicles
+	R.camera.c_tag = "Armored Personnel Carrier #[rand(1,10)]" //ARMORED to be at the start of cams list, numbers in case of events with multiple vehicles
 
 	del(src)
 
@@ -134,7 +134,7 @@ var/list/free_modules = list("Medical Modification", "Supply Modification", "Com
 
 	R.camera = new /obj/machinery/camera(R)
 	R.camera.network = list("almayer")	//changed network from military to almayer,because Cams computers on Almayer have this network
-	R.camera.c_tag = "Armored Personnel Carrier �[rand(1,10)]" //ARMORED to be at the start of cams list, numbers in case of events with multiple vehicles
+	R.camera.c_tag = "Armored Personnel Carrier #[rand(1,10)]" //ARMORED to be at the start of cams list, numbers in case of events with multiple vehicles
 
 	//Manually adding those hardpoints
 	R.add_hardpoint(new /obj/item/hardpoint/apc/primary/dual_cannon)
@@ -582,6 +582,7 @@ var/list/free_modules = list("Medical Modification", "Supply Modification", "Com
 					if("Supply Modification")
 						name = "M580-S APC"
 						camera.network.Add("apc_2")
+
 						interior_area = locate(/area/vehicle_interior/apc_2)
 						var/obj/machinery/camera/cam = locate(/obj/machinery/camera/autoname/almayer) in interior_area
 						cam.c_tag = camera.c_tag + " Interior Camera"
@@ -595,10 +596,10 @@ var/list/free_modules = list("Medical Modification", "Supply Modification", "Com
 						interior_cam = locate(/obj/machinery/camera/autoname/almayer) in interior_area
 						var/obj/structure/vehicle_interior/supply_receiver/receiver = locate(/obj/structure/vehicle_interior/supply_receiver) in interior_area
 						receiver.master = src
-						var/turf/T = locate(159, 61, 3)
+						var/turf/T = locate(156, 61, 3)
 						var/obj/machinery/vehicle_interior/supply_sender_control/button = locate(/obj/machinery/vehicle_interior/supply_sender_control) in T.contents
 						button.destination = receiver
-						T = locate(3, 62, 160)
+						T = locate(157, 61, 3)
 						var/obj/structure/vehicle_interior/supply_sender/sender = locate(/obj/structure/vehicle_interior/supply_sender) in range(button, 1)
 						button.master = sender
 						passengers_max = 10
@@ -625,13 +626,6 @@ var/list/free_modules = list("Medical Modification", "Supply Modification", "Com
 						interior_tcomms.master = src
 						interior_cam = locate(/obj/machinery/camera/autoname/almayer) in interior_area
 						switch(map_tag)
-							if(MAP_PRISON_STATION)
-								var/turf/T = get_turf(locate(232,104,1))
-								interior_tcomms.tcomms_sphere = locate(/obj/machinery/telecomms/relay/preset/station/prison) in T.contents
-								if(interior_tcomms.tcomms_sphere)
-									to_chat(H, "<span class='debuginfo'>relay linked.</span>")
-								else
-									to_chat(H, "<span class='debuginfo'>error: relay not found.</span>")
 							if(MAP_BIG_RED)
 								var/turf/T = get_turf(locate(16,202,1))
 								interior_tcomms.tcomms_tower = locate(/obj/machinery/telecomms/relay/preset/ice_colony) in T.contents
@@ -646,7 +640,7 @@ var/list/free_modules = list("Medical Modification", "Supply Modification", "Com
 									to_chat(H, "<span class='debuginfo'>relay linked.</span>")
 								else
 									to_chat(H, "<span class='debuginfo'>error: relay not found.</span>")
-							if(MAP_LV_624)
+							if(MAP_LV_624 || MAP_PRISON_STATION)
 								to_chat(user, "<span class='notice'>Area of Operations is covered by Almayer. [src] Telecommunication equipment is disabled for this operation.</span>")
 						passengers_max = 12
 						module_role = "Staff Officer"
