@@ -266,47 +266,71 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 	var/dat = "<html><head><title>"
 
-	var/choice = input("Which list?") as null|anything in list("Players", "Admins", "Clients", "Mobs", "Living Mobs", "Dead Mobs", "Xenos", "Alive Xenos", "Dead Xenos")
+	var/choice = input("Which list?") as null|anything in list("Players", "Admins", "Clients", "Mobs", "Living Mobs", "Dead Mobs", "Xenos", "Alive Xenos", "Dead Xenos", "Humans", "Alive Humans", "Dead Humans")
 	if(!choice)
 		return
 
 	switch(choice)
 		if("Players")
 			dat += "Players</title></head><body>"
-			dat += tg_list2text(GLOB.player_list, "<br>")
+			for(var/i in GLOB.player_list)
+				var/mob/M = i
+				dat += "[ADMIN_VV(M)] <br>"
 		if("Admins")
 			dat += "Admins</title></head><body>"
-			dat += tg_list2text(GLOB.admins, "<br>")
+			for(var/i in GLOB.admins)
+				var/mob/M = i
+				dat += "[ADMIN_VV(M)] <br>"
 		if("Clients")
 			dat += "Clients</title></head><body>"
-			dat += tg_list2text(GLOB.clients, "<br>")
+			for(var/i in GLOB.clients)
+				var/mob/M = i
+				dat += "[ADMIN_VV(M)] <br>"
 		if("Mobs")
 			dat += "Mobs</title></head><body>"
-			dat += tg_list2text(GLOB.mob_list, "<br>")
+			for(var/i in GLOB.mob_list)
+				var/mob/M = i
+				dat += "[ADMIN_VV(M)] <br>"
 		if("Living Mobs")
 			dat += "Living Mobs</title></head><body>"
-			dat += tg_list2text(GLOB.alive_mob_list, "<br>")
+			for(var/i in GLOB.alive_mob_list)
+				var/mob/M = i
+				dat += "[ADMIN_VV(M)] <br>"
 		if("Dead Mobs")
 			dat += "Dead Mobs</title></head><body>"
-			dat += tg_list2text(GLOB.dead_mob_list, "<br>")
+			for(var/i in GLOB.dead_mob_list)
+				var/mob/M = i
+				dat += "[ADMIN_VV(M)] <br>"
 		if("Xenos")
 			dat += "Xenos</title></head><body>"
-			dat += tg_list2text(GLOB.xeno_mob_list, "<br>")
+			for(var/i in GLOB.xeno_mob_list)
+				var/mob/M = i
+				dat += "[ADMIN_VV(M)] <br>"
 		if("Alive Xenos")
 			dat += "Alive Xenos</title></head><body>"
-			dat += tg_list2text(GLOB.alive_xeno_list, "<br>")
+			for(var/i in GLOB.alive_xeno_list)
+				var/mob/M = i
+				dat += "[ADMIN_VV(M)] <br>"
 		if("Dead Xenos")
 			dat += "Dead Xenos</title></head><body>"
-			dat += tg_list2text(GLOB.dead_xeno_list, "<br>")
+			for(var/i in GLOB.dead_xeno_list)
+				var/mob/M = i
+				dat += "[ADMIN_VV(M)] <br>"
 		if("Humans")
 			dat += "Humans</title></head><body>"
-			dat += tg_list2text(GLOB.human_mob_list, "<br>")
+			for(var/i in GLOB.human_mob_list)
+				var/mob/M = i
+				dat += "[ADMIN_VV(M)] <br>"
 		if("Alive Humans")
 			dat += "Alive Humans</title></head><body>"
-			dat += tg_list2text(GLOB.alive_human_list, "<br>")
-		if("Dead Xenos")
-			dat += "Dead Xenos</title></head><body>"
-			dat += tg_list2text(GLOB.dead_human_list, "<br>")
+			for(var/i in GLOB.alive_human_list)
+				var/mob/M = i
+				dat += "[ADMIN_VV(M)] <br>"
+		if("Dead Humans")
+			dat += "Dead Humans</title></head><body>"
+			for(var/i in GLOB.player_list)
+				var/mob/M = i
+				dat += "[ADMIN_VV(M)] <br>"
 
 	dat += "</body></html>"
 
