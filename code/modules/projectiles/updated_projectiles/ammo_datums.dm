@@ -868,7 +868,7 @@
 	. = ..()
 	damage = CONFIG_GET(number/combat_define/med_hit_damage)
 	penetration= CONFIG_GET(number/combat_define/mhigh_armor_penetration)
-	accurate_range = CONFIG_GET(number/combat_define/near_shell_range)
+	accurate_range = CONFIG_GET(number/combat_define/min_shell_range)
 
 /datum/ammo/bullet/turret/mini
 	name = "UA-580 10x20mm armor piercing bullet"
@@ -1026,7 +1026,7 @@
 	damage = CONFIG_GET(number/combat_define/super_hit_damage)
 	max_range = CONFIG_GET(number/combat_define/norm_shell_range)
 
-/datum/ammo/rocket/wp/drop_flame(radius = 3, turf/T) //~Art updated fire.
+/datum/ammo/rocket/wp/drop_flame(turf/T, radius = 3) //~Art updated fire.
 	if(!T || !isturf(T))
 		return
 	smoke.set_up(1, T)
@@ -1294,12 +1294,9 @@
 	damage_var_high = CONFIG_GET(number/combat_define/mlow_proj_variance)
 
 /datum/ammo/xeno/toxin/on_hit_mob(mob/living/carbon/M, obj/item/projectile/P)
-	if(!istype(M))
-		return ..()
-	var/mob/living/carbon/C = M
-	if(C.status_flags & XENO_HOST && istype(C.buckled, /obj/structure/bed/nest) || C.stat == DEAD)
+	if(!istype(M) || (xeno_hivenumber(M) && xeno_hivenumber(M) == xeno_hivenumber(P.firer)))
 		return
-	staggerstun(C, P, CONFIG_GET(number/combat_define/close_shell_range), 0, 0, 1, 1, 0) //Staggers and slows down briefly
+	staggerstun(M, P, CONFIG_GET(number/combat_define/close_shell_range), 0, 0, 1, 1, 0) //Staggers and slows down briefly
 
 	return ..()
 
@@ -1409,13 +1406,6 @@
 
 /datum/ammo/xeno/acid/on_shield_block(mob/M, obj/item/projectile/P)
 	burst(M,P,damage_type)
-
-/datum/ammo/xeno/acid/on_hit_mob(mob/M, obj/item/projectile/P)
-	if(iscarbon(M))
-		var/mob/living/carbon/C = M
-		if(C.status_flags & XENO_HOST && istype(C.buckled, /obj/structure/bed/nest) || C.stat == DEAD)
-			return
-	..()
 
 /datum/ammo/xeno/acid/medium
 	name = "acid spatter"
@@ -1591,12 +1581,10 @@
 /datum/ammo/flamethrower/do_at_max_range(obj/item/projectile/P)
 	drop_flame(get_turf(P))
 
-/datum/ammo/flamethrower/tank_flamer/drop_flame(var/turf/T)
+/datum/ammo/flamethrower/tank_flamer/drop_flame(turf/T)
 	if(!istype(T))
 		return
-	if(locate(/obj/flamer_fire) in T)
-		return
-	new /obj/flamer_fire(T, 20, 20, fire_spread_amount = 2)
+	flame_radius(2, T)
 
 /datum/ammo/flamethrower/green
 	name = "green flame"

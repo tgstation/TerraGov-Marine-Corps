@@ -8,7 +8,7 @@
 	var/image/obscured
 
 /turf/proc/visibilityChanged()
-	if(ticker)
+	if(SSticker)
 		cameranet.updateVisibility(src)
 
 /turf/Destroy()
@@ -24,25 +24,25 @@
 // STRUCTURES
 
 /obj/structure/Destroy()
-	if(ticker)
+	if(SSticker)
 		cameranet.updateVisibility(src)
 	. = ..()
 
 /obj/structure/New()
 	..()
-	if(ticker)
+	if(SSticker)
 		cameranet.updateVisibility(src)
 
 // EFFECTS
 
 /obj/effect/Destroy()
-	if(ticker)
+	if(SSticker)
 		cameranet.updateVisibility(src)
 	. = ..()
 
 /obj/effect/New()
 	..()
-	if(ticker)
+	if(SSticker)
 		cameranet.updateVisibility(src)
 
 

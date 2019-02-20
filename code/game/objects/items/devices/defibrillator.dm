@@ -28,11 +28,12 @@
 		return TRUE
 	return FALSE
 
-/obj/item/device/defibrillator/New()
+/obj/item/device/defibrillator/Initialize()
 	sparks.set_up(5, 0, src)
 	sparks.attach(src)
 	dcell = new/obj/item/cell(src)
 	update_icon()
+	. = ..()
 
 /obj/item/device/defibrillator/update_icon()
 	icon_state = "defib"
@@ -199,7 +200,7 @@
 		H.adjustCloneLoss(-defib_heal_amt)
 		H.adjustOxyLoss(-H.getOxyLoss())
 		H.updatehealth() //Needed for the check to register properly
-		if(H.health > CONFIG_GET(number/health_threshold_dead))
+		if(H.health > H.get_death_threshold())
 			user.visible_message("<span class='notice'>[icon2html(src, viewers(user))] \The [src] beeps: Defibrillation successful.</span>")
 			H.on_revive()
 			H.timeofdeath = 0

@@ -73,8 +73,6 @@ var/game_year = GAME_YEAR
 
 var/datum/air_tunnel/air_tunnel1/SS13_airtunnel = null
 var/going = 1.0
-var/master_mode = "Distress Signal"
-var/secret_force_mode = "secret" // if this is anything but "secret", the secret rotation will forceably choose this mode
 
 var/datum/engine_eject/engine_eject_control = null
 var/host = null
@@ -92,14 +90,12 @@ var/list/bombers = list(  )
 var/list/lastsignalers = list(	)	//keeps last 100 signals here in format: "[src] used \ref[src] @ location [src.loc]: [freq]/[code]"
 var/list/lawchanges = list(  ) //Stores who uploaded laws to which silicon-based lifeform, and what the law was
 var/list/reg_dna = list(  )
-//	list/traitobj = list(  )
 
 var/mouse_respawn_time = 15 //Amount of time that must pass between a player dying as a mouse and repawning as a mouse. In minutes.
 
 var/HangarUpperElevator
 var/HangarLowerElevator
 
-//	list/traitors = list()	//traitor list
 var/list/cardinal = list( NORTH, SOUTH, EAST, WEST )
 var/list/alldirs = list(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
 // reverse_dir[dir] = reverse of dir

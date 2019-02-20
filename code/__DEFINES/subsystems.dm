@@ -49,7 +49,8 @@
 // Subsystems shutdown in the reverse of the order they initialize in
 // The numbers just define the ordering, they are meaningless otherwise.
 
-#define INIT_ORDER_TITLE 21
+#define INIT_ORDER_TICKER			22
+#define INIT_ORDER_TITLE 			21
 #define INIT_ORDER_GARBAGE			20
 #define INIT_ORDER_DBCORE			19
 #define INIT_ORDER_BLACKBOX			18
@@ -60,7 +61,6 @@
 #define INIT_ORDER_EVENTS			13
 #define INIT_ORDER_JOBS				12
 #define INIT_ORDER_QUIRKS			11
-#define INIT_ORDER_TICKER			10
 #define INIT_ORDER_MAPPING			9
 #define INIT_ORDER_NETWORKS			8
 #define INIT_ORDER_ECONOMY			7
@@ -91,6 +91,7 @@
 #define FIRE_PRIORITY_RESEARCH		10
 #define FIRE_PRIORITY_VIS			10
 #define FIRE_PRIORITY_GARBAGE		15
+#define FIRE_PRIORITY_DIRECTION		19
 #define FIRE_PRIORITY_WET_FLOORS	20
 #define FIRE_PRIORITY_AIR			20
 #define FIRE_PRIORITY_NPC			20
@@ -143,5 +144,5 @@
 		if(LAZYLEN(po)){\
 			A.overlays |= po;\
 		}\
-		A.flags_1 &= ~OVERLAY_QUEUED_1;\
+		A.flags_atom &= ~OVERLAY_QUEUED;\
 	}

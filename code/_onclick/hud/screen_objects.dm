@@ -210,7 +210,7 @@
 	switch(name)
 
 		if("equip")
-			if (istype(user.loc,/obj/mecha)) // stops inventory actions in a mech
+			if (istype(user.loc,/obj/mecha) || istype(user.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech/tank
 				return TRUE
 			if(ishuman(user))
 				var/mob/living/carbon/human/H = user
@@ -295,7 +295,7 @@
 		return TRUE
 	if(user.is_mob_incapacitated(TRUE))
 		return TRUE
-	if (istype(user.loc,/obj/mecha)) // stops inventory actions in a mech
+	if (istype(user.loc,/obj/mecha) || istype(user.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech/tank
 		return TRUE
 	switch(name)
 		if("r_hand")
@@ -603,6 +603,14 @@
 	name = "toggle"
 	icon_state = "other"
 	screen_loc = ui_inventory
+
+/obj/screen/SL_locator
+	name = "sl locator"
+	icon = 'icons/Marine/marine-items.dmi'
+	icon_state = "SL_locator"
+	alpha = 0 //invisible
+	mouse_opacity = 0
+	screen_loc = ui_sl_dir
 
 /obj/screen/toggle_inv/clicked(var/mob/user)
 	if (..())

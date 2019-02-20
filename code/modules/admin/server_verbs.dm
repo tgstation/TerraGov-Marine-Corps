@@ -106,13 +106,13 @@
 	if(!check_rights(R_SERVER))
 		return
 
-	if(!ticker || ticker.current_state != GAME_STATE_PREGAME)
+	if(!SSticker || SSticker.current_state != GAME_STATE_PREGAME)
 		return
 
 	if(alert("Are you sure you want to start the round early?", "Confirmation","Yes","No") != "Yes")
 		return
 
-	ticker.current_state = GAME_STATE_SETTING_UP
+	SSticker.current_state = GAME_STATE_SETTING_UP
 
 	log_admin("[key_name(usr)] has started the game early.")
 	message_admins("[ADMIN_TPMONTY(usr)] has started the game early.")
@@ -181,38 +181,59 @@
 	if(!check_rights(R_SERVER))
 		return
 
-	if(!ticker?.mode)
+	if(!SSticker?.mode)
 		return
 
 	if(alert("Are you sure you want to end the round?", "Confirmation", "Yes","No") != "Yes")
 		return
 
-	ticker.mode.round_finished = MODE_INFESTATION_M_MINOR
+	SSticker.mode.round_finished = MODE_INFESTATION_M_MINOR
 
 	log_admin("[key_name(usr)] has made the round end early.")
 	message_admins("[ADMIN_TPMONTY(usr)] has made the round end early.")
 
 
-/datum/admins/proc/delay()
+/datum/admins/proc/delay_start()
 	set category = "Server"
-	set name = "Delay"
-	set desc = "Delay the game start or end."
+	set name = "Delay Round-Start"
+	set desc = "Delay the game start."
 
 	if(!check_rights(R_SERVER))
 		return
 
-	if(!ticker)
+	if(!SSticker)
 		return
 
-	if(ticker.current_state != GAME_STATE_PREGAME)
-		ticker.delay_end = !ticker.delay_end
+	var/newtime = input("Set a new time in seconds. Set -1 for indefinite delay.", "Set Delay", round(SSticker.GetTimeLeft())) as num|null
+	if(SSticker.current_state > GAME_STATE_PREGAME)
+		return
+	if(isnull(newtime))
+		return
+
+	newtime = newtime*10
+	SSticker.SetTimeLeft(newtime)
+	if(newtime < 0)
+		going = FALSE
+		to_chat(world, "<span class='boldnotice'>The game start has been delayed.</span>")
+		log_admin("[key_name(usr)] delayed the round start.")
+		message_admins("[ADMIN_TPMONTY(usr)] delayed the round start.")
 	else
-		to_chat(world, "<hr><span class='centerbold'>The game [!going ? "will start soon" : "start has been delayed"].</span><hr>")
+		going = TRUE
+		to_chat(world, "<span class='boldnotice'>The game will start in [DisplayTimeText(newtime)].</span>")
+		log_admin("[key_name(usr)] set the pre-game delay to [DisplayTimeText(newtime)].")
+		message_admins("[ADMIN_TPMONTY(usr)] set the pre-game delay to [DisplayTimeText(newtime)].")
 
-	going = !going
 
-	log_admin("[key_name(usr)] [!going ? "delayed the round start/end" : "made the round start/end normally"].")
-	message_admins("[ADMIN_TPMONTY(usr)] [!going ? "delayed the round start/end" : "made the round start/end normally"].")
+/datum/admins/proc/delay_end()
+	set category = "Server"
+	set name = "Delay Round-End"
+	set desc = "Delay the game end."
+
+
+	SSticker.delay_end = !SSticker.delay_end
+
+	log_admin("[key_name(usr)] [SSticker.delay_end ? "delayed the round-end" : "made the round end normally"].")
+	message_admins("[ADMIN_TPMONTY(usr)] [SSticker.delay_end ? "delayed the round-end" : "made the round end normally"].")
 
 
 /datum/admins/proc/toggle_gun_restrictions()
@@ -267,20 +288,3 @@
 
 	log_admin("[key_name(src)] manually reloaded admins.")
 	message_admins("[ADMIN_TPMONTY(usr)] manually reloaded admins.")
-
-
-/datum/admins/proc/reload_whitelist()
-	set category = "Server"
-	set name = "Reload Whitelist"
-	set desc = "Manually load the whitelisted players from the .txt"
-
-	if(!check_rights(R_SERVER))
-		return
-
-	if(!RoleAuthority)
-		return
-
-	RoleAuthority.load_whitelist()
-
-	log_admin("[key_name(usr)] manually reloaded the role whitelist.")
-	message_admins("[ADMIN_TPMONTY(usr)] manually reloaded the role whitelist.")

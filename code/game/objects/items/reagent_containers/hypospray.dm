@@ -3,8 +3,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 /obj/item/reagent_container/hypospray
-	name = "\improper hypospray"
-	desc = "The hypospray is a sterile, air-needle reusable autoinjector for rapid administration of drugs to patients with customizable dosages. Comes complete with an internal reagent analyzer and digital labeler. Handy."
+	name = "hypospray"
+	desc = "The hypospray is a sterile, air-needle reusable autoinjector for rapid administration of drugs to patients with customizable dosages."
 	icon = 'icons/obj/items/syringe.dmi'
 	item_state = "hypo"
 	icon_state = "hypo_base"
@@ -20,6 +20,11 @@
 	var/inject_mode = HYPOSPRAY_INJECT_MODE_INJECT
 	var/core_name = "hypospray"
 	var/label = null
+
+/obj/item/reagent_container/hypospray/advanced
+	name = "advanced hypospray"
+	desc = "The hypospray is a sterile, air-needle reusable autoinjector for rapid administration of drugs to patients with customizable dosages. Comes complete with an internal reagent analyzer and digital labeler. Handy."
+	core_name = "hypospray"
 
 /obj/item/reagent_container/hypospray/advanced/attack_self(mob/user)
 	if(user.is_mob_incapacitated() || !user.IsAdvancedToolUser())

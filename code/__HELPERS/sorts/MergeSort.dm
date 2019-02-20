@@ -1,5 +1,5 @@
 //merge-sort - gernerally faster than insert sort, for runs of 7 or larger
-/proc/sortMerge(list/L, cmp=/proc/cmp_numeric_asc, associative, fromIndex=1, toIndex)
+/proc/sortMerge(list/L, cmp=/proc/cmp_numeric_asc, associative, fromIndex=1, toIndex, sortkey=null)
 	if(L && L.len >= 2)
 		fromIndex = fromIndex % L.len
 		toIndex = toIndex % (L.len+1)
@@ -14,6 +14,7 @@
 		SI.L = L
 		SI.cmp = cmp
 		SI.associative = associative
+		SI.sortkey = sortkey
 
 		SI.mergeSort(fromIndex, toIndex)
 

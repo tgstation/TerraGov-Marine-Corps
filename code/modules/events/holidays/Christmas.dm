@@ -1,6 +1,6 @@
 /proc/Christmas_Game_Start()
 	for(var/obj/structure/flora/tree/pine/xmas in GLOB.structure_list)
-		if(xmas.z != 1)	continue
+		if(!is_ground_level(xmas.z))	continue
 		for(var/turf/open/floor/T in orange(1,xmas))
 			for(var/i=1,i<=rand(1,5),i++)
 				new /obj/item/a_gift(T)

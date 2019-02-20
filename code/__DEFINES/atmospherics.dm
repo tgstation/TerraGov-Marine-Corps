@@ -15,8 +15,13 @@
 #define BODYTEMP_COOLING_MAX -30 //The maximum number of degrees that your body can cool in 1 tick, when in a cold area.
 #define BODYTEMP_HEATING_MAX 30 //The maximum number of degrees that your body can heat up in 1 tick, when in a hot area.
 
-#define BODYTEMP_HEAT_DAMAGE_LIMIT 360.15 // The limit the human body can take before it starts taking damage from heat.
-#define BODYTEMP_COLD_DAMAGE_LIMIT 260.15 // The limit the human body can take before it starts taking damage from coldness.
+#define BODYTEMP_HEAT_DAMAGE_LIMIT_ONE		360.15 // The limit the human body can take before it starts taking damage from heat.
+#define BODYTEMP_HEAT_DAMAGE_LIMIT_TWO		400.15
+#define BODYTEMP_HEAT_DAMAGE_LIMIT_THREE	1000
+
+#define BODYTEMP_COLD_DAMAGE_LIMIT_ONE		260.15 // The limit the human body can take before it starts taking damage from coldness.
+#define BODYTEMP_COLD_DAMAGE_LIMIT_TWO		240.15
+#define BODYTEMP_COLD_DAMAGE_LIMIT_THREE	120.15
 
 #define PRESSURE_DAMAGE_COEFFICIENT 4 //The amount of pressure damage someone takes is equal to (pressure / HAZARD_HIGH_PRESSURE)*PRESSURE_DAMAGE_COEFFICIENT, with the maximum of MAX_PRESSURE_DAMAGE
 #define MAX_HIGH_PRESSURE_DAMAGE 4	//This used to be 20... I got this much random rage for some retarded decision by polymorph?! Polymorph now lies in a pool of blood with a katana jammed in his spleen. ~Errorage --PS: The katana did less than 20 damage to him :(
@@ -130,3 +135,42 @@ var/MAX_EXPLOSION_RANGE = 14
 #define FLOWFRAC 0.99				// fraction of gas transfered per process
 
 #define RADIATION_SPEED_COEFFICIENT 0.1
+
+//PIPES
+//Atmos pipe limits
+#define MAX_OUTPUT_PRESSURE					4500 // (kPa) What pressure pumps and powered equipment max out at.
+#define MAX_TRANSFER_RATE					200 // (L/s) Maximum speed powered equipment can work at.
+
+//used for device_type vars
+#define UNARY		1
+#define BINARY 		2
+#define TRINARY		3
+#define QUATERNARY	4
+
+//MULTIPIPES
+//IF YOU EVER CHANGE THESE CHANGE SPRITES TO MATCH.
+#define PIPING_LAYER_MIN 1
+#define PIPING_LAYER_MAX 3
+#define PIPING_LAYER_DEFAULT 2
+#define PIPING_LAYER_P_X 5
+#define PIPING_LAYER_P_Y 5
+#define PIPING_LAYER_LCHANGE 0.05
+
+#define PIPING_ALL_LAYER				(1<<0)	//intended to connect with all layers, check for all instead of just one.
+#define PIPING_ONE_PER_TURF				(1<<1) 	//can only be built if nothing else with this flag is on the tile already.
+#define PIPING_DEFAULT_LAYER_ONLY		(1<<2)	//can only exist at PIPING_LAYER_DEFAULT
+#define PIPING_CARDINAL_AUTONORMALIZE	(1<<3)	//north/south east/west doesn't matter, auto normalize on build.
+
+//HELPERS
+#define PIPING_LAYER_SHIFT(T, PipingLayer) \
+	if(T.dir & (NORTH|SOUTH)) {									\
+		T.pixel_x = (PipingLayer - PIPING_LAYER_DEFAULT) * PIPING_LAYER_P_X;\
+	}																		\
+	if(T.dir & (EAST|WEST)) {										\
+		T.pixel_y = (PipingLayer - PIPING_LAYER_DEFAULT) * PIPING_LAYER_P_Y;\
+	}
+
+#define PIPING_LAYER_DOUBLE_SHIFT(T, PipingLayer) \
+	T.pixel_x = (PipingLayer - PIPING_LAYER_DEFAULT) * PIPING_LAYER_P_X;\
+	T.pixel_y = (PipingLayer - PIPING_LAYER_DEFAULT) * PIPING_LAYER_P_Y;
+	

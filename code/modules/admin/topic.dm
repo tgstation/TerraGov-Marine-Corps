@@ -174,7 +174,8 @@
 			if("blackout")
 				log_admin("[key_name(usr)] broke all lights.")
 				message_admins("[ADMIN_TPMONTY(usr)] broke all lights.")
-				lightsout(0, 0)
+				for(var/obj/machinery/power/apc/apc in GLOB.machines)
+					apc.overload_lighting()
 			if("whiteout")
 				log_admin("[key_name(usr)] fixed all lights.")
 				message_admins("[ADMIN_TPMONTY(usr)] fixed all lights.")
@@ -480,56 +481,56 @@
 		if(!M.ckey)
 			return
 
-		if(!RoleAuthority)
+		if(!SSjob)
 			return
 
 		var/list/joblist = list()
 		switch(href_list["jobban"])
 			if("commanddept")
-				for(var/jobPos in ROLES_COMMAND)
+				for(var/jobPos in JOBS_COMMAND)
 					if(!jobPos)
 						continue
-					var/datum/job/temp = RoleAuthority.roles_by_name[jobPos]
+					var/datum/job/temp = SSjob.name_occupations[jobPos]
 					if(!temp)
 						continue
 					joblist += temp.title
 			if("policedept")
-				for(var/jobPos in ROLES_POLICE)
+				for(var/jobPos in JOBS_POLICE)
 					if(!jobPos)
 						continue
-					var/datum/job/temp = RoleAuthority.roles_by_name[jobPos]
+					var/datum/job/temp = SSjob.name_occupations[jobPos]
 					if(!temp)
 						continue
 					joblist += temp.title
 			if("engineeringdept")
-				for(var/jobPos in ROLES_ENGINEERING)
+				for(var/jobPos in JOBS_ENGINEERING)
 					if(!jobPos)
 						continue
-					var/datum/job/temp = RoleAuthority.roles_by_name[jobPos]
+					var/datum/job/temp = SSjob.name_occupations[jobPos]
 					if(!temp)
 						continue
 					joblist += temp.title
 			if("cargodept")
-				for(var/jobPos in ROLES_REQUISITION)
+				for(var/jobPos in JOBS_REQUISITIONS)
 					if(!jobPos)
 						continue
-					var/datum/job/temp = RoleAuthority.roles_by_name[jobPos]
+					var/datum/job/temp = SSjob.name_occupations[jobPos]
 					if(!temp)
 						continue
 					joblist += temp.title
 			if("medicaldept")
-				for(var/jobPos in ROLES_MEDICAL)
+				for(var/jobPos in JOBS_MEDICAL)
 					if(!jobPos)
 						continue
-					var/datum/job/temp = RoleAuthority.roles_by_name[jobPos]
+					var/datum/job/temp = SSjob.name_occupations[jobPos]
 					if(!temp)
 						continue
 					joblist += temp.title
 			if("marinedept")
-				for(var/jobPos in ROLES_MARINES)
+				for(var/jobPos in JOBS_MARINES)
 					if(!jobPos)
 						continue
-					var/datum/job/temp = RoleAuthority.roles_by_name[jobPos]
+					var/datum/job/temp = SSjob.name_occupations[jobPos]
 					if(!temp)
 						continue
 					joblist += temp.title
@@ -798,10 +799,10 @@
 		if(!istype(M))
 			return
 
-		if(!ticker?.mode || ticker.mode.waiting_for_candidates)
+		if(!SSticker?.mode || SSticker.mode.waiting_for_candidates)
 			return
 
-		ticker.mode.activate_distress()
+		SSticker.mode.activate_distress()
 
 		log_game("[key_name(usr)] has sent a randomized distress beacon early, requested by [key_name(M)]")
 		message_admins("[ADMIN_TPMONTY(usr)] has sent a randomized distress beacon early, requested by [ADMIN_TPMONTY(M)]")
@@ -1194,13 +1195,13 @@
 		if(!check_rights(R_SERVER))
 			return
 
-		if(ticker && ticker.mode)
+		if(SSticker?.mode)
 			return alert("The game has already started.")
 
 		var/dat = {"<B>What mode do you wish to play?</B><HR>"}
 		for(var/mode in config.modes)
 			dat += {"<A href='?src=[REF(usr.client.holder)];[HrefToken()];changemode=[mode]'>[config.mode_names[mode]]</A><br>"}
-		dat += {"Now: [master_mode]"}
+		dat += {"Now: [GLOB.master_mode]"}
 		usr << browse(dat, "window=c_mode")
 
 
@@ -1208,15 +1209,15 @@
 		if(!check_rights(R_SERVER))
 			return
 
-		if(ticker?.mode)
+		if(SSticker?.mode)
 			return alert("The game has already started.")
 
-		master_mode = href_list["changemode"]
+		GLOB.master_mode = href_list["changemode"]
 
-		log_admin("[key_name(usr)] set the mode as [master_mode].")
-		message_admins("[ADMIN_TPMONTY(usr)] set the mode as [master_mode].")
-		to_chat(world, "<span class='boldnotice'>The mode is now: [master_mode].</span>")
-		world.save_mode(master_mode)
+		log_admin("[key_name(usr)] set the mode as [GLOB.master_mode].")
+		message_admins("[ADMIN_TPMONTY(usr)] set the mode as [GLOB.master_mode].")
+		to_chat(world, "<span class='boldnotice'>The mode is now: [GLOB.master_mode].</span>")
+		world.save_mode(GLOB.master_mode)
 
 
 	if(href_list["evac_authority"])
@@ -1430,3 +1431,31 @@
 		dat += "</body></html>"
 
 		usr << browse(dat, "window=explosion_log")
+
+
+	else if(href_list["outfit_name"])
+		if(!check_rights(R_FUN))
+			return
+
+		var/datum/outfit/O = new /datum/outfit
+		O.name = href_list["outfit_name"]
+		O.w_uniform = text2path(href_list["outfit_uniform"])
+		O.shoes = text2path(href_list["outfit_shoes"])
+		O.gloves = text2path(href_list["outfit_gloves"])
+		O.wear_suit = text2path(href_list["outfit_suit"])
+		O.head = text2path(href_list["outfit_head"])
+		O.back = text2path(href_list["outfit_back"])
+		O.mask = text2path(href_list["outfit_mask"])
+		O.glasses = text2path(href_list["outfit_glasses"])
+		O.r_hand = text2path(href_list["outfit_r_hand"])
+		O.l_hand = text2path(href_list["outfit_l_hand"])
+		O.suit_store = text2path(href_list["outfit_s_store"])
+		O.l_store = text2path(href_list["outfit_l_pocket"])
+		O.r_store = text2path(href_list["outfit_r_pocket"])
+		O.id = text2path(href_list["outfit_id"])
+		O.belt = text2path(href_list["outfit_belt"])
+		O.ears = text2path(href_list["outfit_ears"])
+
+		GLOB.custom_outfits.Add(O)
+		log_admin("[key_name(usr)] created outfit named '[O.name]'.")
+		message_admins("[ADMIN_TPMONTY(usr)] created outfit named '[O.name]'.")

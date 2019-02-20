@@ -241,8 +241,6 @@ GLOBAL_LIST_INIT(admin_verbs_admin, world.AVadmin())
 	/datum/admins/proc/admin_ghost,
 	/datum/admins/proc/invisimin,
 	/datum/admins/proc/stealth_mode,
-	/datum/admins/proc/jobs_free,
-	/datum/admins/proc/jobs_list,
 	/datum/admins/proc/change_key,
 	/datum/admins/proc/rejuvenate,
 	/datum/admins/proc/toggle_sleep,
@@ -340,6 +338,7 @@ GLOBAL_LIST_INIT(admin_verbs_fun, world.AVfun())
 	/datum/admins/proc/possess,
 	/datum/admins/proc/release,
 	/datum/admins/proc/edit_appearance,
+	/datum/admins/proc/create_outfit,
 	/client/proc/build_mode
 	)
 
@@ -357,11 +356,13 @@ GLOBAL_LIST_INIT(admin_verbs_server, world.AVserver())
 	/datum/admins/proc/toggle_respawn,
 	/datum/admins/proc/set_respawn_time,
 	/datum/admins/proc/end_round,
-	/datum/admins/proc/delay,
+	/datum/admins/proc/delay_start,
+	/datum/admins/proc/delay_end,
 	/datum/admins/proc/toggle_gun_restrictions,
 	/datum/admins/proc/toggle_synthetic_restrictions,
 	/datum/admins/proc/reload_admins,
-	/datum/admins/proc/reload_whitelist
+	/client/proc/forcerandomrotate,
+	/client/proc/adminchangemap,
 	)
 
 GLOBAL_PROTECT(admin_verbs_debug)
@@ -499,7 +500,7 @@ GLOBAL_LIST_INIT(admin_verbs_spawn, world.AVspawn())
 	for(var/client/C in GLOB.admins)
 		if(!check_other_rights(C, R_ADMIN, FALSE))
 			continue
-		if((C.prefs.toggles_chat & CHAT_ATTACKLOGS) || ((ticker.current_state == GAME_STATE_FINISHED) && (C.prefs.toggles_chat & CHAT_ENDROUNDLOGS)))
+		if((C.prefs.toggles_chat & CHAT_ATTACKLOGS) || ((SSticker.current_state == GAME_STATE_FINISHED) && (C.prefs.toggles_chat & CHAT_ENDROUNDLOGS)))
 			to_chat(C, msg)
 
 
@@ -508,7 +509,7 @@ GLOBAL_LIST_INIT(admin_verbs_spawn, world.AVspawn())
 	for(var/client/C in GLOB.admins)
 		if(!check_other_rights(C, R_ADMIN, FALSE))
 			continue
-		if((C.prefs.toggles_chat & CHAT_FFATTACKLOGS) || ((ticker.current_state == GAME_STATE_FINISHED) && (C.prefs.toggles_chat & CHAT_ENDROUNDLOGS)))
+		if((C.prefs.toggles_chat & CHAT_FFATTACKLOGS) || ((SSticker.current_state == GAME_STATE_FINISHED) && (C.prefs.toggles_chat & CHAT_ENDROUNDLOGS)))
 			to_chat(C, msg)
 
 

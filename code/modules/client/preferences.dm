@@ -185,14 +185,6 @@ datum/preferences
 	else
 		dat += "Please create an account to save your preferences."
 
-	if(RoleAuthority.roles_whitelist[user.ckey] & WHITELIST_PREDATOR)
-		dat += "<br><b>Yautja name:</b> <a href='?_src_=prefs;preference=pred_name;task=input'>[predator_name]</a><br>"
-		dat += "<b>Yautja gender:</b> <a href='?_src_=prefs;preference=pred_gender;task=input'>[predator_gender == MALE ? "Male" : "Female"]</a><br>"
-		dat += "<b>Yautja age:</b> <a href='?_src_=prefs;preference=pred_age;task=input'>[predator_age]</a><br>"
-		dat += "<b>Mask style:</b> <a href='?_src_=prefs;preference=pred_mask_type;task=input'>([predator_mask_type])</a><br>"
-		dat += "<b>Armor style:</b> <a href='?_src_=prefs;preference=pred_armor_type;task=input'>([predator_armor_type])</a><br>"
-		dat += "<b>Greave style:</b> <a href='?_src_=prefs;preference=pred_boot_type;task=input'>([predator_boot_type])</a><br><br>"
-
 	dat += "<br><b>Synthetic name:</b> <a href='?_src_=prefs;preference=synth_name;task=input'>[synthetic_name]</a><br>"
 	dat += "<b>Synthetic Type:</b> <a href='?_src_=prefs;preference=synth_type;task=input'>[synthetic_type]</a><br>"
 
@@ -343,7 +335,7 @@ datum/preferences
 
 
 /datum/preferences/proc/SetChoices(mob/user, limit = 22, list/splitJobs = list(), width = 450, height = 650)
-	if(!RoleAuthority)
+	if(!SSjob)
 		return
 
 	//limit 	 - The amount of jobs allowed per column. Defaults to 17 to make it look nice.
@@ -362,9 +354,10 @@ datum/preferences
 	//The job before the current job. I only use this to get the previous jobs color when I'm filling in blank rows.
 	var/datum/job/lastJob
 	var/datum/job/job
-	var/i
-	for(i in RoleAuthority.roles_for_mode)
-		job = RoleAuthority.roles_for_mode[i]
+	for(var/i in sortList(SSjob.occupations, /proc/cmp_job_display_asc))
+		job = i
+		if(!(job.title in JOBS_REGULAR_ALL))
+			continue
 		index += 1
 		if((index >= limit) || (job.title in splitJobs))
 			if((index < limit) && (lastJob != null))
@@ -378,16 +371,13 @@ datum/preferences
 		HTML += "<tr bgcolor='[job.selection_color]'><td width='60%' align='right'>"
 		lastJob = job
 		if(jobban_isbanned(user, job.title))
-			HTML += "<del>[job.disp_title]</del></td><td><b> \[BANNED]</b></td></tr>"
+			HTML += "<del>[job.title]</del></td><td><b> \[BANNED]</b></td></tr>"
 			continue
 		else if(!job.player_old_enough(user.client))
 			var/available_in_days = job.available_in_days(user.client)
-			HTML += "<del>[job.disp_title]</del></td><td> \[IN [(available_in_days)] DAYS]</td></tr>"
+			HTML += "<del>[job.title]</del></td><td> \[IN [(available_in_days)] DAYS]</td></tr>"
 			continue
-		else if(job.flags_startup_parameters & ROLE_WHITELISTED && !(RoleAuthority.roles_whitelist[user.ckey] & job.flags_whitelist))
-			HTML += "<del>[job.disp_title]</del></td><td> \[WHITELISTED]</td></tr>"
-			continue
-		else HTML += (job.title in ROLES_COMMAND) || job.title == "AI" ? "<b>[job.disp_title]</b>" : "[job.disp_title]"
+		else HTML += (job.title in JOBS_COMMAND) || job.title == "AI" ? "<b>[job.title]</b>" : "[job.title]"
 
 		HTML += "</td><td width='40%'>"
 
@@ -401,8 +391,6 @@ datum/preferences
 			HTML += " <font color=orange>\[Low]</font>"
 		else
 			HTML += " <font color=red>\[NEVER]</font>"
-		if(job.alt_titles)
-			HTML += "</a></td></tr><tr bgcolor='[lastJob.selection_color]'><td width='60%' align='center'><a>&nbsp</a></td><td><a href ='?_src_=prefs;preference=job;task=alt_title;job=\ref[job]'>\[[GetPlayerAltTitle(job)]\]</a></td></tr>"
 		HTML += "</a></td></tr>"
 
 	HTML += "</td'></tr></table>"
@@ -504,7 +492,7 @@ datum/preferences
 
 
 /datum/preferences/proc/SetJob(mob/user, role)
-	var/datum/job/job = RoleAuthority.roles_for_mode[role]
+	var/datum/job/job = SSjob.name_occupations[role]
 	if(!job)
 		user << browse(null, "window=mob_occupation")
 		ShowChoices(user)
@@ -545,39 +533,38 @@ datum/preferences
 /datum/preferences/proc/GetJobDepartment(var/datum/job/job, var/level)
 	if(!job || !level)
 		return FALSE
-	switch(job.department_flag)
-		if(ROLEGROUP_MARINE_COMMAND)
-			switch(level)
-				if(1)
-					return job_command_high
-				if(2)
-					return job_command_med
-				if(3)
-					return job_command_low
-		if(ROLEGROUP_MARINE_MED_SCIENCE)
-			switch(level)
-				if(1)
-					return job_medsci_high
-				if(2)
-					return job_medsci_med
-				if(3)
-					return job_medsci_low
-		if(ROLEGROUP_MARINE_ENGINEERING)
-			switch(level)
-				if(1)
-					return job_engi_high
-				if(2)
-					return job_engi_med
-				if(3)
-					return job_engi_low
-		if(ROLEGROUP_MARINE_SQUAD_MARINES)
-			switch(level)
-				if(1)
-					return job_marines_high
-				if(2)
-					return job_marines_med
-				if(3)
-					return job_marines_low
+	if(job.title in (JOBS_COMMAND + JOBS_POLICE))
+		switch(level)
+			if(1)
+				return job_command_high
+			if(2)
+				return job_command_med
+			if(3)
+				return job_command_low
+	else if(job.title in JOBS_MEDICAL)
+		switch(level)
+			if(1)
+				return job_medsci_high
+			if(2)
+				return job_medsci_med
+			if(3)
+				return job_medsci_low
+	else if(job.title in (JOBS_REQUISITIONS + JOBS_ENGINEERING))
+		switch(level)
+			if(1)
+				return job_engi_high
+			if(2)
+				return job_engi_med
+			if(3)
+				return job_engi_low
+	else if(job.title in JOBS_MARINES)
+		switch(level)
+			if(1)
+				return job_marines_high
+			if(2)
+				return job_marines_med
+			if(3)
+				return job_marines_low
 	return FALSE
 
 
@@ -601,47 +588,46 @@ datum/preferences
 			job_engi_high = 0
 			job_marines_high = 0
 
-	switch(job.department_flag)
-		if(ROLEGROUP_MARINE_COMMAND)
-			switch(level)
-				if(2)
-					job_command_high = job.flag
-					job_command_med &= ~job.flag
-				if(3)
-					job_command_med |= job.flag
-					job_command_low &= ~job.flag
-				else
-					job_command_low |= job.flag
-		if(ROLEGROUP_MARINE_MED_SCIENCE)
-			switch(level)
-				if(2)
-					job_medsci_high = job.flag
-					job_medsci_med &= ~job.flag
-				if(3)
-					job_medsci_med |= job.flag
-					job_medsci_low &= ~job.flag
-				else
-					job_medsci_low |= job.flag
-		if(ROLEGROUP_MARINE_ENGINEERING)
-			switch(level)
-				if(2)
-					job_engi_high = job.flag
-					job_engi_med &= ~job.flag
-				if(3)
-					job_engi_med |= job.flag
-					job_engi_low &= ~job.flag
-				else
-					job_engi_low |= job.flag
-		if(ROLEGROUP_MARINE_SQUAD_MARINES)
-			switch(level)
-				if(2)
-					job_marines_high = job.flag
-					job_marines_med &= ~job.flag
-				if(3)
-					job_marines_med |= job.flag
-					job_marines_low &= ~job.flag
-				else
-					job_marines_low |= job.flag
+	if(job.title in (JOBS_COMMAND + JOBS_POLICE))
+		switch(level)
+			if(2)
+				job_command_high = job.flag
+				job_command_med &= ~job.flag
+			if(3)
+				job_command_med |= job.flag
+				job_command_low &= ~job.flag
+			else
+				job_command_low |= job.flag
+	if(job.title in JOBS_MEDICAL)
+		switch(level)
+			if(2)
+				job_medsci_high = job.flag
+				job_medsci_med &= ~job.flag
+			if(3)
+				job_medsci_med |= job.flag
+				job_medsci_low &= ~job.flag
+			else
+				job_medsci_low |= job.flag
+	if(job.title in (JOBS_ENGINEERING + JOBS_REQUISITIONS))
+		switch(level)
+			if(2)
+				job_engi_high = job.flag
+				job_engi_med &= ~job.flag
+			if(3)
+				job_engi_med |= job.flag
+				job_engi_low &= ~job.flag
+			else
+				job_engi_low |= job.flag
+	if(job.title in JOBS_MARINES)
+		switch(level)
+			if(2)
+				job_marines_high = job.flag
+				job_marines_med &= ~job.flag
+			if(3)
+				job_marines_med |= job.flag
+				job_marines_low &= ~job.flag
+			else
+				job_marines_low |= job.flag
 	return TRUE
 
 
@@ -666,14 +652,6 @@ datum/preferences
 					else
 						return FALSE
 					SetChoices(user)
-				if ("alt_title")
-					var/datum/job/job = locate(href_list["job"])
-					if (job)
-						var/choices = list(job.title) + job.alt_titles
-						var/choice = input("Pick a title for [job.title].", "Character Generation", GetPlayerAltTitle(job)) as anything in choices|null
-						if(choice)
-							SetPlayerAltTitle(job, choice)
-							SetChoices(user)
 				if("input")
 					SetJob(user, href_list["text"])
 				else
@@ -1239,7 +1217,7 @@ datum/preferences
 				if("lobby_music")
 					toggles_sound ^= SOUND_LOBBY
 					if(toggles_sound & SOUND_LOBBY)
-						user << sound(ticker.login_music, repeat = 0, wait = 0, volume = 85, channel = 1)
+						user << sound(SSticker.login_music, repeat = 0, wait = 0, volume = 85, channel = 1)
 					else
 						user << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1)
 
@@ -1293,6 +1271,7 @@ datum/preferences
 
 	character.real_name = real_name
 	character.name = character.real_name
+	character.voice_name = character.real_name
 	if(character.dna)
 		character.dna.real_name = character.real_name
 

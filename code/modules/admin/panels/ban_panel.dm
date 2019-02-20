@@ -57,7 +57,7 @@
 	if(!M.ckey)
 		return
 
-	if(!RoleAuthority)
+	if(!SSjob)
 		return
 
 	var/ref = "[REF(usr.client.holder)];[HrefToken()]"
@@ -70,11 +70,11 @@
 
 //Command (Blue)
 	jobs += "<table cellpadding='1' cellspacing='0' width='100%'>"
-	jobs += "<tr align='center' bgcolor='ccccff'><th colspan='[length(ROLES_COMMAND)]'><a href='?src=[ref];jobban=commanddept;mob=[REF(M)]'>Command Positions</a></th></tr><tr align='center'>"
-	for(var/jobPos in ROLES_COMMAND)
+	jobs += "<tr align='center' bgcolor='ccccff'><th colspan='[length(JOBS_COMMAND)]'><a href='?src=[ref];jobban=commanddept;mob=[REF(M)]'>Command Positions</a></th></tr><tr align='center'>"
+	for(var/jobPos in JOBS_COMMAND)
 		if(!jobPos)
 			continue
-		var/datum/job/job = RoleAuthority.roles_by_name[jobPos]
+		var/datum/job/job = SSjob.name_occupations[jobPos]
 		if(!job)
 			continue
 
@@ -93,11 +93,11 @@
 
 //Police (Red)
 	jobs += "<table cellpadding='1' cellspacing='0' width='100%'>"
-	jobs += "<tr align='center' bgcolor='ffbab7'><th colspan='[length(ROLES_POLICE)]'><a href='?src=[ref];jobban=policedept;mob=[REF(M)]'>Police Positions</a></th></tr><tr align='center'>"
-	for(var/jobPos in ROLES_POLICE)
+	jobs += "<tr align='center' bgcolor='ffbab7'><th colspan='[length(JOBS_POLICE)]'><a href='?src=[ref];jobban=policedept;mob=[REF(M)]'>Police Positions</a></th></tr><tr align='center'>"
+	for(var/jobPos in JOBS_POLICE)
 		if(!jobPos)
 			continue
-		var/datum/job/job = RoleAuthority.roles_by_name[jobPos]
+		var/datum/job/job = SSjob.name_occupations[jobPos]
 		if(!job)
 			continue
 
@@ -117,11 +117,11 @@
 //Engineering (Yellow)
 	counter = 0
 	jobs += "<table cellpadding='1' cellspacing='0' width='100%'>"
-	jobs += "<tr bgcolor='fff5cc'><th colspan='[length(ROLES_ENGINEERING)]'><a href='?src=[ref];jobban=engineeringdept;mob=[REF(M)]'>Engineering Positions</a></th></tr><tr align='center'>"
-	for(var/jobPos in ROLES_ENGINEERING)
+	jobs += "<tr bgcolor='fff5cc'><th colspan='[length(JOBS_ENGINEERING)]'><a href='?src=[ref];jobban=engineeringdept;mob=[REF(M)]'>Engineering Positions</a></th></tr><tr align='center'>"
+	for(var/jobPos in JOBS_ENGINEERING)
 		if(!jobPos)
 			continue
-		var/datum/job/job = RoleAuthority.roles_by_name[jobPos]
+		var/datum/job/job = SSjob.name_occupations[jobPos]
 
 		if(!job)
 			continue
@@ -141,11 +141,11 @@
 //Cargo (Yellow)
 	counter = 0
 	jobs += "<table cellpadding='1' cellspacing='0' width='100%'>"
-	jobs += "<tr bgcolor='fff5cc'><th colspan='[length(ROLES_REQUISITION)]'><a href='?src=[ref];jobban=cargodept;mob=[REF(M)]'>Requisition Positions</a></th></tr><tr align='center'>"
-	for(var/jobPos in ROLES_REQUISITION)
+	jobs += "<tr bgcolor='fff5cc'><th colspan='[length(JOBS_REQUISITIONS)]'><a href='?src=[ref];jobban=cargodept;mob=[REF(M)]'>Requisition Positions</a></th></tr><tr align='center'>"
+	for(var/jobPos in JOBS_REQUISITIONS)
 		if(!jobPos)
 			continue
-		var/datum/job/job = RoleAuthority.roles_by_name[jobPos]
+		var/datum/job/job = SSjob.name_occupations[jobPos]
 		if(!job)
 			continue
 
@@ -164,11 +164,11 @@
 //Medical (White)
 	counter = 0
 	jobs += "<table cellpadding='1' cellspacing='0' width='100%'>"
-	jobs += "<tr bgcolor='ffeef0'><th colspan='[length(ROLES_MEDICAL)]'><a href='?src=[ref];jobban=medicaldept;mob=[REF(M)]'>Medical Positions</a></th></tr><tr align='center'>"
-	for(var/jobPos in ROLES_MEDICAL)
+	jobs += "<tr bgcolor='ffeef0'><th colspan='[length(JOBS_MEDICAL)]'><a href='?src=[ref];jobban=medicaldept;mob=[REF(M)]'>Medical Positions</a></th></tr><tr align='center'>"
+	for(var/jobPos in JOBS_MEDICAL)
 		if(!jobPos)
 			continue
-		var/datum/job/job = RoleAuthority.roles_by_name[jobPos]
+		var/datum/job/job = SSjob.name_occupations[jobPos]
 		if(!job)
 			continue
 
@@ -187,11 +187,11 @@
 //Marines
 	counter = 0
 	jobs += "<table cellpadding='1' cellspacing='0' width='100%'>"
-	jobs += "<tr bgcolor='fff5cc'><th colspan='[length(ROLES_MARINES)]'><a href='?src=[ref];jobban=marinedept;mob=[REF(M)]'>Marine Positions</a></th></tr><tr align='center'>"
-	for(var/jobPos in ROLES_MARINES)
+	jobs += "<tr bgcolor='fff5cc'><th colspan='[length(JOBS_MARINES)]'><a href='?src=[ref];jobban=marinedept;mob=[REF(M)]'>Marine Positions</a></th></tr><tr align='center'>"
+	for(var/jobPos in JOBS_MARINES)
 		if(!jobPos)
 			continue
-		var/datum/job/job = RoleAuthority.roles_by_name[jobPos]
+		var/datum/job/job = SSjob.name_occupations[jobPos]
 		if(!job)
 			continue
 

@@ -4,20 +4,6 @@
 	required_players 		= 0
 	recommended_enemies 	= 0 //Leaving this relic code incase we want to do some extra things with it in the future.
 	xeno_bypass_timer 		= 1
-	role_instruction		= ROLE_MODE_REPLACE
-	roles_for_mode = list(/datum/job/marine/standard,
-					/datum/job/marine/medic,
-					/datum/job/marine/engineer,
-					/datum/job/marine/specialist,
-					/datum/job/marine/smartgunner,
-					/datum/job/marine/leader,
-					/datum/job/medical/doctor,
-					/datum/job/command/commander,
-					/datum/job/logistics/tech/maint,
-					/datum/job/command/police,
-					/datum/job/civilian/synthetic
-					)
-
 	flags_round_type	= MODE_NO_LATEJOIN
 
 	//var/mob/living/carbon/human/Commander //If there is no Commander, marines wont get any supplies
@@ -1005,7 +991,7 @@
 	var/xeno_count = 0
 	for(var/mob/living/carbon/Xenomorph/X in GLOB.dead_xeno_list)
 		if(X) //Prevent any runtime errors
-			if(istype(X) && X.stat == DEAD && X.z != 2)
+			if(istype(X) && X.stat == DEAD && !is_centcom_level(X.z))
 				X.loc = get_turf(locate(84,237,2)) //z.2
 				xeno_count++
 
@@ -1571,7 +1557,7 @@
 		to_chat(user, "It doesn't seem to do anything for you.")
 		return
 
-	if(user.z != 1)
+	if(!is_ground_level(user.z))
 		to_chat(user, "You have to be on the ground to use this or it won't transmit.")
 		return
 

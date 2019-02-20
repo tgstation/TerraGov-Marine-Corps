@@ -2,40 +2,59 @@
 	name = "landmark"
 	icon = 'icons/mob/screen1.dmi'
 	icon_state = "x2"
-	anchored = 1.0
-	unacidable = 1
+	anchored = TRUE
+	unacidable = TRUE
+	layer = MID_LANDMARK_LAYER
+	invisibility = INVISIBILITY_ABSTRACT
+
 
 /obj/effect/landmark/Initialize()
 	. = ..()
-	tag = "landmark*[name]"
-	invisibility = INVISIBILITY_MAXIMUM
 	GLOB.landmarks_list += src
 
-// this proc is called by the gamemode when it starts to enable round type
-//   specific landmark behaviour to be defined at a landmark level instead of
-//   at the round level.
-// where possible replace this with a specific handler for that type
-/obj/effect/landmark/proc/on_round_start(flags_round_type=NOFLAGS,flags_landmarks=NOFLAGS)
-	return
 
 /obj/effect/landmark/Destroy()
 	GLOB.landmarks_list -= src
 	return ..()
 
+
+/obj/effect/landmark/proc/after_round_start()
+	return
+
+
 /obj/effect/landmark/start
 	name = "start"
 	icon = 'icons/mob/screen1.dmi'
 	icon_state = "x"
-	anchored = 1.0
+	anchored = TRUE
+	layer = MOB_LAYER
+	var/jobspawn_override = FALSE
+	var/delete_after_roundstart = TRUE
+	var/used = FALSE
+
 
 /obj/effect/landmark/start/Initialize()
-	. = ..()
-	tag = "start*[name]"
 	GLOB.start_landmarks_list += src
+	if(jobspawn_override)
+		if(!GLOB.jobspawn_overrides[name])
+			GLOB.jobspawn_overrides[name] = list()
+		GLOB.jobspawn_overrides[name] += src
+	. = ..()
+	if(name != "start")
+		tag = "start*[name]"
+
 
 /obj/effect/landmark/start/Destroy()
 	GLOB.start_landmarks_list -= src
+	if(jobspawn_override)
+		GLOB.jobspawn_overrides[name] -= src
 	return ..()
+
+
+/obj/effect/landmark/start/after_round_start()
+	if(delete_after_roundstart)
+		qdel(src)
+
 
 /obj/effect/landmark/newplayer_start/New()
 	GLOB.newplayer_start += loc

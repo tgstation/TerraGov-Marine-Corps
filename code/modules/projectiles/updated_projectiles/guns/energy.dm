@@ -9,23 +9,8 @@
 	var/cell_type = /obj/item/cell
 	flags_gun_features = GUN_AMMO_COUNTER
 
-/obj/item/weapon/gun/energy/examine(mob/user)
+/obj/item/weapon/gun/energy/examine_ammo_count(mob/user)
 	var/list/dat = list()
-	if(flags_gun_features & GUN_TRIGGER_SAFETY)
-		dat += "The safety's on!<br>"
-	else
-		dat += "The safety's off!<br>"
-
-	if(rail) 	dat += "It has [icon2html(rail, user)] [rail.name] mounted on the top.<br>"
-	if(muzzle) 	dat += "It has [icon2html(muzzle, user)] [muzzle.name] mounted on the front.<br>"
-	if(stock) 	dat += "It has [icon2html(stock, user)] [stock.name] for a stock.<br>"
-	if(under)
-		dat += "It has [icon2html(under, user)] [under.name]"
-		if(under.flags_attach_features & ATTACH_WEAPON)
-			dat += " ([under.current_rounds]/[under.max_rounds])"
-		dat += " mounted underneath.<br>"
-
-
 	if(!(flags_gun_features & (GUN_INTERNAL_MAG|GUN_UNUSUAL_DESIGN))) //Internal mags and unusual guns have their own stuff set.
 		var/current_shots = get_ammo_count()
 		if(cell && current_shots > 0)

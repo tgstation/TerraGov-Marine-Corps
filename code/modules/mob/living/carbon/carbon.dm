@@ -211,7 +211,7 @@
 	lastpuke = FALSE
 
 /mob/living/carbon/proc/help_shake_act(mob/living/carbon/M)
-	if(health >= CONFIG_GET(number/health_threshold_crit))
+	if(health >= get_crit_threshold())
 		if(src != M)
 			var/t_him = "it"
 			if (gender == MALE)
@@ -337,7 +337,7 @@
 
 /mob/living/carbon/fire_act(exposed_temperature, exposed_volume)
 	. = ..()
-	adjust_bodytemperature(100, 0, BODYTEMP_HEAT_DAMAGE_LIMIT+10)
+	adjust_bodytemperature(100, 0, BODYTEMP_HEAT_DAMAGE_LIMIT_ONE+10)
 
 
 /mob/living/carbon/show_inv(mob/living/carbon/user as mob)

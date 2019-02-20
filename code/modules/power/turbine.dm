@@ -137,11 +137,16 @@
 	AutoUpdateAI(src)
 
 /obj/machinery/power/turbine/attack_hand(mob/user)
+	. = ..()
+
+	if(!ishuman(user))
+		return
 
 	if ( (get_dist(src, user) > 1 ) || (stat & (NOPOWER|BROKEN)) && !isAI(user) )
 		user.unset_interaction()
 		user << browse(null, "window=turbine")
 		return
+
 
 	user.set_interaction(src)
 
@@ -167,10 +172,9 @@
 		return
 	if (usr.is_mob_incapacitated(TRUE))
 		return
-	if (!(ishuman(usr) || ticker) && ticker.mode.name != "monkey")
-		if(!isAI(usr))
-			to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
-			return
+
+	if(!ishuman(usr))
+		return
 
 	if (( usr.interactee==src && ((get_dist(src, usr) <= 1) && isturf(loc))) || isAI(usr))
 
@@ -334,3 +338,14 @@
 /obj/machinery/computer/turbine_computer/process()
 	src.updateDialog()
 	return
+
+/obj/machinery/power/turbinemotor
+	name = "motor"
+	desc = "Electrogenerator. Converts rotation into power."
+	icon = 'icons/obj/pipeturbine.dmi'
+	icon_state = "motor"
+	anchored = 0
+	density = 1
+
+	var/kin_to_el_ratio = 0.1	//How much kinetic energy will be taken from turbine and converted into electricity
+	var/obj/machinery/atmospherics/pipeturbine/turbine

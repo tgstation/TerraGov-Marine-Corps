@@ -94,7 +94,7 @@
 		var/turf/T = get_turf(R)
 		if (!T)
 			continue
-		if(T.z == 2 || T.z > 7)
+		if(is_centcom_level(T.z) || T.z > 7)
 			continue
 		var/tmpname = T.loc.name
 		if(areaindex[tmpname])
@@ -113,7 +113,7 @@
 					continue
 			var/turf/T = get_turf(M)
 			if(T)	continue
-			if(T.z == 2)	continue
+			if(is_centcom_level(T.z))	continue
 			var/tmpname = M.real_name
 			if(areaindex[tmpname])
 				tmpname = "[tmpname] ([++areaindex[tmpname]])"

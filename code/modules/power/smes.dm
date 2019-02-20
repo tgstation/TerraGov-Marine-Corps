@@ -36,7 +36,7 @@
 	if(panel_open)
 		to_chat(user, "<span class='notice'>The maintenance hatch is open.</span>")
 
-/obj/machinery/power/smes/New()
+/obj/machinery/power/smes/Initialize()
 	. = ..()
 	if(!powernet)
 		connect_to_network()
@@ -300,10 +300,6 @@
 
 	if (usr.stat || usr.is_mob_restrained() )
 		return
-	if (!(ishuman(usr) || ticker) && ticker.mode.name != "monkey")
-		if(!isAI(usr))
-			to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
-			return
 
 //to_chat(world, "[href] ; [href_list[href]]")
 
@@ -345,7 +341,7 @@
 	return TRUE
 
 /obj/machinery/power/smes/proc/ion_act()
-	if(z == PLANET_Z_LEVEL)
+	if(is_ground_level(z))
 		if(prob(1)) //explosion
 			for(var/mob/M in viewers(src))
 				M.show_message("<span class='warning'> The [src.name] is making strange noises!</span>", 3, "<span class='warning'> You hear sizzling electronics.</span>", 2)

@@ -144,6 +144,7 @@
 	. += "---"
 	.["Set Species"] = "?_src_=vars;[HrefToken()];setspecies=[REF(src)]"
 	.["Purrbation"] = "?_src_=vars;[HrefToken()];purrbation=[REF(src)]"
+	.["Copy Outfit"] = "?_src_=vars;[HrefToken()];copyoutfit=[REF(src)]"
 
 
 /mob/living/carbon/human/prepare_huds()
@@ -652,12 +653,12 @@
 			var/mob/living/carbon/human/H = usr
 			if(mind)
 				var/obj/item/card/id/ID = get_idcard()
-				if(ID && (ID.rank in ROLES_MARINES))//still a marine, with an ID.
+				if(ID && (ID.rank in JOBS_MARINES))//still a marine, with an ID.
 					if(assigned_squad == H.assigned_squad) //still same squad
 						var/newfireteam = input(usr, "Assign this marine to a fireteam.", "Fire Team Assignment") as null|anything in list("None", "Fire Team 1", "Fire Team 2", "Fire Team 3")
 						if(H.is_mob_incapacitated() || get_dist(H, src) > 7 || !hasHUD(H,"squadleader")) return
 						ID = get_idcard()
-						if(ID && ID.rank in ROLES_MARINES)//still a marine with an ID
+						if(ID && ID.rank in JOBS_MARINES)//still a marine with an ID
 							if(assigned_squad == H.assigned_squad) //still same squad
 								switch(newfireteam)
 									if("None") ID.assigned_fireteam = 0
@@ -1147,7 +1148,7 @@
 
 	for(var/mob/living/carbon/h in GLOB.player_list)
 		var/turf/temp_turf = get_turf(h)
-		if((temp_turf.z != 1 && temp_turf.z != 5) || h.stat!=CONSCIOUS) //Not on mining or the station. Or dead
+		if(!is_ground_level(temp_turf.z) || h.stat!=CONSCIOUS) //Not on mining or the station. Or dead
 			continue
 		creatures += h
 
@@ -1481,80 +1482,6 @@
 	if(shoes && !override_noslip) // && (shoes.flags_inventory & NOSLIPPING)) // no more slipping if you have shoes on. -spookydonut
 		return FALSE
 	. = ..()
-
-/mob/living/carbon/human/disable_lights(armor = TRUE, guns = TRUE, flares = TRUE, misc = TRUE, sparks = FALSE, silent = FALSE)
-	if(luminosity <= 0)
-		return FALSE
-
-	if(sparks)
-		var/datum/effect_system/spark_spread/spark_system = new
-		spark_system.set_up(5, 0, src)
-		spark_system.attach(src)
-		spark_system.start(src)
-
-	var/light_off = 0
-	var/goes_out = 0
-	if(armor)
-		if(istype(wear_suit, /obj/item/clothing/suit/storage/marine))
-			var/obj/item/clothing/suit/storage/marine/S = wear_suit
-			if(S.turn_off_light(src))
-				light_off++
-	if(guns)
-		for(var/obj/item/weapon/gun/G in contents)
-			if(G.turn_off_light(src))
-				light_off++
-	if(flares)
-		for(var/obj/item/device/flashlight/flare/F in contents)
-			if(F.on) goes_out++
-			F.turn_off(src)
-	if(misc)
-		for(var/obj/item/device/flashlight/L in contents)
-			if(istype(L, /obj/item/device/flashlight/flare))
-				continue
-			if(L.turn_off_light(src))
-				light_off++
-		for(var/obj/item/tool/weldingtool/W in contents)
-			if(W.isOn())
-				W.toggle()
-				goes_out++
-		for(var/obj/item/tool/pickaxe/plasmacutter/W in contents)
-			if(W.powered)
-				W.toggle()
-				goes_out++
-		for(var/obj/item/tool/match/M in contents)
-			M.burn_out(src)
-		for(var/obj/item/tool/lighter/Z in contents)
-			if(Z.turn_off(src))
-				goes_out++
-	if(!silent)
-		if(goes_out && light_off)
-			to_chat(src, "<span class='notice'>Your sources of light short and fizzle out.</span>")
-		else if(goes_out)
-			if(goes_out > 1)
-				to_chat(src, "<span class='notice'>Your sources of light fizzle out.</span>")
-			else
-				to_chat(src, "<span class='notice'>Your source of light fizzles out.</span>")
-		else if(light_off)
-			if(light_off > 1)
-				to_chat(src, "<span class='notice'>Your sources of light short out.</span>")
-			else
-				to_chat(src, "<span class='notice'>Your source of light shorts out.</span>")
-		return TRUE
-
-//very similar to xeno's queen_locator() but this is for locating squad leader.
-/mob/living/carbon/human/proc/locate_squad_leader()
-	if(!assigned_squad) return
-	var/mob/living/carbon/human/H = assigned_squad.squad_leader
-	if(!H)
-		hud_used.locate_leader.icon_state = "trackoff"
-		return
-
-	if(H.z != src.z || get_dist(src,H) < 1 || src == H)
-		hud_used.locate_leader.icon_state = "trackondirect"
-	else
-		hud_used.locate_leader.setDir(get_dir(src,H))
-		hud_used.locate_leader.icon_state = "trackon"
-
 
 /mob/living/carbon/get_standard_pixel_y_offset()
 	if(lying)

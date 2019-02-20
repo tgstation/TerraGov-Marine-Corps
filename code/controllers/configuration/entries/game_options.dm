@@ -21,15 +21,6 @@
 /datum/config_entry/keyed_list/min_pop/ValidateListEntry(key_name, key_value)
 	return key_name in config.modes
 
-/datum/config_entry/flag/objectives_disabled
-
-/datum/config_entry/flag/traitor_scaling
-
-/datum/config_entry/number/traitor_scaling_coeff	//how much does the amount of players get divided by to determine traitors
-	config_entry_value = 6
-	integer = FALSE
-	min_val = 1
-
 /datum/config_entry/flag/protect_roles_from_antagonist	//If security and such can be traitor/cult/other
 
 /datum/config_entry/string/alert_green
@@ -128,10 +119,16 @@
 	config_entry_value = 1
 
 /datum/config_entry/number/health_threshold_crit
-	config_entry_value = -50
+	config_entry_value = 0
 
 /datum/config_entry/number/health_threshold_dead
 	config_entry_value = -100
+
+/datum/config_entry/number/human_health_threshold_crit
+	config_entry_value = -50
+
+/datum/config_entry/number/maintdrone_health_threshold_dead
+	config_entry_value = 0
 
 /datum/config_entry/flag/limbs_can_break
 
@@ -142,6 +139,8 @@
 /datum/config_entry/flag/husking_on
 
 /datum/config_entry/flag/bones_can_break
+
+/datum/config_entry/flag/unlimited_rotate_speed
 
 /datum/config_entry/flag/allow_random_events
 
@@ -168,5 +167,6 @@
 	min_val = 1
 
 /datum/config_entry/number/latejoin_larva_required_num
+	integer = FALSE
 	min_val = 0
 	config_entry_value = 4

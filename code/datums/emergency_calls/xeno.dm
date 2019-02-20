@@ -25,31 +25,29 @@
 
 	var/mob/living/carbon/Xenomorph/new_xeno
 
-	original.client?.change_view(world.view)
-
 	if(original)
 		qdel(original)
 
 	if(!leader)
 		new_xeno = new /mob/living/carbon/Xenomorph/Ravager(spawn_loc)
 		leader = new_xeno
-		new_xeno.key = M.key
+		M.transfer_to(new_xeno, TRUE)
 		print_backstory(new_xeno)
 		return
 
 	if(prob(35))
 		new_xeno = new /mob/living/carbon/Xenomorph/Drone/elder(spawn_loc)
-		new_xeno.key = M.key
+		M.transfer_to(new_xeno, TRUE)
 		print_backstory(new_xeno)
 		return
 
 
 	if(prob(35))
 		new_xeno = new /mob/living/carbon/Xenomorph/Spitter/mature(spawn_loc)
-		new_xeno.key = M.key
+		M.transfer_to(new_xeno, TRUE)
 		print_backstory(new_xeno)
 		return
 
 	new_xeno = new /mob/living/carbon/Xenomorph/Hunter/mature(spawn_loc)
-	new_xeno.key = M.key
+	M.transfer_to(new_xeno, TRUE)
 	print_backstory(new_xeno)

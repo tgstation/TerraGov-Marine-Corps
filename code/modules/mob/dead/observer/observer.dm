@@ -76,6 +76,9 @@
 
 	return ..()
 
+/mob/dead/observer/Destroy()
+	unfollow()
+	. = ..()
 
 /mob/dead/observer/Topic(href, href_list)
 	if(href_list["reentercorpse"])
@@ -167,8 +170,8 @@
 			var/eta_status = EvacuationAuthority.get_status_panel_eta()
 			if(eta_status)
 				stat(null, eta_status)
-		if(ticker?.mode)
-			var/countdown = ticker.mode.get_queen_countdown()
+		if(SSticker?.mode)
+			var/countdown = SSticker.mode.get_queen_countdown()
 			if(countdown)
 				stat("Queen Re-Check:", countdown)
 
@@ -246,7 +249,6 @@
 
 	unfollow()
 	loc = pick(get_area_turfs(A))
-
 
 
 /mob/dead/observer/verb/follow_ghost()
@@ -577,24 +579,24 @@
 	set name = "Join as Xeno"
 	set desc = "Select an alive but logged-out Xenomorph to rejoin the game."
 
-	if(!client || !ticker.mode.check_xeno_late_join(src))
+	if(!client || !SSticker.mode.check_xeno_late_join(src))
 		return
 
-	if(!ticker?.mode || ticker.current_state < GAME_STATE_PLAYING)
+	if(!SSticker?.mode || SSticker.current_state < GAME_STATE_PLAYING)
 		to_chat(src, "<span class='warning'>The game hasn't started yet!</span>")
 		return
 
 	var/choice = alert("Would you like to join as a larva or as a xeno?", "Join as Xeno", "Xeno", "Larva", "Cancel")
 	switch(choice)
 		if("Xeno")
-			var/mob/new_xeno = ticker.mode.attempt_to_join_as_xeno(src)
+			var/mob/new_xeno = SSticker.mode.attempt_to_join_as_xeno(src)
 			if(new_xeno)
-				ticker.mode.transfer_xeno(src, new_xeno)
+				SSticker.mode.transfer_xeno(src, new_xeno)
 		if("Larva")
-			var/mob/living/carbon/Xenomorph/Queen/mother = ticker.mode.attempt_to_join_as_larva(src)
+			var/mob/living/carbon/Xenomorph/Queen/mother = SSticker.mode.attempt_to_join_as_larva(src)
 			if(!mother)
 				return
-			ticker.mode.spawn_larva(src, mother)
+			SSticker.mode.spawn_larva(src, mother)
 
 
 /mob/dead/verb/join_as_hellhound()
@@ -603,7 +605,7 @@
 
 	var/mob/L = src
 
-	if(ticker.current_state < GAME_STATE_PLAYING)
+	if(SSticker.current_state < GAME_STATE_PLAYING)
 		to_chat(usr, "<span class='warning'>The game hasn't started yet!</span>")
 		return
 
@@ -669,11 +671,11 @@
 	set name = "Hunter Games Vote"
 	set desc = "If it's on Hunter Games gamemode, vote on who gets a supply drop!"
 
-	if(!ticker || ticker.current_state < GAME_STATE_PLAYING || !ticker.mode)
+	if(!SSticker?.mode || SSticker.current_state < GAME_STATE_PLAYING)
 		to_chat(usr, "<span class='warning'>The game hasn't started yet!</span>")
 		return
 
-	if(!istype(ticker.mode,/datum/game_mode/huntergames))
+	if(!istype(SSticker.mode,/datum/game_mode/huntergames))
 		to_chat(usr, "Wrong game mode. You have to be observing a Hunter Games round.")
 		return
 
@@ -698,10 +700,9 @@
 		return
 
 	to_chat(usr, "Your vote for [target] has been counted!")
-	ticker.mode:supply_votes += target
+	SSticker.mode:supply_votes += target
 	voted_this_drop = TRUE
 	addtimer(CALLBACK(src, .proc/reset_vote), 3 MINUTES)
-		
 
 
 /mob/dead/observer/proc/reset_vote()

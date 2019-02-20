@@ -9,7 +9,6 @@
 
 /datum/game_mode/colonialmarines/can_start()
 	initialize_special_clamps()
-	initialize_starting_predator_list()
 	var/found_queen = initialize_starting_queen_list()
 	var/found_xenos = initialize_starting_xenomorph_list()
 	if(!found_queen && !found_xenos)
@@ -64,7 +63,6 @@
 
 
 /datum/game_mode/colonialmarines/post_setup()
-	initialize_post_predator_list()
 	initialize_post_queen_list()
 	initialize_post_xenomorph_list()
 	initialize_post_survivor_list()
@@ -73,7 +71,7 @@
 	round_time_lobby = world.time
 	defer_powernet_rebuild = 2 //Build powernets a little bit later, it lags pretty hard.
 
-	addtimer(CALLBACK(ticker.mode, .proc/map_announce), 5 SECONDS)
+	addtimer(CALLBACK(SSticker.mode, .proc/map_announce), 5 SECONDS)
 
 
 
@@ -101,7 +99,7 @@
 		// Automated bioscan / Queen Mother message
 		if(world.time > bioscan_current_interval) //If world time is greater than required bioscan time.
 			announce_bioscans() //Announce the results of the bioscan to both sides.
-			var/total[] = ticker.mode.count_humans_and_xenos()
+			var/total[] = SSticker.mode.count_humans_and_xenos()
 			var/marines = total[1]
 			var/xenos = total[2]
 			var/bioscan_scaling_factor = xenos / max(marines, 1)

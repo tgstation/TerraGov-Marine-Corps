@@ -3,7 +3,8 @@
 	set category = "Object"
 	set src = usr
 
-	if(istype(loc,/obj/mecha)) return
+	if(istype(loc,/obj/mecha) || istype(loc, /obj/vehicle/multitile/root/cm_armored))
+		return
 
 	if(hand)
 		var/obj/item/W = l_hand
@@ -84,9 +85,6 @@
 		return
 	if(stat != DEAD)
 		to_chat(usr, "<span class='boldnotice'>You must be dead to use this!</span>")
-		return
-	if(!ticker?.mode || ticker.mode.name == "meteor" || ticker.mode.name == "epidemic") //BS12 EDIT
-		to_chat(usr, "<span class='notice'>Respawn is disabled for this roundtype.</span>")
 		return
 	else
 		var/deathtime = world.time - src.timeofdeath
