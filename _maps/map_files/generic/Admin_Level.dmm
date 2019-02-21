@@ -358,6 +358,7 @@
 "bc" = (
 /obj/machinery/atmospherics/pipe/manifold/general/visible{
 	dir = 1;
+	
 	},
 /turf/open/floor,
 /area/tdome)
@@ -826,6 +827,7 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
+	
 	},
 /turf/closed/wall/r_wall/dense,
 /area/yautja)
@@ -1062,14 +1064,6 @@
 	icon_state = "bulb1";
 	dir = 4
 	},
-/turf/open/floor/holofloor{
-	icon_state = "cult";
-	dir = 2
-	},
-/area/yautja)
-"cS" = (
-/obj/structure/table/reinforced,
-/obj/item/device/flashlight/lantern,
 /turf/open/floor/holofloor{
 	icon_state = "cult";
 	dir = 2
@@ -1498,6 +1492,7 @@
 "dJ" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 10;
+	
 	},
 /obj/machinery/light/small{
 	tag = "icon-bulb1 (EAST)";
@@ -5059,15 +5054,6 @@
 	tag = "icon-sterile"
 	},
 /area/shuttle/distress/start_big)
-"mn" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 8
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
-	},
-/turf/open/floor/plating/almayer,
-/area/shuttle/distress/start_big)
 "mo" = (
 /obj/structure/rack,
 /obj/item/ammo_magazine/smg/m39,
@@ -5787,12 +5773,6 @@
 	},
 /turf/open/floor/plating/almayer,
 /area/centcom/ferry)
-"oc" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
-	},
-/turf/open/floor/plating/almayer,
-/area/centcom/ferry)
 "od" = (
 /turf/open/floor/almayer{
 	tag = "icon-orange (NORTH)";
@@ -6247,15 +6227,7 @@
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/shuttle/brig,
 /area/deathmatch)
-"pm" = (
-/obj/effect/decal/cleanable/blood/drip,
-/turf/open/gm/grass,
-/area/deathmatch)
 "pn" = (
-/obj/effect/decal/cleanable/blood/drip,
-/turf/open/gm/grass,
-/area/deathmatch)
-"po" = (
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/gm/grass,
 /area/deathmatch)
@@ -6263,10 +6235,6 @@
 /obj/structure/table,
 /obj/item/ashtray/glass,
 /turf/open/floor,
-/area/deathmatch)
-"pq" = (
-/obj/effect/decal/cleanable/blood/drip,
-/turf/open/gm/grass,
 /area/deathmatch)
 "pr" = (
 /obj/effect/decal/cleanable/blood/splatter,
@@ -6675,12 +6643,6 @@
 	dir = 8
 	},
 /obj/structure/table,
-/turf/open/floor,
-/area/deathmatch)
-"qW" = (
-/obj/machinery/light{
-	dir = 4
-	},
 /turf/open/floor,
 /area/deathmatch)
 "qX" = (
@@ -11108,9 +11070,9 @@ iU
 iU
 iU
 iU
-oc
-oc
-oc
+fD
+fD
+fD
 fx
 aa
 aa
@@ -11558,9 +11520,9 @@ kX
 lE
 lR
 mc
-mn
+lj
 mw
-mn
+lj
 iU
 fC
 ob
@@ -12473,8 +12435,8 @@ mg
 iU
 iU
 oR
-oc
-oc
+fD
+fD
 oV
 fF
 fW
@@ -24325,7 +24287,7 @@ qA
 pS
 pS
 qX
-qW
+qG
 qe
 qe
 qG
@@ -26602,7 +26564,7 @@ pt
 pt
 pt
 pt
-pm
+pn
 pt
 pt
 pt
@@ -26978,7 +26940,7 @@ cl
 co
 co
 cf
-cS
+cO
 dc
 cK
 cK
@@ -26986,7 +26948,7 @@ cf
 cK
 cK
 dc
-cS
+cO
 cf
 cK
 cL
@@ -27056,7 +27018,7 @@ pd
 pt
 pt
 pt
-pq
+pn
 pt
 pt
 pd
@@ -27510,7 +27472,7 @@ pt
 pt
 pt
 pt
-po
+pn
 pt
 qo
 pC
@@ -27810,7 +27772,7 @@ pH
 qx
 pH
 qo
-pm
+pn
 pt
 pt
 pt

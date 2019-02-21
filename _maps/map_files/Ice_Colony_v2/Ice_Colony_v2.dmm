@@ -1262,6 +1262,7 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
+	
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -1631,6 +1632,7 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
+	
 	},
 /turf/open/floor/animated/bcircuit,
 /area/ice_colony/surface/engineering/generator)
@@ -1919,6 +1921,7 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
+	
 	},
 /turf/open/floor/animated/bcircuit,
 /area/ice_colony/surface/engineering/generator)
@@ -2558,6 +2561,7 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
+	
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -2576,6 +2580,7 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
+	
 	},
 /turf/open/floor/animated/bcircuit,
 /area/ice_colony/surface/engineering/generator)
@@ -2820,6 +2825,7 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
+	
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -3092,6 +3098,7 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
+	
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/substation/smes)
@@ -3227,6 +3234,7 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
+	
 	},
 /turf/open/floor/tile/dark/yellow2{
 	dir = 1
@@ -3509,6 +3517,7 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
+	
 	},
 /turf/open/floor/tile/dark/yellow2,
 /area/ice_colony/surface/engineering)
@@ -3522,6 +3531,7 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
+	
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -6899,6 +6909,7 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
+	
 	},
 /turf/open/floor/animated/bcircuit,
 /area/ice_colony/surface/tcomms)
@@ -8080,12 +8091,6 @@
 	dir = 4
 	},
 /area/ice_colony/surface/dorms)
-"auP" = (
-/obj/structure/disposalpipe/segment/corner{
-	dir = 1
-	},
-/turf/open/snow/layer1,
-/area/ice_colony/exterior/surface/clearing/north)
 "auQ" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -8437,6 +8442,7 @@
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4";
+	
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -9843,12 +9849,6 @@
 	dir = 2
 	},
 /area/ice_colony/surface/dorms)
-"azr" = (
-/obj/structure/disposalpipe/segment/corner{
-	dir = 1
-	},
-/turf/open/snow/layer3,
-/area/ice_colony/exterior/surface/clearing/north)
 "azs" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
@@ -14308,6 +14308,7 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
+	
 	},
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/north)
@@ -17194,10 +17195,6 @@
 /area/ice_colony/surface/bar/bar)
 "aSb" = (
 /obj/structure/bed/stool,
-/turf/open/floor/wood,
-/area/ice_colony/surface/bar/bar)
-"aSc" = (
-/obj/effect/decal/cleanable/blood/gibs/xeno,
 /turf/open/floor/wood,
 /area/ice_colony/surface/bar/bar)
 "aSd" = (
@@ -21232,6 +21229,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /turf/open/floor/freezer,
 /area/ice_colony/underground/requesition/storage)
@@ -21381,6 +21379,7 @@
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4";
+	
 	},
 /obj/structure/largecrate/random,
 /turf/open/floor/tile/vault{
@@ -21523,6 +21522,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /turf/open/floor/tile/vault{
 	dir = 8
@@ -21623,11 +21623,13 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /obj/structure/cable/yellow{
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
+	
 	},
 /obj/vehicle/train/cargo/trolley,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -21899,6 +21901,7 @@
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4";
+	
 	},
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating,
@@ -22093,6 +22096,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/requesition)
@@ -22261,6 +22265,7 @@
 	id = "westhangar";
 	name = "West Hangar";
 	pixel_x = 24;
+	
 	},
 /turf/open/floor/plating/icefloor/warnplate,
 /area/ice_colony/underground/hangar)
@@ -22293,6 +22298,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/almayer/medical/glass{
@@ -22528,6 +22534,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /obj/structure/closet/crate/trashcart,
 /turf/open/floor/tile/vault{
@@ -22822,11 +22829,13 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /obj/structure/cable/yellow{
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4";
+	
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -22881,6 +22890,7 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
+	
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
@@ -22920,6 +22930,7 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
+	
 	},
 /turf/closed/wall/r_wall,
 /area/ice_colony/underground/hangar)
@@ -22928,6 +22939,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /obj/machinery/light{
 	dir = 4
@@ -22999,6 +23011,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /turf/open/floor/tile/dark/brown2{
 	dir = 4
@@ -23198,11 +23211,13 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /obj/structure/cable/yellow{
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
+	
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/requesition)
@@ -23294,6 +23309,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /obj/machinery/door/poddoor/shutters/almayer{
 	id = "req_sec_storage";
@@ -23507,6 +23523,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/requesition/sec_storage)
@@ -23566,6 +23583,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/requesition/lobby)
@@ -23721,11 +23739,13 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /obj/structure/cable/yellow{
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4";
+	
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/requesition/lobby)
@@ -23734,6 +23754,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/requesition/sec_storage)
@@ -23808,6 +23829,7 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
+	
 	},
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/north)
@@ -23930,6 +23952,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/requesition/lobby)
@@ -24148,6 +24171,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /turf/open/floor/tile/dark/brown2/corner{
 	dir = 8
@@ -24391,6 +24415,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /turf/open/floor/tile/dark/brown2/corner{
 	dir = 1
@@ -24644,6 +24669,7 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
+	
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/research)
@@ -24669,6 +24695,7 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
+	
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -24687,6 +24714,7 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
+	
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/responsehangar)
@@ -24836,6 +24864,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /obj/machinery/light{
 	dir = 4
@@ -25029,6 +25058,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -25177,11 +25207,13 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /obj/structure/cable/yellow{
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4";
+	
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/north_west)
@@ -25401,6 +25433,7 @@
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4";
+	
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/wood,
@@ -25443,6 +25476,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 4
@@ -25685,11 +25719,6 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/crew/morgue)
-"boO" = (
-/turf/open/floor/tile/dark/yellow2{
-	dir = 8
-	},
-/area/ice_colony/underground/engineering)
 "boP" = (
 /obj/effect/landmark/huntergames_primary_spawn,
 /turf/open/floor/tile/dark2,
@@ -25713,6 +25742,7 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
+	
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
@@ -25939,6 +25969,7 @@
 	id = "Colony_PMC_Hangar";
 	name = "Hangar Shutters";
 	pixel_x = 24;
+	
 	},
 /turf/open/snow/layer1,
 /area/ice_colony/exterior/surface/valley/southeast)
@@ -26256,16 +26287,6 @@
 	dir = 6
 	},
 /area/ice_colony/underground/engineering)
-"bqn" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/open/floor/tile/dark/yellow2{
-	dir = 8
-	},
-/area/ice_colony/underground/engineering)
 "bqo" = (
 /turf/open/floor/tile/dark/yellow2{
 	dir = 10
@@ -26352,11 +26373,13 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /obj/structure/cable/yellow{
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4";
+	
 	},
 /turf/open/floor/tile/darkgreen/darkgreen2/corner{
 	dir = 4
@@ -26485,6 +26508,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/north_west)
@@ -26620,6 +26644,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -26800,6 +26825,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /turf/open/floor/tile/darkgreen/darkgreen2/corner,
 /area/ice_colony/underground/hallway/north_west)
@@ -27545,6 +27571,7 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
+	
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/crew/bball)
@@ -27700,6 +27727,7 @@
 /obj/item/tool/wrench,
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 6;
+	
 	},
 /turf/open/floor/tile/red/whitered{
 	dir = 8
@@ -28169,6 +28197,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor/tile/dark2,
@@ -28304,6 +28333,7 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
+	
 	},
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/medical/treatment)
@@ -28811,6 +28841,7 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
+	
 	},
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/medical/treatment)
@@ -28963,6 +28994,7 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
+	
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/medical/lobby)
@@ -29351,6 +29383,7 @@
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4";
+	
 	},
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
@@ -29385,6 +29418,7 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
+	
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/south_east)
@@ -29603,6 +29637,7 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
+	
 	},
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/medical/hallway)
@@ -29654,6 +29689,7 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
+	
 	},
 /turf/open/floor/wood,
 /area/ice_colony/underground/security/detective)
@@ -29804,6 +29840,7 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
+	
 	},
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/central)
@@ -29858,6 +29895,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /turf/open/floor/wood,
 /area/ice_colony/underground/security/detective)
@@ -29892,6 +29930,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /turf/open/floor/wood,
 /area/ice_colony/underground/security/marshal)
@@ -30005,6 +30044,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor/wood,
@@ -30134,6 +30174,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/wood,
@@ -30158,6 +30199,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/wood,
@@ -30326,6 +30368,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/almayer/security/glass{
@@ -30340,6 +30383,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/almayer/security/glass{
@@ -30604,6 +30648,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor/wood,
@@ -30669,6 +30714,7 @@
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4";
+	
 	},
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
@@ -30717,6 +30763,7 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
+	
 	},
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor/tile/dark2,
@@ -30773,6 +30820,7 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
+	
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -31002,6 +31050,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /turf/open/floor/tile/dark/red2/corner{
 	dir = 8
@@ -31031,6 +31080,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /turf/open/floor/tile/dark/yellow2{
 	dir = 4
@@ -31094,6 +31144,7 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
+	
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -31161,6 +31212,7 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
+	
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/south_east)
@@ -31205,6 +31257,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /turf/open/floor/tile/dark/red2{
 	dir = 8
@@ -31236,6 +31289,7 @@
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4";
+	
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark2,
@@ -31270,6 +31324,7 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
+	
 	},
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor/tile/dark2,
@@ -31286,6 +31341,7 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
+	
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/south_east)
@@ -31388,6 +31444,7 @@
 	id = "westhangar";
 	name = "West Hangar";
 	pixel_x = -24;
+	
 	},
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south)
@@ -31439,6 +31496,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark2,
@@ -31588,6 +31646,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/security/interrogation)
@@ -31772,11 +31831,13 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
+	
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/security/hallway)
@@ -32049,6 +32110,7 @@
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4";
+	
 	},
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/dorm_r)
@@ -32106,6 +32168,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /obj/machinery/door/airlock/multi_tile/almayer/generic{
 	name = "\improper Underground Security Checkpoint";
@@ -32206,6 +32269,7 @@
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4";
+	
 	},
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/dorm_l)
@@ -32272,6 +32336,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /turf/open/floor/wood,
 /area/ice_colony/underground/command/pv1)
@@ -32302,6 +32367,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/dorm_r)
@@ -32397,6 +32463,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /turf/open/floor/wood,
 /area/ice_colony/underground/command/pv1)
@@ -32412,6 +32479,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /turf/open/floor/wood,
 /area/ice_colony/underground/command/pv2)
@@ -32477,6 +32545,7 @@
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4";
+	
 	},
 /turf/open/floor/tile/dark/red2{
 	dir = 1
@@ -32514,6 +32583,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /turf/open/floor/tile/dark/red2/corner{
 	dir = 1
@@ -32594,6 +32664,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /turf/open/floor/wood,
 /area/ice_colony/underground/command/pv2)
@@ -32607,6 +32678,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/dorm_l)
@@ -32746,6 +32818,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /turf/open/floor/wood,
 /area/ice_colony/underground/command/pv1)
@@ -32786,6 +32859,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /turf/open/floor/wood,
 /area/ice_colony/underground/command/pv2)
@@ -32801,18 +32875,11 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/dorm_r)
-"bGR" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/tile/darkgreen/darkgreen2{
-	dir = 8
-	},
-/area/ice_colony/underground/hallway/south_east)
 "bGS" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -32852,6 +32919,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/security/backroom)
@@ -32875,6 +32943,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4;
@@ -32905,6 +32974,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor/tile/dark2,
@@ -32918,14 +32988,6 @@
 	dir = 4
 	},
 /area/ice_colony/underground/security/hallway)
-"bHg" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/tile/dark/purple2{
-	dir = 8
-	},
-/area/ice_colony/underground/hallway/north_west)
 "bHh" = (
 /obj/structure/table,
 /obj/item/storage/box/lightstick,
@@ -32956,6 +33018,7 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
+	
 	},
 /turf/closed/wall/r_wall,
 /area/ice_colony/underground/engineering/substation)
@@ -32964,6 +33027,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /turf/open/floor/tile/dark/red2{
 	dir = 4
@@ -32981,6 +33045,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /obj/machinery/door/airlock/almayer/command{
 	dir = 1;
@@ -32996,6 +33061,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /obj/machinery/door/airlock/almayer/command{
 	dir = 1;
@@ -33018,6 +33084,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/wood,
@@ -33056,6 +33123,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/security/backroom)
@@ -33105,6 +33173,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /turf/open/floor/tile/dark/red2/corner{
 	dir = 8
@@ -33147,6 +33216,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor/wood,
@@ -33223,6 +33293,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /obj/machinery/door/airlock/almayer/security{
 	dir = 1;
@@ -33256,6 +33327,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /obj/machinery/door/airlock/multi_tile/almayer/generic{
 	name = "\improper Underground Security Checkpoint";
@@ -33277,6 +33349,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/almayer/security/glass{
@@ -33406,6 +33479,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /turf/open/floor/tile/dark/red2/corner{
 	dir = 1
@@ -33463,6 +33537,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/wood,
@@ -33488,6 +33563,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark2,
@@ -33572,6 +33648,7 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
+	
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark/yellow2,
@@ -33674,6 +33751,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /obj/structure/disposalpipe/junction,
 /turf/open/floor/tile/dark2,
@@ -33706,6 +33784,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/command/checkpoint)
@@ -34013,6 +34092,7 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
+	
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/command/checkpoint)
@@ -34064,6 +34144,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/almayer/generic{
@@ -34079,6 +34160,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/almayer/generic{
@@ -34111,6 +34193,7 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
+	
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -34137,6 +34220,7 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
+	
 	},
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
@@ -34184,6 +34268,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
@@ -34192,6 +34277,7 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
+	
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/security)
@@ -34426,6 +34512,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/almayer/security/glass{
@@ -34474,6 +34561,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/south_east)
@@ -34610,6 +34698,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/south_east)
@@ -34716,6 +34805,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /obj/machinery/door/airlock/almayer/generic{
 	dir = 1;
@@ -34742,6 +34832,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/wood,
@@ -34755,6 +34846,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark2,
@@ -34897,6 +34989,7 @@
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4";
+	
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -35140,6 +35233,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/south_east)
@@ -35148,6 +35242,7 @@
 	id = "Colony_PMC_Hangar";
 	name = "Hangar Shutters";
 	pixel_x = -24;
+	
 	},
 /turf/open/floor/tile/dark/red2{
 	dir = 8
@@ -35174,6 +35269,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -35266,6 +35362,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/crew/lavatory)
@@ -35320,6 +35417,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/south_east)
@@ -35356,6 +35454,7 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
+	
 	},
 /turf/open/floor/carpet,
 /area/ice_colony/underground/crew/leisure)
@@ -35520,6 +35619,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/crew/lavatory)
@@ -35593,6 +35693,7 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
+	
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/security)
@@ -36162,6 +36263,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/almayer/security/glass{
@@ -36208,6 +36310,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/crew/lavatory)
@@ -36714,6 +36817,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/responsehangar)
@@ -36747,6 +36851,7 @@
 	id = "mining_garage";
 	name = "Mining Garage";
 	pixel_x = 24;
+	
 	},
 /turf/open/snow/layer0,
 /area/ice_colony/surface/excavationbarracks)
@@ -36807,6 +36912,7 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
+	
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/responsehangar)
@@ -36818,6 +36924,7 @@
 	id = "mining_garage";
 	name = "Mining Garage";
 	pixel_x = -24;
+	
 	},
 /turf/open/floor/tile/dark/yellow2/corner{
 	dir = 4
@@ -36965,6 +37072,7 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
+	
 	},
 /turf/open/floor/tile/dark/red2{
 	dir = 4
@@ -37295,6 +37403,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /turf/open/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/south)
@@ -37319,6 +37428,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /turf/open/snow/layer1,
 /area/ice_colony/exterior/surface/valley/south)
@@ -37395,6 +37505,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /turf/open/snow/layer1,
 /area/ice_colony/exterior/surface/valley/south)
@@ -37709,6 +37820,7 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
+	
 	},
 /turf/open/floor/plating,
 /area/ice_colony/underground/hallway/north_west)
@@ -37958,6 +38070,7 @@
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4";
+	
 	},
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/east)
@@ -38411,6 +38524,7 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
+	
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -38753,6 +38867,7 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
+	
 	},
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/underground/hangar)
@@ -39621,14 +39736,6 @@
 /obj/effect/decal/cleanable/blood/xtracks,
 /turf/open/floor/tile/dark,
 /area/ice_colony/surface/excavationbarracks)
-"bXX" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/tile/dark/red2{
-	dir = 4
-	},
-/area/ice_colony/underground/hallway/south_east)
 "bXY" = (
 /obj/effect/landmark/corpsespawner/miner,
 /turf/open/snow/layer1,
@@ -39938,6 +40045,7 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
+	
 	},
 /turf/open/floor/plating,
 /area/ice_colony/underground/engineering/substation)
@@ -40123,6 +40231,7 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
+	
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -40719,6 +40828,7 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
+	
 	},
 /turf/closed/wall/r_wall,
 /area/ice_colony/underground/engineering/substation)
@@ -40808,20 +40918,7 @@
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/central)
-"cck" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/blood/drip,
-/turf/open/floor/plating,
-/area/ice_colony/underground/maintenance/central)
 "ccy" = (
-/obj/effect/decal/cleanable/blood/drip,
-/turf/open/floor/tile/dark/purple2{
-	dir = 8
-	},
-/area/ice_colony/underground/hallway/north_west)
-"ccz" = (
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/tile/dark/purple2{
 	dir = 8
@@ -40912,17 +41009,6 @@
 /obj/effect/decal/cleanable/blood/xeno,
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/central)
-"ccO" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/effect/decal/cleanable/blood/xtracks,
-/obj/effect/decal/cleanable/blood/drip,
-/turf/open/floor/tile/dark2,
-/area/ice_colony/underground/command/checkpoint)
 "ccP" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable/yellow{
@@ -40981,6 +41067,7 @@
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4";
+	
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -40991,6 +41078,7 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
+	
 	},
 /obj/structure/disposalpipe/segment/corner{
 	dir = 4
@@ -41104,6 +41192,7 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
+	
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/south_east)
@@ -49050,7 +49139,7 @@ ccy
 bDQ
 bBp
 bBp
-ccz
+ccy
 bBp
 bBp
 ccL
@@ -49058,7 +49147,7 @@ bHH
 cdc
 bkr
 bJv
-bHg
+bDQ
 bKu
 bKC
 bKT
@@ -53412,7 +53501,7 @@ byP
 byP
 byP
 byP
-cck
+cbV
 cbS
 bCu
 bCu
@@ -56249,7 +56338,7 @@ bEL
 ccC
 ccE
 ccK
-ccO
+ccK
 ccP
 cdd
 bIO
@@ -64215,7 +64304,7 @@ brn
 brn
 brn
 brn
-bGR
+bsW
 brn
 brn
 brn
@@ -64225,7 +64314,7 @@ bLM
 bMc
 bpu
 bpu
-bGR
+bsW
 brn
 bpu
 bNW
@@ -64233,7 +64322,7 @@ bpu
 brn
 brn
 brn
-bGR
+bsW
 bLj
 bjZ
 bSw
@@ -64978,7 +65067,7 @@ byJ
 bBh
 bBF
 bCk
-bXX
+bzL
 bzL
 byJ
 byJ
@@ -64987,7 +65076,7 @@ byJ
 byJ
 byJ
 buW
-bXX
+bzL
 byJ
 byJ
 byJ
@@ -67776,12 +67865,12 @@ btV
 caD
 btz
 bpm
-boO
+bYY
 box
 byA
-bqn
+bTl
 bqw
-boO
+bYY
 box
 bnk
 aZF
@@ -71067,7 +71156,7 @@ aLi
 aVc
 aLi
 aLi
-aSc
+aRq
 aUF
 aKB
 aKG
@@ -76158,7 +76247,7 @@ asV
 ats
 atU
 arV
-auP
+auu
 aax
 aax
 apQ
@@ -76167,7 +76256,7 @@ abL
 abL
 abL
 ayc
-azr
+ayd
 abL
 azD
 aAb

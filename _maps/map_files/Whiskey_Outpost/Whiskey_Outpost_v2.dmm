@@ -13,6 +13,7 @@
 /obj/structure/mirror{
 	dir = 4;
 	pixel_x = -32;
+	
 	},
 /obj/item/storage/fancy/cigarettes/lady_finger,
 /turf/open/floor/wood,
@@ -78,6 +79,7 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
+	
 	},
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
@@ -90,6 +92,7 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
+	
 	},
 /turf/open/floor,
 /area/whiskey_outpost)
@@ -98,6 +101,7 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
+	
 	},
 /turf/open/floor,
 /area/whiskey_outpost)
@@ -111,6 +115,7 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
+	
 	},
 /turf/open/floor{
 	dir = 4;
@@ -232,6 +237,7 @@
 /obj/structure/cable{
 	d2 = 2;
 	icon_state = "0-2";
+	
 	},
 /turf/open/floor{
 	dir = 8;
@@ -270,6 +276,7 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
+	
 	},
 /turf/closed/wall/r_wall,
 /area/whiskey_outpost)
@@ -481,12 +488,6 @@
 /turf/open/floor/tile/red/redtaupe{
 	dir = 4
 	},
-/area/whiskey_outpost)
-"br" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "bs" = (
 /obj/effect/landmark{
@@ -1157,12 +1158,6 @@
 	dir = 5
 	},
 /area/whiskey_outpost)
-"cQ" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/plating/asteroidfloor,
-/area/whiskey_outpost)
 "cR" = (
 /obj/machinery/door/airlock/glass_medical{
 	name = "Medbay"
@@ -1380,6 +1375,7 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
+	
 	},
 /obj/machinery/light{
 	dir = 1
@@ -1392,6 +1388,7 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
+	
 	},
 /obj/structure/bed/roller,
 /turf/open/floor/plating/asteroidfloor,
@@ -1731,16 +1728,6 @@
 	dir = 4
 	},
 /area/whiskey_outpost/outside/north)
-"ek" = (
-/obj/effect/landmark{
-	icon_state = "x3";
-	name = "whiskey_outpost_marine"
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/plating/asteroidfloor,
-/area/whiskey_outpost)
 "el" = (
 /turf/open/floor/tile/whiteyellow/full,
 /area/whiskey_outpost)
@@ -2218,6 +2205,7 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
+	
 	},
 /turf/open/floor{
 	dir = 4;
@@ -2229,6 +2217,7 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
+	
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -2242,6 +2231,7 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
+	
 	},
 /turf/open/floor{
 	dir = 8;
@@ -3215,12 +3205,14 @@
 "in" = (
 /obj/machinery/marine_turret/premade{
 	dir = 4;
+	
 	},
 /turf/open/floor/plating/platebot,
 /area/whiskey_outpost/outside/east)
 "io" = (
 /obj/machinery/marine_turret/premade{
 	dir = 8;
+	
 	},
 /turf/open/floor/plating/platebot,
 /area/whiskey_outpost/outside/east)
@@ -3330,12 +3322,14 @@
 "iH" = (
 /obj/machinery/marine_turret/premade{
 	dir = 4;
+	
 	},
 /turf/open/floor/plating/platebot,
 /area/whiskey_outpost/outside/west)
 "iI" = (
 /obj/machinery/marine_turret/premade{
 	dir = 8;
+	
 	},
 /turf/open/floor/plating/platebot,
 /area/whiskey_outpost/outside/west)
@@ -12110,13 +12104,13 @@ aL
 bY
 bY
 bY
-ek
+dY
 bY
 bY
 bY
 bY
 bY
-ek
+dY
 bY
 bY
 cm
@@ -12245,7 +12239,7 @@ ak
 ak
 ak
 aL
-br
+aK
 aL
 aT
 aL
@@ -13630,7 +13624,7 @@ aL
 aL
 aL
 aL
-cQ
+bm
 aL
 aL
 aL
