@@ -382,8 +382,8 @@
 	var/ref = "[REF(usr.client.holder)];[HrefToken()]"
 	var/body = "<html><head><title>Player Panel: [key_name(M)]</title></head>"
 
-	if(!M.name)
-		message_admins("[M] has no name! Here's a VV: [ADMIN_VV(M)]")
+	if(!M?.name)
+		message_admins("[M] has no name or is null! Here's a VV: [ADMIN_VV(M)]")
 
 	body += "[M.name]"
 
