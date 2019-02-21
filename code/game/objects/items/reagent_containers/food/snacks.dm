@@ -2800,6 +2800,6 @@
 		if("biscuit", "pretzels", "peanuts", "cracker")
 			icon_state = "snack"
 			list_reagents = list("nutriment" = 2, "sodiumchloride" = 1)
-		if("spiced apples", "chocolate brownie", "sugar cookie", "choco bar", "crayom")
+		if("spiced apples", "chocolate brownie", "sugar cookie", "choco bar", "crayon")
 			icon_state = "dessert"
 			list_reagents = list("nutriment" = 2, "sugar" = 1)
