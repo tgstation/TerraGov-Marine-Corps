@@ -549,6 +549,9 @@
 /turf/open/floor/tile/dark/brown2/corner
 	icon_state = "darkbrowncorners2"
 
+/turf/open/floor/tile/dark/green2/corner
+	icon_state = "darkgreencorners2"
+
 /turf/open/floor/tile/dark/red2
 	icon_state = "darkred2"
 
@@ -557,6 +560,9 @@
 
 /turf/open/floor/tile/dark/blue2
 	icon_state = "darkblue2"
+
+/turf/open/floor/tile/dark/blue2/corner
+	icon_state = "darkbluecorners2"
 
 /turf/open/floor/tile/whitegreenv
 	icon_state = "whitegreen_v"
@@ -612,10 +618,29 @@
 /turf/open/floor/prison/purple/whitepurple
 	icon_state = "whitepurple"
 
+/turf/open/floor/prison/darkred/corners
+	icon_state = "darkredcorners2"
 
+/turf/open/floor/prison/darkyellow
+	icon_state = "darkyellow2"
+	
+/turf/open/floor/prison/darkyellow/corner
+	icon_state = "darkyellowcorners2"
 
+/turf/open/floor/prison/darkbrown/corner
+	icon_state = "darkbrowncorners2"
 
+/turf/open/floor/prison/green/corner
+	icon_state = "greencorner"
 
+/turf/open/floor/prison/blue/corner
+	icon_state = "bluecorner"
+
+/turf/open/floor/prison/yellow/corner
+	icon_state = "yellowcorner"
+
+/turf/open/floor/prison/red/corner
+	icon_state = "redcorner"
 
 ////// Mechbay /////////////////:
 
