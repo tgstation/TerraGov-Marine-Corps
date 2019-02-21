@@ -453,6 +453,9 @@
 
 	return TRUE
 
+/obj/structure/table/flipped
+	flipped = TRUE
+
 /*
  * Wooden tables
  */

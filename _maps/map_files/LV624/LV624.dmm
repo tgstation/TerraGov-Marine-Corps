@@ -15860,7 +15860,7 @@
 /area/lv624/lazarus/internal_affairs)
 "bbI" = (
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /obj/machinery/vending/cigarette/colony,
 /turf/open/floor/tile/blue/whiteblue,

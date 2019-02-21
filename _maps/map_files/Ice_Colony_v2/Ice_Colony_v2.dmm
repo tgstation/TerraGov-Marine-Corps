@@ -9818,8 +9818,6 @@
 /area/ice_colony/exterior/surface/valley/southeast)
 "aza" = (
 /obj/structure/window/reinforced{
-	tag = "icon-rwindow (NORTH)";
-	icon_state = "rwindow";
 	dir = 1
 	},
 /turf/open/floor/tile/dark/brown2{
@@ -9832,8 +9830,6 @@
 /area/ice_colony/surface/dorms/lavatory)
 "azc" = (
 /obj/structure/window/reinforced{
-	tag = "icon-rwindow (NORTH)";
-	icon_state = "rwindow";
 	dir = 1
 	},
 /turf/open/floor/tile/dark/brown2{
@@ -12139,10 +12135,7 @@
 /turf/open/floor/plating,
 /area/ice_colony/surface/disposals)
 "aER" = (
-/obj/structure/table{
-	flipped = 1;
-	icon_state = "tableflip0"
-	},
+/obj/structure/table/flipped,
 /turf/open/floor/tile/dark/blue2{
 	dir = 1
 	},
@@ -12558,10 +12551,8 @@
 /turf/open/floor/plating,
 /area/ice_colony/surface/command/checkpoint)
 "aFO" = (
-/obj/structure/table{
-	dir = 4;
-	flipped = 1;
-	icon_state = "tableflip0"
+/obj/structure/table/flipped{
+	dir = 4
 	},
 /turf/open/floor/tile/dark/yellow2{
 	dir = 10
@@ -14962,10 +14953,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/structure/table{
-	flipped = 1;
-	icon_state = "tableflip0"
-	},
+/obj/structure/table/flipped,
 /turf/open/floor/tile/dark/blue2{
 	dir = 1
 	},
@@ -15022,7 +15010,7 @@
 /area/ice_colony/surface/bar/canteen)
 "aMp" = (
 /obj/machinery/firealarm{
-	pixel_y = 24
+	dir = 2
 	},
 /obj/structure/table,
 /turf/open/floor/wood,
@@ -15090,7 +15078,7 @@
 /area/ice_colony/surface/bar/bar)
 "aMx" = (
 /obj/machinery/firealarm{
-	pixel_y = 24
+	dir = 2
 	},
 /turf/open/floor/wood,
 /area/ice_colony/surface/bar/bar)
@@ -19492,7 +19480,7 @@
 /area/ice_colony/surface/hangar/alpha)
 "aXl" = (
 /obj/machinery/firealarm{
-	pixel_y = 24
+	dir = 2
 	},
 /turf/open/floor/tile/dark/yellow2{
 	dir = 1
@@ -21371,7 +21359,7 @@
 "bcg" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
 /obj/machinery/firealarm{
-	pixel_y = 24
+	dir = 2
 	},
 /turf/open/floor/freezer,
 /area/ice_colony/underground/requesition/storage)
@@ -21479,7 +21467,7 @@
 /area/ice_colony/surface/research)
 "bcy" = (
 /obj/machinery/firealarm{
-	pixel_y = 24
+	dir = 2
 	},
 /turf/open/floor/tile/dark/brown2{
 	dir = 1
@@ -21587,8 +21575,6 @@
 /area/ice_colony/surface/excavation)
 "bcQ" = (
 /obj/structure/window/reinforced{
-	tag = "icon-rwindow (EAST)";
-	icon_state = "rwindow";
 	dir = 4
 	},
 /obj/structure/largecrate/random,
@@ -21764,8 +21750,6 @@
 /area/ice_colony/exterior/surface/valley/west)
 "bdo" = (
 /obj/structure/window/reinforced{
-	tag = "icon-rwindow (EAST)";
-	icon_state = "rwindow";
 	dir = 4
 	},
 /obj/structure/largecrate/random,
@@ -22839,7 +22823,7 @@
 	dir = 8
 	},
 /obj/machinery/firealarm{
-	pixel_y = 24
+	dir = 2
 	},
 /turf/open/floor/tile/dark/brown2{
 	dir = 5
@@ -23076,8 +23060,6 @@
 /area/ice_colony/surface/excavation)
 "bgL" = (
 /obj/structure/window/reinforced{
-	tag = "icon-rwindow (EAST)";
-	icon_state = "rwindow";
 	dir = 4
 	},
 /turf/open/floor/tile/dark/purple2{
@@ -23433,8 +23415,6 @@
 /area/ice_colony/surface/excavation)
 "bhJ" = (
 /obj/structure/window/reinforced{
-	tag = "icon-rwindow (EAST)";
-	icon_state = "rwindow";
 	dir = 4
 	},
 /turf/open/floor/tile/dark/purple2{
@@ -23901,7 +23881,7 @@
 	dir = 8
 	},
 /obj/machinery/firealarm{
-	pixel_y = 24
+	dir = 2
 	},
 /turf/open/floor/tile/dark/brown2{
 	dir = 5
@@ -25159,7 +25139,7 @@
 /area/ice_colony/exterior/surface/valley/southwest)
 "bmo" = (
 /obj/machinery/firealarm{
-	pixel_y = 24
+	dir = 2
 	},
 /turf/open/floor/tile/dark/yellow2{
 	dir = 1
@@ -25817,7 +25797,7 @@
 /obj/item/book/manual/marine_law,
 /obj/item/storage/donut_box,
 /obj/machinery/firealarm{
-	pixel_y = 24
+	dir = 2
 	},
 /turf/open/floor/tile/dark/red2{
 	dir = 1
@@ -25919,7 +25899,7 @@
 "bop" = (
 /obj/structure/flora/pottedplant,
 /obj/machinery/firealarm{
-	pixel_y = 24
+	dir = 2
 	},
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 5
@@ -30055,7 +30035,7 @@
 /area/ice_colony/underground/security/detective)
 "byN" = (
 /obj/machinery/firealarm{
-	pixel_y = 24
+	dir = 2
 	},
 /obj/structure/cable/yellow{
 	d1 = 2;
@@ -30113,7 +30093,7 @@
 /area/ice_colony/underground/security/marshal)
 "byX" = (
 /obj/machinery/firealarm{
-	pixel_y = 24
+	dir = 2
 	},
 /turf/open/floor/wood,
 /area/ice_colony/underground/security/marshal)
@@ -30372,7 +30352,7 @@
 /area/ice_colony/underground/crew/canteen)
 "bzI" = (
 /obj/machinery/firealarm{
-	pixel_y = 24
+	dir = 2
 	},
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 5
@@ -30930,7 +30910,7 @@
 /area/ice_colony/underground/security/hallway)
 "bBn" = (
 /obj/machinery/firealarm{
-	pixel_y = 24
+	dir = 2
 	},
 /obj/structure/bed/chair,
 /turf/open/floor/tile/dark/red2{
@@ -32755,7 +32735,7 @@
 /obj/item/book/manual/marine_law,
 /obj/item/storage/donut_box,
 /obj/machinery/firealarm{
-	pixel_y = 24
+	dir = 2
 	},
 /turf/open/floor/tile/dark/red2{
 	dir = 1
@@ -33933,7 +33913,7 @@
 /area/ice_colony/underground/security)
 "bIw" = (
 /obj/machinery/firealarm{
-	pixel_y = 24
+	dir = 2
 	},
 /turf/open/floor/tile/dark/red2{
 	dir = 1
@@ -35392,7 +35372,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/firealarm{
-	pixel_y = 24
+	dir = 2
 	},
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 1
@@ -35515,7 +35495,7 @@
 /area/ice_colony/underground/crew/disposals)
 "bMa" = (
 /obj/machinery/firealarm{
-	pixel_y = 24
+	dir = 2
 	},
 /turf/open/floor/tile/dark/brown2{
 	dir = 1
@@ -38067,7 +38047,7 @@
 /area/ice_colony/underground/hallway/north_west)
 "bSM" = (
 /obj/machinery/firealarm{
-	pixel_y = 24
+	dir = 2
 	},
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/hallway/north_west)
@@ -39868,8 +39848,6 @@
 /area/ice_colony/surface/excavationbarracks)
 "bXi" = (
 /obj/structure/window/reinforced{
-	tag = "icon-rwindow (EAST)";
-	icon_state = "rwindow";
 	dir = 4
 	},
 /obj/structure/window/reinforced{
@@ -39955,8 +39933,6 @@
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bXt" = (
 /obj/structure/window/reinforced{
-	tag = "icon-rwindow (EAST)";
-	icon_state = "rwindow";
 	dir = 4
 	},
 /turf/open/floor/mech_bay_recharge_floor,
@@ -40046,8 +40022,6 @@
 /area/ice_colony/surface/excavationbarracks)
 "bXF" = (
 /obj/structure/window/reinforced{
-	tag = "icon-rwindow (EAST)";
-	icon_state = "rwindow";
 	dir = 4
 	},
 /obj/structure/window/reinforced,
@@ -40098,10 +40072,7 @@
 /area/ice_colony/surface/excavationbarracks)
 "bXL" = (
 /obj/effect/decal/cleanable/blood,
-/obj/structure/table{
-	flipped = 1;
-	icon_state = "tableflip0"
-	},
+/obj/structure/table/flipped,
 /obj/item/clothing/under/overalls{
 	pixel_x = 10;
 	pixel_y = 28
@@ -40275,7 +40246,7 @@
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bYj" = (
 /obj/machinery/firealarm{
-	pixel_y = 24
+	dir = 2
 	},
 /turf/open/floor/tile/dark/yellow2{
 	dir = 9
@@ -40901,8 +40872,6 @@
 	dir = 8
 	},
 /obj/structure/window/reinforced{
-	tag = "icon-rwindow (NORTH)";
-	icon_state = "rwindow";
 	dir = 1
 	},
 /turf/open/floor/plating,

@@ -590,7 +590,7 @@
 /area/almayer/living/officer_rnr)
 "abE" = (
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/living/officer_rnr)
@@ -1572,7 +1572,7 @@
 /area/almayer/living/numbertwobunks)
 "aep" = (
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/living/commandbunks)
@@ -2027,7 +2027,7 @@
 "afD" = (
 /obj/machinery/vending/dinnerware,
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /turf/open/floor/prison{
 	icon_state = "kitchen"
@@ -3089,7 +3089,7 @@
 	dir = 4
 	},
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	tag = "icon-orangecorner (EAST)";
@@ -4728,7 +4728,7 @@
 	dir = 1
 	},
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	tag = "icon-greencorner (NORTH)";
@@ -4935,7 +4935,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -7236,7 +7236,7 @@
 "apY" = (
 /obj/structure/closet/toolcloset,
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	icon_state = "cargo"
@@ -7400,7 +7400,7 @@
 	icon_state = "2-4"
 	},
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	dir = 1;
@@ -7633,7 +7633,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	dir = 1;
@@ -7833,7 +7833,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	dir = 1;
@@ -11279,7 +11279,7 @@
 /area/almayer/hallways/aft_hallway)
 "ayi" = (
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -14113,7 +14113,7 @@
 	dir = 4
 	},
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/shipboard/brig)
@@ -15835,7 +15835,7 @@
 /area/almayer/command/cic)
 "aGa" = (
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	dir = 1;
@@ -17118,7 +17118,7 @@
 "aIE" = (
 /obj/structure/bed/chair,
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	dir = 1;
@@ -17761,7 +17761,7 @@
 /area/almayer/shipboard/brig_cells)
 "aKa" = (
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	dir = 1;
@@ -18916,7 +18916,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	dir = 1;
@@ -19152,7 +19152,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -20103,7 +20103,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /turf/open/floor/almayer,
 /area/almayer/hallways/aft_hallway)
@@ -20799,7 +20799,7 @@
 /area/almayer/engineering/port_atmos)
 "aPm" = (
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -20973,7 +20973,7 @@
 	dir = 6
 	},
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	dir = 1;
@@ -21212,7 +21212,7 @@
 /obj/machinery/recharger,
 /obj/structure/table/almayer,
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/shipboard/chief_mp_office)
@@ -21439,7 +21439,7 @@
 /area/almayer/command/cic)
 "aQM" = (
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	dir = 5;
@@ -23865,7 +23865,7 @@
 /area/almayer/hallways/starboard_hallway)
 "aXk" = (
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /obj/structure/closet/toolcloset,
 /obj/machinery/light{
@@ -23963,7 +23963,7 @@
 	dir = 4
 	},
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	dir = 5;
@@ -24115,7 +24115,7 @@
 "aXR" = (
 /obj/structure/closet,
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/living/starboard_emb)
@@ -25604,7 +25604,7 @@
 /area/almayer/squads/bravo)
 "bbd" = (
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	icon_state = "cargo"
@@ -25654,7 +25654,7 @@
 /area/almayer/living/cafeteria_starboard)
 "bbk" = (
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/living/cafeteria_starboard)
@@ -28456,7 +28456,7 @@
 /area/almayer/engineering/lower_engineering)
 "bhP" = (
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/engineering/lower_engineering)
@@ -28749,7 +28749,7 @@
 /area/almayer/hallways/starboard_hallway)
 "bis" = (
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /turf/open/floor/almayer,
 /area/almayer/hallways/starboard_hallway)
@@ -28911,7 +28911,7 @@
 /area/almayer/hallways/hangar)
 "biN" = (
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/hangar)
@@ -29037,7 +29037,7 @@
 /area/almayer/hallways/starboard_hallway)
 "bjc" = (
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/starboard_hallway)
@@ -31691,7 +31691,7 @@
 /area/almayer/medical/lower_medical)
 "boD" = (
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /obj/machinery/body_scanconsole,
 /turf/open/floor/almayer{
@@ -32022,7 +32022,7 @@
 /area/almayer/squads/req)
 "bpm" = (
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	dir = 9;
@@ -33991,7 +33991,7 @@
 "btv" = (
 /obj/structure/closet/radiation,
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	icon_state = "cargo"
@@ -34034,7 +34034,7 @@
 /obj/structure/table/almayer,
 /obj/item/fuelCell,
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	icon_state = "cargo"
@@ -35297,7 +35297,7 @@
 /area/almayer/squads/req)
 "bwn" = (
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /turf/open/floor/plating/almayer,
 /area/almayer/squads/req)
@@ -35352,7 +35352,7 @@
 "bwu" = (
 /obj/machinery/vending/cola,
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /obj/machinery/light{
 	dir = 8
@@ -37428,7 +37428,7 @@
 /area/almayer/living/briefing)
 "bAA" = (
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /obj/machinery/vending/snack,
 /turf/open/floor/almayer/mono,
@@ -41499,7 +41499,7 @@
 /area/almayer/engineering/lower_engine_monitoring)
 "bIV" = (
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	dir = 1;
@@ -44177,7 +44177,7 @@
 /area/almayer/hallways/port_hallway)
 "bOH" = (
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /turf/open/floor/almayer,
 /area/almayer/hallways/port_hallway)
@@ -44640,7 +44640,7 @@
 /area/almayer/hallways/port_hallway)
 "bPM" = (
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/port_hallway)
@@ -45413,7 +45413,7 @@
 /area/almayer/engineering/lower_engineering)
 "bQM" = (
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /obj/machinery/suit_storage_unit/carbon_unit,
 /turf/open/floor/almayer/mono,
@@ -46331,7 +46331,7 @@
 /area/almayer/living/grunt_rnr)
 "bSL" = (
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/living/grunt_rnr)
@@ -46472,7 +46472,7 @@
 /area/almayer/living/cafeteria_port)
 "bTc" = (
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /obj/structure/table/almayer,
 /turf/open/floor/prison{
@@ -46613,7 +46613,7 @@
 /area/almayer/living/tankerbunks)
 "bTu" = (
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/living/tankerbunks)
@@ -46967,7 +46967,7 @@
 "bUp" = (
 /obj/structure/closet,
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/living/port_emb)
@@ -48451,7 +48451,7 @@
 /area/almayer/squads/charlie)
 "bXQ" = (
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	dir = 1;
@@ -49988,7 +49988,7 @@
 /area/almayer/squads/delta)
 "cbu" = (
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	icon_state = "cargo"
@@ -52087,7 +52087,7 @@
 /area/almayer/living/captain_mess)
 "cgk" = (
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	dir = 1;
@@ -52809,7 +52809,7 @@
 /area/almayer/hull/upper_hull)
 "chD" = (
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	tag = "icon-redcorner (NORTH)";
@@ -53672,7 +53672,7 @@
 /area/almayer/hallways/hangar)
 "cjz" = (
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	dir = 1;
@@ -54102,7 +54102,7 @@
 /area/almayer/hallways/hangar)
 "ckv" = (
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	dir = 1;
@@ -54127,7 +54127,7 @@
 "ckx" = (
 /obj/machinery/bodyscanner,
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	tag = "icon-sterile_green_corner (NORTH)";
@@ -54141,7 +54141,7 @@
 	dir = 4
 	},
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/shipboard/brig_cells)
@@ -54158,7 +54158,7 @@
 /area/almayer/living/tankerbunks)
 "ckB" = (
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /turf/open/floor/wood,
 /area/almayer/living/captain_mess)
@@ -54172,7 +54172,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	dir = 1;
@@ -54188,13 +54188,13 @@
 	dir = 6
 	},
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /turf/open/floor/almayer,
 /area/almayer/hull/upper_hull)
 "ckE" = (
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	dir = 8;
@@ -54223,7 +54223,7 @@
 /area/almayer/living/bridgebunks)
 "ckG" = (
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	tag = "icon-blue (EAST)";
@@ -54233,7 +54233,7 @@
 /area/almayer/living/bridgebunks)
 "ckH" = (
 /obj/machinery/firealarm{
-	pixel_y = 28
+	dir = 2
 	},
 /turf/open/floor/almayer,
 /area/almayer/living/bridgebunks)
