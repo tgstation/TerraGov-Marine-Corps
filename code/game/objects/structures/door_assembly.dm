@@ -239,7 +239,7 @@ obj/structure/door_assembly
 				if(istype(S, /obj/item/stack/sheet/glass/reinforced))
 					playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
 					user.visible_message("[user] adds [S.name] to the airlock assembly.", "You start to install [S.name] into the airlock assembly.")
-					if(do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD) && !glass && S.use(1))
+					if(do_after(user, 40, TRUE, src) && !glass && S.use(1))
 						to_chat(user, "<span class='notice'>You installed reinforced glass windows into the airlock assembly.</span>")
 						glass = 1
 				else if(istype(S, /obj/item/stack/sheet/mineral) && S.sheettype)

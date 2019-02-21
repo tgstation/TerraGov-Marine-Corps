@@ -27,6 +27,10 @@
 			D += "."
 		desc = D
 
+/obj/machinery/constructable_frame/state_2
+	icon_state = "box_1"
+	state = 2
+
 /obj/machinery/constructable_frame/machine_frame
 	attackby(obj/item/P as obj, mob/user as mob)
 		if(P.crit_fail)

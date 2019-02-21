@@ -108,7 +108,7 @@
 
 
 
-/obj/machinery/alarm/New(var/loc, var/direction, var/building = 0)
+/obj/machinery/alarm/Initialize(var/loc, var/direction, var/building = 0)
 	. = ..()
 
 	if(building)

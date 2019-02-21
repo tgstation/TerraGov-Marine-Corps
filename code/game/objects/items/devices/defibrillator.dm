@@ -150,7 +150,7 @@
 	"<span class='notice'>You start setting up the paddles on [H]'s chest</span>")
 	playsound(get_turf(src),'sound/items/defib_charge.ogg', 25, 0) //Do NOT vary this tune, it needs to be precisely 7 seconds
 
-	if(do_mob(user, H, 70, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+	if(do_mob(user, H, 70, icon_display = TARGET_PROG_ICON_MEDICAL))
 
 		//Do this now, order doesn't matter
 		sparks.start()

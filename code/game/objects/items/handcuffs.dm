@@ -32,37 +32,31 @@
 		place_handcuffs(C, user)
 
 /obj/item/handcuffs/proc/place_handcuffs(var/mob/living/carbon/target, var/mob/user)
-	playsound(src.loc, cuff_sound, 25, 1, 4)
 
 	if(user.action_busy)
 		return
 
-	if (ishuman(target))
-		var/mob/living/carbon/human/H = target
+	if (!user.action_busy && (ishuman(target) || ishuman(target)))
+		playsound(src.loc, cuff_sound, 25, 1, 4)
+		if(ishuman(target))
+			var/mob/living/carbon/human/H = target
+			if (!H.has_limb_for_slot(SLOT_HANDCUFFED))
+				to_chat(user, "<span class='warning'>\The [H] needs at least two wrists before you can cuff them together!</span>")
+				return
 
-		if (!H.has_limb_for_slot(SLOT_HANDCUFFED))
-			to_chat(user, "<span class='warning'>\The [H] needs at least two wrists before you can cuff them together!</span>")
-			return
+		log_combat(user, target, "handcuffed", src, addition="(attempt)")
+		msg_admin_attack("[key_name(user)] attempted to handcuff [key_name(target)]")
 
-		log_combat(user, H, "handcuffed", src, addition="(attempt)")
-		msg_admin_attack("[key_name(user)] attempted to handcuff [key_name(H)]")
+		feedback_add_details("handcuffs","target")
 
-		feedback_add_details("handcuffs","H")
-
-		user.visible_message("<span class='notice'>[user] tries to put [src] on [H].</span>")
-		if(do_mob(user, H, cuff_delay, BUSY_ICON_HOSTILE, BUSY_ICON_GENERIC))
-			if(src == user.get_active_held_item() && !H.handcuffed && Adjacent(user))
-				if(H.has_limb_for_slot(SLOT_HANDCUFFED))
-					user.dropItemToGround(src)
-					H.equip_to_slot_if_possible(src, SLOT_HANDCUFFED, 1, 0, 1, 1)
-
-	else if (ismonkey(target))
 		user.visible_message("<span class='notice'>[user] tries to put [src] on [target].</span>")
-		if(do_mob(user, target, 30, BUSY_ICON_HOSTILE, BUSY_ICON_GENERIC))
-			if(src == user.get_active_held_item() && !target.handcuffed && Adjacent(user))
-				user.dropItemToGround(src)
-				target.equip_to_slot_if_possible(src, SLOT_HANDCUFFED, 1, 0, 1, 1)
-
+		if(do_mob(user, target, cuff_delay, icon_display = TARGET_PROG_ICON_GENERIC, CALLBACK(user, .Adjacent, target)) && !target.handcuffed)
+			if(ishuman(target))
+				var/mob/living/carbon/human/H = target
+				if(!H.has_limb_for_slot(SLOT_HANDCUFFED))
+					return
+			user.dropItemToGround(src)
+			target.equip_to_slot_if_possible(src, SLOT_HANDCUFFED, 1, 0, 1, 1)
 
 /obj/item/handcuffs/zip
 	name = "zip cuffs"

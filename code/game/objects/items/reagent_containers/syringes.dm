@@ -172,7 +172,7 @@
 					else
 						user.visible_message("<span class='danger'>[user] begins hunting for an injection port on [target]'s suit!</span>")
 
-					if(!do_mob(user, target, injection_time, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+					if(!do_mob(user, target, injection_time, icon_display = TARGET_PROG_ICON_MEDICAL))
 						return
 
 					user.visible_message("<span class='warning'>[user] injects [target] with the syringe!</span>")
@@ -334,7 +334,7 @@
 
 			if(ismob(target) && target != user)
 				user.visible_message("<span class='danger'>[user] is trying to inject [target] with a giant syringe!</span>")
-				if(!do_mob(user, target, 300, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+				if(!do_mob(user, target, 30 SECONDS, icon_display = TARGET_PROG_ICON_MEDICAL))
 					return
 				user.visible_message("<span class='warning'>[user] injects [target] with a giant syringe!</span>")
 			spawn(5)

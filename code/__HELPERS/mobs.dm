@@ -108,13 +108,13 @@ proc/age2agedescription(age)
 		stoplag(1)
 		if (progress)
 			progbar.update(world.time - starttime)
-		if(QDELETED(user) || QDELETED(target))
+		if(QDELETED(user) || QDELETED(target) || (extra_checks && !extra_checks.Invoke()))
 			. = FALSE
 			break
 		if(uninterruptible)
 			continue
 
-		if(user.loc != user_loc || target.loc != target_loc || user.get_active_held_item() != holding || user.is_mob_incapacitated() || (extra_checks && !extra_checks.Invoke()))
+		if(user.loc != user_loc || target.loc != target_loc || user.get_active_held_item() != holding || user.is_mob_incapacitated())
 			. = FALSE
 			break
 	if (progress)

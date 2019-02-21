@@ -268,7 +268,7 @@ SUBSYSTEM_DEF(ticker)
 		if(istype(player) && player.mind && player.mind.assigned_role)
 			if(player.mind.assigned_role == "Commander")
 				captainless = FALSE
-			if(player.mind.assigned_role != player.mind.special_role)
+			if(player.mind.assigned_role)
 				SSjob.EquipRank(N, player.mind.assigned_role, 0)
 		CHECK_TICK
 	if(captainless)

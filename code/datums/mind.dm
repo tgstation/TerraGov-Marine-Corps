@@ -37,7 +37,6 @@
 	var/memory
 
 	var/assigned_role
-	var/special_role
 	var/assigned_squad
 
 	var/datum/skills/cm_skills //the knowledge you have about certain abilities and actions (e.g. do you how to do surgery?)
@@ -47,6 +46,7 @@
 
 	var/last_death = 0
 
+	var/bypass_ff = FALSE
 	var/late_joiner = FALSE
 
 
@@ -165,7 +165,6 @@
 /mob/living/carbon/Xenomorph/mind_initialize()
 	. = ..()
 	mind.assigned_role = "Xenomorph"
-	mind.special_role = "Xenomorph"
 
 
 /mob/living/silicon/mind_initialize()

@@ -377,12 +377,21 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define TASTE_DULL 30 //anything below 30%
 #define TASTE_NUMB 101 //no taste
 
-//defines for the busy icons when the mob does something that takes time using do_after proc
-#define BUSY_ICON_GENERIC	1
-#define BUSY_ICON_MEDICAL	2
-#define BUSY_ICON_BUILD		3
-#define BUSY_ICON_FRIENDLY	4
-#define BUSY_ICON_HOSTILE	5
+//defines for the icon displays when the mob does something that takes time using do_after/do_mob proc
+#define TARGET_PROG_ICON_GENERIC	(1<<0)
+#define TARGET_PROG_ICON_MEDICAL	(1<<1)
+#define TARGET_PROG_ICON_BUILD	(1<<2)
+#define TARGET_PROG_ICON_FRIENDLY	(1<<3)
+#define TARGET_PROG_ICON_HOSTILE	(1<<4)
+
+#define USER_PROG_ICON_GENERIC	(1<<5)
+#define USER_PROG_ICON_MEDICAL	(1<<6)
+#define USER_PROG_ICON_BUILD	(1<<7)
+#define USER_PROG_ICON_FRIENDLY	(1<<8)
+#define USER_PROG_ICON_HOSTILE	(1<<9)
+
+#define USER_PROG_ICONS (USER_PROG_ICON_GENERIC|USER_PROG_ICON_MEDICAL|USER_PROG_ICON_BUILD|USER_PROG_ICON_FRIENDLY|USER_PROG_ICON_HOSTILE)
+#define TARGET_PROG_ICONS (TARGET_PROG_ICON_GENERIC|TARGET_PROG_ICON_MEDICAL|TARGET_PROG_ICON_BUILD|TARGET_PROG_ICON_FRIENDLY|TARGET_PROG_ICON_HOSTILE)
 
 
 //defins for datum/hud

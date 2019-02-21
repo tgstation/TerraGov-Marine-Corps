@@ -1,7 +1,0 @@
-author: "Rohesie"
-delete-after: True
-changes: 
-  - balance: "Warrior grab knockdown time reduced."
-  - balance: "Neurotoxin chem gets metabolized quicker. Neurotoxin spit gets a 30u threshold."
-  - balance: "Flechettes and lasgun overcharge mode both lose a little damage."
-  - balance: "Lasguns can no longer fit scopes. They can still fit mini-scopes, though."

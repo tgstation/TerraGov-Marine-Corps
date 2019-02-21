@@ -54,9 +54,19 @@
 		SetLuminosity(0)
 		. = ..()
 
+/obj/item/lightstick/anchored
+	icon_state = "lightstick_blue1"
+	anchored = TRUE
+	luminosity = 2
+
 //Red
 /obj/item/lightstick/red
 	name = "red lightstick"
 	l_color = "#CC3300"
 	icon_state = "lightstick_red0"
 	s_color = "red"
+
+/obj/item/lightstick/red/anchored
+	icon_state = "lightstick_red1"
+	anchored = TRUE
+	luminosity = 2

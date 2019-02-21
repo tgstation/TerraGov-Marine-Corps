@@ -13,6 +13,15 @@
 	var/failing = FALSE			// If 1 critical failure has occured and SMES explosion is imminent.
 	unacidable = TRUE
 
+/obj/machinery/power/smes/buildable/empty
+	charge = 0
+
+/obj/machinery/power/smes/buildable/empty/dist
+	name = "colony distribution SMES"
+
+/obj/machinery/power/smes/buildable/empty/backup
+	name = "backup power SMES"
+
 /obj/machinery/power/smes/buildable/New()
 	component_parts = list()
 	component_parts += new /obj/item/stack/cable_coil(src,30)

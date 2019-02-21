@@ -199,42 +199,10 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 		return FALSE
 
 
-/obj/item/weapon/gun/proc/do_wield(mob/user, wield_time) //a poor way to make timed actions show an icon without affecting them until /tg/'s do_mob is ported.
-	var/delay = wield_time - world.time
-	if(!istype(user) || delay <= 0)
+/obj/item/weapon/gun/proc/do_wield(mob/user, wield_time) //*shrugs*
+	if(!do_mob(user, user, wield_time, TRUE, extra_checks = CALLBACK(src, .proc/is_wielded)))
 		return FALSE
-	var/mob/living/L
-	if(isliving(user))
-		L = user
-	var/image/busy_icon
-	busy_icon = get_busy_icon(BUSY_ICON_HOSTILE)
-	user.overlays += busy_icon
-	user.action_busy = TRUE
-	var/delayfraction = round(delay/5)
-	var/obj/holding = user.get_active_held_item()
-	. = TRUE
-	for(var/i = 1 to 5)
-		sleep(delayfraction)
-		if(!user || user.stat || user.knocked_down || user.stunned)
-			. = FALSE
-			break
-		if(L?.health < L.get_crit_threshold())
-			. = FALSE
-			break
-		if(holding)
-			if(!holding.loc || user.get_active_held_item() != holding)
-				. = FALSE
-				break
-		else if(user.get_active_held_item())
-			. = FALSE
-			break
-		if(world.time > wield_time)
-			. = FALSE
-			break
-	if(user && busy_icon)
-		user.overlays -= busy_icon
-	user.action_busy = FALSE
-
+	return TRUE
 
 /*
 Here we have throwing and dropping related procs.
@@ -369,6 +337,8 @@ should be alright.
 			return
 	return 1
 
+/obj/item/weapon/gun/proc/is_wielded() //temporary proc until we get traits going
+	return flags_item & WIELDED
 
 /obj/item/weapon/gun/proc/has_attachment(A)
 	if(!A)

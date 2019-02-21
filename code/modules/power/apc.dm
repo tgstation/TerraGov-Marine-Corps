@@ -123,6 +123,13 @@
 	var/global/list/status_overlays_environ
 	var/obj/item/circuitboard/apc/electronics = null
 
+// mapping helpers
+/obj/machinery/power/apc/drained
+	start_charge = 0
+
+/obj/machinery/power/apc/supercharged
+	start_charge = 200
+
 /proc/RandomAPCWires()
 	//To make this not randomize the wires, just set index to 1 and increment it in the flag for loop (after doing everything else).
 	var/list/apcwires = list(0, 0, 0, 0)
@@ -1380,7 +1387,7 @@
 		H.visible_message("<span class='notice'>[H] fumbles around figuring out how to operate [src]'s interface.</span>",
 		"<span class='notice'>You fumble around figuring out how to operate [src]'s interface.</span>")
 		var/fumbling_time = 50 * (SKILL_ENGINEER_ENGI - H.mind.cm_skills.engineer)
-		if(!do_after(H, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+		if(!do_after(H, fumbling_time, TRUE, src))
 			return FALSE
 	return TRUE
 

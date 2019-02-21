@@ -251,7 +251,7 @@
 	"<span class='warning'>You are trying to plant [name] on [target]!</span>")
 	bombers += "[key_name(user)] attached [src] to [target.name]."
 
-	if(do_mob(user, target, 30, BUSY_ICON_HOSTILE))
+	if(do_after(user, 3 SECONDS, TRUE, target))
 		user.drop_held_item()
 		playsound(src.loc, 'sound/weapons/mine_armed.ogg', 25, 1)
 		var/location

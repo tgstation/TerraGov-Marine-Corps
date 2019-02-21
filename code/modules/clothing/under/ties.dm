@@ -138,7 +138,7 @@
 					"<span class='notice'>You start pinning [src] on [H]'s [U.name].</span>")
 					if(user.action_busy)
 						return
-					if(!do_mob(user, H, 20, BUSY_ICON_FRIENDLY))
+					if(!do_mob(user, H, 20))
 						return
 				user.drop_held_item()
 				U.hastie = src

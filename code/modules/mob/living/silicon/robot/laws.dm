@@ -45,12 +45,12 @@
 			if (length(temp) > 0)
 				laws.ion[index] = temp
 
-		if (!is_special_character(src))
-			if(master.zeroth_borg) //If the AI has a defined law zero specifically for its borgs, give it that one, otherwise give it the same one. --NEO
-				temp = master.zeroth_borg
-			else
-				temp = master.zeroth
-			laws.zeroth = temp
+
+		if(master.zeroth_borg) //If the AI has a defined law zero specifically for its borgs, give it that one, otherwise give it the same one. --NEO
+			temp = master.zeroth_borg
+		else
+			temp = master.zeroth
+		laws.zeroth = temp
 
 		laws.inherent.len = master.inherent.len
 		for (var/index = 1, index <= master.inherent.len, index++)

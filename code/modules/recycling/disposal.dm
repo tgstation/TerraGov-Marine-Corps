@@ -842,6 +842,9 @@
 			dpdir = dir|turn(dir, -90)
 		update()
 
+/obj/structure/disposalpipe/segment/corner
+	icon_state = "pipe-c"
+
 //Z-Level stuff
 /obj/structure/disposalpipe/up
 	icon_state = "pipe-u"
@@ -1009,6 +1012,9 @@
 		else //Pipe-y
 			dpdir = dir|turn(dir,90)|turn(dir, -90)
 		update()
+
+/obj/structure/disposalpipe/junction/flipped
+	icon_state = "pipe-j2"
 
 //Next direction to move, if coming in from secondary dirs, then next is primary dir, if coming in from primary dir, then next is equal chance of other dirs
 /obj/structure/disposalpipe/junction/nextdir(var/fromdir)
