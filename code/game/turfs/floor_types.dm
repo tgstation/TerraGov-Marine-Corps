@@ -450,6 +450,9 @@
 /turf/open/floor/tile/red/whitered
 	icon_state = "whitered"
 
+/turf/open/floor/tile/red/whitered/corner
+	icon_state = "whiteredcorner"
+
 /turf/open/floor/tile/red/whiteredfull
 	icon_state = "whiteredfull"
 

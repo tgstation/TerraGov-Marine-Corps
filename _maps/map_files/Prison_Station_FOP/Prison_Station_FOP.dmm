@@ -12149,9 +12149,7 @@
 /area/prison/research)
 "aza" = (
 /obj/structure/bed/chair/office/light{
-	dir = 8;
-	icon_state = "officechair_white";
-	tag = "icon-officechair_white (EAST)"
+	dir = 8
 	},
 /turf/open/floor/prison{
 	tag = "icon-sterile_white (SOUTHWEST)";

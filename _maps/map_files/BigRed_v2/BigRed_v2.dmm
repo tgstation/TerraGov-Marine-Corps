@@ -16482,10 +16482,7 @@
 	d2 = 8;
 	icon_state = "4-8";
 	},
-/turf/open/floor{
-	tag = "icon-darkred2";
-	icon_state = "darkred2"
-	},
+/turf/open/floor/tile/dark/red2,
 /area/bigredv2/outside/admin_building)
 "aRh" = (
 /obj/machinery/door_control{
@@ -16498,10 +16495,7 @@
 	d2 = 8;
 	icon_state = "4-8";
 	},
-/turf/open/floor{
-	tag = "icon-darkred2";
-	icon_state = "darkred2"
-	},
+/turf/open/floor/tile/dark/red2,
 /area/bigredv2/outside/admin_building)
 "aRi" = (
 /obj/structure/cable{
@@ -17602,10 +17596,7 @@
 	},
 /area/bigredv2/outside/admin_building)
 "aUb" = (
-/turf/open/floor{
-	tag = "icon-darkred2";
-	icon_state = "darkred2"
-	},
+/turf/open/floor/tile/dark/red2,
 /area/bigredv2/outside/admin_building)
 "aUc" = (
 /turf/open/floor/tile/dark/red2{
@@ -19760,10 +19751,7 @@
 	d2 = 8;
 	icon_state = "4-8";
 	},
-/turf/open/floor{
-	tag = "icon-darkred2";
-	icon_state = "darkred2"
-	},
+/turf/open/floor/tile/dark/red2,
 /area/bigredv2/outside/admin_building)
 "aZY" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -19780,10 +19768,7 @@
 	d2 = 8;
 	icon_state = "4-8";
 	},
-/turf/open/floor{
-	tag = "icon-darkred2";
-	icon_state = "darkred2"
-	},
+/turf/open/floor/tile/dark/red2,
 /area/bigredv2/outside/admin_building)
 "aZZ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -20083,9 +20068,7 @@
 /obj/structure/bed/chair/wood/normal{
 	dir = 8
 	},
-/turf/open/floor{
-	icon_state = "chapel"
-	},
+/turf/open/floor/tile/chapel,
 /area/bigredv2/outside/chapel)
 "baU" = (
 /obj/structure/bed/chair/wood/normal{
@@ -20110,9 +20093,7 @@
 	},
 /area/bigredv2/outside/chapel)
 "baW" = (
-/turf/open/floor{
-	icon_state = "chapel"
-	},
+/turf/open/floor/tile/chapel,
 /area/bigredv2/outside/chapel)
 "baX" = (
 /turf/open/floor/plating{
@@ -29829,10 +29810,7 @@
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bBK" = (
-/turf/open/floor{
-	tag = "icon-darkred2";
-	icon_state = "darkred2"
-	},
+/turf/open/floor/tile/dark/red2,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bBL" = (
 /turf/open/floor/tile/dark/red2{
@@ -29860,10 +29838,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bBQ" = (
 /obj/machinery/light,
-/turf/open/floor{
-	tag = "icon-darkred2";
-	icon_state = "darkred2"
-	},
+/turf/open/floor/tile/dark/red2,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bBR" = (
 /turf/open/floor/tile/dark/red2/corner{
@@ -30266,10 +30241,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bDa" = (
 /obj/effect/alien/weeds/node,
-/turf/open/floor{
-	tag = "icon-darkred2";
-	icon_state = "darkred2"
-	},
+/turf/open/floor/tile/dark/red2,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bDb" = (
 /obj/structure/bed/chair{

@@ -13559,9 +13559,7 @@
 	},
 /area/lv624/lazarus/chapel)
 "aUR" = (
-/turf/open/floor{
-	icon_state = "chapel"
-	},
+/turf/open/floor/tile/chapel,
 /area/lv624/lazarus/chapel)
 "aUS" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
