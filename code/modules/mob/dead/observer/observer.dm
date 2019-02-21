@@ -27,50 +27,12 @@
 	var/voted_this_drop = FALSE
 
 
-/mob/dead/observer/Initialize(mob/body)
+/mob/dead/observer/Initialize()
 	sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS|SEE_SELF
 	see_invisible = SEE_INVISIBLE_OBSERVER
 	see_in_dark = 100
 
 	stat = DEAD
-
-	var/turf/T
-	if(ismob(body))
-		T = get_turf(body)
-
-		if (ishuman(body))
-			var/mob/living/carbon/human/H = body
-			icon = H.stand_icon
-			overlays = H.overlays_standing
-			underlays = H.underlays_standing
-		else
-			icon = body.icon
-			icon_state = body.icon_state
-			overlays = body.overlays
-
-		alpha = 127
-
-		gender = body.gender
-		if(body.mind && body.mind.name)
-			name = body.mind.name
-		else
-			if(body.real_name)
-				name = body.real_name
-			else
-				if(gender == MALE)
-					name = capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
-				else
-					name = capitalize(pick(first_names_female)) + " " + capitalize(pick(last_names))
-
-		mind = body.mind
-
-	if(!T)
-		T = pick(GLOB.latejoin)
-	loc = T
-
-	if(!name)
-		name = capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
-	real_name = name
 
 	Login()
 
@@ -118,15 +80,56 @@
 	if(!key)
 		return FALSE
 	var/mob/dead/observer/ghost = new(src)
-	ghost.can_reenter_corpse = can_reenter_corpse
-	ghost.timeofdeath = timeofdeath
-	ghost.key = key
+	var/turf/T = get_turf(src)
+
+	if(ishuman(src))
+		var/mob/living/carbon/human/H = src
+		ghost.icon = H.stand_icon
+		ghost.overlays = H.overlays_standing
+		ghost.underlays = H.underlays_standing
+	else
+		ghost.icon = icon
+		ghost.icon_state = icon_state
+		ghost.overlays = overlays
+
+	ghost.gender = gender
+
+	if(mind?.name)
+		ghost.name = mind.name
+	else
+		if(real_name)
+			ghost.name = real_name
+		else
+			if(gender == MALE)
+				ghost.name = capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
+			else
+				ghost.name = capitalize(pick(first_names_female)) + " " + capitalize(pick(last_names))
+
+	ghost.mind = mind
+
+	if(!T)
+		T = pick(GLOB.latejoin)
+
+	ghost.loc = T
+
+	if(!name)
+		ghost.name = capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
+
+	ghost.real_name = name
+
 	if(!can_reenter_corpse)
 		away_timer = 5 MINUTES
+
 	if(ghost.client)
 		ghost.client.change_view(world.view)
 		ghost.client.pixel_x = 0
 		ghost.client.pixel_y = 0
+
+	ghost.alpha = 127
+
+	ghost.can_reenter_corpse = can_reenter_corpse
+	ghost.timeofdeath = timeofdeath
+	ghost.key = key
 
 	return ghost
 
