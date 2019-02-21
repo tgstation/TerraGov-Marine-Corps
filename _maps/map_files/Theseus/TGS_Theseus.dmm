@@ -9382,9 +9382,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor/prison{
-	dir = 4;
-	icon_state = "rampbottom"
+/turf/open/floor/prison/rampbottom{
+	dir = 4
 	},
 /area/almayer/shipboard/chief_mp_office)
 "auw" = (
@@ -21112,7 +21111,6 @@
 /area/almayer/command/cic)
 "aQa" = (
 /obj/machinery/shower{
-	icon_state = "shower";
 	dir = 8
 	},
 /obj/structure/window/reinforced,
@@ -21209,7 +21207,6 @@
 /area/almayer/living/numbertwobunks)
 "aQq" = (
 /obj/machinery/shower{
-	icon_state = "shower";
 	dir = 8
 	},
 /obj/machinery/door/window/westleft,
@@ -30432,7 +30429,6 @@
 /area/almayer/hallways/starboard_hallway)
 "blU" = (
 /obj/machinery/shower{
-	icon_state = "shower";
 	dir = 8
 	},
 /obj/machinery/door/window/westleft,
@@ -52126,7 +52122,6 @@
 /area/almayer/shipboard/brig_cells)
 "cgF" = (
 /obj/machinery/shower{
-	icon_state = "shower";
 	dir = 8
 	},
 /obj/machinery/door/window/westleft,
@@ -52859,7 +52854,6 @@
 /area/almayer/living/bridgebunks)
 "cie" = (
 /obj/machinery/shower{
-	icon_state = "shower";
 	dir = 8
 	},
 /obj/machinery/door/window/westleft,
@@ -52874,7 +52868,6 @@
 /area/almayer/living/bridgebunks)
 "cig" = (
 /obj/machinery/shower{
-	icon_state = "shower";
 	dir = 8
 	},
 /obj/machinery/door/window/westleft,

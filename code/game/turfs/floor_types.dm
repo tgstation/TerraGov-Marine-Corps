@@ -615,11 +615,20 @@
 	icon = 'icons/turf/prison.dmi'
 	icon_state = "floor"
 
+/turf/open/floor/prison/rampbottom
+	icon_state = "rampbottom"
+
 /turf/open/floor/prison/plate
 	icon_state = "floor_plate"
 
 /turf/open/floor/prison/kitchen
 	icon_state = "kitchen"
+
+/turf/open/floor/prison/cleanmarked
+	icon_state = "bright_clean_marked"
+
+/turf/open/floor/prison/marked
+	icon_state = "floor_marked"
 
 /turf/open/floor/prison/cellstripe
 	icon_state = "cell_stripe"
@@ -639,11 +648,29 @@
 /turf/open/floor/prison/whitepurple/corner
 	icon_state = "whitepurplecorner"
 
+/turf/open/floor/prison/whitegreen
+	icon_state = "whitegreen"
+
+/turf/open/floor/prison/whitegreen/corner
+	icon_state = "whitegreencorner"
+
+/turf/open/floor/prison/whitegreen/full
+	icon_state = "whitegreenfull"
+
 /turf/open/floor/prison/darkred/corners
 	icon_state = "darkredcorners2"
 
 /turf/open/floor/prison/darkred/full
 	icon_state = "darkredfull2"
+
+/turf/open/floor/prison/darkpurple
+	icon_state = "darkpurple2"
+
+/turf/open/floor/prison/darkpurple/full
+	icon_state = "darkpurplefull2"
+
+/turf/open/floor/prison/darkpurple/corner
+	icon_state = "darkpurplecorners2"
 
 /turf/open/floor/prison/darkyellow
 	icon_state = "darkyellow2"

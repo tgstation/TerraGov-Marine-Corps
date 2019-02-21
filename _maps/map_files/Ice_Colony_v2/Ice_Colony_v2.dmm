@@ -4033,7 +4033,6 @@
 /area/ice_colony/surface/dorms/restroom_w)
 "akR" = (
 /obj/machinery/shower{
-	icon_state = "shower";
 	dir = 8
 	},
 /turf/open/floor/freezer,
@@ -36440,7 +36439,6 @@
 /area/ice_colony/underground/security/brig)
 "bPH" = (
 /obj/machinery/shower{
-	icon_state = "shower";
 	dir = 8
 	},
 /obj/structure/window/reinforced,
@@ -36851,7 +36849,6 @@
 /area/ice_colony/underground/security/brig)
 "bQR" = (
 /obj/machinery/shower{
-	icon_state = "shower";
 	dir = 8
 	},
 /obj/machinery/door/window/westleft,

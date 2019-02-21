@@ -14133,9 +14133,8 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aLa" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-in";
-	icon_state = "SE-in"
+/obj/effect/decal/warning_stripes/thick{
+	dir = 9
 	},
 /turf/open/floor/tile/green/whitegreencorner{
 	dir = 2
@@ -22929,9 +22928,8 @@
 	},
 /area/bigredv2/outside/cargo)
 "bjg" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-in";
-	icon_state = "SE-in"
+/obj/effect/decal/warning_stripes/thick{
+	dir = 9
 	},
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
@@ -24286,7 +24284,6 @@
 /area/bigredv2/outside/engineering)
 "bmQ" = (
 /obj/machinery/shower{
-	icon_state = "shower";
 	dir = 8
 	},
 /turf/open/floor/freezer,
@@ -24727,7 +24724,6 @@
 /area/bigredv2/outside/engineering)
 "bnR" = (
 /obj/machinery/shower{
-	icon_state = "shower";
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
