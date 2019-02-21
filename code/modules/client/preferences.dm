@@ -570,6 +570,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 		if("jobreset")
 			ResetJobs()
+			SetChoices(user)
 			return
 
 
