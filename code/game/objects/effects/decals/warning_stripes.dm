@@ -10,3 +10,6 @@
 
 /obj/effect/decal/warning_stripes/thin
 	icon_state = "thin"
+
+/obj/effect/decal/warning_stripes/thick
+	icon_state = "thick"

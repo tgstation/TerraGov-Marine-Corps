@@ -508,9 +508,8 @@
 	},
 /area/space)
 "acg" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NE-in";
-	icon_state = "NE-in"
+/obj/effect/decal/warning_stripes/thick{
+	dir = 10
 	},
 /turf/open/nostromowater,
 /area/space)
@@ -521,9 +520,8 @@
 /turf/open/nostromowater,
 /area/space)
 "aci" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-in";
-	icon_state = "NW-in"
+/obj/effect/decal/warning_stripes/thick{
+	dir = 6
 	},
 /turf/open/nostromowater,
 /area/space)
@@ -752,11 +750,7 @@
 	},
 /obj/item/shard,
 /obj/item/circuitboard/airlock,
-/obj/item/stack/cable_coil/cut{
-	amount = 1;
-	icon_state = "coil1";
-	name = "cable piece"
-	},
+/obj/item/stack/cable_coil/single,
 /obj/machinery/door/poddoor/shutters/almayer{
 	density = 0;
 	icon_state = "shutter0";
@@ -869,21 +863,13 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/research/secret/testing)
 "adh" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/research/secret/testing)
 "adi" = (
 /obj/machinery/disposal,
@@ -894,11 +880,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/research/secret/testing)
 "adj" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -906,11 +888,7 @@
 	},
 /obj/item/shard,
 /obj/item/circuitboard/airlock,
-/obj/item/stack/cable_coil/cut{
-	amount = 1;
-	icon_state = "coil1";
-	name = "cable piece"
-	},
+/obj/item/stack/cable_coil/single,
 /turf/open/floor/prison{
 	tag = "icon-cell_stripe (NORTH)";
 	icon_state = "cell_stripe";
@@ -941,33 +919,21 @@
 	dir = 2
 	},
 /obj/effect/decal/cleanable/blood/splatter,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/research/secret/testing)
 "adm" = (
 /obj/structure/reagent_dispensers/watertank,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/research/secret/testing)
 "adn" = (
 /obj/structure/closet/l3closet,
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/research/secret/testing)
 "ado" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -976,11 +942,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/research/secret/testing)
 "adp" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -1005,11 +967,7 @@
 	id = "biological_testing_2";
 	name = "Containment Shutter Control"
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/research/secret/testing)
 "adr" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -1021,11 +979,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/research/secret/testing)
 "ads" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -1089,11 +1043,7 @@
 "adB" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/up,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/maxsec/north)
 "adC" = (
 /obj/structure/window/framed/prison/reinforced/hull,
@@ -1105,11 +1055,7 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 2
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/maxsec/north)
 "adE" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -1197,11 +1143,7 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 1
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/maxsec/north)
 "adR" = (
 /obj/machinery/door/airlock/almayer/secure{
@@ -1214,11 +1156,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/maxsec/north)
 "adS" = (
 /obj/machinery/door/airlock/almayer/security/glass{
@@ -1251,41 +1189,25 @@
 /area/prison/cellblock/maxsec/north)
 "adW" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/maxsec/north)
 "adX" = (
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/maxsec/north)
 "adY" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/maxsec/north)
 "adZ" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/maxsec/north)
 "aea" = (
 /turf/open/floor/prison/purple/whitepurple{
@@ -1416,11 +1338,7 @@
 	dir = 8;
 	on = 1
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/maxsec/north)
 "aeo" = (
 /obj/structure/disposalpipe/segment{
@@ -1446,28 +1364,16 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/maxsec/north)
 "aeq" = (
 /obj/structure/sink{
 	dir = 8
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/maxsec/north)
 "aer" = (
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/maxsec/north)
 "aes" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
@@ -1498,11 +1404,7 @@
 /obj/structure/disposalpipe/up{
 	dir = 1
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/maxsec/north)
 "aev" = (
 /obj/structure/window/reinforced{
@@ -1525,44 +1427,28 @@
 	icon_state = "sink";
 	pixel_x = 11
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/maxsec/north)
 "aex" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4;
 	on = 1
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/maxsec/north)
 "aey" = (
 /obj/structure/toilet{
 	dir = 1;
 	icon_state = "toilet00"
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/maxsec/north)
 "aez" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/flasher{
 	id = "panopticon"
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/maxsec/north)
 "aeA" = (
 /obj/machinery/computer/operating,
@@ -1665,11 +1551,7 @@
 /area/prison/research/secret/testing)
 "aeK" = (
 /obj/structure/bed,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/maxsec/north)
 "aeL" = (
 /obj/structure/window/framed/prison/reinforced/hull,
@@ -1696,11 +1578,7 @@
 /obj/structure/disposalpipe/up{
 	dir = 1
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/maxsec/north)
 "aeQ" = (
 /turf/open/floor/prison,
@@ -2013,11 +1891,7 @@
 	opacity = 0;
 	req_access_txt = "0"
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/maxsec/north)
 "afC" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -2051,11 +1925,7 @@
 	name = "Cell Access";
 	req_access_txt = "0"
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/maxsec/north)
 "afF" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -3016,11 +2886,7 @@
 /obj/machinery/door/airlock/multi_tile/almayer/generic{
 	name = "Panopticon Monitoring"
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/security/monitoring/maxsec/panopticon)
 "ahP" = (
 /obj/structure/cable{
@@ -3030,11 +2896,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/security/monitoring/maxsec/panopticon)
 "ahQ" = (
 /turf/open/floor/prison{
@@ -3711,11 +3573,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/maxsec/north)
 "ajh" = (
 /obj/machinery/light/small{
@@ -3732,11 +3590,7 @@
 	name = "Panopticon Monitoring";
 	req_access_txt = "0"
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/security/monitoring/maxsec/panopticon)
 "ajj" = (
 /obj/structure/cable{
@@ -3751,11 +3605,7 @@
 	name = "Panopticon Monitoring";
 	req_access_txt = "0"
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/security/monitoring/maxsec/panopticon)
 "ajk" = (
 /obj/structure/sink{
@@ -3770,22 +3620,14 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/maxsec/north)
 "ajm" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber,
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/maxsec/north)
 "ajn" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -4001,19 +3843,11 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/maxsec/north)
 "ajL" = (
 /obj/machinery/light/small,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/maxsec/north)
 "ajM" = (
 /obj/machinery/alarm/almayer{
@@ -4476,11 +4310,7 @@
 	name = "Maximum-Security Panopticon";
 	req_access_txt = "0"
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/maxsec/north)
 "akH" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -4655,11 +4485,7 @@
 	name = "Maximum-Security Panopticon";
 	req_access_txt = "0"
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/maxsec/north)
 "ala" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
@@ -5032,11 +4858,7 @@
 	name = "Maximum-Security Panopticon";
 	req_access_txt = "0"
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/maxsec/north)
 "alW" = (
 /obj/structure/cable{
@@ -5051,11 +4873,7 @@
 	name = "Maximum-Security Panopticon";
 	req_access_txt = "0"
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/maxsec/north)
 "alX" = (
 /obj/machinery/light{
@@ -5148,11 +4966,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/maxsec/south)
 "amk" = (
 /obj/machinery/optable,
@@ -5315,11 +5129,7 @@
 	icon_state = "sink";
 	pixel_x = 11
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/maxsec/south)
 "amF" = (
 /obj/structure/sink{
@@ -5450,11 +5260,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/maxsec/south)
 "amV" = (
 /obj/structure/cable{
@@ -5479,11 +5285,7 @@
 	name = "Cell Access";
 	req_access_txt = "0"
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/maxsec/south)
 "amW" = (
 /obj/structure/cable{
@@ -5513,21 +5315,13 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/maxsec/south)
 "ana" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/maxsec/south)
 "anb" = (
 /obj/structure/disposalpipe/segment{
@@ -5611,18 +5405,10 @@
 /area/prison/cellblock/maxsec/south)
 "anj" = (
 /obj/effect/decal/cleanable/blood/splatter,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/maxsec/south)
 "ank" = (
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/maxsec/south)
 "anl" = (
 /obj/structure/disposalpipe/segment/corner{
@@ -5713,11 +5499,7 @@
 	name = "Cell Access";
 	req_access_txt = "0"
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/maxsec/south)
 "ant" = (
 /obj/structure/cable{
@@ -5830,11 +5612,7 @@
 /obj/structure/sink{
 	dir = 8
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/maxsec/south)
 "anE" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -5857,11 +5635,7 @@
 	id = "suspended_WWN";
 	pixel_x = 24
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/maxsec/south)
 "anG" = (
 /obj/machinery/light{
@@ -5871,11 +5645,7 @@
 	id = "suspended_WEN";
 	pixel_x = -24
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/maxsec/south)
 "anH" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -5945,11 +5715,7 @@
 	id = "suspended_EWN";
 	pixel_x = 24
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/maxsec/south)
 "anN" = (
 /obj/machinery/light{
@@ -5959,11 +5725,7 @@
 	id = "suspended_EEN";
 	pixel_x = -24
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/maxsec/south)
 "anO" = (
 /obj/structure/cable{
@@ -6196,11 +5958,7 @@
 	icon_state = "sink";
 	pixel_x = 11
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/highsec/north/north)
 "aor" = (
 /turf/closed/wall/prison,
@@ -6209,11 +5967,7 @@
 /obj/structure/sink{
 	dir = 8
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/highsec/north/north)
 "aot" = (
 /obj/structure/toilet{
@@ -6260,11 +6014,7 @@
 	},
 /area/prison/cellblock/highsec/north/north)
 "aox" = (
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/highsec/north/north)
 "aoy" = (
 /obj/structure/disposalpipe/segment/corner{
@@ -6280,11 +6030,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/maxsec/south)
 "aoA" = (
 /obj/structure/disposalpipe/segment/corner{
@@ -6780,11 +6526,7 @@
 /area/prison/cellblock/highsec/north/north)
 "apl" = (
 /obj/structure/bed,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/highsec/north/north)
 "apm" = (
 /turf/open/floor/prison{
@@ -8130,11 +7872,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/highsec/north/north)
 "asi" = (
 /obj/structure/cable{
@@ -8640,11 +8378,7 @@
 	id = "suspended_WWS";
 	pixel_x = 24
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/maxsec/south)
 "ata" = (
 /obj/machinery/light{
@@ -8654,11 +8388,7 @@
 	id = "suspended_WES";
 	pixel_x = -24
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/maxsec/south)
 "atb" = (
 /obj/machinery/light{
@@ -8678,11 +8408,7 @@
 	id = "suspended_EES";
 	pixel_x = -24
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/maxsec/south)
 "atd" = (
 /obj/effect/decal/cleanable/blood,
@@ -8850,11 +8576,7 @@
 /area/prison/cellblock/highsec/north/north)
 "atr" = (
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/highsec/north/north)
 "ats" = (
 /obj/structure/cable{
@@ -9140,9 +8862,8 @@
 	},
 /area/prison/research/RD)
 "atR" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NE-in";
-	icon_state = "NE-in"
+/obj/effect/decal/warning_stripes/thick{
+	dir = 10
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -9473,11 +9194,7 @@
 /area/prison/chapel)
 "aux" = (
 /obj/structure/bed,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/maxsec/south)
 "auy" = (
 /obj/structure/bed,
@@ -11051,11 +10768,7 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/highsec/north/north)
 "axL" = (
 /turf/closed/wall/r_wall/prison,
@@ -11821,11 +11534,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/highsec/north/north)
 "azt" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -13180,11 +12889,7 @@
 /area/prison/residential/north)
 "aBY" = (
 /obj/effect/alien/weeds/node,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/nw)
 "aBZ" = (
 /obj/effect/alien/weeds/node,
@@ -13315,11 +13020,7 @@
 /area/prison/cellblock/highsec/north/south)
 "aCn" = (
 /obj/structure/table/reinforced,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/highsec/north/south)
 "aCo" = (
 /obj/structure/table/reinforced,
@@ -14135,18 +13836,10 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	on = 1
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/recreation/highsec/n)
 "aDV" = (
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/recreation/highsec/n)
 "aDW" = (
 /obj/structure/bed/chair/comfy{
@@ -14165,11 +13858,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/recreation/highsec/n)
 "aDY" = (
 /turf/open/floor/prison/red{
@@ -14519,11 +14208,7 @@
 /area/prison/cellblock/highsec/north/south)
 "aEO" = (
 /obj/structure/bed,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/highsec/north/south)
 "aEP" = (
 /obj/machinery/light/small{
@@ -14570,19 +14255,11 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/highsec/north/south)
 "aEX" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/recreation/highsec/n)
 "aEY" = (
 /obj/structure/table/gamblingtable,
@@ -14612,11 +14289,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/recreation/highsec/n)
 "aFc" = (
 /obj/effect/decal/cleanable/blood,
@@ -14638,11 +14311,7 @@
 /obj/structure/sink{
 	dir = 8
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/highsec/north/south)
 "aFf" = (
 /obj/structure/filingcabinet,
@@ -15006,11 +14675,7 @@
 	},
 /area/prison/security/checkpoint/maxsec)
 "aGb" = (
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/highsec/north/south)
 "aGc" = (
 /obj/structure/toilet{
@@ -15083,11 +14748,7 @@
 	icon_state = "sink";
 	pixel_x = 11
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/highsec/north/south)
 "aGi" = (
 /obj/machinery/light{
@@ -15106,11 +14767,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/recreation/highsec/n)
 "aGk" = (
 /obj/structure/table/gamblingtable,
@@ -15162,11 +14819,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/recreation/highsec/n)
 "aGn" = (
 /obj/structure/cable{
@@ -15247,11 +14900,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/recreation/highsec/n)
 "aGs" = (
 /obj/structure/table/woodentable,
@@ -15779,11 +15428,7 @@
 /area/prison/hangar_storage/main)
 "aHj" = (
 /obj/effect/alien/weeds/node,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/ne)
 "aHk" = (
 /turf/open/floor/prison/darkyellow{
@@ -15926,11 +15571,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 1
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/recreation/highsec/n)
 "aHA" = (
 /obj/structure/cable{
@@ -15938,19 +15579,11 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/recreation/highsec/n)
 "aHB" = (
 /obj/effect/landmark/corpsespawner/prisoner,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/recreation/highsec/n)
 "aHC" = (
 /obj/structure/table/woodentable,
@@ -18289,11 +17922,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6;
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/nw)
 "aMg" = (
 /obj/structure/cable{
@@ -19067,11 +18696,7 @@
 /area/prison/cellblock/lowsec/nw)
 "aNX" = (
 /obj/structure/bed,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/nw)
 "aNY" = (
 /obj/structure/sink{
@@ -19079,21 +18704,13 @@
 	icon_state = "sink";
 	pixel_x = 11
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/nw)
 "aNZ" = (
 /obj/structure/sink{
 	dir = 8
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/ne)
 "aOa" = (
 /obj/machinery/light{
@@ -19150,11 +18767,7 @@
 /area/prison/cellblock/lowsec/nw)
 "aOe" = (
 /obj/structure/bed,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/ne)
 "aOf" = (
 /obj/structure/bed/chair/comfy,
@@ -19445,35 +19058,19 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/hallway/staff)
 "aOI" = (
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/hallway/staff)
 "aOJ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/hallway/staff)
 "aOK" = (
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/hallway/staff)
 "aOL" = (
 /obj/structure/cable{
@@ -19483,11 +19080,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/hallway/staff)
 "aOM" = (
 /turf/open/floor/prison/green/corner{
@@ -20029,11 +19622,7 @@
 /turf/open/floor/prison/green,
 /area/prison/hallway/staff)
 "aPC" = (
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/nw)
 "aPD" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -20049,11 +19638,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/ne)
 "aPG" = (
 /obj/machinery/light{
@@ -20894,11 +20479,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/hallway/staff)
 "aRv" = (
 /turf/open/floor/prison/green/corner,
@@ -21176,11 +20757,7 @@
 /area/prison/cellblock/lowsec/nw)
 "aSd" = (
 /obj/structure/table/gamblingtable,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/nw)
 "aSe" = (
 /obj/effect/landmark/huntergames_primary_spawn,
@@ -21506,11 +21083,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/highsec/north/south)
 "aSY" = (
 /obj/machinery/shower{
@@ -21602,19 +21175,11 @@
 /area/prison/hallway/central)
 "aTh" = (
 /obj/effect/landmark/monkey_spawn,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/nw)
 "aTi" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/nw)
 "aTj" = (
 /turf/open/floor/prison/green{
@@ -22121,11 +21686,7 @@
 /area/prison/security/checkpoint/highsec/n)
 "aUn" = (
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/nw)
 "aUo" = (
 /obj/machinery/chem_dispenser/beer,
@@ -22151,11 +21712,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/nw)
 "aUr" = (
 /obj/structure/cable{
@@ -22169,11 +21726,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/nw)
 "aUs" = (
 /obj/structure/cable{
@@ -22563,11 +22116,7 @@
 	dir = 4
 	},
 /obj/effect/landmark/huntergames_primary_spawn,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/ne)
 "aUP" = (
 /obj/structure/cable{
@@ -22581,11 +22130,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/ne)
 "aUQ" = (
 /obj/structure/cable{
@@ -22604,11 +22149,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/ne)
 "aUR" = (
 /obj/structure/cable{
@@ -22627,11 +22168,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/ne)
 "aUS" = (
 /obj/structure/cable{
@@ -22965,11 +22502,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/nw)
 "aVE" = (
 /turf/open/floor/prison/green/corner,
@@ -23200,11 +22733,7 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/hallway/staff)
 "aWd" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -23737,11 +23266,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/hallway/staff)
 "aXj" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -23785,11 +23310,7 @@
 	name = "Warden's Secretary's Office";
 	req_access_txt = "0"
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/command/secretary_office)
 "aXo" = (
 /obj/structure/window/framed/prison/reinforced,
@@ -23811,11 +23332,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/command/quarters)
 "aXr" = (
 /turf/closed/wall/r_wall/prison_unmeltable,
@@ -24176,11 +23693,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/nw)
 "aYf" = (
 /obj/structure/cable{
@@ -24194,11 +23707,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/nw)
 "aYg" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
@@ -24213,11 +23722,7 @@
 	dir = 8;
 	pixel_x = -4
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/nw)
 "aYi" = (
 /turf/open/floor/plating/plating_catwalk/prison,
@@ -24226,28 +23731,16 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/nw)
 "aYk" = (
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/ne)
 "aYl" = (
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/ne)
 "aYm" = (
 /obj/machinery/light/small{
@@ -24287,11 +23780,7 @@
 "aYs" = (
 /obj/structure/bed,
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/ne)
 "aYt" = (
 /obj/machinery/light{
@@ -24333,11 +23822,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/hallway/staff)
 "aYx" = (
 /obj/machinery/light{
@@ -24635,11 +24120,7 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/ne)
 "aZi" = (
 /obj/item/phone,
@@ -24662,11 +24143,7 @@
 "aZk" = (
 /obj/structure/bed,
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/nw)
 "aZl" = (
 /obj/structure/sink{
@@ -24675,11 +24152,7 @@
 	pixel_x = 11
 	},
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/nw)
 "aZm" = (
 /obj/structure/sink{
@@ -24688,11 +24161,7 @@
 	pixel_x = 11
 	},
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/ne)
 "aZn" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -24707,11 +24176,7 @@
 /obj/structure/toilet{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/ne)
 "aZp" = (
 /obj/structure/toilet{
@@ -24832,11 +24297,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/hallway/staff)
 "aZz" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -24967,11 +24428,7 @@
 /obj/structure/sink{
 	dir = 8
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/nw)
 "aZJ" = (
 /obj/structure/bed/chair/comfy,
@@ -25415,11 +24872,7 @@
 	icon_state = "sink";
 	pixel_x = 11
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/ne)
 "baS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -25929,11 +25382,7 @@
 /area/prison/cellblock/highsec/north/south)
 "bbZ" = (
 /obj/effect/landmark/corpsespawner/prisoner,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/highsec/north/south)
 "bca" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -26152,11 +25601,7 @@
 /area/prison/hallway/entrance)
 "bcy" = (
 /obj/structure/bed/chair,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/hallway/entrance)
 "bcz" = (
 /turf/open/floor/prison,
@@ -26347,11 +25792,7 @@
 /area/prison/cellblock/highsec/north/south)
 "bcZ" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/highsec/north/south)
 "bda" = (
 /turf/open/floor/prison/red{
@@ -26495,11 +25936,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/hallway/entrance)
 "bdp" = (
 /obj/structure/cable{
@@ -27046,11 +26483,7 @@
 	},
 /area/prison/kitchen)
 "beq" = (
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/hallway/entrance)
 "ber" = (
 /obj/structure/cable{
@@ -27869,11 +27302,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 10
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/hallway/entrance)
 "bfS" = (
 /obj/structure/sign/securearea,
@@ -28597,11 +28026,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/hallway/entrance)
 "bht" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber,
@@ -29433,11 +28858,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/hallway/entrance)
 "biF" = (
 /obj/structure/sink{
@@ -30321,11 +29742,7 @@
 /obj/structure/toilet{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/nw)
 "bkq" = (
 /obj/structure/lattice,
@@ -30379,11 +29796,7 @@
 	dir = 8;
 	pixel_x = -4
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/ne)
 "bky" = (
 /obj/structure/cable{
@@ -30465,11 +29878,7 @@
 /obj/structure/bed/chair/comfy{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/hallway/entrance)
 "bkH" = (
 /obj/structure/cable{
@@ -30540,11 +29949,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/toilet/canteen)
 "bkO" = (
 /obj/machinery/door/airlock/almayer/secure{
@@ -30917,11 +30322,7 @@
 /obj/structure/bed/chair/comfy{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/hallway/entrance)
 "blw" = (
 /obj/structure/cable{
@@ -31105,11 +30506,7 @@
 /obj/structure/sink{
 	dir = 8
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/se)
 "blR" = (
 /obj/structure/cable{
@@ -32891,11 +32288,7 @@
 	dir = 4;
 	network = list("PRISON")
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/hallway/entrance)
 "boZ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -33188,11 +32581,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/toilet/canteen)
 "bpM" = (
 /obj/structure/cable{
@@ -33227,11 +32616,7 @@
 /obj/machinery/alarm/almayer{
 	dir = 1
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/toilet/canteen)
 "bpO" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -33303,11 +32688,7 @@
 	},
 /area/prison/security/checkpoint/vip)
 "bpU" = (
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/toilet/canteen)
 "bpV" = (
 /obj/structure/cable{
@@ -33323,11 +32704,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/toilet/canteen)
 "bpW" = (
 /obj/machinery/power/apc/drained{
@@ -33337,11 +32714,7 @@
 	icon_state = "0-4";
 	d2 = 4
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/hallway/entrance)
 "bpX" = (
 /obj/structure/cable{
@@ -33420,11 +32793,7 @@
 	dir = 8;
 	on = 1
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/toilet/canteen)
 "bqh" = (
 /obj/structure/cable{
@@ -33600,11 +32969,7 @@
 	icon_state = "sink";
 	pixel_x = 11
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/toilet/canteen)
 "bqA" = (
 /obj/machinery/door/airlock/almayer/maint{
@@ -33618,11 +32983,7 @@
 /area/prison/security/checkpoint/medsec)
 "bqC" = (
 /obj/effect/landmark/huntergames_primary_spawn,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/toilet/canteen)
 "bqD" = (
 /obj/structure/cable{
@@ -33898,18 +33259,10 @@
 /obj/structure/toilet{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/sw)
 "brg" = (
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/sw)
 "brh" = (
 /obj/structure/cable{
@@ -33969,18 +33322,10 @@
 /obj/structure/toilet{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/se)
 "brl" = (
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/se)
 "brm" = (
 /obj/structure/cable{
@@ -34266,11 +33611,7 @@
 	icon_state = "sink";
 	pixel_x = 11
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/sw)
 "brS" = (
 /obj/item/ammo_casing,
@@ -34358,11 +33699,7 @@
 /obj/structure/bed/chair/comfy{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/hallway/entrance)
 "bsb" = (
 /obj/structure/cable{
@@ -34593,11 +33930,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 8
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/toilet/canteen)
 "bsE" = (
 /turf/open/floor/prison{
@@ -34611,11 +33944,7 @@
 /area/prison/cellblock/lowsec/sw)
 "bsG" = (
 /obj/structure/bed,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/sw)
 "bsH" = (
 /obj/structure/table/reinforced/flipped{
@@ -34652,11 +33981,7 @@
 /area/prison/yard)
 "bsK" = (
 /obj/structure/bed,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/se)
 "bsL" = (
 /turf/open/floor/prison{
@@ -34718,11 +34043,7 @@
 /obj/structure/sink{
 	dir = 8
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/sw)
 "bsS" = (
 /obj/machinery/shower{
@@ -34777,11 +34098,7 @@
 /obj/structure/bed/chair/comfy{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/hallway/entrance)
 "bsY" = (
 /turf/closed/wall/r_wall/prison,
@@ -34868,11 +34185,7 @@
 	icon_state = "sink";
 	pixel_x = 11
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/se)
 "btl" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -35131,11 +34444,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/sw)
 "btN" = (
 /obj/structure/toilet{
@@ -35447,11 +34756,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/hallway/entrance)
 "bus" = (
 /obj/structure/cable{
@@ -35488,11 +34793,7 @@
 /obj/structure/sink{
 	dir = 8
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/highsec/south/north)
 "buw" = (
 /obj/structure/table/reinforced,
@@ -35732,11 +35033,7 @@
 "buR" = (
 /obj/structure/bed,
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/sw)
 "buS" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
@@ -35867,11 +35164,7 @@
 	},
 /area/prison/visitation)
 "bvg" = (
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/visitation)
 "bvh" = (
 /obj/structure/cable{
@@ -36047,11 +35340,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 1
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/highsec/south/north)
 "bvz" = (
 /obj/structure/cable{
@@ -36081,11 +35370,7 @@
 /area/prison/cellblock/highsec/south/north)
 "bvC" = (
 /obj/structure/bed,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/highsec/south/north)
 "bvD" = (
 /obj/structure/toilet{
@@ -36117,21 +35402,13 @@
 	icon_state = "sink";
 	pixel_x = 11
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/highsec/south/north)
 "bvH" = (
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/highsec/south/north)
 "bvI" = (
 /obj/machinery/light{
@@ -36361,11 +35638,7 @@
 	dir = 8;
 	pixel_x = -4
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/sw)
 "bwf" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -36383,11 +35656,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/visitation)
 "bwg" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -36552,11 +35821,7 @@
 	},
 /area/prison/cellblock/highsec/south/north)
 "bwA" = (
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/highsec/south/north)
 "bwB" = (
 /obj/structure/cable{
@@ -36888,11 +36153,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/highsec/south/north)
 "bxp" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -37584,11 +36845,7 @@
 	pixel_x = 11
 	},
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/sw)
 "byL" = (
 /obj/structure/sink{
@@ -37636,22 +36893,14 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/se)
 "byP" = (
 /obj/machinery/light/small{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/se)
 "byQ" = (
 /turf/open/floor/prison/green{
@@ -38209,11 +37458,7 @@
 /area/prison/security/checkpoint/hangar)
 "bzV" = (
 /obj/effect/landmark/monkey_spawn,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/se)
 "bzW" = (
 /obj/machinery/light/small{
@@ -38235,11 +37480,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/se)
 "bzZ" = (
 /obj/structure/cable{
@@ -39640,11 +38881,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/sw)
 "bCU" = (
 /obj/machinery/light{
@@ -39848,11 +39085,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/sw)
 "bDv" = (
 /turf/open/floor/prison/red{
@@ -40132,11 +39365,7 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/sw)
 "bDU" = (
 /obj/structure/cable{
@@ -42242,11 +41471,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/hallway/east)
 "bHU" = (
 /obj/structure/cable{
@@ -42894,11 +42119,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/se)
 "bIW" = (
 /obj/machinery/alarm/almayer{
@@ -43022,11 +42243,7 @@
 	},
 /area/prison/hallway/east)
 "bJl" = (
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/hallway/east)
 "bJm" = (
 /obj/structure/cable{
@@ -45573,11 +44790,7 @@
 /obj/structure/sink{
 	dir = 8
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/highsec/south/south)
 "bOJ" = (
 /obj/machinery/disposal,
@@ -46042,11 +45255,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/recreation/highsec/s)
 "bPJ" = (
 /turf/open/floor/prison/trim/red{
@@ -46400,11 +45609,7 @@
 	icon_state = "sink";
 	pixel_x = 11
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/mediumsec/north)
 "bQG" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -46480,11 +45685,7 @@
 /turf/open/floor/prison,
 /area/prison/recreation/highsec/s)
 "bQQ" = (
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/recreation/highsec/s)
 "bQR" = (
 /obj/structure/bed/chair/comfy{
@@ -46502,11 +45703,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/recreation/highsec/s)
 "bQT" = (
 /obj/item/ammo_magazine/rifle/m16,
@@ -47196,11 +46393,7 @@
 	dir = 4
 	},
 /obj/item/ammo_casing,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/recreation/highsec/s)
 "bSv" = (
 /turf/open/floor/prison/red{
@@ -47231,11 +46424,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5;
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/recreation/medsec)
 "bSz" = (
 /obj/structure/bed/chair/office/dark,
@@ -47929,11 +47118,7 @@
 /area/prison/recreation/highsec/s)
 "bUb" = (
 /obj/effect/landmark/monkey_spawn,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/recreation/highsec/s)
 "bUc" = (
 /obj/structure/cable{
@@ -47944,11 +47129,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/recreation/highsec/s)
 "bUd" = (
 /obj/effect/landmark/corpsespawner/prison_security,
@@ -48703,11 +47884,7 @@
 /area/prison/recreation/highsec/s)
 "bVD" = (
 /obj/effect/landmark/random_item/good,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/recreation/highsec/s)
 "bVE" = (
 /obj/machinery/light{
@@ -49243,11 +48420,7 @@
 /area/prison/cellblock/highsec/south/north)
 "bWS" = (
 /obj/structure/table/reinforced,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/highsec/south/north)
 "bWT" = (
 /obj/structure/table/reinforced,
@@ -49398,11 +48571,7 @@
 /obj/structure/sink{
 	dir = 8
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/mediumsec/north)
 "bXo" = (
 /obj/structure/bed,
@@ -50113,11 +49282,7 @@
 	},
 /area/prison/cellblock/protective)
 "bYM" = (
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/protective)
 "bYN" = (
 /obj/effect/landmark/start/surv_spawn,
@@ -50568,11 +49733,7 @@
 	},
 /area/prison/cellblock/highsec/south/south)
 "bZQ" = (
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/highsec/south/south)
 "bZR" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -50585,11 +49746,7 @@
 /area/prison/security/checkpoint/highsec_medsec)
 "bZS" = (
 /obj/structure/bed,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/highsec/south/south)
 "bZT" = (
 /turf/open/floor/prison/red{
@@ -50614,11 +49771,7 @@
 	icon_state = "sink";
 	pixel_x = 11
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/highsec/south/south)
 "bZW" = (
 /turf/closed/wall/r_wall/prison,
@@ -50744,11 +49897,7 @@
 /area/prison/cellblock/mediumsec/north)
 "caq" = (
 /obj/structure/bed,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/mediumsec/north)
 "car" = (
 /turf/closed/wall/r_wall/prison,
@@ -50784,11 +49933,7 @@
 /obj/structure/sink{
 	dir = 8
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/protective)
 "caw" = (
 /obj/structure/cable{
@@ -51092,11 +50237,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/highsec/south/south)
 "cbi" = (
 /obj/structure/sink{
@@ -51113,40 +50254,24 @@
 /turf/open/floor/prison,
 /area/prison/recreation/medsec)
 "cbk" = (
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/recreation/medsec)
 "cbl" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/recreation/medsec)
 "cbm" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	on = 1
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/recreation/medsec)
 "cbn" = (
 /obj/structure/bed/chair/comfy{
 	dir = 8
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/recreation/medsec)
 "cbo" = (
 /turf/open/floor/prison{
@@ -51325,11 +50450,7 @@
 	},
 /area/prison/cellblock/mediumsec/north)
 "cbA" = (
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/mediumsec/north)
 "cbB" = (
 /obj/machinery/light/small{
@@ -51476,20 +50597,12 @@
 	},
 /area/prison/cellblock/mediumsec/west)
 "cbW" = (
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/hallway/engineering)
 "cbX" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/hallway/engineering)
 "cbY" = (
 /turf/open/floor/prison{
@@ -51661,11 +50774,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/recreation/medsec)
 "cck" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
@@ -51839,21 +50948,13 @@
 	icon_state = "sink";
 	pixel_x = 11
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/mediumsec/south)
 "ccB" = (
 /obj/structure/sink{
 	dir = 8
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/mediumsec/south)
 "ccC" = (
 /obj/structure/bed,
@@ -51912,11 +51013,7 @@
 /obj/structure/sink{
 	dir = 8
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/mediumsec/east)
 "ccK" = (
 /turf/open/floor/prison{
@@ -51946,11 +51043,7 @@
 /area/prison/recreation/medsec)
 "ccN" = (
 /obj/effect/landmark/monkey_spawn,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/recreation/medsec)
 "ccO" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -51992,11 +51085,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/recreation/medsec)
 "ccR" = (
 /turf/open/floor/prison,
@@ -52039,11 +51128,7 @@
 	dir = 8
 	},
 /obj/effect/landmark/corpsespawner/prisoner,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/mediumsec/south)
 "ccY" = (
 /obj/machinery/power/apc/drained{
@@ -52094,11 +51179,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/protective)
 "cdd" = (
 /obj/machinery/light{
@@ -52452,11 +51533,7 @@
 /turf/open/floor/prison,
 /area/prison/security/head)
 "cdx" = (
-/obj/item/stack/cable_coil/cut{
-	amount = 1;
-	icon_state = "coil1";
-	name = "cable piece"
-	},
+/obj/item/stack/cable_coil/single,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -52566,11 +51643,7 @@
 /obj/structure/sink{
 	dir = 8
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/mediumsec/west)
 "cdJ" = (
 /obj/machinery/light/small{
@@ -52586,11 +51659,7 @@
 /turf/open/floor/plating,
 /area/prison/cellblock/highsec/south/south)
 "cdL" = (
-/obj/item/stack/cable_coil/cut{
-	amount = 1;
-	icon_state = "coil1";
-	name = "cable piece"
-	},
+/obj/item/stack/cable_coil/single,
 /obj/item/stack/rods,
 /obj/item/shard,
 /turf/open/floor/plating,
@@ -52638,20 +51707,12 @@
 /area/prison/engineering)
 "cdR" = (
 /obj/structure/table/gamblingtable,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/recreation/medsec)
 "cdS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/recreation/medsec)
 "cdT" = (
 /obj/structure/cable{
@@ -52811,11 +51872,7 @@
 /area/prison/hallway/engineering)
 "cem" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/hallway/engineering)
 "cen" = (
 /obj/structure/cable{
@@ -52844,11 +51901,7 @@
 	on = 1
 	},
 /obj/effect/landmark/monkey_spawn,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/hallway/engineering)
 "ceq" = (
 /turf/open/floor/prison,
@@ -53081,11 +52134,7 @@
 /area/prison/cellblock/highsec/south/south)
 "ceM" = (
 /obj/effect/landmark/huntergames_primary_spawn,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/highsec/south/south)
 "ceN" = (
 /obj/structure/cable{
@@ -53117,11 +52166,7 @@
 	dir = 4
 	},
 /obj/item/ammo_casing,
-/obj/item/stack/cable_coil/cut{
-	amount = 1;
-	icon_state = "coil1";
-	name = "cable piece"
-	},
+/obj/item/stack/cable_coil/single,
 /turf/open/floor/plating,
 /area/prison/cellblock/highsec/south/south)
 "ceP" = (
@@ -53215,11 +52260,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/recreation/medsec)
 "ceU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -53381,11 +52422,7 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/recreation/medsec)
 "cfh" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -53427,11 +52464,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/protective)
 "cfl" = (
 /obj/structure/cable{
@@ -53766,11 +52799,7 @@
 /turf/open/floor/plating,
 /area/prison/cellblock/highsec/south/south)
 "cgf" = (
-/obj/item/stack/cable_coil/cut{
-	amount = 1;
-	icon_state = "coil1";
-	name = "cable piece"
-	},
+/obj/item/stack/cable_coil/single,
 /turf/open/floor/prison/red,
 /area/prison/cellblock/highsec/south/south)
 "cgg" = (
@@ -53847,28 +52876,16 @@
 /area/prison/execution)
 "cgq" = (
 /obj/effect/landmark/huntergames_primary_spawn,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/recreation/medsec)
 "cgr" = (
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/recreation/medsec)
 "cgs" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/recreation/medsec)
 "cgt" = (
 /obj/machinery/door/airlock/almayer/medical/glass{
@@ -54258,32 +53275,20 @@
 /turf/open/floor/plating,
 /area/prison/cellblock/highsec/south/south)
 "chp" = (
-/obj/item/stack/cable_coil/cut{
-	amount = 1;
-	icon_state = "coil1";
-	name = "cable piece"
-	},
+/obj/item/stack/cable_coil/single,
 /obj/item/stack/rods,
 /obj/item/ammo_casing,
 /turf/open/floor/plating,
 /area/prison/cellblock/highsec/south/south)
 "chq" = (
 /obj/effect/landmark/random_item/crap,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/recreation/medsec)
 "chr" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 1
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/recreation/medsec)
 "chs" = (
 /obj/structure/cable{
@@ -54848,11 +53853,7 @@
 /area/prison/cellblock/mediumsec/north)
 "ciJ" = (
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/protective)
 "ciK" = (
 /turf/open/floor/prison/blue/full,
@@ -54881,11 +53882,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/mediumsec/north)
 "ciN" = (
 /obj/structure/disposalpipe/segment,
@@ -56049,11 +55046,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/highsec/south/south)
 "clu" = (
 /obj/structure/cable{
@@ -56065,11 +55058,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/mediumsec/north)
 "clv" = (
 /obj/structure/cable{
@@ -56217,11 +55206,7 @@
 	name = "Protective Custody Monitoring";
 	req_access_txt = "0"
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/security/monitoring/protective)
 "clG" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -56526,11 +55511,7 @@
 /area/prison/cellblock/mediumsec/north)
 "cmq" = (
 /obj/effect/landmark/monkey_spawn,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/mediumsec/north)
 "cmr" = (
 /obj/machinery/computer/secure_data,
@@ -56776,11 +55757,7 @@
 	},
 /area/prison/cellblock/mediumsec/west)
 "cmR" = (
-/obj/item/stack/cable_coil/cut{
-	amount = 1;
-	icon_state = "coil1";
-	name = "cable piece"
-	},
+/obj/item/stack/cable_coil/single,
 /turf/open/floor/plating,
 /area/prison/cellblock/highsec/south/south)
 "cmS" = (
@@ -56829,11 +55806,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/highsec/south/south)
 "cmY" = (
 /obj/structure/bed/chair{
@@ -57173,11 +56146,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/highsec/south/south)
 "cnO" = (
 /obj/machinery/door/airlock/prison/horizontal{
@@ -57209,11 +56178,7 @@
 /area/prison/cellblock/mediumsec/north)
 "cnQ" = (
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/mediumsec/north)
 "cnR" = (
 /obj/structure/cable{
@@ -57389,11 +56354,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/protective)
 "cod" = (
 /turf/open/floor/plating/plating_catwalk/prison,
@@ -57404,11 +56365,7 @@
 /area/prison/cellblock/protective)
 "cof" = (
 /obj/structure/table/reinforced,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/protective)
 "cog" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
@@ -57552,11 +56509,7 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/highsec/south/south)
 "cox" = (
 /obj/item/weapon/gun/rifle/mar40,
@@ -57650,19 +56603,11 @@
 "coJ" = (
 /obj/structure/bed,
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/protective)
 "coK" = (
 /obj/structure/bed,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/protective)
 "coL" = (
 /obj/structure/reagent_dispensers/fueltank,
@@ -58147,11 +57092,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate (SOUTHWEST)";
-	icon_state = "floor_plate";
-	dir = 10
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/highsec/south/south)
 "cpP" = (
 /obj/structure/cable{
@@ -58209,11 +57150,7 @@
 /area/prison/cellblock/mediumsec/east)
 "cpV" = (
 /obj/structure/bed,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/mediumsec/east)
 "cpW" = (
 /obj/structure/sink{
@@ -58221,11 +57158,7 @@
 	icon_state = "sink";
 	pixel_x = 11
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/mediumsec/east)
 "cpX" = (
 /obj/structure/largecrate/random,
@@ -58499,11 +57432,7 @@
 /area/prison/cellblock/mediumsec/west)
 "cqI" = (
 /obj/structure/bed,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/mediumsec/west)
 "cqJ" = (
 /obj/structure/sink{
@@ -58511,11 +57440,7 @@
 	icon_state = "sink";
 	pixel_x = 11
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/mediumsec/west)
 "cqK" = (
 /turf/closed/wall/prison,
@@ -58538,11 +57463,7 @@
 /turf/open/floor/plating,
 /area/prison/cellblock/mediumsec/west)
 "cqO" = (
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/mediumsec/east)
 "cqP" = (
 /obj/machinery/light/small{
@@ -58788,11 +57709,7 @@
 /turf/open/floor/prison/yellow,
 /area/prison/cellblock/mediumsec/south)
 "crs" = (
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/mediumsec/west)
 "crt" = (
 /obj/structure/cable{
@@ -58810,11 +57727,7 @@
 "cru" = (
 /obj/structure/bed,
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/mediumsec/north)
 "crv" = (
 /obj/effect/landmark/corpsespawner/prisoner,
@@ -59234,11 +58147,7 @@
 /turf/open/floor/plating,
 /area/prison/pirate)
 "csy" = (
-/obj/item/stack/cable_coil/cut{
-	amount = 1;
-	icon_state = "coil1";
-	name = "cable piece"
-	},
+/obj/item/stack/cable_coil/single,
 /turf/open/floor/plating,
 /area/prison/cellblock/mediumsec/west)
 "csz" = (
@@ -59495,11 +58404,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/mediumsec/south)
 "ctb" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -59508,11 +58413,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/mediumsec/south)
 "ctc" = (
 /obj/structure/cable{
@@ -60207,11 +59108,7 @@
 /area/prison/cellblock/mediumsec/east)
 "cuA" = (
 /obj/effect/landmark/corpsespawner/prisoner,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/mediumsec/east)
 "cuB" = (
 /obj/structure/bed,
@@ -60298,11 +59195,7 @@
 /area/prison/cellblock/mediumsec/west)
 "cuL" = (
 /obj/structure/bed,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/mediumsec/south)
 "cuM" = (
 /obj/machinery/light/small{
@@ -60723,20 +59616,12 @@
 	},
 /area/prison/maintenance/residential/access/south)
 "cvA" = (
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/mediumsec/south)
 "cvB" = (
 /obj/structure/bed,
 /obj/effect/landmark/corpsespawner/prisoner,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/mediumsec/south)
 "cvC" = (
 /obj/structure/cable{
@@ -61316,11 +60201,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/mediumsec/west)
 "cwI" = (
 /obj/machinery/light{
@@ -61629,19 +60510,11 @@
 "cxl" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/landmark/corpsespawner/prisoner,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/mediumsec/south)
 "cxm" = (
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/mediumsec/east)
 "cxn" = (
 /obj/machinery/atmospherics/components/unary/portables_connector{
@@ -61884,20 +60757,12 @@
 "cxR" = (
 /obj/structure/bed,
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/mediumsec/south)
 "cxS" = (
 /obj/structure/bed,
 /obj/effect/landmark/corpsespawner/prisoner,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/mediumsec/east)
 "cxT" = (
 /turf/open/floor/prison/yellow{
@@ -62247,11 +61112,7 @@
 /area/prison/cellblock/mediumsec/south)
 "cyG" = (
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/mediumsec/south)
 "cyH" = (
 /obj/structure/toilet{
@@ -62655,11 +61516,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/mediumsec/south)
 "czI" = (
 /obj/structure/filingcabinet,
@@ -62699,11 +61556,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/mediumsec/south)
 "czP" = (
 /obj/machinery/light/small{
@@ -62713,11 +61566,7 @@
 /area/prison/cellblock/mediumsec/south)
 "czQ" = (
 /obj/structure/table/reinforced,
-/turf/open/floor/prison{
-	tag = "icon-floor_plate";
-	icon_state = "floor_plate";
-	dir = 2
-	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/mediumsec/south)
 "czR" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{

@@ -12324,9 +12324,8 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aHa" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-in";
-	icon_state = "NW-in"
+/obj/effect/decal/warning_stripes/thick{
+	dir = 6
 	},
 /obj/structure/cable{
 	d1 = 2;
@@ -12371,9 +12370,8 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aHd" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NE-in";
-	icon_state = "NE-in"
+/obj/effect/decal/warning_stripes/thick{
+	dir = 10
 	},
 /turf/open/floor/tile/green/whitegreencorner{
 	dir = 4
@@ -12670,9 +12668,8 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aHT" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-in";
-	icon_state = "NW-in"
+/obj/effect/decal/warning_stripes/thick{
+	dir = 6
 	},
 /turf/open/floor/tile/green/whitegreencorner{
 	dir = 1

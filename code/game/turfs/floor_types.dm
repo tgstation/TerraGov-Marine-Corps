@@ -615,6 +615,9 @@
 	icon = 'icons/turf/prison.dmi'
 	icon_state = "floor"
 
+/turf/open/floor/prison/plate
+	icon_state = "floor_plate"
+
 /turf/open/floor/prison/trim/red
 	icon_state = "darkred2"
 
