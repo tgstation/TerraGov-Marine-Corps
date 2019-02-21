@@ -66,10 +66,16 @@ SUBSYSTEM_DEF(job)
 	if(player?.mind && rank)
 		var/datum/job/job = GetJob(rank)
 		if(!job)
+			JobDebug("AR job doesn't exists ! Player: [player], Rank:[rank]")
 			return FALSE
-		if(jobban_isbanned(player, rank) || QDELETED(player))
+		if(jobban_isbanned(player, rank))
+			JobDebug("AR isbanned failed, Player: [player], Job:[job.title]")
+			return FALSE
+		if(QDELETED(player))
+			JobDebug("AR player deleted during job ban check")
 			return FALSE
 		if(!job.player_old_enough(player.client))
+			JobDebug("AR player not old enough, Player: [player], Job:[job.title]")
 			return FALSE
 		if(rank in JOBS_MARINES)
 			if(handle_squad(player, rank, latejoin))
@@ -80,57 +86,21 @@ SUBSYSTEM_DEF(job)
 		var/position_limit = job.total_positions
 		if(!latejoin)
 			position_limit = job.spawn_positions
-		JobDebug("Player: [player] is now Rank: [rank], JCP:[job.current_positions], JPL:[position_limit]")
 		player.mind.assigned_role = rank
 		unassigned -= player
 		job.current_positions++
+		JobDebug("Player: [player] is now Rank: [rank], JCP:[job.current_positions], JPL:[position_limit]")
 		return TRUE
-	JobDebug("AR has failed, Player: [player], Rank: [rank]")
+	JobDebug("AR has failed, Player: [player], Mind: [player?.mind], Rank: [rank]")
 	return FALSE
-
-
-/datum/controller/subsystem/job/proc/FindOccupationCandidates(datum/job/job, level, flag)
-	JobDebug("Running FOC, Job: [job], Level: [level], Flag: [flag]")
-	var/list/candidates = list()
-	for(var/mob/new_player/player in unassigned)
-		if(jobban_isbanned(player, job.title) || QDELETED(player))
-			JobDebug("FOC isbanned failed, Player: [player]")
-			continue
-		if(!job.player_old_enough(player.client))
-			JobDebug("FOC player not old enough, Player: [player]")
-			continue
-		if(flag && (!(flag in player.client.prefs.be_special)))
-			JobDebug("FOC flag failed, Player: [player], Flag: [flag], ")
-			continue
-		if(player.client.prefs.GetJobDepartment(job, level) & job.prefflag)
-			JobDebug("FOC pass, Player: [player], Level:[level]")
-			candidates += player
-	return candidates
-
 
 /datum/controller/subsystem/job/proc/GiveRandomJob(mob/new_player/player)
 	JobDebug("GRJ Giving random job, Player: [player]")
 	. = FALSE
 	for(var/datum/job/job in shuffle(occupations))
-		if(!job)
-			continue
-
-		if(jobban_isbanned(player, job.title) || QDELETED(player))
-			if(QDELETED(player))
-				JobDebug("GRJ isbanned failed, Player deleted")
-				break
-			JobDebug("GRJ isbanned failed, Player: [player], Job: [job.title]")
-			continue
-
-		if(!job.player_old_enough(player.client))
-			JobDebug("GRJ player not old enough, Player: [player]")
-			continue
-
 		if((job.current_positions < job.spawn_positions) || job.spawn_positions == -1)
 			JobDebug("GRJ Random job given, Player: [player], Job: [job]")
-			if(AssignRole(player, job.title))
-				return TRUE
-
+			. = AssignRole(player, job.title)
 
 /datum/controller/subsystem/job/proc/ResetOccupations()
 	JobDebug("Occupations reset.")
@@ -153,7 +123,7 @@ SUBSYSTEM_DEF(job)
 
 	//Get the players who are ready
 	for(var/mob/new_player/player in GLOB.player_list)
-		if(player.ready && player.mind && !player.mind.assigned_role)
+		if(player.ready && player.mind && !player.mind.assigned_role)//don't get assigned roles, as Xenos and Survivors
 			unassigned += player
 
 	initial_players_to_assign = length(unassigned)
@@ -165,20 +135,8 @@ SUBSYSTEM_DEF(job)
 	//Shuffle players and jobs
 	unassigned = shuffle(unassigned)
 
-	//People who wants to be the overflow role, sure, go on.
-	JobDebug("DO, Running Overflow Check 1")
-	var/datum/job/overflow = GetJob(SSjob.overflow_role)
-	var/list/overflow_candidates = FindOccupationCandidates(overflow, 1)
-	JobDebug("AC1, Candidates: [length(overflow_candidates)]")
-	for(var/mob/new_player/player in overflow_candidates)
-		JobDebug("AC1 pass, Player: [player]")
-		AssignRole(player, SSjob.overflow_role)
-		overflow_candidates -= player
-	JobDebug("DO, AC1 end")
-
 	//Other jobs are now checked
 	JobDebug("DO, Running Standard Check")
-
 
 	// New job giving system by Donkie
 	// This will cause lots of more loops, but since it's only done once it shouldn't really matter much at all.
@@ -186,36 +144,18 @@ SUBSYSTEM_DEF(job)
 
 	// Loop through all levels from high to low
 	var/list/shuffledoccupations = shuffle(occupations)
-	for(var/level = 1 to 3)
-		//Check the head jobs first each level
-
+	for(var/level = JOBS_PRIORITY_HIGH to JOBS_PRIORITY_LOW)
 		// Loop through all unassigned players
 		for(var/mob/new_player/player in unassigned)
 
 			// Loop through all jobs
 			for(var/datum/job/job in shuffledoccupations) // SHUFFLE ME BABY
-				if(!job)
-					continue
-
-				if(jobban_isbanned(player, job.title))
-					JobDebug("DO isbanned failed, Player: [player], Job:[job.title]")
-					continue
-
-				if(QDELETED(player))
-					JobDebug("DO player deleted during job ban check")
-					break
-
-				if(!job.player_old_enough(player.client))
-					JobDebug("DO player not old enough, Player: [player], Job:[job.title]")
-					continue
-
 				// If the player wants that job on this level, then try give it to him.
 				if(player.client.prefs.GetJobDepartment(job, level) & job.prefflag)
 					// If the job isn't filled
 					if((job.current_positions < job.spawn_positions) || job.spawn_positions == -1)
 						JobDebug("DO pass, Trying to assign Player: [player], Level:[level], Job:[job.title]")
 						if(AssignRole(player, job.title))
-							unassigned -= player
 							break
 
 
@@ -231,11 +171,8 @@ SUBSYSTEM_DEF(job)
 //We couldn't find a job from prefs for this guy.
 /datum/controller/subsystem/job/proc/HandleUnassigned(mob/new_player/player)
 	if(player.client.prefs.alternate_option == BE_MARINE)
-		if(QDELETED(player) || jobban_isbanned(player, SSjob.overflow_role))
+		if(!AssignRole(player, SSjob.overflow_role))
 			RejectPlayer(player)
-		else
-			if(!AssignRole(player, SSjob.overflow_role))
-				RejectPlayer(player)
 	else if(player.client.prefs.alternate_option == GET_RANDOM_JOB)
 		if(!GiveRandomJob(player))
 			RejectPlayer(player)
