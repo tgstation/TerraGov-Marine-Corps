@@ -86,8 +86,6 @@ proc/age2agedescription(age)
 		if(70 to INFINITY)	return "elderly"
 		else				return "unknown"
 
-/proc/do_afsaaasgrob(mob/user , mob/target, time = 30, show_busy_icon, show_target_icon, selected_zone_check)
-
 /proc/do_mob(mob/user , mob/target, time = 30, uninterruptible = FALSE, progress = TRUE, icon_display, datum/callback/extra_checks = null)
 	if(!user || !target)
 		return FALSE
@@ -137,8 +135,6 @@ proc/age2agedescription(age)
 			return FALSE
 		checked_health["health"] = health
 	return ..()
-
-/proc/dsfasfbdf(mob/user, delay, needhand = TRUE, numticks = 5, show_busy_icon, selected_zone_check, busy_check = FALSE)
 
 /proc/do_after(mob/user, delay, needhand = TRUE, atom/target = null, progress = TRUE, icon_display, datum/callback/extra_checks = null)
 	if(!user)
