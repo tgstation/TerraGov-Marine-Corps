@@ -134,7 +134,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	else
 		dat += "Please create an account to save your preferences."
 
-	dat += "<br><b>Synthetic Name:</b> <a href='?_src_=prefs;preference=synth_name'>[synthetic_name]</a><br>"
+	dat += "<br><b>Synthetic name:</b> <a href='?_src_=prefs;preference=synth_name'>[synthetic_name]</a><br>"
 	dat += "<b>Synthetic Type:</b> <a href='?_src_=prefs;preference=synth_type'>[synthetic_type]</a><br>"
 
 	dat +="<br><b>Xenomorph name:</b> <a href='?_src_=prefs;preference=xeno_name'>[xeno_name]</a><br>"
@@ -392,6 +392,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 /datum/preferences/proc/GetJobDepartment(var/datum/job/job, var/level)
 	if(!job?.prefflag || !level)
+		return FALSE
+	if(!job.prefflag)
 		return FALSE
 	switch(level)
 		if(1)
