@@ -74,7 +74,6 @@
 			H.age = H.client.prefs.age
 			H.ethnicity = H.client.prefs.ethnicity
 			H.body_type = H.client.prefs.body_type
-			H.flavor_text = H.client.prefs.flavor_text
 			if(H.mind)
 				H.mind.name = H.client.prefs.real_name
 
