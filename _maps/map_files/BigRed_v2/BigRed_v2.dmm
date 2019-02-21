@@ -28633,36 +28633,24 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
 	},
-/turf/open/floor{
-	tag = "icon-darkyellow2";
-	icon_state = "darkyellow2"
-	},
+/turf/open/floor/tile/dark/yellow2,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "byp" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-darkyellow2";
-	icon_state = "darkyellow2"
-	},
+/turf/open/floor/tile/dark/yellow2,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "byq" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
-/turf/open/floor{
-	tag = "icon-darkyellow2";
-	icon_state = "darkyellow2"
-	},
+/turf/open/floor/tile/dark/yellow2,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "byr" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	tag = "icon-darkyellow2";
-	icon_state = "darkyellow2"
-	},
+/turf/open/floor/tile/dark/yellow2,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bys" = (
 /obj/machinery/r_n_d/circuit_imprinter,
@@ -29580,19 +29568,13 @@
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bAW" = (
-/turf/open/floor{
-	tag = "icon-darkyellow2";
-	icon_state = "darkyellow2"
-	},
+/turf/open/floor/tile/dark/yellow2,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bAX" = (
 /obj/structure/bed/chair{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-darkyellow2";
-	icon_state = "darkyellow2"
-	},
+/turf/open/floor/tile/dark/yellow2,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bAY" = (
 /obj/machinery/light{
