@@ -256,7 +256,10 @@
 	if(!xeno_name)
 		xeno_name = "Undefined"
 	if(!real_name)
-		real_name = "John Smith"
+		if(gender == FEMALE)
+			real_name = capitalize(pick(first_names_female)) + " " + capitalize(pick(last_names))
+		else
+			real_name = capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
 
 	return TRUE
 
