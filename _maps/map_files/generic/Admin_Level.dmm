@@ -4445,7 +4445,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/carpet/edge{
+/turf/open/floor/carpet/edge2{
 	dir = 10
 	},
 /area/shuttle/distress/start_big)

@@ -15677,7 +15677,7 @@
 /turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
 "aPk" = (
-/turf/open/floor/carpet/edge{
+/turf/open/floor/carpet/edge2{
 	dir = 10
 	},
 /area/bigredv2/outside/library)
@@ -20599,7 +20599,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/admin_building)
 "bcM" = (
-/turf/open/floor/carpet/edge{
+/turf/open/floor/carpet/edge2{
 	dir = 10
 	},
 /area/bigredv2/outside/admin_building)
@@ -30458,7 +30458,7 @@
 	tag = "icon-mechfab1";
 	icon_state = "mechfab1"
 	},
-/turf/open/floor/carpet/edge{
+/turf/open/floor/carpet/edge2{
 	dir = 10
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
