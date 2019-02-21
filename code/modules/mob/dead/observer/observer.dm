@@ -27,7 +27,7 @@
 	var/voted_this_drop = FALSE
 
 
-/mob/dead/observer/New(mob/body)
+/mob/dead/observer/Initialize(mob/body)
 	sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS|SEE_SELF
 	see_invisible = SEE_INVISIBLE_OBSERVER
 	see_in_dark = 100
