@@ -465,6 +465,9 @@
 /turf/open/floor/tile/purple/taupepurple
 	icon_state = "purple"
 
+/turf/open/floor/tile/purple/taupepurple/corner
+	icon_state = "purplecorner"
+
 /turf/open/floor/tile/purple/whitepurple
 	icon_state = "whitepurple"
 
@@ -539,6 +542,9 @@
 
 /turf/open/floor/animated/bcircuit
 	icon_state = "bcircuit"
+
+/turf/open/floor/podhatch
+	icon_state = "podhatch"
 
 /turf/open/floor/podhatch/floor
 	icon_state = "podhatchfloor"

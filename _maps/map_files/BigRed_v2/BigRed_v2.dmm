@@ -10843,16 +10843,12 @@
 "aDp" = (
 /obj/structure/table,
 /obj/effect/spawner/random/technology_scanner,
-/turf/open/floor{
-	tag = "icon-purple (NORTHWEST)";
-	icon_state = "purple";
+/turf/open/floor/tile/purple/taupepurple{
 	dir = 9
 	},
 /area/bigredv2/caves/lambda_lab)
 "aDq" = (
-/turf/open/floor{
-	tag = "icon-purple (NORTH)";
-	icon_state = "purple";
+/turf/open/floor/tile/purple/taupepurple{
 	dir = 1
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -10863,9 +10859,7 @@
 /obj/structure/sign/safety/laser{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-purple (NORTH)";
-	icon_state = "purple";
+/turf/open/floor/tile/purple/taupepurple{
 	dir = 1
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -10873,9 +10867,7 @@
 /obj/machinery/conveyor{
 	id = "anomalybelt"
 	},
-/turf/open/floor{
-	tag = "icon-purple (NORTH)";
-	icon_state = "purple";
+/turf/open/floor/tile/purple/taupepurple{
 	dir = 1
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -10886,16 +10878,12 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-purple (NORTH)";
-	icon_state = "purple";
+/turf/open/floor/tile/purple/taupepurple{
 	dir = 1
 	},
 /area/bigredv2/caves/lambda_lab)
 "aDu" = (
-/turf/open/floor{
-	tag = "icon-purple (NORTHEAST)";
-	icon_state = "purple";
+/turf/open/floor/tile/purple/taupepurple{
 	dir = 5
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -11286,17 +11274,13 @@
 "aEs" = (
 /obj/structure/table,
 /obj/effect/spawner/random/powercell,
-/turf/open/floor{
-	tag = "icon-purple (WEST)";
-	icon_state = "purple";
+/turf/open/floor/tile/purple/taupepurple{
 	dir = 8
 	},
 /area/bigredv2/caves/lambda_lab)
 "aEt" = (
 /obj/effect/alien/weeds/node,
-/turf/open/floor{
-	tag = "icon-purple (EAST)";
-	icon_state = "purple";
+/turf/open/floor/tile/purple/taupepurple{
 	dir = 4
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -11663,16 +11647,12 @@
 "aFl" = (
 /obj/structure/table,
 /obj/effect/spawner/random/technology_scanner,
-/turf/open/floor{
-	tag = "icon-purple (SOUTHWEST)";
-	icon_state = "purple";
+/turf/open/floor/tile/purple/taupepurple{
 	dir = 10
 	},
 /area/bigredv2/caves/lambda_lab)
 "aFm" = (
-/turf/open/floor{
-	tag = "icon-purplecorner (WEST)";
-	icon_state = "purplecorner";
+/turf/open/floor/tile/purple/taupepurple/corner{
 	dir = 8
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -11682,16 +11662,12 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/lambda_lab)
 "aFo" = (
-/turf/open/floor{
-	tag = "icon-purplecorner";
-	icon_state = "purplecorner";
+/turf/open/floor/tile/purple/taupepurple/corner{
 	dir = 2
 	},
 /area/bigredv2/caves/lambda_lab)
 "aFp" = (
-/turf/open/floor{
-	tag = "icon-purple (SOUTHEAST)";
-	icon_state = "purple";
+/turf/open/floor/tile/purple/taupepurple{
 	dir = 6
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -12018,9 +11994,7 @@
 	icon_state = "0-4";
 	d2 = 4
 	},
-/turf/open/floor{
-	tag = "icon-purple (SOUTHWEST)";
-	icon_state = "purple";
+/turf/open/floor/tile/purple/taupepurple{
 	dir = 10
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -12031,9 +12005,7 @@
 	d2 = 8;
 	icon_state = "4-8";
 	},
-/turf/open/floor{
-	tag = "icon-purplecorner (WEST)";
-	icon_state = "purplecorner";
+/turf/open/floor/tile/purple/taupepurple/corner{
 	dir = 8
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -12315,9 +12287,7 @@
 	dir = 8
 	},
 /obj/item/tool/pickaxe/drill,
-/turf/open/floor{
-	tag = "icon-purple (SOUTHWEST)";
-	icon_state = "purple";
+/turf/open/floor/tile/purple/taupepurple{
 	dir = 10
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -12342,9 +12312,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-purple (SOUTHEAST)";
-	icon_state = "purple";
+/turf/open/floor/tile/purple/taupepurple{
 	dir = 6
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -16234,17 +16202,13 @@
 /turf/open/mars_dirt/random,
 /area/bigredv2/outside/e)
 "aQv" = (
-/turf/open/floor{
-	tag = "icon-podhatch (NORTHWEST)";
-	icon_state = "podhatch";
+/turf/open/floor/podhatch{
 	dir = 9
 	},
 /area/bigredv2/caves/lambda_lab)
 "aQw" = (
 /obj/effect/alien/weeds/node,
-/turf/open/floor{
-	tag = "icon-podhatch (NORTHEAST)";
-	icon_state = "podhatch";
+/turf/open/floor/podhatch{
 	dir = 5
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -16671,17 +16635,13 @@
 /area/bigredv2/caves)
 "aRx" = (
 /obj/machinery/teleport/station,
-/turf/open/floor{
-	tag = "icon-podhatch (SOUTHWEST)";
-	icon_state = "podhatch";
+/turf/open/floor/podhatch{
 	dir = 10
 	},
 /area/bigredv2/caves/lambda_lab)
 "aRy" = (
 /obj/machinery/teleport/hub,
-/turf/open/floor{
-	tag = "icon-podhatch (SOUTHEAST)";
-	icon_state = "podhatch";
+/turf/open/floor/podhatch{
 	dir = 6
 	},
 /area/bigredv2/caves/lambda_lab)
