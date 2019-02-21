@@ -261,6 +261,9 @@
 	icon = 'icons/obj/flora/plants.dmi'
 	icon_state = "plant-26"
 
+/obj/structure/flora/pottedplant/ten
+	icon_state = "plant-10"
+	
 //newbushes
 
 /obj/structure/flora/ausbushes
@@ -451,6 +454,10 @@
 	desc = "Some kind of bizarre alien tree. It oozes with a sickly yellow sap."
 	icon_state = "plantbot1"
 
+/obj/structure/jungle/plantbot1/alien
+	icon_state = "alienplant1"
+	luminosity = 2
+
 /obj/structure/jungle/planttop1
 	name = "strange tree"
 	desc = "Some kind of bizarre alien tree. It oozes with a sickly yellow sap."
@@ -470,16 +477,16 @@
 	else
 		. = ..()
 
-/obj/structure/jungle/vines/New()
-	..()
+/obj/structure/jungle/vines/Initialize()
+	. = ..()
 	icon_state = pick("Light1","Light2","Light3")
 
 /obj/structure/jungle/vines/heavy
 	desc = "A thick, coiled mass of twisted vines."
 	opacity = 1
 
-/obj/structure/jungle/vines/heavy/New()
-	..()
+/obj/structure/jungle/vines/heavy/Initialize()
+	. = ..()
 	icon_state = pick("Hvy1","Hvy2","Hvy3","Med1","Med2","Med3")
 
 /obj/structure/jungle/tree/grasscarpet

@@ -646,7 +646,7 @@
 	accuracy_var_low = CONFIG_GET(number/combat_define/med_proj_variance)
 	accuracy_var_high = CONFIG_GET(number/combat_define/med_proj_variance)
 	max_range = CONFIG_GET(number/combat_define/short_shell_range)
-	damage = CONFIG_GET(number/combat_define/med_hit_damage)
+	damage = CONFIG_GET(number/combat_define/lmmed_hit_damage)
 	damage_var_low = -CONFIG_GET(number/combat_define/low_proj_variance)
 	damage_var_high = CONFIG_GET(number/combat_define/low_proj_variance)
 	damage_falloff *= 0.5
@@ -662,7 +662,7 @@
 	accuracy_var_low = CONFIG_GET(number/combat_define/med_proj_variance)
 	accuracy_var_high = CONFIG_GET(number/combat_define/med_proj_variance)
 	max_range = CONFIG_GET(number/combat_define/short_shell_range)
-	damage = CONFIG_GET(number/combat_define/lmed_hit_damage)
+	damage = CONFIG_GET(number/combat_define/hlow_hit_damage)
 	damage_var_low = -CONFIG_GET(number/combat_define/low_proj_variance)
 	damage_var_high = CONFIG_GET(number/combat_define/low_proj_variance)
 	damage_falloff *= 0.5
@@ -1245,7 +1245,7 @@
 
 /datum/ammo/energy/lasgun/M43/overcharge/New()
 	. = ..()
-	damage = CONFIG_GET(number/combat_define/hmed_hit_damage)
+	damage = CONFIG_GET(number/combat_define/med_hit_damage)
 	max_range = CONFIG_GET(number/combat_define/max_shell_range)
 	penetration = CONFIG_GET(number/combat_define/mhigh_armor_penetration)
 
@@ -1292,12 +1292,26 @@
 	damage_var_low = CONFIG_GET(number/combat_define/low_proj_variance)
 	damage_var_high = CONFIG_GET(number/combat_define/mlow_proj_variance)
 
-/datum/ammo/xeno/toxin/on_hit_mob(mob/living/carbon/M, obj/item/projectile/P)
-	if(!istype(M) || (xeno_hivenumber(M) && xeno_hivenumber(M) == xeno_hivenumber(P.firer)))
+
+/datum/ammo/xeno/toxin/on_hit_mob(mob/living/carbon/C, obj/item/projectile/P)
+
+	if(!istype(C) || C.stat == DEAD || (xeno_hivenumber(C) && xeno_hivenumber(C) == xeno_hivenumber(P.firer)) )
 		return
-	staggerstun(M, P, CONFIG_GET(number/combat_define/close_shell_range), 0, 0, 1, 1, 0) //Staggers and slows down briefly
+
+	if(C.status_flags & XENO_HOST && istype(C.buckled, /obj/structure/bed/nest))
+		return
+
+	staggerstun(C, P, CONFIG_GET(number/combat_define/close_shell_range), 0, 0, 1, 1, 0) //Staggers and slows down briefly
+
+	for(var/r_id in ammo_reagents)
+		var/on_mob_amount = C.reagents.get_reagent_amount(r_id)
+		var/amt_to_inject = ammo_reagents[r_id] //Never inject more than 30u through spitting
+		if(amt_to_inject + on_mob_amount > 30)
+			amt_to_inject = 30 - on_mob_amount
+		C.reagents.add_reagent(r_id, amt_to_inject)
 
 	return ..()
+
 
 /datum/ammo/xeno/toxin/upgrade1
 	name = "neurotoxic spit"
@@ -1517,13 +1531,13 @@
 	damage_var_high = CONFIG_GET(number/combat_define/max_proj_variance)
 	damage_type = BURN
 
-/datum/ammo/xeno/boiler_gas/on_shield_block(mob/M, obj/item/projectile/P)
+/datum/ammo/xeno/boiler_gas/corrosive/on_shield_block(mob/M, obj/item/projectile/P)
 	burst(M,P,damage_type)
 
-/datum/ammo/xeno/boiler_gas/set_xeno_smoke(obj/item/projectile/P)
+/datum/ammo/xeno/boiler_gas/corrosive/set_xeno_smoke(obj/item/projectile/P)
 	smoke_system = new /datum/effect_system/smoke_spread/xeno_acid()
 
-/datum/ammo/xeno/boiler_gas/drop_nade(turf/T)
+/datum/ammo/xeno/boiler_gas/corrosive/drop_nade(turf/T)
 	smoke_system.set_up(3, 0, T)
 	smoke_system.start()
 	T.visible_message("<span class='danger'>A glob of acid lands with a splat and explodes into corrosive bile!</span>")
