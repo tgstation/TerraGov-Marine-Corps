@@ -200,7 +200,7 @@ var/datum/mob_hud/huds = list(
 		holder.icon_state = "xenohealth0"
 	else
 		var/amount = round(health * 100 / maxHealth, 10)
-		if(!amount) 
+		if(!amount)
 			amount = 1 //don't want the 'zero health' icon when we still have 4% of our health
 		holder.icon_state = "xenohealth[amount]"
 
@@ -452,47 +452,6 @@ var/datum/mob_hud/huds = list(
 				else if((R.fields["id"] == E.fields["id"]) && (R.fields["criminal"] == "Released"))
 					holder.icon_state = "hudreleased"
 					break
-
-
-
-//Special role HUD
-
-/mob/proc/hud_set_special_role()
-	return
-
-/mob/living/carbon/human/hud_set_special_role()
-	var/image/holder = hud_list[SPECIALROLE_HUD]
-	holder.icon_state = ""
-
-	if(mind)
-		switch(mind.special_role)
-			if("traitor", "Syndicate")
-				holder.icon_state = "hudsyndicate"
-			if("Revolutionary")
-				holder.icon_state = "hudrevolutionary"
-			if("Head Revolutionary")
-				holder.icon_state = "hudheadrevolutionary"
-			if("Cultist")
-				holder.icon_state = "hudcultist"
-			if("Changeling")
-				holder.icon_state = "hudchangeling"
-			if("Wizard", "Fake Wizard")
-				holder.icon_state = "hudwizard"
-			if("Death Commando")
-				holder.icon_state = "huddeathsquad"
-			if("Ninja")
-				holder.icon_state = "hudninja"
-			if("head_loyalist")
-				holder.icon_state = "hudloyalist"
-			if("loyalist")
-				holder.icon_state = "hudloyalist"
-			if("head_mutineer")
-				holder.icon_state = "hudmutineer"
-			if("mutineer")
-				holder.icon_state = "hudmutineer"
-
-
-
 
 
 //Squad HUD

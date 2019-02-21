@@ -248,7 +248,7 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 
 		if(picked)
 			if(M.mind)
-				M.mind.special_role = "Deathmatch"
+				M.mind.bypass_ff = TRUE
 			M.forceMove(picked)
 			M.revive()
 			if(isbrain(M))
@@ -415,20 +415,6 @@ Only checks living mobs with a client attached.
 
 	return list(num_humans,num_xenos)
 
-/datum/game_mode/proc/count_marines_and_pmcs(list/z_levels)
-	if(!z_levels)
-		z_levels = SSmapping.levels_by_any_trait(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_LOW_ORBIT, ZTRAIT_GROUND)
-
-	var/num_marines = 0
-	var/num_pmcs = 0
-
-	for(var/mob/M in GLOB.player_list)
-		if(M.z && (M.z in z_levels) && M.stat != DEAD && !isspaceturf(M.loc))
-			if(ishuman(M) && !isyautja(M))
-				if(M.mind && M.mind.special_role == "PMC") 	num_pmcs++
-				else if(M.mind && !M.mind.special_role)		num_marines++
-
-	return list(num_marines,num_pmcs)
 
 /*
 #undef QUEEN_DEATH_COUNTDOWN
