@@ -336,7 +336,8 @@
 		C.denode()// this call may have disconnected some cables that terminated on the centre of the turf, if so split the powernets.
 	return
 
-
+/obj/item/stack/cable_coil/single
+	amount = 1
 
 /obj/item/stack/cable_coil/cut
 	item_state = "coil2"
