@@ -591,6 +591,12 @@
 						var/turf/open/floor/FF = get_step(src,direction)
 						FF.update_icon() //so siding get updated properly
 
+/turf/open/floor/carpet/edge2
+	icon_state = "carpetedge"
+
+/turf/open/floor/carpet/alt
+	icon_state = "carpetalt"
+
 // Start Prison tiles
 
 /turf/open/floor/prison

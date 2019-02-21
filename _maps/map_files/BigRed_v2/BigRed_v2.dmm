@@ -12220,17 +12220,13 @@
 /area/bigredv2/outside/hydroponics)
 "aGN" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	tag = "icon-carpet6-2 (WEST)";
-	icon_state = "carpet6-2";
-	dir = 8
+/turf/open/floor/carpet/edge2{
+	dir = 9
 	},
 /area/bigredv2/outside/library)
 "aGO" = (
-/turf/open/floor{
-	tag = "icon-carpet10-8 (WEST)";
-	icon_state = "carpet10-8";
-	dir = 8
+/turf/open/floor/carpet/edge2{
+	dir = 5
 	},
 /area/bigredv2/outside/library)
 "aGP" = (
@@ -12571,27 +12567,17 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
 "aHG" = (
-/turf/open/floor{
-	tag = "icon-carpet15-15 (WEST)";
-	icon_state = "carpet15-15";
-	dir = 8
-	},
+/turf/open/floor/carpet/alt,
 /area/bigredv2/outside/bar)
 "aHH" = (
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-carpet15-15 (WEST)";
-	icon_state = "carpet15-15";
-	dir = 8
-	},
+/turf/open/floor/carpet/alt,
 /area/bigredv2/outside/bar)
 "aHI" = (
-/turf/open/floor{
-	tag = "icon-carpet11-12 (WEST)";
-	icon_state = "carpet11-12";
-	dir = 8
+/turf/open/floor/carpet/edge2{
+	dir = 4
 	},
 /area/bigredv2/outside/bar)
 "aHJ" = (
@@ -12618,18 +12604,14 @@
 /area/bigredv2/outside/hydroponics)
 "aHM" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	tag = "icon-carpet7-3 (WEST)";
-	icon_state = "carpet7-3";
+/turf/open/floor/carpet/edge2{
 	dir = 8
 	},
 /area/bigredv2/outside/library)
 "aHN" = (
 /obj/effect/landmark/random_item/crap,
-/turf/open/floor{
-	tag = "icon-carpet11-12 (WEST)";
-	icon_state = "carpet11-12";
-	dir = 8
+/turf/open/floor/carpet/edge2{
+	dir = 4
 	},
 /area/bigredv2/outside/library)
 "aHO" = (
@@ -12920,29 +12902,17 @@
 	dir = 4
 	},
 /obj/structure/device/piano,
-/turf/open/floor{
-	tag = "icon-carpet15-15 (WEST)";
-	icon_state = "carpet15-15";
-	dir = 8
-	},
+/turf/open/floor/carpet/alt,
 /area/bigredv2/outside/bar)
 "aIr" = (
 /obj/structure/bed/chair/wood/normal{
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-carpet15-15 (WEST)";
-	icon_state = "carpet15-15";
-	dir = 8
-	},
+/turf/open/floor/carpet/alt,
 /area/bigredv2/outside/bar)
 "aIs" = (
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor{
-	tag = "icon-carpet15-15 (WEST)";
-	icon_state = "carpet15-15";
-	dir = 8
-	},
+/turf/open/floor/carpet/alt,
 /area/bigredv2/outside/bar)
 "aIt" = (
 /obj/effect/decal/cleanable/blood/gibs/body,
@@ -13015,10 +12985,8 @@
 /turf/open/floor,
 /area/bigredv2/outside/hydroponics)
 "aIG" = (
-/turf/open/floor{
-	tag = "icon-carpet11-12 (WEST)";
-	icon_state = "carpet11-12";
-	dir = 8
+/turf/open/floor/carpet/edge2{
+	dir = 4
 	},
 /area/bigredv2/outside/library)
 "aIH" = (
@@ -13271,25 +13239,19 @@
 	},
 /area/bigredv2/outside/c)
 "aJn" = (
-/turf/open/floor{
-	tag = "icon-carpet13-5 (WEST)";
-	icon_state = "carpet13-5";
-	dir = 8
+/turf/open/floor/carpet/edge2{
+	dir = 2
 	},
 /area/bigredv2/outside/bar)
 "aJo" = (
 /obj/effect/landmark/random_item/crap,
-/turf/open/floor{
-	tag = "icon-carpet13-5 (WEST)";
-	icon_state = "carpet13-5";
-	dir = 8
+/turf/open/floor/carpet/edge2{
+	dir = 2
 	},
 /area/bigredv2/outside/bar)
 "aJp" = (
-/turf/open/floor{
-	tag = "icon-carpet9-4 (WEST)";
-	icon_state = "carpet9-4";
-	dir = 8
+/turf/open/floor/carpet/edge2{
+	dir = 6
 	},
 /area/bigredv2/outside/bar)
 "aJq" = (
@@ -14054,9 +14016,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
 	},
-/turf/open/floor{
-	tag = "icon-carpet7-3 (WEST)";
-	icon_state = "carpet7-3";
+/turf/open/floor/carpet/edge2{
 	dir = 8
 	},
 /area/bigredv2/outside/library)
@@ -14064,10 +14024,8 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
-/turf/open/floor{
-	tag = "icon-carpet11-12 (WEST)";
-	icon_state = "carpet11-12";
-	dir = 8
+/turf/open/floor/carpet/edge2{
+	dir = 4
 	},
 /area/bigredv2/outside/library)
 "aKO" = (
@@ -14415,18 +14373,14 @@
 /turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
 "aLF" = (
-/turf/open/floor{
-	tag = "icon-carpet7-3 (WEST)";
-	icon_state = "carpet7-3";
+/turf/open/floor/carpet/edge2{
 	dir = 8
 	},
 /area/bigredv2/outside/library)
 "aLG" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	tag = "icon-carpet11-12 (WEST)";
-	icon_state = "carpet11-12";
-	dir = 8
+/turf/open/floor/carpet/edge2{
+	dir = 4
 	},
 /area/bigredv2/outside/library)
 "aLH" = (
@@ -15339,17 +15293,11 @@
 /area/bigredv2/outside/hydroponics)
 "aOi" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	tag = "icon-carpet15-15 (WEST)";
-	icon_state = "carpet15-15";
-	dir = 8
-	},
+/turf/open/floor/carpet/alt,
 /area/bigredv2/outside/library)
 "aOj" = (
-/turf/open/floor{
-	tag = "icon-carpet14-10 (WEST)";
-	icon_state = "carpet14-10";
-	dir = 8
+/turf/open/floor/carpet/edge2{
+	dir = 1
 	},
 /area/bigredv2/outside/library)
 "aOk" = (
@@ -15744,52 +15692,40 @@
 /turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
 "aPk" = (
-/turf/open/floor{
-	tag = "icon-carpet5-1 (WEST)";
-	icon_state = "carpet5-1";
-	dir = 8
+/turf/open/floor/carpet/edge{
+	dir = 10
 	},
 /area/bigredv2/outside/library)
 "aPl" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
 	},
-/turf/open/floor{
-	tag = "icon-carpet13-5 (WEST)";
-	icon_state = "carpet13-5";
-	dir = 8
+/turf/open/floor/carpet/edge2{
+	dir = 2
 	},
 /area/bigredv2/outside/library)
 "aPm" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
-/turf/open/floor{
-	tag = "icon-carpet13-5 (WEST)";
-	icon_state = "carpet13-5";
-	dir = 8
+/turf/open/floor/carpet/edge2{
+	dir = 2
 	},
 /area/bigredv2/outside/library)
 "aPn" = (
 /obj/effect/landmark/random_item/crap,
-/turf/open/floor{
-	tag = "icon-carpet13-5 (WEST)";
-	icon_state = "carpet13-5";
-	dir = 8
+/turf/open/floor/carpet/edge2{
+	dir = 2
 	},
 /area/bigredv2/outside/library)
 "aPo" = (
-/turf/open/floor{
-	tag = "icon-carpet13-5 (WEST)";
-	icon_state = "carpet13-5";
-	dir = 8
+/turf/open/floor/carpet/edge2{
+	dir = 2
 	},
 /area/bigredv2/outside/library)
 "aPp" = (
-/turf/open/floor{
-	tag = "icon-carpet9-4 (WEST)";
-	icon_state = "carpet9-4";
-	dir = 8
+/turf/open/floor/carpet/edge2{
+	dir = 6
 	},
 /area/bigredv2/outside/library)
 "aPq" = (
@@ -19324,24 +19260,18 @@
 	},
 /area/bigredv2/outside/c)
 "aYL" = (
-/turf/open/floor{
-	tag = "icon-carpet6-2 (WEST)";
-	icon_state = "carpet6-2";
-	dir = 8
+/turf/open/floor/carpet/edge2{
+	dir = 9
 	},
 /area/bigredv2/outside/admin_building)
 "aYM" = (
-/turf/open/floor{
-	tag = "icon-carpet14-10 (WEST)";
-	icon_state = "carpet14-10";
-	dir = 8
+/turf/open/floor/carpet/edge2{
+	dir = 1
 	},
 /area/bigredv2/outside/admin_building)
 "aYN" = (
-/turf/open/floor{
-	tag = "icon-carpet10-8 (WEST)";
-	icon_state = "carpet10-8";
-	dir = 8
+/turf/open/floor/carpet/edge2{
+	dir = 5
 	},
 /area/bigredv2/outside/admin_building)
 "aYO" = (
@@ -19552,32 +19482,20 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-carpet7-3 (WEST)";
-	icon_state = "carpet7-3";
+/turf/open/floor/carpet/edge2{
 	dir = 8
 	},
 /area/bigredv2/outside/admin_building)
 "aZA" = (
-/turf/open/floor{
-	tag = "icon-carpet15-15 (WEST)";
-	icon_state = "carpet15-15";
-	dir = 8
-	},
+/turf/open/floor/carpet/alt,
 /area/bigredv2/outside/admin_building)
 "aZB" = (
 /obj/structure/bed/chair/comfy/black,
-/turf/open/floor{
-	tag = "icon-carpet15-15 (WEST)";
-	icon_state = "carpet15-15";
-	dir = 8
-	},
+/turf/open/floor/carpet/alt,
 /area/bigredv2/outside/admin_building)
 "aZC" = (
-/turf/open/floor{
-	tag = "icon-carpet11-12 (WEST)";
-	icon_state = "carpet11-12";
-	dir = 8
+/turf/open/floor/carpet/edge2{
+	dir = 4
 	},
 /area/bigredv2/outside/admin_building)
 "aZD" = (
@@ -19692,30 +19610,20 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "aZS" = (
-/turf/open/floor{
-	tag = "icon-carpet7-3 (WEST)";
-	icon_state = "carpet7-3";
+/turf/open/floor/carpet/edge2{
 	dir = 8
 	},
 /area/bigredv2/outside/admin_building)
 "aZT" = (
 /obj/structure/table,
 /obj/machinery/computer3/laptop/secure_data,
-/turf/open/floor{
-	tag = "icon-carpet15-15 (WEST)";
-	icon_state = "carpet15-15";
-	dir = 8
-	},
+/turf/open/floor/carpet/alt,
 /area/bigredv2/outside/admin_building)
 "aZU" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-carpet15-15 (WEST)";
-	icon_state = "carpet15-15";
-	dir = 8
-	},
+/turf/open/floor/carpet/alt,
 /area/bigredv2/outside/admin_building)
 "aZV" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -19988,19 +19896,11 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-carpet15-15 (WEST)";
-	icon_state = "carpet15-15";
-	dir = 8
-	},
+/turf/open/floor/carpet/alt,
 /area/bigredv2/outside/admin_building)
 "baH" = (
 /obj/structure/table,
-/turf/open/floor{
-	tag = "icon-carpet15-15 (WEST)";
-	icon_state = "carpet15-15";
-	dir = 8
-	},
+/turf/open/floor/carpet/alt,
 /area/bigredv2/outside/admin_building)
 "baI" = (
 /obj/machinery/door/airlock/multi_tile/almayer/comdoor{
@@ -20177,11 +20077,7 @@
 "bbj" = (
 /obj/structure/table,
 /obj/item/alienjar,
-/turf/open/floor{
-	tag = "icon-carpet15-15 (WEST)";
-	icon_state = "carpet15-15";
-	dir = 8
-	},
+/turf/open/floor/carpet/alt,
 /area/bigredv2/outside/admin_building)
 "bbk" = (
 /obj/machinery/light{
@@ -20196,20 +20092,14 @@
 /obj/structure/bed/chair{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-carpet7-3 (WEST)";
-	icon_state = "carpet7-3";
+/turf/open/floor/carpet/edge2{
 	dir = 8
 	},
 /area/bigredv2/outside/admin_building)
 "bbm" = (
 /obj/structure/table,
 /obj/machinery/computer/med_data/laptop,
-/turf/open/floor{
-	tag = "icon-carpet15-15 (WEST)";
-	icon_state = "carpet15-15";
-	dir = 8
-	},
+/turf/open/floor/carpet/alt,
 /area/bigredv2/outside/admin_building)
 "bbn" = (
 /obj/structure/safe,
@@ -20467,9 +20357,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-carpet7-3 (WEST)";
-	icon_state = "carpet7-3";
+/turf/open/floor/carpet/edge2{
 	dir = 8
 	},
 /area/bigredv2/outside/admin_building)
@@ -20480,11 +20368,7 @@
 	dir = 8;
 	on = 1
 	},
-/turf/open/floor{
-	tag = "icon-carpet15-15 (WEST)";
-	icon_state = "carpet15-15";
-	dir = 8
-	},
+/turf/open/floor/carpet/alt,
 /area/bigredv2/outside/admin_building)
 "bbY" = (
 /obj/structure/bed/chair/office/dark,
@@ -20697,11 +20581,7 @@
 	dir = 4;
 	on = 1
 	},
-/turf/open/floor{
-	tag = "icon-carpet15-15 (WEST)";
-	icon_state = "carpet15-15";
-	dir = 8
-	},
+/turf/open/floor/carpet/alt,
 /area/bigredv2/outside/admin_building)
 "bcF" = (
 /obj/structure/bed/chair/office/dark{
@@ -20710,20 +20590,14 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-carpet15-15 (WEST)";
-	icon_state = "carpet15-15";
-	dir = 8
-	},
+/turf/open/floor/carpet/alt,
 /area/bigredv2/outside/admin_building)
 "bcG" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-carpet11-12 (WEST)";
-	icon_state = "carpet11-12";
-	dir = 8
+/turf/open/floor/carpet/edge2{
+	dir = 4
 	},
 /area/bigredv2/outside/admin_building)
 "bcH" = (
@@ -20765,17 +20639,13 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/admin_building)
 "bcM" = (
-/turf/open/floor{
-	tag = "icon-carpet5-1 (WEST)";
-	icon_state = "carpet5-1";
-	dir = 8
+/turf/open/floor/carpet/edge{
+	dir = 10
 	},
 /area/bigredv2/outside/admin_building)
 "bcN" = (
-/turf/open/floor{
-	tag = "icon-carpet13-5 (WEST)";
-	icon_state = "carpet13-5";
-	dir = 8
+/turf/open/floor/carpet/edge2{
+	dir = 2
 	},
 /area/bigredv2/outside/admin_building)
 "bcO" = (
@@ -20944,10 +20814,8 @@
 /turf/open/mars_dirt/random,
 /area/bigredv2/outside/c)
 "bdl" = (
-/turf/open/floor{
-	tag = "icon-carpet9-4 (WEST)";
-	icon_state = "carpet9-4";
-	dir = 8
+/turf/open/floor/carpet/edge2{
+	dir = 6
 	},
 /area/bigredv2/outside/admin_building)
 "bdm" = (
@@ -30439,10 +30307,8 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bDJ" = (
 /obj/structure/showcase,
-/turf/open/floor{
-	tag = "icon-carpet6-2 (WEST)";
-	icon_state = "carpet6-2";
-	dir = 8
+/turf/open/floor/carpet/edge2{
+	dir = 9
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bDK" = (
@@ -30450,10 +30316,8 @@
 	desc = "A stand with a plastic display of some kind of weird machine.";
 	icon_state = "coinpress0"
 	},
-/turf/open/floor{
-	tag = "icon-carpet10-8 (WEST)";
-	icon_state = "carpet10-8";
-	dir = 8
+/turf/open/floor/carpet/edge2{
+	dir = 5
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bDL" = (
@@ -30634,10 +30498,8 @@
 	tag = "icon-mechfab1";
 	icon_state = "mechfab1"
 	},
-/turf/open/floor{
-	tag = "icon-carpet5-1 (WEST)";
-	icon_state = "carpet5-1";
-	dir = 8
+/turf/open/floor/carpet/edge{
+	dir = 10
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bEm" = (
@@ -30645,10 +30507,8 @@
 	tag = "icon-bus";
 	icon_state = "bus"
 	},
-/turf/open/floor{
-	tag = "icon-carpet9-4 (WEST)";
-	icon_state = "carpet9-4";
-	dir = 8
+/turf/open/floor/carpet/edge2{
+	dir = 6
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bEn" = (
