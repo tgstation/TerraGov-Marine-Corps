@@ -214,7 +214,7 @@
 
 	var/list/mobs = sortmobs()
 	var/i = 1
-	for(var/mob/M in mobs)
+	for(var/mob/M in GLOB.mob_list)
 		if(M.ckey && M.client)
 
 			var/color = "#e6e6e6"
@@ -329,7 +329,7 @@
 	dat += "<body><table border=1 cellspacing=5><B><tr><th>Key</th><th>Name</th><th>Type</th><th>PP</th><th>CID</th><th>IP</th><th>JMP</th><th>FLW</th><th>Notes</th></tr></B>"
 	var/list/mobs = sortmobs()
 
-	for(var/mob/M in mobs)
+	for(var/mob/M in GLOB.mob_list)
 		if(!M.ckey)
 			continue
 
