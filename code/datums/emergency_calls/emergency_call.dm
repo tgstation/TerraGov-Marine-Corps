@@ -145,7 +145,7 @@
 
 	spawn(1 MINUTES)
 		if(length(candidates) < mob_min)
-			message_admins("Aborting distress beacon [name], not enough candidates. Found [length(candidates)].")
+			message_admins("Aborting distress beacon [name], not enough candidates. Found: [length(candidates)]. Minimum required: [mob_min].")
 			SSticker.mode.waiting_for_candidates = FALSE
 			members = list() //Empty the members list.
 			candidates = list()
