@@ -1442,10 +1442,7 @@
 /obj/machinery/landinglight/ds1/delaytwo{
 	dir = 8
 	},
-/obj/machinery/landinglight/ds1{
-	tag = "icon-landingstripe";
-	icon_state = "landingstripe"
-	},
+/obj/machinery/landinglight/ds1,
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad2)
 "aem" = (
@@ -1601,10 +1598,7 @@
 /obj/machinery/landinglight/ds1/delaytwo{
 	dir = 4
 	},
-/obj/machinery/landinglight/ds1{
-	tag = "icon-landingstripe";
-	icon_state = "landingstripe"
-	},
+/obj/machinery/landinglight/ds1,
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad2)
 "aeG" = (
@@ -24771,10 +24765,7 @@
 	},
 /area/ice_colony/exterior/surface/landing_pad_external)
 "bdk" = (
-/obj/machinery/landinglight/ds1{
-	tag = "icon-landingstripe";
-	icon_state = "landingstripe"
-	},
+/obj/machinery/landinglight/ds1,
 /obj/machinery/landinglight/ds1/delaythree{
 	dir = 8
 	},
@@ -24784,10 +24775,7 @@
 /area/ice_colony/exterior/surface/landing_pad)
 "bdl" = (
 /obj/machinery/floodlight/landing,
-/obj/machinery/landinglight/ds1{
-	tag = "icon-landingstripe";
-	icon_state = "landingstripe"
-	},
+/obj/machinery/landinglight/ds1,
 /obj/machinery/landinglight/ds1/delayone{
 	dir = 4
 	},
@@ -25440,10 +25428,7 @@
 	},
 /area/ice_colony/surface/excavation/storage)
 "beD" = (
-/obj/machinery/landinglight/ds1/delayone{
-	tag = "icon-landingstripe";
-	icon_state = "landingstripe"
-	},
+/obj/machinery/landinglight/ds1/delayone,
 /turf/open/floor/plating/icefloor{
 	tag = "icon-warnplate";
 	icon_state = "warnplate"
@@ -25457,10 +25442,7 @@
 	},
 /area/ice_colony/exterior/surface/valley/west)
 "beF" = (
-/obj/machinery/landinglight/ds1/delaythree{
-	tag = "icon-landingstripe";
-	icon_state = "landingstripe"
-	},
+/obj/machinery/landinglight/ds1/delaythree,
 /turf/open/floor/plating/icefloor{
 	tag = "icon-warnplate";
 	icon_state = "warnplate"
@@ -25672,10 +25654,7 @@
 /obj/machinery/landinglight/ds1/delaytwo{
 	dir = 8
 	},
-/obj/machinery/landinglight/ds1/delaythree{
-	tag = "icon-landingstripe";
-	icon_state = "landingstripe"
-	},
+/obj/machinery/landinglight/ds1/delaythree,
 /turf/open/floor/plating/icefloor{
 	tag = "icon-warnplate (SOUTHWEST)";
 	icon_state = "warnplate";
@@ -25683,10 +25662,7 @@
 	},
 /area/ice_colony/exterior/surface/landing_pad)
 "bfg" = (
-/obj/machinery/landinglight/ds1{
-	tag = "icon-landingstripe";
-	icon_state = "landingstripe"
-	},
+/obj/machinery/landinglight/ds1,
 /turf/open/floor/plating/icefloor{
 	tag = "icon-warnplate";
 	icon_state = "warnplate"
@@ -25707,20 +25683,14 @@
 	},
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bfj" = (
-/obj/machinery/landinglight/ds1/delaytwo{
-	tag = "icon-landingstripe";
-	icon_state = "landingstripe"
-	},
+/obj/machinery/landinglight/ds1/delaytwo,
 /turf/open/floor/plating/icefloor{
 	tag = "icon-warnplate";
 	icon_state = "warnplate"
 	},
 /area/ice_colony/exterior/surface/landing_pad)
 "bfk" = (
-/obj/machinery/landinglight/ds1/delayone{
-	tag = "icon-landingstripe";
-	icon_state = "landingstripe"
-	},
+/obj/machinery/landinglight/ds1/delayone,
 /obj/machinery/landinglight/ds1/delaytwo{
 	dir = 4
 	},

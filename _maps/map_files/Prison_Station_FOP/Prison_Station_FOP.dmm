@@ -9879,8 +9879,6 @@
 /area/prison/medbay/morgue)
 "auD" = (
 /obj/structure/morgue{
-	tag = "icon-morgue1 (WEST)";
-	icon_state = "morgue1";
 	dir = 8
 	},
 /turf/open/floor/prison,
@@ -26514,40 +26512,28 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
 	},
-/obj/machinery/landinglight/ds1/delaytwo{
-	tag = "icon-landingstripe";
-	icon_state = "landingstripe"
-	},
+/obj/machinery/landinglight/ds1/delaytwo,
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "baG" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
 	},
-/obj/machinery/landinglight/ds1/delayone{
-	tag = "icon-landingstripe";
-	icon_state = "landingstripe"
-	},
+/obj/machinery/landinglight/ds1/delayone,
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "baH" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
 	},
-/obj/machinery/landinglight/ds1{
-	tag = "icon-landingstripe";
-	icon_state = "landingstripe"
-	},
+/obj/machinery/landinglight/ds1,
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "baI" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
 	},
-/obj/machinery/landinglight/ds1/delaythree{
-	tag = "icon-landingstripe";
-	icon_state = "landingstripe"
-	},
+/obj/machinery/landinglight/ds1/delaythree,
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "baJ" = (

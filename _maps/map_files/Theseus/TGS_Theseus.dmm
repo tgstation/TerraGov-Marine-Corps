@@ -583,11 +583,8 @@
 /turf/closed/wall/almayer,
 /area/almayer/living/offices)
 "abD" = (
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_y = 28
+/obj/item/device/radio/intercom/general{
+	dir = 1
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/living/officer_rnr)
@@ -719,11 +716,8 @@
 /area/almayer/living/starboard_garden)
 "acb" = (
 /obj/structure/flora/ausbushes/ywflowers,
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_y = 28
+/obj/item/device/radio/intercom/general{
+	dir = 1
 	},
 /turf/open/floor/grass,
 /area/almayer/living/starboard_garden)
@@ -1011,11 +1005,8 @@
 /turf/open/floor/wood,
 /area/almayer/living/commandbunks)
 "acQ" = (
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_y = 28
+/obj/item/device/radio/intercom/general{
+	dir = 1
 	},
 /turf/open/floor/wood,
 /area/almayer/living/commandbunks)
@@ -3451,11 +3442,8 @@
 	},
 /area/almayer/hallways/aft_hallway)
 "aiY" = (
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_y = 28
+/obj/item/device/radio/intercom/general{
+	dir = 1
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -3549,11 +3537,8 @@
 	},
 /area/almayer/hallways/aft_hallway)
 "aji" = (
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_y = 28
+/obj/item/device/radio/intercom/general{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	dir = 5;
@@ -3762,11 +3747,8 @@
 /area/almayer/hull/upper_hull)
 "ajH" = (
 /obj/structure/bed/chair,
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_y = 25
+/obj/item/device/radio/intercom/general{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	icon_state = "cargo"
@@ -5157,11 +5139,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_y = 28
+/obj/item/device/radio/intercom/general{
+	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -6407,11 +6386,8 @@
 /turf/open/floor/plating,
 /area/almayer/command/cic)
 "aoc" = (
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_y = 28
+/obj/item/device/radio/intercom/general{
+	dir = 1
 	},
 /obj/structure/prop/almayer/mapping_computer,
 /turf/open/floor/almayer{
@@ -6451,11 +6427,8 @@
 	},
 /area/almayer/command/cic)
 "aof" = (
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_y = 28
+/obj/item/device/radio/intercom/general{
+	dir = 1
 	},
 /obj/structure/prop/almayer/mapping_computer,
 /turf/open/floor/almayer{
@@ -7104,8 +7077,6 @@
 /area/almayer/medical/upper_medical)
 "apE" = (
 /obj/structure/morgue{
-	tag = "icon-morgue1 (WEST)";
-	icon_state = "morgue1";
 	dir = 8
 	},
 /turf/open/floor/almayer/mono,
@@ -7245,11 +7216,8 @@
 /area/almayer/command/telecomms)
 "apV" = (
 /obj/structure/rack,
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_y = 28
+/obj/item/device/radio/intercom/general{
+	dir = 1
 	},
 /obj/item/storage/pouch/tools,
 /turf/open/floor/almayer/mono,
@@ -8051,11 +8019,8 @@
 "arD" = (
 /obj/structure/rack,
 /obj/item/clothing/suit/armor/bulletproof,
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_y = 28
+/obj/item/device/radio/intercom/general{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	tag = "icon-redfull";
@@ -9321,11 +9286,8 @@
 /turf/open/floor/almayer/mono,
 /area/almayer/command/self_destruct)
 "auk" = (
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_y = 28
+/obj/item/device/radio/intercom/general{
+	dir = 1
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/command/self_destruct)
@@ -10747,11 +10709,8 @@
 "axb" = (
 /obj/structure/table/almayer,
 /obj/item/tool/hand_labeler,
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_y = 28
+/obj/item/device/radio/intercom/general{
+	dir = 1
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/engineering/upper_engineering)
@@ -13438,11 +13397,8 @@
 	},
 /area/almayer/medical/upper_medical)
 "aBO" = (
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_y = 28
+/obj/item/device/radio/intercom/general{
+	dir = 1
 	},
 /obj/machinery/vending/coffee,
 /turf/open/floor/almayer{
@@ -16232,11 +16188,8 @@
 	},
 /area/almayer/medical/medical_science)
 "aGG" = (
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_y = 28
+/obj/item/device/radio/intercom/general{
+	dir = 1
 	},
 /obj/machinery/chem_dispenser,
 /turf/open/floor/almayer{
@@ -16792,11 +16745,8 @@
 	},
 /area/almayer/medical/lower_medical)
 "aHP" = (
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_y = 28
+/obj/item/device/radio/intercom/general{
+	dir = 1
 	},
 /obj/structure/bed/chair,
 /turf/open/floor/almayer{
@@ -19351,11 +19301,8 @@
 	},
 /area/almayer/hallways/stern_hallway)
 "aMs" = (
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_y = 28
+/obj/item/device/radio/intercom/general{
+	dir = 1
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -20231,11 +20178,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_y = 28
+/obj/item/device/radio/intercom/general{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	dir = 1;
@@ -20936,11 +20880,8 @@
 	},
 /area/almayer/engineering/port_atmos)
 "aPq" = (
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_y = 28
+/obj/item/device/radio/intercom/general{
+	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -22578,11 +22519,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6
 	},
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_y = 25
+/obj/item/device/radio/intercom/general{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	dir = 1;
@@ -24140,11 +24078,8 @@
 /turf/open/floor/almayer/mono,
 /area/almayer/hull/lower_hull)
 "aXv" = (
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_y = 28
+/obj/item/device/radio/intercom/general{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	dir = 8;
@@ -24335,11 +24270,8 @@
 /area/almayer/living/starboard_emb)
 "aXS" = (
 /obj/structure/closet,
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_y = 28
+/obj/item/device/radio/intercom/general{
+	dir = 1
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/living/starboard_emb)
@@ -24679,11 +24611,8 @@
 	},
 /area/almayer/squads/alpha)
 "aYI" = (
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_y = 28
+/obj/item/device/radio/intercom/general{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	dir = 1;
@@ -25831,11 +25760,8 @@
 	},
 /area/almayer/squads/bravo)
 "bbe" = (
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_y = 28
+/obj/item/device/radio/intercom/general{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	icon_state = "cargo"
@@ -25930,11 +25856,8 @@
 /area/almayer/living/cafeteria_starboard)
 "bbs" = (
 /obj/structure/table/almayer,
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_y = 28
+/obj/item/device/radio/intercom/general{
+	dir = 1
 	},
 /turf/open/floor/almayer,
 /area/almayer/living/cafeteria_starboard)
@@ -28958,11 +28881,8 @@
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/starboard_hallway)
 "bip" = (
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_y = 28
+/obj/item/device/radio/intercom/general{
+	dir = 1
 	},
 /turf/open/floor/almayer,
 /area/almayer/hallways/starboard_hallway)
@@ -30420,31 +30340,19 @@
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/hangar)
 "bkX" = (
-/obj/machinery/landinglight/ds1/delaytwo{
-	tag = "icon-landingstripe";
-	icon_state = "landingstripe"
-	},
+/obj/machinery/landinglight/ds1/delaytwo,
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/hangar)
 "bkY" = (
-/obj/machinery/landinglight/ds1/delayone{
-	tag = "icon-landingstripe";
-	icon_state = "landingstripe"
-	},
+/obj/machinery/landinglight/ds1/delayone,
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/hangar)
 "bkZ" = (
-/obj/machinery/landinglight/ds1{
-	tag = "icon-landingstripe";
-	icon_state = "landingstripe"
-	},
+/obj/machinery/landinglight/ds1,
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/hangar)
 "bla" = (
-/obj/machinery/landinglight/ds1/delaythree{
-	tag = "icon-landingstripe";
-	icon_state = "landingstripe"
-	},
+/obj/machinery/landinglight/ds1/delaythree,
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/hangar)
 "blb" = (
@@ -31306,11 +31214,8 @@
 /area/almayer/medical/surgery_hallway)
 "bng" = (
 /obj/structure/bed,
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_y = 28
+/obj/item/device/radio/intercom/general{
+	dir = 1
 	},
 /obj/item/bedsheet/medical,
 /obj/machinery/status_display{
@@ -31325,11 +31230,8 @@
 "bnh" = (
 /obj/structure/bed,
 /obj/item/bedsheet/medical,
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_y = 28
+/obj/item/device/radio/intercom/general{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	dir = 1;
@@ -31599,11 +31501,8 @@
 /area/almayer/living/cryo_cells)
 "bnL" = (
 /obj/machinery/cryopod/right,
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_y = 28
+/obj/item/device/radio/intercom/general{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	icon_state = "cargo"
@@ -35613,11 +35512,8 @@
 /area/almayer/engineering/engineering_workshop)
 "bwv" = (
 /obj/machinery/vending/coffee,
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_y = 28
+/obj/item/device/radio/intercom/general{
+	dir = 1
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/engineering/engineering_workshop)
@@ -35653,11 +35549,8 @@
 /area/almayer/engineering/engineering_workshop)
 "bwz" = (
 /obj/machinery/vending/engivend,
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_y = 28
+/obj/item/device/radio/intercom/general{
+	dir = 1
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/engineering/engineering_workshop)
@@ -35817,11 +35710,8 @@
 /obj/structure/table/almayer,
 /obj/item/storage/box/syringes,
 /obj/item/reagent_container/dropper,
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_y = 28
+/obj/item/device/radio/intercom/general{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	dir = 2;
@@ -37957,11 +37847,8 @@
 	},
 /area/almayer/engineering/lower_engine_monitoring)
 "bBe" = (
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_y = 28
+/obj/item/device/radio/intercom/general{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	dir = 1;
@@ -39103,11 +38990,8 @@
 /area/almayer/engineering/engine_core)
 "bDA" = (
 /obj/machinery/door/firedoor/border_only/almayer,
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_y = 28
+/obj/item/device/radio/intercom/general{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	tag = "icon-test_floor4";
@@ -39169,11 +39053,8 @@
 /turf/open/floor/plating,
 /area/almayer/squads/req)
 "bDH" = (
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_y = 28
+/obj/item/device/radio/intercom/general{
+	dir = 1
 	},
 /obj/structure/closet/crate/delta,
 /turf/open/floor/plating/almayer/striped{
@@ -40259,11 +40140,8 @@
 	},
 /area/almayer/medical/lower_medical)
 "bFU" = (
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_y = 28
+/obj/item/device/radio/intercom/general{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	dir = 1;
@@ -40592,11 +40470,8 @@
 /obj/item/device/flashlight,
 /obj/item/device/flashlight,
 /obj/item/tool/crowbar,
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_y = 28
+/obj/item/device/radio/intercom/general{
+	dir = 1
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/engineering/lower_engine_monitoring)
@@ -44450,11 +44325,8 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/hallways/port_hallway)
 "bOF" = (
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_y = 28
+/obj/item/device/radio/intercom/general{
+	dir = 1
 	},
 /turf/open/floor/almayer,
 /area/almayer/hallways/port_hallway)
@@ -44886,11 +44758,8 @@
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/port_hallway)
 "bPG" = (
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_y = 28
+/obj/item/device/radio/intercom/general{
+	dir = 1
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/port_hallway)
@@ -46570,11 +46439,8 @@
 	icon_state = "wooden_chair";
 	dir = 4
 	},
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_y = 28
+/obj/item/device/radio/intercom/general{
+	dir = 1
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/living/grunt_rnr)
@@ -47231,11 +47097,8 @@
 /area/almayer/living/port_emb)
 "bUl" = (
 /obj/structure/closet,
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_y = 28
+/obj/item/device/radio/intercom/general{
+	dir = 1
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/living/port_emb)
@@ -48766,11 +48629,8 @@
 	},
 /area/almayer/squads/charlie)
 "bXR" = (
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_y = 28
+/obj/item/device/radio/intercom/general{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	dir = 1;
@@ -50308,11 +50168,8 @@
 	},
 /area/almayer/squads/delta)
 "cbv" = (
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_y = 28
+/obj/item/device/radio/intercom/general{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	icon_state = "cargo"
@@ -53671,11 +53528,8 @@
 	},
 /area/almayer/living/briefing)
 "ciL" = (
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_y = 28
+/obj/item/device/radio/intercom/general{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	dir = 1;
@@ -54621,11 +54475,8 @@
 	},
 /area/almayer/shipboard/weapon_room)
 "ckJ" = (
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_y = 28
+/obj/item/device/radio/intercom/general{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	dir = 4;

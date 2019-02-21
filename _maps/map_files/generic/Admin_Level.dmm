@@ -4484,11 +4484,8 @@
 /area/shuttle/distress/start_big)
 "lh" = (
 /obj/machinery/vending/engivend,
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_y = 28
+/obj/item/device/radio/intercom/general{
+	dir = 1
 	},
 /obj/machinery/light{
 	dir = 4

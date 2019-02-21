@@ -24,41 +24,25 @@
 /area/bigredv2/outside/space_port)
 "aag" = (
 /obj/machinery/floodlight/landing,
-/turf/open/floor{
-	tag = "icon-asteroidplating";
-	icon_state = "asteroidplating";
-	dir = 2
-	},
+/turf/open/floor/plating/asteroidplating,
 /area/bigredv2/outside/space_port)
 "aah" = (
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "aai" = (
-/obj/machinery/landinglight/ds1/delaytwo{
-	tag = "icon-landingstripe";
-	icon_state = "landingstripe"
-	},
+/obj/machinery/landinglight/ds1/delaytwo,
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/space_port)
 "aaj" = (
-/obj/machinery/landinglight/ds1/delayone{
-	tag = "icon-landingstripe";
-	icon_state = "landingstripe"
-	},
+/obj/machinery/landinglight/ds1/delayone,
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/space_port)
 "aak" = (
-/obj/machinery/landinglight/ds1{
-	tag = "icon-landingstripe";
-	icon_state = "landingstripe"
-	},
+/obj/machinery/landinglight/ds1,
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/space_port)
 "aal" = (
-/obj/machinery/landinglight/ds1/delaythree{
-	tag = "icon-landingstripe";
-	icon_state = "landingstripe"
-	},
+/obj/machinery/landinglight/ds1/delaythree,
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/space_port)
 "aam" = (
@@ -156,11 +140,7 @@
 /area/bigredv2/outside/space_port)
 "aaD" = (
 /obj/machinery/telecomms/relay/preset/ice_colony,
-/turf/open/floor{
-	tag = "icon-asteroidplating";
-	icon_state = "asteroidplating";
-	dir = 2
-	},
+/turf/open/floor/plating/asteroidplating,
 /area/bigredv2/outside/telecomm)
 "aaE" = (
 /obj/machinery/landinglight/ds1/delayone{
@@ -3920,12 +3900,8 @@
 	},
 /area/bigredv2/outside/marshal_office)
 "alw" = (
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	frequency = 1469;
-	name = "General Listening Channel";
-	pixel_x = 30;
+/obj/item/device/radio/intercom/general/colony{
+	dir = 4
 	},
 /turf/open/floor/tile/red/redtaupe{
 	dir = 5
@@ -5900,8 +5876,6 @@
 /area/bigredv2/outside/medical)
 "aqE" = (
 /obj/structure/morgue{
-	tag = "icon-morgue1 (WEST)";
-	icon_state = "morgue1";
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
@@ -6007,12 +5981,8 @@
 /turf/open/floor/freezer,
 /area/bigredv2/outside/general_offices)
 "aqT" = (
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	frequency = 1469;
-	name = "General Listening Channel";
-	pixel_x = 30;
+/obj/item/device/radio/intercom/general/colony{
+	dir = 4
 	},
 /turf/open/floor/freezer,
 /area/bigredv2/outside/general_offices)
@@ -7195,12 +7165,8 @@
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
 "aud" = (
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	frequency = 1469;
-	name = "General Listening Channel";
-	pixel_x = 30;
+/obj/item/device/radio/intercom/general/colony{
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable{
@@ -7239,7 +7205,7 @@
 /obj/item/device/radio/intercom{
 	frequency = 150;
 	name = "Safe-Room intercom";
-	pixel_y = 30
+	dir = 1
 	},
 /turf/open/floor/wood,
 /area/bigredv2/caves/lambda_lab)
@@ -8867,12 +8833,8 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	frequency = 1469;
-	name = "General Listening Channel";
-	pixel_x = 30;
+/obj/item/device/radio/intercom/general/colony{
+	dir = 4
 	},
 /turf/open/floor/tile/green/whitegreen{
 	dir = 4
@@ -8929,12 +8891,8 @@
 /turf/open/floor/grimy,
 /area/bigredv2/outside/dorms)
 "ayv" = (
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	frequency = 1469;
-	name = "General Listening Channel";
-	pixel_x = 30;
+/obj/item/device/radio/intercom/general/colony{
+	dir = 4
 	},
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
@@ -13398,12 +13356,8 @@
 /obj/structure/bed/chair/wood/normal{
 	dir = 1
 	},
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	frequency = 1469;
-	name = "General Listening Channel";
-	pixel_x = 30;
+/obj/item/device/radio/intercom/general/colony{
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/bigredv2/outside/bar)
@@ -16554,12 +16508,8 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/admin_building)
 "aRc" = (
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	frequency = 1469;
-	name = "General Listening Channel";
-	pixel_x = 30;
+/obj/item/device/radio/intercom/general/colony{
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
@@ -18672,12 +18622,8 @@
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aWB" = (
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	frequency = 1469;
-	name = "General Listening Channel";
-	pixel_x = 30;
+/obj/item/device/radio/intercom/general/colony{
+	dir = 4
 	},
 /obj/structure/bed,
 /turf/open/floor/tile/blue/whitebluefull,
@@ -18944,12 +18890,8 @@
 /obj/structure/table,
 /obj/item/paper_bin,
 /obj/item/tool/pen,
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	frequency = 1469;
-	name = "General Listening Channel";
-	pixel_x = 30;
+/obj/item/device/radio/intercom/general/colony{
+	dir = 4
 	},
 /turf/open/floor/tile/dark/blue2{
 	dir = 4
@@ -19183,12 +19125,8 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	frequency = 1469;
-	name = "General Listening Channel";
-	pixel_x = 30;
+/obj/item/device/radio/intercom/general/colony{
+	dir = 4
 	},
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
@@ -21170,12 +21108,8 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
 "bdp" = (
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	frequency = 1469;
-	name = "General Listening Channel";
-	pixel_x = 30;
+/obj/item/device/radio/intercom/general/colony{
+	dir = 4
 	},
 /turf/open/floor/tile/dark/red2{
 	dir = 4
@@ -22203,12 +22137,8 @@
 /area/bigredv2/outside/office_complex)
 "bgl" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	frequency = 1469;
-	name = "General Listening Channel";
-	pixel_x = 30;
+/obj/item/device/radio/intercom/general/colony{
+	dir = 4
 	},
 /turf/open/floor/tile/red/redtaupecorner{
 	dir = 2
@@ -22354,12 +22284,8 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/office_complex)
 "bgM" = (
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	frequency = 1469;
-	name = "General Listening Channel";
-	pixel_x = 30;
+/obj/item/device/radio/intercom/general/colony{
+	dir = 4
 	},
 /turf/open/floor/tile/red/redtaupecorner{
 	dir = 2
@@ -22419,12 +22345,8 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/bigredv2/outside/office_complex)
 "bgV" = (
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	frequency = 1469;
-	name = "General Listening Channel";
-	pixel_x = 30;
+/obj/item/device/radio/intercom/general/colony{
+	dir = 4
 	},
 /turf/open/floor/tile/whiteyellow/full,
 /area/bigredv2/outside/office_complex)
@@ -22588,11 +22510,7 @@
 /area/bigredv2/caves)
 "bht" = (
 /obj/machinery/floodlight/landing,
-/turf/open/floor{
-	tag = "icon-asteroidplating";
-	icon_state = "asteroidplating";
-	dir = 2
-	},
+/turf/open/floor/plating/asteroidplating,
 /area/bigredv2/outside/w)
 "bhu" = (
 /obj/machinery/landinglight/ds2/delaytwo,
@@ -22627,11 +22545,7 @@
 /area/bigredv2/outside/cargo)
 "bhB" = (
 /obj/machinery/floodlight/landing,
-/turf/open/floor{
-	tag = "icon-asteroidplating";
-	icon_state = "asteroidplating";
-	dir = 2
-	},
+/turf/open/floor/plating/asteroidplating,
 /area/bigredv2/outside/cargo)
 "bhC" = (
 /obj/structure/cable{
@@ -25165,12 +25079,8 @@
 /area/bigredv2/outside/engineering)
 "bnY" = (
 /obj/machinery/photocopier,
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	frequency = 1469;
-	name = "General Listening Channel";
-	pixel_x = 30;
+/obj/item/device/radio/intercom/general/colony{
+	dir = 4
 	},
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
@@ -26562,12 +26472,8 @@
 	on = 1
 	},
 /obj/item/tool/pen,
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	frequency = 1469;
-	name = "General Listening Channel";
-	pixel_x = 30;
+/obj/item/device/radio/intercom/general/colony{
+	dir = 4
 	},
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
@@ -26670,12 +26576,8 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "brR" = (
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	frequency = 1469;
-	name = "General Listening Channel";
-	pixel_x = 30;
+/obj/item/device/radio/intercom/general/colony{
+	dir = 4
 	},
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
@@ -26741,11 +26643,7 @@
 /area/bigredv2/outside/filtration_plant)
 "bsa" = (
 /obj/machinery/floodlight/landing,
-/turf/open/floor{
-	tag = "icon-asteroidplating";
-	icon_state = "asteroidplating";
-	dir = 2
-	},
+/turf/open/floor/plating/asteroidplating,
 /area/bigredv2/outside/sw)
 "bsb" = (
 /obj/machinery/landinglight/ds2{

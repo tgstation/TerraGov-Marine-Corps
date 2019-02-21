@@ -116,6 +116,9 @@
 /turf/open/floor/plating/asteroidfloor
 	icon_state = "asteroidfloor"
 
+/turf/open/floor/plating/asteroidplating
+	icon_state = "asteroidplating"
+
 /turf/open/floor/plating/dmg1
 	icon_state = "platingdmg1"
 

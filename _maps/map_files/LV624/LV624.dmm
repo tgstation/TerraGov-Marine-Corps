@@ -13098,31 +13098,19 @@
 /turf/open/floor/mech_bay_recharge_floor,
 /area/shuttle/drop1/lz1)
 "aTp" = (
-/obj/machinery/landinglight/ds1/delaytwo{
-	tag = "icon-landingstripe";
-	icon_state = "landingstripe"
-	},
+/obj/machinery/landinglight/ds1/delaytwo,
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "aTq" = (
-/obj/machinery/landinglight/ds1/delayone{
-	tag = "icon-landingstripe";
-	icon_state = "landingstripe"
-	},
+/obj/machinery/landinglight/ds1/delayone,
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "aTr" = (
-/obj/machinery/landinglight/ds1{
-	tag = "icon-landingstripe";
-	icon_state = "landingstripe"
-	},
+/obj/machinery/landinglight/ds1,
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "aTs" = (
-/obj/machinery/landinglight/ds1/delaythree{
-	tag = "icon-landingstripe";
-	icon_state = "landingstripe"
-	},
+/obj/machinery/landinglight/ds1/delaythree,
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "aTt" = (
