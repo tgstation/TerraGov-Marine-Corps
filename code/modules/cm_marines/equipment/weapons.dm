@@ -91,9 +91,9 @@
 			return
 	return TRUE
 
-/obj/item/smartgun_powerpack/attack_hand()
-	if(usr.get_inactive_held_item() == src && pcell)
-		usr.put_in_hands(pcell)
+/obj/item/smartgun_powerpack/attack_hand(mob/user)
+	if(user.get_inactive_held_item() == src && !QDELETED(pcell))
+		user.put_in_hands(pcell)
 		playsound(src,'sound/machines/click.ogg', 25, 1)
 		to_chat(usr, "You take out the [pcell] out of the [src].")
 		pcell = null
@@ -102,11 +102,11 @@
 	else
 		return ..()
 
-/obj/item/smartgun_powerpack/attackby(var/obj/item/A as obj, mob/user as mob)
-	if(istype(A, /obj/item/cell) && !pcell)
+/obj/item/smartgun_powerpack/attackby(obj/item/A, mob/user)
+	if(istype(A, /obj/item/cell) && QDELETED(pcell))
 		var/obj/item/cell/C = A
+		user.transferItemToLoc(C, src)
 		pcell = C
-		C.forceMove(src)
 		user.visible_message("[user] puts a new power cell in the [src].", "You put a new power cell in the [src] containing [pcell.charge] charge.")
 		playsound(src,'sound/machines/click.ogg', 25, 1)
 	else if(pcell)
