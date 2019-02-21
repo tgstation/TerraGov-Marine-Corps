@@ -63,7 +63,7 @@
 
 				}
 
-				function expand(id,job,name,real_name,image,key,ip,antagonist,ref){
+				function expand(id,job,name,real_name,key,ip,antagonist,ref){
 
 					clearAll();
 
