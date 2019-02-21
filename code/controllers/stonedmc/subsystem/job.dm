@@ -100,7 +100,8 @@ SUBSYSTEM_DEF(job)
 	for(var/datum/job/job in shuffle(occupations))
 		if((job.current_positions < job.spawn_positions) || job.spawn_positions == -1)
 			JobDebug("GRJ Random job given, Player: [player], Job: [job]")
-			. = AssignRole(player, job.title)
+			if(AssignRole(player, job.title))
+				return TRUE
 
 /datum/controller/subsystem/job/proc/ResetOccupations()
 	JobDebug("Occupations reset.")

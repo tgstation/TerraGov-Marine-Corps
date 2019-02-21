@@ -328,14 +328,14 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 		HTML += "</td><td width='40%'> "
 
-		if(GetJobDepartment(job, 1) & job.prefflag)
-			HTML += "<a href='?_src_=prefs;preference=jobselect;job=[job.title];level=4'><font color=blue>\[High]</font></a>"
-		else if(GetJobDepartment(job, 2) & job.prefflag)
-			HTML += "<a href='?_src_=prefs;preference=jobselect;job=[job.title];level=1'><font color=green>\[Medium]</font></a>"
-		else if(GetJobDepartment(job, 3) & job.prefflag)
-			HTML += "<a href='?_src_=prefs;preference=jobselect;job=[job.title];level=2'><font color=orange>\[Low]</font></a>"
+		if(GetJobDepartment(job, JOBS_PRIORITY_HIGH) & job.prefflag)
+			HTML += "<a href='?_src_=prefs;preference=jobselect;job=[job.title];level=[JOBS_PRIORITY_NEVER]'><font color=blue>\[High]</font></a>"
+		else if(GetJobDepartment(job, JOBS_PRIORITY_MEDIUM) & job.prefflag)
+			HTML += "<a href='?_src_=prefs;preference=jobselect;job=[job.title];level=[JOBS_PRIORITY_HIGH]'><font color=green>\[Medium]</font></a>"
+		else if(GetJobDepartment(job, JOBS_PRIORITY_LOW) & job.prefflag)
+			HTML += "<a href='?_src_=prefs;preference=jobselect;job=[job.title];level=[JOBS_PRIORITY_MEDIUM]'><font color=orange>\[Low]</font></a>"
 		else
-			HTML += "<a href='?_src_=prefs;preference=jobselect;job=[job.title];level=3'><font color=red>\[NEVER]</font></a>"
+			HTML += "<a href='?_src_=prefs;preference=jobselect;job=[job.title];level=[JOBS_PRIORITY_LOW]'><font color=red>\[NEVER]</font></a>"
 		HTML += "</td></tr>"
 
 	HTML += "</td'></tr></table>"
@@ -394,11 +394,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	if(!job?.prefflag || !level)
 		return FALSE
 	switch(level)
-		if(1)
+		if(JOBS_PRIORITY_HIGH)
 			return jobs_high
-		if(2)
+		if(JOBS_PRIORITY_MEDIUM)
 			return jobs_medium
-		if(3)
+		if(JOBS_PRIORITY_LOW)
 			return jobs_low
 	return FALSE
 
@@ -408,18 +408,18 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		return FALSE
 	if(!job.prefflag)
 		return FALSE
-	if(jobs_high && level == 1)
+	if(jobs_high && level == JOBS_PRIORITY_HIGH)
 		jobs_high = NOFLAGS
 	switch(level)
-		if(1)
+		if(JOBS_PRIORITY_HIGH)
 			jobs_high = job.prefflag
 			jobs_medium &= ~job.prefflag
-		if(2)
+		if(JOBS_PRIORITY_MEDIUM)
 			jobs_medium |= job.prefflag
 			jobs_low &= ~job.prefflag
-		if(3)
+		if(JOBS_PRIORITY_LOW)
 			jobs_low |= job.prefflag
-		if(4)
+		if(JOBS_PRIORITY_NEVER)
 			jobs_high = NOFLAGS
 	return TRUE
 
@@ -565,7 +565,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				alternate_option = RETURN_TO_LOBBY
 			else if(alternate_option == RETURN_TO_LOBBY)
 				alternate_option = GET_RANDOM_JOB
-				return FALSE
 			SetChoices(user)
 			return
 
