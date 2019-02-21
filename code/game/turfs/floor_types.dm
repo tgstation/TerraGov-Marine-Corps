@@ -549,6 +549,9 @@
 /turf/open/floor/tile/dark/brown2/corner
 	icon_state = "darkbrowncorners2"
 
+/turf/open/floor/tile/dark/green2
+	icon_state = "darkgreen2"
+
 /turf/open/floor/tile/dark/green2/corner
 	icon_state = "darkgreencorners2"
 
@@ -621,23 +624,59 @@
 /turf/open/floor/prison/darkred/corners
 	icon_state = "darkredcorners2"
 
+/turf/open/floor/prison/darkred/full
+	icon_state = "darkredfull2"
+
 /turf/open/floor/prison/darkyellow
 	icon_state = "darkyellow2"
-	
+
+/turf/open/floor/prison/darkyellow/full
+	icon_state = "darkyellowfull2"
+
 /turf/open/floor/prison/darkyellow/corner
 	icon_state = "darkyellowcorners2"
+
+/turf/open/floor/prison/darkgreen
+	icon_state = "darkgreen2"
+
+/turf/open/floor/prison/darkbrown
+	icon_state = "darkbrown2"
 
 /turf/open/floor/prison/darkbrown/corner
 	icon_state = "darkbrowncorners2"
 
+/turf/open/floor/prison/green
+	icon_state = "green"
+
+/turf/open/floor/prison/green/full
+	icon_state = "greenfull"
+
 /turf/open/floor/prison/green/corner
 	icon_state = "greencorner"
+
+/turf/open/floor/prison/blue
+	icon_state = "blue"
+
+/turf/open/floor/prison/blue/full
+	icon_state = "bluefull"
 
 /turf/open/floor/prison/blue/corner
 	icon_state = "bluecorner"
 
+/turf/open/floor/prison/yellow
+	icon_state = "yellow"
+
+/turf/open/floor/prison/yellow/full
+	icon_state = "yellowfull"
+
 /turf/open/floor/prison/yellow/corner
 	icon_state = "yellowcorner"
+
+/turf/open/floor/prison/red
+	icon_state = "red"
+
+/turf/open/floor/prison/red/full
+	icon_state = "redfull"
 
 /turf/open/floor/prison/red/corner
 	icon_state = "redcorner"
