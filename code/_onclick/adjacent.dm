@@ -25,7 +25,7 @@
 	* If you are diagonally adjacent, ensure you can pass through at least one of the mutually adjacent square.
 		* Passing through in this case ignores anything with the throwpass flag, such as tables, racks, and morgue trays.
 */
-/turf/Adjacent(atom/neighbor, atom/target = null, atom/movable/mover = null)
+/turf/Adjacent(atom/neighbor, atom/target, atom/movable/mover)
 	var/turf/T0 = get_turf(neighbor)
 	
 	if(T0 == src) //same turf
@@ -82,9 +82,17 @@
 
 //Multitile special cases.
 /obj/structure/Adjacent(atom/neighbor)
-	for(var/X in locs)
-		var/turf/T = X
-		if(T.Adjacent(neighbor, target = neighbor, mover = src))
+	if(bound_width > 32 || bound_height > 32)
+		for(var/X in locs)
+			var/turf/T = X
+			if(T.Adjacent(neighbor, target = neighbor, mover = src))
+				return TRUE
+	else
+		if(neighbor == loc)
+			return TRUE
+		if(!isturf(loc))
+			return FALSE
+		if(loc.Adjacent(neighbor, target = neighbor, mover = src))
 			return TRUE
 	return FALSE
 
@@ -98,25 +106,34 @@
 
 
 /obj/machinery/door/Adjacent(atom/neighbor)
-	for(var/X in locs)
-		var/turf/T = X
-		if(T.Adjacent(neighbor, target = neighbor, mover = src))
+	if(bound_width > 32 || bound_height > 32)
+		for(var/X in locs)
+			var/turf/T = X
+			if(T.Adjacent(neighbor, target = neighbor, mover = src))
+				return TRUE
+	else
+		if(neighbor == loc)
+			return TRUE
+		if(!isturf(loc))
+			return FALSE
+		if(loc.Adjacent(neighbor, target = neighbor, mover = src))
 			return TRUE
 	return FALSE
 
 
 // This is necessary for storage items not on your person.
 /obj/item/Adjacent(atom/neighbor)
-	if(neighbor == loc) //Item is in the neighbor.
+	if(neighbor == loc || neighbor == loc.loc) //Item is in the neighbor or something that it holds.
 		return TRUE
 
 	if(isitem(loc)) //Special case handling.
-		if(neighbor == loc.loc) //Item is inside an item held by the neighbor.
-			return TRUE
-		if(!isturf(loc.loc)) //Item is inside an item neither held by neighbor nor in a turf. Can't access.
-			return FALSE
-		return loc.loc.Adjacent(neighbor,src)
-		
+		if(istype(loc, /obj/item/storage/internal)) //Special holders, could be contained really deep, like webbings, so let's go one step further.
+			return loc.Adjacent(neighbor)
+		else //Backpacks and other containers.
+			if(!isturf(loc.loc)) //Item is inside an item neither held by neighbor nor in a turf. Can't access.
+				return FALSE
+			return loc.loc.Adjacent(neighbor, target = neighbor, mover = src)
+
 	if(!isturf(loc)) //Default behavior.
 		return FALSE
 	if(loc.Adjacent(neighbor, target = neighbor, mover = src))
