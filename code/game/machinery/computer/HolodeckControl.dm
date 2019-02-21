@@ -402,10 +402,11 @@ var/global/list/holodeck_programs = list(
 	//Can be picked up by aliens
 /obj/item/toy/beach_ball/holoball/attack_paw(user as mob)
 	if(isxeno(user))
-		attack_alien(user)
+		return FALSE
+	attack_alien(user)
 
 /obj/item/toy/beach_ball/holoball/attack_alien(mob/living/carbon/Xenomorph/user)
-		attack_hand(user)
+	attack_hand(user)
 
 /obj/structure/holohoop
 	name = "basketball hoop"
