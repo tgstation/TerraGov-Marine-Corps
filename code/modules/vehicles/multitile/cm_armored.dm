@@ -649,7 +649,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		return
 
 	//Determine how many 3 second intervals to wait and if you have the right tool
-	var/num_delays = 1
+	var/num_delays = 6
 	switch(slot)
 		if(HDPT_PRIMARY)
 			num_delays = 5
@@ -676,6 +676,16 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 
 		if(HDPT_ARMOR)
 			num_delays = 10
+			if(!iswelder(O))
+				to_chat(user, "<span class='warning'>That's the wrong tool. Use a welder.</span>")
+				return
+			var/obj/item/tool/weldingtool/WT = O
+			if(!WT.isOn())
+				to_chat(user, "<span class='warning'>You need to light your [WT] first.</span>")
+				return
+			WT.remove_fuel(num_delays, user)
+
+		if(HDPT_TREADS)
 			if(!iswelder(O))
 				to_chat(user, "<span class='warning'>That's the wrong tool. Use a welder.</span>")
 				return

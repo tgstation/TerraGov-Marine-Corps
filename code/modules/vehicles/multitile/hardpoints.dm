@@ -37,6 +37,40 @@ Currently only has the tank hardpoints
 	if(starter_ammo)
 		ammo = new starter_ammo
 
+/obj/item/hardpoint/attackby(obj/item/W, mob/user)
+	var/repair_delays = 6
+	var/obj/item/tool/repair_tool = /obj/item/tool/weldingtool
+	switch(slot)
+		if(HDPT_PRIMARY)
+			repair_delays = 5
+		if(HDPT_SECDGUN)
+			repair_tool = /obj/item/tool/wrench
+			repair_delays = 3
+		if(HDPT_SUPPORT)
+			repair_tool = /obj/item/tool/wrench
+			repair_delays = 2
+		if(HDPT_ARMOR)
+			repair_delays = 10
+	if(!istype(W, repair_tool))
+		return ..()
+	if(iswelder(W))
+		var/obj/item/tool/weldingtool/WT = W
+		if(!WT.isOn())
+			to_chat(user, "<span class='warning'>You need to light your [WT] first.</span>")
+			return
+	if(!do_after(user, 3 SECONDS * repair_delays, TRUE, repair_delays, BUSY_ICON_FRIENDLY) || !user.Adjacent(src))
+		user.visible_message("<span class='notice'>[user] stops repairing [src].</span>",
+							"<span class='notice'>You stop repairing [src].</span>")
+		return
+	if(iswelder(W))
+		var/obj/item/tool/weldingtool/WT = W
+		if(!WT.isOn())
+			return
+		WT.remove_fuel(repair_delays, user)
+	user.visible_message("<span class='notice'>[user] finishs repairing [src].</span>",
+		"<span class='notice'>You finish repairing [src].</span>")
+	health = maxhealth
+
 //Called on attaching, for weapons sets the actual cooldowns
 /obj/item/hardpoint/proc/apply_buff()
 	return
