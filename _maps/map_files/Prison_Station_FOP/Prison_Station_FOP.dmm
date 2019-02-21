@@ -146,39 +146,33 @@
 	},
 /area/space)
 "aaB" = (
-/turf/open/floor{
-	dir = 9;
-	icon_state = "darkgreen2"
+/turf/open/floor/tile/darkgreen/darkgreen2{
+	dir = 9
 	},
 /area/space)
 "aaC" = (
-/turf/open/floor{
-	dir = 1;
-	icon_state = "darkgreen2"
+/turf/open/floor/tile/darkgreen/darkgreen2{
+	dir = 1
 	},
 /area/space)
 "aaD" = (
-/turf/open/floor{
-	dir = 5;
-	icon_state = "darkgreen2"
+/turf/open/floor/tile/darkgreen/darkgreen2{
+	dir = 5
 	},
 /area/space)
 "aaE" = (
-/turf/open/floor{
-	dir = 9;
-	icon_state = "darkblue2"
+/turf/open/floor/tile/dark/blue2{
+	dir = 9
 	},
 /area/space)
 "aaF" = (
-/turf/open/floor{
-	dir = 1;
-	icon_state = "darkblue2"
+/turf/open/floor/tile/dark/blue2{
+	dir = 1
 	},
 /area/space)
 "aaG" = (
-/turf/open/floor{
-	dir = 5;
-	icon_state = "darkblue2"
+/turf/open/floor/tile/dark/blue2{
+	dir = 5
 	},
 /area/space)
 "aaH" = (
@@ -337,30 +331,26 @@
 	},
 /area/space)
 "abg" = (
-/turf/open/floor{
-	dir = 8;
-	icon_state = "darkgreen2"
+/turf/open/floor/tile/darkgreen/darkgreen2{
+	dir = 8
 	},
 /area/space)
 "abh" = (
 /turf/open/floor/prison,
 /area/space)
 "abi" = (
-/turf/open/floor{
-	dir = 4;
-	icon_state = "darkgreen2"
+/turf/open/floor/tile/darkgreen/darkgreen2{
+	dir = 4
 	},
 /area/space)
 "abj" = (
-/turf/open/floor{
-	dir = 8;
-	icon_state = "darkblue2"
+/turf/open/floor/tile/dark/blue2{
+	dir = 8
 	},
 /area/space)
 "abk" = (
-/turf/open/floor{
-	dir = 4;
-	icon_state = "darkblue2"
+/turf/open/floor/tile/dark/blue2{
+	dir = 4
 	},
 /area/space)
 "abl" = (
@@ -496,9 +486,8 @@
 	},
 /area/space)
 "abI" = (
-/turf/open/floor{
-	dir = 10;
-	icon_state = "darkgreen2"
+/turf/open/floor/tile/darkgreen/darkgreen2{
+	dir = 10
 	},
 /area/space)
 "abJ" = (
@@ -507,15 +496,13 @@
 	},
 /area/space)
 "abK" = (
-/turf/open/floor{
-	dir = 6;
-	icon_state = "darkgreen2"
+/turf/open/floor/tile/darkgreen/darkgreen2{
+	dir = 6
 	},
 /area/space)
 "abL" = (
-/turf/open/floor{
-	dir = 10;
-	icon_state = "darkblue2"
+/turf/open/floor/tile/dark/blue2{
+	dir = 10
 	},
 /area/space)
 "abM" = (
@@ -524,9 +511,8 @@
 	},
 /area/space)
 "abN" = (
-/turf/open/floor{
-	dir = 6;
-	icon_state = "darkblue2"
+/turf/open/floor/tile/dark/blue2{
+	dir = 6
 	},
 /area/space)
 "abO" = (
