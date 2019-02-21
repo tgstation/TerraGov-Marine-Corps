@@ -618,11 +618,26 @@
 /turf/open/floor/prison/plate
 	icon_state = "floor_plate"
 
+/turf/open/floor/prison/kitchen
+	icon_state = "kitchen"
+
+/turf/open/floor/prison/cellstripe
+	icon_state = "cell_stripe"
+
+/turf/open/floor/prison/sterilewhite
+	icon_state = "sterile_white"
+
 /turf/open/floor/prison/trim/red
 	icon_state = "darkred2"
 
 /turf/open/floor/prison/purple/whitepurple
 	icon_state = "whitepurple"
+
+/turf/open/floor/prison/whitepurple/full
+	icon_state = "whitepurplefull"
+
+/turf/open/floor/prison/whitepurple/corner
+	icon_state = "whitepurplecorner"
 
 /turf/open/floor/prison/darkred/corners
 	icon_state = "darkredcorners2"

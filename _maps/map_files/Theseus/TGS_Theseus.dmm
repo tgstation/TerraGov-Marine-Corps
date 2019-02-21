@@ -931,9 +931,7 @@
 /area/almayer/living/numbertwobunks)
 "acH" = (
 /obj/structure/sink{
-	dir = 4;
-	icon_state = "sink";
-	pixel_x = 11
+	dir = 4
 	},
 /obj/structure/mirror{
 	icon_state = "mirror";
@@ -2687,9 +2685,7 @@
 /area/almayer/shipboard/brig)
 "ahn" = (
 /obj/structure/sink{
-	dir = 4;
-	icon_state = "sink";
-	pixel_x = 11
+	dir = 4
 	},
 /obj/structure/mirror{
 	icon_state = "mirror";
@@ -6606,9 +6602,7 @@
 /area/almayer/medical/medical_science)
 "aoA" = (
 /obj/structure/sink{
-	dir = 4;
-	icon_state = "sink";
-	pixel_x = 11
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	icon_state = "sterile_green";
@@ -16809,9 +16803,7 @@
 /area/almayer/medical/medical_science)
 "aHZ" = (
 /obj/structure/sink{
-	dir = 4;
-	icon_state = "sink";
-	pixel_x = 11
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	dir = 4;
@@ -18408,9 +18400,7 @@
 "aLj" = (
 /obj/machinery/iv_drip,
 /obj/structure/sink{
-	dir = 4;
-	icon_state = "sink";
-	pixel_x = 11
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	dir = 4;
@@ -19997,9 +19987,7 @@
 "aNL" = (
 /obj/structure/table/reinforced,
 /obj/structure/sink{
-	dir = 4;
-	icon_state = "sink";
-	pixel_x = 11
+	dir = 4
 	},
 /obj/item/reagent_container/glass/beaker/large,
 /obj/item/reagent_container/glass/beaker/large,
@@ -21175,9 +21163,7 @@
 /area/almayer/living/bridgebunks)
 "aQk" = (
 /obj/structure/sink{
-	dir = 4;
-	icon_state = "sink";
-	pixel_x = 11
+	dir = 4
 	},
 /turf/open/floor/prison{
 	icon_state = "kitchen"
@@ -24016,9 +24002,7 @@
 /area/almayer/living/starboard_emb)
 "aXL" = (
 /obj/structure/sink{
-	dir = 4;
-	icon_state = "sink";
-	pixel_x = 11
+	dir = 4
 	},
 /obj/structure/mirror{
 	icon_state = "mirror";
@@ -46002,9 +45986,7 @@
 	pixel_x = 30
 	},
 /obj/structure/sink{
-	dir = 4;
-	icon_state = "sink";
-	pixel_x = 11
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	tag = "icon-sterile";
@@ -46482,9 +46464,7 @@
 /area/almayer/living/tankerbunks)
 "bTs" = (
 /obj/structure/sink{
-	dir = 4;
-	icon_state = "sink";
-	pixel_x = 11
+	dir = 4
 	},
 /obj/structure/mirror{
 	icon_state = "mirror";
@@ -48147,9 +48127,7 @@
 /area/almayer/living/pilotbunks)
 "bXs" = (
 /obj/structure/sink{
-	dir = 4;
-	icon_state = "sink";
-	pixel_x = 11
+	dir = 4
 	},
 /obj/structure/mirror{
 	icon_state = "mirror";
@@ -48280,9 +48258,7 @@
 /area/almayer/living/grunt_rnr)
 "bXH" = (
 /obj/structure/sink{
-	dir = 4;
-	icon_state = "sink";
-	pixel_x = 11
+	dir = 4
 	},
 /turf/open/floor/prison{
 	icon_state = "kitchen"
@@ -49784,9 +49760,7 @@
 /area/almayer/hull/lower_hull)
 "cbh" = (
 /obj/structure/sink{
-	dir = 4;
-	icon_state = "sink";
-	pixel_x = 11
+	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/hull/lower_hull)
@@ -50122,9 +50096,7 @@
 /area/almayer/living/port_emb)
 "cca" = (
 /obj/structure/sink{
-	dir = 4;
-	icon_state = "sink";
-	pixel_x = 11
+	dir = 4
 	},
 /obj/structure/mirror{
 	icon_state = "mirror";
@@ -52541,9 +52513,7 @@
 "chn" = (
 /obj/structure/window/reinforced/tinted/frosted,
 /obj/structure/sink{
-	dir = 4;
-	icon_state = "sink";
-	pixel_x = 11
+	dir = 4
 	},
 /obj/structure/mirror{
 	pixel_x = 32
@@ -52728,9 +52698,7 @@
 /area/almayer/living/captain_mess)
 "chH" = (
 /obj/structure/sink{
-	dir = 4;
-	icon_state = "sink";
-	pixel_x = 11
+	dir = 4
 	},
 /obj/structure/mirror{
 	pixel_x = 32
