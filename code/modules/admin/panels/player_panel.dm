@@ -63,7 +63,7 @@
 
 				}
 
-				function expand(id,job,name,real_name,key,ip,antagonist,ref){
+				function expand(id,job,name,real_name,key,ip,ref){
 
 					clearAll();
 
@@ -285,7 +285,7 @@
 					<td align='center' bgcolor='[color]'>
 						<span id='notice_span[i]'></span>
 						<a id='link[i]'
-						onmouseover='expand("item[i]","[M_job]","[M_name]","[M_rname]","--unused--","[M_key]","[M.lastKnownIP]","\ref[M]")'
+						onmouseover='expand("item[i]","[M_job]","[M_name]","[M_rname]","[M_key]","[M.lastKnownIP]","[REF(M)]")'
 						>
 						<b id='search[i]'>[M_name] - [M_rname] - [M_key] ([M_job])</b>
 						</a>
