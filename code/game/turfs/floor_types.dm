@@ -507,6 +507,9 @@
 /turf/open/floor/tile/darkgreen/darkgreen2
 	icon_state = "darkgreen2"
 
+/turf/open/floor/tile/darkgreen/darkgreen2/corner
+	icon_state = "darkgreencorners2"
+
 /turf/open/floor/tile/white/warningstripe
 	icon_state = "warnwhite"
 
@@ -527,6 +530,12 @@
 
 /turf/open/floor/tile/dark/yellow2/corner
 	icon_state = "darkyellowcorners2"
+
+/turf/open/floor/tile/dark/brown2
+	icon_state = "darkbrown2"
+
+/turf/open/floor/tile/dark/brown2/corner
+	icon_state = "darkbrowncorners2"
 
 /turf/open/floor/tile/dark/red2
 	icon_state = "darkred2"
