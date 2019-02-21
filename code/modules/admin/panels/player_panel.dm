@@ -213,7 +213,7 @@
 		<table width='560' align='center' cellspacing='0' cellpadding='5' id='maintable_data'>"}
 
 	var/i = 1
-	for(var/mob/M in GLOB.mob_list)
+	for(var/mob/M in sortmobs())
 		if(M.ckey && M.client)
 
 			var/color = "#e6e6e6"
@@ -327,7 +327,7 @@
 	var/dat = "<html><head><title>Player Menu</title></head>"
 	dat += "<body><table border=1 cellspacing=5><B><tr><th>Key</th><th>Name</th><th>Type</th><th>PP</th><th>CID</th><th>IP</th><th>JMP</th><th>FLW</th><th>Notes</th></tr></B>"
 
-	for(var/mob/M in GLOB.mob_list)
+	for(var/mob/M in sortmobs())
 		if(!M.ckey)
 			continue
 

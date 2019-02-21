@@ -214,7 +214,7 @@ function updateSearch(){
 			admin_ckey = add_admin(admin_ckey, admin_key, use_db)
 			if(!admin_ckey)
 				return
-			change_admin_rank(admin_ckey, admin_key, use_db, null, legacy_only)
+			change_admin_rank(admin_ckey, admin_ckey, use_db, null, legacy_only)
 		if("remove")
 			remove_admin(admin_ckey, admin_key, use_db, D)
 		if("rank")
