@@ -11833,9 +11833,7 @@
 /area/shuttle/drop2/lz2)
 "aPQ" = (
 /turf/open/floor/plating,
-/area/shuttle/drop2/LV624{
-	name = "\improper Almayer Dropship 2"
-	})
+/area/shuttle/drop2/LV624)
 "aPR" = (
 /obj/item/mecha_parts/mecha_equipment/tesla_energy_relay,
 /obj/structure/largecrate/random,
@@ -13283,9 +13281,7 @@
 "aTZ" = (
 /obj/effect/landmark/random_item/crap,
 /turf/open/floor/plating,
-/area/shuttle/drop2/LV624{
-	name = "\improper Almayer Dropship 2"
-	})
+/area/shuttle/drop2/LV624)
 "aUa" = (
 /obj/machinery/landinglight/ds2/delaythree{
 	dir = 8
@@ -13458,9 +13454,7 @@
 /area/lv624/lazarus/quartstorage)
 "aUA" = (
 /turf/open/floor/plating,
-/area/shuttle/drop1/LV624{
-	name = "\improper Almayer Dropship 1"
-	})
+/area/shuttle/drop1/LV624)
 "aUB" = (
 /turf/closed/wall,
 /area/shuttle/drop1/lz1)
@@ -14027,9 +14021,7 @@
 "aWv" = (
 /obj/effect/landmark/huntergames_secondary_spawn,
 /turf/open/floor/plating,
-/area/shuttle/drop1/LV624{
-	name = "\improper Almayer Dropship 1"
-	})
+/area/shuttle/drop1/LV624)
 "aWw" = (
 /obj/machinery/landinglight/ds1/delaytwo{
 	dir = 8
@@ -14201,9 +14193,7 @@
 "aWY" = (
 /obj/effect/landmark/random_item/crap,
 /turf/open/floor/plating,
-/area/shuttle/drop1/LV624{
-	name = "\improper Almayer Dropship 1"
-	})
+/area/shuttle/drop1/LV624)
 "aWZ" = (
 /obj/structure/jungle/vines/heavy,
 /turf/open/gm/grass,

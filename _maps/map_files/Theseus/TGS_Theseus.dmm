@@ -9788,9 +9788,7 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/almayer/mono,
-/area/almayer/living/captain_mess{
-	name = "\improper Old Mess"
-	})
+/area/almayer/living/captain_mess)
 "ave" = (
 /obj/structure/table/almayer,
 /obj/item/reagent_container/food/drinks/bottle/sake{
@@ -19738,9 +19736,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/wood,
-/area/almayer/living/captain_mess{
-	name = "\improper Old Mess"
-	})
+/area/almayer/living/captain_mess)
 "aNd" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/almayer,
@@ -20223,9 +20219,7 @@
 /area/almayer/living/captain_mess)
 "aOa" = (
 /turf/closed/wall/almayer,
-/area/almayer/living/captain_mess{
-	name = "\improper Old Mess"
-	})
+/area/almayer/living/captain_mess)
 "aOb" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 1;
@@ -20233,9 +20227,7 @@
 	},
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/almayer/mono,
-/area/almayer/living/captain_mess{
-	name = "\improper Old Mess"
-	})
+/area/almayer/living/captain_mess)
 "aOc" = (
 /obj/machinery/power/apc/almayer{
 	dir = 1
@@ -20264,9 +20256,7 @@
 /area/almayer/hallways/aft_hallway)
 "aOe" = (
 /turf/closed/wall/almayer,
-/area/almayer/living/numbertwobunks{
-	name = "\improper Vacant Bunk"
-	})
+/area/almayer/living/numbertwobunks)
 "aOf" = (
 /obj/machinery/door/airlock/almayer/command{
 	dir = 2;
@@ -20279,9 +20269,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/almayer/mono,
-/area/almayer/living/numbertwobunks{
-	name = "\improper Vacant Bunk"
-	})
+/area/almayer/living/numbertwobunks)
 "aOg" = (
 /turf/closed/wall/almayer,
 /area/almayer/engineering/port_atmos)
@@ -20711,43 +20699,31 @@
 /area/almayer/command/cic)
 "aOX" = (
 /turf/open/floor/wood,
-/area/almayer/living/captain_mess{
-	name = "\improper Old Mess"
-	})
+/area/almayer/living/captain_mess)
 "aOY" = (
 /obj/structure/table/woodentable,
 /turf/open/floor/wood,
-/area/almayer/living/captain_mess{
-	name = "\improper Old Mess"
-	})
+/area/almayer/living/captain_mess)
 "aOZ" = (
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/wood,
-/area/almayer/living/captain_mess{
-	name = "\improper Old Mess"
-	})
+/area/almayer/living/captain_mess)
 "aPa" = (
 /obj/machinery/door/airlock/almayer/maint{
 	dir = 2
 	},
 /turf/open/floor/almayer/mono,
-/area/almayer/living/captain_mess{
-	name = "\improper Old Mess"
-	})
+/area/almayer/living/captain_mess)
 "aPb" = (
 /turf/open/floor/almayer/mono,
-/area/almayer/living/captain_mess{
-	name = "\improper Old Mess"
-	})
+/area/almayer/living/captain_mess)
 "aPc" = (
 /turf/open/floor/prison{
 	icon_state = "kitchen"
 	},
-/area/almayer/living/captain_mess{
-	name = "\improper Old Mess"
-	})
+/area/almayer/living/captain_mess)
 "aPd" = (
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -20766,20 +20742,14 @@
 /area/almayer/hallways/aft_hallway)
 "aPf" = (
 /turf/open/floor/almayer,
-/area/almayer/living/numbertwobunks{
-	name = "\improper Vacant Bunk"
-	})
+/area/almayer/living/numbertwobunks)
 "aPg" = (
 /turf/open/floor/almayer/mono,
-/area/almayer/living/numbertwobunks{
-	name = "\improper Vacant Bunk"
-	})
+/area/almayer/living/numbertwobunks)
 "aPh" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/wood,
-/area/almayer/living/numbertwobunks{
-	name = "\improper Vacant Bunk"
-	})
+/area/almayer/living/numbertwobunks)
 "aPi" = (
 /obj/structure/table/almayer,
 /obj/effect/spawner/random/tool,
@@ -21237,9 +21207,7 @@
 /area/almayer/hallways/aft_hallway)
 "aQg" = (
 /turf/closed/wall/almayer,
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "aQh" = (
 /obj/machinery/recharger,
 /obj/structure/table/almayer,
@@ -21251,15 +21219,11 @@
 "aQi" = (
 /obj/structure/window/framed/almayer,
 /turf/open/floor/plating,
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "aQj" = (
 /obj/structure/sign/safety/laser,
 /turf/closed/wall/almayer,
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "aQk" = (
 /obj/structure/sink{
 	dir = 4;
@@ -21269,9 +21233,7 @@
 /turf/open/floor/prison{
 	icon_state = "kitchen"
 	},
-/area/almayer/living/captain_mess{
-	name = "\improper Old Mess"
-	})
+/area/almayer/living/captain_mess)
 "aQl" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 10
@@ -21288,25 +21250,19 @@
 	on = 1
 	},
 /turf/open/floor/almayer/mono,
-/area/almayer/living/numbertwobunks{
-	name = "\improper Vacant Bunk"
-	})
+/area/almayer/living/numbertwobunks)
 "aQn" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
 /turf/open/floor/almayer/mono,
-/area/almayer/living/numbertwobunks{
-	name = "\improper Vacant Bunk"
-	})
+/area/almayer/living/numbertwobunks)
 "aQo" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
 	},
 /turf/open/floor/wood,
-/area/almayer/living/numbertwobunks{
-	name = "\improper Vacant Bunk"
-	})
+/area/almayer/living/numbertwobunks)
 "aQp" = (
 /obj/structure/mirror{
 	pixel_y = 29
@@ -21315,9 +21271,7 @@
 	dir = 8
 	},
 /turf/open/floor/almayer,
-/area/almayer/living/numbertwobunks{
-	name = "\improper Vacant Bunk"
-	})
+/area/almayer/living/numbertwobunks)
 "aQq" = (
 /obj/machinery/shower{
 	icon_state = "shower";
@@ -21326,9 +21280,7 @@
 /obj/machinery/door/window/westleft,
 /obj/structure/window/reinforced/tinted/frosted,
 /turf/open/floor/almayer/mono,
-/area/almayer/living/numbertwobunks{
-	name = "\improper Vacant Bunk"
-	})
+/area/almayer/living/numbertwobunks)
 "aQr" = (
 /obj/structure/table/almayer,
 /obj/effect/spawner/random/technology_scanner,
@@ -21528,18 +21480,14 @@
 /obj/item/storage/firstaid/fire,
 /obj/item/storage/firstaid/fire,
 /turf/open/floor/almayer/mono,
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "aQS" = (
 /turf/open/floor/almayer{
 	tag = "icon-blue (EAST)";
 	icon_state = "blue";
 	dir = 4
 	},
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "aQT" = (
 /obj/machinery/door/window/westleft,
 /obj/structure/window/reinforced/toughened{
@@ -21550,9 +21498,7 @@
 	tag = "icon-bluefull";
 	icon_state = "bluefull"
 	},
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "aQU" = (
 /obj/structure/rack,
 /obj/structure/window/reinforced/toughened{
@@ -21571,9 +21517,7 @@
 	tag = "icon-bluefull";
 	icon_state = "bluefull"
 	},
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "aQV" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable{
@@ -21582,14 +21526,10 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/almayer,
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "aQW" = (
 /turf/open/floor/almayer,
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "aQX" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -21618,22 +21558,16 @@
 	dir = 8
 	},
 /turf/open/floor/wood,
-/area/almayer/living/numbertwobunks{
-	name = "\improper Vacant Bunk"
-	})
+/area/almayer/living/numbertwobunks)
 "aRb" = (
 /turf/open/floor/wood,
-/area/almayer/living/numbertwobunks{
-	name = "\improper Vacant Bunk"
-	})
+/area/almayer/living/numbertwobunks)
 "aRc" = (
 /obj/machinery/door/airlock/almayer/generic{
 	name = "\improper Bathroom"
 	},
 /turf/open/floor/almayer/mono,
-/area/almayer/living/numbertwobunks{
-	name = "\improper Vacant Bunk"
-	})
+/area/almayer/living/numbertwobunks)
 "aRd" = (
 /obj/structure/toilet{
 	tag = "icon-toilet00 (WEST)";
@@ -21641,9 +21575,7 @@
 	dir = 8
 	},
 /turf/open/floor/almayer,
-/area/almayer/living/numbertwobunks{
-	name = "\improper Vacant Bunk"
-	})
+/area/almayer/living/numbertwobunks)
 "aRe" = (
 /obj/machinery/portable_atmospherics/scrubber,
 /turf/open/floor/almayer{
@@ -21730,14 +21662,10 @@
 /obj/item/paper_bin,
 /obj/item/tool/pen,
 /turf/open/floor/almayer,
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "aRr" = (
 /turf/open/floor/plating/plating_catwalk,
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "aRs" = (
 /obj/machinery/light{
 	dir = 1
@@ -21746,30 +21674,22 @@
 	tag = "icon-blue";
 	icon_state = "blue"
 	},
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "aRt" = (
 /turf/open/floor/almayer{
 	tag = "icon-blue";
 	icon_state = "blue"
 	},
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "aRu" = (
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/almayer/mono,
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "aRv" = (
 /turf/open/floor/almayer/mono,
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "aRw" = (
 /obj/structure/window/reinforced/toughened,
 /obj/machinery/door/window/westright,
@@ -21778,15 +21698,11 @@
 	tag = "icon-bluefull";
 	icon_state = "bluefull"
 	},
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "aRx" = (
 /obj/machinery/light,
 /turf/open/floor/wood,
-/area/almayer/living/captain_mess{
-	name = "\improper Old Mess"
-	})
+/area/almayer/living/captain_mess)
 "aRy" = (
 /obj/structure/table/almayer,
 /obj/item/device/radio,
@@ -21811,9 +21727,7 @@
 "aRA" = (
 /obj/machinery/light,
 /turf/open/floor/almayer/mono,
-/area/almayer/living/captain_mess{
-	name = "\improper Old Mess"
-	})
+/area/almayer/living/captain_mess)
 "aRB" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
@@ -21822,17 +21736,13 @@
 /turf/open/floor/prison{
 	icon_state = "kitchen"
 	},
-/area/almayer/living/captain_mess{
-	name = "\improper Old Mess"
-	})
+/area/almayer/living/captain_mess)
 "aRC" = (
 /obj/structure/sink{
 	dir = 8
 	},
 /turf/open/floor/almayer,
-/area/almayer/living/numbertwobunks{
-	name = "\improper Vacant Bunk"
-	})
+/area/almayer/living/numbertwobunks)
 "aRD" = (
 /obj/structure/table/almayer,
 /obj/effect/spawner/random/tool,
@@ -21933,9 +21843,7 @@
 	tag = "icon-bluefull";
 	icon_state = "bluefull"
 	},
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "aRQ" = (
 /obj/structure/ladder{
 	height = 2;
@@ -21965,9 +21873,7 @@
 	icon_state = "blue";
 	dir = 8
 	},
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "aRT" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -22074,9 +21980,7 @@
 	icon_regular_floor = "cargo_arrow";
 	icon_state = "cargo_arrow"
 	},
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "aSh" = (
 /obj/structure/window/framed/almayer/hull,
 /turf/open/floor/plating,
@@ -22115,9 +22019,7 @@
 	dir = 8
 	},
 /turf/open/floor/almayer/mono,
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "aSo" = (
 /obj/structure/window/reinforced/toughened{
 	dir = 1
@@ -22128,9 +22030,7 @@
 	tag = "icon-bluefull";
 	icon_state = "bluefull"
 	},
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "aSp" = (
 /obj/structure/rack,
 /obj/structure/window/reinforced/toughened{
@@ -22148,9 +22048,7 @@
 	tag = "icon-bluefull";
 	icon_state = "bluefull"
 	},
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "aSq" = (
 /turf/closed/shuttle/escapepod{
 	tag = "icon-wall13";
@@ -22303,23 +22201,17 @@
 	icon_state = "blue";
 	dir = 4
 	},
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "aSM" = (
 /obj/structure/window/framed/almayer,
 /turf/open/space,
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "aSN" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/plating/almayer,
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "aSO" = (
 /obj/structure/target_stake,
 /obj/item/target/syndicate,
@@ -22327,9 +22219,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/almayer,
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "aSP" = (
 /obj/structure/table/almayer,
 /obj/effect/landmark/map_item,
@@ -22340,9 +22230,7 @@
 /obj/item/storage/firstaid/regular,
 /obj/item/stack/medical/ointment,
 /turf/open/floor/almayer/mono,
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "aSR" = (
 /obj/machinery/door/window/westright,
 /obj/structure/window/reinforced/toughened,
@@ -22351,9 +22239,7 @@
 	tag = "icon-bluefull";
 	icon_state = "bluefull"
 	},
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "aSS" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -22405,9 +22291,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "aSZ" = (
 /turf/closed/shuttle/escapepod{
 	tag = "icon-wall12";
@@ -22473,9 +22357,7 @@
 	tag = "icon-bluefull";
 	icon_state = "bluefull"
 	},
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "aTi" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8;
@@ -22534,9 +22416,7 @@
 	tag = "icon-test_floor4";
 	icon_state = "test_floor4"
 	},
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "aTq" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -22583,27 +22463,21 @@
 "aTv" = (
 /obj/structure/filingcabinet,
 /turf/open/floor/almayer/mono,
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "aTw" = (
 /turf/open/floor/almayer{
 	dir = 4;
 	icon_state = "bluecorner";
 	tag = "icon-bluecorner"
 	},
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "aTx" = (
 /turf/open/floor/almayer{
 	dir = 1;
 	icon_state = "blue";
 	tag = "icon-blue"
 	},
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "aTy" = (
 /turf/closed/shuttle/escapepod{
 	tag = "icon-wall11";
@@ -22674,9 +22548,7 @@
 	icon_state = "blue";
 	tag = "icon-blue"
 	},
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "aTH" = (
 /obj/structure/table/almayer,
 /obj/machinery/cell_charger,
@@ -22685,9 +22557,7 @@
 	icon_state = "blue";
 	dir = 4
 	},
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "aTI" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -22734,9 +22604,7 @@
 	icon_state = "bluecorner";
 	dir = 1
 	},
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "aTM" = (
 /obj/machinery/light{
 	dir = 8
@@ -22751,9 +22619,7 @@
 	icon_state = "blue";
 	dir = 8
 	},
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "aTN" = (
 /turf/closed/shuttle/escapepod{
 	tag = "icon-wall10";
@@ -22770,9 +22636,7 @@
 /obj/structure/rack,
 /obj/effect/spawner/random/toolbox,
 /turf/open/floor/almayer/mono,
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "aTQ" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -22823,9 +22687,7 @@
 	dir = 2
 	},
 /turf/open/floor/almayer,
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "aTX" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -22860,9 +22722,7 @@
 	req_one_access_txt = "0"
 	},
 /turf/open/floor/almayer,
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "aUb" = (
 /obj/machinery/light{
 	dir = 1
@@ -22872,16 +22732,12 @@
 	icon_state = "blue";
 	tag = "icon-blue"
 	},
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "aUc" = (
 /obj/structure/table/almayer,
 /obj/effect/spawner/random/toolbox,
 /turf/open/floor/almayer/mono,
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "aUd" = (
 /turf/closed/shuttle/escapepod{
 	tag = "icon-wall9";
@@ -23270,9 +23126,7 @@
 /turf/open/floor/almayer{
 	icon_state = "cargo"
 	},
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "aVi" = (
 /turf/closed/wall/almayer/outer,
 /area/space)
@@ -27309,9 +27163,7 @@
 "beS" = (
 /obj/effect/landmark/shuttle_loc/marine_crs/dropship,
 /turf/open/floor/almayer,
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "beT" = (
 /obj/machinery/light,
 /turf/open/floor/almayer{
@@ -36003,9 +35855,7 @@
 	icon_state = "orange";
 	tag = "icon-orange"
 	},
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "bxq" = (
 /obj/structure/bed/chair/reinforced{
 	dir = 1
@@ -37566,9 +37416,7 @@
 	tag = "icon-test_floor4";
 	icon_state = "test_floor4"
 	},
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "bAy" = (
 /obj/structure/table/almayer,
 /obj/machinery/microwave,
@@ -38157,9 +38005,7 @@
 	dir = 2
 	},
 /turf/open/floor/plating/almayer,
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "bBN" = (
 /obj/machinery/door/airlock/almayer/command{
 	name = "\improper Briefing Room"
@@ -40102,9 +39948,7 @@
 /turf/open/floor/almayer{
 	icon_state = "cargo"
 	},
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "bFR" = (
 /obj/machinery/door/airlock/almayer/medical/glass{
 	dir = 2
@@ -40880,9 +40724,7 @@
 	dir = 2
 	},
 /turf/open/floor/plating/almayer,
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "bHv" = (
 /obj/structure/disposalpipe/segment{
 	dir = 2;
@@ -44938,9 +44780,7 @@
 /turf/open/floor/almayer{
 	icon_state = "cargo"
 	},
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "bPY" = (
 /obj/machinery/door/poddoor/almayer{
 	density = 0;
@@ -48380,9 +48220,7 @@
 "bXl" = (
 /obj/machinery/door/airlock/almayer/maint,
 /turf/open/floor/almayer,
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "bXm" = (
 /turf/open/floor/wood,
 /area/almayer/living/tankerbunks)
@@ -48396,18 +48234,14 @@
 	icon_state = "blue";
 	dir = 6
 	},
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "bXp" = (
 /turf/open/floor/almayer{
 	tag = "icon-blue (SOUTHWEST)";
 	icon_state = "blue";
 	dir = 10
 	},
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "bXq" = (
 /turf/open/floor/wood,
 /area/almayer/living/pilotbunks)
@@ -48861,9 +48695,7 @@
 	icon_state = "blue";
 	tag = "icon-blue"
 	},
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "bYv" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -48904,9 +48736,7 @@
 	name = "Tool Closet"
 	},
 /turf/open/floor/almayer/mono,
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "bYB" = (
 /obj/machinery/shower{
 	tag = "icon-shower (EAST)";
@@ -51855,17 +51685,13 @@
 /turf/open/floor/almayer{
 	icon_state = "cargo"
 	},
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "cfo" = (
 /obj/structure/janitorialcart,
 /turf/open/floor/almayer{
 	icon_state = "cargo"
 	},
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "cfq" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/firedoor/border_only/almayer{
@@ -51889,29 +51715,21 @@
 /obj/structure/table/almayer,
 /obj/item/tool/extinguisher/mini,
 /turf/open/floor/almayer/mono,
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "cfu" = (
 /obj/structure/table/almayer,
 /obj/machinery/light,
 /turf/open/floor/almayer/mono,
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "cfv" = (
 /obj/structure/table/almayer,
 /obj/item/stack/medical/ointment,
 /turf/open/floor/almayer/mono,
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "cfw" = (
 /obj/structure/closet/firecloset,
 /turf/open/floor/almayer/mono,
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "cfx" = (
 /obj/item/target/syndicate,
 /obj/item/target/syndicate,
@@ -51920,9 +51738,7 @@
 /obj/item/target/syndicate,
 /obj/structure/closet/crate,
 /turf/open/floor/almayer/mono,
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "cfy" = (
 /obj/item/target,
 /obj/item/target,
@@ -51932,28 +51748,20 @@
 /obj/item/target,
 /obj/structure/closet/crate,
 /turf/open/floor/almayer/mono,
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "cfz" = (
 /obj/structure/table/almayer,
 /turf/open/floor/almayer/mono,
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "cfA" = (
 /obj/structure/table/almayer,
 /obj/item/reagent_container/spray/cleaner,
 /turf/open/floor/almayer/mono,
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "cfB" = (
 /obj/structure/largecrate/random/barrel/yellow,
 /turf/open/floor/almayer/mono,
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "cfC" = (
 /turf/open/floor/almayer{
 	dir = 1;
@@ -51966,18 +51774,14 @@
 /turf/open/floor/almayer{
 	icon_state = "cargo"
 	},
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "cfE" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/tool,
 /obj/effect/spawner/random/tool,
 /obj/effect/spawner/random/powercell,
 /turf/open/floor/almayer/mono,
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "cfF" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -52003,9 +51807,7 @@
 	icon_state = "bluecorner";
 	dir = 1
 	},
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "cfH" = (
 /obj/machinery/door/airlock/almayer/medical/glass{
 	name = "\improper Experimental Weaponry Storage";
@@ -52013,9 +51815,7 @@
 	},
 /obj/machinery/door/firedoor/border_only/almayer,
 /turf/open/floor/almayer,
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "cfI" = (
 /obj/structure/table/almayer,
 /obj/item/device/megaphone,
@@ -52943,9 +52743,7 @@
 /obj/machinery/door/airlock/almayer/maint,
 /obj/machinery/door/firedoor/border_only/almayer,
 /turf/open/floor/almayer,
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "chw" = (
 /obj/machinery/door/airlock/almayer/maint{
 	dir = 4;
@@ -52953,9 +52751,7 @@
 	},
 /obj/machinery/door/firedoor/border_only/almayer,
 /turf/open/floor/almayer,
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "chx" = (
 /obj/item/device/radio/intercom{
 	anyai = 1;
@@ -53375,25 +53171,19 @@
 	},
 /obj/item/tool/soap,
 /turf/open/floor/almayer/mono,
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "ciz" = (
 /obj/structure/table/almayer,
 /obj/item/device/lightreplacer,
 /obj/item/storage/bag/trash,
 /obj/item/storage/box/lights,
 /turf/open/floor/almayer/mono,
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "ciA" = (
 /obj/item/tool/mop,
 /obj/item/reagent_container/glass/bucket,
 /turf/open/floor/almayer/mono,
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "ciB" = (
 /obj/item/tool/kitchen/tray,
 /obj/item/clothing/suit/chef/classic,
@@ -53594,9 +53384,7 @@
 /turf/open/floor/almayer{
 	icon_state = "cargo"
 	},
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "ciT" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/almayer/mono,
@@ -54432,9 +54220,7 @@
 	dir = 2
 	},
 /turf/open/floor/almayer,
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "ckG" = (
 /obj/machinery/firealarm{
 	pixel_y = 28
@@ -54444,17 +54230,13 @@
 	icon_state = "blue";
 	dir = 4
 	},
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "ckH" = (
 /obj/machinery/firealarm{
 	pixel_y = 28
 	},
 /turf/open/floor/almayer,
-/area/almayer/living/bridgebunks{
-	name = "\improper Experimental Weaponry Range"
-	})
+/area/almayer/living/bridgebunks)
 "ckI" = (
 /obj/machinery/door/poddoor/shutters/almayer{
 	dir = 2;

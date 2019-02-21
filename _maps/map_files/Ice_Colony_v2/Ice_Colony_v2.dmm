@@ -4374,9 +4374,7 @@
 /area/ice_colony/underground/hangar)
 "alQ" = (
 /turf/open/floor/plating/icefloor,
-/area/shuttle/drop2/ice_colony{
-	name = "\improper Almayer Dropship 2"
-	})
+/area/shuttle/drop2/ice_colony)
 "alR" = (
 /turf/closed/ice_rock/singlePart{
 	dir = 8
@@ -4748,9 +4746,7 @@
 "amR" = (
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/plating/icefloor,
-/area/shuttle/drop2/ice_colony{
-	name = "\improper Almayer Dropship 2"
-	})
+/area/shuttle/drop2/ice_colony)
 "amS" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -5767,9 +5763,7 @@
 	icon_state = "armorblood"
 	},
 /turf/open/floor/plating/icefloor,
-/area/shuttle/drop2/ice_colony{
-	name = "\improper Almayer Dropship 2"
-	})
+/area/shuttle/drop2/ice_colony)
 "apk" = (
 /turf/open/floor/tile/red/whitered{
 	dir = 2
@@ -5778,9 +5772,7 @@
 "apl" = (
 /obj/effect/landmark/huntergames_secondary_spawn,
 /turf/open/floor/plating/icefloor,
-/area/shuttle/drop2/ice_colony{
-	name = "\improper Almayer Dropship 2"
-	})
+/area/shuttle/drop2/ice_colony)
 "apm" = (
 /obj/structure/toilet{
 	dir = 4
@@ -12936,9 +12928,7 @@
 /area/ice_colony/exterior/surface/clearing/pass)
 "aGB" = (
 /turf/closed/wall/r_wall,
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "aGC" = (
 /turf/open/ice,
 /turf/closed/ice/thin/end{
@@ -13650,9 +13640,7 @@
 /area/ice_colony/surface/command/crisis)
 "aHY" = (
 /turf/closed/wall/r_wall/unmeltable,
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "aHZ" = (
 /obj/structure/table/woodentable,
 /obj/item/weapon/gun/pistol/holdout,
@@ -14220,9 +14208,7 @@
 /turf/open/floor/tile/dark/red2{
 	dir = 9
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "aJH" = (
 /turf/open/ice,
 /turf/closed/ice/thin/end{
@@ -14422,16 +14408,12 @@
 /turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "aKn" = (
 /turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "aKo" = (
 /turf/closed/ice/junction{
 	dir = 4
@@ -14505,18 +14487,14 @@
 /turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "aKA" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/belt/utility,
 /turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "aKB" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/plating,
@@ -14560,9 +14538,7 @@
 /turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "aKL" = (
 /obj/item/lightstick/anchored,
 /turf/open/snow/layer3,
@@ -14590,9 +14566,7 @@
 /turf/open/floor/tile/dark/red2/corner{
 	dir = 1
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "aKR" = (
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -14658,9 +14632,7 @@
 	tag = "icon-darkredcorners2";
 	icon_state = "darkredcorners2"
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "aKX" = (
 /obj/structure/rack,
 /obj/item/ammo_magazine/shotgun/incendiary,
@@ -14697,9 +14669,7 @@
 	dir = 2
 	},
 /turf/open/floor/tile/dark/red2,
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "aLc" = (
 /turf/open/ice,
 /turf/closed/ice/thin/junction{
@@ -15195,9 +15165,7 @@
 	icon_state = "warnplate";
 	dir = 8
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper West Road Tunnel"
-	})
+/area/ice_colony/underground/westroadtunnel)
 "aMr" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
@@ -15407,9 +15375,7 @@
 	icon_state = "2-4"
 	},
 /turf/open/floor/plating,
-/area/ice_colony/underground/hangar{
-	name = "\improper West Road Tunnel"
-	})
+/area/ice_colony/underground/westroadtunnel)
 "aMW" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -15451,9 +15417,7 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/plating,
-/area/ice_colony/underground/hangar{
-	name = "\improper West Road Tunnel"
-	})
+/area/ice_colony/underground/westroadtunnel)
 "aNb" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
@@ -15675,9 +15639,7 @@
 /turf/open/floor/tile/dark/red2/corner{
 	dir = 8
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "aNz" = (
 /obj/item/storage/backpack/satchel/norm,
 /turf/open/floor/plating,
@@ -17017,9 +16979,7 @@
 /turf/open/floor/tile/dark/red2{
 	dir = 4
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "aQU" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -18575,9 +18535,7 @@
 /turf/open/floor/tile/dark/red2{
 	dir = 8
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "aUB" = (
 /obj/structure/janitorialcart,
 /obj/item/tool/mop,
@@ -19771,9 +19729,7 @@
 /turf/open/floor/tile/dark/red2{
 	dir = 9
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "aXu" = (
 /obj/structure/closet/secure_closet/guncabinet,
 /obj/item/storage/pouch/magazine/large/pmc_m39,
@@ -19781,9 +19737,7 @@
 /turf/open/floor/tile/dark/red2{
 	dir = 5
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "aXv" = (
 /turf/open/floor/tile/dark2,
 /turf/closed/shuttle{
@@ -19810,9 +19764,7 @@
 /turf/open/floor/tile/dark/red2{
 	dir = 4
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "aXz" = (
 /turf/closed/ice_rock/singlePart{
 	dir = 4
@@ -20116,9 +20068,7 @@
 /area/ice_colony/surface/hangar/beta)
 "aYl" = (
 /turf/open/floor/tile/dark2,
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "aYm" = (
 /obj/machinery/colony_floodlight,
 /turf/open/floor/plating/icefloor,
@@ -20322,9 +20272,7 @@
 /area/ice_colony/surface/research/tech_storage)
 "aYW" = (
 /turf/closed/wall/r_wall,
-/area/ice_colony/underground/hangar{
-	name = "\improper West Road Tunnel"
-	})
+/area/ice_colony/underground/westroadtunnel)
 "aYX" = (
 /obj/structure/cargo_container/green{
 	dir = 8
@@ -20445,9 +20393,7 @@
 /turf/open/floor/tile/dark/brown2{
 	dir = 8
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper West Road Tunnel"
-	})
+/area/ice_colony/underground/westroadtunnel)
 "aZm" = (
 /turf/open/floor/tile/dark/brown2/corner{
 	dir = 8
@@ -20490,9 +20436,7 @@
 /turf/open/floor/tile/dark/red2{
 	dir = 4
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "aZt" = (
 /turf/open/floor/tile/dark/yellow2/corner,
 /area/ice_colony/surface/research/tech_storage)
@@ -20582,9 +20526,7 @@
 "aZD" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
-/area/ice_colony/underground/hangar{
-	name = "\improper West Road Tunnel"
-	})
+/area/ice_colony/underground/westroadtunnel)
 "aZE" = (
 /turf/open/ice,
 /turf/closed/ice/thin/corner{
@@ -20602,9 +20544,7 @@
 /area/ice_colony/exterior/surface/container_yard)
 "aZH" = (
 /turf/open/floor/plating,
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "aZI" = (
 /obj/structure/cargo_container/red{
 	dir = 4
@@ -20680,9 +20620,7 @@
 /turf/open/floor/tile/dark/brown2{
 	dir = 4
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper West Road Tunnel"
-	})
+/area/ice_colony/underground/westroadtunnel)
 "aZU" = (
 /obj/machinery/door/poddoor/shutters/almayer{
 	density = 0;
@@ -20695,9 +20633,7 @@
 /turf/open/floor/tile/dark/brown2{
 	dir = 8
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper West Road Tunnel"
-	})
+/area/ice_colony/underground/westroadtunnel)
 "aZV" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
@@ -20740,9 +20676,7 @@
 	opacity = 0
 	},
 /turf/open/floor/tile/dark,
-/area/ice_colony/underground/hangar{
-	name = "\improper West Road Tunnel"
-	})
+/area/ice_colony/underground/westroadtunnel)
 "baa" = (
 /obj/machinery/door/poddoor/shutters/almayer{
 	density = 0;
@@ -20755,18 +20689,14 @@
 /turf/open/floor/tile/dark/brown2{
 	dir = 4
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper West Road Tunnel"
-	})
+/area/ice_colony/underground/westroadtunnel)
 "bab" = (
 /turf/open/floor/plating/icefloor{
 	tag = "icon-warnplate (EAST)";
 	icon_state = "warnplate";
 	dir = 4
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper West Road Tunnel"
-	})
+/area/ice_colony/underground/westroadtunnel)
 "bac" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -20920,9 +20850,7 @@
 	icon_state = "warnplate";
 	dir = 8
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper West Road Tunnel"
-	})
+/area/ice_colony/underground/westroadtunnel)
 "baz" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
@@ -21125,9 +21053,7 @@
 	icon_state = "warnplate";
 	dir = 4
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper West Road Tunnel"
-	})
+/area/ice_colony/underground/westroadtunnel)
 "baV" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
@@ -21290,9 +21216,7 @@
 	icon_state = "warnplate";
 	dir = 6
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper West Road Tunnel"
-	})
+/area/ice_colony/underground/westroadtunnel)
 "bbl" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -21326,9 +21250,7 @@
 /turf/closed/shuttle/ert{
 	icon_state = "wy20"
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bbo" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -21369,9 +21291,7 @@
 /turf/closed/shuttle/ert{
 	icon_state = "wy27"
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bbs" = (
 /turf/open/ice,
 /turf/closed/ice/thin/straight,
@@ -21415,9 +21335,7 @@
 /turf/closed/shuttle/ert{
 	icon_state = "wy25"
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bbC" = (
 /obj/structure/fence,
 /turf/open/floor/plating/icefloor{
@@ -21440,9 +21358,7 @@
 	icon_state = "warnplate";
 	dir = 10
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper West Road Tunnel"
-	})
+/area/ice_colony/underground/westroadtunnel)
 "bbF" = (
 /obj/effect/decal/cleanable/blood{
 	basecolor = "#b70602";
@@ -21542,9 +21458,7 @@
 /area/ice_colony/exterior/surface/valley/southwest)
 "bbT" = (
 /turf/open/floor/tile/dark2,
-/area/ice_colony/underground/hangar{
-	name = "\improper West Road Tunnel"
-	})
+/area/ice_colony/underground/westroadtunnel)
 "bbU" = (
 /obj/structure/largecrate/random,
 /obj/machinery/light/small{
@@ -21561,9 +21475,7 @@
 /turf/open/floor/tile/dark/brown2{
 	dir = 4
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper West Road Tunnel"
-	})
+/area/ice_colony/underground/westroadtunnel)
 "bbW" = (
 /turf/open/ice,
 /turf/closed/ice/thin/corner{
@@ -21608,9 +21520,7 @@
 /turf/open/floor/tile/dark/red2{
 	dir = 8
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bcd" = (
 /obj/structure/barricade/metal{
 	dir = 8
@@ -21773,9 +21683,7 @@
 	d2 = 8
 	},
 /turf/open/floor/tile/dark2,
-/area/ice_colony/underground/hangar{
-	name = "\improper West Road Tunnel"
-	})
+/area/ice_colony/underground/westroadtunnel)
 "bcC" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/snow/layer0,
@@ -21871,9 +21779,7 @@
 	req_one_access_txt = "0"
 	},
 /turf/open/floor/tile/dark,
-/area/ice_colony/underground/hangar{
-	name = "\improper West Road Tunnel"
-	})
+/area/ice_colony/underground/westroadtunnel)
 "bcS" = (
 /obj/structure/cable{
 	d2 = 8;
@@ -21883,9 +21789,7 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
-/area/ice_colony/underground/hangar{
-	name = "\improper West Road Tunnel"
-	})
+/area/ice_colony/underground/westroadtunnel)
 "bcT" = (
 /obj/effect/decal/cleanable/blood{
 	basecolor = "#B70602";
@@ -21903,9 +21807,7 @@
 /area/ice_colony/surface/command/crisis)
 "bcU" = (
 /turf/open/floor/tile/dark,
-/area/ice_colony/underground/hangar{
-	name = "\improper West Road Tunnel"
-	})
+/area/ice_colony/underground/westroadtunnel)
 "bcV" = (
 /obj/machinery/door/airlock/almayer/maint{
 	name = "\improper Underground Maintenance";
@@ -21913,9 +21815,7 @@
 	req_one_access_txt = "0"
 	},
 /turf/open/floor/tile/dark,
-/area/ice_colony/underground/hangar{
-	name = "\improper West Road Tunnel"
-	})
+/area/ice_colony/underground/westroadtunnel)
 "bcW" = (
 /turf/open/ice,
 /turf/closed/ice/thin/end,
@@ -22065,15 +21965,11 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark2,
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bdq" = (
 /obj/machinery/light/small,
 /turf/open/floor/tile/dark,
-/area/ice_colony/underground/hangar{
-	name = "\improper West Road Tunnel"
-	})
+/area/ice_colony/underground/westroadtunnel)
 "bdr" = (
 /obj/machinery/light{
 	dir = 8
@@ -22173,9 +22069,7 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/tile/dark2,
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bdG" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -22186,9 +22080,7 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark2,
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bdH" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
@@ -22201,9 +22093,7 @@
 /turf/open/floor/tile/dark/red2{
 	dir = 4
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bdI" = (
 /obj/machinery/door/airlock/almayer/security/glass{
 	name = "\improper Security Prep";
@@ -22218,9 +22108,7 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/tile/dark2,
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bdJ" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -22262,9 +22150,7 @@
 "bdO" = (
 /obj/machinery/power/port_gen/pacman,
 /turf/open/floor/tile/dark2,
-/area/ice_colony/underground/hangar{
-	name = "\improper West Road Tunnel"
-	})
+/area/ice_colony/underground/westroadtunnel)
 "bdP" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -22384,9 +22270,7 @@
 /obj/structure/rack,
 /obj/item/stack/sheet/mineral/phoron,
 /turf/open/floor/tile/dark2,
-/area/ice_colony/underground/hangar{
-	name = "\improper West Road Tunnel"
-	})
+/area/ice_colony/underground/westroadtunnel)
 "bef" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -22425,9 +22309,7 @@
 	icon_state = "warnplate";
 	dir = 5
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper West Road Tunnel"
-	})
+/area/ice_colony/underground/westroadtunnel)
 "bek" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable{
@@ -22436,9 +22318,7 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/tile/dark,
-/area/ice_colony/underground/hangar{
-	name = "\improper West Road Tunnel"
-	})
+/area/ice_colony/underground/westroadtunnel)
 "bel" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable{
@@ -22494,9 +22374,7 @@
 	},
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "ber" = (
 /obj/machinery/bot/mulebot,
 /turf/open/floor/tile/dark/brown2{
@@ -22618,9 +22496,7 @@
 "beH" = (
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating/icefloor,
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "beI" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -22818,9 +22694,7 @@
 /turf/closed/shuttle/ert{
 	icon_state = "wy22"
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bfi" = (
 /turf/closed/ice/corner{
 	dir = 8
@@ -23367,18 +23241,14 @@
 	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bgF" = (
 /obj/machinery/computer3,
 /turf/open/shuttle/dropship{
 	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bgG" = (
 /turf/open/floor/tile/dark/blue2{
 	dir = 8
@@ -23438,9 +23308,7 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/tile/dark2,
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bgP" = (
 /obj/effect/decal/cleanable/blood{
 	basecolor = "#b70602";
@@ -23497,9 +23365,7 @@
 /turf/closed/shuttle/ert{
 	icon_state = "wy23"
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bgX" = (
 /obj/machinery/constructable_frame,
 /turf/open/floor/tile/dark/brown2{
@@ -23552,9 +23418,7 @@
 /turf/open/floor/tile/dark/red2{
 	dir = 4
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bhe" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 5
@@ -23570,9 +23434,7 @@
 /turf/open/floor/tile/dark/red2/corner{
 	dir = 4
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bhf" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -23588,9 +23450,7 @@
 /turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bhg" = (
 /obj/structure/cable/yellow{
 	d1 = 2;
@@ -23775,9 +23635,7 @@
 	icon_state = "warnplate";
 	dir = 9
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper West Road Tunnel"
-	})
+/area/ice_colony/underground/westroadtunnel)
 "bhI" = (
 /obj/structure/closet/crate,
 /obj/item/tool/pickaxe/plasmacutter,
@@ -23814,9 +23672,7 @@
 /turf/open/floor/tile/dark/red2{
 	dir = 8
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bhM" = (
 /obj/machinery/power/apc/drained{
 	dir = 4
@@ -23824,9 +23680,7 @@
 /turf/open/floor/tile/dark/brown2{
 	dir = 4
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper West Road Tunnel"
-	})
+/area/ice_colony/underground/westroadtunnel)
 "bhN" = (
 /turf/open/ice,
 /turf/closed/ice/thin/end{
@@ -23886,9 +23740,7 @@
 /turf/open/floor/tile/dark/red2/corner{
 	dir = 1
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bhX" = (
 /obj/machinery/door_control{
 	id = "req_sec_storage";
@@ -24281,17 +24133,13 @@
 	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "biP" = (
 /turf/open/shuttle/dropship{
 	tag = "icon-rasputin6";
 	icon_state = "rasputin6"
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "biQ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark2,
@@ -24386,9 +24234,7 @@
 	icon_state = "floor8";
 	tag = "icon-rasputin7"
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bjc" = (
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/tile/dark/brown2,
@@ -24566,9 +24412,7 @@
 	tag = "icon-rasputin7";
 	icon_state = "rasputin7"
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bjy" = (
 /turf/open/floor/tile/dark/brown2{
 	dir = 8
@@ -24716,9 +24560,7 @@
 	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bjU" = (
 /turf/closed/ice/corner{
 	dir = 4
@@ -24839,9 +24681,7 @@
 	icon_state = "warnplate";
 	dir = 8
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper West Road Tunnel"
-	})
+/area/ice_colony/underground/westroadtunnel)
 "bkp" = (
 /obj/structure/cable/yellow{
 	d1 = 2;
@@ -25077,24 +24917,18 @@
 /turf/open/floor/tile/dark/red2{
 	dir = 8
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "ble" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor/tile/dark2,
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "blf" = (
 /obj/machinery/door/airlock/almayer/generic,
 /turf/open/shuttle/dropship{
 	tag = "icon-rasputin3";
 	icon_state = "rasputin3"
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "blg" = (
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -25228,9 +25062,7 @@
 	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bly" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -25438,9 +25270,7 @@
 /turf/open/floor/tile/dark/red2{
 	dir = 8
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bma" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
@@ -25451,9 +25281,7 @@
 	icon_state = "2-8";
 	},
 /turf/open/floor/tile/dark2,
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bmb" = (
 /turf/closed/ice/straight{
 	dir = 4
@@ -25467,9 +25295,7 @@
 	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bmd" = (
 /obj/structure/table/woodentable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -25721,9 +25547,7 @@
 	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bmM" = (
 /obj/structure/cable,
 /turf/open/floor/plating/warning{
@@ -25745,9 +25569,7 @@
 /turf/open/floor/tile/dark/red2{
 	dir = 4
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bmQ" = (
 /turf/closed/ice/straight{
 	dir = 4
@@ -25775,9 +25597,7 @@
 /turf/open/floor/tile/dark/red2{
 	dir = 8
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bmW" = (
 /obj/structure/rack,
 /obj/item/tool/shovel,
@@ -26201,9 +26021,7 @@
 /turf/open/floor/tile/dark/red2{
 	dir = 9
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "boc" = (
 /obj/structure/table/reinforced,
 /obj/item/book/manual/marine_law,
@@ -26214,9 +26032,7 @@
 /turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bod" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -26582,9 +26398,7 @@
 /turf/open/floor/tile/dark/red2{
 	dir = 5
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bpe" = (
 /obj/structure/rack,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -26608,9 +26422,7 @@
 	icon_state = "warnplate";
 	dir = 8
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper West Road Tunnel"
-	})
+/area/ice_colony/underground/westroadtunnel)
 "bpf" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -26932,9 +26744,7 @@
 	pixel_y = 32
 	},
 /turf/open/floor/tile/dark2,
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bpZ" = (
 /obj/machinery/conveyor,
 /obj/structure/cable/yellow{
@@ -26969,17 +26779,13 @@
 /turf/open/floor/tile/dark/yellow2{
 	dir = 8
 	},
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bqc" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
 	},
 /turf/open/floor/tile/dark2,
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bqd" = (
 /obj/structure/cable/yellow{
 	d1 = 2;
@@ -26987,9 +26793,7 @@
 	icon_state = "2-4"
 	},
 /turf/open/floor/tile/dark2,
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bqe" = (
 /obj/structure/cable/yellow{
 	d2 = 8;
@@ -27001,9 +26805,7 @@
 /turf/open/floor/tile/dark/red2{
 	dir = 4
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bqf" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
@@ -27485,9 +27287,7 @@
 	},
 /obj/item/storage/box/lightstick/red,
 /turf/open/floor/tile/dark,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "brv" = (
 /obj/structure/largecrate/random,
 /turf/open/floor/plating,
@@ -27524,9 +27324,7 @@
 	dir = 1
 	},
 /turf/open/snow/layer0,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "brA" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
@@ -27696,9 +27494,7 @@
 	icon_state = "warnplate";
 	dir = 9
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bsc" = (
 /turf/open/floor/tile/dark/yellow2{
 	dir = 4
@@ -27727,9 +27523,7 @@
 /turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bsf" = (
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/engineering)
@@ -28129,9 +27923,7 @@
 /turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "btg" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
@@ -28411,9 +28203,7 @@
 /turf/open/floor/tile/dark/red2/corner{
 	dir = 1
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "btU" = (
 /obj/machinery/light{
 	dir = 8
@@ -28578,9 +28368,7 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/tile/dark,
-/area/ice_colony/underground/hangar{
-	name = "\improper West Road Tunnel"
-	})
+/area/ice_colony/underground/westroadtunnel)
 "buq" = (
 /obj/structure/toilet,
 /obj/machinery/light/small{
@@ -28722,9 +28510,7 @@
 "buG" = (
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "buH" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -28999,9 +28785,7 @@
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor/tile/dark2,
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bvr" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/tile/darkgreen/darkgreen2{
@@ -29125,9 +28909,7 @@
 /turf/open/floor/tile/dark/red2{
 	dir = 4
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bvE" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -31686,9 +31468,7 @@
 	icon_state = "warnplate";
 	dir = 8
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bBU" = (
 /obj/machinery/door/poddoor/almayer{
 	dir = 4;
@@ -31696,9 +31476,7 @@
 	name = "\improper Colony Response Team Hangar"
 	},
 /turf/open/floor/plating/icefloor,
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bBV" = (
 /obj/machinery/light/small,
 /turf/open/floor/plating,
@@ -32036,9 +31814,7 @@
 "bCH" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/plating,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bCI" = (
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/east)
@@ -32473,9 +32249,7 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bDN" = (
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/security/interrogation)
@@ -32633,9 +32407,7 @@
 /turf/open/floor/tile/dark/yellow2{
 	dir = 4
 	},
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bEk" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -32784,9 +32556,7 @@
 /turf/open/floor/tile/dark/yellow2{
 	dir = 9
 	},
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bED" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/tile/dark/blue2{
@@ -32874,9 +32644,7 @@
 /turf/open/floor/tile/dark/yellow2{
 	dir = 6
 	},
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bER" = (
 /obj/machinery/firealarm{
 	dir = 8;
@@ -33104,9 +32872,7 @@
 	name = "\improper Colony Response Team Hangar"
 	},
 /turf/open/floor/tile/dark2,
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bFy" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/tile/dark/blue2{
@@ -33260,9 +33026,7 @@
 /turf/closed/shuttle/ert{
 	icon_state = "wy4"
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bFR" = (
 /obj/machinery/alarm{
 	dir = 4
@@ -33591,9 +33355,7 @@
 	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bGB" = (
 /turf/closed/wall/r_wall,
 /area/ice_colony/underground/command/checkpoint)
@@ -34246,9 +34008,7 @@
 	icon_state = "rasputin4";
 	tag = "icon-rasputin7"
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bIe" = (
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
@@ -34261,9 +34021,7 @@
 	tag = "icon-xtracks"
 	},
 /turf/open/floor/plating,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bIg" = (
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/storage)
@@ -34431,9 +34189,7 @@
 	dir = 4
 	},
 /turf/open/snow/layer0,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bIB" = (
 /obj/structure/table,
 /obj/item/cell/high/empty,
@@ -34629,9 +34385,7 @@
 	icon_state = "floor8";
 	tag = "icon-rasputin7"
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bIZ" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8;
@@ -34969,9 +34723,7 @@
 	icon_state = "rasputin8";
 	tag = "icon-rasputin7"
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bJK" = (
 /obj/structure/mineral_door/resin,
 /turf/open/ice,
@@ -35188,9 +34940,7 @@
 /turf/closed/shuttle/ert{
 	icon_state = "wy5"
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bKe" = (
 /turf/open/floor/tile/dark/blue2{
 	dir = 2
@@ -35542,9 +35292,7 @@
 /turf/open/floor/tile/dark/red2{
 	dir = 10
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bLa" = (
 /obj/machinery/vending/security,
 /turf/open/floor/tile/dark/red2{
@@ -35684,9 +35432,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark2,
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bLs" = (
 /obj/structure/cargo_container{
 	dir = 8
@@ -35801,18 +35547,14 @@
 /turf/open/floor/tile/dark/red2{
 	dir = 6
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bLE" = (
 /turf/open/floor/plating/icefloor{
 	tag = "icon-warnplate (SOUTHWEST)";
 	icon_state = "warnplate";
 	dir = 10
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bLF" = (
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -36091,9 +35833,7 @@
 /turf/open/floor/tile/dark/red2{
 	dir = 8
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bMk" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -36442,9 +36182,7 @@
 	name = "\improper Colony Response Team Hangar"
 	},
 /turf/open/floor/tile/dark/red2,
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bNg" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
@@ -36769,9 +36507,7 @@
 /turf/closed/shuttle/ert{
 	icon_state = "wy_leftengine"
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bNZ" = (
 /obj/machinery/door/airlock/almayer/maint{
 	dir = 1;
@@ -36994,16 +36730,12 @@
 /turf/closed/shuttle/ert{
 	icon_state = "wy8"
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bOB" = (
 /turf/closed/shuttle/ert{
 	icon_state = "wy9"
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bOC" = (
 /obj/structure/rack,
 /obj/item/weapon/gun/pistol/holdout,
@@ -37087,9 +36819,7 @@
 /turf/closed/shuttle/ert{
 	icon_state = "wy_rightengine"
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bON" = (
 /obj/item/trash/semki,
 /obj/structure/window/reinforced{
@@ -37129,9 +36859,7 @@
 	req_access_txt = "100"
 	},
 /turf/open/floor/tile/dark2,
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bOR" = (
 /obj/machinery/door/window/northright{
 	name = "Disposals Chute"
@@ -37204,9 +36932,7 @@
 	icon_state = "warnplate";
 	dir = 8
 	},
-/area/shuttle/drop2/ice_colony{
-	name = "\improper Almayer Dropship 2"
-	})
+/area/shuttle/drop2/ice_colony)
 "bPd" = (
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/crew/disposals)
@@ -37656,33 +37382,25 @@
 	icon_state = "leftengine_3";
 	opacity = 0
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bQy" = (
 /turf/closed/shuttle/ert{
 	icon_state = "rightengine_3";
 	opacity = 0
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bQz" = (
 /obj/machinery/light/small{
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bQA" = (
 /turf/open/shuttle/dropship{
 	tag = "icon-rasputin3";
 	icon_state = "rasputin3"
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bQB" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable/yellow{
@@ -37691,9 +37409,7 @@
 	icon_state = "1-2";
 	},
 /turf/open/floor/tile/dark2,
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bQC" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
@@ -37726,9 +37442,7 @@
 	pixel_x = 24;
 	},
 /turf/open/snow/layer0,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bQF" = (
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/security/armory)
@@ -37737,17 +37451,13 @@
 	icon_state = "leftengine_2";
 	opacity = 0
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bQH" = (
 /turf/closed/shuttle/ert{
 	icon_state = "rightengine_2";
 	opacity = 0
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bQI" = (
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -37792,9 +37502,7 @@
 	icon_state = "1-8";
 	},
 /turf/open/floor/tile/dark2,
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bQM" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -37807,24 +37515,18 @@
 /turf/open/floor/tile/dark/yellow2/corner{
 	dir = 4
 	},
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bQN" = (
 /turf/closed/shuttle/ert{
 	icon_state = "leftengine_1";
 	opacity = 0
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bQO" = (
 /turf/closed/shuttle/ert{
 	icon_state = "wy1"
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bQP" = (
 /obj/structure/mirror{
 	pixel_x = -32
@@ -37854,31 +37556,23 @@
 	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bQT" = (
 /turf/closed/shuttle/ert{
 	icon_state = "wy2"
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bQU" = (
 /turf/closed/shuttle/ert{
 	icon_state = "wy3"
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bQV" = (
 /turf/closed/shuttle/ert{
 	icon_state = "rightengine_1";
 	opacity = 0
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bQW" = (
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -37893,17 +37587,13 @@
 	on = 1
 	},
 /turf/open/floor/tile/dark2,
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bQY" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/tile/dark/red2{
 	dir = 9
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bQZ" = (
 /obj/machinery/door/airlock/almayer/security/glass{
 	dir = 1;
@@ -37918,9 +37608,7 @@
 /turf/open/floor/tile/dark/red2{
 	dir = 10
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bRb" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
@@ -37933,9 +37621,7 @@
 /turf/open/floor/tile/dark/red2/corner{
 	dir = 8
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bRc" = (
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -37977,9 +37663,7 @@
 /turf/open/floor/tile/dark/red2{
 	dir = 4
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bRg" = (
 /obj/structure/closet/secure_closet/security_empty{
 	name = "PMC Equipment Locker"
@@ -37988,18 +37672,14 @@
 /turf/open/floor/tile/dark/red2{
 	dir = 10
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bRh" = (
 /obj/structure/closet/secure_closet/security_empty{
 	name = "PMC Equipment Locker"
 	},
 /obj/item/clothing/mask/gas/PMC,
 /turf/open/floor/tile/dark/red2,
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bRi" = (
 /obj/structure/closet/secure_closet/security_empty{
 	name = "PMC Equipment Locker"
@@ -38007,20 +37687,14 @@
 /turf/open/floor/tile/dark/red2{
 	dir = 6
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bRj" = (
 /turf/open/floor/tile/dark/red2,
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bRk" = (
 /obj/machinery/light,
 /turf/open/floor/tile/dark/red2,
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bRl" = (
 /turf/open/ice,
 /turf/closed/ice/thin/corner,
@@ -38066,9 +37740,7 @@
 /turf/open/floor/tile/dark/red2{
 	dir = 6
 	},
-/area/ice_colony/underground/hangar{
-	name = "\improper Colony Response Team Hangar"
-	})
+/area/ice_colony/underground/responsehangar)
 "bRs" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -38098,9 +37770,7 @@
 	icon_state = "warnplate";
 	dir = 4
 	},
-/area/shuttle/drop2/ice_colony{
-	name = "\improper Almayer Dropship 2"
-	})
+/area/shuttle/drop2/ice_colony)
 "bRx" = (
 /obj/machinery/landinglight/ds2/delayone{
 	dir = 8
@@ -38531,18 +38201,14 @@
 /area/ice_colony/underground/hangar)
 "bSv" = (
 /turf/closed/wall,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bSw" = (
 /turf/closed/wall/r_wall/unmeltable,
 /area/space)
 "bSx" = (
 /obj/machinery/door/airlock/multi_tile/almayer/generic,
 /turf/open/floor/tile/dark,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bSy" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -38908,9 +38574,7 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark2,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bTr" = (
 /turf/closed/wall,
 /area/ice_colony/exterior/surface/valley/south)
@@ -39212,9 +38876,7 @@
 "bUl" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/tile/dark,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bUm" = (
 /obj/effect/landmark/monkey_spawn,
 /turf/open/floor/tile/dark2,
@@ -39267,9 +38929,7 @@
 	name = "\improper Garage Shutters"
 	},
 /turf/open/floor/plating,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bUx" = (
 /obj/structure/rack,
 /obj/item/device/multitool,
@@ -39288,9 +38948,7 @@
 /area/ice_colony/underground/hallway/south_east)
 "bUz" = (
 /turf/open/floor/tile/dark,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bUA" = (
 /obj/machinery/landinglight/ds2/delayone{
 	dir = 4
@@ -39482,9 +39140,7 @@
 /area/ice_colony/surface/hydroponics/south)
 "bUW" = (
 /turf/open/floor/plating,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bUX" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8;
@@ -39565,9 +39221,7 @@
 /turf/open/floor/tile/dark/yellow2{
 	dir = 4
 	},
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bVg" = (
 /turf/open/floor/tile/dark/brown2/corner{
 	dir = 8
@@ -39697,27 +39351,21 @@
 /turf/open/floor/tile/dark/yellow2{
 	dir = 9
 	},
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bVv" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/box/beakers,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 1
 	},
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bVw" = (
 /obj/structure/sink,
 /obj/structure/table/reinforced,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 1
 	},
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bVx" = (
 /obj/machinery/camera/autoname/lz_camera,
 /turf/open/floor/plating/icefloor{
@@ -39741,9 +39389,7 @@
 /turf/open/floor/tile/dark/yellow2{
 	dir = 1
 	},
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bVA" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -39769,14 +39415,10 @@
 /turf/open/floor/tile/dark/yellow2{
 	dir = 5
 	},
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bVC" = (
 /turf/closed/wall/r_wall,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bVD" = (
 /obj/structure/largecrate/random,
 /turf/open/floor/plating/icefloor{
@@ -39796,27 +39438,19 @@
 "bVF" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/tile/dark,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bVG" = (
 /obj/effect/decal/cleanable/flour,
 /turf/open/floor/tile/dark,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bVH" = (
 /obj/effect/decal/cleanable/egg_smudge,
 /turf/open/floor/tile/dark,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bVI" = (
 /obj/structure/bed/chair/wood/wings,
 /turf/open/floor/tile/dark,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bVJ" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -39848,9 +39482,7 @@
 /turf/open/floor/tile/dark/yellow2{
 	dir = 4
 	},
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bVL" = (
 /obj/machinery/shower{
 	tag = "icon-shower (EAST)";
@@ -39860,9 +39492,7 @@
 /obj/structure/window/reinforced,
 /obj/machinery/door/window/eastleft,
 /turf/open/floor/tile/white,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bVM" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -39879,9 +39509,7 @@
 	},
 /obj/structure/sink,
 /turf/open/floor/tile/white,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bVO" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -39895,9 +39523,7 @@
 "bVP" = (
 /obj/machinery/washing_machine,
 /turf/open/floor/tile/white,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bVQ" = (
 /obj/structure/cable/yellow{
 	d1 = 2;
@@ -39915,9 +39541,7 @@
 	},
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/tile/dark,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bVS" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	on = 1
@@ -39952,9 +39576,7 @@
 /turf/open/floor/tile/dark/yellow2/corner{
 	dir = 4
 	},
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bVV" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -40028,16 +39650,12 @@
 	pixel_x = 7
 	},
 /turf/open/floor/tile/dark,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bWc" = (
 /obj/structure/table/woodentable,
 /obj/item/reagent_container/food/snacks/boiledspagetti,
 /turf/open/floor/tile/dark,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bWd" = (
 /obj/structure/table/woodentable,
 /obj/item/trash/plate{
@@ -40045,9 +39663,7 @@
 	pixel_y = 7
 	},
 /turf/open/floor/tile/dark,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bWe" = (
 /obj/structure/closet/crate,
 /obj/item/storage/box/lightstick/red,
@@ -40058,9 +39674,7 @@
 /turf/open/floor/tile/dark/yellow2/corner{
 	dir = 4
 	},
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bWf" = (
 /obj/machinery/photocopier,
 /obj/machinery/light{
@@ -40073,14 +39687,10 @@
 "bWg" = (
 /obj/item/tool/soap,
 /turf/open/floor/tile/white,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bWh" = (
 /turf/open/floor/tile/white,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bWi" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -40106,18 +39716,14 @@
 	},
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/tile/dark,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bWl" = (
 /obj/structure/table/reinforced,
 /obj/machinery/microwave,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 10
 	},
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bWm" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/decal/cleanable/blood/drip{
@@ -40128,14 +39734,10 @@
 	},
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/tile/dark,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bWn" = (
 /turf/open/floor/tile/dark/yellow2,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bWo" = (
 /obj/structure/bed/chair/wood/wings{
 	tag = "icon-wooden_chair_wings (NORTH)";
@@ -40143,18 +39745,14 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark/yellow2,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bWp" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4;
 	on = 1
 	},
 /turf/open/floor/tile/dark,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bWq" = (
 /obj/machinery/light{
 	dir = 1
@@ -40163,9 +39761,7 @@
 	dir = 1
 	},
 /turf/open/floor/tile/white,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bWr" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/white,
@@ -40173,9 +39769,7 @@
 "bWs" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor/tile/white,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bWt" = (
 /obj/structure/mirror{
 	pixel_x = 24
@@ -40184,9 +39778,7 @@
 	dir = 4
 	},
 /turf/open/floor/tile/white,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bWu" = (
 /obj/structure/largecrate/random,
 /turf/open/floor/plating/icefloor{
@@ -40269,9 +39861,7 @@
 	},
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/tile/dark,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bWC" = (
 /obj/machinery/door/window/eastleft,
 /turf/open/floor/tile/dark/purple2{
@@ -40283,9 +39873,7 @@
 	dir = 2
 	},
 /turf/open/floor/tile/dark,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bWE" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
@@ -40305,34 +39893,26 @@
 	},
 /obj/machinery/door/window/eastleft,
 /turf/open/floor/tile/white,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bWH" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
 	},
 /turf/open/floor/tile/white,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bWI" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
 /turf/open/floor/tile/white,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bWJ" = (
 /obj/machinery/door/airlock/almayer/generic,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
 /turf/open/floor/freezer,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bWK" = (
 /obj/structure/toilet{
 	dir = 8
@@ -40345,9 +39925,7 @@
 	on = 1
 	},
 /turf/open/floor/freezer,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bWL" = (
 /obj/machinery/power/apc/drained{
 	dir = 8
@@ -40375,9 +39953,7 @@
 	},
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/tile/dark,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bWN" = (
 /obj/effect/landmark/huntergames_secondary_spawn,
 /turf/open/floor/tile/dark2,
@@ -40388,9 +39964,7 @@
 	pixel_y = 22
 	},
 /turf/open/floor/plating,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bWP" = (
 /obj/machinery/power/port_gen/pacman,
 /obj/machinery/light/small{
@@ -40399,9 +39973,7 @@
 /turf/open/floor/tile/dark/yellow2/corner{
 	dir = 8
 	},
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bWQ" = (
 /obj/structure/closet/crate,
 /obj/item/stack/sheet/mineral/phoron{
@@ -40413,24 +39985,18 @@
 /turf/open/floor/tile/dark/yellow2/corner{
 	dir = 8
 	},
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bWR" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/tile/dark/yellow2/corner{
 	dir = 8
 	},
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bWS" = (
 /turf/open/floor/tile/dark/yellow2/corner{
 	dir = 8
 	},
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bWT" = (
 /turf/open/ice,
 /turf/closed/ice/thin/straight,
@@ -40463,9 +40029,7 @@
 /turf/open/floor/tile/dark/yellow2{
 	dir = 6
 	},
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bWX" = (
 /obj/structure/table/reinforced,
 /obj/item/clothing/gloves/black,
@@ -40482,18 +40046,14 @@
 /turf/open/floor/tile/dark/yellow2{
 	dir = 4
 	},
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bWY" = (
 /obj/machinery/door/airlock/almayer/generic{
 	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bWZ" = (
 /turf/closed/ice_rock/corners,
 /area/ice_colony/exterior/surface/valley/south/excavation)
@@ -40563,16 +40123,12 @@
 	name = "\improper Garage Shutters"
 	},
 /turf/open/floor/tile/dark,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bXh" = (
 /turf/open/floor/tile/dark/yellow2/corner{
 	dir = 4
 	},
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bXi" = (
 /obj/structure/window/reinforced{
 	tag = "icon-rwindow (EAST)";
@@ -40591,17 +40147,13 @@
 	pixel_y = 1
 	},
 /turf/open/floor/tile/dark,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bXj" = (
 /obj/structure/closet/secure_closet/miner,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 8
 	},
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bXk" = (
 /obj/structure/rack,
 /obj/item/device/pinpointer,
@@ -40609,17 +40161,13 @@
 /obj/item/storage/bag/ore,
 /obj/item/storage/box/lightstick/red,
 /turf/open/floor/tile/dark,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bXl" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/disposalpipe/segment,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/tile/dark,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bXm" = (
 /obj/structure/table/reinforced,
 /obj/item/tank/emergency_oxygen/engi,
@@ -40631,24 +40179,18 @@
 /turf/open/floor/tile/dark/yellow2{
 	dir = 4
 	},
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bXn" = (
 /obj/structure/bed,
 /obj/item/bedsheet/orange,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 9
 	},
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bXo" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark2,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bXp" = (
 /obj/structure/bed,
 /obj/item/bedsheet/orange,
@@ -40656,9 +40198,7 @@
 /turf/open/floor/tile/dark/yellow2{
 	dir = 5
 	},
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bXq" = (
 /turf/closed/ice_rock/corners{
 	dir = 9
@@ -40683,9 +40223,7 @@
 	dir = 4
 	},
 /turf/open/floor/mech_bay_recharge_floor,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bXu" = (
 /obj/machinery/light{
 	dir = 4
@@ -40701,9 +40239,7 @@
 	dir = 6
 	},
 /turf/open/floor/tile/dark,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bXw" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -40724,34 +40260,26 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/tile/dark,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bXy" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bXz" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
 /obj/machinery/door/airlock/almayer/generic,
 /turf/open/floor/tile/dark,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bXA" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
 /turf/open/floor/tile/dark2,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bXB" = (
 /obj/structure/rack,
 /obj/item/tool/pickaxe/plasmacutter,
@@ -40781,9 +40309,7 @@
 	},
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/tile/dark,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bXF" = (
 /obj/structure/window/reinforced{
 	tag = "icon-rwindow (EAST)";
@@ -40796,9 +40322,7 @@
 	amount = 10
 	},
 /turf/open/floor/tile/dark,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bXG" = (
 /obj/structure/closet/secure_closet/miner,
 /obj/machinery/light{
@@ -40807,18 +40331,14 @@
 /turf/open/floor/tile/dark/yellow2{
 	dir = 10
 	},
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bXH" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 1;
 	on = 1
 	},
 /turf/open/floor/tile/dark/yellow2,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bXI" = (
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -40834,18 +40354,14 @@
 /obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/tile/dark,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bXK" = (
 /obj/structure/bed,
 /obj/item/bedsheet/orange,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 10
 	},
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bXL" = (
 /obj/effect/decal/cleanable/blood{
 	basecolor = "#B70602";
@@ -40864,9 +40380,7 @@
 	on = 1
 	},
 /turf/open/floor/tile/dark/yellow2,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bXM" = (
 /obj/machinery/landinglight/ds2/delayone{
 	dir = 8
@@ -40908,9 +40422,7 @@
 /turf/open/floor/tile/dark/yellow2{
 	dir = 4
 	},
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bXR" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/closed/wall,
@@ -40932,9 +40444,7 @@
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bXV" = (
 /obj/structure/ore_box{
 	anchored = 0
@@ -40945,9 +40455,7 @@
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bXW" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/decal/cleanable/blood{
@@ -40956,9 +40464,7 @@
 	tag = "icon-xtracks"
 	},
 /turf/open/floor/tile/dark,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bXX" = (
 /obj/machinery/light{
 	dir = 4
@@ -40987,9 +40493,7 @@
 	icon_state = "pipe-c"
 	},
 /turf/open/floor/tile/dark,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bYa" = (
 /obj/machinery/disposal,
 /obj/effect/decal/warning_stripes,
@@ -40998,9 +40502,7 @@
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bYb" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/snow/layer1,
@@ -41854,9 +41356,7 @@
 /turf/open/floor/tile/dark/yellow2{
 	dir = 1
 	},
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "bZO" = (
 /obj/machinery/landinglight/ds2/delaytwo{
 	dir = 4
@@ -41878,9 +41378,7 @@
 	tag = "icon-warnplate";
 	icon_state = "warnplate"
 	},
-/area/shuttle/drop2/ice_colony{
-	name = "\improper Almayer Dropship 2"
-	})
+/area/shuttle/drop2/ice_colony)
 "bZR" = (
 /obj/machinery/landinglight/ds2/delaytwo{
 	dir = 8
@@ -41958,9 +41456,7 @@
 /turf/open/floor/tile/dark/yellow2{
 	dir = 1
 	},
-/area/ice_colony/surface/excavation{
-	name = "\improper Excavation Barracks"
-	})
+/area/ice_colony/surface/excavationbarracks)
 "cab" = (
 /obj/structure/table/reinforced,
 /obj/effect/spawner/random/tool,
