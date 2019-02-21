@@ -138,9 +138,10 @@
 	. = ..()
 	if(.)
 		var/fire_light = min(fire_stacks,5)
-		if(fire_luminosity >= fire_light) // light up xenos if new light source greater than
+		if(fire_light > fire_luminosity) // light up xenos if new light source greater than
+			SetLuminosity(-fire_luminosity) //Remove old fire_luminosity
 			fire_luminosity = fire_light
-			SetLuminosity(fire_luminosity)
+			SetLuminosity(fire_luminosity) //Add new fire luminosity
 		var/obj/item/clothing/mask/facehugger/F = get_active_held_item()
 		var/obj/item/clothing/mask/facehugger/G = get_inactive_held_item()
 		if(istype(F))
