@@ -130,21 +130,14 @@
 /turf/open/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/north)
 "aay" = (
-/turf/open/floor{
-	tag = "icon-darkbrown2";
-	icon_state = "darkbrown2"
-	},
+/turf/open/floor/tile/dark/brown2,
 /area/ice_colony/exterior/surface/landing_pad2)
 "aaz" = (
 /turf/open/ice,
 /turf/closed/ice/thin/single,
 /area/ice_colony/exterior/surface/clearing/north)
 "aaA" = (
-/obj/item/lightstick{
-	anchored = 1;
-	icon_state = "lightstick_blue1";
-	luminosity = 2
-	},
+/obj/item/lightstick/anchored,
 /turf/open/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/north)
 "aaB" = (
@@ -1690,11 +1683,7 @@
 /turf/open/floor/tile/dark,
 /area/ice_colony/exterior/surface/landing_pad2)
 "afb" = (
-/obj/item/lightstick{
-	anchored = 1;
-	icon_state = "lightstick_blue1";
-	luminosity = 2
-	},
+/obj/item/lightstick/anchored,
 /turf/open/snow/layer1,
 /area/ice_colony/exterior/surface/valley/northwest)
 "afc" = (
@@ -2552,11 +2541,7 @@
 	},
 /area/lv624/lazarus/console)
 "agW" = (
-/obj/item/lightstick{
-	anchored = 1;
-	icon_state = "lightstick_blue1";
-	luminosity = 2
-	},
+/obj/item/lightstick/anchored,
 /turf/open/snow/layer2,
 /area/ice_colony/exterior/surface/valley/northwest)
 "agX" = (
@@ -2687,11 +2672,7 @@
 	},
 /area/ice_colony/exterior/surface/valley/northwest)
 "ahl" = (
-/obj/item/lightstick{
-	anchored = 1;
-	icon_state = "lightstick_blue1";
-	luminosity = 2
-	},
+/obj/item/lightstick/anchored,
 /turf/open/snow/layer3,
 /area/ice_colony/exterior/surface/valley/north)
 "ahm" = (
@@ -3182,11 +3163,7 @@
 /turf/open/gm/grass,
 /area/ice_colony/surface/hydroponics/north)
 "aiw" = (
-/obj/item/lightstick{
-	anchored = 1;
-	icon_state = "lightstick_blue1";
-	luminosity = 2
-	},
+/obj/item/lightstick/anchored,
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/valley/northwest)
 "aix" = (
@@ -4185,11 +4162,7 @@
 /turf/closed/wall/r_wall,
 /area/ice_colony/surface/dorms/restroom_e)
 "akE" = (
-/obj/item/lightstick/red{
-	anchored = 1;
-	icon_state = "lightstick_red1";
-	luminosity = 2
-	},
+/obj/item/lightstick/red/anchored,
 /turf/open/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/north)
 "akF" = (
@@ -4230,11 +4203,7 @@
 /turf/open/ice,
 /area/ice_colony/exterior/surface/valley/northeast)
 "akM" = (
-/obj/item/lightstick{
-	anchored = 1;
-	icon_state = "lightstick_blue1";
-	luminosity = 2
-	},
+/obj/item/lightstick/anchored,
 /turf/open/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/north)
 "akN" = (
@@ -4774,11 +4743,7 @@
 /turf/open/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/north)
 "amq" = (
-/obj/item/lightstick/red{
-	anchored = 1;
-	icon_state = "lightstick_red1";
-	luminosity = 2
-	},
+/obj/item/lightstick/red/anchored,
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
@@ -5239,11 +5204,7 @@
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "anw" = (
-/obj/item/lightstick/red{
-	anchored = 1;
-	icon_state = "lightstick_red1";
-	luminosity = 2
-	},
+/obj/item/lightstick/red/anchored,
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "anx" = (
@@ -5314,11 +5275,7 @@
 	d1 = 4;
 	d2 = 8
 	},
-/obj/item/lightstick{
-	anchored = 1;
-	icon_state = "lightstick_blue1";
-	luminosity = 2
-	},
+/obj/item/lightstick/anchored,
 /turf/open/floor/tile/dark/brown2{
 	dir = 1
 	},
@@ -5509,11 +5466,7 @@
 /turf/open/floor/plating,
 /area/ice_colony/surface/tcomms)
 "aof" = (
-/obj/item/lightstick/red{
-	anchored = 1;
-	icon_state = "lightstick_red1";
-	luminosity = 2
-	},
+/obj/item/lightstick/red/anchored,
 /turf/open/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/north)
 "aog" = (
@@ -5587,11 +5540,7 @@
 	},
 /area/ice_colony/surface/tcomms)
 "aoo" = (
-/obj/item/lightstick/red{
-	anchored = 1;
-	icon_state = "lightstick_red1";
-	luminosity = 2
-	},
+/obj/item/lightstick/red/anchored,
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
@@ -6297,11 +6246,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/dorms)
 "apQ" = (
-/obj/item/lightstick/red{
-	anchored = 1;
-	icon_state = "lightstick_red1";
-	luminosity = 2
-	},
+/obj/item/lightstick/red/anchored,
 /turf/open/snow/layer3,
 /area/ice_colony/exterior/surface/clearing/north)
 "apR" = (
@@ -7210,11 +7155,7 @@
 /turf/open/floor/plating,
 /area/ice_colony/surface/dorms)
 "arL" = (
-/obj/item/lightstick/red{
-	anchored = 1;
-	icon_state = "lightstick_red1";
-	luminosity = 2
-	},
+/obj/item/lightstick/red/anchored,
 /turf/open/snow/layer3,
 /area/ice_colony/exterior/surface/valley/northeast)
 "arM" = (
@@ -7692,11 +7633,7 @@
 	},
 /area/ice_colony/surface/dorms)
 "asV" = (
-/obj/item/lightstick/red{
-	anchored = 1;
-	icon_state = "lightstick_red1";
-	luminosity = 2
-	},
+/obj/item/lightstick/red/anchored,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/north)
@@ -8356,11 +8293,7 @@
 /turf/open/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/north)
 "auv" = (
-/obj/item/lightstick/red{
-	anchored = 1;
-	icon_state = "lightstick_red1";
-	luminosity = 2
-	},
+/obj/item/lightstick/red/anchored,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -9106,11 +9039,7 @@
 /turf/open/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/north)
 "awe" = (
-/obj/item/lightstick/red{
-	anchored = 1;
-	icon_state = "lightstick_red1";
-	luminosity = 2
-	},
+/obj/item/lightstick/red/anchored,
 /turf/open/snow/layer3,
 /area/ice_colony/exterior/surface/valley/southeast)
 "awf" = (
@@ -9260,11 +9189,7 @@
 	},
 /area/ice_colony/exterior/surface/clearing/north)
 "aww" = (
-/obj/item/lightstick/red{
-	anchored = 1;
-	icon_state = "lightstick_red1";
-	luminosity = 2
-	},
+/obj/item/lightstick/red/anchored,
 /turf/open/snow/layer2,
 /area/ice_colony/exterior/surface/valley/southeast)
 "awx" = (
@@ -9827,11 +9752,7 @@
 /turf/closed/wall,
 /area/ice_colony/surface/dorms/canteen)
 "axR" = (
-/obj/item/lightstick{
-	anchored = 1;
-	icon_state = "lightstick_blue1";
-	luminosity = 2
-	},
+/obj/item/lightstick/anchored,
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "axS" = (
@@ -10196,11 +10117,7 @@
 /turf/open/snow/layer2,
 /area/ice_colony/exterior/surface/valley/southeast)
 "ayO" = (
-/obj/item/lightstick/red{
-	anchored = 1;
-	icon_state = "lightstick_red1";
-	luminosity = 2
-	},
+/obj/item/lightstick/red/anchored,
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
@@ -10594,25 +10511,16 @@
 "azK" = (
 /obj/structure/table,
 /obj/structure/bedsheetbin,
-/turf/open/floor{
-	tag = "icon-darkbrown2";
-	icon_state = "darkbrown2"
-	},
+/turf/open/floor/tile/dark/brown2,
 /area/ice_colony/surface/dorms/lavatory)
 "azL" = (
 /obj/structure/table,
 /obj/item/reagent_container/spray/cleaner,
-/turf/open/floor{
-	tag = "icon-darkbrown2";
-	icon_state = "darkbrown2"
-	},
+/turf/open/floor/tile/dark/brown2,
 /area/ice_colony/surface/dorms/lavatory)
 "azM" = (
 /obj/structure/closet/wardrobe/mixed,
-/turf/open/floor{
-	tag = "icon-darkbrown2";
-	icon_state = "darkbrown2"
-	},
+/turf/open/floor/tile/dark/brown2,
 /area/ice_colony/surface/dorms/lavatory)
 "azN" = (
 /obj/structure/closet/wardrobe/mixed,
@@ -10983,10 +10891,7 @@
 /obj/structure/table,
 /obj/item/device/lightreplacer,
 /obj/item/clothing/mask/rebreather,
-/turf/open/floor{
-	tag = "icon-darkbrown2";
-	icon_state = "darkbrown2"
-	},
+/turf/open/floor/tile/dark/brown2,
 /area/ice_colony/surface/disposals)
 "aAR" = (
 /turf/open/floor/tile/dark2,
@@ -11012,28 +10917,19 @@
 "aAV" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/drained,
-/turf/open/floor{
-	tag = "icon-darkbrown2";
-	icon_state = "darkbrown2"
-	},
+/turf/open/floor/tile/dark/brown2,
 /area/ice_colony/surface/disposals)
 "aAW" = (
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/garage/two)
 "aAX" = (
 /obj/machinery/light,
-/turf/open/floor{
-	tag = "icon-darkbrown2";
-	icon_state = "darkbrown2"
-	},
+/turf/open/floor/tile/dark/brown2,
 /area/ice_colony/surface/disposals)
 "aAY" = (
 /obj/structure/rack,
 /obj/item/tool/shovel/snow,
-/turf/open/floor{
-	tag = "icon-darkbrown2";
-	icon_state = "darkbrown2"
-	},
+/turf/open/floor/tile/dark/brown2,
 /area/ice_colony/surface/disposals)
 "aAZ" = (
 /obj/structure/disposalpipe/segment,
@@ -11791,11 +11687,7 @@
 	},
 /area/ice_colony/surface/command/checkpoint)
 "aCJ" = (
-/obj/item/lightstick/red{
-	anchored = 1;
-	icon_state = "lightstick_red1";
-	luminosity = 2
-	},
+/obj/item/lightstick/red/anchored,
 /turf/open/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/pass)
 "aCK" = (
@@ -12789,10 +12681,7 @@
 /area/ice_colony/exterior/surface/clearing/north)
 "aEZ" = (
 /obj/machinery/light,
-/turf/open/floor{
-	tag = "icon-darkbrown2";
-	icon_state = "darkbrown2"
-	},
+/turf/open/floor/tile/dark/brown2,
 /area/ice_colony/surface/garage/one)
 "aFa" = (
 /obj/structure/flora/pottedplant,
@@ -12820,10 +12709,7 @@
 /area/ice_colony/surface/garage/repair)
 "aFe" = (
 /obj/machinery/light,
-/turf/open/floor{
-	tag = "icon-darkbrown2";
-	icon_state = "darkbrown2"
-	},
+/turf/open/floor/tile/dark/brown2,
 /area/ice_colony/surface/garage/two)
 "aFf" = (
 /obj/machinery/vending/engivend,
@@ -13303,10 +13189,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/command/control)
 "aGl" = (
-/turf/open/floor{
-	tag = "icon-darkbrown2";
-	icon_state = "darkbrown2"
-	},
+/turf/open/floor/tile/dark/brown2,
 /area/ice_colony/surface/garage/one)
 "aGm" = (
 /obj/machinery/door_control{
@@ -13314,16 +13197,10 @@
 	name = "garage shutter control";
 	pixel_y = -30
 	},
-/turf/open/floor{
-	tag = "icon-darkbrown2";
-	icon_state = "darkbrown2"
-	},
+/turf/open/floor/tile/dark/brown2,
 /area/ice_colony/surface/garage/one)
 "aGn" = (
-/turf/open/floor{
-	tag = "icon-darkbrown2";
-	icon_state = "darkbrown2"
-	},
+/turf/open/floor/tile/dark/brown2,
 /area/ice_colony/surface/garage/two)
 "aGo" = (
 /obj/machinery/door_control{
@@ -13331,10 +13208,7 @@
 	name = "garage shutter control";
 	pixel_y = -30
 	},
-/turf/open/floor{
-	tag = "icon-darkbrown2";
-	icon_state = "darkbrown2"
-	},
+/turf/open/floor/tile/dark/brown2,
 /area/ice_colony/surface/garage/two)
 "aGp" = (
 /obj/structure/tunnel{
@@ -14309,11 +14183,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/dorms)
 "aIq" = (
-/obj/item/lightstick{
-	anchored = 1;
-	icon_state = "lightstick_blue1";
-	luminosity = 2
-	},
+/obj/item/lightstick/anchored,
 /turf/open/snow/layer3,
 /area/ice_colony/exterior/surface/valley/northwest)
 "aIr" = (
@@ -14727,11 +14597,7 @@
 /turf/open/floor/wood,
 /area/ice_colony/surface/command/crisis)
 "aJA" = (
-/obj/item/lightstick{
-	anchored = 1;
-	icon_state = "lightstick_blue1";
-	luminosity = 2
-	},
+/obj/item/lightstick/anchored,
 /turf/open/snow/layer2,
 /area/ice_colony/exterior/surface/valley/north)
 "aJB" = (
@@ -15101,11 +14967,7 @@
 /turf/open/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/south)
 "aKF" = (
-/obj/item/lightstick{
-	anchored = 1;
-	icon_state = "lightstick_blue1";
-	luminosity = 2
-	},
+/obj/item/lightstick/anchored,
 /turf/open/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/south)
 "aKG" = (
@@ -15140,11 +15002,7 @@
 	name = "\improper Colony Response Team Hangar"
 	})
 "aKL" = (
-/obj/item/lightstick{
-	anchored = 1;
-	icon_state = "lightstick_blue1";
-	luminosity = 2
-	},
+/obj/item/lightstick/anchored,
 /turf/open/snow/layer3,
 /area/ice_colony/exterior/surface/clearing/north)
 "aKM" = (
@@ -15231,10 +15089,7 @@
 	icon_state = "gib6";
 	tag = "icon-gib6"
 	},
-/turf/open/floor{
-	tag = "icon-darkbrown2";
-	icon_state = "darkbrown2"
-	},
+/turf/open/floor/tile/dark/brown2,
 /area/ice_colony/surface/garage/one)
 "aKW" = (
 /turf/open/floor{
@@ -15295,11 +15150,7 @@
 	},
 /area/ice_colony/exterior/surface/clearing/pass)
 "aLd" = (
-/obj/item/lightstick/red{
-	anchored = 1;
-	icon_state = "lightstick_red1";
-	luminosity = 2
-	},
+/obj/item/lightstick/red/anchored,
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/pass)
 "aLe" = (
@@ -15497,11 +15348,7 @@
 /turf/closed/ice/thin/end,
 /area/ice_colony/exterior/surface/clearing/south)
 "aLy" = (
-/obj/item/lightstick/red{
-	anchored = 1;
-	icon_state = "lightstick_red1";
-	luminosity = 2
-	},
+/obj/item/lightstick/red/anchored,
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/south)
 "aLz" = (
@@ -16597,11 +16444,7 @@
 /turf/open/floor/plating,
 /area/ice_colony/surface/research)
 "aOq" = (
-/obj/item/lightstick{
-	anchored = 1;
-	icon_state = "lightstick_blue1";
-	luminosity = 2
-	},
+/obj/item/lightstick/anchored,
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southwest)
 "aOr" = (
@@ -16623,11 +16466,7 @@
 	},
 /area/ice_colony/surface/storage_unit/research)
 "aOt" = (
-/obj/item/lightstick{
-	anchored = 1;
-	icon_state = "lightstick_blue1";
-	luminosity = 2
-	},
+/obj/item/lightstick/anchored,
 /turf/open/snow/layer1,
 /area/ice_colony/exterior/surface/valley/southwest)
 "aOu" = (
@@ -16762,10 +16601,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
 	},
-/turf/open/floor{
-	tag = "icon-darkbrown2";
-	icon_state = "darkbrown2"
-	},
+/turf/open/floor/tile/dark/brown2,
 /area/ice_colony/surface/hangar/alpha)
 "aOL" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -16785,10 +16621,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
 	},
-/turf/open/floor{
-	tag = "icon-darkbrown2";
-	icon_state = "darkbrown2"
-	},
+/turf/open/floor/tile/dark/brown2,
 /area/ice_colony/surface/hangar/alpha)
 "aOO" = (
 /obj/machinery/light{
@@ -16891,10 +16724,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-darkbrown2";
-	icon_state = "darkbrown2"
-	},
+/turf/open/floor/tile/dark/brown2,
 /area/ice_colony/surface/hangar/beta)
 "aPa" = (
 /obj/machinery/space_heater,
@@ -17016,11 +16846,7 @@
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southwest)
 "aPq" = (
-/obj/item/lightstick{
-	anchored = 1;
-	icon_state = "lightstick_blue1";
-	luminosity = 2
-	},
+/obj/item/lightstick/anchored,
 /turf/open/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/south)
 "aPr" = (
@@ -17225,11 +17051,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/hangar/beta)
 "aPU" = (
-/obj/item/lightstick/red{
-	anchored = 1;
-	icon_state = "lightstick_red1";
-	luminosity = 2
-	},
+/obj/item/lightstick/red/anchored,
 /turf/open/snow/layer1,
 /area/ice_colony/exterior/surface/valley/southwest)
 "aPV" = (
@@ -17474,10 +17296,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
 	},
-/turf/open/floor{
-	tag = "icon-darkbrown2";
-	icon_state = "darkbrown2"
-	},
+/turf/open/floor/tile/dark/brown2,
 /area/ice_colony/surface/hangar/alpha)
 "aQz" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -17493,10 +17312,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
 	},
-/turf/open/floor{
-	tag = "icon-darkbrown2";
-	icon_state = "darkbrown2"
-	},
+/turf/open/floor/tile/dark/brown2,
 /area/ice_colony/surface/hangar/alpha)
 "aQB" = (
 /obj/structure/cable{
@@ -17619,10 +17435,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
 	},
-/turf/open/floor{
-	tag = "icon-darkbrown2";
-	icon_state = "darkbrown2"
-	},
+/turf/open/floor/tile/dark/brown2,
 /area/ice_colony/surface/hangar/beta)
 "aQM" = (
 /turf/open/shuttle{
@@ -17652,10 +17465,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
 	},
-/turf/open/floor{
-	tag = "icon-darkbrown2";
-	icon_state = "darkbrown2"
-	},
+/turf/open/floor/tile/dark/brown2,
 /area/ice_colony/surface/hangar/beta)
 "aQQ" = (
 /obj/structure/closet/radiation,
@@ -17778,10 +17588,8 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "darkpurple2";
-	tag = "icon-darkpurple2 (EAST)"
+/turf/open/floor/tile/dark/purple2{
+	dir = 8
 	},
 /area/ice_colony/surface/research)
 "aRd" = (
@@ -18148,10 +17956,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "darkpurple2";
-	tag = "icon-darkpurple2 (EAST)"
+/turf/open/floor/tile/dark/purple2{
+	dir = 8
 	},
 /area/ice_colony/surface/research)
 "aRT" = (
@@ -18473,10 +18279,8 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "darkpurple2";
-	tag = "icon-darkpurple2 (EAST)"
+/turf/open/floor/tile/dark/purple2{
+	dir = 8
 	},
 /area/ice_colony/surface/research)
 "aSK" = (
@@ -18491,10 +18295,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
 	},
-/turf/open/floor{
-	tag = "icon-darkbrown2";
-	icon_state = "darkbrown2"
-	},
+/turf/open/floor/tile/dark/brown2,
 /area/ice_colony/surface/research)
 "aSM" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -18680,27 +18481,20 @@
 /turf/open/floor/freezer,
 /area/ice_colony/surface/bar/bar)
 "aTl" = (
-/turf/open/floor{
-	dir = 10;
-	icon_state = "darkpurple2";
-	tag = "icon-darkpurple2"
+/turf/open/floor/tile/dark/purple2{
+	dir = 10
 	},
 /area/ice_colony/surface/research)
 "aTm" = (
-/turf/open/floor{
-	tag = "icon-darkpurple2";
-	icon_state = "darkpurple2"
-	},
+/turf/open/floor/tile/dark/purple2,
 /area/ice_colony/surface/research)
 "aTn" = (
 /obj/effect/decal/warning_stripes{
 	tag = "icon-N-corner";
 	icon_state = "N-corner"
 	},
-/turf/open/floor{
-	dir = 6;
-	icon_state = "darkpurple2";
-	tag = "icon-darkpurple2"
+/turf/open/floor/tile/dark/purple2{
+	dir = 6
 	},
 /area/ice_colony/surface/research)
 "aTo" = (
@@ -19027,11 +18821,7 @@
 /turf/open/snow/layer3,
 /area/ice_colony/exterior/surface/clearing/south)
 "aTV" = (
-/obj/item/lightstick/red{
-	anchored = 1;
-	icon_state = "lightstick_red1";
-	luminosity = 2
-	},
+/obj/item/lightstick/red/anchored,
 /turf/open/snow/layer3,
 /area/ice_colony/exterior/surface/clearing/south)
 "aTW" = (
@@ -19246,11 +19036,7 @@
 	},
 /area/ice_colony/surface/research)
 "aUx" = (
-/obj/item/lightstick{
-	anchored = 1;
-	icon_state = "lightstick_blue1";
-	luminosity = 2
-	},
+/obj/item/lightstick/anchored,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable{
@@ -19495,11 +19281,7 @@
 /turf/open/floor/wood,
 /area/ice_colony/surface/bar/bar)
 "aVf" = (
-/obj/item/lightstick{
-	anchored = 1;
-	icon_state = "lightstick_blue1";
-	luminosity = 2
-	},
+/obj/item/lightstick/anchored,
 /turf/open/ice,
 /area/ice_colony/exterior/surface/landing_pad_external)
 "aVg" = (
@@ -19740,10 +19522,7 @@
 	dir = 1;
 	icon_state = "pipe-c"
 	},
-/turf/open/floor{
-	tag = "icon-darkbrown2";
-	icon_state = "darkbrown2"
-	},
+/turf/open/floor/tile/dark/brown2,
 /area/ice_colony/surface/research)
 "aVI" = (
 /obj/structure/disposalpipe/segment{
@@ -19883,10 +19662,8 @@
 	icon_state = "pipe-s";
 	dir = 8
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "darkpurple2";
-	tag = "icon-darkpurple2"
+/turf/open/floor/tile/dark/purple2{
+	dir = 1
 	},
 /area/ice_colony/surface/research)
 "aVZ" = (
@@ -19903,10 +19680,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "darkpurple2";
-	tag = "icon-darkpurple2"
+/turf/open/floor/tile/dark/purple2{
+	dir = 1
 	},
 /area/ice_colony/surface/research)
 "aWa" = (
@@ -19927,10 +19702,8 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "darkpurple2";
-	tag = "icon-darkpurple2"
+/turf/open/floor/tile/dark/purple2{
+	dir = 1
 	},
 /area/ice_colony/surface/research)
 "aWd" = (
@@ -19962,10 +19735,8 @@
 	dir = 2
 	},
 /obj/machinery/light,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "darkpurple2";
-	tag = "icon-darkpurple2"
+/turf/open/floor/tile/dark/purple2{
+	dir = 1
 	},
 /area/ice_colony/surface/research)
 "aWh" = (
@@ -20109,11 +19880,7 @@
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southwest)
 "aWy" = (
-/obj/item/lightstick/red{
-	anchored = 1;
-	icon_state = "lightstick_red1";
-	luminosity = 2
-	},
+/obj/item/lightstick/red/anchored,
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southwest)
 "aWz" = (
@@ -20757,11 +20524,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/research/tech_storage)
 "aXW" = (
-/obj/item/lightstick/red{
-	anchored = 1;
-	icon_state = "lightstick_red1";
-	luminosity = 2
-	},
+/obj/item/lightstick/red/anchored,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable{
@@ -20933,11 +20696,7 @@
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/container_yard)
 "aYz" = (
-/obj/item/lightstick{
-	anchored = 1;
-	icon_state = "lightstick_blue1";
-	luminosity = 2
-	},
+/obj/item/lightstick/anchored,
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/south)
 "aYA" = (
@@ -21018,11 +20777,7 @@
 	},
 /area/ice_colony/exterior/surface/landing_pad_external)
 "aYM" = (
-/obj/item/lightstick{
-	anchored = 1;
-	icon_state = "lightstick_blue1";
-	luminosity = 2
-	},
+/obj/item/lightstick/anchored,
 /turf/open/snow/layer3,
 /area/ice_colony/exterior/surface/valley/southwest)
 "aYN" = (
@@ -22089,11 +21844,7 @@
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/south)
 "bbm" = (
-/obj/item/lightstick{
-	anchored = 1;
-	icon_state = "lightstick_blue1";
-	luminosity = 2
-	},
+/obj/item/lightstick/anchored,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -22162,11 +21913,7 @@
 /turf/closed/ice/thin/straight,
 /area/ice_colony/exterior/surface/landing_pad_external)
 "bbt" = (
-/obj/item/lightstick{
-	anchored = 1;
-	icon_state = "lightstick_blue1";
-	luminosity = 2
-	},
+/obj/item/lightstick/anchored,
 /turf/open/snow/layer2,
 /area/ice_colony/exterior/surface/valley/south)
 "bbu" = (
@@ -22192,11 +21939,7 @@
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/container_yard)
 "bbz" = (
-/obj/item/lightstick/red{
-	anchored = 1;
-	icon_state = "lightstick_red1";
-	luminosity = 2
-	},
+/obj/item/lightstick/red/anchored,
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/container_yard)
 "bbA" = (
@@ -22435,11 +22178,7 @@
 /turf/closed/wall/r_wall/unmeltable,
 /area/ice_colony/underground/requesition)
 "bcf" = (
-/obj/item/lightstick{
-	anchored = 1;
-	icon_state = "lightstick_blue1";
-	luminosity = 2
-	},
+/obj/item/lightstick/anchored,
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south)
 "bcg" = (
@@ -22551,10 +22290,8 @@
 /obj/item/stack/sheet/mineral/phoron,
 /obj/item/stack/sheet/mineral/phoron,
 /obj/item/stack/sheet/mineral/phoron,
-/turf/open/floor{
-	dir = 9;
-	icon_state = "darkpurple2";
-	tag = "icon-darkpurple2"
+/turf/open/floor/tile/dark/purple2{
+	dir = 9
 	},
 /area/ice_colony/surface/research)
 "bcy" = (
@@ -22581,10 +22318,8 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "darkpurple2";
-	tag = "icon-darkpurple2"
+/turf/open/floor/tile/dark/purple2{
+	dir = 1
 	},
 /area/ice_colony/surface/research)
 "bcB" = (
@@ -22645,19 +22380,15 @@
 /area/ice_colony/surface/excavation)
 "bcM" = (
 /obj/structure/largecrate/random,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "darkpurple2";
-	tag = "icon-darkpurple2"
+/turf/open/floor/tile/dark/purple2{
+	dir = 1
 	},
 /area/ice_colony/surface/excavation)
 "bcN" = (
 /obj/structure/rack,
 /obj/item/clothing/mask/gas,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "darkpurple2";
-	tag = "icon-darkpurple2"
+/turf/open/floor/tile/dark/purple2{
+	dir = 1
 	},
 /area/ice_colony/surface/excavation)
 "bcO" = (
@@ -22666,17 +22397,13 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "darkpurple2";
-	tag = "icon-darkpurple2"
+/turf/open/floor/tile/dark/purple2{
+	dir = 1
 	},
 /area/ice_colony/surface/excavation)
 "bcP" = (
-/turf/open/floor{
-	dir = 1;
-	icon_state = "darkpurple2";
-	tag = "icon-darkpurple2"
+/turf/open/floor/tile/dark/purple2{
+	dir = 1
 	},
 /area/ice_colony/surface/excavation)
 "bcQ" = (
@@ -22686,10 +22413,8 @@
 	dir = 4
 	},
 /obj/structure/largecrate/random,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "darkpurple2";
-	tag = "icon-darkpurple2"
+/turf/open/floor/tile/dark/purple2{
+	dir = 5
 	},
 /area/ice_colony/surface/excavation)
 "bcR" = (
@@ -22937,10 +22662,8 @@
 /area/ice_colony/underground/requesition)
 "bdv" = (
 /obj/machinery/chem_master,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "darkpurple2";
-	tag = "icon-darkpurple2"
+/turf/open/floor/tile/dark/purple2{
+	dir = 1
 	},
 /area/ice_colony/surface/research)
 "bdw" = (
@@ -23164,16 +22887,10 @@
 	name = "Underground Hangar Lock";
 	pixel_y = -24
 	},
-/turf/open/floor{
-	tag = "icon-darkbrown2";
-	icon_state = "darkbrown2"
-	},
+/turf/open/floor/tile/dark/brown2,
 /area/ice_colony/underground/hangar)
 "bdX" = (
-/turf/open/floor{
-	tag = "icon-darkbrown2";
-	icon_state = "darkbrown2"
-	},
+/turf/open/floor/tile/dark/brown2,
 /area/ice_colony/underground/hangar)
 "bdY" = (
 /obj/structure/window/framed/colony/reinforced,
@@ -23495,10 +23212,8 @@
 /area/ice_colony/underground/hangar)
 "beK" = (
 /obj/machinery/chem_dispenser,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "darkpurple2";
-	tag = "icon-darkpurple2"
+/turf/open/floor/tile/dark/purple2{
+	dir = 1
 	},
 /area/ice_colony/surface/research)
 "beL" = (
@@ -24082,17 +23797,11 @@
 /turf/open/floor/tile/dark/brown2/corner,
 /area/ice_colony/underground/requesition)
 "bgi" = (
-/turf/open/floor{
-	tag = "icon-darkbrown2";
-	icon_state = "darkbrown2"
-	},
+/turf/open/floor/tile/dark/brown2,
 /area/ice_colony/underground/requesition)
 "bgj" = (
 /obj/machinery/light,
-/turf/open/floor{
-	tag = "icon-darkbrown2";
-	icon_state = "darkbrown2"
-	},
+/turf/open/floor/tile/dark/brown2,
 /area/ice_colony/underground/requesition)
 "bgk" = (
 /obj/structure/inflatable/door,
@@ -24103,10 +23812,8 @@
 	},
 /area/ice_colony/surface/excavation/storage)
 "bgl" = (
-/turf/open/floor{
-	dir = 1;
-	icon_state = "darkpurple2";
-	tag = "icon-darkpurple2"
+/turf/open/floor/tile/dark/purple2{
+	dir = 1
 	},
 /area/ice_colony/surface/research)
 "bgm" = (
@@ -24610,16 +24317,10 @@
 "bhB" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/drained,
-/turf/open/floor{
-	tag = "icon-darkpurple2";
-	icon_state = "darkpurple2"
-	},
+/turf/open/floor/tile/dark/purple2,
 /area/ice_colony/surface/excavation)
 "bhC" = (
-/turf/open/floor{
-	tag = "icon-darkpurple2";
-	icon_state = "darkpurple2"
-	},
+/turf/open/floor/tile/dark/purple2,
 /area/ice_colony/surface/excavation)
 "bhD" = (
 /obj/structure/largecrate/random,
@@ -24634,19 +24335,13 @@
 "bhF" = (
 /obj/structure/table,
 /obj/item/clothing/gloves/yellow,
-/turf/open/floor{
-	tag = "icon-darkpurple2";
-	icon_state = "darkpurple2"
-	},
+/turf/open/floor/tile/dark/purple2,
 /area/ice_colony/surface/excavation)
 "bhG" = (
 /obj/structure/table,
 /obj/item/device/reagent_scanner,
 /obj/machinery/light,
-/turf/open/floor{
-	tag = "icon-darkpurple2";
-	icon_state = "darkpurple2"
-	},
+/turf/open/floor/tile/dark/purple2,
 /area/ice_colony/surface/excavation)
 "bhH" = (
 /turf/open/floor/plating/icefloor{
@@ -24660,10 +24355,7 @@
 "bhI" = (
 /obj/structure/closet/crate,
 /obj/item/tool/pickaxe/plasmacutter,
-/turf/open/floor{
-	tag = "icon-darkpurple2";
-	icon_state = "darkpurple2"
-	},
+/turf/open/floor/tile/dark/purple2,
 /area/ice_colony/surface/excavation)
 "bhJ" = (
 /obj/structure/window/reinforced{
@@ -24671,10 +24363,8 @@
 	icon_state = "rwindow";
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 6;
-	icon_state = "darkpurple2";
-	tag = "icon-darkpurple2"
+/turf/open/floor/tile/dark/purple2{
+	dir = 6
 	},
 /area/ice_colony/surface/excavation)
 "bhK" = (
@@ -24687,10 +24377,8 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "darkpurple2";
-	tag = "icon-darkpurple2"
+/turf/open/floor/tile/dark/purple2{
+	dir = 1
 	},
 /area/ice_colony/surface/research)
 "bhL" = (
@@ -24750,11 +24438,7 @@
 /turf/open/snow/layer2,
 /area/ice_colony/exterior/surface/valley/southwest)
 "bhT" = (
-/obj/item/lightstick{
-	anchored = 1;
-	icon_state = "lightstick_blue1";
-	luminosity = 2
-	},
+/obj/item/lightstick/anchored,
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bhU" = (
@@ -24801,10 +24485,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor{
-	tag = "icon-darkbrown2";
-	icon_state = "darkbrown2"
-	},
+/turf/open/floor/tile/dark/brown2,
 /area/ice_colony/underground/requesition)
 "bhY" = (
 /obj/structure/cable/yellow{
@@ -24812,10 +24493,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor{
-	tag = "icon-darkbrown2";
-	icon_state = "darkbrown2"
-	},
+/turf/open/floor/tile/dark/brown2,
 /area/ice_colony/underground/requesition)
 "bhZ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -24844,10 +24522,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-darkbrown2";
-	icon_state = "darkbrown2"
-	},
+/turf/open/floor/tile/dark/brown2,
 /area/ice_colony/underground/requesition/lobby)
 "bic" = (
 /obj/structure/rack,
@@ -25298,20 +24973,14 @@
 	})
 "bjc" = (
 /obj/structure/window/framed/colony/reinforced,
-/turf/open/floor{
-	tag = "icon-darkbrown2";
-	icon_state = "darkbrown2"
-	},
+/turf/open/floor/tile/dark/brown2,
 /area/ice_colony/underground/requesition)
 "bjd" = (
 /turf/open/floor/tile/dark/brown2/corner,
 /area/ice_colony/underground/hangar)
 "bje" = (
 /obj/machinery/light,
-/turf/open/floor{
-	tag = "icon-darkbrown2";
-	icon_state = "darkbrown2"
-	},
+/turf/open/floor/tile/dark/brown2,
 /area/ice_colony/underground/hangar)
 "bjf" = (
 /obj/structure/table/reinforced,
@@ -25566,10 +25235,8 @@
 /area/ice_colony/underground/maintenance/north)
 "bjL" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "darkpurple2";
-	tag = "icon-darkpurple2"
+/turf/open/floor/tile/dark/purple2{
+	dir = 1
 	},
 /area/ice_colony/surface/research)
 "bjM" = (
@@ -25654,19 +25321,15 @@
 "bjX" = (
 /obj/structure/rack,
 /obj/item/clothing/mask/gas,
-/turf/open/floor{
-	dir = 5;
-	icon_state = "darkpurple2";
-	tag = "icon-darkpurple2"
+/turf/open/floor/tile/dark/purple2{
+	dir = 5
 	},
 /area/ice_colony/surface/research)
 "bjY" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_container/glass/beaker/bluespace,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "darkpurple2";
-	tag = "icon-darkpurple2 (EAST)"
+/turf/open/floor/tile/dark/purple2{
+	dir = 8
 	},
 /area/ice_colony/surface/research)
 "bjZ" = (
@@ -25799,16 +25462,10 @@
 	},
 /area/ice_colony/underground/requesition/sec_storage)
 "bkw" = (
-/turf/open/floor{
-	tag = "icon-darkbrown2";
-	icon_state = "darkbrown2"
-	},
+/turf/open/floor/tile/dark/brown2,
 /area/ice_colony/underground/requesition/sec_storage)
 "bkx" = (
-/turf/open/floor{
-	tag = "icon-darkbrown2";
-	icon_state = "darkbrown2"
-	},
+/turf/open/floor/tile/dark/brown2,
 /area/ice_colony/underground/requesition/lobby)
 "bky" = (
 /turf/open/floor/tile/dark/brown2{
@@ -25816,11 +25473,7 @@
 	},
 /area/ice_colony/underground/requesition/sec_storage)
 "bkz" = (
-/obj/item/lightstick/red{
-	anchored = 1;
-	icon_state = "lightstick_red1";
-	luminosity = 2
-	},
+/obj/item/lightstick/red/anchored,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -25924,10 +25577,7 @@
 "bkQ" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable/yellow,
-/turf/open/floor{
-	tag = "icon-darkbrown2";
-	icon_state = "darkbrown2"
-	},
+/turf/open/floor/tile/dark/brown2,
 /area/ice_colony/underground/requesition/sec_storage)
 "bkR" = (
 /turf/open/floor/wood,
@@ -26280,24 +25930,21 @@
 	},
 /area/ice_colony/underground/hallway/north_west)
 "blQ" = (
-/turf/open/floor{
-	dir = 1;
-	icon_state = "chapel"
+/turf/open/floor/tile/chapel{
+	dir = 1
 	},
 /area/ice_colony/underground/crew/chapel)
 "blR" = (
 /obj/structure/bed/chair{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "chapel"
+/turf/open/floor/tile/chapel{
+	dir = 4
 	},
 /area/ice_colony/underground/crew/chapel)
 "blS" = (
-/turf/open/floor{
-	dir = 4;
-	icon_state = "chapel"
+/turf/open/floor/tile/chapel{
+	dir = 4
 	},
 /area/ice_colony/underground/crew/chapel)
 "blT" = (
@@ -26568,9 +26215,8 @@
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/chapel)
 "bmx" = (
-/turf/open/floor{
-	dir = 8;
-	icon_state = "chapel"
+/turf/open/floor/tile/chapel{
+	dir = 8
 	},
 /area/ice_colony/underground/crew/chapel)
 "bmy" = (
@@ -26769,9 +26415,8 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "chapel"
+/turf/open/floor/tile/chapel{
+	dir = 1
 	},
 /area/ice_colony/underground/crew/chapel)
 "bnc" = (
@@ -26781,9 +26426,8 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "chapel"
+/turf/open/floor/tile/chapel{
+	dir = 4
 	},
 /area/ice_colony/underground/crew/chapel)
 "bnd" = (
@@ -26794,9 +26438,8 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "chapel"
+/turf/open/floor/tile/chapel{
+	dir = 1
 	},
 /area/ice_colony/underground/crew/chapel)
 "bnf" = (
@@ -26808,9 +26451,8 @@
 	dir = 8;
 	on = 1
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "chapel"
+/turf/open/floor/tile/chapel{
+	dir = 1
 	},
 /area/ice_colony/underground/crew/chapel)
 "bnh" = (
@@ -27198,9 +26840,8 @@
 /area/ice_colony/underground/crew/chapel)
 "bof" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "chapel"
+/turf/open/floor/tile/chapel{
+	dir = 1
 	},
 /area/ice_colony/underground/crew/chapel)
 "bog" = (
@@ -27326,9 +26967,8 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "chapel"
+/turf/open/floor/tile/chapel{
+	dir = 8
 	},
 /area/ice_colony/underground/crew/chapel)
 "box" = (
@@ -27377,9 +27017,8 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "chapel"
+/turf/open/floor/tile/chapel{
+	dir = 8
 	},
 /area/ice_colony/underground/crew/chapel)
 "boF" = (
@@ -27859,10 +27498,8 @@
 	dir = 8
 	},
 /obj/structure/table/reinforced,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "darkpurple2";
-	tag = "icon-darkpurple2 (EAST)"
+/turf/open/floor/tile/dark/purple2{
+	dir = 8
 	},
 /area/ice_colony/surface/research)
 "bpV" = (
@@ -27883,10 +27520,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-darkbrown2";
-	icon_state = "darkbrown2"
-	},
+/turf/open/floor/tile/dark/brown2,
 /area/ice_colony/underground/requesition)
 "bpX" = (
 /obj/structure/rack,
@@ -27939,10 +27573,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-darkbrown2";
-	icon_state = "darkbrown2"
-	},
+/turf/open/floor/tile/dark/brown2,
 /area/ice_colony/underground/requesition)
 "bqb" = (
 /obj/structure/closet/secure_closet/miner,
@@ -30132,9 +29763,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "chapel"
+/turf/open/floor/tile/chapel{
+	dir = 8
 	},
 /area/ice_colony/underground/crew/chapel)
 "bvA" = (
@@ -30319,9 +29949,8 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "chapel"
+/turf/open/floor/tile/chapel{
+	dir = 8
 	},
 /area/ice_colony/underground/crew/chapel)
 "bvW" = (
@@ -31943,10 +31572,8 @@
 /obj/structure/sink{
 	dir = 8
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "darkpurple2";
-	tag = "icon-darkpurple2 (EAST)"
+/turf/open/floor/tile/dark/purple2{
+	dir = 8
 	},
 /area/ice_colony/surface/research)
 "bzR" = (
@@ -32120,10 +31747,8 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/shield_gen,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "darkpurple2";
-	tag = "icon-darkpurple2 (EAST)"
+/turf/open/floor/tile/dark/purple2{
+	dir = 8
 	},
 /area/ice_colony/surface/research)
 "bAq" = (
@@ -32395,10 +32020,8 @@
 "bBf" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/box/syringes,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "darkpurple2";
-	tag = "icon-darkpurple2 (EAST)"
+/turf/open/floor/tile/dark/purple2{
+	dir = 8
 	},
 /area/ice_colony/surface/research)
 "bBg" = (
@@ -32477,10 +32100,8 @@
 	},
 /area/ice_colony/underground/security/hallway)
 "bBp" = (
-/turf/open/floor{
-	dir = 8;
-	icon_state = "darkpurple2";
-	tag = "icon-darkpurple2 (EAST)"
+/turf/open/floor/tile/dark/purple2{
+	dir = 8
 	},
 /area/ice_colony/underground/hallway/north_west)
 "bBq" = (
@@ -33621,10 +33242,8 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "darkpurple2";
-	tag = "icon-darkpurple2 (EAST)"
+/turf/open/floor/tile/dark/purple2{
+	dir = 8
 	},
 /area/ice_colony/underground/hallway/north_west)
 "bDR" = (
@@ -34470,10 +34089,8 @@
 	id = "researchoutside";
 	name = "Omicron Research Dome"
 	},
-/turf/open/floor{
-	dir = 5;
-	icon_state = "darkpurple2";
-	tag = "icon-darkpurple2"
+/turf/open/floor/tile/dark/purple2{
+	dir = 5
 	},
 /area/ice_colony/surface/research)
 "bFZ" = (
@@ -34952,10 +34569,8 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "darkpurple2";
-	tag = "icon-darkpurple2 (EAST)"
+/turf/open/floor/tile/dark/purple2{
+	dir = 8
 	},
 /area/ice_colony/underground/hallway/north_west)
 "bHh" = (
@@ -36483,10 +36098,8 @@
 /obj/structure/closet/hydrant{
 	pixel_x = -32
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "darkpurple2";
-	tag = "icon-darkpurple2 (EAST)"
+/turf/open/floor/tile/dark/purple2{
+	dir = 8
 	},
 /area/ice_colony/underground/hallway/north_west)
 "bKv" = (
@@ -36552,10 +36165,8 @@
 /area/ice_colony/underground/security/brig)
 "bKC" = (
 /obj/structure/closet/emcloset,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "darkpurple2";
-	tag = "icon-darkpurple2 (EAST)"
+/turf/open/floor/tile/dark/purple2{
+	dir = 8
 	},
 /area/ice_colony/underground/hallway/north_west)
 "bKD" = (
@@ -36687,29 +36298,18 @@
 /area/ice_colony/underground/security/brig)
 "bKT" = (
 /obj/structure/closet/emcloset,
-/turf/open/floor{
-	dir = 10;
-	icon_state = "darkpurple2";
-	tag = "icon-darkpurple2"
+/turf/open/floor/tile/dark/purple2{
+	dir = 10
 	},
 /area/ice_colony/underground/hallway/north_west)
 "bKU" = (
-/turf/open/floor{
-	tag = "icon-darkpurple2";
-	icon_state = "darkpurple2"
-	},
+/turf/open/floor/tile/dark/purple2,
 /area/ice_colony/underground/hallway/north_west)
 "bKV" = (
-/turf/open/floor{
-	tag = "icon-darkpurple2";
-	icon_state = "darkpurple2"
-	},
+/turf/open/floor/tile/dark/purple2,
 /area/ice_colony/underground/hallway/south_east)
 "bKW" = (
-/turf/open/floor{
-	tag = "icon-darkbrown2";
-	icon_state = "darkbrown2"
-	},
+/turf/open/floor/tile/dark/brown2,
 /area/ice_colony/underground/hallway/south_east)
 "bKX" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -38107,10 +37707,7 @@
 	dir = 8;
 	icon_state = "pipe-c"
 	},
-/turf/open/floor{
-	tag = "icon-darkbrown2";
-	icon_state = "darkbrown2"
-	},
+/turf/open/floor/tile/dark/brown2,
 /area/ice_colony/underground/crew/disposals)
 "bOp" = (
 /obj/machinery/disposal,
@@ -38122,10 +37719,7 @@
 	dir = 1;
 	on = 1
 	},
-/turf/open/floor{
-	tag = "icon-darkbrown2";
-	icon_state = "darkbrown2"
-	},
+/turf/open/floor/tile/dark/brown2,
 /area/ice_colony/underground/crew/disposals)
 "bOr" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -38669,56 +38263,35 @@
 	dir = 1;
 	pixel_y = -24
 	},
-/turf/open/floor{
-	tag = "icon-darkbrown2";
-	icon_state = "darkbrown2"
-	},
+/turf/open/floor/tile/dark/brown2,
 /area/ice_colony/underground/crew/lavatory)
 "bPM" = (
-/turf/open/floor{
-	tag = "icon-darkbrown2";
-	icon_state = "darkbrown2"
-	},
+/turf/open/floor/tile/dark/brown2,
 /area/ice_colony/underground/crew/disposals)
 "bPN" = (
 /obj/structure/mopbucket,
 /obj/item/tool/mop,
-/turf/open/floor{
-	tag = "icon-darkbrown2";
-	icon_state = "darkbrown2"
-	},
+/turf/open/floor/tile/dark/brown2,
 /area/ice_colony/underground/crew/lavatory)
 "bPO" = (
 /obj/structure/table,
 /obj/item/reagent_container/spray/cleaner,
-/turf/open/floor{
-	tag = "icon-darkbrown2";
-	icon_state = "darkbrown2"
-	},
+/turf/open/floor/tile/dark/brown2,
 /area/ice_colony/underground/crew/lavatory)
 "bPP" = (
 /obj/machinery/light,
-/turf/open/floor{
-	tag = "icon-darkbrown2";
-	icon_state = "darkbrown2"
-	},
+/turf/open/floor/tile/dark/brown2,
 /area/ice_colony/underground/crew/lavatory)
 "bPQ" = (
 /obj/structure/cable/yellow,
 /obj/machinery/power/apc/drained,
-/turf/open/floor{
-	tag = "icon-darkbrown2";
-	icon_state = "darkbrown2"
-	},
+/turf/open/floor/tile/dark/brown2,
 /area/ice_colony/underground/crew/lavatory)
 "bPR" = (
 /obj/machinery/alarm{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-darkbrown2";
-	icon_state = "darkbrown2"
-	},
+/turf/open/floor/tile/dark/brown2,
 /area/ice_colony/underground/crew/lavatory)
 "bPS" = (
 /obj/machinery/washing_machine,
@@ -40539,10 +40112,7 @@
 /area/ice_colony/underground/crew/lavatory)
 "bUt" = (
 /obj/effect/landmark/monkey_spawn,
-/turf/open/floor{
-	tag = "icon-darkbrown2";
-	icon_state = "darkbrown2"
-	},
+/turf/open/floor/tile/dark/brown2,
 /area/ice_colony/underground/crew/disposals)
 "bUu" = (
 /obj/effect/landmark/monkey_spawn,
@@ -43612,10 +43182,8 @@
 /area/ice_colony/underground/maintenance/central)
 "ccy" = (
 /obj/effect/decal/cleanable/blood/drip,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "darkpurple2";
-	tag = "icon-darkpurple2 (EAST)"
+/turf/open/floor/tile/dark/purple2{
+	dir = 8
 	},
 /area/ice_colony/underground/hallway/north_west)
 "ccz" = (
@@ -43623,10 +43191,8 @@
 	tag = "icon-3";
 	icon_state = "3"
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "darkpurple2";
-	tag = "icon-darkpurple2 (EAST)"
+/turf/open/floor/tile/dark/purple2{
+	dir = 8
 	},
 /area/ice_colony/underground/hallway/north_west)
 "ccA" = (
@@ -43727,10 +43293,8 @@
 	pixel_x = 4;
 	pixel_y = 20
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "darkpurple2";
-	tag = "icon-darkpurple2 (EAST)"
+/turf/open/floor/tile/dark/purple2{
+	dir = 8
 	},
 /area/ice_colony/underground/hallway/north_west)
 "ccM" = (

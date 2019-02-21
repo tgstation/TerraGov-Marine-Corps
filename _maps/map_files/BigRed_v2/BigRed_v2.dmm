@@ -19882,18 +19882,16 @@
 	},
 /area/bigredv2/outside/chapel)
 "bao" = (
-/turf/open/floor{
-	dir = 1;
-	icon_state = "chapel"
+/turf/open/floor/tile/chapel{
+	dir = 1
 	},
 /area/bigredv2/outside/chapel)
 "bap" = (
 /obj/structure/bed/chair/wood/normal{
 	dir = 8
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "chapel"
+/turf/open/floor/tile/chapel{
+	dir = 4
 	},
 /area/bigredv2/outside/chapel)
 "baq" = (
@@ -19901,18 +19899,16 @@
 	dir = 8
 	},
 /obj/effect/landmark/random_item/crap,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "chapel"
+/turf/open/floor/tile/chapel{
+	dir = 1
 	},
 /area/bigredv2/outside/chapel)
 "bar" = (
 /obj/structure/bed/chair/wood/normal{
 	dir = 8
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "chapel"
+/turf/open/floor/tile/chapel{
+	dir = 1
 	},
 /area/bigredv2/outside/chapel)
 "bas" = (
@@ -19925,15 +19921,13 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "chapel"
+/turf/open/floor/tile/chapel{
+	dir = 1
 	},
 /area/bigredv2/outside/chapel)
 "bat" = (
-/turf/open/floor{
-	dir = 4;
-	icon_state = "chapel"
+/turf/open/floor/tile/chapel{
+	dir = 4
 	},
 /area/bigredv2/outside/chapel)
 "bau" = (
@@ -20081,9 +20075,8 @@
 	},
 /area/bigredv2/outside/chapel)
 "baS" = (
-/turf/open/floor{
-	dir = 8;
-	icon_state = "chapel"
+/turf/open/floor/tile/chapel{
+	dir = 8
 	},
 /area/bigredv2/outside/chapel)
 "baT" = (
@@ -20098,9 +20091,8 @@
 /obj/structure/bed/chair/wood/normal{
 	dir = 8
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "chapel"
+/turf/open/floor/tile/chapel{
+	dir = 8
 	},
 /area/bigredv2/outside/chapel)
 "baV" = (
@@ -20113,9 +20105,8 @@
 /obj/structure/bed/chair/wood/normal{
 	dir = 8
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "chapel"
+/turf/open/floor/tile/chapel{
+	dir = 8
 	},
 /area/bigredv2/outside/chapel)
 "baW" = (
@@ -20594,9 +20585,8 @@
 	dir = 8
 	},
 /obj/effect/landmark/start/surv_spawn,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "chapel"
+/turf/open/floor/tile/chapel{
+	dir = 4
 	},
 /area/bigredv2/outside/chapel)
 "bcm" = (
@@ -20608,9 +20598,8 @@
 /obj/structure/bed/chair/wood/normal{
 	dir = 8
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "chapel"
+/turf/open/floor/tile/chapel{
+	dir = 1
 	},
 /area/bigredv2/outside/chapel)
 "bcn" = (
@@ -20940,9 +20929,8 @@
 /obj/structure/bed/chair/wood/normal{
 	dir = 8
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "chapel"
+/turf/open/floor/tile/chapel{
+	dir = 8
 	},
 /area/bigredv2/outside/chapel)
 "bdf" = (

@@ -414,6 +414,9 @@
 /turf/open/floor/tile/white
 	icon_state = "white"
 
+/turf/open/floor/tile/chapel
+	icon_state = "chapel"
+
 /turf/open/floor/tile/bar
 	icon_state = "bar"
 
