@@ -6244,15 +6244,11 @@
 /turf/open/shuttle/brig,
 /area/deathmatch)
 "pl" = (
-/obj/effect/decal/cleanable/blood/drip{
-	icon_state = "4"
-	},
+/obj/effect/decal/cleanable/blood/drip,
 /turf/open/shuttle/brig,
 /area/deathmatch)
 "pm" = (
-/obj/effect/decal/cleanable/blood/drip{
-	icon_state = "4"
-	},
+/obj/effect/decal/cleanable/blood/drip,
 /turf/open/gm/grass,
 /area/deathmatch)
 "pn" = (
@@ -6260,9 +6256,7 @@
 /turf/open/gm/grass,
 /area/deathmatch)
 "po" = (
-/obj/effect/decal/cleanable/blood/drip{
-	icon_state = "3"
-	},
+/obj/effect/decal/cleanable/blood/drip,
 /turf/open/gm/grass,
 /area/deathmatch)
 "pp" = (
@@ -6271,9 +6265,7 @@
 /turf/open/floor,
 /area/deathmatch)
 "pq" = (
-/obj/effect/decal/cleanable/blood/drip{
-	icon_state = "5"
-	},
+/obj/effect/decal/cleanable/blood/drip,
 /turf/open/gm/grass,
 /area/deathmatch)
 "pr" = (

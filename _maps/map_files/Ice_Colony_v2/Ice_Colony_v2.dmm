@@ -1784,10 +1784,7 @@
 	},
 /area/ice_colony/surface/engineering)
 "afE" = (
-/obj/effect/decal/cleanable/blood/drip{
-	tag = "icon-3";
-	icon_state = "3"
-	},
+/obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/tile/dark/yellow2/corner{
 	dir = 1
 	},
@@ -1970,10 +1967,7 @@
 /area/ice_colony/surface/engineering)
 "aga" = (
 /obj/effect/decal/cleanable/blood,
-/obj/effect/decal/cleanable/blood/drip{
-	tag = "icon-3";
-	icon_state = "3"
-	},
+/obj/effect/decal/cleanable/blood/drip,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/landmark/corpsespawner/engineer{
 	corpseglasses = /obj/item/clothing/glasses/welding;
@@ -7203,10 +7197,7 @@
 /turf/open/snow/layer1,
 /area/ice_colony/exterior/surface/valley/northwest)
 "asD" = (
-/obj/effect/decal/cleanable/blood/drip{
-	tag = "icon-3";
-	icon_state = "3"
-	},
+/obj/effect/decal/cleanable/blood/drip,
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "asE" = (
@@ -7911,10 +7902,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/blood/drip,
-/obj/effect/decal/cleanable/blood/drip{
-	tag = "icon-3";
-	icon_state = "3"
-	},
+/obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/tile/red/whitered/corner{
 	dir = 1
 	},
@@ -12664,12 +12652,7 @@
 /area/ice_colony/surface/garage/two)
 "aGe" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/decal/cleanable/blood/drip{
-	tag = "icon-3";
-	icon_state = "3";
-	pixel_x = 27;
-	pixel_y = 15
-	},
+/obj/effect/decal/cleanable/blood/drip,
 /obj/machinery/door/poddoor/two_tile_hor/secure{
 	id = "colony_E_armory";
 	name = "Emergency Armory"
@@ -13450,10 +13433,7 @@
 "aHL" = (
 /obj/structure/table,
 /obj/item/storage/box/pizza,
-/obj/effect/decal/cleanable/blood/drip{
-	tag = "icon-3";
-	icon_state = "3"
-	},
+/obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 5
 	},
@@ -13563,10 +13543,7 @@
 /area/ice_colony/surface/command/crisis)
 "aHX" = (
 /obj/effect/decal/cleanable/blood/drip,
-/obj/effect/decal/cleanable/blood/drip{
-	tag = "icon-3";
-	icon_state = "3"
-	},
+/obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/wood,
 /area/ice_colony/surface/command/crisis)
 "aHY" = (
@@ -13822,16 +13799,8 @@
 /area/ice_colony/surface/command/crisis)
 "aIL" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/decal/cleanable/blood/drip{
-	tag = "icon-3";
-	icon_state = "3"
-	},
-/obj/effect/decal/cleanable/blood/drip{
-	tag = "icon-3";
-	icon_state = "3";
-	pixel_x = 29;
-	pixel_y = 16
-	},
+/obj/effect/decal/cleanable/blood/drip,
+/obj/effect/decal/cleanable/blood/drip,
 /obj/machinery/door/poddoor/two_tile_hor/secure{
 	id = "colony_E_armory";
 	name = "Emergency Armory"
@@ -32217,12 +32186,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/blood/drip{
-	tag = "icon-3";
-	icon_state = "3";
-	pixel_x = 14;
-	pixel_y = 20
-	},
+/obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 4
 	},
@@ -33925,12 +33889,7 @@
 /area/ice_colony/underground/command/checkpoint)
 "bIq" = (
 /obj/item/ammo_casing/bullet,
-/obj/effect/decal/cleanable/blood/drip{
-	tag = "icon-3";
-	icon_state = "3";
-	pixel_x = 1;
-	pixel_y = 24
-	},
+/obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/central)
 "bIr" = (
@@ -39280,18 +39239,8 @@
 /obj/machinery/vending/wallmed1{
 	pixel_x = 26
 	},
-/obj/effect/decal/cleanable/blood/drip{
-	tag = "icon-3";
-	icon_state = "3";
-	pixel_x = 4;
-	pixel_y = 1
-	},
-/obj/effect/decal/cleanable/blood/drip{
-	tag = "icon-3";
-	icon_state = "3";
-	pixel_x = 8;
-	pixel_y = 11
-	},
+/obj/effect/decal/cleanable/blood/drip,
+/obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 4
 	},
@@ -39539,12 +39488,7 @@
 /area/ice_colony/surface/excavationbarracks)
 "bWm" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/decal/cleanable/blood/drip{
-	tag = "icon-3";
-	icon_state = "3";
-	pixel_x = 21;
-	pixel_y = 5
-	},
+/obj/effect/decal/cleanable/blood/drip,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/tile/dark,
 /area/ice_colony/surface/excavationbarracks)
@@ -39662,10 +39606,7 @@
 	pixel_x = 11;
 	pixel_y = 14
 	},
-/obj/effect/decal/cleanable/blood/drip{
-	tag = "icon-3";
-	icon_state = "3"
-	},
+/obj/effect/decal/cleanable/blood/drip,
 /obj/effect/decal/cleanable/blood/gibs/limb,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/tile/dark,
@@ -39753,12 +39694,7 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/blood/drip{
-	tag = "icon-3";
-	icon_state = "3";
-	pixel_x = 9;
-	pixel_y = 14
-	},
+/obj/effect/decal/cleanable/blood/drip,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/tile/dark,
 /area/ice_colony/surface/excavationbarracks)
@@ -39913,10 +39849,7 @@
 /area/ice_colony/underground/hangar)
 "bXf" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/decal/cleanable/blood/drip{
-	tag = "icon-3";
-	icon_state = "3"
-	},
+/obj/effect/decal/cleanable/blood/drip,
 /obj/effect/decal/cleanable/blood/xtracks,
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south/excavation)
@@ -40107,10 +40040,7 @@
 	pixel_y = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/decal/cleanable/blood/drip{
-	tag = "icon-3";
-	icon_state = "3"
-	},
+/obj/effect/decal/cleanable/blood/drip,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/tile/dark,
 /area/ice_colony/surface/excavationbarracks)
@@ -40316,10 +40246,7 @@
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bYf" = (
 /obj/effect/decal/cleanable/blood/gibs,
-/obj/effect/decal/cleanable/blood/drip{
-	tag = "icon-3";
-	icon_state = "3"
-	},
+/obj/effect/decal/cleanable/blood/drip,
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bYg" = (
@@ -40335,10 +40262,7 @@
 	mobname = "Shaft Miner";
 	name = "Shaft Miner"
 	},
-/obj/effect/decal/cleanable/blood/drip{
-	tag = "icon-3";
-	icon_state = "3"
-	},
+/obj/effect/decal/cleanable/blood/drip,
 /obj/effect/decal/cleanable/blood/gibs/limb,
 /obj/effect/decal/cleanable/blood,
 /turf/open/snow/layer0,
@@ -40531,10 +40455,7 @@
 	pixel_x = 5;
 	pixel_y = 27
 	},
-/obj/effect/decal/cleanable/blood/drip{
-	tag = "icon-3";
-	icon_state = "3"
-	},
+/obj/effect/decal/cleanable/blood/drip,
 /turf/open/snow/layer1,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bYG" = (
@@ -41453,10 +41374,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/blood/drip{
-	tag = "icon-3";
-	icon_state = "3"
-	},
+/obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/north_west)
 "cbV" = (
@@ -41482,20 +41400,14 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/effect/decal/cleanable/blood/drip{
-	pixel_x = 6;
-	pixel_y = 6
-	},
+/obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/central)
 "cck" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/blood/drip{
-	tag = "icon-3";
-	icon_state = "3"
-	},
+/obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/central)
 "ccy" = (
@@ -41505,10 +41417,7 @@
 	},
 /area/ice_colony/underground/hallway/north_west)
 "ccz" = (
-/obj/effect/decal/cleanable/blood/drip{
-	tag = "icon-3";
-	icon_state = "3"
-	},
+/obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/tile/dark/purple2{
 	dir = 8
 	},
@@ -41533,10 +41442,7 @@
 	},
 /area/ice_colony/underground/command/center)
 "ccB" = (
-/obj/effect/decal/cleanable/blood/drip{
-	tag = "icon-3";
-	icon_state = "3"
-	},
+/obj/effect/decal/cleanable/blood/drip,
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/tile/dark/blue2{
 	dir = 2
@@ -41550,10 +41456,7 @@
 	icon_state = "1-2"
 	},
 /obj/effect/decal/cleanable/blood/xtracks,
-/obj/effect/decal/cleanable/blood/drip{
-	tag = "icon-3";
-	icon_state = "3"
-	},
+/obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/command/center)
 "ccD" = (
@@ -41590,10 +41493,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/effect/decal/cleanable/blood/drip{
-	pixel_x = 4;
-	pixel_y = 20
-	},
+/obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/tile/dark/purple2{
 	dir = 8
 	},
@@ -41615,10 +41515,7 @@
 	icon_state = "1-2"
 	},
 /obj/effect/decal/cleanable/blood/xtracks,
-/obj/effect/decal/cleanable/blood/drip{
-	tag = "icon-3";
-	icon_state = "3"
-	},
+/obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/command/checkpoint)
 "ccP" = (
@@ -41630,10 +41527,7 @@
 	},
 /obj/effect/decal/cleanable/blood/gibs,
 /obj/effect/decal/cleanable/blood/xtracks,
-/obj/effect/decal/cleanable/blood/drip{
-	pixel_x = 7;
-	pixel_y = 4
-	},
+/obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/command/checkpoint)
 "ccQ" = (
@@ -41660,10 +41554,7 @@
 "ccY" = (
 /obj/effect/alien/weeds/node,
 /obj/effect/decal/cleanable/blood/gibs,
-/obj/effect/decal/cleanable/blood/drip{
-	pixel_x = 18;
-	pixel_y = 25
-	},
+/obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/plating,
 /area/ice_colony/exterior/underground/caves/open)
 "ccZ" = (
@@ -41677,12 +41568,7 @@
 /area/ice_colony/exterior/underground/caves/open)
 "cdc" = (
 /obj/effect/decal/cleanable/blood/drip,
-/obj/effect/decal/cleanable/blood/drip{
-	tag = "icon-3";
-	icon_state = "3";
-	pixel_x = 15;
-	pixel_y = 3
-	},
+/obj/effect/decal/cleanable/blood/drip,
 /obj/effect/decal/cleanable/blood/xeno,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/north_west)
