@@ -2525,8 +2525,7 @@
 "agT" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
 	dir = 4;
-	id_tag = "waste_upper_out";
-	
+	id_tag = "waste_upper_out"
 	},
 /turf/open/floor/engine,
 /area/almayer/engineering/starboard_atmos)
@@ -3007,8 +3006,7 @@
 /area/almayer/living/cafeteria_officer)
 "aic" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
-	dir = 6;
-	
+	dir = 6
 	},
 /obj/machinery/meter,
 /turf/open/floor/almayer{
@@ -6479,8 +6477,7 @@
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 2;
-	icon_state = "1-2";
-	
+	icon_state = "1-2"
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/hallways/aft_hallway)
@@ -7463,8 +7460,7 @@
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 2;
-	icon_state = "1-2";
-	
+	icon_state = "1-2"
 	},
 /turf/open/floor/almayer{
 	tag = "icon-greencorner (NORTH)";
@@ -8785,8 +8781,7 @@
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 2;
-	icon_state = "1-2";
-	
+	icon_state = "1-2"
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/hallways/aft_hallway)
@@ -8836,8 +8831,7 @@
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 2;
-	icon_state = "1-2";
-	
+	icon_state = "1-2"
 	},
 /turf/open/floor/almayer{
 	tag = "icon-greencorner (NORTH)";
@@ -9709,8 +9703,7 @@
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 2;
-	icon_state = "1-2";
-	
+	icon_state = "1-2"
 	},
 /turf/open/floor/almayer{
 	tag = "icon-greencorner (WEST)";
@@ -19471,19 +19464,6 @@
 	icon_state = "sterile"
 	},
 /area/almayer/command/cic)
-"aMM" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2";
-	
-	},
-/turf/open/floor/almayer{
-	dir = 4;
-	icon_state = "silver";
-	tag = "icon-silver"
-	},
-/area/almayer/command/cic)
 "aMN" = (
 /obj/machinery/vending/snack,
 /turf/open/floor/almayer/mono,
@@ -20775,8 +20755,7 @@
 /area/almayer/engineering/port_atmos)
 "aPs" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
-	dir = 10;
-	
+	dir = 10
 	},
 /turf/open/floor/almayer{
 	dir = 5;
@@ -21205,8 +21184,7 @@
 /area/almayer/engineering/port_atmos)
 "aQw" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
-	dir = 6;
-	
+	dir = 6
 	},
 /obj/machinery/meter,
 /turf/open/floor/almayer{
@@ -21239,8 +21217,7 @@
 /obj/machinery/atmospherics/components/trinary/mixer{
 	dir = 4;
 	name = "Gas mixer N2/O2";
-	on = 1;
-	
+	on = 1
 	},
 /turf/open/floor/almayer{
 	tag = "icon-orange";
@@ -21259,8 +21236,7 @@
 /area/almayer/engineering/port_atmos)
 "aQB" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
-	dir = 10;
-	
+	dir = 10
 	},
 /obj/machinery/meter,
 /turf/open/floor/almayer{
@@ -21425,8 +21401,7 @@
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 2;
-	icon_state = "1-2";
-	
+	icon_state = "1-2"
 	},
 /obj/machinery/light/small{
 	dir = 8
@@ -21597,8 +21572,7 @@
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 2;
-	icon_state = "1-2";
-	
+	icon_state = "1-2"
 	},
 /obj/machinery/light/small{
 	dir = 4
@@ -21750,8 +21724,7 @@
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 2;
-	icon_state = "1-2";
-	
+	icon_state = "1-2"
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/shipboard/starboard_point_defense)
@@ -22293,8 +22266,7 @@
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 8;
-	icon_state = "1-8";
-	
+	icon_state = "1-8"
 	},
 /turf/open/floor/prison{
 	icon_state = "kitchen"
@@ -22629,15 +22601,6 @@
 	icon_state = "wall6"
 	},
 /area/almayer/evacuation/pod3)
-"aUg" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8";
-	
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/almayer/hull/upper_hull)
 "aUh" = (
 /turf/closed/shuttle/escapepod{
 	tag = "icon-wall9";
@@ -22880,8 +22843,7 @@
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 8;
-	icon_state = "1-8";
-	
+	icon_state = "1-8"
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/hull/upper_hull)
@@ -23173,8 +23135,7 @@
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 8;
-	icon_state = "1-8";
-	
+	icon_state = "1-8"
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/shipboard/starboard_point_defense)
@@ -23209,8 +23170,7 @@
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 2;
-	icon_state = "1-2";
-	
+	icon_state = "1-2"
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/shipboard/starboard_point_defense)
@@ -29030,8 +28990,7 @@
 /area/almayer/engineering/lower_engineering)
 "bju" = (
 /obj/machinery/atmospherics/components/binary/pump/on{
-	dir = 1;
-	
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	dir = 1;
@@ -35415,24 +35374,6 @@
 	dir = 8
 	},
 /area/almayer/engineering/engine_core)
-"bwQ" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2";
-	
-	},
-/turf/open/floor/almayer/mono,
-/area/almayer/hull/lower_hull)
-"bwR" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2";
-	
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/almayer/hull/lower_hull)
 "bwS" = (
 /turf/closed/wall/almayer,
 /area/almayer/shipboard/weapon_room)
@@ -45221,8 +45162,7 @@
 /area/almayer/engineering/lower_engineering)
 "bQR" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
-	dir = 10;
-	
+	dir = 10
 	},
 /obj/machinery/meter,
 /turf/open/floor/almayer/mono,
@@ -45441,8 +45381,7 @@
 /area/almayer/hallways/port_hallway)
 "bRs" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
-	dir = 6;
-	
+	dir = 6
 	},
 /obj/machinery/meter,
 /turf/open/floor/almayer{
@@ -45463,8 +45402,7 @@
 /obj/machinery/atmospherics/components/trinary/mixer{
 	dir = 4;
 	name = "Gas mixer N2/O2";
-	on = 1;
-	
+	on = 1
 	},
 /turf/open/floor/almayer{
 	tag = "icon-orange";
@@ -45489,8 +45427,7 @@
 /area/almayer/engineering/lower_engineering)
 "bRw" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
-	dir = 10;
-	
+	dir = 10
 	},
 /obj/machinery/meter,
 /turf/open/floor/almayer{
@@ -48451,8 +48388,7 @@
 /obj/structure/cable/yellow{
 	d1 = 2;
 	d2 = 4;
-	icon_state = "2-4";
-	
+	icon_state = "2-4"
 	},
 /turf/open/floor/almayer{
 	dir = 1;
@@ -50308,15 +50244,6 @@
 "ccB" = (
 /turf/closed/wall/almayer/outer,
 /area/almayer/shipboard/port_point_defense)
-"ccC" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8";
-	
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/almayer/hull/lower_hull)
 "ccD" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -51962,16 +51889,6 @@
 /obj/machinery/light,
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/shipboard/brig_cells)
-"cgB" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2";
-	
-	},
-/obj/structure/sign/electricshock,
-/turf/closed/wall/almayer,
-/area/almayer/hull/upper_hull)
 "cgC" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -52942,8 +52859,7 @@
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 2;
-	icon_state = "1-2";
-	
+	icon_state = "1-2"
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -53039,15 +52955,6 @@
 	tag = "icon-orange"
 	},
 /area/almayer/hallways/repair_bay)
-"ciM" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2";
-	
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/almayer/hull/upper_hull)
 "ciN" = (
 /obj/structure/janitorialcart,
 /obj/machinery/light/small{
@@ -53120,8 +53027,7 @@
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 2;
-	icon_state = "1-2";
-	
+	icon_state = "1-2"
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/shipboard/port_point_defense)
@@ -53129,8 +53035,7 @@
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 2;
-	icon_state = "1-2";
-	
+	icon_state = "1-2"
 	},
 /obj/machinery/light/small{
 	dir = 8
@@ -66339,8 +66244,8 @@ amH
 amH
 bYv
 ciE
-cgB
-ciM
+aFA
+aao
 ciO
 bjR
 aai
@@ -73018,7 +72923,7 @@ aru
 aru
 axP
 aru
-aMM
+aru
 chc
 aNE
 aOw
@@ -92059,7 +91964,7 @@ aap
 aaj
 aao
 aao
-aUg
+aaw
 aai
 aag
 aag
@@ -93084,7 +92989,7 @@ aaB
 aao
 aao
 aao
-aUg
+aaw
 aai
 aag
 aah
@@ -96671,7 +96576,7 @@ aRg
 aRJ
 aOg
 aav
-aUg
+aaw
 aai
 aag
 aag
@@ -98469,7 +98374,7 @@ aQI
 aQI
 aai
 aaj
-aUg
+aaw
 aai
 aag
 aag
@@ -100777,7 +100682,7 @@ aLa
 aTB
 aTX
 aTZ
-aUg
+aaw
 aai
 aai
 aai
@@ -113736,20 +113641,20 @@ aaa
 aaa
 aVk
 aVp
-bwQ
-bwR
-bwR
-bwQ
-bwQ
-bwQ
-bwR
-bwQ
-bwQ
-bwQ
-bwR
-bwR
-bwQ
-ccC
+aWp
+aVr
+aVr
+aWp
+aWp
+aWp
+aVr
+aWp
+aWp
+aWp
+aVr
+aVr
+aWp
+aWF
 aVk
 aaa
 aaa

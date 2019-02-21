@@ -3468,8 +3468,7 @@
 	dir = 8
 	},
 /obj/machinery/power/apc/supercharged{
-	dir = 1;
-	
+	dir = 1
 	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
@@ -3908,8 +3907,7 @@
 /area/lv624/ground/jungle8)
 "aoo" = (
 /obj/structure/barricade/wooden/lv_snowflake{
-	dir = 8;
-	
+	dir = 8
 	},
 /turf/open/floor/wood,
 /area/lv624/ground/jungle8)
@@ -6283,8 +6281,7 @@
 /obj/structure/cable/yellow{
 	d1 = 2;
 	d2 = 4;
-	icon_state = "2-4";
-	
+	icon_state = "2-4"
 	},
 /turf/open/floor/tile/red/redtaupecorner{
 	dir = 8
@@ -6395,8 +6392,7 @@
 /obj/structure/cable/yellow{
 	d1 = 2;
 	d2 = 4;
-	icon_state = "2-4";
-	
+	icon_state = "2-4"
 	},
 /turf/open/floor/tile/red/full,
 /area/lv624/lazarus/security)
@@ -6768,8 +6764,7 @@
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 8;
-	icon_state = "1-8";
-	
+	icon_state = "1-8"
 	},
 /turf/open/floor/tile/green/greentaupe{
 	dir = 1
@@ -7347,8 +7342,7 @@
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 8;
-	icon_state = "1-8";
-	
+	icon_state = "1-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -8063,8 +8057,7 @@
 /obj/structure/cable/yellow{
 	d1 = 2;
 	d2 = 8;
-	icon_state = "2-8";
-	
+	icon_state = "2-8"
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
@@ -9457,8 +9450,7 @@
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 8;
-	icon_state = "1-8";
-	
+	icon_state = "1-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -9763,8 +9755,7 @@
 /obj/structure/cable/yellow{
 	d1 = 2;
 	d2 = 8;
-	icon_state = "2-8";
-	
+	icon_state = "2-8"
 	},
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
 /turf/open/floor/tile/purple/whitepurplecorner{
@@ -10706,8 +10697,7 @@
 /obj/structure/cable/yellow{
 	d1 = 2;
 	d2 = 8;
-	icon_state = "2-8";
-	
+	icon_state = "2-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
@@ -10767,8 +10757,7 @@
 /area/lv624/lazarus/main_hall)
 "aNB" = (
 /obj/structure/barricade/wooden/lv_snowflake{
-	dir = 8;
-	
+	dir = 8
 	},
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
@@ -11695,8 +11684,7 @@
 /area/lv624/ground/jungle4)
 "aQL" = (
 /obj/structure/barricade/wooden/lv_snowflake{
-	dir = 8;
-	
+	dir = 8
 	},
 /obj/machinery/landinglight/ds2{
 	dir = 4
@@ -11753,8 +11741,7 @@
 /obj/structure/cable/yellow{
 	d1 = 2;
 	d2 = 8;
-	icon_state = "2-8";
-	
+	icon_state = "2-8"
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
@@ -11765,8 +11752,7 @@
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 8;
-	icon_state = "1-8";
-	
+	icon_state = "1-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
@@ -11797,8 +11783,7 @@
 /area/lv624/lazarus/sleep_male)
 "aQV" = (
 /obj/structure/barricade/wooden/lv_snowflake{
-	dir = 8;
-	
+	dir = 8
 	},
 /obj/structure/barricade/wooden{
 	dir = 1
@@ -12181,8 +12166,7 @@
 /area/lv624/ground/jungle4)
 "aRW" = (
 /obj/structure/barricade/wooden/lv_snowflake{
-	dir = 8;
-	
+	dir = 8
 	},
 /obj/machinery/landinglight/ds2/delaytwo{
 	dir = 4
@@ -12441,8 +12425,7 @@
 /area/shuttle/drop2/lz2)
 "aSL" = (
 /obj/structure/barricade/wooden/lv_snowflake{
-	dir = 8;
-	
+	dir = 8
 	},
 /obj/machinery/landinglight/ds2/delaythree{
 	dir = 4
@@ -13135,8 +13118,7 @@
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 2;
-	icon_state = "1-2";
-	
+	icon_state = "1-2"
 	},
 /turf/open/floor/tile/chapel{
 	dir = 8
@@ -13183,8 +13165,7 @@
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 2;
-	icon_state = "1-2";
-	
+	icon_state = "1-2"
 	},
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
@@ -13302,8 +13283,7 @@
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 8;
-	icon_state = "1-8";
-	
+	icon_state = "1-8"
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /turf/open/gm/dirt,
@@ -13344,8 +13324,7 @@
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 8;
-	icon_state = "1-8";
-	
+	icon_state = "1-8"
 	},
 /turf/open/floor/tile/chapel{
 	dir = 1
@@ -13472,8 +13451,7 @@
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 2;
-	icon_state = "1-2";
-	
+	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/wood,
@@ -14063,8 +14041,7 @@
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 2;
-	icon_state = "1-2";
-	
+	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/tile/white,
@@ -14221,8 +14198,7 @@
 /obj/structure/cable/yellow{
 	d1 = 2;
 	d2 = 8;
-	icon_state = "2-8";
-	
+	icon_state = "2-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
@@ -14269,16 +14245,6 @@
 /obj/structure/bed/chair{
 	dir = 8
 	},
-/turf/open/floor/tile/white,
-/area/lv624/lazarus/main_hall)
-"aYH" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2";
-	
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "aYI" = (
@@ -14390,8 +14356,7 @@
 	dir = 4
 	},
 /obj/structure/barricade/wooden/lv_snowflake{
-	dir = 8;
-	
+	dir = 8
 	},
 /turf/open/floor/plating/asteroidwarning{
 	dir = 4
@@ -14538,8 +14503,7 @@
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 2;
-	icon_state = "1-2";
-	
+	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor{
@@ -14627,8 +14591,7 @@
 	dir = 4
 	},
 /obj/structure/barricade/wooden/lv_snowflake{
-	dir = 8;
-	
+	dir = 8
 	},
 /turf/open/floor/plating/asteroidwarning{
 	dir = 4
@@ -14754,8 +14717,7 @@
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 8;
-	icon_state = "1-8";
-	
+	icon_state = "1-8"
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /turf/open/floor{
@@ -14811,8 +14773,7 @@
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 8;
-	icon_state = "1-8";
-	
+	icon_state = "1-8"
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /turf/open/floor{
@@ -14878,14 +14839,12 @@
 /obj/structure/cable/yellow{
 	d1 = 2;
 	d2 = 8;
-	icon_state = "2-8";
-	
+	icon_state = "2-8"
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 8;
-	icon_state = "1-8";
-	
+	icon_state = "1-8"
 	},
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
 /turf/open/floor/tile/barber,
@@ -14991,8 +14950,7 @@
 /obj/structure/cable/yellow{
 	d1 = 2;
 	d2 = 8;
-	icon_state = "2-8";
-	
+	icon_state = "2-8"
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -15025,8 +14983,7 @@
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 8;
-	icon_state = "1-8";
-	
+	icon_state = "1-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
@@ -15143,8 +15100,7 @@
 /obj/structure/cable/yellow{
 	d1 = 2;
 	d2 = 8;
-	icon_state = "2-8";
-	
+	icon_state = "2-8"
 	},
 /turf/open/gm/grass/grass2,
 /area/lv624/lazarus/atmos)
@@ -15300,8 +15256,7 @@
 /obj/structure/cable/yellow{
 	d1 = 2;
 	d2 = 8;
-	icon_state = "2-8";
-	
+	icon_state = "2-8"
 	},
 /turf/open/gm/grass,
 /area/lv624/lazarus/atmos)
@@ -15396,8 +15351,7 @@
 /area/lv624/lazarus/internal_affairs)
 "bbJ" = (
 /obj/machinery/power/apc{
-	dir = 1;
-	
+	dir = 1
 	},
 /obj/structure/cable/yellow{
 	d2 = 2;
@@ -15694,8 +15648,7 @@
 /obj/structure/cable/yellow{
 	d1 = 2;
 	d2 = 8;
-	icon_state = "2-8";
-	
+	icon_state = "2-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
@@ -15798,8 +15751,7 @@
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 8;
-	icon_state = "1-8";
-	
+	icon_state = "1-8"
 	},
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
@@ -16186,8 +16138,7 @@
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 8;
-	icon_state = "1-8";
-	
+	icon_state = "1-8"
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /turf/open/floor/tile/bar,
@@ -16207,8 +16158,7 @@
 /obj/structure/cable/yellow{
 	d1 = 2;
 	d2 = 8;
-	icon_state = "2-8";
-	
+	icon_state = "2-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
@@ -16398,8 +16348,7 @@
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 8;
-	icon_state = "1-8";
-	
+	icon_state = "1-8"
 	},
 /turf/open/floor/grass,
 /area/lv624/lazarus/main_hall)
@@ -17013,8 +16962,7 @@
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 2;
-	icon_state = "1-2";
-	
+	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/tile/brown{
@@ -17085,8 +17033,7 @@
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 8;
-	icon_state = "1-8";
-	
+	icon_state = "1-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
@@ -17171,8 +17118,7 @@
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 8;
-	icon_state = "1-8";
-	
+	icon_state = "1-8"
 	},
 /turf/open/gm/grass/grass2,
 /area/lv624/lazarus/atmos)
@@ -17421,8 +17367,7 @@
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 8;
-	icon_state = "1-8";
-	
+	icon_state = "1-8"
 	},
 /turf/open/gm/grass/grass2,
 /area/lv624/lazarus/atmos)
@@ -17525,8 +17470,7 @@
 /obj/structure/cable/yellow{
 	d1 = 2;
 	d2 = 8;
-	icon_state = "2-8";
-	
+	icon_state = "2-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
@@ -17737,8 +17681,7 @@
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 8;
-	icon_state = "1-8";
-	
+	icon_state = "1-8"
 	},
 /turf/open/floor/grimy,
 /area/lv624/lazarus/captain)
@@ -17998,8 +17941,7 @@
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 8;
-	icon_state = "1-8";
-	
+	icon_state = "1-8"
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 4
@@ -18467,8 +18409,7 @@
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 8;
-	icon_state = "1-8";
-	
+	icon_state = "1-8"
 	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
@@ -18712,8 +18653,7 @@
 /obj/structure/cable/yellow{
 	d1 = 2;
 	d2 = 8;
-	icon_state = "2-8";
-	
+	icon_state = "2-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
@@ -18885,8 +18825,7 @@
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 8;
-	icon_state = "1-8";
-	
+	icon_state = "1-8"
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 1;
@@ -19691,8 +19630,7 @@
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 8;
-	icon_state = "1-8";
-	
+	icon_state = "1-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -20027,8 +19965,7 @@
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 8;
-	icon_state = "1-8";
-	
+	icon_state = "1-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
@@ -49332,7 +49269,7 @@ aWd
 aWd
 aWd
 aXX
-aYH
+aYc
 aZB
 bam
 bbb

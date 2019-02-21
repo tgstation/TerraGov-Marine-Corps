@@ -357,8 +357,7 @@
 /area/tdome)
 "bc" = (
 /obj/machinery/atmospherics/pipe/manifold/general/visible{
-	dir = 1;
-	
+	dir = 1
 	},
 /turf/open/floor,
 /area/tdome)
@@ -826,8 +825,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	
+	icon_state = "4-8"
 	},
 /turf/closed/wall/r_wall/dense,
 /area/yautja)
@@ -1491,8 +1489,7 @@
 /area/yautja)
 "dJ" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
-	dir = 10;
-	
+	dir = 10
 	},
 /obj/machinery/light/small{
 	tag = "icon-bulb1 (EAST)";
