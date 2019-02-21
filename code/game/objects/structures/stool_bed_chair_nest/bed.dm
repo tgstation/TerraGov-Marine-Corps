@@ -191,6 +191,11 @@ obj/structure/bed/Destroy()
 /obj/structure/bed/alien
 	icon_state = "abed"
 
+/obj/structure/bed/fancy
+	name = "fancy bed"
+	desc = "For prime comfort."
+
+
 /*
  * Roller beds
  */
@@ -393,9 +398,6 @@ var/global/list/activated_medevac_stretchers = list()
 		to_chat(user, "<span class='warning'>[src]'s bluespace engine is still recharging; it will be ready in [round(last_teleport - world.time) * 0.1] seconds.</span>")
 		return
 
-	if(!buckled_mob && !buckled_bodybag)
-		to_chat(user, "<span class='warning'>You need to attach something to [src] before you can activate the bluespace engine.</span>")
-
 	if(user == buckled_mob)
 		to_chat(user, "<span class='warning'>You can't reach the teleportation activation button while buckled to [src].</span>")
 		return
@@ -423,51 +425,53 @@ var/global/list/activated_medevac_stretchers = list()
 	user.visible_message("<span class='warning'>[user] activates [src]'s bluespace engine, causing it to rev to life.</span>",
 	"<span class='warning'>You activate [src]'s bluespace engine, causing it to rev to life.</span>")
 	playsound(loc,'sound/mecha/powerup.ogg', 25, FALSE)
-	spawn(MEDEVAC_TELE_DELAY) //Activate after 5 second delay.
-		if(!linked_beacon || !linked_beacon.check_power() || !linked_beacon.planted) //Beacon has to be planted in a powered area.
-			playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
-			visible_message("<span class='warning'>[src]'s safties kick in before displacement as it fails to detect a powered, linked and planted medvac beacon.</span>")
-			return
-		var/mob/living/M
-		if(!buckled_mob && !buckled_bodybag)
-			playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
-			visible_message("<span class='warning'>[src]'s bluespace engine aborts displacement, being unable to detect an appropriate evacuee.</span>")
-			return
-		else if(buckled_mob)
-			M = buckled_mob
-			buckled_mob.loc = get_turf(linked_beacon)
-		else if(buckled_bodybag)
-			M = locate(/mob/living) in buckled_bodybag.contents
-		if(!M) //We need a mob to teleport or no deal
-			playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
-			visible_message("<span class='warning'>[src]'s bluespace engine aborts displacement, being unable to detect an appropriate evacuee.</span>")
-			return
+	addtimer(CALLBACK(src, .proc/medevac_teleport, user), MEDEVAC_TELE_DELAY) //Activate after 5 second delay.
 
-		visible_message("<span class='notice'><b>[M] vanishes in a flash of sparks as [src]'s bluespace engine generates its displacement field.</b></span>")
-		if(buckled_bodybag)
-			buckled_bodybag.loc = get_turf(linked_beacon)
-		else if(buckled_mob)
-			buckled_mob.loc = get_turf(linked_beacon)
+/obj/structure/bed/medevac_stretcher/proc/medevac_teleport(mob/user)
+	if(!linked_beacon || !linked_beacon.check_power() || !linked_beacon.planted) //Beacon has to be planted in a powered area.
+		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
+		visible_message("<span class='warning'>[src]'s safeties kick in before displacement as it fails to detect a powered, linked, and planted medvac beacon.</span>")
+		return
+	var/mob/living/M
+	if(!buckled_mob && !buckled_bodybag)
+		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
+		visible_message("<span class='warning'>[src]'s bluespace engine aborts displacement, being unable to detect an appropriate evacuee.</span>")
+		return
+	else if(buckled_mob)
+		M = buckled_mob
+		buckled_mob.loc = get_turf(linked_beacon)
+	else if(buckled_bodybag)
+		M = locate(/mob/living) in buckled_bodybag.contents
+	if(!M) //We need a mob to teleport or no deal
+		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
+		visible_message("<span class='warning'>[src]'s bluespace engine aborts displacement, being unable to detect an appropriate evacuee.</span>")
+		return
 
-		unbuckle()
+	visible_message("<span class='notice'><b>[M] vanishes in a flash of sparks as [src]'s bluespace engine generates its displacement field.</b></span>")
+	if(buckled_bodybag)
+		buckled_bodybag.loc = get_turf(linked_beacon)
+	else if(buckled_mob)
+		buckled_mob.loc = get_turf(linked_beacon)
+
+	unbuckle()
 
 
-		//Pretty SFX
-		var/datum/effect_system/spark_spread/spark_system
-		spark_system = new /datum/effect_system/spark_spread()
-		spark_system.set_up(5, 0, src)
-		spark_system.attach(src)
-		spark_system.start(src)
-		playsound(loc,'sound/effects/phasein.ogg', 50, FALSE)
-		var/datum/effect_system/spark_spread/spark_system2
-		spark_system2 = new /datum/effect_system/spark_spread()
-		spark_system2.set_up(5, 0, linked_beacon)
-		spark_system2.attach(linked_beacon)
-		spark_system2.start(linked_beacon)
-		playsound(linked_beacon.loc,'sound/effects/phasein.ogg', 50, FALSE)
+	//Pretty SFX
+	var/datum/effect_system/spark_spread/spark_system
+	spark_system = new /datum/effect_system/spark_spread()
+	spark_system.set_up(5, 0, src)
+	spark_system.attach(src)
+	spark_system.start(src)
+	playsound(loc,'sound/effects/phasein.ogg', 50, FALSE)
+	var/datum/effect_system/spark_spread/spark_system2
+	spark_system2 = new /datum/effect_system/spark_spread()
+	spark_system2.set_up(5, 0, linked_beacon)
+	spark_system2.attach(linked_beacon)
+	spark_system2.start(linked_beacon)
+	playsound(linked_beacon.loc,'sound/effects/phasein.ogg', 50, FALSE)
 
-		linked_beacon.medvac_alert(M) //We warn med channel about the mob, not what was teleported.
-		last_teleport = world.time + MEDEVAC_COOLDOWN
+	linked_beacon.medvac_alert(M) //We warn med channel about the mob, not what was teleported.
+	last_teleport = world.time + MEDEVAC_COOLDOWN
 
 /obj/structure/bed/medevac_stretcher/attackby(obj/item/W, mob/user)
 	if(istype(W,/obj/item/device/medevac_beacon))
@@ -590,7 +594,7 @@ var/global/list/activated_medevac_stretchers = list()
 
 /obj/item/device/medevac_beacon/attack_self(mob/user)
 	if(locked)
-		to_chat(user, "<span class='warning'>[src]'s interface is locked! Only a Squad Leader or Medic can unlock it now.</span>")
+		to_chat(user, "<span class='warning'>[src]'s interface is locked! Only a Squad Leader, Medic, or Doctor can unlock it now.</span>")
 		return
 	user.drop_held_item()
 	anchored = TRUE
@@ -601,7 +605,7 @@ var/global/list/activated_medevac_stretchers = list()
 
 /obj/item/device/medevac_beacon/attack_hand(mob/user)
 	if(locked)
-		to_chat(user, "<span class='warning'>[src]'s interface is locked! Only a Squad Leader or Medic can unlock it now.</span>")
+		to_chat(user, "<span class='warning'>[src]'s interface is locked! Only a Squad Leader, Medic, or Doctor can unlock it now.</span>")
 		return
 	if(planted)
 		anchored = FALSE

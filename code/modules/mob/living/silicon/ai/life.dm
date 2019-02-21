@@ -92,8 +92,7 @@
 
 					to_chat(src, "You've lost power!")
 //							to_chat(world, "DEBUG CODE TIME! [loc] is the area the AI is sucking power from")
-					if (!is_special_character(src))
-						src.set_zeroth_law("")
+					src.set_zeroth_law("")
 					//src.clear_supplied_laws() // Don't reset our laws.
 					//var/time = time2text(world.realtime,"hh:mm:ss")
 					//lawchanges.Add("[time] <b>:</b> [src.name]'s noncore laws have been reset due to power failure")
@@ -169,7 +168,7 @@
 	if(status_flags & GODMODE)
 		return
 	if(stat != DEAD)
-		if(health <= CONFIG_GET(number/health_threshold_dead))
+		if(health <= get_death_threshold())
 			death()
 			return
 		else if(stat == UNCONSCIOUS)

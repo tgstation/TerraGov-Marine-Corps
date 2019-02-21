@@ -11,8 +11,11 @@
 	var/health = 10
 	var/destroyed = FALSE
 
+/obj/structure/grille/broken
+	icon_state = "brokengrille"
+	density = FALSE
 
-/obj/structure/grille/fence/
+/obj/structure/grille/fence
 	var/width = 3
 	health = 50
 

@@ -1,13 +1,3 @@
-/proc/is_special_character(mob/M as mob)
-	if(!SSticker?.mode)
-		return FALSE
-	if(!istype(M))
-		return FALSE
-	if(!M.mind?.special_role)
-		return FALSE
-	return TRUE
-
-
 /datum/admins/proc/gamemode_panel()
 	set category = "Admin"
 	set name = "Mode Panel"
@@ -32,11 +22,11 @@
 
 	dat += "<b>Evacuation:</b> "
 	switch(EvacuationAuthority.evac_status)
-		if(EVACUATION_STATUS_STANDING_BY) 
+		if(EVACUATION_STATUS_STANDING_BY)
 			dat += "STANDING BY"
-		if(EVACUATION_STATUS_INITIATING) 
+		if(EVACUATION_STATUS_INITIATING)
 			dat += "IN PROGRESS: [EvacuationAuthority.get_status_panel_eta()]"
-		if(EVACUATION_STATUS_COMPLETE) 
+		if(EVACUATION_STATUS_COMPLETE)
 			dat += "COMPLETE"
 
 	dat += "<br>"
@@ -70,6 +60,7 @@
 
 	dat += "<A HREF='?_src_=vars;[HrefToken()];vars=[REF(EvacuationAuthority)]'>VV Evacuation/SD Controller</A><br>"
 	dat += "<A HREF='?_src_=vars;[HrefToken()];vars=[REF(GLOB.faxes)]'>VV Faxes List</A><br>"
+	dat += "<A HREF='?_src_=vars;[HrefToken()];vars=[REF(GLOB.custom_outfits)]'>VV Outfit List</A><br>"
 
 	dat += "<br><br>"
 

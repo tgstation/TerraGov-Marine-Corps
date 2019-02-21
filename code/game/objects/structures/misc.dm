@@ -14,6 +14,11 @@
 			if(prob(50))
 				qdel(src)
 
+/obj/structure/showcase/yaut
+	name = "alien sarcophagus"
+	desc = "An ancient, dusty tomb with strange alien writing. It's best not to touch it."
+	icon_state = "yaut"
+
 /obj/structure/monorail
 	name = "monorail track"
 	icon = 'icons/obj/structures/structures.dmi'

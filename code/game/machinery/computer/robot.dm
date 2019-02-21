@@ -73,9 +73,6 @@
 					dat += " Slaved to [R.connected_ai.name] |"
 				else
 					dat += " Independent from AI |"
-				if (issilicon(user))
-					if((user.mind.special_role && user.mind.original == user) && !R.emagged)
-						dat += "<A href='?src=\ref[src];magbot=\ref[R]'>(<font color=blue><i>Hack</i></font>)</A> "
 				dat += "<A href='?src=\ref[src];stopbot=\ref[R]'>(<font color=green><i>[R.canmove ? "Lockdown" : "Release"]</i></font>)</A> "
 				dat += "<A href='?src=\ref[src];killbot=\ref[R]'>(<font color=red><i>Destroy</i></font>)</A>"
 				dat += "<BR>"
@@ -161,14 +158,9 @@
 					var/choice = input("Are you certain you wish to detonate [R.name]?") in list("Confirm", "Abort")
 					if(choice == "Confirm")
 						if(R && istype(R))
-							if(R.mind && R.mind.special_role && R.emagged)
-								to_chat(R, "Extreme danger.  Termination codes detected.  Scrambling security codes and automatic AI unlink triggered.")
-								R.ResetSecurityCodes()
-
-							else
-								message_admins("<span class='notice'> [key_name_admin(usr)] detonated [R.name]!</span>")
-								log_game("<span class='notice'> [key_name_admin(usr)] detonated [R.name]!</span>")
-								R.self_destruct()
+							message_admins("<span class='notice'> [key_name_admin(usr)] detonated [R.name]!</span>")
+							log_game("<span class='notice'> [key_name_admin(usr)] detonated [R.name]!</span>")
+							R.self_destruct()
 			else
 				to_chat(usr, "<span class='warning'> Access Denied.</span>")
 
@@ -193,22 +185,6 @@
 
 			else
 				to_chat(usr, "<span class='warning'> Access Denied.</span>")
-
-		else if (href_list["magbot"])
-			if(src.allowed(usr))
-				var/mob/living/silicon/robot/R = locate(href_list["magbot"])
-
-				// whatever weirdness this is supposed to be, but that is how the href gets added, so here it is again
-				if(istype(R) && issilicon(usr) && usr.mind.special_role && (usr.mind.original == usr) && !R.emagged)
-
-					var/choice = input("Are you certain you wish to hack [R.name]?") in list("Confirm", "Abort")
-					if(choice == "Confirm")
-						if(R && istype(R))
-//							message_admins("<span class='notice'> [key_name_admin(usr)] emagged [R.name] using robotic console!</span>")
-							log_game("[key_name(usr)] emagged [R.name] using robotic console!")
-							R.emagged = 1
-							if(R.mind.special_role)
-								R.verbs += /mob/living/silicon/robot/proc/ResetSecurityCodes
 
 		src.add_fingerprint(usr)
 	src.updateUsrDialog()

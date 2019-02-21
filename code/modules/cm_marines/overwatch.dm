@@ -72,8 +72,9 @@
 	if(!allowed(user))
 		to_chat(user, "<span class='warning'>You don't have access.</span>")
 		return
-	if(!squads.len)
-		for(var/datum/squad/S in SSjob.squads)
+	if(!length(squads))
+		for(var/i in SSjob.squads)
+			var/datum/squad/S = SSjob.squads[i]
 			squads += S
 	if(!current_squad && !(current_squad = get_squad_by_id(squad_console)))
 		to_chat(user, "<span class='warning'>Error: Unable to link to a proper squad.</span>")
@@ -270,7 +271,8 @@
 					to_chat(usr, "<span class='warning'>[icon2html(src, usr)] You are already selecting a squad.</span>")
 				else
 					var/list/squad_choices = list()
-					for(var/datum/squad/S in SSjob.squads)
+					for(var/i in SSjob.squads)
+						var/datum/squad/S = SSjob.squads[i]
 						if(!S.overwatch_officer)
 							squad_choices += S.name
 
@@ -280,7 +282,7 @@
 					if(current_squad)
 						to_chat(usr, "<span class='warning'>[icon2html(src, usr)] You are already selecting a squad.</span>")
 						return
-					var/datum/squad/selected = SSjob.squads[SSjob.squads_names.Find(squad_name)]
+					var/datum/squad/selected = SSjob.squads[squad_name]
 					if(selected)
 						selected.overwatch_officer = usr //Link everything together, squad, console, and officer
 						current_squad = selected
@@ -406,8 +408,9 @@
 	if(!allowed(user))
 		to_chat(user, "<span class='warning'>You don't have access.</span>")
 		return
-	if(!squads.len)
-		for(var/datum/squad/S in SSjob.squads)
+	if(!length(squads))
+		for(var/i in SSjob.squads)
+			var/datum/squad/S = SSjob.squads[i]
 			squads += S
 	user.set_interaction(src)
 	var/dat = "<head><title>Main Overwatch Console</title></head><body>"
@@ -621,10 +624,6 @@
 	to_chat(usr, "[icon2html(src, usr)] [H.real_name] is [current_squad]'s new leader!")
 	current_squad.squad_leader = H
 	SET_TRACK_LEADER(current_squad.tracking_id, H)
-	if(H.mind.assigned_role == "Squad Leader")//a real SL
-		H.mind.role_comm_title = "SL"
-	else //an acting SL
-		H.mind.role_comm_title = "aSL"
 	if(H.mind.cm_skills)
 		H.mind.cm_skills.leadership = max(SKILL_LEAD_TRAINED, H.mind.cm_skills.leadership)
 		H.update_action_buttons()
@@ -680,8 +679,10 @@
 		return
 	var/datum/squad/S = current_squad
 	var/mob/living/carbon/human/transfer_marine = input(usr, "Choose marine to transfer") as null|anything in current_squad.marines_list
-	if(!transfer_marine) return
-	if(S != current_squad) return //don't change overwatched squad, idiot.
+	if(!transfer_marine)
+		return
+	if(S != current_squad)
+		return //don't change overwatched squad, idiot.
 
 	if(!istype(transfer_marine) || !transfer_marine.mind || transfer_marine.stat == DEAD) //gibbed, decapitated, dead
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>[transfer_marine] is KIA.</span>")
@@ -691,9 +692,12 @@
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>Transfer aborted. [transfer_marine] isn't wearing an ID.</span>")
 		return
 
-	var/datum/squad/new_squad = input(usr, "Choose the marine's new squad") as null|anything in SSjob.squads
-	if(!new_squad) return
-	if(S != current_squad) return
+	var/choice = input(usr, "Choose the marine's new squad") as null|anything in SSjob.squads
+	if(!choice)
+		return
+	if(S != current_squad)
+		return
+	var/datum/squad/new_squad = SSjob.squads[choice]
 
 	if(!istype(transfer_marine) || !transfer_marine.mind || transfer_marine.stat == DEAD)
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>[transfer_marine] is KIA.</span>")
@@ -856,7 +860,7 @@
 	force_link()
 
 /obj/structure/supply_drop/proc/force_link() //Somehow, it didn't get set properly on the new proc. Force it again,
-	var/datum/squad/S = SSjob.squads[SSjob.squads_names.Find(squad_name)]
+	var/datum/squad/S = SSjob.squads[squad_name]
 	if(S)
 		S.drop_pad = src
 	else
@@ -1127,7 +1131,7 @@
 	issue_order_action.give_action(src)
 
 /obj/machinery/computer/overwatch/proc/get_squad_by_id(id)
-	if(!squads || !squads.len)
+	if(!squads || !length(squads))
 		return FALSE
 	var/datum/squad/S
 	for(S in squads)

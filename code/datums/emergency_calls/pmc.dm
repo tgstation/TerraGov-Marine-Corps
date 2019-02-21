@@ -32,38 +32,32 @@
 		H.real_name = H.name
 		H.voice_name = H.name
 
-	H.key = M.key
+	M.transfer_to(H, TRUE)
 
 	if(original)
 		qdel(original)
-
-	H.client?.change_view(world.view)
 
 	print_backstory(H)
 
 	if(!leader)
 		leader = H
 		var/datum/job/J = new /datum/job/pmc/leader
-		H.set_everything(H, "PMC Leader")
-		J.generate_equipment(H)
+		J.equip(H)
 		to_chat(H, "<span class='notice'>You are the leader of this Nanotrasen mercenary squad!</span>")
 		return
 
 	if(prob(50))
 		var/datum/job/J = new /datum/job/pmc/gunner
-		H.set_everything(H, "PMC Gunner")
-		J.generate_equipment(H)
+		J.equip(H)
 		to_chat(H, "<span class='notice'>You are a Nanostrasen heavy gunner!</span>")
 		return
 
 	if(prob(30))
 		var/datum/job/J = new /datum/job/pmc/sniper
-		H.set_everything(H, "PMC Sniper")
-		J.generate_equipment(H)
+		J.equip(H)
 		to_chat(H, "<span class='notice'>You are a Nanotrasen sniper!</span>")
 		return
 
 	var/datum/job/J = new /datum/job/pmc/standard
-	H.set_everything(H, "PMC Standard")
-	J.generate_equipment(H)
+	J.equip(H)
 	to_chat(H, "<span class='notice'>You are a Nanotrasen mercenary!</span>")

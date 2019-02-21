@@ -162,6 +162,14 @@
 	return src
 
 
+/obj/item/card/id/proc/update_label(newname, newjob)
+	if(newname || newjob)
+		name = "[(!newname)	? "identification card"	: "[newname]'s ID Card"][(!newjob) ? "" : " ([newjob])"]"
+		return
+
+	name = "[(!registered_name)	? "identification card"	: "[registered_name]'s ID Card"][(!assignment) ? "" : " ([assignment])"]"
+
+
 /obj/item/card/id/verb/read()
 	set name = "Read ID Card"
 	set category = "Object"
@@ -201,14 +209,6 @@
 	assignment = "Agent"
 	name = "[registered_name]'s ID Card ([assignment])"
 
-/obj/item/card/id/syndicate/afterattack(var/obj/item/O as obj, mob/user as mob, proximity)
-	if(!proximity) return
-	if(istype(O, /obj/item/card/id))
-		var/obj/item/card/id/I = O
-		src.access |= I.access
-		if(isliving(user) && user.mind)
-			if(user.mind.special_role)
-				to_chat(usr, "<span class='notice'>The card's microscanners activate as you pass it over the ID, copying its access.</span>")
 
 /obj/item/card/id/syndicate/attack_self(mob/user as mob)
 	if(!src.registered_name)

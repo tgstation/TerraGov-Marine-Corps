@@ -749,7 +749,7 @@ var/global/image/busy_indicator_hostile
 		if(!user || user.loc != original_loc || get_turf(user) != original_turf || user.stat || user.knocked_down || user.stunned)
 			. = FALSE
 			break
-		if(L?.health && L.health < CONFIG_GET(number/health_threshold_crit))
+		if(L?.health && L.health < L.get_crit_threshold())
 			. = FALSE //catching mobs below crit level but haven't had their stat var updated
 			break
 		if(needhand)

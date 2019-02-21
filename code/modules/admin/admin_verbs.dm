@@ -76,54 +76,6 @@
 	message_admins("[ADMIN_TPMONTY(usr)] has turned stealth mode [usr.client.holder.fakekey ? "on - [usr.client.holder.fakekey]" : "off"].")
 
 
-/datum/admins/proc/jobs_free()
-	set name = "Job Slots - Free"
-	set category = "Admin"
-	set desc = "Allows you to free a job slot."
-
-	if(!check_rights(R_ADMIN))
-		return
-
-	var/list/roles = list()
-	var/datum/job/J
-	for(var/r in SSjob.roles_for_mode) //All the roles in the game.
-		J = SSjob.roles_for_mode[r]
-		if(J.total_positions != -1 && J.get_total_positions(TRUE) <= J.current_positions)
-			roles += r
-
-	if(!length(roles))
-		to_chat(usr, "<span class='warning'>There are no fully staffed roles.</span>")
-		return
-
-	var/role = input("Please select role slot to free", "Free role slot") as null|anything in roles
-	SSjob.free_role(SSjob.roles_for_mode[role])
-
-	log_admin("[key_name(usr)] has made a [role] slot free.")
-	message_admins("[ADMIN_TPMONTY(usr)] has made a [role] slot free.")
-
-
-/datum/admins/proc/jobs_list()
-	set category = "Admin"
-	set name = "Job Slots - List"
-	set desc = "Lists all roles and their current status."
-
-	if(!check_rights(R_ADMIN))
-		return
-
-	if(!SSjob)
-		return
-
-	var/datum/job/J
-	var/i
-	for(i in SSjob.roles_by_name)
-		J = SSjob.roles_by_name[i]
-		if(J.flags_startup_parameters & ROLE_ADD_TO_MODE)
-			to_chat(src, "[J.title]: [J.get_total_positions(1)] / [J.current_positions]")
-
-	log_admin("[key_name(usr)] checked job slots.")
-	message_admins("[ADMIN_TPMONTY(usr)] checked job slots.")
-
-
 /datum/admins/proc/change_key(mob/M in GLOB.alive_mob_list)
 	set category = "Admin"
 	set name = "Change CKey"
@@ -209,15 +161,17 @@
 	if(!istype(H) || !SSticker || !H.mind?.assigned_role)
 		return
 
-	if(!(H.mind.assigned_role in ROLES_MARINES))
+	if(!(H.mind.assigned_role in JOBS_MARINES))
 		return
 
-	var/datum/squad/S = input("Choose the marine's new squad") as null|anything in SSjob.squads
-
-	if(!S)
+	var/squad = input("Choose the marine's new squad") as null|anything in SSjob.squads
+	if(!squad)
 		return
 
-	H.set_everything(H.mind.assigned_role)
+	var/datum/squad/S = SSjob.squads[squad]
+	var/datum/job/J = SSjob.name_occupations[H.mind.assigned_role]
+	var/datum/outfit/job/O = new J.outfit
+	O.post_equip(H)
 
 	H.assigned_squad?.remove_marine_from_squad(H)
 
