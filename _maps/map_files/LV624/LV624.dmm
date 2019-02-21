@@ -14392,9 +14392,7 @@
 /area/lv624/lazarus/main_hall)
 "aXD" = (
 /obj/item/tool/crowbar/red,
-/turf/open/floor{
-	tag = "icon-warningcorner (WEST)";
-	icon_state = "warningcorner";
+/turf/open/floor/marking/warning/corner{
 	dir = 8
 	},
 /area/shuttle/drop1/lz1)

@@ -5676,9 +5676,7 @@
 /obj/item/reagent_container/blood/OMinus,
 /obj/item/reagent_container/blood/OMinus,
 /obj/item/reagent_container/blood/OMinus,
-/turf/open/floor{
-	tag = "icon-whitered (NORTHWEST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 9
 	},
 /area/ice_colony/surface/clinic/treatment)
@@ -6094,9 +6092,7 @@
 /obj/machinery/vending/wallmed1{
 	pixel_y = 17
 	},
-/turf/open/floor{
-	tag = "icon-whitered (NORTH)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 1
 	},
 /area/ice_colony/surface/clinic/treatment)
@@ -6104,9 +6100,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-whitered (NORTH)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 1
 	},
 /area/ice_colony/surface/clinic/treatment)
@@ -6114,17 +6108,13 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-whitered (NORTH)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 1
 	},
 /area/ice_colony/surface/clinic/treatment)
 "aoB" = (
 /obj/machinery/body_scanconsole,
-/turf/open/floor{
-	tag = "icon-whitered (NORTHEAST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 5
 	},
 /area/ice_colony/surface/clinic/treatment)
@@ -6149,9 +6139,7 @@
 /area/ice_colony/surface/substation)
 "aoE" = (
 /obj/machinery/iv_drip,
-/turf/open/floor{
-	tag = "icon-whitered (NORTHWEST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 9
 	},
 /area/ice_colony/surface/clinic/treatment)
@@ -6235,25 +6223,19 @@
 /turf/open/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/north)
 "aoL" = (
-/turf/open/floor{
-	tag = "icon-whitered (NORTH)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 1
 	},
 /area/ice_colony/surface/clinic/treatment)
 "aoM" = (
 /obj/structure/closet/secure_closet/personal/patient,
-/turf/open/floor{
-	tag = "icon-whitered (NORTHEAST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 5
 	},
 /area/ice_colony/surface/clinic/treatment)
 "aoN" = (
 /obj/machinery/computer/crew,
-/turf/open/floor{
-	tag = "icon-whitered (NORTHEAST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 5
 	},
 /area/ice_colony/surface/clinic/treatment)
@@ -6402,9 +6384,7 @@
 /turf/open/floor/tile/white,
 /area/ice_colony/surface/clinic/treatment)
 "apd" = (
-/turf/open/floor{
-	tag = "icon-whitered (EAST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 4
 	},
 /area/ice_colony/surface/clinic/treatment)
@@ -6463,9 +6443,7 @@
 	name = "\improper Almayer Dropship 2"
 	})
 "apk" = (
-/turf/open/floor{
-	tag = "icon-whitered";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 2
 	},
 /area/ice_colony/surface/clinic/treatment)
@@ -6520,9 +6498,7 @@
 /area/ice_colony/surface/clinic/treatment)
 "apq" = (
 /obj/machinery/space_heater,
-/turf/open/floor{
-	tag = "icon-whitered (EAST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 4
 	},
 /area/ice_colony/surface/clinic/treatment)
@@ -6533,9 +6509,7 @@
 	pixel_x = 9;
 	pixel_y = 6
 	},
-/turf/open/floor{
-	tag = "icon-whitered (WEST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 8
 	},
 /area/ice_colony/surface/clinic/treatment)
@@ -6560,9 +6534,7 @@
 	dir = 4
 	},
 /obj/item/reagent_container/blood/empty,
-/turf/open/floor{
-	tag = "icon-whitered (EAST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 4
 	},
 /area/ice_colony/surface/clinic/treatment)
@@ -6576,17 +6548,13 @@
 /turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_e)
 "apw" = (
-/turf/open/floor{
-	tag = "icon-whitered (SOUTHWEST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 10
 	},
 /area/ice_colony/surface/clinic/treatment)
 "apx" = (
 /obj/structure/table,
-/turf/open/floor{
-	tag = "icon-whitered (SOUTHEAST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 6
 	},
 /area/ice_colony/surface/clinic/treatment)
@@ -6600,9 +6568,7 @@
 /area/ice_colony/exterior/surface/clearing/north)
 "apz" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	tag = "icon-whitered (WEST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 8
 	},
 /area/ice_colony/surface/clinic/treatment)
@@ -6618,9 +6584,7 @@
 	pixel_x = 12;
 	pixel_y = 2
 	},
-/turf/open/floor{
-	tag = "icon-whitered (SOUTHWEST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 10
 	},
 /area/ice_colony/surface/clinic/treatment)
@@ -6669,9 +6633,7 @@
 "apI" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/surgical_tray,
-/turf/open/floor{
-	tag = "icon-whitered";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 2
 	},
 /area/ice_colony/surface/clinic/treatment)
@@ -6707,9 +6669,7 @@
 /obj/machinery/alarm{
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-whitered (EAST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 4
 	},
 /area/ice_colony/surface/clinic/treatment)
@@ -6730,17 +6690,13 @@
 	icon_state = "gib6";
 	tag = "icon-gib6"
 	},
-/turf/open/floor{
-	tag = "icon-whitered";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 2
 	},
 /area/ice_colony/surface/clinic/treatment)
 "apO" = (
 /obj/machinery/iv_drip,
-/turf/open/floor{
-	tag = "icon-whitered (SOUTHEAST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 6
 	},
 /area/ice_colony/surface/clinic/treatment)
@@ -6780,17 +6736,13 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-whitered (NORTHWEST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 9
 	},
 /area/ice_colony/surface/clinic/treatment)
 "apU" = (
 /obj/structure/curtain/medical,
-/turf/open/floor{
-	tag = "icon-whitered (NORTH)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 1
 	},
 /area/ice_colony/surface/clinic/treatment)
@@ -6804,9 +6756,7 @@
 	},
 /obj/item/storage/toolbox/emergency,
 /obj/structure/table,
-/turf/open/floor{
-	tag = "icon-whitered (NORTH)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 1
 	},
 /area/ice_colony/surface/clinic/treatment)
@@ -6882,17 +6832,13 @@
 /area/ice_colony/surface/clinic/storage)
 "aqf" = (
 /obj/machinery/vending/medical,
-/turf/open/floor{
-	tag = "icon-whitered (NORTHWEST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 9
 	},
 /area/ice_colony/surface/clinic/storage)
 "aqg" = (
 /obj/machinery/vending/MarineMed/Blood,
-/turf/open/floor{
-	tag = "icon-whitered (NORTH)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 1
 	},
 /area/ice_colony/surface/clinic/storage)
@@ -6910,9 +6856,7 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/turf/open/floor{
-	tag = "icon-whitered (NORTH)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 1
 	},
 /area/ice_colony/surface/clinic/storage)
@@ -6923,9 +6867,7 @@
 	pixel_x = 6;
 	pixel_y = 10
 	},
-/turf/open/floor{
-	tag = "icon-whitered (NORTH)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 1
 	},
 /area/ice_colony/surface/clinic/storage)
@@ -6933,9 +6875,7 @@
 /obj/structure/table,
 /obj/item/bodybag/cryobag,
 /obj/item/storage/box/syringes,
-/turf/open/floor{
-	tag = "icon-whitered (NORTHEAST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 5
 	},
 /area/ice_colony/surface/clinic/storage)
@@ -7034,9 +6974,7 @@
 /area/ice_colony/surface/dorms)
 "aqu" = (
 /obj/structure/curtain/medical,
-/turf/open/floor{
-	tag = "icon-whitered (WEST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 8
 	},
 /area/ice_colony/surface/clinic/treatment)
@@ -7080,9 +7018,7 @@
 	pixel_x = 24
 	},
 /obj/structure/closet/secure_closet/personal/patient,
-/turf/open/floor{
-	tag = "icon-whitered (EAST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 4
 	},
 /area/ice_colony/surface/clinic/treatment)
@@ -7179,9 +7115,7 @@
 /obj/machinery/alarm{
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-whitered (EAST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 4
 	},
 /area/ice_colony/surface/clinic/storage)
@@ -7276,9 +7210,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-whitered (WEST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 8
 	},
 /area/ice_colony/surface/clinic/treatment)
@@ -7427,9 +7359,7 @@
 /area/ice_colony/surface/clinic/storage)
 "ard" = (
 /obj/structure/closet/secure_closet/personal/patient,
-/turf/open/floor{
-	tag = "icon-whitered (EAST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 4
 	},
 /area/ice_colony/surface/clinic/treatment)
@@ -7438,9 +7368,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-whitered (WEST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 8
 	},
 /area/ice_colony/surface/clinic/storage)
@@ -7459,9 +7387,7 @@
 	dir = 4;
 	pixel_x = 24
 	},
-/turf/open/floor{
-	tag = "icon-whitered (EAST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 4
 	},
 /area/ice_colony/surface/clinic/storage)
@@ -7694,17 +7620,13 @@
 /area/ice_colony/surface/clinic/storage)
 "arA" = (
 /obj/structure/closet/secure_closet/medical3/colony,
-/turf/open/floor{
-	tag = "icon-whitered (WEST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 8
 	},
 /area/ice_colony/surface/clinic/storage)
 "arB" = (
 /obj/machinery/iv_drip,
-/turf/open/floor{
-	tag = "icon-whitered (EAST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 4
 	},
 /area/ice_colony/surface/clinic/storage)
@@ -7893,9 +7815,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-whitered (WEST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 8
 	},
 /area/ice_colony/surface/clinic/treatment)
@@ -7921,9 +7841,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-whitered (EAST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 4
 	},
 /area/ice_colony/surface/clinic/storage)
@@ -7983,26 +7901,20 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-whitered (SOUTHWEST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 10
 	},
 /area/ice_colony/surface/clinic/treatment)
 "asj" = (
 /obj/structure/curtain/medical,
-/turf/open/floor{
-	tag = "icon-whitered";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 2
 	},
 /area/ice_colony/surface/clinic/treatment)
 "ask" = (
 /obj/structure/bed/chair/wheelchair,
 /obj/machinery/light,
-/turf/open/floor{
-	tag = "icon-whitered";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 2
 	},
 /area/ice_colony/surface/clinic/treatment)
@@ -8045,25 +7957,19 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-whitered (SOUTHEAST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 6
 	},
 /area/ice_colony/surface/clinic/treatment)
 "asq" = (
 /obj/structure/closet/secure_closet/chemical/colony,
-/turf/open/floor{
-	tag = "icon-whitered (SOUTHWEST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 10
 	},
 /area/ice_colony/surface/clinic/storage)
 "asr" = (
 /obj/structure/bed/chair/wheelchair,
-/turf/open/floor{
-	tag = "icon-whitered";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 2
 	},
 /area/ice_colony/surface/clinic/storage)
@@ -8134,9 +8040,7 @@
 	tag = "icon-down";
 	icon_state = "down"
 	},
-/turf/open/floor{
-	tag = "icon-whitered (SOUTHEAST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 6
 	},
 /area/ice_colony/surface/clinic/storage)
@@ -8161,9 +8065,7 @@
 	name = "\improper Aurora Medical Clinic Treatment";
 	req_access_txt = "100"
 	},
-/turf/open/floor{
-	tag = "icon-whitered (WEST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 8
 	},
 /area/ice_colony/surface/clinic/treatment)
@@ -8175,9 +8077,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	tag = "icon-whitered (EAST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 4
 	},
 /area/ice_colony/surface/clinic/treatment)
@@ -8219,9 +8119,7 @@
 	dir = 4;
 	pixel_x = 24
 	},
-/turf/open/floor{
-	tag = "icon-whitered (NORTHEAST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 5
 	},
 /area/ice_colony/surface/clinic/lobby)
@@ -8265,9 +8163,7 @@
 /area/ice_colony/surface/hydroponics/lobby)
 "asQ" = (
 /obj/machinery/vending/cola,
-/turf/open/floor{
-	tag = "icon-whitered (NORTHWEST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 9
 	},
 /area/ice_colony/surface/clinic/lobby)
@@ -8280,9 +8176,7 @@
 /area/ice_colony/surface/hydroponics/lobby)
 "asS" = (
 /obj/machinery/vending/coffee,
-/turf/open/floor{
-	tag = "icon-whitered (NORTH)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 1
 	},
 /area/ice_colony/surface/clinic/lobby)
@@ -8317,9 +8211,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-whitered (NORTH)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 1
 	},
 /area/ice_colony/surface/clinic/lobby)
@@ -8353,9 +8245,7 @@
 	dir = 2;
 	icon_state = "pipe-c"
 	},
-/turf/open/floor{
-	tag = "icon-whitered (NORTHEAST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 5
 	},
 /area/ice_colony/surface/clinic/lobby)
@@ -8379,9 +8269,7 @@
 /obj/machinery/alarm{
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-whitered (EAST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 4
 	},
 /area/ice_colony/surface/clinic/lobby)
@@ -8426,9 +8314,7 @@
 /area/ice_colony/surface/hydroponics/lobby)
 "atj" = (
 /obj/machinery/space_heater,
-/turf/open/floor{
-	tag = "icon-whitered (NORTHWEST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 9
 	},
 /area/ice_colony/surface/clinic/lobby)
@@ -8581,9 +8467,7 @@
 /obj/machinery/vending/wallmed1{
 	pixel_x = -32
 	},
-/turf/open/floor{
-	tag = "icon-whitered (WEST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 8
 	},
 /area/ice_colony/surface/clinic/lobby)
@@ -8615,9 +8499,7 @@
 /area/ice_colony/surface/clinic/lobby)
 "atD" = (
 /obj/structure/disposalpipe/segment,
-/turf/open/floor{
-	tag = "icon-whitered (EAST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 4
 	},
 /area/ice_colony/surface/clinic/lobby)
@@ -8640,9 +8522,7 @@
 	dir = 4
 	},
 /obj/structure/filingcabinet,
-/turf/open/floor{
-	tag = "icon-whitered (EAST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 4
 	},
 /area/ice_colony/surface/clinic/lobby)
@@ -8664,9 +8544,7 @@
 /area/ice_colony/exterior/surface/cliff)
 "atI" = (
 /obj/effect/decal/cleanable/blood/drip,
-/turf/open/floor{
-	tag = "icon-whitered (WEST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 8
 	},
 /area/ice_colony/surface/clinic/lobby)
@@ -8837,9 +8715,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
-/turf/open/floor{
-	tag = "icon-whitered (SOUTHEAST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 6
 	},
 /area/ice_colony/surface/clinic/lobby)
@@ -8852,9 +8728,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-whitered (SOUTHWEST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 10
 	},
 /area/ice_colony/surface/clinic/lobby)
@@ -8867,17 +8741,13 @@
 "aug" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/drained,
-/turf/open/floor{
-	tag = "icon-whitered";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 2
 	},
 /area/ice_colony/surface/clinic/lobby)
 "auh" = (
 /obj/structure/filingcabinet,
-/turf/open/floor{
-	tag = "icon-whitered (SOUTHEAST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 6
 	},
 /area/ice_colony/surface/clinic/lobby)
@@ -8911,9 +8781,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-whitered (NORTH)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 1
 	},
 /area/ice_colony/surface/clinic/lobby)
@@ -9164,9 +9032,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-whitered (NORTHEAST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 5
 	},
 /area/ice_colony/surface/clinic/lobby)
@@ -9224,9 +9090,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-whitered (NORTHWEST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 9
 	},
 /area/ice_colony/surface/clinic/lobby)
@@ -9252,9 +9116,7 @@
 /obj/item/paper_bin,
 /obj/item/tool/pen/blue,
 /obj/structure/table/reinforced,
-/turf/open/floor{
-	tag = "icon-whitered";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 2
 	},
 /area/ice_colony/surface/clinic/lobby)
@@ -9264,9 +9126,7 @@
 /area/ice_colony/exterior/surface/valley/southeast)
 "auX" = (
 /obj/item/shard,
-/turf/open/floor{
-	tag = "icon-whitered";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 2
 	},
 /area/ice_colony/surface/clinic/lobby)
@@ -9510,9 +9370,7 @@
 /obj/structure/bed/chair{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-whitered (WEST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 8
 	},
 /area/ice_colony/surface/clinic/lobby)
@@ -9562,9 +9420,7 @@
 	dir = 2;
 	icon_state = "pipe-c"
 	},
-/turf/open/floor{
-	tag = "icon-whitered (EAST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 4
 	},
 /area/ice_colony/surface/clinic/lobby)
@@ -9594,9 +9450,7 @@
 /area/ice_colony/exterior/surface/clearing/north)
 "avL" = (
 /obj/structure/table,
-/turf/open/floor{
-	tag = "icon-whitered (SOUTHWEST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 10
 	},
 /area/ice_colony/surface/clinic/lobby)
@@ -9715,9 +9569,7 @@
 	icon_state = "pipe-t";
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-whitered (SOUTHEAST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 6
 	},
 /area/ice_colony/surface/clinic/lobby)
@@ -11052,9 +10904,7 @@
 	dir = 1
 	},
 /obj/machinery/bodyscanner,
-/turf/open/floor{
-	tag = "icon-whitered (NORTHWEST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 9
 	},
 /area/ice_colony/surface/clinic/treatment)
@@ -11276,9 +11126,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-whitered (WEST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 8
 	},
 /area/ice_colony/surface/clinic/treatment)
@@ -12579,9 +12427,7 @@
 /obj/structure/bed/chair{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-whitered";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 2
 	},
 /area/ice_colony/surface/clinic/lobby)
@@ -12598,9 +12444,7 @@
 	dir = 1
 	},
 /obj/machinery/light,
-/turf/open/floor{
-	tag = "icon-whitered";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 2
 	},
 /area/ice_colony/surface/clinic/lobby)
@@ -31609,50 +31453,38 @@
 	},
 /obj/structure/table,
 /obj/machinery/microwave,
-/turf/open/floor{
-	tag = "icon-whitered (NORTHWEST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 9
 	},
 /area/ice_colony/underground/medical/hallway)
 "bsK" = (
 /obj/structure/table,
 /obj/item/storage/box/donkpockets,
-/turf/open/floor{
-	tag = "icon-whitered (NORTH)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 1
 	},
 /area/ice_colony/underground/medical/hallway)
 "bsL" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
-/turf/open/floor{
-	tag = "icon-whitered (NORTHEAST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 5
 	},
 /area/ice_colony/underground/medical/hallway)
 "bsM" = (
 /obj/machinery/atmospherics/components/unary/cryo_cell,
-/turf/open/floor{
-	tag = "icon-whitered (NORTHWEST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 9
 	},
 /area/ice_colony/underground/medical/treatment)
 "bsN" = (
 /obj/machinery/atmospherics/components/unary/cryo_cell,
-/turf/open/floor{
-	tag = "icon-whitered (NORTH)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 1
 	},
 /area/ice_colony/underground/medical/treatment)
 "bsO" = (
 /obj/machinery/atmospherics/components/unary/cryo_cell,
-/turf/open/floor{
-	tag = "icon-whitered (NORTHEAST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 5
 	},
 /area/ice_colony/underground/medical/treatment)
@@ -31898,9 +31730,7 @@
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/medical/hallway)
 "btr" = (
-/turf/open/floor{
-	tag = "icon-whitered (EAST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 4
 	},
 /area/ice_colony/underground/medical/hallway)
@@ -31908,9 +31738,7 @@
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 5
 	},
-/turf/open/floor{
-	tag = "icon-whitered (WEST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 8
 	},
 /area/ice_colony/underground/medical/treatment)
@@ -31940,9 +31768,7 @@
 	icon_state = "map";
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-whitered (NORTH)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 1
 	},
 /area/ice_colony/underground/medical/treatment)
@@ -31983,39 +31809,29 @@
 	dir = 8
 	},
 /obj/machinery/portable_atmospherics/canister/oxygen,
-/turf/open/floor{
-	tag = "icon-whitered (NORTHEAST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 5
 	},
 /area/ice_colony/underground/medical/treatment)
 "btB" = (
-/turf/open/floor{
-	tag = "icon-whitered (NORTHWEST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 9
 	},
 /area/ice_colony/underground/medical/or)
 "btC" = (
-/turf/open/floor{
-	tag = "icon-whitered (NORTH)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 1
 	},
 /area/ice_colony/underground/medical/or)
 "btD" = (
 /obj/structure/sink,
-/turf/open/floor{
-	tag = "icon-whitered (NORTH)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 1
 	},
 /area/ice_colony/underground/medical/or)
 "btE" = (
 /obj/structure/closet/secure_closet/medical2,
-/turf/open/floor{
-	tag = "icon-whitered (NORTH)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 1
 	},
 /area/ice_colony/underground/medical/or)
@@ -32027,9 +31843,7 @@
 /area/ice_colony/underground/medical/lobby)
 "btG" = (
 /obj/machinery/bioprinter,
-/turf/open/floor{
-	tag = "icon-whitered (NORTHEAST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 5
 	},
 /area/ice_colony/underground/medical/or)
@@ -32040,9 +31854,7 @@
 	},
 /area/ice_colony/underground/medical/lobby)
 "btI" = (
-/turf/open/floor{
-	tag = "icon-whitered (WEST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 8
 	},
 /area/ice_colony/underground/medical/hallway)
@@ -32281,9 +32093,7 @@
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 6;
 	},
-/turf/open/floor{
-	tag = "icon-whitered (WEST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 8
 	},
 /area/ice_colony/underground/medical/treatment)
@@ -32304,18 +32114,14 @@
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer{
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-whitered (EAST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 4
 	},
 /area/ice_colony/underground/medical/treatment)
 "bum" = (
 /obj/structure/table,
 /obj/item/stack/nanopaste,
-/turf/open/floor{
-	tag = "icon-whitered (WEST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 8
 	},
 /area/ice_colony/underground/medical/or)
@@ -32363,9 +32169,7 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/turf/open/floor{
-	tag = "icon-whitered (EAST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 4
 	},
 /area/ice_colony/underground/medical/or)
@@ -32398,9 +32202,7 @@
 	dir = 1
 	},
 /obj/item/tool/stamp,
-/turf/open/floor{
-	tag = "icon-whitered (NORTH)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 1
 	},
 /area/ice_colony/underground/medical/lobby)
@@ -32409,9 +32211,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-whitered (NORTHEAST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 5
 	},
 /area/ice_colony/underground/medical/lobby)
@@ -32576,9 +32376,7 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-whitered (WEST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 8
 	},
 /area/ice_colony/underground/medical/treatment)
@@ -32691,9 +32489,7 @@
 "bva" = (
 /obj/structure/table,
 /obj/item/storage/surgical_tray,
-/turf/open/floor{
-	tag = "icon-whitered (WEST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 8
 	},
 /area/ice_colony/underground/medical/or)
@@ -32714,9 +32510,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-whitered (EAST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 4
 	},
 /area/ice_colony/underground/medical/or)
@@ -32751,9 +32545,7 @@
 	},
 /area/ice_colony/underground/reception/checkpoint_north)
 "bvi" = (
-/turf/open/floor{
-	tag = "icon-whitered (EAST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 4
 	},
 /area/ice_colony/underground/medical/lobby)
@@ -32848,9 +32640,7 @@
 	dir = 8;
 	health = 80
 	},
-/turf/open/floor{
-	tag = "icon-whitered (NORTHWEST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 9
 	},
 /area/ice_colony/underground/medical/lobby)
@@ -32859,9 +32649,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-whitered (NORTH)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 1
 	},
 /area/ice_colony/underground/medical/lobby)
@@ -32870,9 +32658,7 @@
 /obj/machinery/door/window/brigdoor/northright,
 /obj/item/paper_bin,
 /obj/item/tool/pen/blue,
-/turf/open/floor{
-	tag = "icon-whitered (NORTH)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 1
 	},
 /area/ice_colony/underground/medical/lobby)
@@ -32990,9 +32776,7 @@
 /obj/structure/table/reinforced,
 /obj/item/storage/box/beakers,
 /obj/item/reagent_container/glass/beaker/bluespace,
-/turf/open/floor{
-	tag = "icon-whitered (EAST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 4
 	},
 /area/ice_colony/underground/medical/treatment)
@@ -33052,9 +32836,7 @@
 /area/ice_colony/underground/maintenance/central)
 "bvP" = (
 /obj/machinery/photocopier,
-/turf/open/floor{
-	tag = "icon-whitered (EAST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 4
 	},
 /area/ice_colony/underground/medical/lobby)
@@ -33142,9 +32924,7 @@
 	health = 80
 	},
 /obj/item/tool/stamp,
-/turf/open/floor{
-	tag = "icon-whitered (WEST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 8
 	},
 /area/ice_colony/underground/medical/lobby)
@@ -33204,9 +32984,7 @@
 	icon_state = "pipe-c";
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-whitered (WEST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 8
 	},
 /area/ice_colony/underground/medical/treatment)
@@ -33237,23 +33015,17 @@
 /area/ice_colony/underground/medical/treatment)
 "bwi" = (
 /obj/machinery/chem_master,
-/turf/open/floor{
-	tag = "icon-whitered (EAST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 4
 	},
 /area/ice_colony/underground/medical/treatment)
 "bwj" = (
-/turf/open/floor{
-	tag = "icon-whitered (SOUTHWEST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 10
 	},
 /area/ice_colony/underground/medical/or)
 "bwk" = (
-/turf/open/floor{
-	tag = "icon-whitered";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 2
 	},
 /area/ice_colony/underground/medical/or)
@@ -33299,9 +33071,7 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-whitered (SOUTHEAST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 6
 	},
 /area/ice_colony/underground/medical/or)
@@ -33322,9 +33092,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-whitered (NORTH)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 1
 	},
 /area/ice_colony/underground/medical/treatment)
@@ -33342,9 +33110,7 @@
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/medical/treatment)
 "bwv" = (
-/turf/open/floor{
-	tag = "icon-whitered (NORTH)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 1
 	},
 /area/ice_colony/underground/medical/treatment)
@@ -33428,9 +33194,7 @@
 /obj/machinery/door/window/brigdoor/westleft,
 /obj/item/paper_bin,
 /obj/item/tool/pen/blue,
-/turf/open/floor{
-	tag = "icon-whitered (WEST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 8
 	},
 /area/ice_colony/underground/medical/lobby)
@@ -33444,9 +33208,7 @@
 /area/ice_colony/underground/medical/lobby)
 "bwH" = (
 /obj/machinery/sleeper,
-/turf/open/floor{
-	tag = "icon-whitered (WEST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 8
 	},
 /area/ice_colony/underground/medical/treatment)
@@ -33484,9 +33246,7 @@
 /obj/item/stack/sheet/mineral/phoron,
 /obj/item/stack/sheet/mineral/phoron,
 /obj/item/stack/sheet/mineral/phoron,
-/turf/open/floor{
-	tag = "icon-whitered (EAST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 4
 	},
 /area/ice_colony/underground/medical/treatment)
@@ -33606,9 +33366,7 @@
 	dir = 8;
 	health = 80
 	},
-/turf/open/floor{
-	tag = "icon-whitered (WEST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 8
 	},
 /area/ice_colony/underground/medical/lobby)
@@ -33647,9 +33405,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-whitered (WEST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 8
 	},
 /area/ice_colony/underground/medical/treatment)
@@ -33765,9 +33521,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-whitered (WEST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 8
 	},
 /area/ice_colony/underground/medical/hallway)
@@ -33776,9 +33530,7 @@
 	tag = "icon-down";
 	icon_state = "down"
 	},
-/turf/open/floor{
-	tag = "icon-whitered (EAST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 4
 	},
 /area/ice_colony/underground/medical/hallway)
@@ -33801,9 +33553,7 @@
 /area/ice_colony/underground/medical/treatment)
 "bxu" = (
 /obj/structure/curtain/medical,
-/turf/open/floor{
-	tag = "icon-whitered (EAST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 4
 	},
 /area/ice_colony/underground/medical/treatment)
@@ -33899,9 +33649,7 @@
 	health = 80
 	},
 /obj/item/tool/stamp,
-/turf/open/floor{
-	tag = "icon-whitered (SOUTHWEST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 10
 	},
 /area/ice_colony/underground/medical/lobby)
@@ -33941,25 +33689,19 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/engineering)
 "bxJ" = (
-/turf/open/floor{
-	tag = "icon-whitered";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 2
 	},
 /area/ice_colony/underground/medical/lobby)
 "bxK" = (
 /obj/structure/reagent_dispensers/water_cooler,
-/turf/open/floor{
-	tag = "icon-whitered";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 2
 	},
 /area/ice_colony/underground/medical/lobby)
 "bxL" = (
 /obj/structure/filingcabinet,
-/turf/open/floor{
-	tag = "icon-whitered";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 2
 	},
 /area/ice_colony/underground/medical/lobby)
@@ -33968,16 +33710,12 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-whitered (SOUTHEAST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 6
 	},
 /area/ice_colony/underground/medical/lobby)
 "bxN" = (
-/turf/open/floor{
-	tag = "icon-whitered (WEST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 8
 	},
 /area/ice_colony/underground/medical/treatment)
@@ -34096,26 +33834,20 @@
 /area/ice_colony/underground/engineering)
 "bxZ" = (
 /obj/machinery/bodyscanner,
-/turf/open/floor{
-	tag = "icon-whitered (SOUTHWEST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 10
 	},
 /area/ice_colony/underground/medical/treatment)
 "bya" = (
 /obj/machinery/body_scanconsole,
-/turf/open/floor{
-	tag = "icon-whitered";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 2
 	},
 /area/ice_colony/underground/medical/treatment)
 "byb" = (
 /obj/structure/cable/yellow,
 /obj/machinery/power/apc/drained,
-/turf/open/floor{
-	tag = "icon-whitered";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 2
 	},
 /area/ice_colony/underground/medical/treatment)
@@ -34124,9 +33856,7 @@
 /area/ice_colony/underground/maintenance/engineering)
 "byd" = (
 /obj/structure/curtain/medical,
-/turf/open/floor{
-	tag = "icon-whitered";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 2
 	},
 /area/ice_colony/underground/medical/treatment)
@@ -34134,17 +33864,13 @@
 /obj/structure/bed,
 /obj/item/bedsheet/medical,
 /obj/machinery/light/small,
-/turf/open/floor{
-	tag = "icon-whitered";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 2
 	},
 /area/ice_colony/underground/medical/treatment)
 "byf" = (
 /obj/structure/curtain/medical,
-/turf/open/floor{
-	tag = "icon-whitered (SOUTHEAST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 6
 	},
 /area/ice_colony/underground/medical/treatment)
@@ -34244,9 +33970,7 @@
 /area/ice_colony/underground/maintenance/central)
 "byr" = (
 /obj/machinery/vending/snack,
-/turf/open/floor{
-	tag = "icon-whitered (NORTHWEST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 9
 	},
 /area/ice_colony/underground/medical/hallway)
@@ -34267,9 +33991,7 @@
 	dir = 4;
 	on = 1
 	},
-/turf/open/floor{
-	tag = "icon-whitered (NORTH)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 1
 	},
 /area/ice_colony/underground/medical/hallway)
@@ -34327,9 +34049,7 @@
 "byy" = (
 /obj/structure/cable/yellow,
 /obj/machinery/power/apc/drained,
-/turf/open/floor{
-	tag = "icon-whitered";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 2
 	},
 /area/ice_colony/underground/medical/hallway)
@@ -34590,16 +34310,12 @@
 /area/ice_colony/exterior/underground/caves)
 "bzc" = (
 /obj/machinery/vending/coffee,
-/turf/open/floor{
-	tag = "icon-whitered (SOUTHWEST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 10
 	},
 /area/ice_colony/underground/medical/hallway)
 "bzd" = (
-/turf/open/floor{
-	tag = "icon-whitered";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 2
 	},
 /area/ice_colony/underground/medical/hallway)
@@ -34617,9 +34333,7 @@
 	tag = "icon-down";
 	icon_state = "down"
 	},
-/turf/open/floor{
-	tag = "icon-whitered (SOUTHEAST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 6
 	},
 /area/ice_colony/underground/medical/hallway)
@@ -34690,25 +34404,19 @@
 "bzm" = (
 /obj/item/device/defibrillator,
 /obj/structure/table,
-/turf/open/floor{
-	tag = "icon-whitered (NORTH)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 1
 	},
 /area/ice_colony/underground/medical/storage)
 "bzn" = (
 /obj/structure/bed/chair/wheelchair,
-/turf/open/floor{
-	tag = "icon-whitered (NORTH)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 1
 	},
 /area/ice_colony/underground/medical/storage)
 "bzo" = (
 /obj/structure/bed/chair/wheelchair,
-/turf/open/floor{
-	tag = "icon-whitered (NORTHEAST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 5
 	},
 /area/ice_colony/underground/medical/storage)
@@ -34807,9 +34515,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-whitered (EAST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 4
 	},
 /area/ice_colony/underground/medical/storage)
@@ -34911,25 +34617,19 @@
 /area/ice_colony/underground/maintenance/engineering)
 "bzT" = (
 /obj/machinery/vending/medical,
-/turf/open/floor{
-	tag = "icon-whitered (NORTHWEST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 9
 	},
 /area/ice_colony/underground/medical/storage)
 "bzU" = (
 /obj/machinery/vending/medical,
-/turf/open/floor{
-	tag = "icon-whitered (NORTH)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 1
 	},
 /area/ice_colony/underground/medical/storage)
 "bzV" = (
 /obj/machinery/vending/MarineMed/Blood,
-/turf/open/floor{
-	tag = "icon-whitered (NORTH)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 1
 	},
 /area/ice_colony/underground/medical/storage)
@@ -34940,9 +34640,7 @@
 	pixel_x = 5;
 	pixel_y = 3
 	},
-/turf/open/floor{
-	tag = "icon-whitered (NORTH)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 1
 	},
 /area/ice_colony/underground/medical/storage)
@@ -34953,9 +34651,7 @@
 	pixel_x = 6;
 	pixel_y = 10
 	},
-/turf/open/floor{
-	tag = "icon-whitered (NORTH)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 1
 	},
 /area/ice_colony/underground/medical/storage)
@@ -34972,9 +34668,7 @@
 /obj/structure/table,
 /obj/item/bodybag/cryobag,
 /obj/item/storage/box/syringes,
-/turf/open/floor{
-	tag = "icon-whitered (NORTH)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 1
 	},
 /area/ice_colony/underground/medical/storage)
@@ -34985,9 +34679,7 @@
 	pixel_x = 5;
 	pixel_y = 3
 	},
-/turf/open/floor{
-	tag = "icon-whitered (NORTH)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 1
 	},
 /area/ice_colony/underground/medical/storage)
@@ -35019,9 +34711,7 @@
 	tag = "icon-down";
 	icon_state = "down"
 	},
-/turf/open/floor{
-	tag = "icon-whitered (SOUTHEAST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 6
 	},
 /area/ice_colony/underground/medical/storage)
@@ -35122,9 +34812,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-whitered (WEST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 8
 	},
 /area/ice_colony/underground/medical/storage)
@@ -35293,42 +34981,32 @@
 /area/ice_colony/underground/hallway/north_west)
 "bAP" = (
 /obj/structure/closet/secure_closet/medical3/colony,
-/turf/open/floor{
-	tag = "icon-whitered (SOUTHWEST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 10
 	},
 /area/ice_colony/underground/medical/storage)
 "bAQ" = (
 /obj/structure/closet/secure_closet/medical3/colony,
-/turf/open/floor{
-	tag = "icon-whitered";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 2
 	},
 /area/ice_colony/underground/medical/storage)
 "bAR" = (
 /obj/structure/closet/secure_closet/medical1/colony,
-/turf/open/floor{
-	tag = "icon-whitered";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 2
 	},
 /area/ice_colony/underground/medical/storage)
 "bAS" = (
 /obj/structure/cable/yellow,
 /obj/machinery/power/apc/drained,
-/turf/open/floor{
-	tag = "icon-whitered";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 2
 	},
 /area/ice_colony/underground/medical/storage)
 "bAT" = (
 /obj/machinery/iv_drip,
-/turf/open/floor{
-	tag = "icon-whitered";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 2
 	},
 /area/ice_colony/underground/medical/storage)
@@ -35337,17 +35015,13 @@
 	tag = "icon-down";
 	icon_state = "down"
 	},
-/turf/open/floor{
-	tag = "icon-whitered";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 2
 	},
 /area/ice_colony/underground/medical/storage)
 "bAV" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	tag = "icon-whitered";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 2
 	},
 /area/ice_colony/underground/medical/storage)
@@ -39533,9 +39207,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-whitered (NORTH)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 1
 	},
 /area/ice_colony/underground/medical/hallway)
@@ -39548,9 +39220,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-whitered (NORTH)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 1
 	},
 /area/ice_colony/underground/medical/hallway)
@@ -39568,9 +39238,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor{
-	tag = "icon-whitered (NORTH)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 1
 	},
 /area/ice_colony/underground/medical/hallway)
@@ -39583,9 +39251,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor{
-	tag = "icon-whitered (NORTH)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 1
 	},
 /area/ice_colony/underground/medical/hallway)
@@ -39601,9 +39267,7 @@
 /obj/structure/closet/hydrant{
 	pixel_y = 32
 	},
-/turf/open/floor{
-	tag = "icon-whitered (NORTH)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 1
 	},
 /area/ice_colony/underground/medical/hallway)
@@ -41294,9 +40958,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor{
-	tag = "icon-whitered (NORTH)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 1
 	},
 /area/ice_colony/underground/medical/hallway)
@@ -43486,9 +43148,7 @@
 	dir = 4
 	},
 /obj/machinery/chem_dispenser,
-/turf/open/floor{
-	tag = "icon-whitered (EAST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 4
 	},
 /area/ice_colony/underground/medical/treatment)
@@ -43671,9 +43331,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-whitered (EAST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 4
 	},
 /area/ice_colony/underground/medical/hallway)
@@ -43717,9 +43375,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-whitered (NORTHEAST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 5
 	},
 /area/ice_colony/underground/medical/treatment)
@@ -46466,9 +46122,7 @@
 /obj/item/tool/soap{
 	pixel_x = 5
 	},
-/turf/open/floor{
-	tag = "icon-whitered (WEST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 8
 	},
 /area/ice_colony/underground/medical/or)
@@ -47531,9 +47185,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-whitered";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 2
 	},
 /area/ice_colony/underground/medical/or)

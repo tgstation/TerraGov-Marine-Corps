@@ -422,16 +422,12 @@
 	},
 /area/whiskey_outpost)
 "bj" = (
-/turf/open/floor{
-	tag = "icon-whitered (NORTH)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 1
 	},
 /area/whiskey_outpost)
 "bk" = (
-/turf/open/floor{
-	tag = "icon-whitered (NORTHEAST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 5
 	},
 /area/whiskey_outpost)
@@ -529,9 +525,7 @@
 	},
 /area/whiskey_outpost)
 "bw" = (
-/turf/open/floor{
-	tag = "icon-whitered (WEST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 8
 	},
 /area/whiskey_outpost)
@@ -542,9 +536,7 @@
 	},
 /area/whiskey_outpost)
 "by" = (
-/turf/open/floor{
-	tag = "icon-whitered (EAST)";
-	icon_state = "whitered";
+/turf/open/floor/tile/red/whitered{
 	dir = 4
 	},
 /area/whiskey_outpost)

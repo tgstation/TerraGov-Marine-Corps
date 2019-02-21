@@ -140,6 +140,9 @@
 /turf/open/floor/marking/warning
 	icon_state = "warning"
 
+/turf/open/floor/marking/warning/corner
+	icon_state = "warningcorner"
+
 /turf/open/floor/marking/asteroidwarning
 	icon_state = "asteroidwarning"
 
@@ -441,6 +444,9 @@
 /turf/open/floor/tile/red/redtaupecorner
 	icon_state = "redcorner"
 
+/turf/open/floor/tile/red/whitered
+	icon_state = "whitered"
+
 /turf/open/floor/tile/red/whiteredfull
 	icon_state = "whiteredfull"
 
@@ -533,6 +539,9 @@
 
 /turf/open/floor/animated/bcircuit
 	icon_state = "bcircuit"
+
+/turf/open/floor/podhatch/floor
+	icon_state = "podhatchfloor"
 
 /turf/open/floor/stairs/rampbottom
 	icon_state = "rampbottom"

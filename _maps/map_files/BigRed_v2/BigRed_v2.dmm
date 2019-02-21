@@ -9927,18 +9927,10 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-podhatchfloor";
-	icon_state = "podhatchfloor";
-	dir = 2
-	},
+/turf/open/floor/podhatch/floor,
 /area/bigredv2/caves/lambda_lab)
 "aAU" = (
-/turf/open/floor{
-	tag = "icon-podhatchfloor";
-	icon_state = "podhatchfloor";
-	dir = 2
-	},
+/turf/open/floor/podhatch/floor,
 /area/bigredv2/caves/lambda_lab)
 "aAV" = (
 /obj/machinery/conveyor{
@@ -9963,19 +9955,11 @@
 	icon_state = "bulb1";
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-podhatchfloor";
-	icon_state = "podhatchfloor";
-	dir = 2
-	},
+/turf/open/floor/podhatch/floor,
 /area/bigredv2/caves/lambda_lab)
 "aAY" = (
 /obj/effect/alien/weeds/node,
-/turf/open/floor{
-	tag = "icon-podhatchfloor";
-	icon_state = "podhatchfloor";
-	dir = 2
-	},
+/turf/open/floor/podhatch/floor,
 /area/bigredv2/caves/lambda_lab)
 "aAZ" = (
 /obj/structure/cargo_container/horizontal{
@@ -10520,11 +10504,7 @@
 	name = "\improper Lambda Lab Anomaly Chamber";
 	req_access_txt = "0"
 	},
-/turf/open/floor{
-	tag = "icon-podhatchfloor";
-	icon_state = "podhatchfloor";
-	dir = 2
-	},
+/turf/open/floor/podhatch/floor,
 /area/bigredv2/caves/lambda_lab)
 "aCz" = (
 /obj/machinery/power/emitter{
@@ -17642,18 +17622,10 @@
 /area/bigredv2/outside/general_store)
 "aTU" = (
 /obj/machinery/message_server,
-/turf/open/floor{
-	tag = "icon-podhatchfloor";
-	icon_state = "podhatchfloor";
-	dir = 2
-	},
+/turf/open/floor/podhatch/floor,
 /area/bigredv2/outside/admin_building)
 "aTV" = (
-/turf/open/floor{
-	tag = "icon-podhatchfloor";
-	icon_state = "podhatchfloor";
-	dir = 2
-	},
+/turf/open/floor/podhatch/floor,
 /area/bigredv2/outside/admin_building)
 "aTW" = (
 /obj/structure/cable{
@@ -18359,30 +18331,18 @@
 /area/bigredv2/outside/general_store)
 "aVQ" = (
 /obj/machinery/constructable_frame/state_2,
-/turf/open/floor{
-	tag = "icon-podhatchfloor";
-	icon_state = "podhatchfloor";
-	dir = 2
-	},
+/turf/open/floor/podhatch/floor,
 /area/bigredv2/outside/admin_building)
 "aVR" = (
 /obj/machinery/blackbox_recorder,
-/turf/open/floor{
-	tag = "icon-podhatchfloor";
-	icon_state = "podhatchfloor";
-	dir = 2
-	},
+/turf/open/floor/podhatch/floor,
 /area/bigredv2/outside/admin_building)
 "aVS" = (
 /obj/machinery/camera/autoname{
 	dir = 1;
 	network = list("interrogation")
 	},
-/turf/open/floor{
-	tag = "icon-podhatchfloor";
-	icon_state = "podhatchfloor";
-	dir = 2
-	},
+/turf/open/floor/podhatch/floor,
 /area/bigredv2/outside/admin_building)
 "aVT" = (
 /obj/machinery/computer3/server,
@@ -29459,18 +29419,10 @@
 /area/bigredv2/caves)
 "bAf" = (
 /obj/machinery/r_n_d/server,
-/turf/open/floor{
-	tag = "icon-podhatchfloor";
-	icon_state = "podhatchfloor";
-	dir = 2
-	},
+/turf/open/floor/podhatch/floor,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bAg" = (
-/turf/open/floor{
-	tag = "icon-podhatchfloor";
-	icon_state = "podhatchfloor";
-	dir = 2
-	},
+/turf/open/floor/podhatch/floor,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bAh" = (
 /turf/open/floor/tile/darkish,
@@ -29690,11 +29642,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bAN" = (
 /obj/machinery/telecomms/server,
-/turf/open/floor{
-	tag = "icon-podhatchfloor";
-	icon_state = "podhatchfloor";
-	dir = 2
-	},
+/turf/open/floor/podhatch/floor,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bAO" = (
 /obj/structure/closet/secure_closet/engineering_personal,
