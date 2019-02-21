@@ -1520,7 +1520,7 @@ All of the hardpoints, for the tank and APC
 	active_effect(var/turf/T)
 		var /obj/item/ammo_magazine/apc/dual_cannon/A = clips[1]
 		if(A == null || A.current_rounds <= 0)
-			to_chat(usr, "<span class='warning'>This module does not have any ammo.</span>")
+			to_chat(usr, "<span class='warning'>No ammo. Reloading is required.</span>")
 			return
 
 		next_use = world.time + owner.cooldowns["primary"] * owner.misc_ratios["prim_cool"]
@@ -1576,7 +1576,7 @@ All of the hardpoints, for the tank and APC
 
 		var /obj/item/ammo_magazine/apc/front_cannon/A = clips[1]
 		if(A == null || A.current_rounds <= 0)
-			to_chat(usr, "<span class='warning'>This module does not have any ammo.</span>")
+			to_chat(usr, "<span class='warning'>No ammo. Reloading is required.</span>")
 			return
 
 		next_use = world.time + owner.cooldowns["secondary"] * owner.misc_ratios["secd_cool"]
@@ -1631,6 +1631,11 @@ All of the hardpoints, for the tank and APC
 
 	active_effect(var/turf/T)
 
+		var/obj/item/ammo_magazine/apc/flare_launcher/A = clips[1]
+		if(A == null || A.current_rounds <= 0)
+			to_chat(usr, "<span class='warning'>No ammo. Reloading is required.</span>")
+			return
+
 		var/turf/F
 		var/turf/S
 		var/right_dir
@@ -1651,8 +1656,8 @@ All of the hardpoints, for the tank and APC
 		F = get_step(F, right_dir)
 		F = get_step(F, right_dir)
 
-		var/obj/item/ammo_magazine/apc/flare_launcher/A = clips[1]
-		next_use = world.time + owner.cooldowns["secondary"] * owner.misc_ratios["secd_cool"]
+
+		next_use = world.time + owner.cooldowns["support"] * owner.misc_ratios["support"]
 		var/obj/item/projectile/P = new
 		P.generate_bullet(new A.default_ammo)
 		P.fire_at(F, owner, src, 8, P.ammo.shell_speed)
@@ -1757,7 +1762,7 @@ All of the hardpoints, for the tank and APC
 	caliber = "45mm"
 	icon_state = "autocannon_1"
 	w_class = 10
-	//default_ammo = /datum/ammo/rocket/autocannon
+	default_ammo = /datum/ammo/rocket/autocannon
 	current_rounds = 30
 	max_rounds = 30
 	point_cost = 0
@@ -1775,7 +1780,7 @@ All of the hardpoints, for the tank and APC
 	caliber = "10x28mm" //Correlates to smartguns
 	icon_state = "big_ammo_box"
 	w_class = 12
-	//default_ammo = /datum/ammo/bullet/front_cannon
+	default_ammo = /datum/ammo/bullet/front_cannon
 	current_rounds = 400
 	max_rounds = 400
 	point_cost = 0

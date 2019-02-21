@@ -16,23 +16,24 @@
 
 
 /obj/machinery/vehicle_vendor/tank_vendor_ui
-	name = "ColMarTech Automated Tank Vendor"
+	name = "ColMarTech Automated Vehicle Vendor"
 	desc = "This vendor is connected to main ship storage, allows to fetch one hardpoint module per category for free."
 	icon = 'icons/obj/machines/vending.dmi'
-	icon_state = "engi"
+	icon_state = "robotics"
 
 	vendor_role = list("Tank Crewman") //everyone else, mind your business
 
 	var/list/aval_tank_mod = list("manual", "primary", "secondary", "support", "armor", "treads")
 
 	listed_products = list(
+							list("GUIDE FOR DUMMIES", null, null, null, null),
+							list("Guide For Dummies: How To Tank", null, /obj/item/book/manual/tank_manual, "manual", "gold"),
+							list("TANK MODULES CATEGORIES:", null, null, null, null),
 							list("PRIMARY WEAPON", null, null, null, null),
-							list("M78 Dual Cannon", null, /obj/item/hardpoint/apc/primary/dual_cannon, "primary", "orange"),
 							list("M21 Autocannon", 1, /obj/item/hardpoint/tank/primary/autocannon, "primary", "orange"),
 							list("M5 LTB Cannon", 2, /obj/item/hardpoint/tank/primary/cannon, "primary", "black"),
 							list("M74 LTAA-AP Minigun", 3, /obj/item/hardpoint/tank/primary/minigun, "primary", "black"),
 							list("SECONDARY WEAPON", null, null, null, null),
-							list("M26 Frontal Cannon", null, /obj/item/hardpoint/apc/secondary/front_cannon, "secondary", "orange"),
 							list("M56 \"Cupola\"", 2, /obj/item/hardpoint/tank/secondary/m56cupola, "secondary", "orange"),
 							list("M8-3 TOW Launcher", 2, /obj/item/hardpoint/tank/secondary/towlauncher, "secondary", "black"),
 							list("M7 \"Dragon\" Flamethrower Unit", 2, /obj/item/hardpoint/tank/secondary/flamer, "secondary", "black"),
@@ -48,9 +49,13 @@
 							list("M90 \"Paladin\" Armor", 10, /obj/item/hardpoint/tank/armor/paladin, "armor", "black"),
 							list("M37 \"Snowplow\" Armor", 4, /obj/item/hardpoint/tank/armor/snowplow, "armor", "black"),
 							list("TREADS", null, null, null, null),
-							list("M3 APC Wheels Kit", null, /obj/item/hardpoint/apc/wheels, "treads", "orange"),
 							list("M2 Tank Treads", 1, /obj/item/hardpoint/tank/treads/standard, "treads", "orange"),
 							list("M2-R Tank Treads", 3, /obj/item/hardpoint/tank/treads/heavy, "treads", "black"),
+							list("APC MODULES:", null, null, null, null),
+							list("M78 Dual Cannon", null, /obj/item/hardpoint/apc/primary/dual_cannon, "primary", "orange"),
+							list("M26 Frontal Cannon", null, /obj/item/hardpoint/apc/secondary/front_cannon, "secondary", "orange"),
+							list("M9 Flare Launcher System", null, /obj/item/hardpoint/apc/support/flare_launcher, "support", "orange"),
+							list("M3 APC Wheels Kit", null, /obj/item/hardpoint/apc/wheels, "treads", "orange"),
 							)
 
 
@@ -61,15 +66,15 @@
 /obj/machinery/vehicle_vendor/tank_vendor_ui/power_change()
 	..()
 	if (stat & NOPOWER)
-		icon_state = "engi_off"
+		icon_state = "robotics_off"
 
 /obj/machinery/vehicle_vendor/tank_vendor_ui/process()
 	if(ticker.current_state < GAME_STATE_PLAYING)
 		return
 	if(stat & NOPOWER)
-		icon_state = "engi_off"
+		icon_state = "robotics_off"
 		return
-	icon_state = "engi"
+	icon_state = "robotics"
 
 /obj/machinery/vehicle_vendor/tank_vendor_ui/attack_hand(mob/user)
 
@@ -125,11 +130,21 @@
 		to_chat(H, "<span class='warning'>This machine isn't for you.</span>")
 		return
 
+	if(istype(W, /obj/item/book/manual/tank_manual))
+		if(aval_tank_mod.Find("manual"))
+			to_chat(H, "<span class='warning'>Can't accept this. Manual is still in the vendor... Wait a minute, where did you get that?!</span>")
+			return
+		aval_tank_mod.Add("manual")
+		user.temp_drop_inv_item(W, 0)
+		to_chat(user, "<span class='notice'>You insert the [W.name] into the vendor.</span>")
+		qdel(W)
+		return
+
 	if(world.time > return_timer)
 		to_chat(H, "<span class='warning'>Operation has begun, you can't swap modules anymore.</span>")
 		return
 
-	if(istype(W, /obj/item/hardpoint/tank/primary))
+	if(istype(W, /obj/item/hardpoint/tank/primary) || istype(W, /obj/item/hardpoint/apc/primary))
 		if(aval_tank_mod.Find("primary"))
 			to_chat(H, "<span class='warning'>Can't accept this. Module from \"Primary\" category wasn't taken yet.</span>")
 			return
@@ -139,7 +154,7 @@
 		qdel(W)
 		return
 
-	if(istype(W, /obj/item/hardpoint/tank/secondary))
+	if(istype(W, /obj/item/hardpoint/tank/secondary) || istype(W, /obj/item/hardpoint/apc/secondary))
 		if(aval_tank_mod.Find("secondary"))
 			to_chat(H, "<span class='warning'>Can't accept this. Module from \"Secondary\" category wasn't taken yet.</span>")
 			return
@@ -149,7 +164,7 @@
 		qdel(W)
 		return
 
-	if(istype(W, /obj/item/hardpoint/tank/support))
+	if(istype(W, /obj/item/hardpoint/tank/support) || istype(W, /obj/item/hardpoint/apc/support))
 		if(aval_tank_mod.Find("support"))
 			to_chat(H, "<span class='warning'>Can't accept this. Module from \"Support\" category wasn't taken yet.</span>")
 			return
@@ -169,7 +184,7 @@
 		qdel(W)
 		return
 
-	if(istype(W, /obj/item/hardpoint/tank/treads))
+	if(istype(W, /obj/item/hardpoint/tank/treads) || istype(W, /obj/item/hardpoint/apc/wheels))
 		if(aval_tank_mod.Find("treads"))
 			to_chat(H, "<span class='warning'>Can't accept this. Module from \"Treads\" category wasn't taken yet.</span>")
 			return
@@ -179,7 +194,7 @@
 		qdel(W)
 		return
 
-	to_chat(user, "<span class='warning'>This is not tank hardpoint module.</span>")
+	to_chat(user, "<span class='warning'>This is not a hardpoint module.</span>")
 	return
 
 
