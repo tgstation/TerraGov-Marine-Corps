@@ -519,6 +519,9 @@
 /turf/open/floor/tile/dark
 	icon_state = "dark"
 
+/turf/open/floor/tile/dark2
+	icon_state = "dark2"
+
 /turf/open/floor/tile/dark/purple2
 	icon_state = "darkpurple2"
 

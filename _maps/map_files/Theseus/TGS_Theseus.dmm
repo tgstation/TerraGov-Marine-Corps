@@ -14276,10 +14276,7 @@
 	name = "Security Desk";
 	tag = "icon-leftsecure (NORTH)"
 	},
-/turf/open/floor{
-	tag = "icon-dark2";
-	icon_state = "dark2"
-	},
+/turf/open/floor/tile/dark2,
 /area/almayer/hallways/aft_hallway)
 "aDj" = (
 /obj/machinery/door/airlock/almayer/security{
