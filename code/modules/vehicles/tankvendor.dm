@@ -5,7 +5,7 @@
 
 /obj/machinery/tank_part_fabricator
 	name = "tank part fabricator"
-	desc = "A large automated 3D printer for producing new tank parts."
+	desc = "A large automated 3D printer for producing new tank parts and maintaining old ones."
 	density = 1
 	anchored = 1
 	use_power = 1
@@ -44,7 +44,7 @@
 		dat += "<i>[src] is busy. Please wait for completion of the current operation...</i>"
 	else
 		dat += "<h4>Points Available: [tank_points]</h4>"
-		dat += "<h4>Loaded Hardpoint/Magazine: [loaded_mod ? "(icon2html(loaded_mod, usr) <a href='byond://?src=\ref[src];eject'>(loaded_mod)</a>" : "None"]</h4>"
+		dat += "<h4>Loaded Hardpoint/Ammo Clip: [loaded_mod ? "(icon2html(loaded_mod, usr) <a href='byond://?src=\ref[src];eject'>(loaded_mod)</a>" : "None"]</h4>"
 
 	switch(screen)
 
@@ -53,10 +53,31 @@
 
 		if(TANKFAB_MOD_MAINT)
 			if(!loaded_mod)
-				dat += "<i>No hardpoint or magazine loaded. Please stand-by...</i>"
+				dat += "<i>No hardpoint or clip loaded. Please stand-by...</i>"
 			else
 				var/price = calculate_mod_value(loaded_mod)
-				dat += "<center><table><tr><td><center><a href='byond://?src=\ref[src];printer'>Hardpoint Printer</a></center><td><td><center><a href='byond://?src=\ref[src];refund'>Refund([price])</a></center><td><tr><table></center>"
+				var/restore = istype(loaded_mod, /obj/item/hardpoint) ? "Repair" : "Refill"
+				var/cost = calculate_repair_price(loaded_mod)
+				dat += "<center><table><tr><td><center><a href='byond://?src=\ref[src];restore'><b>[restore]</b> ([cost])</a></center><td><td><center><a href='byond://?src=\ref[src];refund'><b>Refund</b> ([price])</a></center><td><tr><table></center><br>"
+				dat += "<h4>Hardpoint/Ammo Clip infos:</h4>"
+				dat += "<b>Brief description</b>: [loaded_mod.desc]<br>"
+				if(istype(loaded_mod, /obj/item/hardpoint))
+					var/obj/item/hardpoint/H = loaded_mod
+					dat += "<b>Hardpoint integrity</b>: [PERCENT(H.health/H.maxhealth)]%<br>"
+					if(H.starter_ammo)
+						var/ammo_count = H.ammo ? "[H.ammo] ([H.ammo.current_rounds]/[H.ammo.max_rounds])" : "No clip loaded"
+						dat += "<b>Current clip</b>: [ammo_count]<br>"
+					if(H.max_clips)
+						dat += "<b>Backup clips</b>:<br>"
+						for(var/I in H.backup_clips)
+							var/obj/item/ammo_magazine/tank/A = I
+							dat += "[A] ([A.current_rounds]/[A.max_rounds])<br>"
+				else if(istype(loaded_mod, /obj/item/ammo_magazine))
+					var/obj/item/ammo_magazine/A = loaded_mod
+					dat += "<b>Current rounds</b>: [A] [A.current_rounds]/[A.max_rounds]<br>"
+					dat += "<b>Caliber</b>: [A.caliber]<br>"
+					var/obj/item/hardpoint/H = A.gun_type
+					dat += "<b>Supported Hardpoint</b>: [initial(H.name)]<br>"
 
 		if(TANKFAB_PRINTER)
 			dat += "<h3>Armor:</h3>"
@@ -122,6 +143,26 @@
 	onclose(user, "dropship_part_fab")
 	return
 
+/obj/machinery/tank_part_fabricator/attackby(obj/item/W, mob/user)
+	if((istype(W, /obj/item/hardpoint) || istype(W, /obj/item/ammo_magazine/tank)) && user.a_intent != INTENT_HARM)
+		if(stat & (NOPOWER|BROKEN))
+			return
+		if(busy)
+			to_chat(usr, "<span class='warning'>[src] is busy. Please wait for completion of previous operation.</span>")
+		else if(user.transferItemToLoc(W, src))
+			user.visible_message("<span class='notice'>[user] loads [W] into [src]'s maintenance slot.</span>", "<span class='notice'>You load [W] into [src]'s maintenance slot.</span>", null, 4)
+			loaded_mod = W
+		else
+			to_chat(user, "<span class='warning'>[W] appears to be stuck to your hands.</span>")
+	else if(iscrowbar(W) && stat & (NOPOWER|BROKEN) && !QDELETED(loaded_mod))
+		user.visible_message("<span class='warning'>[user] starts to pry [src]'s maintenance slot open.</span>", "<span class='notice'>You start to pry [loaded_mod] out of [src]'s maintenance slot...</span>")
+		if(!do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD) || QDELETED(src) || QDELETED(loaded_mod))
+			return
+		user.visible_message("[user] pries [loaded_mod] out of [src].", "<span class='notice'>You retrieve [loaded_mod] from [src].</span>")
+		eject_tank_part()
+	else
+		return ..()
+
 /obj/machinery/tank_part_fabricator/proc/build_tank_part(part_type, cost, mob/user)
 	if(stat & (NOPOWER|BROKEN) || busy)
 		return
@@ -131,7 +172,7 @@
 	visible_message("<span class='notice'>[src] starts printing something.</span>")
 	tank_points -= cost
 	set_busy()
-	addtimer(CALLBACK(src, .proc/dispense_tank_part, part_type), 100)
+	addtimer(CALLBACK(src, .proc/dispense_tank_part, part_type), 10 SECONDS)
 
 /obj/machinery/tank_part_fabricator/proc/dispense_tank_part(part_type)
 	set_busy(FALSE)
@@ -139,9 +180,9 @@
 	playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
 	new part_type(T)
 
-/obj/machinery/tank_part_fabricator/proc/calculate_mod_value(obj/item/I)
-	if(istype(I, /obj/item/hardpoint))
-		var/obj/item/hardpoint/mod = I
+/obj/machinery/tank_part_fabricator/proc/calculate_mod_value()
+	if(istype(loaded_mod, /obj/item/hardpoint))
+		var/obj/item/hardpoint/mod = loaded_mod
 		. = CLAMP(mod.point_cost * PERCENT(mod.health/mod.maxhealth), mod.point_cost * 0.3, mod.point_cost * 0.75)
 		if(mod.starter_ammo)
 			if(mod.ammo)
@@ -150,21 +191,66 @@
 				. *= 0.5
 			for(var/O in mod.backup_clips)
 				var/obj/item/ammo_magazine/tank/A = O
-				. += CLAMP(A.point_cost * PERCENT(A.current_rounds/A.max_rounds), A * 0.1, A * 0.75)
-	else if(istype(I, /obj/item/ammo_magazine/tank))
-		var/obj/item/ammo_magazine/tank/A = I
-		. = CLAMP(A.point_cost * PERCENT(A.current_rounds/A.max_rounds), A * 0.1, A * 0.75)
+				. += CLAMP(A.point_cost * PERCENT(A.current_rounds/A.max_rounds), A.point_cost * 0.1, A.point_cost * 0.75)
+	else if(istype(loaded_mod, /obj/item/ammo_magazine/tank))
+		var/obj/item/ammo_magazine/tank/A = loaded_mod
+		. = CLAMP(A.point_cost * PERCENT(A.current_rounds/A.max_rounds), A.point_cost * 0.1, A.point_cost * 0.75)
 
 	. = max(round(.), 0)
 
-/obj/machinery/tank_part_fabricator/proc/refund_tank_part()
-	if(stat & (NOPOWER|BROKEN) || busy || !loaded_mod)
+/obj/machinery/tank_part_fabricator/proc/calculate_repair_price()
+	if(istype(loaded_mod, /obj/item/hardpoint))
+		var/obj/item/hardpoint/mod = loaded_mod
+		. = ((mod.point_cost - mod.point_cost * PERCENT(mod.health/mod.maxhealth)) * 0.1)
+		if(mod.starter_ammo)
+			var/obj/item/ammo_magazine/tank/A
+			if(mod.ammo)
+				A = mod.ammo
+				. += min(A.point_cost - A.point_cost * PERCENT(A.current_rounds/A.max_rounds), A.point_cost * 0.9)
+			else
+				A = mod.starter_ammo
+				. += initial(A.point_cost) * 0.9
+	else if(istype(loaded_mod, /obj/item/ammo_magazine/tank))
+		var/obj/item/ammo_magazine/tank/A = loaded_mod
+		. = min(A.point_cost - A.point_cost * PERCENT(A.current_rounds/A.max_rounds), A.point_cost * 0.9)
+
+	. = max(round(.), 0)
+
+/obj/machinery/tank_part_fabricator/proc/eject_tank_part(mob/user)
+	if(busy || QDELETED(loaded_mod))
 		return
-	tank_points += calculate_mod_value(loaded_mod)
+	var/turf/T = get_step(src, SOUTHEAST)
+	if(user)
+		to_chat(user, "<span class='notice'>You retrieve [loaded_mod] from [src].</span>")
+	loaded_mod.forceMove(T)
+	loaded_mod = null
+
+/obj/machinery/tank_part_fabricator/proc/refund_tank_part()
+	if(stat & (NOPOWER|BROKEN) || busy || QDELETED(loaded_mod))
+		return
+	tank_points += calculate_mod_value()
 	visible_message("<span class='notice'>[src] starts disassembling [loaded_mod].</span>")
 	QDEL_NULL(loaded_mod)
 	set_busy()
-	addtimer(CALLBACK(src, .proc/set_busy, FALSE), 100)
+	addtimer(CALLBACK(src, .proc/set_busy, FALSE), 10 SECONDS)
+
+/obj/machinery/tank_part_fabricator/proc/restore_tank_part()
+	if(stat & (NOPOWER|BROKEN) || busy || !loaded_mod)
+		return
+	tank_points -= calculate_repair_price()
+	if(istype(loaded_mod, /obj/item/hardpoint))
+		var/obj/item/hardpoint/H = loaded_mod
+		H.health = H.maxhealth
+		if(H.ammo)
+			H.ammo.current_rounds = H.ammo.max_rounds
+			H.ammo.update_icon()
+		else
+			H.ammo = new H.starter_ammo
+	else if(istype(loaded_mod, /obj/item/ammo_magazine/tank))
+		var/obj/item/ammo_magazine/tank/A = loaded_mod
+		A.current_rounds = A.max_rounds
+	set_busy()
+	addtimer(CALLBACK(src, .proc/set_busy, FALSE), 6 SECONDS)
 
 /obj/machinery/tank_part_fabricator/Topic(href, href_list)
 	if(..())
@@ -180,8 +266,14 @@
 	if(href_list["produce"])
 		build_tank_part(href_list["produce"], text2num(href_list["cost"]), usr)
 
+	if(href_list["eject"])
+		eject_tank_part(usr)
+
 	if(href_list["refund"])
 		refund_tank_part()
+
+	if(href_list["restore"])
+		restore_tank_part()
 
 	if(href_list["printer"])
 		screen = TANKFAB_PRINTER
@@ -190,3 +282,8 @@
 		screen = TANKFAB_MOD_MAINT
 
 		updateUsrDialog()
+
+#undef TANKFAB_MAIN_MENU
+#undef TANKFAB_MOD_MAINT
+#undef TANKFAB_PRINTER
+#undef TANKFAB_BUSY
