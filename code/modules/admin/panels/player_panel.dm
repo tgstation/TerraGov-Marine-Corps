@@ -212,7 +212,6 @@
 		<span id='maintable_data_archive'>
 		<table width='560' align='center' cellspacing='0' cellpadding='5' id='maintable_data'>"}
 
-	var/list/mobs = sortmobs()
 	var/i = 1
 	for(var/mob/M in GLOB.mob_list)
 		if(M.ckey && M.client)
@@ -327,7 +326,6 @@
 	var/ref = "[REF(usr.client.holder)];[HrefToken()]"
 	var/dat = "<html><head><title>Player Menu</title></head>"
 	dat += "<body><table border=1 cellspacing=5><B><tr><th>Key</th><th>Name</th><th>Type</th><th>PP</th><th>CID</th><th>IP</th><th>JMP</th><th>FLW</th><th>Notes</th></tr></B>"
-	var/list/mobs = sortmobs()
 
 	for(var/mob/M in GLOB.mob_list)
 		if(!M.ckey)
@@ -409,7 +407,7 @@
 		<b>Mob Type:</b> [M.type]<br>
 		<b>Mob Location:</b> [AREACOORD(M.loc)]<br>
 		<b>Mob Faction:</b> [M.faction]<br>"}
-		
+
 	if(M.mind?.assigned_role)
 		body += "<b>Mob Role:</b> [M.mind.assigned_role]<br>"
 
