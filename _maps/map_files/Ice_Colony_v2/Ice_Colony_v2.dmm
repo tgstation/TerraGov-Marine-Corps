@@ -47,16 +47,12 @@
 "aak" = (
 /turf/open/ice,
 /turf/closed/ice/thin/end{
-	tag = "icon-End (WEST)";
-	icon_state = "End";
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/clearing/north)
 "aal" = (
 /turf/open/ice,
 /turf/closed/ice/thin/end{
-	tag = "icon-End (EAST)";
-	icon_state = "End";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/clearing/north)
@@ -78,31 +74,23 @@
 "aaq" = (
 /turf/open/ice,
 /turf/closed/ice/thin/straight{
-	tag = "icon-Straight (EAST)";
-	icon_state = "Straight";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/clearing/north)
 "aar" = (
 /turf/closed/ice_rock/corners{
-	tag = "icon-full_corners (NORTHEAST)";
-	icon_state = "full_corners";
 	dir = 5
 	},
 /area/ice_colony/exterior/surface/cliff)
 "aas" = (
 /turf/open/ice,
 /turf/closed/ice/thin/corner{
-	tag = "icon-Corner (EAST)";
-	icon_state = "Corner";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/valley/northwest)
 "aat" = (
 /turf/open/ice,
 /turf/closed/ice/thin/straight{
-	tag = "icon-Straight (EAST)";
-	icon_state = "Straight";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/valley/northwest)
@@ -142,8 +130,6 @@
 /area/ice_colony/exterior/surface/clearing/north)
 "aaB" = (
 /turf/closed/ice_rock/corners{
-	tag = "icon-full_corners (SOUTHEAST)";
-	icon_state = "full_corners";
 	dir = 6
 	},
 /area/ice_colony/exterior/surface/cliff)
@@ -231,51 +217,37 @@
 /area/ice_colony/exterior/surface/cliff)
 "aaP" = (
 /turf/closed/ice/corner{
-	tag = "icon-Corner (EAST)";
-	icon_state = "Corner";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/cliff)
 "aaQ" = (
 /turf/closed/ice/straight{
-	tag = "icon-Straight (EAST)";
-	icon_state = "Straight";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/cliff)
 "aaR" = (
 /turf/closed/ice/corner{
-	tag = "icon-Corner (NORTH)";
-	icon_state = "Corner";
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/cliff)
 "aaS" = (
 /turf/closed/ice/end{
-	tag = "icon-End (WEST)";
-	icon_state = "End";
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/cliff)
 "aaT" = (
 /turf/open/ice,
 /turf/closed/ice/thin/end{
-	tag = "icon-End (NORTH)";
-	icon_state = "End";
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/valley/north)
 "aaU" = (
 /turf/closed/ice_rock/corners{
-	tag = "icon-full_corners (NORTHWEST)";
-	icon_state = "full_corners";
 	dir = 9
 	},
 /area/ice_colony/exterior/surface/cliff)
 "aaV" = (
 /turf/closed/ice_rock/singlePart{
-	tag = "icon-single_part (NORTHEAST)";
-	icon_state = "single_part";
 	dir = 5
 	},
 /area/ice_colony/exterior/surface/cliff)
@@ -287,22 +259,16 @@
 /area/ice_colony/exterior/surface/landing_pad)
 "aaX" = (
 /turf/closed/ice/end{
-	tag = "icon-End (WEST)";
-	icon_state = "End";
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/valley/north)
 "aaY" = (
 /turf/closed/ice/straight{
-	tag = "icon-Straight (EAST)";
-	icon_state = "Straight";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/valley/north)
 "aaZ" = (
 /turf/closed/ice/corner{
-	tag = "icon-Corner (WEST)";
-	icon_state = "Corner";
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/cliff)
@@ -314,54 +280,40 @@
 /area/ice_colony/exterior/surface/cliff)
 "abc" = (
 /turf/closed/ice/end{
-	tag = "icon-End (EAST)";
-	icon_state = "End";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/cliff)
 "abd" = (
 /turf/open/ice,
 /turf/closed/ice/thin/end{
-	tag = "icon-End (WEST)";
-	icon_state = "End";
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/valley/north)
 "abe" = (
 /turf/open/ice,
 /turf/closed/ice/thin/corner{
-	tag = "icon-Corner (WEST)";
-	icon_state = "Corner";
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/valley/north)
 "abf" = (
 /turf/closed/ice_rock/singleEnd{
-	tag = "icon-single_ends (EAST)";
-	icon_state = "single_ends";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/cliff)
 "abg" = (
 /turf/closed/ice_rock/singlePart{
-	tag = "icon-single_part (NORTHWEST)";
-	icon_state = "single_part";
 	dir = 9
 	},
 /area/ice_colony/exterior/surface/cliff)
 "abh" = (
 /turf/open/ice,
 /turf/closed/ice/thin/end{
-	tag = "icon-End (WEST)";
-	icon_state = "End";
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/valley/northwest)
 "abi" = (
 /turf/open/ice,
 /turf/closed/ice/thin/end{
-	tag = "icon-End (EAST)";
-	icon_state = "End";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/valley/northwest)
@@ -419,16 +371,12 @@
 "abt" = (
 /turf/open/ice,
 /turf/closed/ice/thin/straight{
-	tag = "icon-Straight (EAST)";
-	icon_state = "Straight";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/valley/north)
 "abu" = (
 /turf/open/ice,
 /turf/closed/ice/thin/end{
-	tag = "icon-End (EAST)";
-	icon_state = "End";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/valley/north)
@@ -441,8 +389,6 @@
 /area/ice_colony/exterior/surface/valley/north)
 "abx" = (
 /turf/closed/ice/corner{
-	tag = "icon-Corner (EAST)";
-	icon_state = "Corner";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/valley/north)
@@ -502,8 +448,6 @@
 "abI" = (
 /turf/open/ice,
 /turf/closed/ice/thin/corner{
-	tag = "icon-Corner (WEST)";
-	icon_state = "Corner";
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/valley/northwest)
@@ -521,8 +465,6 @@
 /area/ice_colony/exterior/surface/clearing/north)
 "abM" = (
 /turf/closed/ice/junction{
-	tag = "icon-T_Junction (EAST)";
-	icon_state = "T_Junction";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/cliff)
@@ -536,16 +478,12 @@
 "abP" = (
 /turf/open/ice,
 /turf/closed/ice/thin/corner{
-	tag = "icon-Corner (EAST)";
-	icon_state = "Corner";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/valley/north)
 "abQ" = (
 /turf/open/ice,
 /turf/closed/ice/thin/corner{
-	tag = "icon-Corner (NORTH)";
-	icon_state = "Corner";
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/valley/north)
@@ -600,15 +538,11 @@
 /area/ice_colony/surface/engineering/electric)
 "abZ" = (
 /turf/closed/ice_rock/singleEnd{
-	tag = "icon-single_ends (NORTH)";
-	icon_state = "single_ends";
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/cliff)
 "aca" = (
 /turf/closed/ice/end{
-	tag = "icon-End (NORTH)";
-	icon_state = "End";
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/cliff)
@@ -649,8 +583,6 @@
 "ach" = (
 /turf/open/ice,
 /turf/closed/ice/thin/corner{
-	tag = "icon-Corner (EAST)";
-	icon_state = "Corner";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/cliff)
@@ -665,15 +597,11 @@
 /area/ice_colony/surface/engineering/electric)
 "acj" = (
 /turf/closed/ice_rock/corners{
-	tag = "icon-full_corners (SOUTHWEST)";
-	icon_state = "full_corners";
 	dir = 10
 	},
 /area/ice_colony/exterior/surface/cliff)
 "ack" = (
 /turf/closed/ice_rock/singlePart{
-	tag = "icon-single_part (NORTHWEST)";
-	icon_state = "single_part";
 	dir = 9
 	},
 /area/ice_colony/exterior/surface/valley/northwest)
@@ -696,8 +624,6 @@
 /area/ice_colony/exterior/surface/cliff)
 "acn" = (
 /turf/closed/ice_rock/singleEnd{
-	tag = "icon-single_ends (WEST)";
-	icon_state = "single_ends";
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/cliff)
@@ -715,22 +641,16 @@
 /area/ice_colony/exterior/surface/valley/southeast)
 "acq" = (
 /turf/closed/ice/end{
-	tag = "icon-End (NORTH)";
-	icon_state = "End";
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/clearing/pass)
 "acr" = (
 /turf/closed/ice/end{
-	tag = "icon-End (WEST)";
-	icon_state = "End";
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/clearing/pass)
 "acs" = (
 /turf/closed/ice/straight{
-	tag = "icon-Straight (EAST)";
-	icon_state = "Straight";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/clearing/pass)
@@ -747,8 +667,6 @@
 /area/ice_colony/surface/engineering/electric)
 "acv" = (
 /turf/closed/ice_rock/singlePart{
-	tag = "icon-single_part (SOUTHEAST)";
-	icon_state = "single_part";
 	dir = 6
 	},
 /area/ice_colony/exterior/surface/cliff)
@@ -786,8 +704,6 @@
 /area/ice_colony/surface/engineering/electric)
 "acC" = (
 /turf/closed/ice_rock/singlePart{
-	tag = "icon-single_part (NORTH)";
-	icon_state = "single_part";
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/cliff)
@@ -807,8 +723,6 @@
 /area/ice_colony/exterior/surface/landing_pad2)
 "acF" = (
 /turf/closed/ice/end{
-	tag = "icon-End (EAST)";
-	icon_state = "End";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/clearing/pass)
@@ -830,8 +744,6 @@
 "acI" = (
 /turf/open/ice,
 /turf/closed/ice/thin/junction{
-	tag = "icon-T_Junction (EAST)";
-	icon_state = "T_Junction";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/valley/north)
@@ -871,16 +783,12 @@
 "acQ" = (
 /turf/open/ice,
 /turf/closed/ice/thin/end{
-	tag = "icon-End (WEST)";
-	icon_state = "End";
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/valley/northeast)
 "acR" = (
 /turf/open/ice,
 /turf/closed/ice/thin/end{
-	tag = "icon-End (EAST)";
-	icon_state = "End";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/valley/northeast)
@@ -950,8 +858,6 @@
 "adc" = (
 /turf/open/ice,
 /turf/closed/ice/thin/corner{
-	tag = "icon-Corner (EAST)";
-	icon_state = "Corner";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/clearing/north)
@@ -995,8 +901,6 @@
 /area/ice_colony/surface/engineering/tool)
 "adh" = (
 /turf/closed/ice_rock/corners{
-	tag = "icon-full_corners (SOUTHEAST)";
-	icon_state = "full_corners";
 	dir = 6
 	},
 /area/ice_colony/exterior/surface/valley/north)
@@ -1064,15 +968,11 @@
 /area/ice_colony/exterior/surface/clearing/north)
 "ads" = (
 /turf/closed/ice/corner{
-	tag = "icon-Corner (NORTH)";
-	icon_state = "Corner";
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/valley/north)
 "adt" = (
 /turf/closed/ice_rock/corners{
-	tag = "icon-full_corners (NORTHEAST)";
-	icon_state = "full_corners";
 	dir = 5
 	},
 /area/ice_colony/exterior/surface/valley/north)
@@ -1111,16 +1011,12 @@
 "adz" = (
 /turf/open/ice,
 /turf/closed/ice/thin/corner{
-	tag = "icon-Corner (EAST)";
-	icon_state = "Corner";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/valley/northeast)
 "adA" = (
 /turf/open/ice,
 /turf/closed/ice/thin/straight{
-	tag = "icon-Straight (EAST)";
-	icon_state = "Straight";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/valley/northeast)
@@ -1268,8 +1164,6 @@
 /area/ice_colony/surface/engineering/generator)
 "adU" = (
 /turf/closed/ice/corner{
-	tag = "icon-Corner (WEST)";
-	icon_state = "Corner";
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/valley/north)
@@ -1332,15 +1226,11 @@
 /area/ice_colony/surface/engineering/tool)
 "aee" = (
 /turf/closed/ice_rock/singleEnd{
-	tag = "icon-single_ends (EAST)";
-	icon_state = "single_ends";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/valley/north)
 "aef" = (
 /turf/closed/ice_rock/singlePart{
-	tag = "icon-single_part (NORTHWEST)";
-	icon_state = "single_part";
 	dir = 9
 	},
 /area/ice_colony/exterior/surface/valley/north)
@@ -1416,15 +1306,11 @@
 /area/ice_colony/surface/engineering/generator)
 "aep" = (
 /turf/closed/ice_rock/singlePart{
-	tag = "icon-single_part (EAST)";
-	icon_state = "single_part";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/cliff)
 "aeq" = (
 /turf/closed/ice/end{
-	tag = "icon-End (EAST)";
-	icon_state = "End";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/valley/north)
@@ -1512,8 +1398,6 @@
 "aeB" = (
 /turf/open/ice,
 /turf/closed/ice/thin/end{
-	tag = "icon-End (NORTH)";
-	icon_state = "End";
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/valley/northeast)
@@ -1685,8 +1569,6 @@
 "afc" = (
 /turf/open/ice,
 /turf/closed/ice/thin/junction{
-	tag = "icon-T_Junction (EAST)";
-	icon_state = "T_Junction";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/cliff)
@@ -1695,8 +1577,6 @@
 /area/ice_colony/exterior/surface/landing_pad2)
 "afe" = (
 /turf/closed/ice/end{
-	tag = "icon-End (NORTH)";
-	icon_state = "End";
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/valley/northwest)
@@ -1715,15 +1595,11 @@
 /area/ice_colony/exterior/surface/cliff)
 "afg" = (
 /turf/closed/ice_rock/singleEnd{
-	tag = "icon-single_ends (NORTH)";
-	icon_state = "single_ends";
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/valley/north)
 "afh" = (
 /turf/closed/ice/end{
-	tag = "icon-End (NORTH)";
-	icon_state = "End";
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/valley/north)
@@ -1786,8 +1662,6 @@
 /area/ice_colony/surface/engineering)
 "afp" = (
 /turf/closed/ice/end{
-	tag = "icon-End (WEST)";
-	icon_state = "End";
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/valley/northwest)
@@ -1865,16 +1739,12 @@
 /area/ice_colony/surface/engineering)
 "afx" = (
 /turf/closed/ice/junction{
-	tag = "icon-T_Junction (NORTH)";
-	icon_state = "T_Junction";
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/cliff)
 "afy" = (
 /turf/open/ice,
 /turf/closed/ice/thin/corner{
-	tag = "icon-Corner (NORTH)";
-	icon_state = "Corner";
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/valley/northwest)
@@ -1957,8 +1827,6 @@
 /area/ice_colony/surface/engineering)
 "afJ" = (
 /turf/closed/ice_rock/corners{
-	tag = "icon-full_corners (NORTHWEST)";
-	icon_state = "full_corners";
 	dir = 9
 	},
 /area/ice_colony/exterior/surface/valley/north)
@@ -1977,8 +1845,6 @@
 /area/ice_colony/exterior/surface/valley/north)
 "afL" = (
 /turf/closed/ice_rock/corners{
-	tag = "icon-full_corners (SOUTHWEST)";
-	icon_state = "full_corners";
 	dir = 10
 	},
 /area/ice_colony/exterior/surface/valley/north)
@@ -2008,8 +1874,6 @@
 /area/ice_colony/surface/engineering/generator)
 "afQ" = (
 /turf/closed/ice_rock/singleT{
-	tag = "icon-single_tshape (NORTH)";
-	icon_state = "single_tshape";
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/cliff)
@@ -2151,8 +2015,6 @@
 /area/ice_colony/exterior/surface/valley/northwest)
 "age" = (
 /turf/closed/ice_rock/corners{
-	tag = "icon-full_corners (SOUTHEAST)";
-	icon_state = "full_corners";
 	dir = 6
 	},
 /turf/closed/ice_rock/cornerOverlay{
@@ -2347,8 +2209,6 @@
 /area/ice_colony/exterior/surface/clearing/north)
 "agC" = (
 /turf/closed/ice_rock/corners{
-	tag = "icon-full_corners (SOUTHEAST)";
-	icon_state = "full_corners";
 	dir = 6
 	},
 /area/ice_colony/exterior/surface/valley/northwest)
@@ -2514,8 +2374,6 @@
 /area/ice_colony/surface/substation/smes)
 "agU" = (
 /turf/closed/ice/junction{
-	tag = "icon-T_Junction (EAST)";
-	icon_state = "T_Junction";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/valley/southeast)
@@ -2558,8 +2416,6 @@
 /area/ice_colony/surface/substation/smes)
 "ahb" = (
 /turf/closed/ice_rock/singlePart{
-	tag = "icon-single_part (SOUTHEAST)";
-	icon_state = "single_part";
 	dir = 6
 	},
 /area/ice_colony/exterior/surface/valley/north)
@@ -2654,8 +2510,6 @@
 /area/ice_colony/exterior/surface/clearing/north)
 "ahk" = (
 /turf/closed/ice/corner{
-	tag = "icon-Corner (EAST)";
-	icon_state = "Corner";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/valley/northwest)
@@ -2847,15 +2701,11 @@
 /area/ice_colony/surface/hydroponics/north)
 "ahI" = (
 /turf/closed/ice/corner{
-	tag = "icon-Corner (WEST)";
-	icon_state = "Corner";
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/valley/northwest)
 "ahJ" = (
 /turf/closed/ice/corner{
-	tag = "icon-Corner (EAST)";
-	icon_state = "Corner";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/clearing/pass)
@@ -3033,8 +2883,6 @@
 "aik" = (
 /turf/open/ice,
 /turf/closed/ice/thin/end{
-	tag = "icon-End (NORTH)";
-	icon_state = "End";
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/cliff)
@@ -3325,8 +3173,6 @@
 "aiS" = (
 /turf/open/ice,
 /turf/closed/ice/thin/end{
-	tag = "icon-End (EAST)";
-	icon_state = "End";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/cliff)
@@ -3471,8 +3317,6 @@
 /area/ice_colony/surface/substation/smes)
 "ajh" = (
 /turf/closed/ice/end{
-	tag = "icon-End (EAST)";
-	icon_state = "End";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/valley/northwest)
@@ -4110,8 +3954,6 @@
 /area/ice_colony/surface/substation/smes)
 "akz" = (
 /turf/closed/ice/corner{
-	tag = "icon-Corner (WEST)";
-	icon_state = "Corner";
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/clearing/pass)
@@ -4457,8 +4299,6 @@
 "alD" = (
 /turf/open/ice,
 /turf/closed/ice/thin/corner{
-	tag = "icon-Corner (NORTH)";
-	icon_state = "Corner";
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/clearing/north)
@@ -4472,8 +4312,6 @@
 "alG" = (
 /turf/open/ice,
 /turf/closed/ice/thin/end{
-	tag = "icon-End (NORTH)";
-	icon_state = "End";
 	dir = 1
 	},
 /area/ice_colony/surface/mining)
@@ -4541,8 +4379,6 @@
 	})
 "alR" = (
 /turf/closed/ice_rock/singlePart{
-	tag = "icon-single_part (WEST)";
-	icon_state = "single_part";
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/cliff)
@@ -4589,8 +4425,6 @@
 /area/ice_colony/surface/substation)
 "alY" = (
 /turf/closed/ice_rock/singlePart{
-	tag = "icon-single_part (SOUTHWEST)";
-	icon_state = "single_part";
 	dir = 10
 	},
 /area/ice_colony/exterior/surface/cliff)
@@ -4624,8 +4458,6 @@
 "amd" = (
 /turf/open/ice,
 /turf/closed/ice/thin/corner{
-	tag = "icon-Corner (NORTH)";
-	icon_state = "Corner";
 	dir = 1
 	},
 /area/ice_colony/surface/mining)
@@ -4799,8 +4631,6 @@
 "amA" = (
 /turf/open/ice,
 /turf/closed/ice/thin/end{
-	tag = "icon-End (NORTH)";
-	icon_state = "End";
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/valley/west)
@@ -4810,8 +4640,6 @@
 /area/ice_colony/exterior/surface/valley/west)
 "amC" = (
 /turf/closed/ice/junction{
-	tag = "icon-T_Junction (WEST)";
-	icon_state = "T_Junction";
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/cliff)
@@ -5023,16 +4851,12 @@
 "and" = (
 /turf/open/ice,
 /turf/closed/ice/thin/corner{
-	tag = "icon-Corner (EAST)";
-	icon_state = "Corner";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/valley/west)
 "ane" = (
 /turf/open/ice,
 /turf/closed/ice/thin/corner{
-	tag = "icon-Corner (WEST)";
-	icon_state = "Corner";
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/valley/west)
@@ -5922,16 +5746,12 @@
 "apg" = (
 /turf/open/ice,
 /turf/closed/ice/thin/end{
-	tag = "icon-End (WEST)";
-	icon_state = "End";
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/valley/west)
 "aph" = (
 /turf/open/ice,
 /turf/closed/ice/thin/end{
-	tag = "icon-End (EAST)";
-	icon_state = "End";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/valley/west)
@@ -6184,8 +6004,6 @@
 "apM" = (
 /turf/open/ice,
 /turf/closed/ice/thin/end{
-	tag = "icon-End (WEST)";
-	icon_state = "End";
 	dir = 8
 	},
 /area/ice_colony/surface/mining)
@@ -6440,8 +6258,6 @@
 "aqs" = (
 /turf/open/ice,
 /turf/closed/ice/thin/straight{
-	tag = "icon-Straight (EAST)";
-	icon_state = "Straight";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/valley/west)
@@ -6513,8 +6329,6 @@
 "aqA" = (
 /turf/open/ice,
 /turf/closed/ice/thin/end{
-	tag = "icon-End (NORTH)";
-	icon_state = "End";
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/clearing/north)
@@ -6560,8 +6374,6 @@
 	},
 /turf/open/ice,
 /turf/closed/ice/thin/end{
-	tag = "icon-End (WEST)";
-	icon_state = "End";
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/valley/southeast)
@@ -6840,8 +6652,6 @@
 "arf" = (
 /turf/open/ice,
 /turf/closed/ice/thin/corner{
-	tag = "icon-Corner (WEST)";
-	icon_state = "Corner";
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/valley/northeast)
@@ -7646,8 +7456,6 @@
 /area/ice_colony/surface/clinic/lobby)
 "atd" = (
 /turf/closed/ice/straight{
-	tag = "icon-Straight (EAST)";
-	icon_state = "Straight";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/valley/northeast)
@@ -7894,8 +7702,6 @@
 /area/ice_colony/exterior/surface/cliff)
 "atH" = (
 /turf/closed/ice_rock/singleEnd{
-	tag = "icon-single_ends (WEST)";
-	icon_state = "single_ends";
 	dir = 8
 	},
 /turf/closed/ice_rock/cornerOverlay{
@@ -7912,8 +7718,6 @@
 /area/ice_colony/surface/clinic/lobby)
 "atJ" = (
 /turf/closed/ice_rock/singleEnd{
-	tag = "icon-single_ends (EAST)";
-	icon_state = "single_ends";
 	dir = 4
 	},
 /turf/closed/ice_rock/cornerOverlay{
@@ -8672,8 +8476,6 @@
 "avy" = (
 /turf/open/ice,
 /turf/closed/ice/thin/end{
-	tag = "icon-End (NORTH)";
-	icon_state = "End";
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/valley/southeast)
@@ -9077,8 +8879,6 @@
 "awv" = (
 /turf/open/ice,
 /turf/closed/ice/thin/corner{
-	tag = "icon-Corner (WEST)";
-	icon_state = "Corner";
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/clearing/north)
@@ -9092,16 +8892,12 @@
 "awy" = (
 /turf/open/ice,
 /turf/closed/ice/thin/corner{
-	tag = "icon-Corner (EAST)";
-	icon_state = "Corner";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/valley/southeast)
 "awz" = (
 /turf/open/ice,
 /turf/closed/ice/thin/corner{
-	tag = "icon-Corner (WEST)";
-	icon_state = "Corner";
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/valley/southeast)
@@ -9229,8 +9025,6 @@
 "awO" = (
 /turf/open/ice,
 /turf/closed/ice/thin/end{
-	tag = "icon-End (EAST)";
-	icon_state = "End";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/valley/southeast)
@@ -9268,16 +9062,12 @@
 "awU" = (
 /turf/open/ice,
 /turf/closed/ice/thin/end{
-	tag = "icon-End (WEST)";
-	icon_state = "End";
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/valley/southeast)
 "awV" = (
 /turf/open/ice,
 /turf/closed/ice/thin/corner{
-	tag = "icon-Corner (NORTH)";
-	icon_state = "Corner";
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/valley/southeast)
@@ -9357,15 +9147,11 @@
 /area/ice_colony/surface/hydroponics/lobby)
 "axf" = (
 /turf/closed/ice/corner{
-	tag = "icon-Corner (EAST)";
-	icon_state = "Corner";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/valley/west)
 "axg" = (
 /turf/closed/ice/end{
-	tag = "icon-End (EAST)";
-	icon_state = "End";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/valley/west)
@@ -9377,8 +9163,6 @@
 	},
 /turf/open/ice,
 /turf/closed/ice/thin/straight{
-	tag = "icon-Straight (EAST)";
-	icon_state = "Straight";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/valley/southeast)
@@ -9544,8 +9328,6 @@
 /area/ice_colony/exterior/surface/valley/southeast)
 "axD" = (
 /turf/closed/ice/junction{
-	tag = "icon-T_Junction (WEST)";
-	icon_state = "T_Junction";
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/valley/west)
@@ -9581,8 +9363,6 @@
 	},
 /turf/open/ice,
 /turf/closed/ice/thin/corner{
-	tag = "icon-Corner (WEST)";
-	icon_state = "Corner";
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/valley/southeast)
@@ -9639,8 +9419,6 @@
 /area/ice_colony/exterior/surface/clearing/north)
 "axS" = (
 /turf/closed/ice_rock/singleT{
-	tag = "icon-single_tshape (EAST)";
-	icon_state = "single_tshape";
 	dir = 4
 	},
 /turf/closed/ice_rock/cornerOverlay{
@@ -9820,8 +9598,6 @@
 /area/ice_colony/surface/tcomms)
 "ayo" = (
 /turf/closed/ice/junction{
-	tag = "icon-T_Junction (NORTH)";
-	icon_state = "T_Junction";
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/valley/west)
@@ -9852,8 +9628,6 @@
 /area/ice_colony/surface/dorms/lavatory)
 "ayu" = (
 /turf/closed/ice/corner{
-	tag = "icon-Corner (WEST)";
-	icon_state = "Corner";
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/valley/west)
@@ -10353,8 +10127,6 @@
 /area/ice_colony/surface/garage/two)
 "azF" = (
 /turf/closed/ice_rock/singlePart{
-	tag = "icon-single_part (WEST)";
-	icon_state = "single_part";
 	dir = 8
 	},
 /turf/closed/ice_rock/cornerOverlay{
@@ -10556,8 +10328,6 @@
 /area/ice_colony/surface/garage/two)
 "aAk" = (
 /turf/closed/ice/straight{
-	tag = "icon-Straight (EAST)";
-	icon_state = "Straight";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/valley/northwest)
@@ -10818,8 +10588,6 @@
 "aBb" = (
 /turf/open/ice,
 /turf/closed/ice/thin/straight{
-	tag = "icon-Straight (EAST)";
-	icon_state = "Straight";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/valley/southeast)
@@ -11128,8 +10896,6 @@
 /area/ice_colony/exterior/surface/clearing/north)
 "aBE" = (
 /turf/closed/ice/end{
-	tag = "icon-End (WEST)";
-	icon_state = "End";
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/valley/west)
@@ -11153,15 +10919,11 @@
 /area/ice_colony/exterior/surface/clearing/pass)
 "aBK" = (
 /turf/closed/ice/straight{
-	tag = "icon-Straight (EAST)";
-	icon_state = "Straight";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/valley/west)
 "aBL" = (
 /turf/closed/ice/corner{
-	tag = "icon-Corner (NORTH)";
-	icon_state = "Corner";
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/valley/west)
@@ -11436,8 +11198,6 @@
 /area/ice_colony/exterior/surface/valley/west)
 "aCt" = (
 /turf/closed/ice/junction{
-	tag = "icon-T_Junction (EAST)";
-	icon_state = "T_Junction";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/valley/west)
@@ -11456,8 +11216,6 @@
 /area/ice_colony/surface/garage/one)
 "aCw" = (
 /turf/closed/ice_rock/singlePart{
-	tag = "icon-single_part (EAST)";
-	icon_state = "single_part";
 	dir = 4
 	},
 /turf/closed/ice_rock/cornerOverlay{
@@ -11856,8 +11614,6 @@
 /area/ice_colony/exterior/surface/valley/southeast)
 "aDv" = (
 /turf/closed/ice/corner{
-	tag = "icon-Corner (NORTH)";
-	icon_state = "Corner";
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/valley/southeast)
@@ -12355,8 +12111,6 @@
 /area/ice_colony/exterior/surface/valley/west)
 "aEA" = (
 /turf/closed/ice/end{
-	tag = "icon-End (WEST)";
-	icon_state = "End";
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/valley/southeast)
@@ -12759,8 +12513,6 @@
 /area/ice_colony/surface/garage/two)
 "aFz" = (
 /turf/closed/ice/end{
-	tag = "icon-End (NORTH)";
-	icon_state = "End";
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/valley/west)
@@ -13000,8 +12752,6 @@
 /area/ice_colony/surface/dorms)
 "aGf" = (
 /turf/closed/ice/end{
-	tag = "icon-End (NORTH)";
-	icon_state = "End";
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/valley/southeast)
@@ -13192,24 +12942,18 @@
 "aGC" = (
 /turf/open/ice,
 /turf/closed/ice/thin/end{
-	tag = "icon-End (WEST)";
-	icon_state = "End";
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/clearing/pass)
 "aGD" = (
 /turf/open/ice,
 /turf/closed/ice/thin/straight{
-	tag = "icon-Straight (EAST)";
-	icon_state = "Straight";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/clearing/pass)
 "aGE" = (
 /turf/open/ice,
 /turf/closed/ice/thin/end{
-	tag = "icon-End (EAST)";
-	icon_state = "End";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/clearing/pass)
@@ -13471,8 +13215,6 @@
 "aHa" = (
 /turf/open/ice,
 /turf/closed/ice/thin/end{
-	tag = "icon-End (NORTH)";
-	icon_state = "End";
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/clearing/pass)
@@ -13519,8 +13261,6 @@
 /area/ice_colony/surface/storage_unit/power)
 "aHf" = (
 /turf/closed/ice/end{
-	tag = "icon-End (EAST)";
-	icon_state = "End";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/valley/southeast)
@@ -13542,8 +13282,6 @@
 /area/ice_colony/surface/hydroponics/south)
 "aHj" = (
 /turf/closed/ice_rock/singleT{
-	tag = "icon-single_tshape (WEST)";
-	icon_state = "single_tshape";
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/cliff)
@@ -13998,8 +13736,6 @@
 "aIk" = (
 /turf/open/ice,
 /turf/closed/ice/thin/corner{
-	tag = "icon-Corner (EAST)";
-	icon_state = "Corner";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/clearing/pass)
@@ -14137,8 +13873,6 @@
 "aIE" = (
 /turf/open/ice,
 /turf/closed/ice/thin/corner{
-	tag = "icon-Corner (WEST)";
-	icon_state = "Corner";
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/clearing/pass)
@@ -14223,8 +13957,6 @@
 /area/ice_colony/surface/command/crisis)
 "aIS" = (
 /turf/closed/ice/junction{
-	tag = "icon-T_Junction (WEST)";
-	icon_state = "T_Junction";
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/valley/southeast)
@@ -14302,8 +14034,6 @@
 "aJc" = (
 /turf/open/ice,
 /turf/closed/ice/thin/junction{
-	tag = "icon-T_Junction (WEST)";
-	icon_state = "T_Junction";
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/clearing/pass)
@@ -14401,8 +14131,6 @@
 /area/ice_colony/surface/command/crisis)
 "aJr" = (
 /turf/closed/ice/corner{
-	tag = "icon-Corner (NORTH)";
-	icon_state = "Corner";
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/clearing/pass)
@@ -14414,8 +14142,6 @@
 "aJt" = (
 /turf/open/ice,
 /turf/closed/ice/thin/corner{
-	tag = "icon-Corner (NORTH)";
-	icon_state = "Corner";
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/valley/west)
@@ -14443,8 +14169,6 @@
 "aJy" = (
 /turf/open/ice,
 /turf/closed/ice/thin/end{
-	tag = "icon-End (NORTH)";
-	icon_state = "End";
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/valley/southwest)
@@ -14502,16 +14226,12 @@
 "aJH" = (
 /turf/open/ice,
 /turf/closed/ice/thin/end{
-	tag = "icon-End (WEST)";
-	icon_state = "End";
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/valley/southwest)
 "aJI" = (
 /turf/open/ice,
 /turf/closed/ice/thin/straight{
-	tag = "icon-Straight (EAST)";
-	icon_state = "Straight";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/valley/southwest)
@@ -14528,8 +14248,6 @@
 "aJK" = (
 /turf/open/ice,
 /turf/closed/ice/thin/end{
-	tag = "icon-End (EAST)";
-	icon_state = "End";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/valley/southwest)
@@ -14565,8 +14283,6 @@
 "aJQ" = (
 /turf/open/ice,
 /turf/closed/ice/thin/corner{
-	tag = "icon-Corner (NORTH)";
-	icon_state = "Corner";
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/valley/southwest)
@@ -14613,8 +14329,6 @@
 "aJX" = (
 /turf/open/ice,
 /turf/closed/ice/thin/corner{
-	tag = "icon-Corner (NORTH)";
-	icon_state = "Corner";
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/clearing/pass)
@@ -14661,8 +14375,6 @@
 /area/ice_colony/surface/hangar/checkpoint)
 "aKc" = (
 /turf/closed/ice/end{
-	tag = "icon-End (NORTH)";
-	icon_state = "End";
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/clearing/south)
@@ -14722,8 +14434,6 @@
 	})
 "aKo" = (
 /turf/closed/ice/junction{
-	tag = "icon-T_Junction (EAST)";
-	icon_state = "T_Junction";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/clearing/pass)
@@ -14816,8 +14526,6 @@
 /area/ice_colony/exterior/surface/clearing/south)
 "aKD" = (
 /turf/closed/ice/corner{
-	tag = "icon-Corner (NORTH)";
-	icon_state = "Corner";
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/valley/northwest)
@@ -14838,16 +14546,12 @@
 "aKI" = (
 /turf/open/ice,
 /turf/closed/ice/thin/straight{
-	tag = "icon-Straight (EAST)";
-	icon_state = "Straight";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/clearing/south)
 "aKJ" = (
 /turf/open/ice,
 /turf/closed/ice/thin/corner{
-	tag = "icon-Corner (NORTH)";
-	icon_state = "Corner";
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/clearing/south)
@@ -14999,8 +14703,6 @@
 "aLc" = (
 /turf/open/ice,
 /turf/closed/ice/thin/junction{
-	tag = "icon-T_Junction (NORTH)";
-	icon_state = "T_Junction";
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/clearing/pass)
@@ -15179,8 +14881,6 @@
 /area/ice_colony/surface/hangar/checkpoint)
 "aLt" = (
 /turf/closed/ice/corner{
-	tag = "icon-Corner (EAST)";
-	icon_state = "Corner";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/valley/southeast)
@@ -15189,8 +14889,6 @@
 /area/ice_colony/exterior/surface/valley/southwest)
 "aLv" = (
 /turf/closed/ice_rock/singlePart{
-	tag = "icon-single_part (NORTH)";
-	icon_state = "single_part";
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/valley/north)
@@ -15240,8 +14938,6 @@
 /area/ice_colony/surface/storage_unit/research)
 "aLF" = (
 /turf/closed/ice_rock/singleEnd{
-	tag = "icon-single_ends (EAST)";
-	icon_state = "single_ends";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/clearing/north)
@@ -15251,15 +14947,11 @@
 /area/ice_colony/surface/hangar/checkpoint)
 "aLH" = (
 /turf/closed/ice/straight{
-	tag = "icon-Straight (EAST)";
-	icon_state = "Straight";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/valley/southeast)
 "aLI" = (
 /turf/closed/ice/corner{
-	tag = "icon-Corner (WEST)";
-	icon_state = "Corner";
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/valley/southeast)
@@ -15277,8 +14969,6 @@
 /area/ice_colony/surface/command/checkpoint)
 "aLL" = (
 /turf/closed/ice_rock/singlePart{
-	tag = "icon-single_part (NORTHWEST)";
-	icon_state = "single_part";
 	dir = 9
 	},
 /area/ice_colony/exterior/surface/clearing/north)
@@ -15409,8 +15099,6 @@
 "aMc" = (
 /turf/open/ice,
 /turf/closed/ice/thin/corner{
-	tag = "icon-Corner (EAST)";
-	icon_state = "Corner";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/valley/southwest)
@@ -15449,16 +15137,12 @@
 "aMh" = (
 /turf/open/ice,
 /turf/closed/ice/thin/end{
-	tag = "icon-End (WEST)";
-	icon_state = "End";
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/clearing/south)
 "aMi" = (
 /turf/open/ice,
 /turf/closed/ice/thin/end{
-	tag = "icon-End (EAST)";
-	icon_state = "End";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/clearing/south)
@@ -15579,15 +15263,11 @@
 /area/ice_colony/exterior/surface/clearing/south)
 "aMA" = (
 /turf/closed/ice/straight{
-	tag = "icon-Straight (EAST)";
-	icon_state = "Straight";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/clearing/south)
 "aMB" = (
 /turf/closed/ice/end{
-	tag = "icon-End (EAST)";
-	icon_state = "End";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/clearing/south)
@@ -15680,8 +15360,6 @@
 "aMO" = (
 /turf/open/ice,
 /turf/closed/ice/thin/corner{
-	tag = "icon-Corner (WEST)";
-	icon_state = "Corner";
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/valley/southwest)
@@ -16116,8 +15794,6 @@
 "aNK" = (
 /turf/open/ice,
 /turf/closed/ice/thin/corner{
-	tag = "icon-Corner (EAST)";
-	icon_state = "Corner";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/clearing/south)
@@ -16358,8 +16034,6 @@
 "aOx" = (
 /turf/open/ice,
 /turf/closed/ice/thin/corner{
-	tag = "icon-Corner (WEST)";
-	icon_state = "Corner";
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/clearing/south)
@@ -16657,8 +16331,6 @@
 /area/ice_colony/exterior/surface/valley/west)
 "aPk" = (
 /turf/closed/ice/end{
-	tag = "icon-End (WEST)";
-	icon_state = "End";
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/landing_pad_external)
@@ -16956,8 +16628,6 @@
 /area/ice_colony/surface/hangar/beta)
 "aQb" = (
 /turf/closed/ice_rock/singleT{
-	tag = "icon-single_tshape (EAST)";
-	icon_state = "single_tshape";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/cliff)
@@ -18629,8 +18299,6 @@
 "aTO" = (
 /turf/open/ice,
 /turf/closed/ice/thin/corner{
-	tag = "icon-Corner (NORTH)";
-	icon_state = "Corner";
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/cliff)
@@ -18708,8 +18376,6 @@
 "aUb" = (
 /turf/open/ice,
 /turf/closed/ice/thin/junction{
-	tag = "icon-T_Junction (WEST)";
-	icon_state = "T_Junction";
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/valley/southeast)
@@ -19014,8 +18680,6 @@
 "aUN" = (
 /turf/open/ice,
 /turf/closed/ice/thin/end{
-	tag = "icon-End (WEST)";
-	icon_state = "End";
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/landing_pad_external)
@@ -19130,8 +18794,6 @@
 /area/ice_colony/exterior/surface/landing_pad_external)
 "aVg" = (
 /turf/closed/ice/junction{
-	tag = "icon-T_Junction (NORTH)";
-	icon_state = "T_Junction";
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/valley/southeast)
@@ -19789,8 +19451,6 @@
 "aWF" = (
 /turf/open/ice,
 /turf/closed/ice/thin/end{
-	tag = "icon-End (EAST)";
-	icon_state = "End";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/landing_pad_external)
@@ -20155,8 +19815,6 @@
 	})
 "aXz" = (
 /turf/closed/ice_rock/singlePart{
-	tag = "icon-single_part (EAST)";
-	icon_state = "single_part";
 	dir = 4
 	},
 /turf/closed/ice_rock/cornerOverlay{
@@ -20391,8 +20049,6 @@
 "aYa" = (
 /turf/open/ice,
 /turf/closed/ice/thin/corner{
-	tag = "icon-Corner (NORTH)";
-	icon_state = "Corner";
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/landing_pad_external)
@@ -20600,15 +20256,11 @@
 /area/ice_colony/exterior/surface/landing_pad_external)
 "aYK" = (
 /turf/closed/ice/straight{
-	tag = "icon-Straight (EAST)";
-	icon_state = "Straight";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/landing_pad_external)
 "aYL" = (
 /turf/closed/ice/corner{
-	tag = "icon-Corner (NORTH)";
-	icon_state = "Corner";
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/landing_pad_external)
@@ -20828,8 +20480,6 @@
 "aZr" = (
 /turf/open/ice,
 /turf/closed/ice/thin/end{
-	tag = "icon-End (NORTH)";
-	icon_state = "End";
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/landing_pad_external)
@@ -20938,8 +20588,6 @@
 "aZE" = (
 /turf/open/ice,
 /turf/closed/ice/thin/corner{
-	tag = "icon-Corner (EAST)";
-	icon_state = "Corner";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/landing_pad_external)
@@ -20981,8 +20629,6 @@
 "aZM" = (
 /turf/open/ice,
 /turf/closed/ice/thin/corner{
-	tag = "icon-Corner (WEST)";
-	icon_state = "Corner";
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/landing_pad_external)
@@ -21137,8 +20783,6 @@
 /area/ice_colony/surface/hangar/hallway)
 "bad" = (
 /turf/closed/ice_rock/singleEnd{
-	tag = "icon-single_ends (WEST)";
-	icon_state = "single_ends";
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/landing_pad_external)
@@ -21160,16 +20804,12 @@
 "bag" = (
 /turf/open/ice,
 /turf/closed/ice/thin/corner{
-	tag = "icon-Corner (EAST)";
-	icon_state = "Corner";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/valley/south)
 "bah" = (
 /turf/open/ice,
 /turf/closed/ice/thin/end{
-	tag = "icon-End (EAST)";
-	icon_state = "End";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/valley/south)
@@ -21193,8 +20833,6 @@
 /area/ice_colony/exterior/surface/landing_pad_external)
 "bam" = (
 /turf/closed/ice/end{
-	tag = "icon-End (EAST)";
-	icon_state = "End";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/landing_pad_external)
@@ -21236,24 +20874,18 @@
 "bas" = (
 /turf/open/ice,
 /turf/closed/ice/thin/end{
-	tag = "icon-End (WEST)";
-	icon_state = "End";
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/valley/south)
 "bat" = (
 /turf/open/ice,
 /turf/closed/ice/thin/straight{
-	tag = "icon-Straight (EAST)";
-	icon_state = "Straight";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/valley/south)
 "bau" = (
 /turf/open/ice,
 /turf/closed/ice/thin/corner{
-	tag = "icon-Corner (NORTH)";
-	icon_state = "Corner";
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/valley/south)
@@ -21513,8 +21145,6 @@
 /area/ice_colony/surface/hangar/beta)
 "baW" = (
 /turf/closed/ice_rock/singlePart{
-	tag = "icon-single_part (WEST)";
-	icon_state = "single_part";
 	dir = 8
 	},
 /turf/closed/ice_rock/cornerOverlay{
@@ -21549,8 +21179,6 @@
 "baZ" = (
 /turf/open/ice,
 /turf/closed/ice/thin/corner{
-	tag = "icon-Corner (WEST)";
-	icon_state = "Corner";
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/cliff)
@@ -21780,8 +21408,6 @@
 /area/ice_colony/exterior/surface/container_yard)
 "bbA" = (
 /turf/closed/ice_rock/corners{
-	tag = "icon-full_corners (SOUTHWEST)";
-	icon_state = "full_corners";
 	dir = 10
 	},
 /area/ice_colony/exterior/surface/valley/west)
@@ -21857,16 +21483,12 @@
 "bbL" = (
 /turf/open/ice,
 /turf/closed/ice/thin/end{
-	tag = "icon-End (WEST)";
-	icon_state = "End";
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bbM" = (
 /turf/open/ice,
 /turf/closed/ice/thin/end{
-	tag = "icon-End (EAST)";
-	icon_state = "End";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/valley/south/excavation)
@@ -21945,32 +21567,24 @@
 "bbW" = (
 /turf/open/ice,
 /turf/closed/ice/thin/corner{
-	tag = "icon-Corner (EAST)";
-	icon_state = "Corner";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bbX" = (
 /turf/open/ice,
 /turf/closed/ice/thin/straight{
-	tag = "icon-Straight (EAST)";
-	icon_state = "Straight";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bbY" = (
 /turf/open/ice,
 /turf/closed/ice/thin/corner{
-	tag = "icon-Corner (NORTH)";
-	icon_state = "Corner";
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bbZ" = (
 /turf/open/ice,
 /turf/closed/ice/thin/end{
-	tag = "icon-End (NORTH)";
-	icon_state = "End";
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/valley/south/excavation)
@@ -21981,8 +21595,6 @@
 "bcb" = (
 /turf/open/ice,
 /turf/closed/ice/thin/straight{
-	tag = "icon-Straight (EAST)";
-	icon_state = "Straight";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/cliff)
@@ -22072,16 +21684,12 @@
 /area/ice_colony/underground/requesition/storage)
 "bco" = (
 /turf/closed/ice_rock/corners{
-	tag = "icon-full_corners (SOUTHWEST)";
-	icon_state = "full_corners";
 	dir = 10
 	},
 /area/ice_colony/exterior/surface/valley/northwest)
 "bcp" = (
 /turf/open/ice,
 /turf/closed/ice/thin/corner{
-	tag = "icon-Corner (WEST)";
-	icon_state = "Corner";
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/valley/south/excavation)
@@ -22178,8 +21786,6 @@
 "bcE" = (
 /turf/open/ice,
 /turf/closed/ice/thin/straight{
-	tag = "icon-Straight (EAST)";
-	icon_state = "Straight";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/landing_pad_external)
@@ -22390,8 +21996,6 @@
 /area/ice_colony/exterior/surface/valley/southeast)
 "bdj" = (
 /turf/closed/ice_rock/singlePart{
-	tag = "icon-single_part (EAST)";
-	icon_state = "single_part";
 	dir = 4
 	},
 /turf/closed/ice_rock/cornerOverlay{
@@ -22505,8 +22109,6 @@
 "bdw" = (
 /turf/open/ice,
 /turf/closed/ice/thin/corner{
-	tag = "icon-Corner (EAST)";
-	icon_state = "Corner";
 	dir = 4
 	},
 /turf/closed/ice/thin/straight,
@@ -22534,8 +22136,6 @@
 "bdA" = (
 /turf/open/ice,
 /turf/closed/ice/thin/junction{
-	tag = "icon-T_Junction (NORTH)";
-	icon_state = "T_Junction";
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/landing_pad_external)
@@ -22813,8 +22413,6 @@
 /area/ice_colony/surface/excavation)
 "beh" = (
 /turf/closed/ice/end{
-	tag = "icon-End (WEST)";
-	icon_state = "End";
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/valley/southwest)
@@ -23001,8 +22599,6 @@
 /area/ice_colony/exterior/surface/landing_pad)
 "beE" = (
 /turf/closed/ice_rock/corners{
-	tag = "icon-full_corners (NORTHWEST)";
-	icon_state = "full_corners";
 	dir = 9
 	},
 /area/ice_colony/exterior/surface/valley/west)
@@ -23227,8 +22823,6 @@
 	})
 "bfi" = (
 /turf/closed/ice/corner{
-	tag = "icon-Corner (WEST)";
-	icon_state = "Corner";
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/valley/south/excavation)
@@ -23609,8 +23203,6 @@
 "bge" = (
 /turf/open/ice,
 /turf/closed/ice/thin/junction{
-	tag = "icon-T_Junction (WEST)";
-	icon_state = "T_Junction";
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/valley/south)
@@ -23718,8 +23310,6 @@
 "bgw" = (
 /turf/open/ice,
 /turf/closed/ice/thin/junction{
-	tag = "icon-T_Junction (NORTH)";
-	icon_state = "T_Junction";
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/valley/south/excavation)
@@ -24240,22 +23830,16 @@
 "bhN" = (
 /turf/open/ice,
 /turf/closed/ice/thin/end{
-	tag = "icon-End (WEST)";
-	icon_state = "End";
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/cliff)
 "bhO" = (
 /turf/closed/ice_rock/singlePart{
-	tag = "icon-single_part (WEST)";
-	icon_state = "single_part";
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/valley/south)
 "bhP" = (
 /turf/closed/ice_rock/singleEnd{
-	tag = "icon-single_ends (WEST)";
-	icon_state = "single_ends";
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/valley/south)
@@ -24264,8 +23848,6 @@
 /area/ice_colony/exterior/surface/valley/south)
 "bhR" = (
 /turf/closed/ice_rock/corners{
-	tag = "icon-full_corners (NORTHWEST)";
-	icon_state = "full_corners";
 	dir = 9
 	},
 /area/ice_colony/exterior/surface/valley/south)
@@ -25139,8 +24721,6 @@
 	})
 "bjU" = (
 /turf/closed/ice/corner{
-	tag = "icon-Corner (EAST)";
-	icon_state = "Corner";
 	dir = 4
 	},
 /area/ice_colony/exterior/underground/caves/open)
@@ -25876,8 +25456,6 @@
 	})
 "bmb" = (
 /turf/closed/ice/straight{
-	tag = "icon-Straight (EAST)";
-	icon_state = "Straight";
 	dir = 4
 	},
 /area/ice_colony/exterior/underground/caves/open)
@@ -25923,31 +25501,23 @@
 /area/ice_colony/exterior/surface/landing_pad_external)
 "bmh" = (
 /turf/closed/ice/corner{
-	tag = "icon-Corner (EAST)";
-	icon_state = "Corner";
 	dir = 4
 	},
 /area/ice_colony/exterior/underground/caves)
 "bmi" = (
 /turf/closed/ice/corner{
-	tag = "icon-Corner (WEST)";
-	icon_state = "Corner";
 	dir = 8
 	},
 /area/ice_colony/exterior/underground/caves)
 "bmj" = (
 /turf/open/ice,
 /turf/closed/ice/thin/end{
-	tag = "icon-End (WEST)";
-	icon_state = "End";
 	dir = 8
 	},
 /area/ice_colony/exterior/underground/caves)
 "bmk" = (
 /turf/open/ice,
 /turf/closed/ice/thin/end{
-	tag = "icon-End (EAST)";
-	icon_state = "End";
 	dir = 4
 	},
 /area/ice_colony/exterior/underground/caves)
@@ -25956,8 +25526,6 @@
 /area/ice_colony/exterior/underground/caves)
 "bmm" = (
 /turf/closed/ice/corner{
-	tag = "icon-Corner (NORTH)";
-	icon_state = "Corner";
 	dir = 1
 	},
 /area/ice_colony/exterior/underground/caves)
@@ -26182,8 +25750,6 @@
 	})
 "bmQ" = (
 /turf/closed/ice/straight{
-	tag = "icon-Straight (EAST)";
-	icon_state = "Straight";
 	dir = 4
 	},
 /area/ice_colony/exterior/underground/caves)
@@ -26590,8 +26156,6 @@
 "bnU" = (
 /turf/open/ice,
 /turf/closed/ice/thin/end{
-	tag = "icon-End (NORTH)";
-	icon_state = "End";
 	dir = 1
 	},
 /area/ice_colony/exterior/underground/caves)
@@ -26922,8 +26486,6 @@
 /area/ice_colony/exterior/underground/caves/open)
 "boS" = (
 /turf/closed/ice/end{
-	tag = "icon-End (WEST)";
-	icon_state = "End";
 	dir = 8
 	},
 /area/ice_colony/exterior/underground/caves)
@@ -27083,15 +26645,11 @@
 /area/ice_colony/underground/hangar)
 "bpj" = (
 /turf/closed/ice/corner{
-	tag = "icon-Corner (EAST)";
-	icon_state = "Corner";
 	dir = 4
 	},
 /area/ice_colony/underground/maintenance/east)
 "bpk" = (
 /turf/closed/ice/straight{
-	tag = "icon-Straight (EAST)";
-	icon_state = "Straight";
 	dir = 4
 	},
 /area/ice_colony/underground/maintenance/east)
@@ -28596,8 +28154,6 @@
 "btj" = (
 /turf/open/ice,
 /turf/closed/ice/thin/corner{
-	tag = "icon-Corner (NORTH)";
-	icon_state = "Corner";
 	dir = 1
 	},
 /area/ice_colony/exterior/underground/caves)
@@ -29140,8 +28696,6 @@
 /area/ice_colony/underground/crew/bball)
 "buC" = (
 /turf/closed/ice/junction{
-	tag = "icon-T_Junction (NORTH)";
-	icon_state = "T_Junction";
 	dir = 1
 	},
 /area/ice_colony/exterior/underground/caves)
@@ -29696,8 +29250,6 @@
 /area/ice_colony/underground/crew/bball)
 "bvT" = (
 /turf/closed/ice/end{
-	tag = "icon-End (EAST)";
-	icon_state = "End";
 	dir = 4
 	},
 /area/ice_colony/exterior/underground/caves)
@@ -29939,8 +29491,6 @@
 /area/ice_colony/underground/maintenance/central/construction)
 "bwy" = (
 /turf/closed/ice/corner{
-	tag = "icon-Corner (NORTH)";
-	icon_state = "Corner";
 	dir = 1
 	},
 /area/ice_colony/underground/maintenance/east)
@@ -30021,8 +29571,6 @@
 /area/ice_colony/underground/medical/treatment)
 "bwJ" = (
 /turf/closed/ice/corner{
-	tag = "icon-Corner (NORTH)";
-	icon_state = "Corner";
 	dir = 1
 	},
 /area/ice_colony/exterior/underground/caves/open)
@@ -30197,8 +29745,6 @@
 /area/ice_colony/underground/medical/hallway)
 "bxc" = (
 /turf/closed/ice/corner{
-	tag = "icon-Corner (WEST)";
-	icon_state = "Corner";
 	dir = 8
 	},
 /area/ice_colony/underground/maintenance/east)
@@ -30685,8 +30231,6 @@
 "byl" = (
 /turf/open/ice,
 /turf/closed/ice/thin/corner{
-	tag = "icon-Corner (EAST)";
-	icon_state = "Corner";
 	dir = 4
 	},
 /area/ice_colony/exterior/underground/caves)
@@ -31020,16 +30564,12 @@
 "bza" = (
 /turf/open/ice,
 /turf/closed/ice/thin/junction{
-	tag = "icon-T_Junction (EAST)";
-	icon_state = "T_Junction";
 	dir = 4
 	},
 /area/ice_colony/exterior/underground/caves)
 "bzb" = (
 /turf/open/ice,
 /turf/closed/ice/thin/corner{
-	tag = "icon-Corner (WEST)";
-	icon_state = "Corner";
 	dir = 8
 	},
 /area/ice_colony/exterior/underground/caves)
@@ -32119,8 +31659,6 @@
 /area/ice_colony/underground/maintenance/east)
 "bBQ" = (
 /turf/closed/ice/junction{
-	tag = "icon-T_Junction (WEST)";
-	icon_state = "T_Junction";
 	dir = 8
 	},
 /area/ice_colony/underground/maintenance/east)
@@ -33113,8 +32651,6 @@
 /area/ice_colony/underground/security/hallway)
 "bEl" = (
 /turf/closed/ice/junction{
-	tag = "icon-T_Junction (WEST)";
-	icon_state = "T_Junction";
 	dir = 8
 	},
 /area/ice_colony/exterior/underground/caves)
@@ -35882,8 +35418,6 @@
 "bKH" = (
 /turf/open/ice,
 /turf/closed/ice/thin/end{
-	tag = "icon-End (NORTH)";
-	icon_state = "End";
 	dir = 1
 	},
 /area/ice_colony/underground/maintenance/east)
@@ -36196,8 +35730,6 @@
 /area/ice_colony/underground/hallway/south_east)
 "bLw" = (
 /turf/closed/ice/end{
-	tag = "icon-End (NORTH)";
-	icon_state = "End";
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/valley/south)
@@ -36781,8 +36313,6 @@
 /area/ice_colony/underground/hallway/south_east)
 "bMN" = (
 /turf/closed/ice/corner{
-	tag = "icon-Corner (WEST)";
-	icon_state = "Corner";
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/valley/south)
@@ -38688,15 +38218,11 @@
 /area/ice_colony/exterior/surface/landing_pad)
 "bRL" = (
 /turf/closed/ice_rock/corners{
-	tag = "icon-full_corners (SOUTHEAST)";
-	icon_state = "full_corners";
 	dir = 6
 	},
 /area/ice_colony/exterior/underground/caves)
 "bRM" = (
 /turf/closed/ice_rock/corners{
-	tag = "icon-full_corners (SOUTHWEST)";
-	icon_state = "full_corners";
 	dir = 10
 	},
 /area/ice_colony/exterior/underground/caves)
@@ -38787,8 +38313,6 @@
 /area/ice_colony/underground/security/interrogation)
 "bRY" = (
 /turf/closed/ice/corner{
-	tag = "icon-Corner (WEST)";
-	icon_state = "Corner";
 	dir = 8
 	},
 /area/ice_colony/exterior/underground/caves/open)
@@ -38979,8 +38503,6 @@
 /area/ice_colony/underground/command/checkpoint)
 "bSr" = (
 /turf/closed/ice_rock/singleEnd{
-	tag = "icon-single_ends (NORTH)";
-	icon_state = "single_ends";
 	dir = 1
 	},
 /area/ice_colony/exterior/underground/caves)
@@ -39049,8 +38571,6 @@
 /area/ice_colony/underground/hangar)
 "bSB" = (
 /turf/closed/ice_rock/singleT{
-	tag = "icon-single_tshape (WEST)";
-	icon_state = "single_tshape";
 	dir = 8
 	},
 /area/ice_colony/exterior/underground/caves)
@@ -39064,8 +38584,6 @@
 /area/ice_colony/underground/maintenance/north)
 "bSD" = (
 /turf/closed/ice_rock/singlePart{
-	tag = "icon-single_part (NORTH)";
-	icon_state = "single_part";
 	dir = 1
 	},
 /area/ice_colony/exterior/underground/caves)
@@ -39138,8 +38656,6 @@
 /area/ice_colony/exterior/underground/caves)
 "bSR" = (
 /turf/closed/ice_rock/corners{
-	tag = "icon-full_corners (NORTHWEST)";
-	icon_state = "full_corners";
 	dir = 9
 	},
 /area/ice_colony/exterior/underground/caves)
@@ -39180,8 +38696,6 @@
 /area/ice_colony/underground/engineering/substation)
 "bSW" = (
 /turf/closed/ice_rock/corners{
-	tag = "icon-full_corners (NORTHEAST)";
-	icon_state = "full_corners";
 	dir = 5
 	},
 /area/ice_colony/exterior/underground/caves)
@@ -39440,8 +38954,6 @@
 /area/ice_colony/underground/hallway/south_east)
 "bTx" = (
 /turf/closed/ice_rock/singlePart{
-	tag = "icon-single_part (NORTHWEST)";
-	icon_state = "single_part";
 	dir = 9
 	},
 /area/ice_colony/exterior/underground/caves)
@@ -39510,15 +39022,11 @@
 /area/ice_colony/underground/maintenance/east)
 "bTG" = (
 /turf/closed/ice_rock/corners{
-	tag = "icon-full_corners (SOUTHEAST)";
-	icon_state = "full_corners";
 	dir = 6
 	},
 /area/ice_colony/exterior/underground/caves/open)
 "bTH" = (
 /turf/closed/ice_rock/corners{
-	tag = "icon-full_corners (SOUTHWEST)";
-	icon_state = "full_corners";
 	dir = 10
 	},
 /area/ice_colony/exterior/underground/caves/open)
@@ -39536,15 +39044,11 @@
 /area/ice_colony/underground/maintenance/east)
 "bTK" = (
 /turf/closed/ice_rock/corners{
-	tag = "icon-full_corners (NORTHEAST)";
-	icon_state = "full_corners";
 	dir = 5
 	},
 /area/ice_colony/exterior/underground/caves/open)
 "bTL" = (
 /turf/closed/ice_rock/corners{
-	tag = "icon-full_corners (NORTHWEST)";
-	icon_state = "full_corners";
 	dir = 9
 	},
 /area/ice_colony/exterior/underground/caves/open)
@@ -39722,8 +39226,6 @@
 "bUo" = (
 /turf/open/ice,
 /turf/closed/ice/thin/end{
-	tag = "icon-End (NORTH)";
-	icon_state = "End";
 	dir = 1
 	},
 /area/ice_colony/exterior/underground/caves/open)
@@ -39821,8 +39323,6 @@
 "bUF" = (
 /turf/closed/ice_rock/corners,
 /turf/closed/ice/thin/end{
-	tag = "icon-End (NORTH)";
-	icon_state = "End";
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/cliff)
@@ -40147,13 +39647,9 @@
 /area/ice_colony/surface/hangar/checkpoint)
 "bVp" = (
 /turf/closed/ice_rock/corners{
-	tag = "icon-full_corners (NORTHEAST)";
-	icon_state = "full_corners";
 	dir = 5
 	},
 /turf/closed/ice/thin/end{
-	tag = "icon-End (WEST)";
-	icon_state = "End";
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/valley/south)
@@ -40165,16 +39661,12 @@
 	dir = 1
 	},
 /turf/closed/ice/thin/straight{
-	tag = "icon-Straight (EAST)";
-	icon_state = "Straight";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/valley/south)
 "bVr" = (
 /turf/closed/ice_rock/southWall,
 /turf/closed/ice/thin/corner{
-	tag = "icon-Corner (WEST)";
-	icon_state = "Corner";
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/cliff)
@@ -40802,8 +40294,6 @@
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bWF" = (
 /turf/closed/ice_rock/corners{
-	tag = "icon-full_corners (NORTHEAST)";
-	icon_state = "full_corners";
 	dir = 5
 	},
 /area/ice_colony/exterior/surface/valley/southeast)
@@ -41171,8 +40661,6 @@
 	})
 "bXq" = (
 /turf/closed/ice_rock/corners{
-	tag = "icon-full_corners (NORTHWEST)";
-	icon_state = "full_corners";
 	dir = 9
 	},
 /area/ice_colony/exterior/surface/valley/south/excavation)
@@ -41390,15 +40878,11 @@
 /area/ice_colony/exterior/surface/landing_pad)
 "bXN" = (
 /turf/closed/ice_rock/corners{
-	tag = "icon-full_corners (NORTHEAST)";
-	icon_state = "full_corners";
 	dir = 5
 	},
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bXO" = (
 /turf/closed/ice_rock/singleEnd{
-	tag = "icon-single_ends (WEST)";
-	icon_state = "single_ends";
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/valley/south/excavation)
@@ -41433,8 +40917,6 @@
 /area/ice_colony/surface/excavation)
 "bXS" = (
 /turf/closed/ice_rock/corners{
-	tag = "icon-full_corners (SOUTHWEST)";
-	icon_state = "full_corners";
 	dir = 10
 	},
 /area/ice_colony/exterior/surface/valley/south/excavation)
@@ -42591,23 +42073,17 @@
 "cam" = (
 /turf/open/ice,
 /turf/closed/ice/thin/corner{
-	tag = "icon-Corner (EAST)";
-	icon_state = "Corner";
 	dir = 4
 	},
 /area/ice_colony/underground/maintenance/east)
 "can" = (
 /turf/open/ice,
 /turf/closed/ice/thin/end{
-	tag = "icon-End (EAST)";
-	icon_state = "End";
 	dir = 4
 	},
 /area/ice_colony/underground/maintenance/east)
 "cao" = (
 /turf/closed/ice/end{
-	tag = "icon-End (WEST)";
-	icon_state = "End";
 	dir = 8
 	},
 /area/ice_colony/underground/maintenance/east)
@@ -42617,15 +42093,11 @@
 "caq" = (
 /turf/open/ice,
 /turf/closed/ice/thin/end{
-	tag = "icon-End (WEST)";
-	icon_state = "End";
 	dir = 8
 	},
 /area/ice_colony/underground/maintenance/east)
 "car" = (
 /turf/closed/ice/straight{
-	tag = "icon-Straight (EAST)";
-	icon_state = "Straight";
 	dir = 4
 	},
 /area/ice_colony/underground/maintenance/south)
@@ -42638,8 +42110,6 @@
 /area/ice_colony/underground/maintenance/south)
 "cau" = (
 /turf/closed/ice/corner{
-	tag = "icon-Corner (WEST)";
-	icon_state = "Corner";
 	dir = 8
 	},
 /area/ice_colony/underground/maintenance/south)
@@ -42648,8 +42118,6 @@
 /area/ice_colony/exterior/underground/caves/open)
 "caw" = (
 /turf/closed/ice_rock/singlePart{
-	tag = "icon-single_part (NORTHEAST)";
-	icon_state = "single_part";
 	dir = 5
 	},
 /area/ice_colony/exterior/underground/caves)
@@ -42721,21 +42189,15 @@
 /turf/open/ice,
 /turf/closed/ice/thin/corner,
 /turf/closed/ice/thin/end{
-	tag = "icon-End (WEST)";
-	icon_state = "End";
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/valley/southeast)
 "cbO" = (
 /turf/open/ice,
 /turf/closed/ice/thin/straight{
-	tag = "icon-Straight (EAST)";
-	icon_state = "Straight";
 	dir = 4
 	},
 /turf/closed/ice/thin/end{
-	tag = "icon-End (EAST)";
-	icon_state = "End";
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/valley/southeast)
