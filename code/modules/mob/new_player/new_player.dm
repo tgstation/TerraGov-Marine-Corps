@@ -209,12 +209,12 @@
 		to_chat(usr, "<span class='warning'>Spawning currently disabled, please observe.<spawn>")
 		return
 
-	close_spawn_windows()
-	spawning = TRUE
-
 	if(!SSjob.AssignRole(src, rank, TRUE))
 		to_chat(usr, "<span class='warning'>Failed to assign selected role.<spawn>")
 		return
+
+	close_spawn_windows()
+	spawning = TRUE
 
 	var/mob/living/character = create_character(TRUE)	//creates the human and transfers vars and mind
 	var/equip = SSjob.EquipRank(character, rank, TRUE)
@@ -225,8 +225,6 @@
 
 	if(job && !job.override_latejoin_spawn(character))
 		SSjob.SendToLateJoin(character)
-
-	EquipCustomItems(character)
 
 	data_core.manifest_inject(character)
 	SSticker.minds += character.mind
