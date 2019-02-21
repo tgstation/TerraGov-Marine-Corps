@@ -461,9 +461,7 @@
 	},
 /area/space)
 "abV" = (
-/turf/open/floor/prison{
-	icon_state = "green"
-	},
+/turf/open/floor/prison/green,
 /area/space)
 "abW" = (
 /turf/open/floor/prison/green{
@@ -476,9 +474,7 @@
 	},
 /area/space)
 "abY" = (
-/turf/open/floor/prison{
-	icon_state = "blue"
-	},
+/turf/open/floor/prison/blue,
 /area/space)
 "abZ" = (
 /turf/open/floor/prison/blue{
@@ -491,9 +487,7 @@
 	},
 /area/space)
 "acb" = (
-/turf/open/floor/prison{
-	icon_state = "yellow"
-	},
+/turf/open/floor/prison/yellow,
 /area/space)
 "acc" = (
 /turf/open/floor/prison/yellow{
@@ -506,9 +500,7 @@
 	},
 /area/space)
 "ace" = (
-/turf/open/floor/prison{
-	icon_state = "red"
-	},
+/turf/open/floor/prison/red,
 /area/space)
 "acf" = (
 /turf/open/floor/prison/red{
@@ -8156,9 +8148,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	icon_state = "red"
-	},
+/turf/open/floor/prison/red,
 /area/prison/cellblock/highsec/north/north)
 "asj" = (
 /obj/structure/cable{
@@ -8497,9 +8487,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
-/turf/open/floor/prison{
-	icon_state = "red"
-	},
+/turf/open/floor/prison/red,
 /area/prison/cellblock/highsec/north/north)
 "asN" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
@@ -11243,9 +11231,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	icon_state = "red"
-	},
+/turf/open/floor/prison/red,
 /area/prison/cellblock/highsec/north/north)
 "ayf" = (
 /obj/structure/cable{
@@ -14526,9 +14512,7 @@
 /area/prison/security/monitoring/maxsec/panopticon)
 "aEM" = (
 /obj/effect/alien/weeds/node,
-/turf/open/floor/prison{
-	icon_state = "green"
-	},
+/turf/open/floor/prison/green,
 /area/prison/cellblock/lowsec/ne)
 "aEN" = (
 /turf/closed/wall/r_wall/prison_unmeltable,
@@ -14565,17 +14549,13 @@
 /turf/open/floor/prison/red/corner,
 /area/prison/cellblock/highsec/north/south)
 "aES" = (
-/turf/open/floor/prison{
-	icon_state = "red"
-	},
+/turf/open/floor/prison/red,
 /area/prison/cellblock/highsec/north/south)
 "aET" = (
 /obj/structure/bed/chair{
 	dir = 1
 	},
-/turf/open/floor/prison{
-	icon_state = "red"
-	},
+/turf/open/floor/prison/red,
 /area/prison/cellblock/highsec/north/south)
 "aEU" = (
 /turf/open/floor/prison/red/corner{
@@ -20046,9 +20026,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
 	},
-/turf/open/floor/prison{
-	icon_state = "green"
-	},
+/turf/open/floor/prison/green,
 /area/prison/hallway/staff)
 "aPC" = (
 /turf/open/floor/prison{
@@ -20250,9 +20228,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	icon_state = "green"
-	},
+/turf/open/floor/prison/green,
 /area/prison/hallway/staff)
 "aPT" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -20277,16 +20253,12 @@
 /area/prison/quarters/staff)
 "aPX" = (
 /obj/structure/window/reinforced,
-/turf/open/floor/prison{
-	icon_state = "green"
-	},
+/turf/open/floor/prison/green,
 /area/prison/quarters/staff)
 "aPY" = (
 /obj/item/shard,
 /obj/item/stack/rods,
-/turf/open/floor/prison{
-	icon_state = "green"
-	},
+/turf/open/floor/prison/green,
 /area/prison/quarters/staff)
 "aPZ" = (
 /obj/structure/window/reinforced,
@@ -20294,18 +20266,14 @@
 	dir = 1;
 	on = 1
 	},
-/turf/open/floor/prison{
-	icon_state = "green"
-	},
+/turf/open/floor/prison/green,
 /area/prison/quarters/staff)
 "aQa" = (
 /obj/structure/window/reinforced,
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 1
 	},
-/turf/open/floor/prison{
-	icon_state = "green"
-	},
+/turf/open/floor/prison/green,
 /area/prison/quarters/staff)
 "aQb" = (
 /obj/machinery/door/window/southright,
@@ -20422,9 +20390,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	icon_state = "green"
-	},
+/turf/open/floor/prison/green,
 /area/prison/hallway/staff)
 "aQl" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -20607,48 +20573,36 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 1
 	},
-/turf/open/floor/prison{
-	icon_state = "red"
-	},
+/turf/open/floor/prison/red,
 /area/prison/cellblock/highsec/north/south)
 "aQF" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 1;
 	on = 1
 	},
-/turf/open/floor/prison{
-	icon_state = "red"
-	},
+/turf/open/floor/prison/red,
 /area/prison/cellblock/highsec/north/south)
 "aQG" = (
 /obj/machinery/power/apc/drained{
 	dir = 2
 	},
 /obj/structure/cable,
-/turf/open/floor/prison{
-	icon_state = "red"
-	},
+/turf/open/floor/prison/red,
 /area/prison/cellblock/highsec/north/south)
 "aQH" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/prison{
-	icon_state = "red"
-	},
+/turf/open/floor/prison/red,
 /area/prison/cellblock/highsec/north/south)
 "aQI" = (
 /obj/machinery/camera/autoname{
 	dir = 2;
 	network = list("PRISON")
 	},
-/turf/open/floor/prison{
-	icon_state = "red"
-	},
+/turf/open/floor/prison/red,
 /area/prison/cellblock/highsec/north/south)
 "aQJ" = (
-/turf/open/floor/prison{
-	icon_state = "red"
-	},
+/turf/open/floor/prison/red,
 /area/prison/security/checkpoint/highsec/n)
 "aQK" = (
 /obj/structure/cable{
@@ -20678,9 +20632,7 @@
 	unacidable = 1;
 	use_power = 0
 	},
-/turf/open/floor/prison{
-	icon_state = "red"
-	},
+/turf/open/floor/prison/red,
 /area/prison/security/checkpoint/highsec/n)
 "aQN" = (
 /turf/open/floor/prison/red{
@@ -22295,9 +22247,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	icon_state = "green"
-	},
+/turf/open/floor/prison/green,
 /area/prison/cellblock/lowsec/nw)
 "aUw" = (
 /obj/structure/cable{
@@ -22318,9 +22268,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor/prison{
-	icon_state = "green"
-	},
+/turf/open/floor/prison/green,
 /area/prison/cellblock/lowsec/nw)
 "aUx" = (
 /obj/structure/cable{
@@ -22332,9 +22280,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	icon_state = "green"
-	},
+/turf/open/floor/prison/green,
 /area/prison/cellblock/lowsec/nw)
 "aUy" = (
 /obj/structure/cable{
@@ -22346,9 +22292,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
-/turf/open/floor/prison{
-	icon_state = "green"
-	},
+/turf/open/floor/prison/green,
 /area/prison/cellblock/lowsec/nw)
 "aUz" = (
 /obj/structure/cable{
@@ -22362,9 +22306,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	icon_state = "green"
-	},
+/turf/open/floor/prison/green,
 /area/prison/cellblock/lowsec/nw)
 "aUA" = (
 /obj/structure/cable{
@@ -22521,9 +22463,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	icon_state = "green"
-	},
+/turf/open/floor/prison/green,
 /area/prison/cellblock/lowsec/ne)
 "aUJ" = (
 /obj/structure/cable{
@@ -22535,9 +22475,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	icon_state = "green"
-	},
+/turf/open/floor/prison/green,
 /area/prison/cellblock/lowsec/ne)
 "aUK" = (
 /obj/structure/cable{
@@ -22561,9 +22499,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	icon_state = "green"
-	},
+/turf/open/floor/prison/green,
 /area/prison/cellblock/lowsec/ne)
 "aUL" = (
 /obj/structure/cable{
@@ -22576,9 +22512,7 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor/prison{
-	icon_state = "green"
-	},
+/turf/open/floor/prison/green,
 /area/prison/cellblock/lowsec/ne)
 "aUM" = (
 /obj/structure/cable{
@@ -22593,9 +22527,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor/prison{
-	icon_state = "green"
-	},
+/turf/open/floor/prison/green,
 /area/prison/cellblock/lowsec/ne)
 "aUN" = (
 /obj/structure/cable{
@@ -22739,18 +22671,14 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	icon_state = "green"
-	},
+/turf/open/floor/prison/green,
 /area/prison/cellblock/lowsec/sw)
 "aUW" = (
 /obj/machinery/light,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	icon_state = "green"
-	},
+/turf/open/floor/prison/green,
 /area/prison/cellblock/lowsec/sw)
 "aUX" = (
 /obj/machinery/disposal,
@@ -23021,9 +22949,7 @@
 	},
 /area/prison/cellblock/lowsec/nw)
 "aVB" = (
-/turf/open/floor/prison{
-	icon_state = "green"
-	},
+/turf/open/floor/prison/green,
 /area/prison/cellblock/lowsec/nw)
 "aVC" = (
 /obj/effect/decal/cleanable/blood,
@@ -23052,9 +22978,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 1
 	},
-/turf/open/floor/prison{
-	icon_state = "green"
-	},
+/turf/open/floor/prison/green,
 /area/prison/cellblock/lowsec/nw)
 "aVG" = (
 /turf/open/floor/prison/green{
@@ -23090,9 +23014,7 @@
 	},
 /area/prison/cellblock/lowsec/ne)
 "aVL" = (
-/turf/open/floor/prison{
-	icon_state = "green"
-	},
+/turf/open/floor/prison/green,
 /area/prison/cellblock/lowsec/ne)
 "aVM" = (
 /obj/structure/cable{
@@ -23340,26 +23262,20 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/open/floor/prison{
-	icon_state = "blue"
-	},
+/turf/open/floor/prison/blue,
 /area/prison/command/secretary_office)
 "aWi" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	icon_state = "blue"
-	},
+/turf/open/floor/prison/blue,
 /area/prison/command/secretary_office)
 "aWj" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
 	dir = 8
 	},
-/turf/open/floor/prison{
-	icon_state = "blue"
-	},
+/turf/open/floor/prison/blue,
 /area/prison/command/secretary_office)
 "aWk" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -23369,9 +23285,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor/prison{
-	icon_state = "blue"
-	},
+/turf/open/floor/prison/blue,
 /area/prison/command/secretary_office)
 "aWl" = (
 /turf/open/floor/prison/blue{
@@ -24664,9 +24578,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor/prison{
-	icon_state = "red"
-	},
+/turf/open/floor/prison/red,
 /area/prison/cellblock/highsec/north/south)
 "aZc" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -24745,9 +24657,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/prison{
-	icon_state = "green"
-	},
+/turf/open/floor/prison/green,
 /area/prison/cellblock/lowsec/nw)
 "aZk" = (
 /obj/structure/bed,
@@ -25356,14 +25266,10 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
 	},
-/turf/open/floor/prison{
-	icon_state = "green"
-	},
+/turf/open/floor/prison/green,
 /area/prison/hallway/staff)
 "baw" = (
-/turf/open/floor/prison{
-	icon_state = "green"
-	},
+/turf/open/floor/prison/green,
 /area/prison/hallway/staff)
 "bax" = (
 /obj/structure/cable{
@@ -25374,9 +25280,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/prison{
-	icon_state = "green"
-	},
+/turf/open/floor/prison/green,
 /area/prison/hallway/staff)
 "bay" = (
 /turf/open/floor/prison/green{
@@ -26318,9 +26222,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	icon_state = "red"
-	},
+/turf/open/floor/prison/red,
 /area/prison/cellblock/highsec/north/south)
 "bcJ" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -26791,9 +26693,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6
 	},
-/turf/open/floor/prison{
-	icon_state = "red"
-	},
+/turf/open/floor/prison/red,
 /area/prison/cellblock/highsec/north/south)
 "bdK" = (
 /obj/structure/cable{
@@ -26823,9 +26723,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
-/turf/open/floor/prison{
-	icon_state = "red"
-	},
+/turf/open/floor/prison/red,
 /area/prison/cellblock/highsec/north/south)
 "bdM" = (
 /obj/structure/cable{
@@ -27265,9 +27163,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/turf/open/floor/prison{
-	icon_state = "red"
-	},
+/turf/open/floor/prison/red,
 /area/prison/cellblock/highsec/south/north)
 "beB" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -27398,9 +27294,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor/prison{
-	icon_state = "red"
-	},
+/turf/open/floor/prison/red,
 /area/prison/cellblock/highsec/south/north)
 "beL" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -28025,9 +27919,7 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/turf/open/floor/prison{
-	icon_state = "red"
-	},
+/turf/open/floor/prison/red,
 /area/prison/cellblock/highsec/south/north)
 "bfX" = (
 /turf/open/floor/prison{
@@ -33124,15 +33016,11 @@
 "bpn" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/prison{
-	icon_state = "blue"
-	},
+/turf/open/floor/prison/blue,
 /area/prison/cellblock/vip)
 "bpo" = (
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor/prison{
-	icon_state = "blue"
-	},
+/turf/open/floor/prison/blue,
 /area/prison/cellblock/vip)
 "bpp" = (
 /obj/structure/cable{
@@ -33140,63 +33028,47 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor/prison{
-	icon_state = "blue"
-	},
+/turf/open/floor/prison/blue,
 /area/prison/cellblock/vip)
 "bpq" = (
-/turf/open/floor/prison{
-	icon_state = "blue"
-	},
+/turf/open/floor/prison/blue,
 /area/prison/cellblock/vip)
 "bpr" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	icon_state = "blue"
-	},
+/turf/open/floor/prison/blue,
 /area/prison/cellblock/vip)
 "bps" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	icon_state = "blue"
-	},
+/turf/open/floor/prison/blue,
 /area/prison/cellblock/vip)
 "bpt" = (
 /obj/machinery/power/apc/drained{
 	dir = 2
 	},
 /obj/structure/cable,
-/turf/open/floor/prison{
-	icon_state = "blue"
-	},
+/turf/open/floor/prison/blue,
 /area/prison/cellblock/vip)
 "bpu" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4;
 	on = 1
 	},
-/turf/open/floor/prison{
-	icon_state = "blue"
-	},
+/turf/open/floor/prison/blue,
 /area/prison/cellblock/vip)
 "bpv" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	icon_state = "blue"
-	},
+/turf/open/floor/prison/blue,
 /area/prison/cellblock/vip)
 "bpw" = (
-/turf/open/floor/prison{
-	icon_state = "blue"
-	},
+/turf/open/floor/prison/blue,
 /area/prison/security/checkpoint/vip)
 "bpx" = (
 /turf/open/floor/prison/blue/corner{
@@ -33225,9 +33097,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 1
 	},
-/turf/open/floor/prison{
-	icon_state = "blue"
-	},
+/turf/open/floor/prison/blue,
 /area/prison/security/checkpoint/vip)
 "bpB" = (
 /obj/structure/cable{
@@ -33235,9 +33105,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor/prison{
-	icon_state = "blue"
-	},
+/turf/open/floor/prison/blue,
 /area/prison/security/checkpoint/vip)
 "bpC" = (
 /obj/machinery/door/poddoor/almayer{
@@ -33253,9 +33121,7 @@
 /area/prison/security/checkpoint/vip)
 "bpD" = (
 /obj/machinery/light,
-/turf/open/floor/prison{
-	icon_state = "blue"
-	},
+/turf/open/floor/prison/blue,
 /area/prison/storage/vip)
 "bpE" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -33625,9 +33491,7 @@
 /turf/closed/wall/prison,
 /area/prison/cellblock/lowsec/sw)
 "bqm" = (
-/turf/open/floor/prison{
-	icon_state = "green"
-	},
+/turf/open/floor/prison/green,
 /area/prison/hallway/central)
 "bqn" = (
 /obj/structure/cable{
@@ -33640,9 +33504,7 @@
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/prison{
-	icon_state = "green"
-	},
+/turf/open/floor/prison/green,
 /area/prison/hallway/central)
 "bqo" = (
 /obj/machinery/light{
@@ -33651,9 +33513,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 8
 	},
-/turf/open/floor/prison{
-	icon_state = "green"
-	},
+/turf/open/floor/prison/green,
 /area/prison/hallway/central)
 "bqp" = (
 /turf/closed/wall/r_wall/prison_unmeltable,
@@ -33697,9 +33557,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	icon_state = "green"
-	},
+/turf/open/floor/prison/green,
 /area/prison/hallway/central)
 "bqv" = (
 /obj/machinery/camera/autoname{
@@ -33815,15 +33673,11 @@
 	},
 /area/prison/security/monitoring/highsec)
 "bqK" = (
-/turf/open/floor/prison{
-	icon_state = "red"
-	},
+/turf/open/floor/prison/red,
 /area/prison/security/monitoring/highsec)
 "bqL" = (
 /obj/machinery/light,
-/turf/open/floor/prison{
-	icon_state = "red"
-	},
+/turf/open/floor/prison/red,
 /area/prison/security/monitoring/highsec)
 "bqM" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -33833,9 +33687,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor/prison{
-	icon_state = "red"
-	},
+/turf/open/floor/prison/red,
 /area/prison/security/monitoring/highsec)
 "bqN" = (
 /turf/open/floor/prison/red{
@@ -36179,9 +36031,7 @@
 	},
 /area/prison/cellblock/highsec/south/north)
 "bvw" = (
-/turf/open/floor/prison{
-	icon_state = "red"
-	},
+/turf/open/floor/prison/red,
 /area/prison/cellblock/highsec/south/north)
 "bvx" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -36604,9 +36454,7 @@
 /area/prison/hallway/entrance)
 "bwl" = (
 /obj/structure/bed/chair/comfy,
-/turf/open/floor/prison{
-	icon_state = "red"
-	},
+/turf/open/floor/prison/red,
 /area/prison/hallway/entrance)
 "bwm" = (
 /obj/machinery/light{
@@ -38131,9 +37979,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor/prison{
-	icon_state = "red"
-	},
+/turf/open/floor/prison/red,
 /area/prison/cellblock/highsec/south/north)
 "bzC" = (
 /obj/effect/decal/warning_stripes,
@@ -38193,9 +38039,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor/prison{
-	icon_state = "red"
-	},
+/turf/open/floor/prison/red,
 /area/prison/cellblock/highsec/south/north)
 "bzG" = (
 /obj/structure/cable{
@@ -38208,9 +38052,7 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/open/floor/prison{
-	icon_state = "red"
-	},
+/turf/open/floor/prison/red,
 /area/prison/cellblock/highsec/south/north)
 "bzH" = (
 /turf/open/floor/prison/red{
@@ -38413,9 +38255,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor/prison{
-	icon_state = "green"
-	},
+/turf/open/floor/prison/green,
 /area/prison/cellblock/lowsec/se)
 "bAb" = (
 /obj/structure/cable{
@@ -38425,9 +38265,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/prison{
-	icon_state = "green"
-	},
+/turf/open/floor/prison/green,
 /area/prison/cellblock/lowsec/se)
 "bAc" = (
 /turf/open/floor/prison/green{
@@ -39460,9 +39298,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/open/floor/prison{
-	icon_state = "green"
-	},
+/turf/open/floor/prison/green,
 /area/prison/cellblock/lowsec/sw)
 "bCl" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
@@ -39578,9 +39414,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	icon_state = "green"
-	},
+/turf/open/floor/prison/green,
 /area/prison/cellblock/lowsec/sw)
 "bCy" = (
 /obj/machinery/light{
@@ -40211,9 +40045,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6;
 	},
-/turf/open/floor/prison{
-	icon_state = "green"
-	},
+/turf/open/floor/prison/green,
 /area/prison/cellblock/lowsec/sw)
 "bDO" = (
 /obj/machinery/light{
@@ -41145,9 +40977,7 @@
 	},
 /area/prison/cellblock/lowsec/sw)
 "bFm" = (
-/turf/open/floor/prison{
-	icon_state = "green"
-	},
+/turf/open/floor/prison/green,
 /area/prison/cellblock/lowsec/sw)
 "bFn" = (
 /obj/structure/cable{
@@ -41155,9 +40985,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor/prison{
-	icon_state = "green"
-	},
+/turf/open/floor/prison/green,
 /area/prison/cellblock/lowsec/sw)
 "bFo" = (
 /obj/structure/cable{
@@ -41166,26 +40994,20 @@
 	icon_state = "1-2"
 	},
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor/prison{
-	icon_state = "green"
-	},
+/turf/open/floor/prison/green,
 /area/prison/cellblock/lowsec/sw)
 "bFp" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 1;
 	on = 1
 	},
-/turf/open/floor/prison{
-	icon_state = "green"
-	},
+/turf/open/floor/prison/green,
 /area/prison/cellblock/lowsec/sw)
 "bFq" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 1
 	},
-/turf/open/floor/prison{
-	icon_state = "green"
-	},
+/turf/open/floor/prison/green,
 /area/prison/cellblock/lowsec/sw)
 "bFr" = (
 /obj/structure/cable{
@@ -41223,17 +41045,13 @@
 /area/prison/cellblock/lowsec/se)
 "bFv" = (
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor/prison{
-	icon_state = "green"
-	},
+/turf/open/floor/prison/green,
 /area/prison/cellblock/lowsec/se)
 "bFw" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 1
 	},
-/turf/open/floor/prison{
-	icon_state = "green"
-	},
+/turf/open/floor/prison/green,
 /area/prison/cellblock/lowsec/se)
 "bFx" = (
 /obj/structure/cable{
@@ -41241,32 +41059,24 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor/prison{
-	icon_state = "green"
-	},
+/turf/open/floor/prison/green,
 /area/prison/cellblock/lowsec/se)
 "bFy" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 1;
 	on = 1
 	},
-/turf/open/floor/prison{
-	icon_state = "green"
-	},
+/turf/open/floor/prison/green,
 /area/prison/cellblock/lowsec/se)
 "bFz" = (
 /obj/machinery/power/apc/drained{
 	dir = 2
 	},
 /obj/structure/cable,
-/turf/open/floor/prison{
-	icon_state = "green"
-	},
+/turf/open/floor/prison/green,
 /area/prison/cellblock/lowsec/se)
 "bFA" = (
-/turf/open/floor/prison{
-	icon_state = "green"
-	},
+/turf/open/floor/prison/green,
 /area/prison/cellblock/lowsec/se)
 "bFB" = (
 /obj/machinery/shower{
@@ -41502,9 +41312,7 @@
 	dir = 4
 	},
 /obj/effect/landmark/corpsespawner/prison_security,
-/turf/open/floor/prison{
-	icon_state = "red"
-	},
+/turf/open/floor/prison/red,
 /area/prison/cellblock/highsec/south/north)
 "bFR" = (
 /obj/structure/cable{
@@ -41537,9 +41345,7 @@
 	dir = 4
 	},
 /obj/item/weapon/gun/rifle/m16,
-/turf/open/floor/prison{
-	icon_state = "red"
-	},
+/turf/open/floor/prison/red,
 /area/prison/cellblock/highsec/south/north)
 "bFT" = (
 /obj/structure/cable{
@@ -41553,9 +41359,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	icon_state = "red"
-	},
+/turf/open/floor/prison/red,
 /area/prison/cellblock/highsec/south/north)
 "bFU" = (
 /obj/structure/cable{
@@ -41611,9 +41415,7 @@
 	},
 /obj/item/ammo_casing,
 /obj/item/weapon/gun/shotgun/pump/cmb,
-/turf/open/floor/prison{
-	icon_state = "red"
-	},
+/turf/open/floor/prison/red,
 /area/prison/cellblock/highsec/south/north)
 "bFZ" = (
 /obj/structure/cable{
@@ -43753,14 +43555,10 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor/prison{
-	icon_state = "red"
-	},
+/turf/open/floor/prison/red,
 /area/prison/cellblock/highsec/south/north)
 "bKw" = (
-/turf/open/floor/prison{
-	icon_state = "red"
-	},
+/turf/open/floor/prison/red,
 /area/prison/security/checkpoint/highsec/s)
 "bKx" = (
 /obj/structure/cable{
@@ -43791,9 +43589,7 @@
 	unacidable = 1;
 	use_power = 0
 	},
-/turf/open/floor/prison{
-	icon_state = "red"
-	},
+/turf/open/floor/prison/red,
 /area/prison/security/checkpoint/highsec/s)
 "bKA" = (
 /turf/open/floor/prison/red{
@@ -45689,9 +45485,7 @@
 	unacidable = 1;
 	use_power = 0
 	},
-/turf/open/floor/prison{
-	icon_state = "blue"
-	},
+/turf/open/floor/prison/blue,
 /area/prison/hallway/central)
 "bOC" = (
 /obj/structure/cable{
@@ -45709,9 +45503,7 @@
 	unacidable = 1;
 	use_power = 0
 	},
-/turf/open/floor/prison{
-	icon_state = "blue"
-	},
+/turf/open/floor/prison/blue,
 /area/prison/hallway/central)
 "bOD" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -49467,15 +49259,11 @@
 /obj/structure/bed/chair/comfy{
 	dir = 1
 	},
-/turf/open/floor/prison{
-	icon_state = "red"
-	},
+/turf/open/floor/prison/red,
 /area/prison/recreation/highsec/s)
 "bWV" = (
 /obj/machinery/light,
-/turf/open/floor/prison{
-	icon_state = "red"
-	},
+/turf/open/floor/prison/red,
 /area/prison/recreation/highsec/s)
 "bWW" = (
 /obj/structure/table/reinforced,
@@ -50056,9 +49844,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
 	},
-/turf/open/floor/prison{
-	icon_state = "yellow"
-	},
+/turf/open/floor/prison/yellow,
 /area/prison/cellblock/mediumsec/north)
 "bYp" = (
 /obj/structure/bed,
@@ -50171,9 +49957,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	icon_state = "yellow"
-	},
+/turf/open/floor/prison/yellow,
 /area/prison/cellblock/mediumsec/north)
 "bYy" = (
 /obj/structure/cable{
@@ -51269,17 +51053,13 @@
 /turf/open/floor/prison/yellow/corner,
 /area/prison/cellblock/mediumsec/north)
 "cba" = (
-/turf/open/floor/prison{
-	icon_state = "red"
-	},
+/turf/open/floor/prison/red,
 /area/prison/cellblock/highsec/south/south)
 "cbb" = (
 /obj/structure/bed/chair{
 	dir = 1
 	},
-/turf/open/floor/prison{
-	icon_state = "red"
-	},
+/turf/open/floor/prison/red,
 /area/prison/cellblock/highsec/south/south)
 "cbc" = (
 /turf/open/floor/plating,
@@ -51502,9 +51282,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
-/turf/open/floor/prison{
-	icon_state = "yellow"
-	},
+/turf/open/floor/prison/yellow,
 /area/prison/cellblock/mediumsec/north)
 "cbx" = (
 /obj/structure/cable{
@@ -53993,24 +53771,18 @@
 	icon_state = "coil1";
 	name = "cable piece"
 	},
-/turf/open/floor/prison{
-	icon_state = "red"
-	},
+/turf/open/floor/prison/red,
 /area/prison/cellblock/highsec/south/south)
 "cgg" = (
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor/prison{
-	icon_state = "red"
-	},
+/turf/open/floor/prison/red,
 /area/prison/cellblock/highsec/south/south)
 "cgh" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 1
 	},
 /obj/item/ammo_casing,
-/turf/open/floor/prison{
-	icon_state = "red"
-	},
+/turf/open/floor/prison/red,
 /area/prison/cellblock/highsec/south/south)
 "cgi" = (
 /turf/open/floor/prison/red/corner{
@@ -54034,9 +53806,7 @@
 	dir = 8;
 	on = 1
 	},
-/turf/open/floor/prison{
-	icon_state = "red"
-	},
+/turf/open/floor/prison/red,
 /area/prison/cellblock/highsec/south/south)
 "cgl" = (
 /obj/structure/cable{
@@ -54045,15 +53815,11 @@
 	icon_state = "1-2"
 	},
 /obj/item/ammo_casing,
-/turf/open/floor/prison{
-	icon_state = "red"
-	},
+/turf/open/floor/prison/red,
 /area/prison/cellblock/highsec/south/south)
 "cgm" = (
 /obj/effect/landmark/corpsespawner/prison_security,
-/turf/open/floor/prison{
-	icon_state = "red"
-	},
+/turf/open/floor/prison/red,
 /area/prison/cellblock/highsec/south/south)
 "cgn" = (
 /obj/structure/cable{
@@ -54061,9 +53827,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor/prison{
-	icon_state = "red"
-	},
+/turf/open/floor/prison/red,
 /area/prison/cellblock/highsec/south/south)
 "cgo" = (
 /obj/structure/cable{
@@ -55451,9 +55215,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	icon_state = "yellow"
-	},
+/turf/open/floor/prison/yellow,
 /area/prison/cellblock/mediumsec/north)
 "cjC" = (
 /obj/structure/cable{
@@ -55467,9 +55229,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	icon_state = "blue"
-	},
+/turf/open/floor/prison/blue,
 /area/prison/cellblock/protective)
 "cjD" = (
 /obj/structure/cable{
@@ -55503,9 +55263,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	icon_state = "blue"
-	},
+/turf/open/floor/prison/blue,
 /area/prison/cellblock/protective)
 "cjF" = (
 /obj/structure/cable{
@@ -55517,9 +55275,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	icon_state = "blue"
-	},
+/turf/open/floor/prison/blue,
 /area/prison/cellblock/protective)
 "cjG" = (
 /obj/structure/cable{
@@ -55633,9 +55389,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor/prison{
-	icon_state = "blue"
-	},
+/turf/open/floor/prison/blue,
 /area/prison/cellblock/protective)
 "cjU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -55884,9 +55638,7 @@
 	},
 /area/prison/cellblock/protective)
 "ckz" = (
-/turf/open/floor/prison{
-	icon_state = "blue"
-	},
+/turf/open/floor/prison/blue,
 /area/prison/cellblock/protective)
 "ckA" = (
 /turf/open/floor/prison/blue{
@@ -56249,9 +56001,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor/prison{
-	icon_state = "yellow"
-	},
+/turf/open/floor/prison/yellow,
 /area/prison/cellblock/mediumsec/north)
 "clr" = (
 /obj/structure/table/reinforced,
@@ -56577,9 +56327,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	icon_state = "red"
-	},
+/turf/open/floor/prison/red,
 /area/prison/cellblock/highsec/south/south)
 "clP" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
@@ -57106,9 +56854,7 @@
 /turf/open/floor/prison/yellow/corner,
 /area/prison/cellblock/mediumsec/north)
 "cna" = (
-/turf/open/floor/prison{
-	icon_state = "yellow"
-	},
+/turf/open/floor/prison/yellow,
 /area/prison/cellblock/mediumsec/north)
 "cnb" = (
 /obj/structure/cable{
@@ -58108,9 +57854,7 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
-/turf/open/floor/prison{
-	icon_state = "red"
-	},
+/turf/open/floor/prison/red,
 /area/prison/cellblock/highsec/south/south)
 "cpj" = (
 /obj/structure/cable{
@@ -58150,9 +57894,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10
 	},
-/turf/open/floor/prison{
-	icon_state = "red"
-	},
+/turf/open/floor/prison/red,
 /area/prison/cellblock/highsec/south/south)
 "cpl" = (
 /turf/open/floor/prison/red{
@@ -59043,9 +58785,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	icon_state = "yellow"
-	},
+/turf/open/floor/prison/yellow,
 /area/prison/cellblock/mediumsec/south)
 "crs" = (
 /turf/open/floor/prison{
@@ -59431,9 +59171,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	icon_state = "yellow"
-	},
+/turf/open/floor/prison/yellow,
 /area/prison/cellblock/mediumsec/south)
 "csp" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -59893,9 +59631,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	icon_state = "yellow"
-	},
+/turf/open/floor/prison/yellow,
 /area/prison/cellblock/mediumsec/south)
 "ctk" = (
 /obj/structure/cable{
@@ -59909,9 +59645,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	icon_state = "yellow"
-	},
+/turf/open/floor/prison/yellow,
 /area/prison/cellblock/mediumsec/south)
 "ctl" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -59920,9 +59654,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	icon_state = "yellow"
-	},
+/turf/open/floor/prison/yellow,
 /area/prison/cellblock/mediumsec/south)
 "ctm" = (
 /turf/open/floor/plating/plating_catwalk/prison,
@@ -60153,18 +59885,14 @@
 /turf/open/floor/plating,
 /area/prison/cellblock/mediumsec/west)
 "ctN" = (
-/turf/open/floor/prison{
-	icon_state = "yellow"
-	},
+/turf/open/floor/prison/yellow,
 /area/prison/cellblock/mediumsec/west)
 "ctO" = (
 /obj/machinery/power/apc/drained{
 	dir = 2
 	},
 /obj/structure/cable,
-/turf/open/floor/prison{
-	icon_state = "yellow"
-	},
+/turf/open/floor/prison/yellow,
 /area/prison/cellblock/mediumsec/west)
 "ctP" = (
 /turf/open/floor/prison/yellow/corner{
@@ -60183,20 +59911,14 @@
 /area/prison/cellblock/mediumsec/west)
 "ctR" = (
 /obj/effect/landmark/huntergames_primary_spawn,
-/turf/open/floor/prison{
-	icon_state = "yellow"
-	},
+/turf/open/floor/prison/yellow,
 /area/prison/cellblock/mediumsec/west)
 "ctS" = (
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor/prison{
-	icon_state = "yellow"
-	},
+/turf/open/floor/prison/yellow,
 /area/prison/cellblock/mediumsec/south)
 "ctT" = (
-/turf/open/floor/prison{
-	icon_state = "yellow"
-	},
+/turf/open/floor/prison/yellow,
 /area/prison/cellblock/mediumsec/south)
 "ctU" = (
 /turf/open/floor/prison/yellow/corner{
@@ -60235,14 +59957,10 @@
 /area/prison/cellblock/mediumsec/south)
 "ctZ" = (
 /obj/effect/landmark/huntergames_primary_spawn,
-/turf/open/floor/prison{
-	icon_state = "yellow"
-	},
+/turf/open/floor/prison/yellow,
 /area/prison/cellblock/mediumsec/south)
 "cua" = (
-/turf/open/floor/prison{
-	icon_state = "yellow"
-	},
+/turf/open/floor/prison/yellow,
 /area/prison/cellblock/mediumsec/east)
 "cub" = (
 /obj/structure/cable{
@@ -60264,9 +59982,7 @@
 	dir = 2
 	},
 /obj/structure/cable,
-/turf/open/floor/prison{
-	icon_state = "yellow"
-	},
+/turf/open/floor/prison/yellow,
 /area/prison/cellblock/mediumsec/east)
 "cue" = (
 /obj/structure/cable{
@@ -62414,9 +62130,7 @@
 /obj/structure/bed/chair{
 	dir = 1
 	},
-/turf/open/floor/prison{
-	icon_state = "yellow"
-	},
+/turf/open/floor/prison/yellow,
 /area/prison/cellblock/mediumsec/south)
 "cyr" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -62719,9 +62433,7 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
-/turf/open/floor/prison{
-	icon_state = "yellow"
-	},
+/turf/open/floor/prison/yellow,
 /area/prison/cellblock/mediumsec/south)
 "czg" = (
 /obj/structure/cable{
@@ -62731,9 +62443,7 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
-/turf/open/floor/prison{
-	icon_state = "yellow"
-	},
+/turf/open/floor/prison/yellow,
 /area/prison/cellblock/mediumsec/south)
 "czh" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
