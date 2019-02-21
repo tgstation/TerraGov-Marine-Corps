@@ -393,8 +393,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 /datum/preferences/proc/GetJobDepartment(var/datum/job/job, var/level)
 	if(!job?.prefflag || !level)
 		return FALSE
-	if(!job.prefflag)
-		return FALSE
 	switch(level)
 		if(1)
 			return jobs_high
