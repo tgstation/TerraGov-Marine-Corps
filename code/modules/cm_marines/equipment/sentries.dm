@@ -937,8 +937,8 @@
 	 return
 
 	var/target_dir = get_dir(src, targloc)
-	//if( ( target_dir & turn(dir, 180) ) && !radial_mode)
-	//	return
+	if( ( target_dir & turn(dir, 180) ) && !radial_mode)
+		return
 
 	if(radial_mode && !manual_override)
 		setDir(target_dir)
@@ -950,8 +950,9 @@
 			if (burst_fire)
 				//Apply scatter
 				var/scatter_chance = in_chamber.ammo.scatter
-				scatter_chance += (burst_size * 2)
-				in_chamber.accuracy = round(in_chamber.accuracy * (CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/min_hit_accuracy_mult) * max(0,burst_size - 2) ) ) //Accuracy penalty scales with burst count.
+				var/burst_value = burst_size - 1
+				scatter_chance += (burst_value * burst_value * 2)
+				in_chamber.accuracy = round(in_chamber.accuracy - (burst_value * burst_value), 0.01) //Accuracy penalty scales with burst count.
 
 				if (prob(scatter_chance))
 					var/scatter_x = rand(-1, 1)
@@ -959,8 +960,11 @@
 					var/turf/new_target = locate(targloc.x + round(scatter_x),targloc.y + round(scatter_y),targloc.z) //Locate an adjacent turf.
 					if(new_target) //Looks like we found a turf.
 						target = new_target
-			else
-				in_chamber.accuracy = round(in_chamber.accuracy * (CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/med_hit_accuracy_mult))) //much more accurate on single fire
+
+			else //gains +50% accuracy, damage, and penetration on singlefire, and no spread.
+				in_chamber.accuracy = round(in_chamber.accuracy * 1.5, 0.01)
+				in_chamber.damage = round(in_chamber.damage * 1.5, 0.01)
+				in_chamber.ammo.penetration = round(in_chamber.ammo.penetration * 1.5, 0.01)
 
 			//Setup projectile
 			in_chamber.original = target
@@ -1307,7 +1311,7 @@
 	icon_state = "minisentry_packed"
 	item_state = "minisentry_packed"
 	w_class = 4
-	health = 150 //We keep track of this when folding up the sentry.
+	health = 155 //We keep track of this when folding up the sentry.
 	flags_equip_slot = ITEM_SLOT_BACK
 
 /obj/item/device/marine_turret/mini/attack_self(mob/user) //click the sentry to deploy it.
@@ -1334,7 +1338,7 @@
 
 /obj/item/ammo_magazine/minisentry
 	name = "M30 box magazine (10x20mm Caseless)"
-	desc = "A box of 500 10x20mm armor piercing caseless rounds for the UA-580 Point Defense Sentry. Just feed it into the sentry gun's ammo port when its ammo is depleted."
+	desc = "A box of 500 10x20mm caseless rounds for the UA-580 Point Defense Sentry. Just feed it into the sentry gun's ammo port when its ammo is depleted."
 	w_class = 3
 	icon_state = "ua580"
 	flags_magazine = NOFLAGS //can't be refilled or emptied by hand

@@ -849,7 +849,7 @@
 
 /datum/ammo/bullet/turret/New()
 	..()
-	accurate_range = CONFIG_GET(number/combat_define/short_shell_range)
+	accurate_range = CONFIG_GET(number/combat_define/near_shell_range)
 	accuracy_var_low = CONFIG_GET(number/combat_define/low_proj_variance)
 	accuracy_var_high = CONFIG_GET(number/combat_define/low_proj_variance)
 	damage = CONFIG_GET(number/combat_define/lmed_hit_damage)
@@ -870,12 +870,12 @@
 	accurate_range = CONFIG_GET(number/combat_define/min_shell_range)
 
 /datum/ammo/bullet/turret/mini
-	name = "UA-580 10x20mm armor piercing bullet"
+	name = "UA-580 10x20mm bullet"
 
 /datum/ammo/bullet/turret/mini/New()
 	. = ..()
-	damage = CONFIG_GET(number/combat_define/mlow_hit_damage) //25
-	penetration= CONFIG_GET(number/combat_define/hmed_armor_penetration) //40
+	damage = CONFIG_GET(number/combat_define/hlow_hit_damage) //35
+	penetration= CONFIG_GET(number/combat_define/low_armor_penetration) //20
 
 
 /datum/ammo/bullet/machinegun //Adding this for the MG Nests (~Art)
