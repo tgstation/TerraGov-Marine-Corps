@@ -12,14 +12,14 @@
 //Pow! Headshot
 
 /obj/item/weapon/gun/rifle/sniper/M42A
-	name = " M42A scoped rifle"
+	name = "M42A scoped rifle"
 	desc = "A heavy sniper rifle manufactured by Armat Systems. It has a scope system and fires armor penetrating rounds out of a 15-round magazine.\n'Peace Through Superior Firepower'"
 	icon_state = "m42a"
 	item_state = "m42a"
 	origin_tech = "combat=6;materials=5"
 	fire_sound = 'sound/weapons/gun_sniper.ogg'
 	current_mag = /obj/item/ammo_magazine/sniper
-	force = 12
+	force = 20
 	wield_delay = 12 //Ends up being 1.6 seconds due to scope
 	zoomdevicename = "scope"
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 20, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
@@ -28,10 +28,15 @@
 	var/image/LT = null
 	attachable_allowed = list(
                         /obj/item/attachable/bipod,
+                        /obj/item/attachable/attached_gun/flamer,
+			/obj/item/attachable/attached_gun/shotgun,
                         /obj/item/attachable/lasersight,
+                        /obj/item/attachable/gyro,
+                        /obj/item/attachable/verticalgrip,
+			/obj/item/attachable/angledgrip
                         )
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_CAN_POINTBLANK
 
 /obj/item/weapon/gun/rifle/sniper/M42A/Initialize()
 	select_gamemode_skin(type, list(MAP_ICE_COLONY = "s_m42a"))
@@ -148,7 +153,7 @@
 			to_chat(user, "<span class='warning'>You must be zoomed in to use your targeting laser!</span>")
 		return
 	targetlaser_on = TRUE
-	accuracy_mult += config.max_hit_accuracy_mult //We get a big accuracy bonus vs the lasered target
+	accuracy_mult += config.max_hit_accuracy_mult*5 //We get a big accuracy bonus vs the lasered target
 	if(!silent && user)
 		to_chat(user, "<span class='notice'><b>You activate your targeting laser and take careful aim.</b></span>")
 		playsound(user,'sound/machines/click.ogg', 25, 1)
@@ -166,22 +171,22 @@
 			playsound(user,'sound/machines/click.ogg', 25, 1)
 
 /obj/item/weapon/gun/rifle/sniper/M42A/set_gun_config_values()
-	fire_delay = config.high_fire_delay*5
+	fire_delay = config.high_fire_delay*7
 	burst_amount = config.min_burst_value
-	accuracy_mult = config.base_hit_accuracy_mult + config.max_hit_accuracy_mult
-	damage_mult = config.base_hit_damage_mult
+	accuracy_mult = config.base_hit_accuracy_mult + config.max_hit_accuracy_mult*3.5
+	damage_mult = config.base_hit_damage_mult*1.5
 	recoil = config.min_recoil_value
 
 
 /obj/item/weapon/gun/rifle/sniper/M42A/jungle //These really should just be skins.
-	name = " M42A marksman rifle"
+	name = "M42A marksman rifle"
 	icon_state = "m_m42a" //NO BACK STATE
 	item_state = "m_m42a"
 
 
 /obj/item/weapon/gun/rifle/sniper/elite
-	name = " M42C anti-tank sniper rifle"
-	desc = "A high end mag-rail heavy sniper rifle from Weyland-Yutani chambered in the heaviest ammo available, 10x99mm Caseless."
+	name = "M42C anti-tank sniper rifle"
+	desc = "A high end mag-rail heavy sniper rifle from Nanotrasen chambered in the heaviest ammo available, 10x99mm Caseless."
 	icon_state = "m42c"
 	item_state = "m42c" //NEEDS A TWOHANDED STATE
 	origin_tech = "combat=7;materials=5"
@@ -220,6 +225,7 @@
 			PMC_sniper.visible_message("<span class='warning'>[PMC_sniper] is blown backwards from the recoil of the [src]!</span>","<span class='highdanger'>You are knocked prone by the blowback!</span>")
 			step(PMC_sniper,turn(PMC_sniper.dir,180))
 			PMC_sniper.KnockDown(5)
+
 
 //SVD //Based on the actual Dragunov sniper rifle.
 
