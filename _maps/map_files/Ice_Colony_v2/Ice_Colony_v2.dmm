@@ -5805,15 +5805,8 @@
 	dir = 8;
 	on = 1
 	},
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#B70602";
-	dir = 4;
-	icon_state = "gib6";
-	tag = "icon-gib6"
-	},
-/obj/effect/decal/cleanable/blood{
-	pixel_x = 24
-	},
+/obj/effect/decal/cleanable/blood/gibs,
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/white,
 /area/ice_colony/surface/clinic/treatment)
 "apq" = (
@@ -5842,11 +5835,7 @@
 	pixel_x = 25;
 	pixel_y = 9
 	},
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#b70602";
-	icon_state = "gib6";
-	tag = "icon-gib6"
-	},
+/obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/tile/white,
 /area/ice_colony/surface/clinic/treatment)
 "apt" = (
@@ -6003,11 +5992,7 @@
 /obj/machinery/optable,
 /obj/effect/landmark/corpsespawner/scientist,
 /obj/effect/decal/cleanable/blood,
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#b70602";
-	icon_state = "gib6";
-	tag = "icon-gib6"
-	},
+/obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/tile/red/whitered{
 	dir = 2
 	},
@@ -6084,12 +6069,7 @@
 	},
 /area/ice_colony/surface/dorms)
 "apY" = (
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#B70602";
-	dir = 4;
-	icon_state = "gib6";
-	tag = "icon-gib6"
-	},
+/obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/dorms)
 "apZ" = (
@@ -6102,12 +6082,7 @@
 /area/ice_colony/surface/dorms)
 "aqb" = (
 /obj/structure/barricade/metal,
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#B70602";
-	dir = 4;
-	icon_state = "gib6";
-	tag = "icon-gib6"
-	},
+/obj/effect/decal/cleanable/blood/gibs,
 /obj/item/weapon/gun/pistol/highpower{
 	pixel_x = 20;
 	pixel_y = 15
@@ -6326,21 +6301,11 @@
 /area/ice_colony/exterior/surface/clearing/north)
 "aqB" = (
 /obj/structure/curtain/open/medical,
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#B70602";
-	dir = 4;
-	icon_state = "gib6";
-	tag = "icon-gib6"
-	},
+/obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/tile/white,
 /area/ice_colony/surface/clinic/treatment)
 "aqC" = (
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#B70602";
-	dir = 4;
-	icon_state = "gib6";
-	tag = "icon-gib6"
-	},
+/obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/tile/white,
 /area/ice_colony/surface/clinic/treatment)
 "aqD" = (
@@ -7092,11 +7057,7 @@
 /area/ice_colony/surface/tcomms)
 "ash" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#b70602";
-	icon_state = "gib6";
-	tag = "icon-gib6"
-	},
+/obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/dorms)
 "asi" = (
@@ -7643,9 +7604,7 @@
 	corpsesuit = /obj/item/clothing/suit/storage/snow_suit/doctor;
 	name = "Dr. Micheal Hwang"
 	},
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#B70602";
-	},
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/white,
 /area/ice_colony/surface/clinic/lobby)
 "atC" = (
@@ -9453,19 +9412,8 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/decal/cleanable/blood/gibs,
 /obj/effect/decal/cleanable/blood/gibs,
-/obj/effect/decal/cleanable/blood{
-	tag = "icon-gibarm_flesh";
-	icon_state = "gibarm_flesh";
-	pixel_x = 12;
-	pixel_y = 16
-	},
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#B70602";
-	icon_state = "gibarm_flesh";
-	pixel_x = 7;
-	pixel_y = 11;
-	tag = "icon-gibarm_flesh"
-	},
+/obj/effect/decal/cleanable/blood/gibs/limb,
+/obj/effect/decal/cleanable/blood/gibs/limb,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/dorms)
 "axY" = (
@@ -11463,11 +11411,7 @@
 	},
 /area/ice_colony/surface/command/control/office)
 "aDe" = (
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#b70602";
-	icon_state = "gib6";
-	tag = "icon-gib6"
-	},
+/obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/wood,
 /area/ice_colony/surface/dorms)
 "aDf" = (
@@ -11653,11 +11597,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/command/control/office)
 "aDB" = (
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#b70602";
-	icon_state = "gib6";
-	tag = "icon-gib6"
-	},
+/obj/effect/decal/cleanable/blood/gibs,
 /obj/machinery/door/airlock/almayer/generic{
 	dir = 1;
 	name = "\improper Colony Dormitory Unit";
@@ -12085,11 +12025,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/blood/gibs,
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#b70602";
-	icon_state = "gib6";
-	tag = "icon-gib6"
-	},
+/obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/dorms)
 "aEy" = (
@@ -12295,9 +12231,7 @@
 /area/ice_colony/surface/command/checkpoint)
 "aFb" = (
 /obj/item/weapon/gun/shotgun/pump/cmb,
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#B70602";
-	},
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating,
 /area/ice_colony/surface/disposals)
 "aFc" = (
@@ -13358,10 +13292,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/blood{
-	tag = "icon-xgibdown1";
-	icon_state = "xgibdown1"
-	},
+/obj/effect/decal/cleanable/blood/gibs/xeno/down,
 /turf/open/floor/tile/dark/blue2{
 	dir = 2
 	},
@@ -13756,12 +13687,7 @@
 "aIp" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/decal/cleanable/blood/gibs,
-/obj/effect/decal/cleanable/blood{
-	tag = "icon-gibarm_flesh";
-	icon_state = "gibarm_flesh";
-	pixel_x = 17;
-	pixel_y = 5
-	},
+/obj/effect/decal/cleanable/blood/gibs/limb,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/dorms)
 "aIq" = (
@@ -14225,9 +14151,7 @@
 /obj/effect/landmark/corpsespawner/bridgeofficer{
 	corpsesuit = /obj/item/clothing/suit/storage/snow_suit
 	},
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#B70602";
-	},
+/obj/effect/decal/cleanable/blood,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/command/control/office)
@@ -14337,12 +14261,7 @@
 	icon_state = "pipe-s";
 	dir = 8
 	},
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#B70602";
-	dir = 4;
-	icon_state = "gib6";
-	tag = "icon-gib6"
-	},
+/obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/garage/one)
 "aKa" = (
@@ -14442,12 +14361,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#B70602";
-	dir = 4;
-	icon_state = "gib6";
-	tag = "icon-gib6"
-	},
+/obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/garage/one)
 "aKs" = (
@@ -14610,21 +14524,12 @@
 	dir = 1;
 	icon_state = "pipe-c"
 	},
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#b70602";
-	icon_state = "gib6";
-	tag = "icon-gib6"
-	},
+/obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/garage/one)
 "aKV" = (
 /obj/machinery/light,
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#B70602";
-	dir = 4;
-	icon_state = "gib6";
-	tag = "icon-gib6"
-	},
+/obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/tile/dark/brown2,
 /area/ice_colony/surface/garage/one)
 "aKW" = (
@@ -14748,10 +14653,7 @@
 /turf/open/ice,
 /area/ice_colony/exterior/surface/clearing/south)
 "aLl" = (
-/obj/effect/decal/cleanable/blood{
-	tag = "icon-xgibdown1";
-	icon_state = "xgibdown1"
-	},
+/obj/effect/decal/cleanable/blood/gibs/xeno/down,
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
@@ -15459,10 +15361,7 @@
 /turf/open/floor/wood,
 /area/ice_colony/surface/bar/bar)
 "aNf" = (
-/obj/effect/decal/cleanable/blood{
-	tag = "icon-xgib6";
-	icon_state = "xgib6"
-	},
+/obj/effect/decal/cleanable/blood/gibs/xeno,
 /obj/structure/cable{
 	d1 = 2;
 	d2 = 4;
@@ -15494,10 +15393,7 @@
 /turf/open/floor/wood,
 /area/ice_colony/surface/bar/bar)
 "aNi" = (
-/obj/effect/decal/cleanable/blood{
-	tag = "icon-xgib2";
-	icon_state = "xgib2"
-	},
+/obj/effect/decal/cleanable/blood/gibs/xeno,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -15707,11 +15603,7 @@
 	dir = 4;
 	icon_state = "pipe-c"
 	},
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#b70602";
-	icon_state = "gib6";
-	tag = "icon-gib6"
-	},
+/obj/effect/decal/cleanable/blood/gibs,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/command/control)
@@ -15733,11 +15625,7 @@
 	icon_state = "1-2"
 	},
 /obj/structure/disposalpipe/segment,
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#b70602";
-	icon_state = "gib6";
-	tag = "icon-gib6"
-	},
+/obj/effect/decal/cleanable/blood/gibs,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/poddoor/almayer{
 	density = 0;
@@ -16548,11 +16436,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#b70602";
-	icon_state = "gib6";
-	tag = "icon-gib6"
-	},
+/obj/effect/decal/cleanable/blood/gibs,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/wood,
 /area/ice_colony/surface/command/crisis)
@@ -17049,9 +16933,7 @@
 /obj/machinery/alarm{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#B70602";
-	},
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark/red2{
 	dir = 8
 	},
@@ -17182,10 +17064,7 @@
 /turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aRq" = (
-/obj/effect/decal/cleanable/blood{
-	tag = "icon-xgib4";
-	icon_state = "xgib4"
-	},
+/obj/effect/decal/cleanable/blood/gibs/xeno,
 /turf/open/floor/wood,
 /area/ice_colony/surface/bar/bar)
 "aRr" = (
@@ -17526,10 +17405,7 @@
 /turf/open/floor/wood,
 /area/ice_colony/surface/bar/bar)
 "aSc" = (
-/obj/effect/decal/cleanable/blood{
-	tag = "icon-xgib2";
-	icon_state = "xgib2"
-	},
+/obj/effect/decal/cleanable/blood/gibs/xeno,
 /turf/open/floor/wood,
 /area/ice_colony/surface/bar/bar)
 "aSd" = (
@@ -17979,9 +17855,7 @@
 /area/ice_colony/surface/bar/bar)
 "aTp" = (
 /obj/structure/bed/chair/wood/normal,
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#B70602";
-	},
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/wood,
 /area/ice_colony/surface/command/crisis)
 "aTq" = (
@@ -20905,11 +20779,7 @@
 /obj/structure/bed/chair/wood/normal{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#b70602";
-	icon_state = "gib6";
-	tag = "icon-gib6"
-	},
+/obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/wood,
 /area/ice_colony/surface/command/crisis)
 "baH" = (
@@ -21200,11 +21070,7 @@
 	pixel_x = -1;
 	pixel_y = 2
 	},
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#b70602";
-	icon_state = "gib6";
-	tag = "icon-gib6"
-	},
+/obj/effect/decal/cleanable/blood/gibs,
 /obj/machinery/light/small{
 	dir = 4
 	},
@@ -21360,11 +21226,7 @@
 	},
 /area/ice_colony/underground/westroadtunnel)
 "bbF" = (
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#b70602";
-	icon_state = "gib6";
-	tag = "icon-gib6"
-	},
+/obj/effect/decal/cleanable/blood/gibs,
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/wood,
 /area/ice_colony/surface/command/crisis)
@@ -21378,9 +21240,7 @@
 /area/ice_colony/exterior/surface/container_yard)
 "bbH" = (
 /obj/item/weapon/gun/shotgun/pump/cmb,
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#B70602";
-	},
+/obj/effect/decal/cleanable/blood,
 /obj/effect/landmark/corpsespawner/bridgeofficer{
 	corpsegloves = /obj/item/clothing/gloves/black
 	},
@@ -21791,9 +21651,7 @@
 /turf/open/floor/tile/dark,
 /area/ice_colony/underground/westroadtunnel)
 "bcT" = (
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#B70602";
-	},
+/obj/effect/decal/cleanable/blood,
 /obj/effect/landmark/corpsespawner/doctor{
 	corpsebelt = /obj/item/storage/belt/medical;
 	corpsegloves = /obj/item/clothing/gloves/latex;
@@ -22340,11 +22198,7 @@
 	},
 /area/ice_colony/surface/storage_unit/research)
 "ben" = (
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#B70602";
-	icon_state = "xtracks";
-	tag = "icon-xtracks"
-	},
+/obj/effect/decal/cleanable/blood/xtracks,
 /obj/machinery/door/airlock/multi_tile/almayer/generic{
 	name = "\improper Anti-Freeze Bar";
 	req_access_txt = "100"
@@ -22424,11 +22278,7 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/north)
 "bex" = (
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#B70602";
-	icon_state = "xtracks";
-	tag = "icon-xtracks"
-	},
+/obj/effect/decal/cleanable/blood/xtracks,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -22488,9 +22338,7 @@
 	},
 /area/ice_colony/exterior/surface/landing_pad)
 "beG" = (
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#B70602";
-	},
+/obj/effect/decal/cleanable/blood,
 /turf/open/ice,
 /area/ice_colony/exterior/underground/caves/open)
 "beH" = (
@@ -22557,30 +22405,15 @@
 	},
 /area/ice_colony/surface/excavation)
 "beP" = (
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#B70602";
-	dir = 4;
-	icon_state = "gib6";
-	tag = "icon-gib6"
-	},
+/obj/effect/decal/cleanable/blood/gibs,
 /turf/open/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/south)
 "beQ" = (
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#B70602";
-	dir = 4;
-	icon_state = "gib6";
-	tag = "icon-gib6"
-	},
+/obj/effect/decal/cleanable/blood/gibs,
 /turf/open/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/south)
 "beR" = (
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#B70602";
-	dir = 4;
-	icon_state = "gib6";
-	tag = "icon-gib6"
-	},
+/obj/effect/decal/cleanable/blood/gibs,
 /turf/open/snow/layer3,
 /area/ice_colony/exterior/surface/clearing/south)
 "beS" = (
@@ -22963,11 +22796,7 @@
 /area/ice_colony/surface/excavation)
 "bfP" = (
 /obj/item/weapon/gun/shotgun/double,
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#b70602";
-	icon_state = "gib6";
-	tag = "icon-gib6"
-	},
+/obj/effect/decal/cleanable/blood/gibs,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
 	},
@@ -23310,11 +23139,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/responsehangar)
 "bgP" = (
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#b70602";
-	icon_state = "gib6";
-	tag = "icon-gib6"
-	},
+/obj/effect/decal/cleanable/blood/gibs,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/almayer/generic{
 	dir = 1;
@@ -23338,11 +23163,7 @@
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southwest)
 "bgS" = (
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#b70602";
-	icon_state = "gib6";
-	tag = "icon-gib6"
-	},
+/obj/effect/decal/cleanable/blood/gibs,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/freezer,
 /area/ice_colony/surface/bar/bar)
@@ -26441,9 +26262,7 @@
 	dir = 4
 	},
 /obj/item/ammo_casing/bullet,
-/obj/effect/decal/cleanable/blood{
-	icon_state = "u_dangerous_l"
-	},
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/central)
 "bph" = (
@@ -34015,11 +33834,7 @@
 /area/ice_colony/underground/storage)
 "bIf" = (
 /obj/structure/window_frame/colony,
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#B70602";
-	icon_state = "xtracks";
-	tag = "icon-xtracks"
-	},
+/obj/effect/decal/cleanable/blood/xtracks,
 /turf/open/floor/plating,
 /area/ice_colony/surface/excavationbarracks)
 "bIg" = (
@@ -38419,9 +38234,7 @@
 	corpseuniform = /obj/item/clothing/under/rank/engineer;
 	name = "Engi"
 	},
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#B70602";
-	},
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating,
 /area/ice_colony/underground/engineering/substation)
 "bTb" = (
@@ -39853,12 +39666,7 @@
 	tag = "icon-3";
 	icon_state = "3"
 	},
-/obj/effect/decal/cleanable/blood{
-	tag = "icon-gibarm_flesh";
-	icon_state = "gibarm_flesh";
-	pixel_x = 13;
-	pixel_y = 24
-	},
+/obj/effect/decal/cleanable/blood/gibs/limb,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/tile/dark,
 /area/ice_colony/surface/excavationbarracks)
@@ -40109,11 +39917,7 @@
 	tag = "icon-3";
 	icon_state = "3"
 	},
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#B70602";
-	icon_state = "xtracks";
-	tag = "icon-xtracks"
-	},
+/obj/effect/decal/cleanable/blood/xtracks,
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bXg" = (
@@ -40363,9 +40167,7 @@
 	},
 /area/ice_colony/surface/excavationbarracks)
 "bXL" = (
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#B70602";
-	},
+/obj/effect/decal/cleanable/blood,
 /obj/structure/table{
 	flipped = 1;
 	icon_state = "tableflip0"
@@ -40458,11 +40260,7 @@
 /area/ice_colony/surface/excavationbarracks)
 "bXW" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#B70602";
-	icon_state = "xtracks";
-	tag = "icon-xtracks"
-	},
+/obj/effect/decal/cleanable/blood/xtracks,
 /turf/open/floor/tile/dark,
 /area/ice_colony/surface/excavationbarracks)
 "bXX" = (
@@ -40483,11 +40281,7 @@
 	pixel_x = 21;
 	pixel_y = 20
 	},
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#B70602";
-	icon_state = "xtracks";
-	tag = "icon-xtracks"
-	},
+/obj/effect/decal/cleanable/blood/xtracks,
 /obj/structure/disposalpipe/segment{
 	dir = 1;
 	icon_state = "pipe-c"
@@ -40508,18 +40302,11 @@
 /turf/open/snow/layer1,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bYc" = (
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#B70602";
-	icon_state = "xtracks";
-	tag = "icon-xtracks"
-	},
+/obj/effect/decal/cleanable/blood/xtracks,
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bYd" = (
-/obj/effect/decal/cleanable/blood{
-	tag = "icon-xgibdown1";
-	icon_state = "xgibdown1"
-	},
+/obj/effect/decal/cleanable/blood/gibs/xeno/down,
 /turf/open/snow/layer1,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bYe" = (
@@ -40552,35 +40339,14 @@
 	tag = "icon-3";
 	icon_state = "3"
 	},
-/obj/effect/decal/cleanable/blood{
-	tag = "icon-gibarm_flesh";
-	icon_state = "gibarm_flesh";
-	pixel_x = 3;
-	pixel_y = 5;
-	basecolor = "#B70602"
-	},
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#B70602";
-	},
+/obj/effect/decal/cleanable/blood/gibs/limb,
+/obj/effect/decal/cleanable/blood,
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bYi" = (
-/obj/effect/decal/cleanable/blood{
-	tag = "icon-gibarm_flesh";
-	icon_state = "gibarm_flesh";
-	basecolor = "#B70602"
-	},
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#B70602";
-	dir = 4;
-	icon_state = "gib6";
-	tag = "icon-gib6"
-	},
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#B70602";
-	icon_state = "xtracks";
-	tag = "icon-xtracks"
-	},
+/obj/effect/decal/cleanable/blood/gibs/limb,
+/obj/effect/decal/cleanable/blood/gibs,
+/obj/effect/decal/cleanable/blood/xtracks,
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bYj" = (
@@ -40662,12 +40428,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#B70602";
-	dir = 4;
-	icon_state = "gib6";
-	tag = "icon-gib6"
-	},
+/obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/medical/or)
 "bYv" = (
@@ -40696,9 +40457,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/security/backroom)
 "bYx" = (
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#B70602";
-	},
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/medical/or)
 "bYy" = (
@@ -40708,26 +40467,14 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#B70602";
-	dir = 4;
-	icon_state = "gib6";
-	tag = "icon-gib6"
-	},
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#B70602";
-	dir = 4;
-	icon_state = "gib6";
-	tag = "icon-gib6"
-	},
+/obj/effect/decal/cleanable/blood/gibs,
+/obj/effect/decal/cleanable/blood/gibs,
 /obj/effect/decal/cleanable/blood/gibs/body,
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/medical/or)
 "bYz" = (
 /obj/machinery/computer/operating,
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#B70602";
-	},
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/medical/or)
 "bYA" = (
@@ -40748,12 +40495,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#B70602";
-	dir = 4;
-	icon_state = "gib6";
-	tag = "icon-gib6"
-	},
+/obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/medical/or)
 "bYC" = (
@@ -40777,18 +40519,8 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/blood{
-	tag = "icon-xgib2";
-	icon_state = "xgib2";
-	pixel_x = 26;
-	pixel_y = 29
-	},
-/obj/effect/decal/cleanable/blood{
-	tag = "icon-xgib6";
-	icon_state = "xgib6";
-	pixel_x = 3;
-	pixel_y = 6
-	},
+/obj/effect/decal/cleanable/blood/gibs/xeno,
+/obj/effect/decal/cleanable/blood/gibs/xeno,
 /turf/open/snow/layer1,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bYF" = (
@@ -41795,9 +41527,7 @@
 	corpsepocket2 = /obj/item/device/flashlight;
 	corpseback = /obj/item/storage/backpack/satchel
 	},
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#B70602";
-	},
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark/blue2{
 	dir = 2
 	},
@@ -41819,11 +41549,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#B70602";
-	icon_state = "xtracks";
-	tag = "icon-xtracks"
-	},
+/obj/effect/decal/cleanable/blood/xtracks,
 /obj/effect/decal/cleanable/blood/drip{
 	tag = "icon-3";
 	icon_state = "3"
@@ -41832,10 +41558,7 @@
 /area/ice_colony/underground/command/center)
 "ccD" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/decal/cleanable/blood{
-	tag = "icon-xgib2";
-	icon_state = "xgib2"
-	},
+/obj/effect/decal/cleanable/blood/gibs/xeno,
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/central)
 "ccE" = (
@@ -41849,11 +41572,7 @@
 	name = "\improper Colony Administration";
 	req_access_txt = "100"
 	},
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#B70602";
-	icon_state = "xtracks";
-	tag = "icon-xtracks"
-	},
+/obj/effect/decal/cleanable/blood/xtracks,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/command/checkpoint)
 "ccK" = (
@@ -41863,11 +41582,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#B70602";
-	icon_state = "xtracks";
-	tag = "icon-xtracks"
-	},
+/obj/effect/decal/cleanable/blood/xtracks,
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/command/checkpoint)
@@ -41884,10 +41599,7 @@
 	},
 /area/ice_colony/underground/hallway/north_west)
 "ccM" = (
-/obj/effect/decal/cleanable/blood{
-	tag = "icon-xgib6";
-	icon_state = "xgib6"
-	},
+/obj/effect/decal/cleanable/blood/gibs/xeno,
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/central)
 "ccN" = (
@@ -41902,11 +41614,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#B70602";
-	icon_state = "xtracks";
-	tag = "icon-xtracks"
-	},
+/obj/effect/decal/cleanable/blood/xtracks,
 /obj/effect/decal/cleanable/blood/drip{
 	tag = "icon-3";
 	icon_state = "3"
@@ -41921,11 +41629,7 @@
 	icon_state = "1-2"
 	},
 /obj/effect/decal/cleanable/blood/gibs,
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#B70602";
-	icon_state = "xtracks";
-	tag = "icon-xtracks"
-	},
+/obj/effect/decal/cleanable/blood/xtracks,
 /obj/effect/decal/cleanable/blood/drip{
 	pixel_x = 7;
 	pixel_y = 4
@@ -41933,12 +41637,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/command/checkpoint)
 "ccQ" = (
-/obj/effect/decal/cleanable/blood{
-	tag = "icon-gibarm_flesh";
-	icon_state = "gibarm_flesh";
-	pixel_x = 18;
-	pixel_y = 29
-	},
+/obj/effect/decal/cleanable/blood/gibs/limb,
 /turf/open/floor/plating,
 /area/ice_colony/exterior/underground/caves/open)
 "ccR" = (
@@ -41955,20 +41654,12 @@
 	},
 /area/ice_colony/exterior/surface/landing_pad)
 "ccX" = (
-/obj/effect/decal/cleanable/blood{
-	dir = 4;
-	icon_state = "gib6";
-	tag = "icon-gib6"
-	},
+/obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/plating,
 /area/ice_colony/exterior/underground/caves/open)
 "ccY" = (
 /obj/effect/alien/weeds/node,
-/obj/effect/decal/cleanable/blood{
-	dir = 4;
-	icon_state = "gib6";
-	tag = "icon-gib6"
-	},
+/obj/effect/decal/cleanable/blood/gibs,
 /obj/effect/decal/cleanable/blood/drip{
 	pixel_x = 18;
 	pixel_y = 25
@@ -41976,18 +41667,12 @@
 /turf/open/floor/plating,
 /area/ice_colony/exterior/underground/caves/open)
 "ccZ" = (
-/obj/effect/decal/cleanable/blood{
-	dir = 4;
-	icon_state = "gib6";
-	tag = "icon-gib6"
-	},
+/obj/effect/decal/cleanable/blood/gibs,
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/plating,
 /area/ice_colony/exterior/underground/caves/open)
 "cda" = (
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#B70602";
-	},
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating,
 /area/ice_colony/exterior/underground/caves/open)
 "cdc" = (
@@ -42022,9 +41707,7 @@
 	dir = 4;
 	icon_state = "pipe-c"
 	},
-/obj/effect/decal/cleanable/blood{
-	basecolor = "#B70602";
-	},
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/command/checkpoint)
 "cde" = (

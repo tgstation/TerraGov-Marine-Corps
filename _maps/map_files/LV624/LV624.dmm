@@ -15686,9 +15686,7 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "bbg" = (
-/obj/effect/decal/cleanable/blood{
-	pixel_y = 12
-	},
+/obj/effect/decal/cleanable/blood,
 /obj/item/ammo_casing,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable/yellow{
@@ -16769,9 +16767,7 @@
 	name = "Mr. Johnson Telovin"
 	},
 /obj/item/tool/crowbar,
-/obj/effect/decal/cleanable/blood{
-	pixel_x = 24
-	},
+/obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 1

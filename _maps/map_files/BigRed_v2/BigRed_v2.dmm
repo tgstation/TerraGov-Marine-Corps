@@ -9951,9 +9951,7 @@
 /area/bigredv2/caves/lambda_lab)
 "aAX" = (
 /obj/machinery/light/small/built{
-	tag = "icon-bulb1 (NORTH)";
-	icon_state = "bulb1";
-	dir = 1
+	dir = 10
 	},
 /turf/open/floor/podhatch/floor,
 /area/bigredv2/caves/lambda_lab)
@@ -11032,9 +11030,7 @@
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/medical)
 "aDP" = (
-/obj/effect/decal/cleanable/blood{
-	pixel_x = 24
-	},
+/obj/effect/decal/cleanable/blood,
 /obj/item/trash/chips,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable{
@@ -13103,9 +13099,7 @@
 	dir = 1
 	},
 /obj/machinery/light/small/built{
-	tag = "icon-bulb1 (NORTH)";
-	icon_state = "bulb1";
-	dir = 1
+	dir = 10
 	},
 /turf/open/floor/tile/green/whitegreen{
 	dir = 1
@@ -14049,9 +14043,7 @@
 /area/bigredv2/caves/lambda_lab)
 "aKR" = (
 /obj/machinery/light/small/built{
-	tag = "icon-bulb1 (WEST)";
-	icon_state = "bulb1";
-	dir = 8
+	dir = 10
 	},
 /turf/open/floor/tile/green/whitegreen{
 	dir = 10
@@ -14064,9 +14056,7 @@
 /area/bigredv2/caves/lambda_lab)
 "aKT" = (
 /obj/machinery/light/small/built{
-	tag = "icon-bulb1 (EAST)";
-	icon_state = "bulb1";
-	dir = 4
+	dir = 10
 	},
 /turf/open/floor/tile/green/whitegreen{
 	dir = 6
@@ -14166,10 +14156,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aLc" = (
-/obj/effect/decal/cleanable/blood{
-	tag = "icon-xgib4";
-	icon_state = "xgib4"
-	},
+/obj/effect/decal/cleanable/blood/gibs/xeno,
 /turf/open/mars,
 /area/bigredv2/outside/c)
 "aLd" = (
@@ -15335,9 +15322,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/light/small/built{
-	tag = "icon-bulb1 (WEST)";
-	icon_state = "bulb1";
-	dir = 8
+	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/tile/green/whitegreenfull,
@@ -15747,9 +15732,7 @@
 /area/bigredv2/caves/lambda_lab)
 "aPs" = (
 /obj/machinery/light/small/built{
-	tag = "icon-bulb1 (EAST)";
-	icon_state = "bulb1";
-	dir = 4
+	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/landmark/start/xeno_spawn,
@@ -16250,11 +16233,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/general_store)
 "aQN" = (
-/obj/effect/decal/cleanable/blood{
-	dir = 4;
-	icon_state = "gib6";
-	tag = "icon-gib6"
-	},
+/obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aQO" = (
@@ -17128,11 +17107,7 @@
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/c)
 "aTd" = (
-/obj/effect/decal/cleanable/blood{
-	dir = 4;
-	icon_state = "gib6";
-	tag = "icon-gib6"
-	},
+/obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/c)
 "aTe" = (
@@ -17568,10 +17543,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/admin_building)
 "aUh" = (
-/obj/effect/decal/cleanable/blood{
-	tag = "icon-xgib4";
-	icon_state = "xgib4"
-	},
+/obj/effect/decal/cleanable/blood/gibs/xeno,
 /turf/open/mars_dirt/random,
 /area/bigredv2/outside/c)
 "aUi" = (
@@ -18074,11 +18046,7 @@
 	},
 /area/bigredv2/outside/e)
 "aVw" = (
-/obj/effect/decal/cleanable/blood{
-	dir = 4;
-	icon_state = "gib6";
-	tag = "icon-gib6"
-	},
+/obj/effect/decal/cleanable/blood/gibs,
 /turf/open/mars_cave{
 	tag = "icon-mars_cave_8";
 	icon_state = "mars_cave_8"
@@ -20016,11 +19984,7 @@
 	},
 /area/bigredv2/outside/virology)
 "bba" = (
-/obj/effect/decal/cleanable/blood{
-	dir = 4;
-	icon_state = "gib6";
-	tag = "icon-gib6"
-	},
+/obj/effect/decal/cleanable/blood/gibs,
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
@@ -20031,11 +19995,7 @@
 	},
 /area/bigredv2/outside/w)
 "bbb" = (
-/obj/effect/decal/cleanable/blood{
-	dir = 4;
-	icon_state = "gib6";
-	tag = "icon-gib6"
-	},
+/obj/effect/decal/cleanable/blood/gibs,
 /turf/open/mars,
 /area/bigredv2/outside/w)
 "bbc" = (
