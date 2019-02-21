@@ -44,7 +44,7 @@
 			return
 		if(do_after(user, P.calc_delay(user), TRUE, 5, BUSY_ICON_HOSTILE) && P)
 			P.cut_apart(user, name, src)
-			qdel()
+			qdel(src)
 		return
 
 //Default "structure" proc. This should be overwritten by sub procs.

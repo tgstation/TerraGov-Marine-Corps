@@ -1,0 +1,4 @@
+author: "ma44"
+delete-after: True
+changes: 
+  - bugfix: "Fixed ravager charge not doing damage"
