@@ -14,14 +14,14 @@
 	var/mob/living/new_character	//for instant transfer once the round is set up
 
 
-/mob/new_player/New()
-	GLOB.mob_list += src
+/mob/new_player/Initialize()
+	. = ..()
 	GLOB.total_players++
 
 
-/mob/new_player/Del()
-	GLOB.mob_list -= src
+/mob/new_player/Destroy()
 	GLOB.total_players--
+	return ..()
 
 
 /mob/new_player/proc/version_check()
@@ -30,7 +30,7 @@
 		Direct Download (Windows Installer): http://www.byond.com/download/build/[world.byond_version]/[world.byond_version].[world.byond_build]_byond.exe <br> \
 		Other versions (search for [world.byond_build] or higher): http://www.byond.com/download/build/[world.byond_version]</span>")
 
-		del(client)
+		qdel(client)
 
 
 /mob/new_player/proc/new_player_panel()
@@ -129,7 +129,7 @@
 
 				var/datum/species/species = GLOB.all_species[client.prefs.species] || GLOB.all_species[DEFAULT_SPECIES]
 
-				if(client.prefs.be_random_name)
+				if(client.prefs.random_name)
 					client.prefs.real_name = species.random_name(client.prefs.gender)
 
 				observer.real_name = client.prefs.real_name

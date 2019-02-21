@@ -213,28 +213,28 @@
 			ghost_medhud = !ghost_medhud
 			H = huds[MOB_HUD_MEDICAL_OBSERVER]
 			ghost_medhud ? H.add_hud_to(src) : H.remove_hud_from(src)
-			client.prefs.ghost_medhud = ghost_medhud
+			client.prefs.ghost_hud ^= GHOST_HUD_MED
 			client.prefs.save_preferences()
 			to_chat(src, "<span class='boldnotice'>[hud_choice] [ghost_medhud ? "Enabled" : "Disabled"]</span>")
 		if("Security HUD")
 			ghost_sechud = !ghost_sechud
 			H = huds[MOB_HUD_SECURITY_ADVANCED]
 			ghost_sechud ? H.add_hud_to(src) : H.remove_hud_from(src)
-			client.prefs.ghost_sechud = ghost_sechud
+			client.prefs.ghost_hud ^= GHOST_HUD_SEC
 			client.prefs.save_preferences()
 			to_chat(src, "<span class='boldnotice'>[hud_choice] [ghost_sechud ? "Enabled": "Disabled"]</span>")
 		if("Squad HUD")
 			ghost_squadhud = !ghost_squadhud
 			H = huds[MOB_HUD_SQUAD]
 			ghost_squadhud ? H.add_hud_to(src) : H.remove_hud_from(src)
-			client.prefs.ghost_squadhud = ghost_squadhud
+			client.prefs.ghost_hud ^= GHOST_HUD_SQUAD
 			client.prefs.save_preferences()
 			to_chat(src, "<span class='boldnotice'>[hud_choice] [ghost_squadhud ? "Enabled": "Disabled"]</span>")
 		if("Xeno Status HUD")
 			ghost_xenohud = !ghost_xenohud
 			H = huds[MOB_HUD_XENO_STATUS]
 			ghost_xenohud ? H.add_hud_to(src) : H.remove_hud_from(src)
-			client.prefs.ghost_xenohud = ghost_xenohud
+			client.prefs.ghost_hud ^= GHOST_HUD_XENO
 			client.prefs.save_preferences()
 			to_chat(src, "<span class='boldnotice'>[hud_choice] [ghost_xenohud ? "Enabled" : "Disabled"]</span>")
 

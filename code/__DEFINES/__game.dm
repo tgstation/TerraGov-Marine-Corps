@@ -49,35 +49,6 @@ These are used with cdel (clean delete). For example, qdel(atom, TA_REVIVE_ME) w
 //Object specific defines
 #define CANDLE_LUM 3 //For how bright candles are
 
-
-//Preference toggles//
-//toggles_sound
-#define SOUND_ADMINHELP	1
-#define SOUND_MIDI		2
-#define SOUND_AMBIENCE	4
-#define SOUND_LOBBY		8
-
-//toggles_chat
-#define CHAT_OOC			(1 << 0)
-#define CHAT_DEAD			(1 << 1)
-#define CHAT_GHOSTEARS		(1 << 2)
-#define CHAT_GHOSTSIGHT		(1 << 3)
-#define CHAT_PRAYER			(1 << 4)
-#define CHAT_RADIO			(1 << 5)
-#define CHAT_ATTACKLOGS		(1 << 6)
-#define CHAT_DEBUGLOGS		(1 << 7)
-#define CHAT_GHOSTRADIO 	(1 << 8)
-#define SHOW_TYPING 		(1 << 9)
-#define CHAT_FFATTACKLOGS 	(1 << 10)
-#define CHAT_ENDROUNDLOGS	(1 << 11)
-#define CHAT_GHOSTHIVEMIND	(1 << 12)
-#define CHAT_STATISTICS		(1 << 13)
-//=================================================
-
-#define TOGGLES_CHAT_DEFAULT (CHAT_OOC|CHAT_DEAD|CHAT_GHOSTEARS|CHAT_GHOSTSIGHT|CHAT_PRAYER|CHAT_RADIO|CHAT_FFATTACKLOGS|SHOW_TYPING|CHAT_GHOSTHIVEMIND|CHAT_STATISTICS)
-#define TOGGLES_SOUND_DEFAULT (SOUND_ADMINHELP|SOUND_MIDI|SOUND_AMBIENCE|SOUND_LOBBY)
-
-
 /*
 	Shuttles
 */

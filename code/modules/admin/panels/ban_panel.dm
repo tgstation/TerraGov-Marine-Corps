@@ -519,6 +519,8 @@
 			mute_string = "IC"
 		if(MUTE_OOC)
 			mute_string = "OOC"
+		if(MUTE_LOOC)
+			mute_string = "LOOC"
 		if(MUTE_PRAY)
 			mute_string = "pray"
 		if(MUTE_ADMINHELP)

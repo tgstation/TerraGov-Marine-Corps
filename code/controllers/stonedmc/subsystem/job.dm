@@ -102,7 +102,7 @@ SUBSYSTEM_DEF(job)
 		if(flag && (!(flag in player.client.prefs.be_special)))
 			JobDebug("FOC flag failed, Player: [player], Flag: [flag], ")
 			continue
-		if(player.client.prefs.GetJobDepartment(job, level) & job.flag)
+		if(player.client.prefs.GetJobDepartment(job, level) & job.prefflag)
 			JobDebug("FOC pass, Player: [player], Level:[level]")
 			candidates += player
 	return candidates
@@ -168,7 +168,7 @@ SUBSYSTEM_DEF(job)
 	//People who wants to be the overflow role, sure, go on.
 	JobDebug("DO, Running Overflow Check 1")
 	var/datum/job/overflow = GetJob(SSjob.overflow_role)
-	var/list/overflow_candidates = FindOccupationCandidates(overflow, 3)
+	var/list/overflow_candidates = FindOccupationCandidates(overflow, 1)
 	JobDebug("AC1, Candidates: [length(overflow_candidates)]")
 	for(var/mob/new_player/player in overflow_candidates)
 		JobDebug("AC1 pass, Player: [player]")
@@ -210,7 +210,7 @@ SUBSYSTEM_DEF(job)
 					continue
 
 				// If the player wants that job on this level, then try give it to him.
-				if(player.client.prefs.GetJobDepartment(job, level) & job.flag)
+				if(player.client.prefs.GetJobDepartment(job, level) & job.prefflag)
 					// If the job isn't filled
 					if((job.current_positions < job.spawn_positions) || job.spawn_positions == -1)
 						JobDebug("DO pass, Trying to assign Player: [player], Level:[level], Job:[job.title]")
@@ -224,12 +224,6 @@ SUBSYSTEM_DEF(job)
 	// Also makes sure that they got their preference correct
 	for(var/mob/new_player/player in unassigned)
 		HandleUnassigned(player)
-
-	JobDebug("DO, Handling unrejectable unassigned")
-	//Mop up people who can't leave.
-	for(var/mob/new_player/player in unassigned) //Players that wanted to back out but couldn't because they're antags (can you feel the edge case?)
-		if(!GiveRandomJob(player))
-			AssignRole(player, SSjob.overflow_role) //If everything is already filled, make them an assistant
 
 	return TRUE
 
@@ -313,6 +307,8 @@ SUBSYSTEM_DEF(job)
 				remembered_info += "<b>Your account was created:</b> [T.time], [T.date] at [T.source_terminal]<br>"
 			H.mind.store_memory(remembered_info)
 			H.mind.initial_account = A
+		if(M.client)
+			H.equip_preference_gear(M.client)
 	if(job)
 		job.radio_help_message(M)
 		if(job.req_admin_notify)
