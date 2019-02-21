@@ -17,6 +17,7 @@ Currently only has the tank hardpoints
 
 	//If we use ammo, put it here
 	var/obj/item/ammo_magazine/ammo = null
+	var/starter_ammo = null
 
 	//Strings, used to get the overlay for the armored vic
 	var/disp_icon //This also differentiates tank vs apc vs other
@@ -30,6 +31,11 @@ Currently only has the tank hardpoints
 	var/list/backup_clips = list()
 	var/max_clips = 1 //1 so they can reload their backups and actually reload once
 	var/buyable = TRUE
+
+/obj/item/hardpoint/Initialize()
+	. = ..()
+	if(starter_ammo)
+		ammo = new starter_ammo
 
 //Called on attaching, for weapons sets the actual cooldowns
 /obj/item/hardpoint/proc/apply_buff()
@@ -65,7 +71,7 @@ Currently only has the tank hardpoints
 	else if(backup_clips.len >= max_clips)
 		to_chat(user, "<span class='warning'>The reloader is full.</span>")
 		return FALSE
-	else if(!istype(A, ammo.type))
+	else if(!istype(A, starter_ammo))
 		to_chat(user, "<span class='warning'>That is the wrong ammo type.</span>")
 		return FALSE
 
@@ -151,7 +157,7 @@ Currently only has the tank hardpoints
 	disp_icon = "tank"
 	disp_icon_state = "ltb_cannon"
 
-	ammo = new /obj/item/ammo_magazine/tank/ltb_cannon
+	starter_ammo = /obj/item/ammo_magazine/tank/ltb_cannon
 	max_clips = 3
 	max_angle = 45
 
@@ -205,7 +211,7 @@ Currently only has the tank hardpoints
 	disp_icon = "tank"
 	disp_icon_state = "ltaaap_minigun"
 
-	ammo = new /obj/item/ammo_magazine/tank/ltaaap_minigun
+	starter_ammo = /obj/item/ammo_magazine/tank/ltaaap_minigun
 	max_angle = 45
 
 	//Miniguns don't use a conventional cooldown
@@ -285,7 +291,7 @@ Currently only has the tank hardpoints
 	disp_icon = "tank"
 	disp_icon_state = "flamer"
 
-	ammo = new /obj/item/ammo_magazine/tank/flamer
+	starter_ammo = /obj/item/ammo_magazine/tank/flamer
 	max_angle = 90
 
 /obj/item/hardpoint/secondary/flamer/apply_buff()
@@ -329,7 +335,7 @@ Currently only has the tank hardpoints
 	disp_icon = "tank"
 	disp_icon_state = "towlauncher"
 
-	ammo = new /obj/item/ammo_magazine/tank/towlauncher
+	starter_ammo = /obj/item/ammo_magazine/tank/towlauncher
 	max_clips = 1
 	max_angle = 90
 
@@ -375,7 +381,7 @@ Currently only has the tank hardpoints
 	disp_icon = "tank"
 	disp_icon_state = "m56cupola"
 
-	ammo = new /obj/item/ammo_magazine/tank/m56_cupola
+	starter_ammo = /obj/item/ammo_magazine/tank/m56_cupola
 	max_clips = 1
 	max_angle = 90
 
@@ -424,7 +430,7 @@ Currently only has the tank hardpoints
 	disp_icon = "tank"
 	disp_icon_state = "glauncher"
 
-	ammo = new /obj/item/ammo_magazine/tank/tank_glauncher
+	starter_ammo = /obj/item/ammo_magazine/tank/tank_glauncher
 	max_clips = 3
 	max_angle = 90
 
@@ -478,7 +484,7 @@ Currently only has the tank hardpoints
 	disp_icon = "tank"
 	disp_icon_state = "slauncher"
 
-	ammo = new /obj/item/ammo_magazine/tank/tank_slauncher
+	starter_ammo = /obj/item/ammo_magazine/tank/tank_slauncher
 	max_clips = 4
 	is_activatable = TRUE
 
