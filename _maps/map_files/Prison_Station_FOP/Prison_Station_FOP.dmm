@@ -2726,10 +2726,8 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "podhatchfloor";
-	tag = "icon-podhatch (NORTH)"
+/turf/open/floor/podhatch/floor{
+	dir = 1
 	},
 /area/prison/research/secret/testing)
 "agO" = (
@@ -2753,10 +2751,8 @@
 	icon_state = "shower";
 	dir = 8
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "podhatchfloor";
-	tag = "icon-podhatch (NORTH)"
+/turf/open/floor/podhatch/floor{
+	dir = 1
 	},
 /area/prison/research/secret/testing)
 "agQ" = (
@@ -2821,10 +2817,8 @@
 	dir = 4;
 	icon_state = "shower"
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "podhatchfloor";
-	tag = "icon-podhatch (NORTH)"
+/turf/open/floor/podhatch/floor{
+	dir = 1
 	},
 /area/prison/research/secret/testing)
 "aha" = (
@@ -10353,10 +10347,7 @@
 	},
 /area/prison/medbay)
 "avw" = (
-/obj/item/roller{
-	tag = "icon-down";
-	icon_state = "down"
-	},
+/obj/structure/bed/roller,
 /turf/open/floor/prison{
 	dir = 4;
 	icon_state = "whitegreen"
@@ -12460,10 +12451,7 @@
 	},
 /area/prison/hallway/central)
 "azF" = (
-/obj/item/roller{
-	tag = "icon-down";
-	icon_state = "down"
-	},
+/obj/structure/bed/roller,
 /obj/structure/cable{
 	d2 = 8;
 	icon_state = "0-8"

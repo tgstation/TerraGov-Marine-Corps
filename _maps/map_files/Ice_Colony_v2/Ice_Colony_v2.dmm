@@ -1257,10 +1257,8 @@
 	},
 /area/ice_colony/surface/engineering/tool)
 "adS" = (
-/turf/open/floor{
-	dir = 8;
-	icon_state = "darkyellow2";
-	tag = "icon-darkyellow2 (EAST)"
+/turf/open/floor/tile/dark/yellow2{
+	dir = 8
 	},
 /area/ice_colony/surface/engineering/generator)
 "adT" = (
@@ -1601,10 +1599,8 @@
 /area/ice_colony/surface/engineering/generator)
 "aeQ" = (
 /obj/machinery/space_heater,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "darkyellow2";
-	tag = "icon-darkyellow2 (EAST)"
+/turf/open/floor/tile/dark/yellow2{
+	dir = 8
 	},
 /area/ice_colony/surface/engineering)
 "aeR" = (
@@ -1781,10 +1777,8 @@
 	},
 /area/ice_colony/surface/engineering/generator)
 "afn" = (
-/turf/open/floor{
-	dir = 8;
-	icon_state = "darkyellow2";
-	tag = "icon-darkyellow2 (EAST)"
+/turf/open/floor/tile/dark/yellow2{
+	dir = 8
 	},
 /area/ice_colony/surface/engineering)
 "afo" = (
@@ -1812,10 +1806,8 @@
 	amount = 25
 	},
 /obj/item/stack/cable_coil,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "darkyellow2";
-	tag = "icon-darkyellow2 (EAST)"
+/turf/open/floor/tile/dark/yellow2{
+	dir = 8
 	},
 /area/ice_colony/surface/engineering)
 "afs" = (
@@ -2025,10 +2017,8 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "darkyellow2";
-	tag = "icon-darkyellow2 (EAST)"
+/turf/open/floor/tile/dark/yellow2{
+	dir = 8
 	},
 /area/ice_colony/surface/engineering/generator)
 "afS" = (
@@ -2180,10 +2170,8 @@
 	icon_state = "pipe-t";
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "darkyellow2";
-	tag = "icon-darkyellow2 (EAST)"
+/turf/open/floor/tile/dark/yellow2{
+	dir = 8
 	},
 /area/ice_colony/surface/engineering)
 "agh" = (
@@ -2839,10 +2827,8 @@
 	d2 = 4;
 	icon_state = "0-4"
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "darkyellow2";
-	tag = "icon-darkyellow2 (EAST)"
+/turf/open/floor/tile/dark/yellow2{
+	dir = 8
 	},
 /area/ice_colony/surface/substation/smes)
 "ahE" = (
@@ -3068,10 +3054,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "darkyellow2";
-	tag = "icon-darkyellow2 (EAST)"
+/turf/open/floor/tile/dark/yellow2{
+	dir = 8
 	},
 /area/ice_colony/surface/substation/smes)
 "ain" = (
@@ -3150,10 +3134,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "darkyellow2";
-	tag = "icon-darkyellow2 (EAST)"
+/turf/open/floor/tile/dark/yellow2{
+	dir = 8
 	},
 /area/ice_colony/surface/substation/smes)
 "aiv" = (
@@ -3224,10 +3206,8 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "darkyellow2";
-	tag = "icon-darkyellow2 (EAST)"
+/turf/open/floor/tile/dark/yellow2{
+	dir = 8
 	},
 /area/ice_colony/surface/substation/smes)
 "aiE" = (
@@ -3431,10 +3411,8 @@
 /obj/structure/rack,
 /obj/item/cell/high/empty,
 /obj/effect/landmark/random_item/crap,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "darkyellow2";
-	tag = "icon-darkyellow2 (EAST)"
+/turf/open/floor/tile/dark/yellow2{
+	dir = 8
 	},
 /area/ice_colony/surface/substation/smes)
 "ajb" = (
@@ -3787,10 +3765,8 @@
 	d2 = 4
 	},
 /obj/item/clothing/mask/rebreather,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "darkyellow2";
-	tag = "icon-darkyellow2 (EAST)"
+/turf/open/floor/tile/dark/yellow2{
+	dir = 8
 	},
 /area/ice_colony/surface/substation/smes)
 "ajM" = (
@@ -4623,10 +4599,8 @@
 /obj/item/circuitboard/airlock,
 /obj/item/circuitboard/airlock,
 /obj/item/circuitboard/airlock,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "darkyellow2";
-	tag = "icon-darkyellow2 (EAST)"
+/turf/open/floor/tile/dark/yellow2{
+	dir = 8
 	},
 /area/ice_colony/surface/substation)
 "ama" = (
@@ -7348,10 +7322,8 @@
 	},
 /area/ice_colony/surface/clinic/treatment)
 "asl" = (
-/turf/open/floor{
-	dir = 8;
-	icon_state = "whiteredcorner";
-	tag = "icon-whiteredcorner (NORTH)"
+/turf/open/floor/tile/red/whitered/corner{
+	dir = 8
 	},
 /area/ice_colony/surface/clinic/treatment)
 "asm" = (
@@ -7372,10 +7344,8 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whiteredcorner";
-	tag = "icon-whiteredcorner (NORTH)"
+/turf/open/floor/tile/red/whitered/corner{
+	dir = 2
 	},
 /area/ice_colony/surface/clinic/treatment)
 "asp" = (
@@ -7456,10 +7426,7 @@
 /turf/closed/wall/r_wall,
 /area/ice_colony/surface/clinic/lobby)
 "asB" = (
-/obj/item/roller{
-	tag = "icon-down";
-	icon_state = "down"
-	},
+/obj/structure/bed/roller,
 /turf/open/floor/tile/red/whitered{
 	dir = 6
 	},
@@ -7639,10 +7606,8 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteredcorner";
-	tag = "icon-whiteredcorner (NORTH)"
+/turf/open/floor/tile/red/whitered/corner{
+	dir = 4
 	},
 /area/ice_colony/surface/clinic/lobby)
 "asZ" = (
@@ -8159,10 +8124,8 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteredcorner";
-	tag = "icon-whiteredcorner (NORTH)"
+/turf/open/floor/tile/red/whitered/corner{
+	dir = 4
 	},
 /area/ice_colony/surface/clinic/lobby)
 "auk" = (
@@ -8304,10 +8267,8 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "whiteredcorner";
-	tag = "icon-whiteredcorner (NORTH)"
+/turf/open/floor/tile/red/whitered/corner{
+	dir = 8
 	},
 /area/ice_colony/surface/clinic/lobby)
 "auA" = (
@@ -8483,10 +8444,8 @@
 	dir = 8;
 	icon_state = "pipe-c"
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whiteredcorner";
-	tag = "icon-whiteredcorner (NORTH)"
+/turf/open/floor/tile/red/whitered/corner{
+	dir = 2
 	},
 /area/ice_colony/surface/clinic/lobby)
 "auV" = (
@@ -11345,8 +11304,6 @@
 /area/ice_colony/surface/command/control/office)
 "aCc" = (
 /obj/structure/window/reinforced/tinted{
-	tag = "icon-twindow (WEST)";
-	icon_state = "twindow";
 	dir = 8
 	},
 /obj/structure/window/reinforced/tinted{
@@ -11556,8 +11513,6 @@
 /area/ice_colony/surface/command/control/office)
 "aCE" = (
 /obj/structure/window/reinforced/tinted{
-	tag = "icon-twindow (WEST)";
-	icon_state = "twindow";
 	dir = 8
 	},
 /obj/machinery/computer/station_alert,
@@ -11736,8 +11691,6 @@
 /area/ice_colony/surface/command/control/office)
 "aDc" = (
 /obj/structure/window/reinforced/tinted{
-	tag = "icon-twindow (WEST)";
-	icon_state = "twindow";
 	dir = 8
 	},
 /obj/structure/window/reinforced/tinted,
@@ -11946,8 +11899,6 @@
 /area/ice_colony/surface/command/control/office)
 "aDA" = (
 /obj/structure/window/reinforced/tinted{
-	tag = "icon-twindow (WEST)";
-	icon_state = "twindow";
 	dir = 8
 	},
 /obj/machinery/computer/communications,
@@ -12110,8 +12061,6 @@
 /area/ice_colony/surface/command/control/office)
 "aDR" = (
 /obj/structure/window/reinforced/tinted{
-	tag = "icon-twindow (WEST)";
-	icon_state = "twindow";
 	dir = 8
 	},
 /obj/structure/window/reinforced/tinted,
@@ -16891,10 +16840,8 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "darkyellow2";
-	tag = "icon-darkyellow2 (EAST)"
+/turf/open/floor/tile/dark/yellow2{
+	dir = 8
 	},
 /area/ice_colony/surface/research/field_gear)
 "aPK" = (
@@ -17372,10 +17319,8 @@
 /area/ice_colony/surface/hangar/beta)
 "aQQ" = (
 /obj/structure/closet/radiation,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "darkyellow2";
-	tag = "icon-darkyellow2 (EAST)"
+/turf/open/floor/tile/dark/yellow2{
+	dir = 8
 	},
 /area/ice_colony/surface/research/field_gear)
 "aQR" = (
@@ -17717,10 +17662,8 @@
 	icon_state = "0-4";
 	d2 = 4
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "darkyellow2";
-	tag = "icon-darkyellow2 (EAST)"
+/turf/open/floor/tile/dark/yellow2{
+	dir = 8
 	},
 /area/ice_colony/surface/research/field_gear)
 "aRH" = (
@@ -19007,10 +18950,8 @@
 /obj/machinery/alarm{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "darkyellow2";
-	tag = "icon-darkyellow2 (EAST)"
+/turf/open/floor/tile/dark/yellow2{
+	dir = 8
 	},
 /area/ice_colony/surface/research/temporary)
 "aUH" = (
@@ -19202,10 +19143,8 @@
 	icon_state = "0-4";
 	d2 = 4
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "darkyellow2";
-	tag = "icon-darkyellow2 (EAST)"
+/turf/open/floor/tile/dark/yellow2{
+	dir = 8
 	},
 /area/ice_colony/surface/research/temporary)
 "aVi" = (
@@ -19381,10 +19320,8 @@
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southwest)
 "aVB" = (
-/turf/open/floor{
-	dir = 8;
-	icon_state = "darkyellow2";
-	tag = "icon-darkyellow2 (EAST)"
+/turf/open/floor/tile/dark/yellow2{
+	dir = 8
 	},
 /area/ice_colony/surface/research/temporary)
 "aVC" = (
@@ -19489,10 +19426,8 @@
 	},
 /area/ice_colony/surface/hangar/beta)
 "aVO" = (
-/turf/open/floor{
-	dir = 8;
-	icon_state = "darkyellow2";
-	tag = "icon-darkyellow2 (EAST)"
+/turf/open/floor/tile/dark/yellow2{
+	dir = 8
 	},
 /area/ice_colony/surface/research/tech_storage)
 "aVP" = (
@@ -20390,10 +20325,8 @@
 /obj/machinery/alarm{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "darkyellow2";
-	tag = "icon-darkyellow2 (EAST)"
+/turf/open/floor/tile/dark/yellow2{
+	dir = 8
 	},
 /area/ice_colony/surface/research/tech_storage)
 "aXT" = (
@@ -30380,10 +30313,7 @@
 	},
 /area/ice_colony/underground/medical/hallway)
 "bxq" = (
-/obj/item/roller{
-	tag = "icon-down";
-	icon_state = "down"
-	},
+/obj/structure/bed/roller,
 /turf/open/floor/tile/red/whitered{
 	dir = 4
 	},
@@ -31124,10 +31054,7 @@
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/medical/hallway)
 "bzf" = (
-/obj/item/roller{
-	tag = "icon-down";
-	icon_state = "down"
-	},
+/obj/structure/bed/roller,
 /turf/open/floor/tile/red/whitered{
 	dir = 6
 	},
@@ -31488,10 +31415,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/crew/canteen)
 "bAe" = (
-/obj/item/roller{
-	tag = "icon-down";
-	icon_state = "down"
-	},
+/obj/structure/bed/roller,
 /turf/open/floor/tile/red/whitered{
 	dir = 6
 	},
@@ -31766,10 +31690,7 @@
 	},
 /area/ice_colony/underground/medical/storage)
 "bAU" = (
-/obj/item/roller{
-	tag = "icon-down";
-	icon_state = "down"
-	},
+/obj/structure/bed/roller,
 /turf/open/floor/tile/red/whitered{
 	dir = 2
 	},
@@ -31944,8 +31865,6 @@
 /area/ice_colony/underground/command/center)
 "bBs" = (
 /obj/structure/window/reinforced/tinted{
-	tag = "icon-twindow (WEST)";
-	icon_state = "twindow";
 	dir = 8
 	},
 /obj/structure/window/reinforced/tinted{
@@ -32266,8 +32185,6 @@
 /area/ice_colony/underground/command/center)
 "bBY" = (
 /obj/structure/window/reinforced/tinted{
-	tag = "icon-twindow (WEST)";
-	icon_state = "twindow";
 	dir = 8
 	},
 /obj/machinery/computer/communications,
@@ -32320,8 +32237,6 @@
 /area/ice_colony/underground/command/center)
 "bCf" = (
 /obj/structure/window/reinforced/tinted{
-	tag = "icon-twindow (WEST)";
-	icon_state = "twindow";
 	dir = 8
 	},
 /obj/machinery/computer/station_alert,
@@ -32466,8 +32381,6 @@
 /area/ice_colony/underground/command/center)
 "bCw" = (
 /obj/structure/window/reinforced/tinted{
-	tag = "icon-twindow (WEST)";
-	icon_state = "twindow";
 	dir = 8
 	},
 /obj/structure/window/reinforced/tinted,
@@ -32478,8 +32391,6 @@
 /area/ice_colony/underground/command/center)
 "bCx" = (
 /obj/structure/window/reinforced/tinted{
-	tag = "icon-twindow (WEST)";
-	icon_state = "twindow";
 	dir = 8
 	},
 /obj/structure/window/reinforced/tinted,
@@ -35791,8 +35702,6 @@
 	dir = 4
 	},
 /obj/structure/window/reinforced/tinted{
-	tag = "icon-twindow (WEST)";
-	icon_state = "twindow";
 	dir = 8
 	},
 /obj/machinery/light,
@@ -35808,8 +35717,6 @@
 "bKm" = (
 /obj/machinery/computer/security,
 /obj/structure/window/reinforced/tinted{
-	tag = "icon-twindow (WEST)";
-	icon_state = "twindow";
 	dir = 8
 	},
 /turf/open/floor/tile/dark/red2,
@@ -35833,8 +35740,6 @@
 	dir = 4
 	},
 /obj/structure/window/reinforced/tinted{
-	tag = "icon-twindow (WEST)";
-	icon_state = "twindow";
 	dir = 8
 	},
 /turf/open/floor/tile/dark/red2,
@@ -39449,10 +39354,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "darkyellow2";
-	tag = "icon-darkyellow2 (EAST)"
+/turf/open/floor/tile/dark/yellow2{
+	dir = 8
 	},
 /area/ice_colony/underground/engineering)
 "bTm" = (
@@ -42083,10 +41986,8 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/engineering)
 "bYY" = (
-/turf/open/floor{
-	dir = 8;
-	icon_state = "darkyellow2";
-	tag = "icon-darkyellow2 (EAST)"
+/turf/open/floor/tile/dark/yellow2{
+	dir = 8
 	},
 /area/ice_colony/underground/engineering)
 "bYZ" = (
@@ -42095,10 +41996,8 @@
 /obj/item/storage/toolbox/mechanical,
 /obj/effect/landmark/random_item/crap,
 /obj/item/clothing/mask/rebreather,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "darkyellow2";
-	tag = "icon-darkyellow2 (EAST)"
+/turf/open/floor/tile/dark/yellow2{
+	dir = 8
 	},
 /area/ice_colony/underground/engineering)
 "bZa" = (
