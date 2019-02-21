@@ -1998,9 +1998,8 @@
 /turf/open/floor/plating,
 /area/lv624/ground/sand2)
 "ahz" = (
-/obj/structure/disposalpipe/junction{
-	dir = 8;
-	icon_state = "pipe-j2"
+/obj/structure/disposalpipe/junction/flipped{
+	dir = 8
 	},
 /turf/open/floor/plating/warning{
 	dir = 2
@@ -2145,7 +2144,6 @@
 /area/lv624/ground/sand2)
 "aid" = (
 /obj/structure/disposalpipe/junction{
-	icon_state = "pipe-j1";
 	dir = 4
 	},
 /turf/open/floor/plating/warning{
@@ -2533,9 +2531,8 @@
 /turf/open/gm/coast,
 /area/lv624/ground/sand2)
 "ajy" = (
-/obj/structure/disposalpipe/junction{
-	dir = 8;
-	icon_state = "pipe-j2"
+/obj/structure/disposalpipe/junction/flipped{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /turf/open/floor/plating/catwalk,
@@ -2579,9 +2576,8 @@
 	},
 /area/lv624/ground/sand8)
 "ajJ" = (
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 2
 	},
 /turf/open/floor/plating,
 /turf/open/floor/plating/catwalk,
@@ -2859,9 +2855,8 @@
 /turf/open/floor/plating/catwalk,
 /area/lv624/ground/sand9)
 "akP" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
 	},
 /turf/open/gm/coast{
 	dir = 4
@@ -3064,9 +3059,8 @@
 /turf/open/floor/tile/red/yellowfull,
 /area/lv624/ground/sand4)
 "alx" = (
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
 	},
 /turf/open/gm/river,
 /turf/open/floor/plating/catwalk,
@@ -3137,9 +3131,8 @@
 /turf/open/floor/plating/catwalk,
 /area/lv624/ground/river2)
 "alK" = (
-/obj/structure/disposalpipe/junction{
-	dir = 1;
-	icon_state = "pipe-j2"
+/obj/structure/disposalpipe/junction/flipped{
+	dir = 1
 	},
 /turf/open/gm/river,
 /turf/open/floor/plating/catwalk,
@@ -3167,9 +3160,8 @@
 /turf/open/floor/tile/red/yellowfull,
 /area/lv624/ground/sand4)
 "alQ" = (
-/obj/structure/disposalpipe/junction{
-	dir = 1;
-	icon_state = "pipe-j2"
+/obj/structure/disposalpipe/junction/flipped{
+	dir = 1
 	},
 /turf/open/gm/river,
 /turf/open/floor/plating/catwalk,
@@ -3203,9 +3195,8 @@
 /turf/open/floor,
 /area/lv624/ground/sand8)
 "alW" = (
-/obj/structure/disposalpipe/junction{
-	dir = 2;
-	icon_state = "pipe-j2"
+/obj/structure/disposalpipe/junction/flipped{
+	dir = 2
 	},
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/gm/river,
@@ -3755,9 +3746,8 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
 	},
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -3774,9 +3764,8 @@
 	},
 /area/lv624/ground/sand8)
 "anB" = (
-/obj/structure/disposalpipe/junction{
-	dir = 2;
-	icon_state = "pipe-j2"
+/obj/structure/disposalpipe/junction/flipped{
+	dir = 2
 	},
 /turf/open/gm/river,
 /area/lv624/ground/river3)
@@ -4549,7 +4538,6 @@
 /area/lv624/ground/jungle8)
 "aqm" = (
 /obj/structure/disposalpipe/trunk{
-	icon_state = "pipe-t";
 	dir = 4
 	},
 /turf/open/gm/river,
@@ -4575,7 +4563,6 @@
 /area/lv624/ground/jungle8)
 "aqr" = (
 /obj/structure/disposalpipe/trunk{
-	icon_state = "pipe-t";
 	dir = 8
 	},
 /obj/effect/landmark/lv624/fog_blocker,
@@ -4958,7 +4945,6 @@
 /area/lv624/ground/jungle5)
 "arO" = (
 /obj/structure/disposalpipe/trunk{
-	icon_state = "pipe-t";
 	dir = 8
 	},
 /turf/open/gm/river,

@@ -2023,7 +2023,6 @@
 "agg" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
-	icon_state = "pipe-t";
 	dir = 4
 	},
 /turf/open/floor/tile/dark/yellow2{
@@ -2032,7 +2031,6 @@
 /area/ice_colony/surface/engineering)
 "agh" = (
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
 	dir = 8
 	},
 /obj/structure/cable{
@@ -2050,7 +2048,6 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -2059,9 +2056,8 @@
 "agk" = (
 /obj/structure/table,
 /obj/item/clipboard,
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 2
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/engineering)
@@ -3785,9 +3781,8 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/substation/smes)
@@ -3902,7 +3897,6 @@
 /area/ice_colony/surface/substation/smes)
 "aku" = (
 /obj/structure/disposalpipe/trunk{
-	icon_state = "pipe-t";
 	dir = 8
 	},
 /obj/machinery/disposal,
@@ -4130,9 +4124,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/substation/smes)
 "ale" = (
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (NORTH)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
 	},
 /area/ice_colony/underground/hangar)
@@ -4145,9 +4137,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/hydroponics/north)
 "alg" = (
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (NORTHEAST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 5
 	},
 /area/ice_colony/underground/hangar)
@@ -4375,9 +4365,7 @@
 	},
 /area/ice_colony/exterior/surface/cliff)
 "alS" = (
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (EAST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
 /area/ice_colony/underground/hangar)
@@ -4698,17 +4686,15 @@
 /turf/open/floor/plating,
 /area/ice_colony/surface/mining)
 "amM" = (
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "amN" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -4773,9 +4759,8 @@
 /turf/open/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/north)
 "amW" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -4788,9 +4773,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/structure/disposalpipe/junction{
-	dir = 8;
-	icon_state = "pipe-j2"
+/obj/structure/disposalpipe/junction/flipped{
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -4832,9 +4816,8 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 2
 	},
 /turf/open/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/north)
@@ -4919,9 +4902,8 @@
 /area/ice_colony/surface/substation)
 "anm" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
-/obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 1
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/substation)
@@ -4941,9 +4923,8 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 2
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -4964,9 +4945,8 @@
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "ant" = (
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 2
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -4985,9 +4965,8 @@
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "anv" = (
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
 	},
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
@@ -5083,9 +5062,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 1
 	},
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
@@ -5321,9 +5299,7 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (EAST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
 /area/ice_colony/surface/tcomms)
@@ -5498,9 +5474,8 @@
 /area/ice_colony/exterior/surface/clearing/north)
 "aoH" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -5565,9 +5540,8 @@
 	},
 /area/ice_colony/surface/clinic/treatment)
 "aoO" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -5586,9 +5560,8 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 1
 	},
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
@@ -5713,7 +5686,6 @@
 "ape" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
-	icon_state = "pipe-t";
 	dir = 1
 	},
 /turf/open/floor/tile/darkgreen/darkgreen2{
@@ -6161,9 +6133,8 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
 	},
 /turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_w)
@@ -6205,9 +6176,8 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 2
 	},
 /turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_e)
@@ -6484,9 +6454,8 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/dorms)
@@ -6494,9 +6463,8 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/structure/disposalpipe/junction{
-	dir = 8;
-	icon_state = "pipe-j2"
+/obj/structure/disposalpipe/junction/flipped{
+	dir = 8
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/dorms)
@@ -6504,9 +6472,8 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
 	},
 /turf/open/floor/tile/darkgreen/darkgreen2/corner{
 	dir = 4
@@ -6516,9 +6483,8 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
 	},
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 1
@@ -6547,9 +6513,8 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/dorms)
@@ -6746,8 +6711,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/structure/disposalpipe/segment{
-	icon_state = "pipe-c";
+/obj/structure/disposalpipe/segment/corner{
 	dir = 1
 	},
 /turf/open/floor/tile/darkgreen/darkgreen2,
@@ -6769,9 +6733,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
 	},
 /turf/open/floor/tile/darkgreen/darkgreen2,
 /area/ice_colony/surface/dorms)
@@ -6907,9 +6870,8 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 1
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/dorms)
@@ -6950,9 +6912,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (EAST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
 /area/ice_colony/surface/tcomms)
@@ -7091,9 +7051,8 @@
 /turf/closed/wall/r_wall,
 /area/ice_colony/surface/hydroponics/lobby)
 "aso" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -7350,9 +7309,8 @@
 	},
 /area/ice_colony/surface/clinic/lobby)
 "asY" = (
-/obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 1
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -7366,9 +7324,8 @@
 /area/ice_colony/surface/clinic/lobby)
 "asZ" = (
 /obj/structure/flora/pottedplant,
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 2
 	},
 /turf/open/floor/tile/red/whitered{
 	dir = 5
@@ -7511,8 +7468,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/structure/disposalpipe/segment{
-	icon_state = "pipe-c";
+/obj/structure/disposalpipe/segment/corner{
 	dir = 1
 	},
 /obj/structure/cable{
@@ -7523,9 +7479,8 @@
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "atu" = (
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 2
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -7565,15 +7520,10 @@
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/valley/northwest)
 "aty" = (
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate";
-	icon_state = "warnplate"
-	},
+/turf/open/floor/plating/icefloor/warnplate,
 /area/ice_colony/underground/hangar)
 "atz" = (
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (SOUTHEAST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 6
 	},
 /area/ice_colony/underground/hangar)
@@ -7730,23 +7680,20 @@
 	},
 /area/ice_colony/surface/hydroponics/lobby)
 "atU" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
 	},
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "atV" = (
-/obj/structure/disposalpipe/junction{
-	dir = 8;
-	icon_state = "pipe-j2"
+/obj/structure/disposalpipe/junction/flipped{
+	dir = 8
 	},
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "atW" = (
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -7960,9 +7907,8 @@
 /turf/open/floor/wood,
 /area/ice_colony/surface/dorms)
 "auu" = (
-/obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 1
 	},
 /turf/open/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/north)
@@ -7980,9 +7926,8 @@
 /turf/open/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/north)
 "auw" = (
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
 	},
 /turf/open/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/north)
@@ -8015,9 +7960,8 @@
 	},
 /area/ice_colony/surface/clinic/lobby)
 "auA" = (
-/obj/structure/disposalpipe/junction{
-	dir = 8;
-	icon_state = "pipe-j2"
+/obj/structure/disposalpipe/junction/flipped{
+	dir = 8
 	},
 /turf/open/floor/tile/white,
 /area/ice_colony/surface/clinic/lobby)
@@ -8057,18 +8001,16 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
 	},
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 5
 	},
 /area/ice_colony/surface/hydroponics/lobby)
 "auG" = (
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
 	},
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 9
@@ -8126,24 +8068,21 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/dorms)
 "auO" = (
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
 	},
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 4
 	},
 /area/ice_colony/surface/dorms)
 "auP" = (
-/obj/structure/disposalpipe/segment{
-	icon_state = "pipe-c";
+/obj/structure/disposalpipe/segment/corner{
 	dir = 1
 	},
 /turf/open/snow/layer1,
@@ -8160,9 +8099,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/snow/layer1,
@@ -8176,16 +8114,14 @@
 	},
 /area/ice_colony/surface/clinic/lobby)
 "auT" = (
-/obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 1
 	},
 /turf/open/floor/tile/white,
 /area/ice_colony/surface/clinic/lobby)
 "auU" = (
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
 	},
 /turf/open/floor/tile/red/whitered/corner{
 	dir = 2
@@ -8245,15 +8181,13 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/disposalpipe/segment{
-	icon_state = "pipe-c";
+/obj/structure/disposalpipe/segment/corner{
 	dir = 1
 	},
 /turf/open/floor/tile/darkgreen/darkgreen2/corner,
 /area/ice_colony/surface/hydroponics/lobby)
 "ave" = (
 /obj/structure/disposalpipe/junction{
-	icon_state = "pipe-j1";
 	dir = 4
 	},
 /turf/open/floor/tile/darkgreen/darkgreen2/corner{
@@ -8346,9 +8280,8 @@
 /area/ice_colony/surface/dorms)
 "avr" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 2
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/dorms)
@@ -8358,15 +8291,13 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 1
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/dorms)
 "avt" = (
 /obj/structure/disposalpipe/junction{
-	icon_state = "pipe-j1";
 	dir = 4
 	},
 /turf/open/floor/tile/darkgreen/darkgreen2/corner{
@@ -8460,9 +8391,8 @@
 /turf/open/floor/tile/darkgreen/darkgreen2,
 /area/ice_colony/surface/hydroponics/lobby)
 "avG" = (
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 2
 	},
 /turf/open/floor/tile/red/whitered{
 	dir = 4
@@ -8601,7 +8531,6 @@
 "avV" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
-	icon_state = "pipe-t";
 	dir = 1
 	},
 /turf/open/floor/tile/red/whitered{
@@ -8623,8 +8552,7 @@
 	},
 /area/ice_colony/surface/dorms)
 "avY" = (
-/obj/structure/disposalpipe/segment{
-	icon_state = "pipe-c";
+/obj/structure/disposalpipe/segment/corner{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
@@ -8645,9 +8573,8 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/dorms)
 "awa" = (
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -8751,9 +8678,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/snow/layer0,
@@ -9033,7 +8959,6 @@
 /area/ice_colony/surface/hydroponics/lobby)
 "awZ" = (
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
 	dir = 8
 	},
 /turf/open/ice,
@@ -9168,9 +9093,8 @@
 /turf/open/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/north)
 "axq" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
 	},
 /turf/open/snow/layer3,
 /area/ice_colony/exterior/surface/clearing/north)
@@ -9180,9 +9104,8 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/snow/layer3,
@@ -9245,22 +9168,19 @@
 /turf/open/floor/wood,
 /area/ice_colony/surface/dorms)
 "axA" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
 	},
 /turf/open/snow/layer2,
 /area/ice_colony/exterior/surface/valley/southeast)
 "axB" = (
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
 	dir = 8
 	},
 /turf/open/snow/layer2,
 /area/ice_colony/exterior/surface/valley/southeast)
 "axC" = (
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
 	dir = 8
 	},
 /turf/open/snow/layer3,
@@ -9272,7 +9192,6 @@
 /area/ice_colony/exterior/surface/valley/west)
 "axE" = (
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
 	dir = 8
 	},
 /turf/closed/wall,
@@ -9284,7 +9203,6 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/trunk{
-	icon_state = "pipe-t";
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -9406,49 +9324,42 @@
 /area/ice_colony/surface/dorms)
 "axY" = (
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
 	dir = 8
 	},
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "axZ" = (
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
 	dir = 8
 	},
 /turf/open/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/north)
 "aya" = (
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
 	dir = 8
 	},
 /turf/open/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/north)
 "ayb" = (
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
 	dir = 8
 	},
 /turf/open/snow/layer3,
 /area/ice_colony/exterior/surface/clearing/north)
 "ayc" = (
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 2
 	},
 /turf/open/snow/layer3,
 /area/ice_colony/exterior/surface/clearing/north)
 "ayd" = (
-/obj/structure/disposalpipe/segment{
-	icon_state = "pipe-c";
+/obj/structure/disposalpipe/segment/corner{
 	dir = 1
 	},
 /turf/open/snow/layer3,
 /area/ice_colony/exterior/surface/clearing/north)
 "aye" = (
 /obj/structure/disposalpipe/junction{
-	icon_state = "pipe-j1";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -9458,7 +9369,6 @@
 /area/ice_colony/exterior/surface/clearing/north)
 "ayf" = (
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -9536,9 +9446,7 @@
 /obj/structure/table,
 /obj/item/device/analyzer,
 /obj/item/device/encryptionkey,
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (SOUTHEAST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 6
 	},
 /area/ice_colony/surface/tcomms)
@@ -9760,16 +9668,14 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "ayU" = (
 /obj/structure/disposalpipe/junction{
-	icon_state = "pipe-j1";
 	dir = 4
 	},
 /turf/open/snow/layer0,
@@ -9807,9 +9713,8 @@
 /turf/open/snow/layer3,
 /area/ice_colony/exterior/surface/valley/southeast)
 "ayZ" = (
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
@@ -9891,9 +9796,8 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
 	},
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
@@ -9916,9 +9820,8 @@
 /turf/open/snow/layer1,
 /area/ice_colony/exterior/surface/valley/southeast)
 "azo" = (
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -9942,16 +9845,14 @@
 	},
 /area/ice_colony/surface/dorms)
 "azr" = (
-/obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 1
 	},
 /turf/open/snow/layer3,
 /area/ice_colony/exterior/surface/clearing/north)
 "azs" = (
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
 	},
 /turf/open/snow/layer3,
 /area/ice_colony/exterior/surface/clearing/north)
@@ -10127,9 +10028,8 @@
 /turf/closed/wall/r_wall,
 /area/ice_colony/surface/garage/repair)
 "azS" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/dorms/canteen)
@@ -10212,9 +10112,8 @@
 	},
 /area/ice_colony/surface/dorms/canteen)
 "aAe" = (
-/obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
@@ -10311,9 +10210,8 @@
 	},
 /area/ice_colony/surface/hydroponics/south)
 "aAv" = (
-/obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 1
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -10702,9 +10600,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 1
 	},
 /turf/open/floor/tile/dark/blue2{
 	dir = 2
@@ -10728,7 +10625,6 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
 /obj/structure/disposalpipe/junction{
-	icon_state = "pipe-j1";
 	dir = 4
 	},
 /turf/open/floor/tile/dark2,
@@ -10865,9 +10761,8 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
 	},
-/obj/structure/disposalpipe/junction{
-	dir = 1;
-	icon_state = "pipe-j2"
+/obj/structure/disposalpipe/junction/flipped{
+	dir = 1
 	},
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
@@ -11036,7 +10931,6 @@
 "aCi" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
-	icon_state = "pipe-t";
 	dir = 4
 	},
 /turf/open/floor/tile/dark/yellow2{
@@ -11044,9 +10938,8 @@
 	},
 /area/ice_colony/surface/garage/repair)
 "aCj" = (
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 2
 	},
 /obj/structure/table,
 /obj/effect/spawner/random/tool,
@@ -11508,18 +11401,16 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
 	},
 /turf/open/floor/tile/dark/brown2{
 	dir = 1
 	},
 /area/ice_colony/surface/garage/one)
 "aDs" = (
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
 	},
 /turf/open/floor/tile/dark/brown2{
 	dir = 4
@@ -11716,7 +11607,6 @@
 	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
 	dir = 8
 	},
 /turf/open/floor/tile/dark2,
@@ -11755,9 +11645,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/structure/disposalpipe/junction{
-	dir = 8;
-	icon_state = "pipe-j2"
+/obj/structure/disposalpipe/junction/flipped{
+	dir = 8
 	},
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark2,
@@ -11771,9 +11660,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/garage/one)
@@ -11786,9 +11674,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/garage/one)
@@ -11802,7 +11689,6 @@
 	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
 	dir = 8
 	},
 /obj/machinery/door/airlock/almayer/secure{
@@ -11862,9 +11748,8 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/garage/two)
 "aEc" = (
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/garage/two)
@@ -11966,9 +11851,8 @@
 	},
 /area/ice_colony/surface/command/control/office)
 "aEt" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
 	},
 /turf/open/floor/tile/dark/blue2{
 	dir = 2
@@ -12034,9 +11918,7 @@
 	icon_state = "0-4";
 	d2 = 4
 	},
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (WEST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
 /area/ice_colony/surface/tcomms)
@@ -12141,8 +12023,7 @@
 	},
 /area/ice_colony/surface/command/control)
 "aES" = (
-/obj/structure/disposalpipe/segment{
-	icon_state = "pipe-c";
+/obj/structure/disposalpipe/segment/corner{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -12160,9 +12041,8 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/command/control)
 "aEU" = (
-/obj/structure/disposalpipe/junction{
-	dir = 8;
-	icon_state = "pipe-j2"
+/obj/structure/disposalpipe/junction/flipped{
+	dir = 8
 	},
 /turf/open/floor/tile/dark/blue2{
 	dir = 1
@@ -12293,9 +12173,8 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/garage/one)
@@ -12314,7 +12193,6 @@
 	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
 	dir = 8
 	},
 /obj/effect/decal/cleanable/blood,
@@ -12347,7 +12225,6 @@
 	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
 	dir = 8
 	},
 /turf/open/floor/tile/dark2,
@@ -12413,7 +12290,6 @@
 	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
 	dir = 8
 	},
 /turf/open/floor/tile/dark2,
@@ -12435,14 +12311,12 @@
 	icon_state = "1-8"
 	},
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
 	dir = 8
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/garage/two)
 "aFC" = (
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
 	dir = 8
 	},
 /turf/open/floor/tile/dark2,
@@ -12487,9 +12361,8 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/command/control/office)
 "aFH" = (
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -12791,9 +12664,8 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/structure/disposalpipe/junction{
-	dir = 8;
-	icon_state = "pipe-j2"
+/obj/structure/disposalpipe/junction/flipped{
+	dir = 8
 	},
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/pass)
@@ -12810,9 +12682,8 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
 	},
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/pass)
@@ -12828,9 +12699,8 @@
 	icon_state = "1-8"
 	},
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
 	},
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/pass)
@@ -12908,9 +12778,8 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -12932,7 +12801,6 @@
 	icon_state = "1-4"
 	},
 /obj/structure/disposalpipe/junction{
-	icon_state = "pipe-j1";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -13000,7 +12868,6 @@
 /area/ice_colony/surface/command/crisis)
 "aGR" = (
 /obj/structure/disposalpipe/junction{
-	icon_state = "pipe-j1";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
@@ -13039,9 +12906,8 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/command/control)
 "aGT" = (
-/obj/structure/disposalpipe/junction{
-	dir = 1;
-	icon_state = "pipe-j2"
+/obj/structure/disposalpipe/junction/flipped{
+	dir = 1
 	},
 /obj/structure/cable{
 	d1 = 2;
@@ -13078,9 +12944,8 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/garage/one)
 "aGW" = (
-/obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 1
 	},
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/pass)
@@ -13091,9 +12956,8 @@
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/pass)
 "aGY" = (
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
 	},
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/pass)
@@ -13104,9 +12968,8 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 2
 	},
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/pass)
@@ -13290,9 +13153,8 @@
 	},
 /area/ice_colony/surface/command/control)
 "aHv" = (
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
 	},
 /obj/structure/flora/pottedplant,
 /turf/open/floor/tile/dark/blue2{
@@ -13329,8 +13191,7 @@
 	},
 /area/ice_colony/surface/command/control)
 "aHA" = (
-/obj/structure/disposalpipe/segment{
-	icon_state = "pipe-c";
+/obj/structure/disposalpipe/segment/corner{
 	dir = 1
 	},
 /obj/structure/cable{
@@ -13579,9 +13440,8 @@
 /turf/open/floor/wood,
 /area/ice_colony/surface/command/control/pv1)
 "aIf" = (
-/obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable{
@@ -13608,9 +13468,8 @@
 /turf/open/floor/wood,
 /area/ice_colony/surface/command/control/pv2)
 "aIj" = (
-/obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 1
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -14218,7 +14077,6 @@
 	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
 	dir = 8
 	},
 /obj/effect/decal/cleanable/blood/gibs,
@@ -14480,9 +14338,8 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/hangar)
 "aKU" = (
-/obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 1
 	},
 /obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/tile/dark2,
@@ -14546,9 +14403,8 @@
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/pass)
 "aLe" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
@@ -14628,7 +14484,6 @@
 	icon_state = "2-4"
 	},
 /obj/structure/disposalpipe/junction{
-	icon_state = "pipe-j1";
 	dir = 4
 	},
 /turf/open/snow/layer0,
@@ -14677,9 +14532,8 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/obj/structure/disposalpipe/junction{
-	dir = 1;
-	icon_state = "pipe-j2"
+/obj/structure/disposalpipe/junction/flipped{
+	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
@@ -15019,9 +14873,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (WEST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
 /area/ice_colony/underground/westroadtunnel)
@@ -15064,9 +14916,8 @@
 /turf/open/floor/tile/dark,
 /area/ice_colony/surface/hydroponics/north)
 "aMw" = (
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -15556,9 +15407,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
 	},
 /obj/effect/decal/cleanable/blood/gibs,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -16384,9 +16234,8 @@
 /turf/open/snow/layer1,
 /area/ice_colony/exterior/surface/valley/southwest)
 "aPV" = (
-/obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 1
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -16498,9 +16347,8 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 2;
@@ -16674,9 +16522,8 @@
 	},
 /area/ice_colony/surface/hangar/alpha)
 "aQF" = (
-/obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
@@ -16802,9 +16649,8 @@
 	},
 /area/ice_colony/surface/research)
 "aQS" = (
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -17120,9 +16966,8 @@
 /obj/machinery/power/apc/drained{
 	dir = 8
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
 	},
 /obj/structure/cable{
 	icon_state = "0-4";
@@ -17149,7 +16994,6 @@
 /area/ice_colony/surface/hangar/beta)
 "aRJ" = (
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
 	dir = 8
 	},
 /obj/structure/cable{
@@ -17168,7 +17012,6 @@
 	req_access_txt = "100"
 	},
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
 	dir = 8
 	},
 /obj/structure/cable{
@@ -17179,9 +17022,8 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/research/field_gear)
 "aRL" = (
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 2
 	},
 /obj/structure/cable{
 	d1 = 2;
@@ -17227,9 +17069,8 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 2
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -17240,7 +17081,6 @@
 /area/ice_colony/exterior/surface/valley/southwest)
 "aRR" = (
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
 	dir = 8
 	},
 /obj/effect/decal/warning_stripes/thin{
@@ -17257,7 +17097,6 @@
 /area/ice_colony/surface/research)
 "aRS" = (
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
 	dir = 8
 	},
 /obj/effect/decal/warning_stripes/thin{
@@ -17274,7 +17113,6 @@
 /area/ice_colony/surface/research)
 "aRT" = (
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
 	dir = 8
 	},
 /obj/structure/cable{
@@ -17288,7 +17126,6 @@
 /area/ice_colony/surface/research)
 "aRU" = (
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
 	dir = 8
 	},
 /obj/structure/cable{
@@ -17303,9 +17140,8 @@
 	dir = 1;
 	on = 1
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -17533,7 +17369,6 @@
 "aSC" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
-	icon_state = "pipe-t";
 	dir = 1
 	},
 /turf/open/floor/tile/dark/yellow2{
@@ -17706,7 +17541,6 @@
 /area/ice_colony/surface/hangar/alpha)
 "aSY" = (
 /obj/structure/disposalpipe/junction{
-	icon_state = "pipe-j1";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -17738,9 +17572,8 @@
 	},
 /area/ice_colony/surface/hangar/beta)
 "aTc" = (
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -17875,8 +17708,7 @@
 	},
 /area/ice_colony/surface/hangar/beta)
 "aTx" = (
-/obj/structure/disposalpipe/segment{
-	icon_state = "pipe-c";
+/obj/structure/disposalpipe/segment/corner{
 	dir = 1
 	},
 /obj/structure/cable{
@@ -17900,7 +17732,6 @@
 /area/ice_colony/surface/hangar/alpha)
 "aTz" = (
 /obj/structure/disposalpipe/junction{
-	icon_state = "pipe-j1";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -17931,7 +17762,6 @@
 /area/ice_colony/surface/hangar/alpha)
 "aTC" = (
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -17949,7 +17779,6 @@
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
 	dir = 8
 	},
 /obj/structure/cable{
@@ -17986,7 +17815,6 @@
 /area/ice_colony/surface/hangar/checkpoint)
 "aTH" = (
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
 	dir = 8
 	},
 /obj/effect/decal/warning_stripes/thin{
@@ -18003,7 +17831,6 @@
 /area/ice_colony/surface/research)
 "aTI" = (
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
 	dir = 8
 	},
 /obj/structure/cable{
@@ -18022,7 +17849,6 @@
 /area/ice_colony/surface/research)
 "aTJ" = (
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
 	dir = 8
 	},
 /obj/structure/cable{
@@ -18036,7 +17862,6 @@
 /area/ice_colony/surface/research)
 "aTK" = (
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
 	dir = 8
 	},
 /obj/structure/cable{
@@ -18050,7 +17875,6 @@
 /area/ice_colony/surface/research)
 "aTL" = (
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -18473,9 +18297,7 @@
 	},
 /area/ice_colony/exterior/surface/landing_pad_external)
 "aUO" = (
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (NORTH)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/valley/southwest)
@@ -18611,9 +18433,8 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/research/temporary)
 "aVj" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -18627,7 +18448,6 @@
 /area/ice_colony/surface/research/temporary)
 "aVk" = (
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -18642,7 +18462,6 @@
 /area/ice_colony/surface/research/temporary)
 "aVl" = (
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -18667,7 +18486,6 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
 	dir = 8
 	},
 /obj/structure/cable{
@@ -18729,17 +18547,13 @@
 /area/ice_colony/exterior/surface/valley/southwest)
 "aVw" = (
 /obj/structure/fence,
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (NORTH)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/container_yard)
 "aVx" = (
 /obj/structure/fence,
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (NORTHEAST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 5
 	},
 /area/ice_colony/exterior/surface/container_yard)
@@ -18809,15 +18623,13 @@
 	dir = 1;
 	on = 1
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 1
 	},
 /turf/open/floor/tile/dark/brown2,
 /area/ice_colony/surface/research)
 "aVI" = (
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
 	dir = 8
 	},
 /turf/open/floor/tile/dark/brown2{
@@ -18837,9 +18649,8 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 2
 	},
 /turf/open/floor/tile/dark/purple2{
 	dir = 4
@@ -18916,9 +18727,8 @@
 	dir = 8
 	},
 /obj/machinery/light,
-/obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 1
 	},
 /turf/open/floor/tile/dark/purple2/corner{
 	dir = 4
@@ -18937,9 +18747,7 @@
 /area/ice_colony/exterior/surface/container_yard)
 "aVX" = (
 /obj/structure/fence,
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (EAST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/container_yard)
@@ -18948,7 +18756,6 @@
 	dir = 2
 	},
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
 	dir = 8
 	},
 /turf/open/floor/tile/dark/purple2{
@@ -18960,9 +18767,8 @@
 	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 2
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -19033,10 +18839,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/north_west)
 "aWi" = (
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate";
-	icon_state = "warnplate"
-	},
+/turf/open/floor/plating/icefloor/warnplate,
 /area/ice_colony/exterior/surface/valley/southwest)
 "aWj" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -19148,9 +18951,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
@@ -19209,9 +19011,8 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/hangar/beta)
 "aWC" = (
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
@@ -19337,8 +19138,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/structure/disposalpipe/segment{
-	icon_state = "pipe-c";
+/obj/structure/disposalpipe/segment/corner{
 	dir = 1
 	},
 /obj/machinery/firealarm{
@@ -19375,23 +19175,20 @@
 /turf/open/ice,
 /area/ice_colony/exterior/surface/landing_pad_external)
 "aWX" = (
-/obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 1
 	},
 /obj/machinery/light,
 /turf/open/floor/tile/dark/yellow2,
 /area/ice_colony/surface/research/temporary)
 "aWY" = (
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
 	dir = 8
 	},
 /turf/open/floor/tile/dark/yellow2,
 /area/ice_colony/surface/research/temporary)
 "aWZ" = (
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
 	dir = 8
 	},
 /turf/open/floor/tile/dark/yellow2/corner{
@@ -19400,15 +19197,13 @@
 /area/ice_colony/surface/research/temporary)
 "aXa" = (
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
 	dir = 8
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/research/temporary)
 "aXb" = (
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 2
 	},
 /turf/open/floor/tile/dark/yellow2{
 	dir = 4
@@ -19457,9 +19252,7 @@
 /obj/structure/barricade/metal{
 	dir = 4
 	},
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (EAST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/container_yard)
@@ -19488,9 +19281,7 @@
 /area/ice_colony/surface/research/tech_storage)
 "aXm" = (
 /obj/structure/fence,
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (NORTHWEST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 9
 	},
 /area/ice_colony/exterior/surface/container_yard)
@@ -19610,16 +19401,12 @@
 /obj/machinery/landinglight/ds1/delaythree{
 	dir = 4
 	},
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (EAST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/landing_pad)
 "aXB" = (
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (NORTHWEST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 9
 	},
 /area/ice_colony/exterior/surface/landing_pad)
@@ -19655,7 +19442,6 @@
 "aXF" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
-	icon_state = "pipe-t";
 	dir = 1
 	},
 /turf/open/floor/tile/dark/yellow2{
@@ -19674,9 +19460,7 @@
 /area/ice_colony/exterior/surface/clearing/south)
 "aXH" = (
 /obj/structure/fence,
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (WEST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/container_yard)
@@ -19748,9 +19532,7 @@
 	},
 /area/ice_colony/surface/hangar/beta)
 "aXR" = (
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (NORTHEAST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 5
 	},
 /area/ice_colony/exterior/surface/landing_pad)
@@ -19759,9 +19541,8 @@
 /obj/effect/spawner/random/powercell,
 /obj/effect/spawner/random/bomb_supply,
 /obj/effect/landmark/random_item/crap,
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
 	},
 /obj/machinery/alarm{
 	dir = 4
@@ -19772,15 +19553,13 @@
 /area/ice_colony/surface/research/tech_storage)
 "aXT" = (
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
 	dir = 8
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/research/tech_storage)
 "aXU" = (
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
@@ -19876,9 +19655,7 @@
 	},
 /area/ice_colony/surface/hangar/beta)
 "aYi" = (
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (EAST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/container_yard)
@@ -19921,16 +19698,13 @@
 /obj/machinery/landinglight/ds1{
 	dir = 4
 	},
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (EAST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/landing_pad)
 "aYq" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
-	icon_state = "pipe-t";
 	dir = 1
 	},
 /turf/open/floor/tile/dark/yellow2{
@@ -19977,9 +19751,7 @@
 /turf/open/floor/tile/dark/yellow2,
 /area/ice_colony/surface/research/tech_storage)
 "aYB" = (
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (NORTH)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/landing_pad)
@@ -19991,9 +19763,7 @@
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad)
 "aYE" = (
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (SOUTHWEST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 10
 	},
 /area/ice_colony/exterior/surface/landing_pad)
@@ -20003,31 +19773,21 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate";
-	icon_state = "warnplate"
-	},
+/turf/open/floor/plating/icefloor/warnplate,
 /area/ice_colony/exterior/surface/landing_pad)
 "aYG" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate";
-	icon_state = "warnplate"
-	},
+/turf/open/floor/plating/icefloor/warnplate,
 /area/ice_colony/exterior/surface/landing_pad)
 "aYH" = (
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (SOUTHEAST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 6
 	},
 /area/ice_colony/exterior/surface/landing_pad)
 "aYI" = (
 /obj/machinery/floodlight/landing,
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (NORTHEAST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 5
 	},
 /area/ice_colony/exterior/surface/landing_pad)
@@ -20055,9 +19815,7 @@
 /turf/open/floor/tile/dark/yellow2,
 /area/ice_colony/surface/research/tech_storage)
 "aYO" = (
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (EAST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/landing_pad)
@@ -20164,9 +19922,8 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
 	},
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad)
@@ -20174,9 +19931,7 @@
 /obj/structure/barricade/metal{
 	dir = 1
 	},
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (NORTH)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/landing_pad)
@@ -20188,9 +19943,7 @@
 /area/ice_colony/surface/hangar/alpha)
 "aZh" = (
 /obj/machinery/floodlight/landing,
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (NORTH)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/landing_pad)
@@ -20285,9 +20038,7 @@
 /obj/machinery/landinglight/ds1/delaytwo{
 	dir = 4
 	},
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (EAST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/landing_pad)
@@ -20299,9 +20050,8 @@
 	},
 /area/ice_colony/surface/research/tech_storage)
 "aZy" = (
-/obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
@@ -20334,9 +20084,8 @@
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad)
 "aZB" = (
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
@@ -20429,23 +20178,14 @@
 /area/ice_colony/surface/hangar/alpha)
 "aZQ" = (
 /obj/structure/barricade/metal,
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate";
-	icon_state = "warnplate"
-	},
+/turf/open/floor/plating/icefloor/warnplate,
 /area/ice_colony/exterior/surface/landing_pad)
 "aZR" = (
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate";
-	icon_state = "warnplate"
-	},
+/turf/open/floor/plating/icefloor/warnplate,
 /area/ice_colony/exterior/surface/landing_pad)
 "aZS" = (
 /obj/machinery/floodlight/landing,
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate";
-	icon_state = "warnplate"
-	},
+/turf/open/floor/plating/icefloor/warnplate,
 /area/ice_colony/exterior/surface/landing_pad)
 "aZT" = (
 /turf/open/floor/tile/dark/brown2{
@@ -20522,9 +20262,7 @@
 	},
 /area/ice_colony/underground/westroadtunnel)
 "bab" = (
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (EAST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
 /area/ice_colony/underground/westroadtunnel)
@@ -20606,9 +20344,7 @@
 	},
 /area/ice_colony/surface/hangar/beta)
 "bao" = (
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (NORTHWEST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 9
 	},
 /area/ice_colony/underground/hangar)
@@ -20676,9 +20412,7 @@
 /turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "bay" = (
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (WEST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
 /area/ice_colony/underground/westroadtunnel)
@@ -20748,9 +20482,7 @@
 /turf/open/floor/tile/dark/yellow2,
 /area/ice_colony/surface/research/tech_storage)
 "baJ" = (
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (WEST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
 /area/ice_colony/underground/hangar)
@@ -20829,9 +20561,8 @@
 	},
 /area/ice_colony/surface/hangar/alpha)
 "baR" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
@@ -20875,9 +20606,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (EAST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
 /area/ice_colony/underground/westroadtunnel)
@@ -20965,9 +20694,7 @@
 	dir = 8
 	},
 /obj/machinery/colony_floodlight,
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (NORTHWEST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 9
 	},
 /area/ice_colony/exterior/surface/landing_pad)
@@ -20975,9 +20702,7 @@
 /obj/structure/barricade/metal{
 	dir = 8
 	},
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (WEST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/landing_pad)
@@ -20993,9 +20718,7 @@
 /obj/machinery/landinglight/ds1/delaytwo{
 	dir = 1
 	},
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (NORTHEAST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 5
 	},
 /area/ice_colony/exterior/surface/landing_pad)
@@ -21034,9 +20757,7 @@
 /turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "bbk" = (
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (SOUTHEAST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 6
 	},
 /area/ice_colony/underground/westroadtunnel)
@@ -21086,9 +20807,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (WEST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/landing_pad)
@@ -21124,9 +20843,7 @@
 /turf/open/snow/layer2,
 /area/ice_colony/exterior/surface/valley/south)
 "bbu" = (
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (WEST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/landing_pad)
@@ -21161,24 +20878,17 @@
 /area/ice_colony/underground/responsehangar)
 "bbC" = (
 /obj/structure/fence,
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (SOUTHWEST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 10
 	},
 /area/ice_colony/exterior/surface/container_yard)
 "bbD" = (
 /obj/structure/fence,
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate";
-	icon_state = "warnplate"
-	},
+/turf/open/floor/plating/icefloor/warnplate,
 /area/ice_colony/exterior/surface/container_yard)
 "bbE" = (
 /obj/machinery/space_heater,
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (SOUTHWEST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 10
 	},
 /area/ice_colony/underground/westroadtunnel)
@@ -21189,9 +20899,7 @@
 /area/ice_colony/surface/command/crisis)
 "bbG" = (
 /obj/structure/fence,
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (SOUTHEAST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 6
 	},
 /area/ice_colony/exterior/surface/container_yard)
@@ -21253,15 +20961,12 @@
 /obj/machinery/landinglight/ds1/delayone{
 	dir = 4
 	},
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (EAST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/landing_pad)
 "bbR" = (
-/obj/structure/disposalpipe/segment{
-	icon_state = "pipe-c";
+/obj/structure/disposalpipe/segment/corner{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -21343,9 +21048,7 @@
 	dir = 8
 	},
 /obj/machinery/colony_floodlight,
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (WEST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/landing_pad)
@@ -21732,9 +21435,7 @@
 /obj/machinery/landinglight/ds1/delayone{
 	dir = 4
 	},
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (SOUTHEAST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 6
 	},
 /area/ice_colony/exterior/surface/landing_pad)
@@ -21792,9 +21493,7 @@
 /area/ice_colony/underground/requesition)
 "bds" = (
 /obj/machinery/floodlight/landing,
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (SOUTHEAST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 6
 	},
 /area/ice_colony/exterior/surface/landing_pad)
@@ -21990,17 +21689,13 @@
 /area/ice_colony/underground/requesition)
 "bdS" = (
 /obj/machinery/landinglight/ds2,
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (EAST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/landing_pad_external)
 "bdT" = (
 /obj/machinery/landinglight/ds2/delaythree,
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (WEST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/landing_pad_external)
@@ -22092,9 +21787,8 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/excavation)
 "beg" = (
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -22115,9 +21809,7 @@
 /turf/closed/ice,
 /area/ice_colony/exterior/surface/valley/southwest)
 "bej" = (
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (NORTHEAST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 5
 	},
 /area/ice_colony/underground/westroadtunnel)
@@ -22239,9 +21931,7 @@
 /area/ice_colony/surface/bar/bar)
 "bey" = (
 /obj/structure/inflatable,
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (NORTHWEST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 9
 	},
 /area/ice_colony/surface/excavation/storage)
@@ -22265,18 +21955,13 @@
 /area/ice_colony/underground/hangar)
 "beC" = (
 /obj/structure/inflatable,
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (NORTH)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
 	},
 /area/ice_colony/surface/excavation/storage)
 "beD" = (
 /obj/machinery/landinglight/ds1/delayone,
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate";
-	icon_state = "warnplate"
-	},
+/turf/open/floor/plating/icefloor/warnplate,
 /area/ice_colony/exterior/surface/landing_pad)
 "beE" = (
 /turf/closed/ice_rock/corners{
@@ -22285,10 +21970,7 @@
 /area/ice_colony/exterior/surface/valley/west)
 "beF" = (
 /obj/machinery/landinglight/ds1/delaythree,
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate";
-	icon_state = "warnplate"
-	},
+/turf/open/floor/plating/icefloor/warnplate,
 /area/ice_colony/exterior/surface/landing_pad)
 "beG" = (
 /obj/effect/decal/cleanable/blood,
@@ -22330,9 +22012,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (WEST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
 /area/ice_colony/surface/excavation/storage)
@@ -22463,18 +22143,13 @@
 	dir = 8
 	},
 /obj/machinery/landinglight/ds1/delaythree,
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (SOUTHWEST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 10
 	},
 /area/ice_colony/exterior/surface/landing_pad)
 "bfg" = (
 /obj/machinery/landinglight/ds1,
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate";
-	icon_state = "warnplate"
-	},
+/turf/open/floor/plating/icefloor/warnplate,
 /area/ice_colony/exterior/surface/landing_pad)
 "bfh" = (
 /turf/closed/shuttle/ert{
@@ -22488,19 +22163,14 @@
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bfj" = (
 /obj/machinery/landinglight/ds1/delaytwo,
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate";
-	icon_state = "warnplate"
-	},
+/turf/open/floor/plating/icefloor/warnplate,
 /area/ice_colony/exterior/surface/landing_pad)
 "bfk" = (
 /obj/machinery/landinglight/ds1/delayone,
 /obj/machinery/landinglight/ds1/delaytwo{
 	dir = 4
 	},
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (SOUTHEAST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 6
 	},
 /area/ice_colony/exterior/surface/landing_pad)
@@ -22580,9 +22250,7 @@
 /area/ice_colony/underground/maintenance/north)
 "bfw" = (
 /obj/structure/inflatable,
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (WEST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
 /area/ice_colony/surface/excavation/storage)
@@ -22595,10 +22263,7 @@
 	name = "West Hangar";
 	pixel_x = 24;
 	},
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate";
-	icon_state = "warnplate"
-	},
+/turf/open/floor/plating/icefloor/warnplate,
 /area/ice_colony/underground/hangar)
 "bfz" = (
 /obj/structure/disposalpipe/segment,
@@ -22662,9 +22327,7 @@
 	icon_state = "4-8"
 	},
 /obj/structure/inflatable/door,
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (WEST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
 /area/ice_colony/surface/excavation/storage)
@@ -22708,8 +22371,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/structure/disposalpipe/segment{
-	icon_state = "pipe-c";
+/obj/structure/disposalpipe/segment/corner{
 	dir = 1
 	},
 /turf/open/floor/tile/dark2,
@@ -22794,9 +22456,8 @@
 	icon_state = "1-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/requesition/lobby)
@@ -22819,7 +22480,6 @@
 "bfY" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
-	icon_state = "pipe-t";
 	dir = 8
 	},
 /obj/machinery/firealarm{
@@ -22846,9 +22506,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (NORTHEAST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 5
 	},
 /area/ice_colony/exterior/surface/valley/southwest)
@@ -22889,9 +22547,7 @@
 /area/ice_colony/underground/requesition)
 "bgk" = (
 /obj/structure/inflatable/door,
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (WEST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
 /area/ice_colony/surface/excavation/storage)
@@ -23120,9 +22776,7 @@
 /area/ice_colony/surface/bar/bar)
 "bgT" = (
 /obj/machinery/landinglight/ds2/delaythree,
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (EAST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/landing_pad_external)
@@ -23303,9 +22957,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 10
 	},
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (WEST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
 /area/ice_colony/surface/excavation/storage)
@@ -23402,9 +23054,7 @@
 /turf/open/floor/tile/dark/purple2,
 /area/ice_colony/surface/excavation)
 "bhH" = (
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (NORTHWEST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 9
 	},
 /area/ice_colony/underground/westroadtunnel)
@@ -23695,9 +23345,7 @@
 /area/ice_colony/underground/requesition/lobby)
 "bir" = (
 /obj/machinery/landinglight/ds2/delaytwo,
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (WEST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/landing_pad_external)
@@ -24238,9 +23886,7 @@
 /obj/structure/cargo_container/red{
 	dir = 4
 	},
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (SOUTHEAST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 6
 	},
 /area/ice_colony/underground/hangar)
@@ -24298,23 +23944,20 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/requesition/lobby)
 "bjQ" = (
-/obj/structure/disposalpipe/junction{
-	dir = 8;
-	icon_state = "pipe-j2"
+/obj/structure/disposalpipe/junction/flipped{
+	dir = 8
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/requesition/lobby)
 "bjR" = (
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/requesition/lobby)
@@ -24381,8 +24024,7 @@
 /turf/open/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/pass)
 "bkd" = (
-/obj/structure/disposalpipe/segment{
-	icon_state = "pipe-c";
+/obj/structure/disposalpipe/segment/corner{
 	dir = 1
 	},
 /turf/open/floor/tile/dark2,
@@ -24396,7 +24038,6 @@
 "bkf" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
-	icon_state = "pipe-t";
 	dir = 8
 	},
 /turf/open/floor/tile/dark/brown2{
@@ -24446,9 +24087,7 @@
 /area/ice_colony/surface/research)
 "bko" = (
 /obj/structure/rack,
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (WEST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
 /area/ice_colony/underground/westroadtunnel)
@@ -25131,9 +24770,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (EAST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/valley/southwest)
@@ -25675,9 +25312,8 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -25869,9 +25505,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (SOUTHEAST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 6
 	},
 /area/ice_colony/exterior/surface/valley/southwest)
@@ -26187,9 +25821,7 @@
 	pixel_x = 4;
 	pixel_y = 31
 	},
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (WEST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
 /area/ice_colony/underground/westroadtunnel)
@@ -26258,9 +25890,8 @@
 	},
 /area/ice_colony/underground/engineering)
 "bpq" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/north_west)
@@ -26599,9 +26230,8 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 2
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/engineering)
@@ -26810,9 +26440,8 @@
 /area/ice_colony/underground/maintenance/engineering)
 "bqJ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/north_west)
@@ -26829,8 +26458,7 @@
 /area/ice_colony/underground/engineering)
 "bqM" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/disposalpipe/segment{
-	icon_state = "pipe-c";
+/obj/structure/disposalpipe/segment/corner{
 	dir = 1
 	},
 /turf/open/floor/tile/dark2,
@@ -26980,9 +26608,8 @@
 	},
 /area/ice_colony/underground/hallway/south_east)
 "bro" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
@@ -27156,9 +26783,8 @@
 	},
 /area/ice_colony/underground/hallway/north_west)
 "brJ" = (
-/obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 1
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/north_west)
@@ -27257,9 +26883,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (NORTHWEST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 9
 	},
 /area/ice_colony/underground/responsehangar)
@@ -27472,9 +27096,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/structure/disposalpipe/junction{
-	dir = 1;
-	icon_state = "pipe-j2"
+/obj/structure/disposalpipe/junction/flipped{
+	dir = 1
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/medical/lobby)
@@ -28015,9 +27638,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -28063,9 +27685,8 @@
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/bball)
 "buf" = (
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
@@ -28342,9 +27963,8 @@
 	},
 /area/ice_colony/underground/medical/treatment)
 "buP" = (
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 2
 	},
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/medical/treatment)
@@ -28597,8 +28217,7 @@
 	},
 /area/ice_colony/underground/medical/lobby)
 "bvw" = (
-/obj/structure/disposalpipe/segment{
-	icon_state = "pipe-c";
+/obj/structure/disposalpipe/segment/corner{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -28895,8 +28514,7 @@
 	},
 /area/ice_colony/surface/hangar/beta)
 "bwe" = (
-/obj/structure/disposalpipe/segment{
-	icon_state = "pipe-c";
+/obj/structure/disposalpipe/segment/corner{
 	dir = 1
 	},
 /turf/open/floor/tile/red/whitered{
@@ -28921,9 +28539,8 @@
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/medical/treatment)
 "bwh" = (
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/white,
@@ -28945,9 +28562,8 @@
 	},
 /area/ice_colony/underground/medical/or)
 "bwl" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable/yellow{
@@ -29006,9 +28622,8 @@
 	},
 /area/ice_colony/underground/medical/treatment)
 "bwu" = (
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable/yellow{
@@ -29310,8 +28925,7 @@
 /turf/closed/ice/straight,
 /area/ice_colony/exterior/underground/caves/open)
 "bxf" = (
-/obj/structure/disposalpipe/segment{
-	icon_state = "pipe-c";
+/obj/structure/disposalpipe/segment/corner{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -30165,9 +29779,8 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/obj/structure/disposalpipe/junction{
-	dir = 8;
-	icon_state = "pipe-j2"
+/obj/structure/disposalpipe/junction/flipped{
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -31039,9 +30652,8 @@
 	},
 /area/ice_colony/underground/hallway/south_east)
 "bBC" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -31059,9 +30671,8 @@
 	d2 = 4;
 	icon_state = "2-4";
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
@@ -31154,7 +30765,6 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/junction{
-	icon_state = "pipe-j1";
 	dir = 8
 	},
 /turf/open/floor/tile/dark2,
@@ -31231,9 +30841,7 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/hallway/north_west)
 "bBT" = (
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (WEST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
 /area/ice_colony/underground/responsehangar)
@@ -31349,15 +30957,13 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/south_east)
 "bCk" = (
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
 	dir = 8
 	},
 /turf/open/floor/tile/dark/red2{
@@ -31366,7 +30972,6 @@
 /area/ice_colony/underground/hallway/south_east)
 "bCl" = (
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
 	dir = 8
 	},
 /obj/machinery/door/airlock/almayer/security/glass{
@@ -31379,14 +30984,12 @@
 /area/ice_colony/underground/security/hallway)
 "bCm" = (
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
 	dir = 8
 	},
 /turf/open/floor/tile/dark/red2,
 /area/ice_colony/underground/security/hallway)
 "bCn" = (
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
 	dir = 8
 	},
 /obj/machinery/light,
@@ -31394,7 +30997,6 @@
 /area/ice_colony/underground/security/hallway)
 "bCo" = (
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
 	dir = 8
 	},
 /obj/structure/cable/yellow{
@@ -31407,9 +31009,8 @@
 	},
 /area/ice_colony/underground/security/hallway)
 "bCp" = (
-/obj/structure/disposalpipe/junction{
-	dir = 8;
-	icon_state = "pipe-j2"
+/obj/structure/disposalpipe/junction/flipped{
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor{
@@ -31755,9 +31356,8 @@
 	},
 /area/ice_colony/underground/storage/highsec)
 "bDf" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
 	},
 /turf/open/floor/tile/dark/blue2{
 	dir = 2
@@ -31955,10 +31555,7 @@
 /obj/machinery/landinglight/ds2/delayone{
 	dir = 4
 	},
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate";
-	icon_state = "warnplate"
-	},
+/turf/open/floor/plating/icefloor/warnplate,
 /area/ice_colony/exterior/surface/landing_pad_external)
 "bDE" = (
 /turf/open/floor/tile/dark2,
@@ -32649,8 +32246,7 @@
 	},
 /area/ice_colony/underground/command/center)
 "bFA" = (
-/obj/structure/disposalpipe/segment{
-	icon_state = "pipe-c";
+/obj/structure/disposalpipe/segment/corner{
 	dir = 1
 	},
 /turf/open/floor/tile/dark2,
@@ -33144,9 +32740,8 @@
 /area/ice_colony/underground/command/checkpoint)
 "bGH" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -33185,9 +32780,8 @@
 /area/ice_colony/underground/crew/dorm_l)
 "bGO" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -33251,10 +32845,7 @@
 /obj/machinery/landinglight/ds2/delaythree{
 	dir = 8
 	},
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate";
-	icon_state = "warnplate"
-	},
+/turf/open/floor/plating/icefloor/warnplate,
 /area/ice_colony/exterior/surface/landing_pad_external)
 "bGX" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
@@ -33356,9 +32947,8 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/storage)
 "bHk" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/storage)
@@ -33450,9 +33040,7 @@
 	dir = 1
 	},
 /obj/structure/reagent_dispensers/fueltank,
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (WEST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
 /area/ice_colony/underground/hangar)
@@ -33474,9 +33062,7 @@
 /area/ice_colony/underground/security/backroom)
 "bHx" = (
 /obj/structure/largecrate/random,
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (NORTH)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
 	},
 /area/ice_colony/underground/hangar)
@@ -33737,9 +33323,8 @@
 	},
 /area/ice_colony/underground/command/checkpoint)
 "bIb" = (
-/obj/structure/disposalpipe/junction{
-	dir = 8;
-	icon_state = "pipe-j2"
+/obj/structure/disposalpipe/junction/flipped{
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -33752,9 +33337,8 @@
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/medical/treatment)
 "bIc" = (
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -33808,9 +33392,8 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/storage)
 "bIk" = (
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
 	},
 /turf/open/floor/tile/dark/yellow2{
 	dir = 4
@@ -33830,9 +33413,8 @@
 	},
 /area/ice_colony/underground/security)
 "bIm" = (
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark/red2/corner{
@@ -34141,9 +33723,8 @@
 	},
 /area/ice_colony/underground/responsehangar)
 "bIZ" = (
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
 	},
 /turf/open/floor/tile/dark/blue2{
 	dir = 2
@@ -34160,8 +33741,7 @@
 	},
 /area/ice_colony/underground/command/checkpoint)
 "bJb" = (
-/obj/structure/disposalpipe/segment{
-	icon_state = "pipe-c";
+/obj/structure/disposalpipe/segment/corner{
 	dir = 1
 	},
 /turf/open/floor/tile/dark/blue2{
@@ -34224,9 +33804,7 @@
 /obj/machinery/landinglight/ds2/delaytwo{
 	dir = 4
 	},
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (NORTH)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/landing_pad)
@@ -34818,8 +34396,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
 	},
-/obj/structure/disposalpipe/segment{
-	icon_state = "pipe-c";
+/obj/structure/disposalpipe/segment/corner{
 	dir = 1
 	},
 /turf/open/floor/tile/dark2,
@@ -34890,9 +34467,8 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/north_west)
 "bKE" = (
-/obj/structure/disposalpipe/junction{
-	dir = 8;
-	icon_state = "pipe-j2"
+/obj/structure/disposalpipe/junction/flipped{
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable/yellow{
@@ -34903,9 +34479,8 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/south_east)
 "bKF" = (
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/south_east)
@@ -34913,9 +34488,7 @@
 /obj/machinery/landinglight/ds2/delaytwo{
 	dir = 8
 	},
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (NORTH)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/landing_pad)
@@ -35191,9 +34764,7 @@
 /obj/structure/cargo_container{
 	dir = 8
 	},
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (EAST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
 /area/ice_colony/underground/hangar)
@@ -35303,9 +34874,7 @@
 	},
 /area/ice_colony/underground/responsehangar)
 "bLE" = (
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (SOUTHWEST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 10
 	},
 /area/ice_colony/underground/responsehangar)
@@ -35537,9 +35106,8 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -35559,16 +35127,14 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/structure/disposalpipe/junction{
-	dir = 8;
-	icon_state = "pipe-j2"
+/obj/structure/disposalpipe/junction/flipped{
+	dir = 8
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/south_east)
 "bMi" = (
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
 /obj/structure/cable/yellow{
@@ -35694,8 +35260,7 @@
 /area/ice_colony/underground/crew/lavatory)
 "bMy" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/disposalpipe/segment{
-	icon_state = "pipe-c";
+/obj/structure/disposalpipe/segment/corner{
 	dir = 1
 	},
 /obj/structure/cable/yellow{
@@ -35730,7 +35295,6 @@
 /area/ice_colony/underground/hallway/south_east)
 "bMC" = (
 /obj/structure/disposalpipe/trunk{
-	icon_state = "pipe-t";
 	dir = 8
 	},
 /obj/machinery/disposal,
@@ -35843,9 +35407,8 @@
 	},
 /area/ice_colony/underground/crew/disposals)
 "bMS" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/crew/disposals)
@@ -35900,9 +35463,8 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/crew/disposals)
 "bNa" = (
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
@@ -36055,9 +35617,8 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d1 = 2;
@@ -36248,9 +35809,8 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/south_east)
 "bNX" = (
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
@@ -36366,9 +35926,8 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/central)
 "bOm" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
 	},
 /turf/open/floor/tile/dark/brown2{
 	dir = 10
@@ -36378,9 +35937,8 @@
 /turf/open/floor/carpet,
 /area/ice_colony/underground/crew/leisure)
 "bOo" = (
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
 	},
 /turf/open/floor/tile/dark/brown2,
 /area/ice_colony/underground/crew/disposals)
@@ -36681,9 +36239,7 @@
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/leisure)
 "bPc" = (
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (WEST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
 /area/shuttle/drop2/ice_colony)
@@ -36738,9 +36294,8 @@
 /turf/open/floor/carpet,
 /area/ice_colony/underground/crew/leisure)
 "bPm" = (
-/obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -37512,16 +37067,12 @@
 /obj/structure/cargo_container/green{
 	dir = 8
 	},
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (SOUTHWEST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 10
 	},
 /area/ice_colony/underground/hangar)
 "bRw" = (
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (EAST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
 /area/shuttle/drop2/ice_colony)
@@ -37535,10 +37086,7 @@
 /obj/structure/cargo_container/green{
 	dir = 1
 	},
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate";
-	icon_state = "warnplate"
-	},
+/turf/open/floor/plating/icefloor/warnplate,
 /area/ice_colony/underground/hangar)
 "bRz" = (
 /obj/structure/closet/toolcloset,
@@ -37566,10 +37114,7 @@
 /obj/structure/cargo_container/green{
 	dir = 4
 	},
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate";
-	icon_state = "warnplate"
-	},
+/turf/open/floor/plating/icefloor/warnplate,
 /area/ice_colony/underground/hangar)
 "bRE" = (
 /obj/structure/cable{
@@ -37580,9 +37125,8 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
 	},
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/south)
@@ -37679,10 +37223,7 @@
 /obj/machinery/landinglight/ds2{
 	dir = 4
 	},
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate";
-	icon_state = "warnplate"
-	},
+/turf/open/floor/plating/icefloor/warnplate,
 /area/ice_colony/exterior/surface/landing_pad)
 "bRR" = (
 /obj/structure/cable/yellow{
@@ -37768,19 +37309,13 @@
 /obj/structure/cargo_container/red{
 	dir = 8
 	},
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate";
-	icon_state = "warnplate"
-	},
+/turf/open/floor/plating/icefloor/warnplate,
 /area/ice_colony/underground/hangar)
 "bSd" = (
 /obj/structure/cargo_container/red{
 	dir = 1
 	},
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate";
-	icon_state = "warnplate"
-	},
+/turf/open/floor/plating/icefloor/warnplate,
 /area/ice_colony/underground/hangar)
 "bSe" = (
 /obj/structure/cable/yellow{
@@ -37905,10 +37440,7 @@
 /area/ice_colony/underground/medical/treatment)
 "bSp" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate";
-	icon_state = "warnplate"
-	},
+/turf/open/floor/plating/icefloor/warnplate,
 /area/ice_colony/underground/hangar)
 "bSq" = (
 /obj/structure/cable/yellow{
@@ -37919,9 +37451,8 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/structure/disposalpipe/junction{
-	dir = 8;
-	icon_state = "pipe-j2"
+/obj/structure/disposalpipe/junction/flipped{
+	dir = 8
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/command/checkpoint)
@@ -37972,9 +37503,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/command/checkpoint)
@@ -38357,9 +37887,8 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
 	},
-/obj/structure/disposalpipe/junction{
-	dir = 1;
-	icon_state = "pipe-j2"
+/obj/structure/disposalpipe/junction/flipped{
+	dir = 1
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -38382,9 +37911,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/command/checkpoint)
@@ -38484,9 +38012,8 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/south_east)
@@ -38501,9 +38028,8 @@
 /area/ice_colony/underground/maintenance/east)
 "bTQ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 2
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/south_east)
@@ -38574,10 +38100,7 @@
 /obj/machinery/landinglight/ds2{
 	dir = 8
 	},
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate";
-	icon_state = "warnplate"
-	},
+/turf/open/floor/plating/icefloor/warnplate,
 /area/ice_colony/exterior/surface/landing_pad)
 "bUd" = (
 /turf/closed/ice_rock/corners,
@@ -38611,9 +38134,8 @@
 /turf/open/ice,
 /area/ice_colony/underground/maintenance/central)
 "bUk" = (
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
@@ -38705,9 +38227,7 @@
 /obj/machinery/landinglight/ds2/delayone{
 	dir = 4
 	},
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (NORTH)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/landing_pad)
@@ -38750,25 +38270,20 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
 	},
 /obj/item/ammo_casing/bullet,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/south_east)
 "bUI" = (
 /obj/machinery/colony_floodlight,
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (NORTHWEST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 9
 	},
 /area/ice_colony/surface/tcomms)
 "bUJ" = (
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (NORTH)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
 	},
 /area/ice_colony/surface/tcomms)
@@ -38784,9 +38299,7 @@
 /area/ice_colony/underground/hallway/south_east)
 "bUL" = (
 /obj/machinery/colony_floodlight,
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (NORTHEAST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 5
 	},
 /area/ice_colony/surface/tcomms)
@@ -38847,9 +38360,8 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/command/checkpoint)
 "bUS" = (
-/obj/structure/disposalpipe/junction{
-	dir = 8;
-	icon_state = "pipe-j2"
+/obj/structure/disposalpipe/junction/flipped{
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -38894,9 +38406,8 @@
 /turf/open/floor/plating,
 /area/ice_colony/surface/excavationbarracks)
 "bUX" = (
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /obj/structure/cable/yellow{
@@ -38939,32 +38450,20 @@
 /area/ice_colony/underground/storage)
 "bVb" = (
 /obj/structure/closet/secure_closet/engineering_electrical,
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate";
-	icon_state = "warnplate"
-	},
+/turf/open/floor/plating/icefloor/warnplate,
 /area/ice_colony/surface/tcomms)
 "bVc" = (
 /obj/structure/closet/secure_closet/engineering_welding,
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate";
-	icon_state = "warnplate"
-	},
+/turf/open/floor/plating/icefloor/warnplate,
 /area/ice_colony/surface/tcomms)
 "bVd" = (
 /obj/machinery/power/port_gen/pacman,
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate";
-	icon_state = "warnplate"
-	},
+/turf/open/floor/plating/icefloor/warnplate,
 /area/ice_colony/surface/tcomms)
 "bVe" = (
 /obj/structure/table,
 /obj/item/device/flashlight,
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate";
-	icon_state = "warnplate"
-	},
+/turf/open/floor/plating/icefloor/warnplate,
 /area/ice_colony/surface/tcomms)
 "bVf" = (
 /obj/machinery/light/small{
@@ -39029,9 +38528,8 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -39080,16 +38578,12 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (NORTH)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
 	},
 /area/ice_colony/underground/hangar)
 "bVt" = (
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (SOUTHWEST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 10
 	},
 /area/ice_colony/underground/hangar)
@@ -39120,17 +38614,13 @@
 /area/ice_colony/surface/excavationbarracks)
 "bVx" = (
 /obj/machinery/camera/autoname/lz_camera,
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (WEST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/landing_pad)
 "bVy" = (
 /obj/machinery/camera/autoname/lz_camera,
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (EAST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/landing_pad)
@@ -39173,17 +38663,13 @@
 /area/ice_colony/surface/excavationbarracks)
 "bVD" = (
 /obj/structure/largecrate/random,
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (NORTHWEST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 9
 	},
 /area/ice_colony/underground/hangar)
 "bVE" = (
 /obj/machinery/space_heater,
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (NORTHEAST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 5
 	},
 /area/ice_colony/underground/hangar)
@@ -39209,9 +38695,8 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
 	},
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/south)
@@ -39443,9 +38928,7 @@
 /area/ice_colony/underground/hangar)
 "bWj" = (
 /obj/structure/largecrate/random,
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (WEST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
 /area/ice_colony/underground/hangar)
@@ -39518,44 +39001,31 @@
 /area/ice_colony/surface/excavationbarracks)
 "bWu" = (
 /obj/structure/largecrate/random,
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (SOUTHWEST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 10
 	},
 /area/ice_colony/underground/hangar)
 "bWv" = (
 /obj/structure/largecrate/random,
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate";
-	icon_state = "warnplate"
-	},
+/turf/open/floor/plating/icefloor/warnplate,
 /area/ice_colony/underground/hangar)
 "bWw" = (
 /obj/structure/cargo_container/nt{
 	dir = 8
 	},
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate";
-	icon_state = "warnplate"
-	},
+/turf/open/floor/plating/icefloor/warnplate,
 /area/ice_colony/underground/hangar)
 "bWx" = (
 /obj/structure/cargo_container/nt{
 	dir = 1
 	},
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate";
-	icon_state = "warnplate"
-	},
+/turf/open/floor/plating/icefloor/warnplate,
 /area/ice_colony/underground/hangar)
 "bWy" = (
 /obj/structure/cargo_container/nt{
 	dir = 4
 	},
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (SOUTHEAST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 6
 	},
 /area/ice_colony/underground/hangar)
@@ -39729,9 +39199,7 @@
 /obj/machinery/landinglight/ds2/delaythree{
 	dir = 8
 	},
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (NORTH)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/landing_pad)
@@ -39743,10 +39211,7 @@
 /obj/machinery/landinglight/ds2/delaythree{
 	dir = 4
 	},
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate";
-	icon_state = "warnplate"
-	},
+/turf/open/floor/plating/icefloor/warnplate,
 /area/ice_colony/exterior/surface/landing_pad)
 "bWW" = (
 /obj/machinery/vending/coffee,
@@ -39941,9 +39406,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (NORTH)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
 	},
 /area/ice_colony/underground/hangar)
@@ -40088,10 +39551,7 @@
 /obj/machinery/landinglight/ds2/delayone{
 	dir = 8
 	},
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate";
-	icon_state = "warnplate"
-	},
+/turf/open/floor/plating/icefloor/warnplate,
 /area/ice_colony/exterior/surface/landing_pad)
 "bXN" = (
 /turf/closed/ice_rock/corners{
@@ -40183,9 +39643,8 @@
 	pixel_y = 20
 	},
 /obj/effect/decal/cleanable/blood/xtracks,
-/obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 1
 	},
 /turf/open/floor/tile/dark,
 /area/ice_colony/surface/excavationbarracks)
@@ -40193,7 +39652,6 @@
 /obj/machinery/disposal,
 /obj/effect/decal/warning_stripes,
 /obj/structure/disposalpipe/trunk{
-	icon_state = "pipe-t";
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
@@ -40820,9 +40278,7 @@
 /obj/machinery/landinglight/ds2{
 	dir = 4
 	},
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (NORTH)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/landing_pad)
@@ -40850,9 +40306,7 @@
 /obj/machinery/landinglight/ds2{
 	dir = 8
 	},
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (NORTH)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/landing_pad)
@@ -40989,17 +40443,12 @@
 /obj/effect/landmark/shuttle_loc/marine_trg/landing{
 	name = "2"
 	},
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (SOUTHWEST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 10
 	},
 /area/ice_colony/exterior/surface/landing_pad)
 "bZQ" = (
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate";
-	icon_state = "warnplate"
-	},
+/turf/open/floor/plating/icefloor/warnplate,
 /area/shuttle/drop2/ice_colony)
 "bZR" = (
 /obj/machinery/landinglight/ds2/delaytwo{
@@ -41023,9 +40472,7 @@
 /obj/machinery/landinglight/ds2/delayone{
 	dir = 1
 	},
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (EAST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/landing_pad)
@@ -41033,9 +40480,7 @@
 /obj/machinery/landinglight/ds2/delaytwo{
 	dir = 1
 	},
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (WEST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/landing_pad)
@@ -41049,9 +40494,7 @@
 /obj/machinery/landinglight/ds2/delaytwo{
 	dir = 1
 	},
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (EAST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/landing_pad)
@@ -41059,9 +40502,7 @@
 /obj/machinery/landinglight/ds2/delaythree{
 	dir = 1
 	},
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (WEST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/landing_pad)
@@ -41087,9 +40528,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (EAST)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
 /area/ice_colony/underground/hangar)
@@ -41510,9 +40949,7 @@
 /obj/structure/barricade/metal{
 	dir = 8
 	},
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate (NORTH)";
-	icon_state = "warnplate";
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/landing_pad)
@@ -41558,16 +40995,14 @@
 	d2 = 8;
 	icon_state = "2-8";
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
 	},
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/command/checkpoint)
 "cde" = (
-/obj/structure/disposalpipe/segment{
-	icon_state = "pipe-c";
+/obj/structure/disposalpipe/segment/corner{
 	dir = 1
 	},
 /obj/item/ammo_casing/bullet{
@@ -41613,10 +41048,7 @@
 /obj/structure/barricade/metal{
 	dir = 8
 	},
-/turf/open/floor/plating/icefloor{
-	tag = "icon-warnplate";
-	icon_state = "warnplate"
-	},
+/turf/open/floor/plating/icefloor/warnplate,
 /area/ice_colony/exterior/surface/landing_pad)
 "cea" = (
 /obj/effect/decal/mecha_wreckage/ripley,

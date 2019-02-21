@@ -40,6 +40,9 @@
 		..()
 		name = "plating"
 
+/turf/open/floor/plating/icefloor/warnplate
+	icon_state = "warnplate"
+
 /turf/open/floor/plating/plating_catwalk
 	icon = 'icons/turf/almayer.dmi'
 	icon_state = "plating_catwalk"
