@@ -1427,7 +1427,6 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
-	layer = 2.1
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -1847,7 +1846,6 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
-	layer = 2.1
 	},
 /turf/open/floor/animated/bcircuit,
 /area/ice_colony/surface/engineering/generator)
@@ -2181,7 +2179,6 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
-	layer = 2.1
 	},
 /turf/open/floor/animated/bcircuit,
 /area/ice_colony/surface/engineering/generator)
@@ -2937,7 +2934,6 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
-	layer = 2.1
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -2956,7 +2952,6 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
-	layer = 2.1
 	},
 /turf/open/floor/animated/bcircuit,
 /area/ice_colony/surface/engineering/generator)
@@ -3230,7 +3225,6 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
-	layer = 2.1
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -3538,7 +3532,6 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
-	layer = 2.1
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -3694,7 +3687,6 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
-	layer = 2.1
 	},
 /turf/open/floor/tile/dark/yellow2{
 	dir = 1
@@ -4005,7 +3997,6 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
-	layer = 2.1
 	},
 /turf/open/floor{
 	tag = "icon-darkyellow2";
@@ -4022,7 +4013,6 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
-	layer = 2.1
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -6530,7 +6520,6 @@
 	tag = "icon-gib6"
 	},
 /obj/effect/decal/cleanable/blood{
-	layer = 3;
 	pixel_x = 24
 	},
 /turf/open/floor/tile/white,
@@ -7863,7 +7852,6 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
-	layer = 2.1
 	},
 /turf/open/floor/animated/bcircuit,
 /area/ice_colony/surface/tcomms)
@@ -8617,7 +8605,6 @@
 	},
 /obj/effect/decal/cleanable/blood{
 	basecolor = "#B70602";
-	layer = 3
 	},
 /turf/open/floor/tile/white,
 /area/ice_colony/surface/clinic/lobby)
@@ -9629,7 +9616,6 @@
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4";
-	layer = 2.44
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -13977,7 +13963,6 @@
 /obj/item/weapon/gun/shotgun/pump/cmb,
 /obj/effect/decal/cleanable/blood{
 	basecolor = "#B70602";
-	layer = 3
 	},
 /turf/open/floor/plating,
 /area/ice_colony/surface/disposals)
@@ -16127,7 +16112,6 @@
 	},
 /obj/effect/decal/cleanable/blood{
 	basecolor = "#B70602";
-	layer = 3
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor{
@@ -16539,7 +16523,6 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
-	layer = 2.44
 	},
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/north)
@@ -19300,7 +19283,6 @@
 	},
 /obj/effect/decal/cleanable/blood{
 	basecolor = "#B70602";
-	layer = 3
 	},
 /turf/open/floor/tile/dark/red2{
 	dir = 8
@@ -20341,7 +20323,6 @@
 /obj/structure/bed/chair/wood/normal,
 /obj/effect/decal/cleanable/blood{
 	basecolor = "#B70602";
-	layer = 3
 	},
 /turf/open/floor/wood,
 /area/ice_colony/surface/command/crisis)
@@ -24176,7 +24157,6 @@
 /obj/item/weapon/gun/shotgun/pump/cmb,
 /obj/effect/decal/cleanable/blood{
 	basecolor = "#B70602";
-	layer = 3
 	},
 /obj/effect/landmark/corpsespawner/bridgeofficer{
 	corpsegloves = /obj/item/clothing/gloves/black
@@ -24569,7 +24549,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /turf/open/floor/freezer,
 /area/ice_colony/underground/requesition/storage)
@@ -24667,7 +24646,6 @@
 "bcT" = (
 /obj/effect/decal/cleanable/blood{
 	basecolor = "#B70602";
-	layer = 3
 	},
 /obj/effect/landmark/corpsespawner/doctor{
 	corpsebelt = /obj/item/storage/belt/medical;
@@ -24752,7 +24730,6 @@
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4";
-	layer = 2.44
 	},
 /obj/structure/largecrate/random,
 /turf/open/floor/tile/vault{
@@ -24924,7 +24901,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /turf/open/floor/tile/vault{
 	dir = 8
@@ -25044,13 +25020,11 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /obj/structure/cable/yellow{
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
-	layer = 2.44
 	},
 /obj/vehicle/train/cargo/trolley,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -25235,9 +25209,7 @@
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south)
 "bee" = (
-/obj/structure/rack{
-	layer = 2.79
-	},
+/obj/structure/rack,
 /obj/item/stack/sheet/mineral/phoron,
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -25398,7 +25370,6 @@
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4";
-	layer = 2.44
 	},
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating,
@@ -25498,7 +25469,6 @@
 "beG" = (
 /obj/effect/decal/cleanable/blood{
 	basecolor = "#B70602";
-	layer = 3
 	},
 /turf/open/ice,
 /area/ice_colony/exterior/underground/caves/open)
@@ -25647,7 +25617,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -25900,7 +25869,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/almayer/medical/glass{
@@ -26176,7 +26144,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /obj/structure/closet/crate/trashcart,
 /turf/open/floor/tile/vault{
@@ -26551,13 +26518,11 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /obj/structure/cable/yellow{
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -26621,7 +26586,6 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
@@ -26668,7 +26632,6 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
-	layer = 2.44
 	},
 /turf/closed/wall/r_wall,
 /area/ice_colony/underground/hangar)
@@ -26677,7 +26640,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /obj/machinery/light{
 	dir = 4
@@ -26753,7 +26715,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /turf/open/floor{
 	tag = "icon-darkbrown2 (EAST)";
@@ -27014,13 +26975,11 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /obj/structure/cable/yellow{
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
-	layer = 2.44
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -27131,7 +27090,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /obj/machinery/door/poddoor/shutters/almayer{
 	id = "req_sec_storage";
@@ -27371,7 +27329,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -27447,7 +27404,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -27636,13 +27592,11 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /obj/structure/cable/yellow{
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4";
-	layer = 2.44
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -27654,7 +27608,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -27746,7 +27699,6 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
-	layer = 2.44
 	},
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/north)
@@ -27894,7 +27846,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -28102,9 +28053,7 @@
 	},
 /area/ice_colony/surface/research)
 "bko" = (
-/obj/structure/rack{
-	layer = 2.79
-	},
+/obj/structure/rack,
 /turf/open/floor/plating/icefloor{
 	tag = "icon-warnplate (WEST)";
 	icon_state = "warnplate";
@@ -28193,7 +28142,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /turf/open/floor{
 	tag = "icon-darkbrowncorners2 (WEST)";
@@ -28475,7 +28423,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /turf/open/floor{
 	tag = "icon-darkbrowncorners2 (NORTH)";
@@ -28756,7 +28703,6 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
-	layer = 2.44
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -28791,7 +28737,6 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
-	layer = 2.44
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -28812,7 +28757,6 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
-	layer = 2.1
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -28989,7 +28933,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /obj/machinery/light{
 	dir = 4
@@ -29208,7 +29151,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -29381,13 +29323,11 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /obj/structure/cable/yellow{
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4";
-	layer = 2.44
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -29616,7 +29556,6 @@
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/wood,
@@ -29663,7 +29602,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 4
@@ -29984,7 +29922,6 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
@@ -30772,13 +30709,11 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /obj/structure/cable/yellow{
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4";
-	layer = 2.44
 	},
 /turf/open/floor{
 	tag = "icon-darkgreencorners2 (EAST)";
@@ -30932,7 +30867,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -31107,7 +31041,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -31315,7 +31248,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /turf/open/floor{
 	tag = "icon-darkgreencorners2";
@@ -32013,15 +31945,11 @@
 	},
 /area/ice_colony/underground/medical/treatment)
 "btt" = (
-/obj/machinery/atmospherics/pipe/manifold/general/visible{
-	layer = 2.3
-	},
+/obj/machinery/atmospherics/pipe/manifold/general/visible,
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/medical/treatment)
 "btu" = (
-/obj/machinery/atmospherics/pipe/manifold/general/visible{
-	layer = 2.3
-	},
+/obj/machinery/atmospherics/pipe/manifold/general/visible,
 /turf/open/floor{
 	tag = "icon-whiteredcorner (EAST)";
 	icon_state = "whiteredcorner";
@@ -32203,7 +32131,6 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
-	layer = 2.44
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -32922,7 +32849,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor{
@@ -33075,7 +33001,6 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
-	layer = 2.44
 	},
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/medical/treatment)
@@ -33643,7 +33568,6 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
-	layer = 2.44
 	},
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/medical/treatment)
@@ -33808,7 +33732,6 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
-	layer = 2.44
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -34269,7 +34192,6 @@
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
@@ -34307,7 +34229,6 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
-	layer = 2.44
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -34558,7 +34479,6 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
-	layer = 2.44
 	},
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/medical/hallway)
@@ -34610,7 +34530,6 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
-	layer = 2.44
 	},
 /turf/open/floor/wood,
 /area/ice_colony/underground/security/detective)
@@ -34783,7 +34702,6 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
-	layer = 2.44
 	},
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/central)
@@ -34844,7 +34762,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /turf/open/floor/wood,
 /area/ice_colony/underground/security/detective)
@@ -34882,7 +34799,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /turf/open/floor/wood,
 /area/ice_colony/underground/security/marshal)
@@ -34998,7 +34914,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor/wood,
@@ -35155,7 +35070,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/wood,
@@ -35180,7 +35094,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/wood,
@@ -35371,7 +35284,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/almayer/security/glass{
@@ -35386,7 +35298,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/almayer/security/glass{
@@ -35706,7 +35617,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor/wood,
@@ -35785,7 +35695,6 @@
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4";
-	layer = 2.44
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 8;
@@ -35841,7 +35750,6 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor{
@@ -35911,7 +35819,6 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
-	layer = 2.44
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -36206,7 +36113,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /turf/open/floor/tile/dark/red2/corner{
 	dir = 8
@@ -36237,7 +36143,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /turf/open/floor/tile/dark/yellow2{
 	dir = 4
@@ -36314,7 +36219,6 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
-	layer = 2.44
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -36394,7 +36298,6 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
-	layer = 2.44
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -36450,7 +36353,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /turf/open/floor/tile/dark/red2{
 	dir = 8
@@ -36482,7 +36384,6 @@
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor{
@@ -36523,7 +36424,6 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor{
@@ -36543,7 +36443,6 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
-	layer = 2.44
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -36701,7 +36600,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor{
@@ -36872,7 +36770,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -37100,13 +36997,11 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
-	layer = 2.44
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -37418,7 +37313,6 @@
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4";
-	layer = 2.44
 	},
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/dorm_r)
@@ -37482,7 +37376,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /obj/machinery/door/airlock/multi_tile/almayer/generic{
 	name = "\improper Underground Security Checkpoint";
@@ -37583,7 +37476,6 @@
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4";
-	layer = 2.44
 	},
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/dorm_l)
@@ -37659,7 +37551,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /turf/open/floor/wood,
 /area/ice_colony/underground/command/pv1)
@@ -37690,7 +37581,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/dorm_r)
@@ -37794,7 +37684,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /turf/open/floor/wood,
 /area/ice_colony/underground/command/pv1)
@@ -37810,7 +37699,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /turf/open/floor/wood,
 /area/ice_colony/underground/command/pv2)
@@ -37878,7 +37766,6 @@
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4";
-	layer = 2.44
 	},
 /turf/open/floor/tile/dark/red2{
 	dir = 1
@@ -37916,7 +37803,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /turf/open/floor/tile/dark/red2/corner{
 	dir = 1
@@ -38009,7 +37895,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /turf/open/floor/wood,
 /area/ice_colony/underground/command/pv2)
@@ -38023,7 +37908,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/dorm_l)
@@ -38172,7 +38056,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /turf/open/floor/wood,
 /area/ice_colony/underground/command/pv1)
@@ -38214,7 +38097,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /turf/open/floor/wood,
 /area/ice_colony/underground/command/pv2)
@@ -38230,7 +38112,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor/wood,
@@ -38287,7 +38168,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -38314,7 +38194,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4;
@@ -38345,7 +38224,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor{
@@ -38409,7 +38287,6 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
-	layer = 2.1
 	},
 /turf/closed/wall/r_wall,
 /area/ice_colony/underground/engineering/substation)
@@ -38418,7 +38295,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /turf/open/floor/tile/dark/red2{
 	dir = 4
@@ -38436,7 +38312,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /obj/machinery/door/airlock/almayer/command{
 	dir = 1;
@@ -38452,7 +38327,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /obj/machinery/door/airlock/almayer/command{
 	dir = 1;
@@ -38475,7 +38349,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/wood,
@@ -38518,7 +38391,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -38573,7 +38445,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /turf/open/floor/tile/dark/red2/corner{
 	dir = 8
@@ -38616,7 +38487,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor/wood,
@@ -38705,7 +38575,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /obj/machinery/door/airlock/almayer/security{
 	dir = 1;
@@ -38742,7 +38611,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /obj/machinery/door/airlock/multi_tile/almayer/generic{
 	name = "\improper Underground Security Checkpoint";
@@ -38764,7 +38632,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/almayer/security/glass{
@@ -38917,7 +38784,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /turf/open/floor/tile/dark/red2/corner{
 	dir = 1
@@ -38984,7 +38850,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/wood,
@@ -39010,7 +38875,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor{
@@ -39100,7 +38964,6 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor{
@@ -39218,7 +39081,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /obj/structure/disposalpipe/junction,
 /turf/open/floor{
@@ -39254,7 +39116,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -39589,7 +39450,6 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
-	layer = 2.44
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -39652,7 +39512,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/almayer/generic{
@@ -39668,7 +39527,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/almayer/generic{
@@ -39701,7 +39559,6 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -39732,7 +39589,6 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
@@ -39786,7 +39642,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
@@ -39795,7 +39650,6 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
-	layer = 2.44
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -40092,7 +39946,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/almayer/security/glass{
@@ -40156,7 +40009,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -40321,7 +40173,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -40445,7 +40296,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /obj/machinery/door/airlock/almayer/generic{
 	dir = 1;
@@ -40475,7 +40325,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/wood,
@@ -40489,7 +40338,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor{
@@ -40653,7 +40501,6 @@
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4";
-	layer = 2.44
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -40948,7 +40795,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -40994,7 +40840,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -41104,7 +40949,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -41179,7 +41023,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -41224,7 +41067,6 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
-	layer = 2.44
 	},
 /turf/open/floor/carpet,
 /area/ice_colony/underground/crew/leisure)
@@ -41426,7 +41268,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -41509,7 +41350,6 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
-	layer = 2.44
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -42152,7 +41992,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/almayer/security/glass{
@@ -42204,7 +42043,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -42811,7 +42649,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -42931,7 +42768,6 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
-	layer = 2.44
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -43136,7 +42972,6 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
-	layer = 2.44
 	},
 /turf/open/floor/tile/dark/red2{
 	dir = 4
@@ -43533,7 +43368,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /turf/open/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/south)
@@ -43564,7 +43398,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /turf/open/snow/layer1,
 /area/ice_colony/exterior/surface/valley/south)
@@ -43641,7 +43474,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /turf/open/snow/layer1,
 /area/ice_colony/exterior/surface/valley/south)
@@ -43997,7 +43829,6 @@
 	},
 /obj/effect/decal/cleanable/blood{
 	basecolor = "#B70602";
-	layer = 3
 	},
 /turf/open/floor/plating,
 /area/ice_colony/underground/engineering/substation)
@@ -44007,7 +43838,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /turf/open/floor/plating,
 /area/ice_colony/underground/hallway/north_west)
@@ -44277,7 +44107,6 @@
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4";
-	layer = 2.44
 	},
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/east)
@@ -44825,7 +44654,6 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
-	layer = 2.44
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -45271,7 +45099,6 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
-	layer = 2.44
 	},
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/underground/hangar)
@@ -46268,7 +46095,6 @@
 "bXL" = (
 /obj/effect/decal/cleanable/blood{
 	basecolor = "#B70602";
-	layer = 3
 	},
 /obj/structure/table{
 	flipped = 1;
@@ -46490,7 +46316,6 @@
 	},
 /obj/effect/decal/cleanable/blood{
 	basecolor = "#B70602";
-	layer = 3
 	},
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south/excavation)
@@ -46634,7 +46459,6 @@
 "bYx" = (
 /obj/effect/decal/cleanable/blood{
 	basecolor = "#B70602";
-	layer = 3
 	},
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/medical/or)
@@ -46664,7 +46488,6 @@
 /obj/machinery/computer/operating,
 /obj/effect/decal/cleanable/blood{
 	basecolor = "#B70602";
-	layer = 3
 	},
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/medical/or)
@@ -46808,7 +46631,6 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
-	layer = 2.1
 	},
 /turf/open/floor/plating,
 /area/ice_colony/underground/engineering/substation)
@@ -47013,7 +46835,6 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
-	layer = 2.44
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -47690,7 +47511,6 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
-	layer = 2.44
 	},
 /turf/closed/wall/r_wall,
 /area/ice_colony/underground/engineering/substation)
@@ -47842,7 +47662,6 @@
 	},
 /obj/effect/decal/cleanable/blood{
 	basecolor = "#B70602";
-	layer = 3
 	},
 /turf/open/floor/tile/dark/blue2{
 	dir = 2
@@ -48050,7 +47869,6 @@
 "cda" = (
 /obj/effect/decal/cleanable/blood{
 	basecolor = "#B70602";
-	layer = 3
 	},
 /turf/open/floor/plating,
 /area/ice_colony/exterior/underground/caves/open)
@@ -48074,7 +47892,6 @@
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4";
-	layer = 2.44
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -48085,7 +47902,6 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
-	layer = 2.44
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4;
@@ -48093,7 +47909,6 @@
 	},
 /obj/effect/decal/cleanable/blood{
 	basecolor = "#B70602";
-	layer = 3
 	},
 /turf/open/floor{
 	tag = "icon-dark2";
@@ -48228,7 +48043,6 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
-	layer = 2.44
 	},
 /turf/open/floor{
 	tag = "icon-dark2";

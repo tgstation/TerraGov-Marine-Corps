@@ -9999,9 +9999,7 @@
 /turf/open/floor/prison,
 /area/prison/medbay)
 "auP" = (
-/obj/machinery/atmospherics/pipe/manifold/general/visible{
-	layer = 2.3
-	},
+/obj/machinery/atmospherics/pipe/manifold/general/visible,
 /turf/open/floor/prison{
 	tag = "icon-bright_clean_marked";
 	icon_state = "bright_clean_marked";
@@ -15957,7 +15955,6 @@
 /obj/machinery/door/poddoor/shutters/almayer{
 	dir = 4;
 	id = "central";
-	layer = 3.19;
 	name = "Timed Emergency Shutters";
 	unacidable = 1;
 	use_power = 0
@@ -17884,7 +17881,6 @@
 /obj/structure/window/framed/prison/reinforced,
 /obj/machinery/door/poddoor/shutters/almayer{
 	id = "central";
-	layer = 3.19;
 	name = "Timed Emergency Shutters";
 	unacidable = 1;
 	use_power = 0
@@ -18306,7 +18302,6 @@
 /obj/machinery/door/poddoor/shutters/almayer{
 	dir = 4;
 	id = "central";
-	layer = 3.19;
 	name = "Timed Emergency Shutters";
 	unacidable = 1;
 	use_power = 0
@@ -19383,7 +19378,6 @@
 /obj/structure/window/framed/prison/reinforced,
 /obj/machinery/door/poddoor/shutters/almayer{
 	id = "central";
-	layer = 3.19;
 	name = "Timed Emergency Shutters";
 	unacidable = 1;
 	use_power = 0
@@ -40005,7 +39999,6 @@
 /obj/machinery/door/poddoor/shutters/almayer{
 	dir = 4;
 	id = "central";
-	layer = 3.19;
 	name = "Timed Emergency Shutters";
 	unacidable = 1;
 	use_power = 0
@@ -43637,7 +43630,6 @@
 /obj/structure/window/framed/prison/reinforced,
 /obj/machinery/door/poddoor/shutters/almayer{
 	id = "central";
-	layer = 3.19;
 	name = "Timed Emergency Shutters";
 	unacidable = 1;
 	use_power = 0
@@ -47734,7 +47726,6 @@
 /obj/structure/window/framed/prison/reinforced,
 /obj/machinery/door/poddoor/shutters/almayer{
 	id = "central";
-	layer = 3.19;
 	name = "Timed Emergency Shutters";
 	unacidable = 1;
 	use_power = 0
@@ -48317,7 +48308,6 @@
 /obj/machinery/door/poddoor/shutters/almayer{
 	dir = 4;
 	id = "central";
-	layer = 3.19;
 	name = "Timed Emergency Shutters";
 	unacidable = 1;
 	use_power = 0

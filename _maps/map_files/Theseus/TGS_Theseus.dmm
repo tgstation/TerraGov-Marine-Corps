@@ -6307,7 +6307,6 @@
 	dir = 2;
 	icon_state = "pdoor0";
 	id = "CIC Lockdown";
-	layer = 2.2;
 	name = "\improper Combat Information Center Blast Door";
 	opacity = 0
 	},
@@ -6530,7 +6529,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.1
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/hallways/aft_hallway)
@@ -6988,7 +6986,6 @@
 "apr" = (
 /obj/machinery/computer/security/almayer{
 	dir = 4;
-	layer = 4;
 	name = "Ship Security Cameras";
 	network = list("almayer");
 	pixel_x = 17;
@@ -7524,7 +7521,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.1
 	},
 /turf/open/floor/almayer{
 	tag = "icon-greencorner (NORTH)";
@@ -8860,7 +8856,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.1
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/hallways/aft_hallway)
@@ -8912,7 +8907,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.1
 	},
 /turf/open/floor/almayer{
 	tag = "icon-greencorner (NORTH)";
@@ -9792,7 +9786,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.1
 	},
 /turf/open/floor/almayer{
 	tag = "icon-greencorner (WEST)";
@@ -13173,7 +13166,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/door/airlock/almayer/security/glass{
 	dir = 1;
-	layer = 2;
 	name = "\improper Chief MP's Office"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -19618,7 +19610,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.1
 	},
 /turf/open/floor/almayer{
 	dir = 4;
@@ -21034,7 +21025,6 @@
 "aPC" = (
 /obj/machinery/flasher{
 	id = "Cell 1";
-	layer = 2.1;
 	name = "Cell 1 Flash"
 	},
 /turf/open/floor/almayer/mono,
@@ -21086,7 +21076,6 @@
 "aPH" = (
 /obj/machinery/flasher{
 	id = "Cell 4";
-	layer = 2.1;
 	name = "Cell 4 Flash"
 	},
 /turf/open/floor/almayer/mono,
@@ -21224,7 +21213,6 @@
 	dir = 2;
 	icon_state = "pdoor0";
 	id = "CIC Lockdown";
-	layer = 2.2;
 	name = "\improper Combat Information Center Blast Door";
 	opacity = 0
 	},
@@ -21669,7 +21657,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.1
 	},
 /obj/machinery/light/small{
 	dir = 8
@@ -21877,7 +21864,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.1
 	},
 /obj/machinery/light/small{
 	dir = 4
@@ -22049,7 +22035,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.1
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/shipboard/starboard_point_defense)
@@ -22575,7 +22560,6 @@
 "aTl" = (
 /obj/machinery/flasher{
 	id = "Cell 2";
-	layer = 2.1;
 	name = "Cell 2 Flash"
 	},
 /turf/open/floor/almayer/mono,
@@ -22583,7 +22567,6 @@
 "aTm" = (
 /obj/machinery/flasher{
 	id = "Cell 5";
-	layer = 2.1;
 	name = "Cell 5 Flash"
 	},
 /turf/open/floor/almayer/mono,
@@ -22624,7 +22607,6 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
-	layer = 2.44
 	},
 /turf/open/floor/prison{
 	icon_state = "kitchen"
@@ -22988,7 +22970,6 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
-	layer = 2.44
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/hull/upper_hull)
@@ -23235,7 +23216,6 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
-	layer = 2.44
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/hull/upper_hull)
@@ -23530,7 +23510,6 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
-	layer = 2.44
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/shipboard/starboard_point_defense)
@@ -23566,7 +23545,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.1
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/shipboard/starboard_point_defense)
@@ -23752,9 +23730,7 @@
 	id = "laddernortheast";
 	name = "\improper North East Ladders Shutters"
 	},
-/obj/machinery/door/firedoor/border_only/almayer{
-	layer = 1.9
-	},
+/obj/machinery/door/firedoor/border_only/almayer,
 /turf/open/floor/almayer/mono,
 /area/almayer/hull/lower_hull)
 "aWr" = (
@@ -25356,12 +25332,10 @@
 "aZY" = (
 /obj/machinery/flasher{
 	id = "Cell 3";
-	layer = 2.1;
 	name = "Cell 3 Flash"
 	},
 /obj/machinery/flasher{
 	id = "Cell 3";
-	layer = 2.1;
 	name = "Cell 3 Flash"
 	},
 /turf/open/floor/almayer/mono,
@@ -29124,7 +29098,6 @@
 "biH" = (
 /obj/machinery/flasher{
 	id = "Cell 6";
-	layer = 2.1;
 	name = "Cell 6 Flash"
 	},
 /turf/open/floor/almayer/mono,
@@ -32705,7 +32678,6 @@
 /obj/item/device/radio/intercom{
 	canhear_range = 7;
 	frequency = 1443;
-	layer = 3.5;
 	name = "dropship intercom";
 	pixel_x = 21;
 	pixel_y = 43
@@ -32800,7 +32772,6 @@
 /obj/item/device/radio/intercom{
 	canhear_range = 7;
 	frequency = 1441;
-	layer = 3.5;
 	name = "dropship intercom";
 	pixel_x = 21;
 	pixel_y = 43
@@ -35404,7 +35375,6 @@
 /obj/structure/table/almayer,
 /obj/machinery/computer/security/almayer{
 	dir = 4;
-	layer = 4;
 	name = "Ship Security Cameras";
 	network = list("almayer");
 	pixel_x = 17;
@@ -35904,7 +35874,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.1
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/hull/lower_hull)
@@ -35913,7 +35882,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.1
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/hull/lower_hull)
@@ -36403,7 +36371,6 @@
 "bxQ" = (
 /obj/structure/cable/yellow{
 	icon_state = "0-8";
-	layer = 2.1;
 	d1 = 2;
 	d2 = 4
 	},
@@ -38433,7 +38400,6 @@
 "bCd" = (
 /obj/structure/cable/yellow{
 	icon_state = "0-8";
-	layer = 2.1;
 	d1 = 2;
 	d2 = 4
 	},
@@ -39494,7 +39460,6 @@
 /obj/item/device/radio/intercom{
 	canhear_range = 7;
 	frequency = 1443;
-	layer = 3.5;
 	name = "normandy dropship intercom";
 	pixel_x = -26
 	},
@@ -39516,7 +39481,6 @@
 /obj/item/device/radio/intercom{
 	canhear_range = 7;
 	frequency = 1441;
-	layer = 3.5;
 	name = "alamo dropship intercom";
 	pixel_x = 26
 	},
@@ -49051,7 +49015,6 @@
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4";
-	layer = 2.1
 	},
 /turf/open/floor/almayer{
 	dir = 1;
@@ -50926,7 +50889,6 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
-	layer = 2.44
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/hull/lower_hull)
@@ -52626,7 +52588,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /obj/structure/sign/electricshock,
 /turf/closed/wall/almayer,
@@ -52979,7 +52940,6 @@
 /obj/item/device/taperecorder,
 /obj/machinery/computer/security/almayer{
 	dir = 4;
-	layer = 4;
 	name = "Ship Security Cameras";
 	network = list("almayer");
 	pixel_x = 17
@@ -53624,7 +53584,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.1
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -53729,7 +53688,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/hull/upper_hull)
@@ -53809,7 +53767,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/shipboard/port_point_defense)
@@ -53818,7 +53775,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /obj/machinery/light/small{
 	dir = 8
@@ -53985,7 +53941,6 @@
 /obj/structure/table/almayer,
 /obj/machinery/computer/security/almayer{
 	dir = 4;
-	layer = 4;
 	name = "Ship Security Cameras";
 	network = list("almayer");
 	pixel_x = 17

@@ -5287,9 +5287,7 @@
 	},
 /area/bigredv2/outside/nw)
 "aoQ" = (
-/obj/effect/decal/cleanable/blood{
-	layer = 3;
-	},
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 1
 	},
@@ -7038,7 +7036,6 @@
 "atJ" = (
 /obj/machinery/door_control{
 	id = "safe_room";
-	layer = 4;
 	name = "Door Bolt Control";
 	normaldoorcontrol = 1;
 	pixel_y = -5;
@@ -11110,7 +11107,6 @@
 /area/bigredv2/outside/medical)
 "aDP" = (
 /obj/effect/decal/cleanable/blood{
-	layer = 3;
 	pixel_x = 24
 	},
 /obj/item/trash/chips,
@@ -11508,9 +11504,7 @@
 /area/bigredv2/outside/dorms)
 "aEM" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/blood{
-	layer = 3;
-	},
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/freezer,
 /area/bigredv2/outside/dorms)
 "aEN" = (
@@ -13313,9 +13307,7 @@
 	icon_state = "fwindow";
 	dir = 1
 	},
-/obj/machinery/door/window{
-	layer = 4
-	},
+/obj/machinery/door/window,
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 5
 	},
@@ -13952,9 +13944,7 @@
 /area/bigredv2/caves/lambda_lab)
 "aKe" = (
 /obj/structure/window/reinforced/toughened,
-/obj/machinery/door/window{
-	layer = 4
-	},
+/obj/machinery/door/window,
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 6
 	},
@@ -14863,7 +14853,6 @@
 /obj/machinery/light,
 /obj/machinery/door_control{
 	id = "viro_q";
-	layer = 4;
 	name = "Qurantine Lockdown";
 	normaldoorcontrol = 1;
 	pixel_x = -25;
@@ -15530,9 +15519,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/decal/cleanable/blood{
-	layer = 3;
-	},
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/virology)
 "aOs" = (
@@ -16681,9 +16668,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aRn" = (
-/obj/effect/decal/cleanable/blood{
-	layer = 3;
-	},
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aRo" = (
@@ -17116,9 +17101,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/virology)
 "aSw" = (
-/obj/effect/decal/cleanable/blood{
-	layer = 3;
-	},
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/virology)
 "aSx" = (
@@ -17828,9 +17811,7 @@
 /turf/open/mars_dirt/random,
 /area/bigredv2/outside/e)
 "aUm" = (
-/obj/effect/decal/cleanable/blood{
-	layer = 3;
-	},
+/obj/effect/decal/cleanable/blood,
 /turf/open/mars_dirt/random,
 /area/bigredv2/outside/e)
 "aUn" = (
@@ -19718,9 +19699,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "aZv" = (
-/obj/machinery/door/window/eastleft{
-	layer = 3.1
-	},
+/obj/machinery/door/window/eastleft,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "aZw" = (

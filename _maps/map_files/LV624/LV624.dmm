@@ -2489,7 +2489,6 @@
 "ajr" = (
 /obj/structure/table,
 /obj/item/storage/firstaid/o2{
-	layer = 2.8;
 	pixel_x = 4;
 	pixel_y = 6
 	},
@@ -4150,7 +4149,6 @@
 /area/lv624/ground/river2)
 "aoM" = (
 /obj/structure/disposalpipe/segment{
-	layer = 5.1;
 	name = "water pipe"
 	},
 /turf/open/gm/river,
@@ -6378,7 +6376,6 @@
 "awU" = (
 /obj/machinery/door/poddoor/almayer{
 	id = "science_blast";
-	layer = 3.3;
 	name = "\improper Science Wing Blast Door"
 	},
 /obj/machinery/door/airlock/colony/research/dome{
@@ -6540,7 +6537,6 @@
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4";
-	layer = 2.1
 	},
 /turf/open/floor/tile/red/redtaupecorner{
 	dir = 8
@@ -6661,7 +6657,6 @@
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4";
-	layer = 2.1
 	},
 /turf/open/floor/tile/red/full,
 /area/lv624/lazarus/security)
@@ -7034,7 +7029,6 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
-	layer = 2.44
 	},
 /turf/open/floor/tile/green/greentaupe{
 	dir = 1
@@ -7619,9 +7613,7 @@
 /area/lv624/lazarus/quart)
 "aAx" = (
 /obj/structure/table,
-/obj/machinery/door/window/westright{
-	layer = 2.9
-	},
+/obj/machinery/door/window/westright,
 /obj/item/paper_bin,
 /obj/item/tool/pen,
 /obj/structure/cable/yellow{
@@ -7642,7 +7634,6 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -8404,7 +8395,6 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
@@ -8580,7 +8570,6 @@
 /obj/structure/window/framed/colony/reinforced,
 /obj/machinery/door/poddoor/almayer{
 	id = "science_blast";
-	layer = 3.3;
 	name = "\improper Science Wing Blast Door"
 	},
 /turf/open/floor/plating,
@@ -8588,7 +8577,6 @@
 "aEP" = (
 /obj/machinery/door/poddoor/almayer{
 	id = "science_blast";
-	layer = 3.3;
 	name = "\improper Science Wing Blast Door"
 	},
 /obj/machinery/door/airlock/almayer/research{
@@ -8689,7 +8677,6 @@
 /obj/structure/window_frame/colony/reinforced,
 /obj/machinery/door/poddoor/almayer{
 	id = "science_blast";
-	layer = 3.3;
 	name = "\improper Science Wing Blast Door"
 	},
 /turf/open/floor/plating,
@@ -8843,7 +8830,6 @@
 /obj/machinery/door/poddoor/almayer{
 	dir = 4;
 	id = "science_blast";
-	layer = 3.3;
 	name = "\improper Science Wing Blast Door"
 	},
 /turf/open/floor/plating,
@@ -9566,7 +9552,6 @@
 	},
 /obj/structure/table,
 /obj/item/storage/box/disks{
-	layer = 2.9;
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -9760,7 +9745,6 @@
 /obj/machinery/door/poddoor/almayer{
 	dir = 4;
 	id = "science_blast";
-	layer = 3.3;
 	name = "\improper Science Wing Blast Door"
 	},
 /obj/machinery/door/airlock/almayer/research{
@@ -9842,7 +9826,6 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -10162,7 +10145,6 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
 /turf/open/floor/tile/purple/whitepurplecorner{
@@ -11133,7 +11115,6 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
@@ -11856,16 +11837,13 @@
 	name = "\improper Almayer Dropship 2"
 	})
 "aPR" = (
-/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay{
-	layer = 2.5
-	},
+/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay,
 /obj/structure/largecrate/random,
 /turf/open/floor/plating/platebot,
 /area/lv624/lazarus/robotics)
 "aPS" = (
 /obj/structure/largecrate,
 /obj/item/mecha_parts/mecha_equipment/repair_droid{
-	layer = 2;
 	pixel_y = -10
 	},
 /obj/machinery/light/small{
@@ -12163,9 +12141,7 @@
 /area/shuttle/drop2/lz2)
 "aQN" = (
 /obj/structure/largecrate,
-/obj/item/mecha_parts/part/gygax_armour{
-	layer = 1
-	},
+/obj/item/mecha_parts/part/gygax_armour,
 /turf/open/floor/plating/platebot,
 /area/lv624/lazarus/robotics)
 "aQO" = (
@@ -12201,7 +12177,6 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
@@ -12213,7 +12188,6 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
@@ -12718,9 +12692,7 @@
 /area/lv624/lazarus/sleep_male)
 "aSj" = (
 /obj/structure/table,
-/obj/item/tool/pen{
-	layer = 3.1
-	},
+/obj/item/tool/pen,
 /turf/open/floor/tile/blue/taupebluecorner{
 	dir = 2
 	},
@@ -13621,7 +13593,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /turf/open/floor{
 	dir = 8;
@@ -13670,7 +13641,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
@@ -13789,7 +13759,6 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /turf/open/gm/dirt,
@@ -13832,7 +13801,6 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
-	layer = 2.44
 	},
 /turf/open/floor{
 	dir = 1;
@@ -13965,7 +13933,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/wood,
@@ -14159,8 +14126,7 @@
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 8;
-	icon_state = "1-8";
-	layer = 2.44
+	icon_state = "1-8"
 	},
 /turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
@@ -14510,7 +14476,6 @@
 /obj/machinery/door/poddoor/almayer{
 	dir = 1;
 	id = "corporate_blast";
-	layer = 3.3;
 	name = "\improper Corporate Dome Blast Door"
 	},
 /turf/open/floor/plating,
@@ -14519,7 +14484,6 @@
 /obj/machinery/door/poddoor/almayer{
 	dir = 1;
 	id = "corporate_blast";
-	layer = 3.3;
 	name = "\improper Corporate Dome Blast Door"
 	},
 /obj/machinery/door/airlock/almayer/generic/corporate{
@@ -14576,7 +14540,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/tile/white,
@@ -14744,7 +14707,6 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
@@ -14798,7 +14760,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/tile/white,
@@ -14933,7 +14894,6 @@
 /obj/machinery/door/poddoor/almayer{
 	dir = 4;
 	id = "corporate_blast";
-	layer = 3.3;
 	name = "\improper Corporate Dome Blast Door"
 	},
 /turf/open/floor/plating,
@@ -15079,7 +15039,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor{
@@ -15307,7 +15266,6 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /turf/open/floor{
@@ -15364,7 +15322,6 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /turf/open/floor{
@@ -15431,13 +15388,11 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
-	layer = 2.44
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
 /turf/open/floor/tile/barber,
@@ -15544,7 +15499,6 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
-	layer = 2.44
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -15578,7 +15532,6 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
@@ -15700,7 +15653,6 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
-	layer = 2.44
 	},
 /turf/open/gm/grass/grass2,
 /area/lv624/lazarus/atmos)
@@ -15859,7 +15811,6 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
-	layer = 2.44
 	},
 /turf/open/gm/grass,
 /area/lv624/lazarus/atmos)
@@ -16146,7 +16097,6 @@
 /obj/machinery/door/poddoor/almayer{
 	dir = 4;
 	id = "corporate_blast";
-	layer = 3.3;
 	name = "\improper Corporate Dome Blast Door"
 	},
 /obj/machinery/door/airlock/almayer/generic/corporate{
@@ -16220,7 +16170,6 @@
 /obj/machinery/door/poddoor/almayer{
 	dir = 4;
 	id = "corporate_blast";
-	layer = 3.3;
 	name = "\improper Corporate Dome Blast Door"
 	},
 /obj/machinery/door/airlock/almayer/generic/corporate{
@@ -16267,7 +16216,6 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
@@ -16328,18 +16276,14 @@
 /area/lv624/lazarus/armory)
 "bcN" = (
 /obj/item/target/syndicate,
-/obj/structure/target_stake{
-	layer = 2
-	},
+/obj/structure/target_stake,
 /turf/open/floor/tile/red/redtaupe{
 	dir = 5
 	},
 /area/lv624/lazarus/security)
 "bcO" = (
 /obj/item/target,
-/obj/structure/target_stake{
-	layer = 2
-	},
+/obj/structure/target_stake,
 /turf/open/floor/tile/red/redtaupe{
 	dir = 9
 	},
@@ -16379,7 +16323,6 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
-	layer = 2.44
 	},
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
@@ -16767,7 +16710,6 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /turf/open/floor/tile/bar,
@@ -16788,7 +16730,6 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
@@ -16865,12 +16806,9 @@
 	},
 /obj/item/tool/crowbar,
 /obj/effect/decal/cleanable/blood{
-	layer = 3;
 	pixel_x = 24
 	},
-/obj/effect/decal/cleanable/blood{
-	layer = 3
-	},
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 1
 	},
@@ -16996,7 +16934,6 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
-	layer = 2.44
 	},
 /turf/open/floor/grass,
 /area/lv624/lazarus/main_hall)
@@ -17633,7 +17570,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/tile/brown{
@@ -17713,7 +17649,6 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
@@ -17807,7 +17742,6 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
-	layer = 2.44
 	},
 /turf/open/gm/grass/grass2,
 /area/lv624/lazarus/atmos)
@@ -17848,9 +17782,7 @@
 /area/lv624/lazarus/captain)
 "bhx" = (
 /obj/structure/closet/cabinet,
-/obj/item/reagent_container/food/snacks/syndicake{
-	layer = 2.6
-	},
+/obj/item/reagent_container/food/snacks/syndicake,
 /turf/open/floor/grimy,
 /area/lv624/lazarus/captain)
 "bhy" = (
@@ -17865,9 +17797,7 @@
 /turf/open/floor/wood,
 /area/lv624/lazarus/hop)
 "bhA" = (
-/obj/structure/showcase{
-	layer = 3.1
-	},
+/obj/structure/showcase,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
@@ -18088,7 +18018,6 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
-	layer = 2.44
 	},
 /turf/open/gm/grass/grass2,
 /area/lv624/lazarus/atmos)
@@ -18192,7 +18121,6 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
@@ -18409,7 +18337,6 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
-	layer = 2.44
 	},
 /turf/open/floor/grimy,
 /area/lv624/lazarus/captain)
@@ -18674,7 +18601,6 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 4
@@ -19143,7 +19069,6 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
-	layer = 2.44
 	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
@@ -19392,7 +19317,6 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
@@ -19411,9 +19335,7 @@
 /area/lv624/lazarus/engineering)
 "blP" = (
 /obj/machinery/power/geothermal,
-/obj/structure/lattice{
-	layer = 2.9
-	},
+/obj/structure/lattice,
 /obj/structure/cable{
 	icon_state = "0-4";
 	d2 = 4
@@ -19437,9 +19359,7 @@
 /area/lv624/lazarus/engineering)
 "blR" = (
 /obj/machinery/power/geothermal,
-/obj/structure/lattice{
-	layer = 2.9
-	},
+/obj/structure/lattice,
 /obj/structure/cable{
 	d2 = 8;
 	icon_state = "0-8"
@@ -19569,7 +19489,6 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 1;
@@ -19711,9 +19630,7 @@
 /area/lv624/lazarus/atmos/outside)
 "bmH" = (
 /obj/machinery/power/geothermal,
-/obj/structure/lattice{
-	layer = 2.9
-	},
+/obj/structure/lattice,
 /obj/structure/cable{
 	icon_state = "0-4";
 	d2 = 4
@@ -19742,9 +19659,7 @@
 /area/lv624/lazarus/engineering)
 "bmJ" = (
 /obj/machinery/power/geothermal,
-/obj/structure/lattice{
-	layer = 2.9
-	},
+/obj/structure/lattice,
 /obj/structure/cable{
 	d2 = 8;
 	icon_state = "0-8"
@@ -20077,9 +19992,7 @@
 /area/lv624/lazarus/comms)
 "bnP" = (
 /obj/machinery/power/geothermal,
-/obj/structure/lattice{
-	layer = 2.9
-	},
+/obj/structure/lattice,
 /obj/structure/cable{
 	icon_state = "0-4";
 	d2 = 4
@@ -20330,7 +20243,6 @@
 /obj/machinery/door/poddoor/almayer{
 	dir = 4;
 	id = "secure_blast";
-	layer = 3.3;
 	name = "\improper Secure Armory Blast Door";
 	unacidable = 1
 	},
@@ -20387,7 +20299,6 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -20683,7 +20594,6 @@
 /obj/machinery/door/poddoor/almayer{
 	dir = 4;
 	id = "secure_blast";
-	layer = 3.3;
 	name = "\improper Secure Armory Blast Door";
 	unacidable = 1
 	},
@@ -20710,7 +20620,6 @@
 /obj/machinery/door/poddoor/almayer{
 	dir = 4;
 	id = "secure_blast";
-	layer = 3.3;
 	name = "\improper Secure Armory Blast Door";
 	unacidable = 1
 	},
@@ -20729,7 +20638,6 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8";
-	layer = 2.44
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
