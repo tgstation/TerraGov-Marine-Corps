@@ -58,9 +58,9 @@
 	to_chat(src, "<span class='notice'>As a ghost, you will [(prefs.toggles_chat & CHAT_GHOSTHIVEMIND) ? "now see chatter from the Xenomorph Hivemind" : "no longer see chatter from the Xenomorph Hivemind"].</span>")
 
 
-/client/verb/toggle_deadchat()
+/client/verb/toggle_deadchat_self()
 	set category = "Preferences"
-	set name = "Toggle Deadchat"
+	set name = "Toggle  Deadchat"
 
 	prefs.toggles_chat ^= CHAT_DEAD
 	prefs.save_preferences()
@@ -87,9 +87,9 @@
 		src << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1)
 
 
-/client/verb/toggle_ooc()
+/client/verb/toggle_ooc_self()
 	set category = "Preferences"
-	set name = "Toggle OOC"
+	set name = "Toggle  OOC"
 
 	prefs.toggles_chat ^= CHAT_OOC
 	prefs.save_preferences()
@@ -97,9 +97,9 @@
 	to_chat(src, "<span class='notice'>You will [(prefs.toggles_chat & CHAT_OOC) ? "now" : "no longer"] see messages on the OOC channel.</span>")
 
 
-/client/verb/toggle_looc()
+/client/verb/toggle_looc_self()
 	set category = "Preferences"
-	set name = "Toggle LOOC"
+	set name = "Toggle  LOOC"
 
 	prefs.toggles_chat ^= CHAT_LOOC
 	prefs.save_preferences()
