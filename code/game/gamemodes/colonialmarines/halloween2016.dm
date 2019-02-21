@@ -229,21 +229,26 @@
 //Checks to see who won///
 //////////////////////////
 /datum/game_mode/colonialmarines_halloween_2016/check_win()
-	var/living_player_list[] = count_marines_and_pmcs()
+	var/living_player_list[] = count_humans_and_xenos()
 	var/num_marines = living_player_list[1]
-	var/num_pmcs = living_player_list[2]
 
-	if(!num_marines && num_pmcs)
-		if(mcguffin && mcguffin.loc) round_finished 											= MODE_BATTLEFIELD_NT_MAJOR
-		else round_finished 																	= MODE_BATTLEFIELD_NT_MINOR
-	else if(num_marines && !num_pmcs)
-		if(!mcguffin || !mcguffin.loc) round_finished 											= MODE_BATTLEFIELD_M_MAJOR
-		else round_finished 																	= MODE_BATTLEFIELD_M_MINOR
-	else if(!num_marines && !num_pmcs)	round_finished  										= MODE_BATTLEFIELD_DRAW_DEATH
+	if(!num_marines)
+		if(mcguffin && mcguffin.loc)
+			round_finished = MODE_BATTLEFIELD_NT_MAJOR
+		else 
+			round_finished = MODE_BATTLEFIELD_NT_MINOR
+	else if(num_marines)
+		if(!mcguffin || !mcguffin.loc) 
+			round_finished = MODE_BATTLEFIELD_M_MAJOR
+		else 
+			round_finished = MODE_BATTLEFIELD_M_MINOR
 	else if((world.time > BATTLEFIELD_END + lobby_time))
-		if(mcguffin && mcguffin.loc) round_finished												= MODE_BATTLEFIELD_NT_MAJOR
-		else round_finished 																	= MODE_BATTLEFIELD_DRAW_STALEMATE
-	else if(EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED) round_finished 			= MODE_GENERIC_DRAW_NUKE
+		if(mcguffin && mcguffin.loc)
+			round_finished = MODE_BATTLEFIELD_NT_MAJOR
+		else 
+			round_finished = MODE_BATTLEFIELD_DRAW_STALEMATE
+	else if(EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED) 
+		round_finished = MODE_GENERIC_DRAW_NUKE
 
 ///////////////////////////////
 //Checks if the round is over//

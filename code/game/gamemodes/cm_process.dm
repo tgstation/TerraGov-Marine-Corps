@@ -415,23 +415,6 @@ Only checks living mobs with a client attached.
 
 	return list(num_humans,num_xenos)
 
-/datum/game_mode/proc/count_marines_and_pmcs(list/z_levels)
-	if(!z_levels)
-		z_levels = SSmapping.levels_by_any_trait(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_LOW_ORBIT, ZTRAIT_GROUND)
-
-	var/num_marines = 0
-	var/num_pmcs = 0
-
-	for(var/mob/M in GLOB.player_list)
-		if(M.z && (M.z in z_levels) && M.stat != DEAD && !isspaceturf(M.loc))
-			if(ishuman(M) && !isyautja(M))
-				var/mob/living/carbon/human/H = M
-				if(ispmc(H))
-					num_pmcs++
-				else if(ismarine(H))
-					num_marines++
-
-	return list(num_marines,num_pmcs)
 
 /*
 #undef QUEEN_DEATH_COUNTDOWN
