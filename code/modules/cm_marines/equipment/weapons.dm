@@ -92,23 +92,24 @@
 	return TRUE
 
 /obj/item/smartgun_powerpack/attack_hand(mob/user)
-	if(user.get_inactive_held_item() == src && !QDELETED(pcell))
-		user.put_in_hands(pcell)
-		playsound(src,'sound/machines/click.ogg', 25, 1)
-		to_chat(usr, "You take out the [pcell] out of the [src].")
-		pcell = null
-	else if(!pcell)
-		to_chat(usr, "There is no cell in the [src].")
+	if(user.get_inactive_held_item() == src)
+		if(!QDELETED(pcell))
+			user.put_in_hands(pcell)
+			playsound(src,'sound/machines/click.ogg', 25, 1)
+			to_chat(usr, "You take out the [pcell] out of the [src].")
+			pcell = null
+		else
+			to_chat(usr, "There is no cell in the [src].")
 	else
 		return ..()
 
 /obj/item/smartgun_powerpack/attackby(obj/item/A, mob/user)
 	if(istype(A, /obj/item/cell) && QDELETED(pcell))
 		var/obj/item/cell/C = A
-		user.transferItemToLoc(C, src)
-		pcell = C
-		user.visible_message("[user] puts a new power cell in the [src].", "You put a new power cell in the [src] containing [pcell.charge] charge.")
-		playsound(src,'sound/machines/click.ogg', 25, 1)
+		if(user.transferItemToLoc(C, src))
+			pcell = C
+			user.visible_message("[user] puts a new power cell in the [src].", "You put a new power cell in the [src] containing [pcell.charge] charge.")
+			playsound(src,'sound/machines/click.ogg', 25, 1)
 	else if(pcell)
 		to_chat(user, "There already is a cell in the [src].")
 	return ..()
