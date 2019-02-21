@@ -401,7 +401,7 @@ var/global/list/holodeck_programs = list(
 
 	//Can be picked up by aliens
 /obj/item/toy/beach_ball/holoball/attack_paw(user as mob)
-	if(isxeno(user))
+	if(!isxeno(user))
 		return FALSE
 	attack_alien(user)
 
