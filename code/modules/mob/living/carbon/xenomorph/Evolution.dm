@@ -10,8 +10,8 @@
 	set name = "Evolve"
 	set desc = "Evolve into a higher form."
 	set category = "Alien"
-	var totalXenos = 0 //total number of Xenos
 	// var tierA = 0.0 //Tier 1 - Not used in calculation of Tier maximums
+	var/tierA = 0 //Tier 1
 	var/tierB = 0 //Tier 2
 	var/tierC = 0 //Tier 3
 	var/potential_queens = 0
@@ -62,10 +62,9 @@
 		return
 
 	var/list/castes_to_pick = list()
-	if(xeno_caste?.evolves_to?.len)
-		for(var/type in xeno_caste.evolves_to)
-			var/datum/xeno_caste/Z = GLOB.xeno_caste_datums[type][1]
-			castes_to_pick += Z.caste_name
+	for(var/type in xeno_caste.evolves_to)
+		var/datum/xeno_caste/Z = GLOB.xeno_caste_datums[type][1]
+		castes_to_pick += Z.caste_name
 	var/castepick = input("You are growing into a beautiful alien! It is time to choose a caste.") as null|anything in castes_to_pick
 	if(!castepick) //Changed my mind
 		return
@@ -87,7 +86,7 @@
 		return
 
 	var/datum/hive_status/hive
-	if(hivenumber && hivenumber <= hive_datum.len)
+	if(hivenumber && hivenumber <= length(hive_datum))
 		hive = hive_datum[hivenumber]
 	else
 		hivenumber = XENO_HIVE_NORMAL
@@ -138,6 +137,7 @@
 								potential_queens++
 						continue
 					if(1)
+						tierA++
 						if(isxenodrone(M))
 							if(M.client && M.ckey)
 								potential_queens++
@@ -149,13 +149,10 @@
 						to_chat(src, "<span class='warning'>You shouldn't see this. If you do, bug repot it! (Error XE01).</span>")
 
 						continue
-				if(M.client && M.ckey)
-					totalXenos++
-
-		if(tier == 1 && ((tierB + tierC) / max(totalXenos, 1))> 0.5)
+		if(tier == 1 && ( (tierB + tierC) > tierA )
 			to_chat(src, "<span class='warning'>The hive cannot support another Tier 2, wait for either more aliens to be born or someone to die.</span>")
 			return
-		else if(tier == 2 && (tierC / max(totalXenos, 1))> 0.25)
+		else if(tier == 2 && ( (tierC * 3) > tierA + tierB )
 			to_chat(src, "<span class='warning'>The hive cannot support another Tier 3, wait for either more aliens to be born or someone to die.</span>")
 			return
 		else if(!hive.living_xeno_queen && potential_queens == 1 && isxenolarva(src) && new_caste_type != /mob/living/carbon/Xenomorph/Drone)
