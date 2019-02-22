@@ -715,16 +715,20 @@
 	has_resist = 1
 	has_internals = 0
 	gear = list()
-	
+
 /datum/species/zombie/necromorph
 	name = "Necromorph"
 	name_plural = "Necromorphs"
-	slowdown = -0.6
-	brute_mod = 0.75
-	burn_mod = 1.1 //don't murderize me lasers
+	blood_color = "#1e0100"
+	slowdown = -1
+	brute_mod = 0.7
+	burn_mod = 0.9 //don't murderize me lasers
+	icobase = 'icons/mob/human_races/r_necro.dmi'
+	deform = 'icons/mob/human_races/r_necro.dmi'
 
 /datum/species/zombie/necromorph/handle_death(var/mob/living/carbon/human/H, gibbed)
 //	if(H && H.loc && H.stat == DEAD)
+	H.gib()
 
 /datum/species/zombie/necromorph/handle_post_spawn(var/mob/living/carbon/human/H)
 	if(H.hud_used)
@@ -740,14 +744,40 @@
 	if(H.head) qdel(H.head)
 	if(H.glasses) qdel(H.glasses)
 	if(H.wear_mask) qdel(H.wear_mask)
-	var/obj/item/weapon/necromorph_claws/NC = new()
-	NC.icon_state = "claw_r"
-	H.equip_to_slot_or_del(NC, SLOT_R_HAND, TRUE)
+	var/obj/item/weapon/necromorph_claws/ZC = new()
+	ZC.icon_state = "claw_r"
+	H.equip_to_slot_or_del(ZC, SLOT_R_HAND, TRUE)
 	H.equip_to_slot_or_del(new /obj/item/weapon/necromorph_claws, SLOT_L_HAND, TRUE)
-	H.equip_to_slot(new /obj/item/clothing/glasses/zombie_eyes, SLOT_GLASSES, TRUE)
+	H.equip_to_slot(new /obj/item/clothing/glasses/necromorph_eyes, SLOT_GLASSES, TRUE)
 	H.equip_to_slot(new /obj/item/clothing/mask/rebreather/scarf/zombie, SLOT_WEAR_MASK, TRUE)
 	return ..()
 	
+/obj/item/clothing/glasses/necromorph_eyes
+	name = "necromorph eyes"
+	icon = null
+	w_class = 2.0
+	vision_flags = SEE_MOBS
+	darkness_view = 9
+	flags_item = NODROP|DELONDROP
+	fullscreen_vision = /obj/screen/fullscreen/nvg
+
+/obj/item/weapon/necromorph_claws
+	name = "claws"
+	icon = 'icons/mob/human_races/r_zombie.dmi'
+	icon_state = "claw_l"
+	flags_item = NODROP|DELONDROP
+	force = 23
+	w_class = 4
+	sharp = 1
+	attack_verb = list("slashed", "bite", "tore", "scraped", "nibbled")
+	pry_capable = IS_PRY_CAPABLE_FORCE
+
+/obj/item/weapon/necromorph_claws/attack(mob/living/M, mob/living/carbon/human/user, def_zone)
+	if(user.species.count_human)
+		return 0
+	. = ..()
+	playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1, 5)
+
 /datum/species/synthetic/handle_post_spawn(mob/living/carbon/human/H)
 	H.universal_understand = 1
 	return ..()
