@@ -117,6 +117,7 @@ Class Procs:
 	layer = OBJ_LAYER
 	var/machine_processing = 0 // whether the machine is busy and requires process() calls in scheduler.
 
+	var/wrenchable = FALSE
 	var/destructible = TRUE
 	var/damage = 0
 	var/damage_cap = 1000 //The point where things start breaking down.

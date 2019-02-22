@@ -66,7 +66,7 @@
 	var/obj/item/spacecash/ewallet/ewallet
 	var/tipped_level = 0
 	var/hacking_safety = FALSE //1 = Will never shoot inventory or allow all access
-	var/wrenchable = TRUE
+	wrenchable = TRUE
 	var/isshared = FALSE
 
 /obj/machinery/vending/Initialize()
