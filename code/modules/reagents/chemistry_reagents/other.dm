@@ -825,7 +825,7 @@
 	var/halloss_damage = volume * 2 * REM
 	M.apply_damage(halloss_damage*2, HALLOSS)
 	var/severity = volume/5
-        M.apply_damage((hallos_damage/4) * severity, HALLOSS)
+        M.apply_damage(hallos_damage/4 * severity, HALLOSS)
 
 /datum/reagent/xeno_psyattack/overdose_process(mob/living/M)
 		M.adjustOxyLoss(min(2,volume * 0.1 * REM)) //Overdose starts applying more oxy damage
