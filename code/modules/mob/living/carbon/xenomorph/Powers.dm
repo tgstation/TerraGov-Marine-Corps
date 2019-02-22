@@ -1535,10 +1535,10 @@
 			if("Praetorian")
 				if(leader == "") praetorian_list += xenoinfo
 				praetorian_count++
-			if("PsyAlien")
+			if("Ravager")
 				if(leader == "") ravager_list += xenoinfo
 				ravager_count++
-			if("Ravager")
+			if("PsyAlien")
 				if(leader == "") psyalien_list += xenoinfo
 				psyalien_count++
 			if("Carrier")
