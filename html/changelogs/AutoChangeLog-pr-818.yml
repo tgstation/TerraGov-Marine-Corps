@@ -1,0 +1,6 @@
+author: "by Surrealistik"
+delete-after: True
+changes: 
+  - balance: "Sentry guns on burst now gain spread equal to the (burst value - 1 squared) * 2, and lose accuracy equal to the burst value - 1 squared"
+  - balance: "Sentries on single fire gain +50% accuracy, damage and penetration."
+  - balance: "Minisentry bullet damage profile changed to 35/20 from 25/40. This should make it better at dealing with flanking castes."
