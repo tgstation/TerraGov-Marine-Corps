@@ -660,17 +660,16 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/M, alien)
 	custom_metabolism = 0.05
 
 /datum/reagent/medicine/quickclot/on_mob_life(mob/living/M)
-	if(M.bodytemperature > 169) //only heals IB at cryogenic temperatures.
+	if(!ishuman(M) || M.bodytemperature > 169) //only heals IB at cryogenic temperatures.
 		return ..()
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		for(var/datum/limb/X in H.limbs)
-			for(var/datum/wound/W in X.wounds)
-				if(W.internal)
-					W.damage = max(0, W.damage - 1)
-					X.update_damages()
-					if (X.update_icon())
-						X.owner.UpdateDamageIcon(1)
+	var/mob/living/carbon/human/H = M
+	for(var/datum/limb/X in H.limbs)
+		for(var/datum/wound/W in X.wounds)
+			if(W.internal)
+				W.damage = max(0, W.damage - 1)
+				X.update_damages()
+				if (X.update_icon())
+					X.owner.UpdateDamageIcon(1)
 	return ..()
 
 
