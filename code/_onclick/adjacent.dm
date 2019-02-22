@@ -54,7 +54,7 @@
 		if(!T1.ClickCross(get_dir(T1,src), border_only = FALSE, target_atom = target, mover = mover) || !T1.ClickCross(get_dir(T1,T0), border_only = 0, target_atom = target, mover = mover))
 			continue // couldn't enter or couldn't leave T1
 
-		if(!src.ClickCross(get_dir(src,T1), border_only = TRUE, target_atom = target, mover = mover))
+		if(!ClickCross(get_dir(src,T1), border_only = TRUE, target_atom = target, mover = mover))
 			continue // could not enter src
 
 		return TRUE // we don't care about our own density
