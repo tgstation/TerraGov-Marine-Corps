@@ -85,7 +85,7 @@
 		hive = hive_datum[hivenumber]
 	else
 		return
-	if(!hive.living_xeno_queen && hive.xeno_queen_timer > QUEEN_DEATH_TIMER*0.5 && hivenumber == 1)
+	if(!hive.living_xeno_queen && hive.xeno_queen_timer > QUEEN_DEATH_TIMER*0.5 && hivenumber == 1 && !hive.living_xeno_psyalien)
 		to_chat(src, "<span class='warning'>The Queen is dead. The hivemind is weakened. Despair!</span>")
 		return
 	var/rendered
