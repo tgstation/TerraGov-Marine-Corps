@@ -266,7 +266,7 @@ SUBSYSTEM_DEF(ticker)
 	for(var/mob/new_player/N in GLOB.player_list)
 		var/mob/living/carbon/human/player = N.new_character
 		if(istype(player) && player.mind && player.mind.assigned_role)
-			if(istype(player.mind.assigned_role, /datum/job/command/commander)
+			if(istype(player.mind.assigned_role, /datum/job/command/commander))
 				captainless = FALSE
 			if(player.mind.assigned_role)
 				SSjob.EquipRank(N, player.mind.assigned_role, 0)

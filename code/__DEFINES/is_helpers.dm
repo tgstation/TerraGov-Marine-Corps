@@ -50,7 +50,7 @@
 #define ishumanbasic(H) (is_species(H, /datum/species/human))
 
 //Job/role helpers
-#define issurvivor(H) (istype(H?.mind?.assigned_role, /datum/job/survivor)
+#define issurvivor(H) (istype(H?.mind?.assigned_role, /datum/job/survivor))
 #define ismarine(H) (H?.faction == "Marine" && (H?.mind?.assigned_role?.department_flag & (J_FLAG_MARINE|J_FLAG_SHIP)))
 #define ispmc(H) (H?.faction == "PMC")
 
