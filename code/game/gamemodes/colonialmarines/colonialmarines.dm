@@ -123,13 +123,14 @@
 
 	if(EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED) //Nuke went off, ending the round.
 		round_finished = MODE_GENERIC_DRAW_NUKE
-	else if(EvacuationAuthority.dest_status < NUKE_EXPLOSION_IN_PROGRESS) //If the nuke ISN'T in progress. We do not want to end the round before it detonates.
-		if(!num_humans && num_xenos)
-			round_finished = MODE_INFESTATION_X_MAJOR //No humans remain alive.
-		else if(num_humans && !num_xenos)
-			round_finished = MODE_INFESTATION_M_MAJOR //Humans destroyed the xenomorphs.
-		else if(!num_humans && !num_xenos)
-			round_finished = MODE_INFESTATION_DRAW_DEATH //Both were somehow destroyed.
+		return
+
+	if(!length(num_humans) && length(num_xenos))
+		round_finished = MODE_INFESTATION_X_MAJOR //No humans remain alive.
+	else if(length(num_humans) && !length(num_xenos))
+		round_finished = MODE_INFESTATION_M_MAJOR //Humans destroyed the xenomorphs.
+	else if(!length(num_humans) && !length(num_xenos))
+		round_finished = MODE_INFESTATION_DRAW_DEATH //Both were somehow destroyed.
 
 
 /datum/game_mode/colonialmarines/check_queen_status(queen_time)
