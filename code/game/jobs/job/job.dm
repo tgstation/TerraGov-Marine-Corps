@@ -61,6 +61,7 @@
 	if(H.mind)
 		var/datum/skills/L = new skills_type
 		H.mind.cm_skills = L
+		H.mind.comm_title = comm_title
 
 	H.job = title
 	H.faction = faction
