@@ -1,0 +1,4 @@
+author: "LaKiller8"
+delete-after: True
+changes: 
+  - bugfix: "Xenos can no longer evolve all at once to bypass tier limits."
