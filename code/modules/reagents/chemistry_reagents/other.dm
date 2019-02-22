@@ -817,3 +817,24 @@
 
 /datum/reagent/xeno_neurotoxin/overdose_crit_process(mob/living/M)
 		M.adjustOxyLoss(min(4,volume * 0.2 * REM)) //Overdose starts applying more oxy damage
+
+/datum/reagent/xeno_psyattack/on_mob_life(mob/living/M)
+	. = ..()
+	if(!.)
+		return
+	var/halloss_damage = volume * 2 * REM
+	M.apply_damage(halloss_damage*2, HALLOSS)
+	if(volume > 5)
+		M.apply_damage(halloss_damage/4, HALLOSS)
+	if(volume > 15)
+		M.apply_damage(halloss_damage/4, HALLOSS)
+	if(volume > 20)
+		M.apply_damage(halloss_damage/4, HALLOSS)
+	if(volume > 25)
+		M.apply_damage(halloss_damage/4, HALLOSS)
+
+/datum/reagent/xeno_psyattack/overdose_process(mob/living/M)
+		M.adjustOxyLoss(min(2,volume * 0.1 * REM)) //Overdose starts applying more oxy damage
+
+/datum/reagent/xeno_psyattack/overdose_crit_process(mob/living/M)
+		M.adjustOxyLoss(min(4,volume * 0.2 * REM)) //Overdose starts applying more oxy damage
