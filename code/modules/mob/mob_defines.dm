@@ -170,3 +170,4 @@
 	var/list/fullscreens = list()
 
 	var/notransform
+	var/can_use_codex = TRUE //codex, probably not needed.
