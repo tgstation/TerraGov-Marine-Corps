@@ -307,7 +307,7 @@
 
 //Xeno acid smoke.
 /obj/effect/particle_effect/smoke/xeno/burn
-  lifetime = 9
+	lifetime = 9
 	color = "#86B028" //Mostly green?
 
 /obj/effect/particle_effect/smoke/xeno/burn/apply_smoke_effect(turf/T)
