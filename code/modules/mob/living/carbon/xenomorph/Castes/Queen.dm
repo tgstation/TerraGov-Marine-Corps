@@ -80,7 +80,7 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.5 SECONDS
-	spit_types = list(/datum/ammo/xeno/toxin/medium/upgrade2, /datum/ammo/xeno/acid/medium)
+	spit_types = list(/datum/ammo/xeno/toxin/medium/upgrade1, /datum/ammo/xeno/acid/medium)
 
 	// *** Pheromones *** //
 	aura_strength = 3
@@ -118,7 +118,7 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.5 SECONDS
-	spit_types = list(/datum/ammo/xeno/toxin/medium/upgrade3, /datum/ammo/xeno/acid/medium)
+	spit_types = list(/datum/ammo/xeno/toxin/medium/upgrade2, /datum/ammo/xeno/acid/medium)
 
 	// *** Pheromones *** //
 	aura_strength = 4
@@ -156,7 +156,7 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.5 SECONDS
-	spit_types = list(/datum/ammo/xeno/toxin/medium/upgrade2, /datum/ammo/xeno/acid/medium)
+	spit_types = list(/datum/ammo/xeno/toxin/medium/upgrade3, /datum/ammo/xeno/acid/medium)
 
 	// *** Pheromones *** //
 	aura_strength = 5
