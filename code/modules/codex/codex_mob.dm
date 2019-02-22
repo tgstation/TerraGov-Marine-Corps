@@ -1,5 +1,5 @@
 /mob/proc/can_use_codex()
-	return FALSE
+	return TRUE
 
 /mob/new_player/can_use_codex()
 	return TRUE
