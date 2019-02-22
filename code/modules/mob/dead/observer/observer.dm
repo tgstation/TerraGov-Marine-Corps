@@ -598,6 +598,71 @@
 				return
 			SSticker.mode.spawn_larva(src, mother)
 
+/mob/dead/verb/join_as_necromorph()
+	set category = "Ghost"
+	set name = "Join as Necromorph"
+
+	var/mob/N = src
+
+	if(SSticker.current_state < GAME_STATE_PLAYING)
+		to_chat(usr, "<span class='warning'>The game hasn't started yet!</span>")
+		return
+
+	if(jobban_isbanned(usr, "Alien"))
+		to_chat(usr, "<span class='warning'>You are banned from playing aliens and cannot spawn as a Necromorph.</span>")
+		return
+
+	var/list/necromorph_list = list()
+
+	for(var/mob/living/carbon/human/species/zombie/necromorph/A in GLOB.alive_mob_list)
+		if(istype(A) && !A.client)
+			necromorph_list += A.real_name
+
+	if(!length(necromorph_list))
+		to_chat(usr, "<span class='warning'>There aren't any available Necromorphs.</span>")
+		return
+
+	var/choice = input("Pick a Necromorph:") as null|anything in necromorph_list
+	if(!choice)
+		return
+
+	for(var/mob/living/carbon/human/species/zombie/necromorph/P in GLOB.alive_mob_list)
+		if(choice == P.real_name)
+			N = P
+			break
+
+	if(!N || N.gc_destroyed)
+		to_chat(usr, "Not a valid mob!")
+		return
+
+	if(!istype(N, /mob/living/carbon/human/species/zombie/necromorph))
+		to_chat(usr, "<span class='warning'>That's not a Necromorph.</span>")
+		return
+
+	if(N.stat == DEAD)
+		to_chat(usr, "<span class='warning'>It's dead.</span>")
+		return
+
+	if(N.client)
+		to_chat(usr, "<span class='warning'>That player is still connected.</span>")
+		return
+
+	if(alert(usr, "Everything checks out. Are you sure you want to transfer yourself into this Necromorph?", "Confirmation", "Yes", "No") != "Yes")
+		return
+
+		if(N.client || N.stat == DEAD)
+			to_chat(usr, "<span class='warning'>Oops. That mob can no longer be controlled. Sorry.</span>")
+			return
+
+	var/mob/ghostmob = usr.client.mob
+	message_admins("[key_name(usr)] has joined as a [N].")
+	log_admin("[ADMIN_TPMONTY(usr)] has joined as a [N].")
+	N.ckey = usr.ckey
+
+	N.client?.change_view(world.view)
+
+	if(isobserver(ghostmob))
+		qdel(ghostmob)
 
 /mob/dead/verb/join_as_hellhound()
 	set category = "Ghost"
