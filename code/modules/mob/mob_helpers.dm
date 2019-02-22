@@ -142,6 +142,11 @@ proc/isXenoCrusher(A)
 		return TRUE
 	return FALSE
 
+proc/isXenoPsyAlien(A)
+	if(istype(A, /mob/living/carbon/Xenomorph/PsyAlien))
+		return TRUE
+	return FALSE
+
 proc/isXenoDrone(A)
 	if(istype(A, /mob/living/carbon/Xenomorph/Drone))
 		return TRUE

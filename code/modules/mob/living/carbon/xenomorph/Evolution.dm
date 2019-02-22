@@ -77,7 +77,7 @@
 
 	if(!new_caste_type)
 		to_chat(src, "EVO8: Something went wrong with evolving")
-		return 
+		return
 
 	if(!isturf(loc)) //cdel'd or inside something
 		return
@@ -96,6 +96,10 @@
 	if(handcuffed || legcuffed)
 		to_chat(src, "<span class='warning'>The restraints are too restricting to allow you to evolve.</span>")
 		return
+	if(new_caste_type == /mob/living/carbon/Xenomorph/PsyAlien)
+		if(hive.living_xeno_psyalien)
+			to_chat(src, "<span class='warning'>There already is a living PsyAlien.</span>")
+			return
 
 	if(new_caste_type == /mob/living/carbon/Xenomorph/Queen) //Special case for dealing with queenae
 		if(jobban_isbanned(src, "Queen"))

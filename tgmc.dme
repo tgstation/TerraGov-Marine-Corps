@@ -1186,6 +1186,7 @@
 #include "code\modules\mob\living\carbon\xenomorph\Castes\Larva.dm"
 #include "code\modules\mob\living\carbon\xenomorph\Castes\Praetorian.dm"
 #include "code\modules\mob\living\carbon\xenomorph\Castes\Predalien.dm"
+#include "code\modules\mob\living\carbon\xenomorph\Castes\PsyAlien.dm"
 #include "code\modules\mob\living\carbon\xenomorph\Castes\Queen.dm"
 #include "code\modules\mob\living\carbon\xenomorph\Castes\Ravager.dm"
 #include "code\modules\mob\living\carbon\xenomorph\Castes\Runner.dm"

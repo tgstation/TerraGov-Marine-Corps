@@ -1529,6 +1529,43 @@
 	smoke_system.start()
 	T.visible_message("<span class='danger'>A glob of acid lands with a splat and explodes into corrosive bile!</span>")
 
+/datum/ammo/xeno/psyattack/on_hit_mob(mob/living/carbon/M, obj/item/projectile/P)
+	if(!istype(M))
+		return ..()
+	var/mob/living/carbon/C = M
+	if(C.status_flags & XENO_HOST && istype(C.buckled, /obj/structure/bed/nest) || C.stat == DEAD)
+		return
+	return ..()
+
+/datum/ammo/xeno/psyattack
+	name = "Psy attack"
+	icon_state = null
+	ammo_reagents = list("xeno_psyattack" = 6)
+	flags_ammo_behavior = AMMO_IGNORE_ARMOR
+	spit_cost = 60
+	added_spit_delay = 3
+
+/datum/ammo/xeno/psyattack/New()
+	accuracy = config.max_hit_accuracy
+	shell_speed = config.reg_shell_speed
+	accurate_range = config.close_shell_range
+	max_range = config.near_shell_range
+	accuracy_var_low = config.low_proj_variance
+	accuracy_var_high = config.low_proj_variance
+
+/datum/ammo/xeno/psyattack/upgrade1
+	name = "Psy attack"
+	ammo_reagents = list("xeno_psyattack" = 6.0)
+
+/datum/ammo/xeno/psyattack/upgrade2
+	ammo_reagents = list("xeno_psyattack" = 11.0)
+
+/datum/ammo/xeno/psyattack/upgrade3
+	ammo_reagents = list("xeno_psyattack" = 16.0)
+
+/datum/ammo/xeno/psyattack/upgrade4
+	ammo_reagents = list("xeno_psyattack" = 21.0)
+
 /*
 //================================================
 					Misc Ammo
