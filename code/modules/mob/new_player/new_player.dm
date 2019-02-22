@@ -15,8 +15,8 @@
 
 
 /mob/new_player/Initialize()
-	. = ..()
 	GLOB.total_players++
+	return ..()
 
 
 /mob/new_player/Destroy()
