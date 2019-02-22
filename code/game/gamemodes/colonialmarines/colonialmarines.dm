@@ -125,11 +125,11 @@
 		round_finished = MODE_GENERIC_DRAW_NUKE
 		return
 
-	if(!length(num_humans) && length(num_xenos))
+	if(!num_humans) && num_xenos)
 		round_finished = MODE_INFESTATION_X_MAJOR //No humans remain alive.
-	else if(length(num_humans) && !length(num_xenos))
+	else if(num_humans && !num_xenos)
 		round_finished = MODE_INFESTATION_M_MAJOR //Humans destroyed the xenomorphs.
-	else if(!length(num_humans) && !length(num_xenos))
+	else if(num_humans && num_xenos)
 		round_finished = MODE_INFESTATION_DRAW_DEATH //Both were somehow destroyed.
 
 
