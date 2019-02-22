@@ -26,26 +26,6 @@
 			for(var/mob/M in hearers(4, src))
 				if(M.client)
 					M.show_message("<span class='warning'> You hear something rumbling inside [src]'s stomach...</span>", 2)
-		var/obj/item/I = user.get_active_held_item()
-		if(I && I.force)
-			var/d = rand(round(I.force / 4), I.force)
-			if(ishuman(src))
-				var/mob/living/carbon/human/H = src
-				var/organ = H.get_limb("chest")
-				if (istype(organ, /datum/limb))
-					var/datum/limb/temp = organ
-					if(temp.take_damage(d, 0))
-						H.UpdateDamageIcon()
-				H.updatehealth()
-			else
-				src.take_limb_damage(d)
-			for(var/mob/M in viewers(user, null))
-				if(M.client)
-					M.show_message("<span class='danger'>[user] attacks [src]'s stomach wall with the [I.name]!</span>", 2)
-			playsound(user.loc, 'sound/effects/attackblob.ogg', 25, 1)
-
-			if(prob(max(4*(100*getBruteLoss()/maxHealth - 75),0))) //4% at 24% health, 80% at 5% health
-				gib()
 	else if(!chestburst && (status_flags & XENO_HOST) && isxenolarva(user))
 		var/mob/living/carbon/Xenomorph/Larva/L = user
 		L.initiate_burst(src)
@@ -431,3 +411,4 @@
 	. += "---"
 	.["Add Language"] = "?_src_=vars;[HrefToken()];addlanguage=[REF(src)]"
 	.["Remove Language"] = "?_src_=vars;[HrefToken()];remlanguage=[REF(src)]"
+	.["Regenerate Icons"] = "?_src_=vars;[HrefToken()];regenerateicons=[REF(src)]"

@@ -31,6 +31,7 @@ var/global/list/randomized_pill_icons
 	return
 
 /obj/item/reagent_container/pill/attack(mob/M, mob/user, def_zone)
+	add_fingerprint(user)
 
 	if(M == user)
 

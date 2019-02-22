@@ -811,7 +811,6 @@
 #include "code\modules\admin\verbs\buildmode.dm"
 #include "code\modules\admin\verbs\datumvars.dm"
 #include "code\modules\admin\verbs\faxes.dm"
-#include "code\modules\admin\verbs\maprotation.dm"
 #include "code\modules\admin\verbs\player_notes.dm"
 #include "code\modules\admin\verbs\pray.dm"
 #include "code\modules\admin\verbs\varedit.dm"

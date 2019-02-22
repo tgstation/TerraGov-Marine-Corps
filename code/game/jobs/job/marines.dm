@@ -21,6 +21,7 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 /datum/job/marine/standard
 	title = "Squad Marine"
 	paygrade = "E2"
+	comm_title = "Mar"
 	flag = SQUAD_MARINE
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP)
@@ -48,6 +49,7 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 /datum/job/marine/engineer
 	title = "Squad Engineer"
 	paygrade = "E4"
+	comm_title = "Eng"
 	spawn_positions = 12
 	total_positions = 12
 	flag = SQUAD_ENGINEER
@@ -76,6 +78,7 @@ Your squaddies will look to you when it comes to construction in the field of ba
 /datum/job/marine/medic
 	title = "Squad Medic"
 	paygrade = "E4"
+	comm_title = "Med"
 	spawn_positions = 16
 	total_positions = 16
 	flag = SQUAD_MEDIC
@@ -104,6 +107,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 /datum/job/marine/smartgunner
 	title = "Squad Smartgunner"
 	paygrade = "E3"
+	comm_title = "Sgn"
 	flag = SQUAD_SMARTGUNNER
 	spawn_positions = 4
 	total_positions = 4
@@ -131,6 +135,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 /datum/job/marine/specialist
 	title = "Squad Specialist"
 	paygrade = "E5"
+	comm_title = "Spec"
 	flag = SQUAD_SPECIALIST
 	spawn_positions = 4
 	total_positions = 4
@@ -160,6 +165,7 @@ You can serve a variety of roles, so choose carefully."})
 /datum/job/marine/leader
 	title = "Squad Leader"
 	paygrade = "E6"
+	comm_title = "SL"
 	flag = SQUAD_LEADER
 	spawn_positions = 4
 	total_positions = 4
