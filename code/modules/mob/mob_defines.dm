@@ -1,4 +1,6 @@
 /mob
+	name = "nameless mob"
+
 	density = 1
 	layer = MOB_LAYER
 	animate_movement = 2

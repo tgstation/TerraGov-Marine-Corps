@@ -213,17 +213,6 @@
 		if(istype(target))
 			if( isyautja(target) || isxeno(target) )
 				return //Not on aliens.
-			if(target.mind && target.mind.special_role)
-				switch(target.mind.special_role) //Switches are still better than evaluating this twice.
-					if("IRON BEARS") //These antags can shrug off tasers so they are not shut down.
-						target.apply_effects(1,1) //Barely affected.
-						return
-					if("UPP") //These antags can shrug off tasers so they are not shut down.
-						target.apply_effects(1,1) //Barely affected.
-						return
-					if("DEATH SQUAD")
-						target.apply_effects(0,1) //Almost unaffacted.
-						return
 			target.apply_effects(12,20)
 
 	proc/drop_flame(turf/T) // ~Art updated fire 20JAN17
@@ -605,10 +594,7 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.species && H.species.count_human) //no effect on synths or preds.
-			if(H.mind && H.mind.special_role)
-				H.apply_effects(0,1) //ineffective against antags.
-			else
-				H.apply_effects(6,8)
+			H.apply_effects(6,8)
 		shake_camera(H, 2, 1)
 
 /datum/ammo/bullet/shotgun/incendiary

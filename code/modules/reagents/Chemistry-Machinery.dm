@@ -325,7 +325,7 @@
 			loaded_pill_bottle.loc = loc
 			loaded_pill_bottle = null
 	else if(href_list["close"])
-		user << browse(null, "window=chemmaster")
+		user << browse(null, "window=chem_master")
 		user.unset_interaction()
 		return
 

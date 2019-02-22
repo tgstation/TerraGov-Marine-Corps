@@ -238,6 +238,8 @@
 	storage_slots = 6
 	can_hold = list("/obj/item/reagent_container/glass/beaker/vial")
 
+/obj/item/storage/fancy/vials/prison
+	icon = 'icons/obj/machines/virology.dmi'
 
 /obj/item/storage/fancy/vials/New()
 	..()

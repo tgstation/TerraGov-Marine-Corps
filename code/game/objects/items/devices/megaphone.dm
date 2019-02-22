@@ -34,7 +34,8 @@
 	if(!message)
 		return
 	message = capitalize(message)
-	log_admin("[key_name(user)] used a megaphone to say: >[message]<")
+	log_game("[key_name(user)] used a megaphone to say: [message]")
+	user.log_talk(message, LOG_SAY)
 	if ((src.loc == user && usr.stat == 0))
 		if(emagged)
 			if(insults)

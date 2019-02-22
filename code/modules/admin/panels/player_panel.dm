@@ -63,7 +63,7 @@
 
 				}
 
-				function expand(id,job,name,real_name,image,key,ip,antagonist,ref){
+				function expand(id,job,name,real_name,key,ip,ref){
 
 					clearAll();
 
@@ -212,15 +212,13 @@
 		<span id='maintable_data_archive'>
 		<table width='560' align='center' cellspacing='0' cellpadding='5' id='maintable_data'>"}
 
-	var/list/mobs = sortmobs()
 	var/i = 1
-	for(var/mob/M in mobs)
+	for(var/mob/M in sortmobs())
 		if(M.ckey && M.client)
 
 			var/color = "#e6e6e6"
 			if(i % 2 == 0)
 				color = "#f2f2f2"
-			var/is_antagonist = is_special_character(M)
 
 			var/M_job = ""
 
@@ -233,9 +231,9 @@
 						M_job = "Monkey"
 					else if(isxeno(M))
 						if(M.client?.prefs?.xeno_name && M.client.prefs.xeno_name != "Undefined")
-							M_job = "alien - [M.client.prefs.xeno_name]"
+							M_job = "Xenomorph - [M.client.prefs.xeno_name]"
 						else
-							M_job = "alien"
+							M_job = "Xenomorph"
 					else
 						M_job = "Carbon-based"
 
@@ -287,7 +285,7 @@
 					<td align='center' bgcolor='[color]'>
 						<span id='notice_span[i]'></span>
 						<a id='link[i]'
-						onmouseover='expand("item[i]","[M_job]","[M_name]","[M_rname]","--unused--","[M_key]","[M.lastKnownIP]",[is_antagonist],"\ref[M]")'
+						onmouseover='expand("item[i]","[M_job]","[M_name]","[M_rname]","[M_key]","[M.lastKnownIP]","[REF(M)]")'
 						>
 						<b id='search[i]'>[M_name] - [M_rname] - [M_key] ([M_job])</b>
 						</a>
@@ -328,9 +326,8 @@
 	var/ref = "[REF(usr.client.holder)];[HrefToken()]"
 	var/dat = "<html><head><title>Player Menu</title></head>"
 	dat += "<body><table border=1 cellspacing=5><B><tr><th>Key</th><th>Name</th><th>Type</th><th>PP</th><th>CID</th><th>IP</th><th>JMP</th><th>FLW</th><th>Notes</th></tr></B>"
-	var/list/mobs = sortmobs()
 
-	for(var/mob/M in mobs)
+	for(var/mob/M in sortmobs())
 		if(!M.ckey)
 			continue
 
@@ -383,6 +380,9 @@
 	var/ref = "[REF(usr.client.holder)];[HrefToken()]"
 	var/body = "<html><head><title>Player Panel: [key_name(M)]</title></head>"
 
+	if(!M?.name)
+		message_admins("[M] has no name or is null! Here's a VV: [ADMIN_VV(M)]")
+
 	body += "[M.name]"
 
 	if(M.client)
@@ -406,7 +406,12 @@
 		<a href='?src=[ref];individuallog=[REF(M)]'>LOGS</a> \]</b><br>
 		<b>Mob Type:</b> [M.type]<br>
 		<b>Mob Location:</b> [AREACOORD(M.loc)]<br>
-		<a href='?src=[ref];kick=[REF(M)]'>Kick</a> |
+		<b>Mob Faction:</b> [M.faction]<br>"}
+
+	if(M.mind?.assigned_role)
+		body += "<b>Mob Role:</b> [M.mind.assigned_role]<br>"
+
+	body +={"<a href='?src=[ref];kick=[REF(M)]'>Kick</a> |
 		<a href='?src=[ref];ban=[REF(M)]'>Ban</a> |
 		<a href='?src=[ref];jobbanpanel=[REF(M)]'>Jobban</a> |
 		<a href='?src=[ref];notes=show;mob=[REF(M)]'>Notes</a> |

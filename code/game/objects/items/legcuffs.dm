@@ -126,4 +126,6 @@
 					SA.health -= 20
 	..()
 
-
+/obj/item/legcuffs/yautja/ancient
+	name = "Alien Mine"
+	desc = "A bizarre alien device used for trapping and killing prey."

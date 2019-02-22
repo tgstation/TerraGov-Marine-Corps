@@ -320,9 +320,7 @@
 
 	var/role
 
-	if(player.special_role)
-		role = player.special_role
-	else if(player.assigned_role)
+	if(player.assigned_role)
 		role = player.assigned_role
 	else
 		role = "Unassigned"

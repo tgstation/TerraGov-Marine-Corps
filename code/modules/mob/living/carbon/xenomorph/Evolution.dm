@@ -182,6 +182,13 @@
 		to_chat(src, "<span class='warning'>You quiver, but nothing happens. Hold still while evolving.</span>")
 		return
 
+	if(tier == 1 && ((tierB + tierC) / max(totalXenos, 1))> 0.5)
+		to_chat(src, "<span class='warning'>Another sister evolved meanwhile. The hive cannot support another Tier 2.</span>")
+		return
+	else if(tier == 2 && (tierC / max(totalXenos, 1))> 0.25)
+		to_chat(src, "<span class='warning'>Another sister evolved meanwhile. The hive cannot support another Tier 3.</span>")
+		return
+
 	if(!isturf(loc)) //cdel'd or moved into something
 		return
 	if(new_caste_type == /mob/living/carbon/Xenomorph/Queen && hive.living_xeno_queen) //Do another check after the tick.

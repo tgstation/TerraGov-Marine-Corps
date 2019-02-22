@@ -1,0 +1,4 @@
+author: "Alterist"
+delete-after: True
+changes: 
+  - imageadd: "changed boonie hat item sprite, fixed onmob sprite"
