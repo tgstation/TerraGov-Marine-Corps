@@ -95,17 +95,20 @@
 	ghost.gender = gender
 
 	if(mind?.name)
-		ghost.name = mind.name
+		ghost.real_name = mind.name
 	else
 		if(real_name)
-			ghost.name = real_name
+			ghost.real_name = real_name
 		else
 			if(gender == MALE)
-				ghost.name = capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
+				ghost.real_name = capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
 			else
-				ghost.name = capitalize(pick(first_names_female)) + " " + capitalize(pick(last_names))
+				ghost.real_name = capitalize(pick(first_names_female)) + " " + capitalize(pick(last_names))
 
-	ghost.mind = mind
+	ghost.name = ghost.real_name
+
+	if(mind)
+		ghost.mind = mind
 
 	if(!T)
 		T = pick(GLOB.latejoin)
@@ -114,8 +117,6 @@
 
 	if(!name)
 		ghost.name = capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
-
-	ghost.real_name = name
 
 	if(!can_reenter_corpse)
 		away_timer = 5 MINUTES
