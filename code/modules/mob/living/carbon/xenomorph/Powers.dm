@@ -2225,6 +2225,25 @@
 	to_chat(src, "<span class='xenodanger'>You feel your toxin glands refill, another young one ready for implantation. You can use Defile again.</span>")
 	update_action_button_icons()
 
+/*
+/mob/living/carbon/Xenomorph/Hivelord/proc/necro_transform(mob/living/carbon/human/H)
+	set waitfor = 0
+	var/necro_transforming = TRUE
+	H.vomit()
+	sleep(50)
+	H.AdjustStunned(5)
+	sleep(20)
+	H.Jitter(500)
+	sleep(30)
+	if(H && H.loc)
+		if(H.stat == DEAD) H.revive(TRUE)
+		playsound(H.loc, 'sound/hallucinations/wail.ogg', 25, 1)
+		H.jitteriness = 0
+		H.set_species("Necromorph")
+		necro_transforming = FALSE
+
+*/
+
 /mob/living/carbon/Xenomorph/proc/recurring_injection(mob/living/H, toxin1 = "xeno_toxin", toxin2 = null, larva = FALSE, virus1 = "necrovirus", count = 2)
 	//set waitfor = FALSE
 	while(count)
@@ -2242,7 +2261,17 @@
 			H.reagents.add_reagent(toxin2, DEFILER_STING_AMOUNT_RECURRING, null, 300, FALSE, FALSE, TRUE) //Caps the amount injected by the overdose limit
 			overdose_check(H, toxin2)
 		if(virus1)
-			H.reagents.add_reagent(virus1, DEFILER_STING_AMOUNT_RECURRING) //10 units transferred.
+			var/necro_transforming = 0
+			if(!necro_transforming)
+				var/healamt = H.stat ? 5 : 1
+				H.change_mob_type(/mob/living/carbon/human/species/zombie/necromorph)
+				H.gib()
+				if(H.health < H.maxHealth)
+					H.adjustFireLoss(-healamt)
+					H.adjustBruteLoss(-healamt)
+					H.adjustToxLoss(-healamt)
+					H.adjustOxyLoss(-healamt)
+					H.nutrition = 450 //never hungry
 
 		if(count < 2 && larva)
 			//It's infection time!
