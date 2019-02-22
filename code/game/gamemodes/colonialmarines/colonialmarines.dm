@@ -130,7 +130,7 @@
 	else if(num_humans && !num_xenos)
 		message_admins("Round finished: [MODE_INFESTATION_M_MAJOR]")
 		round_finished = MODE_INFESTATION_M_MAJOR //Humans destroyed the xenomorphs.
-	else if(num_humans && num_xenos)
+	else if(!num_humans && !num_xenos)
 		message_admins("Round finished: [MODE_INFESTATION_DRAW_DEATH]")
 		round_finished = MODE_INFESTATION_DRAW_DEATH //Both were somehow destroyed.
 
