@@ -34,7 +34,7 @@
 		machinery_strings += "This can be wrenched to allow it to be moved."
 	else
 		machinery_strings += "This cannot be wrenched to allow it to be moved."
-
+/*
 	if(length(req_access) > 0)
 		machinery_strings += "<br><U>You have to have one of the following access requirements to access this normally</U>:"
 		is_in_access_list(req_access)
@@ -42,7 +42,7 @@
 	if(length(req_one_access) > 0)
 		machinery_strings += "<br><U>You have to have one of the following access requirements to access this normally</U>:"
 		is_in_access_list(req_one_access)
-
+*/
 	if(length(component_parts) > 0)
 		machinery_strings += "<U>It is made from the following parts</U>:"
 		for(var/X in component_parts)
@@ -57,7 +57,7 @@
 	lore_text = "Lasers like this one have been in use for ages, in applications such as mining, cutting, and in the startup sequence of many advanced space station and starship engines."
 	antag_text = "This baby is capable of slicing through walls, sealed lockers, and people."
 
-
+/* do not use until someone reworks access. Then do something better.
 proc/is_in_access_list(var/list/X)
 	var/list/machinery_strings = list()
 	if(ACCESS_MARINE_COMMANDER in X)
@@ -123,3 +123,5 @@ proc/is_in_access_list(var/list/X)
 	if(ACCESS_CIVILIAN_RESEARCH in X)
 		machinery_strings += "Civilian Research"
 	return machinery_strings
+
+*/
