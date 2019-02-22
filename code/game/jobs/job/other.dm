@@ -4,6 +4,12 @@
 //Xeno
 /datum/job/other/xenomorph
 
+/datum/job/other/xenomorph/queen
+
+/datum/job/other/silicon
+
+/datum/job/other/simple_animal
+
 //Colonist
 /datum/job/other/colonist
 	title = "Colonist"

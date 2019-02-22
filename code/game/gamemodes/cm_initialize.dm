@@ -116,11 +116,6 @@ datum/game_mode/proc/initialize_special_clamps()
 	if(possible_xenomorphs.len < xeno_required_num) //We don't have enough aliens.
 		return FALSE
 
-	//Minds are not transferred at this point, so we have to clean out those who may be already picked to play.
-	for(var/datum/mind/A in possible_xenomorphs)
-		if(A.assigned_role == "MODE")
-			possible_xenomorphs -= A
-
 	var/i = xeno_starting_num
 	var/datum/mind/new_xeno
 	var/turf/larvae_spawn
@@ -149,18 +144,13 @@ datum/game_mode/proc/initialize_special_clamps()
 /datum/game_mode/proc/initialize_starting_queen_list()
 	var/list/datum/mind/possible_queens = get_players_for_role(BE_QUEEN)
 
-	//Minds are not transferred at this point, so we have to clean out those who may be already picked to play.
-	for(var/datum/mind/A in possible_queens)
-		if(A.assigned_role == "MODE")
-			possible_queens -= A
-
 	if(!length(possible_queens))
 		return FALSE
 
 	for(var/datum/mind/new_queen in possible_queens)
 		if(jobban_isbanned(new_queen.current))
 			continue
-		new_queen.assigned_role = "Queen"
+		new_queen.assigned_role = new /datum/job/other/xenomorph/queen
 		queen = new_queen
 		break
 
@@ -351,22 +341,17 @@ datum/game_mode/proc/initialize_post_queen_list()
 /datum/game_mode/proc/initialize_starting_survivor_list()
 	var/list/datum/mind/possible_survivors = get_players_for_role(BE_SURVIVOR)
 	if(possible_survivors.len) //We have some, it looks like.
-		for(var/datum/mind/A in possible_survivors) //Strip out any xenos first so we don't double-dip.
-			if(A.assigned_role == "MODE")
-				possible_survivors -= A
-
-		if(possible_survivors.len) //We may have stripped out all the contendors, so check again.
-			var/i = surv_starting_num
-			var/datum/mind/new_survivor
-			while(i > 0)
-				if(!length(possible_survivors))
-					break  //Ran out of candidates! Can't have a null pick(), so just stick with what we have.
-				new_survivor = pick(possible_survivors)
-				if(!new_survivor)
-					break  //We ran out of survivors!
-				survivors += new_survivor
-				possible_survivors -= new_survivor
-				i--
+		var/i = surv_starting_num
+		var/datum/mind/new_survivor
+		while(i > 0)
+			if(!length(possible_survivors))
+				break  //Ran out of candidates! Can't have a null pick(), so just stick with what we have.
+			new_survivor = pick(possible_survivors)
+			if(!new_survivor)
+				break  //We ran out of survivors!
+			survivors += new_survivor
+			possible_survivors -= new_survivor
+			i--
 
 /datum/game_mode/proc/initialize_post_survivor_list()
 	for(var/datum/mind/survivor in survivors)

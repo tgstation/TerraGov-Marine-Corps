@@ -131,7 +131,7 @@
 		var/new_role = input("Select new role", "Assigned role", assigned_role) as null|anything in SSjob.name_occupations
 		if(!new_role)
 			return
-		assigned_role = new_role
+		assigned_role = SSjob.GetJob(new_role)
 
 	else if(href_list["memory_edit"])
 		var/new_memo = copytext(sanitize(input("Write new memory", "Memory", memory) as null|message),1,MAX_MESSAGE_LEN)
@@ -157,7 +157,7 @@
 	. = ..()
 	//if not, we give the mind default job_knowledge and assigned_role
 	if(!mind.assigned_role)
-		mind.assigned_role = "Squad Marine"	//default
+		mind.assigned_role = new /datum/job/marine/standard	//default
 		if(mind.cm_skills)
 			qdel(mind.cm_skills)
 		mind.cm_skills = new /datum/skills/pfc
@@ -165,14 +165,14 @@
 
 /mob/living/carbon/Xenomorph/mind_initialize()
 	. = ..()
-	mind.assigned_role = "Xenomorph"
+	mind.assigned_role = new /datum/job/other/xenomorph
 
 
 /mob/living/silicon/mind_initialize()
 	. = ..()
-	mind.assigned_role = "Silicon"
+	mind.assigned_role = new /datum/job/other/silicon
 
 
 /mob/living/simple_animal/mind_initialize()
 	. = ..()
-	mind.assigned_role = "Animal"
+	mind.assigned_role = new /datum/job/other/simple_animal

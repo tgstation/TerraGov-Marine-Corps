@@ -80,7 +80,7 @@ SUBSYSTEM_DEF(job)
 		if(!latejoin)
 			position_limit = job.spawn_positions
 		JobDebug("Player: [player] is now Rank: [rank], JCP:[job.current_positions], JPL:[position_limit]")
-		player.mind.assigned_role = rank
+		player.mind.assigned_role = job
 		unassigned -= player
 		job.current_positions++
 		return TRUE
@@ -254,7 +254,7 @@ SUBSYSTEM_DEF(job)
 
 
 //Gives the player the stuff he should have with his rank
-/datum/controller/subsystem/job/proc/EquipRank(mob/M, rank, joined_late = FALSE)
+/datum/controller/subsystem/job/proc/EquipRank(mob/M, job, joined_late = FALSE)
 	var/mob/new_player/N
 	var/mob/living/H
 	if(!joined_late)
@@ -263,9 +263,7 @@ SUBSYSTEM_DEF(job)
 	else
 		H = M
 
-	var/datum/job/job = GetJob(rank)
-
-	H.job = rank
+	H.job = job.title
 
 	//If we joined at roundstart we should be positioned at our workstation
 	if(!joined_late && job)
@@ -284,7 +282,7 @@ SUBSYSTEM_DEF(job)
 			SendToLateJoin(H)
 
 	if(job && H.mind)
-		H.mind.assigned_role = rank
+		//H.mind.assigned_role = job
 		var/new_mob = job.equip(H, null, null, joined_late , null, M.client)
 		if(ismob(new_mob))
 			H = new_mob

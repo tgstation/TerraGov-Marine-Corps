@@ -13,7 +13,6 @@
 	var/found_xenos = initialize_starting_xenomorph_list()
 	if(!found_queen && !found_xenos)
 		return FALSE
-	initialize_starting_survivor_list()
 	latejoin_larva_drop = CONFIG_GET(number/latejoin_larva_required_num)
 	return TRUE
 
@@ -65,6 +64,7 @@
 /datum/game_mode/colonialmarines/post_setup()
 	initialize_post_queen_list()
 	initialize_post_xenomorph_list()
+	initialize_starting_survivor_list()
 	initialize_post_survivor_list()
 	initialize_post_marine_gear_list()
 
