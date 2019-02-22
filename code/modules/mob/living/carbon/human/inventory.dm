@@ -474,6 +474,9 @@
 	if(do_mob(src, M, HUMAN_STRIP_DELAY, BUSY_ICON_GENERIC, BUSY_ICON_GENERIC))
 		if(I && Adjacent(M) && I == M.get_item_by_slot(slot_to_process))
 			M.dropItemToGround(I)
+			if(isidcard(I))
+				log_admin("[key_name(src)] took the [I] of [key_name(M)].")
+				message_admins("[ADMIN_TPMONTY(src)] took the [I] of [ADMIN_TPMONTY(M)].")
 
 	if(M)
 		if(interactee == M && Adjacent(M))

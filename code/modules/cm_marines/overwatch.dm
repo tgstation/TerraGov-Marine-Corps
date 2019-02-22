@@ -624,6 +624,10 @@
 	to_chat(usr, "[icon2html(src, usr)] [H.real_name] is [current_squad]'s new leader!")
 	current_squad.squad_leader = H
 	SET_TRACK_LEADER(current_squad.tracking_id, H)
+	if(H.mind.assigned_role == "Squad Leader")
+		H.mind.comm_title = "SL"
+	else
+		H.mind.comm_title = "aSL"
 	if(H.mind.cm_skills)
 		H.mind.cm_skills.leadership = max(SKILL_LEAD_TRAINED, H.mind.cm_skills.leadership)
 		H.update_action_buttons()

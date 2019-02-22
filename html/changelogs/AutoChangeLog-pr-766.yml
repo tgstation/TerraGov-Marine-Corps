@@ -1,5 +1,0 @@
-author: "Rohesie"
-delete-after: True
-changes: 
-  - rscadd: "Sniper gains an integrated laze in its gun. Use CTRL+click, same as a regular tactical binocular."
-  - refactor: "Refactors the Laser Targeting into a Target Marker."

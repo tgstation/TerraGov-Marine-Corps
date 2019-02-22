@@ -7,20 +7,14 @@
 /area/tdome)
 "ac" = (
 /obj/structure/closet/secure_closet/bar,
-/turf/open/floor{
-	icon_state = "white"
-	},
+/turf/open/floor/tile/white,
 /area/tdome)
 "ad" = (
-/turf/open/floor{
-	icon_state = "white"
-	},
+/turf/open/floor/tile/white,
 /area/tdome)
 "ae" = (
 /obj/machinery/gibber,
-/turf/open/floor{
-	icon_state = "white"
-	},
+/turf/open/floor/tile/white,
 /area/tdome)
 "af" = (
 /obj/machinery/vending/cigarette,
@@ -82,15 +76,11 @@
 /area/tdome/tdomeobserve)
 "am" = (
 /obj/structure/closet/secure_closet/freezer/meat,
-/turf/open/floor{
-	icon_state = "white"
-	},
+/turf/open/floor/tile/white,
 /area/tdome)
 "an" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
-/turf/open/floor{
-	icon_state = "white"
-	},
+/turf/open/floor/tile/white,
 /area/tdome)
 "ao" = (
 /obj/structure/bed/chair,
@@ -133,22 +123,16 @@
 	pixel_y = 3
 	},
 /obj/structure/table,
-/turf/open/floor{
-	icon_state = "white"
-	},
+/turf/open/floor/tile/white,
 /area/tdome)
 "as" = (
 /obj/structure/table,
 /obj/machinery/microwave,
-/turf/open/floor{
-	icon_state = "white"
-	},
+/turf/open/floor/tile/white,
 /area/tdome)
 "at" = (
 /obj/structure/table/reinforced,
-/turf/open/floor{
-	icon_state = "white"
-	},
+/turf/open/floor/tile/white,
 /area/tdome)
 "au" = (
 /obj/machinery/computer/security/telescreen,
@@ -187,10 +171,7 @@
 	},
 /area/space)
 "az" = (
-/turf/open/floor{
-	icon_state = "plating";
-	name = "plating"
-	},
+/turf/open/floor/plating,
 /area/tdome)
 "aA" = (
 /obj/structure/window/reinforced{
@@ -199,7 +180,6 @@
 	},
 /obj/effect/forcefield{
 	desc = "You can't get in. Heh.";
-	layer = 1;
 	name = "Blocker"
 	},
 /turf/open/floor,
@@ -211,7 +191,6 @@
 	},
 /obj/effect/forcefield{
 	desc = "You can't get in. Heh.";
-	layer = 1;
 	name = "Blocker"
 	},
 /obj/structure/disposalpipe/segment,
@@ -249,39 +228,28 @@
 /area/space)
 "aI" = (
 /obj/effect/landmark/thunderdome/two,
-/turf/open/floor{
-	icon_state = "plating";
-	name = "plating"
-	},
+/turf/open/floor/plating,
 /area/tdome/tdome2)
 "aJ" = (
 /obj/machinery/door/poddoor{
 	id = "thunderdome";
 	name = "Thunderdome Blast Door"
 	},
-/turf/open/floor{
-	icon_state = "plating";
-	name = "plating"
-	},
+/turf/open/floor/plating,
 /area/tdome)
 "aK" = (
-/turf/open/floor{
-	icon_state = "red";
+/turf/open/floor/tile/red/redtaupe{
 	dir = 8
 	},
 /area/tdome)
 "aL" = (
-/turf/open/floor{
-	icon_state = "green";
+/turf/open/floor/tile/green/greentaupe{
 	dir = 4
 	},
 /area/tdome)
 "aM" = (
 /obj/effect/landmark/thunderdome/one,
-/turf/open/floor{
-	icon_state = "plating";
-	name = "plating"
-	},
+/turf/open/floor/plating,
 /area/tdome/tdome1)
 "aN" = (
 /turf/open/space/transit/north/shuttlespace_ns11,
@@ -383,21 +351,18 @@
 /area/shuttle/distress/transit)
 "bb" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
-	tag = "icon-intact (NORTHEAST)";
 	dir = 5
 	},
 /turf/open/floor,
 /area/tdome)
 "bc" = (
 /obj/machinery/atmospherics/pipe/manifold/general/visible{
-	dir = 1;
-	tag = "icon-manifold (NORTH)"
+	dir = 1
 	},
 /turf/open/floor,
 /area/tdome)
 "bd" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
-	tag = "icon-intact (NORTHWEST)";
 	dir = 9
 	},
 /turf/open/floor,
@@ -466,7 +431,6 @@
 	},
 /obj/effect/forcefield{
 	desc = "You can't get in. Heh.";
-	layer = 1;
 	name = "Blocker"
 	},
 /obj/machinery/atmospherics/pipe/simple/general/visible,
@@ -476,27 +440,18 @@
 /turf/open/space/transit/north/shuttlespace_ns7,
 /area/space)
 "bn" = (
-/turf/open/floor{
-	icon_state = "redyellowfull";
-	dir = 5
-	},
+/turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
 "bo" = (
 /obj/structure/bed/chair{
 	dir = 1
 	},
 /obj/effect/landmark/thunderdome/admin,
-/turf/open/floor{
-	icon_state = "redyellowfull";
-	dir = 5
-	},
+/turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
 "bp" = (
 /obj/item/tool/extinguisher,
-/turf/open/floor{
-	icon_state = "redyellowfull";
-	dir = 5
-	},
+/turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
 "br" = (
 /obj/structure/bed/chair{
@@ -504,47 +459,32 @@
 	},
 /obj/structure/disposalpipe/segment,
 /obj/effect/landmark/thunderdome/admin,
-/turf/open/floor{
-	icon_state = "redyellowfull";
-	dir = 5
-	},
+/turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
 "bs" = (
 /turf/open/space/transit/north/shuttlespace_ns6,
 /area/space)
 "bt" = (
 /obj/machinery/computer/security/telescreen,
-/turf/open/floor{
-	icon_state = "redyellowfull";
-	dir = 5
-	},
+/turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
 "bv" = (
 /obj/item/tool/wrench,
-/turf/open/floor{
-	icon_state = "redyellowfull";
-	dir = 5
-	},
+/turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
 "bw" = (
 /obj/structure/disposalpipe/trunk{
 	dir = 1
 	},
 /obj/machinery/disposal,
-/turf/open/floor{
-	icon_state = "redyellowfull";
-	dir = 5
-	},
+/turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
 "bx" = (
 /turf/open/space/transit/north/shuttlespace_ns5,
 /area/space)
 "by" = (
 /obj/structure/bed/chair,
-/turf/open/floor{
-	icon_state = "redyellowfull";
-	dir = 5
-	},
+/turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
 "bz" = (
 /turf/open/space/transit/north/shuttlespace_ns4,
@@ -564,10 +504,7 @@
 /area/space)
 "bB" = (
 /obj/structure/table,
-/turf/open/floor{
-	icon_state = "redyellowfull";
-	dir = 5
-	},
+/turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
 "bC" = (
 /obj/item/explosive/grenade/chem_grenade/cleaner,
@@ -581,50 +518,35 @@
 /obj/item/explosive/grenade/chem_grenade/cleaner,
 /obj/item/explosive/grenade/chem_grenade/cleaner,
 /obj/structure/table,
-/turf/open/floor{
-	icon_state = "redyellowfull";
-	dir = 5
-	},
+/turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
 "bD" = (
 /obj/machinery/computer/pod{
 	id = "thunderdomeaxe";
 	name = "Thunderdome Axe Supply"
 	},
-/turf/open/floor{
-	icon_state = "redyellowfull";
-	dir = 5
-	},
+/turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
 "bE" = (
 /obj/machinery/computer/pod{
 	id = "thunderdomegen";
 	name = "Thunderdome General Supply"
 	},
-/turf/open/floor{
-	icon_state = "redyellowfull";
-	dir = 5
-	},
+/turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
 "bF" = (
 /obj/machinery/computer/pod{
 	id = "thunderdomehea";
 	name = "Thunderdome Heavy Supply"
 	},
-/turf/open/floor{
-	icon_state = "redyellowfull";
-	dir = 5
-	},
+/turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
 "bG" = (
 /obj/machinery/computer/pod{
 	id = "thunderdome";
 	name = "Thunderdome Blast Door Control"
 	},
-/turf/open/floor{
-	icon_state = "redyellowfull";
-	dir = 5
-	},
+/turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
 "bH" = (
 /obj/item/stack/medical/ointment,
@@ -634,44 +556,29 @@
 	icon_state = "tabledir";
 	dir = 9
 	},
-/turf/open/floor{
-	icon_state = "redyellowfull";
-	dir = 5
-	},
+/turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
 "bI" = (
 /obj/structure/table,
 /obj/item/stack/medical/bruise_pack,
 /obj/item/stack/medical/bruise_pack,
 /obj/item/stack/medical/bruise_pack,
-/turf/open/floor{
-	icon_state = "redyellowfull";
-	dir = 5
-	},
+/turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
 "bJ" = (
 /obj/structure/table,
 /obj/item/storage/box/handcuffs,
-/turf/open/floor{
-	icon_state = "redyellowfull";
-	dir = 5
-	},
+/turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
 "bK" = (
 /obj/structure/table,
 /obj/item/storage/toolbox/electrical,
-/turf/open/floor{
-	icon_state = "redyellowfull";
-	dir = 5
-	},
+/turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
 "bL" = (
 /obj/structure/table,
 /obj/item/storage/toolbox/mechanical,
-/turf/open/floor{
-	icon_state = "redyellowfull";
-	dir = 5
-	},
+/turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
 "bM" = (
 /turf/open/space/transit/north/shuttlespace_ns3,
@@ -867,10 +774,7 @@
 	icon_state = "heater";
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-floor4";
-	icon_state = "floor4"
-	},
+/turf/open/floor/tile/lightred/full,
 /area/yautja)
 "cm" = (
 /obj/structure/shuttle/engine/heater{
@@ -881,25 +785,16 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-floor4";
-	icon_state = "floor4"
-	},
+/turf/open/floor/tile/lightred/full,
 /area/yautja)
 "cn" = (
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-floor4";
-	icon_state = "floor4"
-	},
+/turf/open/floor/tile/lightred/full,
 /area/yautja)
 "co" = (
-/turf/open/floor{
-	tag = "icon-floor4";
-	icon_state = "floor4"
-	},
+/turf/open/floor/tile/lightred/full,
 /area/yautja)
 "cp" = (
 /obj/machinery/light/small{
@@ -907,17 +802,11 @@
 	icon_state = "bulb1";
 	dir = 4
 	},
-/turf/open/floor{
-	tag = "icon-floor4";
-	icon_state = "floor4"
-	},
+/turf/open/floor/tile/lightred/full,
 /area/yautja)
 "cq" = (
 /obj/machinery/light/small,
-/turf/open/floor{
-	tag = "icon-floor4";
-	icon_state = "floor4"
-	},
+/turf/open/floor/tile/lightred/full,
 /area/yautja)
 "cr" = (
 /obj/structure/cable{
@@ -936,8 +825,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /turf/closed/wall/r_wall/dense,
 /area/yautja)
@@ -953,10 +841,7 @@
 /obj/machinery/door/airlock/secure{
 	name = "Storage Chamber"
 	},
-/turf/open/floor{
-	tag = "icon-floor4";
-	icon_state = "floor4"
-	},
+/turf/open/floor/tile/lightred/full,
 /area/yautja)
 "cv" = (
 /obj/machinery/power/smes/magical{
@@ -966,50 +851,32 @@
 	name = "plasma power generator"
 	},
 /obj/structure/cable,
-/turf/open/floor{
-	tag = "icon-floor4";
-	icon_state = "floor4"
-	},
+/turf/open/floor/tile/lightred/full,
 /area/yautja)
 "cw" = (
 /obj/machinery/power/apc/almayer{
 	dir = 1
 	},
-/obj/structure/table/reinforced{
-	layer = 2.69
-	},
+/obj/structure/table/reinforced,
 /obj/structure/cable{
 	tag = "icon-0-2";
 	icon_state = "0-2"
 	},
 /obj/structure/cable,
-/turf/open/floor{
-	tag = "icon-floor4";
-	icon_state = "floor4"
-	},
+/turf/open/floor/tile/lightred/full,
 /area/yautja)
 "cx" = (
-/obj/structure/table/reinforced{
-	layer = 2.69
-	},
+/obj/structure/table/reinforced,
 /obj/machinery/light/small{
 	tag = "icon-bulb1 (NORTH)";
 	icon_state = "bulb1";
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-floor4";
-	icon_state = "floor4"
-	},
+/turf/open/floor/tile/lightred/full,
 /area/yautja)
 "cy" = (
-/obj/structure/table/reinforced{
-	layer = 2.69
-	},
-/turf/open/floor{
-	tag = "icon-floor4";
-	icon_state = "floor4"
-	},
+/obj/structure/table/reinforced,
+/turf/open/floor/tile/lightred/full,
 /area/yautja)
 "cz" = (
 /obj/effect/step_trigger/teleporter/random{
@@ -1084,10 +951,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-floor4";
-	icon_state = "floor4"
-	},
+/turf/open/floor/tile/lightred/full,
 /area/yautja)
 "cE" = (
 /obj/machinery/power/terminal{
@@ -1095,10 +959,7 @@
 	icon_state = "term";
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-floor4";
-	icon_state = "floor4"
-	},
+/turf/open/floor/tile/lightred/full,
 /area/yautja)
 "cF" = (
 /obj/structure/shuttle/engine/heater{
@@ -1111,33 +972,21 @@
 	icon_state = "bulb1";
 	dir = 1
 	},
-/turf/open/floor{
-	tag = "icon-floor4";
-	icon_state = "floor4"
-	},
+/turf/open/floor/tile/lightred/full,
 /area/yautja)
 "cG" = (
 /obj/structure/ore_box,
-/turf/open/floor{
-	tag = "icon-floor4";
-	icon_state = "floor4"
-	},
+/turf/open/floor/tile/lightred/full,
 /area/yautja)
 "cH" = (
 /obj/structure/rack,
 /obj/item/device/flashlight/lantern,
-/turf/open/floor{
-	tag = "icon-floor4";
-	icon_state = "floor4"
-	},
+/turf/open/floor/tile/lightred/full,
 /area/yautja)
 "cI" = (
 /obj/structure/rack,
 /obj/item/weapon/twohanded/spear,
-/turf/open/floor{
-	tag = "icon-floor4";
-	icon_state = "floor4"
-	},
+/turf/open/floor/tile/lightred/full,
 /area/yautja)
 "cJ" = (
 /obj/structure/rack,
@@ -1218,20 +1067,8 @@
 	dir = 2
 	},
 /area/yautja)
-"cS" = (
-/obj/structure/table/reinforced{
-	layer = 2.69
-	},
-/obj/item/device/flashlight/lantern,
-/turf/open/floor/holofloor{
-	icon_state = "cult";
-	dir = 2
-	},
-/area/yautja)
 "cT" = (
-/obj/structure/table/reinforced{
-	layer = 2.69
-	},
+/obj/structure/table/reinforced,
 /obj/item/reagent_container/hypospray/autoinjector/yautja,
 /obj/item/reagent_container/hypospray/autoinjector/yautja,
 /turf/open/floor/holofloor{
@@ -1240,9 +1077,7 @@
 	},
 /area/yautja)
 "cU" = (
-/obj/structure/table/reinforced{
-	layer = 2.69
-	},
+/obj/structure/table/reinforced,
 /obj/item/weapon/yautja_knife,
 /turf/open/floor/holofloor{
 	icon_state = "cult";
@@ -1345,9 +1180,7 @@
 	},
 /area/yautja)
 "df" = (
-/obj/structure/table/reinforced{
-	layer = 2.69
-	},
+/obj/structure/table/reinforced,
 /obj/structure/window/reinforced{
 	dir = 8
 	},
@@ -1413,9 +1246,7 @@
 	},
 /area/yautja)
 "do" = (
-/obj/structure/table/reinforced{
-	layer = 2.69
-	},
+/obj/structure/table/reinforced,
 /obj/structure/window/reinforced{
 	dir = 8
 	},
@@ -1426,7 +1257,6 @@
 /obj/machinery/door/window/southleft{
 	dir = 1;
 	icon_state = "left";
-	layer = 2.8;
 	tag = "icon-left (NORTH)"
 	},
 /turf/open/floor/holofloor{
@@ -1470,10 +1300,7 @@
 "dt" = (
 /obj/structure/rack,
 /obj/item/reagent_container/food/snacks/meat,
-/turf/open/floor{
-	tag = "icon-floor4";
-	icon_state = "floor4"
-	},
+/turf/open/floor/tile/lightred/full,
 /area/yautja)
 "du" = (
 /obj/structure/rack,
@@ -1482,14 +1309,10 @@
 	pixel_x = -6;
 	pixel_y = -5
 	},
-/turf/open/floor{
-	tag = "icon-floor4";
-	icon_state = "floor4"
-	},
+/turf/open/floor/tile/lightred/full,
 /area/yautja)
 "dv" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
-	tag = "icon-intact (NORTHEAST)";
 	dir = 5
 	},
 /turf/open/floor/holofloor{
@@ -1513,7 +1336,6 @@
 /area/yautja)
 "dy" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
-	tag = "icon-intact (NORTHWEST)";
 	dir = 9
 	},
 /obj/machinery/light/small{
@@ -1559,9 +1381,7 @@
 	},
 /area/yautja)
 "dB" = (
-/obj/structure/table/reinforced{
-	layer = 2.69
-	},
+/obj/structure/table/reinforced,
 /obj/machinery/door/window/southleft,
 /obj/structure/window/reinforced{
 	dir = 4;
@@ -1669,8 +1489,7 @@
 /area/yautja)
 "dJ" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
-	dir = 10;
-	tag = "icon-intact (NORTHWEST)"
+	dir = 10
 	},
 /obj/machinery/light/small{
 	tag = "icon-bulb1 (EAST)";
@@ -1769,9 +1588,7 @@
 	},
 /area/yautja)
 "dT" = (
-/obj/structure/rack{
-	layer = 2.79
-	},
+/obj/structure/rack,
 /obj/item/stack/sheet/plasteel{
 	amount = 30
 	},
@@ -1847,9 +1664,7 @@
 	icon_state = "right";
 	dir = 2
 	},
-/obj/structure/table/reinforced{
-	layer = 2.69
-	},
+/obj/structure/table/reinforced,
 /obj/item/clothing/suit/armor/yautja,
 /obj/item/clothing/shoes/yautja,
 /turf/open/floor/holofloor{
@@ -1870,9 +1685,7 @@
 	icon_state = "right";
 	dir = 2
 	},
-/obj/structure/table/reinforced{
-	layer = 2.69
-	},
+/obj/structure/table/reinforced,
 /obj/item/clothing/suit/armor/yautja,
 /obj/item/clothing/shoes/yautja,
 /turf/open/floor/holofloor{
@@ -1890,9 +1703,7 @@
 	icon_state = "right";
 	dir = 2
 	},
-/obj/structure/table/reinforced{
-	layer = 2.69
-	},
+/obj/structure/table/reinforced,
 /obj/item/clothing/suit/armor/yautja,
 /obj/item/clothing/shoes/yautja,
 /turf/open/floor/holofloor{
@@ -2008,9 +1819,7 @@
 	},
 /area/supply/dock)
 "em" = (
-/obj/structure/table/reinforced{
-	layer = 2.69
-	},
+/obj/structure/table/reinforced,
 /obj/item/clothing/mask/gas/yautja,
 /obj/structure/window/reinforced{
 	dir = 8;
@@ -2052,9 +1861,7 @@
 /obj/item/legcuffs/yautja,
 /obj/item/legcuffs/yautja,
 /obj/item/legcuffs/yautja,
-/obj/structure/rack{
-	layer = 2.79
-	},
+/obj/structure/rack,
 /turf/open/floor/holofloor{
 	icon_state = "cult";
 	dir = 2
@@ -2131,9 +1938,7 @@
 /turf/open/floor/almayer,
 /area/centcom/control)
 "ez" = (
-/obj/structure/rack{
-	layer = 2.79
-	},
+/obj/structure/rack,
 /obj/item/explosive/grenade/spawnergrenade/smartdisc,
 /obj/item/explosive/grenade/spawnergrenade/smartdisc,
 /obj/item/explosive/grenade/spawnergrenade/smartdisc,
@@ -2397,7 +2202,7 @@
 /area/centcom/control)
 "fg" = (
 /obj/structure/sign/safety/computer{
-	pixel_x = -32
+	dir = 8
 	},
 /turf/open/floor/almayer,
 /area/centcom)
@@ -2462,9 +2267,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/machinery/door/window/southleft{
-	layer = 2.8
-	},
+/obj/machinery/door/window/southleft,
 /turf/open/floor/holofloor{
 	icon_state = "cult";
 	dir = 2
@@ -2476,9 +2279,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/machinery/door/window/southleft{
-	layer = 2.8
-	},
+/obj/machinery/door/window/southleft,
 /turf/open/floor/holofloor{
 	icon_state = "cult";
 	dir = 2
@@ -2587,9 +2388,8 @@
 /turf/open/floor/plating/almayer,
 /area/centcom/ferry)
 "fD" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E-corner"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/plating/almayer,
 /area/centcom/ferry)
@@ -2745,7 +2545,6 @@
 /obj/machinery/door/window/southleft{
 	dir = 8;
 	icon_state = "left";
-	layer = 2.8;
 	tag = "icon-left (WEST)"
 	},
 /turf/open/floor/holofloor{
@@ -2808,9 +2607,8 @@
 	},
 /area/centcom)
 "gd" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/plating/almayer,
 /area/centcom/ferry)
@@ -2894,10 +2692,7 @@
 	},
 /area/centcom/suppy)
 "gq" = (
-/turf/open/floor/almayer{
-	icon_regular_floor = "mono";
-	icon_state = "mono"
-	},
+/turf/open/floor/almayer/mono,
 /area/centcom/suppy)
 "gr" = (
 /obj/structure/bed/chair/wood/wings{
@@ -2924,7 +2719,6 @@
 /obj/machinery/door/window/southleft{
 	dir = 1;
 	icon_state = "left";
-	layer = 2.8;
 	tag = "icon-left (NORTH)"
 	},
 /turf/open/floor/holofloor{
@@ -2941,7 +2735,6 @@
 /obj/machinery/door/window/southleft{
 	dir = 1;
 	icon_state = "left";
-	layer = 2.8;
 	tag = "icon-left (NORTH)"
 	},
 /turf/open/floor/holofloor{
@@ -3413,10 +3206,7 @@
 /area/centcom/solitary)
 "hF" = (
 /obj/structure/bed,
-/turf/open/floor{
-	icon_state = "plating";
-	name = "plating"
-	},
+/turf/open/floor/plating,
 /area/centcom/solitary)
 "hG" = (
 /turf/open/floor{
@@ -3433,17 +3223,11 @@
 	},
 /area/centcom/solitary)
 "hJ" = (
-/turf/open/floor{
-	icon_state = "plating";
-	name = "plating"
-	},
+/turf/open/floor/plating,
 /area/centcom/solitary)
 "hK" = (
 /obj/effect/decal/cleanable/cobweb2,
-/turf/open/floor{
-	icon_state = "plating";
-	name = "plating"
-	},
+/turf/open/floor/plating,
 /area/centcom/solitary)
 "hL" = (
 /obj/structure/bed,
@@ -3453,10 +3237,7 @@
 /area/centcom/solitary)
 "hM" = (
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor{
-	icon_state = "plating";
-	name = "plating"
-	},
+/turf/open/floor/plating,
 /area/centcom/solitary)
 "hN" = (
 /turf/closed/shuttle/ert,
@@ -3633,10 +3414,7 @@
 /area/yautja)
 "il" = (
 /obj/effect/landmark/prisonwarp,
-/turf/open/floor{
-	icon_state = "plating";
-	name = "plating"
-	},
+/turf/open/floor/plating,
 /area/centcom/solitary)
 "im" = (
 /turf/open/floor{
@@ -3872,10 +3650,7 @@
 "iR" = (
 /obj/structure/bed,
 /obj/effect/decal/cleanable/cobweb,
-/turf/open/floor{
-	icon_state = "plating";
-	name = "plating"
-	},
+/turf/open/floor/plating,
 /area/centcom/solitary)
 "iS" = (
 /turf/closed/shuttle/ert{
@@ -3919,13 +3694,10 @@
 	},
 /area/yautja)
 "iZ" = (
-/obj/machinery/door/window/southleft{
-	layer = 2.8
-	},
+/obj/machinery/door/window/southleft,
 /obj/machinery/door/window/southleft{
 	dir = 1;
 	icon_state = "left";
-	layer = 2.8;
 	tag = "icon-left (NORTH)"
 	},
 /turf/open/floor/holofloor{
@@ -4078,9 +3850,8 @@
 	},
 /area/shuttle/distress/start_upp)
 "jv" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
@@ -4372,9 +4143,8 @@
 	},
 /area/shuttle/distress/start_upp)
 "kt" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
@@ -4424,9 +4194,7 @@
 /area/shuttle/distress/start_big)
 "kA" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /obj/structure/rack,
 /turf/open/floor/almayer{
@@ -4451,9 +4219,7 @@
 	},
 /area/shuttle/distress/start_big)
 "kD" = (
-/obj/structure/sink{
-	pixel_y = 28
-	},
+/obj/structure/sink,
 /turf/open/floor/almayer{
 	icon_state = "plate";
 	tag = "icon-sterile"
@@ -4491,8 +4257,7 @@
 /area/shuttle/distress/start_big)
 "kI" = (
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /obj/structure/bed,
 /obj/item/bedsheet/brown,
@@ -4526,8 +4291,7 @@
 /obj/item/tank/anesthetic,
 /obj/item/clothing/mask/breath/medical,
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	icon_state = "plate";
@@ -4544,24 +4308,20 @@
 	},
 /area/shuttle/distress/start_big)
 "kO" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
 "kP" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
@@ -4603,10 +4363,7 @@
 /obj/item/storage/pouch/medical,
 /obj/item/storage/belt/combatLifesaver,
 /obj/item/storage/belt/combatLifesaver,
-/obj/item/reagent_container/spray/cleaner{
-	desc = "Someone has crossed out the Space from Space Cleaner and written in Surgery. 'Do not remove under punishment of death!!!' is scrawled on the back.";
-	name = "Surgery Cleaner"
-	},
+/obj/item/reagent_container/spray/surgery,
 /turf/open/floor/almayer{
 	icon_state = "plate";
 	tag = "icon-sterile"
@@ -4619,18 +4376,14 @@
 	pixel_y = 5
 	},
 /obj/item/map/current_map,
-/turf/open/floor{
-	tag = "icon-carpet6-2 (WEST)";
-	icon_state = "carpet6-2";
-	dir = 8
+/turf/open/floor/carpet/edge2{
+	dir = 9
 	},
 /area/shuttle/distress/start_big)
 "kW" = (
 /obj/structure/bed/chair/office/light,
-/turf/open/floor{
-	tag = "icon-carpet10-8 (WEST)";
-	icon_state = "carpet10-8";
-	dir = 8
+/turf/open/floor/carpet/edge2{
+	dir = 5
 	},
 /area/shuttle/distress/start_big)
 "kX" = (
@@ -4682,23 +4435,17 @@
 /obj/structure/table/almayer,
 /obj/machinery/computer/communications,
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
-	},
-/turf/open/floor{
-	tag = "icon-carpet5-1 (WEST)";
-	icon_state = "carpet5-1";
 	dir = 8
+	},
+/turf/open/floor/carpet/edge2{
+	dir = 10
 	},
 /area/shuttle/distress/start_big)
 "le" = (
 /obj/structure/table/almayer,
 /obj/item/device/flashlight/lamp/green,
-/turf/open/floor{
-	tag = "icon-carpet9-4 (WEST)";
-	icon_state = "carpet9-4";
-	dir = 8
+/turf/open/floor/carpet/edge2{
+	dir = 6
 	},
 /area/shuttle/distress/start_big)
 "lf" = (
@@ -4721,16 +4468,11 @@
 /area/shuttle/distress/start_big)
 "lh" = (
 /obj/machinery/vending/engivend,
-/obj/item/device/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_x = 0;
-	pixel_y = 28
+/obj/item/device/radio/intercom/general{
+	dir = 1
 	},
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	icon_state = "plate";
@@ -4745,13 +4487,11 @@
 	},
 /area/shuttle/distress/start_big)
 "lj" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
@@ -4809,9 +4549,7 @@
 /area/shuttle/distress/start_big)
 "lr" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /obj/structure/table/almayer,
 /obj/machinery/computer/security,
@@ -4848,98 +4586,80 @@
 	},
 /area/shuttle/distress/start_big)
 "lv" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
 "lw" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
 "lx" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
 "ly" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
 "lz" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
 "lA" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
 "lB" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
 "lC" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	tag = "icon-blue (NORTHEAST)";
@@ -4948,13 +4668,11 @@
 	},
 /area/shuttle/distress/start_big)
 "lD" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
@@ -4966,9 +4684,8 @@
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
 "lF" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	icon_plating = "tcomms";
@@ -4979,20 +4696,17 @@
 /obj/structure/bed/chair/office/light{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
 "lH" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	icon_plating = "tcomms";
@@ -5008,13 +4722,11 @@
 	},
 /area/shuttle/distress/start_big)
 "lJ" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /obj/machinery/power/apc/almayer{
 	cell_type = /obj/item/cell/hyper;
@@ -5030,13 +4742,11 @@
 	},
 /area/shuttle/distress/start_big)
 "lK" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /obj/structure/cable{
 	d2 = 8;
@@ -5054,13 +4764,11 @@
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
 "lN" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
@@ -5072,55 +4780,45 @@
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
 "lP" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/machinery/light/small,
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
 "lQ" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
 "lR" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
 "lS" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /obj/machinery/light/small{
 	dir = 1
@@ -5135,17 +4833,13 @@
 /area/shuttle/distress/start_big)
 "lU" = (
 /obj/structure/bed/chair/office/light{
-	dir = 4;
-	icon_state = "officechair_white";
-	tag = ""
+	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
@@ -5153,13 +4847,11 @@
 /obj/machinery/computer/shuttle_control/ert{
 	shuttle_tag = "Distress_Big"
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	icon_plating = "tcomms";
@@ -5204,65 +4896,53 @@
 	},
 /area/shuttle/distress/start_big)
 "lX" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
 "lY" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
 "lZ" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
 "ma" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
 "mb" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
@@ -5274,9 +4954,8 @@
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
 "md" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/almayer{
 	icon_plating = "tcomms";
@@ -5285,20 +4964,17 @@
 /area/shuttle/distress/start_big)
 "me" = (
 /obj/structure/bed/chair/office/light,
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
 "mf" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	icon_plating = "tcomms";
@@ -5329,8 +5005,7 @@
 "mi" = (
 /obj/structure/reagent_dispensers/fueltank,
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	icon_state = "plate";
@@ -5376,17 +5051,6 @@
 	tag = "icon-sterile"
 	},
 /area/shuttle/distress/start_big)
-"mn" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
-	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-W"
-	},
-/turf/open/floor/plating/almayer,
-/area/shuttle/distress/start_big)
 "mo" = (
 /obj/structure/rack,
 /obj/item/ammo_magazine/smg/m39,
@@ -5400,9 +5064,7 @@
 /area/shuttle/distress/start_big)
 "mp" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /obj/structure/table/almayer,
 /obj/machinery/computer/med_data/laptop,
@@ -5445,9 +5107,7 @@
 /area/shuttle/distress/start_big)
 "mu" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /obj/structure/table/almayer,
 /obj/item/ammo_magazine/pistol/vp70{
@@ -5465,32 +5125,26 @@
 	},
 /area/shuttle/distress/start_big)
 "mv" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-N";
-	icon_state = "N"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
 "mw" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SW-out";
-	icon_state = "SW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-NW-out";
-	icon_state = "NW-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
@@ -5562,24 +5216,20 @@
 	},
 /area/shuttle/distress/start_big)
 "mD" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
 "mE" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
@@ -5590,8 +5240,7 @@
 /obj/item/tool/extinguisher,
 /obj/item/tool/extinguisher,
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /turf/open/floor/almayer{
 	icon_state = "plate";
@@ -5608,9 +5257,7 @@
 "mH" = (
 /obj/structure/closet,
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	icon_state = "plate";
@@ -5618,17 +5265,14 @@
 	},
 /area/shuttle/distress/start_big)
 "mI" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-W";
-	icon_state = "W"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "NE-out";
-	tag = "icon-NE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
@@ -5644,14 +5288,9 @@
 	pixel_x = 28
 	},
 /obj/structure/sink{
-	dir = 4;
-	icon_state = "sink";
-	pixel_x = 11;
-	pixel_y = 0
+	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/shuttle/distress/start_big)
 "mL" = (
 /obj/structure/table/almayer,
@@ -5707,9 +5346,7 @@
 /area/shuttle/distress/start_big)
 "mO" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /obj/structure/largecrate/random/case/double,
 /turf/open/floor/almayer{
@@ -5730,9 +5367,7 @@
 	icon_state = "toilet00";
 	dir = 1
 	},
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/shuttle/distress/start_big)
 "mR" = (
 /turf/open/floor/carpet{
@@ -6120,10 +5755,7 @@
 /area/centcom)
 "nZ" = (
 /obj/machinery/hologram/holopad,
-/turf/open/floor/almayer{
-	icon_regular_floor = "mono";
-	icon_state = "mono"
-	},
+/turf/open/floor/almayer/mono,
 /area/centcom)
 "oa" = (
 /turf/open/floor/almayer{
@@ -6133,16 +5765,8 @@
 	},
 /area/centcom)
 "ob" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
-	},
-/turf/open/floor/plating/almayer,
-/area/centcom/ferry)
-"oc" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
 /turf/open/floor/plating/almayer,
 /area/centcom/ferry)
@@ -6451,9 +6075,8 @@
 /turf/open/floor/grass,
 /area/centcom)
 "oR" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-SE-out";
-	icon_state = "SE-out"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /turf/open/floor/plating/almayer,
 /area/centcom/ferry)
@@ -6483,13 +6106,11 @@
 	},
 /area/shuttle/distress/start_big)
 "oV" = (
-/obj/effect/decal/warning_stripes{
-	tag = "icon-S";
-	icon_state = "S"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	tag = "icon-E"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/plating/almayer,
 /area/centcom/ferry)
@@ -6570,7 +6191,6 @@
 	dir = 8
 	},
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 4
 	},
 /obj/effect/landmark/deathmatch,
@@ -6601,37 +6221,17 @@
 /turf/open/shuttle/brig,
 /area/deathmatch)
 "pl" = (
-/obj/effect/decal/cleanable/blood/drip{
-	icon_state = "4"
-	},
+/obj/effect/decal/cleanable/blood/drip,
 /turf/open/shuttle/brig,
-/area/deathmatch)
-"pm" = (
-/obj/effect/decal/cleanable/blood/drip{
-	icon_state = "4"
-	},
-/turf/open/gm/grass,
 /area/deathmatch)
 "pn" = (
 /obj/effect/decal/cleanable/blood/drip,
-/turf/open/gm/grass,
-/area/deathmatch)
-"po" = (
-/obj/effect/decal/cleanable/blood/drip{
-	icon_state = "3"
-	},
 /turf/open/gm/grass,
 /area/deathmatch)
 "pp" = (
 /obj/structure/table,
 /obj/item/ashtray/glass,
 /turf/open/floor,
-/area/deathmatch)
-"pq" = (
-/obj/effect/decal/cleanable/blood/drip{
-	icon_state = "5"
-	},
-/turf/open/gm/grass,
 /area/deathmatch)
 "pr" = (
 /obj/effect/decal/cleanable/blood/splatter,
@@ -6640,15 +6240,9 @@
 	},
 /area/deathmatch)
 "ps" = (
-/obj/structure/grille{
-	density = 0;
-	icon_state = "brokengrille"
-	},
+/obj/structure/grille/broken,
 /obj/item/shard,
-/turf/open/floor{
-	icon_state = "plating";
-	name = "plating"
-	},
+/turf/open/floor/plating,
 /area/deathmatch)
 "pt" = (
 /turf/open/gm/grass,
@@ -6672,7 +6266,6 @@
 /area/deathmatch)
 "py" = (
 /turf/open/gm/coast{
-	icon_state = "beach";
 	dir = 4
 	},
 /area/deathmatch)
@@ -6681,7 +6274,6 @@
 /area/deathmatch)
 "pA" = (
 /turf/open/gm/coast{
-	icon_state = "beach";
 	dir = 8
 	},
 /area/deathmatch)
@@ -6732,10 +6324,7 @@
 "pK" = (
 /obj/structure/window/shuttle,
 /obj/structure/grille,
-/turf/open/floor{
-	icon_state = "plating";
-	name = "plating"
-	},
+/turf/open/floor/plating,
 /area/deathmatch)
 "pL" = (
 /obj/structure/fence,
@@ -6781,9 +6370,7 @@
 	},
 /area/deathmatch)
 "pU" = (
-/turf/open/gm/dirtgrassborder{
-	icon_state = "grassdirt_corner2"
-	},
+/turf/open/gm/dirtgrassborder2/corner,
 /area/deathmatch)
 "pV" = (
 /obj/structure/closet/hydrant{
@@ -6825,7 +6412,6 @@
 	dir = 8
 	},
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 4
 	},
 /turf/open/shuttle/brig,
@@ -6836,7 +6422,6 @@
 	dir = 4
 	},
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/open/shuttle/brig,
@@ -6854,22 +6439,18 @@
 /turf/open/floor,
 /area/deathmatch)
 "qh" = (
-/turf/open/gm/coast{
-	icon_state = "beachcorner"
-	},
+/turf/open/gm/coast/corner,
 /area/deathmatch)
 "qi" = (
 /turf/open/gm/coast,
 /area/deathmatch)
 "qj" = (
-/turf/open/gm/coast{
-	dir = 2;
-	icon_state = "beachcorner2"
+/turf/open/gm/coast/corner2{
+	dir = 2
 	},
 /area/deathmatch)
 "qk" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 1
 	},
 /turf/open/shuttle/brig,
@@ -6903,20 +6484,17 @@
 /area/deathmatch)
 "qq" = (
 /turf/open/gm/coast{
-	icon_state = "beach";
 	dir = 9
 	},
 /area/deathmatch)
 "qr" = (
 /turf/open/gm/coast{
-	icon_state = "beach";
 	dir = 1
 	},
 /area/deathmatch)
 "qs" = (
-/turf/open/gm/coast{
-	dir = 4;
-	icon_state = "beachcorner"
+/turf/open/gm/coast/corner{
+	dir = 4
 	},
 /area/deathmatch)
 "qt" = (
@@ -6924,15 +6502,13 @@
 /turf/open/floor,
 /area/deathmatch)
 "qu" = (
-/turf/open/gm/dirtgrassborder{
-	dir = 1;
-	icon_state = "grassdirt_corner2"
+/turf/open/gm/dirtgrassborder2/corner{
+	dir = 1
 	},
 /area/deathmatch)
 "qv" = (
-/turf/open/gm/dirtgrassborder{
-	dir = 4;
-	icon_state = "grassdirt_corner"
+/turf/open/gm/dirtgrassborder/corner{
+	dir = 4
 	},
 /area/deathmatch)
 "qw" = (
@@ -6940,10 +6516,7 @@
 /turf/open/floor,
 /area/deathmatch)
 "qx" = (
-/turf/open/floor{
-	icon_state = "plating";
-	name = "plating"
-	},
+/turf/open/floor/plating,
 /area/deathmatch)
 "qy" = (
 /obj/machinery/floodlight{
@@ -6953,9 +6526,7 @@
 /area/deathmatch)
 "qz" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /turf/open/floor,
 /area/deathmatch)
@@ -6987,7 +6558,6 @@
 /area/deathmatch)
 "qG" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 4
 	},
 /turf/open/floor,
@@ -7067,18 +6637,9 @@
 /area/deathmatch)
 "qV" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /obj/structure/table,
-/turf/open/floor,
-/area/deathmatch)
-"qW" = (
-/obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
-	},
 /turf/open/floor,
 /area/deathmatch)
 "qX" = (
@@ -7191,10 +6752,7 @@
 /turf/open/shuttle/brig,
 /area/deathmatch)
 "rr" = (
-/obj/structure/grille{
-	density = 0;
-	icon_state = "brokengrille"
-	},
+/obj/structure/grille/broken,
 /turf/open/shuttle/brig,
 /area/deathmatch)
 "rs" = (
@@ -11509,9 +11067,9 @@ iU
 iU
 iU
 iU
-oc
-oc
-oc
+fD
+fD
+fD
 fx
 aa
 aa
@@ -11959,9 +11517,9 @@ kX
 lE
 lR
 mc
-mn
+lj
 mw
-mn
+lj
 iU
 fC
 ob
@@ -12874,8 +12432,8 @@ mg
 iU
 iU
 oR
-oc
-oc
+fD
+fD
 oV
 fF
 fW
@@ -24726,7 +24284,7 @@ qA
 pS
 pS
 qX
-qW
+qG
 qe
 qe
 qG
@@ -27003,7 +26561,7 @@ pt
 pt
 pt
 pt
-pm
+pn
 pt
 pt
 pt
@@ -27379,7 +26937,7 @@ cl
 co
 co
 cf
-cS
+cO
 dc
 cK
 cK
@@ -27387,7 +26945,7 @@ cf
 cK
 cK
 dc
-cS
+cO
 cf
 cK
 cL
@@ -27457,7 +27015,7 @@ pd
 pt
 pt
 pt
-pq
+pn
 pt
 pt
 pd
@@ -27911,7 +27469,7 @@ pt
 pt
 pt
 pt
-po
+pn
 pt
 qo
 pC
@@ -28211,7 +27769,7 @@ pH
 qx
 pH
 qo
-pm
+pn
 pt
 pt
 pt

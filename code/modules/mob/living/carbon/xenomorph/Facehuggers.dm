@@ -499,6 +499,12 @@
 	visible_message("[icon2html(src, viewers(src))] <span class='danger'>\The [src] decays into a mass of acid and chitin.</span>")
 	qdel(src)
 
+/obj/item/clothing/mask/facehugger/dead
+	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?"
+	icon_state = "facehugger_impregnated"
+	name = "????"
+	stat = DEAD
+
 #undef FACEHUGGER_LIFECYCLE
 #undef FACEHUGGER_KNOCKOUT
 #undef MIN_IMPREGNATION_TIME
