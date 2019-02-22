@@ -268,3 +268,7 @@
 		return "([AREACOORD(T)])"
 	else if(A.loc)
 		return "(UNKNOWN (?, ?, ?))"
+
+
+/datum/player_details
+	var/list/logging = list()

@@ -168,7 +168,6 @@
 		if(BE_ALIEN)		roletext = "Alien"
 		if(BE_QUEEN)		roletext = "Queen"
 		if(BE_SURVIVOR)		roletext = "Survivor"
-		if(BE_PREDATOR)		roletext = "Predator"
 		if(BE_SQUAD_STRICT)	roletext = "Prefer squad over role"
 
 	//Assemble a list of active players without jobbans.
