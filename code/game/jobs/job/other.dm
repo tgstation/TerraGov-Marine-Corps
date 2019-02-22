@@ -1,6 +1,8 @@
 /datum/job/other
 	department_flag = J_FLAG_MISC
 
+//Xeno
+/datum/job/other/xenomorph
 
 //Colonist
 /datum/job/other/colonist

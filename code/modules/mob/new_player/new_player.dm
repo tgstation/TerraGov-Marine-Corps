@@ -212,7 +212,7 @@
 	close_spawn_windows()
 	spawning = TRUE
 
-	if(!SSjob.AssignRole(src, rank, TRUE))
+	if(!SSjob.AssignRole(src, SSjob.GetJob(rank), TRUE))
 		to_chat(usr, "<span class='warning'>Failed to assign selected role.<spawn>")
 		return
 

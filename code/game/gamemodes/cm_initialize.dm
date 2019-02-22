@@ -129,7 +129,7 @@ datum/game_mode/proc/initialize_special_clamps()
 			new_xeno = pick(possible_xenomorphs)
 			if(!new_xeno)
 				break  //Looks like we didn't get anyone. Back out.
-			new_xeno.assigned_role = "Xenomorph"
+			new_xeno.assigned_role = new /datum/job/other/xenomorph
 			xenomorphs += new_xeno
 			possible_xenomorphs -= new_xeno
 		else //Out of candidates, spawn in empty larvas directly
@@ -364,7 +364,6 @@ datum/game_mode/proc/initialize_post_queen_list()
 				new_survivor = pick(possible_survivors)
 				if(!new_survivor)
 					break  //We ran out of survivors!
-				new_survivor.assigned_role = "Survivor"
 				survivors += new_survivor
 				possible_survivors -= new_survivor
 				i--
@@ -383,6 +382,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 
 	var/survivor_job = pick(subtypesof(/datum/job/survivor))
 	var/datum/job/J = new survivor_job
+	ghost.assigned_role = J
 	J.equip(H)
 
 	if(GLOB.map_tag == MAP_ICE_COLONY)

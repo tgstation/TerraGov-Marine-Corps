@@ -751,7 +751,7 @@
 
 			H.equip_to_slot_or_del(I, SLOT_WEAR_ID)
 
-			SSjob.AssignRole(H, newrank)
+			SSjob.AssignRole(H, J)
 			O.post_equip(H)
 
 			log_admin("[key_name(usr)] has set the rank of [key_name(H)] to [newrank].")

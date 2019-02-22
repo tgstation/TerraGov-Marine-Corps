@@ -15,7 +15,7 @@ SUBSYSTEM_DEF(job)
 	var/list/prioritized_jobs = list()
 	var/list/latejoin_trackers = list()	//Don't read this list, use GetLateJoinTurfs() instead.
 
-	var/overflow_role = "Squad Marine"
+	var/overflow_role = /datum/job/marine/standard
 
 
 /datum/controller/subsystem/job/Initialize(timeofday)
@@ -61,21 +61,20 @@ SUBSYSTEM_DEF(job)
 	return type_occupations[jobtype]
 
 
-/datum/controller/subsystem/job/proc/AssignRole(mob/new_player/player, rank, latejoin = FALSE)
-	JobDebug("Running AR, Player: [player], Rank: [rank], LJ: [latejoin]")
-	if(player?.mind && rank)
-		var/datum/job/job = GetJob(rank)
+/datum/controller/subsystem/job/proc/AssignRole(mob/new_player/player, job, latejoin = FALSE)
+	JobDebug("Running AR, Player: [player], Rank: [job.title], LJ: [latejoin]")
+	if(player?.mind)
 		if(!job)
 			return FALSE
-		if(jobban_isbanned(player, rank) || QDELETED(player))
+		if(jobban_isbanned(player, job.title) || QDELETED(player))
 			return FALSE
 		if(!job.player_old_enough(player.client))
 			return FALSE
-		if(rank in JOBS_MARINES)
-			if(handle_squad(player, rank, latejoin))
-				JobDebug("Successfuly assigned marine role to a squad. Player: [player.key] Rank: [rank]")
+		if(job.department_flag & J_FLAG_MARINE)
+			if(handle_squad(player, job.title, latejoin))
+				JobDebug("Successfuly assigned marine role to a squad. Player: [player.key] Rank: [job.title]")
 			else
-				JobDebug("Failed to assign marine role to a squad. Player: [player.key] Rank: [rank]")
+				JobDebug("Failed to assign marine role to a squad. Player: [player.key] Rank: [job.title]")
 				return FALSE
 		var/position_limit = job.total_positions
 		if(!latejoin)
@@ -85,7 +84,7 @@ SUBSYSTEM_DEF(job)
 		unassigned -= player
 		job.current_positions++
 		return TRUE
-	JobDebug("AR has failed, Player: [player], Rank: [rank]")
+	JobDebug("AR has failed, Player: [player], Rank: [job.title]")
 	return FALSE
 
 
@@ -128,7 +127,7 @@ SUBSYSTEM_DEF(job)
 
 		if((job.current_positions < job.spawn_positions) || job.spawn_positions == -1)
 			JobDebug("GRJ Random job given, Player: [player], Job: [job]")
-			if(AssignRole(player, job.title))
+			if(AssignRole(player, job))
 				return TRUE
 
 
@@ -171,7 +170,7 @@ SUBSYSTEM_DEF(job)
 	JobDebug("AC1, Candidates: [length(overflow_candidates)]")
 	for(var/mob/new_player/player in overflow_candidates)
 		JobDebug("AC1 pass, Player: [player]")
-		AssignRole(player, SSjob.overflow_role)
+		AssignRole(player, new SSjob.overflow_role)
 		overflow_candidates -= player
 	JobDebug("DO, AC1 end")
 
@@ -213,7 +212,7 @@ SUBSYSTEM_DEF(job)
 					// If the job isn't filled
 					if((job.current_positions < job.spawn_positions) || job.spawn_positions == -1)
 						JobDebug("DO pass, Trying to assign Player: [player], Level:[level], Job:[job.title]")
-						if(AssignRole(player, job.title))
+						if(AssignRole(player, job))
 							unassigned -= player
 							break
 
@@ -228,7 +227,7 @@ SUBSYSTEM_DEF(job)
 	//Mop up people who can't leave.
 	for(var/mob/new_player/player in unassigned) //Players that wanted to back out but couldn't because they're antags (can you feel the edge case?)
 		if(!GiveRandomJob(player))
-			AssignRole(player, SSjob.overflow_role) //If everything is already filled, make them an assistant
+			AssignRole(player, new SSjob.overflow_role) //If everything is already filled, make them an assistant
 
 	return TRUE
 
@@ -239,7 +238,7 @@ SUBSYSTEM_DEF(job)
 		if(QDELETED(player) || jobban_isbanned(player, SSjob.overflow_role))
 			RejectPlayer(player)
 		else
-			if(!AssignRole(player, SSjob.overflow_role))
+			if(!AssignRole(player, new SSjob.overflow_role))
 				RejectPlayer(player)
 	else if(player.client.prefs.alternate_option == GET_RANDOM_JOB)
 		if(!GiveRandomJob(player))

@@ -36,7 +36,7 @@
 
 	var/memory
 
-	var/assigned_role
+	var/datum/job/assigned_role
 	var/assigned_squad
 	var/comm_title
 
