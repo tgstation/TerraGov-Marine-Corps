@@ -932,7 +932,6 @@
 /obj/machinery/door/airlock/almayer/secure{
 	dir = 4;
 	icon_state = "door_locked";
-	id = "";
 	locked = 1;
 	name = "Colony Requesitions Storage Pod";
 	req_access_txt = "100"
@@ -946,7 +945,6 @@
 /area/ice_colony/exterior/surface/landing_pad2)
 "adp" = (
 /obj/machinery/door_control{
-	id = "";
 	name = "Storage Unit Control";
 	pixel_x = -24
 	},
@@ -3370,7 +3368,6 @@
 /obj/machinery/door/airlock/almayer/secure{
 	dir = 4;
 	icon_state = "door_locked";
-	id = "";
 	locked = 1;
 	name = "Colony Requesitions Storage Pod";
 	req_access_txt = "100"
@@ -3642,7 +3639,6 @@
 /area/ice_colony/exterior/surface/cliff)
 "ajQ" = (
 /obj/machinery/door_control{
-	id = "";
 	name = "Storage Unit Control";
 	pixel_x = -24
 	},
@@ -11974,7 +11970,6 @@
 	density = 0;
 	dir = 4;
 	icon_state = "pdoor0";
-	id = "";
 	name = "\improper Forced Blast Door";
 	opacity = 0
 	},
@@ -12330,7 +12325,6 @@
 	density = 0;
 	dir = 1;
 	icon_state = "pdoor0";
-	id = "";
 	name = "\improper Forced Blast Door";
 	opacity = 0
 	},
@@ -12839,7 +12833,6 @@
 	density = 0;
 	dir = 1;
 	icon_state = "pdoor0";
-	id = "";
 	name = "\improper Forced Blast Door";
 	opacity = 0
 	},
@@ -13259,7 +13252,6 @@
 	density = 0;
 	dir = 1;
 	icon_state = "pdoor0";
-	id = "";
 	name = "\improper Forced Blast Door";
 	opacity = 0
 	},
@@ -15425,7 +15417,6 @@
 	density = 0;
 	dir = 1;
 	icon_state = "pdoor0";
-	id = "";
 	name = "\improper Forced Blast Door";
 	opacity = 0
 	},
@@ -32316,7 +32307,6 @@
 /obj/machinery/door/airlock/almayer/secure{
 	dir = 2;
 	icon_state = "door_locked";
-	id = "";
 	locked = 1;
 	name = "Underground Secure Technical Storage";
 	req_access_txt = "100"
@@ -37691,7 +37681,6 @@
 /obj/machinery/door/airlock/almayer/secure{
 	dir = 2;
 	icon_state = "door_locked";
-	id = "";
 	locked = 1;
 	name = "Underground Secure Technical Storage";
 	req_access_txt = "100"
