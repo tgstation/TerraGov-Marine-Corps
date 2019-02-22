@@ -61,8 +61,8 @@ SUBSYSTEM_DEF(job)
 	return type_occupations[jobtype]
 
 
-/datum/controller/subsystem/job/proc/AssignRole(mob/new_player/player, job, latejoin = FALSE)
-	JobDebug("Running AR, Player: [player], Rank: [job.title], LJ: [latejoin]")
+/datum/controller/subsystem/job/proc/AssignRole(mob/new_player/player, datum/job/job, latejoin = FALSE)
+	JobDebug("Running AR, Player: [player], Rank: [job?.title], LJ: [latejoin]")
 	if(player?.mind)
 		if(!job)
 			return FALSE
@@ -79,7 +79,7 @@ SUBSYSTEM_DEF(job)
 		var/position_limit = job.total_positions
 		if(!latejoin)
 			position_limit = job.spawn_positions
-		JobDebug("Player: [player] is now Rank: [rank], JCP:[job.current_positions], JPL:[position_limit]")
+		JobDebug("Player: [player] is now Rank: [job.title], JCP:[job.current_positions], JPL:[position_limit]")
 		player.mind.assigned_role = job
 		unassigned -= player
 		job.current_positions++
@@ -254,7 +254,7 @@ SUBSYSTEM_DEF(job)
 
 
 //Gives the player the stuff he should have with his rank
-/datum/controller/subsystem/job/proc/EquipRank(mob/M, job, joined_late = FALSE)
+/datum/controller/subsystem/job/proc/EquipRank(mob/M, datum/job/job, joined_late = FALSE)
 	var/mob/new_player/N
 	var/mob/living/H
 	if(!joined_late)
@@ -273,12 +273,12 @@ SUBSYSTEM_DEF(job)
 				continue
 			S = pick(GLOB.marine_spawns_by_job[i])
 			break
-		if(length(GLOB.jobspawn_overrides[rank]))
-			S = pick(GLOB.jobspawn_overrides[rank])
+		if(length(GLOB.jobspawn_overrides[job.title]))
+			S = pick(GLOB.jobspawn_overrides[job.title])
 		if(S)
 			SendToAtom(H, S, buckle = FALSE)
 		if(!S) //if there isn't a spawnpoint send them to latejoin, if there's no latejoin go yell at your mapper
-			log_world("Couldn't find a round start spawn point for [rank]")
+			log_world("Couldn't find a round start spawn point for [job.title]")
 			SendToLateJoin(H)
 
 	if(job && H.mind)
@@ -290,12 +290,12 @@ SUBSYSTEM_DEF(job)
 				N.new_character = H
 			else
 				M = H
-		if(rank in JOBS_MARINES)
+		if(job.department_flag & J_FLAG_MARINE)
 			if(H.mind.assigned_squad)
 				var/datum/squad/S = H.mind.assigned_squad
 				S.put_marine_in_squad(H)
 			else
-				JobDebug("Failed to put marine role in squad. Player: [H.key] Rank: [rank]")
+				JobDebug("Failed to put marine role in squad. Player: [H.key] Rank: [job.title]")
 	if(ishuman(H))
 		//Give them an account in the database.
 		var/datum/money_account/A = create_account(H.real_name, rand(50,500) * 10, null)
