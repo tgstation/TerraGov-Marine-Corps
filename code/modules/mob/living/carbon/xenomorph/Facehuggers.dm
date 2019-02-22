@@ -331,7 +331,7 @@
 			var/mob/living/carbon/human/H
 			if(ishuman(target))
 				H = target
-				playsound(loc, (target.gender == "male"?'sound/misc/facehugged_male.ogg' : 'sound/misc/facehugged_female.ogg') , 25, 0)
+				playsound(loc, (target.gender == "male"?pick('sound/misc/facehugged_male.ogg','sound/misc/facehugged_male1.ogg','sound/misc/facehugged_male2.ogg') : 'sound/misc/facehugged_female.ogg') , 25, 0)
 			if(!sterile)
 				if(!H || !H.species || !(H.species.flags & IS_SYNTHETIC)) //synthetics aren't paralyzed
 					target.KnockOut(FACEHUGGER_KNOCKOUT) //THIS MIGHT NEED TWEAKS
