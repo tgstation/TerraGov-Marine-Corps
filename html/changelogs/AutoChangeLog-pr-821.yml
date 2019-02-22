@@ -1,0 +1,4 @@
+author: "LaKiller8"
+delete-after: True
+changes: 
+  - code_imp: "Preferences code has been made much better now. As a side effect you will have to set all of your preferences again because I was not able to sensibly convert that mess. The defaults should also be better for all players (no more Queen and Survivor on default)."
