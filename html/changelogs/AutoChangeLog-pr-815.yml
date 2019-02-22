@@ -1,0 +1,4 @@
+author: "Hughgent"
+delete-after: True
+changes: 
+  - bugfix: "Quick-Clot and Peridaxon are no longer infinite in a mobs system."
