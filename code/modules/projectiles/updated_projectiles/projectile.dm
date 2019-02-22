@@ -829,6 +829,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 						playsound(src, 'sound/voice/friendly_fire_8.ogg','sound/voice/friendly_fire.ogg', 25)
 					else
 						playsound(src, pick('sound/voice/friendly_fire_1.ogg', 'sound/voice/friendly_fire_2.ogg', 'sound/voice/friendly_fire_3.ogg', 'sound/voice/friendly_fire_4.ogg','sound/voice/friendly_fire_5.ogg', 'sound/voice/friendly_fire_6.ogg', 'sound/voice/friendly_fire_7.ogg'), 25)
+					else
 			log_combat(firingMob, src, "shot", P)
 			msg_admin_attack("[key_name(firingMob)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[firingMob]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[firingMob.x];Y=[firingMob.y];Z=[firingMob.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[firingMob]'>FLW</a>) shot [key_name(src)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[src]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[src]'>FLW</a>) with \a [P] in [get_area(firingMob)]")
 		return
