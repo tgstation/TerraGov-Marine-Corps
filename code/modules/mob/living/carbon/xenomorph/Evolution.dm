@@ -152,7 +152,7 @@
 		if(tier == 1 && ( (tierB + tierC) > tierA )
 			to_chat(src, "<span class='warning'>The hive cannot support another Tier 2, wait for either more aliens to be born or someone to die.</span>")
 			return
-		else if(tier == 2 && ( (tierC * 3) > tierA + tierB )
+		else if(tier == 2 && ( (tierC * 3) > (tierA + tierB) )
 			to_chat(src, "<span class='warning'>The hive cannot support another Tier 3, wait for either more aliens to be born or someone to die.</span>")
 			return
 		else if(!hive.living_xeno_queen && potential_queens == 1 && isxenolarva(src) && new_caste_type != /mob/living/carbon/Xenomorph/Drone)
@@ -179,10 +179,10 @@
 		to_chat(src, "<span class='warning'>You quiver, but nothing happens. Hold still while evolving.</span>")
 		return
 
-	if(tier == 1 && ((tierB + tierC) / max(totalXenos, 1))> 0.5)
+	if(tier == 1 && ( (tierB + tierC) > tierA )
 		to_chat(src, "<span class='warning'>Another sister evolved meanwhile. The hive cannot support another Tier 2.</span>")
 		return
-	else if(tier == 2 && (tierC / max(totalXenos, 1))> 0.25)
+	else if(tier == 2 && ( (tierC * 3) > (tierA + tierB) )
 		to_chat(src, "<span class='warning'>Another sister evolved meanwhile. The hive cannot support another Tier 3.</span>")
 		return
 
