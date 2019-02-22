@@ -819,10 +819,17 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 	if(ismob(P.firer))
 		var/mob/firingMob = P.firer
 		if(ishuman(firingMob) && ishuman(src) && firingMob.mind && !firingMob.mind.special_role && mind && !mind.special_role) //One human shot another, be worried about it but do everything basically the same //special_role should be null or an empty string if done correctly
-			log_combat(firingMob, src, "shot", P)
+			log_combat(firingMob, src, "shot", P)	
 			msg_admin_ff("[key_name(firingMob)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[firingMob]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[firingMob.x];Y=[firingMob.y];Z=[firingMob.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[firingMob]'>FLW</a>) shot [key_name(src)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[src]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[src]'>FLW</a>) with \a [P] in [get_area(firingMob)]")
 			round_statistics.total_bullet_hits_on_marines++
 		else
+			if(firingMob != src && stat != DEAD && prob(20))
+				if(gender == "male")
+					if(prob(10))
+						playsound(src, 'sound/voice/friendly_fire_8.ogg','sound/voice/friendly_fire.ogg', 25)
+					else
+						playsound(src, pick('sound/voice/friendly_fire_1.ogg', 'sound/voice/friendly_fire_2.ogg', 'sound/voic
+					else
 			log_combat(firingMob, src, "shot", P)
 			msg_admin_attack("[key_name(firingMob)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[firingMob]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[firingMob.x];Y=[firingMob.y];Z=[firingMob.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[firingMob]'>FLW</a>) shot [key_name(src)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[src]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[src]'>FLW</a>) with \a [P] in [get_area(firingMob)]")
 		return
