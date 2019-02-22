@@ -24,6 +24,7 @@
 /obj/machinery/tank_part_fabricator/proc/set_busy(business = TRUE)
 	busy = business
 	update_icon()
+	updateUsrDialog()
 
 /obj/machinery/tank_part_fabricator/update_icon()
 	if(stat & NOPOWER)
@@ -44,12 +45,16 @@
 		dat += "<i>[src] is busy. Please wait for completion of the current operation...</i>"
 	else
 		dat += "<h4>Points Available: [tank_points]</h4>"
-		dat += "<h4>Loaded Hardpoint/Ammo Clip: [loaded_mod ? "(icon2html(loaded_mod, usr) <a href='byond://?src=\ref[src];eject'>(loaded_mod)</a>" : "None"]</h4>"
+		var/slot = loaded_mod ? "[icon2html(loaded_mod, usr)] <a href='byond://?src=\ref[src];eject=1'>[loaded_mod]</a>" : "None"
+		dat += "<h4>Loaded Hardpoint/Ammo Clip: [slot]</h4>"
+
+		var/screen_menu = screen != TANKFAB_MAIN_MENU ? "<a href='byond://?src=\ref[src];screen=[TANKFAB_MAIN_MENU]'>Main Menu</a>" : "Main Menu"
+		var/screen_maint = screen != TANKFAB_MOD_MAINT ? "<a href='byond://?src=\ref[src];screen=[TANKFAB_MOD_MAINT]'>Hardpoint Maintenance</a>" : "Hardpoint Maintenance"
+		var/screen_fab = screen != TANKFAB_PRINTER ? "<a href='byond://?src=\ref[src];screen=[TANKFAB_PRINTER]'>Hardpoint Printer</a>" : "Hardpoint Printer"
+		dat += "<center><table><tr><td><center>[screen_fab]</center><td><td><center>[screen_menu]</center><td><td><center>[screen_maint]</center><td><tr><table></center>"
+
 
 	switch(screen)
-
-		if(TANKFAB_MAIN_MENU)
-			dat += "<center><table><tr><td><center><a href='byond://?src=\ref[src];printer'>Hardpoint Printer</a></center><td><td><center><a href='byond://?src=\ref[src];module_maint'>Hardpoint Maintenance</a></center><td><tr><table></center>"
 
 		if(TANKFAB_MOD_MAINT)
 			if(!loaded_mod)
@@ -58,7 +63,7 @@
 				var/price = calculate_mod_value(loaded_mod)
 				var/restore = istype(loaded_mod, /obj/item/hardpoint) ? "Repair" : "Refill"
 				var/cost = calculate_repair_price(loaded_mod)
-				dat += "<center><table><tr><td><center><a href='byond://?src=\ref[src];restore'><b>[restore]</b> ([cost])</a></center><td><td><center><a href='byond://?src=\ref[src];refund'><b>Refund</b> ([price])</a></center><td><tr><table></center><br>"
+				dat += "<center><table><tr><td><center><a href='byond://?src=\ref[src];restore=1'><b>[restore]</b> ([cost])</a></center><td><td><center><a href='byond://?src=\ref[src];refund=1'><b>Refund</b> ([price])</a></center><td><tr><table></center><br>"
 				dat += "<h4>Hardpoint/Ammo Clip infos:</h4>"
 				dat += "<b>Brief description</b>: [loaded_mod.desc]<br>"
 				if(istype(loaded_mod, /obj/item/hardpoint))
@@ -183,36 +188,33 @@
 /obj/machinery/tank_part_fabricator/proc/calculate_mod_value()
 	if(istype(loaded_mod, /obj/item/hardpoint))
 		var/obj/item/hardpoint/mod = loaded_mod
-		. = CLAMP(mod.point_cost * PERCENT(mod.health/mod.maxhealth), mod.point_cost * 0.3, mod.point_cost * 0.75)
+		. = CLAMP(mod.point_cost * (mod.health/mod.maxhealth), mod.point_cost * 0.3, mod.point_cost * 0.75)
 		if(mod.starter_ammo)
 			if(mod.ammo)
-				. = max(. * PERCENT(mod.ammo.current_rounds/mod.ammo.max_rounds), . * 0.5)
+				. += min(mod.ammo.point_cost * (mod.ammo.current_rounds/mod.ammo.max_rounds) * 0.9)
 			else
-				. *= 0.5
+				. += mod.starter_ammo.point_cost * 0.9
 			for(var/O in mod.backup_clips)
 				var/obj/item/ammo_magazine/tank/A = O
-				. += CLAMP(A.point_cost * PERCENT(A.current_rounds/A.max_rounds), A.point_cost * 0.1, A.point_cost * 0.75)
+				. += CLAMP(A.point_cost * (A.current_rounds/A.max_rounds), A.point_cost * 0.1, A.point_cost * 0.75)
 	else if(istype(loaded_mod, /obj/item/ammo_magazine/tank))
 		var/obj/item/ammo_magazine/tank/A = loaded_mod
-		. = CLAMP(A.point_cost * PERCENT(A.current_rounds/A.max_rounds), A.point_cost * 0.1, A.point_cost * 0.75)
+		. = CLAMP(A.point_cost * (A.current_rounds/A.max_rounds), A.point_cost * 0.1, A.point_cost * 0.75)
 
 	. = max(round(.), 0)
 
 /obj/machinery/tank_part_fabricator/proc/calculate_repair_price()
 	if(istype(loaded_mod, /obj/item/hardpoint))
 		var/obj/item/hardpoint/mod = loaded_mod
-		. = ((mod.point_cost - mod.point_cost * PERCENT(mod.health/mod.maxhealth)) * 0.1)
+		. = ((mod.point_cost - mod.point_cost * (mod.health/mod.maxhealth)) * 0.1)
 		if(mod.starter_ammo)
-			var/obj/item/ammo_magazine/tank/A
 			if(mod.ammo)
-				A = mod.ammo
-				. += min(A.point_cost - A.point_cost * PERCENT(A.current_rounds/A.max_rounds), A.point_cost * 0.9)
+				. += ((mod.ammo.point_cost - mod.ammo.point_cost * (mod.ammo.current_rounds/mod.ammo.max_rounds)) * 0.9)
 			else
-				A = mod.starter_ammo
-				. += initial(A.point_cost) * 0.9
+				. += initial(mod.starter_ammo.point_cost) * 0.9
 	else if(istype(loaded_mod, /obj/item/ammo_magazine/tank))
 		var/obj/item/ammo_magazine/tank/A = loaded_mod
-		. = min(A.point_cost - A.point_cost * PERCENT(A.current_rounds/A.max_rounds), A.point_cost * 0.9)
+		. = ((A.point_cost - A.point_cost * (A.current_rounds/A.max_rounds)) * 0.9)
 
 	. = max(round(.), 0)
 
@@ -235,7 +237,7 @@
 	addtimer(CALLBACK(src, .proc/set_busy, FALSE), 10 SECONDS)
 
 /obj/machinery/tank_part_fabricator/proc/restore_tank_part()
-	if(stat & (NOPOWER|BROKEN) || busy || !loaded_mod)
+	if(stat & (NOPOWER|BROKEN) || busy || QDELETED(loaded_mod))
 		return
 	tank_points -= calculate_repair_price()
 	if(istype(loaded_mod, /obj/item/hardpoint))
@@ -275,13 +277,10 @@
 	if(href_list["restore"])
 		restore_tank_part()
 
-	if(href_list["printer"])
-		screen = TANKFAB_PRINTER
+	if(href_list["screen"])
+		screen = text2num(href_list["screen"])
 
-	if(href_list["module_maint"])
-		screen = TANKFAB_MOD_MAINT
-
-		updateUsrDialog()
+	updateUsrDialog()
 
 #undef TANKFAB_MAIN_MENU
 #undef TANKFAB_MOD_MAINT

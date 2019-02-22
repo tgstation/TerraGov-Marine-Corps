@@ -16,8 +16,8 @@ Currently only has the tank hardpoints
 	w_class = 15
 
 	//If we use ammo, put it here
-	var/obj/item/ammo_magazine/ammo = null
-	var/starter_ammo = null
+	var/obj/item/ammo_magazine/tank/ammo = null
+	var/obj/item/ammo_magazine/tank/starter_ammo = null
 
 	//Strings, used to get the overlay for the armored vic
 	var/disp_icon //This also differentiates tank vs apc vs other
