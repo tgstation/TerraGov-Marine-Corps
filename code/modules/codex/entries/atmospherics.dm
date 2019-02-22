@@ -1,4 +1,3 @@
-/* all of these have new/different typepaths. come back when people care about atmos.
 /datum/codex_entry/atmos_pipe
 	associated_paths = list(/obj/machinery/atmospherics/pipe)
 	mechanics_text = "This pipe, and all other pipes, can be connected or disconnected by a wrench.  The internal pressure of the pipe must \
@@ -6,38 +5,29 @@
 
 //HE pipes
 /datum/codex_entry/atmos_he
-	associated_paths = list(/obj/machinery/atmospherics/pipe/simple/heat_exchanging)
+	associated_paths = list(/obj/machinery/atmospherics/components/unary/heat_exchanger)
 	mechanics_text = "This radiates heat from the pipe's gas to space, cooling it down."
 
 //Supply/Scrubber pipes
 /datum/codex_entry/atmos_visible_scrub
-	associated_paths = list(/obj/machinery/atmospherics/pipe/simple/visible/scrubbers)
+	associated_paths = list(/obj/machinery/atmospherics/pipe/simple/scrubbers/visible)
 	mechanics_text = "This is a special 'scrubber' pipe, which does not connect to 'normal' pipes.  If you want to connect it, use \
 	a Universal Adapter pipe."
 
 /datum/codex_entry/atmos_visible_supply
-	associated_paths = list(/obj/machinery/atmospherics/pipe/simple/visible/supply)
+	associated_paths = list(/obj/machinery/atmospherics/pipe/simple/supply/visible)
 	mechanics_text = "This is a special 'supply' pipe, which does not connect to 'normal' pipes.  If you want to connect it, use \
 	a Universal Adapter pipe."
 
 /datum/codex_entry/atmos_hidden_supply
-	associated_paths = list(/obj/machinery/atmospherics/pipe/simple/hidden/supply)
+	associated_paths = list(/obj/machinery/atmospherics/pipe/simple/supply/hidden)
 	mechanics_text = "This is a special 'supply' pipe, which does not connect to 'normal' pipes.  If you want to connect it, use \
 	a Universal Adapter pipe."
 
 /datum/codex_entry/atmos_hidden_scrub
-	associated_paths = list(/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers)
+	associated_paths = list(/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden)
 	mechanics_text = "This is a special 'scrubber' pipe, which does not connect to 'normal' pipes.  If you want to connect it, use \
 	a Universal Adapter pipe."
-
-//Universal adapters
-/datum/codex_entry/atmos_visible_universal
-	associated_paths = list(/obj/machinery/atmospherics/pipe/simple/visible/universal)
-	mechanics_text = "This allows you to connect 'normal' pipes, red 'scrubber' pipes, and blue 'supply' pipes."
-
-/datum/codex_entry/atmos_hidden_universal
-	associated_paths = list(/obj/machinery/atmospherics/pipe/simple/hidden/universal)
-	mechanics_text = "This allows you to connect 'normal' pipes, red 'scrubber' pipes, and blue 'supply' pipes."
 
 //Three way manifolds
 /datum/codex_entry/atmos_manifold
@@ -45,22 +35,22 @@
 	mechanics_text = "A normal pipe with three ends to connect to."
 
 /datum/codex_entry/atmos_manifold_visible_scrub
-	associated_paths = list(/obj/machinery/atmospherics/pipe/manifold/visible/scrubbers)
+	associated_paths = list(/obj/machinery/atmospherics/pipe/manifold/scrubbers/visible)
 	mechanics_text = "This is a special 'scrubber' pipe, which does not connect to 'normal' pipes.  If you want to connect it, use \
 	a Universal Adapter pipe."
 
 /datum/codex_entry/atmos_manifold_visible_supply
-	associated_paths = list(/obj/machinery/atmospherics/pipe/manifold/visible/supply)
+	associated_paths = list(/obj/machinery/atmospherics/pipe/manifold/supply/visible)
 	mechanics_text = "This is a special 'supply' pipe, which does not connect to 'normal' pipes.  If you want to connect it, use \
 	a Universal Adapter pipe."
 
 /datum/codex_entry/atmos_manifold_hidden_scrub
-	associated_paths = list(/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers)
+	associated_paths = list(/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden)
 	mechanics_text = "This is a special 'scrubber' pipe, which does not connect to 'normal' pipes.  If you want to connect it, use \
 	a Universal Adapter pipe."
 
 /datum/codex_entry/atmos_manifold_hidden_supply
-	associated_paths = list(/obj/machinery/atmospherics/pipe/manifold/hidden/supply)
+	associated_paths = list(/obj/machinery/atmospherics/pipe/manifold/supply/hidden)
 	mechanics_text = "This is a special 'supply' pipe, which does not connect to 'normal' pipes.  If you want to connect it, use \
 	a Universal Adapter pipe."
 
@@ -70,92 +60,71 @@
 	mechanics_text = "This is a four-way pipe."
 
 /datum/codex_entry/atmos_manifold_manifold_four_visible_scrub
-	associated_paths = list(/obj/machinery/atmospherics/pipe/manifold4w/visible/scrubbers)
+	associated_paths = list(/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/visible)
 	mechanics_text = "This is a special 'scrubber' pipe, which does not connect to 'normal' pipes.  If you want to connect it, use \
 	a Universal Adapter pipe."
 
 /datum/codex_entry/atmos_manifold_manifold_four_visible_supply
-	associated_paths = list(/obj/machinery/atmospherics/pipe/manifold4w/hidden/supply)
+	associated_paths = list(/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden)
 	mechanics_text = "This is a special 'supply' pipe, which does not connect to 'normal' pipes.  If you want to connect it, use \
 	a Universal Adapter pipe."
 
 /datum/codex_entry/atmos_manifold_manifold_four_hidden_scrub
-	associated_paths = list(/obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers)
+	associated_paths = list(/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden)
 	mechanics_text = "This is a special 'scrubber' pipe, which does not connect to 'normal' pipes.  If you want to connect it, use \
 	a Universal Adapter pipe."
 
-//Endcaps
-/datum/codex_entry/atmos_cap
-	associated_paths = list(/obj/machinery/atmospherics/pipe/cap)
-	mechanics_text = "This is a cosmetic attachment, as pipes currently do not spill their contents into the air."
-
-//T-shaped valves
-/datum/codex_entry/atmos_tvalve
-	associated_paths = list(/obj/machinery/atmospherics/tvalve)
-	mechanics_text = "Click this to toggle the mode.  The direction with the green light is where the gas will flow."
-
 //Normal valves
 /datum/codex_entry/atmos_valve
-	associated_paths = list(/obj/machinery/atmospherics/valve)
+	associated_paths = list(/obj/machinery/atmospherics/components/binary/valve)
 	mechanics_text = "Click this to turn the valve.  If red, the pipes on each end are seperated.  Otherwise, they are connected."
 
 //TEG ports
 /datum/codex_entry/atmos_circulator
-	associated_paths = list(/obj/machinery/atmospherics/binary/circulator)
+	associated_paths = list(/obj/machinery/atmospherics/components/binary/circulator)
 	mechanics_text = "This generates electricity, depending on the difference in temperature between each side of the machine.  The meter in \
 	the center of the machine gives an indicator of how much elecrtricity is being generated."
 
 //Passive gates
 /datum/codex_entry/atmos_gate
-	associated_paths = list(/obj/machinery/atmospherics/binary/passive_gate)
+	associated_paths = list(/obj/machinery/atmospherics/components/binary/passive_gate)
 	mechanics_text = "This is a one-way regulator, allowing gas to flow only at a specific pressure and flow rate.  If the light is green, it is flowing."
 
 //Normal pumps (high power one inherits from this)
 /datum/codex_entry/atmos_pump
-	associated_paths = list(/obj/machinery/atmospherics/binary/pump)
+	associated_paths = list(/obj/machinery/atmospherics/components/binary/pump)
 	mechanics_text = "This moves gas from one pipe to another.  A higher target pressure demands more energy.  The side with the red end is the output."
 
 //Vents
 /datum/codex_entry/atmos_vent_pump
-	associated_paths = list(/obj/machinery/atmospherics/unary/vent_pump)
+	associated_paths = list(/obj/machinery/atmospherics/components/unary/vent_pump)
 	mechanics_text = "This pumps the contents of the attached pipe out into the atmosphere, if needed.  It can be controlled from an Air Alarm."
 
 //Freezers
 /datum/codex_entry/atmos_freezer
-	associated_paths = list(/obj/machinery/atmospherics/unary/freezer)
+	associated_paths = list(/obj/machinery/atmospherics/components/unary/thermomachine/freezer)
 	mechanics_text = "Cools down the gas of the pipe it is connected to.  It uses massive amounts of electricity while on. \
 	It can be upgraded by replacing the capacitors, manipulators, and matter bins.  It can be deconstructed by screwing the maintenance panel open with a \
 	screwdriver, and then using a crowbar."
 
 //Heaters
 /datum/codex_entry/atmos_heater
-	associated_paths = list(/obj/machinery/atmospherics/unary/heater)
+	associated_paths = list(/obj/machinery/atmospherics/components/unary/thermomachine/heater)
 	mechanics_text = "Heats up the gas of the pipe it is connected to.  It uses massive amounts of electricity while on. \
 	It can be upgraded by replacing the capacitors, manipulators, and matter bins.  It can be deconstructed by screwing the maintenance panel open with a \
 	screwdriver, and then using a crowbar."
 
 //Gas injectors
 /datum/codex_entry/atmos_injector
-	associated_paths = list(/obj/machinery/atmospherics/unary/outlet_injector)
+	associated_paths = list(/obj/machinery/atmospherics/components/unary/outlet_injector)
 	mechanics_text = "Outputs the pipe's gas into the atmosphere, similar to an airvent.  It can be controlled by a nearby atmospherics computer. \
 	A green light on it means it is on."
 
 //Scrubbers
 /datum/codex_entry/atmos_vent_scrubber
-	associated_paths = list(/obj/machinery/atmospherics/unary/vent_scrubber)
+	associated_paths = list(/obj/machinery/atmospherics/components/unary/vent_scrubber)
 	mechanics_text = "This filters the atmosphere of harmful gas.  Filtered gas goes to the pipes connected to it, typically a scrubber pipe. \
 	It can be controlled from an Air Alarm.  It can be configured to drain all air rapidly with a 'panic syphon' from an air alarm."
-
-//Omni filters
-/datum/codex_entry/atmos_omni_filter
-	associated_paths = list(/obj/machinery/atmospherics/omni/filter)
-	mechanics_text = "Filters gas from a custom input direction, with up to two filtered outputs and a 'everything else' \
-	output.  The filtered output's arrows glow orange."
-
-//Omni mixers
-/datum/codex_entry/atmos_omni_mixer
-	associated_paths = list(/obj/machinery/atmospherics/omni/mixer)
-	mechanics_text = "Combines gas from custom input and output directions.  The percentage of combined gas can be defined."
 
 //Canisters
 /datum/codex_entry/atmos_canister
@@ -168,14 +137,14 @@
 
 //Portable pumps
 /datum/codex_entry/atmos_power_pump
-	associated_paths = list(/obj/machinery/portable_atmospherics/powered/pump)
+	associated_paths = list(/obj/machinery/portable_atmospherics/pump)
 	mechanics_text = "Invaluable for filling air in a room rapidly after a breach repair.  The internal gas container can be filled by \
 	connecting it to a connector port.  The pump can pump the air in (sucking) or out (blowing), at a specific target pressure.  The powercell inside can be \
 	replaced by using a screwdriver, and then adding a new cell.  A tank of gas can also be attached to the air pump."
 
 //Portable scrubbers
 /datum/codex_entry/atmos_power_scrubber
-	associated_paths = list(/obj/machinery/portable_atmospherics/powered/scrubber)
+	associated_paths = list(/obj/machinery/portable_atmospherics/scrubber)
 	mechanics_text = "Filters the air, placing harmful gases into the internal gas container.  The container can be emptied by \
 	connecting it to a connector port.  The pump can pump the air in (sucking) or out (blowing), at a specific target pressure.  The powercell inside can be \
 	replaced by using a screwdriver, and then adding a new cell.  A tank of gas can also be attached to the scrubber. "
@@ -209,4 +178,3 @@
 	antag_text = "Each tank may be incited to burn by attaching wires and an igniter assembly, though the igniter can only be used once and the mixture only burn if the igniter pushes a flammable gas mixture above the minimum burn temperature (126?C). \
 	Wired and assembled tanks may be disarmed with a set of wirecutters. Any exploding or rupturing tank will generate shrapnel, assuming their relief valves have been welded beforehand. Even if not, they can be incited to expel hot gas on ignition if pushed above 173?C. \
 	Relatively easy to make, the single tank bomb requries no tank transfer valve, and is still a fairly formidable weapon that can be manufactured from any tank."
-*/
