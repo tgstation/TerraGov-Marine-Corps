@@ -1135,7 +1135,8 @@
 	visible_message("<span class='xenowarning'>\The [src] spits at \the [T]!</span>", \
 	"<span class='xenowarning'>You spit at \the [T]!</span>" )
 	var/sound_to_play = pick(1, 2) == 1 ? 'sound/voice/alien_spitacid.ogg' : 'sound/voice/alien_spitacid2.ogg'
-	playsound(src.loc, sound_to_play, 25, 1)
+	if(!isXenoPsyAlien(src))
+		playsound(src.loc, sound_to_play, 25, 1)
 
 	var/obj/item/projectile/A = new /obj/item/projectile(current_turf)
 	A.generate_bullet(ammo, ammo.damage * (max(0,upgrade) * 0.15)) //increase damage by 15% per upgrade level; compensates for the loss of insane attack speeds.
@@ -1470,6 +1471,8 @@
 	var/hivelord_count = 0
 	var/warrior_list = ""
 	var/warrior_count = 0
+	var/psyalien_count = 0
+	var/psyalien_list = ""
 	var/hunter_list = ""
 	var/hunter_count = 0
 	var/spitter_list = ""
@@ -1532,9 +1535,12 @@
 			if("Praetorian")
 				if(leader == "") praetorian_list += xenoinfo
 				praetorian_count++
-			if("Ravager")
+			if("PsyAlien")
 				if(leader == "") ravager_list += xenoinfo
 				ravager_count++
+			if("Ravager")
+				if(leader == "") psyalien_list += xenoinfo
+				psyalien_count++
 			if("Carrier")
 				if(leader == "") carrier_list += xenoinfo
 				carrier_count++
@@ -1571,7 +1577,7 @@
 	dat += "<b>Total Living Sisters: [count]</b><BR>"
 	//if(exotic_count != 0) //Exotic Xenos in the Hive like Predalien or Xenoborg
 		//dat += "<b>Ultimate Tier:</b> [exotic_count] Sisters</b><BR>"
-	dat += "<b>Tier 3: [boiler_count + crusher_count + praetorian_count + ravager_count] Sisters</b> | Boilers: [boiler_count] | Crushers: [crusher_count] | Praetorians: [praetorian_count] | Ravagers: [ravager_count]<BR>"
+	dat += "<b>Tier 3: [boiler_count + crusher_count + praetorian_count + ravager_count + psyalien_count] Sisters</b> | Boilers: [boiler_count] | Crushers: [crusher_count] | Praetorians: [praetorian_count] | Ravagers: [ravager_count] | PsyAlien: [psyalien_count]<BR>"
 	dat += "<b>Tier 2: [carrier_count + hivelord_count + hunter_count + spitter_count + warrior_count] Sisters</b> | Carriers: [carrier_count] | Hivelords: [hivelord_count] | Warriors: [warrior_count] | Hunters: [hunter_count] | Spitters: [spitter_count]<BR>"
 	dat += "<b>Tier 1: [drone_count + runner_count + sentinel_count + defender_count] Sisters</b> | Drones: [drone_count] | Runners: [runner_count] | Sentinels: [sentinel_count] | Defenders: [defender_count]<BR>"
 	dat += "<b>Larvas: [larva_count] Sisters<BR>"
