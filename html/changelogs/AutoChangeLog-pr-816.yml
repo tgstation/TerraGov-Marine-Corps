@@ -1,0 +1,4 @@
+author: "Rohesie"
+delete-after: True
+changes: 
+  - balance: "Xeno embryos no longer grow at all in mobs in stasis, be it cryo bags or tubes."
