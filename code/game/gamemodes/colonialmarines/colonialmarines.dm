@@ -122,12 +122,16 @@
 	var/num_xenos = living_player_list[2]
 
 	if(EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED) //Nuke went off, ending the round.
+		message_admins("Round finished: [MODE_GENERIC_DRAW_NUKE]")
 		round_finished = MODE_GENERIC_DRAW_NUKE
 	else if(!num_humans && num_xenos)
+		message_admins("Round finished: [MODE_INFESTATION_X_MAJOR]")
 		round_finished = MODE_INFESTATION_X_MAJOR //No humans remain alive.
 	else if(num_humans && !num_xenos)
+		message_admins("Round finished: [MODE_INFESTATION_M_MAJOR]")
 		round_finished = MODE_INFESTATION_M_MAJOR //Humans destroyed the xenomorphs.
 	else if(num_humans && num_xenos)
+		message_admins("Round finished: [MODE_INFESTATION_DRAW_DEATH]")
 		round_finished = MODE_INFESTATION_DRAW_DEATH //Both were somehow destroyed.
 
 
