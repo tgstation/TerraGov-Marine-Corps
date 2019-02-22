@@ -623,7 +623,6 @@
 	to_chat(H, "[icon2html(src, H)] <font size='3' color='blue'><B>\[Overwatch\]: You've been promoted to \'[H.mind.assigned_role == "Squad Leader" ? "SQUAD LEADER" : "ACTING SQUAD LEADER"]\' for [current_squad.name]. Your headset has access to the command channel (:v).</B></font>")
 	to_chat(usr, "[icon2html(src, usr)] [H.real_name] is [current_squad]'s new leader!")
 	current_squad.squad_leader = H
-	SET_TRACK_LEADER(current_squad.tracking_id, H)
 	if(H.mind.assigned_role == "Squad Leader")
 		H.mind.comm_title = "SL"
 	else

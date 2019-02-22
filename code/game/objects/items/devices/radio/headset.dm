@@ -258,8 +258,6 @@
 		if(wearer.wear_ear == src)
 			squadhud.remove_hud_from(wearer)
 			wearer.SL_directional = null
-			if(wearer.assigned_squad)
-				STOP_TRACK_LEADER(wearer.assigned_squad.tracking_id, wearer)
 			wearer = null
 	squadhud = null
 	headset_hud_on = FALSE
@@ -285,6 +283,7 @@
 		playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
 
 /obj/item/device/radio/headset/almayer/proc/toggle_sl_direction(mob/living/carbon/human/user)
+	return
 	if(!headset_hud_on)
 		to_chat(user, "<span class='warning'>You need to turn the HUD on first!</span>")
 		return
@@ -292,14 +291,12 @@
 	if(sl_direction)
 		if(user.mind && user.assigned_squad && user.hud_used?.SL_locator)
 			user.hud_used.SL_locator.alpha = 0
-			STOP_TRACK_LEADER(user.assigned_squad.tracking_id, user)
 		sl_direction = FALSE
 		to_chat(user, "<span class='notice'>You toggle the SL directional display off.</span>")
 		playsound(src.loc, 'sound/machines/click.ogg', 15, 0, 1)
 	else
 		if(user.mind && user.assigned_squad && user.hud_used?.SL_locator)
 			user.hud_used.SL_locator.alpha = 128
-			START_TRACK_LEADER(user.assigned_squad.tracking_id, user)
 		sl_direction = TRUE
 		to_chat(user, "<span class='notice'>You toggle the SL directional display on.</span>")
 		playsound(src.loc, 'sound/machines/click.ogg', 15, 0, 1)
