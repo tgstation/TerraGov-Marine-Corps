@@ -19,7 +19,7 @@
 	if (goal_number)
 		goal = goal_number
 	bar_icon = bar_var
-	bar = image('icons/effects/progressbar.dmi', target, "prog_bar[bar_icon]_0", HUD_LAYER)
+	bar = image('icons/effects/progressbar.dmi', target, "prog_bar_[bar_icon]_0", HUD_LAYER)
 	bar.plane = ABOVE_HUD_PLANE
 	bar.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
 	user = User
@@ -59,7 +59,7 @@
 		user.client?.images += bar
 
 	progress = CLAMP(progress, 0, goal)
-	bar.icon_state = "prog_bar[bar_icon]_[round(((progress / goal) * 100), 5)]"
+	bar.icon_state = "prog_bar_[bar_icon]_[round(((progress / goal) * 100), 5)]"
 	if (!shown)
 		user.client.images += bar
 		shown = TRUE
