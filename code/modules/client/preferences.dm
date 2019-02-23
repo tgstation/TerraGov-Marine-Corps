@@ -350,11 +350,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	switch(alternate_option)
 		if(GET_RANDOM_JOB)
-			HTML += "<center><br><u><a href='?_src_=prefs;preference=jobalternative'><font color=green>Get random job if preferences unavailable</font></a></u></center><br>"
+			HTML += "<center><br><u><a href='?_src_=prefs;preference=jobalternative'>Get random job if preferences unavailable</a></u></center><br>"
 		if(BE_MARINE)
-			HTML += "<center><br><u><a href='?_src_=prefs;preference=jobalternative'><font color=red>Be marine if preference unavailable</font></a></u></center><br>"
+			HTML += "<center><br><u><a href='?_src_=prefs;preference=jobalternative'>Be marine if preference unavailable</a></u></center><br>"
 		if(RETURN_TO_LOBBY)
-			HTML += "<center><br><u><a href='?_src_=prefs;preference=jobalternative'><font color=purple>Return to lobby if preference unavailable</font></a></u></center><br>"
+			HTML += "<center><br><u><a href='?_src_=prefs;preference=jobalternative'>Return to lobby if preference unavailable</a></u></center><br>"
 
 	HTML += "<center><a href='?_src_=prefs;preference=jobreset'>\[Reset\]</a></center>"
 
