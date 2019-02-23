@@ -169,6 +169,9 @@
 		return
 
 	var/datum/squad/S = SSjob.squads[squad]
+	if(!S?.usable)
+		return
+
 	var/datum/job/J = SSjob.name_occupations[H.mind.assigned_role]
 	var/datum/outfit/job/O = new J.outfit
 	O.post_equip(H)

@@ -303,7 +303,7 @@ proc/isInSight(var/atom/A, var/atom/B)
 		if(deathtime < DEATHTIME_XENO_REQUIREMENT)
 			continue
 
-		if(!picked?.key)
+		if(!picked?.key && O.key)
 			picked = O
 			continue
 

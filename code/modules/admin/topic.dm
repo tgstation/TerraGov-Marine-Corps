@@ -117,6 +117,9 @@
 		var/y = text2num(href_list["Y"])
 		var/z = text2num(href_list["Z"])
 
+		if(x == 0 && y == 0 && z == 0)
+			return
+
 		var/client/C = usr.client
 
 		if(!isobserver(usr))
@@ -1235,7 +1238,7 @@
 		send_fax(usr, null, dep, subject, fax_message, TRUE)
 
 		log_admin("[key_name(usr)] replied to a fax message from [key_name(sender)].")
-		message_admins("[ADMIN_TPMONTY(usr)] replied to a fax message from [ADMIN_TPMONTY(sender)].")
+		message_staff("[key_name_admin(usr)] replied to a fax message from [key_name_admin(sender)].")
 
 
 	else if(href_list["faxview"])

@@ -405,7 +405,11 @@
 			if(M.client && M.client.is_afk())
 				name += " (AFK)"
 			else if(!M.client && (M.key || M.ckey))
-				name += " (DC)"
+				if(copytext(M.key, 1, 2) == "@")
+					name += " (AGHOSTED)"
+				else
+					name += " (DC)"
+
 
 		humans[name] = M
 
