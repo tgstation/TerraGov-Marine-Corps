@@ -181,7 +181,7 @@
 /datum/squad/proc/clean_marine_from_squad(mob/living/carbon/human/H, wipe = FALSE)
 	if(!H.assigned_squad || !(H in marines_list))
 		return FALSE
-	STOP_TRACK_LEADER(tracking_id, wearer) // failsafe
+	STOP_TRACK_LEADER(tracking_id, H) // failsafe
 	marines_list -= src
 	if(!wipe)
 		var/role = "unknown"
