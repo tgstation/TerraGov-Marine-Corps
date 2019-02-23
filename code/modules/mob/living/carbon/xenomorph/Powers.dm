@@ -1337,6 +1337,7 @@
 	var/wait_time = 10
 
 	//OBJ CHECK
+	var/obj/effect/xenomorph/acid/new_acid = new acid_type
 	var/obj/effect/xenomorph/acid/current_acid
 	var/turf/T
 	var/obj/I
@@ -1345,7 +1346,7 @@
 		I = O
 		current_acid = I.current_acid
 
-		if(current_acid && !acid_check(acid_type, current_acid) )
+		if(current_acid && !acid_check(new_acid, current_acid) )
 			return
 
 		if(I.unacidable || istype(I, /obj/machinery/computer) || istype(I, /obj/effect)) //So the aliens don't destroy energy fields/singularies/other aliens/etc with their acid.
@@ -1366,7 +1367,7 @@
 		T = O
 		current_acid = T.current_acid
 
-		if(current_acid && !acid_check(acid_type, current_acid) )
+		if(current_acid && !acid_check(new_acid, current_acid) )
 			return
 
 		if(iswallturf(O))
@@ -1426,16 +1427,19 @@
 
 	if(isturf(O))
 		A.icon_state += "_wall"
-		acid_progress_transfer(A, null, T)
+		if(T.current_acid)
+			acid_progress_transfer(A, null, T)
 		T.current_acid = A
 
 	if(istype(O, /obj/structure) || istype(O, /obj/machinery)) //Always appears above machinery
 		A.layer = O.layer + 0.1
-		acid_progress_transfer(A, O)
+		if(I.current_acid)
+			acid_progress_transfer(A, O)
 		I.current_acid = A
 
 	else //If not, appear on the floor or on an item
-		acid_progress_transfer(A, O)
+		if(I.current_acid)
+			acid_progress_transfer(A, O)
 		A.layer = LOWER_ITEM_LAYER //below any item, above BELOW_OBJ_LAYER (smartfridge)
 		I.current_acid = A
 
@@ -1454,8 +1458,8 @@
 	if(!new_acid || !current_acid)
 		return
 
-	if(new_acid.acid_strength < current_acid.acid_strength)
-		to_chat(src, "<span class='warning'>This object is already subject to a more powerful acid.</span>")
+	if(new_acid.acid_strength >= current_acid.acid_strength)
+		to_chat(src, "<span class='warning'>This object is already subject to a more or equally powerful acid.</span>")
 		return FALSE
 	return TRUE
 
@@ -1475,6 +1479,8 @@
 	else if(O)
 		current_acid = O.current_acid
 
+	if(!current_acid) //Sanity check. No acid
+		return
 	new_acid.ticks = current_acid.ticks //Inherit the old acid's progress
 	qdel(current_acid)
 
