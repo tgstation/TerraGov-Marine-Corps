@@ -13,7 +13,7 @@
 	var/authenticated = FALSE
 
 	var/obj/item/paper/message = null
-	var/sendcooldown = 0
+	var/sendcooldown = FALSE
 
 	var/department = "Corporate Liaison"
 	var/selected = "Nanotrasen"
@@ -91,8 +91,10 @@
 		if(message)
 			send_fax(usr, src, selected, message.name, message.info, FALSE)
 			to_chat(usr, "Message transmitted successfully.")
-			spawn(sendcooldown)
-				sendcooldown = 0
+			sendcooldown = TRUE
+			addtimer(CALLBACK(src, .proc/end_cooldown), 2 MINUTES)
+			to_chat(usr, "THE TIMER SHOULD BE STARTED, AND COOLDOWN SHOULD BE SET TO 1")
+			updateUsrDialog()
 	if(href_list["remove"])
 		if(message)
 			if(!ishuman(usr))
@@ -157,6 +159,10 @@
 		playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 		anchored = !anchored
 		to_chat(user, "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>")
+
+
+/obj/machinery/faxmachine/proc/end_cooldown()
+	sendcooldown = FALSE
 
 
 /obj/machinery/faxmachine/cmp
