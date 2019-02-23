@@ -129,15 +129,23 @@
 
 				var/datum/species/species = GLOB.all_species[client.prefs.species] || GLOB.all_species[DEFAULT_SPECIES]
 
-				if(client.prefs.random_name)
-					client.prefs.real_name = species.random_name(client.prefs.gender)
+				if(client.prefs)
+					if(client.prefs.random_name)
+						client.prefs.real_name = species.random_name(client.prefs.gender)
+					else
+						observer.real_name = client.prefs.real_name
+				else
+					if(gender == FEMALE)
+						observer.real_name = capitalize(pick(first_names_female)) + " " + capitalize(pick(last_names))
+					else
+						observer.real_name = capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
 
-				observer.real_name = client.prefs.real_name
 				observer.name = observer.real_name
 				observer.key = key
 
 				if(observer.client)
 					observer.client.change_view(world.view)
+
 				qdel(src)
 
 
