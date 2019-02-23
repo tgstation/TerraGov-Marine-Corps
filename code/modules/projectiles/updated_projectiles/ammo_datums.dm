@@ -960,19 +960,19 @@
 	name = "fragmentation rocket"
 	hud_state = "rocket_frag"
 
-/datum/ammo/rocket/on_hit_mob(mob/M, obj/item/projectile/P)
+/datum/ammo/rocket/frag/on_hit_mob(mob/M, obj/item/projectile/P)
 	explosion(get_turf(M), -1, -1, 1, 2)
 	frag_blast(get_turf(M), get_turf(M), 32)
 
-/datum/ammo/rocket/on_hit_obj(obj/O, obj/item/projectile/P)
+/datum/ammo/rocket/frag/on_hit_obj(obj/O, obj/item/projectile/P)
 	explosion(get_turf(O), -1, -1, 1, 2)
 	frag_blast(get_turf(O), get_turf(O), 32)
 
-/datum/ammo/rocket/on_hit_turf(turf/T, obj/item/projectile/P)
+/datum/ammo/rocket/frag/on_hit_turf(turf/T, obj/item/projectile/P)
 	explosion(T, -1, -1, 1, 2)
 	frag_blast(T, T, 32)
 
-/datum/ammo/rocket/do_at_max_range(obj/item/projectile/P)
+/datum/ammo/rocket/frag/do_at_max_range(obj/item/projectile/P)
 	explosion(get_turf(P), -1, -1, 1, 2)
 	frag_blast(get_turf(P), get_turf(P), 32)
 
