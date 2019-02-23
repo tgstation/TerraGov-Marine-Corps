@@ -83,6 +83,10 @@
 		to_chat(src, "<font color='red'>Error: Admin-PM: Non-admin to non-admin PM communication is forbidden.</font>")
 		return
 
+	msg = sanitize(msg)
+	if(!msg)
+		return
+
 	var/recieve_message = ""
 
 	if(holder && !C.holder)
