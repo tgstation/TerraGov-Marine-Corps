@@ -662,7 +662,8 @@
 	set category = "Object"
 	set src in oview(1)
 
-	if(usr.stat != 0 || !ishuman(usr)) return
+	if(usr.is_mob_incapacitated() || !ishuman(usr))
+		return
 
 	if(occupant)
 		to_chat(usr, "<span class='notice'>\ [src] is already occupied!</span>")
