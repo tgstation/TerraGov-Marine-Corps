@@ -141,11 +141,8 @@
 						observer.real_name = capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
 
 				observer.name = observer.real_name
-				observer.key = key
 
-				if(observer.client)
-					observer.client.change_view(world.view)
-
+				mind.transfer_to(observer, TRUE)
 				qdel(src)
 
 
