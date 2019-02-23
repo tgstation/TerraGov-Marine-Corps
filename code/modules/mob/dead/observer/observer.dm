@@ -57,6 +57,26 @@
 		ManualFollow(target)
 
 
+	else if(href_list["claim"])
+		var/mob/living/target = locate(href_list["claim"]) in GLOB.mob_list
+		if(!istype(target))
+			to_chat(usr, "<span class='warning'>Invalid target.</span>")
+			return
+		if(!mind)
+			to_chat(usr, "<span class='warning'>You don't have a mind.</span>")
+			return
+		if(target.taken || target.key || target.ckey)
+			to_chat(usr, "<span class='warning'>That mob has already been taken.</span>")
+			return
+
+		target.taken = TRUE
+
+		log_admin("[key_name(usr)] has taken [key_name_admin(target)].")
+		message_admins("[ADMIN_TPMONTY(usr)] has taken [ADMIN_TPMONTY(target)].")
+
+		mind.transfer_to(target, TRUE)
+
+
 	else if(href_list["preference"])
 		if(!client?.prefs)
 			return
