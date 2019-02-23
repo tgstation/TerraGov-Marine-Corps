@@ -209,6 +209,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	dat += "<b>Custom Loadout:</b> "
 	var/total_cost = 0
 
+	if(!islist(gear))
+		gear = list()
+
 	if(length(gear))
 		dat += "<br>"
 		for(var/i in GLOB.gear_datums)
@@ -639,6 +642,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 			total_cost += C.cost
 			if(total_cost <= MAX_GEAR_COST)
+				if(!islist(gear))
+					gear = list()
 				gear += choice
 				to_chat(user, "<span class='notice'>Added '[choice]' for [C.cost] points ([MAX_GEAR_COST - total_cost] points remaining).</span>")
 			else
@@ -646,9 +651,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 		if("loadoutremove")
 			gear.Remove(href_list["gear"])
+			if(!islist(gear))
+				gear = list()
 
 		if("loadoutclear")
 			gear.Cut()
+			if(!islist(gear))
+				gear = list()
 
 		if("ui")
 			var/choice = input(user, "Please choose an UI style.", "UI Style") as null|anything in UI_STYLES
