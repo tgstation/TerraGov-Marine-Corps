@@ -23,6 +23,7 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 	paygrade = "E2"
 	comm_title = "Mar"
 	flag = SQUAD_MARINE
+	prefflag = PREF_JOB_SQMARINE
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP)
 	display_order = JOB_DISPLAY_ORDER_SQUAD_MARINE
@@ -53,6 +54,7 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 	spawn_positions = 12
 	total_positions = 12
 	flag = SQUAD_ENGINEER
+	prefflag = PREF_JOB_SQENGINEER
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_ENGPREP, ACCESS_CIVILIAN_ENGINEERING)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_ENGPREP, ACCESS_CIVILIAN_ENGINEERING)
 	skills_type = /datum/skills/combat_engineer
@@ -82,6 +84,7 @@ Your squaddies will look to you when it comes to construction in the field of ba
 	spawn_positions = 16
 	total_positions = 16
 	flag = SQUAD_MEDIC
+	prefflag = PREF_JOB_SQMEDIC
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_MEDBAY)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_MEDBAY)
 	skills_type = /datum/skills/combat_medic
@@ -109,6 +112,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	paygrade = "E3"
 	comm_title = "Sgn"
 	flag = SQUAD_SMARTGUNNER
+	prefflag = PREF_JOB_SQSMARTGUNNER
 	spawn_positions = 4
 	total_positions = 4
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_SMARTPREP)
@@ -137,6 +141,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	paygrade = "E5"
 	comm_title = "Spec"
 	flag = SQUAD_SPECIALIST
+	prefflag = PREF_JOB_SQSPECIALIST
 	spawn_positions = 4
 	total_positions = 4
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_SPECPREP)
@@ -167,6 +172,7 @@ You can serve a variety of roles, so choose carefully."})
 	paygrade = "E6"
 	comm_title = "SL"
 	flag = SQUAD_LEADER
+	prefflag = PREF_JOB_SQLEADER
 	spawn_positions = 4
 	total_positions = 4
 	supervisors = "the acting commander"

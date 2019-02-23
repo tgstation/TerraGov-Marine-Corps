@@ -767,6 +767,12 @@ datum/game_mode/proc/initialize_post_queen_list()
 		GLOB.xeno_tunnel_landmarks -= t
 		T = new(t)
 		T.id = "hole[i]"
+		for(var/x in GLOB.xeno_tunnels)
+			var/obj/structure/tunnel/TO = x
+			if(TO.id != T.id || T == TO || !TO.other)
+				continue
+			TO.other = T
+			T.other = TO
 
 /datum/game_mode/proc/spawn_map_items()
 	var/turf/T
