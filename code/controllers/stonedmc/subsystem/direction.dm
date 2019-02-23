@@ -1,18 +1,3 @@
-#define START_TRACK_LEADER(squad, mob) \
-	SSdirection.processing_mobs[squad].Add(mob);
-
-#define STOP_TRACK_LEADER(squad, mob) \
-	SSdirection.processing_mobs[squad].Remove(mob);
-
-#define SET_TRACK_LEADER(squad, mob) \
-	SSdirection.leader_mapping[squad] = mob;
-
-#define CLEAR_TRACK_LEADER(squad) \
-	SSdirection.leader_mapping[squad] = null;
-
-#define SETUP_LEADER_MAP(squad) \
-	SSdirection.leader_mapping.Add(squad);
-
 SUBSYSTEM_DEF(direction)
 	name = "Direction"
 	priority = FIRE_PRIORITY_DIRECTION
@@ -57,6 +42,9 @@ SUBSYSTEM_DEF(direction)
 			while(currentrun[L].len)
 				H = currentrun[L][currentrun[L].len]
 				currentrun[L].len--
+				if(!H)
+					stack_trace("null in squad tracking")
+					continue
 				H.update_leader_tracking(C)
 				if(MC_TICK_CHECK)
 					return
@@ -67,3 +55,25 @@ SUBSYSTEM_DEF(direction)
 				H.clear_leader_tracking()
 				if(MC_TICK_CHECK)
 					return	
+
+/datum/controller/subsystem/direction/proc/start_tracking(squad_id, mob/living/carbon/human/H)
+	if(!H)
+		stack_trace("SSdirection.start_tracking called with a null mob")
+		return
+	processing_mobs[squad_id].Add(H)
+
+/datum/controller/subsystem/direction/proc/stop_tracking(squad_id, mob/living/carbon/human/H, deep=FALSE)
+	if(!deep)
+		processing_mobs[squad_id].Remove(H)
+		return
+	for(var/A in processing_mobs)
+		if(islist(processing_mobs[A]))
+			processing_mobs[A].Remove(H)
+
+/datum/controller/subsystem/direction/proc/set_leader(squad_id, mob/living/carbon/human/H)
+	if(leader_mapping[squad_id])
+		clear_leader(squad_id)
+	leader_mapping[squad_id] = H
+
+/datum/controller/subsystem/direction/proc/clear_leader(squad_id)
+	leader_mapping[squad_id] = null
