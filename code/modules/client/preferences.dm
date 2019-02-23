@@ -298,7 +298,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	//height 	 - Screen's height.
 
 	var/HTML = "<body>"
-	HTML += "<tt><center>"
+	HTML += "<center>"
 	HTML += "<b>Choose occupation chances</b><br>Unavailable occupations are crossed out.<br><br>"
 	HTML += "<center><a href='?_src_=prefs;preference=jobclose'>\[Done\]</a></center><br>" // Easier to press up here.
 	HTML += "<table width='100%' cellpadding='1' cellspacing='0'><tr><td width='20%'>" // Table within a table for alignment, also allows you to easily add more colomns.
@@ -318,11 +318,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				//If the cells were broken up by a job in the splitJob list then it will fill in the rest of the cells with
 				//the last job's selection color. Creating a rather nice effect.
 				for(var/j = 0, j < (limit - index), j++)
-					HTML += "<tr bgcolor='[lastJob.selection_color]'><td width='60%' align='right'><a>&nbsp</a></td><td><a>&nbsp</a></td></tr>"
+					HTML += "<tr style='color:black' bgcolor='[lastJob.selection_color]'><td width='60%' align='right'><a>&nbsp</a></td><td><a>&nbsp</a></td></tr>"
 			HTML += "</table></td><td width='20%'><table width='100%' cellpadding='1' cellspacing='0'>"
 			index = 0
 
-		HTML += "<tr bgcolor='[job.selection_color]'><td width='60%' align='right'>"
+		HTML += "<tr style='color:black' bgcolor='[job.selection_color]'><td width='60%' align='right'>"
 		lastJob = job
 		if(jobban_isbanned(user, job.title))
 			HTML += "<del>[job.title]</del></td><td><b> \[BANNED]</b></td></tr>"
@@ -357,8 +357,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			HTML += "<center><br><u><a href='?_src_=prefs;preference=jobalternative'><font color=purple>Return to lobby if preference unavailable</font></a></u></center><br>"
 
 	HTML += "<center><a href='?_src_=prefs;preference=jobreset'>\[Reset\]</a></center>"
-	HTML += "</tt>"
-
 
 	winshow(user, "mob_occupation", TRUE)
 	var/datum/browser/popup = new(user, "mob_occupation", "<div align='center'>Occupation Choices</div>", width, height)
@@ -369,7 +367,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 /datum/preferences/proc/SetRecords(mob/user)
 	var/HTML = "<body>"
-	HTML += "<tt><center>"
+	HTML += "<center>"
 	HTML += "<b>Set Character Records</b><br>"
 
 	HTML += "<a href ='?_src_=prefs;preference=med_record'>Medical Records</a><br>"
@@ -390,7 +388,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	HTML += "<br>"
 	HTML += "<a href ='?_src_=prefs;preference=recordsclose'>\[Done\]</a>"
-	HTML += "</center></tt>"
+	HTML += "</center>"
 
 
 	winshow(user, "records", TRUE)
@@ -900,7 +898,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 /datum/preferences/proc/open_load_dialog(mob/user)
 	var/dat = "<html><head><title>Load Character Slot</title></head>"
 
-	dat += "<body><tt><center>"
+	dat += "<body><center>"
 
 	var/savefile/S = new /savefile(path)
 	if(S)
@@ -917,7 +915,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	dat += "<hr>"
 	dat += "<a href ='?_src_=prefs;preference=slot_close'>Close</a><br>"
-	dat += "</center></tt>"
+	dat += "</center>"
 
 
 	winshow(user, "saves", TRUE)
