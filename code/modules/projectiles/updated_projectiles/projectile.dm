@@ -67,7 +67,6 @@
 	starting = null
 	permutated = null
 	path = null
-	list_reagents = null
 	return TA_REVIVE_ME
 
 /obj/item/projectile/Bumped(atom/A as mob|obj|turf|area)
@@ -92,7 +91,6 @@
 	accuracy   *= rand(CONFIG_GET(number/combat_define/proj_variance_low)-ammo.accuracy_var_low, CONFIG_GET(number/combat_define/proj_variance_high)+ammo.accuracy_var_high) * CONFIG_GET(number/combat_define/proj_base_accuracy_mult)//Rand only works with integers.
 	damage     *= rand(CONFIG_GET(number/combat_define/proj_variance_low)-ammo.damage_var_low, CONFIG_GET(number/combat_define/proj_variance_high)+ammo.damage_var_high) * CONFIG_GET(number/combat_define/proj_base_damage_mult)
 	damage_falloff = ammo.damage_falloff
-	list_reagents = ammo.ammo_reagents
 	armor_type = ammo.armor_type
 
 //Target, firer, shot from. Ie the gun
@@ -393,8 +391,8 @@
 		return 0
 
 	if(P.ammo.flags_ammo_behavior & (AMMO_XENO_ACID|AMMO_XENO_TOX))
-		if((status_flags & XENO_HOST) && istype(buckled, /obj/structure/bed/nest))
-			return 0
+		if(((status_flags & XENO_HOST) && istype(buckled, /obj/structure/bed/nest)) || stat == DEAD)
+			return FALSE
 
 	. = P.accuracy //We want a temporary variable so accuracy doesn't change every time the bullet misses.
 	#if DEBUG_HIT_CHANCE
@@ -489,9 +487,6 @@
 	var/damage = max(0, P.damage - round(P.distance_travelled * P.damage_falloff))
 	if(P.ammo.debilitate && stat != DEAD && ( damage || (P.ammo.flags_ammo_behavior & AMMO_IGNORE_RESIST) ) )
 		apply_effects(arglist(P.ammo.debilitate))
-
-	if(P.list_reagents && stat != DEAD && (ishuman(src) || ismonkey(src)))
-		reagents.add_reagent_list(P.list_reagents)
 
 	if(damage)
 		bullet_message(P)
@@ -597,9 +592,6 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 
 	bullet_message(P) //We still want this, regardless of whether or not the bullet did damage. For griefers and such.
 
-	if(P.list_reagents && stat != DEAD)
-		reagents.add_reagent_list(P.list_reagents)
-
 	if(damage)
 		apply_damage(damage, P.ammo.damage_type, P.def_zone)
 		P.play_damage_effect(src)
@@ -623,8 +615,9 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 
 //Deal with xeno bullets.
 /mob/living/carbon/Xenomorph/bullet_act(obj/item/projectile/P)
-	if(!P || !istype(P)) return
-	if(P.ammo.flags_ammo_behavior & (AMMO_XENO_ACID|AMMO_XENO_TOX) ) //Aliens won't be harming aliens.
+	if(!P || !istype(P))
+		return
+	if(xeno_hivenumber(src) && xeno_hivenumber(src) == xeno_hivenumber(P.firer)) //Aliens won't be harming allied aliens.
 		bullet_ping(P)
 		return
 
@@ -824,7 +817,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 	if(ismob(P.firer))
 		var/mob/firingMob = P.firer
 		var/turf/T = get_turf(firingMob)
-		if(ishuman(firingMob) && ishuman(src) && firingMob.mind && !firingMob.mind.special_role && mind && !mind.special_role) //One human shot another, be worried about it but do everything basically the same //special_role should be null or an empty string if done correctly
+		if(ishuman(firingMob) && ishuman(src) && !firingMob.mind?.bypass_ff && !mind?.bypass_ff && firingMob.faction == faction)
 			log_combat(firingMob, src, "shot", P)
 			log_ffattack("[key_name(firingMob)] shot [key_name(src)] with [P] in [AREACOORD(T)].")
 			msg_admin_ff("[ADMIN_TPMONTY(firingMob)] shot [ADMIN_TPMONTY(src)] with [P] in [ADMIN_VERBOSEJMP(T)].")

@@ -1,7 +1,7 @@
 /obj/mecha/medical/New()
 	..()
 	var/turf/T = get_turf(src)
-	if(T.z != 2)
+	if(!is_centcom_level(T.z))
 		new /obj/item/mecha_parts/mecha_tracking(src)
 	return
 

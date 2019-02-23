@@ -328,8 +328,8 @@
 	overdose_threshold = REAGENTS_OVERDOSE
 
 /datum/reagent/toxin/potassium_chloride/overdose_process(mob/living/carbon/M, alien)
-	if(M.losebreath >= 10)
-		M.losebreath = max(10, M.losebreath-10)
+	if(M.losebreath > 10)
+		M.set_Losebreath(10)
 	M.adjustOxyLoss(2)
 	switch(current_cycle)
 		if(7 to 15)
@@ -347,8 +347,8 @@
 
 /datum/reagent/toxin/potassium_chlorophoride/on_mob_life(mob/living/carbon/M)
 	if(M.stat != UNCONSCIOUS)
-		if(M.losebreath >= 10)
-			M.losebreath = max(10, M.losebreath-10)
+		if(M.losebreath > 10)
+			M.set_Losebreath(10)
 		M.adjustOxyLoss(2)
 	switch(current_cycle)
 		if(7 to 15)

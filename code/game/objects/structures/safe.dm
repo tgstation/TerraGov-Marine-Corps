@@ -205,3 +205,8 @@ obj/structure/safe/ex_act(severity)
 
 /obj/structure/safe/floor/hide(var/intact)
 	invisibility = intact ? INVISIBILITY_MAXIMUM : 0
+
+/obj/structure/safe/floor/lvcolony
+	name = "safe"
+	spawnkey = FALSE
+	pixel_x = 30

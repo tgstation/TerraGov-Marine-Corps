@@ -57,10 +57,7 @@
 				location_description = "([M.loc == T ? "at coordinates " : "in [M.loc] at coordinates "] [T.x], [T.y], [T.z])"
 
 		//Job + antagonist
-		if(M.mind)
-			special_role_description = "Role: <b>[M.mind.assigned_role]</b>; Antagonist: <font color='red'><b>[M.mind.special_role]</b></font>"
-		else
-			special_role_description = "Role: <i>Mind datum missing</i> Antagonist: <i>Mind datum missing</i>"
+		special_role_description = "Role: <b>[M.mind.assigned_role]</b>"
 
 		//Health
 		if(isliving(M))
@@ -138,6 +135,9 @@
 
 	else if(href_list["observefollow"])
 		var/atom/movable/AM = locate(href_list["observefollow"])
+
+		if(QDELETED(AM) || !ismovableatom(AM))
+			return
 
 		if(istype(usr, /mob/new_player) || istype(AM, /mob/new_player))
 			return
@@ -376,6 +376,49 @@
 		message_admins("[ADMIN_TPMONTY(usr)] has banned [ADMIN_TPMONTY(M)] | Duration: [mins] minutes| Reason: [sanitize(reason)]")
 
 
+	else if(href_list["bankey"])
+		if(!check_rights(R_BAN))
+			return
+
+		var/key = href_list["bankey"]
+		if(!key)
+			return
+
+		var/mins
+		var/reason
+
+		switch(alert(usr, "Permanent or temporary?", "Ban Type", "Permanent", "Temporary", "Cancel"))
+			if("Permanent")
+				reason = input("Please enter the ban reason.", "Ban Reason") as message|null
+				reason = sanitize(reason)
+				if(!reason)
+					return
+				if(alert("Are you sure you want to permanently ban [key] for [reason]?", "Confirmation", "Yes", "No") != "Yes")
+					return
+				notes_add(key, "Banned by [usr.client.holder.fakekey ? "an Administrator" : usr.client.ckey] | Duration: Permanent | Reason: [reason]", usr)
+				AddBan(key, null, reason, usr.ckey, FALSE, 525599, null)
+
+				log_admin_private("[key_name(usr)] has banned [key] | Duration: Permanent | Reason: [reason]")
+				message_admins("[ADMIN_TPMONTY(usr)] has banned [key] | Duration: Permanent | Reason: [reason]")
+			if("Temporary")
+				mins = input("How long (in minutes)? \n 1440 = 1 day \n 4320 = 3 days \n 10080 = 7 days", "Ban time", 1440) as num|null
+				if(isnull(mins) || mins < 0)
+					return
+				if(mins >= 525600) 
+					mins = 525599
+				reason = input("Please enter the ban reason.", "Ban Reason") as message|null
+				reason = sanitize(reason)
+				if(!reason)
+					return
+				if(alert("Are you sure you want to ban [key] for [reason] for [mins] minutes?", "Confirmation", "Yes", "No") != "Yes")
+					return
+				notes_add(key, "Banned by [usr.client.holder.fakekey ? "an Administrator" : usr.client.ckey] | Duration: [mins] minutes | Reason: [reason]", usr)
+				AddBan(key, null, reason, usr.ckey, TRUE, mins, null)
+
+				log_admin_private("[key_name(usr)] has banned [key] | Duration: [mins] minutes | Reason: [reason]")
+				message_admins("[ADMIN_TPMONTY(usr)] has banned [key] | Duration: [mins] minutes | Reason: [reason]")
+
+
 	else if(href_list["notes_add"])
 		if(!check_rights(R_BAN))
 			return
@@ -464,7 +507,7 @@
 		if(!ismob(M))
 			return
 
-		jobban_panel(M)
+		mob_jobban_panel(M)
 
 
 	else if(href_list["jobban"])
@@ -487,50 +530,50 @@
 		var/list/joblist = list()
 		switch(href_list["jobban"])
 			if("commanddept")
-				for(var/jobPos in ROLES_COMMAND)
+				for(var/jobPos in JOBS_COMMAND)
 					if(!jobPos)
 						continue
-					var/datum/job/temp = SSjob.roles_by_name[jobPos]
+					var/datum/job/temp = SSjob.name_occupations[jobPos]
 					if(!temp)
 						continue
 					joblist += temp.title
 			if("policedept")
-				for(var/jobPos in ROLES_POLICE)
+				for(var/jobPos in JOBS_POLICE)
 					if(!jobPos)
 						continue
-					var/datum/job/temp = SSjob.roles_by_name[jobPos]
+					var/datum/job/temp = SSjob.name_occupations[jobPos]
 					if(!temp)
 						continue
 					joblist += temp.title
 			if("engineeringdept")
-				for(var/jobPos in ROLES_ENGINEERING)
+				for(var/jobPos in JOBS_ENGINEERING)
 					if(!jobPos)
 						continue
-					var/datum/job/temp = SSjob.roles_by_name[jobPos]
+					var/datum/job/temp = SSjob.name_occupations[jobPos]
 					if(!temp)
 						continue
 					joblist += temp.title
 			if("cargodept")
-				for(var/jobPos in ROLES_REQUISITION)
+				for(var/jobPos in JOBS_REQUISITIONS)
 					if(!jobPos)
 						continue
-					var/datum/job/temp = SSjob.roles_by_name[jobPos]
+					var/datum/job/temp = SSjob.name_occupations[jobPos]
 					if(!temp)
 						continue
 					joblist += temp.title
 			if("medicaldept")
-				for(var/jobPos in ROLES_MEDICAL)
+				for(var/jobPos in JOBS_MEDICAL)
 					if(!jobPos)
 						continue
-					var/datum/job/temp = SSjob.roles_by_name[jobPos]
+					var/datum/job/temp = SSjob.name_occupations[jobPos]
 					if(!temp)
 						continue
 					joblist += temp.title
 			if("marinedept")
-				for(var/jobPos in ROLES_MARINES)
+				for(var/jobPos in JOBS_MARINES)
 					if(!jobPos)
 						continue
-					var/datum/job/temp = SSjob.roles_by_name[jobPos]
+					var/datum/job/temp = SSjob.name_occupations[jobPos]
 					if(!temp)
 						continue
 					joblist += temp.title
@@ -581,6 +624,111 @@
 			jobban_savebanfile()
 
 
+	else if(href_list["jobbankey"])
+		if(!check_rights(R_BAN))
+			return
+
+		var/key = href_list["key"]
+		if(!key)
+			return
+
+		if(!SSjob)
+			return
+
+		var/list/joblist = list()
+		switch(href_list["jobbankey"])
+			if("commanddept")
+				for(var/jobPos in JOBS_COMMAND)
+					if(!jobPos)
+						continue
+					var/datum/job/temp = SSjob.name_occupations[jobPos]
+					if(!temp)
+						continue
+					joblist += temp.title
+			if("policedept")
+				for(var/jobPos in JOBS_POLICE)
+					if(!jobPos)
+						continue
+					var/datum/job/temp = SSjob.name_occupations[jobPos]
+					if(!temp)
+						continue
+					joblist += temp.title
+			if("engineeringdept")
+				for(var/jobPos in JOBS_ENGINEERING)
+					if(!jobPos)
+						continue
+					var/datum/job/temp = SSjob.name_occupations[jobPos]
+					if(!temp)
+						continue
+					joblist += temp.title
+			if("cargodept")
+				for(var/jobPos in JOBS_REQUISITIONS)
+					if(!jobPos)
+						continue
+					var/datum/job/temp = SSjob.name_occupations[jobPos]
+					if(!temp)
+						continue
+					joblist += temp.title
+			if("medicaldept")
+				for(var/jobPos in JOBS_MEDICAL)
+					if(!jobPos)
+						continue
+					var/datum/job/temp = SSjob.name_occupations[jobPos]
+					if(!temp)
+						continue
+					joblist += temp.title
+			if("marinedept")
+				for(var/jobPos in JOBS_MARINES)
+					if(!jobPos)
+						continue
+					var/datum/job/temp = SSjob.name_occupations[jobPos]
+					if(!temp)
+						continue
+					joblist += temp.title
+			else
+				joblist += href_list["jobbankey"]
+
+		//Create a list of unbanned jobs within joblist
+		var/list/notbannedlist = list()
+		for(var/job in joblist)
+			if(!jobban_key_isbanned(key, job))
+				notbannedlist += job
+
+		if(length(notbannedlist))
+			var/reason = input("Please state the reason for the jobban.", "Reason", "") as text|null
+			if(reason)
+				var/msg
+				for(var/job in notbannedlist)
+					log_admin_private("[key_name(usr)] jobbanned [key] from [job].")
+					jobban_key_fullban(key, job, "[reason]; By [usr.client.ckey] on [time2text(world.realtime)]")
+					if(!msg)
+						msg = job
+					else
+						msg += ", [job]"
+				notes_add(key, "Banned  from [msg] - [reason]", usr)
+				message_admins("[ADMIN_TPMONTY(usr)] banned [key] from [msg].")
+				jobban_savebanfile()
+			return
+
+		if(length(joblist))
+			var/msg
+			for(var/job in joblist)
+				var/reason = jobban_key_isbanned(key, job)
+				if(!reason)
+					continue
+				if(alert("Job: '[job]' Reason: '[reason]' Un-jobban?","Please Confirm","Yes","No") != "Yes")
+					continue
+				log_admin_private("[key_name(usr)] un-jobbanned [key] from [job].")
+				jobban_key_unban(key, job)
+				if(!msg)
+					msg = job
+				else
+					msg += ", [job]"
+			if(msg)
+				message_admins("[ADMIN_TPMONTY(usr)] un-jobbanned [key] from [msg].")
+			jobban_savebanfile()
+
+
 	else if(href_list["mute"])
 		if(!check_rights(R_BAN))
 			return
@@ -615,65 +763,68 @@
 			return
 
 		var/delmob = FALSE
-		switch(alert("Delete old mob?","Message","Yes","No","Cancel"))
+		switch(alert("Delete old mob?", "Message", "Yes", "No", "Cancel"))
 			if("Cancel")
 				return
 			if("Yes")
 				delmob = TRUE
 
 		var/turf/location
-		switch(alert("Teleport to your location?","Message","Yes","No","Cancel"))
+		switch(alert("Teleport to your location?", "Message", "Yes", "No", "Cancel"))
 			if("Cancel")
 				return
 			if("Yes")
 				location = get_turf(usr)
 
+		var/mob/oldusr = usr
+		var/mob/newmob
+
 		switch(href_list["transform"])
 			if("observer")
-				M.change_mob_type(/mob/dead/observer, location, null, delmob)
+				newmob = M.change_mob_type(/mob/dead/observer, location, null, delmob)
 			if("larva")
-				M.change_mob_type(/mob/living/carbon/Xenomorph/Larva, location, null, delmob)
+				newmob = M.change_mob_type(/mob/living/carbon/Xenomorph/Larva, location, null, delmob)
 			if("defender")
-				M.change_mob_type(/mob/living/carbon/Xenomorph/Defender, location, null, delmob)
+				newmob = M.change_mob_type(/mob/living/carbon/Xenomorph/Defender, location, null, delmob)
 			if("warrior")
-				M.change_mob_type(/mob/living/carbon/Xenomorph/Warrior, location, null, delmob)
+				newmob = M.change_mob_type(/mob/living/carbon/Xenomorph/Warrior, location, null, delmob)
 			if("runner")
-				M.change_mob_type(/mob/living/carbon/Xenomorph/Runner, location, null, delmob)
+				newmob = M.change_mob_type(/mob/living/carbon/Xenomorph/Runner, location, null, delmob)
 			if("drone")
-				M.change_mob_type(/mob/living/carbon/Xenomorph/Drone, location, null, delmob)
+				newmob = M.change_mob_type(/mob/living/carbon/Xenomorph/Drone, location, null, delmob)
 			if("sentinel")
-				M.change_mob_type(/mob/living/carbon/Xenomorph/Sentinel, location, null, delmob)
+				newmob = M.change_mob_type(/mob/living/carbon/Xenomorph/Sentinel, location, null, delmob)
 			if("hunter")
-				M.change_mob_type(/mob/living/carbon/Xenomorph/Hunter, location, null, delmob)
+				newmob = M.change_mob_type(/mob/living/carbon/Xenomorph/Hunter, location, null, delmob)
 			if("carrier")
-				M.change_mob_type(/mob/living/carbon/Xenomorph/Carrier, location, null, delmob)
+				newmob = M.change_mob_type(/mob/living/carbon/Xenomorph/Carrier, location, null, delmob)
 			if("hivelord")
-				M.change_mob_type(/mob/living/carbon/Xenomorph/Hivelord, location, null, delmob)
+				newmob = M.change_mob_type(/mob/living/carbon/Xenomorph/Hivelord, location, null, delmob)
 			if("praetorian")
-				M.change_mob_type(/mob/living/carbon/Xenomorph/Praetorian, location, null, delmob)
+				newmob = M.change_mob_type(/mob/living/carbon/Xenomorph/Praetorian, location, null, delmob)
 			if("ravager")
-				M.change_mob_type(/mob/living/carbon/Xenomorph/Ravager, location, null, delmob)
+				newmob = M.change_mob_type(/mob/living/carbon/Xenomorph/Ravager, location, null, delmob)
 			if("spitter")
-				M.change_mob_type(/mob/living/carbon/Xenomorph/Spitter, location, null, delmob)
+				newmob = M.change_mob_type(/mob/living/carbon/Xenomorph/Spitter, location, null, delmob)
 			if("boiler")
-				M.change_mob_type(/mob/living/carbon/Xenomorph/Boiler, location, null, delmob)
+				newmob = M.change_mob_type(/mob/living/carbon/Xenomorph/Boiler, location, null, delmob)
 			if("crusher")
-				M.change_mob_type(/mob/living/carbon/Xenomorph/Crusher, location, null, delmob)
+				newmob = M.change_mob_type(/mob/living/carbon/Xenomorph/Crusher, location, null, delmob)
 			if("defiler")
-				M.change_mob_type(/mob/living/carbon/Xenomorph/Defiler, location, null, delmob)
+				newmob = M.change_mob_type(/mob/living/carbon/Xenomorph/Defiler, location, null, delmob)
 			if("queen")
-				M.change_mob_type(/mob/living/carbon/Xenomorph/Queen, location, null, delmob)
+				newmob = M.change_mob_type(/mob/living/carbon/Xenomorph/Queen, location, null, delmob)
 			if("human")
-				M.change_mob_type(/mob/living/carbon/human, location, null, delmob)
+				newmob = M.change_mob_type(/mob/living/carbon/human, location, null, delmob)
 			if("monkey")
-				M.change_mob_type(/mob/living/carbon/monkey, location, null, delmob)
+				newmob = M.change_mob_type(/mob/living/carbon/monkey, location, null, delmob)
 			if("moth")
-				M.change_mob_type(/mob/living/carbon/human, location, null, delmob, "Moth")
+				newmob = M.change_mob_type(/mob/living/carbon/human, location, null, delmob, "Moth")
 			if("yautja")
-				M.change_mob_type(/mob/living/carbon/human, location, null, delmob, "Yautja")
+				newmob = M.change_mob_type(/mob/living/carbon/human, location, null, delmob, "Yautja")
 
-		log_admin("[key_name(usr)] has transformed [key_name(M)] into [href_list["transform"]].[delmob ? " Old mob deleted." : ""][location ? " Teleported to [AREACOORD(location)]" : ""]")
-		message_admins("[ADMIN_TPMONTY(usr)] has transformed [ADMIN_TPMONTY(M)] into [href_list["transform"]].[delmob ? " Old mob deleted." : ""][location ? " Teleported to new location." : ""]")
+		log_admin("[key_name(oldusr)] has transformed [key_name(newmob)] into [href_list["transform"]].[delmob ? " Old mob deleted." : ""][location ? " Teleported to [AREACOORD(location)]" : ""]")
+		message_admins("[ADMIN_TPMONTY(oldusr)] has transformed [ADMIN_TPMONTY(newmob)] into [href_list["transform"]].[delmob ? " Old mob deleted." : ""][location ? " Teleported to new location." : ""]")
 
 
 	else if(href_list["revive"])
@@ -912,9 +1063,8 @@
 		if(C && alert("They have a client attached, are you sure?", "Cryosleep", "Yes", "No") != "Yes")
 			return
 
-		var/mob/target = M
-
 		var/turf/T = get_turf(M)
+		var/name = M.real_name
 		var/obj/machinery/cryopod/P = new(T)
 		P.density = FALSE
 		P.alpha = 0
@@ -925,19 +1075,17 @@
 		qdel(P)
 
 		var/lobby
-		if(C && alert("Do you also want to send them to the lobby?", "Cryosleep", "Yes", "No") == "Yes")
+		if(C?.mob?.mind && alert("Do you also want to send them to the lobby?", "Cryosleep", "Yes", "No") == "Yes")
 			lobby = TRUE
 			var/mob/new_player/NP = new()
-			NP.key = C.key
-			if(NP.client)
-				NP.client.change_view(world.view)
-			if(isobserver(C.mob))
-				qdel(C.mob)
-			else
-				C.mob.ghostize()
+			var/mob/N = C.mob
+			C.screen.Cut()
+			C.mob.mind.transfer_to(NP, TRUE)
+			if(isobserver(N))
+				qdel(N)
 
-		log_admin("[key_name(usr)] has cryo'd [key_name(target)][lobby ? ", sending them to the lobby" : ""].")
-		message_admins("[ADMIN_TPMONTY(usr)] has cryo'd [key_name_admin(target)][lobby ? ", sending them to the lobby" : ""].")
+		log_admin("[key_name(usr)] has cryo'd [C ? key_name(C) : name][lobby ? " sending them to the lobby" : ""].")
+		message_admins("[ADMIN_TPMONTY(usr)] has cryo'd [C ? key_name_admin(C) : name] [lobby ? " sending them to the lobby" : ""].")
 
 
 	else if(href_list["jumpto"])
@@ -1005,9 +1153,8 @@
 		M.on_mob_jump()
 		M.forceMove(target)
 
-		log_admin("[key_name(usr)] has sent [key_name(M)]'s mob to [target].")
-		message_admins("[ADMIN_TPMONTY(usr)] has sent [ADMIN_TPMONTY(M)]'s mob to [target].")
-
+		log_admin("[key_name(usr)] has sent [key_name(M)]'s mob to [AREACOORD(target)].")
+		message_admins("[ADMIN_TPMONTY(usr)] has sent [ADMIN_TPMONTY(M)]'s mob to [ADMIN_VERBOSEJMP(target)].")
 
 
 	else if(href_list["faxreply"])
@@ -1201,7 +1348,7 @@
 		var/dat = {"<B>What mode do you wish to play?</B><HR>"}
 		for(var/mode in config.modes)
 			dat += {"<A href='?src=[REF(usr.client.holder)];[HrefToken()];changemode=[mode]'>[config.mode_names[mode]]</A><br>"}
-		dat += {"Now: [master_mode]"}
+		dat += {"Now: [GLOB.master_mode]"}
 		usr << browse(dat, "window=c_mode")
 
 
@@ -1212,12 +1359,12 @@
 		if(SSticker?.mode)
 			return alert("The game has already started.")
 
-		master_mode = href_list["changemode"]
+		GLOB.master_mode = href_list["changemode"]
 
-		log_admin("[key_name(usr)] set the mode as [master_mode].")
-		message_admins("[ADMIN_TPMONTY(usr)] set the mode as [master_mode].")
-		to_chat(world, "<span class='boldnotice'>The mode is now: [master_mode].</span>")
-		world.save_mode(master_mode)
+		log_admin("[key_name(usr)] set the mode as [GLOB.master_mode].")
+		message_admins("[ADMIN_TPMONTY(usr)] set the mode as [GLOB.master_mode].")
+		to_chat(world, "<span class='boldnotice'>The mode is now: [GLOB.master_mode].</span>")
+		world.save_mode(GLOB.master_mode)
 
 
 	if(href_list["evac_authority"])
@@ -1431,3 +1578,31 @@
 		dat += "</body></html>"
 
 		usr << browse(dat, "window=explosion_log")
+
+
+	else if(href_list["outfit_name"])
+		if(!check_rights(R_FUN))
+			return
+
+		var/datum/outfit/O = new /datum/outfit
+		O.name = href_list["outfit_name"]
+		O.w_uniform = text2path(href_list["outfit_uniform"])
+		O.shoes = text2path(href_list["outfit_shoes"])
+		O.gloves = text2path(href_list["outfit_gloves"])
+		O.wear_suit = text2path(href_list["outfit_suit"])
+		O.head = text2path(href_list["outfit_head"])
+		O.back = text2path(href_list["outfit_back"])
+		O.mask = text2path(href_list["outfit_mask"])
+		O.glasses = text2path(href_list["outfit_glasses"])
+		O.r_hand = text2path(href_list["outfit_r_hand"])
+		O.l_hand = text2path(href_list["outfit_l_hand"])
+		O.suit_store = text2path(href_list["outfit_s_store"])
+		O.l_store = text2path(href_list["outfit_l_pocket"])
+		O.r_store = text2path(href_list["outfit_r_pocket"])
+		O.id = text2path(href_list["outfit_id"])
+		O.belt = text2path(href_list["outfit_belt"])
+		O.ears = text2path(href_list["outfit_ears"])
+
+		GLOB.custom_outfits.Add(O)
+		log_admin("[key_name(usr)] created outfit named '[O.name]'.")
+		message_admins("[ADMIN_TPMONTY(usr)] created outfit named '[O.name]'.")

@@ -20,6 +20,7 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 	SetupExternalRSC()
 
 	//make_datum_references_lists()	//Port this from /tg/
+	populate_gear_list()
 	makeDatumRefLists() //Legacy
 
 	TgsNew(new /datum/tgs_event_handler/tg, minimum_required_security_level = TGS_SECURITY_TRUSTED)
@@ -67,12 +68,6 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 	// due to this list not being instantiated.
 	populate_seed_list()
 
-	if(!SSjob)
-		SSjob = new /datum/authority/branch/role()
-		to_chat(world, "<span class='danger'>Job setup complete</span>")
-
-	if(!EvacuationAuthority)
-		EvacuationAuthority = new
 
 	world.tick_lag = CONFIG_GET(number/ticklag)
 
@@ -153,7 +148,7 @@ var/world_topic_spam_protect_time = world.timeofday
 	else if(T == "status")
 		var/list/s = list()
 		s["version"] = game_version
-		s["mode"] = master_mode
+		s["mode"] = GLOB.master_mode
 		s["respawn"] = config ? GLOB.respawn_allowed : 0
 		s["enter"] = GLOB.enter_allowed
 		s["vote"] = CONFIG_GET(flag/allow_vote_mode)
@@ -211,8 +206,8 @@ var/world_topic_spam_protect_time = world.timeofday
 	var/list/Lines = file2list("data/mode.txt")
 	if(Lines.len)
 		if(Lines[1])
-			master_mode = Lines[1]
-			log_config("Saved mode is '[master_mode]'")
+			GLOB.master_mode = Lines[1]
+			log_config("Saved mode is '[GLOB.master_mode]'")
 
 
 /world/proc/save_mode(var/the_mode)
@@ -230,7 +225,7 @@ var/world_topic_spam_protect_time = world.timeofday
 			s += "<a href=\"[CONFIG_GET(string/discordurl)]\"><b>[CONFIG_GET(string/server_name)] &#8212; [MAIN_SHIP_NAME]</a></b>"
 		else
 			s += "<b>[CONFIG_GET(string/server_name)] &#8212; [MAIN_SHIP_NAME]</b>"
-		if(Master?.current_runlevel && master_mode)
+		if(Master?.current_runlevel && GLOB.master_mode)
 			switch(GLOB.map_tag)
 				if("Ice Colony")
 					s += "<br>Map: <a href='[CONFIG_GET(string/icecolonyurl)]'><b>[GLOB.map_tag]</a></b>"
@@ -289,6 +284,11 @@ var/failed_old_db_connections = 0
 		return TRUE
 
 
+#undef FAILED_DB_CONNECTION_CUTOFF
+
+/world/proc/incrementMaxZ()
+	maxz++
+	SSmobs.MaxZChanged()
 /world/proc/SetupExternalRSC()
 	if(!CONFIG_GET(string/resource_url))
 		return

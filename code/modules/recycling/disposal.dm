@@ -214,11 +214,11 @@
 		dat += "<BR><HR><A href='?src=\ref[src];eject=1'>Eject contents</A><HR>"
 
 	if(mode <= 0)
-		dat += "Pump: <B>Off</B> <A href='?src=\ref[src];pump=1'>On</A><BR>"
+		dat += "Pump: <B>Off</B> On</A><BR>"
 	else if(mode == 1)
-		dat += "Pump: <A href='?src=\ref[src];pump=0'>Off</A> <B>On</B> (pressurizing)<BR>"
+		dat += "Pump: <B>On</B> (pressurizing)<BR>"
 	else
-		dat += "Pump: <A href='?src=\ref[src];pump=0'>Off</A> <B>On</B> (idle)<BR>"
+		dat += "Pump: <B>On</B> (idle)<BR>"
 
 	dat += "Pressure: [disposal_pressure*100/SEND_PRESSURE]%<BR></body>"
 
@@ -848,6 +848,9 @@
 			dpdir = dir|turn(dir, -90)
 		update()
 
+/obj/structure/disposalpipe/segment/corner
+	icon_state = "pipe-c"
+
 //Z-Level stuff
 /obj/structure/disposalpipe/up
 	icon_state = "pipe-u"
@@ -1015,6 +1018,9 @@
 		else //Pipe-y
 			dpdir = dir|turn(dir,90)|turn(dir, -90)
 		update()
+
+/obj/structure/disposalpipe/junction/flipped
+	icon_state = "pipe-j2"
 
 //Next direction to move, if coming in from secondary dirs, then next is primary dir, if coming in from primary dir, then next is equal chance of other dirs
 /obj/structure/disposalpipe/junction/nextdir(var/fromdir)

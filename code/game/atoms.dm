@@ -472,13 +472,12 @@ its easier to just keep the beam vertical.
 	if(!istype(fingerprintshidden, /list))
 		fingerprintshidden = list()
 
-	//skytodo
-	//A.fingerprints |= fingerprints            //detective
-	//A.fingerprintshidden |= fingerprintshidden    //admin
 	if(A.fingerprints && fingerprints)
-		A.fingerprints |= fingerprints.Copy()            //detective
+		A.fingerprints |= fingerprints.Copy()
 	if(A.fingerprintshidden && fingerprintshidden)
-		A.fingerprintshidden |= fingerprintshidden.Copy()    //admin	A.fingerprintslast = fingerprintslast
+		A.fingerprintshidden |= fingerprintshidden.Copy()
+	if(fingerprintslast)
+		A.fingerprintslast = fingerprintslast
 
 
 
@@ -606,6 +605,9 @@ Proc for attack log creation, because really why not
 		target.log_message(reverse_message, LOG_ATTACK, color="orange", log_globally=FALSE)
 
 /atom/New(loc, ...)
+	if(GLOB.use_preloader && (src.type == GLOB._preloader.target_path))//in case the instanciated atom is creating other atoms in New()
+		GLOB._preloader.load(src)
+
 	var/do_initialize = SSatoms.initialized
 	if(do_initialize != INITIALIZATION_INSSATOMS)
 		args[1] = do_initialize == INITIALIZATION_INNEW_MAPLOAD
@@ -692,6 +694,12 @@ Proc for attack log creation, because really why not
 /atom/proc/LateInitialize()
 	return
 
+//called when the turf the atom resides on is ChangeTurfed
+/atom/proc/HandleTurfChange(turf/T)
+	for(var/a in src)
+		var/atom/A = a
+		A.HandleTurfChange(T)
+
 //Hook for running code when a dir change occurs
 /atom/proc/setDir(newdir)
 	dir = newdir
@@ -699,8 +707,6 @@ Proc for attack log creation, because really why not
 /atom/vv_get_dropdown()
 	. = ..()
 	. += "---"
-	var/turf/curturf = get_turf(src)
-	if(curturf)
-		.["Jump to"] = "?_src_=holder;[HrefToken()];observecoordjump=1;X=[curturf.x];Y=[curturf.y];Z=[curturf.z]"
+	.["Jump to"] = "?_src_=vars;[HrefToken()];observecoordjump=1;X=[src.x];Y=[src.y];Z=[src.z]"
 	.["Modify Transform"] = "?_src_=vars;[HrefToken()];modtransform=[REF(src)]"
 	.["Add reagent"] = "?_src_=vars;[HrefToken()];addreagent=[REF(src)]"

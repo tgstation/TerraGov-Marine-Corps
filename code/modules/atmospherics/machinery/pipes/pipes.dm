@@ -9,7 +9,7 @@
 	var/datum/pipeline/parent = null
 
 	//Buckling
-	can_buckle = 1
+	can_buckle = FALSE
 	//buckle_requires_restraints = 1
 	buckle_lying = -1
 

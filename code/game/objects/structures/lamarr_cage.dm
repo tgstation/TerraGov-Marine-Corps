@@ -10,6 +10,12 @@
 	var/occupied = 1
 	var/destroyed = 0
 
+/obj/structure/lamarr/destroyed
+	icon_state = "labcageb0"
+	density = FALSE
+	destroyed = TRUE
+	occupied = FALSE
+
 /obj/structure/lamarr/ex_act(severity)
 	switch(severity)
 		if (1)

@@ -159,6 +159,8 @@
 #define SLOT_IN_STORAGE		28
 #define SLOT_IN_L_POUCH		29
 #define SLOT_IN_R_POUCH		30
+#define SLOT_IN_HEAD		31
+#define SLOT_IN_BELT		32
 //=================================================
 
 //I hate that this has to exist
@@ -262,6 +264,7 @@
 #define WEIGHT_CLASS_GIGANTIC 6 //Essentially means it cannot be picked up or placed in an inventory, ex: Mech Parts, Safe
 
 #define SLOT_EQUIP_ORDER list(\
+	SLOT_IN_HEAD,\
 	SLOT_IN_HOLSTER,\
 	SLOT_IN_S_HOLSTER,\
 	SLOT_IN_B_HOLSTER,\
@@ -286,7 +289,8 @@
 	SLOT_IN_R_POUCH,\
 	SLOT_IN_ACCESSORY,\
 	SLOT_IN_SUIT,\
-	SLOT_IN_BACKPACK\
+	SLOT_IN_BACKPACK,\
+	SLOT_IN_BELT\
 	)
 
 #define SLOT_DRAW_ORDER list(\
@@ -301,5 +305,7 @@
 	SLOT_IN_BOOT,\
 	SLOT_WEAR_SUIT,\
 	SLOT_IN_ACCESSORY,\
-	SLOT_IN_STORAGE\
+	SLOT_IN_STORAGE,\
+	SLOT_IN_BELT,\
+	SLOT_IN_HEAD\
 	)

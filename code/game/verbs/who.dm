@@ -18,7 +18,7 @@
 		if(C.mob && C.mob.stat != DEAD)
 			if(ishuman(C.mob) && !iszombie(C.mob))
 				count_humans++
-				if(C.mob.mind.assigned_role in (ROLES_MARINES))
+				if(C.mob.mind.assigned_role in (JOBS_MARINES))
 					count_marine_humans++
 				if(C.mob.status_flags & XENO_HOST)
 					count_infectedhumans++
@@ -51,8 +51,6 @@
 							entry += " - <font color='#000'><b>DEAD</b></font>"
 					else
 						entry += " - <font color='#000'><b>DEAD</b></font>"
-			if(is_special_character(C.mob))
-				entry += " - <b><font color='red'>Antagonist</font></b>"
 			entry += " (<A HREF='?src=[REF(usr.client.holder)];[HrefToken()];moreinfo=[REF(C.mob)]'>?</A>)"
 			Lines += entry
 	else
