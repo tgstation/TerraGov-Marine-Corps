@@ -893,7 +893,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	character.undershirt = undershirt
 	character.backpack = backpack
 
-	character.update_body(FALSE, TRUE)
+	character.update_body()
+	character.update_hair()
 
 
 /datum/preferences/proc/open_load_dialog(mob/user)
