@@ -359,7 +359,7 @@
 	return !slayer
 
 /turf/open/mars/is_weedable()
-	return FALSE
+	return TRUE
 
 
 /turf/open/floor/plating/plating_catwalk/is_weedable() //covered catwalks are unweedable
@@ -371,9 +371,6 @@
 
 /turf/closed/wall/is_weedable()
 	return TRUE //so we can spawn weeds on the walls
-
-
-
 
 
 
@@ -393,9 +390,6 @@
 	return TRUE
 
 /turf/open/mars/can_dig_xeno_tunnel()
-	return TRUE
-
-/turf/open/mars_cave/can_dig_xeno_tunnel()
 	return TRUE
 
 /turf/open/floor/prison/can_dig_xeno_tunnel()

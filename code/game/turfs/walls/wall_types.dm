@@ -1,7 +1,3 @@
-
-
-
-
 //-----TGS Theseus Walls ---//
 
 /turf/closed/wall/almayer
@@ -164,13 +160,13 @@
 	opacity = 1
 	hull = 1
 
-/turf/closed/wall/indestructible/ex_act(severity) //Should make it indestructable
+/turf/closed/wall/indestructible/ex_act(severity)
 	return
 
 /turf/closed/wall/indestructible/fire_act(exposed_temperature, exposed_volume)
 	return
 
-/turf/closed/wall/indestructible/attackby() //This should fix everything else. No cables, etc
+/turf/closed/wall/indestructible/attackby()
 	return
 
 /turf/closed/wall/indestructible/can_be_dissolved()
@@ -178,7 +174,6 @@
 
 /turf/closed/wall/indestructible/mineral
 	name = "impenetrable rock"
-	icon = 'icons/turf/walls.dmi'
 	icon_state = "rock"
 
 /turf/closed/wall/indestructible/bulkhead
