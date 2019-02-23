@@ -1026,6 +1026,8 @@
 		var/mob/M = locate(href_list["lobby"])
 
 		if(isnewplayer(M))
+			var/mob/new_player/N = M
+			N.new_player_panel()
 			return
 
 		if(!M.client)
@@ -1039,7 +1041,9 @@
 		message_admins("[ADMIN_TPMONTY(usr)] has sent [key_name_admin(M)] back to the lobby.")
 
 		var/mob/new_player/NP = new()
+		M.screen.Cut()
 		NP.key = M.key
+		NP.name = M.key
 		if(NP.client)
 			NP.client.change_view(world.view)
 		if(isobserver(M))
@@ -1079,6 +1083,7 @@
 			lobby = TRUE
 			var/mob/new_player/NP = new()
 			var/mob/N = C.mob
+			NP.name = C.mob.name
 			C.screen.Cut()
 			C.mob.mind.transfer_to(NP, TRUE)
 			if(isobserver(N))
