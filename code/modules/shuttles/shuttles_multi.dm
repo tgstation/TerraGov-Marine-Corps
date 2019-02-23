@@ -55,8 +55,7 @@
 	var/datum/shuttle/multi_shuttle/MS = shuttle_controller.shuttles[shuttle_tag]
 	if(!istype(MS)) return
 
-	var/dat
-	dat = "<center>[shuttle_tag] Ship Control<hr>"
+	var/dat = "<center>"
 
 
 	if(MS.moving_status != SHUTTLE_IDLE)
@@ -74,7 +73,11 @@
 	dat += "<b><A href='?src=\ref[src];move_multi=[1]'>Move ship</A></b><br>"
 	dat += "<b><A href='?src=\ref[src];start=[1]'>Return to base</A></b></center>"
 
-	user << browse("[dat]", "window=[shuttle_tag]shuttlecontrol;size=300x600")
+
+	var/datum/browser/popup = new(user, "[shuttle_tag]shuttlecontrol", "<div align='center'>[shuttle_tag] Ship Control</div>", 300, 600)
+	popup.set_content(dat)
+	popup.open(FALSE)
+
 
 /obj/machinery/computer/shuttle_control/multi/Topic(href, href_list)
 	if(..())

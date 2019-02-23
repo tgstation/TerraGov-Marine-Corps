@@ -343,12 +343,14 @@
 					var/A = G.name
 					var/B = G.data["blood_type"]
 					var/C = G.data["blood_DNA"]
-					dat += "<TITLE>Chemmaster 3000</TITLE>Chemical infos:<BR><BR>Name:<BR>[A]<BR><BR>Description:<BR>Blood Type: [B]<br>DNA: [C]<BR><BR><BR><A href='?src=\ref[src];main=1'>(Back)</A>"
+					dat += "Chemical infos:<BR><BR>Name:<BR>[A]<BR><BR>Description:<BR>Blood Type: [B]<br>DNA: [C]<BR><BR><BR><A href='?src=\ref[src];main=1'>(Back)</A>"
 				else
-					dat += "<TITLE>Chemmaster 3000</TITLE>Chemical infos:<BR><BR>Name:<BR>[href_list["name"]]<BR><BR>Description:<BR>[href_list["desc"]]<BR><BR><BR><A href='?src=\ref[src];main=1'>(Back)</A>"
+					dat += "Chemical infos:<BR><BR>Name:<BR>[href_list["name"]]<BR><BR>Description:<BR>[href_list["desc"]]<BR><BR><BR><A href='?src=\ref[src];main=1'>(Back)</A>"
 			else
-				dat += "<TITLE>Condimaster 3000</TITLE>Condiment infos:<BR><BR>Name:<BR>[href_list["name"]]<BR><BR>Description:<BR>[href_list["desc"]]<BR><BR><BR><A href='?src=\ref[src];main=1'>(Back)</A>"
-			user << browse(dat, "window=chem_master;size=575x400")
+				dat += "Condiment infos:<BR><BR>Name:<BR>[href_list["name"]]<BR><BR>Description:<BR>[href_list["desc"]]<BR><BR><BR><A href='?src=\ref[src];main=1'>(Back)</A>"
+			var/datum/browser/popup = new(user, "chem_master", "<div align='center'>Chemmaster 3000</div>", 575, 400)
+			popup.set_content(dat)
+			popup.open(FALSE)
 			return
 
 		else if (href_list["add"])
@@ -481,7 +483,9 @@
 			for(var/i = 1 to MAX_PILL_BOTTLE_SPRITE)
 				dat += "<tr><td><a href=\"?src=\ref[src]&pill_bottle_sprite=[i]\"><img src=\"pill_canister[i].png\" /></a></td></tr>"
 			dat += "</table>"
-			user << browse(dat, "window=chem_master")
+			var/datum/browser/popup = new(user, "chem_master", "<div align='center'>Change Pill Bottle</div>")
+			popup.set_content(dat)
+			popup.open(FALSE)
 			return
 
 		else if(href_list["change_pill"])
@@ -490,7 +494,9 @@
 			for(var/i = 1 to MAX_PILL_SPRITE)
 				dat += "<tr><td><a href=\"?src=\ref[src]&pill_sprite=[i]\"><img src=\"pill[i].png\" /></a></td></tr>"
 			dat += "</table>"
-			user << browse(dat, "window=chem_master")
+			var/datum/browser/popup = new(user, "chem_master", "<div align='center'>Change Pill</div>")
+			popup.set_content(dat)
+			popup.open(FALSE)
 			return
 
 		else if(href_list["change_bottle"])
@@ -499,7 +505,9 @@
 			for(var/i = 1 to MAX_BOTTLE_SPRITE)
 				dat += "<tr><td><a href=\"?src=\ref[src]&bottle_sprite=[i]\"><img src=\"bottle-[i].png\" /></a></td></tr>"
 			dat += "</table>"
-			user << browse(dat, "window=chem_master")
+			var/datum/browser/popup = new(user, "chem_master", "<div align='center'>Change Bottle</div>")
+			popup.set_content(dat)
+			popup.open(FALSE)
 			return
 
 		else if(href_list["change_autoinjector"])
@@ -508,7 +516,9 @@
 			for(var/i = 1 to MAX_AUTOINJECTOR_SPRITE)
 				dat += "<tr><td><a href=\"?src=\ref[src]&autoinjector_sprite=[i]\"><img src=\"autoinjector-[i].png\" /></a></td></tr>"
 			dat += "</table>"
-			user << browse(dat, "window=chem_master")
+			var/datum/browser/popup = new(user, "chem_master", "<div align='center'>Change Autoinjector</div>")
+			popup.set_content(dat)
+			popup.open(FALSE)
 			return
 
 		else if(href_list["pill_bottle_sprite"])

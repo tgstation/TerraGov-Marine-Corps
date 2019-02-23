@@ -317,7 +317,9 @@ var/list/mechtoys = list(
 		<A href='?src=\ref[src];viewrequests=1'>View requests</A><BR><BR>
 		<A href='?src=\ref[user];mach_close=computer'>Close</A>"}
 
-	user << browse(dat, "window=computer;size=575x450")
+	var/datum/browser/popup = new(user, "computer", "<div align='center'>Photocopier</div>", 575, 450)
+	popup.set_content(dat)
+	popup.open(FALSE)
 	onclose(user, "computer")
 	return
 
