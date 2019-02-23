@@ -169,12 +169,12 @@ Class Procs:
 
 /obj/machinery/proc/start_processing()
 	if(!machine_processing)
-		machine_processing = 1
+		machine_processing = TRUE
 		processing_machines += src
 
 /obj/machinery/proc/stop_processing()
 	if(machine_processing)
-		machine_processing = 0
+		machine_processing = FALSE
 		processing_machines -= src
 
 /obj/machinery/process()//If you dont use process or power why are you here
