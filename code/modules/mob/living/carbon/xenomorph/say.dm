@@ -26,7 +26,7 @@
 			var/channel_prefix = copytext(message, 1, 3)
 			if(languages.len)
 				for(var/datum/language/L in languages)
-					if(lowertext(channel_prefix) == ":[L.key]" || lowertext(channel_prefix) == ".[L.key]")
+					if(lowertext(channel_prefix) == ":[L.key]" || lowertext(channel_prefix) == ".[L.key]" || lowertext(channel_prefix) == ":[L.key_ru]" || lowertext(channel_prefix) == ".[L.key_ru]")
 						verb = L.speech_verb
 						speaking = L
 						break
@@ -34,7 +34,7 @@
 		if(!isXenoSilicon(src))
 			if(isnull(speaking) || speaking.key != "a") //Not hivemind? Then default to xenocommon. BRUTE FORCE YO
 				for(var/datum/language/L in languages)
-					if(L.key == "x")
+					if(L.key == "x" || L.key_ru == "÷")
 						verb = L.speech_verb
 						speaking = L
 						forced = 1
