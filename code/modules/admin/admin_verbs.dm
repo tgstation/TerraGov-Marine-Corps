@@ -988,9 +988,9 @@
 					to_chat(src, "<font color='blue'><b>[holder.fakekey ? "Administrator" : holder.rank.name] PM</b> to-<b>[key_name(recipient, src, TRUE)]</b>: <span class='linkify'>[msg]</span></font>")
 					SEND_SOUND(recipient, sound('sound/effects/adminhelp.ogg'))
 				else if(is_mentor(src))
-					to_chat(recipient, "<font color='red' size='2'><b>-- Mentor Message --</b></font>")
-					to_chat(recipient, "<font color='red'>[holder.rank.name] PM from-<b>[key_name(src, recipient, FALSE)]</b>: <span class='linkify'>[msg]</span></font>")
-					to_chat(recipient, "<font color='red'><i>Click on the mentor's name to reply.</i></font>")
+					to_chat(recipient, "<font color='blue' size='2'><b>-- Mentor Message --</b></font>")
+					to_chat(recipient, "<font color='blue'>[holder.rank.name] PM from-<b>[key_name(src, recipient, FALSE)]</b>: <span class='linkify'>[msg]</span></font>")
+					to_chat(recipient, "<font color='blue'><i>Click on the mentor's name to reply.</i></font>")
 					to_chat(src, "<font color='blue'><b>[holder.rank.name] PM</b> to-<b>[key_name(recipient, src, TRUE)]</b>: <span class='linkify'>[msg]</span></font>")
 					SEND_SOUND(recipient, sound('sound/effects/mentorhelp.ogg'))
 
