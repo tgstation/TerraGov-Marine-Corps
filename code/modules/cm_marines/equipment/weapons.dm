@@ -95,11 +95,11 @@
 	if(user.get_inactive_held_item() != src)
 		return ..()
 	if(QDELETED(pcell))
-		to_chat(usr, "There is no cell in the [src].")
+		to_chat(user, "There is no cell in the [src].")
 		return
 	user.put_in_hands(pcell)
 	playsound(src,'sound/machines/click.ogg', 25, 1)
-	to_chat(usr, "You take out the [pcell] out of the [src].")
+	to_chat(user, "You take out the [pcell] out of the [src].")
 	pcell = null
 
 /obj/item/smartgun_powerpack/attackby(obj/item/A, mob/user)
