@@ -193,7 +193,7 @@ var/bomb_set
 			if (src.yes_code)
 				message = "*****"
 		dat += text("<HR>\n>[]<BR>\n<A href='?src=\ref[];type=1'>1</A>-<A href='?src=\ref[];type=2'>2</A>-<A href='?src=\ref[];type=3'>3</A><BR>\n<A href='?src=\ref[];type=4'>4</A>-<A href='?src=\ref[];type=5'>5</A>-<A href='?src=\ref[];type=6'>6</A><BR>\n<A href='?src=\ref[];type=7'>7</A>-<A href='?src=\ref[];type=8'>8</A>-<A href='?src=\ref[];type=9'>9</A><BR>\n<A href='?src=\ref[];type=R'>R</A>-<A href='?src=\ref[];type=0'>0</A>-<A href='?src=\ref[];type=E'>E</A><BR>\n", message, src, src, src, src, src, src, src, src, src, src, src, src)
-		var/datum/browser/popup = new(user, "nuclearbomb", "<div align='center'>Newscaster Unit #[unit_no]</div>", 300, 400)
+		var/datum/browser/popup = new(user, "nuclearbomb", "<div align='center'>Nuclear Bomb</div>", 300, 400)
 		popup.set_content(dat)
 		popup.open(FALSE)
 		onclose(user, "nuclearbomb")
