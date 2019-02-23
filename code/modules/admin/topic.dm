@@ -1167,7 +1167,7 @@
 
 		var/mob/sender = F.sender
 
-		var/dep = input("Who do you want to message?", "Fax Message") as null|anything in list("Corporate Liaison", "Chief Military Police", "Warden")
+		var/dep = input("Who do you want to message?", "Fax Message") as null|anything in list("Corporate Liaison", "Chief Military Police", "Combat Information Center", "Warden")
 		if(!dep)
 			return
 
