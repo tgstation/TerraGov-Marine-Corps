@@ -2,6 +2,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 
 /datum/preferences
+	var/client/parent
+
 	//Basics
 	var/path
 	var/default_slot = 1
@@ -97,6 +99,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	if(!istype(C))
 		return
 
+	parent = C
+
 	if(!IsGuestKey(C.key))
 		load_path(C.ckey)
 		if(load_preferences() && load_character())
@@ -114,13 +118,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		return
 
 	update_preview_icon()
-	user << browse_rsc(preview_icon_front, "previewicon.png")
-	user << browse_rsc(preview_icon_side, "previewicon2.png")
 
 	var/dat = "<html><head><style>"
 	dat += "#wrapper 		{position: relative; width: 625px; height: 200px; margin: 0 auto;}"
-	dat += "#preview		{position: absolute; top: 30px; left: 300px;}"
-	dat += "#right			{position: absolute; top: 201px; left: 300px;}"
+	dat += "#preview		{position: absolute; top: 30px; left: 400px;}"
+	dat += "#right			{position: absolute; top: 201px; left: 400px;}"
 	dat += "</style></head>"
 	dat += "<body>"
 
@@ -229,7 +231,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 
 	dat += "<div id='preview'>"
-	dat += "<img src=previewicon.png width=64 height=64><img src=previewicon2.png width=64 height=64 margin-left=auto margin-right=auto>"
 	dat += "<br>"
 	dat += "<b>Hair:</b> <a href='?_src_=prefs;preference=hairstyle'>[h_style]</a> | <a href='?_src_=prefs;preference=haircolor'>Color</a> <font face='fixedsys' size='3' color='#[num2hex(r_hair, 2)][num2hex(g_hair, 2)][num2hex(b_hair, 2)]'><table style='display:inline;' bgcolor='#[num2hex(r_hair, 2)][num2hex(g_hair, 2)][num2hex(b_hair)]'><tr><td>__</td></tr></table></font> "
 	dat += "<br>"
@@ -280,11 +281,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	dat += "</div></body></html>"
 
 
-	winshow(user, "preferences", TRUE)
-	var/datum/browser/popup = new(user, "preferences", "<div align='center'>Character Setup</div>", 670, 830)
+	winshow(user, "preferences_window", TRUE)
+	var/datum/browser/popup = new(user, "preferences_window", "<div align='center'>Character Setup</div>", 670, 830)
 	popup.set_content(dat)
 	popup.open(FALSE)
-	onclose(user, "preferences", src)
+	onclose(user, "preferences_window", src)
 
 
 /datum/preferences/proc/SetChoices(mob/user, limit = 22, list/splitJobs = list(), width = 450, height = 650)
@@ -437,6 +438,14 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		if(JOBS_PRIORITY_NEVER)
 			jobs_high = NOFLAGS
 	return TRUE
+
+
+/datum/preferences/Topic(href, href_list, hsrc)
+	. = ..()
+	if(href_list["close"])
+		var/client/C = usr.client
+		if(C)
+			C.clear_character_previews()
 
 
 /datum/preferences/proc/process_link(mob/user, list/href_list)
