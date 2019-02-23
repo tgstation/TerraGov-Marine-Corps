@@ -812,12 +812,6 @@ datum/game_mode/proc/initialize_post_queen_list()
 	anchored = TRUE
 	opacity = FALSE
 	density = TRUE
-	var/timeleft = 300 //Set to 0 for permanent forcefields (ugh)
-
-/obj/effect/forcefield/Initialize()
-	. = ..()
-	if(timeleft)
-		QDEL_IN(src, timeleft)
 
 /obj/effect/forcefield/fog
 	name = "dense fog"
@@ -825,7 +819,6 @@ datum/game_mode/proc/initialize_post_queen_list()
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "smoke"
 	opacity = TRUE
-	timeleft = 0
 
 /obj/effect/forcefield/fog/Initialize()
 	. = ..()
