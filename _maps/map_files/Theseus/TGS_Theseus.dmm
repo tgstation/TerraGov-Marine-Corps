@@ -19412,8 +19412,8 @@
 	},
 /area/almayer/command/cic)
 "aMI" = (
+/obj/machinery/faxmachine/cic,
 /obj/structure/table/almayer,
-/obj/machinery/faxmachine,
 /turf/open/floor/almayer/mono,
 /area/almayer/command/cic)
 "aMJ" = (
