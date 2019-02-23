@@ -1345,7 +1345,7 @@
 		I = O
 		current_acid = I.current_acid
 
-		if(!acid_check(acid_type, current_acid))
+		if(current_acid && !acid_check(acid_type, current_acid) )
 			return
 
 		if(I.unacidable || istype(I, /obj/machinery/computer) || istype(I, /obj/effect)) //So the aliens don't destroy energy fields/singularies/other aliens/etc with their acid.
@@ -1366,7 +1366,7 @@
 		T = O
 		current_acid = T.current_acid
 
-		if(!acid_check(acid_type, current_acid))
+		if(current_acid && !acid_check(acid_type, current_acid) )
 			return
 
 		if(iswallturf(O))
