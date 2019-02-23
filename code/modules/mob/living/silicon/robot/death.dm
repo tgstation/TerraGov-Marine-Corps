@@ -12,7 +12,6 @@
 		var/obj/item/device/gripper/G = locate(/obj/item/device/gripper) in module
 		if(G) G.drop_item()
 	remove_robot_verbs()
-	sql_report_cyborg_death(src)
 	..(gibbed,"is destroyed!")
 	playsound(src.loc, 'sound/effects/metal_crash.ogg', 100)
 	robogibs(src)

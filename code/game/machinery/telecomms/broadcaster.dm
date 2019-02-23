@@ -234,6 +234,9 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 			if(H.mind)
 				if(H.mind.cm_skills && H.mind.cm_skills.leadership >= SKILL_LEAD_TRAINED)
 					command = 3
+
+				if(H.mind.comm_title)
+					comm_title = H.mind.comm_title
 		else if(istype(M,/mob/living/silicon/decoy/ship_ai)) command = 3
 
 	for (var/mob/R in receive)

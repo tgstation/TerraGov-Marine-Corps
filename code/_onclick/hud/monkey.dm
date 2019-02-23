@@ -178,4 +178,4 @@
 
 /mob/living/carbon/monkey/create_hud()
 	if(client && !hud_used)
-		hud_used = new /datum/hud/monkey(src, ui_style2icon(client.prefs.UI_style))
+		hud_used = new /datum/hud/monkey(src, ui_style2icon(client.prefs.ui_style))

@@ -83,7 +83,7 @@ GLOBAL_LIST_INIT(ai_core_display_screens, list(
 		return "ai-[lowertext(input)]"
 
 	//Backpacks
-GLOBAL_LIST_INIT(backbaglist, list("Nothing", "Backpack", "Satchel"))
+GLOBAL_LIST_INIT(backpacklist, list("Nothing", "Backpack", "Satchel"))
 
 //Uplink spawn loc
 #define UPLINK_PDA		"PDA"

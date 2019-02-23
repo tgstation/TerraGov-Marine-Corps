@@ -12367,7 +12367,6 @@
 	},
 /obj/machinery/door/firedoor/border_only/almayer,
 /obj/machinery/door/airlock/almayer/research/glass{
-	id = "";
 	id_tag = null;
 	name = "\improper Medical Research Wing"
 	},
@@ -13419,7 +13418,6 @@
 	},
 /obj/machinery/door/firedoor/border_only/almayer,
 /obj/machinery/door/airlock/almayer/research/glass{
-	id = "";
 	id_tag = null;
 	name = "\improper Medical Research Wing"
 	},
@@ -42521,9 +42519,7 @@
 	},
 /area/shuttle/drop2/sulaco)
 "bLK" = (
-/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds2{
-	id = ""
-	},
+/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds2
 /obj/machinery/door/poddoor/shutters/transit{
 	density = 0;
 	dir = 1;
@@ -42581,9 +42577,7 @@
 	},
 /area/shuttle/drop1/sulaco)
 "bLS" = (
-/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds1{
-	id = ""
-	},
+/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds1
 /obj/machinery/door/poddoor/shutters/transit{
 	density = 0;
 	dir = 1;

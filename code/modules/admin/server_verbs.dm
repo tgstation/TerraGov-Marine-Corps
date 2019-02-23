@@ -206,16 +206,16 @@
 	if(!check_rights(R_SERVER))
 		return
 
-	if(!SSticker || SSticker.current_state != GAME_STATE_PREGAME)
+	if(!SSticker.current_state == GAME_STATE_PREGAME && !SSticker.current_state == GAME_STATE_STARTUP)
 		return
 
 	if(alert("Are you sure you want to start the round early?", "Confirmation","Yes","No") != "Yes")
 		return
 
-	SSticker.current_state = GAME_STATE_SETTING_UP
+	SSticker.start_immediately = TRUE
 
-	log_admin("[key_name(usr)] has started the game early.")
-	message_admins("[ADMIN_TPMONTY(usr)] has started the game early.")
+	log_admin("[key_name(usr)] has started the game early[SSticker.current_state == GAME_STATE_STARTUP ? ". The game is still setting up, but the round will be started as soon as possible" : ""].")
+	message_admins("[ADMIN_TPMONTY(usr)] has started the game early[SSticker.current_state == GAME_STATE_STARTUP ? ". The game is still setting up, but the round will be started as soon as possible" : ""].")
 
 
 /datum/admins/proc/toggle_join()
@@ -388,3 +388,63 @@
 
 	log_admin("[key_name(src)] manually reloaded admins.")
 	message_admins("[ADMIN_TPMONTY(usr)] manually reloaded admins.")
+
+
+/datum/admins/proc/map_random()
+	set category = "Server"
+	set name = "Trigger Random Map Rotation"
+
+	if(!check_rights(R_SERVER))
+		return
+
+	var/rotate = alert("Force a random map rotation to trigger?", "Rotate map?", "Yes", "No")
+	if(rotate != "Yes")
+		return
+
+	SSmapping.maprotate()
+
+	log_admin("[key_name(usr)] forced a random map rotation.")
+	message_admins("[ADMIN_TPMONTY(usr)] forced a random map rotation.")
+
+
+/datum/admins/proc/map_change()
+	set category = "Server"
+	set name = "Change Map"
+
+	if(!check_rights(R_SERVER))
+		return
+
+	var/list/maprotatechoices = list()
+	for(var/map in config.maplist)
+		var/datum/map_config/VM = config.maplist[map]
+		var/mapname = VM.map_name
+		if (VM == config.defaultmap)
+			mapname += " (Default)"
+
+		if(VM.config_min_users > 0 || VM.config_max_users > 0)
+			mapname += " \["
+			if(VM.config_min_users > 0)
+				mapname += "[VM.config_min_users]"
+			else
+				mapname += "0"
+			mapname += "-"
+			if(VM.config_max_users > 0)
+				mapname += "[VM.config_max_users]"
+			else
+				mapname += "inf"
+			mapname += "\]"
+
+		maprotatechoices[mapname] = VM
+
+	var/chosenmap = input("Choose a map to change to", "Change Map") as null|anything in maprotatechoices
+	if(!chosenmap)
+		return
+
+	var/datum/map_config/VM = maprotatechoices[chosenmap]
+
+	log_admin("[key_name(usr)] is changing the map to [VM.map_name].")
+	message_admins("[ADMIN_TPMONTY(usr)] is changing the map to [VM.map_name].")
+
+	if(SSmapping.changemap(VM) == 0)
+		log_admin("[key_name(usr)] has changed the map to [VM.map_name].")
+		message_admins("[ADMIN_TPMONTY(usr)] has changed the map to [VM.map_name].")

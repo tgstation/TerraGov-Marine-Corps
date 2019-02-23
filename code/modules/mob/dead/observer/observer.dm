@@ -27,50 +27,12 @@
 	var/voted_this_drop = FALSE
 
 
-/mob/dead/observer/New(mob/body)
+/mob/dead/observer/Initialize()
 	sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS|SEE_SELF
 	see_invisible = SEE_INVISIBLE_OBSERVER
 	see_in_dark = 100
 
 	stat = DEAD
-
-	var/turf/T
-	if(ismob(body))
-		T = get_turf(body)
-
-		if (ishuman(body))
-			var/mob/living/carbon/human/H = body
-			icon = H.stand_icon
-			overlays = H.overlays_standing
-			underlays = H.underlays_standing
-		else
-			icon = body.icon
-			icon_state = body.icon_state
-			overlays = body.overlays
-
-		alpha = 127
-
-		gender = body.gender
-		if(body.mind && body.mind.name)
-			name = body.mind.name
-		else
-			if(body.real_name)
-				name = body.real_name
-			else
-				if(gender == MALE)
-					name = capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
-				else
-					name = capitalize(pick(first_names_female)) + " " + capitalize(pick(last_names))
-
-		mind = body.mind
-
-	if(!T)
-		T = pick(GLOB.latejoin)
-	loc = T
-
-	if(!name)
-		name = capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
-	real_name = name
 
 	Login()
 
@@ -118,15 +80,57 @@
 	if(!key)
 		return FALSE
 	var/mob/dead/observer/ghost = new(src)
-	ghost.can_reenter_corpse = can_reenter_corpse
-	ghost.timeofdeath = timeofdeath
-	ghost.key = key
+	var/turf/T = get_turf(src)
+
+	if(ishuman(src))
+		var/mob/living/carbon/human/H = src
+		ghost.icon = H.stand_icon
+		ghost.overlays = H.overlays_standing
+		ghost.underlays = H.underlays_standing
+	else
+		ghost.icon = icon
+		ghost.icon_state = icon_state
+		ghost.overlays = overlays
+
+	ghost.gender = gender
+
+	if(mind?.name)
+		ghost.real_name = mind.name
+	else
+		if(real_name)
+			ghost.real_name = real_name
+		else
+			if(gender == MALE)
+				ghost.real_name = capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
+			else
+				ghost.real_name = capitalize(pick(first_names_female)) + " " + capitalize(pick(last_names))
+
+	ghost.name = ghost.real_name
+
+	if(mind)
+		ghost.mind = mind
+
+	if(!T)
+		T = pick(GLOB.latejoin)
+
+	ghost.loc = T
+
+	if(!name)
+		ghost.name = capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
+
 	if(!can_reenter_corpse)
 		away_timer = 5 MINUTES
+
 	if(ghost.client)
 		ghost.client.change_view(world.view)
 		ghost.client.pixel_x = 0
 		ghost.client.pixel_y = 0
+
+	ghost.alpha = 127
+
+	ghost.can_reenter_corpse = can_reenter_corpse
+	ghost.timeofdeath = timeofdeath
+	ghost.key = key
 
 	return ghost
 
@@ -213,28 +217,28 @@
 			ghost_medhud = !ghost_medhud
 			H = huds[MOB_HUD_MEDICAL_OBSERVER]
 			ghost_medhud ? H.add_hud_to(src) : H.remove_hud_from(src)
-			client.prefs.ghost_medhud = ghost_medhud
+			client.prefs.ghost_hud ^= GHOST_HUD_MED
 			client.prefs.save_preferences()
 			to_chat(src, "<span class='boldnotice'>[hud_choice] [ghost_medhud ? "Enabled" : "Disabled"]</span>")
 		if("Security HUD")
 			ghost_sechud = !ghost_sechud
 			H = huds[MOB_HUD_SECURITY_ADVANCED]
 			ghost_sechud ? H.add_hud_to(src) : H.remove_hud_from(src)
-			client.prefs.ghost_sechud = ghost_sechud
+			client.prefs.ghost_hud ^= GHOST_HUD_SEC
 			client.prefs.save_preferences()
 			to_chat(src, "<span class='boldnotice'>[hud_choice] [ghost_sechud ? "Enabled": "Disabled"]</span>")
 		if("Squad HUD")
 			ghost_squadhud = !ghost_squadhud
 			H = huds[MOB_HUD_SQUAD]
 			ghost_squadhud ? H.add_hud_to(src) : H.remove_hud_from(src)
-			client.prefs.ghost_squadhud = ghost_squadhud
+			client.prefs.ghost_hud ^= GHOST_HUD_SQUAD
 			client.prefs.save_preferences()
 			to_chat(src, "<span class='boldnotice'>[hud_choice] [ghost_squadhud ? "Enabled": "Disabled"]</span>")
 		if("Xeno Status HUD")
 			ghost_xenohud = !ghost_xenohud
 			H = huds[MOB_HUD_XENO_STATUS]
 			ghost_xenohud ? H.add_hud_to(src) : H.remove_hud_from(src)
-			client.prefs.ghost_xenohud = ghost_xenohud
+			client.prefs.ghost_hud ^= GHOST_HUD_XENO
 			client.prefs.save_preferences()
 			to_chat(src, "<span class='boldnotice'>[hud_choice] [ghost_xenohud ? "Enabled" : "Disabled"]</span>")
 

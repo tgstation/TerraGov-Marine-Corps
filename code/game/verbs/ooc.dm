@@ -110,7 +110,7 @@ var/global/normal_ooc_colour = "#002eb8"
 	if(!msg)
 		return
 
-	if(!(prefs.toggles_chat & CHAT_OOC))
+	if(!(prefs.toggles_chat & CHAT_LOOC))
 		to_chat(src, "<span class='warning'>You have LOOC muted.</span>")
 		return
 
@@ -118,10 +118,10 @@ var/global/normal_ooc_colour = "#002eb8"
 		if(!CONFIG_GET(flag/looc_enabled))
 			to_chat(src, "<span class='warning'>LOOC is globally muted</span>")
 			return
-		if(prefs.muted & MUTE_OOC)
+		if(prefs.muted & MUTE_LOOC)
 			to_chat(src, "<span class='warning'>You cannot use LOOC (muted).</span>")
 			return
-		if(handle_spam_prevention(msg, MUTE_OOC))
+		if(handle_spam_prevention(msg, MUTE_LOOC))
 			return
 		if(findtext(msg, "byond://"))
 			to_chat(src, "<B>Advertising other servers is not allowed.</B>")
@@ -138,7 +138,7 @@ var/global/normal_ooc_colour = "#002eb8"
 	for(var/client/C in GLOB.admins)
 		if(!check_other_rights(C, R_ADMIN, FALSE))
 			continue
-		if(C.prefs.toggles_chat & CHAT_OOC)
+		if(C.prefs.toggles_chat & CHAT_LOOC)
 			to_chat(C, "<font color='#6699CC'><span class='ooc'><span class='prefix'>LOOC: [key_name(mob)]</span>: <span class='message'>[msg]</span></span></font>")
 
 

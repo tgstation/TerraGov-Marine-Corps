@@ -275,6 +275,8 @@ GLOBAL_LIST_INIT(admin_verbs_admin, world.AVadmin())
 	/datum/admins/proc/gamemode_panel,
 	/datum/admins/proc/local_message,
 	/datum/admins/proc/view_faxes,
+	/datum/admins/proc/toggle_adminhelp_sound,
+	/datum/admins/proc/toggle_prayers,
 	/client/proc/private_message_panel,
 	/client/proc/private_message_context
 	)
@@ -288,6 +290,8 @@ GLOBAL_LIST_INIT(admin_verbs_mentor, world.AVmentor())
 	/datum/admins/proc/admin_ghost,
 	/datum/admins/proc/subtle_message,
 	/datum/admins/proc/view_faxes,
+	/datum/admins/proc/toggle_adminhelp_sound,
+	/datum/admins/proc/toggle_prayers,
 	/client/proc/private_message_panel,
 	/client/proc/private_message_context
 	)
@@ -296,7 +300,9 @@ GLOBAL_PROTECT(admin_verbs_ban)
 GLOBAL_LIST_INIT(admin_verbs_ban, world.AVban())
 /world/proc/AVban()
 	return list(
+	/datum/admins/proc/ban_offline,
 	/datum/admins/proc/unban_panel,
+	/datum/admins/proc/jobban_offline,
 	/datum/admins/proc/player_notes_show,
 	/datum/admins/proc/player_notes_list
 	)
@@ -362,8 +368,8 @@ GLOBAL_LIST_INIT(admin_verbs_server, world.AVserver())
 	/datum/admins/proc/toggle_gun_restrictions,
 	/datum/admins/proc/toggle_synthetic_restrictions,
 	/datum/admins/proc/reload_admins,
-	/client/proc/forcerandomrotate,
-	/client/proc/adminchangemap,
+	/datum/admins/proc/map_random,
+	/datum/admins/proc/map_change
 	)
 
 GLOBAL_PROTECT(admin_verbs_debug)

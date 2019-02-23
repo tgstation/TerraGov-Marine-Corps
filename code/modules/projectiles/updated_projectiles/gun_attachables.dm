@@ -764,7 +764,7 @@ Defined in conflicts.dm of the #defines folder.
 	pockets.max_w_class = 1
 	pockets.bypass_w_limit = list("/obj/item/weapon/gun/pistol/vp70")
 	pockets.max_storage_space = 3
-	
+
 /obj/item/attachable/stock/vp70/attack_hand(mob/user)
 	if(loc == user && length(pockets.contents))
 		var/obj/item/I = pockets.contents[length(pockets.contents)]
@@ -1085,7 +1085,7 @@ Defined in conflicts.dm of the #defines folder.
 			var/mob/living/carbon/human/H = M
 
 			if(user)
-				if(user.mind?.special_role != H.mind?.special_role || user.faction != H.faction)
+				if(!user.mind?.bypass_ff && !H.mind?.bypass_ff && user.faction == H.faction)
 					log_combat(user, H, "shot", src)
 					log_ffattack("[key_name(usr)] shot [key_name(H)] with [name] in [AREACOORD(T)].")
 					msg_admin_ff("[ADMIN_TPMONTY(usr)] shot [ADMIN_TPMONTY(H)] with [name] in [ADMIN_VERBOSEJMP(T)].")
