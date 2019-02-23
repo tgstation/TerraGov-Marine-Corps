@@ -11,6 +11,7 @@
 	var/signlang_verb = list()       // list of emotes that might be displayed if this language has NONVERBAL or SIGNLANG flags
 	var/colour = "body"         // CSS style to use for strings in this language.
 	var/key = "x"                    // Character used to speak in language eg. :o for Unathi.
+	var/key_ru = null                //bad way to RU speak
 	var/flags = 0                    // Various language flags.
 	var/native                       // If set, non-native speakers will have trouble speaking.
 
@@ -146,6 +147,7 @@
 	ask_verb = "hisses"
 	exclaim_verb = "hisses"
 	key = "x"
+	key_ru = "÷"
 	flags = RESTRICTED
 
 /datum/language/xenos
@@ -156,6 +158,7 @@
 	exclaim_verb = "hiveminds"
 	colour = "soghun"
 	key = "a"
+	key_ru = "ô"
 	flags = RESTRICTED|HIVEMIND
 
 /datum/language/xenos/check_special_condition(var/mob/other)
