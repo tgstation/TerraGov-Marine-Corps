@@ -2225,25 +2225,6 @@
 	to_chat(src, "<span class='xenodanger'>You feel your toxin glands refill, another young one ready for implantation. You can use Defile again.</span>")
 	update_action_button_icons()
 
-/*
-/mob/living/carbon/Xenomorph/Hivelord/proc/necro_transform(mob/living/carbon/human/H)
-	set waitfor = 0
-	var/necro_transforming = TRUE
-	H.vomit()
-	sleep(50)
-	H.AdjustStunned(5)
-	sleep(20)
-	H.Jitter(500)
-	sleep(30)
-	if(H && H.loc)
-		if(H.stat == DEAD) H.revive(TRUE)
-		playsound(H.loc, 'sound/hallucinations/wail.ogg', 25, 1)
-		H.jitteriness = 0
-		H.set_species("Necromorph")
-		necro_transforming = FALSE
-
-*/
-
 /mob/living/carbon/Xenomorph/proc/recurring_injection(mob/living/H, toxin1 = "xeno_toxin", toxin2 = null, larva = FALSE, virus1 = "necrovirus", count = 2)
 	//set waitfor = FALSE
 	while(count)
