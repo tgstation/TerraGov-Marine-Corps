@@ -153,7 +153,7 @@
 	count--
 	marines_list -= H
 
-	STOP_TRACK_LEADER(src, H) // covers squad transfers
+	STOP_TRACK_LEADER(src.tracking_id, H) // covers squad transfers
 
 	if(H.assigned_squad.squad_leader == H)
 		if(H.mind.assigned_role != "Squad Leader") //a field promoted SL, not a real one
