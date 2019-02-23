@@ -1572,6 +1572,7 @@
 			return
 
 		var/input = input(src.owner, "Please enter a message to reply to [key_name(H)] via their headset.","Outgoing message from USCM", "")
+		input = sanitize(input)
 		if(!input)	return
 
 		to_chat(src.owner, "You sent [input] to [H] via a secure channel.")
@@ -1591,6 +1592,7 @@
 			return
 
 		var/input = input(src.owner, "Please enter a message to reply to [key_name(H)] via their headset.","Outgoing message from The Syndicate", "")
+		input = sanitize(input)
 		if(!input)	return
 
 		to_chat(src.owner, "You sent [input] to [H] via a secure channel.")
@@ -1626,6 +1628,7 @@
 				else
 					return
 				var/message_body = input(src.owner, "Enter Message Body, use <p></p> for paragraphs", "Outgoing message from Weyland-Yutani USCM", "") as message|null
+				message_body = sanitize(message_body)
 				if(!message_body) return
 				var/sent_by = input(src.owner, "Enter the name and rank you are sending from.", "Outgoing message from USCM", "") as message|null
 				if(!sent_by) return
