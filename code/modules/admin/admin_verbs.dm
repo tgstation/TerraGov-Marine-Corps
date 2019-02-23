@@ -161,7 +161,7 @@
 	if(!istype(H) || !SSticker || !H.mind?.assigned_role)
 		return
 
-	if(!(H.mind.assigned_role in JOBS_MARINES))
+	if(!(H.mind.assigned_role.department_flag & J_FLAG_MARINE))
 		return
 
 	var/squad = input("Choose the marine's new squad") as null|anything in SSjob.squads

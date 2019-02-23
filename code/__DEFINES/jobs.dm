@@ -129,6 +129,7 @@
 #define JOB_DISPLAY_ORDER_SUQAD_ENGINEER 21
 #define JOB_DISPLAY_ORDER_SQUAD_MARINE 22
 
+#define JOBS_MARINE_ROLES (J_FLAG_MARINE|J_FLAG_SHIP)
 
 #define JOBS_COMMAND 		list("Commander", "Executive Officer", "Staff Officer", "Pilot Officer", "Tank Crewman", "Corporate Liaison", "Requisitions Officer", "Chief Engineer", "Chief Medical Officer", "Synthetic")
 #define JOBS_POLICE			list("Chief MP", "Military Police")
@@ -136,7 +137,7 @@
 #define JOBS_ENGINEERING 	list("Chief Engineer", "Maintenance Tech")
 #define JOBS_REQUISITIONS 	list("Requisitions Officer", "Cargo Technician")
 #define JOBS_MEDICAL 		list("Chief Medical Officer", "Doctor", "Medical Researcher")
-#define JOBS_MARINES		list("Squad Leader", "Squad Specialist", "Squad Smartgunner", "Squad Medic", "Squad Engineer", "Squad Marine")
+//#define JOBS_MARINES		list("Squad Leader", "Squad Specialist", "Squad Smartgunner", "Squad Medic", "Squad Engineer", "Squad Marine")
 #define JOBS_SQUADS			list("Alpha", "Bravo", "Charlie" ,"Delta")
-#define JOBS_REGULAR_ALL	JOBS_OFFICERS + JOBS_POLICE + JOBS_ENGINEERING + JOBS_REQUISITIONS + JOBS_MEDICAL + JOBS_MARINES
+//#define JOBS_REGULAR_ALL	JOBS_OFFICERS + JOBS_POLICE + JOBS_ENGINEERING + JOBS_REQUISITIONS + JOBS_MEDICAL + JOBS_MARINES
 #define JOBS_UNASSIGNED		list("Squad Marine")

@@ -356,7 +356,7 @@ datum/preferences
 	var/datum/job/job
 	for(var/i in sortList(SSjob.occupations, /proc/cmp_job_display_asc))
 		job = i
-		if(!(job.title in JOBS_REGULAR_ALL))
+		if(!(job.department_flag & JOBS_MARINE_ROLES))
 			continue
 		index += 1
 		if((index >= limit) || (job.title in splitJobs))

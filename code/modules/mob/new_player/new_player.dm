@@ -258,7 +258,7 @@
 	var/datum/job/J
 	for(var/i in sortList(SSjob.occupations, /proc/cmp_job_display_asc))
 		J = i
-		if(!(J.title in JOBS_REGULAR_ALL))
+		if(!(J.department_flag & JOBS_MARINE_ROLES))
 			continue
 		if((J.current_positions >= J.spawn_positions) && J.spawn_positions != -1)
 			continue
