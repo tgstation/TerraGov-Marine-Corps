@@ -2081,14 +2081,6 @@
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
-"agu" = (
-/obj/effect/landmark/map_tag{
-	name = "Solaris Ridge"
-	},
-/turf/closed/mineral{
-	color = "#db3413"
-	},
-/area/bigredv2/caves)
 "agv" = (
 /turf/open/floor/plating/dmg2,
 /area/bigredv2/outside/space_port)
@@ -31001,7 +30993,7 @@ aaa
 (3,1,1) = {"
 aaa
 aab
-agu
+aac
 aac
 aac
 aac

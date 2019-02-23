@@ -510,7 +510,7 @@
 		if(hasmob && prob(3))
 			for(var/mob/living/H in src)
 				if(!ismaintdrone(H)) //Drones use the mailing code to move through the disposal system,
-					if(GLOB.map_tag != MAP_WHISKEY_OUTPOST)
+					if(SSmapping.config.map_name != MAP_WHISKEY_OUTPOST)
 						H.take_overall_damage(20, 0, "Blunt Trauma") //Horribly maim any living creature jumping down disposals.  c'est la vie
 
 		if(has_fat_guy && prob(2)) //Chance of becoming stuck per segment if contains a fat guy
