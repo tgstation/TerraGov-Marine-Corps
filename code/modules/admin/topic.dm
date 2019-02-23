@@ -404,7 +404,7 @@
 				mins = input("How long (in minutes)? \n 1440 = 1 day \n 4320 = 3 days \n 10080 = 7 days", "Ban time", 1440) as num|null
 				if(isnull(mins) || mins < 0)
 					return
-				if(mins >= 525600) 
+				if(mins >= 525600)
 					mins = 525599
 				reason = input("Please enter the ban reason.", "Ban Reason") as message|null
 				reason = sanitize(reason)
@@ -1041,7 +1041,7 @@
 		message_admins("[ADMIN_TPMONTY(usr)] has sent [key_name_admin(M)] back to the lobby.")
 
 		var/mob/new_player/NP = new()
-		M.screen.Cut()
+		M.client.screen.Cut()
 		NP.key = M.key
 		NP.name = M.key
 		if(NP.client)
