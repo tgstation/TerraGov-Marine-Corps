@@ -1777,7 +1777,7 @@
 		to_chat(src, "<span class='xenowarning'>You can't host any more young ones!</span>")
 		return
 
-	var/obj/item/clothing/mask/facehugger/F = new
+	var/obj/item/clothing/mask/facehugger/stasis/F = new
 	F.hivenumber = hivenumber
 	store_hugger(F, TRUE) //Add it to our cache
 	to_chat(src, "<span class='xenowarning'>You spawn a young one via the miracle of asexual internal reproduction, adding it to your stores. Now sheltering: [huggers.len] / [xeno_caste.huggers_max].</span>")

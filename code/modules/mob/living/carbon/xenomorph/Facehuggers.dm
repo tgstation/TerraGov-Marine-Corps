@@ -31,8 +31,9 @@
 	var/hivenumber = XENO_HIVE_NORMAL
 
 /obj/item/clothing/mask/facehugger/Initialize()
-	..()
-	START_PROCESSING(SSobj, src)
+	. = ..()
+	if(stat == CONSCIOUS)
+		START_PROCESSING(SSobj, src)
 
 /obj/item/clothing/mask/facehugger/ex_act(severity)
 	Die()
@@ -499,11 +500,23 @@
 	visible_message("[icon2html(src, viewers(src))] <span class='danger'>\The [src] decays into a mass of acid and chitin.</span>")
 	qdel(src)
 
+/obj/item/clothing/mask/facehugger/stasis
+	stat = UNCONSCIOUS
+	stasis = TRUE
+
+/obj/item/clothing/mask/facehugger/stasis/Initialize()
+	. = ..()
+	update_icon()
+
 /obj/item/clothing/mask/facehugger/dead
 	desc = "It has some sort of a tube at the end of its tail. What the hell is this thing?"
-	icon_state = "facehugger_impregnated"
 	name = "????"
 	stat = DEAD
+	sterile = TRUE
+
+/obj/item/clothing/mask/facehugger/dead/Initialize()
+	. = ..()
+	update_icon()
 
 #undef FACEHUGGER_LIFECYCLE
 #undef FACEHUGGER_KNOCKOUT
