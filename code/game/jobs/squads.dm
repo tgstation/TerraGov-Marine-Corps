@@ -153,7 +153,7 @@
 	count--
 	marines_list -= H
 
-	STOP_TRACK_LEADER(src.tracking_id, H) // covers squad transfers
+	STOP_TRACK_LEADER(tracking_id, H) // covers squad transfers
 
 	if(H.assigned_squad.squad_leader == H)
 		if(H.mind.assigned_role != "Squad Leader") //a field promoted SL, not a real one
@@ -181,6 +181,7 @@
 /datum/squad/proc/clean_marine_from_squad(mob/living/carbon/human/H, wipe = FALSE)
 	if(!H.assigned_squad || !(H in marines_list))
 		return FALSE
+	STOP_TRACK_LEADER(tracking_id, wearer) // failsafe
 	marines_list -= src
 	if(!wipe)
 		var/role = "unknown"
