@@ -134,12 +134,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	else
 		dat += "Please create an account to save your preferences."
 
+	dat += "<div id='wrapper'>"
+
 	dat += "<br><b>Synthetic Name:</b> <a href='?_src_=prefs;preference=synth_name'>[synthetic_name]</a><br>"
 	dat += "<b>Synthetic Type:</b> <a href='?_src_=prefs;preference=synth_type'>[synthetic_type]</a><br>"
 
-	dat +="<br><b>Xenomorph name:</b> <a href='?_src_=prefs;preference=xeno_name'>[xeno_name]</a><br>"
+	dat +="<br><b>Xenomorph name:</b> <a href='?_src_=prefs;preference=xeno_name'>[xeno_name]</a><br><br>"
 
-	dat += "<div id='wrapper'>"
 	dat += "<big><big><b>Name:</b> "
 	dat += "<a href='?_src_=prefs;preference=name_real'><b>[real_name]</b></a>"
 	dat += " (<a href='?_src_=prefs;preference=name_randomize'>&reg</A>)</big></big>"
@@ -150,12 +151,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	dat += "<big><b><u>Physical Information:</u></b>"
 	dat += " (<a href='?_src_=prefs;preference=random'>&reg;</A>)</big>"
 	dat += "<br>"
-	dat += "<b>Age:</b> <a href='?_src_=prefs;preference=age'><b>[age]</b></a><br>"
-	dat += "<b>Gender:</b> <a href='?_src_=prefs;preference=gender'><b>[gender == MALE ? "Male" : "Female"]</b></a><br>"
-	dat += "<b>Ethnicity:</b> <a href='?_src_=prefs;preference=ethnicity'><b>[ethnicity]</b></a><br>"
-	dat += "<b>Species:</b> <a href='?_src_=prefs;preference=species'><b>[species]</b></a><br>"
-	dat += "<b>Body Type:</b> <a href='?_src_=prefs;preference=body_type'><b>[body_type]</b></a><br>"
-	dat += "<b>Good Eyesight:</b> <a href='?_src_=prefs;preference=eyesight'><b>[good_eyesight ? "Yes" : "No"]</b></a><br>"
+	dat += "<b>Age:</b> <a href='?_src_=prefs;preference=age'>[age]</a><br>"
+	dat += "<b>Gender:</b> <a href='?_src_=prefs;preference=gender'>[gender == MALE ? "Male" : "Female"]</a><br>"
+	dat += "<b>Ethnicity:</b> <a href='?_src_=prefs;preference=ethnicity'>[ethnicity]</a><br>"
+	dat += "<b>Species:</b> <a href='?_src_=prefs;preference=species'>[species]</a><br>"
+	dat += "<b>Body Type:</b> <a href='?_src_=prefs;preference=body_type'>[body_type]</a><br>"
+	dat += "<b>Good Eyesight:</b> <a href='?_src_=prefs;preference=eyesight'>[good_eyesight ? "Yes" : "No"]</a><br>"
 	dat += "<br>"
 
 	var/datum/species/current_species = GLOB.all_species[species]
@@ -184,22 +185,24 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		if(jobban_isbanned(user, ban_check_name))
 			dat += "<font color=red><b> \[BANNED]</b></font><br>"
 		else
-			dat += "<b>[role]:</b> <a href='?_src_=prefs;preference=be_special;flag=[n]'><b>[be_special & (1 << n) ? "Yes" : "No"]</b></a><br>"
+			dat += "<b>[role]:</b> <a href='?_src_=prefs;preference=be_special;flag=[n]'>[be_special & (1 << n) ? "Yes" : "No"]</a><br>"
 		n++
 
+	dat += "<br><b>Preferred Squad:</b> <a href ='?_src_=prefs;preference=squad'>[preferred_squad]</a><br>"
+
 	dat += "<br>"
-	dat += "<a href='?_src_=prefs;preference=jobmenu'><b>Set Marine Role Preferences</b></a><br>"
+	dat += "<a href='?_src_=prefs;preference=jobmenu'>Set Marine Role Preferences</a><br>"
 	dat += "<br>"
 
 	dat += "<big><b><u>Marine Gear:</u></b></big><br>"
 	if(gender == MALE)
-		dat += "<b>Underwear:</b> <a href ='?_src_=prefs;preference=underwear'><b>[GLOB.underwear_m[underwear]]</b></a><br>"
+		dat += "<b>Underwear:</b> <a href ='?_src_=prefs;preference=underwear'>[GLOB.underwear_m[underwear]]</a><br>"
 	else
-		dat += "<b>Underwear:</b> <a href ='?_src_=prefs;preference=underwear'><b>[GLOB.underwear_f[underwear]]</b></a><br>"
+		dat += "<b>Underwear:</b> <a href ='?_src_=prefs;preference=underwear'>[GLOB.underwear_f[underwear]]</a><br>"
 
-	dat += "<b>Undershirt:</b> <a href='?_src_=prefs;preference=undershirt'><b>[GLOB.undershirt_t[undershirt]]</b></a><br>"
+	dat += "<b>Undershirt:</b> <a href='?_src_=prefs;preference=undershirt'>[GLOB.undershirt_t[undershirt]]</a><br>"
 
-	dat += "<b>Backpack Type:</b> <a href ='?_src_=prefs;preference=backpack'><b>[GLOB.backpacklist[backpack]]</b></a><br>"
+	dat += "<b>Backpack Type:</b> <a href ='?_src_=prefs;preference=backpack'>[GLOB.backpacklist[backpack]]</a><br>"
 
 	dat += "<b>Custom Loadout:</b> "
 	var/total_cost = 0
@@ -224,11 +227,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	dat += "<br><br>"
 
-	dat += "<big><b><u>UI Customization:</u></b></big><br>"
-	dat += "<b>Style:</b> <a href='?_src_=prefs;preference=ui'><b>[ui_style]</b></a><br>"
-	dat += "<b>Color</b>: <a href='?_src_=prefs;preference=uicolor'><b>[ui_style_color]</b></a> <table style='display:inline;' bgcolor='[ui_style_color]'><tr><td>__</td></tr></table><br>"
-	dat += "<b>Alpha</b>: <a href='?_src_=prefs;preference=uialpha'><b>[ui_style_alpha]</b></a>"
-
 
 	dat += "<div id='preview'>"
 	dat += "<img src=previewicon.png width=64 height=64><img src=previewicon2.png width=64 height=64 margin-left=auto margin-right=auto>"
@@ -246,30 +244,33 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	dat += "<big><b><u>Background Information:</u></b></big><br>"
 	dat += "<b>Citizenship</b>: <a href ='?_src_=prefs;preference=citizenship'>[citizenship]</a><br/>"
 	dat += "<b>Religion</b>: <a href ='?_src_=prefs;preference=religion'>[religion]</a><br/>"
-	dat += "<b>Corporate Relation:</b> <a href ='?_src_=prefs;preference=corporation'><b>[nanotrasen_relation]</b></a><br>"
+	dat += "<b>Corporate Relation:</b> <a href ='?_src_=prefs;preference=corporation'>[nanotrasen_relation]</a><br>"
 
 	dat += "<br>"
-
-	dat += "<b>Preferred Squad:</b> <a href ='?_src_=prefs;preference=squad'><b>[preferred_squad]</b></a><br>"
 
 	if(jobban_isbanned(user, "Records"))
 		dat += "<b>You are banned from using character records.</b><br>"
 	else
-		dat += "<b><a href ='?_src_=prefs;preference=records'>Character Records</a></b><br>"
+		dat += "<a href ='?_src_=prefs;preference=records'>Character Records</a><br>"
 
-	dat += "<a href ='?_src_=prefs;preference=flavor_text'><b>Character Description</b></a><br>"
+	dat += "<a href ='?_src_=prefs;preference=flavor_text'>Character Description</a><br>"
 	dat += "<br>"
 
 	dat += "<big><b><u>Game Settings:</u></b></big><br>"
-	dat += "<b>Play Admin Midis:</b> <a href='?_src_=prefs;preference=hear_midis'><b>[(toggles_sound & SOUND_MIDI) ? "Yes" : "No"]</b></a><br>"
-	dat += "<b>Play Lobby Music:</b> <a href='?_src_=prefs;preference=lobby_music'><b>[(toggles_sound & SOUND_LOBBY) ? "Yes" : "No"]</b></a><br>"
-	dat += "<b>Ghost Ears:</b> <a href='?_src_=prefs;preference=ghost_ears'><b>[(toggles_chat & CHAT_GHOSTEARS) ? "All Speech" : "Nearest Creatures"]</b></a><br>"
-	dat += "<b>Ghost Sight:</b> <a href='?_src_=prefs;preference=ghost_sight'><b>[(toggles_chat & CHAT_GHOSTSIGHT) ? "All Emotes" : "Nearest Creatures"]</b></a><br>"
-	dat += "<b>Ghost Radio:</b> <a href='?_src_=prefs;preference=ghost_radio'><b>[(toggles_chat & CHAT_GHOSTRADIO) ? "All Chatter" : "Nearest Speakers"]</b></a><br>"
-	dat += "<b>Ghost Hivemind:</b> <a href='?_src_=prefs;preference=ghost_hivemind'><b>[(toggles_chat & CHAT_GHOSTHIVEMIND) ? "Show" : "Hide"]</b></a><br>"
+	dat += "<b>Play Admin Midis:</b> <a href='?_src_=prefs;preference=hear_midis'>[(toggles_sound & SOUND_MIDI) ? "Yes" : "No"]</a><br>"
+	dat += "<b>Play Lobby Music:</b> <a href='?_src_=prefs;preference=lobby_music'>[(toggles_sound & SOUND_LOBBY) ? "Yes" : "No"]</a><br>"
+	dat += "<b>Ghost Ears:</b> <a href='?_src_=prefs;preference=ghost_ears'>[(toggles_chat & CHAT_GHOSTEARS) ? "All Speech" : "Nearest Creatures"]</a><br>"
+	dat += "<b>Ghost Sight:</b> <a href='?_src_=prefs;preference=ghost_sight'>[(toggles_chat & CHAT_GHOSTSIGHT) ? "All Emotes" : "Nearest Creatures"]</a><br>"
+	dat += "<b>Ghost Radio:</b> <a href='?_src_=prefs;preference=ghost_radio'>[(toggles_chat & CHAT_GHOSTRADIO) ? "All Chatter" : "Nearest Speakers"]</a><br>"
+	dat += "<b>Ghost Hivemind:</b> <a href='?_src_=prefs;preference=ghost_hivemind'>[(toggles_chat & CHAT_GHOSTHIVEMIND) ? "Show" : "Hide"]</a><br>"
 
 	if(CONFIG_GET(flag/allow_metadata))
 		dat += "<b>OOC Notes:</b> <a href='?_src_=prefs;preference=metadata'> Edit </a><br>"
+
+	dat += "<big><b><u>UI Customization:</u></b></big><br>"
+	dat += "<b>Style:</b> <a href='?_src_=prefs;preference=ui'>[ui_style]</a><br>"
+	dat += "<b>Color</b>: <a href='?_src_=prefs;preference=uicolor'>[ui_style_color]</a> <table style='display:inline;' bgcolor='[ui_style_color]'><tr><td>__</td></tr></table><br>"
+	dat += "<b>Alpha</b>: <a href='?_src_=prefs;preference=uialpha'>[ui_style_alpha]</a>"
 
 	dat += "<br>"
 	dat += "</div>"
@@ -278,7 +279,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	dat += "</div></body></html>"
 
-	user << browse(dat, "window=preferences;size=670x830")
+
+	winshow(user, "preferences", TRUE)
+	var/datum/browser/popup = new(user, "preferences", "<div align='center'>Character Setup</div>", 670, 830)
+	popup.set_content(dat)
+	popup.open(FALSE)
+	onclose(user, "preferences", src)
 
 
 /datum/preferences/proc/SetChoices(mob/user, limit = 22, list/splitJobs = list(), width = 450, height = 650)
@@ -352,8 +358,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	HTML += "<center><a href='?_src_=prefs;preference=jobreset'>\[Reset\]</a></center>"
 	HTML += "</tt>"
 
-	user << browse(null, "window=preferences")
-	user << browse(HTML, "window=mob_occupation;size=[width]x[height]")
+
+	winshow(user, "mob_occupation", TRUE)
+	var/datum/browser/popup = new(user, "mob_occupation", "<div align='center'>Occupation Choices</div>", width, height)
+	popup.set_content(HTML)
+	popup.open(FALSE)
+	onclose(user, "mob_occupation", src)
 
 
 /datum/preferences/proc/SetRecords(mob/user)
@@ -381,7 +391,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	HTML += "<a href ='?_src_=prefs;preference=recordsclose'>\[Done\]</a>"
 	HTML += "</center></tt>"
 
-	user << browse(HTML, "window=records;size=350x300")
+
+	winshow(user, "records", TRUE)
+	var/datum/browser/popup = new(user, "records", "<div align='center'>Character Records</div>", 350, 300)
+	popup.set_content(HTML)
+	popup.open(FALSE)
+	onclose(user, "records", src)
 
 
 /datum/preferences/proc/ResetJobs()
@@ -893,7 +908,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	dat += "<hr>"
 	dat += "<a href ='?_src_=prefs;preference=slot_close'>Close</a><br>"
 	dat += "</center></tt>"
-	user << browse(dat, "window=saves;size=300x390")
+
+
+	winshow(user, "saves", TRUE)
+	var/datum/browser/popup = new(user, "saves", "<div align='center'>Character Slots</div>", 300, 390)
+	popup.set_content(dat)
+	popup.open(FALSE)
+	onclose(user, "saves", src)
 
 
 /datum/preferences/proc/close_load_dialog(mob/user)

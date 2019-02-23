@@ -43,9 +43,13 @@
 /obj/machinery/computer/atmos_alert/attack_hand(mob/user)
 	if(..(user))
 		return
-	user << browse(return_text(),"window=computer")
+
 	user.set_interaction(src)
+	var/datum/browser/popup = new(user, "computer", "<div align='center'>Main Overwatch Console</div>")
+	popup.set_content(return_text())
+	popup.open(FALSE)
 	onclose(user, "computer")
+
 
 /obj/machinery/computer/atmos_alert/process()
 	if(..())

@@ -34,8 +34,7 @@
 
 
 /mob/new_player/proc/new_player_panel()
-	var/output = "<div align='center'><B>New Player Options</B>"
-	output +="<hr>"
+	var/output = "<div align='center'>"
 	output += "<p><a href='byond://?src=\ref[src];lobby_choice=show_preferences'>Setup Character</A></p>"
 
 	if(!SSticker?.mode || SSticker.current_state <= GAME_STATE_PREGAME)
@@ -50,7 +49,10 @@
 
 	output += "</div>"
 
-	src << browse(output,"window=playersetup;size=240x300;can_close=0")
+	var/datum/browser/popup = new(src, "playersetup", "<div align='center'>New Player Options</div>", 240, 300)
+	popup.set_window_options("can_close=0")
+	popup.set_content(output)
+	popup.open(FALSE)
 
 
 /mob/new_player/Stat()

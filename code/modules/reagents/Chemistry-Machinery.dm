@@ -396,7 +396,7 @@
 				beaker = null
 				reagents.clear_reagents()
 				icon_state = "mixer0"
-		
+
 		else if (href_list["createpillbottle"])
 			if(!condi)
 				if(loaded_pill_bottle)
@@ -510,7 +510,7 @@
 			dat += "</table>"
 			user << browse(dat, "window=chem_master")
 			return
-		
+
 		else if(href_list["pill_bottle_sprite"])
 			pillbottlesprite = href_list["pill_bottle_sprite"]
 		else if(href_list["pill_sprite"])
@@ -585,12 +585,11 @@
 			dat += "<A href='?src=\ref[src];createautoinjector=1'>Create autoinjector (30 units max)<a href=\"?src=\ref[src]&change_autoinjector=1\"><img src=\"autoinjector-[autoinjectorsprite].png\" /></A>"
 		else
 			dat += "<A href='?src=\ref[src];createbottle=1'>Create bottle (50 units max)</A>"
-	if(!condi)
-		user << browse("<TITLE>Chemmaster 3000</TITLE>Chemmaster menu:<BR><BR>[dat]", "window=chem_master;size=575x450")
-	else
-		user << browse("<TITLE>Condimaster 3000</TITLE>Condimaster menu:<BR><BR>[dat]", "window=chem_master;size=575x400")
+
+	var/datum/browser/popup = new(user, "chem_master", "<div align='center'>Chemmaster menu</div>", 575, 450)
+	popup.set_content(dat)
+	popup.open(FALSE)
 	onclose(user, "chem_master")
-	return
 
 
 /obj/machinery/chem_master/condimaster

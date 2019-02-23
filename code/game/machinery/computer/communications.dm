@@ -326,7 +326,7 @@
 		return FALSE
 
 	user.set_interaction(src)
-	var/dat = "<head><title>Communications Console</title></head><body>"
+	var/dat
 	if(EvacuationAuthority.evac_status == EVACUATION_STATUS_INITIATING)
 		dat += "<B>Evacuation in Progress</B>\n<BR>\nETA: [EvacuationAuthority.get_status_panel_eta()]<BR>"
 
@@ -427,8 +427,12 @@
 			dat += "<A HREF='?src=\ref[src];operation=swipeidseclevel'>Swipe ID</A> to confirm change.<BR>"
 
 	dat += "<BR>\[ [(state != STATE_DEFAULT) ? "<A HREF='?src=\ref[src];operation=main'>Main Menu</A>|" : ""]<A HREF='?src=\ref[user];mach_close=communications'>Close</A> \]"
-	user << browse(dat, "window=communications;size=400x500")
+	
+	var/datum/browser/popup = new(user, "communications", "<div align='center'>Communications Console</div>", 400, 500)
+	popup.set_content(dat)
+	popup.open(FALSE)
 	onclose(user, "communications")
+
 
 /*
 /obj/machinery/computer/communications/proc/interact_ai(var/mob/living/silicon/ai/user as mob)

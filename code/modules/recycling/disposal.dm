@@ -203,7 +203,7 @@
 		user.unset_interaction()
 		return
 
-	var/dat = "<head><title>Waste Disposal Unit</title></head><body><TT><B>Waste Disposal Unit</B><HR>"
+	var/dat = "<B>Status</B><HR>"
 
 	if(!ai)  //AI can't pull flush handle
 		if(flush)
@@ -220,10 +220,13 @@
 	else
 		dat += "Pump: <B>On</B> (idle)<BR>"
 
-	dat += "Pressure: [disposal_pressure*100/SEND_PRESSURE]%<BR></body>"
+	dat += "Pressure: [disposal_pressure*100/SEND_PRESSURE]%<BR>"
 
 	user.set_interaction(src)
-	user << browse(dat, "window=disposal;size=360x170")
+
+	var/datum/browser/popup = new(user, "disposal", "<div align='center'>Waste Disposal Unit</div>", 360, 220)
+	popup.set_content(dat)
+	popup.open(FALSE)
 	onclose(user, "disposal")
 
 //Handle machine interaction
