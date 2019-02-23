@@ -93,7 +93,6 @@
 			to_chat(usr, "Message transmitted successfully.")
 			sendcooldown = TRUE
 			addtimer(CALLBACK(src, .proc/end_cooldown), 2 MINUTES)
-			to_chat(usr, "THE TIMER SHOULD BE STARTED, AND COOLDOWN SHOULD BE SET TO 1")
 			updateUsrDialog()
 	if(href_list["remove"])
 		if(message)
@@ -165,9 +164,11 @@
 	sendcooldown = FALSE
 
 
+/obj/machinery/faxmachine/cic
+	department = "Combat Information Center"
+
 /obj/machinery/faxmachine/cmp
 	department = "Chief Military Police"
-
 
 /obj/machinery/faxmachine/prison
 	department = "Warden"
