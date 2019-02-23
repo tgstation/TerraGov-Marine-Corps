@@ -784,18 +784,6 @@
 	if(!(locate(/obj/effect/decal/cleanable/blackgoo) in T))
 		new /obj/effect/decal/cleanable/blackgoo(T)
 		
-/datum/reagent/blackgoo/necromorph_virus
-	name = "Strange filth"
-	id = "necrovirus"
-	description = "A strange writhing mass of unknown origin and effect."
-	taste_description = "rotten flesh"
-
-/datum/reagent/blackgoo/necromorph_virus/reaction_mob(mob/M, method=TOUCH, reac_volume)
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		if(H.species.count_human)
-			H.contract_disease(new /datum/disease/black_goo/necromorph_virus)
-
 /datum/reagent/xeno_neurotoxin
 	name = "Neurotoxin"
 	id = "xeno_toxin"
