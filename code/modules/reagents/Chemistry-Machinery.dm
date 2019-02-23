@@ -481,7 +481,7 @@
 			#define MAX_PILL_BOTTLE_SPRITE 12 //max icon state of the pill sprites
 			var/dat = "<table>"
 			for(var/i = 1 to MAX_PILL_BOTTLE_SPRITE)
-				dat += "<tr><td><a href=\"?src=\ref[src]&pill_bottle_sprite=[i]\"><img src=\"pill_canister[i].png\" /></a></td></tr>"
+				dat += "<tr><td><a href=\"?src=\ref[src]&pill_bottle_sprite=[i]\">Select</a><img src=\"pill_canister[i].png\" /><br></td></tr>"
 			dat += "</table>"
 			var/datum/browser/popup = new(user, "chem_master", "<div align='center'>Change Pill Bottle</div>")
 			popup.set_content(dat)
@@ -492,7 +492,7 @@
 			#define MAX_PILL_SPRITE 21 //max icon state of the pill sprites
 			var/dat = "<table>"
 			for(var/i = 1 to MAX_PILL_SPRITE)
-				dat += "<tr><td><a href=\"?src=\ref[src]&pill_sprite=[i]\"><img src=\"pill[i].png\" /></a></td></tr>"
+				dat += "<tr><td><a href=\"?src=\ref[src]&pill_sprite=[i]\">Select</a><img src=\"pill[i].png\" /><br></td></tr>"
 			dat += "</table>"
 			var/datum/browser/popup = new(user, "chem_master", "<div align='center'>Change Pill</div>")
 			popup.set_content(dat)
@@ -503,7 +503,7 @@
 			#define MAX_BOTTLE_SPRITE 4 //max icon state of the bottle sprites
 			var/dat = "<table>"
 			for(var/i = 1 to MAX_BOTTLE_SPRITE)
-				dat += "<tr><td><a href=\"?src=\ref[src]&bottle_sprite=[i]\"><img src=\"bottle-[i].png\" /></a></td></tr>"
+				dat += "<tr><td><a href=\"?src=\ref[src]&bottle_sprite=[i]\">Select</a><img src=\"bottle-[i].png\" /><br></td></tr>"
 			dat += "</table>"
 			var/datum/browser/popup = new(user, "chem_master", "<div align='center'>Change Bottle</div>")
 			popup.set_content(dat)
@@ -514,7 +514,7 @@
 			#define MAX_AUTOINJECTOR_SPRITE 11 //max icon state of the autoinjector sprites
 			var/dat = "<table>"
 			for(var/i = 1 to MAX_AUTOINJECTOR_SPRITE)
-				dat += "<tr><td><a href=\"?src=\ref[src]&autoinjector_sprite=[i]\"><img src=\"autoinjector-[i].png\" /></a></td></tr>"
+				dat += "<tr><td><a href=\"?src=\ref[src]&autoinjector_sprite=[i]\">Select</a><img src=\"autoinjector-[i].png\" /><br></td></tr>"
 			dat += "</table>"
 			var/datum/browser/popup = new(user, "chem_master", "<div align='center'>Change Autoinjector</div>")
 			popup.set_content(dat)
@@ -588,11 +588,11 @@
 		else
 			dat += "Empty<BR>"
 		if(!condi)
-			dat += "<HR><BR><A href='?src=\ref[src];createpillbottle=1'>Load pill bottle</A><a href=\"?src=\ref[src]&change_pill_bottle=1\"><img src=\"pill_canister[pillbottlesprite].png\" /></a><BR>"
-			dat += "<A href='?src=\ref[src];createpill=1'>Create pill (15 units max)</A><a href=\"?src=\ref[src]&change_pill=1\"><img src=\"pill[pillsprite].png\" /></a><BR>"
+			dat += "<HR><BR><A href='?src=\ref[src];createpillbottle=1'>Load pill bottle</A><a href=\"?src=\ref[src]&change_pill_bottle=1\">Change</a><img src=\"pill_canister[pillbottlesprite].png\" /><BR>"
+			dat += "<A href='?src=\ref[src];createpill=1'>Create pill (15 units max)</A><a href=\"?src=\ref[src]&change_pill=1\">Change</a><img src=\"pill[pillsprite].png\" /><BR>"
 			dat += "<A href='?src=\ref[src];createpill_multiple=1'>Create multiple pills</A><BR>"
-			dat += "<A href='?src=\ref[src];createbottle=1'>Create bottle (60 units max)<a href=\"?src=\ref[src]&change_bottle=1\"><img src=\"bottle-[bottlesprite].png\" /></A><BR>"
-			dat += "<A href='?src=\ref[src];createautoinjector=1'>Create autoinjector (30 units max)<a href=\"?src=\ref[src]&change_autoinjector=1\"><img src=\"autoinjector-[autoinjectorsprite].png\" /></A>"
+			dat += "<A href='?src=\ref[src];createbottle=1'>Create bottle (60 units max)<a href=\"?src=\ref[src]&change_bottle=1\">Change</A><img src=\"bottle-[bottlesprite].png\" /><BR>"
+			dat += "<A href='?src=\ref[src];createautoinjector=1'>Create autoinjector (30 units max)<a href=\"?src=\ref[src]&change_autoinjector=1\">Change</A><img src=\"autoinjector-[autoinjectorsprite].png\" />"
 		else
 			dat += "<A href='?src=\ref[src];createbottle=1'>Create bottle (50 units max)</A>"
 
@@ -852,9 +852,10 @@
 		dat += "<BR><A href='?src=\ref[src];eject=1'>Eject beaker</A>[((beaker.reagents.total_volume && beaker.reagents.reagent_list.len) ? "-- <A href='?src=\ref[src];empty_beaker=1'>Empty beaker</A>":"")]<BR>"
 		dat += "<A href='?src=\ref[user];mach_close=pandemic'>Close</A>"
 
-	user << browse("<TITLE>[src.name]</TITLE><BR>[dat]", "window=pandemic;size=575x400")
+	var/datum/browser/popup = new(user, "pandemic", "<div align='center'>[name]</div>", 575, 400)
+	popup.set_content(dat)
+	popup.open(FALSE)
 	onclose(user, "pandemic")
-	return
 
 
 /obj/machinery/computer/pandemic/attackby(obj/item/I, mob/living/user)
@@ -1039,9 +1040,11 @@
 			dat += "<A href='?src=\ref[src];action=detach'>Detach the beaker</a><BR>"
 	else
 		dat += "Please wait..."
-	user << browse("<HEAD><TITLE>All-In-One Grinder</TITLE></HEAD><TT>[dat]</TT>", "window=reagentgrinder")
+
+	var/datum/browser/popup = new(user, "reagentgrinder", "<div align='center'>All-In-One Grinder</div>")
+	popup.set_content(dat)
+	popup.open(FALSE)
 	onclose(user, "reagentgrinder")
-	return
 
 
 /obj/machinery/reagentgrinder/Topic(href, href_list)

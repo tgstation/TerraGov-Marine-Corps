@@ -330,15 +330,7 @@
 	if(EvacuationAuthority.evac_status == EVACUATION_STATUS_INITIATING)
 		dat += "<B>Evacuation in Progress</B>\n<BR>\nETA: [EvacuationAuthority.get_status_panel_eta()]<BR>"
 
-/*
-	if(issilicon(user))
-		var/dat2 = interact_ai(user) // give the AI a different interact proc to limit its access
-		if(dat2)
-			dat +=  dat2
-			user << browse(dat, "window=communications;size=400x500")
-			onclose(user, "communications")
-		return FALSE
-*/
+
 	switch(state)
 		if(STATE_DEFAULT)
 			if(authenticated)

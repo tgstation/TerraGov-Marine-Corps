@@ -68,9 +68,11 @@
 
 	dat += "</b></center>"
 
-	user << browse(dat, "window=arcade")
+	var/datum/browser/popup = new(user, "arcade", "<div align='center'>Arcade</div>")
+	popup.set_content(dat)
+	popup.open(FALSE)
 	onclose(user, "arcade")
-	return
+
 
 /obj/machinery/computer/arcade/Topic(href, href_list)
 	if(..())

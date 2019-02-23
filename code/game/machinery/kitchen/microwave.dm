@@ -208,9 +208,10 @@
 <A href='?src=\ref[src];action=dispose'>Eject ingredients!<BR>\
 "}
 
-	user << browse("<HEAD><TITLE>Microwave Controls</TITLE></HEAD><TT>[dat]</TT>", "window=microwave")
+	var/datum/browser/popup = new(user, "microwave", "<div align='center'>Microwave Controls</div>")
+	popup.set_content(dat)
+	popup.open(FALSE)
 	onclose(user, "microwave")
-	return
 
 
 

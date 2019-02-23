@@ -125,7 +125,6 @@
 
 				observer.timeofdeath = world.time
 
-				client.prefs.update_preview_icon()
 				observer.alpha = 127
 
 				var/datum/species/species = GLOB.all_species[client.prefs.species] || GLOB.all_species[DEFAULT_SPECIES]

@@ -321,7 +321,7 @@ var/list/mechtoys = list(
 	popup.set_content(dat)
 	popup.open(FALSE)
 	onclose(user, "computer")
-	return
+
 
 /obj/machinery/computer/ordercomp/Topic(href, href_list)
 	if(..())
@@ -438,7 +438,6 @@ var/list/mechtoys = list(
 	else
 		var/datum/shuttle/ferry/supply/shuttle = supply_controller.shuttle
 		if (shuttle)
-			dat += "<BR><B>Automated Storage and Retrieval System</B><HR>"
 			dat += "\nPlatform position: "
 			if (shuttle.has_arrive_time())
 				dat += "Moving<BR>"
@@ -478,9 +477,11 @@ var/list/mechtoys = list(
 		\n<A href='?src=\ref[user];mach_close=computer'>Close</A>"}
 
 
-	user << browse(dat, "window=computer;size=575x450")
+	var/datum/browser/popup = new(user, "computer", "<div align='center'>Automated Storage and Retrieval System</div>", 575, 450)
+	popup.set_content(dat)
+	popup.open(FALSE)
 	onclose(user, "computer")
-	return
+
 
 /obj/machinery/computer/supplycomp/attackby(I as obj, user as mob)
 	if(istype(I,/obj/item/card/emag) && !hacked)
