@@ -11,8 +11,14 @@
 	var/mob/living/silicon/ai/ai = list()
 	var/last_tick //used to delay the powercheck
 
-/obj/item/device/radio/intercom/New()
-	..()
+/obj/item/device/radio/intercom/Initialize()
+	. = ..()
+	switch(dir)
+		if(NORTH)
+			pixel_y = 30
+		if(EAST)
+			pixel_x = 30
+
 	START_PROCESSING(SSobj, src)
 
 /obj/item/device/radio/intercom/Destroy()
@@ -73,3 +79,11 @@
 			icon_state = "intercom-p"
 		else
 			icon_state = "intercom"
+
+/obj/item/device/radio/intercom/general
+	name = "General Listening Channel"
+	anyai = TRUE
+	freerange = 1
+
+/obj/item/device/radio/intercom/general/colony
+	frequency = CIV_GEN_FREQ

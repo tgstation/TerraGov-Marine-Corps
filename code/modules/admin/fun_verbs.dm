@@ -136,7 +136,7 @@
 		if(!ai_system.Announce(input))
 			return
 	else
-		command_announcement.Announce(input, MAIN_AI_SYSTEM, new_sound = 'sound/misc/notice2.ogg')
+		command_announcement.Announce(input, MAIN_AI_SYSTEM, new_sound = 'sound/misc/interference.ogg')
 
 	if(alert(usr, "Do you want to print out a paper at the communications consoles?",, "Yes", "No") == "Yes")
 		for(var/obj/machinery/computer/communications/C in GLOB.machines)
@@ -534,8 +534,7 @@
 	if(alert(usr, "Would you like to announce the distress beacon to the server population? This will reveal the distress beacon to all players.", "Announce distress beacon?", "Yes", "No") != "Yes")
 		is_announcing = FALSE
 
-	if(!SSticker.mode.picked_call.activate(is_announcing))
-		return
+	SSticker.mode.picked_call.activate(is_announcing)
 
 	log_admin("[key_name(usr)] called a [choice == "Randomize" ? "randomized ":""]distress beacon: [SSticker.mode.picked_call.name]. Min: [min], Max: [max].")
 	message_admins("[ADMIN_TPMONTY(usr)] called a [choice == "Randomize" ? "randomized ":""]distress beacon: [SSticker.mode.picked_call.name] Min: [min], Max: [max].")
@@ -742,6 +741,7 @@
 			var/obj/item/card/id/I = new id
 			var/datum/skills/L = new J.skills_type
 			H.mind.cm_skills = L
+			H.mind.comm_title = J.comm_title
 
 			if(H.wear_id)
 				qdel(H.wear_id)
@@ -762,8 +762,13 @@
 			if(!istype(I))
 				H.wear_id = new /obj/item/card/id(H)
 			switch(input("What do you want to edit?") as null|anything in list("Comms Title - \[Engineering (Title)]", "Chat Title - Title John Doe screams!", "ID title - Jane Doe's ID Card (Title)", "Registered Name - Jane Doe's ID Card", "Skills"))
+				if("Comms Title - \[Engineering (Title)]")
+					var/commtitle = input("Write the custom title appearing in the comms: Comms Title - \[Engineering (Title)]", "Comms Title") as null|text
+					if(!commtitle || !H?.mind)
+						return
+					H.mind.comm_title = commtitle
 				if("Chat Title - Title John Doe screams!")
-					var/chattitle = input("Write the custom title appearing in all chats: Title Jane Doe screams!", "Chat title") as null|text
+					var/chattitle = input("Write the custom title appearing in all chats: Title Jane Doe screams!", "Chat Title") as null|text
 					if(chattitle || !H)
 						return
 					if(!istype(I) || I != H.wear_id)
@@ -771,7 +776,7 @@
 					I.paygrade = chattitle
 					I.update_label()
 				if("ID title - Jane Doe's ID Card (Title)")
-					var/idtitle = input("Write the custom title appearing on the ID itself: Jane Doe's ID Card (Title)", "ID title") as null|text
+					var/idtitle = input("Write the custom title appearing on the ID itself: Jane Doe's ID Card (Title)", "ID Title") as null|text
 					if(!H || I != H.wear_id)
 						return
 					if(!istype(I) || I != H.wear_id)
@@ -850,7 +855,7 @@
 	H.delete_equipment(TRUE)
 	if(dresscode != "-- Naked")
 		O = dresscode
-		H.equipOutfit(dresscode)
+		H.equipOutfit(dresscode, TRUE)
 
 	H.regenerate_icons()
 

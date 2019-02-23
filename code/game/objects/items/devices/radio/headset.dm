@@ -328,6 +328,9 @@
 	return
 
 /obj/item/device/radio/headset/almayer/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if(usr.is_mob_incapacitated() || usr != wearer || !ishuman(usr))
 		return
 	if(usr.contents.Find(src) )

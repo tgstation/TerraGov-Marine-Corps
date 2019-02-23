@@ -264,6 +264,7 @@
 #define WEIGHT_CLASS_GIGANTIC 6 //Essentially means it cannot be picked up or placed in an inventory, ex: Mech Parts, Safe
 
 #define SLOT_EQUIP_ORDER list(\
+	SLOT_IN_HEAD,\
 	SLOT_IN_HOLSTER,\
 	SLOT_IN_S_HOLSTER,\
 	SLOT_IN_B_HOLSTER,\
@@ -289,8 +290,7 @@
 	SLOT_IN_ACCESSORY,\
 	SLOT_IN_SUIT,\
 	SLOT_IN_BACKPACK,\
-	SLOT_IN_BELT,\
-	SLOT_IN_HEAD\
+	SLOT_IN_BELT\
 	)
 
 #define SLOT_DRAW_ORDER list(\

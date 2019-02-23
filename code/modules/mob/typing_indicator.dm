@@ -11,7 +11,7 @@ var/global/image/typing_indicator = image('icons/mob/talk.dmi', null, "typing")
 	if(!typing_indicator)
 		return
 
-	if(!(client?.prefs?.toggles_chat & SHOW_TYPING))
+	if(!(client?.prefs?.show_typing))
 		overlays -= typing_indicator
 		return
 
@@ -57,10 +57,10 @@ var/global/image/typing_indicator = image('icons/mob/talk.dmi', null, "typing")
 	set category = "Preferences"
 	set desc = "Toggles showing an indicator when you are typing emote or say message."
 
-	prefs.toggles_chat ^= SHOW_TYPING
+	prefs.show_typing = !prefs.show_typing
 	prefs.save_preferences()
-	to_chat(src, "You will [(prefs.toggles_chat & SHOW_TYPING) ? "now" : "no longer"] display a typing indicator.")
+	to_chat(src, "You will [prefs.show_typing ? "now" : "no longer"] display a typing indicator.")
 
 	//Clear out any existing typing indicator.
-	if(!(prefs.toggles_chat & SHOW_TYPING) && istype(mob))
+	if(!prefs.show_typing && istype(mob))
 		mob.toggle_typing_indicator()

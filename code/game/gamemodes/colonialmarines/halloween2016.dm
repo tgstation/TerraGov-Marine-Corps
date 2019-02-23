@@ -229,21 +229,26 @@
 //Checks to see who won///
 //////////////////////////
 /datum/game_mode/colonialmarines_halloween_2016/check_win()
-	var/living_player_list[] = count_marines_and_pmcs()
+	var/living_player_list[] = count_humans_and_xenos()
 	var/num_marines = living_player_list[1]
-	var/num_pmcs = living_player_list[2]
 
-	if(!num_marines && num_pmcs)
-		if(mcguffin && mcguffin.loc) round_finished 											= MODE_BATTLEFIELD_NT_MAJOR
-		else round_finished 																	= MODE_BATTLEFIELD_NT_MINOR
-	else if(num_marines && !num_pmcs)
-		if(!mcguffin || !mcguffin.loc) round_finished 											= MODE_BATTLEFIELD_M_MAJOR
-		else round_finished 																	= MODE_BATTLEFIELD_M_MINOR
-	else if(!num_marines && !num_pmcs)	round_finished  										= MODE_BATTLEFIELD_DRAW_DEATH
+	if(!num_marines)
+		if(mcguffin && mcguffin.loc)
+			round_finished = MODE_BATTLEFIELD_NT_MAJOR
+		else 
+			round_finished = MODE_BATTLEFIELD_NT_MINOR
+	else if(num_marines)
+		if(!mcguffin || !mcguffin.loc) 
+			round_finished = MODE_BATTLEFIELD_M_MAJOR
+		else 
+			round_finished = MODE_BATTLEFIELD_M_MINOR
 	else if((world.time > BATTLEFIELD_END + lobby_time))
-		if(mcguffin && mcguffin.loc) round_finished												= MODE_BATTLEFIELD_NT_MAJOR
-		else round_finished 																	= MODE_BATTLEFIELD_DRAW_STALEMATE
-	else if(EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED) round_finished 			= MODE_GENERIC_DRAW_NUKE
+		if(mcguffin && mcguffin.loc)
+			round_finished = MODE_BATTLEFIELD_NT_MAJOR
+		else 
+			round_finished = MODE_BATTLEFIELD_DRAW_STALEMATE
+	else if(EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED) 
+		round_finished = MODE_GENERIC_DRAW_NUKE
 
 ///////////////////////////////
 //Checks if the round is over//
@@ -354,7 +359,7 @@
 	icon_state = "omega_array_l"
 
 /obj/effect/step_trigger/jason/Trigger(mob/living/M)
-	if(istype(M) && M.stat != DEAD && (!M.mind || !M.mind.special_role || M.mind.special_role == "PMC"))
+	if(istype(M) && M.stat != DEAD)
 		if(SSticker?.mode && SSticker.mode.type == /datum/game_mode/colonialmarines_halloween_2016)
 			var/datum/game_mode/colonialmarines_halloween_2016/T = SSticker.mode
 			if("Jason" in T.special_spawns) //We do not want to trigger multiple instances of this.
@@ -430,7 +435,6 @@
 	switch(given_role) //These guys are assigned outside of everyone else.
 		if("Corporate Liaison") //Lead the way, corporate drone!
 			if(H.wear_id) ID.access = get_antagonist_pmc_access()//They should have one of these.
-			H.mind.special_role = "PMC"
 			H.loc = pick(pmc_spawns)
 			spawn(40)
 				if(H)
@@ -885,7 +889,7 @@
 	switch(shuffle1)
 		if(1 to 10)
 			for(var/mob/M in GLOB.player_list)
-				if(prob(23) && M.stat != DEAD && ishuman(M) && !isyautja(M) && M.mind && (!M.mind.special_role || M.mind.special_role == "PMC"))
+				if(prob(23) && M.stat != DEAD && ishuman(M) && !isyautja(M) && M.mind)
 					switch(shuffle2)
 						if(1 to 11)
 							var/phrases[] = list( //The edgiest lyrics in the universe.
@@ -1015,7 +1019,6 @@
 			H.set_species("Horror")
 			H.dna.ready_dna(H)
 			H.mind_initialize()
-			H.mind.special_role = "MODE"
 			H.mind.assigned_role = "Horror"
 			H.sdisabilities |= MUTE //We don't want them chatting up people.
 			H.dna.SetSEState(XRAYBLOCK, 1)
@@ -1130,7 +1133,6 @@
 			H.equip_to_slot_or_del(new /obj/item/device/flashlight/(H), SLOT_R_STORE)
 			H.set_species("Human Hero")
 			H.mind_initialize()
-			H.mind.special_role = "MODE"
 			H.mind.assigned_role = "Action Hero"
 			H.dna.ready_dna(H)
 			switch(shuffle2) //Have to do this after DNA.

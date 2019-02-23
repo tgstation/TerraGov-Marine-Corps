@@ -1129,7 +1129,7 @@
 /obj/item/reagent_container/food/snacks/meatsteak
 	name = "Meat steak"
 	desc = "A piece of hot spicy meat."
-	icon_state = "meatstake"
+	icon_state = "meatsteak"
 	trash = /obj/item/trash/plate
 	filling_color = "#7A3D11"
 	list_reagents = list("nutriment" = 4, "sodiumchloride" = 1, "blackpepper" = 1)
@@ -2152,7 +2152,7 @@
 /obj/item/reagent_container/food/snacks/sliceable/pizza/margherita
 	name = "Margherita"
 	desc = "The golden standard of pizzas."
-	icon_state = "pizzamargherita"
+	icon_state = "margheritapizza"
 	slice_path = /obj/item/reagent_container/food/snacks/margheritaslice
 	list_reagents = list("nutriment" = 40, "tomatojuice" = 6)
 	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1)
@@ -2160,7 +2160,7 @@
 /obj/item/reagent_container/food/snacks/margheritaslice
 	name = "Margherita slice"
 	desc = "A slice of the classic pizza."
-	icon_state = "pizzamargheritaslice"
+	icon_state = "margheritapizzaslice"
 	filling_color = "#BAA14C"
 	bitesize = 2
 	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1)
@@ -2784,15 +2784,15 @@
 	flavor = newflavor
 
 	switch(newflavor)
-		if("boneless pork ribs", "grilled chicken", "pizza square", "spaghetti", "chicken tenders", "red crayon")
+		if("boneless pork ribs", "grilled chicken", "pizza square", "spaghetti", "chicken tenders")
 			icon_state = "entree"
 			list_reagents = list("nutriment" = 5, "sodiumchloride" = 1)
-		if("meatballs", "cheese spread", "beef turnover", "mashed potatoes", "yellow crayon" )
+		if("meatballs", "cheese spread", "beef turnover", "mashed potatoes")
 			icon_state = "side"
 			list_reagents = list("nutriment" = 3, "sodiumchloride" = 1)
-		if("biscuit", "pretzels", "peanuts", "cracker", "purple crayon")
+		if("biscuit", "pretzels", "peanuts", "cracker")
 			icon_state = "snack"
 			list_reagents = list("nutriment" = 2, "sodiumchloride" = 1)
-		if("spiced apples", "chocolate brownie", "sugar cookie", "choco bar", "blue crayon")
+		if("spiced apples", "chocolate brownie", "sugar cookie", "choco bar", "crayon")
 			icon_state = "dessert"
 			list_reagents = list("nutriment" = 2, "sugar" = 1)

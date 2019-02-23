@@ -33,6 +33,11 @@
 	armor = list(melee = 80, bullet = 60, laser = 50, energy = 25, bomb = 50, bio = 10, rad = 0)
 	siemens_coefficient = 0.5
 
+/obj/item/clothing/head/helmet/augment/alien
+	name = "alien mask"
+	desc = "Part of a strange alien mask. It loosely fits on a human, but just barely."
+	unacidable = 1
+
 /obj/item/clothing/head/helmet/HoS
 	name = "Head of Security Hat"
 	desc = "The hat of the Head of Security. For showing the officers who's in charge."

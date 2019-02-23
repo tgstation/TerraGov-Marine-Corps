@@ -182,6 +182,13 @@
 		to_chat(src, "<span class='warning'>You quiver, but nothing happens. Hold still while evolving.</span>")
 		return
 
+	if(tier == 1 && ((tierB + tierC) / max(totalXenos, 1))> 0.5)
+		to_chat(src, "<span class='warning'>Another sister evolved meanwhile. The hive cannot support another Tier 2.</span>")
+		return
+	else if(tier == 2 && (tierC / max(totalXenos, 1))> 0.25)
+		to_chat(src, "<span class='warning'>Another sister evolved meanwhile. The hive cannot support another Tier 3.</span>")
+		return
+
 	if(!isturf(loc)) //cdel'd or moved into something
 		return
 	if(new_caste_type == /mob/living/carbon/Xenomorph/Queen && hive.living_xeno_queen) //Do another check after the tick.
@@ -232,7 +239,7 @@
 
 	round_statistics.total_xenos_created-- //so an evolved xeno doesn't count as two.
 
-	if(queen_chosen_lead && new_caste_type == /mob/living/carbon/Xenomorph/Queen) // xeno leader is removed by Destroy()
+	if(queen_chosen_lead && new_caste_type != /mob/living/carbon/Xenomorph/Queen) // xeno leader is removed by Destroy()
 		new_xeno.queen_chosen_lead = TRUE
 		hive.xeno_leader_list += new_xeno
 		new_xeno.hud_set_queen_overwatch()

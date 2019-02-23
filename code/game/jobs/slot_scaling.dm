@@ -1,11 +1,3 @@
-
-/proc/get_total_marines()
-	var/count = 0
-	var/mob/M
-	for(M in GLOB.player_list)
-		if(ishuman(M) && M.mind && !M.mind.special_role) count++
-	return count
-
 // https://docs.google.com/spreadsheets/d/1PlnIwKhq-bVWWFPoBrzWYh1mWK04pyBSQUtUMEw3qSw/edit#gid=1290768907
 
 /proc/job_slot_formula(var/marine_count,var/factor,var/c,var/min,var/max)
