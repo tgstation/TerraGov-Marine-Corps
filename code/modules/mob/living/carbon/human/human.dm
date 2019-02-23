@@ -1496,6 +1496,7 @@
 	if(!client)
 		return
 	if(stat == DEAD)
+		playsound(src.loc, pick('sound/voice/death.ogg','sound/voice/death1.ogg','sound/voice/death2.ogg','sound/voice/death3.ogg','sound/voice/death4.ogg','sound/voice/death5.ogg','sound/voice/death6.ogg'), 15,0)
 		sight = (SEE_TURFS|SEE_MOBS|SEE_OBJS)
 		see_in_dark = 8
 		see_invisible = SEE_INVISIBLE_LEVEL_TWO
