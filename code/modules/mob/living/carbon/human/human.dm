@@ -1513,8 +1513,6 @@
 			FL.turn_off(src)
 	if(misc)
 		for(var/obj/item/clothing/head/hardhat/H in contents)
-			if(istype(H, /obj/item/clothing/head/hardhat))
-				continue
 			if(H.turn_off_light(src))
 				light_off++
 		for(var/obj/item/device/flashlight/L in contents)
