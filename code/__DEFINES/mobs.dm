@@ -526,6 +526,9 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define CRUSHER_CRESTTOSS_COOLDOWN		6 SECONDS
 #define CRUSHER_STOMP_COST				80
 #define CRUSHER_STOMP_COOLDOWN 			20 SECONDS
+#define CRUSHER_CHARGE_BARRICADE_MULTI	60
+#define CRUSHER_CHARGE_RAZORWIRE_MULTI	100
+
 
 //carrier defines
 

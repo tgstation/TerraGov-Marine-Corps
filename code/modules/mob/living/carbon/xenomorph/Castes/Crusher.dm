@@ -249,13 +249,13 @@
 	if(istype(target, /obj/structure/razorwire))
 		var/obj/structure/razorwire/B = target
 		if(charge_speed >= charge_speed_max) //plows right through
-			flags_pass = 0
+			flags_pass = TRUE
 			update_icons()
 			return TRUE
 		else if(charge_speed > charge_speed_buildup * charge_turfs_to_charge)
 			visible_message("<span class='danger'>[src] rams into [B] and skids to a halt!</span>",
 			"<span class='xenowarning'>You ram into [B] and skid to a halt!</span>")
-			flags_pass = 0
+			flags_pass = FALSE
 			update_icons()
 			return TRUE
 		else

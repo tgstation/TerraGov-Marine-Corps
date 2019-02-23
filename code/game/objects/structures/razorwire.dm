@@ -225,14 +225,15 @@
 		if(C.charge_speed < C.charge_speed_max * 0.5)
 			return
 
-		health -= 200 * round(C.charge_speed / max(1, C.charge_speed_max),0.01)
+		health -= C.charge_speed * CRUSHER_CHARGE_RAZORWIRE_MULTI
 		update_health()
 
 		var/def_zone = ran_zone()
 		if(C.charge_speed >= C.charge_speed_max)
 			C.visible_message("<span class='danger'>[C] plows through the barbed wire!</span>",
 			"<span class='danger'>You plow through the barbed wire!</span>", null, 5)
-		else //If we didn't destroy the barbed wire, we get tangled up.
+
+		else if(src && health > 0) //If we didn't destroy the barbed wire, we get tangled up.
 			C.stop_momentum(C.charge_dir)
 			razorwire_tangle(C, RAZORWIRE_ENTANGLE_DELAY * 0.5) //entangled for only half as long
 
