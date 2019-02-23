@@ -99,7 +99,7 @@
 /datum/codex_entry/scalpel
 	associated_paths = list(/obj/item/tool/surgery/scalpel)
 	mechanics_text = "This is the tool for preparing incisions if you do not have access to an Incision Management System. <br>\
-	This can be done as the first step in the chain of Scalpel > Hemostat > Retractor.
+	This can be done as the first step in the chain of Scalpel > Hemostat > Retractor. \
 	This tool is also used to remove Necrotic tissue as step one in a chain of Scalpel > Advanced Trauma Kit."
 
 /datum/codex_entry/circular_saw
@@ -107,7 +107,7 @@
 	mechanics_text = "This is the tool for cutting through bone. This is important for working on internal organs in the chest or head. <br>\
 	Open the ribcage or skull by targeting the chest or head as appropriate and following this three step chain of Incision Management System > Circular Saw > Retractor. <br><br>\
 	This can also be used in the amputation surgery by targeting a limb (but not the head), on help intent and then applying the Circular Saw. <br><br>\
-	You do not need to remove the entire limb for replacement if the patient is only missing a hand or foot. Perform the limb replacement surgery as normal 
+	You do not need to remove the entire limb for replacement if the patient is only missing a hand or foot. Perform the limb replacement surgery as normal \
 	but target the hand or foot as appropriate."
 
 /datum/codex_entry/bone_gel
