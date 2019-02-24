@@ -47,7 +47,7 @@
 	M.dna.mutantrace = mutantrace
 	M.real_name = name
 	M.death(1) //Kills the new mob
-	M.timeofdeath = 0
+	M.status_flags |= NO_REANIMATE
 	if(corpseuniform)
 		M.equip_to_slot_or_del(new corpseuniform(M), SLOT_W_UNIFORM)
 	if(corpsesuit)
