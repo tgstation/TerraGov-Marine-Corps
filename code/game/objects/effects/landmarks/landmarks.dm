@@ -60,13 +60,6 @@
 	GLOB.newplayer_start += loc
 	return
 
-/obj/effect/landmark/map_tag
-	name = "mapping tag"
-
-/obj/effect/landmark/map_tag/Initialize()
-	GLOB.map_tag = name
-	return INITIALIZE_HINT_QDEL
-
 /obj/effect/landmark/start/latejoin/Initialize()
 	GLOB.latejoin += loc
 	return INITIALIZE_HINT_QDEL
