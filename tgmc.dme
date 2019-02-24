@@ -120,7 +120,6 @@
 #include "code\controllers\hooks.dm"
 #include "code\controllers\lighting_controller.dm"
 #include "code\controllers\shuttle_controller.dm"
-#include "code\controllers\voting.dm"
 #include "code\controllers\configuration\config_entry.dm"
 #include "code\controllers\configuration\configuration.dm"
 #include "code\controllers\configuration\entries\combat_defines.dm"
