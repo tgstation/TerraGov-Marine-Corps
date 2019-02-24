@@ -9,7 +9,7 @@
 	icon = 'icons/obj/device.dmi'
 	icon_state = "pinonfar"
 
-	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+//	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	anchored = TRUE
 //
 	var/id
@@ -170,9 +170,9 @@
 	if(name == "dock")
 		name = "dock[SSshuttle.stationary.len]"
 
-	if(mapload)
-		for(var/turf/T in return_turfs())
-			T.flags_1 |= NO_RUINS_1
+//	if(mapload)
+//		for(var/turf/T in return_turfs())
+//			T.flags_1 |= NO_RUINS_1
 
 	#ifdef DOCKING_PORT_HIGHLIGHT
 	highlight("#f00")
@@ -371,7 +371,7 @@
 //call the shuttle to destination S
 /obj/docking_port/mobile/proc/request(obj/docking_port/stationary/S)
 	if(!check_dock(S))
-		testing("check_dock failed on request for [src]")
+		WARNING("check_dock failed on request for [src]")
 		return
 
 	if(mode == SHUTTLE_IGNITING && destination == S)
@@ -467,20 +467,20 @@
 		var/turf/T = t
 		for(var/mob/living/M in T.GetAllContents())
 			// If they have a mind and they're not in the brig, they escaped
-			if(M.mind && !istype(t, /turf/open/floor/plasteel/shuttle/red) && !istype(t, /turf/open/floor/mineral/plastitanium/red/brig))
-				M.mind.force_escaped = TRUE
+//			if(M.mind && !istype(t, /turf/open/floor/plasteel/shuttle/red) && !istype(t, /turf/open/floor/mineral/plastitanium/red/brig))
+//				M.mind.force_escaped = TRUE
 			// Ghostize them and put them in nullspace stasis (for stat & possession checks)
 			M.notransform = TRUE
 			M.ghostize(FALSE)
-			M.moveToNullspace()
+//			M.moveToNullspace()
 
 	// Now that mobs are stowed, delete the shuttle
 	jumpToNullSpace()
 
-/obj/docking_port/mobile/proc/create_ripples(obj/docking_port/stationary/S1, animate_time)
-	var/list/turfs = ripple_area(S1)
-	for(var/t in turfs)
-		ripples += new /obj/effect/abstract/ripple(t, animate_time)
+///obj/docking_port/mobile/proc/create_ripples(obj/docking_port/stationary/S1, animate_time)
+//	var/list/turfs = ripple_area(S1)
+//	for(var/t in turfs)
+//		ripples += new /obj/effect/abstract/ripple(t, animate_time)
 
 /obj/docking_port/mobile/proc/remove_ripples()
 	QDEL_LIST(ripples)
@@ -504,9 +504,9 @@
 
 	return ripple_turfs
 
-/obj/docking_port/mobile/proc/check_poddoors()
-	for(var/obj/machinery/door/poddoor/shuttledock/pod in GLOB.airlocks)
-		pod.check()
+///obj/docking_port/mobile/proc/check_poddoors()
+//	for(var/obj/machinery/door/poddoor/shuttledock/pod in GLOB.airlocks)
+//		pod.check()
 
 /obj/docking_port/mobile/proc/dock_id(id)
 	var/port = SSshuttle.getDock(id)
@@ -564,25 +564,25 @@
 	destination = null
 
 /obj/docking_port/mobile/proc/check_effects()
-	if(!ripples.len)
-		if((mode == SHUTTLE_CALL) || (mode == SHUTTLE_RECALL))
-			var/tl = timeLeft(1)
-			if(tl <= SHUTTLE_RIPPLE_TIME)
-				create_ripples(destination, tl)
+//	if(!ripples.len)
+//		if((mode == SHUTTLE_CALL) || (mode == SHUTTLE_RECALL))
+//			var/tl = timeLeft(1)
+//			if(tl <= SHUTTLE_RIPPLE_TIME)
+//				create_ripples(destination, tl)
 
-	var/obj/docking_port/stationary/S0 = get_docked()
-	if(istype(S0, /obj/docking_port/stationary/transit) && timeLeft(1) <= PARALLAX_LOOP_TIME)
-		for(var/place in shuttle_areas)
-			var/area/shuttle/shuttle_area = place
-			if(shuttle_area.parallax_movedir)
-				parallax_slowdown()
+	//var/obj/docking_port/stationary/S0 = get_docked()
+	//if(istype(S0, /obj/docking_port/stationary/transit) && timeLeft(1) <= PARALLAX_LOOP_TIME)
+		//for(var/place in shuttle_areas)
+			//var/area/shuttle/shuttle_area = place
+			//if(shuttle_area.parallax_movedir)
+			//	parallax_slowdown()
 
 /obj/docking_port/mobile/proc/parallax_slowdown()
-	for(var/place in shuttle_areas)
-		var/area/shuttle/shuttle_area = place
-		shuttle_area.parallax_movedir = FALSE
-	if(assigned_transit && assigned_transit.assigned_area)
-		assigned_transit.assigned_area.parallax_movedir = FALSE
+	//for(var/place in shuttle_areas)
+	//	var/area/shuttle/shuttle_area = place
+	//	shuttle_area.parallax_movedir = FALSE
+	//if(assigned_transit && assigned_transit.assigned_area)
+	//	assigned_transit.assigned_area.parallax_movedir = FALSE
 	var/list/L0 = return_ordered_turfs(x, y, z, dir)
 	for (var/thing in L0)
 		var/turf/T = thing
@@ -707,7 +707,7 @@
 			if(S.shuttleId == id)
 				return S
 	return null
-
+/*
 /obj/docking_port/mobile/proc/hyperspace_sound(phase, list/areas)
 	var/s
 	switch(phase)
@@ -722,7 +722,7 @@
 	for(var/A in areas)
 		for(var/obj/machinery/door/E in A)	//dumb, I know, but playing it on the engines doesn't do it justice
 			playsound(E, s, 100, FALSE, max(width, height) - world.view)
-
+*/
 // Losing all initial engines should get you 2
 // Adding another set of engines at 0.5 time
 /obj/docking_port/mobile/proc/alter_engines(mod)
@@ -737,11 +737,11 @@
 
 /obj/docking_port/mobile/proc/count_engines()
 	. = 0
-	for(var/thing in shuttle_areas)
-		var/area/shuttle/areaInstance = thing
-		for(var/obj/structure/shuttle/engine/E in areaInstance.contents)
-			if(!QDELETED(E))
-				. += E.engine_power
+//	for(var/thing in shuttle_areas)
+//		var/area/shuttle/areaInstance = thing
+//		for(var/obj/structure/shuttle/engine/E in areaInstance.contents)
+//			if(!QDELETED(E))
+//				. += E.engine_power
 
 // Double initial engines to get to 0.5 minimum
 // Lose all initial engines to get to 2

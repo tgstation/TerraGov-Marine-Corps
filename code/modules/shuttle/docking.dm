@@ -94,12 +94,12 @@
 		hidden_turfs = new_hidden_turfs
 	/****************************************************************************************************************/
 
-	check_poddoors()
+//	check_poddoors()
 	new_dock.last_dock_time = world.time
 	setDir(new_dock.dir)
 
 	// remove any stragglers just in case, and clear the list
-	remove_ripples()
+//	remove_ripples()
 	return DOCKING_SUCCESS
 
 /obj/docking_port/mobile/proc/preflight_check(list/old_turfs, list/new_turfs, list/areas_to_move, rotation)

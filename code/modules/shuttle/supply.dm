@@ -1,31 +1,9 @@
 GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		/mob/living,
-		/obj/structure/blob,
 		/obj/effect/rune,
-		/obj/structure/spider/spiderling,
 		/obj/item/disk/nuclear,
 		/obj/machinery/nuclearbomb,
-		/obj/item/beacon,
-		/obj/singularity/narsie,
-		/obj/singularity/wizard,
-		/obj/machinery/teleport/station,
-		/obj/machinery/teleport/hub,
-		/obj/machinery/quantumpad,
-		/obj/machinery/clonepod,
-		/obj/effect/mob_spawn,
-		/obj/effect/hierophant,
-		/obj/structure/receiving_pad,
-		/obj/effect/clockwork/spatial_gateway,
-		/obj/structure/destructible/clockwork/powered/clockwork_obelisk,
-		/obj/item/warp_cube,
-		/obj/machinery/rnd/production/protolathe, //print tracking beacons, send shuttle
-		/obj/machinery/autolathe, //same
-		/obj/item/projectile/beam/wormhole,
-		/obj/effect/portal,
-		/obj/item/shared_storage,
-		/obj/structure/extraction_point,
-		/obj/machinery/syndicatebomb,
-		/obj/item/hilbertshotel
+		/obj/effect/portal
 	)))
 
 /obj/docking_port/mobile/supply

@@ -1,9 +1,9 @@
 /obj/machinery/computer/shuttle
 	name = "shuttle console"
 	desc = "A shuttle control computer."
-	icon_screen = "shuttle"
-	icon_keyboard = "tech_key"
-	light_color = LIGHT_COLOR_CYAN
+//	icon_screen = "shuttle"
+//	icon_keyboard = "tech_key"
+//	light_color = LIGHT_COLOR_CYAN
 	req_access = list( )
 	var/shuttleId
 	var/possible_destinations = ""
@@ -39,7 +39,7 @@
 /obj/machinery/computer/shuttle/Topic(href, href_list)
 	if(..())
 		return
-	usr.set_machine(src)
+//	usr.set_machine(src)
 	src.add_fingerprint(usr)
 	if(!allowed(usr))
 		to_chat(usr, "<span class='danger'>Access denied.</span>")
@@ -56,19 +56,19 @@
 				return
 		switch(SSshuttle.moveShuttle(shuttleId, href_list["move"], 1))
 			if(0)
-				say("Shuttle departing. Please stand away from the doors.")
+				visible_message("Shuttle departing. Please stand away from the doors.")
 			if(1)
 				to_chat(usr, "<span class='warning'>Invalid shuttle requested.</span>")
 			else
 				to_chat(usr, "<span class='notice'>Unable to comply.</span>")
-
+/*
 /obj/machinery/computer/shuttle/emag_act(mob/user)
 	if(obj_flags & EMAGGED)
 		return
 	req_access = list()
 	obj_flags |= EMAGGED
 	to_chat(user, "<span class='notice'>You fried the consoles ID checking system.</span>")
-
+*/
 /obj/machinery/computer/shuttle/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
 	if(port && (shuttleId == initial(shuttleId) || override))
 		shuttleId = port.id
