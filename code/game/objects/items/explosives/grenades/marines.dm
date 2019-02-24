@@ -285,12 +285,7 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 		turn_on()
 
 /obj/item/explosive/grenade/flare/Destroy()
-	if(ismob(loc))
-		var/mob/U = loc
-		update_brightness(U)
-	else
-		update_brightness()
-	STOP_PROCESSING(SSobj, src)
+	turn_off()
 	. = ..()
 
 /obj/item/explosive/grenade/flare/process()

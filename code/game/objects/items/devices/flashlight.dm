@@ -222,6 +222,7 @@
 		STOP_PROCESSING(SSobj, src)
 
 /obj/item/device/flashlight/flare/proc/turn_off()
+	fuel = 0 //Flares are one way; if you turn them off, you're snuffing them out.
 	on = 0
 	heat_source = 0
 	force = initial(force)
