@@ -2483,9 +2483,6 @@
 /mob/proc/can_zombie()
 	return FALSE
 
-/mob/living/carbon/monkey/can_zombie()
-	return FALSE
-
 /mob/living/carbon/human/can_zombie()
 	if(stat == DEAD && !(status_flags & NO_REANIMATE) && world.time >= timeofdeath + CONFIG_GET(number/revive_grace_period))
 		return TRUE
