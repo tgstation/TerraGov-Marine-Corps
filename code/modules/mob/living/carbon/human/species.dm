@@ -780,7 +780,7 @@
 
 /obj/item/weapon/necromorph_claws/attack(mob/living/M, mob/living/carbon/human/user, def_zone)
 	if(user.species.count_human)
-		return 0
+		return FALSE
 	. = ..()
 	playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1, 5)
 
