@@ -1,0 +1,4 @@
+author: "LaKiller8"
+delete-after: True
+changes: 
+  - code_imp: "Map votes and changing along with pinging the New Round Alert role has now been automated."
