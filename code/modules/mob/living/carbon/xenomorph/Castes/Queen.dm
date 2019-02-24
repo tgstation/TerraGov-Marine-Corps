@@ -343,17 +343,6 @@
 	lastturf = null //Reset this so we can properly continue with momentum.
 	return TRUE
 
-//Chance of insta limb amputation after a melee attack.
-/mob/living/carbon/Xenomorph/Queen/proc/delimb(var/mob/living/carbon/human/H, var/datum/limb/O)
-	if (prob(20))
-		O = H.get_limb(check_zone(zone_selected))
-		if (O.body_part != CHEST && O.body_part != GROIN && O.body_part != HEAD) //Only limbs.
-			visible_message("<span class='danger'>The limb is sliced clean off!</span>","<span class='danger'>You slice off a limb!</span>")
-			O.droplimb()
-			return 1
-
-	return 0
-
 /mob/living/carbon/Xenomorph/Queen/proc/set_orders()
 	set category = "Alien"
 	set name = "Set Hive Orders (50)"

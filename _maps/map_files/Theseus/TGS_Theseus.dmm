@@ -42519,7 +42519,7 @@
 	},
 /area/shuttle/drop2/sulaco)
 "bLK" = (
-/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds2
+/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds2,
 /obj/machinery/door/poddoor/shutters/transit{
 	density = 0;
 	dir = 1;
@@ -42577,7 +42577,7 @@
 	},
 /area/shuttle/drop1/sulaco)
 "bLS" = (
-/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds1
+/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds1,
 /obj/machinery/door/poddoor/shutters/transit{
 	density = 0;
 	dir = 1;
