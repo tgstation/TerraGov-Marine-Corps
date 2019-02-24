@@ -6,11 +6,12 @@
 /turf/closed/wall/indestructible/mineral,
 /area/space)
 "aac" = (
-/obj/effect/landmark/map_tag{
-	name = "Solaris Ridge"
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 9
 	},
-/turf/closed/mineral/bigred,
-/area/bigredv2/caves)
+/turf/open/floor/plating,
+/turf/open/floor/plating/dmg2,
+/area/bigredv2/outside/space_port)
 "aad" = (
 /turf/closed/mineral/bigred,
 /area/bigredv2/caves)
@@ -1432,12 +1433,14 @@
 /turf/open/floor/plating,
 /area/bigredv2/caves/lambda_lab)
 "aeG" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 9
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
-/turf/open/floor/plating,
-/turf/open/floor/plating/dmg2,
-/area/bigredv2/outside/space_port)
+/turf/open/gm/river,
+/turf/open/floor/plating/catwalk,
+/area/bigredv2/outside/engineering)
 "aeH" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -21772,15 +21775,6 @@
 /obj/effect/decal/warning_stripes,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
-"bhF" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/open/gm/river,
-/turf/open/floor/plating/catwalk,
-/area/bigredv2/outside/engineering)
 "bhG" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -28790,7 +28784,7 @@ aaa
 (3,1,1) = {"
 aaa
 aab
-aac
+aad
 aad
 aad
 aad
@@ -38155,7 +38149,7 @@ aah
 aev
 afg
 afg
-aeG
+aac
 aae
 aoR
 aoR
@@ -43250,7 +43244,7 @@ btz
 btz
 btz
 btz
-bhF
+aeG
 btz
 btz
 btz
@@ -43467,7 +43461,7 @@ btz
 btz
 bhv
 btz
-bhF
+aeG
 btz
 bhv
 btz
@@ -43684,7 +43678,7 @@ btz
 btz
 btz
 btz
-bhF
+aeG
 btz
 btz
 btz
@@ -43901,7 +43895,7 @@ btz
 btz
 bhv
 btz
-bhF
+aeG
 btz
 bhv
 btz
@@ -44118,7 +44112,7 @@ blJ
 btz
 btz
 btz
-bhF
+aeG
 btz
 bvg
 btz
@@ -44335,7 +44329,7 @@ btq
 btz
 bhv
 btz
-bhF
+aeG
 btw
 blJ
 btw
@@ -45203,7 +45197,7 @@ btq
 btz
 bhv
 btz
-bhF
+aeG
 btw
 blJ
 btw
@@ -45420,7 +45414,7 @@ blJ
 btz
 btz
 btz
-bhF
+aeG
 btz
 bvj
 btz
@@ -45637,7 +45631,7 @@ btz
 btz
 bhv
 btz
-bhF
+aeG
 btz
 bhv
 btz
@@ -45854,7 +45848,7 @@ btz
 btz
 btz
 btz
-bhF
+aeG
 btz
 btz
 btz
@@ -46071,7 +46065,7 @@ btz
 btz
 bhv
 btz
-bhF
+aeG
 btz
 bhv
 btz
@@ -46288,7 +46282,7 @@ btz
 btz
 btz
 btz
-bhF
+aeG
 btz
 btz
 btz
@@ -60803,7 +60797,7 @@ aCV
 aCV
 aCV
 aYF
-ack
+aFt
 anj
 blH
 abr
@@ -66154,7 +66148,7 @@ ain
 afy
 ajo
 adZ
-aad
+azm
 adZ
 alL
 amJ
@@ -66371,7 +66365,7 @@ adZ
 adZ
 adZ
 adZ
-aad
+azm
 adZ
 alM
 amK
@@ -66585,10 +66579,10 @@ adZ
 agS
 ahE
 adZ
-aad
-aad
-aad
-aad
+azm
+azm
+azm
+azm
 adZ
 alN
 amL
@@ -66802,9 +66796,9 @@ adZ
 agT
 ahF
 adZ
-aad
-aad
-aad
+azm
+azm
+azm
 adZ
 adZ
 alO
@@ -66824,7 +66818,7 @@ ava
 avP
 awE
 adZ
-aad
+azm
 adZ
 azg
 aAi
@@ -67019,8 +67013,8 @@ agf
 agU
 ahG
 adZ
-aad
-aad
+azm
+azm
 adZ
 adZ
 ala
@@ -67041,7 +67035,7 @@ avb
 asu
 awF
 adZ
-aad
+azm
 adZ
 azh
 aAj
@@ -67236,8 +67230,8 @@ agf
 agV
 ahH
 adZ
-aad
-aad
+azm
+azm
 adZ
 aky
 alb
@@ -67258,7 +67252,7 @@ avc
 asu
 awF
 adZ
-aad
+azm
 adZ
 azi
 aAk
@@ -67453,8 +67447,8 @@ agg
 agW
 ahI
 adZ
-aad
-aad
+azm
+azm
 adZ
 akz
 alc
@@ -67475,7 +67469,7 @@ avd
 adZ
 adZ
 adZ
-aad
+azm
 adZ
 azj
 aAl
@@ -67670,8 +67664,8 @@ adZ
 agX
 ahJ
 adZ
-aad
-aad
+azm
+azm
 adZ
 akA
 alc
@@ -67683,16 +67677,16 @@ alc
 apx
 aqf
 adZ
-aad
-aad
+azm
+azm
 adZ
 adZ
 agP
 ave
 adZ
 adZ
-aad
-aad
+azm
+azm
 adZ
 adZ
 aAm
@@ -67888,7 +67882,7 @@ agX
 ahI
 adZ
 adZ
-aad
+azm
 adZ
 akB
 alc
@@ -67900,7 +67894,7 @@ aoI
 alc
 aqg
 adZ
-aad
+azm
 adZ
 adZ
 atL
@@ -67909,8 +67903,8 @@ avf
 atL
 adZ
 adZ
-aad
-aad
+azm
+azm
 adZ
 adZ
 aAQ
@@ -68127,8 +68121,8 @@ agd
 awG
 adZ
 adZ
-aad
-aad
+azm
+azm
 adZ
 aAR
 anW
