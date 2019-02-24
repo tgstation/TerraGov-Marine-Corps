@@ -602,3 +602,5 @@ Proc for attack log creation, because really why not
 
 /atom/proc/recalculate_storage_space()
 	return //Nothing to see here.
+/atom/proc/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
+	return

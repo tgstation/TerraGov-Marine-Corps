@@ -176,15 +176,15 @@
 	origin_tech = "programming=2;powerstorage=3"
 /obj/item/circuitboard/computer/ordercomp
 	name = "Circuit board (Supply ordering console)"
-	build_path = /obj/machinery/computer/ordercomp
+//	build_path = /obj/machinery/computer/ordercomp
 	origin_tech = "programming=2"
 
 /obj/item/circuitboard/computer/supplycomp
 	name = "Circuit board (Supply shuttle console)"
-	build_path = /obj/machinery/computer/supplycomp
+//	build_path = /obj/machinery/computer/supplycomp
 	origin_tech = "programming=3"
 	var/contraband_enabled = 0
-
+/*
 /obj/item/circuitboard/computer/supplycomp/construct(var/obj/machinery/computer/supplycomp/SC)
 	if (..(SC))
 		SC.can_order_contraband = contraband_enabled
@@ -195,7 +195,7 @@
 
 /obj/item/circuitboard/computer/supplycomp/deconstruct(var/obj/machinery/computer/supplycomp/SC)
 	if (..(SC))
-		contraband_enabled = SC.can_order_contraband
+		contraband_enabled = SC.can_order_contraband*/
 
 /obj/item/circuitboard/computer/operating
 	name = "Circuit board (Operating Computer)"
@@ -210,18 +210,6 @@
 	build_path = /obj/machinery/computer/telecomms/server
 	origin_tech = "programming=3"
 
-/obj/item/circuitboard/computer/mining_shuttle
-	name = "Circuit board (Mining Shuttle)"
-	build_path = /obj/machinery/computer/shuttle_control/mining
-	origin_tech = "programming=2"
-/obj/item/circuitboard/computer/engineering_shuttle
-	name = "Circuit board (Engineering Shuttle)"
-	build_path = /obj/machinery/computer/shuttle_control/engineering
-	origin_tech = "programming=2"
-/obj/item/circuitboard/computer/research_shuttle
-	name = "Circuit board (Research Shuttle)"
-	build_path = /obj/machinery/computer/shuttle_control/research
-	origin_tech = "programming=2"
 /obj/item/circuitboard/computer/HolodeckControl // Not going to let people get this, but it's just here for future
 	name = "Circuit board (Holodeck Control)"
 	build_path = /obj/machinery/computer/HolodeckControl

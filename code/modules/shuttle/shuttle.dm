@@ -33,16 +33,6 @@
 	else
 		return QDEL_HINT_LETMELIVE
 
-/obj/docking_port/has_gravity(turf/T)
-	return FALSE
-
-/obj/docking_port/take_damage()
-	return
-
-/obj/docking_port/singularity_pull()
-	return
-/obj/docking_port/singularity_act()
-	return 0
 /obj/docking_port/shuttleRotate()
 	return //we don't rotate with shuttles via this code.
 
@@ -196,8 +186,8 @@
 		if(!roundstart_template)
 			CRASH("Invalid path ([roundstart_template]) passed to docking port.")
 
-	if(roundstart_template)
-		SSshuttle.manipulator.action_load(roundstart_template, src)
+//	if(roundstart_template)
+//		SSshuttle.manipulator.action_load(roundstart_template, src)
 
 //returns first-found touching shuttleport
 /obj/docking_port/stationary/get_docked()
@@ -447,9 +437,9 @@
 		var/turf/oldT = old_turfs[i]
 		if(!oldT || !istype(oldT.loc, area_type))
 			continue
-		var/area/old_area = oldT.loc
+//		var/area/old_area = oldT.loc
 		underlying_area.contents += oldT
-		oldT.change_area(old_area, underlying_area)
+		//oldT.change_area(old_area, underlying_area) //lighting
 		oldT.empty(FALSE)
 
 		// Here we locate the bottomost shuttle boundary and remove all turfs above it
@@ -583,15 +573,15 @@
 	//	shuttle_area.parallax_movedir = FALSE
 	//if(assigned_transit && assigned_transit.assigned_area)
 	//	assigned_transit.assigned_area.parallax_movedir = FALSE
-	var/list/L0 = return_ordered_turfs(x, y, z, dir)
-	for (var/thing in L0)
-		var/turf/T = thing
-		if(!T || !istype(T.loc, area_type))
-			continue
-		for (var/thing2 in T)
-			var/atom/movable/AM = thing2
-			if (length(AM.client_mobs_in_contents))
-				AM.update_parallax_contents()
+//	var/list/L0 = return_ordered_turfs(x, y, z, dir)
+//	for (var/thing in L0)
+//		var/turf/T = thing
+//		if(!T || !istype(T.loc, area_type))
+//			continue
+//		for (var/thing2 in T)
+//			var/atom/movable/AM = thing2
+//			if (length(AM.client_mobs_in_contents))
+//				AM.update_parallax_contents()
 
 /obj/docking_port/mobile/proc/check_transit_zone()
 	if(assigned_transit)

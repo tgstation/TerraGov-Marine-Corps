@@ -27,7 +27,7 @@ All ShuttleMove procs go here
 			if(isliving(thing))
 				var/mob/living/M = thing
 				if(M.buckled)
-					M.buckled.unbuckle_mob(M, 1)
+					M.buckled.unbuckle()//unbuckle_mob(M, 1)
 				if(M.pulledby)
 					M.pulledby.stop_pulling()
 				M.stop_pulling()
@@ -68,7 +68,7 @@ All ShuttleMove procs go here
 // Called on the new turf after everything has been moved
 /turf/proc/afterShuttleMove(turf/oldT, rotation)
 	//Dealing with the turf we left behind
-	oldT.TransferComponents(src)
+//	oldT.TransferComponents(src)
 	var/shuttle_boundary = baseturfs.Find(/turf/baseturf_skipover/shuttle)
 	if(shuttle_boundary)
 		oldT.ScrapeAway(baseturfs.len - shuttle_boundary + 1)
@@ -131,7 +131,7 @@ All ShuttleMove procs go here
 	var/range = throw_force * 10
 	range = CEILING(rand(range-(range*0.1), range+(range*0.1)), 10)/10
 	var/speed = range/5
-	safe_throw_at(target, range, speed, force = MOVE_FORCE_EXTREMELY_STRONG)
+	safe_throw_at(target, range, speed) //, force = MOVE_FORCE_EXTREMELY_STRONG)
 
 /////////////////////////////////////////////////////////////////////////////////////
 
@@ -149,7 +149,7 @@ All ShuttleMove procs go here
 
 	contents -= oldT
 	underlying_old_area.contents += oldT
-	oldT.change_area(src, underlying_old_area)
+//	oldT.change_area(src, underlying_old_area) //lighting
 	//The old turf has now been given back to the area that turf originaly belonged to
 
 	var/area/old_dest_area = newT.loc
@@ -157,7 +157,7 @@ All ShuttleMove procs go here
 
 	old_dest_area.contents -= newT
 	contents += newT
-	newT.change_area(old_dest_area, src)
+//	newT.change_area(old_dest_area, src) //lighting
 	return TRUE
 
 // Called on areas after everything has been moved
@@ -194,11 +194,11 @@ All ShuttleMove procs go here
 	. = ..()
 	if(. & MOVE_AREA)
 		. |= MOVE_CONTENTS
-		GLOB.cameranet.removeCamera(src)
+		cameranet.removeCamera(src)
 
 /obj/machinery/camera/afterShuttleMove(turf/oldT, list/movement_force, shuttle_dir, shuttle_preferred_direction, move_dir, rotation)
 	. = ..()
-	GLOB.cameranet.addCamera(src)
+	cameranet.addCamera(src)
 
 /obj/machinery/atmospherics/afterShuttleMove(turf/oldT, list/movement_force, shuttle_dir, shuttle_preferred_direction, move_dir, rotation)
 	. = ..()
@@ -237,13 +237,13 @@ All ShuttleMove procs go here
 /obj/machinery/atmospherics/pipe/afterShuttleMove(turf/oldT, list/movement_force, shuttle_dir, shuttle_preferred_direction, move_dir, rotation)
 	. = ..()
 	var/turf/T = loc
-	hide(T.intact)
+	hide(T.intact_tile)
 
 /obj/machinery/power/terminal/afterShuttleMove(turf/oldT, list/movement_force, shuttle_dir, shuttle_preferred_direction, move_dir, rotation)
 	. = ..()
 	var/turf/T = src.loc
 	if(level==1)
-		hide(T.intact)
+		hide(T.intact_tile)
 
 /************************************Item move procs************************************/
 
@@ -307,7 +307,7 @@ All ShuttleMove procs go here
 	. = ..()
 	var/turf/T = loc
 	if(level==1)
-		hide(T.intact)
+		hide(T.intact_tile)
 
 /obj/structure/shuttle/beforeShuttleMove(turf/newT, rotation, move_mode, obj/docking_port/mobile/moving_dock)
 	. = ..()

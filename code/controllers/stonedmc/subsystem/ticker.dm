@@ -146,8 +146,6 @@ SUBSYSTEM_DEF(ticker)
 		cb.InvokeAsync()
 	LAZYCLEARLIST(round_start_events)
 
-	supply_controller.process()
-
 	GLOB.datacore.manifest()
 
 	log_world("Game start took [(world.timeofday - init_start) / 10]s")

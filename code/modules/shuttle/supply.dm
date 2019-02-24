@@ -6,6 +6,24 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		/obj/effect/portal
 	)))
 
+GLOBAL_LIST_EMPTY(exports_types)
+
+/datum/supply_order
+	var/id
+	var/orderer
+	var/orderer_rank
+	var/orderer_ckey
+	var/reason
+	var/datum/supply_packs/pack
+
+/obj/item/paper/manifest
+	name = "Supply Manifest"
+
+/proc/setupExports()
+	for(var/typepath in subtypesof(/datum/supply_export))
+		var/datum/supply_export/E = new typepath()
+		GLOB.exports_types += E
+
 /obj/docking_port/mobile/supply
 	name = "supply shuttle"
 	id = "supply"
@@ -20,7 +38,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 
 
 	//Export categories for this run, this is set by console sending the shuttle.
-	var/export_categories = EXPORT_CARGO
+//	var/export_categories = EXPORT_CARGO
 
 /obj/docking_port/mobile/supply/register()
 	. = ..()
@@ -67,77 +85,108 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 				continue
 			empty_turfs += T
 
-	var/value = 0
-	var/purchases = 0
 	for(var/datum/supply_order/SO in SSshuttle.shoppinglist)
 		if(!empty_turfs.len)
 			break
-		var/price = SO.pack.cost
-		var/datum/bank_account/D
-		if(SO.paying_account) //Someone paid out of pocket
-			D = SO.paying_account
-			price *= 1.1 //TODO make this customizable by the quartermaster
+
+		var/datum/supply_packs/SP = SO.pack
+
+		var/atom/A = new SP.containertype(pick_n_take(empty_turfs))
+		A.name = "[SP.containername][SO.reason ? " ([SO.reason])" : ""]"
+
+		//supply manifest generation begin
+
+		var/obj/item/paper/manifest/slip = new /obj/item/paper/manifest(A)
+		slip.info = "<h3>Automatic Storage Retrieval Manifest</h3><hr><br>"
+		slip.info +="Order #[SO.id]<br>"
+		slip.info +="[SSshuttle.shoppinglist.len] PACKAGES IN THIS SHIPMENT<br>"
+		slip.info +="CONTENTS:<br><ul>"
+
+		//spawn the stuff, finish generating the manifest while you're at it
+		if(SP.access)
+			A:req_access = list()
+			A:req_access += text2num(SP.access)
+
+		var/list/contains
+		if(SP.randomised_num_contained)
+			contains = list()
+			if(SP.contains.len)
+				for(var/j=1,j<=SP.randomised_num_contained,j++)
+					contains += pick(SP.contains)
 		else
-			D = SSeconomy.get_dep_account(ACCOUNT_CAR)
-		if(D)
-			if(!D.adjust_money(-price))
-				if(SO.paying_account)
-					D.bank_card_talk("Cargo order #[SO.id] rejected due to lack of funds. Credits required: [price]")
-				continue
+			contains = SP.contains
 
-		if(SO.paying_account)
-			D.bank_card_talk("Cargo order #[SO.id] has shipped. [price] credits have been charged to your bank account.")
-			var/datum/bank_account/department/cargo = SSeconomy.get_dep_account(ACCOUNT_CAR)
-			cargo.adjust_money(price - SO.pack.cost) //Cargo gets the handling fee
-		value += SO.pack.cost
-		SSshuttle.shoppinglist -= SO
-		SSshuttle.orderhistory += SO
+		for(var/typepath in contains)
+			if(!typepath)	continue
+			var/atom/B2 = new typepath(A)
+			if(SP.amount && B2:amount) 
+				B2:amount = SP.amount
+			slip.info += "<li>[B2.name]</li>" //add the item to the manifest
 
-		SO.generate(pick_n_take(empty_turfs))
-		SSblackbox.record_feedback("nested tally", "cargo_imports", 1, list("[SO.pack.cost]", "[SO.pack.name]"))
-		investigate_log("Order #[SO.id] ([SO.pack.name], placed by [key_name(SO.orderer_ckey)]), paid by [D.account_holder] has shipped.", INVESTIGATE_CARGO)
-		if(SO.pack.dangerous)
-			message_admins("\A [SO.pack.name] ordered by [ADMIN_LOOKUPFLW(SO.orderer_ckey)], paid by [D.account_holder] has shipped.")
-		purchases++
-
-	var/datum/bank_account/cargo_budget = SSeconomy.get_dep_account(ACCOUNT_CAR)
-	investigate_log("[purchases] orders in this shipment, worth [value] credits. [cargo_budget.account_balance] credits left.", INVESTIGATE_CARGO)
+		//manifest finalisation
+		slip.info += "</ul><br>"
+		slip.info += "CHECK CONTENTS AND STAMP BELOW THE LINE TO CONFIRM RECEIPT OF GOODS<hr>"
+		if (SP.contraband) 
+			slip.loc = null	//we are out of blanks for Form #44-D Ordering Illicit Drugs.
 
 /obj/docking_port/mobile/supply/proc/sell()
-	var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
-	var/presale_points = D.account_balance
-
-	if(!GLOB.exports_list.len) // No exports list? Generate it!
+	if(!GLOB.exports_types.len) // No exports list? Generate it!
 		setupExports()
 
-	var/msg = ""
-	var/matched_bounty = FALSE
-
-	var/datum/export_report/ex = new
+	var/plat_count = 0
 
 	for(var/place in shuttle_areas)
 		var/area/shuttle/shuttle_area = place
 		for(var/atom/movable/AM in shuttle_area)
-			if(iscameramob(AM))
+			if(AM.anchored)
 				continue
-			if(bounty_ship_item_and_contents(AM, dry_run = FALSE))
-				matched_bounty = TRUE
-			if(!AM.anchored || istype(AM, /obj/mecha))
-				export_item_and_contents(AM, export_categories , dry_run = FALSE, external_report = ex)
 
-	if(ex.exported_atoms)
-		ex.exported_atoms += "." //ugh
+			// Must be in a crate!
+			if(istype(AM,/obj/structure/closet/crate))
 
-	if(matched_bounty)
-		msg += "Bounty items received. An update has been sent to all bounty consoles. "
+				SSpoints.supply_points += POINTS_PER_CRATE
+				var/find_slip = 1
 
-	for(var/datum/export/E in ex.total_amount)
-		var/export_text = E.total_printout(ex)
-		if(!export_text)
-			continue
+				for(var/atom in AM)
+					// Sell manifests
+					var/atom/A = atom
+					if(find_slip && istype(A,/obj/item/paper/manifest))
+						var/obj/item/paper/slip = A
+						if(slip.stamped && slip.stamped.len) //yes, the clown stamp will work. clown is the highest authority on the station, it makes sense
+							SSpoints.supply_points += POINTS_PER_SLIP
+							find_slip = 0
+						continue
 
-		msg += export_text + "\n"
-		D.adjust_money(ex.total_value[E])
+					// Sell platinum
+					if(istype(A, /obj/item/stack/sheet/mineral/platinum))
+						var/obj/item/stack/sheet/mineral/platinum/P = A
+						plat_count += P.get_amount()
 
-	SSshuttle.centcom_message = msg
-	investigate_log("Shuttle contents sold for [D.account_balance - presale_points] credits. Contents: [ex.exported_atoms ? ex.exported_atoms.Join(",") + "." : "none."] Message: [SSshuttle.centcom_message || "none."]", INVESTIGATE_CARGO)
+			//Sell Xeno Corpses
+			if (isxeno(AM))
+				var/cost = 0
+				for(var/datum/supply_export in GLOB.exports_types)
+					var/datum/supply_export/E = supply_export
+					if(AM.type == E.export_obj)
+						cost = E.cost
+				SSpoints.supply_points += cost
+
+
+			qdel(AM)
+
+	if(plat_count)
+		SSpoints.supply_points += plat_count * POINTS_PER_PLATINUM
+
+//	if(ex.exported_atoms)
+//		ex.exported_atoms += "." //ugh
+
+//	for(var/datum/export/E in ex.total_amount)
+//		var/export_text = E.total_printout(ex)
+//		if(!export_text)
+//			continue
+
+//		msg += export_text + "\n"
+		//D.adjust_money(ex.total_value[E])
+
+//	SSshuttle.centcom_message = msg
+	//investigate_log("Shuttle contents sold for [D.account_balance - presale_points] credits. Contents: [ex.exported_atoms ? ex.exported_atoms.Join(",") + "." : "none."] Message: [SSshuttle.centcom_message || "none."]", INVESTIGATE_CARGO)
