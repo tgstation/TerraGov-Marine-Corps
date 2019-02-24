@@ -2487,7 +2487,7 @@
 	return FALSE
 
 /mob/living/carbon/human/can_zombie()
-	if(stat == DEAD && world.time >= timeofdeath + CONFIG_GET(number/revive_grace_period))
+	if(!(status_flags & NO_REANIMATE))
 		return TRUE
 	return FALSE
 
