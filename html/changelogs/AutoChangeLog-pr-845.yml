@@ -1,0 +1,4 @@
+author: "by Surrealistik"
+delete-after: True
+changes: 
+  - balance: "A direct stomp hit wasn't doing intended damage; this has been fixed. Now deals 80-100 melee brute damage, with half of armor applying. Each upgrade level increases damage by 5%."
