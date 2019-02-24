@@ -56,11 +56,15 @@
 var/waiting_for_drop_votes = 0
 
 /obj/effect/landmark/huntergames_primary_spawn/Initialize()
+	. = ..()
 	GLOB.huntergames_primary_spawns += loc
+	flags_atom |= INITIALIZED
 	return INITIALIZE_HINT_QDEL
 
 /obj/effect/landmark/huntergames_secondary_spawn/Initialize()
+	. = ..()
 	GLOB.huntergames_secondary_spawns += loc
+	flags_atom |= INITIALIZED
 	return INITIALIZE_HINT_QDEL
 
 /obj/effect/landmark/hell_hound_blocker/Initialize()
