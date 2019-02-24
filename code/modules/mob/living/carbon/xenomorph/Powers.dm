@@ -2457,7 +2457,7 @@
 		return
 
 	if(!H.can_zombie() )
-		to_chat(src, "<span class='xenowarning'>Your sting won't affect this target, let the corpse decay a bit!</span>")
+		to_chat(src, "<span class='xenowarning'>Your sting won't affect this target, either the corpse is too old, too damaged, or too fresh!</span>")
 		return
 
 	if(!Adjacent(H))
