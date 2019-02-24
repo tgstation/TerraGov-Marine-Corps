@@ -86,10 +86,10 @@
 
 /obj/item/map/current_map/New()
 	..()
-	if(!GLOB.map_tag)
+	if(!SSmapping.config.map_name)
 		qdel(src)
 		return
-	switch(GLOB.map_tag)
+	switch(SSmapping.config.map_name)
 		if(MAP_LV_624)
 			name = "\improper Lazarus Landing Map"
 			desc = "A satellite printout of the Lazarus Landing colony on LV-624."
