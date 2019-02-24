@@ -177,6 +177,7 @@
 	wrenchable = FALSE
 	products = list(
 					/obj/item/storage/large_holster/machete/full = 10,
+					/obj/item/storage/large_holster/katana/full = 10,
 					/obj/item/ammo_magazine/pistol = 20,
 					/obj/item/ammobox/m4a3 = 3,
 					/obj/item/ammo_magazine/pistol/ap = 5,
