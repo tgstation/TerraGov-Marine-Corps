@@ -1505,7 +1505,8 @@
 				light_off++
 	if(flares)
 		for(var/obj/item/device/flashlight/flare/F in contents)
-			if(F.on) goes_out++
+			if(F.on)
+				goes_out++
 			F.turn_off(src)
 		for(var/obj/item/explosive/grenade/flare/FL in contents)
 			if(FL.active)

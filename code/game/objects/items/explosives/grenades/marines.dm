@@ -302,7 +302,8 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 		STOP_PROCESSING(SSobj, src)
 
 /obj/item/explosive/grenade/flare/proc/turn_off()
-	active = FALSE
+	fuel = 0
+	icon_state = "[initial(icon_state)]-empty"
 	heat_source = 0
 	force = initial(force)
 	damtype = initial(damtype)
@@ -311,6 +312,8 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 		update_brightness(user)
 	else
 		update_brightness(null)
+	//message_admins("TOGGLE FLARE LIGHT DEBUG 1: fuel: [fuel] loc: [loc]")
+	STOP_PROCESSING(SSobj, src)
 
 /obj/item/explosive/grenade/flare/proc/turn_on()
 	active = TRUE
@@ -353,10 +356,10 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	damtype = "fire"
 	START_PROCESSING(SSobj, src)
 
-/obj/item/explosive/grenade/flare/proc/update_brightness(var/mob/user = null)
+/obj/item/explosive/grenade/flare/proc/update_brightness(mob/user)
 	if(!user && ismob(loc))
 		user = loc
-	if(active)
+	if(active && fuel > 0)
 		icon_state = "[initial(icon_state)]_active"
 		if(loc && loc == user)
 			user.SetLuminosity(FLARE_BRIGHTNESS)
@@ -369,7 +372,7 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 		if(loc && loc == user)
 			user.SetLuminosity(-FLARE_BRIGHTNESS)
 		else if(isturf(loc))
-			SetLuminosity()
+			SetLuminosity(0)
 
 /obj/item/explosive/grenade/flare/pickup(mob/user)
 	if(active && loc != user)

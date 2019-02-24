@@ -105,8 +105,8 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 
 /obj/item/clothing/suit/storage/marine/proc/turn_off_light(mob/wearer)
 	if(flags_marine_armor & ARMOR_LAMP_ON)
-		SetLuminosity()
-		toggle_armor_light() //turn the light off
+		SetLuminosity(0)
+		toggle_armor_light(wearer) //turn the light off
 		return TRUE
 	return FALSE
 
@@ -141,6 +141,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	return TRUE //only give action button when armor is worn.
 
 /obj/item/clothing/suit/storage/marine/proc/toggle_armor_light(mob/user)
+	//message_admins("TOGGLE ARMOR LIGHT DEBUG 1: flags_marine_armor: [flags_marine_armor] user: [user]")
 	flashlight_cooldown = world.time + 2 SECONDS //2 seconds cooldown every time the light is toggled
 	if(flags_marine_armor & ARMOR_LAMP_ON) //Turn it off.
 		if(user)
