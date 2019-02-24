@@ -1114,7 +1114,7 @@ GLOBAL_LIST_EMPTY(custom_outfits)
 
 
 /datum/admins/proc/offer(var/mob/M in GLOB.mob_list)
-	set category = "Object"
+	set category = "Fun"
 	set name = "Offer Mob"
 
 	if(!check_rights(R_FUN))
