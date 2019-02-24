@@ -1,4 +1,0 @@
-author: "LaKiller8"
-delete-after: True
-changes: 
-  - bugfix: "IDs should no longer default to equipping in the helmet."
