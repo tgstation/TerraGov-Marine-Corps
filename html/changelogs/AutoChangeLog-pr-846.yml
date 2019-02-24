@@ -1,0 +1,4 @@
+author: "by Surrealistik"
+delete-after: True
+changes: 
+  - tweak: "Lasgun field charger energy capacity reduced from 100k charge to 50k"
