@@ -113,6 +113,8 @@
 
 //#define FLY_LAYER 5
 
+#define RIPPLE_LAYER 5.1
+
 #define ABOVE_FLY_LAYER 6
 
 #define LOW_LANDMARK_LAYER 9

@@ -150,7 +150,6 @@ obj/item/alienjar
 	density = 0
 	anchored = 1
 	layer = MOB_LAYER
-	explosion_resistance = 5
 
 /obj/structure/plasticflaps/CanPass(atom/A, turf/T)
 	if(istype(A) && A.checkpass(PASSGLASS))
