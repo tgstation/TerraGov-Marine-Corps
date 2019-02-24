@@ -469,7 +469,7 @@
 // Jungle turfs (Whiksey Outpost)
 
 
-/turf/open/jungle/
+/turf/open/jungle
 	allow_construction = FALSE
 	var/bushes_spawn = 1
 	var/plants_spawn = 1

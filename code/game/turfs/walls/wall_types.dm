@@ -174,7 +174,7 @@
 
 /turf/closed/wall/indestructible/mineral
 	name = "impenetrable rock"
-	icon_state = "rock"
+	icon_state = "rock_dark"
 
 /turf/closed/wall/indestructible/bulkhead
 	name = "bulkhead"
