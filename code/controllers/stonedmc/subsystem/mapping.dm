@@ -50,6 +50,35 @@ SUBSYSTEM_DEF(mapping)
 	generate_station_area_list()
 	return ..()
 
+/datum/controller/subsystem/mapping/proc/wipe_reservations(wipe_safety_delay = 100)
+	if(clearing_reserved_turfs || !initialized)			//in either case this is just not needed.
+		return
+	clearing_reserved_turfs = TRUE
+	SSshuttle.transit_requesters.Cut()
+	message_admins("Clearing dynamic reservation space.")
+	var/list/obj/docking_port/mobile/in_transit = list()
+	for(var/i in SSshuttle.transit)
+		var/obj/docking_port/stationary/transit/T = i
+		if(!istype(T))
+			continue
+		in_transit[T] = T.get_docked()
+	var/go_ahead = world.time + wipe_safety_delay
+	if(in_transit.len)
+		message_admins("Shuttles in transit detected. Attempting to fast travel. Timeout is [wipe_safety_delay/10] seconds.")
+	var/list/cleared = list()
+	for(var/i in in_transit)
+		INVOKE_ASYNC(src, .proc/safety_clear_transit_dock, i, in_transit[i], cleared)
+	UNTIL((go_ahead < world.time) || (cleared.len == in_transit.len))
+	do_wipe_turf_reservations()
+	clearing_reserved_turfs = FALSE
+
+/datum/controller/subsystem/mapping/proc/safety_clear_transit_dock(obj/docking_port/stationary/transit/T, obj/docking_port/mobile/M, list/returning)
+	M.setTimer(0)
+	var/error = M.initiate_docking(M.destination, M.preferred_direction)
+	if(!error)
+		returning += M
+		qdel(T, TRUE)
+
 /datum/controller/subsystem/mapping/Recover()
 	flags |= SS_NO_INIT
 	initialized = SSmapping.initialized
@@ -204,6 +233,35 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 			if(reserve.Reserve(width, height, z))
 				return reserve
 	QDEL_NULL(reserve)
+
+/datum/controller/subsystem/mapping/proc/reserve_turfs(list/turfs)
+	for(var/i in turfs)
+		var/turf/T = i
+		T.empty(RESERVED_TURF_TYPE, RESERVED_TURF_TYPE, null, TRUE)
+		LAZYINITLIST(unused_turfs["[T.z]"])
+		unused_turfs["[T.z]"] |= T
+		T.flags_1 |= UNUSED_RESERVATION_TURF_1
+		GLOB.areas_by_type[world.area].contents += T
+		CHECK_TICK
+
+//DO NOT CALL THIS PROC DIRECTLY, CALL wipe_reservations().
+/datum/controller/subsystem/mapping/proc/do_wipe_turf_reservations()
+	UNTIL(initialized)							//This proc is for AFTER init, before init turf reservations won't even exist and using this will likely break things.
+	for(var/i in turf_reservations)
+		var/datum/turf_reservation/TR = i
+		if(!QDELETED(TR))
+			qdel(TR, TRUE)
+	UNSETEMPTY(turf_reservations)
+	var/list/clearing = list()
+	for(var/l in unused_turfs)			//unused_turfs is a assoc list by z = list(turfs)
+		if(islist(unused_turfs[l]))
+			clearing |= unused_turfs[l]
+	clearing |= used_turfs		//used turfs is an associative list, BUT, reserve_turfs() can still handle it. If the code above works properly, this won't even be needed as the turfs would be freed already.
+	unused_turfs.Cut()
+	used_turfs.Cut()
+	reserve_turfs(clearing)
+
+
 
 /datum/controller/subsystem/mapping/proc/reg_in_areas_in_z(list/areas)
 	for(var/B in areas)
