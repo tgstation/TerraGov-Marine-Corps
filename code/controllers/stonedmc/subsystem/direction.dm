@@ -1,3 +1,5 @@
+#define SLDIR_DEBUG
+
 SUBSYSTEM_DEF(direction)
 	name = "Direction"
 	priority = FIRE_PRIORITY_DIRECTION
@@ -10,6 +12,10 @@ SUBSYSTEM_DEF(direction)
 	// this is a two d list of defines to lists of mobs tracking that leader
 	// eg; list(CHARLIE_SL = list(<list of references to squad marines), XENO_NORMAL_QUEEN = list(<list of xeno mob refs))
 	var/list/processing_mobs = list()
+
+	#ifdef SLDIR_DEBUG
+	var/list/mobs_in_processing = list()
+	#endif
 
 	// the purpose of separating these two things is it avoids having to do anything for mobs tracking a particular
 	//  leader when the leader changes, and its cached to avoid looking up via hive/squad datums.
@@ -60,9 +66,18 @@ SUBSYSTEM_DEF(direction)
 	if(!H)
 		stack_trace("SSdirection.start_tracking called with a null mob")
 		return
+	#ifdef SLDIR_DEBUG
+	if(mobs_in_processing[H])
+		stack_trace("trying to add a mob already being tracked")
+		return
+	mobs_in_processing[H] = TRUE
+	#endif
 	processing_mobs[squad_id].Add(H)
 
 /datum/controller/subsystem/direction/proc/stop_tracking(squad_id, mob/living/carbon/human/H, deep=FALSE)
+	#ifdef SLDIR_DEBUG
+	mobs_in_processing[H] = FALSE
+	#endif
 	if(!deep)
 		processing_mobs[squad_id].Remove(H)
 		return
