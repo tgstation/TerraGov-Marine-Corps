@@ -1,4 +1,0 @@
-author: "Menshin"
-delete-after: True
-changes: 
-  - rscadd: "You can now repair broken floodlights using a quick procedure (open panel, weld, mend wires with wirecutters, close panel). Don't let the panel open, xenos would be able to knock the floodlight in one hit !"

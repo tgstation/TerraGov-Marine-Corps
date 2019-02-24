@@ -168,7 +168,6 @@
 		if(BE_ALIEN)		roletext = "Alien"
 		if(BE_QUEEN)		roletext = "Queen"
 		if(BE_SURVIVOR)		roletext = "Survivor"
-		if(BE_PREDATOR)		roletext = "Predator"
 		if(BE_SQUAD_STRICT)	roletext = "Prefer squad over role"
 
 	//Assemble a list of active players without jobbans.
@@ -255,8 +254,8 @@
 
 
 /datum/game_mode/New()
-	if(!GLOB.map_tag)
-		to_chat(world, "MT001: No mapping tag set, tell a coder. [GLOB.map_tag]")
+	if(!SSmapping.config.map_name)
+		to_chat(world, "MT001: No mapping tag set, tell a coder. [SSmapping.config.map_name]")
 	initialize_emergency_calls()
 
 
@@ -320,9 +319,7 @@
 
 	var/role
 
-	if(player.special_role)
-		role = player.special_role
-	else if(player.assigned_role)
+	if(player.assigned_role)
 		role = player.assigned_role
 	else
 		role = "Unassigned"

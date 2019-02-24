@@ -236,7 +236,7 @@
 				new headset_type(loc)
 				new gloves_type(loc)
 				//if(istype(SSticker.mode, /datum/game_mode/ice_colony))//drop a coif with the uniform on ice colony
-				if(GLOB.map_tag == MAP_ICE_COLONY)
+				if(SSmapping.config.map_name == MAP_ICE_COLONY)
 					new /obj/item/clothing/mask/rebreather/scarf(loc)
 
 
@@ -1039,7 +1039,8 @@ var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolition
 	spawned_gear_list = list(
 						/obj/item/clothing/head/helmet/marine,
 						/obj/item/clothing/under/marine,
-						/obj/item/clothing/shoes/marine
+						/obj/item/clothing/shoes/marine,
+						/obj/item/storage/box/MRE
 						)
 
 
@@ -1047,13 +1048,15 @@ var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolition
 	spawned_gear_list = list(
 						/obj/item/clothing/head/helmet/marine,
 						/obj/item/clothing/under/marine,
-						/obj/item/clothing/shoes/marine
+						/obj/item/clothing/shoes/marine,
+						/obj/item/storage/box/MRE
 						)
 
 /obj/effect/essentials_set/basic_specialist
 	spawned_gear_list = list(
 						/obj/item/clothing/under/marine,
-						/obj/item/clothing/shoes/marine
+						/obj/item/clothing/shoes/marine,
+						/obj/item/storage/box/MRE
 						)
 
 /obj/effect/essentials_set/basic_squadleader
@@ -1062,7 +1065,8 @@ var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolition
 						/obj/item/clothing/head/helmet/marine/leader,
 						/obj/item/clothing/glasses/hud/health,
 						/obj/item/clothing/under/marine,
-						/obj/item/clothing/shoes/marine
+						/obj/item/clothing/shoes/marine,
+						/obj/item/storage/box/MRE
 						)
 
 /obj/effect/essentials_set/basic_medic
@@ -1070,7 +1074,8 @@ var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolition
 						/obj/item/clothing/head/helmet/marine/medic,
 						/obj/item/clothing/glasses/hud/health,
 						/obj/item/clothing/under/marine/medic,
-						/obj/item/clothing/shoes/marine
+						/obj/item/clothing/shoes/marine,
+						/obj/item/storage/box/MRE
 						)
 
 /obj/effect/essentials_set/basic_engineer
@@ -1078,7 +1083,8 @@ var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolition
 						/obj/item/clothing/head/helmet/marine/tech,
 						/obj/item/clothing/glasses/welding,
 						/obj/item/clothing/under/marine/engineer,
-						/obj/item/clothing/shoes/marine
+						/obj/item/clothing/shoes/marine,
+						/obj/item/storage/box/MRE
 						)
 
 /obj/effect/essentials_set/medic
@@ -1089,7 +1095,8 @@ var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolition
 						/obj/item/roller/medevac,
 						/obj/item/device/medevac_beacon,
 						/obj/item/roller,
-						/obj/item/reagent_container/hypospray/advanced/oxycodone
+						/obj/item/reagent_container/hypospray/advanced/oxycodone,
+						/obj/item/storage/box/MRE
 						)
 
 /obj/effect/essentials_set/engi
@@ -1100,7 +1107,8 @@ var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolition
 						/obj/item/cell/high,
 						/obj/item/tool/shovel/etool,
 						/obj/item/device/lightreplacer,
-						/obj/item/circuitboard/general
+						/obj/item/circuitboard/general,
+						/obj/item/storage/box/MRE
 						)
 
 
@@ -1114,7 +1122,8 @@ var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolition
 						/obj/item/device/radio,
 						/obj/item/device/motiondetector,
 						/obj/item/map/current_map,
-						/obj/item/device/binoculars/tactical
+						/obj/item/device/binoculars/tactical,
+						/obj/item/storage/box/MRE
 						)
 
 

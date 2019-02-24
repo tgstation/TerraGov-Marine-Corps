@@ -127,11 +127,8 @@
 			else
 				for(var/n = ++i; n <= optioncount; n++)
 					dat += "<dd><font color='blue'>&#09;[n]. ---------------</font><br></dd>"
-			if((isAI(user) || iscyborg(user)) && user.mind.special_role)
-				//Malf/Traitor AIs can bruteforce into the system to gain the Key.
-				dat += "<dd><A href='?src=\ref[src];hack=1'><i><font color='Red'>*&@#. Bruteforce Key</font></i></font></a><br></dd>"
-			else
-				dat += "<br>"
+
+			dat += "<br>"
 
 			//Bottom message
 			if(!auth)
@@ -363,17 +360,6 @@
 							message = "<span class='notice'>NOTICE: Decryption key set.</span>"
 						else
 							message = incorrectkey
-
-		//Hack the Console to get the password
-		if (href_list["hack"])
-			if((isAI(usr) || iscyborg(usr)) && usr.mind.special_role)
-				src.hacking = 1
-				src.screen = 2
-				src.icon_state = hack_icon
-				//Time it takes to bruteforce is dependant on the password length.
-				spawn(100*length(src.linkedServer.decryptkey))
-					if(src && src.linkedServer && usr)
-						BruteForce(usr)
 		//Delete the log.
 		if (href_list["delete"])
 			//Are they on the view logs screen?

@@ -303,6 +303,10 @@
 	name = "\improper Excavation Outpost"
 	icon_state = "mining_outpost"
 
+/area/ice_colony/surface/excavationbarracks
+	name = "\improper Excavation Barracks"
+	icon_state = "mining_outpost"
+
 /area/ice_colony/surface/excavation/storage
 	name = "\improper Excavation Outpost External Storage"
 	icon_state = "mining_storage"
@@ -734,6 +738,12 @@
 	name = "\improper Underground Hangar"
 	icon_state = "hangar"
 	ceiling = CEILING_NONE
+
+/area/ice_colony/underground/responsehangar
+	name = "\improper Colony Response Team Hangar"
+
+/area/ice_colony/underground/westroadtunnel
+	name = "\improper West Road Tunnel"
 
 /*
  * Underground - Storage

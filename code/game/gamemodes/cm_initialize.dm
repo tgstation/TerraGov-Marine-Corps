@@ -129,8 +129,7 @@ datum/game_mode/proc/initialize_special_clamps()
 			new_xeno = pick(possible_xenomorphs)
 			if(!new_xeno)
 				break  //Looks like we didn't get anyone. Back out.
-			new_xeno.assigned_role = "MODE"
-			new_xeno.special_role = "Xenomorph"
+			new_xeno.assigned_role = "Xenomorph"
 			xenomorphs += new_xeno
 			possible_xenomorphs -= new_xeno
 		else //Out of candidates, spawn in empty larvas directly
@@ -161,8 +160,7 @@ datum/game_mode/proc/initialize_special_clamps()
 	for(var/datum/mind/new_queen in possible_queens)
 		if(jobban_isbanned(new_queen.current))
 			continue
-		new_queen.assigned_role = "MODE"
-		new_queen.special_role = "Xenomorph"
+		new_queen.assigned_role = "Queen"
 		queen = new_queen
 		break
 
@@ -366,8 +364,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 				new_survivor = pick(possible_survivors)
 				if(!new_survivor)
 					break  //We ran out of survivors!
-				new_survivor.assigned_role = "MODE"
-				new_survivor.special_role = "Survivor"
+				new_survivor.assigned_role = "Survivor"
 				survivors += new_survivor
 				possible_survivors -= new_survivor
 				i--
@@ -388,7 +385,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 	var/datum/job/J = new survivor_job
 	J.equip(H)
 
-	if(GLOB.map_tag == MAP_ICE_COLONY)
+	if(SSmapping.config.map_name == MAP_ICE_COLONY)
 		H.equip_to_slot_or_del(new /obj/item/clothing/head/ushanka(H), SLOT_HEAD)
 		H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/snow_suit(H), SLOT_WEAR_SUIT)
 		H.equip_to_slot_or_del(new /obj/item/clothing/mask/rebreather(H), SLOT_WEAR_MASK)
@@ -412,7 +409,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 	H.equip_to_slot_or_del(new /obj/item/storage/pouch/survival/full(H), SLOT_L_STORE)
 
 	to_chat(H, "<h2>You are a survivor!</h2>")
-	switch(GLOB.map_tag)
+	switch(SSmapping.config.map_name)
 		if(MAP_PRISON_STATION)
 			to_chat(H, "<span class='notice'>You are a survivor of the attack on Fiorina Orbital Penitentiary. You worked or lived on the prison station, and managed to avoid the alien attacks.. until now.</span>")
 		if(MAP_ICE_COLONY)
@@ -506,8 +503,9 @@ datum/game_mode/proc/initialize_post_queen_list()
 	//This might count players who ready up but get kicked back to the lobby
 	var/marine_pop_size = 0
 
-	for(var/mob/M in GLOB.player_list)
-		if(M.stat != DEAD && M.mind && !M.mind.special_role)
+	for(var/i in GLOB.alive_human_list)
+		var/mob/living/carbon/human/H = i
+		if(ismarine(H))
 			marine_pop_size++
 
 	var/scale = max(marine_pop_size / MARINE_GEAR_SCALING_NORMAL, 1) //This gives a decimal value representing a scaling multiplier. Cannot go below 1
@@ -746,7 +744,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 
 		var/products2[]
 		//if(istype(src, /datum/game_mode/ice_colony)) //Literally, we are in gamemode code
-		if(GLOB.map_tag == MAP_ICE_COLONY)
+		if(SSmapping.config.map_name == MAP_ICE_COLONY)
 			products2 = list(
 						/obj/item/clothing/mask/rebreather/scarf = round(scale * 30),
 						/obj/item/clothing/mask/rebreather = round(scale * 30),
@@ -769,10 +767,16 @@ datum/game_mode/proc/initialize_post_queen_list()
 		GLOB.xeno_tunnel_landmarks -= t
 		T = new(t)
 		T.id = "hole[i]"
+		for(var/x in GLOB.xeno_tunnels)
+			var/obj/structure/tunnel/TO = x
+			if(TO.id != T.id || T == TO || !TO.other)
+				continue
+			TO.other = T
+			T.other = TO
 
 /datum/game_mode/proc/spawn_map_items()
 	var/turf/T
-	switch(GLOB.map_tag) // doing the switch first makes this a tiny bit quicker which for round setup is more important than pretty code
+	switch(SSmapping.config.map_name) // doing the switch first makes this a tiny bit quicker which for round setup is more important than pretty code
 		if(MAP_LV_624)
 			while(GLOB.map_items.len)
 				T = GLOB.map_items[GLOB.map_items.len]
@@ -808,12 +812,6 @@ datum/game_mode/proc/initialize_post_queen_list()
 	anchored = TRUE
 	opacity = FALSE
 	density = TRUE
-	var/timeleft = 300 //Set to 0 for permanent forcefields (ugh)
-
-/obj/effect/forcefield/Initialize()
-	. = ..()
-	if(timeleft)
-		QDEL_IN(src, timeleft)
 
 /obj/effect/forcefield/fog
 	name = "dense fog"
@@ -821,7 +819,6 @@ datum/game_mode/proc/initialize_post_queen_list()
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "smoke"
 	opacity = TRUE
-	timeleft = 0
 
 /obj/effect/forcefield/fog/Initialize()
 	. = ..()

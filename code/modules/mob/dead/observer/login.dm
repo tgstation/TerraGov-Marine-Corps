@@ -3,10 +3,10 @@
 		return
 
 	client.prefs.load_preferences()
-	ghost_medhud = client.prefs.ghost_medhud
-	ghost_sechud = client.prefs.ghost_sechud
-	ghost_squadhud = client.prefs.ghost_squadhud
-	ghost_xenohud = client.prefs.ghost_xenohud
+	ghost_medhud = client.prefs.ghost_hud & GHOST_HUD_MED
+	ghost_sechud = client.prefs.ghost_hud & GHOST_HUD_SEC
+	ghost_squadhud = client.prefs.ghost_hud & GHOST_HUD_SQUAD
+	ghost_xenohud = client.prefs.ghost_hud & GHOST_HUD_XENO
 	var/datum/mob_hud/H
 	if(ghost_medhud)
 		H = huds[MOB_HUD_MEDICAL_OBSERVER]

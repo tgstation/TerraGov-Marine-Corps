@@ -330,7 +330,6 @@
 	var/req_dna
 	var/scan_name = FALSE
 	var/req_role
-	var/req_spec_role
 
 /obj/item/storage/pill_bottle/restricted/proc/scan(mob/living/L)
 
@@ -355,12 +354,9 @@
 			to_chat(L, "<span class='notice'>It must have some kind of ID lock...</span>")
 			return FALSE
 
-	if((req_role || req_spec_role) && L.mind)
+	if(req_role && L.mind)
 		var/datum/mind/M = L.mind
 		if(req_role && M.assigned_role && M.assigned_role != req_role)
-			to_chat(L, "<span class='notice'>It must have some kind of special lock...</span>")
-			return FALSE
-		if(req_spec_role && M.special_role && M.special_role != req_spec_role)
 			to_chat(L, "<span class='notice'>It must have some kind of special lock...</span>")
 			return FALSE
 
