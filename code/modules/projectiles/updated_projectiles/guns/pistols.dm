@@ -108,8 +108,7 @@
 
 /obj/item/weapon/gun/pistol/m1911/custom
 	name = "\improper M1911A1 Custom pistol"
-	desc = "A 20th century military firearm ancient pistol that received several modifications. The feeding ramp is polished to a mirror sheen. The slide's been reinforced and the interlock with the frame is tightened for added precision. The sight system is original and the thumb safety is extended to make it easier on the finger. A long-type trigger with non-slip grooves and a ring hammer has been installed. The base of the trigger guard's been filed down for a higher grip and not only that, nearly every part of this gun has been expertly crafted and customized"
-	icon_state = "m1911"
+	desc = "A 20th century military firearm that received several modifications. It seems to have been lovingly taken care of and passed down the family."
 	item_state = "m1911"
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
 
@@ -118,7 +117,7 @@
 	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/low_hit_accuracy_mult)
 	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
 	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/combat_define/hmed_hit_accuracy_mult)
+	scatter_unwielded = CONFIG_GET(number/combat_define/med_hit_accuracy_mult)
 	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult) + CONFIG_GET(number/combat_define/low_hit_damage_mult)
 	recoil_unwielded = CONFIG_GET(number/combat_define/min_recoil_value)
 

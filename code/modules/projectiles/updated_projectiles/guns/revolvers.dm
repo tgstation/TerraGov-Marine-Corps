@@ -425,9 +425,9 @@
 
 /obj/item/weapon/gun/revolver/cmb
 	name = "\improper CMB autorevolver"
-	desc = "An automatic revolver chambered in .357. Commonly issued to Colonial Marshals. It has a burst mode."
-	icon_state = "spearhead"
-	item_state = "spearhead"
+	desc = "An automatic revolver chambered in .357. Issued to Colonial Marshals. It has a burst mode."
+	icon_state = "cmb"
+	item_state = "cmb"
 	fire_sound = 'sound/weapons/gun_44mag2.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/revolver/cmb
 	force = 12

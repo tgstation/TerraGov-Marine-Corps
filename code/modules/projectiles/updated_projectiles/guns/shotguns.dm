@@ -260,6 +260,8 @@ can cause issues with ammo types getting mixed up during the burst.
 
 /obj/item/weapon/gun/shotgun/double/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/mlow_fire_delay)
+	burst_amount = CONFIG_GET(number/combat_define/low_burst_value)
+	burst_delay = CONFIG_GET(number/combat_define/mlow_fire_delay)
 	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/low_hit_accuracy_mult)
 	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/low_hit_accuracy_mult) - CONFIG_GET(number/combat_define/hmed_hit_accuracy_mult)
 	scatter = CONFIG_GET(number/combat_define/med_scatter_value)

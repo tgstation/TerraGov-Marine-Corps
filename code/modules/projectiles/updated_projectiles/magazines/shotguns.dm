@@ -81,7 +81,7 @@ also doesn't really matter. You can only reload them with handfuls.
 	caliber = "7.62x54mmR"
 	max_rounds = 5
 
-/obj/item/ammo_magazine/internal/shotgun/double //For a double barrel.
+/obj/item/ammo_magazine/internal/shotgun/double
 	default_ammo = /datum/ammo/bullet/shotgun/buckshot
 	max_rounds = 2
 	chamber_closed = 1 //Starts out with a closed tube.

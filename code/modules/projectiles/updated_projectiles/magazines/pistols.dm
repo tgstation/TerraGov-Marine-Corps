@@ -62,7 +62,7 @@
 	caliber = "9mm"
 	icon_state = "beretta"
 	max_rounds = 20
-	default_ammo = /datum/ammo/bullet/pistol/
+	default_ammo = /datum/ammo/bullet/pistol
 	gun_type = /obj/item/weapon/gun/pistol/b92fs/raffica
 
 /obj/item/ammo_magazine/pistol/b92fstranq
@@ -127,7 +127,7 @@
 	desc = "A surprisingly small magazine, holding .22 bullets. No Kolibri, but it's getting there."
 	default_ammo = /datum/ammo/bullet/pistol/tiny
 	caliber = ".22"
-	icon_state = "m4a3" //PLACEHOLDER
+	icon_state = ".22"
 	max_rounds = 5
 	w_class = 1
 	gun_type = /obj/item/weapon/gun/pistol/holdout
@@ -152,7 +152,7 @@
 	name = "\improper 88M4 AP magazine (9mm)"
 	default_ammo = /datum/ammo/bullet/pistol/ap
 	caliber = "9mm"
-	icon_state = "88m4"
+	icon_state = ".45"
 	max_rounds = 18
 	gun_type = /obj/item/weapon/gun/pistol/vp70
 
@@ -164,7 +164,7 @@
 	name = "\improper VP78 magazine (9mm)"
 	default_ammo = /datum/ammo/bullet/pistol/squash
 	caliber = "9mm"
-	icon_state = "88m4" //PLACEHOLDER
+	icon_state = "50ae"
 	max_rounds = 18
 	gun_type = /obj/item/weapon/gun/pistol/vp78
 
@@ -179,7 +179,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	name = "\improper Auto-9 magazine (9mm)"
 	default_ammo = /datum/ammo/bullet/pistol/squash
 	caliber = "9mm"
-	icon_state = "88m4" //PLACEHOLDER
+	icon_state = "baretta"
 	max_rounds = 50
 	gun_type = /obj/item/weapon/gun/pistol/auto9
 

@@ -136,7 +136,7 @@
 
 
 //-------------------------------------------------------
-//MP27, based on the MP27, based on the M7. not really
+//MP27, based on the grease gun
 
 /obj/item/weapon/gun/smg/mp7
 	name = "\improper MP27 submachinegun"
