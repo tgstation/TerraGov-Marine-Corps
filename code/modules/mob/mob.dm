@@ -705,7 +705,7 @@ mob/proc/yank_out_object()
 	return FALSE
 
 /mob/proc/TurfAdjacent(var/turf/T)
-	return T.AdjacentQuick(src)
+	return ( get_dist(T,src) <= 1 )
 
 /mob/on_stored_atom_del(atom/movable/AM)
 	if(istype(AM, /obj/item))
