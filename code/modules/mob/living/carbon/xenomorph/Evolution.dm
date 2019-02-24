@@ -6,6 +6,9 @@
 //Such as evolves_to = list("Warrior", "Sentinel", "Runner", "Badass") etc
 // except use typepaths now so you dont have to have an entry for literally every evolve path
 
+#define TO_XENO_TIER_2_FORMULA(tierA, tierB, tierC) ( (tierB + tierC) > tierA ) )
+#define TO_XENO_TIER_3_FORMULA(tierA, tierB, tierC) ( (tierC * 3) > (tierA + tierB) )
+
 /mob/living/carbon/Xenomorph/verb/Evolve()
 	set name = "Evolve"
 	set desc = "Evolve into a higher form."
@@ -149,10 +152,10 @@
 						to_chat(src, "<span class='warning'>You shouldn't see this. If you do, bug repot it! (Error XE01).</span>")
 
 						continue
-		if(tier == 1 && ( (tierB + tierC) > tierA ) )
+		if((tier == 1 && TO_XENO_TIER_2_FORMULA(tierA, tierB, tierC))
 			to_chat(src, "<span class='warning'>The hive cannot support another Tier 2, wait for either more aliens to be born or someone to die.</span>")
 			return
-		else if(tier == 2 && ( (tierC * 3) > (tierA + tierB) ) )
+		else if(tier == 2 && TO_XENO_TIER_3_FORMULA(tierA, tierB, tierC))
 			to_chat(src, "<span class='warning'>The hive cannot support another Tier 3, wait for either more aliens to be born or someone to die.</span>")
 			return
 		else if(!hive.living_xeno_queen && potential_queens == 1 && isxenolarva(src) && new_caste_type != /mob/living/carbon/Xenomorph/Drone)
@@ -179,10 +182,10 @@
 		to_chat(src, "<span class='warning'>You quiver, but nothing happens. Hold still while evolving.</span>")
 		return
 
-	if(tier == 1 && ( (tierB + tierC) > tierA ) )
+	if((tier == 1 && TO_XENO_TIER_2_FORMULA(tierA, tierB, tierC))
 		to_chat(src, "<span class='warning'>Another sister evolved meanwhile. The hive cannot support another Tier 2.</span>")
 		return
-	else if(tier == 2 && ( (tierC * 3) > (tierA + tierB) ) )
+	else if(tier == 2 && TO_XENO_TIER_3_FORMULA(tierA, tierB, tierC))
 		to_chat(src, "<span class='warning'>Another sister evolved meanwhile. The hive cannot support another Tier 3.</span>")
 		return
 
@@ -248,3 +251,6 @@
 	qdel(src)
 	spawn(0)
 		new_xeno.do_jitter_animation(1000)
+
+#undef TO_XENO_TIER_2_FORMULA
+#undef TO_XENO_TIER_3_FORMULA
