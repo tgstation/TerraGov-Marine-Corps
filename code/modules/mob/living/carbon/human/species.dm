@@ -725,6 +725,7 @@
 	burn_mod = 0.9 //don't murderize me lasers
 	icobase = 'icons/mob/human_races/r_necro.dmi'
 	deform = 'icons/mob/human_races/r_necro.dmi'
+	flags = NO_SCAN|NO_BLOOD|NO_PAIN
 
 /datum/species/zombie/necromorph/handle_death(var/mob/living/carbon/human/H, gibbed)
 	H.gib()
