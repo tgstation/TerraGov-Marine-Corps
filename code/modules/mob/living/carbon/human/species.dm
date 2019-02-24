@@ -763,7 +763,7 @@
 	icon = null
 	w_class = 2.0
 	vision_flags = SEE_MOBS
-	darkness_view = 9
+	darkness_view = 12
 	flags_item = NODROP|DELONDROP
 	fullscreen_vision = /obj/screen/fullscreen/nvg
 
