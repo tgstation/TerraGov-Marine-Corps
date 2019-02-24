@@ -22,21 +22,17 @@ var/list/event_last_fired = list()
 	possibleEvents[/datum/event/trivial_news] = 400
 	possibleEvents[/datum/event/mundane_news] = 300
 
-	possibleEvents[/datum/event/pda_spam] = max(min(25, player_list.len) * 4, 200)
-	possibleEvents[/datum/event/money_lotto] = max(min(5, player_list.len), 50)
+	possibleEvents[/datum/event/pda_spam] = max(min(25, GLOB.player_list.len) * 4, 200)
+	possibleEvents[/datum/event/money_lotto] = max(min(5, GLOB.player_list.len), 50)
 	if(account_hack_attempted)
-		possibleEvents[/datum/event/money_hacker] = max(min(25, player_list.len) * 4, 200)
+		possibleEvents[/datum/event/money_hacker] = max(min(25, GLOB.player_list.len) * 4, 200)
 
 
-	possibleEvents[/datum/event/carp_migration] = 20 + 10 * active_with_role["Engineer"]
 	possibleEvents[/datum/event/brand_intelligence] = 20 + 25 * active_with_role["Janitor"]
 
-	possibleEvents[/datum/event/rogue_drone] = 5 + 25 * active_with_role["Engineer"] + 25 * active_with_role["Security"]
 	possibleEvents[/datum/event/infestation] = 100 + 100 * active_with_role["Janitor"]
 
 	possibleEvents[/datum/event/communications_blackout] = 50 + 25 * active_with_role["AI"] + active_with_role["Scientist"] * 25
-	possibleEvents[/datum/event/ionstorm] = active_with_role["AI"] * 25 + active_with_role["Cyborg"] * 25 + active_with_role["Engineer"] * 10 + active_with_role["Scientist"] * 5
-	possibleEvents[/datum/event/electrical_storm] = 15 * active_with_role["Janitor"] + 5 * active_with_role["Engineer"]
 
 	if(active_with_role["Medical"] > 0)
 		possibleEvents[/datum/event/radiation_storm] = active_with_role["Medical"] * 10
@@ -46,7 +42,7 @@ var/list/event_last_fired = list()
 	if(active_with_role["Security"] > 0)
 		if(!sent_spiders_to_station)
 			possibleEvents[/datum/event/spider_infestation] = max(active_with_role["Security"], 5) + 5
-		if(aliens_allowed && !sent_aliens_to_station)
+		if(GLOB.aliens_allowed && !sent_aliens_to_station)
 			possibleEvents[/datum/event/alien_infestation] = max(active_with_role["Security"], 5) + 2.5
 
 	for(var/event_type in event_last_fired) if(possibleEvents[event_type])
@@ -86,17 +82,17 @@ var/list/event_last_fired = list()
 	active_with_role["AI"] = 0
 	active_with_role["Cyborg"] = 0
 
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		if(!M.mind || !M.client || M.client.inactivity > 10 * 10 * 60) //Longer than 10 minutes AFK counts them as inactive
 			continue
 
-		if(istype(M, /mob/living/silicon/robot) && M:module && M:module.name == "engineering robot module")
+		if(iscyborg(M) && M:module && M:module.name == "engineering robot module")
 			active_with_role["Engineer"]++
 
 		if(M.mind.assigned_role in list("Chief Engineer", "Maintenance Tech"))
 			active_with_role["Engineer"]++
 
-		if(istype(M, /mob/living/silicon/robot) && M:module && M:module.name == "medical robot module")
+		if(iscyborg(M) && M:module && M:module.name == "medical robot module")
 			active_with_role["Medical"]++
 		if(M.mind.assigned_role in list("Chief Medical Officer", "Doctor", "Researcher", "Sulaco Chemist"))
 			active_with_role["Medical"]++

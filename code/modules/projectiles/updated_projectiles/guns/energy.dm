@@ -7,24 +7,10 @@
 	var/obj/item/cell/cell //1000 power.
 	var/charge_cost = 10 //100 shots.
 	var/cell_type = /obj/item/cell
+	flags_gun_features = GUN_AMMO_COUNTER
 
-/obj/item/weapon/gun/energy/examine(mob/user)
+/obj/item/weapon/gun/energy/examine_ammo_count(mob/user)
 	var/list/dat = list()
-	if(flags_gun_features & GUN_TRIGGER_SAFETY)
-		dat += "The safety's on!<br>"
-	else
-		dat += "The safety's off!<br>"
-
-	if(rail) 	dat += "It has \icon[rail] [rail.name] mounted on the top.<br>"
-	if(muzzle) 	dat += "It has \icon[muzzle] [muzzle.name] mounted on the front.<br>"
-	if(stock) 	dat += "It has \icon[stock] [stock.name] for a stock.<br>"
-	if(under)
-		dat += "It has \icon[under] [under.name]"
-		if(under.flags_attach_features & ATTACH_WEAPON)
-			dat += " ([under.current_rounds]/[under.max_rounds])"
-		dat += " mounted underneath.<br>"
-
-
 	if(!(flags_gun_features & (GUN_INTERNAL_MAG|GUN_UNUSUAL_DESIGN))) //Internal mags and unusual guns have their own stuff set.
 		var/current_shots = get_ammo_count()
 		if(cell && current_shots > 0)
@@ -74,9 +60,6 @@
 	update_icon()
 	return ..()
 
-/obj/item/weapon/gun/energy/has_ammo_counter()
-	return TRUE
-
 /obj/item/weapon/gun/energy/get_ammo_type()
 	if(!ammo)
 		return list("unknown", "unknown")
@@ -101,7 +84,7 @@
 	matter = list("metal" = 2000)
 	ammo = /datum/ammo/energy/taser
 	charge_cost = 500
-	flags_gun_features = GUN_UNUSUAL_DESIGN
+	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_AMMO_COUNTER
 	gun_skill_category = GUN_SKILL_PISTOLS
 	movement_acc_penalty_mult = 0
 	cell_type = /obj/item/cell/high
@@ -143,7 +126,7 @@
 	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = 5
 	charge_cost = 100
-	flags_gun_features = GUN_UNUSUAL_DESIGN
+	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_AMMO_COUNTER
 	cell_type = /obj/item/cell/high
 
 /obj/item/weapon/gun/energy/plasmarifle/set_gun_config_values()
@@ -156,20 +139,20 @@
 
 /obj/item/weapon/gun/energy/plasmarifle/examine(mob/user)
 	. = ..()
-	if(isYautja(user))
+	if(isyautja(user))
 		to_chat(user, "It currently has [cell.charge / charge_cost] shots remaining.")
 	else
 		to_chat(user, "This thing looks like an alien rifle of some kind. Strange.")
 
 /obj/item/weapon/gun/energy/plasmarifle/unique_action(mob/user)
-	if(!isYautja(user))
+	if(!isyautja(user))
 		to_chat(user, "<span class='warning'>You have no idea how this thing works!</span>")
 		return
 	zoom(user)
 	return ..()
 
 /obj/item/weapon/gun/energy/plasmarifle/able_to_fire(mob/user)
-	if(!isYautja(user))
+	if(!isyautja(user))
 		to_chat(user, "<span class='warning'>You have no idea how this thing works!</span>")
 		return
 	return ..()
@@ -188,7 +171,7 @@
 	ammo = /datum/ammo/energy/yautja/pistol
 	muzzle_flash = null // TO DO, add a decent one.
 	w_class = 3
-	flags_gun_features = GUN_UNUSUAL_DESIGN
+	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_AMMO_COUNTER
 
 /obj/item/weapon/gun/energy/plasmapistol/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/med_fire_delay)
@@ -200,13 +183,13 @@
 
 /obj/item/weapon/gun/energy/plasmapistol/examine(mob/user)
 	. = ..()
-	if(isYautja(user))
+	if(isyautja(user))
 		to_chat(user, "It currently has [cell.charge / charge_cost] shots remaining.")
 	else
 		to_chat(user, "This thing looks like an alien rifle of some kind. Strange.")
 
 /obj/item/weapon/gun/energy/plasmapistol/able_to_fire(mob/user)
-	if(!isYautja(user))
+	if(!isyautja(user))
 		to_chat(user, "<span class='warning'>You have no idea how this thing works!</span>")
 		return
 	return ..()
@@ -229,7 +212,7 @@
 	actions_types = list(/datum/action/item_action/toggle)
 	flags_atom = CONDUCT
 	flags_item = NOBLUDGEON|DELONDROP //Can't bludgeon with this.
-	flags_gun_features = GUN_UNUSUAL_DESIGN
+	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_AMMO_COUNTER
 
 /obj/item/weapon/gun/energy/plasma_caster/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/high_fire_delay)
@@ -247,28 +230,28 @@
 			fire_delay = CONFIG_GET(number/combat_define/med_fire_delay) * 4
 			fire_sound = 'sound/weapons/emitter2.ogg'
 			to_chat(user, "<span class='notice'>[src] is now set to fire medium plasma blasts.</span>")
-			ammo = ammo_list[/datum/ammo/energy/yautja/caster/blast]
+			ammo = GLOB.ammo_list[/datum/ammo/energy/yautja/caster/blast]
 		if(1)
 			mode = 2
 			charge_cost = 300
 			fire_delay = CONFIG_GET(number/combat_define/high_fire_delay) * 20
 			fire_sound = 'sound/weapons/pulse.ogg'
 			to_chat(user, "<span class='notice'>[src] is now set to fire heavy plasma spheres.</span>")
-			ammo = ammo_list[/datum/ammo/energy/yautja/caster/sphere]
+			ammo = GLOB.ammo_list[/datum/ammo/energy/yautja/caster/sphere]
 		if(2)
 			mode = 0
 			charge_cost = 30
 			fire_delay = CONFIG_GET(number/combat_define/high_fire_delay)
 			fire_sound = 'sound/weapons/pred_lasercannon.ogg'
 			to_chat(user, "<span class='notice'>[src] is now set to fire light plasma bolts.</span>")
-			ammo = ammo_list[/datum/ammo/energy/yautja/caster/bolt]
+			ammo = GLOB.ammo_list[/datum/ammo/energy/yautja/caster/bolt]
 
 /obj/item/weapon/gun/energy/plasma_caster/dropped(mob/living/carbon/human/M)
 	playsound(M,'sound/weapons/pred_plasmacaster_off.ogg', 15, 1)
 	..()
 
 /obj/item/weapon/gun/energy/plasma_caster/able_to_fire(mob/user)
-	if(!isYautja(user))
+	if(!isyautja(user))
 		to_chat(user, "<span class='warning'>You have no idea how this thing works!</span>")
 		return
 	return ..()
@@ -288,7 +271,7 @@
 	w_class = 4
 	force = 15
 	overcharge = FALSE
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ENERGY
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER
 	aim_slowdown = SLOWDOWN_ADS_RIFLE
 	wield_delay = WIELD_DELAY_SLOW
 	gun_skill_category = GUN_SKILL_RIFLES
@@ -328,22 +311,11 @@
 						/obj/item/attachable/attached_gun/grenade,
 						/obj/item/attachable/attached_gun/flamer,
 						/obj/item/attachable/attached_gun/shotgun,
-						/obj/item/attachable/scope,
 						/obj/item/attachable/scope/mini)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY
-	starting_attachment_types = list(/obj/item/attachable/attached_gun/grenade)
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
+	starting_attachment_types = list(/obj/item/attachable/attached_gun/grenade, /obj/item/attachable/stock/lasgun)
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 15, "stock_x" = 22, "stock_y" = 12)
-
-/obj/item/weapon/gun/energy/lasgun/M43/Initialize()
-	. = ..()
-	cell = null
-	var/obj/item/attachable/stock/lasgun/S = new(src)
-	S.flags_attach_features &= ~ATTACH_REMOVABLE
-	S.Attach(src)
-	update_attachables()
-	update_icon()
-	S.icon_state = initial(S.icon_state)
 
 /obj/item/weapon/gun/energy/lasgun/M43/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/low_fire_delay)
@@ -377,18 +349,18 @@
 		//While overcharge is active, double ammo consumption, and
 		playsound(user, 'sound/weapons/emitter.ogg', 15, 0, 2)
 		charge_cost = M37_OVERCHARGE_AMMO_COST
-		ammo = ammo_list[/datum/ammo/energy/lasgun/M43/overcharge]
+		ammo = GLOB.ammo_list[/datum/ammo/energy/lasgun/M43/overcharge]
 		fire_delay = M37_OVERCHARGE_FIRE_DELAY // 1 shot per second fire rate
 		fire_sound = 'sound/weapons/Laser3.ogg'
-		to_chat(user, "\icon[src] You [overcharge? "<B>disable</b>" : "<B>enable</b>" ] [src]'s overcharge mode.")
+		to_chat(user, "[icon2html(src, user)] You [overcharge? "<B>disable</b>" : "<B>enable</b>" ] [src]'s overcharge mode.")
 		overcharge = TRUE
 	else
 		playsound(user, 'sound/weapons/emitter2.ogg', 15, 0, 2)
 		charge_cost = M37_STANDARD_AMMO_COST
-		ammo = ammo_list[/datum/ammo/energy/lasgun/M43]
+		ammo = GLOB.ammo_list[/datum/ammo/energy/lasgun/M43]
 		fire_delay = CONFIG_GET(number/combat_define/low_fire_delay)
 		fire_sound = 'sound/weapons/Laser.ogg'
-		to_chat(user, "\icon[src] You [overcharge? "<B>disable</b>" : "<B>enable</b>" ] [src]'s overcharge mode.")
+		to_chat(user, "[icon2html(src, user)] You [overcharge? "<B>disable</b>" : "<B>enable</b>" ] [src]'s overcharge mode.")
 		overcharge = FALSE
 
 	//load_into_chamber()
@@ -398,6 +370,17 @@
 		A.update_hud(user)
 
 /obj/item/weapon/gun/energy/lasgun/load_into_chamber(mob/user)
+		//Let's check on the active attachable. It loads ammo on the go, so it never chambers anything
+	if(active_attachable)
+		if(active_attachable.current_rounds > 0) //If it's still got ammo and stuff.
+			active_attachable.current_rounds--
+			return create_bullet(active_attachable.ammo)
+		else
+			to_chat(user, "<span class='warning'>[active_attachable] is empty!</span>")
+			to_chat(user, "<span class='notice'>You disable [active_attachable].</span>")
+			playsound(user, active_attachable.activation_sound, 15, 1)
+			active_attachable.activate_attachment(src, null, TRUE)
+
 	if(!cell || cell.charge - charge_cost < 0)
 		return
 

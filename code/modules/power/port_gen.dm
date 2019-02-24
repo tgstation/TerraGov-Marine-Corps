@@ -9,7 +9,6 @@
 	icon_state = "off"
 	density = 1
 	anchored = 0
-	directwired = 0
 	var/t_status = 0
 	var/t_per = 5000
 	var/filter = 1
@@ -115,12 +114,7 @@ display round(lastgen) and phorontank amount
 	drag_delay = 1 //They got them rollers
 
 /obj/machinery/power/port_gen/pacman/Initialize()
-	..()
-	if(anchored)
-		connect_to_network()
-
-/obj/machinery/power/port_gen/pacman/New()
-	..()
+	. = ..()
 	component_parts = list()
 	component_parts += new /obj/item/stock_parts/matter_bin(src)
 	component_parts += new /obj/item/stock_parts/micro_laser(src)
@@ -131,6 +125,8 @@ display round(lastgen) and phorontank amount
 	var/obj/sheet = new sheet_path(null)
 	sheet_name = sheet.name
 	RefreshParts()
+	if(anchored)
+		connect_to_network()
 
 /obj/machinery/power/port_gen/pacman/Destroy()
 	DropFuel()
@@ -226,7 +222,7 @@ display round(lastgen) and phorontank amount
 		emp_act(1)
 	else if(!active)
 
-		if(istype(O, /obj/item/tool/wrench))
+		if(iswrench(O))
 
 			if(!anchored)
 				connect_to_network()
@@ -238,14 +234,14 @@ display round(lastgen) and phorontank amount
 			playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
 			anchored = !anchored
 
-		else if(istype(O, /obj/item/tool/screwdriver))
+		else if(isscrewdriver(O))
 			open = !open
 			playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 			if(open)
 				to_chat(user, "<span class='notice'>You open the access panel.</span>")
 			else
 				to_chat(user, "<span class='notice'>You close the access panel.</span>")
-		else if(istype(O, /obj/item/tool/crowbar) && open)
+		else if(iscrowbar(O) && open)
 			var/obj/machinery/constructable_frame/machine_frame/new_frame = new /obj/machinery/constructable_frame/machine_frame(src.loc)
 			for(var/obj/item/I in component_parts)
 				if(I.reliability < 100)
@@ -280,7 +276,7 @@ display round(lastgen) and phorontank amount
 
 /obj/machinery/power/port_gen/pacman/interact(mob/user)
 	if (get_dist(src, user) > 1 )
-		if (!istype(user, /mob/living/silicon/ai))
+		if (!isAI(user))
 			user.unset_interaction()
 			user << browse(null, "window=port_gen")
 			return

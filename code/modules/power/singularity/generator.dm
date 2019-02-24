@@ -20,7 +20,7 @@
 		if(src) qdel(src)
 
 /obj/machinery/the_singularitygen/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/tool/wrench))
+	if(iswrench(W))
 		anchored = !anchored
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 		if(anchored)

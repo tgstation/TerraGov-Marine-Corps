@@ -127,11 +127,8 @@
 			else
 				for(var/n = ++i; n <= optioncount; n++)
 					dat += "<dd><font color='blue'>&#09;[n]. ---------------</font><br></dd>"
-			if((istype(user, /mob/living/silicon/ai) || istype(user, /mob/living/silicon/robot)) && (user.mind.special_role && user.mind.original == user))
-				//Malf/Traitor AIs can bruteforce into the system to gain the Key.
-				dat += "<dd><A href='?src=\ref[src];hack=1'><i><font color='Red'>*&@#. Bruteforce Key</font></i></font></a><br></dd>"
-			else
-				dat += "<br>"
+
+			dat += "<br>"
 
 			//Bottom message
 			if(!auth)
@@ -157,7 +154,7 @@
 			dat += "</table>"
 		//Hacking screen.
 		if(2)
-			if(istype(user, /mob/living/silicon/ai) || istype(user, /mob/living/silicon/robot))
+			if(isAI(user) || iscyborg(user))
 				dat += "Brute-forcing for server key.<br> It will take 20 seconds for every character that the password has."
 				dat += "In the meantime, this console can reveal your true intentions if you let someone access it. Make sure no humans enter the room during that time."
 			else
@@ -290,9 +287,9 @@
 		return
 	if(stat & (NOPOWER|BROKEN))
 		return
-	if(!istype(usr, /mob/living))
+	if(!isliving(usr))
 		return
-	if ((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))) || (istype(usr, /mob/living/silicon)))
+	if ((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))) || (issilicon(usr)))
 		//Authenticate
 		if (href_list["auth"])
 			if(auth)
@@ -363,17 +360,6 @@
 							message = "<span class='notice'>NOTICE: Decryption key set.</span>"
 						else
 							message = incorrectkey
-
-		//Hack the Console to get the password
-		if (href_list["hack"])
-			if((istype(usr, /mob/living/silicon/ai) || istype(usr, /mob/living/silicon/robot)) && (usr.mind.special_role && usr.mind.original == usr))
-				src.hacking = 1
-				src.screen = 2
-				src.icon_state = hack_icon
-				//Time it takes to bruteforce is dependant on the password length.
-				spawn(100*length(src.linkedServer.decryptkey))
-					if(src && src.linkedServer && usr)
-						BruteForce(usr)
 		//Delete the log.
 		if (href_list["delete"])
 			//Are they on the view logs screen?
@@ -460,10 +446,10 @@
 							if (!customrecepient.silent)
 								playsound(customrecepient.loc, 'sound/machines/twobeep.ogg', 25, 1)
 								for (var/mob/O in hearers(3, customrecepient.loc))
-									O.show_message(text("\icon[customrecepient] *[customrecepient.ttone]*"))
+									O.show_message(text("[icon2html(customrecepient, O)] *[customrecepient.ttone]*"))
 								if( customrecepient.loc && ishuman(customrecepient.loc) )
 									var/mob/living/carbon/human/H = customrecepient.loc
-									to_chat(H, "\icon[customrecepient] <b>Message from [customsender] ([customjob]), </b>\"[custommessage]\" (<a href='byond://?src=\ref[src];choice=Message;skiprefresh=1;target=\ref[src]'>Reply</a>)")
+									to_chat(H, "[icon2html(customrecepient, H)] <b>Message from [customsender] ([customjob]), </b>\"[custommessage]\" (<a href='byond://?src=\ref[src];choice=Message;skiprefresh=1;target=\ref[src]'>Reply</a>)")
 								usr.log_message("(PDA: [customsender]) sent \"[custommessage]\" to [customrecepient.owner]", LOG_PDA)
 								customrecepient.overlays.Cut()
 								customrecepient.overlays += image('icons/obj/items/pda.dmi', "pda-r")
@@ -479,10 +465,10 @@
 							if (!customrecepient.silent)
 								playsound(customrecepient.loc, 'sound/machines/twobeep.ogg', 25, 1)
 								for (var/mob/O in hearers(3, customrecepient.loc))
-									O.show_message(text("\icon[customrecepient] *[customrecepient.ttone]*"))
+									O.show_message(text("[icon2html(customrecepient, O)] *[customrecepient.ttone]*"))
 								if( customrecepient.loc && ishuman(customrecepient.loc) )
 									var/mob/living/carbon/human/H = customrecepient.loc
-									to_chat(H, "\icon[customrecepient] <b>Message from [PDARec.owner] ([customjob]), </b>\"[custommessage]\" (<a href='byond://?src=\ref[customrecepient];choice=Message;skiprefresh=1;target=\ref[PDARec]'>Reply</a>)")
+									to_chat(H, "[icon2html(customrecepient, H)] <b>Message from [PDARec.owner] ([customjob]), </b>\"[custommessage]\" (<a href='byond://?src=\ref[customrecepient];choice=Message;skiprefresh=1;target=\ref[PDARec]'>Reply</a>)")
 								usr.log_message("(PDA: [PDARec.owner]) sent \"[custommessage]\" to [customrecepient.owner]", LOG_PDA)
 								customrecepient.overlays.Cut()
 								customrecepient.overlays += image('icons/obj/items/pda.dmi', "pda-r")
@@ -530,14 +516,13 @@
 	name = "Monitor Decryption Key"
 	var/obj/machinery/message_server/server = null
 
-/obj/item/paper/monitorkey/New()
-	..()
-	spawn(10)
-		if(message_servers)
-			for(var/obj/machinery/message_server/server in message_servers)
-				if(!isnull(server))
-					if(!isnull(server.decryptkey))
-						info = "<center><h2>Daily Key Reset</h2></center><br>The new message monitor key is '[server.decryptkey]'.<br>Please keep this a secret and away from the clown.<br>If necessary, change the password to a more secure one."
-						info_links = info
-						icon_state = "paper_words"
-						break
+/obj/item/paper/monitorkey/Initialize()
+	. = ..()
+	if(message_servers)
+		for(var/obj/machinery/message_server/server in message_servers)
+			if(!isnull(server))
+				if(!isnull(server.decryptkey))
+					info = "<center><h2>Daily Key Reset</h2></center><br>The new message monitor key is '[server.decryptkey]'.<br>Please keep this a secret and away from the clown.<br>If necessary, change the password to a more secure one."
+					info_links = info
+					icon_state = "paper_words"
+					break

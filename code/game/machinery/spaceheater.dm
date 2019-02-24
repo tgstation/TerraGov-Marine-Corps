@@ -67,7 +67,7 @@
 		else
 			to_chat(user, "The hatch must be open to insert a power cell.")
 			return
-	else if(istype(I, /obj/item/tool/screwdriver))
+	else if(isscrewdriver(I))
 		open = !open
 		user.visible_message("<span class='notice'> [user] [open ? "opens" : "closes"] the hatch on the [src].</span>", "<span class='notice'> You [open ? "open" : "close"] the hatch on the [src].</span>")
 		update_icon()
@@ -119,7 +119,7 @@
 /obj/machinery/space_heater/Topic(href, href_list)
 	if (usr.stat)
 		return
-	if ((in_range(src, usr) && istype(src.loc, /turf)) || (istype(usr, /mob/living/silicon)))
+	if ((in_range(src, usr) && istype(src.loc, /turf)) || issilicon(usr))
 		usr.set_interaction(src)
 
 		switch(href_list["op"])
@@ -165,7 +165,7 @@
 				H.adjust_bodytemperature(min(round(T20C - H.bodytemperature)*0.7, 25), 0, T20C)
 
 
-			cell.use(50*CELLRATE)
+			cell.use(50*GLOB.CELLRATE)
 
 		else
 			on = 0

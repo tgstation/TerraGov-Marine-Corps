@@ -4,6 +4,7 @@
 	icon = 'icons/obj/structures/closet.dmi'
 	icon_state = "closed"
 	density = TRUE
+	layer = BELOW_OBJ_LAYER
 	var/icon_closed = "closed"
 	var/icon_opened = "open"
 	var/opened = FALSE
@@ -24,6 +25,11 @@
 	anchored = TRUE
 
 	var/const/mob_size = 15
+
+/obj/structure/closet/open
+	icon_state = "open"
+	density = FALSE
+	opened = TRUE
 
 /obj/structure/closet/Initialize()
 	. = ..()
@@ -115,7 +121,7 @@
 	for(var/mob/M in loc)
 		if(stored_units + mob_size > storage_capacity)
 			break
-		if(istype (M, /mob/dead/observer))
+		if(isobserver(M))
 			continue
 		if(M.buckled)
 			continue
@@ -176,7 +182,7 @@
 		qdel(src)
 
 /obj/structure/closet/attack_alien(mob/living/carbon/Xenomorph/M)
-	if(M.a_intent == "hurt" && !unacidable)
+	if(M.a_intent == INTENT_HARM && !unacidable)
 		M.animation_attack_on(src)
 		if(!opened && prob(70))
 			break_open()
@@ -185,13 +191,15 @@
 		else
 			M.visible_message("<span class='danger'>\The [M] smashes \the [src]!</span>", \
 			"<span class='danger'>You smash \the [src]!</span>", null, 5)
+		if(M.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
+			M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 	else
 		return attack_paw(M)
 
 /obj/structure/closet/attackby(obj/item/W, mob/living/user)
 	if(src.opened)
 		if(istype(W, /obj/item/grab))
-			if(isXeno(user))
+			if(isxeno(user))
 				return
 			var/obj/item/grab/G = W
 			if(G.grabbed_thing)
@@ -199,7 +207,7 @@
 			return
 		if(W.flags_item & ITEM_ABSTRACT)
 			return FALSE
-		if(istype(W, /obj/item/tool/weldingtool))
+		if(iswelder(W))
 			var/obj/item/tool/weldingtool/WT = W
 			if(!WT.remove_fuel(0,user))
 				to_chat(user, "<span class='notice'>You need more welding fuel to complete this task.</span>")
@@ -218,13 +226,13 @@
 			qdel(src)
 			return
 
-		if(isrobot(user))
+		if(iscyborg(user))
 			return
 		user.transferItemToLoc(W,loc)
 
 	else if(istype(W, /obj/item/packageWrap))
 		return
-	else if(istype(W, /obj/item/tool/weldingtool))
+	else if(iswelder(W))
 		var/obj/item/tool/weldingtool/WT = W
 		if(!WT.remove_fuel(0,user))
 			to_chat(user, "<span class='notice'>You need more welding fuel to complete this task.</span>")

@@ -22,7 +22,6 @@ var/list/solars_list = list()
 	icon_state = "sp_base"
 	anchored = 1
 	density = 1
-	directwired = 1
 	use_power = 0
 	idle_power_usage = 0
 	active_power_usage = 0
@@ -100,7 +99,7 @@ var/list/solars_list = list()
 		overlays += image('icons/obj/power.dmi', icon_state = "solar_panel-b", layer = FLY_LAYER)
 	else
 		overlays += image('icons/obj/power.dmi', icon_state = "solar_panel", layer = FLY_LAYER)
-		src.dir = angle2dir(adir)
+		setDir(angle2dir(adir))
 	return
 
 
@@ -249,7 +248,6 @@ var/list/solars_list = list()
 	icon_state = "solar"
 	anchored = 1
 	density = 1
-	directwired = 1
 	use_power = 1
 	idle_power_usage = 5
 	active_power_usage = 20
@@ -310,7 +308,7 @@ var/list/solars_list = list()
 
 
 /obj/machinery/power/solar_control/attackby(I as obj, user as mob)
-	if(istype(I, /obj/item/tool/screwdriver))
+	if(isscrewdriver(I))
 		playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 		if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
 			if (src.stat & BROKEN)
@@ -373,7 +371,7 @@ var/list/solars_list = list()
 /obj/machinery/power/solar_control/interact(mob/user)
 	if(stat & (BROKEN|NOPOWER)) return
 	if ( (get_dist(src, user) > 1 ))
-		if (!istype(user, /mob/living/silicon))
+		if (!issilicon(user))
 			user.unset_interaction()
 			user << browse(null, "window=solcon")
 			return

@@ -168,7 +168,7 @@ var/const/tk_maxrange = 15
 		O.anchored = 1
 		O.density = 0
 		O.layer = FLY_LAYER
-		O.dir = pick(cardinal)
+		O.setDir(pick(cardinal))
 		O.icon = 'icons/effects/effects.dmi'
 		O.icon_state = "nothing"
 		flick("empdisable",O)
@@ -198,7 +198,7 @@ var/const/tk_maxrange = 15
 
 //equip_to_slot_or_del(obj/item/W, slot, del_on_fail = 1)
 /*
-		if(istype(user, /mob/living/carbon))
+		if(iscarbon(user))
 			if(user:mutations & TK && get_dist(source, user) <= 7)
 				if(user:get_active_held_item())	return 0
 				var/X = source:x

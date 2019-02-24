@@ -26,29 +26,9 @@
 			for(var/mob/M in hearers(4, src))
 				if(M.client)
 					M.show_message("<span class='warning'> You hear something rumbling inside [src]'s stomach...</span>", 2)
-		var/obj/item/I = user.get_active_held_item()
-		if(I && I.force)
-			var/d = rand(round(I.force / 4), I.force)
-			if(istype(src, /mob/living/carbon/human))
-				var/mob/living/carbon/human/H = src
-				var/organ = H.get_limb("chest")
-				if (istype(organ, /datum/limb))
-					var/datum/limb/temp = organ
-					if(temp.take_damage(d, 0))
-						H.UpdateDamageIcon()
-				H.updatehealth()
-			else
-				src.take_limb_damage(d)
-			for(var/mob/M in viewers(user, null))
-				if(M.client)
-					M.show_message("<span class='danger'>[user] attacks [src]'s stomach wall with the [I.name]!</span>", 2)
-			playsound(user.loc, 'sound/effects/attackblob.ogg', 25, 1)
-
-			if(prob(max(4*(100*getBruteLoss()/maxHealth - 75),0))) //4% at 24% health, 80% at 5% health
-				gib()
-	else if(!chestburst && (status_flags & XENO_HOST) && isXenoLarva(user))
+	else if(!chestburst && (status_flags & XENO_HOST) && isxenolarva(user))
 		var/mob/living/carbon/Xenomorph/Larva/L = user
-		L.chest_burst(src)
+		L.initiate_burst(src)
 
 
 /mob/living/carbon/gib()
@@ -76,7 +56,8 @@
 
 
 /mob/living/carbon/attack_hand(mob/M as mob)
-	if(!istype(M, /mob/living/carbon)) return
+	if(!iscarbon(M))
+		return
 
 	for(var/datum/disease/D in viruses)
 		if(D.spread_by_touch())
@@ -91,7 +72,8 @@
 
 
 /mob/living/carbon/attack_paw(mob/M as mob)
-	if(!istype(M, /mob/living/carbon)) return
+	if(!iscarbon(M))
+		return
 
 	for(var/datum/disease/D in viruses)
 
@@ -121,7 +103,7 @@
 			"<span class='danger'>You feel a powerful shock course through your body!</span>", \
 			"<span class='warning'> You hear a heavy electrical crack.</span>" \
 		)
-		if(isXeno(src) && mob_size == MOB_SIZE_BIG)
+		if(isxeno(src) && mob_size == MOB_SIZE_BIG)
 			Stun(1)//Sadly, something has to stop them from bumping them 10 times in a second
 			KnockDown(1)
 		else
@@ -160,9 +142,9 @@
 			hud_used.l_hand_hud_object.icon_state = "hand_inactive"
 			hud_used.r_hand_hud_object.icon_state = "hand_active"
 	/*if (!( src.hand ))
-		src.hands.dir = NORTH
+		src.hands.setDir(NORTH)
 	else
-		src.hands.dir = SOUTH*/
+		src.hands.setDir(SOUTH)*/
 	return
 
 /mob/living/carbon/proc/activate_hand(var/selhand) //0 or "r" or "right" for right hand; 1 or "l" or "left" for left hand.
@@ -181,7 +163,7 @@
 /mob/living/carbon/proc/vomit()
 
 	var/mob/living/carbon/human/H = src
-	if(H.species.flags & IS_SYNTHETIC)
+	if(istype(H) && H.species.flags & IS_SYNTHETIC)
 		return //Machines don't throw up.
 
 	if(stat == DEAD) //Corpses don't puke
@@ -190,22 +172,26 @@
 	if(!lastpuke)
 		lastpuke = TRUE
 		to_chat(src, "<spawn class='warning'>You feel like you are about to throw up!")
-		spawn(50)
-			Stun(5)
-			visible_message("<spawn class='warning'>[src] throws up!","<spawn class='warning'>You throw up!", null, 5)
-			playsound(loc, 'sound/effects/splat.ogg', 25, 1, 7)
+		addtimer(CALLBACK(src, .do_vomit), 5 SECONDS)
 
-			var/turf/location = loc
-			if (istype(location, /turf))
-				location.add_vomit_floor(src, 1)
+/mob/living/carbon/proc/do_vomit()
+	Stun(5)
+	visible_message("<spawn class='warning'>[src] throws up!","<spawn class='warning'>You throw up!", null, 5)
+	playsound(loc, 'sound/effects/splat.ogg', 25, 1, 7)
 
-			nutrition = max(nutrition - 40, 0)
-			adjustToxLoss(-3)
-			spawn(350)	//wait 35 seconds before next volley
-				lastpuke = FALSE
+	var/turf/location = loc
+	if (istype(location, /turf))
+		location.add_vomit_floor(src, 1)
+
+	nutrition = max(nutrition - 40, 0)
+	adjustToxLoss(-3)
+	addtimer(CALLBACK(src, .do_vomit_cooldown), 35 SECONDS) //wait 35 seconds before next volley
+
+/mob/living/carbon/proc/do_vomit_cooldown()
+	lastpuke = FALSE
 
 /mob/living/carbon/proc/help_shake_act(mob/living/carbon/M)
-	if(health >= CONFIG_GET(number/health_threshold_crit))
+	if(health >= get_crit_threshold())
 		if(src != M)
 			var/t_him = "it"
 			if (gender == MALE)
@@ -309,7 +295,7 @@
 					var/end_T_descriptor = "tile at [end_T.x], [end_T.y], [end_T.z] in area [get_area(end_T)]"
 
 					log_combat(usr, M, "thrown", addition="from [start_T_descriptor] with the target [end_T_descriptor]")
-					msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) has thrown [key_name(M)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[M]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[M.x];Y=[M.y];Z=[M.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[M]'>FLW</a>) from [start_T_descriptor] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[start_T.x];Y=[start_T.y];Z=[start_T.z]'>JMP</a>) with the target [end_T_descriptor] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[end_T.x];Y=[end_T.y];Z=[end_T.z]'>JMP</a>)")
+					msg_admin_attack("[ADMIN_TPMONTY(usr)] has thrown [ADMIN_TPMONTY(M)].")
 			else
 				to_chat(src, "<span class='warning'>You need a better grip!</span>")
 
@@ -323,7 +309,7 @@
 
 		if(!lastarea)
 			lastarea = get_area(src.loc)
-		if((istype(loc, /turf/open/space)) || !lastarea.has_gravity)
+		if(isspaceturf(loc) || !lastarea.has_gravity)
 			inertia_dir = get_dir(target, src)
 			step(src, inertia_dir)
 
@@ -331,7 +317,7 @@
 
 /mob/living/carbon/fire_act(exposed_temperature, exposed_volume)
 	. = ..()
-	adjust_bodytemperature(100, 0, BODYTEMP_HEAT_DAMAGE_LIMIT+10)
+	adjust_bodytemperature(100, 0, BODYTEMP_HEAT_DAMAGE_LIMIT_ONE+10)
 
 
 /mob/living/carbon/show_inv(mob/living/carbon/user as mob)
@@ -357,7 +343,7 @@
 	var/temp = 0								//see setup.dm:694
 	switch(src.pulse)
 		if(PULSE_NONE)
-			return "0"
+			return PULSE_NONE
 		if(PULSE_SLOW)
 			temp = rand(40, 60)
 			return num2text(method ? temp : temp + rand(-10, 10))
@@ -418,3 +404,11 @@
 			if(AM == X)
 				stomach_contents -= AM
 				break
+
+
+/mob/living/carbon/vv_get_dropdown()
+	. = ..()
+	. += "---"
+	.["Add Language"] = "?_src_=vars;[HrefToken()];addlanguage=[REF(src)]"
+	.["Remove Language"] = "?_src_=vars;[HrefToken()];remlanguage=[REF(src)]"
+	.["Regenerate Icons"] = "?_src_=vars;[HrefToken()];regenerateicons=[REF(src)]"

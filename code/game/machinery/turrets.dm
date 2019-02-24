@@ -235,7 +235,7 @@
 
 /obj/machinery/turret/proc/target()
 	while(src && enabled && !stat && check_target(cur_target))
-		src.dir = get_dir(src, cur_target)
+		setDir(get_dir(src, cur_target))
 		shootAt(cur_target)
 		sleep(shot_delay)
 	return
@@ -376,7 +376,7 @@
 
 /obj/machinery/turretid/attackby(obj/item/weapon/W, mob/user)
 	if(stat & BROKEN) return
-	if (istype(user, /mob/living/silicon))
+	if (issilicon(user))
 		return src.attack_hand(user)
 
 	if (istype(W, /obj/item/weapon/card/emag) && !emagged)
@@ -430,7 +430,7 @@
 	var/area/area = loc
 	var/t = "<TT><B>Turret Control Panel</B> ([area.name])<HR>"
 
-	if(src.locked && (!istype(user, /mob/living/silicon)))
+	if(locked && !issilicon(user))
 		t += "<I>(Swipe ID card to unlock control panel.)</I><BR>"
 	else
 		t += text("Turrets [] - <A href='?src=\ref[];toggleOn=1'>[]?</a><br>\n", src.enabled?"activated":"deactivated", src, src.enabled?"Disable":"Enable")
@@ -456,7 +456,7 @@
 	if(..(href, href_list))
 		return
 	if (src.locked)
-		if (!istype(usr, /mob/living/silicon))
+		if(!issilicon(usr))
 			to_chat(usr, "Control panel is locked!")
 			return
 	if ( get_dist(src, usr) == 0 || issilicon(usr))
@@ -631,7 +631,7 @@
 		if(!target)
 			cur_target = null
 			return
-		src.dir = get_dir(src,target)
+		setDir(get_dir(src,target))
 		var/turf/targloc = get_turf(target)
 		var/target_x = targloc.x
 		var/target_y = targloc.y

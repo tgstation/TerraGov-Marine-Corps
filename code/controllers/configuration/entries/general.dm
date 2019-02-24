@@ -7,35 +7,34 @@ Basics, the most important.
 
 /datum/config_entry/string/server // If you set this location, it sends you there instead of trying to reconnect.
 
-/datum/config_entry/flag/hub	// Does the server appear on the hub?
+/datum/config_entry/string/title //The title of the main window
 
 /datum/config_entry/string/hostedby // Sets the hosted by name on unix platforms.
 
+/datum/config_entry/string/resource_url
+
+/datum/config_entry/string/hubpassword
+	config_entry_value = "kMZy3U5jJHSiBQjr"
+
 /datum/config_entry/string/wikiurl
-	config_entry_value = "https://tgstation13.org/wiki/TGMC"
 
 /datum/config_entry/string/forumurl
-	config_entry_value = "http://tgstation13.org/phpBB/index.php"
 
 /datum/config_entry/string/rulesurl
-	config_entry_value = "http://www.tgstation13.org/wiki/TGMC:Rules"
 
 /datum/config_entry/string/githuburl
-	config_entry_value = "https://github.com/tgstation/TerraGov-Marine-Corps"
 
 /datum/config_entry/string/discordurl
-	config_entry_value = "https://discord.gg/2dFpfNE"
 
 /datum/config_entry/string/banappeals
-	config_entry_value = "https://tgstation13.org/phpBB/viewforum.php?f=70"
 
 /datum/config_entry/string/donationurl
 
 /datum/config_entry/string/shipurl
 
-/datum/config_entry/string/icecolonyurl
-
 /datum/config_entry/string/lv624url
+
+/datum/config_entry/string/icecolonyurl
 
 /datum/config_entry/string/bigredurl
 
@@ -52,7 +51,10 @@ Basics, the most important.
 /*
 Administrative related.
 */
+/datum/config_entry/flag/localhost_rank
+
 /datum/config_entry/flag/ban_legacy_system
+	protection = CONFIG_ENTRY_LOCKED
 
 /datum/config_entry/flag/admin_legacy_system	//Defines whether the server uses the legacy admin system with admins.txt or the SQL system
 	protection = CONFIG_ENTRY_LOCKED
@@ -68,6 +70,8 @@ Administrative related.
 
 /datum/config_entry/flag/log_ooc
 
+/datum/config_entry/flag/log_looc
+
 /datum/config_entry/flag/log_access
 
 /datum/config_entry/flag/log_say
@@ -78,11 +82,7 @@ Administrative related.
 
 /datum/config_entry/flag/log_prayer
 
-/datum/config_entry/flag/log_law
-
 /datum/config_entry/flag/log_game
-
-/datum/config_entry/flag/log_mecha
 
 /datum/config_entry/flag/log_vote
 
@@ -92,37 +92,15 @@ Administrative related.
 
 /datum/config_entry/flag/log_emote
 
-/datum/config_entry/flag/log_pda
-
-/datum/config_entry/flag/log_telecomms
-
 /datum/config_entry/flag/log_world_topic
 
 /datum/config_entry/flag/log_manifest
 
-/datum/config_entry/flag/log_job_debug
-
 /datum/config_entry/flag/allow_admin_ooccolor // Allows admins to customize their OOC color.
-
-/datum/config_entry/flag/popup_admin_pm	// adminPMs to non-admins show in a pop-up 'reply' window when set
-
-/datum/config_entry/flag/allow_admin_jump
-
-/datum/config_entry/flag/allow_admin_rev
-
-/datum/config_entry/flag/allow_admin_spawning
-
-/datum/config_entry/flag/ToRban
 
 /datum/config_entry/flag/admin_irc
 
-/datum/config_entry/flag/show_mods
-
-/datum/config_entry/flag/show_mentors
-
 /datum/config_entry/flag/guest_jobban
-
-/datum/config_entry/flag/forbid_singulo_possession
 
 /datum/config_entry/flag/usewhitelist
 
@@ -132,9 +110,15 @@ Administrative related.
 
 /datum/config_entry/flag/automute_on	//enables automuting/spam prevention
 
-/datum/config_entry/flag/debugparanoid
-
 /datum/config_entry/flag/autooocmute
+
+/datum/config_entry/flag/looc_enabled
+
+/datum/config_entry/number/lobby_countdown
+	config_entry_value = 180
+
+/datum/config_entry/number/round_end_countdown
+	config_entry_value = 180
 
 /*
 Voting
@@ -158,6 +142,7 @@ Voting
 /datum/config_entry/flag/vote_no_dead
 
 /datum/config_entry/number/vote_autogamemode_timeleft
+	config_entry_value = 999999999
 
 /datum/config_entry/flag/allow_metadata	// Metadata is supported.
 
@@ -203,13 +188,14 @@ Master controller and performance related.
 		sync_validate = FALSE
 
 /datum/config_entry/number/ticklag
+	config_entry_value = 0.5
 	integer = FALSE
 	var/sync_validate = FALSE
 
 /datum/config_entry/number/ticklag/New()	//ticklag weirdly just mirrors fps
 	var/datum/config_entry/CE = /datum/config_entry/number/fps
 	config_entry_value = 10 / initial(CE.config_entry_value)
-	..()
+	return ..()
 
 /datum/config_entry/number/ticklag/ValidateAndSet(str_val)
 	. = text2num(str_val) > 0 && ..()
@@ -237,6 +223,17 @@ Master controller and performance related.
 /datum/config_entry/flag/use_recursive_explosions
 
 /*
+System command that invokes youtube-dl, used by Play Internet Sound.
+You can install youtube-dl with
+"pip install youtube-dl" if you have pip installed
+from https://github.com/rg3/youtube-dl/releases
+or your package manager
+The default value assumes youtube-dl is in your system PATH
+*/
+/datum/config_entry/string/invoke_youtubedl
+	protection = CONFIG_ENTRY_LOCKED | CONFIG_ENTRY_HIDDEN
+
+/*
 Not yet implemented.
 */
 /datum/config_entry/flag/norespawn
@@ -246,12 +243,17 @@ Legacy - work on reworking/removing these.
 */
 /datum/config_entry/number/max_maint_drones
 
-/datum/config_entry/flag/ert_admin_call_only
-
 /datum/config_entry/flag/allow_drone_spawn
 
 /datum/config_entry/number/drone_build_time
 
-/datum/config_entry/flag/use_loyalty_implants
-
 /datum/config_entry/flag/usealienwhitelist
+
+/datum/config_entry/flag/load_legacy_ranks_only
+
+/datum/config_entry/flag/allow_shutdown
+	protection = CONFIG_ENTRY_LOCKED
+
+/datum/config_entry/string/tgs3_commandline_path
+	protection = CONFIG_ENTRY_LOCKED | CONFIG_ENTRY_HIDDEN
+	config_entry_value = "C:\\Program Files (x86)\\TG Station Server\\TGCommandLine.exe"

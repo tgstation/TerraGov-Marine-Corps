@@ -402,13 +402,13 @@ var/list/robot_verbs_default = list(
 
 // update the status screen display
 /mob/living/silicon/robot/Stat()
-	if (!..())
-		return 0
+	. = ..()
 
-	show_cell_power()
-	show_jetpack_pressure()
-	stat(null, text("Lights: [lights_on ? "ON" : "OFF"]"))
-	return 1
+	if(statpanel("Stats"))
+		show_cell_power()
+		show_jetpack_pressure()
+		stat(null, text("Lights: [lights_on ? "ON" : "OFF"]"))
+
 
 /mob/living/silicon/robot/is_mob_restrained()
 	return 0
@@ -445,7 +445,7 @@ var/list/robot_verbs_default = list(
 
 
 /mob/living/silicon/robot/attackby(obj/item/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/handcuffs)) // fuck i don't even know why isrobot() in handcuff code isn't working so this will have to do
+	if (istype(W, /obj/item/handcuffs)) // fuck i don't even know why iscyborg() in handcuff code isn't working so this will have to do
 		return
 
 	if(opened) // Are they trying to insert something?
@@ -466,7 +466,7 @@ var/list/robot_verbs_default = list(
 
 				return
 
-	if (istype(W, /obj/item/tool/weldingtool))
+	if (iswelder(W))
 		if (src == user)
 			to_chat(user, "<span class='warning'>You lack the reach to be able to repair yourself.</span>")
 			return
@@ -485,7 +485,7 @@ var/list/robot_verbs_default = list(
 			to_chat(user, "Need more welding fuel!")
 			return
 
-	else if(istype(W, /obj/item/stack/cable_coil) && (wiresexposed || istype(src,/mob/living/silicon/robot/drone)))
+	else if(iscablecoil(W) && (wiresexposed || ismaintdrone(src)))
 		if (!getFireLoss())
 			to_chat(user, "Nothing to fix here!")
 			return
@@ -496,7 +496,7 @@ var/list/robot_verbs_default = list(
 			for(var/mob/O in viewers(user, null))
 				O.show_message(text("<span class='warning'> [user] has fixed some of the burnt wires on [src]!</span>"), 1)
 
-	else if (istype(W, /obj/item/tool/crowbar))	// crowbar means open or close the cover
+	else if(iscrowbar(W))	// crowbar means open or close the cover
 		if(opened)
 			if(cell)
 				to_chat(user, "You close the cover.")
@@ -570,18 +570,18 @@ var/list/robot_verbs_default = list(
 			C.brute_damage = 0
 			C.electronics_damage = 0
 
-	else if (istype(W, /obj/item/tool/wirecutters) || istype(W, /obj/item/device/multitool))
+	else if (iswirecutter(W) || ismultitool(W))
 		if (wiresexposed)
 			interact(user)
 		else
 			to_chat(user, "You can't reach the wiring.")
 
-	else if(istype(W, /obj/item/tool/screwdriver) && opened && !cell)	// haxing
+	else if(isscrewdriver(W) && opened && !cell)	// haxing
 		wiresexposed = !wiresexposed
 		to_chat(user, "The wires have been [wiresexposed ? "exposed" : "unexposed"]")
 		update_icons()
 
-	else if(istype(W, /obj/item/tool/screwdriver) && opened && cell)	// radio
+	else if(isscrewdriver(W) && opened && cell)	// radio
 		if(radio)
 			radio.attackby(W,user)//Push it to the radio to let it handle everything
 		else
@@ -634,8 +634,8 @@ var/list/robot_verbs_default = list(
 					lawupdate = 0
 					connected_ai = null
 					to_chat(user, "You emag [src]'s interface.")
-					message_admins("[key_name_admin(user)] emagged cyborg [key_name_admin(src)].  Laws overridden.")
-					log_game("[key_name(user)] emagged cyborg [key_name(src)].  Laws overridden.")
+					log_game("[key_name(user)] emagged cyborg [key_name(src)]. Laws overridden.")
+					message_admins("[ADMIN_TPMONTY(user)] emagged cyborg [ADMIN_TPMONTY(src)]. Laws overridden.")
 					clear_supplied_laws()
 					clear_inherent_laws()
 					laws = new /datum/ai_laws/syndicate_override
@@ -716,7 +716,7 @@ var/list/robot_verbs_default = list(
 
 	add_fingerprint(user)
 
-	if(opened && !wiresexposed && (!istype(user, /mob/living/silicon)))
+	if(opened && !wiresexposed && (!issilicon(user)))
 		var/datum/robot_component/cell_component = components["power cell"]
 		if(cell)
 			cell.updateicon()
@@ -737,12 +737,12 @@ var/list/robot_verbs_default = list(
 	//check if it doesn't require any access at all
 	if(check_access(null))
 		return 1
-	if(istype(M, /mob/living/carbon/human))
+	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		//if they are holding or wearing a card that has access, that works
 		if(check_access(H.get_active_held_item()) || check_access(H.wear_id))
 			return 1
-	else if(istype(M, /mob/living/carbon/monkey))
+	else if(ismonkey(M))
 		var/mob/living/carbon/monkey/george = M
 		//they can only hold things :(
 		if(george.get_active_held_item() && istype(george.get_active_held_item(), /obj/item/card/id) && check_access(george.get_active_held_item()))
@@ -942,7 +942,7 @@ var/list/robot_verbs_default = list(
 					else if(istype(A, /obj/item))
 						var/obj/item/cleaned_item = A
 						cleaned_item.clean_blood()
-					else if(istype(A, /mob/living/carbon/human))
+					else if(ishuman(A))
 						var/mob/living/carbon/human/cleaned_human = A
 						if(cleaned_human.lying)
 							if(cleaned_human.head)
@@ -1053,7 +1053,7 @@ var/list/robot_verbs_default = list(
 	if(cell.charge == 0)
 		return 0
 
-	if(cell.use(amount * CELLRATE * CYBORG_POWER_USAGE_MULTIPLIER))
+	if(cell.use(amount * GLOB.CELLRATE * CYBORG_POWER_USAGE_MULTIPLIER))
 		used_power_this_tick += amount * CYBORG_POWER_USAGE_MULTIPLIER
 		return 1
 	return 0

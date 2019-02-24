@@ -7,7 +7,7 @@
 	else		return dy + (0.5*dx)
 
 
-/proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog = 1, z_transfer = 0, flame_range = 0)
+/proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog = TRUE, z_transfer = FALSE, flame_range = 0)
 	src = null	//so we don't abort once src is deleted
 	spawn(0)
 		if(CONFIG_GET(flag/use_recursive_explosions))
@@ -34,7 +34,7 @@
 		far_dist += heavy_impact_range * 5
 		far_dist += devastation_range * 20
 		var/frequency = GET_RANDOM_FREQ
-		for(var/mob/M in player_list)
+		for(var/mob/M in GLOB.player_list)
 			// Double check for client
 			if(M && M.client)
 				var/turf/M_turf = get_turf(M)
@@ -53,16 +53,16 @@
 
 		var/close = trange(world.view + round(devastation_range, 1), epicenter)
 		//To all distanced mobs play a different sound
-		for(var/mob/M in mob_list)
+		for(var/mob/M in GLOB.mob_list)
 			if(M.z == epicenter.z)
 				if(!(M in close))
 					// check if the mob can hear
 					if(M.ear_deaf <= 0 || !M.ear_deaf)
-						if(!istype(M.loc, /turf/open/space))
+						if(!isspaceturf(M.loc))
 							M << 'sound/effects/explosionfar.ogg'
 		if(adminlog)
-			message_admins("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range]) in area [epicenter.loc.name] ([epicenter.x],[epicenter.y],[epicenter.z]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[epicenter.x];Y=[epicenter.y];Z=[epicenter.z]'>JMP</a>)")
-			log_game("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range]) in area [epicenter.loc.name] ")
+			log_explosion("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range]) in [AREACOORD(epicenter)].")
+			message_admins("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range]) in [ADMIN_VERBOSEJMP(epicenter)].")
 
 		var/approximate_intensity = (devastation_range * 3) + (heavy_impact_range * 2) + light_impact_range
 
@@ -72,7 +72,7 @@
 		var/powernet_rebuild_was_deferred_already = defer_powernet_rebuild
 		// Large enough explosion. For performance reasons, powernets will be rebuilt manually
 		if(!defer_powernet_rebuild && (approximate_intensity > 25))
-			defer_powernet_rebuild = 1
+			defer_powernet_rebuild = TRUE
 
 		if(heavy_impact_range > 1)
 			var/datum/effect_system/explosion/E = new/datum/effect_system/explosion()
@@ -102,7 +102,7 @@
 			//------- TURF FIRES -------
 
 			if(T)
-				if(dist < flame_range && prob(40) && !istype(T, /turf/open/space))
+				if(dist < flame_range && prob(40) && !isspaceturf(T))
 					var/obj/effect/particle_effect/fire/F = new /obj/effect/particle_effect/fire(T)
 					if(istype(F))
 						F.life = rand(6,10)
@@ -125,8 +125,8 @@
 			lighting_controller.process() //Restart the lighting controller
 
 		if(!powernet_rebuild_was_deferred_already && defer_powernet_rebuild)
-			makepowernets()
-			defer_powernet_rebuild = 0
+			SSmachines.makepowernets()
+			defer_powernet_rebuild = FALSE
 
 	return 1
 

@@ -20,7 +20,7 @@
 
 /datum/shuttle/ferry/supply/New()
 	..()
-	var/turf/SupplyElevatorLoc = get_turf(SupplyElevator)
+	var/turf/SupplyElevatorLoc = get_turf(GLOB.supply_elevator)
 	SupplyElevator_x = SupplyElevatorLoc.x
 	SupplyElevator_y = SupplyElevatorLoc.y
 	SupplyElevator_z = SupplyElevatorLoc.z
@@ -47,7 +47,9 @@
 	if(!origin)
 		origin = get_location_area(location)
 
-	//it would be cool to play a sound here
+	if(at_station()) // Sound the alarm! The elevator is descending!
+		playsound(locate(SupplyElevator_x,SupplyElevator_y,SupplyElevator_z), 'sound/machines/warning-buzzer.ogg', 50, 0)
+
 	moving_status = SHUTTLE_WARMUP
 	spawn(warmup_time*10)
 		if (moving_status == SHUTTLE_IDLE)
@@ -120,7 +122,7 @@
 
 /datum/shuttle/ferry/supply/proc/raise_railings()
 	var/effective = 0
-	for(var/obj/machinery/door/poddoor/M in machines)
+	for(var/obj/machinery/door/poddoor/M in GLOB.machines)
 		if(M.id == railing_id && !M.density)
 			effective = 1
 			spawn()
@@ -131,7 +133,7 @@
 
 /datum/shuttle/ferry/supply/proc/lower_railings()
 	var/effective = 0
-	for(var/obj/machinery/door/poddoor/M in machines)
+	for(var/obj/machinery/door/poddoor/M in GLOB.machines)
 		if(M.id == railing_id && M.density)
 			effective = 1
 			spawn()
@@ -172,14 +174,14 @@
 	NE?.icon_state = "supply_elevator_raised"
 
 /datum/shuttle/ferry/supply/proc/start_gears(var/direction = 1)
-	for(var/obj/machinery/gear/M in machines)
+	for(var/obj/machinery/gear/M in GLOB.machines)
 		if(M.id == gear_id)
 			spawn()
 				M.icon_state = "gear_moving"
-				M.dir = direction
+				M.setDir(direction)
 
 /datum/shuttle/ferry/supply/proc/stop_gears()
-	for(var/obj/machinery/gear/M in machines)
+	for(var/obj/machinery/gear/M in GLOB.machines)
 		if(M.id == gear_id)
 			spawn()
 				M.icon_state = "gear"

@@ -34,8 +34,8 @@
 
 //lipstick wiping is in code/game/objects/items/weapons/cosmetics.dm!
 
-/obj/item/paper/New()
-	..()
+/obj/item/paper/Initialize()
+	. = ..()
 	pixel_y = rand(-8, 8)
 	pixel_x = rand(-9, 9)
 	stamps = ""
@@ -45,10 +45,8 @@
 		info = oldreplacetext(info, "\n", "<BR>")
 		info = parsepencode(info)
 
-	spawn(2)
-		update_icon()
-		updateinfolinks()
-		return
+	update_icon()
+	updateinfolinks()
 
 /obj/item/paper/update_icon()
 	if(icon_state == "paper_talisman")
@@ -62,8 +60,8 @@
 //	..()	//We don't want them to see the dumb "this is a paper" thing every time.
 // I didn't like the idea that people can read tiny pieces of paper from across the room.
 // Now you need to be next to the paper in order to read it.
-	if(in_range(user, src) || istype(user, /mob/dead/observer))
-		if(!(istype(user, /mob/dead/observer) || istype(user, /mob/living/carbon/human) || istype(user, /mob/living/silicon)))
+	if(in_range(user, src) || isobserver(user))
+		if(!(isobserver(user) || ishuman(user) || issilicon(user)))
 			// Show scrambled paper if they aren't a ghost, human, or silicone.
 			usr << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[stars(info)][stamps]</BODY></HTML>", "window=[name]")
 			onclose(user, "[name]")
@@ -292,13 +290,13 @@
 		if(istype(P, /obj/item/tool/lighter/zippo))
 			class = "<span class='rose'>"
 
-		user.visible_message("[class][user] holds \the [P] up to \the [src], it looks like \he's trying to burn it!", \
-		"[class]You hold \the [P] up to \the [src], burning it slowly.")
+		user.visible_message("[class][user] holds \the [P] up to \the [src], it looks like [user.p_theyre()] trying to burn it!</span>", \
+		"[class]You hold \the [P] up to \the [src], burning it slowly.</span>")
 
 		spawn(20)
 			if(get_dist(src, user) < 2 && user.get_active_held_item() == P && P.heat_source)
-				user.visible_message("[class][user] burns right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.", \
-				"[class]You burn right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.")
+				user.visible_message("[class][user] burns right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.</span>", \
+				"[class]You burn right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.</span>")
 
 				if(user.get_inactive_held_item() == src)
 					user.dropItemToGround(src)
@@ -426,6 +424,22 @@
 /*
  * Premade paper
  */
+
+
+/obj/item/paper/commendation
+	name = "Commendation"
+	info = "<center><H1>Commendation<H2>of Medical Excellence</H2></H1><br>Proudly presented to<br><H2><I><span class=\"paper_field\"></span></I></H2><b>for superior performance and excellency in medical skills.</b><br><br><hr><br><small>They have gone above and beyond in saving human lives, treating wounded, medical knowledge and surgical performance. Even when working in a difficult environment, they have shown outstanding courage, determination and commitment to save those in need. <small><span class=\"paper_field\"></span></small><br><br>They are a true example of the ideal doctor.</small><br><br><hr><br><b>Date</b><br><I><span class=\"paper_field\"></span> - 2186</I><br><br><b>Granted by</b><br><I>Prof. <span class=\"paper_field\"></span></I><br><small>Chief Medical Officer</small><br><span class=\"paper_field\"></span></center>"
+	icon_state = "commendation"
+	fields = 5
+
+/obj/item/paper/commendation/update_icon() //it looks fancy and we want it to stay fancy.
+	return
+/*Let this be a lesson about pre-made forms.
+
+when building your paper, use the above parsed pen code in parsepencode(). no square bracket anything in the info field.
+Specifically for the field parts, use <span class=\"paper_field\"></span>.
+then, for every time you included a field, increment fields. */
+
 /obj/item/paper/Court
 	name = "Judgement"
 	info = "For crimes against the station, the offender is sentenced to:<BR>\n<BR>\n"

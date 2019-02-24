@@ -34,15 +34,15 @@ var/global/list/uneatable = list(
 	var/teleport_del = 0
 	var/last_warning
 
-/obj/machinery/singularity/New(loc, var/starting_energy = 50, var/temp = 0)
+/obj/machinery/singularity/Initialize(loc, var/starting_energy = 50, var/temp = 0)
 	//CARN: admin-alert for chuckle-fuckery.
 	admin_investigate_setup()
 
 	src.energy = starting_energy
+	. = ..()
 	if(temp)
-		spawn(temp)
-			qdel(src)
-	..()
+		return INITIALIZE_HINT_QDEL
+
 	start_processing()
 
 /obj/machinery/singularity/attack_hand(mob/user as mob)
@@ -88,8 +88,9 @@ var/global/list/uneatable = list(
 /obj/machinery/singularity/proc/admin_investigate_setup()
 	last_warning = world.time
 	var/count = locate(/obj/machinery/containment_field) in orange(30, src)
-	if(!count)	message_admins("A singulo has been created without containment fields active ([x],[y],[z])",1)
-	investigate_log("was created. [count?"":"<font color='red'>No containment fields were active</font>"]","singulo")
+	if(!count)	
+		log_admin("A singulo has been created without containment fields active [AREACOORD(src.loc)].")
+		message_admins("A singulo has been created without containment fields active [ADMIN_VERBOSEJMP(src.loc)].")
 
 /obj/machinery/singularity/proc/dissipate()
 	if(!dissipate)
@@ -161,7 +162,6 @@ var/global/list/uneatable = list(
 			consume_range = 4
 			dissipate = 0 //It cant go smaller due to e loss
 	if(current_size == allowed_size)
-		investigate_log("<font color='red'>grew to size [current_size]</font>","singulo")
 		return 1
 	else if(current_size < (--temp_allowed_size))
 		expand(temp_allowed_size)
@@ -193,7 +193,7 @@ var/global/list/uneatable = list(
 	for(var/atom/X in orange(grav_pull,src))
 		var/dist = get_dist(X, src)
 		// Movable atoms only
-		if(dist > consume_range && istype(X, /atom/movable))
+		if(dist > consume_range && ismovableatom(X))
 			if(is_type_in_list(X, uneatable))	continue
 			if(((X) &&(!X:anchored) && (!istype(X,/mob/living/carbon/human)))|| (src.current_size >= 9))
 				step_towards(X,src)
@@ -205,7 +205,7 @@ var/global/list/uneatable = list(
 						continue
 				step_towards(H,src)
 		// Turf and movable atoms
-		else if(dist <= consume_range && (isturf(X) || istype(X, /atom/movable)))
+		else if(dist <= consume_range && (isturf(X) || ismovableatom(X)))
 			consume(X)
 	return
 
@@ -258,7 +258,7 @@ var/global/list/uneatable = list(
 			for(var/obj/O in T.contents)
 				if(O.level != 1)
 					continue
-				if(O.invisibility == 101)
+				if(O.invisibility == INVISIBILITY_MAXIMUM)
 					src.consume(O)
 		T.ChangeTurf(/turf/open/space)
 		gain = 2

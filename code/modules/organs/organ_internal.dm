@@ -21,7 +21,7 @@
 	var/obj/item/organ/organ_holder // If not in a body, held in this item.
 	var/list/transplant_data
 	var/germ_level = 0		// INTERNAL germs inside the organ, this is BAD if it's greater than INFECTION_LEVEL_ONE
-
+	var/organ_id
 
 /datum/internal_organ/process()
 		return 0
@@ -160,6 +160,7 @@
 	parent_limb = "chest"
 	removed_type = /obj/item/organ/heart
 	robotic_type = /obj/item/organ/heart/prosthetic
+	organ_id = ORGAN_HEART
 
 /datum/internal_organ/heart/prosthetic //used by synthetic species
 	robotic = ORGAN_ROBOT
@@ -170,6 +171,7 @@
 	parent_limb = "chest"
 	removed_type = /obj/item/organ/lungs
 	robotic_type = /obj/item/organ/lungs/prosthetic
+	organ_id = ORGAN_LUNGS
 
 /datum/internal_organ/lungs/process()
 	..()
@@ -184,7 +186,7 @@
 				owner.drip(10)
 			if(prob(4))
 				spawn owner.emote("me", 1, "gasps for air!")
-				owner.losebreath += 15
+				owner.Losebreath(15)
 
 /datum/internal_organ/lungs/prosthetic
 	robotic = ORGAN_ROBOT
@@ -197,6 +199,7 @@
 	removed_type = /obj/item/organ/liver
 	robotic_type = /obj/item/organ/liver/prosthetic
 	var/alcohol_tolerance = 0.005 //lower value, higher resistance.
+	organ_id = ORGAN_LIVER
 
 /datum/internal_organ/liver/process()
 	..()
@@ -268,6 +271,7 @@
 	parent_limb = "groin"
 	removed_type = /obj/item/organ/kidneys
 	robotic_type = /obj/item/organ/kidneys/prosthetic
+	organ_id = ORGAN_KIDNEYS
 
 /datum/internal_organ/kidneys/process()
 	..()
@@ -299,7 +303,8 @@
 	parent_limb = "head"
 	removed_type = /obj/item/organ/brain
 	robotic_type = /obj/item/organ/brain/prosthetic
-	vital = 1
+	vital = TRUE
+	organ_id = ORGAN_BRAIN
 
 /datum/internal_organ/brain/prosthetic //used by synthetic species
 	robotic = ORGAN_ROBOT
@@ -315,6 +320,7 @@
 	removed_type = /obj/item/organ/eyes
 	robotic_type = /obj/item/organ/eyes/prosthetic
 	var/eye_surgery_stage = 0 //stores which stage of the eye surgery the eye is at
+	organ_id = ORGAN_EYES
 
 /datum/internal_organ/eyes/process() //Eye damage replaces the old eye_stat var.
 	..()
@@ -333,6 +339,7 @@
 	name = "appendix"
 	parent_limb = "groin"
 	removed_type = /obj/item/organ/appendix
+	organ_id = ORGAN_APPENDIX
 
 /datum/internal_organ/proc/remove(var/mob/user)
 

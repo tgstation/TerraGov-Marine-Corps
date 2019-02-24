@@ -68,23 +68,25 @@
 	name = "survival pouch"
 	desc = "It can contain flashlights, a pill, a crowbar, metal sheets, and some bandages."
 	icon_state = "survival"
-	storage_slots = 5
+	storage_slots = 6
 	max_w_class = 3
 	can_hold = list(
 					"/obj/item/device/flashlight",
-					"/obj/item/tool/crowbar",
 					"/obj/item/reagent_container/pill",
 					"/obj/item/stack/medical/bruise_pack",
-					"/obj/item/stack/sheet/metal"
+					"/obj/item/stack/sheet/metal",
+					"/obj/item/stack/sheet/plasteel",
+					"/obj/item/tool/weldingtool"
 					)
 
 /obj/item/storage/pouch/survival/full/New()
-	..()
-	new /obj/item/device/flashlight (src)
-	new /obj/item/tool/crowbar/red (src)
-	new /obj/item/reagent_container/pill/tramadol (src)
-	new /obj/item/stack/medical/bruise_pack (src, 3)
-	new /obj/item/stack/sheet/metal(src, 20)
+	. = ..()
+	new /obj/item/device/flashlight(src)
+	new /obj/item/reagent_container/pill/tramadol(src)
+	new /obj/item/stack/medical/bruise_pack(src, 3)
+	new /obj/item/stack/sheet/metal(src, 40)
+	new /obj/item/stack/sheet/plasteel(src, 15)
+	new /obj/item/tool/weldingtool(src)
 
 
 
@@ -96,14 +98,13 @@
 	storage_slots = 5
 	can_hold = list(
 					"/obj/item/stack/medical/ointment",
-					"/obj/item/reagent_container/hypospray/autoinjector/tramadol",
-					"/obj/item/reagent_container/hypospray/autoinjector/tricordrazine",
+					"/obj/item/reagent_container/hypospray/autoinjector",
 					"/obj/item/stack/medical/bruise_pack",
 					"/obj/item/stack/medical/splint"
 					)
 
 /obj/item/storage/pouch/firstaid/full
-	desc = "Contains a painkiller autoinjector, first-aid autoinjector, some ointment, and some bandages."
+	desc = "Contains a painkiller autoinjector, first-aid autoinjector, splints, some ointment, and some bandages."
 
 /obj/item/storage/pouch/firstaid/full/New()
 	..()
@@ -347,7 +348,8 @@
 	storage_slots = 5
 	draw_mode = 1
 	icon_state = "flare"
-	can_hold = list("/obj/item/device/flashlight/flare")
+	can_hold = list("/obj/item/device/flashlight/flare",
+					"/obj/item/explosive/grenade/flare")
 
 /obj/item/storage/pouch/flare/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/storage/box/m94))
@@ -374,11 +376,11 @@
 
 /obj/item/storage/pouch/flare/full/New()
 	..()
-	new /obj/item/device/flashlight/flare(src)
-	new /obj/item/device/flashlight/flare(src)
-	new /obj/item/device/flashlight/flare(src)
-	new /obj/item/device/flashlight/flare(src)
-	new /obj/item/device/flashlight/flare(src)
+	new /obj/item/explosive/grenade/flare(src)
+	new /obj/item/explosive/grenade/flare(src)
+	new /obj/item/explosive/grenade/flare(src)
+	new /obj/item/explosive/grenade/flare(src)
+	new /obj/item/explosive/grenade/flare(src)
 
 
 
@@ -500,12 +502,10 @@
 				to_chat(user, "<span class='notice'>You start refilling [src] with [M].</span>")
 				if(!do_after(user, 15, TRUE, 5, BUSY_ICON_GENERIC))
 					return
-				var/cont
-				for(var/x = 1 to storage_slots)
-					cont = handle_item_insertion(M.create_handful(), 1, user)
+				for(var/x = 1 to (storage_slots - contents.len))
+					var/cont = handle_item_insertion(M.create_handful(), 1, user)
 					if(!cont)
 						break
-				M.update_icon()
 				playsound(user.loc, "rustle", 15, 1, 6)
 				to_chat(user, "<span class='notice'>You refill [src] with [M].</span>")
 			else

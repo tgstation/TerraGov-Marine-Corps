@@ -42,7 +42,7 @@
 			if(!muzzled)
 				m_type = 2
 				message = "<B>The [name]</B> growls."
-				if(isXenoPredalien(src))
+				if(isxenopredalien(src))
 					playsound(loc, 'sound/voice/predalien_growl.ogg', 25, 1)
 				else
 					playsound(loc, "alien_growl", 15)
@@ -65,7 +65,7 @@
 			if (!muzzled)
 				m_type = 2
 				message = "<B>The [name]</B> hisses."
-				if(isXenoPredalien(src))
+				if(isxenopredalien(src))
 					playsound(loc, 'sound/voice/predalien_hiss.ogg', 25, 1)
 				else
 					playsound(loc, "alien_hiss", 25)
@@ -73,7 +73,7 @@
 			if (!muzzled)
 				m_type = 2
 				message = "<B>The [name]</B> hisses."
-				if(isXenoPredalien(src))
+				if(isxenopredalien(src))
 					playsound(loc, 'sound/voice/predalien_hiss.ogg', 25, 1)
 				else
 					playsound(loc, "sound/voice/alien_hiss1.ogg", 25)
@@ -81,7 +81,7 @@
 			if (!muzzled)
 				m_type = 2
 				message = "<B>The [name]</B> hisses."
-				if(isXenoPredalien(src))
+				if(isxenopredalien(src))
 					playsound(loc, 'sound/voice/predalien_hiss.ogg', 25, 1)
 				else
 					playsound(loc, "sound/voice/alien_hiss2.ogg", 25)
@@ -89,7 +89,7 @@
 			if (!muzzled)
 				m_type = 2
 				message = "<B>The [name]</B> hisses."
-				if(isXenoPredalien(src))
+				if(isxenopredalien(src))
 					playsound(loc, 'sound/voice/predalien_hiss.ogg', 25, 1)
 				else
 					playsound(loc, "sound/voice/alien_hiss3.ogg", 25)
@@ -102,7 +102,7 @@
 			if(!muzzled)
 				m_type = 2
 				message = "<B>The [name]</B> roars!"
-				if(isXenoPredalien(src))
+				if(isxenopredalien(src))
 					playsound(loc, 'sound/voice/predalien_roar.ogg', 40, 1)
 				else
 					playsound(loc, "alien_roar", 40)
@@ -110,7 +110,7 @@
 			if(!muzzled)
 				m_type = 2
 				message = "<B>The [name]</B> roars!"
-				if(isXenoPredalien(src))
+				if(isxenopredalien(src))
 					playsound(loc, 'sound/voice/predalien_roar.ogg', 40, 1)
 				else
 					playsound(loc, "sound/voice/alien_roar1.ogg", 40)
@@ -118,7 +118,7 @@
 			if(!muzzled)
 				m_type = 2
 				message = "<B>The [name]</B> roars!"
-				if(isXenoPredalien(src))
+				if(isxenopredalien(src))
 					playsound(loc, 'sound/voice/predalien_roar.ogg', 40, 1)
 				else
 					playsound(loc, "sound/voice/alien_roar2.ogg", 40)
@@ -126,7 +126,7 @@
 			if(!muzzled)
 				m_type = 2
 				message = "<B>The [name]</B> roars!"
-				if(isXenoPredalien(src))
+				if(isxenopredalien(src))
 					playsound(loc, 'sound/voice/predalien_roar.ogg', 40, 1)
 				else
 					playsound(loc, "sound/voice/alien_roar3.ogg", 40)
@@ -134,7 +134,7 @@
 			if(!muzzled)
 				m_type = 2
 				message = "<B>The [name]</B> roars!"
-				if(isXenoPredalien(src))
+				if(isxenopredalien(src))
 					playsound(loc, 'sound/voice/predalien_roar.ogg', 40, 1)
 				else
 					playsound(loc, "sound/voice/alien_roar4.ogg", 40)
@@ -142,7 +142,7 @@
 			if(!muzzled)
 				m_type = 2
 				message = "<B>The [name]</B> roars!"
-				if(isXenoPredalien(src))
+				if(isxenopredalien(src))
 					playsound(loc, 'sound/voice/predalien_roar.ogg', 40, 1)
 				else
 					playsound(loc, "sound/voice/alien_roar5.ogg", 40)
@@ -150,7 +150,7 @@
 			if(!muzzled)
 				m_type = 2
 				message = "<B>The [name]</B> roars!"
-				if(isXenoPredalien(src))
+				if(isxenopredalien(src))
 					playsound(loc, 'sound/voice/predalien_roar.ogg', 40, 1)
 				else
 					playsound(loc, "sound/voice/alien_roar6.ogg", 40)
@@ -180,10 +180,10 @@
 				m_type = 1
 				spawn(0)
 					for(var/i in list(1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2,1,2))
-						canmove = 0
-						dir = i
+						canmove = FALSE
+						setDir(i)
 						sleep(1)
-				canmove = 1
+				canmove = TRUE
 
 		if("help")
 			var/msg = "<br><br><b>To use an emote, type an asterix (*) before a following word. Emotes with a sound are <span style='color: green;'>green</span>. Spamming emotes with sound will likely get you banned. Don't do it.<br><br>\
@@ -222,6 +222,8 @@
 				O.show_message(message, m_type)
 
 	if(player_caused)
-		emotedown = 1
-		spawn(50)
-			emotedown = 0
+		emotedown = TRUE
+		addtimer(CALLBACK(src, .proc/emote_cooldown), 50)
+
+/mob/living/carbon/Xenomorph/proc/emote_cooldown()
+	emotedown = FALSE

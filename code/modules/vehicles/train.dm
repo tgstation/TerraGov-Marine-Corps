@@ -21,8 +21,9 @@
 // Standard procs
 //-------------------------------------------
 /obj/vehicle/train/Initialize()
+	. = ..()
 	for(var/obj/vehicle/train/T in orange(1, src))
-		latch(T)
+		latch(T,silent=TRUE)
 
 /obj/vehicle/train/Move()
 	var/old_loc = get_turf(src)
@@ -64,7 +65,7 @@
 	set category = "Object"
 	set src in view(1)
 
-	if(!istype(usr, /mob/living/carbon/human))
+	if(!ishuman(usr))
 		return
 
 	if(!usr.canmove || usr.stat || usr.is_mob_restrained() || !Adjacent(usr))
@@ -82,62 +83,72 @@
 	attack_hand(M)
 
 //attempts to attach src as a follower of the train T
-/obj/vehicle/train/proc/attach_to(obj/vehicle/train/T, mob/user)
+/obj/vehicle/train/proc/attach_to(obj/vehicle/train/T, mob/user, var/silent=FALSE)
+	if(!istype(user))
+		silent = TRUE
 	if (get_dist(src, T) > 1)
-		to_chat(user, "<span class='warning'>[src] is too far away from [T] to hitch them together.</span>")
+		if(!silent)
+			to_chat(user, "<span class='warning'>[src] is too far away from [T] to hitch them together.</span>")
 		return
 
 	if (lead)
-		to_chat(user, "<span class='warning'>[src] is already hitched to something.</span>")
+		if(!silent)
+			to_chat(user, "<span class='warning'>[src] is already hitched to something.</span>")
 		return
 
 	if (T.tow)
-		to_chat(user, "<span class='warning'>[T] is already towing something.</span>")
+		if(!silent)
+			to_chat(user, "<span class='warning'>[T] is already towing something.</span>")
 		return
 
 	//check for cycles.
 	var/obj/vehicle/train/next_car = T
 	while (next_car)
 		if (next_car == src)
-			to_chat(user, "<span class='warning'>That seems very silly.</span>")
+			if(!silent)
+				to_chat(user, "<span class='warning'>That seems very silly.</span>")
 			return
 		next_car = next_car.lead
 
 	//latch with src as the follower
 	lead = T
 	T.tow = src
-	dir = lead.dir
+	setDir(lead.dir)
 
-	if(user)
+	if(user && !silent)
 		to_chat(user, "<span class='notice'>You hitch [src] to [T].</span>")
 
 	update_stats()
 
 
 //detaches the train from whatever is towing it
-/obj/vehicle/train/proc/unattach(mob/user)
+/obj/vehicle/train/proc/unattach(mob/user, var/silent=FALSE)
+	if(!istype(user))
+		silent = TRUE
 	if (!lead)
-		to_chat(user, "<span class='warning'>[src] is not hitched to anything.</span>")
+		if(!silent)
+			to_chat(user, "<span class='warning'>[src] is not hitched to anything.</span>")
 		return
 
 	lead.tow = null
 	lead.update_stats()
 
-	to_chat(user, "<span class='notice'>You unhitch [src] from [lead].</span>")
+	if(!silent)
+		to_chat(user, "<span class='notice'>You unhitch [src] from [lead].</span>")
 	lead = null
 
 	update_stats()
 
-/obj/vehicle/train/proc/latch(obj/vehicle/train/T, mob/user)
+/obj/vehicle/train/proc/latch(obj/vehicle/train/T, mob/user, var/silent=FALSE)
 	if(!istype(T) || !Adjacent(T))
 		return FALSE
 
 	var/T_dir = get_dir(src, T)	//figure out where T is wrt src
 
 	if(dir == T_dir) 	//if car is ahead
-		src.attach_to(T, user)
+		src.attach_to(T, user, silent)
 	else if(reverse_direction(dir) == T_dir)	//else if car is behind
-		T.attach_to(src, user)
+		T.attach_to(src, user, silent)
 
 //returns true if this is the lead car of the train
 /obj/vehicle/train/proc/is_train_head()

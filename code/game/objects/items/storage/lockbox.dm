@@ -58,7 +58,7 @@
 
 
 /obj/item/storage/lockbox/loyalty
-	name = "\improper lockbox of W-Y implants"
+	name = "\improper lockbox of loyalty implants"
 	req_access = list(ACCESS_MARINE_BRIG)
 
 	New()

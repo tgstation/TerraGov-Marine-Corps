@@ -3,7 +3,7 @@
 /mob/living/silicon/decoy/ship_ai/Initialize()
 	. = ..()
 	name = MAIN_AI_SYSTEM
-	desc = "This is the artificial intelligence system for the [MAIN_SHIP_NAME]. Like many other military-grade AI systems, this one was manufactured by Weyland-Yutani."
+	desc = "This is the artificial intelligence system for the [MAIN_SHIP_NAME]. Like many other military-grade AI systems, this one was manufactured by NanoTrasen."
 	ai_headset = new(src)
 
 
@@ -23,7 +23,7 @@
 /mob/living/silicon/decoy/Life()
 	if(stat == DEAD)
 		return FALSE
-	if(health <= CONFIG_GET(number/health_threshold_dead) && stat != DEAD)
+	if(health <= get_death_threshold() && stat != DEAD)
 		death(FALSE, "<b>\The [name]</b> sparks up and falls silent...")
 
 /mob/living/silicon/decoy/updatehealth()

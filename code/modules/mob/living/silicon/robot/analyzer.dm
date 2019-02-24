@@ -26,10 +26,7 @@
 		user.show_message("<span class='notice'> Key: Suffocation/Toxin/Burns/Brute</span>", 1)
 		user.show_message("<span class='notice'> Body Temperature: ???</span>", 1)
 		return
-	if(!(istype(user, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
-		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
-		return
-	if(!istype(M, /mob/living/silicon/robot) && !(ishuman(M) && (M:species.flags & IS_SYNTHETIC)))
+	if(!iscyborg(M) && !(ishuman(M) && (M:species.flags & IS_SYNTHETIC)))
 		to_chat(user, "<span class='warning'>You can't analyze non-robotic things!</span>")
 		return
 
@@ -42,7 +39,7 @@
 	if(M.tod && M.stat == DEAD)
 		user.show_message("<span class='notice'> Time of Disable: [M.tod]</span>")
 
-	if (istype(M, /mob/living/silicon/robot))
+	if (iscyborg(M))
 		var/mob/living/silicon/robot/H = M
 		var/list/damaged = H.get_damaged_components(1,1,1)
 		user.show_message("<span class='notice'> Localized Damage:</span>",1)

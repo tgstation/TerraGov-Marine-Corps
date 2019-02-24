@@ -72,9 +72,6 @@
 	if(!on)
 		return
 
-	if(active_uplink_check(user))
-		return
-
 	var/dat = "<html><head><title>[src]</title></head><body><TT>"
 
 	if(!istype(src, /obj/item/device/radio/headset)) //Headsets dont get a mic button
@@ -136,10 +133,6 @@
 		if (!freerange || (frequency < 1200 || frequency > 1600))
 			new_frequency = sanitize_frequency(new_frequency, maxf)
 		set_frequency(new_frequency)
-		if(hidden_uplink)
-			if(hidden_uplink.check_trigger(usr, frequency, traitor_frequency))
-				usr << browse(null, "window=radio")
-				return
 
 	else if (href_list["talk"])
 		broadcasting = text2num(href_list["talk"])
@@ -154,7 +147,7 @@
 				channels[chan_name] |= FREQ_LISTENING
 	else if (href_list["wires"])
 		var/t1 = text2num(href_list["wires"])
-		if (!( istype(usr.get_active_held_item(), /obj/item/tool/wirecutters) ))
+		if (!iswirecutter(usr.get_active_held_item()))
 			return
 		if (wires & t1)
 			wires &= ~t1
@@ -270,7 +263,7 @@
 		jobname = "AI"
 
 	// --- Cyborg ---
-	else if (isrobot(M))
+	else if (iscyborg(M))
 		jobname = "Cyborg"
 
 	// --- Unidentifiable mob ---
@@ -476,7 +469,7 @@
 /obj/item/device/radio/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 	user.set_interaction(src)
-	if (!( istype(W, /obj/item/tool/screwdriver) ))
+	if (!isscrewdriver(W))
 		return
 	b_stat = !( b_stat )
 	if(!istype(src, /obj/item/device/radio/beacon))
@@ -512,7 +505,7 @@
 
 /obj/item/device/radio/borg/talk_into()
 	..()
-	if (isrobot(src.loc))
+	if (iscyborg(src.loc))
 		var/mob/living/silicon/robot/R = src.loc
 		var/datum/robot_component/C = R.components["radio"]
 		R.cell_use_power(C.active_usage)
@@ -520,10 +513,10 @@
 /obj/item/device/radio/borg/attackby(obj/item/W as obj, mob/user as mob)
 //	..()
 	user.set_interaction(src)
-	if (!( istype(W, /obj/item/tool/screwdriver) || (istype(W, /obj/item/device/encryptionkey/ ))))
+	if (!(isscrewdriver(W) || (istype(W, /obj/item/device/encryptionkey/ ))))
 		return
 
-	if(istype(W, /obj/item/tool/screwdriver))
+	if(isscrewdriver(W))
 		if(keyslot)
 
 

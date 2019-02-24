@@ -16,7 +16,6 @@
 	return 1
 
 /obj/item/device/transfer_valve/attackby(obj/item/item, mob/user)
-	var/turf/location = get_turf(src) // For admin logs
 	if(istype(item, /obj/item/tank))
 		if(tank_one && tank_two)
 			to_chat(user, "<span class='warning'>There are already two tanks attached, remove one first.</span>")
@@ -32,8 +31,8 @@
 				tank_two = item
 				item.forceMove(src)
 				to_chat(user, "<span class='notice'>You attach the tank to the transfer valve.</span>")
-				message_admins("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) attached both tanks to a transfer valve (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>JMP</a>).")
 				log_game("[key_name(usr)] attached both tanks to a transfer valve.")
+				message_admins("[ADMIN_TPMONTY(usr)] attached both tanks to a transfer valve.")
 
 		update_icon()
 		nanomanager.update_uis(src) // update all UIs attached to src
@@ -54,8 +53,8 @@
 		A.toggle_secure()	//this calls update_icon(), which calls update_icon() on the holder (i.e. the bomb).
 
 		bombers += "[key_name(user)] attached a [item] to a transfer valve."
-		message_admins("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) attached a [item] to a transfer valve. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>)")
-		log_game("[key_name(usr)] attached a [item] to a transfer valve.")
+		log_admin("[key_name(usr)] attached a [item] to a transfer valve. [AREACOORD(usr.loc)].")
+		message_admins("[ADMIN_TPMONTY(usr)] attached [item] to a transfer valve.")
 		attacher = user
 		nanomanager.update_uis(src) // update all UIs attached to src
 	return
@@ -179,8 +178,8 @@
 
 		log_str += " Last touched by: [src.fingerprintslast][last_touch_info]"
 		bombers += log_str
-		message_admins(log_str, 0, 1)
-		log_game(log_str)
+		log_admin(log_str)
+		message_admins(log_str)
 		merge_gases()
 		spawn(20) // In case one tank bursts
 			for (var/i=0,i<5,i++)

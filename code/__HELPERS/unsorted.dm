@@ -184,67 +184,6 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 	return destination
 
-
-//among other things, used by flamethrower and boiler spray to calculate if flame/spray can pass through.
-/proc/PostBlocksFire(turf/loc) //Will be affected by fire but not allow it to spread further.
-	if(loc.density)
-		return TRUE
-	for(var/obj/structure/window/D in loc)
-		if(!D.density)
-			continue
-		if(D.is_full_window())
-			return TRUE
-	for(var/obj/machinery/door/D in loc)
-		if(!D.density)
-			continue
-		if(!istype(D, /obj/machinery/door/window))
-			return TRUE	// it's a real, air blocking door
-	for(var/obj/structure/mineral_door/D in loc)
-		if(D.density)
-			return TRUE
-	return FALSE
-
-/proc/LinkPreBlocksFire(turf/A, turf/B) //Will cut fire, protecting the tile.
-	if(A == null || B == null)
-		return TRUE
-	var/abdir = get_dir(A,B)
-	if(abdir & (abdir-1))//is diagonal direction
-		var/turf/Y = get_step(A,abdir&(NORTH|SOUTH))
-		if(!DirPreBlockedFire(A,Y) && !DirPreBlockedFire(Y,B))
-			return FALSE // can go through the Y axis
-		var/turf/X = get_step(A,abdir&(EAST|WEST))
-		if(!DirPreBlockedFire(A,X) && !DirPreBlockedFire(X,B))
-			return FALSE // can go through the X axis
-		return TRUE // both directions blocked
-	if(DirPreBlockedFire(A,B))
-		return TRUE
-	return FALSE
-
-/proc/DirPreBlockedFire(turf/A,turf/B)
-	var/abdir = get_dir(A,B)
-	var/badir = get_dir(B,A)
-	for(var/obj/structure/window/D in A)
-		if(!D.density)
-			continue
-		if(D.dir == abdir)
-			return TRUE
-	for(var/obj/machinery/door/D in A)
-		if(!D.density)
-			continue
-		if(D.dir == abdir)
-			return TRUE
-	for(var/obj/structure/window/D in B)
-		if(!D.density)
-			continue
-		if(D.dir == badir)
-			return TRUE
-	for(var/obj/machinery/door/D in B)
-		if(!D.density)
-			continue
-		if(D.dir == badir)
-			return TRUE
-	return FALSE
-
 /proc/LinkBlocked(turf/A, turf/B)
 	if(A == null || B == null)
 		return TRUE
@@ -387,7 +326,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 				return	//took too long
 			newname = reject_bad_name(newname,allow_numbers)	//returns null if the name doesn't meet some basic requirements. Tidies up a few other things like bad-characters.
 
-			for(var/mob/living/M in player_list)
+			for(var/mob/living/M in GLOB.player_list)
 				if(M == src)
 					continue
 				if(!newname || M.real_name == newname)
@@ -422,7 +361,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 /proc/freeborg()
 	var/select = null
 	var/list/borgs = list()
-	for (var/mob/living/silicon/robot/A in player_list)
+	for (var/mob/living/silicon/robot/A in GLOB.player_list)
 		if (A.stat == 2 || A.connected_ai || A.scrambledcodes)
 			continue
 		var/name = "[A.real_name] ([A.modtype] [A.braintype])"
@@ -435,7 +374,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 //When a borg is activated, it can choose which AI it wants to be slaved to
 /proc/active_ais()
 	. = list()
-	for(var/mob/living/silicon/ai/A in living_mob_list)
+	for(var/mob/living/silicon/ai/A in GLOB.alive_mob_list)
 		if(A.stat == DEAD)
 			continue
 		if(A.control_disabled == 1)
@@ -460,165 +399,10 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		else		. = pick(ais)
 	return .
 
-/proc/get_sorted_mobs()
-	var/list/old_list = getmobs()
-	var/list/AI_list = list()
-	var/list/Dead_list = list()
-	var/list/keyclient_list = list()
-	var/list/key_list = list()
-	var/list/logged_list = list()
-	for(var/named in old_list)
-		var/mob/M = old_list[named]
-		if(issilicon(M))
-			AI_list |= M
-		else if(isobserver(M) || M.stat == 2)
-			Dead_list |= M
-		else if(M.key && M.client)
-			keyclient_list |= M
-		else if(M.key)
-			key_list |= M
-		else
-			logged_list |= M
-		old_list.Remove(named)
-	var/list/new_list = list()
-	new_list += AI_list
-	new_list += keyclient_list
-	new_list += key_list
-	new_list += logged_list
-	new_list += Dead_list
-	return new_list
-
-//Returns a list of all mobs with their name
-/proc/getmobs()
-	var/list/mobs = sortmobs()
-	var/list/names = list()
-	var/list/creatures = list()
-	var/list/namecounts = list()
-	for(var/mob/M in mobs)
-		var/name = M.name
-		if (name in names)
-			namecounts[name]++
-			name = "[name] ([namecounts[name]])"
-		else
-			names.Add(name)
-			namecounts[name] = 1
-		if (M.real_name && M.real_name != M.name)
-			name += " \[[M.real_name]\]"
-		if (M.stat == 2)
-			if(istype(M, /mob/dead/observer/))
-				name += " \[ghost\]"
-			else
-				name += " \[dead\]"
-		creatures[name] = M
-
-	return creatures
-
-/proc/getxenos()
-	var/list/mobs = sortxenos()
-	var/list/names = list()
-	var/list/creatures = list()
-	var/list/namecounts = list()
-	for(var/mob/M in mobs)
-		var/name = M.name
-		if (name in names)
-			namecounts[name]++
-			name = "[name] ([namecounts[name]])"
-		else
-			names.Add(name)
-			namecounts[name] = 1
-		if (M.real_name && M.real_name != M.name)
-			name += " \[[M.real_name]\]"
-		if (M.stat == 2)
-			if(istype(M, /mob/dead/observer/))
-				name += " \[ghost\]"
-			else
-				name += " \[dead\]"
-		creatures[name] = M
-
-	return creatures
-
-/proc/getpreds()
-	var/list/mobs = sortpreds()
-	var/list/names = list()
-	var/list/creatures = list()
-	var/list/namecounts = list()
-	for(var/mob/M in mobs)
-		if(!isYautja(M)) continue
-		var/name = M.name
-		if (name in names)
-			namecounts[name]++
-			name = "[name] ([namecounts[name]])"
-		else
-			names.Add(name)
-			namecounts[name] = 1
-		if (M.real_name && M.real_name != M.name)
-			name += " \[[M.real_name]\]"
-		if (M.stat == 2)
-			if(istype(M, /mob/dead/observer/))
-				name += " \[ghost\]"
-			else
-				name += " \[dead\]"
-		creatures[name] = M
-
-	return creatures
-
-/proc/gethumans()
-	var/list/mobs = sorthumans()
-	var/list/names = list()
-	var/list/creatures = list()
-	var/list/namecounts = list()
-	for(var/mob/M in mobs)
-		if(isYautja(M)) continue
-		if(iszombie(M))	continue
-		var/name = M.name
-		if (name in names)
-			namecounts[name]++
-			name = "[name] ([namecounts[name]])"
-		else
-			names.Add(name)
-			namecounts[name] = 1
-		if (M.real_name && M.real_name != M.name)
-			name += " \[[M.real_name]\]"
-		if (M.stat == 2)
-			if(istype(M, /mob/dead/observer/))
-				name += " \[ghost\]"
-			else
-				name += " \[dead\]"
-		creatures[name] = M
-
-	return creatures
-
-/proc/getlivinghumans()
-	var/list/mobs = sorthumans()
-	var/list/names = list()
-	var/list/creatures = list()
-	var/list/namecounts = list()
-	for(var/mob/M in mobs)
-		if(isYautja(M))
-			continue
-		if(iszombie(M))
-			continue
-		if (M.stat == 2)
-			continue
-		if(!M.ckey || !M.client)
-			continue
-		var/name = M.name
-		if (name in names)
-			namecounts[name]++
-			name = "[name] ([namecounts[name]])"
-		else
-			names.Add(name)
-			namecounts[name] = 1
-		if (M.real_name && M.real_name != M.name)
-			name += " \[[M.real_name]\]"
-		creatures[name] = M
-
-	return creatures
-
 //Orders mobs by type then by name
 /proc/sortmobs()
 	var/list/moblist = list()
-	var/list/sortmob = sortNames(mob_list)
+	var/list/sortmob = sortNames(GLOB.mob_list)
 	for(var/mob/living/silicon/ai/M in sortmob)
 		moblist.Add(M)
 	for(var/mob/living/silicon/robot/M in sortmob)
@@ -643,7 +427,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 /proc/sortxenos()
 	var/list/xenolist = list()
-	var/list/sortmob = sortNames(mob_list)
+	var/list/sortmob = sortNames(GLOB.mob_list)
 	for(var/mob/living/carbon/Xenomorph/M in sortmob)
 		if(!M.client)
 			continue
@@ -652,18 +436,18 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 /proc/sortpreds()
 	var/list/predlist = list()
-	var/list/sortmob = sortNames(mob_list)
+	var/list/sortmob = sortNames(GLOB.mob_list)
 	for(var/mob/living/carbon/human/M in sortmob)
-		if(!M.client || !M.species.name == "Yautja")
+		if(!M.client || !isyautjastrict(M))
 			continue
 		predlist.Add(M)
 	return predlist
 
 /proc/sorthumans()
 	var/list/humanlist = list()
-	var/list/sortmob = sortNames(mob_list)
+	var/list/sortmob = sortNames(GLOB.mob_list)
 	for(var/mob/living/carbon/human/M in sortmob)
-		if(!M.client || M.species.name == "Yautja")
+		if(!M.client || isyautjastrict(M))
 			continue
 		humanlist.Add(M)
 	return humanlist
@@ -761,7 +545,7 @@ proc/anim(turf/location,atom/target,a_icon,a_icon_state as text,flick_anim as te
 //The variables should be apparent enough.
 	var/atom/movable/overlay/animation = new(location)
 	if(direction)
-		animation.dir = direction
+		animation.setDir(direction)
 	animation.icon = a_icon
 	animation.layer = target.layer+0.1
 	if(a_icon_state)
@@ -936,7 +720,8 @@ var/global/image/busy_indicator_hostile
 		return FALSE
 
 	var/mob/living/L
-	if(istype(user, /mob/living)) L = user //No more doing things while you're in crit
+	if(isliving(user))
+		L = user //No more doing things while you're in crit
 
 	var/image/busy_icon
 	if(show_busy_icon)
@@ -950,17 +735,18 @@ var/global/image/busy_indicator_hostile
 	if(selected_zone_check)
 		cur_zone_sel = user.zone_selected
 
-	var/delayfraction = round(delay/numticks)
 	var/original_loc = user.loc
 	var/original_turf = get_turf(user)
 	var/obj/holding = user.get_active_held_item()
+
 	. = TRUE
-	for(var/i = 0 to numticks)
-		sleep(delayfraction)
+	var/endtime = world.time + delay
+	while(world.time < endtime)
+		stoplag(1)
 		if(!user || user.loc != original_loc || get_turf(user) != original_turf || user.stat || user.knocked_down || user.stunned)
 			. = FALSE
 			break
-		if(L && L.health < CONFIG_GET(number/health_threshold_crit))
+		if(L?.health && L.health < L.get_crit_threshold())
 			. = FALSE //catching mobs below crit level but haven't had their stat var updated
 			break
 		if(needhand)
@@ -1088,7 +874,7 @@ var/global/image/busy_indicator_hostile
 					var/old_icon1 = T.icon
 
 					var/turf/X = B.ChangeTurf(T.type)
-					X.dir = old_dir1
+					X.setDir(old_dir1)
 					X.icon_state = old_icon_state1
 					X.icon = old_icon1 //Shuttle floors are in shuttle.dmi while the defaults are floors.dmi
 
@@ -1107,7 +893,7 @@ var/global/image/busy_indicator_hostile
 
 						// Find a new turf to take on the property of
 						var/turf/nextturf = get_step(corner, direction)
-						if(!nextturf || !istype(nextturf, /turf/open/space))
+						if(!nextturf || !isspaceturf(nextturf))
 							nextturf = get_step(corner, turn(direction, 180))
 
 
@@ -1243,11 +1029,11 @@ proc/DuplicateObject(obj/original, var/perfectcopy = 0 , var/sameloc = 0)
 					var/old_icon1 = T.icon
 
 					if(platingRequired)
-						if(istype(B, /turf/open/space))
+						if(isspaceturf(B))
 							continue moving
 
 					var/turf/X = new T.type(B)
-					X.dir = old_dir1
+					X.setDir(old_dir1)
 					X.icon_state = old_icon_state1
 					X.icon = old_icon1 //Shuttle floors are in shuttle.dmi while the defaults are floors.dmi
 
@@ -1351,7 +1137,7 @@ proc/oview_or_orange(distance = world.view , center = usr , type)
 
 proc/get_mob_with_client_list()
 	var/list/mobs = list()
-	for(var/mob/M in mob_list)
+	for(var/mob/M in GLOB.mob_list)
 		if (M.client)
 			mobs += M
 	return mobs
@@ -1398,46 +1184,6 @@ var/global/list/common_tools = list(
 		return 1
 	return 0
 
-/proc/iswrench(O)
-	if(istype(O, /obj/item/tool/wrench))
-		return 1
-	return 0
-
-/proc/iswelder(O)
-	if(istype(O, /obj/item/tool/weldingtool))
-		return 1
-	return 0
-
-/proc/iscoil(O)
-	if(istype(O, /obj/item/stack/cable_coil))
-		return 1
-	return 0
-
-/proc/iswirecutter(O)
-	if(istype(O, /obj/item/tool/wirecutters))
-		return 1
-	return 0
-
-/proc/isscrewdriver(O)
-	if(istype(O, /obj/item/tool/screwdriver))
-		return 1
-	return 0
-
-/proc/ismultitool(O)
-	if(istype(O, /obj/item/device/multitool))
-		return 1
-	return 0
-
-/proc/iscrowbar(O)
-	if(istype(O, /obj/item/tool/crowbar))
-		return 1
-	return 0
-
-/proc/iswire(O)
-	if(istype(O, /obj/item/stack/cable_coil))
-		return 1
-	return 0
-
 proc/is_hot(obj/item/I)
 	return I.heat_source
 
@@ -1458,7 +1204,7 @@ proc/is_hot(obj/item/I)
 /proc/can_puncture(obj/item/W)		// For the record, WHAT THE HELL IS THIS METHOD OF DOING IT?
 	if(!istype(W)) return 0
 	return (W.sharp || W.heat_source >= 400 	|| \
-		istype(W, /obj/item/tool/screwdriver)	 || \
+		isscrewdriver(W)	 || \
 		istype(W, /obj/item/tool/pen) 		 || \
 		istype(W, /obj/item/tool/shovel) \
 	)
@@ -1685,9 +1431,6 @@ var/list/WALLITEMS = list(
 			error -= deltax
 	return line
 
-/proc/to_chat(target, message)
-	target << message
-
 //gives us the stack trace from CRASH() without ending the current proc.
 /proc/stack_trace(msg)
 	CRASH(msg)
@@ -1775,3 +1518,40 @@ var/list/WALLITEMS = list(
 
 /proc/pass()
 	return
+
+proc/pick_closest_path(value, list/matches = get_fancy_list_of_atom_types())
+	if (value == FALSE) //nothing should be calling us with a number, so this is safe
+		value = input("Enter type to find (blank for all, cancel to cancel)", "Search for type") as null|text
+		if (isnull(value))
+			return
+	value = trim(value)
+	if(!isnull(value) && value != "")
+		matches = filter_fancy_list(matches, value)
+
+	if(matches.len==0)
+		return
+
+	var/chosen
+	if(matches.len==1)
+		chosen = matches[1]
+	else
+		chosen = input("Select a type", "Pick Type", matches[1]) as null|anything in matches
+		if(!chosen)
+			return
+	chosen = matches[chosen]
+	return chosen
+
+
+/proc/IsValidSrc(datum/D)
+	if(istype(D))
+		return !QDELETED(D)
+	return FALSE
+
+//Repopulates sortedAreas list
+/proc/repopulate_sorted_areas()
+	GLOB.sortedAreas = list()
+
+	for(var/area/A in world)
+		GLOB.sortedAreas.Add(A)
+
+	sortTim(GLOB.sortedAreas, /proc/cmp_name_asc)

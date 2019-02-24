@@ -4,6 +4,21 @@
 #define GRAB_NECK		2
 #define GRAB_KILL		3
 
+//intent defines
+#define INTENT_HELP   "help"
+#define INTENT_GRAB   "grab"
+#define INTENT_DISARM "disarm"
+#define INTENT_HARM "harm"
+//NOTE: INTENT_HOTKEY_* defines are not actual intents!
+//they are here to support hotkeys
+#define INTENT_HOTKEY_LEFT  "left"
+#define INTENT_HOTKEY_RIGHT "right"
+//intent magic numbers associations.
+#define INTENT_NUMBER_HELP		0
+#define INTENT_NUMBER_DISARM	1
+#define INTENT_NUMBER_GRAB		2
+#define INTENT_NUMBER_HARM		3
+
 //Ammo defines for gun/projectile related things.
 #define AMMO_EXPLOSIVE 			1
 #define AMMO_XENO_ACID 			2
@@ -20,22 +35,24 @@
 #define AMMO_BALLISTIC			4096
 
 //Gun defines for gun related thing. More in the projectile folder.
-#define GUN_CAN_POINTBLANK		1
-#define GUN_TRIGGER_SAFETY		2
-#define GUN_UNUSUAL_DESIGN		4
-#define GUN_SILENCED			8
-#define GUN_AUTOMATIC			16
-#define GUN_INTERNAL_MAG		32
-#define GUN_AUTO_EJECTOR		64
-#define GUN_AMMO_COUNTER		128
-#define GUN_BURST_ON			256
-#define GUN_BURST_FIRING		512
-#define GUN_FLASHLIGHT_ON		1024
-#define GUN_WIELDED_FIRING_ONLY	2048
-#define GUN_HAS_FULL_AUTO		4096
-#define GUN_FULL_AUTO_ON		8192
-#define GUN_POLICE				16384
-#define GUN_ENERGY				32768
+#define GUN_CAN_POINTBLANK		(1 << 0)
+#define GUN_TRIGGER_SAFETY		(1 << 1)
+#define GUN_UNUSUAL_DESIGN		(1 << 2)
+#define GUN_SILENCED			(1 << 3)
+#define GUN_AUTOMATIC			(1 << 4)
+#define GUN_INTERNAL_MAG		(1 << 5)
+#define GUN_AUTO_EJECTOR		(1 << 6)
+#define GUN_AMMO_COUNTER		(1 << 7)
+#define GUN_BURST_ON			(1 << 8)
+#define GUN_BURST_FIRING		(1 << 9)
+#define GUN_FLASHLIGHT_ON		(1 << 10)
+#define GUN_WIELDED_FIRING_ONLY	(1 << 11)
+#define GUN_HAS_FULL_AUTO		(1 << 12)
+#define GUN_FULL_AUTO_ON		(1 << 13)
+#define GUN_POLICE				(1 << 14)
+#define GUN_ENERGY				(1 << 15)
+#define GUN_LOAD_INTO_CHAMBER	(1 << 16)
+#define GUN_SHOTGUN_CHAMBER		(1 << 17)
 
 //Gun attachable related flags.
 #define ATTACH_REMOVABLE	1

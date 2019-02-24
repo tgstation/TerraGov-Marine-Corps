@@ -83,14 +83,6 @@
 		/obj/structure/window/framed/almayer,
 		/obj/machinery/door/airlock)
 
-	New()
-		spawn(0) //
-			relativewall_neighbours()
-		..()
-
-
-
-
 /obj/machinery/door/airlock/multi_tile/almayer/generic
 	name = "\improper Airlock"
 	icon = 'icons/obj/doors/almayer/2x1generic.dmi'
@@ -176,6 +168,7 @@
 	unacidable = TRUE
 	no_panel = TRUE
 	not_weldable = TRUE
+	destructible = FALSE
 
 /obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ex_act(severity)
 	return
@@ -192,9 +185,9 @@
 		..()
 
 /obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/unlock()
-	if(z == 4)
+	if(is_low_orbit_level(z))
 		return // in orbit
-	..()
+	return ..(TRUE)
 
 /obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds1
 	name = "\improper Alamo cargo door"

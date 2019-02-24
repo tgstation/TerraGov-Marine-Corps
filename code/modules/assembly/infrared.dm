@@ -70,7 +70,7 @@
 			var/obj/effect/beam/i_beam/I = new /obj/effect/beam/i_beam((holder ? holder.loc : loc) )
 			I.master = src
 			I.density = 1
-			I.dir = dir
+			I.setDir(dir)
 			step(I, I.dir)
 			if(I)
 				I.density = 0
@@ -96,7 +96,7 @@
 	Move()
 		var/t = dir
 		..()
-		dir = t
+		setDir(t)
 		qdel(first)
 		first = null
 		return
@@ -104,7 +104,7 @@
 
 	holder_movement()
 		if(!holder)	return 0
-//		dir = holder.dir
+//		setDir(holder.dir)
 		qdel(first)
 		first = null
 		return 1
@@ -114,7 +114,7 @@
 		if((!secured)||(!on)||(cooldown > 0))	return 0
 		pulse(0)
 		if(!holder)
-			visible_message("\icon[src] *beep* *beep*")
+			visible_message("[icon2html(src, viewers(src))] *beep* *beep*")
 		cooldown = 2
 		spawn(10)
 			process_cooldown()
@@ -164,7 +164,7 @@
 		set category = "Object"
 		set src in usr
 
-		dir = turn(dir, 90)
+		setDir(turn(dir, 90))
 		return
 
 
@@ -218,7 +218,7 @@
 		left--
 	if(left < 1)
 		if(!(visible))
-			invisibility = 101
+			invisibility = INVISIBILITY_MAXIMUM
 		else
 			invisibility = 0
 	else
@@ -229,7 +229,7 @@
 	var/obj/effect/beam/i_beam/I = new /obj/effect/beam/i_beam(loc)
 	I.master = master
 	I.density = 1
-	I.dir = dir
+	I.setDir(dir)
 	//to_chat(world, "created new beam \ref[I] at [I.x] [I.y] [I.z]")
 	step(I, I.dir)
 

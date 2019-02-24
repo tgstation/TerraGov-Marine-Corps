@@ -14,11 +14,11 @@
 /mob/living/silicon/say_understands(var/other,var/datum/language/speaking = null)
 	//These only pertain to common. Languages are handled by mob/say_understands()
 	if (!speaking)
-		if (istype(other, /mob/living/carbon))
+		if (iscarbon(other))
 			return 1
-		if (istype(other, /mob/living/silicon))
+		if (issilicon(other))
 			return 1
-		if (istype(other, /mob/living/brain))
+		if (isbrain(other))
 			return 1
 	return ..()
 
@@ -42,9 +42,9 @@
 		return emote(copytext(message,2))
 
 	var/bot_type = 0			//Let's not do a fuck ton of type checks, thanks.
-	if(istype(src, /mob/living/silicon/ai))
+	if(isAI(src))
 		bot_type = IS_AI
-	else if(istype(src, /mob/living/silicon/robot))
+	else if(iscyborg(src))
 		bot_type = IS_ROBOT
 
 	var/mob/living/silicon/ai/AI = src		//and let's not declare vars over and over and over for these guys.
@@ -83,8 +83,8 @@
 			if(D.client && istype(D,src.type))
 				to_chat(D, "<b>[src]</b> transmits, \"[message]\"")
 
-		for (var/mob/M in player_list)
-			if (istype(M, /mob/new_player))
+		for (var/mob/M in GLOB.player_list)
+			if (isnewplayer(M))
 				continue
 			else if(M.stat == 2 &&  M.client.prefs.toggles_chat & CHAT_GHOSTEARS)
 				if(M.client) to_chat(M, "<b>[src]</b> transmits, \"[message]\"")

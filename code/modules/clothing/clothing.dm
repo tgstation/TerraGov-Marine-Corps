@@ -198,7 +198,7 @@
 	return 0 // return 1 to cancel attack_hand()
 
 /obj/item/clothing/gloves/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/tool/wirecutters) || istype(W, /obj/item/tool/surgery/scalpel))
+	if(iswirecutter(W) || istype(W, /obj/item/tool/surgery/scalpel))
 		if (clipped)
 			to_chat(user, "<span class='notice'>The [src] have already been clipped!</span>")
 			update_icon()

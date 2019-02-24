@@ -60,7 +60,7 @@
 	if(!usr || usr.stat) return
 	var/mob/living/carbon/human/M = usr
 	if(!istype(M)) return
-	if(M.species && M.species.name != "Yautja")
+	if(!isyautjastrict(M))
 		to_chat(M, "<span class='warning'>You have no idea how to work these things!</span>")
 		return
 	var/obj/item/clothing/gloves/yautja/Y = M.gloves //Doesn't actually reduce power, but needs the bracers anyway.
@@ -302,10 +302,8 @@
 
 /obj/item/clothing/gloves/yautja/equipped(mob/user, slot)
 	..()
-	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		if(slot == SLOT_GLOVES && H.species && H.species.name == "Yautja")
-			START_PROCESSING(SSobj, src)
+	if(slot == SLOT_GLOVES && isyautjastrict(user))
+		START_PROCESSING(SSobj, src)
 
 /obj/item/clothing/gloves/yautja/dropped(mob/user)
 	STOP_PROCESSING(SSobj, src)
@@ -355,7 +353,7 @@
 	if(!usr.loc || !usr.canmove || usr.stat) return
 	var/mob/living/carbon/human/user = usr
 	if(!istype(user)) return
-	if(!isYautja(user))
+	if(!isyautja(user))
 		to_chat(user, "<span class='warning'>You have no idea how to work these things!</span>")
 		return
 	var/obj/item/weapon/wristblades/R = user.get_active_held_item()
@@ -401,7 +399,7 @@
 	if(!usr || usr.stat) return
 	var/mob/living/carbon/human/M = usr
 	if(!istype(M)) return
-	if(!isYautja(usr))
+	if(!isyautja(usr))
 		to_chat(usr, "<span class='warning'>You have no idea how to work these things!</span>")
 		return 0
 	if(cloaked) //Turn it off.
@@ -458,7 +456,7 @@
 	if(!usr.loc || !usr.canmove || usr.stat) return
 	var/mob/living/carbon/human/M = usr
 	if(!istype(M)) return
-	if(!isYautja(usr))
+	if(!isyautja(usr))
 		to_chat(usr, "<span class='warning'>You have no idea how to work these things!</span>")
 		return
 	var/obj/item/weapon/gun/energy/plasma_caster/R = usr.r_hand
@@ -523,14 +521,14 @@
 	if(M.stat == DEAD)
 		to_chat(M, "<span class='warning'>Little too late for that now!</span>")
 		return
-	if(!isYautja(M))
+	if(!isyautja(M))
 		to_chat(M, "<span class='warning'>You have no idea how to work these things!</span>")
 		return
 
 	var/obj/item/grab/G = M.get_active_held_item()
 	if(istype(G))
 		var/mob/living/carbon/human/comrade = G.grabbed_thing
-		if(isYautja(comrade) && comrade.stat == DEAD)
+		if(isyautja(comrade) && comrade.stat == DEAD)
 			var/obj/item/clothing/gloves/yautja/bracer = comrade.gloves
 			if(istype(bracer))
 				if(alert("Are you sure you want to send this Yautja into the great hunting grounds?","Explosive Bracers", "Yes", "No") == "Yes")
@@ -580,7 +578,7 @@
 	if(!usr.canmove || usr.stat || usr.is_mob_restrained())
 		return 0
 
-	if(!isYautja(usr))
+	if(!isyautja(usr))
 		to_chat(usr, "<span class='warning'>You have no idea how to work these things!/span>")
 		return
 
@@ -614,7 +612,7 @@
 	if(usr.is_mob_incapacitated())
 		return 0
 
-	if(!isYautja(usr))
+	if(!isyautja(usr))
 		to_chat(usr, "<span class='warning'>You have no idea how to work these things!</span>")
 		return
 
@@ -642,7 +640,7 @@
 
 	if(!usr || usr.stat) return
 
-	if(!isYautja(usr))
+	if(!isyautja(usr))
 		to_chat(usr, "You have no idea how to work these things.")
 		return
 
@@ -668,7 +666,7 @@
 		var/mob/Q
 		for(Q in hearers(usr))
 			if(Q.stat == 1) continue //Unconscious
-			if(isXeno(Q) && upgrades != 2) continue
+			if(isxeno(Q) && upgrades != 2) continue
 			to_chat(Q, "<span class='info'>A strange voice says,</span> <span class='rough'>'[msg]'.</span>")
 
 //=================//\\=================\\
@@ -697,11 +695,11 @@
 		recalculateChannels()
 
 	talk_into(mob/living/M as mob, message, channel, var/verb = "commands", var/datum/language/speaking = "Sainja")
-		if(!isYautja(M)) //Nope.
+		if(!isyautja(M)) //Nope.
 			to_chat(M, "<span class='warning'>You try to talk into the headset, but just get a horrible shrieking in your ears!</span>")
 			return
 
-		for(var/mob/living/carbon/hellhound/H in player_list)
+		for(var/mob/living/carbon/hellhound/H in GLOB.player_list)
 			if(istype(H) && !H.stat)
 				to_chat(H, "\[Radio\]: [M.real_name] [verb], '<B>[message]</b>'.")
 		..()
@@ -761,7 +759,7 @@
 			return
 		var/mob/living/carbon/human/H = user
 		var/sure = alert("Really trigger it?","Sure?","Yes","No")
-		if(!isYautja(H))
+		if(!isyautja(H))
 			to_chat(user, "<span class='warning'>The screen angrily flashes three times!</span>")
 			playsound(user, 'sound/effects/EMPulse.ogg', 25, 1)
 			sleep(30)
@@ -779,16 +777,16 @@
 		user.visible_message("<span class='info'>[user] starts becoming shimmery and indistinct...</span>")
 		if(do_after(user,100, TRUE, 5, BUSY_ICON_GENERIC))
 			// Teleport self.
-			user.visible_message("<span class='warning'>\icon[user][user] disappears!</span>")
+			user.visible_message("<span class='warning'>[icon2html(user, viewers(user))][user] disappears!</span>")
 			var/tele_time = animation_teleport_quick_out(user)
 			// Also teleport whoever you're pulling.
 			var/mob/living/M = user.pulling
 			if(istype(M))
-				M.visible_message("<span class='warning'>\icon[M][M] disappears!</span>")
+				M.visible_message("<span class='warning'>[icon2html(M, viewers(M))][M] disappears!</span>")
 				animation_teleport_quick_out(M)
 			sleep(tele_time)
 
-			var/turf/end_turf = pick(pred_spawn)
+			var/turf/end_turf = pick(GLOB.pred_spawn)
 			user.forceMove(end_turf)
 			animation_teleport_quick_in(user)
 			if(M && M.loc)
@@ -815,11 +813,11 @@
 		l_color = "#FFFF0C" //Yeller
 		SetLuminosity(4)
 		spawn(3000)
-			if(ticker && istype(ticker.mode,/datum/game_mode/huntergames)) loop_firetick()
+			if(istype(SSticker?.mode,/datum/game_mode/huntergames)) loop_firetick()
 
 
 	proc/loop_firetick() //Crackly!
-		while(src && ticker)
+		while(src && SSticker)
 			SetLuminosity(0)
 			SetLuminosity(rand(3,4))
 			sleep(rand(15,30))
@@ -926,7 +924,7 @@
 	attack(mob/target as mob, mob/living/user as mob)
 		if(user.zone_selected == "r_leg" || user.zone_selected == "l_leg" || user.zone_selected == "l_foot" || user.zone_selected == "r_foot")
 			if(prob(35) && !target.lying)
-				if(isXeno(target))
+				if(isxeno(target))
 					if(target.mob_size == MOB_SIZE_BIG) //Can't trip the big ones.
 						return ..()
 				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1)
@@ -954,7 +952,7 @@
 	unacidable = 1
 
 	attack_self(mob/living/carbon/human/user as mob)
-		if(!isYautja(user)) return
+		if(!isyautja(user)) return
 		if(!hasorgans(user)) return
 
 		var/pain_factor = 0 //Preds don't normally feel pain. This is an exception.
@@ -1003,7 +1001,7 @@
 	unacidable = 1
 
 	attack(mob/living/target as mob, mob/living/carbon/human/user as mob)
-		if(isYautja(user))
+		if(isyautja(user))
 			force = initial(force)
 			if(prob(22) && !target.lying)
 				user.visible_message("<span class='danger'>[user] slashes [target] so hard, they go flying!</span>")
@@ -1019,7 +1017,7 @@
 		return ..()
 
 	pickup(mob/living/user as mob)
-		if(!isYautja(user))
+		if(!isyautja(user))
 			to_chat(user, "<span class='warning'>You struggle to pick up the huge, unwieldy sword. It makes you dizzy just trying to hold it!</span>")
 			user.Dizzy(50)
 
@@ -1043,7 +1041,7 @@
 	 icon_state = pick("predscythe","predscythe_alt")
 
 	attack(mob/living/target as mob, mob/living/carbon/human/user as mob)
-		if(!isYautja(user))
+		if(!isyautja(user))
 			if(prob(20))
 				user.visible_message("<span class='warning'>[src] slips out of your hands!</span>")
 				user.dropItemToGround(src)
@@ -1166,7 +1164,7 @@
 
 	attack_self(mob/user)
 		if(!active)
-			if(!isYautja(user))
+			if(!isyautja(user))
 				to_chat(user, "What's this thing?")
 				return
 			to_chat(user, "<span class='warning'>You activate the hellhound beacon!</span>")
@@ -1176,7 +1174,7 @@
 				var/mob/living/carbon/C = user
 				C.throw_mode_on()
 		else
-			if(!isYautja(user)) return
+			if(!isyautja(user)) return
 			activated_turf = get_turf(user)
 			display_camera(user)
 		return
@@ -1186,7 +1184,7 @@
 			return
 
 		if(user)
-			msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) primed \a [src]")
+			msg_admin_attack("[ADMIN_TPMONTY(usr)] primed \a [src].")
 		icon_state = initial(icon_state) + "_active"
 		active = 1
 		if(dangerous)
@@ -1213,7 +1211,7 @@
 
 	proc/display_camera(var/mob/user as mob)
 		var/list/L = list()
-		for(var/mob/living/carbon/hellhound/H in mob_list)
+		for(var/mob/living/carbon/hellhound/H in GLOB.mob_list)
 			L += H.real_name
 		L["Cancel"] = "Cancel"
 
@@ -1223,7 +1221,7 @@
 			to_chat(user, "Stopping camera feed.")
 			return
 
-		for(var/mob/living/carbon/hellhound/Q in mob_list)
+		for(var/mob/living/carbon/hellhound/Q in GLOB.mob_list)
 			if(Q.real_name == choice)
 				current = Q.camera
 				break

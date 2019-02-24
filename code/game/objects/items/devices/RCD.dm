@@ -80,7 +80,7 @@ RCD
 
 	afterattack(atom/A, mob/user, proximity)
 		if(!proximity) return
-		if(disabled && !isrobot(user))
+		if(disabled && !iscyborg(user))
 			return 0
 		if(istype(A,/area/shuttle) || istype(A,/turf/open/space/transit))
 			return 0
@@ -89,7 +89,7 @@ RCD
 
 		switch(mode)
 			if(1)
-				if(istype(A, /turf/open/space))
+				if(isspaceturf(A))
 					if(useResource(1, user))
 						to_chat(user, "Building Floor...")
 						activate()
@@ -97,7 +97,7 @@ RCD
 						return 1
 					return 0
 
-				if(istype(A, /turf/open/floor))
+				if(isfloorturf(A))
 					if(checkResource(3, user))
 						to_chat(user, "Building Wall ...")
 						playsound(src.loc, 'sound/machines/click.ogg', 15, 1)
@@ -109,7 +109,7 @@ RCD
 					return 0
 
 			if(2)
-				if(istype(A, /turf/open/floor))
+				if(isfloorturf(A))
 					if(checkResource(10, user))
 						to_chat(user, "Building Airlock...")
 						playsound(src.loc, 'sound/machines/click.ogg', 15, 1)
@@ -123,11 +123,11 @@ RCD
 					return 0
 
 			if(3)
-				if(istype(A, /turf/closed/wall))
+				if(iswallturf(A))
 					var/turf/closed/wall/WL = A
 					if(WL.hull)
 						return 0
-					if(istype(A, /turf/closed/wall/r_wall) && !canRwall)
+					if(isrwallturf(A) && !canRwall)
 						return 0
 					if(checkResource(5, user))
 						to_chat(user, "Deconstructing Wall...")
@@ -139,8 +139,9 @@ RCD
 							return 1
 					return 0
 
-				if(istype(A, /turf/open/floor) && !istype(A, /turf/open/floor/plating))
-					if(checkResource(5, user))
+				if(isfloorturf(A))
+					var/turf/open/floor/F = A
+					if(checkResource(5, user) && !F.is_plating())
 						to_chat(user, "Deconstructing Floor...")
 						playsound(src.loc, 'sound/machines/click.ogg', 15, 1)
 						if(do_after(user, 50, TRUE, 5, BUSY_ICON_BUILD))
@@ -175,12 +176,12 @@ RCD
 /obj/item/device/rcd/proc/checkResource(var/amount, var/mob/user)
 	return stored_matter >= amount
 /obj/item/device/rcd/borg/useResource(var/amount, var/mob/user)
-	if(!isrobot(user))
+	if(!iscyborg(user))
 		return 0
 	return user:cell:use(amount * 30)
 
 /obj/item/device/rcd/borg/checkResource(var/amount, var/mob/user)
-	if(!isrobot(user))
+	if(!iscyborg(user))
 		return 0
 	return user:cell:charge >= (amount * 30)
 

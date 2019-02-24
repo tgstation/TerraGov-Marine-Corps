@@ -96,7 +96,7 @@
 			last_spam_time = world.time
 
 			if (prob(50)) //Give the AI an increased chance to intercept the message
-				for(var/mob/living/silicon/ai/ai in mob_list)
+				for(var/mob/living/silicon/ai/ai in GLOB.ai_list)
 					// Allows other AIs to intercept the message but the AI won't intercept their own message.
 					if(ai.aiPDA != P && ai.aiPDA != src)
 						ai.show_message("<i>Intercepted message from <b>[sender]</b></i> (Unknown / spam?) <i>to <b>[P:owner]</b>: [message]</i>")
@@ -107,7 +107,7 @@
 			if (!P.silent)
 				playsound(P.loc, 'sound/machines/twobeep.ogg', 25, 1)
 			for (var/mob/O in hearers(3, P.loc))
-				if(!P.silent) O.show_message(text("\icon[P] *[P.ttone]*"))
+				if(!P.silent) O.show_message(text("[icon2html(P, O)] *[P.ttone]*"))
 			//Search for holder of the PDA.
 			var/mob/living/L = null
 			if(P.loc && isliving(P.loc))
@@ -116,4 +116,4 @@
 				L = get(P, /mob/living/silicon)
 
 			if(L)
-				to_chat(L, "\icon[P] <b>Message from [sender] (Unknown / spam?), </b>\"[message]\" (Unable to Reply)")
+				to_chat(L, "[icon2html(P, L)] <b>Message from [sender] (Unknown / spam?), </b>\"[message]\" (Unable to Reply)")

@@ -26,7 +26,7 @@
 
 /obj/machinery/drone_fabricator/process()
 
-	if(ticker.current_state < GAME_STATE_PLAYING)
+	if(SSticker.current_state < GAME_STATE_PLAYING)
 		return
 
 	if(stat & NOPOWER || !produce_drones)
@@ -51,7 +51,7 @@
 
 /obj/machinery/drone_fabricator/proc/count_drones()
 	var/drones = 0
-	for(var/mob/living/silicon/robot/drone/D in player_list)
+	for(var/mob/living/silicon/robot/drone/D in GLOB.player_list)
 		if(D.key && D.client)
 			drones++
 	return drones
@@ -86,7 +86,7 @@
 	set desc = "If there is a powered, enabled fabricator in the game world with a prepared chassis, join as a maintenance drone."
 
 
-	if(ticker.current_state < GAME_STATE_PLAYING)
+	if(SSticker.current_state < GAME_STATE_PLAYING)
 		to_chat(src, "<span class='warning'>The game hasn't started yet!</span>")
 		return
 

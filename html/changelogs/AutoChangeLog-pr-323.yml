@@ -1,4 +1,0 @@
-author: "Ghommie"
-delete-after: True
-changes: 
-  - bugfix: "Removes a duplicated istance of explosive pouches from the spec vendor's selection."

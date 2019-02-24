@@ -42,6 +42,15 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	icon_state = "beanbag"
 	default_ammo = /datum/ammo/bullet/shotgun/beanbag
 
+/obj/item/ammo_magazine/rifle/bolt
+	name = "box of rifle bullets"
+	desc = "A box filled with rifle bullets."
+	icon_state = "sovie" //Thank you Alterist
+	default_ammo = /datum/ammo/bullet/sniper/svd
+	caliber = "7.62x54mmR" //Cyka Blyat
+	gun_type = /obj/item/weapon/gun/shotgun/pump/bolt
+	max_rounds = 20 // Real rifle boxes are usually 20 rounds. This works with the new system, four handfuls.
+	w_class = 2 // CAN throw it in your pocket, friend.
 
 //-------------------------------------------------------
 
@@ -64,6 +73,11 @@ also doesn't really matter. You can only reload them with handfuls.
 /obj/item/ammo_magazine/internal/shotgun/pump/CMB //The only cycle method.
 	max_rounds = 8
 
+/obj/item/ammo_magazine/internal/shotgun/pump/bolt //The only cycle method.
+	name = "internal magazine"
+	default_ammo = /datum/ammo/bullet/sniper/svd
+	caliber = "7.62x54mmR"
+	max_rounds = 5
 
 /obj/item/ammo_magazine/internal/shotgun/double //For a double barrel.
 	default_ammo = /datum/ammo/bullet/shotgun/buckshot
@@ -77,3 +91,6 @@ also doesn't really matter. You can only reload them with handfuls.
 /obj/item/ammo_magazine/internal/shotgun/merc
 	max_rounds = 5
 
+/obj/item/ammo_magazine/internal/shotgun/scout
+	max_rounds = 9
+	current_rounds = 0

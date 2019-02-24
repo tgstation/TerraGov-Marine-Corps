@@ -18,7 +18,7 @@
 	var/russian_roulette = 0 //God help you if you do this.
 	var/catchworking = TRUE
 	type_of_casings = "bullet"
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER
 	wield_delay = WIELD_DELAY_VERY_FAST //If you modify your revolver to be two-handed, it will still be fast to aim
 	gun_skill_category = GUN_SKILL_PISTOLS
 	movement_acc_penalty_mult = 3
@@ -38,15 +38,14 @@
 	recoil_unwielded = CONFIG_GET(number/combat_define/med_recoil_value)
 
 
-/obj/item/weapon/gun/revolver/examine(mob/user)
-	. = ..()
+/obj/item/weapon/gun/revolver/examine_ammo_count(mob/user)
 	to_chat(user, "[current_mag.chamber_closed? "It's closed.": "It's open with [current_mag.current_rounds] round\s loaded."]")
 
 /obj/item/weapon/gun/revolver/update_icon() //Special snowflake update icon.
 	icon_state = current_mag.chamber_closed ? copytext(icon_state,1,-2) : icon_state + "_o"
 
 /obj/item/weapon/gun/revolver/attackby(obj/item/P as obj, mob/user as mob)
-	if(istype(P, /obj/item/tool/screwdriver))
+	if(isscrewdriver(P))
 		to_chat(user, "[catchworking? "You adjust the cylinder lock to allow the cylinder to be spun.": "You adjust the cylinder lock to the correct depth."]")
 		catchworking = !catchworking
 	return ..()
@@ -274,10 +273,6 @@
 
 	recent_trick = world.time //Turn on the delay for the next trick.
 
-
-/obj/item/weapon/gun/revolver/has_ammo_counter()
-	return TRUE
-
 /obj/item/weapon/gun/revolver/get_ammo_type()
 	if(!ammo)
 		return list("unknown", "unknown")
@@ -325,7 +320,7 @@
 	force = 8
 	attachable_allowed = list(/obj/item/attachable/compensator)
 
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 21,"rail_x" = 14, "rail_y" = 23, "under_x" = 24, "under_y" = 19, "stock_x" = 24, "stock_y" = 19)
 
 /obj/item/weapon/gun/revolver/upp/set_gun_config_values()
@@ -350,7 +345,7 @@
 	fire_sound = 'sound/weapons/gun_pistol_medium.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/revolver/small
 	force = 6
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 12, "rail_y" = 21, "under_x" = 20, "under_y" = 15, "stock_x" = 20, "stock_y" = 15)
 
 /obj/item/weapon/gun/revolver/small/set_gun_config_values()
@@ -385,7 +380,7 @@
 						/obj/item/attachable/quickfire,
 						/obj/item/attachable/compensator)
 
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 21, "under_x" = 22, "under_y" = 15, "stock_x" = 22, "stock_y" = 15)
 
 /obj/item/weapon/gun/revolver/mateba/set_gun_config_values()

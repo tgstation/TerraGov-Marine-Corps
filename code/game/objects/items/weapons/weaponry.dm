@@ -12,9 +12,9 @@
 	throw_range = 15
 	attack_verb = list("banned")
 
-	suicide_act(mob/user)
-		user.visible_message("<span class='danger'>[user] is hitting \himself with the [src.name]! It looks like \he's trying to ban \himself from life.</span>")
-		return (BRUTELOSS|FIRELOSS|TOXLOSS|OXYLOSS)
+/obj/item/weapon/banhammer/suicide_act(mob/user)
+	user.visible_message("<span class='danger'>[user] is hitting [p_them()]self with the [name]! It looks like [user.p_theyre()] trying to ban [p_them()]self from life.</span>")
+	return (BRUTELOSS|FIRELOSS|TOXLOSS|OXYLOSS)
 
 /obj/item/weapon/nullrod
 	name = "null rod"
@@ -28,9 +28,9 @@
 	throwforce = 10
 	w_class = 2
 
-	suicide_act(mob/user)
-		user.visible_message("<span class='danger'>[user] is impaling \himself with the [src.name]! It looks like \he's trying to commit suicide.</span>")
-		return (BRUTELOSS|FIRELOSS)
+/obj/item/weapon/nullrod/suicide_act(mob/user)
+	user.visible_message("<span class='danger'>[user] is impaling [p_them()]self with the [name]! It looks like [user.p_theyre()] trying to commit suicide.</span>")
+	return (BRUTELOSS|FIRELOSS)
 
 /obj/item/weapon/harpoon
 	name = "harpoon"
@@ -149,7 +149,7 @@
 		qdel(src)
 		update_icon(user)
 
-	else if(istype(I, /obj/item/tool/wirecutters))
+	else if(iswirecutter(I))
 		var/obj/item/weapon/baton/cattleprod/P = new /obj/item/weapon/baton/cattleprod
 
 		user.put_in_hands(P)

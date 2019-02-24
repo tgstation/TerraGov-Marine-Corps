@@ -331,3 +331,95 @@ proc/TextPreview(var/string,var/len=40)
 			return string
 	else
 		return "[copytext(string, 1, 37)]..."
+
+//Used for applying byonds text macros to strings that are loaded at runtime
+/proc/apply_text_macros(string)
+	var/next_backslash = findtext(string, "\\")
+	if(!next_backslash)
+		return string
+
+	var/leng = length(string)
+
+	var/next_space = findtext(string, " ", next_backslash + 1)
+	if(!next_space)
+		next_space = leng - next_backslash
+
+	if(!next_space)	//trailing bs
+		return string
+
+	var/base = next_backslash == 1 ? "" : copytext(string, 1, next_backslash)
+	var/macro = lowertext(copytext(string, next_backslash + 1, next_space))
+	var/rest = next_backslash > leng ? "" : copytext(string, next_space + 1)
+
+	//See https://secure.byond.com/docs/ref/info.html#/DM/text/macros
+	switch(macro)
+		//prefixes/agnostic
+		if("the")
+			rest = text("\the []", rest)
+		if("a")
+			rest = text("\a []", rest)
+		if("an")
+			rest = text("\an []", rest)
+		if("proper")
+			rest = text("\proper []", rest)
+		if("improper")
+			rest = text("\improper []", rest)
+		if("roman")
+			rest = text("\roman []", rest)
+		//postfixes
+		if("th")
+			base = text("[]\th", rest)
+		if("s")
+			base = text("[]\s", rest)
+		if("he")
+			base = text("[]\he", rest)
+		if("she")
+			base = text("[]\she", rest)
+		if("his")
+			base = text("[]\his", rest)
+		if("himself")
+			base = text("[]\himself", rest)
+		if("herself")
+			base = text("[]\herself", rest)
+		if("hers")
+			base = text("[]\hers", rest)
+
+	. = base
+	if(rest)
+		. += .(rest)
+
+//finds the first occurrence of one of the characters from needles argument inside haystack
+//it may appear this can be optimised, but it really can't. findtext() is so much faster than anything you can do in byondcode.
+//stupid byond :(
+/proc/findchar(haystack, needles, start=1, end=0)
+	var/temp
+	var/len = length(needles)
+	for(var/i=1, i<=len, i++)
+		temp = findtextEx(haystack, ascii2text(text2ascii(needles,i)), start, end)	//Note: ascii2text(text2ascii) is faster than copytext()
+		if(temp)
+			end = temp
+	return end
+
+
+/proc/noscript(text)
+	text = replacetext(text, "<script", "")
+	text = replacetext(text, "/script>", "")
+	text = replacetext(text, "<iframe", "")
+	text = replacetext(text, "/iframe>", "")
+	text = replacetext(text, "<input", "")
+	text = replacetext(text, "<video", "")
+	text = replacetext(text, "<body", "")
+	text = replacetext(text, "<form", "")
+	text = replacetext(text, "<link", "")
+	text = replacetext(text, "<applet", "")
+	text = replacetext(text, "<frameset", "")
+	text = replacetext(text, "onerror", "")
+	text = replacetext(text, "onpageshow", "")
+	text = replacetext(text, "onscroll", "")
+	text = replacetext(text, "onforminput", "")
+	text = replacetext(text, "oninput", "")
+	return text
+
+
+/proc/sanitize_filename(t)
+	return sanitize_simple(t, list("\n"="", "\t"="", "/"="", "\\"="", "?"="", "%"="", "*"="", ":"="", "|"="", "\""="", "<"="", ">"=""))

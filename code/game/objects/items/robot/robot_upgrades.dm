@@ -70,7 +70,7 @@
 		return 0
 
 	if(!R.key)
-		for(var/mob/dead/observer/ghost in player_list)
+		for(var/mob/dead/observer/ghost in GLOB.player_list)
 			if(ghost.mind && ghost.mind.current == R)
 				R.key = ghost.key
 				if(R.client) R.client.change_view(world.view)

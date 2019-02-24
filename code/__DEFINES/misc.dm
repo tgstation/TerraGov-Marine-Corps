@@ -45,3 +45,26 @@ Will print: "/mob/living/carbon/human/death" (you can optionally embed it in a s
 
 //Run the world with this parameter to enable a single run though of the game setup and tear down process with unit tests in between
 #define TEST_RUN_PARAMETER "test-run"
+
+// Maploader bounds indices
+#define MAP_MINX 1
+#define MAP_MINY 2
+#define MAP_MINZ 3
+#define MAP_MAXX 4
+#define MAP_MAXY 5
+#define MAP_MAXZ 6
+var/global/TAB = "&nbsp;&nbsp;&nbsp;&nbsp;"
+
+#define CLIENT_FROM_VAR(I) (ismob(I) ? I:client : (istype(I, /client) ? I : (istype(I, /datum/mind) ? I:current?:client : null)))
+
+//world/proc/shelleo
+#define SHELLEO_ERRORLEVEL 1
+#define SHELLEO_STDOUT 2
+#define SHELLEO_STDERR 3
+
+//different types of atom colorations
+#define ADMIN_COLOUR_PRIORITY 		1 //only used by rare effects like greentext coloring mobs and when admins varedit color
+#define TEMPORARY_COLOUR_PRIORITY 	2 //e.g. purple effect of the revenant on a mob, black effect when mob electrocuted
+#define WASHABLE_COLOUR_PRIORITY 	3 //color splashed onto an atom (e.g. paint on turf)
+#define FIXED_COLOUR_PRIORITY 		4 //color inherent to the atom (e.g. blob color)
+#define COLOUR_PRIORITY_AMOUNT 4 //how many priority levels there are.

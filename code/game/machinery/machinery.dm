@@ -98,7 +98,7 @@ Class Procs:
 	icon = 'icons/obj/stationobjs.dmi'
 	var/stat = 0
 	var/emagged = 0
-	var/use_power = 1
+	var/use_power = IDLE_POWER_USE
 		//0 = dont run the auto
 		//1 = run auto, use idle
 		//2 = run auto, use active
@@ -107,6 +107,7 @@ Class Procs:
 	var/machine_current_charge = 0 //Does it have an integrated, unremovable capacitor? Normally 10k if so.
 	var/machine_max_charge = 0
 	var/power_channel = EQUIP
+	var/panel_open = FALSE
 	var/mob/living/carbon/human/operator = null //Had no idea where to put this so I put this here. Used for operating machines with RELAY_CLICK
 		//EQUIP,ENVIRON or LIGHT
 	var/list/component_parts = list() //list of all the parts used to build it, if made from certain kinds of frames.
@@ -115,6 +116,10 @@ Class Procs:
 	var/global/gl_uid = 1
 	layer = OBJ_LAYER
 	var/machine_processing = 0 // whether the machine is busy and requires process() calls in scheduler.
+
+	var/destructible = TRUE
+	var/damage = 0
+	var/damage_cap = 1000 //The point where things start breaking down.
 
 /obj/machinery/attackby(obj/item/C as obj, mob/user as mob)
 	. = ..()
@@ -127,20 +132,40 @@ Class Procs:
 			qdel()
 		return
 
-/obj/machinery/New()
+/obj/machinery/Initialize()
 	. = ..()
-	machines += src
+	GLOB.machines += src
 	var/area/A = get_area(src)
 	if(A)
-		A.master.area_machines += src
+		A.area_machines += src
 
 /obj/machinery/Destroy()
-	machines -= src
+	GLOB.machines -= src
 	processing_machines -= src
 	var/area/A = get_area(src)
 	if(A)
-		A.master.area_machines -= src
+		A.area_machines -= src
 	. = ..()
+
+/obj/machinery/proc/dropContents(list/subset = null)
+	var/turf/T = get_turf(src)
+	for(var/atom/movable/A in contents)
+		if(subset && !(A in subset))
+			continue
+		A.forceMove(T)
+//		if(isliving(A))
+//			var/mob/living/L = A
+//			L.update_mobility()
+
+/obj/machinery/proc/is_operational()
+	return !(stat & (NOPOWER|BROKEN|MAINT))
+
+/obj/machinery/proc/deconstruct()
+	return
+
+//called on machinery construction (i.e from frame to machinery) but not on initialization
+/obj/machinery/proc/on_construction()
+	return
 
 /obj/machinery/proc/start_processing()
 	if(!machine_processing)
@@ -203,30 +228,27 @@ Class Procs:
 	if(!powered(power_channel))
 		if(use_power && (machine_current_charge > idle_power_usage)) //Does it have an integrated battery/reserve power to tap into?
 			machine_current_charge -= min(machine_current_charge, idle_power_usage) //Sterilize with min; no negatives allowed.
-			//to_chat(world, "<span class='warning'>DEBUG: Machine Auto_Use_Power: Idle Power Usage: [idle_power_usage] Machine Current Charge: [machine_current_charge].</span>")
 			update_icon()
 			return TRUE
 		else if(machine_current_charge > active_power_usage)
 			machine_current_charge -= min(machine_current_charge, active_power_usage)
-			//to_chat(world, "<span class='warning'>DEBUG: Machine Auto_Use_Power: Active Power Usage: [active_power_usage] Machine Current Charge: [machine_current_charge].</span>")
 			update_icon()
 			return TRUE
 		else
 			return FALSE
 
-	if(use_power)
-		if((machine_current_charge < machine_max_charge) && anchored) //here we handle recharging the internal battery of machines
-			//to_chat(world, "<span class='warning'>DEBUG: Machine Auto_Use_Power: Machine Current Charge: [machine_current_charge] .</span>")
-			var/power_usage = (min(500,max(0,machine_max_charge - machine_current_charge)))
-			machine_current_charge += power_usage //recharge internal cell at max rate of 500
-			use_power(power_usage,power_channel, TRUE)
-			//to_chat(world, "<span class='warning'>DEBUG: Machine Auto_Use_Power: Power Usage: [power_usage] Machine Current Charge: [machine_current_charge].</span>")
-			update_icon()
-		else
-			use_power(idle_power_usage,power_channel, TRUE)
+	switch(use_power)
+		if(IDLE_POWER_USE)
+			if((machine_current_charge < machine_max_charge) && anchored) //here we handle recharging the internal battery of machines
+				var/power_usage = (min(500,max(0,machine_max_charge - machine_current_charge)))
+				machine_current_charge += power_usage //recharge internal cell at max rate of 500
+				use_power(power_usage,power_channel, TRUE)
+				update_icon()
+			else
+				use_power(idle_power_usage,power_channel, TRUE)
 
-	else if(use_power >= 2)
-		use_power(active_power_usage,power_channel, TRUE)
+		if(ACTIVE_POWER_USE)
+			use_power(active_power_usage,power_channel, TRUE)
 	return TRUE
 
 /obj/machinery/proc/operable(var/additional_flags = 0)
@@ -241,15 +263,12 @@ Class Procs:
 		return 1
 	if(usr.is_mob_restrained() || usr.lying || usr.stat)
 		return 1
-	if ( ! (istype(usr, /mob/living/carbon/human) || \
-			istype(usr, /mob/living/silicon) || \
-			istype(usr, /mob/living/carbon/Xenomorph) || \
-			istype(usr, /mob/living/carbon/monkey)) )
+	if (!ishuman(usr) && !ismonkey(usr) && !issilicon(usr) && !isxeno(usr))
 		to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return 1
 
 	var/norange = 0
-	if(istype(usr, /mob/living/carbon/human))
+	if(ishuman(usr))
 		var/mob/living/carbon/human/H = usr
 		if(istype(H.l_hand, /obj/item/tk_grab))
 			norange = 1
@@ -257,7 +276,7 @@ Class Procs:
 			norange = 1
 
 	if(!norange)
-		if ((!in_range(src, usr) || !istype(src.loc, /turf)) && !istype(usr, /mob/living/silicon))
+		if ((!in_range(src, usr) || !istype(src.loc, /turf)) && !issilicon(usr))
 			return 1
 
 	src.add_fingerprint(usr)
@@ -268,7 +287,7 @@ Class Procs:
 	return 0
 
 /obj/machinery/attack_ai(mob/user as mob)
-	if(isrobot(user))
+	if(iscyborg(user))
 		// For some reason attack_robot doesn't work
 		// This is to stop robots from using cameras to remotely control machines.
 		if(user.client && user.client.eye == user)
@@ -289,15 +308,12 @@ Class Procs:
 		return 1
 	if(user.lying || user.stat)
 		return 1
-	if ( ! (istype(usr, /mob/living/carbon/human) || \
-			istype(usr, /mob/living/silicon) || \
-			istype(usr, /mob/living/carbon/Xenomorph) || \
-			istype(usr, /mob/living/carbon/monkey)) )
+	if (!ishuman(usr) && !ismonkey(usr) && !issilicon(usr) && !isxeno(usr))
 		to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return 1
 /*
 	//distance checks are made by atom/proc/clicked()
-	if ((get_dist(src, user) > 1 || !istype(src.loc, /turf)) && !istype(user, /mob/living/silicon))
+	if ((get_dist(src, user) > 1 || !istype(src.loc, /turf)) && !issilicon(user))
 		return 1
 */
 	if (ishuman(user))
@@ -326,7 +342,7 @@ Class Procs:
 
 /obj/machinery/proc/state(var/msg)
   for(var/mob/O in hearers(src, null))
-    O.show_message("\icon[src] <span class = 'notice'>[msg]</span>", 2)
+    O.show_message("[icon2html(src, O)] <span class = 'notice'>[msg]</span>", 2)
 
 /obj/machinery/proc/ping(text=null)
   if (!text)
@@ -578,3 +594,20 @@ obj/machinery/proc/med_scan(mob/living/carbon/human/H, dat, var/list/known_impla
 	if(occ["sdisabilities"] & NEARSIGHTED)
 		dat += text("<font color='red'>Retinal misalignment detected.</font><BR>")
 	return dat
+
+
+//Damage
+/obj/machinery/proc/take_damage(dam)
+	if(!destructible)
+		return
+
+	if(!dam)
+		return
+
+	damage = max(0, damage + dam)
+
+	if(damage >= damage_cap)
+		playsound(src, 'sound/effects/metal_crash.ogg', 35)
+		qdel(src)
+	else
+		update_icon()

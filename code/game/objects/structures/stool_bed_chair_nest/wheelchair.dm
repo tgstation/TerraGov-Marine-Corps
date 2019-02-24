@@ -13,7 +13,7 @@
 	var/image/O = image(icon = 'icons/obj/objects.dmi', icon_state = "w_overlay", layer = FLY_LAYER, dir = src.dir)
 	overlays += O
 	if(buckled_mob)
-		buckled_mob.dir = dir
+		buckled_mob.setDir(dir)
 
 /obj/structure/bed/chair/wheelchair/relaymove(mob/user, direction)
 	if(world.time <= l_move_time + move_delay)
@@ -88,7 +88,7 @@
 		occupant.apply_effect(6, STUTTER, blocked)
 		occupant.apply_damage(10, BRUTE, def_zone)
 		playsound(src.loc, 'sound/weapons/punch1.ogg', 25, 1)
-		if(istype(A, /mob/living))
+		if(isliving(A))
 			var/mob/living/victim = A
 			def_zone = ran_zone()
 			blocked = victim.run_armor_check(def_zone, "melee")
@@ -102,12 +102,12 @@
 	var/obj/effect/decal/cleanable/blood/tracks/B = new(loc)
 	var/newdir = get_dir(get_step(loc, dir), loc)
 	if(newdir == dir)
-		B.dir = newdir
+		B.setDir(newdir)
 	else
 		newdir = newdir|dir
 		if(newdir == 3)
 			newdir = 1
 		else if(newdir == 12)
 			newdir = 4
-		B.dir = newdir
+		B.setDir(newdir)
 	bloodiness--

@@ -22,8 +22,7 @@
 	if(user.silent)
 		return
 
-	var/mob/living/carbon/human/H = user
-	if(H.species && H.species == "Yautja")
+	if(isyautjastrict(user))
 		to_chat(user, "Some soft-meat toy. It's useless to you.")
 		return
 
@@ -35,7 +34,8 @@
 	if(!message)
 		return
 	message = capitalize(message)
-	log_admin("[key_name(user)] used a megaphone to say: >[message]<")
+	log_game("[key_name(user)] used a megaphone to say: [message]")
+	user.log_talk(message, LOG_SAY)
 	if ((src.loc == user && usr.stat == 0))
 		if(emagged)
 			if(insults)
@@ -45,9 +45,10 @@
 			else
 				to_chat(user, "<span class='warning'>*BZZZZzzzzzt*</span>")
 		else
+
 			for(var/mob/living/carbon/human/O in (viewers(user)))
-				if(O.species && O.species.name == "Yautja") //NOPE
-					O.show_message("[user] says something on the microphone, but you can't understand it.")
+				if(isyautjastrict(O)) //NOPE
+					O.show_message("[user] says something on [src], but you can't understand it.", 2)
 					continue
 				O.show_message("<B>[user]</B> broadcasts, <FONT size=3>\"[message]\"</FONT>",2) // 2 stands for hearable message
 

@@ -14,7 +14,7 @@
 
 	attack_self(mob/user as mob)
 		if(!active)
-			if(!isYautja(user))
+			if(!isyautja(user))
 				if(prob(75))
 					to_chat(user, "You fiddle with the disc, but nothing happens. Try again maybe?")
 					return
@@ -31,7 +31,7 @@
 			return
 
 		if(user)
-			msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) primed \a [src]")
+			msg_admin_attack("[ADMIN_TPMONTY(usr)] primed \a [src].")
 
 		icon_state = initial(icon_state) + "_active"
 		active = 1
@@ -53,7 +53,7 @@
 		return
 
 	throw_impact(atom/hit_atom)
-		if(isYautja(hit_atom) && istype(hit_atom,/mob/living/carbon/human))
+		if(isyautja(hit_atom) && istype(hit_atom,/mob/living/carbon/human))
 			var/mob/living/carbon/human/H = hit_atom
 			if(H.put_in_hands(src))
 				hit_atom.visible_message("[hit_atom] expertly catches [src] out of the air.","You catch [src] easily.")
@@ -153,7 +153,7 @@
 					continue
 				else if(L in friends)
 					continue
-				else if(isYautja(L))
+				else if(isyautja(L))
 					continue
 				else if (L.stat == DEAD)
 					continue
@@ -191,7 +191,7 @@
 		for(var/mob/living/carbon/C in range(6))
 			if(C.target_locked)
 				var/image/I = C.target_locked
-				if(I.icon_state == "locked-y" && !isYautja(C) && C.stat != DEAD)
+				if(I.icon_state == "locked-y" && !isyautja(C) && C.stat != DEAD)
 					stance = HOSTILE_STANCE_ATTACK
 					target_mob = C
 					break

@@ -8,7 +8,6 @@ var/global/list/rad_collectors = list()
 	icon_state = "ca"
 	anchored = 0
 	density = 1
-	directwired = 1
 	req_access = list(ACCESS_MARINE_ENGINEERING)
 //	use_power = 0
 	var/obj/item/tank/phoron/P = null
@@ -35,7 +34,6 @@ var/global/list/rad_collectors = list()
 
 	if(P)
 		if(P.gas_type != GAS_TYPE_PHORON || P.pressure == 0)
-			investigate_log("<font color='red'>out of fuel</font>.","singulo")
 			eject()
 		else
 			P.pressure -= 0.001
@@ -48,7 +46,6 @@ var/global/list/rad_collectors = list()
 			toggle_power()
 			user.visible_message("[user.name] turns the [src.name] [active? "on":"off"].", \
 			"You turn the [src.name] [active? "on":"off"].")
-			investigate_log("turned [active?"<font color='green'>on</font>":"<font color='red'>off</font>"] by [user.key]. [P?"Fuel: [round(P.pressure)]kPa":"<font color='red'>It is empty</font>"].","singulo")
 			return
 		else
 			to_chat(user, "<span class='warning'>The controls are locked!</span>")
@@ -68,11 +65,11 @@ var/global/list/rad_collectors = list()
 			P = W
 			update_icon()
 		return 1
-	else if(istype(W, /obj/item/tool/crowbar))
+	else if(iscrowbar(W))
 		if(P && !src.locked)
 			eject()
 			return 1
-	else if(istype(W, /obj/item/tool/wrench))
+	else if(iswrench(W))
 		if(P)
 			to_chat(user, "<span class='notice'>Remove the phoron tank first.</span>")
 			return 1

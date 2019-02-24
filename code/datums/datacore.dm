@@ -22,6 +22,7 @@
 	var/list/med = new()
 	var/list/mar = new()
 	var/list/heads = new()
+	var/list/police = new()
 	var/list/misc = new()
 	var/list/isactive = new()
 	var/list/squads = new()
@@ -50,7 +51,7 @@
 
 		if(OOC)
 			var/active = 0
-			for(var/mob/M in player_list)
+			for(var/mob/M in GLOB.player_list)
 				if(M.real_name == name && M.client && M.client.inactivity <= 10 * 60 * 10)
 					active = 1
 					break
@@ -60,25 +61,33 @@
 			//to_chat(world, "[name]: [rank]")
 			//cael - to prevent multiple appearances of a player/job combination, add a continue after each line
 		var/department = 0
-		if(real_rank in ROLES_COMMAND)
+		if(real_rank in JOBS_COMMAND)
 			heads[name] = rank
 			department = 1
-		if(real_rank in ROLES_ENGINEERING)
+		if(real_rank in JOBS_POLICE)
+			police[name] = rank
+			department = 1
+		if(real_rank in JOBS_ENGINEERING)
 			eng[name] = rank
 			department = 1
-		if(real_rank in ROLES_MEDICAL)
+		if(real_rank in JOBS_MEDICAL)
 			med[name] = rank
 			department = 1
-		if(real_rank in ROLES_MARINES)
+		if(real_rank in JOBS_MARINES)
 			squads[name] = squad_name
 			mar[name] = rank
 			department = 1
-		if(!department && !(name in heads))
+		if(!department && !(name in heads) && (real_rank in JOBS_REGULAR_ALL))
 			misc[name] = rank
 	if(heads.len > 0)
 		dat += "<tr><th colspan=3>Command Staff</th></tr>"
 		for(name in heads)
 			dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[heads[name]]</td><td>[isactive[name]]</td></tr>"
+			even = !even
+	if(police.len > 0)
+		dat += "<tr><th colspan=3>Military Police</th></tr>"
+		for(name in police)
+			dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[police[name]]</td><td>[isactive[name]]</td></tr>"
 			even = !even
 	if(mar.len > 0)
 		dat += "<tr><th colspan=3>Marines</th></tr>"
@@ -138,27 +147,27 @@ var/global/list/PDA_Manifest = list()
 		var/isactive = t.fields["p_stat"]
 		var/department = 0
 		var/depthead = 0 			// Department Heads will be placed at the top of their lists.
-		if(real_rank in ROLES_COMMAND)
+		if(real_rank in JOBS_COMMAND)
 			heads[++heads.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
 			depthead = 1
 			if(rank=="Commander" && heads.len != 1)
 				heads.Swap(1,heads.len)
 
-		if(real_rank in ROLES_ENGINEERING)
+		if(real_rank in JOBS_ENGINEERING)
 			eng[++eng.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
 			if(depthead && eng.len != 1)
 				eng.Swap(1,eng.len)
 
-		if(real_rank in ROLES_MEDICAL)
+		if(real_rank in JOBS_MEDICAL)
 			med[++med.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
 			if(depthead && med.len != 1)
 				med.Swap(1,med.len)
 
 
-		if(real_rank in ROLES_MARINES)
+		if(real_rank in JOBS_MARINES)
 			mar[++mar.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
 			if(depthead && mar.len != 1)
@@ -172,7 +181,7 @@ var/global/list/PDA_Manifest = list()
 		"heads" = heads,
 		"eng" = eng,
 		"med" = med,
-		"marine_squad_positions" = ROLES_COMMAND,
+		"marine_squad_positions" = JOBS_COMMAND,
 		"misc" = misc
 		)
 	return PDA_Manifest
@@ -186,8 +195,9 @@ var/global/list/PDA_Manifest = list()
 	spawn()
 		if(!nosleep)
 			sleep(40)
-		for(var/mob/living/carbon/human/H in player_list)
-			if(H.species && H.species.name == "Yautja") continue
+		for(var/mob/living/carbon/human/H in GLOB.player_list)
+			if(isyautjastrict(H))
+				continue
 			manifest_inject(H)
 		return
 
@@ -212,9 +222,7 @@ var/global/list/PDA_Manifest = list()
 
 	if(H.mind && (H.mind.assigned_role != "MODE"))
 		var/assignment
-		if(H.mind.role_alt_title)
-			assignment = H.mind.role_alt_title
-		else if(H.mind.assigned_role)
+		if(H.mind.assigned_role)
 			assignment = H.mind.assigned_role
 		else if(H.job)
 			assignment = H.job
@@ -326,8 +334,8 @@ proc/get_id_photo(var/mob/living/carbon/human/H)
 	var/icon/icobase = H.species.icobase
 	var/icon/temp
 
-	var/datum/ethnicity/ET = ethnicities_list[H.ethnicity]
-	var/datum/body_type/B = body_types_list[H.body_type]
+	var/datum/ethnicity/ET = GLOB.ethnicities_list[H.ethnicity]
+	var/datum/body_type/B = GLOB.body_types_list[H.body_type]
 
 	var/e_icon
 	var/b_icon
@@ -365,13 +373,13 @@ proc/get_id_photo(var/mob/living/carbon/human/H)
 
 	eyes_s.Blend(rgb(H.r_eyes, H.g_eyes, H.b_eyes), ICON_ADD)
 
-	var/datum/sprite_accessory/hair_style = hair_styles_list[H.h_style]
+	var/datum/sprite_accessory/hair_style = GLOB.hair_styles_list[H.h_style]
 	if(hair_style)
 		var/icon/hair_s = new/icon("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]_s")
 		hair_s.Blend(rgb(H.r_hair, H.g_hair, H.b_hair), ICON_ADD)
 		eyes_s.Blend(hair_s, ICON_OVERLAY)
 
-	var/datum/sprite_accessory/facial_hair_style = facial_hair_styles_list[H.f_style]
+	var/datum/sprite_accessory/facial_hair_style = GLOB.facial_hair_styles_list[H.f_style]
 	if(facial_hair_style)
 		var/icon/facial_s = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_s")
 		facial_s.Blend(rgb(H.r_facial, H.g_facial, H.b_facial), ICON_ADD)

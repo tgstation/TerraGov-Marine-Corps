@@ -1,20 +1,33 @@
 /mob/living/carbon/human/verb/quick_equip()
 	set name = "quick-equip"
-	set hidden = 1
+	set hidden = TRUE
 
-	if(ishuman(src))
-		var/mob/living/carbon/human/H = src
-		var/obj/item/I = H.get_active_held_item()
-		if(!I)
-			to_chat(H, "<span class='notice'>You are not holding anything to equip.</span>")
+	if(is_mob_incapacitated() || lying || istype(usr.loc, /obj/mecha) || istype(usr.loc, /obj/vehicle/multitile/root/cm_armored))
+		return
+
+	var/obj/item/I = get_active_held_item()
+	if(!I)
+		if(next_move > world.time)
 			return
-		if(H.equip_to_appropriate_slot(I, FALSE))
-			if(hand)
-				update_inv_l_hand(0)
-			else
-				update_inv_r_hand(0)
+		if(client?.prefs?.preferred_slot)
+			if(draw_from_slot_if_possible(client.prefs.preferred_slot))
+				next_move = world.time + 3
+				return
+		for(var/slot in SLOT_DRAW_ORDER)
+			if(draw_from_slot_if_possible(slot))
+				next_move = world.time + 3
+				return
+	else
+		if(client?.prefs?.preferred_slot)
+			if(equip_to_slot_if_possible(I, client.prefs.preferred_slot, FALSE, FALSE, FALSE))
+				return
+		if(!equip_to_appropriate_slot(I, FALSE))
+			return
+		if(hand)
+			update_inv_l_hand(FALSE)
 		else
-			to_chat(H, "<span class='warning'>You are unable to equip that.</span>")
+			update_inv_r_hand(FALSE)
+
 
 /mob/living/carbon/human/proc/equip_in_one_of_slots(obj/item/W, list/slots, del_on_fail = 1)
 	for (var/slot in slots)
@@ -28,69 +41,73 @@
 /mob/living/carbon/human/proc/has_limb(org_name)
 	for(var/X in limbs)
 		var/datum/limb/E = X
-		if(E.name == org_name)
+		if(E.body_part == org_name)
 			return !(E.status & LIMB_DESTROYED)
 
 /mob/living/carbon/human/proc/has_limb_for_slot(slot)
 	switch(slot)
 		if(SLOT_BACK)
-			return has_limb("chest")
+			return has_limb(CHEST)
 		if(SLOT_WEAR_MASK)
-			return has_limb("head")
+			return has_limb(HEAD)
 		if(SLOT_HANDCUFFED)
-			return has_limb("l_hand") && has_limb("r_hand")
+			return has_limb(HAND_LEFT) && has_limb(HAND_RIGHT)
 		if(SLOT_LEGCUFFED)
-			return has_limb("l_leg") && has_limb("r_leg")
+			return has_limb(LEG_LEFT) && has_limb(LEG_RIGHT)
 		if(SLOT_L_HAND)
-			return has_limb("l_hand")
+			return has_limb(HAND_LEFT)
 		if(SLOT_R_HAND)
-			return has_limb("r_hand")
+			return has_limb(HAND_RIGHT)
 		if(SLOT_BELT)
-			return has_limb("chest")
+			return has_limb(CHEST)
 		if(SLOT_WEAR_ID)
 			return TRUE
 		if(SLOT_EARS)
-			return has_limb("head")
+			return has_limb(HEAD)
 		if(SLOT_GLASSES)
-			return has_limb("head")
+			return has_limb(HEAD)
 		if(SLOT_GLOVES)
-			return has_limb("l_hand") && has_limb("r_hand")
+			return has_limb(HAND_LEFT) && has_limb(HAND_RIGHT)
 		if(SLOT_HEAD)
-			return has_limb("head")
+			return has_limb(HEAD)
 		if(SLOT_SHOES)
-			return has_limb("r_foot") && has_limb("l_foot")
+			return has_limb(FOOT_RIGHT) && has_limb(FOOT_LEFT)
 		if(SLOT_WEAR_SUIT)
-			return has_limb("chest")
+			return has_limb(CHEST)
 		if(SLOT_W_UNIFORM)
-			return has_limb("chest")
+			return has_limb(CHEST)
 		if(SLOT_L_STORE)
-			return has_limb("chest")
+			return has_limb(CHEST)
 		if(SLOT_R_STORE)
-			return has_limb("chest")
+			return has_limb(CHEST)
 		if(SLOT_S_STORE)
-			return has_limb("chest")
+			return has_limb(CHEST)
 		if(SLOT_ACCESSORY)
-			return has_limb("chest")
+			return has_limb(CHEST)
 		if(SLOT_IN_BOOT)
-			return has_limb("r_foot") && has_limb("l_foot")
+			return has_limb(FOOT_RIGHT) && has_limb(FOOT_LEFT)
 		if(SLOT_IN_BACKPACK)
-			return has_limb("chest")
+			return has_limb(CHEST)
 		if(SLOT_IN_SUIT)
-			return has_limb("chest")
+			return has_limb(CHEST)
+		if(SLOT_IN_BELT)
+			return has_limb(CHEST)
+		if(SLOT_IN_HEAD)
+			return has_limb(HEAD)
 		if(SLOT_IN_ACCESSORY)
-			return has_limb("chest")
+			return has_limb(CHEST)
 		if(SLOT_IN_HOLSTER)
-			return has_limb("chest")
+			return has_limb(CHEST)
 		if(SLOT_IN_S_HOLSTER)
-			return has_limb("chest")
+			return has_limb(CHEST)
 		if(SLOT_IN_B_HOLSTER)
-			return has_limb("chest")
+			return has_limb(CHEST)
 		if(SLOT_IN_STORAGE)
 			return TRUE
 		if(SLOT_IN_L_POUCH)
-			return has_limb("chest")
+			return has_limb(CHEST)
 		if(SLOT_IN_R_POUCH)
-			return has_limb("chest")
+			return has_limb(CHEST)
 
 /mob/living/carbon/human/put_in_l_hand(obj/item/W)
 	var/datum/limb/O = get_limb("l_hand")
@@ -127,7 +144,7 @@
 			dropItemToGround(l_store)
 		if(belt)
 			dropItemToGround(belt)
-		if(wear_suit && (istype(wear_suit, /obj/item/clothing/suit/armor) || istype(wear_suit, /obj/item/clothing/suit/storage)))
+		if(wear_suit && istype(wear_suit, /obj/item/clothing/suit))
 			dropItemToGround(wear_suit)
 		w_uniform = null
 		update_suit_sensors()
@@ -187,14 +204,7 @@
 
 
 
-
 /mob/living/carbon/human/wear_mask_update(obj/item/I, equipping)
-	//equipping arg to differentiate when we equip/unequip a mask
-	if(!equipping && istype(I,/obj/item/clothing/mask/facehugger))
-		var/obj/item/clothing/mask/facehugger/F = I
-		if(F.stat != DEAD && !F.sterile && !(status_flags & XENO_HOST)) //Huggered but not impregnated, deal damage.
-			visible_message("<span class='danger'>[F] frantically claws at [src]'s face!</span>","<span class='danger'>[F] frantically claws at your face! Auugh!</span>")
-			adjustBruteLossByPart(25,"head")
 	name = get_visible_name() // doing this without a check, still cheaper than doing it every Life() tick -spookydonut
 	if(I.flags_inv_hide & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR))
 		update_hair()	//rebuild hair
@@ -355,13 +365,23 @@
 			S.handle_item_insertion(W, TRUE, src)
 		if(SLOT_IN_SUIT)
 			var/obj/item/clothing/suit/storage/S = wear_suit
-			if(istype(S) && S.pockets.storage_slots)
-				W.loc = S.pockets//Has to have some slots available.
+			var/obj/item/storage/internal/T = S.pockets
+			T.handle_item_insertion(W, FALSE)
+			T.close(src)
+		if(SLOT_IN_BELT)
+			var/obj/item/storage/belt/S = belt
+			S.handle_item_insertion(W, FALSE, src)
+		if(SLOT_IN_HEAD)
+			var/obj/item/clothing/head/helmet/marine/S = head
+			var/obj/item/storage/internal/T = S.pockets
+			T.handle_item_insertion(W, FALSE)
+			T.close(src)
 		if(SLOT_IN_ACCESSORY)
 			var/obj/item/clothing/under/U = w_uniform
-			if(U && U.hastie)
-				var/obj/item/clothing/tie/storage/T = U.hastie
-				if(istype(T) && T.hold.storage_slots) W.loc = T.hold
+			var/obj/item/clothing/tie/storage/T = U.hastie
+			var/obj/item/storage/internal/S = T.hold
+			S.handle_item_insertion(W, FALSE)
+			S.close(src)
 		if(SLOT_IN_HOLSTER)
 			var/obj/item/storage/S = belt
 			S.handle_item_insertion(W, FALSE, src)
@@ -426,9 +446,18 @@
 			return handcuffed
 		if(SLOT_LEGCUFFED)
 			return legcuffed
-
-
-
+		if(SLOT_IN_BOOT)
+			return shoes
+		if(SLOT_IN_B_HOLSTER)
+			return back
+		if(SLOT_IN_HOLSTER)
+			return belt
+		if(SLOT_IN_STORAGE)
+			return wear_suit
+		if(SLOT_IN_S_HOLSTER)
+			return s_store
+		if(SLOT_IN_ACCESSORY)
+			return w_uniform
 
 
 /mob/living/carbon/human/stripPanelUnequip(obj/item/I, mob/M, slot_to_process)
@@ -436,9 +465,6 @@
 		return
 	if(I.flags_item & NODROP)
 		to_chat(src, "<span class='warning'>You can't remove \the [I.name], it appears to be stuck!</span>")
-		return
-	if(I.flags_inventory & CANTSTRIP)
-		to_chat(src, "<span class='warning'>You're having difficulty removing \the [I.name].</span>")
 		return
 	log_combat(src, M, "attempted to remove [key_name(I)] ([slot_to_process])")
 
@@ -448,6 +474,9 @@
 	if(do_mob(src, M, HUMAN_STRIP_DELAY, BUSY_ICON_GENERIC, BUSY_ICON_GENERIC))
 		if(I && Adjacent(M) && I == M.get_item_by_slot(slot_to_process))
 			M.dropItemToGround(I)
+			if(isidcard(I))
+				log_admin("[key_name(src)] took the [I] of [key_name(M)].")
+				message_admins("[ADMIN_TPMONTY(src)] took the [I] of [ADMIN_TPMONTY(M)].")
 
 	if(M)
 		if(interactee == M && Adjacent(M))
@@ -458,9 +487,6 @@
 	if(I && !(I.flags_item & ITEM_ABSTRACT))
 		if(I.flags_item & NODROP)
 			to_chat(src, "<span class='warning'>You can't put \the [I.name] on [M], it's stuck to your hand!</span>")
-			return
-		if(I.flags_inventory & CANTSTRIP)
-			to_chat(src, "<span class='warning'>You're having difficulty putting \the [I.name] on [M].</span>")
 			return
 		if(!I.mob_can_equip(M, slot_to_process, TRUE))
 			to_chat(src, "<span class='warning'>You can't put \the [I.name] on [M]!</span>")
@@ -476,3 +502,25 @@
 	if(M)
 		if(interactee == M && Adjacent(M))
 			M.show_inv(src)
+
+
+/mob/living/carbon/human/proc/equipOutfit(outfit, visualsOnly = FALSE)
+	var/datum/outfit/O = null
+
+	if(ispath(outfit))
+		O = new outfit
+	else
+		O = outfit
+		if(!istype(O))
+			return 0
+	if(!O)
+		return 0
+
+	return O.equip(src, visualsOnly)
+
+
+/mob/living/carbon/human/proc/delete_equipment(save_id = FALSE)
+	for(var/i in contents)
+		if(save_id && istype(i, /obj/item/card/id))
+			continue
+		qdel(i)

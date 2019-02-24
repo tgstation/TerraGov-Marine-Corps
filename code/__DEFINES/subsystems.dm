@@ -49,7 +49,8 @@
 // Subsystems shutdown in the reverse of the order they initialize in
 // The numbers just define the ordering, they are meaningless otherwise.
 
-#define INIT_ORDER_TITLE 21
+#define INIT_ORDER_TICKER			22
+#define INIT_ORDER_TITLE 			21
 #define INIT_ORDER_GARBAGE			20
 #define INIT_ORDER_DBCORE			19
 #define INIT_ORDER_BLACKBOX			18
@@ -60,7 +61,6 @@
 #define INIT_ORDER_EVENTS			13
 #define INIT_ORDER_JOBS				12
 #define INIT_ORDER_QUIRKS			11
-#define INIT_ORDER_TICKER			10
 #define INIT_ORDER_MAPPING			9
 #define INIT_ORDER_NETWORKS			8
 #define INIT_ORDER_ECONOMY			7
@@ -91,6 +91,7 @@
 #define FIRE_PRIORITY_RESEARCH		10
 #define FIRE_PRIORITY_VIS			10
 #define FIRE_PRIORITY_GARBAGE		15
+#define FIRE_PRIORITY_DIRECTION		19
 #define FIRE_PRIORITY_WET_FLOORS	20
 #define FIRE_PRIORITY_AIR			20
 #define FIRE_PRIORITY_NPC			20
@@ -98,14 +99,15 @@
 #define FIRE_PRIORITY_THROWING		25
 #define FIRE_PRIORITY_SPACEDRIFT	30
 #define FIRE_PRIORITY_FIELDS		30
-#define FIRE_PRIOTITY_SMOOTHING		35
+#define FIRE_PRIORITY_SMOOTHING		35
 #define FIRE_PRIORITY_NETWORKS		40
 #define FIRE_PRIORITY_OBJ			40
 #define FIRE_PRIORITY_ACID			40
-#define FIRE_PRIOTITY_BURNING		40
+#define FIRE_PRIORITY_BURNING		40
 #define FIRE_PRIORITY_DEFAULT		50
 #define FIRE_PRIORITY_PARALLAX		65
 #define FIRE_PRIORITY_FLIGHTPACKS	80
+#define FIRE_PRIORITY_POINTS		90
 #define FIRE_PRIORITY_MOBS			100
 #define FIRE_PRIORITY_TGUI			110
 #define FIRE_PRIORITY_NANOUI		111
@@ -142,5 +144,5 @@
 		if(LAZYLEN(po)){\
 			A.overlays |= po;\
 		}\
-		A.flags_1 &= ~OVERLAY_QUEUED_1;\
+		A.flags_atom &= ~OVERLAY_QUEUED;\
 	}

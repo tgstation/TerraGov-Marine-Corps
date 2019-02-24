@@ -40,7 +40,7 @@
 		to_chat(src, "<span class='warning'>The restraints are too restricting to allow you to evolve.</span>")
 		return
 
-	if(isXenoLarva(src)) //Special case for dealing with larvae
+	if(isxenolarva(src)) //Special case for dealing with larvae
 		if(amount_grown < max_grown)
 			to_chat(src, "<span class='warning'>You are not yet fully grown. Currently at: [amount_grown] / [max_grown].</span>")
 			return
@@ -64,7 +64,7 @@
 	var/list/castes_to_pick = list()
 	if(xeno_caste?.evolves_to?.len)
 		for(var/type in xeno_caste.evolves_to)
-			var/datum/xeno_caste/Z = xeno_caste_datums[type][1]
+			var/datum/xeno_caste/Z = GLOB.xeno_caste_datums[type][1]
 			castes_to_pick += Z.caste_name
 	var/castepick = input("You are growing into a beautiful alien! It is time to choose a caste.") as null|anything in castes_to_pick
 	if(!castepick) //Changed my mind
@@ -72,7 +72,7 @@
 
 	var/new_caste_type
 	for(var/type in xeno_caste.evolves_to)
-		if(castepick == xeno_caste_datums[type][1].caste_name)
+		if(castepick == GLOB.xeno_caste_datums[type][1].caste_name)
 			new_caste_type = type
 
 	if(!new_caste_type)
@@ -112,7 +112,7 @@
 			to_chat(src, "<span class='warning'>There already is a living Queen.</span>")
 			return
 
-		if(hivenumber == XENO_HIVE_NORMAL && ticker && ticker.mode && hive.xeno_queen_timer)
+		if(hivenumber == XENO_HIVE_NORMAL && SSticker?.mode && hive.xeno_queen_timer)
 			to_chat(src, "<span class='warning'>You must wait about [round(hive.xeno_queen_timer / 60)] minutes for the hive to recover from the previous Queen's death.<span>")
 			return
 
@@ -129,16 +129,16 @@
 	else
 		//This will build a list of ALL the current Xenos and their Tiers, then use that to calculate if they can evolve or not.
 		//Should count mindless as well so people don't cheat
-		for(var/mob/living/carbon/Xenomorph/M in living_mob_list)
+		for(var/mob/living/carbon/Xenomorph/M in GLOB.alive_xeno_list)
 			if(hivenumber == M.hivenumber)
 				switch(M.tier)
 					if(0)
-						if(isXenoLarvaStrict(M))
+						if(isxenolarvastrict(M))
 							if(M.client && M.ckey)
 								potential_queens++
 						continue
 					if(1)
-						if(isXenoDrone(M))
+						if(isxenodrone(M))
 							if(M.client && M.ckey)
 								potential_queens++
 					if(2)
@@ -158,13 +158,13 @@
 		else if(tier == 2 && (tierC / max(totalXenos, 1))> 0.25)
 			to_chat(src, "<span class='warning'>The hive cannot support another Tier 3, wait for either more aliens to be born or someone to die.</span>")
 			return
-		else if(!hive.living_xeno_queen && potential_queens == 1 && isXenoLarva(src) && new_caste_type == /mob/living/carbon/Xenomorph/Drone)
+		else if(!hive.living_xeno_queen && potential_queens == 1 && isxenolarva(src) && new_caste_type != /mob/living/carbon/Xenomorph/Drone)
 			to_chat(src, "<span class='xenonotice'>The hive currently has no sister able to become Queen! The survival of the hive requires you to be a Drone!</span>")
 			return
 		else if(xeno_caste.evolution_threshold && evolution_stored < xeno_caste.evolution_threshold)
 			to_chat(src, "<span class='warning'>You must wait before evolving. Currently at: [evolution_stored] / [xeno_caste.evolution_threshold].</span>")
 			return
-		else if((!hive.living_xeno_queen) && !isXenoLarva(src))
+		else if((!hive.living_xeno_queen) && !isxenolarva(src))
 			to_chat(src, "<span class='warning'>The Hive is shaken by the death of the last Queen. You can't find the strength to evolve.</span>")
 			return
 		else
@@ -180,6 +180,13 @@
 
 	if(!do_after(src, 25, FALSE, 5, BUSY_ICON_HOSTILE))
 		to_chat(src, "<span class='warning'>You quiver, but nothing happens. Hold still while evolving.</span>")
+		return
+
+	if(tier == 1 && ((tierB + tierC) / max(totalXenos, 1))> 0.5)
+		to_chat(src, "<span class='warning'>Another sister evolved meanwhile. The hive cannot support another Tier 2.</span>")
+		return
+	else if(tier == 2 && (tierC / max(totalXenos, 1))> 0.25)
+		to_chat(src, "<span class='warning'>Another sister evolved meanwhile. The hive cannot support another Tier 3.</span>")
 		return
 
 	if(!isturf(loc)) //cdel'd or moved into something
@@ -232,7 +239,7 @@
 
 	round_statistics.total_xenos_created-- //so an evolved xeno doesn't count as two.
 
-	if(queen_chosen_lead && new_caste_type == /mob/living/carbon/Xenomorph/Queen) // xeno leader is removed by Destroy()
+	if(queen_chosen_lead && new_caste_type != /mob/living/carbon/Xenomorph/Queen) // xeno leader is removed by Destroy()
 		new_xeno.queen_chosen_lead = TRUE
 		hive.xeno_leader_list += new_xeno
 		new_xeno.hud_set_queen_overwatch()

@@ -31,6 +31,9 @@
 
 	holder_type = /obj/item/holder/drone
 
+/mob/living/silicon/robot/drone/get_death_threshold()
+	return CONFIG_GET(number/maintdrone_health_threshold_dead)
+
 /mob/living/silicon/robot/drone/Initialize()
 
 	nicknumber = rand(100,999)
@@ -111,7 +114,7 @@
 		to_chat(user, "<span class='warning'>The maintenance drone chassis not compatible with \the [W].</span>")
 		return
 
-	else if (istype(W, /obj/item/tool/crowbar))
+	else if(iscrowbar(W))
 		to_chat(user, "The machine is hermetically sealed. You can't open the case.")
 		return
 
@@ -161,7 +164,7 @@
 //Reboot procs.
 
 /mob/living/silicon/robot/drone/proc/request_player()
-	for(var/mob/dead/observer/O in player_list)
+	for(var/mob/dead/observer/O in GLOB.player_list)
 		if(jobban_isbanned(O, "Cyborg"))
 			continue
 
@@ -238,7 +241,7 @@
 		if(custom_name)
 			return 0
 
-		for (var/mob/living/silicon/robot/drone/A in mob_list)
+		for (var/mob/living/silicon/robot/drone/A in GLOB.silicon_mobs)
 			if(newname == A.nicknumber)
 				to_chat(src, "<span class='warning'>That identifier is taken, pick again.</span>")
 				return 0

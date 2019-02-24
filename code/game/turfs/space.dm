@@ -5,6 +5,7 @@
 
 
 /turf/open/space
+	plane = PLANE_SPACE
 	icon = 'icons/turf/space.dmi'
 	name = "\proper space"
 	icon_state = "0"
@@ -79,11 +80,10 @@
 
 	inertial_drift(A)
 
-	if(ticker && ticker.mode)
+	if(SSticker?.mode)
 
 
 		// Okay, so let's make it so that people can travel z levels but not nuke disks!
-		// if(ticker.mode.name == "nuclear emergency")	return
 		if(A.z > 6) return
 		if(A.x <= TRANSITIONEDGE || A.x >= (world.maxx - TRANSITIONEDGE - 1) || A.y <= TRANSITIONEDGE || A.y >= (world.maxy - TRANSITIONEDGE - 1))
 
@@ -93,7 +93,7 @@
 
 			var/list/disk_search = A.search_contents_for(/obj/item/disk/nuclear)
 			if(!isemptylist(disk_search))
-				if(istype(A, /mob/living))
+				if(isliving(A))
 					var/mob/living/MM = A
 					if(MM.client && !MM.stat)
 						to_chat(MM, "<span class='warning'>Something you are carrying is preventing you from leaving. Don't play stupid; you know exactly what it is.</span>")

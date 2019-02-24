@@ -44,6 +44,7 @@
 	var/scatter					= 0				//How much the bullet scatters when fired.
 	var/burst_scatter_mult		= 3				//Multiplier. Increases or decreases how much bonus scatter is added when burst firing (wielded only).
 
+	var/accuracy_mod			= 0				//accuracy modifier, used by most attachments.
 	var/accuracy_mult_unwielded 		= 1		//same vars as above but for unwielded firing.
 	var/recoil_unwielded 				= 0
 	var/scatter_unwielded 				= 0
@@ -113,10 +114,12 @@
 			current_mag = null
 			update_icon()
 		else
-			current_mag = new current_mag(src, spawn_empty ? 1 : 0)
-			ammo = current_mag.default_ammo ? ammo_list[current_mag.default_ammo] : ammo_list[/datum/ammo/bullet] //Latter should never happen, adding as a precaution.
+			current_mag = new current_mag(src, spawn_empty ? TRUE : FALSE)
+			ammo = current_mag.default_ammo ? GLOB.ammo_list[current_mag.default_ammo] : GLOB.ammo_list[/datum/ammo/bullet] //Latter should never happen, adding as a precaution.
+		if(flags_gun_features & GUN_LOAD_INTO_CHAMBER && current_mag?.current_rounds > 0)
+			load_into_chamber()
 	else
-		ammo = ammo_list[ammo] //If they don't have a mag, they fire off their own thing.
+		ammo = GLOB.ammo_list[ammo] //If they don't have a mag, they fire off their own thing.
 	set_gun_config_values()
 	update_force_list() //This gives the gun some unique verbs for attacking.
 
@@ -128,6 +131,7 @@
 //amounts to get specific values in each gun subtype's New().
 //This makes reading each gun's values MUCH easier.
 /obj/item/weapon/gun/proc/set_gun_config_values()
+	accuracy_mod = CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
 	fire_delay = CONFIG_GET(number/combat_define/mhigh_fire_delay)
 	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
 	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
@@ -141,10 +145,6 @@
 
 //Hotfix for attachment offsets being set AFTER the core New() proc. Causes a small graphical artifact when spawning, hopefully works even with lag
 /obj/item/weapon/gun/proc/handle_starting_attachment()
-
-	set waitfor = 0
-
-	sleep(1) //Give a moment to the rest of the proc to work out
 	if(starting_attachment_types && starting_attachment_types.len)
 		for(var/path in starting_attachment_types)
 			var/obj/item/attachable/A = new path(src)
@@ -200,16 +200,25 @@
 	else
 		dat += "The safety's off!<br>"
 
-	if(rail) 	dat += "It has \icon[rail] [rail.name] mounted on the top.<br>"
-	if(muzzle) 	dat += "It has \icon[muzzle] [muzzle.name] mounted on the front.<br>"
-	if(stock) 	dat += "It has \icon[stock] [stock.name] for a stock.<br>"
+	if(rail)
+		dat += "It has [icon2html(rail, user)] [rail.name] mounted on the top.<br>"
+	if(muzzle)
+		dat += "It has [icon2html(muzzle, user)] [muzzle.name] mounted on the front.<br>"
+	if(stock)
+		dat += "It has [icon2html(stock, user)] [stock.name] for a stock.<br>"
 	if(under)
-		dat += "It has \icon[under] [under.name]"
+		dat += "It has [icon2html(under, user)] [under.name]"
 		if(under.flags_attach_features & ATTACH_WEAPON)
 			dat += " ([under.current_rounds]/[under.max_rounds])"
 		dat += " mounted underneath.<br>"
 
+	if(dat)
+		to_chat(user, "[dat.Join(" ")]")
 
+	examine_ammo_count(user)
+
+/obj/item/weapon/gun/proc/examine_ammo_count(mob/user)
+	var/list/dat = list()
 	if(!(flags_gun_features & (GUN_INTERNAL_MAG|GUN_UNUSUAL_DESIGN))) //Internal mags and unusual guns have their own stuff set.
 		if(current_mag && current_mag.current_rounds > 0)
 			if(flags_gun_features & GUN_AMMO_COUNTER)
@@ -313,9 +322,9 @@
 	if(!magazine.default_ammo)
 		to_chat(user, "Something went horribly wrong. Ahelp the following: ERROR CODE A1: null ammo while reloading.")
 		log_runtime("ERROR CODE A1: null ammo while reloading. User: <b>[user]</b>")
-		ammo = ammo_list[/datum/ammo/bullet] //Looks like we're defaulting it.
+		ammo = GLOB.ammo_list[/datum/ammo/bullet] //Looks like we're defaulting it.
 	else
-		ammo = ammo_list[overcharge? magazine.overcharge_ammo : magazine.default_ammo]
+		ammo = GLOB.ammo_list[overcharge? magazine.overcharge_ammo : magazine.default_ammo]
 		//to_chat(user, "DEBUG: REPLACE AMMO. Ammo: [ammo]")
 
 //Hardcoded and horrible
@@ -483,10 +492,10 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 			flags_gun_features &= ~GUN_BURST_FIRING
 		return
 
-	if(user && user.client && user.gun_mode && !(A in target))
-		PreFire(A,user,params) //They're using the new gun system, locate what they're aiming at.
-	else
-		Fire(A,user,params) //Otherwise, fire normally.
+	if(user?.client && user.gun_mode && !(A in target))
+		PreFire(A, user, params) //They're using the new gun system, locate what they're aiming at.
+	else if(!istype(A, /obj/screen))
+		Fire(A, user, params) //Otherwise, fire normally.
 
 /*
 load_into_chamber(), reload_into_chamber(), and clear_jam() do all of the heavy lifting.
@@ -523,7 +532,7 @@ and you're good to go.
 	if(!chambered)
 		to_chat(usr, "Something has gone horribly wrong. Ahelp the following: ERROR CODE I2: null ammo while create_bullet()")
 		log_runtime("ERROR CODE I2: null ammo while create_bullet(). User: <b>[usr]</b>")
-		chambered = ammo_list[/datum/ammo/bullet] //Slap on a default bullet if somehow ammo wasn't passed.
+		chambered = GLOB.ammo_list[/datum/ammo/bullet] //Slap on a default bullet if somehow ammo wasn't passed.
 
 	var/obj/item/projectile/P = new /obj/item/projectile(src)
 	P.generate_bullet(chambered)
@@ -736,11 +745,9 @@ and you're good to go.
 						playsound(user, actual_sound, sound_volume, 1)
 						simulate_recoil(2, user)
 						var/obj/item/weapon/gun/revolver/current_revolver = src
-						var/t = "[key_name(user)] committed suicide with [key_name(src)]" //Log it.
-						message_admins("[user.name] ([user.ckey]) committed suicide with [key_name(src)] (<A HREF='?_src_=holder;adminplayerobservejump=\ref[user]'>JMP</A>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[user.name]'>FLW</A>)", 1)
-						log_game("[user.name] ([user.ckey]) committed suicide with [key_name(src)].")
+						log_game("[key_name(user)] committed suicide with [src] at [AREACOORD(user.loc)].")
+						message_admins("[ADMIN_TPMONTY(user)] committed suicide with [src].")
 						if(istype(current_revolver) && current_revolver.russian_roulette) //If it's a revolver set to Russian Roulette.
-							t += " after playing Russian Roulette"
 							user.apply_damage(projectile_to_fire.damage * 3, projectile_to_fire.ammo.damage_type, "head", used_weapon = "An unlucky pull of the trigger during Russian Roulette!", sharp = 1)
 							user.apply_damage(200, OXY) //In case someone tried to defib them. Won't work.
 							user.death()
@@ -757,7 +764,7 @@ and you're good to go.
 									var/mob/living/carbon/human/HM = user
 									HM.undefibbable = TRUE //can't be defibbed back from self inflicted gunshot to head
 								user.death()
-						user.log_message(t, LOG_ATTACK, "red") //Apply the attack log.
+						user.log_message("commited suicide with [src]", LOG_ATTACK, "red") //Apply the attack log.
 						last_fired = world.time
 
 						projectile_to_fire.play_damage_effect(user)
@@ -773,7 +780,7 @@ and you're good to go.
 				flags_gun_features ^= GUN_CAN_POINTBLANK //Reset this.
 			return
 
-		else if(user.a_intent == "hurt") //Point blanking doesn't actually fire the projectile. No reason to.
+		else if(user.a_intent == INTENT_HARM) //Point blanking doesn't actually fire the projectile. No reason to.
 			if(able_to_fire(user)) //If you can't fire the gun in the first place, we're just going to hit them with it.
 				if(!active_attachable && (flags_gun_features & GUN_BURST_ON) && burst_amount > 1)
 					..()
@@ -789,7 +796,7 @@ and you're good to go.
 					if(projectile_to_fire) //We actually have a projectile, let's move on. We're going to simulate the fire cycle.
 						user.visible_message("<span class='danger'>[user] fires [src] point blank at [M]!</span>")
 						apply_bullet_effects(projectile_to_fire, user) //We add any damage effects that we need.
-						projectile_to_fire.dir = get_dir(user, M)
+						projectile_to_fire.setDir(get_dir(user, M))
 						projectile_to_fire.distance_travelled = get_dist(user, M)
 						simulate_recoil(1, user)
 
@@ -797,8 +804,8 @@ and you're good to go.
 							var/obj/item/projectile/BP
 							for(var/i = 1 to projectile_to_fire.ammo.bonus_projectiles_amount)
 								BP = new /obj/item/projectile(M.loc)
-								BP.generate_bullet(ammo_list[projectile_to_fire.ammo.bonus_projectiles_type])
-								BP.dir = get_dir(user, M)
+								BP.generate_bullet(GLOB.ammo_list[projectile_to_fire.ammo.bonus_projectiles_type])
+								BP.setDir(get_dir(user, M))
 								BP.distance_travelled = get_dist(user, M)
 								BP.ammo.on_hit_mob(M, BP)
 								M.bullet_act(BP)
@@ -838,7 +845,7 @@ and you're good to go.
 			return
 
 		if(!CONFIG_GET(flag/allow_synthetic_gun_use))
-			if(isSynth(user))
+			if(issynth(user))
 				to_chat(user, "<span class='warning'>Your program does not allow you to use firearms.</span>")
 				return
 
@@ -942,18 +949,14 @@ and you're good to go.
 		if(skill_accuracy)
 			gun_accuracy_mult += skill_accuracy * CONFIG_GET(number/combat_define/low_hit_accuracy_mult) // Accuracy mult increase/decrease per level is equal to attaching/removing a red dot sight
 
-	projectile_to_fire.accuracy = round(projectile_to_fire.accuracy * gun_accuracy_mult) // Apply gun accuracy multiplier to projectile accuracy
-	projectile_to_fire.damage = round(projectile_to_fire.damage * damage_mult) 		// Apply gun damage multiplier to projectile damage
-	projectile_to_fire.damage_falloff	= round(projectile_to_fire.damage_falloff * damage_falloff_mult) 	// Apply gun damage bleed multiplier to projectile damage bleed
-	projectile_to_fire.projectile_speed += shell_speed_mod
-	projectile_to_fire.shot_from = src
-	projectile_to_fire.scatter += gun_scatter					//Add gun scatter value to projectile's scatter value
-
 	if(user) //The gun only messages when fired by a user.
 		gun_scatter += user.scatter_modifier //Any modifiers to scatter
 		projectile_to_fire.firer = user
 		if(iscarbon(user))
+			var/mob/living/carbon/C = user
 			projectile_to_fire.def_zone = user.zone_selected
+			if(C.stagger)
+				gun_scatter += 30
 
 		//firing from an attachment
 		if(active_attachable && active_attachable.flags_attach_features & ATTACH_PROJECTILE)
@@ -977,6 +980,15 @@ and you're good to go.
 				playsound(user, actual_sound, 25)
 				if(bullets_fired == 1)
 					to_chat(user, "<span class='warning'>You fire [src][reflex ? "by reflex":""]! [flags_gun_features & GUN_AMMO_COUNTER && current_mag ? "<B>[max(0,current_mag.current_rounds - ammo_per_shot)]</b>/[current_mag.max_rounds]" : ""]</span>")
+
+	projectile_to_fire.accuracy = round(projectile_to_fire.accuracy * gun_accuracy_mult) // Apply gun accuracy multiplier to projectile accuracy
+	projectile_to_fire.damage = round(projectile_to_fire.damage * damage_mult) 		// Apply gun damage multiplier to projectile damage
+	projectile_to_fire.damage_falloff	= round(projectile_to_fire.damage_falloff * damage_falloff_mult) 	// Apply gun damage bleed multiplier to projectile damage bleed
+	projectile_to_fire.projectile_speed += shell_speed_mod
+	projectile_to_fire.shot_from = src
+	projectile_to_fire.scatter += gun_scatter					//Add gun scatter value to projectile's scatter value
+
+
 	return TRUE
 
 /obj/item/weapon/gun/proc/simulate_scatter(obj/item/projectile/projectile_to_fire, atom/target, turf/targloc, total_scatter_chance = 0, mob/user, burst_scatter_bonus = 0)

@@ -5,6 +5,19 @@
 	density = 0
 	layer = WALL_OBJ_LAYER
 
+/obj/structure/sign/Initialize()
+	. = ..()
+
+	switch(dir)
+		if(NORTH)
+			pixel_y = 32
+		if(SOUTH)
+			pixel_y = -32
+		if(EAST)
+			pixel_x = 30
+		if(WEST)
+			pixel_x = -30
+
 /obj/structure/sign/ex_act(severity)
 	switch(severity)
 		if(1.0)
@@ -20,7 +33,7 @@
 	return
 
 /obj/structure/sign/attackby(obj/item/tool as obj, mob/user as mob)	//deconstruction
-	if(istype(tool, /obj/item/tool/screwdriver) && !istype(src, /obj/structure/sign/double))
+	if(isscrewdriver(tool) && !istype(src, /obj/structure/sign/double))
 		to_chat(user, "You unfasten the sign with your [tool].")
 		var/obj/item/sign/S = new(src.loc)
 		S.name = name
@@ -40,7 +53,7 @@
 	var/sign_state = ""
 
 /obj/item/sign/attackby(obj/item/tool as obj, mob/user as mob)	//construction
-	if(istype(tool, /obj/item/tool/screwdriver) && isturf(user.loc))
+	if(isscrewdriver(tool) && isturf(user.loc))
 		var/direction = input("In which direction?", "Select direction.") in list("North", "East", "South", "West", "Cancel")
 		if(direction == "Cancel") return
 		var/obj/structure/sign/S = new(user.loc)
@@ -75,6 +88,10 @@
 	name = "\improper SECURE AREA"
 	desc = "A warning sign which reads 'SECURE AREA'."
 	icon_state = "securearea"
+
+/obj/structure/sign/securearea/firingrange
+	name = "\improper FIRING RANGE"
+	desc = "A warning sign which reads 'LIVE AMMUNITION RANGE'."
 
 /obj/structure/sign/biohazard
 	name = "\improper BIOHAZARD"
@@ -165,6 +182,9 @@
 	name = "\improper CHEMISTRY"
 	desc = "A warning sign which reads 'CHEMISTRY'."
 	icon_state = "chemistry1"
+
+/obj/structure/sign/chemistry2
+	icon_state = "chemistry2"
 
 /obj/structure/sign/botany
 	name = "\improper HYDROPONICS"

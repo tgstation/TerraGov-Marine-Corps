@@ -1,5 +1,0 @@
-author: "Surrealistik"
-delete-after: True
-changes: 
-  - tweak: "Headset now has squad cameras instead of helmets. This allows for a greater diversity of fashion choices without crippling SOs/COs."
-  - rscadd: "Squad cameras are now disabled by devouring or getting facehugged. A squad camera can be reactivated by resetting the squad HUD using the Toggle Headset HUD verb."

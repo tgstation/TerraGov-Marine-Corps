@@ -12,10 +12,14 @@
 	var/gas_type = GAS_TYPE_AIR
 	var/temperature = T20C
 	var/pressure = ONE_ATMOSPHERE
-
-
+	var/unique = TRUE
+	
 /area/New()
-	..()
+	// This interacts with the map loader, so it needs to be set immediately
+	// rather than waiting for atoms to initialize.
+	if (unique)
+		GLOB.areas_by_type[type] = src
+	. = ..()
 
 	icon_state = "" //Used to reset the icon overlay, I assume.
 	layer = AREAS_LAYER
@@ -26,6 +30,40 @@
 	all_areas += src
 
 	initialize_power_and_lighting()
+
+	reg_in_areas_in_z()
+
+	return INITIALIZE_HINT_LATELOAD
+
+/area/LateInitialize()
+	power_change()		// all machines set to current power level, also updates icon
+
+/area/proc/reg_in_areas_in_z()
+	if(contents.len)
+		var/list/areas_in_z = SSmapping.areas_in_z
+		var/z
+		for(var/i in 1 to contents.len)
+			var/atom/thing = contents[i]
+			if(!thing)
+				continue
+			z = thing.z
+			break
+		if(!z)
+			WARNING("No z found for [src]")
+			return
+		if(!areas_in_z["[z]"])
+			areas_in_z["[z]"] = list()
+		areas_in_z["[z]"] += src
+
+/area/Destroy()
+	if(GLOB.areas_by_type[type] == src)
+		GLOB.areas_by_type[type] = null
+	STOP_PROCESSING(SSobj, src)
+	return ..()
+
+// A hook so areas can modify the incoming args
+/area/proc/PlaceOnTopReact(list/new_baseturfs, turf/fake_turf_type, flags)
+	return flags
 
 /area/proc/initialize_power_and_lighting(override_power)
 	if(requires_power)
@@ -57,19 +95,18 @@
 						C.network.Remove("Power Alarms")
 					else
 						C.network.Add("Power Alarms")
-			for (var/mob/living/silicon/aiPlayer in player_list)
+			for (var/mob/living/silicon/aiPlayer in GLOB.player_list)
 				if(aiPlayer.z == source.z)
 					if (state == 1)
 						aiPlayer.cancelAlarm("Power", src, source)
 					else
 						aiPlayer.triggerAlarm("Power", src, cameras, source)
-			for(var/obj/machinery/computer/station_alert/a in machines)
+			for(var/obj/machinery/computer/station_alert/a in GLOB.machines)
 				if(a.z == source.z)
 					if(state == 1)
 						a.cancelAlarm("Power", src, source)
 					else
 						a.triggerAlarm("Power", src, cameras, source)
-	return
 
 /area/proc/atmosalert(danger_level)
 //	if(type==/area) //No atmos alarms in space
@@ -90,9 +127,9 @@
 			for(var/area/RA in related)
 				for(var/obj/machinery/camera/C in RA)
 					C.network.Remove("Atmosphere Alarms")
-			for(var/mob/living/silicon/aiPlayer in player_list)
+			for(var/mob/living/silicon/aiPlayer in GLOB.player_list)
 				aiPlayer.cancelAlarm("Atmosphere", src, src)
-			for(var/obj/machinery/computer/station_alert/a in machines)
+			for(var/obj/machinery/computer/station_alert/a in GLOB.machines)
 				a.cancelAlarm("Atmosphere", src, src)
 
 		if (danger_level >= 2 && atmosalm < 2)
@@ -102,9 +139,9 @@
 				for(var/obj/machinery/camera/C in RA)
 					cameras += C
 					C.network.Add("Atmosphere Alarms")
-			for(var/mob/living/silicon/aiPlayer in player_list)
+			for(var/mob/living/silicon/aiPlayer in GLOB.player_list)
 				aiPlayer.triggerAlarm("Atmosphere", src, cameras, src)
-			for(var/obj/machinery/computer/station_alert/a in machines)
+			for(var/obj/machinery/computer/station_alert/a in GLOB.machines)
 				a.triggerAlarm("Atmosphere", src, cameras, src)
 			air_doors_close()
 
@@ -113,8 +150,8 @@
 			for (var/obj/machinery/alarm/AA in RA)
 				AA.update_icon()
 
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /area/proc/air_doors_close()
 	if(!src.master.air_doors_activated)
@@ -159,9 +196,9 @@
 			for (var/obj/machinery/camera/C in RA)
 				cameras.Add(C)
 				C.network.Add("Fire Alarms")
-		for (var/mob/living/silicon/ai/aiPlayer in player_list)
+		for (var/mob/living/silicon/ai/aiPlayer in GLOB.player_list)
 			aiPlayer.triggerAlarm("Fire", src, cameras, src)
-		for (var/obj/machinery/computer/station_alert/a in machines)
+		for (var/obj/machinery/computer/station_alert/a in GLOB.machines)
 			a.triggerAlarm("Fire", src, cameras, src)
 
 /area/proc/firereset()
@@ -180,9 +217,9 @@
 		for(var/area/RA in related)
 			for (var/obj/machinery/camera/C in RA)
 				C.network.Remove("Fire Alarms")
-		for (var/mob/living/silicon/ai/aiPlayer in player_list)
+		for (var/mob/living/silicon/ai/aiPlayer in GLOB.player_list)
 			aiPlayer.cancelAlarm("Fire", src, src)
-		for (var/obj/machinery/computer/station_alert/a in machines)
+		for (var/obj/machinery/computer/station_alert/a in GLOB.machines)
 			a.cancelAlarm("Fire", src, src)
 
 /area/proc/readyalert()
@@ -239,9 +276,9 @@
 /area/proc/powered(var/chan)		// return true if the area has power to given channel
 
 	if(!master.requires_power)
-		return 1
+		return TRUE
 	if(master.always_unpowered)
-		return 0
+		return FALSE
 	switch(chan)
 		if(EQUIP)
 			return master.power_equip
@@ -249,13 +286,12 @@
 			return master.power_light
 		if(ENVIRON)
 			return master.power_environ
-
-	return 0
+	return FALSE
 
 // called when power status changes
 
 /area/proc/power_change()
-	master.powerupdate = 2
+	powerupdate = 2
 	for(var/area/RA in related)
 		for(var/obj/machinery/M in RA)	// for each machine in the area
 			M.power_change()				// reverify power status (to update icons etc.)
@@ -282,7 +318,6 @@
 	master.used_environ = 0
 
 /area/proc/use_power(var/amount, var/chan)
-
 	switch(chan)
 		if(EQUIP)
 			master.used_equip += amount
@@ -291,6 +326,7 @@
 		if(ENVIRON)
 			master.used_environ += amount
 
+	master.powerupdate = TRUE
 
 /area/Entered(A,atom/OldLoc)
 	var/musVolume = 20
@@ -360,7 +396,7 @@
 		if((istype(mob:shoes, /obj/item/clothing/shoes/magboots) && (mob:shoes.flags_inventory & NOSLIPPING)))
 			return
 
-	if(istype(get_turf(mob), /turf/open/space)) // Can't fall onto nothing.
+	if(isspaceturf(get_turf(mob))) // Can't fall onto nothing.
 		return
 
 	if((istype(mob,/mob/living/carbon/human/)) && (mob:m_intent == MOVE_INTENT_RUN)) // Only clumbsy humans can fall on their asses.

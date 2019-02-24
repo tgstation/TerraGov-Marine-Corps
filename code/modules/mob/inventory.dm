@@ -167,10 +167,42 @@
 
 	return items
 
+/mob/living/proc/unequip_everything()
+	var/list/items = list()
+	items |= get_equipped_items(TRUE)
+	for(var/I in items)
+		dropItemToGround(I)
+	drop_all_held_items()
+
+
+/mob/living/carbon/proc/check_obscured_slots()
+	var/list/obscured = list()
+	var/hidden_slots = NONE
+
+	for(var/obj/item/I in get_equipped_items())
+		hidden_slots |= I.flags_inv_hide
+
+	if(hidden_slots & HIDEMASK)
+		obscured |= SLOT_WEAR_MASK
+	if(hidden_slots & HIDEEYES)
+		obscured |= SLOT_GLASSES
+	if(hidden_slots & HIDEEARS)
+		obscured |= SLOT_EARS
+	if(hidden_slots & HIDEGLOVES)
+		obscured |= SLOT_GLOVES
+	if(hidden_slots & HIDEJUMPSUIT)
+		obscured |= SLOT_WEAR_SUIT
+	if(hidden_slots & HIDESHOES)
+		obscured |= SLOT_SHOES
+	if(hidden_slots & HIDESUITSTORAGE)
+		obscured |= SLOT_S_STORE
+
+	return obscured
+
 //proc to get the item in the active hand.
 /mob/proc/get_held_item()
 	if(issilicon(src))
-		if(isrobot(src))
+		if(iscyborg(src))
 			if(src:module_active)
 				return src:module_active
 	else

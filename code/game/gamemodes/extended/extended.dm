@@ -2,10 +2,6 @@
 	name = "extended"
 	config_tag = "extended"
 	required_players = 0
-	latejoin_larva_drop = 0
-
-	uplink_welcome = "Syndicate Uplink Console:"
-	uplink_uses = 10
 
 	var/const/waittime_l = 600 //lower bound on time before intercept arrives (in tenths of seconds)
 	var/const/waittime_h = 1800
@@ -35,14 +31,14 @@
 	to_chat(world, "<span class='round_header'>|Round Complete|</span>")
 	feedback_set_details("round_end_result",round_finished)
 
-	to_chat(world, "<span class='round_body'>Thus ends the story of the brave men and women of the [MAIN_SHIP_NAME] and their struggle on [map_tag].</span>")
+	to_chat(world, "<span class='round_body'>Thus ends the story of the brave men and women of the [MAIN_SHIP_NAME] and their struggle on [SSmapping.config.map_name].</span>")
 	var/musical_track = pick('sound/theme/neutral_hopeful1.ogg','sound/theme/neutral_hopeful2.ogg')
 	to_chat(world, musical_track)
 	var/dat = ""
 	//if(flags_round_type & MODE_INFESTATION)
-		//var/living_player_list[] = count_humans_and_xenos()
-		//dat = "\nXenomorphs remaining: [living_player_list[2]]. Humans remaining: [living_player_list[1]]."
-	log_game("[round_finished][dat]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [clients.len]\nTotal xenos spawned: [round_statistics.total_xenos_created]\nTotal Preds spawned: [predators.len]\nTotal humans spawned: [round_statistics.total_humans_created]")
+		//var/living_GLOB.player_list[] = count_humans_and_xenos()
+		//dat = "\nXenomorphs remaining: [living_GLOB.player_list[2]]. Humans remaining: [living_GLOB.player_list[1]]."
+	log_game("[round_finished][dat]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [GLOB.clients.len]\nTotal xenos spawned: [round_statistics.total_xenos_created]\nTotal Preds spawned: [predators.len]\nTotal humans spawned: [round_statistics.total_humans_created]")
 
 	to_chat(world, dat)
 

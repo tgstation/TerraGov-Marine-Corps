@@ -47,12 +47,10 @@
 
 	sense()
 		var/turf/mainloc = get_turf(src)
-//		if(scanning && cooldown <= 0)
-//			mainloc.visible_message("\icon[src] *boop* *boop*", "*boop* *boop*")
 		if((!holder && !secured)||(!scanning)||(cooldown > 0))	return 0
 		pulse(0)
 		if(!holder)
-			mainloc.visible_message("\icon[src] *beep* *beep*", "*beep* *beep*")
+			mainloc.visible_message("[icon2html(src, viewers(mainloc))] *beep* *beep*", "*beep* *beep*")
 		cooldown = 2
 		spawn(10)
 			process_cooldown()

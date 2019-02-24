@@ -35,7 +35,7 @@
 		else if(istype(area_station, /area/shuttle/distress/arrive_s_hangar))
 			umbili_id = "s_umbilical"
 		else return
-		for(var/obj/machinery/door/poddoor/PD in machines)
+		for(var/obj/machinery/door/poddoor/PD in GLOB.machines)
 			if(!PD.density && PD.id == umbili_id)
 				spawn(0)
 					PD.close()
@@ -45,11 +45,6 @@
 /datum/shuttle/ferry/ert/open_doors(area/A)
 	if(!A || !istype(A)) //somehow
 		return
-
-	for(var/obj/machinery/door/unpowered/D in A)
-		if(D.density)
-			spawn(0)
-				D.open()
 
 	for(var/obj/machinery/door/airlock/D in A)
 		if(D.density)
@@ -65,7 +60,7 @@
 			umbili_id = "s_umbilical"
 		else return
 		//open the almayer's north of south umbilical shutters and the shuttle's north or south shutters
-		for(var/obj/machinery/door/poddoor/PD in machines)
+		for(var/obj/machinery/door/poddoor/PD in GLOB.machines)
 			if(PD.density && PD.id == umbili_id)
 				spawn(0)
 					PD.open()
@@ -84,7 +79,7 @@
 		else if(istype(area_station, /area/shuttle/distress/arrive_3))
 			shutter_id = "aftert"
 		if(shutter_id)
-			for(var/obj/machinery/door/poddoor/shutters/T in machines)
+			for(var/obj/machinery/door/poddoor/shutters/T in GLOB.machines)
 				if(T.density && shutter_id == T.id)
 					spawn(0)
 						T.open()
@@ -160,13 +155,13 @@
 
 	if(href_list["select_dock"])
 
-		if(MS.moving_status == SHUTTLE_IDLE && z == ADMIN_Z_LEVEL)
+		if(MS.moving_status == SHUTTLE_IDLE && is_centcom_level(z))
 			var/dock_id = /area/shuttle/distress/arrive_1
 			var/dock_list = list("Port", "Starboard", "Aft")
 			if(MS.use_umbilical)
 				dock_list = list("Port Hangar", "Starboard Hangar")
 			var/dock_name = input("Where on the [MAIN_SHIP_NAME] should the shuttle dock?", "Select a docking zone:") as null|anything in dock_list
-			if(MS.moving_status != SHUTTLE_IDLE || z != ADMIN_Z_LEVEL)
+			if(MS.moving_status != SHUTTLE_IDLE || !is_centcom_level(z))
 				return
 			switch(dock_name)
 				if("Port") dock_id = /area/shuttle/distress/arrive_2

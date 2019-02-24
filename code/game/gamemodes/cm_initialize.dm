@@ -37,6 +37,17 @@ MODE_PREDATOR
 
 Additional game mode variables.
 */
+#define XENO_STARTING_COEF 5.5
+#define MERC_STARTING_COEF 3
+#define SURVIVOR_STARTING_COEF 15
+
+#define SURVIVOR_WEAPONS list(\
+				list(/obj/item/weapon/gun/smg/mp7, /obj/item/ammo_magazine/smg/mp7),\
+				list(/obj/item/weapon/gun/shotgun/double/sawn, /obj/item/ammo_magazine/shotgun/flechette),\
+				list(/obj/item/weapon/gun/smg/uzi, /obj/item/ammo_magazine/smg/uzi),\
+				list(/obj/item/weapon/gun/smg/mp5, /obj/item/ammo_magazine/smg/mp5),\
+				list(/obj/item/weapon/gun/rifle/m16, /obj/item/ammo_magazine/rifle/m16),\
+				list(/obj/item/weapon/gun/shotgun/pump/bolt, /obj/item/ammo_magazine/rifle/bolt))
 
 /datum/game_mode
 	var/datum/mind/xenomorphs[] = list() //These are our basic lists to keep track of who is in the game.
@@ -49,8 +60,7 @@ Additional game mode variables.
 	var/xeno_required_num 	= 0 //We need at least one. You can turn this off in case we don't care if we spawn or don't spawn xenos.
 	var/xeno_starting_num 	= 0 //To clamp starting xenos.
 	var/xeno_bypass_timer 	= 0 //Bypass the five minute timer before respawning.
-	//var/xeno_queen_timer  	= list(0, 0, 0, 0, 0) //How long ago did the queen die?
-	var/xeno_queen_deaths 	= 0 //How many times the alien queen died.
+	var/queen_death_countdown = 0
 	var/surv_starting_num 	= 0 //To clamp starting survivors.
 	var/merc_starting_num 	= 0 //PMC clamp.
 	var/marine_starting_num = 0 //number of players not in something special
@@ -62,25 +72,19 @@ Additional game mode variables.
 	var/round_checkwin 		= 0
 	var/round_finished
 	var/round_started  		= 5 //This is a simple timer so we don't accidently check win conditions right in post-game
-	var/round_fog[]				//List of the fog locations.
 	var/round_time_lobby 		//Base time for the lobby, for fog dispersal.
 	var/round_time_fog 			//Variance time for fog dispersal, done during pre-setup.
-	var/monkey_amount		= 0 //How many monkeys do we spawn on this map ?
-	var/list/monkey_types	= list() //What type of monkeys do we spawn
 	var/latejoin_tally		= 0 //How many people latejoined Marines
-	var/latejoin_larva_drop = 7 //A larva will spawn in once the tally reaches this level. If set to 0, no latejoin larva drop
+	var/latejoin_larva_drop = LATEJOIN_LARVA_DISABLED //A larva will spawn in once the latejoin marine tally reaches this level. If set to 0, no latejoin larva drop
 
 	var/stored_larva = 0
-
-	//Role Authority set up.
-	var/role_instruction 	= ROLE_MODE_DEFAULT
-	var/roles_for_mode[] //Won't have a list if the instruction is set to 0.
 
 	//Bioscan related.
 	var/bioscan_current_interval = 45 MINUTES
 	var/bioscan_ongoing_interval = 20 MINUTES
 
 	var/flags_round_type = NOFLAGS
+	var/flags_landmarks = NOFLAGS
 
 //===================================================\\
 
@@ -90,183 +94,14 @@ Additional game mode variables.
 
 datum/game_mode/proc/initialize_special_clamps()
 	var/ready_players = ready_players() // Get all players that have "Ready" selected
-	xeno_starting_num = max((ready_players/7), xeno_required_num)
-	surv_starting_num = CLAMP((ready_players/25), 0, 8)
-	merc_starting_num = max((ready_players/3), 1)
+	xeno_starting_num = max((round(ready_players / CONFIG_GET(number/xeno_coefficient))), xeno_required_num)
+	surv_starting_num = CLAMP((round(ready_players / CONFIG_GET(number/survivor_coefficient))), 0, 8)
+	merc_starting_num = max((round(ready_players / MERC_STARTING_COEF)), 1)
 	marine_starting_num = ready_players - xeno_starting_num - surv_starting_num - merc_starting_num
-	for(var/datum/squad/sq in RoleAuthority.squads)
+	for(var/datum/squad/sq in SSjob.squads)
 		if(sq)
 			sq.max_engineers = engi_slot_formula(marine_starting_num)
 			sq.max_medics = medic_slot_formula(marine_starting_num)
-
-	for(var/datum/job/J in RoleAuthority.roles_by_name)
-		if(J.scaled)
-			J.set_spawn_positions(marine_starting_num)
-
-//===================================================\\
-
-				//PREDATOR INITIATLIZE\\
-
-//===================================================\\
-
-#define DEBUG_PREDATOR_INITIALIZE 0
-
-#if DEBUG_PREDATOR_INITIALIZE
-/mob/verb/adjust_predator_round()
-	set name = "Adjust Predator Round"
-	set category = "Debug"
-	set desc = "Adjust the number of predators present in a predator round."
-
-	if(!ticker || !ticker.mode)
-		to_chat(src, "<span class='warning'>The game hasn't started yet!</span?")
-		return FALSE
-
-	ticker.mode.pred_maximum_num = input(src,"What is the new maximum number of predators?","Input:",4) as num|null
-	ticker.mode.pred_current_num = input(src,"What is the new current number of predators?","Input:",0) as num|null
-#endif
-
-/datum/game_mode/proc/initialize_predator(mob/living/carbon/human/new_predator)
-	predators += new_predator.mind //Add them to the proper list.
-	pred_keys += new_predator.ckey //Add their key.
-	if(!(RoleAuthority.roles_whitelist[new_predator.ckey] & (WHITELIST_YAUTJA_ELITE|WHITELIST_YAUTJA_ELDER))) pred_current_num++ //If they are not an elder, tick up the max.
-
-/datum/game_mode/proc/initialize_starting_predator_list()
-	if(prob(pred_round_chance)) //First we want to determine if it's actually a predator round.
-		flags_round_type |= MODE_PREDATOR //It is now a predator round.
-		var/L[] = get_whitelisted_predators() //Grabs whitelisted preds who are ready at game start.
-		var/datum/mind/M
-		var/i //Our iterator for the maximum amount of pred spots available. The actual number is changed later on.
-		while(L.len && i < pred_maximum_num)
-			M = pick(L)
-			if(!istype(M)) continue
-			L -= M
-			M.assigned_role = "MODE" //So they are not chosen later for another role.
-			predators += M
-			if(!(RoleAuthority.roles_whitelist[M.current.ckey] & (WHITELIST_YAUTJA_ELITE|WHITELIST_YAUTJA_ELDER))) i++
-
-/datum/game_mode/proc/initialize_post_predator_list() //TO DO: Possibly clean this using tranfer_to.
-	var/temp_pred_list[] = predators //We don't want to use the actual predator list as it will be overriden.
-	predators = list() //Empty it. The temporary minds we used aren't going to be used much longer.
-	for(var/datum/mind/new_pred in temp_pred_list)
-		if(!istype(new_pred)) continue
-		attempt_to_join_as_predator(new_pred.current)
-
-/datum/game_mode/proc/get_whitelisted_predators(readied = 1)
-	// Assemble a list of active players who are whitelisted.
-	var/players[] = new
-
-	var/mob/new_player/new_pred
-	for(var/mob/player in player_list)
-		if(!player.client) continue //No client. DCed.
-		if(isYautja(player)) continue //Already a predator. Might be dead, who knows.
-		if(readied) //Ready check for new players.
-			new_pred = player
-			if(!istype(new_pred)) continue //Have to be a new player here.
-			if(!new_pred.ready) continue //Have to be ready.
-		else
-			if(!istype(player,/mob/dead)) continue //Otherwise we just want to grab the ghosts.
-
-		if(RoleAuthority.roles_whitelist[player.ckey] & WHITELIST_PREDATOR)  //Are they whitelisted?
-			if(!player.client.prefs)
-				player.client.prefs = new /datum/preferences(player.client) //Somehow they don't have one.
-
-			if(player.client.prefs.be_special & BE_PREDATOR) //Are their prefs turned on?
-				if(!player.mind) //They have to have a key if they have a client.
-					player.mind_initialize() //Will work on ghosts too, but won't add them to active minds.
-				players += player.mind
-	return players
-
-/datum/game_mode/proc/attempt_to_join_as_predator(mob/pred_candidate)
-	var/mob/living/carbon/human/new_predator = transform_predator(pred_candidate) //Initialized and ready.
-	if(!new_predator)
-		return FALSE
-
-	log_admin("[new_predator.key], became a new Yautja, [new_predator.real_name].")
-	message_admins("([new_predator.key]) joined as Yautja, [new_predator.real_name].")
-
-	if(pred_candidate) pred_candidate.loc = null //Nullspace it for garbage collection later.
-
-/datum/game_mode/proc/check_predator_late_join(mob/pred_candidate, show_warning = 1)
-
-	if(!(RoleAuthority.roles_whitelist[pred_candidate.ckey] & WHITELIST_PREDATOR))
-		if(show_warning) to_chat(pred_candidate, "<span class='warning'>You are not whitelisted! You may apply on the forums to be whitelisted as a predator.</span>")
-		return FALSE
-
-	if(!(flags_round_type & MODE_PREDATOR))
-		if(show_warning) to_chat(pred_candidate, "<span class='warning'>There is no Hunt this round! Maybe the next one.</span>")
-		return FALSE
-
-	if(pred_candidate.ckey in pred_keys)
-		if(show_warning) to_chat(pred_candidate, "<span class='warning'>You already were a Yautja! Give someone else a chance.</span>")
-		return FALSE
-
-	if(!(RoleAuthority.roles_whitelist[pred_candidate.ckey] & WHITELIST_YAUTJA_ELDER))
-		if(pred_current_num >= pred_maximum_num)
-			if(show_warning) to_chat(pred_candidate, "<span class='warning'>Only [pred_maximum_num] predators may spawn per round, but Elders are excluded.</span>")
-			return FALSE
-
-	return TRUE
-
-/datum/game_mode/proc/transform_predator(mob/pred_candidate)
-	if(!pred_candidate.client) //Something went wrong.
-		message_admins("<span class='warning'><b>Warning</b>: null client in transform_predator.</span>")
-		log_runtime("Null client in transform_predator.")
-		return FALSE
-
-	var/mob/living/carbon/human/new_predator
-
-	new_predator = new(RoleAuthority.roles_whitelist[pred_candidate.ckey] & WHITELIST_YAUTJA_ELDER ? pick(pred_elder_spawn) : pick(pred_spawn))
-	new_predator.set_species("Yautja")
-
-	new_predator.mind_initialize()
-	new_predator.mind.assigned_role = "MODE"
-	new_predator.mind.special_role = "Predator"
-	new_predator.key = pred_candidate.key
-	new_predator.mind.key = new_predator.key
-	if(new_predator.client) new_predator.client.change_view(world.view)
-
-	if(!new_predator.client.prefs) new_predator.client.prefs = new /datum/preferences(new_predator.client) //Let's give them one.
-	//They should have these set, but it's possible they don't have them.
-	new_predator.real_name = new_predator.client.prefs.predator_name
-	new_predator.gender = new_predator.client.prefs.predator_gender
-	new_predator.age = new_predator.client.prefs.predator_age
-
-	if(!new_predator.real_name || new_predator.real_name == "Undefined") //In case they don't have a name set or no prefs, there's a name.
-		new_predator.real_name = "Le'pro"
-		spawn(9)
-			to_chat(new_predator, "<span class='warning'>You forgot to set your name in your preferences. Please do so next time.</span>")
-
-	var/armor_number = new_predator.client.prefs.predator_armor_type
-	var/boot_number = new_predator.client.prefs.predator_boot_type
-	var/mask_number = new_predator.client.prefs.predator_mask_type
-
-	new_predator.equip_to_slot_or_del(new /obj/item/clothing/shoes/yautja(new_predator, boot_number), SLOT_SHOES)
-	if(RoleAuthority.roles_whitelist[new_predator.ckey] & WHITELIST_YAUTJA_ELDER)
-		new_predator.real_name = "Elder [new_predator.real_name]"
-		new_predator.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/yautja(new_predator, armor_number, 1), SLOT_WEAR_SUIT)
-		new_predator.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/yautja(new_predator, mask_number, 1), SLOT_WEAR_MASK)
-		new_predator.equip_to_slot_or_del(new /obj/item/clothing/cape/eldercape(new_predator, armor_number), SLOT_BACK)
-
-		spawn(10)
-			to_chat(new_predator, "<span class='notice'><B> Welcome Elder!</B></span>")
-			to_chat(new_predator, "<span class='notice'>You are responsible for the well-being of your pupils. Hunting is secondary in priority.</span>")
-			to_chat(new_predator, "<span class='notice'>That does not mean you can't go out and show the youngsters how it's done.</span>")
-			to_chat(new_predator, "<span class='notice'>You come equipped as an Elder should, with a bonus glaive and heavy armor.</span>")
-	else
-		new_predator.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/yautja(new_predator, armor_number), SLOT_WEAR_SUIT)
-		new_predator.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/yautja(new_predator, mask_number), SLOT_WEAR_MASK)
-
-		spawn(12)
-			to_chat(new_predator, "<span class='notice'>You are <B>Yautja</b>, a great and noble predator!</span>")
-			to_chat(new_predator, "<span class='notice'>Your job is to first study your opponents. A hunt cannot commence unless intelligence is gathered.</span>")
-			to_chat(new_predator, "<span class='notice'>Hunt at your discretion, yet be observant rather than violent.</span>")
-			to_chat(new_predator, "<span class='notice'>And above all, listen to your Elders!</span>")
-
-	new_predator.update_icons()
-	initialize_predator(new_predator)
-	return new_predator
-
-#undef DEBUG_PREDATOR_INITIALIZE
 
 //===================================================\\
 
@@ -279,7 +114,6 @@ datum/game_mode/proc/initialize_special_clamps()
 /datum/game_mode/proc/initialize_starting_xenomorph_list()
 	var/list/datum/mind/possible_xenomorphs = get_players_for_role(BE_ALIEN)
 	if(possible_xenomorphs.len < xeno_required_num) //We don't have enough aliens.
-		to_chat(world, "<h2 style=\"color:red\">Not enough players have chosen to be a xenomorph in their character setup. <b>Aborting</b>.</h2>")
 		return FALSE
 
 	//Minds are not transferred at this point, so we have to clean out those who may be already picked to play.
@@ -295,12 +129,11 @@ datum/game_mode/proc/initialize_special_clamps()
 			new_xeno = pick(possible_xenomorphs)
 			if(!new_xeno)
 				break  //Looks like we didn't get anyone. Back out.
-			new_xeno.assigned_role = "MODE"
-			new_xeno.special_role = "Xenomorph"
+			new_xeno.assigned_role = "Xenomorph"
 			xenomorphs += new_xeno
 			possible_xenomorphs -= new_xeno
 		else //Out of candidates, spawn in empty larvas directly
-			larvae_spawn = pick(xeno_spawn)
+			larvae_spawn = pick(GLOB.xeno_spawn)
 			new /mob/living/carbon/Xenomorph/Larva(larvae_spawn)
 		i--
 
@@ -309,7 +142,6 @@ datum/game_mode/proc/initialize_special_clamps()
 	So they may have been removed from the list, oh well.
 	*/
 	if(xenomorphs.len < xeno_required_num)
-		to_chat(world, "<h2 style=\"color:red\">Could not find any candidates after initial alien list pass. <b>Aborting</b>.</h2>")
 		return FALSE
 
 	return TRUE
@@ -328,8 +160,7 @@ datum/game_mode/proc/initialize_special_clamps()
 	for(var/datum/mind/new_queen in possible_queens)
 		if(jobban_isbanned(new_queen.current))
 			continue
-		new_queen.assigned_role = "MODE"
-		new_queen.special_role = "Xenomorph"
+		new_queen.assigned_role = "Queen"
 		queen = new_queen
 		break
 
@@ -357,12 +188,12 @@ datum/game_mode/proc/initialize_post_queen_list()
 	return TRUE
 
 /datum/game_mode/proc/attempt_to_join_as_larva(mob/xeno_candidate)
-	if(!ticker.mode.stored_larva)
+	if(!SSticker.mode.stored_larva)
 		to_chat(xeno_candidate, "<span class='warning'>There are no burrowed larvas.</span>")
 		return FALSE
 	var/available_queens[] = list()
-	for(var/mob/A in living_mob_list)
-		if(!isXenoQueen(A) || A.z == ADMIN_Z_LEVEL)
+	for(var/mob/A in GLOB.alive_xeno_list)
+		if(!isxenoqueen(A) || is_centcom_level(A.z))
 			continue
 		var/mob/living/carbon/Xenomorph/Queen/Q = A
 		if(Q.ovipositor && !Q.is_mob_incapacitated(TRUE))
@@ -373,17 +204,17 @@ datum/game_mode/proc/initialize_post_queen_list()
 	var/mob/living/carbon/Xenomorph/Queen/mother = input("Available Mothers") as null|anything in available_queens
 	if (!istype(mother) || !xeno_candidate || !xeno_candidate.client)
 		return FALSE
-	if(!ticker.mode.stored_larva)
+	if(!SSticker.mode.stored_larva)
 		to_chat(xeno_candidate, "<span class='warning'>There are no longer burrowed larvas available.</span>")
 		return FALSE
 	if(!mother.ovipositor || mother.is_mob_incapacitated(TRUE))
 		to_chat(xeno_candidate, "<span class='warning'>Mother is not in a state to receive us.</span>")
 		return FALSE
-	if(!xeno_bypass_timer && !istype(xeno_candidate, /mob/new_player))
+	if(!xeno_bypass_timer && !isnewplayer(xeno_candidate))
 		var/deathtime = world.time - xeno_candidate.timeofdeath
 		var/deathtimeminutes = round(deathtime / 600)
 		var/deathtimeseconds = round((deathtime - deathtimeminutes * 600) / 10,1)
-		if(deathtime < 3000 && ( !xeno_candidate.client.holder || !(xeno_candidate.client.holder.rights & R_ADMIN)) )
+		if(deathtime < 3000 && ( !xeno_candidate.client.holder || !check_rights(xeno_candidate, R_ADMIN)))
 			to_chat(xeno_candidate, "<span class='warning'>You have been dead for [deathtimeminutes >= 1 ? "[deathtimeminutes] minute\s and " : ""][deathtimeseconds] second\s.</span>")
 			to_chat(xeno_candidate, "<span class='warning'>You must wait 5 minutes before rejoining the game!</span>")
 			return FALSE
@@ -392,7 +223,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 /datum/game_mode/proc/spawn_larva(mob/xeno_candidate, var/mob/living/carbon/Xenomorph/Queen/mother)
 	if(!xeno_candidate)
 		return FALSE
-	if(!ticker.mode.stored_larva || !mother || !istype(mother))
+	if(!SSticker.mode.stored_larva || !istype(mother))
 		to_chat(xeno_candidate, "<span class='warning'>Something went awry. Can't spawn at the moment.</span>")
 		log_admin("[xeno_candidate.key] has failed to join as a larva.")
 		return FALSE
@@ -405,17 +236,17 @@ datum/game_mode/proc/initialize_post_queen_list()
 		new_xeno.client.change_view(world.view)
 	to_chat(new_xeno, "<span class='xenoannounce'>You are a xenomorph larva awakened from slumber!</span>")
 	new_xeno << sound('sound/effects/xeno_newlarva.ogg')
-	ticker.mode.stored_larva--
+	SSticker.mode.stored_larva--
 	log_admin("[new_xeno.key] has joined as [new_xeno].")
 
 /datum/game_mode/proc/attempt_to_join_as_xeno(mob/xeno_candidate, instant_join = 0)
 	var/available_xenos[] = list()
 	var/available_xenos_non_ssd[] = list()
 
-	for(var/mob/A in living_mob_list)
-		if(A.z == ADMIN_Z_LEVEL)
+	for(var/mob/A in GLOB.alive_xeno_list)
+		if(is_centcom_level(A.z))
 			continue //xenos on admin z level don't count
-		if(isXeno(A) && !A.client)
+		if(isxeno(A) && !A.client)
 			if(A.away_timer >= 300) available_xenos_non_ssd += A
 			available_xenos += A
 
@@ -432,7 +263,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 	if(!istype(new_xeno) || !xeno_candidate?.client)
 		return FALSE
 
-	if(!(new_xeno in living_mob_list) || new_xeno.stat == DEAD)
+	if(!(new_xeno in GLOB.alive_xeno_list) || new_xeno.stat == DEAD)
 		to_chat(xeno_candidate, "<span class='warning'>You cannot join if the xenomorph is dead.</span>")
 		return FALSE
 
@@ -442,11 +273,11 @@ datum/game_mode/proc/initialize_post_queen_list()
 
 	if(!xeno_bypass_timer)
 		var/deathtime = world.time - xeno_candidate.timeofdeath
-		if(istype(xeno_candidate, /mob/new_player))
+		if(isnewplayer(xeno_candidate))
 			deathtime = 3000 //so new players don't have to wait to latejoin as xeno in the round's first 5 mins.
 		var/deathtimeminutes = round(deathtime / 600)
 		var/deathtimeseconds = round((deathtime - deathtimeminutes * 600) / 10,1)
-		if(deathtime < 3000 && ( !xeno_candidate.client.holder || !(xeno_candidate.client.holder.rights & R_ADMIN)) )
+		if(deathtime < 3000 && !check_other_rights(xeno_candidate, R_ADMIN, FALSE))
 			to_chat(xeno_candidate, "<span class='warning'>You have been dead for [deathtimeminutes >= 1 ? "[deathtimeminutes] minute\s and " : ""][deathtimeseconds] second\s.</span>")
 			to_chat(xeno_candidate, "<span class='warning'>You must wait 5 minutes before rejoining the game!</span>")
 			return FALSE
@@ -455,7 +286,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 			return FALSE
 
 	if(alert(xeno_candidate, "Everything checks out. Are you sure you want to transfer yourself into [new_xeno]?", "Confirm Transfer", "Yes", "No") == "Yes")
-		if(new_xeno.client || !(new_xeno in living_mob_list) || new_xeno.stat == DEAD || !xeno_candidate) // Do it again, just in case
+		if(new_xeno.client || !(new_xeno in GLOB.alive_xeno_list) || new_xeno.stat == DEAD || !xeno_candidate) // Do it again, just in case
 			to_chat(xeno_candidate, "<span class='warning'>That xenomorph can no longer be controlled. Please try another.</span>")
 			return FALSE
 		return new_xeno
@@ -466,9 +297,9 @@ datum/game_mode/proc/initialize_post_queen_list()
 	new_xeno.ghostize(0) //Make sure they're not getting a free respawn.
 	new_xeno.key = xeno_candidate.key
 	if(new_xeno.client) new_xeno.client.change_view(world.view)
-	message_admins("[new_xeno.key] has joined as [new_xeno].")
-	log_admin("[new_xeno.key] has joined as [new_xeno].")
-	if(isXeno(new_xeno)) //Dear lord
+	message_admins("[key_name(new_xeno)] has joined as [new_xeno].")
+	log_admin("[ADMIN_TPMONTY(new_xeno)] has joined as [new_xeno].")
+	if(isxeno(new_xeno)) //Dear lord
 		var/mob/living/carbon/Xenomorph/X = new_xeno
 		if(X.is_ventcrawling) X.add_ventcrawl(X.loc) //If we are in a vent, fetch a fresh vent map
 	if(xeno_candidate) xeno_candidate.loc = null
@@ -477,7 +308,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 	var/mob/original = ghost_mind.current
 	var/mob/living/carbon/Xenomorph/new_xeno
 
-	new_xeno = new /mob/living/carbon/Xenomorph/Larva(pick(xeno_spawn))
+	new_xeno = new /mob/living/carbon/Xenomorph/Larva(pick(GLOB.xeno_spawn))
 	ghost_mind.transfer_to(new_xeno) //The mind is fine, since we already labeled them as a xeno. Away they go.
 	ghost_mind.name = ghost_mind.current.name
 
@@ -495,7 +326,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 	var/mob/living/carbon/Xenomorph/new_queen
 	var/datum/hive_status/hive = hive_datum[XENO_HIVE_NORMAL]
 	if(!hive.living_xeno_queen && original?.client?.prefs && (original.client.prefs.be_special & BE_QUEEN) && !jobban_isbanned(original, "Queen"))
-		new_queen = new /mob/living/carbon/Xenomorph/Queen (pick(xeno_spawn))
+		new_queen = new /mob/living/carbon/Xenomorph/Queen (pick(GLOB.xeno_spawn))
 	else
 		return FALSE
 	ghost_mind.transfer_to(new_queen)
@@ -533,10 +364,9 @@ datum/game_mode/proc/initialize_post_queen_list()
 				new_survivor = pick(possible_survivors)
 				if(!new_survivor)
 					break  //We ran out of survivors!
-				new_survivor.assigned_role = "MODE"
-				new_survivor.special_role = "Survivor"
-				possible_survivors -= new_survivor
+				new_survivor.assigned_role = "Survivor"
 				survivors += new_survivor
+				possible_survivors -= new_survivor
 				i--
 
 /datum/game_mode/proc/initialize_post_survivor_list()
@@ -547,231 +377,50 @@ datum/game_mode/proc/initialize_post_queen_list()
 //Start the Survivor players. This must go post-setup so we already have a body.
 //No need to transfer their mind as they begin as a human.
 /datum/game_mode/proc/transform_survivor(var/datum/mind/ghost)
-
-	var/list/survivor_types
-	switch(map_tag)
-		if(MAP_PRISON_STATION)
-			survivor_types = list("Scientist","Doctor","Corporate","Security","Prisoner","Prisoner","Prisoner","Clown")
-		if(MAP_LV_624,MAP_BIG_RED)
-			survivor_types = list("Assistant","Civilian","Scientist","Doctor","Chef","Botanist","Atmos Tech","Chaplain","Miner","Salesman","Colonial Marshall","Clown")
-		if(MAP_ICE_COLONY)
-			survivor_types = list("Scientist","Doctor","Salesman","Security","Clown")
-		else
-			survivor_types = list("Assistant","Civilian","Scientist","Doctor","Chef","Botanist","Atmos Tech","Chaplain","Miner","Salesman","Colonial Marshall","Clown")
-
 	var/mob/living/carbon/human/H = ghost.current
 
-	H.loc = pick(surv_spawn)
+	H.loc = pick(GLOB.surv_spawn)
 
-	var/id_assignment = ""
+	var/survivor_job = pick(subtypesof(/datum/job/survivor))
+	var/datum/job/J = new survivor_job
+	J.equip(H)
 
-	//Damage them for realism purposes
-	H.take_limb_damage(rand(0,15), rand(0,15))
-
-//Give them proper jobs and stuff here later
-	var/randjob = pick(survivor_types)
-	switch(randjob)
-		if("Scientist") //Scientist
-			id_assignment = "Scientist"
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(H), SLOT_W_UNIFORM)
-			if(map_tag != MAP_ICE_COLONY)
-				H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/labcoat(H), SLOT_WEAR_SUIT)
-				H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_SHOES)
-			H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/tox(H), SLOT_BACK)
-			ghost.set_cm_skills(/datum/skills/civilian/survivor/scientist)
-		if("Doctor") //Doctor
-			id_assignment = "Doctor"
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/medical(H), SLOT_W_UNIFORM)
-			if(map_tag != MAP_ICE_COLONY)
-				H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/labcoat(H), SLOT_WEAR_SUIT)
-				H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_SHOES)
-			H.equip_to_slot_or_del(new /obj/item/storage/belt/medical(H), SLOT_L_HAND)
-			H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/med(H), SLOT_BACK)
-			H.equip_to_slot_or_del(new /obj/item/storage/firstaid/adv(H.back), SLOT_IN_BACKPACK)
-			ghost.set_cm_skills(/datum/skills/civilian/survivor/doctor)
-		if("Corporate") //Corporate guy
-			id_assignment = "Corporate Liaison"
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/liaison_suit(H), SLOT_W_UNIFORM)
-			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_SHOES)
-			H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/norm(H), SLOT_BACK)
-			ghost.set_cm_skills(/datum/skills/civilian/survivor)
-		if("Security") //Security
-			id_assignment = "Security"
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/security/corp(H), SLOT_W_UNIFORM)
-			if(map_tag != MAP_ICE_COLONY)
-				H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), SLOT_SHOES)
-			H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/sec(H), SLOT_BACK)
-			H.equip_to_slot_or_del(new /obj/item/weapon/gun/revolver/cmb(H), SLOT_L_HAND)
-			ghost.set_cm_skills(/datum/skills/civilian/survivor/marshall)
-		if("Prisoner") //Prisoner
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/color/orange(H), SLOT_W_UNIFORM)
-			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/orange(H), SLOT_SHOES)
-			ghost.set_cm_skills(/datum/skills/civilian/survivor/prisoner)
-		if("Assistant")
-			id_assignment = "Assistant"
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(H), SLOT_W_UNIFORM)
-			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_SHOES)
-			H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/norm(H), SLOT_BACK)
-			ghost.set_cm_skills(/datum/skills/civilian/survivor)
-		if("Civilian")
-			id_assignment = "Civilian"
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/pj/red(H), SLOT_W_UNIFORM)
-			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_SHOES)
-			H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/norm(H), SLOT_BACK)
-			ghost.set_cm_skills(/datum/skills/civilian/survivor)
-		if("Chef")
-			id_assignment = "Chef"
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(H), SLOT_W_UNIFORM)
-			H.equip_to_slot_or_del(new /obj/item/clothing/suit/chef(H), SLOT_WEAR_SUIT)
-			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_SHOES)
-			H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/norm(H), SLOT_BACK)
-			H.equip_to_slot_or_del(new /obj/item/tool/kitchen/rollingpin(H), SLOT_L_HAND)
-			ghost.set_cm_skills(/datum/skills/civilian/survivor/chef)
-		if("Botanist")
-			id_assignment = "Botanist"
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(H), SLOT_W_UNIFORM)
-			H.equip_to_slot_or_del(new /obj/item/clothing/suit/apron(H), SLOT_WEAR_SUIT)
-			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_SHOES)
-			H.equip_to_slot_or_del(new /obj/item/tool/hatchet(H), SLOT_L_HAND)
-			ghost.set_cm_skills(/datum/skills/civilian/survivor)
-		if("Atmos Tech")
-			id_assignment = "Atmos Tech"
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(H), SLOT_W_UNIFORM)
-			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_SHOES)
-			H.equip_to_slot_or_del(new /obj/item/storage/belt/utility/atmostech(H), SLOT_L_HAND)
-			H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/eng(H), SLOT_BACK)
-			ghost.set_cm_skills(/datum/skills/civilian/survivor/atmos)
-
-		if("Chaplain") //Chaplain
-			id_assignment = "Chaplain"
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/chaplain(H), SLOT_W_UNIFORM)
-			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_SHOES)
-			H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/norm(H), SLOT_BACK)
-			H.equip_to_slot_or_del(new /obj/item/storage/bible/booze(H.back), SLOT_IN_BACKPACK)
-			H.equip_to_slot_or_del(new /obj/item/weapon/gun/shotgun/double/sawn(H), SLOT_BELT)
-			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun/buckshot(H), SLOT_L_HAND)
-			ghost.set_cm_skills(/datum/skills/civilian/survivor)
-
-		if("Miner") //Miner
-			id_assignment = "Miner"
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/miner(H), SLOT_W_UNIFORM)
-			H.equip_to_slot_or_del(new /obj/item/tool/pickaxe(H), SLOT_L_HAND)
-			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_SHOES)
-			H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/norm(H), SLOT_BACK)
-			H.equip_to_slot_or_del(new /obj/item/device/flashlight/lantern(H.back), SLOT_IN_BACKPACK)
-			ghost.set_cm_skills(/datum/skills/civilian/survivor/miner)
-		if("Salesman") //Corporate guy
-			id_assignment = "Salesman"
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/liaison_suit(H), SLOT_W_UNIFORM)
-			if(map_tag != MAP_ICE_COLONY)
-				H.equip_to_slot_or_del(new /obj/item/clothing/suit/wcoat(H), SLOT_WEAR_SUIT)
-				H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_SHOES)
-			H.equip_to_slot_or_del(new /obj/item/storage/briefcase(H), SLOT_L_HAND)
-			H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70(H), SLOT_BELT)
-			ghost.set_cm_skills(/datum/skills/civilian/survivor)
-		if("Colonial Marshall") //Colonial Marshal
-			id_assignment = "Colonial Marshall"
-			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/CMB(H), SLOT_WEAR_SUIT)
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/CM_uniform(H), SLOT_W_UNIFORM)
-			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/jackboots(H), SLOT_SHOES)
-			H.equip_to_slot_or_del(new /obj/item/weapon/gun/revolver/cmb(H), SLOT_L_HAND)
-			H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/sec(H), SLOT_BACK)
-			ghost.set_cm_skills(/datum/skills/civilian/survivor/marshall)
-		if("Clown")//HONK
-			id_assignment = "Clown"
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/clown(H), SLOT_W_UNIFORM)
-			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/clown_shoes(H), SLOT_SHOES)
-			H.equip_to_slot_or_del(new /obj/item/storage/backpack/clown(H), SLOT_BACK)
-			H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/clown_hat(H), SLOT_WEAR_MASK)
-			H.equip_to_slot_or_del(new /obj/item/tool/stamp/clown(H), SLOT_IN_BACKPACK)
-			H.equip_to_slot_or_del(new /obj/item/reagent_container/spray/waterflower(H), SLOT_IN_BACKPACK)
-			H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/grown/banana(H), SLOT_IN_BACKPACK) //The clown needs a number of bananas to be prepared for the xenomorphs
-			H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/grown/banana(H), SLOT_IN_BACKPACK)
-			H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/grown/banana(H), SLOT_IN_BACKPACK)
-			H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/grown/banana(H), SLOT_IN_BACKPACK)
-			H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/grown/banana(H), SLOT_IN_BACKPACK)
-			H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/grown/banana(H), SLOT_IN_BACKPACK)
-			H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/grown/banana(H), SLOT_IN_BACKPACK)
-			H.equip_to_slot_or_del(new /obj/item/toy/bikehorn(H), SLOT_IN_BACKPACK)
-			H.fully_replace_character_name(H.real_name, pick(clown_names))
-			var/datum/dna/gene/disability/clumsy/G = new /datum/dna/gene/disability/clumsy
-			G.activate(H)
-			ghost.set_cm_skills(/datum/skills/civilian/survivor/clown)
-
-
-	if(map_tag == MAP_ICE_COLONY)
+	if(SSmapping.config.map_name == MAP_ICE_COLONY)
 		H.equip_to_slot_or_del(new /obj/item/clothing/head/ushanka(H), SLOT_HEAD)
 		H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/snow_suit(H), SLOT_WEAR_SUIT)
 		H.equip_to_slot_or_del(new /obj/item/clothing/mask/rebreather(H), SLOT_WEAR_MASK)
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/snow(H), SLOT_SHOES)
 		H.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(H), SLOT_GLOVES)
 
-	if(id_assignment)
-		var/obj/item/card/id/W = new(H)
-		W.name = "[H.real_name]'s ID Card ([id_assignment])"
-		W.assignment = id_assignment
-		W.paygrade = "C"
-		W.registered_name = H.real_name
-		H.equip_to_slot_or_del(W, SLOT_WEAR_ID)
-
 	H.name = H.get_visible_name()
 
-	if(map_tag != MAP_PRISON_STATION)
-		var/random_weap = rand(0,4)
-		switch(random_weap)
-			if(0)
-				H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/holdout(H), SLOT_BELT)
-			if(1)
-				H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/b92fs(H), SLOT_BELT)
-			if(2)
-				H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/kt42(H), SLOT_BELT)
-			if(3)
-				H.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/uzi(H), SLOT_BELT)
-			if(4)
-				H.equip_to_slot_or_del(new /obj/item/weapon/gun/revolver/small(H), SLOT_BELT)
+	var/weapons = pick(SURVIVOR_WEAPONS)
+	var/obj/item/weapon/W = weapons[1]
+	var/obj/item/ammo_magazine/A = weapons[2]
+	H.equip_to_slot_or_del(new /obj/item/storage/belt/gun/m44/full(H), SLOT_BELT)
+	H.put_in_hands(new W(H))
+	H.equip_to_slot_or_del(new A(H), SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new A(H), SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new A(H), SLOT_IN_BACKPACK)
 
-	var/random_gear = rand(0,20)
-	switch(random_gear)
-		if(0)
-			H.equip_to_slot_or_del(new /obj/item/device/camera/oldcamera(H), SLOT_R_HAND)
-		if(1)
-			H.equip_to_slot_or_del(new /obj/item/device/flashlight/flare(H), SLOT_R_HAND)
-		if(2)
-			H.equip_to_slot_or_del(new /obj/item/device/flashlight/flare(H), SLOT_R_HAND)
-		if(3)
-			H.equip_to_slot_or_del(new /obj/item/storage/firstaid/regular(H), SLOT_R_HAND)
-		if(4)
-			H.equip_to_slot_or_del(new /obj/item/tool/surgery/surgicaldrill(H), SLOT_R_HAND)
-		if(5)
-			H.equip_to_slot_or_del(new /obj/item/stack/medical/bruise_pack(H), SLOT_R_HAND)
-		if(6)
-			H.equip_to_slot_or_del(new /obj/item/weapon/butterfly/switchblade(H), SLOT_R_HAND)
-		if(7)
-			H.equip_to_slot_or_del(new /obj/item/tool/kitchen/knife(H), SLOT_R_HAND)
-		if(8)
-			H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/lemoncakeslice(H), SLOT_R_HAND)
-		if(9)
-			H.equip_to_slot_or_del(new /obj/item/clothing/head/hardhat/dblue(H), SLOT_R_HAND)
-		if(10)
-			H.equip_to_slot_or_del(new /obj/item/tool/weldingtool/largetank(H), SLOT_R_HAND)
+	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/welding(H),SLOT_GLASSES)
 
 	H.equip_to_slot_or_del(new /obj/item/storage/pouch/tools/full(H), SLOT_R_STORE)
 	H.equip_to_slot_or_del(new /obj/item/storage/pouch/survival/full(H), SLOT_L_STORE)
 
-
-	//Give them some information
-	spawn(4)
-		to_chat(H, "<h2>You are a survivor!</h2>")
-		switch(map_tag)
-			if(MAP_PRISON_STATION)
-				to_chat(H, "<span class='notice'>You are a survivor of the attack on Fiorina Orbital Penitentiary. You worked or lived on the prison station, and managed to avoid the alien attacks.. until now.</span>")
-			if(MAP_ICE_COLONY)
-				to_chat(H, "<span class='notice'>You are a survivor of the attack on the ice habitat. You worked or lived on the colony, and managed to avoid the alien attacks.. until now.</span>")
-			else
-
-				to_chat(H, "<span class='notice'> You are a survivor of the attack on the colony. You worked or lived in the archaeology colony, and managed to avoid the alien attacks...until now.</span>")
-		to_chat(H, "<span class='notice'> You are fully aware of the xenomorph threat and are able to use this knowledge as you see fit.</span>")
-	return TRUE
+	to_chat(H, "<h2>You are a survivor!</h2>")
+	switch(SSmapping.config.map_name)
+		if(MAP_PRISON_STATION)
+			to_chat(H, "<span class='notice'>You are a survivor of the attack on Fiorina Orbital Penitentiary. You worked or lived on the prison station, and managed to avoid the alien attacks.. until now.</span>")
+		if(MAP_ICE_COLONY)
+			to_chat(H, "<span class='notice'>You are a survivor of the attack on the ice habitat. You worked or lived on the colony, and managed to avoid the alien attacks.. until now.</span>")
+		if(MAP_BIG_RED)
+			to_chat(H, "<span class='notice'>You are a survivor of the attack on the colony. You worked or lived in the archaeology colony, and managed to avoid the alien attacks...until now.</span>")
+		if(MAP_LV_624)
+			to_chat(H, "<span class='notice'>You are a survivor of the attack on the colony. You suspected something was wrong and tried to warn others, but it was too late...</span>")
+		else
+			to_chat(H, "<span class='notice'>Through a miracle you managed to survive the attack. But are you truly safe now?</span>")
+	to_chat(H, "<span class='notice'> You are fully aware of the xenomorph threat and are able to use this knowledge as you see fit.</span>")
 
 /datum/game_mode/proc/tell_survivor_story()
 	var/list/survivor_story = list(
@@ -801,7 +450,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 										"You were playing basketball with {surv} when the creatures descended. You bolted in opposite directions, and actually managed to lose the monsters, somehow."
 										)
 
-	var/current_survivors[] = survivors //These are the current survivors, so we can remove them once we tell a story.
+	var/current_survivors[] = survivors.Copy() //These are the current survivors, so we can remove them once we tell a story.
 	var/story //The actual story they will get to read.
 	var/random_name
 	var/datum/mind/survivor
@@ -812,7 +461,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 			continue //Not a mind? How did this happen?
 
 		var/mob/living/carbon/human/current = survivor.current
-		var/datum/species/species = istype(current) ? current.species : all_species[DEFAULT_SPECIES]
+		var/datum/species/species = istype(current) ? current.species : GLOB.all_species[DEFAULT_SPECIES]
 		random_name = species.random_name(pick(MALE, FEMALE))
 
 		if(current_survivors.len > 1) //If we have another survivor to pick from.
@@ -854,14 +503,15 @@ datum/game_mode/proc/initialize_post_queen_list()
 	//This might count players who ready up but get kicked back to the lobby
 	var/marine_pop_size = 0
 
-	for(var/mob/M in player_list)
-		if(M.stat != DEAD && M.mind && !M.mind.special_role)
+	for(var/i in GLOB.alive_human_list)
+		var/mob/living/carbon/human/H = i
+		if(ismarine(H))
 			marine_pop_size++
 
 	var/scale = max(marine_pop_size / MARINE_GEAR_SCALING_NORMAL, 1) //This gives a decimal value representing a scaling multiplier. Cannot go below 1
 
 	//Set up attachment vendor contents related to Marine count
-	for(var/X in attachment_vendors)
+	for(var/X in GLOB.attachment_vendors)
 		var/obj/machinery/vending/attachments/A = X
 
 		//Forcefully reset the product list
@@ -892,7 +542,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 					/obj/item/attachable/stock/rifle = round(scale * 4) ,
 					/obj/item/attachable/stock/revolver = round(scale * 4),
 					/obj/item/attachable/stock/smg = round(scale * 4) ,
-					/obj/item/attachable/stock/tactical = (scale * 3),
+					/obj/item/attachable/stock/tactical = round(scale * 3),
 
 					/obj/item/attachable/attached_gun/grenade = round(scale * 10),
 					/obj/item/attachable/attached_gun/shotgun = round(scale * 4),
@@ -902,7 +552,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 		//Rebuild the vendor's inventory to make our changes apply
 		A.build_inventory(A.products)
 
-	for(var/X in cargo_ammo_vendors)
+	for(var/X in GLOB.cargo_ammo_vendors)
 		var/obj/machinery/vending/marine/cargo_ammo/CA = X
 
 		//Forcefully reset the product list
@@ -946,6 +596,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 		CA.contraband = list(
 						/obj/item/ammo_magazine/smg/ppsh/ = round(scale * 20),
 						/obj/item/ammo_magazine/smg/ppsh/extended = round(scale * 4),
+						/obj/item/ammo_magazine/rifle/bolt = round(scale * 10),
 						/obj/item/ammo_magazine/sniper = 0,
 						/obj/item/ammo_magazine/sniper/incendiary = 0,
 						/obj/item/ammo_magazine/sniper/flak = 0,
@@ -969,7 +620,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 		CA.build_inventory(CA.products)
 
 
-	for(var/X in cargo_guns_vendors)
+	for(var/X in GLOB.cargo_guns_vendors)
 		var/obj/machinery/vending/marine/cargo_guns/CG = X
 
 		//Forcefully reset the product list
@@ -1020,6 +671,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 		CG.contraband = list(
 						/obj/item/weapon/gun/smg/ppsh = round(scale * 4),
 						/obj/item/weapon/gun/shotgun/double = round(scale * 2),
+						/obj/item/weapon/gun/shotgun/pump/bolt = round(scale * 2),
 						/obj/item/weapon/gun/smg/m39/elite = 0,
 						/obj/item/weapon/gun/rifle/m41aMK1 = 0,
 						/obj/item/weapon/gun/rifle/m41a/elite = 0,
@@ -1044,7 +696,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 
 
 
-	for(var/obj/machinery/vending/marine/M in marine_vendors)
+	for(var/obj/machinery/vending/marine/M in GLOB.marine_vendors)
 
 		//Forcefully reset the product list
 		M.product_records = list()
@@ -1092,7 +744,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 
 		var/products2[]
 		//if(istype(src, /datum/game_mode/ice_colony)) //Literally, we are in gamemode code
-		if(map_tag == MAP_ICE_COLONY)
+		if(SSmapping.config.map_name == MAP_ICE_COLONY)
 			products2 = list(
 						/obj/item/clothing/mask/rebreather/scarf = round(scale * 30),
 						/obj/item/clothing/mask/rebreather = round(scale * 30),
@@ -1101,3 +753,90 @@ datum/game_mode/proc/initialize_post_queen_list()
 
 	//Scale the amount of cargo points through a direct multiplier
 	supply_controller.points = round(supply_controller.points * scale)
+
+// generic landmark setup
+
+#define MAX_TUNNELS_PER_MAP 3
+
+/datum/game_mode/proc/setup_xeno_tunnels()
+	var/obj/structure/tunnel/T
+	var/i = 0
+	var/turf/t
+	while(GLOB.xeno_tunnel_landmarks.len && i++ < MAX_TUNNELS_PER_MAP)
+		t = pick(GLOB.xeno_tunnel_landmarks)
+		GLOB.xeno_tunnel_landmarks -= t
+		T = new(t)
+		T.id = "hole[i]"
+		for(var/x in GLOB.xeno_tunnels)
+			var/obj/structure/tunnel/TO = x
+			if(TO.id != T.id || T == TO || !TO.other)
+				continue
+			TO.other = T
+			T.other = TO
+
+/datum/game_mode/proc/spawn_map_items()
+	var/turf/T
+	switch(SSmapping.config.map_name) // doing the switch first makes this a tiny bit quicker which for round setup is more important than pretty code
+		if(MAP_LV_624)
+			while(GLOB.map_items.len)
+				T = GLOB.map_items[GLOB.map_items.len]
+				GLOB.map_items.len--
+				new /obj/item/map/lazarus_landing_map(T)
+
+		if(MAP_ICE_COLONY)
+			while(GLOB.map_items.len)
+				T = GLOB.map_items[GLOB.map_items.len]
+				GLOB.map_items.len--
+				new /obj/item/map/ice_colony_map(T)
+
+		if(MAP_BIG_RED)
+			while(GLOB.map_items.len)
+				T = GLOB.map_items[GLOB.map_items.len]
+				GLOB.map_items.len--
+				new /obj/item/map/big_red_map(T)
+
+		if(MAP_PRISON_STATION)
+			while(GLOB.map_items.len)
+				T = GLOB.map_items[GLOB.map_items.len]
+				GLOB.map_items.len--
+				new /obj/item/map/FOP_map(T)
+
+/datum/game_mode/proc/spawn_fog_blockers()
+	var/turf/T
+	while(GLOB.fog_blocker_locations.len)
+		T = GLOB.fog_blocker_locations[GLOB.fog_blocker_locations.len]
+		GLOB.fog_blocker_locations.len--
+		new /obj/effect/forcefield/fog(T)
+
+/obj/effect/forcefield
+	anchored = TRUE
+	opacity = FALSE
+	density = TRUE
+
+/obj/effect/forcefield/fog
+	name = "dense fog"
+	desc = "It looks way too dangerous to traverse. Best wait until it has cleared up."
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "smoke"
+	opacity = TRUE
+
+/obj/effect/forcefield/fog/Initialize()
+	. = ..()
+	dir  = pick(CARDINAL_DIRS)
+	GLOB.fog_blockers += src
+
+/obj/effect/forcefield/fog/Destroy()
+	GLOB.fog_blockers -= src
+	return ..()
+
+/obj/effect/forcefield/fog/attack_hand(mob/M)
+	to_chat(M, "<span class='notice'>You peer through the fog, but it's impossible to tell what's on the other side...</span>")
+
+/obj/effect/forcefield/fog/attack_alien(M)
+	return attack_hand(M)
+
+/obj/effect/forcefield/fog/attack_paw(M)
+	return attack_hand(M)
+
+/obj/effect/forcefield/fog/attack_animal(M)
+	return attack_hand(M)

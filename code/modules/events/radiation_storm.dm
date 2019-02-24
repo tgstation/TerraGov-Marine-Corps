@@ -18,11 +18,11 @@
 		command_announcement.Announce("The [station_name()] has entered the radiation belt. Please remain in a sheltered area until it has passed.", "Anomaly Alert")
 
 		for(var/i = 0, i < 10, i++)
-			for(var/mob/living/carbon/human/H in living_mob_list)
+			for(var/mob/living/carbon/human/H in GLOB.alive_human_list)
 				var/turf/T = get_turf(H)
 				if(!T)
 					continue
-				if(T.z != 3 || T.z != 4)
+				if(!is_mainship_or_low_orbit_level(T.z))
 					continue
 				if(istype(T.loc, /area/sulaco/maintenance))
 					continue
@@ -39,11 +39,11 @@
 							domutcheck(H,null,MUTCHK_FORCED)
 
 
-			for(var/mob/living/carbon/monkey/M in living_mob_list)
+			for(var/mob/living/carbon/monkey/M in GLOB.alive_mob_list)
 				var/turf/T = get_turf(M)
 				if(!T)
 					continue
-				if(T.z != 3 || T.z != 4)
+				if(!is_mainship_or_low_orbit_level(T.z))
 					continue
 				M.apply_effect((rand(5,25)),IRRADIATE,0)
 			sleep(100)

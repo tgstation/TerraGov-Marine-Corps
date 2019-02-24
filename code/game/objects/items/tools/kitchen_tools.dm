@@ -39,7 +39,7 @@
 	if(!istype(M))
 		return ..()
 
-	if(user.a_intent != "help")
+	if(user.a_intent != INTENT_HELP)
 		return ..()
 
 	if (reagents.total_volume > 0)
@@ -93,11 +93,11 @@
 	sharp = IS_SHARP_ITEM_ACCURATE
 	edge = 1
 
-	suicide_act(mob/user)
-		user.visible_message(pick("<span class='danger'>[user] is slitting \his wrists with the [src.name]! It looks like \he's trying to commit suicide.</span>", \
-							"<span class='danger'>[user] is slitting \his throat with the [src.name]! It looks like \he's trying to commit suicide.</span>", \
-							"<span class='danger'>[user] is slitting \his stomach open with the [src.name]! It looks like \he's trying to commit seppuku.</span>"))
-		return (BRUTELOSS)
+/obj/item/tool/kitchen/utensil/knife/suicide_act(mob/user)
+	user.visible_message(pick("<span class='danger'>[user] is slitting [user.p_their()] wrists with the [name]! It looks like [user.p_theyre()] trying to commit suicide.</span>", \
+							"<span class='danger'>[user] is slitting [user.p_their()] throat with the [name]! It looks like [user.p_theyre()] trying to commit suicide.</span>", \
+							"<span class='danger'>[user] is slitting [user.p_their()] stomach open with the [name]! It looks like [user.p_theyre()] trying to commit seppuku.</span>"))
+	return (BRUTELOSS)
 
 /obj/item/tool/kitchen/utensil/knife/attack(target as mob, mob/living/user as mob)
 	if ((CLUMSY in user.mutations) && prob(50))
@@ -141,11 +141,11 @@
 	origin_tech = "materials=1"
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
-	suicide_act(mob/user)
-		user.visible_message(pick("<span class='danger'>[user] is slitting \his wrists with the [src.name]! It looks like \he's trying to commit suicide.</span>", \
-							"<span class='danger'>[user] is slitting \his throat with the [src.name]! It looks like \he's trying to commit suicide.</span>", \
-							"<span class='danger'>[user] is slitting \his stomach open with the [src.name]! It looks like \he's trying to commit seppuku.</span>"))
-		return (BRUTELOSS)
+/obj/item/tool/kitchen/knife/suicide_act(mob/user)
+	user.visible_message(pick("<span class='danger'>[user] is slitting [user.p_their()] wrists with the [name]! It looks like [user.p_theyre()] trying to commit suicide.</span>", \
+							"<span class='danger'>[user] is slitting [user.p_their()] throat with the [name]! It looks like [user.p_theyre()] trying to commit suicide.</span>", \
+							"<span class='danger'>[user] is slitting [user.p_their()] stomach open with the [name]! It looks like [user.p_theyre()] trying to commit seppuku.</span>"))
+	return (BRUTELOSS)
 
 /obj/item/tool/kitchen/knife/ritual
 	name = "ritual knife"
@@ -200,7 +200,7 @@
 
 
 	log_combat(user, M, "attacked", src)
-	msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) used the [src.name] to attack [key_name(M)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[M]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[M.x];Y=[M.y];Z=[M.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[M]'>FLW</a>)")
+	msg_admin_attack("[ADMIN_TPMONTY(usr)] used the [src.name] to attack [ADMIN_TPMONTY(M)].")
 
 	var/t = user:zone_selected
 	if (t == "head")
@@ -298,7 +298,7 @@
 
 
 		log_combat(user, M, "attacked", src)
-		msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) used the [src.name] to attack [key_name(M)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[M]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[M.x];Y=[M.y];Z=[M.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[M]'>FLW</a>)")
+		msg_admin_attack("[ADMIN_TPMONTY(usr)] used the [src.name] to attack [ADMIN_TPMONTY(M)].")
 
 		if(prob(15))
 			M.KnockDown(3)
@@ -319,7 +319,7 @@
 
 
 
-	if(istype(M, /mob/living/carbon/human) && ((H.head && (H.head.flags_inventory & COVEREYES) ) || (H.wear_mask && (H.wear_mask.flags_inventory & COVEREYES) ) || (H.glasses && (H.glasses.flags_inventory & COVEREYES) )))
+	if(ishuman(M) && ((H.head && (H.head.flags_inventory & COVEREYES) ) || (H.wear_mask && (H.wear_mask.flags_inventory & COVEREYES) ) || (H.glasses && (H.glasses.flags_inventory & COVEREYES) )))
 		to_chat(M, "<span class='warning'>You get slammed in the face with the tray, against your mask!</span>")
 		if(prob(33))
 			src.add_mob_blood(H)

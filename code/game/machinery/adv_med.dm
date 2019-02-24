@@ -180,12 +180,9 @@
 	anchored = 1
 
 
-/obj/machinery/body_scanconsole/New()
-	..()
-	spawn( 5 )
-		src.connected = locate(/obj/machinery/bodyscanner, get_step(src, WEST))
-		return
-	return
+/obj/machinery/body_scanconsole/Initialize()
+	. = ..()
+	connected = locate(/obj/machinery/bodyscanner, get_step(src, WEST))
 
 /*
 
@@ -252,14 +249,14 @@
 
 	if (href_list["print"])
 		if (!src.connected)
-			to_chat(usr, "\icon[src]<span class='warning'>Error: No body scanner connected.</span>")
+			to_chat(usr, "[icon2html(src, usr)]<span class='warning'>Error: No body scanner connected.</span>")
 			return
 		var/mob/living/carbon/human/occupant = src.connected.occupant
 		if (!src.connected.occupant)
-			to_chat(usr, "\icon[src]<span class='warning'>The body scanner is empty.</span>")
+			to_chat(usr, "[icon2html(src, usr)]<span class='warning'>The body scanner is empty.</span>")
 			return
 		if (!istype(occupant,/mob/living/carbon/human))
-			to_chat(usr, "\icon[src]<span class='warning'>The body scanner cannot scan that lifeform.</span>")
+			to_chat(usr, "[icon2html(src, usr)]<span class='warning'>The body scanner cannot scan that lifeform.</span>")
 			return
 		var/obj/item/paper/R = new(src.loc)
 		R.name = "Body scan report -[src.connected.occupant.real_name]-"

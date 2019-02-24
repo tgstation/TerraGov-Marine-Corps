@@ -7,15 +7,10 @@
 	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = 4
 	force = 15
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	aim_slowdown = SLOWDOWN_ADS_RIFLE
 	wield_delay = WIELD_DELAY_NORMAL
 	gun_skill_category = GUN_SKILL_RIFLES
-
-/obj/item/weapon/gun/rifle/Initialize()
-	. = ..()
-	if(current_mag && current_mag.current_rounds > 0)
-		load_into_chamber()
 
 /obj/item/weapon/gun/rifle/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/mhigh_fire_delay)
@@ -31,9 +26,6 @@
 
 /obj/item/weapon/gun/rifle/unique_action(mob/user)
 	cock(user)
-
-/obj/item/weapon/gun/rifle/has_ammo_counter()
-	return TRUE
 
 /obj/item/weapon/gun/rifle/get_ammo_type()
 	if(!ammo)
@@ -80,7 +72,7 @@
 						/obj/item/attachable/scope,
 						/obj/item/attachable/scope/mini)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
 	starting_attachment_types = list(/obj/item/attachable/attached_gun/grenade)
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
 
@@ -110,7 +102,7 @@
 	item_state = "m41a2"
 	origin_tech = "combat=7;materials=5"
 	current_mag = /obj/item/ammo_magazine/rifle/ap
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
 
 
 /obj/item/weapon/gun/rifle/m41a/elite/set_gun_config_values()
@@ -142,7 +134,7 @@
 						/obj/item/attachable/attached_gun/flamer,
 						/obj/item/attachable/attached_gun/shotgun)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
 
 /obj/item/weapon/gun/rifle/m41aMK1/set_gun_config_values()
@@ -188,7 +180,7 @@
 						/obj/item/attachable/attached_gun/shotgun,
 						/obj/item/attachable/scope/slavic)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 13, "rail_y" = 19, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
 
 /obj/item/weapon/gun/rifle/mar40/set_gun_config_values()
@@ -251,7 +243,7 @@
 						/obj/item/attachable/attached_gun/shotgun
 						)
 
-	flags_gun_features = GUN_CAN_POINTBLANK
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 12, "rail_y" = 22, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 13)
 
 /obj/item/weapon/gun/rifle/m16/set_gun_config_values()
@@ -292,7 +284,7 @@
 						/obj/item/attachable/magnetic_harness,
 						/obj/item/attachable/scope)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_LOAD_INTO_CHAMBER
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 23, "under_x" = 24, "under_y" = 12, "stock_x" = 24, "stock_y" = 12)
 
@@ -326,7 +318,7 @@
 	wield_delay = 4
 	//type_of_casings = "cartridge"
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_BURST_ON
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_BURST_ON|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 
 /obj/item/weapon/gun/rifle/type71/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/high_fire_delay)
@@ -348,15 +340,7 @@
 	name = "\improper Type 71 pulse rifle"
 	desc = " This appears to be a less common variant of the usual Type 71, with an undermounted flamethrower and improved iron sights."
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 20, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
-
-/obj/item/weapon/gun/rifle/type71/flamer/Initialize()
-	. = ..()
-	var/obj/item/attachable/attached_gun/flamer/S = new(src)
-	S.flags_attach_features &= ~ATTACH_REMOVABLE
-	S.Attach(src)
-	update_attachable(S.slot)
-
-
+	starting_attachment_types = list(/obj/item/attachable/attached_gun/flamer/unremovable)
 
 /obj/item/weapon/gun/rifle/type71/carbine
 	name = "\improper Type 71 pulse carbine"
@@ -372,27 +356,7 @@
 	item_state = "type73"
 	wield_delay = 0 //Ends up being .5 seconds due to scope
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 18, "stock_x" = 21, "stock_y" = 18)
-
-/obj/item/weapon/gun/rifle/type71/carbine/commando/Initialize()//Making the gun have an invisible silencer since it's supposed to have one.
-	. = ..()
-	//supressor
-	var/obj/item/attachable/suppressor/S = new(src)
-	S.attach_icon = ""
-	S.icon_state = ""
-	S.flags_attach_features &= ~ATTACH_REMOVABLE
-	S.Attach(src)
-	update_attachable(S.slot)
-	S.icon_state = initial(S.icon_state)
-	//scope
-	var/obj/item/attachable/scope/F = new(src)
-	F.attach_icon = ""
-	F.icon_state = ""
-	F.flags_attach_features &= ~ATTACH_REMOVABLE
-	F.Attach(src)
-	update_attachable(F.slot)
-	F.icon_state = initial(F.icon_state)
-
-
+	starting_attachment_types = list(/obj/item/attachable/suppressor/unremovable/invisible, /obj/item/attachable/scope/unremovable)
 
 /obj/item/weapon/gun/rifle/type71/carbine/commando/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/high_fire_delay)

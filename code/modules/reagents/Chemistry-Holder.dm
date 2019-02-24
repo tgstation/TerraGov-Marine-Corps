@@ -526,7 +526,7 @@
 	var/S = specific_heat()
 	chem_temp = CLAMP(chem_temp * (J / (S * total_volume)), 2.7, 1000)
 
-/datum/reagents/proc/add_reagent(reagent, amount, list/data=null, reagtemp = 300, no_react = 0, safety = 0)
+/datum/reagents/proc/add_reagent(reagent, amount, list/data=null, reagtemp = 300, no_react = 0, safety = 0, no_overdose = FALSE)
 	if(!isnum(amount) || !amount || amount <= 0)
 		return FALSE
 
@@ -539,6 +539,9 @@
 	var/cached_total = total_volume
 	if(cached_total + amount > maximum_volume)
 		amount = (maximum_volume - cached_total) //Doesnt fit in. Make it disappear. Shouldnt happen. Will happen.
+		if(no_overdose)
+			var/overdose = D.overdose_threshold
+			amount = CLAMP(amount,0,overdose - get_reagent_amount(reagent) )
 		if(amount<=0)
 			return FALSE
 	var/new_total = cached_total + amount
@@ -771,6 +774,7 @@
 		chem_temp = max(chem_temp + min(temp_delta, -1), temperature)
 	chem_temp = round(chem_temp)
 	handle_reactions()
+
 
 ///////////////////////////////////////////////////////////////////////////////////
 

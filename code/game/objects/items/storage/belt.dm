@@ -101,7 +101,7 @@
 	item_state = "medical"
 	storage_slots = 14 //can hold 2 "rows" of very limited medical equipment and ammo.
 	max_w_class = 3
-	max_storage_space = 28
+	max_storage_space = 29
 
 	can_hold = list(
 		"/obj/item/device/healthanalyzer",
@@ -123,6 +123,7 @@
 		"/obj/item/ammo_magazine/revolver",
 		"/obj/item/ammo_magazine/handful",
 		"/obj/item/device/flashlight/flare",
+		"/obj/item/explosive/grenade/flare",
 	    "/obj/item/reagent_container/hypospray",
 	    "/obj/item/bodybag",
 	    "/obj/item/device/defibrillator",
@@ -144,6 +145,7 @@
 	new /obj/item/storage/pill_bottle/tramadol(src)
 	new /obj/item/storage/pill_bottle/peridaxon(src)
 	new /obj/item/storage/pill_bottle/quickclot(src)
+	new /obj/item/device/healthanalyzer(src)
 
 
 /obj/item/storage/belt/combatLifesaver
@@ -263,6 +265,7 @@
 	can_hold = list(
 		"/obj/item/weapon/combat_knife",
 		"/obj/item/device/flashlight/flare",
+		"/obj/item/explosive/grenade/flare",
 		"/obj/item/ammo_magazine/rifle",
 		"/obj/item/cell/lasgun",
 		"/obj/item/ammo_magazine/smg",
@@ -323,12 +326,10 @@
 				to_chat(user, "<span class='notice'>You start refilling [src] with [M].</span>")
 				if(!do_after(user, 15, TRUE, 5, BUSY_ICON_GENERIC))
 					return
-				var/cont
-				for(var/x = 1 to storage_slots)
-					cont = handle_item_insertion(M.create_handful(), 1, user)
+				for(var/x = 1 to (storage_slots - contents.len))
+					var/cont = handle_item_insertion(M.create_handful(), 1, user)
 					if(!cont)
 						break
-				M.update_icon()
 				playsound(user.loc, "rustle", 15, 1, 6)
 				to_chat(user, "<span class='notice'>You refill [src] with [M].</span>")
 			else
@@ -374,44 +375,42 @@
 	can_hold = list("/obj/item/explosive/grenade")
 
 
-/obj/item/storage/belt/grenade/New()
-	..()
-	spawn(1)
-		new /obj/item/explosive/grenade/incendiary(src)
-		new /obj/item/explosive/grenade/incendiary(src)
-		new /obj/item/explosive/grenade/incendiary(src)
-		new /obj/item/explosive/grenade/incendiary(src)
-		new /obj/item/explosive/grenade/frag(src)
-		new /obj/item/explosive/grenade/frag(src)
-		new /obj/item/explosive/grenade/frag(src)
-		new /obj/item/explosive/grenade/frag(src)
+/obj/item/storage/belt/grenade/standard/Initialize()
+	. = ..()
+	new /obj/item/explosive/grenade/incendiary(src)
+	new /obj/item/explosive/grenade/incendiary(src)
+	new /obj/item/explosive/grenade/incendiary(src)
+	new /obj/item/explosive/grenade/incendiary(src)
+	new /obj/item/explosive/grenade/frag(src)
+	new /obj/item/explosive/grenade/frag(src)
+	new /obj/item/explosive/grenade/frag(src)
+	new /obj/item/explosive/grenade/frag(src)
 
 /obj/item/storage/belt/grenade/b18
 	w_class = 4
 	storage_slots = 16
 	max_w_class = 3
-	max_storage_space = 32
+	max_storage_space = 48
 	can_hold = list("/obj/item/explosive/grenade")
 
-/obj/item/storage/belt/grenade/b18/New()
-	..()
-	spawn(1)
-		new /obj/item/explosive/grenade/incendiary(src)
-		new /obj/item/explosive/grenade/incendiary(src)
-		new /obj/item/explosive/grenade/incendiary(src)
-		new /obj/item/explosive/grenade/incendiary(src)
-		new /obj/item/explosive/grenade/incendiary(src)
-		new /obj/item/explosive/grenade/incendiary(src)
-		new /obj/item/explosive/grenade/incendiary(src)
-		new /obj/item/explosive/grenade/incendiary(src)
-		new /obj/item/explosive/grenade/frag(src)
-		new /obj/item/explosive/grenade/frag(src)
-		new /obj/item/explosive/grenade/frag(src)
-		new /obj/item/explosive/grenade/frag(src)
-		new /obj/item/explosive/grenade/frag(src)
-		new /obj/item/explosive/grenade/frag(src)
-		new /obj/item/explosive/grenade/frag(src)
-		new /obj/item/explosive/grenade/frag(src)
+/obj/item/storage/belt/grenade/b18/Initialize()
+	. = ..()
+	new /obj/item/explosive/grenade/incendiary(src)
+	new /obj/item/explosive/grenade/incendiary(src)
+	new /obj/item/explosive/grenade/incendiary(src)
+	new /obj/item/explosive/grenade/incendiary(src)
+	new /obj/item/explosive/grenade/incendiary(src)
+	new /obj/item/explosive/grenade/incendiary(src)
+	new /obj/item/explosive/grenade/incendiary(src)
+	new /obj/item/explosive/grenade/incendiary(src)
+	new /obj/item/explosive/grenade/frag(src)
+	new /obj/item/explosive/grenade/frag(src)
+	new /obj/item/explosive/grenade/frag(src)
+	new /obj/item/explosive/grenade/frag(src)
+	new /obj/item/explosive/grenade/frag(src)
+	new /obj/item/explosive/grenade/frag(src)
+	new /obj/item/explosive/grenade/frag(src)
+	new /obj/item/explosive/grenade/frag(src)
 
 /obj/item/storage/sparepouch
 	name="\improper G8 general utility pouch"
@@ -493,18 +492,22 @@
 
 
 //There are only two types here that can be inserted, and they are mutually exclusive. We only track the gun.
-/obj/item/storage/belt/gun/can_be_inserted(obj/item/W, stop_messages) //We don't need to stop messages, but it can be left in.
-	if( ..() ) //If the parent did their thing, this should be fine. It pretty much handles all the checks.
-		if(istype(W,/obj/item/weapon/gun)) //Is it a gun?
-			if(holds_guns_now == holds_guns_max) //Are we at our gun capacity?
-				if(!stop_messages) to_chat(usr, "<span class='warning'>[src] already holds a gun.</span>")
-				return //Nothing else to do.
-		else //Must be ammo.
-		//We have slots open for the gun, so in total we should have storage_slots - guns_max in slots, plus whatever is already in the belt.
-			if(( (storage_slots - holds_guns_max) + holds_guns_now) <= contents.len) // We're over capacity, and the space is reserved for a gun.
-				if(!stop_messages) to_chat(usr, "<span class='warning'>[src] can't hold any more magazines.</span>")
-				return
-		return 1
+/obj/item/storage/belt/gun/can_be_inserted(obj/item/W, warning) //We don't need to stop messages, but it can be left in.
+	. = ..()
+	if(!.) //If the parent did their thing, this should be fine. It pretty much handles all the checks.
+		return
+	if(istype(W,/obj/item/weapon/gun)) //Is it a gun?
+		if(holds_guns_now == holds_guns_max) //Are we at our gun capacity?
+			if(warning)
+				to_chat(usr, "<span class='warning'>[src] already holds a gun.</span>")
+			return FALSE
+	else //Must be ammo.
+	//We have slots open for the gun, so in total we should have storage_slots - guns_max in slots, plus whatever is already in the belt.
+		if(((storage_slots - holds_guns_max) + holds_guns_now) <= length(contents)) // We're over capacity, and the space is reserved for a gun.
+			if(warning)
+				to_chat(usr, "<span class='warning'>[src] can't hold any more magazines.</span>")
+			return FALSE
+	return TRUE
 
 /obj/item/storage/belt/gun/m4a3
 	name = "\improper M276 pattern M4A3 holster rig"
@@ -559,7 +562,6 @@
 	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is for the M44 magnum revolver, along with three pouches for speedloaders. It faintly smells of hay."
 	icon_state = "m44_holster"
 	item_state = "m44_holster"
-	max_w_class = 7
 	can_hold = list(
 		"/obj/item/weapon/gun/revolver/m44",
 		"/obj/item/ammo_magazine/revolver"
@@ -582,7 +584,6 @@
 	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is for the powerful Mateba magnum revolver, along with three pouches for speedloaders. This one is aging poorly, and seems to be surplus equipment. This one is stamped '3rd 'Dust Raiders' Battalion'."
 	icon_state = "s_cmateba_holster"
 	item_state = "s_cmateba_holster"
-	max_w_class = 7
 	can_hold = list(
 		"/obj/item/weapon/gun/revolver/mateba",
 		"/obj/item/ammo_magazine/revolver/mateba"

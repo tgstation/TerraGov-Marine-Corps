@@ -44,7 +44,7 @@
 	icon_state = "toilet[open][cistern]"
 
 /obj/structure/toilet/attackby(obj/item/I, mob/living/user)
-	if(istype(I, /obj/item/tool/crowbar))
+	if(iscrowbar(I))
 		to_chat(user, "<span class='notice'>You start to [cistern ? "replace the lid on the cistern" : "lift the lid off the cistern"].</span>")
 		playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 25, 1)
 		if(do_after(user, 30, TRUE, 5, BUSY_ICON_BUILD))
@@ -54,7 +54,7 @@
 			return
 
 	if(istype(I, /obj/item/grab))
-		if(isXeno(user)) return
+		if(isxeno(user)) return
 		var/obj/item/grab/G = I
 
 		if(isliving(G.grabbed_thing))
@@ -109,7 +109,7 @@
 
 /obj/structure/urinal/attackby(obj/item/I, mob/living/user)
 	if(istype(I, /obj/item/grab))
-		if(isXeno(user)) return
+		if(isxeno(user)) return
 		var/obj/item/grab/G = I
 		if(isliving(G.grabbed_thing))
 			var/mob/living/GM = G.grabbed_thing
@@ -169,7 +169,7 @@
 /obj/machinery/shower/attackby(obj/item/I as obj, mob/user as mob)
 	if(I.type == /obj/item/device/analyzer)
 		to_chat(user, "<span class='notice'>The water temperature seems to be [watertemp].</span>")
-	if(istype(I, /obj/item/tool/wrench))
+	if(iswrench(I))
 		to_chat(user, "<span class='notice'>You begin to adjust the temperature valve with \the [I].</span>")
 		if(do_after(user, 50, TRUE, 5, BUSY_ICON_BUILD))
 			switch(watertemp)
@@ -356,8 +356,18 @@
 	anchored = 1
 	var/busy = 0 	//Something's being washed at the moment
 
+/obj/structure/sink/Initialize()
+	. = ..()
+	switch(dir)
+		if(WEST)
+			pixel_x = -12
+		if(NORTH)
+			pixel_y = 30
+		if(EAST)
+			pixel_x = 12
+
 /obj/structure/sink/attack_hand(mob/user)
-	if(isrobot(user) || isAI(user))
+	if(iscyborg(user) || isAI(user))
 		return
 
 	if(!Adjacent(user))
@@ -401,14 +411,12 @@
 				user.Stun(10)
 				user.stuttering = 10
 				user.KnockDown(10)
-				if(isrobot(user))
+				if(iscyborg(user))
 					var/mob/living/silicon/robot/R = user
 					R.cell.charge -= 20
 				else
 					B.deductcharge(B.hitcost)
-				user.visible_message( \
-					"<span class='danger'>[user] was stunned by \his wet [O]!</span>", \
-					"<span class='userdanger'>[user] was stunned by \his wet [O]!</span>")
+				user.visible_message("<span class='danger'>[user] was stunned by [user.p_their()] wet [O]!</span>")
 				return
 
 	var/turf/location = user.loc

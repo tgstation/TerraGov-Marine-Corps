@@ -64,7 +64,7 @@
 
 /obj/machinery/door_control/attackby(obj/item/W, mob/user as mob)
 	/* For later implementation
-	if (istype(W, /obj/item/tool/screwdriver))
+	if (isscrewdriver(W))
 	{
 		if(wiresexposed)
 			icon_state = "doorctrl0"
@@ -99,9 +99,9 @@
 		return
 	if(shuttle.door_override)
 		return // its been locked down by the queen
-	if(z == 3) // on the almayer
+	if(is_mainship_level(z)) // on the almayer
 		return
-	for(var/obj/machinery/door/airlock/dropship_hatch/M in machines)
+	for(var/obj/machinery/door/airlock/dropship_hatch/M in GLOB.machines)
 		if(M.id == ship_id)
 			if(M.locked && M.density)
 				continue // jobs done
@@ -114,10 +114,10 @@
 	var/obj/machinery/door/airlock/multi_tile/almayer/reardoor
 	switch(ship_id)
 		if("sh_dropship1")
-			for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds1/D in machines)
+			for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds1/D in GLOB.machines)
 				reardoor = D
 		if("sh_dropship2")
-			for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds2/D in machines)
+			for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds2/D in GLOB.machines)
 				reardoor = D
 
 	if(!reardoor.locked && reardoor.density)
@@ -168,7 +168,7 @@
 					D.safe = 1
 
 /obj/machinery/door_control/proc/handle_pod()
-	for(var/obj/machinery/door/poddoor/M in machines)
+	for(var/obj/machinery/door/poddoor/M in GLOB.machines)
 		if(M.id == id)
 			var/datum/shuttle/ferry/marine/S
 			var/area/A = get_area(M)
@@ -255,7 +255,7 @@
 	active = 1
 	icon_state = "launcheract"
 
-	for(var/obj/machinery/door/poddoor/M in machines)
+	for(var/obj/machinery/door/poddoor/M in GLOB.machines)
 		if(M.id == src.id)
 			spawn(0)
 				M.open()
@@ -263,13 +263,13 @@
 
 	sleep(20)
 
-	for(var/obj/machinery/mass_driver/M in machines)
+	for(var/obj/machinery/mass_driver/M in GLOB.machines)
 		if(M.id == src.id)
 			M.drive()
 
 	sleep(50)
 
-	for(var/obj/machinery/door/poddoor/M in machines)
+	for(var/obj/machinery/door/poddoor/M in GLOB.machines)
 		if(M.id == src.id)
 			spawn(0)
 				M.close()

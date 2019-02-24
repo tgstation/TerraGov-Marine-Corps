@@ -92,7 +92,6 @@ field_generator power level display
 					"You turn on the [src.name].", \
 					"You hear heavy droning")
 				turn_on()
-				investigate_log("<font color='green'>activated</font> by [user.key].","singulo")
 
 				src.add_fingerprint(user)
 	else
@@ -104,7 +103,7 @@ field_generator power level display
 	if(active)
 		to_chat(user, "The [src] needs to be off.")
 		return
-	else if(istype(W, /obj/item/tool/wrench))
+	else if(iswrench(W))
 		switch(state)
 			if(0)
 				state = 1
@@ -123,7 +122,7 @@ field_generator power level display
 			if(2)
 				to_chat(user, "<span class='warning'>The [src.name] needs to be unwelded from the floor.</span>")
 				return
-	else if(istype(W, /obj/item/tool/weldingtool))
+	else if(iswelder(W))
 		var/obj/item/tool/weldingtool/WT = W
 		switch(state)
 			if(0)
@@ -215,7 +214,6 @@ field_generator power level display
 		for(var/mob/M in viewers(src))
 			M.show_message("<span class='warning'> \The [src] shuts down!</span>")
 		turn_off()
-		investigate_log("ran out of power and <font color='red'>deactivated</font>","singulo")
 		src.power = 0
 		return 0
 
@@ -290,7 +288,7 @@ field_generator power level display
 			fields += CF
 			G.fields += CF
 			CF.loc = T
-			CF.dir = field_dir
+			CF.setDir(field_dir)
 	var/listcheck = 0
 	for(var/obj/machinery/field_generator/FG in connected_gens)
 		if (isnull(FG))
@@ -334,10 +332,10 @@ field_generator power level display
 	//I want to avoid using global variables.
 	spawn(1)
 		var/temp = 1 //stops spam
-		for(var/obj/machinery/singularity/O in machines)
+		for(var/obj/machinery/singularity/O in GLOB.machines)
 			if(O.last_warning && temp)
 				if((world.time - O.last_warning) > 50) //to stop message-spam
 					temp = 0
-					message_admins("A singulo exists and a containment field has failed.",1)
-					investigate_log("has <font color='red'>failed</font> whilst a singulo exists.","singulo")
+					log_admin("A singulo exists and a containment field has failed in [AREACOORD(src.loc)].")
+					message_admins("A singulo exists and a containment field has failed in [ADMIN_VERBOSEJMP(src.loc)].")
 			O.last_warning = world.time

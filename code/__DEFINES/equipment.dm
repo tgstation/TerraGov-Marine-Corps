@@ -18,13 +18,16 @@
 
 //flags_atom
 
-#define NOINTERACT				1		// You can't interact with it, at all. Useful when doing certain animations.
-#define CONDUCT					2		// conducts electricity (metal etc.)
-#define ON_BORDER				4		// 'border object'. item has priority to check when entering or leaving
-#define NOBLOODY				8		// Don't want a blood overlay on this one.
-#define DIRLOCK					16		// movable atom won't change direction when Moving()ing. Useful for items that have several dir states.
-#define RELAY_CLICK				32		//This is used for /obj/ that relay your clicks via handle_click(), mostly for MGs + Sentries ~Art
-#define INITIALIZED				64  	//Whether /atom/Initialize() has already run for the object
+#define NOINTERACT				(1 << 0)		// You can't interact with it, at all. Useful when doing certain animations.
+#define CONDUCT					(1 << 1)		// conducts electricity (metal etc.)
+#define ON_BORDER				(1 << 2)		// 'border object'. item has priority to check when entering or leaving
+#define NOBLOODY				(1 << 3)		// Don't want a blood overlay on this one.
+#define DIRLOCK					(1 << 4)		// movable atom won't change direction when Moving()ing. Useful for items that have several dir states.
+#define RELAY_CLICK				(1 << 5)		//This is used for /obj/ that relay your clicks via handle_click(), mostly for MGs + Sentries ~Art
+#define INITIALIZED				(1 << 6)  	//Whether /atom/Initialize() has already run for the object
+#define NODECONSTRUCT			(1 << 7)
+#define OVERLAY_QUEUED			(1 << 8)
+
 //==========================================================================================
 
 //flags_barrier
@@ -68,25 +71,22 @@
 
 //flags_inventory
 
-//Another flag for clothing items that determines a few other things now
-#define CANTSTRIP		1		// Can't be removed by others. No longer used by donor items, now only for facehuggers
-
 //SHOES ONLY===========================================================================================
-#define NOSLIPPING		2	//prevents from slipping on wet floors, in space etc
+#define NOSLIPPING		(1<<0) 	//prevents from slipping on wet floors, in space etc
 //SHOES ONLY===========================================================================================
 
 //HELMET AND MASK======================================================================================
-#define COVEREYES		4 // Covers the eyes/protects them.
-#define COVERMOUTH		8 // Covers the mouth.
-#define ALLOWINTERNALS	16	//mask allows internals
-#define ALLOWREBREATH	32 //Mask allows to breath in really hot or really cold air.
-#define BLOCKGASEFFECT	64 // blocks the effect that chemical clouds would have on a mob --glasses, mask and helmets
+#define COVEREYES		(1<<1) // Covers the eyes/protects them.
+#define COVERMOUTH		(1<<2) // Covers the mouth.
+#define ALLOWINTERNALS	(1<<3)	//mask allows internals
+#define ALLOWREBREATH	(1<<4) //Mask allows to breath in really hot or really cold air.
+#define BLOCKGASEFFECT	(1<<5) // blocks the effect that chemical clouds would have on a mob --glasses, mask and helmets
 //HELMET AND MASK======================================================================================
 
 //SUITS AND HELMETS====================================================================================
 //To successfully stop taking all pressure damage you must have both a suit and head item with this flag.
-#define BLOCKSHARPOBJ 	128  //From /tg: prevents syringes, parapens and hypos if the external suit or helmet (if targeting head) has this flag. Example: space suits, biosuit, bombsuits, thick suits that cover your body.
-#define NOPRESSUREDMAGE 256 //This flag is used on the flags variable for SUIT and HEAD items which stop pressure damage.
+#define BLOCKSHARPOBJ 	(1<<6)  //From /tg: prevents syringes, parapens and hypos if the external suit or helmet (if targeting head) has this flag. Example: space suits, biosuit, bombsuits, thick suits that cover your body.
+#define NOPRESSUREDMAGE (1<<7) //This flag is used on the flags variable for SUIT and HEAD items which stop pressure damage.
 //SUITS AND HELMETS====================================================================================
 
 
@@ -159,6 +159,8 @@
 #define SLOT_IN_STORAGE		28
 #define SLOT_IN_L_POUCH		29
 #define SLOT_IN_R_POUCH		30
+#define SLOT_IN_HEAD		31
+#define SLOT_IN_BELT		32
 //=================================================
 
 //I hate that this has to exist
@@ -252,3 +254,58 @@
 
 #define ICE_PLANET_min_cold_protection_temperature 		200 //For the ice planet map protection from the elements.
 //=================================================
+
+//ITEM INVENTORY WEIGHT, FOR w_class
+#define WEIGHT_CLASS_TINY     1 //Usually items smaller then a human hand, ex: Playing Cards, Lighter, Scalpel, Coins/Money
+#define WEIGHT_CLASS_SMALL    2 //Pockets can hold small and tiny items, ex: Flashlight, Multitool, Grenades, GPS Device
+#define WEIGHT_CLASS_NORMAL   3 //Standard backpacks can carry tiny, small & normal items, ex: Fire extinguisher, Stunbaton, Gas Mask, Metal Sheets
+#define WEIGHT_CLASS_BULKY    4 //Items that can be weilded or equipped but not stored in an inventory, ex: Defibrillator, Backpack, Space Suits
+#define WEIGHT_CLASS_HUGE     5 //Usually represents objects that require two hands to operate, ex: Shotgun, Two Handed Melee Weapons
+#define WEIGHT_CLASS_GIGANTIC 6 //Essentially means it cannot be picked up or placed in an inventory, ex: Mech Parts, Safe
+
+#define SLOT_EQUIP_ORDER list(\
+	SLOT_IN_HOLSTER,\
+	SLOT_IN_S_HOLSTER,\
+	SLOT_IN_B_HOLSTER,\
+	SLOT_BACK,\
+	SLOT_WEAR_ID,\
+	SLOT_GLASSES,\
+	SLOT_IN_HEAD,\
+	SLOT_W_UNIFORM,\
+	SLOT_ACCESSORY,\
+	SLOT_WEAR_SUIT,\
+	SLOT_WEAR_MASK,\
+	SLOT_HEAD,\
+	SLOT_SHOES,\
+	SLOT_GLOVES,\
+	SLOT_EARS,\
+	SLOT_BELT,\
+	SLOT_S_STORE,\
+	SLOT_L_STORE,\
+	SLOT_R_STORE,\
+	SLOT_IN_BOOT,\
+	SLOT_IN_STORAGE,\
+	SLOT_IN_L_POUCH,\
+	SLOT_IN_R_POUCH,\
+	SLOT_IN_ACCESSORY,\
+	SLOT_IN_SUIT,\
+	SLOT_IN_BACKPACK,\
+	SLOT_IN_BELT\
+	)
+
+#define SLOT_DRAW_ORDER list(\
+	SLOT_IN_HOLSTER,\
+	SLOT_IN_S_HOLSTER,\
+	SLOT_IN_B_HOLSTER,\
+	SLOT_BACK,\
+	SLOT_BELT,\
+	SLOT_S_STORE,\
+	SLOT_L_STORE,\
+	SLOT_R_STORE,\
+	SLOT_IN_BOOT,\
+	SLOT_WEAR_SUIT,\
+	SLOT_IN_ACCESSORY,\
+	SLOT_IN_STORAGE,\
+	SLOT_IN_BELT,\
+	SLOT_IN_HEAD\
+	)

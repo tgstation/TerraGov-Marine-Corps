@@ -60,15 +60,14 @@
 	caste_base_type = /mob/living/carbon/Xenomorph/Larva/predalien
 
 /mob/living/carbon/Xenomorph/Larva/UnarmedAttack(atom/A)
-	a_intent = "help" //Forces help intent for all interactions.
+	a_intent = INTENT_HELP //Forces help intent for all interactions.
 	. = ..()
 
 /mob/living/carbon/Xenomorph/Larva/Stat()
-	if (!..())
-		return 0
+	. = ..()
 
-	stat(null, "Progress: [amount_grown]/[max_grown]")
-	return 1
+	if(statpanel("Stats"))
+		stat(null, "Progress: [amount_grown]/[max_grown]")
 
 
 //Larva Progression.. Most of this stuff is obsolete.

@@ -111,7 +111,7 @@
 
 /obj/machinery/computer/NTresearch/proc/griefProtection()
 //this should be fine.  The RND server will get adjusted to work so that we can support legacy as well.
-	for(var/obj/machinery/r_n_d/server/centcom/C in machines)
+	for(var/obj/machinery/r_n_d/server/centcom/C in GLOB.machines)
 		for(var/datum/tech/T in files.known_tech)
 			C.files.AddTech2Known(T)
 		for(var/datum/design/D in files.known_designs)
@@ -130,7 +130,7 @@
 	. = ..()
 	SyncRDevices()
 
-/*  //LEAVING THIS FOR NOW.  Eventually, they'll be able to use a W-Y DATACUBE to copy the entire system.  Either for merc theft, Russian shenanigans, or W-Y retreival.
+/*  //LEAVING THIS FOR NOW.  Eventually, they'll be able to use a NT DATACUBE to copy the entire system.  Either for merc theft, Russian shenanigans, or NT retreival.
 /obj/machinery/computer/rdconsole/attackby(var/obj/item/D as obj, var/mob/user as mob)
 	//Loading a disk into it.
 	if(istype(D, /obj/item/disk))
@@ -252,7 +252,7 @@
 			griefProtection() //Putting this here because I dont trust the sync process
 			spawn(30)
 				if(src)
-					for(var/obj/machinery/r_n_d/server/S in machines)
+					for(var/obj/machinery/r_n_d/server/S in GLOB.machines)
 						var/server_processed = 0
 						if(S.disabled)
 							continue
@@ -293,7 +293,6 @@
 				screen = 0.3
 				linked_lathe.busy = 1
 				flick("protolathe_n",linked_lathe)
-				var/key = usr.key	//so we don't lose the info during the spawn delay
 				spawn(16)
 					use_power(power)
 					spawn(16)
@@ -320,8 +319,6 @@
 						if(being_built.build_path)
 							var/buildPath = text2path(being_built.build_path)
 							var/obj/new_item = new buildPath(src)
-							if( new_item.type == /obj/item/storage/backpack/holding )
-								new_item.investigate_log("built by [key]","singulo")
 							new_item.reliability = being_built.reliability
 							if(linked_lathe.hacked) being_built.reliability = max((reliability / 2), 0)
 							/*if(being_built.locked)

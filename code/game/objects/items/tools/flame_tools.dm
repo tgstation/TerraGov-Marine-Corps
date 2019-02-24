@@ -49,7 +49,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	. = ..()
 
 /obj/item/tool/candle/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/tool/weldingtool))
+	if(iswelder(W))
 		var/obj/item/tool/weldingtool/WT = W
 		if(WT.isOn()) //Badasses dont get blinded by lighting their candle with a blowtorch
 			light("<span class ='notice'>[user] casually lights [src] with [W].</span>")
@@ -200,7 +200,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	if(lit || smoketime <= 0)
 		return
 
-	if(istype(W, /obj/item/tool/weldingtool))
+	if(iswelder(W))
 		var/obj/item/tool/weldingtool/WT = W
 		if(WT.isOn())//Badasses dont get blinded while lighting their cig with a blowtorch
 			light("<span class='notice'>[user] casually lights the [name] with [W].</span>")
@@ -213,6 +213,11 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	else if(istype(W, /obj/item/device/flashlight/flare))
 		var/obj/item/device/flashlight/flare/FL = W
 		if(FL.heat_source)
+			light("<span class='notice'>[user] lights their [name] with [W].</span>")
+
+	else if(istype(W, /obj/item/explosive/grenade/flare))
+		var/obj/item/explosive/grenade/flare/FL2 = W
+		if(FL2.heat_source)
 			light("<span class='notice'>[user] lights their [name] with [W].</span>")
 
 	else if(istype(W, /obj/item/tool/lighter))
@@ -245,8 +250,15 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 	else if(istype(W, /obj/item/weapon/gun))
 		var/obj/item/weapon/gun/G = W
-		if(istype(G.under, /obj/item/attachable/attached_gun/flamer))
+		if(istype(G, /obj/item/weapon/gun/energy/lasgun))
+			var/obj/item/weapon/gun/energy/lasgun/L = G
+			if(L.cell.charge)
+				light("<span class='notice'>[user] deftly lights their [src] with the [L]'s low power setting.</span>")
+			else
+				to_chat(user, "<span class='warning'>You try to light your [src] with the [L] but your power cell has no charge!</span>")
+		else if(istype(G.under, /obj/item/attachable/attached_gun/flamer))
 			light("<span class='notice'>[user] lights their [src] with the underbarrel [G.under].</span>")
+
 
 	else if(istype(W, /obj/item/tool/surgery/cautery))
 		light("<span class='notice'>[user] lights their [src] with the [W].</span>")
@@ -330,7 +342,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 	if(reagents && reagents.total_volume)	//	check if it has any reagents at all
 		if(iscarbon(loc) && (src == loc:wear_mask)) // if it's in the human/monkey mouth, transfer reagents to the mob
-			if(istype(loc, /mob/living/carbon/human))
+			if(ishuman(loc))
 				var/mob/living/carbon/human/H = loc
 				if(H.species.flags & IS_SYNTHETIC)
 					return
@@ -358,7 +370,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 				light("<span class='notice'>[user] lights their [src] with the burning ground.</span>")
 				return
 
-		if(isliving(target) && user.a_intent == "help")
+		if(isliving(target) && user.a_intent == INTENT_HELP)
 			var/mob/living/M = target
 			if(M.on_fire)
 				if(user == M)

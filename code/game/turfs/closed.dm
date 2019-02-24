@@ -45,15 +45,14 @@
 	icon = 'icons/turf/ground_map.dmi'
 	icon_state = "wall2"
 
-/turf/closed/gm/dense/New()
-	..()
-	spawn(1)
-		if(rand(0,15) == 0)
-			icon_state = "wall1"
-		else if (rand(0,20) == 0)
-			icon_state = "wall3"
-		else
-			icon_state = "wall2"
+/turf/closed/gm/dense/Initialize()
+	. = ..()
+	if(rand(0,15) == 0)
+		icon_state = "wall1"
+	else if (rand(0,20) == 0)
+		icon_state = "wall3"
+	else
+		icon_state = "wall2"
 
 
 
@@ -129,20 +128,22 @@
 
 	if(istype(W, /obj/item/tool/pickaxe/plasmacutter) && !user.action_busy)
 		var/obj/item/tool/pickaxe/plasmacutter/P = W
-		if(!istype(src, /turf/closed/mineral) && !istype(src, /turf/closed/gm/dense) && !istype(src, /turf/closed/ice) && !istype(src, /turf/closed/desertdamrockwall))
+		if(!ismineralturf(src) && !istype(src, /turf/closed/gm/dense) && !istype(src, /turf/closed/ice) && !istype(src, /turf/closed/desertdamrockwall))
 			to_chat(user, "<span class='warning'>[P] can't cut through this!</span>")
 			return
 		if(!P.start_cut(user, src.name, src))
 			return
 		if(do_after(user, PLASMACUTTER_CUT_DELAY, TRUE, 5, BUSY_ICON_FRIENDLY) && P)
 			P.cut_apart(user, src.name, src)
-			if(istype(src, /turf/closed/mineral) || istype(src, /turf/closed/desertdamrockwall))
+			if(ismineralturf(src) || istype(src, /turf/closed/desertdamrockwall))
 				ChangeTurf(/turf/open/desertdam/cave/inner_cave_floor)
 			else if(istype(src, /turf/closed/gm/dense))
 				ChangeTurf(/turf/open/jungle/clear)
 			else
 				ChangeTurf(/turf/open/ice)
 			return
+
+	. = ..()
 
 //Ice Secret Wall
 /turf/closed/ice/secret
@@ -179,27 +180,31 @@
 //randomized on New().
 /turf/closed/ice_rock/northWall
 	icon_state = "north_wall"
-	New()
-		..()
-		dir = pick(NORTH,SOUTH,EAST,WEST)
+
+/turf/closed/ice_rock/northWall/New()
+	. = ..()
+	setDir(pick(NORTH,SOUTH,EAST,WEST))
 
 /turf/closed/ice_rock/southWall
 	icon_state = "south_wall"
-	New()
-		..()
-		dir = pick(NORTH,SOUTH,EAST,WEST)
+
+/turf/closed/ice_rock/southWall/New()
+	. = ..()
+	setDir(pick(NORTH,SOUTH,EAST,WEST))
 
 /turf/closed/ice_rock/westWall
 	icon_state = "west_wall"
-	New()
-		..()
-		dir = pick(NORTH,SOUTH,EAST,WEST)
+
+/turf/closed/ice_rock/westWall/New()
+	. = ..()
+	setDir(pick(NORTH,SOUTH,EAST,WEST))
 
 /turf/closed/ice_rock/eastWall
 	icon_state = "east_wall"
-	New()
-		..()
-		dir = pick(NORTH,SOUTH,EAST,WEST)
+
+/turf/closed/ice_rock/eastWall/New()
+	. = ..()
+	setDir(pick(NORTH,SOUTH,EAST,WEST))
 
 /turf/closed/ice_rock/cornerOverlay
 	icon_state = "corner_overlay"
@@ -217,6 +222,9 @@
 	name = "wall"
 	icon_state = "wall1"
 	icon = 'icons/turf/shuttle.dmi'
+
+/turf/closed/shuttle/wall3
+	icon_state = "wall3"
 
 /turf/closed/shuttle/dropship
 	icon = 'icons/turf/walls.dmi'

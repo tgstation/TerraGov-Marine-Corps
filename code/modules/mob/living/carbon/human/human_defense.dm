@@ -19,7 +19,7 @@ Contains most of the procs that are called when a mob is attacked by something
 				c_hand = r_hand
 
 			if(c_hand && (stun_amount || agony_amount > 10))
-				msg_admin_attack("[src.name] ([src.ckey]) was disarmed by a stun effect")
+				msg_admin_attack("[ADMIN_TPMONTY(src)] was disarmed by a stun effect.")
 
 				dropItemToGround(c_hand)
 				if (affected.status & LIMB_ROBOT)
@@ -185,10 +185,10 @@ Contains most of the procs that are called when a mob is attacked by something
 
 		switch(hit_area)
 			if("head")//Harder to score a stun but if you do it lasts a bit longer
-				if(prob(I.force))
+				if(prob(I.force) && stat == CONSCIOUS)
 					apply_effect(20, PARALYZE, armor)
 					visible_message("<span class='danger'>[src] has been knocked unconscious!</span>",
-					"<span class='danger'>You have been knocked unconscious!</span>", null, 5)
+									"<span class='danger'>You have been knocked unconscious!</span>", null, 5)
 
 				if(bloody)//Apply blood
 					if(wear_mask)
@@ -202,9 +202,10 @@ Contains most of the procs that are called when a mob is attacked by something
 						update_inv_glasses(0)
 
 			if("chest")//Easier to score a stun but lasts less time
-				if(prob((I.force + 10)))
+				if(prob((I.force + 10)) && !is_mob_incapacitated())
 					apply_effect(6, WEAKEN, armor)
-					visible_message("<span class='danger'>[src] has been knocked down!</span>", null, null, 5)
+					visible_message("<span class='danger'>[src] has been knocked down!</span>",
+									"<span class='danger'>You have been knocked down!</span>", null, 5)
 
 				if(bloody)
 					bloody_body(src)
@@ -213,7 +214,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	if (I.damtype == BRUTE && !I.is_robot_module() && !(I.flags_item & (NODROP|DELONDROP)))
 		var/damage = I.force
 		if(damage > 40) damage = 40  //Some sanity, mostly for yautja weapons. CONSTANT STICKY ICKY
-		if (!armor && weapon_sharp && prob(3) && !isYautja(user)) // make yautja less likely to get their weapon stuck
+		if (!armor && weapon_sharp && prob(3) && !isyautja(user)) // make yautja less likely to get their weapon stuck
 			affecting.embed(I)
 
 	return 1
@@ -238,7 +239,7 @@ Contains most of the procs that are called when a mob is attacked by something
 		var/throw_damage = O.throwforce*(speed/5)
 
 		var/zone
-		if (istype(O.thrower, /mob/living))
+		if (isliving(O.thrower))
 			var/mob/living/L = O.thrower
 			zone = check_zone(L.zone_selected)
 		else
@@ -269,13 +270,18 @@ Contains most of the procs that are called when a mob is attacked by something
 		if(armor < 1)
 			apply_damage(throw_damage, dtype, zone, armor, is_sharp(O), has_edge(O), O)
 
+		if(O.item_fire_stacks)
+			fire_stacks += O.item_fire_stacks
+		if(O.igniting)
+			IgniteMob()
+
 		if(ismob(O.thrower))
 			var/mob/M = O.thrower
 			var/client/assailant = M.client
 			if(assailant)
 				log_combat(M, src, "hit", O, "(thrown)")
 				if(!istype(src,/mob/living/simple_animal/mouse))
-					msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) was hit by a [O], thrown by [key_name(M)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[M]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[M.x];Y=[M.y];Z=[M.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[M]'>FLW</a>)")
+					msg_admin_attack("[ADMIN_TPMONTY(usr)] was hit by a [O], thrown by [ADMIN_TPMONTY(M)].")
 
 		//thrown weapon embedded object code.
 		if(dtype == BRUTE && istype(O,/obj/item))

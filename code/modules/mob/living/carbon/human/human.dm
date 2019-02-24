@@ -4,7 +4,7 @@
 	voice_name = "unknown"
 	icon = 'icons/mob/human.dmi'
 	icon_state = "body_m_s"
-	hud_possible = list(HEALTH_HUD,STATUS_HUD, STATUS_HUD_OOC, STATUS_HUD_XENO_INFECTION,ID_HUD,WANTED_HUD,IMPLOYAL_HUD,IMPCHEM_HUD,IMPTRACK_HUD, SPECIALROLE_HUD, SQUAD_HUD)
+	hud_possible = list(HEALTH_HUD,STATUS_HUD, STATUS_HUD_OOC, STATUS_HUD_XENO_INFECTION,ID_HUD,WANTED_HUD,IMPLOYAL_HUD,IMPCHEM_HUD,IMPTRACK_HUD, SPECIALROLE_HUD, SQUAD_HUD, STATUS_HUD_OBSERVER_INFECTION)
 	var/embedded_flag	  //To check if we've need to roll for damage on movement while an item is imbedded in us.
 	var/regenZ = 1 //Temp zombie thing until I write a better method ~Apop
 
@@ -129,6 +129,8 @@
 
 	. = ..()
 
+	GLOB.human_mob_list += src
+	GLOB.alive_human_list += src
 	round_statistics.total_humans_created++
 
 	if(dna)
@@ -136,6 +138,13 @@
 
 	prev_gender = gender // Debug for plural genders
 
+
+/mob/living/carbon/human/vv_get_dropdown()
+	. = ..()
+	. += "---"
+	.["Set Species"] = "?_src_=vars;[HrefToken()];setspecies=[REF(src)]"
+	.["Purrbation"] = "?_src_=vars;[HrefToken()];purrbation=[REF(src)]"
+	.["Copy Outfit"] = "?_src_=vars;[HrefToken()];copyoutfit=[REF(src)]"
 
 
 /mob/living/carbon/human/prepare_huds()
@@ -155,34 +164,37 @@
 /mob/living/carbon/human/Destroy()
 	assigned_squad?.clean_marine_from_squad(src,FALSE)
 	remove_from_all_mob_huds()
+	GLOB.human_mob_list -= src
+	GLOB.alive_human_list -= src
+	GLOB.dead_human_list -= src
 	return ..()
 
 /mob/living/carbon/human/Stat()
-	if (!..())
-		return 0
+	. = ..()
 
-	if(EvacuationAuthority)
-		var/eta_status = EvacuationAuthority.get_status_panel_eta()
-		if(eta_status)
-			stat(null, eta_status)
+	if(statpanel("Stats"))
+		if(EvacuationAuthority)
+			var/eta_status = EvacuationAuthority.get_status_panel_eta()
+			if(eta_status)
+				stat(null, eta_status)
 
-	if(internal)
-		stat("Internal Atmosphere Info", internal.name)
-		stat("Tank Pressure", internal.pressure)
-		stat("Distribution Pressure", internal.distribute_pressure)
+		if(internal)
+			stat("Internal Atmosphere Info", internal.name)
+			stat("Tank Pressure", internal.pressure)
+			stat("Distribution Pressure", internal.distribute_pressure)
 
-	if(assigned_squad)
-		if(assigned_squad.primary_objective)
-			stat("Primary Objective: ", assigned_squad.primary_objective)
-		if(assigned_squad.secondary_objective)
-			stat("Secondary Objective: ", assigned_squad.secondary_objective)
+		if(assigned_squad)
+			if(assigned_squad.primary_objective)
+				stat("Primary Objective: ", assigned_squad.primary_objective)
+			if(assigned_squad.secondary_objective)
+				stat("Secondary Objective: ", assigned_squad.secondary_objective)
 
-	if(mobility_aura)
-		stat(null, "You are affected by a MOVE order.")
-	if(protection_aura)
-		stat(null, "You are affected by a HOLD order.")
-	if(marskman_aura)
-		stat(null, "You are affected by a FOCUS order.")
+		if(mobility_aura)
+			stat(null, "You are affected by a MOVE order.")
+		if(protection_aura)
+			stat(null, "You are affected by a HOLD order.")
+		if(marskman_aura)
+			stat(null, "You are affected by a FOCUS order.")
 
 /mob/living/carbon/human/ex_act(severity)
 	flash_eyes()
@@ -278,8 +290,6 @@
 
 
 /mob/living/carbon/human/proc/implant_loyalty(mob/living/carbon/human/M, override = FALSE) // Won't override by default.
-	if(!CONFIG_GET(flag/use_loyalty_implants) && !override) return // Nuh-uh.
-
 	var/obj/item/implant/loyalty/L = new/obj/item/implant/loyalty(M)
 	L.imp_in = M
 	L.implanted = 1
@@ -534,9 +544,9 @@
 
 				else
 					if(r_store || l_store)
-						if(r_store && !(r_store.flags_item & NODROP) && !(r_store.flags_inventory & CANTSTRIP))
+						if(r_store && !(r_store.flags_item & NODROP))
 							dropItemToGround(r_store)
-						if(l_store && !(l_store.flags_item & NODROP) && !(l_store.flags_inventory & CANTSTRIP))
+						if(l_store && !(l_store.flags_item & NODROP))
 							dropItemToGround(l_store)
 					else
 						to_chat(usr, "<span class='notice'>[src]'s pockets are empty.</span>")
@@ -643,12 +653,12 @@
 			var/mob/living/carbon/human/H = usr
 			if(mind)
 				var/obj/item/card/id/ID = get_idcard()
-				if(ID && (ID.rank in ROLES_MARINES))//still a marine, with an ID.
+				if(ID && (ID.rank in JOBS_MARINES))//still a marine, with an ID.
 					if(assigned_squad == H.assigned_squad) //still same squad
 						var/newfireteam = input(usr, "Assign this marine to a fireteam.", "Fire Team Assignment") as null|anything in list("None", "Fire Team 1", "Fire Team 2", "Fire Team 3")
 						if(H.is_mob_incapacitated() || get_dist(H, src) > 7 || !hasHUD(H,"squadleader")) return
 						ID = get_idcard()
-						if(ID && ID.rank in ROLES_MARINES)//still a marine with an ID
+						if(ID && ID.rank in JOBS_MARINES)//still a marine with an ID
 							if(assigned_squad == H.assigned_squad) //still same squad
 								switch(newfireteam)
 									if("None") ID.assigned_fireteam = 0
@@ -910,16 +920,18 @@
 									R.fields[text("com_[counter]")] = text("Made by [U.name] ([U.modtype] [U.braintype]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [game_year]<BR>[t1]")
 
 	if (href_list["medholocard"])
-		if(species?.count_human)
+		if(!species?.count_human)
 			to_chat(usr, "<span class='warning'>Triage holocards only works on organic humanoid entities.</span>")
 			return
 		var/newcolor = input("Choose a triage holo card to add to the patient:", "Triage holo card", null, null) in list("black", "red", "orange", "none")
-		if(!newcolor) return
+		if(!newcolor)
+			return
 		if(get_dist(usr, src) > 7)
 			to_chat(usr, "<span class='warning'>[src] is too far away.</span>")
 			return
 		if(newcolor == "none")
-			if(!holo_card_color) return
+			if(!holo_card_color)
+				return
 			holo_card_color = null
 			to_chat(usr, "<span class='notice'>You remove the holo card on [src].</span>")
 		else if(newcolor != holo_card_color)
@@ -1005,10 +1017,12 @@
 		visible_message("<span class='warning'> [src] begins playing his ribcage like a xylophone. It's quite spooky.</span>","<span class='notice'> You begin to play a spooky refrain on your ribcage.</span>","<span class='warning'> You hear a spooky xylophone melody.</span>")
 		var/song = pick('sound/effects/xylophone1.ogg','sound/effects/xylophone2.ogg','sound/effects/xylophone3.ogg')
 		playsound(loc, song, 25, 1)
-		xylophone = 1
-		spawn(1200)
-			xylophone=0
+		xylophone = TRUE
+		addtimer(CALLBACK(src, .xylophone_cooldown), 1200)
 	return
+
+/mob/living/carbon/human/proc/xylophone_cooldown()
+	xylophone = FALSE
 
 /mob/living/carbon/human/proc/morph()
 	set name = "Morph"
@@ -1094,7 +1108,7 @@
 		src.verbs -= /mob/living/carbon/human/proc/remotesay
 		return
 	var/list/creatures = list()
-	for(var/mob/living/carbon/h in player_list)
+	for(var/mob/living/carbon/h in GLOB.player_list)
 		creatures += h
 	var/mob/target = input ("Who do you want to project your mind to ?") as null|anything in creatures
 	if (isnull(target))
@@ -1107,7 +1121,7 @@
 		target.show_message("<span class='notice'> You hear a voice that seems to echo around the room: [say]</span>")
 	usr.show_message("<span class='notice'> You project your mind into [target.real_name]: [say]</span>")
 	log_directed_talk(usr, target, say, LOG_SAY, "project mind")
-	for(var/mob/dead/observer/G in dead_mob_list)
+	for(var/mob/dead/observer/G in GLOB.dead_mob_list)
 		G.show_message("<i>Telepathic message from <b>[src]</b> to <b>[target]</b>: [say]</i>")
 
 /mob/living/carbon/human/proc/remoteobserve()
@@ -1132,9 +1146,9 @@
 
 	var/list/mob/creatures = list()
 
-	for(var/mob/living/carbon/h in player_list)
+	for(var/mob/living/carbon/h in GLOB.player_list)
 		var/turf/temp_turf = get_turf(h)
-		if((temp_turf.z != 1 && temp_turf.z != 5) || h.stat!=CONSCIOUS) //Not on mining or the station. Or dead
+		if(!is_ground_level(temp_turf.z) || h.stat!=CONSCIOUS) //Not on mining or the station. Or dead
 			continue
 		creatures += h
 
@@ -1180,7 +1194,7 @@
 
 	//try to find the brain player in the decapitated head and put them back in control of the human
 	if(!client && !mind) //if another player took control of the human, we don't want to kick them out.
-		for (var/obj/item/limb/head/H in item_list)
+		for (var/obj/item/limb/head/H in GLOB.item_list)
 			if(H.brainmob)
 				if(H.brainmob.real_name == src.real_name)
 					if(H.brainmob.mind)
@@ -1255,11 +1269,11 @@
 	if(usr == src)
 		self = 1
 	if(!self)
-		usr.visible_message("<span class='notice'> [usr] kneels down, puts \his hand on [src]'s wrist and begins counting their pulse.</span>",\
-		"You begin counting [src]'s pulse", null, 3)
+		usr.visible_message("<span class='notice'>[usr] kneels down, puts [usr.p_their()] hand on [src]'s wrist and begins counting their pulse.</span>",\
+		"<span class='notice'>You begin counting [src]'s pulse...</span>", null, 3)
 	else
-		usr.visible_message("<span class='notice'> [usr] begins counting their pulse.</span>",\
-		"You begin counting your pulse.", null, 3)
+		usr.visible_message("<span class='notice'>[usr] begins counting their pulse.</span>",\
+		"<span class='notice'>You begin counting your pulse...</span>", null, 3)
 
 	if(src.pulse)
 		to_chat(usr, "<span class='notice'>[self ? "You have a" : "[src] has a"] pulse! Counting...</span>")
@@ -1318,7 +1332,7 @@
 
 	var/datum/species/oldspecies = species
 
-	species = all_species[new_species]
+	species = GLOB.all_species[new_species]
 
 	if(oldspecies)
 		//additional things to change when we're no longer that species
@@ -1442,7 +1456,6 @@
 		if(C.flags_armor_protection & FEET)
 			feet_exposed = 0
 
-	flavor_text = flavor_texts["general"]
 	flavor_text += "\n\n"
 	for (var/T in flavor_texts)
 		if(flavor_texts[T] && flavor_texts[T] != "")
@@ -1468,23 +1481,6 @@
 	if(shoes && !override_noslip) // && (shoes.flags_inventory & NOSLIPPING)) // no more slipping if you have shoes on. -spookydonut
 		return FALSE
 	. = ..()
-
-
-
-//very similar to xeno's queen_locator() but this is for locating squad leader.
-/mob/living/carbon/human/proc/locate_squad_leader()
-	if(!assigned_squad) return
-	var/mob/living/carbon/human/H = assigned_squad.squad_leader
-	if(!H)
-		hud_used.locate_leader.icon_state = "trackoff"
-		return
-
-	if(H.z != src.z || get_dist(src,H) < 1 || src == H)
-		hud_used.locate_leader.icon_state = "trackondirect"
-	else
-		hud_used.locate_leader.dir = get_dir(src,H)
-		hud_used.locate_leader.icon_state = "trackon"
-
 
 /mob/living/carbon/get_standard_pixel_y_offset()
 	if(lying)

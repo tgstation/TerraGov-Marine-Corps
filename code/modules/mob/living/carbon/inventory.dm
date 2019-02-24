@@ -34,6 +34,5 @@
 		legcuffed = null
 		legcuff_update()
 
-
 /mob/living/carbon/proc/wear_mask_update(obj/item/I)
 	update_inv_wear_mask()

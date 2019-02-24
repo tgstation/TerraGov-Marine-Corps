@@ -48,8 +48,8 @@
 		if(T)
 			T.update_icon()
 
-/obj/structure/table/New()
-	..()
+/obj/structure/table/Initialize()
+	. = ..()
 	for(var/obj/structure/table/T in src.loc)
 		if(T != src)
 			qdel(T)
@@ -203,9 +203,9 @@
 			icon_state = "[table_prefix]tabledir3"
 
 	if(dir_sum in CARDINAL_ALL_DIRS)
-		dir = dir_sum
+		setDir(dir_sum)
 	else
-		dir = SOUTH
+		setDir(SOUTH)
 
 
 /obj/structure/table/attack_tk() // no telehulk sorry
@@ -248,7 +248,7 @@
 
 	if (!istype(I) || user.get_active_held_item() != I)
 		return ..()
-	if(isrobot(user))
+	if(iscyborg(user))
 		return
 	user.drop_held_item()
 	if(I.loc != loc)
@@ -269,17 +269,19 @@
 		else
 			M.visible_message("<span class='danger'>[M] slashes [src]!</span>", \
 			"<span class='danger'>You slash [src]!</span>", null, 5)
+		if(M.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
+			M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 
 /obj/structure/table/attackby(obj/item/W, mob/user)
 	if(!W)
 		return
 	if(istype(W, /obj/item/grab) && get_dist(src, user) <= 1)
-		if(isXeno(user))
+		if(isxeno(user))
 			return
 		var/obj/item/grab/G = W
-		if(istype(G.grabbed_thing, /mob/living))
+		if(isliving(G.grabbed_thing))
 			var/mob/living/M = G.grabbed_thing
-			if(user.a_intent == "hurt")
+			if(user.a_intent == INTENT_HARM)
 				if(user.grab_level > GRAB_AGGRESSIVE)
 					if (prob(15))	M.KnockDown(5)
 					M.apply_damage(8, def_zone = "head")
@@ -299,7 +301,7 @@
 				"<span class='danger'>You throw [M] on [src].</span>")
 		return
 
-	if(istype(W, /obj/item/tool/wrench))
+	if(iswrench(W))
 		user.visible_message("<span class='notice'>[user] starts disassembling [src].</span>",
 		"<span class='notice'>You start disassembling [src].</span>")
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
@@ -309,7 +311,7 @@
 			destroy_structure(1)
 		return
 
-	if((W.flags_item & ITEM_ABSTRACT) || isrobot(user))
+	if((W.flags_item & ITEM_ABSTRACT) || iscyborg(user))
 		return
 
 	if(istype(W, /obj/item/weapon/wristblades))
@@ -419,7 +421,7 @@
 			spawn(0)
 				A.throw_at(pick(targets), 1, 1)
 
-	dir = direction
+	setDir(direction)
 	if(dir != NORTH)
 		layer = FLY_LAYER
 	flipped = TRUE
@@ -450,6 +452,9 @@
 	update_adjacent()
 
 	return TRUE
+
+/obj/structure/table/flipped
+	flipped = TRUE
 
 /*
  * Wooden tables
@@ -486,11 +491,14 @@
 	table_prefix = "reinf"
 	parts = /obj/item/frame/table/reinforced
 
+/obj/structure/table/reinforced/flipped
+	flipped = TRUE
+
 /obj/structure/table/reinforced/flip(var/direction)
 	return FALSE //No, just no. It's a full desk, you can't flip that
 
 /obj/structure/table/reinforced/attackby(obj/item/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/tool/weldingtool))
+	if (iswelder(W))
 		var/obj/item/tool/weldingtool/WT = W
 		if(WT.remove_fuel(0, user))
 			if(status == 2)
@@ -516,7 +524,7 @@
 			return
 		return
 
-	if(istype(W, /obj/item/tool/wrench))
+	if(iswrench(W))
 		if(status == 2)
 			return
 	..()
@@ -565,7 +573,7 @@
 /obj/structure/rack/MouseDrop_T(obj/item/I, mob/user)
 	if (!istype(I) || user.get_active_held_item() != I)
 		return
-	if(isrobot(user))
+	if(iscyborg(user))
 		return
 	user.drop_held_item()
 	if(I.loc != loc)
@@ -577,13 +585,15 @@
 	M.visible_message("<span class='danger'>[M] slices [src] apart!</span>", \
 	"<span class='danger'>You slice [src] apart!</span>", null, 5)
 	destroy_structure()
+	if(M.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
+		M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 
 /obj/structure/rack/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/tool/wrench))
+	if(iswrench(W))
 		destroy_structure(1)
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 		return
-	if((W.flags_item & ITEM_ABSTRACT) || isrobot(user))
+	if((W.flags_item & ITEM_ABSTRACT) || iscyborg(user))
 		return
 	user.transferItemToLoc(W, loc)
 

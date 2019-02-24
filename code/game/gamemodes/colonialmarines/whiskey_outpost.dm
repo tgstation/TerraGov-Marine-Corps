@@ -4,22 +4,7 @@
 	required_players 		= 0
 	recommended_enemies 	= 0 //Leaving this relic code incase we want to do some extra things with it in the future.
 	xeno_bypass_timer 		= 1
-	role_instruction		= ROLE_MODE_REPLACE
-	roles_for_mode = list(/datum/job/marine/standard,
-					/datum/job/marine/medic,
-					/datum/job/marine/engineer,
-					/datum/job/marine/specialist,
-					/datum/job/marine/smartgunner,
-					/datum/job/marine/leader,
-					/datum/job/medical/doctor,
-					/datum/job/command/commander,
-					/datum/job/logistics/tech/maint,
-					/datum/job/command/police,
-					/datum/job/civilian/synthetic
-					)
-
 	flags_round_type	= MODE_NO_LATEJOIN
-	latejoin_larva_drop = 0 //You never know
 
 	//var/mob/living/carbon/human/Commander //If there is no Commander, marines wont get any supplies
 	//No longer relevant to the game mode, since supply drops are getting changed.
@@ -67,7 +52,7 @@
 /datum/game_mode/whiskey_outpost/pre_setup()
 	var/obj/effect/landmark/L
 
-	for(L in landmarks_list)
+	for(L in GLOB.landmarks_list)
 		switch(L.name)
 			if("whiskey_outpost_marine")
 				marine_spawns += L.loc
@@ -102,7 +87,7 @@
 
 	CONFIG_SET(flag/remove_gun_restrictions, TRUE)
 
-	for(M in mob_list)
+	for(M in GLOB.mob_list)
 		if(M.client && istype(M,/mob/living/carbon/human))
 			players += M
 			spawn_player(M)
@@ -111,15 +96,15 @@
 	to_chat(world, "<span class='round_header'>The current game mode is - WHISKEY OUTPOST!</span>")
 	to_chat(world, "<span class='round_body'>It is the year 2181 on the planet LV-624, five years before the arrival of the [MAIN_SHIP_NAME] and the 7th 'Falling Falcons' Battalion in the sector</span>")
 	to_chat(world, "<span class='round_body'>The 3rd 'Dust Raiders' Battalion is charged with establishing a TGMC prescence in the Tychon's Rift sector</span>")
-	to_chat(world, "<span class='round_body'>[map_tag], one of the Dust Raider bases being established in the sector, has come under attack from unrecognized alien forces</span>")
-	to_chat(world, "<span class='round_body'>With casualties mounting and supplies running thin, the Dust Raiders at [map_tag] must survive for an hour to alert the rest of their battalion in the sector</span>")
+	to_chat(world, "<span class='round_body'>[SSmapping.config.map_name], one of the Dust Raider bases being established in the sector, has come under attack from unrecognized alien forces</span>")
+	to_chat(world, "<span class='round_body'>With casualties mounting and supplies running thin, the Dust Raiders at [SSmapping.config.map_name] must survive for an hour to alert the rest of their battalion in the sector</span>")
 	to_chat(world, "<span class='round_body'>Hold out for as long as you can.</span>")
 	world << sound('sound/effects/siren.ogg')
 
 	sleep(50)
 	switch(map_locale) //Switching it up.
 		if(0)
-			command_announcement.Announce("This is Captain Hans Naiche, commander of the 3rd Battalion 'Dust Raiders' forces here on [map_tag]. In our attempts to establish a base on this planet, several of our patrols were wiped out by hostile creatures.  We're setting up a distress call, but we need you to hold [map_tag] in order for our engineers to set up the relay. We're prepping several M402 mortar units to provide fire support. If they overrun your positon, we will be wiped out with no way to call for help. Hold the line or we all die.", "Captain Naich, 3rd Battalion Command, [map_tag] Garrison")
+			command_announcement.Announce("This is Captain Hans Naiche, commander of the 3rd Battalion 'Dust Raiders' forces here on [SSmapping.config.map_name]. In our attempts to establish a base on this planet, several of our patrols were wiped out by hostile creatures.  We're setting up a distress call, but we need you to hold [SSmapping.config.map_name] in order for our engineers to set up the relay. We're prepping several M402 mortar units to provide fire support. If they overrun your positon, we will be wiped out with no way to call for help. Hold the line or we all die.", "Captain Naich, 3rd Battalion Command, [SSmapping.config.map_name] Garrison")
 
 /datum/game_mode/whiskey_outpost/proc/spawn_player(var/mob/M)
 	set waitfor = 0 //Doing this before hand.
@@ -132,7 +117,7 @@
 		message_admins("There were no spawn points available for a player...")
 
 	if(!picked || isnull(picked)) //???
-		message_admins("Warning, null picked spawn in spawn_player")
+		message_admins("Warning, null picked spawn in spawn_player.")
 		return 0
 
 	if(istype(M,/mob/living/carbon/human)) //If We started on Sulaco as squad marine
@@ -203,7 +188,7 @@
 				to_chat(H, "Coordinate your team and prepare defenses.")
 				to_chat(H, "Stay alive!")
 				to_chat(H, "Hold the outpost for one hour until the distress beacon can be broadcast to the remaining Dust Raiders!")
-				to_chat(H, "The local population warned you about establishing a base in the jungles of [map_tag]...")
+				to_chat(H, "The local population warned you about establishing a base in the jungles of [SSmapping.config.map_name]...")
 				to_chat(H, "________________________")
 			sleep(240) //So they can see it
 			if(H)
@@ -636,7 +621,7 @@
 		to_chat(H, "Gear up, prepare defenses, work as a team. Protect your doctors and commander!")
 		to_chat(H, "Motion trackers have detected movement from local creatures, and they are heading towards the outpost!")
 		to_chat(H, "Hold the outpost for one hour until the signal can be established!")
-		to_chat(H, "Ensure the Dust Raiders don't lose their foothold on [map_tag] so you can alert the main forces.")
+		to_chat(H, "Ensure the Dust Raiders don't lose their foothold on [SSmapping.config.map_name] so you can alert the main forces.")
 		to_chat(H, "________________________")
 
 	return 1
@@ -677,16 +662,16 @@
 
 			switch(xeno_wave)
 				if(1)
-					command_announcement.Announce("We're tracking the creatures that wiped out our patrols heading towards your outpost.. Stand-by while we attempt to establish a signal with the USS Alistoun to alert them of these creatures.", "Captain Naich, 3rd Battalion Command, [map_tag] Garrison")
+					command_announcement.Announce("We're tracking the creatures that wiped out our patrols heading towards your outpost.. Stand-by while we attempt to establish a signal with the USS Alistoun to alert them of these creatures.", "Captain Naich, 3rd Battalion Command, [SSmapping.config.map_name] Garrison")
 				if(8)
-					command_announcement.Announce("Captain Naiche speaking, we've been unsuccessful in establishing offworld communication for the moment. We're prepping our M402 mortars to destroy the inbound xeno force on the main road. Standby for fire support.", "Captain Naich, 3rd Battalion Command, [map_tag] Garrison")
+					command_announcement.Announce("Captain Naiche speaking, we've been unsuccessful in establishing offworld communication for the moment. We're prepping our M402 mortars to destroy the inbound xeno force on the main road. Standby for fire support.", "Captain Naich, 3rd Battalion Command, [SSmapping.config.map_name] Garrison")
 				if(9)
 					world << sound('sound/voice/alien_queen_command.ogg')
-					command_announcement.Announce("Our garrison forces are reaching seventy percent casualties, we are losing our grip on [map_tag]. It appears that vanguard of the hostile force is still approaching, and most of the other Dust Raider platoons have been shattered. We're counting on you to keep holding.", "Captain Naich, 3rd Battalion Command, [map_tag] Garrison")
+					command_announcement.Announce("Our garrison forces are reaching seventy percent casualties, we are losing our grip on [SSmapping.config.map_name]. It appears that vanguard of the hostile force is still approaching, and most of the other Dust Raider platoons have been shattered. We're counting on you to keep holding.", "Captain Naich, 3rd Battalion Command, [SSmapping.config.map_name] Garrison")
 				if(12)
 					command_announcement.Announce("This is Captain Naiche, we are picking up large signatures inbound, we'll see what we can do to delay them.", "Captain Naich, 3rd Battalion Command, LV-624")
 				if(14)
-					command_announcement.Announce("This is Captain Naiche, we've established our distress beacon for the USS Alistoun and the remaining Dust Raiders. Hold on for a bit longer while we trasmit our coordinates!", "Captain Naich, 3rd Battalion Command, [map_tag] Garrison")
+					command_announcement.Announce("This is Captain Naiche, we've established our distress beacon for the USS Alistoun and the remaining Dust Raiders. Hold on for a bit longer while we trasmit our coordinates!", "Captain Naich, 3rd Battalion Command, [SSmapping.config.map_name] Garrison")
 
 
 			//SUPPLY SPAWNER
@@ -959,7 +944,7 @@
 				X.plasma_stored = X.xeno_caste.plasma_max
 				X.flags_pass = 0 // Runners cannot pass trough tables
 
-				//X.a_intent = "harm" This caused problems
+				//X.a_intent = INTENT_HARM This caused problems
 				//if(istype(X,/mob/living/carbon/Xenomorph/Carrier))
 				//	X:huggers_cur = 6 //Max out huggers
 				break
@@ -976,7 +961,7 @@
 				X.plasma_stored = X.xeno_caste.plasma_max
 				X.flags_pass = 0 // Runners cannot pass trough tables
 
-				//X.a_intent = "harm" This caused problems
+				//X.a_intent = INTENT_HARM This caused problems
 				//if(istype(X,/mob/living/carbon/Xenomorph/Carrier))
 				//	X:huggers_cur = 6 //Max out huggers
 
@@ -986,7 +971,7 @@
 /datum/game_mode/whiskey_outpost/proc/count_humans()
 	var/human_count = 0
 
-	for(var/mob/living/carbon/human/H in living_mob_list)
+	for(var/mob/living/carbon/human/H in GLOB.alive_human_list)
 		if(H.client && istype(H) && H.stat == 0 && !istype(get_area(H.loc),/area/centcom) && !istype(get_area(H.loc),/area/tdome))
 			if(H.species != "Yautja") // Preds don't count in round end.
 				human_count += 1 //Add them to the amount of people who're alive.
@@ -995,7 +980,7 @@
 
 /datum/game_mode/whiskey_outpost/proc/count_xenos()//Counts braindead too
 	var/xeno_count = 0
-	for(var/mob/living/carbon/Xenomorph/X in living_mob_list)
+	for(var/mob/living/carbon/Xenomorph/X in GLOB.alive_xeno_list)
 		if(X) //Prevent any runtime errors
 			if(istype(X) && X.stat != DEAD && X.z != 0 && !istype(X.loc,/turf/open/space)) // If they're connected/unghosted and alive and not debrained
 				xeno_count += 1 //Add them to the amount of people who're alive.
@@ -1004,9 +989,9 @@
 
 /datum/game_mode/whiskey_outpost/proc/CleanXenos()//moves dead xenos to space
 	var/xeno_count = 0
-	for(var/mob/living/carbon/Xenomorph/X in dead_mob_list)
+	for(var/mob/living/carbon/Xenomorph/X in GLOB.dead_xeno_list)
 		if(X) //Prevent any runtime errors
-			if(istype(X) && X.stat == DEAD && X.z != 2)
+			if(istype(X) && X.stat == DEAD && !is_centcom_level(X.z))
 				X.loc = get_turf(locate(84,237,2)) //z.2
 				xeno_count++
 
@@ -1273,9 +1258,7 @@
 			return
 		if(user.lying || user.stat)
 			return
-		if(istype(usr, /mob/living/silicon) || \
-			istype(usr, /mob/living/carbon/Xenomorph) || \
-			istype(usr, /mob/living/carbon/monkey))
+		if(!ishuman(usr))
 			to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
 			return
 		if(working)
@@ -1463,7 +1446,7 @@
 		return 0
 
 	to_chat(user, "<span class='boldnotice'> You start lasing the target area.</span>")
-	message_admins("ALERT: [key_name(usr)]  (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) IS CURRENTLY LAZING A TARGET: CURRENT MODE [laz_mode], at ([T.x],[T.y],[T.z]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[T.x];Y=[T.y];Z=[T.z]'>JMP</a>).") // Alert all the admins to this asshole. Added the jmp command from the explosion code.
+	message_admins("[ADMIN_TPMONTY(usr)] is currently lazing a target - [laz_mode], at [ADMIN_VERBOSEJMP(T)]")
 	var/obj/effect/las_target/lasertarget = new(T.loc)
 	if(laz_mode == 1 && !laz_r) // Heres our IR bomb code.
 		lazing = 1
@@ -1574,7 +1557,7 @@
 		to_chat(user, "It doesn't seem to do anything for you.")
 		return
 
-	if(user.z != 1)
+	if(!is_ground_level(user.z))
 		to_chat(user, "You have to be on the ground to use this or it won't transmit.")
 		return
 
@@ -1725,7 +1708,7 @@
 		new Landmark(O)
 		num ++
 	sleep(5)
-	message_admins("[num] [src]\s were spawned in at [loc.loc.name] ([loc.x],[loc.y],[loc.z]). (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[loc.x];Y=[loc.y];Z=[loc.z]'>JMP</a>)")
+	message_admins("[num] [src]\s were spawned in at [ADMIN_VERBOSEJMP(loc)].")
 	qdel()
 
 /obj/effect/landmark/wo_spawners/marines

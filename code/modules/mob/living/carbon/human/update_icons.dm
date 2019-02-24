@@ -305,7 +305,7 @@ var/global/list/damage_icon_parts = list()
 			if(!fat && !skeleton)
 				stand_icon.Blend(new /icon('icons/mob/human.dmi', "cryo[underwear]_[g]_s"), ICON_OVERLAY)
 
-		if(job in ROLES_MARINES) //undoing override
+		if(job in JOBS_MARINES) //undoing override
 			if(undershirt>0 && undershirt < 5)
 				stand_icon.Blend(new /icon('icons/mob/human.dmi', "cryoshirt[undershirt]_s"), ICON_OVERLAY)
 		else if(undershirt>0 && undershirt < 5)
@@ -336,7 +336,7 @@ var/global/list/damage_icon_parts = list()
 	var/icon/face_standing	= new /icon('icons/mob/human_face.dmi',"bald_s")
 
 	if(f_style && !(wear_suit && (wear_suit.flags_inv_hide & HIDELOWHAIR)) && !(wear_mask && (wear_mask.flags_inv_hide & HIDELOWHAIR)))
-		var/datum/sprite_accessory/facial_hair_style = facial_hair_styles_list[f_style]
+		var/datum/sprite_accessory/facial_hair_style = GLOB.facial_hair_styles_list[f_style]
 		if(facial_hair_style && facial_hair_style.species_allowed && src.species.name in facial_hair_style.species_allowed)
 			var/icon/facial_s = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_s")
 			if(facial_hair_style.do_colouration)
@@ -345,7 +345,7 @@ var/global/list/damage_icon_parts = list()
 			face_standing.Blend(facial_s, ICON_OVERLAY)
 
 	if(h_style && !(head && (head.flags_inv_hide & HIDETOPHAIR)))
-		var/datum/sprite_accessory/hair_style = hair_styles_list[h_style]
+		var/datum/sprite_accessory/hair_style = GLOB.hair_styles_list[h_style]
 		if(hair_style && src.species.name in hair_style.species_allowed)
 			var/icon/hair_s = new/icon("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]_s")
 			if(hair_style.do_colouration)
@@ -727,7 +727,7 @@ var/global/list/damage_icon_parts = list()
 				for(var/i in marine_armor.armor_overlays)
 					I = marine_armor.armor_overlays[i]
 					if(I)
-						I = image(I.icon,src,I.icon_state)
+						I = image('icons/mob/suit_1.dmi',src,I.icon_state)
 						standing.overlays += I
 
 		if(wear_suit.blood_DNA)
@@ -889,14 +889,14 @@ var/global/list/damage_icon_parts = list()
 	var/icon/face_lying		= new /icon('icons/mob/human_face.dmi',"bald_l")
 
 	if(f_style)
-		var/datum/sprite_accessory/facial_hair_style = facial_hair_styles_list[f_style]
+		var/datum/sprite_accessory/facial_hair_style = GLOB.facial_hair_styles_list[f_style]
 		if(facial_hair_style)
 			var/icon/facial_l = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_l")
 			facial_l.Blend(rgb(r_facial, g_facial, b_facial), ICON_ADD)
 			face_lying.Blend(facial_l, ICON_OVERLAY)
 
 	if(h_style)
-		var/datum/sprite_accessory/hair_style = hair_styles_list[h_style]
+		var/datum/sprite_accessory/hair_style = GLOB.hair_styles_list[h_style]
 		if(hair_style)
 			var/icon/hair_l = new/icon("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]_l")
 			hair_l.Blend(rgb(r_hair, g_hair, b_hair), ICON_ADD)

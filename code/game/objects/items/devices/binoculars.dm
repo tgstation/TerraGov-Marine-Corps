@@ -68,12 +68,6 @@
 	else
 		overlays += "binoculars_laser"
 
-/obj/item/device/binoculars/tactical/handle_click(var/mob/living/user, var/atom/A, var/list/mods)
-	if (mods["ctrl"])
-		acquire_target(A, user)
-		return 1
-	return 0
-
 /obj/item/device/binoculars/tactical/verb/toggle_mode()
 	set category = "Object"
 	set name = "Toggle Laser Mode"
@@ -125,7 +119,7 @@
 	if(!istype(TU))
 		return
 	var/is_outside = FALSE
-	if(TU.z == 1)
+	if(is_ground_level(TU.z))
 		switch(targ_area.ceiling)
 			if(CEILING_NONE)
 				is_outside = TRUE

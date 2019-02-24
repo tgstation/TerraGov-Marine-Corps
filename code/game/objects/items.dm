@@ -80,7 +80,7 @@
 
 /obj/item/New(loc)
 	..()
-	item_list += src
+	GLOB.item_list += src
 	for(var/path in actions_types)
 		new path(src)
 	if(w_class <= 3) //pulling small items doesn't slow you down much
@@ -94,7 +94,7 @@
 		actions -= X
 		qdel(X)
 	master = null
-	item_list -= src
+	GLOB.item_list -= src
 	. = ..()
 
 
@@ -300,7 +300,7 @@ cases. Override_icon_state should be a list.*/
 // If you are making custom procs but would like to retain partial or complete functionality of this one, include a 'return ..()' to where you want this to happen.
 // Set disable_warning to 1 if you wish it to not give you outputs.
 // warning_text is used in the case that you want to provide a specific warning for why the item cannot be equipped.
-/obj/item/proc/mob_can_equip(M as mob, slot, disable_warning = 0)
+/obj/item/proc/mob_can_equip(M as mob, slot, warning = TRUE)
 	if(!slot)
 		return FALSE
 	if(!M)
@@ -359,7 +359,7 @@ cases. Override_icon_state should be a list.*/
 				if(H.belt)
 					return FALSE
 				if(!H.w_uniform && (SLOT_W_UNIFORM in mob_equip))
-					if(!disable_warning)
+					if(warning)
 						to_chat(H, "<span class='warning'>You need a jumpsuit before you can attach this [name].</span>")
 					return FALSE
 				if(!(flags_equip_slot & ITEM_SLOT_BELT))
@@ -399,7 +399,7 @@ cases. Override_icon_state should be a list.*/
 				if(H.l_store)
 					return FALSE
 				if(!H.w_uniform && (SLOT_W_UNIFORM in mob_equip))
-					if(!disable_warning)
+					if(warning)
 						to_chat(H, "<span class='warning'>You need a jumpsuit before you can attach this [name].</span>")
 					return FALSE
 				if(flags_equip_slot & ITEM_SLOT_DENYPOCKET)
@@ -410,7 +410,7 @@ cases. Override_icon_state should be a list.*/
 				if(H.r_store)
 					return FALSE
 				if(!H.w_uniform && (SLOT_W_UNIFORM in mob_equip))
-					if(!disable_warning)
+					if(warning)
 						to_chat(H, "<span class='warning'>You need a jumpsuit before you can attach this [name].</span>")
 					return FALSE
 				if(flags_equip_slot & ITEM_SLOT_DENYPOCKET)
@@ -422,11 +422,11 @@ cases. Override_icon_state should be a list.*/
 				if(H.s_store)
 					return FALSE
 				if(!H.wear_suit && (SLOT_WEAR_SUIT in mob_equip))
-					if(!disable_warning)
+					if(warning)
 						to_chat(H, "<span class='warning'>You need a suit before you can attach this [name].</span>")
 					return FALSE
 				if(!H.wear_suit.allowed)
-					if(!disable_warning)
+					if(warning)
 						to_chat(usr, "You somehow have a suit with no defined allowed items for suit storage, stop that.")
 					return FALSE
 				if( istype(src, /obj/item/device/pda) || istype(src, /obj/item/tool/pen) || is_type_in_list(src, H.wear_suit.allowed) )
@@ -462,43 +462,76 @@ cases. Override_icon_state should be a list.*/
 				if (!H.back || !istype(H.back, /obj/item/storage/backpack))
 					return FALSE
 				var/obj/item/storage/backpack/B = H.back
-				if(src.w_class <= B.max_w_class && B.can_be_inserted(src))
-					return TRUE
+				if(w_class > B.max_w_class || !B.can_be_inserted(src, warning))
+					return FALSE
+				return TRUE
 			if(SLOT_IN_B_HOLSTER)
-				if (H.back && istype(H.back, /obj/item/storage/large_holster))
-					var/obj/item/storage/S = H.back
-					if(S.can_be_inserted(src))
-						return TRUE
-				return FALSE
+				if(!H.back || !istype(H.back, /obj/item/storage/large_holster))
+					return FALSE
+				var/obj/item/storage/S = H.back
+				if(!S.can_be_inserted(src, warning))
+					return FALSE
+				return TRUE
+			if(SLOT_IN_BELT)
+				if(!H.belt || !istype(H.belt, /obj/item/storage/belt))
+					return FALSE
+				var/obj/item/storage/belt/S = H.belt
+				if(!S.can_be_inserted(src, warning))
+					return FALSE
+				return TRUE
 			if(SLOT_IN_HOLSTER)
 				if((H.belt && istype(H.belt,/obj/item/storage/large_holster)) || (H.belt && istype(H.belt,/obj/item/storage/belt/gun)))
 					var/obj/item/storage/S = H.belt
-					if(S.can_be_inserted(src))
+					if(S.can_be_inserted(src, warning))
 						return TRUE
 				return FALSE
 			if(SLOT_IN_S_HOLSTER)
 				if((H.s_store && istype(H.s_store, /obj/item/storage/large_holster)) ||(H.s_store && istype(H.s_store,/obj/item/storage/belt/gun)))
 					var/obj/item/storage/S = H.s_store
-					if(S.can_be_inserted(src))
+					if(S.can_be_inserted(src, warning))
 						return TRUE
 				return FALSE
 			if(SLOT_IN_STORAGE)
 				if(!H.s_active)
 					return FALSE
 				var/obj/item/storage/S = H.s_active
-				if(S.can_be_inserted(src))
+				if(S.can_be_inserted(src, warning))
 					return TRUE
 			if(SLOT_IN_L_POUCH)
 				if(!H.l_store || !istype(H.l_store, /obj/item/storage/pouch))
 					return FALSE
 				var/obj/item/storage/S = H.l_store
-				if(S.can_be_inserted(src))
+				if(S.can_be_inserted(src, warning))
 					return TRUE
 			if(SLOT_IN_R_POUCH)
 				if(!H.r_store || !istype(H.r_store, /obj/item/storage/pouch))
 					return FALSE
 				var/obj/item/storage/S = H.r_store
-				if(S.can_be_inserted(src))
+				if(S.can_be_inserted(src, warning))
+					return TRUE
+			if(SLOT_IN_SUIT)
+				var/obj/item/clothing/suit/storage/S = H.wear_suit
+				if(!istype(S) || !S.pockets)
+					return FALSE
+				var/obj/item/storage/internal/T = S.pockets
+				if(T.can_be_inserted(src, warning))
+					return TRUE
+			if(SLOT_IN_HEAD)
+				var/obj/item/clothing/head/helmet/marine/S = H.head
+				if(!istype(S) || !S.pockets)
+					return FALSE
+				var/obj/item/storage/internal/T = S.pockets
+				if(T.can_be_inserted(src, warning))
+					return TRUE
+			if(SLOT_IN_ACCESSORY)
+				var/obj/item/clothing/under/U = H.w_uniform
+				if(!U?.hastie)
+					return FALSE
+				var/obj/item/clothing/tie/storage/T = U.hastie
+				if(!istype(T))
+					return FALSE
+				var/obj/item/storage/internal/S = T.hold
+				if(S.can_be_inserted(src, warning))
 					return TRUE
 		return FALSE //Unsupported slot
 		//END HUMAN
@@ -541,7 +574,7 @@ cases. Override_icon_state should be a list.*/
 		return
 	if(!usr.canmove || usr.stat || usr.is_mob_restrained() || !Adjacent(usr))
 		return
-	if((!istype(usr, /mob/living/carbon)) || (istype(usr, /mob/living/brain)))//Is humanoid, and is not a brain
+	if((!iscarbon(usr)) || (isbrain(usr)))//Is humanoid, and is not a brain
 		to_chat(usr, "<span class='warning'>You can't pick things up!</span>")
 		return
 	if( usr.stat || usr.is_mob_restrained() )//Is not asleep/dead and is not restrained
@@ -613,9 +646,9 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 	if(is_blind(user))
 		to_chat(user, "<span class='warning'>You are too blind to see anything.</span>")
-	else if(user.stat || !ishuman(user))
-		to_chat(user, "<span class='warning'>You are unable to focus through \the [zoom_device].</span>")
-	else if(!zoom && user.client && H.tinttotal >= 3)
+	else if(!user.IsAdvancedToolUser())
+		to_chat(user, "<span class='warning'>You do not have the dexterity to use \the [zoom_device].</span>")
+	else if(!zoom && user.client && H.tinttotal >= 2)
 		to_chat(user, "<span class='warning'>Your welding equipment gets in the way of you looking through \the [zoom_device].</span>")
 	else if(!zoom && user.get_active_held_item() != src)
 		to_chat(user, "<span class='warning'>You need to hold \the [zoom_device] to look through it.</span>")
@@ -654,7 +687,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		zoom = !zoom
 		if(user.interactee)
 			user.unset_interaction()
-		else
+		else if(!istype(src, /obj/item/attachable/scope))
 			user.set_interaction(src)
 		return
 
@@ -804,7 +837,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 				sleep(2)
 			qdel(W)
 
-	if((istype(user.loc, /turf/open/space)) || (user.lastarea.has_gravity == 0))
+	if(isspaceturf(user.loc) || user.lastarea.has_gravity == 0)
 		user.inertia_dir = get_dir(target, user)
 		step(user, user.inertia_dir)
 	return

@@ -98,7 +98,7 @@ SUBSYSTEM_DEF(garbage)
 					state = SS_RUNNING
 				break
 
-	
+
 
 
 /datum/controller/subsystem/garbage/proc/HandleQueue(level = GC_QUEUE_CHECK)
@@ -158,7 +158,6 @@ SUBSYSTEM_DEF(garbage)
 				#endif
 				var/type = D.type
 				var/datum/qdel_item/I = items[type]
-				testing("GC: -- \ref[src] | [type] was unable to be GC'd --")
 				I.failures++
 			if (GC_QUEUE_HARDDELETE)
 				HardDelete(D)
@@ -218,7 +217,7 @@ SUBSYSTEM_DEF(garbage)
 	if (time > highest_del_time)
 		highest_del_time = time
 	if (time > 10)
-		log_game("Error: [type]([refID]) took longer than 1 second to delete (took [time/10] seconds to delete)")
+		log_game("Error: [type]([refID]) took longer than 1 second to delete (took [time/10] seconds to delete).")
 		message_admins("Error: [type]([refID]) took longer than 1 second to delete (took [time/10] seconds to delete).")
 		postpone(time)
 
@@ -320,13 +319,6 @@ SUBSYSTEM_DEF(garbage)
 
 #ifdef TESTING
 
-/datum/verb/find_refs()
-	set category = "Debug"
-	set name = "Find References"
-	set src in world
-
-	find_references(FALSE)
-
 /datum/proc/find_references(skip_alert)
 	running_find_references = type
 	if(usr && usr.client)
@@ -371,22 +363,6 @@ SUBSYSTEM_DEF(garbage)
 	//restart the garbage collector
 	SSgarbage.can_fire = 1
 	SSgarbage.next_fire = world.time + world.tick_lag
-
-/datum/verb/qdel_then_find_references()
-	set category = "Debug"
-	set name = "qdel() then Find References"
-	set src in world
-
-	qdel(src, TRUE)		//Force.
-	if(!running_find_references)
-		find_references(TRUE)
-
-/datum/verb/qdel_then_if_fail_find_references()
-	set category = "Debug"
-	set name = "qdel() then Find References if GC failure"
-	set src in world
-
-	qdel_and_find_ref_if_fail(src, TRUE)
 
 /datum/proc/DoSearchVar(X, Xname, recursive_limit = 64)
 	if(usr && usr.client && !usr.client.running_find_references)

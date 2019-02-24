@@ -19,13 +19,12 @@
 	var/charge_rate = 100000	//100 kW
 	var/obj/machinery/shield_gen/owned_gen
 
-/obj/machinery/shield_capacitor/New()
-	spawn(10)
-		for(var/obj/machinery/shield_gen/possible_gen in range(1, src))
-			if(get_dir(src, possible_gen) == src.dir)
-				possible_gen.owned_capacitor = src
-				break
-	..()
+/obj/machinery/shield_capacitor/Initialize()
+	for(var/obj/machinery/shield_gen/possible_gen in range(1, src))
+		if(get_dir(src, possible_gen) == src.dir)
+			possible_gen.owned_capacitor = src
+			break
+	. = ..()
 	start_processing()
 
 /obj/machinery/shield_capacitor/attackby(obj/item/W, mob/user)
@@ -47,9 +46,9 @@
 		s.set_up(5, 1, src)
 		s.start()
 
-	else if(istype(W, /obj/item/tool/wrench))
+	else if(iswrench(W))
 		src.anchored = !src.anchored
-		src.visible_message("<span class='notice'> \icon[src] [src] has been [anchored ? "bolted to the floor" : "unbolted from the floor"] by [user].</span>")
+		src.visible_message("<span class='notice'> [icon2html(src, viewers(src))] [src] has been [anchored ? "bolted to the floor" : "unbolted from the floor"] by [user].</span>")
 
 		if(anchored)
 			spawn(0)
@@ -78,7 +77,7 @@
 
 /obj/machinery/shield_capacitor/interact(mob/user)
 	if ( (get_dist(src, user) > 1 ) || (stat & (BROKEN)) )
-		if (!istype(user, /mob/living/silicon))
+		if (!issilicon(user))
 			user.unset_interaction()
 			user << browse(null, "window=shield_capacitor")
 			return
@@ -118,7 +117,7 @@
 
 	if (PN)
 		var/power_draw = between(0, max_charge - stored_charge, charge_rate) //what we are trying to draw
-		power_draw = PN.draw_power(power_draw) //what we actually get
+		power_draw = C.add_load(power_draw) //what we actually get
 		stored_charge += power_draw
 
 	time_since_fail++
@@ -156,5 +155,5 @@
 	if (src.anchored)
 		to_chat(usr, "It is fastened to the floor!")
 		return
-	src.dir = turn(src.dir, 270)
+	setDir(turn(dir, 270))
 	return

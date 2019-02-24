@@ -19,9 +19,9 @@
 	desc = "A trap used to catch bears and other legged creatures."
 	var/armed = 0
 
-	suicide_act(mob/user)
-		user.visible_message("<span class='danger'>[user] is putting the [src.name] on \his head! It looks like \he's trying to commit suicide.</span>")
-		return (BRUTELOSS)
+/obj/item/legcuffs/beartrap/suicide_act(mob/user)
+	user.visible_message("<span class='danger'>[user] is putting the [name] on [user.p_their()] head! It looks like [user.p_theyre()] trying to commit suicide.</span>")
+	return (BRUTELOSS)
 
 /obj/item/legcuffs/beartrap/attack_self(mob/user as mob)
 	..()
@@ -101,7 +101,7 @@
 				if(iscarbon(AM))
 					if(isturf(src.loc))
 						var/mob/living/carbon/H = AM
-						if(isYautja(H))
+						if(isyautja(H))
 							to_chat(H, "<span class='notice'>You carefully avoid stepping on the trap.</span>")
 							return
 						if(H.m_intent == MOVE_INTENT_RUN)
@@ -111,7 +111,7 @@
 							src.loc = H
 							H.legcuff_update()
 							playsound(H,'sound/weapons/tablehit1.ogg', 25, 1)
-							to_chat(H, "\icon[src] <span class='warning'> <B>You step on \the [src]!</B></span>")
+							to_chat(H, "[icon2html(src, H)] <span class='warning'> <B>You step on \the [src]!</B></span>")
 							H.KnockDown(4)
 							if(ishuman(H))
 								H.emote("pain")
@@ -119,11 +119,13 @@
 							for(var/mob/O in viewers(H, null))
 								if(O == H)
 									continue
-								O.show_message("<span class='warning'>\icon[src] <B>[H] steps on [src].</B></span>", 1)
+								O.show_message("<span class='warning'>[icon2html(src, O)] <B>[H] steps on [src].</B></span>", 1)
 				if(isanimal(AM) && !istype(AM, /mob/living/simple_animal/parrot) && !istype(AM, /mob/living/simple_animal/construct) && !istype(AM, /mob/living/simple_animal/shade) && !istype(AM, /mob/living/simple_animal/hostile/viscerator))
 					armed = 0
 					var/mob/living/simple_animal/SA = AM
 					SA.health -= 20
 	..()
 
-
+/obj/item/legcuffs/yautja/ancient
+	name = "Alien Mine"
+	desc = "A bizarre alien device used for trapping and killing prey."

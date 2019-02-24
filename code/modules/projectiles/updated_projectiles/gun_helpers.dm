@@ -8,17 +8,23 @@ ERROR CODE I2: null ammo while load_into_chamber() <------------- Somehow the am
 ERROR CODE R1: negative current_rounds on examine. <------------ Applies to ammunition only. Ammunition should never have negative rounds after spawn.
 
 DEFINES in setup.dm, referenced here.
-#define GUN_CAN_POINTBLANK		1
-#define GUN_TRIGGER_SAFETY		2
-#define GUN_UNUSUAL_DESIGN		4
-#define GUN_SILENCED			8
-#define GUN_AUTOMATIC			16
-#define GUN_INTERNAL_MAG		32
-#define GUN_AUTO_EJECTOR		64
-#define GUN_AMMO_COUNTER		128
-#define GUN_BURST_ON			256
-#define GUN_BURST_FIRING		512
-#define GUN_FLASHLIGHT_ON		1024
+#define GUN_CAN_POINTBLANK		(1 << 0)
+#define GUN_TRIGGER_SAFETY		(1 << 1)
+#define GUN_UNUSUAL_DESIGN		(1 << 2)
+#define GUN_SILENCED			(1 << 3)
+#define GUN_AUTOMATIC			(1 << 4)
+#define GUN_INTERNAL_MAG		(1 << 5)
+#define GUN_AUTO_EJECTOR		(1 << 6)
+#define GUN_AMMO_COUNTER		(1 << 7)
+#define GUN_BURST_ON			(1 << 8)
+#define GUN_BURST_FIRING		(1 << 9)
+#define GUN_FLASHLIGHT_ON		(1 << 10)
+#define GUN_WIELDED_FIRING_ONLY	(1 << 11)
+#define GUN_HAS_FULL_AUTO		(1 << 12)
+#define GUN_FULL_AUTO_ON		(1 << 13)
+#define GUN_POLICE				(1 << 14)
+#define GUN_ENERGY				(1 << 15)
+#define GUN_LOAD_INTO_CHAMBER	(1 << 16)
 
 	NOTES
 
@@ -198,7 +204,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 	if(!istype(user) || delay <= 0)
 		return FALSE
 	var/mob/living/L
-	if(istype(user, /mob/living))
+	if(isliving(user))
 		L = user
 	var/image/busy_icon
 	busy_icon = get_busy_icon(BUSY_ICON_HOSTILE)
@@ -212,7 +218,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 		if(!user || user.stat || user.knocked_down || user.stunned)
 			. = FALSE
 			break
-		if(L && L.health < CONFIG_GET(number/health_threshold_crit))
+		if(L?.health < L.get_crit_threshold())
 			. = FALSE
 			break
 		if(holding)
@@ -404,7 +410,7 @@ should be alright.
 		return
 
 	var/final_delay = attachment.attach_delay
-	if (user.mind.cm_skills.firearms)
+	if(user.mind?.cm_skills?.firearms)
 		user.visible_message("<span class='notice'>[user] begins attaching [attachment] to [src].</span>",
 		"<span class='notice'>You begin attaching [attachment] to [src].</span>", null, 4)
 		if(user.mind.cm_skills.firearms >= SKILL_FIREARMS_DEFAULT) //See if the attacher is super skilled/panzerelite born to defeat never retreat etc
@@ -490,17 +496,20 @@ should be alright.
 
 
 /obj/item/weapon/gun/proc/get_active_firearm(mob/user)
-	if(!ishuman(usr))
+	if(!user.IsAdvancedToolUser())
+		to_chat(user, "<span class='warning'>You don't have the dexterity to do this.</span>")
 		return
 
-	if(!user.canmove || user.stat || user.is_mob_restrained() || !user.loc || !isturf(usr.loc))
-		to_chat(user, "<span class='warning'>Not right now.</span>")
+	if( user.is_mob_incapacitated() || !isturf(user.loc))
+		to_chat(user, "<span class='warning'>You can't do this right now.</span>")
 		return
 
-	var/obj/item/weapon/gun/G = user.get_held_item()
+	var/obj/item/weapon/gun/G = user.get_active_held_item()
+	if(!istype(G))
+		G = user.get_inactive_held_item()
 
 	if(!istype(G))
-		to_chat(user, "<span class='warning'>You need a gun in your active hand to do that!</span>")
+		to_chat(user, "<span class='warning'>You need a gun in your hands to do that!</span>")
 		return
 
 	if(G.flags_gun_features & GUN_BURST_FIRING)
@@ -578,7 +587,7 @@ should be alright.
 		return
 
 	var/final_delay = A.detach_delay
-	if (usr.mind.cm_skills.firearms)
+	if(usr.mind?.cm_skills?.firearms)
 		usr.visible_message("<span class='notice'>[usr] begins stripping [A] from [src].</span>",
 		"<span class='notice'>You begin stripping [A] from [src].</span>", null, 4)
 		if(usr.mind.cm_skills.firearms > SKILL_FIREARMS_DEFAULT) //See if the attacher is super skilled/panzerelite born to defeat never retreat etc
@@ -632,17 +641,17 @@ should be alright.
 			if(flags_gun_features & GUN_FULL_AUTO_ON)
 				flags_gun_features &= ~GUN_FULL_AUTO_ON
 				flags_gun_features &= ~GUN_BURST_ON
-				to_chat(usr, "<span class='notice'>\icon[src] You set [src] to single fire mode.</span>")
+				to_chat(usr, "<span class='notice'>[icon2html(src, usr)] You set [src] to single fire mode.</span>")
 			else
 				flags_gun_features|= GUN_FULL_AUTO_ON
-				to_chat(usr, "<span class='notice'>\icon[src] You set [src] to full auto mode.</span>")
+				to_chat(usr, "<span class='notice'>[icon2html(src, usr)] You set [src] to full auto mode.</span>")
 		else
 			flags_gun_features |= GUN_BURST_ON
-			to_chat(usr, "<span class='notice'>\icon[src] You set [src] to burst fire mode.</span>")
+			to_chat(usr, "<span class='notice'>[icon2html(src, usr)] You set [src] to burst fire mode.</span>")
 	else
 		flags_gun_features ^= GUN_BURST_ON
 
-		to_chat(usr, "<span class='notice'>\icon[src] You [flags_gun_features & GUN_BURST_ON ? "<B>enable</b>" : "<B>disable</b>"] [src]'s burst fire mode.</span>")
+		to_chat(usr, "<span class='notice'>[icon2html(src, usr)] You [flags_gun_features & GUN_BURST_ON ? "<B>enable</b>" : "<B>disable</b>"] [src]'s burst fire mode.</span>")
 
 
 /obj/item/weapon/gun/verb/empty_mag()
@@ -679,26 +688,13 @@ should be alright.
 	set src = usr.contents //We want to make sure one is picked at random, hence it's not in a list.
 
 	var/obj/item/weapon/gun/G = get_active_firearm(usr)
-
 	if(!G)
 		return
-
 	src = G
-
-	if(flags_gun_features & GUN_BURST_FIRING)
-		return
-
-	if(!ishuman(usr))
-		return
-
-	if(usr.is_mob_incapacitated() || !usr.loc || !isturf(usr.loc))
-		to_chat(usr, "Not right now.")
-		return
 
 	to_chat(usr, "<span class='notice'>You toggle the safety [flags_gun_features & GUN_TRIGGER_SAFETY ? "<b>off</b>" : "<b>on</b>"].</span>")
 	playsound(usr, 'sound/machines/click.ogg', 15, 1)
 	flags_gun_features ^= GUN_TRIGGER_SAFETY
-
 
 
 /obj/item/weapon/gun/verb/activate_attachment_verb()
@@ -726,7 +722,7 @@ should be alright.
 		usable_attachments += muzzle
 
 	if(!usable_attachments.len) //No usable attachments.
-		to_chat(usr, "<span class='warning'>[src] does not have any usable attachments!</span>")
+		to_chat(usr, "<span class='warning'>[src] does not have any usable attachment!</span>")
 		return
 
 	if(usable_attachments.len == 1) //Activates the only attachment if there is only one.
@@ -743,20 +739,29 @@ should be alright.
 	set category = "Weapons"
 	set name = "Toggle Rail Attachment"
 	set desc = "Uses the rail attachement currently attached to the gun."
+	set src = usr.contents
 
-	if(!usr)
+	var/obj/item/weapon/gun/G = get_active_firearm(usr)
+	if(!G)
 		return
 
-	rail?.activate_attachment(src, usr)
+	if(!G.rail)
+		to_chat(usr, "<span class='warning'>[src] does not have any usable rail attachment!</span>")
+		return
+
+	G.rail.activate_attachment(G, usr)
 
 
 /obj/item/weapon/gun/verb/toggle_ammo_hud()
 	set category = "Weapons"
 	set name = "Toggle Ammo HUD"
 	set desc = "Toggles the Ammo HUD for this weapon."
+	set src = usr.contents
 
-	if(!usr)
+	var/obj/item/weapon/gun/G = get_active_firearm(usr)
+	if(!G)
 		return
+	src = G
 
 	hud_enabled = !hud_enabled
 	var/obj/screen/ammo/A = usr.hud_used.ammo
@@ -769,10 +774,6 @@ should be alright.
 	if(slot != SLOT_L_HAND && slot != SLOT_R_HAND)
 		return FALSE
 	return TRUE
-
-
-/obj/item/weapon/gun/proc/has_ammo_counter()
-	return FALSE
 
 /obj/item/weapon/gun/proc/get_ammo_type()
 	return FALSE

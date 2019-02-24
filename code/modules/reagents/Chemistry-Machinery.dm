@@ -151,7 +151,7 @@
 	return TRUE // update UIs attached to this object
 
 /obj/machinery/chem_dispenser/attackby(var/obj/item/reagent_container/B as obj, var/mob/user as mob)
-	if(isrobot(user))
+	if(iscyborg(user))
 		return
 	if(src.beaker)
 		to_chat(user, "Something is already loaded into the machine.")
@@ -192,7 +192,7 @@
 
 /obj/machinery/chem_dispenser/soda/attackby(var/obj/item/B as obj, var/mob/user as mob)
 	..()
-	if(istype(B, /obj/item/device/multitool))
+	if(ismultitool(B))
 		if(hackedcheck == 0)
 			to_chat(user, "You change the mode from 'McNano' to 'Pizza King'.")
 			dispensable_reagents += list("thirteenloko","grapesoda")
@@ -219,7 +219,7 @@
 /obj/machinery/chem_dispenser/beer/attackby(var/obj/item/B as obj, var/mob/user as mob)
 	..()
 
-	if(istype(B, /obj/item/device/multitool))
+	if(ismultitool(B))
 		if(hackedcheck == 0)
 			to_chat(user, "You disable the 'nanotrasen-are-cheap-bastards' lock, enabling hidden and very expensive boozes.")
 			dispensable_reagents += list("goldschlager","patron","watermelonjuice","berryjuice")
@@ -248,9 +248,11 @@
 	var/mode = 0
 	var/condi = 0
 	var/useramount = 30 // Last used amount
-	var/pillamount = 10
+	var/pillamount = 16
+	var/pillbottlesprite = "1"
 	var/bottlesprite = "1" //yes, strings
 	var/pillsprite = "1"
+	var/autoinjectorsprite = "11"
 	var/client/has_sprites = list()
 	var/max_pill_count = 20
 
@@ -323,7 +325,7 @@
 			loaded_pill_bottle.loc = loc
 			loaded_pill_bottle = null
 	else if(href_list["close"])
-		user << browse(null, "window=chemmaster")
+		user << browse(null, "window=chem_master")
 		user.unset_interaction()
 		return
 
@@ -394,6 +396,18 @@
 				beaker = null
 				reagents.clear_reagents()
 				icon_state = "mixer0"
+		
+		else if (href_list["createpillbottle"])
+			if(!condi)
+				if(loaded_pill_bottle)
+					to_chat(user, "<span class='warning'>A pill bottle is already loaded into the machine.</span>")
+					return
+				var/obj/item/storage/pill_bottle/I = new/obj/item/storage/pill_bottle
+				I.icon_state = "pill_canister"+pillbottlesprite
+				loaded_pill_bottle = I
+				to_chat(user, "<span class='notice'>The Chemmaster 3000 sets a pill bottle into the dispenser slot.</span>")
+				updateUsrDialog()
+
 		else if (href_list["createpill"] || href_list["createpill_multiple"])
 			var/count = 1
 
@@ -401,7 +415,7 @@
 				return
 
 			if (href_list["createpill_multiple"])
-				count = CLAMP(input("Select the number of pills to make. (max: [max_pill_count])", 10, pillamount) as num|null,0,max_pill_count)
+				count = CLAMP(input("Select the number of pills to make. (max: [max_pill_count])", 16, pillamount) as num|null,0,max_pill_count)
 				if(!count)
 					return
 
@@ -409,7 +423,7 @@
 				return
 
 			var/amount_per_pill = reagents.total_volume/count
-			if (amount_per_pill > 60) amount_per_pill = 60
+			if (amount_per_pill > 15) amount_per_pill = 15
 
 			var/name = reject_bad_text(input(user,"Name:","Name your pill!","[reagents.get_master_reagent_name()] ([amount_per_pill] units)") as text|null)
 			if(!name)
@@ -446,14 +460,39 @@
 			else
 				var/obj/item/reagent_container/food/condiment/P = new/obj/item/reagent_container/food/condiment(loc)
 				reagents.trans_to(P,50)
+
+		else if (href_list["createautoinjector"])
+			if(!condi)
+				var/name = reject_bad_text(input(user,"Name:","Name your autoinjector!",reagents.get_master_reagent_name()) as text|null)
+				if(!name)
+					return
+				var/obj/item/reagent_container/hypospray/autoinjector/fillable/P = new/obj/item/reagent_container/hypospray/autoinjector/fillable(loc)
+				if(!name) name = reagents.get_master_reagent_name()
+				P.name = "[name] autoinjector"
+				P.pixel_x = rand(-7, 7) //random position
+				P.pixel_y = rand(-7, 7)
+				P.icon_state = "autoinjector-"+autoinjectorsprite
+				reagents.trans_to(P,30)
+				P.update_icon()
+
+		else if(href_list["change_pill_bottle"])
+			#define MAX_PILL_BOTTLE_SPRITE 12 //max icon state of the pill sprites
+			var/dat = "<table>"
+			for(var/i = 1 to MAX_PILL_BOTTLE_SPRITE)
+				dat += "<tr><td><a href=\"?src=\ref[src]&pill_bottle_sprite=[i]\"><img src=\"pill_canister[i].png\" /></a></td></tr>"
+			dat += "</table>"
+			user << browse(dat, "window=chem_master")
+			return
+
 		else if(href_list["change_pill"])
-			#define MAX_PILL_SPRITE 20 //max icon state of the pill sprites
+			#define MAX_PILL_SPRITE 21 //max icon state of the pill sprites
 			var/dat = "<table>"
 			for(var/i = 1 to MAX_PILL_SPRITE)
 				dat += "<tr><td><a href=\"?src=\ref[src]&pill_sprite=[i]\"><img src=\"pill[i].png\" /></a></td></tr>"
 			dat += "</table>"
 			user << browse(dat, "window=chem_master")
 			return
+
 		else if(href_list["change_bottle"])
 			#define MAX_BOTTLE_SPRITE 4 //max icon state of the bottle sprites
 			var/dat = "<table>"
@@ -462,11 +501,24 @@
 			dat += "</table>"
 			user << browse(dat, "window=chem_master")
 			return
+
+		else if(href_list["change_autoinjector"])
+			#define MAX_AUTOINJECTOR_SPRITE 11 //max icon state of the autoinjector sprites
+			var/dat = "<table>"
+			for(var/i = 1 to MAX_AUTOINJECTOR_SPRITE)
+				dat += "<tr><td><a href=\"?src=\ref[src]&autoinjector_sprite=[i]\"><img src=\"autoinjector-[i].png\" /></a></td></tr>"
+			dat += "</table>"
+			user << browse(dat, "window=chem_master")
+			return
+		
+		else if(href_list["pill_bottle_sprite"])
+			pillbottlesprite = href_list["pill_bottle_sprite"]
 		else if(href_list["pill_sprite"])
 			pillsprite = href_list["pill_sprite"]
 		else if(href_list["bottle_sprite"])
 			bottlesprite = href_list["bottle_sprite"]
-
+		else if(href_list["autoinjector_sprite"])
+			autoinjectorsprite = href_list["autoinjector_sprite"]
 	//src.updateUsrDialog()
 	attack_hand(user)
 
@@ -478,10 +530,14 @@
 	if(!(user.client in has_sprites))
 		spawn()
 			has_sprites += user.client
+			for(var/i = 1 to MAX_PILL_BOTTLE_SPRITE)
+				user << browse_rsc(icon('icons/obj/items/chemistry.dmi', "pill_canister" + num2text(i)), "pill_canister[i].png")
 			for(var/i = 1 to MAX_PILL_SPRITE)
 				user << browse_rsc(icon('icons/obj/items/chemistry.dmi', "pill" + num2text(i)), "pill[i].png")
 			for(var/i = 1 to MAX_BOTTLE_SPRITE)
 				user << browse_rsc(icon('icons/obj/items/chemistry.dmi', "bottle-" + num2text(i)), "bottle-[i].png")
+			for(var/i = 1 to MAX_AUTOINJECTOR_SPRITE)
+				user << browse_rsc(icon('icons/obj/items/syringe.dmi', "autoinjector-" + num2text(i)), "autoinjector-[i].png")
 	var/dat = ""
 	if(!beaker)
 		dat = "Please insert beaker.<BR>"
@@ -522,13 +578,15 @@
 		else
 			dat += "Empty<BR>"
 		if(!condi)
-			dat += "<HR><BR><A href='?src=\ref[src];createpill=1'>Create pill (60 units max)</A><a href=\"?src=\ref[src]&change_pill=1\"><img src=\"pill[pillsprite].png\" /></a><BR>"
+			dat += "<HR><BR><A href='?src=\ref[src];createpillbottle=1'>Load pill bottle</A><a href=\"?src=\ref[src]&change_pill_bottle=1\"><img src=\"pill_canister[pillbottlesprite].png\" /></a><BR>"
+			dat += "<A href='?src=\ref[src];createpill=1'>Create pill (15 units max)</A><a href=\"?src=\ref[src]&change_pill=1\"><img src=\"pill[pillsprite].png\" /></a><BR>"
 			dat += "<A href='?src=\ref[src];createpill_multiple=1'>Create multiple pills</A><BR>"
-			dat += "<A href='?src=\ref[src];createbottle=1'>Create bottle (60 units max)<a href=\"?src=\ref[src]&change_bottle=1\"><img src=\"bottle-[bottlesprite].png\" /></A>"
+			dat += "<A href='?src=\ref[src];createbottle=1'>Create bottle (60 units max)<a href=\"?src=\ref[src]&change_bottle=1\"><img src=\"bottle-[bottlesprite].png\" /></A><BR>"
+			dat += "<A href='?src=\ref[src];createautoinjector=1'>Create autoinjector (30 units max)<a href=\"?src=\ref[src]&change_autoinjector=1\"><img src=\"autoinjector-[autoinjectorsprite].png\" /></A>"
 		else
 			dat += "<A href='?src=\ref[src];createbottle=1'>Create bottle (50 units max)</A>"
 	if(!condi)
-		user << browse("<TITLE>Chemmaster 3000</TITLE>Chemmaster menu:<BR><BR>[dat]", "window=chem_master;size=575x400")
+		user << browse("<TITLE>Chemmaster 3000</TITLE>Chemmaster menu:<BR><BR>[dat]", "window=chem_master;size=575x450")
 	else
 		user << browse("<TITLE>Condimaster 3000</TITLE>Condimaster menu:<BR><BR>[dat]", "window=chem_master;size=575x400")
 	onclose(user, "chem_master")

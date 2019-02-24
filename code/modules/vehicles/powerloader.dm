@@ -25,8 +25,7 @@
 	if(world.time > l_move_time + move_delay)
 		if(dir != direction)
 			l_move_time = world.time
-			dir = direction
-			handle_rotation()
+			setDir(direction)
 			pick(playsound(src.loc, 'sound/mecha/powerloader_turn.ogg', 25, 1), playsound(src.loc, 'sound/mecha/powerloader_turn2.ogg', 25, 1))
 			. = TRUE
 		else
@@ -61,7 +60,7 @@
 			unbuckle() //clicking the powerloader with its own clamp unbuckles the pilot.
 			playsound(loc, 'sound/mecha/powerloader_unbuckle.ogg', 25)
 			return TRUE
-	else if(istype(W, /obj/item/tool/screwdriver))
+	else if(isscrewdriver(W))
 		to_chat(user, "<span class='notice'>You screw the panel [panel_open ? "closed" : "open"].</span>")
 		playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
 		panel_open = !panel_open
@@ -124,9 +123,10 @@
 
 	buckle_mob(M, usr)
 
-/obj/vehicle/powerloader/handle_rotation()
-	if(buckled_mob)
-		buckled_mob.dir = dir
+/obj/vehicle/powerloader/setDir(newdir)
+	. = ..()
+	if(buckled_mob?.dir != dir)
+		buckled_mob.setDir(dir)
 
 /obj/vehicle/powerloader/explode()
 	new /obj/structure/powerloader_wreckage(loc)
@@ -155,7 +155,7 @@
 	if(M == linked_powerloader.buckled_mob)
 		unbuckle() //if the pilot clicks themself with the clamp, it unbuckles them.
 		return 1
-	else if(isXeno(M) && user.a_intent == "help")
+	else if(isxeno(M) && user.a_intent == INTENT_HELP)
 		var/mob/living/carbon/Xenomorph/X = M
 		if(X.stat == DEAD)
 			if(!X.anchored)

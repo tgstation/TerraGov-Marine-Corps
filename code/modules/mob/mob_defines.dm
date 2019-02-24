@@ -1,4 +1,6 @@
 /mob
+	name = "nameless mob"
+
 	density = 1
 	layer = MOB_LAYER
 	animate_movement = 2
@@ -7,8 +9,6 @@
 
 	var/stat = 0 //Whether a mob is alive or dead. TODO: Move this to living - Nodrak
 	var/obj/screen/hands = null //robot
-
-	var/adminhelp_marked = 0 // Prevents marking an Adminhelp more than once. Making this a client define will cause runtimes and break some Adminhelps
 
 	/*A bunch of this stuff really needs to go under their own defines instead of being globally attached to mob.
 	A variable should only be globally attached to turfs/objects/whatever, when it is in fact needed as such.
@@ -77,13 +77,13 @@
 	var/specset //Simple way to track which set has the player taken
 
 	var/overeatduration = 0		// How long this guy is overeating //Carbon
-	var/knocked_out = 0.0
-	var/stunned = 0.0
-	var/frozen = 0.0
-	var/knocked_down = 0.0
-	var/losebreath = 0.0//Carbon
+	var/knocked_out = 0.
+	var/stunned = 0
+	var/frozen = 0
+	var/knocked_down = 0
+	var/losebreath = 0 //Carbon
 	var/shakecamera = 0
-	var/a_intent = "help"//Living
+	var/a_intent = INTENT_HELP //Living
 	var/m_intent = MOVE_INTENT_RUN//Living
 	var/lastKnownIP = null
 	var/obj/buckled = null//Living
@@ -118,17 +118,13 @@
 	var/datum/dna/dna = null//Carbon
 	var/radiation = 0.0//Carbon
 
+	var/list/viruses = list()
 	var/list/mutations = list() //Carbon -- Doohl
 	//see: setup.dm for list of mutations
 
 	var/voice_name = "unidentifiable voice"
 
-	var/faction = "neutral" //Used for checking whether hostile simple animals will attack you, possibly more stuff later
-
-//Wizard mode, but can be used in other modes thanks to the brand new "Give Spell" badmin button
-	var/obj/effect/proc_holder/spell/list/spell_list = list()
-
-	var/list/viruses = list() //List of active diseases
+	var/faction = "Neutral"
 
 //Monkey/infected mode
 	var/list/resistances = list()
@@ -172,3 +168,5 @@
 	var/scatter_modifier = 0 //Applies a penalty or bonus to scatter probability in gun_system.dm
 
 	var/list/fullscreens = list()
+
+	var/notransform

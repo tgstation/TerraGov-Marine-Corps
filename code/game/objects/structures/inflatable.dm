@@ -94,6 +94,9 @@
 	if(M.melee_damage_upper <= 0) return
 	attack_generic(M, M.melee_damage_upper)
 
+/obj/structure/inflatable/attack_alien(mob/living/carbon/Xenomorph/M)
+	M.animation_attack_on(src)
+	deflate(1)
 
 /obj/structure/inflatable/attackby(obj/item/W as obj, mob/user as mob)
 	if(!istype(W)) return
@@ -144,7 +147,7 @@
 
 	if(isobserver(usr)) //to stop ghosts from deflating
 		return
-	if(isXeno(usr))
+	if(isxeno(usr))
 		return
 
 	if(!deflated)
@@ -198,7 +201,7 @@
 /obj/structure/inflatable/door/attack_ai(mob/user as mob) //those aren't machinery, they're just big fucking slabs of a mineral
 	if(isAI(user)) //so the AI can't open it
 		return
-	else if(isrobot(user)) //but cyborgs can
+	else if(iscyborg(user)) //but cyborgs can
 		if(get_dist(user,src) <= 1) //not remotely though
 			return TryToSwitchState(user)
 

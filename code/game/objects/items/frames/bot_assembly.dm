@@ -120,11 +120,10 @@
 	var/skin = null //Same as medbot, set to tox or ointment for the respective kits.
 	w_class = 3.0
 
-	New()
-		..()
-		spawn(5)
-			if(src.skin)
-				src.overlays += image('icons/obj/aibots.dmi', "kit_skin_[src.skin]")
+/obj/item/frame/firstaid_arm_assembly/Initialize()
+	. = ..()
+	if(src.skin)
+		src.overlays += image('icons/obj/aibots.dmi', "kit_skin_[src.skin]")
 
 
 /obj/item/frame/firstaid_arm_assembly/attackby(obj/item/W as obj, mob/user as mob)

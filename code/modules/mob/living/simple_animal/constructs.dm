@@ -10,7 +10,7 @@
 	response_harm   = "punches"
 	icon_dead = "shade_dead"
 	speed = -1
-	a_intent = "harm"
+	a_intent = INTENT_HARM
 	stop_automated_movement = 1
 	status_flags = CANPUSH
 	universal_speak = 1
@@ -31,8 +31,6 @@
 	. = ..()
 	name = text("[initial(name)] ([rand(1, 1000)])")
 	real_name = name
-	for(var/spell in construct_spells)
-		spell_list += new spell(src)
 
 /mob/living/simple_animal/construct/death()
 	new /obj/item/ectoplasm (src.loc)
@@ -41,7 +39,7 @@
 	qdel(src)
 
 /mob/living/simple_animal/construct/examine(mob/user)
-	var/msg = "<span cass='info'>*---------*\nThis is \icon[src] \a <EM>[src]</EM>!\n"
+	var/msg = "<span cass='info'>*---------*\nThis is [icon2html(src, user)] \a <EM>[src]</EM>!\n"
 	if (health < maxHealth)
 		msg += "<span class='warning'>"
 		if (health >= maxHealth/2)
@@ -110,7 +108,6 @@
 	wall_smash = 1
 	attack_sound = 'sound/weapons/punch3.ogg'
 	status_flags = 0
-	construct_spells = list(/obj/effect/proc_holder/spell/aoe_turf/conjure/lesserforcewall)
 
 /mob/living/simple_animal/construct/armoured/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(O.force)
@@ -183,7 +180,6 @@
 	speed = -1
 	see_in_dark = 7
 	attack_sound = 'sound/weapons/bladeslice.ogg'
-	construct_spells = list(/obj/effect/proc_holder/spell/targeted/ethereal_jaunt/shift)
 
 
 
@@ -208,10 +204,6 @@
 	speed = 0
 	wall_smash = 1
 	attack_sound = 'sound/weapons/punch2.ogg'
-	construct_spells = list(/obj/effect/proc_holder/spell/aoe_turf/conjure/construct/lesser,
-							/obj/effect/proc_holder/spell/aoe_turf/conjure/wall,
-							/obj/effect/proc_holder/spell/aoe_turf/conjure/floor,
-							/obj/effect/proc_holder/spell/aoe_turf/conjure/soulstone,)
 
 
 /////////////////////////////Behemoth/////////////////////////
@@ -279,7 +271,7 @@
 
 		usr.energy -= 300
 	var/list/mob/living/cultists = new
-	for(var/datum/mind/H in ticker.mode.cult)
+	for(var/datum/mind/H in SSticker.mode.cult)
 		if (istype(H.current,/mob/living))
 			cultists+=H.current
 			var/mob/cultist = input("Choose the one who you want to summon", "Followers of Geometer") as null|anything in (cultists - usr)

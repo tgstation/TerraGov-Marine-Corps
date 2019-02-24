@@ -16,7 +16,7 @@
 /obj/item/organ/attack_self(mob/user as mob)
 
 	// Convert it to an edible form, yum yum.
-	if(!robotic && user.a_intent == "help" && user.zone_selected == "mouth")
+	if(!robotic && user.a_intent == INTENT_HELP && user.zone_selected == "mouth")
 		bitten(user)
 		return
 
@@ -158,7 +158,7 @@
 
 	if(organ_data.vital)
 		log_combat(user, target, "removed a vital organ ([src])", addition="(INTENT: [uppertext(user.a_intent)])")
-		msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) removed a vital organ ([src]) from [key_name(target)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[target]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[target.x];Y=[target.y];Z=[target.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[target]'>FLW</a>) (INTENT: [uppertext(user.a_intent)])")
+		msg_admin_attack("[ADMIN_TPMONTY(usr)] removed a vital organ ([src]) from [ADMIN_TPMONTY(target)].")
 		target.death()
 
 /obj/item/organ/appendix/removed(var/mob/living/target,var/mob/living/user)

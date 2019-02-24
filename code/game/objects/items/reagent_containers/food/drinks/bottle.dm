@@ -37,7 +37,7 @@
 	if(!target)
 		return
 
-	if(user.a_intent != "hurt" || !isGlass)
+	if(user.a_intent != INTENT_HARM || !isGlass)
 		return ..()
 
 
@@ -56,34 +56,32 @@
 	target.apply_damage(force, BRUTE, affecting, armor_block, sharp=0)
 
 	// You are going to knock someone out for longer if they are not wearing a helmet.
-	if(affecting == "head" && istype(target, /mob/living/carbon/) && !isXeno(target))
+	if(affecting == "head" && istype(target, /mob/living/carbon/) && !isxeno(target))
 
-		//Display an attack message.
-		for(var/mob/O in viewers(user, null))
-			if(target != user) O.show_message(text("<span class='danger'>[target] has been hit over the head with a bottle of [src.name], by [user]!</span>"), 1)
-			else O.show_message(text("<span class='danger'>[target] hit \himself with a bottle of [src.name] on the head!</span>"), 1)
-		//Weaken the target for the duration that we calculated and divide it by 5.
+		if(target != user)
+			user.visible_message("<span class='danger'>[target] has been hit over the head with a bottle of [name], by [user]!</span>")
+		else
+			user.visible_message("<span class='danger'>[user.] has hit [user.p_them()]self with the bottle of [name] on the head!</span>")
 		if(armor_duration)
 			target.apply_effect(min(armor_duration, 10) , WEAKEN, armor_block) // Never weaken more than a flash!
 
 	else
-		//Default attack message and don't weaken the target.
-		for(var/mob/O in viewers(user, null))
-			if(target != user) O.show_message(text("<span class='danger'>[target] has been attacked with a bottle of [src.name], by [user]!</span>"), 1)
-			else O.show_message(text("<span class='danger'>[target] has attacked \himself with a bottle of [src.name]!</span>"), 1)
+		if(target != user)
+			user.visible_message("<span class='danger'>[target] has been attacked with a bottle of [name], by [user]!</span>")
+		else
+			user.visible_message("<span class='danger'>[user] has attacked [user.p_them()]self with the bottle of [name]!</span>")
 
 	//Attack logs
 	log_combat(user, target, "smashed", src)
-	msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) attacked [key_name(target)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[target]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[target.x];Y=[target.y];Z=[target.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[target]'>FLW</a>) with a bottle. (INTENT: [uppertext(user.a_intent)])")
+	msg_admin_attack("[ADMIN_TPMONTY(usr)] attacked [ADMIN_TPMONTY(target)] with a bottle. (INTENT: [uppertext(user.a_intent)]).")
 
 	//The reagents in the bottle splash all over the target, thanks for the idea Nodrak
-	if(src.reagents)
-		for(var/mob/O in viewers(user, null))
-			O.show_message(text("<span class='boldnotice'>The contents of the [src] splashes all over [target]!</span>"), 1)
-		src.reagents.reaction(target, TOUCH)
+	if(reagents)
+		visible_message("<span class='boldnotice'>The contents of the [src] splashes all over [target]!</span>")
+		reagents.reaction(target, TOUCH)
 
 	//Finally, smash the bottle. This kills (del) the bottle.
-	src.smash(target, user)
+	smash(target, user)
 
 	return
 

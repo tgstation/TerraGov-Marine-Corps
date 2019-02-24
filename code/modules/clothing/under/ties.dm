@@ -68,7 +68,7 @@
 
 /obj/item/clothing/tie/stethoscope/attack(mob/living/carbon/human/M, mob/living/user)
 	if(ishuman(M) && isliving(user))
-		if(user.a_intent == "help")
+		if(user.a_intent == INTENT_HELP)
 			var/body_part = parse_zone(user.zone_selected)
 			if(body_part)
 				var/their = "their"
@@ -123,7 +123,7 @@
 				return TRUE
 
 /obj/item/clothing/tie/medal/attack(mob/living/carbon/human/H, mob/living/carbon/human/user)
-	if(istype(H) && istype(user) && user.a_intent == "help")
+	if(istype(H) && istype(user) && user.a_intent == INTENT_HELP)
 		if(H.w_uniform)
 			var/obj/item/clothing/under/U = H.w_uniform
 			if(U.hastie)
@@ -145,7 +145,7 @@
 				on_attached(U, user)
 				H.update_inv_w_uniform()
 				if(user == H)
-					user.visible_message("<span class='notice'>[user] pins [src] to \his [U.name].</span>",
+					user.visible_message("<span class='notice'>[user] pins [src] to [user.p_their()] [U.name].</span>",
 					"<span class='notice'>You pin [src] to your [U.name].</span>")
 				else
 					user.visible_message("[user] pins [src] on [H]'s [U.name].", \
@@ -184,7 +184,7 @@
 
 /obj/item/clothing/tie/medal/silver/security
 	name = "robust security award"
-	desc = "An award for distinguished combat and sacrifice in defence of W-Y's commercial interests. Often awarded to security staff."
+	desc = "An award for distinguished combat and sacrifice in defence of TGMC's interests. Often awarded to security staff."
 
 /obj/item/clothing/tie/medal/gold
 	name = "gold medal"
@@ -193,11 +193,17 @@
 
 /obj/item/clothing/tie/medal/gold/captain
 	name = "medal of captaincy"
-	desc = "A golden medal awarded exclusively to those promoted to the rank of captain. It signifies the codified responsibilities of a captain to W-Y, and their undisputable authority over their crew."
+	desc = "A golden medal awarded exclusively to those promoted to the rank of captain. It signifies the codified responsibilities of a captain to TGMC, and their undisputable authority over their crew."
 
 /obj/item/clothing/tie/medal/gold/heroism
 	name = "medal of exceptional heroism"
 	desc = "An extremely rare golden medal awarded only by the TGMC. To recieve such a medal is the highest honor and as such, very few exist."
+
+/obj/item/clothing/tie/medal/letter/commendation
+	name = "letter of commendation"
+	desc = "A letter printed on cardstock often filled with praise for the person it is intended for."
+	icon = 'icons/obj/items/paper.dmi'
+	icon_state = "commendation"
 
 //Armbands
 /obj/item/clothing/tie/armband
@@ -277,12 +283,13 @@
 
 /obj/item/clothing/tie/holster/proc/unholster(mob/user as mob)
 	if(!holstered)
-		return
+		return FALSE
 
 	if(user.get_active_held_item() && user.get_inactive_held_item())
 		to_chat(user, "<span class='warning'>You need an empty hand to draw the [holstered]!</span>")
+		return FALSE
 	else
-		if(user.a_intent == "hurt")
+		if(user.a_intent == INTENT_HARM)
 			usr.visible_message("<span class='danger'>[user] draws the [holstered], ready to shoot!</span>", \
 			"<span class='danger'>You draw [holstered], ready to shoot!</span>")
 		else
@@ -291,6 +298,7 @@
 		user.put_in_hands(holstered)
 		holstered.add_fingerprint(user)
 		holstered = null
+		return TRUE
 
 /obj/item/clothing/tie/holster/attack_hand(mob/user as mob)
 	if (has_suit)	//if we are part of a suit
@@ -328,7 +336,8 @@
 	set name = "Holster"
 	set category = "Object"
 	set src in usr
-	if(!istype(usr, /mob/living)) return
+	if(!isliving(usr))
+		return
 	if(usr.stat) return
 
 	var/obj/item/clothing/tie/holster/H = null
@@ -391,13 +400,49 @@
 		hold = null
 	. = ..()
 
-/obj/item/clothing/tie/storage/attack_hand(mob/user as mob)
-	if (has_suit)	//if we are part of a suit
-		hold.open(user)
+/obj/item/clothing/tie/storage/on_attached(obj/item/clothing/under/S, mob/user)
+	. = ..()
+	has_suit.verbs += /obj/item/clothing/tie/storage/verb/toggle_draw_mode
+
+/obj/item/clothing/tie/storage/on_removed()
+	has_suit.verbs -= /obj/item/clothing/tie/storage/verb/toggle_draw_mode
+	return ..()
+
+/obj/item/clothing/tie/storage/verb/toggle_draw_mode()
+	set name = "Switch Storage Drawing Method"
+	set category = "Object"
+	set src in usr
+	if(!isliving(usr))
+		return
+	if(usr.stat)
 		return
 
-	if (hold.handle_attack_hand(user))	//otherwise interact as a regular storage item
-		..(user)
+	var/obj/item/clothing/tie/storage/H = src
+	if(istype(src, /obj/item/clothing/under))
+		var/obj/item/clothing/under/S = src
+		if (S.hastie)
+			H = S.hastie
+
+	if(H.hold)
+		H.hold.draw_mode = !H.hold.draw_mode
+		if(H.hold.draw_mode)
+			to_chat(usr, "Clicking [H] with an empty hand now puts the last stored item in your hand.")
+		else
+			to_chat(usr, "Clicking [H] with an empty hand now opens the pouch storage menu.")
+
+
+/obj/item/clothing/tie/storage/attack_hand(mob/user)
+	if(has_suit)
+		if(has_suit.loc == user && hold.draw_mode && hold.contents.len)
+			var/obj/item/I = hold.contents[hold.contents.len]
+			I.attack_hand(user)
+			return
+		else
+			hold.open(user)
+			return
+
+	else if(hold.handle_attack_hand(user))
+		return ..()
 
 /obj/item/clothing/tie/storage/MouseDrop(obj/over_object as obj)
 	if (has_suit)
@@ -514,7 +559,7 @@
 		to_chat(user, "Waving around a badge before swiping an ID would be pretty pointless.")
 		return
 	if(isliving(user))
-		user.visible_message("<span class='warning'> [user] displays their W-Y Internal Security Legal Authorization Badge.\nIt reads: [stored_name], W-Y Security.</span>","<span class='warning'> You display your W-Y Internal Security Legal Authorization Badge.\nIt reads: [stored_name], W-Y Security.</span>")
+		user.visible_message("<span class='warning'> [user] displays their TGMC Internal Security Legal Authorization Badge.\nIt reads: [stored_name], TGMC Security.</span>","<span class='warning'> You display your TGMC Internal Security Legal Authorization Badge.\nIt reads: [stored_name], TGMC Security.</span>")
 
 /obj/item/clothing/tie/holobadge/attackby(var/obj/item/O as obj, var/mob/user as mob)
 

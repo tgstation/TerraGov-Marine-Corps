@@ -87,9 +87,9 @@
 	set waitfor = 0
 	sleep(30)
 	if(!loc) return FALSE
-	if(ticker && ticker.mode && ticker.mode.predators.len)
+	if(length(SSticker?.mode?.predators))
 		var/datum/mind/M
-		for(var/i in ticker.mode.predators)
+		for(var/i in SSticker.mode.predators)
 			M = i
 			if(M.current && M.current.stat != DEAD)
 				to_chat(M.current, "<span class='event_announcement'>An abomination to your people has been brought onto the world at [get_area(src)]! Hunt it down and destroy it!</span>")
@@ -155,7 +155,7 @@ Your health meter will not regenerate normally, so kill and die for the hive!</s
 			playsound(loc, 'sound/weapons/slice.ogg', 25)
 			emote("growl")
 			var/to_heal = max(1, 5 - (0.2 * (health < maxHealth ? butchered_sum++ : butchered_sum)))//So we do not heal multiple times due to the inline proc below.
-			heal_wounds(isYautja(H)? 15 : to_heal) //Predators give far better healing.
+			heal_wounds(isyautja(H)? 15 : to_heal) //Predators give far better healing.
 		else
 			visible_message("<span class='danger'>[src] slices and dices [H]'s body like a ragdoll!</span>",
 			"<span class='xenodanger'>You fly into a frenzy and butcher [H]'s body!</span>")

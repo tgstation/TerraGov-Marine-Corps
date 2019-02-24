@@ -144,13 +144,13 @@
 /obj/item/card/id/New()
 	..()
 	spawn(30)
-	if(istype(loc, /mob/living/carbon/human))
+	if(ishuman(loc))
 		blood_type = loc:dna:b_type
 		dna_hash = loc:dna:unique_enzymes
 		fingerprint_hash = md5(loc:dna:uni_identity)
 
 /obj/item/card/id/attack_self(mob/user as mob)
-	user.visible_message("[user] shows you: \icon[src] [name]: assignment: [assignment]")
+	user.visible_message("[user] shows you: [icon2html(src, viewers(user))] [name]: assignment: [assignment]")
 
 	src.add_fingerprint(user)
 	return
@@ -162,12 +162,20 @@
 	return src
 
 
+/obj/item/card/id/proc/update_label(newname, newjob)
+	if(newname || newjob)
+		name = "[(!newname)	? "identification card"	: "[newname]'s ID Card"][(!newjob) ? "" : " ([newjob])"]"
+		return
+
+	name = "[(!registered_name)	? "identification card"	: "[registered_name]'s ID Card"][(!assignment) ? "" : " ([assignment])"]"
+
+
 /obj/item/card/id/verb/read()
 	set name = "Read ID Card"
 	set category = "Object"
 	set src in usr
 
-	to_chat(usr, text("\icon[] []: The current assignment on the card is [].", src, src.name, src.assignment))
+	to_chat(usr, "[icon2html(src, usr)] [name]: The current assignment on the card is [assignment].")
 	to_chat(usr, "The blood type on the card is [blood_type].")
 	to_chat(usr, "The DNA hash on the card is [dna_hash].")
 	to_chat(usr, "The fingerprint hash on the card is [fingerprint_hash].")
@@ -201,14 +209,6 @@
 	assignment = "Agent"
 	name = "[registered_name]'s ID Card ([assignment])"
 
-/obj/item/card/id/syndicate/afterattack(var/obj/item/O as obj, mob/user as mob, proximity)
-	if(!proximity) return
-	if(istype(O, /obj/item/card/id))
-		var/obj/item/card/id/I = O
-		src.access |= I.access
-		if(istype(user, /mob/living) && user.mind)
-			if(user.mind.special_role)
-				to_chat(usr, "<span class='notice'>The card's microscanners activate as you pass it over the ID, copying its access.</span>")
 
 /obj/item/card/id/syndicate/attack_self(mob/user as mob)
 	if(!src.registered_name)

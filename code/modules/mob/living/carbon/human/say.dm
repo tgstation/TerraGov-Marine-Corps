@@ -35,7 +35,7 @@
 	if(speaking)
 		message = copytext(message,3)
 	else if(species.default_language)
-		speaking = all_languages[species.default_language]
+		speaking = GLOB.all_languages[species.default_language]
 
 	var/ending = copytext(message, length(message))
 	if (speaking)
@@ -107,6 +107,8 @@
 		italics = 1
 		message_range = 2
 
+		log_talk(message, LOG_TELECOMMS)
+
 	..(message, speaking, verb, alt_name, italics, message_range, speech_sound, sound_vol)	//ohgod we should really be passing a datum here.
 
 	for(var/obj/item/device/radio/R in used_radios)
@@ -144,9 +146,9 @@
 
 	//These only pertain to common. Languages are handled by mob/say_understands()
 	if (!speaking)
-		if (istype(other, /mob/living/silicon))
+		if (issilicon(other))
 			return 1
-		if (istype(other, /mob/living/brain))
+		if (isbrain(other))
 			return 1
 
 	//This is already covered by mob/say_understands()

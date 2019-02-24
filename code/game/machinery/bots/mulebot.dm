@@ -72,25 +72,22 @@
 /obj/machinery/bot/mulebot/Initialize()
 	. = ..()
 	botcard = new(src)
-	var/datum/job/J = RoleAuthority ? RoleAuthority.roles_by_path[/datum/job/logistics/tech/cargo] : new /datum/job/logistics/tech/cargo
-	botcard.access = J.get_access()
-//	botcard.access += access_robotics //Why --Ikki
+	botcard.access = ALL_MARINE_ACCESS
 	cell = new(src)
 	cell.charge = 2000
 	cell.maxcharge = 2000
 	setup_wires()
 
-	spawn(5)	// must wait for map loading to finish
-		if(radio_controller)
-			radio_controller.add_object(src, control_freq, filter = RADIO_MULEBOT)
-			radio_controller.add_object(src, beacon_freq, filter = RADIO_NAVBEACONS)
+	if(radio_controller)
+		radio_controller.add_object(src, control_freq, filter = RADIO_MULEBOT)
+		radio_controller.add_object(src, beacon_freq, filter = RADIO_NAVBEACONS)
 
-		var/count = 0
-		for(var/obj/machinery/bot/mulebot/other in machines)
-			count++
-		if(!suffix)
-			suffix = "#[count]"
-		name = "Mulebot ([suffix])"
+	var/count = 0
+	for(var/obj/machinery/bot/mulebot/other in GLOB.machines)
+		count++
+	if(!suffix)
+		suffix = "#[count]"
+	name = "Mulebot ([suffix])"
 
 	verbs -= /atom/movable/verb/pull
 
@@ -145,7 +142,7 @@
 			icon_state = "mulebot0"
 
 		updateDialog()
-	else if (istype(I, /obj/item/tool/wrench))
+	else if (iswrench(I))
 		if (src.health < maxhealth)
 			src.health = min(maxhealth, src.health+25)
 			user.visible_message(
@@ -289,7 +286,7 @@
 		return
 	if (usr.stat)
 		return
-	if ((in_range(src, usr) && istype(src.loc, /turf)) || (istype(usr, /mob/living/silicon)))
+	if ((in_range(src, usr) && istype(src.loc, /turf)) || issilicon(usr))
 		usr.set_interaction(src)
 
 		switch(href_list["op"])
@@ -395,31 +392,31 @@
 
 
 			if("wirecut")
-				if(istype(usr.get_active_held_item(), /obj/item/tool/wirecutters))
+				if(iswirecutter(usr.get_active_held_item()))
 					var/wirebit = text2num(href_list["wire"])
 					wires &= ~wirebit
 				else
 					to_chat(usr, "<span class='notice'>You need wirecutters!</span>")
 			if("wiremend")
-				if(istype(usr.get_active_held_item(), /obj/item/tool/wirecutters))
+				if(iswirecutter(usr.get_active_held_item()))
 					var/wirebit = text2num(href_list["wire"])
 					wires |= wirebit
 				else
 					to_chat(usr, "<span class='notice'>You need wirecutters!</span>")
 
 			if("wirepulse")
-				if(istype(usr.get_active_held_item(), /obj/item/device/multitool))
+				if(ismultitool(usr.get_active_held_item()))
 					switch(href_list["wire"])
 						if("1","2")
-							to_chat(usr, "<span class='notice'>\icon[src] The charge light flickers.</span>")
+							to_chat(usr, "<span class='notice'>[icon2html(src, usr)] The charge light flickers.</span>")
 						if("4")
-							to_chat(usr, "<span class='notice'>\icon[src] The external warning lights flash briefly.</span>")
+							to_chat(usr, "<span class='notice'>[icon2html(src, usr)] The external warning lights flash briefly.</span>")
 						if("8")
-							to_chat(usr, "<span class='notice'>\icon[src] The load platform clunks.</span>")
+							to_chat(usr, "<span class='notice'>[icon2html(src, usr)] The load platform clunks.</span>")
 						if("16", "32")
-							to_chat(usr, "<span class='notice'>\icon[src] The drive motor whines briefly.</span>")
+							to_chat(usr, "<span class='notice'>[icon2html(src, usr)] The drive motor whines briefly.</span>")
 						else
-							to_chat(usr, "<span class='notice'>\icon[src] You hear a radio crackle.</span>")
+							to_chat(usr, "<span class='notice'>[icon2html(src, usr)] You hear a radio crackle.</span>")
 				else
 					to_chat(usr, "<span class='notice'>You need a multitool!</span>")
 
@@ -610,14 +607,14 @@
 						var/obj/effect/decal/cleanable/blood/tracks/B = new(loc)
 						var/newdir = get_dir(next, loc)
 						if(newdir == dir)
-							B.dir = newdir
+							B.setDir(newdir)
 						else
 							newdir = newdir|dir
 							if(newdir == 3)
 								newdir = 1
 							else if(newdir == 12)
 								newdir = 4
-							B.dir = newdir
+							B.setDir(newdir)
 						bloodiness--
 
 

@@ -11,7 +11,7 @@
 	var/sheets_refunded = 2
 
 /obj/item/frame/light_fixture/attackby(obj/item/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/tool/wrench))
+	if (iswrench(W))
 		new /obj/item/stack/sheet/metal( get_turf(src.loc), sheets_refunded )
 		qdel(src)
 		return
@@ -24,7 +24,7 @@
 	if (!(ndir in cardinal))
 		return
 	var/turf/loc = get_turf(usr)
-	if (!istype(loc, /turf/open/floor))
+	if (!isfloorturf(loc))
 		to_chat(usr, "<span class='warning'>[src.name] cannot be placed on this spot.</span>")
 		return
 	to_chat(usr, "Attaching [src] to the wall.")
@@ -38,7 +38,7 @@
 			newlight = new /obj/machinery/light_construct/small(constrloc)
 		if("tube")
 			newlight = new /obj/machinery/light_construct(constrloc)
-	newlight.dir = constrdir
+	newlight.setDir(constrdir)
 	newlight.fingerprints = src.fingerprints
 	newlight.fingerprintshidden = src.fingerprintshidden
 	newlight.fingerprintslast = src.fingerprintslast

@@ -3,8 +3,8 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "showcase_1"
 	desc = "A stand with the empty body of a cyborg bolted to it."
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 
 /obj/structure/showcase/ex_act(severity)
 	switch(severity)
@@ -14,12 +14,17 @@
 			if(prob(50))
 				qdel(src)
 
+/obj/structure/showcase/yaut
+	name = "alien sarcophagus"
+	desc = "An ancient, dusty tomb with strange alien writing. It's best not to touch it."
+	icon_state = "yaut"
+
 /obj/structure/monorail
 	name = "monorail track"
 	icon = 'icons/obj/structures/structures.dmi'
 	icon_state = "monorail"
-	density = 0
-	anchored = 1
+	density = FALSE
+	anchored = TRUE
 	layer = ATMOS_PIPE_LAYER + 0.01
 
 /obj/structure/mopbucket
@@ -27,8 +32,8 @@
 	desc = "Fill it with water, but don't forget a mop!"
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "mopbucket"
-	density = 1
-	anchored = 0
+	density = TRUE
+	anchored = FALSE
 	container_type = OPENCONTAINER
 	var/amount_per_transfer_from_this = 5 //Shit I dunno, adding this so syringes stop runtime erroring. --NeoFite
 
@@ -49,16 +54,26 @@
 			to_chat(user, "<span class='notice'>You wet [I] in [src].</span>")
 			playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
 
+/obj/structure/shipmast
+	name = "\the Ships Mast"
+	icon = 'icons/obj/structures/structures.dmi'
+	icon_state = "shipmast" //Thank you to Spyroshark and Arachnidnexus
+	desc = "A piece of old earth that was. The plaque reads<br><br><span class='name'>HMS Victory Sailed 1765 to 1922.</span><br><span class='name'>Relaunched 2393.</span><br><span class='name'>On loan from the First Sea Lord.</span><br><br>"
+	layer = ABOVE_MOB_LAYER
+	density = TRUE
+	anchored = TRUE
 
-
-
-
-
-
-
-
-
-
+/obj/structure/shipmast/attack_hand(var/mob/user)
+	. = ..()
+	switch(user.a_intent)
+		if(INTENT_HELP)
+			visible_message("[usr] rubs the [src] for good luck.")
+		if(INTENT_DISARM)
+			visible_message("[usr] pushes the [src]. It's surprisingly solid.")
+		if(INTENT_GRAB)
+			visible_message("[usr] hugs the [src].")
+		if(INTENT_HARM)
+			visible_message("[usr] punches the [src] while letting out a muttered curse.")
 
 //ICE COLONY RESEARCH DECORATION-----------------------//
 //Most of icons made by ~Morrinn

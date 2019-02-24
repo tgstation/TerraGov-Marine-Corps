@@ -113,13 +113,13 @@
 	pry_capable = IS_PRY_CAPABLE_FORCE
 
 /obj/item/weapon/zombie_claws/attack(mob/living/M, mob/living/carbon/human/user, def_zone)
-	if(user.species == "Human")
+	if(user.species.count_human)
 		return 0
 	. = ..()
 	playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1, 5)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(H.species.name == "Human")
+		if(H.species.count_human)
 			for(var/datum/disease/black_goo/BG in H.viruses)
 				user.show_message(text("<span class='green'> <B>You sense your target is infected</B></span>"))
 				return
@@ -134,11 +134,11 @@
 		if(!D.density)
 			return
 
-		user.visible_message("<span class='danger'>[user] jams \his [name] into [O] and strains to rip it open.</span>",
+		user.visible_message("<span class='danger'>[user] jams [user.p_their()] [name] into [O] and strains to rip it open.</span>",
 		"<span class='danger'>You jam your [name] into [O] and strain to rip it open.</span>")
 		playsound(user, 'sound/weapons/wristblades_hit.ogg', 15, 1)
 		if(do_after(user, 30, TRUE, 5, BUSY_ICON_HOSTILE))
-			user.visible_message("<span class='danger'>[user] forces [O] open with \his [name].</span>",
+			user.visible_message("<span class='danger'>[user] forces [O] open with [user.p_their()] [name].</span>",
 			"<span class='danger'>You force [O] open with your [name].</span>")
 			D.open(1)
 

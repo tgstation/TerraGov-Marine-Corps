@@ -51,13 +51,13 @@
 
 	var/total_health = 100  //new maxHealth
 
-	var/cold_level_1 = 260  // Cold damage level 1 below this point.
-	var/cold_level_2 = 240  // Cold damage level 2 below this point.
-	var/cold_level_3 = 120  // Cold damage level 3 below this point.
+	var/cold_level_1 = BODYTEMP_COLD_DAMAGE_LIMIT_ONE  	// Cold damage level 1 below this point.
+	var/cold_level_2 = BODYTEMP_COLD_DAMAGE_LIMIT_TWO  	// Cold damage level 2 below this point.
+	var/cold_level_3 = BODYTEMP_COLD_DAMAGE_LIMIT_THREE	// Cold damage level 3 below this point.
 
-	var/heat_level_1 = 360  // Heat damage level 1 above this point.
-	var/heat_level_2 = 400  // Heat damage level 2 above this point.
-	var/heat_level_3 = 1000 // Heat damage level 2 above this point.
+	var/heat_level_1 = BODYTEMP_HEAT_DAMAGE_LIMIT_ONE  	// Heat damage level 1 above this point.
+	var/heat_level_2 = BODYTEMP_HEAT_DAMAGE_LIMIT_TWO  	// Heat damage level 2 above this point.
+	var/heat_level_3 = BODYTEMP_HEAT_DAMAGE_LIMIT_THREE	// Heat damage level 2 above this point.
 
 	var/body_temperature = BODYTEMP_NORMAL 	//non-IS_SYNTHETIC species will try to stabilize at this temperature. (also affects temperature processing)
 	var/reagent_tag                 //Used for metabolizing reagents.
@@ -151,15 +151,8 @@
 
 /datum/species/proc/hug(var/mob/living/carbon/human/H,var/mob/living/target)
 
-	var/t_him = "them"
-	switch(target.gender)
-		if(MALE)
-			t_him = "him"
-		if(FEMALE)
-			t_him = "her"
-
-	H.visible_message("<span class='notice'>[H] hugs [target] to make [t_him] feel better!</span>", \
-					"<span class='notice'>You hug [target] to make [t_him] feel better!</span>", null, 4)
+	H.visible_message("<span class='notice'>[H] hugs [target] to make [target.p_them()] feel better!</span>", \
+					"<span class='notice'>You hug [target] to make [target.p_them()] feel better!</span>", null, 4)
 
 /datum/species/proc/random_name(gender)
 	if(gender == FEMALE)
@@ -187,14 +180,6 @@
 	add_inherent_verbs(H)
 
 /datum/species/proc/handle_death(var/mob/living/carbon/human/H) //Handles any species-specific death events.
-/*
-	if(flags & IS_SYNTHETIC)
-		H.h_style = ""
-		spawn(100)
-			if(!H) return
-			H.update_hair()
-	return
-*/
 
 //Only used by horrors at the moment. Only triggers if the mob is alive and not dead.
 /datum/species/proc/handle_unique_behavior(var/mob/living/carbon/human/H)
@@ -419,7 +404,7 @@
 	H.remove_overlay(MOTH_WINGS_LAYER)
 	H.remove_underlay(MOTH_WINGS_BEHIND_LAYER)
 
-	var/datum/sprite_accessory/moth_wings/wings = moth_wings_list[H.moth_wings]
+	var/datum/sprite_accessory/moth_wings/wings = GLOB.moth_wings_list[H.moth_wings]
 
 	if(wings)
 		H.overlays_standing[MOTH_WINGS_LAYER] = image(wings.icon, icon_state = "m_moth_wings_[wings.icon_state]_FRONT")
@@ -712,9 +697,10 @@
 		H.equip_to_slot(new /obj/item/clothing/glasses/zombie_eyes, SLOT_GLASSES, TRUE)
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine, SLOT_SHOES, TRUE)
 
-		spawn(30)
-			H.jitteriness = 0
+		addtimer(CALLBACK(H, /mob/living/carbon/human/proc/reset_jitteriness), 30)
 
+/mob/living/carbon/human/proc/reset_jitteriness()
+	jitteriness = 0
 
 /datum/hud_data/zombie
 	has_a_intent = 1
@@ -797,7 +783,7 @@
 // Called when using the shredding behavior.
 /datum/species/proc/can_shred(var/mob/living/carbon/human/H)
 
-	if(H.a_intent != "hurt")
+	if(H.a_intent != INTENT_HARM)
 		return 0
 
 	if(unarmed.is_usable(H))
@@ -910,7 +896,7 @@
 		)
 
 /datum/hud_data/New()
-	..()
+	. = ..()
 	for(var/slot in gear)
 		equip_slots |= gear[slot]["slot"]
 
@@ -918,14 +904,17 @@
 		equip_slots |= SLOT_L_HAND
 		equip_slots |= SLOT_R_HAND
 		equip_slots |= SLOT_HANDCUFFED
-
+	if(SLOT_HEAD in equip_slots)
+		equip_slots |= SLOT_IN_HEAD
 	if(SLOT_BACK in equip_slots)
 		equip_slots |= SLOT_IN_BACKPACK
 		equip_slots |= SLOT_IN_B_HOLSTER
 	if(SLOT_BELT in equip_slots)
 		equip_slots |= SLOT_IN_HOLSTER
+		equip_slots |= SLOT_IN_BELT
 	if(SLOT_WEAR_SUIT in equip_slots)
 		equip_slots |= SLOT_IN_S_HOLSTER
+		equip_slots |= SLOT_IN_SUIT
 	if(SLOT_SHOES in equip_slots)
 		equip_slots |= SLOT_LEGCUFFED
 		equip_slots |= SLOT_IN_BOOT
@@ -934,3 +923,4 @@
 		equip_slots |= SLOT_IN_L_POUCH
 		equip_slots |= SLOT_IN_R_POUCH
 		equip_slots |= SLOT_ACCESSORY
+		equip_slots |= SLOT_IN_ACCESSORY

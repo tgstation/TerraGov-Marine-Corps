@@ -73,7 +73,7 @@
 		while (cur!=end && can_place)
 			if(cur.density == 1)
 				can_place = 0
-			else if (istype(cur, /turf/open/space))
+			else if (isspaceturf(cur))
 				can_place = 0
 			else
 				for(var/obj/O in cur)
@@ -126,7 +126,7 @@
 	breaktape(W, user)
 
 /obj/item/tape/attack_hand(mob/user as mob)
-	if (user.a_intent == "help" && allowed(user))
+	if (user.a_intent == INTENT_HELP && allowed(user))
 		user.show_viewers("<span class='notice'>[user] lifts [src], allowing passage.</span>")
 		crumple()
 		lifted = 1
@@ -139,7 +139,7 @@
 	breaktape(/obj/item/tool/wirecutters,user)
 
 /obj/item/tape/proc/breaktape(obj/item/W as obj, mob/user as mob)
-	if(user.a_intent == "help" && ((!can_puncture(W) && src.allowed(user))))
+	if(user.a_intent == INTENT_HELP && ((!can_puncture(W) && src.allowed(user))))
 		to_chat(user, "You can't break the [src] with that!")
 		return
 	user.show_viewers("<span class='notice'> [user] breaks the [src]!</span>")

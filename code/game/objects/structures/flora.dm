@@ -27,7 +27,7 @@
 	if(W.w_class < 3 || !W.sharp || W.force < 20) //only big strong sharp weapon are adequate
 		damage *= 0.25
 
-	if(istype(W, /obj/item/tool/weldingtool))
+	if(iswelder(W))
 		var/obj/item/tool/weldingtool/WT = W
 
 		if(WT.remove_fuel(5))
@@ -95,9 +95,9 @@
 		user.visible_message("<span class='notice'>[user] begins to cut down [src] with [W].</span>","<span class='notice'>You begin to cut down [src] with [W].</span>", "You hear the sound of sawing.")
 		var/cut_force = min(1, W.force)
 		var/cutting_time = CLAMP(10, 20, 100/cut_force) SECONDS
-		if(!do_after(usr, cutting_time , TRUE, 5, BUSY_ICON_BUILD))
+		if(do_after(usr, cutting_time , TRUE, 5, BUSY_ICON_BUILD))
 			user.visible_message("<span class='notice'>[user] fells [src] with the [W].</span>","<span class='notice'>You fell [src] with the [W].</span>", "You hear the sound of a tree falling.")
-			playsound(get_turf(src), 'sound/effects/meteorimpact.ogg', 100 , 0, 0)
+			playsound(get_turf(src), 'sound/effects/meteorimpact.ogg', 60 , 0, 0)
 			for(var/i=1 to log_amount)
 				new /obj/item/grown/log(get_turf(src))
 
@@ -261,6 +261,9 @@
 	icon = 'icons/obj/flora/plants.dmi'
 	icon_state = "plant-26"
 
+/obj/structure/flora/pottedplant/ten
+	icon_state = "plant-10"
+	
 //newbushes
 
 /obj/structure/flora/ausbushes
@@ -451,32 +454,14 @@
 	desc = "Some kind of bizarre alien tree. It oozes with a sickly yellow sap."
 	icon_state = "plantbot1"
 
+/obj/structure/jungle/plantbot1/alien
+	icon_state = "alienplant1"
+	luminosity = 2
+
 /obj/structure/jungle/planttop1
 	name = "strange tree"
 	desc = "Some kind of bizarre alien tree. It oozes with a sickly yellow sap."
 	icon_state = "planttop1"
-
-/obj/structure/jungle/tree
-	icon = 'icons/obj/flora/ground_map64.dmi'
-	desc = "What an enormous tree!"
-	layer = ABOVE_FLY_LAYER
-
-/obj/structure/jungle/tree/bigtreeTR
-	name = "huge tree"
-	icon_state = "bigtreeTR"
-
-/obj/structure/jungle/tree/bigtreeTL
-	name = "huge tree"
-	icon_state = "bigtreeTL"
-
-/obj/structure/jungle/tree/bigtreeBOT
-	name = "huge tree"
-	icon_state = "bigtreeBOT"
-
-/obj/structure/jungle/treeblocker
-	name = "huge tree"
-	icon_state = ""	//will this break it?? - Nope
-	density = 1
 
 /obj/structure/jungle/vines
 	name = "vines"
@@ -492,16 +477,16 @@
 	else
 		. = ..()
 
-/obj/structure/jungle/vines/New()
-	..()
+/obj/structure/jungle/vines/Initialize()
+	. = ..()
 	icon_state = pick("Light1","Light2","Light3")
 
 /obj/structure/jungle/vines/heavy
 	desc = "A thick, coiled mass of twisted vines."
 	opacity = 1
 
-/obj/structure/jungle/vines/heavy/New()
-	..()
+/obj/structure/jungle/vines/heavy/Initialize()
+	. = ..()
 	icon_state = pick("Hvy1","Hvy2","Hvy3","Med1","Med2","Med3")
 
 /obj/structure/jungle/tree/grasscarpet

@@ -159,7 +159,7 @@
 		var/list/bagholding = teleatom.search_contents_for(/obj/item/storage/backpack/holding)
 		if(bagholding.len)
 			precision = max(rand(1,100)*bagholding.len,100)
-			if(istype(teleatom, /mob/living))
+			if(isliving(teleatom))
 				var/mob/living/MM = teleatom
 				to_chat(MM, "<span class='warning'>The Bluespace interface on your Bag of Holding interferes with the teleport!</span>")
 		return 1
@@ -170,14 +170,14 @@
 			return 0
 
 		if(!isemptylist(teleatom.search_contents_for(/obj/item/disk/nuclear)))
-			if(istype(teleatom, /mob/living))
+			if(isliving(teleatom))
 				var/mob/living/MM = teleatom
 				MM.visible_message("<span class='danger'>The [MM] bounces off of the portal!</span>","<span class='warning'> Something you are carrying seems to be unable to pass through the portal. Better drop it if you want to go through.</span>")
 			else
 				teleatom.visible_message("<span class='danger'>The [teleatom] bounces off of the portal!</span>")
 			return 0
 
-		if(destination.z == 2) //centcomm z-level
+		if(is_centcom_level(destination.z)) //centcomm z-level
 			if(istype(teleatom, /obj/mecha))
 				var/obj/mecha/MM = teleatom
 				to_chat(MM.occupant, "<span class='danger'>The mech would not survive the jump to a location so far away!</span>")

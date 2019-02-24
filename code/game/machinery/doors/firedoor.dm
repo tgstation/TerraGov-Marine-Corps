@@ -25,7 +25,7 @@
 	power_channel = ENVIRON
 	use_power = TRUE
 	idle_power_usage = 5
-	
+
 	var/blocked = FALSE
 	var/lockdown = FALSE // When the door has detected a problem, it locks.
 	var/pdiff_alert = FALSE
@@ -45,13 +45,11 @@
 		"cold"
 	)
 
-/obj/machinery/door/firedoor/New()
+/obj/machinery/door/firedoor/Initialize()
 	. = ..()
 	for(var/obj/machinery/door/firedoor/F in loc)
 		if(F != src)
-			spawn(1)
-				qdel(src)
-			return .
+			return INITIALIZE_HINT_QDEL
 	var/area/A = get_area(src)
 	ASSERT(istype(A))
 
@@ -214,7 +212,7 @@
 	add_fingerprint(user)
 	if(operating)
 		return//Already doing something.
-	if(istype(C, /obj/item/tool/weldingtool))
+	if(iswelder(C))
 		var/obj/item/tool/weldingtool/W = C
 		if(W.remove_fuel(0, user))
 			blocked = !blocked
@@ -306,8 +304,8 @@
 		else
 			use_power(360)
 	else
-		log_admin("[usr]([usr.ckey]) has forced open an emergency shutter.")
-		message_admins("[usr]([usr.ckey]) has forced open an emergency shutter.")
+		log_admin("[key_name(usr)] has forced open an emergency shutter at [AREACOORD(usr.loc)].")
+		message_admins("[ADMIN_TPMONTY(usr)] has forced open an emergency shutter.")
 	latetoggle()
 	return ..()
 
@@ -357,3 +355,11 @@
 /obj/machinery/door/firedoor/multi_tile
 	icon = 'icons/obj/doors/DoorHazard2x1.dmi'
 	width = 2
+
+/obj/machinery/door/firedoor/border_only/CanPass(atom/movable/mover, turf/target)
+	if(istype(mover) && mover.checkpass(PASSGLASS))
+		return TRUE
+	if(get_dir(loc, target) == dir) //Make sure looking at appropriate border
+		return !density
+	else
+		return TRUE

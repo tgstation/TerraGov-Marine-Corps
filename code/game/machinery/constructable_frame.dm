@@ -27,6 +27,10 @@
 			D += "."
 		desc = D
 
+/obj/machinery/constructable_frame/state_2
+	icon_state = "box_1"
+	state = 2
+
 /obj/machinery/constructable_frame/machine_frame
 	attackby(obj/item/P as obj, mob/user as mob)
 		if(P.crit_fail)
@@ -34,7 +38,7 @@
 			return
 		switch(state)
 			if(1)
-				if(iscoil(P))
+				if(iscablecoil(P))
 					var/obj/item/stack/cable_coil/C = P
 					if(C.get_amount() < 5)
 						to_chat(user, "<span class='warning'>You need five lengths of cable to add them to the frame.</span>")
@@ -78,7 +82,7 @@
 						to_chat(user, desc)
 
 				else
-					if(istype(P, /obj/item/tool/wirecutters))
+					if(iswirecutter(P))
 						playsound(src.loc, 'sound/items/Wirecutter.ogg', 25, 1)
 						to_chat(user, "<span class='notice'>You remove the cables.</span>")
 						state = 1
@@ -87,7 +91,7 @@
 						A.amount = 5
 
 			if(3)
-				if(istype(P, /obj/item/tool/crowbar))
+				if(iscrowbar(P))
 					playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
 					state = 2
 					circuit.loc = src.loc
@@ -103,7 +107,7 @@
 					components = null
 					icon_state = "box_1"
 				else
-					if(istype(P, /obj/item/tool/screwdriver))
+					if(isscrewdriver(P))
 						var/component_check = 1
 						for(var/R in req_components)
 							if(req_components[R] > 0)
@@ -125,7 +129,7 @@
 							for(var/I in req_components)
 								if(istype(P, text2path(I)) && (req_components[I] > 0))
 									playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
-									if(istype(P, /obj/item/stack/cable_coil))
+									if(iscablecoil(P))
 										var/obj/item/stack/cable_coil/CP = P
 										if(CP.get_amount() > 1)
 											var/camt = min(CP.amount, req_components[I]) // amount of cable to take, idealy amount required, but limited by amount provided
@@ -143,6 +147,6 @@
 										update_desc()
 									break
 							to_chat(user, desc)
-							if(P && P.loc != src && !istype(P, /obj/item/stack/cable_coil))
+							if(P && P.loc != src && !iscablecoil(P))
 								to_chat(user, "<span class='warning'>You cannot add that component to the machine!</span>")
 

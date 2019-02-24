@@ -101,10 +101,10 @@
 	data["all_centcom_access"] = null
 	data["regions"] = null
 
-	data["command_jobs"] = format_jobs(ROLES_COMMAND)
-	data["engineering_jobs"] = format_jobs(ROLES_ENGINEERING)
-	data["medical_jobs"] = format_jobs(ROLES_MEDICAL)
-	data["marine_jobs"] = format_jobs(ROLES_UNASSIGNED)
+	data["command_jobs"] = format_jobs(JOBS_COMMAND)
+	data["engineering_jobs"] = format_jobs(JOBS_ENGINEERING)
+	data["medical_jobs"] = format_jobs(JOBS_MEDICAL)
+	data["marine_jobs"] = format_jobs(JOBS_UNASSIGNED)
 	data["civilian_jobs"] = format_jobs(list("Colonist","Passenger"))
 //	data["squad_jobs"] = format_jobs(all_squad_positions)
 	data["centcom_jobs"] = format_jobs(get_all_centcom_jobs())
@@ -200,8 +200,9 @@
 					//let custom jobs function as an impromptu alt title, mainly for sechuds
 					if(temp_t && modify)
 						modify.assignment = temp_t
-						message_admins("[key_name_admin(usr)] gave the ID of [modify.registered_name] the assignment [modify.assignment].")
-						log_admin("[key_name_admin(usr)] gave the ID of [modify.registered_name] the assignment [modify.assignment].")
+						log_admin("[key_name(usr)] gave the ID of [modify.registered_name] the assignment [modify.assignment].")
+						message_admins("[ADMIN_TPMONTY(usr)] gave the ID of [modify.registered_name] the assignment [modify.assignment].")
+
 				else
 					var/list/access = list()
 					if(is_centcom())
@@ -222,15 +223,16 @@
 					modify.access = access
 					modify.assignment = t1
 					modify.rank = t1
-					message_admins("[key_name_admin(usr)] gave the ID of [modify.registered_name] the assignment [modify.assignment].")
-					log_admin("[key_name_admin(usr)] gave the ID of [modify.registered_name] the assignment [modify.assignment].")
+					log_admin("[key_name(usr)] gave the ID of [modify.registered_name] the assignment [modify.assignment].")
+					message_admins("[ADMIN_TPMONTY(usr)] gave the ID of [modify.registered_name] the assignment [modify.assignment].")
+
 
 				callHook("reassign_employee", list(modify))
 
 		if ("reg")
 			if (is_authenticated())
 				var/t2 = modify
-				if ((modify == t2 && (in_range(src, usr) || (istype(usr, /mob/living/silicon))) && istype(loc, /turf)))
+				if ((modify == t2 && (in_range(src, usr) || issilicon(usr)) && isturf(loc)))
 					var/temp_name = reject_bad_name(href_list["reg"])
 					if(temp_name)
 						modify.registered_name = temp_name
@@ -241,7 +243,7 @@
 		if ("account")
 			if (is_authenticated())
 				var/t2 = modify
-				if ((modify == t2 && (in_range(src, usr) || (istype(usr, /mob/living/silicon))) && istype(loc, /turf)))
+				if ((modify == t2 && (in_range(src, usr) || issilicon(usr)) && istype(loc, /turf)))
 					var/account_num = text2num(href_list["account"])
 					modify.associated_account_number = account_num
 			nanomanager.update_uis(src)
@@ -282,8 +284,8 @@
 			if (is_authenticated())
 				modify.assignment = "Terminated"
 				modify.access = list()
-				message_admins("[key_name_admin(usr)] terminated the ID of [modify.registered_name].")
-				log_admin("[key_name_admin(usr)] terminated the ID of [modify.registered_name].")
+				log_admin("[key_name(usr)] terminated the ID of [modify.registered_name].")
+				message_admins("[ADMIN_TPMONTY(usr)] terminated the ID of [modify.registered_name].")
 
 				callHook("terminate_employee", list(modify))
 

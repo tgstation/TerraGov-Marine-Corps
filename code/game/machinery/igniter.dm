@@ -73,7 +73,7 @@
 /obj/machinery/sparker/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/device/detective_scanner))
 		return
-	if (istype(W, /obj/item/tool/screwdriver))
+	if (isscrewdriver(W))
 		add_fingerprint(user)
 		src.disable = !src.disable
 		if (src.disable)
@@ -139,12 +139,12 @@
 	active = 1
 	icon_state = "launcheract"
 
-	for(var/obj/machinery/sparker/M in machines)
+	for(var/obj/machinery/sparker/M in GLOB.machines)
 		if (M.id == src.id)
 			spawn( 0 )
 				M.ignite()
 
-	for(var/obj/machinery/igniter/M in machines)
+	for(var/obj/machinery/igniter/M in GLOB.machines)
 		if(M.id == src.id)
 			use_power(50)
 			M.on = !( M.on )

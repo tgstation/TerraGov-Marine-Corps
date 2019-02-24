@@ -6,11 +6,13 @@
 #define WRITE_FILE(file, text) DIRECT_OUTPUT(file, text)
 #define WRITE_LOG(log, text) rustg_log_write(log, text)
 
+
 //print a warning message to world.log
 #define WARNING(MSG) warning("[MSG] in [__FILE__] at line [__LINE__] src: [src] usr: [usr].")
 /proc/warning(msg)
 	msg = "## WARNING: [msg]"
 	log_world(msg)
+
 
 //not an error or a warning, but worth to mention on the world log, just in case.
 #define NOTICE(MSG) notice(MSG)
@@ -18,39 +20,37 @@
 	msg = "## NOTICE: [msg]"
 	log_world(msg)
 
-//print a testing-mode debug message to world.log and world
-#ifdef TESTING
-#define testing(msg) log_world("## TESTING: [msg]"); to_chat(world, "## TESTING: [msg]")
-#else
-#define testing(msg)
-#endif
 
-#ifdef UNIT_TESTS
-/proc/log_test(text)
-	WRITE_LOG(GLOB.test_log, text)
-	SEND_TEXT(world.log, text)
-#endif
-
-
-/* Items with ADMINPRIVATE prefixed are stripped from public logs. */
+/* Items with private are stripped from public logs. */
 /proc/log_admin(text)
-	GLOB.admin_log.Add(text)
+	GLOB.admin_log.Add("\[[stationTimestamp()]\] ADMIN: [text]")
 	if(CONFIG_GET(flag/log_admin))
 		WRITE_LOG(GLOB.world_game_log, "ADMIN: [text]")
 
+
 /proc/log_admin_private(text)
-	GLOB.admin_log.Add(text)
+	GLOB.admin_log.Add("\[[stationTimestamp()]\] PRIVATE: [text]")
 	if(CONFIG_GET(flag/log_admin))
 		WRITE_LOG(GLOB.world_game_log, "ADMINPRIVATE: [text]")
 
-/proc/log_adminsay(text)
-	GLOB.admin_log.Add(text)
+
+/proc/log_admin_private_asay(text)
+	GLOB.admin_log.Add("\[[stationTimestamp()]\] <span class='adminsay'>ASAY: [text]</span>")
 	if(CONFIG_GET(flag/log_adminchat))
 		WRITE_LOG(GLOB.world_game_log, "ADMINPRIVATE: ASAY: [text]")
 
+
+/proc/log_admin_private_msay(text)
+	GLOB.admin_log.Add("\[[stationTimestamp()]\] <span class='mod'>MSAY: [text]</span>")
+	if(CONFIG_GET(flag/log_adminchat))
+		WRITE_LOG(GLOB.world_game_log, "ADMINPRIVATE: MSAY: [text]")
+
+
 /proc/log_dsay(text)
+	GLOB.admin_log.Add("\[[stationTimestamp()]\] DSAY: [text]")
 	if(CONFIG_GET(flag/log_adminchat))
 		WRITE_LOG(GLOB.world_game_log, "ADMIN: DSAY: [text]")
+
 
 
 /* All other items are public. */
@@ -58,81 +58,68 @@
 	if(CONFIG_GET(flag/log_game))
 		WRITE_LOG(GLOB.world_game_log, "GAME: [text]")
 
-/proc/log_mecha(text)
-	if(CONFIG_GET(flag/log_mecha))
-		WRITE_LOG(GLOB.world_mecha_log, "MECHA: [text]")
 
 /proc/log_access(text)
 	if(CONFIG_GET(flag/log_access))
 		WRITE_LOG(GLOB.world_game_log, "ACCESS: [text]")
 
-/proc/log_law(text)
-	if(CONFIG_GET(flag/log_law))
-		WRITE_LOG(GLOB.world_game_log, "LAW: [text]")
 
 /proc/log_attack(text)
 	if(CONFIG_GET(flag/log_attack))
 		WRITE_LOG(GLOB.world_attack_log, "ATTACK: [text]")
 
-/proc/log_manifest(ckey, datum/mind/mind,mob/body, latejoin = FALSE)
+
+/proc/log_ffattack(text)
+	GLOB.ffattack_log.Add("\[[stationTimestamp()]\] FFATTACK: [text]")
+	if(CONFIG_GET(flag/log_attack))
+		WRITE_LOG(GLOB.world_attack_log, "FFATTACK: [text]")
+
+
+/proc/log_explosion(text)
+	GLOB.explosion_log.Add("\[[stationTimestamp()]\] EXPLOSION: [text]")
+	if(CONFIG_GET(flag/log_attack))
+		WRITE_LOG(GLOB.world_game_log, "EXPLOSION: [text]")
+
+
+/proc/log_manifest(text)
 	if(CONFIG_GET(flag/log_manifest))
-		WRITE_LOG(GLOB.world_manifest_log, "[ckey] \\ [body.real_name] \\ [mind.assigned_role] \\ [mind.special_role ? mind.special_role : "NONE"] \\ [latejoin ? "LATEJOIN":"ROUNDSTART"]")
+		WRITE_LOG(GLOB.world_manifest_log, "MANIFEST: [text]")
 
-/proc/log_bomber(atom/user, details, atom/bomb, additional_details, message_admins = TRUE)
-	var/bomb_message = "[details][bomb ? " [bomb.name] at [AREACOORD(bomb)]": ""][additional_details ? " [additional_details]" : ""]."
-
-	if(user)
-		user.log_message(bomb_message, LOG_GAME) //let it go to individual logs as well as the game log
-		bomb_message = "[key_name(user)] at [AREACOORD(user)] [bomb_message]"
-	else
-		log_game(bomb_message)
-
-	GLOB.bombers += bomb_message
-
-	if(message_admins)
-		message_admins("[user ? "[ADMIN_LOOKUPFLW(user)] at [ADMIN_VERBOSEJMP(user)] " : ""][details][bomb ? " [bomb.name] at [ADMIN_VERBOSEJMP(bomb)]": ""][additional_details ? " [additional_details]" : ""].")
 
 /proc/log_say(text)
 	if(CONFIG_GET(flag/log_say))
 		WRITE_LOG(GLOB.world_game_log, "SAY: [text]")
 
+
 /proc/log_ooc(text)
 	if(CONFIG_GET(flag/log_ooc))
 		WRITE_LOG(GLOB.world_game_log, "OOC: [text]")
+
+
+/proc/log_looc(text)
+	if(CONFIG_GET(flag/log_looc))
+		WRITE_LOG(GLOB.world_game_log, "LOOC: [text]")
+
 
 /proc/log_hivemind(text)
 	if(CONFIG_GET(flag/log_hivemind))
 		WRITE_LOG(GLOB.world_game_log, "HIVEMIND: [text]")
 
+
 /proc/log_whisper(text)
 	if(CONFIG_GET(flag/log_whisper))
 		WRITE_LOG(GLOB.world_game_log, "WHISPER: [text]")
+
 
 /proc/log_emote(text)
 	if(CONFIG_GET(flag/log_emote))
 		WRITE_LOG(GLOB.world_game_log, "EMOTE: [text]")
 
+
 /proc/log_prayer(text)
 	if(CONFIG_GET(flag/log_prayer))
 		WRITE_LOG(GLOB.world_game_log, "PRAY: [text]")
 
-/proc/log_pda(text)
-	if(CONFIG_GET(flag/log_pda))
-		WRITE_LOG(GLOB.world_pda_log, "PDA: [text]")
-
-/proc/log_comment(text)
-	if(CONFIG_GET(flag/log_pda))
-		//reusing the PDA option because I really don't think news comments are worth a config option
-		WRITE_LOG(GLOB.world_pda_log, "COMMENT: [text]")
-
-/proc/log_telecomms(text)
-	if(CONFIG_GET(flag/log_telecomms))
-		WRITE_LOG(GLOB.world_telecomms_log, "TCOMMS: [text]")
-
-/proc/log_chat(text)
-	if(CONFIG_GET(flag/log_pda))
-		//same thing here
-		WRITE_LOG(GLOB.world_pda_log, "CHAT: [text]")
 
 /proc/log_vote(text)
 	if(CONFIG_GET(flag/log_vote))
@@ -142,32 +129,28 @@
 /proc/log_topic(text)
 	WRITE_LOG(GLOB.world_game_log, "TOPIC: [text]")
 
+
 /proc/log_href(text)
 	WRITE_LOG(GLOB.world_href_log, "HREF: [text]")
+
 
 /proc/log_sql(text)
 	WRITE_LOG(GLOB.sql_error_log, "SQL: [text]")
 
+
 /proc/log_qdel(text)
 	WRITE_LOG(GLOB.world_qdel_log, "QDEL: [text]")
 
-/proc/log_query_debug(text)
-	WRITE_LOG(GLOB.query_debug_log, "SQL: [text]")
-
-/proc/log_job_debug(text)
-	if(CONFIG_GET(flag/log_job_debug))
-		WRITE_LOG(GLOB.world_job_debug_log, "JOB: [text]")
 
 /* Log to both DD and the logfile. */
 /proc/log_world(text)
-#ifdef USE_CUSTOM_ERROR_HANDLER
 	WRITE_LOG(GLOB.world_runtime_log, text)
-#endif
-	SEND_TEXT(world.log, text)
+
 
 /* Log to the logfile only. */
 /proc/log_runtime(text)
 	WRITE_LOG(GLOB.world_runtime_log, text)
+
 
 /* Rarely gets called; just here in case the config breaks. */
 /proc/log_config(text)
@@ -179,11 +162,12 @@
 /proc/start_log(log)
 	WRITE_LOG(log, "Starting up round ID [GLOB.round_id].\n-------------------------")
 
+
 /* Close open log handles. This should be called as late as possible, and no logging should hapen after. */
 /proc/shutdown_logging()
 	rustg_log_close_all()
 
-/*
+
 /* Helper procs for building detailed log lines */
 /proc/key_name(whom, include_link = null, include_name = TRUE)
 	var/mob/M
@@ -242,7 +226,7 @@
 	if(key)
 		if(C?.holder?.fakekey && !include_name)
 			if(include_link)
-				. += "<a href='?priv_msg=[C.findStealthKey()]'>"
+				. += "<a href='?priv_msg=[C.find_stealth_key()]'>"
 			. += "Administrator"
 		else
 			if(include_link)
@@ -267,9 +251,11 @@
 
 	return .
 
+
 /proc/key_name_admin(whom, include_name = TRUE)
 	return key_name(whom, TRUE, include_name)
-*/
+
+
 /proc/loc_name(atom/A)
 	if(!istype(A))
 		return "(INVALID LOCATION)"
@@ -283,66 +269,6 @@
 	else if(A.loc)
 		return "(UNKNOWN (?, ?, ?))"
 
-/proc/key_name(var/whom, var/include_link = null, var/include_name = 1, var/highlight_special_characters = 1)
-	var/mob/M
-	var/client/C
-	var/key
 
-	if(!whom)	return "*null*"
-	if(istype(whom, /client))
-		C = whom
-		M = C.mob
-		key = C.key
-	else if(ismob(whom))
-		M = whom
-		C = M.client
-		key = M.key
-	else // Catch-all cases if none of the types above match
-		var/swhom = null
-
-		if(istype(whom, /atom))
-			var/atom/A = whom
-			swhom = "[A.name]"
-		else if(istype(whom, /datum))
-			swhom = "[whom]"
-
-		if(!swhom)
-			swhom = "*invalid*"
-
-		return "\[[swhom]\]"
-
-	. = ""
-
-	if(key)
-		if(include_link && C)
-			. += "<a href='?priv_msg=\ref[C]'>"
-
-		if(C && C.holder && C.holder.fakekey && !include_name)
-			. += "Administrator"
-		else
-			. += key
-
-		if(include_link)
-			if(C)	. += "</a>"
-			else	. += " (DC)"
-	else
-		. += "*no key*"
-
-	if(include_name && M)
-		var/name
-
-		if(M.real_name)
-			name = M.real_name
-		else if(M.name)
-			name = M.name
-
-
-		if(include_link && is_special_character(M) && highlight_special_characters)
-			. += "/(<font color='#FFA500'>[name]</font>)" //Orange
-		else
-			. += "/([name])"
-
-	return .
-
-/proc/key_name_admin(var/whom, var/include_name = 1)
-	return key_name(whom, 1, include_name)
+/datum/player_details
+	var/list/logging = list()

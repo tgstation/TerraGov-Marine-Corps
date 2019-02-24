@@ -9,17 +9,16 @@
 	use_power = 1
 	idle_power_usage = 100 //Watts, I hope.  Just enough to do the computer and display things.
 
-	var/obj/machinery/atmospherics/binary/circulator/circ1
-	var/obj/machinery/atmospherics/binary/circulator/circ2
+	var/obj/machinery/atmospherics/components/binary/circulator/circ1
+	var/obj/machinery/atmospherics/components/binary/circulator/circ2
 
 	var/lastgen = 0
 	var/lastgenlev = -1
 
-/obj/machinery/power/generator/New()
-	..()
+/obj/machinery/power/generator/Initialize()
+	. = ..()
 
-	spawn(1)
-		reconnect()
+	reconnect()
 	start_processing()
 
 //generators connect in dir and reverse_dir(dir) directions
@@ -32,8 +31,8 @@
 	circ2 = null
 	if(src.loc && anchored)
 		if(src.dir & (EAST|WEST))
-			circ1 = locate(/obj/machinery/atmospherics/binary/circulator) in get_step(src,EAST)
-			circ2 = locate(/obj/machinery/atmospherics/binary/circulator) in get_step(src,WEST)
+			circ1 = locate(/obj/machinery/atmospherics/components/binary/circulator) in get_step(src,EAST)
+			circ2 = locate(/obj/machinery/atmospherics/components/binary/circulator) in get_step(src,WEST)
 
 			if(circ1 && circ2)
 				if(circ1.dir != SOUTH || circ2.dir != NORTH)
@@ -41,8 +40,8 @@
 					circ2 = null
 
 		else if(src.dir & (NORTH|SOUTH))
-			circ1 = locate(/obj/machinery/atmospherics/binary/circulator) in get_step(src,NORTH)
-			circ2 = locate(/obj/machinery/atmospherics/binary/circulator) in get_step(src,SOUTH)
+			circ1 = locate(/obj/machinery/atmospherics/components/binary/circulator) in get_step(src,NORTH)
+			circ2 = locate(/obj/machinery/atmospherics/components/binary/circulator) in get_step(src,SOUTH)
 
 			if(circ1 && circ2 && (circ1.dir != EAST || circ2.dir != WEST))
 				circ1 = null
@@ -82,7 +81,7 @@
 	interact(user)
 
 /obj/machinery/power/generator/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/tool/wrench))
+	if(iswrench(W))
 		anchored = !anchored
 		to_chat(user, "<span class='notice'>You [anchored ? "secure" : "unsecure"] the bolts holding [src] to the floor.</span>")
 		use_power = anchored
@@ -97,7 +96,7 @@
 
 
 /obj/machinery/power/generator/interact(mob/user)
-	if ( (get_dist(src, user) > 1 ) && (!istype(user, /mob/living/silicon/ai)))
+	if ( (get_dist(src, user) > 1 ) && (!isAI(user)))
 		user.unset_interaction()
 		user << browse(null, "window=teg")
 		return
@@ -110,16 +109,16 @@
 		t += "Output : [round(lastgen)] W<BR><BR>"
 
 		t += "<B>Primary Circulator (top or right)</B><BR>"
-		t += "Inlet Pressure: [round(circ1.return_pressure(), 0.1)] kPa<BR>"
-		t += "Inlet Temperature: [round(circ1.temperature, 0.1)] K<BR>"
-		t += "Outlet Pressure: [round(circ1.return_pressure(), 0.1)] kPa<BR>"
-		t += "Outlet Temperature: [round(circ1.temperature, 0.1)] K<BR>"
+//		t += "Inlet Pressure: [round(circ1.return_pressure(), 0.1)] kPa<BR>"
+//		t += "Inlet Temperature: [round(circ1.temperature, 0.1)] K<BR>"
+//		t += "Outlet Pressure: [round(circ1.return_pressure(), 0.1)] kPa<BR>"
+//		t += "Outlet Temperature: [round(circ1.temperature, 0.1)] K<BR>"
 
 		t += "<B>Secondary Circulator (bottom or left)</B><BR>"
-		t += "Inlet Pressure: [round(circ2.return_pressure(), 0.1)] kPa<BR>"
-		t += "Inlet Temperature: [round(circ2.temperature, 0.1)] K<BR>"
-		t += "Outlet Pressure: [round(circ2.return_pressure(), 0.1)] kPa<BR>"
-		t += "Outlet Temperature: [round(circ2.temperature, 0.1)] K<BR>"
+//		t += "Inlet Pressure: [round(circ2.return_pressure(), 0.1)] kPa<BR>"
+//		t += "Inlet Temperature: [round(circ2.temperature, 0.1)] K<BR>"
+//		t += "Outlet Pressure: [round(circ2.return_pressure(), 0.1)] kPa<BR>"
+//		t += "Outlet Temperature: [round(circ2.temperature, 0.1)] K<BR>"
 
 	else
 		t += "Unable to connect to circulators.<br>"
@@ -158,7 +157,7 @@
 	if (usr.stat || usr.is_mob_restrained()  || anchored)
 		return
 
-	src.dir = turn(src.dir, 90)
+	setDir(turn(src.dir, 90))
 
 /obj/machinery/power/generator/verb/rotate_anticlock()
 	set category = "Object"
@@ -168,4 +167,4 @@
 	if (usr.stat || usr.is_mob_restrained()  || anchored)
 		return
 
-	src.dir = turn(src.dir, -90)
+	setDir(turn(src.dir, -90))

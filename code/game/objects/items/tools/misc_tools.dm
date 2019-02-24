@@ -1,29 +1,21 @@
-
-
-
-
-
-/////////////////////// Hand Labeler ////////////////////////////////
-
-
 /obj/item/tool/hand_labeler
 	name = "hand labeler"
 	icon = 'icons/obj/items/paper.dmi'
 	icon_state = "labeler0"
 	item_state = "flight"
+
 	var/label = null
 	var/labels_left = 50
-	var/mode = 0	//off or on.
+	var/on = FALSE
+
 
 /obj/item/tool/hand_labeler/afterattack(atom/A, mob/user as mob, proximity)
 	if(!proximity)
 		return
-	if(!mode)	//if it's off, give up.
+	if(!on)
 		return
-	if(A == loc)	// if placing the labeller into something (e.g. backpack)
-		return		// don't set a label
-	if(!label || !length(label))
-		to_chat(user, "<span class='notice'>No text set.</span>")
+	if(!label)
+		to_chat(user, "<span class='notice'>No label set.</span>")
 		return
 	if(length(A.name) + length(label) > 64)
 		to_chat(user, "<span class='notice'>Label too big.</span>")
@@ -34,24 +26,27 @@
 	if(isturf(A) || ismob(A))
 		to_chat(user, "<span class='notice'>The label won't stick to that.</span>")
 		return
+	if(A.name == "[initial(A.name)] ([label])")
+		to_chat(user, "<span class='notice'>It already has the same label.</span>")
+		return
 
 	user.visible_message("<span class='notice'>[user] labels [A] as \"[label]\".</span>", \
 						 "<span class='notice'>You label [A] as \"[label]\".</span>")
-	A.name = "[A.name] ([label])"
+	A.name = "[initial(A.name)] ([label])"
 	labels_left--
 
+
 /obj/item/tool/hand_labeler/attack_self(mob/user as mob)
-	mode = !mode
-	icon_state = "labeler[mode]"
-	if(mode)
+	on = !on
+	icon_state = "labeler[on]"
+	if(on)
 		to_chat(user, "<span class='notice'>You turn on \the [src].</span>")
-		//Now let them chose the text.
-		var/str = copytext(reject_bad_text(input(user,"Label text?", "Set label", "")), 1, MAX_NAME_LEN)
-		if(!str || !length(str))
-			to_chat(user, "<span class='notice'>Invalid text.</span>")
+		var/str = copytext(sanitize(input(user,"What do you want to label things as?", "Label Text", "")), 1, MAX_NAME_LEN)
+		if(!str)
+			to_chat(user, "<span class='notice'>Invalid label.</span>")
 			return
 		label = str
-		to_chat(user, "<span class='notice'>You set the text to '[str]'.</span>")
+		to_chat(user, "<span class='notice'>You set the label text to '[str]'.</span>")
 	else
 		to_chat(user, "<span class='notice'>You turn off \the [src].</span>")
 
@@ -61,7 +56,12 @@
 	if(istype(I, /obj/item/paper))
 		to_chat(user, "<span class='notice'>You insert [I] into [src].</span>")
 		qdel(I)
-		labels_left = min(labels_left+5, initial(labels_left))
+		labels_left = min(labels_left + 5, initial(labels_left))
+
+
+/obj/item/tool/hand_labeler/examine(mob/user)
+	. = ..()
+	to_chat(user, "<span class='notice'>It has [labels_left] out of [initial(labels_left)] labels left.")
 
 
 
@@ -106,7 +106,7 @@
 	to_chat(user, "<span class='warning'>You stab [M] with the pen.</span>")
 //	to_chat(M, "<span class='warning'>You feel a tiny prick!</span>")
 	log_combat(user, M, "stabbed", src)
-	msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) used the [name] to stab [key_name(M)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[M]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[M.x];Y=[M.y];Z=[M.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[M]'>FLW</a>)")
+	msg_admin_attack("[ADMIN_TPMONTY(usr)] used the [name] to stab [ADMIN_TPMONTY(M)].")
 	return
 
 

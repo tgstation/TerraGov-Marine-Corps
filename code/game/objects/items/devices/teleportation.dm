@@ -47,7 +47,7 @@ Frequency:
 	if (usr.stat || usr.is_mob_restrained())
 		return
 	var/turf/current_location = get_turf(usr)//What turf is the user on?
-	if(!current_location||current_location.z==2)//If turf was not found or they're on z level 2.
+	if(!current_location|| is_centcom_level(current_location.z))//If turf was not found or they're on z level 2.
 		to_chat(usr, "The [src] is malfunctioning.")
 		return
 	if ((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))))
@@ -59,7 +59,7 @@ Frequency:
 			if (sr)
 				src.temp += "<B>Located Beacons:</B><BR>"
 
-				for(var/obj/item/device/radio/beacon/W in item_list)
+				for(var/obj/item/device/radio/beacon/W in GLOB.item_list)
 					if (W.frequency == src.frequency)
 						var/turf/tr = get_turf(W)
 						if (tr.z == sr.z && tr)
@@ -77,7 +77,7 @@ Frequency:
 							src.temp += "[W.code]-[dir2text(get_dir(sr, tr))]-[direct]<BR>"
 
 				src.temp += "<B>Extranneous Signals:</B><BR>"
-				for (var/obj/item/implant/tracking/W in item_list)
+				for (var/obj/item/implant/tracking/W in GLOB.item_list)
 					if (!W.implanted || !(istype(W.loc,/datum/limb) || ismob(W.loc)))
 						continue
 					else
@@ -135,11 +135,11 @@ Frequency:
 
 /obj/item/device/hand_tele/attack_self(mob/user as mob)
 	var/turf/current_location = get_turf(user)//What turf is the user on?
-	if(!current_location||current_location.z==2||current_location.z>=7)//If turf was not found or they're on z level 2 or >7 which does not currently exist.
+	if(!current_location|| is_centcom_level(current_location.z) ||current_location.z>=7)//If turf was not found or they're on z level 2 or >7 which does not currently exist.
 		to_chat(user, "<span class='notice'>\The [src] is malfunctioning.</span>")
 		return
 	var/list/L = list(  )
-	for(var/obj/machinery/teleport/hub/R in machines)
+	for(var/obj/machinery/teleport/hub/R in GLOB.machines)
 		var/obj/machinery/computer/teleporter/com = locate(/obj/machinery/computer/teleporter, locate(R.x - 2, R.y, R.z))
 		if (istype(com, /obj/machinery/computer/teleporter) && com.locked && !com.one_time_use)
 			if(R.icon_state == "tele1")
@@ -157,7 +157,7 @@ Frequency:
 	if ((user.get_active_held_item() != src || user.stat || user.is_mob_restrained()))
 		return
 	var/count = 0	//num of portals from this teleport in the world
-	for(var/obj/effect/portal/PO in effect_list)
+	for(var/obj/effect/portal/PO in GLOB.effect_list)
 		if(PO.creator == src)	count++
 	if(count >= 3)
 		user.show_message("<span class='notice'>\The [src] is recharging!</span>")

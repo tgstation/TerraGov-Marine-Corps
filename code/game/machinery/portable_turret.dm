@@ -57,131 +57,24 @@
 
 	var/datum/effect/effect/system/spark_spread/spark_system // the spark system, used for generating... sparks?
 
-	New()
-		..()
-		icon_state = "[lasercolor]grey_target_prism"
-		// Sets up a spark system
-		spark_system = new /datum/effect/effect/system/spark_spread
-		spark_system.set_up(5, 0, src)
-		spark_system.attach(src)
-		sleep(10)
-		if(!installation)// if for some reason the turret has no gun (ie, admin spawned) it resorts to basic taser shots
-			projectile = /obj/item/projectile
-			eprojectile = /obj/item/projectile
-			reqpower = 200
-			sound = 1
-			iconholder = 1
-		else
-			/*
-			var/obj/item/weapon/gun/energy/E=new installation
-					// All energy-based weapons are applicable
-			switch(E.type)
-				if(/obj/item/weapon/gun/energy/laser/bluetag)
-					projectile = /obj/item/projectile/beam/lastertag/blue
-					eprojectile = /obj/item/projectile/beam/lastertag/omni//This bolt will stun ERRYONE with a vest
-					iconholder = null
-					reqpower = 100
-					lasercolor = "b"
-					req_access = list(access_sulaco_engineering)
-					check_records = 0
-					criminals = 0
-					auth_weapons = 1
-					stun_all = 0
-					check_anomalies = 0
-					shot_delay = 30
+/obj/machinery/porta_turret/Initialize()
+	. = ..()
+	icon_state = "[lasercolor]grey_target_prism"
+	// Sets up a spark system
+	spark_system = new /datum/effect/effect/system/spark_spread
+	spark_system.set_up(5, 0, src)
+	spark_system.attach(src)
+	if(!installation)// if for some reason the turret has no gun (ie, admin spawned) it resorts to basic taser shots
+		projectile = /obj/item/projectile
+		eprojectile = /obj/item/projectile
+		reqpower = 200
+		sound = 1
+		iconholder = 1
 
-				if(/obj/item/weapon/gun/energy/laser/redtag)
-					projectile = /obj/item/projectile/beam/lastertag/red
-					eprojectile = /obj/item/projectile/beam/lastertag/omni
-					iconholder = null
-					reqpower = 100
-					lasercolor = "r"
-					req_access = list(access_sulaco_engineering)
-					check_records = 0
-					criminals = 0
-					auth_weapons = 1
-					stun_all = 0
-					check_anomalies = 0
-					shot_delay = 30
-
-				if(/obj/item/weapon/gun/energy/laser/practice)
-					projectile = /obj/item/projectile/beam/practice
-					eprojectile = /obj/item/projectile/beam
-					iconholder = null
-					reqpower = 100
-
-				if(/obj/item/weapon/gun/energy/pulse_rifle)
-					projectile = /obj/item/projectile/beam/pulse
-					eprojectile = projectile
-					iconholder = null
-					reqpower = 700
-
-				if(/obj/item/weapon/gun/energy/staff)
-					projectile = /obj/item/projectile/change
-					eprojectile = projectile
-					iconholder = 1
-					reqpower = 700
-
-				if(/obj/item/weapon/gun/energy/ionrifle)
-					projectile = /obj/item/projectile/ion
-					eprojectile = projectile
-					iconholder = 1
-					reqpower = 700
-
-				if(/obj/item/weapon/gun/energy/taser)
-					projectile = /obj/item/projectile/beam/stun
-					eprojectile = projectile
-					iconholder = 1
-					reqpower = 200
-
-				if(/obj/item/weapon/gun/energy/stunrevolver)
-					projectile = /obj/item/projectile/energy/electrode
-					eprojectile = projectile
-					iconholder = 1
-					reqpower = 200
-
-				if(/obj/item/weapon/gun/energy/lasercannon)
-					projectile = /obj/item/projectile/beam/heavylaser
-					eprojectile = projectile
-					iconholder = null
-					reqpower = 600
-
-				if(/obj/item/weapon/gun/energy/decloner)
-					projectile = /obj/item/projectile/energy/declone
-					eprojectile = projectile
-					iconholder = null
-					reqpower = 600
-
-				if(/obj/item/weapon/gun/energy/crossbow/largecrossbow)
-					projectile = /obj/item/projectile/energy/bolt/large
-					eprojectile = projectile
-					iconholder = null
-					reqpower = 125
-
-				if(/obj/item/weapon/gun/energy/crossbow)
-					projectile = /obj/item/projectile/energy/bolt
-					eprojectile = projectile
-					iconholder = null
-					reqpower = 50
-
-				if(/obj/item/weapon/gun/energy/laser)
-					projectile = /obj/item/projectile/beam
-					eprojectile = projectile
-					iconholder = null
-					reqpower = 500
-
-				else // Energy gun shots
-					projectile = /obj/item/projectile/beam/stun// if it hasn't been emagged, it uses normal taser shots
-					eprojectile = /obj/item/projectile/beam//If it has, going to kill mode
-					iconholder = 1
-					egun = 1
-					reqpower = 200
-				*/
-
-	Del()
-		// deletes its own cover with it
-		del(cover)
-		..()
+/obj/machinery/porta_turret/Destroy()
+	// deletes its own cover with it
+	qdel(cover)
+	return ..()
 
 
 /obj/machinery/porta_turret/attack_ai(mob/user as mob)
@@ -474,11 +367,11 @@ Status: []<BR>"},
 						targets += C
 						continue
 
-				if (istype(C, /mob/living/carbon/human)) // if the target is a human, analyze threat level
+				if (ishuman(C)) // if the target is a human, analyze threat level
 					if(src.assess_perp(C)<4)
 						continue // if threat level < 4, keep going
 
-				else if (istype(C, /mob/living/carbon/monkey))
+				else if (ismonkey(C))
 					continue // Don't target monkeys or borgs/AIs you dumb shit
 
 				if (C.lying) // if the perp is lying down, it's still a target but a less-important target
@@ -491,7 +384,7 @@ Status: []<BR>"},
 
 		var/atom/t = pick(targets) // pick a perp from the list of targets. Targets go first because they are the most important
 
-		if (istype(t, /mob/living)) // if a mob
+		if (isliving(t)) // if a mob
 			var/mob/living/M = t // simple typecasting
 			if (M.stat!=2) // if the target is not dead
 				spawn() popUp() // pop the turret up if it's not already up.
@@ -501,7 +394,7 @@ Status: []<BR>"},
 	else
 		if(secondarytargets.len>0) // if there are no primary targets, go for secondary targets
 			var/mob/t = pick(secondarytargets)
-			if (istype(t, /mob/living))
+			if (isliving(t))
 				if (t.stat!=2)
 					spawn() popUp()
 					dir=get_dir(src,t)

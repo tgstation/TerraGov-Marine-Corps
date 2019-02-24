@@ -254,6 +254,13 @@ Defined in conflicts.dm of the #defines folder.
 	pixel_shift_y = 16
 	attach_icon = "suppressor_a"
 
+/obj/item/attachable/suppressor/unremovable
+	flags_attach_features = NOFLAGS
+
+/obj/item/attachable/suppressor/unremovable/invisible
+	attach_icon = ""
+	icon_state = ""
+
 /obj/item/attachable/suppressor/Initialize()
 	. = ..()
 	accuracy_mod = CONFIG_GET(number/combat_define/low_hit_accuracy_mult)
@@ -367,6 +374,21 @@ Defined in conflicts.dm of the #defines folder.
 	flags_attach_features = NOFLAGS
 
 /obj/item/attachable/slavicbarrel/Initialize()
+	. = ..()
+	accuracy_mod = CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
+	scatter_mod = -CONFIG_GET(number/combat_define/low_scatter_value)
+
+/obj/item/attachable/mosinbarrel
+	name = "mosin barrel"
+	icon_state = "mosinbarrel"
+	desc = "A heavy barrel. CANNOT BE REMOVED."
+	slot = "under" //only way for it to work with a bayonet is to make this take the underbarrel slot. no more bipods.
+
+	pixel_shift_x = 20
+	pixel_shift_y = 16
+	flags_attach_features = NOFLAGS
+
+/obj/item/attachable/mosinbarrel/Initialize()
 	. = ..()
 	accuracy_mod = CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
 	scatter_mod = -CONFIG_GET(number/combat_define/low_scatter_value)
@@ -503,6 +525,8 @@ Defined in conflicts.dm of the #defines folder.
 	var/zoom_viewsize = 12
 	var/zoom_accuracy = SCOPE_RAIL
 
+/obj/item/attachable/scope/unremovable
+	flags_attach_features = ATTACH_ACTIVATION
 
 /obj/item/attachable/scope/Initialize()
 	. = ..()
@@ -542,19 +566,30 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/scope/m4ra
 	name = "m4ra rail scope"
-	icon_state = "sniperscope"
-	attach_icon = "sniperscope_a"
+	//icon_state = "sniperscope"
+	//attach_icon = "sniperscope_a"
 	desc = "A rail mounted zoom sight scope specialized for the M4RA Battle Rifle . Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
+	flags_attach_features = ATTACH_ACTIVATION
+	attach_icon = ""
+	icon_state = ""
 
 /obj/item/attachable/scope/m42a
 	name = "m42a rail scope"
-	icon_state = "sniperscope"
-	attach_icon = "sniperscope_a"
+	//icon_state = "sniperscope"
+	//attach_icon = "sniperscope_a"
 	desc = "A rail mounted zoom sight scope specialized for the M42A Sniper Rifle . Allows zoom by activating the attachment. Can activate its targeting laser while zoomed to take aim for increased damage and penetration. Use F12 if your HUD doesn't come back."
 	zoom_accuracy = SCOPE_RAIL_SNIPER
+	flags_attach_features = ATTACH_ACTIVATION
+	attach_icon = ""
+	icon_state = ""
 
 /obj/item/attachable/scope/slavic
 	icon_state = "slavicscope"
+
+/obj/item/attachable/scope/pmc
+	icon_state = "pmcscope"
+	attach_icon = "pmcscope"
+	flags_attach_features = ATTACH_ACTIVATION
 
 //////////// Stock attachments ////////////////////////////
 
@@ -599,6 +634,19 @@ Defined in conflicts.dm of the #defines folder.
 	scatter_mod = -CONFIG_GET(number/combat_define/med_scatter_value)
 	movement_acc_penalty_mod = CONFIG_GET(number/combat_define/min_movement_acc_penalty)
 
+/obj/item/attachable/stock/scout
+	name = "\improper ZX-76 tactical stock"
+	desc = "A standard polymer stock for the ZX-76 assault shotgun. Designed for maximum ease of use in close quarters."
+	icon_state = "zx_stock"
+	wield_delay_mod = 0
+	flags_attach_features = NOFLAGS
+
+/obj/item/attachable/stock/scout/Initialize()
+	. = ..()
+	accuracy_mod = CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
+	recoil_mod = -CONFIG_GET(number/combat_define/min_recoil_value)
+	scatter_mod = -CONFIG_GET(number/combat_define/min_scatter_value)
+
 /obj/item/attachable/stock/slavic
 	name = "wooden stock"
 	desc = "A non-standard heavy wooden stock for Slavic firearms."
@@ -609,9 +657,26 @@ Defined in conflicts.dm of the #defines folder.
 	matter = null
 	flags_attach_features = NOFLAGS
 
+
 /obj/item/attachable/stock/slavic/Initialize()
 	. = ..()
 	accuracy_mod = CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
+	recoil_mod = -CONFIG_GET(number/combat_define/med_recoil_value)
+	scatter_mod = -CONFIG_GET(number/combat_define/med_scatter_value)
+	movement_acc_penalty_mod = CONFIG_GET(number/combat_define/min_movement_acc_penalty)
+
+/obj/item/attachable/stock/mosin
+	name = "wooden stock"
+	desc = "A standard heavy wooden stock for Slavic firearms."
+	icon_state = "mosinstock"
+	wield_delay_mod = WIELD_DELAY_NORMAL
+	pixel_shift_x = 32
+	pixel_shift_y = 13
+	matter = null
+	flags_attach_features = NOFLAGS
+
+/obj/item/attachable/stock/mosin/Initialize()
+	. = ..()
 	recoil_mod = -CONFIG_GET(number/combat_define/med_recoil_value)
 	scatter_mod = -CONFIG_GET(number/combat_define/med_scatter_value)
 	movement_acc_penalty_mod = CONFIG_GET(number/combat_define/min_movement_acc_penalty)
@@ -661,6 +726,56 @@ Defined in conflicts.dm of the #defines folder.
 	scatter_mod = -CONFIG_GET(number/combat_define/med_scatter_value)
 	movement_acc_penalty_mod = CONFIG_GET(number/combat_define/min_movement_acc_penalty)
 
+/obj/item/attachable/stock/vp70
+	name = "VP70 stock and holster"
+	desc = "A rare holster-stock distributed in small numbers to TGMC forces. Compatible with the MOD88, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl"
+	slot = "stock"
+	flags_equip_slot = ITEM_SLOT_POCKET
+	w_class = 3.0
+	wield_delay_mod = WIELD_DELAY_FAST
+	melee_mod = 5
+	size_mod = 1
+	icon_state = "vp70stock" // Thank you to Manezinho
+	attach_icon = "vp70stock_a" // Thank you to Manezinho
+	pixel_shift_x = 39
+	pixel_shift_y = 11
+	var/obj/item/storage/internal/pockets
+
+/obj/item/attachable/stock/vp70/Initialize()
+	. = ..()
+	accuracy_mod = CONFIG_GET(number/combat_define/low_hit_accuracy_mult)
+	recoil_mod = -CONFIG_GET(number/combat_define/med_recoil_value)
+	scatter_mod = -CONFIG_GET(number/combat_define/med_scatter_value)
+	movement_acc_penalty_mod = CONFIG_GET(number/combat_define/min_movement_acc_penalty)
+	pockets = new/obj/item/storage/internal(src)
+	pockets.storage_slots = 1
+	pockets.max_w_class = 1
+	pockets.bypass_w_limit = list("/obj/item/weapon/gun/pistol/vp70")
+	pockets.max_storage_space = 3
+
+/obj/item/attachable/stock/vp70/attack_hand(mob/user)
+	if(loc == user && length(pockets.contents))
+		var/obj/item/I = pockets.contents[length(pockets.contents)]
+		I.attack_hand(user)
+		return
+	else if(pockets.handle_attack_hand(user))
+		return ..()
+
+/obj/item/attachable/stock/vp70/MouseDrop(obj/over_object)
+	if(pockets.handle_mousedrop(usr, over_object))
+		return ..(over_object)
+
+/obj/item/attachable/stock/vp70/attackby(obj/item/W, mob/user)
+	. = ..()
+	return pockets.attackby(W, user)
+
+/obj/item/attachable/stock/vp70/emp_act(severity)
+	pockets.emp_act(severity)
+	return ..()
+
+/obj/item/attachable/stock/vp70/hear_talk(mob/M, msg)
+	pockets.hear_talk(M, msg)
+	return ..()
 
 /obj/item/attachable/stock/revolver
 	name = "\improper M44 magnum sharpshooter stock"
@@ -695,7 +810,7 @@ Defined in conflicts.dm of the #defines folder.
 	attach_icon = "laserstock"
 	pixel_shift_x = 41
 	pixel_shift_y = 10
-
+	flags_attach_features = NOFLAGS
 
 ////////////// Underbarrel Attachments ////////////////////////////////////
 
@@ -713,7 +828,7 @@ Defined in conflicts.dm of the #defines folder.
 /obj/item/attachable/attached_gun/Initialize() //Let's make sure if something needs an ammo type, it spawns with one.
 	. = ..()
 	if(ammo)
-		ammo = ammo_list[ammo]
+		ammo = GLOB.ammo_list[ammo]
 
 
 /obj/item/attachable/attached_gun/Destroy()
@@ -755,6 +870,13 @@ Defined in conflicts.dm of the #defines folder.
 	fire_sound = 'sound/weapons/gun_m92_attachable.ogg'
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_RELOADABLE|ATTACH_WEAPON
 	var/list/loaded_grenades //list of grenade types loaded in the UGL
+
+/obj/item/attachable/attached_gun/grenade/unremovable
+	flags_attach_features = ATTACH_ACTIVATION|ATTACH_RELOADABLE|ATTACH_WEAPON
+
+/obj/item/attachable/attached_gun/grenade/unremovable/invisible
+	icon_state = ""
+	attach_icon = ""
 
 /obj/item/attachable/attached_gun/grenade/Initialize()
 	. = ..()
@@ -798,17 +920,19 @@ Defined in conflicts.dm of the #defines folder.
 		prime_grenade(target,gun,user)
 
 
-/obj/item/attachable/attached_gun/grenade/proc/prime_grenade(atom/target,obj/item/weapon/gun/gun,mob/living/user)
-	set waitfor = 0
+/obj/item/attachable/attached_gun/grenade/proc/prime_grenade(atom/target, obj/item/weapon/gun/gun, mob/living/user)
+	set waitfor = FALSE
 	var/nade_type = loaded_grenades[1]
 	var/obj/item/explosive/grenade/frag/G = new nade_type (get_turf(gun))
 	playsound(user.loc, fire_sound, 50, 1)
-	message_admins("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) fired an underslung grenade launcher")
-	log_game("[key_name_admin(user)] used an underslung grenade launcher.")
-	G.det_time = 15
+	log_explosion("[key_name(user)] fired a grenade [G] from [src] at [AREACOORD(user.loc)].")
+	log_combat(user, src, "fired a grenade [G] from")
+	G.det_time = min(15, G.det_time)
 	G.throw_range = max_range
+	G.launched = TRUE
 	G.activate()
-	G.throw_at(target, max_range, 2, user)
+	G.throwforce += G.launchforce //Throws with signifcantly more force than a standard marine can.
+	G.throw_at(target, max_range, 3, user)
 	current_rounds--
 	loaded_grenades.Cut(1,2)
 
@@ -826,6 +950,9 @@ Defined in conflicts.dm of the #defines folder.
 	slot = "under"
 	fire_sound = 'sound/weapons/gun_flamethrower3.ogg'
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_RELOADABLE|ATTACH_WEAPON
+
+/obj/item/attachable/attached_gun/flamer/unremovable
+	flags_attach_features = ATTACH_ACTIVATION|ATTACH_RELOADABLE|ATTACH_WEAPON
 
 /obj/item/attachable/attached_gun/flamer/Initialize()
 	. = ..()
@@ -937,28 +1064,29 @@ Defined in conflicts.dm of the #defines folder.
 
 		fire_mod = 1
 
-		if(isXeno(M))
+		if(isxeno(M))
 			var/mob/living/carbon/Xenomorph/X = M
 			if(X.xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 				continue
-			fire_mod = X.xeno_caste.fire_resist + X.fire_resist_modifier
+			fire_mod = CLAMP(X.xeno_caste.fire_resist + X.fire_resist_modifier, 0, 1)
 		else if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 
 			if(user)
-				if(user.mind && !user.mind.special_role && H.mind && !H.mind.special_role)
+				if(!user.mind?.bypass_ff && !H.mind?.bypass_ff && user.faction == H.faction)
 					log_combat(user, H, "shot", src)
-					msg_admin_ff("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) shot [key_name(H)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[H]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[H.x];Y=[H.y];Z=[H.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[H]'>FLW</a>) with \a [name] in [get_area(user)]")
+					log_ffattack("[key_name(usr)] shot [key_name(H)] with [name] in [AREACOORD(T)].")
+					msg_admin_ff("[ADMIN_TPMONTY(usr)] shot [ADMIN_TPMONTY(H)] with [name] in [ADMIN_VERBOSEJMP(T)].")
 				else
 					log_combat(user, H, "shot", src)
-					msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) shot [key_name(H)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[H]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[H.x];Y=[H.y];Z=[H.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[H]'>FLW</a>) with \a [name] in [get_area(user)]")
+					msg_admin_attack("[ADMIN_TPMONTY(usr)] shot [ADMIN_TPMONTY(H)] with [name] in [ADMIN_VERBOSEJMP(T)].")
 
 			if(istype(H.wear_suit, /obj/item/clothing/suit/fire) || istype(H.wear_suit,/obj/item/clothing/suit/space/rig/atmos))
 				continue
 
 		M.adjust_fire_stacks(rand(3,5))
 		M.adjustFireLoss(rand(20,40) * fire_mod) //fwoom!
-		to_chat(M, "[isXeno(M)?"<span class='xenodanger'>":"<span class='highdanger'>"]Augh! You are roasted by the flames!")
+		to_chat(M, "[isxeno(M)?"<span class='xenodanger'>":"<span class='highdanger'>"]Augh! You are roasted by the flames!")
 
 /obj/item/attachable/attached_gun/shotgun
 	name = "masterkey shotgun"

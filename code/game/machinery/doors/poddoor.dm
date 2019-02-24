@@ -46,7 +46,7 @@
 /obj/machinery/door/poddoor/open()
 	if(operating == 1) //doors can still open when emag-disabled
 		return
-	if(!ticker)
+	if(!SSticker)
 		return 0
 	if(!operating) //in case of emag
 		operating = 1
@@ -82,7 +82,7 @@
 /obj/machinery/door/poddoor/two_tile_hor/open()
 	if(operating == 1) //doors can still open when emag-disabled
 		return
-	if(!ticker)
+	if(!SSticker)
 		return 0
 	if(!operating) //in case of emag
 		operating = 1
@@ -126,7 +126,7 @@
 /obj/machinery/door/poddoor/four_tile_hor/open()
 	if(operating == 1) //doors can still open when emag-disabled
 		return
-	if(!ticker)
+	if(!SSticker)
 		return 0
 	if(!operating) //in case of emag
 		operating = 1
@@ -179,7 +179,7 @@
 /obj/machinery/door/poddoor/two_tile_ver/open()
 	if(operating == 1) //doors can still open when emag-disabled
 		return
-	if(!ticker)
+	if(!SSticker)
 		return 0
 	if(!operating) //in case of emag
 		operating = 1
@@ -224,7 +224,7 @@
 /obj/machinery/door/poddoor/four_tile_ver/open()
 	if(operating == 1) //doors can still open when emag-disabled
 		return
-	if(!ticker)
+	if(!SSticker)
 		return 0
 	if(!operating) //in case of emag
 		operating = 1
@@ -421,7 +421,6 @@
 		/obj/structure/window/framed/almayer,
 		/obj/machinery/door/airlock)
 
-	New()
-		spawn(10) // No fucken idea but this somehow makes it work. What the actual fuck.
-			relativewall_neighbours()
-		..()
+/obj/machinery/door/poddoor/almayer/Initialize()
+	relativewall_neighbours()
+	return ..()

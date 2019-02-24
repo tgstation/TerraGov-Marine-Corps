@@ -97,7 +97,7 @@
 					if(security_level != old_level)
 						//Only notify the admins if an actual change happened
 						log_game("[key_name(usr)] has changed the security level to [get_security_level()].")
-						message_admins("[key_name_admin(usr)] has changed the security level to [get_security_level()].")
+						message_admins("[ADMIN_TPMONTY(usr)] has changed the security level to [get_security_level()].")
 						switch(security_level)
 							if(SEC_LEVEL_GREEN)
 								feedback_inc("alert_comms_green",1)
@@ -137,7 +137,7 @@
 					to_chat(usr, "<span class='warning'>TGMC protocol does not allow immediate evacuation. Please wait another [round((EVACUATION_TIME_LOCK-world.time)/600)] minutes before trying again.</span>")
 					return FALSE
 
-				if(!ticker?.mode)
+				if(!SSticker?.mode)
 					to_chat(usr, "<span class='warning'>The [MAIN_SHIP_NAME]'s distress beacon must be activated prior to evacuation taking place.</span>")
 					return FALSE
 
@@ -156,7 +156,7 @@
 				EvacuationAuthority.enable_self_destruct()
 
 				log_game("[key_name(usr)] has called for an emergency evacuation.")
-				message_admins("[key_name_admin(usr)] has called for an emergency evacuation.", 1)
+				message_admins("[ADMIN_TPMONTY(usr)] has called for an emergency evacuation.")
 				post_status("shuttle")
 				return TRUE
 
@@ -176,55 +176,59 @@
 							set_security_level(SEC_LEVEL_RED, TRUE) //both SD and evac are inactive, lowering the security level.
 
 				log_game("[key_name(usr)] has canceled the emergency evacuation.")
-				message_admins("[key_name_admin(usr)] has canceled the emergency evacuation.", 1)
+				message_admins("[ADMIN_TPMONTY(usr)] has canceled the emergency evacuation.")
 				return TRUE
 
 			state = STATE_EVACUATION_CANCEL
 
 		if("distress")
 			if(state == STATE_DISTRESS)
-				//Comment to test
 				if(world.time < DISTRESS_TIME_LOCK)
 					to_chat(usr, "<span class='warning'>The distress beacon cannot be launched this early in the operation. Please wait another [round((DISTRESS_TIME_LOCK-world.time)/600)] minutes before trying again.</span>")
 					return FALSE
 
-				if(!ticker?.mode)
+				if(!SSticker?.mode)
 					return FALSE //Not a game mode?
 
-				if(just_called || ticker.mode.waiting_for_candidates)
+				if(just_called || SSticker.mode.waiting_for_candidates)
 					to_chat(usr, "<span class='warning'>The distress beacon has been just launched.</span>")
 					return FALSE
 
-				if(ticker.mode.on_distress_cooldown)
+				if(SSticker.mode.on_distress_cooldown)
 					to_chat(usr, "<span class='warning'>The distress beacon is currently recalibrating.</span>")
 					return FALSE
 
-				var/L[] = ticker.mode.count_humans_and_xenos()
-				var/M[] = ticker.mode.count_humans_and_xenos(list(MAIN_SHIP_Z_LEVEL))
-				if((L[2] < round(L[1] * 0.8)) && (M[2] < round(M[1] * 0.5))) //If there's less humans (weighted) than xenos, humans get home-turf advantage
+				var/Ship[] = SSticker.mode.count_humans_and_xenos()
+				var/ShipMarines[] = Ship[1]
+				var/ShipXenos[] = Ship[2]
+				var/Planet[] = SSticker.mode.count_humans_and_xenos(SSmapping.levels_by_trait(ZTRAIT_MARINE_MAIN_SHIP))
+				var/PlanetMarines[] = Planet[1]
+				var/PlanetXenos[] = Planet[2]
+				if((PlanetXenos < round(PlanetMarines * 0.8)) && (ShipXenos < round(ShipMarines * 0.5))) //If there's less humans (weighted) than xenos, humans get home-turf advantage
 					log_game("[key_name(usr)] has attemped to call a distress beacon, but it was denied due to lack of threat.")
 					to_chat(usr, "<span class='warning'>The sensors aren't picking up enough of a threat to warrant a distress beacon.</span>")
 					return FALSE
 
-				for(var/client/C in admins)
-					if((R_ADMIN|R_MOD) & C.holder.rights)
+				for(var/client/C in GLOB.admins)
+					if(check_other_rights(C, R_ADMIN, FALSE))
 						C << 'sound/effects/sos-morse-code.ogg'
-				message_admins("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) has called a Distress Beacon. It will be sent in 60 seconds unless denied or sent early. (<A HREF='?_src_=holder;ccmark=\ref[usr]'>Mark</A>) (<A HREF='?_src_=holder;distress=\ref[usr]'>SEND</A>) (<A HREF='?_src_=holder;ccdeny=\ref[usr]'>DENY</A>) (<A HREF='?_src_=holder;adminplayerobservejump=\ref[usr]'>JMP</A>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) (<A HREF='?_src_=holder;CentcommReply=\ref[usr]'>RPLY</A>)")
-				to_chat(usr, "<span class='notice'>A distress beacon will launch in 60 seconds unless High Command responds otherwise.</span>")
+						to_chat(C, "<span class='notice'><b><font color='purple'>DISTRESS:</font> [ADMIN_TPMONTY(usr)] has called a Distress Beacon. It will be sent in 60 seconds unless denied or sent early. (<A HREF='?src=[REF(C.holder)];[HrefToken(TRUE)];distress=[REF(usr)]'>SEND</A>) (<A HREF='?src=[REF(C.holder)];[HrefToken(TRUE)];deny=[REF(usr)]'>DENY</A>) (<a href='?src=[REF(C.holder)];[HrefToken(TRUE)];reply=[REF(usr)]'>REPLY</a>).</b></span>")
+				to_chat(usr, "<span class='boldnotice'>A distress beacon will launch in 60 seconds unless High Command responds otherwise.</span>")
 
 				distress_cancel = FALSE
 				just_called = TRUE
 				spawn(1 MINUTES)
 					just_called = FALSE
 					cooldown_request = world.time
-					if(distress_cancel || ticker.mode.on_distress_cooldown || ticker.mode.waiting_for_candidates)
+					if(distress_cancel || SSticker.mode.on_distress_cooldown || SSticker.mode.waiting_for_candidates)
 						return FALSE
 					else
-						ticker.mode.activate_distress()
-						state = STATE_DISTRESS
+						SSticker.mode.activate_distress()
 						log_game("A distress beacon requested by [key_name_admin(usr)] was automatically sent due to not receiving an answer within 60 seconds.")
-						message_admins("A distress beacon requested by [key_name_admin(usr)] was automatically sent due to not receiving an answer within 60 seconds.", 1)
+						message_admins("A distress beacon requested by [ADMIN_TPMONTY(usr)] was automatically sent due to not receiving an answer within 60 seconds.")
 						return TRUE
+			else
+				state = STATE_DISTRESS
 
 		if("messagelist")
 			currmsg = 0
@@ -283,14 +287,14 @@
 					to_chat(usr, "<span class='warning'>Arrays recycling.  Please stand by.</span>")
 					return FALSE
 
-				var/input = stripped_input(usr, "Please choose a message to transmit to the TGMC High Command.  Please be aware that this process is very expensive, and abuse will lead to termination.  Transmission does not guarantee a response. There is a small delay before you may send another message. Be clear and concise.", "To abort, send an empty message.", "")
-				if(!input || !(usr in view(1,src)) || authenticated != 2 || world.time < cooldown_central + COOLDOWN_COMM_CENTRAL)
+				var/msg = input(usr, "Please choose a message to transmit to the TGMC High Command.  Please be aware that this process is very expensive, and abuse will lead to termination.  Transmission does not guarantee a response. There is a small delay before you may send another message. Be clear and concise.", "To abort, send an empty message.", "")
+				if(!msg || !usr.Adjacent(src) || authenticated != 2 || world.time < cooldown_central + COOLDOWN_COMM_CENTRAL)
 					return FALSE
 
 
-				Centcomm_announce(input, usr)
+				tgmc_message(msg, usr)
 				to_chat(usr, "<span class='notice'>Message transmitted.</span>")
-				usr.log_talk(input, LOG_SAY, tag="TGMC announcement")
+				usr.log_talk(msg, LOG_SAY, tag = "TGMC announcement")
 				cooldown_central = world.time
 
 		if("securitylevel")
@@ -327,7 +331,7 @@
 		dat += "<B>Evacuation in Progress</B>\n<BR>\nETA: [EvacuationAuthority.get_status_panel_eta()]<BR>"
 
 /*
-	if(istype(user, /mob/living/silicon))
+	if(issilicon(user))
 		var/dat2 = interact_ai(user) // give the AI a different interact proc to limit its access
 		if(dat2)
 			dat +=  dat2
@@ -346,7 +350,7 @@
 
 				if(authenticated == 2)
 					dat += "<BR>\[ <A HREF='?src=\ref[src];operation=announce'>Make an announcement</A> \]"
-					dat += admins.len > 0 ? "<BR>\[ <A HREF='?src=\ref[src];operation=messageTGMC'>Send a message to TGMC</A> \]" : "<BR>\[ TGMC communication offline \]"
+					dat += length(GLOB.admins) > 0 ? "<BR>\[ <A HREF='?src=\ref[src];operation=messageTGMC'>Send a message to TGMC</A> \]" : "<BR>\[ TGMC communication offline \]"
 					dat += "<BR>\[ <A HREF='?src=\ref[src];operation=award'>Award a medal</A> \]"
 					dat += "<BR>\[ <A HREF='?src=\ref[src];operation=distress'>Send Distress Beacon</A> \]"
 					switch(EvacuationAuthority.evac_status)

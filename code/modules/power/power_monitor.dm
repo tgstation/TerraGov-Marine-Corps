@@ -21,7 +21,7 @@
 	if(isturf(T))
 		attached = locate() in T
 	if(attached)
-		powernet = attached.get_powernet()
+		powernet = attached.powernet
 
 /obj/machinery/power/monitor/attack_ai(mob/user)
 	add_fingerprint(user)
@@ -40,7 +40,7 @@
 /obj/machinery/power/monitor/interact(mob/user)
 
 	if ( (get_dist(src, user) > 1 ) || (stat & (BROKEN|NOPOWER)) )
-		if (!istype(user, /mob/living/silicon))
+		if (!issilicon(user))
 			user.unset_interaction()
 			user << browse(null, "window=powcomp")
 			return
@@ -111,7 +111,7 @@
 
 //copied from computer.dm
 /obj/machinery/power/monitor/attackby(I as obj, user as mob)
-	if(istype(I, /obj/item/tool/screwdriver) && circuit)
+	if(isscrewdriver(I) && circuit)
 		playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 		if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
 			var/obj/structure/computerframe/A = new( src.loc )

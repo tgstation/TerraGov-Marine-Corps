@@ -4,7 +4,7 @@
 	lastKnownIP	= client.address
 	computer_id	= client.computer_id
 	log_access("Login: [key_name(src)] from [lastKnownIP ? lastKnownIP : "localhost"]-[computer_id] || BYOND v[client.byond_version].[client.byond_build]")
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		if(M == src)	continue
 		if( M.key && (M.key != key) )
 			var/matches
@@ -16,15 +16,15 @@
 				spawn() alert("You have logged in already with another key this round, please log out of this one NOW or risk being banned!")
 			if(matches)
 				if(M.client)
-					message_admins("<font color='red'><B>Notice: </B><font color='blue'><A href='?src=\ref[usr];priv_msg=\ref[src.client]'>[key_name_admin(src)]</A> has the same [matches] as <A href='?src=\ref[usr];priv_msg=\ref[M.client]'>[key_name_admin(M)]</A>.</font>", 1)
 					log_access("Notice: [key_name(src)] has the same [matches] as [key_name(M)].")
+					message_admins("[ADMIN_TPMONTY(src)] has the same [matches] as [ADMIN_TPMONTY(M)].")
 				else
-					message_admins("<font color='red'><B>Notice: </B><font color='blue'><A href='?src=\ref[usr];priv_msg=\ref[src.client]'>[key_name_admin(src)]</A> has the same [matches] as [key_name_admin(M)] (no longer logged in). </font>", 1)
-					log_access("Notice: [key_name(src)] has the same [matches] as [key_name(M)] (no longer logged in).")
+					log_access("[key_name(src)] has the same [matches] as [key_name(M)] (no longer logged in).")
+					message_admins("[ADMIN_TPMONTY(src)] has the same [matches] as [ADMIN_TPMONTY(M)] (no longer logged in).")
 
 /mob/Login()
 
-	player_list |= src
+	GLOB.player_list |= src
 	update_Login_details()
 	world.update_status()
 
@@ -32,6 +32,8 @@
 	client.screen = null				//remove hud items just in case
 	if(!hud_used) create_hud()
 	if(hud_used) hud_used.show_hud(hud_used.hud_version)
+
+	log_message("has logged in.", LOG_OOC, "blue")
 
 	reload_fullscreens()
 

@@ -41,7 +41,8 @@
 					close()
 		return
 	var/mob/M = AM // we've returned by here if M is not a mob
-	if (!( ticker ))
+	add_fingerprint(M)
+	if (!( SSticker ))
 		return
 	if (src.operating)
 		return
@@ -73,7 +74,7 @@
 /obj/machinery/door/window/open()
 	if (src.operating == 1) //doors can still open when emag-disabled
 		return FALSE
-	if (!ticker)
+	if (!SSticker)
 		return FALSE
 	if(!src.operating) //in case of emag
 		src.operating = 1
@@ -105,11 +106,13 @@
 	src.operating = 0
 	return TRUE
 
-/obj/machinery/door/window/proc/take_damage(var/damage)
+/obj/machinery/door/window/take_damage(var/damage)
 	src.health = max(0, src.health - damage)
 	if (src.health <= 0)
-		new /obj/item/shard(src.loc)
-		var/obj/item/stack/cable_coil/CC = new /obj/item/stack/cable_coil(src.loc)
+		var/obj/item/shard/S = new(loc)
+		transfer_fingerprints_to(S)
+		var/obj/item/stack/cable_coil/CC = new(loc)
+		transfer_fingerprints_to(CC)
 		CC.amount = 2
 		var/obj/item/circuitboard/airlock/ae
 		if(!electronics)
@@ -125,6 +128,7 @@
 			ae = electronics
 			electronics = null
 			ae.loc = src.loc
+		transfer_fingerprints_to(ae)
 		if(operating == -1)
 			ae.icon_state = "door_electronics_smoked"
 			operating = 0
@@ -192,7 +196,7 @@
 		return TRUE
 
 	//If it's emagged, crowbar can pry electronics out.
-	if (src.operating == -1 && istype(I, /obj/item/tool/crowbar))
+	if (src.operating == -1 && iscrowbar(I))
 		playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
 		user.visible_message("[user] removes the electronics from the windoor.", "You start to remove electronics from the windoor.")
 		if (do_after(user,40, TRUE, 5, BUSY_ICON_BUILD))
@@ -206,7 +210,7 @@
 				wa.name = "Wired Windoor Assembly"
 			if (src.base_state == "right" || src.base_state == "rightsecure")
 				wa.facing = "r"
-			wa.dir = src.dir
+			wa.setDir(dir)
 			wa.state = "02"
 			wa.update_icon()
 

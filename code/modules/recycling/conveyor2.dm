@@ -24,7 +24,7 @@
 /obj/machinery/conveyor/New(loc, newdir, on = 0)
 	..(loc)
 	if(newdir)
-		dir = newdir
+		setDir(newdir)
 	switch(dir)
 		if(NORTH)
 			forwards = NORTH
@@ -102,7 +102,7 @@
 
 // attack with item, place item on conveyor
 /obj/machinery/conveyor/attackby(var/obj/item/I, mob/user)
-	if(isrobot(user))	return //Carn: fix for borgs dropping their modules on conveyor belts
+	if(iscyborg(user))	return //Carn: fix for borgs dropping their modules on conveyor belts
 	var/obj/item/grab/G = I
 	if(istype(G))	// handle grabbed mob
 		if(ismob(G.grabbed_thing))
@@ -196,7 +196,7 @@
 
 	spawn(5)		// allow map load
 		conveyors = list()
-		for(var/obj/machinery/conveyor/C in machines)
+		for(var/obj/machinery/conveyor/C in GLOB.machines)
 			if(C.id == id)
 				conveyors += C
 	start_processing()
@@ -245,7 +245,7 @@
 	update()
 
 	// find any switches with same id as this one, and set their positions to match us
-	for(var/obj/machinery/conveyor_switch/S in machines)
+	for(var/obj/machinery/conveyor_switch/S in GLOB.machines)
 		if(S.id == src.id)
 			S.position = position
 			S.update()
@@ -265,7 +265,7 @@
 	update()
 
 	// find any switches with same id as this one, and set their positions to match us
-	for(var/obj/machinery/conveyor_switch/S in machines)
+	for(var/obj/machinery/conveyor_switch/S in GLOB.machines)
 		if(S.id == src.id)
 			S.position = position
 			S.update()

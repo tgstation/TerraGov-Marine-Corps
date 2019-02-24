@@ -17,6 +17,7 @@
 #define PLASMA_HUD			"13" //indicates the plasma level of xenos.
 #define PHEROMONE_HUD		"14" //indicates which pheromone is active on a xeno.
 #define QUEEN_OVERWATCH_HUD	"15" //indicates which xeno the queen is overwatching.
+#define STATUS_HUD_OBSERVER_INFECTION "16" //gives observers the xeno larval stage
 
 
 //data HUD (medhud, sechud) defines

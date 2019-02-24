@@ -25,9 +25,9 @@
 	if(internal_damage&MECHA_INT_CONTROL_LOST)
 		target = safepick(oview(1,src))
 	if(!melee_can_hit || !istype(target, /atom)) return
-	if(istype(target, /mob/living))
+	if(isliving(target))
 		var/mob/living/M = target
-		if(src.occupant.a_intent == "hurt")
+		if(src.occupant.a_intent == INTENT_HARM)
 			playsound(src, 'sound/weapons/punch4.ogg', 25, 1)
 			if(damtype == "brute")
 				step_away(M,src,15)
@@ -39,7 +39,7 @@
 					melee_can_hit = 1
 				return
 			*/
-			if(istype(target, /mob/living/carbon/human))
+			if(ishuman(target))
 				var/mob/living/carbon/human/H = target
 	//			if (M.health <= 0) return
 
@@ -97,7 +97,7 @@
 				if(istype(target, target_type) && hascall(target, "attackby"))
 					src.occupant_message("You hit [target].")
 					src.visible_message("<font color='red'><b>[src.name] hits [target]</b></font>")
-					if(!istype(target, /turf/closed/wall))
+					if(!iswallturf(target))
 						target:attackby(src,src.occupant)
 					else if(prob(5))
 						target:dismantle_wall(1)

@@ -27,7 +27,7 @@
 
 	New()
 		..()
-		ammo = ammo_list[ammo]
+		ammo = GLOB.ammo_list[ammo]
 		start_processing()
 
 	Destroy()
@@ -43,19 +43,17 @@
 	if (src.anchored || usr:stat)
 		to_chat(usr, "It is fastened to the floor!")
 		return 0
-	src.dir = turn(src.dir, 90)
+	setDir(turn(dir, 90))
 	return 1
 
 /obj/machinery/power/emitter/Initialize()
 	..()
 	if(state == 2 && anchored)
 		connect_to_network()
-		src.directwired = 1
 
 /obj/machinery/power/emitter/Destroy()
-	message_admins("Emitter deleted at ([x],[y],[z] - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)",0,1)
-	log_game("Emitter deleted at ([x],[y],[z])")
-	investigate_log("<font color='red'>deleted</font> at ([x],[y],[z])","singulo")
+	log_game("Emitter deleted at [AREACOORD(src.loc)].")
+	message_admins("Emitter deleted at [ADMIN_VERBOSEJMP(src.loc)].")
 	. = ..()
 
 /obj/machinery/power/emitter/update_icon()
@@ -77,17 +75,15 @@
 			if(src.active==1)
 				src.active = 0
 				to_chat(user, "You turn off the [src].")
-				message_admins("Emitter turned off by [key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) in ([x],[y],[z]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)",0,1)
-				log_game("Emitter turned off by [user.ckey]([user]) in ([x],[y],[z])")
-				investigate_log("turned <font color='red'>off</font> by [user.key]","singulo")
+				message_admins("Emitter turned off by [ADMIN_TPMONTY(user)].")
+				log_game("Emitter turned off by [key_name(user)] in [AREACOORD(user.loc)].")
 			else
 				src.active = 1
 				to_chat(user, "You turn on the [src].")
 				src.shot_number = 0
 				src.fire_delay = 100
-				message_admins("Emitter turned on by [key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) in ([x],[y],[z]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)",0,1)
-				log_game("Emitter turned on by [user.ckey]([user]) in ([x],[y],[z])")
-				investigate_log("turned <font color='green'>on</font> by [user.key]","singulo")
+				message_admins("Emitter turned on by [ADMIN_TPMONTY(usr)].")
+				log_game("Emitter turned on by [key_name(user)] in [AREACOORD(user.loc)].")
 			update_icon()
 		else
 			to_chat(user, "<span class='warning'>The controls are locked!</span>")
@@ -112,12 +108,10 @@
 			if(!powered)
 				powered = 1
 				update_icon()
-				investigate_log("regained power and turned <font color='green'>on</font>","singulo")
 		else
 			if(powered)
 				powered = 0
 				update_icon()
-				investigate_log("lost power and turned <font color='red'>off</font>","singulo")
 			return
 
 		last_shot = world.time
@@ -153,7 +147,7 @@
 
 /obj/machinery/power/emitter/attackby(obj/item/W, mob/user)
 
-	if(istype(W, /obj/item/tool/wrench))
+	if(iswrench(W))
 		if(active)
 			to_chat(user, "Turn off the [src] first.")
 			return
@@ -176,7 +170,7 @@
 				to_chat(user, "<span class='warning'>The [src.name] needs to be unwelded from the floor.</span>")
 		return
 
-	if(istype(W, /obj/item/tool/weldingtool))
+	if(iswelder(W))
 		var/obj/item/tool/weldingtool/WT = W
 		if(active)
 			to_chat(user, "Turn off the [src] first.")
@@ -195,7 +189,6 @@
 						state = 2
 						to_chat(user, "You weld the [src] to the floor.")
 						connect_to_network()
-						src.directwired = 1
 				else
 					to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
 			if(2)
@@ -209,7 +202,6 @@
 						state = 1
 						to_chat(user, "You cut the [src] free from the floor.")
 						disconnect_from_network()
-						src.directwired = 0
 				else
 					to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
 		return

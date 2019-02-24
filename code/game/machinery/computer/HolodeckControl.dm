@@ -84,7 +84,7 @@ var/global/list/holodeck_programs = list(
 	Topic(href, href_list)
 		if(..())
 			return
-		if((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))) || (istype(usr, /mob/living/silicon)))
+		if((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))) || issilicon(usr))
 			usr.set_interaction(src)
 
 			if(href_list["program"])
@@ -98,11 +98,11 @@ var/global/list/holodeck_programs = list(
 				if(!issilicon(usr))	return
 				emagged = !emagged
 				if(emagged)
-					message_admins("[key_name_admin(usr)] overrode the holodeck's safeties")
-					log_game("[key_name(usr)] overrided the holodeck's safeties")
+					log_game("[key_name(usr)] overrode the holodeck's safeties.")
+					message_admins("[ADMIN_TPMONTY(usr)] overrode the holodeck's safeties.")
 				else
-					message_admins("[key_name_admin(usr)] restored the holodeck's safeties")
-					log_game("[key_name(usr)] restored the holodeck's safeties")
+					log_game("[key_name(usr)] restored the holodeck's safeties.")				
+					message_admins("[ADMIN_TPMONTY(usr)] restored the holodeck's safeties.")
 
 			src.add_fingerprint(usr)
 		src.updateUsrDialog()
@@ -186,7 +186,7 @@ var/global/list/holodeck_programs = list(
 
 /obj/machinery/computer/HolodeckControl/proc/checkInteg(var/area/A)
 	for(var/turf/T in A)
-		if(istype(T, /turf/open/space))
+		if(isspaceturf(T))
 			return 0
 
 	return 1
@@ -348,11 +348,11 @@ var/global/list/holodeck_programs = list(
 			user.visible_message("<span class='danger'>[user] puts [M] on the table.</span>")
 		return
 
-	if (istype(W, /obj/item/tool/wrench))
+	if (iswrench(W))
 		to_chat(user, "It's a holotable!  There are no bolts!")
 		return
 
-	if(isrobot(user))
+	if(iscyborg(user))
 		return
 
 	..()
@@ -420,7 +420,7 @@ var/global/list/holodeck_programs = list(
 				return
 			M.forceMove(loc)
 			M.KnockDown(5)
-			for(var/obj/machinery/scoreboard/X in machines)
+			for(var/obj/machinery/scoreboard/X in GLOB.machines)
 				if(X.id == id)
 					X.score(side, 3)// 3 points for dunking a mob
 					// no break, to update multiple scoreboards
@@ -428,7 +428,7 @@ var/global/list/holodeck_programs = list(
 		return
 	else if (istype(W, /obj/item) && get_dist(src,user)<2)
 		user.transferItemToLoc(W, loc)
-		for(var/obj/machinery/scoreboard/X in machines)
+		for(var/obj/machinery/scoreboard/X in GLOB.machines)
 			if(X.id == id)
 				X.score(side)
 				// no break, to update multiple scoreboards
@@ -442,7 +442,7 @@ var/global/list/holodeck_programs = list(
 			return
 		if(prob(50))
 			I.loc = src.loc
-			for(var/obj/machinery/scoreboard/X in machines)
+			for(var/obj/machinery/scoreboard/X in GLOB.machines)
 				if(X.id == id)
 					X.score(side)
 					// no break, to update multiple scoreboards
@@ -540,6 +540,6 @@ var/global/list/holodeck_programs = list(
 	return
 
 /obj/structure/rack/holorack/attackby(obj/item/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/tool/wrench))
+	if (iswrench(W))
 		to_chat(user, "It's a holorack!  You can't unwrench it!")
 		return

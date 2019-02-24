@@ -28,7 +28,7 @@
 
 	var/damage = W.force / 4.0
 
-	if(istype(W, /obj/item/tool/weldingtool))
+	if(iswelder(W))
 		var/obj/item/tool/weldingtool/WT = W
 
 		if(WT.remove_fuel(0, user))
@@ -62,7 +62,7 @@
 /obj/effect/spider/stickyweb/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover, /mob/living/simple_animal/hostile/giant_spider))
 		return 1
-	else if(istype(mover, /mob/living))
+	else if(isliving(mover))
 		if(prob(50))
 			to_chat(mover, "<span class='warning'>You get stuck in [src] for a moment.</span>")
 			return 0
@@ -96,7 +96,7 @@
 	layer = BELOW_TABLE_LAYER
 	health = 3
 	var/amount_grown = -1
-	var/obj/machinery/atmospherics/unary/vent_pump/entry_vent
+	var/obj/machinery/atmospherics/components/unary/vent_pump/entry_vent
 	var/travelling_in_vent = 0
 	New()
 		pixel_x = rand(6,-6)
@@ -128,14 +128,14 @@
 			entry_vent = null
 	else if(entry_vent)
 		if(get_dist(src, entry_vent) <= 1)
-			if(entry_vent.network && entry_vent.network.normal_members.len)
+			if(entry_vent.parents?.members.len)
 				var/list/vents = list()
-				for(var/obj/machinery/atmospherics/unary/vent_pump/temp_vent in entry_vent.network.normal_members)
+				for(var/obj/machinery/atmospherics/components/unary/vent_pump/temp_vent in entry_vent.parents.members)
 					vents.Add(temp_vent)
 				if(!vents.len)
 					entry_vent = null
 					return
-				var/obj/machinery/atmospherics/unary/vent_pump/exit_vent = pick(vents)
+				var/obj/machinery/atmospherics/components/unary/vent_pump/exit_vent = pick(vents)
 				/*if(prob(50))
 					src.visible_message("<B>[src] scrambles into the ventillation ducts!</B>")*/
 
@@ -175,7 +175,7 @@
 				src.visible_message("<span class='notice'> \the [src] skitters[pick(" away"," around","")].</span>")
 	else if(prob(5))
 		//vent crawl!
-		for(var/obj/machinery/atmospherics/unary/vent_pump/v in view(7,src))
+		for(var/obj/machinery/atmospherics/components/unary/vent_pump/v in view(7,src))
 			if(!v.welded)
 				entry_vent = v
 				walk_to(src, entry_vent, 5)

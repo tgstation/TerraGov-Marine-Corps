@@ -382,6 +382,7 @@
 					"/obj/item/ammo_magazine/sentry",
 					"/obj/item/ammo_magazine/minisentry",
 					"/obj/item/device/marine_turret/mini",
+					"/obj/item/stack/razorwire",
 					"/obj/item/stack/sandbags"
 					)
 
@@ -457,7 +458,7 @@
 	if (!istype(M))
 		return
 
-	if(M.species.name == "Zombie")
+	if(iszombie(M))
 		return
 
 	if (M.back != src)
@@ -581,13 +582,16 @@
 		camo_off(user)
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/process()
-	if(!wearer || wearer.stat == DEAD)
+	if(!wearer)
 		camo_off()
 		return
-	
+	else if(wearer.stat == DEAD)
+		camo_off(wearer)
+		return
+
 	if(process_count++ < 4)
 		return
-	
+
 	process_count = 0
 
 	stealth_delay = world.time - SCOUT_CLOAK_STEALTH_DELAY
@@ -609,8 +613,11 @@
 	shimmer_alpha = SCOUT_CLOAK_RUN_ALPHA * 0.5 //Half the normal shimmer transparency.
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/sniper/process()
-	if(!wearer || wearer.stat == DEAD)
+	if(!wearer)
 		camo_off()
+		return
+	else if(wearer.stat == DEAD)
+		camo_off(wearer)
 		return
 
 	stealth_delay = world.time - SCOUT_CLOAK_STEALTH_DELAY * 0.5
@@ -641,7 +648,7 @@
 
 
 /obj/item/storage/backpack/marine/engineerpack/attackby(obj/item/W, mob/living/user)
-	if(istype(W, /obj/item/tool/weldingtool))
+	if(iswelder(W))
 		var/obj/item/tool/weldingtool/T = W
 		if(T.welding)
 			to_chat(user, "<span class='warning'>That was close! However you realized you had the welder on and prevented disaster.</span>")

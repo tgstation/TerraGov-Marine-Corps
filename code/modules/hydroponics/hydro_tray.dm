@@ -214,15 +214,15 @@
 	var/turf/T = loc
 
 	// Process it.
-	if(pressure < seed.lowkpa_tolerance || pressure > seed.highkpa_tolerance)
-		health -= healthmod
+//	if(pressure < seed.lowkpa_tolerance || pressure > seed.highkpa_tolerance)
+//		health -= healthmod
 
-	if(abs(temperature - seed.ideal_heat) > seed.heat_tolerance)
-		health -= healthmod
+//	if(abs(temperature - seed.ideal_heat) > seed.heat_tolerance)
+//		health -= healthmod
 
 	// If we're attached to a pipenet, then we should let the pipenet know we might have modified some gasses
-	if (closed_system && connected_port)
-		update_connected_network()
+//	if (closed_system && connected_port)
+//		update_connected_network()
 
 	// Handle light requirements.
 	var/area/A = T.loc
@@ -526,7 +526,7 @@
 	if (O.is_open_container())
 		return 0
 
-	if(istype(O, /obj/item/tool/wirecutters) || istype(O, /obj/item/tool/surgery/scalpel))
+	if(iswirecutter(O) || istype(O, /obj/item/tool/surgery/scalpel))
 
 		if(!seed)
 			to_chat(user, "There is nothing to take a sample from in \the [src].")
@@ -646,11 +646,11 @@
 		check_level_sanity()
 		update_icon()
 
-	else if(istype(O, /obj/item/tool/wrench))
+	else if(iswrench(O))
 
 		//If there's a connector here, the portable_atmospherics setup can handle it.
-		if(locate(/obj/machinery/atmospherics/portables_connector/) in loc)
-			return ..()
+//		if(locate(/obj/machinery/atmospherics/portables_connector/) in loc)
+//			return ..()
 
 		playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 		anchored = !anchored
@@ -714,7 +714,7 @@
 				else
 					light_available =  5
 
-			to_chat(usr, "The tray's sensor suite is reporting a light level of [light_available] lumens and a temperature of [temperature]K.")
+			to_chat(usr, "The tray's sensor suite is reporting a light level of [light_available] lumens.") // and a temperature of [temperature]K.")
 
 /obj/machinery/portable_atmospherics/hydroponics/verb/close_lid()
 	set name = "Toggle Tray Lid"

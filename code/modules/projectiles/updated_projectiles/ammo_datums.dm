@@ -51,6 +51,8 @@
 	var/debilitate[]				= null 		// Stun,knockdown,knockout,irradiate,stutter,eyeblur,drowsy,agony
 	var/list/ammo_reagents			= null		// Type of reagent transmitted by the projectile on hit.
 	var/barricade_clear_distance	= 1			// How far the bullet can travel before incurring a chance of hitting barricades; normally 1.
+	var/armor_type					= "bullet"	// Does this have an override for the armor type the ammo should test? Bullet by default
+
 
 	New()
 		accuracy 			= CONFIG_GET(number/combat_define/min_hit_accuracy) 	// This is added to the bullet's base accuracy.
@@ -91,14 +93,14 @@
 		else //Two tiles away or less.
 			shake_camera(M, 3, 4)
 			if(isliving(M)) //This is pretty ugly, but what can you do.
-				if(isXeno(M))
+				if(isxeno(M))
 					var/mob/living/carbon/Xenomorph/target = M
 					if(target.mob_size == MOB_SIZE_BIG)
 						return //Big xenos are not affected.
 					target.apply_effects(0,1) //Smaller ones just get shaken.
 					to_chat(target, "<span class='xenodanger'>You are shaken by the sudden impact!</span>")
 				else
-					if(!isYautja(M)) //Not predators.
+					if(!isyautja(M)) //Not predators.
 						var/mob/living/target = M
 						target.apply_effects(1,2) //Humans get stunned a bit.
 						to_chat(target, "<span class='highdanger'>The blast knocks you off your feet!</span>")
@@ -113,7 +115,7 @@
 		if(!isliving(M))
 			return
 		var/impact_message = ""
-		if(isXeno(M))
+		if(isxeno(M))
 			var/mob/living/carbon/Xenomorph/D = M
 			if(D.fortify) //If we're fortified we don't give a shit about staggerstun.
 				impact_message += "<span class='xenodanger'>Your fortified stance braces you against the impact.</span>"
@@ -125,39 +127,44 @@
 				stun = 0
 		if(shake)
 			shake_camera(M, shake+2, shake+3)
-			if(isXeno(M))
+			if(isxeno(M))
 				impact_message += "<span class='xenodanger'>You are shaken by the sudden impact!</span>"
 			else
 				impact_message += "<span class='warning'>You are shaken by the sudden impact!</span>"
 
 		//Check for and apply hard CC.
-		if(((isYautja(M) || M.mob_size == MOB_SIZE_BIG) && hard_size_threshold > 2) || (M.mob_size == MOB_SIZE_XENO && hard_size_threshold > 1) || (ishuman(M) && hard_size_threshold > 0))
+		if(((isyautja(M) || M.mob_size == MOB_SIZE_BIG) && hard_size_threshold > 2) || (M.mob_size == MOB_SIZE_XENO && hard_size_threshold > 1) || (ishuman(M) && hard_size_threshold > 0))
 			var/mob/living/L = M
 			if(!M.stunned && !M.knocked_down) //Prevent chain stunning.
 				L.apply_effects(stun,weaken)
 			if(knockback)
-				if(isXeno(M))
+				if(isxeno(M))
 					impact_message += "<span class='xenodanger'>The blast knocks you off your feet!</span>"
 				else
 					impact_message += "<span class='highdanger'>The blast knocks you off your feet!</span>"
 				for(var/i=0, i<knockback, i++)
 					step_away(M,P)
 
-		//Check for and apply soft CC; Xeno only at this time
-		if(isXeno(M) && (M.mob_size == MOB_SIZE_BIG && soft_size_threshold > 2) || (M.mob_size == MOB_SIZE_XENO && soft_size_threshold > 1))
-			var/mob/living/carbon/Xenomorph/X = M
+		//Check for and apply soft CC
+		if(iscarbon(M))
+			var/mob/living/carbon/C = M
+			var/stagger_immune = FALSE
+			if(isxeno(C))
+				var/mob/living/carbon/Xenomorph/X = M
+				if(isxenoqueen(X)) //Stagger too powerful vs the Queen, so she's immune.
+					stagger_immune = TRUE
 			#if DEBUG_STAGGER_SLOWDOWN
 			to_chat(world, "<span class='debuginfo'>Damage: Initial stagger is: <b>[target.stagger]</b></span>")
 			#endif
-			if(!isXenoQueen(X)) //Stagger too powerful vs the Queen.
-				X.adjust_stagger(stagger)
+			if(!stagger_immune)
+				C.adjust_stagger(stagger)
 			#if DEBUG_STAGGER_SLOWDOWN
 			to_chat(world, "<span class='debuginfo'>Damage: Final stagger is: <b>[target.stagger]</b></span>")
 			#endif
 			#if DEBUG_STAGGER_SLOWDOWN
 			to_chat(world, "<span class='debuginfo'>Damage: Initial slowdown is: <b>[target.slowdown]</b></span>")
 			#endif
-			X.add_slowdown(slowdown)
+			C.add_slowdown(slowdown)
 			#if DEBUG_STAGGER_SLOWDOWN
 			to_chat(world, "<span class='debuginfo'>Damage: Final slowdown is: <b>[target.slowdown]</b></span>")
 			#endif
@@ -169,7 +176,7 @@
 		for(var/mob/living/carbon/M in orange(radius,target))
 			if(P.firer == M)
 				continue
-			M.visible_message("<span class='danger'>[M] is hit by backlash from \a [P.name]!</span>","[isXeno(M)?"<span class='xenodanger'>":"<span class='highdanger'>"]You are hit by backlash from \a </b>[P.name]</b>!</span>")
+			M.visible_message("<span class='danger'>[M] is hit by backlash from \a [P.name]!</span>","[isxeno(M)?"<span class='xenodanger'>":"<span class='highdanger'>"]You are hit by backlash from \a </b>[P.name]</b>!</span>")
 			if(apply_armor)
 				var/armor_block = M.run_armor_check(M, attack_type)
 				M.apply_damage(rand(P.damage * modifier * 0.1,P.damage * modifier),damage_type, null, armor_block)
@@ -182,7 +189,7 @@
 		var/i
 		for(i = 1 to bonus_projectiles_amount) //Want to run this for the number of bonus projectiles.
 			var/obj/item/projectile/P = new /obj/item/projectile(original_P.shot_from)
-			P.generate_bullet(ammo_list[bonus_projectiles_type]) //No bonus damage or anything.
+			P.generate_bullet(GLOB.ammo_list[bonus_projectiles_type]) //No bonus damage or anything.
 			var/turf/new_target = null
 
 			P.scatter = round(P.scatter - (initial(original_P.scatter) - original_P.scatter) ) //if the gun changes the scatter of the main projectile, it also affects the bonus ones.
@@ -204,19 +211,8 @@
 	//This is sort of a workaround for now. There are better ways of doing this ~N.
 	proc/stun_living(mob/living/target, obj/item/projectile/P) //Taser proc to stun folks.
 		if(istype(target))
-			if( isYautja(target) || isXeno(target) )
+			if( isyautja(target) || isxeno(target) )
 				return //Not on aliens.
-			if(target.mind && target.mind.special_role)
-				switch(target.mind.special_role) //Switches are still better than evaluating this twice.
-					if("IRON BEARS") //These antags can shrug off tasers so they are not shut down.
-						target.apply_effects(1,1) //Barely affected.
-						return
-					if("UPP") //These antags can shrug off tasers so they are not shut down.
-						target.apply_effects(1,1) //Barely affected.
-						return
-					if("DEATH SQUAD")
-						target.apply_effects(0,1) //Almost unaffacted.
-						return
 			target.apply_effects(12,20)
 
 	proc/drop_flame(turf/T) // ~Art updated fire 20JAN17
@@ -598,10 +594,7 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.species && H.species.count_human) //no effect on synths or preds.
-			if(H.mind && H.mind.special_role)
-				H.apply_effects(0,1) //ineffective against antags.
-			else
-				H.apply_effects(6,8)
+			H.apply_effects(6,8)
 		shake_camera(H, 2, 1)
 
 /datum/ammo/bullet/shotgun/incendiary
@@ -639,7 +632,7 @@
 	accuracy_var_low = CONFIG_GET(number/combat_define/med_proj_variance)
 	accuracy_var_high = CONFIG_GET(number/combat_define/med_proj_variance)
 	max_range = CONFIG_GET(number/combat_define/short_shell_range)
-	damage = CONFIG_GET(number/combat_define/med_hit_damage)
+	damage = CONFIG_GET(number/combat_define/lmmed_hit_damage)
 	damage_var_low = -CONFIG_GET(number/combat_define/low_proj_variance)
 	damage_var_high = CONFIG_GET(number/combat_define/low_proj_variance)
 	damage_falloff *= 0.5
@@ -655,7 +648,7 @@
 	accuracy_var_low = CONFIG_GET(number/combat_define/med_proj_variance)
 	accuracy_var_high = CONFIG_GET(number/combat_define/med_proj_variance)
 	max_range = CONFIG_GET(number/combat_define/short_shell_range)
-	damage = CONFIG_GET(number/combat_define/lmed_hit_damage)
+	damage = CONFIG_GET(number/combat_define/hlow_hit_damage)
 	damage_var_low = -CONFIG_GET(number/combat_define/low_proj_variance)
 	damage_var_high = CONFIG_GET(number/combat_define/low_proj_variance)
 	damage_falloff *= 0.5
@@ -842,7 +835,7 @@
 
 /datum/ammo/bullet/turret/New()
 	..()
-	accurate_range = CONFIG_GET(number/combat_define/short_shell_range)
+	accurate_range = CONFIG_GET(number/combat_define/near_shell_range)
 	accuracy_var_low = CONFIG_GET(number/combat_define/low_proj_variance)
 	accuracy_var_high = CONFIG_GET(number/combat_define/low_proj_variance)
 	damage = CONFIG_GET(number/combat_define/lmed_hit_damage)
@@ -860,14 +853,15 @@
 	. = ..()
 	damage = CONFIG_GET(number/combat_define/med_hit_damage)
 	penetration= CONFIG_GET(number/combat_define/mhigh_armor_penetration)
+	accurate_range = CONFIG_GET(number/combat_define/min_shell_range)
 
 /datum/ammo/bullet/turret/mini
-	name = "UA-580 10x20mm armor piercing bullet"
+	name = "UA-580 10x20mm bullet"
 
 /datum/ammo/bullet/turret/mini/New()
 	. = ..()
-	damage = CONFIG_GET(number/combat_define/mlow_hit_damage) //25
-	penetration= CONFIG_GET(number/combat_define/hmed_armor_penetration) //40
+	damage = CONFIG_GET(number/combat_define/hlow_hit_damage) //35
+	penetration= CONFIG_GET(number/combat_define/low_armor_penetration) //20
 
 
 /datum/ammo/bullet/machinegun //Adding this for the MG Nests (~Art)
@@ -888,10 +882,9 @@
 
 /datum/ammo/bullet/minigun/New()
 	..()
-	accuracy = -CONFIG_GET(number/combat_define/low_hit_accuracy)
 	accuracy_var_low = CONFIG_GET(number/combat_define/low_proj_variance)
 	accuracy_var_high = CONFIG_GET(number/combat_define/low_proj_variance)
-	accurate_range = CONFIG_GET(number/combat_define/short_shell_range)
+	accurate_range = CONFIG_GET(number/combat_define/close_shell_range)
 	damage = CONFIG_GET(number/combat_define/med_hit_damage)
 	penetration= CONFIG_GET(number/combat_define/low_armor_penetration)
 	shrapnel_chance = CONFIG_GET(number/combat_define/med_shrapnel_chance)
@@ -911,6 +904,7 @@
 	sound_bounce	= "rocket_bounce"
 	damage_falloff = 0
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET
+	armor_type = "bomb"
 	var/datum/effect_system/smoke_spread/smoke
 
 /datum/ammo/rocket/New()
@@ -1017,7 +1011,7 @@
 	damage = CONFIG_GET(number/combat_define/super_hit_damage)
 	max_range = CONFIG_GET(number/combat_define/norm_shell_range)
 
-/datum/ammo/rocket/wp/drop_flame(radius = 3, turf/T) //~Art updated fire.
+/datum/ammo/rocket/wp/drop_flame(turf/T, radius = 3) //~Art updated fire.
 	if(!T || !isturf(T))
 		return
 	smoke.set_up(1, T)
@@ -1027,16 +1021,16 @@
 
 
 /datum/ammo/rocket/wp/on_hit_mob(mob/M,obj/item/projectile/P)
-	drop_flame(get_turf(M))
+	drop_flame(3, get_turf(M))
 
 /datum/ammo/rocket/wp/on_hit_obj(obj/O,obj/item/projectile/P)
-	drop_flame(get_turf(O))
+	drop_flame(3, get_turf(O))
 
 /datum/ammo/rocket/wp/on_hit_turf(turf/T,obj/item/projectile/P)
-	drop_flame(T)
+	drop_flame(3, T)
 
 /datum/ammo/rocket/wp/do_at_max_range(obj/item/projectile/P)
-	drop_flame(get_turf(P))
+	drop_flame(3, get_turf(P))
 
 /datum/ammo/rocket/wp/quad
 	name = "thermobaric rocket"
@@ -1077,6 +1071,7 @@
 
 	damage_type = BURN
 	flags_ammo_behavior = AMMO_ENERGY
+	armor_type = "energy"
 
 /datum/ammo/energy/New()
 	..()
@@ -1207,6 +1202,7 @@
 	name = "laser bolt"
 	icon_state = "laser"
 	hud_state = "laser"
+	armor_type = "laser"
 
 /datum/ammo/energy/lasgun/New()
 	. = ..()
@@ -1235,7 +1231,7 @@
 
 /datum/ammo/energy/lasgun/M43/overcharge/New()
 	. = ..()
-	damage = CONFIG_GET(number/combat_define/hmed_hit_damage)
+	damage = CONFIG_GET(number/combat_define/med_hit_damage)
 	max_range = CONFIG_GET(number/combat_define/max_shell_range)
 	penetration = CONFIG_GET(number/combat_define/mhigh_armor_penetration)
 
@@ -1251,6 +1247,7 @@
 	flags_ammo_behavior = AMMO_XENO_ACID
 	var/added_spit_delay = 0 //used to make cooldown of the different spits vary.
 	var/spit_cost
+	armor_type = "bio"
 
 /datum/ammo/xeno/New()
 	. = ..()
@@ -1264,10 +1261,11 @@
 /datum/ammo/xeno/toxin
 	name = "neurotoxic spit"
 	ammo_reagents = list("xeno_toxin" = 6)
-	debilitate = list(0.5,0.5,0,0,0,0,0,0)
 	flags_ammo_behavior = AMMO_XENO_TOX|AMMO_IGNORE_RESIST
 	spit_cost = 50
 	added_spit_delay = 5
+	damage_type = HALLOSS
+	armor_type = "bio"
 
 /datum/ammo/xeno/toxin/New()
 	accuracy = CONFIG_GET(number/combat_define/max_hit_accuracy)
@@ -1276,14 +1274,30 @@
 	max_range = CONFIG_GET(number/combat_define/near_shell_range)
 	accuracy_var_low = CONFIG_GET(number/combat_define/low_proj_variance)
 	accuracy_var_high = CONFIG_GET(number/combat_define/low_proj_variance)
+	damage = CONFIG_GET(number/combat_define/mlow_hit_damage)
+	damage_var_low = CONFIG_GET(number/combat_define/low_proj_variance)
+	damage_var_high = CONFIG_GET(number/combat_define/mlow_proj_variance)
 
-/datum/ammo/xeno/toxin/on_hit_mob(mob/living/carbon/M, obj/item/projectile/P)
-	if(!istype(M))
-		return ..()
-	var/mob/living/carbon/C = M
-	if(C.status_flags & XENO_HOST && istype(C.buckled, /obj/structure/bed/nest) || C.stat == DEAD)
+
+/datum/ammo/xeno/toxin/on_hit_mob(mob/living/carbon/C, obj/item/projectile/P)
+
+	if(!istype(C) || C.stat == DEAD || (xeno_hivenumber(C) && xeno_hivenumber(C) == xeno_hivenumber(P.firer)) )
 		return
+
+	if(C.status_flags & XENO_HOST && istype(C.buckled, /obj/structure/bed/nest))
+		return
+
+	staggerstun(C, P, CONFIG_GET(number/combat_define/close_shell_range), 0, 0, 1, 1, 0) //Staggers and slows down briefly
+
+	for(var/r_id in ammo_reagents)
+		var/on_mob_amount = C.reagents.get_reagent_amount(r_id)
+		var/amt_to_inject = ammo_reagents[r_id] //Never inject more than 30u through spitting
+		if(amt_to_inject + on_mob_amount > 30)
+			amt_to_inject = 30 - on_mob_amount
+		C.reagents.add_reagent(r_id, amt_to_inject)
+
 	return ..()
+
 
 /datum/ammo/xeno/toxin/upgrade1
 	name = "neurotoxic spit"
@@ -1302,6 +1316,10 @@
 	added_spit_delay = 10
 	spit_cost = 75
 
+/datum/ammo/xeno/toxin/medium/New()
+	. = ..()
+	damage = CONFIG_GET(number/combat_define/low_hit_damage)
+
 /datum/ammo/xeno/toxin/medium/upgrade1
 	ammo_reagents = list("xeno_toxin" = 10.2)
 
@@ -1316,6 +1334,10 @@
 	ammo_reagents = list("xeno_toxin" = 11)
 	added_spit_delay = 15
 	spit_cost = 100
+
+/datum/ammo/xeno/toxin/heavy/New()
+	. = ..()
+	damage = CONFIG_GET(number/combat_define/hlow_hit_damage)
 
 /datum/ammo/xeno/toxin/heavy/upgrade1
 	ammo_reagents = list("xeno_toxin" = 13.2)
@@ -1373,6 +1395,7 @@
 	damage_type = BURN
 	added_spit_delay = 5
 	spit_cost = 75
+	armor_type = "energy"
 
 /datum/ammo/xeno/acid/New()
 	. = ..()
@@ -1382,13 +1405,6 @@
 
 /datum/ammo/xeno/acid/on_shield_block(mob/M, obj/item/projectile/P)
 	burst(M,P,damage_type)
-
-/datum/ammo/xeno/acid/on_hit_mob(mob/M, obj/item/projectile/P)
-	if(iscarbon(M))
-		var/mob/living/carbon/C = M
-		if(C.status_flags & XENO_HOST && istype(C.buckled, /obj/structure/bed/nest) || C.stat == DEAD)
-			return
-	..()
 
 /datum/ammo/xeno/acid/medium
 	name = "acid spatter"
@@ -1434,6 +1450,7 @@
 	debilitate = list(19,21,0,0,11,12,0,0)
 	flags_ammo_behavior = AMMO_XENO_TOX|AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE|AMMO_IGNORE_RESIST
 	var/datum/effect_system/smoke_spread/smoke_system
+	armor_type = "bio"
 
 /datum/ammo/xeno/boiler_gas/New()
 	..()
@@ -1451,19 +1468,19 @@
 		var/mob/living/carbon/C = M
 		if(C.status_flags & XENO_HOST && istype(C.buckled, /obj/structure/bed/nest) || C.stat == DEAD)
 			return
-	if(isXenoBoiler(P.firer))
+	if(isxenoboiler(P.firer))
 		var/mob/living/carbon/Xenomorph/Boiler/B = P.firer
 		smoke_system.amount = B.upgrade
 	drop_nade(get_turf(P))
 
 /datum/ammo/xeno/boiler_gas/on_hit_obj(obj/O, obj/item/projectile/P)
-	if(isXenoBoiler(P.firer))
+	if(isxenoboiler(P.firer))
 		var/mob/living/carbon/Xenomorph/Boiler/B = P.firer
 		smoke_system.amount = B.upgrade
 	drop_nade(get_turf(P))
 
 /datum/ammo/xeno/boiler_gas/on_hit_turf(turf/T, obj/item/projectile/P)
-	if(isXenoBoiler(P.firer))
+	if(isxenoboiler(P.firer))
 		var/mob/living/carbon/Xenomorph/Boiler/B = P.firer
 		smoke_system.amount = B.upgrade
 	if(T.density && isturf(P.loc))
@@ -1472,7 +1489,7 @@
 		drop_nade(T)
 
 /datum/ammo/xeno/boiler_gas/do_at_max_range(obj/item/projectile/P)
-	if(isXenoBoiler(P.firer))
+	if(isxenoboiler(P.firer))
 		var/mob/living/carbon/Xenomorph/Boiler/B = P.firer
 		smoke_system.amount = B.upgrade
 	drop_nade(get_turf(P))
@@ -1492,6 +1509,7 @@
 	sound_bounce	= "acid_bounce"
 	debilitate = list(1,1,0,0,1,1,0,0)
 	flags_ammo_behavior = AMMO_XENO_ACID|AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE|AMMO_IGNORE_ARMOR
+	armor_type = "energy"
 
 /datum/ammo/xeno/boiler_gas/corrosive/New()
 	..()
@@ -1499,13 +1517,13 @@
 	damage_var_high = CONFIG_GET(number/combat_define/max_proj_variance)
 	damage_type = BURN
 
-/datum/ammo/xeno/boiler_gas/on_shield_block(mob/M, obj/item/projectile/P)
+/datum/ammo/xeno/boiler_gas/corrosive/on_shield_block(mob/M, obj/item/projectile/P)
 	burst(M,P,damage_type)
 
-/datum/ammo/xeno/boiler_gas/set_xeno_smoke(obj/item/projectile/P)
+/datum/ammo/xeno/boiler_gas/corrosive/set_xeno_smoke(obj/item/projectile/P)
 	smoke_system = new /datum/effect_system/smoke_spread/xeno_acid()
 
-/datum/ammo/xeno/boiler_gas/drop_nade(turf/T)
+/datum/ammo/xeno/boiler_gas/corrosive/drop_nade(turf/T)
 	smoke_system.set_up(3, 0, T)
 	smoke_system.start()
 	T.visible_message("<span class='danger'>A glob of acid lands with a splat and explodes into corrosive bile!</span>")
@@ -1523,6 +1541,7 @@
 	sound_hit 	 	= "alloy_hit"
 	sound_armor	 	= "alloy_armor"
 	sound_bounce	= "alloy_bounce"
+	armor_type = "bullet"
 
 /datum/ammo/alloy_spike/New()
 	..()
@@ -1540,6 +1559,7 @@
 	hud_state_empty = "flame_empty"
 	damage_type = BURN
 	flags_ammo_behavior = AMMO_INCENDIARY|AMMO_IGNORE_ARMOR
+	armor_type = "energy"
 
 /datum/ammo/flamethrower/New()
 	..()
@@ -1558,12 +1578,10 @@
 /datum/ammo/flamethrower/do_at_max_range(obj/item/projectile/P)
 	drop_flame(get_turf(P))
 
-/datum/ammo/flamethrower/tank_flamer/drop_flame(var/turf/T)
+/datum/ammo/flamethrower/tank_flamer/drop_flame(turf/T)
 	if(!istype(T))
 		return
-	if(locate(/obj/flamer_fire) in T)
-		return
-	new /obj/flamer_fire(T, 20, 20, fire_spread_amount = 2)
+	flame_radius(2, T)
 
 /datum/ammo/flamethrower/green
 	name = "green flame"
@@ -1598,13 +1616,9 @@
 	drop_nade(get_turf(P))
 
 /datum/ammo/flare/proc/drop_nade(var/turf/T)
-	var/obj/item/device/flashlight/flare/G = new (T)
+	var/obj/item/explosive/grenade/flare/G = new (T)
 	G.visible_message("<span class='warning'>\A [G] bursts into brilliant light nearby!</span>")
-	G.on = 1
-	START_PROCESSING(SSobj, G)
-	G.icon_state = "flare-on"
-	G.damtype = "fire"
-	G.SetLuminosity(G.brightness_on)
+	G.turn_on()
 
 /datum/ammo/rocket/toy
 	name = "\improper toy rocket"
@@ -1628,6 +1642,7 @@
 	damage_type = BRUTE
 	var/nade_type = /obj/item/explosive/grenade/frag
 	icon_state = "grenade"
+	armor_type = "bomb"
 
 /datum/ammo/grenade_container/New()
 	..()

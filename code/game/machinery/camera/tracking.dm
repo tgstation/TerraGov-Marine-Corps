@@ -4,7 +4,7 @@
 /mob/living/silicon/ai/proc/InvalidTurf(turf/T as turf)
 	if(!T)
 		return 1
-	if(T.z == 2)
+	if(is_centcom_level(T.z))
 		return 1
 	if(T.z > 6)
 		return 1
@@ -116,7 +116,7 @@
 		return list()
 
 	var/datum/trackable/TB = new()
-	for(var/mob/living/M in mob_list)
+	for(var/mob/living/M in GLOB.mob_living_list)
 		// Easy checks first.
 		// Don't detect mobs on Centcom. Since the wizard den is on Centcomm, we only need this.
 		if(InvalidTurf(get_turf(M)))
@@ -130,7 +130,7 @@
 
 		// Human check
 		var/human = 0
-		if(istype(M, /mob/living/carbon/human))
+		if(ishuman(M))
 			human = 1
 			var/mob/living/carbon/human/H = M
 			//Cameras can't track people wearing an agent card or a ninja hood.
@@ -193,7 +193,7 @@
 		while (U.cameraFollow == target)
 			if (U.cameraFollow == null)
 				return
-			if (istype(target, /mob/living/carbon/human))
+			if (ishuman(target))
 				var/mob/living/carbon/human/H = target
 				if(H.wear_id && istype(H.wear_id.GetID(), /obj/item/card/id/syndicate))
 					U.ai_cancel_tracking(1)
@@ -201,10 +201,6 @@
 				if(H.digitalcamo)
 					U.ai_cancel_tracking(1)
 					return
-
-			if(istype(target.loc,/obj/effect/dummy))
-				U.ai_cancel_tracking()
-				return
 
 			if (!near_camera(target))
 				to_chat(U, "Target is not near any active cameras.")
@@ -221,7 +217,7 @@
 /proc/near_camera(var/mob/living/M)
 	if (!isturf(M.loc))
 		return 0
-	if(isrobot(M))
+	if(iscyborg(M))
 		var/mob/living/silicon/robot/R = M
 		if(!(R.camera && R.camera.can_use()) && !cameranet.checkCameraVis(M))
 			return 0

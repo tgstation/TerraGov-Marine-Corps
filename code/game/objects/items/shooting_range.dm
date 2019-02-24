@@ -33,7 +33,7 @@
 
 
 	attackby(obj/item/W as obj, mob/user as mob)
-		if (istype(W, /obj/item/tool/weldingtool))
+		if (iswelder(W))
 			var/obj/item/tool/weldingtool/WT = W
 			if(WT.remove_fuel(0, user))
 				overlays.Cut()
@@ -115,7 +115,7 @@
 
 			if(Proj.ammo.damage >= 20)
 				bmark.icon_state = "scorch"
-				bmark.dir = pick(NORTH,SOUTH,EAST,WEST) // random scorch design
+				bmark.setDir(pick(NORTH,SOUTH,EAST,WEST)) // random scorch design
 
 
 			else

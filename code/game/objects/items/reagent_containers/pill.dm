@@ -31,10 +31,11 @@ var/global/list/randomized_pill_icons
 	return
 
 /obj/item/reagent_container/pill/attack(mob/M, mob/user, def_zone)
+	add_fingerprint(user)
 
 	if(M == user)
 
-		if(istype(M, /mob/living/carbon/human))
+		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			if(H.species.flags & IS_SYNTHETIC)
 				to_chat(H, "<span class='warning'>You can't eat pills.</span>")
@@ -48,7 +49,7 @@ var/global/list/randomized_pill_icons
 		qdel(src)
 		return TRUE
 
-	else if(istype(M, /mob/living/carbon/human) )
+	else if(ishuman(M) )
 
 		var/mob/living/carbon/human/H = M
 		if(H.species.flags & IS_SYNTHETIC)
@@ -70,7 +71,7 @@ var/global/list/randomized_pill_icons
 		var/rgt_list_text = get_reagent_list_text()
 
 		log_combat(user, M, "fed", src, "Reagents: [rgt_list_text]")
-		msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) fed [key_name(M)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[M]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[M.x];Y=[M.y];Z=[M.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[M]'>FLW</a>) with [src.name] Reagents: [rgt_list_text] (INTENT: [uppertext(user.a_intent)])")
+		msg_admin_attack("[ADMIN_TPMONTY(usr)] fed [ADMIN_TPMONTY(M)] with [src.name] Reagents: [rgt_list_text].")
 
 		if(reagents.total_volume)
 			reagents.reaction(M, INGEST)
@@ -111,7 +112,7 @@ var/global/list/randomized_pill_icons
 		var/rgt_list_text = get_reagent_list_text()
 
 		log_combat(user, target, "spiked", src, "Reagents: [rgt_list_text]")
-		msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) spiked \a [target] with a pill. Reagents: [rgt_list_text] (INTENT: [uppertext(user.a_intent)])")
+		msg_admin_attack("[ADMIN_TPMONTY(usr)] spiked \a [target] with a pill. Reagents: [rgt_list_text].")
 
 		reagents.trans_to(target, reagents.total_volume)
 		for(var/mob/O in viewers(2, user))
@@ -129,7 +130,7 @@ var/global/list/randomized_pill_icons
 //Pills
 /obj/item/reagent_container/pill/dylovene
 	pill_desc = "A dylovene pill. It neutralizes many common toxins."
-	list_reagents = list("dylovene" = 25)
+	list_reagents = list("dylovene" = 15)
 
 /obj/item/reagent_container/pill/dylovene/New()
 	. = ..()
@@ -311,7 +312,7 @@ var/global/list/randomized_pill_icons
 	icon_state = randomized_pill_icons[9]
 
 /obj/item/reagent_container/pill/hypervene
-	pill_desc = "A hypervene pill. A purge medication used to treat overdoses. Causes pain and vomiting."
+	pill_desc = "A hypervene pill. A purge medication used to treat overdoses and rapidly remove toxins. Causes pain and vomiting."
 	list_reagents = list("hypervene" = 3)
 
 /obj/item/reagent_container/pill/hypervene/New()

@@ -81,7 +81,7 @@
 		to_chat(user, "<span class='warning'>No. This area is needed for the dropships and personnel.</span>")
 		return
 
-	if(!istype(user.loc, /turf/open))
+	if(!isopenturf(user.loc))
 		var/turf/open/OT = user.loc
 		if(!OT.allow_construction)
 			to_chat(user, "<span class='warning'>The sandbag barricade must be constructed on a proper surface!</span>")
@@ -115,6 +115,6 @@
 	var/obj/structure/barricade/sandbags/SB = new(user.loc, user.dir)
 	user.visible_message("<span class='notice'>[user] assembles a sandbag barricade.</span>",
 	"<span class='notice'>You assemble a sandbag barricade.</span>")
-	SB.dir = user.dir
+	SB.setDir(user.dir)
 	SB.add_fingerprint(user)
 	use(5)
