@@ -243,12 +243,6 @@
 "abi" = (
 /turf/open/gm/dirt,
 /area/lv624/ground/caves/east1)
-"abj" = (
-/obj/effect/landmark/map_tag{
-	name = "LV-624"
-	},
-/turf/closed/wall/indestructible/mineral,
-/area/space)
 "abk" = (
 /turf/closed/wall/cult,
 /area/lv624/ground/caves/west1)
@@ -20786,7 +20780,7 @@ aaa
 aaa
 aaa
 aaa
-abj
+aab
 aab
 aab
 aab

@@ -211,8 +211,8 @@
 
 	open(var/mob/user as mob) //A ton of runtimes were caused by ticker being null, so now we do the special items when its first opened
 		if(!opened) //First time opening it, so add the round-specific items
-			if(GLOB.map_tag)
-				switch(GLOB.map_tag)
+			if(SSmapping.config.map_name)
+				switch(SSmapping.config.map_name)
 					if(MAP_ICE_COLONY)
 						new /obj/item/clothing/head/helmet/marine(src)
 					else
@@ -245,8 +245,8 @@
 
 	open(var/mob/user as mob)
 		if(!opened)
-			if(GLOB.map_tag)
-				switch(GLOB.map_tag)
+			if(SSmapping.config.map_name)
+				switch(SSmapping.config.map_name)
 					if(MAP_ICE_COLONY)
 						new /obj/item/clothing/under/marine/sniper(src)
 						new /obj/item/storage/backpack/marine/satchel(src)
@@ -376,8 +376,8 @@
 
 	open(mob/user) //A ton of runtimes were caused by ticker being null, so now we do the special items when its first opened
 		if(!opened) //First time opening it, so add the round-specific items
-			if(GLOB.map_tag)
-				switch(GLOB.map_tag)
+			if(SSmapping.config.map_name)
+				switch(SSmapping.config.map_name)
 					if(MAP_ICE_COLONY)
 						new /obj/item/clothing/head/helmet/marine(src)
 					else

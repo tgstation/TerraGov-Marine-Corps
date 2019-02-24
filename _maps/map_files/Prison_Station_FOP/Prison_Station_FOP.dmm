@@ -666,12 +666,6 @@
 "acK" = (
 /turf/closed/wall/r_wall/prison_unmeltable,
 /area/prison/cellblock/maxsec/north)
-"acL" = (
-/obj/effect/landmark/map_tag{
-	name = "Prison Station"
-	},
-/turf/open/nostromowater,
-/area/space)
 "acM" = (
 /obj/machinery/light{
 	dir = 1
@@ -58552,7 +58546,7 @@ aab
 aab
 aab
 acD
-acL
+aab
 aab
 aab
 aab

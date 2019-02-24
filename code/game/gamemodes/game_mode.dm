@@ -254,8 +254,8 @@
 
 
 /datum/game_mode/New()
-	if(!GLOB.map_tag)
-		to_chat(world, "MT001: No mapping tag set, tell a coder. [GLOB.map_tag]")
+	if(!SSmapping.config.map_name)
+		to_chat(world, "MT001: No mapping tag set, tell a coder. [SSmapping.config.map_name]")
 	initialize_emergency_calls()
 
 
