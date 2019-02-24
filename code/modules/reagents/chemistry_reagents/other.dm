@@ -783,7 +783,7 @@
 		return
 	if(!(locate(/obj/effect/decal/cleanable/blackgoo) in T))
 		new /obj/effect/decal/cleanable/blackgoo(T)
-		
+
 /datum/reagent/xeno_neurotoxin
 	name = "Neurotoxin"
 	id = "xeno_toxin"
