@@ -13,7 +13,7 @@
 	set name = "Evolve"
 	set desc = "Evolve into a higher form."
 	set category = "Alien"
-	// var tierA = 0.0 //Tier 1 - Not used in calculation of Tier maximums
+
 	var/tierA = 0 //Tier 1
 	var/tierB = 0 //Tier 2
 	var/tierC = 0 //Tier 3
