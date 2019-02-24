@@ -1021,16 +1021,16 @@
 
 
 /datum/ammo/rocket/wp/on_hit_mob(mob/M,obj/item/projectile/P)
-	drop_flame(3, get_turf(M))
+	drop_flame(get_turf(M), 3)
 
 /datum/ammo/rocket/wp/on_hit_obj(obj/O,obj/item/projectile/P)
-	drop_flame(3, get_turf(O))
+	drop_flame(get_turf(O), 3)
 
 /datum/ammo/rocket/wp/on_hit_turf(turf/T,obj/item/projectile/P)
-	drop_flame(3, T)
+	drop_flame(T, 3)
 
 /datum/ammo/rocket/wp/do_at_max_range(obj/item/projectile/P)
-	drop_flame(3, get_turf(P))
+	drop_flame(get_turf(P), 3)
 
 /datum/ammo/rocket/wp/quad
 	name = "thermobaric rocket"
