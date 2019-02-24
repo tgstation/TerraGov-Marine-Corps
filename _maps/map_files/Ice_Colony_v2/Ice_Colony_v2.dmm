@@ -19319,7 +19319,7 @@
 /obj/item/clothing/under/marine/veteran/PMC,
 /obj/item/clothing/head/helmet/marine/veteran/PMC,
 /obj/item/clothing/gloves/marine/veteran/PMC,
-/obj/item/clothing/mask/gas/PMC,
+/obj/item/clothing/mask/gas/marine/PMC,
 /obj/item/clothing/suit/storage/marine/veteran/PMC,
 /obj/item/weapon/gun/smg/m39/elite,
 /turf/open/floor/tile/dark/red2{
@@ -20411,7 +20411,7 @@
 	corpsebelt = /obj/item/storage/belt/gun/m4a3/vp70;
 	corpsegloves = /obj/item/clothing/gloves/marine/veteran/PMC;
 	corpsehelmet = /obj/item/clothing/head/helmet/marine/veteran/PMC;
-	corpsemask = /obj/item/clothing/mask/gas/PMC;
+	corpsemask = /obj/item/clothing/mask/gas/marine/PMC;
 	corpsepocket1 = /obj/item/storage/pouch/magazine/large/pmc_m39;
 	corpsepocket2 = /obj/item/device/flashlight;
 	corpseradio = /obj/item/device/radio/headset/distress/PMC;
@@ -24461,7 +24461,7 @@
 	pixel_x = 14;
 	pixel_y = 11
 	},
-/obj/item/clothing/mask/gas/PMC,
+/obj/item/clothing/mask/gas/marine/PMC,
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/central)
 "blA" = (
@@ -36863,7 +36863,7 @@
 /obj/structure/closet/secure_closet/security_empty{
 	name = "PMC Equipment Locker"
 	},
-/obj/item/clothing/mask/gas/PMC,
+/obj/item/clothing/mask/gas/marine/PMC,
 /turf/open/floor/tile/dark/red2{
 	dir = 10
 	},
@@ -36872,7 +36872,7 @@
 /obj/structure/closet/secure_closet/security_empty{
 	name = "PMC Equipment Locker"
 	},
-/obj/item/clothing/mask/gas/PMC,
+/obj/item/clothing/mask/gas/marine/PMC,
 /turf/open/floor/tile/dark/red2,
 /area/ice_colony/underground/responsehangar)
 "bRi" = (
@@ -40601,7 +40601,7 @@
 	corpsebelt = /obj/item/storage/belt/gun/m4a3/vp70;
 	corpsegloves = /obj/item/clothing/gloves/marine/veteran/PMC;
 	corpsehelmet = /obj/item/clothing/head/helmet/marine/veteran/PMC;
-	corpsemask = /obj/item/clothing/mask/gas/PMC;
+	corpsemask = /obj/item/clothing/mask/gas/marine/PMC;
 	corpsepocket1 = /obj/item/storage/pouch/magazine/large/pmc_m39;
 	corpsepocket2 = /obj/item/device/flashlight;
 	corpseradio = /obj/item/device/radio/headset/distress/PMC;
@@ -40693,7 +40693,7 @@
 	corpsesuit = /obj/item/clothing/suit/storage/marine/veteran/PMC;
 	corpsegloves = /obj/item/clothing/gloves/marine/veteran/PMC;
 	corpseradio = /obj/item/device/radio/headset/distress/PMC;
-	corpsemask = /obj/item/clothing/mask/gas/PMC;
+	corpsemask = /obj/item/clothing/mask/gas/marine/PMC;
 	corpsehelmet = /obj/item/clothing/head/helmet/marine/veteran/PMC;
 	corpsebelt = /obj/item/storage/belt/gun/m4a3/vp70;
 	corpsepocket1 = /obj/item/storage/pouch/magazine/large/pmc_m39;
