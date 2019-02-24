@@ -1329,7 +1329,7 @@
 		return
 
 	if(stagger)
-		to_chat(src, "<span class='xenowarning'>Your muscles fail to respond as you try to shake up the shock!</span>")
+		to_chat(src, "<span class='xenowarning'>Your attempt to melt [O] but are too staggered!</span>")
 		return
 
 	face_atom(O)
@@ -1337,8 +1337,17 @@
 	var/wait_time = 10
 
 	//OBJ CHECK
+	var/obj/effect/xenomorph/acid/new_acid = new acid_type
+	var/obj/effect/xenomorph/acid/current_acid
+	var/turf/T
+	var/obj/I
+
 	if(isobj(O))
-		var/obj/I = O
+		I = O
+		current_acid = I.current_acid
+
+		if(current_acid && !acid_check(new_acid, current_acid) )
+			return
 
 		if(I.unacidable || istype(I, /obj/machinery/computer) || istype(I, /obj/effect)) //So the aliens don't destroy energy fields/singularies/other aliens/etc with their acid.
 			to_chat(src, "<span class='warning'>You cannot dissolve \the [I].</span>")
@@ -1353,8 +1362,13 @@
 			wait_time = 40 //dense objects are big, so takes longer to melt.
 
 	//TURF CHECK
+
 	else if(isturf(O))
-		var/turf/T = O
+		T = O
+		current_acid = T.current_acid
+
+		if(current_acid && !acid_check(new_acid, current_acid) )
+			return
 
 		if(iswallturf(O))
 			var/turf/closed/wall/wall_target = O
@@ -1396,9 +1410,10 @@
 	if(!O.Adjacent(src))
 		return
 
+	var/obj/effect/xenomorph/acid/A = new acid_type(get_turf(O), O)
+
 	use_plasma(plasma_cost)
 
-	var/obj/effect/xenomorph/acid/A = new acid_type(get_turf(O), O)
 
 	if(istype(O, /obj/vehicle/multitile/root/cm_armored))
 		var/obj/vehicle/multitile/root/cm_armored/R = O
@@ -1412,14 +1427,21 @@
 
 	if(isturf(O))
 		A.icon_state += "_wall"
+		if(T.current_acid)
+			acid_progress_transfer(A, null, T)
+		T.current_acid = A
 
 	if(istype(O, /obj/structure) || istype(O, /obj/machinery)) //Always appears above machinery
 		A.layer = O.layer + 0.1
+		if(I.current_acid)
+			acid_progress_transfer(A, O)
+		I.current_acid = A
+
 	else //If not, appear on the floor or on an item
+		if(I.current_acid)
+			acid_progress_transfer(A, O)
 		A.layer = LOWER_ITEM_LAYER //below any item, above BELOW_OBJ_LAYER (smartfridge)
-		if(istype(O, /obj/item)) //set the acid variable
-			var/obj/item/I = O
-			I.current_acid = A
+		I.current_acid = A
 
 	A.name = A.name + " (on [O.name])" //Identify what the acid is on
 	A.add_hiddenprint(src)
@@ -1432,6 +1454,35 @@
 	playsound(loc, "sound/bullets/acid_impact1.ogg", 25)
 
 
+/mob/living/carbon/Xenomorph/proc/acid_check(obj/effect/xenomorph/acid/new_acid, obj/effect/xenomorph/acid/current_acid)
+	if(!new_acid || !current_acid)
+		return
+
+	if(new_acid.acid_strength >= current_acid.acid_strength)
+		to_chat(src, "<span class='warning'>This object is already subject to a more or equally powerful acid.</span>")
+		return FALSE
+	return TRUE
+
+
+
+/mob/living/carbon/Xenomorph/proc/acid_progress_transfer(acid_type, obj/O, turf/T)
+	if(!O && !T)
+		return
+
+	var/obj/effect/xenomorph/acid/new_acid = acid_type
+
+	var/obj/effect/xenomorph/acid/current_acid
+
+	if(T)
+		current_acid = T.current_acid
+
+	else if(O)
+		current_acid = O.current_acid
+
+	if(!current_acid) //Sanity check. No acid
+		return
+	new_acid.ticks = current_acid.ticks //Inherit the old acid's progress
+	qdel(current_acid)
 
 
 
