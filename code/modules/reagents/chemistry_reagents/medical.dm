@@ -722,7 +722,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/M, alien)
 
 /datum/reagent/medicine/hyperzine/on_mob_life(mob/living/M)
 	M.reagent_move_delay_modifier -= min(2.5, volume * 0.5)
-	M.adjust_nutrition(min(-3 * REM * volume, 15)) //Body burns through energy fast
+	M.adjust_nutrition(max(-3 * REM * volume, -15)) //Body burns through energy fast
 	if(prob(1))
 		M.emote(pick("twitch","blink_r","shiver"))
 		if(ishuman(M))
