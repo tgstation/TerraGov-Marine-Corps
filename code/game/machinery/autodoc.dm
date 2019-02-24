@@ -60,7 +60,7 @@
 
 /obj/machinery/autodoc/power_change(var/area/master_area = null)
 	..()
-	if(stat & NOPOWER)
+	if(stat & NOPOWER && occupant)
 		visible_message("\ [src] engages the safety override, ejecting the occupant.")
 		surgery = 0
 		go_out(AUTODOC_NOTICE_NO_POWER)
@@ -620,7 +620,7 @@
 	set name = "Eject Med-Pod"
 	set category = "Object"
 	set src in oview(1)
-	if(usr.stat == DEAD)
+	if(usr.is_mob_incapacitated())
 		return // nooooooooooo
 	if(locked && !allowed(usr)) //Check access if locked.
 		to_chat(usr, "<span class='warning'>Access denied.</span>")
@@ -662,7 +662,8 @@
 	set category = "Object"
 	set src in oview(1)
 
-	if(usr.stat != 0 || !ishuman(usr)) return
+	if(usr.is_mob_incapacitated() || !ishuman(usr))
+		return
 
 	if(occupant)
 		to_chat(usr, "<span class='notice'>\ [src] is already occupied!</span>")

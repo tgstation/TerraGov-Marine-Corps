@@ -1,0 +1,4 @@
+author: "Ghommie"
+delete-after: True
+changes: 
+  - bugfix: "Fixes autodoc spamming ejection messages on power loss and not properly checking if the user is incapacitated on certain actions."
