@@ -1,0 +1,5 @@
+author: "Shadow-Quill"
+delete-after: True
+changes: 
+  - bugfix: "Fax machine cooldown (two minutes). No more spamming faxes!"
+  - tweak: "Changed the fax machines on the Theseus to only listen to their specific department. (EG: Research will no longer get faxes sent to the CL)"
