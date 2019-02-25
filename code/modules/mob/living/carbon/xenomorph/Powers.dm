@@ -2387,7 +2387,7 @@
 
 /mob/living/carbon/Xenomorph/Drone/proc/drone_sting(mob/living/H)
 
-	if(!check_state())
+	if(!check_state() || !istype(H))
 		return
 
 	if(world.time < last_drone_sting + DRONE_STING_COOLDOWN) //Sure, let's use this.
