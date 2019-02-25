@@ -10,7 +10,7 @@
 	flags_equip_slot = ITEM_SLOT_BELT
 	w_class = 3
 	force = 6
-	movement_acc_penalty_mult = 3
+	movement_acc_penalty_mult = 2
 	wield_delay = WIELD_DELAY_VERY_FAST //If you modify your pistol to be two-handed, it will still be fast to aim
 	fire_sound = 'sound/weapons/gun_servicepistol.ogg'
 	type_of_casings = "bullet"

@@ -1,0 +1,4 @@
+author: "Rohesie"
+delete-after: True
+changes: 
+  - balance: "Larvas no longer count towards xeno numbers for evolution purposes. This makes the behavior a bit more uniform and predictable."
