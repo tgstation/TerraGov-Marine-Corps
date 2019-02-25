@@ -143,7 +143,6 @@
 					else
 						observer.real_name = capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
 
-				var/datum/species/species = GLOB.all_species[client.prefs.species] || GLOB.all_species[DEFAULT_SPECIES]
 
 				if(client.prefs.random_name)
 					client.prefs.real_name = species.random_name(client.prefs.gender)
