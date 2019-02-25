@@ -432,7 +432,11 @@
 
 	sleep(travel_time) //Wait while we fly, but give extra time for crashing announcements etc
 
-	if(EvacuationAuthority.dest_status >= NUKE_EXPLOSION_IN_PROGRESS) return FALSE //If a nuke is in progress, don't attempt a landing.
+	if(EvacuationAuthority.dest_status >= NUKE_EXPLOSION_IN_PROGRESS) 
+		return FALSE //If a nuke is in progress, don't attempt a landing.
+
+	EvacuationAuthority.flags_scuffle &= FLAGS_EVACUATION_DENY
+	EvacuationAuthority.flags_scuffle &= FLAGS_SELF_DESTRUCT_DENY
 
 	//This is where things change and shit gets real
 
