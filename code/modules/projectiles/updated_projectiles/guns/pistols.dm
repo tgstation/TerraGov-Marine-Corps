@@ -1,4 +1,4 @@
-//Base pistol and revolver for inheritance/
+//Base pistol for inheritance/
 //--------------------------------------------------
 
 /obj/item/weapon/gun/pistol
@@ -102,22 +102,29 @@
 	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/low_hit_accuracy_mult)
 	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/low_hit_accuracy_mult)
 	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/combat_define/hmed_hit_accuracy_mult)
+	scatter_unwielded = CONFIG_GET(number/combat_define/med_scatter_value)
 	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult) + CONFIG_GET(number/combat_define/low_hit_damage_mult)
 	recoil_unwielded = CONFIG_GET(number/combat_define/min_recoil_value)
 
 /obj/item/weapon/gun/pistol/m1911/custom
 	name = "\improper M1911A1 Custom pistol"
-	desc = "A 20th century military firearm that received several modifications. It seems to have been lovingly taken care of and passed down the family."
-	item_state = "m1911"
-	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
+	desc = "A 20th century military firearm that received several modifications. It seems to have been lovingly taken care of and passed down the family. Lacks an auto magazine eject feature"
+	icon_state = "m1911"
+	attachable_allowed = list(
+						/obj/item/attachable/reddot,
+						/obj/item/attachable/flashlight,
+						/obj/item/attachable/lasersight,
+						/obj/item/attachable/extended_barrel,
+						/obj/item/attachable/quickfire)
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
+	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 12, "rail_y" = 22, "under_x" = 21, "under_y" = 15, "stock_x" = 21, "stock_y" = 17)
 
 /obj/item/weapon/gun/pistol/m1911/custom/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/vlow_fire_delay)
 	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/low_hit_accuracy_mult)
 	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
 	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/combat_define/med_hit_accuracy_mult)
+	scatter_unwielded = CONFIG_GET(number/combat_define/med_scatter_value)
 	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult) + CONFIG_GET(number/combat_define/low_hit_damage_mult)
 	recoil_unwielded = CONFIG_GET(number/combat_define/min_recoil_value)
 
@@ -146,6 +153,15 @@
 	icon_state = "b93r"
 	item_state = "b93r"
 	current_mag = /obj/item/ammo_magazine/pistol/b93r
+	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 21, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
+	attachable_allowed = list(
+						/obj/item/attachable/suppressor,
+						/obj/item/attachable/reddot,
+						/obj/item/attachable/flashlight,
+						/obj/item/attachable/compensator,
+						/obj/item/attachable/extended_barrel,
+						/obj/item/attachable/heavy_barrel,
+						/obj/item/attachable/quickfire)
 
 /obj/item/weapon/gun/pistol/b92fs/raffica/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/vlow_fire_delay)
@@ -154,7 +170,7 @@
 	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/low_hit_accuracy_mult)
 	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
 	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/combat_define/med_scatter_value)
+	scatter_unwielded = CONFIG_GET(number/combat_define/high_scatter_value)
 	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
 
 /obj/item/weapon/gun/pistol/b92fs/M9
@@ -163,6 +179,7 @@
 	icon_state = "m9"
 	item_state = "m9"
 	current_mag =/obj/item/ammo_magazine/pistol/b92fstranq
+	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 21, "under_x" = 21, "under_y" = 15, "stock_x" = 21, "stock_y" = 17)
 	starting_attachment_types = list(
 									/obj/item/attachable/lasersight,
 									/obj/item/attachable/suppressor
@@ -177,10 +194,10 @@
 
 
 //-------------------------------------------------------
-//DEAGLE //This one is obvious.
+//DEAGLE //Deagle Brand Deagle
 
 /obj/item/weapon/gun/pistol/heavy
-	name = "\improper vintage Desert Eagle"
+	name = "\improper Desert Eagle"
 	desc = "A pistol chambered in.50ae that comes with a serious kick. This one is engraved, <i>'Peace through superior firepower.'</i>"
 	icon_state = "deagle"
 	item_state = "deagle"
@@ -198,13 +215,7 @@
 						/obj/item/attachable/compensator)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
-	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 21,"rail_x" = 9, "rail_y" = 23, "under_x" = 20, "under_y" = 17, "stock_x" = 20, "stock_y" = 17)
-
-/obj/item/weapon/gun/pistol/heavy/Initialize()
-	. = ..()
-	var/skin = pick("","g_","c_")
-	icon_state = skin + icon_state
-	item_state = skin + item_state
+	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 19,"rail_x" = 9, "rail_y" = 23, "under_x" = 22, "under_y" = 14, "stock_x" = 20, "stock_y" = 17)
 
 /obj/item/weapon/gun/pistol/heavy/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/max_fire_delay)
@@ -216,6 +227,9 @@
 	recoil = CONFIG_GET(number/combat_define/low_recoil_value)
 	recoil_unwielded = CONFIG_GET(number/combat_define/high_recoil_value)
 
+/obj/item/weapon/gun/pistol/heavy/gold
+	icon_state = "g_deagle"
+	item_state = "g_deagle"
 //-------------------------------------------------------
 //MAUSER MERC PISTOL //Inspired by the Makarov.
 

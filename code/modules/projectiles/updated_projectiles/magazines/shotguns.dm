@@ -1,4 +1,3 @@
-
 //-------------------------------------------------------
 //Generic shotgun magazines. Only three of them, since all shotguns can use the same ammo unless we add other gauges.
 

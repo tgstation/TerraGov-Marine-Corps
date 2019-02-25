@@ -97,7 +97,7 @@
 
 /obj/item/weapon/gun/rifle/m41a/elite
 	name = "\improper M41A2 battle rifle"
-	desc = "A refined and remachined version of the tried and tested M41A1 Pulse Rifle. Given only to elite units."
+	desc = "A refined and redesigned version of the tried and tested M41A1 Pulse Rifle. Given only to elite units."
 	icon_state = "m41a2"
 	item_state = "m41a2"
 	origin_tech = "combat=7;materials=5"
@@ -122,7 +122,7 @@
 
 /obj/item/weapon/gun/rifle/m41aMK1
 	name = "\improper M41A pulse rifle"
-	desc = "An older design of the Pulse Rifle commonly used by the TerraGov Marine Corps. Uses 10x24mm caseless ammunition."
+	desc = "An older design of the pulse rifle commonly used by the TerraGov Marine Corps. Uses 10x24mm caseless ammunition."
 	icon_state = "m41a"
 	item_state = "m41a"
 	fire_sound = "gun_pulse"
@@ -199,7 +199,7 @@
 	desc = "A cheap, reliable assault rifle chambered in 7.62x39mm. Commonly found in the hands of criminals or mercenaries. This is the carbine variant."
 	icon_state = "mar30"
 	item_state = "mar30"
-	fire_sound = 'sound/weapons/gun_ak47.ogg' //Change
+	fire_sound = 'sound/weapons/gun_mar40.ogg'
 
 /obj/item/weapon/gun/rifle/mar40/carbine/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/high_fire_delay)
@@ -266,7 +266,7 @@
 	item_state = "m41ae2"
 	wield_delay = WIELD_DELAY_NORMAL + WIELD_DELAY_VERY_FAST
 	origin_tech = "combat=5;materials=4"
-	fire_sound = 'sound/weapons/gun_rifle.ogg' //Change
+	fire_sound = "gun_pulse"
 	current_mag = /obj/item/ammo_magazine/rifle/lmg
 	attachable_allowed = list(
 						/obj/item/attachable/extended_barrel,
@@ -311,7 +311,7 @@
 	icon_state = "type71"
 	item_state = "type71"
 	origin_tech = "combat=4;materials=2;syndicate=4"
-	fire_sound = list('sound/weapons/gun_type71.ogg')
+	fire_sound = 'sound/weapons/gun_type71.ogg'
 	current_mag = /obj/item/ammo_magazine/rifle/type71
 	wield_delay = 4
 

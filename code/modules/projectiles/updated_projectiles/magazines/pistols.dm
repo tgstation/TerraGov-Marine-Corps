@@ -41,7 +41,7 @@
 	name = "\improper M4A3 magazine (.45)"
 	default_ammo = /datum/ammo/bullet/pistol/heavy
 	caliber = ".45"
-	icon_state = "45"
+	icon_state = ".45"
 	max_rounds = 7
 	gun_type = /obj/item/weapon/gun/pistol/m1911
 

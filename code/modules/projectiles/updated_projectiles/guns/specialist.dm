@@ -174,7 +174,7 @@
 	recoil = CONFIG_GET(number/combat_define/min_recoil_value)
 
 
-/obj/item/weapon/gun/rifle/sniper/M42A/jungle //These really should just be skins.
+/obj/item/weapon/gun/rifle/sniper/M42A/jungle
 	name = "\improper M42A marksman rifle"
 	icon_state = "m_m42a"
 	item_state = "m_m42a"
@@ -212,13 +212,13 @@
 			step(PMC_sniper,turn(PMC_sniper.dir,180))
 			PMC_sniper.KnockDown(5)
 
-//SVD //Based on the actual Dragunov sniper rifle.
+//SVD //Based on the Dragunov sniper rifle.
 
 /obj/item/weapon/gun/rifle/sniper/svd
 	name = "\improper SVD Dragunov-033 sniper rifle"
 	desc = "A sniper variant of the MAR-40 rifle, with a new stock, barrel, and scope. It doesn't have the punch of modern sniper rifles, but it's finely crafted in 2133 by someone probably illiterate. Fires 7.62x54mmR rounds."
 	icon_state = "svd"
-	item_state = "svd" //NEEDS A ONE HANDED STATE
+	item_state = "svd"
 	origin_tech = "combat=5;materials=3;syndicate=5"
 	fire_sound = 'sound/weapons/gun_kt42.ogg'
 	current_mag = /obj/item/ammo_magazine/sniper/svd
@@ -251,7 +251,7 @@
 /obj/item/weapon/gun/rifle/m4ra
 	name = "\improper M4RA battle rifle"
 	desc = "The M4RA battle rifle is a designated marksman rifle in service with the TGMC. Only fielded in small numbers, and sporting a bullpup configuration, the M4RA battle rifle is perfect for reconnaissance and fire support teams.\nIt is equipped with rail scope and takes 10x24mm A19 high velocity magazines."
-	icon_state = " m4ra"
+	icon_state = "m4ra"
 	item_state = "m4ra"
 	origin_tech = "combat=5;materials=4"
 	fire_sound = list('sound/weapons/gun_m4ra.ogg')
@@ -412,7 +412,7 @@
 	name = "\improper M92 grenade launcher"
 	desc = "A heavy, 6-shot grenade launcher used by the TerraGov Marine Corps for area denial and big explosions."
 	icon_state = "m92"
-	item_state = "m92" //NEED TWO HANDED SPRITE
+	item_state = "m92"
 	origin_tech = "combat=5;materials=5"
 	matter = list("metal" = 6000)
 	w_class = 4.0
