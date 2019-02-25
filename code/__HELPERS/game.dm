@@ -314,7 +314,10 @@ proc/isInSight(var/atom/A, var/atom/B)
 		if(O.timeofdeath < picked.timeofdeath)
 			picked = O
 
-	return picked.key
+	if(picked?.key)
+		return picked.key
+
+	return FALSE
 
 
 /proc/ScreenText(obj/O, maptext="", screen_loc="CENTER-7,CENTER-7", maptext_height=480, maptext_width=480)
