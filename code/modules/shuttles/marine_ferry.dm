@@ -267,8 +267,6 @@
 
 	sleep(travel_time) //Wait while we fly
 
-	if(EvacuationAuthority.dest_status >= NUKE_EXPLOSION_IN_PROGRESS) return FALSE //If a nuke is in progress, don't attempt a landing.
-
 	playsound(turfs_int[sound_target], sound_landing, 60, 0)
 	playsound(turfs_trg[sound_target], sound_landing, 60, 0)
 
