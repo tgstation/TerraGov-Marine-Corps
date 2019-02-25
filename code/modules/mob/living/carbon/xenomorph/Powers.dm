@@ -1105,8 +1105,8 @@
 					continue // not our hive
 			hive_list.Add(X)
 
-		absorbed_evolution = absorbed_evolution / min(1,length(hive_list))
-		absorbed_upgrade = absorbed_upgrade / min(1,length(hive_list))
+		absorbed_evolution = absorbed_evolution / max(1,length(hive_list))
+		absorbed_upgrade = absorbed_upgrade / max(1,length(hive_list))
 		for(var/mob/living/carbon/Xenomorph/X in hive_list)
 			X.upgrade_stored = min(X.xeno_caste.upgrade_threshold, X.upgrade_stored + absorbed_upgrade)
 			X.evolution_stored = min(X.xeno_caste.evolution_threshold, X.evolution_stored + absorbed_evolution)
