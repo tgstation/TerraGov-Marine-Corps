@@ -32,7 +32,7 @@
 		return
 
 	user.set_interaction(src)
-	var/dat = "<h3>AI System Integrity Restorer</h3><br><br>"
+	var/dat
 
 	if (src.occupant)
 		var/laws
@@ -70,9 +70,11 @@
 			dat += "<br><br>Reconstruction in process, please wait.<br>"
 	dat += {" <A href='?src=\ref[user];mach_close=computer'>Close</A>"}
 
-	user << browse(dat, "window=computer;size=400x500")
+	var/datum/browser/popup = new(user, "computer", "<div align='center'>AI System Integrity Restorer</div>", 400, 500)
+	popup.set_content(dat)
+	popup.open(FALSE)
 	onclose(user, "computer")
-	return
+
 
 /obj/machinery/computer/aifixer/process()
 	if(..())

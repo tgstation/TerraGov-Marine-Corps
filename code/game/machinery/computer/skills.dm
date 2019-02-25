@@ -46,7 +46,7 @@
 	var/dat
 
 	if (temp)
-		dat = text("<TT>[]</TT><BR><BR><A href='?src=\ref[];choice=Clear Screen'>Clear Screen</A>", temp, src)
+		dat = text("[]<BR><BR><A href='?src=\ref[];choice=Clear Screen'>Clear Screen</A>", temp, src)
 	else
 		dat = text("Confirm Identity: <A href='?src=\ref[];choice=Confirm Identity'>[]</A><HR>", src, (scan ? text("[]", scan.name) : "----------"))
 		if (authenticated)
@@ -142,9 +142,11 @@
 				else
 		else
 			dat += text("<A href='?src=\ref[];choice=Log In'>{Log In}</A>", src)
-	user << browse(text("<HEAD><TITLE>Employment Records</TITLE></HEAD><TT>[]</TT>", dat), "window=secure_rec;size=600x400")
+
+	var/datum/browser/popup = new(user, "secure_rec", "<div align='center'>Employment Records</div>", 600, 400)
+	popup.set_content(dat)
+	popup.open(FALSE)
 	onclose(user, "secure_rec")
-	return
 
 /*Revised /N
 I can't be bothered to look more of the actual code outside of switch but that probably needs revising too.

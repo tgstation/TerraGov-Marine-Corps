@@ -72,7 +72,7 @@
 	if(!on)
 		return
 
-	var/dat = "<html><head><title>[src]</title></head><body><TT>"
+	var/dat
 
 	if(!istype(src, /obj/item/device/radio/headset)) //Headsets dont get a mic button
 		dat += "Microphone: [broadcasting ? "<A href='byond://?src=\ref[src];talk=0'>Engaged</A>" : "<A href='byond://?src=\ref[src];talk=1'>Disengaged</A>"]<BR>"
@@ -89,10 +89,13 @@
 
 	for (var/ch_name in channels)
 		dat+=text_sec_channel(ch_name, channels[ch_name])
-	dat+={"[text_wires()]</TT></body></html>"}
-	user << browse(dat, "window=radio")
+	dat+={"[text_wires()]"}
+
+	var/datum/browser/popup = new(user, "radio", "<div align='center'>[src]</div>")
+	popup.set_content(dat)
+	popup.open(FALSE)
 	onclose(user, "radio")
-	return
+
 
 /obj/item/device/radio/proc/text_wires()
 	if (!b_stat)
@@ -611,8 +614,7 @@
 	if(!on)
 		return
 
-	var/dat = "<html><head><title>[src]</title></head><body><TT>"
-	dat += {"
+	var/dat = {"
 				Speaker: [listening ? "<A href='byond://?src=\ref[src];listen=0'>Engaged</A>" : "<A href='byond://?src=\ref[src];listen=1'>Disengaged</A>"]<BR>
 				Frequency:
 				<A href='byond://?src=\ref[src];freq=-10'>-</A>
@@ -627,10 +629,12 @@
 	if(!subspace_transmission)//Don't even bother if subspace isn't turned on
 		for (var/ch_name in channels)
 			dat+=text_sec_channel(ch_name, channels[ch_name])
-	dat+={"[text_wires()]</TT></body></html>"}
-	user << browse(dat, "window=radio")
+	dat += {"[text_wires()]"}
+
+	var/datum/browser/popup = new(user, "radio", "<div align='center'>[src]</div>")
+	popup.set_content(dat)
+	popup.open(FALSE)
 	onclose(user, "radio")
-	return
 
 
 /obj/item/device/radio/proc/config(op)

@@ -52,6 +52,7 @@
 #define GUN_POLICE				(1 << 14)
 #define GUN_ENERGY				(1 << 15)
 #define GUN_LOAD_INTO_CHAMBER	(1 << 16)
+#define GUN_SHOTGUN_CHAMBER		(1 << 17)
 
 //Gun attachable related flags.
 #define ATTACH_REMOVABLE	1

@@ -943,7 +943,7 @@
 	if(irc)
 		to_chat(src, "<font color='blue'>PM to-<b>Staff</b>: <span class='linkify'>[rawmsg]</span></font>")
 		var/datum/admin_help/AH = admin_ticket_log(src, "<font color='red'>Reply PM from-<b>[key_name(src, TRUE, TRUE)] to <i>IRC</i>: [keywordparsedmsg]</font>")
-		send2irc("[AH ? "#[AH.id] " : ""]Reply: [ckey]", rawmsg)
+		send2irc("[AH ? "#[AH.id] " : ""]Reply: [ckey]", sanitizediscord(rawmsg))
 	else
 		if(check_other_rights(recipient, R_ADMIN, FALSE) || is_mentor(recipient))
 			if(check_rights(R_ADMIN, FALSE) || is_mentor(src)) //Both are staff

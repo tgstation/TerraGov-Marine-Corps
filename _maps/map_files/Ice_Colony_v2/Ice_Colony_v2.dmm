@@ -687,12 +687,6 @@
 "acz" = (
 /turf/closed/wall/r_wall,
 /area/ice_colony/surface/engineering/electric)
-"acA" = (
-/obj/effect/landmark/map_tag{
-	name = "Ice Colony"
-	},
-/turf/closed/ice_rock/corners,
-/area/ice_colony/exterior/surface/cliff)
 "acB" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable{
@@ -41260,7 +41254,7 @@ aaa
 aaa
 aaa
 bSw
-acA
+aac
 aac
 aac
 aac

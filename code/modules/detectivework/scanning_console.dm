@@ -203,8 +203,11 @@
 						dat += "<a href='?src=\ref[src];operation=scan'>Scan</a><br>"
 				dat += "Insert fingerprint card here: <a href='?src=\ref[src];operation=card'>-----</a>"
 
-	user << browse(dat,"window=fscanner")
-	onclose(user,"fscanner")
+	var/datum/browser/popup = new(user, "fscanner", "<div align='center'>Forensic Console</div>")
+	popup.set_content(dat)
+	popup.open(FALSE)
+	onclose(user, "fscanner")
+
 
 /obj/machinery/computer/forensic_scanning/Topic(href,href_list)
 	switch(href_list["operation"])
