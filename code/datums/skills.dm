@@ -172,6 +172,7 @@
 	name = "Field Commander"
 	engineer = SKILL_ENGINEER_ENGI //to fix CIC apc.
 	construction = SKILL_CONSTRUCTION_PLASTEEL
+	smartgun = SKILL_SMART_TRAINED
 	leadership = SKILL_LEAD_MASTER
 	medical = SKILL_MEDICAL_MEDIC
 	surgery = SKILL_SURGERY_AMATEUR

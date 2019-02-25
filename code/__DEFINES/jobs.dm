@@ -130,7 +130,7 @@
 #define JOB_DISPLAY_ORDER_SQUAD_MARINE 22
 
 
-#define JOBS_COMMAND 		list("Captain", "Field Commander", "Intelligence Officer", "Pilot Officer", "Tank Crewman", "Corporate Liaison", "Requisitions Officer", "Chief Ship Engineer", "Chief Medical Officer", "Synthetic")
+#define JOBS_COMMAND 		list("Captain", "Field Commander", "Intelligence Officer", "Pilot Officer", "Requisitions Officer", "Chief Ship Engineer", "Chief Medical Officer", "Synthetic", "Command Master at Arms")
 #define JOBS_POLICE			list("Command Master at Arms", "Master at Arms")
 #define JOBS_OFFICERS		list("Captain", "Field Commander", "Intelligence Officer", "Pilot Officer", "Tank Crewman", "Corporate Liaison", "Synthetic")
 #define JOBS_ENGINEERING 	list("Chief Ship Engineer", "Ship Engineer")
