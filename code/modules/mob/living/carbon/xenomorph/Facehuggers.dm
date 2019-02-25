@@ -31,7 +31,7 @@
 	var/hivenumber = XENO_HIVE_NORMAL
 
 /obj/item/clothing/mask/facehugger/Initialize()
-	..()
+	. = ..()
 	START_PROCESSING(SSobj, src)
 
 /obj/item/clothing/mask/facehugger/ex_act(severity)

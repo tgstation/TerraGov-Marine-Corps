@@ -120,5 +120,6 @@
 	name = "map item"
 
 /obj/effect/landmark/map_item/Initialize()
+	. = ..()
 	GLOB.map_items += loc
 	return INITIALIZE_HINT_QDEL
