@@ -1,144 +1,1017 @@
-"aa" = (/turf/template_noop,/area/template_noop)
-"ab" = (/turf/closed/shuttle/dropship2/transparent{icon_state = "100"},/area/shuttle/dropship/normandy)
-"ac" = (/turf/closed/shuttle/dropship2/transparent{icon_state = "101"},/area/shuttle/dropship/normandy)
-"ad" = (/turf/closed/shuttle/dropship2/transparent{icon_state = "102"},/area/shuttle/dropship/normandy)
-"ae" = (/turf/closed/shuttle/dropship2{icon_state = "95"},/area/shuttle/dropship/normandy)
-"af" = (/turf/closed/shuttle/dropship2/transparent{icon_state = "96"},/area/shuttle/dropship/normandy)
-"ag" = (/turf/closed/shuttle/dropship2/transparent{icon_state = "97"},/area/shuttle/dropship/normandy)
-"ah" = (/turf/closed/shuttle/dropship2/transparent{icon_state = "98"},/area/shuttle/dropship/normandy)
-"ai" = (/turf/closed/shuttle/dropship2{icon_state = "99"},/area/shuttle/dropship/normandy)
-"aj" = (/turf/closed/shuttle/dropship2{icon_state = "92"},/area/shuttle/dropship/normandy)
-"ak" = (/obj/machinery/computer/security/dropship/two,/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/dropship/normandy)
-"al" = (/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/dropship/normandy)
-"am" = (/obj/machinery/computer/dropship_weapons/dropship2,/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/dropship/normandy)
-"an" = (/turf/closed/shuttle/dropship2{icon_state = "94"},/area/shuttle/dropship/normandy)
-"ao" = (/obj/effect/attach_point/weapon/dropship2{dir = 1},/turf/closed/shuttle/dropship2/transparent{icon_state = "84"},/area/shuttle/dropship/normandy)
-"ap" = (/obj/effect/attach_point/electronics/dropship2{dir = 1},/turf/closed/shuttle/dropship2/transparent{icon_state = "85"},/area/shuttle/dropship/normandy)
-"aq" = (/turf/closed/shuttle/dropship2/transparent{icon_state = "86"},/area/shuttle/dropship/normandy)
-"ar" = (/obj/structure/bed/chair/dropship/pilot{tag = "icon-pilot_chair (NORTH)"; icon_state = "pilot_chair"; dir = 1},/obj/machinery/camera/autoname/almayer/dropship_two{dir = 2; pixel_x = 8; pixel_y = -16},/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/dropship/normandy)
-"as" = (/obj/item/device/radio/intercom{canhear_range = 7; frequency = 1443; name = "dropship intercom"; pixel_x = 21; pixel_y = 43},/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/dropship/normandy)
-"at" = (/obj/structure/bed/chair/dropship/pilot{tag = "icon-pilot_chair (NORTH)"; icon_state = "pilot_chair"; dir = 1},/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/dropship/normandy)
-"au" = (/turf/closed/shuttle/dropship2/transparent{icon_state = "89"},/area/shuttle/dropship/normandy)
-"av" = (/obj/effect/attach_point/electronics/dropship2{dir = 1},/turf/closed/shuttle/dropship2/transparent{icon_state = "90"},/area/shuttle/dropship/normandy)
-"aw" = (/obj/effect/attach_point/weapon/dropship2{dir = 1},/turf/closed/shuttle/dropship2/transparent{icon_state = "91"},/area/shuttle/dropship/normandy)
-"ax" = (/turf/closed/shuttle/dropship2{icon_state = "75"},/area/shuttle/dropship/normandy)
-"ay" = (/turf/closed/shuttle/dropship2{icon_state = "76"},/area/shuttle/dropship/normandy)
-"az" = (/turf/closed/shuttle/dropship2{icon_state = "77"},/area/shuttle/dropship/normandy)
-"aA" = (/turf/closed/shuttle/dropship2{icon_state = "78"},/area/shuttle/dropship/normandy)
-"aB" = (/obj/machinery/door/airlock/hatch/cockpit/two,/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/dropship/normandy)
-"aC" = (/turf/closed/shuttle/dropship2{icon_state = "80"},/area/shuttle/dropship/normandy)
-"aD" = (/turf/closed/shuttle/dropship2{icon_state = "81"},/area/shuttle/dropship/normandy)
-"aE" = (/turf/closed/shuttle/dropship2{icon_state = "82"},/area/shuttle/dropship/normandy)
-"aF" = (/turf/closed/shuttle/dropship2{icon_state = "83"},/area/shuttle/dropship/normandy)
-"aG" = (/turf/closed/shuttle/dropship2/transparent{icon_state = "71"},/area/shuttle/dropship/normandy)
-"aH" = (/turf/closed/shuttle/dropship2{icon_state = "72"},/area/shuttle/dropship/normandy)
-"aI" = (/obj/structure/bed/chair/dropship/passenger{dir = 4},/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/dropship/normandy)
-"aJ" = (/obj/item/device/radio/intercom{canhear_range = 7; frequency = 1443; name = "dropship intercom"; pixel_y = 24},/turf/open/shuttle/dropship{tag = "icon-rasputin6"; icon_state = "rasputin6"},/area/shuttle/dropship/normandy)
-"aK" = (/turf/open/shuttle/dropship{tag = "icon-rasputin5"; icon_state = "rasputin5"},/area/shuttle/dropship/normandy)
-"aL" = (/obj/machinery/door_control{id = "sh_dropship2"; name = "Dropship Lockdown"; normaldoorcontrol = 3; pixel_y = -19; req_one_access_txt = "3;22"; throw_range = 15},/turf/open/shuttle/dropship{tag = "icon-floor8"; icon_state = "floor8"},/area/shuttle/dropship/normandy)
-"aM" = (/obj/item/device/radio/intercom{canhear_range = 7; frequency = 1443; name = "dropship intercom"; pixel_y = 24},/turf/open/shuttle/dropship{tag = "icon-rasputin7"; icon_state = "rasputin7"},/area/shuttle/dropship/normandy)
-"aN" = (/obj/structure/bed/chair/dropship/passenger{dir = 8},/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/dropship/normandy)
-"aO" = (/turf/closed/shuttle/dropship2{icon_state = "73"},/area/shuttle/dropship/normandy)
-"aP" = (/turf/closed/shuttle/dropship2/transparent{icon_state = "74"},/area/shuttle/dropship/normandy)
-"aQ" = (/turf/closed/shuttle/dropship2/transparent{icon_state = "66"},/area/shuttle/dropship/normandy)
-"aR" = (/turf/closed/shuttle/dropship2{icon_state = "67"},/area/shuttle/dropship/normandy)
-"aS" = (/obj/structure/bed/chair/dropship/passenger{dir = 4},/obj/machinery/camera/autoname/almayer/dropship_two{dir = 4; pixel_x = -16},/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/dropship/normandy)
-"aT" = (/turf/open/shuttle/dropship{tag = "icon-rasputin3"; icon_state = "rasputin3"},/area/shuttle/dropship/normandy)
-"aU" = (/turf/closed/shuttle/dropship2{icon_state = "68"},/area/shuttle/dropship/normandy)
-"aV" = (/turf/closed/shuttle/dropship2{icon_state = "69"},/area/shuttle/dropship/normandy)
-"aW" = (/turf/closed/shuttle/dropship2/transparent{icon_state = "70"},/area/shuttle/dropship/normandy)
-"aX" = (/obj/effect/attach_point/weapon/dropship2{dir = 8; icon_state = "equip_base_l_wing"},/turf/closed/shuttle/dropship2/transparent{icon_state = "61"},/area/shuttle/dropship/normandy)
-"aY" = (/turf/closed/shuttle/dropship2{icon_state = "62"},/area/shuttle/dropship/normandy)
-"aZ" = (/turf/closed/shuttle/dropship2{icon_state = "63"},/area/shuttle/dropship/normandy)
-"ba" = (/turf/closed/shuttle/dropship2{icon_state = "64"},/area/shuttle/dropship/normandy)
-"bb" = (/obj/effect/attach_point/weapon/dropship2{dir = 4; icon_state = "equip_base_r_wing"},/turf/closed/shuttle/dropship2/transparent{icon_state = "65"},/area/shuttle/dropship/normandy)
-"bc" = (/obj/docking_port/mobile/marine_dropship/two,/turf/closed/shuttle/dropship2/transparent{icon_state = "101"},/area/shuttle/dropship/normandy)
-"bd" = (/obj/machinery/door/airlock/dropship_hatch/two,/obj/machinery/door/poddoor/shutters/transit{density = 0; dir = 4; icon_state = "shutter0"; opacity = 0},/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/dropship/normandy)
-"be" = (/turf/closed/shuttle/dropship2{icon_state = "59"},/area/shuttle/dropship/normandy)
-"bf" = (/obj/machinery/door/airlock/dropship_hatch/two{dir = 8},/obj/machinery/door/poddoor/shutters/transit{density = 0; dir = 8; icon_state = "shutter0"; opacity = 0},/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/dropship/normandy)
-"bh" = (/turf/closed/shuttle/dropship2{icon_state = "56"},/area/shuttle/dropship/normandy)
-"bi" = (/turf/closed/shuttle/dropship2{icon_state = "52"},/area/shuttle/dropship/normandy)
-"bj" = (/turf/closed/shuttle/dropship2{icon_state = "53"},/area/shuttle/dropship/normandy)
-"bk" = (/turf/closed/shuttle/dropship2{icon_state = "54"},/area/shuttle/dropship/normandy)
-"bl" = (/turf/closed/shuttle/dropship2{icon_state = "50"},/area/shuttle/dropship/normandy)
-"bm" = (/turf/open/shuttle/dropship{tag = "icon-rasputin4"; icon_state = "rasputin4"},/area/shuttle/dropship/normandy)
-"bn" = (/obj/item/device/radio/intercom{canhear_range = 7; frequency = 1443; name = "dropship intercom"; pixel_y = 24},/turf/open/shuttle/dropship{tag = "icon-rasputin5"; icon_state = "rasputin5"},/area/shuttle/dropship/normandy)
-"bo" = (/turf/open/shuttle/dropship{tag = "icon-rasputin8"; icon_state = "rasputin8"},/area/shuttle/dropship/normandy)
-"bp" = (/turf/closed/shuttle/dropship2{icon_state = "51"},/area/shuttle/dropship/normandy)
-"bq" = (/turf/closed/shuttle/dropship2{icon_state = "46"},/area/shuttle/dropship/normandy)
-"br" = (/turf/closed/shuttle/dropship2{icon_state = "47"},/area/shuttle/dropship/normandy)
-"bs" = (/obj/structure/bed/chair/dropship/passenger,/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/dropship/normandy)
-"bt" = (/turf/closed/shuttle/dropship2{icon_state = "48"},/area/shuttle/dropship/normandy)
-"bu" = (/turf/closed/shuttle/dropship2{icon_state = "49"},/area/shuttle/dropship/normandy)
-"bv" = (/turf/closed/shuttle/dropship2/transparent{icon_state = "40"},/area/shuttle/dropship/normandy)
-"bw" = (/turf/closed/shuttle/dropship2/transparent{icon_state = "41"},/area/shuttle/dropship/normandy)
-"bx" = (/turf/closed/shuttle/dropship2{icon_state = "42"},/area/shuttle/dropship/normandy)
-"by" = (/obj/structure/bed/chair/dropship/passenger{dir = 4},/obj/machinery/vending/wallmed1{pixel_x = -30},/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/dropship/normandy)
-"bz" = (/obj/effect/attach_point/crew_weapon/dropship2,/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/dropship/normandy)
-"bA" = (/obj/structure/bed/chair/dropship/passenger{dir = 8},/obj/machinery/vending/wallmed1{pixel_x = 30},/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/dropship/normandy)
-"bB" = (/turf/closed/shuttle/dropship2{icon_state = "43"},/area/shuttle/dropship/normandy)
-"bC" = (/turf/closed/shuttle/dropship2/transparent{icon_state = "44"},/area/shuttle/dropship/normandy)
-"bD" = (/turf/closed/shuttle/dropship2/transparent{icon_state = "45"},/area/shuttle/dropship/normandy)
-"bE" = (/turf/closed/shuttle/dropship2/transparent{icon_state = "34"},/area/shuttle/dropship/normandy)
-"bF" = (/turf/closed/shuttle/dropship2/transparent{icon_state = "35"},/area/shuttle/dropship/normandy)
-"bG" = (/turf/closed/shuttle/dropship2{icon_state = "36"},/area/shuttle/dropship/normandy)
-"bH" = (/obj/structure/bed/chair/dropship/passenger{dir = 8},/obj/machinery/camera/autoname/almayer/dropship_two{dir = 8; pixel_x = 16},/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/dropship/normandy)
-"bI" = (/turf/closed/shuttle/dropship2{icon_state = "37"},/area/shuttle/dropship/normandy)
-"bJ" = (/turf/closed/shuttle/dropship2/transparent{icon_state = "38"},/area/shuttle/dropship/normandy)
-"bK" = (/turf/closed/shuttle/dropship2/transparent{icon_state = "39"},/area/shuttle/dropship/normandy)
-"bL" = (/obj/effect/attach_point/fuel/dropship2,/turf/closed/shuttle/dropship2/transparent{icon_state = "28"},/area/shuttle/dropship/normandy)
-"bM" = (/turf/closed/shuttle/dropship2/transparent{icon_state = "29"},/area/shuttle/dropship/normandy)
-"bN" = (/turf/closed/shuttle/dropship2{icon_state = "30"},/area/shuttle/dropship/normandy)
-"bO" = (/turf/closed/shuttle/dropship2{icon_state = "31"},/area/shuttle/dropship/normandy)
-"bP" = (/turf/closed/shuttle/dropship2/transparent{icon_state = "32"},/area/shuttle/dropship/normandy)
-"bQ" = (/obj/effect/attach_point/fuel/dropship2{pixel_x = -32},/turf/closed/shuttle/dropship2/transparent{icon_state = "33"},/area/shuttle/dropship/normandy)
-"bR" = (/turf/closed/shuttle/dropship2/transparent{icon_state = "22"},/area/shuttle/dropship/normandy)
-"bS" = (/turf/closed/shuttle/dropship2/transparent{icon_state = "23"},/area/shuttle/dropship/normandy)
-"bT" = (/turf/closed/shuttle/dropship2{icon_state = "24"},/area/shuttle/dropship/normandy)
-"bU" = (/turf/closed/shuttle/dropship2{icon_state = "25"},/area/shuttle/dropship/normandy)
-"bV" = (/turf/closed/shuttle/dropship2/transparent{icon_state = "26"},/area/shuttle/dropship/normandy)
-"bW" = (/turf/closed/shuttle/dropship2/transparent{icon_state = "27"},/area/shuttle/dropship/normandy)
-"bX" = (/turf/closed/shuttle/dropship2/transparent{icon_state = "16"},/area/shuttle/dropship/normandy)
-"bY" = (/turf/closed/shuttle/dropship2/transparent{icon_state = "17"},/area/shuttle/dropship/normandy)
-"bZ" = (/turf/closed/shuttle/dropship2{icon_state = "18"},/area/shuttle/dropship/normandy)
-"ca" = (/turf/closed/shuttle/dropship2{icon_state = "19"},/area/shuttle/dropship/normandy)
-"cb" = (/turf/closed/shuttle/dropship2/transparent{icon_state = "20"},/area/shuttle/dropship/normandy)
-"cc" = (/turf/closed/shuttle/dropship2/transparent{icon_state = "21"},/area/shuttle/dropship/normandy)
-"cd" = (/turf/closed/shuttle/dropship2{icon_state = "9"},/area/shuttle/dropship/normandy)
-"ce" = (/turf/closed/shuttle/dropship2{icon_state = "10"},/area/shuttle/dropship/normandy)
-"cf" = (/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds2,/obj/machinery/door/poddoor/shutters/transit{density = 0; dir = 1; icon_state = "shutter0"; opacity = 0},/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/dropship/normandy)
-"cg" = (/obj/machinery/door/poddoor/shutters/transit{density = 0; dir = 1; icon_state = "shutter0"; opacity = 0},/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/dropship/normandy)
-"ch" = (/turf/closed/shuttle/dropship2{icon_state = "14"},/area/shuttle/dropship/normandy)
-"ci" = (/turf/closed/shuttle/dropship2{icon_state = "15"},/area/shuttle/dropship/normandy)
-"cj" = (/turf/closed/shuttle/dropship2{icon_state = "7"},/area/shuttle/dropship/normandy)
-"ck" = (/turf/closed/shuttle/dropship2{icon_state = "8"},/area/shuttle/dropship/normandy)
-"cl" = (/turf/closed/shuttle/dropship2/transparent,/area/shuttle/dropship/normandy)
-"cm" = (/turf/closed/shuttle/dropship2/transparent{icon_state = "2"},/area/shuttle/dropship/normandy)
-"cn" = (/turf/closed/shuttle/dropship2{icon_state = "3"},/area/shuttle/dropship/normandy)
-"cp" = (/turf/closed/shuttle/dropship2{icon_state = "4"},/area/shuttle/dropship/normandy)
-"cq" = (/turf/closed/shuttle/dropship2/transparent{icon_state = "5"},/area/shuttle/dropship/normandy)
-"cr" = (/turf/closed/shuttle/dropship2/transparent{icon_state = "6"},/area/shuttle/dropship/normandy)
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/turf/template_noop,
+/area/template_noop)
+"ab" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "100"
+	},
+/area/shuttle/dropship/normandy)
+"ac" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "101"
+	},
+/area/shuttle/dropship/normandy)
+"ad" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "102"
+	},
+/area/shuttle/dropship/normandy)
+"ae" = (
+/turf/closed/shuttle/dropship2{
+	icon_state = "95"
+	},
+/area/shuttle/dropship/normandy)
+"af" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "96"
+	},
+/area/shuttle/dropship/normandy)
+"ag" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "97"
+	},
+/area/shuttle/dropship/normandy)
+"ah" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "98"
+	},
+/area/shuttle/dropship/normandy)
+"ai" = (
+/turf/closed/shuttle/dropship2{
+	icon_state = "99"
+	},
+/area/shuttle/dropship/normandy)
+"aj" = (
+/turf/closed/shuttle/dropship2{
+	icon_state = "92"
+	},
+/area/shuttle/dropship/normandy)
+"ak" = (
+/obj/machinery/computer/security/dropship/two,
+/turf/open/shuttle/dropship{
+	tag = "icon-rasputin15";
+	icon_state = "rasputin15"
+	},
+/area/shuttle/dropship/normandy)
+"al" = (
+/turf/open/shuttle/dropship{
+	tag = "icon-rasputin15";
+	icon_state = "rasputin15"
+	},
+/area/shuttle/dropship/normandy)
+"am" = (
+/obj/machinery/computer/dropship_weapons/dropship2,
+/turf/open/shuttle/dropship{
+	tag = "icon-rasputin15";
+	icon_state = "rasputin15"
+	},
+/area/shuttle/dropship/normandy)
+"an" = (
+/turf/closed/shuttle/dropship2{
+	icon_state = "94"
+	},
+/area/shuttle/dropship/normandy)
+"ao" = (
+/obj/effect/attach_point/weapon/dropship2{
+	dir = 1
+	},
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "84"
+	},
+/area/shuttle/dropship/normandy)
+"ap" = (
+/obj/effect/attach_point/electronics/dropship2{
+	dir = 1
+	},
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "85"
+	},
+/area/shuttle/dropship/normandy)
+"aq" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "86"
+	},
+/area/shuttle/dropship/normandy)
+"ar" = (
+/obj/structure/bed/chair/dropship/pilot{
+	tag = "icon-pilot_chair (NORTH)";
+	icon_state = "pilot_chair";
+	dir = 1
+	},
+/obj/machinery/camera/autoname/almayer/dropship_two{
+	dir = 2;
+	pixel_x = 8;
+	pixel_y = -16
+	},
+/turf/open/shuttle/dropship{
+	tag = "icon-rasputin15";
+	icon_state = "rasputin15"
+	},
+/area/shuttle/dropship/normandy)
+"as" = (
+/obj/item/device/radio/intercom{
+	canhear_range = 7;
+	frequency = 1443;
+	name = "dropship intercom";
+	pixel_x = 21;
+	pixel_y = 43
+	},
+/turf/open/shuttle/dropship{
+	tag = "icon-rasputin15";
+	icon_state = "rasputin15"
+	},
+/area/shuttle/dropship/normandy)
+"at" = (
+/obj/structure/bed/chair/dropship/pilot{
+	tag = "icon-pilot_chair (NORTH)";
+	icon_state = "pilot_chair";
+	dir = 1
+	},
+/turf/open/shuttle/dropship{
+	tag = "icon-rasputin15";
+	icon_state = "rasputin15"
+	},
+/area/shuttle/dropship/normandy)
+"au" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "89"
+	},
+/area/shuttle/dropship/normandy)
+"av" = (
+/obj/effect/attach_point/electronics/dropship2{
+	dir = 1
+	},
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "90"
+	},
+/area/shuttle/dropship/normandy)
+"aw" = (
+/obj/effect/attach_point/weapon/dropship2{
+	dir = 1
+	},
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "91"
+	},
+/area/shuttle/dropship/normandy)
+"ax" = (
+/turf/closed/shuttle/dropship2{
+	icon_state = "75"
+	},
+/area/shuttle/dropship/normandy)
+"ay" = (
+/turf/closed/shuttle/dropship2{
+	icon_state = "76"
+	},
+/area/shuttle/dropship/normandy)
+"az" = (
+/turf/closed/shuttle/dropship2{
+	icon_state = "77"
+	},
+/area/shuttle/dropship/normandy)
+"aA" = (
+/turf/closed/shuttle/dropship2{
+	icon_state = "78"
+	},
+/area/shuttle/dropship/normandy)
+"aB" = (
+/obj/machinery/door/airlock/hatch/cockpit/two,
+/turf/open/shuttle/dropship{
+	tag = "icon-rasputin15";
+	icon_state = "rasputin15"
+	},
+/area/shuttle/dropship/normandy)
+"aC" = (
+/turf/closed/shuttle/dropship2{
+	icon_state = "80"
+	},
+/area/shuttle/dropship/normandy)
+"aD" = (
+/turf/closed/shuttle/dropship2{
+	icon_state = "81"
+	},
+/area/shuttle/dropship/normandy)
+"aE" = (
+/turf/closed/shuttle/dropship2{
+	icon_state = "82"
+	},
+/area/shuttle/dropship/normandy)
+"aF" = (
+/turf/closed/shuttle/dropship2{
+	icon_state = "83"
+	},
+/area/shuttle/dropship/normandy)
+"aG" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "71"
+	},
+/area/shuttle/dropship/normandy)
+"aH" = (
+/turf/closed/shuttle/dropship2{
+	icon_state = "72"
+	},
+/area/shuttle/dropship/normandy)
+"aI" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/turf/open/shuttle/dropship{
+	tag = "icon-rasputin15";
+	icon_state = "rasputin15"
+	},
+/area/shuttle/dropship/normandy)
+"aJ" = (
+/obj/item/device/radio/intercom{
+	canhear_range = 7;
+	frequency = 1443;
+	name = "dropship intercom";
+	pixel_y = 24
+	},
+/turf/open/shuttle/dropship{
+	tag = "icon-rasputin6";
+	icon_state = "rasputin6"
+	},
+/area/shuttle/dropship/normandy)
+"aK" = (
+/turf/open/shuttle/dropship{
+	tag = "icon-rasputin5";
+	icon_state = "rasputin5"
+	},
+/area/shuttle/dropship/normandy)
+"aL" = (
+/obj/machinery/door_control{
+	id = "sh_dropship2";
+	name = "Dropship Lockdown";
+	normaldoorcontrol = 3;
+	pixel_y = -19;
+	req_one_access_txt = "3;22";
+	throw_range = 15
+	},
+/turf/open/shuttle/dropship{
+	tag = "icon-floor8";
+	icon_state = "floor8"
+	},
+/area/shuttle/dropship/normandy)
+"aM" = (
+/obj/item/device/radio/intercom{
+	canhear_range = 7;
+	frequency = 1443;
+	name = "dropship intercom";
+	pixel_y = 24
+	},
+/turf/open/shuttle/dropship{
+	tag = "icon-rasputin7";
+	icon_state = "rasputin7"
+	},
+/area/shuttle/dropship/normandy)
+"aN" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/turf/open/shuttle/dropship{
+	tag = "icon-rasputin15";
+	icon_state = "rasputin15"
+	},
+/area/shuttle/dropship/normandy)
+"aO" = (
+/turf/closed/shuttle/dropship2{
+	icon_state = "73"
+	},
+/area/shuttle/dropship/normandy)
+"aP" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "74"
+	},
+/area/shuttle/dropship/normandy)
+"aQ" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "66"
+	},
+/area/shuttle/dropship/normandy)
+"aR" = (
+/turf/closed/shuttle/dropship2{
+	icon_state = "67"
+	},
+/area/shuttle/dropship/normandy)
+"aS" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/obj/machinery/camera/autoname/almayer/dropship_two{
+	dir = 4;
+	pixel_x = -16
+	},
+/turf/open/shuttle/dropship{
+	tag = "icon-rasputin15";
+	icon_state = "rasputin15"
+	},
+/area/shuttle/dropship/normandy)
+"aT" = (
+/turf/open/shuttle/dropship{
+	tag = "icon-rasputin3";
+	icon_state = "rasputin3"
+	},
+/area/shuttle/dropship/normandy)
+"aU" = (
+/turf/closed/shuttle/dropship2{
+	icon_state = "68"
+	},
+/area/shuttle/dropship/normandy)
+"aV" = (
+/turf/closed/shuttle/dropship2{
+	icon_state = "69"
+	},
+/area/shuttle/dropship/normandy)
+"aW" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "70"
+	},
+/area/shuttle/dropship/normandy)
+"aX" = (
+/obj/effect/attach_point/weapon/dropship2{
+	dir = 8;
+	icon_state = "equip_base_l_wing"
+	},
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "61"
+	},
+/area/shuttle/dropship/normandy)
+"aY" = (
+/turf/closed/shuttle/dropship2{
+	icon_state = "62"
+	},
+/area/shuttle/dropship/normandy)
+"aZ" = (
+/turf/closed/shuttle/dropship2{
+	icon_state = "63"
+	},
+/area/shuttle/dropship/normandy)
+"ba" = (
+/turf/closed/shuttle/dropship2{
+	icon_state = "64"
+	},
+/area/shuttle/dropship/normandy)
+"bb" = (
+/obj/effect/attach_point/weapon/dropship2{
+	dir = 4;
+	icon_state = "equip_base_r_wing"
+	},
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "65"
+	},
+/area/shuttle/dropship/normandy)
+"bc" = (
+/obj/docking_port/mobile/marine_dropship/two,
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "101"
+	},
+/area/shuttle/dropship/normandy)
+"bd" = (
+/obj/machinery/door/airlock/dropship_hatch/two,
+/obj/machinery/door/poddoor/shutters/transit{
+	density = 0;
+	dir = 4;
+	icon_state = "shutter0";
+	opacity = 0
+	},
+/turf/open/shuttle/dropship{
+	tag = "icon-rasputin15";
+	icon_state = "rasputin15"
+	},
+/area/shuttle/dropship/normandy)
+"be" = (
+/turf/closed/shuttle/dropship2{
+	icon_state = "59"
+	},
+/area/shuttle/dropship/normandy)
+"bf" = (
+/obj/machinery/door/airlock/dropship_hatch/two{
+	dir = 8
+	},
+/obj/machinery/door/poddoor/shutters/transit{
+	density = 0;
+	dir = 8;
+	icon_state = "shutter0";
+	opacity = 0
+	},
+/turf/open/shuttle/dropship{
+	tag = "icon-rasputin15";
+	icon_state = "rasputin15"
+	},
+/area/shuttle/dropship/normandy)
+"bh" = (
+/turf/closed/shuttle/dropship2{
+	icon_state = "56"
+	},
+/area/shuttle/dropship/normandy)
+"bi" = (
+/turf/closed/shuttle/dropship2{
+	icon_state = "52"
+	},
+/area/shuttle/dropship/normandy)
+"bj" = (
+/turf/closed/shuttle/dropship2{
+	icon_state = "53"
+	},
+/area/shuttle/dropship/normandy)
+"bk" = (
+/turf/closed/shuttle/dropship2{
+	icon_state = "54"
+	},
+/area/shuttle/dropship/normandy)
+"bl" = (
+/turf/closed/shuttle/dropship2{
+	icon_state = "50"
+	},
+/area/shuttle/dropship/normandy)
+"bm" = (
+/turf/open/shuttle/dropship{
+	tag = "icon-rasputin4";
+	icon_state = "rasputin4"
+	},
+/area/shuttle/dropship/normandy)
+"bn" = (
+/obj/item/device/radio/intercom{
+	canhear_range = 7;
+	frequency = 1443;
+	name = "dropship intercom";
+	pixel_y = 24
+	},
+/turf/open/shuttle/dropship{
+	tag = "icon-rasputin5";
+	icon_state = "rasputin5"
+	},
+/area/shuttle/dropship/normandy)
+"bo" = (
+/turf/open/shuttle/dropship{
+	tag = "icon-rasputin8";
+	icon_state = "rasputin8"
+	},
+/area/shuttle/dropship/normandy)
+"bp" = (
+/turf/closed/shuttle/dropship2{
+	icon_state = "51"
+	},
+/area/shuttle/dropship/normandy)
+"bq" = (
+/turf/closed/shuttle/dropship2{
+	icon_state = "46"
+	},
+/area/shuttle/dropship/normandy)
+"br" = (
+/turf/closed/shuttle/dropship2{
+	icon_state = "47"
+	},
+/area/shuttle/dropship/normandy)
+"bs" = (
+/obj/structure/bed/chair/dropship/passenger,
+/turf/open/shuttle/dropship{
+	tag = "icon-rasputin15";
+	icon_state = "rasputin15"
+	},
+/area/shuttle/dropship/normandy)
+"bt" = (
+/turf/closed/shuttle/dropship2{
+	icon_state = "48"
+	},
+/area/shuttle/dropship/normandy)
+"bu" = (
+/turf/closed/shuttle/dropship2{
+	icon_state = "49"
+	},
+/area/shuttle/dropship/normandy)
+"bv" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "40"
+	},
+/area/shuttle/dropship/normandy)
+"bw" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "41"
+	},
+/area/shuttle/dropship/normandy)
+"bx" = (
+/turf/closed/shuttle/dropship2{
+	icon_state = "42"
+	},
+/area/shuttle/dropship/normandy)
+"by" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/obj/machinery/vending/wallmed1{
+	pixel_x = -30
+	},
+/turf/open/shuttle/dropship{
+	tag = "icon-rasputin15";
+	icon_state = "rasputin15"
+	},
+/area/shuttle/dropship/normandy)
+"bz" = (
+/obj/effect/attach_point/crew_weapon/dropship2,
+/turf/open/shuttle/dropship{
+	tag = "icon-rasputin15";
+	icon_state = "rasputin15"
+	},
+/area/shuttle/dropship/normandy)
+"bA" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/obj/machinery/vending/wallmed1{
+	pixel_x = 30
+	},
+/turf/open/shuttle/dropship{
+	tag = "icon-rasputin15";
+	icon_state = "rasputin15"
+	},
+/area/shuttle/dropship/normandy)
+"bB" = (
+/turf/closed/shuttle/dropship2{
+	icon_state = "43"
+	},
+/area/shuttle/dropship/normandy)
+"bC" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "44"
+	},
+/area/shuttle/dropship/normandy)
+"bD" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "45"
+	},
+/area/shuttle/dropship/normandy)
+"bE" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "34"
+	},
+/area/shuttle/dropship/normandy)
+"bF" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "35"
+	},
+/area/shuttle/dropship/normandy)
+"bG" = (
+/turf/closed/shuttle/dropship2{
+	icon_state = "36"
+	},
+/area/shuttle/dropship/normandy)
+"bH" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/obj/machinery/camera/autoname/almayer/dropship_two{
+	dir = 8;
+	pixel_x = 16
+	},
+/turf/open/shuttle/dropship{
+	tag = "icon-rasputin15";
+	icon_state = "rasputin15"
+	},
+/area/shuttle/dropship/normandy)
+"bI" = (
+/turf/closed/shuttle/dropship2{
+	icon_state = "37"
+	},
+/area/shuttle/dropship/normandy)
+"bJ" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "38"
+	},
+/area/shuttle/dropship/normandy)
+"bK" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "39"
+	},
+/area/shuttle/dropship/normandy)
+"bL" = (
+/obj/effect/attach_point/fuel/dropship2,
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "28"
+	},
+/area/shuttle/dropship/normandy)
+"bM" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "29"
+	},
+/area/shuttle/dropship/normandy)
+"bN" = (
+/turf/closed/shuttle/dropship2{
+	icon_state = "30"
+	},
+/area/shuttle/dropship/normandy)
+"bO" = (
+/turf/closed/shuttle/dropship2{
+	icon_state = "31"
+	},
+/area/shuttle/dropship/normandy)
+"bP" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "32"
+	},
+/area/shuttle/dropship/normandy)
+"bQ" = (
+/obj/effect/attach_point/fuel/dropship2{
+	pixel_x = -32
+	},
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "33"
+	},
+/area/shuttle/dropship/normandy)
+"bR" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "22"
+	},
+/area/shuttle/dropship/normandy)
+"bS" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "23"
+	},
+/area/shuttle/dropship/normandy)
+"bT" = (
+/turf/closed/shuttle/dropship2{
+	icon_state = "24"
+	},
+/area/shuttle/dropship/normandy)
+"bU" = (
+/turf/closed/shuttle/dropship2{
+	icon_state = "25"
+	},
+/area/shuttle/dropship/normandy)
+"bV" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "26"
+	},
+/area/shuttle/dropship/normandy)
+"bW" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "27"
+	},
+/area/shuttle/dropship/normandy)
+"bX" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "16"
+	},
+/area/shuttle/dropship/normandy)
+"bY" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "17"
+	},
+/area/shuttle/dropship/normandy)
+"bZ" = (
+/turf/closed/shuttle/dropship2{
+	icon_state = "18"
+	},
+/area/shuttle/dropship/normandy)
+"ca" = (
+/turf/closed/shuttle/dropship2{
+	icon_state = "19"
+	},
+/area/shuttle/dropship/normandy)
+"cb" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "20"
+	},
+/area/shuttle/dropship/normandy)
+"cc" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "21"
+	},
+/area/shuttle/dropship/normandy)
+"cd" = (
+/turf/closed/shuttle/dropship2{
+	icon_state = "9"
+	},
+/area/shuttle/dropship/normandy)
+"ce" = (
+/turf/closed/shuttle/dropship2{
+	icon_state = "10"
+	},
+/area/shuttle/dropship/normandy)
+"cf" = (
+/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds2,
+/obj/machinery/door/poddoor/shutters/transit{
+	density = 0;
+	dir = 1;
+	icon_state = "shutter0";
+	opacity = 0
+	},
+/turf/open/shuttle/dropship{
+	tag = "icon-rasputin15";
+	icon_state = "rasputin15"
+	},
+/area/shuttle/dropship/normandy)
+"cg" = (
+/obj/machinery/door/poddoor/shutters/transit{
+	density = 0;
+	dir = 1;
+	icon_state = "shutter0";
+	opacity = 0
+	},
+/turf/open/shuttle/dropship{
+	tag = "icon-rasputin15";
+	icon_state = "rasputin15"
+	},
+/area/shuttle/dropship/normandy)
+"ch" = (
+/turf/closed/shuttle/dropship2{
+	icon_state = "14"
+	},
+/area/shuttle/dropship/normandy)
+"ci" = (
+/turf/closed/shuttle/dropship2{
+	icon_state = "15"
+	},
+/area/shuttle/dropship/normandy)
+"cj" = (
+/turf/closed/shuttle/dropship2{
+	icon_state = "7"
+	},
+/area/shuttle/dropship/normandy)
+"ck" = (
+/turf/closed/shuttle/dropship2{
+	icon_state = "8"
+	},
+/area/shuttle/dropship/normandy)
+"cl" = (
+/turf/closed/shuttle/dropship2/transparent,
+/area/shuttle/dropship/normandy)
+"cm" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "2"
+	},
+/area/shuttle/dropship/normandy)
+"cn" = (
+/turf/closed/shuttle/dropship2{
+	icon_state = "3"
+	},
+/area/shuttle/dropship/normandy)
+"cp" = (
+/turf/closed/shuttle/dropship2{
+	icon_state = "4"
+	},
+/area/shuttle/dropship/normandy)
+"cq" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "5"
+	},
+/area/shuttle/dropship/normandy)
+"cr" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "6"
+	},
+/area/shuttle/dropship/normandy)
 
 (1,1,1) = {"
-aaaaaaabacbcacadaaaaaa
-aaaaaaaeafagahaiaaaaaa
-aaaaaaajakalamanaaaaaa
-aaaoapaqarasatauavawaa
-aaaxayazaAaBaCaDaEaFaa
-aGaHaIaJaKaLaKaMaNaOaP
-aQaRaSaTaNaUaIaTaNaVaW
-aXaYaIaTaNaZaIaTaNbabb
-aabdalaTaNbeaIaTalbfaa
-aabdalaTaNbhaIaTalbfaa
-aabiaIaTaNbjaIaTaNbkaa
-aablaIbmaKbnaKboaNbpaa
-aabqbraIaTbsaTaNbtbuaa
-bvbwbxbyaTbzaTbAbBbCbD
-bEbFbGaIaTalaTbHbIbJbK
-bLbMbNaIaTalaTaNbObPbQ
-bRbSbTaIaTalaTaNbUbVbW
-bXbYbZaIaTalaTaNcacbcc
-aaaacdcecfcgcgchciaaaa
-aaaaaacjaaaaaackaaaaaa
-aaclcmcnaaaaaacpcqcraa
+aa
+aa
+aa
+aa
+aa
+aG
+aQ
+aX
+aa
+aa
+aa
+aa
+aa
+bv
+bE
+bL
+bR
+bX
+aa
+aa
+aa
+"}
+(2,1,1) = {"
+aa
+aa
+aa
+ao
+ax
+aH
+aR
+aY
+bd
+bd
+bi
+bl
+bq
+bw
+bF
+bM
+bS
+bY
+aa
+aa
+cl
+"}
+(3,1,1) = {"
+aa
+aa
+aa
+ap
+ay
+aI
+aS
+aI
+al
+al
+aI
+aI
+br
+bx
+bG
+bN
+bT
+bZ
+cd
+aa
+cm
+"}
+(4,1,1) = {"
+ab
+ae
+aj
+aq
+az
+aJ
+aT
+aT
+aT
+aT
+aT
+bm
+aI
+by
+aI
+aI
+aI
+aI
+ce
+cj
+cn
+"}
+(5,1,1) = {"
+ac
+af
+ak
+ar
+aA
+aK
+aN
+aN
+aN
+aN
+aN
+aK
+aT
+aT
+aT
+aT
+aT
+aT
+cf
+aa
+aa
+"}
+(6,1,1) = {"
+bc
+ag
+al
+as
+aB
+aL
+aU
+aZ
+be
+bh
+bj
+bn
+bs
+bz
+al
+al
+al
+al
+cg
+aa
+aa
+"}
+(7,1,1) = {"
+ac
+ah
+am
+at
+aC
+aK
+aI
+aI
+aI
+aI
+aI
+aK
+aT
+aT
+aT
+aT
+aT
+aT
+cg
+aa
+aa
+"}
+(8,1,1) = {"
+ad
+ai
+an
+au
+aD
+aM
+aT
+aT
+aT
+aT
+aT
+bo
+aN
+bA
+bH
+aN
+aN
+aN
+ch
+ck
+cp
+"}
+(9,1,1) = {"
+aa
+aa
+aa
+av
+aE
+aN
+aN
+aN
+al
+al
+aN
+aN
+bt
+bB
+bI
+bO
+bU
+ca
+ci
+aa
+cq
+"}
+(10,1,1) = {"
+aa
+aa
+aa
+aw
+aF
+aO
+aV
+ba
+bf
+bf
+bk
+bp
+bu
+bC
+bJ
+bP
+bV
+cb
+aa
+aa
+cr
+"}
+(11,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aP
+aW
+bb
+aa
+aa
+aa
+aa
+aa
+bD
+bK
+bQ
+bW
+cc
+aa
+aa
+aa
 "}

@@ -39938,11 +39938,6 @@
 	},
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad_external)
-"bZP" = (
-/turf/open/floor/plating/icefloor/warnplate{
-	dir = 10
-	},
-/area/ice_colony/exterior/surface/landing_pad)
 "bZQ" = (
 /turf/open/floor/plating/icefloor/warnplate,
 /area/shuttle/drop2/ice_colony)
@@ -85969,7 +85964,7 @@ bPc
 bPc
 bbu
 bbu
-bZP
+aYE
 bZS
 aUP
 aUP

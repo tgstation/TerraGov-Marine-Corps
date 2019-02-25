@@ -1,23 +1,115 @@
-"a" = (/turf/closed/shuttle/escapepod{tag = "icon-wall13"; icon_state = "wall13"},/area/space)
-"b" = (/turf/closed/shuttle/escapepod{tag = "icon-wall1"; icon_state = "wall1"},/area/space)
-"c" = (/turf/closed/shuttle/escapepod{tag = "icon-wall2"; icon_state = "wall2"},/area/space)
-"d" = (/turf/closed/shuttle/escapepod{tag = "icon-wall3"; icon_state = "wall3"},/area/space)
-"e" = (/turf/closed/shuttle/escapepod{tag = "icon-wall12"; icon_state = "wall12"},/area/space)
-"f" = (/turf/open/shuttle/escapepod,/area/space)
-"g" = (/turf/open/shuttle/escapepod{tag = "icon-floor0"; icon_state = "floor0"},/area/space)
-"h" = (/turf/closed/shuttle/escapepod{tag = "icon-wall4"; icon_state = "wall4"},/area/space)
-"i" = (/turf/closed/shuttle/escapepod{tag = "icon-wall11"; icon_state = "wall11"},/area/space)
-"j" = (/turf/open/shuttle/escapepod{tag = "icon-floor1"; icon_state = "floor1"},/area/space)
-"k" = (/obj/docking_port/mobile/escape_pod,/turf/open/floor/plating,/area/space)
-"l" = (/turf/open/shuttle/escapepod{tag = "icon-floor10"; icon_state = "floor10"},/area/space)
-"m" = (/turf/closed/shuttle/escapepod{tag = "icon-wall9"; icon_state = "wall9"},/area/space)
-"n" = (/turf/closed/shuttle/escapepod{tag = "icon-wall7"; icon_state = "wall7"},/area/space)
-"o" = (/turf/closed/shuttle/escapepod{tag = "icon-wall6"; icon_state = "wall6"},/area/space)
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/shuttle/escapepod{
+	tag = "icon-wall13";
+	icon_state = "wall13"
+	},
+/area/space)
+"b" = (
+/turf/closed/shuttle/escapepod{
+	tag = "icon-wall1";
+	icon_state = "wall1"
+	},
+/area/space)
+"c" = (
+/turf/closed/shuttle/escapepod{
+	tag = "icon-wall2";
+	icon_state = "wall2"
+	},
+/area/space)
+"d" = (
+/turf/closed/shuttle/escapepod{
+	tag = "icon-wall3";
+	icon_state = "wall3"
+	},
+/area/space)
+"e" = (
+/turf/closed/shuttle/escapepod{
+	tag = "icon-wall12";
+	icon_state = "wall12"
+	},
+/area/space)
+"f" = (
+/turf/open/shuttle/escapepod,
+/area/space)
+"g" = (
+/turf/open/shuttle/escapepod{
+	tag = "icon-floor0";
+	icon_state = "floor0"
+	},
+/area/space)
+"h" = (
+/turf/closed/shuttle/escapepod{
+	tag = "icon-wall4";
+	icon_state = "wall4"
+	},
+/area/space)
+"i" = (
+/turf/closed/shuttle/escapepod{
+	tag = "icon-wall11";
+	icon_state = "wall11"
+	},
+/area/space)
+"j" = (
+/turf/open/shuttle/escapepod{
+	tag = "icon-floor1";
+	icon_state = "floor1"
+	},
+/area/space)
+"k" = (
+/obj/docking_port/mobile/escape_pod,
+/turf/open/floor/plating,
+/area/space)
+"l" = (
+/turf/open/shuttle/escapepod{
+	tag = "icon-floor10";
+	icon_state = "floor10"
+	},
+/area/space)
+"m" = (
+/turf/closed/shuttle/escapepod{
+	tag = "icon-wall9";
+	icon_state = "wall9"
+	},
+/area/space)
+"n" = (
+/turf/closed/shuttle/escapepod{
+	tag = "icon-wall7";
+	icon_state = "wall7"
+	},
+/area/space)
+"o" = (
+/turf/closed/shuttle/escapepod{
+	tag = "icon-wall6";
+	icon_state = "wall6"
+	},
+/area/space)
 
 (1,1,1) = {"
-abcd
-efgh
-ifjk
-iflh
-mnno
+a
+e
+i
+i
+m
+"}
+(2,1,1) = {"
+b
+f
+f
+f
+n
+"}
+(3,1,1) = {"
+c
+g
+j
+l
+n
+"}
+(4,1,1) = {"
+d
+h
+k
+h
+o
 "}
