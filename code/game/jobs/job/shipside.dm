@@ -650,6 +650,8 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 
 /datum/job/civilian/synthetic/equip(mob/living/carbon/human/H, visualsOnly = FALSE, announce = TRUE, latejoin = FALSE, datum/outfit/outfit_override = null, client/preference_source)
 	. = ..()
+	if(!H)
+		return FALSE
 	if(preference_source?.prefs)
 		H.set_species(preference_source.prefs.synthetic_type)
 		if(preference_source.prefs.synthetic_type == "Early Synthetic")
@@ -658,7 +660,8 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	if(!H.real_name || H.real_name == "Undefined") //In case they don't have a name set or no prefs, there's a name.
 		H.real_name = "David"
 		to_chat(H, "<span class='warning'>You forgot to set your name in your preferences. Please do so next time.</span>")
-	H.mind.name = H.real_name
+	if(H.mind)
+		H.mind.name = H.real_name
 	if(H.wear_id)
 		var/obj/item/card/id/I = H.wear_id
 		I.registered_name = H.real_name

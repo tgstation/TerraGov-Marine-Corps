@@ -178,7 +178,6 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 	if(ishuman(user) || istype(user,/mob/living/silicon) )
 		var/mob/living/human_or_robot_user = user
 		var/dat
-		dat = text("<HEAD><TITLE>Newscaster</TITLE></HEAD><H3>Newscaster Unit #[src.unit_no]</H3>")
 
 		src.scan_user(human_or_robot_user) //Newscaster scans you
 
@@ -418,9 +417,10 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 			else
 				dat+="I'm sorry to break your immersion. This shit's bugged. Report this bug to Agouri, polyxenitopalidou@gmail.com"
 
-
-		human_or_robot_user << browse(dat, "window=newscaster_main;size=400x600")
-		onclose(human_or_robot_user, "newscaster_main")
+		var/datum/browser/popup = new(human_or_robot_user, "newspaper_main", "<div align='center'>Newscaster Unit #[unit_no]</div>", 400, 600)
+		popup.set_content(dat)
+		popup.open(FALSE)
+		onclose(human_or_robot_user, "newspaper_main")
 
 	/*if(src.isbroken) //debugging shit
 		return
@@ -852,8 +852,11 @@ obj/item/newspaper/attack_self(mob/user as mob)
 				dat+="I'm sorry to break your immersion. This shit's bugged. Report this bug to Agouri, polyxenitopalidou@gmail.com"
 
 		dat+="<BR><HR><div align='center'>[src.curr_page+1]</div>"
-		human_user << browse(dat, "window=newspaper_main;size=300x400")
-		onclose(human_user, "newspaper_main")
+
+		var/datum/browser/popup = new(user, "newspaper_main", "<div align='center'>Newscaster</div>", 300, 400)
+		popup.set_content(dat)
+		popup.open(FALSE)
+		onclose(user, "newspaper_main")
 	else
 		to_chat(user, "The paper is full of intelligible symbols!")
 

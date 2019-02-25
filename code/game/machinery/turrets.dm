@@ -539,19 +539,17 @@
 
 	attack_hand(mob/user as mob)
 		user.set_machine(src)
-		var/dat = {"<html>
-						<head><title>[src] Control</title></head>
-						<body>
+		var/dat = {"
 						<b>Power: </b><a href='?src=\ref[src];power=1'>[on?"on":"off"]</a><br>
 						<b>Scan Range: </b><a href='?src=\ref[src];scan_range=-1'>-</a> [scan_range] <a href='?src=\ref[src];scan_range=1'>+</a><br>
 						<b>Scan for: </b>"}
 		for(var/scan in scan_for)
 			dat += "<div style=\"margin-left: 15px;\">[scan] (<a href='?src=\ref[src];scan_for=[scan]'>[scan_for[scan]?"Yes":"No"]</a>)</div>"
 
-		dat += {"<b>Ammo: </b>[max(0, projectiles)]<br>
-					</body>
-					</html>"}
-		user << browse(dat, "window=turret")
+		dat += {"<b>Ammo: </b>[max(0, projectiles)]<br>"}
+		var/datum/browser/popup = new(user, "turret", "<div align='center'>[src] Control</div>")
+		popup.set_content(dat)
+		popup.open(FALSE)
 		onclose(user, "turret")
 		return
 

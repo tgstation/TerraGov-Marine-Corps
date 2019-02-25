@@ -31,7 +31,7 @@
 	if (shocked)
 		shock(user,50)
 
-	var/dat = "<center><h1>Autolathe Control Panel</h1><hr/>"
+	var/dat = "<center>"
 
 	dat += "<table width = '100%'>"
 	var/material_top = "<tr>"
@@ -89,7 +89,7 @@
 
 	//Hacking.
 	if(opened)
-		dat += "<h2>Maintenance Panel</h2>"
+		dat += "<h4>Maintenance Panel</h4>"
 		for(var/wire in wires)
 			dat += "[wire] Wire: <A href='?src=\ref[src];wire=[wire];act=wire'>[wires[wire] ? "Mend" : "Cut"]</A> <A href='?src=\ref[src];wire=[wire];act=pulse'>Pulse</A><BR>"
 		dat += "<br>"
@@ -99,8 +99,11 @@
 
 		dat += "<hr>"
 
-	user << browse(dat, "window=autolathe")
+	var/datum/browser/popup = new(user, "autolathe", "<div align='center'>Autolathe</div>")
+	popup.set_content(dat)
+	popup.open(FALSE)
 	onclose(user, "autolathe")
+
 
 /obj/machinery/autolathe/attackby(var/obj/item/O as obj, var/mob/user as mob)
 
