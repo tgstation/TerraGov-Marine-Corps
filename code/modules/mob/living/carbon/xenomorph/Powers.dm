@@ -1098,19 +1098,29 @@
 		target.use_plasma(amount)
 		gain_plasma(absorbed_plasma)
 
-		var/list/hive_list = list()
+		var/list/upgrade_list = list()
+		var/list/evolution_list = list()
 		for(var/mob/living/carbon/Xenomorph/X in GLOB.alive_xeno_list)
 			if(istype(src)) // cover calling it without parameters
 				if(X.hivenumber != hivenumber)
 					continue // not our hive
-			hive_list.Add(X)
+			if(X.xeno_caste.upgrade < 3)
+				upgrade_list.Add(X)
 
-		absorbed_evolution = absorbed_evolution / max(1,length(hive_list))
-		absorbed_upgrade = absorbed_upgrade / max(1,length(hive_list))
-		for(var/mob/living/carbon/Xenomorph/X in hive_list)
-			X.upgrade_stored = min(X.xeno_caste.upgrade_threshold, X.upgrade_stored + absorbed_upgrade)
+			if(X.xeno_caste.tier < 3)
+				evolution_list.Add(X)
+
+		absorbed_evolution = absorbed_evolution / max(1,length(evolution_list))
+		absorbed_upgrade = absorbed_upgrade / max(1,length(upgrade_list))
+
+		for(var/mob/living/carbon/Xenomorph/X in evolution_list)
 			X.evolution_stored = min(X.xeno_caste.evolution_threshold, X.evolution_stored + absorbed_evolution)
-			to_chat(X, "<span class='xenowarning'>You are empowered by [src]'s contribution to the Hivemind, gaining [absorbed_upgrade] upgrade points and [absorbed_evolution] evolution points. You now have [X.upgrade_stored]/[X.xeno_caste.upgrade_threshold] upgrade points and [X.evolution_stored]/[X.xeno_caste.evolution_threshold] points.</span>")
+			to_chat(X, "<span class='xenowarning'>You are empowered by [src]'s contribution to the Hivemind, gaining [absorbed_evolution] evolution points. You now have [X.evolution_stored]/[X.xeno_caste.evolution_threshold] evolution points.</span>")
+			playsound(src, 'sound/effects/xeno_newlarva.ogg', 15, 0, 1)
+
+		for(var/mob/living/carbon/Xenomorph/X in upgrade_list)
+			X.upgrade_stored = min(X.xeno_caste.upgrade_threshold, X.upgrade_stored + absorbed_upgrade)
+			to_chat(X, "<span class='xenowarning'>You are empowered by [src]'s contribution to the Hivemind, gaining [absorbed_upgrade] upgrade points. You now have [X.upgrade_stored]/[X.xeno_caste.upgrade_threshold] upgrade points.</span>")
 			playsound(src, 'sound/effects/xeno_newlarva.ogg', 15, 0, 1)
 
 		to_chat(src, "<span class='xenowarning'>You salvage [absorbed_plasma] units of [energy] from [target]. You have [plasma_stored]/[xeno_caste.plasma_max] stored now.</span>")
