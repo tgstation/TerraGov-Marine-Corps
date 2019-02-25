@@ -50,6 +50,7 @@
 	flags_atom = CONDUCT
 	force = 35
 	throwforce = 10
+	attack_speed = 9
 	sharp = IS_SHARP_ITEM_BIG
 	edge = 1
 	w_class = 3
