@@ -295,5 +295,5 @@
 	icon_state = "[base_icon_state]_[remaining]"
 
 /obj/structure/razorwire/proc/acid_smoke_damage(var/obj/effect/particle_effect/smoke/S)
-	health -= 15
+	health -= 3
 	update_health()

@@ -280,16 +280,27 @@
 	spread_speed = 7
 	amount = 1 //Amount depends on Boiler upgrade!
 
+/obj/effect/particle_effect/smoke/xeno_burn/process()
+    ..()
+    var/turf/T = get_turf(src)
+    if(!T)
+        qdel(src)
+    apply_smoke_effect(T)
+
 /obj/effect/particle_effect/smoke/xeno_burn/apply_smoke_effect(turf/T)
 	for(var/mob/living/L in T)
+		//to_chat(world, "DEBUG xeno_burn/apply_smoke_effect: Turf: [T] Living: [L] ")
 		affect(L)
 	for(var/obj/structure/barricade/B in T)
+		//to_chat(world, "DEBUG xeno_burn/apply_smoke_effect: Turf: [T] Living: [B] ")
 		B.acid_smoke_damage(src)
 	for(var/obj/structure/razorwire/R in T)
+		//to_chat(world, "DEBUG xeno_burn/apply_smoke_effect: Turf: [T] Living: [R] ")
 		R.acid_smoke_damage(src)
 	for(var/obj/vehicle/multitile/hitbox/cm_armored/H in T)
 		var/obj/vehicle/multitile/root/cm_armored/R = H.root
-		if(!R) continue
+		if(!R)
+			continue
 		R.take_damage_type(30, "acid")
 
 //No effect when merely entering the smoke turf, for balance reasons
@@ -351,7 +362,7 @@
 	if(istype(M.buckled, /obj/structure/bed/nest) && M.status_flags & XENO_HOST)
 		return
 
-	var/reagent_amount = rand(7,9)
+	var/reagent_amount = rand(8,10)
 
 	//Gas masks protect from inhalation and face contact effects, even without internals. Breath masks don't for balance reasons
 	if(!istype(M.wear_mask, /obj/item/clothing/mask/gas))

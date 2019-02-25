@@ -291,8 +291,9 @@
 
 
 /obj/structure/barricade/proc/acid_smoke_damage(var/obj/effect/particle_effect/smoke/S)
-	health -= 15
+	health -= 3
 	update_health()
+
 
 /obj/structure/barricade/verb/rotate()
 	set name = "Rotate Barricade Counter-Clockwise"
@@ -887,7 +888,6 @@
 	else
 		pixel_y = 0
 
-
 /obj/structure/barricade/sandbags/attackby(obj/item/W, mob/user)
 
 	for(var/obj/effect/xenomorph/acid/A in src.loc)
@@ -933,3 +933,15 @@
 	update_health()
 
 	return TRUE
+
+/obj/structure/barricade/sandbags/acid_smoke_damage(var/obj/effect/particle_effect/smoke/S) //less vulnerable to acid due to being made of less reactive materials... and because it's harder to repair, demanding limited resources
+	health -= 2
+	update_health()
+
+/obj/structure/barricade/wooden/acid_smoke_damage(var/obj/effect/particle_effect/smoke/S) //wood isn't as reactive with beno acid. Also for balance reasons because wood sucks total ass.
+	health -= 2
+	update_health()
+
+/obj/structure/barricade/snow/acid_smoke_damage(var/obj/effect/particle_effect/smoke/S) //snow isn't as reactive with acid. Also for balance reasons because snow sucks total ass.
+	health -= 2
+	return
