@@ -242,8 +242,8 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 
 	for(var/item in subtypesof(/datum/map_template/shuttle))
 		var/datum/map_template/shuttle/shuttle_type = item
-		if(!(initial(shuttle_type.suffix)))
-			continue
+		//if(!(initial(shuttle_type.suffix)))
+		//	continue
 
 		var/datum/map_template/shuttle/S = new shuttle_type()
 		if(unbuyable.Find(S.mappath))

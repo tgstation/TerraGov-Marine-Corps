@@ -106,8 +106,13 @@
 	can_be_bought = FALSE
 
 // Shuttles start here:
-/datum/map_template/shuttle/dropship
-	can_be_bought = FALSE
-
 /datum/map_template/shuttle/dropship/one
 	shuttle_id = "alamo"
+	can_be_bought = FALSE
+
+/datum/map_template/shuttle/dropship/two
+	shuttle_id = "normandy"
+	can_be_bought = FALSE
+
+/datum/map_template/shuttle/escape_pod
+	shuttle_id = "escape_pod"

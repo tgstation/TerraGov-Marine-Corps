@@ -1,7 +1,7 @@
 //use this define to highlight docking port bounding boxes (ONLY FOR DEBUG USE)
-#ifdef TESTING
+//#ifdef TESTING
 #define DOCKING_PORT_HIGHLIGHT
-#endif
+//#endif
 
 //NORTH default dir
 /obj/docking_port
@@ -180,7 +180,7 @@
 		if(!roundstart_template)
 			CRASH("json_key:[json_key] value \[[sid]\] resulted in a null shuttle template for [src]")
 	else if(roundstart_template) // passed a PATH
-		var/sid = "[initial(roundstart_template.port_id)]_[initial(roundstart_template.suffix)]"
+		var/sid = "[initial(roundstart_template.shuttle_id)]"
 
 		roundstart_template = SSmapping.shuttle_templates[sid]
 		if(!roundstart_template)

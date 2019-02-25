@@ -1,0 +1,62 @@
+"a" = (/turf/open/space,/area/space)
+"b" = (/turf/closed/shuttle/ert{icon_state = "wy20"},/area/space)
+"c" = (/turf/closed/shuttle/ert{icon_state = "wy27"},/area/space)
+"d" = (/turf/closed/shuttle/ert{icon_state = "wy25"},/area/space)
+"e" = (/turf/closed/shuttle/ert{icon_state = "wy21"},/area/space)
+"f" = (/turf/closed/shuttle/ert{icon_state = "wy22"},/area/space)
+"g" = (/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/space)
+"h" = (/turf/closed/shuttle/ert{icon_state = "wy23"},/area/space)
+"i" = (/turf/closed/shuttle/ert{icon_state = "wy18"},/area/space)
+"j" = (/obj/structure/rack,/obj/effect/landmark/distress_pmcitem,/obj/item/storage/toolbox/mechanical,/obj/item/device/multitool,/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/space)
+"k" = (/turf/open/shuttle/dropship{tag = "icon-rasputin6"; icon_state = "rasputin6"},/area/space)
+"l" = (/turf/open/shuttle/dropship{icon_state = "floor8"; tag = "icon-rasputin7"},/area/space)
+"m" = (/turf/open/shuttle/dropship{tag = "icon-rasputin7"; icon_state = "rasputin7"},/area/space)
+"n" = (/obj/structure/rack,/obj/effect/landmark/distress_pmcitem,/obj/item/storage/firstaid/adv,/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/space)
+"o" = (/turf/closed/shuttle/ert{icon_state = "wy19"},/area/space)
+"p" = (/obj/machinery/door/airlock/almayer/generic,/obj/machinery/door/poddoor/shutters/transit/open{dir = 4},/turf/open/shuttle/dropship{tag = "icon-rasputin3"; icon_state = "rasputin3"},/area/space)
+"q" = (/obj/effect/landmark/distress_pmc,/turf/open/shuttle/dropship{tag = "icon-rasputin3"; icon_state = "rasputin3"},/area/space)
+"r" = (/obj/structure/bed/chair/dropship/passenger,/obj/effect/landmark/distress_pmc,/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/space)
+"s" = (/turf/closed/shuttle/ert{icon_state = "wy16"},/area/space)
+"t" = (/obj/structure/bed/chair/dropship/passenger{dir = 4},/obj/effect/landmark/distress_pmc,/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/space)
+"u" = (/obj/structure/bed/chair/dropship/passenger{dir = 8},/obj/effect/landmark/distress_pmc,/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/space)
+"v" = (/turf/open/shuttle/dropship{icon_state = "rasputin4"; tag = "icon-rasputin7"},/area/space)
+"w" = (/turf/open/shuttle/dropship{icon_state = "rasputin8"; tag = "icon-rasputin7"},/area/space)
+"x" = (/turf/closed/shuttle/ert{icon_state = "wy17"},/area/space)
+"y" = (/turf/closed/shuttle/ert{icon_state = "wy14"},/area/space)
+"z" = (/turf/open/shuttle/dropship{tag = "icon-rasputin3"; icon_state = "rasputin3"},/area/space)
+"A" = (/turf/closed/shuttle/ert{icon_state = "wy15"},/area/space)
+"B" = (/turf/closed/shuttle/ert{icon_state = "wy12"},/area/space)
+"C" = (/turf/closed/shuttle/ert{icon_state = "leftengine_3"; opacity = 0},/area/space)
+"D" = (/turf/closed/shuttle/ert{icon_state = "wy13"},/area/space)
+"E" = (/turf/closed/shuttle/ert{icon_state = "leftengine_2"; opacity = 0},/area/space)
+"F" = (/turf/closed/shuttle/ert{icon_state = "wy4"},/area/space)
+"G" = (/turf/closed/shuttle/ert{icon_state = "leftengine_1"; opacity = 0},/area/space)
+"H" = (/obj/structure/rack,/obj/effect/landmark/distress_pmcitem,/obj/item/storage/firstaid/regular,/obj/item/storage/belt/combatLifesaver,/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/space)
+"I" = (/obj/machinery/door/airlock/almayer/generic{dir = 2},/obj/machinery/door/poddoor/shutters/transit/open,/turf/open/shuttle/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/space)
+"J" = (/turf/closed/shuttle/ert{icon_state = "wy5"},/area/space)
+"K" = (/turf/closed/shuttle/ert{icon_state = "wy_leftengine"},/area/space)
+"L" = (/turf/closed/shuttle/ert{icon_state = "wy8"},/area/space)
+"M" = (/turf/closed/shuttle/ert{icon_state = "wy9"},/area/space)
+"N" = (/turf/closed/shuttle/ert{icon_state = "wy_rightengine"},/area/space)
+"O" = (/turf/closed/shuttle/ert{icon_state = "rightengine_3"; opacity = 0},/area/space)
+"P" = (/turf/closed/shuttle/ert{icon_state = "rightengine_2"; opacity = 0},/area/space)
+"Q" = (/turf/closed/shuttle/ert{icon_state = "wy1"},/area/space)
+"R" = (/turf/closed/shuttle/ert{icon_state = "wy2"},/area/space)
+"S" = (/turf/closed/shuttle/ert{icon_state = "wy3"},/area/space)
+"T" = (/turf/closed/shuttle/ert{icon_state = "rightengine_1"; opacity = 0},/area/space)
+
+(1,1,1) = {"
+aabcdaa
+befghed
+ijklmno
+pgqrqgp
+stqrqux
+ytqrquA
+BtqrquD
+pgqrqgp
+FHvlwHJ
+KLgzgMN
+CFgzgJO
+EFgzgJP
+GQIRIST
+"}

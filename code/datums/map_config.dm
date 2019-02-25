@@ -25,10 +25,7 @@
 
 	var/allow_custom_shuttles = TRUE
 	var/shuttles = list(
-		"cargo" = "cargo_box",
-		"ferry" = "ferry_fancy",
-		"whiteship" = "whiteship_box",
-		"emergency" = "emergency_box")
+		"alamo" = "alamo")
 
 	var/announce_text = ""
 

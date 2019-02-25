@@ -1450,6 +1450,7 @@
 #include "code\modules\shuttle\computer.dm"
 #include "code\modules\shuttle\docking.dm"
 #include "code\modules\shuttle\elevator.dm"
+#include "code\modules\shuttle\escape_pod.dm"
 #include "code\modules\shuttle\marine_dropship.dm"
 #include "code\modules\shuttle\on_move.dm"
 #include "code\modules\shuttle\ripple.dm"
