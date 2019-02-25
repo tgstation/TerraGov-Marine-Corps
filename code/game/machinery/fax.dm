@@ -44,7 +44,7 @@
 /obj/machinery/faxmachine/attack_hand(mob/user as mob)
 	user.set_interaction(src)
 
-	var/dat = "Fax Machine<BR>"
+	var/dat
 
 	var/scan_name
 	if(idscan)
@@ -82,7 +82,9 @@
 		if(message)
 			dat += "<a href ='byond://?src=\ref[src];remove=1'>Remove Paper</a><br>"
 
-	user << browse(dat, "window=fax")
+	var/datum/browser/popup = new(user, "fax", "<div align='center'>Fax Machine</div>")
+	popup.set_content(dat)
+	popup.open(FALSE)
 	onclose(user, "fax")
 
 

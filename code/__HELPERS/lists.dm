@@ -189,13 +189,14 @@ proc/listclearnulls(list/list)
 
 //Specifically for record datums in a list.
 /proc/sortRecord(list/L, field = "name", order = 1)
-	cmp_field = field
-	return sortTim(L, order >= 0 ? /proc/cmp_records_asc : /proc/cmp_records_dsc)
+	return sortTim(L, order >= 0 ? /proc/cmp_records_asc : /proc/cmp_records_dsc, sortkey=field)
 
 //any value in a list
 /proc/sortList(list/L, cmp=/proc/cmp_text_asc)
 	return sortTim(L.Copy(), cmp)
 
+/proc/sortListUsingKey(list/L, cmp=/proc/cmp_list_asc, sortKey)
+	return sortTim(L.Copy(), cmp, sortkey=sortKey)
 
 //uses sortList() but uses the var's name specifically. This should probably be using mergeAtom() instead
 /proc/sortNames(list/L, order=1)
@@ -576,6 +577,28 @@ datum/proc/dd_SortValue()
 		LIST.Insert(__BIN_MID, IN);\
 	}
 
+//Checks for specific types in specifically structured (Assoc "type" = TRUE) lists ('typecaches')
+#define is_type_in_typecache(A, L) (A && length(L) && L[(ispath(A) ? A : A:type)])
+
+//Copies a list, and all lists inside it recusively
+//Does not copy any other reference type
+/proc/deepCopyList(list/l)
+	if(!islist(l))
+		return l
+	. = l.Copy()
+	for(var/i = 1 to l.len)
+		var/key = .[i]
+		if(isnum(key))
+			// numbers cannot ever be associative keys
+			continue
+		var/value = .[key]
+		if(islist(value))
+			value = deepCopyList(value)
+			.[key] = value
+		if(islist(key))
+			key = deepCopyList(key)
+			.[i] = key
+			.[key] = value
 
 //Return a list with no duplicate entries
 /proc/uniqueList(list/L)
@@ -602,23 +625,3 @@ datum/proc/dd_SortValue()
 			L |= key
 		else
 			L[key] = temp[key]
-
-//Copies a list, and all lists inside it recusively
-//Does not copy any other reference type
-/proc/deepCopyList(list/l)
-	if(!islist(l))
-		return l
-	. = l.Copy()
-	for(var/i = 1 to l.len)
-		var/key = .[i]
-		if(isnum(key))
-			// numbers cannot ever be associative keys
-			continue
-		var/value = .[key]
-		if(islist(value))
-			value = deepCopyList(value)
-			.[key] = value
-		if(islist(key))
-			key = deepCopyList(key)
-			.[i] = key
-			.[key] = value

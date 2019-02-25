@@ -201,7 +201,7 @@
 				var/Ship[] = SSticker.mode.count_humans_and_xenos()
 				var/ShipMarines[] = Ship[1]
 				var/ShipXenos[] = Ship[2]
-				var/Planet[] = SSticker.mode.count_humans_and_xenos(list(MAIN_SHIP_Z_LEVEL))
+				var/Planet[] = SSticker.mode.count_humans_and_xenos(SSmapping.levels_by_trait(ZTRAIT_MARINE_MAIN_SHIP))
 				var/PlanetMarines[] = Planet[1]
 				var/PlanetXenos[] = Planet[2]
 				if((PlanetXenos < round(PlanetMarines * 0.8)) && (ShipXenos < round(ShipMarines * 0.5))) //If there's less humans (weighted) than xenos, humans get home-turf advantage
@@ -326,19 +326,11 @@
 		return FALSE
 
 	user.set_interaction(src)
-	var/dat = "<head><title>Communications Console</title></head><body>"
+	var/dat
 	if(EvacuationAuthority.evac_status == EVACUATION_STATUS_INITIATING)
 		dat += "<B>Evacuation in Progress</B>\n<BR>\nETA: [EvacuationAuthority.get_status_panel_eta()]<BR>"
 
-/*
-	if(issilicon(user))
-		var/dat2 = interact_ai(user) // give the AI a different interact proc to limit its access
-		if(dat2)
-			dat +=  dat2
-			user << browse(dat, "window=communications;size=400x500")
-			onclose(user, "communications")
-		return FALSE
-*/
+
 	switch(state)
 		if(STATE_DEFAULT)
 			if(authenticated)
@@ -427,8 +419,12 @@
 			dat += "<A HREF='?src=\ref[src];operation=swipeidseclevel'>Swipe ID</A> to confirm change.<BR>"
 
 	dat += "<BR>\[ [(state != STATE_DEFAULT) ? "<A HREF='?src=\ref[src];operation=main'>Main Menu</A>|" : ""]<A HREF='?src=\ref[user];mach_close=communications'>Close</A> \]"
-	user << browse(dat, "window=communications;size=400x500")
+	
+	var/datum/browser/popup = new(user, "communications", "<div align='center'>Communications Console</div>", 400, 500)
+	popup.set_content(dat)
+	popup.open(FALSE)
 	onclose(user, "communications")
+
 
 /*
 /obj/machinery/computer/communications/proc/interact_ai(var/mob/living/silicon/ai/user as mob)

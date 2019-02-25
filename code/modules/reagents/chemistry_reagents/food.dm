@@ -153,7 +153,7 @@
 	color = "#B31008" // rgb: 179, 16, 8
 	taste_description = "scorching agony"
 	taste_multi = 10
-	targ_temp = BODYTEMP_HEAT_DAMAGE_LIMIT + 5
+	targ_temp = BODYTEMP_HEAT_DAMAGE_LIMIT_ONE + 5
 	discomfort_message = "<span class='danger'>You feel like your insides are burning!</span>"
 	agony_start = 3
 	agony_amount = 4

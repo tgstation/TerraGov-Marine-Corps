@@ -69,8 +69,11 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 	dat += "<a href='?src=\ref[src];item=1'>Recover object</a>.<br>"
 	dat += "<a href='?src=\ref[src];allitems=1'>Recover all objects</a>.<br>"
 
-	user << browse(dat, "window=cryopod_console")
+	var/datum/browser/popup = new(user, "cryopod_console", "<div align='center'>Cryogenics</div>")
+	popup.set_content(dat)
+	popup.open(FALSE)
 	onclose(user, "cryopod_console")
+
 
 /obj/machinery/computer/cryopod/Topic(href, href_list)
 
@@ -194,7 +197,7 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 		if(world.time - time_entered < time_till_despawn)
 			return
 
-		if(!occupant.client && occupant.stat < DEAD) //Occupant is living and has no client.
+		if(occupant.stat != DEAD) //Occupant is living and has no client.
 
 			//Drop all items into the pod.
 			for(var/obj/item/W in occupant)
@@ -212,7 +215,7 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 				switch(H.job)
 					if("Military Police","Chief MP")
 						dept_console = frozen_items["MP"]
-					if("Doctor","Researcher","Chief Medical Officer")
+					if("Doctor","Medical Researcher","Chief Medical Officer")
 						dept_console = frozen_items["Med"]
 					if("Maintenance Tech","Chief Engineer")
 						dept_console = frozen_items["Eng"]
@@ -332,8 +335,9 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 			SSticker.mode.latejoin_tally-- //Cryoing someone out removes someone from the Marines, blocking further larva spawns until accounted for
 
 			//Handle job slot/tater cleanup.
-			if(occupant.mind)
-				SSjob.free_role(SSjob.roles_for_mode[occupant.mind.assigned_role])
+			if(occupant.mind?.assigned_role)
+				var/datum/job/J = SSjob.name_occupations[occupant.mind.assigned_role]
+				J.current_positions--
 
 			//Delete them from datacore.
 			if(PDA_Manifest.len)

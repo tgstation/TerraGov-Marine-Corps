@@ -108,7 +108,7 @@
 
 
 
-/obj/machinery/alarm/New(var/loc, var/direction, var/building = 0)
+/obj/machinery/alarm/Initialize(var/loc, var/direction, var/building = 0)
 	. = ..()
 
 	if(building)
@@ -555,7 +555,7 @@
 			return
 
 	if(wiresexposed && !issilicon(user))
-		var/t1 = text("<html><head><title>[alarm_area.name] Air Alarm Wires</title></head><body><B>Access Panel</B><br>\n")
+		var/t1 = text("<B>Access Panel</B><br>\n")
 		var/list/wirecolors = list(
 			"Orange" = 1,
 			"Dark red" = 2,
@@ -575,21 +575,24 @@
 
 			t1 += "<br>"
 		t1 += text("<br>\n[(locked ? "The Air Alarm is locked." : "The Air Alarm is unlocked.")]<br>\n[((shorted || (stat & (NOPOWER|BROKEN))) ? "The Air Alarm is offline." : "The Air Alarm is working properly!")]<br>\n[(aidisabled ? "The 'AI control allowed' light is off." : "The 'AI control allowed' light is on.")]")
-		t1 += text("<p><a href='?src=\ref[src];close2=1'>Close</a></p></body></html>")
-		user << browse(t1, "window=AAlarmwires")
+		t1 += text("<p><a href='?src=\ref[src];close2=1'>Close</a></p>")
+		var/datum/browser/popup = new(user, "AAlarmwires", "<div align='center'>\The [src]</div>")
+		popup.set_content(t1)
+		popup.open(FALSE)
 		onclose(user, "AAlarmwires")
 
 	if(!shorted)
-		user << browse(return_text(user),"window=air_alarm")
+		var/datum/browser/popup = new(user, "air_alarm", "<div align='center'>[alarm_area.name] Air Alarm Wires</div>")
+		popup.set_content(return_text(user))
+		popup.open(FALSE)
 		onclose(user, "air_alarm")
 
-	return
 
 /obj/machinery/alarm/proc/return_text(mob/user)
 	if(!issilicon(user) && locked)
-		return "<html><head><title>\The [src]</title></head><body>[return_status()]<hr>[rcon_text()]<hr><i>(Swipe ID card to unlock interface)</i></body></html>"
+		return "[return_status()]<hr>[rcon_text()]<hr><i>(Swipe ID card to unlock interface)</i>"
 	else
-		return "<html><head><title>\The [src]</title></head><body>[return_status()]<hr>[rcon_text()]<hr>[return_controls()]</body></html>"
+		return "[return_status()]<hr>[rcon_text()]<hr>[return_controls()]"
 
 /obj/machinery/alarm/proc/return_status()
 	var/turf/location = get_turf(src)

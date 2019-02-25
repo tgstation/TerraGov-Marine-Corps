@@ -13,7 +13,7 @@
 
 /obj/item/weapon/gun/rifle/sniper/M42A
 	name = "\improper M42A scoped rifle"
-	desc = "A heavy sniper rifle manufactured by Armat Systems. It has a scope system and fires armor penetrating rounds out of a 15-round magazine.\n'Peace Through Superior Firepower'"
+	desc = "A heavy sniper rifle manufactured by Armat Systems. It has a scope system and fires armor penetrating rounds out of a 15-round magazine.\nIt has an integrated Target Marker and a Laser Targeting system.\n'Peace Through Superior Firepower'"
 	icon_state = "m42a"
 	item_state = "m42a"
 	origin_tech = "combat=6;materials=5"
@@ -23,10 +23,11 @@
 	wield_delay = 12 //Ends up being 1.6 seconds due to scope
 	zoomdevicename = "scope"
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 20, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
-	var/targetlaser_on = FALSE
-	var/targetlaser_primed = FALSE
+	var/targetmarker_on = FALSE
+	var/targetmarker_primed = FALSE
 	var/mob/living/carbon/laser_target = null
 	var/image/LT = null
+	var/obj/item/device/binoculars/tactical/integrated_laze = null
 	attachable_allowed = list(
                         /obj/item/attachable/bipod,
                         /obj/item/attachable/lasersight,
@@ -39,21 +40,24 @@
 	select_gamemode_skin(type, list(MAP_ICE_COLONY = "s_m42a"))
 	. = ..()
 	LT = image("icon" = 'icons/obj/items/projectiles.dmi',"icon_state" = "sniper_laser", "layer" =-LASER_LAYER)
+	integrated_laze = new(src)
 
 /obj/item/weapon/gun/rifle/sniper/M42A/Fire(atom/target, mob/living/user, params, reflex = 0, dual_wield)
 	if(!able_to_fire(user))
 		return
-	if(targetlaser_primed)
+	if(targetmarker_primed)
 		if(!iscarbon(target))
 			return
-		if(laser_target)
-			laser_target.remove_laser()
+		laser_target?.remove_laser()
 		laser_target = target
-		to_chat(user, "<span class='danger'>You focus your targeting laser on [target]!</span>")
-		targetlaser_primed = FALSE
-		laser_target.apply_laser()
-		STOP_PROCESSING(SSobj, src) //So we don't accumulate additional processing.
-		START_PROCESSING(SSobj, src)
+		if(laser_target.apply_laser())
+			to_chat(user, "<span class='danger'>You focus your target marker on [target]!</span>")
+			targetmarker_primed = FALSE
+			targetmarker_on = TRUE
+			START_PROCESSING(SSobj, src)
+			accuracy_mult += CONFIG_GET(number/combat_define/max_hit_accuracy_mult) //We get a big accuracy bonus vs the lasered target
+		else
+			laser_target = null
 		return
 	return ..()
 
@@ -64,38 +68,44 @@
 /mob/living/carbon/human/apply_laser()
 	overlays_standing[LASER_LAYER] = image("icon" = 'icons/obj/items/projectiles.dmi',"icon_state" = "sniper_laser", "layer" =-LASER_LAYER)
 	apply_overlay(LASER_LAYER)
+	return TRUE
 
 /mob/living/carbon/Xenomorph/apply_laser()
 	overlays_standing[X_LASER_LAYER] = image("icon" = 'icons/obj/items/projectiles.dmi',"icon_state" = "sniper_laser", "layer" =-X_LASER_LAYER)
 	apply_overlay(X_LASER_LAYER)
+	return TRUE
 
 /mob/living/carbon/monkey/apply_laser()
 	overlays_standing[M_LASER_LAYER] = image("icon" = 'icons/obj/items/projectiles.dmi',"icon_state" = "sniper_laser", "layer" =-M_LASER_LAYER)
 	apply_overlay(M_LASER_LAYER)
-
+	return TRUE
 
 /mob/living/carbon/proc/remove_laser()
 	return FALSE
 
 /mob/living/carbon/human/remove_laser()
 	remove_overlay(LASER_LAYER)
+	return TRUE
 
 /mob/living/carbon/Xenomorph/remove_laser()
 	remove_overlay(X_LASER_LAYER)
+	return TRUE
 
 /mob/living/carbon/monkey/remove_laser()
 	remove_overlay(M_LASER_LAYER)
+	return TRUE
 
 
 /obj/item/weapon/gun/rifle/sniper/M42A/unique_action(mob/user)
-	if(!targetlaser_on)
+	if(!targetmarker_primed && !targetmarker_on)
 		laser_on(user)
-
-	else if(zoom)
+	else
 		laser_off(user)
+
 
 /obj/item/weapon/gun/rifle/sniper/M42A/Destroy()
 	laser_off()
+	QDEL_NULL(integrated_laze)
 	. = ..()
 
 /obj/item/weapon/gun/rifle/sniper/M42A/dropped()
@@ -107,19 +117,21 @@
 		laser_off()
 		return
 	var/mob/living/user = loc
-	if(!isliving(user) )
+	if(!istype(user))
 		laser_off()
 		return
 	if(!laser_target)
-		laser_off(user, FALSE)
+		laser_off(user)
+		playsound(user,'sound/machines/click.ogg', 25, 1)
 		return
 	if(!can_see(user, laser_target, length=23))
-		laser_off(user, FALSE)
+		laser_off()
 		to_chat(user, "<span class='danger'>You lose sight of your target!</span>")
+		playsound(user,'sound/machines/click.ogg', 25, 1)
 
 /obj/item/weapon/gun/rifle/sniper/M42A/zoom(mob/living/user, tileoffset = 11, viewsize = 12) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
 	. = ..()
-	if(!zoom && targetlaser_on)
+	if(!zoom && (targetmarker_on || targetmarker_primed) )
 		laser_off(user)
 
 /atom/proc/sniper_target(atom/A)
@@ -133,32 +145,26 @@
 	else
 		return TRUE
 
-/obj/item/weapon/gun/rifle/sniper/M42A/proc/laser_on(mob/user, silent = FALSE)
+/obj/item/weapon/gun/rifle/sniper/M42A/proc/laser_on(mob/user)
 	if(!zoom) //Can only use and prime the laser targeter when zoomed.
-		if(!silent)
-			to_chat(user, "<span class='warning'>You must be zoomed in to use your targeting laser!</span>")
+		to_chat(user, "<span class='warning'>You must be zoomed in to use your target marker!</span>")
 		return
-	targetlaser_primed = TRUE //We prime the target laser
-	if(!silent && user)
-		to_chat(user, "<span class='notice'><b>You activate your targeting laser and take careful aim.</b></span>")
+	targetmarker_primed = TRUE //We prime the target laser
+	if(user)
+		to_chat(user, "<span class='notice'><b>You activate your target marker and take careful aim.</b></span>")
 		playsound(user,'sound/machines/click.ogg', 25, 1)
-	if(targetlaser_on) //if the laser is already on, we don't double dip.
-		return
-	targetlaser_on = TRUE
-	accuracy_mult += CONFIG_GET(number/combat_define/max_hit_accuracy_mult) //We get a big accuracy bonus vs the lasered target
 
-
-/obj/item/weapon/gun/rifle/sniper/M42A/proc/laser_off(mob/user, toggle_off = TRUE, silent = FALSE)
-	if(laser_target)
-		laser_target.remove_laser()
-	laser_target = null
-	STOP_PROCESSING(SSobj, src)
-	if(toggle_off && targetlaser_on) //sanity check
-		targetlaser_on = FALSE
+/obj/item/weapon/gun/rifle/sniper/M42A/proc/laser_off(mob/user)
+	if(targetmarker_on)
+		laser_target?.remove_laser()
+		laser_target = null
 		accuracy_mult -= CONFIG_GET(number/combat_define/max_hit_accuracy_mult) //We lose a big accuracy bonus vs the now unlasered target
-		if(!silent && user)
-			to_chat(user, "<span class='notice'><b>You deactivate your targeting laser.</b></span>")
-			playsound(user,'sound/machines/click.ogg', 25, 1)
+		STOP_PROCESSING(SSobj, src)
+		targetmarker_on = FALSE
+	targetmarker_primed = FALSE
+	if(user)
+		to_chat(user, "<span class='notice'><b>You deactivate your target marker.</b></span>")
+		playsound(user,'sound/machines/click.ogg', 25, 1)
 
 /obj/item/weapon/gun/rifle/sniper/M42A/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/high_fire_delay) * 5
@@ -318,13 +324,14 @@
 	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
 	damage_falloff_mult = CONFIG_GET(number/combat_define/med_damage_falloff_mult)
 
-/obj/item/weapon/gun/smartgun/examine(mob/user)
-	. = ..()
+/obj/item/weapon/gun/smartgun/examine_ammo_count(mob/user)
 	to_chat(user, "[current_mag.current_rounds ? "Ammo counter shows [current_mag.current_rounds] round\s remaining." : "It's dry."]")
 	to_chat(user, "The restriction system is [restriction_toggled ? "<B>on</b>" : "<B>off</b>"].")
 
 /obj/item/weapon/gun/smartgun/unique_action(mob/user)
-	toggle_restriction(user)
+	var/obj/item/smartgun_powerpack/power_pack = user.back
+	if(istype(power_pack))
+		power_pack.attack_self(user)
 
 /obj/item/weapon/gun/smartgun/able_to_fire(mob/living/user)
 	. = ..()
@@ -341,12 +348,13 @@
 	return ready_in_chamber()
 
 /obj/item/weapon/gun/smartgun/reload_into_chamber(mob/user)
-	var/mob/living/carbon/human/smart_gunner = user
-	var/obj/item/smartgun_powerpack/power_pack = smart_gunner.back
-	if(istype(power_pack)) //I don't know how it would break, but it is possible.
-		if(shells_fired_now >= shells_fired_max && power_pack.rounds_remaining > 0) // If shells fired exceeds shells needed to reload, and we have ammo.
-			auto_reload(smart_gunner, power_pack)
-		else shells_fired_now++
+	var/obj/item/smartgun_powerpack/power_pack = user.back
+	if(!istype(power_pack))
+		return current_mag.current_rounds
+	if(shells_fired_now >= shells_fired_max && power_pack.rounds_remaining > 0) // If shells fired exceeds shells needed to reload, and we have ammo.
+		addtimer(CALLBACK(src, .proc/auto_reload, user, power_pack), 0.5 SECONDS)
+	else
+		shells_fired_now++
 
 	return current_mag.current_rounds
 
@@ -355,8 +363,12 @@
 	if(refund) current_mag.current_rounds++
 	return 1
 
-/obj/item/weapon/gun/smartgun/proc/toggle_restriction(mob/user)
-	to_chat(user, "[icon2html(src, user)] You [restriction_toggled? "<B>disable</b>" : "<B>enable</b>"] the [src]'s fire restriction. You will [restriction_toggled ? "harm anyone in your way" : "target through IFF"].")
+/obj/item/weapon/gun/smartgun/toggle_gun_safety()
+	var/obj/item/weapon/gun/smartgun/G = get_active_firearm(usr)
+	if(!istype(G))
+		return //Right kind of gun is not in hands, abort.
+	src = G
+	to_chat(usr, "[icon2html(src, usr)] You [restriction_toggled? "<B>disable</b>" : "<B>enable</b>"] the [src]'s fire restriction. You will [restriction_toggled ? "harm anyone in your way" : "target through IFF"].")
 	playsound(loc,'sound/machines/click.ogg', 25, 1)
 	var/A = ammo
 	ammo = ammo_secondary
@@ -364,9 +376,7 @@
 	restriction_toggled = !restriction_toggled
 
 /obj/item/weapon/gun/smartgun/proc/auto_reload(mob/smart_gunner, obj/item/smartgun_powerpack/power_pack)
-	set waitfor = 0
-	sleep(5)
-	if(power_pack && power_pack.loc)
+	if(power_pack?.loc == smart_gunner)
 		power_pack.attack_self(smart_gunner, TRUE)
 
 /obj/item/weapon/gun/smartgun/get_ammo_type()
@@ -442,12 +452,10 @@
 	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
 
 
-/obj/item/weapon/gun/launcher/m92/examine(mob/user)
-	. = ..()
-	if(grenades.len)
-		if(get_dist(user, src) > 2 && user != loc)
-			return
-		to_chat(user, "<span class='notice'> It is loaded with <b>[grenades.len] / [max_grenades]</b> grenades.</span>")
+/obj/item/weapon/gun/launcher/m92/examine_ammo_count(mob/user)
+	if(!length(grenades) || (get_dist(user, src) > 2 && user != loc))
+		return
+	to_chat(user, "<span class='notice'> It is loaded with <b>[grenades.len] / [max_grenades]</b> grenades.</span>")
 
 
 /obj/item/weapon/gun/launcher/m92/attackby(obj/item/I, mob/user)
@@ -572,12 +580,10 @@
 	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
 
 
-/obj/item/weapon/gun/launcher/m81/examine(mob/user)
-	. = ..()
-	if(grenade)
-		if(get_dist(user, src) > 2 && user != loc)
-			return
-		to_chat(user, "<span class='notice'> It is loaded with a grenade.</span>")
+/obj/item/weapon/gun/launcher/m81/examine_ammo_count(mob/user)
+	if(!grenade || (get_dist(user, src) > 2 && user != loc))
+		return
+	to_chat(user, "<span class='notice'> It is loaded with a grenade.</span>")
 
 
 /obj/item/weapon/gun/launcher/m81/attackby(obj/item/I, mob/user)
@@ -736,8 +742,7 @@
 	recoil = CONFIG_GET(number/combat_define/med_recoil_value)
 
 
-/obj/item/weapon/gun/launcher/rocket/examine(mob/user)
-	. = ..()
+/obj/item/weapon/gun/launcher/rocket/examine_ammo_count(mob/user)
 	if(current_mag.current_rounds)
 		to_chat(user, "It's ready to rocket.")
 	else
@@ -895,9 +900,7 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_BURST_ON|GUN_WIELDED_FIRING_ONLY|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	attachable_allowed = list(
 						/obj/item/attachable/flashlight,
-						/obj/item/attachable/magnetic_harness,
-						/obj/item/attachable/gyro,
-						/obj/item/attachable/bipod)
+						/obj/item/attachable/magnetic_harness)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 12)
 
 /obj/item/weapon/gun/minigun/Fire(atom/target, mob/living/user, params, reflex = 0, dual_wield)

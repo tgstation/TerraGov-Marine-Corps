@@ -235,8 +235,8 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 				if(H.mind.cm_skills && H.mind.cm_skills.leadership >= SKILL_LEAD_TRAINED)
 					command = 3
 
-				if(H.mind.role_comm_title)
-					comm_title = H.mind.role_comm_title //Set up [CO] and stuff after frequency
+				if(H.mind.comm_title)
+					comm_title = H.mind.comm_title
 		else if(istype(M,/mob/living/silicon/decoy/ship_ai)) command = 3
 
 	for (var/mob/R in receive)
@@ -263,7 +263,8 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 		if(display_freq == PUB_FREQ && M.loc && R.loc) //We actually have z levels to check.
 			var/atom/Am = get_turf(M) //Getting turfs, just to be safe.
 			var/atom/Ar = get_turf(R)
-			if(Am && Ar && Am.z != Ar.z && (Am.z == 1 || Ar.z == 1) ) continue //If listener and receiver are on different zs, and one of those zs is 1.
+			if(Am && Ar && Am.z != Ar.z && (is_ground_level(Am.z) || is_ground_level(Ar.z)) ) 
+				continue //If listener and receiver are on different zs, and one of those zs is 1.
 
 		// --- Can understand the speech ---
 

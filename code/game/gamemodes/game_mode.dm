@@ -34,7 +34,7 @@
 /datum/game_mode/proc/can_start()
 	var/players = ready_players()
 
-	if(master_mode == "secret" && players >= required_players_secret)
+	if(GLOB.master_mode == "secret" && players >= required_players_secret)
 		return TRUE
 	else if(players >= required_players)
 		return TRUE
@@ -56,7 +56,7 @@
 	while(GLOB.landmarks_round_start.len)
 		L = GLOB.landmarks_round_start[GLOB.landmarks_round_start.len]
 		GLOB.landmarks_round_start.len--
-		L.on_round_start(flags_round_type, flags_landmarks)
+		L.after_round_start()
 	return FALSE
 
 
@@ -168,7 +168,6 @@
 		if(BE_ALIEN)		roletext = "Alien"
 		if(BE_QUEEN)		roletext = "Queen"
 		if(BE_SURVIVOR)		roletext = "Survivor"
-		if(BE_PREDATOR)		roletext = "Predator"
 		if(BE_SQUAD_STRICT)	roletext = "Prefer squad over role"
 
 	//Assemble a list of active players without jobbans.
@@ -186,16 +185,6 @@
 			log_game("[player.key] had [roletext] enabled, so we are drafting them.")
 			candidates += player.mind
 			players -= player
-
-	//If we don't have enough antags, draft people who voted for the round.
-	if(candidates.len < recommended_enemies)
-		for(var/key in round_voters)
-			for(var/mob/new_player/player in players)
-				if(player.ckey == key)
-					log_game("[player.key] voted for this round, so we are drafting them.")
-					candidates += player.mind
-					players -= player
-					break
 
 	//Remove candidates who want to be antagonist but have a job that precludes it
 	if(restricted_jobs)
@@ -254,29 +243,10 @@
 	return num
 
 
-/datum/game_mode/proc/get_living_heads()
-	var/list/heads = list()
-	for(var/mob/living/carbon/human/player in GLOB.human_mob_list)
-		if(player.stat != DEAD && player.mind && (player.mind.assigned_role in ROLES_COMMAND))
-			heads += player.mind
-	return heads
-
-
-/datum/game_mode/proc/get_all_heads()
-	var/list/heads = list()
-	for(var/mob/player in GLOB.mob_list)
-		if(player.mind && (player.mind.assigned_role in ROLES_COMMAND ))
-			heads += player.mind
-	return heads
-
-
-/datum/game_mode/proc/check_antagonists_topic(href, href_list[])
-	return FALSE
-
-
 /datum/game_mode/New()
-	if(!GLOB.map_tag)
-		to_chat(world, "MT001: No mapping tag set, tell a coder. [GLOB.map_tag]")
+	if(!SSmapping.config.map_name)
+		to_chat(world, "MT001: No mapping tag set, tell a coder. [SSmapping.config.map_name]")
+	initialize_emergency_calls()
 
 
 /datum/game_mode/proc/display_roundstart_logout_report()
@@ -310,7 +280,7 @@
 
 			continue //Happy connected client
 		for(var/mob/dead/observer/D in GLOB.dead_mob_list)
-			if(D.mind && (D.mind.original == L || D.mind.current == L))
+			if(D.mind && D.mind.current == L)
 				if(L.stat == DEAD)
 					if(L.suiciding)	//Suicider
 						msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), the [L.job] (<font color='red'><b>Suicide</b></font>)\n"
@@ -327,9 +297,9 @@
 
 
 
-	for(var/mob/M in GLOB.mob_list)
-		if(M.client && M.client.holder)
-			to_chat(M, msg)
+	for(var/client/C in GLOB.clients)
+		if(check_other_rights(C, R_ADMIN, FALSE))
+			to_chat(C, msg)
 
 
 
@@ -339,9 +309,7 @@
 
 	var/role
 
-	if(player.special_role)
-		role = player.special_role
-	else if(player.assigned_role)
+	if(player.assigned_role)
 		role = player.assigned_role
 	else
 		role = "Unassigned"

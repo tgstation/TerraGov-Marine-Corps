@@ -80,7 +80,7 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.5 SECONDS
-	spit_types = list(/datum/ammo/xeno/toxin/medium/upgrade2, /datum/ammo/xeno/acid/medium)
+	spit_types = list(/datum/ammo/xeno/toxin/medium/upgrade1, /datum/ammo/xeno/acid/medium)
 
 	// *** Pheromones *** //
 	aura_strength = 3
@@ -118,7 +118,7 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.5 SECONDS
-	spit_types = list(/datum/ammo/xeno/toxin/medium/upgrade3, /datum/ammo/xeno/acid/medium)
+	spit_types = list(/datum/ammo/xeno/toxin/medium/upgrade2, /datum/ammo/xeno/acid/medium)
 
 	// *** Pheromones *** //
 	aura_strength = 4
@@ -156,7 +156,7 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.5 SECONDS
-	spit_types = list(/datum/ammo/xeno/toxin/medium/upgrade2, /datum/ammo/xeno/acid/medium)
+	spit_types = list(/datum/ammo/xeno/toxin/medium/upgrade3, /datum/ammo/xeno/acid/medium)
 
 	// *** Pheromones *** //
 	aura_strength = 5
@@ -245,7 +245,7 @@
 
 /mob/living/carbon/Xenomorph/Queen/Initialize()
 	. = ..()
-	if(z != ADMIN_Z_LEVEL)//so admins can safely spawn Queens in Thunderdome for tests.
+	if(!is_centcom_level(z))//so admins can safely spawn Queens in Thunderdome for tests.
 		if(hivenumber && hivenumber <= hive_datum.len)
 			var/datum/hive_status/hive = hive_datum[hivenumber]
 			if(!hive.living_xeno_queen)
@@ -284,7 +284,7 @@
 						var/obj/item/xeno_egg/newegg = new /obj/item/xeno_egg(loc)
 						newegg.hivenumber = hivenumber
 
-			if(hivenumber == XENO_HIVE_NORMAL && loc.z == 1)
+			if(hivenumber == XENO_HIVE_NORMAL && is_ground_level(loc.z))
 				if(SSticker.mode.stored_larva)
 					if((last_larva_time + 600) < world.time) // every minute
 						last_larva_time = world.time
@@ -342,17 +342,6 @@
 
 	lastturf = null //Reset this so we can properly continue with momentum.
 	return TRUE
-
-//Chance of insta limb amputation after a melee attack.
-/mob/living/carbon/Xenomorph/Queen/proc/delimb(var/mob/living/carbon/human/H, var/datum/limb/O)
-	if (prob(20))
-		O = H.get_limb(check_zone(zone_selected))
-		if (O.body_part != CHEST && O.body_part != GROIN && O.body_part != HEAD) //Only limbs.
-			visible_message("<span class='danger'>The limb is sliced clean off!</span>","<span class='danger'>You slice off a limb!</span>")
-			O.droplimb()
-			return 1
-
-	return 0
 
 /mob/living/carbon/Xenomorph/Queen/proc/set_orders()
 	set category = "Alien"
@@ -740,7 +729,7 @@
 		var/mob/living/carbon/Xenomorph/target = locate(href_list["queentrack"]) in GLOB.alive_xeno_list
 		if(!istype(target))
 			return
-		if(target.stat == DEAD || target.z == ADMIN_Z_LEVEL)
+		if(target.stat == DEAD || is_centcom_level(target.z))
 			return
 		if(target == observed_xeno)
 			set_queen_overwatch(target, TRUE)
@@ -752,7 +741,7 @@
 			return
 		var/xeno_num = text2num(href_list["watch_xeno_number"])
 		for(var/mob/living/carbon/Xenomorph/X in GLOB.alive_xeno_list)
-			if(X.z != ADMIN_Z_LEVEL && X.nicknumber == xeno_num)
+			if(!is_centcom_level(X.z) && X.nicknumber == xeno_num)
 				if(observed_xeno == X)
 					set_queen_overwatch(X, TRUE)
 				else

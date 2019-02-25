@@ -213,17 +213,6 @@
 		if(istype(target))
 			if( isyautja(target) || isxeno(target) )
 				return //Not on aliens.
-			if(target.mind && target.mind.special_role)
-				switch(target.mind.special_role) //Switches are still better than evaluating this twice.
-					if("IRON BEARS") //These antags can shrug off tasers so they are not shut down.
-						target.apply_effects(1,1) //Barely affected.
-						return
-					if("UPP") //These antags can shrug off tasers so they are not shut down.
-						target.apply_effects(1,1) //Barely affected.
-						return
-					if("DEATH SQUAD")
-						target.apply_effects(0,1) //Almost unaffacted.
-						return
 			target.apply_effects(12,20)
 
 	proc/drop_flame(turf/T) // ~Art updated fire 20JAN17
@@ -605,10 +594,7 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.species && H.species.count_human) //no effect on synths or preds.
-			if(H.mind && H.mind.special_role)
-				H.apply_effects(0,1) //ineffective against antags.
-			else
-				H.apply_effects(6,8)
+			H.apply_effects(6,8)
 		shake_camera(H, 2, 1)
 
 /datum/ammo/bullet/shotgun/incendiary
@@ -646,7 +632,7 @@
 	accuracy_var_low = CONFIG_GET(number/combat_define/med_proj_variance)
 	accuracy_var_high = CONFIG_GET(number/combat_define/med_proj_variance)
 	max_range = CONFIG_GET(number/combat_define/short_shell_range)
-	damage = CONFIG_GET(number/combat_define/med_hit_damage)
+	damage = CONFIG_GET(number/combat_define/lmmed_hit_damage)
 	damage_var_low = -CONFIG_GET(number/combat_define/low_proj_variance)
 	damage_var_high = CONFIG_GET(number/combat_define/low_proj_variance)
 	damage_falloff *= 0.5
@@ -662,7 +648,7 @@
 	accuracy_var_low = CONFIG_GET(number/combat_define/med_proj_variance)
 	accuracy_var_high = CONFIG_GET(number/combat_define/med_proj_variance)
 	max_range = CONFIG_GET(number/combat_define/short_shell_range)
-	damage = CONFIG_GET(number/combat_define/lmed_hit_damage)
+	damage = CONFIG_GET(number/combat_define/hlow_hit_damage)
 	damage_var_low = -CONFIG_GET(number/combat_define/low_proj_variance)
 	damage_var_high = CONFIG_GET(number/combat_define/low_proj_variance)
 	damage_falloff *= 0.5
@@ -849,7 +835,7 @@
 
 /datum/ammo/bullet/turret/New()
 	..()
-	accurate_range = CONFIG_GET(number/combat_define/short_shell_range)
+	accurate_range = CONFIG_GET(number/combat_define/near_shell_range)
 	accuracy_var_low = CONFIG_GET(number/combat_define/low_proj_variance)
 	accuracy_var_high = CONFIG_GET(number/combat_define/low_proj_variance)
 	damage = CONFIG_GET(number/combat_define/lmed_hit_damage)
@@ -870,12 +856,12 @@
 	accurate_range = CONFIG_GET(number/combat_define/min_shell_range)
 
 /datum/ammo/bullet/turret/mini
-	name = "UA-580 10x20mm armor piercing bullet"
+	name = "UA-580 10x20mm bullet"
 
 /datum/ammo/bullet/turret/mini/New()
 	. = ..()
-	damage = CONFIG_GET(number/combat_define/mlow_hit_damage) //25
-	penetration= CONFIG_GET(number/combat_define/hmed_armor_penetration) //40
+	damage = CONFIG_GET(number/combat_define/hlow_hit_damage) //35
+	penetration= CONFIG_GET(number/combat_define/low_armor_penetration) //20
 
 
 /datum/ammo/bullet/machinegun //Adding this for the MG Nests (~Art)
@@ -1245,7 +1231,7 @@
 
 /datum/ammo/energy/lasgun/M43/overcharge/New()
 	. = ..()
-	damage = CONFIG_GET(number/combat_define/hmed_hit_damage)
+	damage = CONFIG_GET(number/combat_define/med_hit_damage)
 	max_range = CONFIG_GET(number/combat_define/max_shell_range)
 	penetration = CONFIG_GET(number/combat_define/mhigh_armor_penetration)
 
@@ -1292,15 +1278,26 @@
 	damage_var_low = CONFIG_GET(number/combat_define/low_proj_variance)
 	damage_var_high = CONFIG_GET(number/combat_define/mlow_proj_variance)
 
-/datum/ammo/xeno/toxin/on_hit_mob(mob/living/carbon/M, obj/item/projectile/P)
-	if(!istype(M))
-		return ..()
-	var/mob/living/carbon/C = M
-	if(C.status_flags & XENO_HOST && istype(C.buckled, /obj/structure/bed/nest) || C.stat == DEAD)
+
+/datum/ammo/xeno/toxin/on_hit_mob(mob/living/carbon/C, obj/item/projectile/P)
+
+	if(!istype(C) || C.stat == DEAD || (xeno_hivenumber(C) && xeno_hivenumber(C) == xeno_hivenumber(P.firer)) )
 		return
+
+	if(C.status_flags & XENO_HOST && istype(C.buckled, /obj/structure/bed/nest))
+		return
+
 	staggerstun(C, P, CONFIG_GET(number/combat_define/close_shell_range), 0, 0, 1, 1, 0) //Staggers and slows down briefly
 
+	for(var/r_id in ammo_reagents)
+		var/on_mob_amount = C.reagents.get_reagent_amount(r_id)
+		var/amt_to_inject = ammo_reagents[r_id] //Never inject more than 30u through spitting
+		if(amt_to_inject + on_mob_amount > 30)
+			amt_to_inject = 30 - on_mob_amount
+		C.reagents.add_reagent(r_id, amt_to_inject)
+
 	return ..()
+
 
 /datum/ammo/xeno/toxin/upgrade1
 	name = "neurotoxic spit"
@@ -1408,13 +1405,6 @@
 
 /datum/ammo/xeno/acid/on_shield_block(mob/M, obj/item/projectile/P)
 	burst(M,P,damage_type)
-
-/datum/ammo/xeno/acid/on_hit_mob(mob/M, obj/item/projectile/P)
-	if(iscarbon(M))
-		var/mob/living/carbon/C = M
-		if(C.status_flags & XENO_HOST && istype(C.buckled, /obj/structure/bed/nest) || C.stat == DEAD)
-			return
-	..()
 
 /datum/ammo/xeno/acid/medium
 	name = "acid spatter"
@@ -1527,13 +1517,13 @@
 	damage_var_high = CONFIG_GET(number/combat_define/max_proj_variance)
 	damage_type = BURN
 
-/datum/ammo/xeno/boiler_gas/on_shield_block(mob/M, obj/item/projectile/P)
+/datum/ammo/xeno/boiler_gas/corrosive/on_shield_block(mob/M, obj/item/projectile/P)
 	burst(M,P,damage_type)
 
-/datum/ammo/xeno/boiler_gas/set_xeno_smoke(obj/item/projectile/P)
+/datum/ammo/xeno/boiler_gas/corrosive/set_xeno_smoke(obj/item/projectile/P)
 	smoke_system = new /datum/effect_system/smoke_spread/xeno_acid()
 
-/datum/ammo/xeno/boiler_gas/drop_nade(turf/T)
+/datum/ammo/xeno/boiler_gas/corrosive/drop_nade(turf/T)
 	smoke_system.set_up(3, 0, T)
 	smoke_system.start()
 	T.visible_message("<span class='danger'>A glob of acid lands with a splat and explodes into corrosive bile!</span>")

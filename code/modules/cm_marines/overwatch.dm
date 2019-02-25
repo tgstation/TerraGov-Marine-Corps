@@ -4,6 +4,10 @@
 
 #define MAX_SUPPLY_DROPS 4
 
+#define HIDE_NONE 0
+#define HIDE_ON_GROUND 1
+#define HIDE_ON_SHIP 2
+
 /obj/machinery/computer/overwatch
 	name = "Overwatch Console"
 	desc = "State of the art machinery for giving orders to a squad."
@@ -68,14 +72,15 @@
 	if(!allowed(user))
 		to_chat(user, "<span class='warning'>You don't have access.</span>")
 		return
-	if(!squads.len)
-		for(var/datum/squad/S in SSjob.squads)
+	if(!length(squads))
+		for(var/i in SSjob.squads)
+			var/datum/squad/S = SSjob.squads[i]
 			squads += S
 	if(!current_squad && !(current_squad = get_squad_by_id(squad_console)))
 		to_chat(user, "<span class='warning'>Error: Unable to link to a proper squad.</span>")
 		return
 	user.set_interaction(src)
-	var/dat = "<head><title>[current_squad.name] Overwatch Console</title></head><body>"
+	var/dat
 	if(!operator)
 		dat += "<BR><B>Operator:</b> <A href='?src=\ref[src];operation=change_operator'>----------</A><BR>"
 	else
@@ -112,7 +117,7 @@
 					dat += "<A href='?src=\ref[src];operation=squad_transfer'>Transfer a marine to another squad</a><BR><BR>"
 					dat += "<a href='?src=\ref[src];operation=supplies'>Supply Drop Control</a><br>"
 					dat += "<a href='?src=\ref[src];operation=monitor'>Squad Monitor</a><br>"
-					dat += "----------------------<br></body>"
+					dat += "----------------------<br>"
 					dat += "<b>Rail Gun Control</b><br>"
 					dat += "<b>Current Rail Gun Status:</b> "
 					var/cooldown_left = (almayer_rail_gun.last_firing + 600) - world.time // 60 seconds between shots
@@ -147,8 +152,8 @@
 					else
 						dat += "<font color='green'>[selected_target.name]</font><br>"
 					dat += "<A href='?src=\ref[src];operation=shootrailgun'>\[FIRE!\]</a><br>"
-					dat += "----------------------<br></body>"
-					dat += "<br><br><a href='?src=\ref[src];operation=refresh'>{Refresh}</a></body>"
+					dat += "----------------------<br>"
+					dat += "<br><br><a href='?src=\ref[src];operation=refresh'>{Refresh}</a>"
 			if(OW_MONITOR)//Info screen.
 				dat += get_squad_info()
 			if(OW_SUPPLIES)
@@ -185,10 +190,13 @@
 					dat += "<A href='?src=\ref[src];operation=dropsupply'>\[LAUNCH!\]</a>"
 				dat += "<BR><BR>----------------------<br>"
 				dat += "<A href='?src=\ref[src];operation=refresh'>{Refresh}</a><br>"
-				dat += "<A href='?src=\ref[src];operation=back'>{Back}</a></body>"
-	user << browse(dat, "window=squad_overwatch;size=550x550")
+				dat += "<A href='?src=\ref[src];operation=back'>{Back}</a>"
+
+	var/datum/browser/popup = new(user, "squad_overwatch", "<div align='center'>[current_squad.name] Overwatch Console</div>", 550, 550)
+	popup.set_content(dat)
+	popup.open(FALSE)
 	onclose(user, "squad_overwatch")
-	return
+
 
 /obj/machinery/computer/overwatch/Topic(href, href_list)
 	. = ..()
@@ -266,7 +274,8 @@
 					to_chat(usr, "<span class='warning'>[icon2html(src, usr)] You are already selecting a squad.</span>")
 				else
 					var/list/squad_choices = list()
-					for(var/datum/squad/S in SSjob.squads)
+					for(var/i in SSjob.squads)
+						var/datum/squad/S = SSjob.squads[i]
 						if(!S.overwatch_officer)
 							squad_choices += S.name
 
@@ -276,7 +285,7 @@
 					if(current_squad)
 						to_chat(usr, "<span class='warning'>[icon2html(src, usr)] You are already selecting a squad.</span>")
 						return
-					var/datum/squad/selected = SSjob.squads[SSjob.squads_names.Find(squad_name)]
+					var/datum/squad/selected = SSjob.squads[squad_name]
 					if(selected)
 						selected.overwatch_officer = usr //Link everything together, squad, console, and officer
 						current_squad = selected
@@ -339,15 +348,15 @@
 			else
 				to_chat(usr, "[icon2html(src, usr)] <span class='notice'>Dead marines are now shown again.</span>")
 		if("choose_z")
-			switch(z_hidden)
-				if(0)
-					z_hidden = MAIN_SHIP_Z_LEVEL
+			switch(z_hidden) 
+				if(HIDE_NONE)
+					z_hidden = HIDE_ON_SHIP
 					to_chat(usr, "[icon2html(src, usr)] <span class='notice'>Marines on the [MAIN_SHIP_NAME] are now hidden.</span>")
-				if(MAIN_SHIP_Z_LEVEL)
-					z_hidden = 1
+				if(HIDE_ON_SHIP)
+					z_hidden = HIDE_ON_GROUND
 					to_chat(usr, "[icon2html(src, usr)] <span class='notice'>Marines on the ground are now hidden.</span>")
-				else
-					z_hidden = 0
+				if(HIDE_ON_GROUND)
+					z_hidden = HIDE_NONE
 					to_chat(usr, "[icon2html(src, usr)] <span class='notice'>No location is ignored anymore.</span>")
 
 		if("change_lead")
@@ -402,11 +411,12 @@
 	if(!allowed(user))
 		to_chat(user, "<span class='warning'>You don't have access.</span>")
 		return
-	if(!squads.len)
-		for(var/datum/squad/S in SSjob.squads)
+	if(!length(squads))
+		for(var/i in SSjob.squads)
+			var/datum/squad/S = SSjob.squads[i]
 			squads += S
 	user.set_interaction(src)
-	var/dat = "<head><title>Main Overwatch Console</title></head><body>"
+	var/dat
 	if(!operator)
 		dat += "<B>Main Operator:</b> <A href='?src=\ref[src];operation=change_main_operator'>----------</A><BR>"
 	else
@@ -462,13 +472,16 @@
 				else
 					dat += "<font color='green'>[selected_target.name]</font><br>"
 				dat += "<A href='?src=\ref[src];operation=dropbomb'>\[FIRE!\]</a><br>"
-				dat += "----------------------<BR></Body>"
-				dat += "<A href='?src=\ref[src];operation=refresh'>{Refresh}</a></Body>"
+				dat += "----------------------<BR>"
+				dat += "<A href='?src=\ref[src];operation=refresh'>{Refresh}</a>"
 			if(OW_MONITOR)//Info screen.
 				dat += get_squad_info()
-	user << browse(dat, "window=main_overwatch;size=550x550")
+
+	var/datum/browser/popup = new(user, "main_overwatch", "<div align='center'>Main Overwatch Console</div>", 550, 550)
+	popup.set_content(dat)
+	popup.open(FALSE)
 	onclose(user, "main_overwatch")
-	return
+
 
 /obj/machinery/computer/overwatch/check_eye(mob/user)
 	if(user.is_mob_incapacitated(TRUE) || get_dist(user, src) > 1 || is_blind(user)) //user can't see - not sure why canmove is here.
@@ -578,7 +591,7 @@
 
 /obj/machinery/computer/overwatch/proc/do_shake_camera()
 	for(var/mob/living/carbon/H in GLOB.alive_mob_list)
-		if(H.z == MAIN_SHIP_Z_LEVEL && !H.stat) //TGS Theseus decks.
+		if(is_mainship_level(H.z) && !H.stat) //TGS Theseus decks.
 			to_chat(H, "<span class='warning'>The deck of the [MAIN_SHIP_NAME] shudders as the orbital cannons open fire on the colony.</span>")
 			if(H.client)
 				shake_camera(H, 10, 1)
@@ -617,10 +630,10 @@
 	to_chat(usr, "[icon2html(src, usr)] [H.real_name] is [current_squad]'s new leader!")
 	current_squad.squad_leader = H
 	SET_TRACK_LEADER(current_squad.tracking_id, H)
-	if(H.mind.assigned_role == "Squad Leader")//a real SL
-		H.mind.role_comm_title = "SL"
-	else //an acting SL
-		H.mind.role_comm_title = "aSL"
+	if(H.mind.assigned_role == "Squad Leader")
+		H.mind.comm_title = "SL"
+	else
+		H.mind.comm_title = "aSL"
 	if(H.mind.cm_skills)
 		H.mind.cm_skills.leadership = max(SKILL_LEAD_TRAINED, H.mind.cm_skills.leadership)
 		H.update_action_buttons()
@@ -676,8 +689,10 @@
 		return
 	var/datum/squad/S = current_squad
 	var/mob/living/carbon/human/transfer_marine = input(usr, "Choose marine to transfer") as null|anything in current_squad.marines_list
-	if(!transfer_marine) return
-	if(S != current_squad) return //don't change overwatched squad, idiot.
+	if(!transfer_marine)
+		return
+	if(S != current_squad)
+		return //don't change overwatched squad, idiot.
 
 	if(!istype(transfer_marine) || !transfer_marine.mind || transfer_marine.stat == DEAD) //gibbed, decapitated, dead
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>[transfer_marine] is KIA.</span>")
@@ -687,9 +702,12 @@
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>Transfer aborted. [transfer_marine] isn't wearing an ID.</span>")
 		return
 
-	var/datum/squad/new_squad = input(usr, "Choose the marine's new squad") as null|anything in SSjob.squads
-	if(!new_squad) return
-	if(S != current_squad) return
+	var/choice = input(usr, "Choose the marine's new squad") as null|anything in SSjob.squads
+	if(!choice)
+		return
+	if(S != current_squad)
+		return
+	var/datum/squad/new_squad = SSjob.squads[choice]
 
 	if(!istype(transfer_marine) || !transfer_marine.mind || transfer_marine.stat == DEAD)
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>[transfer_marine] is KIA.</span>")
@@ -852,7 +870,7 @@
 	force_link()
 
 /obj/structure/supply_drop/proc/force_link() //Somehow, it didn't get set properly on the new proc. Force it again,
-	var/datum/squad/S = SSjob.squads[SSjob.squads_names.Find(squad_name)]
+	var/datum/squad/S = SSjob.squads[squad_name]
 	if(S)
 		S.drop_pad = src
 	else
@@ -971,7 +989,7 @@
 		return ..()
 
 /obj/item/device/squad_beacon/bomb/proc/activate(mob/living/carbon/human/H)
-	if(H.z != 1)
+	if(!is_ground_level(H.z))
 		to_chat(H, "<span class='warning'>You have to be on the planet to use this or it won't transmit.</span>")
 		return
 	var/area/A = get_area(H)
@@ -1123,7 +1141,7 @@
 	issue_order_action.give_action(src)
 
 /obj/machinery/computer/overwatch/proc/get_squad_by_id(id)
-	if(!squads || !squads.len)
+	if(!squads || !length(squads))
 		return FALSE
 	var/datum/squad/S
 	for(S in squads)
@@ -1172,8 +1190,14 @@
 		var/turf/M_turf = get_turf(H)
 		if(A)
 			area_name = sanitize(A.name)
-		if(z_hidden && z_hidden == M_turf?.z)
-			continue
+		switch(z_hidden)
+			if(HIDE_ON_GROUND)
+				if(is_ground_level(M_turf?.z))
+					continue
+			if(HIDE_ON_SHIP)
+				if(is_mainship_or_low_orbit_level(M_turf?.z))
+					continue
+
 		if(H.mind?.assigned_role)
 			role = H.mind.assigned_role
 		else
@@ -1298,7 +1322,7 @@
 	dat += "<A href='?src=\ref[src];operation=change_sort'>{Change Sorting Method}</a><br>"
 	dat += "<A href='?src=\ref[src];operation=hide_dead'>{[dead_hidden ? "Show Dead Marines" : "Hide Dead Marines" ]}</a><br>"
 	dat += "<A href='?src=\ref[src];operation=choose_z'>{Change Locations Ignored}</a><br>"
-	dat += "<br><A href='?src=\ref[src];operation=back'>{Back}</a></body>"
+	dat += "<br><A href='?src=\ref[src];operation=back'>{Back}</a>"
 	return dat
 
 #undef OW_MAIN

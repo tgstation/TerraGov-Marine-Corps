@@ -35,7 +35,6 @@
 		return 1
 
 	next_move = world.time + 8
-	// You are responsible for checking config.ghost_interaction when you override this function
 	// Not all of them require checking, see below
 	if(!mods["shift"])
 		A.attack_ghost(src)

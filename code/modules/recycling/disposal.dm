@@ -203,7 +203,7 @@
 		user.unset_interaction()
 		return
 
-	var/dat = "<head><title>Waste Disposal Unit</title></head><body><TT><B>Waste Disposal Unit</B><HR>"
+	var/dat = "<B>Status</B><HR>"
 
 	if(!ai)  //AI can't pull flush handle
 		if(flush)
@@ -214,16 +214,19 @@
 		dat += "<BR><HR><A href='?src=\ref[src];eject=1'>Eject contents</A><HR>"
 
 	if(mode <= 0)
-		dat += "Pump: <B>Off</B> <A href='?src=\ref[src];pump=1'>On</A><BR>"
+		dat += "Pump: <B>Off</B> On</A><BR>"
 	else if(mode == 1)
-		dat += "Pump: <A href='?src=\ref[src];pump=0'>Off</A> <B>On</B> (pressurizing)<BR>"
+		dat += "Pump: <B>On</B> (pressurizing)<BR>"
 	else
-		dat += "Pump: <A href='?src=\ref[src];pump=0'>Off</A> <B>On</B> (idle)<BR>"
+		dat += "Pump: <B>On</B> (idle)<BR>"
 
-	dat += "Pressure: [disposal_pressure*100/SEND_PRESSURE]%<BR></body>"
+	dat += "Pressure: [disposal_pressure*100/SEND_PRESSURE]%<BR>"
 
 	user.set_interaction(src)
-	user << browse(dat, "window=disposal;size=360x170")
+
+	var/datum/browser/popup = new(user, "disposal", "<div align='center'>Waste Disposal Unit</div>", 360, 220)
+	popup.set_content(dat)
+	popup.open(FALSE)
 	onclose(user, "disposal")
 
 //Handle machine interaction
@@ -510,7 +513,7 @@
 		if(hasmob && prob(3))
 			for(var/mob/living/H in src)
 				if(!ismaintdrone(H)) //Drones use the mailing code to move through the disposal system,
-					if(GLOB.map_tag != MAP_WHISKEY_OUTPOST)
+					if(SSmapping.config.map_name != MAP_WHISKEY_OUTPOST)
 						H.take_overall_damage(20, 0, "Blunt Trauma") //Horribly maim any living creature jumping down disposals.  c'est la vie
 
 		if(has_fat_guy && prob(2)) //Chance of becoming stuck per segment if contains a fat guy
@@ -848,6 +851,9 @@
 			dpdir = dir|turn(dir, -90)
 		update()
 
+/obj/structure/disposalpipe/segment/corner
+	icon_state = "pipe-c"
+
 //Z-Level stuff
 /obj/structure/disposalpipe/up
 	icon_state = "pipe-u"
@@ -1015,6 +1021,9 @@
 		else //Pipe-y
 			dpdir = dir|turn(dir,90)|turn(dir, -90)
 		update()
+
+/obj/structure/disposalpipe/junction/flipped
+	icon_state = "pipe-j2"
 
 //Next direction to move, if coming in from secondary dirs, then next is primary dir, if coming in from primary dir, then next is equal chance of other dirs
 /obj/structure/disposalpipe/junction/nextdir(var/fromdir)

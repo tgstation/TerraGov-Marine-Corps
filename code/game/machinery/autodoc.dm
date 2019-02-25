@@ -60,7 +60,7 @@
 
 /obj/machinery/autodoc/power_change(var/area/master_area = null)
 	..()
-	if(stat & NOPOWER)
+	if(stat & NOPOWER && occupant)
 		visible_message("\ [src] engages the safety override, ejecting the occupant.")
 		surgery = 0
 		go_out(AUTODOC_NOTICE_NO_POWER)
@@ -620,7 +620,7 @@
 	set name = "Eject Med-Pod"
 	set category = "Object"
 	set src in oview(1)
-	if(usr.stat == DEAD)
+	if(usr.is_mob_incapacitated())
 		return // nooooooooooo
 	if(locked && !allowed(usr)) //Check access if locked.
 		to_chat(usr, "<span class='warning'>Access denied.</span>")
@@ -662,7 +662,8 @@
 	set category = "Object"
 	set src in oview(1)
 
-	if(usr.stat != 0 || !ishuman(usr)) return
+	if(usr.is_mob_incapacitated() || !ishuman(usr))
+		return
 
 	if(occupant)
 		to_chat(usr, "<span class='notice'>\ [src] is already occupied!</span>")
@@ -703,11 +704,9 @@
 		add_fingerprint(usr)
 
 /obj/machinery/autodoc/proc/go_out(notice_code = FALSE)
-	if(!occupant)
-		return
-	if(occupant in contents)
-		occupant.forceMove(loc)
-	if(connected.release_notice) //If auto-release notices are on as they should be, let the doctors know what's up
+	for(var/atom/movable/A in contents)
+		A.forceMove(loc)
+	if(connected.release_notice && occupant) //If auto-release notices are on as they should be, let the doctors know what's up
 		var/reason = "Reason for discharge: Procedural completion."
 		switch(notice_code)
 			if(AUTODOC_NOTICE_SUCCESS)
@@ -864,32 +863,32 @@
 	else
 		var/mob/living/occupant = connected.occupant
 		if(locked)
-			dat += "<hr><font color='red'><span class='danger'>Lock Console</span> | <a href='?src=\ref[src];locktoggle=1'>Unlock Console</a></FONT><BR>"
+			dat += "<hr>Lock Console</span> | <a href='?src=\ref[src];locktoggle=1'>Unlock Console</a><BR>"
 		else
-			dat += "<hr><font color='red'><span class='danger'><a href='?src=\ref[src];locktoggle=1'>Lock Console</a> | <span class='notice'>Unlock Console</span></FONT><BR>"
+			dat += "<hr><a href='?src=\ref[src];locktoggle=1'>Lock Console</a> | Unlock Console<BR>"
 		if(release_notice)
-			dat += "<hr><font color='red'><span class='danger'>Notifications On</span> | <a href='?src=\ref[src];noticetoggle=1'>Notifications Off</a></FONT><BR>"
+			dat += "<hr>Notifications On</span> | <a href='?src=\ref[src];noticetoggle=1'>Notifications Off</a><BR>"
 		else
-			dat += "<hr><font color='red'><span class='danger'><a href='?src=\ref[src];noticetoggle=1'>Notifications On</a> | <span class='notice'>Notifications Off</span></FONT><BR>"
-		dat += "<hr><font color='blue'><B>Occupant Statistics:</B></FONT><BR>"
+			dat += "<hr><a href='?src=\ref[src];noticetoggle=1'>Notifications On</a> | Notifications Off<BR>"
+		dat += "<hr><font color='#487553'><B>Occupant Statistics:</B></FONT><BR>"
 		if(occupant)
 			var/t1
 			switch(occupant.stat)
 				if(0)	t1 = "Conscious"
-				if(1)	t1 = "<font color='blue'>Unconscious</font>"
-				if(2)	t1 = "<font color='red'>*Dead*</font>"
+				if(1)	t1 = "<font color='#487553'>Unconscious</font>"
+				if(2)	t1 = "<font color='#b54646'>*Dead*</font>"
 			var/operating
 			switch(connected.surgery)
 				if(0) operating = "Not in surgery"
-				if(1) operating = "<font color='red'><B>SURGERY IN PROGRESS: MANUAL EJECTION ONLY TO BE ATTEMPTED BY TRAINED OPERATORS!</B></FONT>"
-			dat += text("[]\tHealth %: [] ([])</FONT><BR>", (occupant.health > 50 ? "<font color='blue'>" : "<font color='red'>"), round(occupant.health), t1)
+				if(1) operating = "<font color='#b54646'><B>SURGERY IN PROGRESS: MANUAL EJECTION ONLY TO BE ATTEMPTED BY TRAINED OPERATORS!</B></FONT>"
+			dat += text("[]\tHealth %: [] ([])</FONT><BR>", (occupant.health > 50 ? "<font color='#487553'>" : "<font color='#b54646'>"), round(occupant.health), t1)
 			if(iscarbon(occupant))
 				var/mob/living/carbon/C = occupant
-				dat += text("[]\t-Pulse, bpm: []</FONT><BR>", (C.pulse == PULSE_NONE || C.pulse == PULSE_THREADY ? "<font color='red'>" : "<font color='blue'>"), C.get_pulse(GETPULSE_TOOL))
-			dat += text("[]\t-Brute Damage %: []</FONT><BR>", (occupant.getBruteLoss() < 60 ? "<font color='blue'>" : "<font color='red'>"), occupant.getBruteLoss())
-			dat += text("[]\t-Respiratory Damage %: []</FONT><BR>", (occupant.getOxyLoss() < 60 ? "<font color='blue'>" : "<font color='red'>"), occupant.getOxyLoss())
-			dat += text("[]\t-Toxin Content %: []</FONT><BR>", (occupant.getToxLoss() < 60 ? "<font color='blue'>" : "<font color='red'>"), occupant.getToxLoss())
-			dat += text("[]\t-Burn Severity %: []</FONT><BR>", (occupant.getFireLoss() < 60 ? "<font color='blue'>" : "<font color='red'>"), occupant.getFireLoss())
+				dat += text("[]\t-Pulse, bpm: []</FONT><BR>", (C.pulse == PULSE_NONE || C.pulse == PULSE_THREADY ? "<font color='#b54646'>" : "<font color='#487553'>"), C.get_pulse(GETPULSE_TOOL))
+			dat += text("[]\t-Brute Damage %: []</FONT><BR>", (occupant.getBruteLoss() < 60 ? "<font color='#487553'>" : "<font color='#b54646'>"), occupant.getBruteLoss())
+			dat += text("[]\t-Respiratory Damage %: []</FONT><BR>", (occupant.getOxyLoss() < 60 ? "<font color='#487553'>" : "<font color='#b54646'>"), occupant.getOxyLoss())
+			dat += text("[]\t-Toxin Content %: []</FONT><BR>", (occupant.getToxLoss() < 60 ? "<font color='#487553'>" : "<font color='#b54646'>"), occupant.getToxLoss())
+			dat += text("[]\t-Burn Severity %: []</FONT><BR>", (occupant.getFireLoss() < 60 ? "<font color='#487553'>" : "<font color='#b54646'>"), occupant.getFireLoss())
 			//dat += text("<HR> Surgery Estimate: [] seconds<BR>", (connected.surgery_t * 0.1))
 			//if(locked)
 			//	dat += "<hr><span class='warning'>Lock Console</span> | <a href='?src=\ref[src];locktoggle=1'>Unlock Console</a>"
@@ -898,7 +897,7 @@
 			if(connected.automaticmode)
 				dat += "<hr><span class='notice'>Automatic Mode</span> | <a href='?src=\ref[src];automatictoggle=1'>Manual Mode</a>"
 			else
-				dat += "<hr><a href='?src=\ref[src];automatictoggle=1'>Automatic Mode</a> | <span class='notice'>Manual Mode</span>"
+				dat += "<hr><a href='?src=\ref[src];automatictoggle=1'>Automatic Mode</a> | Manual Mode"
 			dat += "<hr> Surgery Queue:<br>"
 
 			var/list/surgeryqueue = list()
@@ -1022,8 +1021,12 @@
 		else
 			dat += "The Med-Pod is empty."
 	dat += text("<br><br><a href='?src=\ref[];mach_close=sleeper'>Close</a>", user)
-	user << browse(dat, "window=sleeper;size=600x600")
+
+	var/datum/browser/popup = new(user, "sleeper", "<div align='center'>Autodoc Console</div>", 600, 600)
+	popup.set_content(dat)
+	popup.open(FALSE)
 	onclose(user, "sleeper")
+
 
 /obj/machinery/autodoc_console/Topic(href, href_list)
 	if(..())

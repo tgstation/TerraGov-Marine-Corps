@@ -1,6 +1,6 @@
 
-//=========================//MARINES\\===================================\\
-//=======================================================================\\
+//=========================//MARINES\\===================================
+
 
 
 /obj/item/clothing/under/marine
@@ -66,7 +66,7 @@
 */
 
 /obj/item/clothing/under/marine/mp
-	name = "military police jumpsuit"
+	name = "military police uniform"
 	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented military police uniform. You suspect it's not as robust-proof as advertised."
 	icon_state = "MP_jumpsuit"
 	rollable_sleeves = FALSE
@@ -166,8 +166,8 @@
 	icon_state = "marine_whites" //with thanks to Manezinho
 	rollable_sleeves = FALSE
 
-//=========================//RESPONDERS\\================================\\
-//=======================================================================\\
+//=========================//RESPONDERS\\================================
+
 
 /obj/item/clothing/under/marine/veteran
 	rollable_sleeves = FALSE
@@ -230,8 +230,7 @@
 /obj/item/clothing/under/marine/veteran/dutch/ranger
 	icon_state = "dutch_jumpsuit2"
 
-//===========================//HELGHAST - MERCENARY\\================================\\
-//=====================================================================\\
+//===========================//HELGHAST - MERCENARY\\================================
 
 /obj/item/clothing/under/marine/veteran/mercenary
 	name = "mercenary fatigues"
@@ -295,13 +294,23 @@
 	desc = "A collared shirt, complimented by a pair of suspenders. Worn by Nanotrasen employees who ask the tough questions. Smells faintly of cigars and bad acting."
 	icon_state = "liaison_suspenders"
 
+/obj/item/clothing/under/liaison_suit/galaxy_blue
+	name = "\improper De Void of Soul"
+	desc = "A suit of stars and high-V gas. One that screams the cosmos and unfathomnable vastness. Earned by only the best of the best."
+	icon_state = "liaison_galaxy_blue" // Thanks to Manezinho
+
+/obj/item/clothing/under/liaison_suit/galaxy_red
+	name = "\improper Pulsar gonne"
+	desc = "A suit of stars and high-V gas. One that screams stellar fusion and re-entry burn. Earned by only the best of the best."
+	icon_state = "liaison_galaxy_red" // Thanks to Manezinho
+
 /obj/item/clothing/under/rank/chef/exec
 	name = "\improper Nanotrasen suit"
 	desc = "A formal white undersuit."
 	rollable_sleeves = FALSE
 
 /obj/item/clothing/under/rank/ro_suit
-	name = "requisition officer suit."
+	name = "requisition officer suit"
 	desc = "A nicely-fitting, kevlar-weaved, hazmat-tested, EMF-augmented requisition officer suit. You suspect it's not as robust-proof as advertised."
 	icon_state = "RO_jumpsuit"
 	rollable_sleeves = FALSE

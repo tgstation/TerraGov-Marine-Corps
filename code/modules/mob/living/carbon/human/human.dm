@@ -144,6 +144,7 @@
 	. += "---"
 	.["Set Species"] = "?_src_=vars;[HrefToken()];setspecies=[REF(src)]"
 	.["Purrbation"] = "?_src_=vars;[HrefToken()];purrbation=[REF(src)]"
+	.["Copy Outfit"] = "?_src_=vars;[HrefToken()];copyoutfit=[REF(src)]"
 
 
 /mob/living/carbon/human/prepare_huds()
@@ -652,12 +653,12 @@
 			var/mob/living/carbon/human/H = usr
 			if(mind)
 				var/obj/item/card/id/ID = get_idcard()
-				if(ID && (ID.rank in ROLES_MARINES))//still a marine, with an ID.
+				if(ID && (ID.rank in JOBS_MARINES))//still a marine, with an ID.
 					if(assigned_squad == H.assigned_squad) //still same squad
 						var/newfireteam = input(usr, "Assign this marine to a fireteam.", "Fire Team Assignment") as null|anything in list("None", "Fire Team 1", "Fire Team 2", "Fire Team 3")
 						if(H.is_mob_incapacitated() || get_dist(H, src) > 7 || !hasHUD(H,"squadleader")) return
 						ID = get_idcard()
-						if(ID && ID.rank in ROLES_MARINES)//still a marine with an ID
+						if(ID && ID.rank in JOBS_MARINES)//still a marine with an ID
 							if(assigned_squad == H.assigned_squad) //still same squad
 								switch(newfireteam)
 									if("None") ID.assigned_fireteam = 0
@@ -1147,7 +1148,7 @@
 
 	for(var/mob/living/carbon/h in GLOB.player_list)
 		var/turf/temp_turf = get_turf(h)
-		if((temp_turf.z != 1 && temp_turf.z != 5) || h.stat!=CONSCIOUS) //Not on mining or the station. Or dead
+		if(!is_ground_level(temp_turf.z) || h.stat!=CONSCIOUS) //Not on mining or the station. Or dead
 			continue
 		creatures += h
 
@@ -1455,7 +1456,6 @@
 		if(C.flags_armor_protection & FEET)
 			feet_exposed = 0
 
-	flavor_text = flavor_texts["general"]
 	flavor_text += "\n\n"
 	for (var/T in flavor_texts)
 		if(flavor_texts[T] && flavor_texts[T] != "")

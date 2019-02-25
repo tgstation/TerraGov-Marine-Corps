@@ -252,7 +252,7 @@ proc/get_all_job_icons()
 				"Squad Marine",
 				"Chief Medical Officer",
 				"Doctor",
-				"Researcher",
+				"Medical Researcher",
 				"Military Police",
 				"Chief MP"
 				)

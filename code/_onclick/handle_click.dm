@@ -8,6 +8,12 @@
 		return TRUE
 	return FALSE
 
+/obj/item/weapon/gun/rifle/sniper/M42A/handle_click(mob/living/user, atom/A, list/mods)
+	if(mods["ctrl"])
+		integrated_laze.acquire_target(A, user)
+		return TRUE
+	return ..()
+
 /obj/machinery/m56d_hmg/handle_click(mob/living/carbon/human/user, atom/A, list/mods)
 	if(mods["middle"] || mods["shift"] || mods["alt"] || !operator || operator != user)
 		return FALSE

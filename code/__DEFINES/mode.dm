@@ -1,3 +1,11 @@
+//SSticker.current_state values
+#define GAME_STATE_STARTUP		0
+#define GAME_STATE_PREGAME		1
+#define GAME_STATE_SETTING_UP	2
+#define GAME_STATE_PLAYING		3
+#define GAME_STATE_FINISHED		4
+
+
 //=================================================
 //Self destruct, nuke, and evacuation.
 #define EVACUATION_TIME_LOCK 60 MINUTES
@@ -27,14 +35,6 @@
 #define FLAGS_SELF_DESTRUCT_DENY 2
 //=================================================
 
-#define ROLE_MODE_DEFAULT   0
-#define ROLE_MODE_REPLACE   1
-#define ROLE_MODE_ADD		2
-#define ROLE_MODE_SUBTRACT	3
-
-
-#define IS_MODE_COMPILED(MODE) (ispath(text2path("/datum/game_mode/"+(MODE))))
-
 #define MODE_INFESTATION		(1 << 0)
 #define MODE_PREDATOR			(1 << 1)
 #define MODE_NO_LATEJOIN		(1 << 2)
@@ -48,125 +48,6 @@
 #define MODE_LANDMARK_HELLHOUND_BLOCKER		(1 << 2)
 #define MODE_LANDMARK_SPAWN_MAP_ITEM		(1 << 3)
 
-#define BE_ALIEN		(1 << 0)
-#define BE_QUEEN		(1 << 1)
-#define BE_SURVIVOR		(1 << 2)
-#define BE_DEATHMATCH	(1 << 3)
-#define BE_PREDATOR		(1 << 4)
-
-
-#define BE_REV        (1 << 5)
-#define BE_TRAITOR    (1 << 6)
-#define BE_OPERATIVE  (1 << 7)
-#define BE_CULTIST    (1 << 8)
-#define BE_MONKEY     (1 << 9)
-#define BE_NINJA      (1 << 10)
-#define BE_RAIDER     (1 << 11)
-#define BE_PLANT      (1 << 12)
-#define BE_MUTINEER   (1 << 13)
-#define BE_CHANGELING (1 << 14)
-
-#define BE_SQUAD_STRICT (1 << 15)
 //=================================================
-
-var/list/be_special_flags = list(
-	"Xenomorph" = BE_ALIEN,
-	"Survivor" = BE_SURVIVOR,
-	"End of Round Deathmatch" = BE_DEATHMATCH,
-	"Predator" = BE_PREDATOR,
-	"Queen" = BE_QUEEN
-
-/*
-	"Malf AI" = BE_MALF,
-	"Revolutionary" = BE_REV,
-	"Traitor" = BE_TRAITOR,
-	"Operative" = BE_OPERATIVE,
-	"Cultist" = BE_CULTIST,
-	"Monkey" = BE_MONKEY,
-	"Ninja" = BE_NINJA,
-	"Raider" = BE_RAIDER,
-	"Mutineer" = BE_MUTINEER,
-	"Changeling" = BE_CHANGELING*/
-	)
-
-#define AGE_MIN 17			//youngest a character can be
-#define AGE_MAX 85			//oldest a character can be
-//Number of marine players against which the Marine's gear scales
-#define MARINE_GEAR_SCALING_NORMAL 30
-#define MAX_GEAR_COST 5 //Used in chargen for loadout limit.
-//=================================================
-
-//Various roles and their suggested bitflags or defines.
-
-#define ROLEGROUP_MARINE_COMMAND		1
-
-#define ROLE_COMMANDING_OFFICER			1
-#define ROLE_EXECUTIVE_OFFICER			2
-#define ROLE_BRIDGE_OFFICER				4
-#define ROLE_MILITARY_POLICE			8
-#define ROLE_CORPORATE_LIAISON			16
-#define ROLE_REQUISITION_OFFICER		32
-#define ROLE_PILOT_OFFICER				64
-#define ROLE_CHIEF_MP					128
-#define ROLE_SYNTHETIC					256
-#define ROLE_TANK_OFFICER				512
-//=================================================
-
-#define ROLEGROUP_MARINE_ENGINEERING 	2
-
-#define ROLE_CHIEF_ENGINEER				1
-#define ROLE_MAINTENANCE_TECH			2
-#define ROLE_REQUISITION_TECH			4
-//=================================================
-
-#define ROLEGROUP_MARINE_MED_SCIENCE 	4
-
-#define ROLE_CHIEF_MEDICAL_OFFICER		1
-#define ROLE_CIVILIAN_DOCTOR			2
-#define ROLE_CIVILIAN_RESEARCHER		4
-//=================================================
-
-#define ROLEGROUP_MARINE_SQUAD_MARINES 	8
-
-#define ROLE_MARINE_LEADER			1
-#define ROLE_MARINE_MEDIC			2
-#define ROLE_MARINE_ENGINEER		4
-#define ROLE_MARINE_STANDARD		8
-#define ROLE_MARINE_SPECIALIST		16
-#define ROLE_MARINE_SMARTGUN		32
-//=================================================
-
-#define ROLE_ADMIN_NOTIFY			1
-#define ROLE_ADD_TO_SQUAD			2
-#define ROLE_ADD_TO_DEFAULT			4
-#define ROLE_ADD_TO_MODE			8
-#define ROLE_WHITELISTED			16
-//=================================================
-
-//Role defines, specifically lists of roles for job bans and the like.
-#define ROLES_COMMAND 		list("Commander", "Executive Officer", "Staff Officer", "Pilot Officer", "Tank Crewman", "Corporate Liaison", "Requisitions Officer", "Chief Engineer", "Chief Medical Officer", "Synthetic")
-#define ROLES_POLICE		list("Chief MP", "Military Police")
-#define ROLES_OFFICERS		list("Commander", "Executive Officer", "Staff Officer", "Pilot Officer", "Tank Crewman", "Corporate Liaison", "Synthetic")
-#define ROLES_ENGINEERING 	list("Chief Engineer", "Maintenance Tech")
-#define ROLES_REQUISITION 	list("Requisitions Officer", "Cargo Technician")
-#define ROLES_MEDICAL 		list("Chief Medical Officer", "Doctor","Researcher")
-#define ROLES_MARINES		list("Squad Leader", "Squad Specialist", "Squad Smartgunner", "Squad Medic", "Squad Engineer", "Squad Marine")
-#define ROLES_SQUAD_ALL		list("Alpha", "Bravo", "Charlie" ,"Delta")
-#define ROLES_REGULAR_ALL	ROLES_OFFICERS + ROLES_POLICE + ROLES_ENGINEERING + ROLES_REQUISITION + ROLES_MEDICAL + ROLES_MARINES
-#define ROLES_UNASSIGNED	list("Squad Marine")
-//=================================================
-
-//=================================================
-#define WHITELIST_YAUTJA_UNBLOODED	1
-#define WHITELIST_YAUTJA_BLOODED	2
-#define WHITELIST_YAUTJA_ELITE		4
-#define WHITELIST_YAUTJA_ELDER		8
-#define WHITELIST_PREDATOR			(WHITELIST_YAUTJA_UNBLOODED|WHITELIST_YAUTJA_BLOODED|WHITELIST_YAUTJA_ELITE|WHITELIST_YAUTJA_ELDER)
-#define WHITELIST_COMMANDER			16
-#define WHITELIST_SYNTHETIC			32
-#define WHITELIST_ARCTURIAN			64
-#define WHITELIST_ALL				(WHITELIST_YAUTJA_UNBLOODED|WHITELIST_YAUTJA_BLOODED|WHITELIST_YAUTJA_ELITE|WHITELIST_YAUTJA_ELDER|WHITELIST_COMMANDER|WHITELIST_SYNTHETIC|WHITELIST_ARCTURIAN)
-//=================================================
-
 
 #define LATEJOIN_LARVA_DISABLED 0

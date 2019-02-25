@@ -25,6 +25,8 @@ can cause issues with ammo types getting mixed up during the burst.
 /obj/item/weapon/gun/shotgun/Initialize()
 	. = ..()
 	replace_tube(current_mag.current_rounds) //Populate the chamber.
+	if(flags_gun_features & GUN_SHOTGUN_CHAMBER)
+		load_into_chamber()
 
 /obj/item/weapon/gun/shotgun/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/mhigh_fire_delay)
@@ -178,7 +180,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	attachable_allowed = list(
 						/obj/item/attachable/compensator)
 
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_SHOTGUN_CHAMBER|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 17, "under_y" = 14, "stock_x" = 17, "stock_y" = 14)
 
 /obj/item/weapon/gun/shotgun/merc/set_gun_config_values()
@@ -194,8 +196,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	recoil_unwielded = CONFIG_GET(number/combat_define/high_recoil_value)
 
 
-/obj/item/weapon/gun/shotgun/merc/examine(mob/user)
-	. = ..()
+/obj/item/weapon/gun/shotgun/merc/examine_ammo_count(mob/user)
 	if(in_chamber)
 		to_chat(user, "It has a chambered round.")
 
@@ -209,7 +210,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	item_state = "mk221"
 	origin_tech = "combat=5;materials=4"
 	fire_sound = 'sound/weapons/gun_shotgun_automatic.ogg'
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_SHOTGUN_CHAMBER|GUN_AMMO_COUNTER
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/combat
 	attachable_allowed = list(
 						/obj/item/attachable/bayonet,
@@ -233,8 +234,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	recoil_unwielded = CONFIG_GET(number/combat_define/high_recoil_value)
 
 
-/obj/item/weapon/gun/shotgun/combat/examine(mob/user)
-	. = ..()
+/obj/item/weapon/gun/shotgun/combat/examine_ammo_count(mob/user)
 	if(in_chamber)
 		to_chat(user, "It has a chambered round.")
 
@@ -270,8 +270,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	recoil = CONFIG_GET(number/combat_define/low_recoil_value)
 	recoil_unwielded = CONFIG_GET(number/combat_define/high_recoil_value)
 
-/obj/item/weapon/gun/shotgun/double/examine(mob/user)
-	. = ..()
+/obj/item/weapon/gun/shotgun/double/examine_ammo_count(mob/user)
 	if(current_mag.chamber_closed)
 		to_chat(user, "It's closed.")
 	else

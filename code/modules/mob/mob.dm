@@ -5,8 +5,7 @@
 	GLOB.alive_mob_list -= src
 	ghostize()
 	clear_fullscreens()
-	. = ..()
-	return TA_PURGE_ME_NOW
+	return ..()
 
 /mob/Initialize()
 	GLOB.mob_list += src
@@ -23,7 +22,7 @@
 
 	if(statpanel("Stats"))
 		stat("Operation Time: [worldtime2text()]")
-		stat("The current map is: [GLOB.map_tag]")
+		stat("The current map is: [SSmapping.config.map_name]")
 
 
 	if(client?.holder?.rank?.rights)
@@ -706,7 +705,7 @@ mob/proc/yank_out_object()
 	return FALSE
 
 /mob/proc/TurfAdjacent(var/turf/T)
-	return T.AdjacentQuick(src)
+	return ( get_dist(T,src) <= 1 )
 
 /mob/on_stored_atom_del(atom/movable/AM)
 	if(istype(AM, /obj/item))

@@ -60,7 +60,7 @@
 		dat += "This console is not connected to a sleeper or the sleeper is non-functional."
 	else
 		var/mob/living/occupant = connected.occupant
-		dat += "<font color='blue'><B>Occupant Statistics:</B></FONT><BR>"
+		dat += "<font color='#487553'><B>Occupant Statistics:</B></FONT><BR>"
 		if (occupant)
 			var/t1
 			dat += text("<B>Name: [occupant.name]</B><BR>")
@@ -68,18 +68,18 @@
 				if(0)
 					t1 = "Conscious"
 				if(1)
-					t1 = "<font color='blue'>Unconscious</font>"
+					t1 = "<font color='#487553'>Unconscious</font>"
 				if(2)
-					t1 = "<font color='red'>*dead*</font>"
+					t1 = "<font color='#b54646'>*dead*</font>"
 				else
-			dat += text("[]\tHealth %: [] ([])</FONT><BR>", (occupant.health > 50 ? "<font color='blue'>" : "<font color='red'>"), occupant.health, t1)
+			dat += text("[]\tHealth %: [] ([])</FONT><BR>", (occupant.health > 50 ? "<font color='#487553'>" : "<font color='#b54646'>"), occupant.health, t1)
 			if(iscarbon(occupant))
 				var/mob/living/carbon/C = occupant
-				dat += text("[]\t-Pulse, bpm: []</FONT><BR>", (C.pulse == PULSE_NONE || C.pulse == PULSE_THREADY ? "<font color='red'>" : "<font color='blue'>"), C.get_pulse(GETPULSE_TOOL))
-			dat += text("[]\t-Brute Damage %: []</FONT><BR>", (occupant.getBruteLoss() < 60 ? "<font color='blue'>" : "<font color='red'>"), occupant.getBruteLoss())
-			dat += text("[]\t-Respiratory Damage %: []</FONT><BR>", (occupant.getOxyLoss() < 60 ? "<font color='blue'>" : "<font color='red'>"), occupant.getOxyLoss())
-			dat += text("[]\t-Toxin Content %: []</FONT><BR>", (occupant.getToxLoss() < 60 ? "<font color='blue'>" : "<font color='red'>"), occupant.getToxLoss())
-			dat += text("[]\t-Burn Severity %: []</FONT><BR>", (occupant.getFireLoss() < 60 ? "<font color='blue'>" : "<font color='red'>"), occupant.getFireLoss())
+				dat += text("[]\t-Pulse, bpm: []</FONT><BR>", (C.pulse == PULSE_NONE || C.pulse == PULSE_THREADY ? "<font color='#b54646'>" : "<font color='#487553'>"), C.get_pulse(GETPULSE_TOOL))
+			dat += text("[]\t-Brute Damage %: []</FONT><BR>", (occupant.getBruteLoss() < 60 ? "<font color='#487553'>" : "<font color='#b54646'>"), occupant.getBruteLoss())
+			dat += text("[]\t-Respiratory Damage %: []</FONT><BR>", (occupant.getOxyLoss() < 60 ? "<font color='#487553'>" : "<font color='#b54646'>"), occupant.getOxyLoss())
+			dat += text("[]\t-Toxin Content %: []</FONT><BR>", (occupant.getToxLoss() < 60 ? "<font color='#487553'>" : "<font color='#b54646'>"), occupant.getToxLoss())
+			dat += text("[]\t-Burn Severity %: []</FONT><BR>", (occupant.getFireLoss() < 60 ? "<font color='#487553'>" : "<font color='#b54646'>"), occupant.getFireLoss())
 			dat += text("<HR>Knocked Out Summary %: [] ([] seconds left!)<BR>", occupant.knocked_out, round(occupant.knocked_out / 4))
 			if(occupant.reagents)
 				for(var/chemical in connected.available_chemicals)
@@ -113,9 +113,12 @@
 		else
 			dat += "The sleeper is empty."
 	dat += text("<BR><BR><A href='?src=\ref[];mach_close=sleeper'>Close</A>", user)
-	user << browse(dat, "window=sleeper;size=400x1000")
+
+	var/datum/browser/popup = new(user, "sleeper", "<div align='center'>Sleeper Console</div>", 400, 1000)
+	popup.set_content(dat)
+	popup.open(FALSE)
 	onclose(user, "sleeper")
-	return
+
 
 /obj/machinery/sleep_console/Topic(href, href_list)
 	if(..())
@@ -399,12 +402,12 @@
 			if(2)
 				t1 = "*dead*"
 			else
-		to_chat(user, text("[]\t Health %: [] ([])</span>", (occupant.health > 50 ? "<span class='notice'> " : "<span class='warning'> "), occupant.health, t1))
-		to_chat(user, text("[]\t -Core Temperature: []&deg;C ([]&deg;F)</FONT><BR>", (occupant.bodytemperature > 50 ? "<font color='blue'>" : "<font color='red'>"), occupant.bodytemperature-T0C, occupant.bodytemperature*1.8-459.67))
-		to_chat(user, text("[]\t -Brute Damage %: []</span>", (occupant.getBruteLoss() < 60 ? "<span class='notice'> " : "<span class='warning'> "), occupant.getBruteLoss()))
-		to_chat(user, text("[]\t -Respiratory Damage %: []</span>", (occupant.getOxyLoss() < 60 ? "<span class='notice'> " : "<span class='warning'> "), occupant.getOxyLoss()))
-		to_chat(user, text("[]\t -Toxin Content %: []</span>", (occupant.getToxLoss() < 60 ? "<span class='notice'> " : "<span class='warning'> "), occupant.getToxLoss()))
-		to_chat(user, text("[]\t -Burn Severity %: []</span>", (occupant.getFireLoss() < 60 ? "<span class='notice'> " : "<span class='warning'> "), occupant.getFireLoss()))
+		to_chat(user, text("[]\t Health %: [] ([])</font>", (occupant.health > 50 ? "<font color='#487553'> " : "<font color='#b54646'> "), occupant.health, t1))
+		to_chat(user, text("[]\t -Core Temperature: []&deg;C ([]&deg;F)</FONT><BR>", (occupant.bodytemperature > 50 ? "<font color='#487553'>" : "<font color='#b54646'>"), occupant.bodytemperature-T0C, occupant.bodytemperature*1.8-459.67))
+		to_chat(user, text("[]\t -Brute Damage %: []</font>", (occupant.getBruteLoss() < 60 ? "<font color='#487553'> " : "<font class='#b54646'> "), occupant.getBruteLoss()))
+		to_chat(user, text("[]\t -Respiratory Damage %: []</font>", (occupant.getOxyLoss() < 60 ? "<span color='#487553'> " : "<font color='#b54646'> "), occupant.getOxyLoss()))
+		to_chat(user, text("[]\t -Toxin Content %: []</font>", (occupant.getToxLoss() < 60 ? "<font color='#487553'> " : "<font color='#b54646'> "), occupant.getToxLoss()))
+		to_chat(user, text("[]\t -Burn Severity %: []</font>", (occupant.getFireLoss() < 60 ? "<font color='#487553'> " : "<font color='#b54646'> "), occupant.getFireLoss()))
 		to_chat(user, "<span class='notice'>Expected time till occupant can safely awake: (note: If health is below 20% these times are inaccurate)</span>")
 		to_chat(user, "<span class='notice'>\t [occupant.knocked_out / 5] second\s (if around 1 or 2 the sleeper is keeping them asleep.)</span>")
 		if(beaker)

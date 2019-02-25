@@ -1,0 +1,4 @@
+author: "Rohesie"
+delete-after: True
+changes: 
+  - tweak: "Unique-action (space bar) now reloads the smartgun. IFF is now toggled by alt+click"

@@ -105,6 +105,10 @@
 
 	user << browse(dat, "window=guestpass;size=400x520")
 	onclose(user, "guestpass")
+	var/datum/browser/popup = new(user, "guestpass", "<div align='center'>Arcade</div>")
+	popup.set_content(dat)
+	popup.open(FALSE)
+	onclose(user, "guestpass")
 
 
 /obj/machinery/computer/guestpass/Topic(href, href_list)

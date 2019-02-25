@@ -46,6 +46,7 @@
 /obj/machinery/atmospherics/components/unary/cryo_cell/Initialize()
 	. = ..()
 	initialize_directions = dir
+	beaker = new /obj/item/reagent_container/glass/beaker/cryomix
 /*
 	radio = new(src)
 	radio.keyslot = new radio_key
@@ -299,7 +300,7 @@
 		var/reagentnames = ""
 		for(var/datum/reagent/R in beaker.reagents.reagent_list)
 			reagentnames += ";[R.name]"
-			
+
 		log_admin("[key_name(usr)] put a [beaker] into [src], containing [reagentnames] at [AREACOORD(src.loc)].")
 		message_admins("[ADMIN_TPMONTY(usr)] put a [beaker] into [src], containing [reagentnames].")
 

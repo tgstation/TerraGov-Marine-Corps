@@ -60,7 +60,6 @@
 	var/time_to_equip = 0 // set to ticks it takes to equip a worn suit.
 	var/time_to_unequip = 0 // set to ticks it takes to unequip a worn suit.
 
-	var/obj/effect/xenomorph/acid/current_acid = null //If it has acid spewed on it
 
 	/* Species-specific sprites, concept stolen from Paradise//vg/.
 	ex:
@@ -472,6 +471,13 @@ cases. Override_icon_state should be a list.*/
 				if(!S.can_be_inserted(src, warning))
 					return FALSE
 				return TRUE
+			if(SLOT_IN_BELT)
+				if(!H.belt || !istype(H.belt, /obj/item/storage/belt))
+					return FALSE
+				var/obj/item/storage/belt/S = H.belt
+				if(!S.can_be_inserted(src, warning))
+					return FALSE
+				return TRUE
 			if(SLOT_IN_HOLSTER)
 				if((H.belt && istype(H.belt,/obj/item/storage/large_holster)) || (H.belt && istype(H.belt,/obj/item/storage/belt/gun)))
 					var/obj/item/storage/S = H.belt
@@ -504,6 +510,13 @@ cases. Override_icon_state should be a list.*/
 					return TRUE
 			if(SLOT_IN_SUIT)
 				var/obj/item/clothing/suit/storage/S = H.wear_suit
+				if(!istype(S) || !S.pockets)
+					return FALSE
+				var/obj/item/storage/internal/T = S.pockets
+				if(T.can_be_inserted(src, warning))
+					return TRUE
+			if(SLOT_IN_HEAD)
+				var/obj/item/clothing/head/helmet/marine/S = H.head
 				if(!istype(S) || !S.pockets)
 					return FALSE
 				var/obj/item/storage/internal/T = S.pockets

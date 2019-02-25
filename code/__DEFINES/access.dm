@@ -38,6 +38,7 @@ most of them are tied into map-placed objects. This should be reworked in the fu
 #define ACCESS_CIVILIAN_LOGISTICS 	101
 #define ACCESS_CIVILIAN_ENGINEERING 102
 #define ACCESS_CIVILIAN_RESEARCH	103
+#define ACCESS_CIVILIAN_MEDICAL		104
 
 //Special access levels. Should be alright to modify these.
 #define ACCESS_NT_PMC_GREEN 		180

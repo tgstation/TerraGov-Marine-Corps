@@ -451,7 +451,7 @@ About the new airlock wires panel:
 
 	//Separate interface for the AI.
 	user.set_interaction(src)
-	var/t1 = text("<B>Airlock Control</B><br>\n")
+	var/t1
 	if(src.secondsMainPowerLost > 0)
 		if((!src.isWireCut(AIRLOCK_WIRE_MAIN_POWER1)) && (!src.isWireCut(AIRLOCK_WIRE_MAIN_POWER2)))
 			t1 += text("Main power is offline for [] seconds.<br>\n", src.secondsMainPowerLost)
@@ -545,8 +545,12 @@ About the new airlock wires panel:
 			t1 += text("<A href='?src=\ref[];aiDisable=7'>Close door</a><br>\n", src)
 
 	t1 += text("<p><a href='?src=\ref[];close=1'>Close</a></p>\n", src)
-	user << browse(t1, "window=airlock")
+
+	var/datum/browser/popup = new(user, "airlock", "<div align='center'>Airlock Control</div>")
+	popup.set_content(t1)
+	popup.open(FALSE)
 	onclose(user, "airlock")
+
 
 //aiDisable - 1 idscan, 2 disrupt main power, 3 disrupt backup power, 4 drop door bolts, 5 un-electrify door, 7 close door
 //aiEnable - 1 idscan, 4 raise door bolts, 5 electrify door for 30 seconds, 6 electrify door indefinitely, 7 open door
@@ -666,7 +670,7 @@ About the new airlock wires panel:
 
 	if(src.p_open)
 		user.set_interaction(src)
-		var/t1 = text("<B>Access Panel</B><br>\n")
+		var/t1
 
 		//t1 += text("[]: ", airlockFeatureNames[airlockWireColorToIndex[9]])
 		var/list/wires = list(
@@ -701,12 +705,14 @@ About the new airlock wires panel:
 
 		t1 += text("<p><a href='?src=\ref[];close=1'>Close</a></p>\n", src)
 
-		user << browse(t1, "window=airlock")
+		var/datum/browser/popup = new(user, "airlock", "<div align='center'>Access Panel</div>")
+		popup.set_content(t1)
+		popup.open(FALSE)
 		onclose(user, "airlock")
 
 	else
 		..(user)
-	return
+
 
 /obj/machinery/door/airlock/proc/check_synth_access(mob/user as mob)
 	if(operating < 0) //emagged

@@ -498,13 +498,13 @@
 		return
 	if(istype(W,/obj/item/weapon/gun)) //Is it a gun?
 		if(holds_guns_now == holds_guns_max) //Are we at our gun capacity?
-			if(warning) 
+			if(warning)
 				to_chat(usr, "<span class='warning'>[src] already holds a gun.</span>")
 			return FALSE
 	else //Must be ammo.
 	//We have slots open for the gun, so in total we should have storage_slots - guns_max in slots, plus whatever is already in the belt.
 		if(((storage_slots - holds_guns_max) + holds_guns_now) <= length(contents)) // We're over capacity, and the space is reserved for a gun.
-			if(warning) 
+			if(warning)
 				to_chat(usr, "<span class='warning'>[src] can't hold any more magazines.</span>")
 			return FALSE
 	return TRUE
@@ -562,7 +562,6 @@
 	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is for the M44 magnum revolver, along with three pouches for speedloaders. It faintly smells of hay."
 	icon_state = "m44_holster"
 	item_state = "m44_holster"
-	max_w_class = 7
 	can_hold = list(
 		"/obj/item/weapon/gun/revolver/m44",
 		"/obj/item/ammo_magazine/revolver"
@@ -585,7 +584,6 @@
 	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is for the powerful Mateba magnum revolver, along with three pouches for speedloaders. This one is aging poorly, and seems to be surplus equipment. This one is stamped '3rd 'Dust Raiders' Battalion'."
 	icon_state = "s_cmateba_holster"
 	item_state = "s_cmateba_holster"
-	max_w_class = 7
 	can_hold = list(
 		"/obj/item/weapon/gun/revolver/mateba",
 		"/obj/item/ammo_magazine/revolver/mateba"

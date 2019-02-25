@@ -14,7 +14,7 @@
 
 /datum/event/brand_intelligence/start()
 	for(var/obj/machinery/vending/V in GLOB.machines)
-		if(V.z != 3 || V.z != 4)	continue
+		if(!is_mainship_or_low_orbit_level(V.z))	continue
 		vendingMachines.Add(V)
 
 	if(!vendingMachines.len)

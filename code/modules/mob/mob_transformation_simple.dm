@@ -49,35 +49,34 @@
 			M.client.change_view(world.view)
 
 
-	if(istype(M, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = M
-		H.client.prefs.load_preferences()
+	var/mob/living/carbon/human/H
+	if(ishuman(M))
+		H = M
 		if(subspecies)
 			H.set_species(subspecies)
-		H.name = H.client.prefs.real_name
-		H.real_name = H.client.prefs.real_name
-		H.voice_name = H.client.prefs.real_name
-		H.gender = H.client.prefs.gender
-		H.h_style = H.client.prefs.h_style
-		H.f_style = H.client.prefs.f_style
-		H.r_hair = H.client.prefs.r_hair
-		H.g_hair = H.client.prefs.g_hair
-		H.b_hair = H.client.prefs.b_hair
-		H.r_facial = H.client.prefs.r_facial
-		H.g_facial = H.client.prefs.g_facial
-		H.b_facial = H.client.prefs.b_facial
-		H.r_eyes = H.client.prefs.r_eyes
-		H.g_eyes = H.client.prefs.g_eyes
-		H.b_eyes = H.client.prefs.b_eyes
-		H.age = H.client.prefs.age
-		H.ethnicity = H.client.prefs.ethnicity
-		H.body_type = H.client.prefs.body_type
-
-		if(H.mind)
-			H.mind.name = H.client.prefs.real_name
-
+		if(M.client)
+			H.name = H.client.prefs.real_name
+			H.real_name = H.client.prefs.real_name
+			H.voice_name = H.client.prefs.real_name
+			H.gender = H.client.prefs.gender
+			H.h_style = H.client.prefs.h_style
+			H.f_style = H.client.prefs.f_style
+			H.r_hair = H.client.prefs.r_hair
+			H.g_hair = H.client.prefs.g_hair
+			H.b_hair = H.client.prefs.b_hair
+			H.r_facial = H.client.prefs.r_facial
+			H.g_facial = H.client.prefs.g_facial
+			H.b_facial = H.client.prefs.b_facial
+			H.r_eyes = H.client.prefs.r_eyes
+			H.g_eyes = H.client.prefs.g_eyes
+			H.b_eyes = H.client.prefs.b_eyes
+			H.age = H.client.prefs.age
+			H.ethnicity = H.client.prefs.ethnicity
+			H.body_type = H.client.prefs.body_type
+			H.flavor_text = H.client.prefs.flavor_text
 		
 	if(delete_old_mob)
 		spawn(1)
 			qdel(src)
+
 	return M
