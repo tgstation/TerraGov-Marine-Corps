@@ -31033,9 +31033,6 @@
 /turf/open/floor/prison,
 /area/prison/security/monitoring/highsec)
 "buF" = (
-/obj/effect/landmark/shuttle_loc/marine_trg/landing{
-	name = "2"
-	},
 /turf/open/floor/plating,
 /area/prison/hangar/civilian)
 "buG" = (
@@ -31339,9 +31336,6 @@
 	},
 /area/prison/hangar/main)
 "bvl" = (
-/obj/effect/landmark/shuttle_loc/marine_trg/landing{
-	name = "1"
-	},
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "bvm" = (
@@ -35540,10 +35534,6 @@
 /area/prison/maintenance/hangar_barracks)
 "bEO" = (
 /obj/structure/table/reinforced,
-/obj/machinery/computer/shuttle_control/dropship1{
-	onboard = 0;
-	use_power = 0
-	},
 /turf/open/floor/prison/darkred/full,
 /area/prison/console)
 "bEP" = (

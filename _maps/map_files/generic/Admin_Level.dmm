@@ -691,9 +691,6 @@
 	teleport_z = 1;
 	teleport_z_offset = 1
 	},
-/obj/effect/landmark/shuttle_loc/marine_trg/evacuation{
-	name = "1"
-	},
 /turf/open/space/transit/north/shuttlespace_ns4,
 /area/space)
 "bZ" = (
@@ -706,9 +703,6 @@
 	teleport_y_offset = 245;
 	teleport_z = 1;
 	teleport_z_offset = 1
-	},
-/obj/effect/landmark/shuttle_loc/marine_trg/evacuation{
-	name = "2"
 	},
 /turf/open/space/transit/north/shuttlespace_ns4,
 /area/space)
@@ -723,9 +717,6 @@
 	teleport_z = 1;
 	teleport_z_offset = 1
 	},
-/obj/effect/landmark/shuttle_loc/marine_trg/evacuation{
-	name = "5"
-	},
 /turf/open/space/transit/north/shuttlespace_ns4,
 /area/space)
 "cb" = (
@@ -738,9 +729,6 @@
 	teleport_y_offset = 245;
 	teleport_z = 1;
 	teleport_z_offset = 1
-	},
-/obj/effect/landmark/shuttle_loc/marine_trg/evacuation{
-	name = "6"
 	},
 /turf/open/space/transit/north/shuttlespace_ns4,
 /area/space)
@@ -903,9 +891,6 @@
 	teleport_z = 1;
 	teleport_z_offset = 1
 	},
-/obj/effect/landmark/shuttle_loc/marine_trg/evacuation{
-	name = "3"
-	},
 /turf/open/space/transit/north/shuttlespace_ns4,
 /area/space)
 "cA" = (
@@ -918,9 +903,6 @@
 	teleport_y_offset = 245;
 	teleport_z = 1;
 	teleport_z_offset = 1
-	},
-/obj/effect/landmark/shuttle_loc/marine_trg/evacuation{
-	name = "4"
 	},
 /turf/open/space/transit/north/shuttlespace_ns4,
 /area/space)
@@ -935,9 +917,6 @@
 	teleport_z = 1;
 	teleport_z_offset = 1
 	},
-/obj/effect/landmark/shuttle_loc/marine_trg/evacuation{
-	name = "7"
-	},
 /turf/open/space/transit/north/shuttlespace_ns4,
 /area/space)
 "cC" = (
@@ -950,9 +929,6 @@
 	teleport_y_offset = 245;
 	teleport_z = 1;
 	teleport_z_offset = 1
-	},
-/obj/effect/landmark/shuttle_loc/marine_trg/evacuation{
-	name = "8"
 	},
 /turf/open/space/transit/north/shuttlespace_ns4,
 /area/space)
@@ -1362,9 +1338,6 @@
 	teleport_z = 1;
 	teleport_z_offset = 1
 	},
-/obj/effect/landmark/shuttle_loc/marine_trg/evacuation{
-	name = "10"
-	},
 /turf/open/space/transit/north/shuttlespace_ns4,
 /area/space)
 "dD" = (
@@ -1377,9 +1350,6 @@
 	teleport_y_offset = 245;
 	teleport_z = 1;
 	teleport_z_offset = 1
-	},
-/obj/effect/landmark/shuttle_loc/marine_trg/evacuation{
-	name = "11"
 	},
 /turf/open/space/transit/north/shuttlespace_ns4,
 /area/space)
@@ -1428,9 +1398,6 @@
 	teleport_y_offset = 245;
 	teleport_z = 1;
 	teleport_z_offset = 1
-	},
-/obj/effect/landmark/shuttle_loc/marine_trg/evacuation{
-	name = "9"
 	},
 /turf/open/space/transit/north/shuttlespace_ns4,
 /area/space)
@@ -1727,7 +1694,7 @@
 /area/syndicate_station)
 "ej" = (
 /turf/open/floor/plating/plating_catwalk,
-/area/supply/dock)
+/area/space)
 "ek" = (
 /obj/structure/window/reinforced,
 /turf/open/floor/holofloor{
@@ -1740,7 +1707,7 @@
 	tag = "icon-test_floor5";
 	icon_state = "test_floor5"
 	},
-/area/supply/dock)
+/area/space)
 "em" = (
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced{
@@ -2330,10 +2297,6 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/centcom/ferry)
 "fX" = (
-/obj/machinery/computer/shuttle_control/ert/centcom{
-	density = 0;
-	pixel_y = 32
-	},
 /turf/open/floor/almayer{
 	tag = "icon-emerald (NORTH)";
 	icon_state = "emerald";
@@ -2404,11 +2367,6 @@
 /turf/open/floor/almayer,
 /area/centcom/suppy)
 "gh" = (
-/obj/machinery/computer/shuttle_control/ert/centcom{
-	density = 0;
-	pixel_y = 32;
-	shuttle_tag = "Distress_PMC"
-	},
 /turf/open/floor/almayer{
 	tag = "icon-silver (NORTH)";
 	icon_state = "silver";
@@ -2905,7 +2863,6 @@
 	},
 /area/shuttle/distress/start)
 "ht" = (
-/obj/machinery/computer/shuttle_control/ert,
 /turf/open/shuttle/dropship{
 	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
@@ -2927,9 +2884,6 @@
 	},
 /area/shuttle/distress/start_pmc)
 "hx" = (
-/obj/machinery/computer/shuttle_control/ert{
-	shuttle_tag = "Distress_PMC"
-	},
 /turf/open/shuttle/dropship{
 	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
@@ -2951,9 +2905,6 @@
 	},
 /area/shuttle/distress/start_upp)
 "hB" = (
-/obj/machinery/computer/shuttle_control/ert{
-	shuttle_tag = "Distress_UPP"
-	},
 /turf/open/shuttle/dropship{
 	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
@@ -3920,11 +3871,6 @@
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
 "ku" = (
-/obj/machinery/computer/shuttle_control/ert/centcom{
-	density = 0;
-	pixel_y = 32;
-	shuttle_tag = "Distress_UPP"
-	},
 /turf/open/floor/almayer{
 	tag = "icon-green (NORTH)";
 	icon_state = "green";
@@ -4615,9 +4561,6 @@
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
 "lV" = (
-/obj/machinery/computer/shuttle_control/ert{
-	shuttle_tag = "Distress_Big"
-	},
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
@@ -5427,7 +5370,6 @@
 	},
 /area/centcom/suppy)
 "nJ" = (
-/obj/machinery/computer/supplycomp,
 /turf/open/floor/plating/plating_catwalk,
 /area/centcom/suppy)
 "nK" = (
@@ -5856,9 +5798,6 @@
 /turf/open/floor/grass,
 /area/centcom)
 "oT" = (
-/obj/machinery/computer/shuttle_control/ert{
-	shuttle_tag = "Distress_Big"
-	},
 /turf/open/floor/almayer{
 	icon_state = "plate";
 	tag = "icon-sterile"

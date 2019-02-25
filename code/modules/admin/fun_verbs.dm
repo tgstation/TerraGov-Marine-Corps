@@ -545,7 +545,7 @@
 	log_admin("[key_name(usr)] called a [choice == "Randomize" ? "randomized ":""]distress beacon: [SSticker.mode.picked_call.name]. Min: [min], Max: [max].")
 	message_admins("[ADMIN_TPMONTY(usr)] called a [choice == "Randomize" ? "randomized ":""]distress beacon: [SSticker.mode.picked_call.name] Min: [min], Max: [max].")
 
-
+/*
 /datum/admins/proc/force_dropship()
 	set category = "Fun"
 	set name = "Force Dropship"
@@ -646,7 +646,7 @@
 
 	log_admin("[key_name(usr)] force launched a distress shuttle: [tag] to [dock_name].")
 	message_admins("[ADMIN_TPMONTY(usr)] force launched a distress shuttle: [tag] to: [dock_name].")
-
+*/
 
 /datum/admins/proc/object_sound(atom/O as obj)
 	set category = null

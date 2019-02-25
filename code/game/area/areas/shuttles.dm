@@ -25,71 +25,13 @@
 	if(ispath(new_baseturfs[1], /turf/open/floor/plating))
 		new_baseturfs.Insert(1, /turf/baseturf_skipover/shuttle)
 
-////////////////////////////Multi-area shuttles////////////////////////////
-
-////////////////////////////Syndicate infiltrator////////////////////////////
-
-/area/shuttle/syndicate
-	name = "Syndicate Infiltrator"
-//	blob_allowed = FALSE
-//	ambientsounds = HIGHSEC
-//	canSmoothWithAreas = /area/shuttle/syndicate
-
-/area/shuttle/syndicate/bridge
-	name = "Syndicate Infiltrator Control"
-
-/area/shuttle/syndicate/medical
-	name = "Syndicate Infiltrator Medbay"
-
-/area/shuttle/syndicate/armory
-	name = "Syndicate Infiltrator Armory"
-
-/area/shuttle/syndicate/eva
-	name = "Syndicate Infiltrator EVA"
-
-/area/shuttle/syndicate/hallway
-
-/area/shuttle/syndicate/airlock
-	name = "Syndicate Infiltrator Airlock"
-
-////////////////////////////Pirate Shuttle////////////////////////////
-
-/area/shuttle/pirate
-	name = "Pirate Shuttle"
-//	blob_allowed = FALSE
-	requires_power = TRUE
-//	canSmoothWithAreas = /area/shuttle/pirate
-
-////////////////////////////White Ship////////////////////////////
-
-/area/shuttle/abandoned
-	name = "Abandoned Ship"
-//	blob_allowed = FALSE
-	requires_power = TRUE
-//	canSmoothWithAreas = /area/shuttle/abandoned
-
-/area/shuttle/abandoned/bridge
-	name = "Abandoned Ship Bridge"
-
-/area/shuttle/abandoned/engine
-	name = "Abandoned Ship Engine"
-
-/area/shuttle/abandoned/bar
-	name = "Abandoned Ship Bar"
-
-/area/shuttle/abandoned/crew
-	name = "Abandoned Ship Crew Quarters"
-
-/area/shuttle/abandoned/cargo
-	name = "Abandoned Ship Cargo Bay"
-
-/area/shuttle/abandoned/medbay
-	name = "Abandoned Ship Medbay"
-
-/area/shuttle/abandoned/pod
-	name = "Abandoned Ship Pod"
-
 ////////////////////////////Single-area shuttles////////////////////////////
+
+/area/shuttle/dropship/alamo
+	name = "Dropship Alamo"
+
+/area/shuttle/dropship/normandy
+	name = "Dropship Normandy"
 
 /area/shuttle/transit
 	name = "Hyperspace"

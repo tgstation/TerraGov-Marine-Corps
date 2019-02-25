@@ -1237,9 +1237,6 @@
 /turf/open/floor/animated/bcircuit,
 /area/ice_colony/surface/engineering/generator)
 "ael" = (
-/obj/effect/landmark/shuttle_loc/marine_trg/landing{
-	name = "1"
-	},
 /obj/machinery/landinglight/ds1/delaytwo{
 	dir = 8
 	},
@@ -2313,9 +2310,6 @@
 /area/ice_colony/exterior/surface/valley/southeast)
 "agV" = (
 /obj/structure/table/reinforced,
-/obj/machinery/computer/shuttle_control/dropship1{
-	onboard = 0
-	},
 /turf/open/floor/tile/dark/brown2{
 	dir = 4
 	},
@@ -39945,9 +39939,6 @@
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad_external)
 "bZP" = (
-/obj/effect/landmark/shuttle_loc/marine_trg/landing{
-	name = "2"
-	},
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 10
 	},

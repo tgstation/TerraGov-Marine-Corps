@@ -23,7 +23,7 @@
 	user.set_interaction(src)
 	ui_interact(user)
 
-
+/*
 /obj/machinery/computer/dropship_weapons/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 0)
 	var/data[0]
 	var/datum/shuttle/ferry/marine/FM = shuttle_controller.shuttles[shuttle_tag]
@@ -142,7 +142,7 @@
 		selected_equipment = null
 
 	ui_interact(usr)
-
+*/
 /obj/machinery/computer/dropship_weapons/dropship1
 	name = "\improper 'Alamo' weapons controls"
 	req_access = list(ACCESS_MARINE_DROPSHIP)

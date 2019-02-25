@@ -190,17 +190,17 @@
 				command_announcement.Announce(dispatch_message, "Distress Beacon", new_sound='sound/AI/distressreceived.ogg') //Announcement that the Distress Beacon has been answered, does not hint towards the chosen ERT
 
 			message_admins("Distress beacon: [name] finalized, setting up candidates.")
-			var/datum/shuttle/ferry/shuttle = shuttle_controller.shuttles[shuttle_id]
+//			var/datum/shuttle/ferry/shuttle = shuttle_controller.shuttles[shuttle_id]
 
-			if(!shuttle || !istype(shuttle))
-				log_game("ERROR: Distress shuttle not found.")
-				message_admins("ERROR: Distress shuttle not found.")
-				return
+//			if(!shuttle || !istype(shuttle))
+//				log_game("ERROR: Distress shuttle not found.")
+//				message_admins("ERROR: Distress shuttle not found.")
+//				return
 
 			spawn_items()
 
-			if(auto_shuttle_launch)
-				shuttle.launch()
+//			if(auto_shuttle_launch)
+//				shuttle.launch()
 
 			if(length(picked_candidates))
 				max_medics = max(round(length(members) * 0.25), 1)

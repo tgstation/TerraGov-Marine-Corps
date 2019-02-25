@@ -6,7 +6,7 @@
 		message1 = "SUPPLY"
 		message2 = ""
 
-		var/datum/shuttle/ferry/supply/shuttle = supply_controller.shuttle
+/*		var/datum/shuttle/ferry/supply/shuttle = supply_controller.shuttle
 		if (!shuttle)
 			message2 = "Error"
 		else if(shuttle.has_arrive_time())
@@ -23,7 +23,7 @@
 				message2 = "Docked"
 			else
 				message1 = ""
-		update_display(message1, message2)
+		update_display(message1, message2)*/
 		return 1
 	return 0
 

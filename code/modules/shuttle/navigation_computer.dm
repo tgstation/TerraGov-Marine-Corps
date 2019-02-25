@@ -1,9 +1,9 @@
 /obj/machinery/computer/camera_advanced/shuttle_docker
 	name = "navigation computer"
 	desc = "Used to designate a precise transit location for a spacecraft."
-	jump_action = null
-	var/datum/action/innate/shuttledocker_rotate/rotate_action = new
-	var/datum/action/innate/shuttledocker_place/place_action = new
+//	jump_action = null
+//	var/datum/action/innate/shuttledocker_rotate/rotate_action = new
+//	var/datum/action/innate/shuttledocker_place/place_action = new
 	var/shuttleId = ""
 	var/shuttlePortId = ""
 	var/shuttlePortName = "custom location"
@@ -258,7 +258,7 @@
 		shuttlePortId = "[port.id]_custom"
 	if(dock)
 		jumpto_ports[dock.id] = TRUE
-
+/*
 /mob/camera/aiEye/remote/shuttle_docker
 	visible_icon = FALSE
 	use_static = USE_STATIC_NONE
@@ -344,3 +344,4 @@
 			C.clear_fullscreen("flash", 3)
 	else
 		playsound(console, 'sound/machines/terminal_prompt_deny.ogg', 25, 0)
+*/

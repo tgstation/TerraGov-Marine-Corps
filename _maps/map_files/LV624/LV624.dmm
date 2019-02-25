@@ -13760,9 +13760,6 @@
 	},
 /area/shuttle/drop1/lz1)
 "aXE" = (
-/obj/machinery/computer/shuttle_control/dropship1{
-	onboard = 0
-	},
 /obj/structure/table/reinforced/flipped{
 	dir = 1
 	},
@@ -15332,9 +15329,6 @@
 	},
 /area/shuttle/drop2/lz2)
 "bcp" = (
-/obj/effect/landmark/shuttle_loc/marine_trg/landing{
-	name = "2"
-	},
 /turf/open/floor/plating,
 /area/shuttle/drop2/lz2)
 "bcr" = (
@@ -17018,9 +17012,6 @@
 /turf/open/floor,
 /area/shuttle/drop1/lz1)
 "bhO" = (
-/obj/effect/landmark/shuttle_loc/marine_trg/landing{
-	name = "1"
-	},
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "bhP" = (

@@ -45,23 +45,6 @@
 /obj/machinery/door_control/attack_paw(mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/door_control/attack_alien(mob/living/carbon/Xenomorph/M)
-	if(M.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT && normaldoorcontrol == CONTROL_DROPSHIP)
-		var/shuttle_tag
-		switch(id)
-			if("sh_dropship1")
-				shuttle_tag = "[CONFIG_GET(string/ship_name)] Dropship 1"
-			if("sh_dropship2")
-				shuttle_tag = "[CONFIG_GET(string/ship_name)] Dropship 2"
-			else
-				return
-
-		var/datum/shuttle/ferry/marine/shuttle = shuttle_controller.shuttles[shuttle_tag]
-		shuttle.hijack(M)
-		shuttle.door_override(M)
-	else
-		..()
-
 /obj/machinery/door_control/attackby(obj/item/W, mob/user as mob)
 	/* For later implementation
 	if (isscrewdriver(W))
@@ -94,11 +77,11 @@
 			shuttle_tag = "[CONFIG_GET(string/ship_name)] Dropship 2"
 	if(!shuttle_tag)
 		return
-	var/datum/shuttle/ferry/shuttle = shuttle_controller.shuttles[shuttle_tag]
-	if (!istype(shuttle))
-		return
-	if(shuttle.door_override)
-		return // its been locked down by the queen
+//	var/datum/shuttle/ferry/shuttle = shuttle_controller.shuttles[shuttle_tag]
+//	if (!istype(shuttle))
+//		return
+//	if(shuttle.door_override)
+//		return // its been locked down by the queen
 	if(is_mainship_level(z)) // on the almayer
 		return
 	for(var/obj/machinery/door/airlock/dropship_hatch/M in GLOB.machines)
@@ -170,12 +153,12 @@
 /obj/machinery/door_control/proc/handle_pod()
 	for(var/obj/machinery/door/poddoor/M in GLOB.machines)
 		if(M.id == id)
-			var/datum/shuttle/ferry/marine/S
-			var/area/A = get_area(M)
-			for(var/i = 1 to 2)
-				if(istype(A, text2path("/area/shuttle/drop[i]")))
-					S = shuttle_controller.shuttles["[CONFIG_GET(string/ship_name)] Dropship [i]"]
-					if(S.moving_status == SHUTTLE_INTRANSIT) return FALSE
+//			var/datum/shuttle/ferry/marine/S
+//			var/area/A = get_area(M)
+//			for(var/i = 1 to 2)
+//				if(istype(A, text2path("/area/shuttle/drop[i]")))
+//					S = shuttle_controller.shuttles["[MAIN_SHIP_NAME] Dropship [i]"]
+//					if(S.moving_status == SHUTTLE_INTRANSIT) return FALSE
 			if(M.density)
 				spawn()
 					M.open()

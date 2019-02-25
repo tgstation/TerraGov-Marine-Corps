@@ -47,11 +47,11 @@
 			installed_equipment = SE
 			SE.ship_base = src
 
-			for(var/datum/shuttle/ferry/marine/S in shuttle_controller.process_shuttles)
+/*			for(var/datum/shuttle/ferry/marine/S in shuttle_controller.process_shuttles)
 				if(S.shuttle_tag == ship_tag)
 					SE.linked_shuttle = S
 					S.equipments += SE
-					break
+					break*/
 
 			SE.update_equipment()
 		return TRUE
@@ -165,9 +165,9 @@
 	var/uses_ammo = FALSE //whether it uses ammo
 	var/obj/structure/ship_ammo/ammo_equipped //the ammo currently equipped.
 	var/is_weapon = FALSE //whether the equipment is a weapon usable for dropship bombardment.
-	var/obj/machinery/computer/dropship_weapons/linked_console //the weapons console of the dropship we're installed on.
+//	var/obj/machinery/computer/dropship_weapons/linked_console //the weapons console of the dropship we're installed on.
 	var/is_interactable = FALSE //whether they get a button when shown on the shuttle console's equipment list.
-	var/datum/shuttle/ferry/marine/linked_shuttle
+//	var/datum/shuttle/ferry/marine/linked_shuttle
 	var/screen_mode = 0 //used by the dropship console code when this equipment is selected
 	var/point_cost = 0 //how many points it costs to build this with the fabricator, set to 0 if unbuildable.
 
@@ -175,16 +175,16 @@
 	if(ammo_equipped)
 		qdel(ammo_equipped)
 		ammo_equipped = null
-	if(linked_shuttle)
-		linked_shuttle.equipments -= src
-		linked_shuttle = null
+//	if(linked_shuttle)
+//		linked_shuttle.equipments -= src
+//		linked_shuttle = null
 	if(ship_base)
 		ship_base.installed_equipment = null
 		ship_base = null
-	if(linked_console)
-		if(linked_console.selected_equipment && linked_console.selected_equipment == src)
-			linked_console.selected_equipment = null
-		linked_console = null
+//	if(linked_console)
+//		if(linked_console.selected_equipment && linked_console.selected_equipment == src)
+//			linked_console.selected_equipment = null
+//		linked_console = null
 	return ..()
 
 /obj/structure/dropship_equipment/attackby(obj/item/I, mob/user)
@@ -245,11 +245,11 @@
 		if(ship_base)
 			ship_base.installed_equipment = null
 			ship_base = null
-			if(linked_shuttle)
-				linked_shuttle.equipments -= src
-				linked_shuttle = null
-				if(linked_console && linked_console.selected_equipment == src)
-					linked_console.selected_equipment = null
+//			if(linked_shuttle)
+//				linked_shuttle.equipments -= src
+//				linked_shuttle = null
+//				if(linked_console && linked_console.selected_equipment == src)
+//					linked_console.selected_equipment = null
 		update_equipment()
 		return TRUE //removed or uninstalled equipment
 
@@ -271,9 +271,9 @@
 
 /obj/structure/dropship_equipment/proc/equipment_interact(mob/user)
 	if(is_interactable)
-		if(linked_console.selected_equipment)
-			return
-		linked_console.selected_equipment = src
+//		if(linked_console.selected_equipment)
+//			return
+//		linked_console.selected_equipment = src
 		to_chat(user, "<span class='notice'>You select [src].</span>")
 
 
@@ -328,11 +328,11 @@
 		icon_state = "sentry_system_installed"
 		if(deployed_turret)
 			deployed_turret.setDir(dir)
-			if(linked_shuttle && deployed_turret.camera)
-				if(linked_shuttle.shuttle_tag == "[CONFIG_GET(string/ship_name)] Dropship 1")
-					deployed_turret.camera.network.Add("dropship1") //accessible via the dropship camera console
-				else
-					deployed_turret.camera.network.Add("dropship2")
+//			if(linked_shuttle && deployed_turret.camera)
+//				if(linked_shuttle.shuttle_tag == "[MAIN_SHIP_NAME] Dropship 1")
+//					deployed_turret.camera.network.Add("dropship1") //accessible via the dropship camera console
+//				else
+//					deployed_turret.camera.network.Add("dropship2")
 			switch(dir)
 				if(SOUTH) deployed_turret.pixel_y = 8
 				if(NORTH) deployed_turret.pixel_y = -8
@@ -625,11 +625,11 @@
 	update_icon()
 
 /obj/structure/dropship_equipment/weapon/equipment_interact(mob/user)
-	if(is_interactable)
-		if(linked_console.selected_equipment == src)
-			linked_console.selected_equipment = null
-		else
-			linked_console.selected_equipment = src
+//	if(is_interactable)
+//		if(linked_console.selected_equipment == src)
+//			linked_console.selected_equipment = null
+//		else
+//			linked_console.selected_equipment = src
 
 /obj/structure/dropship_equipment/weapon/examine(mob/user)
 	. = ..()
@@ -657,12 +657,12 @@
 	var/ammo_warn_sound = SA.warning_sound
 	deplete_ammo()
 	last_fired = world.time
-	if(linked_shuttle)
+/*	if(linked_shuttle)
 		for(var/obj/structure/dropship_equipment/electronics/targeting_system/TS in linked_shuttle.equipments)
 			ammo_accuracy_range = max(ammo_accuracy_range-2, 0) //targeting system increase accuracy and reduce travelling time.
 			ammo_max_inaccuracy = max(ammo_max_inaccuracy -3, 1)
 			ammo_travelling_time = max(ammo_travelling_time - 20, 10)
-			break
+			break*/
 
 	if(ammo_travelling_time)
 		var/total_seconds = max(round(ammo_travelling_time/10),1)
@@ -817,16 +817,16 @@
 
 
 /obj/structure/dropship_equipment/medevac_system/equipment_interact(mob/user)
-	if(!linked_shuttle)
-		return
+//	if(!linked_shuttle)
+//		return
 
-	if(linked_shuttle.moving_status != SHUTTLE_INTRANSIT)
-		to_chat(user, "<span class='warning'>[src] can only be used while in flight.</span>")
-		return
+//	if(linked_shuttle.moving_status != SHUTTLE_INTRANSIT)
+//		to_chat(user, "<span class='warning'>[src] can only be used while in flight.</span>")
+//		return
 
-	if(!linked_shuttle.transit_gun_mission)
-		to_chat(user, "<span class='warning'>[src] requires a flyby flight to be used.</span>")
-		return
+//	if(!linked_shuttle.transit_gun_mission)
+//		to_chat(user, "<span class='warning'>[src] requires a flyby flight to be used.</span>")
+//		return
 
 	if(busy_winch)
 		to_chat(user, "<span class='warning'> The winch is already in motion.</span>")
@@ -883,16 +883,16 @@
 		to_chat(user, "<span class='warning'>There's another dropship hovering over that medevac stretcher.</span>")
 		return
 
-	if(!linked_shuttle)
-		return
+//	if(!linked_shuttle)
+//		return
 
-	if(linked_shuttle.moving_status != SHUTTLE_INTRANSIT)
-		to_chat(user, "<span class='warning'>[src] can only be used while in flight.</span>")
-		return
+//	if(linked_shuttle.moving_status != SHUTTLE_INTRANSIT)
+//		to_chat(user, "<span class='warning'>[src] can only be used while in flight.</span>")
+//		return
 
-	if(!linked_shuttle.transit_gun_mission)
-		to_chat(user, "<span class='warning'>[src] requires a flyby flight to be used.</span>")
-		return
+//	if(!linked_shuttle.transit_gun_mission)
+//		to_chat(user, "<span class='warning'>[src] requires a flyby flight to be used.</span>")
+//		return
 
 	if(busy_winch)
 		to_chat(user, "<span class='warning'> The winch is already in motion.</span>")
@@ -941,7 +941,7 @@
 		if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
 			return
 
-	if(!linked_shuttle)
+/*	if(!linked_shuttle)
 		return
 
 	if(linked_shuttle.moving_status != SHUTTLE_INTRANSIT)
@@ -950,7 +950,7 @@
 
 	if(!linked_shuttle.transit_gun_mission)
 		to_chat(user, "<span class='warning'>[src] requires a flyby flight to be used.</span>")
-		return
+		return*/
 
 	if(busy_winch)
 		to_chat(user, "<span class='warning'> The winch is already in motion.</span>")
@@ -991,9 +991,9 @@
 	else if(!ship_base) //uninstalled midway
 		fail = TRUE
 
-	else if(!linked_shuttle || linked_shuttle.moving_status != SHUTTLE_INTRANSIT || !linked_shuttle.transit_gun_mission)
+/*	else if(!linked_shuttle || linked_shuttle.moving_status != SHUTTLE_INTRANSIT || !linked_shuttle.transit_gun_mission)
 		fail = TRUE
-
+*/
 	if(fail)
 		if(linked_stretcher)
 			linked_stretcher.linked_medevac = null

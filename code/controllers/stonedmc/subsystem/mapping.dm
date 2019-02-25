@@ -48,6 +48,7 @@ SUBSYSTEM_DEF(mapping)
 	preloadTemplates()
 	// Set up Z-level transitions.
 	generate_station_area_list()
+	initialize_reserved_level()
 	return ..()
 
 /datum/controller/subsystem/mapping/proc/wipe_reservations(wipe_safety_delay = 100)
@@ -161,13 +162,6 @@ SUBSYSTEM_DEF(mapping)
 	INIT_ANNOUNCE("Loading [CONFIG_GET(string/ship_name)]...")
 	LoadGroup(FailedZs, CONFIG_GET(string/ship_name), theseus.map_path, theseus.map_file, theseus.traits, ZTRAITS_MAIN_SHIP)
 
-	var/datum/map_config/low_orbit = new
-	low_orbit.LoadConfig("_maps/low_orbit.json")
-
-	INIT_ANNOUNCE("Loading Low Orbit...")
-	LoadGroup(FailedZs, "Low Orbit", low_orbit.map_path, low_orbit.map_file, low_orbit.traits, ZTRAITS_LOW_ORBIT)
-
-
 	if(SSdbcore.Connect())
 		var/datum/DBQuery/query_round_map_name = SSdbcore.NewQuery("UPDATE [format_table_name("round")] SET map_name = '[config.map_name]' WHERE id = [GLOB.round_id]")
 		query_round_map_name.Execute()
@@ -211,6 +205,53 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 		var/datum/map_template/T = new(path = "[path][map]", rename = "[map]")
 		map_templates[T.name] = T
 
+	preloadShuttleTemplates()
+
+/proc/generateMapList(filename)
+	. = list()
+	var/list/Lines = world.file2list(filename)
+
+	if(!Lines.len)
+		return
+	for (var/t in Lines)
+		if (!t)
+			continue
+
+		t = trim(t)
+		if (length(t) == 0)
+			continue
+		else if (copytext(t, 1, 2) == "#")
+			continue
+
+		var/pos = findtext(t, " ")
+		var/name = null
+
+		if (pos)
+			name = lowertext(copytext(t, 1, pos))
+
+		else
+			name = lowertext(t)
+
+		if (!name)
+			continue
+
+		. += t
+
+/datum/controller/subsystem/mapping/proc/preloadShuttleTemplates()
+	var/list/unbuyable = generateMapList("[global.config.directory]/unbuyableshuttles.txt")
+
+	for(var/item in subtypesof(/datum/map_template/shuttle))
+		var/datum/map_template/shuttle/shuttle_type = item
+		if(!(initial(shuttle_type.suffix)))
+			continue
+
+		var/datum/map_template/shuttle/S = new shuttle_type()
+		if(unbuyable.Find(S.mappath))
+			S.can_be_bought = FALSE
+
+		shuttle_templates[S.shuttle_id] = S
+		map_templates[S.shuttle_id] = S
+
 /datum/controller/subsystem/mapping/proc/RequestBlockReservation(width, height, z, type = /datum/turf_reservation, turf_type_override)
 	UNTIL(initialized && !clearing_reserved_turfs)
 	var/datum/turf_reservation/reserve = new type
@@ -233,6 +274,22 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 			if(reserve.Reserve(width, height, z))
 				return reserve
 	QDEL_NULL(reserve)
+
+//This is not for wiping reserved levels, use wipe_reservations() for that.
+/datum/controller/subsystem/mapping/proc/initialize_reserved_level()
+	UNTIL(!clearing_reserved_turfs)				//regardless, lets add a check just in case.
+	clearing_reserved_turfs = TRUE			//This operation will likely clear any existing reservations, so lets make sure nothing tries to make one while we're doing it.
+	for(var/i in levels_by_trait(ZTRAIT_RESERVED))
+		var/turf/A = get_turf(locate(SHUTTLE_TRANSIT_BORDER,SHUTTLE_TRANSIT_BORDER,i))
+		var/turf/B = get_turf(locate(world.maxx - SHUTTLE_TRANSIT_BORDER,world.maxy - SHUTTLE_TRANSIT_BORDER,i))
+		var/block = block(A, B)
+		for(var/t in block)
+			// No need to empty() these, because it's world init and they're
+			// already /turf/open/space/basic.
+			var/turf/T = t
+			T.flags_atom |= UNUSED_RESERVATION_TURF_1
+		unused_turfs["[i]"] = block
+	clearing_reserved_turfs = FALSE
 
 /datum/controller/subsystem/mapping/proc/reserve_turfs(list/turfs)
 	for(var/i in turfs)
