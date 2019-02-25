@@ -99,17 +99,17 @@
 		return
 	//Initial stealth
 	if(last_stealth > world.time - HUNTER_STEALTH_INITIAL_DELAY) //We don't start out at max invisibility
-		alpha = HUNTER_STEALTH_RUN_ALPHA //50% invisible
+		alpha = HUNTER_STEALTH_RUN_ALPHA
 		return
 	//Stationary stealth
 	else if(last_move_intent < world.time - HUNTER_STEALTH_STEALTH_DELAY) //If we're standing still for 4 seconds we become almost completely invisible
-		alpha = HUNTER_STEALTH_STILL_ALPHA //90% invisible
+		alpha = HUNTER_STEALTH_STILL_ALPHA
 	//Walking stealth
 	else if(m_intent == MOVE_INTENT_WALK)
-		alpha = HUNTER_STEALTH_WALK_ALPHA //85% invisible
+		alpha = HUNTER_STEALTH_WALK_ALPHA
 	//Running stealth
 	else
-		alpha = HUNTER_STEALTH_RUN_ALPHA //50% invisible
+		alpha = HUNTER_STEALTH_RUN_ALPHA
 	//If we have 0 plasma after expending stealth's upkeep plasma, end stealth.
 	if(!plasma_stored)
 		to_chat(src, "<span class='xenodanger'>You lack sufficient plasma to remain camouflaged.</span>")
