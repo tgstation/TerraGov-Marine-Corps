@@ -241,8 +241,21 @@
 	icon = 'icons/obj/doors/almayer/comdoor.dmi'
 	req_access_txt = "19"
 
-/obj/machinery/door/airlock/almayer/command/FCDR
+/obj/machinery/door/airlock/almayer/command/CPToffice
+	name = "\improper Captain's Office"
+
+/obj/machinery/door/airlock/almayer/command/CPTstudy
+	name = "\improper Captain's Study"
+	req_access = list(ACCESS_MARINE_CAPTAIN)
+
+/obj/machinery/door/airlock/almayer/command/CPTmess
+	name = "\improper Captain's Mess"
+
+/obj/machinery/door/airlock/almayer/command/FCDRoffice
 	name = "\improper Field Commander's Office"
+
+/obj/machinery/door/airlock/almayer/command/FCDRquarters
+	name = "\improper FCDR's Quarters"
 
 /obj/machinery/door/airlock/almayer/secure
 	name = "\improper Secure Airlock"
@@ -262,6 +275,10 @@
 	glass = 1
 	req_access_txt = "0"
 	req_one_access_txt = "2;7"
+
+/obj/machinery/door/airlock/almayer/engineering/CSEoffice
+	name = "\improper Chief Ship Engineer's Office"
+	req_access = list(ACCESS_MARINE_CE)
 
 /obj/machinery/door/airlock/almayer/medical
 	name = "\improper Medical Airlock"
