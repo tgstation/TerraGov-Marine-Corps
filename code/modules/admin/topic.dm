@@ -1261,7 +1261,7 @@
 
 		var/mob/sender = locate(href_list["faxcreate"])
 
-		var/dep = input("Who do you want to message?", "Fax Message") as null|anything in list("Corporate Liaison", "Combat Information Center", "Chief Military Police", "Research", "Brig",  "Warden")
+		var/dep = input("Who do you want to message?", "Fax Message") as null|anything in list("Corporate Liaison", "Combat Information Center", "Chief Military Police", "Brig", "Research", "Warden")
 		if(!dep)
 			return
 
