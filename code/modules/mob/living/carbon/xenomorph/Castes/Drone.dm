@@ -140,7 +140,7 @@
 	caste_base_type = /mob/living/carbon/Xenomorph/Drone
 	name = "Drone"
 	desc = "An Alien Drone"
-	icon = 'icons/Xeno/1x1_Xenos.dmi'
+	icon = 'icons/Xeno/48x48_Xenos.dmi'
 	icon_state = "Drone Walking"
 	health = 120
 	maxHealth = 120
@@ -148,8 +148,8 @@
 	tier = 1
 	upgrade = 0
 	speed = -0.8
-	pixel_x = 0
-	old_x = 0
+	pixel_x = -12
+	old_x = -12
 	pull_speed = -2
 	var/last_drone_sting = null
 	wound_type = "alien" //used to match appropriate wound overlays
