@@ -1,156 +1,159 @@
 //Costume spawner landmarks
-/obj/effect/landmark/costume/chicken/Initialize()
-	. = ..()
-	new /obj/item/clothing/suit/chickensuit(src.loc)
-	new /obj/item/clothing/head/chicken(src.loc)
-	new /obj/item/reagent_container/food/snacks/egg(src.loc)
-	return INITIALIZE_HINT_QDEL
+/obj/effect/landmark/itemspawner
+    var/list/items_to_spawn
 
-/obj/effect/landmark/costume/gladiator/Initialize()
-	. = ..()
-	new /obj/item/clothing/under/gladiator(src.loc)
-	new /obj/item/clothing/head/helmet/gladiator(src.loc)
-	return INITIALIZE_HINT_QDEL
 
-/obj/effect/landmark/costume/madscientist/Initialize()
-	. = ..()
-	new /obj/item/clothing/under/gimmick/rank/captain/suit(src.loc)
-	new /obj/item/clothing/head/flatcap(src.loc)
-	new /obj/item/clothing/suit/storage/labcoat/mad(src.loc)
-	new /obj/item/clothing/glasses/gglasses(src.loc)
-	return INITIALIZE_HINT_QDEL
+/obj/effect/landmark/itemspawner/Initialize()
+    for(var/path in items_to_spawn)
+        new path(loc)
+    . = INITIALIZE_HINT_QDEL
 
-/obj/effect/landmark/costume/elpresidente/Initialize()
-	. = ..()
-	new /obj/item/clothing/under/gimmick/rank/captain/suit(src.loc)
-	new /obj/item/clothing/head/flatcap(src.loc)
-	new /obj/item/clothing/mask/cigarette/cigar/havana(src.loc)
-	new /obj/item/clothing/shoes/jackboots(src.loc)
-	return INITIALIZE_HINT_QDEL
 
-/obj/effect/landmark/costume/nyangirl/Initialize()
-	. = ..()
-	new /obj/item/clothing/under/schoolgirl(src.loc)
-	new /obj/item/clothing/head/kitty(src.loc)
-	return INITIALIZE_HINT_QDEL
+/obj/effect/landmark/itemspawner/chicken
+	items_to_spawn = list(\
+	/obj/item/clothing/suit/chickensuit,\
+	/obj/item/clothing/head/chicken,\
+	/obj/item/reagent_container/food/snacks/egg)
 
-/obj/effect/landmark/costume/maid/Initialize()
-	. = ..()
-	new /obj/item/clothing/under/blackskirt(src.loc)
-	var/CHOICE = pick( /obj/item/clothing/head/beret , /obj/item/clothing/head/rabbitears )
-	new CHOICE(src.loc)
-	new /obj/item/clothing/glasses/sunglasses/blindfold(src.loc)
-	return INITIALIZE_HINT_QDEL
 
-/obj/effect/landmark/costume/butler/Initialize()
-	. = ..()
-	new /obj/item/clothing/suit/wcoat(src.loc)
-	new /obj/item/clothing/under/suit_jacket(src.loc)
-	new /obj/item/clothing/head/that(src.loc)
-	return INITIALIZE_HINT_QDEL
+/obj/effect/landmark/itemspawner/gladiator
+	items_to_spawn = list(\
+	/obj/item/clothing/under/gladiator,\
+	/obj/item/clothing/head/helmet/gladiator)
 
-/obj/effect/landmark/costume/scratch/Initialize()
-	. = ..()
-	new /obj/item/clothing/gloves/white(src.loc)
-	new /obj/item/clothing/shoes/white(src.loc)
-	new /obj/item/clothing/under/scratch(src.loc)
-	if (prob(30))
-		new /obj/item/clothing/head/cueball(src.loc)
-	return INITIALIZE_HINT_QDEL
 
-/obj/effect/landmark/costume/highlander/Initialize()
-	. = ..()
-	new /obj/item/clothing/under/kilt(src.loc)
-	new /obj/item/clothing/head/beret(src.loc)
-	return INITIALIZE_HINT_QDEL
+/obj/effect/landmark/itemspawner/madscientist
+	items_to_spawn = list(\
+	/obj/item/clothing/under/gimmick/rank/captain/suit,\
+	/obj/item/clothing/head/flatcap,\
+	/obj/item/clothing/suit/storage/labcoat/mad,\
+	/obj/item/clothing/glasses/gglasses)
 
-/obj/effect/landmark/costume/prig/Initialize()
-	. = ..()
-	new /obj/item/clothing/suit/wcoat(src.loc)
-	new /obj/item/clothing/glasses/monocle(src.loc)
-	var/CHOICE= pick( /obj/item/clothing/head/bowler, /obj/item/clothing/head/that)
-	new CHOICE(src.loc)
-	new /obj/item/clothing/shoes/black(src.loc)
-	new /obj/item/cane(src.loc)
-	new /obj/item/clothing/under/sl_suit(src.loc)
-	new /obj/item/clothing/mask/fakemoustache(src.loc)
-	return INITIALIZE_HINT_QDEL
 
-/obj/effect/landmark/costume/plaguedoctor/Initialize()
-	. = ..()
-	new /obj/item/clothing/suit/bio_suit/plaguedoctorsuit(src.loc)
-	new /obj/item/clothing/head/plaguedoctorhat(src.loc)
-	return INITIALIZE_HINT_QDEL
+/obj/effect/landmark/itemspawner/elpresidente
+	items_to_spawn = list(\
+	/obj/item/clothing/under/gimmick/rank/captain/suit,\
+	/obj/item/clothing/head/flatcap,\
+	/obj/item/clothing/mask/cigarette/cigar/havana,\
+	/obj/item/clothing/shoes/jackboots)
 
-/obj/effect/landmark/costume/nightowl/Initialize()
-	. = ..()
-	new /obj/item/clothing/under/owl(src.loc)
-	new /obj/item/clothing/mask/gas/owl_mask(src.loc)
-	return INITIALIZE_HINT_QDEL
 
-/obj/effect/landmark/costume/waiter/Initialize()
-	. = ..()
-	new /obj/item/clothing/under/waiter(src.loc)
-	var/CHOICE= pick( /obj/item/clothing/head/kitty, /obj/item/clothing/head/rabbitears)
-	new CHOICE(src.loc)
-	new /obj/item/clothing/suit/apron(src.loc)
-	return INITIALIZE_HINT_QDEL
+/obj/effect/landmark/itemspawner/nyangirl
+	items_to_spawn = list(\
+	/obj/item/clothing/under/schoolgirl,\
+	/obj/item/clothing/head/kitty)
 
-/obj/effect/landmark/costume/pirate/Initialize()
-	. = ..()
-	new /obj/item/clothing/under/pirate(src.loc)
-	new /obj/item/clothing/suit/pirate(src.loc)
-	var/CHOICE = pick( /obj/item/clothing/head/pirate , /obj/item/clothing/head/bandana )
-	new CHOICE(src.loc)
-	new /obj/item/clothing/glasses/eyepatch(src.loc)
-	return INITIALIZE_HINT_QDEL
 
-/obj/effect/landmark/costume/commie/Initialize()
-	. = ..()
-	new /obj/item/clothing/under/soviet(src.loc)
-	new /obj/item/clothing/head/ushanka(src.loc)
-	return INITIALIZE_HINT_QDEL
+/obj/effect/landmark/itemspawner/maid
+	items_to_spawn = list(\
+	/obj/item/clothing/under/blackskirt,\
+	/obj/item/clothing/head/rabbitears,\
+	/obj/item/clothing/glasses/sunglasses/blindfold)
 
-/obj/effect/landmark/costume/imperium_monk/Initialize()
-	. = ..()
-	new /obj/item/clothing/suit/imperium_monk(src.loc)
-	if (prob(25))
-		new /obj/item/clothing/mask/gas/cyborg(src.loc)
-	return INITIALIZE_HINT_QDEL
 
-/obj/effect/landmark/costume/holiday_priest/Initialize()
-	. = ..()
-	new /obj/item/clothing/suit/holidaypriest(src.loc)
-	return INITIALIZE_HINT_QDEL
+/obj/effect/landmark/itemspawner/butler/Initialize()
+	items_to_spawn = list(\
+	/obj/item/clothing/suit/wcoat,\
+	/obj/item/clothing/under/suit_jacket,\
+	/obj/item/clothing/head/that)
 
-/obj/effect/landmark/costume/marisawizard/fake/Initialize()
-	. = ..()
-	new /obj/item/clothing/head/wizard/marisa/fake(src.loc)
-	new/obj/item/clothing/suit/wizrobe/marisa/fake(src.loc)
-	return INITIALIZE_HINT_QDEL
 
-/obj/effect/landmark/costume/cutewitch/Initialize()
-	. = ..()
-	new /obj/item/clothing/under/sundress(src.loc)
-	new /obj/item/clothing/head/witchwig(src.loc)
-	new /obj/item/staff/broom(src.loc)
-	return INITIALIZE_HINT_QDEL
+/obj/effect/landmark/itemspawner/scratch/Initialize()
+	items_to_spawn = list(\
+	/obj/item/clothing/gloves/white,\
+	/obj/item/clothing/shoes/white,\
+	/obj/item/clothing/under/scratch,\
+	/obj/item/clothing/head/cueball)
 
-/obj/effect/landmark/costume/fakewizard/Initialize()
-	. = ..()
-	new /obj/item/clothing/suit/wizrobe/fake(src.loc)
-	new /obj/item/clothing/head/wizard/fake(src.loc)
-	new /obj/item/staff/(src.loc)
-	return INITIALIZE_HINT_QDEL
 
-/obj/effect/landmark/costume/sexyclown/Initialize()
-	. = ..()
-	new /obj/item/clothing/mask/gas/sexyclown(src.loc)
-	new /obj/item/clothing/under/sexyclown(src.loc)
-	return INITIALIZE_HINT_QDEL
+/obj/effect/landmark/itemspawner/highlander/Initialize()
+	items_to_spawn = list(\
+	/obj/item/clothing/under/kilt,\
+	/obj/item/clothing/head/beret)
 
-/obj/effect/landmark/costume/sexymime/Initialize()
-	. = ..()
-	new /obj/item/clothing/mask/gas/sexymime(src.loc)
-	new /obj/item/clothing/under/sexymime(src.loc)
-	return INITIALIZE_HINT_QDEL
+
+/obj/effect/landmark/itemspawner/prig/Initialize()
+	items_to_spawn = list(\
+	/obj/item/clothing/suit/wcoat,\
+	/obj/item/clothing/glasses/monocle,\
+	/obj/item/clothing/head/that,\
+	/obj/item/clothing/shoes/black,\
+	/obj/item/cane,\
+	/obj/item/clothing/under/sl_suit,\
+	/obj/item/clothing/mask/fakemoustache)
+
+
+/obj/effect/landmark/itemspawner/plaguedoctor/Initialize()
+	items_to_spawn = list(\
+	/obj/item/clothing/suit/bio_suit/plaguedoctorsuit,\
+	/obj/item/clothing/head/plaguedoctorhat)
+
+
+/obj/effect/landmark/itemspawner/nightowl/Initialize()
+	items_to_spawn = list(\
+	/obj/item/clothing/under/owl,\
+	/obj/item/clothing/mask/gas/owl_mask)
+
+
+/obj/effect/landmark/itemspawner/waiter/Initialize()
+	items_to_spawn = list(\
+	/obj/item/clothing/under/waiter,\
+	/obj/item/clothing/head/rabbitears,\
+	/obj/item/clothing/suit/apron)
+
+
+/obj/effect/landmark/itemspawner/pirate/Initialize()
+	items_to_spawn = list(\
+	/obj/item/clothing/under/pirate,\
+	/obj/item/clothing/suit/pirate,\
+	/obj/item/clothing/head/pirate,\
+	/obj/item/clothing/glasses/eyepatch)
+
+
+/obj/effect/landmark/itemspawner/commie/Initialize()
+	items_to_spawn = list(\
+	/obj/item/clothing/under/soviet,\
+	/obj/item/clothing/head/ushanka)
+
+
+/obj/effect/landmark/itemspawner/imperium_monk/Initialize()
+	items_to_spawn = list(\
+	/obj/item/clothing/suit/imperium_monk,\
+	/obj/item/clothing/mask/gas/cyborg)
+
+
+/obj/effect/landmark/itemspawner/holiday_priest/Initialize()
+	items_to_spawn = list(\
+	/obj/item/clothing/suit/holidaypriest)
+
+
+/obj/effect/landmark/itemspawner/marisawizard/fake/Initialize()
+	items_to_spawn = list(\
+	/obj/item/clothing/head/wizard/marisa/fake,\
+	/obj/item/clothing/suit/wizrobe/marisa/fake)
+
+
+/obj/effect/landmark/itemspawner/cutewitch/Initialize()
+	items_to_spawn = list(\
+	/obj/item/clothing/under/sundress,\
+	/obj/item/clothing/head/witchwig,\
+	/obj/item/staff/broom)
+
+
+/obj/effect/landmark/itemspawner/fakewizard/Initialize()
+	items_to_spawn = list(\
+	/obj/item/clothing/suit/wizrobe/fake,\
+	/obj/item/clothing/head/wizard/fake,\
+	/obj/item/staff)
+
+
+/obj/effect/landmark/itemspawner/sexyclown/Initialize()
+	items_to_spawn = list(\
+	/obj/item/clothing/mask/gas/sexyclown,\
+	/obj/item/clothing/under/sexyclown)
+
+
+/obj/effect/landmark/itemspawner/sexymime/Initialize()
+	items_to_spawn = list(\
+	/obj/item/clothing/mask/gas/sexymime,\
+	/obj/item/clothing/under/sexymime)
