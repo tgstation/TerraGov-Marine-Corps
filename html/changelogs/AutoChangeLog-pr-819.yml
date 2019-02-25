@@ -1,0 +1,6 @@
+author: "by Surrealistik"
+delete-after: True
+changes: 
+  - balance: "Hunter max stealth transparency reduced from 95% to 90%. Subject to tweaking."
+  - balance: "Hunter sneak attack damage multipliers halved while on run intent, unless stationary for 2+ seconds."
+  - bugfix: "Being on fire removes stealth."
