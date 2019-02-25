@@ -1071,13 +1071,9 @@
 		to_chat(src, "<span class='warning'>You need to be closer to [target].</span>")
 		return
 
-	if(!(target.plasma_stored))
-		to_chat(src, "<span class='notice'>[target] doesn't have any [energy] left to salvage.</span>")
-		return
-
 	to_chat(src, "<span class='notice'>You start salvaging [energy] from [target].</span>")
 
-	while(target.plasma_stored && plasma_stored >= xeno_caste.plasma_max)
+	while(target.plasma_stored || target.upgrade_stored || target.evolution_stored)
 		if(!do_after(src, salvage_delay, TRUE, 5, BUSY_ICON_HOSTILE) || !check_state())
 			break
 
@@ -1096,10 +1092,30 @@
 		if(target.plasma_stored < amount)
 			amount = target.plasma_stored //Just take it all.
 
-		var/absorbed_amount = round(amount * PLASMA_SALVAGE_MULTIPLIER)
+		var/absorbed_plasma = round(amount * PLASMA_SALVAGE_MULTIPLIER)
+		var/absorbed_evolution = round(target.evolution_stored * DRONE_SALVAGE_EVOLUTION_MULTIPLIER)
+		var/absorbed_upgrade = round(target.upgrade_stored * DRONE_SALVAGE_UPGRADE_MULTIPLIER)
 		target.use_plasma(amount)
-		gain_plasma(absorbed_amount)
-		to_chat(src, "<span class='xenowarning'>You salvage [absorbed_amount] units of [energy] from [target]. You have [plasma_stored]/[xeno_caste.plasma_max] stored now.</span>")
+		gain_plasma(absorbed_plasma)
+
+		var/list/hive_list = list()
+		for(var/mob/living/carbon/Xenomorph/X in GLOB.alive_xeno_list)
+			if(istype(src)) // cover calling it without parameters
+				if(X.hivenumber != hivenumber)
+					continue // not our hive
+			hive_list.Add(X)
+
+		absorbed_evolution = absorbed_evolution / min(1,length(hive_list))
+		absorbed_upgrade = absorbed_upgrade / min(1,length(hive_list))
+		for(var/mob/living/carbon/Xenomorph/X in hive_list)
+			X.upgrade_stored = min(X.xeno_caste.upgrade_threshold, X.upgrade_stored + absorbed_upgrade)
+			X.evolution_stored = min(X.xeno_caste.evolution_threshold, X.evolution_stored + absorbed_evolution)
+			to_chat(X, "<span class='xenowarning'>You are empowered by [src]'s contribution to the Hivemind, gaining [absorbed_upgrade] upgrade points and [absorbed_evolution] evolution points. You now have [X.upgrade_stored]/[X.xeno_caste.upgrade_threshold] upgrade points and [X.evolution_stored]/[X.xeno_caste.evolution_threshold] points.</span>")
+			playsound(src, 'sound/effects/xeno_newlarva.ogg', 15, 0, 1)
+
+		to_chat(src, "<span class='xenowarning'>You salvage [absorbed_plasma] units of [energy] from [target]. You have [plasma_stored]/[xeno_caste.plasma_max] stored now.</span>")
+		target.gib()
+
 		if(prob(50))
 			playsound(src, "alien_drool", 25)
 

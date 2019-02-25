@@ -453,7 +453,7 @@
 	max_range = 7
 
 /datum/action/xeno_action/activable/salvage_plasma
-	name = "Salvage Plasma"
+	name = "Salvage Essence"
 	action_icon_state = "salvage_plasma"
 	ability_name = "salvage plasma"
 	var/plasma_salvage_amount = PLASMA_SALVAGE_AMOUNT
