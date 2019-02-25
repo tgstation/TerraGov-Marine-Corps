@@ -27,6 +27,11 @@
 
 	var/const/mob_size = 15
 
+/obj/structure/closet/open
+	icon_state = "open"
+	density = FALSE
+	opened = TRUE
+
 /obj/structure/closet/Initialize()
 	. = ..()
 	if(!opened)		// if closed, any item at the crate's loc is put in the contents

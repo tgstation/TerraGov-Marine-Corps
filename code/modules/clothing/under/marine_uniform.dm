@@ -1,6 +1,6 @@
 
-//=========================//MARINES\\===================================\\
-//=======================================================================\\
+//=========================//MARINES\\===================================
+
 
 
 /obj/item/clothing/under/marine
@@ -66,7 +66,7 @@
 */
 
 /obj/item/clothing/under/marine/mp
-	name = "military police jumpsuit"
+	name = "military police uniform"
 	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented military police uniform. You suspect it's not as robust-proof as advertised."
 	icon_state = "MP_jumpsuit"
 	rollable_sleeves = FALSE
@@ -166,8 +166,8 @@
 	icon_state = "marine_whites" //with thanks to Manezinho
 	rollable_sleeves = FALSE
 
-//=========================//RESPONDERS\\================================\\
-//=======================================================================\\
+//=========================//RESPONDERS\\================================
+
 
 /obj/item/clothing/under/marine/veteran
 	rollable_sleeves = FALSE
@@ -230,8 +230,7 @@
 /obj/item/clothing/under/marine/veteran/dutch/ranger
 	icon_state = "dutch_jumpsuit2"
 
-//===========================//HELGHAST - MERCENARY\\================================\\
-//=====================================================================\\
+//===========================//HELGHAST - MERCENARY\\================================
 
 /obj/item/clothing/under/marine/veteran/mercenary
 	name = "mercenary fatigues"
@@ -311,7 +310,7 @@
 	rollable_sleeves = FALSE
 
 /obj/item/clothing/under/rank/ro_suit
-	name = "requisition officer suit."
+	name = "requisition officer suit"
 	desc = "A nicely-fitting, kevlar-weaved, hazmat-tested, EMF-augmented requisition officer suit. You suspect it's not as robust-proof as advertised."
 	icon_state = "RO_jumpsuit"
 	rollable_sleeves = FALSE

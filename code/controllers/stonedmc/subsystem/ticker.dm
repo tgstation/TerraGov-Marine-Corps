@@ -110,6 +110,8 @@ SUBSYSTEM_DEF(ticker)
 				GLOB.ooc_allowed = TRUE
 				GLOB.dooc_allowed = TRUE
 				mode.declare_completion(force_ending)
+				addtimer(CALLBACK(SSvote, /datum/controller/subsystem/vote.proc/initiate_vote, "map", "SERVER"), 15 SECONDS)
+				addtimer(CALLBACK(src, .proc/Reboot), 16 SECONDS)
 				Master.SetRunLevel(RUNLEVEL_POSTGAME)
 
 
@@ -268,7 +270,7 @@ SUBSYSTEM_DEF(ticker)
 		if(istype(player) && player.mind && player.mind.assigned_role)
 			if(player.mind.assigned_role == "Commander")
 				captainless = FALSE
-			if(player.mind.assigned_role != player.mind.special_role)
+			if(player.mind.assigned_role)
 				SSjob.EquipRank(N, player.mind.assigned_role, 0)
 		CHECK_TICK
 	if(captainless)
@@ -405,21 +407,22 @@ SUBSYSTEM_DEF(ticker)
 
 	var/skip_delay = check_rights()
 	if(delay_end && !skip_delay)
-		to_chat(world, "<span class='boldannounce'>An admin has delayed the round end.</span>")
+		to_chat(world, "<span class='boldnotice'>An admin has delayed the round end.</span>")
 		return
 
-	to_chat(world, "<span class='boldannounce'>Rebooting World in [DisplayTimeText(delay)]. [reason]</span>")
+	to_chat(world, "<span class='boldnotice'>Rebooting World in [DisplayTimeText(delay)]. [reason]</span>")
 
 	var/start_wait = world.time
 	UNTIL(round_end_sound_sent || (world.time - start_wait) > (delay * 2))	//don't wait forever
 	sleep(delay - (world.time - start_wait))
 
 	if(delay_end && !skip_delay)
-		to_chat(world, "<span class='boldannounce'>Reboot was cancelled by an admin.</span>")
+		to_chat(world, "<span class='boldnotice'>Reboot was cancelled by an admin.</span>")
 		return
 	if(end_string)
 		end_state = end_string
 
-	log_game("<span class='boldannounce'>Rebooting World. [reason]</span>")
+	log_game("<span class='boldnotice'>Rebooting World. [reason]</span>")
+	to_chat(world, "<span class='boldnotice'>Rebooting...</span>")
 
-	world.Reboot()
+	world.Reboot(TRUE)

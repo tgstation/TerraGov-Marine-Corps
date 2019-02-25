@@ -198,9 +198,11 @@
 				else
 		else
 			dat += text("<A href='?src=\ref[];choice=Log In'>{Log In}</A>", src)
-	user << browse(text("<HEAD><TITLE>Security Records</TITLE></HEAD><TT>[]</TT>", dat), "window=secure_rec;size=600x400")
+
+	var/datum/browser/popup = new(user, "secure_rec", "<div align='center'>Security Records</div>", 600, 400)
+	popup.set_content(dat)
+	popup.open(FALSE)
 	onclose(user, "secure_rec")
-	return
 
 /*Revised /N
 I can't be bothered to look more of the actual code outside of switch but that probably needs revising too.

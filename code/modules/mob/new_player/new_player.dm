@@ -14,14 +14,14 @@
 	var/mob/living/new_character	//for instant transfer once the round is set up
 
 
-/mob/new_player/New()
-	GLOB.mob_list += src
+/mob/new_player/Initialize()
 	GLOB.total_players++
+	return ..()
 
 
-/mob/new_player/Del()
-	GLOB.mob_list -= src
+/mob/new_player/Destroy()
 	GLOB.total_players--
+	return ..()
 
 
 /mob/new_player/proc/version_check()
@@ -30,27 +30,29 @@
 		Direct Download (Windows Installer): http://www.byond.com/download/build/[world.byond_version]/[world.byond_version].[world.byond_build]_byond.exe <br> \
 		Other versions (search for [world.byond_build] or higher): http://www.byond.com/download/build/[world.byond_version]</span>")
 
-		del(client)
+		qdel(client)
 
 
 /mob/new_player/proc/new_player_panel()
-	var/output = "<div align='center'><B>New Player Options</B>"
-	output +="<hr>"
-	output += "<p><a href='byond://?src=\ref[src];lobby_choice=show_preferences'>Setup Character</A></p>"
+	var/output = "<div align='center'>"
+	output += "<p><a href='byond://?src=[REF(src)];lobby_choice=show_preferences'>Setup Character</A></p>"
 
 	if(!SSticker?.mode || SSticker.current_state <= GAME_STATE_PREGAME)
-		output += "<p>\[ [ready? "<b>Ready</b>":"<a href='byond://?src=\ref[src];lobby_choice=ready'>Ready</a>"] | [ready? "<a href='byond://?src=\ref[src];lobby_choice=ready'>Not Ready</a>":"<b>Not Ready</b>"] \]</p>"
+		output += "<p>\[ [ready? "<b>Ready</b>":"<a href='byond://?src=\ref[src];lobby_choice=ready'>Ready</a>"] | [ready? "<a href='byond://?src=[REF(src)];lobby_choice=ready'>Not Ready</a>":"<b>Not Ready</b>"] \]</p>"
 
 	else
-		output += "<a href='byond://?src=\ref[src];lobby_choice=manifest'>View the Crew Manifest</A><br><br>"
-		output += "<p><a href='byond://?src=\ref[src];lobby_choice=late_join'>Join the TGMC!</A></p>"
-		output += "<p><a href='byond://?src=\ref[src];lobby_choice=late_join_xeno'>Join the Hive!</A></p>"
+		output += "<a href='byond://?src=[REF(src)];lobby_choice=manifest'>View the Crew Manifest</A><br><br>"
+		output += "<p><a href='byond://?src=[REF(src)];lobby_choice=late_join'>Join the TGMC!</A></p>"
+		output += "<p><a href='byond://?src=[REF(src)];lobby_choice=late_join_xeno'>Join the Hive!</A></p>"
 
-	output += "<p><a href='byond://?src=\ref[src];lobby_choice=observe'>Observe</A></p>"
+	output += "<p><a href='byond://?src=[REF(src)];lobby_choice=observe'>Observe</A></p>"
 
 	output += "</div>"
 
-	src << browse(output,"window=playersetup;size=240x300;can_close=0")
+	var/datum/browser/popup = new(src, "playersetup", "<div align='center'>New Player Options</div>", 240, 300)
+	popup.set_window_options("can_close=0")
+	popup.set_content(output)
+	popup.open(FALSE)
 
 
 /mob/new_player/Stat()
@@ -123,21 +125,24 @@
 
 				observer.timeofdeath = world.time
 
-				client.prefs.update_preview_icon()
-				observer.icon = client.prefs.preview_icon
 				observer.alpha = 127
 
 				var/datum/species/species = GLOB.all_species[client.prefs.species] || GLOB.all_species[DEFAULT_SPECIES]
 
-				if(client.prefs.be_random_name)
-					client.prefs.real_name = species.random_name(client.prefs.gender)
+				if(client.prefs)
+					if(client.prefs.random_name)
+						client.prefs.real_name = species.random_name(client.prefs.gender)
+					else
+						observer.real_name = client.prefs.real_name
+				else
+					if(gender == FEMALE)
+						observer.real_name = capitalize(pick(first_names_female)) + " " + capitalize(pick(last_names))
+					else
+						observer.real_name = capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
 
-				observer.real_name = client.prefs.real_name
 				observer.name = observer.real_name
-				observer.key = key
 
-				if(observer.client)
-					observer.client.change_view(world.view)
+				mind.transfer_to(observer, TRUE)
 				qdel(src)
 
 
@@ -209,12 +214,12 @@
 		to_chat(usr, "<span class='warning'>Spawning currently disabled, please observe.<spawn>")
 		return
 
-	close_spawn_windows()
-	spawning = TRUE
-
 	if(!SSjob.AssignRole(src, rank, TRUE))
 		to_chat(usr, "<span class='warning'>Failed to assign selected role.<spawn>")
 		return
+
+	close_spawn_windows()
+	spawning = TRUE
 
 	var/mob/living/character = create_character(TRUE)	//creates the human and transfers vars and mind
 	var/equip = SSjob.EquipRank(character, rank, TRUE)
@@ -225,8 +230,6 @@
 
 	if(job && !job.override_latejoin_spawn(character))
 		SSjob.SendToLateJoin(character)
-
-	EquipCustomItems(character)
 
 	data_core.manifest_inject(character)
 	SSticker.minds += character.mind

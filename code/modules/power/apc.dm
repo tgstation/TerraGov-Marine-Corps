@@ -111,6 +111,13 @@
 	var/global/list/status_overlays_environ
 	var/obj/item/circuitboard/apc/electronics = null
 
+// mapping helpers
+/obj/machinery/power/apc/drained
+	start_charge = 0
+
+/obj/machinery/power/apc/supercharged
+	start_charge = 200
+
 /proc/RandomAPCWires()
 	//To make this not randomize the wires, just set index to 1 and increment it in the flag for loop (after doing everything else).
 	var/list/apcwires = list(0, 0, 0, 0)
@@ -730,7 +737,7 @@
 		return
 	user.set_interaction(src)
 	if(panel_open /*&& !issiicon(user)*/) //Commented out the typecheck to allow engiborgs to repair damaged apcs.
-		var/t1 = text("<html><head><title>[area.name] APC wires</title></head><body><B>Access Panel</B><br>\n")
+		var/t1 = text("<B>Access Panel</B><br>\n")
 
 		for(var/wiredesc in apcwirelist)
 			var/is_uncut = src.apcwires & APCWireColorToFlag[apcwirelist[wiredesc]]
@@ -743,7 +750,10 @@
 			t1 += "<br>"
 		t1 += text("<br>\n[(src.locked ? "The APC is locked." : "The APC is unlocked.")]<br>\n[(shorted ? "The APC's power has been shorted." : "The APC is working properly!")]<br>\n[(src.aidisabled ? "The 'AI control allowed' light is off." : "The 'AI control allowed' light is on.")]")
 		t1 += text("<p><a href='?src=\ref[src];close2=1'>Close</a></p></body></html>")
-		user << browse(t1, "window=apcwires")
+
+		var/datum/browser/popup = new(user, "apcwires", "<div align='center'>[area.name] APC wires</div>")
+		popup.set_content(t1)
+		popup.open(FALSE)
 		onclose(user, "apcwires")
 
 	//Open the APC NanoUI
@@ -954,33 +964,33 @@
 /obj/machinery/power/apc/Topic(href, href_list, var/usingUI = 1)
 	if(!(iscyborg(usr) && (href_list["apcwires"] || href_list["pulse"])))
 		if(!can_use(usr, 1))
-			return 0
+			return FALSE
 	add_fingerprint(usr)
-	if(ishuman(usr) && usr.mind && usr.mind.cm_skills && usr.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-		usr.visible_message("<span class='notice'>[usr] fumbles around figuring out how to use [src]'s interface.</span>",
-		"<span class='notice'>You fumble around figuring out how to use [src]'s interface.</span>")
-		var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - usr.mind.cm_skills.engineer )
-		if(!do_after(usr, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
 
 	if(href_list["apcwires"])
 		var/t1 = text2num(href_list["apcwires"])
 		if(!iswirecutter(usr.get_active_held_item()))
 			to_chat(usr, "<span class='warning'>You need wirecutters!</span>")
-			return 0
+			return FALSE
+		if(!skillcheck(usr))
+			return FALSE
 		if(isWireColorCut(t1))
 			mend(t1)
 		else
 			cut(t1)
+
 	else if(href_list["pulse"])
 		var/t1 = text2num(href_list["pulse"])
 		if(!ismultitool(usr.get_active_held_item()))
 			to_chat(usr, "<span class='warning'>You need a multitool!</span>")
-			return 0
+			return FALSE
 		if(isWireColorCut(t1))
 			to_chat(usr, "<span class='warning'>You can't pulse a cut wire.</span>")
-			return 0
-		else
+			return FALSE
+		else  if(!skillcheck(usr))
+			return FALSE
 			pulse(t1)
+
 	else if(href_list["lock"])
 		coverlocked = !coverlocked
 
@@ -997,29 +1007,29 @@
 
 	else if(href_list["eqp"])
 		var/val = text2num(href_list["eqp"])
-		equipment = (val == 1) ? 0 : val
+		equipment = (val == TRUE) ? FALSE : val
 		update_icon()
 		update()
 
-	else if (href_list["lgt"])
+	else if(href_list["lgt"])
 		var/val = text2num(href_list["lgt"])
-		lighting = (val == 1) ? 0 : val
+		lighting = (val == TRUE) ? FALSE : val
 		update_icon()
 		update()
 
-	else if (href_list["env"])
+	else if(href_list["env"])
 		var/val = text2num(href_list["env"])
-		environ = (val == 1) ? 0 :val
+		environ = (val == TRUE) ? FALSE :val
 		update_icon()
 		update()
 
-	else if( href_list["close"] )
+	else if(href_list["close"])
 		nanomanager.close_user_uis(usr, src)
-		return 0
+		return FALSE
 
-	else if (href_list["close2"])
+	else if(href_list["close2"])
 		usr << browse(null, "window=apcwires")
-		return 0
+		return FALSE
 
 	else if(href_list["overload"])
 		if(issilicon(usr) && !aidisabled)
@@ -1028,7 +1038,8 @@
 	if(usingUI)
 		updateDialog()
 
-	return 1
+	return TRUE
+
 
 /obj/machinery/power/apc/proc/ion_act()
 	//intended to be a bit like an emag
@@ -1289,6 +1300,20 @@
 
 /obj/machinery/power/apc/can_terminal_dismantle()
 	. = opened ? TRUE : FALSE
+
+/obj/machinery/power/apc/proc/skillcheck(mob/user)
+	if(!ishuman(user))
+		return FALSE
+	var/mob/living/carbon/human/H = user
+	if(!H.mind)
+		return FALSE
+	if(H.mind.cm_skills && H.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+		H.visible_message("<span class='notice'>[H] fumbles around figuring out how to operate [src]'s interface.</span>",
+		"<span class='notice'>You fumble around figuring out how to operate [src]'s interface.</span>")
+		var/fumbling_time = 50 * (SKILL_ENGINEER_ENGI - H.mind.cm_skills.engineer)
+		if(!do_after(H, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+			return FALSE
+	return TRUE
 
 //------Various APCs ------//
 

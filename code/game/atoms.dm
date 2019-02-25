@@ -472,13 +472,12 @@ its easier to just keep the beam vertical.
 	if(!istype(fingerprintshidden, /list))
 		fingerprintshidden = list()
 
-	//skytodo
-	//A.fingerprints |= fingerprints            //detective
-	//A.fingerprintshidden |= fingerprintshidden    //admin
 	if(A.fingerprints && fingerprints)
-		A.fingerprints |= fingerprints.Copy()            //detective
+		A.fingerprints |= fingerprints.Copy()
 	if(A.fingerprintshidden && fingerprintshidden)
-		A.fingerprintshidden |= fingerprintshidden.Copy()    //admin	A.fingerprintslast = fingerprintslast
+		A.fingerprintshidden |= fingerprintshidden.Copy()
+	if(fingerprintslast)
+		A.fingerprintslast = fingerprintslast
 
 
 
@@ -708,8 +707,6 @@ Proc for attack log creation, because really why not
 /atom/vv_get_dropdown()
 	. = ..()
 	. += "---"
-	var/turf/curturf = get_turf(src)
-	if(curturf)
-		.["Jump to"] = "?_src_=holder;[HrefToken()];observecoordjump=1;X=[curturf.x];Y=[curturf.y];Z=[curturf.z]"
+	.["Jump to"] = "?_src_=vars;[HrefToken()];observecoordjump=1;X=[src.x];Y=[src.y];Z=[src.z]"
 	.["Modify Transform"] = "?_src_=vars;[HrefToken()];modtransform=[REF(src)]"
 	.["Add reagent"] = "?_src_=vars;[HrefToken()];addreagent=[REF(src)]"

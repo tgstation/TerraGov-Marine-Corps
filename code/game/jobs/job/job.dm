@@ -13,6 +13,7 @@
 
 	var/flag = NOFLAGS
 	var/department_flag = NOFLAGS
+	var/prefflag = NOFLAGS
 
 	var/spawn_positions = 0
 	var/total_positions = 0
@@ -34,9 +35,13 @@
 	var/display_order = JOB_DISPLAY_ORDER_DEFAULT
 
 
-/datum/job/proc/after_spawn(mob/living/L, mob/M, latejoin = FALSE)
-	//do actions on L but send messages to M as the key may not have been transferred_yet
-	return
+/datum/job/proc/after_spawn(mob/living/L, mob/M, latejoin = FALSE) //do actions on L but send messages to M as the key may not have been transferred_yet
+	if(!ishuman(L))
+		return
+	var/mob/living/carbon/human/H = L
+	var/obj/item/card/id/C = H.wear_id
+	if(istype(C) && H.mind?.initial_account)
+		C.associated_account_number = H.mind.initial_account.account_number
 
 
 /datum/job/proc/announce(mob/living/carbon/human/H)
@@ -61,6 +66,7 @@
 	if(H.mind)
 		var/datum/skills/L = new skills_type
 		H.mind.cm_skills = L
+		H.mind.comm_title = comm_title
 
 	H.job = title
 	H.faction = faction
@@ -155,6 +161,9 @@
 		C.paygrade = J.paygrade
 		C.update_label()
 		H.sec_hud_set_ID()
+
+		if(H.mind.initial_account)
+			C.associated_account_number = H.mind.initial_account.account_number
 
 	H.name = H.get_visible_name()
 	H.hud_set_squad()

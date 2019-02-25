@@ -1,6 +1,4 @@
-
-
-var/global/list/medal_awards = list()
+GLOBAL_LIST_EMPTY(medal_awards)
 
 
 /datum/recipient_awards
@@ -13,8 +11,6 @@ var/global/list/medal_awards = list()
 	medal_names = list()
 	medal_citations = list()
 	posthumous = list()
-
-
 
 
 /proc/give_medal_award(medal_location)
@@ -36,9 +32,9 @@ var/global/list/medal_awards = list()
 		if(M.real_name == chosen_recipient)
 			posthumous = 0
 			break
-	if(!medal_awards[chosen_recipient])
-		medal_awards[chosen_recipient] = new /datum/recipient_awards()
-	var/datum/recipient_awards/RA = medal_awards[chosen_recipient]
+	if(!GLOB.medal_awards[chosen_recipient])
+		GLOB.medal_awards[chosen_recipient] = new /datum/recipient_awards()
+	var/datum/recipient_awards/RA = GLOB.medal_awards[chosen_recipient]
 	RA.recipient_rank = recipient_rank
 	RA.medal_names += medal_type
 	RA.medal_citations += citation

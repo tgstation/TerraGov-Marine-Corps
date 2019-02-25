@@ -594,14 +594,14 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/M, alien)
 	scannable = TRUE
 
 /datum/reagent/medicine/peridaxon/on_mob_life(mob/living/M)
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		for(var/datum/internal_organ/I in H.internal_organs)
-			if(I.damage)
-				if(M.bodytemperature > 169 && I.damage > 5) //can only fix very minor organ damage outside of cryo
-					return
-				I.damage = max(I.damage - 1, 0)
-	return ..()
+    if(ishuman(M))
+        var/mob/living/carbon/human/H = M
+        for(var/datum/internal_organ/I in H.internal_organs)
+            if(I.damage)
+                if(M.bodytemperature > 169 && I.damage > 5)
+                    continue
+                I.heal_damage(1)                
+    return ..()
 
 /datum/reagent/medicine/peridaxon/overdose_process(mob/living/M, alien)
 	M.apply_damage(2, BRUTE)
@@ -660,17 +660,16 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/M, alien)
 	custom_metabolism = 0.05
 
 /datum/reagent/medicine/quickclot/on_mob_life(mob/living/M)
-	if(M.bodytemperature > 169) //only heals IB at cryogenic temperatures.
-		return
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		for(var/datum/limb/X in H.limbs)
-			for(var/datum/wound/W in X.wounds)
-				if(W.internal)
-					W.damage = max(0, W.damage - 1)
-					X.update_damages()
-					if (X.update_icon())
-						X.owner.UpdateDamageIcon(1)
+	if(!ishuman(M) || M.bodytemperature > 169) //only heals IB at cryogenic temperatures.
+		return ..()
+	var/mob/living/carbon/human/H = M
+	for(var/datum/limb/X in H.limbs)
+		for(var/datum/wound/W in X.wounds)
+			if(W.internal)
+				W.damage = max(0, W.damage - 1)
+				X.update_damages()
+				if (X.update_icon())
+					X.owner.UpdateDamageIcon(1)
 	return ..()
 
 
@@ -723,7 +722,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/M, alien)
 
 /datum/reagent/medicine/hyperzine/on_mob_life(mob/living/M)
 	M.reagent_move_delay_modifier -= min(2.5, volume * 0.5)
-	M.nutrition -= 3 * REM * volume //Body burns through energy fast
+	M.nutrition = max(M.nutrition-(3 * REM * volume), 0) //Body burns through energy fast (also can't go under 0 nutrition)
 	if(prob(1))
 		M.emote(pick("twitch","blink_r","shiver"))
 		if(ishuman(M))

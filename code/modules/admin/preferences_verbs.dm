@@ -80,3 +80,23 @@
 	usr.client.prefs.load_preferences()
 	usr.client.prefs.ooccolor = new_ooccolor
 	usr.client.prefs.save_preferences()
+
+
+/datum/admins/proc/toggle_prayers()
+	set category = "Preferences"
+	set name = "Toggle Prayers"
+
+	usr.client.prefs.toggles_chat ^= CHAT_PRAYER
+	usr.client.prefs.save_preferences()
+
+	to_chat(src, "<span class='notice'>You will [(usr.client.prefs.toggles_chat & CHAT_PRAYER) ? "now" : "no longer"] see prayerchat.</span>")
+
+
+/datum/admins/proc/toggle_adminhelp_sound()
+	set category = "Preferences"
+	set name = "Toggle Adminhelp Sound"
+
+	usr.client.prefs.toggles_sound ^= SOUND_ADMINHELP
+	usr.client.prefs.save_preferences()
+
+	to_chat(usr, "<span class='notice'>You will [(usr.client.prefs.toggles_sound & SOUND_ADMINHELP) ? "now" : "no longer"] hear a sound when adminhelps arrive.</span>")

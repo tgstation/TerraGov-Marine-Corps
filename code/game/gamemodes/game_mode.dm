@@ -168,7 +168,6 @@
 		if(BE_ALIEN)		roletext = "Alien"
 		if(BE_QUEEN)		roletext = "Queen"
 		if(BE_SURVIVOR)		roletext = "Survivor"
-		if(BE_PREDATOR)		roletext = "Predator"
 		if(BE_SQUAD_STRICT)	roletext = "Prefer squad over role"
 
 	//Assemble a list of active players without jobbans.
@@ -186,16 +185,6 @@
 			log_game("[player.key] had [roletext] enabled, so we are drafting them.")
 			candidates += player.mind
 			players -= player
-
-	//If we don't have enough antags, draft people who voted for the round.
-	if(candidates.len < recommended_enemies)
-		for(var/key in round_voters)
-			for(var/mob/new_player/player in players)
-				if(player.ckey == key)
-					log_game("[player.key] voted for this round, so we are drafting them.")
-					candidates += player.mind
-					players -= player
-					break
 
 	//Remove candidates who want to be antagonist but have a job that precludes it
 	if(restricted_jobs)
@@ -255,8 +244,8 @@
 
 
 /datum/game_mode/New()
-	if(!GLOB.map_tag)
-		to_chat(world, "MT001: No mapping tag set, tell a coder. [GLOB.map_tag]")
+	if(!SSmapping.config.map_name)
+		to_chat(world, "MT001: No mapping tag set, tell a coder. [SSmapping.config.map_name]")
 	initialize_emergency_calls()
 
 
@@ -320,9 +309,7 @@
 
 	var/role
 
-	if(player.special_role)
-		role = player.special_role
-	else if(player.assigned_role)
+	if(player.assigned_role)
 		role = player.assigned_role
 	else
 		role = "Unassigned"

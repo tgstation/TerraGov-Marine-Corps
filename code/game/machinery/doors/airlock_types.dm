@@ -550,3 +550,53 @@
 
 /obj/machinery/door/airlock/prison/horizontal
 	dir = 2
+
+
+//Colony Mapped Doors
+/obj/machinery/door/airlock/colony
+
+
+/obj/machinery/door/airlock/colony/engineering
+	icon = 'icons/obj/doors/almayer/engidoor.dmi'
+	opacity = FALSE
+	glass = TRUE
+	req_access = list(ACCESS_CIVILIAN_ENGINEERING)
+
+/obj/machinery/door/airlock/colony/engineering/smes
+	name = "\improper Engineering Dome SMES"
+
+/obj/machinery/door/airlock/colony/engineering/nexusstorage
+	name = "\improper Nexus Cargo Storage"
+
+/obj/machinery/door/airlock/colony/engineering/nexusstorage/open
+	icon_state = "door_open"
+	density = FALSE
+
+
+/obj/machinery/door/airlock/colony/medical
+	icon = 'icons/obj/doors/almayer/medidoor_glass.dmi'
+	opacity = FALSE
+	glass = TRUE
+	req_access = list(ACCESS_CIVILIAN_MEDICAL)
+
+/obj/machinery/door/airlock/colony/medical/domestorage
+	name = "\improper Medical Dome Storage"
+
+/obj/machinery/door/airlock/colony/medical/domesurgery
+	name = "\improper Medical Dome Surgery"
+
+/obj/machinery/door/airlock/colony/medical/domelockers
+	name = "\improper Medical Dome Lockers"
+
+/obj/machinery/door/airlock/colony/medical/hydroponics
+	name = "\improper Hydroponics Dome"
+	req_access = list(ACCESS_CIVILIAN_PUBLIC)
+
+
+/obj/machinery/door/airlock/colony/research
+	icon = 'icons/obj/doors/almayer/medidoor.dmi'
+	req_access = list(ACCESS_CIVILIAN_RESEARCH)
+
+/obj/machinery/door/airlock/colony/research/dome
+	name = "\improper Research Dome"
+	locked = TRUE

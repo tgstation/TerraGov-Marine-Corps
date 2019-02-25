@@ -118,7 +118,7 @@ Administrative related.
 	config_entry_value = 180
 
 /datum/config_entry/number/round_end_countdown
-	config_entry_value = 180
+	config_entry_value = 120
 
 /*
 Voting
@@ -126,6 +126,10 @@ Voting
 /datum/config_entry/flag/allow_vote_restart
 
 /datum/config_entry/flag/allow_vote_mode
+
+/datum/config_entry/flag/default_no_vote
+
+/datum/config_entry/flag/no_dead_vote
 
 /datum/config_entry/number/vote_delay	// Minimum time between voting sessions. (deciseconds, 10 minute default)
 	config_entry_value = 6000
@@ -250,3 +254,10 @@ Legacy - work on reworking/removing these.
 /datum/config_entry/flag/usealienwhitelist
 
 /datum/config_entry/flag/load_legacy_ranks_only
+
+/datum/config_entry/flag/allow_shutdown
+	protection = CONFIG_ENTRY_LOCKED
+
+/datum/config_entry/string/tgs3_commandline_path
+	protection = CONFIG_ENTRY_LOCKED | CONFIG_ENTRY_HIDDEN
+	config_entry_value = "C:\\Program Files (x86)\\TG Station Server\\TGCommandLine.exe"

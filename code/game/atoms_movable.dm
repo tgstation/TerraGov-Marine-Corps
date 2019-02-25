@@ -406,3 +406,4 @@
 	. += "---"
 	.["Get"] = "?_src_=vars;[HrefToken()];getatom=[REF(src)]"
 	.["Send"] = "?_src_=vars;[HrefToken()];sendatom=[REF(src)]"
+	.["Delete All Instances"] = "?_src_=vars;[HrefToken()];delall=[REF(src)]"

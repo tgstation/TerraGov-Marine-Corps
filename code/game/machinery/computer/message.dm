@@ -90,7 +90,7 @@
 	//If the computer is being hacked or is emagged, display the reboot message.
 	if(hacking || emag)
 		message = rebootmsg
-	var/dat = "<head><title>Message Monitor Console</title></head><body>"
+	var/dat
 	dat += "<center><h2>Message Monitor Console</h2></center><hr>"
 	dat += "<center><h4><font color='blue'[message]</h5></center>"
 
@@ -127,11 +127,8 @@
 			else
 				for(var/n = ++i; n <= optioncount; n++)
 					dat += "<dd><font color='blue'>&#09;[n]. ---------------</font><br></dd>"
-			if((isAI(user) || iscyborg(user)) && user.mind.special_role)
-				//Malf/Traitor AIs can bruteforce into the system to gain the Key.
-				dat += "<dd><A href='?src=\ref[src];hack=1'><i><font color='Red'>*&@#. Bruteforce Key</font></i></font></a><br></dd>"
-			else
-				dat += "<br>"
+
+			dat += "<br>"
 
 			//Bottom message
 			if(!auth)
@@ -256,11 +253,11 @@
 				dat += "<a href='?src=\ref[src];addtoken=1'>Add token</a><br>"
 
 
-	dat += "</body>"
-	message = defaultmsg
-	user << browse(dat, "window=message;size=700x700")
+	var/datum/browser/popup = new(user, "message", "<div align='center'>Message Monitor Console</div>", 700, 700)
+	popup.set_content(dat)
+	popup.open(FALSE)
 	onclose(user, "message")
-	return
+
 
 /obj/machinery/computer/message_monitor/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
@@ -363,17 +360,6 @@
 							message = "<span class='notice'>NOTICE: Decryption key set.</span>"
 						else
 							message = incorrectkey
-
-		//Hack the Console to get the password
-		if (href_list["hack"])
-			if((isAI(usr) || iscyborg(usr)) && usr.mind.special_role)
-				src.hacking = 1
-				src.screen = 2
-				src.icon_state = hack_icon
-				//Time it takes to bruteforce is dependant on the password length.
-				spawn(100*length(src.linkedServer.decryptkey))
-					if(src && src.linkedServer && usr)
-						BruteForce(usr)
 		//Delete the log.
 		if (href_list["delete"])
 			//Are they on the view logs screen?

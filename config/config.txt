@@ -21,6 +21,17 @@ HUBPASSWORD kMZy3U5jJHSiBQjr
 ## Add a # infront of this if you want to use the SQL based admin system, the legacy system uses admins.txt. You need to set up your database to use the SQL based system.
 ADMIN_LEGACY_SYSTEM
 
+## Add a # infront of this to disable the shutdown server verb.
+ALLOW_SHUTDOWN
+
+## If you use /tg/station-server 3 and you want to allow the shutdown server verb, 
+##	the server needs to be able to tell tgs3 that the shutdown is not a crash.
+## This should be the path to the TGCommandLine.exe program in your tgstation-server install.
+## Defaults to C:\Program Files (x86)\TG Station Server\TGCommandLine.exe if not set.
+## 32 bit OS users use: C:\Program Files\TG Station Server\TGCommandLine.exe
+#TGS3_COMMANDLINE_PATH
+
+
 ## Add a # infront of this if you want to use the SQL based banning system. The legacy systems use the files in the data folder. You need to set up your database to use the SQL based system.
 BAN_LEGACY_SYSTEM
 

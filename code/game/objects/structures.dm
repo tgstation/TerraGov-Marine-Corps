@@ -10,7 +10,6 @@
 	var/damage = 0
 	var/damage_cap = 500 //The point where things start breaking down.
 
-
 /obj/structure/New()
 	..()
 	GLOB.structure_list += src
@@ -44,7 +43,7 @@
 			return
 		if(do_after(user, P.calc_delay(user), TRUE, 5, BUSY_ICON_HOSTILE) && P)
 			P.cut_apart(user, name, src)
-			qdel()
+			qdel(src)
 		return
 
 //Default "structure" proc. This should be overwritten by sub procs.

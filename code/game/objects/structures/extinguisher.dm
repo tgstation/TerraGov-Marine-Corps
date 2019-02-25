@@ -8,6 +8,15 @@
 	var/obj/item/tool/extinguisher/has_extinguisher = new/obj/item/tool/extinguisher
 	var/opened = 0
 
+/obj/structure/extinguisher_cabinet/Initialize()
+	. = ..()
+	switch(dir)
+		if(NORTH)
+			pixel_y = 30
+		if(SOUTH)
+			pixel_y = -30
+		if(WEST)
+			pixel_x = -32
 
 /obj/structure/extinguisher_cabinet/attackby(obj/item/O, mob/user)
 	if(iscyborg(user))
