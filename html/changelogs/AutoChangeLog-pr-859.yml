@@ -1,4 +1,0 @@
-author: "Shadow-Quill"
-delete-after: True
-changes: 
-  - bugfix: "Hyperzine will no longer allow you to go under 0 nutrition."

@@ -195,6 +195,7 @@
 	S["gen_record"]			>> gen_record
 	S["exploit_record"]		>> exploit_record
 	S["metadata"]			>> metadata
+	S["flavor_text"]		>> flavor_text
 
 
 	be_special		= sanitize_integer(be_special, 0, 8388608, initial(be_special))
@@ -250,6 +251,7 @@
 	gen_record		= sanitize_text(gen_record, initial(gen_record))
 	exploit_record	= sanitize_text(exploit_record, initial(exploit_record))
 	metadata		= sanitize_text(metadata, initial(metadata))
+	flavor_text		= sanitize_text(flavor_text, initial(flavor_text))
 
 	if(!synthetic_name)
 		synthetic_name = "David"
@@ -325,6 +327,7 @@
 	gen_record		= sanitize_text(gen_record, initial(gen_record))
 	exploit_record	= sanitize_text(exploit_record, initial(exploit_record))
 	metadata		= sanitize_text(metadata, initial(metadata))
+	flavor_text		= sanitize_text(flavor_text, initial(flavor_text))
 
 	S["be_special"]			<< be_special
 
@@ -377,6 +380,7 @@
 	S["gen_record"]			<< gen_record
 	S["exploit_record"]		<< exploit_record
 	S["metadata"]			<< metadata
+	S["flavor_text"]		<< flavor_text
 
 	return TRUE
 

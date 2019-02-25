@@ -28,7 +28,7 @@
 	if(..())
 		return
 	user.set_interaction(src)
-	var/dat = "<center><h2>Tank Part Fabricator</h2></center><hr/>"
+	var/dat
 	dat += "<h4>Points Available: [tank_points]</h4>"
 	dat += "<h3>Armor:</h3>"
 	for(var/build_type in typesof(/obj/item/hardpoint/armor))
@@ -89,9 +89,11 @@
 			dat += "<a href='byond://?src=\ref[src];produce=[build_type];cost=[build_cost]'>[build_name] ([build_cost])</a><br>"
 
 
-	user << browse(dat, "window=dropship_part_fab")
+	var/datum/browser/popup = new(user, "dropship_part_fab", "<div align='center'>Tank Part Fabricator</div>")
+	popup.set_content(dat)
+	popup.open(FALSE)
 	onclose(user, "dropship_part_fab")
-	return
+
 
 /obj/machinery/tank_part_fabricator/proc/build_tank_part(part_type, cost, mob/user)
 	set waitfor = 0

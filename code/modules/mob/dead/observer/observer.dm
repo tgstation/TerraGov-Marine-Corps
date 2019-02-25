@@ -388,7 +388,7 @@
 	var/list/namecounts = list()
 	for(var/x in sortNames(GLOB.alive_human_list))
 		var/mob/M = x
-		if(!ishumanbasic(M) && !issynth(M))
+		if(!ishumanbasic(M) && !issynth(M) || istype(M, /mob/living/carbon/human/dummy))
 			continue
 		var/name = M.name
 		if(name in names)

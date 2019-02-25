@@ -19156,8 +19156,8 @@
 /turf/open/floor/carpet,
 /area/prison/command/office)
 "aSM" = (
-/obj/machinery/faxmachine,
 /obj/structure/table/woodentable,
+/obj/machinery/faxmachine/warden,
 /turf/open/floor/wood,
 /area/prison/command/office)
 "aSN" = (

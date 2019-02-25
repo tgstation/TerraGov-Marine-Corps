@@ -38,6 +38,7 @@
 	// In the case of a list it is sorted from bottom layer to top.
 	// This shouldn't be modified directly, use the helper procs.
 	var/list/baseturfs = /turf/baseturf_bottom
+	var/obj/effect/xenomorph/acid/current_acid = null //If it has acid spewed on it
 
 /turf/New()
 	..()

@@ -69,8 +69,11 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 	dat += "<a href='?src=\ref[src];item=1'>Recover object</a>.<br>"
 	dat += "<a href='?src=\ref[src];allitems=1'>Recover all objects</a>.<br>"
 
-	user << browse(dat, "window=cryopod_console")
+	var/datum/browser/popup = new(user, "cryopod_console", "<div align='center'>Cryogenics</div>")
+	popup.set_content(dat)
+	popup.open(FALSE)
 	onclose(user, "cryopod_console")
+
 
 /obj/machinery/computer/cryopod/Topic(href, href_list)
 

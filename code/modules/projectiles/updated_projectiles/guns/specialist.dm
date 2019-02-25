@@ -329,7 +329,9 @@
 	to_chat(user, "The restriction system is [restriction_toggled ? "<B>on</b>" : "<B>off</b>"].")
 
 /obj/item/weapon/gun/smartgun/unique_action(mob/user)
-	toggle_restriction(user)
+	var/obj/item/smartgun_powerpack/power_pack = user.back
+	if(istype(power_pack))
+		power_pack.attack_self(user)
 
 /obj/item/weapon/gun/smartgun/able_to_fire(mob/living/user)
 	. = ..()
@@ -346,12 +348,13 @@
 	return ready_in_chamber()
 
 /obj/item/weapon/gun/smartgun/reload_into_chamber(mob/user)
-	var/mob/living/carbon/human/smart_gunner = user
-	var/obj/item/smartgun_powerpack/power_pack = smart_gunner.back
-	if(istype(power_pack)) //I don't know how it would break, but it is possible.
-		if(shells_fired_now >= shells_fired_max && power_pack.rounds_remaining > 0) // If shells fired exceeds shells needed to reload, and we have ammo.
-			auto_reload(smart_gunner, power_pack)
-		else shells_fired_now++
+	var/obj/item/smartgun_powerpack/power_pack = user.back
+	if(!istype(power_pack))
+		return current_mag.current_rounds
+	if(shells_fired_now >= shells_fired_max && power_pack.rounds_remaining > 0) // If shells fired exceeds shells needed to reload, and we have ammo.
+		addtimer(CALLBACK(src, .proc/auto_reload, user, power_pack), 0.5 SECONDS)
+	else
+		shells_fired_now++
 
 	return current_mag.current_rounds
 
@@ -360,8 +363,12 @@
 	if(refund) current_mag.current_rounds++
 	return 1
 
-/obj/item/weapon/gun/smartgun/proc/toggle_restriction(mob/user)
-	to_chat(user, "[icon2html(src, user)] You [restriction_toggled? "<B>disable</b>" : "<B>enable</b>"] the [src]'s fire restriction. You will [restriction_toggled ? "harm anyone in your way" : "target through IFF"].")
+/obj/item/weapon/gun/smartgun/toggle_gun_safety()
+	var/obj/item/weapon/gun/smartgun/G = get_active_firearm(usr)
+	if(!istype(G))
+		return //Right kind of gun is not in hands, abort.
+	src = G
+	to_chat(usr, "[icon2html(src, usr)] You [restriction_toggled? "<B>disable</b>" : "<B>enable</b>"] the [src]'s fire restriction. You will [restriction_toggled ? "harm anyone in your way" : "target through IFF"].")
 	playsound(loc,'sound/machines/click.ogg', 25, 1)
 	var/A = ammo
 	ammo = ammo_secondary
@@ -369,9 +376,7 @@
 	restriction_toggled = !restriction_toggled
 
 /obj/item/weapon/gun/smartgun/proc/auto_reload(mob/smart_gunner, obj/item/smartgun_powerpack/power_pack)
-	set waitfor = 0
-	sleep(5)
-	if(power_pack && power_pack.loc)
+	if(power_pack?.loc == smart_gunner)
 		power_pack.attack_self(smart_gunner, TRUE)
 
 /obj/item/weapon/gun/smartgun/get_ammo_type()

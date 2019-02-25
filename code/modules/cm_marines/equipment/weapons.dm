@@ -44,7 +44,7 @@
 
 	var/obj/item/weapon/gun/smartgun/mygun = user.get_active_held_item()
 
-	if(isnull(mygun) || !mygun || !istype(mygun))
+	if(!istype(mygun))
 		to_chat(user, "You must be holding an M56 Smartgun to begin the reload process.")
 		return
 	if(rounds_remaining < 1)

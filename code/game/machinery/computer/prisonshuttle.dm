@@ -83,7 +83,9 @@ var/prison_shuttle_timeleft = 0
 			[prison_shuttle_moving_to_station || prison_shuttle_moving_to_prison ? "\n*Shuttle already called*<BR>\n<BR>":prison_shuttle_at_station ? "\n<A href='?src=\ref[src];sendtodock=1'>Send to Dock</A><BR>\n<BR>":"\n<A href='?src=\ref[src];sendtostation=1'>Send to station</A><BR>\n<BR>"]
 			\n<A href='?src=\ref[user];mach_close=computer'>Close</A>"}
 
-		user << browse(dat, "window=computer;size=575x450")
+		var/datum/browser/popup = new(user, "computer", "<div align='center'>Prison Shuttle Console</div>", 575, 450)
+		popup.set_content(dat)
+		popup.open(FALSE)
 		onclose(user, "computer")
 		return
 
