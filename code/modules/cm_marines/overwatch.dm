@@ -1085,6 +1085,11 @@
 		command_aura = choice
 	else
 		command_aura = which
+
+	if(command_aura_cooldown > 0)
+		to_chat(src, "<span class='warning'>You have recently given an order. Calm down.</span>")
+		return
+
 	if(!(command_aura in command_aura_allowed))
 		return
 	command_aura_cooldown = 45 //45 ticks
