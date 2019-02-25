@@ -287,7 +287,7 @@ proc/isInSight(var/atom/A, var/atom/B)
 
 // Same as above but for alien candidates.
 /proc/get_alien_candidate()
-	var/picked
+	var/mob/picked
 
 	for(var/mob/dead/observer/O in GLOB.dead_mob_list)
 		//Players without preferences or jobbaned players cannot be drafted.
@@ -308,13 +308,13 @@ proc/isInSight(var/atom/A, var/atom/B)
 			continue
 
 		if(!picked)
-			picked = O.key
+			picked = O
 			continue
 
 		if(O.timeofdeath < picked.timeofdeath)
-			picked = O.key
+			picked = O
 
-	return picked
+	return picked.key
 
 
 /proc/ScreenText(obj/O, maptext="", screen_loc="CENTER-7,CENTER-7", maptext_height=480, maptext_width=480)
