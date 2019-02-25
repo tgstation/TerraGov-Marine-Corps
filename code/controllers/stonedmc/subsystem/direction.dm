@@ -1,5 +1,3 @@
-#define SLDIR_DEBUG
-
 SUBSYSTEM_DEF(direction)
 	name = "Direction"
 	priority = FIRE_PRIORITY_DIRECTION
@@ -13,9 +11,7 @@ SUBSYSTEM_DEF(direction)
 	// eg; list(CHARLIE_SL = list(<list of references to squad marines), XENO_NORMAL_QUEEN = list(<list of xeno mob refs))
 	var/list/processing_mobs = list()
 
-	#ifdef SLDIR_DEBUG
-	var/list/mobs_in_processing = list()
-	#endif
+	var/list/mobs_in_processing = list() // reference lookup
 
 	// the purpose of separating these two things is it avoids having to do anything for mobs tracking a particular
 	//  leader when the leader changes, and its cached to avoid looking up via hive/squad datums.
@@ -65,25 +61,25 @@ SUBSYSTEM_DEF(direction)
 /datum/controller/subsystem/direction/proc/start_tracking(squad_id, mob/living/carbon/human/H)
 	if(!H)
 		stack_trace("SSdirection.start_tracking called with a null mob")
-		return
-	#ifdef SLDIR_DEBUG
+		return FALSE
+	if(mobs_in_processing[H] == squad_id)
+		return TRUE // already tracking this squad leader
 	if(mobs_in_processing[H])
-		stack_trace("trying to add a mob already being tracked")
-		return
-	mobs_in_processing[H] = TRUE
-	#endif
+		stop_tracking(mobs_in_processing[H], H) // remove from tracking the other squad
+	mobs_in_processing[H] = squad_id
 	processing_mobs[squad_id].Add(H)
 
-/datum/controller/subsystem/direction/proc/stop_tracking(squad_id, mob/living/carbon/human/H, deep=FALSE)
-	#ifdef SLDIR_DEBUG
+/datum/controller/subsystem/direction/proc/stop_tracking(squad_id, mob/living/carbon/human/H)
+	if(!mobs_in_processing[H])
+		return TRUE // already removed
+	var/tracking_id = mobs_in_processing[H]
 	mobs_in_processing[H] = FALSE
-	#endif
-	if(!deep)
+
+	if(tracking_id != squad_id)
+		stack_trace("mismatch in tracking mobs by reference")
 		processing_mobs[squad_id].Remove(H)
-		return
-	for(var/A in processing_mobs)
-		if(islist(processing_mobs[A]))
-			processing_mobs[A].Remove(H)
+
+	processing_mobs[tracking_id].Remove(H)
 
 /datum/controller/subsystem/direction/proc/set_leader(squad_id, mob/living/carbon/human/H)
 	if(leader_mapping[squad_id])

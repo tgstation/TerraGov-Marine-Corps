@@ -162,7 +162,8 @@
 
 
 /mob/living/carbon/human/Destroy()
-	SSdirection.stop_tracking(null, src, TRUE) // failsafe to ensure they're definite not in the list
+	if(assigned_squad)
+		SSdirection.stop_tracking(assigned_squad.tracking_id, src) // failsafe to ensure they're definite not in the list
 	assigned_squad?.clean_marine_from_squad(src,FALSE)
 	remove_from_all_mob_huds()
 	GLOB.human_mob_list -= src
