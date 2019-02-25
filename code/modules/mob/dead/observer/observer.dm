@@ -75,6 +75,7 @@
 		message_admins("[ADMIN_TPMONTY(usr)] has taken [ADMIN_TPMONTY(target)].")
 
 		mind.transfer_to(target, TRUE)
+		target.fully_replace_character_name(real_name)
 
 
 	else if(href_list["preference"])
