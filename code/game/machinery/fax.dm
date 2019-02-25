@@ -172,5 +172,11 @@
 /obj/machinery/faxmachine/cmp
 	department = "Chief Military Police"
 
-/obj/machinery/faxmachine/prison
+/obj/machinery/faxmachine/brig
+	department = "Brig"
+
+/obj/machinery/faxmachine/research
+	department = "Research"
+
+/obj/machinery/faxmachine/warden //Prison Station
 	department = "Warden"
