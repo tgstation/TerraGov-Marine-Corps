@@ -157,10 +157,10 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 		verbs += /client/proc/readmin
 
 	//preferences datum - also holds some persistant data for the client (because we may as well keep these datums to a minimum)
-	prefs = preferences_datums[ckey]
+	prefs = GLOB.preferences_datums[ckey]
 	if(!prefs || isnull(prefs) || !istype(prefs))
 		prefs = new /datum/preferences(src)
-		preferences_datums[ckey] = prefs
+		GLOB.preferences_datums[ckey] = prefs
 	prefs.last_ip = address				//these are gonna be used for banning
 	prefs.last_id = computer_id			//these are gonna be used for banning
 
@@ -237,6 +237,7 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 	GLOB.clients -= src
 	GLOB.directory -= ckey
 	GLOB.clients -= src
+	QDEL_LIST_ASSOC_VAL(char_render_holders)
 	return ..()
 
 
@@ -274,6 +275,27 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 
 /client/proc/get_offset()
 	return max(abs(pixel_x / 32), abs(pixel_y / 32))
+
+
+/client/proc/show_character_previews(mutable_appearance/MA)
+	var/pos = 0
+	for(var/D in GLOB.cardinals)
+		pos++
+		var/obj/screen/O = LAZYACCESS(char_render_holders, "[D]")
+		if(!O)
+			O = new
+			LAZYSET(char_render_holders, "[D]", O)
+			screen |= O
+		O.appearance = MA
+		O.dir = D
+		O.screen_loc = "character_preview_map:0,[pos]"
+
+/client/proc/clear_character_previews()
+	for(var/index in char_render_holders)
+		var/obj/screen/S = char_render_holders[index]
+		screen -= S
+		qdel(S)
+	char_render_holders = null
 
 
 #undef UPLOAD_LIMIT

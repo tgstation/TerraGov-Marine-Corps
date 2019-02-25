@@ -13,6 +13,7 @@
 	paygrade = "O4"
 	comm_title = "CO"
 	flag = SHIP_CO
+	prefflag = PREF_JOB_CO
 	supervisors = "TGMC high command"
 	selection_color = "#ccccff"
 	minimal_player_age = 7
@@ -55,6 +56,7 @@ Godspeed, commander! And remember, you are not above the law."})
 	paygrade = "O3"
 	comm_title = "XO"
 	flag = SHIP_XO
+	prefflag = PREF_JOB_XO
 	skills_type = /datum/skills/XO
 	access = ALL_MARINE_ACCESS
 	minimal_access = ALL_MARINE_ACCESS
@@ -90,6 +92,7 @@ Make the TGMC proud!"})
 	paygrade = "O2"
 	comm_title = "SO"
 	flag = SHIP_SO
+	prefflag = PREF_JOB_SO
 	spawn_positions = 4
 	total_positions = 4
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_BRIG, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS)
@@ -126,6 +129,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	paygrade = "O1"
 	comm_title = "PO"
 	flag = SHIP_PO
+	prefflag = PREF_JOB_PO
 	spawn_positions = 4
 	total_positions = 4
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PILOT)
@@ -165,6 +169,7 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 	paygrade = "O1"
 	comm_title = "TC"
 	flag = SHIP_TC
+	prefflag = PREF_JOB_TC
 	spawn_positions = 2
 	total_positions = 2
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_TANK)
@@ -204,6 +209,7 @@ You could use MTs help to repair and replace hardpoints."})
 	paygrade = "E6"
 	comm_title = "MP"
 	flag = SHIP_MP
+	prefflag = PREF_JOB_MP
 	spawn_positions = 5
 	total_positions = 5
 	selection_color = "#ffdddd"
@@ -246,6 +252,7 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 	paygrade = "WO"
 	comm_title = "CMP"
 	flag = SHIP_CMP
+	prefflag = PREF_JOB_CMP
 	selection_color = "#ffaaaa"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIG, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_WO)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIG, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_WO)
@@ -294,6 +301,7 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 	paygrade = "O3"
 	comm_title = "CE"
 	flag = SHIP_CE
+	prefflag = PREF_JOB_CE
 	selection_color = "#ffeeaa"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_BRIDGE, ACCESS_CIVILIAN_ENGINEERING)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_BRIDGE, ACCESS_CIVILIAN_ENGINEERING)
@@ -332,6 +340,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 	paygrade = "O1"
 	comm_title = "RO"
 	flag = SHIP_RO
+	prefflag = PREF_JOB_RO
 	selection_color = "#9990B2"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_PREP, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_PREP, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA)
@@ -370,6 +379,7 @@ A happy ship is a well-functioning ship."})
 	comm_title = "MT"
 	paygrade = "E6E"
 	flag = SHIP_MT
+	prefflag = PREF_JOB_MT
 	spawn_positions = 4
 	total_positions = 4
 	supervisors = "the chief engineer"
@@ -411,6 +421,7 @@ Start with the ship's engine, and don't forget radiation equipment."})
 	paygrade = "E5"
 	comm_title = "CT"
 	flag = SHIP_CT
+	prefflag = PREF_JOB_CT
 	spawn_positions = 2
 	total_positions = 2
 	supervisors = "the requisitions officer"
@@ -455,6 +466,7 @@ Listen to the radio in case someone requests a supply drop via the overwatch sys
 	comm_title = "CMO"
 	paygrade = "CCMO"
 	flag = SHIP_CMO
+	prefflag = PREF_JOB_CMO
 	spawn_positions = 1
 	total_positions = 1
 	supervisors = "the acting commander"
@@ -499,6 +511,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	comm_title = "Doc"
 	paygrade = "CD"
 	flag = SHIP_DOCTOR
+	prefflag = PREF_JOB_DOCTOR
 	spawn_positions = 6
 	total_positions = 6
 	supervisors = "the chief medical officer"
@@ -547,6 +560,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CHEMISTRY)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CHEMISTRY)
 	flag = SHIP_RESEARCHER
+	prefflag = PREF_JOB_RESEARCHER
 	skills_type = /datum/skills/doctor
 	display_order = JOB_DISPLAY_ORDER_MEDIAL_RESEARCHER
 	outfit = /datum/outfit/job/medical/researcher
@@ -590,6 +604,7 @@ Your role involves some roleplaying and gimmickry, but you can perform the funct
 	paygrade = "NT"
 	comm_title = "CL"
 	flag = SHIP_CL
+	prefflag = PREF_JOB_CL
 	supervisors = "the NT corporate office"
 	selection_color = "#ffeedd"
 	access = list(ACCESS_IFF_MARINE, ACCESS_NT_CORPORATE, ACCESS_ILLEGAL_PIRATE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_LOGISTICS)
@@ -623,6 +638,7 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	title = "Synthetic"
 	comm_title = "Syn"
 	flag = SHIP_SYNTH
+	prefflag = PREF_JOB_SYNTH
 	supervisors = "the acting commander"
 	selection_color = "#aaee55"
 	skills_type = /datum/skills/synthetic
@@ -634,6 +650,8 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 
 /datum/job/civilian/synthetic/equip(mob/living/carbon/human/H, visualsOnly = FALSE, announce = TRUE, latejoin = FALSE, datum/outfit/outfit_override = null, client/preference_source)
 	. = ..()
+	if(!H)
+		return FALSE
 	if(preference_source?.prefs)
 		H.set_species(preference_source.prefs.synthetic_type)
 		if(preference_source.prefs.synthetic_type == "Early Synthetic")
@@ -642,7 +660,8 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	if(!H.real_name || H.real_name == "Undefined") //In case they don't have a name set or no prefs, there's a name.
 		H.real_name = "David"
 		to_chat(H, "<span class='warning'>You forgot to set your name in your preferences. Please do so next time.</span>")
-	H.mind.name = H.real_name
+	if(H.mind)
+		H.mind.name = H.real_name
 	if(H.wear_id)
 		var/obj/item/card/id/I = H.wear_id
 		I.registered_name = H.real_name

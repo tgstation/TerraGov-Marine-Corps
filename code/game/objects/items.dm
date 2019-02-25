@@ -60,7 +60,6 @@
 	var/time_to_equip = 0 // set to ticks it takes to equip a worn suit.
 	var/time_to_unequip = 0 // set to ticks it takes to unequip a worn suit.
 
-	var/obj/effect/xenomorph/acid/current_acid = null //If it has acid spewed on it
 
 	/* Species-specific sprites, concept stolen from Paradise//vg/.
 	ex:

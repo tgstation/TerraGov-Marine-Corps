@@ -13,6 +13,7 @@
 
 	var/flag = NOFLAGS
 	var/department_flag = NOFLAGS
+	var/prefflag = NOFLAGS
 
 	var/spawn_positions = 0
 	var/total_positions = 0

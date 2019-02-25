@@ -19,7 +19,7 @@
 
 
 /datum/game_mode/colonialmarines/announce()
-	to_chat(world, "<span class='round_header'>The current map is - [GLOB.map_tag]!</span>")
+	to_chat(world, "<span class='round_header'>The current map is - [SSmapping.config.map_name]!</span>")
 
 ////////////////////////////////////////////////////////////////////////////////////////
 //Temporary, until we sort this out properly.
@@ -31,7 +31,9 @@
 	icon_state = "spawn_event"
 
 /obj/effect/landmark/lv624/fog_blocker/Initialize()
+	. = ..()
 	GLOB.fog_blocker_locations += loc
+	flags_atom |= INITIALIZED
 	return INITIALIZE_HINT_QDEL
 
 /obj/effect/landmark/xeno_tunnel
@@ -76,13 +78,13 @@
 
 
 /datum/game_mode/colonialmarines/proc/map_announce()
-	switch(GLOB.map_tag)
+	switch(SSmapping.config.map_name)
 		if(MAP_LV_624)
 			command_announcement.Announce("An automated distress signal has been received from archaeology site Lazarus Landing, on border world LV-624. A response team from the [MAIN_SHIP_NAME] will be dispatched shortly to investigate.", "[MAIN_SHIP_NAME]")
 		if(MAP_ICE_COLONY)
 			command_announcement.Announce("An automated distress signal has been received from archaeology site \"Shiva's Snowball\", on border ice world \"Ifrit\". A response team from the [MAIN_SHIP_NAME] will be dispatched shortly to investigate.", "[MAIN_SHIP_NAME]")
 		if(MAP_BIG_RED)
-			command_announcement.Announce("We've lost contact with the Nanotrasen's research facility, [GLOB.map_tag]. The [MAIN_SHIP_NAME] has been dispatched to assist.", "[MAIN_SHIP_NAME]")
+			command_announcement.Announce("We've lost contact with the Nanotrasen's research facility, [SSmapping.config.map_name]. The [MAIN_SHIP_NAME] has been dispatched to assist.", "[MAIN_SHIP_NAME]")
 		if(MAP_PRISON_STATION)
 			command_announcement.Announce("An automated distress signal has been received from maximum-security prison \"Fiorina Orbital Penitentiary\". A response team from the [MAIN_SHIP_NAME] will be dispatched shortly to investigate.", "[MAIN_SHIP_NAME]")
 
@@ -155,7 +157,7 @@
 	to_chat(world, "<span class='round_header'>|Round Complete|</span>")
 	feedback_set_details("round_end_result",round_finished)
 
-	to_chat(world, "<span class='round_body'>Thus ends the story of the brave men and women of the [MAIN_SHIP_NAME] and their struggle on [GLOB.map_tag].</span>")
+	to_chat(world, "<span class='round_body'>Thus ends the story of the brave men and women of the [MAIN_SHIP_NAME] and their struggle on [SSmapping.config.map_name].</span>")
 	var/musical_track
 	switch(round_finished)
 		if(MODE_INFESTATION_X_MAJOR)

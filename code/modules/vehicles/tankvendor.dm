@@ -40,7 +40,7 @@
 	if(..())
 		return
 	user.set_interaction(src)
-	var/dat = "<center><h2>Tank Part Fabricator</h2></center><hr/>"
+	var/dat
 	if(screen == TANKFAB_BUSY)
 		dat += "<i>[src] is busy. Please wait for completion of the current operation...</i>"
 	else
@@ -143,10 +143,11 @@
 				if(build_cost)
 					dat += "<a href='byond://?src=\ref[src];produce=[build_type];cost=[build_cost]'>[build_name] ([build_cost])</a><br>"
 
-
-	user << browse(dat, "window=dropship_part_fab")
+	var/datum/browser/popup = new(user, "dropship_part_fab", "<div align='center'>Tank Part Fabricator</div>")
+	popup.set_content(dat)
+	popup.open(FALSE)
 	onclose(user, "dropship_part_fab")
-	return
+
 
 /obj/machinery/tank_part_fabricator/attackby(obj/item/W, mob/user)
 	if((istype(W, /obj/item/hardpoint) || istype(W, /obj/item/ammo_magazine/tank)) && user.a_intent != INTENT_HARM)

@@ -243,12 +243,6 @@
 "abi" = (
 /turf/open/gm/dirt,
 /area/lv624/ground/caves/east1)
-"abj" = (
-/obj/effect/landmark/map_tag{
-	name = "LV-624"
-	},
-/turf/closed/wall/indestructible/mineral,
-/area/space)
 "abk" = (
 /turf/closed/wall/cult,
 /area/lv624/ground/caves/west1)
@@ -923,7 +917,6 @@
 /obj/machinery/door/airlock/almayer/secure{
 	dir = 4;
 	icon_state = "door_locked";
-	id = "";
 	locked = 1;
 	name = "Mining Storage";
 	req_access_txt = "0"
@@ -9468,7 +9461,6 @@
 	density = 0;
 	dir = 4;
 	icon_state = "pdoor0";
-	id = "";
 	name = "\improper Forced Blast Door";
 	opacity = 0
 	},
@@ -9688,7 +9680,6 @@
 	density = 0;
 	dir = 4;
 	icon_state = "pdoor0";
-	id = "";
 	name = "\improper Forced Blast Door";
 	opacity = 0
 	},
@@ -14737,21 +14728,6 @@
 	},
 /turf/open/floor/grass,
 /area/lv624/lazarus/main_hall)
-"bak" = (
-/obj/structure/flora/ausbushes/grassybush,
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	dir = 8
-	},
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/turf/open/floor/grass,
-/area/lv624/lazarus/main_hall)
 "bal" = (
 /obj/structure/flora/ausbushes/grassybush,
 /obj/structure/cable/yellow{
@@ -18751,8 +18727,7 @@
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 8;
-	icon_state = "1-8";
-	tag = ""
+	icon_state = "1-8"
 	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
@@ -19387,8 +19362,7 @@
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 8;
-	icon_state = "1-8";
-	tag = ""
+	icon_state = "1-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -19703,8 +19677,7 @@
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 8;
-	icon_state = "1-8";
-	tag = ""
+	icon_state = "1-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -19724,8 +19697,7 @@
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 8;
-	icon_state = "1-8";
-	tag = ""
+	icon_state = "1-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
@@ -20057,8 +20029,7 @@
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 8;
-	icon_state = "1-8";
-	tag = ""
+	icon_state = "1-8"
 	},
 /turf/open/floor/plating/warning{
 	dir = 2
@@ -20187,8 +20158,7 @@
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 8;
-	icon_state = "1-8";
-	tag = ""
+	icon_state = "1-8"
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -20517,8 +20487,7 @@
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 8;
-	icon_state = "1-8";
-	tag = ""
+	icon_state = "1-8"
 	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
@@ -20811,7 +20780,7 @@ aaa
 aaa
 aaa
 aaa
-abj
+aab
 aab
 aab
 aab
@@ -48243,7 +48212,7 @@ aXn
 aTH
 aYD
 aZA
-bak
+bal
 bba
 aNz
 bbW

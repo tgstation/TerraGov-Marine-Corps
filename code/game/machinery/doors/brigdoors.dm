@@ -165,9 +165,9 @@
 	user.set_interaction(src)
 
 	// dat
-	var/dat = "<HTML><BODY><TT>"
+	var/dat
 
-	dat += "<HR>Timer System:</hr>"
+	dat += "Timer System:</hr>"
 	dat += " <b>Door [src.id] controls</b><br/>"
 
 	// Start/Stop timer
@@ -197,11 +197,11 @@
 			dat += "<br/><A href='?src=\ref[src];fc=1'>Activate Flash</A>"
 
 	dat += "<br/><br/><a href='?src=\ref[user];mach_close=computer'>Close</a>"
-	dat += "</TT></BODY></HTML>"
 
-	user << browse(dat, "window=computer;size=400x500")
+	var/datum/browser/popup = new(user, "computer", "<div align='center'>Photocopier</div>", 400, 500)
+	popup.set_content(dat)
+	popup.open(FALSE)
 	onclose(user, "computer")
-	return
 
 
 //Function for using door_timer dialog input, checks if user has permission

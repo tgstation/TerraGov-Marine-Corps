@@ -121,7 +121,7 @@
 	new /obj/item/clothing/gloves/white(src)
 	new /obj/item/clothing/under/whites(src)
 	new /obj/item/clothing/head/white_dress(src)
-	switch(GLOB.map_tag)
+	switch(SSmapping.config.map_name)
 		if(MAP_ICE_COLONY)
 			new /obj/item/clothing/suit/storage/snow_suit(src)
 			new /obj/item/clothing/mask/rebreather/scarf(src)

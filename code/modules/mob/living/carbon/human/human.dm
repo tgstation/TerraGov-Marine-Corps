@@ -1456,7 +1456,6 @@
 		if(C.flags_armor_protection & FEET)
 			feet_exposed = 0
 
-	flavor_text = flavor_texts["general"]
 	flavor_text += "\n\n"
 	for (var/T in flavor_texts)
 		if(flavor_texts[T] && flavor_texts[T] != "")
