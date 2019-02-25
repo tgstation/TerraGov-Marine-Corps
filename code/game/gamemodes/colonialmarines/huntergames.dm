@@ -49,7 +49,7 @@
 
 #define HUNTER_FEET list(\
 							/obj/item/clothing/shoes/marine,\
-							/obj/item/clothing/shoes/marinechief/commander,\
+							/obj/item/clothing/shoes/marinechief/captain,\
 							/obj/item/clothing/shoes/laceup,\
 							/obj/item/clothing/shoes/jackboots)
 

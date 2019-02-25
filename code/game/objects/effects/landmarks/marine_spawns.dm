@@ -9,11 +9,11 @@
 	GLOB.marine_spawns_by_job[job] += loc
 	return INITIALIZE_HINT_QDEL
 
-/obj/effect/landmark/start/marine/commander
-	job = /datum/job/command/commander
+/obj/effect/landmark/start/marine/captain
+	job = /datum/job/command/captain
 
-/obj/effect/landmark/start/marine/executiveofficer
-	job = /datum/job/command/executive
+/obj/effect/landmark/start/marine/fieldcommander
+	job = /datum/job/command/fieldcommander
 	
 /obj/effect/landmark/start/marine/staffofficer
 	job = /datum/job/command/bridge
@@ -63,8 +63,8 @@
 /obj/effect/landmark/start/marine/squadengineer
 	job = /datum/job/marine/engineer
 		
-/obj/effect/landmark/start/marine/squadmedic
-	job = /datum/job/marine/medic
+/obj/effect/landmark/start/marine/squadcorpsman
+	job = /datum/job/marine/corpsman
 	
 /obj/effect/landmark/start/marine/squadsmartgunner
 	job = /datum/job/marine/smartgunner

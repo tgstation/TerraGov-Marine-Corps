@@ -85,7 +85,7 @@
 			var/mob/M = usr
 			var/obj/item/card/id/I = M.get_active_held_item()
 			if(istype(I))
-				if(ACCESS_MARINE_COMMANDER in I.access || ACCESS_MARINE_BRIDGE in I.access) //Let heads change the alert level.
+				if(ACCESS_MARINE_CAPTAIN in I.access || ACCESS_MARINE_BRIDGE in I.access) //Let heads change the alert level.
 					switch(tmp_alertlevel)
 						if(-INFINITY to SEC_LEVEL_GREEN)
 							tmp_alertlevel = SEC_LEVEL_GREEN //Cannot go below green.
@@ -124,8 +124,8 @@
 				cooldown_message = world.time
 
 		if("award")
-			if(!usr.mind || usr.mind.assigned_role != "Commander")
-				to_chat(usr, "<span class='warning'>Only the Commander can award medals.</span>")
+			if(!usr.mind || usr.mind.assigned_role != "Captain")
+				to_chat(usr, "<span class='warning'>Only the Captain can award medals.</span>")
 				return
 
 			if(give_medal_award(loc))

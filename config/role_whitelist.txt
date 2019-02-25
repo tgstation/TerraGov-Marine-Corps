@@ -12,7 +12,7 @@
 # +Yautja Blooded +Blooded +Blooded Predator
 # +Yautja Elite +Elite +Elite Predator
 # +Yautja Elder +Elder + Elder Predator
-# +Commander +CO
+# +Captain +CO
 # +Synthetic +Synth
 # +Arcturian +Snowflake
 # +All +Everything

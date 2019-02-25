@@ -46,6 +46,9 @@
 	icon_state = "large_drop"
 	draw_mode = 0
 
+/obj/item/storage/pouch/general/large/command/Initialize()
+	. = ..()
+	new /obj/item/device/binoculars/tactical(src)
 
 /obj/item/storage/pouch/bayonet
 	name = "bayonet sheath"

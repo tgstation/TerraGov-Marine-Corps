@@ -1000,7 +1000,7 @@
 /area/almayer/living/commandbunks)
 "acR" = (
 /obj/machinery/door/airlock/almayer/command{
-	name = "\improper Commander's Study";
+	name = "\improper Captain's Study";
 	req_access_txt = "1"
 	},
 /turf/open/floor/wood,
@@ -1147,7 +1147,7 @@
 "adn" = (
 /obj/structure/bed,
 /obj/item/bedsheet/hop,
-/obj/effect/landmark/start/marine/executiveofficer,
+/obj/effect/landmark/start/marine/fieldcommander,
 /turf/open/floor/carpet,
 /area/almayer/living/numbertwobunks)
 "ado" = (
@@ -1385,7 +1385,7 @@
 	},
 /obj/structure/window/reinforced/toughened,
 /obj/machinery/door/window/westleft,
-/obj/item/weapon/claymore/mercsword/commander,
+/obj/item/weapon/claymore/mercsword/captain,
 /turf/open/floor/wood,
 /area/almayer/living/commandbunks)
 "adS" = (
@@ -1588,7 +1588,7 @@
 /turf/open/floor/wood,
 /area/almayer/living/commandbunks)
 "aeu" = (
-/obj/structure/closet/secure_closet/bar/commander,
+/obj/structure/closet/secure_closet/bar/captain,
 /turf/open/floor/wood,
 /area/almayer/living/commandbunks)
 "aev" = (
@@ -2239,7 +2239,7 @@
 "agh" = (
 /obj/structure/bed,
 /obj/item/bedsheet/hop,
-/obj/effect/landmark/start/marine/commander,
+/obj/effect/landmark/start/marine/captain,
 /mob/living/simple_animal/cat/Jones,
 /turf/open/floor/carpet,
 /area/almayer/living/commandbunks)
@@ -2700,7 +2700,7 @@
 /turf/open/floor/carpet,
 /area/almayer/living/commandbunks)
 "ahp" = (
-/obj/structure/closet/secure_closet/commander,
+/obj/structure/closet/secure_closet/captain,
 /turf/open/floor/carpet,
 /area/almayer/living/commandbunks)
 "ahq" = (
@@ -3280,7 +3280,7 @@
 "aiH" = (
 /obj/machinery/door/airlock/almayer/command{
 	dir = 2;
-	name = "\improper Commander's Office"
+	name = "\improper Captain's Office"
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -8560,9 +8560,8 @@
 	},
 /area/almayer/shipboard/brig)
 "asO" = (
-/obj/machinery/door/airlock/almayer/security{
-	dir = 2;
-	name = "\improper Chief MP's Bunks"
+/obj/machinery/door/airlock/almayer/security/CMA{
+	dir = 2
 	},
 /obj/machinery/door/firedoor/border_only/almayer{
 	tag = "icon-door_open";
@@ -9738,7 +9737,7 @@
 	},
 /obj/machinery/door/airlock/almayer/command{
 	dir = 2;
-	name = "\improper Commander's Mess"
+	name = "\improper Captain's Mess"
 	},
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -10136,7 +10135,7 @@
 "avS" = (
 /obj/machinery/door/airlock/almayer/engineering{
 	dir = 2;
-	name = "\improper Chief Engineer's Office";
+	name = "\improper Chief Ship Engineer's Office";
 	req_one_access_txt = "1;6"
 	},
 /obj/structure/cable{
@@ -13065,9 +13064,8 @@
 "aBm" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/door/airlock/almayer/security/glass{
-	dir = 1;
-	name = "\improper Chief MP's Office"
+/obj/machinery/door/airlock/almayer/security/glass/CMA{
+	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable{
@@ -17723,10 +17721,7 @@
 /obj/structure/closet/secure_closet/securecom,
 /obj/item/weapon/gun/smartgun,
 /obj/item/smartgun_powerpack/fancy,
-/obj/item/clothing/suit/storage/marine/smartgunner{
-	desc = "A heavy protective vest designed to be worn with the M56 Smartgun System. \nIt has specially designed straps and reinforcement to carry the Smartgun and accessories. This luxury model appears to belong to the CO. You feel like you probably could get fired for touching this..";
-	icon_state = "8fancy"
-	},
+/obj/item/clothing/suit/storage/marine/smartgunner/fancy,
 /turf/open/floor/almayer{
 	tag = "icon-redfull";
 	icon_state = "redfull"
@@ -20152,9 +20147,8 @@
 	},
 /area/almayer/hallways/aft_hallway)
 "aOf" = (
-/obj/machinery/door/airlock/almayer/command{
-	dir = 2;
-	name = "\improper XO's Quarters"
+/obj/machinery/door/airlock/almayer/command/FCDR{
+	dir = 2
 	},
 /obj/machinery/door/firedoor/border_only/almayer{
 	tag = "icon-door_open";

@@ -224,16 +224,25 @@
 	icon = 'icons/obj/doors/almayer/secdoor.dmi'
 	req_access_txt = "3"
 
+/obj/machinery/door/airlock/almayer/security/CMA
+	name = "\improper Chief Master at Arms's Bunks"
+
 /obj/machinery/door/airlock/almayer/security/glass
 	name = "\improper Security Airlock"
 	icon = 'icons/obj/doors/almayer/secdoor_glass.dmi'
 	opacity = 0
 	glass = 1
 
+/obj/machinery/door/airlock/almayer/security/glass/CMA
+	name = "\improper Chief Master at Arms's Office"
+
 /obj/machinery/door/airlock/almayer/command
 	name = "\improper Command Airlock"
 	icon = 'icons/obj/doors/almayer/comdoor.dmi'
 	req_access_txt = "19"
+
+/obj/machinery/door/airlock/almayer/command/FCDR
+	name = "\improper Field Commander's Office"
 
 /obj/machinery/door/airlock/almayer/secure
 	name = "\improper Secure Airlock"
