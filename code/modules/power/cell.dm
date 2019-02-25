@@ -171,9 +171,9 @@
  * 15000-cell	explosion(T, -1, 2, 4, 4)
  * */
 	var/devastation_range = -1 //round(charge/11000)
-	var/heavy_impact_range = max(2,round(sqrt(charge)/100))
-	var/light_impact_range = max(3,round(sqrt(charge)/30))
-	var/flash_range = max(1,light_impact_range)
+	var/heavy_impact_range = CLAMP(round(sqrt(charge) * 0.01), -1, 2)
+	var/light_impact_range = CLAMP(round(sqrt(charge) * 0.15), -1, 3)
+	var/flash_range = CLAMP(round(sqrt(charge) * 0.15), -1, 4)
 
 	explosion(T, devastation_range, heavy_impact_range, light_impact_range, flash_range)
 
