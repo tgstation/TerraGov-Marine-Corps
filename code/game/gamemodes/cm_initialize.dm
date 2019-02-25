@@ -560,6 +560,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 
 		CA.products = list(
 						/obj/item/storage/large_holster/machete/full = round(scale * 10),
+						/obj/item/storage/large_holster/katana/full = round(scale * 10),
 						/obj/item/ammo_magazine/pistol = round(scale * 20),
 						/obj/item/ammobox/m4a3 = round(scale * 3),
 						/obj/item/ammo_magazine/pistol/ap = round(scale * 5),
