@@ -130,7 +130,7 @@
 proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, burn_damage = 25, fire_stacks = 15, int_var = 0.5, dur_var = 0.5, colour = "red") //~Art updated fire.
 	if(!T || !isturf(T))
 		return
-	radius = CLAMP(radius, 1, 7) //Sterilize inputs
+	radius = CLAMP(radius, 1, 50) //Sanitize inputs
 	int_var = CLAMP(int_var, 0.1,0.5)
 	dur_var = CLAMP(int_var, 0.1,0.5)
 	fire_stacks = rand(burn_damage*(0.5-int_var),burn_damage*(0.5+int_var) ) + rand(burn_damage*(0.5-int_var),burn_damage*(0.5+int_var) )
