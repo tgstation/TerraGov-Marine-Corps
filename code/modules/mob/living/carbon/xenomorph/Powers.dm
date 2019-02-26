@@ -1437,11 +1437,13 @@
 			acid_progress_transfer(A, O)
 		I.current_acid = A
 
-	else //If not, appear on the floor or on an item
+	else if(istype(I)) //If not, appear on the floor or on an item
 		if(I.current_acid)
 			acid_progress_transfer(A, O)
 		A.layer = LOWER_ITEM_LAYER //below any item, above BELOW_OBJ_LAYER (smartfridge)
 		I.current_acid = A
+	else
+		return
 
 	A.name = A.name + " (on [O.name])" //Identify what the acid is on
 	A.add_hiddenprint(src)
