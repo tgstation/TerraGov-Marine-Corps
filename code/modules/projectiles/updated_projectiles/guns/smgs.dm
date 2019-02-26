@@ -4,6 +4,7 @@
 	origin_tech = "combat=4;materials=3"
 	fire_sound = 'sound/weapons/gun_m39.ogg'
 	type_of_casings = "bullet"
+	load_method = MAGAZINE //codex
 	force = 8
 	w_class = 4
 	movement_acc_penalty_mult = 3
@@ -40,6 +41,8 @@
 	desc = "Armat Battlefield Systems M-39 submachinegun. A light firearm capable of effective one-handed use that is ideal for close to medium range engagements. Uses 10x20mm rounds in a high capacity magazine."
 	icon_state = "m39"
 	item_state = "m39"
+	caliber = "10x20mm caseless" //codex
+	max_shells = 40 //codex
 	current_mag = /obj/item/ammo_magazine/smg/m39
 	type_of_casings = null
 	attachable_allowed = list(
@@ -108,6 +111,8 @@
 	desc = "A German design, this was one of the most widely used submachine guns in the world. It's still possible to find this firearm in the hands of collectors or gun fanatics."
 	icon_state = "mp5"
 	item_state = "mp5"
+	caliber = "9x19mm Parabellum" //codex
+	max_shells = 30 //codex
 	origin_tech = "combat=3;materials=2"
 	fire_sound = 'sound/weapons/smg_light.ogg'
 	current_mag = /obj/item/ammo_magazine/smg/mp5
@@ -142,6 +147,8 @@
 	desc = "An archaic design going back hundreds of years, the MP27 was common in its day. Today it sees limited use as cheap computer-printed replicas or family heirlooms."
 	icon_state = "mp7"
 	item_state = "mp7"
+	caliber = "4.6x30mm" //codex
+	max_shells = 30 //codex
 	origin_tech = "combat=3;materials=2"
 	fire_sound = 'sound/weapons/smg_light.ogg'
 	current_mag = /obj/item/ammo_magazine/smg/mp7
@@ -175,6 +182,8 @@
 	desc = "A robust, 20th century firearm that's a combination of pistol and submachinegun. Fires .32ACP caliber rounds from a 20 round magazine."
 	icon_state = "skorpion"
 	item_state = "skorpion"
+	caliber = ".32 ACP" //codex
+	max_shells = 20 //codex
 	origin_tech = "combat=3;materials=2"
 	fire_sound = 'sound/weapons/gun_skorpion.ogg'
 	current_mag = /obj/item/ammo_magazine/smg/skorpion
@@ -206,6 +215,8 @@
 	desc = "An unauthorized copy of a replica of a prototype submachinegun developed in a third world shit hole somewhere."
 	icon_state = "ppsh17b"
 	item_state = "ppsh17b"
+	caliber = "7.62x25mm" //codex
+	max_shells = 35 //codex
 	origin_tech = "combat=3;materials=2;syndicate=4"
 	fire_sound = 'sound/weapons/smg_heavy.ogg'
 	current_mag = /obj/item/ammo_magazine/smg/ppsh
@@ -237,6 +248,8 @@
 	desc = "A cheap, reliable design and manufacture make this ubiquitous submachinegun useful despite the age. Turn on burst mode for maximum firepower."
 	icon_state = "mac15"
 	item_state = "mac15"
+	caliber = "9x19mm Parabellum" //codex
+	max_shells = 32 //codex
 	origin_tech = "combat=3;materials=2"
 	fire_sound = 'sound/weapons/uzi.ogg'
 	current_mag = /obj/item/ammo_magazine/smg/uzi
@@ -264,6 +277,8 @@
 	desc = "An archaic design, but one that's stood the test of time. Fires fast armor piercing rounds."
 	icon_state = "FP9000"
 	item_state = "FP9000"
+	caliber = "5.7x28mm" //codex
+	max_shells = 50 //codex
 	origin_tech = "combat=5;materials=4"
 	fire_sound = 'sound/weapons/gun_p90.ogg'
 	current_mag = /obj/item/ammo_magazine/smg/p90

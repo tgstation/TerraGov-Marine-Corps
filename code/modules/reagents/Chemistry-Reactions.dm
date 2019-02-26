@@ -4,6 +4,7 @@
 	var/name = null
 	var/id = null
 	var/list/results = null
+	hidden_from_codex //codex
 	var/list/required_reagents = new/list()
 	var/list/required_catalysts = new/list()
 
