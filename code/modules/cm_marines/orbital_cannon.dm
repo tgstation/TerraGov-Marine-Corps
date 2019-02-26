@@ -141,6 +141,10 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 /obj/structure/orbital_cannon/proc/chamber_payload(mob/user)
 	set waitfor = 0
 
+	if(!loaded_tray)
+			to_chat(user, "You need to load the tray to chamber it.")
+		return
+	
 	if(ob_cannon_busy)
 		return
 
