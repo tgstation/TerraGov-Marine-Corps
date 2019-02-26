@@ -142,10 +142,6 @@
 		playsound(locate(SupplyElevator_x,SupplyElevator_y,SupplyElevator_z), 'sound/machines/elevator_openclose.ogg', 50, 0)
 
 /datum/shuttle/ferry/supply/proc/lower_elevator_effect()
-	SW?.loc = locate(SupplyElevator_x-2,SupplyElevator_y-2,SupplyElevator_z)
-	SE?.loc = locate(SupplyElevator_x+2,SupplyElevator_y-2,SupplyElevator_z)
-	NW?.loc = locate(SupplyElevator_x-2,SupplyElevator_y+2,SupplyElevator_z)
-	NE?.loc = locate(SupplyElevator_x+2,SupplyElevator_y+2,SupplyElevator_z)
 	if(SW)
 		flick("supply_elevator_lowering", SW)
 	if(SE)
