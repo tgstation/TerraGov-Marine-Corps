@@ -1102,12 +1102,14 @@
 		var/absorbed_plasma = round(target.plasma_stored * DRONE_SALVAGE_PLASMA_MULTIPLIER)
 		var/absorbed_evolution = round(target.evolution_stored * DRONE_SALVAGE_EVOLUTION_MULTIPLIER)
 		var/absorbed_upgrade = round(target.upgrade_stored * DRONE_SALVAGE_UPGRADE_MULTIPLIER)
+		var/excess_plasma
 
-		if(absorbed_plasma > (xeno_caste.plasma_max - plasma_stored) ) //Excess absorbed as health
-			var/excess_plasma = absorbed_plasma - (xeno_caste.plasma_max - plasma_stored)
+		if(absorbed_plasma > (xeno_caste.plasma_max - plasma_stored) ) //Amount exceeding remaining plasma capacity absorbed as health
+			excess_plasma = absorbed_plasma - (xeno_caste.plasma_max - plasma_stored)
 			adjustFireLoss(-CLAMP( excess_plasma, 0, getFireLoss() ) )
 			adjustBruteLoss(-CLAMP( excess_plasma, 0, getBruteLoss() ) )
 
+		absorbed_plasma = absorbed_plasma - excess_plasma
 		gain_plasma(absorbed_plasma)
 
 		var/list/upgrade_list = list()
@@ -1124,23 +1126,23 @@
 
 		absorbed_evolution = absorbed_evolution / max(1,length(evolution_list))
 		absorbed_upgrade = absorbed_upgrade / max(1,length(upgrade_list))
-		to_chat(world, "SALVAGE ESSENCE DEBUG: absorbed_plasma: [absorbed_plasma] absorbed_evolution: [absorbed_evolution] absorbed_upgrade: [absorbed_upgrade] target.evolution_stored: [target.evolution_stored] target.upgrade_stored: [target.upgrade_stored] ")
+		//to_chat(world, "SALVAGE ESSENCE DEBUG: absorbed_plasma: [absorbed_plasma] absorbed_evolution: [absorbed_evolution] absorbed_upgrade: [absorbed_upgrade] target.evolution_stored: [target.evolution_stored] target.upgrade_stored: [target.upgrade_stored] ")
 
 		for(var/mob/living/carbon/Xenomorph/X in evolution_list)
 			var/evolution_gained = round(min(X.xeno_caste.evolution_threshold - X.evolution_stored, absorbed_evolution))
 			if(evolution_gained)
 				X.evolution_stored += evolution_gained
-				to_chat(X, "<span class='xenowarning'>You are empowered by [src]'s contribution to the Hivemind, gaining [absorbed_evolution] evolution points. You now have [X.evolution_stored]/[X.xeno_caste.evolution_threshold] evolution points.</span>")
+				to_chat(X, "<span class='xenodanger'>You are empowered by [src]'s contribution to the Hivemind, gaining [absorbed_evolution] evolution points. You now have [X.evolution_stored]/[X.xeno_caste.evolution_threshold] evolution points.</span>")
 				playsound(src, 'sound/effects/xeno_newlarva.ogg', 10, 0)
 
 		for(var/mob/living/carbon/Xenomorph/X in upgrade_list)
 			var/upgrade_gained = round(min(X.xeno_caste.upgrade_threshold - X.upgrade_stored, absorbed_evolution))
 			if(upgrade_gained)
 				X.upgrade_stored += upgrade_gained
-				to_chat(X, "<span class='xenowarning'>You are empowered by [src]'s contribution to the Hivemind, gaining [absorbed_upgrade] upgrade points. You now have [X.upgrade_stored]/[X.xeno_caste.upgrade_threshold] upgrade points.</span>")
+				to_chat(X, "<span class='xenodanger'>You are empowered by [src]'s contribution to the Hivemind, gaining [absorbed_upgrade] upgrade points. You now have [X.upgrade_stored]/[X.xeno_caste.upgrade_threshold] upgrade points.</span>")
 				playsound(src, 'sound/effects/xeno_newlarva.ogg', 10, 0)
 
-		to_chat(src, "<span class='xenowarning'>You salvage [absorbed_plasma] units of [energy] from [target]. You have [plasma_stored]/[xeno_caste.plasma_max] stored now.</span>")
+		to_chat(src, "<span class='xenowarning'>You salvage [absorbed_plasma] units of plasma from [target][excess_plasma ? ", regaining [excess_plasma] excess as health" : null]. You have [plasma_stored]/[xeno_caste.plasma_max] stored now.</span>")
 		target.gib()
 
 		if(prob(50))
