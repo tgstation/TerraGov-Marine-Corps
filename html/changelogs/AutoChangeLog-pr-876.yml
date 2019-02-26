@@ -1,0 +1,4 @@
+author: "Menshin"
+delete-after: True
+changes: 
+  - tweak: "portables generators have been cleaned up and can now be interacted with even when unanchored. The interface has been updated."
