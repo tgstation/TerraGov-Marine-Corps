@@ -2319,7 +2319,7 @@
 		return
 	var/mob/living/carbon/C = L
 	var/datum/reagent/xeno_tox = C.reagents.get_reagent(toxin)
-	if(xeno_tox.overdosed)
+	if(xeno_tox?.overdosed)
 		to_chat(src, "<span class='xenodanger'>You sense this host is overdosed on [xeno_tox.name].</span>")
 
 /mob/living/carbon/Xenomorph/Hivelord/proc/build_tunnel()
