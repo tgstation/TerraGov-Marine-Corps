@@ -1354,16 +1354,20 @@
 	icon_state = "sticky"
 	ping = null
 	flags_ammo_behavior = AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE
-	spit_cost = 40
+	damage_type = HALLOSS
+	spit_cost = 50
 
 /datum/ammo/xeno/sticky/New()
 	..()
 	shell_speed = CONFIG_GET(number/combat_define/fast_shell_speed)
-	accuracy_var_high = CONFIG_GET(number/combat_define/max_proj_variance)
+	damage = CONFIG_GET(number/combat_define/base_hit_damage) //minor; this is mostly just to provide confirmation of a hit
 	max_range = CONFIG_GET(number/combat_define/max_shell_range)
 
 /datum/ammo/xeno/sticky/on_hit_mob(mob/M,obj/item/projectile/P)
 	drop_resin(get_turf(P))
+	if(istype(M,/mob/living/carbon))
+		var/mob/living/carbon/C = M
+		C.add_slowdown(0.7) //slow em down
 
 /datum/ammo/xeno/sticky/on_hit_obj(obj/O,obj/item/projectile/P)
 	drop_resin(get_turf(P))
