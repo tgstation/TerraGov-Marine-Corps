@@ -998,7 +998,7 @@
 		handle_ventcrawl(pipe)
 
 
-/mob/living/carbon/Xenomorph/proc/xeno_transfer_plasma(atom/A, amount = 50, transfer_delay = 20, max_range = 2)
+/mob/living/carbon/Xenomorph/proc/xeno_transfer_plasma(atom/A, amount, transfer_delay = 20, max_range = 2)
 	if(!isxeno(A) || !check_state() || A == src)
 		return
 
@@ -1044,12 +1044,12 @@
 	to_chat(src, "<span class='xenowarning'>You have transferred [amount] units of [energy] to [target]. You now have [plasma_stored]/[xeno_caste.plasma_max].</span>")
 	playsound(src, "alien_drool", 25)
 
-/mob/living/carbon/Xenomorph/proc/xeno_salvage_plasma(atom/A, amount, salvage_delay, max_range)
+/mob/living/carbon/Xenomorph/proc/xeno_salvage_plasma(atom/A, salvage_delay, max_range)
 	if(!isxeno(A) || !check_state() || A == src)
 		return
 
 	var/mob/living/carbon/Xenomorph/target = A
-	var/energy = isxenosilicon(src) ? "charge" : "plasma"
+	var/energy = isxenosilicon(src) ? "charge" : "essence"
 
 	if(!isturf(loc))
 		to_chat(src, "<span class='warning'>You can't salvage [energy] from here!</span>")
@@ -1057,10 +1057,6 @@
 
 	if(isxenosilicon(src) != isxenosilicon(A))
 		to_chat(src, "<span class='warning'>[target]'s source of energy is incompatible with ours.</span>")
-		return
-
-	if(plasma_stored >= xeno_caste.plasma_max)
-		to_chat(src, "<span class='notice'>Your [energy] reserves are already at full capacity and can't hold any more.</span>")
 		return
 
 	if(target.stat != DEAD)
@@ -1071,10 +1067,18 @@
 		to_chat(src, "<span class='warning'>You need to be closer to [target].</span>")
 		return
 
-	to_chat(src, "<span class='notice'>You start salvaging [energy] from [target].</span>")
+	if(stagger)
+		to_chat(src, "<span class='xenowarning'>You try to salvage [target]'s essence but are staggered!</span>")
+		return
 
-	while(target.plasma_stored || target.upgrade_stored || target.evolution_stored)
-		if(!do_after(src, salvage_delay, TRUE, 5, BUSY_ICON_HOSTILE) || !check_state())
+	to_chat(src, "<span class='notice'>You start salvaging [target]'s essence...</span>")
+
+	face_atom(target)
+	animation_attack_on(target)
+	playsound(target, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
+
+	while( (target.plasma_stored || target.upgrade_stored || target.evolution_stored) && !stagger && get_dist(src, target) <= max_range)
+		if(!do_after(src, salvage_delay, TRUE, 5, BUSY_ICON_HOSTILE, null, TRUE) || !check_state())
 			break
 
 		if(!isturf(loc))
@@ -1086,16 +1090,24 @@
 			break
 
 		if(stagger)
-			to_chat(src, "<span class='xenowarning'>Your muscles fail to respond as you try to shake up the shock!</span>")
+			to_chat(src, "<span class='xenowarning'>You try to salvage [target]'s essence but are staggered!</span>")
 			break
 
-		if(target.plasma_stored < amount)
-			amount = target.plasma_stored //Just take it all.
+		face_atom(target)
+		animation_attack_on(target)
+		playsound(target, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
 
-		var/absorbed_plasma = round(amount * PLASMA_SALVAGE_MULTIPLIER)
+		round_statistics.drone_salvage_essence++
+
+		var/absorbed_plasma = round(target.plasma_stored * DRONE_SALVAGE_PLASMA_MULTIPLIER)
 		var/absorbed_evolution = round(target.evolution_stored * DRONE_SALVAGE_EVOLUTION_MULTIPLIER)
 		var/absorbed_upgrade = round(target.upgrade_stored * DRONE_SALVAGE_UPGRADE_MULTIPLIER)
-		target.use_plasma(amount)
+
+		if(absorbed_plasma > (xeno_caste.plasma_max - plasma_stored) ) //Excess absorbed as health
+			var/excess_plasma = absorbed_plasma - (xeno_caste.plasma_max - plasma_stored)
+			adjustFireLoss(-CLAMP( excess_plasma, 0, getFireLoss() ) )
+			adjustBruteLoss(-CLAMP( excess_plasma, 0, getBruteLoss() ) )
+
 		gain_plasma(absorbed_plasma)
 
 		var/list/upgrade_list = list()
@@ -1112,16 +1124,21 @@
 
 		absorbed_evolution = absorbed_evolution / max(1,length(evolution_list))
 		absorbed_upgrade = absorbed_upgrade / max(1,length(upgrade_list))
+		to_chat(world, "SALVAGE ESSENCE DEBUG: absorbed_plasma: [absorbed_plasma] absorbed_evolution: [absorbed_evolution] absorbed_upgrade: [absorbed_upgrade] target.evolution_stored: [target.evolution_stored] target.upgrade_stored: [target.upgrade_stored] ")
 
 		for(var/mob/living/carbon/Xenomorph/X in evolution_list)
-			X.evolution_stored = min(X.xeno_caste.evolution_threshold, X.evolution_stored + absorbed_evolution)
-			to_chat(X, "<span class='xenowarning'>You are empowered by [src]'s contribution to the Hivemind, gaining [absorbed_evolution] evolution points. You now have [X.evolution_stored]/[X.xeno_caste.evolution_threshold] evolution points.</span>")
-			playsound(src, 'sound/effects/xeno_newlarva.ogg', 15, 0, 1)
+			var/evolution_gained = round(min(X.xeno_caste.evolution_threshold - X.evolution_stored, absorbed_evolution))
+			if(evolution_gained)
+				X.evolution_stored += evolution_gained
+				to_chat(X, "<span class='xenowarning'>You are empowered by [src]'s contribution to the Hivemind, gaining [absorbed_evolution] evolution points. You now have [X.evolution_stored]/[X.xeno_caste.evolution_threshold] evolution points.</span>")
+				playsound(src, 'sound/effects/xeno_newlarva.ogg', 10, 0)
 
 		for(var/mob/living/carbon/Xenomorph/X in upgrade_list)
-			X.upgrade_stored = min(X.xeno_caste.upgrade_threshold, X.upgrade_stored + absorbed_upgrade)
-			to_chat(X, "<span class='xenowarning'>You are empowered by [src]'s contribution to the Hivemind, gaining [absorbed_upgrade] upgrade points. You now have [X.upgrade_stored]/[X.xeno_caste.upgrade_threshold] upgrade points.</span>")
-			playsound(src, 'sound/effects/xeno_newlarva.ogg', 15, 0, 1)
+			var/upgrade_gained = round(min(X.xeno_caste.upgrade_threshold - X.upgrade_stored, absorbed_evolution))
+			if(upgrade_gained)
+				X.upgrade_stored += upgrade_gained
+				to_chat(X, "<span class='xenowarning'>You are empowered by [src]'s contribution to the Hivemind, gaining [absorbed_upgrade] upgrade points. You now have [X.upgrade_stored]/[X.xeno_caste.upgrade_threshold] upgrade points.</span>")
+				playsound(src, 'sound/effects/xeno_newlarva.ogg', 10, 0)
 
 		to_chat(src, "<span class='xenowarning'>You salvage [absorbed_plasma] units of [energy] from [target]. You have [plasma_stored]/[xeno_caste.plasma_max] stored now.</span>")
 		target.gib()

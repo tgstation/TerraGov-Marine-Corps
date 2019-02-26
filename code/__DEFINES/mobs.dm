@@ -497,7 +497,7 @@ var/list/global_mutations = list() // list of hidden mutation things
 
 #define PLASMA_TRANSFER_AMOUNT 50
 #define PLASMA_SALVAGE_AMOUNT 40
-#define PLASMA_SALVAGE_MULTIPLIER 0.5 // I'd not reccomend setting this higher than one.
+#define DRONE_SALVAGE_PLASMA_MULTIPLIER 1 // I'd not reccomend setting this higher than one.
 #define DRONE_SALVAGE_EVOLUTION_MULTIPLIER 0.5 // I'd not reccomend setting this higher than one.
 #define DRONE_SALVAGE_UPGRADE_MULTIPLIER 0.5 // I'd not reccomend setting this higher than one.
 

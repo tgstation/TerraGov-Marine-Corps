@@ -456,7 +456,6 @@
 	name = "Salvage Essence"
 	action_icon_state = "salvage_plasma"
 	ability_name = "salvage plasma"
-	var/plasma_salvage_amount = PLASMA_SALVAGE_AMOUNT
 	var/salvage_delay = 5 SECONDS
 	var/max_range = 1
 
@@ -464,12 +463,11 @@ datum/action/xeno_action/activable/salvage_plasma/use_ability(atom/A)
 	var/mob/living/carbon/Xenomorph/X = owner
 	if(owner.action_busy)
 		return
-	X.xeno_salvage_plasma(A, plasma_salvage_amount, salvage_delay, max_range)
+	X.xeno_salvage_plasma(A, salvage_delay, max_range)
 
 datum/action/xeno_action/activable/salvage_plasma/improved
-	plasma_salvage_amount = PLASMA_SALVAGE_AMOUNT * 2
 	salvage_delay = 3 SECONDS
-	max_range = 4
+	max_range = 1
 
 //Boiler abilities
 

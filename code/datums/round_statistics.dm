@@ -55,4 +55,4 @@ var/datum/round_statistics/round_statistics = new()
 	var/defiler_defiler_stings = 0
 	var/defiler_neurogas_uses = 0
 	var/drone_stings = 0
-	var/drone_salvage_plasma = 0
+	var/drone_salvage_essence = 0
