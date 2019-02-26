@@ -307,6 +307,8 @@
 		var/turfdirt = T.get_dirt_type()
 		if(!turfdirt == DIRT_TYPE_SNOW)
 			return
+		if(!istype(T, /turf/open/snow))
+			return
 		var/turf/open/snow/ST = T
 		if(!ST.slayer)
 			return
