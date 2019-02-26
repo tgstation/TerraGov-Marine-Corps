@@ -225,7 +225,7 @@
 			if(M.stealth_router(HANDLE_STEALTH_CHECK))
 				if(M.stealth_router(HANDLE_SNEAK_ATTACK_CHECK))
 					KnockOut(2)
-					if(m_intent == MOVE_INTENT_RUN)
+					if(m_intent == MOVE_INTENT_RUN && ( last_move_intent > (world.time - 20) ) ) //Allows us to slash while running... but only if we've been stationary for awhile
 						tackle_pain *= 1.75 //Half the multiplier if running.
 						M.visible_message("<span class='danger'>\The [M] strikes [src] with vicious precision!</span>", \
 						"<span class='danger'>You strike [src] with vicious precision!</span>")
