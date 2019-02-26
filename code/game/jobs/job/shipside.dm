@@ -512,7 +512,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 /datum/job/medical/doctor
 	title = "Medical Officer"
 	comm_title = "MO"
-	paygrade = "01"
+	paygrade = "O1"
 	flag = SHIP_DOCTOR
 	prefflag = PREF_JOB_DOCTOR
 	spawn_positions = 6
