@@ -150,12 +150,12 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 		return
 	if(!tray.warhead)
 		if(user)
-			to_chat(user, "<span class='warning'>no warhead in the tray, cancelling chambering operation.</span>")
+			to_chat(user, "<span class='warning'>No warhead in the tray, cancelling chambering operation.</span>")
 		return
 
 	if(tray.fuel_amt < 1)
 		if(user)
-			to_chat(user, "<span class='warning'>no solid fuel in the tray, cancelling chambering operation.</span>")
+			to_chat(user, "<span class='warning'>No solid fuel in the tray, cancelling chambering operation.</span>")
 		return
 
 	if(last_orbital_firing) //fired at least once
