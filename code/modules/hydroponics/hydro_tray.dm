@@ -649,7 +649,7 @@
 	else if(iswrench(O))
 
 		//If there's a connector here, the portable_atmospherics setup can handle it.
-//		if(locate(/obj/machinery/atmospherics/portables_connector/) in loc)
+//		if(locate(/obj/machinery/atmospherics/components/unary/portables_connector/) in loc)
 //			return ..()
 
 		playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)

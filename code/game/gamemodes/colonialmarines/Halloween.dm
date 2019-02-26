@@ -149,7 +149,7 @@
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_SHOES)
 	H.equip_to_slot_or_del(new /obj/item/device/flashlight(H), SLOT_R_STORE)
-	H.equip_to_slot_or_del(new /obj/item/weapon/crowbar(H), SLOT_L_STORE)
+	H.equip_to_slot_or_del(new /obj/item/tool/crowbar(H), SLOT_L_STORE)
 	H.update_icons()
 
 	//Give them some information
@@ -187,7 +187,7 @@
 	var/human_count = 0
 	for(var/mob/living/carbon/human/H in GLOB.alive_human_list)
 		if(H) //Prevent any runtime errors
-			if(H.client && istype(H) && H.stat != DEAD && !(H.status_flags & XENO_HOST) && H.z != 0 && !istype(H.loc,/turf/space)) // If they're connected/unghosted and alive and not debrained
+			if(H.client && istype(H) && H.stat != DEAD && !(H.status_flags & XENO_HOST) && H.z != 0 && !istype(H.loc,/turf/open/space)) // If they're connected/unghosted and alive and not debrained
 				if(H.species != "Yautja") // Preds don't count in round end.
 					human_count += 1 //Add them to the amount of people who're alive.
 		else
@@ -202,7 +202,7 @@
 	var/xeno_count = 0
 	for(var/mob/living/carbon/Xenomorph/X in GLOB.alive_xeno_list)
 		if(X) //Prevent any runtime errors
-			if(X.client && istype(X) && X.stat != DEAD && X.z != 0 && !istype(X.loc,/turf/space)) // If they're connected/unghosted and alive and not debrained
+			if(X.client && istype(X) && X.stat != DEAD && X.z != 0 && !istype(X.loc,/turf/open/space)) // If they're connected/unghosted and alive and not debrained
 				xeno_count += 1 //Add them to the amount of people who're alive.
 		else
 			log_debug("WARNING! NULL MOB IN LIVING MOB LIST! COUNT_XENOS()")
