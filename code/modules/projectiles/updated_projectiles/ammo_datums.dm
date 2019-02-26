@@ -1366,7 +1366,7 @@
 	max_range = CONFIG_GET(number/combat_define/max_shell_range)
 
 /datum/ammo/xeno/sticky/on_hit_mob(mob/M,obj/item/projectile/P)
-	drop_resin(get_turf(P))
+	drop_resin(get_turf(M))
 	if(istype(M,/mob/living/carbon))
 		var/mob/living/carbon/C = M
 		C.add_slowdown(0.7) //slow em down
@@ -1375,7 +1375,7 @@
 	drop_resin(get_turf(P))
 
 /datum/ammo/xeno/sticky/on_hit_turf(turf/T,obj/item/projectile/P)
-	drop_resin(T)
+	drop_resin(get_turf(P))
 
 /datum/ammo/xeno/sticky/do_at_max_range(obj/item/projectile/P)
 	drop_resin(get_turf(P))
