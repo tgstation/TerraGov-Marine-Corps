@@ -108,8 +108,6 @@
 /obj/item/tool/pickaxe/plasmacutter/Initialize()
 	. = ..()
 	cell = new /obj/item/cell/high(src)
-	powered = TRUE
-	update_plasmacutter(silent=TRUE)
 
 
 /obj/item/tool/pickaxe/plasmacutter/examine(mob/user)
