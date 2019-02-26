@@ -998,7 +998,7 @@
 		handle_ventcrawl(pipe)
 
 
-/mob/living/carbon/Xenomorph/proc/xeno_transfer_plasma(atom/A, amount = 50, transfer_delay = 20, max_range = 2)
+/mob/living/carbon/Xenomorph/proc/xeno_transfer_plasma(atom/A, amount = 50, transfer_delay = 20, max_range = 4)
 	if(!isxeno(A) || !check_state() || A == src)
 		return
 
