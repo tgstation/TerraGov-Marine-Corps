@@ -194,3 +194,7 @@
 	if(speed_activated)
 		if(locate(/obj/effect/alien/weeds) in loc)
 			. -= 1.5
+
+/mob/living/carbon/Xenomorph/Initialize()
+	. = ..()
+	update_spits()
