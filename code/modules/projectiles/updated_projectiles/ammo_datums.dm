@@ -1356,6 +1356,8 @@
 	flags_ammo_behavior = AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE
 	damage_type = HALLOSS
 	spit_cost = 50
+	sound_hit 	 = "alien_resin_build2"
+	sound_bounce	= "alien_resin_build3"
 
 /datum/ammo/xeno/sticky/New()
 	..()
