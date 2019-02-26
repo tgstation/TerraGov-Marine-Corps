@@ -85,10 +85,9 @@
 /obj/item/map/current_map
 
 /obj/item/map/current_map/New()
-	..()
-	if(!SSmapping.config.map_name)
-		qdel(src)
-		return
+	. = ..()
+	if(!SSmapping.config?.map_name)
+		return INITIALIZE_HINT_QDEL
 	switch(SSmapping.config.map_name)
 		if(MAP_LV_624)
 			name = "\improper Lazarus Landing Map"
