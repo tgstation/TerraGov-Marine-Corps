@@ -430,10 +430,6 @@
 
 	sleep(travel_time) //Wait while we fly, but give extra time for crashing announcements etc
 
-	if(EvacuationAuthority.dest_status >= NUKE_EXPLOSION_IN_PROGRESS) 
-		return FALSE //If a nuke is in progress, don't attempt a landing.
-
-
 	//This is where things change and shit gets real
 
 	command_announcement.Announce("DROPSHIP ON COLLISION COURSE. CRASH IMMINENT." , "EMERGENCY", new_sound='sound/AI/dropship_emergency.ogg')
