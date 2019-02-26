@@ -1911,6 +1911,10 @@
 		to_chat(src, "<span class='xenodanger'>You're too disoriented from the shock to enter Stealth!</span>")
 		return
 
+	if(on_fire)
+		to_chat(src, "<span class='xenodanger'>You're too busy being on fire to enter Stealth!</span>")
+		return
+
 	if(!stealth)
 		if (!check_plasma(10))
 			return

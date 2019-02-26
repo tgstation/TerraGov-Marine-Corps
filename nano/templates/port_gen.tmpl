@@ -1,0 +1,101 @@
+<h3>Status</h3>
+<div class="itemGroup">
+	<div class="item">
+		<div class="itemLabel">
+			Power switch:
+		</div>
+		<div class="itemContent">
+		{{if data.active}}
+		   {{:helper.link('On', 'power', {'toggle_power' : 1}, null)}}
+		{{else data.ready_to_boot}}
+		   {{:helper.link('Off', 'power', {'toggle_power' : 1}, null)}}
+		{{else}}
+			{{:helper.link('Off', 'power', {'toggle_power' : 1}, 'disabled')}}
+		{{/if}}
+	  </div>
+	 </div>
+	 <div class="item">
+	  <div class="itemLabel">
+		{{:data.sheet_name}} sheets:
+	  </div>
+	  <div class="itemContent">
+		<div class="statusValue">
+			{{if data.sheets > 5}}
+				<span class='good'>{{:data.sheets}}</span>
+			{{else data.sheets > 0}}
+				<span class='average'>{{:data.sheets}}</span>
+			{{else}}
+				<span class='bad'>{{:data.sheets}}</span>
+			{{/if}}
+			&nbsp;
+		</div>
+		{{if data.sheets >= 1}}
+			{{:helper.link('Eject', '', {'eject' : 1}, (data.active ? 'disabled' : null))}}
+		{{/if}}
+	  </div>
+	</div>
+	<div class="item"> 
+	  <div class="itemLabel">
+		Current sheet level:
+	  </div>
+	  <div class="itemContent">
+		{{if data.stack_percent > 50}}
+			{{:helper.displayBar(data.stack_percent, 0, 100,'good')}}
+		{{else data.stack_percent > 15}}
+			{{:helper.displayBar(data.stack_percent, 0, 100,'average')}}
+		{{else}}
+			{{:helper.displayBar(data.stack_percent, 0, 100,'bad')}}
+		{{/if}}
+			<div class="statusValue">
+				{{:helper.round(data.stack_percent)}}%
+			</div>
+	  </div>
+	</div>
+	<div class="item">
+	  <div class="itemLabel">
+		Heat level:
+	  </div>
+	  <div class="itemContent">
+	  {{if data.heat < 100}}
+		<span class="good">Nominal</span>
+	  {{else data.heat < 200}}
+		<span class="average">Caution</span>
+	  {{else}}
+		<span class="bad">DANGER</span>
+	  {{/if}}
+	  </div>
+	</div>
+</div>
+
+<h3>Output</h3>
+<div class="itemGroup">
+	<div class="item">
+		<div class="itemLabel">
+			Current output:
+		</div>
+		<div class="itemContent">
+		{{:data.power_output}}
+	  </div>
+	</div>
+	<div class="item">
+	  <div class="itemLabel">
+		Adjust output:
+	  </div>
+	  <div class="itemContent">
+		{{:helper.link(data.power_generated, 'minus', {'lower_power' : 1})}}
+		{{:helper.link(data.power_generated, 'plus', {'higher_power' : 1})}}
+	  </div>
+	</div>
+	<div class="item">
+	  <div class="itemLabel">
+		Power available:
+	  </div>
+	  <div class="itemContent">
+		{{if data.connected}}
+			<span>{{:data.power_available}}</span>
+		{{else}}
+			<span class='bad'>Unconnected</span>
+		{{/if}}
+	  </div>
+	</div>
+</div>

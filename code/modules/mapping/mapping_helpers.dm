@@ -93,7 +93,7 @@
 	var/late = FALSE
 
 /obj/effect/mapping_helpers/Initialize()
-	..()
+	. = ..()
 	return late ? INITIALIZE_HINT_LATELOAD : INITIALIZE_HINT_QDEL
 
 
