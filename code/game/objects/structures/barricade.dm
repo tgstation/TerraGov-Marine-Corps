@@ -944,4 +944,4 @@
 
 /obj/structure/barricade/snow/acid_smoke_damage(var/obj/effect/particle_effect/smoke/S) //snow isn't as reactive with acid. Also for balance reasons because snow sucks total ass.
 	health -= 2
-	return
+	update_health()
