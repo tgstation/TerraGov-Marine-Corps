@@ -2225,8 +2225,7 @@
 
 
 /mob/living/carbon/Xenomorph/Defiler/proc/defiler_sting(mob/living/H)
-
-	if(!check_state())
+	if(!check_state() || !istype(H))
 		return
 
 	if(world.time < last_defiler_sting + DEFILER_STING_COOLDOWN) //Sure, let's use this.
