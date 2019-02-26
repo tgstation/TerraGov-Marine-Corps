@@ -8621,7 +8621,7 @@
 /area/almayer/shipboard/brig)
 "asT" = (
 /obj/structure/table/almayer,
-/obj/machinery/faxmachine,
+/obj/machinery/faxmachine/cmp,
 /turf/open/floor/almayer/mono,
 /area/almayer/shipboard/chief_mp_office)
 "asU" = (
@@ -9454,7 +9454,7 @@
 /area/almayer/shipboard/brig)
 "auD" = (
 /obj/structure/table/almayer,
-/obj/machinery/faxmachine,
+/obj/machinery/faxmachine/brig,
 /turf/open/floor/almayer/mono,
 /area/almayer/shipboard/brig)
 "auE" = (
@@ -15469,7 +15469,7 @@
 /area/almayer/shipboard/brig)
 "aFy" = (
 /obj/structure/table/almayer,
-/obj/machinery/faxmachine,
+/obj/machinery/faxmachine/research,
 /turf/open/floor/almayer{
 	dir = 1;
 	icon_state = "sterile_green_side";
@@ -19413,7 +19413,7 @@
 /area/almayer/command/cic)
 "aMI" = (
 /obj/structure/table/almayer,
-/obj/machinery/faxmachine,
+/obj/machinery/faxmachine/cic,
 /turf/open/floor/almayer/mono,
 /area/almayer/command/cic)
 "aMJ" = (
@@ -42519,7 +42519,7 @@
 	},
 /area/shuttle/drop2/sulaco)
 "bLK" = (
-/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds2
+/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds2,
 /obj/machinery/door/poddoor/shutters/transit{
 	density = 0;
 	dir = 1;
@@ -42577,7 +42577,7 @@
 	},
 /area/shuttle/drop1/sulaco)
 "bLS" = (
-/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds1
+/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds1,
 /obj/machinery/door/poddoor/shutters/transit{
 	density = 0;
 	dir = 1;

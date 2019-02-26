@@ -56,3 +56,5 @@
 
 	// This gets set by goonchat.
 	var/encoding = "1252"
+
+	var/list/char_render_holders			//Should only be a key-value list of north/south/east/west = obj/screen.

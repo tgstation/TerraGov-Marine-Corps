@@ -423,3 +423,12 @@ proc/TextPreview(var/string,var/len=40)
 
 /proc/sanitize_filename(t)
 	return sanitize_simple(t, list("\n"="", "\t"="", "/"="", "\\"="", "?"="", "%"="", "*"="", ":"="", "|"="", "\""="", "<"="", ">"=""))
+
+
+/proc/sanitizediscord(text)
+	text = replacetext(text, "\improper", "")
+	text = replacetext(text, "\proper", "")
+	text = replacetext(text, "<@", "")
+	text = replacetext(text, "@here", "")
+	text = replacetext(text, "@everyone", "")
+	return text

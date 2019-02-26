@@ -272,7 +272,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		MessageNoRecipient(msg)
 
 		//send it to irc if nobody is on and tell us how many were on
-		var/admin_number_present = send2irc_adminless_only(initiator_ckey, "Ticket #[id]: [name]")
+		var/admin_number_present = send2irc_adminless_only(initiator_ckey, "Ticket #[id]: [sanitizediscord(name)]")
 		log_admin_private("Ticket #[id]: [key_name(initiator)]: [name] - heard by [admin_number_present] non-AFK staff.")
 		if(admin_number_present <= 0)
 			to_chat(C, "<span class='notice'>No active admins are online.</span>")
@@ -788,14 +788,16 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 			final = "[msg] - No admins online"
 		else
 			final = "[msg] - All admins stealthed\[[english_list(stealthmins)]\], AFK\[[english_list(afkmins)]\], or lacks +BAN\[[english_list(powerlessmins)]\]! Total: [allmins.len] "
-		send2irc(source,final)
-		send2otherserver(source,final)
+		send2irc(source, final)
+		send2otherserver(source, final)
 
 
-/proc/send2irc(msg,msg2)
-	msg = replacetext(replacetext(msg, "\proper", ""), "\improper", "")
-	msg2 = replacetext(replacetext(msg2, "\proper", ""), "\improper", "")
+/proc/send2irc(msg, msg2)
 	world.TgsTargetedChatBroadcast("[msg] | [msg2]", TRUE)
+
+
+/proc/send2update(msg)
+	world.TgsTargetedChatBroadcast(msg, FALSE)
 
 
 /proc/send2otherserver(source,msg,type = "Ahelp")

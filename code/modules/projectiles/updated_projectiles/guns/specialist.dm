@@ -5,7 +5,7 @@
 //Because this parent type did not exist
 //Note that this means that snipers will have a slowdown of 3, due to the scope
 /obj/item/weapon/gun/rifle/sniper
-	aim_slowdown = SLOWDOWN_ADS_SPECIALIST
+	aim_slowdown = SLOWDOWN_ADS_SCOPE
 	gun_skill_category = GUN_SKILL_SPEC
 	wield_delay = WIELD_DELAY_SLOW
 
@@ -294,7 +294,7 @@
 	w_class = 5
 	force = 20
 	wield_delay = 16
-	aim_slowdown = SLOWDOWN_ADS_SPECIALIST
+	aim_slowdown = SLOWDOWN_ADS_SPECIALIST_MED
 	var/datum/ammo/ammo_secondary = /datum/ammo/bullet/smartgun/lethal//Toggled ammo type
 	var/shells_fired_max = 50 //Smartgun only; once you fire # of shells, it will attempt to reload automatically. If you start the reload, the counter resets.
 	var/shells_fired_now = 0 //The actual counter used. shells_fired_max is what it is compared to.
@@ -329,7 +329,9 @@
 	to_chat(user, "The restriction system is [restriction_toggled ? "<B>on</b>" : "<B>off</b>"].")
 
 /obj/item/weapon/gun/smartgun/unique_action(mob/user)
-	toggle_restriction(user)
+	var/obj/item/smartgun_powerpack/power_pack = user.back
+	if(istype(power_pack))
+		power_pack.attack_self(user)
 
 /obj/item/weapon/gun/smartgun/able_to_fire(mob/living/user)
 	. = ..()
@@ -346,12 +348,13 @@
 	return ready_in_chamber()
 
 /obj/item/weapon/gun/smartgun/reload_into_chamber(mob/user)
-	var/mob/living/carbon/human/smart_gunner = user
-	var/obj/item/smartgun_powerpack/power_pack = smart_gunner.back
-	if(istype(power_pack)) //I don't know how it would break, but it is possible.
-		if(shells_fired_now >= shells_fired_max && power_pack.rounds_remaining > 0) // If shells fired exceeds shells needed to reload, and we have ammo.
-			auto_reload(smart_gunner, power_pack)
-		else shells_fired_now++
+	var/obj/item/smartgun_powerpack/power_pack = user.back
+	if(!istype(power_pack))
+		return current_mag.current_rounds
+	if(shells_fired_now >= shells_fired_max && power_pack.rounds_remaining > 0) // If shells fired exceeds shells needed to reload, and we have ammo.
+		addtimer(CALLBACK(src, .proc/auto_reload, user, power_pack), 0.5 SECONDS)
+	else
+		shells_fired_now++
 
 	return current_mag.current_rounds
 
@@ -360,8 +363,12 @@
 	if(refund) current_mag.current_rounds++
 	return 1
 
-/obj/item/weapon/gun/smartgun/proc/toggle_restriction(mob/user)
-	to_chat(user, "[icon2html(src, user)] You [restriction_toggled? "<B>disable</b>" : "<B>enable</b>"] the [src]'s fire restriction. You will [restriction_toggled ? "harm anyone in your way" : "target through IFF"].")
+/obj/item/weapon/gun/smartgun/toggle_gun_safety()
+	var/obj/item/weapon/gun/smartgun/G = get_active_firearm(usr)
+	if(!istype(G))
+		return //Right kind of gun is not in hands, abort.
+	src = G
+	to_chat(usr, "[icon2html(src, usr)] You [restriction_toggled? "<B>disable</b>" : "<B>enable</b>"] the [src]'s fire restriction. You will [restriction_toggled ? "harm anyone in your way" : "target through IFF"].")
 	playsound(loc,'sound/machines/click.ogg', 25, 1)
 	var/A = ammo
 	ammo = ammo_secondary
@@ -369,9 +376,7 @@
 	restriction_toggled = !restriction_toggled
 
 /obj/item/weapon/gun/smartgun/proc/auto_reload(mob/smart_gunner, obj/item/smartgun_powerpack/power_pack)
-	set waitfor = 0
-	sleep(5)
-	if(power_pack && power_pack.loc)
+	if(power_pack?.loc == smart_gunner)
 		power_pack.attack_self(smart_gunner, TRUE)
 
 /obj/item/weapon/gun/smartgun/get_ammo_type()
@@ -424,7 +429,7 @@
 	cocked_sound = 'sound/weapons/gun_m92_cocked.ogg'
 	var/list/grenades = list()
 	var/max_grenades = 6
-	aim_slowdown = SLOWDOWN_ADS_SPECIALIST
+	aim_slowdown = SLOWDOWN_ADS_SPECIALIST_MED
 	attachable_allowed = list(
 						/obj/item/attachable/magnetic_harness)
 
@@ -551,7 +556,7 @@
 	wield_delay = WIELD_DELAY_VERY_FAST
 	fire_sound = 'sound/weapons/armbomb.ogg'
 	cocked_sound = 'sound/weapons/gun_m92_cocked.ogg'
-	aim_slowdown = SLOWDOWN_ADS_SPECIALIST
+	aim_slowdown = SLOWDOWN_ADS_SPECIALIST_MED
 	gun_skill_category = GUN_SKILL_SPEC
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY
 	attachable_allowed = list()
@@ -677,7 +682,7 @@
 	w_class = 5
 	force = 15
 	wield_delay = 12
-	aim_slowdown = SLOWDOWN_ADS_SPECIALIST
+	aim_slowdown = SLOWDOWN_ADS_SPECIALIST_HEAVY
 	attachable_allowed = list(
 						/obj/item/attachable/magnetic_harness,
 						/obj/item/attachable/scope/mini)
@@ -845,6 +850,7 @@
 	fire_sound = 'sound/weapons/gun_shotgun_automatic.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/scout
 	gun_skill_category = GUN_SKILL_SPEC
+	aim_slowdown = SLOWDOWN_ADS_SPECIALIST_LIGHT
 	attachable_allowed = list(
 						/obj/item/attachable/bayonet,
 						/obj/item/attachable/reddot,
@@ -891,7 +897,7 @@
 	force = 20
 	wield_delay = 15
 	gun_skill_category = GUN_SKILL_SPEC
-	aim_slowdown = SLOWDOWN_ADS_RIFLE
+	aim_slowdown = SLOWDOWN_ADS_SPECIALIST_MED
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_BURST_ON|GUN_WIELDED_FIRING_ONLY|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	attachable_allowed = list(
 						/obj/item/attachable/flashlight,

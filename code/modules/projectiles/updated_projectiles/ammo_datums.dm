@@ -260,7 +260,7 @@
 /datum/ammo/bullet/pistol/New()
 	..()
 	damage = CONFIG_GET(number/combat_define/low_hit_damage)
-	accuracy = -CONFIG_GET(number/combat_define/low_hit_accuracy)
+	accurate_range = CONFIG_GET(number/combat_define/close_shell_range)
 
 /datum/ammo/bullet/pistol/tiny
 	name = "light pistol bullet"
@@ -512,6 +512,7 @@
 	scatter = -CONFIG_GET(number/combat_define/low_scatter_value)
 	penetration= CONFIG_GET(number/combat_define/med_armor_penetration)
 	shell_speed = CONFIG_GET(number/combat_define/fast_shell_speed)
+	accurate_range = CONFIG_GET(number/combat_define/norm_shell_range)
 
 /datum/ammo/bullet/rifle/m4ra/incendiary
 	name = "A19 high velocity incendiary bullet"
@@ -1021,16 +1022,16 @@
 
 
 /datum/ammo/rocket/wp/on_hit_mob(mob/M,obj/item/projectile/P)
-	drop_flame(3, get_turf(M))
+	drop_flame(get_turf(M), 3)
 
 /datum/ammo/rocket/wp/on_hit_obj(obj/O,obj/item/projectile/P)
-	drop_flame(3, get_turf(O))
+	drop_flame(get_turf(O), 3)
 
 /datum/ammo/rocket/wp/on_hit_turf(turf/T,obj/item/projectile/P)
-	drop_flame(3, T)
+	drop_flame(T, 3)
 
 /datum/ammo/rocket/wp/do_at_max_range(obj/item/projectile/P)
-	drop_flame(3, get_turf(P))
+	drop_flame(get_turf(P), 3)
 
 /datum/ammo/rocket/wp/quad
 	name = "thermobaric rocket"

@@ -876,7 +876,9 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			if(linked_imprinter.uranium_amount >= 10000) dat += "<A href='?src=\ref[src];imprinter_ejectsheet=uranium;imprinter_ejectsheet_amt=5'>(5 Sheets)</A> "
 			if(linked_imprinter.uranium_amount >= 2000) dat += "<A href='?src=\ref[src];imprinter_ejectsheet=uranium;imprinter_ejectsheet_amt=50'>(Max Sheets)</A>"
 
-	user << browse("<TITLE>Research and Development Console</TITLE><HR>[dat]", "window=rdconsole;size=575x400")
+	var/datum/browser/popup = new(user, "rdconsole", "<div align='center'>Research and Development Console</div>", 575, 400)
+	popup.set_content(dat)
+	popup.open(FALSE)
 	onclose(user, "rdconsole")
 
 /obj/machinery/computer/rdconsole/robotics
