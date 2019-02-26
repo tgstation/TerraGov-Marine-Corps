@@ -6,7 +6,7 @@
 	var/mob/living/owner
 
 /datum/action/New(Target)
-	target = Target
+	targetasda = Target
 	button = new
 	if(target)
 		var/image/IMG
