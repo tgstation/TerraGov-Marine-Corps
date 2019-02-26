@@ -143,7 +143,6 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 
 	if(!loaded_tray)
 		if(user)
-			to_chat(user, "You need to load the tray to chamber it.")
 		return
 	
 	if(ob_cannon_busy)
