@@ -998,7 +998,7 @@
 		handle_ventcrawl(pipe)
 
 
-/mob/living/carbon/Xenomorph/proc/xeno_transfer_plasma(atom/A, amount, transfer_delay = 20, max_range = 2)
+/mob/living/carbon/Xenomorph/proc/xeno_transfer_plasma(atom/A, amount = 50, transfer_delay = 20, max_range = 2)
 	if(!isxeno(A) || !check_state() || A == src)
 		return
 
@@ -1114,7 +1114,10 @@
 
 		var/list/upgrade_list = list()
 		var/list/evolution_list = list()
-		for(var/mob/living/carbon/Xenomorph/X in GLOB.alive_xeno_list)
+		var/mob/living/carbon/Xenomorph/X
+
+		for(var/i in GLOB.alive_xeno_list)
+			X = i
 			if(istype(src)) // cover calling it without parameters
 				if(X.hivenumber != hivenumber)
 					continue // not our hive
@@ -1128,14 +1131,16 @@
 		absorbed_upgrade = absorbed_upgrade / max(1,length(upgrade_list))
 		//to_chat(world, "SALVAGE ESSENCE DEBUG: absorbed_plasma: [absorbed_plasma] absorbed_evolution: [absorbed_evolution] absorbed_upgrade: [absorbed_upgrade] target.evolution_stored: [target.evolution_stored] target.upgrade_stored: [target.upgrade_stored] ")
 
-		for(var/mob/living/carbon/Xenomorph/X in evolution_list)
+		for(var/i in evolution_list)
+			X = i
 			var/evolution_gained = round(min(X.xeno_caste.evolution_threshold - X.evolution_stored, absorbed_evolution))
 			if(evolution_gained)
 				X.evolution_stored += evolution_gained
 				to_chat(X, "<span class='xenodanger'>You are empowered by [src]'s contribution to the Hivemind, gaining [absorbed_evolution] evolution points. You now have [X.evolution_stored]/[X.xeno_caste.evolution_threshold] evolution points.</span>")
 				playsound(src, 'sound/effects/xeno_newlarva.ogg', 10, 0)
 
-		for(var/mob/living/carbon/Xenomorph/X in upgrade_list)
+		for(var/i in upgrade_list)
+			X = i
 			var/upgrade_gained = round(min(X.xeno_caste.upgrade_threshold - X.upgrade_stored, absorbed_evolution))
 			if(upgrade_gained)
 				X.upgrade_stored += upgrade_gained
