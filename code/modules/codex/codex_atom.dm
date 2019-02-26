@@ -23,4 +23,4 @@
 /atom/examine(var/mob/user, var/distance = -1, var/infix = "", var/suffix = "")
 	. = ..()
 	if(user.can_use_codex() && SScodex.get_codex_entry(get_codex_value()))
-		to_chat(user, "<span class='notice'>The codex has <a href='?src=[REF(SScodex)];show_examined_info=[REF(src)];show_to=[REF(user)]'>relevant information</a>  available.</span>")
+		to_chat(user, "<span class='notice'>The codex has <a href='?src=[REF(SScodex)];show_examined_info=[REF(src)];show_to=[REF(user)]'>relevant information</a> available.</span>")
