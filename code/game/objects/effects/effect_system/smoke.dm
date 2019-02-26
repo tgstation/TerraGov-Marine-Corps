@@ -281,7 +281,7 @@
 	amount = 1 //Amount depends on Boiler upgrade!
 
 /obj/effect/particle_effect/smoke/xeno_burn/process()
-    ..()
+    . = ..()
     var/turf/T = get_turf(src)
     if(!T)
         qdel(src)
