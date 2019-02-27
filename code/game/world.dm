@@ -245,7 +245,7 @@ var/world_topic_spam_protect_time = world.timeofday
 			s += "<br>Mode: <b>[(Master.current_runlevel & RUNLEVELS_DEFAULT) ? SSticker.mode.name : "Lobby"]</b>"
 			s += "<br>Round time: <b>[duration2text()]</b>"
 		else
-			s += "<br>Map: <b>[SSmapping?.config?.map_name ? SSmapping.config.map_name : "Loading..."]</b>"
+			s += "<br>Map: <b>[SSmapping.config?.map_name ? SSmapping.config.map_name : "Loading..."]</b>"
 
 		status = s
 
