@@ -6,12 +6,13 @@
 	width = 11
 	height = 21
 
-/obj/docking_port/stationary/marine_dropship/one
+/obj/docking_port/stationary/marine_dropship/hangar/one
 	id = "alamo"
 	roundstart_template = /datum/map_template/shuttle/dropship/one
 
-/obj/docking_port/stationary/marine_dropship/two
+/obj/docking_port/stationary/marine_dropship/hangar/two
 	id = "normandy"
+	roundstart_template = /datum/map_template/shuttle/dropship/two
 
 /obj/docking_port/mobile/marine_dropship
 	name = "marine dropship"

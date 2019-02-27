@@ -33,6 +33,18 @@
 /area/shuttle/dropship/normandy
 	name = "Dropship Normandy"
 
+/area/shuttle/ert
+	name = "Emergency Response Team"
+
+/area/shuttle/ert/upp
+	name = "UPP ERT"
+
+/area/shuttle/ert/pmc
+	name = "PMC ERT"
+
+/area/shuttle/big_ert
+	name = "Big ERT Ship"
+
 /area/shuttle/transit
 	name = "Hyperspace"
 	desc = "Weeeeee"

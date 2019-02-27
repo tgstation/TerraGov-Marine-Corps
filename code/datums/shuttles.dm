@@ -10,7 +10,7 @@
 	var/admin_notes
 
 	var/credit_cost = INFINITY
-	var/can_be_bought = TRUE
+	var/can_be_bought = FALSE
 
 	var/list/movement_force // If set, overrides default movement_force on shuttle
 
@@ -101,18 +101,24 @@
 	if(movement_force)
 		M.movement_force = movement_force.Copy()
 
-/datum/map_template/shuttle/escape_pod
-	port_id = "escape_pod"
-	can_be_bought = FALSE
-
 // Shuttles start here:
 /datum/map_template/shuttle/dropship/one
 	shuttle_id = "alamo"
-	can_be_bought = FALSE
 
 /datum/map_template/shuttle/dropship/two
 	shuttle_id = "normandy"
-	can_be_bought = FALSE
 
 /datum/map_template/shuttle/escape_pod
 	shuttle_id = "escape_pod"
+
+/datum/map_template/shuttle/small_ert
+	shuttle_id = "distress"
+
+/datum/map_template/shuttle/small_ert/pmc
+	shuttle_id = "distress_pmc"
+
+/datum/map_template/shuttle/small_ert/upp
+	shuttle_id = "distress_upp"
+
+/datum/map_template/shuttle/big_ert
+	shuttle_id = "big_ert"

@@ -1,48 +1,49 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/open/space,
-/area/space)
+/turf/template_noop,
+/area/template_noop)
 "b" = (
 /turf/closed/shuttle/ert{
 	icon_state = "wy20"
 	},
-/area/space)
+/area/shuttle/ert/pmc)
 "c" = (
+/obj/docking_port/mobile/ert_small,
 /turf/closed/shuttle/ert{
 	icon_state = "wy27"
 	},
-/area/space)
+/area/shuttle/ert/pmc)
 "d" = (
 /turf/closed/shuttle/ert{
 	icon_state = "wy25"
 	},
-/area/space)
+/area/shuttle/ert/pmc)
 "e" = (
 /turf/closed/shuttle/ert{
 	icon_state = "wy21"
 	},
-/area/space)
+/area/shuttle/ert/pmc)
 "f" = (
 /turf/closed/shuttle/ert{
 	icon_state = "wy22"
 	},
-/area/space)
+/area/shuttle/ert/pmc)
 "g" = (
 /turf/open/shuttle/dropship{
 	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
 	},
-/area/space)
+/area/shuttle/ert/pmc)
 "h" = (
 /turf/closed/shuttle/ert{
 	icon_state = "wy23"
 	},
-/area/space)
+/area/shuttle/ert/pmc)
 "i" = (
 /turf/closed/shuttle/ert{
 	icon_state = "wy18"
 	},
-/area/space)
+/area/shuttle/ert/pmc)
 "j" = (
 /obj/structure/rack,
 /obj/effect/landmark/distress_pmcitem,
@@ -52,25 +53,25 @@
 	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
 	},
-/area/space)
+/area/shuttle/ert/pmc)
 "k" = (
 /turf/open/shuttle/dropship{
 	tag = "icon-rasputin6";
 	icon_state = "rasputin6"
 	},
-/area/space)
+/area/shuttle/ert/pmc)
 "l" = (
 /turf/open/shuttle/dropship{
 	icon_state = "floor8";
 	tag = "icon-rasputin7"
 	},
-/area/space)
+/area/shuttle/ert/pmc)
 "m" = (
 /turf/open/shuttle/dropship{
 	tag = "icon-rasputin7";
 	icon_state = "rasputin7"
 	},
-/area/space)
+/area/shuttle/ert/pmc)
 "n" = (
 /obj/structure/rack,
 /obj/effect/landmark/distress_pmcitem,
@@ -79,12 +80,12 @@
 	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
 	},
-/area/space)
+/area/shuttle/ert/pmc)
 "o" = (
 /turf/closed/shuttle/ert{
 	icon_state = "wy19"
 	},
-/area/space)
+/area/shuttle/ert/pmc)
 "p" = (
 /obj/machinery/door/airlock/almayer/generic,
 /obj/machinery/door/poddoor/shutters/transit/open{
@@ -94,14 +95,14 @@
 	tag = "icon-rasputin3";
 	icon_state = "rasputin3"
 	},
-/area/space)
+/area/shuttle/ert/pmc)
 "q" = (
 /obj/effect/landmark/distress_pmc,
 /turf/open/shuttle/dropship{
 	tag = "icon-rasputin3";
 	icon_state = "rasputin3"
 	},
-/area/space)
+/area/shuttle/ert/pmc)
 "r" = (
 /obj/structure/bed/chair/dropship/passenger,
 /obj/effect/landmark/distress_pmc,
@@ -109,12 +110,12 @@
 	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
 	},
-/area/space)
+/area/shuttle/ert/pmc)
 "s" = (
 /turf/closed/shuttle/ert{
 	icon_state = "wy16"
 	},
-/area/space)
+/area/shuttle/ert/pmc)
 "t" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 4
@@ -124,7 +125,7 @@
 	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
 	},
-/area/space)
+/area/shuttle/ert/pmc)
 "u" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 8
@@ -134,73 +135,55 @@
 	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
 	},
-/area/space)
+/area/shuttle/ert/pmc)
 "v" = (
 /turf/open/shuttle/dropship{
 	icon_state = "rasputin4";
 	tag = "icon-rasputin7"
 	},
-/area/space)
+/area/shuttle/ert/pmc)
 "w" = (
 /turf/open/shuttle/dropship{
 	icon_state = "rasputin8";
 	tag = "icon-rasputin7"
 	},
-/area/space)
+/area/shuttle/ert/pmc)
 "x" = (
 /turf/closed/shuttle/ert{
 	icon_state = "wy17"
 	},
-/area/space)
+/area/shuttle/ert/pmc)
 "y" = (
 /turf/closed/shuttle/ert{
 	icon_state = "wy14"
 	},
-/area/space)
+/area/shuttle/ert/pmc)
 "z" = (
 /turf/open/shuttle/dropship{
 	tag = "icon-rasputin3";
 	icon_state = "rasputin3"
 	},
-/area/space)
+/area/shuttle/ert/pmc)
 "A" = (
 /turf/closed/shuttle/ert{
 	icon_state = "wy15"
 	},
-/area/space)
+/area/shuttle/ert/pmc)
 "B" = (
 /turf/closed/shuttle/ert{
 	icon_state = "wy12"
 	},
-/area/space)
-"C" = (
-/turf/closed/shuttle/ert{
-	icon_state = "leftengine_3";
-	opacity = 0
-	},
-/area/space)
+/area/shuttle/ert/pmc)
 "D" = (
 /turf/closed/shuttle/ert{
 	icon_state = "wy13"
 	},
-/area/space)
-"E" = (
-/turf/closed/shuttle/ert{
-	icon_state = "leftengine_2";
-	opacity = 0
-	},
-/area/space)
+/area/shuttle/ert/pmc)
 "F" = (
 /turf/closed/shuttle/ert{
 	icon_state = "wy4"
 	},
-/area/space)
-"G" = (
-/turf/closed/shuttle/ert{
-	icon_state = "leftengine_1";
-	opacity = 0
-	},
-/area/space)
+/area/shuttle/ert/pmc)
 "H" = (
 /obj/structure/rack,
 /obj/effect/landmark/distress_pmcitem,
@@ -210,7 +193,7 @@
 	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
 	},
-/area/space)
+/area/shuttle/ert/pmc)
 "I" = (
 /obj/machinery/door/airlock/almayer/generic{
 	dir = 2
@@ -220,65 +203,47 @@
 	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
 	},
-/area/space)
+/area/shuttle/ert/pmc)
 "J" = (
 /turf/closed/shuttle/ert{
 	icon_state = "wy5"
 	},
-/area/space)
+/area/shuttle/ert/pmc)
 "K" = (
 /turf/closed/shuttle/ert{
 	icon_state = "wy_leftengine"
 	},
-/area/space)
+/area/shuttle/ert/pmc)
 "L" = (
 /turf/closed/shuttle/ert{
 	icon_state = "wy8"
 	},
-/area/space)
+/area/shuttle/ert/pmc)
 "M" = (
 /turf/closed/shuttle/ert{
 	icon_state = "wy9"
 	},
-/area/space)
+/area/shuttle/ert/pmc)
 "N" = (
 /turf/closed/shuttle/ert{
 	icon_state = "wy_rightengine"
 	},
-/area/space)
-"O" = (
-/turf/closed/shuttle/ert{
-	icon_state = "rightengine_3";
-	opacity = 0
-	},
-/area/space)
-"P" = (
-/turf/closed/shuttle/ert{
-	icon_state = "rightengine_2";
-	opacity = 0
-	},
-/area/space)
+/area/shuttle/ert/pmc)
 "Q" = (
 /turf/closed/shuttle/ert{
 	icon_state = "wy1"
 	},
-/area/space)
+/area/shuttle/ert/pmc)
 "R" = (
 /turf/closed/shuttle/ert{
 	icon_state = "wy2"
 	},
-/area/space)
+/area/shuttle/ert/pmc)
 "S" = (
 /turf/closed/shuttle/ert{
 	icon_state = "wy3"
 	},
-/area/space)
-"T" = (
-/turf/closed/shuttle/ert{
-	icon_state = "rightengine_1";
-	opacity = 0
-	},
-/area/space)
+/area/shuttle/ert/pmc)
 
 (1,1,1) = {"
 a
@@ -291,9 +256,9 @@ B
 p
 F
 K
-C
-E
-G
+a
+a
+a
 "}
 (2,1,1) = {"
 a
@@ -381,7 +346,7 @@ D
 p
 J
 N
-O
-P
-T
+a
+a
+a
 "}
