@@ -282,53 +282,6 @@
 	usr << browse(dat, "window=jobban;size=800x490")
 
 
-/datum/admins/proc/transfer_job_bans()
-	set category = "Admin"
-	set name = "Transfer Job Bans"
-
-	if(!check_rights(R_BAN) || !SSjob)
-		return
-
-	if(!CONFIG_GET(flag/ban_legacy_system))
-		return
-
-	var/list/rankchanges = list("commander" = "captain", "executiveofficer" = "fieldcommander", "staffofficer" = "intelligenceofficer", "chiefmp" = "commandmasteratarms", "militarypolice" = "masteratarms", "chiefengineer" = "chiefshipengineer", "maintenancetech" = "shipengineer", "doctor" = "medicalofficer", "squadmedic" = "squadcorpsman")
-	
-	for(var/R in jobban_keylist)
-		if(!(R in rankchanges))
-			continue
-		for(var/K in jobban_keylist[R])
-			var/reason = jobban_key_isbanned(K, R)
-			if(!reason)
-				continue
-			jobban_key_unban(K, R)
-			jobban_key_fullban(K, rankchanges[R], reason)
-	jobban_savebanfile()
-
-/datum/admins/proc/check_all_jobbans()
-	set category = "Admin"
-	set name = "Check All Jobbans"
-
-	if(!check_rights(R_BAN) || !SSjob)
-		return
-
-	if(!CONFIG_GET(flag/ban_legacy_system))
-		return
-	
-	var/dat = ""
-
-	for(var/R in jobban_keylist)
-		for(var/K in jobban_keylist[R])
-			var/reason = jobban_key_isbanned(K, R)
-			if(!reason)
-				continue
-			dat += "<tr><td>Key: <B>[K]</B></td><td>Rank: <B>[R]</B></td><td>Reason: <B>[jobban_keylist[R][K]]</B></td></tr>"
-
-	dat += "</table>"
-	var/dat_header = "<HR><B>Job Bans:</B>"
-	dat_header += "</FONT><HR><table border=1 rules=all frame=void cellspacing=0 cellpadding=3 >[dat]"
-	usr << browse(dat_header, "window=unbanp;size=875x400")
-
 /datum/admins/proc/jobban_offline()
 	set category = "Admin"
 	set name = "Jobban Offline"

@@ -304,9 +304,7 @@ GLOBAL_LIST_INIT(admin_verbs_ban, world.AVban())
 	/datum/admins/proc/unban_panel,
 	/datum/admins/proc/jobban_offline,
 	/datum/admins/proc/player_notes_show,
-	/datum/admins/proc/player_notes_list,
-	/datum/admins/proc/check_all_jobbans,
-	/datum/admins/proc/transfer_job_bans
+	/datum/admins/proc/player_notes_list
 	)
 
 GLOBAL_PROTECT(admin_verbs_asay)
