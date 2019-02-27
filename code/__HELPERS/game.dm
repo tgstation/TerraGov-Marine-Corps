@@ -291,7 +291,7 @@ proc/isInSight(var/atom/A, var/atom/B)
 
 	for(var/mob/dead/observer/O in GLOB.dead_mob_list)
 		//Players without preferences or jobbaned players cannot be drafted.
-		if(!istype(O) || !O.key || !O.client?.prefs || !(O.client.prefs.be_special & BE_ALIEN) || jobban_isbanned(O, "Alien"))
+		if(!O.key || !O.client?.prefs || !(O.client.prefs.be_special & BE_ALIEN) || jobban_isbanned(O, "Alien"))
 			continue
 
 		//AFK players cannot be drafted
