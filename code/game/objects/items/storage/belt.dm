@@ -530,7 +530,7 @@
 	new /obj/item/ammo_magazine/pistol/extended(src)
 	new_gun.on_enter_storage(src)
 
-/obj/item/storage/belt/gun/m4a3/commander/New()
+/obj/item/storage/belt/gun/m4a3/captain/New()
 	..()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/m4a3/custom(src)
 	new /obj/item/ammo_magazine/pistol/hp(src)

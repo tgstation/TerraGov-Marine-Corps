@@ -226,7 +226,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 	var/list/heard_garbled	= list() // garbled message (ie "f*c* **u, **i*er!")
 	var/list/heard_gibberish= list() // completely screwed over message (ie "F%! (O*# *#!<>&**%!")
 
-	var/command = 0 //Is this a commander? This var actually sets the message size. 2 is normal, 3 is big, 4 is OMGHUGE
+	var/command = 0 //Is this a captain? This var actually sets the message size. 2 is normal, 3 is big, 4 is OMGHUGE
 
 	if(M)
 		if(ishuman(M))

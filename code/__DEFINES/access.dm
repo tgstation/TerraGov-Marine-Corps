@@ -3,7 +3,7 @@
 It's best not to mess with the numbers of the regular access levels because
 most of them are tied into map-placed objects. This should be reworked in the future.*/
 //WE NEED TO REWORK THIS ONE DAY.  Access levels make me cry - Apophis
-#define ACCESS_MARINE_COMMANDER 	1
+#define ACCESS_MARINE_CAPTAIN 	1
 #define ACCESS_MARINE_LOGISTICS 	2
 #define ACCESS_MARINE_BRIG 			3
 #define ACCESS_MARINE_ARMORY 		4

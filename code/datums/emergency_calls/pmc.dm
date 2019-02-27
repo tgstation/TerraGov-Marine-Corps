@@ -10,7 +10,7 @@
 	to_chat(H, "<B>While you are officially an employee, much of your work is off the books. You work as a skilled mercenary.</b>")
 	to_chat(H, "")
 	to_chat(H, "<B>Ensure no damage is incurred against Nanotrasen. Make sure the Corporate Liaison is safe.</b>")
-	to_chat(H, "<B>If there is no Liaison, eliminate the threat and cooperate with the Commander before returning back home.</b>")
+	to_chat(H, "<B>If there is no Liaison, eliminate the threat and cooperate with the Captain before returning back home.</b>")
 	to_chat(H, "<B>Deny Nanotrasen's involvement and do not trust the TGMC forces.</b>")
 
 
