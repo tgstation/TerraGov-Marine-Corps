@@ -1264,7 +1264,7 @@
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/big_ert)
-"NR" = (
+"uS" = (
 /obj/docking_port/mobile/ert_big,
 /turf/open/floor/plating/almayer,
 /area/shuttle/big_ert)
@@ -1468,7 +1468,7 @@ aF
 ai
 ai
 bn
-NR
+uS
 bn
 ai
 ai

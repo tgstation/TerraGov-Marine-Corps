@@ -50,6 +50,9 @@
 	desc = "Weeeeee"
 //	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 
+/area/shuttle/escape_pod
+	name = "Escape Pod"
+
 /area/shuttle/custom
 	name = "Custom player shuttle"
 

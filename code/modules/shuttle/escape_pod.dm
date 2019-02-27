@@ -1,6 +1,6 @@
 /obj/docking_port/mobile/escape_pod
 	name = "escape pod"
-	dir = EAST
+	dir = WEST
 	dwidth = 2
 	width = 5
 	height = 4

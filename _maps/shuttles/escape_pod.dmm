@@ -4,86 +4,86 @@
 	tag = "icon-wall13";
 	icon_state = "wall13"
 	},
-/area/space)
+/area/shuttle/escape_pod)
 "b" = (
 /turf/closed/shuttle/escapepod{
 	tag = "icon-wall1";
 	icon_state = "wall1"
 	},
-/area/space)
+/area/shuttle/escape_pod)
 "c" = (
 /turf/closed/shuttle/escapepod{
 	tag = "icon-wall2";
 	icon_state = "wall2"
 	},
-/area/space)
+/area/shuttle/escape_pod)
 "d" = (
 /turf/closed/shuttle/escapepod{
 	tag = "icon-wall3";
 	icon_state = "wall3"
 	},
-/area/space)
+/area/shuttle/escape_pod)
 "e" = (
 /turf/closed/shuttle/escapepod{
 	tag = "icon-wall12";
 	icon_state = "wall12"
 	},
-/area/space)
+/area/shuttle/escape_pod)
 "f" = (
 /turf/open/shuttle/escapepod,
-/area/space)
+/area/shuttle/escape_pod)
 "g" = (
 /turf/open/shuttle/escapepod{
 	tag = "icon-floor0";
 	icon_state = "floor0"
 	},
-/area/space)
+/area/shuttle/escape_pod)
 "h" = (
 /turf/closed/shuttle/escapepod{
 	tag = "icon-wall4";
 	icon_state = "wall4"
 	},
-/area/space)
+/area/shuttle/escape_pod)
 "i" = (
 /turf/closed/shuttle/escapepod{
 	tag = "icon-wall11";
 	icon_state = "wall11"
 	},
-/area/space)
+/area/shuttle/escape_pod)
 "j" = (
 /turf/open/shuttle/escapepod{
 	tag = "icon-floor1";
 	icon_state = "floor1"
 	},
-/area/space)
+/area/shuttle/escape_pod)
 "k" = (
 /obj/docking_port/mobile/escape_pod,
 /turf/open/floor/plating,
-/area/space)
+/area/shuttle/escape_pod)
 "l" = (
 /turf/open/shuttle/escapepod{
 	tag = "icon-floor10";
 	icon_state = "floor10"
 	},
-/area/space)
+/area/shuttle/escape_pod)
 "m" = (
 /turf/closed/shuttle/escapepod{
 	tag = "icon-wall9";
 	icon_state = "wall9"
 	},
-/area/space)
+/area/shuttle/escape_pod)
 "n" = (
 /turf/closed/shuttle/escapepod{
 	tag = "icon-wall7";
 	icon_state = "wall7"
 	},
-/area/space)
+/area/shuttle/escape_pod)
 "o" = (
 /turf/closed/shuttle/escapepod{
 	tag = "icon-wall6";
 	icon_state = "wall6"
 	},
-/area/space)
+/area/shuttle/escape_pod)
 
 (1,1,1) = {"
 a
