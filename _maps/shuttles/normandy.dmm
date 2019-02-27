@@ -761,6 +761,13 @@
 	icon_state = "6"
 	},
 /area/shuttle/dropship/normandy)
+"CY" = (
+/obj/machinery/computer/shuttle_control/dropship2/onboard,
+/turf/open/shuttle/dropship{
+	tag = "icon-rasputin15";
+	icon_state = "rasputin15"
+	},
+/area/shuttle/dropship/normandy)
 
 (1,1,1) = {"
 aa
@@ -880,7 +887,7 @@ aa
 (6,1,1) = {"
 bc
 ag
-al
+CY
 as
 aB
 aL

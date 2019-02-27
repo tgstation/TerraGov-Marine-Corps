@@ -794,6 +794,13 @@
 	icon_state = "6"
 	},
 /area/shuttle/dropship/alamo)
+"NR" = (
+/obj/machinery/computer/shuttle_control/dropship1/onboard,
+/turf/open/shuttle/dropship{
+	tag = "icon-rasputin15";
+	icon_state = "rasputin15"
+	},
+/area/shuttle/dropship/alamo)
 
 (1,1,1) = {"
 ao
@@ -913,7 +920,7 @@ ao
 (6,1,1) = {"
 ac
 ag
-al
+NR
 at
 aC
 aL

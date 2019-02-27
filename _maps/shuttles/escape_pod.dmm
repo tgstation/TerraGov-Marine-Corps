@@ -30,6 +30,7 @@
 	},
 /area/shuttle/escape_pod)
 "f" = (
+/obj/machinery/cryopod/evacuation,
 /turf/open/shuttle/escapepod,
 /area/shuttle/escape_pod)
 "g" = (
@@ -58,6 +59,7 @@
 /area/shuttle/escape_pod)
 "k" = (
 /obj/docking_port/mobile/escape_pod,
+/obj/machinery/door/airlock/evacuation,
 /turf/open/floor/plating,
 /area/shuttle/escape_pod)
 "l" = (

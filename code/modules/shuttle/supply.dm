@@ -190,3 +190,17 @@ GLOBAL_LIST_EMPTY(exports_types)
 
 //	SSshuttle.centcom_message = msg
 	//investigate_log("Shuttle contents sold for [D.account_balance - presale_points] credits. Contents: [ex.exported_atoms ? ex.exported_atoms.Join(",") + "." : "none."] Message: [SSshuttle.centcom_message || "none."]", INVESTIGATE_CARGO)
+
+/obj/machinery/computer/supplycomp
+	name = "ASRS console"
+	desc = "A console for an Automated Storage and Retrieval System"
+	icon = 'icons/obj/machines/computer.dmi'
+	icon_state = "supply"
+	req_access = list(ACCESS_MARINE_CARGO)
+	circuit = "/obj/item/circuitboard/computer/supplycomp"
+
+/obj/machinery/computer/ordercomp
+	name = "Supply ordering console"
+	icon = 'icons/obj/machines/computer.dmi'
+	icon_state = "request"
+	circuit = "/obj/item/circuitboard/computer/ordercomp"

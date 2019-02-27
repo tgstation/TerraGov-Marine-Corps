@@ -26,3 +26,49 @@
 
 /obj/docking_port/mobile/marine_dropship/two
 	id = "normandy"
+
+
+/obj/machinery/computer/shuttle_control
+	name = "shuttle control console"
+	icon = 'icons/obj/machines/computer.dmi'
+	icon_state = "shuttle"
+
+//Dropship control console
+
+/obj/machinery/computer/shuttle_control/dropship1
+	name = "\improper 'Alamo' dropship console"
+	desc = "The remote controls for the 'Alamo' Dropship. Named after the Alamo Mission, stage of the Battle of the Alamo in the United States' state of Texas in the Spring of 1836. The defenders held to the last, encouraging other Texans to rally to the flag."
+	icon = 'icons/obj/machines/computer.dmi'
+	icon_state = "shuttle"
+
+	unacidable = 1
+	exproof = 1
+	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER) // TLs can only operate the remote console
+
+/obj/machinery/computer/shuttle_control/dropship1/onboard
+	name = "\improper 'Alamo' flight controls"
+	desc = "The flight controls for the 'Alamo' Dropship. Named after the Alamo Mission, stage of the Battle of the Alamo in the United States' state of Texas in the Spring of 1836. The defenders held to the last, encouraging other Texians to rally to the flag."
+	icon = 'icons/Marine/shuttle-parts.dmi'
+	icon_state = "console"
+	req_access = list(ACCESS_MARINE_DROPSHIP)
+
+/obj/machinery/computer/shuttle_control/dropship2
+	name = "\improper 'Normandy' dropship console"
+	desc = "The remote controls for the 'Normandy' Dropship. Named after a department in France, noteworthy for the famous naval invasion of Normandy on the 6th of June 1944, a bloody but decisive victory in World War II and the campaign for the Liberation of France."
+	icon = 'icons/obj/machines/computer.dmi'
+	icon_state = "shuttle"
+	unacidable = 1
+	exproof = 1
+	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER)
+
+/obj/machinery/computer/shuttle_control/dropship2/onboard
+	name = "\improper 'Normandy' flight controls"
+	desc = "The flight controls for the 'Normandy' Dropship. Named after a department in France, noteworthy for the famous naval invasion of Normandy on the 6th of June 1944, a bloody but decisive victory in World War II and the campaign for the Liberation of France."
+	icon = 'icons/Marine/shuttle-parts.dmi'
+	icon_state = "console"
+	req_access = list(ACCESS_MARINE_DROPSHIP)
+
+/obj/machinery/computer/shuttle_control/almayer/hangar
+	name = "Elevator Console"
+	icon = 'icons/obj/machines/computer.dmi'
+	icon_state = "supply"
