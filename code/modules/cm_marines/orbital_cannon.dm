@@ -378,8 +378,7 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 	icon_state = "ob_warhead_1"
 
 /obj/structure/ob_ammo/warhead/explosive/warhead_impact(turf/target, inaccuracy_amt = 0)
-	var/reduc = min(inaccuracy_amt*3, 5)
-	explosion(target,5 - reduc,7 - reduc,10 - reduc,12 - reduc,1,0) //massive boom
+	explosion(target, 4 - inaccuracy_amt, 6 - inaccuracy_amt, 9 - inaccuracy_amt, 11 - inaccuracy_amt, 1, 0)
 
 
 
@@ -390,8 +389,8 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 
 
 /obj/structure/ob_ammo/warhead/incendiary/warhead_impact(turf/target, inaccuracy_amt = 0)
-	var/range_num = max(20 - inaccuracy_amt * 2, 15)
-	flame_radius(range_num, target, 10, 20, 10, 10)
+	var/range_num = max(15 - inaccuracy_amt, 12)
+	flame_radius(range_num, target)
 
 
 /obj/structure/ob_ammo/warhead/cluster
@@ -400,16 +399,16 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 	icon_state = "ob_warhead_3"
 
 /obj/structure/ob_ammo/warhead/cluster/warhead_impact(turf/target, inaccuracy_amt = 0)
-	set waitfor = 0
+	set waitfor = FALSE
 
-	var/range_num = max(8 - inaccuracy_amt*2, 3)
+	var/range_num = max(10 - inaccuracy_amt, 7)
 	var/list/turf_list = list()
-	for(var/turf/T in range(range_num,target))
+	for(var/turf/T in range(range_num, target))
 		turf_list += T
-	var/total_amt = max(8 - inaccuracy_amt*3, 2)
+	var/total_amt = max(30 - inaccuracy_amt, 25)
 	for(var/i = 1 to total_amt)
 		var/turf/U = pick_n_take(turf_list)
-		explosion(U,1,3,5,6,1,0) //rocket barrage
+		explosion(U, 1, 3, 5, 6, 1, 0) //rocket barrage
 		sleep(1)
 
 
