@@ -281,7 +281,7 @@
 				ST.update_icon(1, 0)
 
 	if(next_sound_play < world.time)
-		if(!CONFIG_GET(flag/fun_allowed))
+		if(!GLOB.tank_mouth_noise)
 			playsound(src, 'sound/ambience/tank_driving.ogg', vol = 20, sound_range = 30)
 		else
 			playsound(src, 'sound/ambience/tank_driving_joke.ogg', vol = 20, sound_range = 30)

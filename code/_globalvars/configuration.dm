@@ -17,6 +17,7 @@ GLOBAL_VAR_INIT(respawn_allowed, FALSE)
 GLOBAL_VAR_INIT(shuttle_frozen, FALSE)
 GLOBAL_VAR_INIT(shuttle_left, FALSE)
 GLOBAL_VAR_INIT(tinted_weldhelh, TRUE)
+GLOBAL_VAR_INIT(tank_mouth_noise, FALSE)
 
 
 // Debug is used exactly once (in living.dm) but is commented out in a lot of places.  It is not set anywhere and only checked.
