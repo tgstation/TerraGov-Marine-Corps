@@ -84,7 +84,7 @@
 //used by marine equipment machines to spawn the correct map.
 /obj/item/map/current_map
 
-/obj/item/map/current_map/New()
+/obj/item/map/current_map/Initialize()
 	. = ..()
 	if(!SSmapping.config?.map_name)
 		return INITIALIZE_HINT_QDEL
@@ -110,7 +110,7 @@
 			html_link = "images/4/4c/Map_Prison.png"
 			color = "#e88a10"
 		else
-			qdel(src)
+			return INITIALIZE_HINT_QDEL
 
 
 
