@@ -90,7 +90,7 @@ Make the TGMC proud!"})
 
 
 //Intelligence Officer
-/datum/job/command/bridge
+/datum/job/command/intelligenceofficer
 	title = "Intelligence Officer"
 	paygrade = "O3"
 	comm_title = "IO"
@@ -102,18 +102,18 @@ Make the TGMC proud!"})
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_BRIG, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA)
 	skills_type = /datum/skills/SO
 	display_order = JOB_DISPLAY_ORDER_STAFF_OFFICER
-	outfit = /datum/outfit/job/command/bridge
+	outfit = /datum/outfit/job/command/intelligenceofficer
 
 
-/datum/job/command/bridge/radio_help_message(mob/M)
+/datum/job/command/intelligenceofficer/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"Your job is to monitor the marines, man the CIC, and listen to your superior officers.
 You are in charge of logistics and the overwatch system. You are also in line to take command after the captain."})
 
 
-/datum/outfit/job/command/bridge
+/datum/outfit/job/command/intelligenceofficer
 	name = "Intelligence Officer"
-	jobtype = /datum/job/command/bridge
+	jobtype = /datum/job/command/intelligenceofficer
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/gun/m4a3/captain
@@ -207,7 +207,7 @@ You could use MTs help to repair and replace hardpoints."})
 
 
 //Military Police
-/datum/job/command/police
+/datum/job/command/masteratarms
 	title = "Master at Arms"
 	paygrade = "PO"
 	comm_title = "MA"
@@ -220,10 +220,10 @@ You could use MTs help to repair and replace hardpoints."})
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIG, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP)
 	skills_type = /datum/skills/MP
 	display_order = JOB_DISPLAY_ORDER_MILITARY_POLICE
-	outfit = /datum/outfit/job/command/police
+	outfit = /datum/outfit/job/command/masteratarms
 
 
-/datum/job/command/police/radio_help_message(mob/M)
+/datum/job/command/masteratarms/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"You are held by a higher standard and are required to not abuse your position to severely hinder the progress of the round.
 Failure to do so may result in a job ban.
@@ -232,9 +232,9 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 
 
 
-/datum/outfit/job/command/police
+/datum/outfit/job/command/masteratarms
 	name = "Master at Arms"
-	jobtype = /datum/job/command/police
+	jobtype = /datum/job/command/masteratarms
 
 	id = /obj/item/card/id
 	belt = /obj/item/storage/belt/security/MP/full
@@ -250,7 +250,7 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 
 
 //Command Master at Arms
-/datum/job/command/warrant
+/datum/job/command/commandmasteratarms
 	title = "Command Master at Arms"
 	paygrade = "O3"
 	comm_title = "CMA"
@@ -264,7 +264,7 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 	outfit = /datum/outfit/job/command/warrant
 
 
-/datum/job/command/warrant/radio_help_message(mob/M)
+/datum/job/command/commandmasteratarms/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"You are held by a higher standard and are required to not abuse your position to severely hinder the progress of the round.
 Failure to do so may result in a job ban.
@@ -275,7 +275,7 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 
 /datum/outfit/job/command/warrant
 	name = "Command Master at Arms"
-	jobtype = /datum/job/command/warrant
+	jobtype = /datum/job/command/commandmasteratarms
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/security/MP/full
@@ -509,7 +509,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 
 
 //Medical Officer
-/datum/job/medical/doctor
+/datum/job/medical/medicalofficer
 	title = "Medical Officer"
 	comm_title = "MO"
 	paygrade = "O1"
@@ -523,19 +523,19 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY)
 	skills_type = /datum/skills/doctor
 	display_order = JOB_DISPLAY_ORDER_DOCTOR
-	outfit = /datum/outfit/job/medical/doctor
+	outfit = /datum/outfit/job/medical/medicalofficer
 
 
-/datum/job/medical/doctor/radio_help_message(mob/M)
+/datum/job/medical/medicalofficer/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"You are a military doctor stationed aboard the Theseus.
 You are tasked with keeping the marines healthy and strong, usually in the form of surgery.
 You are also an expert when it comes to medication and treatment. If you do not know what you are doing, adminhelp so a mentor can assist you."})
 
 
-/datum/outfit/job/medical/doctor
+/datum/outfit/job/medical/medicalofficer
 	name = "Medical Officer"
-	jobtype = /datum/job/medical/doctor
+	jobtype = /datum/job/medical/medicalofficer
 
 	id = /obj/item/card/id
 	belt = /obj/item/storage/belt/medical

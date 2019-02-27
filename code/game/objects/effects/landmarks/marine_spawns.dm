@@ -15,8 +15,8 @@
 /obj/effect/landmark/start/marine/fieldcommander
 	job = /datum/job/command/fieldcommander
 	
-/obj/effect/landmark/start/marine/staffofficer
-	job = /datum/job/command/bridge
+/obj/effect/landmark/start/marine/intelligenceofficer
+	job = /datum/job/command/intelligenceofficer
 	
 /obj/effect/landmark/start/marine/pilotofficer
 	job = /datum/job/command/pilot
@@ -24,13 +24,13 @@
 /obj/effect/landmark/start/marine/tankcrewman
 	job = /datum/job/command/tank_crew
 	
-/obj/effect/landmark/start/marine/mp
-	job = /datum/job/command/police
+/obj/effect/landmark/start/marine/masteratarms
+	job = /datum/job/command/masteratarms
 	
-/obj/effect/landmark/start/marine/chiefmp
-	job = /datum/job/command/warrant
+/obj/effect/landmark/start/marine/commandmasteratarms
+	job = /datum/job/command/commandmasteratarms
 
-/obj/effect/landmark/start/marine/chiefengineer
+/obj/effect/landmark/start/marine/chiefshipengineer
 	job = /datum/job/logistics/engineering
 	
 /obj/effect/landmark/start/marine/requisitionsofficer
@@ -45,8 +45,8 @@
 /obj/effect/landmark/start/marine/cmo
 	job = /datum/job/medical/professor
 	
-/obj/effect/landmark/start/marine/doctor
-	job = /datum/job/medical/doctor
+/obj/effect/landmark/start/marine/medicalofficer
+	job = /datum/job/medical/medicalofficer
 	
 /obj/effect/landmark/start/marine/researcher
 	job = /datum/job/medical/researcher

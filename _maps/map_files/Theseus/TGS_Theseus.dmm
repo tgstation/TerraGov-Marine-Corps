@@ -2632,7 +2632,7 @@
 "ahh" = (
 /obj/structure/bed,
 /obj/item/bedsheet/brown,
-/obj/effect/landmark/start/marine/mp,
+/obj/effect/landmark/start/marine/masteratarms,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -2666,7 +2666,7 @@
 "ahm" = (
 /obj/structure/bed,
 /obj/item/bedsheet/brown,
-/obj/effect/landmark/start/marine/mp,
+/obj/effect/landmark/start/marine/masteratarms,
 /turf/open/floor/carpet,
 /area/almayer/shipboard/brig)
 "ahn" = (
@@ -5699,7 +5699,7 @@
 "amF" = (
 /obj/structure/bed,
 /obj/item/bedsheet/brown,
-/obj/effect/landmark/start/marine/mp,
+/obj/effect/landmark/start/marine/masteratarms,
 /obj/machinery/light,
 /turf/open/floor/carpet,
 /area/almayer/shipboard/brig)
@@ -6834,7 +6834,7 @@
 "api" = (
 /obj/structure/bed/fancy,
 /obj/item/bedsheet/hos,
-/obj/effect/landmark/start/marine/chiefmp,
+/obj/effect/landmark/start/marine/commandmasteratarms,
 /turf/open/floor/carpet,
 /area/almayer/shipboard/chief_mp_office)
 "apj" = (
@@ -7328,7 +7328,7 @@
 /area/almayer/engineering/ce_room)
 "aqo" = (
 /obj/structure/bed/chair/office/dark,
-/obj/effect/landmark/start/marine/chiefengineer,
+/obj/effect/landmark/start/marine/chiefshipengineer,
 /turf/open/floor/almayer{
 	dir = 1;
 	icon_state = "orange";
@@ -21964,13 +21964,13 @@
 /area/almayer/living/bridgebunks)
 "aSC" = (
 /obj/structure/bed,
-/obj/effect/landmark/start/marine/staffofficer,
+/obj/effect/landmark/start/marine/intelligenceofficer,
 /obj/item/bedsheet/brown,
 /turf/open/floor/wood,
 /area/almayer/living/bridgebunks)
 "aSD" = (
 /obj/structure/bed,
-/obj/effect/landmark/start/marine/staffofficer,
+/obj/effect/landmark/start/marine/intelligenceofficer,
 /turf/open/floor/wood,
 /area/almayer/living/bridgebunks)
 "aSE" = (
@@ -31433,7 +31433,7 @@
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/hangar)
 "boB" = (
-/obj/effect/landmark/start/marine/doctor,
+/obj/effect/landmark/start/marine/medicalofficer,
 /turf/open/floor/almayer{
 	icon_state = "dark_sterile";
 	tag = "icon-sterile"
@@ -31539,7 +31539,7 @@
 	},
 /area/almayer/medical/lower_medical)
 "boL" = (
-/obj/effect/landmark/start/marine/doctor,
+/obj/effect/landmark/start/marine/medicalofficer,
 /turf/open/floor/wood,
 /area/almayer/medical/lower_medical)
 "boM" = (
@@ -31628,7 +31628,7 @@
 	},
 /area/almayer/medical/operating_room_one)
 "boS" = (
-/obj/effect/landmark/start/marine/doctor,
+/obj/effect/landmark/start/marine/medicalofficer,
 /turf/open/floor/almayer{
 	icon_state = "dark_sterile";
 	tag = "icon-sterile"
@@ -35765,7 +35765,7 @@
 	},
 /area/almayer/medical/operating_room_two)
 "bxJ" = (
-/obj/effect/landmark/start/marine/doctor,
+/obj/effect/landmark/start/marine/medicalofficer,
 /turf/open/floor/almayer{
 	icon_state = "dark_sterile";
 	tag = "icon-sterile"
@@ -39116,7 +39116,7 @@
 	},
 /area/almayer/medical/operating_room_three)
 "bEL" = (
-/obj/effect/landmark/start/marine/doctor,
+/obj/effect/landmark/start/marine/medicalofficer,
 /turf/open/floor/almayer{
 	icon_state = "dark_sterile";
 	tag = "icon-sterile"
@@ -41954,7 +41954,7 @@
 	},
 /area/almayer/medical/operating_room_four)
 "bKH" = (
-/obj/effect/landmark/start/marine/doctor,
+/obj/effect/landmark/start/marine/medicalofficer,
 /turf/open/floor/almayer{
 	icon_state = "dark_sterile";
 	tag = "icon-sterile"
