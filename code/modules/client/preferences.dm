@@ -341,7 +341,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		if(GetJobDepartment(job, JOBS_PRIORITY_HIGH) & job.prefflag)
 			HTML += "<a href='?_src_=prefs;preference=jobselect;job=[job.title];level=[JOBS_PRIORITY_NEVER]'><font color=blue>\[High]</font></a>"
 		else if(GetJobDepartment(job, JOBS_PRIORITY_MEDIUM) & job.prefflag)
-			HTML += "<a href='?_src_=prefs;preference=jobselect;job=[job.title];level=[JOBS_PRIORITY_HIGH]'><font color=green>\[Medium]</font></a>"
+			HTML += "<a href='?_src_=prefs;preference=jobselect;job=[job.title];level=[JOBS_PRIORITY_HIGH]'><font color='#9adb83'>\[Medium]</font></a>"
 		else if(GetJobDepartment(job, JOBS_PRIORITY_LOW) & job.prefflag)
 			HTML += "<a href='?_src_=prefs;preference=jobselect;job=[job.title];level=[JOBS_PRIORITY_MEDIUM]'><font color=orange>\[Low]</font></a>"
 		else
