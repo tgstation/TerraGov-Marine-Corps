@@ -24,25 +24,25 @@
 // STRUCTURES
 
 /obj/structure/Destroy()
-	if(SSticker)
+	if(SSticker?.current_state != GAME_STATE_STARTUP)
 		cameranet.updateVisibility(src)
-	. = ..()
+	return ..()
 
 /obj/structure/New()
-	..()
-	if(SSticker)
+	. = ..()
+	if(SSticker?.current_state != GAME_STATE_STARTUP)
 		cameranet.updateVisibility(src)
 
 // EFFECTS
 
 /obj/effect/Destroy()
-	if(SSticker)
+	if(SSticker?.current_state != GAME_STATE_STARTUP)
 		cameranet.updateVisibility(src)
-	. = ..()
+	return ..()
 
 /obj/effect/New()
-	..()
-	if(SSticker)
+	. = ..()
+	if(SSticker?.current_state != GAME_STATE_STARTUP)
 		cameranet.updateVisibility(src)
 
 
