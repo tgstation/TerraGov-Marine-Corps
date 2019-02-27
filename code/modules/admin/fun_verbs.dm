@@ -38,7 +38,7 @@
 	message_admins("[ADMIN_TPMONTY(usr)] has gibbed themselves.")
 
 /datum/admins/proc/tank_mouth_noises()
-	set name = "Tank Mouth Noises"
+	set name = "Toggle Tank Mouth Noises"
 	set category = "Fun"
 
 	if(!check_rights(R_FUN))
