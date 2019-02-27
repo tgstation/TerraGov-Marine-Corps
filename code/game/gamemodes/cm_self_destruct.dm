@@ -58,7 +58,7 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 	var/dest_index = 1	//What rod the thing is currently on.
 	var/dest_status = NUKE_EXPLOSION_INACTIVE
 
-	var/flags_scuttle = NOFLAGS
+	var/flags_scuttle = FLAGS_EVACUATION_DENY|FLAGS_SELF_DESTRUCT_DENY
 
 /datum/authority/branch/evacuation/New()
 	. = ..()
