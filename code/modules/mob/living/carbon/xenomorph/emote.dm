@@ -64,6 +64,18 @@
 	else if(audio_emote_cooldown(player_caused))
 		return
 
+	if(findtext(act, "growl"))
+		message = "<B>The [name]</B> growls."
+
+	else if(findtext(act, "hiss"))
+		message = "<B>The [name]</B> hisses."
+
+	else if(findtext(act, "roar"))
+		message = "<B>The [name]</B> roars!"
+
+	else if(findtext(act, "tail"))
+		message = "<B>The [name]</B> swipes its tail."
+
 
 	var/predalien = FALSE
 	if(isxenopredalien(src))
@@ -71,40 +83,32 @@
 
 	switch(act)
 		if("growl")
-			message = "<B>The [name]</B> growls."
 			if(predalien)
 				playsound(loc, 'sound/voice/predalien_growl.ogg', 25, 1)
 			else
 				playsound(loc, "alien_growl", 15)
 		if("growl1")
-			message = "<B>The [name]</B> growls."
 			playsound(loc, "sound/voice/alien_growl1.ogg", 15)
 		if("growl2")
-			message = "<B>The [name]</B> growls."
 			playsound(loc, "sound/voice/alien_growl2.ogg", 15)
 		if("growl3")
-			message = "<B>The [name]</B> growls."
 			playsound(loc, "sound/voice/alien_growl3.ogg", 15)
 		if("hiss")
-			message = "<B>The [name]</B> hisses."
 			if(predalien)
 				playsound(loc, 'sound/voice/predalien_hiss.ogg', 25, 1)
 			else
 				playsound(loc, "alien_hiss", 25)
 		if("hiss1")
-			message = "<B>The [name]</B> hisses."
 			if(predalien)
 				playsound(loc, 'sound/voice/predalien_hiss.ogg', 25, 1)
 			else
 				playsound(loc, "sound/voice/alien_hiss1.ogg", 25)
 		if("hiss2")
-			message = "<B>The [name]</B> hisses."
 			if(predalien)
 				playsound(loc, 'sound/voice/predalien_hiss.ogg', 25, 1)
 			else
 				playsound(loc, "sound/voice/alien_hiss2.ogg", 25)
 		if("hiss3")
-			message = "<B>The [name]</B> hisses."
 			if(predalien)
 				playsound(loc, 'sound/voice/predalien_hiss.ogg', 25, 1)
 			else
@@ -113,58 +117,47 @@
 			message = "<B>The [name]</B> needs help!"
 			playsound(loc, "alien_help", 25)
 		if("roar")
-			message = "<B>The [name]</B> roars!"
 			if(predalien)
 				playsound(loc, 'sound/voice/predalien_roar.ogg', 40, 1)
 			else
 				playsound(loc, "alien_roar", 40)
 		if("roar1")
-			message = "<B>The [name]</B> roars!"
 			if(predalien)
 				playsound(loc, 'sound/voice/predalien_roar.ogg', 40, 1)
 			else
 				playsound(loc, "sound/voice/alien_roar1.ogg", 40)
 		if("roar2")
-			message = "<B>The [name]</B> roars!"
 			if(predalien)
 				playsound(loc, 'sound/voice/predalien_roar.ogg', 40, 1)
 			else
 				playsound(loc, "sound/voice/alien_roar2.ogg", 40)
 		if("roar3")
-			message = "<B>The [name]</B> roars!"
 			if(predalien)
 				playsound(loc, 'sound/voice/predalien_roar.ogg', 40, 1)
 			else
 				playsound(loc, "sound/voice/alien_roar3.ogg", 40)
 		if("roar4")
-			message = "<B>The [name]</B> roars!"
 			if(predalien)
 				playsound(loc, 'sound/voice/predalien_roar.ogg', 40, 1)
 			else
 				playsound(loc, "sound/voice/alien_roar4.ogg", 40)
 		if("roar5")
-			message = "<B>The [name]</B> roars!"
 			if(predalien)
 				playsound(loc, 'sound/voice/predalien_roar.ogg', 40, 1)
 			else
 				playsound(loc, "sound/voice/alien_roar5.ogg", 40)
 		if("roar6")
-			message = "<B>The [name]</B> roars!"
 			if(predalien)
 				playsound(loc, 'sound/voice/predalien_roar.ogg', 40, 1)
 			else
 				playsound(loc, "sound/voice/alien_roar6.ogg", 40)
 		if("tail")
-			message = "<B>The [name]</B> swipes its tail."
 			playsound(loc, "alien_tail_swipe", 40)
 		if("tail1")
-			message = "<B>The [name]</B> swipes its tail."
 			playsound(loc, "sound/effects/alien_tail_swipe1.ogg", 40)
 		if("tail2")
-			message = "<B>The [name]</B> swipes its tail."
 			playsound(loc, "sound/effects/alien_tail_swipe2.ogg", 40)
 		if("tail3")
-			message = "<B>The [name]</B> swipes its tail."
 			playsound(loc, "sound/effects/alien_tail_swipe3.ogg", 40)
 
 	if(message)
