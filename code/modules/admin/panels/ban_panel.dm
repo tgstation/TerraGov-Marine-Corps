@@ -567,9 +567,9 @@
 
 	//Legacy system ban checking.
 	. = CheckBan(ckey(key), computer_id, address)
-	if(.)
-		log_access("Failed Login: [key] CID:[computer_id] IP:[address] - Banned [.["desc"]]")
-		message_admins("Failed Login: [key] CID:[computer_id] IP:[address] - Banned [.["desc"]]</span>")
+	if(.) //Add [.["desc"]] if you want to message and log the reason too.
+		log_access("Failed Login: [key] CID:[computer_id] IP:[address] - Banned")
+		message_admins("Failed Login: [key] CID:[computer_id] IP:[address] - Banned</span>")
 		return .
 
 	return ..()	//Default pager ban stuff.

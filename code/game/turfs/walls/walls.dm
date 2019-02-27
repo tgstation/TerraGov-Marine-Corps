@@ -222,10 +222,11 @@
 
 /turf/closed/wall/proc/make_girder(destroyed_girder = FALSE)
 	var/obj/structure/girder/G = new /obj/structure/girder(src)
+	transfer_fingerprints_to(G)
 	G.icon_state = "girder[junctiontype]"
 	G.original = src.type
 
-	if (destroyed_girder)
+	if(destroyed_girder)
 		G.dismantle()
 
 
@@ -545,7 +546,8 @@
 						return
 
 					if(d_state == 7)
-						new /obj/item/stack/rods(src)
+						var/obj/item/stack/rods/R = new /obj/item/stack/rods(src)
+						transfer_fingerprints_to(R)
 						user.visible_message("<span class='notice'>The support rods drop out as [user] slices through the final layer.</span>",
 						"<span class='notice'>The support rods drop out as you slice through the final layer.</span>")
 						dismantle_wall()

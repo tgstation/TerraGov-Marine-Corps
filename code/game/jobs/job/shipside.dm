@@ -296,6 +296,7 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 	supervisors = "the acting captain"
 	spawn_positions = 1
 	total_positions = 1
+	faction = "Marine"
 
 
 //Chief Ship Engineer
@@ -462,6 +463,7 @@ Listen to the radio in case someone requests a supply drop via the overwatch sys
 
 /datum/job/medical
 	department_flag = J_FLAG_SHIP
+	faction = "Marine"
 
 
 /datum/job/medical/professor
@@ -600,6 +602,7 @@ While the Corporate Liaison is not your boss, it would be wise to consult them o
 	department_flag = J_FLAG_SHIP
 	spawn_positions = 1
 	total_positions = 1
+	faction = "Marine"
 
 
 //Liaison
