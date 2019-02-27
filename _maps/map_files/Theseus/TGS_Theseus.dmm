@@ -31948,7 +31948,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/living/cryo_cells)
 "bpH" = (
-/obj/effect/landmark/start/marine/squadmedic,
+/obj/effect/landmark/start/marine/squadcorpsman,
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/living/cryo_cells)
 "bpI" = (
@@ -33571,7 +33571,7 @@
 /obj/item/storage/backpack/industrial,
 /obj/item/storage/backpack/marine,
 /obj/machinery/light,
-/obj/item/storage/backpack/marine/medic,
+/obj/item/storage/backpack/marine/corpsman,
 /obj/item/storage/backpack/marine/engineerpack,
 /obj/structure/rack,
 /turf/open/floor/almayer{
@@ -35990,7 +35990,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/living/cryo_cells)
 "byk" = (
-/obj/effect/landmark/start/marine/squadmedic,
+/obj/effect/landmark/start/marine/squadcorpsman,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 10
 	},
@@ -39165,7 +39165,7 @@
 /turf/open/floor/almayer/mono,
 /area/almayer/squads/req)
 "bER" = (
-/obj/effect/landmark/start/marine/squadmedic,
+/obj/effect/landmark/start/marine/squadcorpsman,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
@@ -39936,7 +39936,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/squads/req)
 "bGo" = (
-/obj/effect/landmark/start/marine/squadmedic,
+/obj/effect/landmark/start/marine/squadcorpsman,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
