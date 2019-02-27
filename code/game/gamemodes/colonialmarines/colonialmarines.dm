@@ -175,6 +175,8 @@
 
 	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [GLOB.clients.len]\nTotal xenos spawned: [round_statistics.total_xenos_created]\nTotal Preds spawned: [predators.len]\nTotal humans spawned: [round_statistics.total_humans_created]")
 
+	CONFIG_SET(flag/allow_synthetic_gun_use, TRUE)
+
 	declare_completion_announce_individual()
 	declare_completion_announce_predators()
 	declare_completion_announce_xenomorphs()
