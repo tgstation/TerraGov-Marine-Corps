@@ -1,5 +1,5 @@
 /mob/living/carbon/Xenomorph/emote(act, m_type = EMOTE_AUDIBLE, message, player_caused)
-	if(stat) 
+	if(stat)
 		return
 
 	if(findtext(act, "-"))
@@ -60,8 +60,6 @@
 		<span style='color: green;'>tail2</span>, \
 		<span style='color: green;'>tail3</span></b><br>"
 		to_chat(src, msg)
-	else
-		to_chat(src, text("Invalid Emote: []", act))
 
 	else if(audio_emote_cooldown(player_caused))
 		return
