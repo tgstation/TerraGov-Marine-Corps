@@ -246,6 +246,8 @@ SUBSYSTEM_DEF(job)
 			H.mind.initial_account = A
 		if(M.client)
 			H.equip_preference_gear(M.client)
+		else if(H.client)
+			H.equip_preference_gear(H.client)
 	if(job)
 		job.radio_help_message(M)
 		if(job.req_admin_notify)
