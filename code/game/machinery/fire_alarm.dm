@@ -24,6 +24,21 @@ FIRE ALARM
 	var/wiresexposed = 0
 	var/buildstage = 2 // 2 = complete, 1 = no wires,  0 = circuit gone
 
+
+/obj/machinery/firealarm/Initialize()
+	. = ..()
+
+	switch(dir)
+		if(NORTH) 
+			pixel_y = 24
+		if(SOUTH) 
+			pixel_y = -24
+		if(EAST) 
+			pixel_x = 24
+		if(WEST) 
+			pixel_x = -24
+
+
 /obj/machinery/firealarm/update_icon()
 
 	if(wiresexposed)
