@@ -229,12 +229,12 @@
 			return
 
 		if(RemoveBan(banfolder))
-			unbanpanel()
+			usr.client.holder.legacy_unban_panel()
 			log_admin("[key_name(usr)] removed [key]'s permaban.")
 			message_admins("[ADMIN_TPMONTY(usr)] removed [key]'s permaban.")
 		else
 			to_chat(usr, "<span class='warning'>Error, ban failed to be removed.</span>")
-			unbanpanel()
+			usr.client.holder.legacy_unban_panel()
 
 
 	else if(href_list["permaban"])
@@ -268,7 +268,7 @@
 		Banlist["minutes"] << minutes
 		Banlist["bannedby"] << usr.ckey
 		Banlist.cd = "/base"
-		unbanpanel()
+		usr.client.holder.legacy_unban_panel()
 		log_admin("[key_name(usr)] upgraded [banned_key]'s ban to a permaban. Reason: [sanitize(reason)]")
 		message_admins("[ADMIN_TPMONTY(usr)] upgraded [banned_key]'s ban to a permaban. Reason: [sanitize(reason)]")
 
@@ -310,7 +310,7 @@
 		Banlist["minutes"] << minutes
 		Banlist["bannedby"] << usr.ckey
 		Banlist.cd = "/base"
-		unbanpanel()
+		usr.client.holder.legacy_unban_panel()
 
 		log_admin("[key_name(usr)] edited [banned_key]'s ban. Reason: [sanitize(reason)] Duration: [duration]")
 		message_admins("[ADMIN_TPMONTY(usr)] edited [banned_key]'s ban. Reason: [sanitize(reason)] Duration: [duration]")
@@ -1849,6 +1849,7 @@
 		var/page = href_list["unbanpage"]
 		var/admin_key = href_list["unbanadminkey"]
 		usr.client.holder.unban(ban_id, player_key, player_ip, player_cid, role, page, admin_key)
+		usr.client.holder.unbanpanel(player_key, admin_key, player_ip, player_cid)
 
 
 	else if(href_list["unbanlog"])
