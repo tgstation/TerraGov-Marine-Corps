@@ -162,52 +162,6 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		. += named_args
 
 
-/datum/admins/proc/change_hivenumber(mob/living/carbon/Xenomorph/X in GLOB.xeno_mob_list)
-	set category = "Debug"
-	set name = "Change Hivenumber"
-	set desc = "Set the hivenumber of a xenomorph."
-
-	if(!check_rights(R_DEBUG))
-		return
-
-	if(!X || !istype(X))
-		return
-
-	var/hivenumber_status = X.hivenumber
-
-	var/list/namelist = list()
-	for(var/datum/hive_status/H in hive_datum)
-		namelist += H.name
-
-	var/newhive = input(src, "Select a hive.", null, null) in namelist
-
-	if(!X || !istype(X))
-		return
-
-	var/newhivenumber
-	switch(newhive)
-		if("Normal")
-			newhivenumber = XENO_HIVE_NORMAL
-		if("Corrupted")
-			newhivenumber = XENO_HIVE_CORRUPTED
-		if("Alpha")
-			newhivenumber = XENO_HIVE_ALPHA
-		if("Beta")
-			newhivenumber = XENO_HIVE_BETA
-		if("Zeta")
-			newhivenumber = XENO_HIVE_ZETA
-		else
-			return
-
-	if(!istype(X) || X.gc_destroyed || !SSticker || X.hivenumber != hivenumber_status)
-		return
-
-	X.set_hive_number(newhivenumber)
-
-	log_admin("[key_name(src)] changed hivenumber of [X] to [newhive].")
-	message_admins("[ADMIN_TPMONTY(usr)] changed hivenumber of [ADMIN_TPMONTY(X)] to [newhive].")
-
-
 /datum/admins/proc/delete_all()
 	set category = "Debug"
 	set name = "Delete Instances"
@@ -542,3 +496,55 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 	log_admin("[key_name(usr)] updated the mob sprite of [key_name(H)].")
 	message_admins("[ADMIN_TPMONTY(usr)] updated the mob sprite of [ADMIN_TPMONTY(H)].")
+
+
+/datum/admins/proc/transfer_job_bans()
+	set category = "Debug"
+	set name = "Transfer Job Bans"
+
+	if(!check_rights(R_BAN) || !check_rights(R_DEBUG) || !SSjob)
+		return
+
+	if(!CONFIG_GET(flag/ban_legacy_system))
+		return
+
+	var/choice = alert("What would you like to do?", "Legacy job ban management", "Check all job bans", "Transfer one ban type", "Cancel")
+	switch(choice)
+
+		if("Check all job bans")
+			var/dat = ""
+			for(var/R in jobban_keylist)
+				for(var/K in jobban_keylist[R])
+					var/reason = jobban_key_isbanned(K, R)
+					if(!reason)
+						continue
+					dat += "<tr><td>Key: <B>[K]</B></td><td>Rank: <B>[R]</B></td><td>Reason: <B>[jobban_keylist[R][K]]</B></td></tr>"
+			dat += "</table>"
+			var/dat_header = "<HR><B>Job Bans:</B>"
+			dat_header += "</FONT><HR><table border=1 rules=all frame=void cellspacing=0 cellpadding=3 >[dat]"
+			usr << browse(dat_header, "window=unbanp;size=875x400")
+	
+		if("Transfer one ban type")
+			var/old_job = input(usr, "Type old job to be renamed", "Old job:") as null|text
+			if(!old_job)
+				to_chat(usr, "<span class='warning'>Error: No old job to replace.</span>")
+				return
+			if(!(old_job in jobban_keylist))
+				to_chat(usr, "<span class='warning'>Error: Selected job has no entries within the legacy job ban database. Consult the existing job bans and try again.</span>")
+				return
+			var/new_job = input(usr, "Type new job to substitute with", "New job:") as null|text
+			if(!new_job)
+				to_chat(usr, "<span class='warning'>Error: No new job to replace with.</span>")
+				return
+			var/counter = 0
+			for(var/key in jobban_keylist[old_job])
+				var/reason = jobban_key_isbanned(key, old_job)
+				if(!reason)
+					continue
+				jobban_key_unban(key, old_job)
+				jobban_key_fullban(key, new_job, reason)
+				counter++
+			jobban_savebanfile()
+			to_chat(usr, "<span class='warning'>[counter] job bans transferred successfully.</span>")
+		else
+			return
