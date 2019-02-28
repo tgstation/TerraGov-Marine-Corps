@@ -9,7 +9,7 @@
 	to_chat(H, "<B>Joining the ranks of Nanotrasen has proven to be very profitable for you.</b>")
 	to_chat(H, "<B>While you are officially an employee, much of your work is off the books. You work as a skilled mercenary.</b>")
 	to_chat(H, "")
-	to_chat(H, "<B>Make sure the Corporate Liaison is safe, but do not harm the marines.</b>")
+	to_chat(H, "<B>Make sure the Corporate Liaison is safe.</b>")
 	to_chat(H, "<B>If there is no Liaison, eliminate the threat and cooperate with the Captain before returning back home.</b>")
 
 
