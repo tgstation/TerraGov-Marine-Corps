@@ -268,7 +268,7 @@ SUBSYSTEM_DEF(ticker)
 	for(var/mob/new_player/N in GLOB.player_list)
 		var/mob/living/carbon/human/player = N.new_character
 		if(istype(player) && player.mind && player.mind.assigned_role)
-			if(player.mind.assigned_role == "Commander")
+			if(player.mind.assigned_role == "Captain")
 				captainless = FALSE
 			if(player.mind.assigned_role)
 				SSjob.EquipRank(N, player.mind.assigned_role, 0)
@@ -276,7 +276,7 @@ SUBSYSTEM_DEF(ticker)
 	if(captainless)
 		for(var/mob/new_player/N in GLOB.player_list)
 			if(N.new_character)
-				to_chat(N, "Marine Commander position not forced on anyone.")
+				to_chat(N, "Marine Captain position not forced on anyone.")
 			CHECK_TICK
 
 

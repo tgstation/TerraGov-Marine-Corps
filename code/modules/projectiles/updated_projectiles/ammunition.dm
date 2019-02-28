@@ -159,7 +159,7 @@ bullets/shells. ~N
 */
 
 /obj/item/ammo_magazine/handful
-	name = "generic handful"
+	name = "generic handful of bullets or shells"
 	desc = "A handful of rounds to reload on the go."
 	matter = list("metal" = 50) //This changes based on the ammo ammount. 5k is the base of one shell/bullet.
 	flags_equip_slot = null // It only fits into pockets and such.

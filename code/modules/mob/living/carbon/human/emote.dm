@@ -1,9 +1,9 @@
-/mob/living/carbon/human/emote(var/act, var/m_type = EMOTE_VISIBLE, var/message = null, player_caused)
-	var/param = null
+/mob/living/carbon/human/emote(act, m_type = EMOTE_VISIBLE, message, player_caused)
+	var/param
 	var/comm_paygrade = get_paygrade()
 
-	if(findtext(act, "-", 1, null))
-		var/t1 = findtext(act, "-", 1, null)
+	if(findtext(act, "-"))
+		var/t1 = findtext(act, "-")
 		param = copytext(act, t1 + 1, length(act) + 1)
 		act = copytext(act, 1, t1)
 
@@ -22,9 +22,6 @@
 			if(findtext(param, A.name) != 0)
 				H = A
 				break
-
-	if(!H || !istype(H))
-		param = null
 
 	if(act != "help") //you can always use the help emote
 		if(stat == DEAD)

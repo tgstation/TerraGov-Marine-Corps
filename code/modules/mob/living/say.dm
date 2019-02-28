@@ -128,7 +128,7 @@ var/list/department_radio_keys = list(
 			if(O) //It's possible that it could be deleted in the meantime.
 				O.hear_talk(src, message, verb, speaking, italics)
 
-	if(!parse_message_mode(message))
+	if(!ishuman(src))
 		log_talk(message, LOG_SAY)
 
 	return TRUE

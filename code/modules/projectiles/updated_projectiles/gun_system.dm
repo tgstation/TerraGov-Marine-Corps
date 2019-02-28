@@ -1,5 +1,5 @@
 /obj/item/weapon/gun
-	name = "gun"
+	name = "Guns"
 	desc = "Its a gun. It's pretty terrible, though."
 	icon = 'icons/obj/items/gun.dmi'
 	icon_state = ""

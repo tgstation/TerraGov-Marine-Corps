@@ -39,6 +39,7 @@
 	minimal_access = ALL_MARINE_ACCESS
 	flag = MISC_PIZZA
 	outfit = /datum/outfit/job/other/pizza
+	skills_type = /datum/skills/pfc
 
 
 /datum/outfit/job/other/pizza

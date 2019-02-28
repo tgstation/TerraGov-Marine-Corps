@@ -594,7 +594,7 @@ var/global/list/activated_medevac_stretchers = list()
 
 /obj/item/device/medevac_beacon/attack_self(mob/user)
 	if(locked)
-		to_chat(user, "<span class='warning'>[src]'s interface is locked! Only a Squad Leader, Medic, or Doctor can unlock it now.</span>")
+		to_chat(user, "<span class='warning'>[src]'s interface is locked! Only a Squad Leader, Corpsman, or Medical Officer can unlock it now.</span>")
 		return
 	user.drop_held_item()
 	anchored = TRUE
@@ -605,7 +605,7 @@ var/global/list/activated_medevac_stretchers = list()
 
 /obj/item/device/medevac_beacon/attack_hand(mob/user)
 	if(locked)
-		to_chat(user, "<span class='warning'>[src]'s interface is locked! Only a Squad Leader, Medic, or Doctor can unlock it now.</span>")
+		to_chat(user, "<span class='warning'>[src]'s interface is locked! Only a Squad Leader, Corpsman, or Medical Officer can unlock it now.</span>")
 		return
 	if(planted)
 		anchored = FALSE
@@ -615,7 +615,7 @@ var/global/list/activated_medevac_stretchers = list()
 		playsound(loc,'sound/machines/click.ogg', 25, FALSE)
 	return ..()
 
-/obj/item/device/medevac_beacon/attackby(var/obj/item/O as obj, mob/user as mob) //Medics can lock their beacons.
+/obj/item/device/medevac_beacon/attackby(var/obj/item/O as obj, mob/user as mob) //Corpsmen can lock their beacons.
 	if(!ishuman(user))
 		return ..()
 
