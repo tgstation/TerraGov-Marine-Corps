@@ -627,7 +627,7 @@
 			var/pagecount = 1
 			var/list/pagelist = list()
 			while(bancount > 0)
-				pagelist += "<a href='?_src_=holder;[HrefToken()];unbanpagecount=[pagecount - 1];unbankey=[player_key];unbanadminkey=[admin_key];unbanip=[player_ip];unbancid=[player_cid]'>[pagecount == page ? "<b>\[[pagecount]\]</b>" : "\[[pagecount]\]"]</a>"
+				pagelist += "<a href='?src=[REF(usr.client.holder)];[HrefToken()];unbanpagecount=[pagecount - 1];unbankey=[player_key];unbanadminkey=[admin_key];unbanip=[player_ip];unbancid=[player_cid]'>[pagecount == page ? "<b>\[[pagecount]\]</b>" : "\[[pagecount]\]"]</a>"
 				bancount -= bansperpage
 				pagecount++
 			output += pagelist.Join(" | ")
@@ -642,7 +642,7 @@
 			var/ban_round_id  = query_unban_search_bans.item[3]
 			var/role = query_unban_search_bans.item[4]
 			//make the href for unban here so only the search parameters are passed
-			var/unban_href = "<a href='?_src_=holder;[HrefToken()];unbanid=[ban_id];unbankey=[player_key];unbanadminkey=[admin_key];unbanip=[player_ip];unbancid=[player_cid];unbanrole=[role];unbanpage=[page]'>Unban</a>"
+			var/unban_href = "<a href='?src=[REF(usr.client.holder)];[HrefToken()];unbanid=[ban_id];unbankey=[player_key];unbanadminkey=[admin_key];unbanip=[player_ip];unbancid=[player_cid];unbanrole=[role];unbanpage=[page]'>Unban</a>"
 			var/expiration_time = query_unban_search_bans.item[5]
 			//we don't cast duration as num because if the duration is large enough to be converted to scientific notation by byond then the + character gets lost when passed through href causing SQL to interpret '4.321e 007' as '4'
 			var/duration = query_unban_search_bans.item[6]
@@ -667,9 +667,9 @@
 				output += "<br>Unbanned by <b>[unban_key]</b> on <b>[unban_datetime]</b> during round <b>#[unban_round_id]</b>."
 			output += "</div><div class='container'><div class='reason'>[reason]</div><div class='edit'>"
 			if(!expired && !unban_datetime)
-				output += "<a href='?_src_=holder;[HrefToken()];editbanid=[ban_id];editbankey=[player_key];editbanip=[player_ip];editbancid=[player_cid];editbanrole=[role];editbanduration=[duration];editbanadmins=[applies_to_admins];editbanreason=[url_encode(reason)];editbanpage=[page];editbanadminkey=[admin_key]'>Edit</a><br>[unban_href]"
+				output += "<a href='?src=[REF(usr.client.holder)];[HrefToken()];editbanid=[ban_id];editbankey=[player_key];editbanip=[player_ip];editbancid=[player_cid];editbanrole=[role];editbanduration=[duration];editbanadmins=[applies_to_admins];editbanreason=[url_encode(reason)];editbanpage=[page];editbanadminkey=[admin_key]'>Edit</a><br>[unban_href]"
 			if(edits)
-				output += "<br><a href='?_src_=holder;[HrefToken()];unbanlog=[ban_id]'>Edit log</a>"
+				output += "<br><a href='?src=[REF(usr.client.holder)];[HrefToken()];unbanlog=[ban_id]'>Edit log</a>"
 			output += "</div></div></div>"
 		qdel(query_unban_search_bans)
 		output += "</div>"
@@ -989,11 +989,11 @@
 
 /datum/admins/proc/stickyban_gethtml(ckey, ban)
 	. = {"
-		<a href='?_src_=holder;[HrefToken()];stickyban=remove&ckey=[ckey]'>\[-\]</a>
-		<a href='?_src_=holder;[HrefToken()];stickyban=revert&ckey=[ckey]'>\[revert\]</a>
+		<a href='?src=[REF(usr.client.holder)];[HrefToken()];stickyban=remove&ckey=[ckey]'>\[-\]</a>
+		<a href='?src=[REF(usr.client.holder)];[HrefToken()];stickyban=revert&ckey=[ckey]'>\[revert\]</a>
 		<b>[ckey]</b>
 		<br />"
-		[ban["message"]] <b><a href='?_src_=holder;[HrefToken()];stickyban=edit&ckey=[ckey]'>\[Edit\]</a></b><br />
+		[ban["message"]] <b><a href='?src=[REF(usr.client.holder)];[HrefToken()];stickyban=edit&ckey=[ckey]'>\[Edit\]</a></b><br />
 	"}
 	if (ban["admin"])
 		. += "[ban["admin"]]<br />"
@@ -1003,7 +1003,7 @@
 	for (var/key in ban["keys"])
 		if (ckey(key) == ckey)
 			continue
-		. += "<li><a href='?_src_=holder;[HrefToken()];stickyban=remove_alt&ckey=[ckey]&alt=[ckey(key)]'>\[-\]</a>[key]</li>"
+		. += "<li><a href='?src=[REF(usr.client.holder)];[HrefToken()];stickyban=remove_alt&ckey=[ckey]&alt=[ckey(key)]'>\[-\]</a>[key]</li>"
 	. += "</ol>\n"
 
 
@@ -1076,7 +1076,7 @@
 		<title>Sticky Bans</title>
 	</head>
 	<body>
-		<h2>All Sticky Bans:</h2> <a href='?_src_=[usr.client.holder];[HrefToken()];stickyban=add'>\[+\]</a><br>
+		<h2>All Sticky Bans:</h2> <a href='?src=[REF(usr.client.holder)];[HrefToken()];stickyban=add'>\[+\]</a><br>
 		[banhtml]
 	</body>
 	"}
