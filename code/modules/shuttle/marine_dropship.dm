@@ -43,6 +43,11 @@
 /obj/structure/dropship_piece/ex_act(severity)
 	return
 
+/obj/structure/dropship_piece/beforeShuttleMove(turf/newT, rotation, move_mode, obj/docking_port/mobile/moving_dock)
+	. = ..()
+	if(. & MOVE_AREA)
+		. |= MOVE_CONTENTS
+
 /obj/structure/dropship_piece/one
 	name = "\improper Alamo"
 
@@ -62,6 +67,96 @@
 
 /obj/structure/dropship_piece/one/cockpit/right
 	icon_state = "brown_cockpit_fr"
+
+
+/obj/structure/dropship_piece/one/weapon
+	opacity = FALSE
+
+/obj/structure/dropship_piece/one/weapon/leftleft
+	icon_state = "brown_weapon_ll"
+
+/obj/structure/dropship_piece/one/weapon/leftright
+	icon_state = "brown_weapon_lr"
+
+/obj/structure/dropship_piece/one/weapon/rightleft
+	icon_state = "brown_weapon_rl"
+
+/obj/structure/dropship_piece/one/weapon/rightright
+	icon_state = "brown_weapon_rr"
+
+
+/obj/structure/dropship_piece/one/wing
+	opacity = FALSE
+
+/obj/structure/dropship_piece/one/wing/left/top
+	icon_state = "brown_wing_lt"
+
+/obj/structure/dropship_piece/one/wing/left/bottom
+	icon_state = "brown_wing_lb"
+
+/obj/structure/dropship_piece/one/wing/right/top
+	icon_state = "brown_wing_rt"
+
+/obj/structure/dropship_piece/one/wing/right/bottom
+	icon_state = "brown_wing_rb"
+
+
+/obj/structure/dropship_piece/one/corner/middleleft
+	icon_state = "brown_middle_lc"
+
+/obj/structure/dropship_piece/one/corner/middleright
+	icon_state = "brown_middle_rc"
+
+/obj/structure/dropship_piece/one/corner/rearleft
+	icon_state = "brown_rear_lc"
+
+/obj/structure/dropship_piece/one/corner/rearright
+	icon_state = "brown_rear_rc"
+
+
+/obj/structure/dropship_piece/one/engine
+	opacity = FALSE
+
+/obj/structure/dropship_piece/one/engine/lefttop
+	icon_state = "brown_engine_lt"
+
+/obj/structure/dropship_piece/one/engine/righttop
+	icon_state = "brown_engine_rt"
+
+/obj/structure/dropship_piece/one/engine/leftbottom
+	icon_state = "brown_engine_lb"
+
+/obj/structure/dropship_piece/one/engine/rightbottom
+	icon_state = "brown_engine_rb"
+
+
+/obj/structure/dropship_piece/one/rearwing/lefttop
+	icon_state = "brown_rearwing_lt"
+
+/obj/structure/dropship_piece/one/rearwing/righttop
+	icon_state = "brown_rearwing_rt"
+
+/obj/structure/dropship_piece/one/rearwing/leftbottom
+	icon_state = "brown_rearwing_lb"
+
+/obj/structure/dropship_piece/one/rearwing/rightbottom
+	icon_state = "brown_rearwing_rb"
+
+/obj/structure/dropship_piece/one/rearwing/leftlbottom
+	icon_state = "brown_rearwing_llb"
+	opacity = FALSE
+
+/obj/structure/dropship_piece/one/rearwing/rightrbottom
+	icon_state = "brown_rearwing_rrb"
+	opacity = FALSE
+
+/obj/structure/dropship_piece/one/rearwing/leftllbottom
+	icon_state = "brown_rearwing_lllb"
+	opacity = FALSE
+
+/obj/structure/dropship_piece/one/rearwing/rightrrbottom
+	icon_state = "brown_rearwing_rrrb"
+	opacity = FALSE
 
 // control computer
 /obj/machinery/computer/shuttle/marine_dropship
