@@ -11,8 +11,6 @@ if [ $BUILD_TESTING = true ]; then
     python tools/travis/template_dm_generator.py
 fi
 
-source dependencies.sh
-
 if [ -d "$HOME/BYOND/byond/bin" ] && grep -Fxq "${BYOND_MAJOR}.${BYOND_MINOR}" $HOME/BYOND/version.txt;
 then
   echo "Using cached directory."
