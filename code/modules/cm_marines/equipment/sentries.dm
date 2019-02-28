@@ -123,6 +123,9 @@
 	if(do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
 		if(!src || anchored)//Check if we got exploded
 			return
+		if(!Adjacent(user)) // We've moved away from the one picking us up.
+			to_chat(user, "<span class='warning'>You must remain close to [src] to retrieve it!</span>")
+			return
 		user.visible_message("<span class='notice'>[user] folds up and retrieves \the [src].</span>",
 		"<span class='notice'>You fold up and retrieve \the [src].</span>")
 		var/obj/item/device/turret_tripod/T = new(loc)
@@ -1262,6 +1265,9 @@
 	"<span class='notice'>You begin to fold up and retrieve [src].</span>")
 	if(do_after(user, work_time * 1.5, TRUE, 5, BUSY_ICON_BUILD))
 		if(!src || on || anchored)//Check if we got exploded
+			return
+		if(!Adjacent(user)) // We've moved away from the one picking us up.
+			to_chat(user, "<span class='warning'>You must remain close to [src] to retrieve it!</span>")
 			return
 		to_chat(user, "<span class='notice'>You fold up and retrieve [src].</span>")
 		var/obj/item/device/marine_turret/mini/P = new(loc)
