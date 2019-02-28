@@ -229,6 +229,10 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 	if(prefs.lastchangelog != GLOB.changelog_hash) //bolds the changelog button on the interface so we know there are updates.
 		winset(src, "rpane.changelog", "background-color=#ED9F9B;font-style=bold")
 
+	if(ckey in GLOB.clientmessages)
+		for(var/message in GLOB.clientmessages[ckey])
+			to_chat(src, message)
+		GLOB.clientmessages.Remove(ckey)
 
 	if(all_player_details[ckey])
 		player_details = all_player_details[ckey]
