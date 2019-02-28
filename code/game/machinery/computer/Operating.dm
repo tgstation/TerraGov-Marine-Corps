@@ -39,7 +39,7 @@
 			return
 
 	user.set_interaction(src)
-	var/dat = "<HEAD><TITLE>Operating Computer</TITLE><META HTTP-EQUIV='Refresh' CONTENT='10'></HEAD><BODY>\n"
+	var/dat = "<META HTTP-EQUIV='Refresh' CONTENT='10'>"
 	dat += "<A HREF='?src=\ref[user];mach_close=op'>Close</A><br><br>" //| <A HREF='?src=\ref[user];update=1'>Update</A>"
 	if(src.table && (src.table.check_victim()))
 		src.victim = src.table.victim
@@ -65,7 +65,10 @@
 <BR>
 <B>No Patient Detected</B>
 "}
-	user << browse(dat, "window=op")
+
+	var/datum/browser/popup = new(user, "op", "<div align='center'>Operating Computer</div>")
+	popup.set_content(dat)
+	popup.open(FALSE)
 	onclose(user, "op")
 
 

@@ -25,7 +25,7 @@
 
 /obj/machinery/computer/station_alert/interact(mob/user)
 	usr.set_interaction(src)
-	var/dat = "<HEAD><TITLE>Current Station Alerts</TITLE><META HTTP-EQUIV='Refresh' CONTENT='10'></HEAD><BODY>\n"
+	var/dat = "<META HTTP-EQUIV='Refresh' CONTENT='10'>"
 	dat += "<A HREF='?src=\ref[user];mach_close=alerts'>Close</A><br><br>"
 	for (var/cat in src.alarms)
 		dat += text("<B>[]</B><BR>\n", cat)
@@ -44,7 +44,10 @@
 		else
 			dat += "-- All Systems Nominal<BR>\n"
 		dat += "<BR>\n"
-	user << browse(dat, "window=alerts")
+
+	var/datum/browser/popup = new(user, "alerts", "<div align='center'>Current Station Alerts</div>")
+	popup.set_content(dat)
+	popup.open(FALSE)
 	onclose(user, "alerts")
 
 

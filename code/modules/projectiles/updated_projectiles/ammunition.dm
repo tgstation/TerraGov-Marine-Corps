@@ -139,7 +139,7 @@ They're all essentially identical when it comes to getting the job done.
 	name = "internal chamber"
 	desc = "You should not be able to examine it."
 	//For revolvers and shotguns.
-	var/chamber_contents[] //What is actually in the chamber. Initiated on New().
+	var/list/chamber_contents //What is actually in the chamber. Initiated on New().
 	var/chamber_position = 1 //Where the firing pin is located. We usually move this instead of the contents.
 	var/chamber_closed = 1 //Starts out closed. Depends on firearm.
 
@@ -159,7 +159,7 @@ bullets/shells. ~N
 */
 
 /obj/item/ammo_magazine/handful
-	name = "generic handful"
+	name = "generic handful of bullets or shells"
 	desc = "A handful of rounds to reload on the go."
 	matter = list("metal" = 50) //This changes based on the ammo ammount. 5k is the base of one shell/bullet.
 	flags_equip_slot = null // It only fits into pockets and such.

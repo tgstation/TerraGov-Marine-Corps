@@ -186,16 +186,6 @@
 			candidates += player.mind
 			players -= player
 
-	//If we don't have enough antags, draft people who voted for the round.
-	if(candidates.len < recommended_enemies)
-		for(var/key in round_voters)
-			for(var/mob/new_player/player in players)
-				if(player.ckey == key)
-					log_game("[player.key] voted for this round, so we are drafting them.")
-					candidates += player.mind
-					players -= player
-					break
-
 	//Remove candidates who want to be antagonist but have a job that precludes it
 	if(restricted_jobs)
 		for(var/datum/mind/player in candidates)
@@ -254,8 +244,6 @@
 
 
 /datum/game_mode/New()
-	if(!GLOB.map_tag)
-		to_chat(world, "MT001: No mapping tag set, tell a coder. [GLOB.map_tag]")
 	initialize_emergency_calls()
 
 

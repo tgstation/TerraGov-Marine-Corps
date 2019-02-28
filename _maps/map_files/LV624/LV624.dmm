@@ -243,12 +243,6 @@
 "abi" = (
 /turf/open/gm/dirt,
 /area/lv624/ground/caves/east1)
-"abj" = (
-/obj/effect/landmark/map_tag{
-	name = "LV-624"
-	},
-/turf/closed/wall/indestructible/mineral,
-/area/space)
 "abk" = (
 /turf/closed/wall/cult,
 /area/lv624/ground/caves/west1)
@@ -13168,7 +13162,7 @@
 /area/lv624/lazarus/quart)
 "aVb" = (
 /obj/structure/rack,
-/obj/effect/landmark/costume/butler,
+/obj/effect/landmark/itemspawner/butler,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "aVc" = (
@@ -20786,7 +20780,7 @@ aaa
 aaa
 aaa
 aaa
-abj
+aab
 aab
 aab
 aab

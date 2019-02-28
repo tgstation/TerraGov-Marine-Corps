@@ -79,7 +79,7 @@ Defined in conflicts.dm of the #defines folder.
 	var/attach_applied = FALSE //Prevents it from getting picked up after being attached
 
 	var/attachment_action_type
-
+	var/scope_zoom_mod = FALSE //codex
 
 
 /obj/item/attachable/attackby(obj/item/I, mob/user)
@@ -151,6 +151,7 @@ Defined in conflicts.dm of the #defines folder.
 	G.burst_scatter_mult += burst_scatter_mod
 	G.movement_acc_penalty_mult += movement_acc_penalty_mod
 	G.shell_speed_mod	+= attach_shell_speed_mod
+	G.scope_zoom 		+= scope_zoom_mod
 
 	if(G.burst_amount <= 1)
 		G.flags_gun_features &= ~GUN_BURST_ON //Remove burst if they can no longer use it.
@@ -205,6 +206,7 @@ Defined in conflicts.dm of the #defines folder.
 	G.burst_scatter_mult -= burst_scatter_mod
 	G.movement_acc_penalty_mult -= movement_acc_penalty_mod
 	G.shell_speed_mod	-=attach_shell_speed_mod
+	G.scope_zoom 		-= scope_zoom_mod
 	G.update_force_list()
 
 	if(silence_mod) //Built in silencers always come as an attach, so the gun can't be silenced right off the bat.
@@ -542,6 +544,7 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/scope/Initialize()
 	. = ..()
+	scope_zoom_mod = TRUE
 	movement_acc_penalty_mod = CONFIG_GET(number/combat_define/low_movement_acc_penalty)
 	accuracy_unwielded_mod = -CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
 
@@ -572,8 +575,9 @@ Defined in conflicts.dm of the #defines folder.
 	zoom_viewsize = 7
 	zoom_accuracy = SCOPE_RAIL_MINI
 
-/obj/item/attachable/scope/Initialize()
+/obj/item/attachable/scope/mini/Initialize()
 	. = ..()
+	scope_zoom_mod = TRUE
 	movement_acc_penalty_mod = CONFIG_GET(number/combat_define/min_movement_acc_penalty)
 
 /obj/item/attachable/scope/m4ra

@@ -266,6 +266,8 @@
 	reload_sound = 'sound/weapons/gun_rifle_reload.ogg'
 	fire_sound = 'sound/weapons/Laser.ogg'
 	matter = list("metal" = 2000)
+	load_method = CELL //codex
+
 	ammo = /datum/ammo/energy/lasgun
 	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = 4
@@ -295,6 +297,8 @@
 	force = 20 //Large and hefty! Includes stock bonus.
 	icon_state = "m43"
 	item_state = "m43"
+	max_shots = 50 //codex stuff
+	load_method = CELL //codex stuff
 	ammo = /datum/ammo/energy/lasgun/M43
 	cell_type = null
 	charge_cost = M37_STANDARD_AMMO_COST

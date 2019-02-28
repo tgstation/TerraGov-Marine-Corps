@@ -201,8 +201,8 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	armor = list(melee = 30, bullet = 70, laser = 45, energy = 30, bomb = 60, bio = 10, rad = 10)
 
 /obj/item/clothing/suit/storage/marine/MP
-	name = "\improper M2 pattern MP armor"
-	desc = "A standard TerraGov Marine Corps M2 Pattern Chestplate. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
+	name = "\improper N2 pattern MA armor"
+	desc = "A standard TerraGov Navy N2 Pattern Chestplate. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
 	icon_state = "mp"
 	armor = list(melee = 40, bullet = 70, laser = 35, energy = 20, bomb = 25, bio = 10, rad = 10)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
@@ -223,8 +223,8 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 
 /obj/item/clothing/suit/storage/marine/MP/WO
 	icon_state = "warrant_officer"
-	name = "\improper M3 pattern MP armor"
-	desc = "A well-crafted suit of M3 Pattern Armor typically distributed to Chief MPs. Useful for letting your men know who is in charge."
+	name = "\improper N3 pattern MA armor"
+	desc = "A well-crafted suit of N3 Pattern Armor typically distributed to Command Masters at Arms. Useful for letting your men know who is in charge."
 	armor = list(melee = 50, bullet = 80, laser = 40, energy = 25, bomb = 30, bio = 10, rad = 10)
 
 /obj/item/clothing/suit/storage/marine/MP/admiral
@@ -265,6 +265,11 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 /obj/item/clothing/suit/storage/marine/smartgunner/New()
 	select_gamemode_skin(/obj/item/clothing/suit/storage/marine/smartgunner)
 	..()
+
+
+/obj/item/clothing/suit/storage/marine/smartgunner/fancy
+	desc = "A heavy protective vest designed to be worn with the M56 Smartgun System. \nIt has specially designed straps and reinforcement to carry the Smartgun and accessories. This luxury model appears to belong to the CO. You feel like you probably could get fired for touching this.."
+	icon_state = "8fancy"
 
 
 /obj/item/clothing/suit/storage/marine/leader

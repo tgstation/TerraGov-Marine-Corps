@@ -117,6 +117,7 @@ Class Procs:
 	layer = OBJ_LAYER
 	var/machine_processing = 0 // whether the machine is busy and requires process() calls in scheduler.
 
+	var/wrenchable = FALSE
 	var/destructible = TRUE
 	var/damage = 0
 	var/damage_cap = 1000 //The point where things start breaking down.
@@ -169,12 +170,12 @@ Class Procs:
 
 /obj/machinery/proc/start_processing()
 	if(!machine_processing)
-		machine_processing = 1
+		machine_processing = TRUE
 		processing_machines += src
 
 /obj/machinery/proc/stop_processing()
 	if(machine_processing)
-		machine_processing = 0
+		machine_processing = FALSE
 		processing_machines -= src
 
 /obj/machinery/process()//If you dont use process or power why are you here
@@ -424,8 +425,8 @@ obj/machinery/proc/med_scan(mob/living/carbon/human/H, dat, var/list/known_impla
 	return occupant_data
 
 /obj/machinery/proc/format_occupant_data(var/list/occ, mob/living/carbon/human/H, var/list/known_implants)
-	var/dat = "<font color='blue'><b>Scan performed at [occ["stationtime"]]</b></font><br>"
-	dat += "<font color='blue'><b>Occupant Statistics:</b></font><br>"
+	var/dat = "<font color='#487553'><b>Scan performed at [occ["stationtime"]]</b></font><br>"
+	dat += "<font color='#487553'><b>Occupant Statistics:</b></font><br>"
 	var/aux
 	switch (occ["stat"])
 		if(0)
@@ -434,31 +435,31 @@ obj/machinery/proc/med_scan(mob/living/carbon/human/H, dat, var/list/known_impla
 			aux = "Unconscious"
 		else
 			aux = "Dead"
-	dat += text("[]\tHealth %: [] ([])</font><br>", (occ["health"] > 50 ? "<font color='blue'>" : "<font color='red'>"), occ["health"], aux)
+	dat += text("[]\tHealth %: [] ([])</font><br>", (occ["health"] > 50 ? "<font color=#487553>" : "<font color=#b54646>"), occ["health"], aux)
 	if (occ["virus_present"])
-		dat += "<font color='red'>Viral pathogen detected in blood stream.</font><br>"
-	dat += text("[]\t-Brute Damage %: []</font><br>", (occ["bruteloss"] < 60 ? "<font color='blue'>" : "<font color='red'>"), occ["bruteloss"])
-	dat += text("[]\t-Respiratory Damage %: []</font><br>", (occ["oxyloss"] < 60 ? "<font color='blue'>" : "<font color='red'>"), occ["oxyloss"])
-	dat += text("[]\t-Toxin Content %: []</font><br>", (occ["toxloss"] < 60 ? "<font color='blue'>" : "<font color='red'>"), occ["toxloss"])
-	dat += text("[]\t-Burn Severity %: []</font><br><br>", (occ["fireloss"] < 60 ? "<font color='blue'>" : "<font color='red'>"), occ["fireloss"])
+		dat += "<font color=#b54646>Viral pathogen detected in blood stream.</font><br>"
+	dat += text("[]\t-Brute Damage %: []</font><br>", (occ["bruteloss"] < 60 ? "<font color='#487553'>" : "<font color=#b54646>"), occ["bruteloss"])
+	dat += text("[]\t-Respiratory Damage %: []</font><br>", (occ["oxyloss"] < 60 ? "<font color='#487553'>" : "<font color=#b54646>"), occ["oxyloss"])
+	dat += text("[]\t-Toxin Content %: []</font><br>", (occ["toxloss"] < 60 ? "<font color='#487553'>" : "<font color=#b54646>"), occ["toxloss"])
+	dat += text("[]\t-Burn Severity %: []</font><br><br>", (occ["fireloss"] < 60 ? "<font color='#487553'>" : "<font color=#b54646>"), occ["fireloss"])
 
-	dat += text("[]\tRadiation Level %: []</font><br>", (occ["rads"] < 10 ?"<font color='blue'>" : "<font color='red'>"), occ["rads"])
-	dat += text("[]\tGenetic Tissue Damage %: []</font><br>", (occ["cloneloss"] < 1 ?"<font color='blue'>" : "<font color='red'>"), occ["cloneloss"])
-	dat += text("[]\tApprox. Brain Damage %: []</font><br>", (occ["brainloss"] < 1 ?"<font color='blue'>" : "<font color='red'>"), occ["brainloss"])
+	dat += text("[]\tRadiation Level %: []</font><br>", (occ["rads"] < 10 ?"<font color='#487553'>" : "<font color=#b54646>"), occ["rads"])
+	dat += text("[]\tGenetic Tissue Damage %: []</font><br>", (occ["cloneloss"] < 1 ?"<font color=#487553>" : "<font color=#b54646>"), occ["cloneloss"])
+	dat += text("[]\tApprox. Brain Damage %: []</font><br>", (occ["brainloss"] < 1 ?"<font color=#487553>" : "<font color=#b54646>"), occ["brainloss"])
 	dat += text("Knocked Out Summary %: [] ([] seconds left!)<br>", occ["knocked_out"], round(occ["knocked_out"] / 4))
 	dat += text("Body Temperature: [occ["bodytemp"]-T0C]&deg;C ([occ["bodytemp"]*1.8-459.67]&deg;F)<br><HR>")
 
-	dat += text("[]\tBlood Level %: [] ([] units)</FONT><BR>", (occ["blood_amount"] > 448 ?"<font color='blue'>" : "<font color='red'>"), occ["blood_amount"]*100 / 560, occ["blood_amount"])
+	dat += text("[]\tBlood Level %: [] ([] units)</FONT><BR>", (occ["blood_amount"] > 448 ?"<font color=#487553>" : "<font color=#b54646>"), occ["blood_amount"]*100 / 560, occ["blood_amount"])
 
 	dat += text("Inaprovaline: [] units<BR>", occ["inaprovaline_amount"])
 	dat += text("Soporific: [] units<BR>", occ["sleeptoxin_amount"])
-	dat += text("[]\tDermaline: [] units</FONT><BR>", (occ["dermaline_amount"] < 30 ? "<font color='black'>" : "<font color='red'>"), occ["dermaline_amount"])
-	dat += text("[]\tBicaridine: [] units<BR>", (occ["bicaridine_amount"] < 30 ? "<font color='black'>" : "<font color='red'>"), occ["bicaridine_amount"])
-	dat += text("[]\tDexalin: [] units<BR>", (occ["dexalin_amount"] < 30 ? "<font color='black'>" : "<font color='red'>"), occ["dexalin_amount"])
+	dat += text("[]\tDermaline: [] units</FONT><BR>", (occ["dermaline_amount"] < 30 ? "<font color='white'>" : "<font color=#b54646>"), occ["dermaline_amount"])
+	dat += text("[]\tBicaridine: [] units<BR>", (occ["bicaridine_amount"] < 30 ? "<font color='white'>" : "<font color=#b54646>"), occ["bicaridine_amount"])
+	dat += text("[]\tDexalin: [] units<BR>", (occ["dexalin_amount"] < 30 ? "<font color='white'>" : "<font color=#b54646>"), occ["dexalin_amount"])
 
 	for(var/datum/disease/D in occ["tg_diseases_list"])
 		if(!D.hidden[SCANNER])
-			dat += text("<font color='red'><B>Warning: [D.form] Detected</B>\nName: [D.name].\nType: [D.spread].\nStage: [D.stage]/[D.max_stages].\nPossible Cure: [D.cure]</FONT><BR>")
+			dat += text("<font color=#b54646><B>Warning: [D.form] Detected</B>\nName: [D.name].\nType: [D.spread].\nStage: [D.stage]/[D.max_stages].\nPossible Cure: [D.cure]</FONT><BR>")
 
 	dat += "<HR><table border='1'>"
 	dat += "<tr>"
@@ -587,12 +588,12 @@ obj/machinery/proc/med_scan(mob/living/carbon/human/H, dat, var/list/known_impla
 	var/list/species_organs = occ["species_organs"]
 	for(var/organ_name in species_organs)
 		if(!locate(species_organs[organ_name]) in occ["internal_organs"])
-			dat += text("<font color='red'>No [organ_name] detected.</font><BR>")
+			dat += text("<font color=#b54646>No [organ_name] detected.</font><BR>")
 
 	if(occ["sdisabilities"] & BLIND)
-		dat += text("<font color='red'>Cataracts detected.</font><BR>")
+		dat += text("<font color=#b54646>Cataracts detected.</font><BR>")
 	if(occ["sdisabilities"] & NEARSIGHTED)
-		dat += text("<font color='red'>Retinal misalignment detected.</font><BR>")
+		dat += text("<font color=#b54646>Retinal misalignment detected.</font><BR>")
 	return dat
 
 

@@ -11,6 +11,9 @@ can cause issues with ammo types getting mixed up during the burst.
 	origin_tech = "combat=4;materials=3"
 	w_class = 4
 	force = 14.0
+	caliber = "12 guage shotgun shells" //codex
+	max_shells = 9 //codex
+	load_method = SINGLE_CASING //codex
 	fire_sound = 'sound/weapons/gun_shotgun.ogg'
 	reload_sound = 'sound/weapons/gun_shotgun_shell_insert.ogg'
 	cocked_sound = 'sound/weapons/gun_shotgun_reload.ogg'
@@ -25,6 +28,8 @@ can cause issues with ammo types getting mixed up during the burst.
 /obj/item/weapon/gun/shotgun/Initialize()
 	. = ..()
 	replace_tube(current_mag.current_rounds) //Populate the chamber.
+	if(flags_gun_features & GUN_SHOTGUN_CHAMBER)
+		load_into_chamber()
 
 /obj/item/weapon/gun/shotgun/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/mhigh_fire_delay)
@@ -172,13 +177,14 @@ can cause issues with ammo types getting mixed up during the burst.
 	desc = "A cobbled-together pile of scrap and alien wood. Point end towards things you want to die. Has a burst fire feature, as if it needed it."
 	icon_state = "cshotgun"
 	item_state = "cshotgun"
+	max_shells = 5 //codex
 	origin_tech = "combat=4;materials=2"
 	fire_sound = 'sound/weapons/gun_shotgun_automatic.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/merc
 	attachable_allowed = list(
 						/obj/item/attachable/compensator)
 
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_SHOTGUN_CHAMBER|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 17, "under_y" = 14, "stock_x" = 17, "stock_y" = 14)
 
 /obj/item/weapon/gun/shotgun/merc/set_gun_config_values()
@@ -208,7 +214,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	item_state = "mk221"
 	origin_tech = "combat=5;materials=4"
 	fire_sound = 'sound/weapons/gun_shotgun_automatic.ogg'
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_SHOTGUN_CHAMBER|GUN_AMMO_COUNTER
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/combat
 	attachable_allowed = list(
 						/obj/item/attachable/bayonet,
@@ -244,6 +250,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	desc = "A double barreled shotgun of archaic, but sturdy design. Uses 12 Gauge Special slugs, but can only hold 2 at a time."
 	icon_state = "dshotgun"
 	item_state = "dshotgun"
+	max_shells = 2 //codex
 	origin_tech = "combat=4;materials=2"
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/double
 	fire_sound = 'sound/weapons/gun_shotgun_heavy.ogg'
@@ -374,6 +381,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	item_state = "m37"
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump
 	fire_sound = 'sound/weapons/gun_shotgun.ogg'
+	max_shells = 9
 	var/pump_sound = 'sound/weapons/gun_shotgun_pump.ogg'
 	var/pump_delay //Higher means longer delay.
 	var/recent_pump //world.time to see when they last pumped it.
@@ -518,6 +526,9 @@ can cause issues with ammo types getting mixed up during the burst.
 	icon_state = "mosin"
 	item_state = "mosin" //thank you Alterist
 	fire_sound = 'sound/weapons/gun_sniper.ogg'
+	caliber = "7.62x54mm Rimmed" //codex
+	load_method = SINGLE_CASING //codex
+	max_shells = 5 //codex
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump/bolt
 	gun_skill_category = GUN_SKILL_RIFLES
 	type_of_casings = "cartridge"

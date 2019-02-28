@@ -52,6 +52,7 @@
 #define GUN_POLICE				(1 << 14)
 #define GUN_ENERGY				(1 << 15)
 #define GUN_LOAD_INTO_CHAMBER	(1 << 16)
+#define GUN_SHOTGUN_CHAMBER		(1 << 17)
 
 //Gun attachable related flags.
 #define ATTACH_REMOVABLE	1
@@ -74,12 +75,14 @@
 #define SLOWDOWN_ARMOR_HEAVY		1
 #define SLOWDOWN_ARMOR_VERY_HEAVY	1.15
 
-#define SLOWDOWN_ADS_SHOTGUN		0.75
-#define SLOWDOWN_ADS_RIFLE			0.75 //anything below that doesn't change anything.
-#define SLOWDOWN_ADS_SCOPE			1
-#define SLOWDOWN_ADS_INCINERATOR	1.75
-#define SLOWDOWN_ADS_SPECIALIST		1.75
-#define SLOWDOWN_ADS_SUPERWEAPON	2.75
+#define SLOWDOWN_ADS_SHOTGUN			0.35
+#define SLOWDOWN_ADS_RIFLE				0.35
+#define SLOWDOWN_ADS_SPECIALIST_LIGHT	0.75
+#define SLOWDOWN_ADS_SCOPE				1
+#define SLOWDOWN_ADS_SPECIALIST_MED		1
+#define SLOWDOWN_ADS_INCINERATOR		1.75
+#define SLOWDOWN_ADS_SPECIALIST_HEAVY	1.75
+#define SLOWDOWN_ADS_SUPERWEAPON		2.75
 
 //Wield delays, in milliseconds. 10 is 1 second
 #define WIELD_DELAY_VERY_FAST		2

@@ -151,7 +151,7 @@ var/global/list/PDA_Manifest = list()
 			heads[++heads.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
 			depthead = 1
-			if(rank=="Commander" && heads.len != 1)
+			if(rank=="Captain" && length(heads) != 1)
 				heads.Swap(1,heads.len)
 
 		if(real_rank in JOBS_ENGINEERING)

@@ -80,7 +80,7 @@
 		to_chat(user, "<span class='warning'>Error: Unable to link to a proper squad.</span>")
 		return
 	user.set_interaction(src)
-	var/dat = "<head><title>[current_squad.name] Overwatch Console</title></head><body>"
+	var/dat
 	if(!operator)
 		dat += "<BR><B>Operator:</b> <A href='?src=\ref[src];operation=change_operator'>----------</A><BR>"
 	else
@@ -117,7 +117,7 @@
 					dat += "<A href='?src=\ref[src];operation=squad_transfer'>Transfer a marine to another squad</a><BR><BR>"
 					dat += "<a href='?src=\ref[src];operation=supplies'>Supply Drop Control</a><br>"
 					dat += "<a href='?src=\ref[src];operation=monitor'>Squad Monitor</a><br>"
-					dat += "----------------------<br></body>"
+					dat += "----------------------<br>"
 					dat += "<b>Rail Gun Control</b><br>"
 					dat += "<b>Current Rail Gun Status:</b> "
 					var/cooldown_left = (almayer_rail_gun.last_firing + 600) - world.time // 60 seconds between shots
@@ -152,8 +152,8 @@
 					else
 						dat += "<font color='green'>[selected_target.name]</font><br>"
 					dat += "<A href='?src=\ref[src];operation=shootrailgun'>\[FIRE!\]</a><br>"
-					dat += "----------------------<br></body>"
-					dat += "<br><br><a href='?src=\ref[src];operation=refresh'>{Refresh}</a></body>"
+					dat += "----------------------<br>"
+					dat += "<br><br><a href='?src=\ref[src];operation=refresh'>{Refresh}</a>"
 			if(OW_MONITOR)//Info screen.
 				dat += get_squad_info()
 			if(OW_SUPPLIES)
@@ -190,10 +190,13 @@
 					dat += "<A href='?src=\ref[src];operation=dropsupply'>\[LAUNCH!\]</a>"
 				dat += "<BR><BR>----------------------<br>"
 				dat += "<A href='?src=\ref[src];operation=refresh'>{Refresh}</a><br>"
-				dat += "<A href='?src=\ref[src];operation=back'>{Back}</a></body>"
-	user << browse(dat, "window=squad_overwatch;size=550x550")
+				dat += "<A href='?src=\ref[src];operation=back'>{Back}</a>"
+
+	var/datum/browser/popup = new(user, "squad_overwatch", "<div align='center'>[current_squad.name] Overwatch Console</div>", 550, 550)
+	popup.set_content(dat)
+	popup.open(FALSE)
 	onclose(user, "squad_overwatch")
-	return
+
 
 /obj/machinery/computer/overwatch/Topic(href, href_list)
 	. = ..()
@@ -413,7 +416,7 @@
 			var/datum/squad/S = SSjob.squads[i]
 			squads += S
 	user.set_interaction(src)
-	var/dat = "<head><title>Main Overwatch Console</title></head><body>"
+	var/dat
 	if(!operator)
 		dat += "<B>Main Operator:</b> <A href='?src=\ref[src];operation=change_main_operator'>----------</A><BR>"
 	else
@@ -469,13 +472,16 @@
 				else
 					dat += "<font color='green'>[selected_target.name]</font><br>"
 				dat += "<A href='?src=\ref[src];operation=dropbomb'>\[FIRE!\]</a><br>"
-				dat += "----------------------<BR></Body>"
-				dat += "<A href='?src=\ref[src];operation=refresh'>{Refresh}</a></Body>"
+				dat += "----------------------<BR>"
+				dat += "<A href='?src=\ref[src];operation=refresh'>{Refresh}</a>"
 			if(OW_MONITOR)//Info screen.
 				dat += get_squad_info()
-	user << browse(dat, "window=main_overwatch;size=550x550")
+
+	var/datum/browser/popup = new(user, "main_overwatch", "<div align='center'>Main Overwatch Console</div>", 550, 550)
+	popup.set_content(dat)
+	popup.open(FALSE)
 	onclose(user, "main_overwatch")
-	return
+
 
 /obj/machinery/computer/overwatch/check_eye(mob/user)
 	if(user.is_mob_incapacitated(TRUE) || get_dist(user, src) > 1 || is_blind(user)) //user can't see - not sure why canmove is here.
@@ -728,7 +734,7 @@
 		if("Squad Engineer")
 			if(new_squad.num_engineers >= new_squad.max_engineers)
 				no_place = TRUE
-		if("Squad Medic")
+		if("Squad Corpsman")
 			if(new_squad.num_medics >= new_squad.max_medics)
 				no_place = TRUE
 		if("Squad Smartgunner")
@@ -1079,6 +1085,11 @@
 		command_aura = choice
 	else
 		command_aura = which
+
+	if(command_aura_cooldown > 0)
+		to_chat(src, "<span class='warning'>You have recently given an order. Calm down.</span>")
+		return
+
 	if(!(command_aura in command_aura_allowed))
 		return
 	command_aura_cooldown = 45 //45 ticks
@@ -1232,7 +1243,7 @@
 			if("Squad Specialist")
 				spec_text += marine_infos
 				spec_count++
-			if("Squad Medic")
+			if("Squad Corpsman")
 				medic_text += marine_infos
 				medic_count++
 			if("Squad Engineer")
@@ -1262,7 +1273,7 @@
 				if("Squad Specialist")
 					spec_text += marine_infos
 					spec_count++
-				if("Squad Medic")
+				if("Squad Corpsman")
 					medic_text += marine_infos
 					medic_count++
 				if("Squad Engineer")
@@ -1284,7 +1295,7 @@
 	dat += "<b>[leader_count ? "Squad Leader Deployed":"<font color='red'>No Squad Leader Deployed!</font>"]</b><br>"
 	dat += "<b>[spec_count ? "Squad Specialist Deployed":"<font color='red'>No Specialist Deployed!</font>"]</b><br>"
 	dat += "<b>[smart_count ? "Squad Smartgunner Deployed":"<font color='red'>No Smartgunner Deployed!</font>"]</b><br>"
-	dat += "<b>Squad Medics: [medic_count] Deployed | Squad Engineers: [engi_count] Deployed</b><br>"
+	dat += "<b>Squad Corpsmen: [medic_count] Deployed | Squad Engineers: [engi_count] Deployed</b><br>"
 	dat += "<b>Squad Marines: [marine_count] Deployed</b><br>"
 	dat += "<b>Total: [current_squad.marines_list.len] Deployed</b><br>"
 	dat += "<b>Marines alive: [living_count]</b><br><br>"
@@ -1316,7 +1327,7 @@
 	dat += "<A href='?src=\ref[src];operation=change_sort'>{Change Sorting Method}</a><br>"
 	dat += "<A href='?src=\ref[src];operation=hide_dead'>{[dead_hidden ? "Show Dead Marines" : "Hide Dead Marines" ]}</a><br>"
 	dat += "<A href='?src=\ref[src];operation=choose_z'>{Change Locations Ignored}</a><br>"
-	dat += "<br><A href='?src=\ref[src];operation=back'>{Back}</a></body>"
+	dat += "<br><A href='?src=\ref[src];operation=back'>{Back}</a>"
 	return dat
 
 #undef OW_MAIN

@@ -89,7 +89,7 @@ var/list/event_last_fired = list()
 		if(iscyborg(M) && M:module && M:module.name == "engineering robot module")
 			active_with_role["Engineer"]++
 
-		if(M.mind.assigned_role in list("Chief Engineer", "Maintenance Tech"))
+		if(M.mind.assigned_role in list("Chief Engineer", "Ship Engineer"))
 			active_with_role["Engineer"]++
 
 		if(iscyborg(M) && M:module && M:module.name == "medical robot module")

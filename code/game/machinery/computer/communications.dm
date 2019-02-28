@@ -85,7 +85,7 @@
 			var/mob/M = usr
 			var/obj/item/card/id/I = M.get_active_held_item()
 			if(istype(I))
-				if(ACCESS_MARINE_COMMANDER in I.access || ACCESS_MARINE_BRIDGE in I.access) //Let heads change the alert level.
+				if(ACCESS_MARINE_CAPTAIN in I.access || ACCESS_MARINE_BRIDGE in I.access) //Let heads change the alert level.
 					switch(tmp_alertlevel)
 						if(-INFINITY to SEC_LEVEL_GREEN)
 							tmp_alertlevel = SEC_LEVEL_GREEN //Cannot go below green.
@@ -124,8 +124,8 @@
 				cooldown_message = world.time
 
 		if("award")
-			if(!usr.mind || usr.mind.assigned_role != "Commander")
-				to_chat(usr, "<span class='warning'>Only the Commander can award medals.</span>")
+			if(!usr.mind || usr.mind.assigned_role != "Captain")
+				to_chat(usr, "<span class='warning'>Only the Captain can award medals.</span>")
 				return
 
 			if(give_medal_award(loc))
@@ -326,19 +326,11 @@
 		return FALSE
 
 	user.set_interaction(src)
-	var/dat = "<head><title>Communications Console</title></head><body>"
+	var/dat
 	if(EvacuationAuthority.evac_status == EVACUATION_STATUS_INITIATING)
 		dat += "<B>Evacuation in Progress</B>\n<BR>\nETA: [EvacuationAuthority.get_status_panel_eta()]<BR>"
 
-/*
-	if(issilicon(user))
-		var/dat2 = interact_ai(user) // give the AI a different interact proc to limit its access
-		if(dat2)
-			dat +=  dat2
-			user << browse(dat, "window=communications;size=400x500")
-			onclose(user, "communications")
-		return FALSE
-*/
+
 	switch(state)
 		if(STATE_DEFAULT)
 			if(authenticated)
@@ -427,8 +419,12 @@
 			dat += "<A HREF='?src=\ref[src];operation=swipeidseclevel'>Swipe ID</A> to confirm change.<BR>"
 
 	dat += "<BR>\[ [(state != STATE_DEFAULT) ? "<A HREF='?src=\ref[src];operation=main'>Main Menu</A>|" : ""]<A HREF='?src=\ref[user];mach_close=communications'>Close</A> \]"
-	user << browse(dat, "window=communications;size=400x500")
+	
+	var/datum/browser/popup = new(user, "communications", "<div align='center'>Communications Console</div>", 400, 500)
+	popup.set_content(dat)
+	popup.open(FALSE)
 	onclose(user, "communications")
+
 
 /*
 /obj/machinery/computer/communications/proc/interact_ai(var/mob/living/silicon/ai/user as mob)

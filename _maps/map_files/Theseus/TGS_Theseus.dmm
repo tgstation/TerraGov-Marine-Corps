@@ -999,10 +999,7 @@
 /turf/open/floor/wood,
 /area/almayer/living/commandbunks)
 "acR" = (
-/obj/machinery/door/airlock/almayer/command{
-	name = "\improper Commander's Study";
-	req_access_txt = "1"
-	},
+/obj/machinery/door/airlock/almayer/command/CPTstudy,
 /turf/open/floor/wood,
 /area/almayer/living/commandbunks)
 "acS" = (
@@ -1147,7 +1144,7 @@
 "adn" = (
 /obj/structure/bed,
 /obj/item/bedsheet/hop,
-/obj/effect/landmark/start/marine/executiveofficer,
+/obj/effect/landmark/start/marine/fieldcommander,
 /turf/open/floor/carpet,
 /area/almayer/living/numbertwobunks)
 "ado" = (
@@ -1385,7 +1382,7 @@
 	},
 /obj/structure/window/reinforced/toughened,
 /obj/machinery/door/window/westleft,
-/obj/item/weapon/claymore/mercsword/commander,
+/obj/item/weapon/claymore/mercsword/captain,
 /turf/open/floor/wood,
 /area/almayer/living/commandbunks)
 "adS" = (
@@ -1565,9 +1562,8 @@
 /turf/open/floor/almayer/mono,
 /area/almayer/living/commandbunks)
 "aeq" = (
-/obj/machinery/door/airlock/almayer/command{
-	dir = 4;
-	name = "\improper XO's Quarters"
+/obj/machinery/door/airlock/almayer/command/FCDRquarters{
+	dir = 4
 	},
 /turf/open/floor/almayer,
 /area/almayer/living/numbertwobunks)
@@ -1588,7 +1584,7 @@
 /turf/open/floor/wood,
 /area/almayer/living/commandbunks)
 "aeu" = (
-/obj/structure/closet/secure_closet/bar/commander,
+/obj/structure/closet/secure_closet/bar/captain,
 /turf/open/floor/wood,
 /area/almayer/living/commandbunks)
 "aev" = (
@@ -2239,7 +2235,7 @@
 "agh" = (
 /obj/structure/bed,
 /obj/item/bedsheet/hop,
-/obj/effect/landmark/start/marine/commander,
+/obj/effect/landmark/start/marine/captain,
 /mob/living/simple_animal/cat/Jones,
 /turf/open/floor/carpet,
 /area/almayer/living/commandbunks)
@@ -2636,7 +2632,7 @@
 "ahh" = (
 /obj/structure/bed,
 /obj/item/bedsheet/brown,
-/obj/effect/landmark/start/marine/mp,
+/obj/effect/landmark/start/marine/masteratarms,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -2670,7 +2666,7 @@
 "ahm" = (
 /obj/structure/bed,
 /obj/item/bedsheet/brown,
-/obj/effect/landmark/start/marine/mp,
+/obj/effect/landmark/start/marine/masteratarms,
 /turf/open/floor/carpet,
 /area/almayer/shipboard/brig)
 "ahn" = (
@@ -2700,7 +2696,7 @@
 /turf/open/floor/carpet,
 /area/almayer/living/commandbunks)
 "ahp" = (
-/obj/structure/closet/secure_closet/commander,
+/obj/structure/closet/secure_closet/captain,
 /turf/open/floor/carpet,
 /area/almayer/living/commandbunks)
 "ahq" = (
@@ -3278,9 +3274,8 @@
 /turf/open/floor/almayer,
 /area/almayer/living/numbertwobunks)
 "aiH" = (
-/obj/machinery/door/airlock/almayer/command{
-	dir = 2;
-	name = "\improper Commander's Office"
+/obj/machinery/door/airlock/almayer/command/CPToffice{
+	dir = 2
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -3795,9 +3790,8 @@
 	},
 /area/almayer/shipboard/brig)
 "ajP" = (
-/obj/machinery/door/airlock/almayer/command{
-	dir = 2;
-	name = "\improper XO's Office"
+/obj/machinery/door/airlock/almayer/command/FCDRoffice{
+	dir = 2
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -5705,7 +5699,7 @@
 "amF" = (
 /obj/structure/bed,
 /obj/item/bedsheet/brown,
-/obj/effect/landmark/start/marine/mp,
+/obj/effect/landmark/start/marine/masteratarms,
 /obj/machinery/light,
 /turf/open/floor/carpet,
 /area/almayer/shipboard/brig)
@@ -6840,7 +6834,7 @@
 "api" = (
 /obj/structure/bed/fancy,
 /obj/item/bedsheet/hos,
-/obj/effect/landmark/start/marine/chiefmp,
+/obj/effect/landmark/start/marine/commandmasteratarms,
 /turf/open/floor/carpet,
 /area/almayer/shipboard/chief_mp_office)
 "apj" = (
@@ -7334,7 +7328,7 @@
 /area/almayer/engineering/ce_room)
 "aqo" = (
 /obj/structure/bed/chair/office/dark,
-/obj/effect/landmark/start/marine/chiefengineer,
+/obj/effect/landmark/start/marine/chiefshipengineer,
 /turf/open/floor/almayer{
 	dir = 1;
 	icon_state = "orange";
@@ -8560,9 +8554,8 @@
 	},
 /area/almayer/shipboard/brig)
 "asO" = (
-/obj/machinery/door/airlock/almayer/security{
-	dir = 2;
-	name = "\improper Chief MP's Bunks"
+/obj/machinery/door/airlock/almayer/security/CMA{
+	dir = 2
 	},
 /obj/machinery/door/firedoor/border_only/almayer{
 	tag = "icon-door_open";
@@ -8621,7 +8614,7 @@
 /area/almayer/shipboard/brig)
 "asT" = (
 /obj/structure/table/almayer,
-/obj/machinery/faxmachine,
+/obj/machinery/faxmachine/cmp,
 /turf/open/floor/almayer/mono,
 /area/almayer/shipboard/chief_mp_office)
 "asU" = (
@@ -9454,7 +9447,7 @@
 /area/almayer/shipboard/brig)
 "auD" = (
 /obj/structure/table/almayer,
-/obj/machinery/faxmachine,
+/obj/machinery/faxmachine/brig,
 /turf/open/floor/almayer/mono,
 /area/almayer/shipboard/brig)
 "auE" = (
@@ -9736,9 +9729,8 @@
 	icon_state = "door_open";
 	dir = 2
 	},
-/obj/machinery/door/airlock/almayer/command{
-	dir = 2;
-	name = "\improper Commander's Mess"
+/obj/machinery/door/airlock/almayer/command/CPTmess{
+	dir = 2
 	},
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -10134,10 +10126,8 @@
 /turf/open/floor/plating,
 /area/almayer/engineering/ce_room)
 "avS" = (
-/obj/machinery/door/airlock/almayer/engineering{
-	dir = 2;
-	name = "\improper Chief Engineer's Office";
-	req_one_access_txt = "1;6"
+/obj/machinery/door/airlock/almayer/engineering/CSEoffice{
+	dir = 2
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -13065,9 +13055,8 @@
 "aBm" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/door/airlock/almayer/security/glass{
-	dir = 1;
-	name = "\improper Chief MP's Office"
+/obj/machinery/door/airlock/almayer/security/glass/CMA{
+	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable{
@@ -15469,7 +15458,7 @@
 /area/almayer/shipboard/brig)
 "aFy" = (
 /obj/structure/table/almayer,
-/obj/machinery/faxmachine,
+/obj/machinery/faxmachine/research,
 /turf/open/floor/almayer{
 	dir = 1;
 	icon_state = "sterile_green_side";
@@ -17723,10 +17712,7 @@
 /obj/structure/closet/secure_closet/securecom,
 /obj/item/weapon/gun/smartgun,
 /obj/item/smartgun_powerpack/fancy,
-/obj/item/clothing/suit/storage/marine/smartgunner{
-	desc = "A heavy protective vest designed to be worn with the M56 Smartgun System. \nIt has specially designed straps and reinforcement to carry the Smartgun and accessories. This luxury model appears to belong to the CO. You feel like you probably could get fired for touching this..";
-	icon_state = "8fancy"
-	},
+/obj/item/clothing/suit/storage/marine/smartgunner/fancy,
 /turf/open/floor/almayer{
 	tag = "icon-redfull";
 	icon_state = "redfull"
@@ -19413,7 +19399,7 @@
 /area/almayer/command/cic)
 "aMI" = (
 /obj/structure/table/almayer,
-/obj/machinery/faxmachine,
+/obj/machinery/faxmachine/cic,
 /turf/open/floor/almayer/mono,
 /area/almayer/command/cic)
 "aMJ" = (
@@ -20152,9 +20138,8 @@
 	},
 /area/almayer/hallways/aft_hallway)
 "aOf" = (
-/obj/machinery/door/airlock/almayer/command{
-	dir = 2;
-	name = "\improper XO's Quarters"
+/obj/machinery/door/airlock/almayer/command/FCDRoffice{
+	dir = 2
 	},
 /obj/machinery/door/firedoor/border_only/almayer{
 	tag = "icon-door_open";
@@ -21979,13 +21964,13 @@
 /area/almayer/living/bridgebunks)
 "aSC" = (
 /obj/structure/bed,
-/obj/effect/landmark/start/marine/staffofficer,
+/obj/effect/landmark/start/marine/intelligenceofficer,
 /obj/item/bedsheet/brown,
 /turf/open/floor/wood,
 /area/almayer/living/bridgebunks)
 "aSD" = (
 /obj/structure/bed,
-/obj/effect/landmark/start/marine/staffofficer,
+/obj/effect/landmark/start/marine/intelligenceofficer,
 /turf/open/floor/wood,
 /area/almayer/living/bridgebunks)
 "aSE" = (
@@ -31448,7 +31433,7 @@
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/hangar)
 "boB" = (
-/obj/effect/landmark/start/marine/doctor,
+/obj/effect/landmark/start/marine/medicalofficer,
 /turf/open/floor/almayer{
 	icon_state = "dark_sterile";
 	tag = "icon-sterile"
@@ -31554,7 +31539,7 @@
 	},
 /area/almayer/medical/lower_medical)
 "boL" = (
-/obj/effect/landmark/start/marine/doctor,
+/obj/effect/landmark/start/marine/medicalofficer,
 /turf/open/floor/wood,
 /area/almayer/medical/lower_medical)
 "boM" = (
@@ -31643,7 +31628,7 @@
 	},
 /area/almayer/medical/operating_room_one)
 "boS" = (
-/obj/effect/landmark/start/marine/doctor,
+/obj/effect/landmark/start/marine/medicalofficer,
 /turf/open/floor/almayer{
 	icon_state = "dark_sterile";
 	tag = "icon-sterile"
@@ -31963,7 +31948,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/living/cryo_cells)
 "bpH" = (
-/obj/effect/landmark/start/marine/squadmedic,
+/obj/effect/landmark/start/marine/squadcorpsman,
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/living/cryo_cells)
 "bpI" = (
@@ -33586,7 +33571,7 @@
 /obj/item/storage/backpack/industrial,
 /obj/item/storage/backpack/marine,
 /obj/machinery/light,
-/obj/item/storage/backpack/marine/medic,
+/obj/item/storage/backpack/marine/corpsman,
 /obj/item/storage/backpack/marine/engineerpack,
 /obj/structure/rack,
 /turf/open/floor/almayer{
@@ -35780,7 +35765,7 @@
 	},
 /area/almayer/medical/operating_room_two)
 "bxJ" = (
-/obj/effect/landmark/start/marine/doctor,
+/obj/effect/landmark/start/marine/medicalofficer,
 /turf/open/floor/almayer{
 	icon_state = "dark_sterile";
 	tag = "icon-sterile"
@@ -36005,7 +35990,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/living/cryo_cells)
 "byk" = (
-/obj/effect/landmark/start/marine/squadmedic,
+/obj/effect/landmark/start/marine/squadcorpsman,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 10
 	},
@@ -39131,7 +39116,7 @@
 	},
 /area/almayer/medical/operating_room_three)
 "bEL" = (
-/obj/effect/landmark/start/marine/doctor,
+/obj/effect/landmark/start/marine/medicalofficer,
 /turf/open/floor/almayer{
 	icon_state = "dark_sterile";
 	tag = "icon-sterile"
@@ -39180,7 +39165,7 @@
 /turf/open/floor/almayer/mono,
 /area/almayer/squads/req)
 "bER" = (
-/obj/effect/landmark/start/marine/squadmedic,
+/obj/effect/landmark/start/marine/squadcorpsman,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
@@ -39951,7 +39936,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/squads/req)
 "bGo" = (
-/obj/effect/landmark/start/marine/squadmedic,
+/obj/effect/landmark/start/marine/squadcorpsman,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
@@ -41969,7 +41954,7 @@
 	},
 /area/almayer/medical/operating_room_four)
 "bKH" = (
-/obj/effect/landmark/start/marine/doctor,
+/obj/effect/landmark/start/marine/medicalofficer,
 /turf/open/floor/almayer{
 	icon_state = "dark_sterile";
 	tag = "icon-sterile"

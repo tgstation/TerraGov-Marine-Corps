@@ -5,7 +5,7 @@
 //Because this parent type did not exist
 //Note that this means that snipers will have a slowdown of 3, due to the scope
 /obj/item/weapon/gun/rifle/sniper
-	aim_slowdown = SLOWDOWN_ADS_SPECIALIST
+	aim_slowdown = SLOWDOWN_ADS_SCOPE
 	gun_skill_category = GUN_SKILL_SPEC
 	wield_delay = WIELD_DELAY_SLOW
 
@@ -16,6 +16,8 @@
 	desc = "A heavy sniper rifle manufactured by Armat Systems. It has a scope system and fires armor penetrating rounds out of a 15-round magazine.\nIt has an integrated Target Marker and a Laser Targeting system.\n'Peace Through Superior Firepower'"
 	icon_state = "m42a"
 	item_state = "m42a"
+	max_shells = 15 //codex
+	caliber = "10x28mm Caseless" //codex
 	origin_tech = "combat=6;materials=5"
 	fire_sound = 'sound/weapons/gun_sniper.ogg'
 	current_mag = /obj/item/ammo_magazine/sniper
@@ -185,6 +187,8 @@
 	desc = "A high end mag-rail heavy sniper rifle from Nanotrasen chambered in the heaviest ammo available, 10x99mm Caseless."
 	icon_state = "m42c"
 	item_state = "m42c" //NEEDS A TWOHANDED STATE
+	max_shells = 6 //codex
+	caliber = "10x99mm Caseless" //codex
 	origin_tech = "combat=7;materials=5"
 	fire_sound = 'sound/weapons/sniper_heavy.ogg'
 	current_mag = /obj/item/ammo_magazine/sniper/elite
@@ -219,6 +223,8 @@
 	desc = "A sniper variant of the MAR-40 rifle, with a new stock, barrel, and scope. It doesn't have the punch of modern sniper rifles, but it's finely crafted in 2133 by someone probably illiterate. Fires 7.62x54mmR rounds."
 	icon_state = "svd003"
 	item_state = "svd003" //NEEDS A ONE HANDED STATE
+	max_shells = 10 //codex
+	caliber = "7.62x54mm Rimmed" //codex
 	origin_tech = "combat=5;materials=3;syndicate=5"
 	fire_sound = 'sound/weapons/gun_kt42.ogg'
 	current_mag = /obj/item/ammo_magazine/sniper/svd
@@ -253,6 +259,8 @@
 	desc = "The M4RA battle rifle is a designated marksman rifle in service with the TGMC. Only fielded in small numbers, and sporting a bullpup configuration, the M4RA battle rifle is perfect for reconnaissance and fire support teams.\nIt is equipped with rail scope and takes 10x24mm A19 high velocity magazines."
 	icon_state = "m41b"
 	item_state = "m4ra" //PLACEHOLDER
+	max_shells = 15 //codex
+	caliber = "10x24mm Caseless" //codex
 	origin_tech = "combat=5;materials=4"
 	fire_sound = list('sound/weapons/gun_m4ra.ogg')
 	current_mag = /obj/item/ammo_magazine/rifle/m4ra
@@ -287,14 +295,17 @@
 	desc = "The actual firearm in the 4-piece M56B Smartgun System. Essentially a heavy, mobile machinegun.\nReloading is a cumbersome process requiring a powerpack. Click the powerpack icon in the top left to reload.\nYou may toggle firing restrictions by using a special action."
 	icon_state = "m56"
 	item_state = "m56"
+	max_shells = 100 //codex
+	caliber = "10x28mm Caseless" //codex
 	origin_tech = "combat=6;materials=5"
 	fire_sound = "gun_smartgun"
+	load_method = POWERPACK //codex
 	current_mag = /obj/item/ammo_magazine/internal/smartgun
 	flags_equip_slot = NOFLAGS
 	w_class = 5
 	force = 20
 	wield_delay = 16
-	aim_slowdown = SLOWDOWN_ADS_SPECIALIST
+	aim_slowdown = SLOWDOWN_ADS_SPECIALIST_MED
 	var/datum/ammo/ammo_secondary = /datum/ammo/bullet/smartgun/lethal//Toggled ammo type
 	var/shells_fired_max = 50 //Smartgun only; once you fire # of shells, it will attempt to reload automatically. If you start the reload, the counter resets.
 	var/shells_fired_now = 0 //The actual counter used. shells_fired_max is what it is compared to.
@@ -329,7 +340,9 @@
 	to_chat(user, "The restriction system is [restriction_toggled ? "<B>on</b>" : "<B>off</b>"].")
 
 /obj/item/weapon/gun/smartgun/unique_action(mob/user)
-	toggle_restriction(user)
+	var/obj/item/smartgun_powerpack/power_pack = user.back
+	if(istype(power_pack))
+		power_pack.attack_self(user)
 
 /obj/item/weapon/gun/smartgun/able_to_fire(mob/living/user)
 	. = ..()
@@ -346,12 +359,13 @@
 	return ready_in_chamber()
 
 /obj/item/weapon/gun/smartgun/reload_into_chamber(mob/user)
-	var/mob/living/carbon/human/smart_gunner = user
-	var/obj/item/smartgun_powerpack/power_pack = smart_gunner.back
-	if(istype(power_pack)) //I don't know how it would break, but it is possible.
-		if(shells_fired_now >= shells_fired_max && power_pack.rounds_remaining > 0) // If shells fired exceeds shells needed to reload, and we have ammo.
-			auto_reload(smart_gunner, power_pack)
-		else shells_fired_now++
+	var/obj/item/smartgun_powerpack/power_pack = user.back
+	if(!istype(power_pack))
+		return current_mag.current_rounds
+	if(shells_fired_now >= shells_fired_max && power_pack.rounds_remaining > 0) // If shells fired exceeds shells needed to reload, and we have ammo.
+		addtimer(CALLBACK(src, .proc/auto_reload, user, power_pack), 0.5 SECONDS)
+	else
+		shells_fired_now++
 
 	return current_mag.current_rounds
 
@@ -360,8 +374,12 @@
 	if(refund) current_mag.current_rounds++
 	return 1
 
-/obj/item/weapon/gun/smartgun/proc/toggle_restriction(mob/user)
-	to_chat(user, "[icon2html(src, user)] You [restriction_toggled? "<B>disable</b>" : "<B>enable</b>"] the [src]'s fire restriction. You will [restriction_toggled ? "harm anyone in your way" : "target through IFF"].")
+/obj/item/weapon/gun/smartgun/toggle_gun_safety()
+	var/obj/item/weapon/gun/smartgun/G = get_active_firearm(usr)
+	if(!istype(G))
+		return //Right kind of gun is not in hands, abort.
+	src = G
+	to_chat(usr, "[icon2html(src, usr)] You [restriction_toggled? "<B>disable</b>" : "<B>enable</b>"] the [src]'s fire restriction. You will [restriction_toggled ? "harm anyone in your way" : "target through IFF"].")
 	playsound(loc,'sound/machines/click.ogg', 25, 1)
 	var/A = ammo
 	ammo = ammo_secondary
@@ -369,9 +387,7 @@
 	restriction_toggled = !restriction_toggled
 
 /obj/item/weapon/gun/smartgun/proc/auto_reload(mob/smart_gunner, obj/item/smartgun_powerpack/power_pack)
-	set waitfor = 0
-	sleep(5)
-	if(power_pack && power_pack.loc)
+	if(power_pack?.loc == smart_gunner)
 		power_pack.attack_self(smart_gunner, TRUE)
 
 /obj/item/weapon/gun/smartgun/get_ammo_type()
@@ -413,6 +429,9 @@
 	desc = "A heavy, 6-shot grenade launcher used by the TerraGov Marine Corps for area denial and big explosions."
 	icon_state = "m92"
 	item_state = "m92" //NEED TWO HANDED SPRITE
+	max_shells = 6 //codex
+	caliber = "40mm grenades" //codex
+	load_method = SINGLE_CASING //codex
 	origin_tech = "combat=5;materials=5"
 	matter = list("metal" = 6000)
 	w_class = 4.0
@@ -424,7 +443,7 @@
 	cocked_sound = 'sound/weapons/gun_m92_cocked.ogg'
 	var/list/grenades = list()
 	var/max_grenades = 6
-	aim_slowdown = SLOWDOWN_ADS_SPECIALIST
+	aim_slowdown = SLOWDOWN_ADS_SPECIALIST_MED
 	attachable_allowed = list(
 						/obj/item/attachable/magnetic_harness)
 
@@ -542,6 +561,9 @@
 	desc = "A lightweight, single-shot grenade launcher used by the TerraGov Marine Corps for area denial and big explosions."
 	icon_state = "m81"
 	item_state = "m81"
+	max_shells = 1 //codex
+	caliber = "40mm grenades" //codex
+	load_method = SINGLE_CASING //codex
 	origin_tech = "combat=5;materials=5"
 	matter = list("metal" = 7000)
 	w_class = 4.0
@@ -551,7 +573,7 @@
 	wield_delay = WIELD_DELAY_VERY_FAST
 	fire_sound = 'sound/weapons/armbomb.ogg'
 	cocked_sound = 'sound/weapons/gun_m92_cocked.ogg'
-	aim_slowdown = SLOWDOWN_ADS_SPECIALIST
+	aim_slowdown = SLOWDOWN_ADS_SPECIALIST_MED
 	gun_skill_category = GUN_SKILL_SPEC
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY
 	attachable_allowed = list()
@@ -670,6 +692,9 @@
 	desc = "The M5 RPG is the primary anti-armor weapon of the TGMC. Used to take out light-tanks and enemy structures, the M5 RPG is a dangerous weapon with a variety of combat uses."
 	icon_state = "m5"
 	item_state = "m5"
+	max_shells = 1 //codex
+	caliber = "84mm rockets" //codex
+	load_method = SINGLE_CASING //codex
 	origin_tech = "combat=6;materials=5"
 	matter = list("metal" = 10000)
 	current_mag = /obj/item/ammo_magazine/rocket
@@ -677,7 +702,7 @@
 	w_class = 5
 	force = 15
 	wield_delay = 12
-	aim_slowdown = SLOWDOWN_ADS_SPECIALIST
+	aim_slowdown = SLOWDOWN_ADS_SPECIALIST_HEAVY
 	attachable_allowed = list(
 						/obj/item/attachable/magnetic_harness,
 						/obj/item/attachable/scope/mini)
@@ -815,6 +840,9 @@
 	desc = "The M57-A4 'Lightning Bolt' is posssibly the most destructive man-portable weapon ever made. It is a 4-barreled missile launcher capable of burst-firing 4 thermobaric missiles. Enough said."
 	icon_state = "m57a4"
 	item_state = "m57a4"
+	max_shells = 4 //codex
+	caliber = "84mm rockets" //codex
+	load_method = MAGAZINE //codex
 	origin_tech = "combat=7;materials=5"
 	current_mag = /obj/item/ammo_magazine/rocket/m57a4
 	aim_slowdown = SLOWDOWN_ADS_SUPERWEAPON
@@ -841,10 +869,14 @@
 	desc = "The MIC ZX-76 Assault Shotgun, a dobule barreled semi-automatic combat shotgun with a twin shot mode. Has a 9 round internal magazine."
 	icon_state = "zx-76"
 	item_state = "zx-76"
+	max_shells = 10 //codex
+	caliber = "12 guage shotgun shells" //codex
+	load_method = SINGLE_CASING //codex
 	origin_tech = "combat=5;materials=4"
 	fire_sound = 'sound/weapons/gun_shotgun_automatic.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/scout
 	gun_skill_category = GUN_SKILL_SPEC
+	aim_slowdown = SLOWDOWN_ADS_SPECIALIST_LIGHT
 	attachable_allowed = list(
 						/obj/item/attachable/bayonet,
 						/obj/item/attachable/reddot,
@@ -882,6 +914,9 @@
 	desc = "It's a damn minigun! The ultimate in man-portable firepower, spraying countless high velocity armor piercing rounds with a rotary action, this thing will no doubt pack a punch."
 	icon_state = "painless"
 	item_state = "painless"
+	max_shells = 500 //codex
+	caliber = "7.62x51mm" //codex
+	load_method = MAGAZINE //codex
 	origin_tech = "combat=7;materials=5"
 	fire_sound = 'sound/weapons/gun_minigun.ogg'
 	cocked_sound = 'sound/weapons/gun_minigun_cocked.ogg'
@@ -891,7 +926,7 @@
 	force = 20
 	wield_delay = 15
 	gun_skill_category = GUN_SKILL_SPEC
-	aim_slowdown = SLOWDOWN_ADS_RIFLE
+	aim_slowdown = SLOWDOWN_ADS_SPECIALIST_MED
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_BURST_ON|GUN_WIELDED_FIRING_ONLY|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	attachable_allowed = list(
 						/obj/item/attachable/flashlight,
