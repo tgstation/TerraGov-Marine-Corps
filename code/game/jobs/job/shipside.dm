@@ -16,7 +16,6 @@
 	prefflag = PREF_JOB_CO
 	supervisors = "TGMC high command"
 	selection_color = "#ccccff"
-	minimal_player_age = 7
 	skills_type = /datum/skills/captain
 	access = ALL_MARINE_ACCESS
 	minimal_access = ALL_MARINE_ACCESS
