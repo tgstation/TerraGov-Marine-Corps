@@ -1,25 +1,20 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "100"
-	},
+/obj/structure/dropship_piece/one/front/left,
+/turf/template_noop,
 /area/shuttle/dropship/alamo)
 "ab" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "101"
-	},
+/obj/structure/dropship_piece/one/front,
+/turf/template_noop,
 /area/shuttle/dropship/alamo)
 "ac" = (
+/obj/structure/dropship_piece/one/front,
 /obj/docking_port/mobile/marine_dropship/one,
-/turf/open/floor/plating,
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "101"
-	},
+/turf/template_noop,
 /area/shuttle/dropship/alamo)
 "ad" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "102"
-	},
+/obj/structure/dropship_piece/one/front/right,
+/turf/template_noop,
 /area/shuttle/dropship/alamo)
 "ae" = (
 /turf/closed/shuttle/dropship1{
@@ -794,8 +789,8 @@
 	icon_state = "6"
 	},
 /area/shuttle/dropship/alamo)
-"NR" = (
-/obj/machinery/computer/shuttle_control/dropship1/onboard,
+"PK" = (
+/obj/machinery/computer/shuttle/marine_dropship/one,
 /turf/open/shuttle/dropship{
 	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
@@ -920,7 +915,7 @@ ao
 (6,1,1) = {"
 ac
 ag
-NR
+PK
 at
 aC
 aL
