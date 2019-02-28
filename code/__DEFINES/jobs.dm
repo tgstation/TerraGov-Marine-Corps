@@ -169,3 +169,8 @@
 #define JOBS_PRIORITY_MEDIUM 2
 #define JOBS_PRIORITY_LOW    3
 #define JOBS_PRIORITY_NEVER  4
+
+
+#define ROLE_XENOMORPH "Xenomorph"
+#define ROLE_QUEEN "Xeno Queen"
+#define ROLE_SURVIVOR "Survivor"

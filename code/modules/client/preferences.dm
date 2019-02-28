@@ -327,7 +327,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 		HTML += "<tr style='color:black' bgcolor='[job.selection_color]'><td width='60%' align='right'>"
 		lastJob = job
-		if(jobban_isbanned(user, job.title))
+		if(jobban_isbanned(user, job.title) || is_banned_from(user.ckey, job.title))
 			HTML += "<del>[job.title]</del></td><td><b> \[BANNED]</b></td></tr>"
 			continue
 		else if(!job.player_old_enough(user.client))

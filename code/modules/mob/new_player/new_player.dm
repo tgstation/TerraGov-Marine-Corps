@@ -367,6 +367,8 @@
 				return FALSE
 	if(jobban_isbanned(src, rank))
 		return FALSE
+	if(is_banned_from(ckey, rank))
+		return FALSE
 	if(QDELETED(src))
 		return FALSE
 	if(!job.player_old_enough(client))

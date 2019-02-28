@@ -359,7 +359,7 @@
 		<td>[M.lastKnownIP]</td>
 		<td><a href='?src=[ref];observejump=[REF(M)]'>JMP</a></td>
 		<td><a href='?src=[ref];observefollow=[REF(M)]'>FLW</a></td>
-		<td><a href='?src=[ref];notes=show;mob=[REF(M)]'>Notes</a></td>
+		<td><a href='?src=[ref];showmessageckey=[M.ckey]'>Notes</a></td>
 		"}
 
 
@@ -411,12 +411,15 @@
 	if(M.mind?.assigned_role)
 		body += "<b>Mob Role:</b> [M.mind.assigned_role]<br>"
 
-	body +={"<a href='?src=[ref];kick=[REF(M)]'>Kick</a> |
-		<a href='?src=[ref];ban=[REF(M)]'>Ban</a> |
-		<a href='?src=[ref];jobbanpanel=[REF(M)]'>Jobban</a> |
-		<a href='?src=[ref];notes=show;mob=[REF(M)]'>Notes</a> |
-		<a href='?src=[ref];cryo=[REF(M)]'>Cryo</a> |
-	"}
+	body += "<a href='?src=[ref];kick=[REF(M)]'>Kick</a> | "
+		
+	if(M.client)
+		body += "<a href='?src=[ref];newbankey=[M.key];newbanip=[M.client.address];newbancid=[M.client.computer_id]'>Ban</A> | "
+	else
+		body += "<a href='?src=[ref];newbankey=[M.key]'>Ban</a> |"
+
+	body += "<a href='?src=[ref];showmessageckey=[M.ckey]'>Notes | "
+	body += "<a href='?src=[ref];cryo=[REF(M)]'>Cryo</a> | "
 
 	if(M.client?.prefs)
 		body += "\ <a href='?src=[ref];lobby=[REF(M)]'> Send back to Lobby</a>"

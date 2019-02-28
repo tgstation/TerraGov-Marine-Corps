@@ -229,12 +229,12 @@
 			return
 
 		if(RemoveBan(banfolder))
-			unban_panel()
+			unbanpanel()
 			log_admin("[key_name(usr)] removed [key]'s permaban.")
 			message_admins("[ADMIN_TPMONTY(usr)] removed [key]'s permaban.")
 		else
 			to_chat(usr, "<span class='warning'>Error, ban failed to be removed.</span>")
-			unban_panel()
+			unbanpanel()
 
 
 	else if(href_list["permaban"])
@@ -268,7 +268,7 @@
 		Banlist["minutes"] << minutes
 		Banlist["bannedby"] << usr.ckey
 		Banlist.cd = "/base"
-		unban_panel()
+		unbanpanel()
 		log_admin("[key_name(usr)] upgraded [banned_key]'s ban to a permaban. Reason: [sanitize(reason)]")
 		message_admins("[ADMIN_TPMONTY(usr)] upgraded [banned_key]'s ban to a permaban. Reason: [sanitize(reason)]")
 
@@ -310,7 +310,7 @@
 		Banlist["minutes"] << minutes
 		Banlist["bannedby"] << usr.ckey
 		Banlist.cd = "/base"
-		unban_panel()
+		unbanpanel()
 
 		log_admin("[key_name(usr)] edited [banned_key]'s ban. Reason: [sanitize(reason)] Duration: [duration]")
 		message_admins("[ADMIN_TPMONTY(usr)] edited [banned_key]'s ban. Reason: [sanitize(reason)] Duration: [duration]")
@@ -432,7 +432,7 @@
 			return
 
 		notes_add(key, add, usr)
-		player_notes_show(key)
+		legacy_player_notes_show(key)
 
 
 	else if(href_list["notes_remove"])
@@ -443,7 +443,7 @@
 		var/index = text2num(href_list["remove_index"])
 
 		notes_del(key, index)
-		player_notes_show(key)
+		legacy_player_notes_show(key)
 
 
 	else if(href_list["notes_hide"])
@@ -454,7 +454,7 @@
 		var/index = text2num(href_list["hide_index"])
 
 		notes_hide(key, index)
-		player_notes_show(key)
+		legacy_player_notes_show(key)
 
 
 	else if(href_list["notes_unhide"])
@@ -465,7 +465,7 @@
 		var/index = text2num(href_list["unhide_index"])
 
 		notes_unhide(key, index)
-		player_notes_show(key)
+		legacy_player_notes_show(key)
 
 
 	else if(href_list["notes_edit"])
@@ -489,9 +489,9 @@
 
 		switch(href_list["notes"])
 			if("show")
-				player_notes_show(ckey)
+				legacy_player_notes_show(ckey)
 			if("list")
-				PlayerNotesPage(text2num(href_list["index"]))
+				legacy_player_notes_page(text2num(href_list["index"]))
 
 
 	else if(href_list["notes_copy"])
@@ -499,7 +499,7 @@
 			return
 
 		var/key = href_list["notes_copy"]
-		player_notes_copy(key)
+		legacy_player_notes_copy(key)
 
 
 	else if(href_list["jobbanpanel"])
@@ -1614,3 +1614,247 @@
 		GLOB.custom_outfits.Add(O)
 		log_admin("[key_name(usr)] created outfit named '[O.name]'.")
 		message_admins("[ADMIN_TPMONTY(usr)] created outfit named '[O.name]'.")
+
+
+	else if(href_list["addmessage"])
+		if(!check_rights(R_BAN))
+			return
+		var/target_key = href_list["addmessage"]
+		create_message("message", target_key, secret = FALSE)
+
+
+	else if(href_list["addnote"])
+		if(!check_rights(R_BAN))
+			return
+		var/target_key = href_list["addnote"]
+		create_message("note", target_key)
+
+
+	else if(href_list["addwatch"])
+		if(!check_rights(R_BAN))
+			return
+		var/target_key = href_list["addwatch"]
+		create_message("watchlist entry", target_key, secret = TRUE)
+
+
+	else if(href_list["addmemo"])
+		if(!check_rights(R_BAN))
+			return
+		create_message("memo", secret = TRUE, browse = TRUE)
+
+
+	else if(href_list["addmessageempty"])
+		if(!check_rights(R_BAN))
+			return
+		create_message("message", secret = FALSE)
+
+
+	else if(href_list["addnoteempty"])
+		if(!check_rights(R_BAN))
+			return
+		create_message("note")
+
+
+	else if(href_list["addwatchempty"])
+		if(!check_rights(R_BAN))
+			return
+		create_message("watchlist entry", secret = TRUE)
+
+
+	else if(href_list["deletemessage"])
+		if(!check_rights(R_BAN))
+			return
+		if(alert("Delete message/note?", "Confirmation", "Yes", "No") != "Yes")
+			return
+		var/message_id = href_list["deletemessage"]
+		delete_message(message_id)
+
+
+	else if(href_list["deletemessageempty"])
+		if(!check_rights(R_BAN))
+			return
+		if(alert("Delete message/note?", "Confirmation", "Yes", "No") != "Yes")
+			return
+		var/message_id = href_list["deletemessageempty"]
+		delete_message(message_id, browse = TRUE)
+
+
+	else if(href_list["editmessage"])
+		if(!check_rights(R_BAN))
+			return
+		var/message_id = href_list["editmessage"]
+		edit_message(message_id)
+
+
+	else if(href_list["editmessageempty"])
+		if(!check_rights(R_BAN))
+			return
+		var/message_id = href_list["editmessageempty"]
+		edit_message(message_id, browse = TRUE)
+
+
+	else if(href_list["editmessageexpiry"])
+		if(!check_rights(R_BAN))
+			return
+		var/message_id = href_list["editmessageexpiry"]
+		edit_message_expiry(message_id)
+
+
+	else if(href_list["editmessageexpiryempty"])
+		if(!check_rights(R_BAN))
+			return
+		var/message_id = href_list["editmessageexpiryempty"]
+		edit_message_expiry(message_id, browse = TRUE)
+
+
+	else if(href_list["editmessageseverity"])
+		if(!check_rights(R_BAN))
+			return
+		var/message_id = href_list["editmessageseverity"]
+		edit_message_severity(message_id)
+
+
+	else if(href_list["secretmessage"])
+		if(!check_rights(R_BAN))
+			return
+		var/message_id = href_list["secretmessage"]
+		toggle_message_secrecy(message_id)
+
+
+	else if(href_list["searchmessages"])
+		if(!check_rights(R_BAN))
+			return
+		var/target = href_list["searchmessages"]
+		browse_messages(index = target)
+
+
+	else if(href_list["nonalpha"])
+		if(!check_rights(R_BAN))
+			return
+		var/target = href_list["nonalpha"]
+		target = text2num(target)
+		browse_messages(index = target)
+
+
+	else if(href_list["showmessages"])
+		if(!check_rights(R_BAN))
+			return
+		var/target = href_list["showmessages"]
+		browse_messages(index = target)
+
+
+	else if(href_list["showmemo"])
+		if(!check_rights(R_BAN))
+			return
+		browse_messages("memo")
+
+
+	else if(href_list["showwatch"])
+		if(!check_rights(R_BAN))
+			return
+		browse_messages("watchlist entry")
+
+
+	else if(href_list["showwatchfilter"])
+		if(!check_rights(R_BAN))
+			return
+		browse_messages("watchlist entry", filter = 1)
+
+
+	else if(href_list["showmessageckey"])
+		if(!check_rights(R_BAN))
+			return
+		var/target = href_list["showmessageckey"]
+		var/agegate = TRUE
+		if (href_list["showall"])
+			agegate = FALSE
+		browse_messages(target_ckey = target, agegate = agegate)
+
+
+	else if(href_list["showmessageckeylinkless"])
+		if(!check_rights(R_BAN))
+			return
+		var/target = href_list["showmessageckeylinkless"]
+		browse_messages(target_ckey = target, linkless = TRUE)
+
+
+	else if(href_list["messageedits"])
+		if(!check_rights(R_BAN))
+			return
+		var/message_id = sanitizeSQL("[href_list["messageedits"]]")
+		var/datum/DBQuery/query_get_message_edits = SSdbcore.NewQuery("SELECT edits FROM [format_table_name("messages")] WHERE id = '[message_id]'")
+		if(!query_get_message_edits.warn_execute())
+			qdel(query_get_message_edits)
+			return
+		if(query_get_message_edits.NextRow())
+			var/edit_log = query_get_message_edits.item[1]
+			if(!QDELETED(usr))
+				var/datum/browser/browser = new(usr, "Note edits", "Note edits")
+				browser.set_content(jointext(edit_log, ""))
+				browser.open()
+		qdel(query_get_message_edits)
+
+
+	else if(href_list["newbankey"])
+		var/player_key = href_list["newbankey"]
+		var/player_ip = href_list["newbanip"]
+		var/player_cid = href_list["newbancid"]
+		usr.client.holder.banpanel(player_key, player_ip, player_cid)
+
+
+	else if(href_list["intervaltype"]) //check for ban panel, intervaltype is used as it's the only value which will always be present
+		if(href_list["roleban_delimiter"])
+			usr.client.holder.ban_parse_href(href_list)
+		else
+			usr.client.holder.ban_parse_href(href_list, TRUE)
+
+
+	else if(href_list["searchunbankey"] || href_list["searchunbanadminkey"] || href_list["searchunbanip"] || href_list["searchunbancid"])
+		var/player_key = href_list["searchunbankey"]
+		var/admin_key = href_list["searchunbanadminkey"]
+		var/player_ip = href_list["searchunbanip"]
+		var/player_cid = href_list["searchunbancid"]
+		usr.client.holder.unbanpanel(player_key, admin_key, player_ip, player_cid)
+
+
+	else if(href_list["unbanpagecount"])
+		var/page = href_list["unbanpagecount"]
+		var/player_key = href_list["unbankey"]
+		var/admin_key = href_list["unbanadminkey"]
+		var/player_ip = href_list["unbanip"]
+		var/player_cid = href_list["unbancid"]
+		usr.client.holder.unbanpanel(player_key, admin_key, player_ip, player_cid, page)
+
+
+	else if(href_list["editbanid"])
+		var/edit_id = href_list["editbanid"]
+		var/player_key = href_list["editbankey"]
+		var/player_ip = href_list["editbanip"]
+		var/player_cid = href_list["editbancid"]
+		var/role = href_list["editbanrole"]
+		var/duration = href_list["editbanduration"]
+		var/applies_to_admins = text2num(href_list["editbanadmins"])
+		var/reason = url_decode(href_list["editbanreason"])
+		var/page = href_list["editbanpage"]
+		var/admin_key = href_list["editbanadminkey"]
+		usr.client.holder.banpanel(player_key, player_ip, player_cid, role, duration, applies_to_admins, reason, edit_id, page, admin_key)
+
+
+	else if(href_list["unbanid"])
+		var/ban_id = href_list["unbanid"]
+		var/player_key = href_list["unbankey"]
+		var/player_ip = href_list["unbanip"]
+		var/player_cid = href_list["unbancid"]
+		var/role = href_list["unbanrole"]
+		var/page = href_list["unbanpage"]
+		var/admin_key = href_list["unbanadminkey"]
+		usr.client.holder.unban(ban_id, player_key, player_ip, player_cid, role, page, admin_key)
+
+
+	else if(href_list["unbanlog"])
+		var/ban_id = href_list["unbanlog"]
+		usr.client.holder.ban_log(ban_id)
+
+
+	else if(href_list["stickyban"])
+		stickyban(href_list["stickyban"], href_list)
