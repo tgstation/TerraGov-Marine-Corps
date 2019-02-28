@@ -1,16 +1,31 @@
 // marine dropships
 /obj/docking_port/stationary/marine_dropship
-	name = "marine dropship"
+	name = "dropship landing zone"
+	id = "dropship"
 	dir = SOUTH
 	dwidth = 5
 	width = 11
 	height = 21
 
+/obj/docking_port/stationary/marine_dropship/lz1
+	name = "Landing Zone One"
+
+/obj/docking_port/stationary/marine_dropship/lz1/prison
+	name = "Main Hangar"
+
+/obj/docking_port/stationary/marine_dropship/lz2
+	name = "Landing Zone Two"
+
+/obj/docking_port/stationary/marine_dropship/lz2/prison
+	name = "Civ Residence Hangar"
+
 /obj/docking_port/stationary/marine_dropship/hangar/one
+	name = "Theseus Hangar Pad One"
 	id = "alamo"
 	roundstart_template = /datum/map_template/shuttle/dropship/one
 
 /obj/docking_port/stationary/marine_dropship/hangar/two
+	name = "Theseus Hangar Pad Two"
 	id = "normandy"
 	roundstart_template = /datum/map_template/shuttle/dropship/two
 
@@ -33,6 +48,16 @@
 //													//
 // ************************************************	//
 
+/obj/machinery/door/poddoor/shutters/transit/beforeShuttleMove(turf/newT, rotation, move_mode, obj/docking_port/mobile/moving_dock)
+	. = ..()
+	if(!is_reserved_level(z))
+		INVOKE_ASYNC(src, .proc/close)
+
+/obj/machinery/door/poddoor/shutters/transit/afterShuttleMove(turf/oldT, list/movement_force, shuttle_dir, shuttle_preferred_direction, move_dir, rotation)
+	. = ..()
+	if(!is_reserved_level(z))
+		INVOKE_ASYNC(src, .proc/open)
+
 // half-tile structure pieces
 /obj/structure/dropship_piece
 	icon = 'icons/obj/structures/dropship_structures.dmi'
@@ -47,6 +72,7 @@
 	. = ..()
 	if(. & MOVE_AREA)
 		. |= MOVE_CONTENTS
+		. &= ~MOVE_TURF
 
 /obj/structure/dropship_piece/one
 	name = "\improper Alamo"
@@ -158,6 +184,118 @@
 	icon_state = "brown_rearwing_rrrb"
 	opacity = FALSE
 
+
+
+/obj/structure/dropship_piece/two
+	name = "\improper Normandy"
+
+/obj/structure/dropship_piece/two/front
+	icon_state = "blue_front"
+	opacity = FALSE
+
+/obj/structure/dropship_piece/two/front/right
+	icon_state = "blue_fr"
+
+/obj/structure/dropship_piece/two/front/left
+	icon_state = "blue_fl"
+
+
+/obj/structure/dropship_piece/two/cockpit/left
+	icon_state = "blue_cockpit_fl"
+
+/obj/structure/dropship_piece/two/cockpit/right
+	icon_state = "blue_cockpit_fr"
+
+
+/obj/structure/dropship_piece/two/weapon
+	opacity = FALSE
+
+/obj/structure/dropship_piece/two/weapon/leftleft
+	icon_state = "blue_weapon_ll"
+
+/obj/structure/dropship_piece/two/weapon/leftright
+	icon_state = "blue_weapon_lr"
+
+/obj/structure/dropship_piece/two/weapon/rightleft
+	icon_state = "blue_weapon_rl"
+
+/obj/structure/dropship_piece/two/weapon/rightright
+	icon_state = "blue_weapon_rr"
+
+
+/obj/structure/dropship_piece/two/wing
+	opacity = FALSE
+
+/obj/structure/dropship_piece/two/wing/left/top
+	icon_state = "blue_wing_lt"
+
+/obj/structure/dropship_piece/two/wing/left/bottom
+	icon_state = "blue_wing_lb"
+
+/obj/structure/dropship_piece/two/wing/right/top
+	icon_state = "blue_wing_rt"
+
+/obj/structure/dropship_piece/two/wing/right/bottom
+	icon_state = "blue_wing_rb"
+
+
+/obj/structure/dropship_piece/two/corner/middleleft
+	icon_state = "blue_middle_lc"
+
+/obj/structure/dropship_piece/two/corner/middleright
+	icon_state = "blue_middle_rc"
+
+/obj/structure/dropship_piece/two/corner/rearleft
+	icon_state = "blue_rear_lc"
+
+/obj/structure/dropship_piece/two/corner/rearright
+	icon_state = "blue_rear_rc"
+
+
+/obj/structure/dropship_piece/two/engine
+	opacity = FALSE
+
+/obj/structure/dropship_piece/two/engine/lefttop
+	icon_state = "blue_engine_lt"
+
+/obj/structure/dropship_piece/two/engine/righttop
+	icon_state = "blue_engine_rt"
+
+/obj/structure/dropship_piece/two/engine/leftbottom
+	icon_state = "blue_engine_lb"
+
+/obj/structure/dropship_piece/two/engine/rightbottom
+	icon_state = "blue_engine_rb"
+
+
+/obj/structure/dropship_piece/two/rearwing/lefttop
+	icon_state = "blue_rearwing_lt"
+
+/obj/structure/dropship_piece/two/rearwing/righttop
+	icon_state = "blue_rearwing_rt"
+
+/obj/structure/dropship_piece/two/rearwing/leftbottom
+	icon_state = "blue_rearwing_lb"
+
+/obj/structure/dropship_piece/two/rearwing/rightbottom
+	icon_state = "blue_rearwing_rb"
+
+/obj/structure/dropship_piece/two/rearwing/leftlbottom
+	icon_state = "blue_rearwing_llb"
+	opacity = FALSE
+
+/obj/structure/dropship_piece/two/rearwing/rightrbottom
+	icon_state = "blue_rearwing_rrb"
+	opacity = FALSE
+
+/obj/structure/dropship_piece/two/rearwing/leftllbottom
+	icon_state = "blue_rearwing_lllb"
+	opacity = FALSE
+
+/obj/structure/dropship_piece/two/rearwing/rightrrbottom
+	icon_state = "blue_rearwing_rrrb"
+	opacity = FALSE
+
 // control computer
 /obj/machinery/computer/shuttle/marine_dropship
 	icon = 'icons/Marine/shuttle-parts.dmi'
@@ -165,6 +303,7 @@
 	unacidable = TRUE
 	exproof = TRUE
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER) // TLs can only operate the remote console
+	possible_destinations = "dropship;alamo;normandy"
 
 /obj/machinery/computer/shuttle/marine_dropship/one
 	name = "\improper 'Alamo' flight controls"

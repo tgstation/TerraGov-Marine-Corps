@@ -39,42 +39,41 @@
 	return
 
 /obj/machinery/door/poddoor/shutters/open()
-	if(operating == 1) //doors can still open when emag-disabled
+	if(operating || !density)
 		return
 	if(!SSticker)
-		return 0
-	if(!operating) //in case of emag
-		operating = 1
+		return FALSE
+	if(!operating)
+		operating = TRUE
 	flick("shutterc0", src)
 	icon_state = "shutter0"
 	playsound(loc, 'sound/machines/blastdoor.ogg', 25)
 	sleep(10)
-	density = 0
+	density = FALSE
 	layer = open_layer
 	SetOpacity(0)
 
-	if(operating == 1) //emag again
-		operating = 0
+	operating = FALSE
 	if(autoclose)
 		spawn(150)
 			autoclose()		//TODO: note to self: look into this ~Carn
-	return 1
+	return TRUE
 
 /obj/machinery/door/poddoor/shutters/close()
-	if(operating)
-		return
-	operating = 1
+	if(operating || density)
+		return FALSE
+	operating = TRUE
 	flick("shutterc1", src)
 	icon_state = "shutter1"
 	layer = closed_layer
-	density = 1
+	density = TRUE
 	if(visible)
 		SetOpacity(1)
 	playsound(loc, 'sound/machines/blastdoor.ogg', 25)
 
 	sleep(10)
-	operating = 0
-	return
+	operating = FALSE
+	return TRUE
 
 /obj/machinery/door/poddoor/shutters/almayer
 	icon = 'icons/obj/doors/almayer/blastdoors_shutters.dmi'

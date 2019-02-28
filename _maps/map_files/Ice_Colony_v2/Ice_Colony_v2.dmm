@@ -4280,7 +4280,7 @@
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/underground/hangar)
 "alQ" = (
-/obj/docking_port/stationary/marine_dropship,
+/obj/docking_port/stationary/marine_dropship/lz1,
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad)
 "alR" = (
@@ -18742,7 +18742,7 @@
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad_external)
 "aWq" = (
-/obj/docking_port/stationary/marine_dropship,
+/obj/docking_port/stationary/marine_dropship/lz2,
 /turf/open/floor/plating,
 /area/ice_colony/exterior/surface/landing_pad2)
 "aWr" = (

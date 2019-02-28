@@ -11307,7 +11307,7 @@
 /turf/closed/wall,
 /area/shuttle/drop2/lz2)
 "aPQ" = (
-/obj/docking_port/stationary/marine_dropship,
+/obj/docking_port/stationary/marine_dropship/lz2,
 /turf/open/floor/plating,
 /area/shuttle/drop2/lz2)
 "aPR" = (
@@ -12862,7 +12862,7 @@
 /turf/open/floor/marking/bot,
 /area/lv624/lazarus/quartstorage)
 "aUA" = (
-/obj/docking_port/stationary/marine_dropship,
+/obj/docking_port/stationary/marine_dropship/lz1,
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "aUB" = (

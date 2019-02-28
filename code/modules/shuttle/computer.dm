@@ -10,6 +10,9 @@
 	var/admin_controlled
 	var/no_destination_swap = 0
 
+/obj/machinery/computer/shuttle/attack_hand(mob/user)
+	ui_interact(user)
+
 /obj/machinery/computer/shuttle/ui_interact(mob/user)
 	. = ..()
 	var/list/options = params2list(possible_destinations)

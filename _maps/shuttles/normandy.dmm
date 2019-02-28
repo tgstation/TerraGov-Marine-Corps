@@ -3,24 +3,20 @@
 /turf/template_noop,
 /area/template_noop)
 "ab" = (
-/turf/closed/shuttle/dropship2/transparent{
-	icon_state = "100"
-	},
+/obj/structure/dropship_piece/two/front/left,
+/turf/template_noop,
 /area/shuttle/dropship/normandy)
 "ac" = (
-/turf/closed/shuttle/dropship2/transparent{
-	icon_state = "101"
-	},
+/obj/structure/dropship_piece/two/front,
+/turf/template_noop,
 /area/shuttle/dropship/normandy)
 "ad" = (
-/turf/closed/shuttle/dropship2/transparent{
-	icon_state = "102"
-	},
+/obj/structure/dropship_piece/two/front/right,
+/turf/template_noop,
 /area/shuttle/dropship/normandy)
 "ae" = (
-/turf/closed/shuttle/dropship2{
-	icon_state = "95"
-	},
+/obj/structure/dropship_piece/two/cockpit/left,
+/turf/template_noop,
 /area/shuttle/dropship/normandy)
 "af" = (
 /turf/closed/shuttle/dropship2/transparent{
@@ -38,9 +34,8 @@
 	},
 /area/shuttle/dropship/normandy)
 "ai" = (
-/turf/closed/shuttle/dropship2{
-	icon_state = "99"
-	},
+/obj/structure/dropship_piece/two/cockpit/right,
+/turf/template_noop,
 /area/shuttle/dropship/normandy)
 "aj" = (
 /turf/closed/shuttle/dropship2{
@@ -76,17 +71,15 @@
 /obj/effect/attach_point/weapon/dropship2{
 	dir = 1
 	},
-/turf/closed/shuttle/dropship2/transparent{
-	icon_state = "84"
-	},
+/obj/structure/dropship_piece/two/weapon/leftleft,
+/turf/template_noop,
 /area/shuttle/dropship/normandy)
 "ap" = (
 /obj/effect/attach_point/electronics/dropship2{
 	dir = 1
 	},
-/turf/closed/shuttle/dropship2/transparent{
-	icon_state = "85"
-	},
+/obj/structure/dropship_piece/two/weapon/leftright,
+/turf/template_noop,
 /area/shuttle/dropship/normandy)
 "aq" = (
 /turf/closed/shuttle/dropship2/transparent{
@@ -142,17 +135,15 @@
 /obj/effect/attach_point/electronics/dropship2{
 	dir = 1
 	},
-/turf/closed/shuttle/dropship2/transparent{
-	icon_state = "90"
-	},
+/obj/structure/dropship_piece/two/weapon/rightleft,
+/turf/template_noop,
 /area/shuttle/dropship/normandy)
 "aw" = (
 /obj/effect/attach_point/weapon/dropship2{
 	dir = 1
 	},
-/turf/closed/shuttle/dropship2/transparent{
-	icon_state = "91"
-	},
+/obj/structure/dropship_piece/two/weapon/rightright,
+/turf/template_noop,
 /area/shuttle/dropship/normandy)
 "ax" = (
 /turf/closed/shuttle/dropship2{
@@ -202,9 +193,8 @@
 	},
 /area/shuttle/dropship/normandy)
 "aG" = (
-/turf/closed/shuttle/dropship2/transparent{
-	icon_state = "71"
-	},
+/obj/structure/dropship_piece/two/wing/left/top,
+/turf/template_noop,
 /area/shuttle/dropship/normandy)
 "aH" = (
 /turf/closed/shuttle/dropship2{
@@ -279,9 +269,8 @@
 	},
 /area/shuttle/dropship/normandy)
 "aP" = (
-/turf/closed/shuttle/dropship2/transparent{
-	icon_state = "74"
-	},
+/obj/structure/dropship_piece/two/wing/right/top,
+/turf/template_noop,
 /area/shuttle/dropship/normandy)
 "aQ" = (
 /turf/closed/shuttle/dropship2/transparent{
@@ -332,9 +321,8 @@
 	dir = 8;
 	icon_state = "equip_base_l_wing"
 	},
-/turf/closed/shuttle/dropship2/transparent{
-	icon_state = "61"
-	},
+/obj/structure/dropship_piece/two/wing/left/bottom,
+/turf/template_noop,
 /area/shuttle/dropship/normandy)
 "aY" = (
 /turf/closed/shuttle/dropship2{
@@ -356,15 +344,13 @@
 	dir = 4;
 	icon_state = "equip_base_r_wing"
 	},
-/turf/closed/shuttle/dropship2/transparent{
-	icon_state = "65"
-	},
+/obj/structure/dropship_piece/two/wing/right/bottom,
+/turf/template_noop,
 /area/shuttle/dropship/normandy)
 "bc" = (
 /obj/docking_port/mobile/marine_dropship/two,
-/turf/closed/shuttle/dropship2/transparent{
-	icon_state = "101"
-	},
+/obj/structure/dropship_piece/two/front,
+/turf/template_noop,
 /area/shuttle/dropship/normandy)
 "bd" = (
 /obj/machinery/door/airlock/dropship_hatch/two,
@@ -454,9 +440,8 @@
 	},
 /area/shuttle/dropship/normandy)
 "bq" = (
-/turf/closed/shuttle/dropship2{
-	icon_state = "46"
-	},
+/obj/structure/dropship_piece/two/corner/middleleft,
+/turf/template_noop,
 /area/shuttle/dropship/normandy)
 "br" = (
 /turf/closed/shuttle/dropship2{
@@ -476,19 +461,16 @@
 	},
 /area/shuttle/dropship/normandy)
 "bu" = (
-/turf/closed/shuttle/dropship2{
-	icon_state = "49"
-	},
+/obj/structure/dropship_piece/two/corner/middleright,
+/turf/template_noop,
 /area/shuttle/dropship/normandy)
 "bv" = (
-/turf/closed/shuttle/dropship2/transparent{
-	icon_state = "40"
-	},
+/obj/structure/dropship_piece/two/engine/lefttop,
+/turf/template_noop,
 /area/shuttle/dropship/normandy)
 "bw" = (
-/turf/closed/shuttle/dropship2/transparent{
-	icon_state = "41"
-	},
+/obj/structure/dropship_piece/two/engine/righttop,
+/turf/template_noop,
 /area/shuttle/dropship/normandy)
 "bx" = (
 /turf/closed/shuttle/dropship2{
@@ -529,16 +511,6 @@
 "bB" = (
 /turf/closed/shuttle/dropship2{
 	icon_state = "43"
-	},
-/area/shuttle/dropship/normandy)
-"bC" = (
-/turf/closed/shuttle/dropship2/transparent{
-	icon_state = "44"
-	},
-/area/shuttle/dropship/normandy)
-"bD" = (
-/turf/closed/shuttle/dropship2/transparent{
-	icon_state = "45"
 	},
 /area/shuttle/dropship/normandy)
 "bE" = (
@@ -649,14 +621,12 @@
 	},
 /area/shuttle/dropship/normandy)
 "bX" = (
-/turf/closed/shuttle/dropship2/transparent{
-	icon_state = "16"
-	},
+/obj/structure/dropship_piece/two/engine/leftbottom,
+/turf/template_noop,
 /area/shuttle/dropship/normandy)
 "bY" = (
-/turf/closed/shuttle/dropship2/transparent{
-	icon_state = "17"
-	},
+/obj/structure/dropship_piece/two/engine/rightbottom,
+/turf/template_noop,
 /area/shuttle/dropship/normandy)
 "bZ" = (
 /turf/closed/shuttle/dropship2{
@@ -668,20 +638,9 @@
 	icon_state = "19"
 	},
 /area/shuttle/dropship/normandy)
-"cb" = (
-/turf/closed/shuttle/dropship2/transparent{
-	icon_state = "20"
-	},
-/area/shuttle/dropship/normandy)
-"cc" = (
-/turf/closed/shuttle/dropship2/transparent{
-	icon_state = "21"
-	},
-/area/shuttle/dropship/normandy)
 "cd" = (
-/turf/closed/shuttle/dropship2{
-	icon_state = "9"
-	},
+/obj/structure/dropship_piece/two/corner/rearleft,
+/turf/template_noop,
 /area/shuttle/dropship/normandy)
 "ce" = (
 /turf/closed/shuttle/dropship2{
@@ -719,49 +678,42 @@
 	},
 /area/shuttle/dropship/normandy)
 "ci" = (
-/turf/closed/shuttle/dropship2{
-	icon_state = "15"
-	},
+/obj/structure/dropship_piece/two/corner/rearright,
+/turf/template_noop,
 /area/shuttle/dropship/normandy)
 "cj" = (
-/turf/closed/shuttle/dropship2{
-	icon_state = "7"
-	},
+/obj/structure/dropship_piece/two/rearwing/lefttop,
+/turf/template_noop,
 /area/shuttle/dropship/normandy)
 "ck" = (
-/turf/closed/shuttle/dropship2{
-	icon_state = "8"
-	},
+/obj/structure/dropship_piece/two/rearwing/righttop,
+/turf/template_noop,
 /area/shuttle/dropship/normandy)
 "cl" = (
-/turf/closed/shuttle/dropship2/transparent,
+/obj/structure/dropship_piece/two/rearwing/leftllbottom,
+/turf/template_noop,
 /area/shuttle/dropship/normandy)
 "cm" = (
-/turf/closed/shuttle/dropship2/transparent{
-	icon_state = "2"
-	},
+/obj/structure/dropship_piece/two/rearwing/leftlbottom,
+/turf/template_noop,
 /area/shuttle/dropship/normandy)
 "cn" = (
-/turf/closed/shuttle/dropship2{
-	icon_state = "3"
-	},
+/obj/structure/dropship_piece/two/rearwing/leftbottom,
+/turf/template_noop,
 /area/shuttle/dropship/normandy)
 "cp" = (
-/turf/closed/shuttle/dropship2{
-	icon_state = "4"
-	},
+/obj/structure/dropship_piece/two/rearwing/rightbottom,
+/turf/template_noop,
 /area/shuttle/dropship/normandy)
 "cq" = (
-/turf/closed/shuttle/dropship2/transparent{
-	icon_state = "5"
-	},
+/obj/structure/dropship_piece/two/rearwing/rightrbottom,
+/turf/template_noop,
 /area/shuttle/dropship/normandy)
 "cr" = (
-/turf/closed/shuttle/dropship2/transparent{
-	icon_state = "6"
-	},
+/obj/structure/dropship_piece/two/rearwing/rightrrbottom,
+/turf/template_noop,
 /area/shuttle/dropship/normandy)
-"fo" = (
+"Lz" = (
 /obj/machinery/computer/shuttle/marine_dropship/two,
 /turf/open/shuttle/dropship{
 	tag = "icon-rasputin15";
@@ -887,7 +839,7 @@ aa
 (6,1,1) = {"
 bc
 ag
-fo
+Lz
 as
 aB
 aL
@@ -990,11 +942,11 @@ bf
 bk
 bp
 bu
-bC
+bv
 bJ
 bP
 bV
-cb
+bX
 aa
 aa
 cr
@@ -1013,11 +965,11 @@ aa
 aa
 aa
 aa
-bD
+bw
 bK
 bQ
 bW
-cc
+bY
 aa
 aa
 aa

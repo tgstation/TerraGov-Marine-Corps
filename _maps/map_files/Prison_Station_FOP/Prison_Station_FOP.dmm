@@ -5239,7 +5239,7 @@
 /turf/open/floor/plating,
 /area/prison/hangar/civilian)
 "aoj" = (
-/obj/docking_port/stationary/marine_dropship,
+/obj/docking_port/stationary/marine_dropship/lz2/prison,
 /turf/open/floor/plating,
 /area/prison/hangar/civilian)
 "aok" = (
@@ -22578,7 +22578,7 @@
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "bcF" = (
-/obj/docking_port/stationary/marine_dropship,
+/obj/docking_port/stationary/marine_dropship/lz1/prison,
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "bcG" = (
