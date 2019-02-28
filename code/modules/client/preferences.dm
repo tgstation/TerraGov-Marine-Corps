@@ -148,7 +148,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	dat += " (<a href='?_src_=prefs;preference=name_randomize'>&reg</A>)</big></big>"
 	dat += "<br>"
 	dat += "Always Pick Random Name: <a href='?_src_=prefs;preference=name_random'>[random_name ? "Yes" : "No"]</a>"
-	dat += "<br><br>"
+	dat += "<br>"
+
+	if(is_banned_from(user.ckey, "Appearance"))
+		dat += "You are banned from using custom names and appearances.<br>"
+	dat += "<br>"
 
 	dat += "<big><b><u>Physical Information:</u></b>"
 	dat += " (<a href='?_src_=prefs;preference=random'>&reg;</A>)</big>"

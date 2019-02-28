@@ -32,13 +32,16 @@ var/global/normal_ooc_colour = "#002eb8"
 		if(prefs.muted & MUTE_OOC)
 			to_chat(src, "<span class='warning'>You cannot use OOC (muted).</span>")
 			return
-		if(handle_spam_prevention(msg,MUTE_OOC))
+		if(handle_spam_prevention(msg, MUTE_OOC))
 			return
 		if(findtext(msg, "byond://"))
-			to_chat(src, "<B>Advertising other servers is not allowed.</B>")
+			to_chat(src, "<span class='danger'>Advertising other servers is not allowed.</span>")
 			log_admin("[key_name(usr)] has attempted to advertise in OOC: [msg]")
 			message_admins("[ADMIN_TPMONTY(usr)] has attempted to advertise in OOC: [msg]")
 			return
+	if(is_banned_from(ckey, "OOC"))
+		to_chat(src, "<span class='warning'>You have been banned from OOC.</span>")
+		return
 
 	mob.log_talk(msg, LOG_OOC)
 

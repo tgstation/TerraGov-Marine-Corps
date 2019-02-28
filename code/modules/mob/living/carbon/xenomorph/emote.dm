@@ -25,8 +25,11 @@
 				return
 			if(player_caused)
 				if(client)
-					if (client.prefs.muted & MUTE_IC)
+					if(client.prefs.muted & MUTE_IC)
 						to_chat(src, "<span class='warning'>You cannot send IC messages (muted)</span>")
+						return
+					if(is_banned_from(ckey, "Emote"))
+						to_chat(src, "<span class='warning'>You cannot send emotes (banned).</span>")
 						return
 					if(client.handle_spam_prevention(message, MUTE_IC))
 						return

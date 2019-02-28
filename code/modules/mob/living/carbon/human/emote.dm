@@ -37,6 +37,9 @@
 					return
 				if(client.handle_spam_prevention(message, MUTE_IC))
 					return
+				if(is_banned_from(ckey, "Emote"))
+					to_chat(src, "<span class='warning'>You cannot send emotes (banned).</span>")
+					return
 			return custom_emote(m_type, "[message]", player_caused)
 
 		if("blink")
