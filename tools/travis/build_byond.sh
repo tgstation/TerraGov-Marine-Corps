@@ -5,22 +5,43 @@ set -e
 shopt -s globstar
 
 if [ "$BUILD_TOOLS" = false ]; then
-	if grep -E '^\".+\" = \(.+\)' _maps/**/*.dmm;	then
+	if grep -E '^\".+\" = \(.+\)' _maps/map_files/**/*.dmm;	then
     	echo "Non-TGM formatted map detected. Please convert it using Map Merger!"
     	exit 1
 	fi;
-	if grep 'step_[xy]' _maps/**/*.dmm;	then
+	if grep 'step_[xy]' _maps/map_files/**/*.dmm;	then
     	echo "step_x/step_y variables detected in maps, please remove them."
     	exit 1
 	fi;
-	if grep 'pixel_[xy] = 0' _maps/**/*.dmm;	then
+	if grep 'pixel_[xy] = 0' _maps/map_files/**/*.dmm;	then
     	echo "pixel_x/pixel_y = 0 variables detected in maps, please review to ensure they are not dirty varedits."
 	fi;
-	if grep '^/area/.+[\{]' _maps/**/*.dmm;	then
+	if grep '^/area/.+[\{]' _maps/map_files/**/*.dmm;	then
     	echo "Vareditted /area path use detected in maps, please replace with proper paths."
     	exit 1
 	fi;
-	if grep '\W\/turf\s*[,\){]' _maps/**/*.dmm; then
+	if grep '\W\/turf\s*[,\){]' _maps/map_files/**/*.dmm; then
+    	echo "base /turf path use detected in maps, please replace with proper paths."
+    	exit 1
+	fi;
+	
+	
+	if grep -E '^\".+\" = \(.+\)' _maps/shuttles/**/*.dmm;	then
+    	echo "Non-TGM formatted map detected. Please convert it using Map Merger!"
+    	exit 1
+	fi;
+	if grep 'step_[xy]' _maps/shuttles/**/*.dmm;	then
+    	echo "step_x/step_y variables detected in maps, please remove them."
+    	exit 1
+	fi;
+	if grep 'pixel_[xy] = 0' _maps/shuttles/**/*.dmm;	then
+    	echo "pixel_x/pixel_y = 0 variables detected in maps, please review to ensure they are not dirty varedits."
+	fi;
+	if grep '^/area/.+[\{]' _maps/shuttles/**/*.dmm;	then
+    	echo "Vareditted /area path use detected in maps, please replace with proper paths."
+    	exit 1
+	fi;
+	if grep '\W\/turf\s*[,\){]' _maps/shuttles/**/*.dmm; then
     	echo "base /turf path use detected in maps, please replace with proper paths."
     	exit 1
 	fi;
