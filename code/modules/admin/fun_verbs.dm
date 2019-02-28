@@ -44,13 +44,7 @@
 	if(!check_rights(R_FUN))
 		return
 
-	if(istype(usr, /mob/dead/observer))
-		return
-
 	if(alert(usr, "Are you sure you want to make the tank sound like a five year old driving it?", "Warning" , "Yes", "No") != "Yes")
-		return
-
-	if(!usr || istype(usr, /mob/dead/observer))
 		return
 
 	GLOB.tank_mouth_noise = !(GLOB.tank_mouth_noise)
