@@ -89,7 +89,7 @@
 	note_severity = sanitizeSQL(note_severity)
 	var/datum/DBQuery/query_create_message = SSdbcore.NewQuery("INSERT INTO [format_table_name("messages")] (type, targetckey, adminckey, text, timestamp, server, server_ip, server_port, round_id, secret, expire_timestamp, severity) VALUES ('[type]', '[target_ckey]', '[admin_ckey]', '[text]', '[timestamp]', '[server]', INET_ATON(IF('[world.internet_address]' LIKE '', '0', '[world.internet_address]')), '[world.port]', '[GLOB.round_id]','[secret]', [expiry ? "'[expiry]'" : "NULL"], [note_severity ? "'[note_severity]'" : "NULL"])")
 	var/pm = "[key_name(usr)] has created a [type][(type == "note" || type == "message" || type == "watchlist entry") ? " for [target_key]" : ""]: [text]"
-	var/header = "[key_name_admin(usr)] has created a [type][(type == "note" || type == "message" || type == "watchlist entry") ? " for [target_key]" : ""]"
+	var/header = "[ADMIN_TPMONTY(usr)] has created a [type][(type == "note" || type == "message" || type == "watchlist entry") ? " for [target_key]" : ""]"
 	if(!query_create_message.warn_execute())
 		qdel(query_create_message)
 		return
@@ -116,7 +116,7 @@
 	var/target_key
 	var/text
 	var/user_key_name = key_name(usr)
-	var/user_name_admin = key_name_admin(usr)
+	var/user_name_admin = ADMIN_TPMONTY(usr)
 	var/datum/DBQuery/query_find_del_message = SSdbcore.NewQuery("SELECT type, IFNULL((SELECT byond_key FROM [format_table_name("player")] WHERE ckey = targetckey), targetckey), text FROM [format_table_name("messages")] WHERE id = [message_id] AND deleted = 0")
 	if(!query_find_del_message.warn_execute())
 		qdel(query_find_del_message)
@@ -152,7 +152,7 @@
 	var/editor_ckey = sanitizeSQL(usr.ckey)
 	var/editor_key = sanitizeSQL(usr.key)
 	var/kn = key_name(usr)
-	var/kna = key_name_admin(usr)
+	var/kna = ADMIN_TPMONTY(usr)
 	var/datum/DBQuery/query_find_edit_message = SSdbcore.NewQuery("SELECT type, IFNULL((SELECT byond_key FROM [format_table_name("player")] WHERE ckey = targetckey), targetckey), IFNULL((SELECT byond_key FROM [format_table_name("player")] WHERE ckey = adminckey), targetckey), text FROM [format_table_name("messages")] WHERE id = [message_id] AND deleted = 0")
 	if(!query_find_edit_message.warn_execute())
 		qdel(query_find_edit_message)
@@ -192,7 +192,7 @@
 	var/editor_ckey = sanitizeSQL(usr.ckey)
 	var/editor_key = sanitizeSQL(usr.key)
 	var/kn = key_name(usr)
-	var/kna = key_name_admin(usr)
+	var/kna = ADMIN_TPMONTY(usr)
 	var/datum/DBQuery/query_find_edit_expiry_message = SSdbcore.NewQuery("SELECT type, IFNULL((SELECT byond_key FROM [format_table_name("player")] WHERE ckey = targetckey), targetckey), IFNULL((SELECT byond_key FROM [format_table_name("player")] WHERE ckey = adminckey), adminckey), expire_timestamp FROM [format_table_name("messages")] WHERE id = [message_id] AND deleted = 0")
 	if(!query_find_edit_expiry_message.warn_execute())
 		qdel(query_find_edit_expiry_message)
@@ -249,7 +249,7 @@
 	if(!message_id)
 		return
 	var/kn = key_name(usr)
-	var/kna = key_name_admin(usr)
+	var/kna = ADMIN_TPMONTY(usr)
 	var/datum/DBQuery/query_find_edit_note_severity = SSdbcore.NewQuery("SELECT type, IFNULL((SELECT byond_key FROM [format_table_name("player")] WHERE ckey = targetckey), targetckey), IFNULL((SELECT byond_key FROM [format_table_name("player")] WHERE ckey = adminckey), adminckey), severity FROM [format_table_name("messages")] WHERE id = [message_id] AND deleted = 0")
 	if(!query_find_edit_note_severity.warn_execute())
 		qdel(query_find_edit_note_severity)
@@ -291,7 +291,7 @@
 	var/editor_ckey = sanitizeSQL(usr.ckey)
 	var/editor_key = sanitizeSQL(usr.key)
 	var/kn = key_name(usr)
-	var/kna = key_name_admin(usr)
+	var/kna = ADMIN_TPMONTY(usr)
 	var/datum/DBQuery/query_find_message_secret = SSdbcore.NewQuery("SELECT type, IFNULL((SELECT byond_key FROM [format_table_name("player")] WHERE ckey = targetckey), targetckey), IFNULL((SELECT byond_key FROM [format_table_name("player")] WHERE ckey = adminckey), targetckey), secret FROM [format_table_name("messages")] WHERE id = [message_id] AND deleted = 0")
 	if(!query_find_message_secret.warn_execute())
 		qdel(query_find_message_secret)
@@ -558,7 +558,7 @@
 					return
 				qdel(query_message_read)
 			if("watchlist entry")
-				message_admins("<font color='red'><B>Notice: </B></font><font color='blue'>[key_name_admin(target_ckey)] has been on the watchlist since [timestamp] and has just connected - Reason: [text]</font>")
+				message_admins("<font color='red'><B>Notice: </B></font><font color='blue'>[ADMIN_TPMONTY(target_ckey)] has been on the watchlist since [timestamp] and has just connected - Reason: [text]</font>")
 				send2irc_adminless_only("Watchlist", "[key_name(target_ckey)] is on the watchlist and has just connected - Reason: [text]")
 			if("memo")
 				output += "<span class='memo'>Memo by <span class='prefix'>[admin_key]</span> on [timestamp]"
