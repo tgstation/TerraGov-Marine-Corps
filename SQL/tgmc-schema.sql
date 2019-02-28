@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `ban` (
   KEY `idx_ban_isbanned` (`ckey`,`role`,`unbanned_datetime`,`expiration_time`),
   KEY `idx_ban_isbanned_details` (`ckey`,`ip`,`computerid`,`role`,`unbanned_datetime`,`expiration_time`),
   KEY `idx_ban_count` (`bantime`,`a_ckey`,`applies_to_admins`,`unbanned_datetime`,`expiration_time`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
 
 -- Data exporting was unselected.
 -- Dumping structure for table feedback.connection_log
@@ -86,7 +86,7 @@ CREATE TABLE IF NOT EXISTS `connection_log` (
   `ip` int(10) unsigned NOT NULL,
   `computerid` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPRESSED;
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPRESSED;
 
 -- Data exporting was unselected.
 -- Dumping structure for table feedback.death
@@ -133,16 +133,6 @@ CREATE TABLE IF NOT EXISTS `feedback` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- Data exporting was unselected.
--- Dumping structure for table feedback.ipintel
-CREATE TABLE IF NOT EXISTS `ipintel` (
-  `ip` int(10) unsigned NOT NULL,
-  `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `intel` double NOT NULL DEFAULT 0,
-  PRIMARY KEY (`ip`),
-  KEY `idx_ipintel` (`ip`,`intel`,`date`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPRESSED;
-
--- Data exporting was unselected.
 -- Dumping structure for table feedback.messages
 CREATE TABLE IF NOT EXISTS `messages` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -165,7 +155,7 @@ CREATE TABLE IF NOT EXISTS `messages` (
   KEY `idx_msg_ckey_time` (`targetckey`,`timestamp`,`deleted`),
   KEY `idx_msg_type_ckeys_time` (`type`,`targetckey`,`adminckey`,`timestamp`,`deleted`),
   KEY `idx_msg_type_ckey_time_odr` (`type`,`targetckey`,`timestamp`,`deleted`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPRESSED;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPRESSED;
 
 -- Data exporting was unselected.
 -- Dumping structure for table feedback.player
@@ -290,7 +280,7 @@ CREATE TABLE IF NOT EXISTS `round` (
   `end_state` varchar(64) DEFAULT NULL,
   `map_name` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPRESSED;
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPRESSED;
 
 -- Data exporting was unselected.
 -- Dumping structure for table feedback.schema_revision
