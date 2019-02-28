@@ -37,20 +37,6 @@
 	log_admin("[key_name(usr)] has gibbed themselves.")
 	message_admins("[ADMIN_TPMONTY(usr)] has gibbed themselves.")
 
-/datum/admins/proc/tank_mouth_noises()
-	set name = "Toggle Tank Mouth Noises"
-	set category = "Fun"
-
-	if(!check_rights(R_FUN))
-		return
-
-	if(alert(usr, "Are you sure you want to make the tank sound like a five year old driving it?", "Warning" , "Yes", "No") != "Yes")
-		return
-
-	GLOB.tank_mouth_noise = !(GLOB.tank_mouth_noise)
-
-	log_admin("[key_name(usr)] has toggled the tank noises.")
-	message_admins("[ADMIN_TPMONTY(usr)] has toggled the tank noises.")
 
 /datum/admins/proc/gib()
 	set category = "Fun"
