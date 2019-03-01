@@ -157,7 +157,7 @@
 	var/turf/T = get_turf(loc)
 	if(!T)
 		return FALSE
-	returnT.Adjacent(neighbor, target = neighbor, mover = src)
+	return T.Adjacent(neighbor, target = neighbor, mover = src)
 
 
 /*
