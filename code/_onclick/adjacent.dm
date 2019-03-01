@@ -142,13 +142,10 @@
 
 
 /obj/item/projectile/Adjacent(atom/neighbor) //Projectiles don't behave like regular items.
-	if(neighbor == loc)
-		return TRUE
-	if(!isturf(loc))
+	var/turf/T = get_turf(loc)
+	if(!T)
 		return FALSE
-	if(loc.Adjacent(neighbor, target = neighbor, mover = src))
-		return TRUE
-	return FALSE
+	return T.Adjacent(neighbor, target = neighbor, mover = src)
 
 
 /obj/item/device/radio/detpack/Adjacent(neighbor) //Snowflake detpacks.
