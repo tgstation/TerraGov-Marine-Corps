@@ -385,7 +385,7 @@
 			playsound(user, active_attachable.activation_sound, 15, 1)
 			active_attachable.activate_attachment(src, null, TRUE)
 
-	if(!cell || !cell.use(charge_cost))
+	if(!cell?.use(charge_cost))
 		return
 	in_chamber = create_bullet(ammo)
 	update_icon(user)
