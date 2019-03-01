@@ -80,10 +80,11 @@
 		if(M.protection_aura)
 			traumatic_shock -= 20 + M.protection_aura * 20 //-40 pain for SLs, -80 for Commanders
 
+	traumatic_shock += reagent_pain_modifier
 	traumatic_shock = max(0, traumatic_shock)	//stuff below this has the potential to mask damage
 
 	traumatic_shock += 1.5 * halloss //not affected by reagent shock reduction
-	traumatic_shock += reagent_pain_modifier
+
 
 	return traumatic_shock
 
