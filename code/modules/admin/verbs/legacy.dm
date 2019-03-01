@@ -5,6 +5,9 @@
 	if(!check_rights(R_BAN))
 		return
 
+	if(!CONFIG_GET(flag/ban_legacy_system))
+		return
+
 	var/ref = "[REF(usr.client.holder)];[HrefToken()]"
 
 	var/count = 0
@@ -754,6 +757,9 @@ var/jobban_keylist[0]		//to store the keys & ranks
 	if(!check_rights(R_BAN))
 		return
 
+	if(!CONFIG_GET(flag/ban_legacy_system))
+		return
+
 	var/ref = "[REF(usr.client.holder)];[HrefToken()]"
 	var/dat = "<html><head><title>Info on [key]</title></head>"
 	dat += "<body>"
@@ -803,6 +809,9 @@ var/jobban_keylist[0]		//to store the keys & ranks
 	if(!check_rights(R_BAN))
 		return
 
+	if(!CONFIG_GET(flag/ban_legacy_system))
+		return
+
 	var/dat = "<html><head><title>Copying notes for [key]</title></head>"
 	dat += "<body>"
 	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
@@ -833,6 +842,9 @@ var/jobban_keylist[0]		//to store the keys & ranks
 	set name = "Legacy Player Notes List"
 
 	if(!check_rights(R_BAN))
+		return
+
+	if(!CONFIG_GET(flag/ban_legacy_system))
 		return
 
 	usr.client.holder.legacy_player_notes_page(1)
@@ -1004,6 +1016,9 @@ var/jobban_keylist[0]		//to store the keys & ranks
 	if(!check_rights(R_BAN))
 		return
 
+	if(!CONFIG_GET(flag/ban_legacy_system))
+		return
+
 	var/ref = "[REF(usr.client.holder)];[HrefToken()]"
 	var/dat = "<B>Player notes</B><HR>"
 	var/savefile/S = new("data/player_notes.sav")
@@ -1048,6 +1063,9 @@ var/jobban_keylist[0]		//to store the keys & ranks
 	if(!check_rights(R_BAN))
 		return
 
+	if(!CONFIG_GET(flag/ban_legacy_system))
+		return
+
 	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
 	var/list/infos
 	info >> infos
@@ -1057,7 +1075,7 @@ var/jobban_keylist[0]		//to store the keys & ranks
 		return TRUE
 
 
-
+/*
 /mob/verb/view_notes()
 	set name = "View Notes"
 	set category = "OOC"
@@ -1093,3 +1111,4 @@ var/jobban_keylist[0]		//to store the keys & ranks
 
 	dat += "</body></html>"
 	usr << browse(dat, "window=adminplayerinfo;size=480x480")
+*/

@@ -320,10 +320,7 @@ GLOBAL_LIST_INIT(admin_verbs_ban, world.AVban())
 	/datum/admins/proc/ban_panel,
 	/datum/admins/proc/sticky_ban_panel,
 	/datum/admins/proc/unban_panel,
-	/datum/admins/proc/note_panel,
-	/datum/admins/proc/legacy_unban_panel,
-	/datum/admins/proc/legacy_player_notes_show,
-	/datum/admins/proc/legacy_player_notes_list
+	/datum/admins/proc/note_panel
 	)
 
 GLOBAL_PROTECT(admin_verbs_asay)

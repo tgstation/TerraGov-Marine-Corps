@@ -59,9 +59,9 @@
 	if(isnull(secret))
 		switch(alert("Hide note from being viewed by players?", "Secret note?","Yes","No","Cancel"))
 			if("Yes")
-				secret = 1
+				secret = TRUE
 			if("No")
-				secret = 0
+				secret = FALSE
 			else
 				return
 	if(isnull(expiry))
@@ -105,7 +105,7 @@
 			browse_messages(target_ckey = target_ckey, agegate = TRUE)
 
 
-/proc/delete_message(message_id, logged = 1, browse)
+/proc/delete_message(message_id, logged = TRUE, browse)
 	if(!SSdbcore.Connect())
 		to_chat(usr, "<span class='danger'>Failed to establish database connection.</span>")
 		return
