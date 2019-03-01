@@ -49,7 +49,7 @@
 
 	C.prefs.save_preferences()
 
-	to_chat(C, "<span clas='boldannounce'>You have been [muteunmute] from [mute_string].</span>")
+	to_chat(C, "<span class='boldannounce'>You have been [muteunmute] from [mute_string].</span>")
 
 	if(!force)
 		log_admin_private("[key_name(usr)] has [muteunmute] [key_name(C)] from [mute_string].")
