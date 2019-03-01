@@ -373,6 +373,8 @@
 		return FALSE
 	if(!job.player_old_enough(client))
 		return FALSE
+	if(job.required_playtime_remaining(client))
+		return FALSE
 	if(latejoin && !job.special_check_latejoin(client))
 		return FALSE
 	return TRUE

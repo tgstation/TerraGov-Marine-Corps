@@ -116,6 +116,21 @@ Administrative related.
 
 /datum/config_entry/flag/use_age_restriction_for_jobs	//Do jobs use account age restrictions? --requires database
 
+/datum/config_entry/flag/use_exp_tracking
+
+/datum/config_entry/flag/use_exp_restrictions_admin_bypass
+
+/datum/config_entry/flag/use_exp_restrictions_command
+
+/datum/config_entry/number/use_exp_restrictions_command_hours
+	config_entry_value = 0
+	integer = FALSE
+	min_val = 0
+
+/datum/config_entry/flag/use_exp_restrictions_command_department
+
+/datum/config_entry/flag/use_exp_restrictions_other
+
 /datum/config_entry/flag/kick_inactive	//force disconnect for inactive players
 
 /datum/config_entry/flag/automute_on	//enables automuting/spam prevention

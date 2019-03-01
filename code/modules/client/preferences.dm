@@ -94,6 +94,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/icon/preview_icon_front = null
 	var/icon/preview_icon_side = null
 
+	var/list/exp = list()
+
 
 /datum/preferences/New(client/C)
 	if(!istype(C))
@@ -331,7 +333,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 		HTML += "<tr style='color:black' bgcolor='[job.selection_color]'><td width='60%' align='right'>"
 		lastJob = job
-		if(jobban_isbanned(user, job.title) || is_banned_from(user.ckey, job.title))
+		var/required_playtime_remaining = job.required_playtime_remaining(user.client)
+		if(required_playtime_remaining)
+			HTML += "<del>[job.title]</del></td><td><b> \[ [get_exp_format(required_playtime_remaining)] as [job.get_exp_req_type()] \] </b></td></tr>"
+			continue
+		else if(jobban_isbanned(user, job.title) || is_banned_from(user.ckey, job.title))
 			HTML += "<del>[job.title]</del></td><td><b> \[BANNED]</b></td></tr>"
 			continue
 		else if(!job.player_old_enough(user.client))

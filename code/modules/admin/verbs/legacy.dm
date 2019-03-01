@@ -558,6 +558,8 @@ var/savefile/Banlist
 
 
 /hook/startup/proc/loadBans()
+	if(!CONFIG_GET(flag/ban_legacy_system))
+		return TRUE
 	return LoadBans()
 
 
@@ -719,7 +721,7 @@ var/jobban_keylist[0]		//to store the keys & ranks
 
 /hook/startup/proc/loadJobBans()
 	if(!CONFIG_GET(flag/ban_legacy_system))
-		return FALSE
+		return TRUE
 
 	jobban_loadbanfile()
 	return TRUE

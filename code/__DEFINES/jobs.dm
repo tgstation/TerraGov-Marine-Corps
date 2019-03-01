@@ -174,3 +174,18 @@
 #define ROLE_XENOMORPH "Xenomorph"
 #define ROLE_QUEEN "Xeno Queen"
 #define ROLE_SURVIVOR "Survivor"
+
+
+//Playtime tracking system, see jobs_exp.dm
+#define EXP_TYPE_LIVING			"Living"
+#define EXP_TYPE_REGULAR_ALL	"Any"
+#define EXP_TYPE_COMMAND		"Command"
+#define EXP_TYPE_ENGINEERING	"Engineering"
+#define EXP_TYPE_MEDICAL		"Medical"
+#define EXP_TYPE_MARINES		"Marines"
+#define EXP_TYPE_REQUISITIONS	"Requisitions"
+#define EXP_TYPE_POLICE			"Police"
+#define EXP_TYPE_ANTAG			"Antag"
+#define EXP_TYPE_SPECIAL		"Special"
+#define EXP_TYPE_GHOST			"Ghost"
+#define EXP_TYPE_ADMIN			"Admin"
