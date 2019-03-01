@@ -39,6 +39,7 @@ var/global/normal_ooc_colour = "#002eb8"
 			log_admin("[key_name(usr)] has attempted to advertise in OOC: [msg]")
 			message_admins("[ADMIN_TPMONTY(usr)] has attempted to advertise in OOC: [msg]")
 			return
+
 	if(is_banned_from(ckey, "OOC"))
 		to_chat(src, "<span class='warning'>You have been banned from OOC.</span>")
 		return
@@ -131,6 +132,10 @@ var/global/normal_ooc_colour = "#002eb8"
 			log_admin("[key_name(usr)] has attempted to advertise in LOOC: [msg]")
 			message_admins("[ADMIN_TPMONTY(usr)] has attempted to advertise in LOOC: [msg]")
 			return
+
+	if(is_banned_from(ckey, "LOOC"))
+		to_chat(src, "<span class='warning'>You have been banned from LOOC.</span>")
+		return
 
 	mob.log_talk("LOOC: [msg]", LOG_LOOC)
 
