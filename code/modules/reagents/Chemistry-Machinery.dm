@@ -436,6 +436,7 @@
 			while (count--)
 				var/obj/item/reagent_container/pill/P = new/obj/item/reagent_container/pill(loc)
 				if(!name) name = reagents.get_master_reagent_name()
+				P.name = name
 				P.pill_desc = "A [name] pill."
 				P.pixel_x = rand(-7, 7) //random position
 				P.pixel_y = rand(-7, 7)
