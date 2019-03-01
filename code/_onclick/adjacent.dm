@@ -141,6 +141,25 @@
 	return FALSE
 
 
+/obj/item/projectile/Adjacent(atom/neighbor) //Projectiles don't behave like regular items.
+	if(neighbor == loc)
+		return TRUE
+	if(!isturf(loc))
+		return FALSE
+	if(loc.Adjacent(neighbor, target = neighbor, mover = src))
+		return TRUE
+	return FALSE
+
+
+/obj/item/device/radio/detpack/Adjacent(neighbor) //Snowflake detpacks.
+	if(neighbor == loc)
+		return TRUE
+	var/turf/T = get_turf(loc)
+	if(!T)
+		return FALSE
+	returnT.Adjacent(neighbor, target = neighbor, mover = src)
+
+
 /*
 	This checks if you there is uninterrupted airspace between that turf and this one.
 	This is defined as any dense ON_BORDER object, or any dense object without throwpass.
