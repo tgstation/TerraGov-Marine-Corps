@@ -174,6 +174,7 @@
 #define ROLE_XENOMORPH "Xenomorph"
 #define ROLE_QUEEN "Xeno Queen"
 #define ROLE_SURVIVOR "Survivor"
+#define ROLE_ERT "Emergency Response Team"
 
 
 //Playtime tracking system, see jobs_exp.dm

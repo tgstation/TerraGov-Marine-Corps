@@ -319,7 +319,7 @@
 				"}
 				break_counter++
 			output += "</div></div>"
-		var/list/long_job_lists = list("Antagonist Positions" = list(ROLE_XENOMORPH, ROLE_QUEEN, ROLE_SURVIVOR))
+		var/list/long_job_lists = list("Role Positions" = list(ROLE_XENOMORPH, ROLE_QUEEN, ROLE_SURVIVOR, ROLE_ERT))
 		for(var/department in long_job_lists)
 			output += "<div class='column'><label class='rolegroup long [ckey(department)]'><input type='checkbox' name='[department]' class='hidden'>[department]</label><div class='content'>"
 			break_counter = 0
