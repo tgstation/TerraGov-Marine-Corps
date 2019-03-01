@@ -131,10 +131,6 @@
 					to_chat(user, "<span class='warning'> Sticking a dead [P] into the frame would sort of defeat the purpose.</span>")
 					return
 
-				if(jobban_isbanned(P:brainmob, "AI"))
-					to_chat(user, "<span class='warning'> This [P] does not seem to fit.</span>")
-					return
-
 				if(user.drop_held_item())
 					P.forceMove(src)
 					brain = P

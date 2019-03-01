@@ -112,17 +112,24 @@
 
 	var/roletext
 	switch(role)
-		if(BE_DEATHMATCH)	roletext = "End of Round Deathmatch"
-		if(BE_ALIEN)		roletext = "Alien"
-		if(BE_QUEEN)		roletext = "Queen"
-		if(BE_SURVIVOR)		roletext = "Survivor"
-		if(BE_SQUAD_STRICT)	roletext = "Prefer squad over role"
+		if(BE_DEATHMATCH)	
+			roletext = "End of Round Deathmatch"
+		if(BE_ALIEN)		
+			roletext = ROLE_XENOMORPH
+		if(BE_QUEEN)		
+			roletext = ROLE_QUEEN
+		if(BE_SURVIVOR)		
+			roletext = ROLE_SURVIVOR
+		if(BE_SQUAD_STRICT)	
+			roletext = "Prefer squad over role"
 
 	//Assemble a list of active players without jobbans.
 	for(var/mob/new_player/player in GLOB.player_list)
-		if(player.client && player.ready)
-			if(!jobban_isbanned(player, "Syndicate") && !jobban_isbanned(player, roletext))
-				players += player
+		if(!player.client || !player.ready)
+			continue
+		if(jobban_isbanned(player, roletext) || is_banned_from(player.ckey, roletext))
+			continue	
+		players += player
 
 	//Shuffle the players list so that it becomes ping-independent.
 	players = shuffle(players)

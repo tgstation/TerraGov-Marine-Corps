@@ -163,14 +163,8 @@
 
 //Reboot procs.
 
-/mob/living/silicon/robot/drone/proc/request_player()
-	for(var/mob/dead/observer/O in GLOB.player_list)
-		if(jobban_isbanned(O, "Cyborg"))
-			continue
-
 /mob/living/silicon/robot/drone/proc/question(var/client/C)
 	spawn(0)
-		if(!C || jobban_isbanned(C,"Cyborg"))	return
 		var/response = alert(C, "Someone is attempting to reboot a maintenance drone. Would you like to play as one?", "Maintenance drone reboot", "Yes", "No", "Never for this round.")
 		if(!C || ckey)
 			return

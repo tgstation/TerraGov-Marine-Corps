@@ -158,7 +158,7 @@ datum/game_mode/proc/initialize_special_clamps()
 		return FALSE
 
 	for(var/datum/mind/new_queen in possible_queens)
-		if(jobban_isbanned(new_queen.current))
+		if(jobban_isbanned(new_queen.current, ROLE_QUEEN) || is_banned_from(new_queen.current?.ckey, ROLE_QUEEN))
 			continue
 		new_queen.assigned_role = "Queen"
 		queen = new_queen
@@ -182,7 +182,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 	transform_queen(queen)
 
 /datum/game_mode/proc/check_xeno_late_join(mob/xeno_candidate)
-	if(jobban_isbanned(xeno_candidate, "Alien")) // User is jobbanned
+	if(jobban_isbanned(xeno_candidate, ROLE_XENOMORPH) || is_banned_from(xeno_candidate.ckey, ROLE_XENOMORPH)) // User is jobbanned
 		to_chat(xeno_candidate, "<span class='warning'>You are banned from playing aliens and cannot spawn as a xenomorph.</span>")
 		return FALSE
 	return TRUE
@@ -325,10 +325,9 @@ datum/game_mode/proc/initialize_post_queen_list()
 	var/mob/original = ghost_mind.current
 	var/mob/living/carbon/Xenomorph/new_queen
 	var/datum/hive_status/hive = hive_datum[XENO_HIVE_NORMAL]
-	if(!hive.living_xeno_queen && original?.client?.prefs && (original.client.prefs.be_special & BE_QUEEN) && !jobban_isbanned(original, "Queen"))
-		new_queen = new /mob/living/carbon/Xenomorph/Queen (pick(GLOB.xeno_spawn))
-	else
+	if(hive.living_xeno_queen || !(original.client?.prefs?.be_special & BE_QUEEN) || jobban_isbanned(original, ROLE_QUEEN) || is_banned_from(original.ckey, ROLE_QUEEN))
 		return FALSE
+	new_queen = new /mob/living/carbon/Xenomorph/Queen (pick(GLOB.xeno_spawn))
 	ghost_mind.transfer_to(new_queen)
 	ghost_mind.name = ghost_mind.current.name
 
