@@ -462,7 +462,7 @@
 			// Ghostize them and put them in nullspace stasis (for stat & possession checks)
 			M.notransform = TRUE
 			M.ghostize(FALSE)
-//			M.moveToNullspace()
+			M.moveToNullspace()
 
 	// Now that mobs are stowed, delete the shuttle
 	jumpToNullSpace()
@@ -476,6 +476,8 @@
 	QDEL_LIST(ripples)
 
 /obj/docking_port/mobile/proc/ripple_area(obj/docking_port/stationary/S1)
+	if(!S1)
+		return list()
 	var/list/L0 = return_ordered_turfs(x, y, z, dir)
 	var/list/L1 = return_ordered_turfs(S1.x, S1.y, S1.z, S1.dir)
 

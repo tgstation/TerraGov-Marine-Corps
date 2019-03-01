@@ -36,6 +36,9 @@
 	width = 11
 	height = 21
 
+	ignitionTime = 10 SECONDS
+	callTime = 50 SECONDS // same as old transit time with flight optimisation
+
 /obj/docking_port/mobile/marine_dropship/one
 	id = "alamo"
 

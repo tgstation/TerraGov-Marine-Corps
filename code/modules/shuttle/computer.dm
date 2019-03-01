@@ -11,6 +11,8 @@
 	var/no_destination_swap = 0
 
 /obj/machinery/computer/shuttle/attack_hand(mob/user)
+	if(!user || user.is_mob_incapacitated())
+		return
 	ui_interact(user)
 
 /obj/machinery/computer/shuttle/ui_interact(mob/user)
@@ -25,7 +27,7 @@
 				continue
 			if(!M.check_dock(S, silent=TRUE))
 				continue
-			destination_found = 1
+			destination_found = TRUE
 			dat += "<A href='?src=[REF(src)];move=[S.id]'>Send to [S.name]</A><br>"
 		if(!destination_found)
 			dat += "<B>Shuttle Locked</B><br>"
@@ -64,14 +66,7 @@
 				to_chat(usr, "<span class='warning'>Invalid shuttle requested.</span>")
 			else
 				to_chat(usr, "<span class='notice'>Unable to comply.</span>")
-/*
-/obj/machinery/computer/shuttle/emag_act(mob/user)
-	if(obj_flags & EMAGGED)
-		return
-	req_access = list()
-	obj_flags |= EMAGGED
-	to_chat(user, "<span class='notice'>You fried the consoles ID checking system.</span>")
-*/
+
 /obj/machinery/computer/shuttle/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
 	if(port && (shuttleId == initial(shuttleId) || override))
 		shuttleId = port.id
