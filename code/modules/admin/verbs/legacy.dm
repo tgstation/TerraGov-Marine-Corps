@@ -692,6 +692,9 @@ var/jobban_keylist[0]		//to store the keys & ranks
 
 //returns a reason if M is banned from rank, returns 0 otherwise
 /proc/jobban_isbanned(mob/M, rank)
+	if(!CONFIG_GET(flag/ban_legacy_system))
+		return FALSE
+
 	if(M && rank)
 		rank = check_jobban_path(rank)
 		if(guest_jobbans(rank))
@@ -703,6 +706,9 @@ var/jobban_keylist[0]		//to store the keys & ranks
 
 
 /proc/jobban_key_isbanned(key, rank)
+	if(!CONFIG_GET(flag/ban_legacy_system))
+		return FALSE
+
 	if(key && rank)
 		rank = check_jobban_path(rank)
 		if(guest_jobbans(rank))
@@ -712,6 +718,9 @@ var/jobban_keylist[0]		//to store the keys & ranks
 
 
 /hook/startup/proc/loadJobBans()
+	if(!CONFIG_GET(flag/ban_legacy_system))
+		return FALSE
+
 	jobban_loadbanfile()
 	return TRUE
 
