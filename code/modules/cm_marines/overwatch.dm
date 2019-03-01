@@ -734,7 +734,7 @@
 		if("Squad Engineer")
 			if(new_squad.num_engineers >= new_squad.max_engineers)
 				no_place = TRUE
-		if("Squad Medic")
+		if("Squad Corpsman")
 			if(new_squad.num_medics >= new_squad.max_medics)
 				no_place = TRUE
 		if("Squad Smartgunner")
@@ -1085,6 +1085,11 @@
 		command_aura = choice
 	else
 		command_aura = which
+
+	if(command_aura_cooldown > 0)
+		to_chat(src, "<span class='warning'>You have recently given an order. Calm down.</span>")
+		return
+
 	if(!(command_aura in command_aura_allowed))
 		return
 	command_aura_cooldown = 45 //45 ticks
@@ -1238,7 +1243,7 @@
 			if("Squad Specialist")
 				spec_text += marine_infos
 				spec_count++
-			if("Squad Medic")
+			if("Squad Corpsman")
 				medic_text += marine_infos
 				medic_count++
 			if("Squad Engineer")
@@ -1268,7 +1273,7 @@
 				if("Squad Specialist")
 					spec_text += marine_infos
 					spec_count++
-				if("Squad Medic")
+				if("Squad Corpsman")
 					medic_text += marine_infos
 					medic_count++
 				if("Squad Engineer")
@@ -1290,7 +1295,7 @@
 	dat += "<b>[leader_count ? "Squad Leader Deployed":"<font color='red'>No Squad Leader Deployed!</font>"]</b><br>"
 	dat += "<b>[spec_count ? "Squad Specialist Deployed":"<font color='red'>No Specialist Deployed!</font>"]</b><br>"
 	dat += "<b>[smart_count ? "Squad Smartgunner Deployed":"<font color='red'>No Smartgunner Deployed!</font>"]</b><br>"
-	dat += "<b>Squad Medics: [medic_count] Deployed | Squad Engineers: [engi_count] Deployed</b><br>"
+	dat += "<b>Squad Corpsmen: [medic_count] Deployed | Squad Engineers: [engi_count] Deployed</b><br>"
 	dat += "<b>Squad Marines: [marine_count] Deployed</b><br>"
 	dat += "<b>Total: [current_squad.marines_list.len] Deployed</b><br>"
 	dat += "<b>Marines alive: [living_count]</b><br><br>"

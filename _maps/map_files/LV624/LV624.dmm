@@ -13162,7 +13162,7 @@
 /area/lv624/lazarus/quart)
 "aVb" = (
 /obj/structure/rack,
-/obj/effect/landmark/costume/butler,
+/obj/effect/landmark/itemspawner/butler,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "aVc" = (

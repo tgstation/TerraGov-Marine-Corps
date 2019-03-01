@@ -353,7 +353,7 @@
 
 
 /obj/item/device/radio/headset/almayer/ce
-	name = "chief engineer's headset"
+	name = "chief ship engineer's headset"
 	desc = "The headset of the guy who is in charge of morons. To access the engineering channel, use :e. For command, use :v."
 	icon_state = "com_headset"
 	keyslot1 = new /obj/item/device/encryptionkey/ce
@@ -384,8 +384,8 @@
 
 
 /obj/item/device/radio/headset/almayer/cmpcom
-	name = "marine chief MP radio headset"
-	desc = "This is used by the chief MP. Channels are as follows: :v - marine command, :p - military police, :q - alpha squad, :b - bravo squad, :c - charlie squad, :d - delta squad, :m - medbay, :u - requisitions"
+	name = "marine Command Master at Arms radio headset"
+	desc = "This is used by the Command Master at Arms. Channels are as follows: :v - marine command, :p - military police, :q - alpha squad, :b - bravo squad, :c - charlie squad, :d - delta squad, :m - medbay, :u - requisitions"
 	icon_state = "med_headset"
 	keyslot1 = new /obj/item/device/encryptionkey/cmpcom
 
@@ -421,8 +421,8 @@
 	keyslot2 = new /obj/item/device/encryptionkey/engi
 
 /obj/item/device/radio/headset/almayer/marine/alpha/med
-	name = "marine alpha medic radio headset"
-	desc = "This is used by the marine alpha combat medics. Channels are as follows: ; - Alpha Squad :m - medical, :z - general chat."
+	name = "marine alpha corpsman radio headset"
+	desc = "This is used by the marine alpha combat corpsmen. Channels are as follows: ; - Alpha Squad :m - medical, :z - general chat."
 	keyslot2 = new /obj/item/device/encryptionkey/med
 
 
@@ -444,8 +444,8 @@
 	keyslot2 = new /obj/item/device/encryptionkey/engi
 
 /obj/item/device/radio/headset/almayer/marine/bravo/med
-	name = "marine bravo medic radio headset"
-	desc = "This is used by the marine bravo combat medics. Channels are as follows: ; - Bravo Squad :m - medical, :z - general chat."
+	name = "marine bravo corpsman radio headset"
+	desc = "This is used by the marine bravo combat corpsmen. Channels are as follows: ; - Bravo Squad :m - medical, :z - general chat."
 	keyslot2 = new /obj/item/device/encryptionkey/med
 
 
@@ -467,8 +467,8 @@
 	keyslot2 = new /obj/item/device/encryptionkey/engi
 
 /obj/item/device/radio/headset/almayer/marine/charlie/med
-	name = "marine charlie medic radio headset"
-	desc = "This is used by the marine charlie combat medics. Channels are as follows: ; - Charlie Squad :m - medical, :z - general chat."
+	name = "marine charlie corpsman radio headset"
+	desc = "This is used by the marine charlie combat corpsmen. Channels are as follows: ; - Charlie Squad :m - medical, :z - general chat."
 	keyslot2 = new /obj/item/device/encryptionkey/med
 
 
@@ -490,8 +490,8 @@
 	keyslot2 = new /obj/item/device/encryptionkey/engi
 
 /obj/item/device/radio/headset/almayer/marine/delta/med
-	name = "marine delta medic radio headset"
-	desc = "This is used by the marine delta combat medics. Channels are as follows: ; - Delta Squad :m - medical, :z - general chat."
+	name = "marine delta corpsman radio headset"
+	desc = "This is used by the marine delta combat corpsmen. Channels are as follows: ; - Delta Squad :m - medical, :z - general chat."
 	keyslot2 = new /obj/item/device/encryptionkey/med
 
 

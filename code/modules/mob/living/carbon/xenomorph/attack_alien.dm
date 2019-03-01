@@ -183,7 +183,7 @@
 						"<span class='danger'>You strike [src] with deadly precision!</span>")
 					KnockOut(2) //...And we knock them out
 					adjust_stagger(3)
-					add_slowdown(3)
+					add_slowdown(1.5)
 				M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 
 			M.neuroclaw_router(src) //if we have neuroclaws...
@@ -234,7 +234,7 @@
 						M.visible_message("<span class='danger'>\The [M] strikes [src] with deadly precision!</span>", \
 						"<span class='danger'>You strike [src] with deadly precision!</span>")
 					adjust_stagger(3)
-					add_slowdown(3)
+					add_slowdown(1.5)
 				M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 			M.neuroclaw_router(src) //if we have neuroclaws...
 			if(dam_bonus)

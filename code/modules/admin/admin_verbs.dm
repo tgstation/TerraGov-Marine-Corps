@@ -169,6 +169,9 @@
 		return
 
 	var/datum/squad/S = SSjob.squads[squad]
+	if(!S?.usable)
+		return
+
 	var/datum/job/J = SSjob.name_occupations[H.mind.assigned_role]
 	var/datum/outfit/job/O = new J.outfit
 	O.post_equip(H)
@@ -978,15 +981,22 @@
 					else if(is_mentor(src))
 						new /datum/admin_help(msg, recipient, TRUE, TICKET_MENTOR)
 
-				to_chat(recipient, "<font color='red' size='4'><b>-- Private Message --</b></font>")
-				to_chat(recipient, "<font color='red'>[holder.fakekey ? "Administrator" : holder.rank.name] PM from-<b>[key_name(src, recipient, FALSE)]</b>: <span class='linkify'>[msg]</span></font>")
-				to_chat(recipient, "<font color='red'><i>Click on the staff member's name to reply.</i></font>")
-				to_chat(src, "<font color='blue'><b>[holder.fakekey ? "Administrator" : holder.rank.name] PM</b> to-<b>[key_name(recipient, src, TRUE)]</b>: <span class='linkify'>[msg]</span></font>")
+				if(check_rights(R_ADMIN, FALSE))
+					to_chat(recipient, "<font color='red' size='4'><b>-- Private Message --</b></font>")
+					to_chat(recipient, "<font color='red'>[holder.fakekey ? "Administrator" : holder.rank.name] PM from-<b>[key_name(src, recipient, FALSE)]</b>: <span class='linkify'>[msg]</span></font>")
+					to_chat(recipient, "<font color='red'><i>Click on the staff member's name to reply.</i></font>")
+					to_chat(src, "<font color='blue'><b>[holder.fakekey ? "Administrator" : holder.rank.name] PM</b> to-<b>[key_name(recipient, src, TRUE)]</b>: <span class='linkify'>[msg]</span></font>")
+					SEND_SOUND(recipient, sound('sound/effects/adminhelp.ogg'))
+				else if(is_mentor(src))
+					to_chat(recipient, "<font color='blue' size='2'><b>-- Mentor Message --</b></font>")
+					to_chat(recipient, "<font color='blue'>[holder.rank.name] PM from-<b>[key_name(src, recipient, FALSE)]</b>: <span class='linkify'>[msg]</span></font>")
+					to_chat(recipient, "<font color='blue'><i>Click on the mentor's name to reply.</i></font>")
+					to_chat(src, "<font color='blue'><b>[holder.rank.name] PM</b> to-<b>[key_name(recipient, src, TRUE)]</b>: <span class='linkify'>[msg]</span></font>")
+					SEND_SOUND(recipient, sound('sound/effects/mentorhelp.ogg'))
 
 				admin_ticket_log(recipient, "<font color='blue'>PM From [key_name_admin(src)]: [keywordparsedmsg]</font>")
 
-				//always play non-admin recipients the adminhelp sound
-				SEND_SOUND(recipient, sound('sound/effects/adminhelp.ogg'))
+
 			else		//neither are admins
 				to_chat(src, "<span class='warning'>Error: Non-staff to non-staff communication is disabled.</span>")
 				return

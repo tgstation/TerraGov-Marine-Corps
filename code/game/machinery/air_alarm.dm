@@ -108,7 +108,7 @@
 
 
 
-/obj/machinery/alarm/Initialize(var/loc, var/direction, var/building = 0)
+/obj/machinery/alarm/Initialize(loc, direction, building = FALSE)
 	. = ..()
 
 	if(building)
@@ -117,11 +117,28 @@
 
 		if(direction)
 			setDir(direction)
-
 		buildstage = 0
-		wiresexposed = 1
-		pixel_x = (dir & 3)? 0 : (dir == 4 ? -24 : 24)
-		pixel_y = (dir & 3)? (dir ==1 ? -24 : 24) : 0
+		wiresexposed = TRUE
+
+	set_frequency(frequency)
+
+	first_run()
+
+	if(!master_is_operating())
+		elect_master()
+
+	switch(dir)
+		if(NORTH) 
+			pixel_y = 25
+		if(SOUTH) 
+			pixel_y = -25
+		if(EAST) 
+			pixel_x = 25
+		if(WEST) 
+			pixel_x = -25
+
+	start_processing()
+
 
 /obj/machinery/alarm/proc/first_run()
 	alarm_area = get_area(src)
@@ -138,24 +155,6 @@
 	TLV["other"] =			list(-1.0, -1.0, 0.5, 1.0) // Partial pressure, kpa
 	TLV["pressure"] =		list(ONE_ATMOSPHERE*0.80,ONE_ATMOSPHERE*0.90,ONE_ATMOSPHERE*1.10,ONE_ATMOSPHERE*1.20) /* kpa */
 	TLV["temperature"] =	list(T0C-26, T0C, T0C+40, T0C+66) // K
-
-
-/obj/machinery/alarm/Initialize()
-	. = ..()
-	set_frequency(frequency)
-
-	first_run()
-
-	if (!master_is_operating())
-		elect_master()
-
-	switch(dir)
-		if(NORTH) pixel_y = 25
-		if(SOUTH) pixel_y = -25
-		if(EAST) pixel_x = 25
-		if(WEST) pixel_x = -25
-
-	start_processing()
 
 
 /obj/machinery/alarm/process()

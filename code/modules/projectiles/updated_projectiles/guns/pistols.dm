@@ -5,6 +5,7 @@
 	icon_state = "" //Defaults to revolver pistol when there's no sprite.
 	reload_sound = 'sound/weapons/flipblade.ogg'
 	cocked_sound = 'sound/weapons/gun_pistol_cocked.ogg'
+	load_method = MAGAZINE //codex
 	origin_tech = "combat=3;materials=2"
 	matter = list("metal" = 2000)
 	flags_equip_slot = ITEM_SLOT_BELT
@@ -51,6 +52,8 @@
 	desc = "An M4A3 Colt Service Pistol, the standard issue sidearm of the TerraGov Marine Corps. Uses 9mm pistol rounds."
 	icon_state = "m4a3"
 	item_state = "m4a3"
+	caliber = "9x19mm Parabellum" //codex
+	max_shells = 12 //codex
 	current_mag = /obj/item/ammo_magazine/pistol
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
 
@@ -92,6 +95,8 @@
 	desc = "A standard M4A3 chambered in .45. Has a smaller magazine capacity, but packs a better punch."
 	icon_state = "m4a345"
 	item_state = "m4a345"
+	caliber = ".45 ACP" //codex
+	max_shells = 7 //codex
 	origin_tech = "combat=4;materials=3"
 	fire_sound = 'sound/weapons/gun_glock.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/m1911
@@ -136,6 +141,8 @@
 	desc = "A popular police firearm in the 20th century, often employed by hardboiled cops while confronting terrorists. A classic of its time, chambered in 9mm."
 	icon_state = "b92fs"
 	item_state = "b92fs"
+	caliber = "9x19mm Parabellum" //codex
+	max_shells = 15 //codex
 	current_mag = /obj/item/ammo_magazine/pistol/b92fs
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
 
@@ -152,6 +159,8 @@
 	desc = "A variant of a classic pistol, modified to allow for bursts. It is fitted with a vertical foregrip at the front end of the trigger guard to provide better stability when firing."
 	icon_state = "b93r"
 	item_state = "b93r"
+	caliber = "9x19mm Parabellum" //codex
+	max_shells = 15 //codex
 	current_mag = /obj/item/ammo_magazine/pistol/b93r
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 21, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
 	attachable_allowed = list(
@@ -178,6 +187,8 @@
 	desc = "A 20th century military firearm customized for special forces use, fires tranq darts to take down enemies nonlethally"
 	icon_state = "m9"
 	item_state = "m9"
+	caliber = "9x19mm tranquilizer" //codex
+	max_shells = 12 //codex
 	current_mag =/obj/item/ammo_magazine/pistol/b92fstranq
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 21, "under_x" = 21, "under_y" = 15, "stock_x" = 21, "stock_y" = 17)
 	starting_attachment_types = list(
@@ -201,10 +212,11 @@
 	desc = "A pistol chambered in.50ae that comes with a serious kick. This one is engraved, <i>'Peace through superior firepower.'</i>"
 	icon_state = "deagle"
 	item_state = "deagle"
+	caliber = ".50 AE" //codex
+	max_shells = 7 //codex
 	fire_sound = 'sound/weapons/gun_44mag.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/heavy
 	force = 13
-
 	attachable_allowed = list(
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/flashlight,
@@ -238,6 +250,8 @@
 	desc = "An updated variant of an old eastern design, dating back to from the 20th century. Features an integrated silencer, and chambered in the razor small .22 rounds. This one is loaded with the more common .22 hollowpoint rounds and appears to be a mercenary version."
 	icon_state = "pk9"
 	item_state = "pk9"
+	caliber = ".22 LR" //codex
+	max_shells = 12 //codex
 	origin_tech = "combat=3;materials=1;syndicate=3"
 	fire_sound = 'sound/weapons/gun_c99.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/c99
@@ -282,6 +296,8 @@
 	desc = "The KT-42 Automag is an archaic but reliable design, going back many decades. There have been many versions and variations, but the 42 is by far the most common. You can't go wrong with this handcannon."
 	icon_state = "kt42"
 	item_state = "kt42"
+	caliber = ".44 magnum" //codex
+	max_shells = 7 //codex
 	fire_sound = 'sound/weapons/gun_kt42.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/automatic
 	attachable_allowed = list()
@@ -306,6 +322,8 @@
 	desc = "A tiny pistol meant for hiding in hard-to-reach areas. Best not ask where it came from."
 	icon_state = "holdout"
 	item_state = "holdout"
+	caliber = ".22 LR" //codex
+	max_shells = 5 //codex
 	origin_tech = "combat=2;materials=1"
 	fire_sound = 'sound/weapons/gun_pistol_holdout.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/holdout
@@ -338,6 +356,8 @@
 	desc = "A Colonial Marshals issued, powerful semi-automatic pistol chambered in armor piercing 9mm caliber rounds. Used for centuries by law enforcement and criminals alike, recently recreated with this new model."
 	icon_state = "highpower"
 	item_state = "highpower"
+	caliber = "9x19mm Parabellum" //codex
+	max_shells = 13 //codex
 	fire_sound = 'sound/weapons/gun_kt42.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/highpower
 	force = 10
@@ -362,6 +382,8 @@
 	desc = "A powerful sidearm issued mainly to Nanotrasen response teams, but issued to the TGMC in small numbers, based on the original VP70 more than a century ago. Fires 9mm armor piercing rounds and is capable of 3-round burst."
 	icon_state = "88m4"
 	item_state = "88m4"
+	caliber = "9x19mm Parabellum" //codex
+	max_shells = 18 //codex
 	origin_tech = "combat=4;materials=3"
 	fire_sound = 'sound/weapons/vp70.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/vp70
@@ -398,6 +420,8 @@
 	desc = "A massive, formidable automatic handgun chambered in 9mm squash-head rounds. Commonly seen in the hands of wealthy Nanotrasen members."
 	icon_state = "vp78"
 	item_state = "vp78"
+	caliber = "9x19mm Parabellum" //codex
+	max_shells = 18 //codex
 	origin_tech = "combat=4;materials=4"
 	fire_sound = 'sound/weapons/gun_pistol_large.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/vp78
@@ -427,6 +451,8 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	desc = "An advanced, select-fire machine pistol capable of three round burst. Last seen cleaning up the mean streets of Detroit."
 	icon_state = "auto9"
 	item_state = "auto9"
+	caliber = "9x19mm Parabellum" //codex
+	max_shells = 50 //codex
 	origin_tech = "combat=5;materials=4"
 	fire_sound = 'sound/weapons/gun_pistol_large.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/auto9
@@ -453,6 +479,8 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	desc = "A powerful sidearm issued mainly to highly trained elite assassin necro-cyber-agents."
 	icon_state = "c70"
 	item_state = "c70"
+	caliber = ".70 Mankey" //codex
+	max_shells = 300 //codex
 	origin_tech = "combat=8;materials=8;syndicate=8;bluespace=8"
 	current_mag = /obj/item/ammo_magazine/pistol/chimp
 	fire_sound = 'sound/weapons/gun_chimp70.ogg'

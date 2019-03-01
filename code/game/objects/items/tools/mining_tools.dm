@@ -108,8 +108,6 @@
 /obj/item/tool/pickaxe/plasmacutter/Initialize()
 	. = ..()
 	cell = new /obj/item/cell/high(src)
-	powered = TRUE
-	update_plasmacutter(silent=TRUE)
 
 
 /obj/item/tool/pickaxe/plasmacutter/examine(mob/user)
@@ -308,6 +306,8 @@
 		var/turf/T = target
 		var/turfdirt = T.get_dirt_type()
 		if(!turfdirt == DIRT_TYPE_SNOW)
+			return
+		if(!istype(T, /turf/open/snow))
 			return
 		var/turf/open/snow/ST = T
 		if(!ST.slayer)

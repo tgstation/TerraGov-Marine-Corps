@@ -162,11 +162,11 @@
 			H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), SLOT_BACK)
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/command(H), SLOT_W_UNIFORM)
 			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/MP/RO(H), SLOT_WEAR_SUIT)
-			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marinechief/commander(H), SLOT_SHOES)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marinechief/captain(H), SLOT_SHOES)
 			H.equip_to_slot_or_del(new /obj/item/clothing/head/cmberet/tan(H), SLOT_HEAD)
-			H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/techofficer/commander(H), SLOT_GLOVES)
+			H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/techofficer/captain(H), SLOT_GLOVES)
 			H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), SLOT_BACK)
-			H.equip_to_slot_or_del(new /obj/item/weapon/claymore/mercsword/commander(H), SLOT_R_HAND)
+			H.equip_to_slot_or_del(new /obj/item/weapon/claymore/mercsword/captain(H), SLOT_R_HAND)
 
 			H.equip_to_slot_or_del(new /obj/item/storage/belt/gun/mateba/full(H), SLOT_BELT)
 			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/heavy(H), SLOT_IN_BACKPACK)
@@ -436,7 +436,7 @@
 		//SQUAD MEDIC
 		if("Squad Medic")
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/medic(H), SLOT_W_UNIFORM)
-			H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/medic(H), SLOT_HEAD)
+			H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/corpsman(H), SLOT_HEAD)
 			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), SLOT_WEAR_SUIT)
 
 			//SPESHUL EQUIPMENT
@@ -1072,7 +1072,7 @@
 								/obj/item/clothing/suit/storage/marine,
 								/obj/item/clothing/suit/storage/marine,
 								/obj/item/clothing/head/helmet/marine/tech,
-								/obj/item/clothing/head/helmet/marine/medic,
+								/obj/item/clothing/head/helmet/marine/corpsman,
 								/obj/item/clothing/under/marine/medic,
 								/obj/item/clothing/under/marine/engineer,
 								/obj/item/clothing/tie/storage/webbing,

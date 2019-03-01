@@ -1,7 +1,7 @@
 #define J_FLAG_MARINE		(1<<0)
 
 #define SQUAD_MARINE		(1<<0)
-#define SQUAD_MEDIC			(1<<1)
+#define SQUAD_CORPSMAN			(1<<1)
 #define SQUAD_ENGINEER		(1<<3)
 #define SQUAD_SMARTGUNNER	(1<<4)
 #define SQUAD_SPECIALIST	(1<<5)
@@ -106,7 +106,7 @@
 
 #define JOB_DISPLAY_ORDER_DEFAULT 0
 
-#define JOB_DISPLAY_ORDER_COMMANDER 1
+#define JOB_DISPLAY_ORDER_CAPTAIN 1
 #define JOB_DISPLAY_ORDER_EXECUTIVE_OFFICER 2
 #define JOB_DISPLAY_ORDER_STAFF_OFFICER 3
 #define JOB_DISPLAY_ORDER_PILOT_OFFICER 4
@@ -125,25 +125,25 @@
 #define JOB_DISPLAY_ORDER_SQUAD_LEADER 17
 #define JOB_DISPLAY_ORDER_SQUAD_SPECIALIST 18
 #define JOB_DISPLAY_ORDER_SQUAD_SMARTGUNNER 19
-#define JOB_DISPLAY_ORDER_SQUAD_MEDIC 20
+#define JOB_DISPLAY_ORDER_SQUAD_CORPSMAN 20
 #define JOB_DISPLAY_ORDER_SUQAD_ENGINEER 21
 #define JOB_DISPLAY_ORDER_SQUAD_MARINE 22
 
 
-#define JOBS_COMMAND 		list("Commander", "Executive Officer", "Staff Officer", "Pilot Officer", "Tank Crewman", "Corporate Liaison", "Requisitions Officer", "Chief Engineer", "Chief Medical Officer", "Synthetic")
-#define JOBS_POLICE			list("Chief MP", "Military Police")
-#define JOBS_OFFICERS		list("Commander", "Executive Officer", "Staff Officer", "Pilot Officer", "Tank Crewman", "Corporate Liaison", "Synthetic")
-#define JOBS_ENGINEERING 	list("Chief Engineer", "Maintenance Tech")
+#define JOBS_COMMAND 		list("Captain", "Field Commander", "Intelligence Officer", "Pilot Officer", "Requisitions Officer", "Chief Ship Engineer", "Chief Medical Officer", "Synthetic", "Command Master at Arms")
+#define JOBS_POLICE			list("Command Master at Arms", "Master at Arms")
+#define JOBS_OFFICERS		list("Captain", "Field Commander", "Intelligence Officer", "Pilot Officer", "Tank Crewman", "Corporate Liaison", "Synthetic")
+#define JOBS_ENGINEERING 	list("Chief Ship Engineer", "Ship Engineer")
 #define JOBS_REQUISITIONS 	list("Requisitions Officer", "Cargo Technician")
-#define JOBS_MEDICAL 		list("Chief Medical Officer", "Doctor", "Medical Researcher")
-#define JOBS_MARINES		list("Squad Leader", "Squad Specialist", "Squad Smartgunner", "Squad Medic", "Squad Engineer", "Squad Marine")
+#define JOBS_MEDICAL 		list("Chief Medical Officer", "Medical Officer", "Medical Researcher")
+#define JOBS_MARINES		list("Squad Leader", "Squad Specialist", "Squad Smartgunner", "Squad Corpsman", "Squad Engineer", "Squad Marine")
 #define JOBS_SQUADS			list("Alpha", "Bravo", "Charlie" ,"Delta")
 #define JOBS_REGULAR_ALL	JOBS_OFFICERS + JOBS_POLICE + JOBS_ENGINEERING + JOBS_REQUISITIONS + JOBS_MEDICAL + JOBS_MARINES
 #define JOBS_UNASSIGNED		list("Squad Marine")
 
 
 #define PREF_JOB_CO				(1 << 0)
-#define PREF_JOB_XO				(1 << 1)
+#define PREF_JOB_FC				(1 << 1)
 #define PREF_JOB_SO				(1 << 2)
 #define PREF_JOB_PO				(1 << 3)
 #define PREF_JOB_TC				(1 << 4)
@@ -159,7 +159,7 @@
 #define PREF_JOB_CL				(1 << 14)
 #define PREF_JOB_SYNTH			(1 << 15)
 #define PREF_JOB_SQMARINE		(1 << 16)
-#define PREF_JOB_SQMEDIC		(1 << 17)
+#define PREF_JOB_SQCORPSMAN		(1 << 17)
 #define PREF_JOB_SQENGINEER		(1 << 18)
 #define PREF_JOB_SQSMARTGUNNER	(1 << 19)
 #define PREF_JOB_SQSPECIALIST	(1 << 20)
