@@ -1305,131 +1305,50 @@ var/list/WALLITEMS = list(
 		arglist = list2params(arglist)
 	return "<a href='?src=\ref[D];[arglist]'>[content]</a>"
 
-/proc/getline(atom/M,atom/N)//Ultra-Fast Bresenham Line-Drawing Algorithm
-	var/px=M.x		//starting x
-	var/py=M.y
-	var/line[] = list(locate(px,py,M.z))
-	var/dx=N.x-px	//x distance
-	var/dy=N.y-py
-	var/dxabs = abs(dx)//Absolute value of x distance
-	var/dyabs = abs(dy)
-	var/sdx = SIGN(dx)	//Sign of x distance (+ or -)
-	var/sdy = SIGN(dy)
-	var/x=dxabs>>1	//Counters for steps taken, setting to distance/2
-	var/y=dyabs>>1	//Bit-shifting makes me l33t.  It also makes getline() unnessecarrily fast.
-	var/j			//Generic integer for counting
-	if(dxabs>=dyabs)	//x distance is greater than y
-		for(j=0;j<dxabs;j++)//It'll take dxabs steps to get there
-			y+=dyabs
-			if(y>=dxabs)	//Every dyabs steps, step once in y direction
-				y-=dxabs
-				py+=sdy
-			px+=sdx		//Step on in x direction
-			line+=locate(px,py,M.z)//Add the turf to the list
+//Reasonably Optimized Bresenham's Line Drawing
+/proc/getline(atom/start, atom/end, exclude_origin=FALSE)
+	var/x = start.x
+	var/y = start.y
+	var/z = start.z
+
+	//let's compute these only once
+	var/dx = end.x - x
+	var/dy = end.y - y
+	var/abs_dx = abs(dx)
+	var/abs_dy = abs(dy)
+	var/sign_dx = SIGN(dx)
+	var/sign_dy = SIGN(dy)
+
+	var/list/turfs = list()
+	if(!exclude_origin)
+		turfs += get_turf(start)
+
+	/*x_error and y_error represents how far we are from the ideal line.
+	Initialized so that we will check these errors against 0, instead of 0.5 * abs_(dx/dy)*/
+
+	//We multiply every check by the line slope denominator so that we only handles integers
+	if(abs_dx > abs_dy)
+		var/y_error = -(abs_dx >> 1)
+		var/steps = abs_dx
+		while(steps--)
+			y_error += abs_dy
+			if(y_error > 0)
+				y_error -= abs_dx
+				y += sign_dy
+			x += sign_dx
+			turfs += locate(x,y,z)
 	else
-		for(j=0;j<dyabs;j++)
-			x+=dxabs
-			if(x>=dyabs)
-				x-=dyabs
-				px+=sdx
-			py+=sdy
-			line+=locate(px,py,M.z)
-	return line
+		var/x_error = -(abs_dy >> 1)
+		var/steps = abs_dy
+		while(steps--)
+			x_error += abs_dx
+			if(x_error > 0)
+				x_error -= abs_dy
+				x += sign_dx
+			y += sign_dy
+			turfs += locate(x,y,z)
 
-//Bresenham's algorithm. This one deals efficiently with all 8 octants.
-//Just don't ask me how it works.
-/proc/getline2(atom/from_atom, atom/to_atom, exclude_origin=FALSE)
-	if(!from_atom || !to_atom) return 0
-	var/list/turf/turfs = list()
-
-	var/cur_x = from_atom.x
-	var/cur_y = from_atom.y
-
-	var/w = to_atom.x - from_atom.x
-	var/h = to_atom.y - from_atom.y
-	var/dx1 = 0
-	var/dx2 = 0
-	var/dy1 = 0
-	var/dy2 = 0
-	if(w < 0)
-		dx1 = -1
-		dx2 = -1
-	else if(w > 0)
-		dx1 = 1
-		dx2 = 1
-	if(h < 0) dy1 = -1
-	else if(h > 0) dy1 = 1
-	var/longest = abs(w)
-	var/shortest = abs(h)
-	if(!(longest > shortest))
-		longest = abs(h)
-		shortest = abs(w)
-		if(h < 0) dy2 = -1
-		else if (h > 0) dy2 = 1
-		dx2 = 0
-
-	var/numerator = longest>>1
-	var/i
-	for(i = 0; i <= longest; i++)
-		turfs += locate(cur_x,cur_y,from_atom.z)
-		numerator += shortest
-		if(!(numerator < longest))
-			numerator -= longest
-			cur_x += dx1
-			cur_y += dy1
-		else
-			cur_x += dx2
-			cur_y += dy2
-
-	if(exclude_origin)
-		turfs -= get_turf(from_atom)
-
-	return turfs
-
-//Another line algorithm pulled from DM code snippets.
-/proc/getline3(atom/a,atom/b)
-	var/list/line = new
-	line+=locate(b.x,b.y,b.z)
-	line+=locate(a.x,a.y,a.z)
-
-	var/x1 = a.x
-	var/x2 = b.x
-	var/y1 = a.y
-	var/y2 = b.y
-	var/steep = abs(y2 - y1) > abs(x2 - x1)
-	if(steep)
-		var/temp = x1
-		x1 = y1
-		y1 = temp
-		temp = x2
-		x2 = y2
-		y2 = temp
-	if(x1 > x2)
-		var/temp = x1
-		x1 = x2
-		x2 = temp
-		temp = y1
-		y1 = y2
-		y2 = temp
-	var/deltax = x2 - x1
-	var/deltay = abs(y2 - y1)
-	var/error = 0
-	var/ystep
-	var/y = y1
-	if(y1 < y2)
-		ystep = 1
-	else
-		ystep = -1
-	for(var/x = x1, x < x2, x++)
-		if(steep)
-			line += locate(y,x,a.z)
-		else
-			line += locate(x,y,a.z)
-		error += deltay
-		if((2 * error) >= deltax)
-			y += ystep
-			error -= deltax
-	return line
+	. = turfs
 
 //gives us the stack trace from CRASH() without ending the current proc.
 /proc/stack_trace(msg)
