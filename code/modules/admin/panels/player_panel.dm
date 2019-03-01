@@ -418,7 +418,7 @@
 	else
 		body += "<a href='?src=[ref];newbankey=[M.key]'>Ban</a> |"
 
-	body += "<a href='?src=[ref];showmessageckey=[M.ckey]'>Notes | "
+	body += "<a href='?src=[ref];showmessageckey=[M.ckey]'>Notes</a> | "
 	body += "<a href='?src=[ref];cryo=[REF(M)]'>Cryo</a> | "
 
 	if(M.client?.prefs)
