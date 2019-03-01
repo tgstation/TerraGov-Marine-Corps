@@ -182,16 +182,16 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 		switch(role)
 			if("Xenomorph")
-				ban_check_name = "Alien"
+				ban_check_name = ROLE_XENOMORPH
 
-			if("Xenomorph Queen")
-				ban_check_name = "Queen"
+			if("Xeno Queen")
+				ban_check_name = ROLE_QUEEN
 
 			if("Survivor")
-				ban_check_name = "Survivor"
+				ban_check_name = ROLE_SURVIVOR
 
-		if(jobban_isbanned(user, ban_check_name))
-			dat += "<font color=red><b> \[BANNED]</b></font><br>"
+		if(jobban_isbanned(user, ban_check_name) || is_banned_from(user.ckey, ban_check_name))
+			dat += "<b>[role]:</b> <font color=red><b> \[BANNED]</b></font><br>"
 		else
 			dat += "<b>[role]:</b> <a href='?_src_=prefs;preference=be_special;flag=[n]'>[be_special & (1 << n) ? "Yes" : "No"]</a><br>"
 		n++
