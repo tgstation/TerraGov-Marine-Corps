@@ -55,7 +55,7 @@
 	name = "\improper CMB revolver speed loader (.357)"
 	default_ammo = /datum/ammo/bullet/revolver/small
 	caliber = ".357"
-	icon_state = "spearhead"
+	icon_state = "cmb"
 	max_rounds = 6
 	gun_type = /obj/item/weapon/gun/revolver/cmb
 
