@@ -152,6 +152,9 @@
 	var/list/tile_contents = list()  //the contents of the turf being examined in the stat panel
 	var/tile_contents_change = 0
 
+	//Emotes
+	var/audio_emote_time = 1
+
 	var/list/active_genes=list()
 
 	var/away_timer = 0 //How long the player has been disconnected
