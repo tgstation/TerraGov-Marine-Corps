@@ -94,7 +94,7 @@
 	name = "\improper M4A3 service pistol (.45)"
 	desc = "A standard M4A3 chambered in .45. Has a smaller magazine capacity, but packs a better punch."
 	icon_state = "m4a345"
-	item_state = "m4a345"
+	item_state = "m1911"
 	caliber = ".45 ACP" //codex
 	max_shells = 7 //codex
 	origin_tech = "combat=4;materials=3"
@@ -160,7 +160,7 @@
 	icon_state = "b93r"
 	item_state = "b93r"
 	caliber = "9x19mm Parabellum" //codex
-	max_shells = 15 //codex
+	max_shells = 20 //codex
 	current_mag = /obj/item/ammo_magazine/pistol/b93r
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 21, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
 	attachable_allowed = list(
