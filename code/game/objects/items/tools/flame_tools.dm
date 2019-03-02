@@ -516,7 +516,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/tool/lighter/Destroy()
 	if(ismob(src.loc))
-		SetLuminosity(-LIGHTER_LUMINOSITY)
+		loc.SetLuminosity(-LIGHTER_LUMINOSITY)
 	SetLuminosity(0)
 	. = ..()
 

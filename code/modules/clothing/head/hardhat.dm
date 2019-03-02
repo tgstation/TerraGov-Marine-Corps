@@ -63,7 +63,7 @@
 
 /obj/item/clothing/head/hardhat/Destroy()
 	if(ismob(loc))
-		SetLuminosity(-brightness_on)
+		loc.SetLuminosity(-brightness_on)
 	SetLuminosity(0)
 	. = ..()
 
