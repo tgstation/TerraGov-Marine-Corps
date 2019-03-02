@@ -1772,8 +1772,6 @@
 
 
 	else if(href_list["showmessageckeylinkless"])
-		if(!check_rights(R_BAN))
-			return
 		var/target = href_list["showmessageckeylinkless"]
 		browse_messages(target_ckey = target, linkless = TRUE)
 
