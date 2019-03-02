@@ -10,13 +10,12 @@
 	throwpass = TRUE //You can throw objects over this, despite its density.
 	open_layer = CATWALK_LAYER
 	closed_layer = WINDOW_LAYER
-	var/closed_layer_south = ABOVE_MOB_LAYER
 
 /obj/machinery/door/poddoor/railing/New()
 	..()
-	switch(dir)
-		if(SOUTH) layer = closed_layer_south
-		else layer = closed_layer
+	if(dir == SOUTH)
+		closed_layer = ABOVE_MOB_LAYER
+	layer = closed_layer
 
 /obj/machinery/door/poddoor/railing/CheckExit(atom/movable/O, turf/target)
 	if(!density)
@@ -65,9 +64,7 @@
 		return 0
 	src.density = 1
 	src.operating = 1
-	switch(dir)
-		if(SOUTH) layer = closed_layer_south
-		else layer = closed_layer
+	layer = closed_layer
 	flick("railingc1", src)
 	src.icon_state = "railing1"
 

@@ -437,16 +437,3 @@ scream, shakehead, shiver, shrug, sigh, signal-#1-10, smile, sneeze, snore, star
 		else if(m_type == EMOTE_AUDIBLE)
 			for(var/mob/O in hearers(loc, null))
 				O.show_message(message, m_type)
-
-/mob/living/carbon/human/proc/remove_emote_overlay(var/image/overlay_to_remove)
-	overlays -= overlay_to_remove
-
-/mob/living/carbon/human/proc/audio_emote_cooldown(player_caused)
-	if(player_caused)
-		if(audio_emote_time < world.time)
-			audio_emote_time = world.time + 80
-			return FALSE
-		else
-			to_chat(usr, "<span class='notice'>You just did an audible emote. Wait a while.</span>")
-			return TRUE
-	return FALSE
