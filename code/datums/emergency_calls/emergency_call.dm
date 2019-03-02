@@ -93,7 +93,7 @@
 
 	var/datum/emergency_call/distress = SSticker?.mode?.picked_call //Just to simplify things a bit
 
-	if(jobban_isbanned(usr, "Syndicate") || jobban_isbanned(usr, "Emergency Response Team"))
+	if(jobban_isbanned(usr, ROLE_ERT) || is_banned_from(usr.ckey, ROLE_ERT))
 		to_chat(usr, "<span class='danger'>You are jobbanned from the emergency reponse team!</span>")
 		return
 
@@ -172,9 +172,10 @@
 					if(M.current?.stat != DEAD)
 						candidates -= M //Strip them from the list, they aren't dead anymore.
 						continue
-					if(name == "Xenomorphs" && !(M.current.client?.prefs?.be_special & BE_ALIEN))
-						candidates -= M
-						continue
+					if(name == "Xenomorphs")
+						if(!(M.current.client?.prefs?.be_special & BE_ALIEN) || is_banned_from(M.current.ckey, ROLE_XENOMORPH))
+							candidates -= M
+							continue
 					picked_candidates += M
 					candidates -= M
 

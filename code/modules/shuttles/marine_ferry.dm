@@ -277,8 +277,6 @@
 
 	sleep(100) //Wait for it to finish.
 
-	if(EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED) return FALSE //If a nuke finished, don't land.
-
 	target_turf = T_trg
 	target_rotation = trg_rot
 	shuttle_turfs = turfs_int
@@ -363,9 +361,6 @@
 
 	//END: Heavy lifting backend
 
-	if (moving_status == SHUTTLE_IDLE)
-		recharging = 0
-		return	//someone canceled the launch
 
 	var/travel_time = 0
 	travel_time = DROPSHIP_CRASH_TRANSIT_DURATION * 10
@@ -421,7 +416,7 @@
 			to_chat(about_to_die, "<span class='xenoannounce'>The Queen has left without you, you quickly find a hiding place to enter hibernation as you lose touch with the hive mind.</span>")
 			qdel(about_to_die) // just delete them
 	for(var/mob/living/carbon/potential_host in GLOB.alive_mob_list)
-		if(!is_ground_level(potential_host.loc.z)) continue // ground level
+		if(!is_ground_level(potential_host.loc?.z)) continue // ground level
 		if(potential_host.status_flags & XENO_HOST) // a host
 			for(var/obj/item/alien_embryo/embryo in potential_host)
 				qdel(embryo)
@@ -437,8 +432,6 @@
 	playsound(turfs_int[sound_target], sound_landing, 60, 0)
 
 	sleep(85)
-
-	if(EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED) return FALSE //If a nuke finished, don't land.
 
 	shake_cameras(turfs_int) //shake for 1.5 seconds before crash, 0.5 after
 

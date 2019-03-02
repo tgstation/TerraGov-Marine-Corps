@@ -252,7 +252,7 @@ var/global/list/PDA_Manifest = list()
 		G.fields["religion"]	= H.religion
 		G.fields["photo_front"]	= front
 		G.fields["photo_side"]	= side
-		if(H.gen_record && !jobban_isbanned(H, "Records"))
+		if(H.gen_record)
 			G.fields["notes"] = H.gen_record
 		else
 			G.fields["notes"] = "No notes found."
@@ -276,7 +276,7 @@ var/global/list/PDA_Manifest = list()
 		M.fields["last_scan_result"]		= "No scan data on record" // body scanner results
 		M.fields["autodoc_data"] = list()
 		M.fields["autodoc_manual"] = list()
-		if(H.med_record && !jobban_isbanned(H, "Records"))
+		if(H.med_record)
 			M.fields["notes"] = H.med_record
 		else
 			M.fields["notes"] = "No notes found."
@@ -292,7 +292,7 @@ var/global/list/PDA_Manifest = list()
 		S.fields["ma_crim"]		= "None"
 		S.fields["ma_crim_d"]	= "No major crime convictions."
 		S.fields["notes"]		= "No notes."
-		if(H.sec_record && !jobban_isbanned(H, "Records"))
+		if(H.sec_record)
 			S.fields["notes"] = H.sec_record
 		else
 			S.fields["notes"] = "No notes."
@@ -316,7 +316,7 @@ var/global/list/PDA_Manifest = list()
 		L.fields["faction"]		= H.personal_faction
 		L.fields["religion"]	= H.religion
 		L.fields["image"]		= getFlatIcon(H)	//This is god-awful
-		if(H.exploit_record && !jobban_isbanned(H, "Records"))
+		if(H.exploit_record)
 			L.fields["exploit_record"] = H.exploit_record
 		else
 			L.fields["exploit_record"] = "No additional information acquired."

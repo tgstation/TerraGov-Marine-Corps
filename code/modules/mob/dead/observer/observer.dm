@@ -638,10 +638,6 @@
 		to_chat(usr, "<span class='warning'>The game hasn't started yet!</span>")
 		return
 
-	if(jobban_isbanned(usr, "Alien"))
-		to_chat(usr, "<span class='warning'>You are banned from playing aliens and cannot spawn as a Hellhound.</span>")
-		return
-
 	var/list/hellhound_list = list()
 
 	for(var/mob/living/carbon/hellhound/A in GLOB.alive_mob_list)

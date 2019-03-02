@@ -18,8 +18,9 @@ HUBPASSWORD kMZy3U5jJHSiBQjr
 ## Optional URL for faster resource downloading.
 #RESOURCE_URL url
 
-## Add a # infront of this if you want to use the SQL based admin system, the legacy system uses admins.txt. You need to set up your database to use the SQL based system.
-ADMIN_LEGACY_SYSTEM
+## Add a # infront of this if you want to use the SQL based systems, the legacy system uses admins.txt and files in the data folder. You need to set up your database to use the SQL based system.
+#ADMIN_LEGACY_SYSTEM
+#BAN_LEGACY_SYSTEM
 
 ## Add a # infront of this to disable the shutdown server verb.
 ALLOW_SHUTDOWN
@@ -31,11 +32,25 @@ ALLOW_SHUTDOWN
 ## 32 bit OS users use: C:\Program Files\TG Station Server\TGCommandLine.exe
 #TGS3_COMMANDLINE_PATH
 
-
-## Add a # infront of this if you want to use the SQL based banning system. The legacy systems use the files in the data folder. You need to set up your database to use the SQL based system.
-BAN_LEGACY_SYSTEM
-
 LOCALHOST_RANK
+
+SEE_OWN_NOTES
+
+USE_AGE_RESTRICTION_FOR_JOBS
+
+USE_EXP_TRACKING
+
+USE_EXP_RESTRICTIONS_COMMAND
+
+USE_EXP_RESTRICTIONS_OTHER
+
+#USE_EXP_RESTRICTIONS_ADMIN_BYPASS
+
+AUTOMUTE_ON
+
+PROTECT_LEGACY_ADMINS
+
+PROTECT_LEGACY_RANKS
 
 ## Add your own URLs here.
 #FORUMURL
@@ -76,8 +91,6 @@ LOG_MANIFEST
 # INVOKE_YOUTUBEDL youtube-dl
 
 ## Gameplay options
-
-ALLOW_VOTE_RESTART
 
 GUEST_JOBBAN
 

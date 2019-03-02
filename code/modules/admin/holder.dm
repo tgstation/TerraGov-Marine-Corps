@@ -221,9 +221,26 @@ GLOBAL_PROTECT(href_token)
 	if(usr.client.holder)
 		if(!other?.holder?.rank)
 			return TRUE
+		if(usr.client.holder.rank.rights == R_EVERYTHING)
+			return TRUE
+		if(usr.client == other)
+			return TRUE
 		if(usr.client.holder.rank.rights != other.holder.rank.rights && ((usr.client.holder.rank.rights & other.holder.rank.rights) == other.holder.rank.rights))
 			return TRUE
 	to_chat(usr, "<span class='warning'>They have more or equal rights than you.</span>")
+	return FALSE
+
+
+/datum/admins/proc/check_if_greater_rights_than_holder(datum/admins/other)
+	if(!istype(other))
+		return TRUE
+	if(rank.rights == R_EVERYTHING)
+		return TRUE
+	if(src == other)
+		return TRUE
+	if(rank.rights != other.rank.rights)
+		if((rank.rights & other.rank.rights) == other.rank.rights)
+			return TRUE
 	return FALSE
 
 
@@ -300,11 +317,10 @@ GLOBAL_PROTECT(admin_verbs_ban)
 GLOBAL_LIST_INIT(admin_verbs_ban, world.AVban())
 /world/proc/AVban()
 	return list(
-	/datum/admins/proc/ban_offline,
+	/datum/admins/proc/ban_panel,
+	/datum/admins/proc/sticky_ban_panel,
 	/datum/admins/proc/unban_panel,
-	/datum/admins/proc/jobban_offline,
-	/datum/admins/proc/player_notes_show,
-	/datum/admins/proc/player_notes_list
+	/datum/admins/proc/note_panel
 	)
 
 GLOBAL_PROTECT(admin_verbs_asay)
@@ -448,6 +464,8 @@ GLOBAL_LIST_INIT(admin_verbs_spawn, world.AVspawn())
 		if(rights & R_DEBUG)
 			verbs += GLOB.admin_verbs_debug
 		if(rights & R_PERMISSIONS)
+			verbs += GLOB.admin_verbs_permissions
+		if(rights & R_DBRANKS)
 			verbs += GLOB.admin_verbs_permissions
 		if(rights & R_SOUND)
 			verbs += GLOB.admin_verbs_sound
