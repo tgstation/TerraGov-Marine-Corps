@@ -2,7 +2,7 @@
 	department_flag = J_FLAG_PMC
 	access = ALL_MARINE_ACCESS
 	minimal_access = ALL_MARINE_ACCESS
-	skills_type = /datum/skills/pfc/crafty
+	skills_type = /datum/skills/pfc/pmc
 	faction = "Nanotrasen"
 
 

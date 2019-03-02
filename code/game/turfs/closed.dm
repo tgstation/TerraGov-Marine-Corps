@@ -9,21 +9,31 @@
 
 
 
-/turf/closed/mineral //mineral deposits
-	name = "Rock"
+/turf/closed/mineral
+	name = "rock"
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "rock"
 
-/turf/closed/mineral/New()
-	..()
-	spawn(2)
-		var/list/step_overlays = list("s" = NORTH, "n" = SOUTH, "w" = EAST, "e" = WEST)
-		for(var/direction in step_overlays)
-			var/turf/turf_to_check = get_step(src,step_overlays[direction])
+/turf/closed/mineral/Initialize(mapload)
+    . = ..()
+    for(var/direction in GLOB.cardinals)
+        var/turf/turf_to_check = get_step(src, direction)
+        if(istype(turf_to_check, /turf/open))
+            var/image/rock_side = image(icon, "[icon_state]_side", dir = turn(direction, 180))
+            switch(direction)
+                if(NORTH)
+                    rock_side.pixel_y += world.icon_size
+                if(SOUTH)
+                    rock_side.pixel_y -= world.icon_size
+                if(EAST)
+                    rock_side.pixel_x += world.icon_size
+                if(WEST)
+                    rock_side.pixel_x -= world.icon_size
+            overlays += rock_side
 
-			if(istype(turf_to_check,/turf/open))
-				turf_to_check.overlays += image('icons/turf/walls.dmi', "rock_side_[direction]", 2.99) //Really high since it's an overhead turf and it shouldn't collide with anything else
-
+/turf/closed/mineral/bigred
+	name = "rock"
+	icon_state = "redrock"
 
 
 //Ground map dense jungle

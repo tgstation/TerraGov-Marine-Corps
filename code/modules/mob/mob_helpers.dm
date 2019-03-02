@@ -485,4 +485,4 @@ mob/proc/get_standard_bodytemperature()
 					usr.zone_selected = "l_leg"
 					usr.client.screen[screen_num].selecting = "l_leg"
 
-	usr.client.screen[screen_num].update_icon()
+	usr.client.screen[screen_num].update_icon(usr)

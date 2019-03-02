@@ -99,17 +99,17 @@
 		return
 	//Initial stealth
 	if(last_stealth > world.time - HUNTER_STEALTH_INITIAL_DELAY) //We don't start out at max invisibility
-		alpha = HUNTER_STEALTH_RUN_ALPHA //50% invisible
+		alpha = HUNTER_STEALTH_RUN_ALPHA
 		return
 	//Stationary stealth
 	else if(last_move_intent < world.time - HUNTER_STEALTH_STEALTH_DELAY) //If we're standing still for 4 seconds we become almost completely invisible
-		alpha = HUNTER_STEALTH_STILL_ALPHA //95% invisible
+		alpha = HUNTER_STEALTH_STILL_ALPHA
 	//Walking stealth
 	else if(m_intent == MOVE_INTENT_WALK)
-		alpha = HUNTER_STEALTH_WALK_ALPHA //80% invisible
+		alpha = HUNTER_STEALTH_WALK_ALPHA
 	//Running stealth
 	else
-		alpha = HUNTER_STEALTH_RUN_ALPHA //50% invisible
+		alpha = HUNTER_STEALTH_RUN_ALPHA
 	//If we have 0 plasma after expending stealth's upkeep plasma, end stealth.
 	if(!plasma_stored)
 		to_chat(src, "<span class='xenodanger'>You lack sufficient plasma to remain camouflaged.</span>")
@@ -141,6 +141,8 @@
 	if(.)
 		return
 	if(!(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE) && on_fire) //Sanity check; have to be on fire to actually take the damage.
+		if(stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to y'know being on fire.
+			stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 		adjustFireLoss((fire_stacks + 3) * CLAMP(xeno_caste.fire_resist + fire_resist_modifier, 0, 1) ) // modifier is negative
 
 /mob/living/carbon/Xenomorph/proc/handle_living_health_updates()

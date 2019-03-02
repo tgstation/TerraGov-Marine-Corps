@@ -149,14 +149,14 @@
 	caste_base_type = /mob/living/carbon/Xenomorph/Spitter
 	name = "Spitter"
 	desc = "A gross, oozing alien of some kind."
-	icon = 'icons/Xeno/1x1_Xenos.dmi'
+	icon = 'icons/Xeno/48x48_Xenos.dmi'
 	icon_state = "Spitter Walking"
 	health = 180
 	maxHealth = 180
 	plasma_stored = 150
 	speed = -0.5
-	pixel_x = 0
-	old_x = 0
+	pixel_x = -12
+	old_x = -12
 	tier = 2
 	upgrade = 0
 	acid_cooldown = 0

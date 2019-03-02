@@ -196,7 +196,7 @@
 	icon_state = "stamp-hos"
 
 /obj/item/tool/stamp/ce
-	name = "chief engineer's rubber stamp"
+	name = "chief ship engineer's rubber stamp"
 	icon_state = "stamp-ce"
 
 /obj/item/tool/stamp/rd

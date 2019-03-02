@@ -100,7 +100,7 @@
 		if("Squad Engineer")
 			num_engineers++
 			C.claimedgear = 0
-		if("Squad Medic")
+		if("Squad Corpsman")
 			num_medics++
 			C.claimedgear = 0
 		if("Squad Specialist")
@@ -167,7 +167,7 @@
 	switch(H.mind.assigned_role)
 		if("Squad Engineer")
 			num_engineers--
-		if("Squad Medic")
+		if("Squad Corpsman")
 			num_medics--
 		if("Squad Specialist")
 			num_specialists--
@@ -200,7 +200,7 @@
 	CLEAR_TRACK_LEADER(tracking_id)
 	if(old_lead.mind.assigned_role)
 		if(old_lead.mind.cm_skills)
-			if(old_lead.mind.assigned_role == ("Squad Specialist" || "Squad Engineer" || "Squad Medic" || "Squad Smartgunner"))
+			if(old_lead.mind.assigned_role == ("Squad Specialist" || "Squad Engineer" || "Squad Corpsman" || "Squad Smartgunner"))
 				old_lead.mind.cm_skills.leadership = SKILL_LEAD_BEGINNER
 
 			else if(old_lead.mind == "Squad Leader")
@@ -241,7 +241,7 @@
 			if(num_engineers >= max_engineers)
 				return FALSE
 			return TRUE
-		if("Squad Medic")
+		if("Squad Corpsman")
 			if(num_medics >= max_medics)
 				return FALSE
 			return TRUE
@@ -272,7 +272,7 @@
 			M.mind.assigned_squad = src
 			num_engineers++
 			return TRUE
-		if("Squad Medic")
+		if("Squad Corpsman")
 			M.mind.assigned_squad = src
 			num_medics++
 			return TRUE
@@ -319,7 +319,7 @@
 					continue
 				else if(S.assign(M, rank))
 					return TRUE
-		if("Squad Medic")
+		if("Squad Corpsman")
 			for(var/i in shuffle(SSjob.squads))
 				var/datum/squad/S = SSjob.squads[i]
 				if(!S.check_entry(rank))

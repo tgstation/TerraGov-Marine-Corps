@@ -75,7 +75,7 @@
 	return
 
 /client/verb/webmap()
-	var/ship_link
+	var/ship_link = CONFIG_GET(string/shipurl)
 	var/ground_link
 	set name = "webmap"
 	set desc = "Opens the webmap"
@@ -83,9 +83,6 @@
 	var/choice = alert("Do you want to view the ground or the ship?",,"Ship","Ground","Cancel")
 	switch(choice)
 		if("Ship")
-			switch(MAIN_SHIP_NAME)
-				if("TGS Theseus")
-					ship_link = CONFIG_GET(string/shipurl)
 			if(!ship_link)
 				to_chat(src, "<span class='warning'>This ship map has no webmap setup.</span>")
 				return
@@ -94,9 +91,9 @@
 			switch(SSmapping.config.map_name)
 				if("Ice Colony")
 					ground_link = CONFIG_GET(string/icecolonyurl)
-				if("LV-624")
+				if("LV624")
 					ground_link = CONFIG_GET(string/lv624url)
-				if("Solaris Ridge")
+				if("Big Red")
 					ground_link = CONFIG_GET(string/bigredurl)
 				if("Prison Station")
 					ground_link = CONFIG_GET(string/prisonstationurl)

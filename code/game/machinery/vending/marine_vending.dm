@@ -460,9 +460,9 @@
 
 	products = list(
 						/obj/item/clothing/under/marine/medic = 4,
-						/obj/item/clothing/head/helmet/marine/medic = 4,
-						/obj/item/storage/backpack/marine/medic = 4,
-						/obj/item/storage/backpack/marine/satchel/medic = 4,
+						/obj/item/clothing/head/helmet/marine/corpsman = 4,
+						/obj/item/storage/backpack/marine/corpsman = 4,
+						/obj/item/storage/backpack/marine/satchel/corpsman = 4,
 						/obj/item/device/encryptionkey/med = 4,
 						/obj/item/storage/belt/medical = 4,
 						/obj/item/bodybag/cryobag = 4,

@@ -1255,7 +1255,7 @@
 					<li>Open the Orbital Cannon Console's interface.</li>
 					<li>Load the Tray into the Cannon.</li>
 					<li>Chamber the Tray's content into the cannon barrel. <b>(can't be undone!)</b></li>
-					<li>Staff Officers can now fire the Orbital Cannon from their console.</li>
+					<li>Officers can now fire the Orbital Cannon from the main overwatch console.</li>
 					<li>After firing, unload the Tray from the Orbital Cannon.</li>
 					<li>Inspect the Tray to make sure it is empty and operational.</li>
 				</ol>

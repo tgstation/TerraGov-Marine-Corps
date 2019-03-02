@@ -11,7 +11,8 @@ GLOBAL_LIST_INIT(bitfields, list(
 		"COLOR" = R_COLOR,
 		"VAREDIT" = R_VAREDIT,
 		"SOUND" = R_SOUND,
-		"SPAWN" = R_SPAWN
+		"SPAWN" = R_SPAWN,
+		"DBRANKS" = R_DBRANKS
 		),
 	"stat" = list(
 		"BROKEN" = BROKEN,
