@@ -73,6 +73,24 @@
 	var/turf/T1 = locate(L[3],L[4],z)
 	return block(T0,T1)
 
+/obj/docking_port/proc/return_center_turf()
+	var/list/L = return_coords()
+	var/cos = 1
+	var/sin = 0
+	switch(dir)
+		if(WEST)
+			cos = 0
+			sin = 1
+		if(SOUTH)
+			cos = -1
+			sin = 0
+		if(EAST)
+			cos = 0
+			sin = -1
+	var/_x = L[1] + (round(width/2))*cos - (round(height/2))*sin
+	var/_y = L[2] + (round(width/2))*sin + (round(height/2))*cos
+	return locate(_x, _y, z)
+
 //returns turfs within our projected rectangle in a specific order.
 //this ensures that turfs are copied over in the same order, regardless of any rotation
 /obj/docking_port/proc/return_ordered_turfs(_x, _y, _z, _dir)
@@ -231,6 +249,7 @@
 	var/mode = SHUTTLE_IDLE			//current shuttle mode
 	var/callTime = 100				//time spent in transit (deciseconds). Should not be lower then 10 seconds without editing the animation of the hyperspace ripples.
 	var/ignitionTime = 55			// time spent "starting the engines". Also rate limits how often we try to reserve transit space if its ever full of transiting shuttles.
+	var/rechargeTime = 0			//time spent after arrival before being able to launch again
 
 	// The direction the shuttle prefers to travel in
 	var/preferred_direction = NORTH
@@ -385,7 +404,12 @@
 		if(SHUTTLE_IDLE, SHUTTLE_IGNITING)
 			destination = S
 			mode = SHUTTLE_IGNITING
+			on_ignition()
 			setTimer(ignitionTime)
+
+// called on entering the igniting state
+/obj/docking_port/mobile/proc/on_ignition()
+	return
 
 //recall the shuttle to where it was previously
 /obj/docking_port/mobile/proc/cancel()
@@ -550,9 +574,17 @@
 				setTimer(callTime * engine_coeff)
 				enterTransit()
 				return
+		if(SHUTTLE_RECHARGING)
+			mode = SHUTTLE_IDLE
+			timer = 0
+			return
 
-	mode = SHUTTLE_IDLE
-	timer = 0
+	if(rechargeTime)
+		mode = SHUTTLE_RECHARGING
+		setTimer(rechargeTime)
+	else
+		mode = SHUTTLE_IDLE
+		timer = 0
 	destination = null
 
 /obj/docking_port/mobile/proc/check_effects()
@@ -657,6 +689,9 @@
 
 /obj/docking_port/mobile/proc/getStatusText()
 	var/obj/docking_port/stationary/dockedAt = get_docked()
+
+	if(mode == SHUTTLE_RECHARGING)
+		return "recharging, [timeLeft()] seconds remaining"
 
 	if(istype(dockedAt, /obj/docking_port/stationary/transit))
 		if (timeLeft() > 1 HOURS)

@@ -38,6 +38,10 @@
 
 	ignitionTime = 10 SECONDS
 	callTime = 50 SECONDS // same as old transit time with flight optimisation
+	rechargeTime = 2 MINUTES
+
+/obj/docking_port/mobile/marine_dropship/on_ignition()
+	playsound(return_center_turf(), 'sound/effects/engine_startup.ogg', 60, 0)
 
 /obj/docking_port/mobile/marine_dropship/one
 	id = "alamo"
@@ -50,6 +54,29 @@
 // 			dropship specific objs and turfs		//
 //													//
 // ************************************************	//
+
+// control computer
+/obj/machinery/computer/shuttle/marine_dropship
+	icon = 'icons/Marine/shuttle-parts.dmi'
+	icon_state = "console"
+	unacidable = TRUE
+	exproof = TRUE
+	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER) // TLs can only operate the remote console
+	possible_destinations = "dropship;alamo;normandy"
+/obj/machinery/computer/shuttle/marine_dropship/one
+	name = "\improper 'Alamo' flight controls"
+	desc = "The flight controls for the 'Alamo' Dropship. Named after the Alamo Mission, stage of the Battle of the Alamo in the United States' state of Texas in the Spring of 1836. The defenders held to the last, encouraging other Texians to rally to the flag."
+
+/obj/machinery/computer/shuttle/marine_dropship/two
+	name = "\improper 'Normandy' flight controls"
+	desc = "The flight controls for the 'Normandy' Dropship. Named after a department in France, noteworthy for the famous naval invasion of Normandy on the 6th of June 1944, a bloody but decisive victory in World War II and the campaign for the Liberation of France."
+
+
+/obj/machinery/computer/shuttle_control
+	name = "shuttle control console"
+	icon = 'icons/obj/machines/computer.dmi'
+	icon_state = "shuttle"
+
 
 /obj/machinery/door/poddoor/shutters/transit/beforeShuttleMove(turf/newT, rotation, move_mode, obj/docking_port/mobile/moving_dock)
 	. = ..()
@@ -298,29 +325,6 @@
 /obj/structure/dropship_piece/two/rearwing/rightrrbottom
 	icon_state = "blue_rearwing_rrrb"
 	opacity = FALSE
-
-// control computer
-/obj/machinery/computer/shuttle/marine_dropship
-	icon = 'icons/Marine/shuttle-parts.dmi'
-	icon_state = "console"
-	unacidable = TRUE
-	exproof = TRUE
-	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER) // TLs can only operate the remote console
-	possible_destinations = "dropship;alamo;normandy"
-
-/obj/machinery/computer/shuttle/marine_dropship/one
-	name = "\improper 'Alamo' flight controls"
-	desc = "The flight controls for the 'Alamo' Dropship. Named after the Alamo Mission, stage of the Battle of the Alamo in the United States' state of Texas in the Spring of 1836. The defenders held to the last, encouraging other Texians to rally to the flag."
-
-/obj/machinery/computer/shuttle/marine_dropship/two
-	name = "\improper 'Normandy' flight controls"
-	desc = "The flight controls for the 'Normandy' Dropship. Named after a department in France, noteworthy for the famous naval invasion of Normandy on the 6th of June 1944, a bloody but decisive victory in World War II and the campaign for the Liberation of France."
-
-
-/obj/machinery/computer/shuttle_control
-	name = "shuttle control console"
-	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "shuttle"
 
 //Dropship control console
 
