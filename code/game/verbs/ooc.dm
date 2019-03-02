@@ -180,7 +180,7 @@ var/global/normal_ooc_colour = "#002eb8"
 		chatOutput.stopMusic()
 
 
-/client/proc/tracked_playtime()
+/client/verb/tracked_playtime()
 	set category = "OOC"
 	set name = "View Tracked Playtime"
 	set desc = "View the amount of playtime for roles the server has tracked."
