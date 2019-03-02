@@ -401,11 +401,11 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 /obj/structure/ob_ammo/warhead/cluster/warhead_impact(turf/target, inaccuracy_amt = 0)
 	set waitfor = FALSE
 
-	var/range_num = max(10 - inaccuracy_amt, 7)
+	var/range_num = max(9 - inaccuracy_amt, 6)
 	var/list/turf_list = list()
 	for(var/turf/T in range(range_num, target))
 		turf_list += T
-	var/total_amt = max(30 - inaccuracy_amt, 25)
+	var/total_amt = max(25 - inaccuracy_amt, 20)
 	for(var/i = 1 to total_amt)
 		var/turf/U = pick_n_take(turf_list)
 		explosion(U, 1, 3, 5, 6, 1, 0) //rocket barrage
