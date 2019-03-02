@@ -561,7 +561,7 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define DEFILER_GAS_DELAY					1 SECONDS
 #define DEFILER_GAS_CLOUD_COUNT				2
 #define DEFILER_STING_CHANNEL_TIME			1.5 SECONDS
-#define DEFILER_CLAW_AMOUNT					6
+#define DEFILER_CLAW_AMOUNT					6.5
 #define DEFILER_STING_AMOUNT_INITIAL		15
 #define DEFILER_STING_AMOUNT_RECURRING		10
 #define DEFILER_STING_GROWTH_AMOUNT			30
