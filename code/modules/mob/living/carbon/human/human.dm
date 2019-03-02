@@ -201,38 +201,46 @@
 
 	var/b_loss = null
 	var/f_loss = null
+	var/armor = max(0, 1 - getarmor(null, "bomb"))
 	switch(severity)
 		if(1)
-			b_loss += rand(125, 175)
-			if(!prob(getarmor(null, "bomb") + 75)) //Much less likely to gib than before
-				gib()
-				return
-			else
-				var/atom/target = get_edge_target_turf(src, get_dir(src, get_step_away(src, src)))
-				throw_at(target, 200, 4)
-		if(2)
-			b_loss += rand(50, 70)
-			f_loss += rand(50, 70)
+			b_loss += rand(160, 240) * armor	//Probably instant death
+			f_loss += rand(160, 240) * armor	//Probably instant death
 
-			if(prob(getarmor(null, "bomb")))
-				b_loss = b_loss/1.5
-				f_loss = f_loss/1.5
+			var/atom/target = get_edge_target_turf(src, get_dir(src, get_step_away(src, src)))
+			throw_at(target, 200, 4)
 
 			if(!istype(wear_ear, /obj/item/clothing/ears/earmuffs))
-				ear_damage += 30
-				ear_deaf += 120
-			if(prob(70))
-				KnockOut(10)
+				ear_damage += 60 * armor
+				ear_deaf += 240 * armor
+
+			adjust_stagger(4 * armor)
+			add_slowdown(4 * armor)
+			KnockOut(15 * armor)
+
+		if(2)
+			b_loss += rand(80, 120) * armor	//Ouchie time. Armor makes it survivable
+			f_loss += rand(80, 120) * armor	//Ouchie time. Armor makes it survivable
+
+			if(!istype(wear_ear, /obj/item/clothing/ears/earmuffs))
+				ear_damage += 30 * armor
+				ear_deaf += 120 * armor
+
+			adjust_stagger(2 * armor)
+			add_slowdown(2 * armor)
+			KnockOut(7 * armor)
 
 		if(3)
-			b_loss += rand(50, 70)
-			if(prob(getarmor(null, "bomb")))
-				b_loss = b_loss/2
+			b_loss += rand(40, 60) * armor
+			b_loss += rand(40, 60) * armor
+
 			if(!istype(wear_ear, /obj/item/clothing/ears/earmuffs))
-				ear_damage += 15
-				ear_deaf += 60
-			if(prob(50))
-				KnockOut(10)
+				ear_damage += 15 * armor
+				ear_deaf += 60 * armor
+
+			adjust_stagger(1 * armor)
+			add_slowdown(1 * armor)
+			KnockDown(5 * armor)
 
 	var/update = 0
 
