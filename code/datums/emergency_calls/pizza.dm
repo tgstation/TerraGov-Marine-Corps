@@ -8,8 +8,8 @@
 	to_chat(H, "<B>Your job is to deliver your pizzas. You're PRETTY sure this is the right place...</b>")
 	to_chat(H, "<B>Make sure you collect a tip.</b>")
 
-/datum/emergency_call/pizza/create_member(datum/mind/M)
-	var/turf/spawn_loc = get_spawn_point()
+/datum/emergency_call/pizza/create_member(datum/mind/M, list/spawnpoints)
+	var/turf/spawn_loc = get_spawn_point(spawnpoints)
 	var/mob/original = M.current
 
 	if(!istype(spawn_loc))

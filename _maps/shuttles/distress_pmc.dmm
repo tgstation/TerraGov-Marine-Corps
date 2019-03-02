@@ -46,7 +46,7 @@
 /area/shuttle/ert/pmc)
 "j" = (
 /obj/structure/rack,
-/obj/effect/landmark/distress_pmcitem,
+/obj/effect/landmark/distress_item,
 /obj/item/storage/toolbox/mechanical,
 /obj/item/device/multitool,
 /turf/open/shuttle/dropship{
@@ -74,7 +74,7 @@
 /area/shuttle/ert/pmc)
 "n" = (
 /obj/structure/rack,
-/obj/effect/landmark/distress_pmcitem,
+/obj/effect/landmark/distress_item,
 /obj/item/storage/firstaid/adv,
 /turf/open/shuttle/dropship{
 	tag = "icon-rasputin15";
@@ -97,7 +97,7 @@
 	},
 /area/shuttle/ert/pmc)
 "q" = (
-/obj/effect/landmark/distress_pmc,
+/obj/effect/landmark/distress,
 /turf/open/shuttle/dropship{
 	tag = "icon-rasputin3";
 	icon_state = "rasputin3"
@@ -105,7 +105,7 @@
 /area/shuttle/ert/pmc)
 "r" = (
 /obj/structure/bed/chair/dropship/passenger,
-/obj/effect/landmark/distress_pmc,
+/obj/effect/landmark/distress,
 /turf/open/shuttle/dropship{
 	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
@@ -120,7 +120,7 @@
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 4
 	},
-/obj/effect/landmark/distress_pmc,
+/obj/effect/landmark/distress,
 /turf/open/shuttle/dropship{
 	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
@@ -130,7 +130,7 @@
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 8
 	},
-/obj/effect/landmark/distress_pmc,
+/obj/effect/landmark/distress,
 /turf/open/shuttle/dropship{
 	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
@@ -186,7 +186,7 @@
 /area/shuttle/ert/pmc)
 "H" = (
 /obj/structure/rack,
-/obj/effect/landmark/distress_pmcitem,
+/obj/effect/landmark/distress_item,
 /obj/item/storage/firstaid/regular,
 /obj/item/storage/belt/combatLifesaver,
 /turf/open/shuttle/dropship{

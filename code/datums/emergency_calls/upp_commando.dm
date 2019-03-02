@@ -1,6 +1,6 @@
 /datum/emergency_call/upp_commando
 	name = "UPP Commandos"
-	shuttle_id = "Distress_UPP"
+	shuttle_id = "distress_upp"
 	name_of_spawn = "Distress_UPP"
 
 
@@ -12,8 +12,8 @@
 	to_chat(H, "<span class='notice'>Use say :3 <text> to speak in your native tongue.</span>")
 
 
-/datum/emergency_call/upp_commando/create_member(datum/mind/M)
-	var/turf/spawn_loc = get_spawn_point()
+/datum/emergency_call/upp_commando/create_member(datum/mind/M, list/spawnpoints)
+	var/turf/spawn_loc = get_spawn_point(spawnpoints)
 	var/mob/original = M.current
 
 	if(!istype(spawn_loc))

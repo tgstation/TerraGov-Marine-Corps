@@ -1,7 +1,7 @@
 /datum/emergency_call/pmc
 	name = "PMC"
 	probability = 25
-	shuttle_id = "Distress_PMC"
+	shuttle_id = "distress_pmc"
 	name_of_spawn = "Distress_PMC"
 
 
@@ -13,8 +13,8 @@
 	to_chat(H, "<B>If there is no Liaison, eliminate the threat and cooperate with the Captain before returning back home.</b>")
 
 
-/datum/emergency_call/pmc/create_member(datum/mind/M)
-	var/turf/spawn_loc = get_spawn_point()
+/datum/emergency_call/pmc/create_member(datum/mind/M, list/spawnpoints)
+	var/turf/spawn_loc = get_spawn_point(spawnpoints)
 	var/mob/original = M.current
 
 	if(!istype(spawn_loc))

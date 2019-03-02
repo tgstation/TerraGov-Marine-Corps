@@ -116,14 +116,14 @@
 	. = ..()
 	return INITIALIZE_HINT_QDEL
 
-/obj/effect/landmark/distress/Initialize()
+/obj/effect/landmark/distress/*/Initialize()
 	. = ..()
 	if(!GLOB.distress_spawns_by_name["Distress"])
 		GLOB.distress_spawns_by_name["Distress"] = list()
 	GLOB.distress_spawns_by_name["Distress"] += loc
 	return INITIALIZE_HINT_QDEL
-
-/obj/effect/landmark/distress_item/Initialize()
+*/
+/obj/effect/landmark/distress_item/*/Initialize()
 	. = ..()
 	if(!GLOB.distress_spawns_by_name["DistressItem"])
 		GLOB.distress_spawns_by_name["DistressItem"] = list()
@@ -156,7 +156,7 @@
 	if(!GLOB.distress_spawns_by_name["Distress_UPPItem"])
 		GLOB.distress_spawns_by_name["Distress_UPPItem"] = list()
 	GLOB.distress_spawns_by_name["Distress_UPPItem"] += loc
-	return INITIALIZE_HINT_QDEL
+	return INITIALIZE_HINT_QDEL*/
 
 /obj/effect/landmark/prisonwarp/Initialize()
 	. = ..()

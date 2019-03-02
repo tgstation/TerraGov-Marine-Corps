@@ -8,8 +8,8 @@
 	to_chat(H, "<B>Ensure they are not destroyed. Collect payment.</b>")
 
 
-/datum/emergency_call/freelancers/create_member(datum/mind/M)
-	var/turf/spawn_loc = get_spawn_point()
+/datum/emergency_call/freelancers/create_member(datum/mind/M, list/spawnpoints)
+	var/turf/spawn_loc = get_spawn_point(spawnpoints)
 	var/mob/original = M.current
 
 	if(!istype(spawn_loc))

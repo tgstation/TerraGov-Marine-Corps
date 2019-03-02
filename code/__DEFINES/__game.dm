@@ -68,12 +68,6 @@ These are used with cdel (clean delete). For example, qdel(atom, TA_REVIVE_ME) w
 #define SHUTTLE_RECHARGE  1200 // 2 minutes
 #define ELEVATOR_RECHARGE 150  // 15 seconds
 
-//Shuttle moving status
-#define SHUTTLE_IDLE		0
-#define SHUTTLE_WARMUP		1
-#define SHUTTLE_INTRANSIT	2
-#define SHUTTLE_CRASHED		3
-
 //Ferry shuttle processing status
 #define IDLE_STATE		0
 #define WAIT_LAUNCH		1
