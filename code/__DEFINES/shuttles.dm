@@ -8,6 +8,7 @@
 #define SHUTTLE_ESCAPE		"escape"
 #define SHUTTLE_ENDGAME		"endgame: game over"
 #define SHUTTLE_RECHARGING	"recharging"
+#define SHUTTLE_PRE_ARRIVAL	"pre-arrival"
 
 #define EMERGENCY_IDLE_OR_RECALLED (SSshuttle.emergency && ((SSshuttle.emergency.mode == SHUTTLE_IDLE) || (SSshuttle.emergency.mode == SHUTTLE_RECALL)))
 #define EMERGENCY_ESCAPED_OR_ENDGAMED (SSshuttle.emergency && ((SSshuttle.emergency.mode == SHUTTLE_ESCAPE) || (SSshuttle.emergency.mode == SHUTTLE_ENDGAME)))

@@ -37,12 +37,17 @@
 	height = 21
 
 	ignitionTime = 10 SECONDS
-	callTime = 50 SECONDS // same as old transit time with flight optimisation
+	callTime = 38 SECONDS // same as old transit time with flight optimisation
 	rechargeTime = 2 MINUTES
+	prearrivalTime = 12 SECONDS
 
 /obj/docking_port/mobile/marine_dropship/on_ignition()
 	playsound(return_center_turf(), 'sound/effects/engine_startup.ogg', 60, 0)
 
+/obj/docking_port/mobile/marine_dropship/on_prearrival()
+	playsound(return_center_turf(), 'sound/effects/engine_landing.ogg', 60, 0)
+	if(destination)
+		playsound(destination.return_center_turf(), 'sound/effects/engine_landing.ogg', 60, 0)
 /obj/docking_port/mobile/marine_dropship/one
 	id = "alamo"
 

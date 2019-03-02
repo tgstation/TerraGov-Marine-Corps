@@ -250,6 +250,7 @@
 	var/callTime = 100				//time spent in transit (deciseconds). Should not be lower then 10 seconds without editing the animation of the hyperspace ripples.
 	var/ignitionTime = 55			// time spent "starting the engines". Also rate limits how often we try to reserve transit space if its ever full of transiting shuttles.
 	var/rechargeTime = 0			//time spent after arrival before being able to launch again
+	var/prearrivalTime = 0			//delay after call time finishes for sound effects, explosions, etc.
 
 	// The direction the shuttle prefers to travel in
 	var/preferred_direction = NORTH
@@ -411,6 +412,9 @@
 /obj/docking_port/mobile/proc/on_ignition()
 	return
 
+/obj/docking_port/mobile/proc/on_prearrival()
+	return
+
 //recall the shuttle to where it was previously
 /obj/docking_port/mobile/proc/cancel()
 	if(mode != SHUTTLE_CALL)
@@ -551,6 +555,12 @@
 	// then try again
 	switch(mode)
 		if(SHUTTLE_CALL)
+			mode = SHUTTLE_PRE_ARRIVAL
+			on_prearrival()
+			setTimer(max(prearrivalTime, 10))
+			return
+		
+		if(SHUTTLE_PRE_ARRIVAL)
 			var/error = initiate_docking(destination, preferred_direction)
 			if(error && error & (DOCKING_NULL_DESTINATION | DOCKING_NULL_SOURCE))
 				var/msg = "A mobile dock in transit exited initiate_docking() with an error. This is most likely a mapping problem: Error: [error],  ([src]) ([previous][ADMIN_JMP(previous)] -> [destination][ADMIN_JMP(destination)])"
@@ -561,6 +571,10 @@
 			else if(error)
 				setTimer(20)
 				return
+			mode = SHUTTLE_RECHARGING
+			setTimer(max(rechargeTime, 10))
+			destination = null
+
 		if(SHUTTLE_RECALL)
 			if(initiate_docking(previous) != DOCKING_SUCCESS)
 				setTimer(20)
@@ -574,17 +588,9 @@
 				setTimer(callTime * engine_coeff)
 				enterTransit()
 				return
-		if(SHUTTLE_RECHARGING)
-			mode = SHUTTLE_IDLE
-			timer = 0
-			return
 
-	if(rechargeTime)
-		mode = SHUTTLE_RECHARGING
-		setTimer(rechargeTime)
-	else
-		mode = SHUTTLE_IDLE
-		timer = 0
+	mode = SHUTTLE_IDLE
+	timer = 0
 	destination = null
 
 /obj/docking_port/mobile/proc/check_effects()
