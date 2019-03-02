@@ -162,8 +162,6 @@ Administrative related.
 /datum/config_entry/number/notify_new_player_age
 	min_val = -1
 
-/datum/config_entry/flag/check_randomizer
-
 /*
 Voting
 */
