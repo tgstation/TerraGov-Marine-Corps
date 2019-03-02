@@ -18,7 +18,7 @@
 
 /obj/item/ammo_magazine/smg/m39/ap
 	name = "\improper M39 AP magazine (10x20mm)"
-	icon_state = "m39_AP"
+	icon_state = "m39_ap"
 	default_ammo = /datum/ammo/bullet/smg/ap
 
 /obj/item/ammo_magazine/smg/m39/extended
@@ -92,7 +92,7 @@
 	name = "\improper GAL-9 magazine (9mm)"
 	desc = "A magazine for the GAL-9."
 	caliber = "9mm"
-	icon_state = "gal9"
+	icon_state = "uzi"
 	max_rounds = 32 //Can also be 20, 25, 40, and 50.
 	gun_type = /obj/item/weapon/gun/smg/uzi
 

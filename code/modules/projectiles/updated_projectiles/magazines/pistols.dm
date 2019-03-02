@@ -14,12 +14,12 @@
 
 /obj/item/ammo_magazine/pistol/hp
 	name = "\improper M4A3 hollowpoint magazine (9mm)"
-	icon_state = "m4a3_HP"
+	icon_state = "m4a3_hp"
 	default_ammo = /datum/ammo/bullet/pistol/hollow
 
 /obj/item/ammo_magazine/pistol/ap
 	name = "\improper M4A3 AP magazine (9mm)"
-	icon_state = "m4a3_AP"
+	icon_state = "m4a3_ap"
 	default_ammo = /datum/ammo/bullet/pistol/ap
 
 /obj/item/ammo_magazine/pistol/incendiary
@@ -191,7 +191,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	name = "\improper CHIMP70 magazine (.70M)"
 	default_ammo = /datum/ammo/bullet/pistol/mankey
 	caliber = ".70M"
-	icon_state = "c70" //PLACEHOLDER
+	icon_state = "c70"
 	origin_tech = "combat=8;materials=8;syndicate=8;bluespace=8"
 	matter = list("metal" = 3000)
 	max_rounds = 300
