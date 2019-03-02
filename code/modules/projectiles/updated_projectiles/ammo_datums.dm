@@ -1369,13 +1369,19 @@
 	drop_resin(get_turf(M))
 	if(istype(M,/mob/living/carbon))
 		var/mob/living/carbon/C = M
-		C.add_slowdown(0.7) //slow em down
+		if( (xeno_hivenumber(C) && xeno_hivenumber(C) == xeno_hivenumber(P.firer) ) )
+			return
+		C.add_slowdown(1) //slow em down
+		C.next_move_slowdown += 8 //really slow down their next move, as if they stepped in sticky doo doo
 
 /datum/ammo/xeno/sticky/on_hit_obj(obj/O,obj/item/projectile/P)
 	drop_resin(get_turf(P))
 
 /datum/ammo/xeno/sticky/on_hit_turf(turf/T,obj/item/projectile/P)
-	drop_resin(get_turf(P))
+	if(istype(T, /turf/closed) )
+		drop_resin(get_turf(P))
+		return
+	drop_resin(get_turf(T))
 
 /datum/ammo/xeno/sticky/do_at_max_range(obj/item/projectile/P)
 	drop_resin(get_turf(P))
