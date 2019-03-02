@@ -123,10 +123,11 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 /client/New(TopicData)
 	var/tdata = TopicData //save this for later use
 	chatOutput = new /datum/chatOutput(src)
-	TopicData = null							//Prevent calls to client.Topic from connect
+	TopicData = null	//Prevent calls to client.Topic from connect
 
-	if(!(connection in list("seeker", "web")))					//Invalid connection type.
+	if(connection != "seeker" && connection != "web")	//Invalid connection type.
 		return null
+
 
 	if(!guests_allowed && IsGuestKey(key))
 		alert(src,"This server doesn't allow guest accounts to play. Please go to http://www.byond.com/ and register for a key.", "Guest", "OK")
@@ -163,6 +164,7 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 	if(!prefs || isnull(prefs) || !istype(prefs))
 		prefs = new /datum/preferences(src)
 		GLOB.preferences_datums[ckey] = prefs
+	prefs.parent = src
 	prefs.last_ip = address				//these are gonna be used for banning
 	prefs.last_id = computer_id			//these are gonna be used for banning
 
