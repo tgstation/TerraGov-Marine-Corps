@@ -5,7 +5,7 @@
 /obj/effect/decal/warning_stripes/Initialize()
 	. = ..()
 
-	loc.overlays += src
+	loc.overlays += image(icon, icon_state, dir = src.dir)
 	return INITIALIZE_HINT_QDEL
 
 /obj/effect/decal/warning_stripes/thin

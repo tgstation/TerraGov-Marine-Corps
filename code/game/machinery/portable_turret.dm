@@ -182,7 +182,7 @@ Status: []<BR>"},
 
 /obj/machinery/porta_turret/attackby(obj/item/W as obj, mob/user as mob)
 	if(stat & BROKEN)
-		if(istype(W, /obj/item/weapon/crowbar))
+		if(istype(W, /obj/item/tool/crowbar))
 
 			// If the turret is destroyed, you can remove it with a crowbar to
 			// try and salvage its components
@@ -450,13 +450,13 @@ Status: []<BR>"},
 			if((src.allowed(perp)) && !(src.lasercolor)) // if the perp has security access, return 0
 				return 0
 
-			if((istype(perp.l_hand, /obj/item/weapon/gun) && !istype(perp.l_hand, /obj/item/weapon/gun/projectile/shotgun)) || istype(perp.l_hand, /obj/item/weapon/melee/baton))
+			if((istype(perp.l_hand, /obj/item/weapon/gun) && !istype(perp.l_hand, /obj/item/weapon/gun/projectile/shotgun)) || istype(perp.l_hand, /obj/item/weapon/baton))
 				threatcount += 4
 
-			if((istype(perp.r_hand, /obj/item/weapon/gun) && !istype(perp.r_hand, /obj/item/weapon/gun/projectile/shotgun)) || istype(perp.r_hand, /obj/item/weapon/melee/baton))
+			if((istype(perp.r_hand, /obj/item/weapon/gun) && !istype(perp.r_hand, /obj/item/weapon/gun/projectile/shotgun)) || istype(perp.r_hand, /obj/item/weapon/baton))
 				threatcount += 4
 
-			if(istype(perp.belt, /obj/item/weapon/gun) || istype(perp.belt, /obj/item/weapon/melee/baton))
+			if(istype(perp.belt, /obj/item/weapon/gun) || istype(perp.belt, /obj/item/weapon/baton))
 				threatcount += 2
 
 	if((src.lasercolor) == "b")//Lasertag turrets target the opposing team, how great is that? -Sieve
@@ -585,7 +585,7 @@ Status: []<BR>"},
 				build_step = 1
 				return
 
-			else if(istype(W, /obj/item/weapon/crowbar) && !anchored)
+			else if(istype(W, /obj/item/tool/crowbar) && !anchored)
 				playsound(src.loc, 'sound/items/Crowbar.ogg', 75, 1)
 				to_chat(user, "You dismantle the turret construction.")
 				new /obj/item/stack/sheet/metal( loc, 5)
@@ -710,14 +710,14 @@ Status: []<BR>"},
 					Turret.New()
 					del(src)
 
-			else if(istype(W, /obj/item/weapon/crowbar))
+			else if(istype(W, /obj/item/tool/crowbar))
 				playsound(src.loc, 'sound/items/Crowbar.ogg', 75, 1)
 				to_chat(user, "You pry off the turret's exterior armor.")
 				new /obj/item/stack/sheet/metal( loc, 2)
 				build_step = 6
 				return
 
-	if (istype(W, /obj/item/weapon/pen)) // you can rename turrets like bots!
+	if (istype(W, /obj/item/tool/pen)) // you can rename turrets like bots!
 		var/t = stripped_input(user, "Enter new turret name", src.name, src.finish_name)
 		if (!t)
 			return

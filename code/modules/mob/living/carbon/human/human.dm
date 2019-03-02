@@ -1293,11 +1293,12 @@
 	set name = "View Crew Manifest"
 	set category = "IC"
 
-	var/dat
-	dat += "<h4>Crew Manifest</h4>"
-	dat += data_core.get_manifest()
+	var/dat = data_core.get_manifest()
 
-	src << browse(dat, "window=manifest;size=370x420;can_close=1")
+	var/datum/browser/popup = new(src, "manifest", "<div align='center'>Crew Manifest</div>", 370, 420)
+	popup.set_content(dat)
+	popup.open(FALSE)
+
 
 /mob/living/carbon/human/species
 	var/race = null

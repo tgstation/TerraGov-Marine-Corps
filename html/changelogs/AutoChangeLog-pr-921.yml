@@ -1,0 +1,4 @@
+author: "by Surrealistik"
+delete-after: True
+changes: 
+  - bugfix: "Fixed bug where painkillers were effective at reducing the impact of halloss."

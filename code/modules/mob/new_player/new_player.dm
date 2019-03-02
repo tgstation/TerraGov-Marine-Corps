@@ -276,15 +276,17 @@
 		dat += "<a href='byond://?src=\ref[src];lobby_choice=SelectedJob;job_selected=[J.title]'>[J.title] ([J.current_positions]) (Active: [active])</a><br>"
 
 	dat += "</center>"
-	src << browse(dat, "window=latechoices;size=300x640;can_close=1")
+	var/datum/browser/popup = new(src, "latechoices", "<div align='center'>Join the TGMC</div>", 300, 640)
+	popup.set_content(dat)
+	popup.open(FALSE)
 
 
 /mob/new_player/proc/ViewManifest()
-	var/dat = "<html><body>"
-	dat += "<h4>Crew Manifest:</h4>"
-	dat += data_core.get_manifest(OOC = 1)
+	var/dat = data_core.get_manifest(OOC = 1)
 
-	src << browse(dat, "window=manifest;size=400x420;can_close=1")
+	var/datum/browser/popup = new(src, "manifest", "<div align='center'>Crew Manifest</div>", 400, 420)
+	popup.set_content(dat)
+	popup.open(FALSE)
 
 
 /mob/new_player/Move()
