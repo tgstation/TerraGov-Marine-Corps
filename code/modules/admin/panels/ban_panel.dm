@@ -1071,7 +1071,7 @@
 		var/ckey = ckey(key)
 		var/ban = stickyban2list(world.GetConfig("ban",key))
 		banhtml += "<br /><hr />\n"
-		banhtml += stickyban_gethtml(ckey,ban)
+		banhtml += usr.client.holder.stickyban_gethtml(ckey,ban)
 
 	var/html = {"
 	<head>
