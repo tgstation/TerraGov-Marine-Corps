@@ -251,7 +251,6 @@
 	var/knockdown_threshold = 100
 	var/work_time = 40 //Defines how long it takes to do most maintenance actions
 	var/magazine_type = /obj/item/ammo_magazine/sentry
-	var/burst_offset = 1 //This is mainly for the pre-made turrets which have 10 shot bursts
 
 /obj/machinery/marine_turret/examine(mob/user)
 	. = ..()
@@ -951,7 +950,7 @@
 			if (burst_fire)
 				//Apply scatter
 				var/scatter_chance = in_chamber.ammo.scatter
-				var/burst_value = max(1, burst_size - burst_offset)
+				var/burst_value = CLAMP(burst_size - 1, 1, 5)
 				scatter_chance += (burst_value * burst_value * 2)
 				in_chamber.accuracy = round(in_chamber.accuracy - (burst_value * burst_value), 0.01) //Accuracy penalty scales with burst count.
 
@@ -1096,7 +1095,6 @@
 	burst_fire = TRUE
 	rounds_max = 50000
 	icon_state = "sentry_base"
-	burst_offset = 5
 
 /obj/machinery/marine_turret/premade/Initialize()
 	. = ..()
