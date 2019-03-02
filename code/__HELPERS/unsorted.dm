@@ -1306,22 +1306,32 @@ var/list/WALLITEMS = list(
 	return "<a href='?src=\ref[D];[arglist]'>[content]</a>"
 
 //Reasonably Optimized Bresenham's Line Drawing
-/proc/getline(atom/start, atom/end, exclude_origin=FALSE)
+/proc/getline(atom/start, atom/end)
 	var/x = start.x
 	var/y = start.y
 	var/z = start.z
 
-	//let's compute these only once
-	var/dx = end.x - x
-	var/dy = end.y - y
-	var/abs_dx = abs(dx)
-	var/abs_dy = abs(dy)
-	var/sign_dx = SIGN(dx)
-	var/sign_dy = SIGN(dy)
+	//horizontal and vertical lines special case
+	if(y == end.y)
+		return block(locate(min(x,end.x),y,z), locate(max(x,end.x),y,z))
+	if(x == end.x)
+		return block(locate(x,min(y,end.y),z), locate(x,max(y,end.y),z))
 
-	var/list/turfs = list()
-	if(!exclude_origin)
-		turfs += get_turf(start)
+	//let's compute these only once
+	var/abs_dx = abs(end.x - x)
+	var/abs_dy = abs(end.y - y)
+	var/sign_dx = SIGN(end.x - x)
+	var/sign_dy = SIGN(end.y - y)
+
+	var/list/turfs = list(locate(x,y,z))
+
+	//diagonal special case
+	if(abs_dx == abs_dy)
+		for(var/j = 1 to abs_dx)
+			x += sign_dx
+			y += sign_dy
+			turfs += locate(x,y,z)
+		return turfs
 
 	/*x_error and y_error represents how far we are from the ideal line.
 	Initialized so that we will check these errors against 0, instead of 0.5 * abs_(dx/dy)*/
