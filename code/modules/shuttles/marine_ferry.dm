@@ -277,8 +277,6 @@
 
 	sleep(100) //Wait for it to finish.
 
-	if(EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED) return FALSE //If a nuke finished, don't land.
-
 	target_turf = T_trg
 	target_rotation = trg_rot
 	shuttle_turfs = turfs_int
@@ -437,8 +435,6 @@
 	playsound(turfs_int[sound_target], sound_landing, 60, 0)
 
 	sleep(85)
-
-	if(EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED) return FALSE //If a nuke finished, don't land.
 
 	shake_cameras(turfs_int) //shake for 1.5 seconds before crash, 0.5 after
 
