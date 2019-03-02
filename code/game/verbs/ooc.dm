@@ -178,3 +178,17 @@ var/global/normal_ooc_colour = "#002eb8"
 	SEND_SOUND(src, sound(null))
 	if(chatOutput && !chatOutput.broken && chatOutput.loaded)
 		chatOutput.stopMusic()
+
+
+/client/proc/tracked_playtime()
+	set category = "OOC"
+	set name = "View Tracked Playtime"
+	set desc = "View the amount of playtime for roles the server has tracked."
+
+	if(!CONFIG_GET(flag/use_exp_tracking))
+		to_chat(usr, "<span class='notice'>Sorry, tracking is currently disabled.</span>")
+		return
+
+	var/datum/browser/popup = new(src, "playerplaytime[ckey]", "<div align='center'>Playtime for [key]</div>", 550, 615)
+	popup.set_content(get_exp_report())
+	popup.open(FALSE)
