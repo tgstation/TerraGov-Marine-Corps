@@ -347,11 +347,8 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 		related_accounts_cid += "[query_get_related_cid.item[1]], "
 	qdel(query_get_related_cid)
 	var/admin_rank = "Player"
-	if (src.holder && src.holder.rank)
-		admin_rank = src.holder.rank.name
-	else
-		if(!GLOB.deadmins[ckey])
-			return
+	if(holder && holder.rank)
+		admin_rank = holder.rank.name
 	var/sql_ip = sanitizeSQL(address)
 	var/sql_computerid = sanitizeSQL(computer_id)
 	var/sql_admin_rank = sanitizeSQL(admin_rank)
