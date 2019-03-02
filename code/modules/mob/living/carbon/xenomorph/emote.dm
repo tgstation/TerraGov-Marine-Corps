@@ -19,7 +19,7 @@
 			return
 		if(player_caused)
 			if(client)
- 				if(is_banned_from(ckey, "Emote"))
+				if(is_banned_from(ckey, "Emote"))
 					to_chat(src, "<span class='warning'>You cannot send emotes (banned).</span>")
 					return
 				if(client.prefs.muted & MUTE_IC)
