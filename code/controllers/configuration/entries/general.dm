@@ -160,7 +160,6 @@ Administrative related.
 /datum/config_entry/flag/use_account_age_for_jobs
 
 /datum/config_entry/number/notify_new_player_age
-	config_entry_value = 1
 	min_val = -1
 
 /*
