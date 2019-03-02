@@ -234,4 +234,4 @@ GLOBAL_PROTECT(exp_to_update)
 			"ckey" = "'[sanitizeSQL(ckey)]'",
 			"minutes" = jvalue)))
 		prefs.exp[jtype] += jvalue
-	addtimer(CALLBACK(world, .proc/update_exp_db),20,TIMER_OVERRIDE|TIMER_UNIQUE)
+	addtimer(CALLBACK(GLOBAL_PROC, /proc/update_exp_db), 20, TIMER_OVERRIDE|TIMER_UNIQUE)
