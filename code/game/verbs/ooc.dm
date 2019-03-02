@@ -65,6 +65,8 @@ var/global/normal_ooc_colour = "#002eb8"
 				display_colour = "#f03200"	//darker orange
 			if("Admin Candidate")
 				display_colour = "#ff5a1e"	//lighter orange
+			if("Admin Observer")
+				display_colour = "#1e4cd6"	//VERY slightly different light blue
 			if("Mentor")
 				display_colour = "#008000"	//green
 			if("Maintainer")
