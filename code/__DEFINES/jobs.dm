@@ -172,7 +172,7 @@
 
 
 #define ROLE_XENOMORPH "Xenomorph"
-#define ROLE_QUEEN "Xeno Queen"
+#define ROLE_XENO_QUEEN "Xeno Queen"
 #define ROLE_SURVIVOR "Survivor"
 #define ROLE_ERT "Emergency Response Team"
 
@@ -186,7 +186,7 @@
 #define EXP_TYPE_MARINES		"Marines"
 #define EXP_TYPE_REQUISITIONS	"Requisitions"
 #define EXP_TYPE_POLICE			"Police"
-#define EXP_TYPE_ANTAG			"Antag"
+#define EXP_TYPE_XENO			"Xeno"
 #define EXP_TYPE_SPECIAL		"Special"
 #define EXP_TYPE_GHOST			"Ghost"
 #define EXP_TYPE_ADMIN			"Admin"

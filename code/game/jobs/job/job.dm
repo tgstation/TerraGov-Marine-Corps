@@ -10,7 +10,7 @@ GLOBAL_LIST_INIT(exp_jobsmap, list(
 
 GLOBAL_LIST_INIT(exp_specialmap, list(
 	EXP_TYPE_LIVING = list(),
-	EXP_TYPE_ANTAG = list(),
+	EXP_TYPE_XENO = list(ROLE_XENOMORPH, ROLE_XENO_QUEEN),
 	EXP_TYPE_SPECIAL = list(),
 	EXP_TYPE_GHOST = list()
 ))

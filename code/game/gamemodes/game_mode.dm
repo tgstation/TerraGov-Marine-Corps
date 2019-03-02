@@ -117,7 +117,7 @@
 		if(BE_ALIEN)		
 			roletext = ROLE_XENOMORPH
 		if(BE_QUEEN)		
-			roletext = ROLE_QUEEN
+			roletext = ROLE_XENO_QUEEN
 		if(BE_SURVIVOR)		
 			roletext = ROLE_SURVIVOR
 		if(BE_SQUAD_STRICT)	

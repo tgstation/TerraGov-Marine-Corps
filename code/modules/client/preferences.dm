@@ -185,7 +185,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				ban_check_name = ROLE_XENOMORPH
 
 			if("Xeno Queen")
-				ban_check_name = ROLE_QUEEN
+				ban_check_name = ROLE_XENO_QUEEN
 
 			if("Survivor")
 				ban_check_name = ROLE_SURVIVOR

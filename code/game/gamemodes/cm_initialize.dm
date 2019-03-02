@@ -158,7 +158,7 @@ datum/game_mode/proc/initialize_special_clamps()
 		return FALSE
 
 	for(var/datum/mind/new_queen in possible_queens)
-		if(jobban_isbanned(new_queen.current, ROLE_QUEEN) || is_banned_from(new_queen.current?.ckey, ROLE_QUEEN))
+		if(jobban_isbanned(new_queen.current, ROLE_XENO_QUEEN) || is_banned_from(new_queen.current?.ckey, ROLE_XENO_QUEEN))
 			continue
 		new_queen.assigned_role = "Queen"
 		queen = new_queen
@@ -325,7 +325,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 	var/mob/original = ghost_mind.current
 	var/mob/living/carbon/Xenomorph/new_queen
 	var/datum/hive_status/hive = hive_datum[XENO_HIVE_NORMAL]
-	if(hive.living_xeno_queen || !(original.client?.prefs?.be_special & BE_QUEEN) || jobban_isbanned(original, ROLE_QUEEN) || is_banned_from(original.ckey, ROLE_QUEEN))
+	if(hive.living_xeno_queen || !(original.client?.prefs?.be_special & BE_QUEEN) || jobban_isbanned(original, ROLE_XENO_QUEEN) || is_banned_from(original.ckey, ROLE_XENO_QUEEN))
 		return FALSE
 	new_queen = new /mob/living/carbon/Xenomorph/Queen (pick(GLOB.xeno_spawn))
 	ghost_mind.transfer_to(new_queen)
