@@ -24,8 +24,7 @@
 
 /obj/item/device/flashlight/Destroy()
 	if(ismob(src.loc))
-		var/mob/user = loc
-		user.SetLuminosity(-brightness_on)
+		SetLuminosity(-brightness_on)
 	SetLuminosity(0)
 	. = ..()
 
