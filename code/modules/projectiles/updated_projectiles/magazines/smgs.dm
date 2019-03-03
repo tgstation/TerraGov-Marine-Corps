@@ -88,18 +88,18 @@
 //-------------------------------------------------------
 //GENERIC UZI //Based on the uzi submachinegun, of course.
 
-/obj/item/ammo_magazine/smg/uzi //Based on the Uzi.
-	name = "\improper GAL-9 magazine (9mm)"
-	desc = "A magazine for the GAL-9."
+/obj/item/ammo_magazine/smg/uzi
+	name = "\improper GAL9 magazine (9mm)"
+	desc = "A magazine for the GAL9."
 	caliber = "9mm"
 	icon_state = "uzi"
-	max_rounds = 32 //Can also be 20, 25, 40, and 50.
+	max_rounds = 32
 	gun_type = /obj/item/weapon/gun/smg/uzi
 
 /obj/item/ammo_magazine/smg/uzi/extended
-	name = "\improper MAC-15 extended magazine (9mm)"
+	name = "\improper GAL9 extended magazine (9mm)"
 	max_rounds = 50
-
+	bonus_overlay = "uzi_ex"
 
 //-------------------------------------------------------
 //FP9000 //Based on the FN P90

@@ -221,8 +221,8 @@
 /obj/item/weapon/gun/rifle/sniper/svd
 	name = "\improper SVD Dragunov-033 sniper rifle"
 	desc = "A sniper variant of the MAR-40 rifle, with a new stock, barrel, and scope. It doesn't have the punch of modern sniper rifles, but it's finely crafted in 2133 by someone probably illiterate. Fires 7.62x54mmR rounds."
-	icon_state = "svd003"
-	item_state = "svd003"
+	icon_state = "svd"
+	item_state = "svd"
 	max_shells = 10 //codex
 	caliber = "7.62x54mm Rimmed" //codex
 	origin_tech = "combat=5;materials=3;syndicate=5"
@@ -257,8 +257,8 @@
 /obj/item/weapon/gun/rifle/m4ra
 	name = "\improper M4RA battle rifle"
 	desc = "The M4RA battle rifle is a designated marksman rifle in service with the TGMC. Only fielded in small numbers, and sporting a bullpup configuration, the M4RA battle rifle is perfect for reconnaissance and fire support teams.\nIt is equipped with rail scope and takes 10x24mm A19 high velocity magazines."
-	icon_state = "m41b"
-	item_state = "m4ra" 
+	icon_state = "m4ra"
+	item_state = "m4ra"
 	max_shells = 15 //codex
 	caliber = "10x24mm Caseless" //codex
 	origin_tech = "combat=5;materials=4"
