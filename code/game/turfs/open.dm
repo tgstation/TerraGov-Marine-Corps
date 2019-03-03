@@ -6,7 +6,7 @@
 	var/allow_construction = TRUE //whether you can build things like barricades on this turf.
 	var/slayer = 0 //snow layer
 	var/wet = 0 //whether the turf is wet (only used by floors).
-
+	var/has_catwalk = FALSE
 
 /turf/open/Entered(atom/A, atom/OL)
 	if(iscarbon(A))
@@ -204,13 +204,21 @@
 	icon_state = "seashallow"
 	can_bloody = FALSE
 
-/turf/open/gm/river/New()
-	..()
-	overlays += image("icon"='icons/turf/ground_map.dmi',"icon_state"="riverwater","layer"=MOB_LAYER+0.1)
+/obj/effect/river_overlay
+	name = "river_overlay"
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	layer = RIVER_OVERLAY_LAYER
 
+/turf/open/gm/river/Initialize()
+	. = ..()
+	if(!has_catwalk)
+		var/obj/effect/river_overlay/R = new(src)
+		R.overlays += image("icon"='icons/turf/ground_map.dmi',"icon_state"="riverwater","layer"=MOB_LAYER+0.1)
 
 /turf/open/gm/river/Entered(atom/movable/AM)
 	..()
+	if(has_catwalk)
+		return
 	if(iscarbon(AM))
 		var/mob/living/carbon/C = AM
 		var/river_slowdown = 1.75
@@ -256,9 +264,11 @@
 	M.clean_blood()
 
 
-/turf/open/gm/river/poison/New()
-	..()
-	overlays += image("icon"='icons/effects/effects.dmi',"icon_state"="greenglow","layer"=MOB_LAYER+0.1)
+/turf/open/gm/river/poison/Initialize()
+	. = ..()
+	if(!has_catwalk)
+		var/obj/effect/river_overlay/R = new(src)
+		R.overlays += image("icon"='icons/effects/effects.dmi',"icon_state"="greenglow","layer"=MOB_LAYER+0.1)
 
 /turf/open/gm/river/poison/Entered(mob/living/M)
 	..()
@@ -281,9 +291,11 @@
 	icon_state = "seadeep"
 	can_bloody = FALSE
 
-/turf/open/gm/riverdeep/New()
-	..()
-	overlays += image("icon"='icons/turf/ground_map.dmi',"icon_state"="water","layer"=MOB_LAYER+0.1)
+/turf/open/gm/riverdeep/Initialize()
+	. = ..()
+	if(!has_catwalk)
+		var/obj/effect/river_overlay/R = new(src)
+		R.overlays += image("icon"='icons/turf/ground_map.dmi',"icon_state"="water","layer"=MOB_LAYER+0.1)
 
 
 
