@@ -1056,18 +1056,22 @@
 	max_range = CONFIG_GET(number/combat_define/long_shell_range)
 
 /datum/ammo/rocket/wp/quad/on_hit_mob(mob/M,obj/item/projectile/P)
+	message_admins("ON _ HIT _ MOB")
 	drop_flame(get_turf(M))
 	explosion(P.loc,  -1, 2, 4, 5)
 
 /datum/ammo/rocket/wp/quad/on_hit_obj(obj/O,obj/item/projectile/P)
+	message_admins("ON _ HIT _ OBJ")
 	drop_flame(get_turf(O))
 	explosion(P.loc,  -1, 2, 4, 5)
 
 /datum/ammo/rocket/wp/quad/on_hit_turf(turf/T,obj/item/projectile/P)
+	message_admins("ON _ HIT _ TURF")
 	drop_flame(T)
 	explosion(P.loc,  -1, 2, 4, 5)
 
 /datum/ammo/rocket/wp/quad/do_at_max_range(obj/item/projectile/P)
+	message_admins("DO _ AT _ MAX _ RANGE")
 	drop_flame(get_turf(P))
 	explosion(P.loc,  -1, 2, 4, 5)
 
