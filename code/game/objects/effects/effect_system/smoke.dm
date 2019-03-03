@@ -328,15 +328,10 @@
 	var/protection = max(1 - C.get_permeability_protection(), 0.25)
 	if(prob(50) * protection)
 		to_chat(C, "<span class='danger'>Your skin feels like it is melting away!</span>")
-	if(ishuman(C))
-		var/mob/living/carbon/human/H = C
-		H.adjustFireLoss(strength*rand(15, 20)*protection) //Burn damage, randomizes between various parts //strength corresponds to upgrade level, 1 to 2.5
-	else
-		C.burn_skin(5* protection) //Failsafe for non-humans
+	C.adjustFireLoss(strength * rand(5, 10) * protection) //widespread burn damage, strength corresponds to the caste's bomb_strength
 
 /obj/effect/particle_effect/smoke/xeno/burn/effect_inhale(mob/living/carbon/C)
 	C.adjustOxyLoss(5)
-	C.adjustFireLoss(strength*rand(10, 15))
 	if(!C.stat)
 		if(prob(50))
 			C.emote("cough")

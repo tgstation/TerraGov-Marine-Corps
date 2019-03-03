@@ -294,6 +294,6 @@
 	var/remaining = CEILING(health_percent, 25)
 	icon_state = "[base_icon_state]_[remaining]"
 
-/obj/structure/razorwire/proc/acid_smoke_damage(var/obj/effect/particle_effect/smoke/S)
-	health -= 15
+/obj/structure/razorwire/proc/acid_smoke_damage(obj/effect/particle_effect/smoke/xeno/S)
+	health -= 2 * S.strength
 	update_health()
