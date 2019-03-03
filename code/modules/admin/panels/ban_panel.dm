@@ -750,8 +750,8 @@
 				return
 			else
 				if(alert(usr, "[player_key]/([player_ckey]) has not been seen before, are you sure you want to edit a ban for them?", "Unknown key", "Yes", "No", "Cancel") != "Yes")
-				qdel(query_edit_ban_get_player)
-				return
+					qdel(query_edit_ban_get_player)
+					return
 		qdel(query_edit_ban_get_player)
 	if(applies_to_admins && (applies_to_admins != old_applies))
 		var/admin_ckey = sanitizeSQL(usr.client.ckey)
