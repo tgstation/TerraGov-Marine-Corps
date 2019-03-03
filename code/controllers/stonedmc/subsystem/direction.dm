@@ -45,7 +45,7 @@ SUBSYSTEM_DEF(direction)
 				H = currentrun[L][currentrun[L].len]
 				currentrun[L].len--
 				if(!H)
-					stack_trace("null in squad tracking")
+					processing_mobs[L].Remove(H)
 					continue
 				H.update_leader_tracking(C)
 				if(MC_TICK_CHECK)
