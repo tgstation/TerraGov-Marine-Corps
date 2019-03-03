@@ -3,7 +3,6 @@
 	desc = "A wall mounted storage locker."
 	icon = 'icons/obj/wallframes.dmi'
 	icon_state = "wall-locker"
-	pixel_y = 32
 	density = FALSE
 	anchored = TRUE
 	icon_closed = "wall-locker"
@@ -13,19 +12,19 @@
 	storage_capacity = 20
 	overlay_welded = "walllockerwelded"
 
-/obj/structure/closet/walllocker/north
-	pixel_y = -32
-	dir = NORTH
-
-/obj/structure/closet/walllocker/west
-	pixel_y = 0
-	pixel_x = 32
-	dir = WEST
-
-/obj/structure/closet/walllocker/east
-	pixel_y = 0
-	pixel_x = -32
-	dir = EAST
+/obj/structure/closet/walllocker/Initialize(mapload, ndir)
+	. = ..()
+	if(ndir)
+		dir = ndir
+	switch(dir)
+		if(SOUTH)
+			pixel_y = 32
+		if(NORTH)
+			pixel_y = -32
+		if(EAST)
+			pixel_x = -32
+		if(WEST)
+			pixel_x = 32
 
 /obj/structure/closet/walllocker/emerglocker //wall mounted emergency closet
 	name = "emergency locker"
@@ -34,20 +33,6 @@
 	icon_opened = "emergopen"
 	desc = "A wall mounted locker with emergency supplies."
 	overlay_welded = "emergwelded"
-
-/obj/structure/closet/walllocker/emerglocker/north
-	pixel_y = -32
-	dir = NORTH
-
-/obj/structure/closet/walllocker/emerglocker/west
-	pixel_y = 0
-	pixel_x = 32
-	dir = WEST
-
-/obj/structure/closet/walllocker/emerglocker/east
-	pixel_y = 0
-	pixel_x = -32
-	dir = EAST
 
 /obj/structure/closet/walllocker/emerglocker/full // spawners
 
@@ -58,20 +43,6 @@
 		new /obj/item/tank/emergency_oxygen/double(src)
 		new /obj/item/clothing/mask/gas(src)
 
-/obj/structure/closet/walllocker/emerglocker/full/north
-	pixel_y = -32
-	dir = NORTH
-
-/obj/structure/closet/walllocker/emerglocker/full/west
-	pixel_y = 0
-	pixel_x = 32
-	dir = WEST
-
-/obj/structure/closet/walllocker/emerglocker/full/east
-	pixel_y = 0
-	pixel_x = -32
-	dir = EAST
-
 /obj/structure/closet/walllocker/hydrant //wall mounted fire closet
 	name = "fire-safety locker"
 	desc = "A wall mounted storage unit for fire-fighting supplies."
@@ -79,20 +50,6 @@
 	icon_closed = "hydrant"
 	icon_opened = "hydrantopen"
 	overlay_welded = "hydrant-medical_welded"
-
-/obj/structure/closet/walllocker/hydrant/north
-	pixel_y = -32
-	dir = NORTH
-
-/obj/structure/closet/walllocker/hydrant/west
-	pixel_y = 0
-	pixel_x = 32
-	dir = WEST
-
-/obj/structure/closet/walllocker/hydrant/east
-	pixel_y = 0
-	pixel_x = -32
-	dir = EAST
 
 /obj/structure/closet/walllocker/hydrant/full // spawners
 
@@ -106,20 +63,6 @@
 	new /obj/item/tool/extinguisher(src)
 	new /obj/item/clothing/head/hardhat/red(src)
 
-/obj/structure/closet/walllocker/hydrant/full/north
-	pixel_y = -32
-	dir = NORTH
-
-/obj/structure/closet/walllocker/hydrant/full/west
-	pixel_y = 0
-	pixel_x = 32
-	dir = WEST
-
-/obj/structure/closet/walllocker/hydrant/full/east
-	pixel_y = 0
-	pixel_x = -32
-	dir = EAST
-
 /obj/structure/closet/walllocker/medical_wall //wall mounted medical closet
 	name = "first-aid locker"
 	desc = "A wall mounted storage unit for first aid supplies."
@@ -127,20 +70,6 @@
 	icon_closed = "medical_wall"
 	icon_opened = "medical_wallopen"
 	overlay_welded = "hydrant-medical_welded"
-
-/obj/structure/closet/walllocker/medical_wall/north
-	pixel_y = -32
-	dir = NORTH
-
-/obj/structure/closet/walllocker/medical_wall/west
-	pixel_y = 0
-	pixel_x = 32
-	dir = WEST
-
-/obj/structure/closet/walllocker/medical_wall/east
-	pixel_y = 0
-	pixel_x = -32
-	dir = EAST
 
 /obj/structure/closet/walllocker/medical_wall/full // spawners
 
@@ -150,20 +79,6 @@
 	new /obj/item/storage/firstaid/regular(src)
 	new /obj/item/reagent_container/hypospray/autoinjector/dylovene(src)
 	new /obj/item/reagent_container/hypospray/autoinjector/inaprovaline(src)
-
-/obj/structure/closet/walllocker/medical_wall/full/north
-	pixel_y = -32
-	dir = NORTH
-
-/obj/structure/closet/walllocker/medical_wall/full/west
-	pixel_y = 0
-	pixel_x = 32
-	dir = WEST
-
-/obj/structure/closet/walllocker/medical_wall/full/east
-	pixel_y = 0
-	pixel_x = -32
-	dir = EAST
 
 ///////// SECURE WALL LOCKERS /////////
 
@@ -178,7 +93,6 @@
 	icon_broken = "sec_locker_broken"
 	icon_off = "sec_locker_off"
 	overlay_welded = "emergwelded"
-	pixel_y = 32
 	density = FALSE
 	anchored = TRUE
 	store_mobs = FALSE
@@ -186,19 +100,19 @@
 	large = FALSE
 	storage_capacity = 20
 
-/obj/structure/closet/secure_closet/walllocker/north
-	pixel_y = -32
-	dir = NORTH
-
-/obj/structure/closet/secure_closet/walllocker/west
-	pixel_y = 0
-	pixel_x = 32
-	dir = WEST
-
-/obj/structure/closet/secure_closet/walllocker/east
-	pixel_y = 0
-	pixel_x = -32
-	dir = EAST
+/obj/structure/closet/secure_closet/walllocker/Initialize(mapload, ndir)
+	. = ..()
+	if(ndir)
+		dir = ndir
+	switch(dir)
+		if(SOUTH)
+			pixel_y = 32
+		if(NORTH)
+			pixel_y = -32
+		if(EAST)
+			pixel_x = -32
+		if(WEST)
+			pixel_x = 32
 
 /obj/structure/closet/secure_closet/walllocker/medical
 	name = "first aid closet"
@@ -212,20 +126,6 @@
 	overlay_welded = "hydrant-medical_welded"
 	req_access = list(ACCESS_MARINE_MEDBAY)
 
-/obj/structure/closet/secure_closet/walllocker/medical/north
-	pixel_y = -32
-	dir = NORTH
-
-/obj/structure/closet/secure_closet/walllocker/medical/west
-	pixel_y = 0
-	pixel_x = 32
-	dir = WEST
-
-/obj/structure/closet/secure_closet/walllocker/medical/east
-	pixel_y = 0
-	pixel_x = -32
-	dir = EAST
-
 /obj/structure/closet/secure_closet/walllocker/medical/full // spawners
 
 /obj/structure/closet/secure_closet/walllocker/medical/full/New()
@@ -238,7 +138,7 @@
 	new /obj/item/reagent_container/hypospray/autoinjector/dexalinplus(src)
 	new /obj/item/reagent_container/hypospray/autoinjector/oxycodone(src)
 
-/obj/structure/closet/secure_closet/personal/walllocker // different root path.
+/obj/structure/closet/secure_closet/personal/walllocker // different path.
 	name = "personal wall locker"
 	desc = "It's a secure wall locker for personnel. The first card swiped gains control."
 	icon = 'icons/obj/wallframes.dmi'
@@ -249,7 +149,6 @@
 	icon_broken = "sec_locker_broken"
 	icon_off = "sec_locker_off"
 	overlay_welded = "emergwelded"
-	pixel_y = 32
 	density = FALSE
 	anchored = TRUE
 	store_mobs = FALSE
@@ -257,16 +156,16 @@
 	large = FALSE
 	storage_capacity = 20
 
-/obj/structure/closet/secure_closet/personal/walllocker/north
-	pixel_y = -32
-	dir = NORTH
-
-/obj/structure/closet/secure_closet/personal/walllocker/west
-	pixel_y = 0
-	pixel_x = 32
-	dir = WEST
-
-/obj/structure/closet/secure_closet/personal/walllocker/east
-	pixel_y = 0
-	pixel_x = -32
-	dir = EAST
+/obj/structure/closet/secure_closet/personal/walllocker/Initialize(mapload, ndir)
+	. = ..()
+	if(ndir)
+		dir = ndir
+	switch(dir)
+		if(SOUTH)
+			pixel_y = 32
+		if(NORTH)
+			pixel_y = -32
+		if(EAST)
+			pixel_x = -32
+		if(WEST)
+			pixel_x = 32

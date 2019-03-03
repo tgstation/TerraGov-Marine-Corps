@@ -24,11 +24,8 @@ FIRE ALARM
 	var/wiresexposed = 0
 	var/buildstage = 2 // 2 = complete, 1 = no wires,  0 = circuit gone
 
-/obj/machinery/firealarm/New(location, direction, building)
+/obj/machinery/firealarm/Initialize(mapload, direction, building)
 	. = ..()
-
-	if(location)
-		loc = location
 
 	if(direction)
 		setDir(direction)
@@ -273,13 +270,3 @@ FIRE ALARM
 	update_icon()
 	//playsound(src.loc, 'sound/ambience/signal.ogg', 50, 0)
 	return
-
-
-/obj/machinery/firealarm/north
-	dir = NORTH
-
-/obj/machinery/firealarm/east
-	dir = EAST
-
-/obj/machinery/firealarm/west
-	dir = WEST

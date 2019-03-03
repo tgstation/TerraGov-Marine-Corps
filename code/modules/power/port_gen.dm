@@ -1,63 +1,19 @@
-//This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:33
-
-/* new portable generator - work in progress
-
-/obj/machinery/power/port_gen
-	name = "portable generator"
-	desc = "A portable generator used for emergency backup power."
-	icon = 'generator.dmi'
-	icon_state = "off"
-	density = 1
-	anchored = 0
-	var/t_status = 0
-	var/t_per = 5000
-	var/filter = 1
-	var/tank = null
-	var/turf/inturf
-	var/starter = 0
-	var/rpm = 0
-	var/rpmtarget = 0
-	var/capacity = 1e6
-	var/turf/outturf
-	var/lastgen
-
-
-/obj/machinery/power/port_gen/process()
-ideally we're looking to generate 5000
-
-/obj/machinery/power/port_gen/attackby(obj/item/W, mob/user)
-tank [un]loading stuff
-
-/obj/machinery/power/port_gen/attack_hand(mob/user)
-turn on/off
-
-/obj/machinery/power/port_gen/examine(mob/user)
-display round(lastgen) and phorontank amount
-
-*/
-
-//Previous code been here forever, adding new framework for portable generators
-
-
 //Baseline portable generator. Has all the default handling. Not intended to be used on it's own (since it generates unlimited power).
 /obj/machinery/power/port_gen
 	name = "Placeholder Generator"	//seriously, don't use this. It can't be anchored without VV magic.
 	desc = "A portable generator for emergency backup power"
 	icon = 'icons/obj/power.dmi'
 	icon_state = "portgen0"
-	density = 1
-	anchored = 0
-//	directwired = 0
-	use_power = 0
+	density = TRUE
+	anchored = FALSE
+	use_power = NO_POWER_USE
 
-	var/active = 0
+	var/active = FALSE
 	var/power_gen = 5000
-	var/open = 0
-	var/recent_fault = 0
 	var/power_output = 1
 
 /obj/machinery/power/port_gen/proc/HasFuel() //Placeholder for fuel check.
-	return 1
+	return TRUE
 
 /obj/machinery/power/port_gen/proc/UseFuel() //Placeholder for fuel use.
 	return
@@ -71,33 +27,42 @@ display round(lastgen) and phorontank amount
 /obj/machinery/power/port_gen/power_change()
 	return
 
-/obj/machinery/power/port_gen/process()
-	if(active && HasFuel() && !crit_fail && anchored && powernet)
-		add_avail(power_gen * power_output)
-		UseFuel()
-		src.updateDialog()
+/obj/machinery/power/port_gen/connect_to_network()
+	if(!anchored)
+		return FALSE
+	. = ..()
 
+/obj/machinery/power/port_gen/proc/TogglePower()
+	if(active)
+		active = FALSE
+		update_icon()
+	else if(HasFuel())
+		active = TRUE
+		update_icon()
+		start_processing()
+
+/obj/machinery/power/port_gen/update_icon()
+	icon_state = "portgen[active]"
+
+/obj/machinery/power/port_gen/process()
+	if(active)
+		if(!HasFuel() || !anchored)
+			TogglePower()
+			return
+		if(powernet)
+			add_avail(power_gen * power_output)
+		UseFuel()
 	else
-		active = 0
-		stop_processing()
-		icon_state = initial(icon_state)
 		handleInactive()
 
 /obj/machinery/power/powered()
-	return 1 //doesn't require an external power source
-
-/obj/machinery/power/port_gen/attack_hand(mob/user as mob)
-	if(..())
-		return
-	if(!anchored)
-		return
+	return TRUE //doesn't require an external power source
 
 /obj/machinery/power/port_gen/examine(mob/user)
 	..()
-	if(active)
-		to_chat(user, "<span class='notice'>The generator is on.</span>")
-	else
-		to_chat(user, "<span class='notice'>The generator is off.</span>")
+	to_chat(user, "<span class='notice'>The generator is [active ? "on" : "off"].</span>")
+	if(!anchored)
+		to_chat(user,"<span class='warning'>It isn't anchored.</span>")
 
 //A power generator that runs on solid plasma sheets.
 /obj/machinery/power/port_gen/pacman
@@ -106,7 +71,7 @@ display round(lastgen) and phorontank amount
 	var/max_sheets = 100
 	var/sheet_name = ""
 	var/sheet_path = /obj/item/stack/sheet/mineral/phoron
-	var/board_path = "/obj/item/circuitboard/machine/pacman"
+	var/board_path = /obj/item/circuitboard/machine/pacman
 	var/sheet_left = 0 // How much is left of the sheet
 	var/time_per_sheet = 60
 	var/heat = 0
@@ -122,9 +87,9 @@ display round(lastgen) and phorontank amount
 	component_parts += new /obj/item/stack/cable_coil(src)
 	component_parts += new /obj/item/stock_parts/capacitor(src)
 	component_parts += new board_path(src)
-	var/obj/sheet = new sheet_path(null)
-	sheet_name = sheet.name
 	RefreshParts()
+	var/obj/S = sheet_path
+	sheet_name = initial(S.name)
 	if(anchored)
 		connect_to_network()
 
@@ -147,13 +112,13 @@ display round(lastgen) and phorontank amount
 
 /obj/machinery/power/port_gen/pacman/examine(mob/user)
 	..()
-	to_chat(user, "<span class='notice'>The generator has [sheets] units of [sheet_name] fuel left, producing [power_gen] per cycle.</span>")
-	if(crit_fail) to_chat(user, "<span class='warning'>The generator seems to have broken down.</span>")
+	to_chat(user, "<span class='notice'>The generator has [sheets] units of [sheet_name] fuel left, producing [DisplayPower(power_gen)] per cycle.</span>")
+
 
 /obj/machinery/power/port_gen/pacman/HasFuel()
 	if(sheets >= 1 / (time_per_sheet / power_output) - sheet_left)
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /obj/machinery/power/port_gen/pacman/DropFuel()
 	if(sheets)
@@ -194,13 +159,11 @@ display round(lastgen) and phorontank amount
 	if (heat > 300)
 		overheat()
 		qdel(src)
-	return
 
 /obj/machinery/power/port_gen/pacman/handleInactive()
-
-	if (heat > 0)
-		heat = max(heat - 2, 0)
-		src.updateDialog()
+	heat = max(heat - 2, 0)
+	if(heat == 0)
+		stop_processing()
 
 /obj/machinery/power/port_gen/pacman/proc/overheat()
 	explosion(src.loc, 2, 5, 2, -1)
@@ -215,16 +178,16 @@ display round(lastgen) and phorontank amount
 		to_chat(user, "<span class='notice'>You add [amount] sheets to the [src.name].</span>")
 		sheets += amount
 		addstack.use(amount)
-		updateUsrDialog()
 		return
 	else if (istype(O, /obj/item/card/emag))
-		emagged = 1
+		emagged = TRUE
 		emp_act(1)
+		return
 	else if(!active)
-
 		if(iswrench(O))
+			anchored = !anchored
 
-			if(!anchored)
+			if(anchored)
 				connect_to_network()
 				to_chat(user, "<span class='notice'>You secure the generator to the floor.</span>")
 			else
@@ -232,24 +195,20 @@ display round(lastgen) and phorontank amount
 				to_chat(user, "<span class='notice'>You unsecure the generator from the floor.</span>")
 
 			playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
-			anchored = !anchored
-
-		else if(isscrewdriver(O))
-			open = !open
+			return
+		/*else if(isscrewdriver(O))
+			panel_open = !panel_open
 			playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
-			if(open)
+			if(panel_open)
 				to_chat(user, "<span class='notice'>You open the access panel.</span>")
 			else
 				to_chat(user, "<span class='notice'>You close the access panel.</span>")
-		else if(iscrowbar(O) && open)
+		else if(iscrowbar(O) && panel_open)
 			var/obj/machinery/constructable_frame/machine_frame/new_frame = new /obj/machinery/constructable_frame/machine_frame(src.loc)
 			for(var/obj/item/I in component_parts)
-				if(I.reliability < 100)
-					I.crit_fail = 1
-				I.loc = src.loc
+				I.loc = loc
 			while ( sheets > 0 )
 				var/obj/item/stack/sheet/G = new sheet_path(src.loc)
-
 				if ( sheets > 50 )
 					G.amount = 50
 				else
@@ -259,81 +218,66 @@ display round(lastgen) and phorontank amount
 
 			new_frame.state = 2
 			new_frame.icon_state = "box_1"
-			qdel(src)
+			qdel(src)*/
 
 /obj/machinery/power/port_gen/pacman/attack_hand(mob/user as mob)
-	..()
-	if (!anchored)
-		return
-
-	interact(user)
+	ui_interact(user)
 
 /obj/machinery/power/port_gen/pacman/attack_ai(mob/user as mob)
-	interact(user)
+	ui_interact(user)
 
 /obj/machinery/power/port_gen/pacman/attack_paw(mob/user as mob)
-	interact(user)
+	ui_interact(user)
 
-/obj/machinery/power/port_gen/pacman/interact(mob/user)
-	if (get_dist(src, user) > 1 )
-		if (!isAI(user))
-			user.unset_interaction()
-			user << browse(null, "window=port_gen")
-			return
+/obj/machinery/power/port_gen/pacman/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = TRUE)
+	. = ..()
 
-	user.set_interaction(src)
+	var/list/data = list()
 
-	var/dat = text("<b>[name]</b><br>")
-	if (active)
-		dat += text("Generator: <A href='?src=\ref[src];action=disable'>On</A><br>")
-	else
-		dat += text("Generator: <A href='?src=\ref[src];action=enable'>Off</A><br>")
-	dat += text("[capitalize(sheet_name)]: [sheets] - <A href='?src=\ref[src];action=eject'>Eject</A><br>")
-	var/stack_percent = round(sheet_left * 100, 1)
-	dat += text("Current stack: [stack_percent]% <br>")
-	dat += text("Power output: <A href='?src=\ref[src];action=lower_power'>-</A> [power_gen * power_output] <A href='?src=\ref[src];action=higher_power'>+</A><br>")
-	dat += text("Power current: [(powernet == null ? "Unconnected" : "[avail()]")]<br>")
-	dat += text("Heat: [heat]<br>")
-	dat += "<br><A href='?src=\ref[src];action=close'>Close</A>"
-	user << browse("[dat]", "window=port_gen")
-	onclose(user, "port_gen")
+	data["active"] = active
+	data["sheet_name"] = capitalize(sheet_name)
+	data["sheets"] = sheets
+	data["stack_percent"] = sheet_left * 100
+
+	data["connected"] = (powernet == null ? 0 : 1)
+	data["ready_to_boot"] = anchored && HasFuel()
+	data["power_generated"] = DisplayPower(power_gen)
+	data["power_output"] = DisplayPower(power_gen * power_output)
+	data["power_available"] = (powernet == null ? 0 : DisplayPower(avail()))
+	data["heat"] = heat
+
+	data += "<b>[name]</b><br>"
+
+	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	if (!ui)
+		ui = new(user, src, ui_key, "port_gen.tmpl", "Generator Interface", 460, 320)
+		ui.set_initial_data(data)
+		ui.open()
+		ui.set_auto_update(TRUE)
 
 /obj/machinery/power/port_gen/pacman/Topic(href, href_list)
 	if(..())
 		return
 
-	src.add_fingerprint(usr)
-	if(href_list["action"])
-		if(href_list["action"] == "enable")
-			if(!active && HasFuel() && !crit_fail)
-				active = 1
-				start_processing()
-				icon_state = "portgen1"
-				src.updateUsrDialog()
-		if(href_list["action"] == "disable")
-			if (active)
-				active = 0
-				stop_processing()
-				icon_state = "portgen0"
-				src.updateUsrDialog()
-		if(href_list["action"] == "eject")
-			if(!active)
-				DropFuel()
-				src.updateUsrDialog()
-		if(href_list["action"] == "lower_power")
-			if (power_output > 1)
-				power_output--
-				src.updateUsrDialog()
-		if (href_list["action"] == "higher_power")
-			if (power_output < 4 || emagged)
-				power_output++
-				src.updateUsrDialog()
-		if (href_list["action"] == "close")
-			usr << browse(null, "window=port_gen")
-			usr.unset_interaction()
+	add_fingerprint(usr)
+	if(href_list["toggle_power"])
+		TogglePower()
+		. = TRUE
+	if(href_list["eject"])
+		if(!active)
+			DropFuel()
+			. = TRUE
+	if(href_list["lower_power"])
+		if (power_output > 1)
+			power_output--
+			. = TRUE
+	if (href_list["higher_power"])
+		if (power_output < 4 || emagged)
+			power_output++
+			. = TRUE
 
 /obj/machinery/power/port_gen/pacman/inoperable(var/additional_flags)
-	return (stat & (BROKEN|additional_flags)) //Removes NOPOWER check since its a goddam generator and doesn't need power
+	. = (stat & (BROKEN|additional_flags))
 
 /obj/machinery/power/port_gen/pacman/super
 	name = "S.U.P.E.R.P.A.C.M.A.N.-type Portable Generator"
@@ -341,7 +285,7 @@ display round(lastgen) and phorontank amount
 	sheet_path = /obj/item/stack/sheet/mineral/uranium
 	power_gen = 40000
 	time_per_sheet = 120
-	board_path = "/obj/item/circuitboard/machine/pacman/super"
+	board_path = /obj/item/circuitboard/machine/pacman/super
 	overheat()
 		explosion(src.loc, 3, 3, 3, -1)
 
@@ -351,6 +295,6 @@ display round(lastgen) and phorontank amount
 	sheet_path = /obj/item/stack/sheet/mineral/tritium
 	power_gen = 80000
 	time_per_sheet = 240
-	board_path = "/obj/item/circuitboard/machine/pacman/mrs"
+	board_path = /obj/item/circuitboard/machine/pacman/mrs
 	overheat()
 		explosion(src.loc, 4, 4, 4, -1)

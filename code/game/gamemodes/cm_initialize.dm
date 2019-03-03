@@ -118,7 +118,7 @@ datum/game_mode/proc/initialize_special_clamps()
 
 	//Minds are not transferred at this point, so we have to clean out those who may be already picked to play.
 	for(var/datum/mind/A in possible_xenomorphs)
-		if(A.assigned_role == "MODE")
+		if(A.assigned_role)
 			possible_xenomorphs -= A
 
 	var/i = xeno_starting_num
@@ -151,14 +151,14 @@ datum/game_mode/proc/initialize_special_clamps()
 
 	//Minds are not transferred at this point, so we have to clean out those who may be already picked to play.
 	for(var/datum/mind/A in possible_queens)
-		if(A.assigned_role == "MODE")
+		if(A.assigned_role)
 			possible_queens -= A
 
 	if(!length(possible_queens))
 		return FALSE
 
 	for(var/datum/mind/new_queen in possible_queens)
-		if(jobban_isbanned(new_queen.current))
+		if(jobban_isbanned(new_queen.current, ROLE_XENO_QUEEN) || is_banned_from(new_queen.current?.ckey, ROLE_XENO_QUEEN))
 			continue
 		new_queen.assigned_role = "Queen"
 		queen = new_queen
@@ -182,7 +182,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 	transform_queen(queen)
 
 /datum/game_mode/proc/check_xeno_late_join(mob/xeno_candidate)
-	if(jobban_isbanned(xeno_candidate, "Alien")) // User is jobbanned
+	if(jobban_isbanned(xeno_candidate, ROLE_XENOMORPH) || is_banned_from(xeno_candidate.ckey, ROLE_XENOMORPH)) // User is jobbanned
 		to_chat(xeno_candidate, "<span class='warning'>You are banned from playing aliens and cannot spawn as a xenomorph.</span>")
 		return FALSE
 	return TRUE
@@ -277,7 +277,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 			deathtime = 3000 //so new players don't have to wait to latejoin as xeno in the round's first 5 mins.
 		var/deathtimeminutes = round(deathtime / 600)
 		var/deathtimeseconds = round((deathtime - deathtimeminutes * 600) / 10,1)
-		if(deathtime < 3000 && !check_other_rights(xeno_candidate, R_ADMIN, FALSE))
+		if(deathtime < 3000)
 			to_chat(xeno_candidate, "<span class='warning'>You have been dead for [deathtimeminutes >= 1 ? "[deathtimeminutes] minute\s and " : ""][deathtimeseconds] second\s.</span>")
 			to_chat(xeno_candidate, "<span class='warning'>You must wait 5 minutes before rejoining the game!</span>")
 			return FALSE
@@ -325,10 +325,9 @@ datum/game_mode/proc/initialize_post_queen_list()
 	var/mob/original = ghost_mind.current
 	var/mob/living/carbon/Xenomorph/new_queen
 	var/datum/hive_status/hive = hive_datum[XENO_HIVE_NORMAL]
-	if(!hive.living_xeno_queen && original?.client?.prefs && (original.client.prefs.be_special & BE_QUEEN) && !jobban_isbanned(original, "Queen"))
-		new_queen = new /mob/living/carbon/Xenomorph/Queen (pick(GLOB.xeno_spawn))
-	else
+	if(hive.living_xeno_queen || !(original.client?.prefs?.be_special & BE_QUEEN) || jobban_isbanned(original, ROLE_XENO_QUEEN) || is_banned_from(original.ckey, ROLE_XENO_QUEEN))
 		return FALSE
+	new_queen = new /mob/living/carbon/Xenomorph/Queen (pick(GLOB.xeno_spawn))
 	ghost_mind.transfer_to(new_queen)
 	ghost_mind.name = ghost_mind.current.name
 
@@ -352,7 +351,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 	var/list/datum/mind/possible_survivors = get_players_for_role(BE_SURVIVOR)
 	if(possible_survivors.len) //We have some, it looks like.
 		for(var/datum/mind/A in possible_survivors) //Strip out any xenos first so we don't double-dip.
-			if(A.assigned_role == "MODE")
+			if(A.assigned_role)
 				possible_survivors -= A
 
 		if(possible_survivors.len) //We may have stripped out all the contendors, so check again.

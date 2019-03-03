@@ -149,7 +149,7 @@
 		return
 	..()
 
-/obj/machinery/power/apc/New(turf/loc, var/ndir, var/building=FALSE)
+/obj/machinery/power/apc/New()
 	. = ..()
 	GLOB.apcs_list += src
 
@@ -161,17 +161,16 @@
 	area.power_environ = 0
 	area.power_change()
 
-	if(cell)
-		qdel(cell)
+	QDEL_NULL(cell)
 	if(terminal)
 		disconnect_terminal()
 
 	. = ..()
 
-/obj/machinery/power/apc/Initialize(mapload, var/ndir, var/building=FALSE)
-	// offset 24 pixels in direction of dir
+/obj/machinery/power/apc/Initialize(mapload, ndir, building = FALSE)
+	// offset 32 pixels in direction of dir
 	// this allows the APC to be embedded in a wall, yet still inside an area
-	if (building)
+	if (ndir)
 		setDir(ndir)
 
 	switch(dir)
@@ -1317,127 +1316,40 @@
 
 //------Various APCs ------//
 
-
-/obj/machinery/power/apc/north
-	dir = NORTH
-
-/obj/machinery/power/apc/east
-	dir = EAST
-
-/obj/machinery/power/apc/west
-	dir = WEST
+// mapping helpers
+/obj/machinery/power/apc/drained
+	start_charge = 0
 
 /obj/machinery/power/apc/lowcharge
 	start_charge = 25
 
-/obj/machinery/power/apc/lowcharge/north
-	dir = NORTH
-
-/obj/machinery/power/apc/lowcharge/east
-	dir = EAST
-
-/obj/machinery/power/apc/lowcharge/west
-	dir = WEST
-
-/obj/machinery/power/apc/nocharge
-	start_charge = 0
-
-/obj/machinery/power/apc/nocharge/north
-	dir = NORTH
-
-/obj/machinery/power/apc/nocharge/east
-	dir = EAST
-
-/obj/machinery/power/apc/nocharge/west
-	dir = WEST
+/obj/machinery/power/apc/supercharged
+	start_charge = 200
 
 /obj/machinery/power/apc/potato
 	cell_type = /obj/item/cell/potato
 
-/obj/machinery/power/apc/potato/north
-	dir = NORTH
-
-/obj/machinery/power/apc/potato/east
-	dir = EAST
-
-/obj/machinery/power/apc/potato/west
-	dir = WEST
-
 /obj/machinery/power/apc/weak
 	cell_type = /obj/item/cell
-
-/obj/machinery/power/apc/weak/north
-	dir = NORTH
-
-/obj/machinery/power/apc/weak/east
-	dir = EAST
-
-/obj/machinery/power/apc/weak/west
-	dir = WEST
 
 /obj/machinery/power/apc/high
 	cell_type = /obj/item/cell/high
 
-/obj/machinery/power/apc/high/north
-	dir = NORTH
-
-/obj/machinery/power/apc/high/east
-	dir = EAST
-
-/obj/machinery/power/apc/high/west
-	dir = WEST
-
 /obj/machinery/power/apc/super
 	cell_type = /obj/item/cell/super
 
-/obj/machinery/power/apc/super/north
-	dir = NORTH
-
-/obj/machinery/power/apc/super/east
-	dir = EAST
-
-/obj/machinery/power/apc/super/west
-	dir = WEST
-
 /obj/machinery/power/apc/hyper
 	cell_type = /obj/item/cell/hyper
-
-/obj/machinery/power/apc/hyper/north
-	dir = NORTH
-
-/obj/machinery/power/apc/hyper/east
-	dir = EAST
-
-/obj/machinery/power/apc/hyper/west
-	dir = WEST
 
 //------Theseus APCs ------//
 
 /obj/machinery/power/apc/almayer
 	cell_type = /obj/item/cell/high
 
-/obj/machinery/power/apc/almayer/north
-	dir = NORTH
-
-/obj/machinery/power/apc/almayer/east
-	dir = EAST
-
-/obj/machinery/power/apc/almayer/west
-	dir = WEST
-
 /obj/machinery/power/apc/almayer/hardened
 	name = "hardened area power controller"
 	desc = "A control terminal for the area electrical systems. This one is hardened against sudden power fluctuations caused by electrical grid damage."
 	crash_break_probability = 0
-
-/obj/machinery/power/apc/almayer/hardened/north
-	dir = NORTH
-
-/obj/machinery/power/apc/almayer/hardened/east
-	dir = EAST
-
-/obj/machinery/power/apc/almayer/hardened/west
-	dir = WEST
 
 #undef APC_WIRE_IDSCAN
 #undef APC_WIRE_MAIN_POWER1

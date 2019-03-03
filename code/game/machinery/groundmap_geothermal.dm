@@ -196,6 +196,10 @@
 	else
 		. = ..() //Deal with everything else, like hitting with stuff
 
+/obj/machinery/power/geothermal/bigred //used on big red
+	name = "\improper Reactor Turbine"
+	power_generation_max = 1e+6
+
 #undef GEOTHERMAL_NO_DAMAGE
 #undef GEOTHERMAL_LIGHT_DAMAGE
 #undef GEOTHERMAL_MEDIUM_DAMAGE

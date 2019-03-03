@@ -25,12 +25,12 @@ As an engineer, you can repair barricades with a welder.
 As an engineer, C4 is cheaper but det packs are more versatile.
 As an engineer, det packs can be set on demolition mode for an explosive trap.
 As an engineer, you build barricades the fastest.
-As a medic, the medevac stretcher needs to be linked to an active, powered beacon for it to teleport the patient.
-As a medic, the marines are counting on you to fix them up.
-As a medic, scan before you treat and you can't be beat.
-As a medic or doctor, remember that your HUD will tell you how much time is left to defibrillate a patient.
-As a medic, remember to bring extra kelotane or dermaline to heal burn damage. Xenos love acid and burning marines.
-As a medic, hypervene is useful. Use it to purge deadly neurotoxins and larva boosting growth hormones.
+As a corpsman, the medevac stretcher needs to be linked to an active, powered beacon for it to teleport the patient.
+As a corpsman, the marines are counting on you to fix them up.
+As a corpsman, scan before you treat and you can't be beat.
+As a corpsman or doctor, remember that your HUD will tell you how much time is left to defibrillate a patient.
+As a corpsman, remember to bring extra kelotane or dermaline to heal burn damage. Xenos love acid and burning marines.
+As a corpsman, hypervene is useful. Use it to purge deadly neurotoxins and larva boosting growth hormones.
 As a B18 specialist, your armor has a built in medical system.
 As a scout specialist, you can take your battle rifle or your custom shotgun.
 As a sniper specialist, you've got a tarp that can make you stealth so long as you don't move.

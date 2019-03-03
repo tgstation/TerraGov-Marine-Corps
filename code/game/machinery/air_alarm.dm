@@ -108,18 +108,33 @@
 
 
 
-/obj/machinery/alarm/Initialize(mapload, location, direction, building = FALSE)
+/obj/machinery/alarm/Initialize(mapload, direction, building = FALSE)
 	. = ..()
 
+	if(direction)
+		setDir(direction)
+	switch(dir)
+		if(NORTH)
+			pixel_y = -32
+		if(SOUTH)
+			pixel_y = 32
+		if(EAST)
+			pixel_x = -32
+		if(WEST)
+			pixel_x = 32
+
 	if(building)
-		if(location)
-			loc = location
-
-		if(direction)
-			setDir(direction)
-
 		buildstage = 0
 		wiresexposed = TRUE
+
+	set_frequency(frequency)
+
+	first_run()
+
+	if(!master_is_operating())
+		elect_master()
+
+	start_processing()
 
 /obj/machinery/alarm/proc/first_run()
 	alarm_area = get_area(src)
@@ -136,28 +151,6 @@
 	TLV["other"] =			list(-1.0, -1.0, 0.5, 1.0) // Partial pressure, kpa
 	TLV["pressure"] =		list(ONE_ATMOSPHERE*0.80,ONE_ATMOSPHERE*0.90,ONE_ATMOSPHERE*1.10,ONE_ATMOSPHERE*1.20) /* kpa */
 	TLV["temperature"] =	list(T0C-26, T0C, T0C+40, T0C+66) // K
-
-
-/obj/machinery/alarm/Initialize()
-	. = ..()
-	set_frequency(frequency)
-
-	first_run()
-
-	if (!master_is_operating())
-		elect_master()
-
-	switch(dir)
-		if(NORTH)
-			pixel_y = -32
-		if(SOUTH)
-			pixel_y = 32
-		if(EAST)
-			pixel_x = -32
-		if(WEST)
-			pixel_x = 32
-
-	start_processing()
 
 
 /obj/machinery/alarm/process()
@@ -1082,31 +1075,10 @@ table tr:first-child th:first-child { border: none;}
 	if (buildstage < 1)
 		to_chat(user, "The circuit is missing.")
 
-
-/obj/machinery/alarm/north
-	dir = NORTH
-
-/obj/machinery/alarm/east
-	dir = EAST
-
-/obj/machinery/alarm/west
-	dir = WEST
-
-
 /obj/machinery/alarm/monitor
 	apply_danger_level = FALSE
 	breach_detection = FALSE
 	post_alert = FALSE
-
-/obj/machinery/alarm/monitor/north
-	dir = NORTH
-
-/obj/machinery/alarm/monitor/east
-	dir = EAST
-
-/obj/machinery/alarm/monitor/west
-	dir = WEST
-
 
 /obj/machinery/alarm/server
 	req_one_access = list(ACCESS_CIVILIAN_ENGINEERING)
@@ -1126,13 +1098,3 @@ table tr:first-child th:first-child { border: none;}
 	TLV["other"] =			list(-1.0, -1.0, 0.5, 1.0) // Partial pressure, kpa
 	TLV["pressure"] =		list(0,ONE_ATMOSPHERE*0.10,ONE_ATMOSPHERE*1.40,ONE_ATMOSPHERE*1.60) /* kpa */
 	TLV["temperature"] =	list(20, 40, 140, 160) // K
-
-
-/obj/machinery/alarm/server/north
-	dir = NORTH
-
-/obj/machinery/alarm/server/east
-	dir = EAST
-
-/obj/machinery/alarm/server/west
-	dir = WEST

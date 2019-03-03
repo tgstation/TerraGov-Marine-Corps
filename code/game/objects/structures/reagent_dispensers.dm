@@ -106,10 +106,10 @@
 		user.visible_message("[user] wrenches [src]'s faucet [modded ? "closed" : "open"].", \
 		"You wrench [src]'s faucet [modded ? "closed" : "open"]")
 		modded = !modded
-	if(modded)
-		message_admins("[ADMIN_TPMONTY(usr)] opened fueltank at [ADMIN_VERBOSEJMP(loc)], leaking fuel.")
-		log_game("[key_name(usr)] opened fueltank at [AREACOORD(loc)], leaking fuel.")
-		leak_fuel(amount_per_transfer_from_this)
+		if(modded)
+			message_admins("[ADMIN_TPMONTY(usr)] opened fueltank at [ADMIN_VERBOSEJMP(loc)], leaking fuel.")
+			log_game("[key_name(usr)] opened fueltank at [AREACOORD(loc)], leaking fuel.")
+			leak_fuel(amount_per_transfer_from_this)
 		return
 	if(istype(I,/obj/item/device/assembly_holder))
 		if(rig)
@@ -229,8 +229,10 @@
 	anchored = TRUE
 	density = FALSE
 
-/obj/structure/reagent_dispensers/wallmounted/New()
+/obj/structure/reagent_dispensers/wallmounted/Initialize(mapload, ndir)
 	. = ..()
+	if(ndir)
+		dir = ndir
 	switch(dir)
 		if(NORTH)
 			pixel_y = 32
@@ -240,15 +242,6 @@
 			pixel_x = 32
 		if(WEST)
 			pixel_x = -32
-
-/obj/structure/reagent_dispensers/wallmounted/north
-	dir = NORTH
-
-/obj/structure/reagent_dispensers/wallmounted/east
-	dir = EAST
-
-/obj/structure/reagent_dispensers/wallmounted/west
-	dir = WEST
 
 /obj/structure/reagent_dispensers/wallmounted/peppertank
 	name = "pepper spray refiller"
@@ -262,26 +255,8 @@
 	if(prob(1))
 		desc = "IT'S PEPPER TIME, BITCH!"
 
-/obj/structure/reagent_dispensers/wallmounted/peppertank/north
-	dir = NORTH
-
-/obj/structure/reagent_dispensers/wallmounted/peppertank/east
-	dir = EAST
-
-/obj/structure/reagent_dispensers/wallmounted/peppertank/west
-	dir = WEST
-
 /obj/structure/reagent_dispensers/wallmounted/virusfood
 	name = "virus food dispenser"
 	desc = "A dispenser of virus food."
 	icon_state = "virusfoodtank"
 	list_reagents = list("virusfood" = 1000)
-
-/obj/structure/reagent_dispensers/wallmounted/virusfood/north
-	dir = NORTH
-
-/obj/structure/reagent_dispensers/wallmounted/virusfood/east
-	dir = EAST
-
-/obj/structure/reagent_dispensers/wallmounted/virusfood/west
-	dir = WEST

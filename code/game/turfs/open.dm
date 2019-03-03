@@ -62,61 +62,42 @@
 	..()
 	ceiling_desc(user)
 
-
-
-
 /turf/open/river
 	can_bloody = FALSE
 
 
+// Big Red
 
-
-// Mars grounds
-
-/turf/open/mars
-	name = "sand"
+/turf/open/mars/
 	icon = 'icons/turf/bigred.dmi'
-	icon_state = "mars_sand_1"
 	is_groundmap_turf = TRUE
 
-
-/turf/open/mars_cave
+/turf/open/mars/random/cave
 	name = "cave"
-	icon = 'icons/turf/bigred.dmi'
-	icon_state = "mars_cave_1"
+	icon_state = "mars_cave"
 
-/turf/open/mars_cave/random
-	icon_state = "mars_cave_2"
+/turf/open/mars/random/cave/rock
+	name = "cave"
+	icon_state = "mars_cave_rock"
 
-/turf/open/mars_cave/random/Initialize()
-	. = ..()
-
-	if (prob(33))
-		icon_state = "mars_cave_3"
-
-/turf/open/mars_dirt
+/turf/open/mars/random/dirt
 	name = "dirt"
-	icon = 'icons/turf/bigred.dmi'
-	icon_state = "mars_dirt_1"
+	icon_state = "mars_dirt"
 
-/turf/open/mars_dirt/random
-	icon_state = "mars_dirt_4"
+/turf/open/mars/random/sand
+	name = "sand"
+	icon_state = "mars_sand"
 
-/turf/open/mars_dirt/random/Initialize()
+/turf/open/mars/random/Initialize()
 	. = ..()
+	dir = pick(alldirs)
 
-	if (prob(3))
-		icon_state = "mars_dirt_1"
-		return
-
-	if (prob(3))
-		icon_state = "mars_dirt_2"
-		return
-
-	if (prob(16))
-		icon_state = "mars_dirt_7"
-
-
+/turf/open/mars/dirttosand
+	name = "sand"
+	icon_state = "mars_dirt_to_sand"
+/turf/open/mars/cavetodirt
+	name = "cave"
+	icon_state = "mars_cave_to_dirt"
 
 
 

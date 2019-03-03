@@ -117,6 +117,7 @@ Class Procs:
 	layer = OBJ_LAYER
 	var/machine_processing = 0 // whether the machine is busy and requires process() calls in scheduler.
 
+	var/wrenchable = FALSE
 	var/destructible = TRUE
 	var/damage = 0
 	var/damage_cap = 1000 //The point where things start breaking down.
@@ -169,12 +170,12 @@ Class Procs:
 
 /obj/machinery/proc/start_processing()
 	if(!machine_processing)
-		machine_processing = 1
+		machine_processing = TRUE
 		processing_machines += src
 
 /obj/machinery/proc/stop_processing()
 	if(machine_processing)
-		machine_processing = 0
+		machine_processing = FALSE
 		processing_machines -= src
 
 /obj/machinery/process()//If you dont use process or power why are you here
