@@ -390,10 +390,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	var/tricordrazine = CLAMP(REAGENTS_OVERDOSE - (wearer.reagents.get_reagent_amount("tricordrazine") + 0.5),0,REAGENTS_OVERDOSE * B18_CHEM_MOD)
 
 	if(wearer.getFireLoss() > B18_automed_damage && !B18_burn_cooldown)
-		// var/dermaline = CLAMP(REAGENTS_OVERDOSE*0.5 - (wearer.reagents.get_reagent_amount("dermaline") + 0.5),0,REAGENTS_OVERDOSE*0.5 * B18_CHEM_MOD) [dermaline ? " Dermaline: [dermaline]U |" : ""]
 		var/kelotane = CLAMP(REAGENTS_OVERDOSE - (wearer.reagents.get_reagent_amount("kelotane") + 0.5),0,REAGENTS_OVERDOSE * B18_CHEM_MOD)
-		//if(dermaline)
-		//	wearer.reagents.add_reagent("dermaline",dermaline)
 		if(kelotane)
 			wearer.reagents.add_reagent("kelotane",kelotane)
 		if(tricordrazine)
