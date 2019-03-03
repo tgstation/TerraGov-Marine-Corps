@@ -7,6 +7,14 @@
 	width = 11
 	height = 21
 
+/obj/docking_port/stationary/marine_dropship/crash_target
+	name = "dropshipcrash"
+	dheight = 10
+
+/obj/docking_port/stationary/marine_dropship/crash_target/Initialize()
+	. = ..()
+	SSshuttle.crash_targets += src
+
 /obj/docking_port/stationary/marine_dropship/lz1
 	name = "Landing Zone One"
 
