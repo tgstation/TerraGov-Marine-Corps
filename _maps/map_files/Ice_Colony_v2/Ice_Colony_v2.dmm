@@ -360,7 +360,7 @@
 /turf/open/floor/tile/dark,
 /area/ice_colony/exterior/surface/landing_pad2)
 "abr" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
+/obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/tile/dark/yellow2/corner{
 	dir = 1
 	},
@@ -497,7 +497,7 @@
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad2)
 "abT" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8;
 	on = 1
 	},
@@ -1102,7 +1102,7 @@
 	},
 /area/ice_colony/surface/engineering/tool)
 "adN" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
 	on = 1
 	},
@@ -1677,7 +1677,7 @@
 	},
 /area/ice_colony/surface/engineering)
 "afs" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
 	on = 1
 	},
@@ -1926,7 +1926,7 @@
 /turf/open/floor/plating/platebot,
 /area/ice_colony/surface/engineering/generator)
 "afW" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8;
 	on = 1
 	},
@@ -2263,7 +2263,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/engineering)
 "agK" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8;
 	on = 1
 	},
@@ -3251,7 +3251,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/substation/smes)
 "ajc" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
+/obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/substation/smes)
 "ajd" = (
@@ -3340,7 +3340,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/hydroponics/north)
 "ajn" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
 	on = 1
 	},
@@ -3372,7 +3372,7 @@
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/surface/requesitions)
 "ajr" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
 	on = 1
 	},
@@ -3431,7 +3431,7 @@
 	},
 /area/ice_colony/surface/engineering)
 "ajx" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1;
 	on = 1
 	},
@@ -3751,7 +3751,7 @@
 /turf/open/snow/layer2,
 /area/ice_colony/exterior/surface/valley/northwest)
 "akh" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
 	on = 1
 	},
@@ -4015,7 +4015,7 @@
 /turf/closed/ice/thin/corner,
 /area/ice_colony/exterior/surface/valley/northeast)
 "akQ" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
+/obj/machinery/atmospherics/components/unary/vent_pump,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -4080,7 +4080,7 @@
 /turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_e)
 "ala" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
+/obj/machinery/atmospherics/components/unary/vent_pump,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -4883,7 +4883,7 @@
 	},
 /area/ice_colony/surface/substation)
 "anl" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
 	on = 1
 	},
@@ -4969,7 +4969,7 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8;
 	on = 1
 	},
@@ -5317,7 +5317,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/substation)
 "aoq" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
+/obj/machinery/atmospherics/components/unary/vent_pump,
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
@@ -5597,7 +5597,7 @@
 /turf/open/floor/plating,
 /area/ice_colony/surface/mining)
 "aoV" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
 	on = 1
 	},
@@ -5756,7 +5756,7 @@
 /turf/open/floor/tile/white,
 /area/ice_colony/surface/clinic/treatment)
 "app" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8;
 	on = 1
 	},
@@ -6528,7 +6528,7 @@
 /turf/open/floor/tile/white,
 /area/ice_colony/surface/clinic/storage)
 "arc" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8;
 	on = 1
 	},
@@ -6999,7 +6999,7 @@
 /turf/open/floor/plating,
 /area/ice_colony/surface/tcomms)
 "ash" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
+/obj/machinery/atmospherics/components/unary/vent_pump,
 /obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/dorms)
@@ -7106,7 +7106,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8;
 	on = 1
 	},
@@ -7492,7 +7492,7 @@
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "atv" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
+/obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/tile/white,
 /area/ice_colony/surface/clinic/lobby)
 "atw" = (
@@ -7744,7 +7744,7 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8;
 	on = 1
 	},
@@ -8354,7 +8354,7 @@
 /turf/open/floor/tile/darkgreen/darkgreen2,
 /area/ice_colony/surface/hydroponics/lobby)
 "avD" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
 	on = 1
 	},
@@ -8633,7 +8633,7 @@
 	},
 /area/ice_colony/surface/dorms)
 "awk" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1;
 	on = 1
 	},
@@ -9731,7 +9731,7 @@
 	},
 /area/ice_colony/surface/disposals)
 "aze" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
+/obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/dorms/lavatory)
 "azf" = (
@@ -9760,7 +9760,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/dorms/canteen)
 "azj" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
+/obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/dorms/canteen)
 "azk" = (
@@ -9949,7 +9949,7 @@
 /turf/open/snow/layer2,
 /area/ice_colony/exterior/surface/valley/southeast)
 "azI" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8;
 	on = 1
 	},
@@ -10023,7 +10023,7 @@
 	},
 /area/ice_colony/surface/garage/one)
 "azV" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
+/obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/tile/dark/brown2{
 	dir = 1
 	},
@@ -10172,7 +10172,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/hydroponics/south)
 "aAt" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
 	on = 1
 	},
@@ -10298,7 +10298,7 @@
 	},
 /area/ice_colony/surface/garage/two)
 "aAM" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
+/obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/tile/dark/brown2{
 	dir = 1
 	},
@@ -11238,7 +11238,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/command/control/office)
 "aDb" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
+/obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/command/control/office)
 "aDc" = (
@@ -11485,7 +11485,7 @@
 	},
 /area/ice_colony/surface/garage/repair)
 "aDG" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
 	on = 1
 	},
@@ -11685,7 +11685,7 @@
 	},
 /area/ice_colony/surface/command/checkpoint)
 "aDY" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
 	on = 1
 	},
@@ -11771,7 +11771,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/command/checkpoint)
 "aEj" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8;
 	on = 1
 	},
@@ -12230,7 +12230,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/command/control)
 "aFt" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
+/obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/command/control)
 "aFu" = (
@@ -12509,7 +12509,7 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8;
 	on = 1
 	},
@@ -12710,7 +12710,7 @@
 	},
 /area/ice_colony/surface/command/control)
 "aGG" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
 	on = 1
 	},
@@ -13552,7 +13552,7 @@
 /turf/open/floor/wood,
 /area/ice_colony/surface/command/control/pv1)
 "aIA" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1;
 	on = 1
 	},
@@ -13573,7 +13573,7 @@
 /turf/open/floor/wood,
 /area/ice_colony/surface/command/control/pv2)
 "aID" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1;
 	on = 1
 	},
@@ -14082,7 +14082,7 @@
 /turf/open/snow/layer2,
 /area/ice_colony/exterior/surface/valley/southwest)
 "aKf" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1;
 	on = 1
 	},
@@ -14762,7 +14762,7 @@
 	},
 /area/ice_colony/exterior/surface/valley/southwest)
 "aMd" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8;
 	on = 1
 	},
@@ -14851,7 +14851,7 @@
 	},
 /area/ice_colony/underground/westroadtunnel)
 "aMr" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8;
 	on = 1
 	},
@@ -14994,7 +14994,7 @@
 /turf/open/floor/plating,
 /area/ice_colony/surface/bar/canteen)
 "aML" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
+/obj/machinery/atmospherics/components/unary/vent_pump,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark,
 /area/ice_colony/surface/hangar/checkpoint)
@@ -15215,7 +15215,7 @@
 	},
 /area/ice_colony/surface/hangar/checkpoint)
 "aNn" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
 	on = 1
 	},
@@ -15585,7 +15585,7 @@
 /turf/open/floor/plating,
 /area/ice_colony/surface/research)
 "aOm" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
+/obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/plating,
 /area/ice_colony/surface/research)
 "aOn" = (
@@ -16291,7 +16291,7 @@
 /turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aQh" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8;
 	on = 1
 	},
@@ -16304,7 +16304,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
 	on = 1
 	},
@@ -17108,7 +17108,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/research)
 "aRV" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1;
 	on = 1
 	},
@@ -18148,7 +18148,7 @@
 /turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aUz" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1;
 	on = 1
 	},
@@ -18389,7 +18389,7 @@
 	},
 /area/ice_colony/surface/research/temporary)
 "aVi" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
 	on = 1
 	},
@@ -18587,7 +18587,7 @@
 	},
 /area/ice_colony/surface/research)
 "aVH" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1;
 	on = 1
 	},
@@ -18748,7 +18748,7 @@
 	},
 /area/ice_colony/surface/research)
 "aWa" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1;
 	on = 1
 	},
@@ -18810,7 +18810,7 @@
 /turf/open/floor/plating/icefloor/warnplate,
 /area/ice_colony/exterior/surface/valley/southwest)
 "aWj" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1;
 	on = 1
 	},
@@ -19276,7 +19276,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
 	on = 1
 	},
@@ -19541,7 +19541,7 @@
 /area/ice_colony/surface/research/tech_storage)
 "aXV" = (
 /obj/effect/landmark/start/surv_spawn,
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8;
 	on = 1
 	},
@@ -21337,7 +21337,7 @@
 /turf/closed/wall/r_wall/unmeltable,
 /area/ice_colony/underground/requesition/storage)
 "bdd" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
+/obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/requesition)
 "bde" = (
@@ -21522,7 +21522,7 @@
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bdD" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
 	on = 1
 	},
@@ -22172,7 +22172,7 @@
 	},
 /area/ice_colony/underground/requesition)
 "bfr" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
 	on = 1
 	},
@@ -22329,7 +22329,7 @@
 	},
 /area/ice_colony/surface/excavation)
 "bfK" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
 	on = 1
 	},
@@ -22600,7 +22600,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/requesition/lobby)
 "bgy" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1;
 	on = 1
 	},
@@ -23830,7 +23830,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/requesition/lobby)
 "bjD" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
+/obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/requesition/lobby)
 "bjE" = (
@@ -24199,7 +24199,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
 	on = 1
 	},
@@ -24296,7 +24296,7 @@
 	},
 /area/ice_colony/underground/responsehangar)
 "ble" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
+/obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/responsehangar)
 "blf" = (
@@ -24690,7 +24690,7 @@
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/library)
 "bmf" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8;
 	on = 1
 	},
@@ -24770,7 +24770,7 @@
 	},
 /area/ice_colony/underground/engineering)
 "bmr" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
 	on = 1
 	},
@@ -24862,7 +24862,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/crew/morgue)
 "bmE" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
+/obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/crew/morgue)
 "bmF" = (
@@ -25040,7 +25040,7 @@
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/library)
 "bng" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8;
 	on = 1
 	},
@@ -25069,7 +25069,7 @@
 /turf/closed/wall/r_wall,
 /area/ice_colony/underground/engineering)
 "bnl" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
 	on = 1
 	},
@@ -25135,7 +25135,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/north_west)
 "bnv" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8;
 	on = 1
 	},
@@ -25567,7 +25567,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/engineering)
 "boz" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	on = 1
 	},
 /turf/open/floor/tile/dark2,
@@ -25736,7 +25736,7 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/hallway/north_west)
 "bpb" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8;
 	on = 1
 	},
@@ -25869,14 +25869,14 @@
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/chapel)
 "bpt" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
+/obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/north_west)
 "bpu" = (
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/south_east)
 "bpv" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
+/obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/south_east)
 "bpw" = (
@@ -26374,7 +26374,7 @@
 /turf/open/snow/layer1,
 /area/ice_colony/exterior/surface/valley/southeast)
 "bqG" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1;
 	on = 1
 	},
@@ -27187,7 +27187,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/medical/lobby)
 "bsY" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
 	on = 1
 	},
@@ -27251,7 +27251,7 @@
 	},
 /area/ice_colony/underground/responsehangar)
 "btg" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8;
 	on = 1
 	},
@@ -27292,14 +27292,14 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/medical/lobby)
 "bto" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
+/obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/medical/lobby)
 "btp" = (
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/reception/checkpoint_north)
 "btq" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
+/obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/medical/hallway)
 "btr" = (
@@ -27485,7 +27485,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/crew/bball)
 "btQ" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1;
 	on = 1
 	},
@@ -27642,7 +27642,7 @@
 	},
 /area/ice_colony/underground/medical/treatment)
 "bui" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
+/obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/medical/treatment)
 "buj" = (
@@ -27904,7 +27904,7 @@
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/medical/treatment)
 "buQ" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
 	on = 1
 	},
@@ -28035,7 +28035,7 @@
 	dir = 1;
 	pixel_y = -24
 	},
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1;
 	on = 1
 	},
@@ -28106,7 +28106,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
+/obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/responsehangar)
 "bvr" = (
@@ -28272,7 +28272,7 @@
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southwest)
 "bvJ" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
 	on = 1
 	},
@@ -28820,7 +28820,7 @@
 	},
 /area/ice_colony/underground/medical/lobby)
 "bwZ" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
 	on = 1
 	},
@@ -29378,7 +29378,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
 	on = 1
 	},
@@ -29942,7 +29942,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
+/obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/wood,
 /area/ice_colony/underground/security/marshal)
 "bzP" = (
@@ -30162,7 +30162,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/research/temporary)
 "bAw" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
 	on = 1
 	},
@@ -30351,7 +30351,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/command/center)
 "bAY" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8;
 	on = 1
 	},
@@ -30365,7 +30365,7 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/central)
 "bBa" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
+/obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 8
 	},
@@ -30445,7 +30445,7 @@
 	},
 /area/ice_colony/underground/security/hallway)
 "bBl" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
+/obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
@@ -30541,7 +30541,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
+/obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/wood,
 /area/ice_colony/underground/security/detective)
 "bBw" = (
@@ -30615,7 +30615,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/south_east)
 "bBE" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
 	on = 1
 	},
@@ -31732,7 +31732,7 @@
 	},
 /area/ice_colony/underground/storage/highsec)
 "bEn" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
 	on = 1
 	},
@@ -32327,7 +32327,7 @@
 /turf/open/floor/wood,
 /area/ice_colony/underground/command/pv1)
 "bFS" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
+/obj/machinery/atmospherics/components/unary/vent_pump,
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 2;
@@ -32342,7 +32342,7 @@
 /turf/open/floor/wood,
 /area/ice_colony/underground/command/pv2)
 "bFU" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
+/obj/machinery/atmospherics/components/unary/vent_pump,
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 2;
@@ -32737,7 +32737,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
+/obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/dorm_r)
 "bGS" = (
@@ -32774,7 +32774,7 @@
 /turf/open/floor/plating/icefloor/warnplate,
 /area/ice_colony/exterior/surface/landing_pad_external)
 "bGX" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
+/obj/machinery/atmospherics/components/unary/vent_pump,
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 2;
@@ -32803,7 +32803,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
 	on = 1
 	},
@@ -32833,7 +32833,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
+/obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/security/hallway)
 "bHf" = (
@@ -33067,7 +33067,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
+/obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/dorm_l)
 "bHK" = (
@@ -33129,7 +33129,7 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/command/checkpoint)
 "bHQ" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
+/obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/command/checkpoint)
 "bHR" = (
@@ -33218,7 +33218,7 @@
 	},
 /area/ice_colony/underground/command/checkpoint)
 "bHZ" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
 	on = 1
 	},
@@ -33507,7 +33507,7 @@
 	},
 /area/ice_colony/underground/storage)
 "bIH" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
 	on = 1
 	},
@@ -33607,7 +33607,7 @@
 /obj/structure/noticeboard{
 	pixel_y = 32
 	},
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
+/obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/tile/dark/blue2{
 	dir = 1
 	},
@@ -34138,7 +34138,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/security)
 "bJY" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8;
 	on = 1
 	},
@@ -34527,7 +34527,7 @@
 /area/ice_colony/underground/security/armory)
 "bLb" = (
 /obj/effect/decal/cleanable/blood/gibs/body,
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1;
 	on = 1
 	},
@@ -34550,7 +34550,7 @@
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad)
 "bLe" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
 	on = 1
 	},
@@ -34947,7 +34947,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/security/brig)
 "bLY" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1;
 	on = 1
 	},
@@ -35170,7 +35170,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/crew/lavatory)
 "bMz" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1;
 	on = 1
 	},
@@ -35650,7 +35650,7 @@
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/leisure)
 "bNQ" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
 	on = 1
 	},
@@ -35792,7 +35792,7 @@
 	},
 /area/ice_colony/underground/security/brig)
 "bOi" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1;
 	on = 1
 	},
@@ -35839,14 +35839,14 @@
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/leisure)
 "bOq" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1;
 	on = 1
 	},
 /turf/open/floor/tile/dark/brown2,
 /area/ice_colony/underground/crew/disposals)
 "bOr" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1;
 	on = 1
 	},
@@ -36429,7 +36429,7 @@
 /turf/open/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bPY" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8;
 	on = 1
 	},
@@ -36501,7 +36501,7 @@
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/security/brig)
 "bQi" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8;
 	on = 1
 	},
@@ -36771,7 +36771,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/command/center)
 "bQX" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1;
 	on = 1
 	},
@@ -37311,7 +37311,7 @@
 	},
 /area/ice_colony/underground/medical/treatment)
 "bSp" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
+/obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/plating/icefloor/warnplate,
 /area/ice_colony/underground/hangar)
 "bSq" = (
@@ -38641,7 +38641,7 @@
 /turf/open/floor/tile/dark,
 /area/ice_colony/surface/excavationbarracks)
 "bVS" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	on = 1
 	},
 /turf/open/floor/tile/white,
@@ -38838,7 +38838,7 @@
 /turf/open/floor/tile/dark/yellow2,
 /area/ice_colony/surface/excavationbarracks)
 "bWp" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
 	on = 1
 	},
@@ -38858,7 +38858,7 @@
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/hallway/north_west)
 "bWs" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
+/obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/tile/white,
 /area/ice_colony/surface/excavationbarracks)
 "bWt" = (
@@ -38990,7 +38990,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8;
 	on = 1
 	},
@@ -39375,7 +39375,7 @@
 	},
 /area/ice_colony/surface/excavationbarracks)
 "bXH" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1;
 	on = 1
 	},
@@ -39412,7 +39412,7 @@
 	pixel_y = 28
 	},
 /obj/machinery/space_heater,
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+/obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1;
 	on = 1
 	},
@@ -40422,7 +40422,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
+/obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/tile/dark/red2{
 	dir = 8
 	},
