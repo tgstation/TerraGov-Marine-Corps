@@ -11,6 +11,8 @@ SUBSYSTEM_DEF(shuttle)
 	var/list/stationary = list()
 	var/list/transit = list()
 
+	var/list/crash_targets = list()
+
 	var/list/transit_requesters = list()
 	var/list/transit_request_failures = list()
 

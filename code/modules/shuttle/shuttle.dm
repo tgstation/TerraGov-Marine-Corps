@@ -273,6 +273,8 @@
 	var/can_move_docking_ports = FALSE //if this shuttle can move docking ports other than the one it is docked at
 	var/list/hidden_turfs = list()
 
+	var/crashing = FALSE
+
 /obj/docking_port/mobile/proc/register()
 	SSshuttle.mobile += src
 
