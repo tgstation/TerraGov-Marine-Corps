@@ -83,6 +83,8 @@
 	if(SSticker?.mode?.waiting_for_candidates) //It's already been activated
 		return FALSE
 
+	picked_call.mob_max = rand(5, 15)
+
 	picked_call.activate()
 
 
