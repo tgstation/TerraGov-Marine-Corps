@@ -480,15 +480,15 @@
 
 		var/datum/limb/L = H.get_limb(check_zone(zone_selected))
 
-		if (!L || (L.status & LIMB_DESTROYED))
+		if (!L || (L.limb_status & LIMB_DESTROYED))
 			return
 
 		visible_message("<span class='xenowarning'>\The [src] hits [H] in the [L.display_name] with a devastatingly powerful punch!</span>", \
 		"<span class='xenowarning'>You hit [H] in the [L.display_name] with a devastatingly powerful punch!</span>")
 
 
-		if(L.status & LIMB_SPLINTED) //If they have it splinted, the splint won't hold.
-			L.status &= ~LIMB_SPLINTED
+		if(L.limb_status & LIMB_SPLINTED) //If they have it splinted, the splint won't hold.
+			L.limb_status &= ~LIMB_SPLINTED
 			to_chat(H, "<span class='danger'>The splint on your [L.display_name] comes apart!</span>")
 
 		L.take_damage(damage, 0, 0, 0, null, null, null, armor_block)
@@ -572,7 +572,7 @@
 	var/mob/living/carbon/human/H = M
 	var/datum/limb/L = H.get_limb(check_zone(zone_selected))
 
-	if (!L || L.body_part == CHEST || L.body_part == GROIN || (L.status & LIMB_DESTROYED) || L.body_part == HEAD) //Only limbs; no head
+	if (!L || L.body_part == CHEST || L.body_part == GROIN || (L.limb_status & LIMB_DESTROYED) || L.body_part == HEAD) //Only limbs; no head
 		to_chat(src, "<span class='xenowarning'>You can't rip off that limb.</span>")
 		return FALSE
 	round_statistics.warrior_limb_rips++
@@ -585,10 +585,10 @@
 		to_chat(src, "<span class='notice'>You stop ripping off the limb.</span>")
 		return FALSE
 
-	if(L.status & LIMB_DESTROYED)
+	if(L.limb_status & LIMB_DESTROYED)
 		return FALSE
 
-	if(L.status & LIMB_ROBOT)
+	if(L.limb_status & LIMB_ROBOT)
 		L.take_damage(rand(30,40), 0, 0) // just do more damage
 		visible_message("<span class='xenowarning'>You hear [M]'s [L.display_name] being pulled beyond its load limits!</span>", \
 		"<span class='xenowarning'>\The [M]'s [L.display_name] begins to tear apart!</span>")
@@ -603,7 +603,7 @@
 		to_chat(src, "<span class='notice'>You stop ripping off the limb.</span>")
 		return FALSE
 
-	if(L.status & LIMB_DESTROYED)
+	if(L.limb_status & LIMB_DESTROYED)
 		return FALSE
 
 	visible_message("<span class='xenowarning'>\The [src] rips [M]'s [L.display_name] away from [M.p_their()] body!</span>", \

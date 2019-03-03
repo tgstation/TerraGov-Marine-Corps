@@ -71,7 +71,7 @@
 
 /obj/machinery/power/smes/batteryrack/update_icon()
 	overlays.Cut()
-	if(stat & BROKEN)	return
+	if(machine_stat & BROKEN)	return
 
 	if (outputting)
 		overlays += image('icons/obj/power.dmi', "gsmes_outputting")
@@ -144,7 +144,7 @@
 
 /obj/machinery/power/smes/batteryrack/makeshift/update_icon()
 	overlays.Cut()
-	if(stat & BROKEN)	return
+	if(machine_stat & BROKEN)	return
 
 	if (outputting)
 		overlays += image('icons/obj/power.dmi', "gsmes_outputting")
@@ -209,7 +209,7 @@
 
 #define SMESRATE 0.05			// rate of internal charge to external power
 /obj/machinery/power/smes/batteryrack/makeshift/process()
-	if(stat & BROKEN)	return
+	if(machine_stat & BROKEN)	return
 
 	//store machine state to see if we need to update the icon overlays
 	var/last_disp = chargedisplay()

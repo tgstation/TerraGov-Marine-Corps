@@ -1138,17 +1138,17 @@
 			switch(shuffle2) //Have to do this after DNA.
 				if(3) //Dutch's robot hand.
 					var/datum/limb/O = H.get_limb("r_arm")
-					O.status |= LIMB_ROBOT
+					O.limb_status |= LIMB_ROBOT
 					O = H.get_limb("r_hand")
-					O.status |= LIMB_ROBOT
+					O.limb_status |= LIMB_ROBOT
 				if(4) //Robocop is full on half mech.
 					for(var/datum/limb/O in H.limbs)
-						O.status |= LIMB_ROBOT
+						O.limb_status |= LIMB_ROBOT
 					for(var/datum/internal_organ/O in H.internal_organs)
 						O.mechanize()
 				if(5)
 					var/datum/limb/O = H.get_limb("r_hand")
-					O.status |= LIMB_ROBOT
+					O.limb_status |= LIMB_ROBOT
 					H.dna.SetSEState(TELEBLOCK, 1)
 					domutcheck(H,null,MUTCHK_FORCED)
 					H.update_mutations()

@@ -17,7 +17,7 @@
 	power_change()
 
 /obj/machinery/computer/process()
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return 0
 	return 1
 
@@ -63,11 +63,11 @@
 	..()
 	icon_state = initial(icon_state)
 	// Broken
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		icon_state += "b"
 
 	// Powered
-	else if(stat & NOPOWER)
+	else if(machine_stat & NOPOWER)
 		icon_state = initial(icon_state)
 		icon_state += "0"
 
@@ -79,7 +79,7 @@
 
 
 /obj/machinery/computer/proc/set_broken()
-	stat |= BROKEN
+	machine_stat |= BROKEN
 	update_icon()
 
 /obj/machinery/computer/proc/decode(text)
@@ -103,7 +103,7 @@
 			A.anchored = 1
 			for (var/obj/C in src)
 				C.loc = src.loc
-			if (src.stat & BROKEN)
+			if (src.machine_stat & BROKEN)
 				to_chat(user, "<span class='notice'>The broken glass falls out.</span>")
 				new /obj/item/shard( src.loc )
 				A.state = 3

@@ -396,7 +396,7 @@
 	X.visible_message("<span class='danger'>[X] rams [src]!</span>",
 	"<span class='xenodanger'>You ram [src]!</span>")
 	playsound(loc, "punch", 25, 1)
-	stat = 1
+	machine_stat = 1
 	on = 0
 	update_icon()
 	update_health(X.charge_speed * 20)

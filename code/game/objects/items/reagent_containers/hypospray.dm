@@ -79,7 +79,7 @@
 
 			if(ishuman(C))
 				var/mob/living/carbon/human/H = C
-				if(H.species.flags & NO_BLOOD)
+				if(H.species.species_flags & NO_BLOOD)
 					to_chat(user, "<span class='warning'>You are unable to locate any blood.</span>")
 					return
 				else

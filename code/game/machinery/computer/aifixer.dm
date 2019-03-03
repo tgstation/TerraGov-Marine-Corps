@@ -13,7 +13,7 @@
 
 /obj/machinery/computer/aifixer/attackby(I as obj, user as mob)
 	if(istype(I, /obj/item/device/aicard))
-		if(stat & (NOPOWER|BROKEN))
+		if(machine_stat & (NOPOWER|BROKEN))
 			to_chat(user, "This terminal isn't functioning right now, get it working!")
 			return
 		I:transfer_ai("AIFIXER","AICARD",src,user)
@@ -116,7 +116,7 @@
 /obj/machinery/computer/aifixer/update_icon()
 	..()
 	// Broken / Unpowered
-	if((stat & BROKEN) || (stat & NOPOWER))
+	if((machine_stat & BROKEN) || (machine_stat & NOPOWER))
 		overlays.Cut()
 
 	// Working / Powered

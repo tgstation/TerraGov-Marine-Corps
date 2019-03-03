@@ -56,7 +56,7 @@
 	attack_hand(user)
 
 /obj/machinery/account_database/attack_hand(mob/user as mob)
-	if(stat & (NOPOWER|BROKEN)) return
+	if(machine_stat & (NOPOWER|BROKEN)) return
 	ui_interact(user)
 
 /obj/machinery/account_database/ui_interact(mob/user, ui_key="main", var/datum/nanoui/ui = null, var/force_open = 1)

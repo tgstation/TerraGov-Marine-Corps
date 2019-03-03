@@ -40,7 +40,7 @@ GLOBAL_LIST_EMPTY(faxes)
 			continue
 		if(FM.department != department)
 			continue
-		if(FM.stat & (BROKEN|NOPOWER))
+		if(FM.machine_stat & (BROKEN|NOPOWER))
 			continue
 
 		flick("faxreceive", F)

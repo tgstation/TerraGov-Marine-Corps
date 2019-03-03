@@ -51,13 +51,13 @@
 
 // timed process
 /obj/machinery/status_display/process()
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		remove_display()
 		return
 	update()
 
 /obj/machinery/status_display/emp_act(severity)
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		..(severity)
 		return
 	set_picture("ai_bsod")
@@ -195,14 +195,14 @@
 	var/emotion = "Neutral"
 
 /obj/machinery/ai_status_display/process()
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		overlays.Cut()
 		return
 
 	update()
 
 /obj/machinery/ai_status_display/emp_act(severity)
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		..(severity)
 		return
 	set_picture("ai_bsod")

@@ -86,7 +86,7 @@
 	update_icon()
 
 /obj/machinery/bioprinter/update_icon()
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		icon_state = "bioprinter_off"
 	else
 		if(working)

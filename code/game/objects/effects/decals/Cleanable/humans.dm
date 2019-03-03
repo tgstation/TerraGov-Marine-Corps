@@ -56,7 +56,7 @@ var/global/list/image/splatter_cache=list()
 	var/datum/limb/l_foot = perp.get_limb("l_foot")
 	var/datum/limb/r_foot = perp.get_limb("r_foot")
 	var/hasfeet = 1
-	if((!l_foot || l_foot.status & LIMB_DESTROYED) && (!r_foot || r_foot.status & LIMB_DESTROYED))
+	if((!l_foot || l_foot.limb_status & LIMB_DESTROYED) && (!r_foot || r_foot.limb_status & LIMB_DESTROYED))
 		hasfeet = 0
 	if(perp.shoes && !perp.buckled)//Adding blood to shoes
 		var/obj/item/clothing/shoes/S = perp.shoes

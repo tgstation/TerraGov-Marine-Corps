@@ -311,7 +311,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 				var/mob/living/carbon/human/H = C
 				var/datum/internal_organ/heart/L = H.internal_organs_by_name["heart"]
 				if(istype(L))
-					if(H.species.flags ~! NO_PAIN)
+					if(H.species.species_flags ~! NO_PAIN)
 						to_chat(H, "<span class='danger'>You clutch for a moment as you feel a scorching pain covering your abdomen!</span>")
 						H.Stun(3)
 					L.take_damage(20) //used to be 100 each tick without prob
