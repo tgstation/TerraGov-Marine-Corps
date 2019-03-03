@@ -13758,6 +13758,9 @@
 	},
 /area/shuttle/drop1/lz1)
 "aXE" = (
+/obj/machinery/computer/shuttle_control/dropship1{
+	onboard = 0
+	},
 /obj/structure/table/reinforced/flipped{
 	dir = 1
 	},
@@ -15325,6 +15328,12 @@
 /turf/open/floor/plating/asteroidwarning{
 	dir = 4
 	},
+/area/shuttle/drop2/lz2)
+"bcp" = (
+/obj/effect/landmark/shuttle_loc/marine_trg/landing{
+	name = "2"
+	},
+/turf/open/floor/plating,
 /area/shuttle/drop2/lz2)
 "bcr" = (
 /obj/machinery/door/poddoor/almayer{
@@ -17005,6 +17014,12 @@
 	dir = 4
 	},
 /turf/open/floor,
+/area/shuttle/drop1/lz1)
+"bhO" = (
+/obj/effect/landmark/shuttle_loc/marine_trg/landing{
+	name = "1"
+	},
+/turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "bhP" = (
 /obj/effect/landmark/huntergames_primary_spawn,
@@ -28390,7 +28405,7 @@ aOW
 aOW
 aOW
 aOW
-aOW
+bcp
 bdp
 aTz
 beZ
@@ -29656,7 +29671,7 @@ aEa
 auU
 aNR
 aOW
-aPQ
+aOW
 aOW
 aOW
 aOW
@@ -29666,7 +29681,7 @@ bbE
 aOW
 aOW
 aOW
-aOW
+aPQ
 aOW
 aOW
 aOW
@@ -58465,7 +58480,7 @@ aTR
 aTR
 aTR
 aVm
-aTR
+bhO
 biH
 bjv
 bkc
@@ -59731,17 +59746,17 @@ azJ
 aSB
 aTq
 aTR
+aTR
+aTR
+aTR
+aTR
+aTR
+aTR
+aTR
+aTR
+aTR
+aTR
 aUA
-aTR
-aTR
-aTR
-aTR
-aTR
-aTR
-aTR
-aTR
-aTR
-aTR
 aTR
 aTR
 aWv

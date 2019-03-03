@@ -423,6 +423,9 @@
 
 //Dropship control console
 
+/obj/machinery/computer/shuttle_control
+	var/onboard
+
 /obj/machinery/computer/shuttle_control/dropship1
 	name = "\improper 'Alamo' dropship console"
 	desc = "The remote controls for the 'Alamo' Dropship. Named after the Alamo Mission, stage of the Battle of the Alamo in the United States' state of Texas in the Spring of 1836. The defenders held to the last, encouraging other Texans to rally to the flag."
@@ -460,3 +463,33 @@
 	name = "Elevator Console"
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "supply"
+
+// Old mapping stuff
+/obj/effect/landmark/shuttle_loc/marine_trg/evacuation
+
+/obj/machinery/computer/shuttle_control/ert
+	var/shuttle_tag
+
+/obj/machinery/computer/shuttle_control/ert/centcom
+
+/obj/effect/landmark/distress_pmcitem
+
+/obj/effect/landmark/distress_uppitem
+
+/obj/effect/landmark/distress_pmc
+
+/obj/effect/landmark/distress_upp
+
+/obj/effect/landmark/shuttle_loc/marine_trg/landing
+
+/area/supply/dock
+
+/obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod
+
+/obj/effect/landmark/shuttle_loc/marine_src/evacuation
+
+/obj/effect/landmark/shuttle_loc/marine_crs/dropship
+
+/area/supply/station
+
+/obj/effect/landmark/shuttle_loc/marine_src/dropship

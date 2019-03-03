@@ -31030,6 +31030,12 @@
 	},
 /turf/open/floor/prison,
 /area/prison/security/monitoring/highsec)
+"buF" = (
+/obj/effect/landmark/shuttle_loc/marine_trg/landing{
+	name = "2"
+	},
+/turf/open/floor/plating,
+/area/prison/hangar/civilian)
 "buG" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -31329,6 +31335,12 @@
 /turf/open/floor/prison/trim/red{
 	dir = 6
 	},
+/area/prison/hangar/main)
+"bvl" = (
+/obj/effect/landmark/shuttle_loc/marine_trg/landing{
+	name = "1"
+	},
+/turf/open/floor/plating,
 /area/prison/hangar/main)
 "bvm" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -35526,6 +35538,10 @@
 /area/prison/maintenance/hangar_barracks)
 "bEO" = (
 /obj/structure/table/reinforced,
+/obj/machinery/computer/shuttle_control/dropship1{
+	onboard = 0;
+	use_power = 0
+	},
 /turf/open/floor/prison/darkred/full,
 /area/prison/console)
 "bEP" = (
@@ -58144,7 +58160,7 @@ aok
 aok
 aok
 aok
-aok
+buF
 ctn
 aok
 ctw
@@ -59410,17 +59426,17 @@ amu
 aok
 aok
 aok
+aok
+aok
+aok
+aok
+aok
+aok
+aok
+aok
+aok
+aok
 aoj
-aok
-aok
-aok
-aok
-aok
-aok
-aok
-aok
-aok
-aok
 aok
 aok
 aok
@@ -115197,7 +115213,7 @@ aYM
 aYM
 aYM
 aYM
-aYM
+bvl
 bwp
 bnQ
 bxx
@@ -116463,17 +116479,17 @@ aYM
 aYM
 baG
 aYM
+aYM
+aYM
+aYM
+aYM
+aYM
+aYM
+aYM
+aYM
+aYM
+aYM
 bcF
-aYM
-aYM
-aYM
-aYM
-aYM
-aYM
-aYM
-aYM
-aYM
-aYM
 aYM
 aYM
 aYM
