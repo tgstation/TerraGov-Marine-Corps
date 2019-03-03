@@ -111,7 +111,7 @@
 			if(squad_leader && (!squad_leader.mind || squad_leader.mind.assigned_role != "Squad Leader")) //field promoted SL
 				demote_squad_leader() //replaced by the real one
 			squad_leader = H
-			SET_TRACK_LEADER(tracking_id, H)
+			SSdirection.set_leader(tracking_id, H)
 			if(H.mind.assigned_role == "Squad Leader") //field promoted SL don't count as real ones
 				num_leaders++
 
@@ -125,7 +125,7 @@
 	if(istype(H.wear_ear, /obj/item/device/radio/headset/almayer)) // they've been transferred
 		var/obj/item/device/radio/headset/almayer/headset = H.wear_ear
 		if(headset.sl_direction)
-			START_TRACK_LEADER(src, H)
+			SSdirection.start_tracking(tracking_id, H)
 
 	var/c_oldass = C.assignment
 	C.access += access //Add their squad access to their ID
@@ -153,14 +153,14 @@
 	count--
 	marines_list -= H
 
-	STOP_TRACK_LEADER(src, H) // covers squad transfers
+	SSdirection.stop_tracking(tracking_id, H) // covers squad transfers
 
 	if(H.assigned_squad.squad_leader == H)
 		if(H.mind.assigned_role != "Squad Leader") //a field promoted SL, not a real one
 			demote_squad_leader()
 		else
 			H.assigned_squad.squad_leader = null
-			CLEAR_TRACK_LEADER(tracking_id)
+			SSdirection.clear_leader(tracking_id)
 
 	H.assigned_squad = null
 
@@ -181,6 +181,7 @@
 /datum/squad/proc/clean_marine_from_squad(mob/living/carbon/human/H, wipe = FALSE)
 	if(!H.assigned_squad || !(H in marines_list))
 		return FALSE
+	SSdirection.stop_tracking(tracking_id, H)// failsafe
 	marines_list -= src
 	if(!wipe)
 		var/role = "unknown"
@@ -189,7 +190,7 @@
 		gibbed_marines_list[H.name] = role
 	if(squad_leader == src)
 		squad_leader = null
-		CLEAR_TRACK_LEADER(tracking_id)
+		SSdirection.clear_leader(tracking_id)
 	H.assigned_squad = null
 	return TRUE
 
@@ -197,7 +198,7 @@
 /datum/squad/proc/demote_squad_leader(leader_killed)
 	var/mob/living/carbon/human/old_lead = squad_leader
 	squad_leader = null
-	CLEAR_TRACK_LEADER(tracking_id)
+	SSdirection.clear_leader(tracking_id)
 	if(old_lead.mind.assigned_role)
 		if(old_lead.mind.cm_skills)
 			if(old_lead.mind.assigned_role == ("Squad Specialist" || "Squad Engineer" || "Squad Corpsman" || "Squad Smartgunner"))

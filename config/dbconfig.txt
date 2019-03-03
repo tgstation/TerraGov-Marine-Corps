@@ -1,5 +1,5 @@
 ## Should SQL be enabled? Uncomment to enable
-SQL_ENABLED
+#SQL_ENABLED
 
 ## Server the MySQL database can be found at.
 ## Examples: localhost, 200.135.5.43, www.mysqldb.com, etc.
@@ -34,4 +34,4 @@ BLOCKING_QUERY_TIMEOUT 5
 BSQL_THREAD_LIMIT 50
 
 ## Uncomment to enable verbose BSQL communication logs
-BSQL_DEBUG
+#BSQL_DEBUG

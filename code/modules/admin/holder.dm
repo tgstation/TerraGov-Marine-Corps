@@ -291,7 +291,6 @@ GLOBAL_LIST_INIT(admin_verbs_admin, world.AVadmin())
 	/datum/admins/proc/game_panel,
 	/datum/admins/proc/gamemode_panel,
 	/datum/admins/proc/local_message,
-	/datum/admins/proc/view_faxes,
 	/datum/admins/proc/toggle_adminhelp_sound,
 	/datum/admins/proc/toggle_prayers,
 	/client/proc/private_message_panel,
@@ -362,6 +361,8 @@ GLOBAL_LIST_INIT(admin_verbs_fun, world.AVfun())
 	/datum/admins/proc/edit_appearance,
 	/datum/admins/proc/create_outfit,
 	/datum/admins/proc/offer,
+	/datum/admins/proc/change_hivenumber,
+	/datum/admins/proc/view_faxes,
 	/client/proc/build_mode
 	)
 
@@ -395,7 +396,6 @@ GLOBAL_LIST_INIT(admin_verbs_debug, world.AVdebug())
 	return list(
 	/datum/admins/proc/proccall_advanced,
 	/datum/admins/proc/proccall_atom,
-	/datum/admins/proc/change_hivenumber,
 	/datum/admins/proc/delete_all,
 	/datum/admins/proc/generate_powernets,
 	/datum/admins/proc/debug_mob_lists,
