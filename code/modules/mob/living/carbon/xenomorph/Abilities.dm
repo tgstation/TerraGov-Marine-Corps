@@ -1161,7 +1161,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 
 /datum/action/xeno_action/activable/larva_growth/action_cooldown_check()
 	var/mob/living/carbon/Xenomorph/X = owner
-	if(world.time > X.larva_growth_used)
+	if(world.time > X.last_larva_growth_used + XENO_LARVAL_GROWTH_COOLDOWN)
 		return TRUE
 
 /datum/action/xeno_action/activable/larva_growth/use_ability(atom/A)
@@ -1169,8 +1169,8 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 	if(!X.check_state() || X.action_busy)
 		return
 
-	if(world.time < X.larva_growth_used)
-		to_chat(X, "<span class='xenowarning'>You're still recovering from your previous larva growth advance. Wait [round((X.larva_growth_used - world.time) * 0.1)] seconds.</span>")
+	if(world.time < X.last_larva_growth_used + XENO_LARVAL_GROWTH_COOLDOWN)
+		to_chat(X, "<span class='xenowarning'>You're still recovering from your previous larva growth advance. Wait [round((X.last_larva_growth_used + XENO_LARVAL_GROWTH_COOLDOWN - world.time) * 0.1)] seconds.</span>")
 		return
 
 	if(!istype(A, /mob/living/carbon/human))
@@ -1200,7 +1200,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 		"<span class='xenowarning'>\The [E] inside of [H] grows a little!</span>")
 
 		E.stage++
-		X.larva_growth_used = world.time + 1 MINUTES
+		X.last_larva_growth_used = world.time
 
 //Ravager Abilities
 
@@ -1346,7 +1346,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 	var/mob/living/carbon/Xenomorph/Hunter/X = owner
 	return !X.used_stealth
 
-//Sentinel Neurotox Sting
+//Neurotox Sting
 /datum/action/xeno_action/activable/neurotox_sting
 	name = "Neurotoxin Sting"
 	action_icon_state = "neuro_sting"
@@ -1354,12 +1354,12 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 	ability_name = "neurotoxin sting"
 
 /datum/action/xeno_action/activable/neurotox_sting/use_ability(atom/A)
-	var/mob/living/carbon/Xenomorph/Sentinel/X = owner
+	var/mob/living/carbon/Xenomorph/X = owner
 	X.neurotoxin_sting(A)
 
 /datum/action/xeno_action/activable/neurotox_sting/action_cooldown_check()
-	var/mob/living/carbon/Xenomorph/Sentinel/X = owner
-	if(world.time >= X.last_neurotoxin_sting + SENTINEL_STING_COOLDOWN)
+	var/mob/living/carbon/Xenomorph/X = owner
+	if(world.time >= X.last_neurotoxin_sting + XENO_NEURO_STING_COOLDOWN)
 		return TRUE
 
 //Defiler abilities
@@ -1426,20 +1426,20 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 	var/mob/living/carbon/Xenomorph/Defiler/X = owner
 	X.emit_neurogas()
 
-//Drone's Sting
-/datum/action/xeno_action/activable/drone_sting
+//Xeno Larval Growth Sting
+/datum/action/xeno_action/activable/larval_growth_sting
 	name = "Larval Growth Sting"
 	action_icon_state = "drone_sting"
 	mechanics_text = "Inject an impregnated host with growth serum, causing the larva inside to grow quicker."
-	ability_name = "drone sting"
+	ability_name = "larval growth sting"
 
-/datum/action/xeno_action/activable/drone_sting/use_ability(atom/A)
-	var/mob/living/carbon/Xenomorph/Drone/X = owner
-	X.drone_sting(A)
+/datum/action/xeno_action/activable/larval_growth_sting/use_ability(atom/A)
+	var/mob/living/carbon/Xenomorph/X = owner
+	X.larval_growth_sting(A)
 
-/datum/action/xeno_action/activable/drone_sting/action_cooldown_check()
-	var/mob/living/carbon/Xenomorph/Drone/X = owner
-	if(world.time >= X.last_drone_sting + DRONE_STING_COOLDOWN)
+/datum/action/xeno_action/activable/larval_growth_sting/action_cooldown_check()
+	var/mob/living/carbon/Xenomorph/X = owner
+	if(world.time >= X.last_larva_growth_used + XENO_LARVAL_GROWTH_COOLDOWN)
 		return TRUE
 
 /////////////////////////////////////////////////////////////////////////////////////////////
