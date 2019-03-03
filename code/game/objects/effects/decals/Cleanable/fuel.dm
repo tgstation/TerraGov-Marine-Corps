@@ -23,9 +23,11 @@
 
 /obj/effect/decal/cleanable/liquid_fuel/proc/Spread()
 	//Allows liquid fuels to sometimes flow into other tiles.
-	if(amount < 5.0) return
+	if(amount < 5.0) 
+		return
 	var/turf/S = loc
-	if(!istype(S)) return
+	if(!istype(S)) 
+		return
 	for(var/d in cardinal)
 		if(rand(25))
 			var/turf/target = get_step(src,d)
@@ -45,9 +47,11 @@
 
 /obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel/Spread()
 	//The spread for flamethrower fuel is much more precise, to create a wide fire pattern.
-	if(amount < 0.1) return
+	if(amount < 0.1) 
+		return
 	var/turf/S = loc
-	if(!istype(S)) return
+	if(!istype(S)) 
+		return
 
 	for(var/d in list(turn(dir,90),turn(dir,-90), dir))
 		var/turf/O = get_step(S,d)
@@ -55,6 +59,5 @@
 			continue
 		if(O.CanPass(null, S) && S.CanPass(null, O))
 			new/obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel(O, amount * 0.25, 1)
-//					O.hotspot_expose((T20C * 2) + 380, 500) //Light flamethrower fuel on fire immediately.
 
 	amount *= 0.25
