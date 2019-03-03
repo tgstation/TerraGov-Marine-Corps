@@ -51,6 +51,9 @@
 	var/list/moved_atoms = list() //Everything not a turf that gets moved in the shuttle
 	var/list/areas_to_move = list() //unique assoc list of areas on turfs being moved
 
+	if(crashing)
+		new_dock.on_crash()
+
 	. = preflight_check(old_turfs, new_turfs, areas_to_move, rotation)
 	if(.)
 		remove_ripples()

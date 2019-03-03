@@ -122,3 +122,6 @@
 
 /datum/map_template/shuttle/big_ert
 	shuttle_id = "big_ert"
+
+/datum/map_template/shuttle/supply
+	shuttle_id = "supply"

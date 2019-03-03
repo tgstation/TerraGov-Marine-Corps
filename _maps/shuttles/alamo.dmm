@@ -7,11 +7,6 @@
 /obj/structure/dropship_piece/one/front,
 /turf/template_noop,
 /area/shuttle/dropship/alamo)
-"ac" = (
-/obj/structure/dropship_piece/one/front,
-/obj/docking_port/mobile/marine_dropship/one,
-/turf/template_noop,
-/area/shuttle/dropship/alamo)
 "ad" = (
 /obj/structure/dropship_piece/one/front/right,
 /turf/template_noop,
@@ -394,6 +389,7 @@
 	},
 /area/shuttle/dropship/alamo)
 "bg" = (
+/obj/docking_port/mobile/marine_dropship/one,
 /turf/closed/shuttle/dropship1{
 	tag = "icon-53";
 	icon_state = "53"
@@ -823,7 +819,7 @@ ao
 ao
 "}
 (6,1,1) = {"
-ac
+ab
 ag
 Ki
 at

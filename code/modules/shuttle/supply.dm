@@ -24,6 +24,17 @@ GLOBAL_LIST_EMPTY(exports_types)
 		var/datum/supply_export/E = new typepath()
 		GLOB.exports_types += E
 
+/obj/docking_port/stationary/supply
+	id = "supply"
+
+	width = 5
+	dwidth = 2
+	dheight = 2
+	height = 5
+
+/obj/docking_port/stationary/supply/reqs
+	roundstart_template = /datum/map_template/shuttle/supply
+
 /obj/docking_port/mobile/supply
 	name = "supply shuttle"
 	id = "supply"
@@ -31,9 +42,10 @@ GLOBAL_LIST_EMPTY(exports_types)
 
 	dir = WEST
 	port_direction = EAST
-	width = 12
-	dwidth = 5
-	height = 7
+	width = 5
+	dwidth = 2
+	dheight = 2
+	height = 5
 	movement_force = list("KNOCKDOWN" = 0, "THROW" = 0)
 
 

@@ -11,7 +11,6 @@
 // END_PREFERENCES
 // BEGIN_INCLUDE
 #include "_maps\_basemap.dm"
-#include "_maps\map_files\generic\Admin_Level.dmm"
 #include "code\global.dm"
 #include "code\names.dm"
 #include "code\stylesheet.dm"

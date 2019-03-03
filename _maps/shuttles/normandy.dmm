@@ -347,11 +347,6 @@
 /obj/structure/dropship_piece/two/wing/right/bottom,
 /turf/template_noop,
 /area/shuttle/dropship/normandy)
-"bc" = (
-/obj/docking_port/mobile/marine_dropship/two,
-/obj/structure/dropship_piece/two/front,
-/turf/template_noop,
-/area/shuttle/dropship/normandy)
 "bd" = (
 /obj/machinery/door/airlock/dropship_hatch/two,
 /obj/machinery/door/poddoor/shutters/transit{
@@ -396,6 +391,7 @@
 	},
 /area/shuttle/dropship/normandy)
 "bj" = (
+/obj/docking_port/mobile/marine_dropship/two,
 /turf/closed/shuttle/dropship2{
 	icon_state = "53"
 	},
@@ -837,7 +833,7 @@ aa
 aa
 "}
 (6,1,1) = {"
-bc
+ac
 ag
 Lz
 as

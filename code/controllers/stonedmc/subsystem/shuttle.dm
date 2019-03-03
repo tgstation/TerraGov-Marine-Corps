@@ -388,8 +388,12 @@ SUBSYSTEM_DEF(shuttle)
 
 
 /datum/controller/subsystem/shuttle/proc/moveShuttle(shuttleId, dockId, timed)
-	var/obj/docking_port/mobile/M = getShuttle(shuttleId)
 	var/obj/docking_port/stationary/D = getDock(dockId)
+
+	return moveShuttleToDock(shuttleId, D, timed)
+
+/datum/controller/subsystem/shuttle/proc/moveShuttleToDock(shuttleId, obj/docking_port/stationary/D, timed)
+	var/obj/docking_port/mobile/M = getShuttle(shuttleId)
 
 	if(!M)
 		return 1

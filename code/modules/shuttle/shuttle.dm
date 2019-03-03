@@ -207,6 +207,9 @@
 	if(roundstart_template)
 		SSshuttle.action_load(roundstart_template, src)
 
+/obj/docking_port/stationary/proc/on_crash()
+	return
+
 //returns first-found touching shuttleport
 /obj/docking_port/stationary/get_docked()
 	. = locate(/obj/docking_port/mobile) in loc
@@ -366,6 +369,8 @@
 	return SHUTTLE_CAN_DOCK
 
 /obj/docking_port/mobile/proc/check_dock(obj/docking_port/stationary/S, silent=FALSE)
+	if(crashing)
+		return TRUE
 	var/status = canDock(S)
 	if(status == SHUTTLE_CAN_DOCK)
 		return TRUE

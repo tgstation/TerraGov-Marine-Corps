@@ -4,12 +4,43 @@
 	id = "dropship"
 	dir = SOUTH
 	dwidth = 5
+	dheight = 10
 	width = 11
 	height = 21
 
+// clear areas around the shuttle with explosions
+/obj/docking_port/stationary/marine_dropship/on_crash()
+	var/turf/C = return_center_turf()
+
+	var/cos = 1
+	var/sin = 0
+	switch(dir)
+		if(WEST)
+			cos = 0
+			sin = 1
+		if(SOUTH)
+			cos = -1
+			sin = 0
+		if(EAST)
+			cos = 0
+			sin = -1
+
+	var/updown = (round(width/2))*sin + (round(height/2))*cos
+	var/leftright = (round(width/2))*cos - (round(height/2))*sin
+
+	var/turf/front = locate(C.x, C.y - updown, C.z)
+	var/turf/rear = locate(C.x, C.y + updown, C.z)
+	var/turf/left = locate(C.x - leftright, C.y, C.z)
+	var/turf/right = locate(C.x + leftright, C.y, C.z)
+
+	explosion(front, 0, 4, 8, 0)
+	explosion(rear, 2, 5, 9, 0)
+	explosion(left, 2, 5, 9, 0)
+	explosion(right, 2, 5, 9, 0)
+
 /obj/docking_port/stationary/marine_dropship/crash_target
 	name = "dropshipcrash"
-	dheight = 10
+	id = "dropshipcrash"
 
 /obj/docking_port/stationary/marine_dropship/crash_target/Initialize()
 	. = ..()
@@ -41,6 +72,7 @@
 	name = "marine dropship"
 	dir = SOUTH
 	dwidth = 5
+	dheight = 10
 	width = 11
 	height = 21
 
@@ -56,6 +88,14 @@
 	playsound(return_center_turf(), 'sound/effects/engine_landing.ogg', 60, 0)
 	if(destination)
 		playsound(destination.return_center_turf(), 'sound/effects/engine_landing.ogg', 60, 0)
+
+
+/obj/docking_port/mobile/marine_dropship/initiate_docking(obj/docking_port/stationary/new_dock, movement_direction, force=FALSE)
+	if(crashing)
+		force = TRUE
+
+	. = ..()
+
 /obj/docking_port/mobile/marine_dropship/one
 	id = "alamo"
 
@@ -76,6 +116,48 @@
 	exproof = TRUE
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER) // TLs can only operate the remote console
 	possible_destinations = "dropship;alamo;normandy"
+
+/obj/machinery/computer/shuttle/marine_dropship/attack_paw(mob/living/user)
+	attack_alien(user)
+
+/obj/machinery/computer/shuttle/marine_dropship/attack_alien(mob/living/carbon/Xenomorph/X)
+	if(!(X.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
+		return
+	var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
+	var/dat = "Status: [M ? M.getStatusText() : "*Missing*"]<br><br>"
+	if(M)
+		dat += "<A href='?src=[REF(src)];hijack=1'>Launch to [MAIN_SHIP_NAME]</A><br>"
+	dat += "<a href='?src=[REF(X)];mach_close=computer'>Close</a>"
+
+	var/datum/browser/popup = new(X, "computer", M ? M.name : "shuttle", 300, 200)
+	popup.set_content("<center>[dat]</center>")
+	popup.set_title_image(X.browse_rsc_icon(src.icon, src.icon_state))
+	popup.open()
+
+/obj/machinery/computer/shuttle/marine_dropship/Topic(href, href_list)
+	. = ..()
+	if(!Adjacent(usr) || !isxeno(usr))
+		return
+	var/mob/living/carbon/Xenomorph/X = usr
+	if(!(X.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
+		return
+	if(href_list["hijack"])
+		var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
+		if(!M)
+			return
+		var/obj/docking_port/stationary/marine_dropship/crash_target/CT = pick(SSshuttle.crash_targets)
+		if(!CT)
+			return
+		M.callTime = 2 MINUTES
+		M.crashing = TRUE
+		switch(SSshuttle.moveShuttleToDock(shuttleId, CT, 1))
+			if(0)
+				visible_message("Shuttle departing. Please stand away from the doors.")
+			if(1)
+				to_chat(usr, "<span class='warning'>Invalid shuttle requested.</span>")
+			else
+				to_chat(usr, "<span class='notice'>Unable to comply.</span>")
+
 /obj/machinery/computer/shuttle/marine_dropship/one
 	name = "\improper 'Alamo' flight controls"
 	desc = "The flight controls for the 'Alamo' Dropship. Named after the Alamo Mission, stage of the Battle of the Alamo in the United States' state of Texas in the Spring of 1836. The defenders held to the last, encouraging other Texians to rally to the flag."
