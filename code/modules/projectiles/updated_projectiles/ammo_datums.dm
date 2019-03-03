@@ -1449,7 +1449,7 @@
 	if(istype(T, /turf/closed) )
 		drop_acid(get_turf(P))
 		return
-	drop_acid(get_turf(T))
+	drop_acid(T)
 
 /datum/ammo/xeno/acid/heavy/do_at_max_range(obj/item/projectile/P)
 	drop_acid(get_turf(P))
