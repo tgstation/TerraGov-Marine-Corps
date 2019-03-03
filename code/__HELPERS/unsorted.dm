@@ -1305,6 +1305,7 @@ var/list/WALLITEMS = list(
 		arglist = list2params(arglist)
 	return "<a href='?src=\ref[D];[arglist]'>[content]</a>"
 
+#define SIGN(x) ( x < 0 ? -1  : 1 )
 //Reasonably Optimized Bresenham's Line Drawing
 /proc/getline(atom/start, atom/end)
 	var/x = start.x
@@ -1313,9 +1314,9 @@ var/list/WALLITEMS = list(
 
 	//horizontal and vertical lines special case
 	if(y == end.y)
-		return block(locate(min(x,end.x),y,z), locate(max(x,end.x),y,z))
+		return x <= end.x ? block(locate(x,y,z), locate(end.x,y,z)) : reverseRange(block(locate(end.x,y,z), locate(x,y,z)))
 	if(x == end.x)
-		return block(locate(x,min(y,end.y),z), locate(x,max(y,end.y),z))
+		return y <= end.y ? block(locate(x,y,z), locate(x,end.y,z)) : reverseRange(block(locate(x,end.y,z), locate(x,y,z)))
 
 	//let's compute these only once
 	var/abs_dx = abs(end.x - x)
@@ -1359,6 +1360,8 @@ var/list/WALLITEMS = list(
 			turfs += locate(x,y,z)
 
 	. = turfs
+
+#undef SIGN
 
 //gives us the stack trace from CRASH() without ending the current proc.
 /proc/stack_trace(msg)
