@@ -552,7 +552,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 		if("species")
 			var/new_species = input(user, "Choose your species:", "Species") as null|anything in get_playable_species()
-			if(!new_species || !is_alien_whitelisted(new_species))
+			if(!new_species)
 				return
 			species = new_species
 

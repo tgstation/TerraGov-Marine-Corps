@@ -702,8 +702,6 @@ var/jobban_keylist[0]		//to store the keys & ranks
 		if(guest_jobbans(rank))
 			if(CONFIG_GET(flag/guest_jobban) && IsGuestKey(M.key))
 				return "Guest Job-ban"
-			if(CONFIG_GET(flag/usewhitelist) && !check_whitelist(M))
-				return "Whitelisted Job"
 		return jobban_keylist[rank][M.ckey]
 
 
@@ -936,7 +934,7 @@ var/jobban_keylist[0]		//to store the keys & ranks
 
 	var/datum/player_info/item = infos[index]
 	infos.Remove(item)
-	
+
 	to_chat(info, infos)
 	qdel(info)
 
@@ -1111,7 +1109,7 @@ var/jobban_keylist[0]		//to store the keys & ranks
 			var/dat_header = "<HR><B>Job Bans:</B>"
 			dat_header += "</FONT><HR><table border=1 rules=all frame=void cellspacing=0 cellpadding=3 >[dat]"
 			usr << browse(dat_header, "window=unbanp;size=875x400")
-	
+
 		if("Transfer one ban type")
 			var/old_job = input(usr, "Type old job to be renamed", "Old job:") as null|text
 			if(!old_job)
