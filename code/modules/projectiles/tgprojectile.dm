@@ -1,7 +1,7 @@
 //Some debug variables. Toggle them to 1 in order to see the related debug messages. Helpful when testing out formulas.
-#define DEBUG_HIT_CHANCE	FALSE
-#define DEBUG_HUMAN_DEFENSE	FALSE
-#define DEBUG_XENO_DEFENSE	FALSE
+#define DEBUG_HIT_CHANCE	1
+#define DEBUG_HUMAN_DEFENSE	1
+#define DEBUG_XENO_DEFENSE	1
 #define DEBUG_CREST_DEFENSE	0
 
 #define MOVES_HITSCAN -1		//Not actually hitscan but close as we get without actual hitscan.
@@ -139,11 +139,11 @@ Proc Name                                                                  Self 
 	var/hitsound_wall = ""
 	layer = FLY_LAYER
 
-	var/current = null // never used, never was used
-	var/distance_travelled
-	var/scatter
+	var/current = null // TODO: this is use in some laser beam eye code ONCE, ??? code/_onclick/click.dm:235 ???
+	var/distance_travelled = 0
+	var/scatter = 0
 	var/datum/ammo/ammo
-	var/projectile_speed
+	var/projectile_speed = 1
 	var/turf/target_turf = null
 	var/accuracy = 85
 	var/armor_type = null
@@ -309,6 +309,13 @@ Proc Name                                                                  Self 
 		if(suppressed)
 			volume = 5
 		playsound(loc, hitsound_wall, volume, 1, -1)
+
+	if(!(A in permutated) && A.density && isturf(A) )
+		ammo.on_hit_turf(A, src)
+		if(A?.loc)
+			A.bullet_act(src)
+		qdel(src)
+		return
 
 	//return process_hit(T, select_target(T, A))
 	
@@ -727,6 +734,7 @@ Proc Name                                                                  Self 
 		return
 	if(!fired)
 		return
+	distance_travelled++
 	if(can_hit_target(original, permutated, TRUE))
 		Bump(original)
 	for(var/atom/i in (get_turf(newloc)).contents)
