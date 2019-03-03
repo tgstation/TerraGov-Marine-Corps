@@ -213,7 +213,7 @@
 	. = ..()
 	if(!has_catwalk)
 		var/obj/effect/river_overlay/R = new(src)
-		R.overlays += image("icon"='icons/turf/ground_map.dmi',"icon_state"="riverwater","layer"=MOB_LAYER+0.1)
+		R.overlays += image("icon"='icons/turf/ground_map.dmi',"icon_state"="riverwater","layer"=RIVER_OVERLAY_LAYER)
 
 /turf/open/gm/river/Entered(atom/movable/AM)
 	..()
@@ -268,7 +268,7 @@
 	. = ..()
 	if(!has_catwalk)
 		var/obj/effect/river_overlay/R = new(src)
-		R.overlays += image("icon"='icons/effects/effects.dmi',"icon_state"="greenglow","layer"=MOB_LAYER+0.1)
+		R.overlays += image("icon"='icons/effects/effects.dmi',"icon_state"="greenglow","layer"=RIVER_OVERLAY_LAYER)
 
 /turf/open/gm/river/poison/Entered(mob/living/M)
 	..()
@@ -295,7 +295,7 @@
 	. = ..()
 	if(!has_catwalk)
 		var/obj/effect/river_overlay/R = new(src)
-		R.overlays += image("icon"='icons/turf/ground_map.dmi',"icon_state"="water","layer"=MOB_LAYER+0.1)
+		R.overlays += image("icon"='icons/turf/ground_map.dmi',"icon_state"="water","layer"=RIVER_OVERLAY_LAYER)
 
 
 
