@@ -314,7 +314,9 @@ Proc Name                                                                  Self 
 	
 	var/hit_chance = A.get_projectile_hit_chance(src) // Calculated from combination of both ammo accuracy and gun accuracy
 
-	if(hit_chance)
+	message_admins("reeee chance [hit_chance]")
+
+	if(hit_chance && !(A in permutated))
 		if(isliving(A))
 			if(firer && firer.sniper_target(A) && A != firer.sniper_target(A)) //First check to see if we've actually got anyone targeted; If we've singled out someone with a targeting laser, forsake all others
 				return
@@ -355,7 +357,7 @@ Proc Name                                                                  Self 
 							mob_is_hit = TRUE
 							break
 			if(mob_is_hit)
-				//message_admins("on_hit_mob")
+				message_admins("on_hit_mob")
 				ammo.on_hit_mob(L,src)
 				if(L?.loc)
 					L.bullet_act(src)
@@ -365,20 +367,21 @@ Proc Name                                                                  Self 
 				L.visible_message("<span class='avoidharm'>[src] misses [L]!</span>","<span class='avoidharm'>[src] narrowly misses you!</span>", null, 4)
 
 		else if(isobj(A))
-			//message_admins("on_hit_obj")
+			message_admins("on_hit_obj")
 			ammo.on_hit_obj(A,src)
 			if(A && A.loc)
 				A.bullet_act(src)
+		qdel(src)
 
 	// Explosive ammo always explodes on the turf of the clicked target
 	if(src && ammo.flags_ammo_behavior & AMMO_EXPLOSIVE && T == target_turf)
-		//message_admins("on_hit_turf")
+		message_admins("on_hit_turf")
 		ammo.on_hit_turf(T,src)
 		if(T?.loc)
 			T.bullet_act(src)
 	
-	//A.bullet_act(src)
-	qdel(src)
+		//A.bullet_act(src)
+		qdel(src)
 
 /obj/item/projectile/proc/check_ricochet()
 	return FALSE
