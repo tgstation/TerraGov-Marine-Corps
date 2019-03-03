@@ -402,38 +402,6 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	message_admins("[ADMIN_TPMONTY(usr)] has restarted the [controller] controller.")
 
 
-/datum/admins/proc/debug_controller(controller in list("Master", "Lighting", "Sun", "Radio", "Supply", "Shuttles", "Configuration", "Cameras", "Global Vars"))
-	set category = "Debug"
-	set name = "Debug Controllers"
-	set desc = "Debug the various periodic loop controllers for the game."
-
-	if(!check_rights(R_DEBUG))
-		return
-
-	switch(controller)
-		if("Master")
-			usr.client.debug_variables(Master)
-		if("Lighting")
-			usr.client.debug_variables(lighting_controller)
-		if("Sun")
-			usr.client.debug_variables(sun)
-		if("Radio")
-			usr.client.debug_variables(radio_controller)
-		if("Supply")
-			usr.client.debug_variables(supply_controller)
-		if("Shuttles")
-			usr.client.debug_variables(shuttle_controller)
-		if("Configuration")
-			usr.client.debug_variables(config)
-		if("Cameras")
-			usr.client.debug_variables(cameranet)
-		if("Global Vars")
-			usr.client.debug_variables(GLOB)
-
-	log_admin("[key_name(usr)] is debugging the [controller] controller.")
-	message_admins("[ADMIN_TPMONTY(usr)] is debugging the [controller] controller.")
-
-
 /datum/admins/proc/check_contents()
 	set category = "Debug"
 	set name = "Check Contents"

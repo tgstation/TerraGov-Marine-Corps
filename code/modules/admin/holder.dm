@@ -402,7 +402,6 @@ GLOBAL_LIST_INIT(admin_verbs_debug, world.AVdebug())
 	/datum/admins/proc/delete_atom,
 	/datum/admins/proc/fix_next_move,
 	/datum/admins/proc/restart_controller,
-	/datum/admins/proc/debug_controller,
 	/datum/admins/proc/check_contents,
 	/datum/admins/proc/update_mob_sprite
 	)
