@@ -316,5 +316,7 @@
 		var/mob/M = attacker
 		log_combat(M, src, "damaged [src] with [damage] [type] damage.")
 
-	log_combat(gunner, null, "took [damage] [type] damage from [attacker].")
-	log_combat(driver, null, "took [damage] [type] damage from [attacker].")
+	if(gunner)
+		log_combat(gunner, null, "took [damage] [type] damage from [attacker].")
+	if(driver)
+		log_combat(driver, null, "took [damage] [type] damage from [attacker].")
