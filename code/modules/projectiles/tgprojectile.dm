@@ -170,7 +170,7 @@ Proc Name                                                                  Self 
 	var/datum/point/vector/trajectory
 	var/trajectory_ignore_forcemove = FALSE	//instructs forceMove to NOT reset our trajectory to the new location!
 
-	var/speed = 80			//Amount of deciseconds it takes for projectile to travel
+	var/speed = 0.8			//Amount of deciseconds it takes for projectile to travel
 	var/Angle = 0
 	var/original_angle = 0		//Angle at firing
 	var/nondirectional_sprite = FALSE //Set TRUE to prevent projectiles from having their sprites rotated based on firing angle
@@ -300,7 +300,6 @@ Proc Name                                                                  Self 
 			range = decayedRange
 			if(hitscan)
 				store_hitscan_collision(pcache)
-			message_admins("oopsie")
 			return TRUE
 
 	var/distance = get_dist(T, starting) // Get the distance between the turf shot from and the mob we hit and use that for the calculations.
@@ -313,7 +312,70 @@ Proc Name                                                                  Self 
 		playsound(loc, hitsound_wall, volume, 1, -1)
 
 	//return process_hit(T, select_target(T, A))
-	A.bullet_act(src)
+	
+	var/hit_chance = A.get_projectile_hit_chance(src) // Calculated from combination of both ammo accuracy and gun accuracy
+
+	if(hit_chance)
+		if(isliving(A))
+			if(firer && firer.sniper_target(A) && A != firer.sniper_target(A)) //First check to see if we've actually got anyone targeted; If we've singled out someone with a targeting laser, forsake all others
+				return
+			var/mob_is_hit = FALSE
+			var/mob/living/L = A
+
+			var/hit_roll
+			var/critical_miss = rand(CONFIG_GET(number/combat_define/critical_chance_low), CONFIG_GET(number/combat_define/critical_chance_high))
+			var/i = 0
+			while(++i <= 2 && hit_chance > 0) // This runs twice if necessary
+				hit_roll 					= rand(0, 99) //Our randomly generated roll
+				#if DEBUG_HIT_CHANCE
+				to_chat(world, "DEBUG: Hit Chance 1: [hit_chance], Hit Roll: [hit_roll]")
+				#endif
+				if(hit_roll < 25) //Sniper targets more likely to hit
+					if(firer && !firer.sniper_target(A) || !firer) //Avoid sentry run times
+						def_zone = pick(base_miss_chance)	// Still hit but now we might hit the wrong body part
+
+				if(firer && !firer.sniper_target(A)) //Avoid sentry run times
+					hit_chance -= base_miss_chance[def_zone] // Reduce accuracy based on spot.
+					#if DEBUG_HIT_CHANCE
+					to_chat(world, "Hit Chance 2: [hit_chance]")
+					#endif
+
+				switch(i)
+					if(1)
+						if(hit_chance > hit_roll)
+							mob_is_hit = TRUE
+							break //Hit
+						if( hit_chance < (hit_roll - 20) )
+							break //Outright miss.
+						def_zone 	  = pick(base_miss_chance) //We're going to pick a new target and let this run one more time.
+						hit_chance   -= 10 //If you missed once, the next go around will be harder to hit.
+					if(2)
+						if(prob(critical_miss) )
+							break //Critical miss on the second go around.
+						if(hit_chance > hit_roll)
+							mob_is_hit = TRUE
+							break
+			if(mob_is_hit)
+				ammo.on_hit_mob(L,src)
+				if(L?.loc)
+					L.bullet_act(src)
+			else if (!L.lying)
+				animatation_displace_reset(L)
+				if(ammo.sound_miss) L.playsound_local(get_turf(L), ammo.sound_miss, 75, 1)
+				L.visible_message("<span class='avoidharm'>[src] misses [L]!</span>","<span class='avoidharm'>[src] narrowly misses you!</span>", null, 4)
+
+		else if(isobj(A))
+			ammo.on_hit_obj(A,src)
+			if(A && A.loc)
+				A.bullet_act(src)
+
+	// Explosive ammo always explodes on the turf of the clicked target
+	if(src && ammo.flags_ammo_behavior & AMMO_EXPLOSIVE && T == target_turf)
+		ammo.on_hit_turf(T,src)
+		if(T?.loc)
+			T.bullet_act(src)
+	
+	//A.bullet_act(src)
 	qdel(src)
 
 /obj/item/projectile/proc/check_ricochet()
@@ -1075,7 +1137,10 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 	return 1
 
 //returns probability for the projectile to hit us.
-/atom/movable/proc/get_projectile_hit_chance(obj/item/projectile/P)
+/atom/proc/get_projectile_hit_chance(obj/item/projectile/P)
+	return 0
+
+/atom/movable/get_projectile_hit_chance(obj/item/projectile/P)
 	return 0
 
 //obj version just returns true or false.
