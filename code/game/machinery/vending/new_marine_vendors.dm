@@ -236,7 +236,7 @@
 				new headset_type(loc)
 				new gloves_type(loc)
 				//if(istype(SSticker.mode, /datum/game_mode/ice_colony))//drop a coif with the uniform on ice colony
-				if(GLOB.map_tag == MAP_ICE_COLONY)
+				if(SSmapping.config.map_name == MAP_ICE_COLONY)
 					new /obj/item/clothing/mask/rebreather/scarf(loc)
 
 
@@ -435,7 +435,7 @@
 
 /obj/machinery/marine_selector/clothes/medic
 	req_access = list(ACCESS_MARINE_MEDPREP)
-	vendor_role = "Squad Medic"
+	vendor_role = "Squad Corpsman"
 	gives_webbing = FALSE
 
 	listed_products = list(
@@ -449,8 +449,8 @@
 							list("Integrated Storage Armor", 0, /obj/item/clothing/suit/storage/marine/M3IS, MARINE_CAN_BUY_ARMOR, "black"),
 							list("Edge Melee Armor", 0, /obj/item/clothing/suit/storage/marine/M3E, MARINE_CAN_BUY_ARMOR, "black"),
 							list("BACKPACK (choose 1)", 0, null, null, null),
-							list("Satchel", 0, /obj/item/storage/backpack/marine/satchel/medic, MARINE_CAN_BUY_BACKPACK, "orange"),
-							list("Backpack", 0, /obj/item/storage/backpack/marine/medic, MARINE_CAN_BUY_BACKPACK, "black"),
+							list("Satchel", 0, /obj/item/storage/backpack/marine/satchel/corpsman, MARINE_CAN_BUY_BACKPACK, "orange"),
+							list("Backpack", 0, /obj/item/storage/backpack/marine/corpsman, MARINE_CAN_BUY_BACKPACK, "black"),
 							list("WEBBING (choose 1)", 0, null, null, null),
 							list("Tactical Brown Vest", 0, /obj/item/clothing/tie/storage/brown_vest, MARINE_CAN_BUY_WEBBING, "orange"),
 							list("Tactical Webbing", 0, /obj/item/clothing/tie/storage/webbing, MARINE_CAN_BUY_WEBBING, "black"),
@@ -738,10 +738,10 @@
 	req_access = list(ACCESS_MARINE_DELTA)
 
 /obj/machinery/marine_selector/gear/medic
-	name = "NEXUS Automated Medic Equipment Rack"
+	name = "NEXUS Automated Medical Equipment Rack"
 	desc = "An automated medic equipment rack hooked up to a colossal storage unit."
 	icon_state = "medic"
-	vendor_role = "Squad Medic"
+	vendor_role = "Squad Corpsman"
 	req_access = list(ACCESS_MARINE_MEDPREP)
 
 	listed_products = list(
@@ -1039,7 +1039,8 @@ var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolition
 	spawned_gear_list = list(
 						/obj/item/clothing/head/helmet/marine,
 						/obj/item/clothing/under/marine,
-						/obj/item/clothing/shoes/marine
+						/obj/item/clothing/shoes/marine,
+						/obj/item/storage/box/MRE
 						)
 
 
@@ -1047,13 +1048,15 @@ var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolition
 	spawned_gear_list = list(
 						/obj/item/clothing/head/helmet/marine,
 						/obj/item/clothing/under/marine,
-						/obj/item/clothing/shoes/marine
+						/obj/item/clothing/shoes/marine,
+						/obj/item/storage/box/MRE
 						)
 
 /obj/effect/essentials_set/basic_specialist
 	spawned_gear_list = list(
 						/obj/item/clothing/under/marine,
-						/obj/item/clothing/shoes/marine
+						/obj/item/clothing/shoes/marine,
+						/obj/item/storage/box/MRE
 						)
 
 /obj/effect/essentials_set/basic_squadleader
@@ -1062,15 +1065,17 @@ var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolition
 						/obj/item/clothing/head/helmet/marine/leader,
 						/obj/item/clothing/glasses/hud/health,
 						/obj/item/clothing/under/marine,
-						/obj/item/clothing/shoes/marine
+						/obj/item/clothing/shoes/marine,
+						/obj/item/storage/box/MRE
 						)
 
 /obj/effect/essentials_set/basic_medic
 	spawned_gear_list = list(
-						/obj/item/clothing/head/helmet/marine/medic,
+						/obj/item/clothing/head/helmet/marine/corpsman,
 						/obj/item/clothing/glasses/hud/health,
-						/obj/item/clothing/under/marine/medic,
-						/obj/item/clothing/shoes/marine
+						/obj/item/clothing/under/marine/corpsman,
+						/obj/item/clothing/shoes/marine,
+						/obj/item/storage/box/MRE
 						)
 
 /obj/effect/essentials_set/basic_engineer
@@ -1078,7 +1083,8 @@ var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolition
 						/obj/item/clothing/head/helmet/marine/tech,
 						/obj/item/clothing/glasses/welding,
 						/obj/item/clothing/under/marine/engineer,
-						/obj/item/clothing/shoes/marine
+						/obj/item/clothing/shoes/marine,
+						/obj/item/storage/box/MRE
 						)
 
 /obj/effect/essentials_set/medic
@@ -1089,7 +1095,8 @@ var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolition
 						/obj/item/roller/medevac,
 						/obj/item/device/medevac_beacon,
 						/obj/item/roller,
-						/obj/item/reagent_container/hypospray/advanced/oxycodone
+						/obj/item/reagent_container/hypospray/advanced/oxycodone,
+						/obj/item/storage/box/MRE
 						)
 
 /obj/effect/essentials_set/engi
@@ -1100,7 +1107,8 @@ var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolition
 						/obj/item/cell/high,
 						/obj/item/tool/shovel/etool,
 						/obj/item/device/lightreplacer,
-						/obj/item/circuitboard/general
+						/obj/item/circuitboard/general,
+						/obj/item/storage/box/MRE
 						)
 
 
@@ -1114,7 +1122,8 @@ var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolition
 						/obj/item/device/radio,
 						/obj/item/device/motiondetector,
 						/obj/item/map/current_map,
-						/obj/item/device/binoculars/tactical
+						/obj/item/device/binoculars/tactical,
+						/obj/item/storage/box/MRE
 						)
 
 

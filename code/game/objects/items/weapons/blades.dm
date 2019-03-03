@@ -24,7 +24,7 @@
 	force = 39
 
 
-/obj/item/weapon/claymore/mercsword/commander
+/obj/item/weapon/claymore/mercsword/captain
 	name = "Ceremonial Sword"
 	desc = "A fancy ceremonial sword passed down from generation to generation. Despite this, it has been very well cared for, and is in top condition."
 	icon_state = "mercsword"

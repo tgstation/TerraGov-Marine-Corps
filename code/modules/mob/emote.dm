@@ -62,6 +62,10 @@
 		to_chat(src, "<span class='danger'>Deadchat is globally muted.</span>")
 		return
 
+	if(is_banned_from(ckey, "Emote"))
+		to_chat(src, "<span class='warning'>You cannot send emotes (banned).</span>")
+		return
+
 	var/input
 	if(!message)
 		input = copytext(sanitize(input(src, "Choose an emote to display.") as text|null), 1, MAX_MESSAGE_LEN)

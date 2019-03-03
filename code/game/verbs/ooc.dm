@@ -32,13 +32,17 @@ var/global/normal_ooc_colour = "#002eb8"
 		if(prefs.muted & MUTE_OOC)
 			to_chat(src, "<span class='warning'>You cannot use OOC (muted).</span>")
 			return
-		if(handle_spam_prevention(msg,MUTE_OOC))
+		if(handle_spam_prevention(msg, MUTE_OOC))
 			return
 		if(findtext(msg, "byond://"))
-			to_chat(src, "<B>Advertising other servers is not allowed.</B>")
+			to_chat(src, "<span class='danger'>Advertising other servers is not allowed.</span>")
 			log_admin("[key_name(usr)] has attempted to advertise in OOC: [msg]")
 			message_admins("[ADMIN_TPMONTY(usr)] has attempted to advertise in OOC: [msg]")
 			return
+
+	if(is_banned_from(ckey, "OOC"))
+		to_chat(src, "<span class='warning'>You have been banned from OOC.</span>")
+		return
 
 	mob.log_talk(msg, LOG_OOC)
 
@@ -61,6 +65,8 @@ var/global/normal_ooc_colour = "#002eb8"
 				display_colour = "#f03200"	//darker orange
 			if("Admin Candidate")
 				display_colour = "#ff5a1e"	//lighter orange
+			if("Admin Observer")
+				display_colour = "#1e4cd6"	//VERY slightly different light blue
 			if("Mentor")
 				display_colour = "#008000"	//green
 			if("Maintainer")
@@ -110,7 +116,7 @@ var/global/normal_ooc_colour = "#002eb8"
 	if(!msg)
 		return
 
-	if(!(prefs.toggles_chat & CHAT_OOC))
+	if(!(prefs.toggles_chat & CHAT_LOOC))
 		to_chat(src, "<span class='warning'>You have LOOC muted.</span>")
 		return
 
@@ -118,16 +124,20 @@ var/global/normal_ooc_colour = "#002eb8"
 		if(!CONFIG_GET(flag/looc_enabled))
 			to_chat(src, "<span class='warning'>LOOC is globally muted</span>")
 			return
-		if(prefs.muted & MUTE_OOC)
+		if(prefs.muted & MUTE_LOOC)
 			to_chat(src, "<span class='warning'>You cannot use LOOC (muted).</span>")
 			return
-		if(handle_spam_prevention(msg, MUTE_OOC))
+		if(handle_spam_prevention(msg, MUTE_LOOC))
 			return
 		if(findtext(msg, "byond://"))
 			to_chat(src, "<B>Advertising other servers is not allowed.</B>")
 			log_admin("[key_name(usr)] has attempted to advertise in LOOC: [msg]")
 			message_admins("[ADMIN_TPMONTY(usr)] has attempted to advertise in LOOC: [msg]")
 			return
+
+	if(is_banned_from(ckey, "LOOC"))
+		to_chat(src, "<span class='warning'>You have been banned from LOOC.</span>")
+		return
 
 	mob.log_talk("LOOC: [msg]", LOG_LOOC)
 
@@ -138,7 +148,7 @@ var/global/normal_ooc_colour = "#002eb8"
 	for(var/client/C in GLOB.admins)
 		if(!check_other_rights(C, R_ADMIN, FALSE))
 			continue
-		if(C.prefs.toggles_chat & CHAT_OOC)
+		if(C.prefs.toggles_chat & CHAT_LOOC)
 			to_chat(C, "<font color='#6699CC'><span class='ooc'><span class='prefix'>LOOC: [key_name(mob)]</span>: <span class='message'>[msg]</span></span></font>")
 
 
@@ -168,3 +178,20 @@ var/global/normal_ooc_colour = "#002eb8"
 	SEND_SOUND(src, sound(null))
 	if(chatOutput && !chatOutput.broken && chatOutput.loaded)
 		chatOutput.stopMusic()
+
+
+/client/verb/tracked_playtime()
+	set category = "OOC"
+	set name = "View Tracked Playtime"
+	set desc = "View the amount of playtime for roles the server has tracked."
+
+	if(!CONFIG_GET(flag/use_exp_tracking))
+		to_chat(usr, "<span class='notice'>Sorry, tracking is currently disabled.</span>")
+		return
+
+	var/list/body = list()
+	body += get_exp_report()
+
+	var/datum/browser/popup = new(src, "playerplaytime[ckey]", "<div align='center'>Playtime for [key]</div>", 550, 615)
+	popup.set_content(body.Join())
+	popup.open(FALSE)

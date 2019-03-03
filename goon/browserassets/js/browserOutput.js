@@ -66,7 +66,7 @@ var opts = {
 	'volumeUpdating': false, //True if volume update function set to fire
 	'updatedVolume': 0, //The volume level that is sent to the server
 	
-	'defaultMusicVolume': 25,
+	'defaultMusicVolume': 10,
 
 	'messageCombining': true,
 

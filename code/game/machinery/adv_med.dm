@@ -239,8 +239,10 @@
 			dat = "<font color='red'> Error: No Body Scanner connected.</font>"
 
 	dat += text("<BR><A href='?src=\ref[];mach_close=scanconsole'>Close</A>", user)
-	user << browse(dat, "window=scanconsole;size=430x600")
-	return
+
+	var/datum/browser/popup = new(user, "scanconsole", "<div align='center'>Body Scanner Console</div>", 430, 600)
+	popup.set_content(dat)
+	popup.open(FALSE)
 
 
 /obj/machinery/body_scanconsole/Topic(href, href_list)

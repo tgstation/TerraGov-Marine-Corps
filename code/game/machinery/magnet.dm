@@ -251,7 +251,7 @@
 		if(stat & (BROKEN|NOPOWER))
 			return
 		user.set_interaction(src)
-		var/dat = "<B>Magnetic Control Console</B><BR><BR>"
+		var/dat
 		if(!autolink)
 			dat += {"
 			Frequency: <a href='?src=\ref[src];operation=setfreq'>[frequency]</a><br>
@@ -271,8 +271,9 @@
 		dat += "Path: {<a href='?src=\ref[src];operation=setpath'>[path]</a>}<br>"
 		dat += "Moving: <a href='?src=\ref[src];operation=togglemoving'>[moving ? "Enabled":"Disabled"]</a>"
 
-
-		user << browse(dat, "window=magnet;size=400x500")
+		var/datum/browser/popup = new(user, "magnet", "<div align='center'>Magnetic Control Console</div>", 400, 500)
+		popup.set_content(dat)
+		popup.open(FALSE)
 		onclose(user, "magnet")
 
 	Topic(href, href_list)

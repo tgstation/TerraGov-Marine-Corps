@@ -55,7 +55,6 @@
 		if(subspecies)
 			H.set_species(subspecies)
 		if(M.client)
-			H.client.prefs.load_preferences()
 			H.name = H.client.prefs.real_name
 			H.real_name = H.client.prefs.real_name
 			H.voice_name = H.client.prefs.real_name
@@ -74,9 +73,7 @@
 			H.age = H.client.prefs.age
 			H.ethnicity = H.client.prefs.ethnicity
 			H.body_type = H.client.prefs.body_type
-			if(H.mind)
-				H.mind.name = H.client.prefs.real_name
-
+			H.flavor_text = H.client.prefs.flavor_text
 		
 	if(delete_old_mob)
 		spawn(1)

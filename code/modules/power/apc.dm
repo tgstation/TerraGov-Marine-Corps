@@ -803,7 +803,7 @@
 		return
 	user.set_interaction(src)
 	if(panel_open /*&& !issiicon(user)*/) //Commented out the typecheck to allow engiborgs to repair damaged apcs.
-		var/t1 = text("<html><head><title>[area.name] APC wires</title></head><body><B>Access Panel</B><br>\n")
+		var/t1 = text("<B>Access Panel</B><br>\n")
 
 		for(var/wiredesc in apcwirelist)
 			var/is_uncut = src.apcwires & APCWireColorToFlag[apcwirelist[wiredesc]]
@@ -816,7 +816,10 @@
 			t1 += "<br>"
 		t1 += text("<br>\n[(src.locked ? "The APC is locked." : "The APC is unlocked.")]<br>\n[(shorted ? "The APC's power has been shorted." : "The APC is working properly!")]<br>\n[(src.aidisabled ? "The 'AI control allowed' light is off." : "The 'AI control allowed' light is on.")]")
 		t1 += text("<p><a href='?src=\ref[src];close2=1'>Close</a></p></body></html>")
-		user << browse(t1, "window=apcwires")
+
+		var/datum/browser/popup = new(user, "apcwires", "<div align='center'>[area.name] APC wires</div>")
+		popup.set_content(t1)
+		popup.open(FALSE)
 		onclose(user, "apcwires")
 
 	//Open the APC NanoUI

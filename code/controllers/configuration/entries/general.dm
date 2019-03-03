@@ -52,11 +52,21 @@ Basics, the most important.
 Administrative related.
 */
 /datum/config_entry/flag/localhost_rank
+	protection = CONFIG_ENTRY_LOCKED
 
 /datum/config_entry/flag/ban_legacy_system
 	protection = CONFIG_ENTRY_LOCKED
 
 /datum/config_entry/flag/admin_legacy_system	//Defines whether the server uses the legacy admin system with admins.txt or the SQL system
+	protection = CONFIG_ENTRY_LOCKED
+
+/datum/config_entry/flag/protect_legacy_admins	//Stops any admins loaded by the legacy system from having their rank edited by the permissions panel
+	protection = CONFIG_ENTRY_LOCKED
+
+/datum/config_entry/flag/protect_legacy_ranks	//Stops any ranks loaded by the legacy system from having their flags edited by the permissions panel
+	protection = CONFIG_ENTRY_LOCKED
+
+/datum/config_entry/flag/load_legacy_ranks_only	//Loads admin ranks only from legacy admin_ranks.txt, while enabled ranks are mirrored to the database
 	protection = CONFIG_ENTRY_LOCKED
 
 /datum/config_entry/flag/log_admin
@@ -106,6 +116,21 @@ Administrative related.
 
 /datum/config_entry/flag/use_age_restriction_for_jobs	//Do jobs use account age restrictions? --requires database
 
+/datum/config_entry/flag/use_exp_tracking
+
+/datum/config_entry/flag/use_exp_restrictions_admin_bypass
+
+/datum/config_entry/flag/use_exp_restrictions_command
+
+/datum/config_entry/number/use_exp_restrictions_command_hours
+	config_entry_value = 0
+	integer = FALSE
+	min_val = 0
+
+/datum/config_entry/flag/use_exp_restrictions_command_department
+
+/datum/config_entry/flag/use_exp_restrictions_other
+
 /datum/config_entry/flag/kick_inactive	//force disconnect for inactive players
 
 /datum/config_entry/flag/automute_on	//enables automuting/spam prevention
@@ -118,7 +143,24 @@ Administrative related.
 	config_entry_value = 180
 
 /datum/config_entry/number/round_end_countdown
+	config_entry_value = 120
+
+/datum/config_entry/flag/see_own_notes
+
+/datum/config_entry/number/note_fresh_days
+	config_entry_value = 30
+	min_val = 0
+	integer = FALSE
+
+/datum/config_entry/number/note_stale_days
 	config_entry_value = 180
+	min_val = 0
+	integer = FALSE
+
+/datum/config_entry/flag/use_account_age_for_jobs
+
+/datum/config_entry/number/notify_new_player_age
+	min_val = -1
 
 /*
 Voting
@@ -126,6 +168,10 @@ Voting
 /datum/config_entry/flag/allow_vote_restart
 
 /datum/config_entry/flag/allow_vote_mode
+
+/datum/config_entry/flag/default_no_vote
+
+/datum/config_entry/flag/no_dead_vote
 
 /datum/config_entry/number/vote_delay	// Minimum time between voting sessions. (deciseconds, 10 minute default)
 	config_entry_value = 6000

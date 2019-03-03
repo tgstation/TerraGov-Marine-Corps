@@ -359,7 +359,7 @@
 		<td>[M.lastKnownIP]</td>
 		<td><a href='?src=[ref];observejump=[REF(M)]'>JMP</a></td>
 		<td><a href='?src=[ref];observefollow=[REF(M)]'>FLW</a></td>
-		<td><a href='?src=[ref];notes=show;mob=[REF(M)]'>Notes</a></td>
+		<td><a href='?src=[ref];showmessageckey=[M.ckey]'>Notes</a></td>
 		"}
 
 
@@ -411,12 +411,15 @@
 	if(M.mind?.assigned_role)
 		body += "<b>Mob Role:</b> [M.mind.assigned_role]<br>"
 
-	body +={"<a href='?src=[ref];kick=[REF(M)]'>Kick</a> |
-		<a href='?src=[ref];ban=[REF(M)]'>Ban</a> |
-		<a href='?src=[ref];jobbanpanel=[REF(M)]'>Jobban</a> |
-		<a href='?src=[ref];notes=show;mob=[REF(M)]'>Notes</a> |
-		<a href='?src=[ref];cryo=[REF(M)]'>Cryo</a> |
-	"}
+	body += "<a href='?src=[ref];kick=[REF(M)]'>Kick</a> | "
+		
+	if(M.client)
+		body += "<a href='?src=[ref];newbankey=[M.key];newbanip=[M.client.address];newbancid=[M.client.computer_id]'>Ban</A> | "
+	else
+		body += "<a href='?src=[ref];newbankey=[M.key]'>Ban</a> |"
+
+	body += "<a href='?src=[ref];showmessageckey=[M.ckey]'>Notes</a> | "
+	body += "<a href='?src=[ref];cryo=[REF(M)]'>Cryo</a> | "
 
 	if(M.client?.prefs)
 		body += "\ <a href='?src=[ref];lobby=[REF(M)]'> Send back to Lobby</a>"
@@ -424,6 +427,7 @@
 		body += {"<br><b>Mute: </b>
 			\[<a href='?src=[ref];mute=[REF(M)];mute_type=[MUTE_IC]'><font color='[(muted & MUTE_IC)?"red":"blue"]'>IC</font></a> |
 			<a href='?src=[ref];mute=[REF(M)];mute_type=[MUTE_OOC]'><font color='[(muted & MUTE_OOC)?"red":"blue"]'>OOC</font></a> |
+			<a href='?src=[ref];mute=[REF(M)];mute_type=[MUTE_LOOC]'><font color='[(muted & MUTE_LOOC)?"red":"blue"]'>LOOC</font></a> |
 			<a href='?src=[ref];mute=[REF(M)];mute_type=[MUTE_PRAY]'><font color='[(muted & MUTE_PRAY)?"red":"blue"]'>PRAY</font></a> |
 			<a href='?src=[ref];mute=[REF(M)];mute_type=[MUTE_ADMINHELP]'><font color='[(muted & MUTE_ADMINHELP)?"red":"blue"]'>ADMINHELP</font></a> |
 			<a href='?src=[ref];mute=[REF(M)];mute_type=[MUTE_DEADCHAT]'><font color='[(muted & MUTE_DEADCHAT)?"red":"blue"]'>DEADCHAT</font></a>\]
@@ -438,39 +442,40 @@
 		<br>
 	"}
 
+
+	body += {"<br>
+		<b>Transformation:</b><br>
+		\[ Observer: <a href='?src=[ref];transform=observer;mob=[REF(M)]'>Observer</a> \]
+		<br>\[ Humanoid: <a href='?src=[ref];transform=human;mob=[REF(M)]'>Human</a> |
+		<a href='?src=[ref];transform=monkey;mob=[REF(M)]'>Monkey</a> |
+		<a href='?src=[ref];transform=moth;mob=[REF(M)]'>Moth</a> |
+		<a href='?src=[ref];transform=yautja;mob=[REF(M)]'>Yautja</a> \]
+		<br>\[ Alien Tier 0:
+		<a href='?src=[ref];transform=larva;mob=[REF(M)]'>Larva</a> \]
+		<br>\[ Alien Tier 1:
+		<a href='?src=[ref];transform=runner;mob=[REF(M)]'>Runner</a> |
+		<a href='?src=[ref];transform=drone;mob=[REF(M)]'>Drone</a> |
+		<a href='?src=[ref];transform=sentinel;mob=[REF(M)]'>Sentinel</a> |
+		<a href='?src=[ref];transform=defender;mob=[REF(M)]'>Defender</a> \]
+		<br>\[ Alien Tier 2:
+		<a href='?src=[ref];transform=hunter;mob=[REF(M)]'>Hunter</a> |
+		<a href='?src=[ref];transform=warrior;mob=[REF(M)]'>Warrior</a> |
+		<a href='?src=[ref];transform=spitter;mob=[REF(M)]'>Spitter</a> |
+		<a href='?src=[ref];transform=hivelord;mob=[REF(M)]'>Hivelord</a> |
+		<a href='?src=[ref];transform=carrier;mob=[REF(M)]'>Carrier</a> \]
+		<br>\[ Alien Tier 3:
+		<a href='?src=[ref];transform=ravager;mob=[REF(M)]'>Ravager</a> |
+		<a href='?src=[ref];transform=praetorian;mob=[REF(M)]'>Praetorian</a> |
+		<a href='?src=[ref];transform=boiler;mob=[REF(M)]'>Boiler</a> |
+		<a href='?src=[ref];transform=defiler;mob=[REF(M)]'>Defiler</a> |
+		<a href='?src=[ref];transform=crusher;mob=[REF(M)]'>Crusher</a> \]
+		<br>\[ Alien Tier 4:
+		<a href='?src=[ref];transform=queen;mob=[REF(M)]'>Queen</a> \]
+		<br>
+	"}
+
+
 	if(!istype(M, /mob/new_player))
-		body += {"<br>
-			<b>Transformation:</b><br>
-			\[ Observer: <a href='?src=[ref];transform=observer;mob=[REF(M)]'>Observer</a> \]
-			<br>\[ Humanoid: <a href='?src=[ref];transform=human;mob=[REF(M)]'>Human</a> |
-			<a href='?src=[ref];transform=monkey;mob=[REF(M)]'>Monkey</a> |
-			<a href='?src=[ref];transform=moth;mob=[REF(M)]'>Moth</a> |
-			<a href='?src=[ref];transform=yautja;mob=[REF(M)]'>Yautja</a> \]
-			<br>\[ Alien Tier 0:
-			<a href='?src=[ref];transform=larva;mob=[REF(M)]'>Larva</a> \]
-			<br>\[ Alien Tier 1:
-			<a href='?src=[ref];transform=runner;mob=[REF(M)]'>Runner</a> |
-			<a href='?src=[ref];transform=drone;mob=[REF(M)]'>Drone</a> |
-			<a href='?src=[ref];transform=sentinel;mob=[REF(M)]'>Sentinel</a> |
-			<a href='?src=[ref];transform=defender;mob=[REF(M)]'>Defender</a> \]
-			<br>\[ Alien Tier 2:
-			<a href='?src=[ref];transform=hunter;mob=[REF(M)]'>Hunter</a> |
-			<a href='?src=[ref];transform=warrior;mob=[REF(M)]'>Warrior</a> |
-			<a href='?src=[ref];transform=spitter;mob=[REF(M)]'>Spitter</a> |
-			<a href='?src=[ref];transform=hivelord;mob=[REF(M)]'>Hivelord</a> |
-			<a href='?src=[ref];transform=carrier;mob=[REF(M)]'>Carrier</a> \]
-			<br>\[ Alien Tier 3:
-			<a href='?src=[ref];transform=ravager;mob=[REF(M)]'>Ravager</a> |
-			<a href='?src=[ref];transform=praetorian;mob=[REF(M)]'>Praetorian</a> |
-			<a href='?src=[ref];transform=boiler;mob=[REF(M)]'>Boiler</a> |
-			<a href='?src=[ref];transform=defiler;mob=[REF(M)]'>Defiler</a> |
-			<a href='?src=[ref];transform=crusher;mob=[REF(M)]'>Crusher</a> \]
-			<br>\[ Alien Tier 4:
-			<a href='?src=[ref];transform=queen;mob=[REF(M)]'>Queen</a> \]
-			<br>
-		"}
-
-
 		body += {"<br><br>
 			<b>Other actions:</b>
 			<br>

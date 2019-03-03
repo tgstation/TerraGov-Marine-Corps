@@ -5,6 +5,7 @@
 	var/list/supply = list()
 
 /obj/effect/landmark/supplyspawner/Initialize()
+	. = ..()
 	if(/turf/open in range(1))
 		var/list/T = list()
 		for(var/turf/open/O in range(1))

@@ -38,4 +38,4 @@
 
 	//Stagger vars
 	var/slowdown = 0 //Temporary penalty on movement. Regenerates each tick.
-	var/stagger = 0 //Temporary inability to use special actions. Regenerates each tick.
+	var/stagger = 0 //Temporary inability to use special actions; hurts accuracy. Regenerates each tick.

@@ -1,3 +1,23 @@
+GLOBAL_LIST_INIT(exp_jobsmap, list(
+	EXP_TYPE_REGULAR_ALL = list("titles" = JOBS_REGULAR_ALL),
+	EXP_TYPE_COMMAND = list("titles" = JOBS_COMMAND),
+	EXP_TYPE_ENGINEERING = list("titles" = JOBS_ENGINEERING),
+	EXP_TYPE_MEDICAL = list("titles" = JOBS_MEDICAL),
+	EXP_TYPE_MARINES = list("titles" = JOBS_MARINES),
+	EXP_TYPE_REQUISITIONS = list("titles" = JOBS_REQUISITIONS),
+	EXP_TYPE_POLICE = list("titles" = JOBS_POLICE)
+))
+
+GLOBAL_LIST_INIT(exp_specialmap, list(
+	EXP_TYPE_LIVING = list(),
+	EXP_TYPE_XENO = list(ROLE_XENOMORPH, ROLE_XENO_QUEEN),
+	EXP_TYPE_SPECIAL = list(ROLE_SURVIVOR),
+	EXP_TYPE_GHOST = list()
+))
+GLOBAL_PROTECT(exp_jobsmap)
+GLOBAL_PROTECT(exp_specialmap)
+
+
 /datum/job
 	var/title = ""
 	var/paygrade = ""
@@ -13,6 +33,7 @@
 
 	var/flag = NOFLAGS
 	var/department_flag = NOFLAGS
+	var/prefflag = NOFLAGS
 
 	var/spawn_positions = 0
 	var/total_positions = 0

@@ -216,8 +216,7 @@
 			return
 	user.set_interaction(src)
 
-	var/dat = ""
-	dat += "Particle Accelerator Control Panel<BR>"
+	var/dat
 	dat += "<A href='?src=\ref[src];close=1'>Close</A><BR><BR>"
 	dat += "Status:<BR>"
 	if(!assembled)
@@ -234,6 +233,8 @@
 		dat += "Particle Strength: [src.strength] "
 		dat += "<A href='?src=\ref[src];strengthdown=1'>--</A>|<A href='?src=\ref[src];strengthup=1'>++</A><BR><BR>"
 
-	user << browse(dat, "window=pacontrol;size=420x500")
+
+	var/datum/browser/popup = new(user, "pacontrol", "<div align='center'>Particle Accelerator Control Panel</div>", 420, 500)
+	popup.set_content(dat)
+	popup.open(FALSE)
 	onclose(user, "pacontrol")
-	return

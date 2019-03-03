@@ -183,37 +183,12 @@
 			M.update_canmove()
 
 
-/mob/verb/view_notes()
-	set name = "View Admin Remarks"
+/mob/verb/view_admin_remarks()
 	set category = "OOC"
+	set name = "View Admin Remarks"
 
-	var/key = usr.key
+	if(!CONFIG_GET(flag/see_own_notes))
+		to_chat(usr, "<span class='notice'>Sorry, that function is not enabled on this server.</span>")
+		return
 
-	var/dat = "<html><head><title>Info on [key]</title></head>"
-	dat += "<body>"
-
-	key = ckey(key)
-
-	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
-	var/list/infos
-	info >> infos
-	if(!infos)
-		dat += "No information found on the given key.<br>"
-	else
-		var/update_file = 0
-		var/i = 0
-		for(var/datum/player_info/I in infos)
-			i += 1
-			if(!I.timestamp)
-				I.timestamp = "Pre-4/3/2012"
-				update_file = 1
-			if(!I.rank)
-				I.rank = "N/A"
-				update_file = 1
-			if(!(I.hidden))
-				dat += "<font color=#008800>[I.content]</font> <i>by [I.author] ([I.rank])</i> on <i><font color=blue>[I.timestamp]</i></font> "
-				dat += "<br><br>"
-		if(update_file) to_chat(info, infos)
-
-	dat += "</body></html>"
-	usr << browse(dat, "window=adminplayerinfo;size=480x480")
+	browse_messages(null, usr.ckey, null, TRUE)

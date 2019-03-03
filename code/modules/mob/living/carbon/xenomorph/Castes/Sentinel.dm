@@ -143,13 +143,13 @@
 	caste_base_type = /mob/living/carbon/Xenomorph/Sentinel
 	name = "Sentinel"
 	desc = "A slithery, spitting kind of alien."
-	icon = 'icons/Xeno/1x1_Xenos.dmi'
+	icon = 'icons/Xeno/48x48_Xenos.dmi'
 	icon_state = "Sentinel Walking"
 	health = 150
 	maxHealth = 150
 	plasma_stored = 75
-	pixel_x = 0
-	old_x = 0
+	pixel_x = -12
+	old_x = -12
 	tier = 1
 	upgrade = 0
 	speed = -0.8
