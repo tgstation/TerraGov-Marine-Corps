@@ -216,14 +216,6 @@
 	. = ..()
 	setDir(pick(NORTH,SOUTH,EAST,WEST))
 
-/turf/closed/ice_rock/cornerOverlay
-	icon_state = "corner_overlay"
-
-
-
-
-
-
 
 //SHUTTLE 'WALLS'
 //not a child of turf/closed/wall because shuttle walls are magical, don't smoothes with normal walls, etc
