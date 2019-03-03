@@ -404,8 +404,7 @@ GLOBAL_LIST_INIT(admin_verbs_debug, world.AVdebug())
 	/datum/admins/proc/restart_controller,
 	/datum/admins/proc/debug_controller,
 	/datum/admins/proc/check_contents,
-	/datum/admins/proc/update_mob_sprite,
-	/datum/admins/proc/transfer_job_bans
+	/datum/admins/proc/update_mob_sprite
 	)
 
 GLOBAL_PROTECT(admin_verbs_permissions)
