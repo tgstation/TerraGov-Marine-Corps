@@ -1381,7 +1381,7 @@
 	if(istype(T, /turf/closed) )
 		drop_resin(get_turf(P))
 		return
-	drop_resin(get_turf(T))
+	drop_resin(T)
 
 /datum/ammo/xeno/sticky/do_at_max_range(obj/item/projectile/P)
 	drop_resin(get_turf(P))
