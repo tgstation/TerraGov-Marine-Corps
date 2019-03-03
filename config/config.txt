@@ -19,8 +19,8 @@ HUBPASSWORD kMZy3U5jJHSiBQjr
 #RESOURCE_URL url
 
 ## Add a # infront of this if you want to use the SQL based systems, the legacy system uses admins.txt and files in the data folder. You need to set up your database to use the SQL based system.
-#ADMIN_LEGACY_SYSTEM
-#BAN_LEGACY_SYSTEM
+ADMIN_LEGACY_SYSTEM
+BAN_LEGACY_SYSTEM
 
 ## Add a # infront of this to disable the shutdown server verb.
 ALLOW_SHUTDOWN
@@ -35,16 +35,6 @@ ALLOW_SHUTDOWN
 LOCALHOST_RANK
 
 SEE_OWN_NOTES
-
-USE_AGE_RESTRICTION_FOR_JOBS
-
-USE_EXP_TRACKING
-
-USE_EXP_RESTRICTIONS_COMMAND
-
-USE_EXP_RESTRICTIONS_OTHER
-
-#USE_EXP_RESTRICTIONS_ADMIN_BYPASS
 
 AUTOMUTE_ON
 
