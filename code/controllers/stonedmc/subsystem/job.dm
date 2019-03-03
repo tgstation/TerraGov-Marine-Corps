@@ -69,6 +69,9 @@ SUBSYSTEM_DEF(job)
 			JobDebug("AR job doesn't exists ! Player: [player], Rank:[rank]")
 			return FALSE
 		if(jobban_isbanned(player, rank))
+			JobDebug("AR legacy isbanned failed, Player: [player], Job:[job.title]")
+			return FALSE
+		if(is_banned_from(player.ckey, rank))
 			JobDebug("AR isbanned failed, Player: [player], Job:[job.title]")
 			return FALSE
 		if(QDELETED(player))
@@ -246,6 +249,8 @@ SUBSYSTEM_DEF(job)
 			H.mind.initial_account = A
 		if(M.client)
 			H.equip_preference_gear(M.client)
+		else if(H.client)
+			H.equip_preference_gear(H.client)
 	if(job)
 		job.radio_help_message(M)
 		if(job.req_admin_notify)

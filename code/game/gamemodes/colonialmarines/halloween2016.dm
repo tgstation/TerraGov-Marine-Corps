@@ -700,14 +700,14 @@
 				W.on_attached(U, H)
 				U.hastie = W
 
-				H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/medic(H), SLOT_HEAD)
+				H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/corpsman(H), SLOT_HEAD)
 				H.equip_to_slot_or_del(new /obj/item/clothing/mask/surgical(H), SLOT_WEAR_MASK)
 				H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), SLOT_WEAR_SUIT)
 				H.equip_to_slot_or_del(new /obj/item/storage/belt/combatLifesaver(H), SLOT_BELT)
 				H.equip_to_slot_or_del(new /obj/item/reagent_container/hypospray/autoinjector/dexalinplus(H), SLOT_BELT)
 
-				if(prob(50)) H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/medic(H), SLOT_BACK)
-				else H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel/medic(H), SLOT_BACK)
+				if(prob(50)) H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/corpsman(H), SLOT_BACK)
+				else H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel/corpsman(H), SLOT_BACK)
 
 				H.equip_to_slot_or_del(new /obj/item/reagent_container/hypospray/autoinjector/tricordrazine(H.back), SLOT_IN_BACKPACK)
 				H.equip_to_slot_or_del(new /obj/item/storage/firstaid/regular(H.back), SLOT_IN_BACKPACK)

@@ -479,7 +479,7 @@
 		if(iscarbon(L))
 			var/mob/living/carbon/C = L
 			C.adjust_stagger(3)
-			C.add_slowdown(3)
+			C.add_slowdown(1)
 
 		H.apply_damage(damage, HALLOSS) //Armor penetrating halloss also applies.
 	shake_camera(M, 2, 1)
@@ -1437,11 +1437,13 @@
 			acid_progress_transfer(A, O)
 		I.current_acid = A
 
-	else //If not, appear on the floor or on an item
+	else if(istype(I)) //If not, appear on the floor or on an item
 		if(I.current_acid)
 			acid_progress_transfer(A, O)
 		A.layer = LOWER_ITEM_LAYER //below any item, above BELOW_OBJ_LAYER (smartfridge)
 		I.current_acid = A
+	else
+		return
 
 	A.name = A.name + " (on [O.name])" //Identify what the acid is on
 	A.add_hiddenprint(src)
@@ -2223,8 +2225,7 @@
 
 
 /mob/living/carbon/Xenomorph/Defiler/proc/defiler_sting(mob/living/H)
-
-	if(!check_state())
+	if(!check_state() || !istype(H))
 		return
 
 	if(world.time < last_defiler_sting + DEFILER_STING_COOLDOWN) //Sure, let's use this.
@@ -2317,7 +2318,7 @@
 		return
 	var/mob/living/carbon/C = L
 	var/datum/reagent/xeno_tox = C.reagents.get_reagent(toxin)
-	if(xeno_tox.overdosed)
+	if(xeno_tox?.overdosed)
 		to_chat(src, "<span class='xenodanger'>You sense this host is overdosed on [xeno_tox.name].</span>")
 
 /mob/living/carbon/Xenomorph/Hivelord/proc/build_tunnel()
@@ -2387,7 +2388,7 @@
 
 /mob/living/carbon/Xenomorph/Drone/proc/drone_sting(mob/living/H)
 
-	if(!check_state())
+	if(!check_state() || !istype(H))
 		return
 
 	if(world.time < last_drone_sting + DRONE_STING_COOLDOWN) //Sure, let's use this.

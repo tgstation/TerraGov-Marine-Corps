@@ -1,10 +1,4 @@
-/mob/living/carbon/human/say(var/message)
-
-	var/verb = "says"
-	var/alt_name = ""
-	var/message_range = world.view
-	var/italics = 0
-
+/mob/living/carbon/human/say(message, datum/language/speaking, verb="says", alt_name="", italics = FALSE, message_range = world.view, sound/speech_sound, sound_vol)
 	if(client)
 		if(client.prefs.muted & MUTE_IC)
 			to_chat(src, "<span class='warning'>You cannot speak in IC (Muted).</span>")
@@ -24,15 +18,15 @@
 		alt_name = "(as [get_id_name("Unknown")])"
 
 	//parse the radio code and consume it
-	if (message_mode)
+	if(message_mode)
 		if (message_mode == "headset")
 			message = copytext(message,2)	//it would be really nice if the parse procs could do this for us.
 		else
 			message = copytext(message,3)
+	else
+		log_talk(message, LOG_SAY)
 
-	//parse the language code and consume it
-	var/datum/language/speaking = parse_language(message)
-	if(speaking)
+	if(speaking || parse_language(message))
 		message = copytext(message,3)
 	else if(species.default_language)
 		speaking = GLOB.all_languages[species.default_language]
@@ -86,8 +80,6 @@
 				if(wear_ear && istype(wear_ear,/obj/item/device/radio))
 					used_radios += wear_ear
 
-	var/sound/speech_sound
-	var/sound_vol
 	if(species.speech_sounds && prob(species.speech_chance))
 		speech_sound = sound(pick(species.speech_sounds))
 		sound_vol = 70
@@ -104,16 +96,17 @@
 		if(species?.count_human)
 			playsound(src.loc, 'sound/effects/radiostatic.ogg', 15, 1)
 
-		italics = 1
+		italics = TRUE
 		message_range = 2
 
-		log_talk(message, LOG_TELECOMMS)
-
-	..(message, speaking, verb, alt_name, italics, message_range, speech_sound, sound_vol)	//ohgod we should really be passing a datum here.
+		log_talk("([message_mode]):[message]", LOG_TELECOMMS)
 
 	for(var/obj/item/device/radio/R in used_radios)
 		spawn(0)
 			R.talk_into(src,message, message_mode, verb, speaking)
+
+	return ..()
+
 
 /mob/living/carbon/human/proc/forcesay(var/forcesay_type = SUDDEN)
 	if (!client || stat != CONSCIOUS)

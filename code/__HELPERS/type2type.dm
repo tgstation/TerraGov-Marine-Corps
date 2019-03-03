@@ -333,8 +333,8 @@ proc/tg_list2text(list/list, glue=",")
 		else               return ICON_OVERLAY
 
 //Converts a rights bitfield into a string
-/proc/rights2text(rights,seperator="")
-	if(rights & R_ASAY)	. += "[seperator]+ASAY"
+/proc/rights2text(rights, seperator="")
+	if(rights & R_ASAY)			. += "[seperator]+ASAY"
 	if(rights & R_ADMIN)		. += "[seperator]+ADMIN"
 	if(rights & R_BAN)			. += "[seperator]+BAN"
 	if(rights & R_FUN)			. += "[seperator]+FUN"
@@ -346,6 +346,7 @@ proc/tg_list2text(list/list, glue=",")
 	if(rights & R_SOUND)		. += "[seperator]+SOUND"
 	if(rights & R_SPAWN)		. += "[seperator]+SPAWN"
 	if(rights & R_MENTOR)		. += "[seperator]+MENTOR"
+	if(rights & R_DBRANKS)		. += "[seperator]+DBRANKS"
 	return .
 
 /proc/ui_style2icon(ui_style)

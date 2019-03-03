@@ -85,8 +85,6 @@
 	var/list/flavor_texts = list()
 	var/recently_unbuckled = 0
 
-	//Emotes
-	var/audio_emote_time = 1
 
 	//Life variables
 

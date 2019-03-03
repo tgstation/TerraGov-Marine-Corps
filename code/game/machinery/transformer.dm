@@ -47,10 +47,10 @@
 
 		//East
 		var/turf/east = locate(T.x + 1, T.y, T.z)
-		if(istype(east, /turf/simulated/floor))
+		if(istype(east, /turf/open/floor))
 			new /obj/machinery/conveyor(east, WEST, 1)
 
 		// West
 		var/turf/west = locate(T.x - 1, T.y, T.z)
-		if(istype(west, /turf/simulated/floor))
+		if(istype(west, /turf/open/floor))
 			new /obj/machinery/conveyor(west, WEST, 1)

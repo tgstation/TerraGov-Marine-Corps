@@ -427,21 +427,30 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		return
 	if(marked)
 		if(marked == usr.client)
+			if(alert("Do you want to unmark this ticket?", "Confirmation", "Yes", "No") != "Yes")
+				return
+			marked = null
+			if(tier == TICKET_MENTOR)
+				message_staff("Ticket [TicketHref("#[id]")] has been unmarked by [ADMIN_TPMONTY(usr)].")
+			else if(tier == TICKET_ADMIN)
+				message_admins("Ticket [TicketHref("#[id]")] has been unmarked by [ADMIN_TPMONTY(usr)].")
+			log_admin_private("Ticket (#[id]) has been unmarked by [key_name(usr)].")
 			return
-		if(alert("This ticket has already been marked by [marked], do you want to replace them?", "Confirmation", "Yes", "No") != "Yes")
+		else if(alert("This ticket has already been marked by [marked], do you want to replace them?", "Confirmation", "Yes", "No") != "Yes")
 			return
 		if(tier == TICKET_MENTOR)
 			message_staff("Ticket [TicketHref("#[id]")] has been re-marked by [ADMIN_TPMONTY(usr)].")
 		else if(tier == TICKET_ADMIN)
 			message_admins("Ticket [TicketHref("#[id]")] has been re-marked by [ADMIN_TPMONTY(usr)].")
 		marked = usr.client
+		log_admin_private("Ticket (#[id]) has been re-marked by [key_name(usr)].")
 		return
 	marked = usr.client
 	if(tier == TICKET_MENTOR)
 		message_staff("Ticket [TicketHref("#[id]")] has been marked by [ADMIN_TPMONTY(usr)].")
 	else if(tier == TICKET_ADMIN)
 		message_admins("Ticket [TicketHref("#[id]")] has been marked by [ADMIN_TPMONTY(usr)].")
-	log_admin_private("Ticket (#[id]) has been made marked by [key_name(usr)].")
+	log_admin_private("Ticket (#[id]) has been marked by [key_name(usr)].")
 
 
 //private
