@@ -5,18 +5,25 @@
 	icon_state = "extinguisher_closed"
 	anchored = 1
 	density = 0
-	var/obj/item/tool/extinguisher/has_extinguisher = new/obj/item/tool/extinguisher
+	var/obj/item/tool/extinguisher/has_extinguisher
+	var/starter_extinguisher = /obj/item/tool/extinguisher
 	var/opened = 0
 
-/obj/structure/extinguisher_cabinet/Initialize()
+/obj/structure/extinguisher_cabinet/Initialize(mapload, ndir)
 	. = ..()
+	if(ndir)
+		dir = ndir
 	switch(dir)
 		if(NORTH)
-			pixel_y = 30
+			pixel_y = -32
 		if(SOUTH)
-			pixel_y = -30
-		if(WEST)
+			pixel_y = 32
+		if(EAST)
 			pixel_x = -32
+		if(WEST)
+			pixel_x = 32
+	if(starter_extinguisher)
+		has_extinguisher = new starter_extinguisher(src)
 
 /obj/structure/extinguisher_cabinet/attackby(obj/item/O, mob/user)
 	if(iscyborg(user))
@@ -69,18 +76,8 @@
 	if(opened && has_extinguisher)
 		overlays += "extinguishero_[has_extinguisher.sprite_name]"
 
-/obj/structure/extinguisher_cabinet/north
-	dir = NORTH
-	pixel_y = 32
+/obj/structure/extinguisher_cabinet/mini
+	starter_extinguisher = /obj/item/tool/extinguisher/mini
 
-/obj/structure/extinguisher_cabinet/south
-	dir = SOUTH
-	pixel_y = -32
-
-/obj/structure/extinguisher_cabinet/east
-	dir = EAST
-	pixel_x = 32
-
-/obj/structure/extinguisher_cabinet/west
-	dir = WEST
-	pixel_x = -32
+/obj/structure/extinguisher_cabinet/empty
+	starter_extinguisher = null
