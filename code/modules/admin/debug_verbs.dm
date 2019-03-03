@@ -162,52 +162,6 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		. += named_args
 
 
-/datum/admins/proc/change_hivenumber(mob/living/carbon/Xenomorph/X in GLOB.xeno_mob_list)
-	set category = "Debug"
-	set name = "Change Hivenumber"
-	set desc = "Set the hivenumber of a xenomorph."
-
-	if(!check_rights(R_DEBUG))
-		return
-
-	if(!X || !istype(X))
-		return
-
-	var/hivenumber_status = X.hivenumber
-
-	var/list/namelist = list()
-	for(var/datum/hive_status/H in hive_datum)
-		namelist += H.name
-
-	var/newhive = input(src, "Select a hive.", null, null) in namelist
-
-	if(!X || !istype(X))
-		return
-
-	var/newhivenumber
-	switch(newhive)
-		if("Normal")
-			newhivenumber = XENO_HIVE_NORMAL
-		if("Corrupted")
-			newhivenumber = XENO_HIVE_CORRUPTED
-		if("Alpha")
-			newhivenumber = XENO_HIVE_ALPHA
-		if("Beta")
-			newhivenumber = XENO_HIVE_BETA
-		if("Zeta")
-			newhivenumber = XENO_HIVE_ZETA
-		else
-			return
-
-	if(!istype(X) || X.gc_destroyed || !SSticker || X.hivenumber != hivenumber_status)
-		return
-
-	X.set_hive_number(newhivenumber)
-
-	log_admin("[key_name(src)] changed hivenumber of [X] to [newhive].")
-	message_admins("[ADMIN_TPMONTY(usr)] changed hivenumber of [ADMIN_TPMONTY(X)] to [newhive].")
-
-
 /datum/admins/proc/delete_all()
 	set category = "Debug"
 	set name = "Delete Instances"
