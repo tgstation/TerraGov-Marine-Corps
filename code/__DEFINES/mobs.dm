@@ -589,6 +589,7 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define CASTE_IS_INTELLIGENT		(1<<7)
 #define CASTE_IS_ROBOTIC			(1<<8)
 #define CASTE_DECAY_PROOF			(1<<9)
+#define CASTE_CAN_BE_LEADER			(1<<10)
 
 //misc
 
