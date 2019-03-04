@@ -1,5 +1,0 @@
-author: "spookydonut"
-delete-after: True
-changes: 
-  - bugfix: "Fixed LV turf stacking bugs with catwalks"
-  - bugfix: "Fixed river overlays not appearing above non-turfs"

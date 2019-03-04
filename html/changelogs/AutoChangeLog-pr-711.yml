@@ -1,8 +1,0 @@
-author: "by Surrealistik"
-delete-after: True
-changes: 
-  - tweak: "Retooled power cell detonation to scale with charge more appropriately."
-  - bugfix: "Fixed depleted cells not detonating properly."
-  - tweak: "Fuse timer on a destabilized power cell may be as low as 0.3 seconds; there is risk of premature detonation."
-  - tweak: "Destabilized power cells immediately detonate when power is drawn from them, including when loaded into a lasgun."
-  - tweak: "Destabilized power cells now have a lightning overlay that makes their state obvious."
