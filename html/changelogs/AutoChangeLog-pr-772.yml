@@ -1,0 +1,10 @@
+author: "Alterist"
+delete-after: True
+changes: 
+  - rscadd: "New weapons, the m1911 for field officers, the KSG, a shotgun that can hold 12 shots, the B93R, a burst capable pistol"
+  - balance: "The NY and the .357 can now take attachments, increased the m4a3 custom's firerate. The double barrel shotgun now has a burst mode"
+  - tweak: "adjusted a few gun's stats, changed name of pulse rifle to M41A1, no more \"MK2\" crap"
+  - bugfix: "m4a3 .45 now has the correct stats"
+  - imageadd: "added missing wielded sprites, replaced placeholder mag sprites"
+  - imageadd: "added new Deagle, m1911, minigun, CMB shotgun and mosin bullet sprites"
+  - imagedel: "deleted unused, duplicate and outdated gun sprites"

@@ -65,6 +65,7 @@
 
 
 /datum/game_mode/colonialmarines/post_setup()
+	. = ..()
 	initialize_post_queen_list()
 	initialize_post_xenomorph_list()
 	initialize_post_survivor_list()
@@ -157,6 +158,7 @@
 
 
 /datum/game_mode/colonialmarines/declare_completion()
+	. = ..()
 	to_chat(world, "<span class='round_header'>|Round Complete|</span>")
 	feedback_set_details("round_end_result",round_finished)
 

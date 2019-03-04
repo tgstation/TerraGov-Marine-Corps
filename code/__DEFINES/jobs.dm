@@ -169,3 +169,24 @@
 #define JOBS_PRIORITY_MEDIUM 2
 #define JOBS_PRIORITY_LOW    3
 #define JOBS_PRIORITY_NEVER  4
+
+
+#define ROLE_XENOMORPH "Xenomorph"
+#define ROLE_XENO_QUEEN "Xeno Queen"
+#define ROLE_SURVIVOR "Survivor"
+#define ROLE_ERT "Emergency Response Team"
+
+
+//Playtime tracking system, see jobs_exp.dm
+#define EXP_TYPE_LIVING			"Living"
+#define EXP_TYPE_REGULAR_ALL	"Any"
+#define EXP_TYPE_COMMAND		"Command"
+#define EXP_TYPE_ENGINEERING	"Engineering"
+#define EXP_TYPE_MEDICAL		"Medical"
+#define EXP_TYPE_MARINES		"Marines"
+#define EXP_TYPE_REQUISITIONS	"Requisitions"
+#define EXP_TYPE_POLICE			"Police"
+#define EXP_TYPE_XENO			"Xeno"
+#define EXP_TYPE_SPECIAL		"Special"
+#define EXP_TYPE_GHOST			"Ghost"
+#define EXP_TYPE_ADMIN			"Admin"

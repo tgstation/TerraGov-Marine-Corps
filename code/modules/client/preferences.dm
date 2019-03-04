@@ -94,6 +94,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/icon/preview_icon_front = null
 	var/icon/preview_icon_side = null
 
+	var/list/exp = list()
+
 
 /datum/preferences/New(client/C)
 	if(!istype(C))
@@ -148,7 +150,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	dat += " (<a href='?_src_=prefs;preference=name_randomize'>&reg</A>)</big></big>"
 	dat += "<br>"
 	dat += "Always Pick Random Name: <a href='?_src_=prefs;preference=name_random'>[random_name ? "Yes" : "No"]</a>"
-	dat += "<br><br>"
+	dat += "<br>"
+
+	if(is_banned_from(user.ckey, "Appearance"))
+		dat += "You are banned from using custom names and appearances.<br>"
+	dat += "<br>"
 
 	dat += "<big><b><u>Physical Information:</u></b>"
 	dat += " (<a href='?_src_=prefs;preference=random'>&reg;</A>)</big>"
@@ -176,16 +182,16 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 		switch(role)
 			if("Xenomorph")
-				ban_check_name = "Alien"
+				ban_check_name = ROLE_XENOMORPH
 
-			if("Xenomorph Queen")
-				ban_check_name = "Queen"
+			if("Xeno Queen")
+				ban_check_name = ROLE_XENO_QUEEN
 
 			if("Survivor")
-				ban_check_name = "Survivor"
+				ban_check_name = ROLE_SURVIVOR
 
-		if(jobban_isbanned(user, ban_check_name))
-			dat += "<font color=red><b> \[BANNED]</b></font><br>"
+		if(jobban_isbanned(user, ban_check_name) || is_banned_from(user.ckey, ban_check_name))
+			dat += "<b>[role]:</b> <font color=red><b> \[BANNED]</b></font><br>"
 		else
 			dat += "<b>[role]:</b> <a href='?_src_=prefs;preference=be_special;flag=[n]'>[be_special & (1 << n) ? "Yes" : "No"]</a><br>"
 		n++
@@ -327,7 +333,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 		HTML += "<tr style='color:black' bgcolor='[job.selection_color]'><td width='60%' align='right'>"
 		lastJob = job
-		if(jobban_isbanned(user, job.title))
+		var/required_playtime_remaining = job.required_playtime_remaining(user.client)
+		if(required_playtime_remaining)
+			HTML += "<del>[job.title]</del></td><td><b> \[ [get_exp_format(required_playtime_remaining)] as [job.get_exp_req_type()] \] </b></td></tr>"
+			continue
+		else if(jobban_isbanned(user, job.title) || is_banned_from(user.ckey, job.title))
 			HTML += "<del>[job.title]</del></td><td><b> \[BANNED]</b></td></tr>"
 			continue
 		else if(!job.player_old_enough(user.client))

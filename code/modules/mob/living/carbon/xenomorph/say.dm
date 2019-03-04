@@ -17,7 +17,7 @@
 		return //Unconscious? Nope.
 
 	if(copytext(message, 1, 2) == "*")
-		return emote(copytext(message, 2))
+		return emote(copytext(message, 2), EMOTE_AUDIBLE, null, TRUE)
 
 	var/datum/language/speaking = null
 

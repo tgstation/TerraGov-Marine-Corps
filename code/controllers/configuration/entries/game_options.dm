@@ -156,6 +156,8 @@
 
 /datum/config_entry/flag/fun_allowed //at the moment, when set equal to 1, allows players to *dab (and get limbs automatically blown off).
 
+/datum/config_entry/flag/tank_mouth_noise //Causes the tank to sound like a 5 year old child is driving it.
+
 /datum/config_entry/number/xeno_coefficient
 	integer = FALSE
 	config_entry_value = 4.25
