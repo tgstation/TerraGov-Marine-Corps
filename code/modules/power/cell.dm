@@ -126,7 +126,8 @@
 
 		if(user.action_busy)
 			return
-		var/obj/effect/overlay/sparks/spark_overlay = new/obj/effect/overlay/sparks		if(!rigged)
+		var/obj/effect/overlay/sparks/spark_overlay = new
+		if(!rigged)
 			if(skill < SKILL_ENGINEER_ENGI) //Field engi skill or better or ya fumble.
 				user.visible_message("<span class='notice'>[user] fumbles around figuring out how to manipulate [src].</span>",
 				"<span class='notice'>You fumble around, trying to figure out how to rig [src] to explode.</span>")
