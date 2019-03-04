@@ -461,8 +461,8 @@
 
 
 //Randomize ice floor sprite
-/turf/open/ice/New()
-	..()
+/turf/open/ice/Initialize()
+	. = ..()
 	setDir(pick(NORTH,SOUTH,EAST,WEST,NORTHEAST,NORTHWEST,SOUTHEAST,SOUTHWEST))
 
 
