@@ -30,7 +30,7 @@
 /obj/item/ammo_magazine/rifle/ap
 	name = "\improper M41A AP magazine (10x24mm)"
 	desc = "A 10mm armor piercing magazine."
-	icon_state = "m41a_AP"
+	icon_state = "m41a_ap"
 	default_ammo = /datum/ammo/bullet/rifle/ap
 
 

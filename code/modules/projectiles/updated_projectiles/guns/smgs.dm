@@ -38,7 +38,7 @@
 
 /obj/item/weapon/gun/smg/m39
 	name = "\improper M39 submachinegun"
-	desc = "Armat Battlefield Systems M-39 submachinegun. A light firearm capable of effective one-handed use that is ideal for close to medium range engagements. Uses 10x20mm rounds in a high capacity magazine."
+	desc = "Armat Battlefield Systems M39 submachinegun. A light firearm capable of effective one-handed use that is ideal for close to medium range engagements. Uses 10x20mm rounds in a high capacity magazine."
 	icon_state = "m39"
 	item_state = "m39"
 	caliber = "10x20mm caseless" //codex
@@ -82,8 +82,8 @@
 //-------------------------------------------------------
 
 /obj/item/weapon/gun/smg/m39/elite
-	name = "\improper M39B/2 submachinegun"
-	desc = "Armat Battlefield Systems M-39 submachinegun, version B2. This reliable weapon fires armor piercing 10x20mm rounds and is used by elite troops."
+	name = "\improper M39B2 submachinegun"
+	desc = "Armat Battlefield Systems M39 submachinegun, B2 variant. This reliable weapon fires armor piercing 10x20mm rounds and is used by elite troops."
 	icon_state = "m39b2"
 	item_state = "m39b2"
 	origin_tech = "combat=6;materials=5"
@@ -121,7 +121,8 @@
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/flashlight,
 						/obj/item/attachable/magnetic_harness,
-						/obj/item/attachable/scope)
+						/obj/item/attachable/scope,
+						/obj/item/attachable/scope/mini)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 12, "rail_y" = 21, "under_x" = 28, "under_y" = 17, "stock_x" = 28, "stock_y" = 17)
@@ -140,7 +141,7 @@
 
 
 //-------------------------------------------------------
-//MP27, based on the MP27, based on the M7.
+//MP27, based on the grease gun
 
 /obj/item/weapon/gun/smg/mp7
 	name = "\improper MP27 submachinegun"
@@ -213,14 +214,17 @@
 /obj/item/weapon/gun/smg/ppsh
 	name = "\improper PPSh-17b submachinegun"
 	desc = "An unauthorized copy of a replica of a prototype submachinegun developed in a third world shit hole somewhere."
-	icon_state = "ppsh17b"
-	item_state = "ppsh17b"
+	icon_state = "ppsh"
+	item_state = "ppsh"
 	caliber = "7.62x25mm" //codex
 	max_shells = 35 //codex
 	origin_tech = "combat=3;materials=2;syndicate=4"
 	fire_sound = 'sound/weapons/smg_heavy.ogg'
 	current_mag = /obj/item/ammo_magazine/smg/ppsh
 	attachable_allowed = list(
+						/obj/item/attachable/compensator,
+						/obj/item/attachable/suppressor,
+						/obj/item/attachable/reddot,
 						/obj/item/attachable/flashlight)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
@@ -244,10 +248,10 @@
 //GENERIC UZI //Based on the uzi submachinegun, of course.
 
 /obj/item/weapon/gun/smg/uzi
-	name = "\improper MAC-15 submachinegun"
+	name = "\improper GAL9 submachinegun"
 	desc = "A cheap, reliable design and manufacture make this ubiquitous submachinegun useful despite the age. Turn on burst mode for maximum firepower."
-	icon_state = "mac15"
-	item_state = "mac15"
+	icon_state = "uzi"
+	item_state = "uzi"
 	caliber = "9x19mm Parabellum" //codex
 	max_shells = 32 //codex
 	origin_tech = "combat=3;materials=2"
@@ -285,7 +289,8 @@
 	attachable_allowed = list(
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/lasersight,
-						/obj/item/attachable/scope)
+						/obj/item/attachable/scope,
+						/obj/item/attachable/scope/mini)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 18, "rail_y" = 20, "under_x" = 22, "under_y" = 16, "stock_x" = 22, "stock_y" = 16)
