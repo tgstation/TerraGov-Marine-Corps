@@ -57,7 +57,6 @@
 	var/id = null
 	var/active = FALSE
 	anchored = 1.0
-	var/cooldown = FALSE
 	use_power = 1
 	idle_power_usage = 2
 	active_power_usage = 4
@@ -69,7 +68,7 @@
 	if(stat & (NOPOWER|BROKEN))
 		to_chat(user, "<span class='warning'>[src] doesn't seem to be working.</span>")
 		return
-	if(cooldown)
+	if(active)
 		return
 	use_power(5)
 	icon_state = "doorctrl1"
@@ -81,13 +80,11 @@
 	qdel(AI)	
 	visible_message("Remain calm, someone will be with you shortly.")
 
-	cooldown = TRUE
 	active = TRUE
 	addtimer(CALLBACK(src, .proc/icon_update_check), 10 SECONDS)
 
 /obj/machinery/medical_help_button/proc/icon_update_check()
 	active = FALSE
-	cooldown = FALSE
 	if(!(stat & NOPOWER))
 		icon_state = "doorctrl0"
 
