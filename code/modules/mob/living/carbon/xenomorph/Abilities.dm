@@ -57,6 +57,11 @@
 	action_icon_state = "shift_spit_neurotoxin"
 	plasma_cost = 0
 
+/datum/action/xeno_action/shift_spits/update_button_icon()
+	var/mob/living/carbon/Xenomorph/X = owner
+	button.overlays.Cut()
+	button.overlays += image('icons/mob/actions.dmi', button, "shift_spit_[X.ammo.icon_state]")
+
 /datum/action/xeno_action/shift_spits/action_activate()
 	var/mob/living/carbon/Xenomorph/X = owner
 	if(!X.check_state())

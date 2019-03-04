@@ -74,6 +74,10 @@
 
 	toggle_xeno_mobhud() //This is a verb, but fuck it, it just werks
 
+	update_spits()
+
+	update_action_button_icons()
+
 /mob/living/carbon/Xenomorph/proc/set_datum()
 	if(!caste_base_type)
 		CRASH("xeno spawned without a caste_base_type set")
