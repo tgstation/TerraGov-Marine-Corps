@@ -184,15 +184,17 @@
 					var/obj/structure/barricade/B = O
 					B.health -= rand(40,60) + 8 * upgrade
 					B.update_health(1)
+					return
 				else if(istype(O, /obj/vehicle/multitile/root/cm_armored) )
 					var/obj/vehicle/multitile/root/cm_armored/A = O
 					A.take_damage_type(rand(40,60) + 8 * upgrade, "acid", src)
 					A.healthcheck()
+					return
 				else if(istype(O, /obj/structure/razorwire) )
 					var/obj/structure/razorwire/R = O
 					R.health -= rand(40,60) + 8 * upgrade
 					R.update_health()
-				return
+
 
 		T = next_T
 
@@ -205,15 +207,17 @@
 					var/obj/structure/barricade/B = O
 					B.health -= rand(40,60) + 8 * upgrade
 					B.update_health(1)
+					return
 				else if(istype(O, /obj/vehicle/multitile/root/cm_armored) )
 					var/obj/vehicle/multitile/root/cm_armored/A = O
 					A.take_damage_type(rand(40,60) + 8 * upgrade, "acid", src)
 					A.healthcheck()
+					return
 				else if(istype(O, /obj/structure/razorwire) )
 					var/obj/structure/razorwire/R = O
 					R.health -= rand(40,60) + 8 * upgrade
 					R.update_health()
-				return
+
 
 		var/obj/effect/xenomorph/spray/S = acid_splat_turf(T)
 		do_acid_spray_cone_normal(T, i, facing, S)
@@ -245,6 +249,7 @@
 
 			for (var/obj/O in normal_turf)
 				if(!O.CheckExit(left_S, next_normal_turf))
+					normal_density_flag = TRUE
 					if(istype(O, /obj/structure/barricade))
 						var/obj/structure/barricade/B = O
 						B.health -= rand(40,60) + 8 * upgrade
@@ -257,7 +262,7 @@
 						var/obj/structure/razorwire/R = O
 						R.health -= rand(40,60) + 8 * upgrade
 						R.update_health()
-					normal_density_flag = 1
+						normal_density_flag = FALSE //passable for acid spray
 					break
 
 			normal_turf = next_normal_turf
@@ -268,50 +273,7 @@
 			if(!normal_density_flag)
 				for (var/obj/O in normal_turf)
 					if(!O.CanPass(left_S, left_S.loc))
-						if(istype(O, /obj/structure/barricade))
-							var/obj/structure/barricade/B = O
-							B.health -= rand(40,60) + 8 * upgrade
-							B.update_health(1)
-						else if(istype(O, /obj/vehicle/multitile/root/cm_armored) )
-							var/obj/vehicle/multitile/root/cm_armored/A = O
-							A.take_damage_type(rand(40,60) + 8 * upgrade, "acid", src)
-							A.healthcheck()
-						normal_density_flag = 1
-						break
-
-			if (!normal_density_flag)
-				left_S = acid_splat_turf(normal_turf)
-
-
-		if (!inverse_normal_density_flag)
-
-			var/next_inverse_normal_turf = get_step(inverse_normal_turf, inverse_normal_dir)
-
-			for (var/obj/O in inverse_normal_turf)
-				if(!O.CheckExit(right_S, next_inverse_normal_turf))
-					if(istype(O, /obj/structure/barricade))
-						var/obj/structure/barricade/B = O
-						B.health -= rand(40,60) + 8 * upgrade
-						B.update_health(1)
-					else if(istype(O, /obj/vehicle/multitile/root/cm_armored) )
-						var/obj/vehicle/multitile/root/cm_armored/A = O
-						A.take_damage_type(rand(40,60) + 8 * upgrade, "acid", src)
-						A.healthcheck()
-					else if(istype(O, /obj/structure/razorwire) )
-						var/obj/structure/razorwire/R = O
-						R.health -= rand(40,60) + 8 * upgrade
-						R.update_health()
-					inverse_normal_density_flag = 1
-					break
-
-			inverse_normal_turf = next_inverse_normal_turf
-
-			if(!inverse_normal_density_flag)
-				inverse_normal_density_flag = inverse_normal_turf.density
-
-			if(!inverse_normal_density_flag)
-				for (var/obj/O in inverse_normal_turf)
-					if(!O.CanPass(right_S, right_S.loc))
+						normal_density_flag = TRUE
 						if(istype(O, /obj/structure/barricade))
 							var/obj/structure/barricade/B = O
 							B.health -= rand(40,60) + 8 * upgrade
@@ -324,7 +286,57 @@
 							var/obj/structure/razorwire/R = O
 							R.health -= rand(40,60) + 8 * upgrade
 							R.update_health()
-						inverse_normal_density_flag = 1
+							normal_density_flag = FALSE //passable for acid spray
+						break
+
+			if (!normal_density_flag)
+				left_S = acid_splat_turf(normal_turf)
+
+
+		if (!inverse_normal_density_flag)
+
+			var/next_inverse_normal_turf = get_step(inverse_normal_turf, inverse_normal_dir)
+
+			for (var/obj/O in inverse_normal_turf)
+				if(!O.CheckExit(right_S, next_inverse_normal_turf))
+					inverse_normal_density_flag = TRUE
+					if(istype(O, /obj/structure/barricade))
+						var/obj/structure/barricade/B = O
+						B.health -= rand(40,60) + 8 * upgrade
+						B.update_health(1)
+					else if(istype(O, /obj/vehicle/multitile/root/cm_armored) )
+						var/obj/vehicle/multitile/root/cm_armored/A = O
+						A.take_damage_type(rand(40,60) + 8 * upgrade, "acid", src)
+						A.healthcheck()
+					else if(istype(O, /obj/structure/razorwire) )
+						var/obj/structure/razorwire/R = O
+						R.health -= rand(40,60) + 8 * upgrade
+						R.update_health()
+						inverse_normal_density_flag = FALSE //passable for acid spray
+					break
+
+			inverse_normal_turf = next_inverse_normal_turf
+
+			if(!inverse_normal_density_flag)
+				inverse_normal_density_flag = inverse_normal_turf.density
+
+			if(!inverse_normal_density_flag)
+				for (var/obj/O in inverse_normal_turf)
+					if(!O.CanPass(right_S, right_S.loc))
+						inverse_normal_density_flag = TRUE //passable for acid spray
+						if(istype(O, /obj/structure/barricade))
+							var/obj/structure/barricade/B = O
+							B.health -= rand(40,60) + 8 * upgrade
+							B.update_health(1)
+						else if(istype(O, /obj/vehicle/multitile/root/cm_armored) )
+							var/obj/vehicle/multitile/root/cm_armored/A = O
+							A.take_damage_type(rand(40,60) + 8 * upgrade, "acid", src)
+							A.healthcheck()
+						else if(istype(O, /obj/structure/razorwire) )
+							var/obj/structure/razorwire/R = O
+							R.health -= rand(40,60) + 8 * upgrade
+							R.update_health()
+							inverse_normal_density_flag = FALSE //passable for acid spray
 						break
 
 			if (!inverse_normal_density_flag)
@@ -345,6 +357,10 @@
 		for (var/obj/vehicle/multitile/root/cm_armored/A in T)
 			A.take_damage_type(rand(40,60) + 8 * upgrade, "acid", src)
 			A.healthcheck()
+
+		for (var/obj/structure/razorwire/R in T)
+			R.health -= rand(40,60) + 8 * upgrade
+			R.update_health(1)
 
 		for (var/mob/living/carbon/C in T)
 			if (!ishuman(C) && !ismonkey(C))
