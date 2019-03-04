@@ -216,7 +216,7 @@
 
 			adjust_stagger(round(4 * armor,0.1))
 			add_slowdown(round(4 * armor,0.1))
-			KnockOut(10 * armor)
+			KnockOut(10 * armor) //This should kill you outright, so if you're somehow alive I don't feel too bad if you get KOed
 
 		if(2)
 			b_loss += rand(60, 80) * armor	//Ouchie time. Armor makes it survivable
@@ -228,11 +228,11 @@
 
 			adjust_stagger(round(2 * armor,0.1))
 			add_slowdown(round(2 * armor,0.1))
-			KnockOut(7 * armor)
+			KnockDown(7 * armor)
 
 		if(3)
 			b_loss += rand(30, 40) * armor
-			b_loss += rand(30, 40) * armor
+			f_loss += rand(30, 40) * armor
 
 			if(!istype(wear_ear, /obj/item/clothing/ears/earmuffs))
 				ear_damage += 15 * armor
