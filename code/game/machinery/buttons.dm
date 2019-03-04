@@ -65,7 +65,7 @@
 	add_fingerprint(user)
 	if(!istype(user))
 		return
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		to_chat(user, "<span class='warning'>[src] doesn't seem to be working.</span>")
 		return
 	if(active)
@@ -85,12 +85,12 @@
 
 /obj/machinery/medical_help_button/proc/icon_update_check()
 	active = FALSE
-	if(!(stat & NOPOWER))
+	if(!(machine_stat & NOPOWER))
 		icon_state = "doorctrl0"
 
 /obj/machinery/medical_help_button/power_change()
-	..()
-	if(stat & NOPOWER)
+	. = ..()
+	if(machine_stat & NOPOWER)
 		icon_state = "doorctrl-p"
 	else
 		icon_state = "doorctrl0"
