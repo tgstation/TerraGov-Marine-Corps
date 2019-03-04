@@ -1030,8 +1030,8 @@
 
 		var/angle = get_dir(src, M)
 		if(angle & dir || radial_mode)
-			path = getline2(src, M, TRUE)
-			//path -= get_turf(src)
+			path = getline(src, M)
+			path -= get_turf(src)
 			if(alerts_on) //They're within our field of detection and thus can trigger the alarm
 				if(world.time > (last_alert + SENTRY_ALERT_DELAY) || !(M in alert_list)) //if we're not on cooldown or the target isn't in the list, sound the alarm
 					playsound(loc, 'sound/machines/warning-buzzer.ogg', 50, FALSE)

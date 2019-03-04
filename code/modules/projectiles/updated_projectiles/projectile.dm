@@ -121,7 +121,7 @@
 	//If we have the the right kind of ammo, we can fire several projectiles at once.
 	if(ammo.bonus_projectiles_amount && ammo.bonus_projectiles_type) ammo.fire_bonus_projectiles(src)
 
-	path = getline2(starting,target_turf)
+	path = getline(starting,target_turf)
 
 	var/change_x = target_turf.x - starting.x
 	var/change_y = target_turf.y - starting.y
@@ -195,7 +195,7 @@
 		if(this_iteration == path.len)
 			next_turf = locate(current_turf.x + change_x, current_turf.y + change_y, current_turf.z)
 			if(current_turf && next_turf)
-				path = getline2(current_turf,next_turf) //Build a new flight path.
+				path = getline(current_turf,next_turf) //Build a new flight path.
 				if(path.len && src) //TODO look into this. This should always be true, but it can fail, apparently, against DCed people who fall down. Better yet, redo this.
 					distance_travelled-- //because the new follow_flightpath() repeats the last step.
 					follow_flightpath(speed, change_x, change_y, range) //Onwards!

@@ -272,7 +272,7 @@
 	set waitfor = 0
 	if(world.time <= used_fire_breath + 75)
 		return
-	var/list/turf/turfs = getline2(src, A)
+	var/list/turf/turfs = getline(src, A)
 	var/distance = 0
 	var/obj/structure/window/W
 	var/turf/T
