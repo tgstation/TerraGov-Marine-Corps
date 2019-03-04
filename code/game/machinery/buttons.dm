@@ -48,3 +48,36 @@
 
 	attack_paw(mob/user as mob)
 		return
+
+/obj/machinery/medical_help_button
+	name = "Medical attention required"
+	icon = 'icons/obj/stationobjs.dmi'
+	icon_state = "doorctrl0"
+	desc = "A button for alerting doctors that you require assitance."
+	var/id = null
+	var/active = 0
+	anchored = 1.0
+	use_power = 1
+	idle_power_usage = 2
+	active_power_usage = 4
+
+/obj/machinery/medical_help_button/attack_hand(mob/user)
+	src.add_fingerprint(user)
+	if(istype(user,/mob/living/carbon/Xenomorph))
+		return
+	if(stat & (NOPOWER|BROKEN))
+		to_chat(user, "<span class='warning'>[src] doesn't seem to be working.</span>")
+		return
+
+	use_power(5)
+	icon_state = "doorctrl1"
+	add_fingerprint(user)
+
+	var/mob/living/silicon/ai/AI = new/mob/living/silicon/ai(src, null, null, 1)
+	AI.SetName("Lobby Notification System")
+	AI.aiRadio.talk_into(AI,"<b>[user.name] is requesting medical attention at: [get_area(src)].</b>","MedSci","announces")
+	qdel(AI)	
+
+	spawn(15)
+		if(!(stat & NOPOWER))
+			icon_state = "doorctrl0"
