@@ -452,20 +452,20 @@
 	transfer_delay = 0.5 SECONDS
 	max_range = 7
 
-/datum/action/xeno_action/activable/salvage_plasma
+/datum/action/xeno_action/activable/salvage_essence
 	name = "Salvage Essence"
-	action_icon_state = "salvage_plasma"
-	ability_name = "salvage plasma"
+	action_icon_state = "salvage_essence"
+	ability_name = "salvage essence"
 	var/salvage_delay = 5 SECONDS
 	var/max_range = 1
 
-datum/action/xeno_action/activable/salvage_plasma/use_ability(atom/A)
+datum/action/xeno_action/activable/salvage_essence/use_ability(atom/A)
 	var/mob/living/carbon/Xenomorph/X = owner
 	if(owner.action_busy)
 		return
-	X.xeno_salvage_plasma(A, salvage_delay, max_range)
+	X.xeno_salvage_essence(A, salvage_delay, max_range)
 
-datum/action/xeno_action/activable/salvage_plasma/improved
+datum/action/xeno_action/activable/salvage_essence/improved
 	salvage_delay = 3 SECONDS
 	max_range = 1
 

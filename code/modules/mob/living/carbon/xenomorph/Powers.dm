@@ -1044,7 +1044,7 @@
 	to_chat(src, "<span class='xenowarning'>You have transferred [amount] units of [energy] to [target]. You now have [plasma_stored]/[xeno_caste.plasma_max].</span>")
 	playsound(src, "alien_drool", 25)
 
-/mob/living/carbon/Xenomorph/proc/xeno_salvage_plasma(atom/A, salvage_delay, max_range)
+/mob/living/carbon/Xenomorph/proc/xeno_salvage_essence(atom/A, salvage_delay, max_range)
 	if(!isxeno(A) || !check_state() || A == src)
 		return
 
