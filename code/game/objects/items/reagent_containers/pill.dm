@@ -31,12 +31,13 @@ var/global/list/randomized_pill_icons
 	return
 
 /obj/item/reagent_container/pill/attack(mob/M, mob/user, def_zone)
+	add_fingerprint(user)
 
 	if(M == user)
 
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
-			if(H.species.flags & IS_SYNTHETIC)
+			if(H.species.species_flags & IS_SYNTHETIC)
 				to_chat(H, "<span class='warning'>You can't eat pills.</span>")
 				return
 
@@ -51,7 +52,7 @@ var/global/list/randomized_pill_icons
 	else if(ishuman(M) )
 
 		var/mob/living/carbon/human/H = M
-		if(H.species.flags & IS_SYNTHETIC)
+		if(H.species.species_flags & IS_SYNTHETIC)
 			to_chat(user, "<span class='warning'>They have a monitor for a head, where do you think you're going to put that?</span>")
 			return
 

@@ -9,13 +9,17 @@
 	if(alert("Restart the game world?", "Restart", "Yes", "No") != "Yes")
 		return
 
+	var/mention = FALSE
+	if(alert("Mention the New Round Alert role?", "Mention Role", "Yes", "No") == "Yes")
+		mention = TRUE
+
 	to_chat(world, "<span class='danger'>Restarting world!</span> <span class='notice'>Initiated by: [usr.key]</span>")
 
 	log_admin("[key_name(usr)] initiated a restart.")
 	message_admins("[ADMIN_TPMONTY(usr)] initiated a restart.")
 
 	spawn(50)
-		world.Reboot()
+		world.Reboot(mention)
 
 /datum/admins/proc/shutdown_server()
 	set category = "Server"
@@ -206,16 +210,16 @@
 	if(!check_rights(R_SERVER))
 		return
 
-	if(!SSticker || SSticker.current_state != GAME_STATE_PREGAME)
+	if(!SSticker.current_state == GAME_STATE_PREGAME && !SSticker.current_state == GAME_STATE_STARTUP)
 		return
 
 	if(alert("Are you sure you want to start the round early?", "Confirmation","Yes","No") != "Yes")
 		return
 
-	SSticker.current_state = GAME_STATE_SETTING_UP
+	SSticker.start_immediately = TRUE
 
-	log_admin("[key_name(usr)] has started the game early.")
-	message_admins("[ADMIN_TPMONTY(usr)] has started the game early.")
+	log_admin("[key_name(usr)] has started the game early[SSticker.current_state == GAME_STATE_STARTUP ? ". The game is still setting up, but the round will be started as soon as possible" : ""].")
+	message_admins("[ADMIN_TPMONTY(usr)] has started the game early[SSticker.current_state == GAME_STATE_STARTUP ? ". The game is still setting up, but the round will be started as soon as possible" : ""].")
 
 
 /datum/admins/proc/toggle_join()
@@ -333,7 +337,7 @@
 	SSticker.delay_end = !SSticker.delay_end
 
 	log_admin("[key_name(usr)] [SSticker.delay_end ? "delayed the round-end" : "made the round end normally"].")
-	message_admins("[ADMIN_TPMONTY(usr)] [SSticker.delay_end ? "delayed the round-end" : "made the round end normally"].")
+	message_admins("<hr><br><h4>[ADMIN_TPMONTY(usr)] [SSticker.delay_end ? "delayed the round-end" : "made the round end normally"].</h4><hr><br>")
 
 
 /datum/admins/proc/toggle_gun_restrictions()
@@ -388,3 +392,63 @@
 
 	log_admin("[key_name(src)] manually reloaded admins.")
 	message_admins("[ADMIN_TPMONTY(usr)] manually reloaded admins.")
+
+
+/datum/admins/proc/map_random()
+	set category = "Server"
+	set name = "Trigger Random Map Rotation"
+
+	if(!check_rights(R_SERVER))
+		return
+
+	var/rotate = alert("Force a random map rotation to trigger?", "Rotate map?", "Yes", "No")
+	if(rotate != "Yes")
+		return
+
+	SSmapping.maprotate()
+
+	log_admin("[key_name(usr)] forced a random map rotation.")
+	message_admins("[ADMIN_TPMONTY(usr)] forced a random map rotation.")
+
+
+/datum/admins/proc/map_change()
+	set category = "Server"
+	set name = "Change Map"
+
+	if(!check_rights(R_SERVER))
+		return
+
+	var/list/maprotatechoices = list()
+	for(var/map in config.maplist)
+		var/datum/map_config/VM = config.maplist[map]
+		var/mapname = VM.map_name
+		if (VM == config.defaultmap)
+			mapname += " (Default)"
+
+		if(VM.config_min_users > 0 || VM.config_max_users > 0)
+			mapname += " \["
+			if(VM.config_min_users > 0)
+				mapname += "[VM.config_min_users]"
+			else
+				mapname += "0"
+			mapname += "-"
+			if(VM.config_max_users > 0)
+				mapname += "[VM.config_max_users]"
+			else
+				mapname += "inf"
+			mapname += "\]"
+
+		maprotatechoices[mapname] = VM
+
+	var/chosenmap = input("Choose a map to change to", "Change Map") as null|anything in maprotatechoices
+	if(!chosenmap)
+		return
+
+	var/datum/map_config/VM = maprotatechoices[chosenmap]
+
+	log_admin("[key_name(usr)] is changing the map to [VM.map_name].")
+	message_admins("[ADMIN_TPMONTY(usr)] is changing the map to [VM.map_name].")
+
+	if(SSmapping.changemap(VM) == 0)
+		log_admin("[key_name(usr)] has changed the map to [VM.map_name].")
+		message_admins("[ADMIN_TPMONTY(usr)] has changed the map to [VM.map_name].")

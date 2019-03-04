@@ -162,52 +162,6 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		. += named_args
 
 
-/datum/admins/proc/change_hivenumber(mob/living/carbon/Xenomorph/X in GLOB.xeno_mob_list)
-	set category = "Debug"
-	set name = "Change Hivenumber"
-	set desc = "Set the hivenumber of a xenomorph."
-
-	if(!check_rights(R_DEBUG))
-		return
-
-	if(!X || !istype(X))
-		return
-
-	var/hivenumber_status = X.hivenumber
-
-	var/list/namelist = list()
-	for(var/datum/hive_status/H in hive_datum)
-		namelist += H.name
-
-	var/newhive = input(src, "Select a hive.", null, null) in namelist
-
-	if(!X || !istype(X))
-		return
-
-	var/newhivenumber
-	switch(newhive)
-		if("Normal")
-			newhivenumber = XENO_HIVE_NORMAL
-		if("Corrupted")
-			newhivenumber = XENO_HIVE_CORRUPTED
-		if("Alpha")
-			newhivenumber = XENO_HIVE_ALPHA
-		if("Beta")
-			newhivenumber = XENO_HIVE_BETA
-		if("Zeta")
-			newhivenumber = XENO_HIVE_ZETA
-		else
-			return
-
-	if(!istype(X) || X.gc_destroyed || !SSticker || X.hivenumber != hivenumber_status)
-		return
-
-	X.set_hive_number(newhivenumber)
-
-	log_admin("[key_name(src)] changed hivenumber of [X] to [newhive].")
-	message_admins("[ADMIN_TPMONTY(usr)] changed hivenumber of [ADMIN_TPMONTY(X)] to [newhive].")
-
-
 /datum/admins/proc/delete_all()
 	set category = "Debug"
 	set name = "Delete Instances"
@@ -266,47 +220,71 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 	var/dat = "<html><head><title>"
 
-	var/choice = input("Which list?") as null|anything in list("Players", "Admins", "Clients", "Mobs", "Living Mobs", "Dead Mobs", "Xenos", "Alive Xenos", "Dead Xenos")
+	var/choice = input("Which list?") as null|anything in list("Players", "Admins", "Clients", "Mobs", "Living Mobs", "Dead Mobs", "Xenos", "Alive Xenos", "Dead Xenos", "Humans", "Alive Humans", "Dead Humans")
 	if(!choice)
 		return
 
 	switch(choice)
 		if("Players")
 			dat += "Players</title></head><body>"
-			dat += tg_list2text(GLOB.player_list, "<br>")
+			for(var/i in GLOB.player_list)
+				var/mob/M = i
+				dat += "[M] [ADMIN_VV(M)]<br>"
 		if("Admins")
 			dat += "Admins</title></head><body>"
-			dat += tg_list2text(GLOB.admins, "<br>")
+			for(var/i in GLOB.admins)
+				var/mob/M = i
+				dat += "[M] [ADMIN_VV(M)]<br>"
 		if("Clients")
 			dat += "Clients</title></head><body>"
-			dat += tg_list2text(GLOB.clients, "<br>")
+			for(var/i in GLOB.clients)
+				var/mob/M = i
+				dat += "[M] [ADMIN_VV(M)]<br>"
 		if("Mobs")
 			dat += "Mobs</title></head><body>"
-			dat += tg_list2text(GLOB.mob_list, "<br>")
+			for(var/i in GLOB.mob_list)
+				var/mob/M = i
+				dat += "[M] [ADMIN_VV(M)]<br>"
 		if("Living Mobs")
 			dat += "Living Mobs</title></head><body>"
-			dat += tg_list2text(GLOB.alive_mob_list, "<br>")
+			for(var/i in GLOB.alive_mob_list)
+				var/mob/M = i
+				dat += "[M] [ADMIN_VV(M)]<br>"
 		if("Dead Mobs")
 			dat += "Dead Mobs</title></head><body>"
-			dat += tg_list2text(GLOB.dead_mob_list, "<br>")
+			for(var/i in GLOB.dead_mob_list)
+				var/mob/M = i
+				dat += "[M] [ADMIN_VV(M)]<br>"
 		if("Xenos")
 			dat += "Xenos</title></head><body>"
-			dat += tg_list2text(GLOB.xeno_mob_list, "<br>")
+			for(var/i in GLOB.xeno_mob_list)
+				var/mob/M = i
+				dat += "[M] [ADMIN_VV(M)]<br>"
 		if("Alive Xenos")
 			dat += "Alive Xenos</title></head><body>"
-			dat += tg_list2text(GLOB.alive_xeno_list, "<br>")
+			for(var/i in GLOB.alive_xeno_list)
+				var/mob/M = i
+				dat += "[M] [ADMIN_VV(M)]<br>"
 		if("Dead Xenos")
 			dat += "Dead Xenos</title></head><body>"
-			dat += tg_list2text(GLOB.dead_xeno_list, "<br>")
+			for(var/i in GLOB.dead_xeno_list)
+				var/mob/M = i
+				dat += "[M] [ADMIN_VV(M)]<br>"
 		if("Humans")
 			dat += "Humans</title></head><body>"
-			dat += tg_list2text(GLOB.human_mob_list, "<br>")
+			for(var/i in GLOB.human_mob_list)
+				var/mob/M = i
+				dat += "[M] [ADMIN_VV(M)]<br>"
 		if("Alive Humans")
 			dat += "Alive Humans</title></head><body>"
-			dat += tg_list2text(GLOB.alive_human_list, "<br>")
-		if("Dead Xenos")
-			dat += "Dead Xenos</title></head><body>"
-			dat += tg_list2text(GLOB.dead_human_list, "<br>")
+			for(var/i in GLOB.alive_human_list)
+				var/mob/M = i
+				dat += "[M] [ADMIN_VV(M)]<br>"
+		if("Dead Humans")
+			dat += "Dead Humans</title></head><body>"
+			for(var/i in GLOB.player_list)
+				var/mob/M = i
+				dat += "[M] [ADMIN_VV(M)]<br>"
 
 	dat += "</body></html>"
 
@@ -424,7 +402,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	message_admins("[ADMIN_TPMONTY(usr)] has restarted the [controller] controller.")
 
 
-/datum/admins/proc/debug_controller(controller in list("Master","Ticker","Lighting","Jobs","Sun","Radio","Supply","Shuttles","Configuration","Cameras", "Transfer Controller", "Gas Data"))
+/datum/admins/proc/debug_controller(controller in list("Master", "Lighting", "Sun", "Radio", "Supply", "Shuttles", "Configuration", "Cameras", "Global Vars"))
 	set category = "Debug"
 	set name = "Debug Controllers"
 	set desc = "Debug the various periodic loop controllers for the game."
@@ -435,12 +413,8 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	switch(controller)
 		if("Master")
 			usr.client.debug_variables(Master)
-		if("Ticker")
-			usr.client.debug_variables(SSticker)
 		if("Lighting")
 			usr.client.debug_variables(lighting_controller)
-		if("Jobs")
-			usr.client.debug_variables(SSjob)
 		if("Sun")
 			usr.client.debug_variables(sun)
 		if("Radio")
@@ -453,6 +427,8 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 			usr.client.debug_variables(config)
 		if("Cameras")
 			usr.client.debug_variables(cameranet)
+		if("Global Vars")
+			usr.client.debug_variables(GLOB)
 
 	log_admin("[key_name(usr)] is debugging the [controller] controller.")
 	message_admins("[ADMIN_TPMONTY(usr)] is debugging the [controller] controller.")

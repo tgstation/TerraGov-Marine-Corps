@@ -69,14 +69,14 @@
 				construct_op ++
 				var/obj/item/stack/cable_coil/A = new /obj/item/stack/cable_coil( user.loc )
 				A.amount = 5
-				stat |= BROKEN // the machine's been borked!
+				machine_stat |= BROKEN // the machine's been borked!
 		if(3)
 			if(iscablecoil(P))
 				var/obj/item/stack/cable_coil/A = P
 				if (A.use(5))
 					to_chat(user, "<span class='notice'>You insert the cables.</span>")
 					construct_op--
-					stat &= ~BROKEN // the machine's not borked anymore!
+					machine_stat &= ~BROKEN // the machine's not borked anymore!
 				else
 					to_chat(user, "<span class='warning'>You need five coils of wire for this.</span>")
 			if(iscrowbar(P))
@@ -130,7 +130,7 @@
 		if(!ismultitool(user.get_active_held_item()))
 			return
 
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 
 	var/obj/item/device/multitool/P = get_multitool(user)
@@ -306,7 +306,7 @@
 		if(!ismultitool(usr.get_active_held_item()))
 			return
 
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 
 	var/obj/item/device/multitool/P = get_multitool(usr)

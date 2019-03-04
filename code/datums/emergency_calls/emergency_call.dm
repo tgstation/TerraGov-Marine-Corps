@@ -93,7 +93,7 @@
 
 	var/datum/emergency_call/distress = SSticker?.mode?.picked_call //Just to simplify things a bit
 
-	if(jobban_isbanned(usr, "Syndicate") || jobban_isbanned(usr, "Emergency Response Team"))
+	if(jobban_isbanned(usr, ROLE_ERT) || is_banned_from(usr.ckey, ROLE_ERT))
 		to_chat(usr, "<span class='danger'>You are jobbanned from the emergency reponse team!</span>")
 		return
 
@@ -127,10 +127,10 @@
 
 /datum/emergency_call/proc/activate(announce = TRUE)
 	if(!SSticker?.mode) //Something horribly wrong with the gamemode SSticker
-		return
+		return FALSE
 
 	if(SSticker.mode.on_distress_cooldown) //It's already been called.
-		return
+		return FALSE
 
 	if(mob_max > 0)
 		SSticker.mode.waiting_for_candidates = TRUE
@@ -145,7 +145,7 @@
 
 	spawn(1 MINUTES)
 		if(length(candidates) < mob_min)
-			message_admins("Aborting distress beacon [name], not enough candidates. Found [length(candidates)].")
+			message_admins("Aborting distress beacon [name], not enough candidates. Found: [length(candidates)]. Minimum required: [mob_min].")
 			SSticker.mode.waiting_for_candidates = FALSE
 			members = list() //Empty the members list.
 			candidates = list()
@@ -172,9 +172,10 @@
 					if(M.current?.stat != DEAD)
 						candidates -= M //Strip them from the list, they aren't dead anymore.
 						continue
-					if(name == "Xenomorphs" && !(M.current.client?.prefs?.be_special & BE_ALIEN))
-						candidates -= M
-						continue
+					if(name == "Xenomorphs")
+						if(!(M.current.client?.prefs?.be_special & BE_ALIEN) || is_banned_from(M.current.ckey, ROLE_XENOMORPH))
+							candidates -= M
+							continue
 					picked_candidates += M
 					candidates -= M
 

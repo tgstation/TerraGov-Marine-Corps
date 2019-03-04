@@ -16,7 +16,7 @@
 	if(health_deficiency >= 40)
 		reducible_tally += round(health_deficiency / 25)
 
-	if(!(species && (species.flags & NO_PAIN)))
+	if(!(species && (species.species_flags & NO_PAIN)))
 		if(halloss >= 10)
 			reducible_tally += round(halloss / 15) //halloss shouldn't slow you down if you can't even feel it
 
@@ -51,11 +51,11 @@
 	if(istype(buckled, /obj/structure/bed/chair/wheelchair))
 		for(var/organ_name in list("l_hand","r_hand","l_arm","r_arm","chest","groin","head"))
 			var/datum/limb/E = get_limb(organ_name)
-			if(!E || (E.status & LIMB_DESTROYED))
+			if(!E || (E.limb_status & LIMB_DESTROYED))
 				. += 4
-			if(E.status & LIMB_SPLINTED || E.status & LIMB_STABILIZED)
+			if(E.limb_status & LIMB_SPLINTED || E.limb_status & LIMB_STABILIZED)
 				. += 0.65
-			else if(E.status & LIMB_BROKEN)
+			else if(E.limb_status & LIMB_BROKEN)
 				. += 1.5
 	else
 		if(shoes)
@@ -63,12 +63,15 @@
 
 		for(var/organ_name in list("l_foot","r_foot","l_leg","r_leg","chest","groin","head"))
 			var/datum/limb/E = get_limb(organ_name)
-			if(!E || (E.status & LIMB_DESTROYED))
+			if(!E || (E.limb_status & LIMB_DESTROYED))
 				. += 4
-			if(E.status & LIMB_SPLINTED || E.status & LIMB_STABILIZED)
+			if(E.limb_status & LIMB_SPLINTED || E.limb_status & LIMB_STABILIZED)
 				. += 0.75
-			else if(E.status & LIMB_BROKEN)
+			else if(E.limb_status & LIMB_BROKEN)
 				. += 1.5
+
+	if(slowdown)
+		. += slowdown
 
 	if(mobility_aura)
 		. -= 0.1 + 0.1 * mobility_aura
@@ -149,7 +152,7 @@
 /mob/living/carbon/human/Process_Spaceslipping(var/prob_slip = 5)
 	//If knocked out we might just hit it and stop.  This makes it possible to get dead bodies and such.
 
-	if(species.flags & NO_SLIP)
+	if(species.species_flags & NO_SLIP)
 		return
 
 	if(stat)

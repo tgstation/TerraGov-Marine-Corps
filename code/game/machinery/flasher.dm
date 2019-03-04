@@ -29,7 +29,7 @@
 */
 /obj/machinery/flasher/power_change()
 	..()
-	if ( !(stat & NOPOWER) )
+	if ( !(machine_stat & NOPOWER) )
 		icon_state = "[base_state]1"
 //		src.sd_SetLuminosity(2)
 	else
@@ -89,7 +89,7 @@
 
 
 /obj/machinery/flasher/emp_act(severity)
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		..(severity)
 		return
 	if(prob(75/severity))
@@ -129,7 +129,7 @@
 
 /obj/machinery/flasher_button/attack_hand(mob/user as mob)
 
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	if(active)
 		return

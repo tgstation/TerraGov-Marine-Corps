@@ -260,7 +260,7 @@
 /datum/ammo/bullet/pistol/New()
 	..()
 	damage = CONFIG_GET(number/combat_define/low_hit_damage)
-	accuracy = -CONFIG_GET(number/combat_define/low_hit_accuracy)
+	accurate_range = CONFIG_GET(number/combat_define/close_shell_range)
 
 /datum/ammo/bullet/pistol/tiny
 	name = "light pistol bullet"
@@ -512,6 +512,7 @@
 	scatter = -CONFIG_GET(number/combat_define/low_scatter_value)
 	penetration= CONFIG_GET(number/combat_define/med_armor_penetration)
 	shell_speed = CONFIG_GET(number/combat_define/fast_shell_speed)
+	accurate_range = CONFIG_GET(number/combat_define/norm_shell_range)
 
 /datum/ammo/bullet/rifle/m4ra/incendiary
 	name = "A19 high velocity incendiary bullet"
@@ -835,7 +836,7 @@
 
 /datum/ammo/bullet/turret/New()
 	..()
-	accurate_range = CONFIG_GET(number/combat_define/short_shell_range)
+	accurate_range = CONFIG_GET(number/combat_define/near_shell_range)
 	accuracy_var_low = CONFIG_GET(number/combat_define/low_proj_variance)
 	accuracy_var_high = CONFIG_GET(number/combat_define/low_proj_variance)
 	damage = CONFIG_GET(number/combat_define/lmed_hit_damage)
@@ -856,12 +857,12 @@
 	accurate_range = CONFIG_GET(number/combat_define/min_shell_range)
 
 /datum/ammo/bullet/turret/mini
-	name = "UA-580 10x20mm armor piercing bullet"
+	name = "UA-580 10x20mm bullet"
 
 /datum/ammo/bullet/turret/mini/New()
 	. = ..()
-	damage = CONFIG_GET(number/combat_define/mlow_hit_damage) //25
-	penetration= CONFIG_GET(number/combat_define/hmed_armor_penetration) //40
+	damage = CONFIG_GET(number/combat_define/hlow_hit_damage) //35
+	penetration= CONFIG_GET(number/combat_define/low_armor_penetration) //20
 
 
 /datum/ammo/bullet/machinegun //Adding this for the MG Nests (~Art)
@@ -1021,16 +1022,16 @@
 
 
 /datum/ammo/rocket/wp/on_hit_mob(mob/M,obj/item/projectile/P)
-	drop_flame(3, get_turf(M))
+	drop_flame(get_turf(M), 3)
 
 /datum/ammo/rocket/wp/on_hit_obj(obj/O,obj/item/projectile/P)
-	drop_flame(3, get_turf(O))
+	drop_flame(get_turf(O), 3)
 
 /datum/ammo/rocket/wp/on_hit_turf(turf/T,obj/item/projectile/P)
-	drop_flame(3, T)
+	drop_flame(T, 3)
 
 /datum/ammo/rocket/wp/do_at_max_range(obj/item/projectile/P)
-	drop_flame(3, get_turf(P))
+	drop_flame(get_turf(P), 3)
 
 /datum/ammo/rocket/wp/quad
 	name = "thermobaric rocket"
@@ -1353,22 +1354,28 @@
 	icon_state = "sticky"
 	ping = null
 	flags_ammo_behavior = AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE
-	spit_cost = 40
+	damage_type = HALLOSS
+	spit_cost = 50
+	sound_hit 	 = "alien_resin_build2"
+	sound_bounce	= "alien_resin_build3"
 
 /datum/ammo/xeno/sticky/New()
 	..()
 	shell_speed = CONFIG_GET(number/combat_define/fast_shell_speed)
-	accuracy_var_high = CONFIG_GET(number/combat_define/max_proj_variance)
+	damage = CONFIG_GET(number/combat_define/base_hit_damage) //minor; this is mostly just to provide confirmation of a hit
 	max_range = CONFIG_GET(number/combat_define/max_shell_range)
 
 /datum/ammo/xeno/sticky/on_hit_mob(mob/M,obj/item/projectile/P)
-	drop_resin(get_turf(P))
+	drop_resin(get_turf(M))
+	if(istype(M,/mob/living/carbon))
+		var/mob/living/carbon/C = M
+		C.add_slowdown(0.7) //slow em down
 
 /datum/ammo/xeno/sticky/on_hit_obj(obj/O,obj/item/projectile/P)
 	drop_resin(get_turf(P))
 
 /datum/ammo/xeno/sticky/on_hit_turf(turf/T,obj/item/projectile/P)
-	drop_resin(T)
+	drop_resin(get_turf(P))
 
 /datum/ammo/xeno/sticky/do_at_max_range(obj/item/projectile/P)
 	drop_resin(get_turf(P))

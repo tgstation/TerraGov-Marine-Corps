@@ -19,6 +19,7 @@
 
 	var/igniting = FALSE	//Whether it ignites on impact
 	var/item_fire_stacks = 0	//How many fire stacks it applies
+	var/obj/effect/xenomorph/acid/current_acid = null //If it has acid spewed on it
 
 /obj/New()
 	..()

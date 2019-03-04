@@ -20,7 +20,7 @@
 	var/temp = ""				// temporary feedback messages
 
 	attack_hand(mob/user as mob)
-		if(stat & (BROKEN|NOPOWER))
+		if(machine_stat & (BROKEN|NOPOWER))
 			return
 		user.set_interaction(src)
 		var/dat = "<TITLE>Telecommunications Monitor</TITLE><center><b>Telecommunications Monitor</b></center>"
@@ -127,7 +127,7 @@
 		if(isscrewdriver(D))
 			playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 			if(do_after(user, 20, TRUE, src))
-				if (src.stat & BROKEN)
+				if (src.machine_stat & BROKEN)
 					to_chat(user, "<span class='notice'>The broken glass falls out.</span>")
 					var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
 					new /obj/item/shard( src.loc )

@@ -474,13 +474,12 @@ its easier to just keep the beam vertical.
 	if(!istype(fingerprintshidden, /list))
 		fingerprintshidden = list()
 
-	//skytodo
-	//A.fingerprints |= fingerprints            //detective
-	//A.fingerprintshidden |= fingerprintshidden    //admin
 	if(A.fingerprints && fingerprints)
-		A.fingerprints |= fingerprints.Copy()            //detective
+		A.fingerprints |= fingerprints.Copy()
 	if(A.fingerprintshidden && fingerprintshidden)
-		A.fingerprintshidden |= fingerprintshidden.Copy()    //admin	A.fingerprintslast = fingerprintslast
+		A.fingerprintshidden |= fingerprintshidden.Copy()
+	if(fingerprintslast)
+		A.fingerprintslast = fingerprintslast
 
 
 
@@ -533,6 +532,8 @@ its easier to just keep the beam vertical.
 		if(LOG_ATTACK)
 			log_attack(log_text)
 		if(LOG_SAY)
+			log_say(log_text)
+		if(LOG_TELECOMMS)
 			log_say(log_text)
 		if(LOG_WHISPER)
 			log_whisper(log_text)
@@ -706,6 +707,7 @@ Proc for attack log creation, because really why not
 //Hook for running code when a dir change occurs
 /atom/proc/setDir(newdir)
 	dir = newdir
+
 
 /atom/vv_get_dropdown()
 	. = ..()

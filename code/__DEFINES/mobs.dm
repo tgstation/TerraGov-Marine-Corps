@@ -65,24 +65,6 @@
 #define COLD_GAS_DAMAGE_LEVEL_2 0.6 //Amount of damage applied when the current breath's temperature passes the 200K point
 #define COLD_GAS_DAMAGE_LEVEL_3 1.2 //Amount of damage applied when the current breath's temperature passes the 120K point
 
-//bitflags for mutations
-	// Extra powers:
-#define LASER			(1<<8)	// harm intent - click anywhere to shoot lasers from eyes
-#define HEAL			(1<<9)	// healing people with hands
-#define SHADOW			(1<<10)	// shadow teleportation (create in/out portals anywhere) (25%)
-#define SCREAM			(1<<11)	// supersonic screaming (25%)
-#define EXPLOSIVE		(1<<12)	// exploding on-demand (15%)
-#define REGENERATION	(1<<13)	// superhuman regeneration (30%)
-#define REPROCESSOR		(1<<14)	// eat anything (50%)
-#define SHAPESHIFTING	(1<<15)	// take on the appearance of anything (40%)
-#define PHASING			(1<<16)	// ability to phase through walls (40%)
-#define SHIELD			(1<<17)	// shielding from all projectile attacks (30%)
-#define SHOCKWAVE		(1<<18)	// attack a nearby tile and cause a massive shockwave, knocking most people on their asses (25%)
-#define ELECTRICITY		(1<<19)	// ability to shoot electric attacks (15%)
-//=================================================
-
-// String identifiers for associative list lookup
-
 // mob/var/list/mutations
 var/list/global_mutations = list() // list of hidden mutation things
 
@@ -119,17 +101,17 @@ var/list/global_mutations = list() // list of hidden mutation things
 //=================================================
 
 //disabilities
-#define NEARSIGHTED		1
-#define EPILEPSY		2
-#define COUGHING		4
-#define TOURETTES		8
-#define NERVOUS			16
+#define NEARSIGHTED		(1<<0)
+#define EPILEPSY		(1<<1)
+#define COUGHING		(1<<2)
+#define TOURETTES		(1<<3)
+#define NERVOUS			(1<<4)
 //=================================================
 
 //sdisabilities
-#define BLIND			1
-#define MUTE			2
-#define DEAF			4
+#define BLIND			(1<<0)
+#define MUTE			(1<<1)
+#define DEAF			(1<<2)
 //=================================================
 
 //mob/var/stat things
@@ -160,24 +142,24 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define SLUR 		"slur"
 //=================================================
 
-//I hate adding defines like this but I'd much rather deal with bitflags than lists and string searches
-#define BRUTELOSS 1
-#define FIRELOSS 2
-#define TOXLOSS 4
-#define OXYLOSS 8
+//damagetype
+#define BRUTELOSS 	(1<<0)
+#define FIRELOSS 	(1<<1)
+#define TOXLOSS 	(1<<2)
+#define OXYLOSS 	(1<<3)
 //=================================================
 
-//Bitflags defining which status effects could be or are inflicted on a mob
-#define CANSTUN		1
-#define CANKNOCKDOWN	2
-#define CANKNOCKOUT	4
-#define CANPUSH		8
-#define LEAPING		16
-#define PASSEMOTES	32      //holders inside of mob that need to see emotes.
-#define GODMODE		4096
-#define FAKEDEATH	8192	//Replaces stuff like changeling.changeling_fakedeath
-#define DISFIGURED	16384	//I'll probably move this elsewhere if I ever get wround to writing a bitflag mob-damage system
-#define XENO_HOST	32768	//Tracks whether we're gonna be a baby alien's mummy.
+//status_flags
+#define CANSTUN			(1<<0)
+#define CANKNOCKDOWN	(1<<1)
+#define CANKNOCKOUT		(1<<2)
+#define CANPUSH			(1<<3)
+#define LEAPING			(1<<4)
+#define PASSEMOTES		(1<<5)      //holders inside of mob that need to see emotes.
+#define GODMODE			(1<<6)
+#define FAKEDEATH		(1<<7)	//Replaces stuff like changeling.changeling_fakedeath
+#define DISFIGURED		(1<<8)	//I'll probably move this elsewhere if I ever get wround to writing a bitflag mob-damage system
+#define XENO_HOST		(1<<9)	//Tracks whether we're gonna be a baby alien's mummy.
 
 // =============================
 // hive types
@@ -194,17 +176,16 @@ var/list/global_mutations = list() // list of hidden mutation things
 
 #define HUMAN_BLOODTYPES list("O-","O+","A-","A+","B-","B+","AB-","AB+")
 
-///////////////////LIMB DEFINES///////////////////
-
-#define LIMB_BLEEDING 1
-#define LIMB_BROKEN 2
-#define LIMB_DESTROYED 4 //limb is missing
-#define LIMB_ROBOT 8
-#define LIMB_SPLINTED 16
-#define LIMB_NECROTIZED 32 //necrotizing limb, nerves are dead.
-#define LIMB_MUTATED 64 //limb is deformed by mutations
-#define LIMB_AMPUTATED 128 //limb was amputated cleanly or destroyed limb was cleaned up, thus causing no pain
-#define LIMB_REPAIRED 256 //we just repaired the bone, stops the gelling after setting
+//limb_status
+#define LIMB_BLEEDING 	(1<<0)
+#define LIMB_BROKEN 	(1<<1)
+#define LIMB_DESTROYED 	(1<<2) //limb is missing
+#define LIMB_ROBOT 		(1<<3)
+#define LIMB_SPLINTED 	(1<<4)
+#define LIMB_NECROTIZED (1<<5) //necrotizing limb, nerves are dead.
+#define LIMB_MUTATED 	(1<<6) //limb is deformed by mutations
+#define LIMB_AMPUTATED 	(1<<7) //limb was amputated cleanly or destroyed limb was cleaned up, thus causing no pain
+#define LIMB_REPAIRED 	(1<<8) //we just repaired the bone, stops the gelling after setting
 #define LIMB_STABILIZED (1<<9) //certain suits will support a broken limb while worn such as the b18
 
 /////////////////MOVE DEFINES//////////////////////
@@ -312,23 +293,12 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define LIMB_METAL_AMOUNT 125
 
 //=================================================
-
-//Languages!
-#define LANGUAGE_HUMAN		1
-#define LANGUAGE_ALIEN		2
-#define LANGUAGE_DOG		4
-#define LANGUAGE_CAT		8
-#define LANGUAGE_BINARY		16
-#define LANGUAGE_OTHER		32768
-#define LANGUAGE_UNIVERSAL	65535
-//=================================================
-
-//Language flags.
-#define WHITELISTED 1  		// Language is available if the speaker is whitelisted.
-#define RESTRICTED 2   		// Language can only be accquired by spawning or an admin.
-#define NONVERBAL 4    		// Language has a significant non-verbal component. Speech is garbled without line-of-sight
-#define SIGNLANG 8     		// Language is completely non-verbal. Speech is displayed through emotes for those who can understand.
-#define HIVEMIND 16         // Broadcast to all mobs with this language.
+//language_flags
+#define WHITELISTED (1<<0)  		// Language is available if the speaker is whitelisted.
+#define RESTRICTED	(1<<1)   		// Language can only be accquired by spawning or an admin.
+#define NONVERBAL 	(1<<2)    		// Language has a significant non-verbal component. Speech is garbled without line-of-sight
+#define SIGNLANG 	(1<<3)     		// Language is completely non-verbal. Speech is displayed through emotes for those who can understand.
+#define HIVEMIND 	(1<<4)         // Broadcast to all mobs with this language.
 //=================================================
 
 
@@ -336,22 +306,22 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define EMOTE_AUDIBLE  2
 
 
-//Species flags.
-#define NO_BLOOD 1
-#define NO_BREATHE 2
-#define NO_SCAN 4
-#define NO_PAIN 8
-#define NO_SLIP 16
-#define NO_OVERDOSE 32
-#define NO_POISON 64
-#define NO_CHEM_METABOLIZATION 128
-#define HAS_SKIN_TONE 256
-#define HAS_SKIN_COLOR 512
-#define HAS_LIPS 1024
-#define HAS_UNDERWEAR 2048
-#define HAS_NO_HAIR 4096
-#define IS_PLANT 8192
-#define IS_SYNTHETIC 16384
+//species_flags
+#define NO_BLOOD 				(1<<0)
+#define NO_BREATHE 				(1<<1)
+#define NO_SCAN 				(1<<2)
+#define NO_PAIN 				(1<<3)
+#define NO_SLIP 				(1<<4)
+#define NO_OVERDOSE 			(1<<5)
+#define NO_POISON 				(1<<6)
+#define NO_CHEM_METABOLIZATION 	(1<<7)
+#define HAS_SKIN_TONE 			(1<<8)
+#define HAS_SKIN_COLOR 			(1<<9)
+#define HAS_LIPS 				(1<<10)
+#define HAS_UNDERWEAR 			(1<<11)
+#define HAS_NO_HAIR 			(1<<12)
+#define IS_PLANT 				(1<<13)
+#define IS_SYNTHETIC 			(1<<14)
 //=================================================
 
 //Some on_mob_life() procs check for alien races.
@@ -495,7 +465,7 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define HUNTER_STEALTH_COOLDOWN					50 //5 seconds
 #define HUNTER_STEALTH_WALK_PLASMADRAIN			2
 #define HUNTER_STEALTH_RUN_PLASMADRAIN			5
-#define HUNTER_STEALTH_STILL_ALPHA				13 //95% transparency
+#define HUNTER_STEALTH_STILL_ALPHA				25 //90% transparency
 #define HUNTER_STEALTH_WALK_ALPHA				38 //85% transparency
 #define HUNTER_STEALTH_RUN_ALPHA				128 //50% transparency
 #define HUNTER_STEALTH_STEALTH_DELAY			30 //3 seconds before 95% stealth
@@ -547,6 +517,8 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define CRUSHER_CRESTTOSS_COOLDOWN		6 SECONDS
 #define CRUSHER_STOMP_COST				80
 #define CRUSHER_STOMP_COOLDOWN 			20 SECONDS
+#define CRUSHER_STOMP_LOWER_DMG			80
+#define CRUSHER_STOMP_UPPER_DMG			100
 
 //carrier defines
 
@@ -608,6 +580,7 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define CASTE_IS_INTELLIGENT		(1<<7)
 #define CASTE_IS_ROBOTIC			(1<<8)
 #define CASTE_DECAY_PROOF			(1<<9)
+#define CASTE_CAN_BE_LEADER			(1<<10)
 
 //misc
 

@@ -21,7 +21,9 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 /datum/job/marine/standard
 	title = "Squad Marine"
 	paygrade = "E2"
+	comm_title = "Mar"
 	flag = SQUAD_MARINE
+	prefflag = PREF_JOB_SQMARINE
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP)
 	display_order = JOB_DISPLAY_ORDER_SQUAD_MARINE
@@ -47,10 +49,12 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 //Squad Engineer
 /datum/job/marine/engineer
 	title = "Squad Engineer"
-	paygrade = "E4"
+	paygrade = "E3"
+	comm_title = "Eng"
 	spawn_positions = 12
 	total_positions = 12
 	flag = SQUAD_ENGINEER
+	prefflag = PREF_JOB_SQENGINEER
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_ENGPREP, ACCESS_CIVILIAN_ENGINEERING)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_ENGPREP, ACCESS_CIVILIAN_ENGINEERING)
 	skills_type = /datum/skills/combat_engineer
@@ -72,39 +76,43 @@ Your squaddies will look to you when it comes to construction in the field of ba
 	back = /obj/item/storage/backpack/marine/satchel
 
 
-//Squad Medic
-/datum/job/marine/medic
-	title = "Squad Medic"
-	paygrade = "E4"
+//Squad Corpsman
+/datum/job/marine/corpsman
+	title = "Squad Corpsman"
+	paygrade = "Corp"
+	comm_title = "Med"
 	spawn_positions = 16
 	total_positions = 16
-	flag = SQUAD_MEDIC
+	flag = SQUAD_CORPSMAN
+	prefflag = PREF_JOB_SQCORPSMAN
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_MEDBAY)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_MEDBAY)
 	skills_type = /datum/skills/combat_medic
-	display_order = JOB_DISPLAY_ORDER_SQUAD_MEDIC
-	outfit = /datum/outfit/job/marine/medic
+	display_order = JOB_DISPLAY_ORDER_SQUAD_CORPSMAN
+	outfit = /datum/outfit/job/marine/corpsman
 
 
-/datum/job/marine/medic/radio_help_message(mob/M)
+/datum/job/marine/corpsman/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"\nYou must tend the wounds of your squad mates and make sure they are healthy and active.
 You may not be a fully-fledged doctor, but you stand between life and death when it matters."})
 
 
-/datum/outfit/job/marine/medic
-	name = "Squad Medic"
-	jobtype = /datum/job/marine/medic
+/datum/outfit/job/marine/corpsman
+	name = "Squad Corpsman"
+	jobtype = /datum/job/marine/corpsman
 
 	id = /obj/item/card/id/dogtag
-	back = /obj/item/storage/backpack/marine/medic
+	back = /obj/item/storage/backpack/marine/corpsman
 
 
 //Squad Smartgunner
 /datum/job/marine/smartgunner
 	title = "Squad Smartgunner"
-	paygrade = "E3"
+	paygrade = "E4"
+	comm_title = "SGnr"
 	flag = SQUAD_SMARTGUNNER
+	prefflag = PREF_JOB_SQSMARTGUNNER
 	spawn_positions = 4
 	total_positions = 4
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_SMARTPREP)
@@ -131,7 +139,9 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 /datum/job/marine/specialist
 	title = "Squad Specialist"
 	paygrade = "E5"
+	comm_title = "Spec"
 	flag = SQUAD_SPECIALIST
+	prefflag = PREF_JOB_SQSPECIALIST
 	spawn_positions = 4
 	total_positions = 4
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_SPECPREP)
@@ -160,10 +170,12 @@ You can serve a variety of roles, so choose carefully."})
 /datum/job/marine/leader
 	title = "Squad Leader"
 	paygrade = "E6"
+	comm_title = "SL"
 	flag = SQUAD_LEADER
+	prefflag = PREF_JOB_SQLEADER
 	spawn_positions = 4
 	total_positions = 4
-	supervisors = "the acting commander"
+	supervisors = "the acting field commander"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP)
 	skills_type = /datum/skills/SL

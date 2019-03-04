@@ -274,7 +274,7 @@
 
 //Xeno acid smoke.
 /obj/effect/particle_effect/smoke/xeno_burn
-	time_to_live = 6
+	time_to_live = 9
 	color = "#86B028" //Mostly green?
 	anchored = 1
 	spread_speed = 7

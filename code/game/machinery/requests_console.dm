@@ -62,7 +62,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 	update_icon()
 
 /obj/machinery/requests_console/update_icon()
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		if(icon_state != "req_comp_off")
 			icon_state = "req_comp_off"
 	else

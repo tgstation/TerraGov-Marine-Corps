@@ -27,7 +27,7 @@
 			qdel()
 		return
 
-	if(density && (stat & NOPOWER) && !operating && !unacidable)
+	if(density && (machine_stat & NOPOWER) && !operating && !unacidable)
 		operating = 1
 		spawn(-1)
 			flick("shutterc0", src)

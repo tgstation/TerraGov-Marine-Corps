@@ -66,7 +66,7 @@ var opts = {
 	'volumeUpdating': false, //True if volume update function set to fire
 	'updatedVolume': 0, //The volume level that is sent to the server
 	
-	'defaultMusicVolume': 25,
+	'defaultMusicVolume': 10,
 
 	'messageCombining': true,
 
@@ -430,7 +430,7 @@ function setCookie(cname, cvalue, exdays) {
 	var d = new Date();
 	d.setTime(d.getTime() + (exdays*24*60*60*1000));
 	var expires = 'expires='+d.toUTCString();
-	document.cookie = cname + '=' + cvalue + '; ' + expires;
+	document.cookie = cname + '=' + cvalue + '; ' + expires + "; path=/";
 }
 
 function getCookie(cname) {

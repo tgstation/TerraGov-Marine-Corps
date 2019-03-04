@@ -51,7 +51,7 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 	src.attack_hand()
 
 /obj/machinery/computer/cryopod/attack_hand(mob/user = usr)
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 
 	user.set_interaction(src)
@@ -69,8 +69,11 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 	dat += "<a href='?src=\ref[src];item=1'>Recover object</a>.<br>"
 	dat += "<a href='?src=\ref[src];allitems=1'>Recover all objects</a>.<br>"
 
-	user << browse(dat, "window=cryopod_console")
+	var/datum/browser/popup = new(user, "cryopod_console", "<div align='center'>Cryogenics</div>")
+	popup.set_content(dat)
+	popup.open(FALSE)
 	onclose(user, "cryopod_console")
+
 
 /obj/machinery/computer/cryopod/Topic(href, href_list)
 
@@ -194,7 +197,7 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 		if(world.time - time_entered < time_till_despawn)
 			return
 
-		if(!occupant.client && occupant.stat < DEAD) //Occupant is living and has no client.
+		if(occupant.stat != DEAD) //Occupant is living and has no client.
 
 			//Drop all items into the pod.
 			for(var/obj/item/W in occupant)
@@ -210,11 +213,11 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 			if(ishuman(occupant))
 				var/mob/living/carbon/human/H = occupant
 				switch(H.job)
-					if("Military Police","Chief MP")
+					if("Master at Arms","Command Master at Arms")
 						dept_console = frozen_items["MP"]
-					if("Doctor","Medical Researcher","Chief Medical Officer")
+					if("Medical Officer","Medical Researcher","Chief Medical Officer")
 						dept_console = frozen_items["Med"]
-					if("Maintenance Tech","Chief Engineer")
+					if("Ship Engineer","Chief Ship Engineer")
 						dept_console = frozen_items["Eng"]
 
 			var/list/deleteempty = list(/obj/item/storage/backpack/marine/satchel)
@@ -315,7 +318,7 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 					switch(H.mind.assigned_role)
 						if("Squad Engineer")
 							S.num_engineers--
-						if("Squad Medic")
+						if("Squad Corpsman")
 							S.num_medics--
 						if("Squad Specialist")
 							S.num_specialists--

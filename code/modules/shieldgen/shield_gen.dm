@@ -87,17 +87,17 @@
 	return src.attack_hand(user)
 
 /obj/machinery/shield_gen/attack_hand(mob/user)
-	if(stat & (BROKEN))
+	if(machine_stat & (BROKEN))
 		return
 	interact(user)
 
 /obj/machinery/shield_gen/interact(mob/user)
-	if ( (get_dist(src, user) > 1 ) || (stat & (BROKEN)) )
+	if ( (get_dist(src, user) > 1 ) || (machine_stat & (BROKEN)) )
 		if (!issilicon(user))
 			user.unset_interaction()
 			user << browse(null, "window=shield_generator")
 			return
-	var/t = "<B>Shield Generator Control Console</B><BR><br>"
+	var/t
 	if(locked)
 		t += "<i>Swipe your ID card to begin.</i>"
 	else
@@ -129,8 +129,13 @@
 	t += "<hr>"
 	t += "<A href='?src=\ref[src]'>Refresh</A> "
 	t += "<A href='?src=\ref[src];close=1'>Close</A><BR>"
-	user << browse(t, "window=shield_generator;size=500x400")
+
 	user.set_interaction(src)
+
+	var/datum/browser/popup = new(user, "shield_generator", "<div align='center'>Shield Generator Console</div>", 500, 400)
+	popup.set_content(t)
+	popup.open(FALSE)
+
 
 /obj/machinery/shield_gen/process()
 	if (!anchored && active)
@@ -224,7 +229,7 @@
 			to_chat(M, "[icon2html(src, M)] You hear heavy droning fade out.")
 
 /obj/machinery/shield_gen/update_icon()
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		icon_state = "broke"
 	else
 		if (src.active)

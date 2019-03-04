@@ -72,3 +72,9 @@ var/global/TAB = "&nbsp;&nbsp;&nbsp;&nbsp;"
 #define WASHABLE_COLOUR_PRIORITY 	3 //color splashed onto an atom (e.g. paint on turf)
 #define FIXED_COLOUR_PRIORITY 		4 //color inherent to the atom (e.g. blob color)
 #define COLOUR_PRIORITY_AMOUNT 4 //how many priority levels there are.
+
+
+//Dummy mob reserve slots
+#define DUMMY_HUMAN_SLOT_PREFERENCES "dummy_preference_preview"
+#define DUMMY_HUMAN_SLOT_ADMIN "admintools"
+#define DUMMY_HUMAN_SLOT_MANIFEST "dummy_manifest_generation"

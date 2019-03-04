@@ -17,7 +17,7 @@
 	update_icon()
 
 /obj/machinery/dropship_part_fabricator/update_icon()
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		icon_state = "drone_fab_nopower"
 		return
 	if(busy)
@@ -54,7 +54,7 @@
 	return
 
 /obj/machinery/dropship_part_fabricator/proc/build_dropship_part(part_type, cost, mob/user)
-	if(stat & NOPOWER) return
+	if(machine_stat & NOPOWER) return
 	if(SSpoints.dropship_points < cost)
 		to_chat(user, "<span class='warning'>You don't have enough points to build that.</span>")
 		return

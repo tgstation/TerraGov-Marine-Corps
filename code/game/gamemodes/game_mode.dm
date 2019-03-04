@@ -63,6 +63,18 @@
 /datum/game_mode/proc/post_setup()
 	spawn(ROUNDSTART_LOGOUT_REPORT_TIME)
 		display_roundstart_logout_report()
+	if(SSdbcore.Connect())
+		var/sql
+		if(SSticker.mode)
+			sql += "game_mode = '[SSticker.mode]'"
+		if(GLOB.revdata.originmastercommit)
+			if(sql)
+				sql += ", "
+			sql += "commit_hash = '[GLOB.revdata.originmastercommit]'"
+		if(sql)
+			var/datum/DBQuery/query_round_game_mode = SSdbcore.NewQuery("UPDATE [format_table_name("round")] SET [sql] WHERE id = [GLOB.round_id]")
+			query_round_game_mode.Execute()
+			qdel(query_round_game_mode)
 	return TRUE
 
 
@@ -80,71 +92,7 @@
 
 
 /datum/game_mode/proc/declare_completion()
-	var/clients = 0
-	var/surviving_humans = 0
-	var/surviving_total = 0
-	var/ghosts = 0
-	var/escaped_humans = 0
-	var/escaped_total = 0
-	var/escaped_on_pod_1 = 0
-	var/escaped_on_pod_2 = 0
-	var/escaped_on_pod_3 = 0
-	var/escaped_on_pod_5 = 0
-	var/escaped_on_shuttle = 0
-
-	var/list/area/escape_locations = list(/area/shuttle/escape/centcom, /area/shuttle/escape_pod1/centcom, /area/shuttle/escape_pod2/centcom, /area/shuttle/escape_pod3/centcom, /area/shuttle/escape_pod5/centcom)
-
-	for(var/mob/M in GLOB.player_list)
-		if(M.client)
-			clients++
-			if(ishuman(M))
-				if(!M.stat)
-					surviving_humans++
-					if(M.loc && M.loc.loc && M.loc.loc.type in escape_locations)
-						escaped_humans++
-			if(!M.stat)
-				surviving_total++
-				if(M.loc && M.loc.loc && M.loc.loc.type in escape_locations)
-					escaped_total++
-
-				if(M.loc && M.loc.loc && M.loc.loc.type == /area/shuttle/escape/centcom)
-					escaped_on_shuttle++
-
-				if(M.loc && M.loc.loc && M.loc.loc.type == /area/shuttle/escape_pod1/centcom)
-					escaped_on_pod_1++
-				if(M.loc && M.loc.loc && M.loc.loc.type == /area/shuttle/escape_pod2/centcom)
-					escaped_on_pod_2++
-				if(M.loc && M.loc.loc && M.loc.loc.type == /area/shuttle/escape_pod3/centcom)
-					escaped_on_pod_3++
-				if(M.loc && M.loc.loc && M.loc.loc.type == /area/shuttle/escape_pod5/centcom)
-					escaped_on_pod_5++
-
-			if(isobserver(M))
-				ghosts++
-
-	if(clients > 0)
-		feedback_set("round_end_clients",clients)
-	if(ghosts > 0)
-		feedback_set("round_end_ghosts",ghosts)
-	if(surviving_humans > 0)
-		feedback_set("survived_human",surviving_humans)
-	if(surviving_total > 0)
-		feedback_set("survived_total",surviving_total)
-	if(escaped_humans > 0)
-		feedback_set("escaped_human",escaped_humans)
-	if(escaped_total > 0)
-		feedback_set("escaped_total",escaped_total)
-	if(escaped_on_shuttle > 0)
-		feedback_set("escaped_on_shuttle",escaped_on_shuttle)
-	if(escaped_on_pod_1 > 0)
-		feedback_set("escaped_on_pod_1",escaped_on_pod_1)
-	if(escaped_on_pod_2 > 0)
-		feedback_set("escaped_on_pod_2",escaped_on_pod_2)
-	if(escaped_on_pod_3 > 0)
-		feedback_set("escaped_on_pod_3",escaped_on_pod_3)
-	if(escaped_on_pod_5 > 0)
-		feedback_set("escaped_on_pod_5",escaped_on_pod_5)
-
+	SSdbcore.SetRoundEnd()
 	return FALSE
 
 
@@ -164,18 +112,24 @@
 
 	var/roletext
 	switch(role)
-		if(BE_DEATHMATCH)	roletext = "End of Round Deathmatch"
-		if(BE_ALIEN)		roletext = "Alien"
-		if(BE_QUEEN)		roletext = "Queen"
-		if(BE_SURVIVOR)		roletext = "Survivor"
-		if(BE_PREDATOR)		roletext = "Predator"
-		if(BE_SQUAD_STRICT)	roletext = "Prefer squad over role"
+		if(BE_DEATHMATCH)	
+			roletext = "End of Round Deathmatch"
+		if(BE_ALIEN)		
+			roletext = ROLE_XENOMORPH
+		if(BE_QUEEN)		
+			roletext = ROLE_XENO_QUEEN
+		if(BE_SURVIVOR)		
+			roletext = ROLE_SURVIVOR
+		if(BE_SQUAD_STRICT)	
+			roletext = "Prefer squad over role"
 
 	//Assemble a list of active players without jobbans.
 	for(var/mob/new_player/player in GLOB.player_list)
-		if(player.client && player.ready)
-			if(!jobban_isbanned(player, "Syndicate") && !jobban_isbanned(player, roletext))
-				players += player
+		if(!player.client || !player.ready)
+			continue
+		if(jobban_isbanned(player, roletext) || is_banned_from(player.ckey, roletext))
+			continue	
+		players += player
 
 	//Shuffle the players list so that it becomes ping-independent.
 	players = shuffle(players)
@@ -186,16 +140,6 @@
 			log_game("[player.key] had [roletext] enabled, so we are drafting them.")
 			candidates += player.mind
 			players -= player
-
-	//If we don't have enough antags, draft people who voted for the round.
-	if(candidates.len < recommended_enemies)
-		for(var/key in round_voters)
-			for(var/mob/new_player/player in players)
-				if(player.ckey == key)
-					log_game("[player.key] voted for this round, so we are drafting them.")
-					candidates += player.mind
-					players -= player
-					break
 
 	//Remove candidates who want to be antagonist but have a job that precludes it
 	if(restricted_jobs)
@@ -255,8 +199,6 @@
 
 
 /datum/game_mode/New()
-	if(!GLOB.map_tag)
-		to_chat(world, "MT001: No mapping tag set, tell a coder. [GLOB.map_tag]")
 	initialize_emergency_calls()
 
 

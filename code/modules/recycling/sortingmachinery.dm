@@ -318,7 +318,7 @@
 	flags_equip_slot = ITEM_SLOT_BELT
 
 	proc/openwindow(mob/user as mob)
-		var/dat = "<tt><center><h1><b>TagMaster 2.3</b></h1></center>"
+		var/dat
 
 		dat += "<table style='width:100%; padding:4px;'><tr>"
 		for(var/i = 1, i <= tagger_locations.len, i++)
@@ -327,9 +327,11 @@
 			if (i%4==0)
 				dat += "</tr><tr>"
 
-		dat += "</tr></table><br>Current Selection: [currTag ? currTag : "None"]</tt>"
+		dat += "</tr></table><br>Current Selection: [currTag ? currTag : "None"]"
 
-		user << browse(dat, "window=destTagScreen;size=450x350")
+		var/datum/browser/popup = new(user, "destTagScreen", "<div align='center'>TagMaster 2.3</div>", 450, 350)
+		popup.set_content(dat)
+		popup.open(FALSE)
 		onclose(user, "destTagScreen")
 
 	attack_self(mob/user as mob)

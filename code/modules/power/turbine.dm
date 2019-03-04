@@ -50,9 +50,9 @@
 			break
 
 	if(!turbine)
-		stat |= BROKEN
+		machine_stat |= BROKEN
 	else
-		turbine.stat &= ~BROKEN
+		turbine.machine_stat &= ~BROKEN
 		turbine.compressor = src
 
 
@@ -63,17 +63,17 @@
 	if(!starter)
 		return
 	overlays.Cut()
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		return
 	if(!turbine)
-		stat |= BROKEN
+		machine_stat |= BROKEN
 		return
 	rpm = 0.9* rpm + 0.1 * rpmtarget
 
 	rpm = max(0, rpm - (rpm*rpm)/COMPFRICTION)
 
 
-	if(starter && !(stat & NOPOWER))
+	if(starter && !(machine_stat & NOPOWER))
 		use_power(2800)
 		if(rpm<1000)
 			rpmtarget = 1000
@@ -104,9 +104,9 @@
 			break
 
 	if(!compressor)
-		stat |= BROKEN
+		machine_stat |= BROKEN
 	else
-		compressor.stat &= ~BROKEN
+		compressor.machine_stat &= ~BROKEN
 		compressor.turbine = src
 
 
@@ -116,12 +116,12 @@
 
 /obj/machinery/power/turbine/process()
 	if(!compressor)
-		stat |= BROKEN
+		machine_stat |= BROKEN
 		return
 	if(!compressor.starter)
 		return
 	overlays.Cut()
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		return
 	lastgen = ((compressor.rpm / TURBGENQ)**TURBGENG) *TURBGENQ
 
@@ -142,7 +142,7 @@
 	if(!ishuman(user))
 		return
 
-	if ( (get_dist(src, user) > 1 ) || (stat & (NOPOWER|BROKEN)) && !isAI(user) )
+	if ( (get_dist(src, user) > 1 ) || (machine_stat & (NOPOWER|BROKEN)) && !isAI(user) )
 		user.unset_interaction()
 		user << browse(null, "window=turbine")
 		return
@@ -168,7 +168,7 @@
 
 /obj/machinery/power/turbine/Topic(href, href_list)
 	..()
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		return
 	if (usr.is_mob_incapacitated(TRUE))
 		return
@@ -219,7 +219,7 @@
 	if(isscrewdriver(I))
 		playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 		if(do_after(user, 20, TRUE, src))
-			if (src.stat & BROKEN)
+			if (src.machine_stat & BROKEN)
 				to_chat(user, "<span class='notice'>The broken glass falls out.</span>")
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
 				new /obj/item/shard( src.loc )

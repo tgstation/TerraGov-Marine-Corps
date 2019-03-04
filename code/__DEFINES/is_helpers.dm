@@ -162,6 +162,8 @@
 
 #define isorgan(A) (istype(A, /datum/limb))
 
+#define isidcard(A) (istype(A, /obj/item/card/id))
+
 //Assemblies
 #define isassembly(O) (istype(O, /obj/item/device/assembly))
 

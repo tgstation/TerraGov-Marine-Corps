@@ -100,7 +100,7 @@ using metal and glass, it uses glass and reagents (usually sulfuric acis).
 		if (!istype(O, /obj/item/stack/sheet/glass) && !istype(O, /obj/item/stack/sheet/mineral/gold) && !istype(O, /obj/item/stack/sheet/mineral/diamond) && !istype(O, /obj/item/stack/sheet/mineral/uranium))
 			to_chat(user, "<span class='warning'>You cannot insert this item into the [name]!</span>")
 			return 1
-		if (stat)
+		if (machine_stat)
 			return 1
 		if (busy)
 			to_chat(user, "<span class='warning'>The [name] is busy. Please wait for completion of previous operation.</span>")

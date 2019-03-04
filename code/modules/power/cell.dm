@@ -26,13 +26,14 @@
 
 // use power from a cell
 /obj/item/cell/proc/use(var/amount)
-	if(rigged && amount > 0)
+	if(rigged)
 		explode()
-		return 0
+		return FALSE
 
-	if(charge < amount)	return 0
+	if(charge < amount)
+		return FALSE
 	charge = (charge - amount)
-	return 1
+	return TRUE
 
 // recharge the cell
 /obj/item/cell/proc/give(var/amount)
@@ -94,7 +95,7 @@
 			var/mob/living/carbon/C = user
 			C.throw_mode_on()
 		overlays += new/obj/effect/overlay/danger
-		spawn(rand(10,50))
+		spawn(rand(3,50))
 			spark_system.start(src)
 			explode()
 
@@ -125,7 +126,7 @@
 
 		if(user.action_busy)
 			return
-		if(!rigged)
+		var/obj/effect/overlay/sparks/spark_overlay = new/obj/effect/overlay/sparks		if(!rigged)
 			if(skill < SKILL_ENGINEER_ENGI) //Field engi skill or better or ya fumble.
 				user.visible_message("<span class='notice'>[user] fumbles around figuring out how to manipulate [src].</span>",
 				"<span class='notice'>You fumble around, trying to figure out how to rig [src] to explode.</span>")
@@ -140,6 +141,7 @@
 			if(!do_after(user, delay, TRUE, src))
 				return
 			rigged = TRUE
+			overlays += spark_overlay
 			user.visible_message("<span class='notice'>[user] finishes manipulating [src] with [W].</span>",
 			"<span class='notice'>You rig [src] to explode on use with [W].</span>")
 		else
@@ -160,6 +162,7 @@
 			if(!do_after(user, delay, TRUE, src))
 				return
 			rigged = FALSE
+			overlays -= spark_overlay
 			user.visible_message("<span class='notice'>[user] finishes manipulating [src] with [W].</span>",
 			"<span class='notice'>You stabilize the [src] with [W]; it will no longer detonate on use.</span>")
 
@@ -172,23 +175,14 @@
  * 10000-cell	explosion(T, -1, 1, 3, 3)
  * 15000-cell	explosion(T, -1, 2, 4, 4)
  * */
-	if (charge==0)
-		explosion(T, 0, 0, 0, 0) //No charge? Shitsplosion
-		return
 	var/devastation_range = -1 //round(charge/11000)
-	var/heavy_impact_range = max(2,round(sqrt(charge)/100))
-	var/light_impact_range = max(3,round(sqrt(charge)/30))
-	var/flash_range = light_impact_range
-	if (light_impact_range==0)
-		rigged = 0
-		corrupt()
-		return
-	//explosion(T, 0, 1, 2, 2)
+	var/heavy_impact_range = CLAMP(round(sqrt(charge) * 0.01), -1, 2)
+	var/light_impact_range = CLAMP(round(sqrt(charge) * 0.15), -1, 3)
+	var/flash_range = CLAMP(round(sqrt(charge) * 0.15), -1, 4)
 
 	explosion(T, devastation_range, heavy_impact_range, light_impact_range, flash_range)
 
-	spawn(1)
-		qdel(src)
+	QDEL_IN(src, 1)
 
 /obj/item/cell/proc/corrupt()
 	charge /= 2

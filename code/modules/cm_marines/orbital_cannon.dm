@@ -73,15 +73,15 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 
 	if(!tray.warhead)
 		if(user)
-			to_chat(user, "no warhead in the tray, loading operation cancelled.")
+			to_chat(user, "<span class='warning'>No warhead in the tray, loading operation cancelled.</span>")
 		return
 
 	if(tray.fuel_amt < 1)
-		to_chat(user, "no solid fuel in the tray, loading operation cancelled.")
+		to_chat(user, "<span class='warning'>No solid fuel in the tray, loading operation cancelled.</span>")
 		return
 
 	if(loaded_tray)
-		to_chat(user, "Tray is already loaded.")
+		to_chat(user, "<span class='warning'>The tray is already loaded.</span>")
 		return
 
 	tray.forceMove(src)
@@ -110,11 +110,11 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 		return
 
 	if(chambered_tray)
-		to_chat(user, "Tray cannot be unloaded after its chambered, fire the gun first.")
+		to_chat(user, "<span class='warning'>The tray cannot be unloaded after its chambered, fire the gun first.</span>")
 		return
 
 	if(!loaded_tray)
-		to_chat(user, "No loaded tray to unload.")
+		to_chat(user, "<span class='warning'>The tray is not loaded.</span>")
 		return
 
 	flick("OBC_unloading",src)
@@ -141,6 +141,10 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 /obj/structure/orbital_cannon/proc/chamber_payload(mob/user)
 	set waitfor = 0
 
+	if(!loaded_tray)
+		to_chat(user, "<span class='warning'>You need to load the tray before chambering it.</span>")
+		return
+	
 	if(ob_cannon_busy)
 		return
 
@@ -150,12 +154,12 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 		return
 	if(!tray.warhead)
 		if(user)
-			to_chat(user, "<span class='warning'>no warhead in the tray, cancelling chambering operation.</span>")
+			to_chat(user, "<span class='warning'>No warhead in the tray, cancelling chambering operation.</span>")
 		return
 
 	if(tray.fuel_amt < 1)
 		if(user)
-			to_chat(user, "<span class='warning'>no solid fuel in the tray, cancelling chambering operation.</span>")
+			to_chat(user, "<span class='warning'>No solid fuel in the tray, cancelling chambering operation.</span>")
 		return
 
 	if(last_orbital_firing) //fired at least once

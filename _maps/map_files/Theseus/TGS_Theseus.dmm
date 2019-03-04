@@ -580,7 +580,7 @@
 /area/almayer/living/officer_rnr)
 "abE" = (
 /obj/machinery/firealarm{
-	dir = 2
+	dir = 1
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/living/officer_rnr)
@@ -999,10 +999,7 @@
 /turf/open/floor/wood,
 /area/almayer/living/commandbunks)
 "acR" = (
-/obj/machinery/door/airlock/almayer/command{
-	name = "\improper Commander's Study";
-	req_access_txt = "1"
-	},
+/obj/machinery/door/airlock/almayer/command/CPTstudy,
 /turf/open/floor/wood,
 /area/almayer/living/commandbunks)
 "acS" = (
@@ -1147,7 +1144,7 @@
 "adn" = (
 /obj/structure/bed,
 /obj/item/bedsheet/hop,
-/obj/effect/landmark/start/marine/executiveofficer,
+/obj/effect/landmark/start/marine/fieldcommander,
 /turf/open/floor/carpet,
 /area/almayer/living/numbertwobunks)
 "ado" = (
@@ -1169,7 +1166,7 @@
 	d2 = 4
 	},
 /obj/machinery/power/apc/almayer{
-	dir = 1
+	dir = 4
 	},
 /turf/open/floor/carpet,
 /area/almayer/living/commandbunks)
@@ -1385,7 +1382,7 @@
 	},
 /obj/structure/window/reinforced/toughened,
 /obj/machinery/door/window/westleft,
-/obj/item/weapon/claymore/mercsword/commander,
+/obj/item/weapon/claymore/mercsword/captain,
 /turf/open/floor/wood,
 /area/almayer/living/commandbunks)
 "adS" = (
@@ -1560,14 +1557,13 @@
 /area/almayer/living/numbertwobunks)
 "aep" = (
 /obj/machinery/firealarm{
-	dir = 2
+	dir = 1
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/living/commandbunks)
 "aeq" = (
-/obj/machinery/door/airlock/almayer/command{
-	dir = 4;
-	name = "\improper XO's Quarters"
+/obj/machinery/door/airlock/almayer/command/FCDRquarters{
+	dir = 4
 	},
 /turf/open/floor/almayer,
 /area/almayer/living/numbertwobunks)
@@ -1588,7 +1584,7 @@
 /turf/open/floor/wood,
 /area/almayer/living/commandbunks)
 "aeu" = (
-/obj/structure/closet/secure_closet/bar/commander,
+/obj/structure/closet/secure_closet/bar/captain,
 /turf/open/floor/wood,
 /area/almayer/living/commandbunks)
 "aev" = (
@@ -2239,7 +2235,7 @@
 "agh" = (
 /obj/structure/bed,
 /obj/item/bedsheet/hop,
-/obj/effect/landmark/start/marine/commander,
+/obj/effect/landmark/start/marine/captain,
 /mob/living/simple_animal/cat/Jones,
 /turf/open/floor/carpet,
 /area/almayer/living/commandbunks)
@@ -2584,7 +2580,7 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/power/apc/almayer{
-	dir = 1
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	tag = "icon-orange";
@@ -2636,7 +2632,7 @@
 "ahh" = (
 /obj/structure/bed,
 /obj/item/bedsheet/brown,
-/obj/effect/landmark/start/marine/mp,
+/obj/effect/landmark/start/marine/masteratarms,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -2670,7 +2666,7 @@
 "ahm" = (
 /obj/structure/bed,
 /obj/item/bedsheet/brown,
-/obj/effect/landmark/start/marine/mp,
+/obj/effect/landmark/start/marine/masteratarms,
 /turf/open/floor/carpet,
 /area/almayer/shipboard/brig)
 "ahn" = (
@@ -2700,7 +2696,7 @@
 /turf/open/floor/carpet,
 /area/almayer/living/commandbunks)
 "ahp" = (
-/obj/structure/closet/secure_closet/commander,
+/obj/structure/closet/secure_closet/captain,
 /turf/open/floor/carpet,
 /area/almayer/living/commandbunks)
 "ahq" = (
@@ -3073,7 +3069,7 @@
 	dir = 4
 	},
 /obj/machinery/firealarm{
-	dir = 2
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	tag = "icon-orangecorner (EAST)";
@@ -3278,9 +3274,8 @@
 /turf/open/floor/almayer,
 /area/almayer/living/numbertwobunks)
 "aiH" = (
-/obj/machinery/door/airlock/almayer/command{
-	dir = 2;
-	name = "\improper Commander's Office"
+/obj/machinery/door/airlock/almayer/command/CPToffice{
+	dir = 2
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -3795,9 +3790,8 @@
 	},
 /area/almayer/shipboard/brig)
 "ajP" = (
-/obj/machinery/door/airlock/almayer/command{
-	dir = 2;
-	name = "\improper XO's Office"
+/obj/machinery/door/airlock/almayer/command/FCDRoffice{
+	dir = 2
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -4710,7 +4704,7 @@
 	dir = 1
 	},
 /obj/machinery/firealarm{
-	dir = 2
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	tag = "icon-greencorner (NORTH)";
@@ -5705,7 +5699,7 @@
 "amF" = (
 /obj/structure/bed,
 /obj/item/bedsheet/brown,
-/obj/effect/landmark/start/marine/mp,
+/obj/effect/landmark/start/marine/masteratarms,
 /obj/machinery/light,
 /turf/open/floor/carpet,
 /area/almayer/shipboard/brig)
@@ -6840,7 +6834,7 @@
 "api" = (
 /obj/structure/bed/fancy,
 /obj/item/bedsheet/hos,
-/obj/effect/landmark/start/marine/chiefmp,
+/obj/effect/landmark/start/marine/commandmasteratarms,
 /turf/open/floor/carpet,
 /area/almayer/shipboard/chief_mp_office)
 "apj" = (
@@ -7208,7 +7202,7 @@
 "apY" = (
 /obj/structure/closet/toolcloset,
 /obj/machinery/firealarm{
-	dir = 2
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	icon_state = "cargo"
@@ -7334,7 +7328,7 @@
 /area/almayer/engineering/ce_room)
 "aqo" = (
 /obj/structure/bed/chair/office/dark,
-/obj/effect/landmark/start/marine/chiefengineer,
+/obj/effect/landmark/start/marine/chiefshipengineer,
 /turf/open/floor/almayer{
 	dir = 1;
 	icon_state = "orange";
@@ -7372,7 +7366,7 @@
 	icon_state = "2-4"
 	},
 /obj/machinery/firealarm{
-	dir = 2
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	dir = 1;
@@ -7605,7 +7599,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/firealarm{
-	dir = 2
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	dir = 1;
@@ -7805,7 +7799,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/firealarm{
-	dir = 2
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	dir = 1;
@@ -8560,9 +8554,8 @@
 	},
 /area/almayer/shipboard/brig)
 "asO" = (
-/obj/machinery/door/airlock/almayer/security{
-	dir = 2;
-	name = "\improper Chief MP's Bunks"
+/obj/machinery/door/airlock/almayer/security/CMA{
+	dir = 2
 	},
 /obj/machinery/door/firedoor/border_only/almayer{
 	tag = "icon-door_open";
@@ -8621,7 +8614,7 @@
 /area/almayer/shipboard/brig)
 "asT" = (
 /obj/structure/table/almayer,
-/obj/machinery/faxmachine,
+/obj/machinery/faxmachine/cmp,
 /turf/open/floor/almayer/mono,
 /area/almayer/shipboard/chief_mp_office)
 "asU" = (
@@ -9454,7 +9447,7 @@
 /area/almayer/shipboard/brig)
 "auD" = (
 /obj/structure/table/almayer,
-/obj/machinery/faxmachine,
+/obj/machinery/faxmachine/brig,
 /turf/open/floor/almayer/mono,
 /area/almayer/shipboard/brig)
 "auE" = (
@@ -9736,9 +9729,8 @@
 	icon_state = "door_open";
 	dir = 2
 	},
-/obj/machinery/door/airlock/almayer/command{
-	dir = 2;
-	name = "\improper Commander's Mess"
+/obj/machinery/door/airlock/almayer/command/CPTmess{
+	dir = 2
 	},
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -10134,10 +10126,8 @@
 /turf/open/floor/plating,
 /area/almayer/engineering/ce_room)
 "avS" = (
-/obj/machinery/door/airlock/almayer/engineering{
-	dir = 2;
-	name = "\improper Chief Engineer's Office";
-	req_one_access_txt = "1;6"
+/obj/machinery/door/airlock/almayer/engineering/CSEoffice{
+	dir = 2
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -11231,7 +11221,7 @@
 /area/almayer/hallways/aft_hallway)
 "ayi" = (
 /obj/machinery/firealarm{
-	dir = 2
+	dir = 1
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -12367,7 +12357,6 @@
 	},
 /obj/machinery/door/firedoor/border_only/almayer,
 /obj/machinery/door/airlock/almayer/research/glass{
-	id = "";
 	id_tag = null;
 	name = "\improper Medical Research Wing"
 	},
@@ -13066,9 +13055,8 @@
 "aBm" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/door/airlock/almayer/security/glass{
-	dir = 1;
-	name = "\improper Chief MP's Office"
+/obj/machinery/door/airlock/almayer/security/glass/CMA{
+	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable{
@@ -13419,7 +13407,6 @@
 	},
 /obj/machinery/door/firedoor/border_only/almayer,
 /obj/machinery/door/airlock/almayer/research/glass{
-	id = "";
 	id_tag = null;
 	name = "\improper Medical Research Wing"
 	},
@@ -14055,7 +14042,7 @@
 	dir = 4
 	},
 /obj/machinery/firealarm{
-	dir = 2
+	dir = 1
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/shipboard/brig)
@@ -15471,7 +15458,7 @@
 /area/almayer/shipboard/brig)
 "aFy" = (
 /obj/structure/table/almayer,
-/obj/machinery/faxmachine,
+/obj/machinery/faxmachine/research,
 /turf/open/floor/almayer{
 	dir = 1;
 	icon_state = "sterile_green_side";
@@ -15762,7 +15749,7 @@
 /area/almayer/command/cic)
 "aGa" = (
 /obj/machinery/firealarm{
-	dir = 2
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	dir = 1;
@@ -17041,7 +17028,7 @@
 "aIE" = (
 /obj/structure/bed/chair,
 /obj/machinery/firealarm{
-	dir = 2
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	dir = 1;
@@ -17684,7 +17671,7 @@
 /area/almayer/shipboard/brig_cells)
 "aKa" = (
 /obj/machinery/firealarm{
-	dir = 2
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	dir = 1;
@@ -17725,10 +17712,7 @@
 /obj/structure/closet/secure_closet/securecom,
 /obj/item/weapon/gun/smartgun,
 /obj/item/smartgun_powerpack/fancy,
-/obj/item/clothing/suit/storage/marine/smartgunner{
-	desc = "A heavy protective vest designed to be worn with the M56 Smartgun System. \nIt has specially designed straps and reinforcement to carry the Smartgun and accessories. This luxury model appears to belong to the CO. You feel like you probably could get fired for touching this..";
-	icon_state = "8fancy"
-	},
+/obj/item/clothing/suit/storage/marine/smartgunner/fancy,
 /turf/open/floor/almayer{
 	tag = "icon-redfull";
 	icon_state = "redfull"
@@ -19071,7 +19055,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/firealarm{
-	dir = 2
+	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -19415,7 +19399,7 @@
 /area/almayer/command/cic)
 "aMI" = (
 /obj/structure/table/almayer,
-/obj/machinery/faxmachine,
+/obj/machinery/faxmachine/cic,
 /turf/open/floor/almayer/mono,
 /area/almayer/command/cic)
 "aMJ" = (
@@ -20005,7 +19989,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/firealarm{
-	dir = 2
+	dir = 1
 	},
 /turf/open/floor/almayer,
 /area/almayer/hallways/aft_hallway)
@@ -20154,9 +20138,8 @@
 	},
 /area/almayer/hallways/aft_hallway)
 "aOf" = (
-/obj/machinery/door/airlock/almayer/command{
-	dir = 2;
-	name = "\improper XO's Quarters"
+/obj/machinery/door/airlock/almayer/command/FCDRoffice{
+	dir = 2
 	},
 /obj/machinery/door/firedoor/border_only/almayer{
 	tag = "icon-door_open";
@@ -20679,7 +20662,7 @@
 /area/almayer/engineering/port_atmos)
 "aPm" = (
 /obj/machinery/firealarm{
-	dir = 2
+	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -20853,7 +20836,7 @@
 	dir = 6
 	},
 /obj/machinery/firealarm{
-	dir = 2
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	dir = 1;
@@ -21086,7 +21069,7 @@
 /obj/machinery/recharger,
 /obj/structure/table/almayer,
 /obj/machinery/firealarm{
-	dir = 2
+	dir = 1
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/shipboard/chief_mp_office)
@@ -21310,7 +21293,7 @@
 /area/almayer/command/cic)
 "aQM" = (
 /obj/machinery/firealarm{
-	dir = 2
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	dir = 5;
@@ -21981,13 +21964,13 @@
 /area/almayer/living/bridgebunks)
 "aSC" = (
 /obj/structure/bed,
-/obj/effect/landmark/start/marine/staffofficer,
+/obj/effect/landmark/start/marine/intelligenceofficer,
 /obj/item/bedsheet/brown,
 /turf/open/floor/wood,
 /area/almayer/living/bridgebunks)
 "aSD" = (
 /obj/structure/bed,
-/obj/effect/landmark/start/marine/staffofficer,
+/obj/effect/landmark/start/marine/intelligenceofficer,
 /turf/open/floor/wood,
 /area/almayer/living/bridgebunks)
 "aSE" = (
@@ -23692,7 +23675,7 @@
 /area/almayer/hallways/starboard_hallway)
 "aXk" = (
 /obj/machinery/firealarm{
-	dir = 2
+	dir = 1
 	},
 /obj/structure/closet/toolcloset,
 /obj/machinery/light{
@@ -23940,7 +23923,7 @@
 "aXR" = (
 /obj/structure/closet,
 /obj/machinery/firealarm{
-	dir = 2
+	dir = 1
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/living/starboard_emb)
@@ -25425,7 +25408,7 @@
 /area/almayer/squads/bravo)
 "bbd" = (
 /obj/machinery/firealarm{
-	dir = 2
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	icon_state = "cargo"
@@ -25475,7 +25458,7 @@
 /area/almayer/living/cafeteria_starboard)
 "bbk" = (
 /obj/machinery/firealarm{
-	dir = 2
+	dir = 1
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/living/cafeteria_starboard)
@@ -28261,7 +28244,7 @@
 /area/almayer/engineering/lower_engineering)
 "bhP" = (
 /obj/machinery/firealarm{
-	dir = 2
+	dir = 1
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/engineering/lower_engineering)
@@ -28554,7 +28537,7 @@
 /area/almayer/hallways/starboard_hallway)
 "bis" = (
 /obj/machinery/firealarm{
-	dir = 2
+	dir = 1
 	},
 /turf/open/floor/almayer,
 /area/almayer/hallways/starboard_hallway)
@@ -28716,7 +28699,7 @@
 /area/almayer/hallways/hangar)
 "biN" = (
 /obj/machinery/firealarm{
-	dir = 2
+	dir = 1
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/hangar)
@@ -28842,7 +28825,7 @@
 /area/almayer/hallways/starboard_hallway)
 "bjc" = (
 /obj/machinery/firealarm{
-	dir = 2
+	dir = 1
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/starboard_hallway)
@@ -31450,7 +31433,7 @@
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/hangar)
 "boB" = (
-/obj/effect/landmark/start/marine/doctor,
+/obj/effect/landmark/start/marine/medicalofficer,
 /turf/open/floor/almayer{
 	icon_state = "dark_sterile";
 	tag = "icon-sterile"
@@ -31468,7 +31451,7 @@
 /area/almayer/medical/lower_medical)
 "boD" = (
 /obj/machinery/firealarm{
-	dir = 2
+	dir = 1
 	},
 /obj/machinery/body_scanconsole,
 /turf/open/floor/almayer{
@@ -31556,7 +31539,7 @@
 	},
 /area/almayer/medical/lower_medical)
 "boL" = (
-/obj/effect/landmark/start/marine/doctor,
+/obj/effect/landmark/start/marine/medicalofficer,
 /turf/open/floor/wood,
 /area/almayer/medical/lower_medical)
 "boM" = (
@@ -31645,7 +31628,7 @@
 	},
 /area/almayer/medical/operating_room_one)
 "boS" = (
-/obj/effect/landmark/start/marine/doctor,
+/obj/effect/landmark/start/marine/medicalofficer,
 /turf/open/floor/almayer{
 	icon_state = "dark_sterile";
 	tag = "icon-sterile"
@@ -31965,7 +31948,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/living/cryo_cells)
 "bpH" = (
-/obj/effect/landmark/start/marine/squadmedic,
+/obj/effect/landmark/start/marine/squadcorpsman,
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/living/cryo_cells)
 "bpI" = (
@@ -33588,7 +33571,7 @@
 /obj/item/storage/backpack/industrial,
 /obj/item/storage/backpack/marine,
 /obj/machinery/light,
-/obj/item/storage/backpack/marine/medic,
+/obj/item/storage/backpack/marine/corpsman,
 /obj/item/storage/backpack/marine/engineerpack,
 /obj/structure/rack,
 /turf/open/floor/almayer{
@@ -33761,7 +33744,7 @@
 "btv" = (
 /obj/structure/closet/radiation,
 /obj/machinery/firealarm{
-	dir = 2
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	icon_state = "cargo"
@@ -33804,7 +33787,7 @@
 /obj/structure/table/almayer,
 /obj/item/fuelCell,
 /obj/machinery/firealarm{
-	dir = 2
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	icon_state = "cargo"
@@ -35782,7 +35765,7 @@
 	},
 /area/almayer/medical/operating_room_two)
 "bxJ" = (
-/obj/effect/landmark/start/marine/doctor,
+/obj/effect/landmark/start/marine/medicalofficer,
 /turf/open/floor/almayer{
 	icon_state = "dark_sterile";
 	tag = "icon-sterile"
@@ -36007,7 +35990,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/living/cryo_cells)
 "byk" = (
-/obj/effect/landmark/start/marine/squadmedic,
+/obj/effect/landmark/start/marine/squadcorpsman,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 10
 	},
@@ -37782,10 +37765,6 @@
 	},
 /turf/open/floor/almayer,
 /area/almayer/living/briefing)
-"bBR" = (
-/obj/structure/sign/ROsign,
-/turf/closed/wall/almayer,
-/area/almayer/squads/req)
 "bBS" = (
 /obj/machinery/vending/attachments,
 /obj/machinery/line_nexter_control{
@@ -38579,6 +38558,9 @@
 /obj/machinery/line_nexter{
 	id = "line2"
 	},
+/obj/structure/sign/ROsign{
+	dir = 1
+	},
 /turf/open/floor/almayer{
 	tag = "icon-test_floor5";
 	icon_state = "test_floor5"
@@ -39133,7 +39115,7 @@
 	},
 /area/almayer/medical/operating_room_three)
 "bEL" = (
-/obj/effect/landmark/start/marine/doctor,
+/obj/effect/landmark/start/marine/medicalofficer,
 /turf/open/floor/almayer{
 	icon_state = "dark_sterile";
 	tag = "icon-sterile"
@@ -39182,7 +39164,7 @@
 /turf/open/floor/almayer/mono,
 /area/almayer/squads/req)
 "bER" = (
-/obj/effect/landmark/start/marine/squadmedic,
+/obj/effect/landmark/start/marine/squadcorpsman,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
@@ -39953,7 +39935,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/squads/req)
 "bGo" = (
-/obj/effect/landmark/start/marine/squadmedic,
+/obj/effect/landmark/start/marine/squadcorpsman,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
@@ -40873,10 +40855,6 @@
 	tag = "icon-sterile_green_side"
 	},
 /area/almayer/medical/lower_medical)
-"bIo" = (
-/obj/structure/sign/nosmoking_2,
-/turf/closed/wall/almayer/white,
-/area/almayer/medical/lower_medical)
 "bIp" = (
 /obj/machinery/door/airlock/almayer/command{
 	dir = 2;
@@ -41218,7 +41196,7 @@
 /area/almayer/engineering/lower_engine_monitoring)
 "bIV" = (
 /obj/machinery/firealarm{
-	dir = 2
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	dir = 1;
@@ -41971,7 +41949,7 @@
 	},
 /area/almayer/medical/operating_room_four)
 "bKH" = (
-/obj/effect/landmark/start/marine/doctor,
+/obj/effect/landmark/start/marine/medicalofficer,
 /turf/open/floor/almayer{
 	icon_state = "dark_sterile";
 	tag = "icon-sterile"
@@ -42521,9 +42499,7 @@
 	},
 /area/shuttle/drop2/sulaco)
 "bLK" = (
-/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds2{
-	id = ""
-	},
+/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds2,
 /obj/machinery/door/poddoor/shutters/transit{
 	density = 0;
 	dir = 1;
@@ -42581,9 +42557,7 @@
 	},
 /area/shuttle/drop1/sulaco)
 "bLS" = (
-/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds1{
-	id = ""
-	},
+/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds1,
 /obj/machinery/door/poddoor/shutters/transit{
 	density = 0;
 	dir = 1;
@@ -43879,7 +43853,7 @@
 /area/almayer/hallways/port_hallway)
 "bOH" = (
 /obj/machinery/firealarm{
-	dir = 2
+	dir = 1
 	},
 /turf/open/floor/almayer,
 /area/almayer/hallways/port_hallway)
@@ -44342,7 +44316,7 @@
 /area/almayer/hallways/port_hallway)
 "bPM" = (
 /obj/machinery/firealarm{
-	dir = 2
+	dir = 1
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/port_hallway)
@@ -45112,7 +45086,7 @@
 /area/almayer/engineering/lower_engineering)
 "bQM" = (
 /obj/machinery/firealarm{
-	dir = 2
+	dir = 1
 	},
 /obj/machinery/suit_storage_unit/carbon_unit,
 /turf/open/floor/almayer/mono,
@@ -45552,10 +45526,6 @@
 	},
 /turf/open/floor/plating,
 /area/almayer/hallways/port_hallway)
-"bRJ" = (
-/obj/structure/sign/double/barsign,
-/turf/closed/wall/almayer,
-/area/almayer/hallways/port_hallway)
 "bRK" = (
 /obj/machinery/door/airlock/multi_tile/almayer/generic{
 	name = "\improper Rest and Relaxation Area"
@@ -45955,6 +45925,9 @@
 "bSB" = (
 /obj/structure/table/almayer,
 /obj/machinery/chem_dispenser/beer,
+/obj/structure/sign/double/barsign{
+	dir = 1
+	},
 /turf/open/floor/almayer/mono,
 /area/almayer/living/grunt_rnr)
 "bSC" = (
@@ -46025,7 +45998,7 @@
 /area/almayer/living/grunt_rnr)
 "bSL" = (
 /obj/machinery/firealarm{
-	dir = 2
+	dir = 1
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/living/grunt_rnr)
@@ -46165,7 +46138,7 @@
 /area/almayer/living/cafeteria_port)
 "bTc" = (
 /obj/machinery/firealarm{
-	dir = 2
+	dir = 1
 	},
 /obj/structure/table/almayer,
 /turf/open/floor/prison{
@@ -46304,7 +46277,7 @@
 /area/almayer/living/tankerbunks)
 "bTu" = (
 /obj/machinery/firealarm{
-	dir = 2
+	dir = 1
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/living/tankerbunks)
@@ -46658,7 +46631,7 @@
 "bUp" = (
 /obj/structure/closet,
 /obj/machinery/firealarm{
-	dir = 2
+	dir = 1
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/living/port_emb)
@@ -48136,7 +48109,7 @@
 /area/almayer/squads/charlie)
 "bXQ" = (
 /obj/machinery/firealarm{
-	dir = 2
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	dir = 1;
@@ -49667,7 +49640,7 @@
 /area/almayer/squads/delta)
 "cbu" = (
 /obj/machinery/firealarm{
-	dir = 2
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	icon_state = "cargo"
@@ -51739,7 +51712,7 @@
 /area/almayer/living/captain_mess)
 "cgk" = (
 /obj/machinery/firealarm{
-	dir = 2
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	dir = 1;
@@ -52446,7 +52419,7 @@
 /area/almayer/hull/upper_hull)
 "chD" = (
 /obj/machinery/firealarm{
-	dir = 2
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	tag = "icon-redcorner (NORTH)";
@@ -53292,7 +53265,7 @@
 /area/almayer/hallways/hangar)
 "cjz" = (
 /obj/machinery/firealarm{
-	dir = 2
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	dir = 1;
@@ -53716,7 +53689,7 @@
 /area/almayer/hallways/hangar)
 "ckv" = (
 /obj/machinery/firealarm{
-	dir = 2
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	dir = 1;
@@ -53741,7 +53714,7 @@
 "ckx" = (
 /obj/machinery/bodyscanner,
 /obj/machinery/firealarm{
-	dir = 2
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	tag = "icon-sterile_green_corner (NORTH)";
@@ -53755,7 +53728,7 @@
 	dir = 4
 	},
 /obj/machinery/firealarm{
-	dir = 2
+	dir = 1
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/shipboard/brig_cells)
@@ -53772,7 +53745,7 @@
 /area/almayer/living/tankerbunks)
 "ckB" = (
 /obj/machinery/firealarm{
-	dir = 2
+	dir = 1
 	},
 /turf/open/floor/wood,
 /area/almayer/living/captain_mess)
@@ -53786,7 +53759,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/firealarm{
-	dir = 2
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	dir = 1;
@@ -53802,13 +53775,13 @@
 	dir = 6
 	},
 /obj/machinery/firealarm{
-	dir = 2
+	dir = 1
 	},
 /turf/open/floor/almayer,
 /area/almayer/hull/upper_hull)
 "ckE" = (
 /obj/machinery/firealarm{
-	dir = 2
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	dir = 8;
@@ -53837,7 +53810,7 @@
 /area/almayer/living/bridgebunks)
 "ckG" = (
 /obj/machinery/firealarm{
-	dir = 2
+	dir = 1
 	},
 /turf/open/floor/almayer{
 	tag = "icon-blue (EAST)";
@@ -53847,7 +53820,7 @@
 /area/almayer/living/bridgebunks)
 "ckH" = (
 /obj/machinery/firealarm{
-	dir = 2
+	dir = 1
 	},
 /turf/open/floor/almayer,
 /area/almayer/living/bridgebunks)
@@ -54085,6 +54058,26 @@
 	},
 /turf/open/floor/almayer,
 /area/almayer/squads/req)
+"ees" = (
+/obj/structure/sign/nosmoking_2{
+	dir = 1
+	},
+/turf/open/floor/almayer{
+	dir = 1;
+	icon_state = "sterile_green_side";
+	tag = "icon-sterile_green_side"
+	},
+/area/almayer/medical/lower_medical)
+"iII" = (
+/obj/machinery/firealarm{
+	dir = 1
+	},
+/turf/open/floor/almayer{
+	dir = 1;
+	icon_state = "red";
+	tag = "icon-red"
+	},
+/area/almayer/squads/alpha)
 
 (1,1,1) = {"
 aaa
@@ -81013,8 +81006,8 @@ aJa
 aJa
 aJa
 aMR
-bIo
-byT
+aMR
+ees
 bKA
 aIZ
 bNz
@@ -84363,7 +84356,7 @@ blP
 bDM
 bQh
 bDM
-bRJ
+bRF
 bSB
 bUa
 bUa
@@ -92830,7 +92823,7 @@ bnE
 bnE
 bnE
 bAG
-bBR
+bnF
 bDB
 bnE
 bnE
@@ -93833,7 +93826,7 @@ aVs
 aWM
 aXf
 aWH
-aXV
+iII
 aZo
 aZO
 aWH

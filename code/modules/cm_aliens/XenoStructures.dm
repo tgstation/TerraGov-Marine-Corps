@@ -683,14 +683,11 @@ TUNNEL
 
 /obj/structure/tunnel/Initialize()
 	. = ..()
-	if(id && !other)
-		for(var/obj/structure/tunnel/T in GLOB.xeno_tunnels)
-			if(T.id == id && T != src && T.other == null) //Found a matching tunnel
-				T.other = src
-				other = T //Link them!
-				break
+	GLOB.xeno_tunnels += src
+
 
 /obj/structure/tunnel/Destroy()
+	GLOB.xeno_tunnels -= src
 	if(other)
 		other.other = null
 		other = null

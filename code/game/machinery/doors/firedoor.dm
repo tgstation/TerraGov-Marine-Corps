@@ -49,6 +49,7 @@
 	. = ..()
 	for(var/obj/machinery/door/firedoor/F in loc)
 		if(F != src)
+			flags_atom |= INITIALIZED
 			return INITIALIZE_HINT_QDEL
 	var/area/A = get_area(src)
 	ASSERT(istype(A))
@@ -173,7 +174,7 @@
 	if(user.is_mob_incapacitated() || (!user.canmove && !isAI(user)) || (get_dist(src, user) > 1  && !isAI(user)))
 		to_chat(user, "Sorry, you must remain able bodied and close to \the [src] in order to use it.")
 		return
-	if(density && (stat & (BROKEN|NOPOWER))) //can still close without power
+	if(density && (machine_stat & (BROKEN|NOPOWER))) //can still close without power
 		to_chat(user, "\The [src] is not functioning, you'll have to force it open manually.")
 		return
 
@@ -298,7 +299,7 @@
 
 /obj/machinery/door/firedoor/open(var/forced = 0)
 	if(!forced)
-		if(stat & (BROKEN|NOPOWER))
+		if(machine_stat & (BROKEN|NOPOWER))
 			return //needs power to open unless it was forced
 		else
 			use_power(360)
@@ -354,3 +355,11 @@
 /obj/machinery/door/firedoor/multi_tile
 	icon = 'icons/obj/doors/DoorHazard2x1.dmi'
 	width = 2
+
+/obj/machinery/door/firedoor/border_only/CanPass(atom/movable/mover, turf/target)
+	if(istype(mover) && mover.checkpass(PASSGLASS))
+		return TRUE
+	if(get_dir(loc, target) == dir) //Make sure looking at appropriate border
+		return !density
+	else
+		return TRUE

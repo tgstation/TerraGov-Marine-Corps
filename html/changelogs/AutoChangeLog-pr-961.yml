@@ -1,0 +1,4 @@
+author: "spookydonut"
+delete-after: True
+changes: 
+  - bugfix: "Restricts xeno leaders to reasonable caste choices, i.e; not queens or larva."

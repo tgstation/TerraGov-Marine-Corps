@@ -5,7 +5,6 @@
 //This is so they can be easily transferred between them without copypasta
 
 //All this stuff was written by Absynth.
-//Edited by Apop - 11JUN16
 
 /mob/living/carbon/Xenomorph
 	name = "Drone"
@@ -42,7 +41,7 @@
 
 	set_datum()
 	//WO GAMEMODE
-	if(GLOB.map_tag == MAP_WHISKEY_OUTPOST)
+	if(SSmapping.config.map_name == MAP_WHISKEY_OUTPOST)
 		xeno_caste.hardcore = 1 //Prevents healing and queen evolution
 	time_of_birth = world.time
 	add_language("Xenomorph") //xenocommon

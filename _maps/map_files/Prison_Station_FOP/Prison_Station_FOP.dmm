@@ -666,12 +666,6 @@
 "acK" = (
 /turf/closed/wall/r_wall/prison_unmeltable,
 /area/prison/cellblock/maxsec/north)
-"acL" = (
-/obj/effect/landmark/map_tag{
-	name = "Prison Station"
-	},
-/turf/open/nostromowater,
-/area/space)
 "acM" = (
 /obj/machinery/light{
 	dir = 1
@@ -19162,8 +19156,8 @@
 /turf/open/floor/carpet,
 /area/prison/command/office)
 "aSM" = (
-/obj/machinery/faxmachine,
 /obj/structure/table/woodentable,
+/obj/machinery/faxmachine/warden,
 /turf/open/floor/wood,
 /area/prison/command/office)
 "aSN" = (
@@ -20648,22 +20642,22 @@
 /turf/open/floor/prison/green/corner,
 /area/prison/cellblock/lowsec/ne)
 "aVO" = (
-/turf/open/gm/grass,
-/turf/open/floor{
-	icon_state = "wood_siding9"
+/obj/effect/decal/woodsiding{
+	dir = 9
 	},
+/turf/open/gm/grass,
 /area/prison/residential/central)
 "aVP" = (
-/turf/open/gm/grass,
-/turf/open/floor{
-	icon_state = "wood_siding1"
+/obj/effect/decal/woodsiding{
+	dir = 1
 	},
+/turf/open/gm/grass,
 /area/prison/residential/central)
 "aVQ" = (
-/turf/open/gm/grass,
-/turf/open/floor{
-	icon_state = "wood_siding5"
+/obj/effect/decal/woodsiding{
+	dir = 5
 	},
+/turf/open/gm/grass,
 /area/prison/residential/central)
 "aVR" = (
 /obj/machinery/light{
@@ -21193,10 +21187,10 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 8
 	},
-/turf/open/gm/grass,
-/turf/open/floor{
-	icon_state = "wood_siding1"
+/obj/effect/decal/woodsiding{
+	dir = 1
 	},
+/turf/open/gm/grass,
 /area/prison/residential/central)
 "aXc" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
@@ -24459,10 +24453,10 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/gm/grass,
-/turf/open/floor{
-	icon_state = "wood_siding1"
+/obj/effect/decal/woodsiding{
+	dir = 1
 	},
+/turf/open/gm/grass,
 /area/prison/residential/central)
 "beH" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
@@ -24552,18 +24546,18 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/gm/grass,
-/turf/open/floor{
-	icon_state = "wood_siding5"
+/obj/effect/decal/woodsiding{
+	dir = 5
 	},
+/turf/open/gm/grass,
 /area/prison/residential/central)
 "beR" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/gm/grass,
-/turf/open/floor{
-	icon_state = "wood_siding2"
+/obj/effect/decal/woodsiding{
+	dir = 2
 	},
+/turf/open/gm/grass,
 /area/prison/residential/central)
 "beS" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -25139,23 +25133,23 @@
 /turf/open/gm/grass,
 /area/prison/residential/central)
 "bgd" = (
-/turf/open/gm/grass,
-/turf/open/floor{
-	icon_state = "wood_siding2"
+/obj/effect/decal/woodsiding{
+	dir = 2
 	},
+/turf/open/gm/grass,
 /area/prison/residential/central)
 "bge" = (
-/turf/open/gm/grass,
-/turf/open/floor{
-	icon_state = "wood_siding6"
+/obj/effect/decal/woodsiding{
+	dir = 6
 	},
+/turf/open/gm/grass,
 /area/prison/residential/central)
 "bgf" = (
-/turf/open/floor{
-	icon_state = "asteroid"
+/obj/effect/decal/siding{
+	dir = 1
 	},
 /turf/open/floor{
-	icon_state = "siding1"
+	icon_state = "asteroid"
 	},
 /area/prison/residential/central)
 "bgg" = (
@@ -25257,7 +25251,6 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/turf/open/floor/prison,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/security/monitoring/highsec)
 "bgp" = (
@@ -25777,10 +25770,10 @@
 /turf/open/floor/plating,
 /area/shuttle/drop1/prison)
 "bhz" = (
-/turf/open/gm/grass,
-/turf/open/floor{
-	icon_state = "wood_siding10"
+/obj/effect/decal/woodsiding{
+	dir = 10
 	},
+/turf/open/gm/grass,
 /area/prison/residential/central)
 "bhA" = (
 /obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden,
@@ -25804,7 +25797,6 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor/prison,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/security/monitoring/highsec)
 "bhC" = (
@@ -25813,10 +25805,10 @@
 	},
 /area/prison/residential/central)
 "bhD" = (
-/turf/open/gm/grass,
-/turf/open/floor{
-	icon_state = "wood_siding8"
+/obj/effect/decal/woodsiding{
+	dir = 8
 	},
+/turf/open/gm/grass,
 /area/prison/residential/central)
 "bhE" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -26052,10 +26044,10 @@
 /turf/open/floor/prison,
 /area/prison/security/checkpoint/vip)
 "bhY" = (
-/turf/open/gm/grass,
-/turf/open/floor{
-	icon_state = "wood_siding4"
+/obj/effect/decal/woodsiding{
+	dir = 4
 	},
+/turf/open/gm/grass,
 /area/prison/residential/central)
 "bhZ" = (
 /obj/structure/cable{
@@ -27119,7 +27111,6 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/open/floor/prison,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/security/monitoring/highsec)
 "bjO" = (
@@ -27180,17 +27171,6 @@
 /turf/open/floor/prison/trim/red{
 	dir = 10
 	},
-/area/prison/security/monitoring/highsec)
-"bjW" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/open/floor/prison,
-/turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/security/monitoring/highsec)
 "bjX" = (
 /obj/structure/cable{
@@ -27364,11 +27344,11 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "asteroid"
+/obj/effect/decal/siding{
+	dir = 4
 	},
 /turf/open/floor{
-	icon_state = "siding4"
+	icon_state = "asteroid"
 	},
 /area/prison/residential/central)
 "bko" = (
@@ -27682,7 +27662,6 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/open/floor/prison,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/security/monitoring/highsec)
 "bkX" = (
@@ -28613,11 +28592,11 @@
 	},
 /area/prison/hangar/main)
 "bmV" = (
-/turf/open/floor{
-	icon_state = "asteroid"
+/obj/effect/decal/siding{
+	dir = 8
 	},
 /turf/open/floor{
-	icon_state = "siding8"
+	icon_state = "asteroid"
 	},
 /area/prison/residential/central)
 "bmW" = (
@@ -28632,7 +28611,6 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/turf/open/floor/prison,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/security/monitoring/highsec)
 "bmX" = (
@@ -28643,11 +28621,11 @@
 	},
 /area/prison/residential/central)
 "bmY" = (
-/turf/open/floor{
-	icon_state = "asteroid"
+/obj/effect/decal/siding{
+	dir = 4
 	},
 /turf/open/floor{
-	icon_state = "siding4"
+	icon_state = "asteroid"
 	},
 /area/prison/residential/central)
 "bmZ" = (
@@ -31274,10 +31252,10 @@
 "bsn" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/gm/grass,
-/turf/open/floor{
-	icon_state = "wood_siding1"
+/obj/effect/decal/woodsiding{
+	dir = 1
 	},
+/turf/open/gm/grass,
 /area/prison/residential/central)
 "bso" = (
 /turf/open/floor/prison/marked,
@@ -31542,11 +31520,11 @@
 /turf/open/floor/prison/sterilewhite,
 /area/prison/residential/central)
 "bsV" = (
-/turf/open/floor{
-	icon_state = "asteroid"
+/obj/effect/decal/siding{
+	dir = 2
 	},
 /turf/open/floor{
-	icon_state = "siding2"
+	icon_state = "asteroid"
 	},
 /area/prison/residential/central)
 "bsW" = (
@@ -35577,10 +35555,8 @@
 /turf/open/floor/prison/darkred/full,
 /area/prison/security/checkpoint/hangar)
 "bBR" = (
-/turf/open/nostromowater,
-/turf/closed/shuttle{
-	dir = 8;
-	icon_state = "diagonalWall"
+/turf/closed/shuttle/diagonal/sea{
+	dir = 8
 	},
 /area/prison/monorail/east)
 "bBS" = (
@@ -35588,10 +35564,8 @@
 /turf/open/floor/plating,
 /area/prison/monorail/east)
 "bBT" = (
-/turf/open/nostromowater,
-/turf/closed/shuttle{
-	dir = 1;
-	icon_state = "diagonalWall"
+/turf/closed/shuttle/diagonal/sea{
+	dir = 1
 	},
 /area/prison/monorail/east)
 "bBU" = (
@@ -40824,15 +40798,9 @@
 	dir = 10
 	},
 /area/prison/laundry)
-"bMP" = (
-/obj/structure/shuttle/window,
-/turf/open/nostromowater,
-/area/prison/monorail/east)
 "bMQ" = (
-/turf/open/nostromowater,
-/turf/closed/shuttle{
-	dir = 2;
-	icon_state = "diagonalWall"
+/turf/closed/shuttle/diagonal/sea{
+	dir = 2
 	},
 /area/prison/monorail/east)
 "bMR" = (
@@ -40871,10 +40839,8 @@
 /turf/open/floor/wood,
 /area/prison/residential/south)
 "bMU" = (
-/turf/open/nostromowater,
-/turf/closed/shuttle{
-	dir = 4;
-	icon_state = "diagonalWall"
+/turf/closed/shuttle/diagonal/sea{
+	dir = 4
 	},
 /area/prison/monorail/east)
 "bMV" = (
@@ -41768,10 +41734,10 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 8
 	},
-/turf/open/gm/grass,
-/turf/open/floor{
-	icon_state = "wood_siding2"
+/obj/effect/decal/woodsiding{
+	dir = 2
 	},
+/turf/open/gm/grass,
 /area/prison/residential/central)
 "bOQ" = (
 /obj/structure/sink{
@@ -42864,10 +42830,10 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/gm/grass,
-/turf/open/floor{
-	icon_state = "wood_siding2"
+/obj/effect/decal/woodsiding{
+	dir = 2
 	},
+/turf/open/gm/grass,
 /area/prison/residential/central)
 "bRC" = (
 /turf/closed/wall/prison,
@@ -42876,10 +42842,10 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/gm/grass,
-/turf/open/floor{
-	icon_state = "wood_siding6"
+/obj/effect/decal/woodsiding{
+	dir = 6
 	},
+/turf/open/gm/grass,
 /area/prison/residential/central)
 "bRE" = (
 /obj/machinery/alarm/almayer{
@@ -50371,11 +50337,8 @@
 /turf/open/floor/prison,
 /area/prison/security/armory/lethal)
 "cin" = (
-/turf/open/floor/plating,
-/turf/closed/shuttle{
-	dir = 8;
-	icon_state = "diagonalWall3";
-	opacity = 0
+/turf/closed/shuttle/wall3/diagonal/plating{
+	dir = 8
 	},
 /area/prison/pirate)
 "cio" = (
@@ -50419,12 +50382,8 @@
 /turf/open/floor/marking/delivery,
 /area/prison/pirate)
 "ciu" = (
-/turf/open/floor/plating,
-/turf/closed/shuttle{
-	tag = "icon-diagonalWall3 (NORTH)";
-	icon_state = "diagonalWall3";
-	dir = 1;
-	opacity = 0
+/turf/closed/shuttle/wall3/diagonal/plating{
+	dir = 1
 	},
 /area/prison/pirate)
 "civ" = (
@@ -53071,19 +53030,11 @@
 /turf/open/floor/prison,
 /area/prison/security/armory/lethal)
 "con" = (
-/turf/open/nostromowater,
-/turf/closed/shuttle{
-	icon_state = "diagonalWall3";
-	opacity = 0
-	},
+/turf/closed/shuttle/wall3/diagonal/sea,
 /area/prison/pirate)
 "coo" = (
-/turf/open/nostromowater,
-/turf/closed/shuttle{
-	tag = "icon-diagonalWall3 (NORTHWEST)";
-	icon_state = "diagonalWall3";
-	dir = 9;
-	opacity = 0
+/turf/closed/shuttle/wall3/diagonal/sea{
+	dir = 4
 	},
 /area/prison/pirate)
 "cop" = (
@@ -54310,7 +54261,7 @@
 "crm" = (
 /obj/machinery/computer/communications{
 	icon_state = "commb";
-	stat = 1
+	
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table/reinforced,
@@ -54319,7 +54270,7 @@
 "crn" = (
 /obj/machinery/computer/communications{
 	icon_state = "commb";
-	stat = 1
+	
 	},
 /obj/structure/table/reinforced,
 /turf/open/shuttle,
@@ -58552,7 +58503,7 @@ aab
 aab
 aab
 acD
-acL
+aab
 aab
 aab
 aab
@@ -74089,10 +74040,10 @@ aZY
 bdC
 bjR
 bgo
-bjW
+bnf
 bnf
 boh
-bjW
+bnf
 bkW
 bqK
 aWz
@@ -119088,7 +119039,7 @@ bDi
 bBS
 bDi
 bJz
-bMP
+bBS
 bJz
 bDi
 bBS
@@ -120116,7 +120067,7 @@ bGi
 bBS
 bDi
 bJz
-bMP
+bBS
 bJz
 bDi
 bBS

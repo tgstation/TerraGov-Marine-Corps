@@ -221,9 +221,26 @@ GLOBAL_PROTECT(href_token)
 	if(usr.client.holder)
 		if(!other?.holder?.rank)
 			return TRUE
+		if(usr.client.holder.rank.rights == R_EVERYTHING)
+			return TRUE
+		if(usr.client == other)
+			return TRUE
 		if(usr.client.holder.rank.rights != other.holder.rank.rights && ((usr.client.holder.rank.rights & other.holder.rank.rights) == other.holder.rank.rights))
 			return TRUE
 	to_chat(usr, "<span class='warning'>They have more or equal rights than you.</span>")
+	return FALSE
+
+
+/datum/admins/proc/check_if_greater_rights_than_holder(datum/admins/other)
+	if(!istype(other))
+		return TRUE
+	if(rank.rights == R_EVERYTHING)
+		return TRUE
+	if(src == other)
+		return TRUE
+	if(rank.rights != other.rank.rights)
+		if((rank.rights & other.rank.rights) == other.rank.rights)
+			return TRUE
 	return FALSE
 
 
@@ -274,7 +291,8 @@ GLOBAL_LIST_INIT(admin_verbs_admin, world.AVadmin())
 	/datum/admins/proc/game_panel,
 	/datum/admins/proc/gamemode_panel,
 	/datum/admins/proc/local_message,
-	/datum/admins/proc/view_faxes,
+	/datum/admins/proc/toggle_adminhelp_sound,
+	/datum/admins/proc/toggle_prayers,
 	/client/proc/private_message_panel,
 	/client/proc/private_message_context
 	)
@@ -288,6 +306,8 @@ GLOBAL_LIST_INIT(admin_verbs_mentor, world.AVmentor())
 	/datum/admins/proc/admin_ghost,
 	/datum/admins/proc/subtle_message,
 	/datum/admins/proc/view_faxes,
+	/datum/admins/proc/toggle_adminhelp_sound,
+	/datum/admins/proc/toggle_prayers,
 	/client/proc/private_message_panel,
 	/client/proc/private_message_context
 	)
@@ -296,9 +316,10 @@ GLOBAL_PROTECT(admin_verbs_ban)
 GLOBAL_LIST_INIT(admin_verbs_ban, world.AVban())
 /world/proc/AVban()
 	return list(
+	/datum/admins/proc/ban_panel,
+	/datum/admins/proc/sticky_ban_panel,
 	/datum/admins/proc/unban_panel,
-	/datum/admins/proc/player_notes_show,
-	/datum/admins/proc/player_notes_list
+	/datum/admins/proc/note_panel
 	)
 
 GLOBAL_PROTECT(admin_verbs_asay)
@@ -339,6 +360,9 @@ GLOBAL_LIST_INIT(admin_verbs_fun, world.AVfun())
 	/datum/admins/proc/release,
 	/datum/admins/proc/edit_appearance,
 	/datum/admins/proc/create_outfit,
+	/datum/admins/proc/offer,
+	/datum/admins/proc/change_hivenumber,
+	/datum/admins/proc/view_faxes,
 	/client/proc/build_mode
 	)
 
@@ -362,8 +386,8 @@ GLOBAL_LIST_INIT(admin_verbs_server, world.AVserver())
 	/datum/admins/proc/toggle_gun_restrictions,
 	/datum/admins/proc/toggle_synthetic_restrictions,
 	/datum/admins/proc/reload_admins,
-	/client/proc/forcerandomrotate,
-	/client/proc/adminchangemap,
+	/datum/admins/proc/map_random,
+	/datum/admins/proc/map_change
 	)
 
 GLOBAL_PROTECT(admin_verbs_debug)
@@ -372,7 +396,6 @@ GLOBAL_LIST_INIT(admin_verbs_debug, world.AVdebug())
 	return list(
 	/datum/admins/proc/proccall_advanced,
 	/datum/admins/proc/proccall_atom,
-	/datum/admins/proc/change_hivenumber,
 	/datum/admins/proc/delete_all,
 	/datum/admins/proc/generate_powernets,
 	/datum/admins/proc/debug_mob_lists,
@@ -441,6 +464,8 @@ GLOBAL_LIST_INIT(admin_verbs_spawn, world.AVspawn())
 		if(rights & R_DEBUG)
 			verbs += GLOB.admin_verbs_debug
 		if(rights & R_PERMISSIONS)
+			verbs += GLOB.admin_verbs_permissions
+		if(rights & R_DBRANKS)
 			verbs += GLOB.admin_verbs_permissions
 		if(rights & R_SOUND)
 			verbs += GLOB.admin_verbs_sound

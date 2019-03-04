@@ -31,7 +31,7 @@
 	deevolves_to = /mob/living/carbon/Xenomorph/Hunter
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA
+	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	// *** Defense *** //
 	armor_deflection = 20
@@ -214,17 +214,6 @@
 	playsound(src, "sound/effects/xeno_newlarva.ogg", 50, 0, 1)
 	update_action_button_icons()
 
-//Chance of insta limb amputation after a melee attack.
-/mob/living/carbon/Xenomorph/Ravager/proc/delimb(var/mob/living/carbon/human/H, var/datum/limb/O)
-	if (prob(isyautja(H)?10:20)) // lets halve this for preds
-		O = H.get_limb(check_zone(zone_selected))
-		if (O.body_part != CHEST && O.body_part != GROIN && O.body_part != HEAD) //Only limbs.
-			visible_message("<span class='danger'>The limb is sliced clean off!</span>","<span class='danger'>You slice off a limb!</span>")
-			O.droplimb()
-			return 1
-
-	return 0
-
 //Super hacky firebreathing Halloween rav.
 /datum/xeno_caste/ravager/ravenger
 	caste_name = "Ravenger"
@@ -283,7 +272,7 @@
 	set waitfor = 0
 	if(world.time <= used_fire_breath + 75)
 		return
-	var/list/turf/turfs = getline2(src, A)
+	var/list/turf/turfs = getline(src, A)
 	var/distance = 0
 	var/obj/structure/window/W
 	var/turf/T

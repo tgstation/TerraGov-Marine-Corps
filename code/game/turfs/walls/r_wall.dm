@@ -1,7 +1,7 @@
 /turf/closed/wall/r_wall
 	name = "reinforced wall"
 	desc = "A huge chunk of reinforced metal used to seperate rooms."
-	icon_state = "r_wall"
+	icon_state = "rwall"
 	opacity = 1
 	density = 1
 
@@ -277,7 +277,7 @@
 /turf/closed/wall/r_wall/unmeltable
 	name = "heavy reinforced wall"
 	desc = "A huge chunk of ultra-reinforced metal used to seperate rooms. Looks virtually indestructible."
-	icon_state = "r_wall"
+	icon_state = "rwall"
 	walltype = "rwall"
 	hull = 1
 
@@ -318,14 +318,14 @@
 /turf/closed/wall/r_wall/prison
 	name = "reinforced metal wall"
 	icon = 'icons/turf/walls/prison.dmi'
-	icon_state = "rwall0"
+	icon_state = "rwall"
 	walltype = "rwall"
 
 /turf/closed/wall/r_wall/prison_unmeltable
 	name = "heavy reinforced wall"
 	desc = "A huge chunk of ultra-reinforced metal used to seperate rooms. Looks virtually indestructible."
 	icon = 'icons/turf/walls/prison.dmi'
-	icon_state = "rwall0"
+	icon_state = "rwall"
 	walltype = "rwall"
 	hull = 1
 

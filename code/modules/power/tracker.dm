@@ -41,7 +41,7 @@
 	setDir(turn(NORTH, -angle - 22.5))	// 22.5 deg bias ensures, e.g. 67.5-112.5 is EAST
 
 	// check we can draw power
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		return
 
 	// find all solar controls and update them
@@ -74,8 +74,8 @@
 /obj/machinery/power/tracker/process()
 
 	if(surplus() >= power_usage && add_load(power_usage) >= power_usage)
-		stat &= ~NOPOWER
+		machine_stat &= ~NOPOWER
 	else
-		stat |= NOPOWER
+		machine_stat |= NOPOWER
 
 

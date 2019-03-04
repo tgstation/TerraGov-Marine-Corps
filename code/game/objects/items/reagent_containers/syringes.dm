@@ -106,7 +106,7 @@
 
 					if(ishuman(T))
 						var/mob/living/carbon/human/H = T
-						if(H.species.flags & NO_BLOOD)
+						if(H.species.species_flags & NO_BLOOD)
 							to_chat(user, "<span class='warning'>You are unable to locate any blood.</span>")
 							return
 						else
@@ -241,7 +241,7 @@
 
 		if (!affecting)
 			return
-		if(affecting.status & LIMB_DESTROYED)
+		if(affecting.limb_status & LIMB_DESTROYED)
 			to_chat(user, "What [affecting.display_name]?")
 			return
 		var/hit_area = affecting.display_name

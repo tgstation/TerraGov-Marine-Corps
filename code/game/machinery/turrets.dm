@@ -82,7 +82,7 @@
 	if(!istype(user))
 		return ..()
 
-	if(user.species.can_shred(user) && !(stat & BROKEN))
+	if(user.species.can_shred(user) && !(machine_stat & BROKEN))
 		playsound(src.loc, 'sound/weapons/slash.ogg', 25, 1, -1)
 		visible_message("<span class='danger'>[user] has slashed at [src]!</span>")
 		src.take_damage(15)
@@ -123,10 +123,10 @@
 
 /obj/machinery/turret/power_change()
 	..()
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		icon_state = "grey_target_prism"
 	else
-		if( !(stat & NOPOWER) )
+		if( !(machine_stat & NOPOWER) )
 			if (src.enabled)
 				if (src.lasers)
 					icon_state = "orange_target_prism"
@@ -134,11 +134,11 @@
 					icon_state = "target_prism"
 			else
 				icon_state = "grey_target_prism"
-			stat &= ~NOPOWER
+			machine_stat &= ~NOPOWER
 		else
 			spawn(rand(0, 15))
 				src.icon_state = "grey_target_prism"
-				stat |= NOPOWER
+				machine_stat |= NOPOWER
 
 /obj/machinery/turret/proc/setState(var/enabled, var/lethal)
 	src.enabled = enabled
@@ -195,7 +195,7 @@
 
 
 /obj/machinery/turret/process()
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	if(src.cover==null)
 		src.cover = new /obj/machinery/turretcover(src.loc)
@@ -336,7 +336,7 @@
 /obj/machinery/turret/proc/die()
 	src.health = 0
 	src.density = 0
-	src.stat |= BROKEN
+	src.machine_stat |= BROKEN
 	src.icon_state = "destroyed_target_prism"
 	if (cover!=null)
 		del(cover)
@@ -356,7 +356,7 @@
 	var/locked = 1
 	var/control_area //can be area name, path or nothing.
 	var/ailock = 0 // AI cannot use this
-	req_access = list(ACCESS_MARINE_COMMANDER)
+	req_access = list(ACCESS_MARINE_CAPTAIN)
 
 /obj/machinery/turretid/New()
 	..()
@@ -375,7 +375,7 @@
 	return
 
 /obj/machinery/turretid/attackby(obj/item/weapon/W, mob/user)
-	if(stat & BROKEN) return
+	if(machine_stat & BROKEN) return
 	if (issilicon(user))
 		return src.attack_hand(user)
 
@@ -442,7 +442,7 @@
 
 /obj/machinery/turret/attack_animal(mob/living/M as mob)
 	if(M.melee_damage_upper == 0)	return
-	if(!(stat & BROKEN))
+	if(!(machine_stat & BROKEN))
 		visible_message("<span class='danger'>[M] [M.attacktext] [src]!</span>")
 		log_combat(M, src, "attacked")
 		src.health -= M.melee_damage_upper
@@ -539,19 +539,17 @@
 
 	attack_hand(mob/user as mob)
 		user.set_machine(src)
-		var/dat = {"<html>
-						<head><title>[src] Control</title></head>
-						<body>
+		var/dat = {"
 						<b>Power: </b><a href='?src=\ref[src];power=1'>[on?"on":"off"]</a><br>
 						<b>Scan Range: </b><a href='?src=\ref[src];scan_range=-1'>-</a> [scan_range] <a href='?src=\ref[src];scan_range=1'>+</a><br>
 						<b>Scan for: </b>"}
 		for(var/scan in scan_for)
 			dat += "<div style=\"margin-left: 15px;\">[scan] (<a href='?src=\ref[src];scan_for=[scan]'>[scan_for[scan]?"Yes":"No"]</a>)</div>"
 
-		dat += {"<b>Ammo: </b>[max(0, projectiles)]<br>
-					</body>
-					</html>"}
-		user << browse(dat, "window=turret")
+		dat += {"<b>Ammo: </b>[max(0, projectiles)]<br>"}
+		var/datum/browser/popup = new(user, "turret", "<div align='center'>[src] Control</div>")
+		popup.set_content(dat)
+		popup.open(FALSE)
 		onclose(user, "turret")
 		return
 

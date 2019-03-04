@@ -112,7 +112,7 @@ var/global/list/damage_icon_parts = list()
 	var/damage_appearance = ""
 
 	for(var/datum/limb/O in limbs)
-		if(O.status & LIMB_DESTROYED) damage_appearance += "d"
+		if(O.limb_status & LIMB_DESTROYED) damage_appearance += "d"
 		else
 			damage_appearance += O.damage_state
 
@@ -130,7 +130,7 @@ var/global/list/damage_icon_parts = list()
 
 	// blend the individual damage states with our icons
 	for(var/datum/limb/O in limbs)
-		if(!(O.status & LIMB_DESTROYED))
+		if(!(O.limb_status & LIMB_DESTROYED))
 			O.update_icon()
 			if(O.damage_state == "00") continue
 
@@ -170,14 +170,14 @@ var/global/list/damage_icon_parts = list()
 	var/icon_key = "[species.race_key][g][ethnicity]"
 	for(var/datum/limb/part in limbs)
 
-		if(istype(part,/datum/limb/head) && !(part.status & LIMB_DESTROYED))
+		if(istype(part,/datum/limb/head) && !(part.limb_status & LIMB_DESTROYED))
 			has_head = 1
 
-		if(part.status & LIMB_DESTROYED)
+		if(part.limb_status & LIMB_DESTROYED)
 			icon_key = "[icon_key]0"
-		else if(part.status & LIMB_ROBOT)
+		else if(part.limb_status & LIMB_ROBOT)
 			icon_key = "[icon_key]2"
-		else if(part.status & LIMB_NECROTIZED)
+		else if(part.limb_status & LIMB_NECROTIZED)
 			icon_key = "[icon_key]3"
 		else
 			icon_key = "[icon_key]1"
@@ -204,7 +204,7 @@ var/global/list/damage_icon_parts = list()
 		var/datum/limb/chest = get_limb("chest")
 		base_icon = chest.get_icon(race_icon,deform_icon,g)
 
-		if(chest.status & LIMB_NECROTIZED)
+		if(chest.limb_status & LIMB_NECROTIZED)
 			base_icon.ColorTone(necrosis_color_mod)
 			base_icon.SetIntensity(0.7)
 
@@ -212,7 +212,7 @@ var/global/list/damage_icon_parts = list()
 
 			var/icon/temp //Hold the bodypart icon for processing.
 
-			if(part.status & LIMB_DESTROYED)
+			if(part.limb_status & LIMB_DESTROYED)
 				continue
 
 			if(istype(part, /datum/limb/chest)) //already done above
@@ -223,7 +223,7 @@ var/global/list/damage_icon_parts = list()
 			else
 				temp = part.get_icon(race_icon,deform_icon)
 
-			if(part.status & LIMB_NECROTIZED)
+			if(part.limb_status & LIMB_NECROTIZED)
 				temp.ColorTone(necrosis_color_mod)
 				temp.SetIntensity(0.7)
 
@@ -282,7 +282,7 @@ var/global/list/damage_icon_parts = list()
 
 	/*
 	//Skin colour. Not in cache because highly variable (and relatively benign).
-	if (species.flags & HAS_SKIN_COLOR)
+	if (species.species_flags & HAS_SKIN_COLOR)
 		stand_icon.Blend(rgb(r_skin, g_skin, b_skin), ICON_ADD)
 	*/
 
@@ -294,11 +294,11 @@ var/global/list/damage_icon_parts = list()
 			stand_icon.Blend(eyes, ICON_OVERLAY)
 
 		//Mouth	(lipstick!)
-		if(lip_style && (species && species.flags & HAS_LIPS))	//skeletons are allowed to wear lipstick no matter what you think, agouri.
+		if(lip_style && (species && species.species_flags & HAS_LIPS))	//skeletons are allowed to wear lipstick no matter what you think, agouri.
 			stand_icon.Blend(new/icon('icons/mob/human_face.dmi', "camo_[lip_style]_s"), ICON_OVERLAY)
 
 
-	if(species.flags & HAS_UNDERWEAR)
+	if(species.species_flags & HAS_UNDERWEAR)
 
 		//Underwear
 		if(underwear >0 && underwear < 3)
@@ -321,11 +321,11 @@ var/global/list/damage_icon_parts = list()
 	//Reset our hair
 	remove_overlay(HAIR_LAYER)
 
-	if(species.flags & HAS_NO_HAIR)
+	if(species.species_flags & HAS_NO_HAIR)
 		return
 
 	var/datum/limb/head/head_organ = get_limb("head")
-	if( !head_organ || (head_organ.status & LIMB_DESTROYED) )
+	if( !head_organ || (head_organ.limb_status & LIMB_DESTROYED) )
 		return
 
 	//masks and helmets can obscure our hair.
@@ -375,25 +375,6 @@ var/global/list/damage_icon_parts = list()
 			var/underlay=gene.OnDrawUnderlays(src,g,fat)
 			if(underlay)
 				standing.underlays += underlay
-				add_image = 1
-	for(var/mut in mutations)
-		switch(mut)
-			/*
-			if(HULK)
-				if(fat)
-					standing.underlays	+= "hulk_[fat]_s"
-				else
-					standing.underlays	+= "hulk_[g]_s"
-				add_image = 1
-			if(COLD_RESISTANCE)
-				standing.underlays	+= "fire[fat]_s"
-				add_image = 1
-			if(TK)
-				standing.underlays	+= "telekinesishead[fat]_s"
-				add_image = 1
-			*/
-			if(LASER)
-				standing.overlays	+= "lasereyes_s"
 				add_image = 1
 	if(add_image)
 		overlays_standing[MUTATIONS_LAYER]	= standing

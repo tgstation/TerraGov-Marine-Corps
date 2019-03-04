@@ -42,7 +42,7 @@
 	for(var/X in limbs)
 		var/datum/limb/E = X
 		if(E.body_part == org_name)
-			return !(E.status & LIMB_DESTROYED)
+			return !(E.limb_status & LIMB_DESTROYED)
 
 /mob/living/carbon/human/proc/has_limb_for_slot(slot)
 	switch(slot)
@@ -474,6 +474,9 @@
 	if(do_mob(src, M, HUMAN_STRIP_DELAY, icon_display = TARGET_PROG_ICON_GENERIC))
 		if(Adjacent(M) && I && I == M.get_item_by_slot(slot_to_process))
 			M.dropItemToGround(I)
+			if(isidcard(I))
+				log_admin("[key_name(src)] took the [I] of [key_name(M)].")
+				message_admins("[ADMIN_TPMONTY(src)] took the [I] of [ADMIN_TPMONTY(M)].")
 
 	if(M)
 		if(interactee == M && Adjacent(M))

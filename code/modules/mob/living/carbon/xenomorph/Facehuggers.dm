@@ -31,7 +31,7 @@
 	var/hivenumber = XENO_HIVE_NORMAL
 
 /obj/item/clothing/mask/facehugger/Initialize()
-	..()
+	. = ..()
 	START_PROCESSING(SSobj, src)
 
 /obj/item/clothing/mask/facehugger/ex_act(severity)
@@ -320,7 +320,7 @@
 	if(!provoked)
 		if(iszombie(src))
 			return FALSE
-		if(species?.flags & IS_SYNTHETIC)
+		if(species?.species_flags & IS_SYNTHETIC)
 			return FALSE
 
 	if(check_mask)

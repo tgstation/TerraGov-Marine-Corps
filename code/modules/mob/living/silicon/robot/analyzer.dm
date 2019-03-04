@@ -26,7 +26,7 @@
 		user.show_message("<span class='notice'> Key: Suffocation/Toxin/Burns/Brute</span>", 1)
 		user.show_message("<span class='notice'> Body Temperature: ???</span>", 1)
 		return
-	if(!iscyborg(M) && !(ishuman(M) && (M:species.flags & IS_SYNTHETIC)))
+	if(!iscyborg(M) && !(ishuman(M) && (M:species.species_flags & IS_SYNTHETIC)))
 		to_chat(user, "<span class='warning'>You can't analyze non-robotic things!</span>")
 		return
 
@@ -57,7 +57,7 @@
 		if(H.emagged && prob(5))
 			user.show_message("<span class='warning'> \t ERROR: INTERNAL SYSTEMS COMPROMISED</span>",1)
 
-	if (ishuman(M) && (M:species.flags & IS_SYNTHETIC))
+	if (ishuman(M) && (M:species.species_flags & IS_SYNTHETIC))
 		var/mob/living/carbon/human/H = M
 		var/list/damaged = H.get_damaged_limbs(1,1)
 		user.show_message("<span class='notice'> Localized Damage, Brute/Electronics:</span>",1)

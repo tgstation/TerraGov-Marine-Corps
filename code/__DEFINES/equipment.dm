@@ -1,51 +1,44 @@
-//FLAGS BITMASK
-
-
-//turf-only flags
-#define NOJAUNT		1
-
 //PASS FLAGS
-#define PASSTABLE	1
-#define PASSGLASS	2
-#define PASSGRILLE	4
-#define PASSBLOB	8
-#define PASSMOB		16
+#define PASSTABLE	(1<<0)
+#define PASSGLASS	(1<<1)
+#define PASSGRILLE	(1<<2)
+#define PASSBLOB	(1<<3)
+#define PASSMOB		(1<<4)
 
 //FLAGS
-#define NOFLAGS					0		//Nothing.
+#define NOFLAGS		0		//Nothing.
 
 //==========================================================================================
 
 //flags_atom
 
-#define NOINTERACT				(1 << 0)		// You can't interact with it, at all. Useful when doing certain animations.
-#define CONDUCT					(1 << 1)		// conducts electricity (metal etc.)
-#define ON_BORDER				(1 << 2)		// 'border object'. item has priority to check when entering or leaving
-#define NOBLOODY				(1 << 3)		// Don't want a blood overlay on this one.
-#define DIRLOCK					(1 << 4)		// movable atom won't change direction when Moving()ing. Useful for items that have several dir states.
-#define RELAY_CLICK				(1 << 5)		//This is used for /obj/ that relay your clicks via handle_click(), mostly for MGs + Sentries ~Art
-#define INITIALIZED				(1 << 6)  	//Whether /atom/Initialize() has already run for the object
-#define NODECONSTRUCT			(1 << 7)
-#define OVERLAY_QUEUED			(1 << 8)
+#define NOINTERACT				(1<<0)		// You can't interact with it, at all. Useful when doing certain animations.
+#define CONDUCT					(1<<1)		// conducts electricity (metal etc.)
+#define ON_BORDER				(1<<2)		// 'border object'. item has priority to check when entering or leaving
+#define NOBLOODY				(1<<3)		// Don't want a blood overlay on this one.
+#define DIRLOCK					(1<<4)		// movable atom won't change direction when Moving()ing. Useful for items that have several dir states.
+#define RELAY_CLICK				(1<<5)		//This is used for /obj/ that relay your clicks via handle_click(), mostly for MGs + Sentries ~Art
+#define INITIALIZED				(1<<6)  	//Whether /atom/Initialize() has already run for the object
+#define NODECONSTRUCT			(1<<7)
+#define OVERLAY_QUEUED			(1<<8)
 
 //==========================================================================================
 
 //flags_barrier
-
 #define HANDLE_BARRIER_CHANCE 1
 #define HANDLE_BARRIER_BLOCK 2
 
-//flags_item
+
 //bitflags that were previously under flags_atom, these only apply to items.
 //clothing specific stuff uses flags_inventory.
-
-#define NODROP					1	// Cannot be dropped/unequipped at all, only deleted.
-#define NOBLUDGEON  			2	// when an item has this it produces no "X has been hit by Y with Z" message with the default handler
-#define NOSHIELD				4	// weapon not affected by shield (does nothing currently)
-#define DELONDROP				8	// Deletes on drop instead of falling on the floor.
-#define TWOHANDED				16	// The item is twohanded.
-#define WIELDED					32	// The item is wielded with both hands.
-#define	ITEM_ABSTRACT			64	//The item is abstract (grab, powerloader_clamp, etc)
+//flags_item
+#define NODROP					(1<<0)	// Cannot be dropped/unequipped at all, only deleted.
+#define NOBLUDGEON  			(1<<1)	// when an item has this it produces no "X has been hit by Y with Z" message with the default handler
+#define NOSHIELD				(1<<2)	// weapon not affected by shield (does nothing currently)
+#define DELONDROP				(1<<3)	// Deletes on drop instead of falling on the floor.
+#define TWOHANDED				(1<<4)	// The item is twohanded.
+#define WIELDED					(1<<5)	// The item is wielded with both hands.
+#define	ITEM_ABSTRACT			(1<<6)	//The item is abstract (grab, powerloader_clamp, etc)
 
 //==========================================================================================
 
@@ -95,22 +88,23 @@
 
 //===========================================================================================
 //Marine armor only, use for flags_marine_armor.
-#define ARMOR_SQUAD_OVERLAY		1
-#define ARMOR_LAMP_OVERLAY		2
-#define ARMOR_LAMP_ON			4
-#define ARMOR_IS_REINFORCED		8
+#define ARMOR_SQUAD_OVERLAY		(1<<0)
+#define ARMOR_LAMP_OVERLAY		(1<<1)
+#define ARMOR_LAMP_ON			(1<<2)
+#define ARMOR_IS_REINFORCED		(1<<3)
 //===========================================================================================
 
 //===========================================================================================
 //Marine helmet only, use for flags_marine_helmet.
-#define HELMET_SQUAD_OVERLAY	1
-#define HELMET_GARB_OVERLAY		2
-#define HELMET_DAMAGE_OVERLAY	4
-#define HELMET_STORE_GARB		8
-#define HELMET_IS_DAMAGED		16
+#define HELMET_SQUAD_OVERLAY	(1<<0)
+#define HELMET_GARB_OVERLAY		(1<<1)
+#define HELMET_DAMAGE_OVERLAY	(1<<2)
+#define HELMET_STORE_GARB		(1<<3)
+#define HELMET_IS_DAMAGED		(1<<4)
 //===========================================================================================
 
 //ITEM INVENTORY SLOT BITMASKS
+//flags_equip_slot
 #define ITEM_SLOT_OCLOTHING 	(1<<0)
 #define ITEM_SLOT_ICLOTHING 	(1<<1)
 #define ITEM_SLOT_GLOVES 		(1<<2)
@@ -196,11 +190,12 @@
 
 //=================================================
 // bitflags for clothing parts
+//thermal_protection_flags
 #define HEAD			(1<<0)
 #define FACE			(1<<1)
 #define EYES			(1<<2)
-#define CHEST		(1<<3)
-#define GROIN		(1<<4)
+#define CHEST			(1<<3)
+#define GROIN			(1<<4)
 #define LEG_LEFT		(1<<5)
 #define LEG_RIGHT		(1<<6)
 #define LEGS			(LEG_RIGHT|LEG_LEFT)
@@ -264,12 +259,13 @@
 #define WEIGHT_CLASS_GIGANTIC 6 //Essentially means it cannot be picked up or placed in an inventory, ex: Mech Parts, Safe
 
 #define SLOT_EQUIP_ORDER list(\
-	SLOT_IN_HEAD,\
 	SLOT_IN_HOLSTER,\
 	SLOT_IN_S_HOLSTER,\
 	SLOT_IN_B_HOLSTER,\
 	SLOT_BACK,\
 	SLOT_WEAR_ID,\
+	SLOT_GLASSES,\
+	SLOT_IN_HEAD,\
 	SLOT_W_UNIFORM,\
 	SLOT_ACCESSORY,\
 	SLOT_WEAR_SUIT,\
@@ -278,7 +274,6 @@
 	SLOT_SHOES,\
 	SLOT_GLOVES,\
 	SLOT_EARS,\
-	SLOT_GLASSES,\
 	SLOT_BELT,\
 	SLOT_S_STORE,\
 	SLOT_L_STORE,\
