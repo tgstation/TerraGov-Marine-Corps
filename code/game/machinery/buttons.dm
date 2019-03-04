@@ -53,7 +53,7 @@
 	name = "Medical attention required"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "doorctrl0"
-	desc = "A button for alerting doctors that you require assitance."
+	desc = "A button for alerting doctors that you require assistance."
 	var/id = null
 	var/active = 0
 	anchored = 1.0
