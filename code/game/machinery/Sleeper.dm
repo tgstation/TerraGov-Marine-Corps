@@ -15,7 +15,7 @@
 	idle_power_usage = 40
 
 /obj/machinery/sleep_console/process()
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	updateUsrDialog()
 	return
@@ -53,10 +53,10 @@
 /obj/machinery/sleep_console/attack_hand(mob/living/user)
 	if(..())
 		return
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	var/dat = ""
-	if (!connected || (connected.stat & (NOPOWER|BROKEN)))
+	if (!connected || (connected.machine_stat & (NOPOWER|BROKEN)))
 		dat += "This console is not connected to a sleeper or the sleeper is non-functional."
 	else
 		var/mob/living/occupant = connected.occupant
@@ -250,7 +250,7 @@
 		beaker = null
 
 /obj/machinery/sleeper/process()
-	if (stat & (NOPOWER|BROKEN))
+	if (machine_stat & (NOPOWER|BROKEN))
 		if(occupant)
 			occupant.in_stasis = null
 		stasis = FALSE
@@ -335,7 +335,7 @@
 		toggle_filter()
 	if(stasis)
 		toggle_stasis()
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		..(severity)
 		return
 	if(occupant)

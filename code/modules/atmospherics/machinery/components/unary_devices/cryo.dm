@@ -174,7 +174,7 @@
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/process()
 	..()
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		turn_off()
 		updateUsrDialog()
 		return
@@ -317,7 +317,7 @@
 	if(!istype(W, /obj/item/grab))
 		return
 
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		to_chat(user, "<span class='notice'>\ [src] is non-functional!</span>")
 		return
 
@@ -353,7 +353,7 @@
 	updateUsrDialog()
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/proc/put_mob(mob/living/carbon/M as mob, put_in = null)
-	if (stat & (NOPOWER|BROKEN))
+	if (machine_stat & (NOPOWER|BROKEN))
 		to_chat(usr, "<span class='warning'>The cryo cell is not functioning.</span>")
 		return
 	if(!ishuman(M)) // stop fucking monkeys and xenos being put in.
@@ -463,7 +463,7 @@
 		ui.set_auto_update(1)
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/proc/turn_on()
-	if (stat & (NOPOWER|BROKEN))
+	if (machine_stat & (NOPOWER|BROKEN))
 		to_chat(usr, "<span class='warning'>The cryo cell is not functioning.</span>")
 		return
 	on = TRUE

@@ -36,7 +36,7 @@
 
 /obj/machinery/hydro_floodlight_switch/power_change()
 	..()
-	if((stat & NOPOWER))
+	if((machine_stat & NOPOWER))
 		if(ispowered && turned_on)
 			toggle_lights()
 		ispowered = 0

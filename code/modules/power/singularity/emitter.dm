@@ -96,7 +96,7 @@
 	return 1
 
 /obj/machinery/power/emitter/process()
-	if(stat & BROKEN) return
+	if(machine_stat & BROKEN) return
 
 	if(state != 2 || (!powernet && active_power_usage))
 		active = 0

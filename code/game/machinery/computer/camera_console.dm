@@ -44,7 +44,7 @@
 		if (src.z > 6)
 			to_chat(user, "<span class='danger'>Unable to establish a connection: You're too far away from the station!</span>")
 			return
-		if(stat & (NOPOWER|BROKEN))	return
+		if(machine_stat & (NOPOWER|BROKEN))	return
 
 		if(!isAI(user))
 			user.set_interaction(src)
@@ -149,7 +149,7 @@
 
 /obj/machinery/computer/security/telescreen/update_icon()
 	icon_state = initial(icon_state)
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		icon_state += "b"
 	return
 

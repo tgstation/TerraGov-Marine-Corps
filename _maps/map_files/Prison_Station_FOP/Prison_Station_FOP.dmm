@@ -54261,7 +54261,7 @@
 "crm" = (
 /obj/machinery/computer/communications{
 	icon_state = "commb";
-	stat = 1
+	
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table/reinforced,
@@ -54270,7 +54270,7 @@
 "crn" = (
 /obj/machinery/computer/communications{
 	icon_state = "commb";
-	stat = 1
+	
 	},
 /obj/structure/table/reinforced,
 /turf/open/shuttle,

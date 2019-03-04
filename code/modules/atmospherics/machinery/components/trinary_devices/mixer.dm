@@ -38,9 +38,9 @@
 	icon_state = "mixer_[on_state ? "on" : "off"][flipped ? "_f" : ""]"
 
 /obj/machinery/atmospherics/components/trinary/mixer/power_change()
-	var/old_stat = stat
+	var/old_stat = machine_stat
 	..()
-	if(stat != old_stat)
+	if(machine_stat != old_stat)
 		update_icon()
 /*
 /obj/machinery/atmospherics/components/trinary/mixer/New()
@@ -80,12 +80,12 @@
 
 	if(!node2_concentration)
 		if(air1.temperature <= 0)
-			return	
+			return
 		transfer_moles1 = min(transfer_moles1, air1_moles)
 		transfer_moles2 = 0
 	else if(!node1_concentration)
 		if(air2.temperature <= 0)
-			return	
+			return
 		transfer_moles2 = min(transfer_moles2, air2_moles)
 		transfer_moles1 = 0
 	else

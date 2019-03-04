@@ -256,7 +256,7 @@
 		var/pMonData[0]
 		var/apcData[0]
 		for(var/obj/machinery/power/monitor/pMon in GLOB.machines)
-			if(!(pMon.stat & (NOPOWER|BROKEN)) )
+			if(!(pMon.machine_stat & (NOPOWER|BROKEN)) )
 				var/turf/monitorturf = locate(pMon.x,pMon.y,pMon.z)
 				var/area/monitorarea = monitorturf.loc
 				pMonData[++pMonData.len] = list ("Name" = html_encode(monitorarea ? pMon.name + " in " + monitorarea.name : pMon.name), "ref" = "\ref[pMon]")

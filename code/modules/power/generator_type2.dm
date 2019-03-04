@@ -18,14 +18,14 @@
 	//input1 = locate(/obj/machinery/atmospherics/unary/generator_input) in get_step(src,turn(dir, 90))
 	//input2 = locate(/obj/machinery/atmospherics/unary/generator_input) in get_step(src,turn(dir, -90))
 	//if(!input1 || !input2)
-	//	stat |= BROKEN
+	//	machine_stat |= BROKEN
 	updateicon()
 	start_processing()
 
 
 /obj/machinery/power/generator_type2/proc/updateicon()
 
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		overlays.Cut()
 	else
 		overlays.Cut()
@@ -51,13 +51,13 @@
 
 
 /obj/machinery/power/generator_type2/attack_ai(mob/user)
-	if(stat & (BROKEN|NOPOWER)) return
+	if(machine_stat & (BROKEN|NOPOWER)) return
 	interact(user)
 
 
 /obj/machinery/power/generator_type2/attack_hand(mob/user)
 	add_fingerprint(user)
-	if(stat & (BROKEN|NOPOWER)) return
+	if(machine_stat & (BROKEN|NOPOWER)) return
 	interact(user)
 
 

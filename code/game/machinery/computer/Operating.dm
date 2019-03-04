@@ -19,20 +19,20 @@
 
 /obj/machinery/computer/operating/attack_ai(mob/user)
 	add_fingerprint(user)
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	interact(user)
 
 
 /obj/machinery/computer/operating/attack_hand(mob/user)
 	add_fingerprint(user)
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	interact(user)
 
 
 /obj/machinery/computer/operating/interact(mob/user)
-	if ( (get_dist(src, user) > 1 ) || (stat & (BROKEN|NOPOWER)) )
+	if ( (get_dist(src, user) > 1 ) || (machine_stat & (BROKEN|NOPOWER)) )
 		if (!issilicon(user))
 			user.unset_interaction()
 			user << browse(null, "window=op")

@@ -60,14 +60,14 @@
 
 /obj/machinery/autodoc/power_change(var/area/master_area = null)
 	..()
-	if(stat & NOPOWER && occupant)
+	if(machine_stat & NOPOWER && occupant)
 		visible_message("\ [src] engages the safety override, ejecting the occupant.")
 		surgery = 0
 		go_out(AUTODOC_NOTICE_NO_POWER)
 		return
 
 /obj/machinery/autodoc/update_icon()
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		icon_state = "autodoc_off"
 	else if(surgery)
 		icon_state = "autodoc_operate"
@@ -196,12 +196,12 @@
 				if(H.disfigured || H.face_surgery_stage > 0)
 					surgery_list += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_FACIAL)
 
-			if(L.status & LIMB_BROKEN)
+			if(L.limb_status & LIMB_BROKEN)
 				surgery_list += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_BROKEN)
-			if(L.status & LIMB_DESTROYED)
-				if(!(L.parent.status & LIMB_DESTROYED) && L.body_part != HEAD)
+			if(L.limb_status & LIMB_DESTROYED)
+				if(!(L.parent.limb_status & LIMB_DESTROYED) && L.body_part != HEAD)
 					surgery_list += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_MISSING)
-			if(L.status & LIMB_NECROTIZED)
+			if(L.limb_status & LIMB_NECROTIZED)
 				surgery_list += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_NECRO)
 			var/skip_embryo_check = FALSE
 			if(L.implants.len)
@@ -410,10 +410,10 @@
 							if(!surgery) break
 							S.limb_ref.heal_damage(S.limb_ref.brute_dam - 20,0)
 						if(!surgery) break
-						S.limb_ref.status &= ~LIMB_BROKEN
-						S.limb_ref.status &= ~LIMB_SPLINTED
-						S.limb_ref.status &= ~LIMB_STABILIZED
-						S.limb_ref.status |= LIMB_REPAIRED
+						S.limb_ref.limb_status &= ~LIMB_BROKEN
+						S.limb_ref.limb_status &= ~LIMB_SPLINTED
+						S.limb_ref.limb_status &= ~LIMB_STABILIZED
+						S.limb_ref.limb_status |= LIMB_REPAIRED
 						S.limb_ref.perma_injury = 0
 						close_incision(H,S.limb_ref)
 
@@ -437,14 +437,14 @@
 
 						stored_metal -= LIMB_METAL_AMOUNT
 
-						if(S.limb_ref.parent.status & LIMB_DESTROYED) // there's nothing to attach to
+						if(S.limb_ref.parent.limb_status & LIMB_DESTROYED) // there's nothing to attach to
 							visible_message("\ [src] croaks, Limb attachment failed.")
 							playsound(src.loc, 'sound/machines/buzz-two.ogg', 15, 1)
 							surgery_todo_list -= S
 							continue
 
 						if(!surgery) break
-						S.limb_ref.status |= LIMB_AMPUTATED
+						S.limb_ref.limb_status |= LIMB_AMPUTATED
 						S.limb_ref.setAmputatedTree()
 						S.limb_ref.limb_replacement_stage = 0
 
@@ -470,7 +470,7 @@
 						open_incision(H,S.limb_ref)
 						sleep(NECRO_REMOVE_MAX_DURATION*surgery_mod)
 						sleep(NECRO_TREAT_MAX_DURATION*surgery_mod)
-						S.limb_ref.status &= ~LIMB_NECROTIZED
+						S.limb_ref.limb_status &= ~LIMB_NECROTIZED
 						H.update_body()
 
 						close_incision(H,S.limb_ref)
@@ -552,7 +552,7 @@
 							if(F.face_surgery_stage == 3)
 								sleep(FACIAL_CAUTERISE_MAX_DURATION)
 								if(!surgery) break
-								F.status &= ~LIMB_BLEEDING
+								F.limb_status &= ~LIMB_BLEEDING
 								F.disfigured = 0
 								F.owner.name = F.owner.get_visible_name()
 								F.face_surgery_stage = 0
@@ -591,7 +591,7 @@
 		if(!surgery) return
 		L.surgery_open_stage = 0
 		L.germ_level = 0
-		L.status &= ~LIMB_BLEEDING
+		L.limb_status &= ~LIMB_BLEEDING
 		target.updatehealth()
 
 /obj/machinery/autodoc/proc/open_encased(mob/living/carbon/human/target, var/datum/limb/L)
@@ -669,7 +669,7 @@
 		to_chat(usr, "<span class='notice'>\ [src] is already occupied!</span>")
 		return
 
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		to_chat(usr, "<span class='notice'>\ [src] is non-functional!</span>")
 		return
 
@@ -759,7 +759,7 @@
 
 	if(istype(W, /obj/item/grab))
 
-		if(stat & (NOPOWER|BROKEN))
+		if(machine_stat & (NOPOWER|BROKEN))
 			to_chat(user, "<span class='notice'>\ [src] is non-functional!</span>")
 			return
 
@@ -840,7 +840,7 @@
 
 /obj/machinery/autodoc_console/power_change(var/area/master_area = null)
 	..()
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		if(icon_state != "sleeperconsole-p")
 			icon_state = "sleeperconsole-p"
 		return
@@ -854,7 +854,7 @@
 	if(..())
 		return
 	var/dat = ""
-	if(!connected || (connected.stat & (NOPOWER|BROKEN)))
+	if(!connected || (connected.machine_stat & (NOPOWER|BROKEN)))
 		dat += "This console is not connected to a Med-Pod or the Med-Pod is non-functional."
 		to_chat(user, "This console seems to be powered down.")
 	if(locked && !allowed(user)) //Check access if locked.
@@ -1094,7 +1094,7 @@
 			if(href_list["broken"])
 				for(var/datum/limb/L in connected.occupant.limbs)
 					if(L)
-						if(L.status & LIMB_BROKEN)
+						if(L.limb_status & LIMB_BROKEN)
 							N.fields["autodoc_manual"] += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_BROKEN)
 							needed++
 				if(!needed)
@@ -1104,8 +1104,8 @@
 			if(href_list["missing"])
 				for(var/datum/limb/L in connected.occupant.limbs)
 					if(L)
-						if(L.status & LIMB_DESTROYED)
-							if(!(L.parent.status & LIMB_DESTROYED) && L.body_part != HEAD)
+						if(L.limb_status & LIMB_DESTROYED)
+							if(!(L.parent.limb_status & LIMB_DESTROYED) && L.body_part != HEAD)
 								N.fields["autodoc_manual"] += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_MISSING)
 								needed++
 				if(!needed)
@@ -1115,7 +1115,7 @@
 			if(href_list["necro"])
 				for(var/datum/limb/L in connected.occupant.limbs)
 					if(L)
-						if(L.status & LIMB_NECROTIZED)
+						if(L.limb_status & LIMB_NECROTIZED)
 							N.fields["autodoc_manual"] += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_NECRO)
 							needed++
 				if(!needed)

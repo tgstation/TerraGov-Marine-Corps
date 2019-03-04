@@ -23,20 +23,20 @@ obj/machinery/scanner/New()
 			outputdir = 8
 
 /obj/machinery/scanner/process()
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		return
 	use_power(50)
 
 /obj/machinery/scanner/power_change()
 	..()
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		spawn(rand(0, 15))
 			icon_state = "scanner_off"
 	else
 		icon_state = "scanner_idle"
 
 obj/machinery/scanner/attack_hand(mob/living/carbon/human/user)
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		return
 	if(!ishuman(user) || lastuser == user.real_name)
 		return

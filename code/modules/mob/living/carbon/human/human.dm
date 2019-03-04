@@ -421,7 +421,7 @@
 //Returns "Unknown" if facially disfigured and real_name if not. Useful for setting name when polyacided or when updating a human's name variable
 /mob/living/carbon/human/proc/get_face_name()
 	var/datum/limb/head/head = get_limb("head")
-	if( !head || head.disfigured || (head.status & LIMB_DESTROYED) || !real_name || (HUSK in mutations) )	//disfigured. use id-name if possible
+	if( !head || head.disfigured || (head.limb_status & LIMB_DESTROYED) || !real_name || (HUSK in mutations) )	//disfigured. use id-name if possible
 		return "Unknown"
 	return real_name
 
@@ -601,7 +601,7 @@
 			var/count = 0
 			for(var/X in limbs)
 				var/datum/limb/E = X
-				if(E.status & LIMB_SPLINTED)
+				if(E.limb_status & LIMB_SPLINTED)
 					count = 1
 					break
 			if(count)
@@ -611,8 +611,8 @@
 					var/limbcount = 0
 					for(var/organ in list("l_leg","r_leg","l_arm","r_arm","r_hand","l_hand","r_foot","l_foot","chest","head","groin"))
 						var/datum/limb/o = get_limb(organ)
-						if (o && o.status & LIMB_SPLINTED)
-							o.status &= ~LIMB_SPLINTED
+						if (o && o.limb_status & LIMB_SPLINTED)
+							o.limb_status &= ~LIMB_SPLINTED
 							limbcount++
 					if(limbcount)
 						var/obj/item/W = new /obj/item/stack/medical/splint(loc, limbcount)
@@ -1177,10 +1177,10 @@
 
 /mob/living/carbon/human/revive(keep_viruses)
 	for (var/datum/limb/O in limbs)
-		if(O.status & LIMB_ROBOT)
-			O.status = LIMB_ROBOT
+		if(O.limb_status & LIMB_ROBOT)
+			O.limb_status = LIMB_ROBOT
 		else
-			O.status = NOFLAGS
+			O.limb_status = NOFLAGS
 		O.perma_injury = 0
 		O.germ_level = 0
 		O.wounds.Cut()
@@ -1191,7 +1191,7 @@
 	h.disfigured = 0
 	name = get_visible_name()
 
-	if(species && !(species.flags & NO_BLOOD))
+	if(species && !(species.species_flags & NO_BLOOD))
 		restore_blood()
 
 	//try to find the brain player in the decapitated head and put them back in control of the human
@@ -1239,7 +1239,7 @@
 /mob/living/carbon/human/proc/handle_embedded_objects()
 
 	for(var/datum/limb/organ in limbs)
-		if(organ.status & LIMB_SPLINTED || organ.status & LIMB_STABILIZED || (m_intent == MOVE_INTENT_WALK && !pulledby) ) //Splints prevent movement. Walking stops shrapnel from harming organs unless being pulled.
+		if(organ.limb_status & LIMB_SPLINTED || organ.limb_status & LIMB_STABILIZED || (m_intent == MOVE_INTENT_WALK && !pulledby) ) //Splints prevent movement. Walking stops shrapnel from harming organs unless being pulled.
 			continue
 		for(var/obj/item/O in organ.implants)
 			if(!istype(O,/obj/item/implant) && prob(4)) //Moving with things stuck in you could be bad.
@@ -1255,8 +1255,8 @@
 				to_chat(src, msg)
 
 				organ.take_damage(rand(1,2), 0, 0)
-				if(!(organ.status & LIMB_ROBOT) && !(species.flags & NO_BLOOD)) //There is no blood in protheses.
-					organ.status |= LIMB_BLEEDING
+				if(!(organ.limb_status & LIMB_ROBOT) && !(species.species_flags & NO_BLOOD)) //There is no blood in protheses.
+					organ.limb_status |= LIMB_BLEEDING
 					if(prob(10)) src.adjustToxLoss(1)
 
 /mob/living/carbon/human/verb/check_pulse()
@@ -1467,12 +1467,12 @@
 	return ..()
 
 /mob/living/carbon/human/getDNA()
-	if(species.flags & NO_SCAN)
+	if(species.species_flags & NO_SCAN)
 		return null
 	..()
 
 /mob/living/carbon/human/setDNA()
-	if(species.flags & NO_SCAN)
+	if(species.species_flags & NO_SCAN)
 		return
 	..()
 

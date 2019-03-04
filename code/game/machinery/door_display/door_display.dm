@@ -30,7 +30,7 @@
 				targets += D
 
 		if(targets.len == 0)
-			stat |= BROKEN
+			machine_stat |= BROKEN
 		update_icon()
 	start_processing()
 	return
@@ -38,7 +38,7 @@
 // Display process loop.
 /obj/machinery/door_display/process()
 
-	if(stat & (NOPOWER|BROKEN))	return
+	if(machine_stat & (NOPOWER|BROKEN))	return
 
 	updateUsrDialog()
 	update_icon()
@@ -58,7 +58,7 @@
 
 // Opens and locks doors, power check
 /obj/machinery/door_display/proc/open_door()
-	if(stat & (NOPOWER|BROKEN))	return 0
+	if(machine_stat & (NOPOWER|BROKEN))	return 0
 
 	for(var/obj/machinery/door/D in targets)
 		if(!D.density)	continue
@@ -70,7 +70,7 @@
 
 // Closes and unlocks doors, power check
 /obj/machinery/door_display/proc/close_door()
-	if(stat & (NOPOWER|BROKEN))	return 0
+	if(machine_stat & (NOPOWER|BROKEN))	return 0
 
 	for(var/obj/machinery/door/D in targets)
 		if(D.density)	continue
@@ -147,10 +147,10 @@
 // if NOPOWER, display blank
 // if BROKEN, display blue screen of death icon AI uses
 /obj/machinery/door_display/update_icon()
-	if (stat & (NOPOWER))
+	if (machine_stat & (NOPOWER))
 		icon_state = "frame"
 		return
-	if (stat & (BROKEN))
+	if (machine_stat & (BROKEN))
 		set_picture("ai_bsod")
 		return
 
@@ -273,7 +273,7 @@
 
 // Opens and locks doors, power check
 /obj/machinery/door_display/research_cell/open_door()
-	if(stat & (NOPOWER|BROKEN))	return 0
+	if(machine_stat & (NOPOWER|BROKEN))	return 0
 
 	for(var/obj/machinery/door/airlock/D in targets)
 		if(!D.density) continue
@@ -285,7 +285,7 @@
 
 // Closes and unlocks doors, power check
 /obj/machinery/door_display/research_cell/close_door()
-	if(stat & (NOPOWER|BROKEN))	return 0
+	if(machine_stat & (NOPOWER|BROKEN))	return 0
 
 	for(var/obj/machinery/door/airlock/D in targets)
 		if(D.density)	continue
@@ -297,7 +297,7 @@
 
 // Opens and locks doors, power check
 /obj/machinery/door_display/research_cell/proc/open_shutter()
-	if(stat & (NOPOWER|BROKEN))	return 0
+	if(machine_stat & (NOPOWER|BROKEN))	return 0
 
 	for(var/obj/machinery/door/poddoor/D in targets)
 		if(!D.density) continue
@@ -308,7 +308,7 @@
 
 // Closes and unlocks doors, power check
 /obj/machinery/door_display/research_cell/proc/close_shutter()
-	if(stat & (NOPOWER|BROKEN))	return 0
+	if(machine_stat & (NOPOWER|BROKEN))	return 0
 
 	for(var/obj/machinery/door/poddoor/D in targets)
 		if(D.density)	continue
