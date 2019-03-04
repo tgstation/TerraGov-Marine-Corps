@@ -1275,7 +1275,7 @@
 	max_range = CONFIG_GET(number/combat_define/near_shell_range)
 	accuracy_var_low = CONFIG_GET(number/combat_define/low_proj_variance)
 	accuracy_var_high = CONFIG_GET(number/combat_define/low_proj_variance)
-	damage = CONFIG_GET(number/combat_define/mlow_hit_damage)
+	damage = CONFIG_GET(number/combat_define/min_hit_damage)
 	damage_var_low = CONFIG_GET(number/combat_define/low_proj_variance)
 	damage_var_high = CONFIG_GET(number/combat_define/mlow_proj_variance)
 
@@ -1332,7 +1332,7 @@
 
 /datum/ammo/xeno/toxin/heavy //Praetorian
 	name = "neurotoxic splash"
-	ammo_reagents = list("xeno_toxin" = 11)
+	ammo_reagents = list("xeno_toxin" = 10)
 	added_spit_delay = 15
 	spit_cost = 100
 
@@ -1341,13 +1341,13 @@
 	damage = CONFIG_GET(number/combat_define/hlow_hit_damage)
 
 /datum/ammo/xeno/toxin/heavy/upgrade1
-	ammo_reagents = list("xeno_toxin" = 13.2)
+	ammo_reagents = list("xeno_toxin" = 12)
 
 /datum/ammo/xeno/toxin/heavy/upgrade2
-	ammo_reagents = list("xeno_toxin" = 14.3)
+	ammo_reagents = list("xeno_toxin" = 13)
 
 /datum/ammo/xeno/toxin/heavy/upgrade3
-	ammo_reagents = list("xeno_toxin" = 14.85)
+	ammo_reagents = list("xeno_toxin" = 13.5)
 
 /datum/ammo/xeno/sticky
 	name = "sticky resin spit"
