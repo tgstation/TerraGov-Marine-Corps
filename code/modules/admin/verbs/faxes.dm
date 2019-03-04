@@ -63,7 +63,7 @@ GLOBAL_LIST_EMPTY(faxes)
 
 
 /datum/admins/proc/view_faxes()
-	set category = "Admin"
+	set category = "Fun"
 	set name = "View Faxes"
 
 	if(!check_rights(R_ADMIN|R_MENTOR))
