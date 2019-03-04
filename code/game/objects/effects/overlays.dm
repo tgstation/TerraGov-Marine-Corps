@@ -39,6 +39,12 @@
 	icon_state = "danger"
 	layer = ABOVE_FLY_LAYER
 
+/obj/effect/overlay/sparks
+	name = "Sparks"
+	layer = ABOVE_FLY_LAYER
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "electricity"
+
 /obj/effect/overlay/temp
 	anchored = 1
 	layer = ABOVE_FLY_LAYER //above mobs
