@@ -90,3 +90,10 @@
 	cooldown = FALSE
 	if(!(stat & NOPOWER))
 		icon_state = "doorctrl0"
+
+/obj/machinery/medical_help_button/power_change()
+	..()
+	if(stat & NOPOWER)
+		icon_state = "doorctrl-p"
+	else
+		icon_state = "doorctrl0"
