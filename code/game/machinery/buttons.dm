@@ -62,7 +62,7 @@
 	active_power_usage = 4
 
 /obj/machinery/medical_help_button/attack_hand(mob/user)
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 	if(istype(user,/mob/living/carbon/Xenomorph))
 		return
 	if(stat & (NOPOWER|BROKEN))
