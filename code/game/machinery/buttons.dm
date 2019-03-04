@@ -55,8 +55,9 @@
 	icon_state = "doorctrl0"
 	desc = "A button for alerting doctors that you require assistance."
 	var/id = null
-	var/active = 0
+	var/active = FALSE
 	anchored = 1.0
+	var/cooldown = FALSE
 	use_power = 1
 	idle_power_usage = 2
 	active_power_usage = 4
@@ -68,7 +69,8 @@
 	if(stat & (NOPOWER|BROKEN))
 		to_chat(user, "<span class='warning'>[src] doesn't seem to be working.</span>")
 		return
-
+	if(cooldown)
+		return
 	use_power(5)
 	icon_state = "doorctrl1"
 	add_fingerprint(user)
@@ -77,7 +79,14 @@
 	AI.SetName("Lobby Notification System")
 	AI.aiRadio.talk_into(AI,"<b>[user.name] is requesting medical attention at: [get_area(src)].</b>","MedSci","announces")
 	qdel(AI)	
+	visible_message("Remain calm, someone will be with you shortly.")
 
-	spawn(15)
-		if(!(stat & NOPOWER))
-			icon_state = "doorctrl0"
+	cooldown = TRUE
+	active = TRUE
+	addtimer(CALLBACK(src, .proc/icon_update_check), 10 SECONDS)
+
+/obj/machinery/medical_help_button/proc/icon_update_check()
+	active = FALSE
+	cooldown = FALSE
+	if(!(stat & NOPOWER))
+		icon_state = "doorctrl0"
