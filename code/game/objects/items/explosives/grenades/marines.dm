@@ -303,8 +303,7 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	force = initial(force)
 	damtype = initial(damtype)
 	if(ismob(loc))
-		var/mob/user = loc
-		update_brightness(user)
+		update_brightness(loc)
 	else
 		update_brightness(null)
 	//message_admins("TOGGLE FLARE LIGHT DEBUG 1: fuel: [fuel] loc: [loc]")

@@ -163,8 +163,7 @@
 	if(welding)
 		var/mob/user
 		if(ismob(loc))
-			user = loc
-			user.SetLuminosity(-LIGHTER_LUMINOSITY)
+			loc.SetLuminosity(-LIGHTER_LUMINOSITY)
 		else
 			SetLuminosity(0)
 		STOP_PROCESSING(SSobj, src)
