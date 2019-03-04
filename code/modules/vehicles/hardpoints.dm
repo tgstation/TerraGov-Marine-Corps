@@ -391,7 +391,7 @@ Currently only has the tank hardpoints
 	var/obj/vehicle/multitile/root/cm_armored/tank/C = owner
 	var/obj/effect/overlay/temp/tank_laser/TL
 	if(C.is_zoomed)
-		delay = 20
+		delay = 15
 		TL = new /obj/effect/overlay/temp/tank_laser (T)
 
 	if(delay)
