@@ -46,6 +46,7 @@
 /obj/machinery/atmospherics/components/unary/cryo_cell/Initialize()
 	. = ..()
 	initialize_directions = dir
+	beaker = new /obj/item/reagent_container/glass/beaker/cryomix
 /*
 	radio = new(src)
 	radio.keyslot = new radio_key

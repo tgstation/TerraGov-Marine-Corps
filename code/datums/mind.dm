@@ -4,9 +4,6 @@
 
 	Guidelines for using minds properly:
 
-	-	Never mind.transfer_to(ghost). The var/current and var/original of a mind must always be of type mob/living!
-		ghost.mind is however used as a reference to the ghost's corpse
-
 	-	When creating a new mob for an existing IC character (e.g. cloning a dead guy or borging a brain of a human)
 		the existing mind of the old mob should be transfered to the new mob like so:
 

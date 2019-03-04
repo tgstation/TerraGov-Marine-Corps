@@ -47,7 +47,7 @@
 
 
 	user.set_interaction(src)
-	var/t = "<TT><B>Power Monitoring</B><HR>"
+	var/t
 
 	t += "<BR><HR><A href='?src=\ref[src];update=1'>Refresh</A>"
 	t += "<BR><HR><A href='?src=\ref[src];close=1'>Close</A>"
@@ -80,9 +80,11 @@
 				total_demand += A.lastused_total
 
 			t += "<HR>Total demand: [total_demand] W</FONT>"
-		t += "</PRE></TT>"
+		t += "</PRE>"
 
-	user << browse(t, "window=powcomp;size=420x900")
+	var/datum/browser/popup = new(user, "powcomp", "<div align='center'>Power Monitoring</div>", 420, 900)
+	popup.set_content(t)
+	popup.open(FALSE)
 	onclose(user, "powcomp")
 
 

@@ -14,9 +14,8 @@
  */
 
 // Run all strings to be used in an SQL query through this proc first to properly escape out injection attempts.
-/proc/sanitizeSQL(var/t as text)
-	var/sqltext = dbcon.Quote(t);
-	return copytext(sqltext, 2, lentext(sqltext));//Quote() adds quotes around input, we already do that
+/proc/sanitizeSQL(t)
+	return SSdbcore.Quote("[t]")
 
 /proc/format_table_name(table as text)
 	return CONFIG_GET(string/feedback_tableprefix) + table
@@ -423,3 +422,18 @@ proc/TextPreview(var/string,var/len=40)
 
 /proc/sanitize_filename(t)
 	return sanitize_simple(t, list("\n"="", "\t"="", "/"="", "\\"="", "?"="", "%"="", "*"="", ":"="", "|"="", "\""="", "<"="", ">"=""))
+
+
+/proc/sanitizediscord(text)
+	text = replacetext(text, "\improper", "")
+	text = replacetext(text, "\proper", "")
+	text = replacetext(text, "<@", "")
+	text = replacetext(text, "@here", "")
+	text = replacetext(text, "@everyone", "")
+	return text
+
+
+GLOBAL_LIST_INIT(zero_character_only, list("0"))
+GLOBAL_LIST_INIT(hex_characters, list("0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"))
+GLOBAL_LIST_INIT(alphabet, list("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"))
+GLOBAL_LIST_INIT(binary, list("0","1"))

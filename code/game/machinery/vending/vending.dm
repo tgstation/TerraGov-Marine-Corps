@@ -66,7 +66,7 @@
 	var/obj/item/spacecash/ewallet/ewallet
 	var/tipped_level = 0
 	var/hacking_safety = FALSE //1 = Will never shoot inventory or allow all access
-	var/wrenchable = TRUE
+	wrenchable = TRUE
 	var/isshared = FALSE
 
 /obj/machinery/vending/Initialize()
@@ -362,7 +362,7 @@
 			"Goldenrod" = 3,
 			"Green" = 4,
 		)
-		dat += "<br><hr><br><B>Access Panel</B><br>"
+		dat += "<br>"
 		for(var/wiredesc in vendwires)
 			var/is_uncut = src.wires & APCWireColorToFlag[vendwires[wiredesc]]
 			dat += "[wiredesc] wire: "
@@ -382,8 +382,11 @@
 		if (product_slogans != "")
 			dat += "The speaker switch is [src.shut_up ? "off" : "on"]. <a href='?src=\ref[src];togglevoice=[1]'>Toggle</a>"
 
-		user << browse(dat, "window=vending")
+		var/datum/browser/popup = new(user, "vending", "<div align='center'>Access Panel</div>")
+		popup.set_content(dat)
+		popup.open(FALSE)
 		onclose(user, "vending")
+
 
 
 	ui_interact(user)

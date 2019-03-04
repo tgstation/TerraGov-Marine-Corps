@@ -70,6 +70,9 @@
 			else if(E.status & LIMB_BROKEN)
 				. += 1.5
 
+	if(slowdown)
+		. += slowdown
+
 	if(mobility_aura)
 		. -= 0.1 + 0.1 * mobility_aura
 

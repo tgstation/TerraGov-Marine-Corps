@@ -474,7 +474,7 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define HUNTER_STEALTH_COOLDOWN					50 //5 seconds
 #define HUNTER_STEALTH_WALK_PLASMADRAIN			2
 #define HUNTER_STEALTH_RUN_PLASMADRAIN			5
-#define HUNTER_STEALTH_STILL_ALPHA				13 //95% transparency
+#define HUNTER_STEALTH_STILL_ALPHA				25 //90% transparency
 #define HUNTER_STEALTH_WALK_ALPHA				38 //85% transparency
 #define HUNTER_STEALTH_RUN_ALPHA				128 //50% transparency
 #define HUNTER_STEALTH_STEALTH_DELAY			30 //3 seconds before 95% stealth
@@ -526,6 +526,8 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define CRUSHER_CRESTTOSS_COOLDOWN		6 SECONDS
 #define CRUSHER_STOMP_COST				80
 #define CRUSHER_STOMP_COOLDOWN 			20 SECONDS
+#define CRUSHER_STOMP_LOWER_DMG			80
+#define CRUSHER_STOMP_UPPER_DMG			100
 
 //carrier defines
 

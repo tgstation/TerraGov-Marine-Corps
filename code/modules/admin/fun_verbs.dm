@@ -1111,3 +1111,81 @@ GLOBAL_LIST_EMPTY(custom_outfits)
 
 	log_admin("[key_name(usr)] updated the appearance of [key_name(H)].")
 	message_admins("[ADMIN_TPMONTY(usr)] updated the appearance of [ADMIN_TPMONTY(H)].")
+
+
+/datum/admins/proc/offer(var/mob/M in GLOB.mob_list)
+	set category = "Fun"
+	set name = "Offer Mob"
+
+	if(!check_rights(R_FUN))
+		return
+
+	if(!isliving(M))
+		return
+
+	var/mob/living/L = M
+
+	if(L.key || L.ckey)
+		if(alert("This mob has a player inside, are you sure you want to proceed?", "WARNING", "Yes", "No") != "Yes")
+			return
+		L.taken = FALSE
+		var/mob/dead/observer/ghost = L.ghostize(FALSE)
+		if(ghost)
+			ghost.timeofdeath = world.time
+	else if(L.taken)
+		if(alert("This mob has been offered, are you sure you want to proceed?", "Warning", "Yes", "No") != "Yes")
+			return
+		L.taken = FALSE
+
+	if(alert("Are you sure?", "Offer Mob", "Yes", "No") != "Yes")
+		return
+	for(var/i in GLOB.dead_mob_list)
+		var/mob/dead/D = i
+		to_chat(D, "<br><hr><span class='boldnotice'>A mob is being offered! Name: [L.name] \[<a href='byond://?src=[REF(D)];claim=[REF(L)]'>CLAIM</a>\]</span><hr><br>")
+
+	log_admin("[key_name(usr)] has offered [key_name_admin(M)].")
+	message_admins("[ADMIN_TPMONTY(usr)] has offered [ADMIN_TPMONTY(M)].")
+
+
+/datum/admins/proc/change_hivenumber(mob/living/carbon/Xenomorph/X in GLOB.xeno_mob_list)
+	set category = "Fun"
+	set name = "Change Hivenumber"
+	set desc = "Set the hivenumber of a xenomorph."
+
+	if(!check_rights(R_FUN))
+		return
+
+	if(!istype(X))
+		return
+
+	var/hivenumber_status = X.hivenumber
+
+	var/list/namelist = list()
+	for(var/Y in hive_datum)
+		var/datum/hive_status/H = Y
+		namelist += H.name
+
+	var/newhive = input(src, "Select a hive.", null, null) in namelist
+
+	var/newhivenumber
+	switch(newhive)
+		if("Normal")
+			newhivenumber = XENO_HIVE_NORMAL
+		if("Corrupted")
+			newhivenumber = XENO_HIVE_CORRUPTED
+		if("Alpha")
+			newhivenumber = XENO_HIVE_ALPHA
+		if("Beta")
+			newhivenumber = XENO_HIVE_BETA
+		if("Zeta")
+			newhivenumber = XENO_HIVE_ZETA
+		else
+			return
+
+	if(!istype(X) || X.gc_destroyed || !SSticker || X.hivenumber != hivenumber_status)
+		return
+
+	X.set_hive_number(newhivenumber)
+
+	log_admin("[key_name(src)] changed hivenumber of [X] to [newhive].")
+	message_admins("[ADMIN_TPMONTY(usr)] changed hivenumber of [ADMIN_TPMONTY(X)] to [newhive].")

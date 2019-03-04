@@ -83,6 +83,10 @@
 	update()
 	return
 
+/obj/item/implanter/codex
+	name = "implanter (codex)"
+	imp = /obj/item/implant/codex
+
 /obj/item/implanter/compressed
 	name = "implanter (C)"
 	icon_state = "cimplanter1"

@@ -11,7 +11,8 @@ GLOBAL_LIST_INIT(bitfields, list(
 		"COLOR" = R_COLOR,
 		"VAREDIT" = R_VAREDIT,
 		"SOUND" = R_SOUND,
-		"SPAWN" = R_SPAWN
+		"SPAWN" = R_SPAWN,
+		"DBRANKS" = R_DBRANKS
 		),
 	"stat" = list(
 		"BROKEN" = BROKEN,
@@ -39,6 +40,7 @@ GLOBAL_LIST_INIT(bitfields, list(
 		"GUN_POLICE" = GUN_POLICE,
 		"GUN_ENERGY" = GUN_ENERGY,
 		"GUN_LOAD_INTO_CHAMBER" = GUN_LOAD_INTO_CHAMBER,
+		"GUN_SHOTGUN_CHAMBER" = GUN_SHOTGUN_CHAMBER,
 		),
 	"be_special" = list(
 		"BE_ALIEN" = BE_ALIEN,

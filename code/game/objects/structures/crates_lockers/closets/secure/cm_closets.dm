@@ -15,7 +15,7 @@
 /obj/structure/closet/secure_closet/marine/Initialize()
 	. = ..()
 	new /obj/item/clothing/shoes/marine(src)
-	switch(GLOB.map_tag)
+	switch(SSmapping.config.map_name)
 		if(MAP_ICE_COLONY)
 			new /obj/item/clothing/mask/rebreather/scarf(src)
 	if(closet_squad)
@@ -192,7 +192,7 @@
 
 
 
-// MARINE MEDIC
+// SQUAD CORPSMAN-''
 /obj/structure/closet/secure_closet/marine/medic
 	slotlocked = 1
 	slotlocktype = "medic"
@@ -206,7 +206,7 @@
 	new /obj/item/roller/medevac(src)
 	new /obj/item/device/defibrillator(src)
 	new /obj/item/clothing/suit/storage/marine(src)
-	new /obj/item/clothing/head/helmet/marine/medic(src)
+	new /obj/item/clothing/head/helmet/marine/corpsman(src)
 	new /obj/item/clothing/under/marine/medic(src)
 
 /obj/structure/closet/secure_closet/marine/medic/alpha
@@ -259,9 +259,9 @@
 
 
 //MARINE COMMAND CLOSET
-/obj/structure/closet/secure_closet/commander
-	name = "commander's locker"
-	req_access = list(ACCESS_MARINE_COMMANDER)
+/obj/structure/closet/secure_closet/captain
+	name = "captain's locker"
+	req_access = list(ACCESS_MARINE_CAPTAIN)
 	icon_state = "secure_locked_commander"
 	icon_closed = "secure_unlocked_commander"
 	icon_locked = "secure_locked_commander"
@@ -269,24 +269,24 @@
 	icon_broken = "secure_locked_commander"
 	icon_off = "secure_closed_commander"
 
-/obj/structure/closet/secure_closet/commander/Initialize()
+/obj/structure/closet/secure_closet/captain/Initialize()
 	. = ..()
-	new /obj/item/storage/backpack/mcommander(src)
-	new /obj/item/clothing/shoes/marinechief/commander(src)
-	new /obj/item/clothing/gloves/marine/techofficer/commander(src)
+	new /obj/item/storage/backpack/captain(src)
+	new /obj/item/clothing/shoes/marinechief/captain(src)
+	new /obj/item/clothing/gloves/marine/techofficer/captain(src)
 	new /obj/item/clothing/under/marine/officer/command(src)
-	new /obj/item/clothing/head/beret/marine/commander(src)
+	new /obj/item/clothing/head/beret/marine/captain(src)
 	new /obj/item/clothing/glasses/sunglasses(src)
 	new /obj/item/device/radio/headset/almayer/mcom(src)
 	new /obj/item/clothing/shoes/white(src)
 	new /obj/item/clothing/gloves/white(src)
 	new /obj/item/clothing/under/whites(src)
 	new /obj/item/clothing/head/white_dress(src)
-	new /obj/item/clothing/suit/commander_cloak(src)
+	new /obj/item/clothing/suit/captain_cloak(src)
 
 /obj/structure/closet/secure_closet/securecom
-	name = "commander's secure box"
-	req_access = list(ACCESS_MARINE_COMMANDER)
+	name = "captain's secure box"
+	req_access = list(ACCESS_MARINE_CAPTAIN)
 	desc = "You could probably get court-marshaled just by looking at this..."
 	icon = 'icons/Marine/Marine_Lockers.dmi'
 	icon_state = "commander_safe"
@@ -347,7 +347,7 @@
 	new /obj/item/clothing/gloves/white(src)
 	new /obj/item/clothing/under/whites(src)
 	new /obj/item/clothing/head/white_dress(src)
-	switch(GLOB.map_tag)
+	switch(SSmapping.config.map_name)
 		if(MAP_ICE_COLONY)
 			new /obj/item/clothing/mask/rebreather/scarf(src)
 			new /obj/item/clothing/mask/rebreather/scarf(src)
@@ -385,7 +385,7 @@
 	new /obj/item/clothing/head/white_dress(src)
 
 /obj/structure/closet/secure_closet/warrant_officer
-	name = "chief MP's locker"
+	name = "Command Master at Arms's locker"
 	req_access = list(ACCESS_MARINE_BRIG)
 	icon_state = "secure_locked_warrant"
 	icon_closed = "secure_unlocked_warrant"
@@ -466,7 +466,7 @@
 	new /obj/item/clothing/head/surgery/green(src)
 	new /obj/item/clothing/glasses/hud/health(src)
 	new /obj/item/clothing/suit/surgical(src)
-	switch(GLOB.map_tag)
+	switch(SSmapping.config.map_name)
 		if(MAP_ICE_COLONY)
 			new /obj/item/clothing/suit/storage/snow_suit/doctor(src)
 			new /obj/item/clothing/mask/rebreather/scarf(src)

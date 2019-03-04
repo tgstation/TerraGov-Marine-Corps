@@ -266,6 +266,8 @@
 	reload_sound = 'sound/weapons/gun_rifle_reload.ogg'
 	fire_sound = 'sound/weapons/Laser.ogg'
 	matter = list("metal" = 2000)
+	load_method = CELL //codex
+
 	ammo = /datum/ammo/energy/lasgun
 	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = 4
@@ -295,6 +297,8 @@
 	force = 20 //Large and hefty! Includes stock bonus.
 	icon_state = "m43"
 	item_state = "m43"
+	max_shots = 50 //codex stuff
+	load_method = CELL //codex stuff
 	ammo = /datum/ammo/energy/lasgun/M43
 	cell_type = null
 	charge_cost = M37_STANDARD_AMMO_COST
@@ -347,7 +351,7 @@
 			to_chat(user, "<span class='warning'>You attempt to toggle on [src]'s overcharge mode but your battery pack lacks adequate charge to do so.</span>")
 			return
 		//While overcharge is active, double ammo consumption, and
-		playsound(user, 'sound/weapons/emitter.ogg', 15, 0, 2)
+		playsound(user, 'sound/weapons/emitter.ogg', 5, 0, 2)
 		charge_cost = M37_OVERCHARGE_AMMO_COST
 		ammo = GLOB.ammo_list[/datum/ammo/energy/lasgun/M43/overcharge]
 		fire_delay = M37_OVERCHARGE_FIRE_DELAY // 1 shot per second fire rate
@@ -355,7 +359,7 @@
 		to_chat(user, "[icon2html(src, user)] You [overcharge? "<B>disable</b>" : "<B>enable</b>" ] [src]'s overcharge mode.")
 		overcharge = TRUE
 	else
-		playsound(user, 'sound/weapons/emitter2.ogg', 15, 0, 2)
+		playsound(user, 'sound/weapons/emitter2.ogg', 5, 0, 2)
 		charge_cost = M37_STANDARD_AMMO_COST
 		ammo = GLOB.ammo_list[/datum/ammo/energy/lasgun/M43]
 		fire_delay = CONFIG_GET(number/combat_define/low_fire_delay)

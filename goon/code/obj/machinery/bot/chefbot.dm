@@ -45,11 +45,11 @@
 
 /obj/machinery/bot/chefbot/proc/yell()
 	if(prob(50))
-		var/obj/item/weapon/reagent_containers/food/snacks/shitfood
+		var/obj/item/reagent_container/food/snacks/shitfood
 		var/mob/living/carbon/human/thechef
 		var/mob/dork
 		var/is_thechef_the_chef = 0
-		for(var/obj/item/weapon/reagent_containers/food/snacks/probablyshitfood in view(7, src))
+		for(var/obj/item/reagent_container/food/snacks/probablyshitfood in view(7, src))
 			if(probablyshitfood in calledout)
 				continue
 			if(probablyshitfood.reagents)

@@ -162,6 +162,8 @@
 
 
 /mob/living/carbon/human/Destroy()
+	if(assigned_squad)
+		SSdirection.stop_tracking(assigned_squad.tracking_id, src) // failsafe to ensure they're definite not in the list
 	assigned_squad?.clean_marine_from_squad(src,FALSE)
 	remove_from_all_mob_huds()
 	GLOB.human_mob_list -= src
@@ -1293,11 +1295,12 @@
 	set name = "View Crew Manifest"
 	set category = "IC"
 
-	var/dat
-	dat += "<h4>Crew Manifest</h4>"
-	dat += data_core.get_manifest()
+	var/dat = data_core.get_manifest()
 
-	src << browse(dat, "window=manifest;size=370x420;can_close=1")
+	var/datum/browser/popup = new(src, "manifest", "<div align='center'>Crew Manifest</div>", 370, 420)
+	popup.set_content(dat)
+	popup.open(FALSE)
+
 
 /mob/living/carbon/human/species
 	var/race = null
@@ -1456,7 +1459,6 @@
 		if(C.flags_armor_protection & FEET)
 			feet_exposed = 0
 
-	flavor_text += "\n\n"
 	for (var/T in flavor_texts)
 		if(flavor_texts[T] && flavor_texts[T] != "")
 			if((T == "head" && head_exposed) || (T == "face" && face_exposed) || (T == "eyes" && eyes_exposed) || (T == "torso" && torso_exposed) || (T == "arms" && arms_exposed) || (T == "hands" && hands_exposed) || (T == "legs" && legs_exposed) || (T == "feet" && feet_exposed))

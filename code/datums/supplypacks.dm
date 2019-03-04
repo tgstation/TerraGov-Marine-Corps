@@ -1917,7 +1917,7 @@ AMMO
 	group = "Ammo"
 
 /datum/supply_packs/mortar_ammo_incend
-	name = "M402 mortar ammo crate (x6 Incend)"
+	name = "M402 mortar ammo crate (x8 Incend)"
 	cost = RO_PRICE_PRICY
 	contains = list(
 					/obj/item/mortal_shell/incendiary,
