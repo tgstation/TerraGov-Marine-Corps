@@ -61,9 +61,9 @@
 	idle_power_usage = 2
 	active_power_usage = 4
 
-/obj/machinery/medical_help_button/attack_hand(mob/user)
+/obj/machinery/medical_help_button/attack_hand(mob/living/carbon/human/user)
 	add_fingerprint(user)
-	if(istype(user,/mob/living/carbon/Xenomorph))
+	if(!istype(user))
 		return
 	if(stat & (NOPOWER|BROKEN))
 		to_chat(user, "<span class='warning'>[src] doesn't seem to be working.</span>")
