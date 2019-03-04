@@ -1375,12 +1375,14 @@
 		C.next_move_slowdown += 8 //really slow down their next move, as if they stepped in sticky doo doo
 
 /datum/ammo/xeno/sticky/on_hit_obj(obj/O,obj/item/projectile/P)
-	drop_resin(get_turf(P))
+	var/turf = get_turf(O)
+	if(!turf)
+		turf = get_turf(P)
+	drop_resin(turf)
 
 /datum/ammo/xeno/sticky/on_hit_turf(turf/T,obj/item/projectile/P)
-	if(istype(T, /turf/closed) )
-		drop_resin(get_turf(P))
-		return
+	if(!T)
+		T = get_turf(P)
 	drop_resin(T)
 
 /datum/ammo/xeno/sticky/do_at_max_range(obj/item/projectile/P)
@@ -1394,9 +1396,9 @@
 			return
 		if(istype(O, /obj/effect/alien/egg))
 			return
-		if(istype(O, /obj/structure/mineral_door) || istype(O, /obj/effect/alien/resin) || istype(O, /obj/structure/bed))
+		if(istype(O, /obj/structure/mineral_door) || istype(O, /obj/effect/alien/resin) || istype(O, /obj/structure/bed/nest))
 			return
-		if(O.density && !(O.flags_atom & ON_BORDER))
+		if(O.density && !(O.flags_atom & ON_BORDER) && !O.throwpass)
 			return
 	new /obj/effect/alien/resin/sticky/thin(T)
 
@@ -1437,18 +1439,25 @@
 	damage = CONFIG_GET(number/combat_define/low_hit_damage)
 
 /datum/ammo/xeno/acid/heavy/on_hit_mob(mob/M,obj/item/projectile/P)
-	drop_acid(get_turf(M))
+	var/turf = get_turf(M)
+	if(!turf)
+		turf = get_turf(P)
+	drop_acid(turf)
+
 	if(istype(M,/mob/living/carbon))
 		var/mob/living/carbon/C = M
 		C.acid_process_cooldown = world.time
 
 /datum/ammo/xeno/acid/heavy/on_hit_obj(obj/O,obj/item/projectile/P)
-	drop_acid(get_turf(P))
+	var/turf = get_turf(O)
+	if(!turf)
+		turf = get_turf(P)
+	drop_acid(turf)
+
 
 /datum/ammo/xeno/acid/heavy/on_hit_turf(turf/T,obj/item/projectile/P)
-	if(istype(T, /turf/closed) )
-		drop_acid(get_turf(P))
-		return
+	if(!T)
+		T = get_turf(P)
 	drop_acid(T)
 
 /datum/ammo/xeno/acid/heavy/do_at_max_range(obj/item/projectile/P)

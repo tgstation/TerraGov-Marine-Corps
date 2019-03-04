@@ -198,3 +198,7 @@
 /mob/living/carbon/Xenomorph/Initialize()
 	. = ..()
 	update_spits()
+	for(var/path in actions) //Update the spit icon
+		if(istype(path, /datum/action/xeno_action/shift_spits))
+			var/datum/action/xeno_action/shift_spits/A = path
+			A.action_activate()
