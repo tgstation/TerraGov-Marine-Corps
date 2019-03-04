@@ -583,7 +583,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 
 	if(P.ammo.debilitate && stat != DEAD && ( damage || (P.ammo.flags_ammo_behavior & AMMO_IGNORE_RESIST) ) )  //They can't be dead and damage must be inflicted (or it's a xeno toxin).
 		//Predators and synths are immune to these effects to cut down on the stun spam. This should later be moved to their apply_effects proc, but right now they're just humans.
-		if(!isyautjastrict(src) && !(species.flags & IS_SYNTHETIC))
+		if(!isyautjastrict(src) && !(species.species_flags & IS_SYNTHETIC))
 			apply_effects(arglist(P.ammo.debilitate))
 
 	bullet_message(P) //We still want this, regardless of whether or not the bullet did damage. For griefers and such.
@@ -600,14 +600,14 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 			shrap.desc = "[shrap.desc] It looks like it was fired from [P.shot_from ? P.shot_from : "something unknown"]."
 			shrap.loc = organ
 			organ.embed(shrap)
-			if(!stat && !(species && species.flags & NO_PAIN))
+			if(!stat && !(species && species.species_flags & NO_PAIN))
 				emote("scream")
 				to_chat(src, "<span class='highdanger'>You scream in pain as the impact sends <B>shrapnel</b> into the wound!</span>")
 
 		if(P.ammo.flags_ammo_behavior & AMMO_INCENDIARY)
 			adjust_fire_stacks(rand(6,11))
 			IgniteMob()
-			if(!stat && !(species.flags & NO_PAIN))
+			if(!stat && !(species.species_flags & NO_PAIN))
 				emote("scream")
 				to_chat(src, "<span class='highdanger'>You burst into flames!! Stop drop and roll!</span>")
 		return 1
