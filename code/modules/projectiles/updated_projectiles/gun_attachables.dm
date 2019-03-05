@@ -76,6 +76,7 @@ Defined in conflicts.dm of the #defines folder.
 	var/bipod_deployed = FALSE //only used by bipod
 	var/current_rounds 	= 0 //How much it has.
 	var/max_rounds 		= 0 //How much ammo it can store
+	var/max_range		= 0
 	var/attach_applied = FALSE //Prevents it from getting picked up after being attached
 
 	var/attachment_action_type
@@ -823,7 +824,7 @@ Defined in conflicts.dm of the #defines folder.
 	attachment_action_type = /datum/action/item_action/toggle
 	//Some attachments may be fired. So here are the variables related to that.
 	var/datum/ammo/ammo = null //If it has a default bullet-like ammo.
-	var/max_range 		= 0 //Determines # of tiles distance the attachable can fire, if it's not a projectile.
+	max_range 		= 0 //Determines # of tiles distance the attachable can fire, if it's not a projectile.
 	var/type_of_casings = null
 	var/attachment_firing_delay = 0 //the delay between shots, for attachments that fires stuff
 	var/fire_sound = null //Sound to play when firing it alternately
