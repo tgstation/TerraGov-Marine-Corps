@@ -48,7 +48,7 @@ var/list/string_equip_flags = list( "suit slot" = ITEM_SLOT_OCLOTHING,
 
 /obj/item/clothing/get_mechanics_info()
 	var/list/armor_strings = list()
-	
+
 	var/list/entries = SScodex.retrieve_entries_for_string(name)
 	var/datum/codex_entry/general_entry = LAZYACCESS(entries, 1)
 	if(general_entry && general_entry.mechanics_text)
@@ -125,8 +125,12 @@ var/list/string_equip_flags = list( "suit slot" = ITEM_SLOT_OCLOTHING,
 	if(allowed)
 		armor_strings += "<br><U>You can carry the following in it's storage slot</U>:"
 		for(var/X in allowed)
-			var/obj/item/A = X
-			armor_strings += "[initial(A.name)]"
+			var/obj/B = X
+			armor_strings += "[initial(B.name)]"
+
+	if(slots)
+		var/obj/item/clothing/tie/A
+		armor_strings += "<br>This item has an internal inventory of [A.slots] slots."
 
 	. += jointext(armor_strings, "<br>")
 
