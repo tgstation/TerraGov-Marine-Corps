@@ -585,7 +585,7 @@ What a mess.*/
 			return selection.fields["img"]
 
 /obj/machinery/computer/secure_data/emp_act(severity)
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		..(severity)
 		return
 

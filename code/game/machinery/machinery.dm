@@ -96,7 +96,7 @@ Class Procs:
 /obj/machinery
 	name = "machinery"
 	icon = 'icons/obj/stationobjs.dmi'
-	var/stat = 0
+	var/machine_stat = NOFLAGS
 	var/emagged = 0
 	var/use_power = IDLE_POWER_USE
 		//0 = dont run the auto
@@ -159,7 +159,7 @@ Class Procs:
 //			L.update_mobility()
 
 /obj/machinery/proc/is_operational()
-	return !(stat & (NOPOWER|BROKEN|MAINT))
+	return !(machine_stat & (NOPOWER|BROKEN|MAINT))
 
 /obj/machinery/proc/deconstruct()
 	return
@@ -182,7 +182,7 @@ Class Procs:
 	return PROCESS_KILL
 
 /obj/machinery/emp_act(severity)
-	if(use_power && stat == 0)
+	if(use_power && machine_stat == 0)
 		use_power(7500/severity)
 	new /obj/effect/overlay/temp/emp_sparks (loc)
 	..()
@@ -221,9 +221,9 @@ Class Procs:
 
 /obj/machinery/power_change()
 	if(!powered(power_channel) && (machine_current_charge <= 0))
-		stat |= NOPOWER
+		machine_stat |= NOPOWER
 	else
-		stat &= ~NOPOWER
+		machine_stat &= ~NOPOWER
 
 /obj/machinery/proc/auto_use_power()
 	if(!powered(power_channel))
@@ -256,7 +256,7 @@ Class Procs:
 	return !inoperable(additional_flags)
 
 /obj/machinery/proc/inoperable(var/additional_flags = 0)
-	return (stat & (NOPOWER|BROKEN|additional_flags))
+	return (machine_stat & (NOPOWER|BROKEN|additional_flags))
 
 /obj/machinery/Topic(href, href_list)
 	..()
@@ -490,17 +490,17 @@ obj/machinery/proc/med_scan(mob/living/carbon/human/H, dat, var/list/known_impla
 				break
 		if(istype(e, /datum/limb/chest) && occ["lung_ruptured"])
 			lung_ruptured = "Lung ruptured:<br>"
-		if(e.status & LIMB_SPLINTED)
+		if(e.limb_status & LIMB_SPLINTED)
 			splint = "Splinted:<br>"
-		if(e.status & LIMB_STABILIZED)
+		if(e.limb_status & LIMB_STABILIZED)
 			stabilized = "Stabilized:<br>"
-		if(e.status & LIMB_BLEEDING)
+		if(e.limb_status & LIMB_BLEEDING)
 			bled = "Bleeding:<br>"
-		if(e.status & LIMB_BROKEN)
+		if(e.limb_status & LIMB_BROKEN)
 			AN = "[e.broken_description]:<br>"
-		if(e.status & LIMB_NECROTIZED)
+		if(e.limb_status & LIMB_NECROTIZED)
 			necrosis = "Necrotizing:<br>"
-		if(e.status & LIMB_ROBOT)
+		if(e.limb_status & LIMB_ROBOT)
 			robot = "Prosthetic:<br>"
 		if(e.surgery_open_stage)
 			open = "Open:<br>"
@@ -545,7 +545,7 @@ obj/machinery/proc/med_scan(mob/living/carbon/human/H, dat, var/list/known_impla
 
 		if(!AN && !open && !infected & !imp && !necrosis && !bled && !internal_bleeding && !lung_ruptured)
 			AN = "None:"
-		if(!(e.status & LIMB_DESTROYED))
+		if(!(e.limb_status & LIMB_DESTROYED))
 			dat += "<td>[e.display_name]</td><td>[e.burn_dam]</td><td>[e.brute_dam]</td><td>[robot][bled][AN][splint][stabilized][open][infected][necrosis][imp][internal_bleeding][lung_ruptured]</td>"
 		else
 			dat += "<td>[e.display_name]</td><td>-</td><td>-</td><td>Not Found</td>"

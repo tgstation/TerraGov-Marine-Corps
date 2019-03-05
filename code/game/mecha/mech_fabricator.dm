@@ -404,7 +404,7 @@
 		return process_queue()//Then reprocess it
 	temp = null
 	while(part)
-		if(stat&(NOPOWER|BROKEN))
+		if(machine_stat & (NOPOWER|BROKEN))
 			return 0
 		if(!check_resources(part))
 			src.visible_message("[icon2html(src, viewers(src))] <b>[src]</b> beeps, \"Not enough resources. Queue processing stopped\".")

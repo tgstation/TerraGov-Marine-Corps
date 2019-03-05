@@ -27,7 +27,7 @@
 	updateUsrDialog()
 
 /obj/machinery/tank_part_fabricator/update_icon()
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		icon_state = "drone_fab_nopower"
 		return
 	if(busy)
@@ -151,7 +151,7 @@
 
 /obj/machinery/tank_part_fabricator/attackby(obj/item/W, mob/user)
 	if((istype(W, /obj/item/hardpoint) || istype(W, /obj/item/ammo_magazine/tank)) && user.a_intent != INTENT_HARM)
-		if(stat & (NOPOWER|BROKEN))
+		if(machine_stat & (NOPOWER|BROKEN))
 			return
 		if(busy)
 			to_chat(usr, "<span class='warning'>[src] is busy. Please wait for completion of previous operation.</span>")
@@ -160,7 +160,7 @@
 			loaded_mod = W
 		else
 			to_chat(user, "<span class='warning'>[W] appears to be stuck to your hands.</span>")
-	else if(iscrowbar(W) && stat & (NOPOWER|BROKEN) && !QDELETED(loaded_mod))
+	else if(iscrowbar(W) && machine_stat & (NOPOWER|BROKEN) && !QDELETED(loaded_mod))
 		user.visible_message("<span class='warning'>[user] starts to pry [src]'s maintenance slot open.</span>", "<span class='notice'>You start to pry [loaded_mod] out of [src]'s maintenance slot...</span>")
 		if(!do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD) || QDELETED(src) || QDELETED(loaded_mod))
 			return
@@ -170,7 +170,7 @@
 		return ..()
 
 /obj/machinery/tank_part_fabricator/proc/build_tank_part(part_type, cost, mob/user)
-	if(stat & (NOPOWER|BROKEN) || busy)
+	if(machine_stat & (NOPOWER|BROKEN) || busy)
 		return
 	if(tank_points < cost)
 		to_chat(user, "<span class='warning'>You don't have enough points to build that.</span>")
@@ -229,7 +229,7 @@
 	loaded_mod = null
 
 /obj/machinery/tank_part_fabricator/proc/refund_tank_part()
-	if(stat & (NOPOWER|BROKEN) || busy || QDELETED(loaded_mod))
+	if(machine_stat & (NOPOWER|BROKEN) || busy || QDELETED(loaded_mod))
 		return
 	tank_points += calculate_mod_value()
 	visible_message("<span class='notice'>[src] starts disassembling [loaded_mod].</span>")
@@ -238,7 +238,7 @@
 	addtimer(CALLBACK(src, .proc/set_busy, FALSE), 10 SECONDS)
 
 /obj/machinery/tank_part_fabricator/proc/restore_tank_part()
-	if(stat & (NOPOWER|BROKEN) || busy || QDELETED(loaded_mod))
+	if(machine_stat & (NOPOWER|BROKEN) || busy || QDELETED(loaded_mod))
 		return
 	tank_points -= calculate_repair_price()
 	if(istype(loaded_mod, /obj/item/hardpoint))

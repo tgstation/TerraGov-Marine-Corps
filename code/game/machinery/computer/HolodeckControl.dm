@@ -494,7 +494,7 @@ var/global/list/holodeck_programs = list(
 	to_chat(user, "The device is a solid button, there's nothing you can do with it!")
 
 /obj/machinery/readybutton/attack_hand(mob/user as mob)
-	if(user.stat || stat & (NOPOWER|BROKEN))
+	if(user.stat || machine_stat & (NOPOWER|BROKEN))
 		to_chat(user, "This device is not powered.")
 		return
 

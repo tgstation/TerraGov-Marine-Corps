@@ -129,7 +129,7 @@
 
 
 	process()
-		if(stat & NOPOWER)
+		if(machine_stat & NOPOWER)
 			on = 0
 
 		// Sanity checks:
@@ -248,7 +248,7 @@
 		return src.attack_hand(user)
 
 	attack_hand(mob/user as mob)
-		if(stat & (BROKEN|NOPOWER))
+		if(machine_stat & (BROKEN|NOPOWER))
 			return
 		user.set_interaction(src)
 		var/dat
@@ -277,7 +277,7 @@
 		onclose(user, "magnet")
 
 	Topic(href, href_list)
-		if(stat & (BROKEN|NOPOWER))
+		if(machine_stat & (BROKEN|NOPOWER))
 			return
 		usr.set_interaction(src)
 		src.add_fingerprint(usr)
@@ -345,7 +345,7 @@
 
 		while(moving && rpath.len >= 1)
 
-			if(stat & (BROKEN|NOPOWER))
+			if(machine_stat & (BROKEN|NOPOWER))
 				break
 
 			looping = 1

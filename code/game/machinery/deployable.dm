@@ -97,7 +97,7 @@
 					src.explode()
 				return
 	emp_act(severity)
-		if(stat & (BROKEN|NOPOWER))
+		if(machine_stat & (BROKEN|NOPOWER))
 			return
 		if(prob(50/severity))
 			locked = !locked

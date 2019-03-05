@@ -82,10 +82,11 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 /obj/vehicle/multitile/root/cm_armored/Destroy()
 	for(var/i in linked_objs)
 		var/obj/O = linked_objs[i]
-		if(O == src) continue
+		if(O == src)
+			continue
 		qdel(O, 1) //Delete all of the hitboxes etc
 
-	. = ..()
+	return ..()
 
 //What to do if all ofthe installed modules have been broken
 /obj/vehicle/multitile/root/cm_armored/proc/handle_all_modules_broken()
@@ -95,27 +96,28 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	var/list/slots = get_activatable_hardpoints()
 	for(var/slot in slots)
 		var/obj/item/hardpoint/HP = hardpoints[slot]
-		if(!HP) continue
-		HP.deactivate()
+		HP?.deactivate()
 
 /obj/vehicle/multitile/root/cm_armored/proc/remove_all_players()
 	return
 
 //The basic vehicle code that moves the tank, with movement delay implemented
-/obj/vehicle/multitile/root/cm_armored/relaymove(var/mob/user, var/direction)
-	if(world.time < next_move) return
+/obj/vehicle/multitile/root/cm_armored/relaymove(mob/user, direction)
+	if(world.time < next_move)
+		return
 	next_move = world.time + move_delay * misc_ratios["move"]
 
 	return ..()
 
 //Same thing but for rotations
-/obj/vehicle/multitile/root/cm_armored/try_rotate(var/deg, var/mob/user, var/force = 0)
-	if(world.time < next_move && !force) return
+/obj/vehicle/multitile/root/cm_armored/try_rotate(deg, mob/user, force = FALSE)
+	if(world.time < next_move && !force)
+		return
 	next_move = world.time + move_delay * misc_ratios["move"] * (force ? 2 : 3) //3 for a 3 point turn, idk
 	return ..()
 
 /obj/vehicle/multitile/root/cm_armored/proc/can_use_hp(var/mob/M)
-	return 1
+	return TRUE
 
 //Used by the gunner to swap which module they are using
 //e.g. from the minigun to the smoke launcher
@@ -130,15 +132,15 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 
 	var/list/slots = get_activatable_hardpoints()
 
-	if(!slots.len)
+	if(!length(slots))
 		to_chat(usr, "<span class='warning'>All of the modules can't be activated or are broken.</span>")
 		return
 
 	var/slot = input("Select a slot.") in slots
 
 	var/obj/item/hardpoint/HP = hardpoints[slot]
-	if(!HP)
-		to_chat(usr, "<span class='warning'>There's nothing installed on that hardpoint.</span>")
+	if(!HP?.health > 0)
+		to_chat(usr, "<span class='warning'>That module is either missing or broken.</span>")
 		return
 
 	active_hp = slot
@@ -165,8 +167,8 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	var/slot = input("Select a slot.") in slots
 
 	var/obj/item/hardpoint/HP = hardpoints[slot]
-	if(!HP.backup_clips.len)
-		to_chat(usr, "<span class='warning'>That module has no remaining backup clips.</span>")
+	if(!HP?.backup_clips.len)
+		to_chat(usr, "<span class='warning'>That module is either missing or has no remaining backup clips.</span>")
 		return
 
 	var/obj/item/ammo_magazine/A = HP.backup_clips[1] //LISTS START AT 1 REEEEEEEEEEEE
@@ -222,14 +224,14 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 			C.y_pos = j
 			C.z_pos = 0
 
-			var/obj/vehicle/multitile/hitbox/cm_armored/H = new(locate(src.x + C.x_pos, src.y + C.y_pos, src.z))
+			var/obj/vehicle/multitile/hitbox/cm_armored/H = new(locate(x + C.x_pos, y + C.y_pos, z))
 			H.setDir(dir)
 			H.root = src
 			linked_objs[C] = H
 
 /obj/vehicle/multitile/root/cm_armored/load_entrance_marker(var/datum/coords/rel_pos)
 
-	entrance = new(locate(src.x + rel_pos.x_pos, src.y + rel_pos.y_pos, src.z))
+	entrance = new(locate(x + rel_pos.x_pos, y + rel_pos.y_pos, z))
 	entrance.master = src
 	linked_objs[rel_pos] = entrance
 
@@ -250,16 +252,18 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		else
 			if((user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer >= SKILL_ENGINEER_METAL) || isobserver(user))
 				switch(PERCENT(HP.health / HP.maxhealth))
-					if(0)
+					if(-INFINITY to 0)
 						to_chat(user, "There is a broken [HP] installed on [i] hardpoint slot.")
-					if(1 to 33)
+					if(0.1 to 33)
 						to_chat(user, "There is a heavily damaged [HP] installed on [i] hardpoint slot.")
-					if(34 to 66)
+					if(33.1 to 66)
 						to_chat(user, "There is a damaged [HP] installed on [i] hardpoint slot.")
-					if(67 to 90)
+					if(66.1 to 90)
 						to_chat(user, "There is a lightly damaged [HP] installed on [i] hardpoint slot.")
-					if(91 to 100)
+					if(90.1 to 100)
 						to_chat(user, "There is a non-damaged [HP] installed on [i] hardpoint slot.")
+					if(100.1 to INFINITY) //you never know.
+						to_chat(user, "There is a reinforced [HP] installed on [i] hardpoint slot.")
 			else
 				to_chat(user, "There is a [HP.health <= 0 ? "broken" : "working"] [HP] installed on the [i] hardpoint slot.")
 
@@ -328,7 +332,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 /obj/vehicle/multitile/hitbox/cm_armored/Destroy()
 	var/obj/vehicle/multitile/root/cm_armored/C = root
 	C?.take_damage_type(1000000, "abstract")
-	..()
+	return ..()
 
 //Tramplin' time, but other than that identical
 /obj/vehicle/multitile/hitbox/cm_armored/Bump(atom/A)
@@ -438,35 +442,37 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 			M.tank_collision(src)
 
 //Can't hit yourself with your own bullet
-/obj/vehicle/multitile/hitbox/cm_armored/get_projectile_hit_chance(var/obj/item/projectile/P)
+/obj/vehicle/multitile/hitbox/cm_armored/get_projectile_hit_chance(obj/item/projectile/P)
 	if(P.firer == root) //Don't hit our own hitboxes
-		return 0
+		return FALSE
 
-	. = ..(P)
+	return ..()
 
 //For the next few, we're just tossing the handling up to the rot object
-/obj/vehicle/multitile/hitbox/cm_armored/bullet_act(var/obj/item/projectile/P)
+/obj/vehicle/multitile/hitbox/cm_armored/bullet_act(obj/item/projectile/P)
 	return root.bullet_act(P)
 
-/obj/vehicle/multitile/hitbox/cm_armored/ex_act(var/severity)
+/obj/vehicle/multitile/hitbox/cm_armored/ex_act(severity)
 	return root.ex_act(severity)
 
-/obj/vehicle/multitile/hitbox/cm_armored/attackby(var/obj/item/O, var/mob/user)
+/obj/vehicle/multitile/hitbox/cm_armored/attackby(obj/item/O, mob/user)
 	return root.attackby(O, user)
 
 /obj/vehicle/multitile/hitbox/cm_armored/attack_alien(var/mob/living/carbon/Xenomorph/M, var/dam_bonus)
 	return root.attack_alien(M, dam_bonus)
 
 //A bit icky, but basically if you're adjacent to the tank hitbox, you are then adjacent to the root object
-/obj/vehicle/multitile/root/cm_armored/Adjacent(var/atom/A)
+/obj/vehicle/multitile/root/cm_armored/Adjacent(atom/A)
 	for(var/i in linked_objs)
 		var/obj/vehicle/multitile/hitbox/cm_armored/H = linked_objs[i]
-		if(!H) continue
-		if(get_dist(H, A) <= 1) return 1 //Using get_dist() to avoid hidden code that recurs infinitely here
-	. = ..()
+		if(!H)
+			continue
+		if(get_dist(H, A) <= 1)
+			return TRUE //Using get_dist() to avoid hidden code that recurs infinitely here
+	return ..()
 
 //Returns the ratio of damage to take, just a housekeeping thing
-/obj/vehicle/multitile/root/cm_armored/proc/get_dmg_multi(var/type)
+/obj/vehicle/multitile/root/cm_armored/proc/get_dmg_multi(type)
 	if(!dmg_multipliers.Find(type))
 		return 0
 	return dmg_multipliers[type] * dmg_multipliers["all"]
@@ -484,11 +490,11 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	else
 		log_attack("[src] took [damage] [type] damage from [attacker].")
 
-/obj/vehicle/multitile/root/cm_armored/get_projectile_hit_chance(var/obj/item/projectile/P)
-	if(P.firer == src) //Don't hit our own hitboxes
-		return 0
+/obj/vehicle/multitile/root/cm_armored/get_projectile_hit_chance(obj/item/projectile/P)
+	if(P.firer == src) //Don't hit ourself.
+		return FALSE
 
-	. = ..(P)
+	return ..()
 
 //Differentiates between damage types from different bullets
 //Applies a linear transformation to bullet damage that will generally decrease damage done
@@ -506,11 +512,11 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 /obj/vehicle/multitile/root/cm_armored/ex_act(var/severity)
 
 	switch(severity)
-		if(1.0)
+		if(1)
 			take_damage_type(rand(250, 350), "explosive") //Devastation level explosives are anti-tank and do real damage.
 			take_damage_type(rand(20, 40), "slash")
 
-		if(2.0)
+		if(2)
 			take_damage_type(rand(30, 40), "explosive") //Heavy explosions do some damage, but are largely deferred by the armour/bulk.
 			take_damage_type(rand(10, 15), "slash")
 
@@ -537,7 +543,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		M.animation_attack_on(src)
 		M.visible_message("<span class='danger'>\The [M] lunges at [src]!</span>", \
 		"<span class='danger'>You lunge at [src]!</span>")
-		return 0
+		return FALSE
 
 	else
 		playsound(loc, "alien_claw_metal", 25, 1)
@@ -553,7 +559,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	healthcheck()
 
 //Special case for entering the vehicle without using the verb
-/obj/vehicle/multitile/root/cm_armored/attack_hand(var/mob/user)
+/obj/vehicle/multitile/root/cm_armored/attack_hand(mob/user)
 
 	if(user.loc == entrance.loc)
 		handle_player_entrance(user)
@@ -561,7 +567,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 
 	. = ..()
 
-/obj/vehicle/multitile/root/cm_armored/Entered(var/atom/movable/A)
+/obj/vehicle/multitile/root/cm_armored/Entered(atom/movable/A)
 	if(istype(A, /obj) && !istype(A, /obj/item/ammo_magazine/tank))
 		A.forceMove(src.loc)
 		return
@@ -569,7 +575,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	return ..()
 
 //Need to take damage from crushers, probably too little atm
-/obj/vehicle/multitile/root/cm_armored/Bumped(var/atom/A)
+/obj/vehicle/multitile/root/cm_armored/Bumped(atom/A)
 	..()
 
 	if(istype(A, /mob/living/carbon/Xenomorph/Crusher))
@@ -625,7 +631,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 
 	. = ..()
 
-/obj/vehicle/multitile/root/cm_armored/proc/handle_hardpoint_repair(var/obj/item/O, var/mob/user)
+/obj/vehicle/multitile/root/cm_armored/proc/handle_hardpoint_repair(obj/item/O, mob/user)
 
 	//Need to the what the hell you're doing
 	if(user.mind?.cm_skills?.engineer && user.mind.cm_skills.engineer < SKILL_ENGINEER_MT)
@@ -717,7 +723,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	update_icon()
 
 //Relaoding stuff, pretty bare-bones and basic
-/obj/vehicle/multitile/root/cm_armored/proc/handle_ammomag_attackby(var/obj/item/ammo_magazine/AM, var/mob/user)
+/obj/vehicle/multitile/root/cm_armored/proc/handle_ammomag_attackby(obj/item/ammo_magazine/AM, mob/user)
 
 	//No skill checks for reloading
 	//Maybe I should delineate levels of skill for reloading, installation, and repairs?

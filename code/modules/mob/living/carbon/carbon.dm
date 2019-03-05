@@ -163,7 +163,7 @@
 /mob/living/carbon/proc/vomit()
 
 	var/mob/living/carbon/human/H = src
-	if(istype(H) && H.species.flags & IS_SYNTHETIC)
+	if(istype(H) && H.species.species_flags & IS_SYNTHETIC)
 		return //Machines don't throw up.
 
 	if(stat == DEAD) //Corpses don't puke

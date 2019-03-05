@@ -214,7 +214,7 @@ Currently only has the tank hardpoints
 
 /obj/item/hardpoint/primary/cannon/active_effect(var/turf/T)
 
-	if(ammo.current_rounds <= 0)
+	if(!ammo?.current_rounds > 0)
 		to_chat(usr, "<span class='warning'>This module does not have any ammo.</span>")
 		return
 
@@ -282,7 +282,7 @@ Currently only has the tank hardpoints
 
 /obj/item/hardpoint/primary/minigun/active_effect(var/turf/T)
 
-	if(ammo.current_rounds <= 0)
+	if(!ammo?.current_rounds > 0)
 		to_chat(usr, "<span class='warning'>This module does not have any ammo.</span>")
 		return
 	var/S = 'sound/weapons/tank_minigun_start.ogg'
@@ -357,7 +357,7 @@ Currently only has the tank hardpoints
 
 /obj/item/hardpoint/secondary/flamer/active_effect(var/turf/T)
 
-	if(ammo.current_rounds <= 0)
+	if(!ammo?.current_rounds > 0)
 		to_chat(usr, "<span class='warning'>This module does not have any ammo.</span>")
 		return
 
@@ -405,7 +405,7 @@ Currently only has the tank hardpoints
 
 /obj/item/hardpoint/secondary/towlauncher/active_effect(var/turf/T)
 
-	if(ammo.current_rounds <= 0)
+	if(!ammo?.current_rounds > 0)
 		to_chat(usr, "<span class='warning'>This module does not have any ammo.</span>")
 		return
 
@@ -455,7 +455,7 @@ Currently only has the tank hardpoints
 
 /obj/item/hardpoint/secondary/m56cupola/active_effect(var/turf/T)
 
-	if(ammo.current_rounds <= 0)
+	if(!ammo?.current_rounds > 0)
 		to_chat(usr, "<span class='warning'>This module does not have any ammo.</span>")
 		return
 
@@ -503,7 +503,7 @@ Currently only has the tank hardpoints
 
 /obj/item/hardpoint/secondary/grenade_launcher/active_effect(var/turf/T)
 
-	if(ammo.current_rounds <= 0)
+	if(!ammo?.current_rounds > 0)
 		to_chat(usr, "<span class='warning'>This module does not have any ammo.</span>")
 		return
 
@@ -564,7 +564,7 @@ Currently only has the tank hardpoints
 
 /obj/item/hardpoint/support/smoke_launcher/active_effect(var/turf/T)
 
-	if(ammo.current_rounds <= 0)
+	if(!ammo?.current_rounds > 0)
 		to_chat(usr, "<span class='warning'>This module does not have any ammo.</span>")
 		return
 
@@ -697,7 +697,7 @@ Currently only has the tank hardpoints
 
 /obj/item/hardpoint/support/artillery_module/deactivate()
 	var/obj/vehicle/multitile/root/cm_armored/tank/C = owner
-	if(!C.gunner)
+	if(!ismob(C.gunner))
 		return
 	var/mob/M = C.gunner
 	if(!M.client)

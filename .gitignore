@@ -6,6 +6,7 @@ Thumbs.db
 *.dmb
 *.lk
 *.backup
+*.dmm.before
 data/
 cfg/
 tmp/

@@ -91,7 +91,7 @@
 				return
 			var/datum/limb/l_arm/A = get_limb("l_arm")
 			var/datum/limb/r_arm/B = get_limb("r_arm")
-			if((!A || A.status & LIMB_DESTROYED) && (!B || B.status & LIMB_DESTROYED))
+			if((!A || A.limb_status & LIMB_DESTROYED) && (!B || B.limb_status & LIMB_DESTROYED))
 				to_chat(src, "You cannot dab without your arms.")
 				return
 
@@ -99,11 +99,11 @@
 			var/risk = rand (1, 100)
 			switch(risk)
 				if(1 to 3)
-					if(A || A.status && !LIMB_DESTROYED)
+					if(A || A.limb_status && !LIMB_DESTROYED)
 						A.droplimb()
 						message += " so hard their left arm goes flying off"
 				if(4 to 6)
-					if(B || B.status && !LIMB_DESTROYED)
+					if(B || B.limb_status && !LIMB_DESTROYED)
 						B.droplimb()
 						message += " so hard their right arm goes flying off"
 			message += "."

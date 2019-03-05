@@ -73,7 +73,7 @@
 
 
 /obj/machinery/biogenerator/interact(mob/user as mob)
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		return
 	user.set_interaction(src)
 	var/dat = "<TITLE>Biogenerator</TITLE>Biogenerator:<BR>"
@@ -122,7 +122,7 @@
 /obj/machinery/biogenerator/proc/activate()
 	if (usr.stat != 0)
 		return
-	if (src.stat != 0) //NOPOWER etc
+	if (src.machine_stat != 0) //NOPOWER etc
 		return
 	if(src.processing)
 		to_chat(usr, "<span class='warning'>The biogenerator is in the process of working.</span>")
@@ -203,7 +203,7 @@
 	return 1
 
 /obj/machinery/biogenerator/Topic(href, href_list)
-	if(stat & BROKEN) return
+	if(machine_stat & BROKEN) return
 	if(usr.stat || usr.is_mob_restrained()) return
 	if(!in_range(src, usr)) return
 
