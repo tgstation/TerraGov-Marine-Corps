@@ -53,8 +53,8 @@
 	ME.attach(src)
 	ME = new /obj/item/mecha_parts/mecha_equipment/antiproj_armor_booster(src)
 	ME.attach(src)
-	src.smoke_system.set_up(3, src)
-	src.smoke_system.attach(src)
+	smoke_system.set_up(3, src)
+	smoke_system.attach(src)
 	return
 
 /obj/mecha/combat/marauder/seraph/New()

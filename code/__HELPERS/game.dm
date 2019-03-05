@@ -417,9 +417,9 @@ datum/projectile_data
 	var/b = mixOneColor(weights, blues)
 	return rgb(r,g,b)
 
-/proc/mixOneColor(var/list/weight, var/list/color)
-	if (!weight || !color || length(weight)!=length(color))
-		return 0
+/proc/mixOneColor(list/weight, list/color)
+	if (!weight || !color || length(weight) != length(color))
+		return FALSE
 
 	var/contents = length(weight)
 	var/i
@@ -437,11 +437,7 @@ datum/projectile_data
 		mixedcolor += weight[i]*color[i]
 	mixedcolor = round(mixedcolor)
 
-	//until someone writes a formal proof for this algorithm, let's keep this in
-//	if(mixedcolor<0x00 || mixedcolor>0xFF)
-//		return 0
-	//that's not the kind of operation we are running here, nerd
-	mixedcolor=min(max(mixedcolor,0),255)
+	mixedcolor= CLAMP(mixedcolor, 0 ,255)
 
 	return mixedcolor
 

@@ -73,7 +73,8 @@
 	if(!t_loc)
 		return
 	var/list/newsmokes = list()
-	for(var/turf/T in get_adjacent_open_turfs(src))
+	for(var/a in get_adjacent_open_turfs(src))
+		var/turf/T = a
 		if(check_airblock(T)) //smoke can't spread that way
 			continue
 		apply_smoke_effect(T)
@@ -455,7 +456,7 @@ datum/effect_system/smoke_spread/tactical
 	chemholder = new()
 	chemholder.create_reagents(500)
 
-/datum/effect_system/smoke_spread/chem/set_up(datum/reagents/carry = null, radius = 1, loca, smoke_time, silent = FALSE)
+/datum/effect_system/smoke_spread/chem/set_up(datum/reagents/carry, radius = 1, loca, smoke_time, silent = FALSE)
 	if(isturf(loca))
 		location = loca
 	else
@@ -476,10 +477,7 @@ datum/effect_system/smoke_spread/tactical
 		var/where = "[AREACOORD(location)]"
 		if(carry.my_atom.fingerprintslast)
 			var/mob/M = get_mob_by_key(carry.my_atom.fingerprintslast)
-			var/more = ""
-			if(M)
-				more = "[ADMIN_LOOKUPFLW(M)] "
-			message_admins("Smoke: ([ADMIN_VERBOSEJMP(location)])[contained]. Key: [more ? more : carry.my_atom.fingerprintslast].")
+			message_admins("Smoke: ([ADMIN_VERBOSEJMP(location)])[contained]. Last associated key: [M ? ADMIN_TPMONTY(M) : carry.my_atom.fingerprintslast].")
 			log_game("A chemical smoke reaction has taken place in ([where])[contained]. Last touched by [carry.my_atom.fingerprintslast].")
 		else
 			message_admins("Smoke: ([ADMIN_VERBOSEJMP(location)])[contained]. No associated key.")
