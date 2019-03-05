@@ -1,0 +1,5 @@
+author: "Shadow-Quill"
+delete-after: True
+changes: 
+  - bugfix: "Fixed the evolution status of xenos showing they cannot evolve without an ovi'd queen, even though they can."
+  - rscdel: "Removes the \"evolution progress started\"/\"evolution progress halted\" parts of the queen's message when they grow/discard an ovipositor."
