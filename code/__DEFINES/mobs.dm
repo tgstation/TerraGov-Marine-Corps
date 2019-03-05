@@ -163,11 +163,29 @@ var/list/global_mutations = list() // list of hidden mutation things
 // =============================
 // hive types
 
+#define XENO_HIVE_NONE -1
 #define XENO_HIVE_NORMAL 1
 #define XENO_HIVE_CORRUPTED 2
 #define XENO_HIVE_ALPHA 3
 #define XENO_HIVE_BETA 4
 #define XENO_HIVE_ZETA 5
+
+// =============================
+// xeno tiers
+
+#define XENO_TIER_ZERO "zero" // god forgive me because i wont forgive myself
+#define XENO_TIER_ONE "one"
+#define XENO_TIER_TWO "two"
+#define XENO_TIER_THREE "three"
+#define XENO_TIER_FOUR "four"
+
+GLOBAL_LIST_INIT(xenotiers, list(XENO_TIER_ZERO, XENO_TIER_ONE, XENO_TIER_TWO, XENO_TIER_THREE, XENO_TIER_FOUR))
+
+// =============================
+// xeno slashing
+#define XENO_SLASHING_FORBIDDEN 0
+#define XENO_SLASHING_ALLOWED 1
+#define XENO_SLASHING_RESTRICTED 2
 
 //=================================================
 
@@ -453,7 +471,7 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define SPRAY_STRUCTURE_UPGRADE_BONUS 8
 #define SPRAY_MOB_UPGRADE_BONUS 4
 
-#define QUEEN_DEATH_LARVA_MULTIPLIER ( (upgrade+1) * 0.17) ) // 85/68/51/34 for ancient/elder emp/elder queen/queen
+#define QUEEN_DEATH_LARVA_MULTIPLIER ( (upgrade+1) * 0.17) // 85/68/51/34 for ancient/elder emp/elder queen/queen
 
 #define PLASMA_TRANSFER_AMOUNT 50
 #define PLASMA_SALVAGE_AMOUNT 40
@@ -567,6 +585,23 @@ var/list/global_mutations = list() // list of hidden mutation things
 //Boiler defines
 
 #define BOILER_LUMINOSITY					3
+
+#define CANNOT_HOLD_EGGS 0
+#define CAN_HOLD_TWO_HANDS 1
+#define CAN_HOLD_ONE_HAND 2
+
+#define CASTE_CAN_HOLD_FACEHUGGERS 	(1<<0)
+#define CASTE_CAN_VENT_CRAWL		(1<<1)
+#define CASTE_CAN_BE_QUEEN_HEALED	(1<<2)
+#define CASTE_CAN_BE_GIVEN_PLASMA	(1<<3)
+#define CASTE_INNATE_HEALING		(1<<4)
+#define CASTE_FIRE_IMMUNE			(1<<5)
+#define CASTE_EVOLUTION_ALLOWED		(1<<6)
+#define CASTE_IS_INTELLIGENT		(1<<7)
+#define CASTE_IS_ROBOTIC			(1<<8)
+#define CASTE_DECAY_PROOF			(1<<9)
+#define CASTE_CAN_BE_LEADER			(1<<10)
+#define CASTE_CAN_BE_OVERWATCHED	(1<<11)
 
 //misc
 

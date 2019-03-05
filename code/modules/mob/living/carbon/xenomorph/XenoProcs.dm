@@ -1,18 +1,13 @@
-//Xenomorph General Procs And Functions
-//LAST EDIT: APOPHIS 22MAY16
-
-
-//Send a message to all xenos. Mostly used in the deathgasp display
-/proc/xeno_message(message, size = 3, hivenumber = XENO_HIVE_NORMAL)
+//Send a message to all xenos.
+/proc/xeno_message(message = null, size = 3, hivenumber = XENO_HIVE_NORMAL)
 	if(!message)
 		return
 
-	for(var/x in GLOB.alive_xeno_list)
-		var/mob/living/carbon/Xenomorph/X = x
-		if(X.hivenumber != hivenumber)
-			continue
-		to_chat(X, "<span class='xenodanger'><font size=[size]> [message]</font></span>")
+	if(!GLOB.hive_datums[hivenumber])
+		CRASH("xeno_message called with invalid hivenumber")
 
+	var/datum/hive_status/HS = GLOB.hive_datums[hivenumber]
+	HS.xeno_message(message, size)
 
 //Adds stuff to your "Status" pane -- Specific castes can have their own, like carrier hugger count
 //Those are dealt with in their caste files.
@@ -43,9 +38,9 @@
 					stat(null, "Plasma: [plasma_stored]/[xeno_caste.plasma_max]")
 
 			if(hivenumber != XENO_HIVE_CORRUPTED)
-				if(hive.slashing_allowed == 1)
+				if(hive.slashing_allowed == XENO_SLASHING_ALLOWED)
 					stat(null,"Slashing of hosts is currently: PERMITTED.")
-				else if(hive.slashing_allowed == 2)
+				else if(hive.slashing_allowed == XENO_SLASHING_RESTRICTED)
 					stat(null,"Slashing of hosts is currently: LIMITED.")
 				else
 					stat(null,"Slashing of hosts is currently: FORBIDDEN.")
@@ -570,20 +565,6 @@
 		rage = 0
 	else
 		rage *= 0.5 //Halve rage instead of 0ing it out if we miss.
-
-/mob/living/carbon/Xenomorph/proc/set_hive_number(var/newhivenumber)
-	if(!newhivenumber)
-		return
-
-	hivenumber = newhivenumber
-
-	if(isxenolarva(src))
-		var/mob/living/carbon/Xenomorph/Larva/L = src
-		L.update_icons() // larva renaming done differently
-	else
-		generate_name()
-		update_living_queens()
-
 
 /mob/living/carbon/Xenomorph/Larva/death(gibbed, deathmessage)
 	log_admin("[key_name(src)] died as a Larva at [AREACOORD(src.loc)].")

@@ -4,7 +4,7 @@
 	caste_type_path = /mob/living/carbon/Xenomorph/Queen
 	caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs"
 
-	tier = 0
+	tier = XENO_TIER_FOUR
 	upgrade = 0
 
 	// *** Melee Attacks *** //
@@ -198,7 +198,7 @@
 	old_x = -16
 	mob_size = MOB_SIZE_BIG
 	drag_delay = 6 //pulling a big dead xeno is hard
-	tier = 0 //Queen doesn't count towards population limit.
+	tier = XENO_TIER_FOUR //Queen doesn't count towards population limit.
 	upgrade = 0
 	xeno_explosion_resistance = 3 //some resistance against explosion stuns.
 
@@ -442,15 +442,15 @@
 	if(choice == "Allowed")
 		to_chat(src, "<span class='xenonotice'>You allow slashing.</span>")
 		xeno_message("The Queen has <b>permitted</b> the harming of hosts! Go hog wild!")
-		hive.slashing_allowed = 1
+		hive.slashing_allowed = XENO_SLASHING_ALLOWED
 	else if(choice == "Restricted - Less Damage")
 		to_chat(src, "<span class='xenonotice'>You restrict slashing.</span>")
 		xeno_message("The Queen has <b>restricted</b> the harming of hosts. You will only slash when hurt.")
-		hive.slashing_allowed = 2
+		hive.slashing_allowed = XENO_SLASHING_RESTRICTED
 	else if(choice == "Forbidden")
 		to_chat(src, "<span class='xenonotice'>You forbid slashing entirely.</span>")
 		xeno_message("The Queen has <b>forbidden</b> the harming of hosts. You can no longer slash your enemies.")
-		hive.slashing_allowed = 0
+		hive.slashing_allowed = XENO_SLASHING_FORBIDDEN
 
 /mob/living/carbon/Xenomorph/proc/slash_toggle_delay()
 	pslash_delay = FALSE
@@ -770,3 +770,18 @@
 
 /mob/living/carbon/Xenomorph/Queen/gib()
 	death(1) //we need the body to show the queen's name at round end.
+
+/mob/living/carbon/Xenomorph/Queen/death_cry()
+	playsound(loc, 'sound/voice/alien_queen_died.ogg', 75, 0)
+
+/mob/living/carbon/Xenomorph/Queen/xeno_death_alert()
+	return
+
+/mob/living/carbon/Xenomorph/Queen/death(gibbed)
+	if(hive)
+		hive.on_queen_death(src)
+	. = ..()
+	if(observed_xeno)
+		set_queen_overwatch(observed_xeno, TRUE)
+	if(ovipositor)
+		dismount_ovipositor(TRUE)

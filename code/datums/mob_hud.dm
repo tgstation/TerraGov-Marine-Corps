@@ -380,14 +380,12 @@ var/datum/mob_hud/huds = list(
 	holder.overlays.Cut()
 	holder.icon_state = "hudblank"
 	if(stat != DEAD)
-		if(hivenumber && hivenumber <= hive_datum.len)
-			var/datum/hive_status/hive = hive_datum[hivenumber]
-			if(hive.living_xeno_queen)
-				if(hive.living_xeno_queen.observed_xeno == src)
-					holder.icon_state = "queen_overwatch"
-				if(queen_chosen_lead)
-					var/image/I = image('icons/mob/hud.dmi',src, "hudxenoleader")
-					holder.overlays += I
+		if(hive?.living_xeno_queen)
+			if(hive.living_xeno_queen.observed_xeno == src)
+				holder.icon_state = "queen_overwatch"
+			if(queen_chosen_lead)
+				var/image/I = image('icons/mob/hud.dmi',src, "hudxenoleader")
+				holder.overlays += I
 		if(upgrade)
 			var/image/J = image('icons/mob/hud.dmi',src, "hudxenoupgrade[upgrade]")
 			holder.overlays += J

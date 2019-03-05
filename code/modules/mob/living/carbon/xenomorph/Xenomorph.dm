@@ -4,37 +4,6 @@
 //Just about ALL the procs are tied to the parent, not to the children
 //This is so they can be easily transferred between them without copypasta
 
-//All this stuff was written by Absynth.
-
-/mob/living/carbon/Xenomorph
-	name = "Drone"
-	desc = "What the hell is THAT?"
-	icon = 'icons/Xeno/1x1_Xenos.dmi'
-	icon_state = "Drone Walking"
-	voice_name = "xenomorph"
-	speak_emote = list("hisses")
-	melee_damage_lower = 5
-	melee_damage_upper = 10 //Arbitrary damage values
-	attacktext = "claws"
-	attack_sound = null
-	friendly = "nuzzles"
-	wall_smash = 0
-	universal_understand = 0
-	universal_speak = 0
-	health = 5
-	maxHealth = 5
-	rotate_on_lying = 0
-	mob_size = MOB_SIZE_XENO
-	hand = 1 //Make right hand active by default. 0 is left hand, mob defines it as null normally
-	see_in_dark = 8
-	see_infrared = 1
-	see_invisible = SEE_INVISIBLE_MINIMUM
-	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD,QUEEN_OVERWATCH_HUD)
-	unacidable = TRUE
-	var/hivenumber = XENO_HIVE_NORMAL
-	var/list/overlays_standing[X_TOTAL_LAYERS]
-
-
 /mob/living/carbon/Xenomorph/Initialize()
 	verbs += /mob/living/proc/lay_down
 	. = ..()
@@ -117,26 +86,13 @@
 
 		nicknumber = tempnumber
 
-
 	//Larvas have their own, very weird naming conventions, let's not kick a beehive, not yet
 	if(isxenolarva(src))
 		return
 
 	var/name_prefix = ""
 
-	var/datum/hive_status/hive
-	if(hivenumber && hivenumber <= hive_datum.len)
-		hive = hive_datum[hivenumber]
-	else
-		hivenumber = XENO_HIVE_NORMAL
-		hive = hive_datum[hivenumber]
-
 	name_prefix = hive.prefix
-	color = hive.color
-	if(name_prefix == "Corrupted ")
-		add_language("English")
-	else
-		remove_language("English") // its hacky doing it here sort of
 
 	//Queens have weird, hardcoded naming conventions based on upgrade levels. They also never get nicknumbers
 	if(isxenoqueen(src))

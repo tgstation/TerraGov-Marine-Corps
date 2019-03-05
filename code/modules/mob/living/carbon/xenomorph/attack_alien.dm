@@ -57,7 +57,7 @@
 				return FALSE
 
 			if(!(M.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
-				if(hive.slashing_allowed == 2)
+				if(hive.slashing_allowed == XENO_SLASHING_RESTRICTED)
 					if(status_flags & XENO_HOST)
 						for(var/obj/item/alien_embryo/embryo in src)
 							if(embryo.hivenumber == M.hivenumber)
@@ -282,7 +282,7 @@
 			else return
 
 			if(!(M.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
-				if(hive.slashing_allowed == 2)
+				if(hive.slashing_allowed == XENO_SLASHING_RESTRICTED)
 					if(status_flags & XENO_HOST)
 						for(var/obj/item/alien_embryo/embryo in src)
 							if(embryo.hivenumber == M.hivenumber)
