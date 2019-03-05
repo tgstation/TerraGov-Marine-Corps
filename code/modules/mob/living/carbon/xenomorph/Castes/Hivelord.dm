@@ -182,7 +182,6 @@
 		/datum/action/xeno_action/build_tunnel,
 		/datum/action/xeno_action/toggle_speed,
 		/datum/action/xeno_action/toggle_pheromones,
-		/datum/action/xeno_action/shift_spits,
 		/datum/action/xeno_action/activable/xeno_spit
 		)
 
@@ -198,7 +197,3 @@
 /mob/living/carbon/Xenomorph/Initialize()
 	. = ..()
 	update_spits()
-	for(var/path in actions) //Update the spit icon
-		if(istype(path, /datum/action/xeno_action/shift_spits))
-			var/datum/action/xeno_action/shift_spits/A = path
-			A.action_activate()
