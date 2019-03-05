@@ -187,7 +187,7 @@
 
 /obj/effect/overlay/temp/tank_laser/Destroy()
 	SetLuminosity(0)
-	. = ..()
+	return ..()
 
 
 //gib animation
