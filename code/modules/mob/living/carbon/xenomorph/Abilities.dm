@@ -456,18 +456,16 @@
 	name = "Salvage Essence"
 	action_icon_state = "salvage_essence"
 	ability_name = "salvage essence"
-	var/salvage_delay = 5 SECONDS
-	var/max_range = 1
+	var/salvage_delay = 3 SECONDS
 
 datum/action/xeno_action/activable/salvage_essence/use_ability(atom/A)
 	var/mob/living/carbon/Xenomorph/X = owner
 	if(owner.action_busy)
 		return
-	X.xeno_salvage_essence(A, salvage_delay, max_range)
+	X.xeno_salvage_essence(A, salvage_delay)
 
 datum/action/xeno_action/activable/salvage_essence/improved
-	salvage_delay = 3 SECONDS
-	max_range = 1
+	salvage_delay = 1 SECONDS
 
 //Boiler abilities
 
