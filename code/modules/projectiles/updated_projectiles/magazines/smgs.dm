@@ -70,7 +70,7 @@
 //PPSH //Based on the PPSh-41.
 
 /obj/item/ammo_magazine/smg/ppsh
-	name = "\improper PPSh-17 drum magazine (7.62x25mm)"
+	name = "\improper PPSh-17b magazine (7.62x25mm)"
 	desc = "A drum magazine for the PPSh submachinegun."
 	default_ammo = /datum/ammo/bullet/smg/ppsh
 	caliber = "7.62x25mm"
@@ -80,7 +80,7 @@
 
 
 /obj/item/ammo_magazine/smg/ppsh/extended
-	name = "\improper PPSh-17b extended magazine (7.62x25mm)"
+	name = "\improper PPSh-17b drum magazine (7.62x25mm)"
 	icon_state = "ppsh_ext"
 	max_rounds = 71
 	bonus_overlay = "ppsh_ex"
