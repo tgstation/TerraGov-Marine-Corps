@@ -950,7 +950,7 @@
 			if (burst_fire)
 				//Apply scatter
 				var/scatter_chance = in_chamber.ammo.scatter
-				var/burst_value = burst_size - 1
+				var/burst_value = CLAMP(burst_size - 1, 1, 5)
 				scatter_chance += (burst_value * burst_value * 2)
 				in_chamber.accuracy = round(in_chamber.accuracy - (burst_value * burst_value), 0.01) //Accuracy penalty scales with burst count.
 
