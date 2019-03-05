@@ -1,0 +1,4 @@
+author: "Shadow-Quill"
+delete-after: True
+changes: 
+  - rscdel: "Hivelord \"switch spit type\" action button. (They only have one type)"
