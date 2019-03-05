@@ -390,16 +390,13 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	var/tricordrazine = CLAMP(REAGENTS_OVERDOSE - (wearer.reagents.get_reagent_amount("tricordrazine") + 0.5),0,REAGENTS_OVERDOSE * B18_CHEM_MOD)
 
 	if(wearer.getFireLoss() > B18_automed_damage && !B18_burn_cooldown)
-		var/dermaline = CLAMP(REAGENTS_OVERDOSE*0.5 - (wearer.reagents.get_reagent_amount("dermaline") + 0.5),0,REAGENTS_OVERDOSE*0.5 * B18_CHEM_MOD)
 		var/kelotane = CLAMP(REAGENTS_OVERDOSE - (wearer.reagents.get_reagent_amount("kelotane") + 0.5),0,REAGENTS_OVERDOSE * B18_CHEM_MOD)
-		if(dermaline)
-			wearer.reagents.add_reagent("dermaline",dermaline)
 		if(kelotane)
 			wearer.reagents.add_reagent("kelotane",kelotane)
 		if(tricordrazine)
 			wearer.reagents.add_reagent("tricordrazine",tricordrazine)
-		if(dermaline || kelotane || tricordrazine) //Only report if we actually administer something
-			details +=("Significant tissue burns detected. Restorative injection administered. <b>Dosage:[dermaline ? " Dermaline: [dermaline]U |" : ""][kelotane ? " Kelotane: [kelotane]U |" : ""][tricordrazine ? " Tricordrazine: [tricordrazine]U" : ""]</b></br>")
+		if(kelotane || tricordrazine) //Only report if we actually administer something
+			details +=("Significant tissue burns detected. Restorative injection administered. <b>Dosage:[kelotane ? " Kelotane: [kelotane]U |" : ""][tricordrazine ? " Tricordrazine: [tricordrazine]U" : ""]</b></br>")
 			B18_burn_cooldown = world.time + B18_CHEM_COOLDOWN
 			handle_chem_cooldown(B18_BURN_CODE)
 			dose_administered = TRUE
