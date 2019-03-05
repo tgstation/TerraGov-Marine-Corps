@@ -226,6 +226,8 @@
 	..()
 
 /obj/item/tool/pickaxe/plasmacutter/proc/update_plasmacutter(mob/user, var/silent=FALSE) //Updates the icon and power on/off status of the plasma cutter
+	if(!user && ismob(loc) )
+		user = loc
 	if(!cell || cell.charge <= 0 || powered == FALSE)
 		icon_state = "plasma_cutter_off"
 		if(powered)
@@ -236,7 +238,7 @@
 		force = 5
 		damtype = "brute"
 		heat_source = 0
-		if(loc == user)
+		if(user)
 			user.SetLuminosity(-LIGHTER_LUMINOSITY)
 		SetLuminosity(0)
 	else
@@ -245,9 +247,11 @@
 		force = 40
 		damtype = "fire"
 		heat_source = 3800
-		if(loc == user)
+		if(user)
 			user.SetLuminosity(LIGHTER_LUMINOSITY)
-		SetLuminosity(LIGHTER_LUMINOSITY)
+			SetLuminosity(0)
+		else
+			SetLuminosity(LIGHTER_LUMINOSITY)
 
 
 /obj/item/tool/pickaxe/plasmacutter/pickup(mob/user)
