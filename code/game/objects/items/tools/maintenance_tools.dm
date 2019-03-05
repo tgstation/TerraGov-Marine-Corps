@@ -161,7 +161,6 @@
 
 /obj/item/tool/weldingtool/Destroy()
 	if(welding)
-		var/mob/user
 		if(ismob(loc))
 			loc.SetLuminosity(-LIGHTER_LUMINOSITY)
 		else

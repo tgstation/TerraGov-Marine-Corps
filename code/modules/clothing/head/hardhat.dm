@@ -23,7 +23,7 @@
 		var/mob/M = loc
 		M.update_inv_head()
 
-	update_brightness()
+	update_brightness(user)
 	update_action_button_icons()
 
 /obj/item/clothing/head/hardhat/proc/turn_off_light(mob/bearer)
@@ -35,8 +35,6 @@
 	return FALSE
 
 /obj/item/clothing/head/hardhat/proc/update_brightness(var/mob/user = null)
-	if(!user && ismob(loc))
-		user = loc
 	if(on)
 		if(loc && loc == user)
 			user.SetLuminosity(brightness_on)
