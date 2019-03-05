@@ -116,7 +116,7 @@
 	icon = 'icons/obj/doors/almayer/2x1secdoor.dmi'
 	opacity = FALSE
 	glass = TRUE
-	req_access_txt = "3"
+	req_access = list(ACCESS_MARINE_BRIG)
 
 
 /obj/machinery/door/airlock/multi_tile/almayer/handle_multidoor()
