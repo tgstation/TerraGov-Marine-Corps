@@ -151,11 +151,6 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 		GLOB.admins |= src
 		holder.owner = src
 		holder.activate()
-		if(check_rights(R_ADMIN, FALSE))
-			message_admins("Admin login: [key_name_admin(src)].")
-			to_chat(src, get_message_output("memo"))
-		else if(check_rights(R_MENTOR, FALSE))
-			message_staff("Mentor login: [key_name_admin(src)].")
 	else if(GLOB.deadmins[ckey])
 		verbs += /client/proc/readmin
 
@@ -171,6 +166,12 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 
 	. = ..()	//calls mob.Login()
 	chatOutput.start() // Starts the chat
+
+	if(check_rights(R_ADMIN, FALSE))
+		message_admins("Admin login: [key_name_admin(src)].")
+		to_chat(src, get_message_output("memo"))
+	else if(check_rights(R_MENTOR, FALSE))
+		message_staff("Mentor login: [key_name_admin(src)].")
 
 	if(byond_version < 512)
 		to_chat(src, "<span class='userdanger'>Your version of byond is severely out of date.</span>")
