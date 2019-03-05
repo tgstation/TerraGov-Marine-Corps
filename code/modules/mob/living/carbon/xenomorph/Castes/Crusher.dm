@@ -5,7 +5,7 @@
 	caste_desc = "A huge tanky xenomorph."
 	caste_type_path = /mob/living/carbon/Xenomorph/Crusher
 
-	tier = 3
+	tier = XENO_TIER_THREE
 	upgrade = 0
 
 	// *** Melee Attacks *** //
@@ -142,7 +142,7 @@
 	maxHealth = 300
 	plasma_stored = 200
 	speed = 0.1
-	tier = 3
+	tier = XENO_TIER_THREE
 	upgrade = 0
 	drag_delay = 6 //pulling a big dead xeno is hard
 	xeno_explosion_resistance = 3 //no stuns from explosions, ignore damages except devastation range.

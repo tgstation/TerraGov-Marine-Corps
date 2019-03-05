@@ -5,7 +5,7 @@
 	caste_desc = "Oh dear god!"
 	caste_type_path = /mob/living/carbon/Xenomorph/Xenoborg
 
-	tier = 0
+	tier = XENO_TIER_ZERO
 	upgrade = 0
 
 	// *** Melee Attacks *** //

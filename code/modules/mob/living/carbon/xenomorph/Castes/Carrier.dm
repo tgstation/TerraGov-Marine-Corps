@@ -6,7 +6,7 @@
 
 	caste_type_path = /mob/living/carbon/Xenomorph/Carrier
 
-	tier = 2
+	tier = XENO_TIER_TWO
 	upgrade = 0
 
 	// *** Melee Attacks *** //
@@ -179,7 +179,7 @@
 	var/used_spawn_facehugger = FALSE
 	var/last_spawn_facehugger
 	var/cooldown_spawn_facehugger = 100 //10 seconds; keeping this as a var for now as I may have it adjust with upgrade level
-	tier = 2
+	tier = XENO_TIER_TWO
 	upgrade = 0
 	pixel_x = -16 //Needed for 2x2
 	old_x = -16

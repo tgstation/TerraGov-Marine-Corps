@@ -4,7 +4,7 @@
 	upgrade_name = "Young"
 	caste_desc = "A frightening looking, bulky xeno that drips with suspect green fluids."
 	caste_type_path = /mob/living/carbon/Xenomorph/Defiler
-	tier = 3
+	tier = XENO_TIER_THREE
 	upgrade = 0
 
 	// *** Melee Attacks *** //
@@ -147,7 +147,7 @@
 	pixel_x = -16
 	old_x = -16
 	wound_type = "defiler" //used to match appropriate wound overlays
-	tier = 3
+	tier = XENO_TIER_THREE
 	upgrade = 0
 	var/datum/effect_system/smoke_spread/smoke_system = null
 	var/last_defiler_sting = null

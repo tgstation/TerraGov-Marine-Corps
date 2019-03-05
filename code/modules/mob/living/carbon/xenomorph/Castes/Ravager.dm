@@ -4,7 +4,7 @@
 	upgrade_name = "Young"
 	caste_desc = "A brutal, devastating front-line attacker."
 	caste_type_path = /mob/living/carbon/Xenomorph/Ravager
-	tier = 3
+	tier = XENO_TIER_THREE
 	upgrade = 0
 
 	// *** Melee Attacks *** //
@@ -146,7 +146,7 @@
 	mob_size = MOB_SIZE_BIG
 	drag_delay = 6 //pulling a big dead xeno is hard
 	xeno_explosion_resistance = 1 //can't be gibbed from explosions
-	tier = 3
+	tier = XENO_TIER_THREE
 	upgrade = 0
 	pixel_x = -16
 	old_x = -16
@@ -217,7 +217,7 @@
 	display_name = "Ravenger"
 	upgrade_name = ""
 	caste_type_path = /mob/living/carbon/Xenomorph/Ravager/ravenger
-	tier = 3
+	tier = XENO_TIER_THREE
 	upgrade = 3
 
 	// *** Melee Attacks *** //

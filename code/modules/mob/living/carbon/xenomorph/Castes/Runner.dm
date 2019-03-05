@@ -4,7 +4,7 @@
 	upgrade_name = "Young"
 	caste_desc = "A fast, four-legged terror, but weak in sustained combat."
 	caste_type_path = /mob/living/carbon/Xenomorph/Runner
-	tier = 1
+	tier = XENO_TIER_ONE
 	upgrade = 0
 
 	// *** Melee Attacks *** //
@@ -156,7 +156,7 @@
 	plasma_stored = 50
 	speed = -1.8
 	flags_pass = PASSTABLE
-	tier = 1
+	tier = XENO_TIER_ONE
 	upgrade = 0
 	pixel_x = -16  //Needed for 2x2
 	old_x = -16

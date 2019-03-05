@@ -21,8 +21,8 @@ GLOBAL_LIST_EMPTY(hive_datums) // init by makeDatumRefLists()
 	xenos_by_typepath = list()
 	xenos_by_tier = list()
 
-	for(var/T in subtypesof(/mob/living/carbon/Xenomorph))
-		xenos_by_typepath[initial(T.caste_base_type)] = list()
+	for(var/mob/living/carbon/Xenomorph/X in subtypesof(/mob/living/carbon/Xenomorph))
+		xenos_by_typepath[initial(X.caste_base_type)] = list()
 
 	for(var/tier in GLOB.xenotiers)
 		xenos_by_tier[tier] = list()
@@ -35,12 +35,23 @@ GLOBAL_LIST_EMPTY(hive_datums) // init by makeDatumRefLists()
 	xeno_leader_list += X
 	X.queen_chosen_lead = TRUE
 
+/datum/hive_status/proc/get_total_xeno_number()
+	. = 0
+	for(var/t in xenos_by_tier)
+		. += length(xenos_by_tier[t])
+
+// doing this by type means we get a pseudo sorted list
 /datum/hive_status/proc/get_watchable_xenos()
+	var/list/xenos = list()
 	for(var/typepath in xenos_by_typepath)
-		if(!GLOB.xeno_caste_datums[typepath][1])
-			continue // they dont have a caste datum
-		var/datum/xeno_caste/XC = GLOB.xeno_caste_datums[typepath][1]
-		if(XC)
+		if(typepath == /mob/living/carbon/Xenomorph/Queen) // hardcoded check for now
+			continue
+		for(var/i in xenos_by_typepath[typepath])
+			var/mob/living/carbon/Xenomorph/X = i
+			if(is_centcom_level(X.z))
+				continue
+			xenos += X
+	return xenos
 
 /datum/hive_status/proc/update_leader_pheromones()
 	for(var/i in xeno_leader_list)
@@ -166,11 +177,11 @@ GLOBAL_LIST_EMPTY(hive_datums) // init by makeDatumRefLists()
 
 /datum/hive_status/corrupted/post_add(var/mob/living/carbon/Xenomorph/X)
 	. = ..()
-	add_language("English")
+	X.add_language("English")
 
 /datum/hive_status/corrupted/post_removal(var/mob/living/carbon/Xenomorph/X)
 	. = ..()
-	remove_language("English")
+	X.remove_language("English")
 
 /datum/hive_status/alpha
 	name = "Alpha"

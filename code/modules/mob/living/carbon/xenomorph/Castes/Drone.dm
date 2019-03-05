@@ -5,7 +5,7 @@
 	caste_desc = "A builder of hives. Only drones may evolve into Queens."
 	caste_type_path = /mob/living/carbon/Xenomorph/Drone
 
-	tier = 1
+	tier = XENO_TIER_ONE
 	upgrade = 0
 
 	// *** Melee Attacks *** //
@@ -145,7 +145,7 @@
 	health = 120
 	maxHealth = 120
 	plasma_stored = 350
-	tier = 1
+	tier = XENO_TIER_ONE
 	upgrade = 0
 	speed = -0.8
 	pixel_x = -12

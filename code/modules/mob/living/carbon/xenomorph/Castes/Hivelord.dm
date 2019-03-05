@@ -4,7 +4,7 @@
 	upgrade_name = "Young"
 	caste_desc = "A builder of REALLY BIG hives."
 	caste_type_path = /mob/living/carbon/Xenomorph/Hivelord
-	tier = 2
+	tier = XENO_TIER_TWO
 	upgrade = 0
 
 	// *** Melee Attacks *** //
@@ -169,7 +169,7 @@
 	mob_size = MOB_SIZE_BIG
 	drag_delay = 6 //pulling a big dead xeno is hard
 	var/speed_activated = 0
-	tier = 2
+	tier = XENO_TIER_TWO
 	upgrade = 0
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,

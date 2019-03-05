@@ -6,7 +6,7 @@
 
 	caste_type_path = /mob/living/carbon/Xenomorph/Defender
 
-	tier = 1
+	tier = XENO_TIER_ONE
 	upgrade = 0
 
 	// *** Melee Attacks *** //
@@ -154,7 +154,7 @@
 	speed = -0.2
 	pixel_x = -16
 	old_x = -16
-	tier = 1
+	tier = XENO_TIER_ONE
 	upgrade = 0
 	pull_speed = -2
 	wound_type = "defender" //used to match appropriate wound overlays

@@ -4,7 +4,7 @@
 	upgrade_name = "Young"
 	caste_desc = "A powerful front line combatant."
 	caste_type_path = /mob/living/carbon/Xenomorph/Warrior
-	tier = 2
+	tier = XENO_TIER_TWO
 	upgrade = 0
 
 	// *** Melee Attacks *** //
@@ -147,7 +147,7 @@
 	speed = -0.3
 	pixel_x = -16
 	old_x = -16
-	tier = 2
+	tier = XENO_TIER_TWO
 	upgrade = 0
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,

@@ -439,7 +439,7 @@
 		playsound(X.loc, "alien_drool", 25)
 
 	if(isxenoqueen(X))
-		hive?.update_leader_pheromones()
+		X.hive?.update_leader_pheromones()
 
 	return TRUE
 
@@ -860,10 +860,9 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 	var/mob/living/carbon/Xenomorph/Queen/X = owner
 	if(!X.check_state())
 		return
-	var/list/possible_xenos = list()
-	for(var/mob/living/carbon/Xenomorph/T in GLOB.alive_xeno_list)
-		if(!is_centcom_level(T.z) && !isxenoqueen(T) && X.hivenumber == T.hivenumber)
-			possible_xenos += T
+	if(!X.hive)
+		return
+	var/list/possible_xenos = X.hive.get_watchable_xenos()
 
 	var/mob/living/carbon/Xenomorph/selected_xeno = input(X, "Target", "Watch which xenomorph?") as null|anything in possible_xenos
 	if(!selected_xeno || selected_xeno.gc_destroyed || selected_xeno == X.observed_xeno || selected_xeno.stat == DEAD || is_centcom_level(selected_xeno.z) || !X.check_state())
@@ -897,11 +896,9 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 	var/mob/living/carbon/Xenomorph/Queen/X = owner
 	if(!X.check_state())
 		return
-	var/datum/hive_status/hive
-	if(X.hivenumber && X.hivenumber <= hive_datum.len)
-		hive = hive_datum[X.hivenumber]
-	else
+	if(!X.hive)
 		return
+
 	if(X.observed_xeno)
 		if(!(X.observed_xeno.xeno_caste.caste_flags & CASTE_CAN_BE_LEADER))
 			to_chat(X, "<span class='xenowarning'>This caste is unfit to lead.</span>")
@@ -909,34 +906,29 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 		if(X.queen_ability_cooldown > world.time)
 			to_chat(X, "<span class='xenowarning'>You're still recovering from your last overwatch ability. Wait [round((X.queen_ability_cooldown-world.time)*0.1)] seconds.</span>")
 			return
-		if(X.xeno_caste.queen_leader_limit <= hive.xeno_leader_list.len && !X.observed_xeno.queen_chosen_lead)
-			to_chat(X, "<span class='xenowarning'>You currently have [hive.xeno_leader_list.len] promoted leaders. You may not maintain additional leaders until your power grows.</span>")
+		if(X.xeno_caste.queen_leader_limit <= X.hive.xeno_leader_list.len && !X.observed_xeno.queen_chosen_lead)
+			to_chat(X, "<span class='xenowarning'>You currently have [X.hive.xeno_leader_list.len] promoted leaders. You may not maintain additional leaders until your power grows.</span>")
 			return
 		var/mob/living/carbon/Xenomorph/T = X.observed_xeno
-		T.queen_chosen_lead = !T.queen_chosen_lead
-		T.hud_set_queen_overwatch()
 		X.queen_ability_cooldown = world.time + 150 //15 seconds
-		if(T.queen_chosen_lead)
+		if(!T.queen_chosen_lead)
 			to_chat(X, "<span class='xenonotice'>You've selected [T] as a Hive Leader.</span>")
 			to_chat(T, "<span class='xenoannounce'>[X] has selected you as a Hive Leader. The other Xenomorphs must listen to you. You will also act as a beacon for the Queen's pheromones.</span>")
-			hive.xeno_leader_list += T
+			X.hive.add_leader(T)
 		else
 			to_chat(X, "<span class='xenonotice'>You've demoted [T] from Lead.</span>")
 			to_chat(T, "<span class='xenoannounce'>[X] has demoted you from Hive Leader. Your leadership rights and abilities have waned.</span>")
-			hive.xeno_leader_list -= T
+			X.hive.remove_leader(T)
+		T.hud_set_queen_overwatch()
 		T.handle_xeno_leader_pheromones(X)
 	else
-		var/list/possible_xenos = list()
-		for(var/mob/living/carbon/Xenomorph/T in hive.xeno_leader_list)
-			possible_xenos += T
-
-		if(possible_xenos.len > 1)
-			var/mob/living/carbon/Xenomorph/selected_xeno = input(X, "Target", "Watch which xenomorph leader?") as null|anything in possible_xenos
+		if(X.hive.xeno_leader_list.len > 1)
+			var/mob/living/carbon/Xenomorph/selected_xeno = input(X, "Target", "Watch which xenomorph leader?") as null|anything in X.hive.xeno_leader_list
 			if(!selected_xeno || !selected_xeno.queen_chosen_lead || selected_xeno == X.observed_xeno || selected_xeno.stat == DEAD || selected_xeno.z != X.z || !X.check_state())
 				return
 			X.set_queen_overwatch(selected_xeno)
-		else if(possible_xenos.len)
-			X.set_queen_overwatch(possible_xenos[1])
+		else if(X.hive.xeno_leader_list.len)
+			X.set_queen_overwatch(X.hive.xeno_leader_list[1])
 		else
 			to_chat(X, "<span class='xenowarning'>There are no Xenomorph leaders. Overwatch a Xenomorph to make it a leader.</span>")
 
@@ -1135,10 +1127,8 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 		new_xeno.queen_chosen_lead = TRUE
 		new_xeno.hud_set_queen_overwatch()
 
-	var/datum/hive_status/hive = hive_datum[X.hivenumber]
-
-	if(hive.living_xeno_queen && hive.living_xeno_queen.observed_xeno == T)
-		hive.living_xeno_queen.set_queen_overwatch(new_xeno)
+	if(X.hive.living_xeno_queen && X.hive.living_xeno_queen.observed_xeno == T)
+		X.hive.living_xeno_queen.set_queen_overwatch(new_xeno)
 
 	// this sets the right datum
 	new_xeno.upgrade_xeno(min(T.upgrade+1,3)) //a young Crusher de-evolves into a MATURE Hunter

@@ -4,7 +4,7 @@
 	upgrade_name = "Young"
 	caste_desc = "A weak ranged combat alien."
 	caste_type_path = /mob/living/carbon/Xenomorph/Sentinel
-	tier = 1
+	tier = XENO_TIER_ONE
 	upgrade = 0
 
 	// *** Melee Attacks *** //
@@ -150,7 +150,7 @@
 	plasma_stored = 75
 	pixel_x = -12
 	old_x = -12
-	tier = 1
+	tier = XENO_TIER_ONE
 	upgrade = 0
 	speed = -0.8
 	pull_speed = -2

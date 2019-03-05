@@ -6,7 +6,7 @@
 
 	caste_type_path = /mob/living/carbon/Xenomorph/Boiler
 
-	tier = 3
+	tier = XENO_TIER_THREE
 	upgrade = 0
 
 	// *** Melee Attacks *** //
@@ -163,7 +163,7 @@
 	pixel_x = -16
 	old_x = -16
 	mob_size = MOB_SIZE_BIG
-	tier = 3
+	tier = XENO_TIER_THREE
 	upgrade = 0
 	gib_chance = 100
 	drag_delay = 6 //pulling a big dead xeno is hard

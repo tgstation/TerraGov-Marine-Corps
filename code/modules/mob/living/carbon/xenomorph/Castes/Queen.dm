@@ -164,20 +164,6 @@
 	if(prob(20+abs(3*upgrade)))
 		use_plasma(min(rand(1,2), plasma_stored))
 
-/proc/update_living_queens() // needed to update when you change a queen to a different hive
-	outer_loop:
-		for(var/datum/hive_status/hive in hive_datum)
-			if(hive.living_xeno_queen)
-				if(hive.living_xeno_queen.hivenumber == hive.hivenumber)
-					continue
-			for(var/mob/living/carbon/Xenomorph/Queen/Q in GLOB.alive_xeno_list)
-				if(Q.hivenumber == hive.hivenumber)
-					hive.living_xeno_queen = Q
-					xeno_message("<span class='xenoannounce'>A new Queen has risen to lead the Hive! Rejoice!</span>",3,hive.hivenumber)
-					continue outer_loop
-			hive.living_xeno_queen = null
-
-
 /mob/living/carbon/Xenomorph/Queen
 	caste_base_type = /mob/living/carbon/Xenomorph/Queen
 	name = "Queen"

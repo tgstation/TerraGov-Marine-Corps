@@ -4,7 +4,7 @@
 	upgrade_name = "Young"
 	caste_desc = "Ptui!"
 	caste_type_path = /mob/living/carbon/Xenomorph/Praetorian
-	tier = 3
+	tier = XENO_TIER_THREE
 	upgrade = 0
 
 	// *** Melee Attacks *** //
@@ -163,7 +163,7 @@
 	old_x = -16
 	mob_size = MOB_SIZE_BIG
 	drag_delay = 6 //pulling a big dead xeno is hard
-	tier = 3
+	tier = XENO_TIER_THREE
 	upgrade = 0
 	var/sticky_cooldown = 0
 	actions = list(

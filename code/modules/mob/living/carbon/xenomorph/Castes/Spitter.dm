@@ -4,7 +4,7 @@
 	upgrade_name = "Young"
 	caste_desc = "Ptui!"
 	caste_type_path = /mob/living/carbon/Xenomorph/Spitter
-	tier = 2
+	tier = XENO_TIER_TWO
 	upgrade = 0
 
 	// *** Melee Attacks *** //
@@ -157,7 +157,7 @@
 	speed = -0.5
 	pixel_x = -12
 	old_x = -12
-	tier = 2
+	tier = XENO_TIER_TWO
 	upgrade = 0
 	acid_cooldown = 0
 	wound_type = "alien" //used to match appropriate wound overlays

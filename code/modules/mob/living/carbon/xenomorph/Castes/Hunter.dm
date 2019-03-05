@@ -6,7 +6,7 @@
 
 	caste_type_path = /mob/living/carbon/Xenomorph/Hunter
 
-	tier = 2
+	tier = XENO_TIER_TWO
 	upgrade = 0
 
 	// *** Melee Attacks *** //
@@ -150,7 +150,7 @@
 	health = 150
 	maxHealth = 150
 	plasma_stored = 50
-	tier = 2
+	tier = XENO_TIER_TWO
 	upgrade = 0
 	var/stealth_delay = null
 	var/last_stealth = null
