@@ -46,6 +46,7 @@
 #define EWCOMPONENT(d)   (d&(EAST|WEST))
 #define NSDIRFLIP(d)     (d^(NORTH|SOUTH))
 #define EWDIRFLIP(d)     (d^(EAST|WEST))
+#define DIRFLIP(d)       turn(d, 180)
 
 //update_overlay
 #define APC_UPOVERLAY_CHARGEING0 (1<<0)

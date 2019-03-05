@@ -58,9 +58,6 @@
 	else if(dx<0)
 		.+=360
 
-/proc/inverse_dir(dir)
-	return turn(dir, 180)
-
 /proc/Get_Compass_Dir(atom/start,atom/end)//get_dir() only considers an object to be north/south/east/west if there is zero deviation. This uses rounding instead.
 	if(!start || !end) return 0
 	if(!start.z || !end.z) return 0 //Atoms are not on turfs.
