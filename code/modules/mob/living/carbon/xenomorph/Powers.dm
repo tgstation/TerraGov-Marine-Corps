@@ -1014,7 +1014,7 @@
 		handle_ventcrawl(pipe)
 
 
-/mob/living/carbon/Xenomorph/proc/xeno_transfer_plasma(atom/A, amount = 50, transfer_delay = 20, max_range = 4)
+/mob/living/carbon/Xenomorph/proc/xeno_transfer_plasma(mob/living/carbon/Xenomorph/A, amount = 50, transfer_delay = 20, max_range = 4)
 	if(!isxeno(A) || !check_state() || A == src)
 		return
 
@@ -1060,7 +1060,7 @@
 	to_chat(src, "<span class='xenowarning'>You have transferred [amount] units of [energy] to [target]. You now have [plasma_stored]/[xeno_caste.plasma_max].</span>")
 	playsound(src, "alien_drool", 25)
 
-/mob/living/carbon/Xenomorph/proc/xeno_salvage_essence(atom/A, salvage_delay, max_range)
+/mob/living/carbon/Xenomorph/proc/xeno_salvage_essence(mob/living/carbon/Xenomorph/A, salvage_delay, max_range)
 	if(!isxeno(A) || !check_state() || A == src)
 		return
 
@@ -1094,7 +1094,7 @@
 	playsound(target, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
 
 	while( (target.plasma_stored || target.upgrade_stored || target.evolution_stored) && !stagger && get_dist(src, target) <= max_range)
-		if(!do_after(src, salvage_delay, TRUE, 5, BUSY_ICON_HOSTILE, null, TRUE) || !check_state())
+		if(!do_after(src, salvage_delay, TRUE, 5, BUSY_ICON_HOSTILE, null, TRUE))
 			break
 
 		if(!isturf(loc))
