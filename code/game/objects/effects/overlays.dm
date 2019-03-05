@@ -39,6 +39,12 @@
 	icon_state = "danger"
 	layer = ABOVE_FLY_LAYER
 
+/obj/effect/overlay/sparks
+	name = "Sparks"
+	layer = ABOVE_FLY_LAYER
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "electricity"
+
 /obj/effect/overlay/temp
 	anchored = 1
 	layer = ABOVE_FLY_LAYER //above mobs
@@ -200,7 +206,7 @@
 
 
 /obj/effect/overlay/temp/gib_animation/xeno
-	icon = 'icons/Xeno/1x1_Xenos.dmi'
+	icon = 'icons/Xeno/48x48_Xenos.dmi'
 	effect_duration = 10
 
 /obj/effect/overlay/temp/gib_animation/xeno/New(Loc, mob/source_mob, gib_icon, new_icon)

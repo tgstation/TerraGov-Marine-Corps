@@ -65,11 +65,11 @@ var/list/department_radio_keys = list(
 
 	//handle nonverbal and sign languages here
 	if (speaking)
-		if (speaking.flags & NONVERBAL)
+		if (speaking.language_flags & NONVERBAL)
 			if (prob(30))
 				src.custom_emote(1, "[pick(speaking.signlang_verb)].")
 
-		if (speaking.flags & SIGNLANG)
+		if (speaking.language_flags & SIGNLANG)
 			say_signlang(message, pick(speaking.signlang_verb), speaking)
 			return TRUE
 
@@ -128,7 +128,7 @@ var/list/department_radio_keys = list(
 			if(O) //It's possible that it could be deleted in the meantime.
 				O.hear_talk(src, message, verb, speaking, italics)
 
-	if(!parse_message_mode(message))
+	if(!ishuman(src))
 		log_talk(message, LOG_SAY)
 
 	return TRUE

@@ -184,15 +184,17 @@
 					var/obj/structure/barricade/B = O
 					B.health -= rand(40,60) + 8 * upgrade
 					B.update_health(1)
+					return
 				else if(istype(O, /obj/vehicle/multitile/root/cm_armored) )
 					var/obj/vehicle/multitile/root/cm_armored/A = O
 					A.take_damage_type(rand(40,60) + 8 * upgrade, "acid", src)
 					A.healthcheck()
+					return
 				else if(istype(O, /obj/structure/razorwire) )
 					var/obj/structure/razorwire/R = O
 					R.health -= rand(40,60) + 8 * upgrade
 					R.update_health()
-				return
+
 
 		T = next_T
 
@@ -205,15 +207,17 @@
 					var/obj/structure/barricade/B = O
 					B.health -= rand(40,60) + 8 * upgrade
 					B.update_health(1)
+					return
 				else if(istype(O, /obj/vehicle/multitile/root/cm_armored) )
 					var/obj/vehicle/multitile/root/cm_armored/A = O
 					A.take_damage_type(rand(40,60) + 8 * upgrade, "acid", src)
 					A.healthcheck()
+					return
 				else if(istype(O, /obj/structure/razorwire) )
 					var/obj/structure/razorwire/R = O
 					R.health -= rand(40,60) + 8 * upgrade
 					R.update_health()
-				return
+
 
 		var/obj/effect/xenomorph/spray/S = acid_splat_turf(T)
 		do_acid_spray_cone_normal(T, i, facing, S)
@@ -245,6 +249,7 @@
 
 			for (var/obj/O in normal_turf)
 				if(!O.CheckExit(left_S, next_normal_turf))
+					normal_density_flag = TRUE
 					if(istype(O, /obj/structure/barricade))
 						var/obj/structure/barricade/B = O
 						B.health -= rand(40,60) + 8 * upgrade
@@ -257,7 +262,7 @@
 						var/obj/structure/razorwire/R = O
 						R.health -= rand(40,60) + 8 * upgrade
 						R.update_health()
-					normal_density_flag = 1
+						normal_density_flag = FALSE //passable for acid spray
 					break
 
 			normal_turf = next_normal_turf
@@ -268,50 +273,7 @@
 			if(!normal_density_flag)
 				for (var/obj/O in normal_turf)
 					if(!O.CanPass(left_S, left_S.loc))
-						if(istype(O, /obj/structure/barricade))
-							var/obj/structure/barricade/B = O
-							B.health -= rand(40,60) + 8 * upgrade
-							B.update_health(1)
-						else if(istype(O, /obj/vehicle/multitile/root/cm_armored) )
-							var/obj/vehicle/multitile/root/cm_armored/A = O
-							A.take_damage_type(rand(40,60) + 8 * upgrade, "acid", src)
-							A.healthcheck()
-						normal_density_flag = 1
-						break
-
-			if (!normal_density_flag)
-				left_S = acid_splat_turf(normal_turf)
-
-
-		if (!inverse_normal_density_flag)
-
-			var/next_inverse_normal_turf = get_step(inverse_normal_turf, inverse_normal_dir)
-
-			for (var/obj/O in inverse_normal_turf)
-				if(!O.CheckExit(right_S, next_inverse_normal_turf))
-					if(istype(O, /obj/structure/barricade))
-						var/obj/structure/barricade/B = O
-						B.health -= rand(40,60) + 8 * upgrade
-						B.update_health(1)
-					else if(istype(O, /obj/vehicle/multitile/root/cm_armored) )
-						var/obj/vehicle/multitile/root/cm_armored/A = O
-						A.take_damage_type(rand(40,60) + 8 * upgrade, "acid", src)
-						A.healthcheck()
-					else if(istype(O, /obj/structure/razorwire) )
-						var/obj/structure/razorwire/R = O
-						R.health -= rand(40,60) + 8 * upgrade
-						R.update_health()
-					inverse_normal_density_flag = 1
-					break
-
-			inverse_normal_turf = next_inverse_normal_turf
-
-			if(!inverse_normal_density_flag)
-				inverse_normal_density_flag = inverse_normal_turf.density
-
-			if(!inverse_normal_density_flag)
-				for (var/obj/O in inverse_normal_turf)
-					if(!O.CanPass(right_S, right_S.loc))
+						normal_density_flag = TRUE
 						if(istype(O, /obj/structure/barricade))
 							var/obj/structure/barricade/B = O
 							B.health -= rand(40,60) + 8 * upgrade
@@ -324,7 +286,57 @@
 							var/obj/structure/razorwire/R = O
 							R.health -= rand(40,60) + 8 * upgrade
 							R.update_health()
-						inverse_normal_density_flag = 1
+							normal_density_flag = FALSE //passable for acid spray
+						break
+
+			if (!normal_density_flag)
+				left_S = acid_splat_turf(normal_turf)
+
+
+		if (!inverse_normal_density_flag)
+
+			var/next_inverse_normal_turf = get_step(inverse_normal_turf, inverse_normal_dir)
+
+			for (var/obj/O in inverse_normal_turf)
+				if(!O.CheckExit(right_S, next_inverse_normal_turf))
+					inverse_normal_density_flag = TRUE
+					if(istype(O, /obj/structure/barricade))
+						var/obj/structure/barricade/B = O
+						B.health -= rand(40,60) + 8 * upgrade
+						B.update_health(1)
+					else if(istype(O, /obj/vehicle/multitile/root/cm_armored) )
+						var/obj/vehicle/multitile/root/cm_armored/A = O
+						A.take_damage_type(rand(40,60) + 8 * upgrade, "acid", src)
+						A.healthcheck()
+					else if(istype(O, /obj/structure/razorwire) )
+						var/obj/structure/razorwire/R = O
+						R.health -= rand(40,60) + 8 * upgrade
+						R.update_health()
+						inverse_normal_density_flag = FALSE //passable for acid spray
+					break
+
+			inverse_normal_turf = next_inverse_normal_turf
+
+			if(!inverse_normal_density_flag)
+				inverse_normal_density_flag = inverse_normal_turf.density
+
+			if(!inverse_normal_density_flag)
+				for (var/obj/O in inverse_normal_turf)
+					if(!O.CanPass(right_S, right_S.loc))
+						inverse_normal_density_flag = TRUE //passable for acid spray
+						if(istype(O, /obj/structure/barricade))
+							var/obj/structure/barricade/B = O
+							B.health -= rand(40,60) + 8 * upgrade
+							B.update_health(1)
+						else if(istype(O, /obj/vehicle/multitile/root/cm_armored) )
+							var/obj/vehicle/multitile/root/cm_armored/A = O
+							A.take_damage_type(rand(40,60) + 8 * upgrade, "acid", src)
+							A.healthcheck()
+						else if(istype(O, /obj/structure/razorwire) )
+							var/obj/structure/razorwire/R = O
+							R.health -= rand(40,60) + 8 * upgrade
+							R.update_health()
+							inverse_normal_density_flag = FALSE //passable for acid spray
 						break
 
 			if (!inverse_normal_density_flag)
@@ -345,6 +357,10 @@
 		for (var/obj/vehicle/multitile/root/cm_armored/A in T)
 			A.take_damage_type(rand(40,60) + 8 * upgrade, "acid", src)
 			A.healthcheck()
+
+		for (var/obj/structure/razorwire/R in T)
+			R.health -= rand(40,60) + 8 * upgrade
+			R.update_health(1)
 
 		for (var/mob/living/carbon/C in T)
 			if (!ishuman(C) && !ismonkey(C))
@@ -464,22 +480,22 @@
 
 		var/datum/limb/L = H.get_limb(check_zone(zone_selected))
 
-		if (!L || (L.status & LIMB_DESTROYED))
+		if (!L || (L.limb_status & LIMB_DESTROYED))
 			return
 
 		visible_message("<span class='xenowarning'>\The [src] hits [H] in the [L.display_name] with a devastatingly powerful punch!</span>", \
 		"<span class='xenowarning'>You hit [H] in the [L.display_name] with a devastatingly powerful punch!</span>")
 
 
-		if(L.status & LIMB_SPLINTED) //If they have it splinted, the splint won't hold.
-			L.status &= ~LIMB_SPLINTED
+		if(L.limb_status & LIMB_SPLINTED) //If they have it splinted, the splint won't hold.
+			L.limb_status &= ~LIMB_SPLINTED
 			to_chat(H, "<span class='danger'>The splint on your [L.display_name] comes apart!</span>")
 
 		L.take_damage(damage, 0, 0, 0, null, null, null, armor_block)
 		if(iscarbon(L))
 			var/mob/living/carbon/C = L
 			C.adjust_stagger(3)
-			C.add_slowdown(3)
+			C.add_slowdown(1)
 
 		H.apply_damage(damage, HALLOSS) //Armor penetrating halloss also applies.
 	shake_camera(M, 2, 1)
@@ -556,7 +572,7 @@
 	var/mob/living/carbon/human/H = M
 	var/datum/limb/L = H.get_limb(check_zone(zone_selected))
 
-	if (!L || L.body_part == CHEST || L.body_part == GROIN || (L.status & LIMB_DESTROYED) || L.body_part == HEAD) //Only limbs; no head
+	if (!L || L.body_part == CHEST || L.body_part == GROIN || (L.limb_status & LIMB_DESTROYED) || L.body_part == HEAD) //Only limbs; no head
 		to_chat(src, "<span class='xenowarning'>You can't rip off that limb.</span>")
 		return FALSE
 	round_statistics.warrior_limb_rips++
@@ -569,10 +585,10 @@
 		to_chat(src, "<span class='notice'>You stop ripping off the limb.</span>")
 		return FALSE
 
-	if(L.status & LIMB_DESTROYED)
+	if(L.limb_status & LIMB_DESTROYED)
 		return FALSE
 
-	if(L.status & LIMB_ROBOT)
+	if(L.limb_status & LIMB_ROBOT)
 		L.take_damage(rand(30,40), 0, 0) // just do more damage
 		visible_message("<span class='xenowarning'>You hear [M]'s [L.display_name] being pulled beyond its load limits!</span>", \
 		"<span class='xenowarning'>\The [M]'s [L.display_name] begins to tear apart!</span>")
@@ -587,7 +603,7 @@
 		to_chat(src, "<span class='notice'>You stop ripping off the limb.</span>")
 		return FALSE
 
-	if(L.status & LIMB_DESTROYED)
+	if(L.limb_status & LIMB_DESTROYED)
 		return FALSE
 
 	visible_message("<span class='xenowarning'>\The [src] rips [M]'s [L.display_name] away from [M.p_their()] body!</span>", \
@@ -1487,11 +1503,13 @@
 			acid_progress_transfer(A, O)
 		I.current_acid = A
 
-	else //If not, appear on the floor or on an item
+	else if(istype(I)) //If not, appear on the floor or on an item
 		if(I.current_acid)
 			acid_progress_transfer(A, O)
 		A.layer = LOWER_ITEM_LAYER //below any item, above BELOW_OBJ_LAYER (smartfridge)
 		I.current_acid = A
+	else
+		return
 
 	A.name = A.name + " (on [O.name])" //Identify what the acid is on
 	A.add_hiddenprint(src)
@@ -2273,8 +2291,7 @@
 
 
 /mob/living/carbon/Xenomorph/Defiler/proc/defiler_sting(mob/living/H)
-
-	if(!check_state())
+	if(!check_state() || !istype(H))
 		return
 
 	if(world.time < last_defiler_sting + DEFILER_STING_COOLDOWN) //Sure, let's use this.
@@ -2367,7 +2384,7 @@
 		return
 	var/mob/living/carbon/C = L
 	var/datum/reagent/xeno_tox = C.reagents.get_reagent(toxin)
-	if(xeno_tox.overdosed)
+	if(xeno_tox?.overdosed)
 		to_chat(src, "<span class='xenodanger'>You sense this host is overdosed on [xeno_tox.name].</span>")
 
 /mob/living/carbon/Xenomorph/Hivelord/proc/build_tunnel()
@@ -2437,7 +2454,7 @@
 
 /mob/living/carbon/Xenomorph/Drone/proc/drone_sting(mob/living/H)
 
-	if(!check_state())
+	if(!check_state() || !istype(H))
 		return
 
 	if(world.time < last_drone_sting + DRONE_STING_COOLDOWN) //Sure, let's use this.

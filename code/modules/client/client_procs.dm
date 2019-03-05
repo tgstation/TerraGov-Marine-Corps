@@ -121,11 +121,13 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 
 
 /client/New(TopicData)
+	var/tdata = TopicData //save this for later use
 	chatOutput = new /datum/chatOutput(src)
-	TopicData = null							//Prevent calls to client.Topic from connect
+	TopicData = null	//Prevent calls to client.Topic from connect
 
-	if(!(connection in list("seeker", "web")))					//Invalid connection type.
+	if(connection != "seeker" && connection != "web")	//Invalid connection type.
 		return null
+
 
 	if(!guests_allowed && IsGuestKey(key))
 		alert(src,"This server doesn't allow guest accounts to play. Please go to http://www.byond.com/ and register for a key.", "Guest", "OK")
@@ -151,6 +153,7 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 		holder.activate()
 		if(check_rights(R_ADMIN, FALSE))
 			message_admins("Admin login: [key_name_admin(src)].")
+			to_chat(src, get_message_output("memo"))
 		else if(check_rights(R_MENTOR, FALSE))
 			message_staff("Mentor login: [key_name_admin(src)].")
 	else if(GLOB.deadmins[ckey])
@@ -161,6 +164,7 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 	if(!prefs || isnull(prefs) || !istype(prefs))
 		prefs = new /datum/preferences(src)
 		GLOB.preferences_datums[ckey] = prefs
+	prefs.parent = src
 	prefs.last_ip = address				//these are gonna be used for banning
 	prefs.last_id = computer_id			//these are gonna be used for banning
 
@@ -200,6 +204,24 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 
 	preload_rsc = GLOB.external_rsc_url
 
+	var/cached_player_age = set_client_age_from_db(tdata) //we have to cache this because other shit may change it and we need it's current value now down below.
+	if(isnum(cached_player_age) && cached_player_age == -1) //first connection
+		player_age = 0
+	var/nnpa = CONFIG_GET(number/notify_new_player_age)
+	if(isnum(cached_player_age) && cached_player_age == -1) //first connection
+		if(nnpa >= 0)
+			message_admins("New user: [key_name_admin(src)] is connecting here for the first time.")
+	else if(isnum(cached_player_age) && cached_player_age < nnpa)
+		message_admins("New user: [key_name_admin(src)] just connected with an age of [cached_player_age] day[(player_age == 1 ? "" : "s")]")
+	if(CONFIG_GET(flag/use_account_age_for_jobs) && account_age >= 0)
+		player_age = account_age
+	if(account_age >= 0 && account_age < nnpa)
+		message_admins("[key_name_admin(src)] (IP: [address], ID: [computer_id]) is a new BYOND account [account_age] day[(account_age == 1 ? "" : "s")] old, created on [account_join_date].")
+
+
+	get_message_output("watchlist entry", ckey)
+	validate_key_in_db()
+
 	send_assets()
 	nanomanager.send_resources(src)
 
@@ -209,14 +231,18 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 	if(prefs.lastchangelog != GLOB.changelog_hash) //bolds the changelog button on the interface so we know there are updates.
 		winset(src, "rpane.changelog", "background-color=#ED9F9B;font-style=bold")
 
+	if(ckey in GLOB.clientmessages)
+		for(var/message in GLOB.clientmessages[ckey])
+			to_chat(src, message)
+		GLOB.clientmessages.Remove(ckey)
 
 	if(all_player_details[ckey])
 		player_details = all_player_details[ckey]
 	else
 		player_details = new
 		all_player_details[ckey] = player_details
-	
-	winset(src, null, "mainwindow.title=[CONFIG_GET(string/title)]")
+
+	winset(src, null, "mainwindow.title='[CONFIG_GET(string/title)]'")
 
 
 
@@ -298,4 +324,153 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 	char_render_holders = null
 
 
-#undef UPLOAD_LIMIT
+/client/proc/set_client_age_from_db(connectiontopic)
+	if(IsGuestKey(key))
+		return
+	if(!SSdbcore.Connect())
+		return
+	var/sql_ckey = sanitizeSQL(ckey)
+	var/datum/DBQuery/query_get_related_ip = SSdbcore.NewQuery("SELECT ckey FROM [format_table_name("player")] WHERE ip = INET_ATON('[address]') AND ckey != '[sql_ckey]'")
+	if(!query_get_related_ip.Execute())
+		qdel(query_get_related_ip)
+		return
+	related_accounts_ip = ""
+	while(query_get_related_ip.NextRow())
+		related_accounts_ip += "[query_get_related_ip.item[1]], "
+	qdel(query_get_related_ip)
+	var/datum/DBQuery/query_get_related_cid = SSdbcore.NewQuery("SELECT ckey FROM [format_table_name("player")] WHERE computerid = '[computer_id]' AND ckey != '[sql_ckey]'")
+	if(!query_get_related_cid.Execute())
+		qdel(query_get_related_cid)
+		return
+	related_accounts_cid = ""
+	while (query_get_related_cid.NextRow())
+		related_accounts_cid += "[query_get_related_cid.item[1]], "
+	qdel(query_get_related_cid)
+	var/admin_rank = "Player"
+	if(holder && holder.rank)
+		admin_rank = holder.rank.name
+	var/sql_ip = sanitizeSQL(address)
+	var/sql_computerid = sanitizeSQL(computer_id)
+	var/sql_admin_rank = sanitizeSQL(admin_rank)
+	var/new_player
+	var/datum/DBQuery/query_client_in_db = SSdbcore.NewQuery("SELECT 1 FROM [format_table_name("player")] WHERE ckey = '[sql_ckey]'")
+	if(!query_client_in_db.Execute())
+		qdel(query_client_in_db)
+		return
+	if(!query_client_in_db.NextRow())
+		new_player = 1
+		account_join_date = sanitizeSQL(findJoinDate())
+		var/sql_key = sanitizeSQL(key)
+		var/datum/DBQuery/query_add_player = SSdbcore.NewQuery("INSERT INTO [format_table_name("player")] (`ckey`, `byond_key`, `firstseen`, `firstseen_round_id`, `lastseen`, `lastseen_round_id`, `ip`, `computerid`, `lastadminrank`, `accountjoindate`) VALUES ('[sql_ckey]', '[sql_key]', Now(), '[GLOB.round_id]', Now(), '[GLOB.round_id]', INET_ATON('[sql_ip]'), '[sql_computerid]', '[sql_admin_rank]', [account_join_date ? "'[account_join_date]'" : "NULL"])")
+		if(!query_add_player.Execute())
+			qdel(query_client_in_db)
+			qdel(query_add_player)
+			return
+		qdel(query_add_player)
+		if(!account_join_date)
+			account_join_date = "Error"
+			account_age = -1
+	qdel(query_client_in_db)
+	var/datum/DBQuery/query_get_client_age = SSdbcore.NewQuery("SELECT firstseen, DATEDIFF(Now(),firstseen), accountjoindate, DATEDIFF(Now(),accountjoindate) FROM [format_table_name("player")] WHERE ckey = '[sql_ckey]'")
+	if(!query_get_client_age.Execute())
+		qdel(query_get_client_age)
+		return
+	if(query_get_client_age.NextRow())
+		player_join_date = query_get_client_age.item[1]
+		player_age = text2num(query_get_client_age.item[2])
+		if(!account_join_date)
+			account_join_date = query_get_client_age.item[3]
+			account_age = text2num(query_get_client_age.item[4])
+			if(!account_age)
+				account_join_date = sanitizeSQL(findJoinDate())
+				if(!account_join_date)
+					account_age = -1
+				else
+					var/datum/DBQuery/query_datediff = SSdbcore.NewQuery("SELECT DATEDIFF(Now(),'[account_join_date]')")
+					if(!query_datediff.Execute())
+						qdel(query_datediff)
+						return
+					if(query_datediff.NextRow())
+						account_age = text2num(query_datediff.item[1])
+					qdel(query_datediff)
+	qdel(query_get_client_age)
+	if(!new_player)
+		var/datum/DBQuery/query_log_player = SSdbcore.NewQuery("UPDATE [format_table_name("player")] SET lastseen = Now(), lastseen_round_id = '[GLOB.round_id]', ip = INET_ATON('[sql_ip]'), computerid = '[sql_computerid]', lastadminrank = '[sql_admin_rank]', accountjoindate = [account_join_date ? "'[account_join_date]'" : "NULL"] WHERE ckey = '[sql_ckey]'")
+		if(!query_log_player.Execute())
+			qdel(query_log_player)
+			return
+		qdel(query_log_player)
+	if(!account_join_date)
+		account_join_date = "Error"
+	var/datum/DBQuery/query_log_connection = SSdbcore.NewQuery("INSERT INTO `[format_table_name("connection_log")]` (`id`,`datetime`,`server_ip`,`server_port`,`round_id`,`ckey`,`ip`,`computerid`) VALUES(null,Now(),INET_ATON(IF('[world.internet_address]' LIKE '', '0', '[world.internet_address]')),'[world.port]','[GLOB.round_id]','[sql_ckey]',INET_ATON('[sql_ip]'),'[sql_computerid]')")
+	query_log_connection.Execute()
+	qdel(query_log_connection)
+	if(new_player)
+		player_age = -1
+	. = player_age
+
+
+/client/proc/findJoinDate()
+	var/list/http = world.Export("http://byond.com/members/[ckey]?format=text")
+	if(!http)
+		log_world("Failed to connect to byond member page to age check [ckey]")
+		return
+	var/F = file2text(http["CONTENT"])
+	if(F)
+		var/regex/R = regex("joined = \"(\\d{4}-\\d{2}-\\d{2})\"")
+		if(R.Find(F))
+			. = R.group[1]
+		else
+			CRASH("Age check regex failed for [src.ckey]")
+
+
+/client/proc/validate_key_in_db()
+	var/sql_ckey = sanitizeSQL(ckey)
+	var/sql_key
+	var/datum/DBQuery/query_check_byond_key = SSdbcore.NewQuery("SELECT byond_key FROM [format_table_name("player")] WHERE ckey = '[sql_ckey]'")
+	if(!query_check_byond_key.Execute())
+		qdel(query_check_byond_key)
+		return
+	if(query_check_byond_key.NextRow())
+		sql_key = query_check_byond_key.item[1]
+	qdel(query_check_byond_key)
+	if(key != sql_key)
+		var/list/http = world.Export("http://byond.com/members/[ckey]?format=text")
+		if(!http)
+			log_world("Failed to connect to byond member page to get changed key for [ckey]")
+			return
+		var/F = file2text(http["CONTENT"])
+		if(F)
+			var/regex/R = regex("\\tkey = \"(.+)\"")
+			if(R.Find(F))
+				var/web_key = sanitizeSQL(R.group[1])
+				var/datum/DBQuery/query_update_byond_key = SSdbcore.NewQuery("UPDATE [format_table_name("player")] SET byond_key = '[web_key]' WHERE ckey = '[sql_ckey]'")
+				query_update_byond_key.Execute()
+				qdel(query_update_byond_key)
+			else
+				CRASH("Key check regex failed for [ckey]")
+
+
+/client/proc/add_system_note(system_ckey, message)
+	var/sql_system_ckey = sanitizeSQL(system_ckey)
+	var/sql_ckey = sanitizeSQL(ckey)
+	//check to see if we noted them in the last day.
+	var/datum/DBQuery/query_get_notes = SSdbcore.NewQuery("SELECT id FROM [format_table_name("messages")] WHERE type = 'note' AND targetckey = '[sql_ckey]' AND adminckey = '[sql_system_ckey]' AND timestamp + INTERVAL 1 DAY < NOW() AND deleted = 0 AND (expire_timestamp > NOW() OR expire_timestamp IS NULL)")
+	if(!query_get_notes.Execute())
+		qdel(query_get_notes)
+		return
+	if(query_get_notes.NextRow())
+		qdel(query_get_notes)
+		return
+	qdel(query_get_notes)
+	//regardless of above, make sure their last note is not from us, as no point in repeating the same note over and over.
+	query_get_notes = SSdbcore.NewQuery("SELECT adminckey FROM [format_table_name("messages")] WHERE targetckey = '[sql_ckey]' AND deleted = 0 AND (expire_timestamp > NOW() OR expire_timestamp IS NULL) ORDER BY timestamp DESC LIMIT 1")
+	if(!query_get_notes.Execute())
+		qdel(query_get_notes)
+		return
+	if(query_get_notes.NextRow())
+		if (query_get_notes.item[1] == system_ckey)
+			qdel(query_get_notes)
+			return
+	qdel(query_get_notes)
+	create_message("note", key, system_ckey, message, null, null, 0, 0, null, 0, 0)

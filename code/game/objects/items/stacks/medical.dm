@@ -35,7 +35,7 @@
 			to_chat(user, "<span class='warning'>You can't apply [src] through [H.wear_suit]!</span>")
 			return 1
 
-	if(affecting.status & LIMB_ROBOT)
+	if(affecting.limb_status & LIMB_ROBOT)
 		to_chat(user, "<span class='warning'>This isn't useful at all on a robotic limb.</span>")
 		return 1
 
@@ -268,11 +268,11 @@
 			to_chat(user, "<span class='warning'>You can't apply a splint there!</span>")
 			return
 
-		if(affecting.status & LIMB_DESTROYED)
+		if(affecting.limb_status & LIMB_DESTROYED)
 			to_chat(user, "<span class='warning'>[user == M ? "You don't" : "[M] doesn't"] have \a [limb]!</span>")
 			return
 
-		if(affecting.status & LIMB_SPLINTED)
+		if(affecting.limb_status & LIMB_SPLINTED)
 			to_chat(user, "<span class='warning'>[user == M ? "Your" : "[M]'s"] [limb] is already splinted!</span>")
 			return
 

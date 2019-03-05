@@ -6,7 +6,7 @@
 	var/allow_construction = TRUE //whether you can build things like barricades on this turf.
 	var/slayer = 0 //snow layer
 	var/wet = 0 //whether the turf is wet (only used by floors).
-
+	var/has_catwalk = FALSE
 
 /turf/open/Entered(atom/A, atom/OL)
 	if(iscarbon(A))
@@ -62,61 +62,42 @@
 	..()
 	ceiling_desc(user)
 
-
-
-
 /turf/open/river
 	can_bloody = FALSE
 
 
+// Big Red
 
-
-// Mars grounds
-
-/turf/open/mars
-	name = "sand"
+/turf/open/mars/
 	icon = 'icons/turf/bigred.dmi'
-	icon_state = "mars_sand_1"
 	is_groundmap_turf = TRUE
 
-
-/turf/open/mars_cave
+/turf/open/mars/random/cave
 	name = "cave"
-	icon = 'icons/turf/bigred.dmi'
-	icon_state = "mars_cave_1"
+	icon_state = "mars_cave"
 
-/turf/open/mars_cave/random
-	icon_state = "mars_cave_2"
+/turf/open/mars/random/cave/rock
+	name = "cave"
+	icon_state = "mars_cave_rock"
 
-/turf/open/mars_cave/random/Initialize()
-	. = ..()
-
-	if (prob(33))
-		icon_state = "mars_cave_3"
-
-/turf/open/mars_dirt
+/turf/open/mars/random/dirt
 	name = "dirt"
-	icon = 'icons/turf/bigred.dmi'
-	icon_state = "mars_dirt_1"
+	icon_state = "mars_dirt"
 
-/turf/open/mars_dirt/random
-	icon_state = "mars_dirt_4"
+/turf/open/mars/random/sand
+	name = "sand"
+	icon_state = "mars_sand"
 
-/turf/open/mars_dirt/random/Initialize()
+/turf/open/mars/random/Initialize()
 	. = ..()
+	dir = pick(alldirs)
 
-	if (prob(3))
-		icon_state = "mars_dirt_1"
-		return
-
-	if (prob(3))
-		icon_state = "mars_dirt_2"
-		return
-
-	if (prob(16))
-		icon_state = "mars_dirt_7"
-
-
+/turf/open/mars/dirttosand
+	name = "sand"
+	icon_state = "mars_dirt_to_sand"
+/turf/open/mars/cavetodirt
+	name = "cave"
+	icon_state = "mars_cave_to_dirt"
 
 
 
@@ -223,13 +204,21 @@
 	icon_state = "seashallow"
 	can_bloody = FALSE
 
-/turf/open/gm/river/New()
-	..()
-	overlays += image("icon"='icons/turf/ground_map.dmi',"icon_state"="riverwater","layer"=MOB_LAYER+0.1)
+/obj/effect/river_overlay
+	name = "river_overlay"
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	layer = RIVER_OVERLAY_LAYER
 
+/turf/open/gm/river/Initialize()
+	. = ..()
+	if(!has_catwalk)
+		var/obj/effect/river_overlay/R = new(src)
+		R.overlays += image("icon"='icons/turf/ground_map.dmi',"icon_state"="riverwater","layer"=RIVER_OVERLAY_LAYER)
 
 /turf/open/gm/river/Entered(atom/movable/AM)
 	..()
+	if(has_catwalk)
+		return
 	if(iscarbon(AM))
 		var/mob/living/carbon/C = AM
 		var/river_slowdown = 1.75
@@ -275,9 +264,11 @@
 	M.clean_blood()
 
 
-/turf/open/gm/river/poison/New()
-	..()
-	overlays += image("icon"='icons/effects/effects.dmi',"icon_state"="greenglow","layer"=MOB_LAYER+0.1)
+/turf/open/gm/river/poison/Initialize()
+	. = ..()
+	if(!has_catwalk)
+		var/obj/effect/river_overlay/R = new(src)
+		R.overlays += image("icon"='icons/effects/effects.dmi',"icon_state"="greenglow","layer"=RIVER_OVERLAY_LAYER)
 
 /turf/open/gm/river/poison/Entered(mob/living/M)
 	..()
@@ -300,9 +291,11 @@
 	icon_state = "seadeep"
 	can_bloody = FALSE
 
-/turf/open/gm/riverdeep/New()
-	..()
-	overlays += image("icon"='icons/turf/ground_map.dmi',"icon_state"="water","layer"=MOB_LAYER+0.1)
+/turf/open/gm/riverdeep/Initialize()
+	. = ..()
+	if(!has_catwalk)
+		var/obj/effect/river_overlay/R = new(src)
+		R.overlays += image("icon"='icons/turf/ground_map.dmi',"icon_state"="water","layer"=RIVER_OVERLAY_LAYER)
 
 
 
@@ -468,8 +461,8 @@
 
 
 //Randomize ice floor sprite
-/turf/open/ice/New()
-	..()
+/turf/open/ice/Initialize()
+	. = ..()
 	setDir(pick(NORTH,SOUTH,EAST,WEST,NORTHEAST,NORTHWEST,SOUTHEAST,SOUTHWEST))
 
 

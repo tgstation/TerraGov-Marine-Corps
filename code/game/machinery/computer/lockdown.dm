@@ -6,7 +6,7 @@
 	/*name = "Lockdown Control"
 	desc = "Used to control blast doors."
 	icon_state = "lockdown"
-	circuit = "/obj/item/weapon/circuitboard/lockdown"
+	circuit = "/obj/item/circuitboard/lockdown"
 	var/connected_doors
 	var/department*/
 	var/list/displayedNetworks
@@ -64,10 +64,10 @@
 
 	attack_hand(mob/user)
 		add_fingerprint(user)
-		if(stat & (BROKEN|NOPOWER))
+		if(machine_stat & (BROKEN|NOPOWER))
 			return
 
-		if ( (get_dist(src, user) > 1 ) || (stat & (BROKEN|NOPOWER)) )
+		if ( (get_dist(src, user) > 1 ) || (machine_stat & (BROKEN|NOPOWER)) )
 			if (!issilicon(user))
 				user.machine = null
 				user << browse(null, "window=lockdown")

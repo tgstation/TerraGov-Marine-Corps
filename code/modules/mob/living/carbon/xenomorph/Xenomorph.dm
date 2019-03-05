@@ -5,7 +5,6 @@
 //This is so they can be easily transferred between them without copypasta
 
 //All this stuff was written by Absynth.
-//Edited by Apop - 11JUN16
 
 /mob/living/carbon/Xenomorph
 	name = "Drone"

@@ -21,7 +21,7 @@
 
 /obj/machinery/drone_fabricator/power_change()
 	..()
-	if (stat & NOPOWER)
+	if (machine_stat & NOPOWER)
 		icon_state = "drone_fab_nopower"
 
 /obj/machinery/drone_fabricator/process()
@@ -29,7 +29,7 @@
 	if(SSticker.current_state < GAME_STATE_PLAYING)
 		return
 
-	if(stat & NOPOWER || !produce_drones)
+	if(machine_stat & NOPOWER || !produce_drones)
 		if(icon_state != "drone_fab_nopower") icon_state = "drone_fab_nopower"
 		return
 
@@ -58,7 +58,7 @@
 
 /obj/machinery/drone_fabricator/proc/create_drone(var/client/player)
 
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		return
 
 	if(!produce_drones || !CONFIG_GET(flag/allow_drone_spawn) || count_drones() >= CONFIG_GET(number/max_maint_drones))
@@ -127,7 +127,7 @@
 		return
 
 	for(var/obj/machinery/drone_fabricator/DF in machines)
-		if(DF.stat & NOPOWER || !DF.produce_drones)
+		if(DF.machine_stat & NOPOWER || !DF.produce_drones)
 			continue
 
 		if(DF.count_drones() >= config.max_maint_drones)

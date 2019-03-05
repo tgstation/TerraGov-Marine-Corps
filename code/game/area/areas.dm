@@ -115,7 +115,7 @@
 	//Check all the alarms before lowering atmosalm. Raising is perfectly fine.
 	for (var/area/RA in related)
 		for (var/obj/machinery/alarm/AA in RA)
-			if ( !(AA.stat & (NOPOWER|BROKEN)) && !AA.shorted)
+			if ( !(AA.machine_stat & (NOPOWER|BROKEN)) && !AA.shorted)
 				danger_level = max(danger_level, AA.danger_level)
 
 	if(danger_level != atmosalm)

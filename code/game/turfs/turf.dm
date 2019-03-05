@@ -260,7 +260,7 @@
 
 //for xeno corrosive acid, 0 for unmeltable, 1 for regular, 2 for strong walls that require strong acid and more time.
 /turf/proc/can_be_dissolved()
-	return UNMELTABLE
+	return FALSE
 
 /turf/proc/ceiling_debris_check(var/size = 1)
 	return
@@ -360,7 +360,7 @@
 	return !slayer
 
 /turf/open/mars/is_weedable()
-	return FALSE
+	return TRUE
 
 
 /turf/open/floor/plating/plating_catwalk/is_weedable() //covered catwalks are unweedable
@@ -372,9 +372,6 @@
 
 /turf/closed/wall/is_weedable()
 	return TRUE //so we can spawn weeds on the walls
-
-
-
 
 
 
@@ -394,9 +391,6 @@
 	return TRUE
 
 /turf/open/mars/can_dig_xeno_tunnel()
-	return TRUE
-
-/turf/open/mars_cave/can_dig_xeno_tunnel()
 	return TRUE
 
 /turf/open/floor/prison/can_dig_xeno_tunnel()
@@ -546,8 +540,6 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 /turf/open/AfterChange(flags)
 	..()
 	RemoveLattice()
-	//if(!(flags & (CHANGETURF_IGNORE_AIR | CHANGETURF_INHERIT_AIR)))
-	//	Assimilate_Air()
 
 // Removes all signs of lattice on the pos of the turf -Donkieyo
 /turf/proc/RemoveLattice()

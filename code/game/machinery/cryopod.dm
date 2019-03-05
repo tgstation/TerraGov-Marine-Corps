@@ -51,7 +51,7 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 	src.attack_hand()
 
 /obj/machinery/computer/cryopod/attack_hand(mob/user = usr)
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 
 	user.set_interaction(src)
@@ -213,11 +213,11 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 			if(ishuman(occupant))
 				var/mob/living/carbon/human/H = occupant
 				switch(H.job)
-					if("Military Police","Chief MP")
+					if("Master at Arms","Command Master at Arms")
 						dept_console = frozen_items["MP"]
-					if("Doctor","Medical Researcher","Chief Medical Officer")
+					if("Medical Officer","Medical Researcher","Chief Medical Officer")
 						dept_console = frozen_items["Med"]
-					if("Maintenance Tech","Chief Engineer")
+					if("Ship Engineer","Chief Ship Engineer")
 						dept_console = frozen_items["Eng"]
 
 			var/list/deleteempty = list(/obj/item/storage/backpack/marine/satchel)
@@ -318,7 +318,7 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 					switch(H.mind.assigned_role)
 						if("Squad Engineer")
 							S.num_engineers--
-						if("Squad Medic")
+						if("Squad Corpsman")
 							S.num_medics--
 						if("Squad Specialist")
 							S.num_specialists--

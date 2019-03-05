@@ -24,6 +24,21 @@ FIRE ALARM
 	var/wiresexposed = 0
 	var/buildstage = 2 // 2 = complete, 1 = no wires,  0 = circuit gone
 
+
+/obj/machinery/firealarm/Initialize()
+	. = ..()
+
+	switch(dir)
+		if(NORTH) 
+			pixel_y = 24
+		if(SOUTH) 
+			pixel_y = -24
+		if(EAST) 
+			pixel_x = 24
+		if(WEST) 
+			pixel_x = -24
+
+
 /obj/machinery/firealarm/update_icon()
 
 	if(wiresexposed)
@@ -37,9 +52,9 @@ FIRE ALARM
 
 		return
 
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		icon_state = "firex"
-	else if(stat & NOPOWER)
+	else if(machine_stat & NOPOWER)
 		icon_state = "firep"
 	else if(!src.detecting)
 		icon_state = "fire1"
@@ -132,7 +147,7 @@ FIRE ALARM
 	return
 
 /obj/machinery/firealarm/process()//Note: this processing was mostly phased out due to other code, and only runs when needed
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 
 	if(src.timing)
@@ -157,7 +172,7 @@ FIRE ALARM
 		update_icon()
 
 /obj/machinery/firealarm/attack_hand(mob/user as mob)
-	if(user.stat || stat & (NOPOWER|BROKEN))
+	if(user.stat || machine_stat & (NOPOWER|BROKEN))
 		return
 
 	if (buildstage != 2)
@@ -208,7 +223,7 @@ FIRE ALARM
 
 /obj/machinery/firealarm/Topic(href, href_list)
 	..()
-	if (usr.stat || stat & (BROKEN|NOPOWER))
+	if (usr.stat || machine_stat & (BROKEN|NOPOWER))
 		return
 
 	if (buildstage != 2)

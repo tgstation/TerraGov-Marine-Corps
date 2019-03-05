@@ -8,7 +8,7 @@
 	priority = 1
 
 /datum/surgery_step/cavity/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected, checks_only)
-	return affected.surgery_open_stage == (affected.encased ? 3 : 2) && !(affected.status & LIMB_BLEEDING)
+	return affected.surgery_open_stage == (affected.encased ? 3 : 2) && !(affected.limb_status & LIMB_BLEEDING)
 
 /datum/surgery_step/cavity/proc/get_max_wclass(datum/limb/affected)
 	switch (affected.name)

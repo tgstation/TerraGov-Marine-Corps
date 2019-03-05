@@ -197,7 +197,7 @@
 					M.emote("scream")
 				else
 					var/mob/living/carbon/C = M
-					if (!(C.species && (C.species.flags & NO_PAIN)))
+					if (!(C.species && (C.species.species_flags & NO_PAIN)))
 						C.emote("scream")
 
 			log_combat(user, M, "creamated", src)

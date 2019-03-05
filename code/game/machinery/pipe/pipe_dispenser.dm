@@ -80,7 +80,7 @@
 					"<span class='notice'> You have unfastened \the [src]. Now it can be pulled somewhere else.</span>", \
 					"You hear ratchet.")
 				anchored = FALSE
-				stat |= MAINT
+				machine_stat |= MAINT
 				unwrenched = TRUE
 				if (usr.interactee==src)
 					usr << browse(null, "window=pipedispenser")
@@ -93,7 +93,7 @@
 					"<span class='notice'> You have fastened \the [src]. Now it can dispense pipes.</span>", \
 					"You hear ratchet.")
 				anchored = TRUE
-				stat &= ~MAINT
+				machine_stat &= ~MAINT
 				unwrenched = FALSE
 				power_change()
 	else

@@ -14,7 +14,7 @@
 /obj/machinery/cell_charger/proc/updateicon()
 	icon_state = "ccharger[charging ? 1 : 0]"
 
-	if(charging && !(stat & (BROKEN|NOPOWER)) )
+	if(charging && !(machine_stat & (BROKEN|NOPOWER)) )
 
 		var/newlevel = 	round(charging.percent() * 4.0 / 99)
 		//to_chat(world, "nl: [newlevel]")
@@ -35,7 +35,7 @@
 		to_chat(user, "Current charge: [charging.charge]")
 
 /obj/machinery/cell_charger/attackby(obj/item/W, mob/user)
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		return
 
 	if(istype(W, /obj/item/cell) && anchored)
@@ -81,7 +81,7 @@
 	return
 
 /obj/machinery/cell_charger/emp_act(severity)
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	if(charging)
 		charging.emp_act(severity)
@@ -90,7 +90,7 @@
 
 /obj/machinery/cell_charger/process()
 	//to_chat(world, "ccpt [charging] [stat]")
-	if((stat & (BROKEN|NOPOWER)) || !anchored)
+	if((machine_stat & (BROKEN|NOPOWER)) || !anchored)
 		update_use_power(0)
 		return
 

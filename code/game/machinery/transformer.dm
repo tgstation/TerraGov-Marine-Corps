@@ -25,7 +25,7 @@
 			transform(AM)
 
 /obj/machinery/transformer/proc/transform(var/mob/living/carbon/human/H)
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	if(!transform_dead && H.stat == DEAD)
 		playsound(src.loc, 'sound/machines/buzz-sigh.ogg', 50, 0)
@@ -47,10 +47,10 @@
 
 		//East
 		var/turf/east = locate(T.x + 1, T.y, T.z)
-		if(istype(east, /turf/simulated/floor))
+		if(istype(east, /turf/open/floor))
 			new /obj/machinery/conveyor(east, WEST, 1)
 
 		// West
 		var/turf/west = locate(T.x - 1, T.y, T.z)
-		if(istype(west, /turf/simulated/floor))
+		if(istype(west, /turf/open/floor))
 			new /obj/machinery/conveyor(west, WEST, 1)

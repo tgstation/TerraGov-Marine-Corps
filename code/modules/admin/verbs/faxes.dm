@@ -40,7 +40,7 @@ GLOBAL_LIST_EMPTY(faxes)
 			continue
 		if(FM.department != department)
 			continue
-		if(FM.stat & (BROKEN|NOPOWER))
+		if(FM.machine_stat & (BROKEN|NOPOWER))
 			continue
 
 		flick("faxreceive", F)
@@ -63,7 +63,7 @@ GLOBAL_LIST_EMPTY(faxes)
 
 
 /datum/admins/proc/view_faxes()
-	set category = "Admin"
+	set category = "Fun"
 	set name = "View Faxes"
 
 	if(!check_rights(R_ADMIN|R_MENTOR))
