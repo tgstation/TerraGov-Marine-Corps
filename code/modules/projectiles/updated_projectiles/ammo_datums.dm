@@ -17,6 +17,8 @@
 
 #define DEBUG_STAGGER_SLOWDOWN	0
 
+GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/facehugger, /obj/effect/alien/egg, /obj/structure/mineral_door, /obj/effect/alien/resin, /obj/structure/bed/nest))) //For sticky/acid spit
+
 /datum/ammo
 	var/name 		= "generic bullet"
 	var/icon 		= 'icons/obj/items/projectiles.dmi'
@@ -1391,15 +1393,11 @@
 /datum/ammo/xeno/sticky/proc/drop_resin(turf/T)
 	if(T.density)
 		return
+
 	for(var/obj/O in T.contents)
-		if(istype(O, /obj/item/clothing/mask/facehugger))
+		if(is_type_in_typecache(O, GLOB.no_sticky_resin))
 			return
-		if(istype(O, /obj/effect/alien/egg))
-			return
-		if(istype(O, /obj/structure/mineral_door) || istype(O, /obj/effect/alien/resin) || istype(O, /obj/structure/bed/nest))
-			return
-		if(O.density && !(O.flags_atom & ON_BORDER) && !O.throwpass)
-			return
+
 	new /obj/effect/alien/resin/sticky/thin(T)
 
 /datum/ammo/xeno/acid
@@ -1466,6 +1464,7 @@
 /datum/ammo/xeno/acid/proc/drop_acid(turf/T) //Leaves behind a short lived acid pool; lasts for 1-3 seconds.
 	if(T.density)
 		return
+
 	new /obj/effect/xenomorph/spray(T, 10)
 
 /datum/ammo/xeno/boiler_gas
