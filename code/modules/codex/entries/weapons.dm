@@ -19,17 +19,14 @@
 	if(general_entry && general_entry.mechanics_text)
 		attach_strings += general_entry.mechanics_text
 
-	if(slot = "muzzle")
-		attach_strings += "This attaches to the muzzle slot."
-	if(slot = "rail")
-		attach_strings += "This attaches to the rail slot."
-	if(slot = "stock")
-		attach_strings += "This attaches to the stock slot."
-	if(slot = "under")
-		attach_strings += "This attaches to the underbarrel slot."
-
-	if(flags_attach_features & ATTACH_WEAPON)
-		attach_strings += "This can be attached to a weapon."
+	if(slot == "muzzle")
+		attach_strings += "This attaches to the muzzle slot on most weapons.<br>"
+	if(slot == "rail")
+		attach_strings += "This attaches to the rail slot on most weapons.<br>"
+	if(slot == "stock")
+		attach_strings += "This attaches to the stock slot on most weapons.<br>"
+	if(slot == "under")
+		attach_strings += "This attaches to the underbarrel slot on most weapons.<br>"
 
 	if(flags_attach_features & ATTACH_REMOVABLE)
 		attach_strings += "This can be field stripped off the weapon if needed."
@@ -40,80 +37,114 @@
 	if(flags_attach_features & ATTACH_RELOADABLE)
 		attach_strings += "This can be reloaded with the appropriate ammunition."	
 
-	if(max_rounds)
-		attach_strings += "This attachment can hold [max_rounds] rounds of ammunition."
+	//if(max_rounds) doesn't work for all the attachements, only the attached_gun ones, UGL, shottie, flamer.
+	//	attach_strings += "This attachment can hold [max_rounds] rounds of ammunition."
 
-	if(max_range)
-		attach_strings += "This attachment has a max range of [max_range] tiles."
+	//if(max_range) same here as above.
+	//	attach_strings += "This attachment has a max range of [max_range] tiles."
 
 	if(accuracy_mod)
 		switch(accuracy_mod)
-			if(-INFINITY to -51)
-				attach_strings += "This will make it almost impossible to hit with when wielded."
-			if(-50 to -41)
-				attach_strings += "this will extremely negatively impact your wielded aim."
-			if(-40 to -31)
-				attach_strings += "this will harshly negatively impact your wielded aim."
-			if(-30 to -21)
-				attach_strings += "this will moderately negatively impact your wielded aim."
-			if(-20 to -11)
-				attach_strings += "this will lightly negatively impact your wielded aim."
-			if(-10 to -1)
-				attach_strings += "this will minorly negatively impact your wielded aim."
-			if(0 to 9)
-				attach_strings += "this will minorly positively impact your wielded aim."
-			if(10 to 19)
-				attach_strings += "this will lightly positively impact your wielded aim."
-			if(20 to 29)
-				attach_strings += "this will moderately positively impact your wielded aim."
-			if(30 to 39)
-				attach_strings += "this will harshly positively impact your wielded aim."
-			if(40 to 49)
-				attach_strings += "this will extremely positively impact your wielded aim."
-			if(50 to INFINITY)
-				attach_strings += "this will make it almost impossible to miss when wielded."
+			if(-INFINITY to -1.01)
+				attach_strings += "You will basically never hit with this attached to your weapon while wielded."
+			if(-1 to -0.01)
+				attach_strings += "You will potentially hit [accuracy_mod * 100]% less with your weapon while wielded with this attached."
+			if(0 to 1)
+				attach_strings += "You will potentially hit [accuracy_mod * 100]% more with your weapon while wielded with this attached."
+			if(1 to INFINITY)
+				attach_strings += "You will basically always hit attached to your weapon when it's wielded."
 
 	if(accuracy_unwielded_mod)
 		switch(accuracy_unwielded_mod)
-			if(-INFINITY to -51)
-				attach_strings += "This will make it almost impossible to hit with when unwielded."
-			if(-50 to -41)
-				attach_strings += "this will extremely negatively impact your unwielded aim."
-			if(-40 to -31)
-				attach_strings += "this will harshly negatively impact your unwielded aim."
-			if(-30 to -21)
-				attach_strings += "this will moderately negatively impact your unwielded aim."
-			if(-20 to -11)
-				attach_strings += "this will lightly negatively impact your unwielded aim."
-			if(-10 to -1)
-				attach_strings += "this will minorly negatively impact your unwielded aim."
-			if(0 to 9)
-				attach_strings += "this will minorly positively impact your unwielded aim."
-			if(10 to 19)
-				attach_strings += "this will lightly positively impact your unwielded aim."
-			if(20 to 29)
-				attach_strings += "this will moderately positively impact your unwielded aim."
-			if(30 to 39)
-				attach_strings += "this will harshly positively impact your unwielded aim."
-			if(40 to 49)
-				attach_strings += "this will extremely positively impact your unwielded aim."
-			if(50 to INFINITY)
-				attach_strings += "this will make it almost impossible to miss when unwielded."
+			if(-INFINITY to -1.01)
+				attach_strings += "You will basically never hit with this attached to your weapon while unwielded."
+			if(-1 to -0.01)
+				attach_strings += "You will potentially hit [accuracy_unwielded_mod * 100]% less with your weapon while unwielded with this attached."
+			if(0 to 1)
+				attach_strings += "You will potentially hit [accuracy_unwielded_mod * 100]% more with your weapon while unwielded with this attached."
+			if(1 to INFINITY)
+				attach_strings += "You will basically always hit attached to your weapon when it's unwielded."
 
+	if(damage_mod)
+		switch(damage_mod)
+			if(-INFINITY to -1.01)
+				attach_strings += "You will actively heal your target with your weapon with this attached."
+			if(-1 to -0.01)
+				attach_strings += "You will do [damage_mod * 100]% less damage with your weapon with this attached."
+			if(0 to 1)
+				attach_strings += "You will do [damage_mod * 100]% more damage with your weapon with this attached."
+			if(1 to INFINITY)
+				attach_strings += "You will basically destroy whatever you hit with this weapon."
 
-	if(slowdown)
-		switch(slowdown)
-			if(SLOWDOWN_ARMOR_VERY_LIGHT)
-				armor_strings += "<br>It will slow the wearer down by very little."
-			if(SLOWDOWN_ARMOR_LIGHT)
-				armor_strings += "<br>It will slow the wearer down by a small amount."
-			if(SLOWDOWN_ARMOR_MEDIUM)
-				armor_strings += "<br>It will slow the wearer down by a modest amount."
-			if(SLOWDOWN_ARMOR_HEAVY)
-				armor_strings += "<br>It will slow the wearer down by a large amount."
-			if(SLOWDOWN_ARMOR_VERY_HEAVY)
-				armor_strings += "<br>It will slow the wearer down by a massive amount."
+	if(damage_falloff_mod)
+		switch(damage_falloff_mod)
+			if(-INFINITY to -1.01)
+				attach_strings += "Your bullets will lose all of their damage over distance with this attached."
+			if(-1 to -0.01)
+				attach_strings += "You will do [damage_falloff_mod * 100]% less damage with your weapon over distance with this attached."
+			if(0 to 1)
+				attach_strings += "You will do [damage_falloff_mod * 100]% more damage with your weapon over distance with this attached."
+			if(1 to INFINITY)
+				attach_strings += "You will basically destroy whatever you hit with this weapon at range with this attached."
 
+	if(melee_mod)
+		switch(melee_mod)
+	if(scatter_mod)
+		switch(scatter_mod)
+	if(scatter_unwielded_mod)
+		switch(scatter_unwielded_mod)
+	if(recoil_mod)
+		switch(recoil_mod)
+	if(recoil_unwielded_mod)
+		switch(recoil_unwielded_mod)
+	if(burst_scatter_mod)
+		switch(burst_scatter_mod)
+	if(silence_mod)
+		switch(silence_mod)
+	if(light_mod)
+		switch(light_mod)
+	if(delay_mod)
+		switch(delay_mod)
+	if(burst_delay_mod)
+		switch(burst_delay_mod)
+	if(burst_mod)
+		switch(burst_mod)
+	if(size_mod)
+		switch(size_mod)
+	if(aim_speed_mod)
+		switch(aim_speed_mod)
+	if(melee_mod)
+		switch(melee_mod)
+	if(wield_delay_mod)
+		switch(wield_delay_mod)
+	
+	if(attach_shell_speed_mod)
+		switch(attach_shell_speed_mod)
+			if(-INFINITY to -1.01)
+				attach_strings += "Your bullets move at the speed of molasses, cold molasses."
+			if(-1 to -0.01)
+				attach_strings += "Your bullets will move [attach_shell_speed_mod * 100]% faster with this attached."
+			if(0 to 10)
+				attach_strings += "Your bullets will move [attach_shell_speed_mod * 100]% slower with this attached."
+			if(10.01 to INFINITY)
+				attach_strings += "Your bullets will instantly teleport to your foes with this attached."
+	
+	if(movement_acc_penalty_mod)
+		switch(movement_acc_penalty_mod)
+			if(-INFINITY to -1.01)
+				attach_strings += "Your will never hit anything while moving with this attached.."
+			if(-1 to -0.01)
+				attach_strings += "Your bullets will move [attach_shell_speed_mod * 100]% faster with this attached."
+			if(0 to 10)
+				attach_strings += "Your bullets will move [attach_shell_speed_mod * 100]% slower with this attached."
+			if(10.01 to INFINITY)
+				attach_strings += "Your bullets will instantly teleport to your foes with this attached."
+
+	if(max_rounds)
+		attach_strings += "This attachment can hold [max_rounds] of its ammunition."
+
+	if(scope_zoom_mod)
+		attach_strings += "This has optical glass allowing for magnification and viewing long distances."
 
 	. += jointext(attach_strings, "<br>")
 
