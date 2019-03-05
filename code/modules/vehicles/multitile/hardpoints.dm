@@ -220,8 +220,25 @@ Currently only has the tank hardpoints
 
 	next_use = world.time + owner.cooldowns["primary"] * owner.misc_ratios["prim_cool"]
 
-	if(!do_after(usr, 5, FALSE, 5, BUSY_ICON_HOSTILE))
+	var/delay = 5
+
+	var/obj/vehicle/multitile/root/cm_armored/tank/C = owner
+	var/obj/effect/overlay/temp/tank_laser/TL
+	if(C.is_zoomed)
+		delay = 20
+		TL = new /obj/effect/overlay/temp/tank_laser (T)
+
+	to_chat(usr, "<span class='warning'>Preparing to fire... keep the tank still for [delay * 0.1] seconds.</span>")
+
+	if(!do_after(usr, delay, FALSE, 5))
+		to_chat(usr, "<span class='warning'>The [name]'s firing was interrupted.</span>")
+		if(TL)
+			qdel(TL)
 		return
+
+	if(TL)
+		qdel(TL)
+
 	if(!prob(owner.accuracies["primary"] * 100 * owner.misc_ratios["prim_acc"]))
 		T = get_step(T, pick(cardinal))
 	var/obj/item/projectile/P = new
@@ -408,6 +425,26 @@ Currently only has the tank hardpoints
 	if(!ammo?.current_rounds > 0)
 		to_chat(usr, "<span class='warning'>This module does not have any ammo.</span>")
 		return
+
+	var/delay = 3
+
+	var/obj/vehicle/multitile/root/cm_armored/tank/C = owner
+	var/obj/effect/overlay/temp/tank_laser/TL
+	if(C.is_zoomed)
+		delay = 15
+		TL = new /obj/effect/overlay/temp/tank_laser (T)
+
+	if(delay)
+		to_chat(usr, "<span class='warning'>Preparing to fire... keep the tank still for [delay * 0.1] seconds.</span>")
+
+		if(!do_after(usr, delay, FALSE, 5))
+			to_chat(usr, "<span class='warning'>The [name]'s firing was interrupted.</span>")
+			if(TL)
+				qdel(TL)
+			return
+
+		if(TL)
+			qdel(TL)
 
 	next_use = world.time + owner.cooldowns["secondary"] * owner.misc_ratios["secd_cool"]
 	if(!prob(owner.accuracies["secondary"] * 100 * owner.misc_ratios["secd_acc"]))
@@ -678,9 +715,11 @@ Currently only has the tank hardpoints
 		M.client.pixel_x = 0
 		M.client.pixel_y = 0
 		is_active = FALSE
+		C.is_zoomed = FALSE
 		return
 	M.client.change_view(view_buff)
 	is_active = TRUE
+	C.is_zoomed = TRUE
 	switch(C.dir)
 		if(NORTH)
 			M.client.pixel_x = 0
