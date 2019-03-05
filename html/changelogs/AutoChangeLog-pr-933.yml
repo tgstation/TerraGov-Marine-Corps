@@ -1,4 +1,0 @@
-author: "by Surrealistik"
-delete-after: True
-changes: 
-  - balance: "LTB fire delayed for 2 seconds while zoomed in. TOW fire delay now 0.3 seconds unzoomed and 1.5 seconds zoomed. During this time both emit a targeting laser at the target turf while zoomed."

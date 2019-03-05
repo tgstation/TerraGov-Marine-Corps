@@ -1,4 +1,0 @@
-author: "spookydonut"
-delete-after: True
-changes: 
-  - bugfix: "multispittype xenos now show a proper spit overlay on spawn"
