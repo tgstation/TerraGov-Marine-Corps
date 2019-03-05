@@ -54,7 +54,6 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "doorctrl0"
 	desc = "A button for alerting doctors that you require assistance."
-	var/id = null
 	var/active = FALSE
 	anchored = 1.0
 	use_power = 1
@@ -62,9 +61,9 @@
 	active_power_usage = 4
 
 /obj/machinery/medical_help_button/attack_hand(mob/living/carbon/human/user)
-	add_fingerprint(user)
 	if(!istype(user))
 		return
+	add_fingerprint(user)
 	if(machine_stat & (NOPOWER|BROKEN))
 		to_chat(user, "<span class='warning'>[src] doesn't seem to be working.</span>")
 		return
@@ -72,7 +71,6 @@
 		return
 	use_power(5)
 	icon_state = "doorctrl1"
-	add_fingerprint(user)
 
 	var/mob/living/silicon/ai/AI = new/mob/living/silicon/ai(src, null, null, 1)
 	AI.SetName("Lobby Notification System")
