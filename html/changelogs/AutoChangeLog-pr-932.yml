@@ -1,4 +1,0 @@
-author: "Shadow-Quill"
-delete-after: True
-changes: 
-  - bugfix: "Requisition Elevator railings no longer fail to appear infront of mobs. (The ones at the top)."

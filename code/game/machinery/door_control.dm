@@ -194,7 +194,7 @@
 	src.add_fingerprint(user)
 	if(istype(user,/mob/living/carbon/Xenomorph))
 		return
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		to_chat(user, "<span class='warning'>[src] doesn't seem to be working.</span>")
 		return
 
@@ -219,12 +219,12 @@
 
 	desiredstate = !desiredstate
 	spawn(15)
-		if(!(stat & NOPOWER))
+		if(!(machine_stat & NOPOWER))
 			icon_state = "doorctrl0"
 
 /obj/machinery/door_control/power_change()
 	..()
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		icon_state = "doorctrl-p"
 	else
 		icon_state = "doorctrl0"
@@ -244,7 +244,7 @@
 /obj/machinery/driver_button/attack_hand(mob/user as mob)
 
 	src.add_fingerprint(usr)
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	if(active)
 		return
@@ -311,5 +311,5 @@
 		STOP_PROCESSING(SSobj, src)
 		//stop_processing()
 		spawn(15)
-			if(!(stat & NOPOWER))
+			if(!(machine_stat & NOPOWER))
 				icon_state = "doorctrl0"

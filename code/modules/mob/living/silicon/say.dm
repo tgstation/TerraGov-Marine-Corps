@@ -70,7 +70,7 @@
 		verb = speaking.speech_verb
 		message = copytext(message,3)
 
-		if(speaking.flags & HIVEMIND)
+		if(speaking.language_flags & HIVEMIND)
 			speaking.broadcast(src,trim(message))
 			return
 

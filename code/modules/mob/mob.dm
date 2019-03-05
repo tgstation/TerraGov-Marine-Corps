@@ -792,3 +792,18 @@ mob/proc/yank_out_object()
 		if(istype(M))
 			M.reset_view(destination)
 	return TRUE
+
+
+/mob/proc/remove_emote_overlay(var/image/overlay_to_remove)
+	overlays -= overlay_to_remove
+
+
+/mob/proc/audio_emote_cooldown(player_caused)
+	if(player_caused)
+		if(audio_emote_time < world.time)
+			audio_emote_time = world.time + 80
+			return FALSE
+		else
+			to_chat(usr, "<span class='notice'>You just did an audible emote. Wait a while.</span>")
+			return TRUE
+	return FALSE

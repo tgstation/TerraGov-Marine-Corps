@@ -1043,7 +1043,7 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/attached_gun/flamer/proc/unleash_flame(atom/target, mob/living/user)
 	set waitfor = 0
-	var/list/turf/turfs = getline2(user,target)
+	var/list/turf/turfs = getline(user,target)
 	var/distance = 0
 	var/turf/prev_T
 	playsound(user, 'sound/weapons/gun_flamethrower2.ogg', 50, 1)

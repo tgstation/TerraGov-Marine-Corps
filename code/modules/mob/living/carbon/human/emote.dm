@@ -37,6 +37,9 @@
 					return
 				if(client.handle_spam_prevention(message, MUTE_IC))
 					return
+				if(is_banned_from(ckey, "Emote"))
+					to_chat(src, "<span class='warning'>You cannot send emotes (banned).</span>")
+					return
 			return custom_emote(m_type, "[message]", player_caused)
 
 		if("blink")
@@ -88,7 +91,7 @@
 				return
 			var/datum/limb/l_arm/A = get_limb("l_arm")
 			var/datum/limb/r_arm/B = get_limb("r_arm")
-			if((!A || A.status & LIMB_DESTROYED) && (!B || B.status & LIMB_DESTROYED))
+			if((!A || A.limb_status & LIMB_DESTROYED) && (!B || B.limb_status & LIMB_DESTROYED))
 				to_chat(src, "You cannot dab without your arms.")
 				return
 
@@ -96,11 +99,11 @@
 			var/risk = rand (1, 100)
 			switch(risk)
 				if(1 to 3)
-					if(A || A.status && !LIMB_DESTROYED)
+					if(A || A.limb_status && !LIMB_DESTROYED)
 						A.droplimb()
 						message += " so hard their left arm goes flying off"
 				if(4 to 6)
-					if(B || B.status && !LIMB_DESTROYED)
+					if(B || B.limb_status && !LIMB_DESTROYED)
 						B.droplimb()
 						message += " so hard their right arm goes flying off"
 			message += "."
@@ -315,14 +318,14 @@
 blink, blink_r, bow-(mob name), chuckle, <span style='color: green;'>clap</span>, collapse, cough, cry, drool, eyebrow, facepalm,
 faint, frown, gasp, giggle, glare-(mob name), <span style='color: green;'>golfclap</span>, grin, grumble, handshake, hug-(mob name),
 laugh, look-(mob name), me, <span style='color: green;'>medic</span>, moan, mumble, nod, point, <span style='color: green;'>salute</span>,
-scream, shakehead, shiver, shrug, sigh, signal-#1-10, smile, sneeze, snore, stare-(mob name), twitch, wave, yawn</b><br>"}
+<span style='color: green;'>scream</span>, shakehead, shiver, shrug, sigh, signal-#1-10, smile, sneeze, snore, stare-(mob name), twitch, wave, yawn</b><br>"}
 			
 			if(CONFIG_GET(flag/fun_allowed)) //this is the *help message when fun_allowed = 1.
 				msg = {"<br><br><b>To use an emote, type an asterix (*) before a following word. Emotes with a sound are <span style='color: green;'>green</span>. Emotes that are <span style='color: red;'>RED</span> are done at your own risk. Spamming emotes with sound will likely get you in trouble, don't do it.<br><br> \
 blink, blink_r, bow-(mob name), chuckle, <span style='color: green;'>clap</span>, collapse, cough, cry, <span style='color: red;'>dab</span>, drool, eyebrow, facepalm, 
 faint, frown, gasp, giggle, glare-(mob name), <span style='color: green;'>golfclap</span>, grin, grumble, handshake, hug-(mob name), 
 laugh, look-(mob name), me, <span style='color: green;'>medic</span>, moan, mumble, nod, point, <span style='color: green;'>salute</span>, 
-scream, shakehead, shiver, shrug, sigh, signal-#1-10, smile, sneeze, snore, stare-(mob name), twitch, wave, yawn</b><br>"}
+<span style='color: green;'>scream</span>, shakehead, shiver, shrug, sigh, signal-#1-10, smile, sneeze, snore, stare-(mob name), twitch, wave, yawn</b><br>"}
 		
 			to_chat(src, msg)
 			if (isyautjastrict(src))
@@ -434,16 +437,3 @@ scream, shakehead, shiver, shrug, sigh, signal-#1-10, smile, sneeze, snore, star
 		else if(m_type == EMOTE_AUDIBLE)
 			for(var/mob/O in hearers(loc, null))
 				O.show_message(message, m_type)
-
-/mob/living/carbon/human/proc/remove_emote_overlay(var/image/overlay_to_remove)
-	overlays -= overlay_to_remove
-
-/mob/living/carbon/human/proc/audio_emote_cooldown(player_caused)
-	if(player_caused)
-		if(audio_emote_time < world.time)
-			audio_emote_time = world.time + 80
-			return FALSE
-		else
-			to_chat(usr, "<span class='notice'>You just did an audible emote. Wait a while.</span>")
-			return TRUE
-	return FALSE

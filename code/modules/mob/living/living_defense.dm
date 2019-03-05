@@ -131,7 +131,7 @@
 /mob/living/carbon/human/IgniteMob()
 	. = ..()
 	if(.)
-		if(!stat && !(species.flags & NO_PAIN))
+		if(!stat && !(species.species_flags & NO_PAIN))
 			emote("scream")
 
 /mob/living/carbon/Xenomorph/IgniteMob()

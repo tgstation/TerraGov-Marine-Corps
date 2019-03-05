@@ -11,7 +11,7 @@
 /datum/surgery_step/face/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected, checks_only)
 	if(target_zone != "mouth")
 		return 0
-	if(affected.status & LIMB_DESTROYED)
+	if(affected.limb_status & LIMB_DESTROYED)
 		return 0
 	var/datum/limb/head/H = affected
 	if(!istype(H) || !H.disfigured || H.face_surgery_stage != face_step)
@@ -125,7 +125,7 @@
 /datum/surgery_step/face/cauterize/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/head/affected)
 	user.visible_message("<span class='notice'>[user] cauterizes the incision on [target]'s face and neck with \the [tool].</span>", \
 	"<span class='notice'>You cauterize the incision on [target]'s face and neck with \the [tool].</span>")
-	affected.status &= ~LIMB_BLEEDING
+	affected.limb_status &= ~LIMB_BLEEDING
 	affected.disfigured = 0
 	affected.owner.name = affected.owner.get_visible_name()
 	affected.face_surgery_stage = 0

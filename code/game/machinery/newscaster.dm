@@ -141,7 +141,7 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 	if(isbroken) //Broken shit can't be powered.
 		return
 	..()
-	if( !(stat & NOPOWER) )
+	if( !(machine_stat & NOPOWER) )
 		src.ispowered = 1
 		src.update_icon()
 	else

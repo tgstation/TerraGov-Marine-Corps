@@ -119,7 +119,7 @@
 /*
 						for (var/something in loc)
 							if (istype(something, /obj/machinery/power/apc))
-								if (!(something:stat & BROKEN))
+								if (!(something:machine_stat & BROKEN))
 									theAPC = something
 									break
 */
@@ -128,7 +128,7 @@
 							var/area/AIarea = get_area(src)
 							for(var/area/A in AIarea.master.related)
 								for (var/obj/machinery/power/apc/APC in A)
-									if (!(APC.stat & BROKEN))
+									if (!(APC.machine_stat & BROKEN))
 										theAPC = APC
 										break
 							if (!theAPC)

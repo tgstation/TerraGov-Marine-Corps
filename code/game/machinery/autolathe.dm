@@ -107,7 +107,7 @@
 
 /obj/machinery/autolathe/attackby(var/obj/item/O as obj, var/mob/user as mob)
 
-	if (stat)
+	if (machine_stat)
 		return
 
 	if (busy)

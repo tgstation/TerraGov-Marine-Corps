@@ -230,13 +230,13 @@
 
 				if(!status) status = "OK"
 
-				if(org.status & LIMB_SPLINTED)
+				if(org.limb_status & LIMB_SPLINTED)
 					status += " <b>(SPLINTED)</b>"
-				if(org.status & LIMB_STABILIZED)
+				if(org.limb_status & LIMB_STABILIZED)
 					status += " <b>(STABILIZED)</b>"
-				if(org.status & LIMB_MUTATED)
+				if(org.limb_status & LIMB_MUTATED)
 					status = "weirdly shapen."
-				if(org.status & LIMB_DESTROYED)
+				if(org.limb_status & LIMB_DESTROYED)
 					status = "MISSING!"
 
 				if(brute_treated == FALSE && brutedamage > 0)

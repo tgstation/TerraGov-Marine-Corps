@@ -144,7 +144,7 @@
 			user.tile_contents = T.contents.Copy()
 
 			var/atom/A
-			for(A in user.tile_contents)			
+			for(A in user.tile_contents)
 				if(A.invisibility > user.see_invisible)
 					user.tile_contents -= A
 
@@ -186,8 +186,6 @@
 */
 /mob/proc/RangedAttack(var/atom/A, var/params)
 	if(!mutations.len) return
-	if((LASER in mutations) && a_intent == INTENT_HARM)
-		LaserEyes(A) // moved into a proc below
 	else if(TK in mutations)
 		switch(get_dist(src,A))
 			if(0)

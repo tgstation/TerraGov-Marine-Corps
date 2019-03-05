@@ -1,7 +1,7 @@
 //Refer to life.dm for caller
 
 /mob/living/carbon/human/need_breathe()
-	if((species?.flags & NO_BREATHE) && health > get_crit_threshold())
+	if((species?.species_flags & NO_BREATHE) && health > get_crit_threshold())
 		set_Losebreath(0, TRUE)
 		setOxyLoss(0, TRUE)
 		oxygen_alert = FALSE
@@ -14,7 +14,7 @@
 		return
 	. = ..(air_info)
 	if(!.)
-		if(prob(10) && !(species?.flags & NO_BREATHE))
+		if(prob(10) && !(species?.species_flags & NO_BREATHE))
 			emote("gasp")
 		return FALSE
 
