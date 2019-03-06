@@ -178,7 +178,7 @@
 		if(EvacuationAuthority)
 			var/eta_status = EvacuationAuthority.get_status_panel_eta()
 			if(eta_status)
-				stat(null, eta_status)
+				stat("Evacuation in:", eta_status)
 
 		if(internal)
 			stat("Internal Atmosphere Info", internal.name)
