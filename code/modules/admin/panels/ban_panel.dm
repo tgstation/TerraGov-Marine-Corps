@@ -55,6 +55,8 @@
 		log_admin_private("[key_name(usr)] has [muteunmute] [key_name(C)] from [mute_string].")
 		message_admins("[ADMIN_TPMONTY(usr)] has [muteunmute] [ADMIN_TPMONTY(C.mob)] from [mute_string].")
 
+	usr.client.holder.show_player_panel(C.mob)
+
 
 //checks client ban cache or DB ban table if ckey is banned from one or more roles
 //doesn't return any details, use only for if statements

@@ -7,7 +7,7 @@
 #define MUTE_ADMINHELP	(1<<3)
 #define MUTE_DEADCHAT	(1<<4)
 #define MUTE_LOOC		(1<<5)
-#define MUTE_ALL		(~0)
+#define MUTE_ALL		(1<<6)-1
 
 //Some constants for DB_Ban
 #define BANTYPE_PERMA		1

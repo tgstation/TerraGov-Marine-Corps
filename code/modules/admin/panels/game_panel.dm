@@ -7,7 +7,6 @@
 
 	var/ref = "[REF(usr.client.holder)];[HrefToken()]"
 	var/dat = {"
-		<center><B>Game Panel</B></center><hr>\n
 		<a href='?src=[ref];modemenu=1'>Change Game Mode</a><br>
 		<br>
 		<a href='?src=[ref];create_object=1'>Create Object</a><br>
@@ -20,7 +19,9 @@
 		<a href='?src=[ref];explosion_log=1'>Explosion Log</a><br>
 		"}
 
-	usr << browse(dat, "window=admin2;size=210x280")
+	var/datum/browser/browser = new(usr, "gamepanel", "<div align='center'>Game Panel</div>", 220, 290)
+	browser.set_content(dat)
+	browser.open()
 
 
 /datum/admins/proc/create_mob(mob/user)
