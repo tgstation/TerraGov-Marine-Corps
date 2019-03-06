@@ -74,7 +74,8 @@
 		log_admin("[key_name(usr)] has taken [key_name_admin(target)].")
 		message_admins("[ADMIN_TPMONTY(usr)] has taken [ADMIN_TPMONTY(target)].")
 
-		mind.transfer_to(target, TRUE)
+		target.key = usr.key
+		target.client.change_view(world.view)
 		target.fully_replace_character_name(real_name, target.real_name)
 
 
