@@ -44,6 +44,8 @@ Basics, the most important.
 
 /datum/config_entry/string/python_path
 
+/datum/config_entry/string/restart_message
+
 /datum/config_entry/flag/guest_ban
 
 /datum/config_entry/flag/continous_rounds

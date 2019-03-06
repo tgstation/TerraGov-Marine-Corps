@@ -174,7 +174,7 @@ var/world_topic_spam_protect_time = world.timeofday
 
 /world/Reboot(ping = FALSE)
 	if(ping)
-		send2update("<@&545779447739973633>")
+		send2update(CONFIG_GET(string/restart_message))
 	send2update("Map: [SSmapping?.next_map_config?.map_name] | Last Round End State: [SSticker?.mode?.round_finished]")
 	TgsReboot()
 	for(var/client/C in GLOB.clients)

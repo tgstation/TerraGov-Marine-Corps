@@ -9,9 +9,9 @@
 	if(alert("Restart the game world?", "Restart", "Yes", "No") != "Yes")
 		return
 
-	var/mention = FALSE
-	if(alert("Mention the New Round Alert role?", "Mention Role", "Yes", "No") == "Yes")
-		mention = TRUE
+	var/message = FALSE
+	if(alert("Send the new round message?", "Mention Role", "Yes", "No") == "Yes")
+		message = TRUE
 
 	to_chat(world, "<span class='danger'>Restarting world!</span> <span class='notice'>Initiated by: [usr.key]</span>")
 
@@ -19,7 +19,8 @@
 	message_admins("[ADMIN_TPMONTY(usr)] initiated a restart.")
 
 	spawn(50)
-		world.Reboot(mention)
+		world.Reboot(message)
+
 
 /datum/admins/proc/shutdown_server()
 	set category = "Server"
