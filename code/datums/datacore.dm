@@ -357,9 +357,9 @@ proc/get_id_photo(var/mob/living/carbon/human/H)
 	preview_icon.Blend(temp, ICON_OVERLAY)
 
 	for(var/datum/limb/E in H.limbs)
-		if(E.status & LIMB_DESTROYED) continue
+		if(E.limb_status & LIMB_DESTROYED) continue
 		temp = new /icon(icobase, get_limb_icon_name(H.species, b_icon, H.gender, E.name, e_icon))
-		if(E.status & LIMB_ROBOT)
+		if(E.limb_status & LIMB_ROBOT)
 			temp.MapColors(rgb(77,77,77), rgb(150,150,150), rgb(28,28,28), rgb(0,0,0))
 		preview_icon.Blend(temp, ICON_OVERLAY)
 

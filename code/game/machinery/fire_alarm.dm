@@ -51,11 +51,11 @@ FIRE ALARM
 	overlays.Cut()
 	icon_state = "fire1"
 
-	if(wiresexposed || (stat & BROKEN))
+	if(wiresexposed || (machine_stat & BROKEN))
 		overlays += image(icon, "fire_ob[buildstage]")
 		return
 
-	if(!(stat & NOPOWER))
+	if(!(machine_stat & NOPOWER))
 		var/alert = (is_mainship_level(z)) ? get_security_level() : "green"
 		overlays += image(icon, "fire_o[alert]")
 		var/area/A = get_area(src)
@@ -149,7 +149,7 @@ FIRE ALARM
 	return
 
 /obj/machinery/firealarm/process()//Note: this processing was mostly phased out due to other code, and only runs when needed
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 
 	if(src.timing)
@@ -174,7 +174,7 @@ FIRE ALARM
 		update_icon()
 
 /obj/machinery/firealarm/attack_hand(mob/user as mob)
-	if(user.stat || stat & (NOPOWER|BROKEN))
+	if(user.stat || machine_stat & (NOPOWER|BROKEN))
 		return
 
 	if (buildstage != 2)
@@ -225,7 +225,7 @@ FIRE ALARM
 
 /obj/machinery/firealarm/Topic(href, href_list)
 	..()
-	if (usr.stat || stat & (BROKEN|NOPOWER))
+	if (usr.stat || machine_stat & (BROKEN|NOPOWER))
 		return
 
 	if (buildstage != 2)

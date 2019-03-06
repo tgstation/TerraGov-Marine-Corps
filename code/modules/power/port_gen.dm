@@ -277,7 +277,7 @@
 			. = TRUE
 
 /obj/machinery/power/port_gen/pacman/inoperable(var/additional_flags)
-	. = (stat & (BROKEN|additional_flags))
+	. = (machine_stat & (BROKEN|additional_flags))
 
 /obj/machinery/power/port_gen/pacman/super
 	name = "S.U.P.E.R.P.A.C.M.A.N.-type Portable Generator"

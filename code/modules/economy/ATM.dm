@@ -43,7 +43,7 @@ log transactions
 	start_processing()
 
 /obj/machinery/atm/process()
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		return
 
 	if(ticks_left_timeout > 0)

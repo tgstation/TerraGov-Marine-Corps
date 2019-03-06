@@ -96,7 +96,7 @@ Basically a cheap knock-off of the Protolathe that I wrote in the middle of the 
 	if (!istype(O, /obj/item/XenoBio))
 		to_chat(user, "<span class='warning'>You cannot insert this item into the protolathe!</span>")
 		return 1
-	if (stat)
+	if (machine_stat)
 		return 1
 
 	icon_state = "protolathe"

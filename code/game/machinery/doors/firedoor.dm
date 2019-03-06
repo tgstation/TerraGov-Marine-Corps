@@ -175,7 +175,7 @@
 	if(user.is_mob_incapacitated() || (!user.canmove && !isAI(user)) || (get_dist(src, user) > 1  && !isAI(user)))
 		to_chat(user, "Sorry, you must remain able bodied and close to \the [src] in order to use it.")
 		return
-	if(density && (stat & (BROKEN|NOPOWER))) //can still close without power
+	if(density && (machine_stat & (BROKEN|NOPOWER))) //can still close without power
 		to_chat(user, "\The [src] is not functioning, you'll have to force it open manually.")
 		return
 
@@ -300,7 +300,7 @@
 
 /obj/machinery/door/firedoor/open(var/forced = 0)
 	if(!forced)
-		if(stat & (BROKEN|NOPOWER))
+		if(machine_stat & (BROKEN|NOPOWER))
 			return //needs power to open unless it was forced
 		else
 			use_power(360)

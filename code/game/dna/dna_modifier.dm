@@ -247,10 +247,10 @@
 
 /obj/machinery/computer/scan_consolenew/power_change()
 	..()
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		icon_state = "broken"
 	else
-		if (stat & NOPOWER)
+		if (machine_stat & NOPOWER)
 			spawn(rand(0, 15))
 				src.icon_state = "c_unpowered"
 		else
@@ -287,7 +287,7 @@
 
 /*
 /obj/machinery/computer/scan_consolenew/process() //not really used right now
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	if (!( src.status )) //remove this
 		return

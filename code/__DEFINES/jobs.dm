@@ -1,7 +1,7 @@
 #define J_FLAG_MARINE		(1<<0)
 
 #define SQUAD_MARINE		(1<<0)
-#define SQUAD_CORPSMAN			(1<<1)
+#define SQUAD_CORPSMAN		(1<<1)
 #define SQUAD_ENGINEER		(1<<3)
 #define SQUAD_SMARTGUNNER	(1<<4)
 #define SQUAD_SPECIALIST	(1<<5)
@@ -142,6 +142,7 @@
 #define JOBS_UNASSIGNED		list("Squad Marine")
 
 
+//prefflag
 #define PREF_JOB_CO				(1 << 0)
 #define PREF_JOB_FC				(1 << 1)
 #define PREF_JOB_SO				(1 << 2)

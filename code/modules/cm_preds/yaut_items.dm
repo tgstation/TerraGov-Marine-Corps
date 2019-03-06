@@ -968,7 +968,7 @@
 					O.implants -= S
 					pain_factor++
 					O.take_damage(rand(2,5), 0, 0)
-					O.status |= LIMB_BLEEDING
+					O.limb_status |= LIMB_BLEEDING
 
 			for(var/datum/internal_organ/I in user.internal_organs) //Now go in and clean out the internal ones.
 				for(var/obj/Q in I)

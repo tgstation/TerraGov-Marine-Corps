@@ -216,14 +216,6 @@
 	. = ..()
 	setDir(pick(NORTH,SOUTH,EAST,WEST))
 
-/turf/closed/ice_rock/cornerOverlay
-	icon_state = "corner_overlay"
-
-
-
-
-
-
 
 //SHUTTLE 'WALLS'
 //not a child of turf/closed/wall because shuttle walls are magical, don't smoothes with normal walls, etc
@@ -233,8 +225,30 @@
 	icon_state = "wall1"
 	icon = 'icons/turf/shuttle.dmi'
 
+/turf/closed/shuttle/diagonal
+	icon_state = "diagonalWall"
+
+/turf/closed/shuttle/diagonal/plating
+	icon_state = "diagonalWallplating"
+	opacity = FALSE
+
+/turf/closed/shuttle/diagonal/sea
+	icon_state = "diagonalWallsea"
+	opacity = FALSE
+
 /turf/closed/shuttle/wall3
 	icon_state = "wall3"
+
+/turf/closed/shuttle/wall3/diagonal
+	icon_state = "diagonalWall3"
+
+/turf/closed/shuttle/wall3/diagonal/plating
+	icon_state = "diagonalWall3plating"
+	opacity = FALSE
+
+/turf/closed/shuttle/wall3/diagonal/sea
+	icon_state = "diagonalWall3sea"
+	opacity = FALSE
 
 /turf/closed/shuttle/dropship
 	icon = 'icons/turf/walls.dmi'
