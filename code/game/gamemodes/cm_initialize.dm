@@ -755,20 +755,20 @@ datum/game_mode/proc/initialize_post_queen_list()
 
 // generic landmark setup
 
-#define MAX_TUNNELS_PER_MAP 3
+#define MAX_TUNNELS_PER_MAP 10
 
 /datum/game_mode/proc/setup_xeno_tunnels()
 	var/obj/structure/tunnel/T
 	var/i = 0
 	var/turf/t
-	while(GLOB.xeno_tunnel_landmarks.len && i++ < MAX_TUNNELS_PER_MAP)
+	while(length(GLOB.xeno_tunnel_landmarks) && i++ < MAX_TUNNELS_PER_MAP)
 		t = pick(GLOB.xeno_tunnel_landmarks)
 		GLOB.xeno_tunnel_landmarks -= t
 		T = new(t)
 		T.id = "hole[i]"
 		for(var/x in GLOB.xeno_tunnels)
 			var/obj/structure/tunnel/TO = x
-			if(TO.id != T.id || T == TO || !TO.other)
+			if(TO.id != T.id || T == TO || TO.other)
 				continue
 			TO.other = T
 			T.other = TO
