@@ -304,13 +304,13 @@
 	pill_type_to_fill = /obj/item/reagent_container/pill/tricordrazine
 
 /obj/item/storage/pill_bottle/happy
-	name = "\improper happy pill bottle"
+	name = "happy pill bottle"
 	desc = "Contains highly illegal drugs. When you want to see the rainbow."
 	max_storage_space = 7
 	pill_type_to_fill = /obj/item/reagent_container/pill/happy
 
 /obj/item/storage/pill_bottle/zoom
-	name = "\improper zoom pill bottle"
+	name = "zoom pill bottle"
 	desc = "Containts highly illegal drugs. Trade brain for speed."
 	max_storage_space = 7
 	pill_type_to_fill = /obj/item/reagent_container/pill/zoom
