@@ -1,0 +1,4 @@
+author: "By Surrealistik"
+delete-after: True
+changes: 
+  - bugfix: "Fixes lighting so that you don't lose/have to retoggle all light sources when a more powerful light (such as a flare) is tossed."
