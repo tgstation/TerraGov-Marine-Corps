@@ -313,6 +313,11 @@
 				X.stop_momentum(X.charge_dir)
 				return FALSE
 
+
+/obj/effect/forcefield/charge_act(mob/living/carbon/Xenomorph/X)
+	X.stop_momentum(X.charge_dir)
+	return FALSE
+
 //Beginning special object overrides.
 
 //**READ ME**
