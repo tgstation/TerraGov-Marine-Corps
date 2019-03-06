@@ -1373,14 +1373,14 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		var/mob/living/carbon/C = M
 		if( (xeno_hivenumber(C) && xeno_hivenumber(C) == xeno_hivenumber(P.firer) ) )
 			return
-		C.add_slowdown(1) //slow em down
+		C.add_slowdown(2) //slow em down
 		C.next_move_slowdown += 8 //really slow down their next move, as if they stepped in sticky doo doo
 
 /datum/ammo/xeno/sticky/on_hit_obj(obj/O,obj/item/projectile/P)
-	var/turf = get_turf(O)
-	if(!turf)
-		turf = get_turf(P)
-	drop_resin(turf)
+	var/turf/T = get_turf(O)
+	if(!T)
+		T = get_turf(P)
+	drop_resin(T)
 
 /datum/ammo/xeno/sticky/on_hit_turf(turf/T,obj/item/projectile/P)
 	if(!T)
@@ -1437,20 +1437,20 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = CONFIG_GET(number/combat_define/low_hit_damage)
 
 /datum/ammo/xeno/acid/heavy/on_hit_mob(mob/M,obj/item/projectile/P)
-	var/turf = get_turf(M)
-	if(!turf)
-		turf = get_turf(P)
-	drop_acid(turf)
+	var/turf/T = get_turf(M)
+	if(!T)
+		T = get_turf(P)
+	drop_acid(T)
 
 	if(istype(M,/mob/living/carbon))
 		var/mob/living/carbon/C = M
 		C.acid_process_cooldown = world.time
 
 /datum/ammo/xeno/acid/heavy/on_hit_obj(obj/O,obj/item/projectile/P)
-	var/turf = get_turf(O)
-	if(!turf)
-		turf = get_turf(P)
-	drop_acid(turf)
+	var/turf/T = get_turf(O)
+	if(!T)
+		T = get_turf(P)
+	drop_acid(T)
 
 
 /datum/ammo/xeno/acid/heavy/on_hit_turf(turf/T,obj/item/projectile/P)
