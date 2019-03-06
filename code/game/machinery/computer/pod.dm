@@ -19,7 +19,7 @@
 			connected = M
 
 /obj/machinery/computer/pod/proc/alarm()
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 
 	if(!( connected ))
@@ -49,7 +49,7 @@
 	if(isscrewdriver(I))
 		playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
 		if(do_after(user, 20))
-			if(stat & BROKEN)
+			if(machine_stat & BROKEN)
 				to_chat(user, "<span class='notice'>The broken glass falls out.</span>")
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe( loc )
 				new /obj/item/shard( loc )

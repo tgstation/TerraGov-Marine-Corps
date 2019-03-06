@@ -29,4 +29,3 @@
 #define MOB_HUD_XENO_INFECTION		6
 #define MOB_HUD_XENO_STATUS			7
 #define MOB_HUD_SQUAD				8
-

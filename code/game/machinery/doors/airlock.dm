@@ -20,7 +20,7 @@
 	isWireCut - returns 1 if that wire (e.g. AIRLOCK_WIRE_DOOR_BOLTS) is cut, or 0 if not
 	canAIControl - 1 if the AI can control the airlock, 0 if not (then check canAIHack to see if it can hack in)
 	canAIHack - 1 if the AI can hack into the airlock to recover control, 0 if not. Also returns 0 if the AI does not *need* to hack it.
-	arePowerSystemsOn - 1 if the main or backup power are functioning, 0 if not. Does not check whether the power grid is charged or an APC has equipment on or anything like that. (Check (stat & NOPOWER) for that)
+	arePowerSystemsOn - 1 if the main or backup power are functioning, 0 if not. Does not check whether the power grid is charged or an APC has equipment on or anything like that. (Check (machine_stat & NOPOWER) for that)
 	requiresIDs - 1 if the airlock is requiring IDs, 0 if not
 	isAllPowerCut - 1 if the main and backup power both have cut wires.
 	regainMainPower - handles the effect of main power coming back on.
@@ -163,7 +163,7 @@ About the new airlock wires panel:
 	switch(wireIndex)
 		if(AIRLOCK_WIRE_IDSCAN)
 			//Sending a pulse through this flashes the red light on the door (if the door has power).
-			if((src.arePowerSystemsOn()) && (!(stat & NOPOWER)))
+			if((src.arePowerSystemsOn()) && (!(machine_stat & NOPOWER)))
 				do_animate("deny")
 		if(AIRLOCK_WIRE_MAIN_POWER1, AIRLOCK_WIRE_MAIN_POWER2)
 			//Sending a pulse through either one causes a breaker to trip, disabling the door for 10 seconds if backup power is connected, or 1 minute if not (or until backup power comes back on, whichever is shorter).
@@ -334,7 +334,7 @@ About the new airlock wires panel:
 	return ((src.aiControlDisabled==1) && (!hackProof) && (!src.isAllPowerLoss()));
 
 /obj/machinery/door/airlock/proc/arePowerSystemsOn()
-	if (stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		return 0
 	return (src.secondsMainPowerLost==0 || src.secondsBackupPowerLost==0)
 
@@ -342,7 +342,7 @@ About the new airlock wires panel:
 	return !(src.isWireCut(AIRLOCK_WIRE_IDSCAN) || aiDisabledIdScanner)
 
 /obj/machinery/door/airlock/proc/isAllPowerLoss()
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		return 1
 	if(src.isWireCut(AIRLOCK_WIRE_MAIN_POWER1) || src.isWireCut(AIRLOCK_WIRE_MAIN_POWER2))
 		if(src.isWireCut(AIRLOCK_WIRE_BACKUP_POWER1) || src.isWireCut(AIRLOCK_WIRE_BACKUP_POWER2))
@@ -1175,7 +1175,8 @@ About the new airlock wires panel:
 				M.SetKnockeddown(5)
 				if (iscarbon(M))
 					var/mob/living/carbon/C = M
-					if (!(C.species && (C.species.flags & NO_PAIN)))
+					var/datum/species/S = C.species
+					if(S?.species_flags & NO_PAIN)
 						M.emote("pain")
 			var/turf/location = src.loc
 			if(istype(location, /turf))

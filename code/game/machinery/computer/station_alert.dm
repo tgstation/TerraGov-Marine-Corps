@@ -9,7 +9,7 @@
 
 /obj/machinery/computer/station_alert/attack_ai(mob/user)
 	add_fingerprint(user)
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	interact(user)
 	return
@@ -17,7 +17,7 @@
 
 /obj/machinery/computer/station_alert/attack_hand(mob/user)
 	add_fingerprint(user)
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	interact(user)
 	return
@@ -58,7 +58,7 @@
 
 
 /obj/machinery/computer/station_alert/proc/triggerAlarm(var/class, area/A, var/O, var/alarmsource)
-	if(stat & (BROKEN))
+	if(machine_stat & (BROKEN))
 		return
 	var/list/L = src.alarms[class]
 	for (var/I in L)
@@ -81,7 +81,7 @@
 
 
 /obj/machinery/computer/station_alert/proc/cancelAlarm(var/class, area/A as area, obj/origin)
-	if(stat & (BROKEN))
+	if(machine_stat & (BROKEN))
 		return
 	var/list/L = src.alarms[class]
 	var/cleared = 0
@@ -98,10 +98,10 @@
 
 
 /obj/machinery/computer/station_alert/process()
-	if (stat &(NOPOWER))
+	if (machine_stat &(NOPOWER))
 		icon_state = "atmos0"
 		return
-	if(stat & (BROKEN))
+	if(machine_stat & (BROKEN))
 		icon_state = "atmosb"
 		return
 	var/active_alarms = 0

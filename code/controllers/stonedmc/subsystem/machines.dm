@@ -61,7 +61,7 @@ SUBSYSTEM_DEF(machines)
 						//this will keep stat updated in case the machine is moved from one area to another.
 						M.power_change(A)	//we've already made sure A is a master area, above.
 
-						if(!(M.stat & NOPOWER) && M.use_power)
+						if(!(M.machine_stat & NOPOWER) && M.use_power)
 							M.auto_use_power()
 
 			if(A.apc.len)

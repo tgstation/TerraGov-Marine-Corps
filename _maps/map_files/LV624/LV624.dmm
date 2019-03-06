@@ -237,8 +237,8 @@
 /area/lv624/ground/caves/east1)
 "abh" = (
 /obj/machinery/colony_floodlight,
+/obj/structure/catwalk,
 /turf/open/gm/river,
-/turf/open/floor/plating/catwalk,
 /area/lv624/ground/sand8)
 "abi" = (
 /turf/open/gm/dirt,
@@ -272,10 +272,10 @@
 /area/lv624/ground/caves/east1)
 "abs" = (
 /obj/machinery/colony_floodlight,
+/obj/structure/catwalk,
 /turf/open/gm/coast{
 	dir = 8
 	},
-/turf/open/floor/plating/catwalk,
 /area/lv624/ground/sand8)
 "abt" = (
 /obj/effect/decal/remains/xeno,
@@ -312,10 +312,10 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/structure/catwalk,
 /turf/open/floor/plating/warning{
 	dir = 10
 	},
-/turf/open/floor/plating/catwalk,
 /area/lv624/ground/sand8)
 "abB" = (
 /obj/structure/mineral_door/resin,
@@ -402,10 +402,6 @@
 /obj/machinery/colony_floodlight,
 /turf/open/gm/dirt,
 /area/lv624/ground/sand5)
-"abQ" = (
-/turf/open/gm/dirt,
-/turf/closed/wall/resin/ondirt,
-/area/lv624/ground/caves/central1)
 "abR" = (
 /obj/structure/table/reinforced/flipped{
 	dir = 1
@@ -1181,10 +1177,10 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/structure/catwalk,
 /turf/open/floor/plating/warning{
 	dir = 2
 	},
-/turf/open/floor/plating/catwalk,
 /area/lv624/ground/sand8)
 "aej" = (
 /obj/structure/tunnel{
@@ -1267,10 +1263,6 @@
 	},
 /turf/open/floor/plating,
 /area/lv624/ground/sand6)
-"aeB" = (
-/turf/open/gm/dirt,
-/turf/closed/wall/resin/membrane/ondirt,
-/area/lv624/ground/caves/west1)
 "aeC" = (
 /turf/open/floor/plating/warning{
 	dir = 10
@@ -1372,10 +1364,6 @@
 "aeZ" = (
 /turf/open/gm/river,
 /area/lv624/ground/sand2)
-"afa" = (
-/turf/open/gm/dirt,
-/turf/closed/wall/resin/ondirt,
-/area/lv624/ground/sand5)
 "afb" = (
 /obj/effect/alien/weeds/node,
 /obj/effect/decal/warning_stripes/thin{
@@ -1813,7 +1801,6 @@
 /turf/open/gm/dirt,
 /area/lv624/ground/sand2)
 "agS" = (
-/turf/open/gm/dirt,
 /turf/closed/wall/resin/ondirt,
 /area/lv624/ground/sand6)
 "agT" = (
@@ -1864,10 +1851,10 @@
 	},
 /area/lv624/ground/sand2)
 "ahc" = (
+/obj/structure/catwalk,
 /turf/open/gm/coast{
 	dir = 4
 	},
-/turf/open/floor/plating/catwalk,
 /area/lv624/ground/sand8)
 "ahd" = (
 /obj/structure/cargo_container/green{
@@ -1879,7 +1866,6 @@
 /turf/closed/mineral,
 /area/lv624/ground/sand3)
 "ahg" = (
-/turf/open/gm/dirt,
 /turf/closed/wall/resin/ondirt,
 /area/lv624/ground/sand3)
 "ahh" = (
@@ -1947,7 +1933,6 @@
 /turf/open/gm/dirt,
 /area/lv624/ground/caves/west1)
 "ahs" = (
-/turf/open/gm/dirt,
 /turf/closed/wall/resin/ondirt,
 /area/lv624/ground/sand2)
 "aht" = (
@@ -1981,10 +1966,10 @@
 /obj/structure/disposalpipe/junction/flipped{
 	dir = 8
 	},
+/obj/structure/catwalk,
 /turf/open/floor/plating/warning{
 	dir = 2
 	},
-/turf/open/floor/plating/catwalk,
 /area/lv624/ground/sand8)
 "ahA" = (
 /turf/open/floor/plating,
@@ -2087,8 +2072,8 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/lv624/ground/sand2)
 "ahX" = (
+/obj/structure/catwalk,
 /turf/open/gm/river,
-/turf/open/floor/plating/catwalk,
 /area/lv624/ground/sand8)
 "ahY" = (
 /obj/effect/decal/cleanable/blood,
@@ -2110,10 +2095,10 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/structure/catwalk,
 /turf/open/floor/plating/warning{
 	dir = 6
 	},
-/turf/open/floor/plating/catwalk,
 /area/lv624/ground/sand8)
 "aic" = (
 /obj/effect/decal/remains/human,
@@ -2126,10 +2111,10 @@
 /obj/structure/disposalpipe/junction{
 	dir = 4
 	},
+/obj/structure/catwalk,
 /turf/open/floor/plating/warning{
 	dir = 2
 	},
-/turf/open/floor/plating/catwalk,
 /area/lv624/ground/sand8)
 "aie" = (
 /obj/item/device/flashlight/lantern,
@@ -2323,10 +2308,10 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/structure/catwalk,
 /turf/open/floor/plating/warning{
 	dir = 2
 	},
-/turf/open/floor/plating/catwalk,
 /area/lv624/ground/sand8)
 "aiY" = (
 /obj/structure/table,
@@ -2372,16 +2357,15 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/structure/catwalk,
 /turf/open/floor/plating/warning{
 	dir = 6
 	},
-/turf/open/floor/plating/catwalk,
 /area/lv624/ground/sand8)
 "ajh" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/plating,
 /turf/open/floor/plating/catwalk,
 /area/lv624/ground/sand9)
 "aji" = (
@@ -2458,7 +2442,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/plating,
 /turf/open/floor/plating/catwalk,
 /area/lv624/ground/sand9)
 "aju" = (
@@ -2484,7 +2467,6 @@
 /obj/structure/disposalpipe/junction/flipped{
 	dir = 8
 	},
-/turf/open/floor/plating,
 /turf/open/floor/plating/catwalk,
 /area/lv624/ground/sand9)
 "ajz" = (
@@ -2529,7 +2511,6 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 2
 	},
-/turf/open/floor/plating,
 /turf/open/floor/plating/catwalk,
 /area/lv624/ground/sand9)
 "ajK" = (
@@ -2538,10 +2519,10 @@
 /area/lv624/ground/river2)
 "ajL" = (
 /obj/structure/fence,
+/obj/structure/catwalk,
 /turf/open/floor/plating/warning{
 	dir = 2
 	},
-/turf/open/floor/plating/catwalk,
 /area/lv624/ground/sand8)
 "ajM" = (
 /obj/item/ammo_casing,
@@ -2604,7 +2585,6 @@
 /area/lv624/ground/sand8)
 "aka" = (
 /obj/structure/fence,
-/turf/open/floor/plating,
 /turf/open/floor/plating/catwalk,
 /area/lv624/ground/sand8)
 "akb" = (
@@ -2666,7 +2646,6 @@
 /area/lv624/ground/river2)
 "akn" = (
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/plating,
 /turf/open/floor/plating/catwalk,
 /area/lv624/ground/river2)
 "ako" = (
@@ -2774,27 +2753,27 @@
 "akN" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/grille,
+/obj/structure/catwalk,
 /turf/open/floor/plating/warning{
 	dir = 9
 	},
-/turf/open/floor/plating/catwalk,
 /area/lv624/ground/sand9)
 "akO" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/grille,
+/obj/structure/catwalk,
 /turf/open/floor/plating/warning{
 	dir = 5
 	},
-/turf/open/floor/plating/catwalk,
 /area/lv624/ground/sand9)
 "akP" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 4
 	},
+/obj/structure/catwalk,
 /turf/open/gm/coast{
 	dir = 4
 	},
-/turf/open/floor/plating/catwalk,
 /area/lv624/ground/river2)
 "akQ" = (
 /obj/structure/flora/ausbushes/brflowers,
@@ -2826,8 +2805,8 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/structure/catwalk,
 /turf/open/gm/river,
-/turf/open/floor/plating/catwalk,
 /area/lv624/ground/river2)
 "akX" = (
 /obj/structure/girder,
@@ -2964,18 +2943,18 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/structure/catwalk,
 /turf/open/gm/river,
-/turf/open/floor/plating/catwalk,
 /area/lv624/ground/river2)
 "alv" = (
 /obj/machinery/colony_floodlight,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/structure/catwalk,
 /turf/open/floor/plating/warning{
 	dir = 8
 	},
-/turf/open/floor/plating/catwalk,
 /area/lv624/ground/river2)
 "alw" = (
 /obj/item/tool/shovel,
@@ -2985,22 +2964,22 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
 	},
+/obj/structure/catwalk,
 /turf/open/gm/river,
-/turf/open/floor/plating/catwalk,
 /area/lv624/ground/river2)
 "aly" = (
 /obj/structure/disposalpipe/segment,
+/obj/structure/catwalk,
 /turf/open/gm/river,
-/turf/open/floor/plating/catwalk,
 /area/lv624/ground/river3)
 "alz" = (
 /obj/structure/disposalpipe/segment,
+/obj/structure/catwalk,
 /turf/open/gm/river,
-/turf/open/floor/plating/catwalk,
 /area/lv624/ground/sand9)
 "alA" = (
+/obj/structure/catwalk,
 /turf/open/gm/dirt,
-/turf/open/floor/plating/catwalk,
 /area/lv624/ground/sand8)
 "alB" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -3013,15 +2992,14 @@
 /turf/open/floor,
 /area/lv624/ground/sand8)
 "alE" = (
-/turf/open/floor/plating,
 /turf/open/floor/plating/catwalk,
 /area/lv624/ground/sand8)
 "alF" = (
 /obj/structure/disposalpipe/segment,
+/obj/structure/catwalk,
 /turf/open/gm/coast{
 	dir = 6
 	},
-/turf/open/floor/plating/catwalk,
 /area/lv624/ground/river2)
 "alH" = (
 /obj/structure/window/framed/colony,
@@ -3031,27 +3009,27 @@
 /area/lv624/ground/sand8)
 "alI" = (
 /obj/structure/disposalpipe/segment,
+/obj/structure/catwalk,
 /turf/open/gm/river,
-/turf/open/floor/plating/catwalk,
 /area/lv624/ground/jungle8)
 "alJ" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/grille,
 /obj/structure/disposalpipe/segment,
+/obj/structure/catwalk,
 /turf/open/gm/river,
-/turf/open/floor/plating/catwalk,
 /area/lv624/ground/river2)
 "alK" = (
 /obj/structure/disposalpipe/junction/flipped{
 	dir = 1
 	},
+/obj/structure/catwalk,
 /turf/open/gm/river,
-/turf/open/floor/plating/catwalk,
 /area/lv624/ground/river3)
 "alL" = (
 /obj/structure/disposalpipe/segment,
+/obj/structure/catwalk,
 /turf/open/gm/river,
-/turf/open/floor/plating/catwalk,
 /area/lv624/ground/river2)
 "alM" = (
 /obj/structure/bed/chair/wood/wings,
@@ -3063,8 +3041,8 @@
 /area/lv624/ground/jungle8)
 "alO" = (
 /obj/effect/landmark/lv624/fog_blocker,
+/obj/structure/catwalk,
 /turf/open/gm/river,
-/turf/open/floor/plating/catwalk,
 /area/lv624/ground/river3)
 "alP" = (
 /obj/effect/alien/weeds/node,
@@ -3074,8 +3052,8 @@
 /obj/structure/disposalpipe/junction/flipped{
 	dir = 1
 	},
+/obj/structure/catwalk,
 /turf/open/gm/river,
-/turf/open/floor/plating/catwalk,
 /area/lv624/ground/river2)
 "alR" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -3091,8 +3069,8 @@
 /area/lv624/ground/river2)
 "alT" = (
 /obj/effect/landmark/lv624/fog_blocker,
+/obj/structure/catwalk,
 /turf/open/gm/river,
-/turf/open/floor/plating/catwalk,
 /area/lv624/ground/river2)
 "alU" = (
 /obj/structure/fence,
@@ -3110,8 +3088,8 @@
 	dir = 2
 	},
 /obj/effect/landmark/lv624/fog_blocker,
+/obj/structure/catwalk,
 /turf/open/gm/river,
-/turf/open/floor/plating/catwalk,
 /area/lv624/ground/river2)
 "alX" = (
 /obj/structure/reagent_dispensers/watertank,
@@ -3203,28 +3181,28 @@
 /obj/structure/disposalpipe/junction{
 	dir = 1
 	},
+/obj/structure/catwalk,
 /turf/open/gm/river,
-/turf/open/floor/plating/catwalk,
 /area/lv624/ground/river3)
 "amm" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/structure/disposalpipe/segment,
+/obj/structure/catwalk,
 /turf/open/gm/river,
-/turf/open/floor/plating/catwalk,
 /area/lv624/ground/river2)
 "amn" = (
 /obj/structure/disposalpipe/segment,
+/obj/structure/catwalk,
 /turf/open/floor/plating/warning{
 	dir = 8
 	},
-/turf/open/floor/plating/catwalk,
 /area/lv624/ground/river3)
 "amo" = (
 /obj/structure/disposalpipe/segment,
+/obj/structure/catwalk,
 /turf/open/floor/plating/warning{
 	dir = 4
 	},
-/turf/open/floor/plating/catwalk,
 /area/lv624/ground/river3)
 "amp" = (
 /obj/effect/landmark/random_item/crap,
@@ -3234,20 +3212,20 @@
 /obj/structure/disposalpipe/junction{
 	dir = 1
 	},
+/obj/structure/catwalk,
 /turf/open/gm/river,
-/turf/open/floor/plating/catwalk,
 /area/lv624/ground/river2)
 "amr" = (
 /obj/structure/flora/ausbushes/reedbush,
+/obj/structure/catwalk,
 /turf/open/gm/river,
-/turf/open/floor/plating/catwalk,
 /area/lv624/ground/river2)
 "ams" = (
 /obj/structure/disposalpipe/segment,
+/obj/structure/catwalk,
 /turf/open/floor/plating/warning{
 	dir = 4
 	},
-/turf/open/floor/plating/catwalk,
 /area/lv624/ground/river2)
 "amt" = (
 /obj/effect/landmark/corpsespawner/miner{
@@ -3274,8 +3252,8 @@
 /turf/open/floor,
 /area/lv624/ground/sand8)
 "amw" = (
+/obj/structure/catwalk,
 /turf/open/gm/river,
-/turf/open/floor/plating/catwalk,
 /area/lv624/ground/river2)
 "amx" = (
 /obj/structure/flora/ausbushes/fullgrass,
@@ -3299,19 +3277,19 @@
 /obj/machinery/colony_floodlight{
 	dir = 4
 	},
+/obj/structure/catwalk,
 /turf/open/gm/dirtgrassborder{
 	dir = 1
 	},
-/turf/open/floor/plating/catwalk,
 /area/lv624/ground/jungle7)
 "amB" = (
 /obj/machinery/colony_floodlight{
 	dir = 8
 	},
+/obj/structure/catwalk,
 /turf/open/gm/dirtgrassborder{
 	dir = 1
 	},
-/turf/open/floor/plating/catwalk,
 /area/lv624/ground/jungle7)
 "amC" = (
 /obj/structure/window/framed/colony,
@@ -3388,10 +3366,10 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/medbay)
 "amO" = (
+/obj/structure/catwalk,
 /turf/open/gm/coast{
 	dir = 1
 	},
-/turf/open/floor/plating/catwalk,
 /area/lv624/ground/river2)
 "amP" = (
 /obj/structure/table,
@@ -3846,7 +3824,6 @@
 	},
 /area/lv624/ground/river2)
 "aod" = (
-/turf/open/floor/plating,
 /turf/open/floor/plating/catwalk,
 /area/lv624/ground/river2)
 "aoe" = (
@@ -4078,12 +4055,12 @@
 /turf/closed/wall,
 /area/lv624/ground/river3)
 "aoT" = (
+/obj/structure/catwalk,
 /turf/open/gm/coast,
-/turf/open/floor/plating/catwalk,
 /area/lv624/ground/river3)
 "aoU" = (
+/obj/structure/catwalk,
 /turf/open/gm/coast,
-/turf/open/floor/plating/catwalk,
 /area/lv624/ground/sand9)
 "aoV" = (
 /obj/structure/table/woodentable,
@@ -4176,8 +4153,8 @@
 	},
 /area/lv624/ground/compound/sw)
 "apo" = (
+/obj/structure/catwalk,
 /turf/open/gm/river,
-/turf/open/floor/plating/catwalk,
 /area/lv624/ground/river3)
 "app" = (
 /turf/open/floor/plating,
@@ -4323,8 +4300,8 @@
 /turf/open/gm/dirt,
 /area/lv624/ground/jungle8)
 "apQ" = (
+/obj/structure/catwalk,
 /turf/open/gm/coast,
-/turf/open/floor/plating/catwalk,
 /area/lv624/ground/river2)
 "apR" = (
 /obj/structure/girder/displaced,
@@ -4687,10 +4664,10 @@
 	},
 /area/lv624/ground/jungle8)
 "arw" = (
+/obj/structure/catwalk,
 /turf/open/gm/coast{
 	dir = 1
 	},
-/turf/open/floor/plating/catwalk,
 /area/lv624/ground/river3)
 "arx" = (
 /obj/structure/flora/ausbushes/fullgrass,
@@ -4810,10 +4787,10 @@
 	},
 /area/lv624/ground/river2)
 "arS" = (
+/obj/structure/catwalk,
 /turf/open/gm/coast{
 	dir = 5
 	},
-/turf/open/floor/plating/catwalk,
 /area/lv624/ground/river2)
 "arT" = (
 /obj/structure/jungle/vines/heavy,
@@ -4909,10 +4886,10 @@
 	},
 /area/lv624/ground/river2)
 "asp" = (
+/obj/structure/catwalk,
 /turf/open/gm/coast/corner{
 	dir = 8
 	},
-/turf/open/floor/plating/catwalk,
 /area/lv624/ground/jungle7)
 "asq" = (
 /turf/closed/wall,
@@ -31403,7 +31380,7 @@ abc
 abd
 ahr
 acl
-aeB
+aci
 acl
 ahr
 abc
@@ -34201,7 +34178,7 @@ abf
 abf
 abf
 abf
-abQ
+abv
 abv
 abf
 abf
@@ -34459,8 +34436,8 @@ abf
 abf
 abf
 abf
-abQ
-abQ
+abv
+abv
 abf
 abH
 abf
@@ -34716,13 +34693,13 @@ abf
 abf
 abf
 abf
-abQ
-abQ
-abQ
-abQ
+abv
+abv
+abv
+abv
 acr
 acr
-abQ
+abv
 abf
 abf
 abf
@@ -34974,9 +34951,9 @@ abf
 abf
 abf
 abf
-abQ
-abQ
-abQ
+abv
+abv
+abv
 abf
 abf
 acr
@@ -35492,8 +35469,8 @@ abf
 abf
 abf
 abf
-abQ
-abQ
+abv
+abv
 abH
 abH
 abH
@@ -35744,13 +35721,13 @@ abf
 abf
 abf
 abf
-abQ
-abQ
-abQ
+abv
+abv
+abv
 abf
 abf
-abQ
-abQ
+abv
+abv
 abf
 abf
 abf
@@ -36000,14 +35977,14 @@ abe
 acs
 abf
 abf
-abQ
-abQ
-abQ
-abQ
+abv
+abv
+abv
+abv
 abf
 abf
-abQ
-abQ
+abv
+abv
 abf
 abf
 abf
@@ -36257,14 +36234,14 @@ abe
 abf
 abf
 abf
-abQ
-abQ
-abQ
-abQ
+abv
+abv
+abv
+abv
 abf
 abf
-abQ
-abQ
+abv
+abv
 abf
 abf
 abf
@@ -36515,13 +36492,13 @@ abf
 abf
 abf
 abf
-abQ
-abQ
-abQ
+abv
+abv
+abv
 abf
 abf
-abQ
-abQ
+abv
+abv
 abf
 abf
 abf
@@ -36773,7 +36750,7 @@ abf
 abf
 abf
 abf
-abQ
+abv
 abf
 abf
 abf
@@ -41691,7 +41668,7 @@ aev
 aen
 aen
 aen
-afa
+afo
 aev
 aev
 aen
@@ -41948,7 +41925,7 @@ aen
 aen
 aen
 aen
-afa
+afo
 aev
 aev
 aen
@@ -42205,7 +42182,7 @@ aen
 aen
 aen
 aen
-afa
+afo
 aev
 aev
 aen
@@ -42462,7 +42439,7 @@ aen
 aen
 aen
 aen
-afa
+afo
 aev
 aev
 aev
@@ -42719,7 +42696,7 @@ aeE
 aen
 aen
 aen
-afa
+afo
 aev
 aev
 aev
@@ -42976,7 +42953,7 @@ aen
 aen
 aen
 aen
-afa
+afo
 aev
 aev
 aev
@@ -43233,7 +43210,7 @@ aen
 aen
 aen
 aen
-afa
+afo
 aev
 aev
 aev
@@ -43489,8 +43466,8 @@ aen
 aen
 aen
 aen
-afa
-afa
+afo
+afo
 aev
 aev
 aev
@@ -43746,7 +43723,7 @@ aev
 aen
 aen
 aen
-afa
+afo
 aev
 aev
 aev
@@ -44517,7 +44494,7 @@ aen
 aen
 aen
 aen
-afa
+afo
 afo
 aev
 aev
@@ -44775,7 +44752,7 @@ aeE
 aen
 aeE
 aen
-afa
+afo
 aev
 aev
 aev
@@ -45543,9 +45520,9 @@ aen
 aen
 aen
 aen
-afa
+afo
 aen
-afa
+afo
 afo
 aev
 aev
@@ -45802,7 +45779,7 @@ aev
 aeb
 aeO
 aen
-afa
+afo
 aev
 aev
 aev
@@ -46059,7 +46036,7 @@ aev
 aeb
 afb
 aen
-afa
+afo
 aev
 aev
 aen

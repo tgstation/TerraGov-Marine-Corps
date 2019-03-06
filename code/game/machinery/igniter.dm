@@ -27,7 +27,7 @@
 	return
 
 /obj/machinery/igniter/process()	//ugh why is this even in process()?
-//	if (src.on && !(stat & NOPOWER) )
+//	if (src.on && !(machine_stat & NOPOWER) )
 //		var/turf/location = src.loc
 //		if (isturf(location))
 //			location.hotspot_expose(1000,500,1)
@@ -39,7 +39,7 @@
 
 /obj/machinery/igniter/power_change()
 	..()
-	if(!( stat & NOPOWER) )
+	if(!( machine_stat & NOPOWER) )
 		icon_state = "igniter[src.on]"
 	else
 		icon_state = "igniter0"
@@ -62,7 +62,7 @@
 
 /obj/machinery/sparker/power_change()
 	..()
-	if ( !(stat & NOPOWER) && disable == 0 )
+	if ( !(machine_stat & NOPOWER) && disable == 0 )
 
 		icon_state = "[base_state]"
 //		src.sd_SetLuminosity(2)
@@ -112,7 +112,7 @@
 	return 1
 
 /obj/machinery/sparker/emp_act(severity)
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		..(severity)
 		return
 	ignite()
@@ -129,7 +129,7 @@
 
 /obj/machinery/ignition_switch/attack_hand(mob/user as mob)
 
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	if(active)
 		return

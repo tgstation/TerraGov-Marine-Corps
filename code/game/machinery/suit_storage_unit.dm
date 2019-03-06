@@ -56,13 +56,13 @@
 
 	else
 		icon_state = "closed"
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		icon_state += "_off"
 
 
 /obj/machinery/suit_storage_unit/power_change()
 	..()
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		dump_everything()
 		isUV = 0
 	update_icon()
@@ -86,7 +86,7 @@
 	var/dat
 	if(..())
 		return
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		return
 		dat+= "<HR><BR><A href='?src=\ref[user];mach_close=suit_storage_unit'>Close panel</A>"
 	if(isUV) //The thing is running its cauterisation cycle. You have to wait.
@@ -238,7 +238,7 @@
 
 /obj/machinery/suit_storage_unit/attackby(obj/item/I, mob/living/user)
 
-	if(!(stat & NOPOWER))
+	if(!(machine_stat & NOPOWER))
 
 		if(isopen)
 

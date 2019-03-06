@@ -56,7 +56,7 @@
 
 /obj/machinery/marine_selector/power_change()
 	. = ..()
-	if( !(stat & NOPOWER) )
+	if( !(machine_stat & NOPOWER) )
 		icon_state = initial(icon_state)
 	else
 		spawn(rand(0, 15))
@@ -66,7 +66,7 @@
 
 /obj/machinery/marine_selector/attack_hand(mob/user)
 
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 
 	if(!ishuman(user))
@@ -146,7 +146,7 @@
 
 
 /obj/machinery/marine_selector/Topic(href, href_list)
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	if(usr.is_mob_incapacitated())
 		return

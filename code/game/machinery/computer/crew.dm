@@ -29,20 +29,20 @@
 
 /obj/machinery/computer/crew/attack_hand(mob/living/user)
 	add_fingerprint(user)
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	ui_interact(user)
 
 
 /obj/machinery/computer/crew/update_icon()
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		icon_state = "crewb"
-	else if(stat & NOPOWER)
+	else if(machine_stat & NOPOWER)
 		icon_state = "crew0"
-		stat |= NOPOWER
+		machine_stat |= NOPOWER
 	else
 		icon_state = initial(icon_state)
-		stat &= ~NOPOWER
+		machine_stat &= ~NOPOWER
 
 /obj/machinery/computer/crew/Topic(href, href_list)
 	if(..())
@@ -71,7 +71,7 @@
 	ui_interact(user)
 
 /obj/machinery/computer/crew/ui_interact(mob/living/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = TRUE)
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	user.set_interaction(src)
 	scan()

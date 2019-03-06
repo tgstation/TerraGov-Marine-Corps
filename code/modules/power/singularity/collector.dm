@@ -134,7 +134,7 @@ var/global/list/rad_collectors = list()
 	overlays.Cut()
 	if(P)
 		overlays += image('icons/obj/singularity.dmi', "ptank")
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	if(active)
 		overlays += image('icons/obj/singularity.dmi', "on")

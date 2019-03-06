@@ -174,7 +174,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 					if(M.stat == CONSCIOUS) //If not on anesthetics or not unconsious, warn player
 						if(ishuman(M))
 							var/mob/living/carbon/human/H = M
-							if(!(H.species.flags & NO_PAIN))
+							if(!(H.species.species_flags & NO_PAIN))
 								M.emote("pain")
 						to_chat(user, "<span class='danger'>[M] moved during the surgery! Use anesthetics!</span>")
 					S.fail_step(user, M, user.zone_selected, tool, affected) //Malpractice

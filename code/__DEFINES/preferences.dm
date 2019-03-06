@@ -13,45 +13,45 @@
 //Number of marine players against which the Marine's gear scales
 #define MARINE_GEAR_SCALING_NORMAL 30
 
-#define BE_ALIEN		(1 << 0)
-#define BE_QUEEN		(1 << 1)
-#define BE_SURVIVOR		(1 << 2)
-#define BE_DEATHMATCH	(1 << 3)
-#define BE_SQUAD_STRICT (1 << 4)
+#define BE_ALIEN		(1<<0)
+#define BE_QUEEN		(1<<1)
+#define BE_SURVIVOR		(1<<2)
+#define BE_DEATHMATCH	(1<<3)
+#define BE_SQUAD_STRICT (1<<4)
 
 #define BE_SPECIAL_DEFAULT (BE_ALIEN|BE_DEATHMATCH)
 
 
-#define GHOST_HUD_MED 	(1 << 0)
-#define GHOST_HUD_SEC 	(1 << 1)
-#define GHOST_HUD_SQUAD	(1 << 2)
-#define GHOST_HUD_XENO	(1 << 3)
+#define GHOST_HUD_MED 	(1<<0)
+#define GHOST_HUD_SEC 	(1<<1)
+#define GHOST_HUD_SQUAD	(1<<2)
+#define GHOST_HUD_XENO	(1<<3)
 
 #define TOGGLES_GHOSTHUD_DEFAULT (GHOST_HUD_MED|GHOST_HUD_SQUAD|GHOST_HUD_XENO)
 
 
-#define SOUND_ADMINHELP	(1 << 0)
-#define SOUND_MIDI		(1 << 1)
-#define SOUND_AMBIENCE	(1 << 2)
-#define SOUND_LOBBY		(1 << 3)
+#define SOUND_ADMINHELP	(1<<0)
+#define SOUND_MIDI		(1<<1)
+#define SOUND_AMBIENCE	(1<<2)
+#define SOUND_LOBBY		(1<<3)
 
 #define TOGGLES_SOUND_DEFAULT (SOUND_ADMINHELP|SOUND_MIDI|SOUND_AMBIENCE|SOUND_LOBBY)
 
 
-#define CHAT_OOC			(1 << 0)
-#define CHAT_DEAD			(1 << 1)
-#define CHAT_GHOSTEARS		(1 << 2)
-#define CHAT_GHOSTSIGHT		(1 << 3)
-#define CHAT_PRAYER			(1 << 4)
-#define CHAT_RADIO			(1 << 5)
-#define CHAT_ATTACKLOGS		(1 << 6)
-#define CHAT_DEBUGLOGS		(1 << 7)
-#define CHAT_GHOSTRADIO 	(1 << 8)
-#define CHAT_FFATTACKLOGS 	(1 << 9)
-#define CHAT_ENDROUNDLOGS	(1 << 10)
-#define CHAT_GHOSTHIVEMIND	(1 << 11)
-#define CHAT_STATISTICS		(1 << 12)
-#define CHAT_LOOC			(1 << 13)
+#define CHAT_OOC			(1<<0)
+#define CHAT_DEAD			(1<<1)
+#define CHAT_GHOSTEARS		(1<<2)
+#define CHAT_GHOSTSIGHT		(1<<3)
+#define CHAT_PRAYER			(1<<4)
+#define CHAT_RADIO			(1<<5)
+#define CHAT_ATTACKLOGS		(1<<6)
+#define CHAT_DEBUGLOGS		(1<<7)
+#define CHAT_GHOSTRADIO 	(1<<8)
+#define CHAT_FFATTACKLOGS 	(1<<9)
+#define CHAT_ENDROUNDLOGS	(1<<10)
+#define CHAT_GHOSTHIVEMIND	(1<<11)
+#define CHAT_STATISTICS		(1<<12)
+#define CHAT_LOOC			(1<<13)
 
 #define TOGGLES_CHAT_DEFAULT (CHAT_OOC|CHAT_DEAD|CHAT_GHOSTEARS|CHAT_GHOSTSIGHT|CHAT_PRAYER|CHAT_RADIO|CHAT_DEBUGLOGS|CHAT_GHOSTRADIO|CHAT_FFATTACKLOGS|CHAT_GHOSTHIVEMIND|CHAT_STATISTICS|CHAT_LOOC)
 

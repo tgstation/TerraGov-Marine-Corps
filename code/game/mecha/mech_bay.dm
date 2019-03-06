@@ -16,7 +16,7 @@
 	return
 
 /obj/machinery/mech_bay_recharge_port/proc/start_charge(var/obj/mecha/recharging_mecha)
-	if(stat&(NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		recharging_mecha.occupant_message("<font color='red'>Power port not responding. Terminating.</font>")
 		return 0
 	else
@@ -28,7 +28,7 @@
 			return 0
 
 /obj/machinery/mech_bay_recharge_port/proc/stop_charge()
-	if(recharge_console && !recharge_console.stat)
+	if(recharge_console && !recharge_console.machine_stat)
 		recharge_console.icon_state = initial(recharge_console.icon_state)
 	pr_recharger.stop()
 	return
@@ -41,10 +41,10 @@
 
 /obj/machinery/mech_bay_recharge_port/power_change()
 	if(powered())
-		stat &= ~NOPOWER
+		machine_stat &= ~NOPOWER
 	else
 		spawn(rand(0, 15))
-			stat |= NOPOWER
+			machine_stat |= NOPOWER
 			pr_recharger.stop()
 	return
 
@@ -92,7 +92,7 @@
 	var/obj/machinery/mech_bay_recharge_port/recharge_port
 
 /obj/machinery/computer/mech_bay_power_console/proc/mecha_in(var/obj/mecha/mecha)
-	if(stat&(NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		mecha.occupant_message("<font color='red'>Control console not responding. Terminating...</font>")
 		return
 	if(recharge_port && autostart)
@@ -109,23 +109,23 @@
 
 
 /obj/machinery/computer/mech_bay_power_console/power_change()
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		icon_state = initial(icon_state)+"_broken"
 		if(recharge_port)
 			recharge_port.stop_charge()
 	else if(powered())
 		icon_state = initial(icon_state)
-		stat &= ~NOPOWER
+		machine_stat &= ~NOPOWER
 	else
 		spawn(rand(0, 15))
 			icon_state = initial(icon_state)+"_nopower"
-			stat |= NOPOWER
+			machine_stat |= NOPOWER
 			if(recharge_port)
 				recharge_port.stop_charge()
 
 /obj/machinery/computer/mech_bay_power_console/set_broken()
 	icon_state = initial(icon_state)+"_broken"
-	stat |= BROKEN
+	machine_stat |= BROKEN
 	if(recharge_port)
 		recharge_port.stop_charge()
 
