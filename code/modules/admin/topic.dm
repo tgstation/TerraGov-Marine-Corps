@@ -1858,3 +1858,59 @@
 
 	else if(href_list["stickyban"])
 		stickyban(href_list["stickyban"], href_list)
+
+
+	else if(href_list["addjobslot"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/Add = href_list["addjobslot"]
+
+		for(var/datum/job/job in SSjob.occupations)
+			if(job.title == Add)
+				job.total_positions += 1
+				break
+
+		usr.client.holder.job_slots()
+
+
+	else if(href_list["removejobslot"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/Remove = href_list["removejobslot"]
+
+		for(var/datum/job/job in SSjob.occupations)
+			if(job.title == Remove && job.total_positions - job.current_positions > 0)
+				job.total_positions -= 1
+				break
+
+		usr.client.holder.job_slots()
+
+
+	else if(href_list["unlimitjobslot"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/Unlimit = href_list["unlimitjobslot"]
+
+		for(var/datum/job/job in SSjob.occupations)
+			if(job.title == Unlimit)
+				job.total_positions = -1
+				break
+
+		usr.client.holder.job_slots()
+
+
+	else if(href_list["limitjobslot"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/Limit = href_list["limitjobslot"]
+
+		for(var/datum/job/job in SSjob.occupations)
+			if(job.title == Limit)
+				job.total_positions = job.current_positions
+				break
+
+		usr.client.holder.job_slots()

@@ -1181,3 +1181,46 @@
 
 		log_admin("[key_name(usr)] forcibly removed all players from [CA].")
 		message_admins("[ADMIN_TPMONTY(usr)] forcibly removed all players from [CA].")
+
+
+/datum/admins/proc/job_slots()
+	set category = "Admin"
+	set name = "Job Slots"
+
+	if(!check_rights(R_ADMIN))
+		return
+
+	var/datum/browser/browser = new(usr, "jobmanagement", "Manage Free Slots", 520)
+	var/list/dat = list()
+	var/count = 0
+
+	if(!SSjob.initialized)
+		return
+
+	dat += "<table>"
+
+	for(var/j in SSjob.occupations)
+		var/datum/job/job = j
+		if(!(job.title in JOBS_REGULAR_ALL))
+			continue
+		count++
+		var/J_title = html_encode(job.title)
+		var/J_opPos = html_encode(job.total_positions - (job.total_positions - job.current_positions))
+		var/J_totPos = html_encode(job.total_positions)
+		dat += "<tr><td>[J_title]:</td> <td>[J_opPos]/[job.total_positions < 0 ? " (unlimited)" : J_totPos]"
+
+		dat += "</td>"
+		dat += "<td>"
+		if(job.total_positions >= 0)
+			dat += "<A href='?src=[REF(src)];[HrefToken()];addjobslot=[job.title]'>Fill</A> | "
+			if(job.total_positions > job.current_positions)
+				dat += "<A href='?src=[REF(src)];[HrefToken()];removejobslot=[job.title]'>Free</A> | "
+			else
+				dat += "Remove | "
+			dat += "<A href='?src=[REF(src)];[HrefToken()];unlimitjobslot=[job.title]'>Unlimit</A></td>"
+		else
+			dat += "<A href='?src=[REF(src)];[HrefToken()];limitjobslot=[job.title]'>Limit</A></td>"
+
+	browser.height = min(100 + count * 20, 650)
+	browser.set_content(dat.Join())
+	browser.open()
