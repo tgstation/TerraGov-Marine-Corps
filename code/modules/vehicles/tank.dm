@@ -317,6 +317,6 @@
 		log_combat(M, src, "damaged [src] with [damage] [type] damage.")
 
 	if(gunner)
-		log_combat(gunner, null, "took [damage] [type] damage from [attacker].")
+		log_combat(gunner, null, "[src] took [damage] [type] damage [ismob(attacker) ? "from [key_name(attacker)]" : ""].")
 	if(driver)
-		log_combat(driver, null, "took [damage] [type] damage from [attacker].")
+		log_combat(driver, null, "[src] took [damage] [type] damage [ismob(attacker) ? "from [key_name(attacker)]" : ""].")

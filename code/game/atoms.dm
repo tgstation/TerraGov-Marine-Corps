@@ -602,7 +602,7 @@ Proc for attack log creation, because really why not
 	var/message = "has [what_done] [starget][postfix]"
 	user.log_message(message, LOG_ATTACK, color = "red")
 
-	if(user != target)
+	if(target && user != target)
 		var/reverse_message = "has been [what_done] by [ssource][postfix]"
 		target.log_message(reverse_message, LOG_ATTACK, color = "orange", log_globally = FALSE)
 

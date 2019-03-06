@@ -681,8 +681,8 @@
 			return
 
 	var/mob/ghostmob = usr.client.mob
-	message_admins("[key_name(usr)] has joined as a [L].")
-	log_admin("[ADMIN_TPMONTY(usr)] has joined as a [L].")
+	log_admin("[key_name(usr)] has joined as a [L].")
+	message_admins("[ADMIN_TPMONTY(usr)] has joined as a [L].")
 	L.ckey = usr.ckey
 
 	L.client?.change_view(world.view)
