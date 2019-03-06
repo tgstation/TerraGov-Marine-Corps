@@ -5,59 +5,18 @@
 	if(!check_rights(R_FUN))
 		return
 
-	if(usr.client.view == world.view)
-		var/newview = input("Select view range:", "Change View Range", 7) as null|num
-		if(newview && newview != usr.client.view)
-			usr.client.change_view(newview)
-	else
+	if(usr.client.view != world.view)
 		usr.client.change_view(world.view)
+		return
+
+	var/newview = input("Select view range:", "Change View Range", 7) as null|num
+	if(!newview || newview == usr.client.view)
+		return
+
+	usr.client.change_view(newview)
 
 	log_admin("[key_name(usr)] changed their view range to [usr.client.view].")
 	message_admins("[ADMIN_TPMONTY(usr)] changed their view range to [usr.client.view].")
-
-
-/datum/admins/proc/gib_self()
-	set name = "Gib Self"
-	set category = "Fun"
-
-	if(!check_rights(R_FUN))
-		return
-
-	if(istype(usr, /mob/dead/observer))
-		return
-
-	if(alert(usr, "Are you sure you want to gib yourself?", "Warning" , "Yes", "No") != "Yes")
-		return
-
-	if(!usr || istype(usr, /mob/dead/observer))
-		return
-
-	usr.gib()
-
-	log_admin("[key_name(usr)] has gibbed themselves.")
-	message_admins("[ADMIN_TPMONTY(usr)] has gibbed themselves.")
-
-
-/datum/admins/proc/gib()
-	set category = "Fun"
-	set name = "Gib"
-
-	if(!check_rights(R_FUN))
-		return
-
-	var/selection = input("Please, select a mob!", "Get Mob", null, null) as null|anything in sortmobs(GLOB.mob_living_list)
-	if(!selection)
-		return
-
-	var/mob/living/M = selection
-
-	if(alert(usr, "Are you sure you want to gib [M]?", "Warning", "Yes", "No") != "Yes")
-		return
-
-	log_admin("[key_name(usr)] has gibbed [key_name(M)].")
-	message_admins("[ADMIN_TPMONTY(usr)] has gibbed [ADMIN_TPMONTY(M)].")
-
-	M.gib()
 
 
 /datum/admins/proc/emp()
@@ -88,13 +47,12 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/input = input("This should be a message from the ruler of the Xenomorph race.",, "") as message|null
 	var/customname = input("What do you want it to be called?.",, "Queen Mother Psychic Directive")
-
+	var/input = input("This should be a message from the ruler of the Xenomorph race.",, "") as message|null
 	if(!input || !customname)
-		return FALSE
+		return
 
-	var/msg = "<h1>[customname]</h1><br><br><br><span class='warning'>[input]<br><br></span>"
+	var/msg = "<br><h2 class='alert'>[customname]</h2><br><span class='warning'>[input]</span><br><br>"
 
 	for(var/mob/M in GLOB.player_list)
 		if(isxeno(M) || isobserver(M))
@@ -106,7 +64,7 @@
 
 /datum/admins/proc/hive_status()
 	set category = "Fun"
-	set name = "Check Hive Status"
+	set name = "Hive Status"
 	set desc = "Check the status of the hive."
 
 	if(!check_rights(R_FUN))
@@ -118,7 +76,6 @@
 	check_hive_status()
 
 	log_admin("[key_name(usr)] checked the hive status.")
-	message_admins("[ADMIN_TPMONTY(usr)] checked the hive status.")
 
 
 /datum/admins/proc/ai_report()
@@ -206,8 +163,8 @@
 	message_admins("[ADMIN_TPMONTY(usr)] used Global Narrate: [msg]")
 
 
-/datum/admins/proc/narage_direct(var/mob/M)
-	set category = "Fun"
+/datum/admins/proc/narage_direct(var/mob/M in GLOB.mob_list)
+	set category = null
 	set name = "Direct Narrate"
 
 	if(!check_rights(R_FUN))
@@ -223,7 +180,7 @@
 	message_admins("[ADMIN_TPMONTY(usr)] used Direct Narrate on [ADMIN_TPMONTY(M)]: [msg]")
 
 
-/datum/admins/proc/subtle_message(var/mob/M in GLOB.mob_list)
+/datum/admins/proc/subtle_message(var/mob/M in GLOB.player_list)
 	set category = "Fun"
 	set name = "Subtle Message"
 
@@ -247,31 +204,6 @@
 	message_admins("[ADMIN_TPMONTY(usr)] used Subtle Message on [ADMIN_TPMONTY(M)]: [msg]")
 
 
-/datum/admins/proc/drop_everything()
-	set category = "Fun"
-	set name = "Drop Everything"
-
-	if(!check_rights(R_FUN))
-		return
-
-	var/selection = input("Please, select a mob!", "Get Mob", null, null) as null|anything in sortmobs(GLOB.human_mob_list)
-	if(!selection)
-		return
-
-	var/mob/living/carbon/human/H = selection
-
-	if(alert(usr, "Make [H] drop everything?", "Warning", "Yes", "No") != "Yes")
-		return
-
-	for(var/obj/item/W in H)
-		if(istype(W, /obj/item/alien_embryo))
-			continue
-		H.dropItemToGround(W)
-
-	log_admin("[key_name(usr)] made [key_name(H)] drop everything.")
-	message_admins("[ADMIN_TPMONTY(usr)] made [ADMIN_TPMONTY(H)] drop everything.")
-
-
 /datum/admins/proc/award_medal()
 	set category = "Fun"
 	set name = "Award a Medal"
@@ -289,7 +221,7 @@
 	if(!check_rights(R_FUN))
 		return
 
-	switch(input("Do you want to change or clear the custom event info?") as null|anything in list("Change", "Clear", "Cancel"))
+	switch(input("Do you want to change or clear the custom event info?") as null|anything in list("Change", "Clear"))
 		if("Change")
 			custom_event_msg = input(usr, "Set the custom information players get on joining or via the OOC tab.",, custom_event_msg) as message|null
 
@@ -439,25 +371,40 @@
 
 /datum/admins/proc/sound_stop()
 	set category = "Fun"
-	set name = "Stop All Playing Sounds"
+	set name = "Stop Regular Sounds"
 
 	if(!check_rights(R_SOUND))
 		return
 
-	log_admin("[key_name(usr)] stopped all currently playing sounds.")
-	message_admins("[ADMIN_TPMONTY(usr)] stopped all currently playing sounds.")
 	for(var/mob/M in GLOB.player_list)
 		if(M.client)
 			SEND_SOUND(M, sound(null))
+
+	log_admin("[key_name(usr)] stopped regular sounds.")
+	message_admins("[ADMIN_TPMONTY(usr)] stopped regular sounds.")
+
+
+/datum/admins/proc/music_stop()
+	set category = "Fun"
+	set name = "Stop Playing Music"
+
+	if(!check_rights(R_SOUND))
+		return
+
+	for(var/mob/M in GLOB.player_list)
+		if(M.client)
 			var/client/C = M.client
 			if(C?.chatOutput && !C.chatOutput.broken && C.chatOutput.loaded)
 				C.chatOutput.stopMusic()
 
 
+	log_admin("[key_name(usr)] stopped the currently playing music.")
+	message_admins("[ADMIN_TPMONTY(usr)] stopped the currently playing music.")
+
+
 /datum/admins/proc/announce()
 	set category = "Fun"
-	set name = "Announce"
-	set desc = "Announce your desires to the world."
+	set name = "Admin Announce"
 
 	if(!check_rights(R_FUN))
 		return
@@ -469,7 +416,7 @@
 	if(!message)
 		return
 
-	log_admin("AdminAnnounce: [key_name(usr)] : [message]")
+	log_admin("Announce: [key_name(usr)] : [message]")
 	message_admins("[ADMIN_TPMONTY(usr)] Announces:")
 	to_chat(world, "<span class='notice'><b>[usr.client.holder.fakekey ? "Administrator" : "[usr.client.key] ([usr.client.holder.rank])"] Announces:</b>\n [message]</span>")
 
@@ -643,9 +590,8 @@
 
 
 /datum/admins/proc/object_sound(atom/O as obj in world)
-	set category = "Fun"
+	set category = null
 	set name = "Object Sound"
-	set desc = "Display a message to everyone who can hear the target"
 
 	if(!check_rights(R_FUN))
 		return
@@ -692,10 +638,12 @@
 		if("Big Bomb")
 			explosion(M.loc, 3, 5, 7, 5)
 		if("Custom Bomb")
-			var/devastation_range = input("Devastation range (in tiles):") as num
-			var/heavy_impact_range = input("Heavy impact range (in tiles):") as num
-			var/light_impact_range = input("Light impact range (in tiles):") as num
-			var/flash_range = input("Flash range (in tiles):") as num
+			var/devastation_range = input("Devastation range (in tiles):") as null|num
+			var/heavy_impact_range = input("Heavy impact range (in tiles):") as null|num
+			var/light_impact_range = input("Light impact range (in tiles):") as null|num
+			var/flash_range = input("Flash range (in tiles):") as null|num
+			if(isnull(devastation_range) || isnull(heavy_impact_range) || isnull(light_impact_range) || isnull(flash_range))
+				return
 			explosion(M.loc, devastation_range, heavy_impact_range, light_impact_range, flash_range)
 
 	log_admin("[key_name(usr)] dropped a bomb at [AREACOORD(M.loc)].")
@@ -709,7 +657,7 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/sec_level = input(usr, "It's currently code [get_security_level()].", "Select Security Level")  as null|anything in (list("green","blue","red","delta")-get_security_level())
+	var/sec_level = input(usr, "It's currently code [get_security_level()].", "Select Security Level")  as null|anything in (list("green", "blue", "red", "delta") - get_security_level())
 	if(!sec_level || alert("Switch from code [get_security_level()] to code [sec_level]?", "Change security level?", "Yes", "No") != "Yes")
 		return
 
@@ -853,14 +801,14 @@
 
 	var/datum/outfit/O
 	H.delete_equipment(TRUE)
-	if(dresscode != "-- Naked")
+	if(istype(dresscode, /datum/outfit))
 		O = dresscode
 		H.equipOutfit(dresscode, TRUE)
 
 	H.regenerate_icons()
 
-	log_admin("[key_name(usr)] changed the equipment of [key_name(H)] to [istype(O) ?  O.name : dresscode].")
-	message_admins("[ADMIN_TPMONTY(usr)] changed the equipment of [ADMIN_TPMONTY(H)] to [istype(O) ? O.name : dresscode].")
+	log_admin("[key_name(usr)] changed the equipment of [key_name(H)] to [O ?  O.name : dresscode].")
+	message_admins("[ADMIN_TPMONTY(usr)] changed the equipment of [ADMIN_TPMONTY(H)] to [O ? O.name : dresscode].")
 
 
 GLOBAL_LIST_EMPTY(custom_outfits)
@@ -988,55 +936,6 @@ GLOBAL_LIST_EMPTY(custom_outfits)
 	"}
 
 	usr << browse(dat, "window=dressup;size=550x600")
-
-
-/datum/admins/proc/possess(obj/O as obj in GLOB.object_list)
-	set category = "Object"
-	set name = "Possess Obj"
-
-	if(!check_rights(R_FUN))
-		return
-
-	var/mob/M = usr
-
-	if(!M.control_object)
-		M.name_archive = M.real_name
-
-	M.loc = O
-	M.real_name = O.name
-	M.name = O.name
-	M.control_object = O
-	M.client.eye = O
-
-	log_admin("[key_name(usr)] has possessed [O] ([O.type]).")
-	message_admins("[ADMIN_TPMONTY(usr)] has possessed [O] ([O.type]).")
-
-
-/datum/admins/proc/release(obj/O as obj in GLOB.object_list)
-	set category = "Object"
-	set name = "Release Obj"
-
-	if(!check_rights(R_FUN))
-		return
-
-	var/mob/M = usr
-
-	if(!M.control_object || !M.name_archive)
-		return
-
-	M.real_name = M.name_archive
-	M.name = M.real_name
-
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		H.name = H.get_visible_name()
-
-	M.loc = O.loc
-	M.control_object = null
-	M.client.eye = M
-
-	log_admin("[key_name(usr)] has released [O] ([O.type]).")
-	message_admins("[ADMIN_TPMONTY(usr)] has released [O] ([O.type]).")
 
 
 /datum/admins/proc/edit_appearance(mob/living/carbon/human/H in GLOB.human_mob_list)
@@ -1189,3 +1088,52 @@ GLOBAL_LIST_EMPTY(custom_outfits)
 
 	log_admin("[key_name(src)] changed hivenumber of [X] to [newhive].")
 	message_admins("[ADMIN_TPMONTY(usr)] changed hivenumber of [ADMIN_TPMONTY(X)] to [newhive].")
+
+
+/datum/admins/proc/release(obj/O in GLOB.object_list)
+	set category = null
+	set name = "Release Obj"
+
+	if(!check_rights(R_FUN))
+		return
+
+	var/mob/M = usr
+
+	if(!M.control_object || !M.name_archive)
+		return
+
+	M.real_name = M.name_archive
+	M.name = M.real_name
+
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		H.name = H.get_visible_name()
+
+	M.loc = O.loc
+	M.control_object = null
+	M.client.eye = M
+
+	log_admin("[key_name(usr)] has released [O] ([O.type]).")
+	message_admins("[ADMIN_TPMONTY(usr)] has released [O] ([O.type]).")
+
+
+/datum/admins/proc/possess(obj/O in GLOB.object_list)
+	set category = null
+	set name = "Possess Obj"
+
+	if(!check_rights(R_FUN))
+		return
+
+	var/mob/M = usr
+
+	if(!M.control_object)
+		M.name_archive = M.real_name
+
+	M.loc = O
+	M.real_name = O.name
+	M.name = O.name
+	M.control_object = O
+	M.client.eye = O
+
+	log_admin("[key_name(usr)] has possessed [O] ([O.type]).")
+	message_admins("[ADMIN_TPMONTY(usr)] has possessed [O] ([O.type]).")

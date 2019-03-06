@@ -521,11 +521,11 @@ its easier to just keep the beam vertical.
 	return
 
 // Generic logging helper
-/atom/proc/log_message(message, message_type, color = null, log_globally = TRUE)
+/atom/proc/log_message(message, message_type, color, log_globally = TRUE)
 	if(!log_globally)
 		return
 
-	var/log_text = "[key_name(src)] [message] [loc_name(src)]"
+	var/log_text = "[key_name(src)] [message] [AREACOORD(src)]"
 	switch(message_type)
 		if(LOG_ATTACK)
 			log_attack(log_text)
@@ -560,7 +560,7 @@ its easier to just keep the beam vertical.
 			log_game(log_text)
 
 // Helper for logging chat messages or other logs wiht arbitrary inputs (e.g. announcements)
-/atom/proc/log_talk(message, message_type, tag=null, log_globally=TRUE)
+/atom/proc/log_talk(message, message_type, tag, log_globally = TRUE)
 	var/prefix = tag ? "([tag]) " : ""
 	log_message("[prefix]\"[message]\"", message_type, log_globally=log_globally)
 
@@ -583,7 +583,7 @@ Proc for attack log creation, because really why not
 5 is any additional text, which will be appended to the rest of the log line
 */
 
-/proc/log_combat(atom/user, atom/target, what_done, atom/object=null, addition=null)
+/proc/log_combat(atom/user, atom/target, what_done, atom/object, addition)
 	var/ssource = key_name(user)
 	var/starget = key_name(target)
 

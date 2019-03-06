@@ -97,7 +97,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 			to_chat(src, "<span class='danger'>You have exceeded the spam filter limit for identical messages. An auto-mute was applied.</span>")
 			mute(src, mute_type, TRUE)
 			return TRUE
-		if(last_message_count >= SPAM_TRIGGER_WARNING)
+		else if(last_message_count >= SPAM_TRIGGER_WARNING)
 			to_chat(src, "<span class='danger'>You are nearing the spam filter limit for identical messages.</span>")
 			return TRUE
 	else

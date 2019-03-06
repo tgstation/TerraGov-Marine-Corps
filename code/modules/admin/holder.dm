@@ -255,46 +255,42 @@ GLOBAL_PROTECT(admin_verbs_admin)
 GLOBAL_LIST_INIT(admin_verbs_admin, world.AVadmin())
 /world/proc/AVadmin()
 	return list(
+	/client/proc/private_message_panel,
+	/client/proc/private_message_context,
+	/datum/admins/proc/show_player_panel,
+	/datum/admins/proc/pref_attack_logs,
+	/datum/admins/proc/pref_ff_attack_logs,
+	/datum/admins/proc/pref_end_attack_logs,
+	/datum/admins/proc/pref_debug_logs,
+	/datum/admins/proc/set_ooc_color_self,
 	/datum/admins/proc/admin_ghost,
 	/datum/admins/proc/invisimin,
 	/datum/admins/proc/stealth_mode,
 	/datum/admins/proc/change_key,
+	/datum/admins/proc/change_key_panel,
 	/datum/admins/proc/rejuvenate,
+	/datum/admins/proc/rejuvenate_panel,
 	/datum/admins/proc/toggle_sleep,
+	/datum/admins/proc/toggle_sleep_panel,
 	/datum/admins/proc/toggle_sleep_area,
 	/datum/admins/proc/change_squad,
 	/datum/admins/proc/direct_control,
 	/datum/admins/proc/logs_server,
 	/datum/admins/proc/logs_current,
 	/datum/admins/proc/logs_folder,
-	/datum/admins/proc/jump_area,
-	/datum/admins/proc/jump_turf,
-	/datum/admins/proc/jump_coord,
-	/datum/admins/proc/jump_mob,
-	/datum/admins/proc/jump_key,
+	/datum/admins/proc/jump,
 	/datum/admins/proc/get_mob,
-	/datum/admins/proc/get_key,
 	/datum/admins/proc/send_mob,
-	/datum/admins/proc/send_key,
 	/datum/admins/proc/msay,
 	/datum/admins/proc/dsay,
-	/datum/admins/proc/pref_attack_logs,
-	/datum/admins/proc/pref_ff_attack_logs,
-	/datum/admins/proc/pref_end_attack_logs,
-	/datum/admins/proc/pref_debug_logs,
-	/datum/admins/proc/set_ooc_color_self,
 	/datum/admins/proc/player_panel,
-	/datum/admins/proc/show_player_panel,
 	/datum/admins/proc/player_panel_extended,
 	/datum/admins/proc/secrets_panel,
 	/datum/admins/proc/remove_from_tank,
 	/datum/admins/proc/game_panel,
-	/datum/admins/proc/gamemode_panel,
-	/datum/admins/proc/local_message,
+	/datum/admins/proc/mode_panel,
 	/datum/admins/proc/toggle_adminhelp_sound,
-	/datum/admins/proc/toggle_prayers,
-	/client/proc/private_message_panel,
-	/client/proc/private_message_context
+	/datum/admins/proc/toggle_prayers
 	)
 
 GLOBAL_PROTECT(admin_verbs_mentor)
@@ -329,6 +325,28 @@ GLOBAL_LIST_INIT(admin_verbs_asay, world.AVasay())
 	/datum/admins/proc/asay
 	)
 
+GLOBAL_PROTECT(admin_verbs_debug)
+GLOBAL_LIST_INIT(admin_verbs_debug, world.AVdebug())
+/world/proc/AVdebug()
+	return list(
+	/datum/admins/proc/proccall_advanced,
+	/datum/admins/proc/proccall_atom,
+	/datum/admins/proc/delete_all,
+	/datum/admins/proc/generate_powernets,
+	/datum/admins/proc/debug_mob_lists,
+	/datum/admins/proc/delete_atom,
+	/datum/admins/proc/fix_next_move,
+	/datum/admins/proc/restart_controller,
+	/datum/admins/proc/check_contents
+	)
+
+GLOBAL_PROTECT(admin_verbs_varedit)
+GLOBAL_LIST_INIT(admin_verbs_varedit, world.AVvaredit())
+/world/proc/AVvaredit()
+	return list(
+	/client/proc/debug_variables
+	)
+
 GLOBAL_PROTECT(admin_verbs_fun)
 GLOBAL_LIST_INIT(admin_verbs_fun, world.AVfun())
 /world/proc/AVfun()
@@ -336,8 +354,6 @@ GLOBAL_LIST_INIT(admin_verbs_fun, world.AVfun())
 	/datum/admins/proc/select_rank,
 	/datum/admins/proc/select_equipment,
 	/datum/admins/proc/set_view_range,
-	/datum/admins/proc/gib_self,
-	/datum/admins/proc/gib,
 	/datum/admins/proc/emp,
 	/datum/admins/proc/queen_report,
 	/datum/admins/proc/hive_status,
@@ -346,7 +362,6 @@ GLOBAL_LIST_INIT(admin_verbs_fun, world.AVfun())
 	/datum/admins/proc/narrate_global,
 	/datum/admins/proc/narage_direct,
 	/datum/admins/proc/subtle_message,
-	/datum/admins/proc/drop_everything,
 	/datum/admins/proc/award_medal,
 	/datum/admins/proc/custom_info,
 	/datum/admins/proc/announce,
@@ -356,13 +371,13 @@ GLOBAL_LIST_INIT(admin_verbs_fun, world.AVfun())
 	/datum/admins/proc/object_sound,
 	/datum/admins/proc/drop_bomb,
 	/datum/admins/proc/change_security_level,
-	/datum/admins/proc/possess,
-	/datum/admins/proc/release,
 	/datum/admins/proc/edit_appearance,
 	/datum/admins/proc/create_outfit,
 	/datum/admins/proc/offer,
 	/datum/admins/proc/change_hivenumber,
 	/datum/admins/proc/view_faxes,
+	/datum/admins/proc/possess,
+	/datum/admins/proc/release,
 	/client/proc/build_mode
 	)
 
@@ -390,21 +405,6 @@ GLOBAL_LIST_INIT(admin_verbs_server, world.AVserver())
 	/datum/admins/proc/map_change
 	)
 
-GLOBAL_PROTECT(admin_verbs_debug)
-GLOBAL_LIST_INIT(admin_verbs_debug, world.AVdebug())
-/world/proc/AVdebug()
-	return list(
-	/datum/admins/proc/proccall_advanced,
-	/datum/admins/proc/proccall_atom,
-	/datum/admins/proc/delete_all,
-	/datum/admins/proc/generate_powernets,
-	/datum/admins/proc/debug_mob_lists,
-	/datum/admins/proc/delete_atom,
-	/datum/admins/proc/fix_next_move,
-	/datum/admins/proc/restart_controller,
-	/datum/admins/proc/check_contents,
-	/datum/admins/proc/update_mob_sprite
-	)
 
 GLOBAL_PROTECT(admin_verbs_permissions)
 GLOBAL_LIST_INIT(admin_verbs_permissions, world.AVpermissions())
@@ -420,20 +420,14 @@ GLOBAL_LIST_INIT(admin_verbs_color, world.AVcolor())
 
 	)
 
-GLOBAL_PROTECT(admin_verbs_varedit)
-GLOBAL_LIST_INIT(admin_verbs_varedit, world.AVvaredit())
-/world/proc/AVvaredit()
-	return list(
-	/client/proc/debug_variables
-	)
-
 GLOBAL_PROTECT(admin_verbs_sound)
 GLOBAL_LIST_INIT(admin_verbs_sound, world.AVsound())
 /world/proc/AVsound()
 	return list(
 	/datum/admins/proc/sound_file,
 	/datum/admins/proc/sound_web,
-	/datum/admins/proc/sound_stop
+	/datum/admins/proc/sound_stop,
+	/datum/admins/proc/music_stop
 	)
 
 GLOBAL_PROTECT(admin_verbs_spawn)
@@ -605,3 +599,17 @@ GLOBAL_LIST_INIT(admin_verbs_spawn, world.AVspawn())
 
 /proc/IsAdminAdvancedProcCall()
 	return usr && usr.client && GLOB.AdminProcCaller == usr.client.ckey
+
+
+/proc/GenIrcStealthKey()
+	var/num = (rand(0,1000))
+	var/i = 0
+	while(i == 0)
+		i = 1
+		for(var/P in GLOB.stealthminID)
+			if(num == GLOB.stealthminID[P])
+				num++
+				i = 0
+	var/stealth = "@[num2text(num)]"
+	GLOB.stealthminID["IRCKEY"] = stealth
+	return	stealth

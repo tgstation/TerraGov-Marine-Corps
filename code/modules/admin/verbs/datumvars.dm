@@ -1200,8 +1200,43 @@
 			if(!check_rights(R_SPAWN))
 				return
 			var/mob/living/carbon/human/H = locate(href_list["copyoutfit"])
-			if(istype(H))
-				H.copy_outfit()
+			if(!istype(H))
+				return
+				
+			H.copy_outfit()
 
 			log_admin("[key_name(usr)] copied the outfit of [key_name(H)].")
 			message_admins("[ADMIN_TPMONTY(usr)] copied the outfit of [ADMIN_TPMONTY(H)].")
+
+
+		else if(href_list["dropeverything"])
+			if(!check_rights(R_DEBUG))
+				return
+
+			var/mob/living/carbon/human/H = locate(href_list["copyoutfit"])
+			if(!istype(H))
+				return
+
+			if(alert(usr, "Make [H] drop everything?", "Warning", "Yes", "No") != "Yes")
+				return
+
+			for(var/obj/item/W in H)
+				if(istype(W, /obj/item/alien_embryo))
+					continue
+				H.dropItemToGround(W)
+
+			log_admin("[key_name(usr)] made [key_name(H)] drop everything.")
+			message_admins("[ADMIN_TPMONTY(usr)] made [ADMIN_TPMONTY(H)] drop everything.")
+
+
+		else if(href_list["updateicon"])
+			if(!check_rights(R_DEBUG))
+				return
+
+			var/atom/movable/AM = locate(href_list["updateicon"])
+			if(!istype(AM))
+				return
+
+			AM.update_icon()
+
+			log_admin("[key_name(usr)] updated the icon of [AM].")
