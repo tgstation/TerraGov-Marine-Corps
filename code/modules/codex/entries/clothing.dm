@@ -128,11 +128,27 @@ var/list/string_equip_flags = list( "suit slot" = ITEM_SLOT_OCLOTHING,
 			var/obj/B = X
 			armor_strings += "[initial(B.name)]"
 
-	if(slots)
-		var/obj/item/clothing/tie/A
-		armor_strings += "<br>This item has an internal inventory of [A.slots] slots."
 
 	. += jointext(armor_strings, "<br>")
+
+/obj/item/clothing/tie/storage/get_mechanics_info()
+	. = ..()
+	. += "<br>This item has an internal inventory of [slots] slots."
+	if(length(hold.bypass_w_limit) > 0)
+		. += "<br><br><U>You can also carry the following special items in this</U>:"
+		for(var/X in hold.bypass_w_limit)
+			var/obj/B = X
+			. += "<br>[initial(text2path(B).name)]"	
+
+/obj/item/clothing/suit/storage/get_mechanics_info()
+	. = ..()
+	. += "<br><br>This item has an internal inventory of [pockets.storage_slots] slots."
+	. += "<br>It can carry weight [pockets.max_w_class] things or lighter."
+	if(length(pockets.bypass_w_limit) > 0)
+		. += "<br><U>You can also carry the following special items in this internal inventory</U>:"
+		for(var/X in pockets.bypass_w_limit)
+			var/obj/B = X
+			. += "<br>[initial(text2path(B).name)]"	
 
 /obj/item/clothing/suit/armor/pcarrier/get_mechanics_info()
 	. = ..()
