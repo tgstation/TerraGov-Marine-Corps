@@ -107,7 +107,7 @@
 		var/price = prices[typepath]
 		if(isnull(amount)) amount = 1
 
-		var/obj/item/temp_path = typepath
+		var/obj/item/temp_path = new typepath
 		var/datum/data/vending_product/R = new /datum/data/vending_product()
 
 		R.product_path = typepath
@@ -133,7 +133,7 @@
 			R.category=CAT_NORMAL
 			product_records += R
 
-		R.product_name = initial(temp_path.name)
+		R.product_name = temp_path.name
 
 //		to_chat(world, "Added: [R.product_name]] - [R.amount] - [R.product_path]")
 	return

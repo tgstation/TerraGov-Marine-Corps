@@ -30,11 +30,6 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 		gene_tags -= gene_tag
 		GLOB.gene_tag_masks[gene_tag] = gene_mask
 
-	// Make sure any seed packets that were mapped in are updated
-	// correctly (since the seed datums did not exist a tick ago).
-	for(var/obj/item/seeds/S in GLOB.item_list)
-		S.update_seed()
-
 	return TRUE
 
 /datum/plantgene
