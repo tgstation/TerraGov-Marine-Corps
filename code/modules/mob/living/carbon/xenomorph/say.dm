@@ -17,7 +17,7 @@
 		return //Unconscious? Nope.
 
 	if(copytext(message, 1, 2) == "*")
-		return emote(copytext(message, 2))
+		return emote(copytext(message, 2), EMOTE_AUDIBLE, null, TRUE)
 
 	var/datum/language/speaking = null
 
@@ -99,11 +99,11 @@
 	log_talk(message, LOG_HIVEMIND)
 	var/track = ""
 	var/ghostrend
-	for (var/mob/S in GLOB.player_list)
-		if(isnull(S) || (!isxeno(S) && S.stat != DEAD) || istype(S,/mob/new_player))
+	for(var/mob/S in GLOB.player_list)
+		if(isnull(S) || (!isxeno(S) && S.stat != DEAD) || istype(S, /mob/new_player))
 			continue
-		if(istype(S,/mob/dead/observer))
-			if(S.client.prefs && S.client.prefs.toggles_chat & CHAT_GHOSTHIVEMIND)
+		if(istype(S, /mob/dead/observer))
+			if(S.client?.prefs && S.client.prefs.toggles_chat & CHAT_GHOSTHIVEMIND)
 				track = "(<a href='byond://?src=\ref[S];track=\ref[src]'>follow</a>)"
 				if(isxenoqueen(src))
 					ghostrend = "<font size='3' font color='purple'><i><span class='game say'>Hivemind, <span class='name'>[name]</span> [track]<span class='message'> hisses, '[message]'</span></span></i></font>"

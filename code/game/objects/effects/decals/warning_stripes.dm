@@ -2,8 +2,14 @@
 	icon = 'icons/effects/warning_stripes.dmi'
 	layer = TURF_LAYER
 
-/obj/effect/decal/warning_stripes/New()
+/obj/effect/decal/warning_stripes/Initialize()
 	. = ..()
 
-	loc.overlays += src
-	qdel(src)
+	loc.overlays += image(icon, icon_state, dir = src.dir)
+	return INITIALIZE_HINT_QDEL
+
+/obj/effect/decal/warning_stripes/thin
+	icon_state = "thin"
+
+/obj/effect/decal/warning_stripes/thick
+	icon_state = "thick"

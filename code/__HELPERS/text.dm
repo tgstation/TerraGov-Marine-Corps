@@ -14,9 +14,8 @@
  */
 
 // Run all strings to be used in an SQL query through this proc first to properly escape out injection attempts.
-/proc/sanitizeSQL(var/t as text)
-	var/sqltext = dbcon.Quote(t);
-	return copytext(sqltext, 2, lentext(sqltext));//Quote() adds quotes around input, we already do that
+/proc/sanitizeSQL(t)
+	return SSdbcore.Quote("[t]")
 
 /proc/format_table_name(table as text)
 	return CONFIG_GET(string/feedback_tableprefix) + table
@@ -332,6 +331,61 @@ proc/TextPreview(var/string,var/len=40)
 	else
 		return "[copytext(string, 1, 37)]..."
 
+//Used for applying byonds text macros to strings that are loaded at runtime
+/proc/apply_text_macros(string)
+	var/next_backslash = findtext(string, "\\")
+	if(!next_backslash)
+		return string
+
+	var/leng = length(string)
+
+	var/next_space = findtext(string, " ", next_backslash + 1)
+	if(!next_space)
+		next_space = leng - next_backslash
+
+	if(!next_space)	//trailing bs
+		return string
+
+	var/base = next_backslash == 1 ? "" : copytext(string, 1, next_backslash)
+	var/macro = lowertext(copytext(string, next_backslash + 1, next_space))
+	var/rest = next_backslash > leng ? "" : copytext(string, next_space + 1)
+
+	//See https://secure.byond.com/docs/ref/info.html#/DM/text/macros
+	switch(macro)
+		//prefixes/agnostic
+		if("the")
+			rest = text("\the []", rest)
+		if("a")
+			rest = text("\a []", rest)
+		if("an")
+			rest = text("\an []", rest)
+		if("proper")
+			rest = text("\proper []", rest)
+		if("improper")
+			rest = text("\improper []", rest)
+		if("roman")
+			rest = text("\roman []", rest)
+		//postfixes
+		if("th")
+			base = text("[]\th", rest)
+		if("s")
+			base = text("[]\s", rest)
+		if("he")
+			base = text("[]\he", rest)
+		if("she")
+			base = text("[]\she", rest)
+		if("his")
+			base = text("[]\his", rest)
+		if("himself")
+			base = text("[]\himself", rest)
+		if("herself")
+			base = text("[]\herself", rest)
+		if("hers")
+			base = text("[]\hers", rest)
+
+	. = base
+	if(rest)
+		. += .(rest)
 
 //finds the first occurrence of one of the characters from needles argument inside haystack
 //it may appear this can be optimised, but it really can't. findtext() is so much faster than anything you can do in byondcode.
@@ -347,9 +401,39 @@ proc/TextPreview(var/string,var/len=40)
 
 
 /proc/noscript(text)
-	text = replacetext(text, "<script>", "")
 	text = replacetext(text, "<script", "")
-	text = replacetext(text, "script>", "")
-	text = replacetext(text, "</script>", "")
-	text = replacetext(text, "/script", "")
+	text = replacetext(text, "/script>", "")
+	text = replacetext(text, "<iframe", "")
+	text = replacetext(text, "/iframe>", "")
+	text = replacetext(text, "<input", "")
+	text = replacetext(text, "<video", "")
+	text = replacetext(text, "<body", "")
+	text = replacetext(text, "<form", "")
+	text = replacetext(text, "<link", "")
+	text = replacetext(text, "<applet", "")
+	text = replacetext(text, "<frameset", "")
+	text = replacetext(text, "onerror", "")
+	text = replacetext(text, "onpageshow", "")
+	text = replacetext(text, "onscroll", "")
+	text = replacetext(text, "onforminput", "")
+	text = replacetext(text, "oninput", "")
 	return text
+
+
+/proc/sanitize_filename(t)
+	return sanitize_simple(t, list("\n"="", "\t"="", "/"="", "\\"="", "?"="", "%"="", "*"="", ":"="", "|"="", "\""="", "<"="", ">"=""))
+
+
+/proc/sanitizediscord(text)
+	text = replacetext(text, "\improper", "")
+	text = replacetext(text, "\proper", "")
+	text = replacetext(text, "<@", "")
+	text = replacetext(text, "@here", "")
+	text = replacetext(text, "@everyone", "")
+	return text
+
+
+GLOBAL_LIST_INIT(zero_character_only, list("0"))
+GLOBAL_LIST_INIT(hex_characters, list("0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"))
+GLOBAL_LIST_INIT(alphabet, list("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"))
+GLOBAL_LIST_INIT(binary, list("0","1"))

@@ -1,7 +1,7 @@
 /obj/effect
 
-/obj/effect/New()
-	..()
+/obj/effect/Initialize()
+	. = ..()
 	GLOB.effect_list += src
 
 /obj/effect/Destroy()

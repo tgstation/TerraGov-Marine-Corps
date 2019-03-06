@@ -13,14 +13,20 @@
 	var/authenticated = FALSE
 
 	var/obj/item/paper/message = null
-	var/sendcooldown = 0
+	var/sendcooldown = FALSE
 
-	var/department = "Corporate Liasion"
+	var/department = "Corporate Liaison"
+	var/selected = "Nanotrasen"
 
 
 /obj/machinery/faxmachine/Initialize()
 	. = ..()
 	GLOB.faxmachines += src
+
+
+/obj/machinery/faxmachine/Destroy()
+	GLOB.faxmachines -= src
+	return ..()
 
 
 /obj/machinery/faxmachine/process()
@@ -38,7 +44,7 @@
 /obj/machinery/faxmachine/attack_hand(mob/user as mob)
 	user.set_interaction(src)
 
-	var/dat = "Fax Machine<BR>"
+	var/dat
 
 	var/scan_name
 	if(idscan)
@@ -64,7 +70,7 @@
 			else
 				dat += "<a href='byond://?src=\ref[src];send=1'>Send</a><br>"
 				dat += "<b>Currently sending:</b> [message.name]<br>"
-				dat += "<b>Sending to:</b> <a href='byond://?src=\ref[src];dept=1'>[department]</a><br>"
+				dat += "<b>Sending to:</b> <a href='byond://?src=\ref[src];dept=1'>[selected]</a><br>"
 		else
 			if(sendcooldown)
 				dat += "Please insert paper to send via secure connection.<br><br>"
@@ -76,17 +82,20 @@
 		if(message)
 			dat += "<a href ='byond://?src=\ref[src];remove=1'>Remove Paper</a><br>"
 
-	user << browse(dat, "window=fax")
+	var/datum/browser/popup = new(user, "fax", "<div align='center'>Fax Machine</div>")
+	popup.set_content(dat)
+	popup.open(FALSE)
 	onclose(user, "fax")
 
 
 /obj/machinery/faxmachine/Topic(href, href_list)
 	if(href_list["send"])
 		if(message)
-			send_fax(usr, src, department, message.name, message, FALSE)
+			send_fax(usr, src, selected, message.name, message.info, FALSE)
 			to_chat(usr, "Message transmitted successfully.")
-			spawn(sendcooldown)
-				sendcooldown = 0
+			sendcooldown = TRUE
+			addtimer(CALLBACK(src, .proc/end_cooldown), 2 MINUTES)
+			updateUsrDialog()
 	if(href_list["remove"])
 		if(message)
 			if(!ishuman(usr))
@@ -114,10 +123,10 @@
 		authenticated = FALSE
 
 	if(href_list["dept"])
-		var/choice = input(usr, "Which department?", "Choose a department", "") as null|anything in list("Nanotrasen", "TGMC High Command", "TGMC Provost Marshall")
+		var/choice = input(usr, "Who do you want to message?", "Fax", "") as null|anything in list("Nanotrasen", "TGMC High Command", "TGMC Provost Marshall")
 		if(!choice)
 			return
-		department = choice
+		selected = choice
 
 	if(href_list["auth"])
 		if(!authenticated && idscan)
@@ -153,9 +162,21 @@
 		to_chat(user, "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>")
 
 
+/obj/machinery/faxmachine/proc/end_cooldown()
+	sendcooldown = FALSE
+
+
+/obj/machinery/faxmachine/cic
+	department = "Combat Information Center"
+
 /obj/machinery/faxmachine/cmp
-	department = "Chief Military Police"
+	department = "Command Master at Arms"
 
+/obj/machinery/faxmachine/brig
+	department = "Brig"
 
-/obj/machinery/faxmachine/prison
+/obj/machinery/faxmachine/research
+	department = "Research"
+
+/obj/machinery/faxmachine/warden //Prison Station
 	department = "Warden"

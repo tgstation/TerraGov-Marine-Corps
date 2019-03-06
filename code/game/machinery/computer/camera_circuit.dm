@@ -1,7 +1,7 @@
 
 //the researchable camera circuit that can connect to any camera network
 
-/obj/item/weapon/circuitboard/camera
+/obj/item/circuitboard/camera
 	//name = "Circuit board (Camera)"
 	var/secured = 1
 	var/authorised = 0

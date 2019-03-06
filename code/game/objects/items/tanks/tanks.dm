@@ -44,7 +44,7 @@
 			else
 				descriptive = "furiously hot"
 
-		to_chat(user, "<span class='notice'>\The [bicon(src)][src] feels [descriptive]</span>")
+		to_chat(user, "<span class='notice'>\The [icon2html(src, user)][src] feels [descriptive]</span>")
 
 
 /obj/item/tank/attackby(obj/item/W as obj, mob/user as mob)
@@ -52,11 +52,11 @@
 
 	if ((istype(W, /obj/item/device/analyzer)) && get_dist(user, src) <= 1)
 		for (var/mob/O in viewers(user, null))
-			to_chat(O, "<span class='warning'>[user] has used [W] on [bicon(src)] [src]</span>")
+			to_chat(O, "<span class='warning'>[user] has used [W] on [icon2html(src, user)] [src]</span>")
 
 		manipulated_by = user.real_name			//This person is aware of the contents of the tank.
 
-		to_chat(user, "<span class='notice'>Results of analysis of [bicon(src)]</span>")
+		to_chat(user, "<span class='notice'>Results of analysis of [icon2html(src, user)]</span>")
 		if (pressure>0)
 			to_chat(user, "<span class='notice'>Pressure: [round(pressure,0.1)] kPa</span>")
 
@@ -146,7 +146,7 @@
 
 
 /obj/item/tank/return_air()
-	return list(gas_type, temperature, pressure)
+	return list(gas_type, temperature, distribute_pressure)
 
 /obj/item/tank/return_pressure()
 	return pressure

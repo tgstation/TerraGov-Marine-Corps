@@ -2,7 +2,7 @@
 /client/verb/wiki()
 	set name = "wiki"
 	set desc = "Visit the wiki."
-	set hidden = 1
+	set hidden = TRUE
 	if(CONFIG_GET(string/wikiurl))
 		if(alert("This will open the wiki in your browser. Are you sure?",,"Yes","No")=="No")
 			return
@@ -14,7 +14,7 @@
 /client/verb/forum()
 	set name = "forum"
 	set desc = "Visit the forum."
-	set hidden = 1
+	set hidden = TRUE
 	if(CONFIG_GET(string/forumurl))
 		if(alert("This will open the forum in your browser. Are you sure?",,"Yes","No")=="No")
 			return
@@ -26,7 +26,7 @@
 /client/verb/rules()
 	set name = "rules"
 	set desc = "Read our rules."
-	set hidden = 1
+	set hidden = TRUE
 	if(CONFIG_GET(string/rulesurl))
 		if(alert("This will open the rules in your browser. Are you sure?",,"Yes","No")=="No")
 			return
@@ -38,7 +38,7 @@
 /client/verb/patreon()
 	set name = "Patreon"
 	set desc = "Like our server? Buy us and get satisfaction for your efforts."
-	set hidden = 1
+	set hidden = TRUE
 	if(CONFIG_GET(string/donationurl))
 		if(alert("This will open our donation page in your browser. Are you sure?",,"Yes","No")=="No")
 			return
@@ -47,10 +47,25 @@
 		to_chat(src, "<span class='warning'>The donation URL is not set in the server configuration.</span>")
 	return
 
+
+/client/verb/discord()
+	set name = "Discord"
+	set hidden = TRUE
+
+	if(!CONFIG_GET(string/discordurl))
+		to_chat(src, "<span class='warning'>The Discord URL is not set in the server configuration.</span>")
+		return
+
+	if(alert("This will open our Discord in your browser. Are you sure?", "Confirmation", "Yes", "No") != "Yes")
+		return
+
+	src << link(CONFIG_GET(string/discordurl))
+
+
 /client/verb/submitbug()
 	set name = "Submit Bug"
 	set desc = "Submit a bug."
-	set hidden = 1
+	set hidden = TRUE
 	if(CONFIG_GET(string/githuburl))
 		if(alert("This will open our bug tracker page in your browser. Are you sure?",,"Yes","No")=="No")
 			return
@@ -60,28 +75,25 @@
 	return
 
 /client/verb/webmap()
-	var/ship_link
+	var/ship_link = CONFIG_GET(string/shipurl)
 	var/ground_link
 	set name = "webmap"
 	set desc = "Opens the webmap"
-	set hidden = 1
+	set hidden = TRUE
 	var/choice = alert("Do you want to view the ground or the ship?",,"Ship","Ground","Cancel")
 	switch(choice)
 		if("Ship")
-			switch(MAIN_SHIP_NAME)
-				if("TGS Theseus")
-					ship_link = CONFIG_GET(string/shipurl)
 			if(!ship_link)
 				to_chat(src, "<span class='warning'>This ship map has no webmap setup.</span>")
 				return
 			src << link(ship_link)
 		if("Ground")
-			switch(GLOB.map_tag)
+			switch(SSmapping.config.map_name)
 				if("Ice Colony")
 					ground_link = CONFIG_GET(string/icecolonyurl)
-				if("LV-624")
+				if("LV624")
 					ground_link = CONFIG_GET(string/lv624url)
-				if("Solaris Ridge")
+				if("Big Red")
 					ground_link = CONFIG_GET(string/bigredurl)
 				if("Prison Station")
 					ground_link = CONFIG_GET(string/prisonstationurl)
@@ -157,5 +169,5 @@ Admin:
 
 	src << hotkey_mode
 	src << other
-	if(holder)
+	if(!check_rights(R_ADMIN, FALSE))
 		src << admin

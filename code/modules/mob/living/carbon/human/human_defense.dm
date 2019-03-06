@@ -22,11 +22,11 @@ Contains most of the procs that are called when a mob is attacked by something
 				msg_admin_attack("[ADMIN_TPMONTY(src)] was disarmed by a stun effect.")
 
 				dropItemToGround(c_hand)
-				if (affected.status & LIMB_ROBOT)
+				if (affected.limb_status & LIMB_ROBOT)
 					emote("me", 1, "drops what they were holding, their [affected.display_name] malfunctioning!")
 				else
 					var/emote_scream = pick("screams in pain and", "lets out a sharp cry and", "cries out and")
-					emote("me", 1, "[(species && species.flags & NO_PAIN) ? "" : emote_scream ] drops what they were holding in their [affected.display_name]!")
+					emote("me", 1, "[(species && species.species_flags & NO_PAIN) ? "" : emote_scream ] drops what they were holding in their [affected.display_name]!")
 
 	..(stun_amount, agony_amount, def_zone)
 
@@ -112,7 +112,7 @@ Contains most of the procs that are called when a mob is attacked by something
 		if(!O)	continue
 		O.emp_act(severity)
 	for(var/datum/limb/O in limbs)
-		if(O.status & LIMB_DESTROYED)	continue
+		if(O.limb_status & LIMB_DESTROYED)	continue
 		O.emp_act(severity)
 		for(var/datum/internal_organ/I in O.internal_organs)
 			if(I.robotic == 0)	continue
@@ -136,7 +136,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	var/datum/limb/affecting = get_limb(target_zone)
 	if (!affecting)
 		return 0
-	if(affecting.status & LIMB_DESTROYED)
+	if(affecting.limb_status & LIMB_DESTROYED)
 		to_chat(user, "What [affecting.display_name]?")
 		return 0
 	var/hit_area = affecting.display_name
@@ -169,7 +169,7 @@ Contains most of the procs that are called when a mob is attacked by something
 
 	var/bloody = 0
 	if((I.damtype == BRUTE || I.damtype == HALLOSS) && prob(I.force*2 + 25))
-		if(!(affecting.status & LIMB_ROBOT))
+		if(!(affecting.limb_status & LIMB_ROBOT))
 			I.add_mob_blood(src)	//Make the weapon bloody, not the person.
 			if(prob(33))
 				bloody = 1
@@ -185,10 +185,10 @@ Contains most of the procs that are called when a mob is attacked by something
 
 		switch(hit_area)
 			if("head")//Harder to score a stun but if you do it lasts a bit longer
-				if(prob(I.force))
+				if(prob(I.force) && stat == CONSCIOUS)
 					apply_effect(20, PARALYZE, armor)
 					visible_message("<span class='danger'>[src] has been knocked unconscious!</span>",
-					"<span class='danger'>You have been knocked unconscious!</span>", null, 5)
+									"<span class='danger'>You have been knocked unconscious!</span>", null, 5)
 
 				if(bloody)//Apply blood
 					if(wear_mask)
@@ -202,9 +202,10 @@ Contains most of the procs that are called when a mob is attacked by something
 						update_inv_glasses(0)
 
 			if("chest")//Easier to score a stun but lasts less time
-				if(prob((I.force + 10)))
+				if(prob((I.force + 10)) && !is_mob_incapacitated())
 					apply_effect(6, WEAKEN, armor)
-					visible_message("<span class='danger'>[src] has been knocked down!</span>", null, null, 5)
+					visible_message("<span class='danger'>[src] has been knocked down!</span>",
+									"<span class='danger'>You have been knocked down!</span>", null, 5)
 
 				if(bloody)
 					bloody_body(src)

@@ -3,18 +3,18 @@
 /mob/living/carbon/human/handle_organs()
 	. = ..()
 
-	if(reagents && !(species.flags & NO_CHEM_METABOLIZATION))
+	if(reagents && !(species.species_flags & NO_CHEM_METABOLIZATION))
 		if(species && species.has_organ["liver"])
 			var/datum/internal_organ/liver/L = internal_organs_by_name["liver"]
 			var/alien = (species && species.reagent_tag) ? species.reagent_tag : null
-			var/overdose = (species.flags & NO_OVERDOSE) ? FALSE : TRUE
+			var/overdose = (species.species_flags & NO_OVERDOSE) ? FALSE : TRUE
 			if(!(status_flags & GODMODE)) //godmode doesn't work as intended anyway
 				if(L)
 					reagents.metabolize(src, alien, can_overdose = overdose)
 				else
 					reagents.metabolize(src, alien, can_overdose = FALSE, liverless=TRUE)
 
-	if(!(species.flags & IS_SYNTHETIC))
+	if(!(species.species_flags & IS_SYNTHETIC))
 		//Nutrition decrease
 		if(nutrition > 0 && stat != 2)
 			nutrition = max (0, nutrition - HUNGER_FACTOR)
@@ -61,12 +61,12 @@
 								W.germ_level += 1
 
 				if(E.name in list("l_leg","l_foot","r_leg","r_foot") && !lying)
-					if (!E.is_usable() || E.is_malfunctioning() || ( E.is_broken() && !(E.status & LIMB_SPLINTED) && !(E.status & LIMB_STABILIZED) ) )
+					if (!E.is_usable() || E.is_malfunctioning() || ( E.is_broken() && !(E.limb_status & LIMB_SPLINTED) && !(E.limb_status & LIMB_STABILIZED) ) )
 						leg_tally--			// let it fail even if just foot&leg
 
 		// standing is poor
 		if(leg_tally <= 0 && !knocked_out && !lying && prob(5))
-			if(!(species && (species.flags & NO_PAIN)))
+			if(!(species && (species.species_flags & NO_PAIN)))
 				emote("pain")
 			emote("collapse")
 			knocked_out = 10

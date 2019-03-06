@@ -32,7 +32,7 @@
 	var/light_disabled = FALSE
 	var/alarm_on = FALSE
 
-/obj/machinery/camera/New()
+/obj/machinery/camera/Initialize()
 	WireColorToFlag = randomCameraWires()
 	assembly = new(src)
 	assembly.state = 4
@@ -56,7 +56,7 @@
 		if(4)	pixel_x = -27
 		if(8)	pixel_x = 27
 
-	..()
+	. = ..()
 
 /obj/machinery/camera/emp_act(severity)
 	if(!isEmpProof())
@@ -65,13 +65,13 @@
 			var/list/previous_network = network
 			network = list()
 			cameranet.removeCamera(src)
-			stat |= EMPED
+			machine_stat |= EMPED
 			SetLuminosity(0)
 			triggerCameraAlarm()
 			spawn(900)
 				network = previous_network
 				icon_state = initial(icon_state)
-				stat &= ~EMPED
+				machine_stat &= ~EMPED
 				cancelCameraAlarm()
 				if(can_use())
 					cameranet.addCamera(src)
@@ -220,7 +220,7 @@
 /obj/machinery/camera/proc/can_use()
 	if(!status)
 		return FALSE
-	if(stat & EMPED)
+	if(machine_stat & EMPED)
 		return FALSE
 	return TRUE
 

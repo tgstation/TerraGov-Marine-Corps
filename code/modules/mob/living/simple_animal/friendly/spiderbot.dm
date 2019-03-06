@@ -67,10 +67,6 @@
 			to_chat(user, "<span class='warning'>[O] is dead. Sticking it into the frame would sort of defeat the purpose.</span>")
 			return
 
-		if(jobban_isbanned(B.brainmob, "Cyborg"))
-			to_chat(user, "<span class='warning'>[O] does not seem to fit.</span>")
-			return
-
 
 
 		user.transferItemToLoc(O, src)
@@ -273,4 +269,4 @@
 /mob/living/simple_animal/spiderbot/examine(mob/user)
 	..()
 	if(held_item)
-		to_chat(user, "It is carrying \a [held_item] [bicon(held_item)].")
+		to_chat(user, "It is carrying \a [held_item] [icon2html(held_item, user)].")

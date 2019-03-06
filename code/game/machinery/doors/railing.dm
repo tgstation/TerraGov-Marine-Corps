@@ -10,13 +10,12 @@
 	throwpass = TRUE //You can throw objects over this, despite its density.
 	open_layer = CATWALK_LAYER
 	closed_layer = WINDOW_LAYER
-	var/closed_layer_south = ABOVE_MOB_LAYER
 
 /obj/machinery/door/poddoor/railing/New()
 	..()
-	switch(dir)
-		if(SOUTH) layer = closed_layer_south
-		else layer = closed_layer
+	if(dir == SOUTH)
+		closed_layer = ABOVE_MOB_LAYER
+	layer = closed_layer
 
 /obj/machinery/door/poddoor/railing/CheckExit(atom/movable/O, turf/target)
 	if(!density)
@@ -45,7 +44,7 @@
 /obj/machinery/door/poddoor/railing/open()
 	if (src.operating == 1) //doors can still open when emag-disabled
 		return 0
-	if (!ticker)
+	if (!SSticker)
 		return 0
 	if(!src.operating) //in case of emag
 		src.operating = 1
@@ -65,9 +64,7 @@
 		return 0
 	src.density = 1
 	src.operating = 1
-	switch(dir)
-		if(SOUTH) layer = closed_layer_south
-		else layer = closed_layer
+	layer = closed_layer
 	flick("railingc1", src)
 	src.icon_state = "railing1"
 

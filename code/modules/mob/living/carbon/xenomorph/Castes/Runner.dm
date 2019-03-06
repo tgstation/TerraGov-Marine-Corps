@@ -34,7 +34,7 @@
 	evolves_to = list(/mob/living/carbon/Xenomorph/Hunter)
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA
+	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	// *** Defense *** //
 	armor_deflection = 5
@@ -164,6 +164,7 @@
 	pixel_x = -16  //Needed for 2x2
 	old_x = -16
 	wound_type = "runner" //used to match appropriate wound overlays
+	hit_and_run = 1
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,

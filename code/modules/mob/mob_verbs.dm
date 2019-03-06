@@ -3,7 +3,8 @@
 	set category = "Object"
 	set src = usr
 
-	if(istype(loc,/obj/mecha)) return
+	if(istype(loc,/obj/mecha) || istype(loc, /obj/vehicle/multitile/root/cm_armored))
+		return
 
 	if(hand)
 		var/obj/item/W = l_hand
@@ -79,14 +80,11 @@
 	set name = "Respawn"
 	set category = "OOC"
 
-	if(!GLOB.respawn_allowed || !check_rights(R_ADMIN, FALSE))
+	if(!GLOB.respawn_allowed && !check_rights(R_ADMIN, FALSE))
 		to_chat(usr, "<span class='notice'>Respawn is disabled.</span>")
 		return
 	if(stat != DEAD)
 		to_chat(usr, "<span class='boldnotice'>You must be dead to use this!</span>")
-		return
-	if(!ticker?.mode || ticker.mode.name == "meteor" || ticker.mode.name == "epidemic") //BS12 EDIT
-		to_chat(usr, "<span class='notice'>Respawn is disabled for this roundtype.</span>")
 		return
 	else
 		var/deathtime = world.time - src.timeofdeath
@@ -185,37 +183,12 @@
 			M.update_canmove()
 
 
-/mob/verb/view_notes()
-	set name = "View Admin Remarks"
+/mob/verb/view_admin_remarks()
 	set category = "OOC"
+	set name = "View Admin Remarks"
 
-	var/key = usr.key
+	if(!CONFIG_GET(flag/see_own_notes))
+		to_chat(usr, "<span class='notice'>Sorry, that function is not enabled on this server.</span>")
+		return
 
-	var/dat = "<html><head><title>Info on [key]</title></head>"
-	dat += "<body>"
-
-	key = ckey(key)
-
-	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
-	var/list/infos
-	info >> infos
-	if(!infos)
-		dat += "No information found on the given key.<br>"
-	else
-		var/update_file = 0
-		var/i = 0
-		for(var/datum/player_info/I in infos)
-			i += 1
-			if(!I.timestamp)
-				I.timestamp = "Pre-4/3/2012"
-				update_file = 1
-			if(!I.rank)
-				I.rank = "N/A"
-				update_file = 1
-			if(!(I.hidden))
-				dat += "<font color=#008800>[I.content]</font> <i>by [I.author] ([I.rank])</i> on <i><font color=blue>[I.timestamp]</i></font> "
-				dat += "<br><br>"
-		if(update_file) to_chat(info, infos)
-
-	dat += "</body></html>"
-	usr << browse(dat, "window=adminplayerinfo;size=480x480")
+	browse_messages(null, usr.ckey, null, TRUE)

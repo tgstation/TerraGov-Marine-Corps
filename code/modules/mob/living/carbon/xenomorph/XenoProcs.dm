@@ -7,8 +7,8 @@
 	if(!message)
 		return
 
-	if(ticker && ticker.mode && ticker.mode.xenomorphs.len) //Send to only xenos in our gamemode list. This is faster than scanning all mobs
-		for(var/datum/mind/L in ticker.mode.xenomorphs)
+	if(length(SSticker?.mode?.xenomorphs)) //Send to only xenos in our gamemode list. This is faster than scanning all mobs
+		for(var/datum/mind/L in SSticker.mode.xenomorphs)
 			var/mob/living/carbon/Xenomorph/M = L.current
 			if(M && istype(M) && !M.stat && M.client && hivenumber == M.hivenumber) //Only living and connected xenos
 				to_chat(M, "<span class='xenodanger'><font size=[size]> [message]</font></span>")
@@ -27,8 +27,6 @@
 				stat(null, "Evolve Progress (FINISHED)")
 			else if(!hive.living_xeno_queen)
 				stat(null, "Evolve Progress (HALTED - NO QUEEN)")
-			else if(!hive.living_xeno_queen.ovipositor)
-				stat(null, "Evolve Progress (HALTED - QUEEN HAS NO OVIPOSITOR)")
 			else
 				stat(null, "Evolve Progress: [evolution_stored]/[xeno_caste.evolution_threshold]")
 
@@ -143,6 +141,9 @@
 
 	if(frenzy_aura)
 		. -= (frenzy_aura * 0.05)
+
+	if(hit_and_run) //We need to have the hit and run ability before we do anything
+		hit_and_run = min(2, hit_and_run + 0.05) //increment the damage of our next attack by +5% up to 200%
 
 	if(is_charging)
 		if(legcuffed)
@@ -293,7 +294,7 @@
 					if(xeno_caste.charge_type == 2)
 						if(stealth_router(HANDLE_STEALTH_CHECK))
 							M.adjust_stagger(3)
-							M.add_slowdown(3)
+							M.add_slowdown(1)
 							to_chat(src, "<span class='xenodanger'>Pouncing from the shadows, you stagger your victim.</span>")
 					if(!isxenosilicon(src))
 						playsound(loc, rand(0, 100) < 95 ? 'sound/voice/alien_pounce.ogg' : 'sound/voice/alien_pounce2.ogg', 25, 1)
@@ -594,6 +595,12 @@
 	else
 		generate_name()
 		update_living_queens()
+
+
+/mob/living/carbon/Xenomorph/Larva/death(gibbed, deathmessage)
+	log_admin("[key_name(src)] died as a Larva at [AREACOORD(src.loc)].")
+	message_admins("[ADMIN_TPMONTY(src)] died as a Larva.")
+	return ..()
 
 
 //////////// XENO CASTE PROCS //////////////////

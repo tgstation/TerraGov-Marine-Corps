@@ -13,10 +13,11 @@
 #define STATUS_HUD_OOC		"9" // STATUS_HUD without virus db check for someone being ill.
 #define STATUS_HUD_XENO_INFECTION		"10" // STATUS_HUD without virus db check for someone being ill.
 #define HEALTH_HUD_XENO		"11" //health HUD for xenos
-#define SQUAD_HUD			"12" //squad hud showing who's leader, medic, etc for each squad.
+#define SQUAD_HUD			"12" //squad hud showing who's leader, corpsman, etc for each squad.
 #define PLASMA_HUD			"13" //indicates the plasma level of xenos.
 #define PHEROMONE_HUD		"14" //indicates which pheromone is active on a xeno.
 #define QUEEN_OVERWATCH_HUD	"15" //indicates which xeno the queen is overwatching.
+#define STATUS_HUD_OBSERVER_INFECTION "16" //gives observers the xeno larval stage
 
 
 //data HUD (medhud, sechud) defines
@@ -28,4 +29,3 @@
 #define MOB_HUD_XENO_INFECTION		6
 #define MOB_HUD_XENO_STATUS			7
 #define MOB_HUD_SQUAD				8
-

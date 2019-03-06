@@ -1,13 +1,3 @@
-/proc/is_special_character(mob/M as mob)
-	if(!ticker?.mode)
-		return FALSE
-	if(!istype(M))
-		return FALSE
-	if(!M.mind?.special_role)
-		return FALSE
-	return TRUE
-
-
 /datum/admins/proc/gamemode_panel()
 	set category = "Admin"
 	set name = "Mode Panel"
@@ -15,7 +5,7 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	if(!ticker?.mode || !EvacuationAuthority)
+	if(!SSticker?.mode || !EvacuationAuthority)
 		return
 
 	var/dat
@@ -23,20 +13,20 @@
 
 	dat += "<html><head><title>Round Status</title></head>"
 	dat += "<body><h1><b>Round Status</b></h1>"
-	dat += "Current Game Mode: <B>[ticker.mode.name]</B><BR>"
+	dat += "Current Game Mode: <B>[SSticker.mode.name]</B><BR>"
 	dat += "Round Duration: <B>[round(world.time / 36000)]:[add_zero(world.time / 600 % 60, 2)]:[world.time / 100 % 6][world.time / 100 % 10]</B><BR>"
 
-	var/countdown = ticker.mode.get_queen_countdown()
+	var/countdown = SSticker.mode.get_queen_countdown()
 	if(countdown)
 		dat += "Queen Re-Check: [countdown]"
 
 	dat += "<b>Evacuation:</b> "
 	switch(EvacuationAuthority.evac_status)
-		if(EVACUATION_STATUS_STANDING_BY) 
+		if(EVACUATION_STATUS_STANDING_BY)
 			dat += "STANDING BY"
-		if(EVACUATION_STATUS_INITIATING) 
+		if(EVACUATION_STATUS_INITIATING)
 			dat += "IN PROGRESS: [EvacuationAuthority.get_status_panel_eta()]"
-		if(EVACUATION_STATUS_COMPLETE) 
+		if(EVACUATION_STATUS_COMPLETE)
 			dat += "COMPLETE"
 
 	dat += "<br>"
@@ -70,12 +60,13 @@
 
 	dat += "<A HREF='?_src_=vars;[HrefToken()];vars=[REF(EvacuationAuthority)]'>VV Evacuation/SD Controller</A><br>"
 	dat += "<A HREF='?_src_=vars;[HrefToken()];vars=[REF(GLOB.faxes)]'>VV Faxes List</A><br>"
+	dat += "<A HREF='?_src_=vars;[HrefToken()];vars=[REF(GLOB.custom_outfits)]'>VV Outfit List</A><br>"
 
 	dat += "<br><br>"
 
-	if(length(ticker.mode.xenomorphs))
+	if(length(SSticker.mode.xenomorphs))
 		dat += "<table cellspacing=5><tr><td><B>Aliens</B></td><td></td><td></td></tr>"
-		for(var/datum/mind/L in ticker.mode.xenomorphs)
+		for(var/datum/mind/L in SSticker.mode.xenomorphs)
 			var/mob/M = L.current
 			var/location = ""
 			if(M)
@@ -85,9 +76,9 @@
 				dat += "<td><a href='?src=[ref];playerpanel=[REF(M)]'>PP</A></td></TR>"
 		dat += "</table>"
 
-	if(ticker.liaison)
+	if(SSticker.liaison)
 		dat += "<br><table cellspacing=5><tr><td><B>Corporate Liaison</B></td><td></td><td></td></tr>"
-		var/mob/M = ticker.liaison.current
+		var/mob/M = SSticker.liaison.current
 		var/location = ""
 		if(M)
 			location = get_area(M.loc)
@@ -96,9 +87,9 @@
 			dat += "<td><a href='?src=[ref];playerpanel=[REF(M)]'>PP</A></td></TR>"
 		dat += "</table>"
 
-	if(length(ticker.mode.survivors))
+	if(length(SSticker.mode.survivors))
 		dat += "<br><table cellspacing=5><tr><td><B>Survivors</B></td><td></td><td></td></tr>"
-		for(var/datum/mind/L in ticker.mode.survivors)
+		for(var/datum/mind/L in SSticker.mode.survivors)
 			var/mob/M = L.current
 			var/location = ""
 			if(M)

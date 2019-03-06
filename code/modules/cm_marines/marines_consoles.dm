@@ -55,7 +55,7 @@
 
 	user.set_interaction(src)
 	var/dat
-	if (!( ticker ))
+	if (!( SSticker ))
 		return
 	if (mode) // accessing crew manifest
 
@@ -450,13 +450,13 @@
 		else if(href_list["squad"])
 			if(allowed(usr))
 				if(modify && istype(modify))
-					var/squad_name = input("Which squad would you like to put the person in?") as null|anything in RoleAuthority.squads_names
+					var/squad_name = input("Which squad would you like to put the person in?") as null|anything in SSjob.squads
 					if(!squad_name)
 						return
-					var/datum/squad/selected = RoleAuthority.squads[RoleAuthority.squads_names.Find(squad_name)]
+					var/datum/squad/selected = SSjob.squads[squad_name]
 
 					//First, remove any existing squad access and clear the card.
-					for(var/datum/squad/Q in RoleAuthority.squads)
+					for(var/datum/squad/Q in SSjob.squads)
 						if(findtext(modify.assignment,Q.name)) //Found one!
 							modify.access -= Q.access //Remove any access found.
 							to_chat(usr, "Old squad access removed.")

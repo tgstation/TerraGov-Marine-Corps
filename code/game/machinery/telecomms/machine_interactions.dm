@@ -7,8 +7,8 @@
 
 */
 
-#define STATION_Z 1
-#define TELECOMM_Z 3
+//#define STATION_Z 1
+//#define TELECOMM_Z 3
 
 /obj/machinery/telecomms
 	var/temp = "" // output message
@@ -68,14 +68,14 @@
 				construct_op ++
 				var/obj/item/stack/cable_coil/A = new /obj/item/stack/cable_coil( user.loc )
 				A.amount = 5
-				stat |= BROKEN // the machine's been borked!
+				machine_stat |= BROKEN // the machine's been borked!
 		if(3)
 			if(iscablecoil(P))
 				var/obj/item/stack/cable_coil/A = P
 				if (A.use(5))
 					to_chat(user, "<span class='notice'>You insert the cables.</span>")
 					construct_op--
-					stat &= ~BROKEN // the machine's not borked anymore!
+					machine_stat &= ~BROKEN // the machine's not borked anymore!
 				else
 					to_chat(user, "<span class='warning'>You need five coils of wire for this.</span>")
 			if(iscrowbar(P))
@@ -128,7 +128,7 @@
 		if(!ismultitool(user.get_active_held_item()))
 			return
 
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 
 	var/obj/item/device/multitool/P = get_multitool(user)
@@ -195,7 +195,7 @@
 
 
 /obj/machinery/telecomms/relay/proc/toggle_level()
-
+/*
 	var/turf/position = get_turf(src)
 
 	// Toggle on/off getting signals from the station or the current Z level
@@ -205,7 +205,7 @@
 	else if(position.z == TELECOMM_Z)
 		src.listening_level = STATION_Z
 		return 1
-	return 0
+	return 0*/
 
 // Returns a multitool from a user depending on their mobtype.
 
@@ -250,13 +250,13 @@
 
 // RELAY
 
-/obj/machinery/telecomms/relay/Options_Menu()
+/obj/machinery/telecomms/relay/Options_Menu()/*
 	var/dat = ""
 	if(src.z == TELECOMM_Z)
 		dat += "<br>Signal Locked to Station: <A href='?src=\ref[src];change_listening=1'>[listening_level == STATION_Z ? "TRUE" : "FALSE"]</a>"
 	dat += "<br>Broadcasting: <A href='?src=\ref[src];broadcast=1'>[broadcasting ? "YES" : "NO"]</a>"
 	dat += "<br>Receiving:    <A href='?src=\ref[src];receive=1'>[receiving ? "YES" : "NO"]</a>"
-	return dat
+	return dat*/
 
 /obj/machinery/telecomms/relay/Options_Topic(href, href_list)
 
@@ -304,7 +304,7 @@
 		if(!ismultitool(usr.get_active_held_item()))
 			return
 
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 
 	var/obj/item/device/multitool/P = get_multitool(usr)

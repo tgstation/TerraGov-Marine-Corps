@@ -32,7 +32,7 @@
 	deevolves_to = /mob/living/carbon/Xenomorph/Defender
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_BE_GIVEN_PLASMA
+	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	// *** Defense *** //
 	armor_deflection = 40
@@ -215,7 +215,7 @@
 			round_statistics.warrior_grabs++
 			grab_level = GRAB_NECK
 			L.drop_all_held_items()
-			L.KnockDown(2)
+			L.KnockDown(1)
 			visible_message("<span class='xenowarning'>\The [src] grabs [L] by the throat!</span>", \
 			"<span class='xenowarning'>You grab [L] by the throat!</span>")
 

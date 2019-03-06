@@ -61,23 +61,23 @@
 			//to_chat(world, "[name]: [rank]")
 			//cael - to prevent multiple appearances of a player/job combination, add a continue after each line
 		var/department = 0
-		if(real_rank in ROLES_COMMAND)
+		if(real_rank in JOBS_COMMAND)
 			heads[name] = rank
 			department = 1
-		if(real_rank in ROLES_POLICE)
+		if(real_rank in JOBS_POLICE)
 			police[name] = rank
 			department = 1
-		if(real_rank in ROLES_ENGINEERING)
+		if(real_rank in JOBS_ENGINEERING)
 			eng[name] = rank
 			department = 1
-		if(real_rank in ROLES_MEDICAL)
+		if(real_rank in JOBS_MEDICAL)
 			med[name] = rank
 			department = 1
-		if(real_rank in ROLES_MARINES)
+		if(real_rank in JOBS_MARINES)
 			squads[name] = squad_name
 			mar[name] = rank
 			department = 1
-		if(!department && !(name in heads) && (real_rank in ROLES_REGULAR_ALL))
+		if(!department && !(name in heads) && (real_rank in JOBS_REGULAR_ALL))
 			misc[name] = rank
 	if(heads.len > 0)
 		dat += "<tr><th colspan=3>Command Staff</th></tr>"
@@ -147,27 +147,27 @@ var/global/list/PDA_Manifest = list()
 		var/isactive = t.fields["p_stat"]
 		var/department = 0
 		var/depthead = 0 			// Department Heads will be placed at the top of their lists.
-		if(real_rank in ROLES_COMMAND)
+		if(real_rank in JOBS_COMMAND)
 			heads[++heads.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
 			depthead = 1
-			if(rank=="Commander" && heads.len != 1)
+			if(rank=="Captain" && length(heads) != 1)
 				heads.Swap(1,heads.len)
 
-		if(real_rank in ROLES_ENGINEERING)
+		if(real_rank in JOBS_ENGINEERING)
 			eng[++eng.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
 			if(depthead && eng.len != 1)
 				eng.Swap(1,eng.len)
 
-		if(real_rank in ROLES_MEDICAL)
+		if(real_rank in JOBS_MEDICAL)
 			med[++med.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
 			if(depthead && med.len != 1)
 				med.Swap(1,med.len)
 
 
-		if(real_rank in ROLES_MARINES)
+		if(real_rank in JOBS_MARINES)
 			mar[++mar.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
 			if(depthead && mar.len != 1)
@@ -181,7 +181,7 @@ var/global/list/PDA_Manifest = list()
 		"heads" = heads,
 		"eng" = eng,
 		"med" = med,
-		"marine_squad_positions" = ROLES_COMMAND,
+		"marine_squad_positions" = JOBS_COMMAND,
 		"misc" = misc
 		)
 	return PDA_Manifest
@@ -222,9 +222,7 @@ var/global/list/PDA_Manifest = list()
 
 	if(H.mind && (H.mind.assigned_role != "MODE"))
 		var/assignment
-		if(H.mind.role_alt_title)
-			assignment = H.mind.role_alt_title
-		else if(H.mind.assigned_role)
+		if(H.mind.assigned_role)
 			assignment = H.mind.assigned_role
 		else if(H.job)
 			assignment = H.job
@@ -254,7 +252,7 @@ var/global/list/PDA_Manifest = list()
 		G.fields["religion"]	= H.religion
 		G.fields["photo_front"]	= front
 		G.fields["photo_side"]	= side
-		if(H.gen_record && !jobban_isbanned(H, "Records"))
+		if(H.gen_record)
 			G.fields["notes"] = H.gen_record
 		else
 			G.fields["notes"] = "No notes found."
@@ -278,7 +276,7 @@ var/global/list/PDA_Manifest = list()
 		M.fields["last_scan_result"]		= "No scan data on record" // body scanner results
 		M.fields["autodoc_data"] = list()
 		M.fields["autodoc_manual"] = list()
-		if(H.med_record && !jobban_isbanned(H, "Records"))
+		if(H.med_record)
 			M.fields["notes"] = H.med_record
 		else
 			M.fields["notes"] = "No notes found."
@@ -294,7 +292,7 @@ var/global/list/PDA_Manifest = list()
 		S.fields["ma_crim"]		= "None"
 		S.fields["ma_crim_d"]	= "No major crime convictions."
 		S.fields["notes"]		= "No notes."
-		if(H.sec_record && !jobban_isbanned(H, "Records"))
+		if(H.sec_record)
 			S.fields["notes"] = H.sec_record
 		else
 			S.fields["notes"] = "No notes."
@@ -318,7 +316,7 @@ var/global/list/PDA_Manifest = list()
 		L.fields["faction"]		= H.personal_faction
 		L.fields["religion"]	= H.religion
 		L.fields["image"]		= getFlatIcon(H)	//This is god-awful
-		if(H.exploit_record && !jobban_isbanned(H, "Records"))
+		if(H.exploit_record)
 			L.fields["exploit_record"] = H.exploit_record
 		else
 			L.fields["exploit_record"] = "No additional information acquired."
@@ -359,9 +357,9 @@ proc/get_id_photo(var/mob/living/carbon/human/H)
 	preview_icon.Blend(temp, ICON_OVERLAY)
 
 	for(var/datum/limb/E in H.limbs)
-		if(E.status & LIMB_DESTROYED) continue
+		if(E.limb_status & LIMB_DESTROYED) continue
 		temp = new /icon(icobase, get_limb_icon_name(H.species, b_icon, H.gender, E.name, e_icon))
-		if(E.status & LIMB_ROBOT)
+		if(E.limb_status & LIMB_ROBOT)
 			temp.MapColors(rgb(77,77,77), rgb(150,150,150), rgb(28,28,28), rgb(0,0,0))
 		preview_icon.Blend(temp, ICON_OVERLAY)
 

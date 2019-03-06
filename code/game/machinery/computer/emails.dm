@@ -30,7 +30,7 @@
 	if(..())
 		return
 
-	var/dat = "<font size=5><center>Personal Computer</center></font><HR>"
+	var/dat
 
 	switch(screen)
 		if(0)
@@ -51,7 +51,9 @@
 					var/datum/fluff_email/FE = mail
 					dat += "<A href='?src=\ref[src];selectmail=[i]'>[FE.title]</A><BR>"
 
-	user << browse(dat, "window=email;size=600x520")
+	var/datum/browser/popup = new(user, "email", "<div align='center'>Personal Computer</div>", 600, 520)
+	popup.set_content(dat)
+	popup.open(FALSE)
 	onclose(user, "email")
 
 

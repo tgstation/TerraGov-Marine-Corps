@@ -17,7 +17,7 @@
 
 /datum/proc/vv_get_var(var_name)
 	switch(var_name)
-		if ("vars")
+		if("vars")
 			return debug_variable(var_name, list(), 0, src)
 	return debug_variable(var_name, vars[var_name], 0, src)
 
@@ -25,83 +25,78 @@
 /proc/get_all_of_type(var/T, subtypes = TRUE)
 	var/list/typecache = list()
 	typecache[T] = 1
-	if (subtypes)
+	if(subtypes)
 		typecache = typecacheof(typecache)
 	. = list()
-	if (ispath(T, /mob))
+	if(ispath(T, /mob))
 		for(var/mob/thing in GLOB.mob_list)
-			if (typecache[thing.type])
+			if(typecache[thing.type])
 				. += thing
 			CHECK_TICK
 
-	else if (ispath(T, /obj/machinery/door))
+	else if(ispath(T, /obj/machinery/door))
 		for(var/obj/machinery/door/thing in GLOB.machines)
-			if (typecache[thing.type])
+			if(typecache[thing.type])
 				. += thing
 			CHECK_TICK
 
-	else if (ispath(T, /obj/machinery))
+	else if(ispath(T, /obj/machinery))
 		for(var/obj/machinery/thing in GLOB.machines)
-			if (typecache[thing.type])
+			if(typecache[thing.type])
 				. += thing
 			CHECK_TICK
 
-	else if (ispath(T, /obj))
+	else if(ispath(T, /obj))
 		for(var/obj/thing in world)
-			if (typecache[thing.type])
+			if(typecache[thing.type])
 				. += thing
 			CHECK_TICK
 
-	else if (ispath(T, /atom/movable))
+	else if(ispath(T, /atom/movable))
 		for(var/atom/movable/thing in world)
-			if (typecache[thing.type])
+			if(typecache[thing.type])
 				. += thing
 			CHECK_TICK
 
-	else if (ispath(T, /turf))
+	else if(ispath(T, /turf))
 		for(var/turf/thing in world)
-			if (typecache[thing.type])
+			if(typecache[thing.type])
 				. += thing
 			CHECK_TICK
 
-	else if (ispath(T, /atom))
+	else if(ispath(T, /atom))
 		for(var/atom/thing in world)
-			if (typecache[thing.type])
+			if(typecache[thing.type])
 				. += thing
 			CHECK_TICK
 
-	else if (ispath(T, /client))
+	else if(ispath(T, /client))
 		for(var/client/thing in GLOB.clients)
-			if (typecache[thing.type])
+			if(typecache[thing.type])
 				. += thing
 			CHECK_TICK
 
-	else if (ispath(T, /datum))
+	else if(ispath(T, /datum))
 		for(var/datum/thing)
-			if (typecache[thing.type])
+			if(typecache[thing.type])
 				. += thing
 			CHECK_TICK
 
 	else
 		for(var/datum/thing in world)
-			if (typecache[thing.type])
+			if(typecache[thing.type])
 				. += thing
 			CHECK_TICK
 
 
 /proc/make_types_fancy(var/list/types)
-	if (ispath(types))
+	if(ispath(types))
 		types = list(types)
 	. = list()
 	for(var/type in types)
 		var/typename = "[type]"
 		var/static/list/TYPES_SHORTCUTS = list(
 			/obj/effect/decal/cleanable = "CLEANABLE",
-			/obj/item/clothing/head/helmet/space = "SPESSHELMET",
-			/obj/item/book/manual = "MANUAL",
-			/obj/machinery/atmospherics = "ATMOS_MECH",
-			/obj/machinery/portable_atmospherics = "PORT_ATMOS",
-			/obj/item/mecha_parts/mecha_equipment = "MECHA_EQUIP",
 			/obj/item/organ = "ORGAN",
 			/obj/item = "ITEM",
 			/obj/machinery = "MACHINERY",
@@ -112,26 +107,28 @@
 			/turf/closed = "CLOSED",
 			/turf = "T",
 			/mob/living/carbon = "CARBON",
+			/mob/living/carbon/human = "HUMAN",
 			/mob/living/simple_animal = "SIMPLE",
 			/mob/living = "LIVING",
 			/mob = "M"
 		)
-		for (var/tn in TYPES_SHORTCUTS)
-			if (copytext(typename,1, length("[tn]/")+1)=="[tn]/" /*findtextEx(typename,"[tn]/",1,2)*/ )
-				typename = TYPES_SHORTCUTS[tn]+copytext(typename,length("[tn]/"))
+		for(var/tn in TYPES_SHORTCUTS)
+			if(copytext(typename, 1, length("[tn]/") + 1)=="[tn]/" /*findtextEx(typename,"[tn]/",1,2)*/)
+				typename = TYPES_SHORTCUTS[tn] + copytext(typename, length("[tn]/"))
 				break
 		.[typename] = type
 
+
 /proc/get_fancy_list_of_atom_types()
 	var/static/list/pre_generated_list
-	if (!pre_generated_list) //init
+	if(!pre_generated_list) //init
 		pre_generated_list = make_types_fancy(typesof(/atom))
 	return pre_generated_list
 
 
 /proc/get_fancy_list_of_datum_types()
 	var/static/list/pre_generated_list
-	if (!pre_generated_list) //init
+	if(!pre_generated_list) //init
 		pre_generated_list = make_types_fancy(sortList(typesof(/datum) - typesof(/atom)))
 	return pre_generated_list
 
@@ -165,12 +162,11 @@
 
 	var/static/cookieoffset = rand(1, 9999) //to force cookies to reset after the round.
 
-
 	if(!D)
 		return
 
 	var/islist = islist(D)
-	if (!islist && !istype(D))
+	if(!islist && !istype(D))
 		return
 
 	var/title = ""
@@ -179,7 +175,7 @@
 	var/hash
 
 	var/type = /list
-	if (!islist)
+	if(!islist)
 		type = D.type
 
 
@@ -237,7 +233,7 @@
 		deleted_line = VV_MSG_DELETED
 
 	var/list/dropdownoptions = list()
-	if (islist)
+	if(islist)
 		dropdownoptions = list(
 			"---",
 			"Add Item" = "?_src_=vars;[HrefToken()];listadd=[refid]",
@@ -251,26 +247,26 @@
 		dropdownoptions = D.vv_get_dropdown()
 	var/list/dropdownoptions_html = list()
 
-	for (var/name in dropdownoptions)
+	for(var/name in dropdownoptions)
 		var/link = dropdownoptions[name]
-		if (link)
+		if(link)
 			dropdownoptions_html += "<option value='[link]'>[name]</option>"
 		else
 			dropdownoptions_html += "<option value>[name]</option>"
 
 	var/list/names = list()
-	if (!islist)
-		for (var/V in D.vars)
+	if(!islist)
+		for(var/V in D.vars)
 			names += V
 	sleep(1)//For some reason, without this sleep, VVing will cause client to disconnect on certain objects.
 
 	var/list/variable_html = list()
-	if (islist)
+	if(islist)
 		var/list/L = D
-		for (var/i in 1 to L.len)
+		for(var/i in 1 to L.len)
 			var/key = L[i]
 			var/value
-			if (IS_NORMAL_LIST(L) && !isnum(key))
+			if(IS_NORMAL_LIST(L) && !isnum(key))
 				value = L[key]
 			variable_html += debug_variable(i, value, 0, D)
 	else
@@ -303,7 +299,7 @@
 				filter_text.focus();
 				filter_text.select();
 				var lastsearch = getCookie("[refid][cookieoffset]search");
-				if (lastsearch) {
+				if(lastsearch) {
 					filter_text.value = lastsearch;
 					updateSearch();
 				}
@@ -314,7 +310,7 @@
 				for(var i=0; i<ca.length; i++) {
 					var c = ca\[i];
 					while (c.charAt(0)==' ') c = c.substring(1,c.length);
-					if (c.indexOf(name)==0) return c.substring(name.length,c.length);
+					if(c.indexOf(name)==0) return c.substring(name.length,c.length);
 				}
 				return "";
 			}
@@ -325,16 +321,16 @@
 				var filter = document.getElementById('filter').value.toLowerCase();
 				var vars_ol = document.getElementById("vars");
 
-				if (filter === last_filter) {
+				if(filter === last_filter) {
 					// An event triggered an update but nothing has changed.
 					return;
-				} else if (filter.indexOf(last_filter) === 0) {
+				} else if(filter.indexOf(last_filter) === 0) {
 					// The new filter starts with the old filter, fast path by removing only.
 					var children = vars_ol.childNodes;
 					for (var i = children.length - 1; i >= 0; --i) {
 						try {
 							var li = children\[i];
-							if (li.innerText.toLowerCase().indexOf(filter) == -1) {
+							if(li.innerText.toLowerCase().indexOf(filter) == -1) {
 								vars_ol.removeChild(li);
 							}
 						} catch(err) {}
@@ -348,7 +344,7 @@
 					for (var i = 0; i < complete_list.length; ++i) {
 						try {
 							var li = complete_list\[i];
-							if (!filter || li.innerText.toLowerCase().indexOf(filter) != -1) {
+							if(!filter || li.innerText.toLowerCase().indexOf(filter) != -1) {
 								vars_ol.appendChild(li);
 							}
 						} catch(err) {}
@@ -376,13 +372,13 @@
 
 			// onkeyup
 			function handle_keyup() {
-				if (event.keyCode == 13) {  //Enter / return
+				if(event.keyCode == 13) {  //Enter / return
 					var vars_ol = document.getElementById('vars');
 					var lis = vars_ol.getElementsByTagName("li");
 					for (var i = 0; i < lis.length; ++i) {
 						try {
 							var li = lis\[i];
-							if (li.style.backgroundColor == "#ffee88") {
+							if(li.style.backgroundColor == "#ffee88") {
 								alist = lis\[i].getElementsByTagName("a");
 								if(alist.length > 0) {
 									location.href=alist\[0].href;
@@ -396,8 +392,8 @@
 					for (var i = 0; i < lis.length; ++i) {
 						try {
 							var li = lis\[i];
-							if (li.style.backgroundColor == "#ffee88") {
-								if (i > 0) {
+							if(li.style.backgroundColor == "#ffee88") {
+								if(i > 0) {
 									var li_new = lis\[i-1];
 									li.style.backgroundColor = "white";
 									li_new.style.backgroundColor = "#ffee88";
@@ -412,8 +408,8 @@
 					for (var i = 0; i < lis.length; ++i) {
 						try {
 							var li = lis\[i];
-							if (li.style.backgroundColor == "#ffee88") {
-								if ((i+1) < lis.length) {
+							if(li.style.backgroundColor == "#ffee88") {
+								if((i+1) < lis.length) {
 									var li_new = lis\[i+1];
 									li.style.backgroundColor = "white";
 									li_new.style.backgroundColor = "#ffee88";
@@ -430,7 +426,7 @@
 			// onchange
 			function handle_dropdown(list) {
 				var value = list.options\[list.selectedIndex].value;
-				if (value !== "") {
+				if(value !== "") {
 					location.href = value;
 				}
 				list.selectedIndex = 0;
@@ -519,13 +515,14 @@
 	src << output("[span]:[content]", "variables[REF(D)].browser:replace_span")
 
 
-#define VV_HTML_ENCODE(thing) ( sanitize ? html_encode(thing) : thing )
+#define VV_HTML_ENCODE(thing) (sanitize ? html_encode(thing) : thing)
+
 /proc/debug_variable(name, value, level, datum/DA = null, sanitize = TRUE)
 	var/header
 	if(DA)
-		if (islist(DA))
+		if(islist(DA))
 			var/index = name
-			if (value)
+			if(value)
 				name = DA[name] //name is really the index until this line
 			else
 				value = DA[name]
@@ -536,44 +533,36 @@
 		header = "<li>"
 
 	var/item
-	if (isnull(value))
+	if(isnull(value))
 		item = "[VV_HTML_ENCODE(name)] = <span class='value'>null</span>"
 
-	else if (istext(value))
+	else if(istext(value))
 		item = "[VV_HTML_ENCODE(name)] = <span class='value'>\"[VV_HTML_ENCODE(value)]\"</span>"
 
-	else if (isicon(value))
-		#ifdef VARSICON
-		var/icon/I = new/icon(value)
-		var/rnd = rand(1,10000)
-		var/rname = "tmp[REF(I)][rnd].png"
-		usr << browse_rsc(I, rname)
-		item = "[VV_HTML_ENCODE(name)] = (<span class='value'>[value]</span>) <img class=icon src=\"[rname]\">"
-		#else
+	else if(isicon(value))
 		item = "[VV_HTML_ENCODE(name)] = /icon (<span class='value'>[value]</span>)"
-		#endif
 
-	else if (isfile(value))
+	else if(isfile(value))
 		item = "[VV_HTML_ENCODE(name)] = <span class='value'>'[value]'</span>"
 
-	else if (istype(value, /datum))
+	else if(istype(value, /datum))
 		var/datum/D = value
-		if ("[D]" != "[D.type]") //if the thing as a name var, lets use it.
+		if("[D]" != "[D.type]") //if the thing as a name var, lets use it.
 			item = "<a href='?_src_=vars;[HrefToken()];vars=[REF(value)]'>[VV_HTML_ENCODE(name)] [REF(value)]</a> = [D] [D.type]"
 		else
 			item = "<a href='?_src_=vars;[HrefToken()];vars=[REF(value)]'>[VV_HTML_ENCODE(name)] [REF(value)]</a> = [D.type]"
 
-	else if (islist(value))
+	else if(islist(value))
 		var/list/L = value
 		var/list/items = list()
 
-		if (L.len > 0 && !(name == "underlays" || name == "overlays" || L.len > (IS_NORMAL_LIST(L) ? 50 : 150)))
-			for (var/i in 1 to L.len)
+		if(length(L) > 0 && !(name == "underlays" || name == "overlays" || length(L) > (IS_NORMAL_LIST(L) ? 50 : 150)))
+			for(var/i in 1 to L.len)
 				var/key = L[i]
 				var/val
-				if (IS_NORMAL_LIST(L) && !isnum(key))
+				if(IS_NORMAL_LIST(L) && !isnum(key))
 					val = L[key]
-				if (isnull(val))	// we still want to display non-null false values, such as 0 or ""
+				if(isnull(val))	// we still want to display non-null false values, such as 0 or ""
 					val = key
 					key = i
 
@@ -583,10 +572,10 @@
 		else
 			item = "<a href='?_src_=vars;[HrefToken()];vars=[REF(value)]'>[VV_HTML_ENCODE(name)] = /list ([L.len])</a>"
 
-	else if (name in GLOB.bitfields)
+	else if(name in GLOB.bitfields)
 		var/list/flags = list()
-		for (var/i in GLOB.bitfields[name])
-			if (value & GLOB.bitfields[name][i])
+		for(var/i in GLOB.bitfields[name])
+			if(value & GLOB.bitfields[name][i])
 				flags += i
 			item = "[VV_HTML_ENCODE(name)] = [VV_HTML_ENCODE(jointext(flags, ", "))]"
 	else
@@ -596,11 +585,15 @@
 
 #undef VV_HTML_ENCODE
 
+
 /client/proc/view_var_Topic(href, href_list, hsrc)
-	if( (usr.client != src) || !src.holder || !holder.CheckAdminHref(href, href_list))
+	if(usr.client != src || !src.holder || !holder.CheckAdminHref(href, href_list))
 		return
+
+
 	if(href_list["vars"])
 		debug_variables(locate(href_list["vars"]))
+
 
 	else if(href_list["datumrefresh"])
 		var/datum/DAT = locate(href_list["datumrefresh"])
@@ -608,16 +601,6 @@
 			return
 		src.debug_variables(DAT)
 
-	else if(href_list["mob_player_panel"])
-		if(!check_rights(NONE))
-			return
-
-		var/mob/M = locate(href_list["mob_player_panel"]) in GLOB.mob_list
-		if(!istype(M))
-			to_chat(usr, "This can only be used on instances of type /mob")
-			return
-
-		src.holder.show_player_panel(M)
 
 	else if(href_list["mark_object"])
 		if(!check_rights(NONE))
@@ -633,6 +616,7 @@
 		holder.marked_datum = D
 		vv_update_display(D, "marked", VV_MSG_MARKED)
 
+
 	else if(href_list["proc_call"])
 		if(!check_rights(NONE))
 			return
@@ -642,20 +626,21 @@
 		if(T)
 			usr.client.holder.proccall_atom(T)
 
+
 	else if(href_list["delete"])
-		if(!check_rights(R_DEBUG, 0))
+		if(!check_rights(R_DEBUG))
 			return
 
 		var/datum/D = locate(href_list["delete"])
 		if(!istype(D))
 			to_chat(usr, "Unable to locate item!")
 		usr.client.holder.delete_atom(D)
-		if (isturf(D))  // show the turf that took its place
+		if(isturf(D))  // show the turf that took its place
 			debug_variables(D)
 
 
 	else if(href_list["regenerateicons"])
-		if(!check_rights(NONE))
+		if(!check_rights(R_DEBUG))
 			return
 
 		var/mob/M = locate(href_list["regenerateicons"]) in GLOB.mob_list
@@ -663,34 +648,36 @@
 			to_chat(usr, "This can only be done to instances of type /mob")
 			return
 		M.regenerate_icons()
+
+
 	else if(href_list["expose"])
 		if(!check_rights(R_ADMIN, FALSE))
 			return
+
 		var/thing = locate(href_list["expose"])
-		if (!thing)
+		if(!thing)
 			return
+
 		var/value = vv_get_value(VV_CLIENT)
-		if (value["class"] != VV_CLIENT)
+		if(value["class"] != VV_CLIENT)
 			return
+
 		var/client/C = value["value"]
-		if (!C)
+		if(!C)
 			return
+
 		var/prompt = alert("Do you want to grant [C] access to view this VV window? (they will not be able to edit or change anything nor open nested vv windows unless they themselves are an admin)", "Confirm", "Yes", "No")
-		if (prompt != "Yes" || !usr.client)
+		if(prompt != "Yes" || !usr.client)
 			return
-		message_admins("[ADMIN_TPMONTY(usr)] Showed [key_name_admin(C)] a <a href='?_src_=vars;[HrefToken(TRUE)];datumrefresh=[REF(thing)]'>VV window</a>")
-		log_admin("Admin [key_name(usr)] Showed [key_name(C)] a VV window of a [thing]")
+
 		to_chat(C, "[usr.client.holder.fakekey ? "an Administrator" : "[usr.client.key]"] has granted you access to view a View Variables window")
 		C.debug_variables(thing)
 
+		log_admin("Admin [key_name(usr)] showed [key_name(C)] a VV window of: [thing].")
+		message_admins("[ADMIN_TPMONTY(usr)] showed [key_name_admin(C)] a <a href='?_src_=vars;[HrefToken(TRUE)];datumrefresh=[REF(thing)]'>VV window</a>.")
 
-//Needs +VAREDIT past this point
 
 	else if(check_rights(R_VAREDIT))
-
-
-	//~CARN: for renaming mobs (updates their name, real_name, mind.name, their ID/PDA and datacore records).
-
 		if(href_list["rename"])
 			if(!check_rights(NONE))
 				return
@@ -700,14 +687,17 @@
 				to_chat(usr, "This can only be used on instances of type /mob")
 				return
 
-			var/new_name = stripped_input(usr,"What would you like to name this mob?","Input a name",M.real_name,MAX_NAME_LEN)
-			if( !new_name || !M )
+			var/new_name = input(usr, "What would you like to name this mob?", "Input a name", M.real_name) as text
+			new_name = noscript(new_name)
+			if(!new_name || !M)
 				return
 
-			message_admins("Admin [ADMIN_TPMONTY(usr)] renamed [ADMIN_TPMONTY(M)] to [new_name].")
-			M.fully_replace_character_name(M.real_name,new_name)
+			M.fully_replace_character_name(M.real_name, new_name)
 			vv_update_display(M, "name", new_name)
 			vv_update_display(M, "real_name", M.real_name || "No real name")
+
+			message_admins("[ADMIN_TPMONTY(usr)] renamed [ADMIN_TPMONTY(M)] to [new_name].")
+
 
 		else if(href_list["varnameedit"] && href_list["datumedit"])
 			if(!check_rights(NONE))
@@ -718,8 +708,9 @@
 				to_chat(usr, "This can only be used on datums")
 				return
 
-			if (!modify_variables(D, href_list["varnameedit"], 1))
+			if(!modify_variables(D, href_list["varnameedit"], 1))
 				return
+
 			switch(href_list["varnameedit"])
 				if("name")
 					vv_update_display(D, "name", "[D]")
@@ -734,6 +725,7 @@
 					if(isliving(D))
 						vv_update_display(D, "real_name", D.vars["real_name"] || "No real name")
 
+
 		else if(href_list["varnamechange"] && href_list["datumchange"])
 			if(!check_rights(NONE))
 				return
@@ -744,6 +736,7 @@
 				return
 
 			modify_variables(D, href_list["varnamechange"], 0)
+
 
 		else if(href_list["varnamemass"] && href_list["datummass"])
 			if(!check_rights(NONE))
@@ -756,60 +749,67 @@
 
 			mass_modify(D, href_list["varnamemass"])
 
+
 		else if(href_list["listedit"] && href_list["index"])
 			var/index = text2num(href_list["index"])
-			if (!index)
+			if(!index)
 				return
 
 			var/list/L = locate(href_list["listedit"])
-			if (!istype(L))
+			if(!istype(L))
 				to_chat(usr, "This can only be used on instances of type /list")
 				return
 
 			mod_list(L, null, "list", "contents", index, autodetect_class = TRUE)
 
+
 		else if(href_list["listchange"] && href_list["index"])
 			var/index = text2num(href_list["index"])
-			if (!index)
+			if(!index)
 				return
 
 			var/list/L = locate(href_list["listchange"])
-			if (!istype(L))
+			if(!istype(L))
 				to_chat(usr, "This can only be used on instances of type /list")
 				return
 
 			mod_list(L, null, "list", "contents", index, autodetect_class = FALSE)
 
+
 		else if(href_list["listremove"] && href_list["index"])
 			var/index = text2num(href_list["index"])
-			if (!index)
+			if(!index)
 				return
 
 			var/list/L = locate(href_list["listremove"])
-			if (!istype(L))
+			if(!istype(L))
 				to_chat(usr, "This can only be used on instances of type /list")
 				return
 
 			var/variable = L[index]
 			var/prompt = alert("Do you want to remove item number [index] from list?", "Confirm", "Yes", "No")
-			if (prompt != "Yes")
+			if(prompt != "Yes")
 				return
-			L.Cut(index, index+1)
+
+			L.Cut(index, index + 1)
+
 			log_world("### ListVarEdit by [src]: /list's contents: REMOVED=[html_encode("[variable]")]")
 			log_admin("[key_name(src)] modified list's contents: REMOVED=[variable]")
 			message_admins("[ADMIN_TPMONTY(usr)] modified list's contents: REMOVED=[variable]")
 
+
 		else if(href_list["listadd"])
 			var/list/L = locate(href_list["listadd"])
-			if (!istype(L))
+			if(!istype(L))
 				to_chat(usr, "This can only be used on instances of type /list")
 				return
 
 			mod_list_add(L, null, "list", "contents")
 
+
 		else if(href_list["listdupes"])
 			var/list/L = locate(href_list["listdupes"])
-			if (!istype(L))
+			if(!istype(L))
 				to_chat(usr, "This can only be used on instances of type /list")
 				return
 
@@ -818,9 +818,10 @@
 			log_admin("[key_name(src)] modified list's contents: CLEAR DUPES")
 			message_admins("[ADMIN_TPMONTY(usr)] modified list's contents: CLEAR DUPES")
 
+
 		else if(href_list["listnulls"])
 			var/list/L = locate(href_list["listnulls"])
-			if (!istype(L))
+			if(!istype(L))
 				to_chat(usr, "This can only be used on instances of type /list")
 				return
 
@@ -829,13 +830,14 @@
 			log_admin("[key_name(src)] modified list's contents: CLEAR NULLS")
 			message_admins("[ADMIN_TPMONTY(usr)] modified list's contents: CLEAR NULLS")
 
+
 		else if(href_list["listlen"])
 			var/list/L = locate(href_list["listlen"])
-			if (!istype(L))
+			if(!istype(L))
 				to_chat(usr, "This can only be used on instances of type /list")
 				return
 			var/value = vv_get_value(VV_NUM)
-			if (value["class"] != VV_NUM)
+			if(value["class"] != VV_NUM)
 				return
 
 			L.len = value["value"]
@@ -843,9 +845,10 @@
 			log_admin("[key_name(src)] modified list's len: [L.len]")
 			message_admins("[ADMIN_TPMONTY(usr)] modified list's len: [L.len]")
 
+
 		else if(href_list["listshuffle"])
 			var/list/L = locate(href_list["listshuffle"])
-			if (!istype(L))
+			if(!istype(L))
 				to_chat(usr, "This can only be used on instances of type /list")
 				return
 
@@ -864,20 +867,22 @@
 				to_chat(usr, "This can only be used on instances of type /obj")
 				return
 
-			var/action_type = alert("Strict type ([O.type]) or type and all subtypes?",,"Strict type","Type and subtypes","Cancel")
+			var/action_type = alert("Strict type ([O.type]) or type and all subtypes?", "Type", "Strict type", "Type and subtypes", "Cancel")
 			if(action_type == "Cancel" || !action_type)
 				return
 
-			if(alert("Are you really sure you want to delete all objects of type [O.type]?",,"Yes","No") != "Yes")
+			if(alert("Are you really sure you want to delete all objects of type [O.type]?", "Warning", "Yes", "No") != "Yes")
 				return
 
-			if(alert("Second confirmation required. Delete?",,"Yes","No") != "Yes")
+			if(alert("Second confirmation required. Delete?", "Warning", "Yes", "No") != "Yes")
 				return
 
 			var/O_type = O.type
+			var/i = 0
+			var/strict
 			switch(action_type)
 				if("Strict type")
-					var/i = 0
+					strict = TRUE
 					for(var/obj/Obj in world)
 						if(Obj.type == O_type)
 							i++
@@ -886,10 +891,7 @@
 					if(!i)
 						to_chat(usr, "No objects of this type exist")
 						return
-					log_admin("[key_name(usr)] deleted all objects of type [O_type] ([i] objects deleted).")
-					message_admins("[ADMIN_TPMONTY(usr)] deleted all objects of type [O_type] ([i] objects deleted).")
 				if("Type and subtypes")
-					var/i = 0
 					for(var/obj/Obj in world)
 						if(istype(Obj,O_type))
 							i++
@@ -898,8 +900,9 @@
 					if(!i)
 						to_chat(usr, "No objects of this type exist")
 						return
-					log_admin("[key_name(usr)] deleted all objects of type or subtype of [O_type] ([i] objects deleted).")
-					message_admins("[ADMIN_TPMONTY(usr)] deleted all objects of type or subtype of [O_type] ([i] objects deleted).")
+
+			log_admin("[key_name(usr)] deleted all objects of type[strict ? "" : " and subtypes"] of [O_type] ([i] objects deleted).")
+			message_admins("[ADMIN_TPMONTY(usr)] deleted all objects of type[strict ? "" : " and subtypes"] of [O_type] ([i] objects deleted).")
 
 
 		else if(href_list["addreagent"])
@@ -925,7 +928,7 @@
 								break
 							for(var/ID in reagent_options)
 								if(ID == chosen_id)
-									valid_id = 1
+									valid_id = TRUE
 							if(!valid_id)
 								to_chat(usr, "<span class='warning'>A reagent with that ID doesn't exist!</span>")
 					if("Choose ID")
@@ -934,8 +937,8 @@
 					var/amount = input(usr, "Choose the amount to add.", "Choose the amount.", A.reagents.maximum_volume) as num
 					if(amount)
 						A.reagents.add_reagent(chosen_id, amount)
-						log_admin("[key_name(usr)] has added [amount] units of [chosen_id] to \the [A].")
-						message_admins("[ADMIN_TPMONTY(usr)] has added [amount] units of [chosen_id] to \the [A].")
+						log_admin("[key_name(usr)] has added [amount] units of [chosen_id] to [A].")
+						message_admins("[ADMIN_TPMONTY(usr)] has added [amount] units of [chosen_id] to [A].")
 
 
 		else if(href_list["modtransform"])
@@ -974,6 +977,10 @@
 					if(!isnull(angle))
 						A.transform = M.Turn(angle)
 
+			log_admin("[key_name(usr)] has used [result] transformation on [A].")
+			message_admins("[ADMIN_TPMONTY(usr)] has used [result] transformation on [A].")
+
+
 		else if(href_list["setspecies"])
 			if(!check_rights(R_FUN))
 				return
@@ -993,9 +1000,10 @@
 				return
 
 			H.set_species(result)
-			message_admins("[ADMIN_TPMONTY(usr)] set the species of [ADMIN_TPMONTY(H)] to [result].")
 			admin_ticket_log("[key_name_admin(usr)] has modified the bodyparts of [H] to [result].")
 
+			log_admin("[key_name(usr)] set the species of [key_name(H)] to [result].")
+			message_admins("[ADMIN_TPMONTY(usr)] set the species of [ADMIN_TPMONTY(H)] to [result].")
 
 
 		else if(href_list["adjustDamage"] && href_list["mobToDamage"])
@@ -1035,15 +1043,16 @@
 					L.adjustCloneLoss(amount)
 					newamt = L.getCloneLoss()
 				else
-					to_chat(usr, "You caused an error. DEBUG: Text:[Text] Mob:[L]")
+					to_chat(usr, "You caused an error. Text:[Text] Mob:[L]")
 					return
 
-			if(amount != 0)
-				var/log_msg = "[key_name(usr)] dealt [amount] amount of [Text] damage to [key_name(L)]"
-				message_admins("[ADMIN_TPMONTY(usr)] dealt [amount] amount of [Text] damage to [ADMIN_TPMONTY(L)]")
-				log_admin(log_msg)
-				admin_ticket_log(L, "<span class='notice'>[log_msg]</span>")
-				vv_update_display(L, Text, "[newamt]")
+			if(amount == 0)
+				return
+
+			vv_update_display(L, Text, "[newamt]")
+			admin_ticket_log(L, "<span class='notice'>[key_name(usr)] dealt [amount] amount of [Text] damage to [key_name(L)]</span>")
+			log_admin("[key_name(usr)] dealt [amount] amount of [Text] damage to [key_name(L)]")
+			message_admins("[ADMIN_TPMONTY(usr)] dealt [amount] amount of [Text] damage to [ADMIN_TPMONTY(L)]")
 
 
 		else if(href_list["addlanguage"])
@@ -1119,6 +1128,80 @@
 				H.dropItemToGround(H.head)
 				H.head = new /obj/item/clothing/head/kitty(H)
 				H.regenerate_icons()
-				H.head.update_icon()
+				H.head.update_icon(H)
 				log_admin("[key_name(usr)] has purrbated [key_name(H)].")
 				message_admins("[ADMIN_TPMONTY(usr)] has purrbated [ADMIN_TPMONTY(H)].")
+
+
+		else if(href_list["getatom"])
+			if(!check_rights(R_DEBUG))
+				return
+
+			var/atom/movable/A = locate(href_list["getatom"])
+			if(!istype(A))
+				to_chat(usr, "This can only be done to instances of type /atom")
+				return
+
+			var/turf/T = get_turf(usr)
+			if(!istype(T))
+				return
+
+			A.forceMove(T)
+
+			log_admin("[key_name(usr)] has sent atom [A] to themselves.")
+			message_admins("[ADMIN_TPMONTY(usr)] has sent atom [A] to themselves.")
+
+
+		else if(href_list["sendatom"])
+			if(!check_rights(R_DEBUG))
+				return
+
+			var/atom/movable/A = locate(href_list["sendatom"])
+			if(!istype(A))
+				to_chat(usr, "This can only be done to instances of type /atom")
+				return
+
+			var/atom/target
+
+			switch(input("Where do you want to send it to?", "Send Mob") as null|anything in list("Area", "Mob", "Key", "Coords"))
+				if("Area")
+					var/area/AR = input("Pick an area.", "Pick an area") as null|anything in return_sorted_areas()
+					if(!AR || !A)
+						return
+					target = pick(get_area_turfs(AR))
+				if("Mob")
+					var/mob/N = input("Pick a mob.", "Pick a mob") as null|anything in sortmobs(GLOB.mob_list)
+					if(!N || !A)
+						return
+					target = get_turf(N)
+				if("Key")
+					var/client/C = input("Pick a key.", "Pick a key") as null|anything in sortKey(GLOB.clients)
+					if(!C || !A)
+						return
+					target = get_turf(C.mob)
+				if("Coords")
+					var/X = input("Select coordinate X", "Coordinate X") as null|num
+					var/Y = input("Select coordinate Y", "Coordinate Y") as null|num
+					var/Z = input("Select coordinate Z", "Coordinate Z") as null|num
+					if(isnull(X) || isnull(Y) || isnull(Z) || !A)
+						return
+					target = locate(X, Y, Z)
+
+			if(!target)
+				return
+
+			A.forceMove(target)
+
+			log_admin("[key_name(usr)] has sent atom [A] to [AREACOORD(target)].")
+			message_admins("[ADMIN_TPMONTY(usr)] has sent atom [A] to [ADMIN_VERBOSEJMP(target)].")
+
+
+		else if(href_list["copyoutfit"])
+			if(!check_rights(R_SPAWN))
+				return
+			var/mob/living/carbon/human/H = locate(href_list["copyoutfit"])
+			if(istype(H))
+				H.copy_outfit()
+
+			log_admin("[key_name(usr)] copied the outfit of [key_name(H)].")
+			message_admins("[ADMIN_TPMONTY(usr)] copied the outfit of [ADMIN_TPMONTY(H)].")

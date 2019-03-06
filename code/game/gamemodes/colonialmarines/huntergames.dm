@@ -49,18 +49,22 @@
 
 #define HUNTER_FEET list(\
 							/obj/item/clothing/shoes/marine,\
-							/obj/item/clothing/shoes/marinechief/commander,\
+							/obj/item/clothing/shoes/marinechief/captain,\
 							/obj/item/clothing/shoes/laceup,\
 							/obj/item/clothing/shoes/jackboots)
 
 var/waiting_for_drop_votes = 0
 
 /obj/effect/landmark/huntergames_primary_spawn/Initialize()
+	. = ..()
 	GLOB.huntergames_primary_spawns += loc
+	flags_atom |= INITIALIZED
 	return INITIALIZE_HINT_QDEL
 
 /obj/effect/landmark/huntergames_secondary_spawn/Initialize()
+	. = ..()
 	GLOB.huntergames_secondary_spawns += loc
+	flags_atom |= INITIALIZED
 	return INITIALIZE_HINT_QDEL
 
 /obj/effect/landmark/hell_hound_blocker/Initialize()
@@ -71,7 +75,7 @@ var/waiting_for_drop_votes = 0
 	GLOB.landmarks_round_start -= src
 	return ..()
 
-/obj/effect/landmark/hell_hound_blocker/on_round_start(flags_round_type=NOFLAGS,flags_landmarks=NOFLAGS)
+/obj/effect/landmark/hell_hound_blocker/after_round_start(flags_round_type=NOFLAGS,flags_landmarks=NOFLAGS)
 	if(flags_landmarks & MODE_LANDMARK_HELLHOUND_BLOCKER)
 		new /obj/effect/step_trigger/hell_hound_blocker(loc)
 	qdel(src)

@@ -17,13 +17,14 @@ SUBSYSTEM_DEF(atoms)
 /datum/controller/subsystem/atoms/Initialize(timeofday)
 	populate_spawn_points()
 
-	setupgenetics()
-	//setupfactions() Unused and also causes runtimes due to t i c k e r
 	setup_economy()
 	initialized = INITIALIZATION_INNEW_MAPLOAD
 	InitializeAtoms()
 
 	lighting_controller.Initialize()
+
+	if(!EvacuationAuthority)
+		EvacuationAuthority = new
 
 	return ..()
 

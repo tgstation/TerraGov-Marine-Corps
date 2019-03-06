@@ -124,6 +124,8 @@
 	var/selecting = "chest"
 
 /obj/screen/zone_sel/update_icon(mob/living/user)
+	if(!user)
+		return
 	overlays.Cut()
 	overlays += image('icons/mob/zone_sel.dmi', "[selecting]")
 	user.zone_selected = selecting
@@ -210,7 +212,7 @@
 	switch(name)
 
 		if("equip")
-			if (istype(user.loc,/obj/mecha)) // stops inventory actions in a mech
+			if (istype(user.loc,/obj/mecha) || istype(user.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech/tank
 				return TRUE
 			if(ishuman(user))
 				var/mob/living/carbon/human/H = user
@@ -295,7 +297,7 @@
 		return TRUE
 	if(user.is_mob_incapacitated(TRUE))
 		return TRUE
-	if (istype(user.loc,/obj/mecha)) // stops inventory actions in a mech
+	if (istype(user.loc,/obj/mecha) || istype(user.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech/tank
 		return TRUE
 	switch(name)
 		if("r_hand")
@@ -604,6 +606,14 @@
 	icon_state = "other"
 	screen_loc = ui_inventory
 
+/obj/screen/SL_locator
+	name = "sl locator"
+	icon = 'icons/Marine/marine-items.dmi'
+	icon_state = "SL_locator"
+	alpha = 0 //invisible
+	mouse_opacity = 0
+	screen_loc = ui_sl_dir
+
 /obj/screen/toggle_inv/clicked(var/mob/user)
 	if (..())
 		return TRUE
@@ -631,7 +641,7 @@
 
 	var/obj/item/weapon/gun/G = user.get_active_held_item()
 
-	if(!G || !G.has_ammo_counter() || !G.hud_enabled)
+	if(!G?.hud_enabled || !(G.flags_gun_features & GUN_AMMO_COUNTER))
 		return
 
 	user.client.screen += src
@@ -645,7 +655,7 @@
 
 	var/obj/item/weapon/gun/G = user.get_active_held_item()
 
-	if(!G || !istype(G) || !G.has_ammo_counter() || !G.hud_enabled || !G.get_ammo_type() || isnull(G.get_ammo_count()))
+	if(!istype(G) || !(G.flags_gun_features & GUN_AMMO_COUNTER) || !G.hud_enabled || !G.get_ammo_type() || isnull(G.get_ammo_count()))
 		remove_hud()
 		return
 

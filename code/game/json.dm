@@ -18,10 +18,10 @@ proc/makejson()
 	if(!isfile(F))
 		return
 	var/mode
-	if(ticker)
-		if(ticker.current_state == 1)
+	if(SSticker)
+		if(SSticker.current_state == 1)
 			mode = "Round Setup"
-		else if(ticker.hide_mode)
+		else if(SSticker.hide_mode)
 			mode = "SECRET"
 		else
 			mode = master_mode

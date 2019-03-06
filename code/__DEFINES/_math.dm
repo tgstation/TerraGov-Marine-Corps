@@ -5,15 +5,6 @@
 #define CARDINAL_DIRS 		list(1,2,4,8)
 #define CARDINAL_ALL_DIRS 	list(1,2,4,5,6,8,9,10)
 #define cheap_hypotenuse(Ax,Ay,Bx,By) (sqrt(abs(Ax - Bx)**2 + abs(Ay - By)**2)) //A squared + B squared = C squared
-//some colors
-#define COLOR_RED 		"#FF0000"
-#define COLOR_GREEN 	"#00FF00"
-#define COLOR_BLUE 		"#0000FF"
-#define COLOR_CYAN 		"#00FFFF"
-#define COLOR_PINK 		"#FF00FF"
-#define COLOR_YELLOW 	"#FFFF00"
-#define COLOR_ORANGE 	"#FF9900"
-#define COLOR_WHITE 	"#FFFFFF"
 
 #define LEFT 1
 #define RIGHT 2

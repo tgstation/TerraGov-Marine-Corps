@@ -9,6 +9,7 @@
 	taste_description = "bitterness"
 
 /datum/reagent/medicine/on_mob_life(mob/living/carbon/M)
+	purge(M)
 	current_cycle++
 	holder.remove_reagent(src.id, custom_metabolism / M.metabolism_efficiency) //so far metabolism efficiency is fixed to 1, but medicine reagents last longer the better it is.
 
@@ -22,18 +23,18 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL*2
 	scannable = TRUE
 
-/datum/reagent/medicine/inaprovaline/on_mob_life(mob/living/M, alien)
+/datum/reagent/medicine/inaprovaline/on_mob_life(mob/living/carbon/M, alien)
 	M.reagent_shock_modifier += PAIN_REDUCTION_LIGHT
 	if(alien && alien == IS_VOX)
 		M.adjustToxLoss(REAGENTS_METABOLISM)
 	else
-		if(M.losebreath >= 10)
-			M.losebreath = max(10, M.losebreath-5)
+		if(M.losebreath > 10)
+			M.set_Losebreath(10)
 	..()
 
 /datum/reagent/medicine/inaprovaline/overdose_process(mob/living/M, alien)
 	M.Jitter(5) //Overdose causes a spasm
-	M.knocked_out = max(M.knocked_out, 20)
+	M.KnockOut(20)
 
 /datum/reagent/medicine/inaprovaline/overdose_crit_process(mob/living/M, alien)
 	M.drowsyness = max(M.drowsyness, 20)
@@ -593,14 +594,14 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/M, alien)
 	scannable = TRUE
 
 /datum/reagent/medicine/peridaxon/on_mob_life(mob/living/M)
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		for(var/datum/internal_organ/I in H.internal_organs)
-			if(I.damage)
-				if(M.bodytemperature > 169 && I.damage > 5) //can only fix very minor organ damage outside of cryo
-					return
-				I.damage = max(I.damage - 1, 0)
-	return ..()
+    if(ishuman(M))
+        var/mob/living/carbon/human/H = M
+        for(var/datum/internal_organ/I in H.internal_organs)
+            if(I.damage)
+                if(M.bodytemperature > 169 && I.damage > 5)
+                    continue
+                I.heal_damage(1)                
+    return ..()
 
 /datum/reagent/medicine/peridaxon/overdose_process(mob/living/M, alien)
 	M.apply_damage(2, BRUTE)
@@ -659,17 +660,16 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/M, alien)
 	custom_metabolism = 0.05
 
 /datum/reagent/medicine/quickclot/on_mob_life(mob/living/M)
-	if(M.bodytemperature > 169) //only heals IB at cryogenic temperatures.
-		return
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		for(var/datum/limb/X in H.limbs)
-			for(var/datum/wound/W in X.wounds)
-				if(W.internal)
-					W.damage = max(0, W.damage - 1)
-					X.update_damages()
-					if (X.update_icon())
-						X.owner.UpdateDamageIcon(1)
+	if(!ishuman(M) || M.bodytemperature > 169) //only heals IB at cryogenic temperatures.
+		return ..()
+	var/mob/living/carbon/human/H = M
+	for(var/datum/limb/X in H.limbs)
+		for(var/datum/wound/W in X.wounds)
+			if(W.internal)
+				W.damage = max(0, W.damage - 1)
+				X.update_damages()
+				if (X.update_icon())
+					X.owner.UpdateDamageIcon(1)
 	return ..()
 
 
@@ -682,27 +682,58 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/M, alien)
 /datum/reagent/medicine/hyperzine
 	name = "Hyperzine"
 	id = "hyperzine"
-	description = "Hyperzine is a highly effective, long lasting, muscle stimulant.  May cause heart damage"
+	description = "Hyperzine is a highly effective, muscle and adrenal stimulant that massively accelerates metabolism.  May cause heart damage"
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	custom_metabolism = 0.2
 	overdose_threshold = REAGENTS_OVERDOSE/5
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/5
+	scannable = TRUE
+	purge_list = list() //Does this purge any specific chems?
+	purge_rate = 15 //rate at which it purges specific chems
 
-/datum/reagent/medicine/hyperzine/on_mob_add(mob/living/M)
-	M.reagent_move_delay_modifier -= 0.5
-	..()
+/datum/reagent/medicine/hyperzine/on_mob_delete(mob/living/M)
+	var/amount = current_cycle * 4
+	M.adjustOxyLoss(amount)
+	M.adjustHalLoss(amount)
+	if(M.stat == DEAD)
+		var/death_message = "<span class='danger'>Your body is unable to bear the strain. The last thing you feel, aside from crippling exhaustion, is an explosive pain in your chest as you drop dead. It's a sad thing your adventures have ended here!</span>"
+		if(iscarbon(M))
+			var/mob/living/carbon/C = M
+			if(C.species.species_flags & NO_PAIN)
+				death_message = "<span class='danger'>Your body is unable to bear the strain. The last thing you feel as you drop dead is utterly crippling exhaustion. It's a sad thing your adventures have ended here!</span>"
+
+		to_chat(M, "[death_message]")
+	else
+		switch(amount)
+			if(1 to 20)
+				to_chat(M, "<span class='warning'>You feel a bit tired.</span>")
+			if(21 to 50)
+				M.KnockDown(amount * 0.05)
+				to_chat(M, "<span class='danger'>You collapse as a sudden wave of fatigue washes over you.</span>")
+			if(50 to INFINITY)
+				M.KnockOut(amount * 0.1)
+				to_chat(M, "<span class='danger'>Your world convulses as a wave of extreme fatigue washes over you!</span>") //when hyperzine is removed from the body, there's a backlash as it struggles to transition and operate without the drug
+
+	return ..()
+
+/datum/reagent/medicine/hyperzine/on_mob_add(mob/living/L)
+	purge_list.Add(/datum/reagent/medicine/dexalinplus, /datum/reagent/medicine/peridaxon) //Rapidly purges chems that would offset the downsides
+	return ..()
 
 /datum/reagent/medicine/hyperzine/on_mob_life(mob/living/M)
+	M.reagent_move_delay_modifier -= min(2.5, volume * 0.5)
+	M.nutrition = max(M.nutrition-(3 * REM * volume), 0) //Body burns through energy fast (also can't go under 0 nutrition)
 	if(prob(1))
 		M.emote(pick("twitch","blink_r","shiver"))
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			var/datum/internal_organ/heart/F = H.internal_organs_by_name["heart"]
 			F.take_damage(1, TRUE)
-	..()
+	return ..()
 
 /datum/reagent/medicine/hyperzine/overdose_process(mob/living/M, alien)
 	if(ishuman(M))
+		M.Jitter(5)
 		var/mob/living/carbon/human/H = M
 		var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
 		if(E)
@@ -712,6 +743,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/M, alien)
 
 /datum/reagent/medicine/hyperzine/overdose_crit_process(mob/living/M, alien)
 	if(ishuman(M))
+		M.Jitter(10)
 		var/mob/living/carbon/human/H = M
 		var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
 		if(E)
@@ -731,7 +763,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/M, alien)
 	taste_multi = 2
 
 /datum/reagent/medicine/ultrazine/on_mob_life(mob/living/carbon/C)
-	C.reagent_move_delay_modifier -= 10
+	C.reagent_move_delay_modifier -= 2
 	if(prob(50))
 		C.AdjustKnockeddown(-1)
 		C.AdjustStunned(-1)
@@ -1028,7 +1060,9 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/M, alien)
 /datum/reagent/medicine/hypervene/on_mob_life(mob/living/M, alien)
 	for(var/datum/reagent/R in M.reagents.reagent_list)
 		if(R != src)
-			M.reagents.remove_reagent(R.id,8 * REM)
+			M.reagents.remove_reagent(R.id,HYPERVENE_REMOVAL_AMOUNT * REM)
+			if(R.id == "hyperzine")
+				R.current_cycle += HYPERVENE_REMOVAL_AMOUNT * REM * 1 / max(1,custom_metabolism) //Increment hyperzine's purge cycle in proportion to the amount removed.
 	M.reagent_shock_modifier -= PAIN_REDUCTION_HEAVY //Significant pain while metabolized.
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M

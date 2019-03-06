@@ -12,12 +12,12 @@
 	var/turf/spawn_loc = get_spawn_point()
 	var/mob/original = M.current
 
-	if(!istype(spawn_loc)) 
+	if(!istype(spawn_loc))
 		return
 
 	var/mob/living/carbon/human/H = new /mob/living/carbon/human(spawn_loc)
 
-	H.key = M.key
+	M.transfer_to(H, TRUE)
 
 	if(original)
 		qdel(original)
@@ -25,5 +25,4 @@
 	print_backstory(H)
 
 	var/datum/job/J = new /datum/job/other/pizza
-	H.set_everything(H, "Pizza Deliverer")
-	J.generate_equipment(H)
+	J.equip(H)

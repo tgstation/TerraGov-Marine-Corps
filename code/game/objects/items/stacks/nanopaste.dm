@@ -32,7 +32,7 @@
 		var/datum/limb/S = H.get_limb(user.zone_selected)
 
 		if(S.surgery_open_stage == 0)
-			if (S && (S.status & LIMB_ROBOT))
+			if (S && (S.limb_status & LIMB_ROBOT))
 				if(S.get_damage())
 					S.heal_damage(15, 15, robo_repair = 1)
 					H.updatehealth()

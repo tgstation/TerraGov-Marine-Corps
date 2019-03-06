@@ -4,20 +4,6 @@
 	required_players 		= 0
 	recommended_enemies 	= 0 //Leaving this relic code incase we want to do some extra things with it in the future.
 	xeno_bypass_timer 		= 1
-	role_instruction		= ROLE_MODE_REPLACE
-	roles_for_mode = list(/datum/job/marine/standard,
-					/datum/job/marine/medic,
-					/datum/job/marine/engineer,
-					/datum/job/marine/specialist,
-					/datum/job/marine/smartgunner,
-					/datum/job/marine/leader,
-					/datum/job/medical/doctor,
-					/datum/job/command/commander,
-					/datum/job/logistics/tech/maint,
-					/datum/job/command/police,
-					/datum/job/civilian/synthetic
-					)
-
 	flags_round_type	= MODE_NO_LATEJOIN
 
 	//var/mob/living/carbon/human/Commander //If there is no Commander, marines wont get any supplies
@@ -110,15 +96,15 @@
 	to_chat(world, "<span class='round_header'>The current game mode is - WHISKEY OUTPOST!</span>")
 	to_chat(world, "<span class='round_body'>It is the year 2181 on the planet LV-624, five years before the arrival of the [MAIN_SHIP_NAME] and the 7th 'Falling Falcons' Battalion in the sector</span>")
 	to_chat(world, "<span class='round_body'>The 3rd 'Dust Raiders' Battalion is charged with establishing a TGMC prescence in the Tychon's Rift sector</span>")
-	to_chat(world, "<span class='round_body'>[GLOB.map_tag], one of the Dust Raider bases being established in the sector, has come under attack from unrecognized alien forces</span>")
-	to_chat(world, "<span class='round_body'>With casualties mounting and supplies running thin, the Dust Raiders at [GLOB.map_tag] must survive for an hour to alert the rest of their battalion in the sector</span>")
+	to_chat(world, "<span class='round_body'>[SSmapping.config.map_name], one of the Dust Raider bases being established in the sector, has come under attack from unrecognized alien forces</span>")
+	to_chat(world, "<span class='round_body'>With casualties mounting and supplies running thin, the Dust Raiders at [SSmapping.config.map_name] must survive for an hour to alert the rest of their battalion in the sector</span>")
 	to_chat(world, "<span class='round_body'>Hold out for as long as you can.</span>")
 	world << sound('sound/effects/siren.ogg')
 
 	sleep(50)
 	switch(map_locale) //Switching it up.
 		if(0)
-			command_announcement.Announce("This is Captain Hans Naiche, commander of the 3rd Battalion 'Dust Raiders' forces here on [GLOB.map_tag]. In our attempts to establish a base on this planet, several of our patrols were wiped out by hostile creatures.  We're setting up a distress call, but we need you to hold [GLOB.map_tag] in order for our engineers to set up the relay. We're prepping several M402 mortar units to provide fire support. If they overrun your positon, we will be wiped out with no way to call for help. Hold the line or we all die.", "Captain Naich, 3rd Battalion Command, [GLOB.map_tag] Garrison")
+			command_announcement.Announce("This is Captain Hans Naiche, commander of the 3rd Battalion 'Dust Raiders' forces here on [SSmapping.config.map_name]. In our attempts to establish a base on this planet, several of our patrols were wiped out by hostile creatures.  We're setting up a distress call, but we need you to hold [SSmapping.config.map_name] in order for our engineers to set up the relay. We're prepping several M402 mortar units to provide fire support. If they overrun your positon, we will be wiped out with no way to call for help. Hold the line or we all die.", "Captain Naich, 3rd Battalion Command, [SSmapping.config.map_name] Garrison")
 
 /datum/game_mode/whiskey_outpost/proc/spawn_player(var/mob/M)
 	set waitfor = 0 //Doing this before hand.
@@ -176,11 +162,11 @@
 			H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), SLOT_BACK)
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/command(H), SLOT_W_UNIFORM)
 			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/MP/RO(H), SLOT_WEAR_SUIT)
-			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marinechief/commander(H), SLOT_SHOES)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marinechief/captain(H), SLOT_SHOES)
 			H.equip_to_slot_or_del(new /obj/item/clothing/head/cmberet/tan(H), SLOT_HEAD)
-			H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/techofficer/commander(H), SLOT_GLOVES)
+			H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/techofficer/captain(H), SLOT_GLOVES)
 			H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), SLOT_BACK)
-			H.equip_to_slot_or_del(new /obj/item/weapon/claymore/mercsword/commander(H), SLOT_R_HAND)
+			H.equip_to_slot_or_del(new /obj/item/weapon/claymore/mercsword/captain(H), SLOT_R_HAND)
 
 			H.equip_to_slot_or_del(new /obj/item/storage/belt/gun/mateba/full(H), SLOT_BELT)
 			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/heavy(H), SLOT_IN_BACKPACK)
@@ -202,7 +188,7 @@
 				to_chat(H, "Coordinate your team and prepare defenses.")
 				to_chat(H, "Stay alive!")
 				to_chat(H, "Hold the outpost for one hour until the distress beacon can be broadcast to the remaining Dust Raiders!")
-				to_chat(H, "The local population warned you about establishing a base in the jungles of [GLOB.map_tag]...")
+				to_chat(H, "The local population warned you about establishing a base in the jungles of [SSmapping.config.map_name]...")
 				to_chat(H, "________________________")
 			sleep(240) //So they can see it
 			if(H)
@@ -450,7 +436,7 @@
 		//SQUAD MEDIC
 		if("Squad Medic")
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/medic(H), SLOT_W_UNIFORM)
-			H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/medic(H), SLOT_HEAD)
+			H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/corpsman(H), SLOT_HEAD)
 			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), SLOT_WEAR_SUIT)
 
 			//SPESHUL EQUIPMENT
@@ -635,7 +621,7 @@
 		to_chat(H, "Gear up, prepare defenses, work as a team. Protect your doctors and commander!")
 		to_chat(H, "Motion trackers have detected movement from local creatures, and they are heading towards the outpost!")
 		to_chat(H, "Hold the outpost for one hour until the signal can be established!")
-		to_chat(H, "Ensure the Dust Raiders don't lose their foothold on [GLOB.map_tag] so you can alert the main forces.")
+		to_chat(H, "Ensure the Dust Raiders don't lose their foothold on [SSmapping.config.map_name] so you can alert the main forces.")
 		to_chat(H, "________________________")
 
 	return 1
@@ -676,16 +662,16 @@
 
 			switch(xeno_wave)
 				if(1)
-					command_announcement.Announce("We're tracking the creatures that wiped out our patrols heading towards your outpost.. Stand-by while we attempt to establish a signal with the USS Alistoun to alert them of these creatures.", "Captain Naich, 3rd Battalion Command, [GLOB.map_tag] Garrison")
+					command_announcement.Announce("We're tracking the creatures that wiped out our patrols heading towards your outpost.. Stand-by while we attempt to establish a signal with the USS Alistoun to alert them of these creatures.", "Captain Naich, 3rd Battalion Command, [SSmapping.config.map_name] Garrison")
 				if(8)
-					command_announcement.Announce("Captain Naiche speaking, we've been unsuccessful in establishing offworld communication for the moment. We're prepping our M402 mortars to destroy the inbound xeno force on the main road. Standby for fire support.", "Captain Naich, 3rd Battalion Command, [GLOB.map_tag] Garrison")
+					command_announcement.Announce("Captain Naiche speaking, we've been unsuccessful in establishing offworld communication for the moment. We're prepping our M402 mortars to destroy the inbound xeno force on the main road. Standby for fire support.", "Captain Naich, 3rd Battalion Command, [SSmapping.config.map_name] Garrison")
 				if(9)
 					world << sound('sound/voice/alien_queen_command.ogg')
-					command_announcement.Announce("Our garrison forces are reaching seventy percent casualties, we are losing our grip on [GLOB.map_tag]. It appears that vanguard of the hostile force is still approaching, and most of the other Dust Raider platoons have been shattered. We're counting on you to keep holding.", "Captain Naich, 3rd Battalion Command, [GLOB.map_tag] Garrison")
+					command_announcement.Announce("Our garrison forces are reaching seventy percent casualties, we are losing our grip on [SSmapping.config.map_name]. It appears that vanguard of the hostile force is still approaching, and most of the other Dust Raider platoons have been shattered. We're counting on you to keep holding.", "Captain Naich, 3rd Battalion Command, [SSmapping.config.map_name] Garrison")
 				if(12)
 					command_announcement.Announce("This is Captain Naiche, we are picking up large signatures inbound, we'll see what we can do to delay them.", "Captain Naich, 3rd Battalion Command, LV-624")
 				if(14)
-					command_announcement.Announce("This is Captain Naiche, we've established our distress beacon for the USS Alistoun and the remaining Dust Raiders. Hold on for a bit longer while we trasmit our coordinates!", "Captain Naich, 3rd Battalion Command, [GLOB.map_tag] Garrison")
+					command_announcement.Announce("This is Captain Naiche, we've established our distress beacon for the USS Alistoun and the remaining Dust Raiders. Hold on for a bit longer while we trasmit our coordinates!", "Captain Naich, 3rd Battalion Command, [SSmapping.config.map_name] Garrison")
 
 
 			//SUPPLY SPAWNER
@@ -1005,7 +991,7 @@
 	var/xeno_count = 0
 	for(var/mob/living/carbon/Xenomorph/X in GLOB.dead_xeno_list)
 		if(X) //Prevent any runtime errors
-			if(istype(X) && X.stat == DEAD && X.z != 2)
+			if(istype(X) && X.stat == DEAD && !is_centcom_level(X.z))
 				X.loc = get_turf(locate(84,237,2)) //z.2
 				xeno_count++
 
@@ -1086,7 +1072,7 @@
 								/obj/item/clothing/suit/storage/marine,
 								/obj/item/clothing/suit/storage/marine,
 								/obj/item/clothing/head/helmet/marine/tech,
-								/obj/item/clothing/head/helmet/marine/medic,
+								/obj/item/clothing/head/helmet/marine/corpsman,
 								/obj/item/clothing/under/marine/medic,
 								/obj/item/clothing/under/marine/engineer,
 								/obj/item/clothing/tie/storage/webbing,
@@ -1571,7 +1557,7 @@
 		to_chat(user, "It doesn't seem to do anything for you.")
 		return
 
-	if(user.z != 1)
+	if(!is_ground_level(user.z))
 		to_chat(user, "You have to be on the ground to use this or it won't transmit.")
 		return
 

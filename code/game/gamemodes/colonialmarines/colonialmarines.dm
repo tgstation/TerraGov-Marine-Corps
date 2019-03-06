@@ -9,7 +9,6 @@
 
 /datum/game_mode/colonialmarines/can_start()
 	initialize_special_clamps()
-	initialize_starting_predator_list()
 	var/found_queen = initialize_starting_queen_list()
 	var/found_xenos = initialize_starting_xenomorph_list()
 	if(!found_queen && !found_xenos)
@@ -20,7 +19,7 @@
 
 
 /datum/game_mode/colonialmarines/announce()
-	to_chat(world, "<span class='round_header'>The current map is - [GLOB.map_tag]!</span>")
+	to_chat(world, "<span class='round_header'>The current map is - [SSmapping.config.map_name]!</span>")
 
 ////////////////////////////////////////////////////////////////////////////////////////
 //Temporary, until we sort this out properly.
@@ -32,7 +31,9 @@
 	icon_state = "spawn_event"
 
 /obj/effect/landmark/lv624/fog_blocker/Initialize()
+	. = ..()
 	GLOB.fog_blocker_locations += loc
+	flags_atom |= INITIALIZED
 	return INITIALIZE_HINT_QDEL
 
 /obj/effect/landmark/xeno_tunnel
@@ -64,7 +65,7 @@
 
 
 /datum/game_mode/colonialmarines/post_setup()
-	initialize_post_predator_list()
+	. = ..()
 	initialize_post_queen_list()
 	initialize_post_xenomorph_list()
 	initialize_post_survivor_list()
@@ -73,18 +74,18 @@
 	round_time_lobby = world.time
 	defer_powernet_rebuild = 2 //Build powernets a little bit later, it lags pretty hard.
 
-	addtimer(CALLBACK(ticker.mode, .proc/map_announce), 5 SECONDS)
+	addtimer(CALLBACK(SSticker.mode, .proc/map_announce), 5 SECONDS)
 
 
 
 /datum/game_mode/colonialmarines/proc/map_announce()
-	switch(GLOB.map_tag)
+	switch(SSmapping.config.map_name)
 		if(MAP_LV_624)
 			command_announcement.Announce("An automated distress signal has been received from archaeology site Lazarus Landing, on border world LV-624. A response team from the [MAIN_SHIP_NAME] will be dispatched shortly to investigate.", "[MAIN_SHIP_NAME]")
 		if(MAP_ICE_COLONY)
 			command_announcement.Announce("An automated distress signal has been received from archaeology site \"Shiva's Snowball\", on border ice world \"Ifrit\". A response team from the [MAIN_SHIP_NAME] will be dispatched shortly to investigate.", "[MAIN_SHIP_NAME]")
 		if(MAP_BIG_RED)
-			command_announcement.Announce("We've lost contact with the Nanotrasen's research facility, [GLOB.map_tag]. The [MAIN_SHIP_NAME] has been dispatched to assist.", "[MAIN_SHIP_NAME]")
+			command_announcement.Announce("We've lost contact with the Nanotrasen's research facility, [SSmapping.config.map_name]. The [MAIN_SHIP_NAME] has been dispatched to assist.", "[MAIN_SHIP_NAME]")
 		if(MAP_PRISON_STATION)
 			command_announcement.Announce("An automated distress signal has been received from maximum-security prison \"Fiorina Orbital Penitentiary\". A response team from the [MAIN_SHIP_NAME] will be dispatched shortly to investigate.", "[MAIN_SHIP_NAME]")
 
@@ -101,7 +102,7 @@
 		// Automated bioscan / Queen Mother message
 		if(world.time > bioscan_current_interval) //If world time is greater than required bioscan time.
 			announce_bioscans() //Announce the results of the bioscan to both sides.
-			var/total[] = ticker.mode.count_humans_and_xenos()
+			var/total[] = SSticker.mode.count_humans_and_xenos()
 			var/marines = total[1]
 			var/xenos = total[2]
 			var/bioscan_scaling_factor = xenos / max(marines, 1)
@@ -122,14 +123,17 @@
 	var/num_xenos = living_player_list[2]
 
 	if(EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED) //Nuke went off, ending the round.
+		message_admins("Round finished: [MODE_GENERIC_DRAW_NUKE]")
 		round_finished = MODE_GENERIC_DRAW_NUKE
-	else if(EvacuationAuthority.dest_status < NUKE_EXPLOSION_IN_PROGRESS) //If the nuke ISN'T in progress. We do not want to end the round before it detonates.
-		if(!num_humans && num_xenos)
-			round_finished = MODE_INFESTATION_X_MAJOR //No humans remain alive.
-		else if(num_humans && !num_xenos)
-			round_finished = MODE_INFESTATION_M_MAJOR //Humans destroyed the xenomorphs.
-		else if(!num_humans && !num_xenos)
-			round_finished = MODE_INFESTATION_DRAW_DEATH //Both were somehow destroyed.
+	else if(!num_humans && num_xenos)
+		message_admins("Round finished: [MODE_INFESTATION_X_MAJOR]")
+		round_finished = MODE_INFESTATION_X_MAJOR //No humans remain alive.
+	else if(num_humans && !num_xenos)
+		message_admins("Round finished: [MODE_INFESTATION_M_MAJOR]")
+		round_finished = MODE_INFESTATION_M_MAJOR //Humans destroyed the xenomorphs.
+	else if(!num_humans && !num_xenos)
+		message_admins("Round finished: [MODE_INFESTATION_DRAW_DEATH]")
+		round_finished = MODE_INFESTATION_DRAW_DEATH //Both were somehow destroyed.
 
 
 /datum/game_mode/colonialmarines/check_queen_status(queen_time)
@@ -154,10 +158,11 @@
 
 
 /datum/game_mode/colonialmarines/declare_completion()
+	. = ..()
 	to_chat(world, "<span class='round_header'>|Round Complete|</span>")
 	feedback_set_details("round_end_result",round_finished)
 
-	to_chat(world, "<span class='round_body'>Thus ends the story of the brave men and women of the [MAIN_SHIP_NAME] and their struggle on [GLOB.map_tag].</span>")
+	to_chat(world, "<span class='round_body'>Thus ends the story of the brave men and women of the [MAIN_SHIP_NAME] and their struggle on [SSmapping.config.map_name].</span>")
 	var/musical_track
 	switch(round_finished)
 		if(MODE_INFESTATION_X_MAJOR)
@@ -174,6 +179,8 @@
 	to_chat(world, musical_track)
 
 	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [GLOB.clients.len]\nTotal xenos spawned: [round_statistics.total_xenos_created]\nTotal Preds spawned: [predators.len]\nTotal humans spawned: [round_statistics.total_humans_created]")
+
+	CONFIG_SET(flag/allow_synthetic_gun_use, TRUE)
 
 	declare_completion_announce_individual()
 	declare_completion_announce_predators()

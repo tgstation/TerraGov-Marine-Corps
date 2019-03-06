@@ -76,54 +76,6 @@
 	message_admins("[ADMIN_TPMONTY(usr)] has turned stealth mode [usr.client.holder.fakekey ? "on - [usr.client.holder.fakekey]" : "off"].")
 
 
-/datum/admins/proc/jobs_free()
-	set name = "Job Slots - Free"
-	set category = "Admin"
-	set desc = "Allows you to free a job slot."
-
-	if(!check_rights(R_ADMIN))
-		return
-
-	var/list/roles = list()
-	var/datum/job/J
-	for(var/r in RoleAuthority.roles_for_mode) //All the roles in the game.
-		J = RoleAuthority.roles_for_mode[r]
-		if(J.total_positions != -1 && J.get_total_positions(TRUE) <= J.current_positions)
-			roles += r
-
-	if(!length(roles))
-		to_chat(usr, "<span class='warning'>There are no fully staffed roles.</span>")
-		return
-
-	var/role = input("Please select role slot to free", "Free role slot") as null|anything in roles
-	RoleAuthority.free_role(RoleAuthority.roles_for_mode[role])
-
-	log_admin("[key_name(usr)] has made a [role] slot free.")
-	message_admins("[ADMIN_TPMONTY(usr)] has made a [role] slot free.")
-
-
-/datum/admins/proc/jobs_list()
-	set category = "Admin"
-	set name = "Job Slots - List"
-	set desc = "Lists all roles and their current status."
-
-	if(!check_rights(R_ADMIN))
-		return
-
-	if(!RoleAuthority)
-		return
-
-	var/datum/job/J
-	var/i
-	for(i in RoleAuthority.roles_by_name)
-		J = RoleAuthority.roles_by_name[i]
-		if(J.flags_startup_parameters & ROLE_ADD_TO_MODE)
-			to_chat(src, "[J.title]: [J.get_total_positions(1)] / [J.current_positions]")
-
-	log_admin("[key_name(usr)] checked job slots.")
-	message_admins("[ADMIN_TPMONTY(usr)] checked job slots.")
-
-
 /datum/admins/proc/change_key(mob/M in GLOB.alive_mob_list)
 	set category = "Admin"
 	set name = "Change CKey"
@@ -206,18 +158,23 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	if(!istype(H) || !ticker || !H.mind?.assigned_role)
+	if(!istype(H) || !SSticker || !H.mind?.assigned_role)
 		return
 
-	if(!(H.mind.assigned_role in ROLES_MARINES))
+	if(!(H.mind.assigned_role in JOBS_MARINES))
 		return
 
-	var/datum/squad/S = input("Choose the marine's new squad") as null|anything in RoleAuthority.squads
-
-	if(!S)
+	var/squad = input("Choose the marine's new squad") as null|anything in SSjob.squads
+	if(!squad)
 		return
 
-	H.set_everything(H.mind.assigned_role)
+	var/datum/squad/S = SSjob.squads[squad]
+	if(!S?.usable)
+		return
+
+	var/datum/job/J = SSjob.name_occupations[H.mind.assigned_role]
+	var/datum/outfit/job/O = new J.outfit
+	O.post_equip(H)
 
 	H.assigned_squad?.remove_marine_from_squad(H)
 
@@ -263,7 +220,12 @@
 
 	var/replaced = FALSE
 	if(M.key)
-		if(alert("This mob is being controlled by [M.key], they will be made a ghost. Are you sure?",,"Yes","No") == "Yes")
+		if(usr.client.key == copytext(M.key,2))
+			var/mob/dead/observer/ghost = usr
+			ghost.can_reenter_corpse = TRUE
+			ghost.reenter_corpse()
+			return
+		else if(alert("This mob is being controlled by [M.key], they will be made a ghost. Are you sure?",,"Yes","No") == "Yes")
 			M.ghostize()
 			replaced = TRUE
 		else
@@ -284,7 +246,7 @@
 	set category = "Admin"
 	set name = "Get Server Logs"
 
-	if(!check_rights(R_ADMIN))
+	if(!check_rights(R_ASAY))
 		return
 
 	usr.client.holder.browse_server_logs()
@@ -295,7 +257,7 @@
 	set name = "Get Current Logs"
 	set desc = "View/retrieve logfiles for the current round."
 
-	if(!check_rights(R_ADMIN))
+	if(!check_rights(R_ASAY))
 		return
 
 	usr.client.holder.browse_server_logs("[GLOB.log_directory]/")
@@ -306,7 +268,7 @@
 	set desc = "Please use responsibly."
 	set category = "Admin"
 
-	if(!check_rights(R_ADMIN))
+	if(!check_rights(R_ASAY))
 		return
 
 	var/choice = alert("Due to the way BYOND handles files, you WILL need a click macro. This function is also recurive and prone to fucking up, especially if you select the wrong folder. Are you absolutely sure you want to proceed?", "WARNING", "Yes", "No")
@@ -617,18 +579,15 @@
 		message_admins("[ADMIN_TPMONTY(usr)] jumped to [ADMIN_VERBOSEJMP(M)].")
 
 
-/datum/admins/proc/jump_turf()
+/datum/admins/proc/jump_turf(var/turf/T in GLOB.turfs)
 	set category = "Admin"
 	set name = "Jump to Turf"
 
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/selection = input("Please, select a turf.", "Jump to turf") as null|anything in GLOB.turfs
-	if(!selection)
+	if(!T)
 		return
-
-	var/turf/T = selection
 
 	var/mob/M = usr
 	M.on_mob_jump()
@@ -987,7 +946,7 @@
 	if(irc)
 		to_chat(src, "<font color='blue'>PM to-<b>Staff</b>: <span class='linkify'>[rawmsg]</span></font>")
 		var/datum/admin_help/AH = admin_ticket_log(src, "<font color='red'>Reply PM from-<b>[key_name(src, TRUE, TRUE)] to <i>IRC</i>: [keywordparsedmsg]</font>")
-		send2irc("[AH ? "#[AH.id] " : ""]Reply: [ckey]", rawmsg)
+		send2irc("[AH ? "#[AH.id] " : ""]Reply: [ckey]", sanitizediscord(rawmsg))
 	else
 		if(check_other_rights(recipient, R_ADMIN, FALSE) || is_mentor(recipient))
 			if(check_rights(R_ADMIN, FALSE) || is_mentor(src)) //Both are staff
@@ -1022,15 +981,22 @@
 					else if(is_mentor(src))
 						new /datum/admin_help(msg, recipient, TRUE, TICKET_MENTOR)
 
-				to_chat(recipient, "<font color='red' size='4'><b>-- Private Message --</b></font>")
-				to_chat(recipient, "<font color='red'>[holder.fakekey ? "Administrator" : holder.rank.name] PM from-<b>[key_name(src, recipient, FALSE)]</b>: <span class='linkify'>[msg]</span></font>")
-				to_chat(recipient, "<font color='red'><i>Click on the staff member's name to reply.</i></font>")
-				to_chat(src, "<font color='blue'><b>[holder.fakekey ? "Administrator" : holder.rank.name] PM</b> to-<b>[key_name(recipient, src, TRUE)]</b>: <span class='linkify'>[msg]</span></font>")
+				if(check_rights(R_ADMIN, FALSE))
+					to_chat(recipient, "<font color='red' size='4'><b>-- Private Message --</b></font>")
+					to_chat(recipient, "<font color='red'>[holder.fakekey ? "Administrator" : holder.rank.name] PM from-<b>[key_name(src, recipient, FALSE)]</b>: <span class='linkify'>[msg]</span></font>")
+					to_chat(recipient, "<font color='red'><i>Click on the staff member's name to reply.</i></font>")
+					to_chat(src, "<font color='blue'><b>[holder.fakekey ? "Administrator" : holder.rank.name] PM</b> to-<b>[key_name(recipient, src, TRUE)]</b>: <span class='linkify'>[msg]</span></font>")
+					SEND_SOUND(recipient, sound('sound/effects/adminhelp.ogg'))
+				else if(is_mentor(src))
+					to_chat(recipient, "<font color='blue' size='2'><b>-- Mentor Message --</b></font>")
+					to_chat(recipient, "<font color='blue'>[holder.rank.name] PM from-<b>[key_name(src, recipient, FALSE)]</b>: <span class='linkify'>[msg]</span></font>")
+					to_chat(recipient, "<font color='blue'><i>Click on the mentor's name to reply.</i></font>")
+					to_chat(src, "<font color='blue'><b>[holder.rank.name] PM</b> to-<b>[key_name(recipient, src, TRUE)]</b>: <span class='linkify'>[msg]</span></font>")
+					SEND_SOUND(recipient, sound('sound/effects/mentorhelp.ogg'))
 
 				admin_ticket_log(recipient, "<font color='blue'>PM From [key_name_admin(src)]: [keywordparsedmsg]</font>")
 
-				//always play non-admin recipients the adminhelp sound
-				SEND_SOUND(recipient, sound('sound/effects/adminhelp.ogg'))
+
 			else		//neither are admins
 				to_chat(src, "<span class='warning'>Error: Non-staff to non-staff communication is disabled.</span>")
 				return
@@ -1231,12 +1197,14 @@
 		message_admins("[ADMIN_TPMONTY(usr)] forcibly removed all players from [CA].")
 
 
-/datum/admins/proc/not_looc(msg as text)
+/datum/admins/proc/local_message(msg as text)
 	set category = "Admin"
-	set name = "Not LOOC"
+	set name = "Local Message"
 
 	if(!check_rights(R_ADMIN))
 		return
+
+	msg = noscript(msg)
 
 	if(!msg)
 		return
@@ -1246,5 +1214,5 @@
 	usr.visible_message(message, message, message)
 
 
-	log_admin("[key_name(usr)] has used Not LOOC to say: [msg]")
-	message_admins("[ADMIN_TPMONTY(usr)] has used Not LOOC to say: [msg]")
+	log_admin("[key_name(usr)] has used local message to say: [msg]")
+	message_admins("[ADMIN_TPMONTY(usr)] has used local message to say: [msg]")

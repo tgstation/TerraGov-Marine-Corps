@@ -44,6 +44,13 @@
 		attack_delay = initial(attack_delay) - round(rage * 0.05,0.01) //-0.05 attack delay to a maximum reduction of -2.5
 	return ..()
 
+/mob/living/carbon/Xenomorph/Runner/handle_status_effects()
+	if(hit_and_run)
+		var/last_move = last_move_intent - 10
+		if(last_move && last_move < world.time - 5) //If we haven't moved in the last 500 ms, we lose our bonus
+			hit_and_run = 1
+	return ..()
+
 /mob/living/carbon/Xenomorph/update_stat()
 
 	update_cloak()
@@ -92,17 +99,17 @@
 		return
 	//Initial stealth
 	if(last_stealth > world.time - HUNTER_STEALTH_INITIAL_DELAY) //We don't start out at max invisibility
-		alpha = HUNTER_STEALTH_RUN_ALPHA //50% invisible
+		alpha = HUNTER_STEALTH_RUN_ALPHA
 		return
 	//Stationary stealth
 	else if(last_move_intent < world.time - HUNTER_STEALTH_STEALTH_DELAY) //If we're standing still for 4 seconds we become almost completely invisible
-		alpha = HUNTER_STEALTH_STILL_ALPHA //95% invisible
+		alpha = HUNTER_STEALTH_STILL_ALPHA
 	//Walking stealth
 	else if(m_intent == MOVE_INTENT_WALK)
-		alpha = HUNTER_STEALTH_WALK_ALPHA //80% invisible
+		alpha = HUNTER_STEALTH_WALK_ALPHA
 	//Running stealth
 	else
-		alpha = HUNTER_STEALTH_RUN_ALPHA //50% invisible
+		alpha = HUNTER_STEALTH_RUN_ALPHA
 	//If we have 0 plasma after expending stealth's upkeep plasma, end stealth.
 	if(!plasma_stored)
 		to_chat(src, "<span class='xenodanger'>You lack sufficient plasma to remain camouflaged.</span>")
@@ -134,6 +141,8 @@
 	if(.)
 		return
 	if(!(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE) && on_fire) //Sanity check; have to be on fire to actually take the damage.
+		if(stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to y'know being on fire.
+			stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 		adjustFireLoss((fire_stacks + 3) * CLAMP(xeno_caste.fire_resist + fire_resist_modifier, 0, 1) ) // modifier is negative
 
 /mob/living/carbon/Xenomorph/proc/handle_living_health_updates()
@@ -216,7 +225,9 @@
 		if(recovery_aura)
 			plasma_stored += round(xeno_caste.plasma_gain * recovery_aura * 0.25 * modifier) //Divided by four because it gets massive fast. 1 is equivalent to weed regen! Only the strongest pheromones should bypass weeds
 	else
-		plasma_stored++
+		var/datum/hive_status/hive = hive_datum[hivenumber]
+		if(!hive.living_xeno_queen || hive.living_xeno_queen.loc.z == loc.z) //We only regenerate plasma off weeds while on the same Z level as the queen; if one's alive
+			plasma_stored++
 	if(plasma_stored > xeno_caste.plasma_max)
 		plasma_stored = xeno_caste.plasma_max
 	else if(plasma_stored < 0)

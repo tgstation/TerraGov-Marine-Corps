@@ -41,14 +41,18 @@
 	title = "Security Announcement"
 	announcement_type = "Security Announcement"
 
-/datum/announcement/proc/Announce(var/message as text, var/new_title = "", var/new_sound = null, var/do_newscast = newscast, var/to_xenos = 0)
+/datum/announcement/proc/Announce(message as text, new_title = "", new_sound = null, do_newscast = newscast, to_xenos = FALSE, admin = FALSE)
 	if(!message)
 		return
 	var/tmp/message_title = new_title ? new_title : title
 	var/tmp/message_sound = new_sound ? sound(new_sound) : sound
 
-	message = html_encode(message)
-	message_title = html_encode(message_title)
+	if(admin)
+		message = noscript(message)
+		message_title = noscript(message_title)
+	else
+		message = html_encode(message)
+		message_title = html_encode(message_title)
 
 	Message(message, message_title, to_xenos)
 	if(do_newscast)
@@ -63,7 +67,7 @@
 				continue
 			if(ishuman(M)) //what xenos can't hear, the survivors on the ground can't either.
 				var/mob/living/carbon/human/H = M
-				if(H.mind && H.mind.special_role == "Survivor" && H.z != MAIN_SHIP_Z_LEVEL)
+				if(issurvivor(H) && !is_mainship_level(H.z))
 					continue
 		if(!isnewplayer(M) && !isdeaf(M))
 			to_chat(M, "<h2 class='alert'>[title]</h2>")
@@ -78,7 +82,7 @@
 				continue
 			if(ishuman(M)) //what xenos can't hear, the survivors on the ground can't either.
 				var/mob/living/carbon/human/H = M
-				if(H.mind && H.mind.special_role == "Survivor" && H.z != MAIN_SHIP_Z_LEVEL)
+				if(issurvivor(H) && !is_mainship_level(H.z))
 					continue
 		if(!istype(M,/mob/new_player) && !isdeaf(M))
 			to_chat(M, "<b>[message]</b>")

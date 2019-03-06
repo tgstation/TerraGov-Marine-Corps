@@ -162,7 +162,7 @@
 /obj/item/tool/weldingtool/Destroy()
 	if(welding)
 		if(ismob(loc))
-			loc.SetLuminosity(-2)
+			loc.SetLuminosity(-LIGHTER_LUMINOSITY)
 		else
 			SetLuminosity(0)
 		STOP_PROCESSING(SSobj, src)
@@ -198,7 +198,7 @@
 		var/datum/limb/S = H.get_limb(user.zone_selected)
 
 		if (!S) return
-		if(!(S.status & LIMB_ROBOT) || user.a_intent != INTENT_HELP)
+		if(!(S.limb_status & LIMB_ROBOT) || user.a_intent != INTENT_HELP)
 			return ..()
 
 		if(issynth(H))
@@ -283,9 +283,9 @@
 			welding = 1
 			if(M)
 				to_chat(M, "<span class='notice'>You switch [src] on.</span>")
-				M.SetLuminosity(2)
+				M.SetLuminosity(LIGHTER_LUMINOSITY)
 			else
-				SetLuminosity(2)
+				SetLuminosity(LIGHTER_LUMINOSITY)
 			weld_tick += 8 //turning the tool on does not consume fuel directly, but it advances the process that regularly consumes fuel.
 			force = 15
 			damtype = "fire"
@@ -310,13 +310,12 @@
 				to_chat(M, "<span class='notice'>You switch [src] off.</span>")
 			else
 				to_chat(M, "<span class='warning'>[src] shuts off!</span>")
-			M.SetLuminosity(-2)
+			M.SetLuminosity(-LIGHTER_LUMINOSITY)
 			if(M.r_hand == src)
 				M.update_inv_r_hand()
 			if(M.l_hand == src)
 				M.update_inv_l_hand()
-		else
-			SetLuminosity(0)
+		SetLuminosity(0)
 		STOP_PROCESSING(SSobj, src)
 
 /obj/item/tool/weldingtool/proc/flamethrower_screwdriver(obj/item/I, mob/user)
@@ -334,13 +333,13 @@
 /obj/item/tool/weldingtool/pickup(mob/user)
 	if(welding && loc != user)
 		SetLuminosity(0)
-		user.SetLuminosity(2)
+		user.SetLuminosity(LIGHTER_LUMINOSITY)
 
 
 /obj/item/tool/weldingtool/dropped(mob/user)
 	if(welding && loc != user)
-		user.SetLuminosity(-2)
-		SetLuminosity(2)
+		user.SetLuminosity(-LIGHTER_LUMINOSITY)
+		SetLuminosity(LIGHTER_LUMINOSITY)
 	return ..()
 
 
@@ -425,9 +424,10 @@
 	if(iswelder(W))
 		var/obj/item/tool/weldingtool/T = W
 		if(T.welding & prob(50))
-			message_admins("[ADMIN_TPMONTY(user)] triggered a fueltank explosion at [ADMIN_VERBOSEJMP(src.loc)].")
-			log_game("[key_name(user)] triggered a fueltank explosion at [AREACOORD(src.loc)].")
+			message_admins("[ADMIN_TPMONTY(user)] triggered a weldpack explosion at [ADMIN_VERBOSEJMP(src.loc)].")
+			log_game("[key_name(user)] triggered a weldpack explosion at [AREACOORD(src.loc)].")
 			to_chat(user, "<span class='warning'>That was stupid of you.</span>")
+			log_explosion("[key_name(user)] triggered a weldpack explosion at [AREACOORD(user.loc)].")
 			explosion(get_turf(src),-1,0,2)
 			if(src)
 				qdel(src)

@@ -20,7 +20,7 @@
 	isWireCut - returns 1 if that wire (e.g. AIRLOCK_WIRE_DOOR_BOLTS) is cut, or 0 if not
 	canAIControl - 1 if the AI can control the airlock, 0 if not (then check canAIHack to see if it can hack in)
 	canAIHack - 1 if the AI can hack into the airlock to recover control, 0 if not. Also returns 0 if the AI does not *need* to hack it.
-	arePowerSystemsOn - 1 if the main or backup power are functioning, 0 if not. Does not check whether the power grid is charged or an APC has equipment on or anything like that. (Check (stat & NOPOWER) for that)
+	arePowerSystemsOn - 1 if the main or backup power are functioning, 0 if not. Does not check whether the power grid is charged or an APC has equipment on or anything like that. (Check (machine_stat & NOPOWER) for that)
 	requiresIDs - 1 if the airlock is requiring IDs, 0 if not
 	isAllPowerCut - 1 if the main and backup power both have cut wires.
 	regainMainPower - handles the effect of main power coming back on.
@@ -163,7 +163,7 @@ About the new airlock wires panel:
 	switch(wireIndex)
 		if(AIRLOCK_WIRE_IDSCAN)
 			//Sending a pulse through this flashes the red light on the door (if the door has power).
-			if((src.arePowerSystemsOn()) && (!(stat & NOPOWER)))
+			if((src.arePowerSystemsOn()) && (!(machine_stat & NOPOWER)))
 				do_animate("deny")
 		if(AIRLOCK_WIRE_MAIN_POWER1, AIRLOCK_WIRE_MAIN_POWER2)
 			//Sending a pulse through either one causes a breaker to trip, disabling the door for 10 seconds if backup power is connected, or 1 minute if not (or until backup power comes back on, whichever is shorter).
@@ -334,7 +334,7 @@ About the new airlock wires panel:
 	return ((src.aiControlDisabled==1) && (!hackProof) && (!src.isAllPowerLoss()));
 
 /obj/machinery/door/airlock/proc/arePowerSystemsOn()
-	if (stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		return 0
 	return (src.secondsMainPowerLost==0 || src.secondsBackupPowerLost==0)
 
@@ -342,7 +342,7 @@ About the new airlock wires panel:
 	return !(src.isWireCut(AIRLOCK_WIRE_IDSCAN) || aiDisabledIdScanner)
 
 /obj/machinery/door/airlock/proc/isAllPowerLoss()
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		return 1
 	if(src.isWireCut(AIRLOCK_WIRE_MAIN_POWER1) || src.isWireCut(AIRLOCK_WIRE_MAIN_POWER2))
 		if(src.isWireCut(AIRLOCK_WIRE_BACKUP_POWER1) || src.isWireCut(AIRLOCK_WIRE_BACKUP_POWER2))
@@ -451,7 +451,7 @@ About the new airlock wires panel:
 
 	//Separate interface for the AI.
 	user.set_interaction(src)
-	var/t1 = text("<B>Airlock Control</B><br>\n")
+	var/t1
 	if(src.secondsMainPowerLost > 0)
 		if((!src.isWireCut(AIRLOCK_WIRE_MAIN_POWER1)) && (!src.isWireCut(AIRLOCK_WIRE_MAIN_POWER2)))
 			t1 += text("Main power is offline for [] seconds.<br>\n", src.secondsMainPowerLost)
@@ -545,8 +545,12 @@ About the new airlock wires panel:
 			t1 += text("<A href='?src=\ref[];aiDisable=7'>Close door</a><br>\n", src)
 
 	t1 += text("<p><a href='?src=\ref[];close=1'>Close</a></p>\n", src)
-	user << browse(t1, "window=airlock")
+
+	var/datum/browser/popup = new(user, "airlock", "<div align='center'>Airlock Control</div>")
+	popup.set_content(t1)
+	popup.open(FALSE)
 	onclose(user, "airlock")
+
 
 //aiDisable - 1 idscan, 2 disrupt main power, 3 disrupt backup power, 4 drop door bolts, 5 un-electrify door, 7 close door
 //aiEnable - 1 idscan, 4 raise door bolts, 5 electrify door for 30 seconds, 6 electrify door indefinitely, 7 open door
@@ -666,7 +670,7 @@ About the new airlock wires panel:
 
 	if(src.p_open)
 		user.set_interaction(src)
-		var/t1 = text("<B>Access Panel</B><br>\n")
+		var/t1
 
 		//t1 += text("[]: ", airlockFeatureNames[airlockWireColorToIndex[9]])
 		var/list/wires = list(
@@ -701,12 +705,14 @@ About the new airlock wires panel:
 
 		t1 += text("<p><a href='?src=\ref[];close=1'>Close</a></p>\n", src)
 
-		user << browse(t1, "window=airlock")
+		var/datum/browser/popup = new(user, "airlock", "<div align='center'>Access Panel</div>")
+		popup.set_content(t1)
+		popup.open(FALSE)
 		onclose(user, "airlock")
 
 	else
 		..(user)
-	return
+
 
 /obj/machinery/door/airlock/proc/check_synth_access(mob/user as mob)
 	if(operating < 0) //emagged
@@ -1169,7 +1175,8 @@ About the new airlock wires panel:
 				M.SetKnockeddown(5)
 				if (iscarbon(M))
 					var/mob/living/carbon/C = M
-					if (!(C.species && (C.species.flags & NO_PAIN)))
+					var/datum/species/S = C.species
+					if(S?.species_flags & NO_PAIN)
 						M.emote("pain")
 			var/turf/location = src.loc
 			if(istype(location, /turf))

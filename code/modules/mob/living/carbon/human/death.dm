@@ -50,25 +50,30 @@
 
 
 /mob/living/carbon/human/death(gibbed)
+	if(stat == DEAD) 
+		return
 
-	if(stat == DEAD) return
 	if(pulledby)
 		pulledby.stop_pulling()
+
 	//Handle species-specific deaths.
-	if(species) species.handle_death(src, gibbed)
+	if(species) 
+		species.handle_death(src, gibbed)
 
 	//callHook("death", list(src, gibbed))
+
+	toggle_typing_indicator()
 
 	if(!gibbed && species.death_sound)
 		playsound(loc, species.death_sound, 50, 1)
 
-	if(ticker && ticker.current_state == 3) //game has started, to ignore the map placed corpses.
+	if(SSticker && SSticker.current_state == 3) //game has started, to ignore the map placed corpses.
 		round_statistics.total_human_deaths++
 
 	GLOB.dead_human_list += src
 	GLOB.alive_human_list -= src
 
-	return ..(gibbed,species.death_message)
+	return ..()
 
 /mob/living/carbon/human/proc/makeSkeleton()
 	if(SKELETON in src.mutations)	return

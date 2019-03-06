@@ -245,6 +245,17 @@ WEAPONS
 	containername = "\improper MIC A7 Vindicator Minigun crate"
 	group = "Weapons"
 
+/datum/supply_packs/specshotgun
+	name = "ZX-76 Assault Shotgun crate (ZX-76 x1)"
+	contains = list(
+					/obj/item/weapon/gun/shotgun/merc/scout
+					)
+	cost = RO_PRICE_VERY_PRICY
+	containertype = /obj/structure/closet/crate/weapon
+	containername = "\improper ZX-76 Assault Shotgun crate"
+	group = "Weapons"
+
+
 /datum/supply_packs/flamethrower
 	name = "M240 Flamethrower crate (M240 x3)"
 	contains = list(
@@ -1891,7 +1902,7 @@ AMMO
 	group = "Ammo"
 
 /datum/supply_packs/mortar_ammo_incend
-	name = "M402 mortar ammo crate (x6 Incend)"
+	name = "M402 mortar ammo crate (x8 Incend)"
 	cost = RO_PRICE_PRICY
 	contains = list(
 					/obj/item/mortal_shell/incendiary,

@@ -9,7 +9,7 @@
 	var/eye_step
 
 /datum/surgery_step/eye/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected, checks_only)
-	if(!affected || (affected.status & LIMB_DESTROYED))
+	if(!affected || (affected.limb_status & LIMB_DESTROYED))
 		return 0
 
 	if(target_zone != "eyes")

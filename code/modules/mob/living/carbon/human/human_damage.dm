@@ -11,13 +11,13 @@
 		total_brute	+= O.brute_dam
 		total_burn	+= O.burn_dam
 
-	var/oxy_l = ((species.flags & NO_BREATHE) ? 0 : getOxyLoss())
-	var/tox_l = ((species.flags & NO_POISON) ? 0 : getToxLoss())
+	var/oxy_l = getOxyLoss()
+	var/tox_l = ((species.species_flags & NO_POISON) ? 0 : getToxLoss())
 	var/clone_l = getCloneLoss()
 
 	health = species.total_health - oxy_l - tox_l - clone_l - total_burn - total_brute
 
-	if(CONFIG_GET(flag/husking_on) && ((species.total_health - total_burn) < CONFIG_GET(number/health_threshold_dead) * 4))
+	if(CONFIG_GET(flag/husking_on) && ((species.total_health - total_burn) < get_death_threshold() * 4))
 		ChangeToHusk()
 
 
@@ -77,14 +77,14 @@
 /mob/living/carbon/human/getBruteLoss(var/organic_only=0)
 	var/amount = 0
 	for(var/datum/limb/O in limbs)
-		if(!(organic_only && O.status & LIMB_ROBOT))
+		if(!(organic_only && O.limb_status & LIMB_ROBOT))
 			amount += O.brute_dam
 	return amount
 
 /mob/living/carbon/human/getFireLoss(var/organic_only=0)
 	var/amount = 0
 	for(var/datum/limb/O in limbs)
-		if(!(organic_only && O.status & LIMB_ROBOT))
+		if(!(organic_only && O.limb_status & LIMB_ROBOT))
 			amount += O.burn_dam
 	return amount
 
@@ -120,7 +120,7 @@
 				O.take_damage(amount, 0, sharp=is_sharp(damage_source), edge=has_edge(damage_source), used_weapon=damage_source)
 			else
 				//if you don't want to heal robot limbs, they you will have to check that yourself before using this proc.
-				O.heal_damage(-amount, 0, internal=0, robo_repair=(O.status & LIMB_ROBOT))
+				O.heal_damage(-amount, 0, internal=0, robo_repair=(O.limb_status & LIMB_ROBOT))
 			break
 
 
@@ -136,18 +136,18 @@
 				O.take_damage(0, amount, sharp=is_sharp(damage_source), edge=has_edge(damage_source), used_weapon=damage_source)
 			else
 				//if you don't want to heal robot limbs, they you will have to check that yourself before using this proc.
-				O.heal_damage(0, -amount, internal=0, robo_repair=(O.status & LIMB_ROBOT))
+				O.heal_damage(0, -amount, internal=0, robo_repair=(O.limb_status & LIMB_ROBOT))
 			break
 
 
 
 /mob/living/carbon/human/getCloneLoss()
-	if(species.flags & (IS_SYNTHETIC|NO_SCAN))
+	if(species.species_flags & (IS_SYNTHETIC|NO_SCAN))
 		cloneloss = 0
 	return ..()
 
 /mob/living/carbon/human/setCloneLoss(var/amount)
-	if(species.flags & (IS_SYNTHETIC|NO_SCAN))
+	if(species.species_flags & (IS_SYNTHETIC|NO_SCAN))
 		cloneloss = 0
 	else
 		..()
@@ -155,7 +155,7 @@
 /mob/living/carbon/human/adjustCloneLoss(var/amount)
 	..()
 
-	if(species.flags & (IS_SYNTHETIC|NO_SCAN))
+	if(species.species_flags & (IS_SYNTHETIC|NO_SCAN))
 		cloneloss = 0
 		return
 
@@ -165,7 +165,7 @@
 		if (prob(mut_prob))
 			var/list/datum/limb/candidates = list()
 			for (var/datum/limb/O in limbs)
-				if(O.status & (LIMB_ROBOT|LIMB_DESTROYED|LIMB_MUTATED)) continue
+				if(O.limb_status & (LIMB_ROBOT|LIMB_DESTROYED|LIMB_MUTATED)) continue
 				candidates |= O
 			if (candidates.len)
 				var/datum/limb/O = pick(candidates)
@@ -175,49 +175,41 @@
 	else
 		if (prob(heal_prob))
 			for (var/datum/limb/O in limbs)
-				if (O.status & LIMB_MUTATED)
+				if (O.limb_status & LIMB_MUTATED)
 					O.unmutate()
 					to_chat(src, "<span class = 'notice'>Your [O.display_name] is shaped normally again.</span>")
 					return
 
 	if (getCloneLoss() < 1)
 		for (var/datum/limb/O in limbs)
-			if (O.status & LIMB_MUTATED)
+			if (O.limb_status & LIMB_MUTATED)
 				O.unmutate()
 				to_chat(src, "<span class = 'notice'>Your [O.display_name] is shaped normally again.</span>")
 
 
-// Defined here solely to take species flags into account without having to recast at mob/living level.
-/mob/living/carbon/human/getOxyLoss()
-	if(species.flags & NO_BREATHE)
-		oxyloss = 0
+/mob/living/carbon/human/adjustOxyLoss(amount, forced = FALSE)
+	if(species.species_flags & NO_BREATHE && !forced)
+		return
 	return ..()
 
-/mob/living/carbon/human/adjustOxyLoss(var/amount)
-	if(species.flags & NO_BREATHE)
-		oxyloss = 0
-	else
-		..()
-
-/mob/living/carbon/human/setOxyLoss(var/amount)
-	if(species.flags & NO_BREATHE)
-		oxyloss = 0
-	else
-		..()
+/mob/living/carbon/human/setOxyLoss(amount, forced = FALSE)
+	if(species.species_flags & NO_BREATHE && !forced)
+		return
+	return ..()
 
 /mob/living/carbon/human/getToxLoss()
-	if(species.flags & NO_POISON)
+	if(species.species_flags & NO_POISON)
 		toxloss = 0
 	return ..()
 
 /mob/living/carbon/human/adjustToxLoss(var/amount)
-	if(species.flags & NO_POISON)
+	if(species.species_flags & NO_POISON)
 		toxloss = 0
 	else
 		..()
 
 /mob/living/carbon/human/setToxLoss(var/amount)
-	if(species.flags & NO_POISON)
+	if(species.species_flags & NO_POISON)
 		toxloss = 0
 	else
 		..()
@@ -392,7 +384,7 @@ This function restores all limbs.
 
 	//Handle other types of damage
 	if((damagetype != BRUTE) && (damagetype != BURN))
-		if(damagetype == HALLOSS && !(species && (species.flags & NO_PAIN)))
+		if(damagetype == HALLOSS && !(species && (species.species_flags & NO_PAIN)))
 			if ((damage > 25 && prob(20)) || (damage > 50 && prob(40)))
 				emote("pain")
 

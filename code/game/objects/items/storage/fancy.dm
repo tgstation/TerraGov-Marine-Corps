@@ -3,7 +3,6 @@
  * .. Sorry for the shitty path name, I couldnt think of a better one.
  *
  * WARNING: var/icon_type is used for both examine text and sprite name. Please look at the procs below and adjust your sprite names accordingly
- *		TODO: Cigarette boxes should be ported to this standard
  *
  * Contains:
  *		Donut Box
@@ -169,11 +168,11 @@
 /obj/item/storage/fancy/cigarettes/dromedaryco
 	name = "\improper Nanotrasen Gold packet"
 	desc = "Building better worlds, and rolling better cigarettes. These fancy cigarettes are Nanotrasen's entry into the market. Comes backed by a fierce legal team."
-	icon_state = "wypacket"
-	item_state = "wypacket"
+	icon_state = "ntpacket"
+	item_state = "ntpacket"
 
 /obj/item/storage/fancy/cigarettes/lucky_strikes
-	name = "\improper Lucky Strikes Packet"
+	name = "\improper Lucky Strikes packet"
 	desc = "Lucky Strikes Means Fine Tobacco! 9/10 doctors agree on Lucky Strikes...as the leading cause of marine lung cancer."
 	icon_state = "lspacket"
 	item_state = "lspacket"
@@ -185,10 +184,10 @@
 	item_state = "kpacket"
 
 /obj/item/storage/fancy/cigarettes/lady_finger
-	name = "\improper Arcturian Ace"
-	desc = "An entry level brand of cigarettes with a bright blue packaging. You're guessing these aren't really good for you, but it doesn't matter when it's Arcturian baby!"
-	icon_state = "aapacket"
-	item_state = "aapacket"
+	name = "\improper ArctiCool Menthols packet"
+	desc = "An entry level brand of cigarettes with a bright blue packaging. For when you want to smell like lozenges and smoke"
+	icon_state = "acpacket"
+	item_state = "acpacket"
 
 /obj/item/storage/fancy/cigar
 	name = "cigar case"
@@ -239,6 +238,8 @@
 	storage_slots = 6
 	can_hold = list("/obj/item/reagent_container/glass/beaker/vial")
 
+/obj/item/storage/fancy/vials/prison
+	icon = 'icons/obj/machines/virology.dmi'
 
 /obj/item/storage/fancy/vials/New()
 	..()

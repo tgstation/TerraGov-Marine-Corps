@@ -5,9 +5,6 @@
 	required_players = 0 //otherwise... no zambies
 	flags_round_type = MODE_INFECTION //Apparently without this, the game mode checker ignores this as a potential legit game mode.
 
-	uplink_welcome = "IF YOU SEE THIS, SHIT A BRICK AND AHELP"
-	uplink_uses = 10
-
 	var/const/waittime_l = 600 //lower bound on time before intercept arrives (in tenths of seconds)
 	var/const/waittime_h = 1800
 
@@ -34,7 +31,7 @@
 	return 1
 
 /datum/game_mode/infection/check_win()
-	var/living_player_list[] = count_humans_and_xenos(EvacuationAuthority.get_affected_zlevels())
+	var/living_player_list[] = count_humans_and_xenos()
 	var/num_humans = living_player_list[1]
 	var/zed = living_player_list[2]
 //	to_chat(world, "ZED: [zed]")
@@ -59,7 +56,7 @@
 	to_chat(world, "<span class='round_header'>|Round Complete|</span>")
 	feedback_set_details("round_end_result",round_finished)
 
-	to_chat(world, "<span class='round_body'>Thus ends the story of the brave men and women of the [MAIN_SHIP_NAME] and their struggle on [GLOB.map_tag].</span>")
+	to_chat(world, "<span class='round_body'>Thus ends the story of the brave men and women of the [MAIN_SHIP_NAME] and their struggle on [SSmapping.config.map_name].</span>")
 	var/musical_track = pick('sound/theme/sad_loss1.ogg','sound/theme/sad_loss2.ogg')
 	to_chat(world, musical_track)
 	to_chat(world, "<span class='round_body'>The zombies have been victorious!</span>")

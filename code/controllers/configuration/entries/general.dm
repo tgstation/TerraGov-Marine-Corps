@@ -7,7 +7,7 @@ Basics, the most important.
 
 /datum/config_entry/string/server // If you set this location, it sends you there instead of trying to reconnect.
 
-/datum/config_entry/flag/hub	// Does the server appear on the hub?
+/datum/config_entry/string/title //The title of the main window
 
 /datum/config_entry/string/hostedby // Sets the hosted by name on unix platforms.
 
@@ -17,42 +17,30 @@ Basics, the most important.
 	config_entry_value = "kMZy3U5jJHSiBQjr"
 
 /datum/config_entry/string/wikiurl
-	config_entry_value = "https://tgstation13.org/wiki/TGMC"
 
 /datum/config_entry/string/forumurl
-	config_entry_value = "http://tgstation13.org/phpBB/index.php"
 
 /datum/config_entry/string/rulesurl
-	config_entry_value = "http://www.tgstation13.org/wiki/TGMC:Rules"
 
 /datum/config_entry/string/githuburl
-	config_entry_value = "https://github.com/tgstation/TerraGov-Marine-Corps"
 
 /datum/config_entry/string/discordurl
-	config_entry_value = "https://discord.gg/2dFpfNE"
 
 /datum/config_entry/string/banappeals
-	config_entry_value = "https://tgstation13.org/phpBB/viewforum.php?f=70"
 
 /datum/config_entry/string/donationurl
 
 /datum/config_entry/string/shipurl
-	config_entry_value = "https://affectedarc07.github.io/SS13WebMap/TGMC/Almayer/index.html"
 
 /datum/config_entry/string/lv624url
-	config_entry_value = "https://affectedarc07.github.io/SS13WebMap/TGMC/LV624/index.html"
 
 /datum/config_entry/string/icecolonyurl
-	config_entry_value = "https://affectedarc07.github.io/SS13WebMap/TGMC/IceColony/index.html"
 
 /datum/config_entry/string/bigredurl
-	config_entry_value = "https://affectedarc07.github.io/SS13WebMap/TGMC/BigRed/index.html"
 
 /datum/config_entry/string/prisonstationurl
-	config_entry_value = "https://affectedarc07.github.io/SS13WebMap/TGMC/PrisonStation/index.html"
 
 /datum/config_entry/string/whiskeyoutposturl
-	config_entry_value = "https://affectedarc07.github.io/SS13WebMap/TGMC/WhiskeyOutpost/index.html"
 
 /datum/config_entry/string/python_path
 
@@ -64,11 +52,21 @@ Basics, the most important.
 Administrative related.
 */
 /datum/config_entry/flag/localhost_rank
+	protection = CONFIG_ENTRY_LOCKED
 
 /datum/config_entry/flag/ban_legacy_system
 	protection = CONFIG_ENTRY_LOCKED
 
 /datum/config_entry/flag/admin_legacy_system	//Defines whether the server uses the legacy admin system with admins.txt or the SQL system
+	protection = CONFIG_ENTRY_LOCKED
+
+/datum/config_entry/flag/protect_legacy_admins	//Stops any admins loaded by the legacy system from having their rank edited by the permissions panel
+	protection = CONFIG_ENTRY_LOCKED
+
+/datum/config_entry/flag/protect_legacy_ranks	//Stops any ranks loaded by the legacy system from having their flags edited by the permissions panel
+	protection = CONFIG_ENTRY_LOCKED
+
+/datum/config_entry/flag/load_legacy_ranks_only	//Loads admin ranks only from legacy admin_ranks.txt, while enabled ranks are mirrored to the database
 	protection = CONFIG_ENTRY_LOCKED
 
 /datum/config_entry/flag/log_admin
@@ -81,6 +79,8 @@ Administrative related.
 	protection = CONFIG_ENTRY_LOCKED
 
 /datum/config_entry/flag/log_ooc
+
+/datum/config_entry/flag/log_looc
 
 /datum/config_entry/flag/log_access
 
@@ -116,11 +116,51 @@ Administrative related.
 
 /datum/config_entry/flag/use_age_restriction_for_jobs	//Do jobs use account age restrictions? --requires database
 
+/datum/config_entry/flag/use_exp_tracking
+
+/datum/config_entry/flag/use_exp_restrictions_admin_bypass
+
+/datum/config_entry/flag/use_exp_restrictions_command
+
+/datum/config_entry/number/use_exp_restrictions_command_hours
+	config_entry_value = 0
+	integer = FALSE
+	min_val = 0
+
+/datum/config_entry/flag/use_exp_restrictions_command_department
+
+/datum/config_entry/flag/use_exp_restrictions_other
+
 /datum/config_entry/flag/kick_inactive	//force disconnect for inactive players
 
 /datum/config_entry/flag/automute_on	//enables automuting/spam prevention
 
 /datum/config_entry/flag/autooocmute
+
+/datum/config_entry/flag/looc_enabled
+
+/datum/config_entry/number/lobby_countdown
+	config_entry_value = 180
+
+/datum/config_entry/number/round_end_countdown
+	config_entry_value = 120
+
+/datum/config_entry/flag/see_own_notes
+
+/datum/config_entry/number/note_fresh_days
+	config_entry_value = 30
+	min_val = 0
+	integer = FALSE
+
+/datum/config_entry/number/note_stale_days
+	config_entry_value = 180
+	min_val = 0
+	integer = FALSE
+
+/datum/config_entry/flag/use_account_age_for_jobs
+
+/datum/config_entry/number/notify_new_player_age
+	min_val = -1
 
 /*
 Voting
@@ -128,6 +168,10 @@ Voting
 /datum/config_entry/flag/allow_vote_restart
 
 /datum/config_entry/flag/allow_vote_mode
+
+/datum/config_entry/flag/default_no_vote
+
+/datum/config_entry/flag/no_dead_vote
 
 /datum/config_entry/number/vote_delay	// Minimum time between voting sessions. (deciseconds, 10 minute default)
 	config_entry_value = 6000
@@ -144,6 +188,7 @@ Voting
 /datum/config_entry/flag/vote_no_dead
 
 /datum/config_entry/number/vote_autogamemode_timeleft
+	config_entry_value = 999999999
 
 /datum/config_entry/flag/allow_metadata	// Metadata is supported.
 
@@ -189,6 +234,7 @@ Master controller and performance related.
 		sync_validate = FALSE
 
 /datum/config_entry/number/ticklag
+	config_entry_value = 0.5
 	integer = FALSE
 	var/sync_validate = FALSE
 
@@ -250,3 +296,10 @@ Legacy - work on reworking/removing these.
 /datum/config_entry/flag/usealienwhitelist
 
 /datum/config_entry/flag/load_legacy_ranks_only
+
+/datum/config_entry/flag/allow_shutdown
+	protection = CONFIG_ENTRY_LOCKED
+
+/datum/config_entry/string/tgs3_commandline_path
+	protection = CONFIG_ENTRY_LOCKED | CONFIG_ENTRY_HIDDEN
+	config_entry_value = "C:\\Program Files (x86)\\TG Station Server\\TGCommandLine.exe"

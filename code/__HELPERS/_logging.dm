@@ -29,25 +29,25 @@
 
 
 /proc/log_admin_private(text)
-	GLOB.admin_log.Add("\[[stationTimestamp()]\] ADMINPRIVATE: [text]")
+	GLOB.admin_log.Add("\[[stationTimestamp()]\] PRIVATE: [text]")
 	if(CONFIG_GET(flag/log_admin))
 		WRITE_LOG(GLOB.world_game_log, "ADMINPRIVATE: [text]")
 
 
 /proc/log_admin_private_asay(text)
-	GLOB.admin_log.Add("\[[stationTimestamp()]\] ADMINPRIVATE: ASAY: [text]")
+	GLOB.admin_log.Add("\[[stationTimestamp()]\] <span class='adminsay'>ASAY: [text]</span>")
 	if(CONFIG_GET(flag/log_adminchat))
 		WRITE_LOG(GLOB.world_game_log, "ADMINPRIVATE: ASAY: [text]")
 
 
 /proc/log_admin_private_msay(text)
-	GLOB.admin_log.Add("\[[stationTimestamp()]\] ADMINPRIVATE: MSAY: [text]")
+	GLOB.admin_log.Add("\[[stationTimestamp()]\] <span class='mod'>MSAY: [text]</span>")
 	if(CONFIG_GET(flag/log_adminchat))
 		WRITE_LOG(GLOB.world_game_log, "ADMINPRIVATE: MSAY: [text]")
 
 
 /proc/log_dsay(text)
-	GLOB.admin_log.Add("\[[stationTimestamp()]\] ADMIN: DSAY: [text]")
+	GLOB.admin_log.Add("\[[stationTimestamp()]\] DSAY: [text]")
 	if(CONFIG_GET(flag/log_adminchat))
 		WRITE_LOG(GLOB.world_game_log, "ADMIN: DSAY: [text]")
 
@@ -81,9 +81,9 @@
 		WRITE_LOG(GLOB.world_game_log, "EXPLOSION: [text]")
 
 
-/proc/log_manifest(ckey, datum/mind/mind, mob/body, latejoin = FALSE)
+/proc/log_manifest(text)
 	if(CONFIG_GET(flag/log_manifest))
-		WRITE_LOG(GLOB.world_manifest_log, "MANIFEST: [ckey] | [body.real_name] | [mind.assigned_role] | [mind.special_role ? mind.special_role : "NONE"] | [latejoin ? "LATEJOIN" : "ROUNDSTART"]")
+		WRITE_LOG(GLOB.world_manifest_log, "MANIFEST: [text]")
 
 
 /proc/log_say(text)
@@ -94,6 +94,11 @@
 /proc/log_ooc(text)
 	if(CONFIG_GET(flag/log_ooc))
 		WRITE_LOG(GLOB.world_game_log, "OOC: [text]")
+
+
+/proc/log_looc(text)
+	if(CONFIG_GET(flag/log_looc))
+		WRITE_LOG(GLOB.world_game_log, "LOOC: [text]")
 
 
 /proc/log_hivemind(text)
@@ -263,3 +268,7 @@
 		return "([AREACOORD(T)])"
 	else if(A.loc)
 		return "(UNKNOWN (?, ?, ?))"
+
+
+/datum/player_details
+	var/list/logging = list()

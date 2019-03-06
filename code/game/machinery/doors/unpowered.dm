@@ -17,7 +17,7 @@
 
 /obj/machinery/door/airlock/unpowered/shuttle
 	icon = 'icons/turf/shuttle.dmi'
-	name = "door_closed"
+	name = "Shuttle Airlock"
 	icon_state = "door1"
 	opacity = TRUE
 	density = TRUE

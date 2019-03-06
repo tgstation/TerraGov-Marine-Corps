@@ -233,6 +233,9 @@ macro "hotkeymode"
 		name = "O"
 		command = "ooc"
 	elem 
+		name = "L"
+		command = "looc"
+	elem 
 		name = "Q"
 		command = ".northwest"
 	elem 
@@ -649,7 +652,6 @@ window "mainwindow"
 		anchor2 = none
 		is-default = true
 		saved-params = "pos;size;is-minimized;is-maximized"
-		title = "TerraGov Marine Corps - TGS Theseus"
 		is-maximized = true
 		icon = 'icons\\ss13_64.png'
 		macro = "macro"
@@ -693,6 +695,14 @@ window "mainwindow"
 		text = "Chat"
 		command = ".winset \"saybutton.is-checked=true?input.command=\"!say \\\"\" macrobutton.is-checked=false:input.command=\""
 		button-type = pushbox
+	elem "asset_cache_browser"
+		type = BROWSER
+		pos = 0,0
+		size = 200x200
+		anchor1 = none
+		anchor2 = none
+		is-visible = false
+		saved-params = ""
 
 window "mapwindow"
 	elem "mapwindow"
@@ -725,16 +735,11 @@ window "mapwindow"
 window "outputwindow"
 	elem "outputwindow"
 		type = MAIN
-		pos = 281,0
+		pos = 0,0
 		size = 640x480
 		anchor1 = none
 		anchor2 = none
 		saved-params = "pos;size;is-minimized;is-maximized"
-		titlebar = false
-		statusbar = false
-		can-close = false
-		can-minimize = false
-		can-resize = false
 		is-pane = true
 	elem "browseroutput"
 		type = BROWSER
@@ -743,9 +748,18 @@ window "outputwindow"
 		anchor1 = 0,0
 		anchor2 = 100,100
 		background-color = #ffffff
+		is-visible = false
 		is-disabled = true
 		saved-params = ""
 		auto-format = false
+	elem "output"
+		type = OUTPUT
+		pos = 0,0
+		size = 640x480
+		anchor1 = 0,0
+		anchor2 = 100,100
+		is-default = true
+		saved-params = ""
 
 window "rpane"
 	elem "rpane"
@@ -767,39 +781,49 @@ window "rpane"
 		is-vert = false
 	elem "webmap"
 		type = BUTTON
-		pos = 720,0
-		size = 90x20
-		anchor1 = 92,0
-		anchor2 = 104,0
+		pos = 740,0
+		size = 80x20
+		anchor1 = 105,0
+		anchor2 = 117,0
 		saved-params = "is-checked"
 		text = "Webmap"
 		command = "webmap"
 		group = "rpanemode"
 	elem "submitbug"
 		type = BUTTON
-		pos = 540,0
-		size = 90x20
-		anchor1 = 67,0
-		anchor2 = 79,0
+		pos = 580,0
+		size = 80x20
+		anchor1 = 79,0
+		anchor2 = 92,0
 		saved-params = "is-checked"
 		text = "Submit Bug"
 		command = "submit-bug"
 		group = "rpanemode"
 	elem "patreon"
 		type = BUTTON
-		pos = 630,0
-		size = 90x20
-		anchor1 = 79,0
-		anchor2 = 92,0
+		pos = 660,0
+		size = 80x20
+		anchor1 = 92,0
+		anchor2 = 105,0
 		background-color = #ff8040
 		saved-params = "is-checked"
 		text = "Patreon"
 		command = "patreon"
 		group = "rpanemode"
+	elem "discord"
+		type = BUTTON
+		pos = 340,0
+		size = 80x20
+		anchor1 = 42,0
+		anchor2 = 55,0
+		saved-params = "is-checked"
+		text = "Discord"
+		command = "discord"
+		group = "rpanemode"
 	elem "rulesb"
 		type = BUTTON
-		pos = 270,0
-		size = 90x20
+		pos = 260,0
+		size = 80x20
 		anchor1 = 30,0
 		anchor2 = 42,0
 		saved-params = "is-checked"
@@ -809,7 +833,7 @@ window "rpane"
 	elem "changelog"
 		type = BUTTON
 		pos = 180,0
-		size = 90x20
+		size = 80x20
 		anchor1 = 18,0
 		anchor2 = 31,0
 		saved-params = "is-checked"
@@ -818,20 +842,20 @@ window "rpane"
 		group = "rpanemode"
 	elem "forumb"
 		type = BUTTON
-		pos = 450,0
-		size = 90x20
-		anchor1 = 55,0
-		anchor2 = 67,0
+		pos = 500,0
+		size = 80x20
+		anchor1 = 67,0
+		anchor2 = 80,0
 		saved-params = "is-checked"
 		text = "Forum"
 		command = "forum"
 		group = "rpanemode"
 	elem "wikib"
 		type = BUTTON
-		pos = 360,0
-		size = 90x20
-		anchor1 = 42,0
-		anchor2 = 55,0
+		pos = 420,0
+		size = 80x20
+		anchor1 = 55,0
+		anchor2 = 68,0
 		saved-params = "is-checked"
 		text = "Wiki"
 		command = "wiki"
@@ -907,3 +931,30 @@ window "infowindow"
 		on-show = ".winset\"rpane.infob.is-visible=true;rpane.browseb.is-visible=true?rpane.infob.pos=130,0:rpane.infob.pos=65,0 rpane.textb.is-visible=true rpane.infob.is-checked=true rpane.rpanewindow.pos=0,30 rpane.rpanewindow.size=0x0 rpane.rpanewindow.left=infowindow\""
 		on-hide = ".winset\"rpane.infob.is-visible=false;rpane.browseb.is-visible=true?rpane.browseb.is-checked=true rpane.rpanewindow.left=browserwindow:rpane.textb.is-visible=true rpane.rpanewindow.pos=0,30 rpane.rpanewindow.size=0x0 rpane.rpanewindow.left=\""
 
+window "preferences_window"
+	elem "preferences_window"
+		type = MAIN
+		pos = 372,0
+		size = 1120x1000
+		anchor1 = none
+		anchor2 = none
+		background-color = none
+		is-visible = false
+		saved-params = "pos;size;is-minimized;is-maximized"
+		statusbar = false
+	elem "preferences_browser"
+		type = BROWSER
+		pos = -8,-8
+		size = 896x1008
+		anchor1 = 0,0
+		anchor2 = 90,100
+		background-color = none
+		saved-params = ""
+	elem "character_preview_map"
+		type = MAP
+		pos = 887,0
+		size = 313x1000
+		anchor1 = 90,0
+		anchor2 = 100,100
+		right-click = true
+		saved-params = "zoom;letterbox;zoom-mode"

@@ -20,6 +20,7 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 	SetupExternalRSC()
 
 	//make_datum_references_lists()	//Port this from /tg/
+	populate_gear_list()
 	makeDatumRefLists() //Legacy
 
 	TgsNew(new /datum/tgs_event_handler/tg, minimum_required_security_level = TGS_SECURITY_TRUSTED)
@@ -67,12 +68,6 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 	// due to this list not being instantiated.
 	populate_seed_list()
 
-	if(!RoleAuthority)
-		RoleAuthority = new /datum/authority/branch/role()
-		to_chat(world, "<span class='danger'>Job setup complete</span>")
-
-	if(!EvacuationAuthority)
-		EvacuationAuthority = new
 
 	world.tick_lag = CONFIG_GET(number/ticklag)
 
@@ -153,7 +148,7 @@ var/world_topic_spam_protect_time = world.timeofday
 	else if(T == "status")
 		var/list/s = list()
 		s["version"] = game_version
-		s["mode"] = master_mode
+		s["mode"] = GLOB.master_mode
 		s["respawn"] = config ? GLOB.respawn_allowed : 0
 		s["enter"] = GLOB.enter_allowed
 		s["vote"] = CONFIG_GET(flag/allow_vote_mode)
@@ -177,7 +172,10 @@ var/world_topic_spam_protect_time = world.timeofday
 		return list2params(s)
 
 
-/world/Reboot(var/reason)
+/world/Reboot(ping = FALSE)
+	if(ping)
+		send2update("<@&545779447739973633>")
+	send2update("Map: [SSmapping?.next_map_config?.map_name] | Last Round End State: [SSticker?.mode?.round_finished]")
 	TgsReboot()
 	for(var/client/C in GLOB.clients)
 		if(CONFIG_GET(string/server))
@@ -211,8 +209,8 @@ var/world_topic_spam_protect_time = world.timeofday
 	var/list/Lines = file2list("data/mode.txt")
 	if(Lines.len)
 		if(Lines[1])
-			master_mode = Lines[1]
-			log_config("Saved mode is '[master_mode]'")
+			GLOB.master_mode = Lines[1]
+			log_config("Saved mode is '[GLOB.master_mode]'")
 
 
 /world/proc/save_mode(var/the_mode)
@@ -230,24 +228,24 @@ var/world_topic_spam_protect_time = world.timeofday
 			s += "<a href=\"[CONFIG_GET(string/discordurl)]\"><b>[CONFIG_GET(string/server_name)] &#8212; [MAIN_SHIP_NAME]</a></b>"
 		else
 			s += "<b>[CONFIG_GET(string/server_name)] &#8212; [MAIN_SHIP_NAME]</b>"
-		if(ticker && master_mode)
-			switch(GLOB.map_tag)
+		if(Master?.current_runlevel && GLOB.master_mode)
+			switch(SSmapping.config.map_name)
 				if("Ice Colony")
-					s += "<br>Map: <a href='[CONFIG_GET(string/icecolonyurl)]'><b>[GLOB.map_tag]</a></b>"
+					s += "<br>Map: <a href='[CONFIG_GET(string/icecolonyurl)]'><b>[SSmapping.config.map_name]</a></b>"
 				if("LV-624")
-					s += "<br>Map: <a href='[CONFIG_GET(string/lv624url)]'><b>[GLOB.map_tag]</a></b>"
+					s += "<br>Map: <a href='[CONFIG_GET(string/lv624url)]'><b>[SSmapping.config.map_name]</a></b>"
 				if("Solaris Ridge")
-					s += "<br>Map: <a href='[CONFIG_GET(string/bigredurl)]'><b>[GLOB.map_tag]</a></b>"
+					s += "<br>Map: <a href='[CONFIG_GET(string/bigredurl)]'><b>[SSmapping.config.map_name]</a></b>"
 				if("Prison Station")
-					s += "<br>Map: <a href='[CONFIG_GET(string/prisonstationurl)]'><b>[GLOB.map_tag]</a></b>"
+					s += "<br>Map: <a href='[CONFIG_GET(string/prisonstationurl)]'><b>[SSmapping.config.map_name]</a></b>"
 				if("Whiskey Outpost")
-					s += "<br>Map: <a href='[CONFIG_GET(string/whiskeyoutposturl)]'><b>[GLOB.map_tag]</a></b>"
+					s += "<br>Map: <a href='[CONFIG_GET(string/whiskeyoutposturl)]'><b>[SSmapping.config.map_name]</a></b>"
 				else
-					s += "<br>Map: <b>[GLOB.map_tag]</b>"
-			s += "<br>Mode: <b>[ticker.mode.name]</b>"
+					s += "<br>Map: <b>[SSmapping.config.map_name]</b>"
+			s += "<br>Mode: <b>[(Master.current_runlevel & RUNLEVELS_DEFAULT) ? SSticker.mode.name : "Lobby"]</b>"
 			s += "<br>Round time: <b>[duration2text()]</b>"
 		else
-			s += "<br>Map: <b>[GLOB.map_tag]</b>"
+			s += "<br>Map: <b>[SSmapping.config?.map_name ? SSmapping.config.map_name : "Loading..."]</b>"
 
 		status = s
 
@@ -289,6 +287,11 @@ var/failed_old_db_connections = 0
 		return TRUE
 
 
+#undef FAILED_DB_CONNECTION_CUTOFF
+
+/world/proc/incrementMaxZ()
+	maxz++
+	SSmobs.MaxZChanged()
 /world/proc/SetupExternalRSC()
 	if(!CONFIG_GET(string/resource_url))
 		return

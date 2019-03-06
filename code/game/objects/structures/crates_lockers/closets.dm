@@ -26,6 +26,11 @@
 
 	var/const/mob_size = 15
 
+/obj/structure/closet/open
+	icon_state = "open"
+	density = FALSE
+	opened = TRUE
+
 /obj/structure/closet/Initialize()
 	. = ..()
 	if(!opened)		// if closed, any item at the crate's loc is put in the contents
@@ -186,6 +191,8 @@
 		else
 			M.visible_message("<span class='danger'>\The [M] smashes \the [src]!</span>", \
 			"<span class='danger'>You smash \the [src]!</span>", null, 5)
+		if(M.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
+			M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 	else
 		return attack_paw(M)
 

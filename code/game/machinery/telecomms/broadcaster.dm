@@ -226,7 +226,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 	var/list/heard_garbled	= list() // garbled message (ie "f*c* **u, **i*er!")
 	var/list/heard_gibberish= list() // completely screwed over message (ie "F%! (O*# *#!<>&**%!")
 
-	var/command = 0 //Is this a commander? This var actually sets the message size. 2 is normal, 3 is big, 4 is OMGHUGE
+	var/command = 0 //Is this a captain? This var actually sets the message size. 2 is normal, 3 is big, 4 is OMGHUGE
 
 	if(M)
 		if(ishuman(M))
@@ -235,8 +235,8 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 				if(H.mind.cm_skills && H.mind.cm_skills.leadership >= SKILL_LEAD_TRAINED)
 					command = 3
 
-				if(H.mind.role_comm_title)
-					comm_title = H.mind.role_comm_title //Set up [CO] and stuff after frequency
+				if(H.mind.comm_title)
+					comm_title = H.mind.comm_title
 		else if(istype(M,/mob/living/silicon/decoy/ship_ai)) command = 3
 
 	for (var/mob/R in receive)
@@ -263,7 +263,8 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 		if(display_freq == PUB_FREQ && M.loc && R.loc) //We actually have z levels to check.
 			var/atom/Am = get_turf(M) //Getting turfs, just to be safe.
 			var/atom/Ar = get_turf(R)
-			if(Am && Ar && Am.z != Ar.z && (Am.z == 1 || Ar.z == 1) ) continue //If listener and receiver are on different zs, and one of those zs is 1.
+			if(Am && Ar && Am.z != Ar.z && (is_ground_level(Am.z) || is_ground_level(Ar.z)) ) 
+				continue //If listener and receiver are on different zs, and one of those zs is 1.
 
 		// --- Can understand the speech ---
 
@@ -305,7 +306,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 		var/part_b_extra = ""
 		if(data == 3) // intercepted radio message
 			part_b_extra = " <i>(Intercepted)</i>"
-		var/part_b = "</span><b> [bicon(radio)]\[[freq_text]\][part_b_extra]</b> <span class='message'>" // Tweaked for security headsets -- TLE
+		var/part_b = "</span><b> [icon2html(radio, (heard_masked + heard_normal + heard_voice + heard_garbled + heard_gibberish))]\[[freq_text]\][part_b_extra]</b> <span class='message'>" // Tweaked for security headsets -- TLE
 		var/part_c = "</span></span>"
 
 		// Antags!
@@ -536,7 +537,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 		// Create a radio headset for the sole purpose of using its icon
 		var/obj/item/device/radio/headset/radio = new
 
-		var/part_b = "</span><b> [bicon(radio)]\[[freq_text]\][part_b_extra]</b> <span class='message'>" // Tweaked for security headsets -- TLE
+		var/part_b = "</span><b> [icon2html(radio, (heard_normal + heard_garbled + heard_gibberish))]\[[freq_text]\][part_b_extra]</b> <span class='message'>" // Tweaked for security headsets -- TLE
 		var/part_c = "</span></span>"
 
 		if (display_freq in ANTAG_FREQS)

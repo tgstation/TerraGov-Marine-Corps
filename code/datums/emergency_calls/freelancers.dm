@@ -12,11 +12,11 @@
 	var/turf/spawn_loc = get_spawn_point()
 	var/mob/original = M.current
 
-	if(!istype(spawn_loc)) 
+	if(!istype(spawn_loc))
 		return
 
 	var/mob/living/carbon/human/H = new /mob/living/carbon/human(spawn_loc)
-	
+
 	if(H.gender == MALE)
 		H.name = pick(first_names_male_clf) + " " + pick(last_names_clf)
 		H.real_name = H.name
@@ -26,7 +26,7 @@
 		H.real_name = H.name
 		H.voice_name = H.name
 
-	H.key = M.key
+	M.transfer_to(H, TRUE)
 
 	if(original)
 		qdel(original)
@@ -36,20 +36,17 @@
 	if(!leader)
 		leader = H
 		var/datum/job/J = new /datum/job/freelancer/leader
-		H.set_everything(H, "Freelancer Leader")
-		J.generate_equipment(H)
+		J.equip(H)
 		to_chat(H, "<span class='notice'>You are the Freelancer leader!</notice>")
 		return
 
 	if(medics < max_medics)
 		var/datum/job/J = new /datum/job/freelancer/medic
-		H.set_everything(H, "Freelancer Medic")
-		J.generate_equipment(H)
+		J.equip(H)
 		medics++
 		to_chat(H, "<span class='notice'>You are a Freelancer medic!</notice>")
 		return
 
 	var/datum/job/J = new /datum/job/freelancer/standard
-	H.set_everything(H, "Freelancer Standard")
-	J.generate_equipment(H)
+	J.equip(H)
 	to_chat(H, "<span class='notice'>You are a Freelancer mercenary!</notice>")

@@ -13,6 +13,15 @@
 	var/failing = FALSE			// If 1 critical failure has occured and SMES explosion is imminent.
 	unacidable = TRUE
 
+/obj/machinery/power/smes/buildable/empty
+	charge = 0
+
+/obj/machinery/power/smes/buildable/empty/dist
+	name = "colony distribution SMES"
+
+/obj/machinery/power/smes/buildable/empty/backup
+	name = "backup power SMES"
+
 /obj/machinery/power/smes/buildable/New()
 	component_parts = list()
 	component_parts += new /obj/item/stack/cable_coil(src,30)
@@ -245,4 +254,4 @@
 		else if(ismultitool(W))
 			safeties_enabled = !safeties_enabled
 			to_chat(user, "<span class='warning'>You [safeties_enabled ? "connected" : "disconnected"] the safety circuit.</span>")
-			src.visible_message("[bicon(src)] <b>[src]</b> beeps: \"Caution. Safety circuit has been: [safeties_enabled ? "re-enabled" : "disabled. Please excercise caution."]\"")
+			src.visible_message("[icon2html(src, viewers(src))] <b>[src]</b> beeps: \"Caution. Safety circuit has been: [safeties_enabled ? "re-enabled" : "disabled. Please excercise caution."]\"")
