@@ -1,0 +1,4 @@
+author: "Shadow-Quill"
+delete-after: True
+changes: 
+  - tweak: "Evac timer (in the stat panel) is now actually says what it's for."
