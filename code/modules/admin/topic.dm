@@ -1553,7 +1553,8 @@
 		var/dat = "<html><head><title>Admin Log</title></head><body>"
 
 		for(var/x in GLOB.admin_log)
-			dat += "[x]<br>"
+			dat += x
+			dat += "<br>"
 
 		dat += "</body></html>"
 
