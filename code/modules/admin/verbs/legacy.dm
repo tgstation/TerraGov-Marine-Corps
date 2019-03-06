@@ -1086,6 +1086,58 @@ var/jobban_keylist[0]		//to store the keys & ranks
 		return TRUE
 
 
+/datum/admins/proc/legacy_transfer_job_bans()
+	set category = "Debug"
+	set name = "Legacy Transfer Job Bans"
+
+	if(!check_rights(R_BAN) || !check_rights(R_DEBUG) || !SSjob)
+		return
+
+	if(!CONFIG_GET(flag/ban_legacy_system))
+		return
+
+	var/choice = alert("What would you like to do?", "Legacy job ban management", "Check all job bans", "Transfer one ban type", "Cancel")
+	switch(choice)
+
+		if("Check all job bans")
+			var/dat = ""
+			for(var/R in jobban_keylist)
+				for(var/K in jobban_keylist[R])
+					var/reason = jobban_key_isbanned(K, R)
+					if(!reason)
+						continue
+					dat += "<tr><td>Key: <B>[K]</B></td><td>Rank: <B>[R]</B></td><td>Reason: <B>[jobban_keylist[R][K]]</B></td></tr>"
+			dat += "</table>"
+			var/dat_header = "<HR><B>Job Bans:</B>"
+			dat_header += "</FONT><HR><table border=1 rules=all frame=void cellspacing=0 cellpadding=3 >[dat]"
+			usr << browse(dat_header, "window=unbanp;size=875x400")
+	
+		if("Transfer one ban type")
+			var/old_job = input(usr, "Type old job to be renamed", "Old job:") as null|text
+			if(!old_job)
+				to_chat(usr, "<span class='warning'>Error: No old job to replace.</span>")
+				return
+			if(!(old_job in jobban_keylist))
+				to_chat(usr, "<span class='warning'>Error: Selected job has no entries within the legacy job ban database. Consult the existing job bans and try again.</span>")
+				return
+			var/new_job = input(usr, "Type new job to substitute with", "New job:") as null|text
+			if(!new_job)
+				to_chat(usr, "<span class='warning'>Error: No new job to replace with.</span>")
+				return
+			var/counter = 0
+			for(var/key in jobban_keylist[old_job])
+				var/reason = jobban_key_isbanned(key, old_job)
+				if(!reason)
+					continue
+				jobban_key_unban(key, old_job)
+				jobban_key_fullban(key, new_job, reason)
+				counter++
+			jobban_savebanfile()
+			to_chat(usr, "<span class='warning'>[counter] job bans transferred successfully.</span>")
+		else
+			return
+
+
 /*
 /mob/verb/view_notes()
 	set name = "View Notes"

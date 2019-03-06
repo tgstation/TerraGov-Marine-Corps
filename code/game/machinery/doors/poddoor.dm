@@ -29,7 +29,7 @@
 	add_fingerprint(user)
 	if(!W.pry_capable)
 		return
-	if(density && (stat & NOPOWER) && !operating && !unacidable)
+	if(density && (machine_stat & NOPOWER) && !operating && !unacidable)
 		spawn(0)
 			operating = 1
 			flick("pdoorc0", src)

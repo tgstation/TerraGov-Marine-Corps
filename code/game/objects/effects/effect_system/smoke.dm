@@ -291,9 +291,7 @@
 /obj/effect/particle_effect/smoke/xeno/smoke_mob(mob/living/carbon/C)
 	if(lifetime < 1 || !istype(C))
 		return FALSE
-	if(C.stat == DEAD)
-		return FALSE
-	if(isxeno(C) || (isyautja(C) && prob(75)))
+	if(C.stat == DEAD || isxeno(C))
 		return FALSE
 	if(istype(C.buckled, /obj/structure/bed/nest) && C.status_flags & XENO_HOST)
 		return FALSE

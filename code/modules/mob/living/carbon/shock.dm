@@ -39,7 +39,7 @@
 
 // proc to find out in how much pain the mob is at the moment
 /mob/living/carbon/proc/updateshock()
-	if(species && species.flags & NO_PAIN || stat == DEAD)
+	if(species && species.species_flags & NO_PAIN || stat == DEAD)
 		traumatic_shock = 0
 		return
 
@@ -62,10 +62,10 @@
 	if(ishuman(src))
 		var/mob/living/carbon/human/M = src
 		for(var/datum/limb/O in M.limbs)
-			if((O.status & LIMB_DESTROYED) && !(O.status & LIMB_AMPUTATED))
+			if((O.limb_status & LIMB_DESTROYED) && !(O.limb_status & LIMB_AMPUTATED))
 				traumatic_shock += 40
-			else if(O.status & LIMB_BROKEN || O.surgery_open_stage)
-				if(O.status & LIMB_SPLINTED || O.status & LIMB_STABILIZED)
+			else if(O.limb_status & LIMB_BROKEN || O.surgery_open_stage)
+				if(O.limb_status & LIMB_SPLINTED || O.limb_status & LIMB_STABILIZED)
 					traumatic_shock += 15
 				else
 					traumatic_shock += 30

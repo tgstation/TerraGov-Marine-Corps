@@ -26,20 +26,20 @@
 /obj/machinery/power/monitor/attack_ai(mob/user)
 	add_fingerprint(user)
 
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	interact(user)
 
 /obj/machinery/power/monitor/attack_hand(mob/user)
 	add_fingerprint(user)
 
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	interact(user)
 
 /obj/machinery/power/monitor/interact(mob/user)
 
-	if ( (get_dist(src, user) > 1 ) || (stat & (BROKEN|NOPOWER)) )
+	if ( (get_dist(src, user) > 1 ) || (machine_stat & (BROKEN|NOPOWER)) )
 		if (!issilicon(user))
 			user.unset_interaction()
 			user << browse(null, "window=powcomp")
@@ -101,10 +101,10 @@
 
 /obj/machinery/power/monitor/power_change()
 	..()
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		icon_state = "broken"
 	else
-		if (stat & NOPOWER)
+		if(machine_stat & NOPOWER)
 			spawn(rand(0, 15))
 				src.icon_state = "power0"
 		else
@@ -122,7 +122,7 @@
 			A.anchored = 1
 			for (var/obj/C in src)
 				C.loc = src.loc
-			if (src.stat & BROKEN)
+			if (src.machine_stat & BROKEN)
 				to_chat(user, "<span class='notice'>The broken glass falls out.</span>")
 				new /obj/item/shard( src.loc )
 				A.state = 3

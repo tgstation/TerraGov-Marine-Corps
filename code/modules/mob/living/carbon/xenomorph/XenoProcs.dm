@@ -27,8 +27,6 @@
 				stat(null, "Evolve Progress (FINISHED)")
 			else if(!hive.living_xeno_queen)
 				stat(null, "Evolve Progress (HALTED - NO QUEEN)")
-			else if(!hive.living_xeno_queen.ovipositor)
-				stat(null, "Evolve Progress (HALTED - QUEEN HAS NO OVIPOSITOR)")
 			else
 				stat(null, "Evolve Progress: [evolution_stored]/[xeno_caste.evolution_threshold]")
 

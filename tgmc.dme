@@ -487,6 +487,7 @@
 #include "code\game\objects\effects\portals.dm"
 #include "code\game\objects\effects\spiders.dm"
 #include "code\game\objects\effects\step_triggers.dm"
+#include "code\game\objects\effects\turf_overunderlays.dm"
 #include "code\game\objects\effects\decals\cleanable.dm"
 #include "code\game\objects\effects\decals\contraband.dm"
 #include "code\game\objects\effects\decals\crayon.dm"

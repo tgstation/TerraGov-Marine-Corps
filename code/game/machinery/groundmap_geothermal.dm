@@ -232,7 +232,7 @@
 		F.fswitch = src
 
 /obj/machinery/colony_floodlight_switch/update_icon()
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		icon_state = "panelnopower"
 	else if(turned_on)
 		icon_state = "panelon"
@@ -241,7 +241,7 @@
 
 /obj/machinery/colony_floodlight_switch/power_change()
 	..()
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		if(turned_on)
 			toggle_lights(SWITCH_OFF)
 			turned_on = FALSE
@@ -267,7 +267,7 @@
 	if(!ishuman(user))
 		to_chat(user, "Nice try.")
 		return FALSE
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		to_chat(user, "Nothing happens.")
 		return FALSE
 	playsound(src,'sound/machines/click.ogg', 15, 1)

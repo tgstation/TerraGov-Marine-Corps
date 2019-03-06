@@ -178,6 +178,6 @@
 				i++
 				victim.visible_message("<span class='danger'>\The [victim] is scalded with hissing green blood!</span>", \
 				"<span class='danger'>You are splattered with sizzling blood! IT BURNS!</span>")
-				if(prob(60) && !victim.stat && !(victim.species.flags & NO_PAIN))
+				if(prob(60) && !victim.stat && !(victim.species.species_flags & NO_PAIN))
 					victim.emote("scream") //Topkek
 				victim.take_limb_damage(0, rand(10, 25)) //Sizzledam! This automagically burns a random existing body part.

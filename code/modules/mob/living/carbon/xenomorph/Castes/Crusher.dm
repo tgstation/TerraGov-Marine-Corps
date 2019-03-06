@@ -35,7 +35,7 @@
 	deevolves_to = /mob/living/carbon/Xenomorph/Warrior
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA
+	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	// *** Defense *** //
 	armor_deflection = 80
@@ -396,7 +396,7 @@
 	X.visible_message("<span class='danger'>[X] rams [src]!</span>",
 	"<span class='xenodanger'>You ram [src]!</span>")
 	playsound(loc, "punch", 25, 1)
-	stat = 1
+	machine_stat = 1
 	on = 0
 	update_icon()
 	update_health(X.charge_speed * 20)

@@ -166,7 +166,7 @@
 		else
 			return
 
-	var/list/turf/turfs = getline2(user,target)
+	var/list/turf/turfs = getline(user,target)
 	playsound(user, fire_sound, 50, 1)
 	var/distance = 1
 	var/turf/prev_T
@@ -278,7 +278,7 @@
 	set waitfor = 0
 
 	var/unleash_dir = user.dir //don't want the player to turn around mid-unleash to bend the fire.
-	var/list/turf/turfs = getline2(user,target)
+	var/list/turf/turfs = getline(user,target)
 	playsound(user, fire_sound, 50, 1)
 	var/distance = 1
 	var/turf/prev_T
@@ -497,7 +497,6 @@
 							C.apply_damage(fire_damage, BURN, null, armor_block)
 							C.IgniteMob()
 							C.visible_message("<span class='danger'>[C] bursts into flames!</span>","[isxeno(C)?"<span class='xenodanger'>":"<span class='highdanger'>"]You burst into flames!</span>")
-
 
 /obj/flamer_fire/Destroy()
 	SetLuminosity(0)

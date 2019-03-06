@@ -50,12 +50,12 @@
 		feedback_timer = 0
 
 /obj/machinery/mech_sensor/proc/enabled()
-	return on && !(stat & NOPOWER)
+	return on && !(machine_stat & NOPOWER)
 
 /obj/machinery/mech_sensor/power_change()
-	var/old_stat = stat
+	var/old_stat = machine_stat
 	..()
-	if(old_stat != stat)
+	if(old_stat != machine_stat)
 		update_icon()
 
 /obj/machinery/mech_sensor/update_icon(var/safety = 0)
@@ -76,7 +76,7 @@
 		radio_connection = radio_controller.add_object(src, frequency)
 
 /obj/machinery/mech_sensor/receive_signal(datum/signal/signal)
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		return
 
 	if(!signal.data["tag"] || (signal.data["tag"] != id_tag))
