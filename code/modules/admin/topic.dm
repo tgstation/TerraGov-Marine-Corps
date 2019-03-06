@@ -931,7 +931,7 @@
 
 		to_chat(H, "<span class='boldnotice'>Please stand by for a message from TGMC:[input]</span>")
 
-		log_admin("[ADMIN_TPMONTY(usr)] replied to [ADMIN_TPMONTY(H)]'s TGMC message with: [input].")
+		log_admin("[key_name(usr)] replied to [ADMIN_TPMONTY(H)]'s TGMC message with: [input].")
 		message_admins("[ADMIN_TPMONTY(usr)] replied to [ADMIN_TPMONTY(H)]'s' TGMC message with: [input]")
 
 
