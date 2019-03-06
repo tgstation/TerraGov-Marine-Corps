@@ -267,31 +267,25 @@
 	icon_state = "pill_canister12"
 	pill_type_to_fill = /obj/item/reagent_container/pill/dexalin
 
-//Alkysine
 /obj/item/storage/pill_bottle/alkysine
 	name = "alkysine pill bottle"
 	icon_state = "pill_canister7"
 	pill_type_to_fill = /obj/item/reagent_container/pill/alkysine
 
-
-//imidazoline
 /obj/item/storage/pill_bottle/imidazoline
 	name = "imidazoline pill bottle"
 	icon_state = "pill_canister9"
 	pill_type_to_fill = /obj/item/reagent_container/pill/imidazoline
 
-//PERIDAXON
 /obj/item/storage/pill_bottle/peridaxon
 	name = "peridaxon pill bottle"
 	icon_state = "pill_canister10"
 	pill_type_to_fill = /obj/item/reagent_container/pill/peridaxon
 
-//RUSSIAN RED ANTI-RAD
 /obj/item/storage/pill_bottle/russianRed
 	name = "\improper Russian Red pill bottle"
-	icon_state = "pill_canister"
+	icon_state = "pill_canister1"
 	pill_type_to_fill = /obj/item/reagent_container/pill/russianRed
-
 
 /obj/item/storage/pill_bottle/quickclot
 	name = "quick-clot pill bottle"
@@ -309,15 +303,14 @@
 	icon_state = "pill_canister9"
 	pill_type_to_fill = /obj/item/reagent_container/pill/tricordrazine
 
-
 /obj/item/storage/pill_bottle/happy
-	name = "\improper Happy pill bottle"
+	name = "\improper happy pill bottle"
 	desc = "Contains highly illegal drugs. When you want to see the rainbow."
 	max_storage_space = 7
 	pill_type_to_fill = /obj/item/reagent_container/pill/happy
 
 /obj/item/storage/pill_bottle/zoom
-	name = "\improper Zoom pill bottle"
+	name = "\improper zoom pill bottle"
 	desc = "Containts highly illegal drugs. Trade brain for speed."
 	max_storage_space = 7
 	pill_type_to_fill = /obj/item/reagent_container/pill/zoom
