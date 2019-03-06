@@ -250,7 +250,7 @@
 	if(istype(T, /obj/item/clothing/mask/facehugger))
 		var/obj/item/clothing/mask/facehugger/F = T
 		if(isturf(F.loc) && Adjacent(F))
-			if(F.hivenumber != hivenumber)
+			if(!issamexenohive(F))
 				to_chat(src, "<span class='warning'>That facehugger is tainted!</span>")
 				dropItemToGround(F)
 				return
@@ -287,11 +287,11 @@
 	update_action_button_icons()
 
 /mob/living/carbon/Xenomorph/Carrier/proc/store_egg(obj/item/xeno_egg/E)
+	if(!issamexenohive(E))
+		to_chat(src, "<span class='warning'>That egg is tainted!</span>")
+		return
 	if(eggs_cur >= xeno_caste.eggs_max)
 		to_chat(src, "<span class='warning'>You can't carry more eggs on you.</span>")
-		return
-	if(E.hivenumber != hivenumber)
-		to_chat(src, "<span class='warning'>That egg is tainted!</span>")
 		return
 	eggs_cur++
 	to_chat(src, "<span class='notice'>You store the egg and carry it for safekeeping. Now sheltering: [eggs_cur] / [xeno_caste.eggs_max].</span>")

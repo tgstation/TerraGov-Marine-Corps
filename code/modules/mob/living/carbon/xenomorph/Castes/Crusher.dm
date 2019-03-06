@@ -443,7 +443,7 @@
 /mob/living/carbon/Xenomorph/charge_act(mob/living/carbon/Xenomorph/X)
 	if(X.charge_speed > X.charge_speed_buildup * X.charge_turfs_to_charge)
 		playsound(loc, "punch", 25, 1)
-		if(hivenumber != X.hivenumber)
+		if(!issamexenohive(X))
 			log_combat(X, src, "xeno charged")
 			apply_damage(X.charge_speed * 20, BRUTE) // half damage to avoid sillyness
 		if(anchored) //Ovipositor queen can't be pushed

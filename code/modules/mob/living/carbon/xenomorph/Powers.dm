@@ -418,7 +418,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		to_chat(src, "<span class='xenowarning'>You must gather your strength before punching.</span>")
 		return
 
-	if(xeno_hivenumber(M) == hivenumber)
+	if(issamexenohive(M))
 		return M.attack_alien() //harmless nibbling.
 
 	if (!check_plasma(20))

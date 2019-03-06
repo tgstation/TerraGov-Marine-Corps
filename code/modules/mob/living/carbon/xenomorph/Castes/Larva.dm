@@ -50,6 +50,8 @@
 		/mob/living/carbon/Xenomorph/proc/vent_crawl
 		)
 
+	var/base_icon_state = "Larva"
+
 /mob/living/carbon/Xenomorph/Larva/UnarmedAttack(atom/A)
 	a_intent = INTENT_HELP //Forces help intent for all interactions.
 	. = ..()
@@ -69,58 +71,62 @@
 		if(locate(/obj/effect/alien/weeds) in loc)
 			amount_grown++ //Double growth on weeds.
 
-
-//Larva code is just a mess, so let's get it over with
-/mob/living/carbon/Xenomorph/Larva/update_icons()
-
+/mob/living/carbon/Xenomorph/Larva/generate_name()
 	var/progress = "" //Naming convention, three different names
-	var/state = "" //Icon convention, two different sprite sets
-
-	var/name_prefix = ""
-
-	var/datum/hive_status/hive
-	if(hivenumber && hivenumber <= hive_datum.len)
-		hive = hive_datum[hivenumber]
-	else
-		hivenumber = XENO_HIVE_NORMAL
-		hive = hive_datum[hivenumber]
-
-	name_prefix = hive.prefix
-	color = hive.color
-	if(name_prefix == "Corrupted ")
-		add_language("English")
-	else
-		remove_language("English") // its hacky doing it here sort of
 
 	switch(amount_grown)
 		if(0 to 49) //We're still bloody
 			progress = "Bloody "
-			state = "Bloody "
-		if(50 to 99)
-			progress = ""
-			state = ""
 		if(100 to INFINITY)
 			progress = "Mature "
 
-	name = "\improper [name_prefix][progress]Larva ([nicknumber])"
+	name = "\improper [hive.prefix][progress]Larva ([nicknumber])"
 
 	//Update linked data so they show up properly
 	real_name = name
 	if(mind)
 		mind.name = name //This gives them the proper name in deadchat if they explode on death. It's always the small things
 
+/mob/living/carbon/Xenomorph/Larva/update_icons()
+	generate_name()
+	
+	var/bloody = ""
+	if(amount_grown < 50)
+		bloody = "Bloody "
+
+	color = hive.color
+
 	if(stat == DEAD)
-		icon_state = "[state]Larva Dead"
+		icon_state = "[bloody][base_icon_state] Dead"
 	else if(handcuffed || legcuffed)
-		icon_state = "[state]Larva Cuff"
+		icon_state = "[bloody][base_icon_state] Cuff"
 
 	else if(lying)
 		if((resting || sleeping) && (!knocked_down && !knocked_out && health > 0))
-			icon_state = "[state]Larva Sleeping"
+			icon_state = "[bloody][base_icon_state] Sleeping"
 		else
-			icon_state = "[state]Larva Stunned"
+			icon_state = "[bloody][base_icon_state] Stunned"
 	else
-		icon_state = "[state]Larva"
+		icon_state = "[bloody][base_icon_state]"
+
+// predlarva dont have a bloody state
+/mob/living/carbon/Xenomorph/Larva/predalien/update_icons()
+	generate_name()
+
+	color = hive.color
+
+	if(stat == DEAD)
+		icon_state = "[base_icon_state] Dead"
+	else if(handcuffed || legcuffed)
+		icon_state = "[base_icon_state] Cuff"
+
+	else if(lying)
+		if((resting || sleeping) && (!knocked_down && !knocked_out && health > 0))
+			icon_state = "[base_icon_state] Sleeping"
+		else
+			icon_state = "[base_icon_state] Stunned"
+	else
+		icon_state = "[base_icon_state]"
 
 /mob/living/carbon/Xenomorph/Larva/start_pulling(atom/movable/AM)
 	return

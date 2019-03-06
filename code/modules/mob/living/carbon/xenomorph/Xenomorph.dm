@@ -33,8 +33,10 @@
 	GLOB.xeno_mob_list += src
 	round_statistics.total_xenos_created++
 
-	spawn(6) //Mind has to be transferred! Hopefully this will give it enough time to do so.
-		generate_name()
+	generate_nicknumber()
+
+	//Mind has to be transferred! Hopefully this will give it enough time to do so.
+	addtimer(CALLBACK(src, /mob/living/carbon/Xenomorph/.proc/generate_name), 6)
 
 	regenerate_icons()
 
@@ -69,11 +71,7 @@
 	var/datum/xeno_caste/defiler/neuro_upgrade = GLOB.xeno_caste_datums[caste_base_type][CLAMP(upgrade + 1, 1, 4)]
 	neuro_claws_dose = neuro_upgrade.neuro_claws_amount
 
-//Off-load this proc so it can be called freely
-//Since Xenos change names like they change shoes, we need somewhere to hammer in all those legos
-//We set their name first, then update their real_name AND their mind name
-/mob/living/carbon/Xenomorph/proc/generate_name()
-
+/mob/living/carbon/Xenomorph/proc/generate_nicknumber()
 	//We don't have a nicknumber yet, assign one to stick with us
 	if(!nicknumber)
 		var/tempnumber = rand(1, 999)
@@ -86,22 +84,18 @@
 
 		nicknumber = tempnumber
 
-	//Larvas have their own, very weird naming conventions, let's not kick a beehive, not yet
-	if(isxenolarva(src))
-		return
-
-	var/name_prefix = ""
-
-	name_prefix = hive.prefix
-
+//Off-load this proc so it can be called freely
+//Since Xenos change names like they change shoes, we need somewhere to hammer in all those legos
+//We set their name first, then update their real_name AND their mind name
+/mob/living/carbon/Xenomorph/proc/generate_name()
 	//Queens have weird, hardcoded naming conventions based on upgrade levels. They also never get nicknumbers
 	if(isxenoqueen(src))
 		switch(upgrade)
-			if(0) name = "[name_prefix]Queen"			 //Young
-			if(1) name = "[name_prefix]Elder Queen"	 //Mature
-			if(2) name = "[name_prefix]Elder Empress"	 //Elder
-			if(3) name = "[name_prefix]Ancient Empress" //Ancient
-	else name = "[name_prefix][xeno_caste.upgrade_name] [xeno_caste.display_name] ([nicknumber])"
+			if(0) name = "[hive.prefix]Queen"			 //Young
+			if(1) name = "[hive.prefix]Elder Queen"	 //Mature
+			if(2) name = "[hive.prefix]Elder Empress"	 //Elder
+			if(3) name = "[hive.prefix]Ancient Empress" //Ancient
+	else name = "[hive.prefix][xeno_caste.upgrade_name] [xeno_caste.display_name] ([nicknumber])"
 
 	//Update linked data so they show up properly
 	real_name = name
@@ -131,9 +125,8 @@
 				to_chat(user, "It is heavily injured and limping badly.")
 
 	if(hivenumber != XENO_HIVE_NORMAL)
-		if(hivenumber && hivenumber <= hive_datum.len)
-			var/datum/hive_status/hive = hive_datum[hivenumber]
-			to_chat(user, "It appears to belong to the [hive.prefix]hive")
+		var/datum/hive_status/hive = GLOB.hive_datums[hivenumber]
+		to_chat(user, "It appears to belong to the [hive.prefix]hive")
 	return
 
 /mob/living/carbon/Xenomorph/Destroy()
@@ -144,12 +137,8 @@
 	GLOB.xeno_mob_list -= src
 	GLOB.dead_xeno_list -= src
 
-	if(hivenumber && hivenumber <= hive_datum.len)
-		var/datum/hive_status/hive = hive_datum[hivenumber]
-		if(hive.living_xeno_queen && hive.living_xeno_queen.observed_xeno == src)
-			hive.living_xeno_queen.set_queen_overwatch(src, TRUE)
-		if(src in hive.xeno_leader_list)
-			hive.xeno_leader_list -= src
+	remove_from_hive()
+
 	. = ..()
 
 

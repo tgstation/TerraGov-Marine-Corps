@@ -1184,7 +1184,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/xeno/toxin/on_hit_mob(mob/living/carbon/C, obj/item/projectile/P)
 
-	if(!istype(C) || C.stat == DEAD || (xeno_hivenumber(C) && xeno_hivenumber(C) == xeno_hivenumber(P.firer)) )
+	if(!istype(C) || C.stat == DEAD || C.issamexenohive(P.firer) )
 		return
 
 	if(C.status_flags & XENO_HOST && istype(C.buckled, /obj/structure/bed/nest))
@@ -1271,7 +1271,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	drop_resin(get_turf(M))
 	if(istype(M,/mob/living/carbon))
 		var/mob/living/carbon/C = M
-		if( (xeno_hivenumber(C) && xeno_hivenumber(C) == xeno_hivenumber(P.firer) ) )
+		if(C.issamexenohive(P.firer))
 			return
 		C.add_slowdown(2) //slow em down
 		C.next_move_slowdown += 8 //really slow down their next move, as if they stepped in sticky doo doo

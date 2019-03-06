@@ -76,14 +76,14 @@ GLOBAL_LIST_EMPTY(hive_datums) // init by makeDatumRefLists()
 	update_leader_pheromones()
 	return TRUE
 
-/datum/hive_status/proc/on_queen_death(var/mob/living/carbon/Xenomorph/Queen/Q)
+/datum/hive_status/proc/on_queen_death(mob/living/carbon/Xenomorph/Queen/Q)
 	return
 
 /datum/hive_status/proc/can_xeno_message() // override to let corrupted hives still talk
 	return living_xeno_queen
 
 // to_chat will check for valid clients itself already so no need to double check for clients
-/datum/hive_status/proc/xeno_message(var/message = null, var/size = 3)
+/datum/hive_status/proc/xeno_message(message = null, size = 3)
 	if(!can_xeno_message())
 		return
 	for(var/tier in GLOB.xenotiers)
@@ -93,15 +93,21 @@ GLOBAL_LIST_EMPTY(hive_datums) // init by makeDatumRefLists()
 				continue
 			to_chat(X, "<span class='xenodanger'><font size=[size]> [message]</font></span>")
 
-/datum/hive_status/proc/post_add(var/mob/living/carbon/Xenomorph/X)
+/datum/hive_status/proc/hive_mind_message(mob/living/carbon/Xenomorph/sender, message)
+	for(var/t in xenos_by_tier)
+		for(var/i in xenos_by_tier[t])
+			var/mob/living/carbon/Xenomorph/X = i
+			X.receive_hivemind_message(sender, message)
+
+/datum/hive_status/proc/post_add(mob/living/carbon/Xenomorph/X)
 	X.color = color
 	return
 
-/datum/hive_status/proc/post_removal(var/mob/living/carbon/Xenomorph/X)
+/datum/hive_status/proc/post_removal(mob/living/carbon/Xenomorph/X)
 	X.color = null
 	return
 
-/datum/hive_status/proc/add_xeno(var/mob/living/carbon/Xenomorph/X)
+/datum/hive_status/proc/add_xeno(mob/living/carbon/Xenomorph/X)
 	xenos_by_tier[X.tier] += X
 
 	if(!xenos_by_typepath[X.caste_base_type])
@@ -243,16 +249,19 @@ GLOBAL_LIST_EMPTY(hive_datums) // init by makeDatumRefLists()
 	if(!hive.remove_xeno())
 		CRASH("failed to remove xeno from a hive")
 
+	if(queen_chosen_lead || src in hive.xeno_leader_list)
+		hive.remove_leader(src)
+
 	hive = null
 	if(!death) // dead xenos get removed but if ahealed we want to preserve what hive they were in
 		hivenumber = XENO_HIVE_NONE // failsafe value
 
 /mob/living/carbon/Xenomorph/Queen/remove_from_hive(death=FALSE)
 	var/datum/hive_status/HS = hive
-	if(hive.living_xeno_queen == src)
-		hive.living_xeno_queen = null
+	if(HS.living_xeno_queen == src)
+		HS.living_xeno_queen = null
 	. = ..()
-	hive.update_queen()
+	HS.update_queen()
 
 /mob/living/carbon/Xenomorph/proc/transfer_to_hive(var/hivenumber)
 	if(!GLOB.hive_datums[hivenumber])
@@ -263,3 +272,27 @@ GLOBAL_LIST_EMPTY(hive_datums) // init by makeDatumRefLists()
 		remove_from_hive()
 
 	add_to_hive(HS)
+
+// atom level because of /obj/item/projectile/var/atom/firer
+/atom/proc/issamexenohive(atom/A)
+	if(!get_xeno_hivenumber() || !A.get_xeno_hivenumber())
+		return FALSE
+	return get_xeno_hivenumber() == A.get_xeno_hivenumber()
+
+/atom/proc/get_xeno_hivenumber()
+	return FALSE
+
+/obj/effect/alien/egg/get_xeno_hivenumber()
+	return hivenumber
+
+/obj/item/xeno_egg/get_xeno_hivenumber()
+	return hivenumber
+
+/obj/item/alien_embryo/get_xeno_hivenumber()
+	return hivenumber
+
+/obj/item/clothing/mask/facehugger/get_xeno_hivenumber()
+	return hivenumber
+
+/mob/living/carbon/Xenomorph/get_xeno_hivenumber()
+	return hivenumber

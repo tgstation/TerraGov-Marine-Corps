@@ -232,21 +232,13 @@
 /mob/living/carbon/Xenomorph/Queen/Initialize()
 	. = ..()
 	if(!is_centcom_level(z))//so admins can safely spawn Queens in Thunderdome for tests.
-		if(hivenumber && hivenumber <= hive_datum.len)
-			var/datum/hive_status/hive = hive_datum[hivenumber]
-			if(!hive.living_xeno_queen)
-				hive.living_xeno_queen = src
-			xeno_message("<span class='xenoannounce'>A new Queen has risen to lead the Hive! Rejoice!</span>",3,hivenumber)
+		hive.update_queen()
 	playsound(loc, 'sound/voice/alien_queen_command.ogg', 75, 0)
 
 /mob/living/carbon/Xenomorph/Queen/Destroy()
 	. = ..()
 	if(observed_xeno)
 		set_queen_overwatch(observed_xeno, TRUE)
-	if(hivenumber && hivenumber <= hive_datum.len)
-		var/datum/hive_status/hive = hive_datum[hivenumber]
-		if(hive.living_xeno_queen == src)
-			hive.living_xeno_queen = null
 
 /mob/living/carbon/Xenomorph/Queen/Life()
 	. = ..()
@@ -350,11 +342,6 @@
 	plasma_stored -= 50
 	var/txt = copytext(sanitize(input("Set the hive's orders to what? Leave blank to clear it.", "Hive Orders","")), 1, MAX_MESSAGE_LEN)
 
-	var/datum/hive_status/hive
-	if(hivenumber && hivenumber <= hive_datum.len)
-		hive = hive_datum[hivenumber]
-	else return
-
 	if(txt)
 		xeno_message("<B>The Queen has given a new order. Check Status panel for details.</B>",3,hivenumber)
 		hive.hive_orders = txt
@@ -380,17 +367,17 @@
 	var/queensWord = "<br><h2 class='alert'>The words of the queen reverberate in your head...</h2>"
 	queensWord += "<br><span class='alert'>[input]</span><br>"
 
-	for(var/i in GLOB.alive_xeno_list)
-		var/mob/living/carbon/Xenomorph/X = i
-		if(hivenumber != X.hivenumber)
-			continue
+	INVOKE_ASYNC(src, .proc/do_hive_message, queensWord)
 
-		SEND_SOUND(X, sound(get_sfx("queen"), wait = 0,volume = 50))
-		to_chat(X, "[queensWord]")
+/mob/living/carbon/Xenomorph/Queen/proc/do_hive_message(queensWord)
+	if(SSticker?.mode)
+		hive.xeno_message("[queensWord]")
+		for(var/i in hive.get_watchable_xenos())
+			var/mob/living/carbon/Xenomorph/X = i
+			SEND_SOUND(X, sound(get_sfx("queen"), wait = 0,volume = 50))
 
-
-	for(var/mob/dead/observer/G in GLOB.dead_mob_list)
-		SEND_SOUND(G, sound(get_sfx("queen"), wait = 0, volume = 50))
+	for(var/mob/dead/observer/G in GLOB.player_list)
+		SEND_SOUND(G, sound(get_sfx("queen"), wait = 0,volume = 50))
 		to_chat(G, "[queensWord]")
 
 	log_admin("[key_name(src)] has created a Word of the Queen report: [queensWord]")
@@ -417,11 +404,6 @@
 	addtimer(CALLBACK(src, .slash_toggle_delay), 300)
 
 	pslash_delay = TRUE
-
-	var/datum/hive_status/hive
-	if(hivenumber && hivenumber <= hive_datum.len)
-		hive = hive_datum[hivenumber]
-	else return
 
 	var/choice = input("Choose which level of slashing hosts to permit to your hive.","Harming") as null|anything in list("Allowed", "Restricted - Less Damage", "Forbidden")
 
@@ -594,13 +576,9 @@
 	update_canmove()
 	update_icons()
 
-	if(hivenumber && hivenumber <= hive_datum.len)
-		var/datum/hive_status/hive = hive_datum[hivenumber]
+	hive?.update_leader_pheromones()
 
-		for(var/mob/living/carbon/Xenomorph/L in hive.xeno_leader_list)
-			L.handle_xeno_leader_pheromones(src)
-
-	xeno_message("<span class='xenoannounce'>The Queen has grown an ovipositor.</span>", 3, hivenumber)
+	hive?.xeno_message("<span class='xenoannounce'>The Queen has grown an ovipositor.</span>", 3)
 
 /mob/living/carbon/Xenomorph/Queen/proc/dismount_ovipositor(instant_dismount)
 	set waitfor = 0
@@ -613,52 +591,49 @@
 		flick("ovipositor_dismount_destroyed", src)
 		sleep(5)
 
-	if(ovipositor)
-		ovipositor = FALSE
-		update_icons()
-		new /obj/ovipositor(loc)
+	if(!ovipositor)
+		return
+	ovipositor = FALSE
+	update_icons()
+	new /obj/ovipositor(loc)
 
-		if(observed_xeno)
-			set_queen_overwatch(observed_xeno, TRUE)
-		zoom_out()
+	if(observed_xeno)
+		set_queen_overwatch(observed_xeno, TRUE)
+	zoom_out()
 
-		for(var/datum/action/A in actions)
-			qdel(A)
+	for(var/datum/action/A in actions)
+		qdel(A)
 
-		var/list/mobile_abilities = list(
-			/datum/action/xeno_action/xeno_resting,
-			/datum/action/xeno_action/regurgitate,
-			/datum/action/xeno_action/plant_weeds,
-			/datum/action/xeno_action/choose_resin,
-			/datum/action/xeno_action/activable/secrete_resin,
-			/datum/action/xeno_action/grow_ovipositor,
-			/datum/action/xeno_action/activable/screech,
-			/datum/action/xeno_action/activable/corrosive_acid,
-			/datum/action/xeno_action/psychic_whisper,
-		 	/datum/action/xeno_action/shift_spits,
-			/datum/action/xeno_action/activable/xeno_spit,
-			/datum/action/xeno_action/activable/larva_growth,
-			/datum/action/xeno_action/toggle_pheromones
-			)
+	var/list/mobile_abilities = list(
+		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/regurgitate,
+		/datum/action/xeno_action/plant_weeds,
+		/datum/action/xeno_action/choose_resin,
+		/datum/action/xeno_action/activable/secrete_resin,
+		/datum/action/xeno_action/grow_ovipositor,
+		/datum/action/xeno_action/activable/screech,
+		/datum/action/xeno_action/activable/corrosive_acid,
+		/datum/action/xeno_action/psychic_whisper,
+		/datum/action/xeno_action/shift_spits,
+		/datum/action/xeno_action/activable/xeno_spit,
+		/datum/action/xeno_action/activable/larva_growth,
+		/datum/action/xeno_action/toggle_pheromones
+		)
 
-		for(var/path in mobile_abilities)
-			var/datum/action/xeno_action/A = new path()
-			A.give_action(src)
+	for(var/path in mobile_abilities)
+		var/datum/action/xeno_action/A = new path()
+		A.give_action(src)
 
 
-		egg_amount = 0
-		ovipositor_cooldown = world.time + 3000 //5 minutes
-		anchored = FALSE
-		update_canmove()
+	egg_amount = 0
+	ovipositor_cooldown = world.time + 5 MINUTES
+	anchored = FALSE
+	update_canmove()
 
-		if(hivenumber && hivenumber <= hive_datum.len)
-			var/datum/hive_status/hive = hive_datum[hivenumber]
+	hive?.update_leader_pheromones()
 
-			for(var/mob/living/carbon/Xenomorph/L in hive.xeno_leader_list)
-				L.handle_xeno_leader_pheromones(src)
-
-		if(!instant_dismount)
-			xeno_message("<span class='xenoannounce'>The Queen has shed her ovipositor.</span>", 3, hivenumber)
+	if(!instant_dismount)
+		hive?.xeno_message("<span class='xenoannounce'>The Queen has shed her ovipositor.</span>", 3)
 
 /mob/living/carbon/Xenomorph/Queen/update_canmove()
 	. = ..()
