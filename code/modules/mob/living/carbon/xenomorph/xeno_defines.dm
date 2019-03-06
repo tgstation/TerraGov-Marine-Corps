@@ -241,6 +241,8 @@
 
 	var/wound_type = "ravager" //used to match appropriate wound overlays
 
+	var/fire_luminosity = 0 //Luminosity of the current fire while burning
+
 /datum/hive_status
 	var/name = "Normal"
 	var/hivenumber = XENO_HIVE_NORMAL

@@ -1484,6 +1484,73 @@
 		return FALSE
 	. = ..()
 
+/mob/living/carbon/human/disable_lights(armor = TRUE, guns = TRUE, flares = TRUE, misc = TRUE, sparks = FALSE, silent = FALSE)
+	if(luminosity <= 0)
+		return FALSE
+
+	if(sparks)
+		var/datum/effect_system/spark_spread/spark_system = new
+		spark_system.set_up(5, 0, src)
+		spark_system.attach(src)
+		spark_system.start(src)
+
+	var/light_off = 0
+	var/goes_out = 0
+	if(armor)
+		if(istype(wear_suit, /obj/item/clothing/suit/storage/marine))
+			var/obj/item/clothing/suit/storage/marine/S = wear_suit
+			if(S.turn_off_light(src))
+				light_off++
+	if(guns)
+		for(var/obj/item/weapon/gun/G in contents)
+			if(G.turn_off_light(src))
+				light_off++
+	if(flares)
+		for(var/obj/item/device/flashlight/flare/F in contents)
+			if(F.on)
+				goes_out++
+			F.turn_off(src)
+		for(var/obj/item/explosive/grenade/flare/FL in contents)
+			if(FL.active)
+				goes_out++
+			FL.turn_off(src)
+	if(misc)
+		for(var/obj/item/clothing/head/hardhat/H in contents)
+			if(H.turn_off_light(src))
+				light_off++
+		for(var/obj/item/device/flashlight/L in contents)
+			if(istype(L, /obj/item/device/flashlight/flare))
+				continue
+			if(L.turn_off_light(src))
+				light_off++
+		for(var/obj/item/tool/weldingtool/W in contents)
+			if(W.isOn())
+				W.toggle()
+				goes_out++
+		for(var/obj/item/tool/pickaxe/plasmacutter/W in contents)
+			if(W.powered)
+				W.toggle()
+				goes_out++
+		for(var/obj/item/tool/match/M in contents)
+			M.burn_out(src)
+		for(var/obj/item/tool/lighter/Z in contents)
+			if(Z.turn_off(src))
+				goes_out++
+	if(!silent)
+		if(goes_out && light_off)
+			to_chat(src, "<span class='notice'>Your sources of light short and fizzle out.</span>")
+		else if(goes_out)
+			if(goes_out > 1)
+				to_chat(src, "<span class='notice'>Your sources of light fizzle out.</span>")
+			else
+				to_chat(src, "<span class='notice'>Your source of light fizzles out.</span>")
+		else if(light_off)
+			if(light_off > 1)
+				to_chat(src, "<span class='notice'>Your sources of light short out.</span>")
+			else
+				to_chat(src, "<span class='notice'>Your source of light shorts out.</span>")
+		return TRUE
+
 /mob/living/carbon/get_standard_pixel_y_offset()
 	if(lying)
 		return -6

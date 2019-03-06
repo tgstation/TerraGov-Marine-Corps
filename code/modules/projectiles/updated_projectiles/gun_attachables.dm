@@ -220,6 +220,9 @@ Defined in conflicts.dm of the #defines folder.
 			qdel(X)
 			break
 
+	//turn_off_light()
+	//G.flags_gun_features &= ~GUN_FLASHLIGHT_ON
+
 	loc = get_turf(G)
 
 
@@ -449,17 +452,26 @@ Defined in conflicts.dm of the #defines folder.
 /obj/item/attachable/flashlight/activate_attachment(obj/item/weapon/gun/G, mob/living/user, turn_off)
 	if(turn_off && !(G.flags_gun_features & GUN_FLASHLIGHT_ON))
 		return
-	var/flashlight_on = (G.flags_gun_features & GUN_FLASHLIGHT_ON) ? -1 : 1
-	var/atom/movable/light_source =  ismob(G.loc) ? G.loc : G
-	light_source.SetLuminosity(light_mod * flashlight_on)
-	G.flags_gun_features ^= GUN_FLASHLIGHT_ON
+
+	if(ismob(G.loc) && !user)
+		user = G.loc
 
 	if(G.flags_gun_features & GUN_FLASHLIGHT_ON)
-		icon_state = "flashlight-on"
-		attach_icon = "flashlight_a-on"
-	else
 		icon_state = "flashlight"
 		attach_icon = "flashlight_a"
+		if(user && G.loc == user)
+			user.SetLuminosity(-light_mod)
+		else
+			G.SetLuminosity(0)
+	else
+		icon_state = "flashlight-on"
+		attach_icon = "flashlight_a-on"
+		if(user && G.loc == user)
+			user.SetLuminosity(light_mod)
+		else
+			G.SetLuminosity(light_mod)
+
+	G.flags_gun_features ^= GUN_FLASHLIGHT_ON
 
 	G.update_attachable(slot)
 
