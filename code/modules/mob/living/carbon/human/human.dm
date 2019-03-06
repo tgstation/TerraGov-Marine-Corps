@@ -214,9 +214,9 @@
 				ear_damage += 60 * armor
 				ear_deaf += 240 * armor
 
-			adjust_stagger(round(4 * armor,0.1))
-			add_slowdown(round(4 * armor,0.1))
-			KnockOut(10 * armor) //This should kill you outright, so if you're somehow alive I don't feel too bad if you get KOed
+			adjust_stagger(12 * armor)
+			add_slowdown(round(12 * armor,0.1))
+			KnockOut(8 * armor) //This should kill you outright, so if you're somehow alive I don't feel too bad if you get KOed
 
 		if(2)
 			b_loss += rand(60, 80) * armor	//Ouchie time. Armor makes it survivable
@@ -226,9 +226,9 @@
 				ear_damage += 30 * armor
 				ear_deaf += 120 * armor
 
-			adjust_stagger(round(2 * armor,0.1))
-			add_slowdown(round(2 * armor,0.1))
-			KnockDown(7 * armor)
+			adjust_stagger(6 * armor)
+			add_slowdown(round(6 * armor,0.1))
+			KnockDown(4 * armor)
 
 		if(3)
 			b_loss += rand(30, 40) * armor
@@ -238,9 +238,9 @@
 				ear_damage += 15 * armor
 				ear_deaf += 60 * armor
 
-			adjust_stagger(round(1 * armor,0.1))
-			add_slowdown(round(1 * armor,0.1))
-			KnockDown(5 * armor)
+			adjust_stagger(3 * armor)
+			add_slowdown(round(3 * armor,0.1))
+			KnockDown(2 * armor)
 
 	var/update = 0
 
