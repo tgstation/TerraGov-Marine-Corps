@@ -6401,13 +6401,7 @@
 	},
 /area/almayer/engineering/upper_engineering)
 "aqn" = (
-/obj/machinery/power/monitor{
-	name = "Main Power Grid Monitoring"
-	},
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
-	},
+/obj/machinery/suit_storage_unit/carbon_unit,
 /turf/open/floor/almayer{
 	dir = 9;
 	icon_state = "orange";
@@ -7304,11 +7298,6 @@
 "asn" = (
 /obj/structure/table/almayer,
 /obj/item/storage/fancy/cigarettes/kpack,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
 /obj/machinery/light{
 	dir = 8
 	},
@@ -7320,11 +7309,6 @@
 /area/almayer/engineering/ce_room)
 "aso" = (
 /obj/structure/table/almayer,
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/computer/emails,
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/engineering/ce_room)
@@ -7333,19 +7317,9 @@
 /obj/item/paper_bin,
 /obj/item/tool/pen,
 /obj/item/folder/black,
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/engineering/ce_room)
 "asq" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/engineering/ce_room)
 "asr" = (
@@ -7353,11 +7327,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
-	},
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/engineering/ce_room)
@@ -8116,6 +8085,11 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
 /turf/open/floor/almayer{
 	tag = "icon-orangecorner (WEST)";
 	icon_state = "orangecorner";
@@ -8124,6 +8098,11 @@
 /area/almayer/engineering/ce_room)
 "aub" = (
 /obj/machinery/light,
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/open/floor/almayer{
 	dir = 4;
 	icon_state = "orange";
@@ -8131,7 +8110,13 @@
 	},
 /area/almayer/engineering/ce_room)
 "auc" = (
-/obj/machinery/suit_storage_unit/carbon_unit,
+/obj/machinery/power/monitor{
+	name = "Main Power Grid Monitoring"
+	},
+/obj/structure/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
 /turf/open/floor/almayer/mono,
 /area/almayer/engineering/ce_room)
 "aud" = (
@@ -49898,14 +49883,6 @@
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/living/cryo_cells)
-"cpZ" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/almayer{
-	dir = 1;
-	icon_state = "blue";
-	tag = "icon-blue"
-	},
-/area/almayer/hallways/aft_hallway)
 "ctN" = (
 /obj/structure/cable{
 	icon_state = "4-8";
@@ -49990,6 +49967,14 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/almayer,
 /area/almayer/shipboard/weapon_room)
+"dou" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/almayer{
+	dir = 1;
+	icon_state = "blue";
+	tag = "icon-blue"
+	},
+/area/almayer/hallways/aft_hallway)
 "drk" = (
 /obj/machinery/power/apc/almayer,
 /obj/structure/cable,
@@ -50304,10 +50289,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/almayer,
 /area/almayer/shipboard/weapon_room)
-"fLW" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on,
-/turf/open/floor/almayer/mono,
-/area/almayer/living/starboard_garden)
 "fXd" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -50360,13 +50341,6 @@
 /obj/structure/prop/almayer/name_stencil,
 /turf/open/floor/theseus_hull,
 /area/space)
-"gvZ" = (
-/obj/structure/rack,
-/obj/structure/ob_ammo/ob_fuel,
-/obj/structure/ob_ammo/ob_fuel,
-/obj/structure/ob_ammo/ob_fuel,
-/turf/open/floor/almayer/mono,
-/area/almayer/shipboard/weapon_room)
 "gyY" = (
 /obj/structure/cable{
 	tag = "icon-0-2";
@@ -50548,6 +50522,19 @@
 	icon_state = "cargo"
 	},
 /area/almayer/hull/upper_hull)
+"hMM" = (
+/obj/machinery/door/firedoor/border_only/almayer{
+	tag = "icon-door_open";
+	icon_state = "door_open";
+	dir = 2
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/almayer/mono,
+/area/almayer/living/starboard_garden)
+"hOx" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
+/turf/open/floor/almayer/mono,
+/area/almayer/living/starboard_garden)
 "hVB" = (
 /obj/structure/cable{
 	d1 = 2;
@@ -50569,6 +50556,10 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/hallways/aft_hallway)
+"imy" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on,
+/turf/open/floor/almayer/mono,
+/area/almayer/living/starboard_garden)
 "imW" = (
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -50707,12 +50698,6 @@
 	tag = "icon-blue"
 	},
 /area/almayer/shipboard/ex_firing_range)
-"jsL" = (
-/obj/vehicle/powerloader,
-/turf/open/floor/almayer{
-	icon_state = "cargo"
-	},
-/area/almayer/shipboard/weapon_room)
 "jzF" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -50741,6 +50726,17 @@
 	tag = "icon-blue"
 	},
 /area/almayer/shipboard/ex_firing_range)
+"jER" = (
+/obj/machinery/door/poddoor/railing{
+	dir = 4;
+	id = "supply_elevator_railing"
+	},
+/turf/open/floor/almayer{
+	dir = 8;
+	icon_regular_floor = "cargo_arrow";
+	icon_state = "cargo_arrow"
+	},
+/area/almayer/squads/req)
 "jFM" = (
 /obj/machinery/camera/autoname/almayer{
 	dir = 8
@@ -50768,6 +50764,28 @@
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/living/commandbunks)
+"kaw" = (
+/obj/structure/dropship_equipment/sentry_holder,
+/turf/open/floor/almayer{
+	tag = "icon-orange";
+	icon_state = "orange"
+	},
+/area/almayer/hallways/repair_bay)
+"kaQ" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
+/turf/open/floor/plating/plating_catwalk,
+/area/almayer/hallways/aft_hallway)
 "kdj" = (
 /obj/structure/cable{
 	icon_state = "4-8";
@@ -50853,6 +50871,10 @@
 	tag = "icon-sterile_green_side"
 	},
 /area/almayer/medical/cryo_tubes)
+"kWq" = (
+/obj/machinery/light,
+/turf/open/floor/plating/plating_catwalk,
+/area/almayer/squads/req)
 "lca" = (
 /obj/machinery/camera/autoname/almayer{
 	dir = 1
@@ -51025,14 +51047,6 @@
 /obj/item/tool/taperoll/engineering,
 /turf/open/floor/almayer/mono,
 /area/almayer/command/cic)
-"lNi" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/open/floor/almayer/mono,
-/area/almayer/squads/req)
 "lNO" = (
 /turf/open/floor/almayer{
 	dir = 6;
@@ -51086,17 +51100,6 @@
 	},
 /turf/open/floor/almayer,
 /area/almayer/hallways/aft_hallway)
-"mgt" = (
-/obj/machinery/door/poddoor/railing{
-	dir = 4;
-	id = "supply_elevator_railing"
-	},
-/turf/open/floor/almayer{
-	dir = 8;
-	icon_regular_floor = "cargo_arrow";
-	icon_state = "cargo_arrow"
-	},
-/area/almayer/squads/req)
 "mrD" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/almayer/mono,
@@ -51121,17 +51124,6 @@
 	icon_state = "cargo"
 	},
 /area/almayer/hull/upper_hull)
-"mBK" = (
-/obj/structure/rack,
-/obj/structure/ob_ammo/warhead/explosive,
-/obj/structure/ob_ammo/warhead/explosive,
-/obj/structure/ob_ammo/warhead/explosive,
-/turf/open/floor/almayer{
-	dir = 8;
-	icon_state = "red";
-	tag = "icon-red"
-	},
-/area/almayer/shipboard/weapon_room)
 "mER" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -51249,6 +51241,13 @@
 	tag = "icon-silver"
 	},
 /area/almayer/command/cic)
+"nMj" = (
+/obj/structure/rack,
+/obj/structure/ob_ammo/ob_fuel,
+/obj/structure/ob_ammo/ob_fuel,
+/obj/structure/ob_ammo/ob_fuel,
+/turf/open/floor/almayer/mono,
+/area/almayer/shipboard/weapon_room)
 "nNW" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -51455,10 +51454,6 @@
 	icon_state = "redcorner"
 	},
 /area/almayer/hallways/stern_hallway)
-"puw" = (
-/obj/machinery/light,
-/turf/open/floor/plating/plating_catwalk,
-/area/almayer/squads/req)
 "pyR" = (
 /obj/structure/mirror{
 	dir = 4
@@ -51605,10 +51600,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/wood,
 /area/almayer/living/commandbunks)
-"qIm" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
-/turf/open/floor/almayer/mono,
-/area/almayer/living/starboard_garden)
 "qOH" = (
 /obj/machinery/door/airlock/almayer/maint{
 	dir = 2;
@@ -51773,6 +51764,12 @@
 /obj/machinery/door/window/brigdoor/theseus/cell_3,
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/shipboard/brig_cells)
+"sWJ" = (
+/obj/vehicle/powerloader,
+/turf/open/floor/almayer{
+	icon_state = "cargo"
+	},
+/area/almayer/shipboard/weapon_room)
 "sXm" = (
 /obj/structure/window/framed/almayer/requisitions,
 /turf/open/floor/plating,
@@ -51881,13 +51878,6 @@
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/hull/upper_hull)
-"uvg" = (
-/obj/structure/dropship_equipment/sentry_holder,
-/turf/open/floor/almayer{
-	tag = "icon-orange";
-	icon_state = "orange"
-	},
-/area/almayer/hallways/repair_bay)
 "uwI" = (
 /obj/structure/closet/firecloset,
 /turf/open/floor/almayer{
@@ -51925,15 +51915,6 @@
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/shipboard/starboard_missiles)
-"uGH" = (
-/obj/machinery/door/firedoor/border_only/almayer{
-	tag = "icon-door_open";
-	icon_state = "door_open";
-	dir = 2
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/almayer/mono,
-/area/almayer/living/starboard_garden)
 "uQj" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -52009,6 +51990,14 @@
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/shipboard/port_missiles)
+"vBC" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/almayer/mono,
+/area/almayer/squads/req)
 "vFc" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/almayer,
@@ -52294,21 +52283,6 @@
 	},
 /turf/open/floor/almayer,
 /area/almayer/hull/upper_hull)
-"xOl" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
-/turf/open/floor/plating/plating_catwalk,
-/area/almayer/hallways/aft_hallway)
 "xXw" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -52336,6 +52310,17 @@
 	},
 /turf/open/floor/theseus_hull,
 /area/space)
+"yiH" = (
+/obj/structure/rack,
+/obj/structure/ob_ammo/warhead/explosive,
+/obj/structure/ob_ammo/warhead/explosive,
+/obj/structure/ob_ammo/warhead/explosive,
+/turf/open/floor/almayer{
+	dir = 8;
+	icon_state = "red";
+	tag = "icon-red"
+	},
+/area/almayer/shipboard/weapon_room)
 "yiQ" = (
 /obj/structure/disposalpipe/junction,
 /obj/structure/cable{
@@ -58720,7 +58705,7 @@ bjx
 byD
 bzK
 bBk
-mBK
+yiH
 bEf
 bjx
 bjx
@@ -59232,9 +59217,9 @@ bqa
 bGC
 ckI
 bNa
-gvZ
-gvZ
-gvZ
+nMj
+nMj
+nMj
 bmo
 ckI
 cjv
@@ -59243,7 +59228,7 @@ bqa
 bqa
 bnY
 cjL
-jsL
+sWJ
 vsz
 bjx
 aaa
@@ -74929,7 +74914,7 @@ bRE
 bTM
 wdE
 bVl
-uvg
+kaw
 bYG
 bRE
 caj
@@ -75186,7 +75171,7 @@ bRE
 bTN
 cfC
 bVl
-uvg
+kaw
 bYG
 bRE
 caj
@@ -81967,10 +81952,10 @@ aca
 aca
 aca
 aca
-fLW
+imy
 ahC
-cpZ
-xOl
+dou
+kaQ
 alz
 anc
 aow
@@ -84537,8 +84522,8 @@ aca
 abZ
 aca
 ace
-qIm
-uGH
+hOx
+hMM
 wxo
 eoj
 alz
@@ -93923,7 +93908,7 @@ bnG
 bpu
 brl
 brb
-lNi
+vBC
 bnC
 byd
 bnC
@@ -94699,7 +94684,7 @@ bnC
 byf
 bzq
 bzq
-mgt
+jER
 bzq
 bzq
 bGj
@@ -94960,7 +94945,7 @@ bzr
 bzr
 bzr
 bGk
-puw
+kWq
 bnF
 bJN
 brl
@@ -95988,7 +95973,7 @@ bzr
 bzr
 bzr
 bGk
-puw
+kWq
 bnF
 bJP
 brb
@@ -110244,7 +110229,7 @@ aaa
 aad
 anD
 aoY
-aoY
+mER
 asv
 aoY
 pNG
@@ -110256,7 +110241,7 @@ aup
 avY
 aoY
 asv
-aoY
+mER
 aoY
 anD
 aMu
@@ -110500,8 +110485,8 @@ aaa
 aaa
 aad
 anD
-aoY
-aoY
+asv
+asv
 asv
 auj
 pNG
@@ -110513,8 +110498,8 @@ awa
 avY
 aHj
 asv
-aoY
-aoY
+asv
+asv
 anD
 aMu
 aaa
@@ -110757,8 +110742,8 @@ aaa
 aaa
 aae
 anD
-aoX
-aoX
+aoY
+aoY
 asv
 aui
 avX
@@ -110770,8 +110755,8 @@ awa
 avX
 aHi
 asv
-aoX
-aoX
+aoY
+aoY
 anD
 aMv
 aaa
@@ -111271,8 +111256,8 @@ aaa
 aaa
 aaa
 anD
-aoY
-aoY
+aoX
+aoX
 asv
 aoY
 pNG
@@ -111284,8 +111269,8 @@ awb
 avY
 aoY
 asv
-aoY
-aoY
+aoX
+aoX
 anD
 aaa
 aaa
@@ -111529,7 +111514,7 @@ aaa
 aaa
 anD
 aoY
-mER
+aoY
 asv
 aui
 avX
@@ -111541,7 +111526,7 @@ lAe
 avX
 aHi
 asv
-mER
+aoY
 aoY
 anD
 aaa
