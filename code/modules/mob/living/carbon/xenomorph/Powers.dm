@@ -1100,10 +1100,6 @@
 		to_chat(src, "<span class='warning'>You can't absorb [energy] from here!</span>")
 		return
 
-	if(!Adjacent(target))
-		to_chat(src, "<span class='warning'>You need to be closer to [target].</span>")
-		return
-
 	if(stagger)
 		to_chat(src, "<span class='xenowarning'>You try to salvage [target]'s essence but are staggered!</span>")
 		return
