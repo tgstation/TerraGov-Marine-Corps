@@ -335,9 +335,8 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 
 /datum/admins/proc/delete_atom(atom/O as obj|mob|turf in world)
-	set category = "Debug"
+	set category = null
 	set name = "Delete"
-	set hidden = TRUE
 
 	if(!check_rights(R_DEBUG))
 		return

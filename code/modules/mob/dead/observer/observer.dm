@@ -77,6 +77,15 @@
 		target.key = usr.key
 		target.client.change_view(world.view)
 		target.fully_replace_character_name(real_name, target.real_name)
+		if(target.job && target.mind)
+			var/datum/job/J = SSjob.name_occupations[target.job]
+			var/datum/outfit/job/O = new J.outfit
+			var/datum/skills/L = new J.skills_type
+			target.mind.cm_skills = L
+			target.mind.comm_title = J.comm_title
+
+			SSjob.AssignRole(target, target.job)
+			O.post_equip(target)
 
 
 	else if(href_list["preference"])
