@@ -1,24 +1,19 @@
-var/global/list/seed_types = list()       // A list of all seed data.
-var/global/list/gene_tag_masks = list()   // Gene obfuscation for delicious trial and error goodness.
+GLOBAL_LIST_EMPTY(seed_types)       // A list of all seed data.
+GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and error goodness.
 
 // Predefined/roundstart varieties use a string key to make it
 // easier to grab the new variety when mutating. Post-roundstart
 // and mutant varieties use their uid converted to a string instead.
 // Looks like shit but it's sort of necessary.
 
-proc/populate_seed_list()
+/proc/populate_seed_list()
 
 	// Populate the global seed datum list.
 	for(var/type in subtypesof(/datum/seed))
 		var/datum/seed/S = new type
-		seed_types[S.name] = S
-		S.uid = "[seed_types.len]"
-		S.roundstart = 1
-
-	// Make sure any seed packets that were mapped in are updated
-	// correctly (since the seed datums did not exist a tick ago).
-	for(var/obj/item/seeds/S in GLOB.item_list)
-		S.update_seed()
+		GLOB.seed_types[S.name] = S
+		S.uid = "[length(GLOB.seed_types)]"
+		S.roundstart = TRUE
 
 	//Might as well mask the gene types while we're at it.
 	var/list/gene_tags = list("products","consumption","environment","resistance","vigour","flowers")
@@ -33,7 +28,14 @@ proc/populate_seed_list()
 
 		used_masks += gene_mask
 		gene_tags -= gene_tag
-		gene_tag_masks[gene_tag] = gene_mask
+		GLOB.gene_tag_masks[gene_tag] = gene_mask
+
+	// Make sure any seed packets that were mapped in are updated
+	// correctly (since the seed datums did not exist a tick ago).
+	for(var/obj/item/seeds/S in GLOB.item_list)
+		S.update_seed()
+
+	return TRUE
 
 /datum/plantgene
 	var/genetype    // Label used when applying trait.
@@ -559,10 +561,10 @@ proc/populate_seed_list()
 		to_chat(user, "You [harvest_sample ? "take a sample" : "harvest"] from the [display_name].")
 
 		//This may be a new line. Update the global if it is.
-		if(name == "new line" || !(name in seed_types))
-			uid = seed_types.len + 1
+		if(name == "new line" || !(name in GLOB.seed_types))
+			uid = GLOB.seed_types.len + 1
 			name = "[uid]"
-			seed_types[name] = src
+			GLOB.seed_types[name] = src
 
 		if(harvest_sample)
 			var/obj/item/seeds/seeds = new(get_turf(user))
