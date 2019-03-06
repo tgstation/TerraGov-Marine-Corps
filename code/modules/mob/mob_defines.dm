@@ -172,4 +172,6 @@
 
 	var/list/fullscreens = list()
 
+	var/list/light_sources = list()
+
 	var/notransform
