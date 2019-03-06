@@ -500,7 +500,7 @@
 	else
 		dat += "<p> No client attached to mob </p>"
 
-	dat += "<hr style='background:#000000; border:0; height:1px'>"
+	dat += "<hr style='background:#FFFFFF; border:0; height:1px'>"
 	dat += "<center><p>Mob</p></center>"
 
 	dat += "<center>"
@@ -517,7 +517,7 @@
 	dat += individual_logging_panel_link(M, INDIVIDUAL_SHOW_ALL_LOG, LOGSRC_MOB, "Show All", source, ntype)
 	dat += "</center>"
 
-	dat += "<hr style='background:#000000; border:0; height:1px'>"
+	dat += "<hr style='background:#FFFFFF; border:0; height:1px'>"
 
 	var/log_source = M.logging;
 	if(source == LOGSRC_CLIENT && M.client)
@@ -530,10 +530,12 @@
 			if(islist(reversed))
 				reversed = reverseRange(reversed.Copy())
 				for(var/entry in reversed)
-					dat += "<font size=2px><b>[entry]</b><br>[reversed[entry]]</font><br>"
+					dat += "<font size=2px>[entry]<br>[reversed[entry]]</font><br>"
 			dat += "<hr>"
 
-	usr << browse(dat, "window=invidual_logging_[key_name(M)];size=600x480")
+	var/datum/browser/browser = new(usr, "invidual_logging_[key_name(M)]", "<div align='center'>Logs</div>", 600, 480)
+	browser.set_content(dat)
+	browser.open()
 
 
 /datum/admins/proc/individual_logging_panel_link(mob/M, log_type, log_src, label, selected_src, selected_type)
@@ -542,7 +544,7 @@
 
 	var/slabel = label
 	if(selected_type == log_type && selected_src == log_src)
-		slabel = "<b>\[[label]\]</b>"
+		slabel = "<b><font color='#ff8c8c'>\[[label]\]</font></b>"
 
 	return "<a href='?src=[REF(usr.client.holder)];[HrefToken()];individuallog=[REF(M)];log_type=[log_type];log_src=[log_src]'>[slabel]</a>"
 

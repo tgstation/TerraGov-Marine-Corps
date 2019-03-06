@@ -140,7 +140,7 @@
 						return;
 					locked_tabs.push(id);
 					var notice_span = document.getElementById(notice_span_id);
-					notice_span.innerHTML = "<font color='#700000'>Locked</font> ";
+					notice_span.innerHTML = "<font color='#bc3c3c'>Locked</font> ";
 					//link.setAttribute("onClick","attempt('"+id+"','"+link_id+"','"+notice_span_id+"');");
 					//document.write("removeFromLocked('"+id+"','"+link_id+"','"+notice_span_id+"')");
 					//document.write("aa - "+link.getAttribute("onClick"));
@@ -236,7 +236,7 @@
 
 				else if(issilicon(M)) //silicon
 					if(isAI(M))
-						M_job = "aI"
+						M_job = "AI"
 					else if(iscyborg(M))
 						M_job = "Cyborg"
 					else
@@ -491,6 +491,6 @@
 
 	log_admin("[key_name(usr)] opened the player panel of [key_name(M)].")
 
-	var/datum/browser/browser = new(usr, "player[M.name]", "<div align='center'>Player Panel [key_name(M)]</div>", 570, 535)
+	var/datum/browser/browser = new(usr, "player_panel_[key_name(M)]", "<div align='center'>Player Panel [key_name(M)]</div>", 570, 535)
 	browser.set_content(body)
 	browser.open()
