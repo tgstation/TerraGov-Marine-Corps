@@ -177,210 +177,211 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 	var/obj/item/device/radio/intercom/announce //Intercom for cryo announcements
 
 /obj/machinery/cryopod/right
-	orient_right = 1
+	orient_right = TRUE
 	icon_state = "body_scanner_0-r"
 
 /obj/machinery/cryopod/New()
+	announce = new(src)
+	update_icon()
+	return ..()
 
-	announce = new /obj/item/device/radio/intercom(src)
-
-	if(orient_right)
-		icon_state = "body_scanner_0-r"
-	else
-		icon_state = "body_scanner_0"
-	..()
+/obj/machinery/cryopod/update_icon()
+	var/occupied = occupant ? TRUE : FALSE
+	var/mirror = orient_right ? "-r" : ""
+	icon_state = "body_scanner_[occupied][mirror]"
 
 //Lifted from Unity stasis.dm and refactored. ~Zuhayr
 /obj/machinery/cryopod/process()
-	if(occupant)
-		//Allow a ten minute gap between entering the pod and actually despawning.
-		if(world.time - time_entered < time_till_despawn)
-			return
+	if(!occupant)
+		stop_processing()
+		update_icon()
+		return
+	//Allow a ten minute gap between entering the pod and actually despawning.
+	if(world.time - time_entered < time_till_despawn)
+		return
 
-		if(occupant.stat != DEAD) //Occupant is living and has no client.
+	if(occupant.stat == DEAD) //Occupant is dead, abort.
+		go_out()
+		return
 
-			//Drop all items into the pod.
-			for(var/obj/item/W in occupant)
-				occupant.transferItemToLoc(W, src)
+	//Drop all items into the pod.
+	for(var/obj/item/W in occupant)
+		occupant.transferItemToLoc(W, src)
 
-			//Delete all items not on the preservation list.
+	//Delete all items not on the preservation list.
 
-			var/list/items = contents.Copy()
-			items -= occupant //Don't delete the occupant
-			items -= announce //or the autosay radio.
+	var/list/items = contents.Copy()
+	items -= occupant //Don't delete the occupant
+	items -= announce //or the autosay radio.
 
-			var/list/dept_console = frozen_items["REQ"]
-			if(ishuman(occupant))
-				var/mob/living/carbon/human/H = occupant
-				switch(H.job)
-					if("Master at Arms","Command Master at Arms")
-						dept_console = frozen_items["MP"]
-					if("Medical Officer","Medical Researcher","Chief Medical Officer")
-						dept_console = frozen_items["Med"]
-					if("Ship Engineer","Chief Ship Engineer")
-						dept_console = frozen_items["Eng"]
+	var/list/dept_console = frozen_items["REQ"]
+	if(ishuman(occupant))
+		var/mob/living/carbon/human/H = occupant
+		switch(H.job)
+			if("Master at Arms","Command Master at Arms")
+				dept_console = frozen_items["MP"]
+			if("Medical Officer","Medical Researcher","Chief Medical Officer")
+				dept_console = frozen_items["Med"]
+			if("Ship Engineer","Chief Ship Engineer")
+				dept_console = frozen_items["Eng"]
 
-			var/list/deleteempty = list(/obj/item/storage/backpack/marine/satchel)
+	var/list/deleteempty = list(/obj/item/storage/backpack/marine/satchel)
 
-			var/list/deleteall = list(/obj/item/clothing/mask/cigarette, \
-			/obj/item/clothing/glasses/sunglasses, \
-			/obj/item/device/pda, \
-			/obj/item/clothing/glasses/mgoggles, \
-			/obj/item/clothing/head/cmberet/red, \
-			/obj/item/clothing/gloves/black, \
-			/obj/item/weapon/baton, \
-			/obj/item/weapon/gun/energy/taser, \
-			/obj/item/clothing/glasses/sunglasses/sechud, \
-			/obj/item/device/radio/headset/almayer, \
-			/obj/item/card/id, \
-			/obj/item/clothing/under/marine, \
-			/obj/item/clothing/shoes/marine, \
-			/obj/item/clothing/head/cmcap)
+	var/list/deleteall = list(/obj/item/clothing/mask/cigarette, \
+	/obj/item/clothing/glasses/sunglasses, \
+	/obj/item/device/pda, \
+	/obj/item/clothing/glasses/mgoggles, \
+	/obj/item/clothing/head/cmberet/red, \
+	/obj/item/clothing/gloves/black, \
+	/obj/item/weapon/baton, \
+	/obj/item/weapon/gun/energy/taser, \
+	/obj/item/clothing/glasses/sunglasses/sechud, \
+	/obj/item/device/radio/headset/almayer, \
+	/obj/item/card/id, \
+	/obj/item/clothing/under/marine, \
+	/obj/item/clothing/shoes/marine, \
+	/obj/item/clothing/head/cmcap)
 
-			var/list/strippeditems = list()
+	var/list/strippeditems = list()
 
-			item_loop:
-				for(var/obj/item/W in items)
-					if(W.flags_item & NODROP) //We don't keep undroppable/unremovable items
-						if(istype(W, /obj/item/clothing/suit/storage))
-							var/obj/item/clothing/suit/storage/SS = W
-							for(var/obj/item/I in SS.pockets) //But we keep stuff inside them
-								SS.pockets.remove_from_storage(I, loc)
-								strippeditems += I
-								I.loc = null
-						if(istype(W, /obj/item/storage))
-							var/obj/item/storage/S = W
-							for(var/obj/item/I in S)
-								S.remove_from_storage(I, loc)
-								strippeditems += I
-								I.loc = null
-						qdel(W)
-						continue
-
-
-					//special items that store stuff in a nonstandard way, we properly remove those items
-
-					if(istype(W, /obj/item/clothing/suit/storage))
-						var/obj/item/clothing/suit/storage/SS = W
-						for(var/obj/item/I in SS.pockets)
-							SS.pockets.remove_from_storage(I, loc)
-							strippeditems += I
-							I.loc = null
-
-					if(istype(W, /obj/item/clothing/under))
-						var/obj/item/clothing/under/UN = W
-						if(UN.hastie)
-							var/obj/item/TIE = UN.hastie
-							UN.remove_accessory()
-							strippeditems += TIE
-							TIE.loc = null
-
-					if(istype(W, /obj/item/clothing/shoes/marine))
-						var/obj/item/clothing/shoes/marine/MS = W
-						if(MS.knife)
-							strippeditems += MS.knife
-							MS.knife.loc = null
-							MS.knife = null
+	item_loop:
+		for(var/obj/item/W in items)
+			if(W.flags_item & (ITEM_ABSTRACT|NODROP|DELONDROP)) //We don't keep undroppable/unremovable items
+				if(istype(W, /obj/item/clothing/suit/storage))
+					var/obj/item/clothing/suit/storage/S = W
+					for(var/obj/item/I in S.pockets) //But we keep stuff inside them
+						S.pockets.remove_from_storage(I, loc)
+						strippeditems += I
+						I.loc = null
+				if(istype(W, /obj/item/storage))
+					var/obj/item/storage/S = W
+					for(var/obj/item/I in S)
+						S.remove_from_storage(I, loc)
+						strippeditems += I
+						I.loc = null
+				qdel(W)
+				continue
 
 
+			//special items that store stuff in a nonstandard way, we properly remove those items
 
-					for(var/TT in deleteempty)
-						if(istype(W, TT))
-							if(length(W.contents) == 0)
-								qdel(W) // delete all the empty satchels
-								continue item_loop
-							break // not empty, don't delete
+			if(istype(W, /obj/item/clothing/suit/storage))
+				var/obj/item/clothing/suit/storage/SS = W
+				for(var/obj/item/I in SS.pockets)
+					SS.pockets.remove_from_storage(I, loc)
+					strippeditems += I
+					I.loc = null
 
-					for(var/DA in deleteall)
-						if(istype(W, DA))
-							qdel(W)
-							continue item_loop
+			if(istype(W, /obj/item/clothing/under))
+				var/obj/item/clothing/under/UN = W
+				if(UN.hastie)
+					var/obj/item/TIE = UN.hastie
+					UN.remove_accessory()
+					strippeditems += TIE
+					TIE.loc = null
+
+			if(istype(W, /obj/item/clothing/shoes/marine))
+				var/obj/item/clothing/shoes/marine/MS = W
+				if(MS.knife)
+					strippeditems += MS.knife
+					MS.knife.loc = null
+					MS.knife = null
 
 
 
-					dept_console += W
-					W.loc = null
+			for(var/TT in deleteempty)
+				if(istype(W, TT))
+					if(length(W.contents) == 0)
+						qdel(W) // delete all the empty satchels
+						continue item_loop
+					break // not empty, don't delete
 
-			stripped_items:
-				for(var/obj/item/A in strippeditems)
-					for(var/DAA in deleteall)
-						if(istype(A, DAA))
-							qdel(A)
-							continue stripped_items
-
-					dept_console += A
-					A.loc = null
-
-			if(ishuman(occupant))
-				var/mob/living/carbon/human/H = occupant
-				if(H.mind && H.assigned_squad)
-					var/datum/squad/S = H.assigned_squad
-					switch(H.mind.assigned_role)
-						if("Squad Engineer")
-							S.num_engineers--
-						if("Squad Corpsman")
-							S.num_medics--
-						if("Squad Specialist")
-							S.num_specialists--
-							if(H.specset && !available_specialist_sets.Find(H.specset))
-								available_specialist_sets += H.specset //we make the set this specialist took if any available again
-
-						if("Squad Smartgunner")
-							S.num_smartgun--
-						if("Squad Leader")
-							S.num_leaders--
-					S.count--
-				H.assigned_squad?.clean_marine_from_squad(H,TRUE) //Remove from squad recods, if any.
-
-			SSticker.mode.latejoin_tally-- //Cryoing someone out removes someone from the Marines, blocking further larva spawns until accounted for
-
-			//Handle job slot/tater cleanup.
-			if(occupant.mind?.assigned_role)
-				var/datum/job/J = SSjob.name_occupations[occupant.mind.assigned_role]
-				J.current_positions--
-
-			//Delete them from datacore.
-			if(PDA_Manifest.len)
-				PDA_Manifest.Cut()
-			for(var/datum/data/record/R in data_core.medical)
-				if((R.fields["name"] == occupant.real_name))
-					data_core.medical -= R
-					qdel(R)
-			for(var/datum/data/record/T in data_core.security)
-				if((T.fields["name"] == occupant.real_name))
-					data_core.security -= T
-					qdel(T)
-			for(var/datum/data/record/G in data_core.general)
-				if((G.fields["name"] == occupant.real_name))
-					data_core.general -= G
-					qdel(G)
-
-			if(orient_right)
-				icon_state = "body_scanner_0-r"
-			else
-				icon_state = "body_scanner_0"
+			for(var/DA in deleteall)
+				if(istype(W, DA))
+					qdel(W)
+					continue item_loop
 
 
-			occupant.ghostize(0) //We want to make sure they are not kicked to lobby.
-			//TODO: Check objectives/mode, update new targets if this mob is the target, spawn new antags?
 
-			//Make an announcement and log the person entering storage.
-			frozen_crew += "[occupant.real_name]"
+			dept_console += W
+			W.loc = null
 
-			announce.autosay("[occupant.real_name] has entered long-term hypersleep storage. Belongings moved to hypersleep inventory.", "Hypersleep Storage System")
-			visible_message("<span class='notice'>[src] hums and hisses as it moves [occupant.real_name] into hypersleep storage.</span>")
+	stripped_items:
+		for(var/obj/item/A in strippeditems)
+			for(var/DAA in deleteall)
+				if(istype(A, DAA))
+					qdel(A)
+					continue stripped_items
 
-			//Delete the mob.
+			dept_console += A
+			A.loc = null
 
-			qdel(occupant)
-			occupant = null
-			stop_processing()
+	if(ishuman(occupant))
+		var/mob/living/carbon/human/H = occupant
+		if(H.mind && H.assigned_squad)
+			var/datum/squad/S = H.assigned_squad
+			switch(H.mind.assigned_role)
+				if("Squad Engineer")
+					S.num_engineers--
+				if("Squad Corpsman")
+					S.num_medics--
+				if("Squad Specialist")
+					S.num_specialists--
+					if(H.specset && !available_specialist_sets.Find(H.specset))
+						available_specialist_sets += H.specset //we make the set this specialist took if any available again
+
+				if("Squad Smartgunner")
+					S.num_smartgun--
+				if("Squad Leader")
+					S.num_leaders--
+			S.count--
+		H.assigned_squad?.clean_marine_from_squad(H,TRUE) //Remove from squad recods, if any.
+
+	SSticker.mode.latejoin_tally-- //Cryoing someone out removes someone from the Marines, blocking further larva spawns until accounted for
+
+	//Handle job slot/tater cleanup.
+	if(occupant.mind?.assigned_role)
+		var/datum/job/J = SSjob.name_occupations[occupant.mind.assigned_role]
+		J.current_positions--
+
+	//Delete them from datacore.
+	if(PDA_Manifest.len)
+		PDA_Manifest.Cut()
+	for(var/datum/data/record/R in data_core.medical)
+		if((R.fields["name"] == occupant.real_name))
+			data_core.medical -= R
+			qdel(R)
+	for(var/datum/data/record/T in data_core.security)
+		if((T.fields["name"] == occupant.real_name))
+			data_core.security -= T
+			qdel(T)
+	for(var/datum/data/record/G in data_core.general)
+		if((G.fields["name"] == occupant.real_name))
+			data_core.general -= G
+			qdel(G)
+
+
+	occupant.ghostize(0) //We want to make sure they are not kicked to lobby.
+	//TODO: Check objectives/mode, update new targets if this mob is the target, spawn new antags?
+
+	//Make an announcement and log the person entering storage.
+	frozen_crew += "[occupant.real_name]"
+
+	announce.autosay("[occupant.real_name] has entered long-term hypersleep storage. Belongings moved to hypersleep inventory.", "Hypersleep Storage System")
+	visible_message("<span class='notice'>[src] hums and hisses as it moves [occupant.real_name] into hypersleep storage.</span>")
+
+	//Delete the mob.
+
+	QDEL_NULL(occupant)
+	stop_processing()
+	update_icon()
 
 
 /obj/machinery/cryopod/attackby(obj/item/W, mob/living/user)
 
 	if(istype(W, /obj/item/grab))
-		if(isxeno(user)) return
+		if(isxeno(user))
+			return
 		var/obj/item/grab/G = W
 		if(occupant)
 			to_chat(user, "<span class='warning'>[src] is occupied.</span>")
@@ -389,43 +390,43 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 		if(!isliving(G.grabbed_thing))
 			return
 
-		var/willing = null //We don't want to allow people to be forced into despawning.
+		var/willing = FALSE //We don't want to allow people to be forced into despawning.
 		var/mob/living/M = G.grabbed_thing
 
 		if(M.stat == DEAD) //This mob is dead
 			to_chat(user, "<span class='warning'>[src] immediately rejects [M]. \He passed away!</span>")
 			return
 
-		if(isxeno(M))
+		if(!(ishuman(M) || ismonkey(M)))
 			to_chat(user, "<span class='warning'>There is no way [src] will accept [M]!</span>")
 			return
 
 		if(M.client)
 			if(alert(M,"Would you like to enter cryosleep?", , "Yes", "No") == "Yes")
-				if(!M || !G || !G.grabbed_thing) return
-				willing = 1
+				if(!M || !G?.grabbed_thing)
+					return
+				willing = TRUE
 		else
-			willing = 1
+			willing = TRUE
 
 		if(willing)
 
 			visible_message("<span class='notice'>[user] starts putting [M] into [src].</span>",
 			"<span class='notice'>You start putting [M] into [src].</span>")
 
-			if(!do_after(user, 20, TRUE, 5, BUSY_ICON_GENERIC)) return
-			if(!M || !G || !G.grabbed_thing) return
+			if(!do_after(user, 20, TRUE, 5, BUSY_ICON_GENERIC))
+				return
+			if(!M || !G?.grabbed_thing)
+				return
 			if(occupant)
 				to_chat(user, "<span class='warning'>[src] is occupied.</span>")
 				return
 			M.forceMove(src)
-			if(orient_right)
-				icon_state = "body_scanner_1-r"
-			else
-				icon_state = "body_scanner_1"
+			occupant = M
+			update_icon()
 
 			to_chat(M, "<span class='notice'>You feel cool air surround you. You go numb as your senses turn inward.</span>")
 			to_chat(M, "<span class='boldnotice'>If you ghost, log out or close your client now, your character will shortly be permanently removed from the round.</span>")
-			occupant = M
 			start_processing()
 			time_entered = world.time
 
@@ -439,26 +440,20 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 
 	set name = "Eject Pod"
 	set category = "Object"
-	set src in oview(1)
-	if(usr.stat != 0)
-		return
+	set src in view(0)
 
-	if(occupant != usr)
-		to_chat(usr, "<span class='warning'>You can't drag people out of hypersleep!</span>")
+	if(usr.stat != CONSCIOUS || usr.loc != src)
 		return
-
-	if(orient_right)
-		icon_state = "body_scanner_0-r"
-	else
-		icon_state = "body_scanner_0"
 
 	//Eject any items that aren't meant to be in the pod.
-	var/list/items = src.contents
-	if(occupant) items -= occupant
-	if(announce) items -= announce
+	var/list/items = contents
+	if(occupant)
+		items -= occupant
+	if(announce)
+		items -= announce
 
-	for(var/obj/item/W in items)
-		W.loc = get_turf(src)
+	for(var/atom/movable/A in items)
+		A.forceMove(src)
 
 	go_out()
 	add_fingerprint(usr)
@@ -469,15 +464,11 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 	set category = "Object"
 	set src in oview(1)
 
-	if(usr.stat != 0 || !(ishuman(usr) || ismonkey(usr)))
+	if(usr.stat != CONSCIOUS || !(ishuman(usr) || ismonkey(usr)))
 		return
 
 	if(occupant)
 		to_chat(usr, "<span class='warning'>[src] is occupied.</span>")
-		return
-
-	if(isxeno(usr))
-		to_chat(usr, "<span class='warning'>There is no way [src] will accept you!</span>")
 		return
 
 	usr.visible_message("<span class='notice'>[usr] starts climbing into [src].</span>",
@@ -485,7 +476,7 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 
 	if(do_after(usr, 20, FALSE, 5, BUSY_ICON_GENERIC))
 
-		if(!usr || !usr.client)
+		if(!usr?.client)
 			return
 
 		if(occupant)
@@ -494,20 +485,13 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 
 		usr.forceMove(src)
 		occupant = usr
-
-		if(orient_right)
-			icon_state = "body_scanner_1-r"
-		else
-			icon_state = "body_scanner_1"
+		update_icon()
 
 		to_chat(usr, "<span class='notice'>You feel cool air surround you. You go numb as your senses turn inward.</span>")
 		to_chat(usr, "<span class='boldnotice'>If you ghost, log out or close your client now, your character will shortly be permanently removed from the round.</span>")
 		time_entered = world.time
 		start_processing()
-
 		add_fingerprint(usr)
-
-	return
 
 /obj/machinery/cryopod/proc/go_out()
 
@@ -517,8 +501,4 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 	occupant.forceMove(get_turf(src))
 	occupant = null
 	stop_processing()
-
-	if(orient_right)
-		icon_state = "body_scanner_0-r"
-	else
-		icon_state = "body_scanner_0"
+	update_icon()
