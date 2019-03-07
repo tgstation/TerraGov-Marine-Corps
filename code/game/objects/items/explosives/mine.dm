@@ -5,7 +5,7 @@
 //Stepping directly on the mine will also blow it up
 /obj/item/explosive/mine
 	name = "\improper M20 Claymore anti-personnel mine"
-	desc = "The M20 Claymore is a directional proximity triggered anti-personnel mine designed by Armat Systems for use by the TerraGov Marine Corps."
+	desc = "The M20 Claymore is a directional, programmable proximity triggered anti-personnel mine and detection device designed by MIC Industries for use by the TerraGov Marine Corps."
 	icon = 'icons/obj/items/grenade.dmi'
 	icon_state = "m20"
 	force = 5.0
@@ -17,11 +17,14 @@
 	unacidable = 1
 	flags_atom = CONDUCT
 
+	var/datum/ammo/bullet/shotgun/flechette/ammo = /datum/ammo/bullet/shotgun/flechette
+	var/obj/item/projectile/in_chamber = null
 	var/obj/machinery/camera/camera = null
 	var/iff_signal = ACCESS_IFF_MARINE
 	var/triggered = 0
 	var/armed = 0 //Will the mine explode or not
-	var/trigger_type = "explosive" //Calls that proc
+	var/trigger_type = "Concussive" //Calls that proc
+	var/alarm_mode = TRUE //Noisy vs silent alarm when tripped
 	var/obj/effect/mine_tripwire/tripwire
 	var/camera_number
 	/*
@@ -31,9 +34,6 @@
 
 	ex_act() trigger_explosion() //We don't care about how strong the explosion was.
 	emp_act() trigger_explosion() //Same here. Don't care about the effect strength.
-
-/obj/item/explosive/mine/New()
-	. = ..()
 
 /obj/item/explosive/mine/Destroy()
 	if(tripwire)
@@ -88,7 +88,7 @@
 
 //Disarming
 /obj/item/explosive/mine/attackby(obj/item/W, mob/user)
-	if(ismultitool(W))
+	if(!ismultitool(W))
 		if(anchored)
 			user.visible_message("<span class='notice'>[user] starts disarming [src].</span>", \
 			"<span class='notice'>You start disarming [src].</span>")
@@ -104,6 +104,64 @@
 			if(tripwire)
 				qdel(tripwire)
 				tripwire = null
+
+		else //Multitool allows us to program the claymore otherwise.
+			interface(user)
+
+/obj/item/explosive/mine/proc/interface(mob/living/carbon/user)
+	if(!istype(user))
+		return
+	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_METAL)
+		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
+		"<span class='notice'>You fumble around figuring out how to use [src].</span>")
+		var/fumbling_time = 20
+		if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+			return
+	user.set_interaction(src)
+	var/dat = {"<TT>
+<B>Current Detonation Mode:</B> [trigger_type]<BR>
+<A href='?src=\ref[src];trigger_type=Concussive'><B>Set to Concussive Blast Mode</B></A><BR>
+<A href='?src=\ref[src];trigger_type=Incendiary'><B>Set to Incendiary Mode</B></A><BR>
+<A href='?src=\ref[src];trigger_type=Shrapnel'><B>Set to Shrapnel Mode</B></A><BR>
+<A href='?src=\ref[src];trigger_type=Monitoring'><B>Set to Monitoring Mode</B></A><BR>
+
+<B>Current Alarm Mode:</B> [alarm_mode ? "Siren" : "Silent"]<BR>
+<A href='?src=\ref[src];alarm_mode=1'><B>Set Alarm Mode:</B> [alarm_mode ? "Silent" : "Siren"]</A><BR>
+
+</TT>"}
+	user << browse(dat, "window=radio")
+	onclose(user, "radio")
+	return
+
+/obj/item/explosive/mine/Topic(href, href_list)
+	//..()
+	if(usr.stat || usr.is_mob_restrained())
+		return
+	if((iscarbon(usr) && usr.contents.Find(src)) || (usr.contents.Find(master) || (in_range(src, usr) && istype(loc, /turf))))
+		usr.set_interaction(src)
+		if(href_list["trigger_type"])
+			trigger_type = href_list["trigger_type"]
+			to_chat(usr, "<font color='warning'>You set [src] to [trigger_type] mode.</font>")
+
+		else if(href_list["alarm_mode"])
+			alarm_mode = !( alarm_mode )
+
+		if(!( master ))
+			if(iscarbon(loc))
+				interface(loc)
+			else
+				for(var/mob/living/carbon/C in viewers(1, src))
+					if(C.client)
+						interface(C)
+		else
+			if(iscarbon(master.loc))
+				interface(master.loc)
+			else
+				for(var/mob/living/carbon/C in viewers(1, master))
+					if(C.client)
+						interface(C)
+	else
+		usr << browse(null, "window=radio")
 
 //Mine can also be triggered if you "cross right in front of it" (same tile)
 /obj/item/explosive/mine/Crossed(atom/A)
@@ -184,14 +242,44 @@
 	if(!M)
 		return
 	var/notice = "<b>ALERT! [src] detonated. Hostile/unknown: [M] Detected at: [get_area(M)]. Coordinates: (X: [M.x], Y: [M.y]).</b>"
-	playsound(loc, 'sound/machines/warning-buzzer.ogg', 50, FALSE)
 	var/mob/living/silicon/ai/AI = new/mob/living/silicon/ai(src, null, null, 1)
 	AI.SetName("Smartmine Alert System")
 	AI.aiRadio.talk_into(AI,"[notice]","Theseus","announces")
 	qdel(AI)
 
+	if(alarm_mode) //Play an audible alarm if toggled on.
+		playsound(loc, 'sound/machines/warning-buzzer.ogg', 50, FALSE)
+
+	if(!tripwire)
+		return
+
+	if(!trigger_type || trigger_type == "Monitoring")
+		return
+
 	switch(trigger_type) //Makes sure we announce first before detonation.
-		if("explosive")
-			if(tripwire)
-				explosion(tripwire.loc, -1, -1, 2)
-				qdel(src)
+		if("Concussive")
+			explosion(tripwire.loc, -1, -1, 2)
+			qdel(src)
+
+		if("Incendiary")
+			flame_radius(2, tripwire.loc, 50, 50, 45, 15) //powerful
+			qdel(src)
+
+		if("Shrapnel")
+			in_chamber = new /obj/item/projectile(loc)
+			in_chamber.generate_bullet(ammo)
+			in_chamber.def_zone = pick("chest", "chest", "chest", "head")
+
+			var/target = M
+			var/turf/targloc = get_turf(target)
+
+			for(var/i = 1 to 5)
+				if (prob(50))
+					var/scatter_x = rand(-1, 1)
+					var/scatter_y = rand(-1, 1)
+					var/turf/new_target = locate(targloc.x + round(scatter_x),targloc.y + round(scatter_y),targloc.z) //Locate an adjacent turf.
+					if(new_target) //Looks like we found a turf.
+						target = new_target
+				in_chamber.fire_at(target, src, null, ammo.max_range, ammo.shell_speed) //powerful
+
+			qdel(src)
