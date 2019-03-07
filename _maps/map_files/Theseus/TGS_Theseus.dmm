@@ -9310,9 +9310,9 @@
 	},
 /area/almayer/medical/medical_science)
 "awC" = (
-/obj/machinery/door/airlock/almayer/research/glass{
+/obj/machinery/door/airlock/almayer/research{
 	dir = 2;
-	name = "\improper Medical Storage"
+	req_access_txt = "20"
 	},
 /turf/open/floor/almayer{
 	icon_state = "dark_sterile";
@@ -27958,6 +27958,9 @@
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/hangar)
 "bmE" = (
+/obj/machinery/camera/autoname/almayer{
+	dir = 8
+	},
 /turf/open/floor/almayer{
 	dir = 4;
 	icon_state = "red";
@@ -30708,7 +30711,7 @@
 	dir = 8
 	},
 /obj/machinery/camera/autoname/almayer{
-	dir = 4
+	dir = 8
 	},
 /turf/open/floor/almayer{
 	tag = "icon-test_floor5";
@@ -39705,6 +39708,9 @@
 	},
 /area/almayer/shipboard/port_missiles)
 "bNg" = (
+/obj/machinery/camera/autoname/almayer{
+	dir = 8
+	},
 /turf/open/floor/almayer{
 	dir = 4;
 	icon_state = "red";
@@ -50330,6 +50336,16 @@
 	icon_state = "blue"
 	},
 /area/almayer/hallways/aft_hallway)
+"gdp" = (
+/obj/machinery/camera/autoname/almayer{
+	dir = 8
+	},
+/turf/open/floor/almayer{
+	dir = 4;
+	icon_state = "red";
+	tag = "icon-red"
+	},
+/area/almayer/shipboard/weapon_room)
 "gjm" = (
 /turf/open/floor/almayer{
 	dir = 4;
@@ -60498,7 +60514,7 @@ blh
 btH
 blh
 blh
-blh
+gdp
 bIX
 bFi
 byF
@@ -60508,7 +60524,7 @@ blq
 byF
 esi
 cjx
-blh
+gdp
 blh
 blh
 blh
