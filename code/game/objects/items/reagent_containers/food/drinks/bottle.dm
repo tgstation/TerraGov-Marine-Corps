@@ -116,7 +116,7 @@
 	list_reagents = list("vodka" = 100)
 
 /obj/item/reagent_container/food/drinks/bottle/tequilla
-	name = "\improper Caccavo Guaranteed Quality Tequilla"
+	name = "\improper Caccavo Guaranteed Quality Tequila"
 	desc = "Made from premium petroleum distillates, pure thalidomide and other fine quality ingredients!"
 	icon_state = "tequillabottle"
 	center_of_mass = list("x"=16, "y"=3)
