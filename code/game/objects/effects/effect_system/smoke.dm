@@ -174,6 +174,8 @@
 
 
 /obj/effect/particle_effect/smoke/tactical/proc/uncloak_smoke_act(var/mob/living/M)
+	if(!istype(M))
+		return
 	return M.smokecloak_off()
 
 /////////////////////////////////////////////
