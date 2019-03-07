@@ -1,0 +1,4 @@
+author: "by Surrealistik"
+delete-after: True
+changes: 
+  - balance: "Crusher charge damage increased vs barricades, tanks and razorwire (it can destroy barbed barricades in 2 full speed charges now); damage is dependent on ramming speed. Crushers should be able to continue charging through razorwire if colliding at full speed."
