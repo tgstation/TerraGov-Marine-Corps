@@ -106,8 +106,8 @@
 			/turf/open = "OPEN",
 			/turf/closed = "CLOSED",
 			/turf = "T",
-			/mob/living/carbon = "CARBON",
 			/mob/living/carbon/human = "HUMAN",
+			/mob/living/carbon = "CARBON",
 			/mob/living/simple_animal = "SIMPLE",
 			/mob/living = "LIVING",
 			/mob = "M"
