@@ -8,6 +8,7 @@
 	canmove = FALSE
 	anchored = TRUE
 	invisibility = INVISIBILITY_OBSERVER
+	alpha = 127
 	layer = ABOVE_FLY_LAYER
 
 

@@ -38,10 +38,7 @@
 	var/mob/M = usr
 
 	if(M.invisibility == INVISIBILITY_MAXIMUM)
-		if(isobserver(M))
-			M.invisibility = INVISIBILITY_OBSERVER
-		else
-			M.invisibility = initial(M.invisibility)
+		M.invisibility = initial(M.invisibility)
 		M.alpha = initial(M.alpha)
 		M.add_to_all_mob_huds()
 	else
