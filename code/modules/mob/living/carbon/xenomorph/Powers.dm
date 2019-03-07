@@ -1175,13 +1175,6 @@
 	to_chat(src, "<span class='xenowarning'>You salvage [absorbed_plasma] units of plasma from [target][excess_plasma ? ", regaining [excess_plasma] excess as health" : null]. You have [plasma_stored]/[xeno_caste.plasma_max] stored now.</span>")
 	target.gib()
 
-/mob/living/carbon/Xenomorph/proc/safe_gib(mob/living/carbon/Xenomorph/X)
-	var/obj/effect/decal/remains/xeno/remains = new(get_turf(X))
-	remains.icon = icon
-	remains.pixel_x = pixel_x //For 2x2.
-	check_blood_splash(35, BURN, 65, 2) //Some testing numbers. 35 burn, 65 chance.
-	qdel(X)
-
 //Note: All the neurotoxin projectile items are stored in XenoProcs.dm
 /mob/living/carbon/Xenomorph/proc/xeno_spit(atom/T)
 
