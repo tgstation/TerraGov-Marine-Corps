@@ -1,0 +1,4 @@
+author: "Alterist"
+delete-after: True
+changes: 
+  - tweak: "Hunters are now more grey than orange"
