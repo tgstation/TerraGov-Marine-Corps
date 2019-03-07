@@ -188,7 +188,7 @@
 	//title + search bar
 	dat += {"
 
-		<table width='560' align='center' cellspacing='0' cellpadding='5' id='maintable'>
+		<table width='590' align='center' cellspacing='0' cellpadding='5' id='maintable'>
 			<tr id='title_tr'>
 				<td align='center'>
 					Hover over a line to see more information.
@@ -207,7 +207,7 @@
 	//player table header
 	dat += {"
 		<span id='maintable_data_archive'>
-		<table width='580' align='center' cellspacing='0' cellpadding='5' id='maintable_data'>"}
+		<table width='590' align='center' cellspacing='0' cellpadding='5' id='maintable_data'>"}
 
 	var/i = 1
 	for(var/mob/M in sortmobs())
@@ -309,7 +309,7 @@
 
 	log_admin("[key_name(usr)] opened the player panel.")
 
-	var/datum/browser/browser = new(usr, "players", "<div align='center'>Player Panel</div>", 620, 480)
+	var/datum/browser/browser = new(usr, "players", "<div align='center'>Player Panel</div>", 630, 480)
 	browser.set_content(dat)
 	browser.open()
 
