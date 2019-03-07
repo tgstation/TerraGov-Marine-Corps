@@ -1150,7 +1150,7 @@
 		evolution_list.Remove(X) //We got ours, and thus no longer factor into calcs
 
 		if(X.xeno_caste.evolution_threshold - X.evolution_stored < absorbed_evolution)
-			absorbed_evolution += (absorbed_evolution - (X.xeno_caste.evolution_threshold - X.evolution_stored) ) / max(1,length(evolution_list) ) //anything not taken is divided among the remainder
+			absorbed_evolution += max(0, (absorbed_evolution - evolution_gained ) / max(1,length(evolution_list) ) ) //anything not taken is divided among the remainder
 
 		if(evolution_gained < 1)
 			continue
@@ -1164,7 +1164,7 @@
 		upgrade_list.Remove(X) //We got ours, and thus no longer factor into calcs
 
 		if(X.xeno_caste.upgrade_threshold - X.upgrade_stored < absorbed_upgrade)
-			absorbed_upgrade += (absorbed_upgrade - (X.xeno_caste.upgrade_threshold - X.upgrade_stored) ) / max(1,length(upgrade_list) ) //anything not taken is divided among the remainder
+			absorbed_upgrade += max(0, (absorbed_upgrade - upgrade_gained ) / max(1,length(upgrade_list) ) ) //anything not taken is divided among the remainder
 
 		if(upgrade_gained < 1)
 			continue
