@@ -1189,6 +1189,7 @@
 #include "code\modules\mob\living\carbon\xenomorph\Castes\Hivelord.dm"
 #include "code\modules\mob\living\carbon\xenomorph\Castes\Hunter.dm"
 #include "code\modules\mob\living\carbon\xenomorph\Castes\Larva.dm"
+#include "code\modules\mob\living\carbon\xenomorph\Castes\Necromorph.dm"
 #include "code\modules\mob\living\carbon\xenomorph\Castes\Praetorian.dm"
 #include "code\modules\mob\living\carbon\xenomorph\Castes\Predalien.dm"
 #include "code\modules\mob\living\carbon\xenomorph\Castes\Queen.dm"
