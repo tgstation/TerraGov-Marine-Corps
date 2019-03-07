@@ -71,11 +71,11 @@
 		attach_strings += "This has optical glass allowing for magnification and viewing long distances."
 	if(aim_speed_mod)
 		switch(aim_speed_mod)
-			if(SLOWDOWN_ADS_SHOTGUN)
+			if(-INFINITY to SLOWDOWN_ADS_SHOTGUN)
 				attach_strings += "<br>It will slow the user down more by a small amount if wielded."
-			if(SLOWDOWN_ADS_SPECIALIST_LIGHT)
+			if(SLOWDOWN_ADS_SHOTGUN to SLOWDOWN_ADS_SPECIALIST_LIGHT)
 				attach_strings += "<br>It will slow the user down more by a modest amount if wielded."
-			if(SLOWDOWN_ADS_SCOPE)
+			if(SLOWDOWN_ADS_SPECIALIST_LIGHT to SLOWDOWN_ADS_SCOPE)
 				attach_strings += "<br>It will slow the user down more by a large amount if wielded."
 			if(SLOWDOWN_ADS_SPECIALIST_HEAVY to INFINITY)
 				attach_strings += "<br>It will slow the user down more by a massive amount if wielded."
