@@ -92,7 +92,7 @@
 	if(recoil_unwielded)
 		traits += "Recoil Unwielded: [recoil_unwielded]"
 	if(scatter_unwielded)
-		traits += "Unwielded Scatter chance modifier: [(scatter_unwielded - 1) > 0 ? "+[(scatter_unwielded - 1)]" : "[(scatter_unwielded - 1)]"]%"
+		traits += "Unwielded Scatter chance modifier: [scatter_unwielded > 0 ? "+[scatter_unwielded]" : "[scatter_unwielded]"]%"
 	if(movement_acc_penalty_mult)
 		traits += "Movement penalty modifier: -[movement_acc_penalty_mult * 15]%"
 	if(fire_delay)
