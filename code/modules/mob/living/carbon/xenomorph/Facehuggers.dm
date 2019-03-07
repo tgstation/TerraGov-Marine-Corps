@@ -172,8 +172,6 @@
 /obj/item/clothing/mask/facehugger/proc/check_lifecycle()
 	if(sterile)
 		return TRUE
-	if(prob(80) && check_neighbours())
-		return FALSE
 	if(lifecycle - 4 SECONDS <= 0)
 		if(isturf(loc))
 			var/obj/effect/alien/egg/E = locate() in loc
@@ -198,22 +196,6 @@
 
 	lifecycle -= 4 SECONDS
 	return TRUE
-
-/obj/item/clothing/mask/facehugger/proc/check_neighbours()
-	if(isturf(loc))
-		var/count = 0
-		for(var/obj/item/clothing/mask/facehugger/F in loc)
-			if(F.stat == CONSCIOUS && !F.sterile)
-				count++
-			if(count > 2) //Was 5, our rules got much tighter
-				if(prob(50))
-					visible_message("<span class='xenowarning'>[src] is furiously cannibalized by the nearby horde of other ones!</span>", null, 5)
-					qdel(src)
-				else
-					visible_message("<span class='xenowarning'>[src] scuttles away from the nearby horde of other ones!</span>", null, 5)
-					Move(get_step(src, pick(cardinal)))
-				return TRUE
-	return FALSE
 
 /obj/item/clothing/mask/facehugger/Crossed(atom/target)
 	if(stat == CONSCIOUS)
@@ -325,7 +307,7 @@
 	if(!provoked)
 		if(iszombie(src))
 			return FALSE
-		if(species?.species_flags & IS_SYNTHETIC)
+		if(species?.flags & IS_SYNTHETIC)
 			return FALSE
 
 	if(check_mask)
