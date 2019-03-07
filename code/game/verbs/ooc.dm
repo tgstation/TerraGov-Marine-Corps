@@ -197,7 +197,7 @@ var/global/normal_ooc_colour = "#002eb8"
 	popup.open(FALSE)
 
 
-/mob/verb/view_admin_remarks()
+/client/verb/view_admin_remarks()
 	set category = "OOC"
 	set name = "View Admin Remarks"
 
@@ -205,4 +205,4 @@ var/global/normal_ooc_colour = "#002eb8"
 		to_chat(usr, "<span class='notice'>Sorry, that function is not enabled on this server.</span>")
 		return
 
-	browse_messages(null, usr.ckey, null, TRUE)
+	browse_messages(null, ckey, null, TRUE)
