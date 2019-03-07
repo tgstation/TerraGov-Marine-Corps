@@ -694,6 +694,20 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 	var/mob/living/carbon/Xenomorph/Hivelord/X = owner
 	X.build_tunnel()
 
+/datum/action/xeno_action/activable/hivelord_sting
+	name = "Reanimate"
+	action_icon_state = "defiler_sting"
+	ability_name = "reanimation sting"
+
+/datum/action/xeno_action/activable/hivelord_sting/use_ability(atom/A)
+	var/mob/living/carbon/Xenomorph/Hivelord/X = owner
+	X.hivelord_sting(A)
+
+/datum/action/xeno_action/activable/hivelord_sting/action_cooldown_check()
+	var/mob/living/carbon/Xenomorph/Hivelord/X = owner
+	if(world.time >= X.last_hivelord_sting + HIVELORD_STING_COOLDOWN)
+		return TRUE
+
 //Queen Abilities
 
 /datum/action/xeno_action/grow_ovipositor
