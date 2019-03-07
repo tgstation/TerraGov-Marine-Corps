@@ -803,7 +803,7 @@ mob/proc/yank_out_object()
 /mob/proc/add_emote_overlay(image/emote_overlay, remove_delay = TYPING_INDICATOR_LIFETIME)
 	var/viewers = viewers()
 	for(var/mob/M in viewers)
-		if(M.stat == DEAD)
+		if(M.stat != CONSCIOUS)
 			continue
 		to_chat(M, emote_overlay)
 
@@ -812,14 +812,11 @@ mob/proc/yank_out_object()
 
 
 /mob/proc/remove_emote_overlay(client/C, image/emote_overlay, list/viewers)
-	if(C)
-		C.images -= emote_overlay
+	C?.images -= emote_overlay
 	if(!viewers)
 		viewers = viewers()
 	for(var/mob/M in viewers)
-		if(!M.client)
-			continue
-		M.client.images -= emote_overlay
+		M.client?.images -= emote_overlay
 	qdel(emote_overlay)
 
 
