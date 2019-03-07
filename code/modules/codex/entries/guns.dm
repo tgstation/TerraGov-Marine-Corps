@@ -76,7 +76,7 @@
 	if(accuracy_mult)
 		traits += "Accuracy: [((accuracy_mult - 1) * 100) > 0 ? "+[(accuracy_mult - 1) * 100]" : "[(accuracy_mult - 1) * 100]"]%"
 	if(damage_mult)
-		traits += "Damage multiplier: [((damage_mult - 1) * 100) > 0 ? "+[(damage_mult - 1) * 100]" : "[(damage_mult - 1) * 100]"]%"
+		traits += "Damage modifier: [((damage_mult - 1) * 100) > 0 ? "+[(damage_mult - 1) * 100]" : "[(damage_mult - 1) * 100]"]%"
 	if(damage_falloff_mult)
 		traits += "Damage falloff: -[damage_falloff_mult] per tile travelled."
 	if(recoil)
@@ -94,14 +94,14 @@
 	if(scatter_unwielded)
 		traits += "Unwielded Scatter chance modifier: [(scatter_unwielded - 1) > 0 ? "+[(scatter_unwielded - 1)]" : "[(scatter_unwielded - 1)]"]%"
 	if(movement_acc_penalty_mult)
-		traits += "Movement penalty multiplier: -[movement_acc_penalty_mult * 15]%"
+		traits += "Movement penalty modifier: -[movement_acc_penalty_mult * 15]%"
 	if(fire_delay)
-		traits += "Time between shots: [fire_delay / 10] seconds"
+		traits += "Time between single-fire: [fire_delay / 10] seconds"
 	if(wield_delay)
 		traits += "Wield delay: [wield_delay / 10] seconds"
 	if(burst_amount > 1)
 		traits += "Shots fired on burst mode: [burst_amount]"
-		traits += "Time between bursts: [(min((burst_delay * 2), (fire_delay * 3))) / 10] seconds"
+		traits += "Time between burst-fire: [(min((burst_delay * 2), (fire_delay * 3))) / 10] seconds"
 	
 	. += jointext(traits, "<br>")
 
