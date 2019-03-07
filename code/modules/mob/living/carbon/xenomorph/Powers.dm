@@ -1554,6 +1554,7 @@
 	var/defiler_count = 0
 	var/larva_list = ""
 	var/larva_count = 0
+	var/necromorph_count = 0
 	var/stored_larva_count = SSticker.mode.stored_larva
 	var/leader_list = ""
 
@@ -1644,6 +1645,8 @@
 			if("Bloody Larva") // all larva are caste = blood larva
 				if(leader == "") larva_list += xenoinfo
 				larva_count++
+			if("Necromorph")
+				necromorph_count++
 
 	dat += "<b>Total Living Sisters: [count]</b><BR>"
 	//if(exotic_count != 0) //Exotic Xenos in the Hive like Predalien or Xenoborg
@@ -1651,6 +1654,7 @@
 	dat += "<b>Tier 3: [boiler_count + crusher_count + praetorian_count + ravager_count + defiler_count] Sisters</b> | Boilers: [boiler_count] | Crushers: [crusher_count] | Praetorians: [praetorian_count] | Ravagers: [ravager_count] | Defilers: [defiler_count]<BR>"
 	dat += "<b>Tier 2: [carrier_count + hivelord_count + hunter_count + spitter_count + warrior_count] Sisters</b> | Carriers: [carrier_count] | Hivelords: [hivelord_count] | Warriors: [warrior_count] | Hunters: [hunter_count] | Spitters: [spitter_count]<BR>"
 	dat += "<b>Tier 1: [drone_count + runner_count + sentinel_count + defender_count] Sisters</b> | Drones: [drone_count] | Runners: [runner_count] | Sentinels: [sentinel_count] | Defenders: [defender_count]<BR>"
+	dat += "<b>Necros: [necromorph_count] Shamblers<BR>"
 	dat += "<b>Larvas: [larva_count] Sisters<BR>"
 	if(istype(user)) // cover calling it without parameters
 		if(user.hivenumber == XENO_HIVE_NORMAL)
@@ -1659,7 +1663,6 @@
 	dat += queen_list + leader_list + boiler_list + crusher_list + praetorian_list + ravager_list + defiler_list + carrier_list + hivelord_list + warrior_list + hunter_list + spitter_list + drone_list + runner_list + sentinel_list + defender_list + larva_list
 	dat += "</table></body>"
 	usr << browse(dat, "window=roundstatus;size=600x600")
-
 
 /mob/living/carbon/Xenomorph/verb/toggle_xeno_mobhud()
 	set name = "Toggle Xeno Status HUD"
@@ -2458,7 +2461,6 @@
 	to_chat(src, "<span class='xenodanger'>You feel your growth toxin glands refill. You can use Growth Sting again.</span>")
 	update_action_button_icons()
 
-
 /mob/proc/can_sting()
 	return FALSE
 
@@ -2500,3 +2502,66 @@
 	damage *= bonus
 	hit_and_run = 1 //reset the hit and run bonus
 	return damage
+
+/mob/living/carbon/Xenomorph/Hivelord/proc/hivelord_sting(mob/living/L, count = 2)
+
+	if(!check_state())
+		return
+
+	if(world.time < last_hivelord_sting + HIVELORD_STING_COOLDOWN) //Sure, let's use this.
+		to_chat(src, "<span class='xenodanger'>You are not ready to Sting again. It will be ready in [(last_hivelord_sting + HIVELORD_STING_COOLDOWN - world.time) * 0.1] seconds.</span>")
+		return
+
+	if(stagger)
+		to_chat(src, "<span class='xenowarning'>You try to sting but are too disoriented!</span>")
+		return
+
+	if(!L.can_zombie() )
+		to_chat(src, "<span class='xenowarning'>Your sting won't affect this corpse. A larva took the essence, it's too decayed, or simply too fresh.</span>")
+		return
+
+	if(!Adjacent(L))
+		if(world.time > (recent_notice + notice_delay)) //anti-notice spam
+			to_chat(src, "<span class='xenowarning'>You can't reach this target!</span>")
+			recent_notice = world.time //anti-notice spam
+		return
+
+	if(!check_plasma(150))
+		return
+	last_hivelord_sting = world.time
+	use_plasma(150)
+
+	addtimer(CALLBACK(src, .hivelord_sting_cooldown), HIVELORD_STING_COOLDOWN)
+
+	while(count)
+		face_atom(L)
+		if(!do_after(src, HIVELORD_STING_CHANNEL_TIME, TRUE, 5, BUSY_ICON_HOSTILE))
+			return
+		if(!Adjacent(L) || stagger)
+			return FALSE
+		animation_attack_on(L)
+		playsound(L, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
+		L.change_mob_type(/mob/living/carbon/Xenomorph/Necromorph)
+		L.gib()
+
+/mob/living/carbon/Xenomorph/Hivelord/proc/hivelord_sting_cooldown()
+	playsound(loc, 'sound/voice/alien_drool1.ogg', 50, 1)
+	to_chat(src, "<span class='xenodanger'>You feel your virus glands refil, another body can be prepared for reanimation.</span>")
+	update_action_button_icons()
+
+/mob/proc/can_zombie()
+	return FALSE
+
+/mob/living/carbon/monkey/can_zombie()
+	return FALSE
+
+/mob/living/carbon/human/can_zombie()
+	if(stat == DEAD && timeofdeath  && !check_tod() && !chestburst)
+		return TRUE
+	return FALSE
+
+/mob/living/carbon/human/species/machine/can_zombie()
+	return FALSE
+
+/mob/living/carbon/human/species/synthetic/can_zombie()
+	return FALSE

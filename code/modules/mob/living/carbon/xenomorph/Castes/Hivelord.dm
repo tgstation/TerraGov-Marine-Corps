@@ -182,8 +182,11 @@
 		/datum/action/xeno_action/build_tunnel,
 		/datum/action/xeno_action/toggle_speed,
 		/datum/action/xeno_action/toggle_pheromones,
-		/datum/action/xeno_action/activable/xeno_spit
+		/datum/action/xeno_action/activable/xeno_spit,
+		/datum/action/xeno_action/activable/hivelord_sting
 		)
+	var/last_hivelord_sting = null
+
 
 
 
