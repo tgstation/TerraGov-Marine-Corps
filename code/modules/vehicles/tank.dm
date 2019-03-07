@@ -20,6 +20,8 @@
 	var/occupant_exiting = null
 	var/next_sound_play = 0
 
+	var/is_zoomed = FALSE
+
 	luminosity = 7
 
 	req_access = list(ACCESS_MARINE_TANK)

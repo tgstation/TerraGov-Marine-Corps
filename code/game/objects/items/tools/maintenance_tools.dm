@@ -162,7 +162,7 @@
 /obj/item/tool/weldingtool/Destroy()
 	if(welding)
 		if(ismob(loc))
-			loc.SetLuminosity(-2)
+			loc.SetLuminosity(-LIGHTER_LUMINOSITY)
 		else
 			SetLuminosity(0)
 		STOP_PROCESSING(SSobj, src)
@@ -283,9 +283,9 @@
 			welding = 1
 			if(M)
 				to_chat(M, "<span class='notice'>You switch [src] on.</span>")
-				M.SetLuminosity(2)
+				M.SetLuminosity(LIGHTER_LUMINOSITY)
 			else
-				SetLuminosity(2)
+				SetLuminosity(LIGHTER_LUMINOSITY)
 			weld_tick += 8 //turning the tool on does not consume fuel directly, but it advances the process that regularly consumes fuel.
 			force = 15
 			damtype = "fire"
@@ -310,13 +310,12 @@
 				to_chat(M, "<span class='notice'>You switch [src] off.</span>")
 			else
 				to_chat(M, "<span class='warning'>[src] shuts off!</span>")
-			M.SetLuminosity(-2)
+			M.SetLuminosity(-LIGHTER_LUMINOSITY)
 			if(M.r_hand == src)
 				M.update_inv_r_hand()
 			if(M.l_hand == src)
 				M.update_inv_l_hand()
-		else
-			SetLuminosity(0)
+		SetLuminosity(0)
 		STOP_PROCESSING(SSobj, src)
 
 /obj/item/tool/weldingtool/proc/flamethrower_screwdriver(obj/item/I, mob/user)
@@ -334,13 +333,13 @@
 /obj/item/tool/weldingtool/pickup(mob/user)
 	if(welding && loc != user)
 		SetLuminosity(0)
-		user.SetLuminosity(2)
+		user.SetLuminosity(LIGHTER_LUMINOSITY)
 
 
 /obj/item/tool/weldingtool/dropped(mob/user)
 	if(welding && loc != user)
-		user.SetLuminosity(-2)
-		SetLuminosity(2)
+		user.SetLuminosity(-LIGHTER_LUMINOSITY)
+		SetLuminosity(LIGHTER_LUMINOSITY)
 	return ..()
 
 

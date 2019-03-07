@@ -162,9 +162,8 @@
 	if(flags_gun_features & GUN_FLASHLIGHT_ON)//Handle flashlight.
 		flags_gun_features &= ~GUN_FLASHLIGHT_ON
 		if(ismob(loc))
-			loc.SetLuminosity(-rail.light_mod)
-		else
-			SetLuminosity(0)
+			loc.SetLuminosity(-(rail.light_mod) )
+		SetLuminosity(0)
 	rail 			= null
 	under 			= null
 	stock 			= null

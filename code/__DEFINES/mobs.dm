@@ -565,6 +565,9 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define DRONE_STING_AMOUNT_RECURRING		10
 #define DRONE_STING_CHANNEL_TIME			1.5 SECONDS
 
+//Boiler defines
+
+#define BOILER_LUMINOSITY					3
 
 #define CANNOT_HOLD_EGGS 0
 #define CAN_HOLD_TWO_HANDS 1

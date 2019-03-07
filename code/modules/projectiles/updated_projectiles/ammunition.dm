@@ -199,7 +199,7 @@ If it is the same and the other stack isn't full, transfer an amount (default 1)
 	var/ammo_name = A.name //Let's pull up the name.
 
 	name = "handful of [ammo_name + (ammo_name == "shotgun buckshot"? " ":"s ") + "([new_caliber])"]"
-	icon_state = new_caliber == "12g" ? ammo_name : new_caliber == "7.62x54mmR" ? "mosin" : "bullet" //What am I even doing with my life?
+	icon_state = new_caliber == "12g" ? ammo_name : new_caliber == "7.62x54mmR" ? "mosin bullet" : "bullet" //What am I even doing with my life?
 	default_ammo = new_ammo
 	caliber = new_caliber
 	max_rounds = maximum_rounds

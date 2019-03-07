@@ -539,6 +539,15 @@
 	new /obj/item/ammo_magazine/pistol/ap(src)
 	new_gun.on_enter_storage(src)
 
+/obj/item/storage/belt/gun/m4a3/fieldcommander/New()
+	. = ..()
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/m1911/custom(src)
+	new /obj/item/ammo_magazine/pistol/m1911(src)
+	new /obj/item/ammo_magazine/pistol/m1911(src)
+	new /obj/item/ammo_magazine/pistol/m1911(src)
+	new /obj/item/ammo_magazine/pistol/m1911(src)
+	new_gun.on_enter_storage(src)
+
 /obj/item/storage/belt/gun/m4a3/vp70/New()
 	..()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/vp70(src)
@@ -559,11 +568,11 @@
 
 /obj/item/storage/belt/gun/m44
 	name = "\improper M276 pattern M44 holster rig"
-	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is for the M44 magnum revolver, along with three pouches for speedloaders. It faintly smells of hay."
+	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is for the M44 magnum revolver, along with three pouches for speedloaders."
 	icon_state = "m44_holster"
 	item_state = "m44_holster"
 	can_hold = list(
-		"/obj/item/weapon/gun/revolver/m44",
+		"/obj/item/weapon/gun/revolver",
 		"/obj/item/ammo_magazine/revolver"
 		)
 	New()
@@ -581,9 +590,9 @@
 
 /obj/item/storage/belt/gun/mateba
 	name = "\improper M276 pattern Mateba holster rig"
-	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is for the powerful Mateba magnum revolver, along with three pouches for speedloaders. This one is aging poorly, and seems to be surplus equipment. This one is stamped '3rd 'Dust Raiders' Battalion'."
-	icon_state = "s_cmateba_holster"
-	item_state = "s_cmateba_holster"
+	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is for the powerful Mateba magnum revolver, along with three pouches for speedloaders."
+	icon_state = "mateba_holster"
+	item_state = "mateba_holster"
 	can_hold = list(
 		"/obj/item/weapon/gun/revolver/mateba",
 		"/obj/item/ammo_magazine/revolver/mateba"
@@ -599,10 +608,8 @@
 	new_gun.on_enter_storage(src)
 
 /obj/item/storage/belt/gun/mateba/cmateba
-	name = "\improper M276 pattern Mateba holster rig"
-	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is for the powerful Mateba magnum revolver, along with three pouches for speedloaders. Was included with the mail-in order for the TGMC edition of the Mateba autorevolver in the early 2170s."
-	icon_state = "cmateba_holster"
-	item_state = "cmateba_holster"
+	icon_state = "c_mateba_holster"
+	item_state = "c_mateba_holster"
 	New()
 		..()
 		select_gamemode_skin(type)
@@ -618,8 +625,8 @@
 
 /obj/item/storage/belt/gun/mateba/admiral/New()
 	..()
-	icon_state = "amateba_holster"
-	item_state = "amateba_holster"
+	icon_state = "a_mateba_holster"
+	item_state = "a_mateba_holster"
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/revolver/mateba/admiral(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
