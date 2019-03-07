@@ -1117,8 +1117,8 @@
 
 	if(absorbed_plasma > (xeno_caste.plasma_max - plasma_stored) ) //Amount exceeding remaining plasma capacity absorbed as health
 		excess_plasma = absorbed_plasma - (xeno_caste.plasma_max - plasma_stored)
-		adjustFireLoss( CLAMP(-excess_plasma, -getFireLoss(), 0 ) )
-		adjustBruteLoss( CLAMP(-excess_plasma, -getBruteLoss(), 0 ) )
+		adjustFireLoss( -excess_plasma )
+		adjustBruteLoss( -excess_plasma )
 		absorbed_plasma = absorbed_plasma - excess_plasma
 
 	gain_plasma(absorbed_plasma)
