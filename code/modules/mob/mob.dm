@@ -800,8 +800,27 @@ mob/proc/yank_out_object()
 	return TRUE
 
 
-/mob/proc/remove_emote_overlay(var/image/overlay_to_remove)
-	overlays -= overlay_to_remove
+/mob/proc/add_emote_overlay(image/emote_overlay, remove_delay = TYPING_INDICATOR_LIFETIME)
+	var/viewers = viewers()
+	for(var/mob/M in viewers)
+		if(M.stat == DEAD)
+			continue
+		to_chat(M, emote_overlay)
+
+	if(remove_delay)
+		addtimer(CALLBACK(src, .proc/remove_emote_overlay, client, emote_overlay, viewers), remove_delay)
+
+
+/mob/proc/remove_emote_overlay(client/C, image/emote_overlay, list/viewers)
+	if(C)
+		C.images -= emote_overlay
+	if(!viewers)
+		viewers = viewers()
+	for(var/mob/M in viewers)
+		if(!M.client)
+			continue
+		M.client.images -= emote_overlay
+	qdel(emote_overlay)
 
 
 /mob/proc/audio_emote_cooldown(player_caused)

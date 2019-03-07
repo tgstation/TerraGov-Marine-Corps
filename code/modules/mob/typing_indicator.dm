@@ -1,27 +1,22 @@
-#define TYPING_INDICATOR_LIFETIME 3 SECONDS	//Grace period after which typing indicator disappears regardless of text in chatbar.
+/mob/proc/toggle_typing_indicator(emoting)
+	var/image/typing_indicator
 
-mob/var/typing
-mob/var/last_typed
-mob/var/last_typed_time
-
-var/global/image/typing_indicator = image('icons/mob/talk.dmi', null, "typing")
-
-
-/mob/proc/toggle_typing_indicator()
-	if(!typing_indicator)
-		return
+	if(emoting)
+		typing_indicator = image('icons/mob/talk.dmi', src, "emoting")
+	else
+		typing_indicator = image('icons/mob/talk.dmi', src, "typing")
 
 	if(!(client?.prefs?.show_typing))
-		overlays -= typing_indicator
+		remove_emote_overlay(client, typing_indicator, viewers())
 		return
 
 	if(typing)
-		overlays -= typing_indicator
-		typing = FALSE
+		remove_emote_overlay(client, typing, viewers())
+		typing = null
 
 	else if(stat == CONSCIOUS)
-		overlays += typing_indicator
-		typing = TRUE
+		typing = typing_indicator
+		add_emote_overlay(typing, remove_delay = NONE)
 
 
 /mob/verb/say_wrapper()
@@ -42,9 +37,9 @@ var/global/image/typing_indicator = image('icons/mob/talk.dmi', null, "typing")
 	set name = ".Me"
 	set hidden = TRUE
 
-	toggle_typing_indicator()
+	toggle_typing_indicator(emoting = TRUE)
 	var/message = input("", "Me") as text
-	toggle_typing_indicator()
+	toggle_typing_indicator(emoting = TRUE)
 
 	if(!message)
 		return
