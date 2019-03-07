@@ -52,7 +52,7 @@
 	if(light_mod)
 		attach_strings += "Light increase: [light_mod] if turned on."
 	if(delay_mod)
-		attach_strings += "delay between shots: [delay_mod / 10]"
+		attach_strings += "Delay between shots: [delay_mod / 10]"
 	if(burst_mod)
 		attach_strings += "Burst change: [burst_mod] shots."
 	if(size_mod)
