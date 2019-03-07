@@ -195,3 +195,14 @@ var/global/normal_ooc_colour = "#002eb8"
 	var/datum/browser/popup = new(src, "playerplaytime[ckey]", "<div align='center'>Playtime for [key]</div>", 550, 615)
 	popup.set_content(body.Join())
 	popup.open(FALSE)
+
+
+/mob/verb/view_admin_remarks()
+	set category = "OOC"
+	set name = "View Admin Remarks"
+
+	if(!CONFIG_GET(flag/see_own_notes))
+		to_chat(usr, "<span class='notice'>Sorry, that function is not enabled on this server.</span>")
+		return
+
+	browse_messages(null, usr.ckey, null, TRUE)

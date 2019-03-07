@@ -181,14 +181,3 @@
 				//so we must undo it here so the victim can move right away
 				M.client.next_movement = world.time
 			M.update_canmove()
-
-
-/mob/verb/view_admin_remarks()
-	set category = "OOC"
-	set name = "View Admin Remarks"
-
-	if(!CONFIG_GET(flag/see_own_notes))
-		to_chat(usr, "<span class='notice'>Sorry, that function is not enabled on this server.</span>")
-		return
-
-	browse_messages(null, usr.ckey, null, TRUE)
