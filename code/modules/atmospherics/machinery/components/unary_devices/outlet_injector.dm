@@ -3,7 +3,7 @@
 
 	name = "air injector"
 	desc = "Has a valve and pump attached to it."
-	
+
 	use_power = IDLE_POWER_USE
 	can_unwrench = TRUE
 	shift_underlay_only = FALSE
@@ -39,9 +39,9 @@
 		icon_state = "inje_on"
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/power_change()
-	var/old_stat = stat
+	var/old_stat = machine_stat
 	..()
-	if(old_stat != stat)
+	if(old_stat != machine_stat)
 		update_icon()
 /*
 /obj/machinery/atmospherics/components/unary/outlet_injector/process_atmos()

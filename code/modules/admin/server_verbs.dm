@@ -9,13 +9,17 @@
 	if(alert("Restart the game world?", "Restart", "Yes", "No") != "Yes")
 		return
 
+	var/mention = FALSE
+	if(alert("Mention the New Round Alert role?", "Mention Role", "Yes", "No") == "Yes")
+		mention = TRUE
+
 	to_chat(world, "<span class='danger'>Restarting world!</span> <span class='notice'>Initiated by: [usr.key]</span>")
 
 	log_admin("[key_name(usr)] initiated a restart.")
 	message_admins("[ADMIN_TPMONTY(usr)] initiated a restart.")
 
 	spawn(50)
-		world.Reboot()
+		world.Reboot(mention)
 
 /datum/admins/proc/shutdown_server()
 	set category = "Server"
@@ -333,7 +337,7 @@
 	SSticker.delay_end = !SSticker.delay_end
 
 	log_admin("[key_name(usr)] [SSticker.delay_end ? "delayed the round-end" : "made the round end normally"].")
-	message_admins("[ADMIN_TPMONTY(usr)] [SSticker.delay_end ? "delayed the round-end" : "made the round end normally"].")
+	message_admins("<hr><br><h4>[ADMIN_TPMONTY(usr)] [SSticker.delay_end ? "delayed the round-end" : "made the round end normally"].</h4><hr><br>")
 
 
 /datum/admins/proc/toggle_gun_restrictions()

@@ -66,7 +66,7 @@
 	var/obj/item/spacecash/ewallet/ewallet
 	var/tipped_level = 0
 	var/hacking_safety = FALSE //1 = Will never shoot inventory or allow all access
-	var/wrenchable = TRUE
+	wrenchable = TRUE
 	var/isshared = FALSE
 
 /obj/machinery/vending/Initialize()
@@ -186,7 +186,7 @@
 	density = TRUE
 	var/matrix/A = matrix()
 	transform = A
-	stat &= ~BROKEN //Remove broken. MAGICAL REPAIRS
+	machine_stat &= ~BROKEN //Remove broken. MAGICAL REPAIRS
 
 /obj/machinery/vending/attackby(obj/item/W, mob/user)
 	if(tipped_level)
@@ -344,7 +344,7 @@
 			tipped_level = 2
 			return
 
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 
 	user.set_interaction(src)
@@ -362,7 +362,7 @@
 			"Goldenrod" = 3,
 			"Green" = 4,
 		)
-		dat += "<br><hr><br><B>Access Panel</B><br>"
+		dat += "<br>"
 		for(var/wiredesc in vendwires)
 			var/is_uncut = src.wires & APCWireColorToFlag[vendwires[wiredesc]]
 			dat += "[wiredesc] wire: "
@@ -382,8 +382,11 @@
 		if (product_slogans != "")
 			dat += "The speaker switch is [src.shut_up ? "off" : "on"]. <a href='?src=\ref[src];togglevoice=[1]'>Toggle</a>"
 
-		user << browse(dat, "window=vending")
+		var/datum/browser/popup = new(user, "vending", "<div align='center'>Access Panel</div>")
+		popup.set_content(dat)
+		popup.open(FALSE)
 		onclose(user, "vending")
+
 
 
 	ui_interact(user)
@@ -428,7 +431,7 @@
 		ui.set_auto_update(1)
 
 /obj/machinery/vending/Topic(href, href_list)
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	if(usr.is_mob_incapacitated())
 		return
@@ -590,7 +593,7 @@
 
 /obj/machinery/vending/MouseDrop_T(var/atom/movable/A, mob/user)
 
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 
 	if(user.stat || user.is_mob_restrained() || user.lying)
@@ -649,7 +652,7 @@
 			return //We found our item, no reason to go on.
 
 /obj/machinery/vending/process()
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 
 	if(!src.active)
@@ -668,7 +671,7 @@
 		src.throw_item()
 
 /obj/machinery/vending/proc/speak(var/message)
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		return
 
 	if (!message)
@@ -679,9 +682,9 @@
 
 /obj/machinery/vending/power_change()
 	..()
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		icon_state = "[initial(icon_state)]-broken"
-	else if( !(stat & NOPOWER) )
+	else if( !(machine_stat & NOPOWER) )
 		icon_state = initial(icon_state)
 	else
 		spawn(rand(0, 15))
@@ -701,7 +704,7 @@
 			R.amount--
 		break
 
-	stat |= BROKEN
+	machine_stat |= BROKEN
 	src.icon_state = "[initial(icon_state)]-broken"
 
 //Somebody cut an important wire and now we're following a new definition of "pitch."

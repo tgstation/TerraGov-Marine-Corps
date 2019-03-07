@@ -172,7 +172,10 @@ var/world_topic_spam_protect_time = world.timeofday
 		return list2params(s)
 
 
-/world/Reboot(var/reason)
+/world/Reboot(ping = FALSE)
+	if(ping)
+		send2update("<@&545779447739973633>")
+	send2update("Map: [SSmapping?.next_map_config?.map_name] | Last Round End State: [SSticker?.mode?.round_finished]")
 	TgsReboot()
 	for(var/client/C in GLOB.clients)
 		if(CONFIG_GET(string/server))
@@ -226,23 +229,23 @@ var/world_topic_spam_protect_time = world.timeofday
 		else
 			s += "<b>[CONFIG_GET(string/server_name)] &#8212; [MAIN_SHIP_NAME]</b>"
 		if(Master?.current_runlevel && GLOB.master_mode)
-			switch(GLOB.map_tag)
+			switch(SSmapping.config.map_name)
 				if("Ice Colony")
-					s += "<br>Map: <a href='[CONFIG_GET(string/icecolonyurl)]'><b>[GLOB.map_tag]</a></b>"
+					s += "<br>Map: <a href='[CONFIG_GET(string/icecolonyurl)]'><b>[SSmapping.config.map_name]</a></b>"
 				if("LV-624")
-					s += "<br>Map: <a href='[CONFIG_GET(string/lv624url)]'><b>[GLOB.map_tag]</a></b>"
+					s += "<br>Map: <a href='[CONFIG_GET(string/lv624url)]'><b>[SSmapping.config.map_name]</a></b>"
 				if("Solaris Ridge")
-					s += "<br>Map: <a href='[CONFIG_GET(string/bigredurl)]'><b>[GLOB.map_tag]</a></b>"
+					s += "<br>Map: <a href='[CONFIG_GET(string/bigredurl)]'><b>[SSmapping.config.map_name]</a></b>"
 				if("Prison Station")
-					s += "<br>Map: <a href='[CONFIG_GET(string/prisonstationurl)]'><b>[GLOB.map_tag]</a></b>"
+					s += "<br>Map: <a href='[CONFIG_GET(string/prisonstationurl)]'><b>[SSmapping.config.map_name]</a></b>"
 				if("Whiskey Outpost")
-					s += "<br>Map: <a href='[CONFIG_GET(string/whiskeyoutposturl)]'><b>[GLOB.map_tag]</a></b>"
+					s += "<br>Map: <a href='[CONFIG_GET(string/whiskeyoutposturl)]'><b>[SSmapping.config.map_name]</a></b>"
 				else
-					s += "<br>Map: <b>[GLOB.map_tag]</b>"
+					s += "<br>Map: <b>[SSmapping.config.map_name]</b>"
 			s += "<br>Mode: <b>[(Master.current_runlevel & RUNLEVELS_DEFAULT) ? SSticker.mode.name : "Lobby"]</b>"
 			s += "<br>Round time: <b>[duration2text()]</b>"
 		else
-			s += "<br>Map: <b>[GLOB.map_tag]</b>"
+			s += "<br>Map: <b>[SSmapping.config?.map_name ? SSmapping.config.map_name : "Loading..."]</b>"
 
 		status = s
 

@@ -7,8 +7,8 @@
 #define MAIN_SHIP_ESCAPE_POD_NUMBER 11
 
 #define MAP_ICE_COLONY "Ice Colony"
-#define MAP_LV_624 "LV-624"
-#define MAP_BIG_RED "Solaris Ridge"
+#define MAP_LV_624 "LV624"
+#define MAP_BIG_RED "Big Red"
 #define MAP_PRISON_STATION "Prison Station"
 #define MAP_WHISKEY_OUTPOST "Whiskey Outpost"
 
@@ -108,13 +108,7 @@ These are used with cdel (clean delete). For example, qdel(atom, TA_REVIVE_ME) w
 #define HOSTILE_STANCE_TIRED 5
 //=================================================
 
-//computer3 error codes, move lower in the file when it passes dev -Sayu
- #define PROG_CRASH      1  // Generic crash
- #define MISSING_PERIPHERAL  2  // Missing hardware
- #define BUSTED_ASS_COMPUTER  4  // Self-perpetuating error.  BAC will continue to crash forever.
- #define MISSING_PROGRAM    8  // Some files try to automatically launch a program.  This is that failing.
- #define FILE_DRM      16  // Some files want to not be copied/moved.  This is them complaining that you tried.
- #define NETWORK_FAILURE  32
+
 //=================================================
 //Game mode related defines.
 

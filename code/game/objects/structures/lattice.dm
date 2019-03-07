@@ -77,3 +77,19 @@
 
 		icon_state = "lattice[dir_sum]"
 		return
+
+/obj/structure/catwalk
+	icon = 'icons/turf/catwalks.dmi'
+	icon_state = "catwalk0"
+
+/obj/structure/catwalk/Initialize()
+	. = ..()
+	var/turf/T = get_turf(src)
+	if(istype(T, /turf/open))
+		var/turf/open/O = T
+		var/obj/effect/river_overlay/R = locate() in T // remove any river overlays
+		if(R)
+			qdel(R)
+		O.has_catwalk = TRUE
+		O.overlays += image(icon, T, icon_state, CATWALK_LAYER)
+	return INITIALIZE_HINT_QDEL

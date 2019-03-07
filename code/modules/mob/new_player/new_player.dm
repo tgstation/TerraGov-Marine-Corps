@@ -34,23 +34,25 @@
 
 
 /mob/new_player/proc/new_player_panel()
-	var/output = "<div align='center'><B>New Player Options</B>"
-	output +="<hr>"
-	output += "<p><a href='byond://?src=\ref[src];lobby_choice=show_preferences'>Setup Character</A></p>"
+	var/output = "<div align='center'>"
+	output += "<p><a href='byond://?src=[REF(src)];lobby_choice=show_preferences'>Setup Character</A></p>"
 
 	if(!SSticker?.mode || SSticker.current_state <= GAME_STATE_PREGAME)
-		output += "<p>\[ [ready? "<b>Ready</b>":"<a href='byond://?src=\ref[src];lobby_choice=ready'>Ready</a>"] | [ready? "<a href='byond://?src=\ref[src];lobby_choice=ready'>Not Ready</a>":"<b>Not Ready</b>"] \]</p>"
+		output += "<p>\[ [ready? "<b>Ready</b>":"<a href='byond://?src=\ref[src];lobby_choice=ready'>Ready</a>"] | [ready? "<a href='byond://?src=[REF(src)];lobby_choice=ready'>Not Ready</a>":"<b>Not Ready</b>"] \]</p>"
 
 	else
-		output += "<a href='byond://?src=\ref[src];lobby_choice=manifest'>View the Crew Manifest</A><br><br>"
-		output += "<p><a href='byond://?src=\ref[src];lobby_choice=late_join'>Join the TGMC!</A></p>"
-		output += "<p><a href='byond://?src=\ref[src];lobby_choice=late_join_xeno'>Join the Hive!</A></p>"
+		output += "<a href='byond://?src=[REF(src)];lobby_choice=manifest'>View the Crew Manifest</A><br><br>"
+		output += "<p><a href='byond://?src=[REF(src)];lobby_choice=late_join'>Join the TGMC!</A></p>"
+		output += "<p><a href='byond://?src=[REF(src)];lobby_choice=late_join_xeno'>Join the Hive!</A></p>"
 
-	output += "<p><a href='byond://?src=\ref[src];lobby_choice=observe'>Observe</A></p>"
+	output += "<p><a href='byond://?src=[REF(src)];lobby_choice=observe'>Observe</A></p>"
 
 	output += "</div>"
 
-	src << browse(output,"window=playersetup;size=240x300;can_close=0")
+	var/datum/browser/popup = new(src, "playersetup", "<div align='center'>New Player Options</div>", 240, 300)
+	popup.set_window_options("can_close=0")
+	popup.set_content(output)
+	popup.open(FALSE)
 
 
 /mob/new_player/Stat()
@@ -96,6 +98,9 @@
 
 
 		if("observe")
+			if(!SSticker || SSticker.current_state == GAME_STATE_STARTUP)
+				to_chat(src, "<span class='warning'>The game is still setting up, please try again later.</span>")
+				return
 			if(alert("Are you sure you wish to observe?\nYou will have to wait at least 5 minutes before being able to respawn!", "Observe", "Yes", "No") == "Yes")
 				if(!client)
 					return TRUE
@@ -123,21 +128,22 @@
 
 				observer.timeofdeath = world.time
 
-				client.prefs.update_preview_icon()
-				observer.icon = client.prefs.preview_icon
 				observer.alpha = 127
 
 				var/datum/species/species = GLOB.all_species[client.prefs.species] || GLOB.all_species[DEFAULT_SPECIES]
 
-				if(client.prefs.random_name)
-					client.prefs.real_name = species.random_name(client.prefs.gender)
+				if(is_banned_from(ckey, "Appearance") || !client?.prefs)
+					species = GLOB.all_species[DEFAULT_SPECIES]
+					species.random_name()
+				else if(client.prefs)
+					if(client.prefs.random_name)
+						client.prefs.real_name = species.random_name(client.prefs.gender)
+					else
+						observer.real_name = client.prefs.real_name
 
-				observer.real_name = client.prefs.real_name
 				observer.name = observer.real_name
-				observer.key = key
 
-				if(observer.client)
-					observer.client.change_view(world.view)
+				mind.transfer_to(observer, TRUE)
 				qdel(src)
 
 
@@ -268,15 +274,17 @@
 		dat += "<a href='byond://?src=\ref[src];lobby_choice=SelectedJob;job_selected=[J.title]'>[J.title] ([J.current_positions]) (Active: [active])</a><br>"
 
 	dat += "</center>"
-	src << browse(dat, "window=latechoices;size=300x640;can_close=1")
+	var/datum/browser/popup = new(src, "latechoices", "<div align='center'>Join the TGMC</div>", 300, 640)
+	popup.set_content(dat)
+	popup.open(FALSE)
 
 
 /mob/new_player/proc/ViewManifest()
-	var/dat = "<html><body>"
-	dat += "<h4>Crew Manifest:</h4>"
-	dat += data_core.get_manifest(OOC = 1)
+	var/dat = data_core.get_manifest(OOC = 1)
 
-	src << browse(dat, "window=manifest;size=400x420;can_close=1")
+	var/datum/browser/popup = new(src, "manifest", "<div align='center'>Crew Manifest</div>", 400, 420)
+	popup.set_content(dat)
+	popup.open(FALSE)
 
 
 /mob/new_player/Move()
@@ -326,7 +334,9 @@
 
 	var/mob/living/carbon/human/H = new(loc)
 
-	client.prefs.copy_to(H)
+
+	if(!is_banned_from(ckey, "Appearance"))
+		client.prefs.copy_to(H)
 	if(mind)
 		if(transfer_after)
 			mind.late_joiner = TRUE
@@ -357,9 +367,13 @@
 				return FALSE
 	if(jobban_isbanned(src, rank))
 		return FALSE
+	if(is_banned_from(ckey, rank))
+		return FALSE
 	if(QDELETED(src))
 		return FALSE
 	if(!job.player_old_enough(client))
+		return FALSE
+	if(job.required_playtime_remaining(client))
 		return FALSE
 	if(latejoin && !job.special_check_latejoin(client))
 		return FALSE

@@ -66,7 +66,7 @@
 						if(H.mind.assigned_role != "Squad Engineer")
 							return // stop people giving medics engineer prep access or IDs somehow
 					if("medic")
-						if(H.mind.assigned_role != "Squad Medic")
+						if(H.mind.assigned_role != "Squad Corpsman")
 							return // same here
 				I.claimedgear = 1 // you only get one locker, all other roles have this set 1 by default
 				slotlocked = 0 // now permanently unlockable

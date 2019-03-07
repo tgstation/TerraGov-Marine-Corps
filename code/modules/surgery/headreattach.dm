@@ -9,7 +9,7 @@
 /datum/surgery_step/head/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected, checks_only)
 	if(!affected)
 		return 0
-	if(!(affected.status & LIMB_DESTROYED))
+	if(!(affected.limb_status & LIMB_DESTROYED))
 		return 0
 	if(affected.body_part != HEAD)
 		return 0
@@ -130,7 +130,7 @@
 	user.visible_message("<span class='notice'>[user] has finished adjusting the area around [target]'s neck with \the [tool].</span>",	\
 	"<span class='notice'>You have finished adjusting the area around [target]'s neck with \the [tool].</span>")
 	affected.limb_replacement_stage = 0
-	affected.status |= LIMB_AMPUTATED
+	affected.limb_status |= LIMB_AMPUTATED
 	affected.setAmputatedTree()
 
 /datum/surgery_step/head/prepare/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
@@ -152,7 +152,7 @@
 
 /datum/surgery_step/head/attach/can_use(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected, checks_only)
 	if(..())
-		if(affected.status & LIMB_AMPUTATED)
+		if(affected.limb_status & LIMB_AMPUTATED)
 			return 1
 
 /datum/surgery_step/head/attach/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)

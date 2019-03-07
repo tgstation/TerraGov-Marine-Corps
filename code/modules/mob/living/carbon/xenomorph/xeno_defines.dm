@@ -52,7 +52,7 @@
 	var/deevolves_to // type path to the caste to deevolve to
 
 	// *** Flags *** //
-	var/caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_QUEEN_HEALED
+	var/caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_LEADER
 
 	var/can_hold_eggs = CANNOT_HOLD_EGGS
 
@@ -240,6 +240,8 @@
 	var/cresttoss_used = FALSE
 
 	var/wound_type = "ravager" //used to match appropriate wound overlays
+
+	var/fire_luminosity = 0 //Luminosity of the current fire while burning
 
 /datum/hive_status
 	var/name = "Normal"

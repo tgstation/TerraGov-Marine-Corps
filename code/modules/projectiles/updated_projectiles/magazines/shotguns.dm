@@ -1,4 +1,3 @@
-
 //-------------------------------------------------------
 //Generic shotgun magazines. Only three of them, since all shotguns can use the same ammo unless we add other gauges.
 
@@ -45,7 +44,7 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 /obj/item/ammo_magazine/rifle/bolt
 	name = "box of rifle bullets"
 	desc = "A box filled with rifle bullets."
-	icon_state = "sovie" //Thank you Alterist
+	icon_state = "7.62" //Thank you Alterist
 	default_ammo = /datum/ammo/bullet/sniper/svd
 	caliber = "7.62x54mmR" //Cyka Blyat
 	gun_type = /obj/item/weapon/gun/shotgun/pump/bolt
@@ -69,21 +68,22 @@ also doesn't really matter. You can only reload them with handfuls.
 
 /obj/item/ammo_magazine/internal/shotgun/pump
 
-
-/obj/item/ammo_magazine/internal/shotgun/pump/CMB //The only cycle method.
+/obj/item/ammo_magazine/internal/shotgun/pump/CMB
 	max_rounds = 8
 
-/obj/item/ammo_magazine/internal/shotgun/pump/bolt //The only cycle method.
+/obj/item/ammo_magazine/internal/shotgun/pump/ksg
+	max_rounds = 12
+
+/obj/item/ammo_magazine/internal/shotgun/pump/bolt
 	name = "internal magazine"
 	default_ammo = /datum/ammo/bullet/sniper/svd
 	caliber = "7.62x54mmR"
 	max_rounds = 5
 
-/obj/item/ammo_magazine/internal/shotgun/double //For a double barrel.
+/obj/item/ammo_magazine/internal/shotgun/double
 	default_ammo = /datum/ammo/bullet/shotgun/buckshot
 	max_rounds = 2
 	chamber_closed = 1 //Starts out with a closed tube.
-
 
 /obj/item/ammo_magazine/internal/shotgun/combat
 	max_rounds = 9

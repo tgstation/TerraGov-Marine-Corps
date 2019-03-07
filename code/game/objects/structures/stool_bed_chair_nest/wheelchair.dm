@@ -31,15 +31,15 @@
 		var/datum/limb/right_hand = driver.get_limb("r_hand")
 		var/working_hands = 2
 		move_delay = initial(move_delay)
-		if(!left_hand || (left_hand.status & LIMB_DESTROYED))
+		if(!left_hand || (left_hand.limb_status & LIMB_DESTROYED))
 			move_delay += 4 //harder to move a wheelchair with a single hand
 			working_hands--
-		else if((left_hand.status & LIMB_BROKEN) && !(left_hand.status & LIMB_SPLINTED) && !(left_hand.status & LIMB_STABILIZED))
+		else if((left_hand.limb_status & LIMB_BROKEN) && !(left_hand.limb_status & LIMB_SPLINTED) && !(left_hand.limb_status & LIMB_STABILIZED))
 			move_delay++
-		if(!right_hand || (right_hand.status & LIMB_DESTROYED))
+		if(!right_hand || (right_hand.limb_status & LIMB_DESTROYED))
 			move_delay += 4
 			working_hands--
-		else if((right_hand.status & LIMB_BROKEN) && !(right_hand.status & LIMB_SPLINTED) && !(right_hand.status & LIMB_STABILIZED))
+		else if((right_hand.limb_status & LIMB_BROKEN) && !(right_hand.limb_status & LIMB_SPLINTED) && !(right_hand.limb_status & LIMB_STABILIZED))
 			move_delay += 2
 		if(!working_hands)
 			return // No hands to drive your chair? Tough luck!

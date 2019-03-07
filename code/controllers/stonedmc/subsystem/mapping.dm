@@ -109,7 +109,7 @@ SUBSYSTEM_DEF(mapping)
 
 	z_list = SSmapping.z_list
 
-#define INIT_ANNOUNCE(X) to_chat(world, "<span class='boldannounce'>[X]</span>"); log_world(X)
+#define INIT_ANNOUNCE(X) to_chat(world, "<span class='notice'>[X]</span>"); log_world(X)
 /datum/controller/subsystem/mapping/proc/LoadGroup(list/errorList, name, path, files, list/traits, list/default_traits, silent = FALSE)
 	. = list()
 	var/start_time = REALTIMEOFDAY
@@ -181,10 +181,10 @@ SUBSYSTEM_DEF(mapping)
 	LoadGroup(FailedZs, "Low Orbit", low_orbit.map_path, low_orbit.map_file, low_orbit.traits, ZTRAITS_LOW_ORBIT)
 
 
-//	if(SSdbcore.Connect())
-//		var/datum/DBQuery/query_round_map_name = SSdbcore.NewQuery("UPDATE [format_table_name("round")] SET map_name = '[config.map_name]' WHERE id = [GLOB.round_id]")
-//		query_round_map_name.Execute()
-//		qdel(query_round_map_name)
+	if(SSdbcore.Connect())
+		var/datum/DBQuery/query_round_map_name = SSdbcore.NewQuery("UPDATE [format_table_name("round")] SET map_name = '[config.map_name]' WHERE id = [GLOB.round_id]")
+		query_round_map_name.Execute()
+		qdel(query_round_map_name)
 
 #ifndef LOWMEMORYMODE
 	// TODO: remove this when the DB is prepared for the z-levels getting reordered

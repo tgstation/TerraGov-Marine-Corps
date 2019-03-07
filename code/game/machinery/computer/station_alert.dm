@@ -9,7 +9,7 @@
 
 /obj/machinery/computer/station_alert/attack_ai(mob/user)
 	add_fingerprint(user)
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	interact(user)
 	return
@@ -17,7 +17,7 @@
 
 /obj/machinery/computer/station_alert/attack_hand(mob/user)
 	add_fingerprint(user)
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	interact(user)
 	return
@@ -25,7 +25,7 @@
 
 /obj/machinery/computer/station_alert/interact(mob/user)
 	usr.set_interaction(src)
-	var/dat = "<HEAD><TITLE>Current Station Alerts</TITLE><META HTTP-EQUIV='Refresh' CONTENT='10'></HEAD><BODY>\n"
+	var/dat = "<META HTTP-EQUIV='Refresh' CONTENT='10'>"
 	dat += "<A HREF='?src=\ref[user];mach_close=alerts'>Close</A><br><br>"
 	for (var/cat in src.alarms)
 		dat += text("<B>[]</B><BR>\n", cat)
@@ -44,7 +44,10 @@
 		else
 			dat += "-- All Systems Nominal<BR>\n"
 		dat += "<BR>\n"
-	user << browse(dat, "window=alerts")
+
+	var/datum/browser/popup = new(user, "alerts", "<div align='center'>Current Station Alerts</div>")
+	popup.set_content(dat)
+	popup.open(FALSE)
 	onclose(user, "alerts")
 
 
@@ -55,7 +58,7 @@
 
 
 /obj/machinery/computer/station_alert/proc/triggerAlarm(var/class, area/A, var/O, var/alarmsource)
-	if(stat & (BROKEN))
+	if(machine_stat & (BROKEN))
 		return
 	var/list/L = src.alarms[class]
 	for (var/I in L)
@@ -78,7 +81,7 @@
 
 
 /obj/machinery/computer/station_alert/proc/cancelAlarm(var/class, area/A as area, obj/origin)
-	if(stat & (BROKEN))
+	if(machine_stat & (BROKEN))
 		return
 	var/list/L = src.alarms[class]
 	var/cleared = 0
@@ -95,10 +98,10 @@
 
 
 /obj/machinery/computer/station_alert/process()
-	if (stat &(NOPOWER))
+	if (machine_stat &(NOPOWER))
 		icon_state = "atmos0"
 		return
-	if(stat & (BROKEN))
+	if(machine_stat & (BROKEN))
 		icon_state = "atmosb"
 		return
 	var/active_alarms = 0

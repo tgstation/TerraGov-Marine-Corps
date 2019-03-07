@@ -13,7 +13,7 @@
 	throw_range = 2
 	w_class = 1
 	var/access = list()
-	access = ACCESS_MARINE_COMMANDER
+	access = ACCESS_MARINE_CAPTAIN
 	var/worth = 0
 
 /obj/item/spacecash/attackby(obj/item/W as obj, mob/user as mob)

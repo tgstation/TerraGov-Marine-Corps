@@ -71,7 +71,7 @@
 					dat += "<B>Record List</B>:<HR>"
 					if(!isnull(data_core.general))
 						for(var/datum/data/record/R in sortRecord(data_core.general))
-							dat += text("<A href='?src=\ref[];d_rec=\ref[]'>[]: []<BR>", src, R, R.fields["id"], R.fields["name"])
+							dat += text("<A href='?src=\ref[];d_rec=\ref[]'>[]: []<BR></A>", src, R, R.fields["id"], R.fields["name"])
 							//Foreach goto(132)
 					dat += text("<HR><A href='?src=\ref[];screen=1'>Back</A>", src)
 				if(3.0)
@@ -128,9 +128,12 @@
 				else
 		else
 			dat += text("<A href='?src=\ref[];login=1'>{Log In}</A>", src)
-	user << browse(text("<HEAD><TITLE>Medical Records</TITLE></HEAD><TT>[]</TT>", dat), "window=med_rec")
+
+	var/datum/browser/popup = new(user, "med_rec", "<div align='center'>Medical Records</div>")
+	popup.set_content(dat)
+	popup.open(FALSE)
 	onclose(user, "med_rec")
-	return
+
 
 /obj/machinery/computer/med_data/Topic(href, href_list)
 	if(..())
@@ -481,7 +484,7 @@
 	return
 
 /obj/machinery/computer/med_data/emp_act(severity)
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		..(severity)
 		return
 

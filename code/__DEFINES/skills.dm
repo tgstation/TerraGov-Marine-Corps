@@ -75,7 +75,7 @@
 //medical skill
 #define SKILL_MEDICAL_DEFAULT	0
 #define SKILL_MEDICAL_CHEM		1 // recognizing chemicals, using autoinjectors & hyposprays with any chemicals (SL)
-#define SKILL_MEDICAL_MEDIC		2 //syringe use & defib use (Combat Medic)
+#define SKILL_MEDICAL_MEDIC		2 //syringe use & defib use (Squad Corpsman)
 #define SKILL_MEDICAL_DOCTOR	3
 #define SKILL_MEDICAL_CMO		4
 #define SKILL_MEDICAL_MASTER	5
@@ -85,7 +85,7 @@
 //surgery skill
 #define SKILL_SURGERY_DEFAULT		0 //untrained, really slow
 #define SKILL_SURGERY_AMATEUR		1 //basic notions of first aid and biology (SL, SO)
-#define SKILL_SURGERY_TRAINED		2 //semi-professional surgery (Medic)
+#define SKILL_SURGERY_TRAINED		2 //semi-professional surgery (Squad Corpsman)
 #define SKILL_SURGERY_PROFESSIONAL	3 //professional but unspecialized (Researcher)
 #define SKILL_SURGERY_EXPERT		4 //specialized (Doctor, CMO)
 #define SKILL_SURGERY_MASTER		5 //to be implemented, perhaps instant surgery

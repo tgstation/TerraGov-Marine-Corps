@@ -27,8 +27,6 @@
 				stat(null, "Evolve Progress (FINISHED)")
 			else if(!hive.living_xeno_queen)
 				stat(null, "Evolve Progress (HALTED - NO QUEEN)")
-			else if(!hive.living_xeno_queen.ovipositor)
-				stat(null, "Evolve Progress (HALTED - QUEEN HAS NO OVIPOSITOR)")
 			else
 				stat(null, "Evolve Progress: [evolution_stored]/[xeno_caste.evolution_threshold]")
 
@@ -296,7 +294,7 @@
 					if(xeno_caste.charge_type == 2)
 						if(stealth_router(HANDLE_STEALTH_CHECK))
 							M.adjust_stagger(3)
-							M.add_slowdown(3)
+							M.add_slowdown(1)
 							to_chat(src, "<span class='xenodanger'>Pouncing from the shadows, you stagger your victim.</span>")
 					if(!isxenosilicon(src))
 						playsound(loc, rand(0, 100) < 95 ? 'sound/voice/alien_pounce.ogg' : 'sound/voice/alien_pounce2.ogg', 25, 1)

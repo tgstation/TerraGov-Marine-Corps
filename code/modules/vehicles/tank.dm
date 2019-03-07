@@ -20,6 +20,8 @@
 	var/occupant_exiting = null
 	var/next_sound_play = 0
 
+	var/is_zoomed = FALSE
+
 	luminosity = 7
 
 	req_access = list(ACCESS_MARINE_TANK)
@@ -281,7 +283,10 @@
 				ST.update_icon(1, 0)
 
 	if(next_sound_play < world.time)
-		playsound(src, 'sound/ambience/tank_driving.ogg', vol = 20, sound_range = 30)
+		if(!CONFIG_GET(flag/tank_mouth_noise))
+			playsound(src, 'sound/ambience/tank_driving.ogg', vol = 20, sound_range = 30)
+		else
+			playsound(src, 'sound/ambience/tank_driving_joke.ogg', vol = 20, sound_range = 30)
 		next_sound_play = world.time + 21
 
 //No one but the driver can turn

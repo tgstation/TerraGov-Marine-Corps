@@ -80,7 +80,7 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.5 SECONDS
-	spit_types = list(/datum/ammo/xeno/toxin/medium/upgrade2, /datum/ammo/xeno/acid/medium)
+	spit_types = list(/datum/ammo/xeno/toxin/medium/upgrade1, /datum/ammo/xeno/acid/medium)
 
 	// *** Pheromones *** //
 	aura_strength = 3
@@ -118,7 +118,7 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.5 SECONDS
-	spit_types = list(/datum/ammo/xeno/toxin/medium/upgrade3, /datum/ammo/xeno/acid/medium)
+	spit_types = list(/datum/ammo/xeno/toxin/medium/upgrade2, /datum/ammo/xeno/acid/medium)
 
 	// *** Pheromones *** //
 	aura_strength = 4
@@ -156,7 +156,7 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.5 SECONDS
-	spit_types = list(/datum/ammo/xeno/toxin/medium/upgrade2, /datum/ammo/xeno/acid/medium)
+	spit_types = list(/datum/ammo/xeno/toxin/medium/upgrade3, /datum/ammo/xeno/acid/medium)
 
 	// *** Pheromones *** //
 	aura_strength = 5
@@ -528,7 +528,7 @@
 
 	if(issynth(victim))
 		var/datum/limb/head/synthhead = victim.get_limb("head")
-		if(synthhead.status & LIMB_DESTROYED)
+		if(synthhead.limb_status & LIMB_DESTROYED)
 			return
 
 	if(locate(/obj/item/alien_embryo) in victim) //Maybe they ate it??
@@ -610,7 +610,7 @@
 		for(var/mob/living/carbon/Xenomorph/L in hive.xeno_leader_list)
 			L.handle_xeno_leader_pheromones(src)
 
-	xeno_message("<span class='xenoannounce'>The Queen has grown an ovipositor, evolution progress resumed.</span>", 3, hivenumber)
+	xeno_message("<span class='xenoannounce'>The Queen has grown an ovipositor.</span>", 3, hivenumber)
 
 /mob/living/carbon/Xenomorph/Queen/proc/dismount_ovipositor(instant_dismount)
 	set waitfor = 0
@@ -668,7 +668,7 @@
 				L.handle_xeno_leader_pheromones(src)
 
 		if(!instant_dismount)
-			xeno_message("<span class='xenoannounce'>The Queen has shed her ovipositor, evolution progress paused.</span>", 3, hivenumber)
+			xeno_message("<span class='xenoannounce'>The Queen has shed her ovipositor.</span>", 3, hivenumber)
 
 /mob/living/carbon/Xenomorph/Queen/update_canmove()
 	. = ..()

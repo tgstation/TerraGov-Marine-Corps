@@ -22,10 +22,10 @@
 	update_icon()
 
 /obj/machinery/recharge_station/process()
-	if(stat & (BROKEN))
+	if(machine_stat & (BROKEN))
 		return
 
-	if((stat & (NOPOWER)) && !current_internal_charge) // No Power.
+	if((machine_stat & (NOPOWER)) && !current_internal_charge) // No Power.
 		return
 
 	var/chargemode = 0
@@ -34,7 +34,7 @@
 		chargemode = 1
 	// Power Stuff
 
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		current_internal_charge = max(0, (current_internal_charge - (50 * GLOB.CELLRATE))) // Internal Circuitry, 50W load. No power - Runs from internal cell
 		return // No external power = No charging
 
@@ -83,7 +83,7 @@
 	return
 
 /obj/machinery/recharge_station/emp_act(severity)
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		..(severity)
 		return
 	if(occupant)

@@ -6,7 +6,7 @@
 	return TASTE_NORMAL
 
 /mob/living/carbon/human/get_taste_sensitivity()
-	return species.flags & IS_SYNTHETIC ? TASTE_DULL : species.taste_sensitivity //Useless right now as they can't eat, so TODO stuff.
+	return species.species_flags & IS_SYNTHETIC ? TASTE_DULL : species.taste_sensitivity //Useless right now as they can't eat, so TODO stuff.
 
 
 // non destructively tastes a reagent container

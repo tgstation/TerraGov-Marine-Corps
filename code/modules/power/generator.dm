@@ -48,7 +48,7 @@
 				circ2 = null
 
 /obj/machinery/power/generator/proc/updateicon()
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		overlays.Cut()
 	else
 		overlays.Cut()
@@ -57,7 +57,7 @@
 			overlays += image('icons/obj/power.dmi', "teg-op[lastgenlev]")
 
 /obj/machinery/power/generator/process()
-	if(!circ1 || !circ2 || !anchored || stat & (BROKEN|NOPOWER))
+	if(!circ1 || !circ2 || !anchored || machine_stat & (BROKEN|NOPOWER))
 		return
 
 	updateDialog()
@@ -77,7 +77,7 @@
 	add_avail(lastgen)
 
 /obj/machinery/power/generator/attack_ai(mob/user)
-	if(stat & (BROKEN|NOPOWER)) return
+	if(machine_stat & (BROKEN|NOPOWER)) return
 	interact(user)
 
 /obj/machinery/power/generator/attackby(obj/item/W as obj, mob/user as mob)
@@ -91,7 +91,7 @@
 
 /obj/machinery/power/generator/attack_hand(mob/user)
 	add_fingerprint(user)
-	if(stat & (BROKEN|NOPOWER) || !anchored) return
+	if(machine_stat & (BROKEN|NOPOWER) || !anchored) return
 	interact(user)
 
 

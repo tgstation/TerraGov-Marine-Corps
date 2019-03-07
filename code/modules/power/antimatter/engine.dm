@@ -38,7 +38,7 @@
 
 
 /obj/machinery/power/am_engine/injector/attackby(obj/item/weapon/fuel/F, mob/user)
-	if( (stat & BROKEN) || !connected) return
+	if( (machine_stat & BROKEN) || !connected) return
 
 	if(istype(F, /obj/item/weapon/fuel/H))
 		if(injecting)
@@ -83,7 +83,7 @@
 
 /obj/machinery/power/am_engine/engine/proc/engine_go()
 
-	if( (!src.connected) || (stat & BROKEN) )
+	if( (!src.connected) || (machine_stat & BROKEN) )
 		return
 
 	if(!antiH_fuel || !H_fuel)
@@ -124,7 +124,7 @@
 /obj/machinery/power/am_engine/engine/proc/engine_process()
 
 	do
-		if( (!src.connected) || (stat & BROKEN) )
+		if( (!src.connected) || (machine_stat & BROKEN) )
 			return
 
 		if(!antiH_fuel || !H_fuel)

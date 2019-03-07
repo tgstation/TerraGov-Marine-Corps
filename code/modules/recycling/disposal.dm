@@ -39,7 +39,7 @@
 
 //Attack by item places it in to disposal
 /obj/machinery/disposal/attackby(var/obj/item/I, var/mob/user)
-	if(stat & BROKEN || !I || !user)
+	if(machine_stat & BROKEN || !I || !user)
 		return
 
 	if(isxeno(user)) //No, fuck off. Concerns trashing Marines and facehuggers
@@ -177,7 +177,7 @@
 
 //Monkeys can only pull the flush lever
 /obj/machinery/disposal/attack_paw(mob/user as mob)
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		return
 
 	flush = !flush
@@ -199,11 +199,11 @@
 /obj/machinery/disposal/interact(mob/user, var/ai=0)
 
 	add_fingerprint(user)
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		user.unset_interaction()
 		return
 
-	var/dat = "<head><title>Waste Disposal Unit</title></head><body><TT><B>Waste Disposal Unit</B><HR>"
+	var/dat = "<B>Status</B><HR>"
 
 	if(!ai)  //AI can't pull flush handle
 		if(flush)
@@ -220,10 +220,13 @@
 	else
 		dat += "Pump: <B>On</B> (idle)<BR>"
 
-	dat += "Pressure: [disposal_pressure*100/SEND_PRESSURE]%<BR></body>"
+	dat += "Pressure: [disposal_pressure*100/SEND_PRESSURE]%<BR>"
 
 	user.set_interaction(src)
-	user << browse(dat, "window=disposal;size=360x170")
+
+	var/datum/browser/popup = new(user, "disposal", "<div align='center'>Waste Disposal Unit</div>", 360, 220)
+	popup.set_content(dat)
+	popup.open(FALSE)
 	onclose(user, "disposal")
 
 //Handle machine interaction
@@ -237,7 +240,7 @@
 		return
 	..()
 	add_fingerprint(usr)
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		return
 	if(usr.stat || usr.is_mob_restrained() || flushing)
 		return
@@ -303,7 +306,7 @@
 //Update the icon & overlays to reflect mode & status
 /obj/machinery/disposal/proc/update()
 	overlays.Cut()
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		icon_state = "disposal-broken"
 		mode = 0
 		flush = 0
@@ -314,7 +317,7 @@
 		overlays += image('icons/obj/pipes/disposal.dmi', "dispover-handle")
 
 	//Only handle is shown if no power
-	if(stat & NOPOWER || mode == -1)
+	if(machine_stat & NOPOWER || mode == -1)
 		return
 
 	//Check for items in disposal - occupied light
@@ -329,7 +332,7 @@
 
 //Timed process, charge the gas reservoir and perform flush if ready
 /obj/machinery/disposal/process()
-	if(stat & BROKEN) //Nothing can happen if broken
+	if(machine_stat & BROKEN) //Nothing can happen if broken
 		update_use_power(0)
 		return
 
@@ -510,7 +513,7 @@
 		if(hasmob && prob(3))
 			for(var/mob/living/H in src)
 				if(!ismaintdrone(H)) //Drones use the mailing code to move through the disposal system,
-					if(GLOB.map_tag != MAP_WHISKEY_OUTPOST)
+					if(SSmapping.config.map_name != MAP_WHISKEY_OUTPOST)
 						H.take_overall_damage(20, 0, "Blunt Trauma") //Horribly maim any living creature jumping down disposals.  c'est la vie
 
 		if(has_fat_guy && prob(2)) //Chance of becoming stuck per segment if contains a fat guy

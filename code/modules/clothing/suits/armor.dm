@@ -309,7 +309,7 @@
 	item_state = "armor"
 	armor = list(melee = 60, bullet = 60, laser = 60, energy = 40, bomb = 20, bio = 0, rad = 0)
 
-//Commander
+//Captain
 /obj/item/clothing/suit/armor/vest/ert/command
 	name = "emergency response team commander armor"
 	desc = "A set of armor worn by the commander of a NanoTrasen Emergency Response Team. Has blue highlights."

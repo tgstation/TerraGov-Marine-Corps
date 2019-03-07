@@ -1,132 +1,134 @@
 /datum/job/command
 	department_flag = J_FLAG_SHIP
 	selection_color = "#ddddff"
-	supervisors = "the acting commander"
+	supervisors = "the acting captain"
 	faction = "Marine"
 	spawn_positions = 1
 	total_positions = 1
 
 
-//Commander
-/datum/job/command/commander
-	title = "Commander"
-	paygrade = "O4"
-	comm_title = "CO"
+//Captain
+/datum/job/command/captain
+	title = "Captain"
+	paygrade = "O6"
+	comm_title = "CPT"
 	flag = SHIP_CO
 	prefflag = PREF_JOB_CO
 	supervisors = "TGMC high command"
 	selection_color = "#ccccff"
-	minimal_player_age = 7
-	skills_type = /datum/skills/commander
+	skills_type = /datum/skills/captain
 	access = ALL_MARINE_ACCESS
 	minimal_access = ALL_MARINE_ACCESS
-	display_order = JOB_DISPLAY_ORDER_COMMANDER
-	outfit = /datum/outfit/job/command/commander
+	display_order = JOB_DISPLAY_ORDER_CAPTAIN
+	outfit = /datum/outfit/job/command/captain
 
 
-/datum/job/command/commander/radio_help_message(mob/M)
+/datum/job/command/captain/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"As the commander of the [MAIN_SHIP_NAME] you are held by higher standard and are expected to act competently.
+	to_chat(M, {"As the captain of the [MAIN_SHIP_NAME] you are held by higher standard and are expected to act competently.
 While you may support Nanotrasen, you report to the TGMC High Command, not the corporate office.
 Your primary task is the safety of the ship and her crew, and ensuring the survival and success of the marines.
 Your first order of business should be briefing the marines on the mission they are about to undertake.
 If you require any help, use adminhelp to ask mentors about what you're supposed to do.
-Godspeed, commander! And remember, you are not above the law."})
+Godspeed, captain! And remember, you are not above the law."})
 
 
-/datum/outfit/job/command/commander
-	name = "Commander"
-	jobtype = /datum/job/command/commander
+/datum/outfit/job/command/captain
+	name = "Captain"
+	jobtype = /datum/job/command/captain
 
 	id = /obj/item/card/id/gold
 	belt = /obj/item/storage/belt/gun/mateba/cmateba/full
 	ears = /obj/item/device/radio/headset/almayer/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/command
-	shoes = /obj/item/clothing/shoes/marinechief/commander
-	gloves = /obj/item/clothing/gloves/marine/techofficer/commander
+	shoes = /obj/item/clothing/shoes/marinechief/captain
+	gloves = /obj/item/clothing/gloves/marine/techofficer/captain
 	head = /obj/item/clothing/head/cmberet/tan
 	r_store = /obj/item/storage/pouch/general/large
-	l_store = /obj/item/device/binoculars
+	l_store = /obj/item/device/binoculars/tactical
 	back = /obj/item/storage/backpack/marine/satchel
 
 
-//Executive Officer
-/datum/job/command/executive
-	title = "Executive Officer"
-	paygrade = "O3"
-	comm_title = "XO"
+//Field Commander
+/datum/job/command/fieldcommander
+	title = "Field Commander"
+	paygrade = "MO4"
+	comm_title = "FCDR"
 	flag = SHIP_XO
-	prefflag = PREF_JOB_XO
-	skills_type = /datum/skills/XO
+	prefflag = PREF_JOB_FC
+	skills_type = /datum/skills/FO
 	access = ALL_MARINE_ACCESS
 	minimal_access = ALL_MARINE_ACCESS
 	display_order = JOB_DISPLAY_ORDER_EXECUTIVE_OFFICER
-	outfit = /datum/outfit/job/command/executive
+	outfit = /datum/outfit/job/command/fieldcommander
 
 
-/datum/job/command/executive/radio_help_message(mob/M)
+/datum/job/command/fieldcommander/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"You are second in command aboard the ship, and are in next in the chain of command after the commander.
-You may need to fill in for other duties if areas are understaffed, and you are given access to do so.
+	to_chat(M, {"You are charged with overseeing the operation on the ground, and are the highest-ranked deployed marine.
+Your dutiesare to ensure marines hold when ordered, and push when they are cowering behind barricades.
+Do not ask your men to do anything you would not do side by side with them.
 Make the TGMC proud!"})
 
 
-/datum/outfit/job/command/executive
-	name = "Executive Officer"
-	jobtype = /datum/job/command/executive
+/datum/outfit/job/command/fieldcommander
+	name = "Field Commander"
+	jobtype = /datum/job/command/fieldcommander
 
-	id = /obj/item/card/id/silver
-	belt = /obj/item/storage/belt/gun/m4a3/vp70
+	id = /obj/item/card/id/dogtag
+	belt = /obj/item/storage/belt/gun/m4a3/fieldcommander/
 	ears = /obj/item/device/radio/headset/almayer/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/exec
+	wear_suit = /obj/item/clothing/suit/storage/marine/smartgunner/fancy
 	shoes = /obj/item/clothing/shoes/marine
 	head = /obj/item/clothing/head/cmcap
-	r_store = /obj/item/storage/pouch/general/large
-	l_store = /obj/item/device/binoculars
-	back = /obj/item/storage/backpack/marine/satchel
+	r_store = /obj/item/storage/pouch/general/large/command
+	l_store = /obj/item/device/megaphone
+	back = /obj/item/smartgun_powerpack/fancy
+	suit_store = /obj/item/weapon/gun/smartgun
 
 
-//Staff Officer
-/datum/job/command/bridge
-	title = "Staff Officer"
-	paygrade = "O2"
-	comm_title = "SO"
+//Intelligence Officer
+/datum/job/command/intelligenceofficer
+	title = "Intelligence Officer"
+	paygrade = "O3"
+	comm_title = "IO"
 	flag = SHIP_SO
 	prefflag = PREF_JOB_SO
 	spawn_positions = 4
 	total_positions = 4
-	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_BRIG, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS)
-	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_BRIG, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS)
+	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_BRIG, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA)
+	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_BRIG, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA)
 	skills_type = /datum/skills/SO
 	display_order = JOB_DISPLAY_ORDER_STAFF_OFFICER
-	outfit = /datum/outfit/job/command/bridge
+	outfit = /datum/outfit/job/command/intelligenceofficer
 
 
-/datum/job/command/bridge/radio_help_message(mob/M)
+/datum/job/command/intelligenceofficer/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"Your job is to monitor the marines, man the CIC, and listen to your superior officers.
-You are in charge of logistics and the overwatch system. You are also in line to take command after the executive officer."})
+You are in charge of logistics and the overwatch system. You are also in line to take command after the captain."})
 
 
-/datum/outfit/job/command/bridge
-	name = "Executive Officer"
-	jobtype = /datum/job/command/bridge
+/datum/outfit/job/command/intelligenceofficer
+	name = "Intelligence Officer"
+	jobtype = /datum/job/command/intelligenceofficer
 
 	id = /obj/item/card/id/silver
-	belt = /obj/item/storage/belt/gun/m4a3/commander
+	belt = /obj/item/storage/belt/gun/m4a3/captain
 	ears = /obj/item/device/radio/headset/almayer/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/bridge
 	shoes = /obj/item/clothing/shoes/marine
 	head = /obj/item/clothing/head/cmcap/ro
 	r_store = /obj/item/storage/pouch/general/large
-	l_store = /obj/item/device/binoculars
+	l_store = /obj/item/device/binoculars/tactical
 	back = /obj/item/storage/backpack/marine/satchel
 
 
 //Pilot Officer
 /datum/job/command/pilot
 	title = "Pilot Officer"
-	paygrade = "O1"
+	paygrade = "WO"
 	comm_title = "PO"
 	flag = SHIP_PO
 	prefflag = PREF_JOB_PO
@@ -142,7 +144,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 /datum/job/command/pilot/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"Your job is to fly, protect, and maintain the ship's dropship.
-While you are an officer, your authority is limited to the dropship, where you have authority over the enlisted personnel.
+While you are a warrant officer, your authority is limited to the dropship, where you have authority over the enlisted personnel.
 If you are not piloting, there is an autopilot fallback for command, but don't leave the dropship without reason."})
 
 
@@ -166,7 +168,7 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 //Tank Crewmen
 /datum/job/command/tank_crew
 	title = "Tank Crewman"
-	paygrade = "O1"
+	paygrade = "E7"
 	comm_title = "TC"
 	flag = SHIP_TC
 	prefflag = PREF_JOB_TC
@@ -182,7 +184,7 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 /datum/job/command/tank_crew/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"Your job is to operate and maintain the ship's armored vehicles.
-While you are an officer, your authority is limited to your own vehicle, where you have authority over the enlisted personnel.
+Your authority is limited to your own vehicle, but you are next in line on the field, after the field commander.
 You could use MTs help to repair and replace hardpoints."})
 
 
@@ -204,10 +206,10 @@ You could use MTs help to repair and replace hardpoints."})
 
 
 //Military Police
-/datum/job/command/police
-	title = "Military Police"
-	paygrade = "E6"
-	comm_title = "MP"
+/datum/job/command/masteratarms
+	title = "Master at Arms"
+	paygrade = "PO"
+	comm_title = "MA"
 	flag = SHIP_MP
 	prefflag = PREF_JOB_MP
 	spawn_positions = 5
@@ -217,10 +219,10 @@ You could use MTs help to repair and replace hardpoints."})
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIG, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP)
 	skills_type = /datum/skills/MP
 	display_order = JOB_DISPLAY_ORDER_MILITARY_POLICE
-	outfit = /datum/outfit/job/command/police
+	outfit = /datum/outfit/job/command/masteratarms
 
 
-/datum/job/command/police/radio_help_message(mob/M)
+/datum/job/command/masteratarms/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"You are held by a higher standard and are required to not abuse your position to severely hinder the progress of the round.
 Failure to do so may result in a job ban.
@@ -229,9 +231,9 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 
 
 
-/datum/outfit/job/command/police
-	name = "Military Police"
-	jobtype = /datum/job/command/police
+/datum/outfit/job/command/masteratarms
+	name = "Master at Arms"
+	jobtype = /datum/job/command/masteratarms
 
 	id = /obj/item/card/id
 	belt = /obj/item/storage/belt/security/MP/full
@@ -246,22 +248,22 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 	back = /obj/item/storage/backpack/satchel/sec
 
 
-//Chief MP
-/datum/job/command/warrant
-	title = "Chief MP"
-	paygrade = "WO"
-	comm_title = "CMP"
+//Command Master at Arms
+/datum/job/command/commandmasteratarms
+	title = "Command Master at Arms"
+	paygrade = "O3"
+	comm_title = "CMA"
 	flag = SHIP_CMP
 	prefflag = PREF_JOB_CMP
 	selection_color = "#ffaaaa"
-	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIG, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_WO)
-	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIG, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_WO)
+	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIG, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_WO)
+	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIG, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_WO)
 	skills_type = /datum/skills/CMP
 	display_order = JOB_DISPLAY_ORDER_CHIEF_MP
 	outfit = /datum/outfit/job/command/warrant
 
 
-/datum/job/command/warrant/radio_help_message(mob/M)
+/datum/job/command/commandmasteratarms/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"You are held by a higher standard and are required to not abuse your position to severely hinder the progress of the round.
 Failure to do so may result in a job ban.
@@ -271,8 +273,8 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 
 
 /datum/outfit/job/command/warrant
-	name = "Chief MP"
-	jobtype = /datum/job/command/warrant
+	name = "Command Master at Arms"
+	jobtype = /datum/job/command/commandmasteratarms
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/security/MP/full
@@ -290,21 +292,22 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 
 /datum/job/logistics
 	department_flag = J_FLAG_SHIP
-	supervisors = "the acting commander"
+	supervisors = "the acting captain"
 	spawn_positions = 1
 	total_positions = 1
+	faction = "Marine"
 
 
-//Chief Engineer
+//Chief Ship Engineer
 /datum/job/logistics/engineering
-	title = "Chief Engineer"
+	title = "Chief Ship Engineer"
 	paygrade = "O3"
-	comm_title = "CE"
+	comm_title = "CSE"
 	flag = SHIP_CE
 	prefflag = PREF_JOB_CE
 	selection_color = "#ffeeaa"
-	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_BRIDGE, ACCESS_CIVILIAN_ENGINEERING)
-	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_BRIDGE, ACCESS_CIVILIAN_ENGINEERING)
+	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_BRIDGE, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP)
+	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_BRIDGE, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP)
 	skills_type = /datum/skills/CE
 	display_order = JOB_DISPLAY_ORDER_CHIEF_ENGINEER
 	outfit = /datum/outfit/job/logistics/engineering
@@ -318,7 +321,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 
 
 /datum/outfit/job/logistics/engineering
-	name = "Chief Engineer"
+	name = "Chief Ship Engineer"
 	jobtype = /datum/job/logistics/engineering
 
 	id = /obj/item/card/id/silver
@@ -329,7 +332,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 	shoes = /obj/item/clothing/shoes/marine
 	glasses = /obj/item/clothing/glasses/welding
 	gloves = /obj/item/clothing/gloves/yellow
-	head = /obj/item/clothing/head/cmberet/wo
+	head = /obj/item/clothing/head/beret/marine/techofficer
 	r_store = /obj/item/storage/pouch/electronics
 	back = /obj/item/storage/backpack/marine/satchel/tech
 
@@ -337,7 +340,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 //Requisitions Officer
 /datum/job/logistics/requisition
 	title = "Requisitions Officer"
-	paygrade = "O1"
+	paygrade = "CPO"
 	comm_title = "RO"
 	flag = SHIP_RO
 	prefflag = PREF_JOB_RO
@@ -373,16 +376,16 @@ A happy ship is a well-functioning ship."})
 	back = /obj/item/storage/backpack/marine/satchel
 
 
-//Maintenance Tech
+//Ship Engineer
 /datum/job/logistics/tech/maint
-	title = "Maintenance Tech"
-	comm_title = "MT"
-	paygrade = "E6E"
+	title = "Ship Engineer"
+	comm_title = "SE"
+	paygrade = "PO"
 	flag = SHIP_MT
 	prefflag = PREF_JOB_MT
 	spawn_positions = 4
 	total_positions = 4
-	supervisors = "the chief engineer"
+	supervisors = "the chief ship engineer"
 	selection_color = "#fff5cc"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDBAY)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDBAY)
@@ -398,7 +401,7 @@ Start with the ship's engine, and don't forget radiation equipment."})
 
 
 /datum/outfit/job/logistics/tech/maint
-	name = "Maintenance Tech"
+	name = "Ship Engineer"
 	jobtype = /datum/job/logistics/tech/maint
 
 	id = /obj/item/card/id/silver
@@ -418,7 +421,7 @@ Start with the ship's engine, and don't forget radiation equipment."})
 //Cargo Tech
 /datum/job/logistics/tech/cargo
 	title = "Cargo Technician"
-	paygrade = "E5"
+	paygrade = "PO"
 	comm_title = "CT"
 	flag = SHIP_CT
 	prefflag = PREF_JOB_CT
@@ -459,19 +462,20 @@ Listen to the radio in case someone requests a supply drop via the overwatch sys
 
 /datum/job/medical
 	department_flag = J_FLAG_SHIP
+	faction = "Marine"
 
 
 /datum/job/medical/professor
 	title = "Chief Medical Officer"
 	comm_title = "CMO"
-	paygrade = "CCMO"
+	paygrade = "O3"
 	flag = SHIP_CMO
 	prefflag = PREF_JOB_CMO
 	spawn_positions = 1
 	total_positions = 1
-	supervisors = "the acting commander"
+	supervisors = "the acting captain"
 	selection_color = "#99FF99"
-	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CMO, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_CHEMISTRY)
+	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CMO, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_CHEMISTRY)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CMO, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_CHEMISTRY)
 	skills_type = /datum/skills/CMO
 	display_order = JOB_DISPLAY_ORDER_CHIEF_MEDICAL_OFFICER
@@ -480,7 +484,7 @@ Listen to the radio in case someone requests a supply drop via the overwatch sys
 
 /datum/job/medical/professor/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"You are a civilian, and are not subject to follow military chain of command, but you do work for the TGMC.
+	to_chat(M, {"You are the chief medical officer aboard the Theseus, navy officer and supervisor to the medical department.
 You have final authority over the medical department, medications, and treatments.
 Make sure that the doctors and nurses are doing their jobs and keeping the marines healthy and strong."})
 
@@ -505,11 +509,11 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	back = /obj/item/storage/backpack/marine/satchel
 
 
-//Doctor
-/datum/job/medical/doctor
-	title = "Doctor"
-	comm_title = "Doc"
-	paygrade = "CD"
+//Medical Officer
+/datum/job/medical/medicalofficer
+	title = "Medical Officer"
+	comm_title = "MO"
+	paygrade = "O1"
 	flag = SHIP_DOCTOR
 	prefflag = PREF_JOB_DOCTOR
 	spawn_positions = 6
@@ -520,19 +524,19 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY)
 	skills_type = /datum/skills/doctor
 	display_order = JOB_DISPLAY_ORDER_DOCTOR
-	outfit = /datum/outfit/job/medical/doctor
+	outfit = /datum/outfit/job/medical/medicalofficer
 
 
-/datum/job/medical/doctor/radio_help_message(mob/M)
+/datum/job/medical/medicalofficer/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"You are a civilian, and are not subject to follow military chain of command, but you do work for the TGMC.
+	to_chat(M, {"You are a military doctor stationed aboard the Theseus.
 You are tasked with keeping the marines healthy and strong, usually in the form of surgery.
 You are also an expert when it comes to medication and treatment. If you do not know what you are doing, adminhelp so a mentor can assist you."})
 
 
-/datum/outfit/job/medical/doctor
-	name = "Doctor"
-	jobtype = /datum/job/medical/doctor
+/datum/outfit/job/medical/medicalofficer
+	name = "Medical Officer"
+	jobtype = /datum/job/medical/medicalofficer
 
 	id = /obj/item/card/id
 	belt = /obj/item/storage/belt/medical
@@ -555,7 +559,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	paygrade = "CD"
 	spawn_positions = 2
 	total_positions = 2
-	supervisors = "chief medical officer"
+	supervisors = "the NT corporate office"
 	selection_color = "#BBFFBB"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CHEMISTRY)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CHEMISTRY)
@@ -568,9 +572,10 @@ You are also an expert when it comes to medication and treatment. If you do not 
 
 /datum/job/medical/researcher/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"You are a civilian, and are not subject to follow military chain of command, but you do work for the TGMC.
-You are tasked with researching and developing new medical treatments, helping your fellow doctors, and generally learning new things.
-Your role involves some roleplaying and gimmickry, but you can perform the function of a regular doctor."})
+	to_chat(M, {"You are a civilian, working for the Nanotrasen Corporation, and are not subject to the military chain of command.
+You are tasked with researching and developing new medical treatments, weapons, conducting xenomorph studies, and learning new things.
+Your role involves some roleplaying and gimmickry, but you can perform the function of a regular doctor.
+While the Corporate Liaison is not your boss, it would be wise to consult them on your findings or ask to use their NT fax machine."})
 
 
 /datum/outfit/job/medical/researcher
@@ -596,6 +601,7 @@ Your role involves some roleplaying and gimmickry, but you can perform the funct
 	department_flag = J_FLAG_SHIP
 	spawn_positions = 1
 	total_positions = 1
+	faction = "Marine"
 
 
 //Liaison
@@ -639,7 +645,7 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	comm_title = "Syn"
 	flag = SHIP_SYNTH
 	prefflag = PREF_JOB_SYNTH
-	supervisors = "the acting commander"
+	supervisors = "the acting captain"
 	selection_color = "#aaee55"
 	skills_type = /datum/skills/synthetic
 	access = ALL_ACCESS
@@ -650,6 +656,8 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 
 /datum/job/civilian/synthetic/equip(mob/living/carbon/human/H, visualsOnly = FALSE, announce = TRUE, latejoin = FALSE, datum/outfit/outfit_override = null, client/preference_source)
 	. = ..()
+	if(!H)
+		return FALSE
 	if(preference_source?.prefs)
 		H.set_species(preference_source.prefs.synthetic_type)
 		if(preference_source.prefs.synthetic_type == "Early Synthetic")
@@ -658,7 +666,8 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	if(!H.real_name || H.real_name == "Undefined") //In case they don't have a name set or no prefs, there's a name.
 		H.real_name = "David"
 		to_chat(H, "<span class='warning'>You forgot to set your name in your preferences. Please do so next time.</span>")
-	H.mind.name = H.real_name
+	if(H.mind)
+		H.mind.name = H.real_name
 	if(H.wear_id)
 		var/obj/item/card/id/I = H.wear_id
 		I.registered_name = H.real_name
@@ -670,7 +679,7 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	. = ..()
 	to_chat(M, {"Your primary job is to support and assist all TGMC Departments and Personnel on-board.
 In addition, being a Synthetic gives you knowledge in every field and specialization possible on-board the ship.
-As a Synthetic you answer to the acting commander. Special circumstances may change this!"})
+As a Synthetic you answer to the acting captain. Special circumstances may change this!"})
 
 
 /datum/outfit/job/civilian/synthetic

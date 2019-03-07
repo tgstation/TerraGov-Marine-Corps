@@ -243,7 +243,7 @@ var/list/ai_verbs_default = list(
 	set category = "AI Commands"
 	set name = "Show Alerts"
 
-	var/dat = "<HEAD><TITLE>Current Station Alerts</TITLE><META HTTP-EQUIV='Refresh' CONTENT='10'></HEAD><BODY>\n"
+	var/dat = "<META HTTP-EQUIV='Refresh' CONTENT='10'>\n"
 	dat += "<A HREF='?src=\ref[src];mach_close=aialerts'>Close</A><BR><BR>"
 	for (var/cat in alarms)
 		dat += text("<B>[]</B><BR>\n", cat)
@@ -267,7 +267,11 @@ var/list/ai_verbs_default = list(
 		dat += "<BR>\n"
 
 	viewalerts = 1
-	src << browse(dat, "window=aialerts&can_close=0")
+
+	var/datum/browser/popup = new(src, "robotalerts", "<div align='center'>Current Station Alerts</div>")
+	popup.set_window_options("can_close=0")
+	popup.set_content(dat)
+	popup.open(FALSE)
 
 // this verb lets the ai see the stations manifest
 /mob/living/silicon/ai/proc/ai_roster()

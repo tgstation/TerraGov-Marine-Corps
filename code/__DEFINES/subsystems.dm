@@ -1,7 +1,7 @@
 //Update this whenever the db schema changes
 //make sure you add an update to the schema_version stable in the db changelog
-#define DB_MAJOR_VERSION 4
-#define DB_MINOR_VERSION 7
+#define DB_MAJOR_VERSION 1
+#define DB_MINOR_VERSION 0
 
 //Timing subsystem
 //Don't run if there is an identical unique timer active
@@ -49,8 +49,9 @@
 // Subsystems shutdown in the reverse of the order they initialize in
 // The numbers just define the ordering, they are meaningless otherwise.
 
-#define INIT_ORDER_TICKER			22
-#define INIT_ORDER_TITLE 			21
+#define INIT_ORDER_TICKER			23
+#define INIT_ORDER_TITLE 			22
+#define INIT_ORDER_CODEX 			21
 #define INIT_ORDER_GARBAGE			20
 #define INIT_ORDER_DBCORE			19
 #define INIT_ORDER_BLACKBOX			18

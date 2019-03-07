@@ -26,7 +26,7 @@
 	updateicon()
 
 /obj/machinery/light_switch/proc/updateicon()
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		icon_state = "light-p"
 	else
 		if(on)
@@ -60,14 +60,14 @@
 
 	if(!otherarea)
 		if(powered(LIGHT))
-			stat &= ~NOPOWER
+			machine_stat &= ~NOPOWER
 		else
-			stat |= NOPOWER
+			machine_stat |= NOPOWER
 
 		updateicon()
 
 /obj/machinery/light_switch/emp_act(severity)
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		..(severity)
 		return
 	power_change()

@@ -29,7 +29,7 @@
 	return
 
 /obj/machinery/keycard_auth/attackby(obj/item/W as obj, mob/user as mob)
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		to_chat(user, "This device is not powered.")
 		return
 	if(istype(W,/obj/item/card/id))
@@ -46,11 +46,11 @@
 
 /obj/machinery/keycard_auth/power_change()
 	. = ..()
-	if(stat &NOPOWER)
+	if(machine_stat &NOPOWER)
 		icon_state = "auth_off"
 
 /obj/machinery/keycard_auth/attack_hand(mob/user as mob)
-	if(user.stat || stat & (NOPOWER|BROKEN))
+	if(user.stat || machine_stat & (NOPOWER|BROKEN))
 		to_chat(user, "This device is not powered.")
 		return
 	if(busy)
@@ -59,7 +59,7 @@
 
 	user.set_interaction(src)
 
-	var/dat = "<h1>Keycard Authentication Device</h1>"
+	var/dat
 
 	dat += "This device is used to trigger some high security events. It requires the simultaneous swipe of two high-level ID cards."
 	dat += "<br><hr><br>"
@@ -72,12 +72,17 @@
 		dat += "<li><A href='?src=\ref[src];triggerevent=Grant Emergency Maintenance Access'>Grant Emergency Maintenance Access</A></li>"
 		dat += "<li><A href='?src=\ref[src];triggerevent=Revoke Emergency Maintenance Access'>Revoke Emergency Maintenance Access</A></li>"
 		dat += "</ul>"
-		user << browse(dat, "window=keycard_auth;size=500x250")
+
+		var/datum/browser/popup = new(user, "keycard_auth", "<div align='center'>Keycard Authentication Device</div>", 500, 250)
+		popup.set_content(dat)
+		popup.open(FALSE)
 	if(screen == 2)
 		dat += "Please swipe your card to authorize the following event: <b>[event]</b>"
 		dat += "<p><A href='?src=\ref[src];reset=1'>Back</A>"
-		user << browse(dat, "window=keycard_auth;size=500x250")
-	return
+
+		var/datum/browser/popup = new(user, "keycard_auth", "<div align='center'>Keycard Authentication Device</div>", 500, 250)
+		popup.set_content(dat)
+		popup.open(FALSE)
 
 
 /obj/machinery/keycard_auth/Topic(href, href_list)
@@ -85,7 +90,7 @@
 	if(busy)
 		to_chat(usr, "This device is busy.")
 		return
-	if(usr.stat || stat & (BROKEN|NOPOWER))
+	if(usr.stat || machine_stat & (BROKEN|NOPOWER))
 		to_chat(usr, "This device is without power.")
 		return
 	if(href_list["triggerevent"])
@@ -125,7 +130,7 @@
 	reset()
 
 /obj/machinery/keycard_auth/proc/receive_request(var/obj/machinery/keycard_auth/source)
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	event_source = source
 	busy = 1

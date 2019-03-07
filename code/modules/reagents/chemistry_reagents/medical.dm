@@ -699,7 +699,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/M, alien)
 		var/death_message = "<span class='danger'>Your body is unable to bear the strain. The last thing you feel, aside from crippling exhaustion, is an explosive pain in your chest as you drop dead. It's a sad thing your adventures have ended here!</span>"
 		if(iscarbon(M))
 			var/mob/living/carbon/C = M
-			if(C.species.flags & NO_PAIN)
+			if(C.species.species_flags & NO_PAIN)
 				death_message = "<span class='danger'>Your body is unable to bear the strain. The last thing you feel as you drop dead is utterly crippling exhaustion. It's a sad thing your adventures have ended here!</span>"
 
 		to_chat(M, "[death_message]")
@@ -722,7 +722,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/M, alien)
 
 /datum/reagent/medicine/hyperzine/on_mob_life(mob/living/M)
 	M.reagent_move_delay_modifier -= min(2.5, volume * 0.5)
-	M.nutrition -= 3 * REM * volume //Body burns through energy fast
+	M.nutrition = max(M.nutrition-(3 * REM * volume), 0) //Body burns through energy fast (also can't go under 0 nutrition)
 	if(prob(1))
 		M.emote(pick("twitch","blink_r","shiver"))
 		if(ishuman(M))

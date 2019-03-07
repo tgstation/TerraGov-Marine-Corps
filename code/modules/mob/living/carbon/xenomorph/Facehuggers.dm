@@ -325,7 +325,7 @@
 	if(!provoked)
 		if(iszombie(src))
 			return FALSE
-		if(species?.flags & IS_SYNTHETIC)
+		if(species?.species_flags & IS_SYNTHETIC)
 			return FALSE
 
 	if(check_mask)
