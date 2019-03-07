@@ -491,6 +491,6 @@
 
 	log_admin("[key_name(usr)] opened the player panel of [key_name(M)].")
 
-	var/datum/browser/browser = new(usr, "player_panel_[key_name(M)]", "<div align='center'>Player Panel [key_name(M)]</div>", 570, 535)
+	var/datum/browser/browser = new(usr, "player_panel_[key_name(M)]", "<div align='center'>Player Panel [key_name(M)]</div>", 575, 555)
 	browser.set_content(body)
 	browser.open()

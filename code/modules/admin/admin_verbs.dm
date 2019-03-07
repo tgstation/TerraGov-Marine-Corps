@@ -530,7 +530,7 @@
 					dat += "<font size=2px>[entry]<br>[reversed[entry]]</font><br>"
 			dat += "<hr>"
 
-	var/datum/browser/browser = new(usr, "invidual_logging_[key_name(M)]", "<div align='center'>Logs</div>", 600, 480)
+	var/datum/browser/browser = new(usr, "invidual_logging_[key_name(M)]", "<div align='center'>Logs</div>", 620, 500)
 	browser.set_content(dat)
 	browser.open()
 
