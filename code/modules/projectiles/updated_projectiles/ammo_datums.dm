@@ -1261,7 +1261,7 @@
 
 /datum/ammo/xeno/toxin
 	name = "neurotoxic spit"
-	ammo_reagents = list("xeno_toxin" = 6)
+	ammo_reagents = list("xeno_toxin" = 7)
 	flags_ammo_behavior = AMMO_XENO_TOX|AMMO_IGNORE_RESIST
 	spit_cost = 50
 	added_spit_delay = 5
@@ -1275,7 +1275,7 @@
 	max_range = CONFIG_GET(number/combat_define/near_shell_range)
 	accuracy_var_low = CONFIG_GET(number/combat_define/low_proj_variance)
 	accuracy_var_high = CONFIG_GET(number/combat_define/low_proj_variance)
-	damage = CONFIG_GET(number/combat_define/mlow_hit_damage)
+	damage = CONFIG_GET(number/combat_define/min_hit_damage)
 	damage_var_low = CONFIG_GET(number/combat_define/low_proj_variance)
 	damage_var_high = CONFIG_GET(number/combat_define/mlow_proj_variance)
 
@@ -1302,13 +1302,13 @@
 
 /datum/ammo/xeno/toxin/upgrade1
 	name = "neurotoxic spit"
-	ammo_reagents = list("xeno_toxin" = 7.2)
+	ammo_reagents = list("xeno_toxin" = 8.05)
 
 /datum/ammo/xeno/toxin/upgrade2
-	ammo_reagents = list("xeno_toxin" = 7.8)
+	ammo_reagents = list("xeno_toxin" = 8.75)
 
 /datum/ammo/xeno/toxin/upgrade3
-	ammo_reagents = list("xeno_toxin" = 8.1)
+	ammo_reagents = list("xeno_toxin" = 9.1)
 
 
 /datum/ammo/xeno/toxin/medium //Queen
@@ -1322,17 +1322,17 @@
 	damage = CONFIG_GET(number/combat_define/low_hit_damage)
 
 /datum/ammo/xeno/toxin/medium/upgrade1
-	ammo_reagents = list("xeno_toxin" = 10.2)
+	ammo_reagents = list("xeno_toxin" = 9.78)
 
 /datum/ammo/xeno/toxin/medium/upgrade2
-	ammo_reagents = list("xeno_toxin" = 11.1)
+	ammo_reagents = list("xeno_toxin" = 10.63)
 
 /datum/ammo/xeno/toxin/medium/upgrade3
-	ammo_reagents = list("xeno_toxin" = 11.48)
+	ammo_reagents = list("xeno_toxin" = 11.05)
 
 /datum/ammo/xeno/toxin/heavy //Praetorian
 	name = "neurotoxic splash"
-	ammo_reagents = list("xeno_toxin" = 11)
+	ammo_reagents = list("xeno_toxin" = 10)
 	added_spit_delay = 15
 	spit_cost = 100
 
@@ -1341,13 +1341,13 @@
 	damage = CONFIG_GET(number/combat_define/hlow_hit_damage)
 
 /datum/ammo/xeno/toxin/heavy/upgrade1
-	ammo_reagents = list("xeno_toxin" = 13.2)
+	ammo_reagents = list("xeno_toxin" = 11.5)
 
 /datum/ammo/xeno/toxin/heavy/upgrade2
-	ammo_reagents = list("xeno_toxin" = 14.3)
+	ammo_reagents = list("xeno_toxin" = 12.5)
 
 /datum/ammo/xeno/toxin/heavy/upgrade3
-	ammo_reagents = list("xeno_toxin" = 14.85)
+	ammo_reagents = list("xeno_toxin" = 13)
 
 /datum/ammo/xeno/sticky
 	name = "sticky resin spit"
