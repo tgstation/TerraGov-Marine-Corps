@@ -1864,53 +1864,96 @@
 		if(!check_rights(R_ADMIN))
 			return
 
-		var/Add = href_list["addjobslot"]
+		var/slot = href_list["addjobslot"]
 
-		for(var/datum/job/job in SSjob.occupations)
-			if(job.title == Add)
-				job.total_positions += 1
-				break
+		var/datum/job/J = SSjob.name_occupations[slot]
+		J.total_positions++
 
 		usr.client.holder.job_slots()
+
+		log_admin("[key_name(src)] has added a [slot] job slot.")
+		message_admins("[ADMIN_TPMONTY(usr)] has added a [slot] job slot.")
+
+
+	else if(href_list["filljobslot"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/slot = href_list["filljobslot"]
+
+		var/datum/job/J = SSjob.name_occupations[slot]
+		if(J.current_positions >= J.total_positions)
+			to_chat(usr, "<span class='warning'>Filling would cause an overflow. Please add more slots first.</span>")
+			return
+		J.current_positions++
+
+		usr.client.holder.job_slots()
+
+		log_admin("[key_name(src)] has filled a [slot] job slot.")
+		message_admins("[ADMIN_TPMONTY(usr)] has filled a [slot] job slot.")
+
+
+	else if(href_list["freejobslot"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/slot = href_list["freejobslot"]
+
+		var/datum/job/J = SSjob.name_occupations[slot]
+		if(J.current_positions <= 0)
+			to_chat(usr, "<span class='warning'>Cannot free more job slots.</span>")
+			return
+		J.current_positions--
+
+		usr.client.holder.job_slots()
+
+		log_admin("[key_name(src)] has freed a [slot] job slot.")
+		message_admins("[ADMIN_TPMONTY(usr)] has freed a [slot] job slot.")
 
 
 	else if(href_list["removejobslot"])
 		if(!check_rights(R_ADMIN))
 			return
 
-		var/Remove = href_list["removejobslot"]
+		var/slot = href_list["removejobslot"]
 
-		for(var/datum/job/job in SSjob.occupations)
-			if(job.title == Remove && job.total_positions - job.current_positions > 0)
-				job.total_positions -= 1
-				break
+		var/datum/job/J = SSjob.name_occupations[slot]
+		if(J.total_positions <= 0 || (J.total_positions - 1) < J.current_positions)
+			to_chat(usr, "<span class='warning'>Cannot remove more job slots.</span>")
+			return
+		J.total_positions--
 
 		usr.client.holder.job_slots()
+
+		log_admin("[key_name(src)] has removed a [slot] job slot.")
+		message_admins("[ADMIN_TPMONTY(usr)] has removed a [slot] job slot.")
 
 
 	else if(href_list["unlimitjobslot"])
 		if(!check_rights(R_ADMIN))
 			return
 
-		var/Unlimit = href_list["unlimitjobslot"]
+		var/slot = href_list["unlimitjobslot"]
 
-		for(var/datum/job/job in SSjob.occupations)
-			if(job.title == Unlimit)
-				job.total_positions = -1
-				break
+		var/datum/job/J = SSjob.name_occupations[slot]
+		J.total_positions = -1
 
 		usr.client.holder.job_slots()
+
+		log_admin("[key_name(src)] has unlimited the [slot] job.")
+		message_admins("[ADMIN_TPMONTY(usr)] has unlimited the [slot] job.")
 
 
 	else if(href_list["limitjobslot"])
 		if(!check_rights(R_ADMIN))
 			return
 
-		var/Limit = href_list["limitjobslot"]
+		var/slot = href_list["limitjobslot"]
 
-		for(var/datum/job/job in SSjob.occupations)
-			if(job.title == Limit)
-				job.total_positions = job.current_positions
-				break
+		var/datum/job/J = SSjob.name_occupations[slot]
+		J.total_positions = J.current_positions
 
 		usr.client.holder.job_slots()
+
+		log_admin("[key_name(src)] has limited the [slot] job.")
+		message_admins("[ADMIN_TPMONTY(usr)] has limited the [slot] job.")

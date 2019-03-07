@@ -366,7 +366,7 @@
 	log_admin("[key_name(usr)] opened the extended player panel.")
 
 
-	var/datum/browser/browser = new(usr, "players", "<div align='center'>Player Panel Extended</div>", 640, 480)
+	var/datum/browser/browser = new(usr, "players", "<div align='center'>Player Panel Extended</div>", 720, 480)
 	browser.set_content(dat)
 	browser.open()
 
