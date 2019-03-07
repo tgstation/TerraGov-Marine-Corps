@@ -172,7 +172,7 @@
 /obj/item/clothing/mask/facehugger/proc/check_lifecycle()
 	if(sterile)
 		return TRUE
-	if(check_neighbours())
+	if(prob(80) && check_neighbours())
 		return FALSE
 	if(lifecycle - 4 SECONDS <= 0)
 		if(isturf(loc))
@@ -206,8 +206,12 @@
 			if(F.stat == CONSCIOUS && !F.sterile)
 				count++
 			if(count > 2) //Was 5, our rules got much tighter
-				visible_message("<span class='xenowarning'>The facehugger is furiously cannibalized by the nearby horde of other ones!</span>")
-				qdel(src)
+				if(prob(50))
+					visible_message("<span class='xenowarning'>[src] is furiously cannibalized by the nearby horde of other ones!</span>", null, 5)
+					qdel(src)
+				else
+					visible_message("<span class='xenowarning'>[src] scuttles away from the nearby horde of other ones!</span>", null, 5)
+					Move(get_step(src, pick(cardinal)))
 				return TRUE
 	return FALSE
 
