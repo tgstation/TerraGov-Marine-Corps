@@ -115,10 +115,10 @@
 	center_of_mass = list("x"=17, "y"=3)
 	list_reagents = list("vodka" = 100)
 
-/obj/item/reagent_container/food/drinks/bottle/tequilla
+/obj/item/reagent_container/food/drinks/bottle/tequila
 	name = "\improper Caccavo Guaranteed Quality Tequila"
 	desc = "Made from premium petroleum distillates, pure thalidomide and other fine quality ingredients!"
-	icon_state = "tequillabottle"
+	icon_state = "tequilabottle"
 	center_of_mass = list("x"=16, "y"=3)
 	list_reagents = list("tequila" = 100)
 
@@ -139,7 +139,7 @@
 
 /obj/item/reagent_container/food/drinks/bottle/patron
 	name = "Wrapp Artiste Patron"
-	desc = "Silver laced tequilla, served in space night clubs across the galaxy."
+	desc = "Silver laced tequila, served in space night clubs across the galaxy."
 	icon_state = "patronbottle"
 	center_of_mass = list("x"=16, "y"=6)
 	list_reagents = list("patron" = 100)
