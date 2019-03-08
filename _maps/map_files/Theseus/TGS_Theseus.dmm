@@ -16956,19 +16956,6 @@
 	tag = "icon-blue"
 	},
 /area/almayer/hallways/aft_hallway)
-"aLX" = (
-/obj/machinery/firealarm{
-	dir = 2
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/almayer{
-	dir = 1;
-	icon_state = "blue";
-	tag = "icon-blue"
-	},
-/area/almayer/hallways/aft_hallway)
 "aLY" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -18824,6 +18811,9 @@
 /turf/open/floor/plating,
 /area/almayer/living/captain_mess)
 "aQf" = (
+/obj/machinery/firealarm{
+	dir = 2
+	},
 /turf/open/floor/almayer{
 	dir = 6;
 	icon_state = "blue";
@@ -36381,6 +36371,9 @@
 /obj/structure/table/almayer,
 /obj/item/reagent_container/glass/beaker/cryoxadone,
 /obj/item/reagent_container/glass/beaker/cryoxadone,
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/open/floor/almayer{
 	dir = 8;
 	icon_state = "sterile_green_corner";
@@ -39849,7 +39842,9 @@
 	},
 /area/almayer/medical/lower_medical)
 "bNC" = (
-/obj/structure/bed/chair,
+/obj/structure/bed/chair{
+	dir = 1
+	},
 /turf/open/floor/almayer{
 	dir = 2;
 	icon_state = "sterile_green_side";
@@ -51585,13 +51580,6 @@
 	},
 /turf/open/floor/almayer,
 /area/almayer/hull/upper_hull)
-"qqG" = (
-/obj/structure/bed/chair,
-/turf/open/floor/almayer{
-	icon_state = "dark_sterile";
-	tag = "icon-sterile"
-	},
-/area/almayer/medical/lower_medical)
 "qEQ" = (
 /obj/structure/table/almayer,
 /obj/item/device/lightreplacer,
@@ -75442,7 +75430,7 @@ bbQ
 bbQ
 bRE
 bRE
-bVm
+cfC
 bTT
 bXx
 bYH
@@ -75699,7 +75687,7 @@ bbQ
 bmu
 bSh
 bRE
-cgk
+bVm
 cfs
 bXx
 bYH
@@ -75956,7 +75944,7 @@ bbQ
 bmu
 bSh
 bRE
-ciL
+cgk
 cfs
 bXx
 bYI
@@ -76213,7 +76201,7 @@ bbQ
 bmu
 bSh
 bRE
-bVm
+ciL
 bTT
 bXx
 bYJ
@@ -76470,7 +76458,7 @@ bbQ
 bmu
 bSi
 bRE
-cfC
+bVm
 cfs
 bXx
 bYK
@@ -80060,7 +80048,7 @@ aMR
 bHf
 bIq
 aIZ
-qqG
+aIZ
 uhG
 bGq
 bQE
@@ -80574,7 +80562,7 @@ aMR
 bJA
 aIZ
 bIu
-bNt
+bNC
 bNF
 bDM
 bNI
@@ -86358,7 +86346,7 @@ alz
 alz
 apP
 apO
-aLX
+aLY
 aMZ
 aDk
 aIT
@@ -105615,7 +105603,7 @@ aag
 aag
 aai
 aeW
-akR
+asu
 avV
 anC
 anC
@@ -105635,7 +105623,7 @@ eRg
 anC
 anC
 ptw
-akR
+asu
 aUT
 aap
 aag
